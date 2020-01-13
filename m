@@ -2,21 +2,20 @@ Return-Path: <SRS0=Ohoh=3C=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C650C33CA9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2020 01:13:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 554C9C33CA9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2020 01:23:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0160521744
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2020 01:13:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 278D521556
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2020 01:23:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IhDCgRAW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0160521744
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="j/hPGc46"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 278D521556
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,41 +24,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aBt5yDZC0HUupw65OdPplrUvE8ivrEqLxGv2jMZHLQY=; b=IhDCgRAWMqeG3f
-	FWFLw0ZCJ7aZwmxE8J9upq54lIvvARgHBr9GAP8SaNVxVrzz7n2gZmZYTx/Tzd09YOOULgDfmSGSE
-	QLDB5JJXmyYMJD3kG6LIYwRoSabzzxB7OZ8KwpVswAkFP1PHkckjM1W8LMHJ0wR5uzKUDjQOgjZMY
-	hs1Xz/l5mZuGWaejeKm+xornGEsFk8yOex5zdc8PNXuKo+wTFThVIEFwj677NvZETVQS/qbM/IQog
-	RQHBPTLRVZqXF1TLp22zm1kf2R/WTB/v5Ew72auHlQxtZy0R3I7T1q66QTnTT5i5HHNY6F3i4Elb1
-	8vyTX3Y1lL3SIvLUueKg==;
+	List-Owner; bh=St9UUxK/u+GaVmK1VhmZ3V6zs7DK2L6mtODgspWHGHI=; b=j/hPGc46124qkd
+	IVgYN2SQLV26bI3Anczy3b3qSXZuQr4Xk7zTl5kAqZSgx9JTmMiErFRY636dvGEbNJNvk0LzTm8qF
+	BoLljMCrsdrpl2ONWFiIjBoF38TNuJHaH/ssYRxGb6gXGJQiXmFDp2JIiYE5zq8qdQPdKE9n7LTXv
+	jDVNxDiOZdRtuU0GdpkP8czOTflVKbgMOPcIV26RW2ADbNUqQaW5uoDWDsybNODt2ncJUlTOWt6+8
+	k1O+koGjMB7/FSeH/sz3ptKR+jOQd9Kt6KjOU93Ts7bh77qpidHlyYcEB4m0X7r5uqM5yPxjAqJTQ
+	ZNiC+cHB0/ayXngHrb2w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iqoIV-0004oE-CV; Mon, 13 Jan 2020 01:13:39 +0000
+	id 1iqoS3-0000Pr-OZ; Mon, 13 Jan 2020 01:23:31 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iqoIR-0004nT-Q1; Mon, 13 Jan 2020 01:13:37 +0000
+ id 1iqoS0-0000PH-S4; Mon, 13 Jan 2020 01:23:30 +0000
 Received: from [10.18.38.198] (10.18.38.198) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 13 Jan
- 2020 09:13:52 +0800
-Subject: Re: [PATCH v5 1/6] dt-bindings: phy: Add Amlogic A1 USB2 PHY Bindings
+ 2020 09:23:53 +0800
+Subject: Re: [PATCH v5 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
+ DWC3 Glue Bindings
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <1578634957-54826-1-git-send-email-hanjie.lin@amlogic.com>
- <1578634957-54826-2-git-send-email-hanjie.lin@amlogic.com>
- <CAFBinCA-w6GnPzFCbmUFNrOY3PeW3=74+ToC9CvXoSAWoe+VLw@mail.gmail.com>
+ <1578634957-54826-3-git-send-email-hanjie.lin@amlogic.com>
+ <CAFBinCCZSBWdKQwmcvponuUu_aiTnDCyRiPqKDgqfNkJQoq06w@mail.gmail.com>
 From: Hanjie Lin <hanjie.lin@amlogic.com>
-Message-ID: <da8f7d0b-7bf8-5a7a-53a6-be2bdc1ca4c4@amlogic.com>
-Date: Mon, 13 Jan 2020 09:13:52 +0800
+Message-ID: <52566105-cbee-01d6-9110-f9954eabe22f@amlogic.com>
+Date: Mon, 13 Jan 2020 09:23:52 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.3.1
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCA-w6GnPzFCbmUFNrOY3PeW3=74+ToC9CvXoSAWoe+VLw@mail.gmail.com>
+In-Reply-To: <CAFBinCCZSBWdKQwmcvponuUu_aiTnDCyRiPqKDgqfNkJQoq06w@mail.gmail.com>
 Content-Language: en-US
 X-Originating-IP: [10.18.38.198]
 X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
  (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200112_171335_848112_BB152AD3 
-X-CRM114-Status: GOOD (  13.39  )
+X-CRM114-CacheID: sfid-20200112_172328_909540_A9B47F16 
+X-CRM114-Status: GOOD (  12.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,34 +89,39 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 
-On 2020/1/12 4:54, Martin Blumenstingl wrote:
+On 2020/1/12 4:50, Martin Blumenstingl wrote:
 > Hi Hanjie,
 > 
 > On Fri, Jan 10, 2020 at 6:43 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
+> [...]
+>> @@ -37,6 +43,11 @@ properties:
 >>
->> Add the Amlogic A1 Family USB2 PHY Bindings
->>
->> It supports Host mode only.
->>
->> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
->> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
->> ---
->>  .../bindings/phy/amlogic,meson-a1-usb2-phy.yaml    | 62 ++++++++++++++++++++++
->>  1 file changed, 62 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
-> there are only two differences to the existing
-> amlogic,meson-g12a-usb2-phy.yaml binding:
-> - different compatible string (the existing binding already has an
-> enum, so that would be easy to extend)
-> - new, mandatory power-domains property
-> (Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-> has examples how to make properties mandatory based on the compatible
-> string)
+>>    clocks:
+>>      minItems: 1
+>> +    maxItems: 4
+> the driver parses one clock for G12A/G12B/SM1 and three clocks for A1
+> if there is a fourth clock: do we need to manage it in the driver?
+> (note: dt-bindings always represent the hardware, so if there's a
+> fourth clock which the driver doesn't need then it's perfectly valid
+> to describe it here. a comment which clock this is helps in the
+> code-review process)
 > 
-> have you considered merging this with the existing
-> amlogic,meson-g12a-usb2-phy.yaml binding?
-> this is not a "must have" in my opinion, I still want to hear your
-> opinion on this topic!
+
+Hi Martin,
+
+Sorry for this confusing, I moved xtal_usb_phy clock from glue driver to phy,
+but I missed this binding modification. 
+So actually A1 do only need these three clocks and no fourth clock exist, clock
+and clock-names maxItems should be three here for A1.
+
+>> +  clock-names:
+>> +    minItems: 1
+>> +    maxItems: 4
+> I let Rob comment on this, personally I prefer naming the clocks explicitly
+> also I think clock-names has to be a mandatory property for A1 (see
+> Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
+> for an example which makes properties mandatory depending on the
+> compatible string)
 > 
 > 
 > Martin
@@ -124,16 +129,42 @@ On 2020/1/12 4:54, Martin Blumenstingl wrote:
 > .
 > 
 
+Thanks for your patient and detailed advice.
 
-Hi Martin,
+Do you mean something like this:
 
-Thanks for your advice.
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-g12a-usb-ctrl
++
++    then:
++      properties:
++        clocks:
++         minItems: 1
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-a1-usb-ctrl
++
++    then:
++      properties:
++        clocks:
++          items:
++            minItems: 3
++       clock-names:
++          items:
++            - const: usb_ctrl
++            - const: usb_bus
++            - const: xtal_usb_ctrl
++      required:
++        - clock-names
 
-Of course, it should looks much better to have merging this into the existing
-amlogic,meson-g12a-usb2-phy.yaml.
-I will try to do it by following the examples.
 
-thanks,
 Hanjie
 
 _______________________________________________
