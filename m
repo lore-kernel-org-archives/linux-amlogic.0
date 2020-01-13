@@ -2,57 +2,90 @@ Return-Path: <SRS0=Ohoh=3C=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EBD77C33CAE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2020 22:15:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B029CC33CAF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2020 23:37:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BE34020CC7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2020 22:15:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6A7C820CC7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2020 23:37:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kat+M1UY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BE34020CC7
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=the-dreams.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R4kevM2y";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="b/ab/jdX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6A7C820CC7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=GVaivyWEKlWTbUceRSmFgJWvWc3yGBdQjqtMCmAFQnc=; b=kat+M1UYicfc8fing/bIbjRRP
-	/vv2g2bZv1pu7EM/XWVEKjIveMU5lByJQ9SqycFkSOvZQIjZLrkla6NN8AxbHuGG9gg3DXcuGb/i9
-	uXgpOF6n4uVzj92IyzJKUrHyUnWMlA5cwqEqh6achPdeWs2QB0B9yEO0r6JEr7FpfxbyFZer9HTg5
-	idL0lrXoDhFScrrkYyMEI7ZUCu5Gv2pTnN29ffDTvObkKlaCLrh2NJg/zA4wrISAK97/EvUK1aCKp
-	tQce+UHfXeJWTnAw2dtDm4c2XLS+zZdu7t8AThD+s1Wp3688VJKWThkyS9vmhmFzuaeLzPT0Oyko3
-	99zvrueFQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3FbswrqX/VyicJ3vPov56rZkhubS36appvrzpfWJwnM=; b=R4kevM2yf8iGxo
+	YmA/xh1UDQxDgF7n9xUhvAQnRKFh06gV/uOg6lq71MW1cCUlQLkLeUMAGQVPglp2rT6BFshiTYosy
+	WattSkldiZFPzavWwYqzGtkZzpJU4yuZsUk1QsWWysYELwMHQhjrhG8Yuqi+7lJ2NRfwWMtjEZG5D
+	eQlePnnjcds2/7jescZ4l+jMQTzPKxikDilii6OGEpwnpeBPpMZpEuClmunJ4F4XdcNOgior0jfXB
+	auhy/qWF6cQwjLpUN0H7SM0VFVvtx6BOnWRCDKwV2rFHXaWrB2ddJeTQKlDk2HbL7A6FdFOqT3VtL
+	FR88s6dmQuFac24zSp2g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ir7zr-0001Yj-Iu; Mon, 13 Jan 2020 22:15:43 +0000
-Received: from sauhun.de ([88.99.104.3] helo=pokefinder.org)
- by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ir7zn-0001W3-MI; Mon, 13 Jan 2020 22:15:41 +0000
-Received: from localhost (p54B332D5.dip0.t-ipconnect.de [84.179.50.213])
- by pokefinder.org (Postfix) with ESMTPSA id 2B8B32C06DA;
- Mon, 13 Jan 2020 23:15:33 +0100 (CET)
-Date: Mon, 13 Jan 2020 23:15:32 +0100
-From: Wolfram Sang <wsa@the-dreams.de>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH] i2c: meson: implement the master_xfer_atomic callback
-Message-ID: <20200113221532.GC2689@ninjato>
-References: <20200107232901.891177-1-martin.blumenstingl@googlemail.com>
+	id 1ir9Gd-0001FR-Jj; Mon, 13 Jan 2020 23:37:07 +0000
+Received: from mail-pj1-x1043.google.com ([2607:f8b0:4864:20::1043])
+ by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1ir9Ga-0001Di-1m
+ for linux-amlogic@lists.infradead.org; Mon, 13 Jan 2020 23:37:05 +0000
+Received: by mail-pj1-x1043.google.com with SMTP id n59so4987471pjb.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 13 Jan 2020 15:37:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=URU0nYVVIvG9fQe+g2UcCIBs+6Op8N6XSVfeKx2sX+I=;
+ b=b/ab/jdXLWIU3ED09YHc4yD7PEZYMen7BL6s7F1/kjYZZ83fH7thRSgRFb4nvmHi9+
+ I8uOh4axY1udmFUQ9CRB6Ak22NsM0Q5kOUrMSui9gEu5AZwkkiQGPJxHY4Ek0jT/BU7x
+ dN3GGRtSBhufBlwxACNUPr6YqSRNplN/UB1VyIzSrV23VJ/BxtF8x8jOUP/NEUxtfkff
+ VucOsF7idPxxRbVhU5/fTAEEDTXLWM6GxHyPAO3/NDMx+eTcgWfIn5rfkPyTksPsZSjP
+ e4eZNbaY5gv76V7loiTc0SQ3nvjtNOKckOayZ/Icwb44Nfq+t/qB4ZXVB/jumkX3KfWa
+ mBoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=URU0nYVVIvG9fQe+g2UcCIBs+6Op8N6XSVfeKx2sX+I=;
+ b=XZmZ0obaypK+ixKsT2G18L1x3gVdKG+18/ueWJ5c55sjN8qjuQJU3662nM56XlF26Y
+ Fxw57fN/O4cOzOqOyXeLdYHuB7tqzVXzee5Yq69i+t9qcug0k56muhb8HcrjNXPnPPWF
+ J5xPIOrsorSNCp8Rp4NRkdErGsTfzyDE6RVUl7DKwDohCoLJu4aMu/BjjpQafNDSEG2S
+ X5smmWJPCUvmCyfDH4DHnHqZp/kkuQeC8lQ2hQP9OtkBin75eaZOaphdC3crSvecR1hk
+ QRFQNtbgdcPudBJ9Tnfun0jl9t3empFH5U+D59niIWV3WqY9GhmDIUMypuDW/pMXU/TO
+ eLRQ==
+X-Gm-Message-State: APjAAAX3b1m1TWVGFReeC2xu77u/wNPEgcO8Bqhxk7LB3E5a/sguI7hd
+ 7fT0py/TdFbjApCtLjH6sjH/5A==
+X-Google-Smtp-Source: APXvYqzCuoCV4QA2/uQQXAdoLv7iqVZ5/gY2tfSqNNG6zeLXktzaA9OsR+piF0ld/u9H+WkLG6qR5Q==
+X-Received: by 2002:a17:902:bf0a:: with SMTP id
+ bi10mr17117837plb.324.1578958623194; 
+ Mon, 13 Jan 2020 15:37:03 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id q15sm14613132pgi.55.2020.01.13.15.37.02
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 13 Jan 2020 15:37:02 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Jianxin Pan <jianxin.pan@amlogic.com>, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: power: add Amlogic secure power
+ domains bindings
+In-Reply-To: <1573532930-39505-2-git-send-email-jianxin.pan@amlogic.com>
+References: <1573532930-39505-1-git-send-email-jianxin.pan@amlogic.com>
+ <1573532930-39505-2-git-send-email-jianxin.pan@amlogic.com>
+Date: Mon, 13 Jan 2020 15:37:02 -0800
+Message-ID: <7ha76rdj35.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20200107232901.891177-1-martin.blumenstingl@googlemail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200113_141539_880243_91B8F0AD 
-X-CRM114-Status: UNSURE (   9.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200113_153704_227532_863E454D 
+X-CRM114-Status: GOOD (  11.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,76 +97,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: narmstrong@baylibre.com, khilman@baylibre.com, linux-kernel@vger.kernel.org,
- b.galvani@gmail.com, jian.hu@amlogic.com, linux-i2c@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============8189543735610893314=="
+Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ linux-pm@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
+ Xingyu Chen <xingyu.chen@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Jianxin Pan <jianxin.pan@amlogic.com> writes:
 
---===============8189543735610893314==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+xNpyl7Qekk2NvDX"
-Content-Disposition: inline
+> Add the bindings for the Amlogic Secure power domains, controlling the
+> secure power domains.
+>
+> The bindings targets the Amlogic A1 and C1 compatible SoCs, in which the
+> power domain registers are in secure world.
+>
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> ---
+>  .../bindings/power/amlogic,meson-sec-pwrc.yaml     | 37 ++++++++++++++++++++++
+>  include/dt-bindings/power/meson-a1-power.h         | 32 +++++++++++++++++++
+>  2 files changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+>  create mode 100644 include/dt-bindings/power/meson-a1-power.h
+>
+> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> new file mode 100644
+> index 00000000..2ed269f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +# Copyright (c) 2019 Amlogic, Inc
+> +# Author: Jianxin Pan <jianxin.pan@amlogic.com>
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson Secure Power Domains
+> +
+> +maintainers:
+> +  - Jianxin Pan <jianxin.pan@amlogic.com>
+> +
+> +description: |+
+> +  Meson Secure Power Domains used in A1/C1 SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-a1-pwrc
+> +
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - "#power-domain-cells"
+> +
+> +examples:
+> +  - |
+> +    pwrc: power-controller {
+> +          compatible = "amlogic,meson-a1-pwrc";
+> +          #power-domain-cells = <1>;
+> +          secure-monitor = <&sm>;
 
+As requested by Rob, please put this under the secure-monitor node.
 
---+xNpyl7Qekk2NvDX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jan 08, 2020 at 12:29:01AM +0100, Martin Blumenstingl wrote:
-> Boards with some of the 32-bit SoCs (mostly Meson8 and Meson8m2) use a
-> Ricoh RN5T618 PMU which acts as system power controller. The driver for
-> the system power controller may need to the I2C bus just before shutting
-> down or rebooting the system. At this stage the interrupts may be
-> disabled already.
->=20
-> Implement the master_xfer_atomic callback so the driver for the RN5T618
-> PMU can communicate properly with the PMU when shutting down or
-> rebooting the board. The CTRL register has a status bit which can be
-> polled to determine when processing has completed. According to the
-> public S805 datasheet the value 0 means "idle" and 1 means "running".
->=20
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-Applied to for-next, thanks!
-
-
---+xNpyl7Qekk2NvDX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl4c7AQACgkQFA3kzBSg
-KbbuRRAAnOvYecXtAAQlFI9kpCVUGmLW8USmChX+JFEbpguc3uyPI0jnz7hPjLsx
-664PGVOPwfaMIfcClLCVM8abtgjyUpbX4AmLrM0mGq5xgYATUCnV85hjcqXIvEKM
-ecfAR522mRm3ZVSUEJO5UPzwjDY1QxON7BEgY6iRa9F4wLEAXdV3MYXBLkMKK7YR
-IvX92X/SX30jqLIYfihH1T/5Livk08f3M70GQH8Ngcr1HMK5clSyrVxp2mT4L4o+
-Y9RoB7hdhEv96O+oaEfXmeGowe5co+d2JGTbCPT9/Fuo0Curv+ScNbKMrf8dMqW2
-+/Qz1EQDsIGd4uh1w/DMmFHslQcVYX3lfKLZASk0rcPs1ofoja5uXEzKvTTCrsgI
-GImOvyV9hxSFEbpL5ZUY8PHIplRsqpRnMOpeXiK6xmPTQPAE1Tk2eng2uCuvJk1V
-0EhFNVHR3pNMw966d+kw+oFOC3hFSR+s4rw7CiOpOI/Cgl6AhLCvrqpqWRF4asfX
-DvuqSGCH2Z5Li9xuFJHU5kLR8MLX5Y6yeVOPMFCgqhBr22cV5JInznSODpg56WjH
-V7kmPJOm3HIwgk93ZySC7g5eCOX/h14xK7EWRM42cxv8otcmJfJ85YRxSKAfKjYV
-ptAxuxClf+v9HsFRGD4ZSMb00igmwTiW9y/E0TiMw4Q01tUtYWY=
-=pX3/
------END PGP SIGNATURE-----
-
---+xNpyl7Qekk2NvDX--
-
-
---===============8189543735610893314==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8189543735610893314==--
-
