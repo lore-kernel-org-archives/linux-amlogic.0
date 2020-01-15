@@ -2,21 +2,22 @@ Return-Path: <SRS0=Q90K=3E=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BFC9C33CB1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2020 08:01:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0A21C33CB1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2020 08:02:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4E92424679
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2020 08:01:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 67B8824679
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2020 08:02:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Y6YZsPWV";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="sY7eFdom"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4E92424679
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S96H+13U";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TvDS04c4"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 67B8824679
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,62 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=75uiPJFvCeEv7c1pGyu8B/chPiUglfZ3MDVwH8m7lOg=; b=Y6YZsPWVMtSrSC
-	c2QfLkxATf2SB0B4qQMu8rEypgRJckei1or3BmScR3/d9OBD54lGECAQpmCoGWX+Oq+2Nn9pQtXus
-	MOAhbe3U8KfzSjJuA1ApvLPGb/j6m5g1hs08TzGKPv7B++JWfipICq218PT6YRCKywFfQP5odRmbB
-	knVBzMK7WnIHJd6zsaiTxSvuLH22VqaqxAAZxjXtRB7xjzGRRuC/mgNQpbcJpF6rd7+fXMDl3yzZW
-	I4Q1T5JN2R0IJbzlEENwDSEycTTB7bvmQc6iwBQsvkv5FcoaxoppVaqgV3etzZoS5QmAC8AB4pKdD
-	TkOiz37TuK7N6bfcxb7g==;
+	List-Owner; bh=/+SJcqL17S391fAyxe+LyLsOmjxC1P37pMAmsCpqym4=; b=S96H+13U6ib3rK
+	KsjPkl3jXY/uyFIr7D7MP75DoSBMrTWzniqrxZNI6sT4JjwBfySO5/9DeWncGAjkobf2Im1b8grec
+	oiefcclzBr0npiEyXaM8TjYEiUkp8baMtczKc/B+aK1/29mJZokBTUBZpR8aslMbWn3IoH/BKDaE+
+	KbwpV0T3UdJj9SCGnlJsYVmnY1uheE/q9I3O/TSvDIeso7f4sIFApct33f4Q2/+e2YXBgBBG6aJXZ
+	3sVo8CVs7hD2jTM9/RkF/HLw4RdLt+P1N5WWnniuV5TL/zv3mNW+MGJNHWSIvqgdKTf4CQR1zQ2jr
+	qkel8NjYWHZ/X08jRzLw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1irdcM-00020n-LQ; Wed, 15 Jan 2020 08:01:34 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1irdcs-0002Ja-Fq; Wed, 15 Jan 2020 08:02:06 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1irdc7-0001nJ-AR
- for linux-amlogic@lists.infradead.org; Wed, 15 Jan 2020 08:01:24 +0000
-Received: by mail-wm1-x343.google.com with SMTP id d73so16721691wmd.1
- for <linux-amlogic@lists.infradead.org>; Wed, 15 Jan 2020 00:01:18 -0800 (PST)
+ id 1irdcb-00028G-A6
+ for linux-amlogic@lists.infradead.org; Wed, 15 Jan 2020 08:01:53 +0000
+Received: by mail-wm1-x344.google.com with SMTP id d139so4115948wmd.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 15 Jan 2020 00:01:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=HlYETr3hYYfMZTjHv9k9jFmQVJRUe5aAtS1Qh6QunU8=;
- b=sY7eFdomkzXofgSu0Xoxy15GUXeQh3P5d+4JytVWco1rKk1OQfhw4nXtpnZnA3VBy7
- ebXhKo5WBXmFiIlnb5pasCEsIR68fEHNhJc0u5/b0qmc7WUCQOwzLsThbDoK6Vy4SLEQ
- TkeIkhaeDeY//KTOvvcH7o5tnhJK+Z5RDDAuELiFpC3EiEFY/3gm3AKNaxVucX5uoI7e
- Arnbz7MLUCmUgzQDQS68I6TowOcXbTQjfXJYTv2AZv+SnoOOi3+xDPZ0LpY91q28DloS
- 42gnVmXhDgsrb8Y7DLHJrMa4tvYFQaFg9WOzVh/Pie8cmsoEwpzDRqSIy0FRK7Z0kA6K
- CNJw==
+ bh=LqGaezBmjqo1I3iqgzWcout33RhA0cLHgVioPXtlKd4=;
+ b=TvDS04c4VdOECsl00gF0Bv6+U2ZHSIdozA3JRwRtpSqC/bv+uM9qW7Wuhgj5dV6yR+
+ KNUQ9gSe0rLjDk64dpSUp37KeTF5AuFk4t7gK63EJN01UDgt1fE3685VFSmQm5kaGhv1
+ XMNAj7GHBTp1bGJ1vpL41X10pmmq1xv09rFI0fKXq7IeLvvjG0pTg1shWmS/6r3Rm5Cx
+ RKdUJLXJr2MAkBI5OAjmqx+uSxv+A48RV4oXWW9oOhL5+ffNaBzZA7f/Y0j3LNs3GL19
+ ThWZtIX1dhDA18wjoUc8x/8iAFmAITtr91SWB2AQIm9IWJEr9USk81M1qK5vx67Oh4rZ
+ JW6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=HlYETr3hYYfMZTjHv9k9jFmQVJRUe5aAtS1Qh6QunU8=;
- b=CTGZ95JuNZG2Rh1V01Ui+tpvhL86/iD+eoNu9GDxlmRHXjdVUL+5ROfGjsMewjPz2O
- tq+JWC8EyClSX4qHLPQz07rp+Y+n6psU3KwJmTV61P2cFj2VA8Osa7Wl4bMx6DY0i1O1
- +GsxWTHxK1thuGe0Wa7a1ifoHNvA2Qinzf0jxOfn9/+x+fiGVKulZpVpT65Z8dZd3nt2
- Sy4lcpnULM+A/TlgGTV4SAg+jW3OuKZc9Qr7DikQfB4Zu8xc6WrXeu11D7ueNZf8fGoF
- PLmqbz4pJ/sZY0FVyO4wq00JcgNSVa7dXhqXAO+Xx8ElpoQ10AtVt4NNOQ/U7gMAMmIT
- 0BeQ==
-X-Gm-Message-State: APjAAAU9PDlQZLZ+LRGU+TNQqfL4qSiT5yulqraCj3ii/YVg0xfgJn8b
- cngqIWzmPKNqJSuCf399C9SmzQ==
-X-Google-Smtp-Source: APXvYqyhieFsz5wMjeicHq+9ou/kke3EeuKAmXF8aazAuSz8X8vL3fQ1VY4kEYthC9Q3kh+7nr/G/g==
-X-Received: by 2002:a05:600c:d5:: with SMTP id
- u21mr31050720wmm.85.1579075277047; 
- Wed, 15 Jan 2020 00:01:17 -0800 (PST)
+ bh=LqGaezBmjqo1I3iqgzWcout33RhA0cLHgVioPXtlKd4=;
+ b=W80IMVDdYmSv98CGeUs18cJMFDQlWn1vb8k21577ED2V8KoQo21ObfQZAtjri+9hz+
+ 4Cxk8VVbsSPDmDf4Heg7bFt1e7lt69PAExe9IMu6j3SoxLyySFDphf1cgYSJVDTcD8+u
+ c47bhAaJa/HyV3i8NJAAHWNXREN2KnujQS3PZ1MQDdeDoUcNnCFOZ/HxrRZx+dTSRt83
+ Wm3IEE56xortX3/OnlDvHtM8f+LX+3DDwO35hd4Rh2Dz3ht7Zov94ISS9H+IMYRXT1GX
+ nxtvVt5dZdb7/q+6hIs3SofdqIg0m9zQCpXn28hKZXiAn+UzfWDjj/WR5f39/hl+r5I3
+ jlfw==
+X-Gm-Message-State: APjAAAWRNvQTY3ukcKDZNWPXGPtZ/8WOZB8KO2qok0zUUsbV8ihrCq38
+ KvG53E03BDA6T7c1U6aKqs6djg==
+X-Google-Smtp-Source: APXvYqzrj/IVZkkvSCDE8i0Wj87kZF8tJojhg+NQAlJXlmypQIV1dS8AgnJnYPXM91mw9maNWCqeSA==
+X-Received: by 2002:a1c:541b:: with SMTP id i27mr33322177wmb.137.1579075307994; 
+ Wed, 15 Jan 2020 00:01:47 -0800 (PST)
 Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id n187sm22514300wme.28.2020.01.15.00.01.15
+ by smtp.gmail.com with ESMTPSA id r15sm22123624wmh.21.2020.01.15.00.01.46
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Jan 2020 00:01:16 -0800 (PST)
-Subject: Re: [PATCH v5 4/6] usb: dwc3: Add Amlogic A1 DWC3 glue
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Hanjie Lin <hanjie.lin@amlogic.com>
+ Wed, 15 Jan 2020 00:01:47 -0800 (PST)
+Subject: Re: [PATCH v5 3/6] phy: amlogic: Add Amlogic A1 USB2 PHY Driver
+To: Hanjie Lin <hanjie.lin@amlogic.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kevin Hilman <khilman@baylibre.com>
 References: <1578634957-54826-1-git-send-email-hanjie.lin@amlogic.com>
- <1578634957-54826-5-git-send-email-hanjie.lin@amlogic.com>
- <CAFBinCCFUDst_-QtSuNioAa3ckt5GzTFDAhZWh3zu42VRByPpw@mail.gmail.com>
+ <1578634957-54826-4-git-send-email-hanjie.lin@amlogic.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <40e5b638-0606-70e2-3bdf-cc4619726196@baylibre.com>
-Date: Wed, 15 Jan 2020 09:01:15 +0100
+Message-ID: <69cb2df5-92d0-03a8-aaa8-d9c98909a11e@baylibre.com>
+Date: Wed, 15 Jan 2020 09:01:46 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCFUDst_-QtSuNioAa3ckt5GzTFDAhZWh3zu42VRByPpw@mail.gmail.com>
+In-Reply-To: <1578634957-54826-4-git-send-email-hanjie.lin@amlogic.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200115_000119_509591_014C8BCA 
-X-CRM114-Status: GOOD (  16.61  )
+X-CRM114-CacheID: sfid-20200115_000149_375440_089A8C51 
+X-CRM114-Status: GOOD (  20.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,64 +154,177 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, devicetree@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+Cc: devicetree@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Stephen Boyd <sboyd@kernel.org>,
  Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
- Yue Wang <yue.wang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+ Yue Wang <yue.wang@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jian Hu <jian.hu@amlogic.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/01/2020 21:45, Martin Blumenstingl wrote:
-> Hi Hanjie,
+On 10/01/2020 06:42, Hanjie Lin wrote:
+> This adds support for the USB2 PHY found in the Amlogic A1 SoC Family.
 > 
-> On Fri, Jan 10, 2020 at 6:43 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
-> [...]
->> -       devm_add_action_or_reset(dev,
->> -                                (void(*)(void *))clk_disable_unprepare,
->> -                                priv->clk);
->> +       ret = clk_bulk_prepare_enable(priv->drvdata->num_clks,
->> +                                     priv->drvdata->clks);
-> I don't see clk_bulk_disable_unprepare in dwc3_meson_g12a_remove()
-> please test that the clocks are all disabled (see
-> /sys/kernel/debug/clk/clk_summary for example) when unloading all USB
-> related kernel modules
+> It supports host mode only.
 > 
->> +
->> +       if (!priv->drvdata->otg_switch_supported)
->> +               goto setup_pm_runtime;
-> my brain doesn't like the goto in this place because this is not an
-> error condition. I was about to write that
-> usb_role_switch_unregister() is now skipped even though we're calling
-> usb_role_switch_register().
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+> ---
+>  drivers/phy/amlogic/phy-meson-g12a-usb2.c | 85 +++++++++++++++++++++----------
+>  1 file changed, 59 insertions(+), 26 deletions(-)
 > 
-> I want to hear Neil's opinion on this because I got confused while
-> reading the code again.
-> my proposal is to move all of this OTG related code from
-> dwc3_meson_g12a_probe() into a new function, for example called
-> dwc3_meson_g12a_otg_init()
-> then only call that function when OTG switching is supported
+> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
+> index 9065ffc..33296f8 100644
+> --- a/drivers/phy/amlogic/phy-meson-g12a-usb2.c
+> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
+> @@ -146,11 +146,17 @@
+>  #define RESET_COMPLETE_TIME					1000
+>  #define PLL_RESET_COMPLETE_TIME					100
+>  
+> +enum meson_soc_id {
+> +	MESON_SOC_G12A  = 0,
+> +	MESON_SOC_A1,
+> +};
+> +
+>  struct phy_meson_g12a_usb2_priv {
+>  	struct device		*dev;
+>  	struct regmap		*regmap;
+>  	struct clk		*clk;
+>  	struct reset_control	*reset;
+> +	int                     soc_id;
+>  };
+>  
+>  static const struct regmap_config phy_meson_g12a_usb2_regmap_conf = {
+> @@ -164,6 +170,7 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+>  {
+>  	struct phy_meson_g12a_usb2_priv *priv = phy_get_drvdata(phy);
+>  	int ret;
+> +	unsigned int value;
+>  
+>  	ret = reset_control_reset(priv->reset);
+>  	if (ret)
+> @@ -192,18 +199,22 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+>  		     FIELD_PREP(PHY_CTRL_R17_MPLL_FILTER_PVT2, 2) |
+>  		     FIELD_PREP(PHY_CTRL_R17_MPLL_FILTER_PVT1, 9));
+>  
+> -	regmap_write(priv->regmap, PHY_CTRL_R18,
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_LKW_SEL, 1) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_LK_W, 9) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_LK_S, 0x27) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_PFD_GAIN, 1) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_ROU, 7) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_DATA_SEL, 3) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_BIAS_ADJ, 1) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_BB_MODE, 0) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_ALPHA, 3) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_ADJ_LDO, 1) |
+> -		     PHY_CTRL_R18_MPLL_ACG_RANGE);
+> +	value = FIELD_PREP(PHY_CTRL_R18_MPLL_LKW_SEL, 1) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_LK_W, 9) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_LK_S, 0x27) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_PFD_GAIN, 1) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_ROU, 7) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_DATA_SEL, 3) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_BIAS_ADJ, 1) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_BB_MODE, 0) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_ALPHA, 3) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_ADJ_LDO, 1) |
+> +		PHY_CTRL_R18_MPLL_ACG_RANGE;
+> +
+> +	if (priv->soc_id == MESON_SOC_A1)
+> +		value |= PHY_CTRL_R18_MPLL_DCO_CLK_SEL;
+> +
+> +	regmap_write(priv->regmap, PHY_CTRL_R18, value);
+>  
+>  	udelay(PLL_RESET_COMPLETE_TIME);
+>  
+> @@ -227,13 +238,24 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+>  		     FIELD_PREP(PHY_CTRL_R20_USB2_BGR_VREF_4_0, 0) |
+>  		     FIELD_PREP(PHY_CTRL_R20_USB2_BGR_DBG_1_0, 0));
+>  
+> -	regmap_write(priv->regmap, PHY_CTRL_R4,
+> -		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_7_0, 0xf) |
+> -		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_15_8, 0xf) |
+> -		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_23_16, 0xf) |
+> -		     PHY_CTRL_R4_TEST_BYPASS_MODE_EN |
+> -		     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_1_0, 0) |
+> -		     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_3_2, 0));
+> +	if (priv->soc_id == MESON_SOC_G12A)
+> +		regmap_write(priv->regmap, PHY_CTRL_R4,
+> +			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_7_0, 0xf) |
+> +			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_15_8, 0xf) |
+> +			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_23_16, 0xf) |
+> +			     PHY_CTRL_R4_TEST_BYPASS_MODE_EN |
+> +			     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_1_0, 0) |
+> +			     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_3_2, 0));
+> +	else if (priv->soc_id == MESON_SOC_A1) {
+> +		regmap_write(priv->regmap, PHY_CTRL_R21,
+> +			     PHY_CTRL_R21_USB2_CAL_ACK_EN |
+> +			     PHY_CTRL_R21_USB2_TX_STRG_PD |
+> +			     FIELD_PREP(PHY_CTRL_R21_USB2_OTG_ACA_TRIM_1_0, 2));
+> +
+> +		/* Analog Settings */
+> +		regmap_write(priv->regmap, PHY_CTRL_R13,
+> +			     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
+> +	}
+>  
+>  	/* Tuning Disconnect Threshold */
+>  	regmap_write(priv->regmap, PHY_CTRL_R3,
+> @@ -241,11 +263,13 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+>  		     FIELD_PREP(PHY_CTRL_R3_HSDIC_REF, 1) |
+>  		     FIELD_PREP(PHY_CTRL_R3_DISC_THRESH, 3));
+>  
+> -	/* Analog Settings */
+> -	regmap_write(priv->regmap, PHY_CTRL_R14, 0);
+> -	regmap_write(priv->regmap, PHY_CTRL_R13,
+> -		     PHY_CTRL_R13_UPDATE_PMA_SIGNALS |
+> -		     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
+> +	if (priv->soc_id == MESON_SOC_G12A) {
+> +		/* Analog Settings */
+> +		regmap_write(priv->regmap, PHY_CTRL_R14, 0);
+> +		regmap_write(priv->regmap, PHY_CTRL_R13,
+> +			     PHY_CTRL_R13_UPDATE_PMA_SIGNALS |
+> +			     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -286,6 +310,8 @@ static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
+>  	if (IS_ERR(base))
+>  		return PTR_ERR(base);
+>  
+> +	priv->soc_id = (enum meson_soc_id)of_device_get_match_data(&pdev->dev);
+> +
+>  	priv->regmap = devm_regmap_init_mmio(dev, base,
+>  					     &phy_meson_g12a_usb2_regmap_conf);
+>  	if (IS_ERR(priv->regmap))
+> @@ -321,8 +347,15 @@ static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id phy_meson_g12a_usb2_of_match[] = {
+> -	{ .compatible = "amlogic,g12a-usb2-phy", },
+> -	{ },
+> +	{
+> +		.compatible = "amlogic,g12a-usb2-phy",
+> +		.data = (void *)MESON_SOC_G12A,
+> +	},
+> +	{
+> +		.compatible = "amlogic,a1-usb2-phy",
+> +		.data = (void *)MESON_SOC_A1,
+> +	},
+> +	{ /* Sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, phy_meson_g12a_usb2_of_match);
+>  
+> 
 
-Indeed it's not cleanest way to do that, if you respin a v6, put all the OTG
-setup and role switch register in a separate function.
-
-with that and :clk_bulk_disable_unprepare() in remove:
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Neil
-
-> 
-> 
-> Martin
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
