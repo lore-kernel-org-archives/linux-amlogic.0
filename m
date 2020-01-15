@@ -2,46 +2,47 @@ Return-Path: <SRS0=Q90K=3E=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 31F9BC33CB1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2020 12:22:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 073D5C33CB2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2020 12:22:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 02299207E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2020 12:22:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C97BA207E0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2020 12:22:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BWqosBY6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 02299207E0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aoE9KPHc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C97BA207E0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=N6kV8O8X19TpQEM0kE++i/zo6/rzzMnGIJzdT6lBw4g=; b=BWqosBY64U7mI0
-	F7xxx1STlBWWQbnweFeRTL8OHwTn/CeJHnnjA5qMF1c5KUELrPz7A9PntqYQ/SrB6fsg66BuRNp9M
-	OcK1gReA8ta4Vmgirn6HLwtu112YwGJl3uVJqp9P2Dn8+SztAyGCLCJkbtUOmVIck8c2wPiHKU/J1
-	8r37GnOcRMOYbSashgdK1ANA8xcgfLx4Sy7qPkRD3veQH96BJBCVEz8LpYbXN6QuLfZnuC3bPQ4ul
-	OGouqBXKBOIJvZpyNENvs+Yi7E9Vm0N4eSdEs+cJXpZZkb+X15D59vsAtr9SnpjSqVlkqYn9P0iKb
-	3OrbauBow/KTZclIFcCw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=lLXTZOS+cce7ALKXF0DlIsvWmlmkk62pv+Bjc+g6uoI=; b=aoE9KPHcD5l2eO
+	hQi6Ac3n53QI2GvE/ZdshUyt2kQtKZhKljzq5KBt+7eK5Phaw/p+KhSt0rTXn0VqlD9S7TM4VRhI8
+	izW0r0HGhf0dHDHAEIbbKKKA4rMCQp8731F0xkJfgVlwC3Kze9suuaO34WJqQbsPQM8066/zHW9pm
+	pGxE1XAykc7q9c+fpwC+VNfLuaeeIpQkY8RFACYgxLmiNQ9FiZQHrr3r3Dkn+vQ2McmS0pcZpr+7J
+	Tkq/3lZNvOC4CStZK04o2musms2NpwJgoI/upMgn0+vYq6HVtQSFqiXEVm0myZrqmVHBD+qFGCVPE
+	Dn6iIV3O8KACxLvS0YSQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1irhgR-0007nX-PH; Wed, 15 Jan 2020 12:22:03 +0000
+	id 1irhgn-0007rq-9F; Wed, 15 Jan 2020 12:22:25 +0000
 Received: from relay6-d.mail.gandi.net ([217.70.183.198])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1irhgL-0007mg-Cc
- for linux-amlogic@lists.infradead.org; Wed, 15 Jan 2020 12:22:02 +0000
+ id 1irhgh-0007qH-Fq
+ for linux-amlogic@lists.infradead.org; Wed, 15 Jan 2020 12:22:23 +0000
 X-Originating-IP: 88.190.179.123
 Received: from localhost (unknown [88.190.179.123])
  (Authenticated sender: repk@triplefau.lt)
- by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 91923C0008;
- Wed, 15 Jan 2020 12:21:44 +0000 (UTC)
+ by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 5A2A3C000E;
+ Wed, 15 Jan 2020 12:22:16 +0000 (UTC)
 From: Remi Pommarel <repk@triplefau.lt>
 To: Kishon Vijay Abraham I <kishon@ti.com>, Yue Wang <yue.wang@Amlogic.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -50,15 +51,16 @@ To: Kishon Vijay Abraham I <kishon@ti.com>, Yue Wang <yue.wang@Amlogic.com>,
  Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v4 0/7] PCI: amlogic: Make PCIe working reliably on AXG
- platforms
-Date: Wed, 15 Jan 2020 13:29:01 +0100
-Message-Id: <20200115122908.16954-1-repk@triplefau.lt>
+Subject: [PATCH v4 2/7] dt-bindings: Add AXG shared MIPI/PCIE PHY bindings
+Date: Wed, 15 Jan 2020 13:29:03 +0100
+Message-Id: <20200115122908.16954-3-repk@triplefau.lt>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200115122908.16954-1-repk@triplefau.lt>
+References: <20200115122908.16954-1-repk@triplefau.lt>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200115_042157_562309_FA21024E 
-X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-CacheID: sfid-20200115_042219_664658_25109645 
+X-CRM114-Status: UNSURE (   8.95  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -79,65 +81,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PCIe device probing failures have been seen on AXG platforms and were due
-to unreliable clock signal output. Setting HHI_MIPI_CNTL0[26] bit in
-MIPI's PHY registers solved the problem. This bit controls band gap
-reference.
+Add documentation for the shared MIPI/PCIE PHYs found in AXG SoCs.
 
-As discussed here [1] one of these shared MIPI/PCIE PHY register bits was
-implemented in the clock driver as CLKID_MIPI_ENABLE. This adds a PHY
-driver to control this bit instead, as well as setting the band gap one
-in order to get reliable PCIE communication.
-
-While at it add another PHY driver to control PCIE only PHY registers,
-making AXG code more similar to G12A platform thus allowing to remove
-some specific platform handling in pci-meson driver.
-
-Please note that CLKID_MIPI_ENABLE removable will be done in a different
-serie.
-
-Changes since v3:
- - Go back to the shared MIPI/PCIe phy driver solution from v2
- - Remove syscon usage
- - Add all dt-bindings documentation
-
-Changes since v2:
- - Remove shared MIPI/PCIE device driver and use syscon to access register
-   in PCIE only driver instead
- - Include devicetree documentation
-
-Changes sinve v1:
- - Move HHI_MIPI_CNTL0 bit control in its own PHY driver
- - Add a PHY driver for PCIE_PHY registers
- - Modify pci-meson.c to make use of both PHYs and remove specific
-   handling for AXG and G12A
-
-[1] https://lkml.org/lkml/2019/12/16/119
-
-Remi Pommarel (7):
-  dt-bindings: Add AXG PCIE PHY bindings
-  dt-bindings: Add AXG shared MIPI/PCIE PHY bindings
-  dt-bindings: PCI: meson: Update PCIE bindings documentation
-  arm64: dts: meson-axg: Add PCIE PHY nodes
-  phy: amlogic: Add Amlogic AXG MIPI/PCIE PHY Driver
-  phy: amlogic: Add Amlogic AXG PCIE PHY Driver
-  PCI: amlogic: Use AXG PCIE and shared MIPI/PCIE PHYs
-
- .../bindings/pci/amlogic,meson-pcie.txt       |  22 +--
- .../phy/amlogic,meson-axg-mipi-pcie.yaml      |  34 ++++
- .../bindings/phy/amlogic,meson-axg-pcie.yaml  |  40 ++++
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  13 ++
- drivers/pci/controller/dwc/pci-meson.c        | 140 +++++---------
- drivers/phy/amlogic/Kconfig                   |  22 +++
- drivers/phy/amlogic/Makefile                  |   2 +
- drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c | 179 ++++++++++++++++++
- drivers/phy/amlogic/phy-meson-axg-pcie.c      | 163 ++++++++++++++++
- 9 files changed, 508 insertions(+), 107 deletions(-)
+Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+---
+ .../phy/amlogic,meson-axg-mipi-pcie.yaml      | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml
- create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
- create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c
- create mode 100644 drivers/phy/amlogic/phy-meson-axg-pcie.c
 
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml
+new file mode 100644
+index 000000000000..3184146318cf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml
+@@ -0,0 +1,34 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/amlogic,meson-axg-mipi-pcie.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic AXG shared MIPI/PCIE PHY
++
++maintainers:
++  - Remi Pommarel <repk@triplefau.lt>
++
++properties:
++  compatible:
++    const: amlogic,axg-mipi-pcie-phy
++
++  reg:
++    maxItems: 1
++
++  "#phy-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - "#phy-cells"
++
++examples:
++  - |
++    mpphy: phy@0 {
++          compatible = "amlogic,axg-mipi-pcie-phy";
++          reg = <0x0 0x0 0x0 0xc>;
++          #phy-cells = <1>;
++    };
 -- 
 2.24.1
 
