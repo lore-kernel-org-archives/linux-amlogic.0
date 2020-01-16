@@ -2,70 +2,68 @@ Return-Path: <SRS0=aHVS=3F=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,FAKE_REPLY_C,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C27A2C33CB6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jan 2020 18:24:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6BBCBC33CAF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jan 2020 20:13:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8C94D21582
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jan 2020 18:24:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3C1C3206D9
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jan 2020 20:13:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cpa3IKZF";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZIWwam/4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8C94D21582
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XuB/JVZy";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="IhK1f48T"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C1C3206D9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=faWnSLTaUZCs+m0IAqIbR1FCkUjKY50hx4kYzPji7UE=; b=Cpa3IKZFo+zW4Y
-	SZStK7L9pBUg+v3hw0TcRYNPYlv5C9cQ2MwZhemQXS/LvHrdEbBH1cXcutsPJtJ1++I1XV3QTYy0K
-	Eg77Gfli0isUDi684gpywy7fmFzzCcWO6vvztMDAg5OO/bJfh1Mn5qNWbUBw3AEuohdkP9THr7Scf
-	E1gmpLQ9FqY5u2UC5OzdUlhpoKLDYNbqh1YMUgTpYreiVEGHQGys4yjYsNQsbPgajM5E+9t24Ezk/
-	Cwg47GQMApYrzuiLH1R10+dmltSztAUUqPTKC/ikdvHvm1H8y5nJTL7ok7wu8ZfreTFn0nbdS6uSa
-	sJtnX1IPqRD6ShnewbvA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=UaHtrjpDnVXTQGHfgFdmwjuoVcqOgkraasWE7I4go9E=; b=XuB/JVZyGbpXin
+	FDuVUckATj01IOaEJ+cOg1bJkax54LNAZzgcVB0ErXGC8Yy+8HS7L14SiDq/m5+vrUXsG8WO1ELaf
+	3HyV0mVRN3mSeR8qyb1WyJlwVVR8VA7GC68brxWaqQsDt11tduTSvhzW8GKbKizIPW/Oard5B3IUC
+	uyklqRgDGqrf+8vHfUt/WLGH7DuPip/+dDAssq5GGBKB6ypDttvTPd4M5VwxYISpXlkdD79mAtzuI
+	iNIc+wXFkboUMpeiXwUnYcWGpH3GQHX9+/KrTZKsbGgEe9E1QQnsmXZqqLdokAieD8riQ76exczyH
+	ov/MT/UjzJ+wzrTfa/RQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1is9oW-0000nb-6z; Thu, 16 Jan 2020 18:24:16 +0000
+	id 1isBVt-0004sk-04; Thu, 16 Jan 2020 20:13:09 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1is98M-0000Ja-PL; Thu, 16 Jan 2020 17:40:52 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ id 1isBVq-0004sB-Hp
+ for linux-amlogic@lists.infradead.org; Thu, 16 Jan 2020 20:13:08 +0000
+Received: from localhost (mobile-166-170-223-177.mycingular.net
+ [166.170.223.177])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 8E60F24713;
- Thu, 16 Jan 2020 17:40:40 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id CD59120663;
+ Thu, 16 Jan 2020 20:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1579196441;
- bh=1WBwtBFd/S4ZThNyRSXh2J58uFNS4zT9LBSOajQ34ak=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ZIWwam/41KaBySxHjPyGgf80ZlyS/zk25FppkSNHBK3qWuJbsmlFB0qratz8+9BPG
- no5EqXGhWWVN4fwuyzc+9k591g02oeouvysQpy/+RPWBca8jOhJILlyZETvS7TjSFF
- Zh9ejVs4TEz6eH7yrSOSLEeOJW14+2qOrvMxJnq4=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 205/251] net: stmmac: dwmac-meson8b: Fix
- signedness bug in probe
-Date: Thu, 16 Jan 2020 12:35:54 -0500
-Message-Id: <20200116173641.22137-165-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200116173641.22137-1-sashal@kernel.org>
-References: <20200116173641.22137-1-sashal@kernel.org>
+ s=default; t=1579205585;
+ bh=Oku1SgUcFNGjAlZYS25MeT7pk3002sc2qQcj/8n+Jy8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=IhK1f48Tna9dZ0CNq2pVZVJvKPG/cdAIh6XcKxhAJvXjvcOtTlpFNH6+h67axVlEE
+ TzPpUl0Qmm0F++vi8zFvYulQgCWNekYQQBNkKMLHCCnzq5JUrNzhVSenwf47miEj3D
+ z0SAzM3CIDXcKrYOY59mYoiq5Gzljk4zmpKSpT3w=
+Date: Thu, 16 Jan 2020 14:13:03 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Remi Pommarel <repk@triplefau.lt>
+Subject: Re: [PATCH v5 7/7] PCI: amlogic: Use AXG PCIE
+Message-ID: <20200116201303.GA187897@google.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+Content-Disposition: inline
+In-Reply-To: <20200116111850.23690-8-repk@triplefau.lt>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200116_094042_879934_B626300B 
-X-CRM114-Status: GOOD (  11.40  )
+X-CRM114-CacheID: sfid-20200116_121306_632581_EC56626C 
+X-CRM114-Status: GOOD (  19.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,48 +75,265 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>,
+Cc: devicetree@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- Dan Carpenter <dan.carpenter@oracle.com>, linux-amlogic@lists.infradead.org,
- "David S . Miller" <davem@davemloft.net>, linux-arm-kernel@lists.infradead.org
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Yue Wang <yue.wang@Amlogic.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Kishon Vijay Abraham I <kishon@ti.com>, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Dan Carpenter <dan.carpenter@oracle.com>
+[+cc linux-pci, series at https://lore.kernel.org/r/20200116111850.23690-1-repk@triplefau.lt]
 
-[ Upstream commit f10210517a2f37feea2edf85eb34c98977265c16 ]
-
-The "dwmac->phy_mode" is an enum and in this context GCC treats it as
-an unsigned int so the error handling is never triggered.
-
-Fixes: 566e82516253 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: David S. Miller <davem@davemloft.net>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index f356a44bcb81..6704d3e0392d 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -280,7 +280,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 
- 	dwmac->pdev = pdev;
- 	dwmac->phy_mode = of_get_phy_mode(pdev->dev.of_node);
--	if (dwmac->phy_mode < 0) {
-+	if ((int)dwmac->phy_mode < 0) {
- 		dev_err(&pdev->dev, "missing phy-mode property\n");
- 		ret = -EINVAL;
- 		goto err_remove_config_dt;
--- 
-2.20.1
-
+On Thu, Jan 16, 2020 at 12:18:50PM +0100, Remi Pommarel wrote:
+> Now that PCIE PHY has been introduced for AXG, the whole has_shared_phy
+> logic can be mutualized between AXG and G12A platforms.
+> 
+> This new PHY makes use of the optional shared MIPI/PCIE analog PHY
+> found on AXG platforms, which need to be used in order to have reliable
+> PCIE communications.
+> 
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  drivers/pci/controller/dwc/pci-meson.c | 116 +++++--------------------
+>  1 file changed, 22 insertions(+), 94 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index 3772b02a5c55..3715dceca1bf 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -66,7 +66,6 @@
+>  #define PORT_CLK_RATE			100000000UL
+>  #define MAX_PAYLOAD_SIZE		256
+>  #define MAX_READ_REQ_SIZE		256
+> -#define MESON_PCIE_PHY_POWERUP		0x1c
+>  #define PCIE_RESET_DELAY		500
+>  #define PCIE_SHARED_RESET		1
+>  #define PCIE_NORMAL_RESET		0
+> @@ -81,26 +80,19 @@ enum pcie_data_rate {
+>  struct meson_pcie_mem_res {
+>  	void __iomem *elbi_base;
+>  	void __iomem *cfg_base;
+> -	void __iomem *phy_base;
+>  };
+>  
+>  struct meson_pcie_clk_res {
+>  	struct clk *clk;
+> -	struct clk *mipi_gate;
+>  	struct clk *port_clk;
+>  	struct clk *general_clk;
+>  };
+>  
+>  struct meson_pcie_rc_reset {
+> -	struct reset_control *phy;
+>  	struct reset_control *port;
+>  	struct reset_control *apb;
+>  };
+>  
+> -struct meson_pcie_param {
+> -	bool has_shared_phy;
+> -};
+> -
+>  struct meson_pcie {
+>  	struct dw_pcie pci;
+>  	struct meson_pcie_mem_res mem_res;
+> @@ -108,7 +100,6 @@ struct meson_pcie {
+>  	struct meson_pcie_rc_reset mrst;
+>  	struct gpio_desc *reset_gpio;
+>  	struct phy *phy;
+> -	const struct meson_pcie_param *param;
+>  };
+>  
+>  static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
+> @@ -130,13 +121,6 @@ static int meson_pcie_get_resets(struct meson_pcie *mp)
+>  {
+>  	struct meson_pcie_rc_reset *mrst = &mp->mrst;
+>  
+> -	if (!mp->param->has_shared_phy) {
+> -		mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
+> -		if (IS_ERR(mrst->phy))
+> -			return PTR_ERR(mrst->phy);
+> -		reset_control_deassert(mrst->phy);
+> -	}
+> -
+>  	mrst->port = meson_pcie_get_reset(mp, "port", PCIE_NORMAL_RESET);
+>  	if (IS_ERR(mrst->port))
+>  		return PTR_ERR(mrst->port);
+> @@ -162,22 +146,6 @@ static void __iomem *meson_pcie_get_mem(struct platform_device *pdev,
+>  	return devm_ioremap_resource(dev, res);
+>  }
+>  
+> -static void __iomem *meson_pcie_get_mem_shared(struct platform_device *pdev,
+> -					       struct meson_pcie *mp,
+> -					       const char *id)
+> -{
+> -	struct device *dev = mp->pci.dev;
+> -	struct resource *res;
+> -
+> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
+> -	if (!res) {
+> -		dev_err(dev, "No REG resource %s\n", id);
+> -		return ERR_PTR(-ENXIO);
+> -	}
+> -
+> -	return devm_ioremap(dev, res->start, resource_size(res));
+> -}
+> -
+>  static int meson_pcie_get_mems(struct platform_device *pdev,
+>  			       struct meson_pcie *mp)
+>  {
+> @@ -189,14 +157,6 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
+>  	if (IS_ERR(mp->mem_res.cfg_base))
+>  		return PTR_ERR(mp->mem_res.cfg_base);
+>  
+> -	/* Meson AXG SoC has two PCI controllers use same phy register */
+> -	if (!mp->param->has_shared_phy) {
+> -		mp->mem_res.phy_base =
+> -			meson_pcie_get_mem_shared(pdev, mp, "phy");
+> -		if (IS_ERR(mp->mem_res.phy_base))
+> -			return PTR_ERR(mp->mem_res.phy_base);
+> -	}
+> -
+>  	return 0;
+>  }
+>  
+> @@ -204,37 +164,33 @@ static int meson_pcie_power_on(struct meson_pcie *mp)
+>  {
+>  	int ret = 0;
+>  
+> -	if (mp->param->has_shared_phy) {
+> -		ret = phy_init(mp->phy);
+> -		if (ret)
+> -			return ret;
+> +	ret = phy_init(mp->phy);
+> +	if (ret)
+> +		return ret;
+>  
+> -		ret = phy_power_on(mp->phy);
+> -		if (ret) {
+> -			phy_exit(mp->phy);
+> -			return ret;
+> -		}
+> -	} else
+> -		writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
+> +	ret = phy_power_on(mp->phy);
+> +	if (ret) {
+> +		phy_exit(mp->phy);
+> +		return ret;
+> +	}
+>  
+>  	return 0;
+>  }
+>  
+> +static void meson_pcie_power_off(struct meson_pcie *mp)
+> +{
+> +	phy_power_off(mp->phy);
+> +	phy_exit(mp->phy);
+> +}
+> +
+>  static int meson_pcie_reset(struct meson_pcie *mp)
+>  {
+>  	struct meson_pcie_rc_reset *mrst = &mp->mrst;
+>  	int ret = 0;
+>  
+> -	if (mp->param->has_shared_phy) {
+> -		ret = phy_reset(mp->phy);
+> -		if (ret)
+> -			return ret;
+> -	} else {
+> -		reset_control_assert(mrst->phy);
+> -		udelay(PCIE_RESET_DELAY);
+> -		reset_control_deassert(mrst->phy);
+> -		udelay(PCIE_RESET_DELAY);
+> -	}
+> +	ret = phy_reset(mp->phy);
+> +	if (ret)
+> +		return ret;
+>  
+>  	reset_control_assert(mrst->port);
+>  	reset_control_assert(mrst->apb);
+> @@ -286,12 +242,6 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
+>  	if (IS_ERR(res->port_clk))
+>  		return PTR_ERR(res->port_clk);
+>  
+> -	if (!mp->param->has_shared_phy) {
+> -		res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
+> -		if (IS_ERR(res->mipi_gate))
+> -			return PTR_ERR(res->mipi_gate);
+> -	}
+> -
+>  	res->general_clk = meson_pcie_probe_clock(dev, "general", 0);
+>  	if (IS_ERR(res->general_clk))
+>  		return PTR_ERR(res->general_clk);
+> @@ -562,7 +512,6 @@ static const struct dw_pcie_ops dw_pcie_ops = {
+>  
+>  static int meson_pcie_probe(struct platform_device *pdev)
+>  {
+> -	const struct meson_pcie_param *match_data;
+>  	struct device *dev = &pdev->dev;
+>  	struct dw_pcie *pci;
+>  	struct meson_pcie *mp;
+> @@ -576,17 +525,10 @@ static int meson_pcie_probe(struct platform_device *pdev)
+>  	pci->dev = dev;
+>  	pci->ops = &dw_pcie_ops;
+>  
+> -	match_data = of_device_get_match_data(dev);
+> -	if (!match_data) {
+> -		dev_err(dev, "failed to get match data\n");
+> -		return -ENODEV;
+> -	}
+> -	mp->param = match_data;
+> -
+> -	if (mp->param->has_shared_phy) {
+> -		mp->phy = devm_phy_get(dev, "pcie");
+> -		if (IS_ERR(mp->phy))
+> -			return PTR_ERR(mp->phy);
+> +	mp->phy = devm_phy_get(dev, "pcie");
+> +	if (IS_ERR(mp->phy)) {
+> +		dev_err(dev, "get phy failed, %ld\n", PTR_ERR(mp->phy));
+> +		return PTR_ERR(mp->phy);
+>  	}
+>  
+>  	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> @@ -636,30 +578,16 @@ static int meson_pcie_probe(struct platform_device *pdev)
+>  	return 0;
+>  
+>  err_phy:
+> -	if (mp->param->has_shared_phy) {
+> -		phy_power_off(mp->phy);
+> -		phy_exit(mp->phy);
+> -	}
+> -
+> +	meson_pcie_power_off(mp);
+>  	return ret;
+>  }
+>  
+> -static struct meson_pcie_param meson_pcie_axg_param = {
+> -	.has_shared_phy = false,
+> -};
+> -
+> -static struct meson_pcie_param meson_pcie_g12a_param = {
+> -	.has_shared_phy = true,
+> -};
+> -
+>  static const struct of_device_id meson_pcie_of_match[] = {
+>  	{
+>  		.compatible = "amlogic,axg-pcie",
+> -		.data = &meson_pcie_axg_param,
+>  	},
+>  	{
+>  		.compatible = "amlogic,g12a-pcie",
+> -		.data = &meson_pcie_g12a_param,
+>  	},
+>  	{},
+>  };
+> -- 
+> 2.24.1
+> 
 
 _______________________________________________
 linux-amlogic mailing list
