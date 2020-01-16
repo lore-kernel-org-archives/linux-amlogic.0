@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED03DC33CB3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jan 2020 11:11:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68DC3C33CB3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jan 2020 11:11:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C45672072B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jan 2020 11:11:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3B80F2072B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jan 2020 11:11:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h/0wKguA"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C45672072B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VDne761F"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3B80F2072B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QnPHPsdtbrMN5ygMiAtSkXD3iSMwujrMDyJIXkxTA0c=; b=h/0wKguAqW1WRG
-	1VyeDmW5Qq8VJUZB+Vk2PkgEl4IaZoalFbuzxLWTvc9wplZ2ULChoYaVDaCqW8XdhM6pEAfBgX99Y
-	NkLalTusuQH6sfKuH6QjcSRgpwabosJHxvBrLuM4tthSAtSUNRpYA3lMQAttlzGjMWq9VuJKYZ+vr
-	wbEDJPjO/rpLKU0GFkc+1PCEyEMMGqniX4YFLJBYAD9tHQV3+BM+TFVK8/bTvti3gx3bisrKOvSZ5
-	4tq17vYMRd7mTueX2K8/1Ks68t45XMGcJrxEuPTpu5yqcjzYY3SfU+uTcP5LuDvFhIB7nzRleG17a
-	WBdw4vh312Dr3ir0vJFA==;
+	List-Owner; bh=1QM1IfjdZgSQfAA8pYrSlo6HNe/wFwJ6e/R/QA46L1I=; b=VDne761FxuJX42
+	hpTCg7xBlktUV09d3FpH85ii+MHiEUxT35fmfMl/llmx97+8vJBuYqwGxL9IsXXLhiv/sg10O4NLJ
+	YPTXwBEuWrn8k7npQQh62XlFDRmnkEbXd6G3D+VHSCyasXvWXmLewQ0dPVv86k3B5sAy1tUqHDARY
+	bxw+eJk/dzhpuVAN013mOyoy8hSPPnEHXEG5cMf2ETD+4f8s4FwCLEyWn8DNdpPvvLqqgrBnvwdwI
+	s28fDyq6pK64MO4HQ/mZSGZxMXMPdbHAeuzw82adrCVG+LmIMt0XRSkLTpuGvZ9lIcNzykOTFGiHW
+	M5SZxAF5OVbCICEYUZGQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1is33F-0006Ou-Qo; Thu, 16 Jan 2020 11:11:01 +0000
-Received: from relay6-d.mail.gandi.net ([217.70.183.198])
+	id 1is33I-0006S6-Mk; Thu, 16 Jan 2020 11:11:04 +0000
+Received: from relay1-d.mail.gandi.net ([217.70.183.193])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1is334-00069A-MS
- for linux-amlogic@lists.infradead.org; Thu, 16 Jan 2020 11:10:54 +0000
+ id 1is338-0006Fr-5q
+ for linux-amlogic@lists.infradead.org; Thu, 16 Jan 2020 11:10:59 +0000
 X-Originating-IP: 88.190.179.123
 Received: from localhost (unknown [88.190.179.123])
  (Authenticated sender: repk@triplefau.lt)
- by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 23C5CC0018;
- Thu, 16 Jan 2020 11:10:40 +0000 (UTC)
+ by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id E1F8A24000F;
+ Thu, 16 Jan 2020 11:10:50 +0000 (UTC)
 From: Remi Pommarel <repk@triplefau.lt>
 To: Kishon Vijay Abraham I <kishon@ti.com>, Yue Wang <yue.wang@Amlogic.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -51,16 +51,16 @@ To: Kishon Vijay Abraham I <kishon@ti.com>, Yue Wang <yue.wang@Amlogic.com>,
  Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v5 1/7] dt-bindings: Add AXG PCIE PHY bindings
-Date: Thu, 16 Jan 2020 12:18:44 +0100
-Message-Id: <20200116111850.23690-2-repk@triplefau.lt>
+Subject: [PATCH v5 4/7] arm64: dts: meson-axg: Add PCIE PHY nodes
+Date: Thu, 16 Jan 2020 12:18:47 +0100
+Message-Id: <20200116111850.23690-5-repk@triplefau.lt>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200116111850.23690-1-repk@triplefau.lt>
 References: <20200116111850.23690-1-repk@triplefau.lt>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200116_031050_883889_AFD321A3 
-X-CRM114-Status: UNSURE (   8.95  )
+X-CRM114-CacheID: sfid-20200116_031054_370992_343C3309 
+X-CRM114-Status: UNSURE (   7.94  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -81,68 +81,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add documentation for PCIE PHYs found in AXG SoCs.
+Enable both PCIE and shared MIPI/PCIE PHY nodes in order to make PCIE
+reliable on AXG SoC.
 
 Signed-off-by: Remi Pommarel <repk@triplefau.lt>
 ---
- .../bindings/phy/amlogic,meson-axg-pcie.yaml  | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
-new file mode 100644
-index 000000000000..70683946f47f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/phy/amlogic,meson-axg-pcie.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 04803c3bccfa..08a178aa0133 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -12,6 +12,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
+ #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
++#include <dt-bindings/phy/phy.h>
+ 
+ / {
+ 	compatible = "amlogic,meson-axg";
+@@ -1104,6 +1105,12 @@ hiubus: bus@ff63c000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+ 
++			mipi_analog_phy: phy@0 {
++				compatible = "amlogic,axg-mipi-pcie-analog-phy";
++				reg = <0x0 0x0 0x0 0xc>;
++				#phy-cells = <1>;
++			};
 +
-+title: Amlogic AXG PCIE PHY
+ 			sysctrl: system-controller@0 {
+ 				compatible = "amlogic,meson-axg-hhi-sysctrl",
+ 					     "simple-mfd", "syscon";
+@@ -1356,6 +1363,15 @@ tdmout_c: audio-controller@580 {
+ 			};
+ 		};
+ 
++		pcie_phy: bus@ff644000 {
++			compatible = "amlogic,axg-pcie-phy";
++			reg = <0x0 0xff644000 0x0 0x1c>;
++			resets = <&reset RESET_PCIE_PHY>;
++			phys = <&mipi_analog_phy PHY_TYPE_PCIE>;
++			phy-names = "analog";
++			#phy-cells = <0>;
++		};
 +
-+maintainers:
-+  - Remi Pommarel <repk@triplefau.lt>
-+
-+properties:
-+  compatible:
-+    const: amlogic,axg-pcie-phy
-+
-+  reg:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    const: analog # If MIPI/PCIE analog PHY is used
-+
-+  "#phy-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - resets
-+  - "#phy-cells"
-+
-+examples:
-+  - |
-+    #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
-+    #include <dt-bindings/phy/phy.h>
-+    pcie_phy: pcie-phy@ff644000 {
-+          compatible = "amlogic,axg-pcie-phy";
-+          reg = <0x0 0xff644000 0x0 0x1c>;
-+          resets = <&reset RESET_PCIE_PHY>;
-+          phys = <&mipi_analog_phy PHY_TYPE_PCIE>;
-+          phy-names = "analog";
-+          #phy-cells = <0>;
-+    };
+ 		aobus: bus@ff800000 {
+ 			compatible = "simple-bus";
+ 			reg = <0x0 0xff800000 0x0 0x100000>;
 -- 
 2.24.1
 
