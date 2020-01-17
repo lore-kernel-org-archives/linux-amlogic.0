@@ -2,61 +2,64 @@ Return-Path: <SRS0=6rq1=3G=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D1D2CC33CAF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jan 2020 00:25:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B2929C33CB1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jan 2020 12:16:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 977792077C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jan 2020 00:24:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 84FA52073A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jan 2020 12:16:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VlrBeUqs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 977792077C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QlIYAxfR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 84FA52073A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yQ2dqt+ajsmb9PaQba9+6Ol0jyj9tRM6TZe+jRe39WU=; b=VlrBeUqsGxNWgy
-	Sk6BZZgB81oEiGdya7x/35FTkBtCPHmzJHqYhrzreVyuxZ3JfizIlANpNPRv8ZS74gJ/xVDIuAnz5
-	fky5xuYmANN0DGfuN3Us8lkFtOj1GLjlsTLLK3ipwz96Y0fz2bLaZWSES9spfoUcS7QTs9chXXTNU
-	FYn52M4Y9SL6wUxy9PrZA7HjTAqKRwwKTHM6L2gCxx2pZfbWRSHgRcdX/ULWld1PxT7MOB+cHBiJl
-	HmfeUtzuwQelixyiSMiv4pW4rC09cCt6vd+DTxq164paFYfvfEn3jeGdM+Bna48gtr5iUUTPvCqr9
-	qzYH0rtajtLLjNJl/umg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=3HX/CRQ0XYutIHBbfOg1CyR5384tqsGKejzTrtSkM5k=; b=QlIYAxfRAj04rUpqwfkvNVtXU
+	5+oTR+H8TAggRUQmvrW3gqD7NLr6NF7odiUapsZZ5Zrrp3VQlUjzIsAqGWnWuWOVd2nD0cyosOCQC
+	GlBnTvZfFdxVoPUyPsjPmTU0kSz8wKQC0dxnEscEaHFmG4KUgAbdIpbyrXuh8U/aQZ+5WHHv2IZJi
+	Joa1jpHQmZOkGT9zwNzYvmO0oeMnTgi8FBfEteanP8ldgRUduoI+qOJwVVGj+ns+yuBZAmqlimfiO
+	uT2z0A95kxe5TL6BZNB6s7pfe/q2SIeiQFi5RXFBjdlKaN6EaIYDhnX7G6H7JzIjYSfgKvJShN/wW
+	/36T2HnOA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1isFR1-0003pP-Ri; Fri, 17 Jan 2020 00:24:23 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1isQY8-00045e-Di; Fri, 17 Jan 2020 12:16:28 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1isFPB-0001kN-Ih; Fri, 17 Jan 2020 00:22:31 +0000
-Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 17 Jan 2020
- 08:22:33 +0800
-From: Hanjie Lin <hanjie.lin@amlogic.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Felipe Balbi <felipe.balbi@linux.intel.com>,
- Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v6 6/6] arm64: dts: meson: a1: Enable DWC3 controller
-Date: Fri, 17 Jan 2020 08:21:44 +0800
-Message-ID: <1579220504-110067-7-git-send-email-hanjie.lin@amlogic.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1579220504-110067-1-git-send-email-hanjie.lin@amlogic.com>
-References: <1579220504-110067-1-git-send-email-hanjie.lin@amlogic.com>
+ id 1isQXw-0003ww-0A; Fri, 17 Jan 2020 12:16:20 +0000
+Received: from [10.28.39.79] (10.28.39.79) by mail-sz.amlogic.com (10.28.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 17 Jan
+ 2020 20:16:40 +0800
+Subject: Re: [PATCH v6 1/5] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+To: Rob Herring <robh@kernel.org>
+References: <20200116080440.118679-1-jian.hu@amlogic.com>
+ <20200116080440.118679-2-jian.hu@amlogic.com> <20200116204817.GA9529@bogus>
+From: Jian Hu <jian.hu@amlogic.com>
+Message-ID: <a1b0f318-dbbb-c596-2780-2c52911323ec@amlogic.com>
+Date: Fri, 17 Jan 2020 20:16:40 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
 MIME-Version: 1.0
-X-Originating-IP: [10.18.11.213]
+In-Reply-To: <20200116204817.GA9529@bogus>
+Content-Language: en-US
+X-Originating-IP: [10.28.39.79]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200116_162229_650382_16A64CDC 
-X-CRM114-Status: UNSURE (   7.48  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200117_041616_044530_6310AC8B 
+X-CRM114-Status: GOOD (  15.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,80 +71,150 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- linux-usb@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+Cc: devicetree@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jian Hu <jian.hu@amlogic.com>
-Content-Type: text/plain; charset="us-ascii"
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable DWC3 controller for Meson A1 SoC.
+Hi Rob
 
-Signed-off-by: Yue Wang <yue.wang@amlogic.com>
-Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Thanks for your review
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index fb0ba85..9077ffa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -7,6 +7,8 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/meson-a1-power.h>
- #include <dt-bindings/reset/amlogic,meson-a1-reset.h>
-+#include <dt-bindings/clock/a1-pll-clkc.h>
-+#include <dt-bindings/clock/a1-clkc.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -127,6 +129,35 @@
- 			#interrupt-cells = <3>;
- 			#address-cells = <0>;
- 		};
-+
-+		usb: usb@ffe09000 {
-+			status = "okay";
-+			compatible = "amlogic,meson-a1-usb-ctrl";
-+			reg = <0x0 0xffe09000 0x0 0xa0>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&clkc_periphs CLKID_USB_CTRL>,
-+				 <&clkc_periphs CLKID_USB_BUS>,
-+				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
-+			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
-+			resets = <&reset RESET_USBCTRL>;
-+
-+			dr_mode = "host";
-+
-+			phys = <&usb2_phy1>;
-+			phy-names = "usb2-phy1";
-+
-+			dwc3: usb@ff400000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff400000 0x0 0x100000>;
-+				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+				dr_mode = "host";
-+				snps,dis_u2_susphy_quirk;
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+			};
-+		};
- 	};
- 
- 	timer {
--- 
-2.7.4
+On 2020/1/17 4:48, Rob Herring wrote:
+> On Thu, Jan 16, 2020 at 04:04:36PM +0800, Jian Hu wrote:
+>> Add the documentation to support Amlogic A1 PLL clock driver,
+>> and add A1 PLL clock controller bindings.
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> ---
+>>   .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 54 +++++++++++++++++++
+>>   include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
+>>   2 files changed, 70 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>>   create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>> new file mode 100644
+>> index 000000000000..071240b65e70
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>> @@ -0,0 +1,54 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/amlogic,a1-pll-clkc.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <narmstrong@baylibre.com>
+>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>> +  - Jian Hu <jian.hu@jian.hu.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: amlogic,a1-pll-clkc
+>> +
+>> +  "#clock-cells":
+>> +    const: 1
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+> 
+> Not necessary, so drop. Implied by the length of 'items'.
+> 
+Ok, I will remove it.
+>> +    items:
+>> +     - description: input xtal_fixpll
+>> +     - description: input xtal_hifipll
+>> +
+>> +  clock-names:
+>> +    maxItems: 2
+> 
+> Same here.
+OK, remove it.
+> 
+>> +    items:
+>> +      - const: xtal_fixpll
+>> +      - const: xtal_hifipll
+>> +
+>> +required:
+>> +  - compatible
+>> +  - "#clock-cells"
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    clkc_pll: pll-clock-controller@7c80 {
+>> +                compatible = "amlogic,a1-pll-clkc";
+>> +                reg = <0 0x7c80 0 0x18c>;
+>> +                #clock-cells = <1>;
+>> +                clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
+>> +                         <&clkc_periphs CLKID_XTAL_HIFIPLL>;
+> 
+> The example will fail to build because these aren't defined.
+> 
+> Run 'make dt_binding_check'.
+> 
+I have verified it, it is caused by CLKID_XTAL_FIXPLL and 
+CLKID_XTAL_HIFIPLL. They are defined in 
+include/dt-bindings/clock/a1-clkc.h in another patch [4/5].
 
+The same with patch [4/5], there will be compiling error, too.
+
+If change CLKID_XTAL_FIXPLL to '1', and change CLKID_XTAL_HIFIPLL to
+'4', it can be compiled successfully.
+
+Should I use macros or numbers?
+
+>> +                clock-names = "xtal_fixpll", "xtal_hifipll";
+>> +    };
+>> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+>> new file mode 100644
+>> index 000000000000..58eae237e503
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
+>> @@ -0,0 +1,16 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>> + */
+>> +
+>> +#ifndef __A1_PLL_CLKC_H
+>> +#define __A1_PLL_CLKC_H
+>> +
+>> +#define CLKID_FIXED_PLL				1
+>> +#define CLKID_FCLK_DIV2				6
+>> +#define CLKID_FCLK_DIV3				7
+>> +#define CLKID_FCLK_DIV5				8
+>> +#define CLKID_FCLK_DIV7				9
+>> +#define CLKID_HIFI_PLL				10
+>> +
+>> +#endif /* __A1_PLL_CLKC_H */
+>> -- 
+>> 2.24.0
+>>
+> 
+> .
+> 
 
 _______________________________________________
 linux-amlogic mailing list
