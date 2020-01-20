@@ -2,59 +2,56 @@ Return-Path: <SRS0=EzQI=3J=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E92BC33CB6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2020 03:00:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3203BC32771
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2020 03:50:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E9B6620684
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2020 03:00:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 955182073A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2020 03:50:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cTsM7uJl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E9B6620684
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a3ZQqhZh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 955182073A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qmnjGkSUJ2UcF6hRtj6j2UluvIwM1uCN2BhdEEJvQmk=; b=cTsM7uJlDkkPL1
-	oOomcDr2vbWxAk0U5pbB5M1J/9sXpa5bSB2eFdi0q+ze5l2vLNXokwyqVRE+fe1QVQ4Evz9v5uy7c
-	k5W5cOAAXlrxtwCmX+zBK+tekcPEdLJuLZr7h02KcnagnZEnjcqWHuqovmW2F/FMVlCTPiglwzJ7M
-	ddRBEzxGzqXYKfJimHbm1/ya4BqxkZVJCbdvW32ZB8vNqtBm2K8namOFowd6IEosE6bNDJwVXFqMx
-	wERksmPVZXmUboPcMUv1Mr5CaSXGO+cZ2Ez9VInLHJIru8XJWKkn4gOx4LNeXMp5mbZxiCNhae7ss
-	2Hj4MoDfOO77dYCqbqYQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=HhJVzYyL2SBqJzy/jo2m9DOy0xYCUnYjcfJ/JfNH3P0=; b=a3ZQqhZhgK9A2q
+	hG5VVqwqXy6WOEe5/pD7nrE29Vx6djqu2hTEGGyZJ86kkVqzZfWmJc61Qj0ojxrrnC3rbNYonR0TF
+	d2cMbrNzhpcd86kso3ROGc4yXt7J/HSTkmZBoGS6XPdRgrRT4RpsSZjqQT8Yn/8GpnUFJRFz2lOBA
+	I17/0r1WMyyjWRXhikjwSlcdmqqr66NHS0UzbhhSyvwVcyix2tVQpZwUeF38mIJIxYdgV5YA7OA1h
+	ac2XGqBx5imKM7meBTJUTPaSsz93xHqmtOgOLqLf5KmLtnQek8N0i2XBwWXpE0HhMUj028iuCctHs
+	epua4KA2+99GUqoyuR9Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1itNIY-0007ST-5m; Mon, 20 Jan 2020 03:00:18 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1itO4d-0005NZ-NK; Mon, 20 Jan 2020 03:49:59 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1itNGz-0004iD-AI; Mon, 20 Jan 2020 02:58:43 +0000
-Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Mon, 20 Jan 2020
- 10:58:56 +0800
-From: Hanjie Lin <hanjie.lin@amlogic.com>
+ id 1itO4Q-0005Cd-F5; Mon, 20 Jan 2020 03:49:49 +0000
+Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Mon, 20 Jan 2020
+ 11:50:11 +0800
+From: Jian Hu <jian.hu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v7 4/5] usb: dwc3: Add Amlogic A1 DWC3 glue
-Date: Mon, 20 Jan 2020 10:58:05 +0800
-Message-ID: <1579489086-157767-5-git-send-email-hanjie.lin@amlogic.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1579489086-157767-1-git-send-email-hanjie.lin@amlogic.com>
-References: <1579489086-157767-1-git-send-email-hanjie.lin@amlogic.com>
+ <narmstrong@baylibre.com>
+Subject: [PATCH v7 0/5] add Amlogic A1 clock controller driver
+Date: Mon, 20 Jan 2020 11:49:32 +0800
+Message-ID: <20200120034937.128600-1-jian.hu@amlogic.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-X-Originating-IP: [10.18.11.213]
+X-Originating-IP: [10.28.8.25]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200119_185841_391116_FE3E3085 
-X-CRM114-Status: GOOD (  15.68  )
+X-CRM114-CacheID: sfid-20200119_194946_507855_E0313876 
+X-CRM114-Status: UNSURE (   9.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,343 +63,108 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- linux-usb@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, devicetree@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jian Hu <jian.hu@amlogic.com>
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, Qiufang Dai <qiufang.dai@amlogic.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ Chandle Zou <chandle.zou@amlogic.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Adds support for Amlogic A1 USB Control Glue HW.
+add support for Amlogic A1 clock driver, the clock includes 
+three parts: peripheral clocks, pll clocks, CPU clocks.
+sys pll and CPU clocks will be sent in next patch.
 
-The Amlogic A1 SoC Family embeds 1 USB Controllers:
-- a DWC3 IP configured as Host for USB2 and USB3
+Changes since v6 at [7]:
+-fix 'dt_binding_check' compiling error
+-add acked-by
 
-A glue connects the controllers to the USB2 PHY of A1 SoC.
+Changes since v5 at [6]:
+-fix yaml file
+-add rst/current_en/l_detect parm detection
+-remove 'meson_eeclkc_data' in a1.c and a1-pll.c
 
-Signed-off-by: Yue Wang <yue.wang@amlogic.com>
-Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/usb/dwc3/dwc3-meson-g12a.c | 172 +++++++++++++++++++++++++------------
- 1 file changed, 116 insertions(+), 56 deletions(-)
+Changes since v4 at [5]:
+- change yaml GPL
+- drop meson-eeclk.c patch, add probe function in each driver
+- add CLK_IS_CRITICAL for sys_clk clock, drop the flag for sys_a and sys_b
+- add new parm for pll, add protection for rst parm
+- drop flag for a1_fixed_pll
+- remove the same comment for fclk_div, add "refer to"
+- add critical flag for a1_sys_clk
+- remove rtc table
+- rename a1_dspa_en_dspa and a1_dspb_en_dspb
+- remove useless comment
 
-diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-index 8a3ec1a..70d24b9 100644
---- a/drivers/usb/dwc3/dwc3-meson-g12a.c
-+++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-@@ -107,10 +107,37 @@ static const char *phy_names[PHY_COUNT] = {
- 	"usb2-phy0", "usb2-phy1", "usb3-phy0",
- };
- 
-+static struct clk_bulk_data meson_g12a_clocks[] = {
-+	{ .id = NULL },
-+};
-+
-+static struct clk_bulk_data meson_a1_clocks[] = {
-+	{ .id = "usb_ctrl" },
-+	{ .id = "usb_bus" },
-+	{ .id = "xtal_usb_ctrl" },
-+};
-+
-+struct dwc3_meson_g12a_drvdata {
-+	bool otg_switch_supported;
-+	struct clk_bulk_data *clks;
-+	int num_clks;
-+};
-+
-+static struct dwc3_meson_g12a_drvdata g12a_drvdata = {
-+	.otg_switch_supported = true,
-+	.clks = meson_g12a_clocks,
-+	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
-+};
-+
-+static struct dwc3_meson_g12a_drvdata a1_drvdata = {
-+	.otg_switch_supported = false,
-+	.clks = meson_a1_clocks,
-+	.num_clks = ARRAY_SIZE(meson_a1_clocks),
-+};
-+
- struct dwc3_meson_g12a {
- 	struct device		*dev;
- 	struct regmap		*regmap;
--	struct clk		*clk;
- 	struct reset_control	*reset;
- 	struct phy		*phys[PHY_COUNT];
- 	enum usb_dr_mode	otg_mode;
-@@ -120,6 +147,7 @@ struct dwc3_meson_g12a {
- 	struct regulator	*vbus;
- 	struct usb_role_switch_desc switch_desc;
- 	struct usb_role_switch	*role_switch;
-+	const struct dwc3_meson_g12a_drvdata *drvdata;
- };
- 
- static void dwc3_meson_g12a_usb2_set_mode(struct dwc3_meson_g12a *priv,
-@@ -151,7 +179,7 @@ static int dwc3_meson_g12a_usb2_init(struct dwc3_meson_g12a *priv)
- 				   U2P_R0_POWER_ON_RESET,
- 				   U2P_R0_POWER_ON_RESET);
- 
--		if (i == USB2_OTG_PHY) {
-+		if (priv->drvdata->otg_switch_supported && i == USB2_OTG_PHY) {
- 			regmap_update_bits(priv->regmap,
- 				U2P_R0 + (U2P_REG_SIZE * i),
- 				U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS,
-@@ -295,7 +323,7 @@ static int dwc3_meson_g12a_otg_mode_set(struct dwc3_meson_g12a *priv,
- {
- 	int ret;
- 
--	if (!priv->phys[USB2_OTG_PHY])
-+	if (!priv->drvdata->otg_switch_supported || !priv->phys[USB2_OTG_PHY])
- 		return -EINVAL;
- 
- 	if (mode == PHY_MODE_USB_HOST)
-@@ -380,14 +408,60 @@ static struct device *dwc3_meson_g12_find_child(struct device *dev,
- 	return &pdev->dev;
- }
- 
-+static int dwc3_meson_g12a_otg_init(struct platform_device *pdev,
-+				    struct dwc3_meson_g12a *priv)
-+{
-+	enum phy_mode otg_id;
-+	int ret, irq;
-+	struct device *dev = &pdev->dev;
-+
-+	if (!priv->drvdata->otg_switch_supported)
-+		return 0;
-+
-+	if (priv->otg_mode == USB_DR_MODE_OTG) {
-+		/* Ack irq before registering */
-+		regmap_update_bits(priv->regmap, USB_R5,
-+				   USB_R5_ID_DIG_IRQ, 0);
-+
-+		irq = platform_get_irq(pdev, 0);
-+		ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
-+						dwc3_meson_g12a_irq_thread,
-+						IRQF_ONESHOT, pdev->name, priv);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* Setup OTG mode corresponding to the ID pin */
-+	if (priv->otg_mode == USB_DR_MODE_OTG) {
-+		otg_id = dwc3_meson_g12a_get_id(priv);
-+		if (otg_id != priv->otg_phy_mode) {
-+			if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
-+				dev_warn(dev, "Failed to switch OTG mode\n");
-+		}
-+	}
-+
-+	/* Setup role switcher */
-+	priv->switch_desc.usb2_port = dwc3_meson_g12_find_child(dev,
-+								"snps,dwc3");
-+	priv->switch_desc.udc = dwc3_meson_g12_find_child(dev, "snps,dwc2");
-+	priv->switch_desc.allow_userspace_control = true;
-+	priv->switch_desc.set = dwc3_meson_g12a_role_set;
-+	priv->switch_desc.get = dwc3_meson_g12a_role_get;
-+
-+	priv->role_switch = usb_role_switch_register(dev, &priv->switch_desc);
-+	if (IS_ERR(priv->role_switch))
-+		dev_warn(dev, "Unable to register Role Switch\n");
-+
-+	return ret;
-+}
-+
- static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- {
- 	struct dwc3_meson_g12a	*priv;
- 	struct device		*dev = &pdev->dev;
- 	struct device_node	*np = dev->of_node;
- 	void __iomem *base;
--	enum phy_mode otg_id;
--	int ret, i, irq;
-+	int ret, i;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -409,17 +483,18 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 		priv->vbus = NULL;
- 	}
- 
--	priv->clk = devm_clk_get(dev, NULL);
--	if (IS_ERR(priv->clk))
--		return PTR_ERR(priv->clk);
-+	priv->drvdata = of_device_get_match_data(&pdev->dev);
- 
--	ret = clk_prepare_enable(priv->clk);
-+	ret = devm_clk_bulk_get(dev,
-+				priv->drvdata->num_clks,
-+				priv->drvdata->clks);
- 	if (ret)
- 		return ret;
- 
--	devm_add_action_or_reset(dev,
--				 (void(*)(void *))clk_disable_unprepare,
--				 priv->clk);
-+	ret = clk_bulk_prepare_enable(priv->drvdata->num_clks,
-+				      priv->drvdata->clks);
-+	if (ret)
-+		return ret;
- 
- 	platform_set_drvdata(pdev, priv);
- 	priv->dev = dev;
-@@ -433,41 +508,28 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 
- 	ret = reset_control_reset(priv->reset);
- 	if (ret)
--		return ret;
-+		goto err_disable_clks;
- 
- 	ret = dwc3_meson_g12a_get_phys(priv);
- 	if (ret)
--		return ret;
-+		goto err_disable_clks;
- 
- 	if (priv->vbus) {
- 		ret = regulator_enable(priv->vbus);
- 		if (ret)
--			return ret;
-+			goto err_disable_clks;
- 	}
- 
- 	/* Get dr_mode */
- 	priv->otg_mode = usb_get_dr_mode(dev);
- 
--	if (priv->otg_mode == USB_DR_MODE_OTG) {
--		/* Ack irq before registering */
--		regmap_update_bits(priv->regmap, USB_R5,
--				   USB_R5_ID_DIG_IRQ, 0);
--
--		irq = platform_get_irq(pdev, 0);
--		ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
--						dwc3_meson_g12a_irq_thread,
--						IRQF_ONESHOT, pdev->name, priv);
--		if (ret)
--			return ret;
--	}
--
- 	dwc3_meson_g12a_usb_init(priv);
- 
- 	/* Init PHYs */
- 	for (i = 0 ; i < PHY_COUNT ; ++i) {
- 		ret = phy_init(priv->phys[i]);
- 		if (ret)
--			return ret;
-+			goto err_disable_clks;
- 	}
- 
- 	/* Set PHY Power */
-@@ -478,31 +540,12 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 	}
- 
- 	ret = of_platform_populate(np, NULL, NULL, dev);
--	if (ret) {
--		clk_disable_unprepare(priv->clk);
-+	if (ret)
- 		goto err_phys_power;
--	}
--
--	/* Setup OTG mode corresponding to the ID pin */
--	if (priv->otg_mode == USB_DR_MODE_OTG) {
--		otg_id = dwc3_meson_g12a_get_id(priv);
--		if (otg_id != priv->otg_phy_mode) {
--			if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
--				dev_warn(dev, "Failed to switch OTG mode\n");
--		}
--	}
- 
--	/* Setup role switcher */
--	priv->switch_desc.usb2_port = dwc3_meson_g12_find_child(dev,
--								"snps,dwc3");
--	priv->switch_desc.udc = dwc3_meson_g12_find_child(dev, "snps,dwc2");
--	priv->switch_desc.allow_userspace_control = true;
--	priv->switch_desc.set = dwc3_meson_g12a_role_set;
--	priv->switch_desc.get = dwc3_meson_g12a_role_get;
--
--	priv->role_switch = usb_role_switch_register(dev, &priv->switch_desc);
--	if (IS_ERR(priv->role_switch))
--		dev_warn(dev, "Unable to register Role Switch\n");
-+	ret = dwc3_meson_g12a_otg_init(pdev, priv);
-+	if (ret)
-+		goto err_phys_power;
- 
- 	pm_runtime_set_active(dev);
- 	pm_runtime_enable(dev);
-@@ -518,6 +561,10 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 	for (i = 0 ; i < PHY_COUNT ; ++i)
- 		phy_exit(priv->phys[i]);
- 
-+err_disable_clks:
-+	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
-+				   priv->drvdata->clks);
-+
- 	return ret;
- }
- 
-@@ -527,7 +574,8 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	int i;
- 
--	usb_role_switch_unregister(priv->role_switch);
-+	if (priv->drvdata->otg_switch_supported)
-+		usb_role_switch_unregister(priv->role_switch);
- 
- 	of_platform_depopulate(dev);
- 
-@@ -540,6 +588,9 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
- 	pm_runtime_put_noidle(dev);
- 	pm_runtime_set_suspended(dev);
- 
-+	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
-+				   priv->drvdata->clks);
-+
- 	return 0;
- }
- 
-@@ -547,7 +598,8 @@ static int __maybe_unused dwc3_meson_g12a_runtime_suspend(struct device *dev)
- {
- 	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
- 
--	clk_disable(priv->clk);
-+	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
-+				   priv->drvdata->clks);
- 
- 	return 0;
- }
-@@ -556,7 +608,8 @@ static int __maybe_unused dwc3_meson_g12a_runtime_resume(struct device *dev)
- {
- 	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
- 
--	return clk_enable(priv->clk);
-+	return clk_bulk_prepare_enable(priv->drvdata->num_clks,
-+				       priv->drvdata->clks);
- }
- 
- static int __maybe_unused dwc3_meson_g12a_suspend(struct device *dev)
-@@ -619,7 +672,14 @@ static const struct dev_pm_ops dwc3_meson_g12a_dev_pm_ops = {
- };
- 
- static const struct of_device_id dwc3_meson_g12a_match[] = {
--	{ .compatible = "amlogic,meson-g12a-usb-ctrl" },
-+	{
-+		.compatible = "amlogic,meson-g12a-usb-ctrl",
-+		.data = &g12a_drvdata,
-+	},
-+	{
-+		.compatible = "amlogic,meson-a1-usb-ctrl",
-+		.data = &a1_drvdata,
-+	},
- 	{ /* Sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, dwc3_meson_g12a_match);
+Changes since v3 at [3]:
+-fix reparenting orphan failed, it depends on jerome's patch [4]
+-fix changelist in v3 about reparenting orphan
+-remove the dts patch 
+
+Changes since v2 at [2]:
+-add probe function for A1
+-seperate the clock driver into two patch
+-change some clock flags and ops
+-add support for a1 PLL ops
+-add A1 clock node
+-fix reparenting orphan clock failed, registering xtal_fixpll
+ and xtal_hifipll after the provider registration, it is not
+ a best way.
+
+Changes since v1 at [1]:
+-place A1 config alphabetically
+-add actual reason for RO ops, CLK_IS_CRITICAL, CLK_IGNORE_UNUSED
+-separate the driver into two driver: peripheral and pll driver
+-delete CLK_IGNORE_UNUSED flag for pwm b/c/d/e/f clock, dsp clock
+-delete the change in Kconfig.platforms, address to Kevin alone
+-remove the useless comments
+-modify the meson pll driver to support A1 PLLs
+
+[1] https://lkml.kernel.org/r/1569411888-98116-1-git-send-email-jian.hu@amlogic.com
+[2] https://lkml.kernel.org/r/1571382865-41978-1-git-send-email-jian.hu@amlogic.com
+[3] https://lkml.kernel.org/r/20191129144605.182774-1-jian.hu@amlogic.com
+[4] https://lkml.kernel.org/r/20191203080805.104628-1-jbrunet@baylibre.com
+[5] https://lkml.kernel.org/r/20191206074052.15557-1-jian.hu@amlogic.com
+[6] https://lkml.kernel.org/r/20191227094606.143637-1-jian.hu@amlogic.com
+[7] https://lkml.kernel.org/r/20200116080440.118679-1-jian.hu@amlogic.com
+
+Jian Hu (5):
+  dt-bindings: clock: meson: add A1 PLL clock controller bindings
+  clk: meson: add support for A1 PLL clock ops
+  clk: meson: a1: add support for Amlogic A1 PLL clock driver
+  dt-bindings: clock: meson: add A1 peripheral clock controller bindings
+  clk: meson: a1: add support for Amlogic A1 Peripheral clock driver
+
+ .../bindings/clock/amlogic,a1-clkc.yaml       |   65 +
+ .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   52 +
+ drivers/clk/meson/Kconfig                     |   18 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/a1-pll.c                    |  360 +++
+ drivers/clk/meson/a1-pll.h                    |   56 +
+ drivers/clk/meson/a1.c                        | 2249 +++++++++++++++++
+ drivers/clk/meson/a1.h                        |  120 +
+ drivers/clk/meson/clk-pll.c                   |   47 +-
+ drivers/clk/meson/clk-pll.h                   |    2 +
+ include/dt-bindings/clock/a1-clkc.h           |   98 +
+ include/dt-bindings/clock/a1-pll-clkc.h       |   16 +
+ 12 files changed, 3078 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/a1-pll.c
+ create mode 100644 drivers/clk/meson/a1-pll.h
+ create mode 100644 drivers/clk/meson/a1.c
+ create mode 100644 drivers/clk/meson/a1.h
+ create mode 100644 include/dt-bindings/clock/a1-clkc.h
+ create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+
 -- 
-2.7.4
+2.24.0
 
 
 _______________________________________________
