@@ -2,55 +2,59 @@ Return-Path: <SRS0=EzQI=3J=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3203BC32771
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2020 03:50:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB458C33CB7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2020 03:50:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 955182073A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2020 03:50:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B658220684
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2020 03:50:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a3ZQqhZh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 955182073A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OydgjzTf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B658220684
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=HhJVzYyL2SBqJzy/jo2m9DOy0xYCUnYjcfJ/JfNH3P0=; b=a3ZQqhZhgK9A2q
-	hG5VVqwqXy6WOEe5/pD7nrE29Vx6djqu2hTEGGyZJ86kkVqzZfWmJc61Qj0ojxrrnC3rbNYonR0TF
-	d2cMbrNzhpcd86kso3ROGc4yXt7J/HSTkmZBoGS6XPdRgrRT4RpsSZjqQT8Yn/8GpnUFJRFz2lOBA
-	I17/0r1WMyyjWRXhikjwSlcdmqqr66NHS0UzbhhSyvwVcyix2tVQpZwUeF38mIJIxYdgV5YA7OA1h
-	ac2XGqBx5imKM7meBTJUTPaSsz93xHqmtOgOLqLf5KmLtnQek8N0i2XBwWXpE0HhMUj028iuCctHs
-	epua4KA2+99GUqoyuR9Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=PzoEb/NvmbdmBViqxp+a7Wup7u6CkZHWuFfyUvNut+c=; b=OydgjzTfaRy1dR
+	yDsm169LCKvvfvSUDtV2iWI9phGZs2wodWI42ZVIAIGmFKdBQXLnrJAYS05KIuxHFsJOFA+DHQVzZ
+	owRu8T1ZD60QVN2a+IBUAMq1j1VvsKDyXIBwTFzaoZYOGqaAt0A/yEH7iaGYlYdRuvKiECLb2kh5k
+	tCg0SiMv3tXe4937auY7tA26qDMMYHLGKN3BxrhMpc1Qd0V4ZudtnL28qHIpWuDb3VGjbyeBzVqeR
+	SGebe2BbF4Fuise3JXvjR8lq4zPmvBOELzSwjwlqaNCjKiex7K78d7up97oBvBm3frvmRWPJEhLKx
+	DmGRt812fn21cODZgJTA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1itO4d-0005NZ-NK; Mon, 20 Jan 2020 03:49:59 +0000
+	id 1itO53-0006sb-S3; Mon, 20 Jan 2020 03:50:25 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1itO4Q-0005Cd-F5; Mon, 20 Jan 2020 03:49:49 +0000
+ id 1itO4T-0005Cd-Dc; Mon, 20 Jan 2020 03:49:50 +0000
 Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Mon, 20 Jan 2020
  11:50:11 +0800
 From: Jian Hu <jian.hu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>
-Subject: [PATCH v7 0/5] add Amlogic A1 clock controller driver
-Date: Mon, 20 Jan 2020 11:49:32 +0800
-Message-ID: <20200120034937.128600-1-jian.hu@amlogic.com>
+Subject: [PATCH v7 1/5] dt-bindings: clock: meson: add A1 PLL clock controller
+ bindings
+Date: Mon, 20 Jan 2020 11:49:33 +0800
+Message-ID: <20200120034937.128600-2-jian.hu@amlogic.com>
 X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20200120034937.128600-1-jian.hu@amlogic.com>
+References: <20200120034937.128600-1-jian.hu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.8.25]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200119_194946_507855_E0313876 
-X-CRM114-Status: UNSURE (   9.83  )
+X-CRM114-CacheID: sfid-20200119_194949_455164_75682A3A 
+X-CRM114-Status: UNSURE (   9.94  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -77,92 +81,97 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-add support for Amlogic A1 clock driver, the clock includes 
-three parts: peripheral clocks, pll clocks, CPU clocks.
-sys pll and CPU clocks will be sent in next patch.
+Add the documentation to support Amlogic A1 PLL clock driver,
+and add A1 PLL clock controller bindings.
 
-Changes since v6 at [7]:
--fix 'dt_binding_check' compiling error
--add acked-by
-
-Changes since v5 at [6]:
--fix yaml file
--add rst/current_en/l_detect parm detection
--remove 'meson_eeclkc_data' in a1.c and a1-pll.c
-
-Changes since v4 at [5]:
-- change yaml GPL
-- drop meson-eeclk.c patch, add probe function in each driver
-- add CLK_IS_CRITICAL for sys_clk clock, drop the flag for sys_a and sys_b
-- add new parm for pll, add protection for rst parm
-- drop flag for a1_fixed_pll
-- remove the same comment for fclk_div, add "refer to"
-- add critical flag for a1_sys_clk
-- remove rtc table
-- rename a1_dspa_en_dspa and a1_dspb_en_dspb
-- remove useless comment
-
-Changes since v3 at [3]:
--fix reparenting orphan failed, it depends on jerome's patch [4]
--fix changelist in v3 about reparenting orphan
--remove the dts patch 
-
-Changes since v2 at [2]:
--add probe function for A1
--seperate the clock driver into two patch
--change some clock flags and ops
--add support for a1 PLL ops
--add A1 clock node
--fix reparenting orphan clock failed, registering xtal_fixpll
- and xtal_hifipll after the provider registration, it is not
- a best way.
-
-Changes since v1 at [1]:
--place A1 config alphabetically
--add actual reason for RO ops, CLK_IS_CRITICAL, CLK_IGNORE_UNUSED
--separate the driver into two driver: peripheral and pll driver
--delete CLK_IGNORE_UNUSED flag for pwm b/c/d/e/f clock, dsp clock
--delete the change in Kconfig.platforms, address to Kevin alone
--remove the useless comments
--modify the meson pll driver to support A1 PLLs
-
-[1] https://lkml.kernel.org/r/1569411888-98116-1-git-send-email-jian.hu@amlogic.com
-[2] https://lkml.kernel.org/r/1571382865-41978-1-git-send-email-jian.hu@amlogic.com
-[3] https://lkml.kernel.org/r/20191129144605.182774-1-jian.hu@amlogic.com
-[4] https://lkml.kernel.org/r/20191203080805.104628-1-jbrunet@baylibre.com
-[5] https://lkml.kernel.org/r/20191206074052.15557-1-jian.hu@amlogic.com
-[6] https://lkml.kernel.org/r/20191227094606.143637-1-jian.hu@amlogic.com
-[7] https://lkml.kernel.org/r/20200116080440.118679-1-jian.hu@amlogic.com
-
-Jian Hu (5):
-  dt-bindings: clock: meson: add A1 PLL clock controller bindings
-  clk: meson: add support for A1 PLL clock ops
-  clk: meson: a1: add support for Amlogic A1 PLL clock driver
-  dt-bindings: clock: meson: add A1 peripheral clock controller bindings
-  clk: meson: a1: add support for Amlogic A1 Peripheral clock driver
-
- .../bindings/clock/amlogic,a1-clkc.yaml       |   65 +
- .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   52 +
- drivers/clk/meson/Kconfig                     |   18 +
- drivers/clk/meson/Makefile                    |    2 +
- drivers/clk/meson/a1-pll.c                    |  360 +++
- drivers/clk/meson/a1-pll.h                    |   56 +
- drivers/clk/meson/a1.c                        | 2249 +++++++++++++++++
- drivers/clk/meson/a1.h                        |  120 +
- drivers/clk/meson/clk-pll.c                   |   47 +-
- drivers/clk/meson/clk-pll.h                   |    2 +
- include/dt-bindings/clock/a1-clkc.h           |   98 +
- include/dt-bindings/clock/a1-pll-clkc.h       |   16 +
- 12 files changed, 3078 insertions(+), 7 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+ .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 52 +++++++++++++++++++
+ include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
+ 2 files changed, 68 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
- create mode 100644 drivers/clk/meson/a1-pll.c
- create mode 100644 drivers/clk/meson/a1-pll.h
- create mode 100644 drivers/clk/meson/a1.c
- create mode 100644 drivers/clk/meson/a1.h
- create mode 100644 include/dt-bindings/clock/a1-clkc.h
  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
 
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+new file mode 100644
+index 000000000000..d67250fbeece
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/amlogic,a1-pll-clkc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++  - Jerome Brunet <jbrunet@baylibre.com>
++  - Jian Hu <jian.hu@jian.hu.com>
++
++properties:
++  compatible:
++    const: amlogic,a1-pll-clkc
++
++  "#clock-cells":
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++     - description: input xtal_fixpll
++     - description: input xtal_hifipll
++
++  clock-names:
++    items:
++      - const: xtal_fixpll
++      - const: xtal_hifipll
++
++required:
++  - compatible
++  - "#clock-cells"
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    clkc_pll: pll-clock-controller@7c80 {
++                compatible = "amlogic,a1-pll-clkc";
++                reg = <0 0x7c80 0 0x18c>;
++                #clock-cells = <1>;
++                clocks = <&clkc_periphs 1>,
++                         <&clkc_periphs 4>;
++                clock-names = "xtal_fixpll", "xtal_hifipll";
++    };
+diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+new file mode 100644
+index 000000000000..58eae237e503
+--- /dev/null
++++ b/include/dt-bindings/clock/a1-pll-clkc.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
++/*
++ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
++ */
++
++#ifndef __A1_PLL_CLKC_H
++#define __A1_PLL_CLKC_H
++
++#define CLKID_FIXED_PLL				1
++#define CLKID_FCLK_DIV2				6
++#define CLKID_FCLK_DIV3				7
++#define CLKID_FCLK_DIV5				8
++#define CLKID_FCLK_DIV7				9
++#define CLKID_HIFI_PLL				10
++
++#endif /* __A1_PLL_CLKC_H */
 -- 
 2.24.0
 
