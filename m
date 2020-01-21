@@ -2,85 +2,80 @@ Return-Path: <SRS0=iDid=3K=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A3AAAC2D0CE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2020 17:24:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C92F6C2D0CE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2020 22:00:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7801B2253D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2020 17:24:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9DBBF24125
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2020 22:00:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n3Wu6tT2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eG+XPRzq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7801B2253D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k9w7NlvS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9DBBF24125
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FiOp2zbn6iQhNgcW/+LO+S98HRVGdgddAcdrnZxumqk=; b=n3Wu6tT2+O0y5B
-	ctb73j1aFm3QfbmBQAt0Qv0syJYODcsVmlpbYNQAGKjM0K6pf/bfNZtCmfn2/lrRLK+jj4PkRNaxd
-	/EZxFEuwab58YYJ4kUykJ22E4RjStplAQd13llKw0gOW6AlwWxzOwAl9jCEKSkcWLnhA4hp0gIOL7
-	OVV3snxtuzMj5O8G4t4BQeVr7DTgqtKPhpaGDwlCycUtpAa8N8LzYetpi1GWLAy7ibul3u6Bqt0Op
-	cdcpi1wKwkd7r1LrARhMrj0fkt70RLXepJ2QMgX44kYpFYMFn9kiWTyxXPkZXLarcWDBmvMJMFVJ3
-	aSZY8odxEokpkRE0qb8g==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ekVAV99iWQVlbRt7K8962W/8EpfNLUKbNbgnfaOYkHM=; b=k9w7NlvSvZp+XS
+	wrnD6IQuRhV9MuWVibQqq13HAPZXnnChYEOb2ojUUvYKtImUSC1WTxMSPfLaLWNwiw0CM20GWK2oJ
+	Pvl8mtytAa0+3qQhns3QkdtP+QXgiIfKsfqYLOYaWJ5kUGe2s/MBiEZqekWLl7567M1Xc7oleG/vc
+	IwO+6zxIzWq4vPS7yTq43ZzOp0pvsKbVc3/+vdVk0fzNZb2rPXNq0FGsCrOyVCpzRo1yqRrBUsxwX
+	9VgaaCl9FoIGn1DgtFAa/iNhwxXlZAwSKjp92EXQPnCgtMh2bQCxF4g3oFsCR24hjB6rzziB9xHbO
+	rMEgR3qp9u6wEzd1OqTg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1itxFu-0003xL-EN; Tue, 21 Jan 2020 17:23:58 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1iu1Zq-0005OU-Ah; Tue, 21 Jan 2020 22:00:50 +0000
+Received: from mail-ot1-f66.google.com ([209.85.210.66])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1itxFr-0003wM-7F
- for linux-amlogic@lists.infradead.org; Tue, 21 Jan 2020 17:23:57 +0000
-Received: by mail-wr1-x444.google.com with SMTP id z7so4114737wrl.13
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Jan 2020 09:23:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=qulnROX80EQfKAAAdi+58//mX5ebVC1xGhbdWeXljF8=;
- b=eG+XPRzqZ6F4FmKkHJAHP7CO4l7BZ/6BzcAqbm2s8SSy6AGDVp+wczEGbXiWb1iJrF
- Qel8TreGnPjZz8PUCYkTC4w3bpZrvq14Te2kY9eKJjYdYs9OKTlRsPOaYb8aVn3OFn2m
- 8i/m6y6AhASt6vHlvmwxUINw4oLnuf9zpJ25d0aMoMs/1BiDVPVBaUcmDTy6tHSSpuqN
- I+/L6N5zkTNiF5VxEIju3XoRsRyhOKys1YQrLc/gedSp9HHhZSrJ+79xczPT9EcTosSD
- QdD2EsKS16F8ivI0zBotGeSgd5Z+xtBoOU6Uh7Ogew341LgTJs5I/MBo3Dh3lyqwhGLi
- ILdg==
+ id 1iu1Zi-0005Fl-AL; Tue, 21 Jan 2020 22:00:48 +0000
+Received: by mail-ot1-f66.google.com with SMTP id 77so4425665oty.6;
+ Tue, 21 Jan 2020 14:00:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=qulnROX80EQfKAAAdi+58//mX5ebVC1xGhbdWeXljF8=;
- b=SPDufnjviePHYlYiE2V1Wo9HlnAz0+QfoWjUeJxRYYu2yQ9XYv8XIiD6DC9PWbCNr5
- 1+i7MuaxWEW3l5ppR1su+XsFUNm2nyaRw3MZdnwTwKurFCHbgJtvc7LDCHJJh1talVj5
- E5iK0pa0Oo9kw6xBiPto5eZUkyM2xdEx5pNLDV0XTM5NyYuUCahRdlrYRxUap0Kl/+FC
- qpoK1bZ1IM6BVDVu+RqNN96ABzeDDl0GfgWsIxEqsKFNeupdTujUuevPiifP4NVTmmu2
- aSPc8ZLb8Gxosdd4KSI24UUam4cAvP7T7fyyJK8zGB+EZ6odGT82XkK0a8RGKrzysyjD
- x97g==
-X-Gm-Message-State: APjAAAWc0Mz8zVyOD8/2Rx8aERdpnrNgjkMGVh/L4+P+G5T4Vl/Wvbdz
- 1vCiO932Lc6GViK1ff2rxWpQ9w==
-X-Google-Smtp-Source: APXvYqwUr3/YtOFR0+Q8ydmqs0w6X6w2Ly6cdHXfv3xa7K7S7JB/WxuwUXO9y+ENpSp33UCBQnBQfQ==
-X-Received: by 2002:a5d:5273:: with SMTP id l19mr6609447wrc.175.1579627433651; 
- Tue, 21 Jan 2020 09:23:53 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id v14sm52906783wrm.28.2020.01.21.09.23.52
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=YR+Zx3t0R9EtJawzXHJuAJ023/cuhAooUF5TnzNGC0s=;
+ b=Pv5b42Wimm3Ng8iVwXGZJXw+LIF9XdW3AbDUmFJ/UTjY058UbP6ubviUvdGv1MeiDX
+ KhSoUVkI8Wl9wsUSipLCjb8RRzmXVd+mbQm5mpclybN1cv2hxGryKDEetVuTMbOANF9C
+ qqN08OU9noc9YSD6wtGOa9TUmFmpLm0DfJDYtfx4LIyBX1yO7jDSAAzCIquQrak0w0fD
+ XtehxIpaFgXLU81aBPoLnDqR4LNSFerEPKXkL2af1rFDrvFc8jkqhY70fSdHUlSJUxpO
+ jHp9sDfXfJbxsoPQjlxMSYXWP9+K1lzeqn2NU5RL342ELDvpTefVpLCBLHgKs/yNpfnJ
+ iybA==
+X-Gm-Message-State: APjAAAX3QvQg3b8jy7zvvjf2Vv5CcFeE2rroRIm3fae97OIDoNJskOsU
+ t5CNGBL9UU7guI2veQuYPg==
+X-Google-Smtp-Source: APXvYqxcLtKqgiW0rjqOQtnpGB4zMIDBsBFxY3KVfQ8Uv1rKit0T2fEj2ciq1t+IrUPzAInLx3dGkw==
+X-Received: by 2002:a9d:588d:: with SMTP id x13mr5021535otg.6.1579644040203;
+ Tue, 21 Jan 2020 14:00:40 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id 15sm9071739otv.20.2020.01.21.14.00.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jan 2020 09:23:52 -0800 (PST)
-From: Julien Masson <jmasson@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>
-Subject: [PATCH v3] tty: serial: meson_uart: Add support for kernel debugger
-Date: Tue, 21 Jan 2020 18:22:52 +0100
-Message-ID: <867e1klo48.fsf@julienm-fedora-R90NQGV9.i-did-not-set--mail-host-address--so-tickle-me>
+ Tue, 21 Jan 2020 14:00:39 -0800 (PST)
+Received: (nullmailer pid 13825 invoked by uid 1000);
+ Tue, 21 Jan 2020 22:00:38 -0000
+Date: Tue, 21 Jan 2020 16:00:38 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jian Hu <jian.hu@amlogic.com>
+Subject: Re: [PATCH v7 1/5] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+Message-ID: <20200121220038.GA13566@bogus>
+References: <20200120034937.128600-1-jian.hu@amlogic.com>
+ <20200120034937.128600-2-jian.hu@amlogic.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200120034937.128600-2-jian.hu@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200121_092355_263183_2E536D68 
-X-CRM114-Status: GOOD (  12.77  )
+X-CRM114-CacheID: sfid-20200121_140042_396520_F9579B0A 
+X-CRM114-Status: GOOD (  10.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,160 +87,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Julien Masson <jmasson@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, Jiri Slaby <jslaby@suse.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ Jian Hu <jian.hu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ Qiufang Dai <qiufang.dai@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, Chandle Zou <chandle.zou@amlogic.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The kgdb invokes the poll_put_char and poll_get_char when communicating
-with the host. This patch implement the serial polling hooks for the
-meson_uart to be used for KGDB debugging over serial line.
+On Mon, 20 Jan 2020 11:49:33 +0800, Jian Hu wrote:
+> Add the documentation to support Amlogic A1 PLL clock driver,
+> and add A1 PLL clock controller bindings.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 52 +++++++++++++++++++
+>  include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
+>  2 files changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+> 
 
-Signed-off-by: Julien Masson <jmasson@baylibre.com>
----
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-Changes since v2 [1]:
-* Increase UART timeout to 10 ms
-  -> For some reasons the previous value (1ms) is now too low with recent kernel.
-     It made KGDB hang when printing long string for example.
-     By setting this timeout to 10 ms, we avoid this kind of issue.
-
-Changes since v1 [0]:
-* Use readl_poll_timeout_atomic instead of looping with read + cpu_relax
-  -> read every 5 usecs during 1 msec
-* add some comments
-
-
-* Test environment:
-Board: "Le Potato"
-https://libre.computer/products/boards/aml-s905x-cc/
-
-Kernel Tree:
-https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git
-
-Kernel command line arguments:
-kgdboc=ttyAML0,115200 kgdbretry=4 nokaslr kgdbcon
-
-Kernel modules:
-CONFIG_DEBUG_INFO=y
-CONFIG_DEBUG_KERNEL=y
-CONFIG_FRAME_POINTER=y
-CONFIG_KGDB=y
-CONFIG_KGDB_SERIAL_CONSOLE=y
-
-WARNING: for single step instruction I had to adapt/apply this patch:
-https://lore.kernel.org/patchwork/patch/562423/
-
-
-[0]: https://patchwork.kernel.org/patch/10792397/
-[1]: https://patchwork.kernel.org/patch/10801583/
-
- drivers/tty/serial/meson_uart.c | 65 +++++++++++++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
-
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index fbc5bc022a39..b79c6d64bfb2 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -14,6 +14,7 @@
- #include <linux/delay.h>
- #include <linux/init.h>
- #include <linux/io.h>
-+#include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/kernel.h>
- #include <linux/of.h>
-@@ -76,6 +77,8 @@
- #define AML_UART_PORT_OFFSET		6
- #define AML_UART_DEV_NAME		"ttyAML"
- 
-+#define AML_UART_POLL_USEC		5
-+#define AML_UART_TIMEOUT_USEC		10000
- 
- static struct uart_driver meson_uart_driver;
- 
-@@ -427,6 +430,64 @@ static void meson_uart_config_port(struct uart_port *port, int flags)
- 	}
- }
- 
-+#ifdef CONFIG_CONSOLE_POLL
-+/*
-+ * Console polling routines for writing and reading from the uart while
-+ * in an interrupt or debug context (i.e. kgdb).
-+ */
-+
-+static int meson_uart_poll_get_char(struct uart_port *port)
-+{
-+	u32 c;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	if (readl(port->membase + AML_UART_STATUS) & AML_UART_RX_EMPTY)
-+		c = NO_POLL_CHAR;
-+	else
-+		c = readl(port->membase + AML_UART_RFIFO);
-+
-+	spin_unlock_irqrestore(&port->lock, flags);
-+
-+	return c;
-+}
-+
-+static void meson_uart_poll_put_char(struct uart_port *port, unsigned char c)
-+{
-+	unsigned long flags;
-+	u32 reg;
-+	int ret;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	/* Wait until FIFO is empty or timeout */
-+	ret = readl_poll_timeout_atomic(port->membase + AML_UART_STATUS, reg,
-+					reg & AML_UART_TX_EMPTY,
-+					AML_UART_POLL_USEC,
-+					AML_UART_TIMEOUT_USEC);
-+	if (ret == -ETIMEDOUT) {
-+		dev_err(port->dev, "Timeout waiting for UART TX EMPTY\n");
-+		goto out;
-+	}
-+
-+	/* Write the character */
-+	writel(c, port->membase + AML_UART_WFIFO);
-+
-+	/* Wait until FIFO is empty or timeout */
-+	ret = readl_poll_timeout_atomic(port->membase + AML_UART_STATUS, reg,
-+					reg & AML_UART_TX_EMPTY,
-+					AML_UART_POLL_USEC,
-+					AML_UART_TIMEOUT_USEC);
-+	if (ret == -ETIMEDOUT)
-+		dev_err(port->dev, "Timeout waiting for UART TX EMPTY\n");
-+
-+out:
-+	spin_unlock_irqrestore(&port->lock, flags);
-+}
-+
-+#endif /* CONFIG_CONSOLE_POLL */
-+
- static const struct uart_ops meson_uart_ops = {
- 	.set_mctrl      = meson_uart_set_mctrl,
- 	.get_mctrl      = meson_uart_get_mctrl,
-@@ -442,6 +503,10 @@ static const struct uart_ops meson_uart_ops = {
- 	.request_port	= meson_uart_request_port,
- 	.release_port	= meson_uart_release_port,
- 	.verify_port	= meson_uart_verify_port,
-+#ifdef CONFIG_CONSOLE_POLL
-+	.poll_get_char	= meson_uart_poll_get_char,
-+	.poll_put_char	= meson_uart_poll_put_char,
-+#endif
- };
- 
- #ifdef CONFIG_SERIAL_MESON_CONSOLE
--- 
-2.21.1
-
+If a tag was not added on purpose, please state why and what changed.
 
 _______________________________________________
 linux-amlogic mailing list
