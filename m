@@ -2,85 +2,80 @@ Return-Path: <SRS0=iDid=3K=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 02B5BC2D0CE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2020 22:11:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E462C2D0CE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2020 23:05:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AD31824655
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2020 22:11:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 24AFF217F4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2020 23:05:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RjSTQuHq";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="s/rSw8mv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD31824655
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g03racod"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 24AFF217F4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=im/QkqopmLtjiLwM74dFDrveXUlirBUnyz/u+YcV50Y=; b=RjSTQuHqYz4/E5
-	AAisd/srPJLBnmhZ8kMo/1EZfFnc7ErdF6bE8IumbTjNZ7gxYbgVrDxMXPeZuU2psHFsoxmsKGIEI
-	ZcYb3SYEpc9f53+XR7Su6VT5xM90eSPuLUo68Tf33hWX75HYoow2VgNPrEC8A8tq2uhW7QuGDJMIl
-	wfIVmbwBVcMjL0rmoaXe95vaaMVgPaDKYxRVzJf21VBdtCikyCQT6MyYKJ9r0Y74BEDmEo3iatq61
-	8GoNCR8NOZGRIpfkucZabUUzwytwb/9OoF1o17ETLOj8jqI+SW9PkfHiPO6kWoPVlhGcBN7izNmVW
-	Y5CY6nhi5gINZZv54BbA==;
+	List-Owner; bh=Y0C1j0tneakV3RyOJqDDf7NC3KaHzPhgV2JiMdz9eX4=; b=g03racod5jK3uv
+	vIft/nsT+zZNtg0lAnW6W+Yo0VEltr8ojr0Z4VdFvDNSMqJRjLkIVyVvRfr2cimQXBcQlv1LSmptk
+	G/Jv05kwio+LrlBNKdd+NquqHFnuQVWrBb9/+sok3dfa7vBwfKARUnIcjj4bZNGLIoP6PKd1t+fQd
+	umXZ2UTsTvutdoZ0lO08hTBfDM6kQwjt5XdeGH44ptTbxZEdcx1BRryctgTPZfAc39LqI5wfTqBlg
+	ICQVE/fi9+NKMH63X3Rp4poFLBGPVQ5jK+nwNfnb+brcwe45/sJ3IkeFURONYmk3cmJ6r5xCZLy/w
+	thqa4WksynZbtktxkQqw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iu1kM-0002WI-Pl; Tue, 21 Jan 2020 22:11:42 +0000
-Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
+	id 1iu2aE-0002ka-AW; Tue, 21 Jan 2020 23:05:18 +0000
+Received: from mail-ot1-f67.google.com ([209.85.210.67])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iu1kA-0002Mm-Sc; Tue, 21 Jan 2020 22:11:33 +0000
-Received: by mail-ed1-x543.google.com with SMTP id r21so4706883edq.0;
- Tue, 21 Jan 2020 14:11:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=x52RfIzWuhptiT6HtlO6I538NLkJPevuS3cIwYyZteg=;
- b=s/rSw8mvL48WPMh/ngVylCpVlto/w/+l5lPClTNQgf8CDydp9BA5lDSfeI1kWU6uHG
- +nNcYIO7Ec+B/37EzZnnAzaHWk8rXhIIWEpJrS4SBTW+VSPxVwoC0T2MgqNgkhyLq9ur
- sXrxGR+rzlid5R924smwd9wb1o3y6PWF9nRCkdfDNO47lnYRCW+iMnf2QUZ7KLXiiF4g
- ACFETfI7/6ZW/XcM55v/bWCZeS+noIhIpfUWyiWFshrbcEgv0qRlAoW+yD8F67NyYHGE
- IsCiVkI+FbIHz5detETS+LDAYI+hWa5kFOUTYXZysK3vuocEt4A27ojjizGTd8MpNjX0
- JUjw==
+ id 1iu2aB-0002jh-1O
+ for linux-amlogic@lists.infradead.org; Tue, 21 Jan 2020 23:05:16 +0000
+Received: by mail-ot1-f67.google.com with SMTP id p8so4550798oth.10
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Jan 2020 15:05:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=x52RfIzWuhptiT6HtlO6I538NLkJPevuS3cIwYyZteg=;
- b=C0egbXCEkGilsM9fuTZFhVqLFjI2owj1AOGBsptozWMIn0HKytBU8L+YuTJiZBLZhA
- VsvbsnwVXXk5N/IM+yj7zLc/cNNNlKRa3wkEvjt/PaTk37TVFfol2/UgzMg+3Jn9p6AS
- /SFDRCducDWrn+7dG9E8W7dg5e6TrG4LUh17C0+2bzyYbPoAleHO/pHefdqP0d+tImsA
- +1Lk8biLcj/3A+2iemfwvN2PMMHto6Y8cT7CpE5E8dj2+KtvyyRkPLcMXT6yWIMB9YeP
- srTLgifGIRsPT83CESnEYsPXLd+8NYuUf6MuiIbtAMeiPCX36xEjE/cneCOtvGj+BjOX
- Vhvw==
-X-Gm-Message-State: APjAAAWy+Zbbl3CESaKT7onvRjYaV5hyb2MFwc2jMoW2yFpsL+sHEhOg
- FZK+Xa2bGfkkzBABdBxCSWX4ImpfAtSXaeps7tQ=
-X-Google-Smtp-Source: APXvYqy2Lvp66HQg3tF0U4y7uCLYIvj+NbcFeMsCn8O5mdlF4fZ8zrHwSodtdIlnVzrkNoyj9B2fqN0+7Jg90Y1Co7s=
-X-Received: by 2002:a05:6402:221c:: with SMTP id
- cq28mr342907edb.110.1579644686374; 
- Tue, 21 Jan 2020 14:11:26 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=4AAfvC+x8Us+/ThobKytt/iSfaCb3JaxfjdaO0QR9zI=;
+ b=ME2aeb/2MhVUcT7LCg8O/rLp1b1kqL3X2Egponkovro5rU7dJj65JkpF/ViBE1RVhO
+ oGdE3WEI2Zc1SdmwFWR9N1rDmaFnu/R31PuIhyCYfynYcih9QRYniNSClbLlAJgW1uUx
+ spRtZ3ctUmuR8EBfpbklIoVxcZFURB7s/2ZAqjnKh0jeIDk5A5jtGNgLMqHbqnJEhgng
+ USBiDBSGLqwdH3NUFZv1d6kOkZu1vBC+g4QF/ZtC6e7upY9HHYdDdfdvQBY5VzJ7xNgc
+ HKgqUzw1Gibx/Y0CYXvmvmD+WhyD77upAP+S9jUaiIsF+GcXXkXZ0sX1gdbOBdam53PA
+ V4fA==
+X-Gm-Message-State: APjAAAXSKjepEZSQArz+dwOW5ArHyhCwJBKag9+bT28MMnnT427bSlkh
+ zuoWb6CYiu1kR+H6ZFXohA==
+X-Google-Smtp-Source: APXvYqxCKSaofsbZttYljSTTzfofpFX0UqhVZAaeUyhtpycBdwaBl/jQmvAxIY6Abpzo89AROKA6JQ==
+X-Received: by 2002:a9d:68d3:: with SMTP id i19mr5071722oto.71.1579647914263; 
+ Tue, 21 Jan 2020 15:05:14 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id g5sm14011049otp.10.2020.01.21.15.05.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 Jan 2020 15:05:13 -0800 (PST)
+Received: (nullmailer pid 6740 invoked by uid 1000);
+ Tue, 21 Jan 2020 23:05:12 -0000
+Date: Tue, 21 Jan 2020 17:05:12 -0600
+From: Rob Herring <robh@kernel.org>
+To: Remi Pommarel <repk@triplefau.lt>
+Subject: Re: [PATCH v4 2/7] dt-bindings: Add AXG shared MIPI/PCIE PHY bindings
+Message-ID: <20200121230512.GA4486@bogus>
+References: <20200115122908.16954-1-repk@triplefau.lt>
+ <20200115122908.16954-3-repk@triplefau.lt>
 MIME-Version: 1.0
-References: <20200121103413.1337-1-geert+renesas@glider.be>
- <20200121103722.1781-1-geert+renesas@glider.be>
- <20200121103722.1781-12-geert+renesas@glider.be>
-In-Reply-To: <20200121103722.1781-12-geert+renesas@glider.be>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 21 Jan 2020 23:11:15 +0100
-Message-ID: <CAFBinCD=LTAT-HQ+wSSmLQux+W5Y6vBju6RQDwf_1t1FhZoXgw@mail.gmail.com>
-Subject: Re: [PATCH 12/20] ARM: meson: Drop unneeded select of COMMON_CLK
-To: Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Disposition: inline
+In-Reply-To: <20200115122908.16954-3-repk@triplefau.lt>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200121_141130_950450_9F421659 
-X-CRM114-Status: UNSURE (   9.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200121_150515_082063_D7392989 
+X-CRM114-Status: GOOD (  13.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,34 +87,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, Kevin Hilman <khilman@kernel.org>,
+Cc: devicetree@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Olof Johansson <olof@lixom.net>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+ Yue Wang <yue.wang@Amlogic.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-amlogic@lists.infradead.org, Kishon Vijay Abraham I <kishon@ti.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jan 21, 2020 at 12:47 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Support for Amlogic Meson SoCs depends on ARCH_MULTI_V7, and thus on
-> ARCH_MULTIPLATFORM.
-> As the latter selects COMMON_CLK, there is no need for ARCH_MESON to
-> select COMMON_CLK.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Wed, Jan 15, 2020 at 01:29:03PM +0100, Remi Pommarel wrote:
+> Add documentation for the shared MIPI/PCIE PHYs found in AXG SoCs.
+> 
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  .../phy/amlogic,meson-axg-mipi-pcie.yaml      | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml
+> new file mode 100644
+> index 000000000000..3184146318cf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 BayLibre, SAS
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/amlogic,meson-axg-mipi-pcie.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic AXG shared MIPI/PCIE PHY
+> +
+> +maintainers:
+> +  - Remi Pommarel <repk@triplefau.lt>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,axg-mipi-pcie-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
 
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: linux-amlogic@lists.infradead.org
-I assume that Kevin should take this through the linux-amlogic tree
-(instead of someone else applying the whole series directly to the
-arm-soc tree)?
+Add:
+
+additionalProperties: false
 
 
-Martin
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +
+> +examples:
+> +  - |
+> +    mpphy: phy@0 {
+> +          compatible = "amlogic,axg-mipi-pcie-phy";
+> +          reg = <0x0 0x0 0x0 0xc>;
+> +          #phy-cells = <1>;
+> +    };
+> -- 
+> 2.24.1
+> 
 
 _______________________________________________
 linux-amlogic mailing list
