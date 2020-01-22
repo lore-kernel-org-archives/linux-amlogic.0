@@ -2,73 +2,89 @@ Return-Path: <SRS0=mclM=3L=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1F40C32771
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 07:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2247C2D0DB
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 09:25:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6B5032253D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 07:34:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A587020678
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 09:25:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KC+yDBMI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B5032253D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="q17K7Cbk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QWf4OAlw"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A587020678
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T3aeshws4z9PyvKnSd2TDGrjP0h//iaynOAHbLBJEwY=; b=KC+yDBMIJHXAqR
-	zZKl6re5fd7N7PrYovB+qRGa3ldLJuGJqdShhrtT8kgmcuutvps+OoaxfJt5Jbv4lkhvexUsnXUhj
-	EbG9mD9cnuloA9JsjA0wEvsEyUnUlIe6M8B7wLns7GzaQpgGD+uPdWW3voyU8K8KNs1m7omEwUTsi
-	JcSbZ/UVyiEsULR3E2spW7MjhSFEZDWFs5jtCMkyFnT7DzyNbVZFBOe8gtOzlm9j0xwYUD+l8sS9E
-	WeodkHKBk7z7jYWiZNMxSF2t0KEkL613Exd8CqxmysDlNnE7b5az9BFHUjJNxw2o6F4YK9VV28HWt
-	VA5TVdtUyiTCltsxaAZQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=VdvpnNjD0E2qyhphIyS3UcvCbceI9Z7q1rGd0ijRNnQ=; b=q17K7CbkvHW6c0
+	6s3TpyjTrW2FOG1qDK+Jzs1pUPlx3VYctipgPemrErPgaRTP6FSkzJumuPl6SDgDXAAzwGUGje1zj
+	DXRQFmkEjPqVb4LvxG+VeoNI2g1koA+Qt++VkGOXXsAcfba3TL+ojRBnfdJapLoJXx+JAjKOZVlxd
+	6t+R/GLlHAGrNfxMcPBREZ/SXrF5mG7g31oVdacSJmWIfOiQPgaUr1YZWwvGT3588BvFe/DEQ35gf
+	VM0RJL88aqrOWcDfw76lZIDyn6D+F1ZtVliKDPSawxtX62C6vbcw4veA4geq+ED8AyoJ+MML3u6+B
+	YoVi/L/ilsbd/4Eit/Og==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iuAWn-0003wq-Fk; Wed, 22 Jan 2020 07:34:17 +0000
-Received: from mail-oi1-f194.google.com ([209.85.167.194])
+	id 1iuCGa-0006eM-55; Wed, 22 Jan 2020 09:25:40 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iuAWb-0003nm-Jn; Wed, 22 Jan 2020 07:34:06 +0000
-Received: by mail-oi1-f194.google.com with SMTP id q81so5257355oig.0;
- Tue, 21 Jan 2020 23:34:05 -0800 (PST)
+ id 1iuCGX-0006e4-Nv
+ for linux-amlogic@lists.infradead.org; Wed, 22 Jan 2020 09:25:39 +0000
+Received: by mail-wm1-x342.google.com with SMTP id f129so6360240wmf.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 22 Jan 2020 01:25:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jl1D3AmziTwVaydKZMicfuuKx92SzNFy1wg6z3sQOu8=;
+ b=QWf4OAlw4HblNZpibCzinKXmVcQxe2T3DfOdm82fH1kR0Jy8WNv+EvTlK7H9S+2b5V
+ 6n4s6TI9j+qvwWD89eXAY4eDuqw5rfoI8xRW5t31OQdI02Em/Jcng6UEPc/Z7fBvmWcy
+ 1HHC/4EpUgA5szvKHBynZhxUgdzdnCq0Hv5rmbgcg9W+GrFcsTx5iiM3xUZ8FX/7KVNW
+ Qpe4pt8y82X9eT/OV+GaI9zSNq3fnqGpIaD20d3czbeOC6wukZGh9xua5d/u33wq4D4I
+ thyksjj+mUNYd5z3wbuon9IKV+KzAGO9j9s2bSQCd3h/9FILqKaTfW9QTjUTCS9/eQpp
+ wtZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=R6dA8IVd2HWeSBvzpV4MKOYtjngHbr3aE8kcYPeC+Iw=;
- b=eISv6lqo4Xk4CnCN7ot3ov5SEi9ySvWd9HLL+8w4/F3YAgJT+nRnKgim0iPuPe9WRr
- BiHYM2oUzc6jy5VJV08z2d/K5rO3B2AcFdHgN1mtoFXc5e0R+gZE9j/PrBu+/6DNn8l4
- wKEKQDuoSDUbAF93FjFDcHT6Zyf58kQjWAH/Y/CrkkgstlZIHgjlyQi8WL271RMGakVm
- e5wc1BtbzuaYOAMKSa/gkpGElIGs3KqyHgx13q2OVlG9W1IEKbPzH4JxTMwK+3x77+kl
- xXpKY7aTRTQODVFrk3tAMm1KGUTtSM92JRxw9gcWFmvmNfwgnpZerYTh4k71YU9uz7at
- 9WnQ==
-X-Gm-Message-State: APjAAAWjvK8TRaL0SEl9JxxXbizAAFLLpYucZpMbrJih6fKerg1NVIoq
- eSN2ybP3QQ1HY+GGKSnJ7fe1lnA35Is8HZqjMPQ=
-X-Google-Smtp-Source: APXvYqzz9BRTgYbAttBsw72QwxdjFgTrmN154sWt4NXPuBUO2JwBwUb++MoNJraCo3FfeIs23pEkyRFPnQFId4CPRrg=
-X-Received: by 2002:a05:6808:292:: with SMTP id
- z18mr5614749oic.131.1579678444390; 
- Tue, 21 Jan 2020 23:34:04 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jl1D3AmziTwVaydKZMicfuuKx92SzNFy1wg6z3sQOu8=;
+ b=pTtM+EuyNrV49cFOqhVQuGtxWgLRMQkHEtsMO7FY85PASDFDniqvayozx8KqbjMYcD
+ vlLXObOeNo7T3FpQUVuK5mDNPGJenLnm8PA8BL0bcTNCfRBs3nUHnE4io0Mk9IqdooUE
+ HD9VgDWDnCbPR3BEX4Dnu65br9B3VaAlwvd8VM4f9gTFE6P4n/4FmkFQDwTAHstQRUn4
+ E795xegSTEo5v4jc/BLRSSJIWyrf6IsDgwwlQcZB1QD62pnBmBA2wNoc4DN3/Ux1DIii
+ C2UiKyMYPfm+DU6pNaboZ9Y4OWaMJZrFJsJgtnPzbnMkOXBWkKyB4RPVtxiL7WetctiB
+ jEPg==
+X-Gm-Message-State: APjAAAX+3dOa2ZvAYcZPpjABnhvT5LeaFqGCfNx1A/JNm+BGZy+06E2A
+ 0/GDoMK3Z+Ldcir6Gu/1bJr9Tw==
+X-Google-Smtp-Source: APXvYqzbK5xmg3Q8pvvBxsVKUN7iX5VNKCEhjLiLQ4URYMDIPnu2V9Aj/FpSlwqF5Jr7ga/yDdQT5g==
+X-Received: by 2002:a7b:c08d:: with SMTP id r13mr2021190wmh.104.1579685135848; 
+ Wed, 22 Jan 2020 01:25:35 -0800 (PST)
+Received: from starbuck.baylibre.local
+ (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id g25sm4134125wmh.3.2020.01.22.01.25.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 22 Jan 2020 01:25:35 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Subject: [PATCH] dt-bindings: reset: meson: add gxl internal dac reset
+Date: Wed, 22 Jan 2020 10:25:26 +0100
+Message-Id: <20200122092526.2436421-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-References: <20200121103413.1337-1-geert+renesas@glider.be>
- <20200121103722.1781-1-geert+renesas@glider.be>
- <20200121103722.1781-12-geert+renesas@glider.be>
- <CAFBinCD=LTAT-HQ+wSSmLQux+W5Y6vBju6RQDwf_1t1FhZoXgw@mail.gmail.com>
-In-Reply-To: <CAFBinCD=LTAT-HQ+wSSmLQux+W5Y6vBju6RQDwf_1t1FhZoXgw@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 22 Jan 2020 08:33:53 +0100
-Message-ID: <CAMuHMdW5x7H5gwja098XVMB+iX-eQ1u_85BHu+0=dtAU9iNuKg@mail.gmail.com>
-Subject: Re: [PATCH 12/20] ARM: meson: Drop unneeded select of COMMON_CLK
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200121_233405_646154_4A2CCEE3 
-X-CRM114-Status: GOOD (  11.60  )
+X-CRM114-CacheID: sfid-20200122_012537_808597_49DC6DB2 
+X-CRM114-Status: UNSURE (   8.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,51 +96,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>,
- Kevin Hilman <khilman@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Olof Johansson <olof@lixom.net>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Add the reset line of the internal DAC found on the amlogic gxl SoC family
 
-On Tue, Jan 21, 2020 at 11:11 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> On Tue, Jan 21, 2020 at 12:47 PM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> > Support for Amlogic Meson SoCs depends on ARCH_MULTI_V7, and thus on
-> > ARCH_MULTIPLATFORM.
-> > As the latter selects COMMON_CLK, there is no need for ARCH_MESON to
-> > select COMMON_CLK.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ include/dt-bindings/reset/amlogic,meson-gxbb-reset.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks!
-
-> > Cc: Kevin Hilman <khilman@baylibre.com>
-> > Cc: linux-amlogic@lists.infradead.org
-> I assume that Kevin should take this through the linux-amlogic tree
-> (instead of someone else applying the whole series directly to the
-> arm-soc tree)?
-
-Yes, that's the way to reduce the risk of conflicts.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h b/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
+index ea5058618863..883bfd3bcbad 100644
+--- a/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
++++ b/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
+@@ -69,7 +69,7 @@
+ #define RESET_SYS_CPU_L2		58
+ #define RESET_SYS_CPU_P			59
+ #define RESET_SYS_CPU_MBIST		60
+-/*					61	*/
++#define RESET_ACODEC			61
+ /*					62	*/
+ /*					63	*/
+ /*	RESET2					*/
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.24.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
 _______________________________________________
 linux-amlogic mailing list
