@@ -2,22 +2,21 @@ Return-Path: <SRS0=mclM=3L=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2247C2D0DB
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 09:25:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5DD2C33CB8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 10:05:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A587020678
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 09:25:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A227224697
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 10:05:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="q17K7Cbk";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QWf4OAlw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A587020678
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fSE92vF+";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2Spclnwq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A227224697
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +25,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=VdvpnNjD0E2qyhphIyS3UcvCbceI9Z7q1rGd0ijRNnQ=; b=q17K7CbkvHW6c0
-	6s3TpyjTrW2FOG1qDK+Jzs1pUPlx3VYctipgPemrErPgaRTP6FSkzJumuPl6SDgDXAAzwGUGje1zj
-	DXRQFmkEjPqVb4LvxG+VeoNI2g1koA+Qt++VkGOXXsAcfba3TL+ojRBnfdJapLoJXx+JAjKOZVlxd
-	6t+R/GLlHAGrNfxMcPBREZ/SXrF5mG7g31oVdacSJmWIfOiQPgaUr1YZWwvGT3588BvFe/DEQ35gf
-	VM0RJL88aqrOWcDfw76lZIDyn6D+F1ZtVliKDPSawxtX62C6vbcw4veA4geq+ED8AyoJ+MML3u6+B
-	YoVi/L/ilsbd/4Eit/Og==;
+	List-Owner; bh=65O8UTPdfLUaSMlkECZwXESVb5o8ctQnLNRjB75WTR8=; b=fSE92vF+X1Ra31
+	ucRuOVixYUpw5v3Ye/iLMMC8hz7Q7xmmeKRt2X72FhvCZfUheK+PV7nhBasWZHNPUFa8EBIyyph0Y
+	0oDtHNoTSjrD8QuzeQxZX5PhbCiScb7OCERtAzpBzH36ZuaCDUCjMQ2FClRXbwISBiKFRCYO0JY8W
+	yxuEGfOnLFQvzEl4PLpMf5ZBKfIgu0ZlcIZSnB3nNbrQWIRys2odg4UGYGgfwt1T5JHJiua+1irnf
+	WtxEZmGRZg3twtI7H2lF4v8y0+6/c4egvCzgwYTSVqBGBb2X9v185h83s/MkUXCQaaY43XWBYkIXV
+	EmAWCjAe53YOIVh1quwg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iuCGa-0006eM-55; Wed, 22 Jan 2020 09:25:40 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1iuCsd-0004xP-LW; Wed, 22 Jan 2020 10:04:59 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iuCGX-0006e4-Nv
- for linux-amlogic@lists.infradead.org; Wed, 22 Jan 2020 09:25:39 +0000
-Received: by mail-wm1-x342.google.com with SMTP id f129so6360240wmf.2
- for <linux-amlogic@lists.infradead.org>; Wed, 22 Jan 2020 01:25:36 -0800 (PST)
+ id 1iuCsa-0004w4-Dd
+ for linux-amlogic@lists.infradead.org; Wed, 22 Jan 2020 10:04:58 +0000
+Received: by mail-wm1-x335.google.com with SMTP id p17so6498509wmb.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 22 Jan 2020 02:04:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=jl1D3AmziTwVaydKZMicfuuKx92SzNFy1wg6z3sQOu8=;
- b=QWf4OAlw4HblNZpibCzinKXmVcQxe2T3DfOdm82fH1kR0Jy8WNv+EvTlK7H9S+2b5V
- 6n4s6TI9j+qvwWD89eXAY4eDuqw5rfoI8xRW5t31OQdI02Em/Jcng6UEPc/Z7fBvmWcy
- 1HHC/4EpUgA5szvKHBynZhxUgdzdnCq0Hv5rmbgcg9W+GrFcsTx5iiM3xUZ8FX/7KVNW
- Qpe4pt8y82X9eT/OV+GaI9zSNq3fnqGpIaD20d3czbeOC6wukZGh9xua5d/u33wq4D4I
- thyksjj+mUNYd5z3wbuon9IKV+KzAGO9j9s2bSQCd3h/9FILqKaTfW9QTjUTCS9/eQpp
- wtZw==
+ bh=xr55sisUQJBKj6Q4LrYEYaq2XUN1tVNpifr1uUk54Rc=;
+ b=2SpclnwqwF+ZtOGLn5/Pzqi457wTIzOMugjwrvqe2e6PJR797j6ImTx5WFNp7pJf+D
+ 0oCYEuyjwuXAOyrBfb48iDlGtYXJ9iOcGW5YYffBgwRYC3gqYgczwyagZCk8Du3/RZRe
+ sVU4/NdlRN4MU59vussJBc4x1Wxp+5eXR12w1xgIxs+sZbBjapfCxeJOd659ECntnogA
+ u8/25V+tAYwHIh2eXheHPeMrHlgoEqotUdWOHcpexUj1fjvxMfVZXxE0C6H+AXpm4AWf
+ 83HNZuCMrZVH9ziWGen75wPXIo5Zg+UUTeq6R7TbJBbiJ4BcYL5FzY3amnjSAs80R+iQ
+ ONPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=jl1D3AmziTwVaydKZMicfuuKx92SzNFy1wg6z3sQOu8=;
- b=pTtM+EuyNrV49cFOqhVQuGtxWgLRMQkHEtsMO7FY85PASDFDniqvayozx8KqbjMYcD
- vlLXObOeNo7T3FpQUVuK5mDNPGJenLnm8PA8BL0bcTNCfRBs3nUHnE4io0Mk9IqdooUE
- HD9VgDWDnCbPR3BEX4Dnu65br9B3VaAlwvd8VM4f9gTFE6P4n/4FmkFQDwTAHstQRUn4
- E795xegSTEo5v4jc/BLRSSJIWyrf6IsDgwwlQcZB1QD62pnBmBA2wNoc4DN3/Ux1DIii
- C2UiKyMYPfm+DU6pNaboZ9Y4OWaMJZrFJsJgtnPzbnMkOXBWkKyB4RPVtxiL7WetctiB
- jEPg==
-X-Gm-Message-State: APjAAAX+3dOa2ZvAYcZPpjABnhvT5LeaFqGCfNx1A/JNm+BGZy+06E2A
- 0/GDoMK3Z+Ldcir6Gu/1bJr9Tw==
-X-Google-Smtp-Source: APXvYqzbK5xmg3Q8pvvBxsVKUN7iX5VNKCEhjLiLQ4URYMDIPnu2V9Aj/FpSlwqF5Jr7ga/yDdQT5g==
-X-Received: by 2002:a7b:c08d:: with SMTP id r13mr2021190wmh.104.1579685135848; 
- Wed, 22 Jan 2020 01:25:35 -0800 (PST)
+ bh=xr55sisUQJBKj6Q4LrYEYaq2XUN1tVNpifr1uUk54Rc=;
+ b=f7NKihq1ynaj3vqR35PaPdb/8FWYh7/CNnQji6cVgV3/fR/MiTTTjsrR6pq3Ng+1m8
+ wrqHxUMVsrxDB4JL4fzMaM/ANnKCuZSoAT+NrKFP6eNiSrX0uUO1OVEK+ADuQ7aJi0qJ
+ bkt98sapF3WRWBDx+qpLLRGv461TjXBBvm3POOOfoVu6x/zDlvm8N/+TzZaIODvQArKT
+ 00AkMwgzYoVvQTTYHFQPRLsUIgvrqUBvTfB2a5GTiefgR1iW7d4bTvlMyU91irQpTq/Y
+ FbO3G02xMdXzdfd39CnOWNgEiluP73qAhDupOlKeuefyZ2m6r/M5eq7nz5l4bnTC8fPJ
+ u29g==
+X-Gm-Message-State: APjAAAVFQ7+blkQeTFNEfKPy2eaWps/DJ93Q2+zUzMF6VeuoMA4F6tdS
+ OegJNLodfFMmYKJ5EFR3MScA6Q==
+X-Google-Smtp-Source: APXvYqxz2tZXmYV+E9Ld+AOXUw6DT+T8VYNXacbGMy0FhKPCjM0ksmIp44lJOlHnO0vFIuRXZGibVg==
+X-Received: by 2002:a1c:3b0a:: with SMTP id i10mr2197195wma.177.1579687494505; 
+ Wed, 22 Jan 2020 02:04:54 -0800 (PST)
 Received: from starbuck.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id g25sm4134125wmh.3.2020.01.22.01.25.34
+ by smtp.googlemail.com with ESMTPSA id l3sm52237648wrt.29.2020.01.22.02.04.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Jan 2020 01:25:35 -0800 (PST)
+ Wed, 22 Jan 2020 02:04:53 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH] dt-bindings: reset: meson: add gxl internal dac reset
-Date: Wed, 22 Jan 2020 10:25:26 +0100
-Message-Id: <20200122092526.2436421-1-jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+	linux-clk@vger.kernel.org
+Subject: [PATCH 0/3] clk: meson: gxbb: audio clock updates
+Date: Wed, 22 Jan 2020 11:04:48 +0100
+Message-Id: <20200122100451.2443153-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200122_012537_808597_49DC6DB2 
-X-CRM114-Status: UNSURE (   8.82  )
+X-CRM114-CacheID: sfid-20200122_020456_465999_8AC6D8DD 
+X-CRM114-Status: UNSURE (   6.55  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -104,26 +104,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the reset line of the internal DAC found on the amlogic gxl SoC family
+This patcheset provides updates related to the audio peripheral clocks
+It adds the peripheral clock required by the internal audio dac
+and reorganize the AIU clocks into a hierarchy to better reflect the
+behavior of the SoC.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- include/dt-bindings/reset/amlogic,meson-gxbb-reset.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Jerome Brunet (3):
+  dt-bindings: clk: meson: add the gxl internal dac gate
+  clk: meson: gxbb: add the gxl internal dac gate
+  clk: meson: gxbb: set audio output clock hierarchy
 
-diff --git a/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h b/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
-index ea5058618863..883bfd3bcbad 100644
---- a/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
-+++ b/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
-@@ -69,7 +69,7 @@
- #define RESET_SYS_CPU_L2		58
- #define RESET_SYS_CPU_P			59
- #define RESET_SYS_CPU_MBIST		60
--/*					61	*/
-+#define RESET_ACODEC			61
- /*					62	*/
- /*					63	*/
- /*	RESET2					*/
+ drivers/clk/meson/gxbb.c              | 21 +++++++++++++--------
+ drivers/clk/meson/gxbb.h              |  2 +-
+ include/dt-bindings/clock/gxbb-clkc.h |  1 +
+ 3 files changed, 15 insertions(+), 9 deletions(-)
+
 -- 
 2.24.1
 
