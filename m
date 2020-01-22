@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D60FDC3F68F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 10:05:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1545BC33CB6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 10:05:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A7E182468B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 10:05:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D9E0524683
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2020 10:05:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BSq/cLm7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TyTQ1Gmd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7E182468B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="efFKJgLF";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="v+JqGgoJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9E0524683
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0/DV2d0TUGjcHK8TICpMQeLGyAzmBTHlgCHP81IC5OA=; b=BSq/cLm7vWxaMB
-	d567gmWT7EvUTA9n7I5pWtHQ8jwN2xnctz/pJyDNrAiA3f+lQX7sg+DBf0/fXzwNEmz5AuUtI63yK
-	NnDiebqQCvbie++8mrhcjxmdc5DQDtOmR0LcSya2kqyn9ZLPMUk/yz3uBP95HQDxd3zUuGWoxx6yk
-	YoBkrhBq76PgCikQfVGXTj3A4ugOsmZdI7Sbf/gmjivFwNVRvVJo4cgA1e8J7r+YynCNPzjdIwS2E
-	uevZA5zeIx9wQbllMw2iwQKkmAivXBnxDENZnxAgOsUd2O6RA05oNI46QCQooLkFL6y0Td7oTBmFd
-	D9f0BGZ0rt6kO+Y4cm7g==;
+	List-Owner; bh=IWfGuvA0nhdYzbyHdeQoTxN3GAHc8LhGDAlxu9RbCc4=; b=efFKJgLFniAT8M
+	8FyYfOFpdirjyTPd9XpIzXKmF39906ctG+jSm1kv7jjmoxiCAgb09jEoIUI26sWGI+t1jBifYMYog
+	SujVQJKKSYBsJul14zhM7j7iLU4SbZzRLniLtX6aSniqbvH7+0eTWGMULDSEiL4d0m5d5Fh9azt4/
+	b+78N9X6PPW+twEHJHtVjx7XJ+ch/tpIznQSqFE4/DwA3UtMZY/maP0GMxwR/rbVK37K3JMiZNDA3
+	fP8WDi/357AuRHhR8RQpymryPDFuwP3b9QUMqWfTTb0MgRvzvZt69Ivf5kTu7rrdtWA9lx0Ym+7QK
+	6f3U2oxO7UWXRHf7YhCA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iuCsh-00050Q-Bi; Wed, 22 Jan 2020 10:05:03 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1iuCsf-0004yT-Cd; Wed, 22 Jan 2020 10:05:01 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iuCsc-0004wX-7v
- for linux-amlogic@lists.infradead.org; Wed, 22 Jan 2020 10:04:59 +0000
-Received: by mail-wm1-x344.google.com with SMTP id t23so2518221wmi.1
- for <linux-amlogic@lists.infradead.org>; Wed, 22 Jan 2020 02:04:57 -0800 (PST)
+ id 1iuCsb-0004w5-1m
+ for linux-amlogic@lists.infradead.org; Wed, 22 Jan 2020 10:04:58 +0000
+Received: by mail-wr1-x442.google.com with SMTP id q6so6536988wro.9
+ for <linux-amlogic@lists.infradead.org>; Wed, 22 Jan 2020 02:04:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=syU5/1zsk41J9XenYExkcSrSf1m75wNu2Uxs4S6RkBs=;
- b=TyTQ1Gmd71wvmjv/+74mGmrCiZ9C/3z1DIhBcwGsT4wOpNk3c9j3RmUkn/5S2OEmdX
- mn3gnUi3moCZvi0AQzLrek4FMn1ZXHqqeq61v1Ir7gV+o/bRfu/KNw62LBaFK6pZqjQE
- 1cjNz6d+C0kUyauNMUcIjtX1oVOYvMTJlNy5RDNDQnspoHV3cc5dHU/r82VR/citD3rC
- eFDhRlYZxmMVWEealCj8PDi4LD+5ydSXAWcS07QbeTnnwjY01VW0P6G0DDYL+fyUAWXY
- i4OJW/Y6aBeg7EZ+uB1jed/lYXR1OH6a46ihmTvQmrq1l34r5USIN4sr9o9Ihv+4E3K9
- saEg==
+ bh=Yw/4NLYEuxJ4fKq4pCM6ugotTNyG68OGT/ZIT0URmH4=;
+ b=v+JqGgoJMtQE0pUX58ConDISFTmQqt6UPkNAzux0NzKoSfnD0mJKZd9bbeiH3o0I+g
+ 9DQ1pWa3AuGN7EmtAkOnbWmwHuTYsTVf+s1BMzs4wer644CfyoyS0kwhXDz5bP9Ug+/X
+ iYdz2mRqESoQP3J9VE6u707i7BYGsUtNyqtNgPA204jK18X7JZAO9ue26q14GWFYfC87
+ towBTY8iUOCx8G2xwTz7P6G2+kxoxIH4V5QXvcpOegxQA2FZ841nR2KC9XK26LshiX1H
+ XmS/vkDvMvtuB8X+FfKduw0rlawm9n9/pPW2liRlgF/ed39P308pq9v/4QTS3UW5dGBU
+ rv1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=syU5/1zsk41J9XenYExkcSrSf1m75wNu2Uxs4S6RkBs=;
- b=qZQTy6gGQGuoSVuB+JofPZwc1CjZoOeFgl8eoT1CJNWmmKlx0PXqaVrrpVlnwS4QII
- vuW68utUPnCsWLIhIva8lofqdX/FTgeaWVmBA0jjjKV4Ie/Eo5+QwhB/IBviVfBNY/li
- eI9FX2PBPFumArPCaUGTnXcwk0ew7o3N/Syl2od9hHSiul9xkxeaf4bsL95ADfGnVqyi
- 2LHAVOk+jbJgP7516RM4o1qmxe09KCLL+vdUGPAvFsvkFHDWthU4lzFyU9ZrJYhLDqD/
- Hm40vNfDl3vqIVIYRWboiNzBX+2bKYr07I+WDgt9EZC4D/4aGRNIvrbe5CAU6kkqA2b+
- AThQ==
-X-Gm-Message-State: APjAAAWKlv/1j0t9DcnRfAE4OToUm0RXvTGXG6comr0rZmghrKEod8DC
- qjL4WORkxPuCDEqM/PB83/1EYg==
-X-Google-Smtp-Source: APXvYqyIn4WjUP6H8iMUfBYz19dJwcFjkd+OuUywWtqSbuXPCcYhZDLdw3dWOmUzestdyp3FZqtlPA==
-X-Received: by 2002:a1c:3dc3:: with SMTP id k186mr2176455wma.95.1579687496806; 
- Wed, 22 Jan 2020 02:04:56 -0800 (PST)
+ bh=Yw/4NLYEuxJ4fKq4pCM6ugotTNyG68OGT/ZIT0URmH4=;
+ b=DXLVvrlR4lo2e+yXSQoL6aeYmduQ0mIcLJs1mDs0nAblvRoh9kXv33hzBHWxVa8QcD
+ /2bHbGybOkfj0GMiw5JB66Qv1a/KOxoaFY1u4hTtbJknzRlo0G5hAYSUhfnVuO1FT/hD
+ 7EcWrfenYGbuPUtCFPsfvcsU8ZEz0PJVKO3Cj5ds8Qb1iKeS5K8gPSgT+SjYWb4JsdWe
+ G9ASa3WQTH7V/78X19njFH7MClJgpkprrUb2Z/p9VT0EnPc2YCC3zqtc8vTOtmAbWq1/
+ 8YJ+onr5KnnPKkyG8WeijZRcxf0U8Q1ZrujyNHJayWWCS8LKmNNGufH05FeQYbGXE6rr
+ mLzQ==
+X-Gm-Message-State: APjAAAXPQHxg89Hwr+0RMG6zz2EIjyN6vwivrHHA0g0ipar0F7ySeFnN
+ Y7bl8OaO/LIjmDFyqOWTO0j6ww==
+X-Google-Smtp-Source: APXvYqwJXta7jmEApeIzjvflSF8Ln/f2IlsILY2IcIhiWwi7NvQ9mp+urqVjtg/E7wk5iecmCBOj/g==
+X-Received: by 2002:adf:8297:: with SMTP id 23mr9875680wrc.379.1579687495519; 
+ Wed, 22 Jan 2020 02:04:55 -0800 (PST)
 Received: from starbuck.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id l3sm52237648wrt.29.2020.01.22.02.04.55
+ by smtp.googlemail.com with ESMTPSA id l3sm52237648wrt.29.2020.01.22.02.04.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Jan 2020 02:04:56 -0800 (PST)
+ Wed, 22 Jan 2020 02:04:54 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>,
 	linux-clk@vger.kernel.org
-Subject: [PATCH 2/3] clk: meson: gxbb: add the gxl internal dac gate
-Date: Wed, 22 Jan 2020 11:04:50 +0100
-Message-Id: <20200122100451.2443153-3-jbrunet@baylibre.com>
+Subject: [PATCH 1/3] dt-bindings: clk: meson: add the gxl internal dac gate
+Date: Wed, 22 Jan 2020 11:04:49 +0100
+Message-Id: <20200122100451.2443153-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200122100451.2443153-1-jbrunet@baylibre.com>
 References: <20200122100451.2443153-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200122_020458_281861_CA1C144C 
-X-CRM114-Status: UNSURE (   9.79  )
+X-CRM114-CacheID: sfid-20200122_020457_090311_E818FCF9 
+X-CRM114-Status: UNSURE (   7.91  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -107,55 +107,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the ACODEC clock gate to the gxl clk controller driver
+Add the gxl ACODEC clock id to the gxbb clock controller bindings
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/gxbb.c | 3 +++
- drivers/clk/meson/gxbb.h | 2 +-
- 2 files changed, 4 insertions(+), 1 deletion(-)
+ include/dt-bindings/clock/gxbb-clkc.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 1f9c056e684c..47916c4f1700 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -2613,6 +2613,7 @@ static MESON_GATE(gxbb_assist_misc, HHI_GCLK_MPEG0, 23);
- static MESON_GATE(gxbb_emmc_a, HHI_GCLK_MPEG0, 24);
- static MESON_GATE(gxbb_emmc_b, HHI_GCLK_MPEG0, 25);
- static MESON_GATE(gxbb_emmc_c, HHI_GCLK_MPEG0, 26);
-+static MESON_GATE(gxl_acodec, HHI_GCLK_MPEG0, 28);
- static MESON_GATE(gxbb_spi, HHI_GCLK_MPEG0, 30);
+diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+index db0763e96173..4073eb7a9da1 100644
+--- a/include/dt-bindings/clock/gxbb-clkc.h
++++ b/include/dt-bindings/clock/gxbb-clkc.h
+@@ -146,5 +146,6 @@
+ #define CLKID_CTS_VDAC		201
+ #define CLKID_HDMI_TX		202
+ #define CLKID_HDMI		205
++#define CLKID_ACODEC		206
  
- static MESON_GATE(gxbb_i2s_spdif, HHI_GCLK_MPEG1, 2);
-@@ -3100,6 +3101,7 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
- 		[CLKID_HDMI_SEL]	    = &gxbb_hdmi_sel.hw,
- 		[CLKID_HDMI_DIV]	    = &gxbb_hdmi_div.hw,
- 		[CLKID_HDMI]		    = &gxbb_hdmi.hw,
-+		[CLKID_ACODEC]		    = &gxl_acodec.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -3491,6 +3493,7 @@ static struct clk_regmap *const gxl_clk_regmaps[] = {
- 	&gxl_hdmi_pll_od,
- 	&gxl_hdmi_pll_od2,
- 	&gxl_hdmi_pll_dco,
-+	&gxl_acodec,
- };
- 
- static const struct meson_eeclkc_data gxbb_clkc_data = {
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index b53584fe66cf..1ee8cb7e2f5a 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -188,7 +188,7 @@
- #define CLKID_HDMI_SEL		  203
- #define CLKID_HDMI_DIV		  204
- 
--#define NR_CLKS			  206
-+#define NR_CLKS			  207
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/gxbb-clkc.h>
+ #endif /* __GXBB_CLKC_H */
 -- 
 2.24.1
 
