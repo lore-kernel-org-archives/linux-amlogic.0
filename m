@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9C88C2D0DB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2020 09:48:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BD5CBC33CAF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2020 09:51:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5204E2253D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2020 09:48:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 931732253D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2020 09:51:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CIAB0Jup";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zuKKKPIc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5204E2253D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oBTdpqkv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Zs7/UVvf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 931732253D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KyYrhVhGM/xjMvA52ZwiF/IElznmdEyOI3HT/NVPDG8=; b=CIAB0JupBTTjZd
-	HdLYUsY21xlymVy7aLUt+ckGRrBwZc4HtFQ2EXdKGlu3+VcFUhMd+44w/mucoMAy5ZtzY3kIkPBTD
-	4NRPkmfbZThJSR0psG0eQEPEVsad/cU6hP1eU6cFOwYEUSw7QN9csuWkjUxlS8vSeJcF/GWbmdyBa
-	h00ZJTSlmP3KjQG/ibdbEoIrYVgVIjMv6Z501l/+Ln98pW/9opkohvyGAlKbAFIJwcUvYkhvXalhA
-	a/P1jNUpQOu9lg3vQp5d/SE0H24RYCUDnJ9Fku3zfaHFuAcJzqZzWkx6mX8RkhUaQoNF5CuMyBmto
-	H3x6CrneQLhX3d8pl2hQ==;
+	List-Owner; bh=8CSJVL0QlJEZeE6FwDPg7zFk6YFRVqOU6jejENBBBc0=; b=oBTdpqkvybmzEX
+	yrXHzWA/cXuMQRkBlBr3OX2Wvw4c6wmB0w0Mehnyp7DkLb3d61X3pj8hmuHb9o3a4p0NDippWG1ww
+	6EHPazZIgd+01Vd9jY4wVV99tBqBWBl2D8knFWWkRwY+a7XTfiGXdWvEovaufpQVyTAn+1yhUrY51
+	IEpQZmctDrEMCLFE4slSLLC7pBPrZjGQ0vDK7jzMjwU4QJskCa03x9U2qiQplrF34TIwEUqZKXXjZ
+	Rm2cJ+irK7hvQBOW0+Qe5koq8Sip76h990sG1zBJjQGmbxZh18/eSwLykV/qI6Zhlq/Ket7WLJzL2
+	ua8J5YK1NoN8S6wpFi/Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iuZ6M-0007P5-0q; Thu, 23 Jan 2020 09:48:38 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iuZ8z-0001HB-Ar; Thu, 23 Jan 2020 09:51:21 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iuZ6J-0007O1-9F
- for linux-amlogic@lists.infradead.org; Thu, 23 Jan 2020 09:48:36 +0000
-Received: by mail-wr1-x442.google.com with SMTP id b6so2360641wrq.0
- for <linux-amlogic@lists.infradead.org>; Thu, 23 Jan 2020 01:48:34 -0800 (PST)
+ id 1iuZ8w-0001FW-5J
+ for linux-amlogic@lists.infradead.org; Thu, 23 Jan 2020 09:51:19 +0000
+Received: by mail-wr1-x441.google.com with SMTP id z3so2343025wru.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 23 Jan 2020 01:51:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=Kn81JYc9N9F0sdKy+Q2CIEDl23p6b50Wt6+KCmJKWVY=;
- b=zuKKKPIcS/4Bjo0Jbt3+sNV5+A7pgTKEHneuYtSBIrLh+MvanIbBfGGgGIUa0a19k0
- ilJzgzQmbJSj7gFNYn697kd6v/5MVwnJvc4o3MScZhfJVyOqXaeHbw99BOM1yo9IZcbq
- J+F92jpPcs+AUprJtZvtfyGbcINy3d75e18zFZuN01dAL54E7H/y/biP20x0u9ypv982
- CAIVjJ/4uCi/EM7ABcbWc8dsjTCIAn8vokF4rW/AYf0D/ryzy8T9UHBtpJcKVzYIjXh6
- siercVQ6l/gP4HDkcRFJ+DWljvcNs0/DEYGMjEBFfph/Oc7/yhaIhJXmdAXRbNo4dreC
- QkMw==
+ bh=IL15pRU9pFPgz6S6Tf7uhh3iwf+4kU+o6fQpOFHsq5Q=;
+ b=Zs7/UVvf2IkrzBlosC4cjUUZhiO3Fdjkl90Zs9Gt4vVXIY0+sCmE14mQK4brxCJ1vr
+ lUfMrobrtE59nuM8Dac3pEa+G894wORGOO15xB7DhWQ3T9FZvVrifRCRJsLPUW9CgbgU
+ IhlwUfpLq3rEZragtyyTXDTCZzgA92NWCCOWNpMd2cy8HB+dd9hBoi/DEOg8Jyb+dsd3
+ 9LNBzoY2env+HpPLBfpNg8Cjrddck1/fzrfXo8JSEBvbY2kMArMDmmw9LbLvXsFhqJew
+ eKJzcn5e59jh4srLzU6KtUUkap3RncAlKDaq1e0ODiQ7lgk+86eo79n83bHID+vZt7rs
+ Tgfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Kn81JYc9N9F0sdKy+Q2CIEDl23p6b50Wt6+KCmJKWVY=;
- b=eJ+XONXsmS3O1K8ndojURv+Ek1+WQP8Ll+jw1pS2XR5ruZ7VbxtjMK0eq4Mu7HPWy/
- 0/RM4tDkwmUYQgZIlFR4Wt4lPIGXjUrKoHPLMFBRIpZTQE6lwNVAYmq81bEXLtFklVoy
- dIFXS8bYy10YNc9nYiGnHbBzyTpvG+aV2Dtm7LZ2lVjHCr8yi8xdgnJe6LDSLzK3L8Z6
- Gb0tXS4xyev6Ng4XtGiyMDK6To0zX2Ym88ceHCDyvI1i9gPBnuescGH6oPirn59e9MVq
- HZ9iHKWdyMVyXDs3G2cpeYi2yKgKuBhAcus8mmaELx2rGnF4o+uXfWmhb8urZlIHYXZF
- UbyA==
-X-Gm-Message-State: APjAAAVcs7233gmyjuKodVewVJmejKR5ANbTYVH6vwGT6C7lRgSlz3TO
- 2TiY/ixueAiVdPRkPvWlIPpSug==
-X-Google-Smtp-Source: APXvYqwR4np2yZ97TsG3h9ujDbTjFSuo+wgRA7T1wq50MAXa9EGMzF8Pd8Bjk8QqTLm07BqpfAARHw==
-X-Received: by 2002:adf:ec4c:: with SMTP id w12mr17363058wrn.124.1579772913571; 
- Thu, 23 Jan 2020 01:48:33 -0800 (PST)
+ bh=IL15pRU9pFPgz6S6Tf7uhh3iwf+4kU+o6fQpOFHsq5Q=;
+ b=G8cJ2I1Bs4FFl+C/nXIqM17ysUxCtOYfUXUNLSzOxWLAefVHMbvRadXLZvkiqORmIU
+ 1aSadaJ98um2hvf5pH3y87vY4+fmN4Lo4kqtI7wkx3DZAAw8L5QqNYPiqHzwaFDAcf+Z
+ hf/bBM2k3x+C00kxhZtvimhI6w1+QsXUxZlM7FgBIm0LldkYtdtbDArwnbQjhn/w4kza
+ YVk1NmETnx6pQgNlpnHes/n6AStutP3wUwqRB0tx5diR4Nk4e/oDFrewiofYDxdLn9pA
+ KN+uoqzKAXpbHVnhm6OaKZRt1abHHDHpmmDPAso7zFXH+9eLDa9sSH5PU9VXqb9znCQr
+ hhQQ==
+X-Gm-Message-State: APjAAAUFZeVE76sKBQjYK9OcFsrgYg5JBot9AiuikThLIN3FVIKjaFT7
+ v+ZTb5FNiuG+fJhWX1LbPCxpOQ==
+X-Google-Smtp-Source: APXvYqws0wuB0YrfK5tNuJ8KF0E7NpTeEXybHdH9RubT/0dKVHKDma2ewhI8Jx7Fh8LQ3yrvM7/IRw==
+X-Received: by 2002:a05:6000:1187:: with SMTP id
+ g7mr16701836wrx.109.1579773076516; 
+ Thu, 23 Jan 2020 01:51:16 -0800 (PST)
 Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o187sm2261256wme.36.2020.01.23.01.48.32
+ by smtp.gmail.com with ESMTPSA id b68sm2039078wme.6.2020.01.23.01.51.15
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 23 Jan 2020 01:48:33 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: meson-sm1-sei610: add missing interrupt-names
-To: Guillaume La Roque <glaroque@baylibre.com>, khilman@baylibre.com,
- devicetree@vger.kernel.org
-References: <20200117133423.22602-1-glaroque@baylibre.com>
+ Thu, 23 Jan 2020 01:51:15 -0800 (PST)
+Subject: Re: [PATCH 1/3] dt-bindings: clk: meson: add the gxl internal dac gate
+To: Jerome Brunet <jbrunet@baylibre.com>, linux-clk@vger.kernel.org
+References: <20200122100451.2443153-1-jbrunet@baylibre.com>
+ <20200122100451.2443153-2-jbrunet@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -130,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <42e82841-067d-245b-6196-183503da389b@baylibre.com>
-Date: Thu, 23 Jan 2020 10:48:32 +0100
+Message-ID: <8231eb08-06c9-7acd-317d-61ecf2a55ca2@baylibre.com>
+Date: Thu, 23 Jan 2020 10:51:15 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <20200117133423.22602-1-glaroque@baylibre.com>
+In-Reply-To: <20200122100451.2443153-2-jbrunet@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200123_014835_328492_B5FF7E42 
-X-CRM114-Status: GOOD (  13.45  )
+X-CRM114-CacheID: sfid-20200123_015118_626036_7A8CB6FC 
+X-CRM114-Status: GOOD (  12.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,35 +152,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 17/01/2020 14:34, Guillaume La Roque wrote:
-> add missing "host-wakeup interrupt names
+On 22/01/2020 11:04, Jerome Brunet wrote:
+> Add the gxl ACODEC clock id to the gxbb clock controller bindings
 > 
-> Fixes: 30388cc07572 ("arm64: dts: meson-sm1-sei610: add gpio bluetooth interrupt")
-> 
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts | 1 +
+>  include/dt-bindings/clock/gxbb-clkc.h | 1 +
 >  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> index a8bb3fa9fec9..cb1b48f5b8b1 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> @@ -593,6 +593,7 @@
->  		compatible = "brcm,bcm43438-bt";
->  		interrupt-parent = <&gpio_intc>;
->  		interrupts = <95 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "host-wakeup";
->  		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
->  		max-speed = <2000000>;
->  		clocks = <&wifi32k>;
+> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+> index db0763e96173..4073eb7a9da1 100644
+> --- a/include/dt-bindings/clock/gxbb-clkc.h
+> +++ b/include/dt-bindings/clock/gxbb-clkc.h
+> @@ -146,5 +146,6 @@
+>  #define CLKID_CTS_VDAC		201
+>  #define CLKID_HDMI_TX		202
+>  #define CLKID_HDMI		205
+> +#define CLKID_ACODEC		206
+>  
+>  #endif /* __GXBB_CLKC_H */
 > 
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
