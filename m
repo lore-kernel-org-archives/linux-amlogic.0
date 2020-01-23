@@ -2,144 +2,96 @@ Return-Path: <SRS0=faxg=3M=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A9790C2D0DB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2020 09:51:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54E30C2D0DB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2020 09:52:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7DEE324125
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2020 09:51:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 278CD22522
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2020 09:52:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dMQ0Pm9V";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GE1kTU0t"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7DEE324125
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="L00h39xv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="uPSyNfe/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 278CD22522
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=naVGvfFnkJaAPlYNLDuJkOHV237j96lN/Nm5N8KeNNA=; b=dMQ0Pm9VKryMBN
-	W71ecDhC+OdnhR5WODIzp38eUNot1i0u1tJ0AGumyU8cHmGTwdmj/jqoPIYqIo5Z8DX60YTCCN+mj
-	ocO2Pu37gVMLiAy8smdzR8c7/I+oabFoqKG7IWY4P0ID2utJWKQRlVlSpZulhRYGVVcuuY5F9LIbn
-	/BLXIcqcUvYHLOzbEqa4LrVRzMKLl6kdl8e4xOHhGPXoW+4WSpiath8SLD2z4jQJ2fSDdF+P2SJu2
-	EJJicTLiGYDu4Bp5aPciK1JDws0MihRjd+VViOskmvjM3HlBGam1Yo2MpBVz+hekL6FOHu0fhj8FU
-	4o4b3oKrw6anvCmW0z3w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=1OIRi5HAiOJ/h4QcXMWU5rfquzyNKTOqnpcVdOt0tlU=; b=L00h39xvEWF2koIfM0fef3tRwr
+	nAc7mjXyha015zt7/UWH6cmhV84Qc4c8+bG6s2RWx960I/rJ48OC4hGS4SbxuudrVyxtuJYGgj4VR
+	GlydNg8WDJHEz2zOumC5ehmbMD19mdIdfA/UwswOOrtMgv+NT79CCSpNGTDGKhavUVgrujBgGzewY
+	7R6vvwoEz3pFNJKW8o+JeadLrjonGCZnFbWH3u2MzdGpKlCkzH3zB+d7DdEIGmntlh17cD3rBSnjw
+	7gBHtOkKGY1EIfAbrG6rSPKTTlbXoy9xFykT2iSjW6kRbk3XBxMrI8mc5u7V67bjiLS2DmJovSwwp
+	9eQXus6w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iuZ93-0001NA-Mq; Thu, 23 Jan 2020 09:51:25 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1iuZ9q-00021x-5F; Thu, 23 Jan 2020 09:52:14 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iuZ91-0001IZ-5B
- for linux-amlogic@lists.infradead.org; Thu, 23 Jan 2020 09:51:24 +0000
-Received: by mail-wr1-x443.google.com with SMTP id d16so2289918wre.10
- for <linux-amlogic@lists.infradead.org>; Thu, 23 Jan 2020 01:51:23 -0800 (PST)
+ id 1iuZ9l-00021N-ST
+ for linux-amlogic@lists.infradead.org; Thu, 23 Jan 2020 09:52:12 +0000
+Received: by mail-wr1-x442.google.com with SMTP id j42so2288178wrj.12
+ for <linux-amlogic@lists.infradead.org>; Thu, 23 Jan 2020 01:52:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=uxE1eKYRkdvxpLu5grE2VJ3z+xonNHTTUbjRbMxNIE4=;
- b=GE1kTU0tE8MS9pE2LFKyFpd3Ilc2iRcnHOxQiFhosBeuHrbaRaRAUXvwaJ+vnjRQ68
- RdBT2ovN/t4dYqAeHaPb46l2zlCkIYOTZNfUxNJMkHitJxpvK/XH3NwuoAOTtQm0TDrM
- gJqn+6y9BTErkMPhWaazsTuWq38aVYCWczXGe9Zo2MH4fCPJsr7icpyUeJPaMknp6DuS
- R7/xJFcW7PSnMIn+jHceK8VAKhwoEwGh5K4P4VROo1p/vuT+HdXdsNEjfrKFOMvzUk4V
- Pyjss6UWjfY+CQx052ctZUGXZXlSQ1iY48X21L8wwnA8KnetUEOKGxjUrI19WzWHMHkP
- vb2w==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=Pe5Rsg965fXFIVcO925e+LyvSUF+nmybt0TNNTcsyVw=;
+ b=uPSyNfe/0xeA/qXiTcmG3RXI3AIZygm1++lzzIem3KlnWC/UzUARLQOWFRsDsdO5Qo
+ KiLGofookzvRESLJ+sRPyplTi6sAffDpWMsPfVoyH8V/U2PtbXe2jXBknIkB9LTqQvGr
+ tuN2cW7DlH8ObMw97Nj8ZrekgFAcSV2ddx57FqggGxTV0eV+PZPJ+CtoYUJXkvajnQfd
+ vpcFE9e4v2hrKWwMZI/9MaxZt0jpbt7N9IHWED/5lNOUOXcDaIDu5PKVU2uVoh+DYths
+ kTTmaCDQy/OdYnDfUkL2Sy4XQeGfiahDo6bEsFvupMMWXoSKGC6v/x/u6NMcp6ggtUjp
+ vF6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=uxE1eKYRkdvxpLu5grE2VJ3z+xonNHTTUbjRbMxNIE4=;
- b=kzxx0kRf1JmGZNkcWsQf4sH9O7HoLv6XHx55GCSoy9WLAwvEEDWDG7jteLfdBqRK58
- HBJjamRzyVToC6MsA2wHugFEDwLLt7ldcCTTG95iKpnmPb9Drr0Y1OYDnk9AeanxuoOQ
- ApmBWCQ6codacHbD0YTdnkLg+K1CBf1e9ocPRVAapyf0jc0YRf3hYK0s8YbXneIGpAj1
- Sj0WZIMSHKxS0vjgouZqeyZFt3vtskpocqoOmj/DKkbIhfVpaR+rEMUD+1mjTm3dAQ+A
- fsrBOwLLKEkXQHq+Dhdr/Zcp0/IbJsYLj9OwtS/Ev9YU78E4DQxkQgFZlLKbQ9w2LJF6
- 6Ohg==
-X-Gm-Message-State: APjAAAVzjGNN+Pi6CHo2kk2ykRe7JhtdYEMd9IDZY/iwx7w+8z5EEBSE
- 7z1GHmPQrqR6A2Beshg4DzB1DA==
-X-Google-Smtp-Source: APXvYqyRwZhO+AExqxSjysdrISPo/0d7qkwJWrY7LG8xT8DB6q27Aj3GhmmNcbcKNWMAXHehszFNQA==
-X-Received: by 2002:adf:dd46:: with SMTP id u6mr16009615wrm.13.1579773081740; 
- Thu, 23 Jan 2020 01:51:21 -0800 (PST)
-Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=Pe5Rsg965fXFIVcO925e+LyvSUF+nmybt0TNNTcsyVw=;
+ b=qL7KpVV185fu8XWrqpto6DaUIpHYvHtqvJW57yJ4IeGdBn3BgNKcE1RywRlno0ctUV
+ eUrwITJgw48m0sWX1GzqWJ/sqH1x3V8m4GbkD2Q1z0XDWwrI6FEPWLNf11jzRWcYaoMX
+ /oERyvx+Klz0ODejRe+D4t/BDVzlTtVVGSx7iLgH2Z1cmPPgc7wydetMxKIt6fobp9/P
+ N4ai25kqs3ntvekl2MCUZn2GbnslJ8cu4r0xNaFQPCYlJzVisRyaEPTwXnRqrDDrNbLM
+ +V0G4PUEgtizvudoTpvuQHG0fInDcxYYoI/7oBbUKg8H9VnNoDttNRRkWcOYYkvE48i1
+ IAMw==
+X-Gm-Message-State: APjAAAWzUDRWOn/fviXlvHtdL542Pme2CaW5mGX8h3JWKvDhxefZlD1r
+ E1/FTB33lOsJHSaykwoRUGynJA==
+X-Google-Smtp-Source: APXvYqwZwrqdt3zOKkehDNPgAuzvRs+Y++wPfZWKhZLkuBHMMzAE5La3vJ7ohaAZBPKEr8qujgpaYg==
+X-Received: by 2002:a5d:4d0e:: with SMTP id z14mr16778098wrt.208.1579773128590; 
+ Thu, 23 Jan 2020 01:52:08 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o2sm1427161wmh.46.2020.01.23.01.51.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 23 Jan 2020 01:51:21 -0800 (PST)
-Subject: Re: [PATCH 3/3] clk: meson: gxbb: set audio output clock hierarchy
-To: Jerome Brunet <jbrunet@baylibre.com>, linux-clk@vger.kernel.org
-References: <20200122100451.2443153-1-jbrunet@baylibre.com>
- <20200122100451.2443153-4-jbrunet@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <e5410775-aa5b-1aa7-7952-9c635512c0ba@baylibre.com>
-Date: Thu, 23 Jan 2020 10:51:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+ by smtp.gmail.com with ESMTPSA id l3sm2346985wrt.29.2020.01.23.01.52.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Jan 2020 01:52:08 -0800 (PST)
+References: <20200116111850.23690-1-repk@triplefau.lt>
+ <20200116111850.23690-8-repk@triplefau.lt>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Remi Pommarel <repk@triplefau.lt>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Yue Wang <yue.wang@Amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 7/7] PCI: amlogic: Use AXG PCIE
+In-reply-to: <20200116111850.23690-8-repk@triplefau.lt>
+Date: Thu, 23 Jan 2020 10:52:07 +0100
+Message-ID: <1jy2tyv6t4.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20200122100451.2443153-4-jbrunet@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200123_015123_226179_E4842E90 
-X-CRM114-Status: GOOD (  13.84  )
+X-CRM114-CacheID: sfid-20200123_015209_933162_ADC9CD2C 
+X-CRM114-Status: GOOD (  18.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,62 +103,265 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22/01/2020 11:04, Jerome Brunet wrote:
-> The aiu devices peripheral clocks needs the aiu and aiu_glue clocks to
-> operate. Reflect this hierarchy in the gxbb clock tree.
-> 
-> Fixes: 738f66d3211d ("clk: gxbb: add AmLogic GXBB clk controller driver")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/clk/meson/gxbb.c | 18 ++++++++++--------
->  1 file changed, 10 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index 47916c4f1700..5fd6a574f8c3 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -2619,14 +2619,6 @@ static MESON_GATE(gxbb_spi, HHI_GCLK_MPEG0, 30);
->  static MESON_GATE(gxbb_i2s_spdif, HHI_GCLK_MPEG1, 2);
->  static MESON_GATE(gxbb_eth, HHI_GCLK_MPEG1, 3);
->  static MESON_GATE(gxbb_demux, HHI_GCLK_MPEG1, 4);
-> -static MESON_GATE(gxbb_aiu_glue, HHI_GCLK_MPEG1, 6);
-> -static MESON_GATE(gxbb_iec958, HHI_GCLK_MPEG1, 7);
-> -static MESON_GATE(gxbb_i2s_out, HHI_GCLK_MPEG1, 8);
-> -static MESON_GATE(gxbb_amclk, HHI_GCLK_MPEG1, 9);
-> -static MESON_GATE(gxbb_aififo2, HHI_GCLK_MPEG1, 10);
-> -static MESON_GATE(gxbb_mixer, HHI_GCLK_MPEG1, 11);
-> -static MESON_GATE(gxbb_mixer_iface, HHI_GCLK_MPEG1, 12);
-> -static MESON_GATE(gxbb_adc, HHI_GCLK_MPEG1, 13);
->  static MESON_GATE(gxbb_blkmv, HHI_GCLK_MPEG1, 14);
->  static MESON_GATE(gxbb_aiu, HHI_GCLK_MPEG1, 15);
->  static MESON_GATE(gxbb_uart1, HHI_GCLK_MPEG1, 16);
-> @@ -2681,6 +2673,16 @@ static MESON_GATE(gxbb_ao_ahb_bus, HHI_GCLK_AO, 2);
->  static MESON_GATE(gxbb_ao_iface, HHI_GCLK_AO, 3);
->  static MESON_GATE(gxbb_ao_i2c, HHI_GCLK_AO, 4);
->  
-> +/* AIU gates */
-> +static MESON_PCLK(gxbb_aiu_glue, HHI_GCLK_MPEG1, 6, &gxbb_aiu.hw);
-> +static MESON_PCLK(gxbb_iec958, HHI_GCLK_MPEG1, 7, &gxbb_aiu_glue.hw);
-> +static MESON_PCLK(gxbb_i2s_out, HHI_GCLK_MPEG1, 8, &gxbb_aiu_glue.hw);
-> +static MESON_PCLK(gxbb_amclk, HHI_GCLK_MPEG1, 9, &gxbb_aiu_glue.hw);
-> +static MESON_PCLK(gxbb_aififo2, HHI_GCLK_MPEG1, 10, &gxbb_aiu_glue.hw);
-> +static MESON_PCLK(gxbb_mixer, HHI_GCLK_MPEG1, 11, &gxbb_aiu_glue.hw);
-> +static MESON_PCLK(gxbb_mixer_iface, HHI_GCLK_MPEG1, 12, &gxbb_aiu_glue.hw);
-> +static MESON_PCLK(gxbb_adc, HHI_GCLK_MPEG1, 13, &gxbb_aiu_glue.hw);
-> +
->  /* Array of all clocks provided by this provider */
->  
->  static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
-> 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+On Thu 16 Jan 2020 at 12:18, Remi Pommarel <repk@triplefau.lt> wrote:
+
+> Now that PCIE PHY has been introduced for AXG, the whole has_shared_phy
+> logic can be mutualized between AXG and G12A platforms.
+
+This simply the driver and make it a lot easier to follow ! Thanks !
+
+>
+> This new PHY makes use of the optional shared MIPI/PCIE analog PHY
+> found on AXG platforms, which need to be used in order to have reliable
+> PCIE communications.
+
+I'm a bit confused by the optional part ... from the probe of this
+driver, it does not seems optional ?
+
+>
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  drivers/pci/controller/dwc/pci-meson.c | 116 +++++--------------------
+>  1 file changed, 22 insertions(+), 94 deletions(-)
+>
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index 3772b02a5c55..3715dceca1bf 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -66,7 +66,6 @@
+>  #define PORT_CLK_RATE			100000000UL
+>  #define MAX_PAYLOAD_SIZE		256
+>  #define MAX_READ_REQ_SIZE		256
+> -#define MESON_PCIE_PHY_POWERUP		0x1c
+>  #define PCIE_RESET_DELAY		500
+>  #define PCIE_SHARED_RESET		1
+>  #define PCIE_NORMAL_RESET		0
+> @@ -81,26 +80,19 @@ enum pcie_data_rate {
+>  struct meson_pcie_mem_res {
+>  	void __iomem *elbi_base;
+>  	void __iomem *cfg_base;
+> -	void __iomem *phy_base;
+>  };
+>  
+>  struct meson_pcie_clk_res {
+>  	struct clk *clk;
+> -	struct clk *mipi_gate;
+>  	struct clk *port_clk;
+>  	struct clk *general_clk;
+>  };
+>  
+>  struct meson_pcie_rc_reset {
+> -	struct reset_control *phy;
+>  	struct reset_control *port;
+>  	struct reset_control *apb;
+>  };
+>  
+> -struct meson_pcie_param {
+> -	bool has_shared_phy;
+> -};
+> -
+>  struct meson_pcie {
+>  	struct dw_pcie pci;
+>  	struct meson_pcie_mem_res mem_res;
+> @@ -108,7 +100,6 @@ struct meson_pcie {
+>  	struct meson_pcie_rc_reset mrst;
+>  	struct gpio_desc *reset_gpio;
+>  	struct phy *phy;
+> -	const struct meson_pcie_param *param;
+>  };
+>  
+>  static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
+> @@ -130,13 +121,6 @@ static int meson_pcie_get_resets(struct meson_pcie *mp)
+>  {
+>  	struct meson_pcie_rc_reset *mrst = &mp->mrst;
+>  
+> -	if (!mp->param->has_shared_phy) {
+> -		mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
+> -		if (IS_ERR(mrst->phy))
+> -			return PTR_ERR(mrst->phy);
+> -		reset_control_deassert(mrst->phy);
+> -	}
+> -
+>  	mrst->port = meson_pcie_get_reset(mp, "port", PCIE_NORMAL_RESET);
+>  	if (IS_ERR(mrst->port))
+>  		return PTR_ERR(mrst->port);
+> @@ -162,22 +146,6 @@ static void __iomem *meson_pcie_get_mem(struct platform_device *pdev,
+>  	return devm_ioremap_resource(dev, res);
+>  }
+>  
+> -static void __iomem *meson_pcie_get_mem_shared(struct platform_device *pdev,
+> -					       struct meson_pcie *mp,
+> -					       const char *id)
+> -{
+> -	struct device *dev = mp->pci.dev;
+> -	struct resource *res;
+> -
+> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
+> -	if (!res) {
+> -		dev_err(dev, "No REG resource %s\n", id);
+> -		return ERR_PTR(-ENXIO);
+> -	}
+> -
+> -	return devm_ioremap(dev, res->start, resource_size(res));
+> -}
+> -
+>  static int meson_pcie_get_mems(struct platform_device *pdev,
+>  			       struct meson_pcie *mp)
+>  {
+> @@ -189,14 +157,6 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
+>  	if (IS_ERR(mp->mem_res.cfg_base))
+>  		return PTR_ERR(mp->mem_res.cfg_base);
+>  
+> -	/* Meson AXG SoC has two PCI controllers use same phy register */
+> -	if (!mp->param->has_shared_phy) {
+> -		mp->mem_res.phy_base =
+> -			meson_pcie_get_mem_shared(pdev, mp, "phy");
+> -		if (IS_ERR(mp->mem_res.phy_base))
+> -			return PTR_ERR(mp->mem_res.phy_base);
+> -	}
+> -
+>  	return 0;
+>  }
+>  
+> @@ -204,37 +164,33 @@ static int meson_pcie_power_on(struct meson_pcie *mp)
+>  {
+>  	int ret = 0;
+>  
+> -	if (mp->param->has_shared_phy) {
+> -		ret = phy_init(mp->phy);
+> -		if (ret)
+> -			return ret;
+> +	ret = phy_init(mp->phy);
+> +	if (ret)
+> +		return ret;
+>  
+> -		ret = phy_power_on(mp->phy);
+> -		if (ret) {
+> -			phy_exit(mp->phy);
+> -			return ret;
+> -		}
+> -	} else
+> -		writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
+> +	ret = phy_power_on(mp->phy);
+> +	if (ret) {
+> +		phy_exit(mp->phy);
+> +		return ret;
+> +	}
+>  
+>  	return 0;
+>  }
+>  
+> +static void meson_pcie_power_off(struct meson_pcie *mp)
+> +{
+> +	phy_power_off(mp->phy);
+> +	phy_exit(mp->phy);
+> +}
+> +
+>  static int meson_pcie_reset(struct meson_pcie *mp)
+>  {
+>  	struct meson_pcie_rc_reset *mrst = &mp->mrst;
+>  	int ret = 0;
+>  
+> -	if (mp->param->has_shared_phy) {
+> -		ret = phy_reset(mp->phy);
+> -		if (ret)
+> -			return ret;
+> -	} else {
+> -		reset_control_assert(mrst->phy);
+> -		udelay(PCIE_RESET_DELAY);
+> -		reset_control_deassert(mrst->phy);
+> -		udelay(PCIE_RESET_DELAY);
+> -	}
+> +	ret = phy_reset(mp->phy);
+> +	if (ret)
+> +		return ret;
+>  
+>  	reset_control_assert(mrst->port);
+>  	reset_control_assert(mrst->apb);
+> @@ -286,12 +242,6 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
+>  	if (IS_ERR(res->port_clk))
+>  		return PTR_ERR(res->port_clk);
+>  
+> -	if (!mp->param->has_shared_phy) {
+> -		res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
+> -		if (IS_ERR(res->mipi_gate))
+> -			return PTR_ERR(res->mipi_gate);
+> -	}
+> -
+>  	res->general_clk = meson_pcie_probe_clock(dev, "general", 0);
+>  	if (IS_ERR(res->general_clk))
+>  		return PTR_ERR(res->general_clk);
+> @@ -562,7 +512,6 @@ static const struct dw_pcie_ops dw_pcie_ops = {
+>  
+>  static int meson_pcie_probe(struct platform_device *pdev)
+>  {
+> -	const struct meson_pcie_param *match_data;
+>  	struct device *dev = &pdev->dev;
+>  	struct dw_pcie *pci;
+>  	struct meson_pcie *mp;
+> @@ -576,17 +525,10 @@ static int meson_pcie_probe(struct platform_device *pdev)
+>  	pci->dev = dev;
+>  	pci->ops = &dw_pcie_ops;
+>  
+> -	match_data = of_device_get_match_data(dev);
+> -	if (!match_data) {
+> -		dev_err(dev, "failed to get match data\n");
+> -		return -ENODEV;
+> -	}
+> -	mp->param = match_data;
+> -
+> -	if (mp->param->has_shared_phy) {
+> -		mp->phy = devm_phy_get(dev, "pcie");
+> -		if (IS_ERR(mp->phy))
+> -			return PTR_ERR(mp->phy);
+> +	mp->phy = devm_phy_get(dev, "pcie");
+> +	if (IS_ERR(mp->phy)) {
+> +		dev_err(dev, "get phy failed, %ld\n", PTR_ERR(mp->phy));
+> +		return PTR_ERR(mp->phy);
+>  	}
+>  
+>  	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> @@ -636,30 +578,16 @@ static int meson_pcie_probe(struct platform_device *pdev)
+>  	return 0;
+>  
+>  err_phy:
+> -	if (mp->param->has_shared_phy) {
+> -		phy_power_off(mp->phy);
+> -		phy_exit(mp->phy);
+> -	}
+> -
+> +	meson_pcie_power_off(mp);
+>  	return ret;
+>  }
+>  
+> -static struct meson_pcie_param meson_pcie_axg_param = {
+> -	.has_shared_phy = false,
+> -};
+> -
+> -static struct meson_pcie_param meson_pcie_g12a_param = {
+> -	.has_shared_phy = true,
+> -};
+> -
+>  static const struct of_device_id meson_pcie_of_match[] = {
+>  	{
+>  		.compatible = "amlogic,axg-pcie",
+> -		.data = &meson_pcie_axg_param,
+>  	},
+>  	{
+>  		.compatible = "amlogic,g12a-pcie",
+> -		.data = &meson_pcie_g12a_param,
+>  	},
+>  	{},
+>  };
+
 
 _______________________________________________
 linux-amlogic mailing list
