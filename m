@@ -1,79 +1,89 @@
 Return-Path: <SRS0=nI98=3Q=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,URIBL_DBL_ABUSE_MALW autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Level: 
+X-Spam-Status: No, score=-7.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,URIBL_DBL_ABUSE_MALW,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F3C5DC2D0DB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jan 2020 14:25:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1D24C2D0DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jan 2020 15:20:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C746C20716
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jan 2020 14:25:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 94D5F20674
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jan 2020 15:20:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Nl3sl+BH";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lgaard.dk header.i=@lgaard.dk header.b="z8C7gIvK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C746C20716
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=lgaard.dk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xb0P6VMe";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="aDOAbtc9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 94D5F20674
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:
-	Message-ID:To:From:Date:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=7zjgQftRgHl8T2+zbU3kzrCgm0KaxUM5q66RV6kASRU=; b=Nl3
-	sl+BH+hxT/UzFsK9L2C2Gp+tU3/w/8fXhU2a2qjZoH5iO5Tl0vrWFBte9hgtXOUkW3nBubR98dAhZ
-	70RYq4PwPiha091OdHNl827DuAPdCOkQOon4gdQVOcehj2pnTSxcAu0gOkRE+A6V7tU0b4w7a1WLQ
-	oDGX9lPb0aooKoVUXMuSrOYz7pI1y1OSyIde1QY7VR6O5bl/qWN+UeoCZfXmtHuYrKg5rVfTEqoz9
-	+r+YnGxctOhwNKuozcLvq8N8SuhK+m76hDq4KTQ79M+UsGnYIz6ZtW+Mbcn4v1eUFTQqH2BKrgGvB
-	wzYmlXCzbogJf1ap5C/mLnq5I3ROYfA==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6SToG8ChZrlreZYlPoqw/5Z4B+6hcbQ66KXC2lcFbL8=; b=Xb0P6VMesojC61
+	lDCOyK6j9TZSJ51gFKxmTAfYwPTSc2YEj1O6FpuroXHn0u4XzbQcWzCAcMcN7hnC0R8SmYN3LS7PQ
+	no+lx7Cy65JHhSv/nbjwu/cuFxua3MUBXl5USBqWg2XBUEEMc3pGY9vT+zOc3Rs7TUYh4KbZqzM1G
+	M9Kmpjcglg8szdCYQLehCqXlfbcwcB83SKv3LwJaSMXgmWp48zrpyh+dsfDv6z0zsmEm00B7qAuTB
+	+Uvv4TYtzgtfVp7q1Xcq7NLyi2Mq9lboGticUxm8Apb7Ha9E7OEUbi6V+z9EtDBT/89251Js34CcU
+	xk903ylFzWiLuKEWQnbA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iw5KN-0008UT-8u; Mon, 27 Jan 2020 14:25:23 +0000
-Received: from mout-p-201.mailbox.org ([2001:67c:2050::465:201])
+	id 1iw6BU-0006Ni-KN; Mon, 27 Jan 2020 15:20:16 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iw5KL-0008Tt-1D
- for linux-amlogic@lists.infradead.org; Mon, 27 Jan 2020 14:25:22 +0000
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:105:465:1:2:0])
- (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 485sTk4cLrzQl8v
- for <linux-amlogic@lists.infradead.org>; Mon, 27 Jan 2020 15:25:14 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lgaard.dk; s=MBO0001; 
- t=1580135112;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type: content-transfer-encoding:content-transfer-encoding;
- bh=nWIUavyho64Fx3ggoQU8SBxS1dou5HpW66alJPKRsnQ=;
- b=z8C7gIvKMKRVs8Xf1GjuCDOySSPf9sG9nyAW6J9sMpg8R/lTVp2kkMUKN8RBQpPl1p4upL
- O5x+7yLB15rhuEGS0kRpx6PNnX6XQVsjt0+FxtM5iNEQgi8V2B0yBRElWED3u5bfsT/oAR
- brhpriLqMIXZ5/OT27ahiXiErnGfjL0vZgI9k0wq6CzfQOTtOl+4ow3jryISAFlXXU/787
- JYaGE1v5TgAyFBidpaXUDE4dzByGiJEsZw47efAuKkrzGx8q8Iaigxiv4M9Sw3DvCMAg0S
- PUojwlW5V85whoJizRPXR3lI/z/+XsHfPEpeWJ/6mPxKe1wpb+ztQhRRCLzJxQ==
-Received: from smtp2.mailbox.org ([80.241.60.241])
- by hefe.heinlein-support.de (hefe.heinlein-support.de [91.198.250.172])
- (amavisd-new, port 10030)
- with ESMTP id wfaFBeG9oRAC for <linux-amlogic@lists.infradead.org>;
- Mon, 27 Jan 2020 15:25:08 +0100 (CET)
-Date: Mon, 27 Jan 2020 15:25:08 +0100 (CET)
-From: Ole Dalgaard <ole.d@lgaard.dk>
-To: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
-Message-ID: <747987906.18397.1580135108294@office.mailbox.org>
-Subject: Panic on Khadas VIM3 Pro
+ id 1iw6BI-0005Ht-SH
+ for linux-amlogic@lists.infradead.org; Mon, 27 Jan 2020 15:20:06 +0000
+Received: by mail-wm1-x344.google.com with SMTP id q9so7169939wmj.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 Jan 2020 07:20:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=En0JbNAeh+yumfKq8CWnMC3jR47TxQKPk/LGIgV7R10=;
+ b=aDOAbtc9h0S7iEJDuTx0Gg6OSiL6dZ/j+20HDGy+6zpvRgnGp/orQDlLvZlYPl4EM3
+ gro5xii7lOJxQMc/GaxZModUzELMyTn6onXaqfpE0ybt+kNgXOqoqYvTEnzSAeFE2Fd4
+ uH/ZgBbHvIQE2WuV/JjgBnzgC5ZpGevJJAVTwE17xB9Vb5q1kUOE4X5M3VUgcWHB+fwG
+ SxW+jCXrshXWjFdGRN3yV5voBnP84okChqSdovF4uRUBOmUMzJdyhqfzhHs9WJb/E3P5
+ 2sFONZddu5RvLIzfU+h6P+W/ONk3x/fkMue5BGtH/ZLL4U+FOi243DvNFfmNSUdaTyEU
+ KHww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=En0JbNAeh+yumfKq8CWnMC3jR47TxQKPk/LGIgV7R10=;
+ b=L8+uijMS0W12SLCDhVg4/N7OjHffKhmicQZbxMHPz9W4ImO7ZiotycNLVIpKNv+pXj
+ aAKAmLMfRuhl9GJChM2X0ZhrDAjLFvVRyRwwFddo73Ca+krw7h4K6S6xHrOU+z/zSNCi
+ 31D45QlMayCH+2ajs8/k/KmYu4AWh3Ld4/ABIUUAFlWFO3fZb3kPlceJAw1qHE9aDmQO
+ 978/BfcFvi94yhLZSx0mlLuUUQLBpNDva6XjEAAUorCnSbzOIjFgan76pqmUyHctcJl4
+ vMuuBqdPPVJryy2icR6CEd7BfRJHPHBNkAeQfJj8yeNZ/lPEUYpdDmklLyoIGW/DZY+t
+ 49QA==
+X-Gm-Message-State: APjAAAXRMxXprDvECcihnnVlZr3KC15pBZNbV0H3OX4dM6Jo3zq7EzY/
+ pGvJIu8xKu101Y04cRCsLqC5+Q==
+X-Google-Smtp-Source: APXvYqzpKOfTyFLY6VOq5KtGC62kLroh1Nc6zA17Lq0ZUvWCNZIVoSKCi6v+KZMY/0AYGVDAa4tGCQ==
+X-Received: by 2002:a7b:c190:: with SMTP id y16mr14547744wmi.107.1580138402052; 
+ Mon, 27 Jan 2020 07:20:02 -0800 (PST)
+Received: from localhost.localdomain (195-132-149-87.rev.numericable.fr.
+ [195.132.149.87])
+ by smtp.gmail.com with ESMTPSA id d12sm21013531wrp.62.2020.01.27.07.20.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Jan 2020 07:20:01 -0800 (PST)
+From: Maxime Jourdan <mjourdan@baylibre.com>
+To: mchehab@kernel.org,
+	hans.verkuil@cisco.com
+Subject: [PATCH] media: meson: vdec: fix OUTPUT buffer size configuration
+Date: Mon, 27 Jan 2020 16:19:53 +0100
+Message-Id: <20200127151953.10592-1-mjourdan@baylibre.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-X-Priority: 3
-Importance: Normal
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200127_062521_225773_EDEBC5AB 
-X-CRM114-Status: UNSURE (   3.01  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200127_072004_912011_89668736 
+X-CRM114-Status: GOOD (  10.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,17 +95,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Ole Dalgaard <ole.d@lgaard.dk>
+Cc: linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi 
-I see this panic often soon after boot. 
-https://pastebin.com/70DmfFxj 
-BR 
-Ole
+There's a bug currently where we always override the OUTPUT buffer size
+in try_fmt to the default value (1M), preventing userspace from setting
+a higher or lower size.
+
+Now, only update the size in try_fmt if userspace passed 0.
+
+Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+---
+
+Note: this patch depends on Neil's series:
+media: meson: vdec: Add compliant H264 support
+https://patchwork.kernel.org/cover/11336953/
+
+ drivers/staging/media/meson/vdec/vdec.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index 1be67b122546..2f30945ce916 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -519,7 +519,8 @@ vdec_try_fmt_common(struct amvdec_session *sess, u32 size,
+ 	output_size = get_output_size(pixmp->width, pixmp->height);
+ 
+ 	if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+-		pfmt[0].sizeimage = sess->src_buffer_size;
++		if (!pfmt[0].sizeimage)
++			pfmt[0].sizeimage = sess->src_buffer_size;
+ 		pfmt[0].bytesperline = 0;
+ 		pixmp->num_planes = 1;
+ 	} else if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
+-- 
+2.25.0
+
 
 _______________________________________________
 linux-amlogic mailing list
