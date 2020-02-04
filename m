@@ -2,75 +2,92 @@ Return-Path: <SRS0=WvKJ=3Y=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,URIBL_DBL_ABUSE_MALW autolearn=ham
+X-Spam-Status: No, score=-4.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_DBL_ABUSE_MALW autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B7626C2D0B1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Feb 2020 12:28:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AB7BC3524D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Feb 2020 13:13:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8BB0F2084E
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Feb 2020 12:28:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CF30421744
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Feb 2020 13:13:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VaSlXIMR";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="h1PowKXg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8BB0F2084E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oUnp0huc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="M0Z99vfO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CF30421744
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0os6uMwOy8DAqnzHx9PNKtpGv8UtDk1DvtMA4ljhPNo=; b=VaSlXIMRP18+tE
-	BXLd/e+rJz+7Yqn2g5dI1ssk8KAmfn0LtauctoUh27XOCO803pM5GLSMI4gtrsY2mESGN9Z4v4AMB
-	vS/0VCmzjtPhgW3oqIijmvTZLAx7ISrH1Y4CPHKOehJUivnsZ7piTriaSESL710bfh1JgdJkJEwul
-	Xd/rjgAKbeWxuIK3P8IdeZLCX89Crn7Bv5kzap6sLwPQSakektWIYIWNqGToTy9WtxttPVXt/VXo6
-	WBJ2PTf/UQvZU6RO1dMspwZLsrZC8kRn45F3d5FV5t2gqCS0m4sqHjOL+rB/9qRNHmDiVmL4bhzpO
-	bn4UsynMe6HyAkGPjEZw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=St+6y8iitDuBGCvZkDDU97EaMoBALRbksvYUNtVioDU=; b=oUnp0hucxTsGE0Hb2/kC78zbKa
+	ACqRDYFRH3//o5oEEO5PWLcIpB6QLTeGfND6iEOVP95WpLLq4iA4gvOar5XZGUYIisHW3NlbYkrLu
+	8n92B2RvW3aVGlyCPjfyg3YukaIWIvpZWWv2Hvy8J4GdCb+Q6piU/sJcT8bV3Yaf16xDWxVQ1MgfE
+	MviofdiA8Zk8FyXQxBHLt/azQ5l/SvMOce46e0poZXS18Hy5T6yL5NSnw9U95JuODlk66d56ZXVFG
+	E3ubm/J1Iq+ZJspjkN/IZfU7BshAlUgrE8TKPCUYwtiihiJJ+L+yV5C4/06pPSjhPe9bNn7x8hNwO
+	v68pHGNw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iyxJ4-0002mV-Ej; Tue, 04 Feb 2020 12:27:54 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1iyy1Z-0001RA-2i; Tue, 04 Feb 2020 13:13:53 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iyxJ1-0002lz-FM
- for linux-amlogic@lists.infradead.org; Tue, 04 Feb 2020 12:27:52 +0000
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com
- [209.85.166.41])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3F5892084E
- for <linux-amlogic@lists.infradead.org>; Tue,  4 Feb 2020 12:27:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1580819270;
- bh=u/sG3pj/xrBPOqKGj1oMg1PArSPocmrcd7koIK36ZHY=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=h1PowKXg/z5OiQNMtFHtv2wgAXDvwnkPl/N43zuJdRTWjgbIz0WU4hn3oHj+DrUxp
- xSjqQEK+eTtKxkn5PgO6kBwKXUqb5IODKbIw4IgZpvwbPIPxNaN2R5i6Z30IzbP7zs
- RJAZsCGGkVoNNhMY0Z8gwFYsbg46ICOmWdueeua4=
-Received: by mail-io1-f41.google.com with SMTP id d15so20713534iog.3
- for <linux-amlogic@lists.infradead.org>; Tue, 04 Feb 2020 04:27:50 -0800 (PST)
-X-Gm-Message-State: APjAAAV5W4OYDS5QqaycLOZ/ZydIfHjwM8FKXgNR68P6JlZ70nj1uIFJ
- YJdkj18jg0zASWrX+aaRUofGYwrio1vwznJG5Yc=
-X-Google-Smtp-Source: APXvYqw2sewP65Bm/QoI+CY7k5+glXny2PBt1ZdoajKIUprfZ0MZY3p10U0IXrIbFDcIx69Q69fRsJ9Pd6UNfNM3gVU=
-X-Received: by 2002:a6b:cd0e:: with SMTP id d14mr22650528iog.272.1580819269631; 
- Tue, 04 Feb 2020 04:27:49 -0800 (PST)
+ id 1iyy1V-0001QM-Hh
+ for linux-amlogic@lists.infradead.org; Tue, 04 Feb 2020 13:13:52 +0000
+Received: by mail-wm1-x343.google.com with SMTP id t23so3278854wmi.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Feb 2020 05:13:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=4+ZreWNwYj7OFQFlzqzrrix3cuAHazWWj8/rPIGWyJo=;
+ b=M0Z99vfOMeym0k0M//ZRqU+XgeZnY+6k59gul5cLqImd+3v9xW4aoiAbsVNC8w/6Yc
+ tDqrAC+zFj7TTKo7eB0ggzzUtKSJO+QnWD/BCsVvCJ6SeN1bpaWFW7kka2vsXA+12I4h
+ MK81WKFwnpE+7jOpy3YiJlTgjmz6J24CXrkg43xeVEwDjN66647tsStwHpVHbH0ZLWlS
+ pGjEy5xsvrkxUeqhAocVKsLhpIYcdn6eyqUTCdZVfefDIY90Nu20K/hGEJtC8I5B8hGo
+ /L6QRROOxkUoOTLQ9axRkRAlUHdtN+RrZQ3oH5CChcJ5zBSYUNrBYE9JkxKaHfT7mPU8
+ qLSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=4+ZreWNwYj7OFQFlzqzrrix3cuAHazWWj8/rPIGWyJo=;
+ b=qImkk4+oWXyZIueM8ZX47yhA5WvFWTfBDQq5HNBiH89hQVr7cXEtJ/x/sVj2w11niF
+ Ro73oxtCLsuAoXbJrbFmBTSyVv2njseCyWduW6pYVE64VjrtHBNqGpDr0Bia5lRe0iOD
+ xPkyRDf5RdcisSbC0l0mpk5APqFHGbXRxKhjq5Uw1lyclLTuHpJPYNMRl0JCvi+WwmfB
+ R5YRUDmupB6Naznp4vXvxRjGfXzsuw9EKaIXyB+v9dhPql7QvVFavSgQM9mckN+UdVNI
+ mktkpM5jZO+gOM55GNjdsnE2NgBmp1rfXlt6jVhC2IPFlqOB7AiRjwT45quxCeZ70XOf
+ 5wdQ==
+X-Gm-Message-State: APjAAAUcPUpF9Vt8DS2Sz4+Qno2in96RG8c418vKwjqf4ERKHhxOtbLC
+ 1/+/2P0IjcGvF3YwW26GyELcEw==
+X-Google-Smtp-Source: APXvYqwa8TjVIISu4WpJ5BmARG51IeDoMGSBvNTNUaWV+PC+gcbDYGihp7zaopr8eYWtFU9TFpm06g==
+X-Received: by 2002:a1c:6389:: with SMTP id x131mr6064652wmb.155.1580822027625; 
+ Tue, 04 Feb 2020 05:13:47 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id y20sm3571466wmi.25.2020.02.04.05.13.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 Feb 2020 05:13:46 -0800 (PST)
+References: <20200120034937.128600-1-jian.hu@amlogic.com>
+ <20200120034937.128600-4-jian.hu@amlogic.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v7 3/5] clk: meson: a1: add support for Amlogic A1 PLL
+ clock driver
+In-reply-to: <20200120034937.128600-4-jian.hu@amlogic.com>
+Date: Tue, 04 Feb 2020 14:13:46 +0100
+Message-ID: <1jeeva7awl.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20200203153735.14674-1-mjourdan@baylibre.com>
-In-Reply-To: <20200203153735.14674-1-mjourdan@baylibre.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Tue, 4 Feb 2020 07:26:24 -0500
-X-Gmail-Original-Message-ID: <CA+5PVA5+RdvvDt-+zCdza0CnJpneHsVPc9k0eVLH9=OThDwYNw@mail.gmail.com>
-Message-ID: <CA+5PVA5+RdvvDt-+zCdza0CnJpneHsVPc9k0eVLH9=OThDwYNw@mail.gmail.com>
-Subject: Re: [GIT PULL] amlogic: update video decoder firmwares
-To: Maxime Jourdan <mjourdan@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200204_042751_535866_839ACB8C 
-X-CRM114-Status: GOOD (  16.69  )
+X-CRM114-CacheID: sfid-20200204_051349_641841_7F5A9DB9 
+X-CRM114-Status: GOOD (  24.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,65 +99,504 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>,
- Linux Firmware <linux-firmware@kernel.org>, Arden Jin <Arden.Jin@amlogic.com>
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Feb 3, 2020 at 10:37 AM Maxime Jourdan <mjourdan@baylibre.com> wrote:
->
-> Hello linux-firmware maintainers,
->
-> This pull request contains 1 commit that updates existing firmwares for
-> the Amlogic video decoder, as well as adding 4 new ones for new chipsets
-> and/or codecs. The support for which is in the process of upstreaming
-> kernel-side.
->
-> More details can be found in the single commit description.
->
-> Regards,
-> Maxime
->
-> The following changes since commit 6d9f39910215a7dc56df3629e7d46b71a592be8e:
->
->   amdgpu: add renoir firmware for 19.50 (2020-02-03 07:26:39 -0500)
->
-> are available in the Git repository at:
->
->   https://github.com/Elyotna/linux-firmware.git amlogic-vdec
->
-> for you to fetch changes up to fb505a691b2a37b9d1fc20617433dfd52fb6e27e:
->
->   amlogic: update video decoder firmwares (2020-02-03 16:20:05 +0100)
->
-> ----------------------------------------------------------------
-> Maxime Jourdan (1):
->       amlogic: update video decoder firmwares
->
->  WHENCE                       |   4 ++++
->  meson/vdec/g12a_hevc_mmu.bin | Bin 0 -> 16384 bytes
->  meson/vdec/g12a_vp9.bin      | Bin 16384 -> 16384 bytes
->  meson/vdec/gxl_h264.bin      | Bin 36864 -> 36864 bytes
->  meson/vdec/gxl_hevc.bin      | Bin 16384 -> 16384 bytes
->  meson/vdec/gxl_hevc_mmu.bin  | Bin 16384 -> 16384 bytes
->  meson/vdec/gxl_mjpeg.bin     | Bin 16384 -> 16384 bytes
->  meson/vdec/gxl_mpeg12.bin    | Bin 16384 -> 16384 bytes
->  meson/vdec/gxl_vp9.bin       | Bin 0 -> 16384 bytes
->  meson/vdec/gxm_h264.bin      | Bin 36864 -> 36864 bytes
->  meson/vdec/sm1_hevc_mmu.bin  | Bin 0 -> 16384 bytes
->  meson/vdec/sm1_vp9_mmu.bin   | Bin 0 -> 16384 bytes
->  12 files changed, 4 insertions(+)
->  create mode 100644 meson/vdec/g12a_hevc_mmu.bin
->  create mode 100644 meson/vdec/gxl_vp9.bin
->  create mode 100644 meson/vdec/sm1_hevc_mmu.bin
->  create mode 100644 meson/vdec/sm1_vp9_mmu.bin
 
-Pulled and pushed out.
+On Mon 20 Jan 2020 at 04:49, Jian Hu <jian.hu@amlogic.com> wrote:
 
-josh
+> The Amlogic A1 clock includes three drivers:
+> pll clocks, peripheral clocks, CPU clocks.
+> sys pll and CPU clocks will be sent in next patch.
+>
+> Unlike the previous series, there is no EE/AO domain
+> in A1 CLK controllers.
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  drivers/clk/meson/Kconfig  |   9 +
+>  drivers/clk/meson/Makefile |   1 +
+>  drivers/clk/meson/a1-pll.c | 360 +++++++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/a1-pll.h |  56 ++++++
+>  4 files changed, 426 insertions(+)
+>  create mode 100644 drivers/clk/meson/a1-pll.c
+>  create mode 100644 drivers/clk/meson/a1-pll.h
+>
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index dabeb435d067..31613c3bbbc7 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -93,6 +93,15 @@ config COMMON_CLK_AXG_AUDIO
+>  	  Support for the audio clock controller on AmLogic A113D devices,
+>  	  aka axg, Say Y if you want audio subsystem to work.
+>  
+> +config COMMON_CLK_A1_PLL
+> +	bool
+> +	depends on ARCH_MESON
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_PLL
+> +	help
+> +	  Support for the PLL clock controller on Amlogic A113L device,
+> +	  aka a1. Say Y if you want PLL to work.
+> +
+>  config COMMON_CLK_G12A
+>  	bool
+>  	depends on ARCH_MESON
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index 3939f218587a..71d3b8e6fb8a 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -16,6 +16,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
+>  
+>  obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+> +obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+> new file mode 100644
+> index 000000000000..69c1ca07d041
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-pll.c
+> @@ -0,0 +1,360 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include "a1-pll.h"
+> +#include "clk-pll.h"
+> +#include "clk-regmap.h"
+> +
+> +static struct clk_regmap a1_fixed_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.frac = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 19,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_FIXPLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fixed_pll_dco",
+> +		.ops = &meson_clk_pll_ro_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xtal_fixpll",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a1_fixed_pll = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 20,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "fixed_pll",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fixed_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * It is enough that the fdiv leaf has critical flag,
+> +		 * No critical or unused flag here.
+> +		 */
+> +	},
+> +};
+> +
+> +static const struct pll_mult_range a1_hifi_pll_mult_range = {
+> +	.min = 32,
+> +	.max = 64,
+> +};
+> +
+> +static const struct reg_sequence a1_hifi_init_regs[] = {
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x00302000 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18440 },
+> +};
+> +
+> +static struct clk_regmap a1_hifi_pll = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.frac = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 19,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_HIFIPLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.current_en = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 26,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL2,
+> +			.shift   = 6,
+> +			.width   = 1,
+> +		},
+> +		.range = &a1_hifi_pll_mult_range,
+> +		.init_regs = a1_hifi_init_regs,
+> +		.init_count = ARRAY_SIZE(a1_hifi_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "hifi_pll",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xtal_hifipll",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor a1_fclk_div2_div = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div2_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fixed_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a1_fclk_div2 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 21,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div2",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fclk_div2_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * This clock is used by DDR clock in BL2 firmware
+> +		 * and is required by the platform to operate correctly.
+> +		 * Until the following condition are met, we need this clock to
+> +		 * be marked as critical:
+> +		 * a) Mark the clock used by a firmware resource, if possible
+> +		 * b) CCF has a clock hand-off mechanism to make the sure the
+> +		 *    clock stays on until the proper driver comes along
+> +		 */
+> +		.flags = CLK_IS_CRITICAL,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor a1_fclk_div3_div = {
+> +	.mult = 1,
+> +	.div = 3,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div3_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fixed_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a1_fclk_div3 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 22,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div3",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fclk_div3_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * This clock is used by APB bus which is set in boot ROM code
+> +		 * and is required by the platform to operate correctly.
+> +		 * About critical, refer to a1_fclk_div2.
+> +		 */
+> +		.flags = CLK_IS_CRITICAL,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor a1_fclk_div5_div = {
+> +	.mult = 1,
+> +	.div = 5,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div5_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fixed_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a1_fclk_div5 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 23,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div5",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fclk_div5_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * This clock is used by AXI bus which setted in Romcode
+> +		 * and is required by the platform to operate correctly.
+> +		 * About critical, refer to a1_fclk_div2.
+> +		 */
+> +		.flags = CLK_IS_CRITICAL,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor a1_fclk_div7_div = {
+> +	.mult = 1,
+> +	.div = 7,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div7_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fixed_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a1_fclk_div7 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 24,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div7",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a1_fclk_div7_div.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +/* Array of all clocks provided by this provider */
+> +static struct clk_hw_onecell_data a1_pll_hw_onecell_data = {
+> +	.hws = {
+> +		[CLKID_FIXED_PLL_DCO]		= &a1_fixed_pll_dco.hw,
+> +		[CLKID_FIXED_PLL]		= &a1_fixed_pll.hw,
+> +		[CLKID_HIFI_PLL]		= &a1_hifi_pll.hw,
+> +		[CLKID_FCLK_DIV2]		= &a1_fclk_div2.hw,
+> +		[CLKID_FCLK_DIV3]		= &a1_fclk_div3.hw,
+> +		[CLKID_FCLK_DIV5]		= &a1_fclk_div5.hw,
+> +		[CLKID_FCLK_DIV7]		= &a1_fclk_div7.hw,
+> +		[CLKID_FCLK_DIV2_DIV]		= &a1_fclk_div2_div.hw,
+> +		[CLKID_FCLK_DIV3_DIV]		= &a1_fclk_div3_div.hw,
+> +		[CLKID_FCLK_DIV5_DIV]		= &a1_fclk_div5_div.hw,
+> +		[CLKID_FCLK_DIV7_DIV]		= &a1_fclk_div7_div.hw,
+> +		[NR_PLL_CLKS]			= NULL,
+> +	},
+> +	.num = NR_PLL_CLKS,
+> +};
+> +
+> +static struct clk_regmap *const a1_pll_regmaps[] = {
+> +	&a1_fixed_pll_dco,
+> +	&a1_fixed_pll,
+> +	&a1_hifi_pll,
+> +	&a1_fclk_div2,
+> +	&a1_fclk_div3,
+> +	&a1_fclk_div5,
+> +	&a1_fclk_div7,
+> +};
+> +
+> +static struct regmap_config clkc_regmap_config = {
+> +	.reg_bits       = 32,
+> +	.val_bits       = 32,
+> +	.reg_stride     = 4,
+> +};
+> +
+> +static int meson_a1_pll_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct resource *res;
+> +	void __iomem *base;
+> +	struct regmap *map;
+> +	int ret, i;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +
+> +	base = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	map = devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
+> +	if (IS_ERR(map))
+> +		return PTR_ERR(map);
+> +
+> +	/* Populate regmap for the regmap backed clocks */
+> +	for (i = 0; i < ARRAY_SIZE(a1_pll_regmaps); i++)
+> +		a1_pll_regmaps[i]->map = map;
+> +
+> +	for (i = 0; i < a1_pll_hw_onecell_data.num; i++) {
+> +		/* array might be sparse */
+> +		if (!a1_pll_hw_onecell_data.hws[i])
+> +			continue;
+> +
+> +		ret = devm_clk_hw_register(dev, a1_pll_hw_onecell_data.hws[i]);
+> +		if (ret) {
+> +			dev_err(dev, "Clock registration failed\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   &a1_pll_hw_onecell_data);
+> +}
+> +
+> +static const struct of_device_id clkc_match_table[] = {
+> +	{ .compatible = "amlogic,a1-pll-clkc", },
+> +	{}
+> +};
+> +
+> +static struct platform_driver a1_pll_driver = {
+> +	.probe		= meson_a1_pll_probe,
+> +	.driver		= {
+> +		.name	= "a1-pll-clkc",
+> +		.of_match_table = clkc_match_table,
+> +	},
+> +};
+> +
+> +builtin_platform_driver(a1_pll_driver);
+> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
+> new file mode 100644
+> index 000000000000..8ded267061ad
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-pll.h
+> @@ -0,0 +1,56 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __A1_PLL_H
+> +#define __A1_PLL_H
+> +
+> +/* PLL register offset */
+> +#define ANACTRL_FIXPLL_CTRL0		0x0
+> +#define ANACTRL_FIXPLL_CTRL1		0x4
+> +#define ANACTRL_FIXPLL_CTRL2		0x8
+> +#define ANACTRL_FIXPLL_CTRL3		0xc
+> +#define ANACTRL_FIXPLL_CTRL4		0x10
+> +#define ANACTRL_FIXPLL_STS		0x14
+> +#define ANACTRL_SYSPLL_CTRL0		0x80
+> +#define ANACTRL_SYSPLL_CTRL1		0x84
+> +#define ANACTRL_SYSPLL_CTRL2		0x88
+> +#define ANACTRL_SYSPLL_CTRL3		0x8c
+> +#define ANACTRL_SYSPLL_CTRL4		0x90
+> +#define ANACTRL_SYSPLL_STS		0x94
+> +#define ANACTRL_HIFIPLL_CTRL0		0xc0
+> +#define ANACTRL_HIFIPLL_CTRL1		0xc4
+> +#define ANACTRL_HIFIPLL_CTRL2		0xc8
+> +#define ANACTRL_HIFIPLL_CTRL3		0xcc
+> +#define ANACTRL_HIFIPLL_CTRL4		0xd0
+> +#define ANACTRL_HIFIPLL_STS		0xd4
+
+Non of the definition below are used.
+What are they ? Do you need them ?
+
+> +#define ANACTRL_AUDDDS_CTRL0		0x100
+> +#define ANACTRL_AUDDDS_CTRL1		0x104
+> +#define ANACTRL_AUDDDS_CTRL2		0x108
+> +#define ANACTRL_AUDDDS_CTRL3		0x10c
+> +#define ANACTRL_AUDDDS_CTRL4		0x110
+> +#define ANACTRL_AUDDDS_STS		0x114
+> +#define ANACTRL_MISCTOP_CTRL0		0x140
+> +#define ANACTRL_POR_CNTL		0x188
+> +
+> +/*
+> + * CLKID index values
+> + *
+> + * These indices are entirely contrived and do not map onto the hardware.
+> + * It has now been decided to expose everything by default in the DT header:
+> + * include/dt-bindings/clock/a1-pll-clkc.h. Only the clocks ids we don't want
+> + * to expose, such as the internal muxes and dividers of composite clocks,
+> + * will remain defined here.
+> + */
+> +#define CLKID_FIXED_PLL_DCO		0
+> +#define CLKID_FCLK_DIV2_DIV		2
+> +#define CLKID_FCLK_DIV3_DIV		3
+> +#define CLKID_FCLK_DIV5_DIV		4
+> +#define CLKID_FCLK_DIV7_DIV		5
+> +#define NR_PLL_CLKS			11
+> +
+> +/* include the CLKIDs that have been made part of the DT binding */
+> +#include <dt-bindings/clock/a1-pll-clkc.h>
+> +
+> +#endif /* __A1_PLL_H */
+
 
 _______________________________________________
 linux-amlogic mailing list
