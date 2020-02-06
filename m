@@ -2,147 +2,88 @@ Return-Path: <SRS0=So4j=32=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_DBL_ABUSE_MALW,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-1.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_DBL_ABUSE_MALW,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 31133C3F68F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:08:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DC77C352A4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:27:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 004D8214AF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:08:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E16EE21927
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:27:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XmGuHG7I";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="e6y6Xc0C"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 004D8214AF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="evNraCG4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YOEluXsM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E16EE21927
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rSUTTXFrrhhmZlizIkInN8b4HTD3+o21p932pBx+sYE=; b=XmGuHG7IrBjRkM
-	wRYc0HDorlunPpsh3RkZGbQoi20nxmT12Dq712gNWDmTWH7ZwM0JoOKgLRsyRvoZovMR2/TS6m+Oe
-	RvOn+wz3/AN8Y850QdYY0Px1WzE1Q50LTPFtYrGX+SIJaRctYeV9sCDzggs1V/S+p7vSjCfcuPSqN
-	ZNlmAQ40PkxE5URdYlvDUpJNRL91N0FN6Acv4K1u8cnapQJgK3kdUd6tzR0WNBCr8DI5OCDmaAWou
-	X0I2lvYO638+RioCRHgyd5/yMaQeQ7BQtGT8/u8ngUb9PXhqHKBfKS/rNX0Sn7tgcxVTlkfsbUSE1
-	rHyuHrpVtK+9TdLUXdoA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3kB3soknAHQCYk+hszyjs/sh/g5Io0Ww2r5nSKGPVsM=; b=evNraCG4a4FIBA
+	6sy32V754TE4nvSUG75yuhHjxDEhA1823p7Y50DkrVtS+rF1T074KbRxrfAMFRPOyXdPZNaLIkPm4
+	uREmXGXbUm8izpXDEmlrF/iogNUIHgSgnpsyaYVv4+ch82+kFh9RX/GmcaLsiLiGCnZQa09XQZcBT
+	NkQ03yWPITFVntTFER49R5K2a+OozHwt8gXE0nM6OgyCX0ZJnXQGM9F9f8jWvjNFjTeApDSHVHQJR
+	DmJgkFZD/Z+ZRVRYiTqpbJShhVEGP7jPLBQdlmaHhfmDJN5gz1bN1JlYT1oW0/tM9du0OHlFEEykb
+	Fiwtauu5cL2JYiofyCUA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1izcCq-0004aU-4c; Thu, 06 Feb 2020 08:08:12 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1izcUy-0002je-AS; Thu, 06 Feb 2020 08:26:56 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1izcCm-0004Zs-LS
- for linux-amlogic@lists.infradead.org; Thu, 06 Feb 2020 08:08:10 +0000
-Received: by mail-wr1-x442.google.com with SMTP id t2so5975669wrr.1
- for <linux-amlogic@lists.infradead.org>; Thu, 06 Feb 2020 00:08:08 -0800 (PST)
+ id 1izcUv-0002i6-6y
+ for linux-amlogic@lists.infradead.org; Thu, 06 Feb 2020 08:26:55 +0000
+Received: by mail-wm1-x342.google.com with SMTP id t23so5267412wmi.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 06 Feb 2020 00:26:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
+ h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=TG5tj3645N85QhmNWU8D99xKObIizGYbAhAWICc+ygs=;
- b=e6y6Xc0CKTFK7D8lnZI+oqP6txhyrqcYHKag2cJFvZTCEIr3SECDvQXDx3itQzDjB5
- VcImhKBHPPvajvrhMq019JiXtDYI7rPkHENrWf+RlWoff8hhxIoqXAAGG539WvLMo9Wn
- 4D71P/luHvNXtl8DTwCvA3ORNz+HUOP5ZxL1UO5APiCaTC8/ZPNQzeTJ6hTbYrnu0n3f
- ZaxlWdiXnlcIYCRRWCP4VcRWCxRH2Ckcf4JgKak0CIzSdjzVGZ18XYVyTCcb2Rg8OQIw
- y+eDECeAol8gs70LYTttGQEDtfFZ6a61YDj707iOvZFeg4203wX2gX3bv4I2qHAf9rfB
- JnBg==
+ bh=uElpQqjJlORb1Z1H6UeJgJtYJWxJRwfTKDbebqv3j90=;
+ b=YOEluXsMfq0MXDNHQZxAYXHC8O7RDoCD7+tp5PBvlfyRKiVXksf40fdW7xxEDU7wNY
+ 3fEI5I5w/MoqTR5h1YjqXhXLtlCNb3Ju9HLKGu+v6IyWXGusBAEEj9cMY+7RyXZuGYC3
+ +dH4RYwq1wd4lf6Pku0TBWuUrNrQQZ5tsZPcJlvO+OyKLfaVZpEItA/UjOYRpuffSzfO
+ Un0iC+cV7J9YlSa4zaaDjdXW4o+AbqqOu4U5JJBCDJa2twGuMbaD5VXvlnKN+iTrCEym
+ Lqa/B2XMwQDbb7/8KIpfDyNDYtMUhA2MrepaZ55z41XfEmDss3/E3w0Q0Ngmd5tMjPyf
+ 5/lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=TG5tj3645N85QhmNWU8D99xKObIizGYbAhAWICc+ygs=;
- b=c8dQCL37UTTM+GSb/vHvQGMHx/gVh3be8PRaycQkHIPhcJE2qsBOgFe0bfw5l+nAO2
- JelR1a/j/qvCAQAKN9Brk6ANA09kyluoLE6bV+hhtM+TDddTo09iA4stIPOcDAV+OR6T
- v1udzwN/UwT7Nq00kOZwN4LWlGsYJHH2s3MNU69aD/ttPck1EeDGGOEt/MrJvyVbZSAe
- Mcmte7EK0JEPC0auDE3rHcIshuINtitbPIEIae7AEDv4b5e2TxztWl7tIFBzohqIH7U8
- 0MNJJB0qr4k3vSr/kSnG1qFxUrgcdUKlOeKPZJeyyFlU6JU5MsVlhWxWNTI7FCQinN00
- d+bg==
-X-Gm-Message-State: APjAAAWRpsmvMRwQwrvV7sVNvfLxtJvOE6GdG1JdwtFUO7n/FejnTQPw
- ccakIqJzgjKFg+1Nwrl+YXv0pg==
-X-Google-Smtp-Source: APXvYqz9axYJCUH9PKldohM4SKpY8oaob9MbNHZHJR5bIvM99Z2dv6KBImKigANHI+cIqIl6FqvNTg==
-X-Received: by 2002:adf:c145:: with SMTP id w5mr2426249wre.205.1580976486971; 
- Thu, 06 Feb 2020 00:08:06 -0800 (PST)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:7d33:17f7:8097:ecc7?
- ([2a01:e35:2ec0:82b0:7d33:17f7:8097:ecc7])
- by smtp.gmail.com with ESMTPSA id o4sm3096110wrx.25.2020.02.06.00.08.04
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 06 Feb 2020 00:08:06 -0800 (PST)
-Subject: Re: [PATCH v3 5/5] media: meson: vdec: add VP9 decoder support
-To: Nicolas Dufresne <nicolas@ndufresne.ca>, mchehab@kernel.org,
- hans.verkuil@cisco.com
-References: <20200116133437.2443-1-narmstrong@baylibre.com>
- <20200116133437.2443-6-narmstrong@baylibre.com>
- <a4efcb4e1591ac9cf305742d34337335b6ff7f29.camel@ndufresne.ca>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=uElpQqjJlORb1Z1H6UeJgJtYJWxJRwfTKDbebqv3j90=;
+ b=M+OwL3Fv+1k1iaDehZn60gVp3gkXr7PsaBm0Em7/GlsZOU2n4Mu1swn8pW9W4Mx1mf
+ hv5b7x7bhHLPjp1nT61mVhrhVUKHaNijURY5aOCFCK4/wUHkCSJbl8LUwdxaEJVRXRST
+ I7QuBGdZwWxk9l34ltjbxI/iUSyuqwNl9Gn1/vRZzWKWfmPzfnWseHLmuzZnxY7NBZza
+ MoO1/Vb3IvfgjShuG5Ql1nL0nhYaVQw6rOVI9CdsMMDUcSnoM+RmFxwntGFtqkFtIRL0
+ ClvPpyNkgtFujeDML3i9tFWkru+EVphhoKsJ+21z66TjG3Iq64Jcm3FgHEGVql0yPl+4
+ 6BBQ==
+X-Gm-Message-State: APjAAAUJbQqqblfFHIFzJvUEyDeK3ZJQMZ18pfhXFUswta+TT/InAHU8
+ yj3wDGELYoP6D3Oq/3WAi9dioQ==
+X-Google-Smtp-Source: APXvYqxOjcJXIDMW/a4TvPU28SV7UoBNLOuXI8XKG+/DpYQAAKyqUoXZb4vZeIp+w+lguLqEPhXIbQ==
+X-Received: by 2002:a1c:4d18:: with SMTP id o24mr3017002wmh.35.1580977611576; 
+ Thu, 06 Feb 2020 00:26:51 -0800 (PST)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:7d33:17f7:8097:ecc7])
+ by smtp.gmail.com with ESMTPSA id e16sm3148027wrs.73.2020.02.06.00.26.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 06 Feb 2020 00:26:51 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <49e6168b-ffed-6011-3b1f-455224d3130b@baylibre.com>
-Date: Thu, 6 Feb 2020 09:08:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+To: mchehab@kernel.org,
+	hans.verkuil@cisco.com
+Subject: [PATCH v5 0/4] media: meson: vdec: Add compliant H264 support
+Date: Thu,  6 Feb 2020 09:26:44 +0100
+Message-Id: <20200206082648.25184-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <a4efcb4e1591ac9cf305742d34337335b6ff7f29.camel@ndufresne.ca>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200206_000808_701434_364140A5 
-X-CRM114-Status: GOOD (  18.60  )
+X-CRM114-CacheID: sfid-20200206_002653_253935_B66F24F5 
+X-CRM114-Status: UNSURE (   8.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,89 +95,204 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>, linux-amlogic@lists.infradead.org,
+Cc: linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-media@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMDMvMDIvMjAyMCAwNDoxMSwgTmljb2xhcyBEdWZyZXNuZSB3cm90ZToKPiBIaSBOZWlsLAo+
-IAo+IExlIGpldWRpIDE2IGphbnZpZXIgMjAyMCDDoCAxNDozNCArMDEwMCwgTmVpbCBBcm1zdHJv
-bmcgYSDDqWNyaXQgOgo+PiBGcm9tOiBNYXhpbWUgSm91cmRhbiA8bWpvdXJkYW5AYmF5bGlicmUu
-Y29tPgo+Pgo+PiBUaGlzIGFkZHMgVlA5IGRlY29kaW5nIGZvciB0aGUgQW1sb2dpYyBHWEwsIEcx
-MkEgJiBTTTEgU29DcywgdXNpbmcKPj4gdGhlIGNvbW1vbmcgIkhFVkMiIEhXIGRlY29kZXIuCj4+
-Cj4+IEZvciBHMTJBICYgU00xLCBpdCB1c2VzIHRoZSBJT01NVSBzdXBwb3J0IGZyb20gdGhlIGZp
-cm13YXJlLgo+Pgo+PiBGb3IgMTBiaXQgZGVjb2RpbmcsIHRoZSBmaXJtd2FyZSBjYW4gb25seSBk
-ZWNvZGUgaW4gdGhlIHByb3ByaWV0YXJ5Cj4+IEFtbG9naWMgRnJhbWVidWZmZXIgQ29tcHJlc3Np
-b24gZm9ybWF0LCBidXQgY2FuIG91dHB1dCBpbiA4Yml0IE5WMTIKPj4gYnVmZmVyIHdoaWxlIHdy
-aXRpbmcgdGhlIGRlY29kZWQgZnJhbWUuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IE1heGltZSBKb3Vy
-ZGFuIDxtam91cmRhbkBiYXlsaWJyZS5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6IE5laWwgQXJtc3Ry
-b25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPj4gLS0tCj4+ICBkcml2ZXJzL3N0YWdpbmcv
-bWVkaWEvbWVzb24vdmRlYy9NYWtlZmlsZSAgICAgfCAgICAyICstCj4+ICBkcml2ZXJzL3N0YWdp
-bmcvbWVkaWEvbWVzb24vdmRlYy9jb2RlY192cDkuYyAgfCAyMTM5ICsrKysrKysrKysrKysrKysr
-Cj4+ICBkcml2ZXJzL3N0YWdpbmcvbWVkaWEvbWVzb24vdmRlYy9jb2RlY192cDkuaCAgfCAgIDEz
-ICsKPj4gIGRyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL2hldmNfcmVncy5oICB8ICAg
-IDcgKwo+PiAgZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jICAgICAgIHwg
-ICAgNSArCj4+ICAuLi4vc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfaGVscGVycy5jICAg
-fCAgICA0ICsKPj4gIC4uLi9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlY19wbGF0Zm9ybS5j
-ICB8ICAgMzggKwo+PiAgNyBmaWxlcyBjaGFuZ2VkLCAyMjA3IGluc2VydGlvbnMoKyksIDEgZGVs
-ZXRpb24oLSkKPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3N0YWdpbmcvbWVkaWEvbWVz
-b24vdmRlYy9jb2RlY192cDkuYwo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvc3RhZ2lu
-Zy9tZWRpYS9tZXNvbi92ZGVjL2NvZGVjX3ZwOS5oCj4+CgpbLi4uXQoKPj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfcGxhdGZvcm0uYyBiL2RyaXZl
-cnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfcGxhdGZvcm0uYwo+PiBpbmRleCBlOTM1
-NmE0NjgyOGYuLjcyYTgzM2IxY2ViZCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9zdGFnaW5nL21l
-ZGlhL21lc29uL3ZkZWMvdmRlY19wbGF0Zm9ybS5jCj4+ICsrKyBiL2RyaXZlcnMvc3RhZ2luZy9t
-ZWRpYS9tZXNvbi92ZGVjL3ZkZWNfcGxhdGZvcm0uYwo+PiBAQCAtOCw4ICs4LDEwIEBACj4+ICAj
-aW5jbHVkZSAidmRlYy5oIgo+PiAgCj4+ICAjaW5jbHVkZSAidmRlY18xLmgiCj4+ICsjaW5jbHVk
-ZSAidmRlY19oZXZjLmgiCj4+ICAjaW5jbHVkZSAiY29kZWNfbXBlZzEyLmgiCj4+ICAjaW5jbHVk
-ZSAiY29kZWNfaDI2NC5oIgo+PiArI2luY2x1ZGUgImNvZGVjX3ZwOS5oIgo+PiAgCj4+ICBzdGF0
-aWMgY29uc3Qgc3RydWN0IGFtdmRlY19mb3JtYXQgdmRlY19mb3JtYXRzX2d4YmJbXSA9IHsKPj4g
-IAl7Cj4+IEBAIC01MSw2ICs1MywxOCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGFtdmRlY19mb3Jt
-YXQgdmRlY19mb3JtYXRzX2d4YmJbXSA9IHsKPj4gIAo+PiAgc3RhdGljIGNvbnN0IHN0cnVjdCBh
-bXZkZWNfZm9ybWF0IHZkZWNfZm9ybWF0c19neGxbXSA9IHsKPj4gIAl7Cj4+ICsJCS5waXhmbXQg
-PSBWNEwyX1BJWF9GTVRfVlA5LAo+PiArCQkubWluX2J1ZmZlcnMgPSAxNiwKPj4gKwkJLm1heF9i
-dWZmZXJzID0gMjQsCj4+ICsJCS5tYXhfd2lkdGggPSAzODQwLAo+PiArCQkubWF4X2hlaWdodCA9
-IDIxNjAsCj4+ICsJCS52ZGVjX29wcyA9ICZ2ZGVjX2hldmNfb3BzLAo+PiArCQkuY29kZWNfb3Bz
-ID0gJmNvZGVjX3ZwOV9vcHMsCj4+ICsJCS5maXJtd2FyZV9wYXRoID0gIm1lc29uL3ZkZWMvZ3hs
-X3ZwOS5iaW4iLAo+IAo+IElzIHRoZXJlIGEgcHVsbCByZXF1ZXN0IHBlbmRpbmcgZm9yIHRoaXMg
-ZmlybXdhcmUgPyBJIGNvdWxkIG5vdCB0ZXN0IGFzCj4gdGhpcyBmaXJtd2FyZSB3YXMgbWlzc2lu
-Zy4gTm90ZSB0aGF0IGl0IGNvdWxkIGJlIG5pY2UgdG8gcmVtb3ZlIHRoZQo+IGZvcm1hdCBmcm9t
-IHRoZSBlbnVtZXJhdGlvbiBpbiB0aGF0IGNhc2UsIGFzIGl0J3MgdmVyeSBjb25mdXNpbmcKPiBp
-bml0aWFsbHkuCgpJdCBoYXMgYmVlbiBtZXJnZWQgeWVzdGVyZGF5LCBzb3JyeSBmb3IgdGhlIGRl
-bGF5LgoKV2l0aCBtYXhpbWUncyBwYXRjaCwgd2UgdGVzdGVkIGl0IHVzaW5nIGZmbXBlZyBtYXN0
-ZXIsIG1wdiBtYXN0ZXIgd2l0aCBkcm0tcHJpbWUKcmVuZGVyaW5nLiBXZSBoYXZlIGEgYnVpbGRy
-b290IHJlcG8gd2l0aCB0aGUgY2hhbmdlZCBuZWVkZWQgOgoKaHR0cHM6Ly9naXRsYWIuY29tL2Jh
-eWxpYnJlL2FtbG9naWMvYXR2L2J1aWxkcm9vdC15dWthd2EKCkkgd2lsbCByZXNwaW4gYSB2NCB3
-aXRoIHRoZSBzbWFsbCBmaXggZnJvbSBtYXhpbWUuCgpOZWlsCgoKPiAKPj4gKwkJLnBpeGZtdHNf
-Y2FwID0geyBWNEwyX1BJWF9GTVRfTlYxMk0sIDAgfSwKPj4gKwkJLmZsYWdzID0gVjRMMl9GTVRf
-RkxBR19DT01QUkVTU0VEIHwKPj4gKwkJCSBWNEwyX0ZNVF9GTEFHX0RZTl9SRVNPTFVUSU9OLAo+
-PiArCX0sIHsKPj4gIAkJLnBpeGZtdCA9IFY0TDJfUElYX0ZNVF9IMjY0LAo+PiAgCQkubWluX2J1
-ZmZlcnMgPSAyLAo+PiAgCQkubWF4X2J1ZmZlcnMgPSAyNCwKPj4gQEAgLTEyNyw2ICsxNDEsMTgg
-QEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhbXZkZWNfZm9ybWF0IHZkZWNfZm9ybWF0c19neG1bXSA9
-IHsKPj4gIAo+PiAgc3RhdGljIGNvbnN0IHN0cnVjdCBhbXZkZWNfZm9ybWF0IHZkZWNfZm9ybWF0
-c19nMTJhW10gPSB7Cj4+ICAJewo+PiArCQkucGl4Zm10ID0gVjRMMl9QSVhfRk1UX1ZQOSwKPj4g
-KwkJLm1pbl9idWZmZXJzID0gMTYsCj4+ICsJCS5tYXhfYnVmZmVycyA9IDI0LAo+PiArCQkubWF4
-X3dpZHRoID0gMzg0MCwKPj4gKwkJLm1heF9oZWlnaHQgPSAyMTYwLAo+PiArCQkudmRlY19vcHMg
-PSAmdmRlY19oZXZjX29wcywKPj4gKwkJLmNvZGVjX29wcyA9ICZjb2RlY192cDlfb3BzLAo+PiAr
-CQkuZmlybXdhcmVfcGF0aCA9ICJtZXNvbi92ZGVjL2cxMmFfdnA5LmJpbiIsCj4+ICsJCS5waXhm
-bXRzX2NhcCA9IHsgVjRMMl9QSVhfRk1UX05WMTJNLCAwIH0sCj4+ICsJCS5mbGFncyA9IFY0TDJf
-Rk1UX0ZMQUdfQ09NUFJFU1NFRCB8Cj4+ICsJCQkgVjRMMl9GTVRfRkxBR19EWU5fUkVTT0xVVElP
-TiwKPj4gKwl9LCB7Cj4+ICAJCS5waXhmbXQgPSBWNEwyX1BJWF9GTVRfSDI2NCwKPj4gIAkJLm1p
-bl9idWZmZXJzID0gMiwKPj4gIAkJLm1heF9idWZmZXJzID0gMjQsCj4+IEBAIC0xNjUsNiArMTkx
-LDE4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYW12ZGVjX2Zvcm1hdCB2ZGVjX2Zvcm1hdHNfZzEy
-YVtdID0gewo+PiAgCj4+ICBzdGF0aWMgY29uc3Qgc3RydWN0IGFtdmRlY19mb3JtYXQgdmRlY19m
-b3JtYXRzX3NtMVtdID0gewo+PiAgCXsKPj4gKwkJLnBpeGZtdCA9IFY0TDJfUElYX0ZNVF9WUDks
-Cj4+ICsJCS5taW5fYnVmZmVycyA9IDE2LAo+PiArCQkubWF4X2J1ZmZlcnMgPSAyNCwKPj4gKwkJ
-Lm1heF93aWR0aCA9IDM4NDAsCj4+ICsJCS5tYXhfaGVpZ2h0ID0gMjE2MCwKPj4gKwkJLnZkZWNf
-b3BzID0gJnZkZWNfaGV2Y19vcHMsCj4+ICsJCS5jb2RlY19vcHMgPSAmY29kZWNfdnA5X29wcywK
-Pj4gKwkJLmZpcm13YXJlX3BhdGggPSAibWVzb24vdmRlYy9nMTJhX3ZwOS5iaW4iLAo+PiArCQku
-cGl4Zm10c19jYXAgPSB7IFY0TDJfUElYX0ZNVF9OVjEyTSwgMCB9LAo+PiArCQkuZmxhZ3MgPSBW
-NEwyX0ZNVF9GTEFHX0NPTVBSRVNTRUQgfAo+PiArCQkJIFY0TDJfRk1UX0ZMQUdfRFlOX1JFU09M
-VVRJT04sCj4+ICsJfSwgewo+PiAgCQkucGl4Zm10ID0gVjRMMl9QSVhfRk1UX0gyNjQsCj4+ICAJ
-CS5taW5fYnVmZmVycyA9IDIsCj4+ICAJCS5tYXhfYnVmZmVycyA9IDI0LAo+IAoKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
-bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hello,
+
+This patch series aims to bring H.264 support as well as compliance update
+to the amlogic stateful video decoder driver.
+
+The issue in the V1 patchset at [1] is solved by patch #1 following comments
+and requirements from hans. It moves the full draining & stopped state tracking
+and handling from vicodec to core v4l2-mem2mem.
+
+The vicodec changes still passes the v4l2-utils "media-test" tests, log at [5]:
+[...]
+vicodec media controller compliance tests
+
+Thu Jan 16 13:00:56 UTC 2020
+v4l2-compliance SHA: 7ead0e1856b89f2e19369af452bb03fd0cd16793, 64 bits
+[...]
+Summary:
+
+Total for vicodec device /dev/media3: 7, Succeeded: 7, Failed: 0, Warnings: 0
+Total for vicodec device /dev/video13: 51, Succeeded: 51, Failed: 0, Warnings: 0
+Total for vicodec device /dev/video14: 51, Succeeded: 51, Failed: 0, Warnings: 0
+Total for vicodec device /dev/video14: 51, Succeeded: 51, Failed: 0, Warnings: 0
+Total for vicodec device /dev/video14: 51, Succeeded: 51, Failed: 0, Warnings: 0
+Total for vicodec device /dev/video14: 51, Succeeded: 51, Failed: 0, Warnings: 0
+Total for vicodec device /dev/video14: 51, Succeeded: 51, Failed: 0, Warnings: 0
+Total for vicodec device /dev/video14: 51, Succeeded: 51, Failed: 0, Warnings: 0
+
+Final Summary: 364, Succeeded: 364, Failed: 0, Warnings: 0
+Thu Jan 16 13:02:59 UTC 2020
+
+With this, it also passes vdec v4l2-compliance with H264 streaming on Amlogic G12A
+and Amlogic SM1 SoCs successfully.
+
+The compliance log is:
+# v4l2-compliance --stream-from-hdr test-25fps.h264.hdr -s
+v4l2-compliance SHA: 7ead0e1856b89f2e19369af452bb03fd0cd16793, 64 bits
+
+Compliance test for meson-vdec device /dev/video0:
+
+Driver Info:
+	Driver name      : meson-vdec
+	Card type        : Amlogic Video Decoder
+	Bus info         : platform:meson-vdec
+	Driver version   : 5.5.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+	Detected Stateful Decoder
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video19 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 2 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+	Video Capture Multiplanar: Captured 60 buffers    
+	test MMAP (select): OK
+	Video Capture Multiplanar: Captured 60 buffers    
+	test MMAP (epoll): OK
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
+
+Total for meson-vdec device /dev/video0: 49, Succeeded: 49, Failed: 0, Warnings: 0
+
+Changes since v4 at [5]:
+- Squashed "don't resume instantly if not streaming capture" and "fix OUTPUT buffer size configuration" fixes from maxime
+
+Changes since v3 at [3]:
+- Fixed vicodec compliance
+- Fixed vdec compliance with v4l2 state management
+- fixed doc errors for v4l2-mem2mem.h
+
+Changes since v2 at [2]:
+- Move full draining & stopped state tracking into core v4l2-mem2mem
+- Adapt vicodec to use the core v4l2-mem2mem draining & stopped state tracking
+
+Changes since v1 at [1]:
+- fixed output_size is never used reported by hans
+- rebased on G12A and SM1 patches
+- added handling of qbuf after STREAMON and STOP before enought buffer queued
+
+[1] https://lore.kernel.org/linux-media/20191007145909.29979-1-mjourdan@baylibre.com
+[2] https://lore.kernel.org/linux-media/20191126093733.32404-1-narmstrong@baylibre.com
+[3] https://lore.kernel.org/linux-media/20191209122028.13714-1-narmstrong@baylibre.com
+[4] https://people.freedesktop.org/~narmstrong/vicodec-compliance-7ead0e1856b89f2e19369af452bb03fd0cd16793-20200116.log
+[5] https://lore.kernel.org/linux-media/20200116133025.1903-1-narmstrong@baylibre.com
+
+Maxime Jourdan (2):
+  media: meson: vdec: bring up to compliance
+  media: meson: vdec: add H.264 decoding support
+
+Neil Armstrong (2):
+  media: v4l2-mem2mem: handle draining, stopped and next-buf-is-last
+    states
+  media: vicodec: use v4l2-mem2mem draining, stopped and
+    next-buf-is-last states handling
+
+ drivers/media/platform/vicodec/vicodec-core.c | 162 ++----
+ drivers/media/v4l2-core/v4l2-mem2mem.c        | 172 ++++++-
+ drivers/staging/media/meson/vdec/Makefile     |   2 +-
+ drivers/staging/media/meson/vdec/codec_h264.c | 482 ++++++++++++++++++
+ drivers/staging/media/meson/vdec/codec_h264.h |  14 +
+ drivers/staging/media/meson/vdec/esparser.c   |  58 +--
+ drivers/staging/media/meson/vdec/vdec.c       |  90 ++--
+ drivers/staging/media/meson/vdec/vdec.h       |  14 +-
+ .../staging/media/meson/vdec/vdec_helpers.c   |  88 ++--
+ .../staging/media/meson/vdec/vdec_helpers.h   |   6 +-
+ .../staging/media/meson/vdec/vdec_platform.c  |  71 +++
+ include/media/v4l2-mem2mem.h                  |  95 ++++
+ 12 files changed, 1024 insertions(+), 230 deletions(-)
+ create mode 100644 drivers/staging/media/meson/vdec/codec_h264.c
+ create mode 100644 drivers/staging/media/meson/vdec/codec_h264.h
+
+-- 
+2.22.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
