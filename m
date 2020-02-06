@@ -2,22 +2,22 @@ Return-Path: <SRS0=So4j=32=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_DBL_ABUSE_MALW,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,URIBL_DBL_ABUSE_MALW,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 72EBBC33CAC
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:27:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B744C2D0B1
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:27:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3E60A217BA
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:27:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5B023217BA
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:27:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ESS6WOHG";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="lyhRALEW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3E60A217BA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WuErzdwx";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="uiUlt3ik"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5B023217BA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WOjeiwiy90clnFFMgUNrCs2vKatf/731/2R1DCC/jHg=; b=ESS6WOHGSVq6cl
-	pszJPzfI7Vqsex5/PFJXvsBxhXzzUVb66iiCuyXw9omPToHGI6qnG5BknRPPSFk1iYe2vAD3NTP13
-	p3bMWMLkBSiRtIgl1FdRKMAGIH8t23SnyAfa9psrGySrVVe9b0BS1mvy6yPF/LvkBG5kmyUCtIjBI
-	XFo1RB4kNipsA/Z0RjehSDwP8ve9RFKkh0oclfeMlIGBhlgghxF9ukWCgLTJ0ypZKYCfE0lATlTSq
-	YbKargE64X3rrflaEQn2rFhopBh344B3yRwTYxf2n43mF0ENBrGJSM3NHmjz2SEZFwa5frxYr5SRc
-	zyoQatWjcGRdMb3/7Xyg==;
+	List-Owner; bh=e/v0AImZoxlxNdVds2CjpeR91ecIk6U7vR4OLMhesGg=; b=WuErzdwxr9XMas
+	gHgnIhe/kVacKdUsX/usZAyFuB0OA2cKYq6cxARfDhPAeTdgM3iYsggFYGPIzG6uK1M303AhZzqUK
+	CwAK+Cpry4xVvM+voXkZs+EV0A1NVKoHb2s9kNudsku5J6tXYBhqwQWaE24oPOdue/7L8OpYEChW3
+	K8uydaCWRal8G7hMQuKGdmEI3/3aqbi20XGOa7nvq4Bf21w3BiHj3uzZ4xKc3jpjESbvsXI3ga8G/
+	IXJqZs35isieuUfLMu947TDiGCLLqr3QZX8Kt62gF+tcuMuCLuIbp9fTkrYea7c4oBfxpQSxUNxDE
+	B08/71vI1X3RKIetWNsw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1izcVC-0002xH-GW; Thu, 06 Feb 2020 08:27:10 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1izcVQ-0003Dy-8x; Thu, 06 Feb 2020 08:27:24 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1izcUw-0002iX-BO
- for linux-amlogic@lists.infradead.org; Thu, 06 Feb 2020 08:26:57 +0000
-Received: by mail-wr1-x443.google.com with SMTP id t3so5999583wru.7
- for <linux-amlogic@lists.infradead.org>; Thu, 06 Feb 2020 00:26:54 -0800 (PST)
+ id 1izcUx-0002j0-NY
+ for linux-amlogic@lists.infradead.org; Thu, 06 Feb 2020 08:26:58 +0000
+Received: by mail-wr1-x441.google.com with SMTP id u6so6048555wrt.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 06 Feb 2020 00:26:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=XJn3I1WlgT9+Tx+iEjfyYvI1RbkbtewFYhNZjpUf2a4=;
- b=lyhRALEWdcnVkF5v9O+iCwEfTgYLCI/o4YxXC2kcnY10Js1eb9pHOcjKmgGbHjhUQO
- UunyxGBsQ24j7PpXkPC9lvBcHHZMzVdR5XNhQALmIUaLdcGJ5HJssseAgjzOoodZa+Oa
- Ih7f3iPwjHwhNVh13gzm+P05M/8nHCzF2AbOpe3QAZWjtn9IlbP37I9KKjDeXu+tdVgt
- gpyHXS6s1VqbTy8BxJ3NqmtyD0x9nNXEqX5xdRaLaTIF6UGldmNMA+HcGvqROGlb3EVB
- A0jXK1V0P5Kv4bPkr/CCZpX8OfQs6uyhc5vQ+R3/u4tH6FKZEHMZEpdiUQ9o3uovZEJq
- n63g==
+ bh=V3exTGHebANiW1zaXQX343EHgiihrmvoNYFZJmclMTA=;
+ b=uiUlt3ikDINvrqggX1GpgNyu3rcqRLm7aXC1dA/mcDCByQBwB5aJPEWsaHep6J0tpL
+ 3VhzUfpK7aKjW7pcDWLdepNGYAPcRr0rQnMPBeMMbczbCqQRTDOOkCetr1CRTRFZ7BNH
+ geIjB/RPMa80r/nhY4WGB/gzuvc1CSCsnTfz+8wWUWCdUcdsaNCO3Kwy1Y+4sWuO5UdB
+ KvBUv7hIUohYmnBTW3QiA4Gi4BNmEqoDVxlQkGbKEQnc3BpVBTP6LmR3YXRFDZ5SNoLL
+ 614utQ2B5GRvvMNkcSE/W5eclv9dwiTDJiPNpjsjosCB+c83eEOqHjpnX8VJLNBxj9HQ
+ /ztA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=XJn3I1WlgT9+Tx+iEjfyYvI1RbkbtewFYhNZjpUf2a4=;
- b=j2sBI+Ge1Fed6bgqMnnfAAWoPHY2sYm78tJ3rzKXizPTbpUER6S7xJJiDFmxgrvUz7
- jsrAbVXEG+IUz++Y3MbiuZCrf3vqf8rnhZbU5n7JvCDa7rSB0EVPIhORWxIoQQZ/CPQ+
- U3YnsEeuBme7zG5pB8PX0q01pGiPUQketuUmmLJ/QvbwTImt10184yE+pZn6PCHdwfoj
- aRtwaKy+sAvnltO90oajQBJBbXL7qAIU/dw+u9oUE62cnHTOgePIsYpduOM9XJUa2whn
- VQxdCkaRynEKcsn0MkpDgKp6R+f21kWgDrpaX8UVomKuYeisc/w3c5cBOchCFzlwbd/N
- PL1Q==
-X-Gm-Message-State: APjAAAUoItSfvpkRXqM9LiOtanZOkq9fpJ8+bfLLD5hEwT4qXz5GdwDz
- rwtbu+KOZ3NJiUaoCyYas2jexA==
-X-Google-Smtp-Source: APXvYqzdQLSbeoSzlikYIcc40v94M4+ypXUAQgQGqz39UOHexl0CdQ1au627q+8LkvSC4wqR4bqtDw==
-X-Received: by 2002:adf:ed8e:: with SMTP id c14mr2538684wro.80.1580977612838; 
- Thu, 06 Feb 2020 00:26:52 -0800 (PST)
+ bh=V3exTGHebANiW1zaXQX343EHgiihrmvoNYFZJmclMTA=;
+ b=J3zF6BH19do3WSEFGH9sEKg99RzpmPZsjK4nGf780G9MaOtv+SxWGYL1jzC/yLM2Hg
+ OSDbG7jyJeDfBW5C0Wp8m7o0nHbO7rhLoRy78rl5FK9v0vjEhc3lrxy/V1p65kezte0n
+ Pec2oLCys0r/hUpVkJYHs0pRwoVJb+zM6AXVlpvpEErAajQ3nAquFun+P18GjQG+LPzO
+ aNlPm++wsgpq4r/rSVgUHPJ/qw3cTZvgHvYHeEug4HbzZR4mCYMNJmVUg6Qmjo/gOY93
+ 9bmymbbF79Q3dmSwl73cTvAewgieWM94NRRgtMa0vT4wvdiRKNAHwzs8HNIfY4xx820L
+ aCZg==
+X-Gm-Message-State: APjAAAUdDjX4Ph55tCavnGU1cZkRd6lJJZQJJewKOpGkUC97dnRoUS7w
+ RHT18hIxR7iWK+7OGDw74T3scHjFT1OKSg==
+X-Google-Smtp-Source: APXvYqwFvI+NFupYcY1OOqs9YpXYPXOMSvKt5qXV9mtjsnO0i6Mn+W1Xz6qX/xTXVCU+F0n6wLhTjw==
+X-Received: by 2002:a5d:42c5:: with SMTP id t5mr2584565wrr.73.1580977614215;
+ Thu, 06 Feb 2020 00:26:54 -0800 (PST)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:7d33:17f7:8097:ecc7])
- by smtp.gmail.com with ESMTPSA id e16sm3148027wrs.73.2020.02.06.00.26.51
+ by smtp.gmail.com with ESMTPSA id e16sm3148027wrs.73.2020.02.06.00.26.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Feb 2020 00:26:52 -0800 (PST)
+ Thu, 06 Feb 2020 00:26:53 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: mchehab@kernel.org,
 	hans.verkuil@cisco.com
-Subject: [PATCH v5 1/4] media: v4l2-mem2mem: handle draining,
- stopped and next-buf-is-last states
-Date: Thu,  6 Feb 2020 09:26:45 +0100
-Message-Id: <20200206082648.25184-2-narmstrong@baylibre.com>
+Subject: [PATCH v5 2/4] media: vicodec: use v4l2-mem2mem draining,
+ stopped and next-buf-is-last states handling
+Date: Thu,  6 Feb 2020 09:26:46 +0100
+Message-Id: <20200206082648.25184-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200206082648.25184-1-narmstrong@baylibre.com>
 References: <20200206082648.25184-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200206_002654_426733_952EA615 
-X-CRM114-Status: GOOD (  20.46  )
+X-CRM114-CacheID: sfid-20200206_002655_770729_7D566A48 
+X-CRM114-Status: GOOD (  15.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,392 +97,316 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: Maxime Jourdan <mjourdan@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ Hans Verkuil <hverkuil@xs4all.nl>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Since the draining and stop phase of the HW decoder mem2mem bahaviour is
-now clearly defined, we can move handling of the following states to the
-common v4l2-mem2mem core code:
-- draining
-- stopped
-- next-buf-is-last
+Use the previously introduced v4l2-mem2mem core APIs to handle the drainig,
+stopped and next-buf-is-last states.
 
-By introducing the following v4l2-mem2mem APIS:
-- v4l2_m2m_encoder_cmd/v4l2_m2m_ioctl_encoder_cmd to handle start/stop command
-- v4l2_m2m_decoder_cmd/v4l2_m2m_ioctl_decoder_cmd to handle start/stop command
-- v4l2_m2m_start_streaming to handle start of streaming of the de/encoder queue
-- v4l2_m2m_stop_streaming to handle stop of streaming of the de/encoder queue
-- v4l2_m2m_last_buffer_done to maek the current dest buffer as the last one
+With these changes, the v4l2-compliance still passes with the following
+commands :
+# v4l2-ctl --stream-mmap --stream-out-mmap --stream-to-hdr out.comp --stream-from in.yuv
+>>>><><><><><><><><><><><><><><><><>< 15.53 fps
+ 15.53 fps
+><><><><><><><><><><><><>< 13.99 fps
+ 13.99 fps
+><><><><><><><><><><><>< 13.52 fps
+ 13.52 fps
+><><><><><><><><><><><><>< 13.41 fps
+ 13.41 fps
+><><><><><><><><><><><><>< 13.21 fps
+ 13.21 fps
+><><><><><><><><><><><>< 13.09 fps
+ 13.09 fps
+><><><><><><><
+STOP ENCODER
+<<<
+EOS EVENT
 
-And inline helpers:
-- v4l2_m2m_mark_stopped to mark the de/encoding process as stopped
-- v4l2_m2m_clear_state to clear the de/encoding state
-- v4l2_m2m_dst_buf_is_last to detect the current dequeud dst_buf is the last
-- v4l2_m2m_has_stopped to detect the de/encoding stopped state
-- v4l2_m2m_is_last_draining_src_buf to detect the currect source buffer should
- be the last processing before stopping the de/encoding process
+# v4l2-compliance --stream-from in.yuv -s
+v4l2-compliance SHA: 7ead0e1856b89f2e19369af452bb03fd0cd16793, 64 bits
+[...]
+Total for vicodec device /dev/video0: 50, Succeeded: 50, Failed: 0, Warnings: 0
 
-The special next-buf-is-last when min_buffers != 1 case is also handled
-in v4l2_m2m_qbuf() by reusing the other introduced APIs.
+The full output is available at [1]
 
-This state management has been stolen from the vicodec implementation,
-and is no-op for drivers not calling the v4l2_m2m_encoder_cmd or
-v4l2_m2m_decoder_cmd and v4l2_m2m_start_streaming/v4l2_m2m_stop_streaming.
+# v4l2-compliance -d1 --stream-from-hdr out.comp -s
+v4l2-compliance SHA: 7ead0e1856b89f2e19369af452bb03fd0cd16793, 64 bits
+[...]
+Total for vicodec device /dev/video1: 50, Succeeded: 50, Failed: 0, Warnings: 0
 
-The vicodec will be the first one to be converted as an example.
+The full output is available at [2]
 
+No functional changes should be noticed.
+
+[1] https://termbin.com/25nn
+[2] https://termbin.com/dza4
+
+Suggested-by: Hans Verkuil <hverkuil@xs4all.nl>
+Suggested-by: Maxime Jourdan <mjourdan@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/media/v4l2-core/v4l2-mem2mem.c | 172 ++++++++++++++++++++++++-
- include/media/v4l2-mem2mem.h           |  95 ++++++++++++++
- 2 files changed, 265 insertions(+), 2 deletions(-)
+ drivers/media/platform/vicodec/vicodec-core.c | 162 ++++++------------
+ 1 file changed, 52 insertions(+), 110 deletions(-)
 
-diff --git a/drivers/media/v4l2-core/v4l2-mem2mem.c b/drivers/media/v4l2-core/v4l2-mem2mem.c
-index 1afd9c6ad908..f221d6c7a137 100644
---- a/drivers/media/v4l2-core/v4l2-mem2mem.c
-+++ b/drivers/media/v4l2-core/v4l2-mem2mem.c
-@@ -340,6 +340,11 @@ static void __v4l2_m2m_try_queue(struct v4l2_m2m_dev *m2m_dev,
- 		m2m_ctx->new_frame = !dst->vb2_buf.copied_timestamp ||
- 			dst->vb2_buf.timestamp != src->vb2_buf.timestamp;
+diff --git a/drivers/media/platform/vicodec/vicodec-core.c b/drivers/media/platform/vicodec/vicodec-core.c
+index 82350097503e..425c47216dae 100644
+--- a/drivers/media/platform/vicodec/vicodec-core.c
++++ b/drivers/media/platform/vicodec/vicodec-core.c
+@@ -117,15 +117,10 @@ struct vicodec_ctx {
+ 	struct vicodec_dev	*dev;
+ 	bool			is_enc;
+ 	bool			is_stateless;
+-	bool			is_draining;
+-	bool			next_is_last;
+-	bool			has_stopped;
+ 	spinlock_t		*lock;
  
-+	if (m2m_ctx->has_stopped) {
-+		dprintk("Device has stopped\n");
-+		goto job_unlock;
-+	}
-+
- 	if (m2m_dev->m2m_ops->job_ready
- 		&& (!m2m_dev->m2m_ops->job_ready(m2m_ctx->priv))) {
- 		dprintk("Driver not ready\n");
-@@ -556,6 +561,99 @@ int v4l2_m2m_querybuf(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
- }
- EXPORT_SYMBOL_GPL(v4l2_m2m_querybuf);
+ 	struct v4l2_ctrl_handler hdl;
  
-+void v4l2_m2m_last_buffer_done(struct v4l2_m2m_ctx *m2m_ctx,
-+			       struct vb2_v4l2_buffer *vbuf)
-+{
-+	vbuf->flags |= V4L2_BUF_FLAG_LAST;
-+	vb2_buffer_done(&vbuf->vb2_buf, VB2_BUF_STATE_DONE);
-+
-+	v4l2_m2m_mark_stopped(m2m_ctx);
-+}
-+EXPORT_SYMBOL_GPL(v4l2_m2m_last_buffer_done);
-+
-+static int v4l2_mark_last_buf(struct v4l2_m2m_ctx *m2m_ctx)
-+{
-+	struct vb2_v4l2_buffer *next_dst_buf;
-+
-+	if (m2m_ctx->is_draining)
-+		return -EBUSY;
-+
-+	if (m2m_ctx->has_stopped)
-+		return 0;
-+
-+	m2m_ctx->last_src_buf = v4l2_m2m_last_src_buf(m2m_ctx);
-+	m2m_ctx->is_draining = true;
-+
-+	if (m2m_ctx->last_src_buf)
-+		return 0;
-+
-+	next_dst_buf = v4l2_m2m_dst_buf_remove(m2m_ctx);
-+	if (!next_dst_buf) {
-+		m2m_ctx->next_buf_last = true;
-+		return 0;
-+	}
-+
-+	v4l2_m2m_last_buffer_done(m2m_ctx, next_dst_buf);
-+
-+	return 0;
-+}
-+
-+void v4l2_m2m_start_streaming(struct v4l2_m2m_ctx *m2m_ctx, struct vb2_queue *q)
-+{
-+	if (V4L2_TYPE_IS_OUTPUT(q->type))
-+		m2m_ctx->last_src_buf = NULL;
-+}
-+EXPORT_SYMBOL_GPL(v4l2_m2m_start_streaming);
-+
-+void v4l2_m2m_stop_streaming(struct v4l2_m2m_ctx *m2m_ctx, struct vb2_queue *q)
-+{
-+	if (V4L2_TYPE_IS_OUTPUT(q->type)) {
-+		if (m2m_ctx->is_draining) {
-+			struct vb2_v4l2_buffer *next_dst_buf;
-+
-+			m2m_ctx->last_src_buf = NULL;
-+			next_dst_buf = v4l2_m2m_dst_buf_remove(m2m_ctx);
-+			if (!next_dst_buf)
-+				m2m_ctx->next_buf_last = true;
-+			else
-+				v4l2_m2m_last_buffer_done(m2m_ctx,
-+							  next_dst_buf);
-+		}
-+	} else {
-+		v4l2_m2m_clear_state(m2m_ctx);
-+	}
-+}
-+EXPORT_SYMBOL_GPL(v4l2_m2m_stop_streaming);
-+
-+static void v4l2_m2m_force_last_buf_done(struct v4l2_m2m_ctx *m2m_ctx,
-+					 struct vb2_queue *q)
-+{
-+	struct vb2_buffer *vb;
-+	struct vb2_v4l2_buffer *vbuf;
-+	unsigned int i;
-+
-+	if (WARN_ON(q->is_output))
-+		return;
-+	if (list_empty(&q->queued_list))
-+		return;
-+
-+	vb = list_first_entry(&q->queued_list, struct vb2_buffer, queued_entry);
-+	for (i = 0; i < vb->num_planes; i++)
-+		vb2_set_plane_payload(vb, i, 0);
-+
-+	/*
-+	 * Since the buffer hasn't been queued to the ready queue,
-+	 * mark is active and owned before marking it LAST and DONE
-+	 */
-+	vb->state = VB2_BUF_STATE_ACTIVE;
-+	atomic_inc(&q->owned_by_drv_count);
-+
-+	vbuf = to_vb2_v4l2_buffer(vb);
-+	vbuf->field = V4L2_FIELD_NONE;
-+
-+	v4l2_m2m_last_buffer_done(m2m_ctx, vbuf);
-+}
-+
- int v4l2_m2m_qbuf(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
- 		  struct v4l2_buffer *buf)
- {
-@@ -570,11 +668,25 @@ int v4l2_m2m_qbuf(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
- 			__func__);
- 		return -EPERM;
+-	struct vb2_v4l2_buffer *last_src_buf;
+-
+ 	/* Source and destination queue data */
+ 	struct vicodec_q_data   q_data[2];
+ 	struct v4l2_fwht_state	state;
+@@ -431,11 +426,11 @@ static void device_run(void *priv)
+ 	v4l2_m2m_buf_copy_metadata(src_buf, dst_buf, false);
+ 
+ 	spin_lock(ctx->lock);
+-	if (!ctx->comp_has_next_frame && src_buf == ctx->last_src_buf) {
++	if (!ctx->comp_has_next_frame &&
++	    v4l2_m2m_is_last_draining_src_buf(ctx->fh.m2m_ctx, src_buf)) {
+ 		dst_buf->flags |= V4L2_BUF_FLAG_LAST;
+ 		v4l2_event_queue_fh(&ctx->fh, &vicodec_eos_event);
+-		ctx->is_draining = false;
+-		ctx->has_stopped = true;
++		v4l2_m2m_mark_stopped(ctx->fh.m2m_ctx);
  	}
-+
- 	ret = vb2_qbuf(vq, vdev->v4l2_dev->mdev, buf);
--	if (!ret && !(buf->flags & V4L2_BUF_FLAG_IN_REQUEST))
-+	if (ret)
+ 	if (ctx->is_enc || ctx->is_stateless) {
+ 		src_buf->sequence = q_src->sequence++;
+@@ -586,8 +581,6 @@ static int job_ready(void *priv)
+ 	unsigned int max_to_copy;
+ 	unsigned int comp_frame_size;
+ 
+-	if (ctx->has_stopped)
+-		return 0;
+ 	if (ctx->source_changed)
+ 		return 0;
+ 	if (ctx->is_stateless || ctx->is_enc || ctx->comp_has_frame)
+@@ -607,7 +600,8 @@ static int job_ready(void *priv)
+ 	if (ctx->header_size < sizeof(struct fwht_cframe_hdr)) {
+ 		state = get_next_header(ctx, &p, p_src + sz - p);
+ 		if (ctx->header_size < sizeof(struct fwht_cframe_hdr)) {
+-			if (ctx->is_draining && src_buf == ctx->last_src_buf)
++			if (v4l2_m2m_is_last_draining_src_buf(ctx->fh.m2m_ctx,
++							      src_buf))
+ 				return 1;
+ 			job_remove_src_buf(ctx, state);
+ 			goto restart;
+@@ -636,7 +630,8 @@ static int job_ready(void *priv)
+ 		p += copy;
+ 		ctx->comp_size += copy;
+ 		if (ctx->comp_size < max_to_copy) {
+-			if (ctx->is_draining && src_buf == ctx->last_src_buf)
++			if (v4l2_m2m_is_last_draining_src_buf(ctx->fh.m2m_ctx,
++							      src_buf))
+ 				return 1;
+ 			job_remove_src_buf(ctx, state);
+ 			goto restart;
+@@ -1219,41 +1214,6 @@ static int vidioc_s_selection(struct file *file, void *priv,
+ 	return 0;
+ }
+ 
+-static int vicodec_mark_last_buf(struct vicodec_ctx *ctx)
+-{
+-	struct vb2_v4l2_buffer *next_dst_buf;
+-	int ret = 0;
+-
+-	spin_lock(ctx->lock);
+-	if (ctx->is_draining) {
+-		ret = -EBUSY;
+-		goto unlock;
+-	}
+-	if (ctx->has_stopped)
+-		goto unlock;
+-
+-	ctx->last_src_buf = v4l2_m2m_last_src_buf(ctx->fh.m2m_ctx);
+-	ctx->is_draining = true;
+-	if (ctx->last_src_buf)
+-		goto unlock;
+-
+-	next_dst_buf = v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
+-	if (!next_dst_buf) {
+-		ctx->next_is_last = true;
+-		goto unlock;
+-	}
+-
+-	next_dst_buf->flags |= V4L2_BUF_FLAG_LAST;
+-	vb2_buffer_done(&next_dst_buf->vb2_buf, VB2_BUF_STATE_DONE);
+-	ctx->is_draining = false;
+-	ctx->has_stopped = true;
+-	v4l2_event_queue_fh(&ctx->fh, &vicodec_eos_event);
+-
+-unlock:
+-	spin_unlock(ctx->lock);
+-	return ret;
+-}
+-
+ static int vicodec_encoder_cmd(struct file *file, void *fh,
+ 			    struct v4l2_encoder_cmd *ec)
+ {
+@@ -1268,18 +1228,19 @@ static int vicodec_encoder_cmd(struct file *file, void *fh,
+ 	    !vb2_is_streaming(&ctx->fh.m2m_ctx->out_q_ctx.q))
+ 		return 0;
+ 
+-	if (ec->cmd == V4L2_ENC_CMD_STOP)
+-		return vicodec_mark_last_buf(ctx);
+-	ret = 0;
+-	spin_lock(ctx->lock);
+-	if (ctx->is_draining) {
+-		ret = -EBUSY;
+-	} else if (ctx->has_stopped) {
+-		ctx->has_stopped = false;
++	ret = v4l2_m2m_ioctl_encoder_cmd(file, fh, ec);
++	if (ret < 0)
 +		return ret;
 +
-+	/*
-+	 * If the capture queue is streaming, but streaming hasn't started
-+	 * on the device, but was asked to stop, mark the previously queued
-+	 * buffer as DONE with LAST flag since it won't be queued on the
-+	 * device.
-+	 */
-+	if (!V4L2_TYPE_IS_OUTPUT(vq->type) &&
-+	    vb2_is_streaming(vq) && !vb2_start_streaming_called(vq) &&
-+	   (v4l2_m2m_has_stopped(m2m_ctx) || v4l2_m2m_dst_buf_is_last(m2m_ctx)))
-+		v4l2_m2m_force_last_buf_done(m2m_ctx, vq);
-+	else if (!(buf->flags & V4L2_BUF_FLAG_IN_REQUEST))
- 		v4l2_m2m_try_schedule(m2m_ctx);
- 
++	if (ec->cmd == V4L2_ENC_CMD_STOP &&
++	    v4l2_m2m_has_stopped(ctx->fh.m2m_ctx))
++		v4l2_event_queue_fh(&ctx->fh, &vicodec_eos_event);
++
++	if (ec->cmd == V4L2_ENC_CMD_START &&
++	    v4l2_m2m_has_stopped(ctx->fh.m2m_ctx))
+ 		vb2_clear_last_buffer_dequeued(&ctx->fh.m2m_ctx->cap_q_ctx.q);
+-	}
+-	spin_unlock(ctx->lock);
 -	return ret;
-+	return 0;
- }
- EXPORT_SYMBOL_GPL(v4l2_m2m_qbuf);
- 
-@@ -1225,6 +1337,62 @@ int v4l2_m2m_ioctl_try_decoder_cmd(struct file *file, void *fh,
- }
- EXPORT_SYMBOL_GPL(v4l2_m2m_ioctl_try_decoder_cmd);
- 
-+int v4l2_m2m_encoder_cmd(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
-+			 struct v4l2_encoder_cmd *ec)
-+{
-+	if (ec->cmd != V4L2_ENC_CMD_STOP && ec->cmd != V4L2_ENC_CMD_START)
-+		return -EINVAL;
-+
-+	if (ec->cmd == V4L2_ENC_CMD_STOP)
-+		return v4l2_mark_last_buf(m2m_ctx);
-+
-+	if (m2m_ctx->is_draining)
-+		return -EBUSY;
-+
-+	if (m2m_ctx->has_stopped)
-+		m2m_ctx->has_stopped = false;
 +
 +	return 0;
-+}
-+EXPORT_SYMBOL_GPL(v4l2_m2m_encoder_cmd);
-+
-+int v4l2_m2m_decoder_cmd(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
-+			 struct v4l2_decoder_cmd *dc)
-+{
-+	if (dc->cmd != V4L2_DEC_CMD_STOP && dc->cmd != V4L2_DEC_CMD_START)
-+		return -EINVAL;
-+
-+	if (dc->cmd == V4L2_DEC_CMD_STOP)
-+		return v4l2_mark_last_buf(m2m_ctx);
-+
-+	if (m2m_ctx->is_draining)
-+		return -EBUSY;
-+
-+	if (m2m_ctx->has_stopped)
-+		m2m_ctx->has_stopped = false;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(v4l2_m2m_decoder_cmd);
-+
-+int v4l2_m2m_ioctl_encoder_cmd(struct file *file, void *priv,
-+			       struct v4l2_encoder_cmd *ec)
-+{
-+	struct v4l2_fh *fh = file->private_data;
-+
-+	return v4l2_m2m_encoder_cmd(file, fh->m2m_ctx, ec);
-+}
-+EXPORT_SYMBOL_GPL(v4l2_m2m_ioctl_encoder_cmd);
-+
-+int v4l2_m2m_ioctl_decoder_cmd(struct file *file, void *priv,
-+			       struct v4l2_decoder_cmd *dc)
-+{
-+	struct v4l2_fh *fh = file->private_data;
-+
-+	return v4l2_m2m_decoder_cmd(file, fh->m2m_ctx, dc);
-+}
-+EXPORT_SYMBOL_GPL(v4l2_m2m_ioctl_decoder_cmd);
-+
- int v4l2_m2m_ioctl_stateless_try_decoder_cmd(struct file *file, void *fh,
- 					     struct v4l2_decoder_cmd *dc)
- {
-diff --git a/include/media/v4l2-mem2mem.h b/include/media/v4l2-mem2mem.h
-index 1d85e24791e4..3476889af46c 100644
---- a/include/media/v4l2-mem2mem.h
-+++ b/include/media/v4l2-mem2mem.h
-@@ -80,6 +80,10 @@ struct v4l2_m2m_queue_ctx {
-  *		for an existing frame. This is always true unless
-  *		V4L2_BUF_CAP_SUPPORTS_M2M_HOLD_CAPTURE_BUF is set, which
-  *		indicates slicing support.
-+ * @is_draining: indicates device is in draining phase
-+ * @last_src_buf: indicate the last source buffer for draining
-+ * @next_buf_last: next capture queud buffer will be tagged as last
-+ * @has_stopped: indicate the device has been stopped
-  * @m2m_dev: opaque pointer to the internal data to handle M2M context
-  * @cap_q_ctx: Capture (output to memory) queue context
-  * @out_q_ctx: Output (input from memory) queue context
-@@ -98,6 +102,11 @@ struct v4l2_m2m_ctx {
- 
- 	bool				new_frame;
- 
-+	bool				is_draining;
-+	struct vb2_v4l2_buffer		*last_src_buf;
-+	bool				next_buf_last;
-+	bool				has_stopped;
-+
- 	/* internal use only */
- 	struct v4l2_m2m_dev		*m2m_dev;
- 
-@@ -215,6 +224,50 @@ v4l2_m2m_buf_done(struct vb2_v4l2_buffer *buf, enum vb2_buffer_state state)
- 	vb2_buffer_done(&buf->vb2_buf, state);
  }
  
-+static inline void
-+v4l2_m2m_clear_state(struct v4l2_m2m_ctx *m2m_ctx)
-+{
-+	m2m_ctx->next_buf_last = false;
-+	m2m_ctx->is_draining = false;
-+	m2m_ctx->has_stopped = false;
-+}
-+
-+static inline void
-+v4l2_m2m_mark_stopped(struct v4l2_m2m_ctx *m2m_ctx)
-+{
-+	m2m_ctx->next_buf_last = false;
-+	m2m_ctx->is_draining = false;
-+	m2m_ctx->has_stopped = true;
-+}
-+
-+static inline bool
-+v4l2_m2m_dst_buf_is_last(struct v4l2_m2m_ctx *m2m_ctx)
-+{
-+	return m2m_ctx->is_draining && m2m_ctx->next_buf_last;
-+}
-+
-+static inline bool
-+v4l2_m2m_has_stopped(struct v4l2_m2m_ctx *m2m_ctx)
-+{
-+	return m2m_ctx->has_stopped;
-+}
-+
-+static inline bool
-+v4l2_m2m_is_last_draining_src_buf(struct v4l2_m2m_ctx *m2m_ctx,
-+				       struct vb2_v4l2_buffer *buf)
-+{
-+	return m2m_ctx->is_draining && buf == m2m_ctx->last_src_buf;
-+}
-+
-+/**
-+ * v4l2_m2m_last_buffer_done() - marks the buffer with LAST flag and DONE
-+ *
-+ * @m2m_ctx: m2m context assigned to the instance given by struct &v4l2_m2m_ctx
-+ * @vbuf: pointer to struct &v4l2_buffer
-+ */
-+void v4l2_m2m_last_buffer_done(struct v4l2_m2m_ctx *m2m_ctx,
-+			       struct vb2_v4l2_buffer *vbuf);
-+
- /**
-  * v4l2_m2m_reqbufs() - multi-queue-aware REQBUFS multiplexer
-  *
-@@ -312,6 +365,44 @@ int v4l2_m2m_streamon(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
- int v4l2_m2m_streamoff(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
- 		       enum v4l2_buf_type type);
+ static int vicodec_decoder_cmd(struct file *file, void *fh,
+@@ -1296,18 +1257,19 @@ static int vicodec_decoder_cmd(struct file *file, void *fh,
+ 	    !vb2_is_streaming(&ctx->fh.m2m_ctx->out_q_ctx.q))
+ 		return 0;
  
-+/**
-+ * v4l2_m2m_start_streaming() - handle start of streaming of a video queue
-+ *
-+ * @m2m_ctx: m2m context assigned to the instance given by struct &v4l2_m2m_ctx
-+ * @q: queue
-+ */
-+void v4l2_m2m_start_streaming(struct v4l2_m2m_ctx *m2m_ctx,
-+			      struct vb2_queue *q);
+-	if (dc->cmd == V4L2_DEC_CMD_STOP)
+-		return vicodec_mark_last_buf(ctx);
+-	ret = 0;
+-	spin_lock(ctx->lock);
+-	if (ctx->is_draining) {
+-		ret = -EBUSY;
+-	} else if (ctx->has_stopped) {
+-		ctx->has_stopped = false;
++	ret = v4l2_m2m_ioctl_decoder_cmd(file, fh, dc);
++	if (ret < 0)
++		return ret;
 +
-+/**
-+ * v4l2_m2m_stop_streaming() - handle stop of streaming of a video queue
-+ *
-+ * @m2m_ctx: m2m context assigned to the instance given by struct &v4l2_m2m_ctx
-+ * @q: queue
-+ */
-+void v4l2_m2m_stop_streaming(struct v4l2_m2m_ctx *m2m_ctx,
-+			     struct vb2_queue *q);
++	if (dc->cmd == V4L2_DEC_CMD_STOP &&
++	    v4l2_m2m_has_stopped(ctx->fh.m2m_ctx))
++		v4l2_event_queue_fh(&ctx->fh, &vicodec_eos_event);
 +
-+/**
-+ * v4l2_m2m_encoder_cmd() - execute an encoder command
-+ *
-+ * @file: pointer to struct &file
-+ * @m2m_ctx: m2m context assigned to the instance given by struct &v4l2_m2m_ctx
-+ * @ec: pointer to the encoder command
-+ */
-+int v4l2_m2m_encoder_cmd(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
-+			 struct v4l2_encoder_cmd *ec);
++	if (dc->cmd == V4L2_DEC_CMD_START &&
++	    v4l2_m2m_has_stopped(ctx->fh.m2m_ctx))
+ 		vb2_clear_last_buffer_dequeued(&ctx->fh.m2m_ctx->cap_q_ctx.q);
+-	}
+-	spin_unlock(ctx->lock);
+-	return ret;
 +
-+/**
-+ * v4l2_m2m_decoder_cmd() - execute a decoder command
-+ *
-+ * @file: pointer to struct &file
-+ * @m2m_ctx: m2m context assigned to the instance given by struct &v4l2_m2m_ctx
-+ * @dc: pointer to the decoder command
-+ */
-+int v4l2_m2m_decoder_cmd(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
-+			 struct v4l2_decoder_cmd *dc);
++	return 0;
+ }
+ 
+ static int vicodec_enum_framesizes(struct file *file, void *fh,
+@@ -1480,23 +1442,21 @@ static void vicodec_buf_queue(struct vb2_buffer *vb)
+ 		.u.src_change.changes = V4L2_EVENT_SRC_CH_RESOLUTION,
+ 	};
+ 
+-	if (vb2_is_streaming(vq_cap)) {
+-		if (!V4L2_TYPE_IS_OUTPUT(vb->vb2_queue->type) &&
+-		    ctx->next_is_last) {
+-			unsigned int i;
++	if (!V4L2_TYPE_IS_OUTPUT(vb->vb2_queue->type) &&
++	    vb2_is_streaming(vb->vb2_queue) &&
++	    v4l2_m2m_dst_buf_is_last(ctx->fh.m2m_ctx)) {
++		unsigned int i;
+ 
+-			for (i = 0; i < vb->num_planes; i++)
+-				vb->planes[i].bytesused = 0;
+-			vbuf->flags = V4L2_BUF_FLAG_LAST;
+-			vbuf->field = V4L2_FIELD_NONE;
+-			vbuf->sequence = get_q_data(ctx, vb->vb2_queue->type)->sequence++;
+-			vb2_buffer_done(vb, VB2_BUF_STATE_DONE);
+-			ctx->is_draining = false;
+-			ctx->has_stopped = true;
+-			ctx->next_is_last = false;
+-			v4l2_event_queue_fh(&ctx->fh, &vicodec_eos_event);
+-			return;
+-		}
++		for (i = 0; i < vb->num_planes; i++)
++			vb->planes[i].bytesused = 0;
 +
- /**
-  * v4l2_m2m_poll() - poll replacement, for destination buffers only
-  *
-@@ -704,6 +795,10 @@ int v4l2_m2m_ioctl_streamon(struct file *file, void *fh,
- 				enum v4l2_buf_type type);
- int v4l2_m2m_ioctl_streamoff(struct file *file, void *fh,
- 				enum v4l2_buf_type type);
-+int v4l2_m2m_ioctl_encoder_cmd(struct file *file, void *fh,
-+			       struct v4l2_encoder_cmd *ec);
-+int v4l2_m2m_ioctl_decoder_cmd(struct file *file, void *fh,
-+			       struct v4l2_decoder_cmd *dc);
- int v4l2_m2m_ioctl_try_encoder_cmd(struct file *file, void *fh,
- 				   struct v4l2_encoder_cmd *ec);
- int v4l2_m2m_ioctl_try_decoder_cmd(struct file *file, void *fh,
++		vbuf->field = V4L2_FIELD_NONE;
++		vbuf->sequence =
++			get_q_data(ctx, vb->vb2_queue->type)->sequence++;
++
++		v4l2_m2m_last_buffer_done(ctx->fh.m2m_ctx, vbuf);
++		v4l2_event_queue_fh(&ctx->fh, &vicodec_eos_event);
++		return;
+ 	}
+ 
+ 	/* buf_queue handles only the first source change event */
+@@ -1609,8 +1569,7 @@ static int vicodec_start_streaming(struct vb2_queue *q,
+ 	chroma_div = info->width_div * info->height_div;
+ 	q_data->sequence = 0;
+ 
+-	if (V4L2_TYPE_IS_OUTPUT(q->type))
+-		ctx->last_src_buf = NULL;
++	v4l2_m2m_start_streaming(ctx->fh.m2m_ctx, q);
+ 
+ 	state->gop_cnt = 0;
+ 
+@@ -1689,29 +1648,12 @@ static void vicodec_stop_streaming(struct vb2_queue *q)
+ 
+ 	vicodec_return_bufs(q, VB2_BUF_STATE_ERROR);
+ 
+-	if (V4L2_TYPE_IS_OUTPUT(q->type)) {
+-		if (ctx->is_draining) {
+-			struct vb2_v4l2_buffer *next_dst_buf;
+-
+-			spin_lock(ctx->lock);
+-			ctx->last_src_buf = NULL;
+-			next_dst_buf = v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
+-			if (!next_dst_buf) {
+-				ctx->next_is_last = true;
+-			} else {
+-				next_dst_buf->flags |= V4L2_BUF_FLAG_LAST;
+-				vb2_buffer_done(&next_dst_buf->vb2_buf, VB2_BUF_STATE_DONE);
+-				ctx->is_draining = false;
+-				ctx->has_stopped = true;
+-				v4l2_event_queue_fh(&ctx->fh, &vicodec_eos_event);
+-			}
+-			spin_unlock(ctx->lock);
+-		}
+-	} else {
+-		ctx->is_draining = false;
+-		ctx->has_stopped = false;
+-		ctx->next_is_last = false;
+-	}
++	v4l2_m2m_stop_streaming(ctx->fh.m2m_ctx, q);
++
++	if (V4L2_TYPE_IS_OUTPUT(q->type) &&
++	    v4l2_m2m_has_stopped(ctx->fh.m2m_ctx))
++		v4l2_event_queue_fh(&ctx->fh, &vicodec_eos_event);
++
+ 	if (!ctx->is_enc && V4L2_TYPE_IS_OUTPUT(q->type))
+ 		ctx->first_source_change_sent = false;
+ 
 -- 
 2.22.0
 
