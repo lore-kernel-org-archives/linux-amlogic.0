@@ -2,89 +2,91 @@ Return-Path: <SRS0=So4j=32=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	URIBL_DBL_ABUSE_MALW,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-7.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,URIBL_DBL_ABUSE_MALW,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 74228C2D0B1
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:42:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5958C2D0B1
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:42:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3AEBB20838
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:42:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B956920838
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:42:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kRVAfjmK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EWUmgWyY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3AEBB20838
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rwt2bWh9";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="j+ac5GUs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B956920838
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=yjJwdQFsaYe+81vito6aPUq0g+MTgyEgltdOg9bR43U=; b=kRVAfjmKLawxhv
-	a/wyDZVdV7NTVgMq3IGdQtJHEUc+BjpS/4dcAE1Jnn+v7kYPtlmwhqSsAX0/r7+I+75tPK/pqlmLz
-	mQ340YWvqEtUlYlYGCpFmTB9W7x2FcuV4Nxw7b20A4rd6urKAudSL7ORCvHca4wMP2WTG21SjsSpN
-	eex2W2+jjZeU39/uKXSn6slgbiI+BROVaPlb3JXvzTNCWCgVOEfPCj3Jgmr/yOkJ1lJob3YeH/Bcf
-	xHMW6ry7aoabf7xIiWHLMyXYS2dKdFCwg4/LpApAPvI2hATv/WHD0GVQFwKX8qLJELYg3W+jFvjSt
-	7l4Gk17OaYjmf7dV/2VA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=t+Rv5JjoClJ1lY2VNfAIUtPRfmTuTOt9HywKvEv2ujw=; b=rwt2bWh9kX0Mj0
+	8bs/KNjgnHmsOLKTs4kwtMnNjyBeGsN9TlGQ1/8SPaiNkqyXUHkujiCXVxMJw8sb75KhUA/soZFux
+	hQiyNlcwLfXbMM5+6YatFy8QH6SRVXAg2JhiDTQeufF9clG1oJncM0BpKaC9J7khhmgeh9K9YTFfM
+	hh/czPYDlZfYh6vFxL14qP7G4/+qHpt6wbpyoDvBB++2T/mBoD3q94pyZeTVfd1BYLR/8zZfPzG4D
+	CDPIccCxEVuZG0JGbJ82OtvyYGq82K2i7IOgwBP14DUnt+W9HrjJPsxwGCpUV2qKJtpcc93KQROCw
+	hNJYOjnRf7Ona1GLuZyA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1izck9-0002GO-M8; Thu, 06 Feb 2020 08:42:37 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1izckG-0002Ma-W0; Thu, 06 Feb 2020 08:42:45 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1izcjU-0001ZP-Bz
- for linux-amlogic@lists.infradead.org; Thu, 06 Feb 2020 08:42:00 +0000
-Received: by mail-wm1-x342.google.com with SMTP id f129so5916678wmf.2
- for <linux-amlogic@lists.infradead.org>; Thu, 06 Feb 2020 00:41:56 -0800 (PST)
+ id 1izcjW-0001aE-Hb
+ for linux-amlogic@lists.infradead.org; Thu, 06 Feb 2020 08:42:03 +0000
+Received: by mail-wr1-x443.google.com with SMTP id z3so6088479wru.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 06 Feb 2020 00:41:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=RJqvynypNN2lA8IbNpaHHyxr5Ke0vEOMiboIN4OzW30=;
- b=EWUmgWyYbs4rAFCAzmHJdrqGef/4kVGKIJZJFjPkDLKnJUx3XRmTnA13kqXJfQuwMI
- svu35jlwowRUG+Dgdnxf2rti2CNYK308GJJhtFluIiuS5ndAEWJ9bpkzQXQoNYap7TW6
- K5/Hs3ilY6TyGtFdZU/6pVwf1cJtZQLz67vjSXzQTy2m2icJwSn4jgb9MamPNXM52Udj
- Zib81AptNFkyIiKzrVklvsXpPtr2BN85NQhi5wGvLSdNMYOr/KYhmmz3KhUZxOcw163t
- RZJ/R+iIMzD+0kWMO4JZ0xnd9P4RIi0hCnstDMBGyiWtNpQnG+iuPUF9vqQnjxHXmdpl
- olHQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=WxgSke1xqqIbUm6aWbWsjJ4dv5wN++i4U64IM8ckXcg=;
+ b=j+ac5GUsSJeMY/OOO6WKioMdvPzDHAK7Sst7e7SM62udReqc3+qm8W7/AS/Y6j7Msy
+ KbdrwcRRRj0zMRpvvPFf/hmM7mg96Rfdf0VhoEQJcYuIsKEz7gh5J+pIENHYykkH64gK
+ VrSQaGwLJQ3Yr+WmJ+DCP0fJB/LnhnX3OKZdAS37B1DlaSX7AnnS4Z47YpdmTUHgDt8r
+ Vtfg1kWP0sNYd1HkEhuL+5LzwDgoxLl90wkWrPN2VpeuyLZoSAlisD0Y6q4QBGH35bxt
+ X9SlOl/+fZ9JZhcWQH6io9NScUbnAKo6Zj6NRguQeavLFmgL96CPhb4MSIxe9iMiyLUf
+ Ep6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=RJqvynypNN2lA8IbNpaHHyxr5Ke0vEOMiboIN4OzW30=;
- b=UpJO8fqRkR5gnF9xjB+T5DCSjU4ovXhIZktkl+OZpq78Hvvomp67+IF4KUhaFxSswe
- ksWLzgyBaKzoZ2JYgz68anFBQrYry2HrkFdCTdmQbjT5DlBPW3u518WlIhHvcVbcjoeL
- 01KhLCo94h5UdbLjHfwk5NOjVPVJK1GVR77UlZFM+jHEprRGE2h6SP3YjiiERz5fVqQ/
- osvHplS2zDMvR2Ffs7F9vrtnQgsYS6ZfoUdmDSJ97/xTDyW3BW/FINsKe/6q44Zgzsl9
- JPBwyMyGlLKXLVpODdiAxWLxBBtzrEVpTjT3Z7/yJ2tTkrEpYqeGgGaRSM0HSGon+bbj
- 9SYA==
-X-Gm-Message-State: APjAAAXfgkmVAROM7L8PlBApPEIj4oURZ2cEfdVuOrCtR+o/vcgfAMGN
- GY38jnBi+zWFaP9l4xozYZ6w3Q==
-X-Google-Smtp-Source: APXvYqzSbMdoob4ZQGTDL4ScCNP7A8RXxjNyuUP5qriotInXR0cYNt/+fL8srgNKU603EKjDkzWWqQ==
-X-Received: by 2002:a05:600c:2283:: with SMTP id
- 3mr3161258wmf.100.1580978514693; 
- Thu, 06 Feb 2020 00:41:54 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=WxgSke1xqqIbUm6aWbWsjJ4dv5wN++i4U64IM8ckXcg=;
+ b=fNBwqPYTNM1OmC9cSRPl7MCMhlLzXt2hPHkW0jtFqgi0o1V38/Bx3Au+5M9vuuLQgS
+ e3JZAAMrDPcWQOmIYlUzPO4NBU1WwNKXcudJ3lFWBWo0EMHIJk6zHoG/m34zNZUouJ2c
+ XUTU6yFRWkimY85mxt0lRSke4o+yOOwjeOKH0jAV/SRJugypB6H5rhWoVw8r1rjxqZ8g
+ E26e3I449cMiga9pJXUsKRb6yZQIqRK+wzxaxHp0Jqc45zQY/IQOl7ibAIFybVL7LyVT
+ XKtF/9/ye5k53/0mZlEc5PXRqWJdOMyN/bd2hXNOM+blMi0YdR/qQ6tCWwlgnnnXcwej
+ Q/Yw==
+X-Gm-Message-State: APjAAAVfCkOq/HlrfpVpGar4/O6gE5it3sZsvI+clKqZXwLAlrp0nM2X
+ 6j9KVpcyORUJL2W1VG3qo8wP1w==
+X-Google-Smtp-Source: APXvYqxIG6LmzTQJJxqzCkbGhckXZWo6a952zpdZN5OJLly594iVnWzcsvf4srp9zXlz5Jbm13mIpQ==
+X-Received: by 2002:adf:cd92:: with SMTP id q18mr2490205wrj.261.1580978517085; 
+ Thu, 06 Feb 2020 00:41:57 -0800 (PST)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:7d33:17f7:8097:ecc7])
- by smtp.gmail.com with ESMTPSA id r1sm3222760wrx.11.2020.02.06.00.41.53
+ by smtp.gmail.com with ESMTPSA id r1sm3222760wrx.11.2020.02.06.00.41.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Feb 2020 00:41:54 -0800 (PST)
+ Thu, 06 Feb 2020 00:41:56 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: mchehab@kernel.org,
 	hans.verkuil@cisco.com
-Subject: [PATCH v4 0/5] media: meson: vdec: Add VP9 decoding support
-Date: Thu,  6 Feb 2020 09:41:47 +0100
-Message-Id: <20200206084152.7070-1-narmstrong@baylibre.com>
+Subject: [PATCH v4 2/5] media: meson: vdec: add helpers for lossless
+ framebuffer compression buffers
+Date: Thu,  6 Feb 2020 09:41:49 +0100
+Message-Id: <20200206084152.7070-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200206084152.7070-1-narmstrong@baylibre.com>
+References: <20200206084152.7070-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200206_004156_416619_DF58B2CC 
-X-CRM114-Status: GOOD (  10.39  )
+X-CRM114-CacheID: sfid-20200206_004158_581545_42325117 
+X-CRM114-Status: UNSURE (   8.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,194 +98,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: Maxime Jourdan <mjourdan@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+From: Maxime Jourdan <mjourdan@baylibre.com>
 
-This patchset aims to bring VP9 decoding support to Amlogic GXL, G12A & SM1
-platforms for the amlogic stateful video decoder driver.
+Add helpers to support the lossless framebuffer compression format that
+will be used in HEVC & VP9 decoders when decoding 10bit content for
+downsampling to 8bit NV12 and later proper compressed buffer support.
 
-With this, it passes v4l2-compliance with streaming on Amlogic G12A and
-Amlogic SM1 SoCs successfully using the stream at [1] with a fixed
-pyv4l2compliance script for VP9 at [2].
+Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../staging/media/meson/vdec/vdec_helpers.c   | 27 +++++++++++++++++++
+ .../staging/media/meson/vdec/vdec_helpers.h   |  4 +++
+ 2 files changed, 31 insertions(+)
 
-The original script kept the IVF headers in the stream, confusing the
-decoder. The fixed script only extracts the payload from the IVF container.
-
-The decoder has been tested using the Google CTS TestVectorsIttiam VP9 yuv420
-samples and the VP9 Decoder Performance streams at [5], decoding all streams from
-Profile 0 and 2 up to Level 4.1, with 10bit downsampling to 8bit.
-
-This patchset depends on :
-- H.264 and compliance at [4]
-
-Changes since v3 at [7]:
-- fixes necessary spare ref buffer handling in parser
-- added a comment to indicate how it's handled
-- fix VP9 on SM1, was working with G12A firmware, but needed some changed with SM1 specific firmware
-- pushed (gxl) and switched to missing (sm1) vp9 firmwares to linux-firmware repo
-
-Changes since v2 at [6]:
-- Rebased on H.264 and compliance at [4]
-
-Changes since v1 at [3]:
-- Fixed compliance for delta frame resize, but proper ref keeping is broken
-- Added warns for delta frame resize, to be fixed in a following patchset
-- Added VP9 probabilities parsing and transformation support to decore the VP9 performance streams
-- Fixed refs keeping, avoid deleting necessary refs for next frame
-- Properly used the kernel clamp_val() macros
-- Zeroed the workspace to avoid refs handling glitches
-- Add lock around the flush & stop to avoid race between IRQ and drain/stop
-
-[1] https://github.com/superna9999/pyv4l2compliance/raw/tests/output/Jellyfish_1080_10s_5MB.vp9.hdr
-[2] https://github.com/superna9999/pyv4l2compliance
-[3] https://lore.kernel.org/linux-media/
-[4] https://lore.kernel.org/linux-media/20200116133025.1903-1-narmstrong@baylibre.com
-[5] https://www.webmproject.org/vp9/levels/
-[6] https://lore.kernel.org/linux-media/20191217111939.10387-1-narmstrong@baylibre.com
-[7] https://lore.kernel.org/linux-media/20200116133437.2443-1-narmstrong@baylibre.com
-
-The compliance log is:
-# v4l2-compliance --stream-from-hdr Jellyfish_1080_10s_5MB.vp9.hdr -s 200
-v4l2-compliance SHA: 7ead0e1856b89f2e19369af452bb03fd0cd16793, 64 bits
-
-Compliance test for meson-vdec device /dev/video0:
-
-Driver Info:
-	Driver name      : meson-vdec
-	Card type        : Amlogic Video Decoder
-	Bus info         : platform:meson-vdec
-	Driver version   : 5.5.0
-	Capabilities     : 0x84204000
-		Video Memory-to-Memory Multiplanar
-		Streaming
-		Extended Pix Format
-		Device Capabilities
-	Device Caps      : 0x04204000
-		Video Memory-to-Memory Multiplanar
-		Streaming
-		Extended Pix Format
-	Detected Stateful Decoder
-
-Required ioctls:
-	test VIDIOC_QUERYCAP: OK
-
-Allow for multiple opens:
-	test second /dev/video0 open: OK
-	test VIDIOC_QUERYCAP: OK
-	test VIDIOC_G/S_PRIORITY: OK
-	test for unlimited opens: OK
-
-Debug ioctls:
-	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-	test VIDIOC_LOG_STATUS: OK (Not Supported)
-
-Input ioctls:
-	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-	Inputs: 0 Audio Inputs: 0 Tuners: 0
-
-Output ioctls:
-	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-	Outputs: 0 Audio Outputs: 0 Modulators: 0
-
-Input/Output configuration ioctls:
-	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-	test VIDIOC_G/S_EDID: OK (Not Supported)
-
-Control ioctls:
-	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
-	test VIDIOC_QUERYCTRL: OK
-	test VIDIOC_G/S_CTRL: OK
-	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
-	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
-	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-	Standard Controls: 2 Private Controls: 0
-
-Format ioctls:
-	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-	test VIDIOC_G/S_PARM: OK (Not Supported)
-	test VIDIOC_G_FBUF: OK (Not Supported)
-	test VIDIOC_G_FMT: OK
-	test VIDIOC_TRY_FMT: OK
-	test VIDIOC_S_FMT: OK
-	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-	test Cropping: OK (Not Supported)
-	test Composing: OK (Not Supported)
-	test Scaling: OK (Not Supported)
-
-Codec ioctls:
-	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-	test VIDIOC_(TRY_)DECODER_CMD: OK
-
-Buffer ioctls:
-	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-	test VIDIOC_EXPBUF: OK
-	test Requests: OK (Not Supported)
-
-Test input 0:
-
-Streaming ioctls:
-	test read/write: OK (Not Supported)
-	test blocking wait: OK
-	Video Capture Multiplanar: Captured 198 buffers   
-	test MMAP (select): OK
-	Video Capture Multiplanar: Captured 198 buffers   
-	test MMAP (epoll): OK
-	test USERPTR (select): OK (Not Supported)
-	test DMABUF: Cannot test, specify --expbuf-device
-
-Total for meson-vdec device /dev/video0: 49, Succeeded: 49, Failed: 0, Warnings: 0
-
-Maxime Jourdan (4):
-  media: meson: vdec: add helpers for lossless framebuffer compression
-    buffers
-  media: meson: vdec: add common HEVC decoder support
-  media: meson: vdec: add VP9 input support
-  media: meson: vdec: add VP9 decoder support
-
-Neil Armstrong (1):
-  media: meson: vdec: align stride on 32 bytes
-
- drivers/staging/media/meson/vdec/Makefile     |    4 +-
- .../media/meson/vdec/codec_hevc_common.c      |  286 +++
- .../media/meson/vdec/codec_hevc_common.h      |   77 +
- drivers/staging/media/meson/vdec/codec_vp9.c  | 2138 +++++++++++++++++
- drivers/staging/media/meson/vdec/codec_vp9.h  |   13 +
- drivers/staging/media/meson/vdec/esparser.c   |  150 +-
- drivers/staging/media/meson/vdec/hevc_regs.h  |  218 ++
- drivers/staging/media/meson/vdec/vdec.c       |   15 +-
- .../staging/media/meson/vdec/vdec_helpers.c   |   35 +-
- .../staging/media/meson/vdec/vdec_helpers.h   |    4 +
- drivers/staging/media/meson/vdec/vdec_hevc.c  |  231 ++
- drivers/staging/media/meson/vdec/vdec_hevc.h  |   13 +
- .../staging/media/meson/vdec/vdec_platform.c  |   38 +
- 13 files changed, 3209 insertions(+), 13 deletions(-)
- create mode 100644 drivers/staging/media/meson/vdec/codec_hevc_common.c
- create mode 100644 drivers/staging/media/meson/vdec/codec_hevc_common.h
- create mode 100644 drivers/staging/media/meson/vdec/codec_vp9.c
- create mode 100644 drivers/staging/media/meson/vdec/codec_vp9.h
- create mode 100644 drivers/staging/media/meson/vdec/hevc_regs.h
- create mode 100644 drivers/staging/media/meson/vdec/vdec_hevc.c
- create mode 100644 drivers/staging/media/meson/vdec/vdec_hevc.h
-
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+index 3f7929c54dc6..caec0fb60338 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.c
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+@@ -50,6 +50,33 @@ void amvdec_write_parser(struct amvdec_core *core, u32 reg, u32 val)
+ }
+ EXPORT_SYMBOL_GPL(amvdec_write_parser);
+ 
++/* 4 KiB per 64x32 block */
++u32 amvdec_am21c_body_size(u32 width, u32 height)
++{
++	u32 width_64 = ALIGN(width, 64) / 64;
++	u32 height_32 = ALIGN(height, 32) / 32;
++
++	return SZ_4K * width_64 * height_32;
++}
++EXPORT_SYMBOL_GPL(amvdec_am21c_body_size);
++
++/* 32 bytes per 128x64 block */
++u32 amvdec_am21c_head_size(u32 width, u32 height)
++{
++	u32 width_128 = ALIGN(width, 128) / 128;
++	u32 height_64 = ALIGN(height, 64) / 64;
++
++	return 32 * width_128 * height_64;
++}
++EXPORT_SYMBOL_GPL(amvdec_am21c_head_size);
++
++u32 amvdec_am21c_size(u32 width, u32 height)
++{
++	return ALIGN(amvdec_am21c_body_size(width, height) +
++		     amvdec_am21c_head_size(width, height), SZ_64K);
++}
++EXPORT_SYMBOL_GPL(amvdec_am21c_size);
++
+ static int canvas_alloc(struct amvdec_session *sess, u8 *canvas_id)
+ {
+ 	int ret;
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
+index 165e6293ffba..cfaed52ab526 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.h
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
+@@ -27,6 +27,10 @@ void amvdec_clear_dos_bits(struct amvdec_core *core, u32 reg, u32 val);
+ u32 amvdec_read_parser(struct amvdec_core *core, u32 reg);
+ void amvdec_write_parser(struct amvdec_core *core, u32 reg, u32 val);
+ 
++u32 amvdec_am21c_body_size(u32 width, u32 height);
++u32 amvdec_am21c_head_size(u32 width, u32 height);
++u32 amvdec_am21c_size(u32 width, u32 height);
++
+ /**
+  * amvdec_dst_buf_done_idx() - Signal that a buffer is done decoding
+  *
 -- 
 2.22.0
 
