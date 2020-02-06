@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-5.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,URIBL_DBL_ABUSE_MALW,
 	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1BEAC2D0B1
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:00:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BD66C2D0B1
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:00:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 94C7320838
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:00:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 719C7218AC
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2020 08:00:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kcVHY710";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="k+qdiP8S"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 94C7320838
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TLiHHW75";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hXQcGxFv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 719C7218AC
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oFiWVGdXGXoBaPNSTekJkxkd/227mYJAYwGMuYowYzk=; b=kcVHY710XNC0yw
-	PHwbjh6+y0iIrYLgGLq2tImZ59JFwEHHXXDIMJeGH8SZrmipkBABKHYGbcr8jGKyuyT4VZqP3xFjN
-	jJMgNoc79I1gDn3hgPj8pdjLdIs2e/flhslb/fTGPzlWQm8ECf9e1d3fqjD47obgsVJCVOF9eA5Ol
-	8M4uIwMKi23G7Sf9uEb3qCdZy6IZfJa4lOg4/AOIYnAnLuKe8xXxKak0AUswObrU8Ld75Bna59iqc
-	wshEH7efPM+ASYYTAC/Jt7WiAtCbtXDJ9rTBB8rRYItaaTyjGFexoc3jtilSzmNwDnpxf0QkO93L3
-	oqfwQ//cg1VJmCG/A+Qg==;
+	List-Owner; bh=jCIpMzxykzZLjaIULxmRCLKITz9Tjv3N0iWs4ZmPoXw=; b=TLiHHW75IGxhTL
+	aRZ4ZNbt5calgfHyKYZqed40/9Lb8cCI/QaoD61ZMsAfqp5ZhB3sfsCx/CISGYTimkZKrUTeAnqY8
+	xFi5Yq2JutKZfigw5z22xw8em4icoGWxO9i/JnYf5pKUyCp2iw+4cj8J6wS/yl46WF0MTKAqhcZRc
+	fQNsHCKJx6ykwyxKm6qZKWpH8R2frnPtb9O2vVCUhQ+SuNid0e0SkpQD1O9OW26DpX5qYVMkZcnSL
+	cQonDXYTXvWGMobwPx8jWc+yYbt5DLWWRGZSm7PLVD6v7K4Al+BmGJ8L8p8CGgVgAkaXhB+OdfYNv
+	PGs+vQ4sUkCRnpYsVSNw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1izc4u-0000bq-Pi; Thu, 06 Feb 2020 08:00:00 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1izc57-0000qj-6c; Thu, 06 Feb 2020 08:00:13 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1izc4K-0008GP-4X
- for linux-amlogic@lists.infradead.org; Thu, 06 Feb 2020 07:59:26 +0000
-Received: by mail-wm1-x341.google.com with SMTP id s144so271151wme.1
- for <linux-amlogic@lists.infradead.org>; Wed, 05 Feb 2020 23:59:23 -0800 (PST)
+ id 1izc4U-0008Te-0h
+ for linux-amlogic@lists.infradead.org; Thu, 06 Feb 2020 07:59:37 +0000
+Received: by mail-wr1-x443.google.com with SMTP id k11so5902669wrd.9
+ for <linux-amlogic@lists.infradead.org>; Wed, 05 Feb 2020 23:59:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=eoegjXhvNrzq/yPyDDY1fsYH13mDAjgXSwvtXb8bIp0=;
- b=k+qdiP8SXubzdN35uHnwmScHPsqUObqr9t7ajuc4nzrMPqUgHIu5GUCp/jIH8vLWtb
- D0iZfBQ6gzthNokG+tF+TwHsuCi7BOOnC/J1a2hLvOQmtOEP+hMOu3pi3fKk2b58KKGu
- CSPAahFuMjGuJdJZaUnnwzaiuDVYd+p9v0OGOMmHTHDR3fa6PhNwNfCj+nnCCio905bL
- lCSd2E1FYDqDsmBRM4rIEofPZ+rp9anRZeQBLNKTzigXwR7ouV+Fd/f/alLu+h74+vvI
- V4O+/DndT3wC9/0ZWxuY1w3IF/2ZTcXTpuJK/28l1X8DiApd72z6jXa+HcIIq8OdcKq1
- u2Ow==
+ bh=4T6JHJ65S3gXlsUQCQJOHLGtGG3rfW0klSWmfZGHV6Q=;
+ b=hXQcGxFvwgqmKUVJXTK5dRsdGmXT443hFPx7aWanGILU7aaEo8Ixui1iQimx94k9fg
+ YcUkCzGkWSmptK0vz47v4dKQGkfdqkc6aCUtottdOAtVQAEkoAxR/QtmUZFJgLiaqvmt
+ eokVIu3bGf/viZ3txj0qeoZ6xi7gQe9kAh4BEfSXOhVKRa1ckb7I/7uXHJFCey+U1eJd
+ gN8ZsvtG+K9PB3agSS2OwsqqqiFmWFewuyEHbEPFmAzJ7aC27RE4GzJHIoSmExhp6Zsa
+ aWvWTaqBsI/zLWRY1G72Sh1694tP6QN+3+lBXg3eJu8mWn6WWIcmVX9wBJr/mGSTUmZV
+ izvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=eoegjXhvNrzq/yPyDDY1fsYH13mDAjgXSwvtXb8bIp0=;
- b=jt4j4dssz0rFHtIJ7CvUapVw1o+kznspZRuhjqbmMykR1tBNXhUDfvXkJ2DZrhOPpx
- CXtlI6eNUxq6KRqcbn+W6ZqpYRtLgsDCVyN1MXyE1k9esKs6S2A8iFh/1BD4jtpTuy5N
- K7WnLkZldhx5UgS3h9J+4as5x1TfKip/d+jNszYB3eCnQNbHjRwIQWI5Ztq4aFV09sjC
- lGng5k8YQtoFhLyHRRljQgSZHmvKnZS31LbtpLXP19wHuqmJxIpZ2X1lfd/M/YDZMvta
- GD5d7uteQYRx69pcD1peTviuM1UNHVnkZlfPY5a3JpVx++eBYroh26ExUsGyVB8UXbHB
- g8eA==
-X-Gm-Message-State: APjAAAW5jVlkcZ4KzvBR/gehTS0xMJwUCe8aJhdZFKgdDHml6Ec0yc/I
- Z1J13xLHQwcpL5MXAtgfBl2MLg==
-X-Google-Smtp-Source: APXvYqwCSdXddW98myM3fnl5L7QuVyagLqkVr9JPqdGl0MA51WmppRzXvShIjTHAUFVFJeLVJigrmQ==
-X-Received: by 2002:a7b:cae2:: with SMTP id t2mr2935471wml.180.1580975962206; 
- Wed, 05 Feb 2020 23:59:22 -0800 (PST)
+ bh=4T6JHJ65S3gXlsUQCQJOHLGtGG3rfW0klSWmfZGHV6Q=;
+ b=sq9/ahGcKl9yVXuLJvZNnqPVj+pkbrUtSPxsatKyCdlnaUHeRkjEb6ovnpSoZm2wqi
+ qkV5M6lHro626P4u2XcdKsGWVI4Qn9+jJEbcWL+eu3ndRiTIvvdUMNpNkFA7D9xijlqZ
+ mzi67zmNOB98Pg/wMtPr4b4sutqH5CFchRy694YZObJXJSmTS/tsGIyrTXcngFjl3c8X
+ e4Clv3KvkWN/2v6/3KVerwXUvn4UNnTgrYtneoCeiTSh4AS9CKK2jJDdCT2ddgG916or
+ /tJF/0JT9KONHCieEHOH/jilL2/AUljOAmWvQH5rOGqhRbkA3p618oQQ404mh0cdR6hZ
+ cBLQ==
+X-Gm-Message-State: APjAAAUCbUE2o5exqJ2q0+ag7eJLrpPvDbnE2wTVi9kFX9s/x+tEl3K9
+ m63VW2XjSjsZDXO29gEf+4oXCg==
+X-Google-Smtp-Source: APXvYqzx41NwzMCoqYIOAllKMOLxPou7/sAGiCzfWqTv6wy/CaL2N5bZLO3CjxwgWAUV7du5c4X1Zg==
+X-Received: by 2002:adf:fc4b:: with SMTP id e11mr2405074wrs.326.1580975971911; 
+ Wed, 05 Feb 2020 23:59:31 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:7d33:17f7:8097:ecc7?
  ([2a01:e35:2ec0:82b0:7d33:17f7:8097:ecc7])
- by smtp.gmail.com with ESMTPSA id t1sm2744394wma.43.2020.02.05.23.59.21
+ by smtp.gmail.com with ESMTPSA id p5sm3096757wrt.79.2020.02.05.23.59.30
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 05 Feb 2020 23:59:21 -0800 (PST)
-Subject: Re: [PATCH] media: meson: vdec: don't resume instantly if not
- streaming capture
+ Wed, 05 Feb 2020 23:59:31 -0800 (PST)
+Subject: Re: [PATCH] media: meson: vdec: fix OUTPUT buffer size configuration
 To: Maxime Jourdan <mjourdan@baylibre.com>, mchehab@kernel.org,
  hans.verkuil@cisco.com
-References: <20200124155631.7063-1-mjourdan@baylibre.com>
+References: <20200127151953.10592-1-mjourdan@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <2d432fe2-b476-df53-4509-4bffe26e8b8a@baylibre.com>
-Date: Thu, 6 Feb 2020 08:59:20 +0100
+Message-ID: <d6f50786-16d9-8933-30ff-418b47089149@baylibre.com>
+Date: Thu, 6 Feb 2020 08:59:30 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <20200124155631.7063-1-mjourdan@baylibre.com>
+In-Reply-To: <20200127151953.10592-1-mjourdan@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200205_235924_216370_F5DF9F59 
-X-CRM114-Status: GOOD (  17.00  )
+X-CRM114-CacheID: sfid-20200205_235934_073285_9BC797A8 
+X-CRM114-Status: GOOD (  16.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,36 +158,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 24/01/2020 16:56, Maxime Jourdan wrote:
-> In case userspace configured the capture queue before the source change
-> event, do not resume decoding instantly if it wasn't streamed on yet.
+On 27/01/2020 16:19, Maxime Jourdan wrote:
+> There's a bug currently where we always override the OUTPUT buffer size
+> in try_fmt to the default value (1M), preventing userspace from setting
+> a higher or lower size.
+> 
+> Now, only update the size in try_fmt if userspace passed 0.
 > 
 > Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 > ---
 > 
-> Note: this patch is based off Neil's series:
-> [v4,0/4] media: meson: vdec: Add compliant H264 support
+> Note: this patch depends on Neil's series:
+> media: meson: vdec: Add compliant H264 support
+> https://patchwork.kernel.org/cover/11336953/
 > 
->  drivers/staging/media/meson/vdec/vdec_helpers.c | 3 ++-
+>  drivers/staging/media/meson/vdec/vdec.c | 3 ++-
 >  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
-> index ff4333074197..a4970ec1bf2e 100644
-> --- a/drivers/staging/media/meson/vdec/vdec_helpers.c
-> +++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
-> @@ -417,7 +417,8 @@ void amvdec_src_change(struct amvdec_session *sess, u32 width,
->  	 * Check if the capture queue is already configured well for our
->  	 * usecase. If so, keep decoding with it and do not send the event
->  	 */
-> -	if (sess->width == width &&
-> +	if (sess->streamon_cap &&
-> +	    sess->width == width &&
->  	    sess->height == height &&
->  	    dpb_size <= sess->num_dst_bufs) {
->  		sess->fmt_out->codec_ops->resume(sess);
-> --
-> 2.20.1
+> diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+> index 1be67b122546..2f30945ce916 100644
+> --- a/drivers/staging/media/meson/vdec/vdec.c
+> +++ b/drivers/staging/media/meson/vdec/vdec.c
+> @@ -519,7 +519,8 @@ vdec_try_fmt_common(struct amvdec_session *sess, u32 size,
+>  	output_size = get_output_size(pixmp->width, pixmp->height);
+>  
+>  	if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+> -		pfmt[0].sizeimage = sess->src_buffer_size;
+> +		if (!pfmt[0].sizeimage)
+> +			pfmt[0].sizeimage = sess->src_buffer_size;
+>  		pfmt[0].bytesperline = 0;
+>  		pixmp->num_planes = 1;
+>  	} else if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
 > 
+
 
 Will squash into v5 of "media: meson: vdec: Add compliant H264 support"
 
