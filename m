@@ -2,22 +2,22 @@ Return-Path: <SRS0=yQe0=33=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BF55C352A2
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Feb 2020 13:36:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BA44C352A2
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Feb 2020 13:38:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4DF22214AF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Feb 2020 13:36:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6F1BD214AF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Feb 2020 13:38:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="agE7X3ox";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tucuECGI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DF22214AF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bCI4IpxU";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="U4KtBRgJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6F1BD214AF
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iGdgxSBz1dUNxBt/dBEWmsVys8JXKOzgu9sZ+E/HXJ4=; b=agE7X3oxHMSvEO
-	Ilx4iAKBew3Hn139xIypNz8R9gOJQydlC5DoEXJLA4fZcsT2A5fptdGFsCM3v+9dstOoAGZ0GdZdK
-	m+U6AcCKUsbwTIx5cnb0Q9vHbCP8t0e9HdaXrklD6cGB6M11/Itfpc6dGGsTCr84gEM5nAYArRaHF
-	sBPhjG37j4Mug8xojtcvavsYKWlzL7EVOfIPRAoXC3AGnmldgwDJAsi4tKdl7WGvn/Lj5lk4nk1y7
-	aMpQbTg+jMf8Y67SipggrH6fBdqXazXDa62fP70bvVyguBn2IaBsfCsbPJaHi0RLf4QSs0rFpA73f
-	J1y0zqSxLgOv6bpZy81g==;
+	List-Owner; bh=c+SZRmcn/xhZYJrGn+zfdyA+Gqz46MUui1Y3NB7EQJA=; b=bCI4IpxUCz8ABW
+	YVLbjIAEM+3TplbJLjdBNNpBlDdy4ZgYDuypretZABcH8niB1cQlAqPu34SdnsY9LfyxL/72dFgdZ
+	vKd+iY4vxp643GBcl2bX+E4onEZjnyJ2bMO8inEUNuVJw1Hs1+STwEJw/NXCUCzfWO3WLnuJ30abf
+	IIWk/KgGAQKWgAVYWjzVb4msZ7bVedHaim3L1xtBjm6u7mzBFtXp/7mQO1JFZCkM0ZM1H+2Hg9+5F
+	0SMIoZM/b0WjAsS9WZm8o3s94a/AjjaBufA/8DwLWWsWmLpkI4j2c9moSYIkr/uFMWcURQ6lLnmbE
+	k1Veo+YfDgRfqGzcZy1A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j03oM-0004KQ-GS; Fri, 07 Feb 2020 13:36:46 +0000
+	id 1j03qN-0004SE-5A; Fri, 07 Feb 2020 13:38:51 +0000
 Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j03oJ-0004K4-1g
- for linux-amlogic@lists.infradead.org; Fri, 07 Feb 2020 13:36:45 +0000
-Received: by mail-wr1-x442.google.com with SMTP id z7so2678123wrl.13
- for <linux-amlogic@lists.infradead.org>; Fri, 07 Feb 2020 05:36:41 -0800 (PST)
+ id 1j03qK-0004Rt-AT
+ for linux-amlogic@lists.infradead.org; Fri, 07 Feb 2020 13:38:49 +0000
+Received: by mail-wr1-x442.google.com with SMTP id a6so2688837wrx.12
+ for <linux-amlogic@lists.infradead.org>; Fri, 07 Feb 2020 05:38:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=RvaYHykaUdRelzapg39ecdG9VP1FN9Q9ntd1Gm4hUXs=;
- b=tucuECGIaSCoOYAKUzlbcrdQsOi4kg1p9sbj/cyPF/FfYyKS+szp0IF6VjfSdZJKz2
- C3R8u7MC6mL3SKxSau2TtMMZZkouKzvMMqmpzWpMuHE9nFoUE9ECVg1E0ytNFbBWCuRc
- sRbdaVxC/NoHy2HmtOIfT5lLbQ9+H1ejTrJpULNAeFpSZcAevwbpM/UiKOKriiP8bi3h
- BQIBTDGKzj3wLuW+8PnLZPZQDuDBZTu2IndhEysrk6Jt6ufjjTik5JqhihyNIT/t59sE
- D2La1KFTW7dHAo+etjFKgCJrI+S6p5NT9OmWjjYRxGkmjavzfIQNwlmLr+s1fT6u+GD3
- gk6Q==
+ bh=5Qd6/3q58AMNV5FtnZLoyt3WZqn0r69SnQkOZyEqook=;
+ b=U4KtBRgJfVYhk0bCXzyNZKJze5F9+Q+VcEj/WhMU1uOacxhgmn6IX0ssFWXdqRqqoS
+ rXmuR/OC7S3KBcWReiysoP/jIju/hOTWugytCUAJsnRIhOyTAmAiuEeNGOOXija0nXEP
+ mAV4Hen2qnWryK0QD57e1kzBZ4uagLucCd6Ds8rmZWt2X5lI/by4pLq/U4vU0urh5KCI
+ Zml2qLkz5rluZlLoUwkP7SUjdkqy2dIXZ4FV0wBaR+dtD2/1SD3HvXqsSQqjdJK7b5Or
+ lFpS9ycSFV/4ZNjXs7uz7adDtRIVtvp7JwaMz0EQQRSm+F5WQCdezh8c9PIdNcKgmFLQ
+ zFcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=RvaYHykaUdRelzapg39ecdG9VP1FN9Q9ntd1Gm4hUXs=;
- b=Mxf0yloBPQFA+rZKTb4XyXhgiBlwajG6uIc9NDEAazsOSfj2tgNw5gMc2KBd0bmc2C
- EDEX4HUSylQNvjm+JkdJO3YIzp7hA4WH7xDiqAA9+71kBfZbVK+2yd+vrYtlvf2OBYHM
- sUHOPstMILL0+tD/7ab6qixS6UyA4bs5MCGIXGfcRx+D4+ETEnuUqZ6A/wV6GGQutvRN
- zyR0XXmrn8M8dGQCVYWw3BIW5jxWm/DOdlCjCH4ldQvqBjBMIGn8Vn4qFcZlBI43WrGu
- pPD0DsAGw6O2x9lrqpH0BFGqBLCYopug/i2720oq0nhR0jmxlfA8SbsQVh7M+glmMb2r
- xBrA==
-X-Gm-Message-State: APjAAAX8BwCipxnWZJfMnyLDv0YXgCNy1fqilI01ygc6EufAJyPV1Sxe
- u8nIT+xVC/IAc3a1nj1czTLGjA==
-X-Google-Smtp-Source: APXvYqzpbJt2+w2r2qI2IRvNdujQt1Vuq2BrVJF0v83Xed/WAirz5k06CqigYXMt7GYYMjAOBk+mdg==
-X-Received: by 2002:adf:fdc7:: with SMTP id i7mr4596184wrs.270.1581082600515; 
- Fri, 07 Feb 2020 05:36:40 -0800 (PST)
-Received: from [10.1.3.173]
- (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x21sm3302717wmi.30.2020.02.07.05.36.39
+ bh=5Qd6/3q58AMNV5FtnZLoyt3WZqn0r69SnQkOZyEqook=;
+ b=ATZxOvRL9pjJLHF/r9pgQiKSpgiKb7Skspz4zKv1IGahk92GWnHLYwwCoMMg0iehpE
+ 0DAqOE+PIi1A5y5FIhCU3rWhlrP3MnkcnRUtlr6+VZAjhoR87l9sqtymjuleylHtsB49
+ dclk+nNiMdxirIPvCy/XISc71Zr+h9S72azz914AEOYHDCIUIOgmt20qXuLGBV88jwJW
+ viZQ7gYAy0eL8MDcxEGCqvnTXnxobWnC9zbNX+4HqeC7dFWeSal2KI/34ihjTskAKaMU
+ 2AqwjN1zsRatQJwFZRETkNK5m95gHr5Evj7n2gxQZWl0lnh6oJlQPC4jZG+coOX+cLFQ
+ inrA==
+X-Gm-Message-State: APjAAAWBdCgy8cbgGkhD0bPHEw2Kloida+U12MPIvJHpJe1T+XjBM1YB
+ nYKMEnkbBX/3ee/2cptN460sNg==
+X-Google-Smtp-Source: APXvYqy96Xcw2WCkzazDgtKPjDKjf4IxI1lHpl2tvMAAc2csdX76KtbTy6TOGYQ9EUTqo88XD66ubA==
+X-Received: by 2002:adf:fdc7:: with SMTP id i7mr4604684wrs.270.1581082726956; 
+ Fri, 07 Feb 2020 05:38:46 -0800 (PST)
+Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id z19sm3292742wmi.43.2020.02.07.05.38.45
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 07 Feb 2020 05:36:40 -0800 (PST)
-Subject: Re: [PATCH v4 04/11] drm/bridge: synopsys: dw-hdmi: add bus format
- negociation
-To: Boris Brezillon <boris.brezillon@collabora.com>
+ Fri, 07 Feb 2020 05:38:46 -0800 (PST)
+Subject: Re: [PATCH v4 05/11] drm/bridge: synopsys: dw-hdmi: allow ycbcr420
+ modes for >= 0x200a
+To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@siol.net, boris.brezillon@collabora.com
 References: <20200206191834.6125-1-narmstrong@baylibre.com>
- <20200206191834.6125-5-narmstrong@baylibre.com>
- <20200207120225.2ea76016@collabora.com>
+ <20200206191834.6125-6-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <ed11f2a3-2cc3-9d06-fcd8-886362a5ee36@baylibre.com>
-Date: Fri, 7 Feb 2020 14:36:38 +0100
+Message-ID: <e90331b8-5e8e-5c27-0297-77a281a66f4b@baylibre.com>
+Date: Fri, 7 Feb 2020 14:38:44 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <20200207120225.2ea76016@collabora.com>
+In-Reply-To: <20200206191834.6125-6-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200207_053643_231340_476885AD 
-X-CRM114-Status: GOOD (  16.64  )
+X-CRM114-CacheID: sfid-20200207_053848_378255_CC2C9133 
+X-CRM114-Status: GOOD (  15.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,198 +153,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: jernej.skrabec@siol.net, jonas@kwiboo.se, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, a.hajda@samsung.com,
- Laurent.pinchart@ideasonboard.com, linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/02/2020 12:02, Boris Brezillon wrote:
-> On Thu,  6 Feb 2020 20:18:27 +0100
-> Neil Armstrong <narmstrong@baylibre.com> wrote:
+On 06/02/2020 20:18, Neil Armstrong wrote:
+> Now the DW-HDMI Controller supports the HDMI2.0 modes, enable support
+> for these modes in the connector if the platform supports them.
+> We limit these modes to DW-HDMI IP version >= 0x200a which
+> are designed to support HDMI2.0 display modes.
 > 
->> Add the atomic_get_output_bus_fmts, atomic_get_input_bus_fmts to negociate
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 6 ++++++
+>  include/drm/bridge/dw_hdmi.h              | 1 +
+>  2 files changed, 7 insertions(+)
 > 
-> 								^ hooks?
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index 15048ad694bc..4b35ea1427df 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -3231,6 +3231,12 @@ __dw_hdmi_probe(struct platform_device *pdev,
+>  	hdmi->bridge.of_node = pdev->dev.of_node;
+>  #endif
+>  
+> +	if (hdmi->version >= 0x200a)
+> +		hdmi->connector.ycbcr_420_allowed =
+> +			hdmi->plat_data->ycbcr_420_allowed;
+> +	else
+> +		hdmi->connector.ycbcr_420_allowed = false;
+> +
+>  	memset(&pdevinfo, 0, sizeof(pdevinfo));
+>  	pdevinfo.parent = dev;
+>  	pdevinfo.id = PLATFORM_DEVID_AUTO;
+> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+> index 9d4d5cc47969..0b34a12c4a1c 100644
+> --- a/include/drm/bridge/dw_hdmi.h
+> +++ b/include/drm/bridge/dw_hdmi.h
+> @@ -129,6 +129,7 @@ struct dw_hdmi_plat_data {
+>  	unsigned long input_bus_format;
+>  	unsigned long input_bus_encoding;
+>  	bool use_drm_infoframe;
+> +	bool ycbcr_420_allowed;
+>  
+>  	/* Vendor PHY support */
+>  	const struct dw_hdmi_phy_ops *phy_ops;
 > 
->> the possible output and input formats for the current mode and monitor,
->> and use the negotiated formats in a basic atomic_check callback.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
-> 
->> +
->> +/* Can return a maximum of 4 possible input formats for an output format */
->> +#define MAX_INPUT_SEL_FORMATS	4
-> 
-> It seems to only be 3 in practice (based on the code) unless I missed
-> something.
 
-You're right...
+Forgot to add:
+Reviewed-by: Andrzej Hajda <a.hajda@samsung.com>
 
-> 
->> +
->> +static u32 *dw_hdmi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
->> +					struct drm_bridge_state *bridge_state,
->> +					struct drm_crtc_state *crtc_state,
->> +					struct drm_connector_state *conn_state,
->> +					u32 output_fmt,
->> +					unsigned int *num_input_fmts)
->> +{
->> +	u32 *input_fmts;
->> +	int i = 0;
->> +
->> +	*num_input_fmts = 0;
->> +
->> +	input_fmts = kcalloc(MAX_INPUT_SEL_FORMATS, sizeof(*input_fmts),
->> +			     GFP_KERNEL);
->> +	if (!input_fmts)
->> +		return NULL;
->> +
->> +	switch (output_fmt) {
->> +	/* 8bit */
->> +	case MEDIA_BUS_FMT_RGB888_1X24:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY8_1X16;
->> +		break;
->> +	case MEDIA_BUS_FMT_YUV8_1X24:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY8_1X16;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
->> +		break;
->> +	case MEDIA_BUS_FMT_UYVY8_1X16:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY8_1X16;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
->> +		break;
->> +
->> +	/* 10bit */
->> +	case MEDIA_BUS_FMT_RGB101010_1X30:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB101010_1X30;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV10_1X30;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY10_1X20;
->> +		break;
->> +	case MEDIA_BUS_FMT_YUV10_1X30:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV10_1X30;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY10_1X20;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB101010_1X30;
->> +		break;
->> +	case MEDIA_BUS_FMT_UYVY10_1X20:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY10_1X20;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV10_1X30;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB101010_1X30;
->> +		break;
->> +
->> +	/* 12bit */
->> +	case MEDIA_BUS_FMT_RGB121212_1X36:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB121212_1X36;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV12_1X36;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY12_1X24;
->> +		break;
->> +	case MEDIA_BUS_FMT_YUV12_1X36:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV12_1X36;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY12_1X24;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB121212_1X36;
->> +		break;
->> +	case MEDIA_BUS_FMT_UYVY12_1X24:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_UYVY12_1X24;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV12_1X36;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB121212_1X36;
->> +		break;
->> +
->> +	/* 16bit */
->> +	case MEDIA_BUS_FMT_RGB161616_1X48:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB161616_1X48;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV16_1X48;
->> +		break;
->> +	case MEDIA_BUS_FMT_YUV16_1X48:
->> +		input_fmts[i++] = MEDIA_BUS_FMT_YUV16_1X48;
->> +		input_fmts[i++] = MEDIA_BUS_FMT_RGB161616_1X48;
->> +		break;
->> +
->> +	/* 420 */
->> +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
->> +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
->> +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
->> +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
->> +		input_fmts[i++] = output_fmt;
->> +		break;
->> +	}
->> +
->> +	*num_input_fmts = i;
->> +
->> +	if (*num_input_fmts == 0) {
->> +		kfree(input_fmts);
->> +		input_fmts = NULL;
->> +	}
->> +
->> +	return input_fmts;
->> +}
->> +
->> +static int dw_hdmi_bridge_atomic_check(struct drm_bridge *bridge,
->> +				       struct drm_bridge_state *bridge_state,
->> +				       struct drm_crtc_state *crtc_state,
->> +				       struct drm_connector_state *conn_state)
->> +{
->> +	struct dw_hdmi *hdmi = bridge->driver_private;
->> +
->> +	dev_dbg(hdmi->dev, "selected output format %x\n",
->> +			bridge_state->output_bus_cfg.format);
-> 
-> Nit: not aligned on the open parens.
-> 
->> +
->> +	hdmi->hdmi_data.enc_out_bus_format =
->> +			bridge_state->output_bus_cfg.format;
->> +
->> +	dev_dbg(hdmi->dev, "selected input format %x\n",
->> +			bridge_state->input_bus_cfg.format);
->> +
->> +	hdmi->hdmi_data.enc_in_bus_format =
->> +			bridge_state->input_bus_cfg.format;
->> +
->> +	return 0;
->> +}
->> +
->>  static int dw_hdmi_bridge_attach(struct drm_bridge *bridge)
->>  {
->>  	struct dw_hdmi *hdmi = bridge->driver_private;
->> @@ -2499,6 +2759,9 @@ static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
->>  	.atomic_reset = drm_atomic_helper_bridge_reset,
->>  	.attach = dw_hdmi_bridge_attach,
->>  	.detach = dw_hdmi_bridge_detach,
->> +	.atomic_check = dw_hdmi_bridge_atomic_check,
->> +	.atomic_get_output_bus_fmts = dw_hdmi_bridge_atomic_get_output_bus_fmts,
->> +	.atomic_get_input_bus_fmts = dw_hdmi_bridge_atomic_get_input_bus_fmts,
->>  	.enable = dw_hdmi_bridge_enable,
->>  	.disable = dw_hdmi_bridge_disable,
->>  	.mode_set = dw_hdmi_bridge_mode_set,
->> @@ -2963,6 +3226,7 @@ __dw_hdmi_probe(struct platform_device *pdev,
->>  
->>  	hdmi->bridge.driver_private = hdmi;
->>  	hdmi->bridge.funcs = &dw_hdmi_bridge_funcs;
->> +
-> 
-> Nit: not sure this has to be part of that patch.
-> 
-> Looks good otherwise.
-> 
-> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-
-
-Thanks, will fixup in a v5 or while applying.
+from 020c82bc-15fd-6e23-a093-62abfa9b466d@samsung.com
 
 Neil
-
-> 
->>  #ifdef CONFIG_OF
->>  	hdmi->bridge.of_node = pdev->dev.of_node;
->>  #endif
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
