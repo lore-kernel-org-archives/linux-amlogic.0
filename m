@@ -1,93 +1,62 @@
-Return-Path: <SRS0=UVDl=34=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=6ZbY=36=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 477F4C35242
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Feb 2020 21:19:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 021A2C35250
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Feb 2020 06:11:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1A7FD21775
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Feb 2020 21:19:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C913520870
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Feb 2020 06:11:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="E6kZvmqs";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ndufresne-ca.20150623.gappssmtp.com header.i=@ndufresne-ca.20150623.gappssmtp.com header.b="YZJwbMaL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A7FD21775
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OEYy32aH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C913520870
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XB7UU30cYaa2GCjtx92Hkc5HfJwhrGTyVDezo+6238s=; b=E6kZvmqsbjSnQh
-	1mCmNdfRQGY+DsH7YHn82xGnxEG9XzhknLGDWgMY/dIk+Cl8NhmM1QU1n36RBlqoXkdJqHteXMwFb
-	uoc6KpOLq81qwY2cHdfMEqhOxJ3HaTgNglS4CBCB+WQXBrLntB9dbfooQsAFURWOMDK8WigmgH//R
-	28+J5+fq69kqBrWNWFNhZfWNoQpOBvu2/hGI1mgMriB47+OqQ/81eTBJFDHb0brO4KtTmAFi54kKx
-	qP7bSCxChqxeqT0eI8PlOuvaFTwJx2xAT8iqMG6kLRDkHbU+p9YFZctspB6+/UTLQuJXLlxCnyFMl
-	2APUhiN0s09SKyVX4PAQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:References:
+	To:Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=UXVwukMdVB3351E2C7J9i/wb5DHMqjhXn4o8dGS31Ds=; b=OEYy32aHF/4GYPF9lrBPp8bYX
+	QxxEs82ZAbSGunp1iBfy58ppPa8BRpMYalfLjE1xoDrzlyq1HY/9WSqk+6UYc4ue4uFtQKk2KzDUs
+	hRH0n5OHUvtVotfw5s3ZEzLcSFhydcGSWbgRS40NsQFm90QZlWS+XGfcF5o6hmk3nis34Std3Mgxq
+	mfMHXpeWlUByWM8jenPKqVoRTDRLeuzPdwixu1/wbXk7eWqWZGr4UwYTWru26Nu0KZHShPWbSl4T9
+	xIGwtkbD+gJIN4SHKynSsGBo12oTK3MwAyeYdmpe8qWBOdU/wIW8f6Xn9vF0nGWqj/4D8RknMApsH
+	LG7k7lRRQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j0XW2-0008GZ-Ea; Sat, 08 Feb 2020 21:19:50 +0000
-Received: from mail-qv1-xf42.google.com ([2607:f8b0:4864:20::f42])
+	id 1j12Hr-00019I-00; Mon, 10 Feb 2020 06:11:15 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j0XVt-00088P-3f
- for linux-amlogic@lists.infradead.org; Sat, 08 Feb 2020 21:19:42 +0000
-Received: by mail-qv1-xf42.google.com with SMTP id n8so1357846qvg.11
- for <linux-amlogic@lists.infradead.org>; Sat, 08 Feb 2020 13:19:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=GPMgVu3ZcUXe3Ew1rL91tEkLbwrAWNnfmlad0QvRkhk=;
- b=YZJwbMaLc4f7eTwcXj/ySQ+a6qejzHy2jxNC84UwFVSzQx7AyGa9wCPlFBLVZoUtdS
- khmuv0gox5KiKEXGX5HrC5Dl2Hlbq5SBgSKoBceBZIwk9BrmK/1C7e+jsrn+bsGt+Y9c
- mm06ejZ3vSDqDws8wFEPtfuyUTiIKGpuoo4N8BxI98ZpKFeDUjTqRV2zVmV4HN1w4Rl+
- 83+Ml6xzIZbGyntGiF+0uRxEn/DM4InTKZjgVM2mhkTj+9z6ImlUXUWNXSyzVe0lOcuP
- rmU8GteFcvFDWctRHSxNzl9QZkwlJ492zfji24gVOBL2H1FSyXE8ewgjvhM3ahs2q1DE
- Mx7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=GPMgVu3ZcUXe3Ew1rL91tEkLbwrAWNnfmlad0QvRkhk=;
- b=lWsWuBknhPJsXiQ8qkAUcDOlRNuWUPf92+pdoUYubl8B9GeHg5gi4sJtKZyYNBk3XA
- hcioTBJg8/PuF9kX6TceI95ASKMSTvVsJrgaueXjeM9Na/DrsZaOdWPD/PbmlMgKU0af
- fIraMwHQRL0rrID+FWu9owPCLRhHh2C1rXPYu2wRrjZB4gkctNInJ4pZqvkhj9OrXC8p
- BSzYeLtX7LIedMTajSwm740Cg8b+Om049TPCWfZXiIQ/csVQJQGQ5n2Jvbll0NCFKjoB
- STAQxKoXh7lJhSBv77DtHgAws4Sy25i9v3OmMBmHF+lnZWnHjiK4xRQC2XAVVmmNYTXE
- 0h+g==
-X-Gm-Message-State: APjAAAVho3Kf4KIxxBX/JRHmxZaru5nI9Y59L33N0L5pL4CAAZtOG8Bf
- BfsdkEUs3nyqpxjXkWqJ8AA2mQ==
-X-Google-Smtp-Source: APXvYqzfJjeQwtITFp+HE4xE2Z5HHi/IYz+2M/lpi/BDH/3qHgxSVfVkBsNL0P9b2HdT2cUzGAAlfw==
-X-Received: by 2002:a0c:cd8e:: with SMTP id v14mr4180499qvm.182.1581196776574; 
- Sat, 08 Feb 2020 13:19:36 -0800 (PST)
-Received: from skullcanyon ([192.222.193.21])
- by smtp.gmail.com with ESMTPSA id b12sm3389749qkl.0.2020.02.08.13.19.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Feb 2020 13:19:35 -0800 (PST)
-Message-ID: <9aec0e87cb600ec1d89037f9527544b3c6098921.camel@ndufresne.ca>
-Subject: Re: [PATCH v3 5/5] media: meson: vdec: add VP9 decoder support
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Neil Armstrong <narmstrong@baylibre.com>, mchehab@kernel.org, 
- hans.verkuil@cisco.com
-Date: Sat, 08 Feb 2020 16:19:34 -0500
-In-Reply-To: <49e6168b-ffed-6011-3b1f-455224d3130b@baylibre.com>
-References: <20200116133437.2443-1-narmstrong@baylibre.com>
- <20200116133437.2443-6-narmstrong@baylibre.com>
- <a4efcb4e1591ac9cf305742d34337335b6ff7f29.camel@ndufresne.ca>
- <49e6168b-ffed-6011-3b1f-455224d3130b@baylibre.com>
-User-Agent: Evolution 3.34.3 (3.34.3-1.fc31) 
+ id 1j12Hh-0000xJ-Fo; Mon, 10 Feb 2020 06:11:07 +0000
+Received: from [10.7.0.4] (10.28.11.250) by mail-sz.amlogic.com (10.28.11.5)
+ with Microsoft SMTP Server id 15.1.1591.10; Mon, 10 Feb 2020 14:11:25 +0800
+From: Jian Hu <jian.hu@amlogic.com>
+Subject: Re: [PATCH v7 2/5] clk: meson: add support for A1 PLL clock ops
+To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>
+References: <20200120034937.128600-1-jian.hu@amlogic.com>
+ <20200120034937.128600-3-jian.hu@amlogic.com>
+ <1jftfq7ir8.fsf@starbuckisacylon.baylibre.com>
+Message-ID: <ce7d406e-b5bd-44c8-84fb-5edd3b3ffbce@amlogic.com>
+Date: Mon, 10 Feb 2020 14:11:21 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
+In-Reply-To: <1jftfq7ir8.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US
+X-Originating-IP: [10.28.11.250]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200208_131941_159493_0062F66E 
-X-CRM114-Status: GOOD (  21.93  )
+X-CRM114-CacheID: sfid-20200209_221105_532873_5055B903 
+X-CRM114-Status: GOOD (  23.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,110 +68,196 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-media@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgamV1ZGkgMDYgZsOpdnJpZXIgMjAyMCDDoCAwOTowOCArMDEwMCwgTmVpbCBBcm1zdHJvbmcg
-YSDDqWNyaXQgOgo+IE9uIDAzLzAyLzIwMjAgMDQ6MTEsIE5pY29sYXMgRHVmcmVzbmUgd3JvdGU6
-Cj4gPiBIaSBOZWlsLAo+ID4gCj4gPiBMZSBqZXVkaSAxNiBqYW52aWVyIDIwMjAgw6AgMTQ6MzQg
-KzAxMDAsIE5laWwgQXJtc3Ryb25nIGEgw6ljcml0IDoKPiA+ID4gRnJvbTogTWF4aW1lIEpvdXJk
-YW4gPG1qb3VyZGFuQGJheWxpYnJlLmNvbT4KPiA+ID4gCj4gPiA+IFRoaXMgYWRkcyBWUDkgZGVj
-b2RpbmcgZm9yIHRoZSBBbWxvZ2ljIEdYTCwgRzEyQSAmIFNNMSBTb0NzLCB1c2luZwo+ID4gPiB0
-aGUgY29tbW9uZyAiSEVWQyIgSFcgZGVjb2Rlci4KPiA+ID4gCj4gPiA+IEZvciBHMTJBICYgU00x
-LCBpdCB1c2VzIHRoZSBJT01NVSBzdXBwb3J0IGZyb20gdGhlIGZpcm13YXJlLgo+ID4gPiAKPiA+
-ID4gRm9yIDEwYml0IGRlY29kaW5nLCB0aGUgZmlybXdhcmUgY2FuIG9ubHkgZGVjb2RlIGluIHRo
-ZSBwcm9wcmlldGFyeQo+ID4gPiBBbWxvZ2ljIEZyYW1lYnVmZmVyIENvbXByZXNzaW9uIGZvcm1h
-dCwgYnV0IGNhbiBvdXRwdXQgaW4gOGJpdCBOVjEyCj4gPiA+IGJ1ZmZlciB3aGlsZSB3cml0aW5n
-IHRoZSBkZWNvZGVkIGZyYW1lLgo+ID4gPiAKPiA+ID4gU2lnbmVkLW9mZi1ieTogTWF4aW1lIEpv
-dXJkYW4gPG1qb3VyZGFuQGJheWxpYnJlLmNvbT4KPiA+ID4gU2lnbmVkLW9mZi1ieTogTmVpbCBB
-cm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgo+ID4gPiAtLS0KPiA+ID4gIGRyaXZl
-cnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL01ha2VmaWxlICAgICB8ICAgIDIgKy0KPiA+ID4g
-IGRyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL2NvZGVjX3ZwOS5jICB8IDIxMzkgKysr
-KysrKysrKysrKysrKysKPiA+ID4gIGRyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL2Nv
-ZGVjX3ZwOS5oICB8ICAgMTMgKwo+ID4gPiAgZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3Zk
-ZWMvaGV2Y19yZWdzLmggIHwgICAgNyArCj4gPiA+ICBkcml2ZXJzL3N0YWdpbmcvbWVkaWEvbWVz
-b24vdmRlYy92ZGVjLmMgICAgICAgfCAgICA1ICsKPiA+ID4gIC4uLi9zdGFnaW5nL21lZGlhL21l
-c29uL3ZkZWMvdmRlY19oZWxwZXJzLmMgICB8ICAgIDQgKwo+ID4gPiAgLi4uL3N0YWdpbmcvbWVk
-aWEvbWVzb24vdmRlYy92ZGVjX3BsYXRmb3JtLmMgIHwgICAzOCArCj4gPiA+ICA3IGZpbGVzIGNo
-YW5nZWQsIDIyMDcgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+ID4gPiAgY3JlYXRlIG1v
-ZGUgMTAwNjQ0IGRyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL2NvZGVjX3ZwOS5jCj4g
-PiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMv
-Y29kZWNfdnA5LmgKPiA+ID4gCj4gCj4gWy4uLl0KPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfcGxhdGZvcm0uYyBiL2RyaXZlcnMvc3Rh
-Z2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfcGxhdGZvcm0uYwo+ID4gPiBpbmRleCBlOTM1NmE0
-NjgyOGYuLjcyYTgzM2IxY2ViZCAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9zdGFnaW5nL21l
-ZGlhL21lc29uL3ZkZWMvdmRlY19wbGF0Zm9ybS5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvc3RhZ2lu
-Zy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfcGxhdGZvcm0uYwo+ID4gPiBAQCAtOCw4ICs4LDEwIEBA
-Cj4gPiA+ICAjaW5jbHVkZSAidmRlYy5oIgo+ID4gPiAgCj4gPiA+ICAjaW5jbHVkZSAidmRlY18x
-LmgiCj4gPiA+ICsjaW5jbHVkZSAidmRlY19oZXZjLmgiCj4gPiA+ICAjaW5jbHVkZSAiY29kZWNf
-bXBlZzEyLmgiCj4gPiA+ICAjaW5jbHVkZSAiY29kZWNfaDI2NC5oIgo+ID4gPiArI2luY2x1ZGUg
-ImNvZGVjX3ZwOS5oIgo+ID4gPiAgCj4gPiA+ICBzdGF0aWMgY29uc3Qgc3RydWN0IGFtdmRlY19m
-b3JtYXQgdmRlY19mb3JtYXRzX2d4YmJbXSA9IHsKPiA+ID4gIAl7Cj4gPiA+IEBAIC01MSw2ICs1
-MywxOCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGFtdmRlY19mb3JtYXQgdmRlY19mb3JtYXRzX2d4
-YmJbXSA9IHsKPiA+ID4gIAo+ID4gPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBhbXZkZWNfZm9ybWF0
-IHZkZWNfZm9ybWF0c19neGxbXSA9IHsKPiA+ID4gIAl7Cj4gPiA+ICsJCS5waXhmbXQgPSBWNEwy
-X1BJWF9GTVRfVlA5LAo+ID4gPiArCQkubWluX2J1ZmZlcnMgPSAxNiwKPiA+ID4gKwkJLm1heF9i
-dWZmZXJzID0gMjQsCj4gPiA+ICsJCS5tYXhfd2lkdGggPSAzODQwLAo+ID4gPiArCQkubWF4X2hl
-aWdodCA9IDIxNjAsCj4gPiA+ICsJCS52ZGVjX29wcyA9ICZ2ZGVjX2hldmNfb3BzLAo+ID4gPiAr
-CQkuY29kZWNfb3BzID0gJmNvZGVjX3ZwOV9vcHMsCj4gPiA+ICsJCS5maXJtd2FyZV9wYXRoID0g
-Im1lc29uL3ZkZWMvZ3hsX3ZwOS5iaW4iLAo+ID4gCj4gPiBJcyB0aGVyZSBhIHB1bGwgcmVxdWVz
-dCBwZW5kaW5nIGZvciB0aGlzIGZpcm13YXJlID8gSSBjb3VsZCBub3QgdGVzdCBhcwo+ID4gdGhp
-cyBmaXJtd2FyZSB3YXMgbWlzc2luZy4gTm90ZSB0aGF0IGl0IGNvdWxkIGJlIG5pY2UgdG8gcmVt
-b3ZlIHRoZQo+ID4gZm9ybWF0IGZyb20gdGhlIGVudW1lcmF0aW9uIGluIHRoYXQgY2FzZSwgYXMg
-aXQncyB2ZXJ5IGNvbmZ1c2luZwo+ID4gaW5pdGlhbGx5Lgo+IAo+IEl0IGhhcyBiZWVuIG1lcmdl
-ZCB5ZXN0ZXJkYXksIHNvcnJ5IGZvciB0aGUgZGVsYXkuCj4gCj4gV2l0aCBtYXhpbWUncyBwYXRj
-aCwgd2UgdGVzdGVkIGl0IHVzaW5nIGZmbXBlZyBtYXN0ZXIsIG1wdiBtYXN0ZXIgd2l0aCBkcm0t
-cHJpbWUKPiByZW5kZXJpbmcuIFdlIGhhdmUgYSBidWlsZHJvb3QgcmVwbyB3aXRoIHRoZSBjaGFu
-Z2VkIG5lZWRlZCA6Cj4gCj4gaHR0cHM6Ly9naXRsYWIuY29tL2JheWxpYnJlL2FtbG9naWMvYXR2
-L2J1aWxkcm9vdC15dWthd2EKPiAKPiBJIHdpbGwgcmVzcGluIGEgdjQgd2l0aCB0aGUgc21hbGwg
-Zml4IGZyb20gbWF4aW1lLgoKT2ssIEkgc2VlIGl0IG5vdy4gSSd2ZSBnaXZlbiBhIHRyeSwgdGhl
-IG91dHB1dCB3YXMgY29ycnVwdGVkIHdpdGggdGhpcwpmaWxlIGZyb20gQW5kcm9pZCBDVFMgKyBH
-U3RyZWFtZXIgMS4xNi4xIChGZWRvcmEgMzEgYnVpbGQpLgoKICBQcm9maWxlXzBfOGJpdC9idWYv
-Y3Jvd2RfcnVuXzEwODBYNTEyX2ZyMzBfYmQ4XzhidWZfbDMud2VibQoKTG9va2luZyBmb3J3YXJk
-IE1heGltZSdzIHBhdGNoZXMuIEp1c3QgbGlrZSB0aGUgSDI2NCBjYXNlLCBzZWVraW5nIHdpdGgK
-a21zc2luayBsZWFkIHRvIHN0YWxscywgYnV0IHRoaXMgdGltZSwgdGhlIGtlcm5lbCBnaXZlIG9u
-bHkgb25lCm1lc3NhZ2U6CgogIFs0OTgyMzAuOTUxNzM3XSBtZXNvbi12ZGVjIGM4ODIwMDAwLnZp
-ZGVvLWNvZGVjOiBObyBkc3QgYnVmZmVyIGF2YWlsYWJsZQoKQW5kIG5vdyBJIHJlbWVtYmVyIGEg
-Y29tbWVudCwgSSBndWVzcyBpdCB3YXMgTWF4aW1lIGFib3V0IGluY3JlYXNpbmcKdGhlIHNvbWUg
-bnVtYmVyIG9mIGJ1ZmZlcnMgZnJvbSAyIHRvIDMuIFNvIEknbGwgdHJ5IGFuZCBmaW5kIHRpbWUg
-dG8KZ2V0IFY0IGFuZCB0ZXN0IGFnYWluLiBRdWl0ZSBzb21lIGltcHJvdmVtZW50IG92ZXIgbXkg
-bGFzdCBzZXJpZXMgb2YKdGVzdCB3aXRoIEdTdHJlYW1lci4gSXQgaGFzIHRoaXMgcGFydGljdWxh
-cml0eSBvZiBydW5uaW5nIGlucHV0L291dHB1dAphbmQgY2FwdHVyZSBRQlVGIG9uIHBvdGVudGlh
-bGx5IDMgZGlmZmVyZW50IHRocmVhZHMuCgo+IAo+IE5laWwKPiAKPiAKPiA+ID4gKwkJLnBpeGZt
-dHNfY2FwID0geyBWNEwyX1BJWF9GTVRfTlYxMk0sIDAgfSwKPiA+ID4gKwkJLmZsYWdzID0gVjRM
-Ml9GTVRfRkxBR19DT01QUkVTU0VEIHwKPiA+ID4gKwkJCSBWNEwyX0ZNVF9GTEFHX0RZTl9SRVNP
-TFVUSU9OLAo+ID4gPiArCX0sIHsKPiA+ID4gIAkJLnBpeGZtdCA9IFY0TDJfUElYX0ZNVF9IMjY0
-LAo+ID4gPiAgCQkubWluX2J1ZmZlcnMgPSAyLAo+ID4gPiAgCQkubWF4X2J1ZmZlcnMgPSAyNCwK
-PiA+ID4gQEAgLTEyNyw2ICsxNDEsMTggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhbXZkZWNfZm9y
-bWF0IHZkZWNfZm9ybWF0c19neG1bXSA9IHsKPiA+ID4gIAo+ID4gPiAgc3RhdGljIGNvbnN0IHN0
-cnVjdCBhbXZkZWNfZm9ybWF0IHZkZWNfZm9ybWF0c19nMTJhW10gPSB7Cj4gPiA+ICAJewo+ID4g
-PiArCQkucGl4Zm10ID0gVjRMMl9QSVhfRk1UX1ZQOSwKPiA+ID4gKwkJLm1pbl9idWZmZXJzID0g
-MTYsCj4gPiA+ICsJCS5tYXhfYnVmZmVycyA9IDI0LAo+ID4gPiArCQkubWF4X3dpZHRoID0gMzg0
-MCwKPiA+ID4gKwkJLm1heF9oZWlnaHQgPSAyMTYwLAo+ID4gPiArCQkudmRlY19vcHMgPSAmdmRl
-Y19oZXZjX29wcywKPiA+ID4gKwkJLmNvZGVjX29wcyA9ICZjb2RlY192cDlfb3BzLAo+ID4gPiAr
-CQkuZmlybXdhcmVfcGF0aCA9ICJtZXNvbi92ZGVjL2cxMmFfdnA5LmJpbiIsCj4gPiA+ICsJCS5w
-aXhmbXRzX2NhcCA9IHsgVjRMMl9QSVhfRk1UX05WMTJNLCAwIH0sCj4gPiA+ICsJCS5mbGFncyA9
-IFY0TDJfRk1UX0ZMQUdfQ09NUFJFU1NFRCB8Cj4gPiA+ICsJCQkgVjRMMl9GTVRfRkxBR19EWU5f
-UkVTT0xVVElPTiwKPiA+ID4gKwl9LCB7Cj4gPiA+ICAJCS5waXhmbXQgPSBWNEwyX1BJWF9GTVRf
-SDI2NCwKPiA+ID4gIAkJLm1pbl9idWZmZXJzID0gMiwKPiA+ID4gIAkJLm1heF9idWZmZXJzID0g
-MjQsCj4gPiA+IEBAIC0xNjUsNiArMTkxLDE4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYW12ZGVj
-X2Zvcm1hdCB2ZGVjX2Zvcm1hdHNfZzEyYVtdID0gewo+ID4gPiAgCj4gPiA+ICBzdGF0aWMgY29u
-c3Qgc3RydWN0IGFtdmRlY19mb3JtYXQgdmRlY19mb3JtYXRzX3NtMVtdID0gewo+ID4gPiAgCXsK
-PiA+ID4gKwkJLnBpeGZtdCA9IFY0TDJfUElYX0ZNVF9WUDksCj4gPiA+ICsJCS5taW5fYnVmZmVy
-cyA9IDE2LAo+ID4gPiArCQkubWF4X2J1ZmZlcnMgPSAyNCwKPiA+ID4gKwkJLm1heF93aWR0aCA9
-IDM4NDAsCj4gPiA+ICsJCS5tYXhfaGVpZ2h0ID0gMjE2MCwKPiA+ID4gKwkJLnZkZWNfb3BzID0g
-JnZkZWNfaGV2Y19vcHMsCj4gPiA+ICsJCS5jb2RlY19vcHMgPSAmY29kZWNfdnA5X29wcywKPiA+
-ID4gKwkJLmZpcm13YXJlX3BhdGggPSAibWVzb24vdmRlYy9nMTJhX3ZwOS5iaW4iLAo+ID4gPiAr
-CQkucGl4Zm10c19jYXAgPSB7IFY0TDJfUElYX0ZNVF9OVjEyTSwgMCB9LAo+ID4gPiArCQkuZmxh
-Z3MgPSBWNEwyX0ZNVF9GTEFHX0NPTVBSRVNTRUQgfAo+ID4gPiArCQkJIFY0TDJfRk1UX0ZMQUdf
-RFlOX1JFU09MVVRJT04sCj4gPiA+ICsJfSwgewo+ID4gPiAgCQkucGl4Zm10ID0gVjRMMl9QSVhf
-Rk1UX0gyNjQsCj4gPiA+ICAJCS5taW5fYnVmZmVycyA9IDIsCj4gPiA+ICAJCS5tYXhfYnVmZmVy
-cyA9IDI0LAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
-Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
-bG9naWMK
+Hi Jerome
+
+Thanks for your suggestions.
+
+On 2020/2/4 18:24, Jerome Brunet wrote:
+> 
+> On Mon 20 Jan 2020 at 04:49, Jian Hu <jian.hu@amlogic.com> wrote:
+> 
+>> Compared with the previous SoCs, self-adaption current module
+>> is newly added for A1, and there is no reset parm except the
+>> fixed pll. In A1 PLL, the PLL enable sequence is different, using
+>> the new power-on sequence to enable the PLL.
+> 
+> Things are getting clearer thanks to Martin's suggestions and I can
+> understand what your driver is doing now
+> 
+> However, I still have a problem with the fact that 2 different pll types
+> are getting intertwined in this driver. Parameters mandatory to one is
+> made optional to the other. Nothing clearly shows which needs what and
+> the combinatorial are quickly growing.
+> 
+> Apparently the only real difference is in enable/disable, So I would
+> prefer if the a1 had dedicated function for these ops.
+> 
+> I suppose you'll have to submit clk_hw_enable() and clk_hw_disable()
+> to the framework to call the appropriate ops dependind on the SoC.
+> 
+I am confused here.
+What does clk_hw_is_enabled/clk_hw_enable/clk_hw_disable use here?
+
+clk_hw_is_enabled is intend to check a parm's existence? But 
+clk_hw_is_enabled which is existed in CCF to check a PLL is locked or
+not. Maybe I understand wrong about your suggestions.
+
+Could you list a example for clk_hw_enable and clk_hw_disable function 
+implementation?
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> ---
+>>   drivers/clk/meson/clk-pll.c | 47 +++++++++++++++++++++++++++++++------
+>>   drivers/clk/meson/clk-pll.h |  2 ++
+>>   2 files changed, 42 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+>> index ddb1e5634739..10926291440f 100644
+>> --- a/drivers/clk/meson/clk-pll.c
+>> +++ b/drivers/clk/meson/clk-pll.c
+>> @@ -283,10 +283,14 @@ static void meson_clk_pll_init(struct clk_hw *hw)
+>>   	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+>>   
+>>   	if (pll->init_count) {
+>> -		meson_parm_write(clk->map, &pll->rst, 1);
+>> +		if (MESON_PARM_APPLICABLE(&pll->rst))
+>> +			meson_parm_write(clk->map, &pll->rst, 1);
+>> +
+> 
+> replace by
+>          enabled = clk_hw_is_enabled(hw)
+>          if (enabled)
+>             clk_hw_disable(hw)
+> 
+clk_hw_is_enabled here is used to check 'pll->rst'?
+>>   		regmap_multi_reg_write(clk->map, pll->init_regs,
+>>   				       pll->init_count);
+>> -		meson_parm_write(clk->map, &pll->rst, 0);
+>> +
+>> +		if (MESON_PARM_APPLICABLE(&pll->rst))
+>> +			meson_parm_write(clk->map, &pll->rst, 0);
+> 
+>         /* restore if necessary */
+>         if (enabled)
+>            clk_hw_enable(hw)
+> 
+>>   	}
+>>   }
+>>   
+>> @@ -295,8 +299,11 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
+>>   	struct clk_regmap *clk = to_clk_regmap(hw);
+>>   	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+>>   
+>> -	if (meson_parm_read(clk->map, &pll->rst) ||
+>> -	    !meson_parm_read(clk->map, &pll->en) ||
+>> +	if (MESON_PARM_APPLICABLE(&pll->rst) &&
+>> +	    meson_parm_read(clk->map, &pll->rst))
+>> +		return 0;
+>> +
+>> +	if (!meson_parm_read(clk->map, &pll->en) ||
+>>   	    !meson_parm_read(clk->map, &pll->l))
+>>   		return 0;
+> 
+> I suppose the pll can't be locked if it was in reset, so we could drop
+> the check on `rst` entirely to simplify the function
+> 
+OK, I will drop 'rst' check.
+>>   
+>> @@ -323,13 +330,34 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+>>   		return 0;
+>>   
+>>   	/* Make sure the pll is in reset */
+>> -	meson_parm_write(clk->map, &pll->rst, 1);
+>> +	if (MESON_PARM_APPLICABLE(&pll->rst))
+>> +		meson_parm_write(clk->map, &pll->rst, 1);
+>>   
+>>   	/* Enable the pll */
+>>   	meson_parm_write(clk->map, &pll->en, 1);
+>>   
+>>   	/* Take the pll out reset */
+>> -	meson_parm_write(clk->map, &pll->rst, 0);
+>> +	if (MESON_PARM_APPLICABLE(&pll->rst))
+>> +		meson_parm_write(clk->map, &pll->rst, 0);
+>> +
+>> +	/*
+>> +	 * Compared with the previous SoCs, self-adaption current module
+>> +	 * is newly added for A1, keep the new power-on sequence to enable the
+>> +	 * PLL. The sequence is:
+>> +	 * 1. enable the pll, delay for 10us
+>> +	 * 2. enable the pll self-adaption current module, delay for 40us
+>> +	 * 3. enable the lock detect module
+>> +	 */
+>> +	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
+>> +		udelay(10);
+>> +		meson_parm_write(clk->map, &pll->current_en, 1);
+>> +		udelay(40);
+>> +	};
+>> +
+>> +	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
+>> +		meson_parm_write(clk->map, &pll->l_detect, 1);
+>> +		meson_parm_write(clk->map, &pll->l_detect, 0);
+>> +	}
+>>   
+>>   	if (meson_clk_pll_wait_lock(hw))
+>>   		return -EIO;
+>> @@ -343,10 +371,15 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
+>>   	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+>>   
+>>   	/* Put the pll is in reset */
+>> -	meson_parm_write(clk->map, &pll->rst, 1);
+>> +	if (MESON_PARM_APPLICABLE(&pll->rst))
+>> +		meson_parm_write(clk->map, &pll->rst, 1);
+>>   
+>>   	/* Disable the pll */
+>>   	meson_parm_write(clk->map, &pll->en, 0);
+>> +
+>> +	/* Disable PLL internal self-adaption current module */
+>> +	if (MESON_PARM_APPLICABLE(&pll->current_en))
+>> +		meson_parm_write(clk->map, &pll->current_en, 0);
+>>   }
+> 
+> With the above clarified, it should be easy to properly split the
+> functions between the legacy type and the a1 type.
+> 
+> You'll need to update meson_clk_pll_set_rate() to call
+>   - clk_hw_is_enabled()
+>   - clk_hw_enable() and clk_hw_disable() (again, you'll need to add
+>   those in the framework first)
+> 
+>>   
+>>   static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+>> index 367efd0f6410..a2228c0fdce5 100644
+>> --- a/drivers/clk/meson/clk-pll.h
+>> +++ b/drivers/clk/meson/clk-pll.h
+>> @@ -36,6 +36,8 @@ struct meson_clk_pll_data {
+>>   	struct parm frac;
+>>   	struct parm l;
+>>   	struct parm rst;
+>> +	struct parm current_en;
+>> +	struct parm l_detect;
+>>   	const struct reg_sequence *init_regs;
+>>   	unsigned int init_count;
+>>   	const struct pll_params_table *table;
+> 
+> .
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
