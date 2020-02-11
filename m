@@ -2,62 +2,94 @@ Return-Path: <SRS0=emJG=37=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A657BC352A3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2020 11:13:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC4D4C352A3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2020 12:16:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7ABA520714
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2020 11:13:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8D39720842
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2020 12:16:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jLpu1TX0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7ABA520714
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="L8Hd1jW1";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="W1+92dCh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D39720842
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rYiMep2fVHpi4xlwx9IfW0TCEF8MxrmQ8K8HVvbwutw=; b=jLpu1TX0NBciSc
-	0uvgDuaPKmqiVbetoBVaDt2RpGrJVzP/ylKc1rrJVJFb488Y2qN+aCCxSCTGUL05n21ZG9bgy6UA0
-	+y4alyo7KL7bSHzPJ/MGg7UvX5IzA5Hgv1fXrOkLegjr5a/avYEdwqigQ4HH48uFucRSo0+kbYCI9
-	ZcxoxJnYkLscQYNfGecL3TfyaFFAsey2cQ8Zreq8/nj3gZ7FnYORTOeWBjj8tHO4124+7UZYphPy3
-	cUBFj/rxLulKSjvU7hIwJImW9O3kDvHasdmRTYMspwqRoTg92/ALL00PqqmKARFbeeLyvvKuwFJEd
-	5UhrkCv5P5KSoqr7ajsw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=qUWdyENsN0ws2O98qhvoJOtFVdNXcBevSIG/5H3m8LQ=; b=L8Hd1jW1NTF2Sj2uIh+64GHIQX
+	0qilabho4VFY6EZ4vd+Zk3ZSxwDlVBvykjaBxik6MI24N4M4uIUJKLhJBpKWVLroNnCeTPeh/pcWf
+	E8efkMEALn4++eWeXSSpVlqUM7Z0CELkMftDhRHKNr1ITwZxsxlxddUUfoqqZsdhdctWOD00HOOcL
+	9pScHQVpusmeyNsk3JF4Txrwn/bNFt2acezgLMs+THJIldAfChYtt4Mjl9NVCXirJ8JxiIlP/gHhG
+	MLTjB1WPzJRkoIV/THZ5UmWbU7Q/FfAsO0kgvb1Ww2anE5jANYXW78wjIwPi1OnqF9s1WAeX0TZFd
+	18xyhGJw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j1TTZ-0000Kc-9J; Tue, 11 Feb 2020 11:13:09 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1j1UT0-000781-6F; Tue, 11 Feb 2020 12:16:38 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j1TSp-0007mL-5c; Tue, 11 Feb 2020 11:12:24 +0000
-Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Tue, 11 Feb 2020
- 19:12:47 +0800
-From: Hanjie Lin <hanjie.lin@amlogic.com>
-To: Kishon Vijay Abraham I <kishon@ti.com>, Jerome Brunet
- <jbrunet@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Rob Herring
- <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Kevin
- Hilman <khilman@baylibre.com>
-Subject: [PATCH v8 3/3] arm64: dts: meson: a1: Enable USB2 PHY and DWC3
- controller
-Date: Tue, 11 Feb 2020 19:10:54 +0800
-Message-ID: <1581419454-12667-4-git-send-email-hanjie.lin@amlogic.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1581419454-12667-1-git-send-email-hanjie.lin@amlogic.com>
+ id 1j1USx-00076u-2w
+ for linux-amlogic@lists.infradead.org; Tue, 11 Feb 2020 12:16:37 +0000
+Received: by mail-wr1-x441.google.com with SMTP id r11so8854360wrq.10
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 Feb 2020 04:16:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=GUGVeWyTamE7UDj1FKSQ+oAogvWYH8rVlMddW6H23bo=;
+ b=W1+92dChYL38m0QO++WYETYen2Fxo5eUiRgk2TXSr9E1riiBm5WQ5epUQwHBYgg5Q4
+ Fgj6CeZHrKZuTII/KbyWNpNova/3fm1WK1YB+EWM8MuFQoeiwyXsLJu0xxmMw9kbhEL4
+ N+BG29zaELbKteYXpKNUVouXWqrCxd5WW3WFjRtmzzSrfidgwlKwdgtgeFF3LLuBCshQ
+ NsNnPCC8kBXMywXCzzhUC8bhTGFWah1fLdtCgVoXTbrQBFhSImu2zH4Mi9an7sS70ecf
+ guw+cYpi5JzNhlxU5nEkl4Bn6jGt9i+ZXNRTWOE0w9X/DDON7Hc1CAW1ZmHeiLROLJ7U
+ CTjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=GUGVeWyTamE7UDj1FKSQ+oAogvWYH8rVlMddW6H23bo=;
+ b=W6RD3mr1sOS3MdN+qqCyWtLwR73v4UK7jja3PUpGDO9g2scVt8r/N1am3ARMYh48n2
+ 3ZmrH7NbkU7fROxC3enX3JxkLMEdYpN198Lc+KrUJckGmXBr3oVQrpL8vekFAf6/76vV
+ MQrbjMOWyGZMFLoI2/WzS3uS6q0tbba5olSZtaBRlzi1d68kPx0nP9eKJCmZX9AmNeJg
+ ZCsezvN+8lju9CA3qPnHPX17ZBOwLko9E09ZtIAnw/eFwEtNfs2IaLrQZr2M8Irv6UHT
+ wk75g3CmTqmnhlJS+khRdn3S6QRtYNoqOgNEJFt3QkxpKeKZ/zjcbQc9PeUnNvyJqgGt
+ 2imQ==
+X-Gm-Message-State: APjAAAV3wzpO57Yw8lb4CYz6j0Texb9ZBym9bxXehsObpFCMJywuTVQu
+ KXcYk3R9E08fdZPLwHpF46/MGw==
+X-Google-Smtp-Source: APXvYqwfT/nPvnV/mY2Ya9vBY1B2CXqBG3HndSvJlIoc9nkQdXy7phO8sDESz0qr6Hw1YB1/L4rIrw==
+X-Received: by 2002:adf:82ce:: with SMTP id 72mr8363015wrc.14.1581423391418;
+ Tue, 11 Feb 2020 04:16:31 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id c4sm3446467wml.7.2020.02.11.04.16.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Feb 2020 04:16:30 -0800 (PST)
 References: <1581419454-12667-1-git-send-email-hanjie.lin@amlogic.com>
+ <1581419454-12667-2-git-send-email-hanjie.lin@amlogic.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Hanjie Lin <hanjie.lin@amlogic.com>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Kevin
+ Hilman" <khilman@baylibre.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: phy: Add Amlogic A1 USB2 PHY Bindings
+In-reply-to: <1581419454-12667-2-git-send-email-hanjie.lin@amlogic.com>
+Date: Tue, 11 Feb 2020 13:16:29 +0100
+Message-ID: <1jpnelb9pe.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.18.11.213]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200211_031223_221962_1B2A72FE 
-X-CRM114-Status: UNSURE (   8.56  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200211_041635_133142_B925BE86 
+X-CRM114-Status: GOOD (  10.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,8 +101,8 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+Cc: devicetree@vger.kernel.org, Victor
+ Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
  Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
  linux-usb@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -83,84 +115,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable USB2 PHY and DWC3 controller for Meson A1 SoC.
 
-Signed-off-by: Yue Wang <yue.wang@amlogic.com>
-Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 43 +++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+On Tue 11 Feb 2020 at 12:10, Hanjie Lin <hanjie.lin@amlogic.com> wrote:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 6fdc0dd..3b7ca50 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -6,6 +6,9 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/meson-a1-power.h>
-+#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
-+#include <dt-bindings/clock/a1-pll-clkc.h>
-+#include <dt-bindings/clock/a1-clkc.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -100,6 +103,17 @@
- 				#power-domain-cells = <1>;
- 				status = "okay";
- 			};
-+
-+			usb2_phy1: phy@40000 {
-+				compatible = "amlogic,a1-usb2-phy";
-+				clocks = <&clkc_periphs CLKID_XTAL_USB_PHY>;
-+				clock-names = "xtal";
-+				reg = <0x0 0x40000 0x0 0x2000>;
-+				resets = <&reset RESET_USBPHY>;
-+				reset-names = "phy";
-+				#phy-cells = <0>;
-+				power-domains = <&pwrc PWRC_USB_ID>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@ff901000 {
-@@ -114,6 +128,35 @@
- 			#interrupt-cells = <3>;
- 			#address-cells = <0>;
- 		};
-+
-+		usb: usb@ffe09000 {
-+			status = "disabled";
-+			compatible = "amlogic,meson-a1-usb-ctrl";
-+			reg = <0x0 0xffe09000 0x0 0xa0>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&clkc_periphs CLKID_USB_CTRL>,
-+				 <&clkc_periphs CLKID_USB_BUS>,
-+				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
-+			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
-+			resets = <&reset RESET_USBCTRL>;
-+
-+			dr_mode = "host";
-+
-+			phys = <&usb2_phy1>;
-+			phy-names = "usb2-phy1";
-+
-+			dwc3: usb@ff400000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff400000 0x0 0x100000>;
-+				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+				dr_mode = "host";
-+				snps,dis_u2_susphy_quirk;
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+			};
-+		};
- 	};
- 
- 	timer {
--- 
-2.7.4
+> Add the Amlogic A1 Family USB2 PHY Bindings
+>
+> It supports Host mode only.
+>
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/phy/amlogic,meson-g12a-usb2-phy.yaml         | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+> index 57d8603..3b7e763 100644
+> --- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+> @@ -14,6 +14,7 @@ properties:
+>    compatible:
+>      enum:
+>        - amlogic,meson-g12a-usb2-phy
+> +      - amlogic,meson-a1-usb2-phy
+>  
+>    reg:
+>      maxItems: 1
+> @@ -49,6 +50,20 @@ required:
+>    - reset-names
+>    - "#phy-cells"
+>  
+> +allOf:
+
+Is 'allOf' really needed when there is only one if clause ?
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - amlogic,meson-a1-usb-ctrl
+> +
+> +    then:
+> +      properties:
+> +        power-domains:
+> +          maxItems: 1
+> +      required:
+> +        - power-domains
+> +
+>  examples:
+>    - |
+>      phy@36000 {
 
 
 _______________________________________________
