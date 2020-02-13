@@ -2,22 +2,22 @@ Return-Path: <SRS0=deyy=4B=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12D79C2BA83
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2020 15:52:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A861DC3B189
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2020 15:52:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D1784217F4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2020 15:52:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 78859217F4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2020 15:52:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R+8EANYw";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jOU3Wh3u"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D1784217F4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mhWe1ftR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="W2joqd9A"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 78859217F4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FzlBTpOFygB85pcu2JIK389y39CfltHgLjyXt5EZltI=; b=R+8EANYwqK/YNW
-	isYwxDopVHwUCE5hvDRYtLDSs53ETR48CZC5S84Nc4YDVoLr1I+ATfqWXqGkb4LfHiEtBm5GV3YK6
-	wAYKHPTPak5cY5Y99bQNj6yO1RENycMbamSCNNwqifb0SgMAEe/Cs94TT64f1KKrtIUKwLcKk3LXA
-	crRvAl3lx3U4l3ON9bFMC1r/iCP8InpeAEFad0FYS0rrsMAMmEMDLY5NskOymuo+7Ha7j3hv8It95
-	VIVSS/FWdt2P8JiZYJegVbk7qICRqqbdLR2HKuplwxR8noon9xjba0rJg7IpqsCl23foOVG3cwFY2
-	H000v+JtgGr/QQUAn7/g==;
+	List-Owner; bh=IdUNlJ/s1I3ClsRUXfLGQlSEuBF6AF9eTBSpYgFEAZ0=; b=mhWe1ftRMDczG3
+	zf/jXB8fI3dwwnuacZ046F64pSIvqHulr/Z1csAGPUa4WwisJJclsZ3lu7ABhguMXKlwfxkY/vp11
+	clRAXD+s3eptFyvtBhBRV0WxKiltmC/GUfoLn7MHihu5pftpw5iAiE0NAbRGIxBeU0d1nkuW9fKFJ
+	Hvv7jMBU6gburiGqMbnfi3VPNZrqchea/6JF16EbQqDMqX6z9k16/c1Zsg/PloBTxVXrTpm8B7Vo5
+	L3u/CQBI13BrCVOiT0CEykqia7okFd/zdul2Tb77znDg4doP1d5+53ZKZ0fMDO6coSVH12dRJjH5z
+	EitjgtgRCqqGaKpOCvVA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j2Gmu-0000ro-Aq; Thu, 13 Feb 2020 15:52:24 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1j2Gmw-0000vA-J3; Thu, 13 Feb 2020 15:52:26 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j2Gmj-0000eg-R7
- for linux-amlogic@lists.infradead.org; Thu, 13 Feb 2020 15:52:19 +0000
-Received: by mail-wr1-x442.google.com with SMTP id z3so7323497wru.3
- for <linux-amlogic@lists.infradead.org>; Thu, 13 Feb 2020 07:52:13 -0800 (PST)
+ id 1j2Gml-0000gJ-PX
+ for linux-amlogic@lists.infradead.org; Thu, 13 Feb 2020 15:52:18 +0000
+Received: by mail-wm1-x342.google.com with SMTP id a5so6810358wmb.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 13 Feb 2020 07:52:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=2uPAuJR2KE1u6NlvXb4sRFBYVQr4W8UHWzDnXk8xd3s=;
- b=jOU3Wh3ua1GhNlmrEwEZHAax/M5q0sh06Fx/znA3ueIpeYpP37CMF0BWSo8aQzoVUW
- vqwzx4ZzDqsHc/8xHSzjySMzYZw8b+cpqkpAahW6NLQpBXFnd9A5v3tc6npC/oym2Abo
- YDh4kye8hAa2acCc01D5MM3cw0C7FMbt7iKc3UE2onCoeD05JknQEycUsGwuYhQXfXDo
- 3+mmwzOaw5yHaJAjkYHRzu1Le5PQf3RCUpQGuGAKBK1wu3X2B3MeavRa1rR87rZWmZ04
- zAn3CvYa9nQPNdO6Z6mp0bQA1W1N70biNm3mzDPoAXQOKCUjE4V2h/eNHJQhqQ1i0aNu
- HxmA==
+ bh=PE6MSof9ikEAHBm0daRLxCQZwkiheW3ZANvlgjgzY4A=;
+ b=W2joqd9AKon1Xq5f0Upd6Q7fOnSObgDd7NrBexU5uRn9qpzPt6VZMXwXgZX5vxZmjc
+ 4jHc9q1srDbda3SNX04xCXQZRzFsO0c8bddtguhgNSLTE6FaqUAa9BT5yRI92nu58Xpe
+ o+VZVidv3whdiXRlMKVBm79NlEi+Bd2JDawi5EFef+MiOd6r2JF5cYKGFhN40pTHOUcw
+ 2NUe4YqYfHzP0IaAEcwttcyXFnswgF7GCOSFIr2MA+cMCuZawBM7z7SZlrbfPAacBcve
+ GW+0792a9w/+gxK6Ojm9r8gaU55CMgpN5qAqLnFpmmfDReqmKFdVNXtmK6m/VrFgVG+j
+ 6ZxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=2uPAuJR2KE1u6NlvXb4sRFBYVQr4W8UHWzDnXk8xd3s=;
- b=b2ZV7tUeu4xiytM6zug62OmDxinLl0oLzatoHChfKq6kDyBGEMww9ttMCxwGhvHJJ9
- D3Ee/HnXAptAQTTi3ppVrUDrOup77g7voGYqrSYM0EJD58o4ZRDKnyM2sUhR7AjpcOQ6
- YwRmhevTW7kdJlssEXIgU+dSjlZQKnaxukEIqkatlyKtB6G/DlfrsnKPQJ6GiMVracDn
- nM0zIBziyVnoJMipOrg5L0VOOw3PSW2ifs750GZXRBg1i5X3jbC29Igj8DgFXE+whnhJ
- /ZISeD48xn2VWhQKe8M83D841Mayj+KJCHgI9sdzd80jFeX9MD2+pvuDfYO2WZJpk4iu
- 4hwQ==
-X-Gm-Message-State: APjAAAVJTydvpa9lcKkDrAOrkE1ZdVkEEhCH/VBhQ/ZSDygD+sqS1DyB
- Dto2FiUtywR//7/Bld9POn/3oA==
-X-Google-Smtp-Source: APXvYqxb0o/L91Lw2+vIRo8xCTpFCEnhMSXttKps7cqSckfGosPRJ/Y9G2iKZojlKmq4REezumM4Tw==
-X-Received: by 2002:a5d:5152:: with SMTP id u18mr22050303wrt.214.1581609131993; 
- Thu, 13 Feb 2020 07:52:11 -0800 (PST)
+ bh=PE6MSof9ikEAHBm0daRLxCQZwkiheW3ZANvlgjgzY4A=;
+ b=cIkxD3gNcpl4u+4Gcqblth/rE1nyUd6+cAfO20qOftQW9/3kiEEnRY/s8zSqB6XG6H
+ CKj6BL1uVt66LA0xxowS0LJWiwgFRVNVhpPug2FhvKrf53HINMHgY0SKGRFgyIHEwaWg
+ Sswf+4Cl4EkD+UQJJhA3dUuRgtkGb27LhacQ8x6yVIUhiblAoP5C1LMbd3B4S0lKK+hQ
+ svAyBRDQE7hy5DFCJPfTm1PNE75oxZC6LiXV/8E+fMQRdwPP3k/Zx71HgpzYVuraATjz
+ Pvzt6qirjtbttReEm221amTuYtn26R0X2q07n133aJHDZ5/AASUYPFtSsz6u9bkffrWU
+ z5YQ==
+X-Gm-Message-State: APjAAAWRCaqdtvIduTNqEbloM2on4IAE/ZCmE6hTQvei1N30b9yoTJoh
+ 8UmECbZU7epobCwSJ1xQiqoXvA==
+X-Google-Smtp-Source: APXvYqx4wuZLfC7RkbrXtkvYozkKIHXN5pJWTAs/jiDRgx6uE3jhvMkw7UoC1BQRf3SxfBRDSaCoAQ==
+X-Received: by 2002:a05:600c:34b:: with SMTP id
+ u11mr6405614wmd.69.1581609133827; 
+ Thu, 13 Feb 2020 07:52:13 -0800 (PST)
 Received: from starbuck.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id e1sm3319814wrt.84.2020.02.13.07.52.10
+ by smtp.googlemail.com with ESMTPSA id e1sm3319814wrt.84.2020.02.13.07.52.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 Feb 2020 07:52:11 -0800 (PST)
+ Thu, 13 Feb 2020 07:52:13 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH 4/9] ASoC: meson: aiu: add i2s and spdif support
-Date: Thu, 13 Feb 2020 16:51:54 +0100
-Message-Id: <20200213155159.3235792-5-jbrunet@baylibre.com>
+Subject: [PATCH 6/9] ASoC: meson: aiu: add internal dac codec control support
+Date: Thu, 13 Feb 2020 16:51:56 +0100
+Message-Id: <20200213155159.3235792-7-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200213155159.3235792-1-jbrunet@baylibre.com>
 References: <20200213155159.3235792-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200213_075214_153728_0C184C7C 
+X-CRM114-CacheID: sfid-20200213_075215_836599_DE0704FD 
 X-CRM114-Status: GOOD (  18.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -106,1696 +107,275 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the i2s and spdif audio outputs (AIU) found in the
-amlogic Gx SoC family
+Add the codec to codec component which handles the routing between
+the audio producers and the internal audio DAC found on the amlogic GXL
+SoC family
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/Kconfig             |   7 +
- sound/soc/meson/Makefile            |   7 +
- sound/soc/meson/aiu-encoder-i2s.c   | 324 ++++++++++++++++++++++++++
- sound/soc/meson/aiu-encoder-spdif.c | 209 +++++++++++++++++
- sound/soc/meson/aiu-fifo-i2s.c      | 153 ++++++++++++
- sound/soc/meson/aiu-fifo-spdif.c    | 186 +++++++++++++++
- sound/soc/meson/aiu-fifo.c          | 223 ++++++++++++++++++
- sound/soc/meson/aiu-fifo.h          |  50 ++++
- sound/soc/meson/aiu.c               | 348 ++++++++++++++++++++++++++++
- sound/soc/meson/aiu.h               |  82 +++++++
- 10 files changed, 1589 insertions(+)
- create mode 100644 sound/soc/meson/aiu-encoder-i2s.c
- create mode 100644 sound/soc/meson/aiu-encoder-spdif.c
- create mode 100644 sound/soc/meson/aiu-fifo-i2s.c
- create mode 100644 sound/soc/meson/aiu-fifo-spdif.c
- create mode 100644 sound/soc/meson/aiu-fifo.c
- create mode 100644 sound/soc/meson/aiu-fifo.h
- create mode 100644 sound/soc/meson/aiu.c
- create mode 100644 sound/soc/meson/aiu.h
+ sound/soc/meson/Makefile          |   1 +
+ sound/soc/meson/aiu-acodec-ctrl.c | 205 ++++++++++++++++++++++++++++++
+ sound/soc/meson/aiu.c             |  10 ++
+ sound/soc/meson/aiu.h             |   1 +
+ 4 files changed, 217 insertions(+)
+ create mode 100644 sound/soc/meson/aiu-acodec-ctrl.c
 
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index ee6d53949d45..ca269dedfc7f 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -2,6 +2,13 @@
- menu "ASoC support for Amlogic platforms"
- 	depends on ARCH_MESON || COMPILE_TEST
- 
-+config SND_MESON_AIU
-+	tristate "Amlogic AIU"
-+	select SND_PCM_IEC958
-+	help
-+	  Select Y or M to add support for the Audio output subsystem found
-+	  in the Amlogic GX SoC family
-+
- config SND_MESON_AXG_FIFO
- 	tristate
- 	select REGMAP_MMIO
 diff --git a/sound/soc/meson/Makefile b/sound/soc/meson/Makefile
-index 529a807b3f37..a7b79d717288 100644
+index 3b21f648e322..80f9113701b3 100644
 --- a/sound/soc/meson/Makefile
 +++ b/sound/soc/meson/Makefile
-@@ -1,5 +1,11 @@
+@@ -1,6 +1,7 @@
  # SPDX-License-Identifier: (GPL-2.0 OR MIT)
  
-+snd-soc-meson-aiu-objs := aiu.o
-+snd-soc-meson-aiu-objs += aiu-encoder-i2s.o
-+snd-soc-meson-aiu-objs += aiu-encoder-spdif.o
-+snd-soc-meson-aiu-objs += aiu-fifo.o
-+snd-soc-meson-aiu-objs += aiu-fifo-i2s.o
-+snd-soc-meson-aiu-objs += aiu-fifo-spdif.o
- snd-soc-meson-axg-fifo-objs := axg-fifo.o
- snd-soc-meson-axg-frddr-objs := axg-frddr.o
- snd-soc-meson-axg-toddr-objs := axg-toddr.o
-@@ -14,6 +20,7 @@ snd-soc-meson-axg-pdm-objs := axg-pdm.o
- snd-soc-meson-codec-glue-objs := meson-codec-glue.o
- snd-soc-meson-g12a-tohdmitx-objs := g12a-tohdmitx.o
- 
-+obj-$(CONFIG_SND_MESON_AIU) += snd-soc-meson-aiu.o
- obj-$(CONFIG_SND_MESON_AXG_FIFO) += snd-soc-meson-axg-fifo.o
- obj-$(CONFIG_SND_MESON_AXG_FRDDR) += snd-soc-meson-axg-frddr.o
- obj-$(CONFIG_SND_MESON_AXG_TODDR) += snd-soc-meson-axg-toddr.o
-diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
+ snd-soc-meson-aiu-objs := aiu.o
++snd-soc-meson-aiu-objs += aiu-acodec-ctrl.o
+ snd-soc-meson-aiu-objs += aiu-codec-ctrl.o
+ snd-soc-meson-aiu-objs += aiu-encoder-i2s.o
+ snd-soc-meson-aiu-objs += aiu-encoder-spdif.o
+diff --git a/sound/soc/meson/aiu-acodec-ctrl.c b/sound/soc/meson/aiu-acodec-ctrl.c
 new file mode 100644
-index 000000000000..13bf029086a9
+index 000000000000..12d8a4d351a1
 --- /dev/null
-+++ b/sound/soc/meson/aiu-encoder-i2s.c
-@@ -0,0 +1,324 @@
++++ b/sound/soc/meson/aiu-acodec-ctrl.c
+@@ -0,0 +1,205 @@
 +// SPDX-License-Identifier: GPL-2.0
 +//
 +// Copyright (c) 2020 BayLibre, SAS.
 +// Author: Jerome Brunet <jbrunet@baylibre.com>
 +
 +#include <linux/bitfield.h>
-+#include <linux/clk.h>
 +#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+
-+#include "aiu.h"
-+
-+#define AIU_I2S_SOURCE_DESC_MODE_8CH	BIT(0)
-+#define AIU_I2S_SOURCE_DESC_MODE_24BIT	BIT(5)
-+#define AIU_I2S_SOURCE_DESC_MODE_32BIT	BIT(9)
-+#define AIU_I2S_SOURCE_DESC_MODE_SPLIT	BIT(11)
-+#define AIU_RST_SOFT_I2S_FAST		BIT(0)
-+
-+#define AIU_I2S_DAC_CFG_MSB_FIRST	BIT(2)
-+#define AIU_I2S_MISC_HOLD_EN		BIT(2)
-+#define AIU_CLK_CTRL_I2S_DIV_EN		BIT(0)
-+#define AIU_CLK_CTRL_I2S_DIV		GENMASK(3, 2)
-+#define AIU_CLK_CTRL_AOCLK_INVERT	BIT(6)
-+#define AIU_CLK_CTRL_LRCLK_INVERT	BIT(7)
-+#define AIU_CLK_CTRL_LRCLK_SKEW		GENMASK(9, 8)
-+#define AIU_CLK_CTRL_MORE_HDMI_AMCLK	BIT(6)
-+#define AIU_CLK_CTRL_MORE_I2S_DIV	GENMASK(5, 0)
-+#define AIU_CODEC_DAC_LRCLK_CTRL_DIV	GENMASK(11, 0)
-+
-+struct aiu_encoder_i2s {
-+	struct clk *aoclk;
-+	struct clk *mclk;
-+	struct clk *mixer;
-+	struct clk *pclk;
-+};
-+
-+static void aiu_encoder_i2s_divider_enable(struct snd_soc_component *component,
-+					   bool enable)
-+{
-+	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
-+				      AIU_CLK_CTRL_I2S_DIV_EN,
-+				      enable ? AIU_CLK_CTRL_I2S_DIV_EN : 0);
-+}
-+
-+static void aiu_encoder_i2s_hold(struct snd_soc_component *component,
-+				 bool enable)
-+{
-+	snd_soc_component_update_bits(component, AIU_I2S_MISC,
-+				      AIU_I2S_MISC_HOLD_EN,
-+				      enable ? AIU_I2S_MISC_HOLD_EN : 0);
-+}
-+
-+static int aiu_encoder_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
-+				   struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+
-+	switch (cmd) {
-+	case SNDRV_PCM_TRIGGER_START:
-+	case SNDRV_PCM_TRIGGER_RESUME:
-+	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		aiu_encoder_i2s_hold(component, false);
-+		return 0;
-+
-+	case SNDRV_PCM_TRIGGER_STOP:
-+	case SNDRV_PCM_TRIGGER_SUSPEND:
-+	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-+		aiu_encoder_i2s_hold(component, true);
-+		return 0;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int aiu_encoder_i2s_setup_desc(struct snd_soc_component *component,
-+				      struct snd_pcm_hw_params *params)
-+{
-+	/* Always operate in split (classic interleaved) mode */
-+	unsigned int desc = AIU_I2S_SOURCE_DESC_MODE_SPLIT;
-+	unsigned int val;
-+
-+	/* Reset required to update the pipeline */
-+	snd_soc_component_write(component, AIU_RST_SOFT, AIU_RST_SOFT_I2S_FAST);
-+	snd_soc_component_read(component, AIU_I2S_SYNC, &val);
-+
-+	switch (params_physical_width(params)) {
-+	case 16: /* Nothing to do */
-+		break;
-+
-+	case 32:
-+		desc |= (AIU_I2S_SOURCE_DESC_MODE_24BIT |
-+			 AIU_I2S_SOURCE_DESC_MODE_32BIT);
-+		break;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	switch (params_channels(params)) {
-+	case 2: /* Nothing to do */
-+		break;
-+	case 8:
-+		desc |= AIU_I2S_SOURCE_DESC_MODE_8CH;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	snd_soc_component_update_bits(component, AIU_I2S_SOURCE_DESC,
-+				      AIU_I2S_SOURCE_DESC_MODE_8CH |
-+				      AIU_I2S_SOURCE_DESC_MODE_24BIT |
-+				      AIU_I2S_SOURCE_DESC_MODE_32BIT |
-+				      AIU_I2S_SOURCE_DESC_MODE_SPLIT,
-+				      desc);
-+
-+	return 0;
-+}
-+
-+static int aiu_encoder_i2s_set_clocks(struct snd_soc_component *component,
-+				      struct snd_pcm_hw_params *params)
-+{
-+	struct aiu *aiu = snd_soc_component_get_drvdata(component);
-+	unsigned int srate = params_rate(params);
-+	unsigned int fs, bs;
-+
-+	/* Get the oversampling factor */
-+	fs = DIV_ROUND_CLOSEST(clk_get_rate(aiu->i2s.clks[MCLK].clk), srate);
-+
-+	if (fs % 64)
-+		return -EINVAL;
-+
-+	/* Send data MSB first */
-+	snd_soc_component_update_bits(component, AIU_I2S_DAC_CFG,
-+				      AIU_I2S_DAC_CFG_MSB_FIRST,
-+				      AIU_I2S_DAC_CFG_MSB_FIRST);
-+
-+	/* Set bclk to lrlck ratio */
-+	snd_soc_component_update_bits(component, AIU_CODEC_DAC_LRCLK_CTRL,
-+				      AIU_CODEC_DAC_LRCLK_CTRL_DIV,
-+				      FIELD_PREP(AIU_CODEC_DAC_LRCLK_CTRL_DIV,
-+						 64 - 1));
-+
-+	/* Use CLK_MORE for mclk to bclk divider */
-+	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
-+				      AIU_CLK_CTRL_I2S_DIV, 0);
-+
-+	/*
-+	 * NOTE: this HW is odd.
-+	 * In most configuration, the i2s divider is 'mclk / blck'.
-+	 * However, in 16 bits - 8ch mode, this factor needs to be
-+	 * increased by 50% to get the correct output rate.
-+	 * No idea why !
-+	 */
-+	bs = fs / 64;
-+	if (params_width(params) == 16 && params_channels(params) == 8) {
-+		if (bs % 2) {
-+			dev_err(component->dev,
-+				"Cannot increase i2s divider by 50%%\n");
-+			return -EINVAL;
-+		}
-+		bs += bs / 2;
-+	}
-+
-+	snd_soc_component_update_bits(component, AIU_CLK_CTRL_MORE,
-+				      AIU_CLK_CTRL_MORE_I2S_DIV,
-+				      FIELD_PREP(AIU_CLK_CTRL_MORE_I2S_DIV,
-+						 bs - 1));
-+
-+	/* Make sure amclk is used for HDMI i2s as well */
-+	snd_soc_component_update_bits(component, AIU_CLK_CTRL_MORE,
-+				      AIU_CLK_CTRL_MORE_HDMI_AMCLK,
-+				      AIU_CLK_CTRL_MORE_HDMI_AMCLK);
-+
-+	return 0;
-+}
-+
-+static int aiu_encoder_i2s_hw_params(struct snd_pcm_substream *substream,
-+				     struct snd_pcm_hw_params *params,
-+				     struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	int ret;
-+
-+	/* Disable the clock while changing the settings */
-+	aiu_encoder_i2s_divider_enable(component, false);
-+
-+	ret = aiu_encoder_i2s_setup_desc(component, params);
-+	if (ret) {
-+		dev_err(dai->dev, "setting i2s desc failed\n");
-+		return ret;
-+	}
-+
-+	ret = aiu_encoder_i2s_set_clocks(component, params);
-+	if (ret) {
-+		dev_err(dai->dev, "setting i2s clocks failed\n");
-+		return ret;
-+	}
-+
-+	aiu_encoder_i2s_divider_enable(component, true);
-+
-+	return 0;
-+}
-+
-+static int aiu_encoder_i2s_hw_free(struct snd_pcm_substream *substream,
-+				   struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+
-+	aiu_encoder_i2s_divider_enable(component, false);
-+
-+	return 0;
-+}
-+
-+static int aiu_encoder_i2s_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	unsigned int inv = fmt & SND_SOC_DAIFMT_INV_MASK;
-+	unsigned int val = 0;
-+	unsigned int skew;
-+
-+	/* Only CPU Master / Codec Slave supported ATM */
-+	if ((fmt & SND_SOC_DAIFMT_MASTER_MASK) != SND_SOC_DAIFMT_CBS_CFS)
-+		return -EINVAL;
-+
-+	if (inv == SND_SOC_DAIFMT_NB_IF ||
-+	    inv == SND_SOC_DAIFMT_IB_IF)
-+		val |= AIU_CLK_CTRL_LRCLK_INVERT;
-+
-+	if (inv == SND_SOC_DAIFMT_IB_NF ||
-+	    inv == SND_SOC_DAIFMT_IB_IF)
-+		val |= AIU_CLK_CTRL_AOCLK_INVERT;
-+
-+	/* Signal skew */
-+	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-+	case SND_SOC_DAIFMT_I2S:
-+		/* Invert sample clock for i2s */
-+		val ^= AIU_CLK_CTRL_LRCLK_INVERT;
-+		skew = 1;
-+		break;
-+	case SND_SOC_DAIFMT_LEFT_J:
-+		skew = 0;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	val |= FIELD_PREP(AIU_CLK_CTRL_LRCLK_SKEW, skew);
-+	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
-+				      AIU_CLK_CTRL_LRCLK_INVERT |
-+				      AIU_CLK_CTRL_AOCLK_INVERT |
-+				      AIU_CLK_CTRL_LRCLK_SKEW,
-+				      val);
-+
-+	return 0;
-+}
-+
-+static int aiu_encoder_i2s_set_sysclk(struct snd_soc_dai *dai, int clk_id,
-+				      unsigned int freq, int dir)
-+{
-+	struct aiu *aiu = snd_soc_component_get_drvdata(dai->component);
-+	int ret;
-+
-+	if (WARN_ON(clk_id != 0))
-+		return -EINVAL;
-+
-+	if (dir == SND_SOC_CLOCK_IN)
-+		return 0;
-+
-+	ret = clk_set_rate(aiu->i2s.clks[MCLK].clk, freq);
-+	if (ret)
-+		dev_err(dai->dev, "Failed to set sysclk to %uHz", freq);
-+
-+	return ret;
-+}
-+
-+static const unsigned int hw_channels[] = {2, 8};
-+static const struct snd_pcm_hw_constraint_list hw_channel_constraints = {
-+	.list = hw_channels,
-+	.count = ARRAY_SIZE(hw_channels),
-+	.mask = 0,
-+};
-+
-+static int aiu_encoder_i2s_startup(struct snd_pcm_substream *substream,
-+				   struct snd_soc_dai *dai)
-+{
-+	struct aiu *aiu = snd_soc_component_get_drvdata(dai->component);
-+	int ret;
-+
-+	/* Make sure the encoder gets either 2 or 8 channels */
-+	ret = snd_pcm_hw_constraint_list(substream->runtime, 0,
-+					 SNDRV_PCM_HW_PARAM_CHANNELS,
-+					 &hw_channel_constraints);
-+	if (ret) {
-+		dev_err(dai->dev, "adding channels constraints failed\n");
-+		return ret;
-+	}
-+
-+	ret = clk_bulk_prepare_enable(aiu->i2s.clk_num, aiu->i2s.clks);
-+	if (ret)
-+		dev_err(dai->dev, "failed to enable i2s clocks\n");
-+
-+	return ret;
-+}
-+
-+static void aiu_encoder_i2s_shutdown(struct snd_pcm_substream *substream,
-+				     struct snd_soc_dai *dai)
-+{
-+	struct aiu *aiu = snd_soc_component_get_drvdata(dai->component);
-+
-+	clk_bulk_disable_unprepare(aiu->i2s.clk_num, aiu->i2s.clks);
-+}
-+
-+const struct snd_soc_dai_ops aiu_encoder_i2s_dai_ops = {
-+	.trigger	= aiu_encoder_i2s_trigger,
-+	.hw_params	= aiu_encoder_i2s_hw_params,
-+	.hw_free	= aiu_encoder_i2s_hw_free,
-+	.set_fmt	= aiu_encoder_i2s_set_fmt,
-+	.set_sysclk	= aiu_encoder_i2s_set_sysclk,
-+	.startup	= aiu_encoder_i2s_startup,
-+	.shutdown	= aiu_encoder_i2s_shutdown,
-+};
-+
-diff --git a/sound/soc/meson/aiu-encoder-spdif.c b/sound/soc/meson/aiu-encoder-spdif.c
-new file mode 100644
-index 000000000000..de850913975f
---- /dev/null
-+++ b/sound/soc/meson/aiu-encoder-spdif.c
-@@ -0,0 +1,209 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (c) 2020 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <sound/pcm_params.h>
-+#include <sound/pcm_iec958.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+
-+#include "aiu.h"
-+
-+#define AIU_958_MISC_NON_PCM		BIT(0)
-+#define AIU_958_MISC_MODE_16BITS	BIT(1)
-+#define AIU_958_MISC_16BITS_ALIGN	GENMASK(6, 5)
-+#define AIU_958_MISC_MODE_32BITS	BIT(7)
-+#define AIU_958_MISC_U_FROM_STREAM	BIT(12)
-+#define AIU_958_MISC_FORCE_LR		BIT(13)
-+#define AIU_958_CTRL_HOLD_EN		BIT(0)
-+#define AIU_CLK_CTRL_958_DIV_EN		BIT(1)
-+#define AIU_CLK_CTRL_958_DIV		GENMASK(5, 4)
-+#define AIU_CLK_CTRL_958_DIV_MORE	BIT(12)
-+
-+#define AIU_CS_WORD_LEN			4
-+#define AIU_958_INTERNAL_DIV		2
-+
-+static void
-+aiu_encoder_spdif_divider_enable(struct snd_soc_component *component,
-+				 bool enable)
-+{
-+	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
-+				      AIU_CLK_CTRL_958_DIV_EN,
-+				      enable ? AIU_CLK_CTRL_958_DIV_EN : 0);
-+}
-+
-+static void aiu_encoder_spdif_hold(struct snd_soc_component *component,
-+				   bool enable)
-+{
-+	snd_soc_component_update_bits(component, AIU_958_CTRL,
-+				      AIU_958_CTRL_HOLD_EN,
-+				      enable ? AIU_958_CTRL_HOLD_EN : 0);
-+}
-+
-+static int
-+aiu_encoder_spdif_trigger(struct snd_pcm_substream *substream, int cmd,
-+			  struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+
-+	switch (cmd) {
-+	case SNDRV_PCM_TRIGGER_START:
-+	case SNDRV_PCM_TRIGGER_RESUME:
-+	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		aiu_encoder_spdif_hold(component, false);
-+		return 0;
-+
-+	case SNDRV_PCM_TRIGGER_STOP:
-+	case SNDRV_PCM_TRIGGER_SUSPEND:
-+	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-+		aiu_encoder_spdif_hold(component, true);
-+		return 0;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int aiu_encoder_spdif_setup_cs_word(struct snd_soc_component *component,
-+					   struct snd_pcm_hw_params *params)
-+{
-+	u8 cs[AIU_CS_WORD_LEN];
-+	unsigned int val;
-+	int ret;
-+
-+	ret = snd_pcm_create_iec958_consumer_hw_params(params, cs,
-+						       AIU_CS_WORD_LEN);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Write the 1st half word */
-+	val = cs[1] | cs[0] << 8;
-+	snd_soc_component_write(component, AIU_958_CHSTAT_L0, val);
-+	snd_soc_component_write(component, AIU_958_CHSTAT_R0, val);
-+
-+	/* Write the 2nd half word */
-+	val = cs[3] | cs[2] << 8;
-+	snd_soc_component_write(component, AIU_958_CHSTAT_L1, val);
-+	snd_soc_component_write(component, AIU_958_CHSTAT_R1, val);
-+
-+	return 0;
-+}
-+
-+static int aiu_encoder_spdif_hw_params(struct snd_pcm_substream *substream,
-+				       struct snd_pcm_hw_params *params,
-+				       struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	struct aiu *aiu = snd_soc_component_get_drvdata(component);
-+	unsigned int val = 0, mrate;
-+	int ret;
-+
-+	/* Disable the clock while changing the settings */
-+	aiu_encoder_spdif_divider_enable(component, false);
-+
-+	switch (params_physical_width(params)) {
-+	case 16:
-+		val |= AIU_958_MISC_MODE_16BITS;
-+		val |= FIELD_PREP(AIU_958_MISC_16BITS_ALIGN, 2);
-+		break;
-+	case 32:
-+		val |= AIU_958_MISC_MODE_32BITS;
-+		break;
-+	default:
-+		dev_err(dai->dev, "Unsupport physical width\n");
-+		return -EINVAL;
-+	}
-+
-+	snd_soc_component_update_bits(component, AIU_958_MISC,
-+				      AIU_958_MISC_NON_PCM |
-+				      AIU_958_MISC_MODE_16BITS |
-+				      AIU_958_MISC_16BITS_ALIGN |
-+				      AIU_958_MISC_MODE_32BITS |
-+				      AIU_958_MISC_FORCE_LR |
-+				      AIU_958_MISC_U_FROM_STREAM,
-+				      val);
-+
-+	/* Set the stream channel status word */
-+	ret = aiu_encoder_spdif_setup_cs_word(component, params);
-+	if (ret) {
-+		dev_err(dai->dev, "failed to set channel status word\n");
-+		return ret;
-+	}
-+
-+	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
-+				      AIU_CLK_CTRL_958_DIV |
-+				      AIU_CLK_CTRL_958_DIV_MORE,
-+				      FIELD_PREP(AIU_CLK_CTRL_958_DIV,
-+						 __ffs(AIU_958_INTERNAL_DIV)));
-+
-+	/* 2 * 32bits per subframe * 2 channels = 128 */
-+	mrate = params_rate(params) * 128 * AIU_958_INTERNAL_DIV;
-+	ret = clk_set_rate(aiu->spdif.clks[MCLK].clk, mrate);
-+	if (ret) {
-+		dev_err(dai->dev, "failed to set mclk rate\n");
-+		return ret;
-+	}
-+
-+	aiu_encoder_spdif_divider_enable(component, true);
-+
-+	return 0;
-+}
-+
-+static int aiu_encoder_spdif_hw_free(struct snd_pcm_substream *substream,
-+				     struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+
-+	aiu_encoder_spdif_divider_enable(component, false);
-+
-+	return 0;
-+}
-+
-+static int aiu_encoder_spdif_startup(struct snd_pcm_substream *substream,
-+				     struct snd_soc_dai *dai)
-+{
-+	struct aiu *aiu = snd_soc_component_get_drvdata(dai->component);
-+	int ret;
-+
-+	/*
-+	 * NOTE: Make sure the spdif block is on its own divider.
-+	 *
-+	 * The spdif can be clocked by the i2s master clock or its own
-+	 * clock. We should (in theory) change the source depending on the
-+	 * origin of the data.
-+	 *
-+	 * However, considering the clocking scheme used on these platforms,
-+	 * the master clocks will pick the same PLL source when they are
-+	 * playing from the same FIFO. The clock should be in sync so, it
-+	 * should not be necessary to reparent the spdif master clock.
-+	 */
-+	ret = clk_set_parent(aiu->spdif.clks[MCLK].clk,
-+			     aiu->spdif_mclk);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_bulk_prepare_enable(aiu->spdif.clk_num, aiu->spdif.clks);
-+	if (ret)
-+		dev_err(dai->dev, "failed to enable spdif clocks\n");
-+
-+	return ret;
-+}
-+
-+static void aiu_encoder_spdif_shutdown(struct snd_pcm_substream *substream,
-+				       struct snd_soc_dai *dai)
-+{
-+	struct aiu *aiu = snd_soc_component_get_drvdata(dai->component);
-+
-+	clk_bulk_disable_unprepare(aiu->spdif.clk_num, aiu->spdif.clks);
-+}
-+
-+const struct snd_soc_dai_ops aiu_encoder_spdif_dai_ops = {
-+	.trigger	= aiu_encoder_spdif_trigger,
-+	.hw_params	= aiu_encoder_spdif_hw_params,
-+	.hw_free	= aiu_encoder_spdif_hw_free,
-+	.startup	= aiu_encoder_spdif_startup,
-+	.shutdown	= aiu_encoder_spdif_shutdown,
-+};
-diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2s.c
-new file mode 100644
-index 000000000000..9a5271ce80fe
---- /dev/null
-+++ b/sound/soc/meson/aiu-fifo-i2s.c
-@@ -0,0 +1,153 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (c) 2020 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+
-+#include "aiu.h"
-+#include "aiu-fifo.h"
-+
-+#define AIU_I2S_SOURCE_DESC_MODE_8CH	BIT(0)
-+#define AIU_I2S_SOURCE_DESC_MODE_24BIT	BIT(5)
-+#define AIU_I2S_SOURCE_DESC_MODE_32BIT	BIT(9)
-+#define AIU_I2S_SOURCE_DESC_MODE_SPLIT	BIT(11)
-+#define AIU_MEM_I2S_MASKS_IRQ_BLOCK	GENMASK(31, 16)
-+#define AIU_MEM_I2S_CONTROL_MODE_16BIT	BIT(6)
-+#define AIU_MEM_I2S_BUF_CNTL_INIT	BIT(0)
-+#define AIU_RST_SOFT_I2S_FAST		BIT(0)
-+
-+#define AIU_FIFO_I2S_BLOCK		256
-+
-+static struct snd_pcm_hardware fifo_i2s_pcm = {
-+	.info = (SNDRV_PCM_INFO_INTERLEAVED |
-+		 SNDRV_PCM_INFO_MMAP |
-+		 SNDRV_PCM_INFO_MMAP_VALID |
-+		 SNDRV_PCM_INFO_PAUSE),
-+	.formats = AIU_FORMATS,
-+	.rate_min = 5512,
-+	.rate_max = 192000,
-+	.channels_min = 2,
-+	.channels_max = 8,
-+	.period_bytes_min = AIU_FIFO_I2S_BLOCK,
-+	.period_bytes_max = AIU_FIFO_I2S_BLOCK * USHRT_MAX,
-+	.periods_min = 2,
-+	.periods_max = UINT_MAX,
-+
-+	/* No real justification for this */
-+	.buffer_bytes_max = 1 * 1024 * 1024,
-+};
-+
-+static int aiu_fifo_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
-+				struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	unsigned int val;
-+
-+	switch (cmd) {
-+	case SNDRV_PCM_TRIGGER_START:
-+	case SNDRV_PCM_TRIGGER_RESUME:
-+	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		snd_soc_component_write(component, AIU_RST_SOFT,
-+					AIU_RST_SOFT_I2S_FAST);
-+		snd_soc_component_read(component, AIU_I2S_SYNC, &val);
-+		break;
-+	}
-+
-+	return aiu_fifo_trigger(substream, cmd, dai);
-+}
-+
-+static int aiu_fifo_i2s_prepare(struct snd_pcm_substream *substream,
-+				struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	int ret;
-+
-+	ret = aiu_fifo_prepare(substream, dai);
-+	if (ret)
-+		return ret;
-+
-+	snd_soc_component_update_bits(component,
-+				      AIU_MEM_I2S_BUF_CNTL,
-+				      AIU_MEM_I2S_BUF_CNTL_INIT,
-+				      AIU_MEM_I2S_BUF_CNTL_INIT);
-+	snd_soc_component_update_bits(component,
-+				      AIU_MEM_I2S_BUF_CNTL,
-+				      AIU_MEM_I2S_BUF_CNTL_INIT, 0);
-+
-+	return 0;
-+}
-+
-+static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
-+				  struct snd_pcm_hw_params *params,
-+				  struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	unsigned int val;
-+	int ret;
-+
-+	ret = aiu_fifo_hw_params(substream, params, dai);
-+	if (ret)
-+		return ret;
-+
-+	switch (params_physical_width(params)) {
-+	case 16:
-+		val = AIU_MEM_I2S_CONTROL_MODE_16BIT;
-+		break;
-+	case 32:
-+		val = 0;
-+		break;
-+	default:
-+		dev_err(dai->dev, "Unsupported physical width %u\n",
-+			params_physical_width(params));
-+		return -EINVAL;
-+	}
-+
-+	snd_soc_component_update_bits(component, AIU_MEM_I2S_CONTROL,
-+				      AIU_MEM_I2S_CONTROL_MODE_16BIT,
-+				      val);
-+
-+	/* Setup the irq periodicity */
-+	val = params_period_bytes(params) / fifo->fifo_block;
-+	val = FIELD_PREP(AIU_MEM_I2S_MASKS_IRQ_BLOCK, val);
-+	snd_soc_component_update_bits(component, AIU_MEM_I2S_MASKS,
-+				      AIU_MEM_I2S_MASKS_IRQ_BLOCK, val);
-+
-+	return 0;
-+}
-+
-+const struct snd_soc_dai_ops aiu_fifo_i2s_dai_ops = {
-+	.trigger	= aiu_fifo_i2s_trigger,
-+	.prepare	= aiu_fifo_i2s_prepare,
-+	.hw_params	= aiu_fifo_i2s_hw_params,
-+	.hw_free	= aiu_fifo_hw_free,
-+	.startup	= aiu_fifo_startup,
-+	.shutdown	= aiu_fifo_shutdown,
-+};
-+
-+int aiu_fifo_i2s_dai_probe(struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	struct aiu *aiu = snd_soc_component_get_drvdata(component);
-+	struct aiu_fifo *fifo;
-+	int ret;
-+
-+	ret = aiu_fifo_dai_probe(dai);
-+	if (ret)
-+		return ret;
-+
-+	fifo = dai->playback_dma_data;
-+
-+	fifo->pcm = &fifo_i2s_pcm;
-+	fifo->mem_offset = AIU_MEM_I2S_START;
-+	fifo->fifo_block = AIU_FIFO_I2S_BLOCK;
-+	fifo->pclk = aiu->i2s.clks[PCLK].clk;
-+	fifo->irq = aiu->i2s.irq;
-+
-+	return 0;
-+}
-diff --git a/sound/soc/meson/aiu-fifo-spdif.c b/sound/soc/meson/aiu-fifo-spdif.c
-new file mode 100644
-index 000000000000..44eb6faacf44
---- /dev/null
-+++ b/sound/soc/meson/aiu-fifo-spdif.c
-@@ -0,0 +1,186 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (c) 2020 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
-+
-+#include <linux/clk.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+
-+#include "aiu.h"
-+#include "aiu-fifo.h"
-+
-+#define AIU_IEC958_DCU_FF_CTRL_EN		BIT(0)
-+#define AIU_IEC958_DCU_FF_CTRL_AUTO_DISABLE	BIT(1)
-+#define AIU_IEC958_DCU_FF_CTRL_IRQ_MODE		GENMASK(3, 2)
-+#define AIU_IEC958_DCU_FF_CTRL_IRQ_OUT_THD	BIT(2)
-+#define AIU_IEC958_DCU_FF_CTRL_IRQ_FRAME_READ	BIT(3)
-+#define AIU_IEC958_DCU_FF_CTRL_SYNC_HEAD_EN	BIT(4)
-+#define AIU_IEC958_DCU_FF_CTRL_BYTE_SEEK	BIT(5)
-+#define AIU_IEC958_DCU_FF_CTRL_CONTINUE		BIT(6)
-+#define AIU_MEM_IEC958_CONTROL_ENDIAN		GENMASK(5, 3)
-+#define AIU_MEM_IEC958_CONTROL_RD_DDR		BIT(6)
-+#define AIU_MEM_IEC958_CONTROL_MODE_16BIT	BIT(7)
-+#define AIU_MEM_IEC958_CONTROL_MODE_LINEAR	BIT(8)
-+#define AIU_MEM_IEC958_BUF_CNTL_INIT		BIT(0)
-+
-+#define AIU_FIFO_SPDIF_BLOCK			8
-+
-+static struct snd_pcm_hardware fifo_spdif_pcm = {
-+	.info = (SNDRV_PCM_INFO_INTERLEAVED |
-+		 SNDRV_PCM_INFO_MMAP |
-+		 SNDRV_PCM_INFO_MMAP_VALID |
-+		 SNDRV_PCM_INFO_PAUSE),
-+	.formats = AIU_FORMATS,
-+	.rate_min = 5512,
-+	.rate_max = 192000,
-+	.channels_min = 2,
-+	.channels_max = 2,
-+	.period_bytes_min = AIU_FIFO_SPDIF_BLOCK,
-+	.period_bytes_max = AIU_FIFO_SPDIF_BLOCK * USHRT_MAX,
-+	.periods_min = 2,
-+	.periods_max = UINT_MAX,
-+
-+	/* No real justification for this */
-+	.buffer_bytes_max = 1 * 1024 * 1024,
-+};
-+
-+static void fifo_spdif_dcu_enable(struct snd_soc_component *component,
-+				  bool enable)
-+{
-+	snd_soc_component_update_bits(component, AIU_IEC958_DCU_FF_CTRL,
-+				      AIU_IEC958_DCU_FF_CTRL_EN,
-+				      enable ? AIU_IEC958_DCU_FF_CTRL_EN : 0);
-+}
-+
-+static int fifo_spdif_trigger(struct snd_pcm_substream *substream, int cmd,
-+			      struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	int ret;
-+
-+	ret = aiu_fifo_trigger(substream, cmd, dai);
-+	if (ret)
-+		return ret;
-+
-+	switch (cmd) {
-+	case SNDRV_PCM_TRIGGER_START:
-+	case SNDRV_PCM_TRIGGER_RESUME:
-+	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		fifo_spdif_dcu_enable(component, true);
-+		break;
-+	case SNDRV_PCM_TRIGGER_SUSPEND:
-+	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-+	case SNDRV_PCM_TRIGGER_STOP:
-+		fifo_spdif_dcu_enable(component, false);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int fifo_spdif_prepare(struct snd_pcm_substream *substream,
-+			      struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	int ret;
-+
-+	ret = aiu_fifo_prepare(substream, dai);
-+	if (ret)
-+		return ret;
-+
-+	snd_soc_component_update_bits(component,
-+				      AIU_MEM_IEC958_BUF_CNTL,
-+				      AIU_MEM_IEC958_BUF_CNTL_INIT,
-+				      AIU_MEM_IEC958_BUF_CNTL_INIT);
-+	snd_soc_component_update_bits(component,
-+				      AIU_MEM_IEC958_BUF_CNTL,
-+				      AIU_MEM_IEC958_BUF_CNTL_INIT, 0);
-+
-+	return 0;
-+}
-+
-+static int fifo_spdif_hw_params(struct snd_pcm_substream *substream,
-+				struct snd_pcm_hw_params *params,
-+				struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	unsigned int val;
-+	int ret;
-+
-+	ret = aiu_fifo_hw_params(substream, params, dai);
-+	if (ret)
-+		return ret;
-+
-+	val = AIU_MEM_IEC958_CONTROL_RD_DDR |
-+	      AIU_MEM_IEC958_CONTROL_MODE_LINEAR;
-+
-+	switch (params_physical_width(params)) {
-+	case 16:
-+		val |= AIU_MEM_IEC958_CONTROL_MODE_16BIT;
-+		break;
-+	case 32:
-+		break;
-+	default:
-+		dev_err(dai->dev, "Unsupported physical width %u\n",
-+			params_physical_width(params));
-+		return -EINVAL;
-+	}
-+
-+	snd_soc_component_update_bits(component, AIU_MEM_IEC958_CONTROL,
-+				      AIU_MEM_IEC958_CONTROL_ENDIAN |
-+				      AIU_MEM_IEC958_CONTROL_RD_DDR |
-+				      AIU_MEM_IEC958_CONTROL_MODE_LINEAR |
-+				      AIU_MEM_IEC958_CONTROL_MODE_16BIT,
-+				      val);
-+
-+	/* Number bytes read by the FIFO between each IRQ */
-+	snd_soc_component_write(component, AIU_IEC958_BPF,
-+				params_period_bytes(params));
-+
-+	/*
-+	 * AUTO_DISABLE and SYNC_HEAD are enabled by default but
-+	 * this should be disabled in PCM (uncompressed) mode
-+	 */
-+	snd_soc_component_update_bits(component, AIU_IEC958_DCU_FF_CTRL,
-+				      AIU_IEC958_DCU_FF_CTRL_AUTO_DISABLE |
-+				      AIU_IEC958_DCU_FF_CTRL_IRQ_MODE |
-+				      AIU_IEC958_DCU_FF_CTRL_SYNC_HEAD_EN,
-+				      AIU_IEC958_DCU_FF_CTRL_IRQ_FRAME_READ);
-+
-+	return 0;
-+}
-+
-+const struct snd_soc_dai_ops aiu_fifo_spdif_dai_ops = {
-+	.trigger	= fifo_spdif_trigger,
-+	.prepare	= fifo_spdif_prepare,
-+	.hw_params	= fifo_spdif_hw_params,
-+	.hw_free	= aiu_fifo_hw_free,
-+	.startup	= aiu_fifo_startup,
-+	.shutdown	= aiu_fifo_shutdown,
-+};
-+
-+int aiu_fifo_spdif_dai_probe(struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	struct aiu *aiu = snd_soc_component_get_drvdata(component);
-+	struct aiu_fifo *fifo;
-+	int ret;
-+
-+	ret = aiu_fifo_dai_probe(dai);
-+	if (ret)
-+		return ret;
-+
-+	fifo = dai->playback_dma_data;
-+
-+	fifo->pcm = &fifo_spdif_pcm;
-+	fifo->mem_offset = AIU_MEM_IEC958_START;
-+	fifo->fifo_block = 1;
-+	fifo->pclk = aiu->spdif.clks[PCLK].clk;
-+	fifo->irq = aiu->spdif.irq;
-+
-+	return 0;
-+}
-diff --git a/sound/soc/meson/aiu-fifo.c b/sound/soc/meson/aiu-fifo.c
-new file mode 100644
-index 000000000000..da8c098e8750
---- /dev/null
-+++ b/sound/soc/meson/aiu-fifo.c
-@@ -0,0 +1,223 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (c) 2020 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+
-+#include "aiu-fifo.h"
-+
-+#define AIU_MEM_START	0x00
-+#define AIU_MEM_RD	0x04
-+#define AIU_MEM_END	0x08
-+#define AIU_MEM_MASKS	0x0c
-+#define  AIU_MEM_MASK_CH_RD GENMASK(7, 0)
-+#define  AIU_MEM_MASK_CH_MEM GENMASK(15, 8)
-+#define AIU_MEM_CONTROL	0x10
-+#define  AIU_MEM_CONTROL_INIT BIT(0)
-+#define  AIU_MEM_CONTROL_FILL_EN BIT(1)
-+#define  AIU_MEM_CONTROL_EMPTY_EN BIT(2)
-+
-+static struct snd_soc_dai *aiu_fifo_dai(struct snd_pcm_substream *ss)
-+{
-+	struct snd_soc_pcm_runtime *rtd = ss->private_data;
-+
-+	return rtd->cpu_dai;
-+}
-+
-+snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_component *component,
-+				   struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_dai *dai = aiu_fifo_dai(substream);
-+	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct snd_pcm_runtime *runtime = substream->runtime;
-+	unsigned int addr;
-+
-+	snd_soc_component_read(component, fifo->mem_offset + AIU_MEM_RD,
-+			       &addr);
-+
-+	return bytes_to_frames(runtime, addr - (unsigned int)runtime->dma_addr);
-+}
-+
-+static void aiu_fifo_enable(struct snd_soc_dai *dai, bool enable)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	unsigned int en_mask = (AIU_MEM_CONTROL_FILL_EN |
-+				AIU_MEM_CONTROL_EMPTY_EN);
-+
-+	snd_soc_component_update_bits(component,
-+				      fifo->mem_offset + AIU_MEM_CONTROL,
-+				      en_mask, enable ? en_mask : 0);
-+}
-+
-+int aiu_fifo_trigger(struct snd_pcm_substream *substream, int cmd,
-+		     struct snd_soc_dai *dai)
-+{
-+	switch (cmd) {
-+	case SNDRV_PCM_TRIGGER_START:
-+	case SNDRV_PCM_TRIGGER_RESUME:
-+	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		aiu_fifo_enable(dai, true);
-+		break;
-+	case SNDRV_PCM_TRIGGER_SUSPEND:
-+	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-+	case SNDRV_PCM_TRIGGER_STOP:
-+		aiu_fifo_enable(dai, false);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+int aiu_fifo_prepare(struct snd_pcm_substream *substream,
-+		     struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	struct aiu_fifo *fifo = dai->playback_dma_data;
-+
-+	snd_soc_component_update_bits(component,
-+				      fifo->mem_offset + AIU_MEM_CONTROL,
-+				      AIU_MEM_CONTROL_INIT,
-+				      AIU_MEM_CONTROL_INIT);
-+	snd_soc_component_update_bits(component,
-+				      fifo->mem_offset + AIU_MEM_CONTROL,
-+				      AIU_MEM_CONTROL_INIT, 0);
-+	return 0;
-+}
-+
-+int aiu_fifo_hw_params(struct snd_pcm_substream *substream,
-+		       struct snd_pcm_hw_params *params,
-+		       struct snd_soc_dai *dai)
-+{
-+	struct snd_pcm_runtime *runtime = substream->runtime;
-+	struct snd_soc_component *component = dai->component;
-+	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	dma_addr_t end;
-+	int ret;
-+
-+	ret = snd_pcm_lib_malloc_pages(substream, params_buffer_bytes(params));
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Setup the fifo boundaries */
-+	end = runtime->dma_addr + runtime->dma_bytes - fifo->fifo_block;
-+	snd_soc_component_write(component, fifo->mem_offset + AIU_MEM_START,
-+				runtime->dma_addr);
-+	snd_soc_component_write(component, fifo->mem_offset + AIU_MEM_RD,
-+				runtime->dma_addr);
-+	snd_soc_component_write(component, fifo->mem_offset + AIU_MEM_END,
-+				end);
-+
-+	/* Setup the fifo to read all the memory - no skip */
-+	snd_soc_component_update_bits(component,
-+				      fifo->mem_offset + AIU_MEM_MASKS,
-+				      AIU_MEM_MASK_CH_RD | AIU_MEM_MASK_CH_MEM,
-+				      FIELD_PREP(AIU_MEM_MASK_CH_RD, 0xff) |
-+				      FIELD_PREP(AIU_MEM_MASK_CH_MEM, 0xff));
-+
-+	return 0;
-+}
-+
-+int aiu_fifo_hw_free(struct snd_pcm_substream *substream,
-+		     struct snd_soc_dai *dai)
-+{
-+	return snd_pcm_lib_free_pages(substream);
-+}
-+
-+static irqreturn_t aiu_fifo_isr(int irq, void *dev_id)
-+{
-+	struct snd_pcm_substream *playback = dev_id;
-+
-+	snd_pcm_period_elapsed(playback);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+int aiu_fifo_startup(struct snd_pcm_substream *substream,
-+		     struct snd_soc_dai *dai)
-+{
-+	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	int ret;
-+
-+	snd_soc_set_runtime_hwparams(substream, fifo->pcm);
-+
-+	/*
-+	 * Make sure the buffer and period size are multiple of the fifo burst
-+	 * size
-+	 */
-+	ret = snd_pcm_hw_constraint_step(substream->runtime, 0,
-+					 SNDRV_PCM_HW_PARAM_BUFFER_BYTES,
-+					 fifo->fifo_block);
-+	if (ret)
-+		return ret;
-+
-+	ret = snd_pcm_hw_constraint_step(substream->runtime, 0,
-+					 SNDRV_PCM_HW_PARAM_PERIOD_BYTES,
-+					 fifo->fifo_block);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(fifo->pclk);
-+	if (ret)
-+		return ret;
-+
-+	ret = request_irq(fifo->irq, aiu_fifo_isr, 0, dev_name(dai->dev),
-+			  substream);
-+	if (ret)
-+		clk_disable_unprepare(fifo->pclk);
-+
-+	return ret;
-+}
-+
-+void aiu_fifo_shutdown(struct snd_pcm_substream *substream,
-+		       struct snd_soc_dai *dai)
-+{
-+	struct aiu_fifo *fifo = dai->playback_dma_data;
-+
-+	free_irq(fifo->irq, substream);
-+	clk_disable_unprepare(fifo->pclk);
-+}
-+
-+int aiu_fifo_pcm_new(struct snd_soc_pcm_runtime *rtd,
-+		     struct snd_soc_dai *dai)
-+{
-+	struct snd_pcm_substream *substream =
-+		rtd->pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream;
-+	struct snd_card *card = rtd->card->snd_card;
-+	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	size_t size = fifo->pcm->buffer_bytes_max;
-+
-+	snd_pcm_lib_preallocate_pages(substream,
-+				      SNDRV_DMA_TYPE_DEV,
-+				      card->dev, size, size);
-+
-+	return 0;
-+}
-+
-+int aiu_fifo_dai_probe(struct snd_soc_dai *dai)
-+{
-+	struct aiu_fifo *fifo;
-+
-+	fifo = kzalloc(sizeof(*fifo), GFP_KERNEL);
-+	if (!fifo)
-+		return -ENOMEM;
-+
-+	dai->playback_dma_data = fifo;
-+
-+	return 0;
-+}
-+
-+int aiu_fifo_dai_remove(struct snd_soc_dai *dai)
-+{
-+	kfree(dai->playback_dma_data);
-+
-+	return 0;
-+}
-+
-diff --git a/sound/soc/meson/aiu-fifo.h b/sound/soc/meson/aiu-fifo.h
-new file mode 100644
-index 000000000000..42ce266677cc
---- /dev/null
-+++ b/sound/soc/meson/aiu-fifo.h
-@@ -0,0 +1,50 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2020 BayLibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#ifndef _MESON_AIU_FIFO_H
-+#define _MESON_AIU_FIFO_H
-+
-+struct snd_pcm_hardware;
-+struct snd_soc_component_driver;
-+struct snd_soc_dai_driver;
-+struct clk;
-+struct snd_pcm_ops;
-+struct snd_pcm_substream;
-+struct snd_soc_dai;
-+struct snd_pcm_hw_params;
-+struct platform_device;
-+
-+struct aiu_fifo {
-+	struct snd_pcm_hardware *pcm;
-+	unsigned int mem_offset;
-+	unsigned int fifo_block;
-+	struct clk *pclk;
-+	int irq;
-+};
-+
-+int aiu_fifo_dai_probe(struct snd_soc_dai *dai);
-+int aiu_fifo_dai_remove(struct snd_soc_dai *dai);
-+
-+snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_component *component,
-+				   struct snd_pcm_substream *substream);
-+
-+int aiu_fifo_trigger(struct snd_pcm_substream *substream, int cmd,
-+		     struct snd_soc_dai *dai);
-+int aiu_fifo_prepare(struct snd_pcm_substream *substream,
-+		     struct snd_soc_dai *dai);
-+int aiu_fifo_hw_params(struct snd_pcm_substream *substream,
-+		       struct snd_pcm_hw_params *params,
-+		       struct snd_soc_dai *dai);
-+int aiu_fifo_hw_free(struct snd_pcm_substream *substream,
-+		     struct snd_soc_dai *dai);
-+int aiu_fifo_startup(struct snd_pcm_substream *substream,
-+		     struct snd_soc_dai *dai);
-+void aiu_fifo_shutdown(struct snd_pcm_substream *substream,
-+		       struct snd_soc_dai *dai);
-+int aiu_fifo_pcm_new(struct snd_soc_pcm_runtime *rtd,
-+		     struct snd_soc_dai *dai);
-+
-+#endif /* _MESON_AIU_FIFO_H */
-diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-new file mode 100644
-index 000000000000..a62aced9b687
---- /dev/null
-+++ b/sound/soc/meson/aiu.c
-@@ -0,0 +1,348 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (c) 2020 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
 +#include <sound/soc.h>
 +#include <sound/soc-dai.h>
 +
 +#include <dt-bindings/sound/meson-aiu.h>
 +#include "aiu.h"
-+#include "aiu-fifo.h"
++#include "meson-codec-glue.h"
 +
-+#define AIU_I2S_MISC_958_SRC_SHIFT 3
++#define CTRL_DIN_EN			15
++#define CTRL_CLK_INV			BIT(14)
++#define CTRL_LRCLK_INV			BIT(13)
++#define CTRL_I2S_IN_BCLK_SRC		BIT(11)
++#define CTRL_DIN_LRCLK_SRC_SHIFT	6
++#define CTRL_DIN_LRCLK_SRC		(0x3 << CTRL_DIN_LRCLK_SRC_SHIFT)
++#define CTRL_BCLK_MCLK_SRC		GENMASK(5, 4)
++#define CTRL_DIN_SKEW			GENMASK(3, 2)
++#define CTRL_I2S_OUT_LANE_SRC		0
 +
-+static const char * const aiu_spdif_encode_sel_texts[] = {
-+	"SPDIF", "I2S",
++#define AIU_ACODEC_OUT_CHMAX		2
++
++static const char * const aiu_acodec_ctrl_mux_texts[] = {
++	"DISABLED", "I2S", "PCM",
 +};
 +
-+static SOC_ENUM_SINGLE_DECL(aiu_spdif_encode_sel_enum, AIU_I2S_MISC,
-+			    AIU_I2S_MISC_958_SRC_SHIFT,
-+			    aiu_spdif_encode_sel_texts);
-+
-+static const struct snd_kcontrol_new aiu_spdif_encode_mux =
-+	SOC_DAPM_ENUM("SPDIF Buffer Src", aiu_spdif_encode_sel_enum);
-+
-+static const struct snd_soc_dapm_widget aiu_cpu_dapm_widgets[] = {
-+	SND_SOC_DAPM_MUX("SPDIF SRC SEL", SND_SOC_NOPM, 0, 0,
-+			 &aiu_spdif_encode_mux),
-+};
-+
-+static const struct snd_soc_dapm_route aiu_cpu_dapm_routes[] = {
-+	{ "I2S Encoder Playback", NULL, "I2S FIFO Playback" },
-+	{ "SPDIF SRC SEL", "SPDIF", "SPDIF FIFO Playback" },
-+	{ "SPDIF SRC SEL", "I2S", "I2S FIFO Playback" },
-+	{ "SPDIF Encoder Playback", NULL, "SPDIF SRC SEL" },
-+};
-+
-+int aiu_of_xlate_dai_name(struct snd_soc_component *component,
-+			  struct of_phandle_args *args,
-+			  const char **dai_name,
-+			  unsigned int component_id)
++static int aiu_acodec_ctrl_mux_put_enum(struct snd_kcontrol *kcontrol,
++					struct snd_ctl_elem_value *ucontrol)
 +{
-+	struct snd_soc_dai *dai;
-+	int id;
++	struct snd_soc_component *component =
++		snd_soc_dapm_kcontrol_component(kcontrol);
++	struct snd_soc_dapm_context *dapm =
++		snd_soc_dapm_kcontrol_dapm(kcontrol);
++	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
++	unsigned int mux, changed;
 +
-+	if (args->args_count != 2)
-+		return -EINVAL;
++	mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
++	changed = snd_soc_component_test_bits(component, e->reg,
++					      CTRL_DIN_LRCLK_SRC,
++					      FIELD_PREP(CTRL_DIN_LRCLK_SRC,
++							 mux));
 +
-+	if (args->args[0] != component_id)
-+		return -EINVAL;
++	if (!changed)
++		return 0;
 +
-+	id = args->args[1];
++	/* Force disconnect of the mux while updating */
++	snd_soc_dapm_mux_update_power(dapm, kcontrol, 0, NULL, NULL);
 +
-+	if (id < 0 || id >= component->num_dai)
-+		return -EINVAL;
++	snd_soc_component_update_bits(component, e->reg,
++				      CTRL_DIN_LRCLK_SRC |
++				      CTRL_BCLK_MCLK_SRC,
++				      FIELD_PREP(CTRL_DIN_LRCLK_SRC, mux) |
++				      FIELD_PREP(CTRL_BCLK_MCLK_SRC, mux));
 +
-+	for_each_component_dais(component, dai) {
-+		if (id == 0)
-+			break;
-+		id--;
-+	}
-+
-+	*dai_name = dai->driver->name;
++	snd_soc_dapm_mux_update_power(dapm, kcontrol, mux, e, NULL);
 +
 +	return 0;
 +}
 +
-+static int aiu_cpu_of_xlate_dai_name(struct snd_soc_component *component,
-+				     struct of_phandle_args *args,
-+				     const char **dai_name)
-+{
-+	return aiu_of_xlate_dai_name(component, args, dai_name, AIU_CPU);
-+}
++static SOC_ENUM_SINGLE_DECL(aiu_acodec_ctrl_mux_enum, AIU_ACODEC_CTRL,
++			    CTRL_DIN_LRCLK_SRC_SHIFT,
++			    aiu_acodec_ctrl_mux_texts);
 +
-+static int aiu_cpu_component_probe(struct snd_soc_component *component)
-+{
-+	struct aiu *aiu = snd_soc_component_get_drvdata(component);
++static const struct snd_kcontrol_new aiu_acodec_ctrl_mux =
++	SOC_DAPM_ENUM_EXT("ACodec Source", aiu_acodec_ctrl_mux_enum,
++			  snd_soc_dapm_get_enum_double,
++			  aiu_acodec_ctrl_mux_put_enum);
 +
-+	/* Required for the SPDIF Source control operation */
-+	return clk_prepare_enable(aiu->i2s.clks[PCLK].clk);
-+}
++static const struct snd_kcontrol_new aiu_acodec_ctrl_out_enable =
++	SOC_DAPM_SINGLE_AUTODISABLE("Switch", AIU_ACODEC_CTRL,
++				    CTRL_DIN_EN, 1, 0);
 +
-+static void aiu_cpu_component_remove(struct snd_soc_component *component)
-+{
-+	struct aiu *aiu = snd_soc_component_get_drvdata(component);
-+
-+	clk_disable_unprepare(aiu->i2s.clks[PCLK].clk);
-+}
-+
-+static const struct snd_soc_component_driver aiu_cpu_component = {
-+	.name			= "AIU CPU",
-+	.dapm_widgets		= aiu_cpu_dapm_widgets,
-+	.num_dapm_widgets	= ARRAY_SIZE(aiu_cpu_dapm_widgets),
-+	.dapm_routes		= aiu_cpu_dapm_routes,
-+	.num_dapm_routes	= ARRAY_SIZE(aiu_cpu_dapm_routes),
-+	.of_xlate_dai_name	= aiu_cpu_of_xlate_dai_name,
-+	.pointer		= aiu_fifo_pointer,
-+	.probe			= aiu_cpu_component_probe,
-+	.remove			= aiu_cpu_component_remove,
++static const struct snd_soc_dapm_widget aiu_acodec_ctrl_widgets[] = {
++	SND_SOC_DAPM_MUX("ACODEC SRC", SND_SOC_NOPM, 0, 0,
++			 &aiu_acodec_ctrl_mux),
++	SND_SOC_DAPM_SWITCH("ACODEC OUT EN", SND_SOC_NOPM, 0, 0,
++			    &aiu_acodec_ctrl_out_enable),
 +};
 +
-+static struct snd_soc_dai_driver aiu_cpu_dai_drv[] = {
-+	[CPU_I2S_FIFO] = {
-+		.name = "I2S FIFO",
-+		.playback = {
-+			.stream_name	= "I2S FIFO Playback",
-+			.channels_min	= 2,
-+			.channels_max	= 8,
-+			.rates		= SNDRV_PCM_RATE_CONTINUOUS,
-+			.rate_min	= 5512,
-+			.rate_max	= 192000,
-+			.formats	= AIU_FORMATS,
-+		},
-+		.ops		= &aiu_fifo_i2s_dai_ops,
-+		.pcm_new	= aiu_fifo_pcm_new,
-+		.probe		= aiu_fifo_i2s_dai_probe,
-+		.remove		= aiu_fifo_dai_remove,
-+	},
-+	[CPU_SPDIF_FIFO] = {
-+		.name = "SPDIF FIFO",
-+		.playback = {
-+			.stream_name	= "SPDIF FIFO Playback",
-+			.channels_min	= 2,
-+			.channels_max	= 2,
-+			.rates		= SNDRV_PCM_RATE_CONTINUOUS,
-+			.rate_min	= 5512,
-+			.rate_max	= 192000,
-+			.formats	= AIU_FORMATS,
-+		},
-+		.ops		= &aiu_fifo_spdif_dai_ops,
-+		.pcm_new	= aiu_fifo_pcm_new,
-+		.probe		= aiu_fifo_spdif_dai_probe,
-+		.remove		= aiu_fifo_dai_remove,
-+	},
-+	[CPU_I2S_ENCODER] = {
-+		.name = "I2S Encoder",
-+		.playback = {
-+			.stream_name = "I2S Encoder Playback",
-+			.channels_min = 2,
-+			.channels_max = 8,
-+			.rates = SNDRV_PCM_RATE_8000_192000,
-+			.formats = AIU_FORMATS,
-+		},
-+		.ops = &aiu_encoder_i2s_dai_ops,
-+	},
-+	[CPU_SPDIF_ENCODER] = {
-+		.name = "SPDIF Encoder",
-+		.playback = {
-+			.stream_name = "SPDIF Encoder Playback",
-+			.channels_min = 2,
-+			.channels_max = 2,
-+			.rates = (SNDRV_PCM_RATE_32000  |
-+				  SNDRV_PCM_RATE_44100  |
-+				  SNDRV_PCM_RATE_48000  |
-+				  SNDRV_PCM_RATE_88200  |
-+				  SNDRV_PCM_RATE_96000  |
-+				  SNDRV_PCM_RATE_176400 |
-+				  SNDRV_PCM_RATE_192000),
-+			.formats = AIU_FORMATS,
-+		},
-+		.ops = &aiu_encoder_spdif_dai_ops,
-+	}
-+};
-+
-+static const struct regmap_config aiu_regmap_cfg = {
-+	.reg_bits	= 32,
-+	.val_bits	= 32,
-+	.reg_stride	= 4,
-+	.max_register	= 0x2ac,
-+};
-+
-+static int aiu_clk_bulk_get(struct device *dev,
-+			    const char * const *ids,
-+			    unsigned int num,
-+			    struct aiu_interface *interface)
++static int aiu_acodec_ctrl_input_hw_params(struct snd_pcm_substream *substream,
++					   struct snd_pcm_hw_params *params,
++					   struct snd_soc_dai *dai)
 +{
-+	struct clk_bulk_data *clks;
-+	int i, ret;
-+
-+	clks = devm_kcalloc(dev, num, sizeof(clks), GFP_KERNEL);
-+	if (!clks)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < num; i++)
-+		clks[i].id = ids[i];
-+
-+	ret = devm_clk_bulk_get(dev, num, clks);
-+	if (ret < 0)
-+		return ret;
-+
-+	interface->clks = clks;
-+	interface->clk_num = num;
-+	return 0;
-+}
-+
-+static const char * const aiu_i2s_ids[] = {
-+	[PCLK]	= "i2s_pclk",
-+	[AOCLK]	= "i2s_aoclk",
-+	[MCLK]	= "i2s_mclk",
-+	[MIXER]	= "i2s_mixer",
-+};
-+
-+static const char * const aiu_spdif_ids[] = {
-+	[PCLK]	= "spdif_pclk",
-+	[AOCLK]	= "spdif_aoclk",
-+	[MCLK]	= "spdif_mclk_sel"
-+};
-+
-+static int aiu_clk_get(struct device *dev)
-+{
-+	struct aiu *aiu = dev_get_drvdata(dev);
++	struct meson_codec_glue_input *data;
 +	int ret;
 +
-+	aiu->pclk = devm_clk_get(dev, "pclk");
-+	if (IS_ERR(aiu->pclk)) {
-+		if (PTR_ERR(aiu->pclk) != -EPROBE_DEFER)
-+			dev_err(dev, "Can't get the aiu pclk\n");
-+		return PTR_ERR(aiu->pclk);
-+	}
-+
-+	aiu->spdif_mclk = devm_clk_get(dev, "spdif_mclk");
-+	if (IS_ERR(aiu->spdif_mclk)) {
-+		if (PTR_ERR(aiu->spdif_mclk) != -EPROBE_DEFER)
-+			dev_err(dev, "Can't get the aiu spdif master clock\n");
-+		return PTR_ERR(aiu->spdif_mclk);
-+	}
-+
-+	ret = aiu_clk_bulk_get(dev, aiu_i2s_ids, ARRAY_SIZE(aiu_i2s_ids),
-+			       &aiu->i2s);
-+	if (ret) {
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Can't get the i2s clocks\n");
-+		return ret;
-+	}
-+
-+	ret = aiu_clk_bulk_get(dev, aiu_spdif_ids, ARRAY_SIZE(aiu_spdif_ids),
-+			       &aiu->spdif);
-+	if (ret) {
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Can't get the spdif clocks\n");
-+		return ret;
-+	}
-+
-+	ret = clk_prepare_enable(aiu->pclk);
-+	if (ret) {
-+		dev_err(dev, "peripheral clock enable failed\n");
-+		return ret;
-+	}
-+
-+	ret = devm_add_action_or_reset(dev,
-+				       (void(*)(void *))clk_disable_unprepare,
-+				       aiu->pclk);
-+	if (ret)
-+		dev_err(dev, "failed to add reset action on pclk");
-+
-+	return ret;
-+}
-+
-+static int aiu_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	void __iomem *regs;
-+	struct regmap *map;
-+	struct aiu *aiu;
-+	int ret;
-+
-+	aiu = devm_kzalloc(dev, sizeof(*aiu), GFP_KERNEL);
-+	if (!aiu)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, aiu);
-+
-+	ret = device_reset(dev);
-+	if (ret) {
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Failed to reset device\n");
-+		return ret;
-+	}
-+
-+	regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	map = devm_regmap_init_mmio(dev, regs, &aiu_regmap_cfg);
-+	if (IS_ERR(map)) {
-+		dev_err(dev, "failed to init regmap: %ld\n",
-+			PTR_ERR(map));
-+		return PTR_ERR(map);
-+	}
-+
-+	aiu->i2s.irq = platform_get_irq_byname(pdev, "i2s");
-+	if (aiu->i2s.irq < 0) {
-+		dev_err(dev, "Can't get i2s irq\n");
-+		return aiu->i2s.irq;
-+	}
-+
-+	aiu->spdif.irq = platform_get_irq_byname(pdev, "spdif");
-+	if (aiu->spdif.irq < 0) {
-+		dev_err(dev, "Can't get spdif irq\n");
-+		return aiu->spdif.irq;
-+	}
-+
-+	ret = aiu_clk_get(dev);
++	ret = meson_codec_glue_input_hw_params(substream, params, dai);
 +	if (ret)
 +		return ret;
 +
-+	/* Register the cpu component of the aiu */
-+	ret = snd_soc_register_component(dev, &aiu_cpu_component,
-+					 aiu_cpu_dai_drv,
-+					 ARRAY_SIZE(aiu_cpu_dai_drv));
-+	if (ret)
-+		dev_err(dev, "Failed to register cpu component\n");
-+
-+	return ret;
-+}
-+
-+static int aiu_remove(struct platform_device *pdev)
-+{
-+	snd_soc_unregister_component(&pdev->dev);
++	/* The glue will provide 1 lane out of the 4 to the output */
++	data = meson_codec_glue_input_get_data(dai);
++	data->params.channels_min = min_t(unsigned int, AIU_ACODEC_OUT_CHMAX,
++					  data->params.channels_min);
++	data->params.channels_max = min_t(unsigned int, AIU_ACODEC_OUT_CHMAX,
++					  data->params.channels_max);
 +
 +	return 0;
 +}
 +
-+static const struct of_device_id aiu_of_match[] = {
-+	{ .compatible = "amlogic,aiu-gxbb", },
-+	{ .compatible = "amlogic,aiu-gxl", },
-+	{}
++static const struct snd_soc_dai_ops aiu_acodec_ctrl_input_ops = {
++	.hw_params	= aiu_acodec_ctrl_input_hw_params,
++	.set_fmt	= meson_codec_glue_input_set_fmt,
 +};
-+MODULE_DEVICE_TABLE(of, aiu_of_match);
 +
-+static struct platform_driver aiu_pdrv = {
-+	.probe = aiu_probe,
-+	.remove = aiu_remove,
-+	.driver = {
-+		.name = "meson-aiu",
-+		.of_match_table = aiu_of_match,
-+	},
++static const struct snd_soc_dai_ops aiu_acodec_ctrl_output_ops = {
++	.startup	= meson_codec_glue_output_startup,
 +};
-+module_platform_driver(aiu_pdrv);
 +
-+MODULE_DESCRIPTION("Meson AIU Driver");
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_LICENSE("GPL v2");
++#define AIU_ACODEC_CTRL_FORMATS					\
++	(SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S20_3LE |	\
++	 SNDRV_PCM_FMTBIT_S24_3LE | SNDRV_PCM_FMTBIT_S24_LE |	\
++	 SNDRV_PCM_FMTBIT_S32_LE)
++
++#define AIU_ACODEC_STREAM(xname, xsuffix, xchmax)		\
++{								\
++	.stream_name	= xname " " xsuffix,			\
++	.channels_min	= 1,					\
++	.channels_max	= (xchmax),				\
++	.rate_min       = 5512,					\
++	.rate_max	= 192000,				\
++	.formats	= AIU_ACODEC_CTRL_FORMATS,		\
++}
++
++#define AIU_ACODEC_INPUT(xname) {				\
++	.name = "ACODEC CTRL " xname,				\
++	.name = xname,						\
++	.playback = AIU_ACODEC_STREAM(xname, "Playback", 8),	\
++	.ops = &aiu_acodec_ctrl_input_ops,			\
++	.probe = meson_codec_glue_input_dai_probe,		\
++	.remove = meson_codec_glue_input_dai_remove,		\
++}
++
++#define AIU_ACODEC_OUTPUT(xname) {				\
++	.name = "ACODEC CTRL " xname,				\
++	.capture = AIU_ACODEC_STREAM(xname, "Capture", AIU_ACODEC_OUT_CHMAX), \
++	.ops = &aiu_acodec_ctrl_output_ops,			\
++}
++
++static struct snd_soc_dai_driver aiu_acodec_ctrl_dai_drv[] = {
++	[CTRL_I2S] = AIU_ACODEC_INPUT("ACODEC I2S IN"),
++	[CTRL_PCM] = AIU_ACODEC_INPUT("ACODEC PCM IN"),
++	[CTRL_OUT] = AIU_ACODEC_OUTPUT("ACODEC OUT"),
++};
++
++static const struct snd_soc_dapm_route aiu_acodec_ctrl_routes[] = {
++	{ "ACODEC SRC", "I2S", "ACODEC I2S IN Playback" },
++	{ "ACODEC SRC", "PCM", "ACODEC PCM IN Playback" },
++	{ "ACODEC OUT EN", "Switch", "ACODEC SRC" },
++	{ "ACODEC OUT Capture", NULL, "ACODEC OUT EN" },
++};
++
++static const struct snd_kcontrol_new aiu_acodec_ctrl_controls[] = {
++	SOC_SINGLE("ACODEC I2S Lane Select", AIU_ACODEC_CTRL,
++		   CTRL_I2S_OUT_LANE_SRC, 3, 0),
++};
++
++static int aiu_acodec_of_xlate_dai_name(struct snd_soc_component *component,
++					struct of_phandle_args *args,
++					const char **dai_name)
++{
++	return aiu_of_xlate_dai_name(component, args, dai_name, AIU_ACODEC);
++}
++
++static int aiu_acodec_ctrl_component_probe(struct snd_soc_component *component)
++{
++	/*
++	 * NOTE: Din Skew setting
++	 * According to the documentation, the following update adds one delay
++	 * to the din line. Without this, the output saturates. This happens
++	 * regardless of the link format (i2s or left_j) so it is not clear what
++	 * it actually does but it seems to be required
++	 */
++	snd_soc_component_update_bits(component, AIU_ACODEC_CTRL,
++				      CTRL_DIN_SKEW,
++				      FIELD_PREP(CTRL_DIN_SKEW, 2));
++
++	return 0;
++}
++
++static const struct snd_soc_component_driver aiu_acodec_ctrl_component = {
++	.name			= "AIU Internal DAC Codec Control",
++	.probe			= aiu_acodec_ctrl_component_probe,
++	.controls		= aiu_acodec_ctrl_controls,
++	.num_controls		= ARRAY_SIZE(aiu_acodec_ctrl_controls),
++	.dapm_widgets		= aiu_acodec_ctrl_widgets,
++	.num_dapm_widgets	= ARRAY_SIZE(aiu_acodec_ctrl_widgets),
++	.dapm_routes		= aiu_acodec_ctrl_routes,
++	.num_dapm_routes	= ARRAY_SIZE(aiu_acodec_ctrl_routes),
++	.of_xlate_dai_name	= aiu_acodec_of_xlate_dai_name,
++	.endianness		= 1,
++	.non_legacy_dai_naming	= 1,
++};
++
++int aiu_acodec_ctrl_register_component(struct device *dev)
++{
++	return aiu_add_component(dev, &aiu_acodec_ctrl_component,
++				 aiu_acodec_ctrl_dai_drv,
++				 ARRAY_SIZE(aiu_acodec_ctrl_dai_drv),
++				 "acodec");
++}
+diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
+index b765dfb70726..5c4845a23a34 100644
+--- a/sound/soc/meson/aiu.c
++++ b/sound/soc/meson/aiu.c
+@@ -345,6 +345,16 @@ static int aiu_probe(struct platform_device *pdev)
+ 		goto err;
+ 	}
+ 
++	/* Register the internal dac control component on gxl */
++	if (of_device_is_compatible(dev->of_node, "amlogic,aiu-gxl")) {
++		ret = aiu_acodec_ctrl_register_component(dev);
++		if (ret) {
++			dev_err(dev,
++			    "Failed to register acodec control component\n");
++			goto err;
++		}
++	}
++
+ 	return 0;
+ err:
+ 	snd_soc_unregister_component(dev);
 diff --git a/sound/soc/meson/aiu.h b/sound/soc/meson/aiu.h
-new file mode 100644
-index 000000000000..a3488027b9d5
---- /dev/null
+index 9242ab1ab64b..a65a576e3400 100644
+--- a/sound/soc/meson/aiu.h
 +++ b/sound/soc/meson/aiu.h
-@@ -0,0 +1,82 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2018 BayLibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#ifndef _MESON_AIU_H
-+#define _MESON_AIU_H
-+
-+struct clk;
-+struct clk_bulk_data;
-+struct device;
-+struct of_phandle_args;
-+struct snd_soc_component_driver;
-+struct snd_soc_dai;
-+struct snd_soc_dai_driver;
-+struct snd_soc_dai_ops;
-+
-+enum aiu_clk_ids {
-+	PCLK = 0,
-+	AOCLK,
-+	MCLK,
-+	MIXER
-+};
-+
-+struct aiu_interface {
-+	struct clk_bulk_data *clks;
-+	unsigned int clk_num;
-+	unsigned int irq;
-+};
-+
-+struct aiu {
-+	struct clk *pclk;
-+	struct clk *spdif_mclk;
-+	struct aiu_interface i2s;
-+	struct aiu_interface spdif;
-+};
-+
-+#define AIU_FORMATS (SNDRV_PCM_FMTBIT_S16_LE |	\
-+		     SNDRV_PCM_FMTBIT_S20_LE |	\
-+		     SNDRV_PCM_FMTBIT_S24_LE)
-+
-+int aiu_of_xlate_dai_name(struct snd_soc_component *component,
-+			  struct of_phandle_args *args,
-+			  const char **dai_name,
-+			  unsigned int component_id);
-+
-+int aiu_fifo_i2s_dai_probe(struct snd_soc_dai *dai);
-+int aiu_fifo_spdif_dai_probe(struct snd_soc_dai *dai);
-+
-+extern const struct snd_soc_dai_ops aiu_fifo_i2s_dai_ops;
-+extern const struct snd_soc_dai_ops aiu_fifo_spdif_dai_ops;
-+extern const struct snd_soc_dai_ops aiu_encoder_i2s_dai_ops;
-+extern const struct snd_soc_dai_ops aiu_encoder_spdif_dai_ops;
-+
-+#define AIU_IEC958_BPF			0x000
-+#define AIU_958_MISC			0x010
-+#define AIU_IEC958_DCU_FF_CTRL		0x01c
-+#define AIU_958_CHSTAT_L0		0x020
-+#define AIU_958_CHSTAT_L1		0x024
-+#define AIU_958_CTRL			0x028
-+#define AIU_I2S_SOURCE_DESC		0x034
-+#define AIU_I2S_DAC_CFG			0x040
-+#define AIU_I2S_SYNC			0x044
-+#define AIU_I2S_MISC			0x048
-+#define AIU_RST_SOFT			0x054
-+#define AIU_CLK_CTRL			0x058
-+#define AIU_CLK_CTRL_MORE		0x064
-+#define AIU_CODEC_DAC_LRCLK_CTRL	0x0a0
-+#define AIU_HDMI_CLK_DATA_CTRL		0x0a8
-+#define AIU_ACODEC_CTRL			0x0b0
-+#define AIU_958_CHSTAT_R0		0x0c0
-+#define AIU_958_CHSTAT_R1		0x0c4
-+#define AIU_MEM_I2S_START		0x180
-+#define AIU_MEM_I2S_MASKS		0x18c
-+#define AIU_MEM_I2S_CONTROL		0x190
-+#define AIU_MEM_IEC958_START		0x194
-+#define AIU_MEM_IEC958_CONTROL		0x1a4
-+#define AIU_MEM_I2S_BUF_CNTL		0x1d8
-+#define AIU_MEM_IEC958_BUF_CNTL		0x1fc
-+
-+#endif /* _MESON_AIU_H */
+@@ -52,6 +52,7 @@ int aiu_add_component(struct device *dev,
+ 		      const char *debugfs_prefix);
+ 
+ int aiu_hdmi_ctrl_register_component(struct device *dev);
++int aiu_acodec_ctrl_register_component(struct device *dev);
+ 
+ int aiu_fifo_i2s_dai_probe(struct snd_soc_dai *dai);
+ int aiu_fifo_spdif_dai_probe(struct snd_soc_dai *dai);
 -- 
 2.24.1
 
