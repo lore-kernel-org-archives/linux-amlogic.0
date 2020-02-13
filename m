@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4E4DC3B189
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2020 20:58:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CA8CEC3B18C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2020 20:58:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9E1A421734
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2020 20:58:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A3C2320848
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2020 20:58:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dXX9+pcX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9E1A421734
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g37d1WoX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A3C2320848
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,37 +25,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:
 	In-Reply-To:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=lsjBvhJ0gvPqEoOpB+G/JhBL0s2fEnLSWA+rtlR28iU=; b=dXX
-	9+pcXQWeQf8vYA9y8uHf8gmucNXnvaRugU0ADvbJfKO4hsXLBIO5mNXkKNlKkR756WNhoFQYfmFq7
-	6NfkLl1Y/+71owdEEZ3qdxXHNACfDKmXA7nw5fi6FcI145XhoUVIZXOShqxNo7wr7jUbslRQzA8+1
-	SLsyiQu2ROkyvzsL1rUaynctbgAteWEUmP7lEPVUvr202SZZxHg0+f7DjORTJaXMmHzwovYPDiTIw
-	WDjQfY5+tdpgfxKaax6xUE2pIs/FlvzOXOf4xsnE+nHf50mjq8fErH5YqvPaSn96pAgOwc1hVNP1D
-	I2L02VIWfCH4dR9EZO2u9z7Gy80WtIg==;
+	References:List-Owner; bh=6ynxN+o1PPzip9xSMZ3UEAjVq50OdOnA5kHmyLc9Pgk=; b=g37
+	d1WoX7B/b1ypS9HFNU9bMJ5V28maAXFRGerrmSVnSRkD3KRu8iGQj/40NSeXG2Omxcq0UTxzXpRDr
+	ZfMRkArH2eIVmh9GPbCSfN2gBefluvO/r4C9uWa0kvIjPDbJS9hLIHUVICWy5N9nVQLQs+sTknQlK
+	Tzm3gssgElpM/Mvz4BGI7y9snSecsL99t6QK33SdCh43dGSjIEp2h08eE1DWGvy1+6tOW0sJhi+gq
+	djkshXlOKjn/yddxUrzO5GtF8UWIN8yjGZExhOYPuchAbHBtWPncOY20l2xIzg5dkmeolzxIL5g1C
+	3mX/dYrGX37HkDVOYKWArY3SzBYv79g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j2LYz-0003ji-Hw; Thu, 13 Feb 2020 20:58:21 +0000
+	id 1j2LZ9-0003qa-KP; Thu, 13 Feb 2020 20:58:31 +0000
 Received: from foss.arm.com ([217.140.110.172])
  by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j2LYv-0003ge-O2
- for linux-amlogic@lists.infradead.org; Thu, 13 Feb 2020 20:58:19 +0000
+ id 1j2LZ5-0003nl-8z
+ for linux-amlogic@lists.infradead.org; Thu, 13 Feb 2020 20:58:29 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 33A961FB;
- Thu, 13 Feb 2020 12:58:17 -0800 (PST)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A5D701045;
+ Thu, 13 Feb 2020 12:58:26 -0800 (PST)
 Received: from localhost (unknown [10.37.6.21])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A92D43F6CF;
- Thu, 13 Feb 2020 12:58:16 -0800 (PST)
-Date: Thu, 13 Feb 2020 20:58:15 +0000
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2904B3F6CF;
+ Thu, 13 Feb 2020 12:58:26 -0800 (PST)
+Date: Thu, 13 Feb 2020 20:58:24 +0000
 From: Mark Brown <broonie@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: meson: aiu: add hdmi codec control support" to the
- asoc tree
-In-Reply-To: <20200213155159.3235792-6-jbrunet@baylibre.com>
-Message-Id: <applied-20200213155159.3235792-6-jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: aiu: add audio output dt-bindings" to the asoc
+ tree
+In-Reply-To: <20200213155159.3235792-4-jbrunet@baylibre.com>
+Message-Id: <applied-20200213155159.3235792-4-jbrunet@baylibre.com>
 X-Patchwork-Hint: ignore
 X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200213_125817_879169_2BA7AC5F 
-X-CRM114-Status: GOOD (  21.85  )
+X-CRM114-CacheID: sfid-20200213_125827_406257_299AEE95 
+X-CRM114-Status: GOOD (  15.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,7 +79,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: meson: aiu: add hdmi codec control support
+   ASoC: meson: aiu: add audio output dt-bindings
 
 has been applied to the asoc tree at
 
@@ -104,284 +104,166 @@ to this mail.
 Thanks,
 Mark
 
-From b82b734c0e9a75e1b956214ac523a8eb590f51f3 Mon Sep 17 00:00:00 2001
+From 06b72824386795bf6f0a6ac0f0cfef6b7f0165c1 Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 13 Feb 2020 16:51:55 +0100
-Subject: [PATCH] ASoC: meson: aiu: add hdmi codec control support
+Date: Thu, 13 Feb 2020 16:51:53 +0100
+Subject: [PATCH] ASoC: meson: aiu: add audio output dt-bindings
 
-Add the codec to codec component which handles the routing between
-the audio producers (PCM and I2S) and the synopsys hdmi controller
-on the amlogic GX SoC family
+Add the dt-bindings and documentation of the AIU audio controller.
+This component provides most of the audio outputs found on the Amlogic
+Gx SoC family.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20200213155159.3235792-6-jbrunet@baylibre.com
+Link: https://lore.kernel.org/r/20200213155159.3235792-4-jbrunet@baylibre.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/meson/Kconfig          |   2 +
- sound/soc/meson/Makefile         |   1 +
- sound/soc/meson/aiu-codec-ctrl.c | 152 +++++++++++++++++++++++++++++++
- sound/soc/meson/aiu.c            |  34 ++++++-
- sound/soc/meson/aiu.h            |   8 ++
- 5 files changed, 196 insertions(+), 1 deletion(-)
- create mode 100644 sound/soc/meson/aiu-codec-ctrl.c
+ .../bindings/sound/amlogic,aiu.yaml           | 111 ++++++++++++++++++
+ include/dt-bindings/sound/meson-aiu.h         |  18 +++
+ 2 files changed, 129 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
+ create mode 100644 include/dt-bindings/sound/meson-aiu.h
 
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index ca269dedfc7f..19de97ae4ce9 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -4,7 +4,9 @@ menu "ASoC support for Amlogic platforms"
- 
- config SND_MESON_AIU
- 	tristate "Amlogic AIU"
-+	select SND_MESON_CODEC_GLUE
- 	select SND_PCM_IEC958
-+	imply SND_SOC_HDMI_CODEC if DRM_MESON_DW_HDMI
- 	help
- 	  Select Y or M to add support for the Audio output subsystem found
- 	  in the Amlogic GX SoC family
-diff --git a/sound/soc/meson/Makefile b/sound/soc/meson/Makefile
-index a7b79d717288..3b21f648e322 100644
---- a/sound/soc/meson/Makefile
-+++ b/sound/soc/meson/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0 OR MIT)
- 
- snd-soc-meson-aiu-objs := aiu.o
-+snd-soc-meson-aiu-objs += aiu-codec-ctrl.o
- snd-soc-meson-aiu-objs += aiu-encoder-i2s.o
- snd-soc-meson-aiu-objs += aiu-encoder-spdif.o
- snd-soc-meson-aiu-objs += aiu-fifo.o
-diff --git a/sound/soc/meson/aiu-codec-ctrl.c b/sound/soc/meson/aiu-codec-ctrl.c
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml b/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
 new file mode 100644
-index 000000000000..8646a953e3b3
+index 000000000000..3ef7632dcb59
 --- /dev/null
-+++ b/sound/soc/meson/aiu-codec-ctrl.c
-@@ -0,0 +1,152 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (c) 2020 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
++++ b/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/amlogic,aiu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/bitfield.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
++title: Amlogic AIU audio output controller
 +
-+#include <dt-bindings/sound/meson-aiu.h>
-+#include "aiu.h"
-+#include "meson-codec-glue.h"
++maintainers:
++  - Jerome Brunet <jbrunet@baylibre.com>
 +
-+#define CTRL_CLK_SEL		GENMASK(1, 0)
-+#define CTRL_DATA_SEL_SHIFT	4
-+#define CTRL_DATA_SEL		(0x3 << CTRL_DATA_SEL_SHIFT)
++properties:
++  $nodename:
++    pattern: "^audio-controller@.*"
 +
-+static const char * const aiu_codec_ctrl_mux_texts[] = {
-+	"DISABLED", "PCM", "I2S",
-+};
++  "#sound-dai-cells":
++    const: 2
 +
-+static int aiu_codec_ctrl_mux_put_enum(struct snd_kcontrol *kcontrol,
-+				       struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *component =
-+		snd_soc_dapm_kcontrol_component(kcontrol);
-+	struct snd_soc_dapm_context *dapm =
-+		snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
-+	unsigned int mux, changed;
++  compatible:
++    items:
++      - enum:
++        - amlogic,aiu-gxbb
++        - amlogic,aiu-gxl
++      - const:
++          amlogic,aiu
 +
-+	mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
-+	changed = snd_soc_component_test_bits(component, e->reg,
-+					      CTRL_DATA_SEL,
-+					      FIELD_PREP(CTRL_DATA_SEL, mux));
++  clocks:
++    items:
++      - description: AIU peripheral clock
++      - description: I2S peripheral clock
++      - description: I2S output clock
++      - description: I2S master clock
++      - description: I2S mixer clock
++      - description: SPDIF peripheral clock
++      - description: SPDIF output clock
++      - description: SPDIF master clock
++      - description: SPDIF master clock multiplexer
 +
-+	if (!changed)
-+		return 0;
++  clock-names:
++    items:
++      - const: pclk
++      - const: i2s_pclk
++      - const: i2s_aoclk
++      - const: i2s_mclk
++      - const: i2s_mixer
++      - const: spdif_pclk
++      - const: spdif_aoclk
++      - const: spdif_mclk
++      - const: spdif_mclk_sel
 +
-+	/* Force disconnect of the mux while updating */
-+	snd_soc_dapm_mux_update_power(dapm, kcontrol, 0, NULL, NULL);
++  interrupts:
++    items:
++      - description: I2S interrupt line
++      - description: SPDIF interrupt line
 +
-+	/* Reset the source first */
-+	snd_soc_component_update_bits(component, e->reg,
-+				      CTRL_CLK_SEL |
-+				      CTRL_DATA_SEL,
-+				      FIELD_PREP(CTRL_CLK_SEL, 0) |
-+				      FIELD_PREP(CTRL_DATA_SEL, 0));
++  interrupt-names:
++    items:
++      - const: i2s
++      - const: spdif
 +
-+	/* Set the appropriate source */
-+	snd_soc_component_update_bits(component, e->reg,
-+				      CTRL_CLK_SEL |
-+				      CTRL_DATA_SEL,
-+				      FIELD_PREP(CTRL_CLK_SEL, mux) |
-+				      FIELD_PREP(CTRL_DATA_SEL, mux));
++  reg:
++    maxItems: 1
 +
-+	snd_soc_dapm_mux_update_power(dapm, kcontrol, mux, e, NULL);
++  resets:
++    maxItems: 1
 +
-+	return 0;
-+}
++required:
++  - "#sound-dai-cells"
++  - compatible
++  - clocks
++  - clock-names
++  - interrupts
++  - interrupt-names
++  - reg
++  - resets
 +
-+static SOC_ENUM_SINGLE_DECL(aiu_hdmi_ctrl_mux_enum, AIU_HDMI_CLK_DATA_CTRL,
-+			    CTRL_DATA_SEL_SHIFT,
-+			    aiu_codec_ctrl_mux_texts);
++examples:
++  - |
++    #include <dt-bindings/clock/gxbb-clkc.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/amlogic,meson-gxbb-reset.h>
 +
-+static const struct snd_kcontrol_new aiu_hdmi_ctrl_mux =
-+	SOC_DAPM_ENUM_EXT("HDMI Source", aiu_hdmi_ctrl_mux_enum,
-+			  snd_soc_dapm_get_enum_double,
-+			  aiu_codec_ctrl_mux_put_enum);
++    aiu: audio-controller@5400 {
++        compatible = "amlogic,aiu-gxl", "amlogic,aiu";
++        #sound-dai-cells = <2>;
++        reg = <0x0 0x5400 0x0 0x2ac>;
++        interrupts = <GIC_SPI 48 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
++        interrupt-names = "i2s", "spdif";
++        clocks = <&clkc CLKID_AIU_GLUE>,
++                 <&clkc CLKID_I2S_OUT>,
++                 <&clkc CLKID_AOCLK_GATE>,
++                 <&clkc CLKID_CTS_AMCLK>,
++                 <&clkc CLKID_MIXER_IFACE>,
++                 <&clkc CLKID_IEC958>,
++                 <&clkc CLKID_IEC958_GATE>,
++                 <&clkc CLKID_CTS_MCLK_I958>,
++                 <&clkc CLKID_CTS_I958>;
++        clock-names = "pclk",
++                      "i2s_pclk",
++                      "i2s_aoclk",
++                      "i2s_mclk",
++                      "i2s_mixer",
++                      "spdif_pclk",
++                      "spdif_aoclk",
++                      "spdif_mclk",
++                      "spdif_mclk_sel";
++        resets = <&reset RESET_AIU>;
++    };
 +
-+static const struct snd_soc_dapm_widget aiu_hdmi_ctrl_widgets[] = {
-+	SND_SOC_DAPM_MUX("HDMI CTRL SRC", SND_SOC_NOPM, 0, 0,
-+			 &aiu_hdmi_ctrl_mux),
-+};
+diff --git a/include/dt-bindings/sound/meson-aiu.h b/include/dt-bindings/sound/meson-aiu.h
+new file mode 100644
+index 000000000000..1051b8af298b
+--- /dev/null
++++ b/include/dt-bindings/sound/meson-aiu.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __DT_MESON_AIU_H
++#define __DT_MESON_AIU_H
 +
-+static const struct snd_soc_dai_ops aiu_codec_ctrl_input_ops = {
-+	.hw_params	= meson_codec_glue_input_hw_params,
-+	.set_fmt	= meson_codec_glue_input_set_fmt,
-+};
++#define AIU_CPU			0
++#define AIU_HDMI		1
++#define AIU_ACODEC		2
 +
-+static const struct snd_soc_dai_ops aiu_codec_ctrl_output_ops = {
-+	.startup	= meson_codec_glue_output_startup,
-+};
++#define CPU_I2S_FIFO		0
++#define CPU_SPDIF_FIFO		1
++#define CPU_I2S_ENCODER		2
++#define CPU_SPDIF_ENCODER	3
 +
-+#define AIU_CODEC_CTRL_FORMATS					\
-+	(SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S20_3LE |	\
-+	 SNDRV_PCM_FMTBIT_S24_3LE | SNDRV_PCM_FMTBIT_S24_LE |	\
-+	 SNDRV_PCM_FMTBIT_S32_LE)
++#define CTRL_I2S		0
++#define CTRL_PCM		1
++#define CTRL_OUT		2
 +
-+#define AIU_CODEC_CTRL_STREAM(xname, xsuffix)			\
-+{								\
-+	.stream_name	= xname " " xsuffix,			\
-+	.channels_min	= 1,					\
-+	.channels_max	= 8,					\
-+	.rate_min       = 5512,					\
-+	.rate_max	= 192000,				\
-+	.formats	= AIU_CODEC_CTRL_FORMATS,		\
-+}
-+
-+#define AIU_CODEC_CTRL_INPUT(xname) {				\
-+	.name = "CODEC CTRL " xname,				\
-+	.playback = AIU_CODEC_CTRL_STREAM(xname, "Playback"),	\
-+	.ops = &aiu_codec_ctrl_input_ops,			\
-+	.probe = meson_codec_glue_input_dai_probe,		\
-+	.remove = meson_codec_glue_input_dai_remove,		\
-+}
-+
-+#define AIU_CODEC_CTRL_OUTPUT(xname) {				\
-+	.name = "CODEC CTRL " xname,				\
-+	.capture = AIU_CODEC_CTRL_STREAM(xname, "Capture"),	\
-+	.ops = &aiu_codec_ctrl_output_ops,			\
-+}
-+
-+static struct snd_soc_dai_driver aiu_hdmi_ctrl_dai_drv[] = {
-+	[CTRL_I2S] = AIU_CODEC_CTRL_INPUT("HDMI I2S IN"),
-+	[CTRL_PCM] = AIU_CODEC_CTRL_INPUT("HDMI PCM IN"),
-+	[CTRL_OUT] = AIU_CODEC_CTRL_OUTPUT("HDMI OUT"),
-+};
-+
-+static const struct snd_soc_dapm_route aiu_hdmi_ctrl_routes[] = {
-+	{ "HDMI CTRL SRC", "I2S", "HDMI I2S IN Playback" },
-+	{ "HDMI CTRL SRC", "PCM", "HDMI PCM IN Playback" },
-+	{ "HDMI OUT Capture", NULL, "HDMI CTRL SRC" },
-+};
-+
-+static int aiu_hdmi_of_xlate_dai_name(struct snd_soc_component *component,
-+				      struct of_phandle_args *args,
-+				      const char **dai_name)
-+{
-+	return aiu_of_xlate_dai_name(component, args, dai_name, AIU_HDMI);
-+}
-+
-+static const struct snd_soc_component_driver aiu_hdmi_ctrl_component = {
-+	.name			= "AIU HDMI Codec Control",
-+	.dapm_widgets		= aiu_hdmi_ctrl_widgets,
-+	.num_dapm_widgets	= ARRAY_SIZE(aiu_hdmi_ctrl_widgets),
-+	.dapm_routes		= aiu_hdmi_ctrl_routes,
-+	.num_dapm_routes	= ARRAY_SIZE(aiu_hdmi_ctrl_routes),
-+	.of_xlate_dai_name	= aiu_hdmi_of_xlate_dai_name,
-+	.endianness		= 1,
-+	.non_legacy_dai_naming	= 1,
-+};
-+
-+int aiu_hdmi_ctrl_register_component(struct device *dev)
-+{
-+	return aiu_add_component(dev, &aiu_hdmi_ctrl_component,
-+				 aiu_hdmi_ctrl_dai_drv,
-+				 ARRAY_SIZE(aiu_hdmi_ctrl_dai_drv),
-+				 "hdmi");
-+}
-+
-diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-index a62aced9b687..b765dfb70726 100644
---- a/sound/soc/meson/aiu.c
-+++ b/sound/soc/meson/aiu.c
-@@ -71,6 +71,26 @@ int aiu_of_xlate_dai_name(struct snd_soc_component *component,
- 	return 0;
- }
- 
-+int aiu_add_component(struct device *dev,
-+		      const struct snd_soc_component_driver *component_driver,
-+		      struct snd_soc_dai_driver *dai_drv,
-+		      int num_dai,
-+		      const char *debugfs_prefix)
-+{
-+	struct snd_soc_component *component;
-+
-+	component = devm_kzalloc(dev, sizeof(*component), GFP_KERNEL);
-+	if (!component)
-+		return -ENOMEM;
-+
-+#ifdef CONFIG_DEBUG_FS
-+	component->debugfs_prefix = debugfs_prefix;
-+#endif
-+
-+	return snd_soc_add_component(dev, component, component_driver,
-+				     dai_drv, num_dai);
-+}
-+
- static int aiu_cpu_of_xlate_dai_name(struct snd_soc_component *component,
- 				     struct of_phandle_args *args,
- 				     const char **dai_name)
-@@ -313,9 +333,21 @@ static int aiu_probe(struct platform_device *pdev)
- 	ret = snd_soc_register_component(dev, &aiu_cpu_component,
- 					 aiu_cpu_dai_drv,
- 					 ARRAY_SIZE(aiu_cpu_dai_drv));
--	if (ret)
-+	if (ret) {
- 		dev_err(dev, "Failed to register cpu component\n");
-+		return ret;
-+	}
- 
-+	/* Register the hdmi codec control component */
-+	ret = aiu_hdmi_ctrl_register_component(dev);
-+	if (ret) {
-+		dev_err(dev, "Failed to register hdmi control component\n");
-+		goto err;
-+	}
-+
-+	return 0;
-+err:
-+	snd_soc_unregister_component(dev);
- 	return ret;
- }
- 
-diff --git a/sound/soc/meson/aiu.h b/sound/soc/meson/aiu.h
-index a3488027b9d5..9242ab1ab64b 100644
---- a/sound/soc/meson/aiu.h
-+++ b/sound/soc/meson/aiu.h
-@@ -45,6 +45,14 @@ int aiu_of_xlate_dai_name(struct snd_soc_component *component,
- 			  const char **dai_name,
- 			  unsigned int component_id);
- 
-+int aiu_add_component(struct device *dev,
-+		      const struct snd_soc_component_driver *component_driver,
-+		      struct snd_soc_dai_driver *dai_drv,
-+		      int num_dai,
-+		      const char *debugfs_prefix);
-+
-+int aiu_hdmi_ctrl_register_component(struct device *dev);
-+
- int aiu_fifo_i2s_dai_probe(struct snd_soc_dai *dai);
- int aiu_fifo_spdif_dai_probe(struct snd_soc_dai *dai);
- 
++#endif /* __DT_MESON_AIU_H */
 -- 
 2.20.1
 
