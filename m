@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 58523C3B19F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2020 16:17:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C21B9C2BA83
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2020 16:20:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 14B162468E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2020 16:17:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 912EC24717
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2020 16:20:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sQ3gUdcj";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="nCeP60jh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 14B162468E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="azJCSSg2";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="MoodqutW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 912EC24717
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,38 +25,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=J2AhzC5pv9iYRQVaMkwq9u3JrfHSxgwPBg0R6rhbw0I=; b=sQ3gUdcj6Lutd9
-	lEUTITXLxO5/UhVoGkrEbUKaoNphvYO10q8C+3m0QkfUnycGpS3isAzLHWDp09GBLNDEX6RCU0etH
-	wlc7sj9fRYkHsoEoV0VrSlgVqYGD1Z3ncxlneiOKAOXvFymfW9J5zupheTis2oWibbN/MUSSUhbbw
-	pE6Yqc92pIY9zJXVxdfpDHK+wgDX5X8mDC4CJUPOGYn2hItRXCh1PY442o/aT6AiBivnLhW42+T2a
-	5FTxJ6H/MTpPlCKPeDTPp9O9/f71P86FseeT75IHIksVzHjb4I/M83z8q/7a2Th4jRI3bUCsChNbX
-	lrDS5v+06/IA/FXOGTbw==;
+	List-Owner; bh=2pBubbl2idytyH53VjhabtesJYa/AjI1C4wtD8AMpGE=; b=azJCSSg2dFgiRo
+	LkJgekE221evWNDUYe9CnilZ2AqTwirO65vxpnN58GjXW2K0+rhBUAEICugUnoWL1w3L2EZru7T9M
+	ThCj/9fUqFXkw6oTXBFv8W2VwAgLcp7ism3eLRiYoyFeE3AsUZi1b1prKWrt0g5wiMJpfqvUZYLuH
+	prw5nKnNyeaQEzShb0VpXrEbeke3E/VhG9XQciSUiUXhBe/on+vaqQ07L9zu+8HhHvIY54R+JKGTh
+	BOQs7ST7dLfYPRh16MKwpNq3e2QSLgtClTo37bDybu/ielBKrv2zjzAh5kS8SbqMSKtxjzex0OnVF
+	R3yBHDuS482qfVJ8Ubvg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j2dej-0000s4-TJ; Fri, 14 Feb 2020 16:17:29 +0000
+	id 1j2dhO-00047b-5b; Fri, 14 Feb 2020 16:20:14 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j2dPv-0000Jn-Kc; Fri, 14 Feb 2020 16:02:13 +0000
+ id 1j2dQX-00015C-64; Fri, 14 Feb 2020 16:02:52 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 9C4B024676;
- Fri, 14 Feb 2020 16:02:09 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id B980C2082F;
+ Fri, 14 Feb 2020 16:02:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1581696130;
- bh=HDNfsmOpb9MK1yv2aN+/E97lXV9iDVXQh3D1EFAviJE=;
+ s=default; t=1581696168;
+ bh=LNZd425aiv0ZyvHJC6f+H2IvIXnySvmj0POmQMGzmiw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=nCeP60jhUGVvFg+8vLNWolMx7SIrbn2HxbQKN5BzRWlP/8Kw/Uts61Tcsm/XVi3iO
- pPFhJSsLqPnpW2WD/ozY94wtFflbVGLsfkmpq224GOocSGdZxtN6F73tbG5L/1rdCs
- weoyd/ubyLDYNWSWN3MzPqXIyn+mpuvgkTR204MU=
+ b=MoodqutW6eXjNbsQaLHNyAxXySEy1Qlkcpud5eKmCtrt4eQRa4ZxEQPiT80q4cgxB
+ y7x2GTh3TW+i0i6P1fn3NXS/itG2KdLeyCGI+hVnoC5ngV+pcPz0luJ/dN/W4zK5nk
+ V2RZETq8c3UoxGnVJ+N1h8ozf8XX2HRFB88+jLOQ=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 015/459] media: meson: add missing allocation
- failure check on new_buf
-Date: Fri, 14 Feb 2020 10:54:25 -0500
-Message-Id: <20200214160149.11681-15-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 043/459] clk: meson: meson8b: make the CCF use the
+ glitch-free mali mux
+Date: Fri, 14 Feb 2020 10:54:53 -0500
+Message-Id: <20200214160149.11681-43-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214160149.11681-1-sashal@kernel.org>
 References: <20200214160149.11681-1-sashal@kernel.org>
@@ -64,9 +64,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200214_080211_721982_837C6383 
-X-CRM114-Status: UNSURE (   8.56  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200214_080250_459583_529E0FFA 
+X-CRM114-Status: GOOD (  13.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,51 +77,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, devel@driverdev.osuosl.org,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Colin Ian King <colin.king@canonical.com>,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Colin Ian King <colin.king@canonical.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[ Upstream commit 11e0e167d071a28288a7a0a211d48c571d19b56f ]
+[ Upstream commit 8daeaea99caabe24a0929fac17977ebfb882fa86 ]
 
-Currently if the allocation of new_buf fails then a null pointer
-dereference occurs when assiging new_buf->vb. Avoid this by returning
-early on a memory allocation failure as there is not much more can
-be done at this point.
+The "mali_0" or "mali_1" clock trees should not be updated while the
+clock is running. Enforce this by setting CLK_SET_RATE_GATE on the
+"mali_0" and "mali_1" gates. This makes the CCF switch to the "mali_1"
+tree when "mali_0" is currently active and vice versa, which is exactly
+what the vendor driver does when updating the frequency of the mali
+clock.
 
-Addresses-Coverity: ("Dereference null return")
+This fixes a potential hang when changing the GPU frequency at runtime.
 
-Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Fixes: 74e1f2521f16ff ("clk: meson: meson8b: add the GPU clock tree")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/staging/media/meson/vdec/vdec.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/clk/meson/meson8b.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index 0a1a04fd5d13d..8dd1396909d7e 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -133,6 +133,8 @@ vdec_queue_recycle(struct amvdec_session *sess, struct vb2_buffer *vb)
- 	struct amvdec_buffer *new_buf;
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 67e6691e080c1..8856ce476ccfa 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -1764,8 +1764,11 @@ static struct clk_regmap meson8b_hdmi_sys = {
  
- 	new_buf = kmalloc(sizeof(*new_buf), GFP_KERNEL);
-+	if (!new_buf)
-+		return;
- 	new_buf->vb = vb;
+ /*
+  * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
+- * muxed by a glitch-free switch on Meson8b and Meson8m2. Meson8 only
+- * has mali_0 and no glitch-free mux.
++ * muxed by a glitch-free switch on Meson8b and Meson8m2. The CCF can
++ * actually manage this glitch-free mux because it does top-to-bottom
++ * updates the each clock tree and switches to the "inactive" one when
++ * CLK_SET_RATE_GATE is set.
++ * Meson8 only has mali_0 and no glitch-free mux.
+  */
+ static const struct clk_hw *meson8b_mali_0_1_parent_hws[] = {
+ 	&meson8b_xtal.hw,
+@@ -1830,7 +1833,7 @@ static struct clk_regmap meson8b_mali_0 = {
+ 			&meson8b_mali_0_div.hw
+ 		},
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
+ 	},
+ };
  
- 	mutex_lock(&sess->bufs_recycle_lock);
+@@ -1885,7 +1888,7 @@ static struct clk_regmap meson8b_mali_1 = {
+ 			&meson8b_mali_1_div.hw
+ 		},
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
 -- 
 2.20.1
 
