@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24AABC3B1A4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2020 16:17:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58523C3B19F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2020 16:17:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ECE43246EB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2020 16:17:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 14B162468E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2020 16:17:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aqLzwLdF";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="DFGGGBoT"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ECE43246EB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sQ3gUdcj";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="nCeP60jh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 14B162468E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,38 +25,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/1628tCfLyzPyADBTzHAWOWHahyoMhj+Xe43O7vaVC8=; b=aqLzwLdFNV+178
-	sPZHtVBhIFNkYb7Rh+GGeb3L/hBRKo5hNZ/BDg4qQMdrvKUF6dU4eirUN1f4jROJHT0UyCss4yFpV
-	I4KOSLecV2IU/SjcrjlHp34mFfJL+LfzDQQ9EFYw8bcOZTfYFjvn1d0ht5iVPjFgF7+ZA1P+gsoR0
-	rSvCjiM3CSIVpn6IlVSu4h5pXhSNf5qRR/w1hyC7eZK9XZO6RPASVB+i9g4rkgx+mU2fyOfOfIY7U
-	AL7Iw1D1/LUro1o5xiIhcdH5yBwhTBuNbA5Wd1uXJ6CARmQfu+yWm6GYf/FZbRhMsNYj26uplDLvD
-	KXpQTR2gDxi7/usVyZzA==;
+	List-Owner; bh=J2AhzC5pv9iYRQVaMkwq9u3JrfHSxgwPBg0R6rhbw0I=; b=sQ3gUdcj6Lutd9
+	lEUTITXLxO5/UhVoGkrEbUKaoNphvYO10q8C+3m0QkfUnycGpS3isAzLHWDp09GBLNDEX6RCU0etH
+	wlc7sj9fRYkHsoEoV0VrSlgVqYGD1Z3ncxlneiOKAOXvFymfW9J5zupheTis2oWibbN/MUSSUhbbw
+	pE6Yqc92pIY9zJXVxdfpDHK+wgDX5X8mDC4CJUPOGYn2hItRXCh1PY442o/aT6AiBivnLhW42+T2a
+	5FTxJ6H/MTpPlCKPeDTPp9O9/f71P86FseeT75IHIksVzHjb4I/M83z8q/7a2Th4jRI3bUCsChNbX
+	lrDS5v+06/IA/FXOGTbw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j2dep-00018P-Nc; Fri, 14 Feb 2020 16:17:38 +0000
+	id 1j2dej-0000s4-TJ; Fri, 14 Feb 2020 16:17:29 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j2dPy-0000NE-W7; Fri, 14 Feb 2020 16:02:17 +0000
+ id 1j2dPv-0000Jn-Kc; Fri, 14 Feb 2020 16:02:13 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id D57682467C;
- Fri, 14 Feb 2020 16:02:12 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9C4B024676;
+ Fri, 14 Feb 2020 16:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1581696134;
- bh=dxyccyigJhbpHPCQ2eWhVt7tV6C/oCPf9Cj4BDUW/vo=;
+ s=default; t=1581696130;
+ bh=HDNfsmOpb9MK1yv2aN+/E97lXV9iDVXQh3D1EFAviJE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DFGGGBoTXpWw60PwXzvqDw0aJFdu5iYiR3JyVCvGp2zxyMi+UDzlQarQgyO/4+MJ9
- +eHPi4Mnx3uNUwaNoQAtfXdxTNTbwTQc0/HUoH96OeUNZb7A5e96TiPDBlGKTYmZjE
- gi7IA5n4NjMVVkcNKzkknWhIGeKhJTQqYHTxe8qM=
+ b=nCeP60jhUGVvFg+8vLNWolMx7SIrbn2HxbQKN5BzRWlP/8Kw/Uts61Tcsm/XVi3iO
+ pPFhJSsLqPnpW2WD/ozY94wtFflbVGLsfkmpq224GOocSGdZxtN6F73tbG5L/1rdCs
+ weoyd/ubyLDYNWSWN3MzPqXIyn+mpuvgkTR204MU=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 017/459] clk: meson: pll: Fix by 0 division in
- __pll_params_to_rate()
-Date: Fri, 14 Feb 2020 10:54:27 -0500
-Message-Id: <20200214160149.11681-17-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 015/459] media: meson: add missing allocation
+ failure check on new_buf
+Date: Fri, 14 Feb 2020 10:54:25 -0500
+Message-Id: <20200214160149.11681-15-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214160149.11681-1-sashal@kernel.org>
 References: <20200214160149.11681-1-sashal@kernel.org>
@@ -64,8 +64,9 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200214_080215_113461_F0CC98E7 
-X-CRM114-Status: GOOD (  10.11  )
+X-CRM114-CacheID: sfid-20200214_080211_721982_837C6383 
+X-CRM114-Status: UNSURE (   8.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,85 +78,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Remi Pommarel <repk@triplefau.lt>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: Sasha Levin <sashal@kernel.org>, devel@driverdev.osuosl.org,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Colin Ian King <colin.king@canonical.com>,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Remi Pommarel <repk@triplefau.lt>
+From: Colin Ian King <colin.king@canonical.com>
 
-[ Upstream commit d8488a41800d9f5c80bc0d17b9cc2c91b4841464 ]
+[ Upstream commit 11e0e167d071a28288a7a0a211d48c571d19b56f ]
 
-Some meson pll registers can be initialized with 0 as N value, introducing
-the following division by 0 when computing rate :
+Currently if the allocation of new_buf fails then a null pointer
+dereference occurs when assiging new_buf->vb. Avoid this by returning
+early on a memory allocation failure as there is not much more can
+be done at this point.
 
-  UBSAN: Undefined behaviour in drivers/clk/meson/clk-pll.c:75:9
-  division by zero
-  CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.4.0-rc3-608075-g86c9af8630e1-dirty #400
-  Call trace:
-   dump_backtrace+0x0/0x1c0
-   show_stack+0x14/0x20
-   dump_stack+0xc4/0x100
-   ubsan_epilogue+0x14/0x68
-   __ubsan_handle_divrem_overflow+0x98/0xb8
-   __pll_params_to_rate+0xdc/0x140
-   meson_clk_pll_recalc_rate+0x278/0x3a0
-   __clk_register+0x7c8/0xbb0
-   devm_clk_hw_register+0x54/0xc0
-   meson_eeclkc_probe+0xf4/0x1a0
-   platform_drv_probe+0x54/0xd8
-   really_probe+0x16c/0x438
-   driver_probe_device+0xb0/0xf0
-   device_driver_attach+0x94/0xa0
-   __driver_attach+0x70/0x108
-   bus_for_each_dev+0xd8/0x128
-   driver_attach+0x30/0x40
-   bus_add_driver+0x1b0/0x2d8
-   driver_register+0xbc/0x1d0
-   __platform_driver_register+0x78/0x88
-   axg_driver_init+0x18/0x20
-   do_one_initcall+0xc8/0x24c
-   kernel_init_freeable+0x2b0/0x344
-   kernel_init+0x10/0x128
-   ret_from_fork+0x10/0x18
+Addresses-Coverity: ("Dereference null return")
 
-This checks if N is null before doing the division.
-
-Fixes: 7a29a869434e ("clk: meson: Add support for Meson clock controller")
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Remi Pommarel <repk@triplefau.lt>
-[jbrunet@baylibre.com: update the comment in above the fix]
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/clk/meson/clk-pll.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/staging/media/meson/vdec/vdec.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index ddb1e56347395..3a5853ca98c6c 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -77,6 +77,15 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
- 	unsigned int m, n, frac;
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index 0a1a04fd5d13d..8dd1396909d7e 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -133,6 +133,8 @@ vdec_queue_recycle(struct amvdec_session *sess, struct vb2_buffer *vb)
+ 	struct amvdec_buffer *new_buf;
  
- 	n = meson_parm_read(clk->map, &pll->n);
-+
-+	/*
-+	 * On some HW, N is set to zero on init. This value is invalid as
-+	 * it would result in a division by zero. The rate can't be
-+	 * calculated in this case
-+	 */
-+	if (n == 0)
-+		return 0;
-+
- 	m = meson_parm_read(clk->map, &pll->m);
+ 	new_buf = kmalloc(sizeof(*new_buf), GFP_KERNEL);
++	if (!new_buf)
++		return;
+ 	new_buf->vb = vb;
  
- 	frac = MESON_PARM_APPLICABLE(&pll->frac) ?
+ 	mutex_lock(&sess->bufs_recycle_lock);
 -- 
 2.20.1
 
