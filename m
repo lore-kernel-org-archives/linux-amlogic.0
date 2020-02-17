@@ -2,84 +2,89 @@ Return-Path: <SRS0=uJma=4F=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF760C7619D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Feb 2020 08:52:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB92CC7619D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Feb 2020 09:20:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7E50620725
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Feb 2020 08:52:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BE14F20725
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Feb 2020 09:20:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qFhXXdtC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FykBzbYJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E50620725
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EzgqlhJ4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jRUI4paO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BE14F20725
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=B3POIjTqq8Z3JeunIYQHqNPuDr4/ODK5wh0sHMb2OnQ=; b=qFhXXdtCbVQCwd
-	Ea9pjqxxHa5A9gQnWaFZXwy7zR/npLmTjW1XpUgpjkpPAi+NMvwWczH5oLWypI34APOSdJ/3Iiq8W
-	r/JjY874SxBvcYVkamDEK1usuNJSkusPhigr7z9JO2I60tmkdQzHqvw2sLxOByE59M7d/9QruVmXF
-	aWHXgyvkBpl2XOvUYCT3mXrxGze1sPjyG3fUvGI2b8LQcBYcT5BhBqujcoPvyBEos6uEWcrBkLPOC
-	bVIJFMGu+8xXV4PD+EL4FzK3wso5fBbm6Ac4HEueuHrh/05xUVC9Ap3vxPaKg9sKpsPSS1RoGd6jm
-	cba5gavSO9zQgWYlUg6A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fL8BpbHc2j70o1k8SiaKIlS8h1hh6Ou2YXzKZnfMu30=; b=EzgqlhJ4mnzWJT
+	rdRF2yRzGlyBXJvv9js2di9IUFU2FRJwLC/52KyHWRy9er6w8HLlYya45JAwS03eUnaqhE3HAxXJv
+	0nKv3hSR5ftpFr6EU1hQaCCzujunkqSi+EbvxDmr7g6x67oR++WMBBSVuMaVMHLGPiynvoK3JzjyF
+	8Xnaw2wr56dulKAUbkbSf7h1Ou/k6H/ehJp1qOz7ZwYHAKxgpIn+HjdlDAeXbOqIRjhbfr8rm9fUA
+	q6j+zcCsvm0oaRABcgHRp3uBrCpLDPnTNHRprs8RhbhRRFbGj0Ya07aZq8VMn6CW7xqV3YJzgUwht
+	Jzyq5PnUIyRT79mmz01g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j3c88-0005wg-Fb; Mon, 17 Feb 2020 08:51:52 +0000
-Received: from mail-io1-xd44.google.com ([2607:f8b0:4864:20::d44])
+	id 1j3ca6-0003eX-IE; Mon, 17 Feb 2020 09:20:46 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j3c7y-0005Zq-5X; Mon, 17 Feb 2020 08:51:44 +0000
-Received: by mail-io1-xd44.google.com with SMTP id z16so17558911iod.11;
- Mon, 17 Feb 2020 00:51:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uHHGohWk9p+/nxk2GPpS7E9E1pqxMJMjyjsNhyVbaiU=;
- b=FykBzbYJMaN5c0YR2MF11eN63iW/0xfMqkMCO+S5HgLkR7Obiw/ot8yvZ0h49GIxZL
- S2+l6ayaFj2+5LRym2fXDwxpcqjaElQsUS/UwVeCnhxxXm8EUvPBt6YOb/PtxvOtG0Ny
- kD0XSHCBlYjcdIV+RbJcHbc6cEEgyGr/F4IZxKK1SNSk0PaWVCtgUP+EUXvPSgFYlTnC
- Zj30ph73zv2TbaGG1B2sygm90a1s0C5lJlJoNhibYSHoPJSkbE0Xi9OGa13S6xfzY87b
- HUOk4REAF/Nrz6QKXPhgktczj9FXPVYlo+bSXu/p3aohZPrYogUJznmim5SX21H6LjMm
- kn4Q==
+ id 1j3cZr-0003OT-4t
+ for linux-amlogic@lists.infradead.org; Mon, 17 Feb 2020 09:20:33 +0000
+Received: by mail-wm1-x341.google.com with SMTP id p17so17555285wma.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 17 Feb 2020 01:20:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eUz2G04Bb89tsKE0msFkZ9blTmeu3DgvQbssg5zQwVU=;
+ b=jRUI4paOxqTsdkPUlKyQza5/FpjH5wFiT0l/DFu9r7BUgb5pGXIndS5vpdCLOkBORf
+ Iw+TAURuUy2azNJ5jTx10V/NAz11y/TrDoYRIxoeYulS/whZYSte8nrQQIQ4M4tljIlR
+ pY+9l2bv/3db1tfrEDEwqJTo83NafxBBIqp/n5hD70GxBtSbrgc42/kigzd3koASPoWg
+ lo6X9DGrQnQTFf936OV0/inNqQ9bMc9UApXK58C//1tqFBjEmbRBjWcmPxEZGOy8auim
+ MwgHdRDNZmNQ1gq8FfvGBfXsZxE7f8Rdswb4B5H9Gl7VpXYwXcQtG/ZjnOPJB/MzlxPW
+ CAeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uHHGohWk9p+/nxk2GPpS7E9E1pqxMJMjyjsNhyVbaiU=;
- b=Kq4YbALh0YUHzzSCNFihpvHOcn+k74et+FTvXnNYqslIb1fC4ccO0ET7tM2j1RWqx7
- /yOoHNNMn955vWRW24StV3sy9Pm7Hre8x8RDNwqssGAKSwZ67lNHS5sd7YUuU6rPAFUR
- 1ib7qMGEFYoSP2i6ep+8u2YamHV53B2MVhUJCdZJUOBYzOVSCkIMgZiuHm0IJ79dXKj6
- 8mrGTgzWR0gSQNK3SjAyD2AxGGYXxZAEU6/SrSK2CWO2OX3KkSGIpendVidMONVgBY1G
- ey85rt9Ke+ckv8IarlOtqFiUdPo+aWqjhtja0AIvVK5OugyAUWXZa/O40wJsBiRgbfyV
- H1cQ==
-X-Gm-Message-State: APjAAAVzBZG22Z+ZSL/39Q7RYZ8GHOsGAAjFhs/1nql611RabnmY2FYN
- X2NKPu4QbLlUBGf4N7Mw4Kv4ol2zHYL9in+VefI=
-X-Google-Smtp-Source: APXvYqy5Ao2fzvMvprdx/tvfqqCXbZoPO8C3N/gOUkzZph4zPWsllY1/gyAqJmaFDd+k4b6XjT7ZZp9Nv1LrIGgjhzQ=
-X-Received: by 2002:a5e:aa18:: with SMTP id s24mr10775126ioe.221.1581929499729; 
- Mon, 17 Feb 2020 00:51:39 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eUz2G04Bb89tsKE0msFkZ9blTmeu3DgvQbssg5zQwVU=;
+ b=RWOEdptCNdVVWY5HATgn7mcMIvHDbzcetaIFfn1R5tHOEgjSdLEMFT6ZWQvgkaL01n
+ Tz5plYgHfBEJVRpUol0VF2h+dGCgse/ZJAw1tci+1U5Qx7AKGqGf/C8o/ny/QxWBniQk
+ NaOvf+Zt/BEGaYprVWWUtGnUlVGO0dLN7erc3TKMkZmjDVrUSB3ZgNSDB9Phz1ilnuNr
+ KBANO5p1x2FssqKkKm49pgbOUsqftP2BeeKMoHmaznWIx5rhUZDgW0ujLCnbrh6666wq
+ 0wFltcxKa/MUTI+Nlij7Gtz4/k+ZejKDrvXrqY8wEVFz6cuPhOq47JbpQwq1Iz8KcBIG
+ 36Fg==
+X-Gm-Message-State: APjAAAWlD/gqJyzideGXL0XlqSiqOANWLQB5QjJD9d7Bn+NwcMEvCIOX
+ dagju383gOwluDkgZmkOkFCRrQ==
+X-Google-Smtp-Source: APXvYqzW2Cgw9zR9wxV2rpAUJf7+def0ERox9GI5jHN5hfn2bae9qIgwbWg171C1Ty1FYR9HcduUeQ==
+X-Received: by 2002:a7b:cf0d:: with SMTP id l13mr22297831wmg.13.1581931229174; 
+ Mon, 17 Feb 2020 01:20:29 -0800 (PST)
+Received: from starbuck.baylibre.local
+ (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id v14sm67373wrm.28.2020.02.17.01.20.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 17 Feb 2020 01:20:28 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: [PATCH] ASoC: meson: aiu: simplify component addition
+Date: Mon, 17 Feb 2020 10:20:19 +0100
+Message-Id: <20200217092019.433402-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-References: <20200216173446.1823-1-linux.amoon@gmail.com>
- <20200216173446.1823-4-linux.amoon@gmail.com>
- <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 17 Feb 2020 14:21:29 +0530
-Message-ID: <CANAwSgRurj6Mfkqq6OfW_ZORCj_UhQN24kx-tj+sUWfuqn_uoQ@mail.gmail.com>
-Subject: Re: [PATCHv1 3/3] clk: meson: g12a: set cpu clock divider flags too
- CLK_IS_CRITICAL
-To: Jerome Brunet <jbrunet@baylibre.com>
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200217_005142_211527_1AF1ACF5 
-X-CRM114-Status: GOOD (  23.27  )
+X-CRM114-CacheID: sfid-20200217_012031_251841_86A4BECB 
+X-CRM114-Status: GOOD (  10.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,96 +96,121 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- devicetree <devicetree@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+Now that the component name is unique within ASoC, there is no need to
+hack the debugfs prefix to add more than one ASoC component to a linux
+device. Remove the unnecessary function and use
+snd_soc_register_component() directly.
 
-Thanks for your review comments.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ sound/soc/meson/aiu-acodec-ctrl.c |  7 +++----
+ sound/soc/meson/aiu-codec-ctrl.c  |  7 +++----
+ sound/soc/meson/aiu.c             | 20 --------------------
+ sound/soc/meson/aiu.h             |  8 --------
+ 4 files changed, 6 insertions(+), 36 deletions(-)
 
-On Mon, 17 Feb 2020 at 13:32, Jerome Brunet <jbrunet@baylibre.com> wrote:
->
->
-> On Sun 16 Feb 2020 at 18:34, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> > Odroid N2 would fail to boot using microSD unless we set
-> > cpu freq clk divider flags to CLK_IS_CRITICAL to avoid stalling of
-> > cpu when booting, most likely because of PWM module linked to
->
-> Where did you see a PWM ?
->
-> > the CPU for DVFS is getting disabled in between the late_init call,
->
-> between the late_init call and what ?
->
-> > so gaiting the clock source shuts down the power to the codes.
->
-> what code ?
->
-> > Setting clk divider flags to CLK_IS_CRITICAL help resolve the issue.
-> >
-> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > Cc: Jerome Brunet <jbrunet@baylibre.com>
-> > Cc: Neil Armstrong <narmstrong@baylibre.com>
-> > Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> >
-> > Following Neil's suggestion, I have prepared this patch.
-> > https://patchwork.kernel.org/patch/11177441/#22964889
-> > ---
-> >  drivers/clk/meson/g12a.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> > index d2760a021301..accae3695fe5 100644
-> > --- a/drivers/clk/meson/g12a.c
-> > +++ b/drivers/clk/meson/g12a.c
-> > @@ -283,6 +283,7 @@ static struct clk_fixed_factor g12a_fclk_div2_div = {
-> >               .ops = &clk_fixed_factor_ops,
-> >               .parent_hws = (const struct clk_hw *[]) { &g12a_fixed_pll.hw },
-> >               .num_parents = 1,
-> > +             .flags = CLK_IS_CRITICAL,
->
-> This makes no sense for because:
-> * This clock cannot gate and none of its parents can either. IOW, the
-> output of this clock is never disabled.
-> * I cannot guess the relation between fdiv2 and the commit description
->
-> >       },
-> >  };
-> >
-> > @@ -681,7 +682,7 @@ static struct clk_regmap g12b_cpub_clk = {
-> >                       &g12a_sys_pll.hw
-> >               },
-> >               .num_parents = 2,
-> > -             .flags = CLK_SET_RATE_PARENT,
-> > +             .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
->
-> Why not. Neil what do you think of this ?
-> If nothing is claiming this clock and enabling it then I suppose it
-> could make sense.
->
->
-> >       },
-> >  };
->
+diff --git a/sound/soc/meson/aiu-acodec-ctrl.c b/sound/soc/meson/aiu-acodec-ctrl.c
+index b8e88b1a4fc8..7078197e0cc5 100644
+--- a/sound/soc/meson/aiu-acodec-ctrl.c
++++ b/sound/soc/meson/aiu-acodec-ctrl.c
+@@ -197,8 +197,7 @@ static const struct snd_soc_component_driver aiu_acodec_ctrl_component = {
+ 
+ int aiu_acodec_ctrl_register_component(struct device *dev)
+ {
+-	return aiu_add_component(dev, &aiu_acodec_ctrl_component,
+-				 aiu_acodec_ctrl_dai_drv,
+-				 ARRAY_SIZE(aiu_acodec_ctrl_dai_drv),
+-				 "acodec");
++	return snd_soc_register_component(dev, &aiu_acodec_ctrl_component,
++					  aiu_acodec_ctrl_dai_drv,
++					  ARRAY_SIZE(aiu_acodec_ctrl_dai_drv));
+ }
+diff --git a/sound/soc/meson/aiu-codec-ctrl.c b/sound/soc/meson/aiu-codec-ctrl.c
+index 8646a953e3b3..4b773d3e8b07 100644
+--- a/sound/soc/meson/aiu-codec-ctrl.c
++++ b/sound/soc/meson/aiu-codec-ctrl.c
+@@ -144,9 +144,8 @@ static const struct snd_soc_component_driver aiu_hdmi_ctrl_component = {
+ 
+ int aiu_hdmi_ctrl_register_component(struct device *dev)
+ {
+-	return aiu_add_component(dev, &aiu_hdmi_ctrl_component,
+-				 aiu_hdmi_ctrl_dai_drv,
+-				 ARRAY_SIZE(aiu_hdmi_ctrl_dai_drv),
+-				 "hdmi");
++	return snd_soc_register_component(dev, &aiu_hdmi_ctrl_component,
++					  aiu_hdmi_ctrl_dai_drv,
++					  ARRAY_SIZE(aiu_hdmi_ctrl_dai_drv));
+ }
+ 
+diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
+index 34b40b8b8299..d3e2d40e9562 100644
+--- a/sound/soc/meson/aiu.c
++++ b/sound/soc/meson/aiu.c
+@@ -71,26 +71,6 @@ int aiu_of_xlate_dai_name(struct snd_soc_component *component,
+ 	return 0;
+ }
+ 
+-int aiu_add_component(struct device *dev,
+-		      const struct snd_soc_component_driver *component_driver,
+-		      struct snd_soc_dai_driver *dai_drv,
+-		      int num_dai,
+-		      const char *debugfs_prefix)
+-{
+-	struct snd_soc_component *component;
+-
+-	component = devm_kzalloc(dev, sizeof(*component), GFP_KERNEL);
+-	if (!component)
+-		return -ENOMEM;
+-
+-#ifdef CONFIG_DEBUG_FS
+-	component->debugfs_prefix = debugfs_prefix;
+-#endif
+-
+-	return snd_soc_add_component(dev, component, component_driver,
+-				     dai_drv, num_dai);
+-}
+-
+ static int aiu_cpu_of_xlate_dai_name(struct snd_soc_component *component,
+ 				     struct of_phandle_args *args,
+ 				     const char **dai_name)
+diff --git a/sound/soc/meson/aiu.h b/sound/soc/meson/aiu.h
+index 097c26de7b7c..06a968c55728 100644
+--- a/sound/soc/meson/aiu.h
++++ b/sound/soc/meson/aiu.h
+@@ -11,9 +11,7 @@ struct clk;
+ struct clk_bulk_data;
+ struct device;
+ struct of_phandle_args;
+-struct snd_soc_component_driver;
+ struct snd_soc_dai;
+-struct snd_soc_dai_driver;
+ struct snd_soc_dai_ops;
+ 
+ enum aiu_clk_ids {
+@@ -45,12 +43,6 @@ int aiu_of_xlate_dai_name(struct snd_soc_component *component,
+ 			  const char **dai_name,
+ 			  unsigned int component_id);
+ 
+-int aiu_add_component(struct device *dev,
+-		      const struct snd_soc_component_driver *component_driver,
+-		      struct snd_soc_dai_driver *dai_drv,
+-		      int num_dai,
+-		      const char *debugfs_prefix);
+-
+ int aiu_hdmi_ctrl_register_component(struct device *dev);
+ int aiu_acodec_ctrl_register_component(struct device *dev);
+ 
+-- 
+2.24.1
 
-Sorry for the noise, I should not have send this patch in first place.
-
--Anand
 
 _______________________________________________
 linux-amlogic mailing list
