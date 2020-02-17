@@ -4,70 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C29AC7619B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Feb 2020 06:39:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6A97C7619B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Feb 2020 07:39:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5ED1C20718
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Feb 2020 06:39:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 729A5206D5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Feb 2020 07:39:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PDNMRq7F"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5ED1C20718
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=siol.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ib3OPb3v";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xSIYa2za"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 729A5206D5
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=D4knaWVPvCuWEtt3Z5XmmX21wcy/rOLLV2BBfsn3xFI=; b=PDNMRq7F1ozxRL
-	hUVkGTGLC9s6UJpUEH93rxdlKFzkufMT+UdEreIrOYYOC/Bzui44Gr46zHwC0dDsCMxlj9wcU4VPm
-	Lcu1xGkrVyIu5w1/Ljbi55DjFQLVKzkn3GHzDG9VgNCGQn/ckL0cfeNsCVHgTvUivpcqvP+l0PZOI
-	CoIORy8d1zRD6KbY98JP2d42J6/Svw/lHcqDB+451VgPp4MXCwvRTYOXzOPccep0rLDapCWVG7TG6
-	ZKDB4fs5YRD5K7YxJHvVeCrcyuiIzZhOf4xBqhH80D1ORDy2acyxR823JP7Nf5CbR7p5M0IOSayz8
-	0nvOrQM6G4Ctu05uVXTg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=PhcAXrmRHTHTc2nfZo0OWBZ6aF6Be8yQNR08laWCfiE=; b=ib3OPb3vEaDhjYUWxdivnGzALg
+	WpPfJ0d0tzLmQITUriNWvuIgOtUGD9KhQQLb/wts37AvrLfee3UYBop04Nb5Ki/l10KiiDVroIfiX
+	0OuMH55+tnDHSNKVzXoN3Q4yFq7bhQLVFc6Boj+eJlXnvwhjTNdRs3f4NFWMgC8k6wH5UK58r7xxM
+	KE216Nz48ubgcvfCGcxD3GJruwIRiCYvEisuzuJCc0tLGfpQt6VM09NQfF6veTQWx2k0zyiNDMKua
+	/skjD3MhqPxWK59aUmYTC0BHmzGVLi3444pVP7Cyh38vqwwpmapLnBJEIPeZ+q4yI6uKDCIedJrxN
+	PuoUHrjw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j3a3q-0001zK-EF; Mon, 17 Feb 2020 06:39:18 +0000
-Received: from mailoutvs5.siol.net ([185.57.226.196] helo=mail.siol.net)
+	id 1j3azn-0002CE-BL; Mon, 17 Feb 2020 07:39:11 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j3a3n-0001xS-A4
- for linux-amlogic@lists.infradead.org; Mon, 17 Feb 2020 06:39:17 +0000
-Received: from localhost (localhost [127.0.0.1])
- by mail.siol.net (Zimbra) with ESMTP id 51884522CE8;
- Mon, 17 Feb 2020 07:39:01 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
- by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new,
- port 10032)
- with ESMTP id aQUjgWNbNH1b; Mon, 17 Feb 2020 07:39:01 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
- by mail.siol.net (Zimbra) with ESMTPS id F4052522C8E;
- Mon, 17 Feb 2020 07:39:00 +0100 (CET)
-Received: from jernej-laptop.localnet (cpe-194-152-20-232.static.triera.net
- [194.152.20.232]) (Authenticated sender: jernej.skrabec@siol.net)
- by mail.siol.net (Zimbra) with ESMTPA id 1C5E9522CE8;
- Mon, 17 Feb 2020 07:38:59 +0100 (CET)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- boris.brezillon@collabora.com, Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v4 02/11] drm/bridge: dw-hdmi: add max bpc connector
- property
-Date: Mon, 17 Feb 2020 07:38:58 +0100
-Message-ID: <11463907.O9o76ZdvQC@jernej-laptop>
-In-Reply-To: <20200206191834.6125-3-narmstrong@baylibre.com>
-References: <20200206191834.6125-1-narmstrong@baylibre.com>
- <20200206191834.6125-3-narmstrong@baylibre.com>
+ id 1j3azd-000244-3H
+ for linux-amlogic@lists.infradead.org; Mon, 17 Feb 2020 07:39:03 +0000
+Received: by mail-wr1-x443.google.com with SMTP id k11so18328342wrd.9
+ for <linux-amlogic@lists.infradead.org>; Sun, 16 Feb 2020 23:39:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=Ra+M29CjHPnhIpuNAQgZQpc3ckx3Pxcs/DfQWA9zI+8=;
+ b=xSIYa2za/Qrh1kzrTrcFaipMEucxZqWSY1/sGPKm7xetj4GzRFRHUlgd8Pxv7F7Amp
+ KVvw7M8fgQQK/Tz4HDQwlT2Kp9qz4Phw/SIyj0xXHUpSlF0azECO0qc1CRYOuhyt/Ueq
+ WMPzRKD3GSXgHqMlBbR8s3D8oIw/zCmV/f62nKfE3CKXSjDjR0IEHmMfmPxbkmrpZRCu
+ TfnSiEuIvqx/UKMzfhTm8kr6ev6jphuZlw6l0dkS2ouHS3uZ6dLgVgA5uZvOaiYNfTX6
+ 7Naf2BDDJRtpuhJInlOKV9mO9uhL0+kTu+nQfF+TRLnXk75rqNEvH3L+ZI0mJwlNQ4xE
+ Esmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=Ra+M29CjHPnhIpuNAQgZQpc3ckx3Pxcs/DfQWA9zI+8=;
+ b=eZQrlMA0/wD2mosuv/I/6oRPKef/gyALXfJNzbuXzPPzLHrxYUBe74XqevOtYBbfH8
+ nJTl4wt8BuW80zhJcKmY53WGONF+nvVcLtZDUx+kmWDRPCwAQYgmh+nRJypeh7vH6eis
+ 4lhduj5lX07juund/YZoxQIB3BmqS6pW1QpsioC/n/0bztMgd3yTQihcJIBOAqi2m+4n
+ mAQzsmODYMHkUEzwjRoYZgZl9p/zcCH5YYNqkJpLOB+rnuzllVQ+hB1XGBaiDmZSJQFV
+ BuiRoXpyVBJ2B6b9sWeYjXMV/RNweyHqoQUnESkYa19EQ+k0obp9o6ZfweEM57znqnmZ
+ Xt3A==
+X-Gm-Message-State: APjAAAUZDnCAoV8xOKYg43uEvdoNfq8ZeNLs1qxJ1JmsRnyjL0/7LO+q
+ rIMqDZiw15IGba3s/3Xf161onQ==
+X-Google-Smtp-Source: APXvYqx9fOOdunfmR6iWLBjPSh9B++/NSNDOBPnAw9CgNVgoSc4uWoD7y74CF/YZ2CXXmZLxUHsT9g==
+X-Received: by 2002:a5d:5273:: with SMTP id l19mr21442762wrc.175.1581925138814; 
+ Sun, 16 Feb 2020 23:38:58 -0800 (PST)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id c15sm19842783wrt.1.2020.02.16.23.38.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 16 Feb 2020 23:38:58 -0800 (PST)
+References: <20200216202101.2810-1-linux.amoon@gmail.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: odroid-n2: set usb-pwr-en regulator
+ always on
+In-reply-to: <20200216202101.2810-1-linux.amoon@gmail.com>
+Date: Mon, 17 Feb 2020 08:38:57 +0100
+Message-ID: <1jpnedzmr2.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200216_223915_503312_2F492E16 
-X-CRM114-Status: UNSURE (   7.90  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200216_233901_166863_FBBE5D06 
+X-CRM114-Status: GOOD (  13.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,34 +101,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkhCgpEbmUgxI1ldHJ0ZWssIDA2LiBmZWJydWFyIDIwMjAgb2IgMjA6MTg6MjUgQ0VUIGplIE5l
-aWwgQXJtc3Ryb25nIG5hcGlzYWwoYSk6Cj4gRnJvbTogSm9uYXMgS2FybG1hbiA8am9uYXNAa3dp
-Ym9vLnNlPgo+IAo+IEFkZCB0aGUgbWF4X2JwYyBwcm9wZXJ0eSB0byB0aGUgZHctaGRtaSBjb25u
-ZWN0b3IgdG8gcHJlcGFyZSBzdXBwb3J0Cj4gZm9yIDEwLCAxMiAmIDE2Yml0IG91dHB1dCBzdXBw
-b3J0Lgo+IAo+IFNpZ25lZC1vZmYtYnk6IEpvbmFzIEthcmxtYW4gPGpvbmFzQGt3aWJvby5zZT4K
-PiBTaWduZWQtb2ZmLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+
-Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jIHwgNCAr
-KysrCj4gIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMKPiBiL2RyaXZlcnMvZ3B1
-L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jIGluZGV4Cj4gOWUwOTI3ZDIyZGI2Li4wNTEw
-MDFmNzdkZDQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9k
-dy1oZG1pLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhkbWku
-Ywo+IEBAIC0yNDA2LDYgKzI0MDYsMTAgQEAgc3RhdGljIGludCBkd19oZG1pX2JyaWRnZV9hdHRh
-Y2goc3RydWN0IGRybV9icmlkZ2UKPiAqYnJpZGdlKSBEUk1fTU9ERV9DT05ORUNUT1JfSERNSUEs
-Cj4gIAkJCQkgICAgaGRtaS0+ZGRjKTsKPiAKPiArCWRybV9hdG9taWNfaGVscGVyX2Nvbm5lY3Rv
-cl9yZXNldChjb25uZWN0b3IpOwoKV2h5IGlzIHRoaXMgcmVzZXQgbmVlZGVkPwoKQmVzdCByZWdh
-cmRzLApKZXJuZWoKCj4gKwo+ICsJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfbWF4X2JwY19wcm9wZXJ0
-eShjb25uZWN0b3IsIDgsIDE2KTsKPiArCj4gIAlpZiAoaGRtaS0+dmVyc2lvbiA+PSAweDIwMGEg
-JiYgaGRtaS0+cGxhdF9kYXRhLT51c2VfZHJtX2luZm9mcmFtZSkKPiAgCQlkcm1fb2JqZWN0X2F0
-dGFjaF9wcm9wZXJ0eSgmY29ubmVjdG9yLT5iYXNlLAo+ICAJCQljb25uZWN0b3ItPmRldi0KPm1v
-ZGVfY29uZmlnLmhkcl9vdXRwdXRfbWV0YWRhdGFfcHJvcGVydHksIDApOwoKCgoKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
-bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+On Sun 16 Feb 2020 at 21:21, Anand Moon <linux.amoon@gmail.com> wrote:
+
+> usb-pwr-en regulator is getting disable after booting, setting
+> regulator-alway-on help enable the regulator after booting.
+
+This explains what your patch does, not why it needs to be done.
+Why does this regulator need be on at all time ? What device needs it
+and cannot claim it properly ?
+
+>
+> [   31.766097] USB_PWR_EN: disabling
+>
+> Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> Patch generated on top of my earier patch.
+> [0] https://patchwork.kernel.org/patch/11384531/
+> [1] https://patchwork.kernel.org/patch/11384533/
+>
+> Before
+> [root@alarm ~]# cat /sys/kernel/debug/regulator/regulator_summary | grep USB
+>        USB_PWR_EN                 0    1      0 unknown  5000mV     0mA  5000mV  5000mV
+> After
+> [root@alarm ~]# cat /sys/kernel/debug/regulator/regulator_summary | grep USB
+>        USB_PWR_EN                 1    1      0 unknown  5000mV     0mA  5000mV  5000mV
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> index 23eddff85fe5..938a9e15adfc 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> @@ -177,6 +177,7 @@ usb_pwr_en: regulator-usb_pwr_en {
+>  		regulator-min-microvolt = <5000000>;
+>  		regulator-max-microvolt = <5000000>;
+>  		vin-supply = <&vcc_5v>;
+> +		regulator-always-on;
+>  
+>  		/* Connected to the microUSB port power enable */
+>  		gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
