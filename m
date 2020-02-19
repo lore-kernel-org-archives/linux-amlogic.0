@@ -2,143 +2,88 @@ Return-Path: <SRS0=kAN4=4H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EBB7C34022
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 08:17:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B3EADC34050
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 08:49:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 109FD222D9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 08:17:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7C5E324656
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 08:49:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GjZIgmHf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qRy1riiL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 109FD222D9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EeJ3e8JN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="cL0AUTWK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C5E324656
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HPdKJ6VvWJemgTgIQnFEgWa612g3iepvJGXnXpMY02I=; b=GjZIgmHf5GMb3J
-	XR4dPw18g2gJ4fqtoBmCLruaRf8okqfb8ILouswIDuMMLn3Ecf6BQ6FuIIscYK4v1AkFL+3IrpOil
-	+OlHGVnsNs0SJ9t3cjeT1wklSNJQ6sDSiWGlL647mak4VZYNZEVn7KS3/wM9J3+qeDk7gZbqJ77oC
-	OsISEiCzlakxKtD7S/7YZB5M48geuUE0Ua6rNW2hSGd0A+JX62G7w3EKnEJB8tKRlZsxcAD+UL39X
-	+GbQMKhJEmzyGUDw7dYVRbTpePDPW4ZsyboRjXkfD6qg6pCbkguRjLhcb9HniPSJ4MTDJWB6iBJLD
-	Qs0oztzQ8wTKawipj++Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=o45u+SoHq8Qx10NsEIvaeCFNxRSy8sxNN1IDEsywu/w=; b=EeJ3e8JN2ef9xL
+	nnZyQjm9WbqpZNkI4MPA5wvMxISjt79NGh9TtF3FaZ38LRb35n6iozqsEdPrtHdXMzCkDJYP5fCNd
+	3W9y0Ul83B4IwtIqwapft9k8hjZQtwNl0BcT/hViIOIGFqrbuEMpM5tpCJLxrmE76i+lcdX9ll8V9
+	HnhkIDqJvY87MUu2zCq4E7ANAp+RXzpx5O5Rj8FlT8TpLVW98RvMomllMK+OddKELagdBX+MTF1fA
+	DaiSMPaQ5wwmsJEQZmErd3GN+cKXJvxOV/wKxcrWNG/ycXVmSYNlwLveIxCviHFydcxbQk9VP9QoN
+	qB7ETnviguPIpm8EhQiQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j4KXv-00080r-HP; Wed, 19 Feb 2020 08:17:27 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1j4L37-0003qH-KP; Wed, 19 Feb 2020 08:49:41 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4KXl-0007sO-TK
- for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 08:17:19 +0000
-Received: by mail-wr1-x443.google.com with SMTP id m16so27015136wrx.11
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 00:17:17 -0800 (PST)
+ id 1j4L34-0003oP-A1
+ for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 08:49:40 +0000
+Received: by mail-wm1-x343.google.com with SMTP id s10so5509546wmh.3
+ for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 00:49:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
+ h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=8DM5RbAjU3k/1x40w1mSb6mN+/6HvquZmqjXWrIELcc=;
- b=qRy1riiLgt1ceFQQEtX/Sz3UC3PNnCeIdXmCUdimHAQfCCmTs85KIGGqv5g0XmsMfa
- 64ZGcHJGem+hhD2+iDnJMf6Q1WRVwyb/9jXn2rgK9VKehR4Ozvtm8D/JnDk5Op7uOIsu
- BAyCbkThuOREEbJZdtNzgfaX+WEx8ZRQVkcfbcazqjr2eYy3X79cHtqYcU6UJ/BmdiEB
- Hqjqe0FDfCdHt2GShxuYcUqxjK/YKLK5FNcIUHDF5EYJKt0d0ZfPXB5ClQNEmJ1SNOKT
- jgZr9z6C663L3MZc8cVBtNuEVU1g0mdyGFc45JMvIY0pOEZ+NCCoIzrg8u496DKoK1yN
- P44A==
+ bh=+OjifpqqKo8DYjh9Op+2jQZP+EdT+EofXUxP9wt2jCM=;
+ b=cL0AUTWKkL3rtprOF9RpLDm5fmboSeErTyBaUrZyTXIVwyjd2UZbhz7UXzd41KXKSu
+ GtzArdjwHOOlaTPmYly86hCsUAO6Kiuo4+qkiRbTbhiXW6L98n3m+KB4Ov2b8ZZ/W00t
+ tS1+dbs8cLorG4nJKCTUZE9NB6Zfv79l+EmzFTRSeO4gHTa8YaF2vuKVRwTtMvXZQGXw
+ NnbXs9vgvD9UcuqO+woNRCzj9Axf6ce7Qm1Ezd60IqfbNXGky78jEKUE0CkOiIcodjuk
+ yjSpSbGXIh8/W2H31lwVaVjGWQ+ABciWuEJJ7JWtBu1yIuE9wd+gbzEAjgIja/YR0Cl+
+ t+WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=8DM5RbAjU3k/1x40w1mSb6mN+/6HvquZmqjXWrIELcc=;
- b=nklLCd8hWD8LQdIKDrZQ9t1QbyqsVKoj/Le5hZ5VwdI8dg26aAzMD+KehXZHPTZ7F5
- JF6jMdNuFyMZrZrwCAKLbrQXBkI774mj3diXDu2jvXQZPFdEUYzvjygj2G+pii6SYXuk
- i6pcnHOXxs+ED5llArOLhVxVicAt1ZwK9IsKKpXqj5LH6pl9qjNZh49oSSUW6ykQzeiX
- 6WbZwtANMaKGwXAIIkuTXwm/VXNtOe6BO0wdzzzc2Ezz3DK+cIw8ihk+JPs+CWIIygnZ
- 14+gN6nnFCC8GrX+eQ4hYgtousNK71uY9lQb8y2aRpl3XHWfU8eo0zNYAC15mymOprSc
- sTvw==
-X-Gm-Message-State: APjAAAWtxalBOHFAXsf/meKobyW8zqBaCkZGbIBGFthXfc0Nv6TB3q16
- BXnRD6agIXX7majqRCbeRCBNqw==
-X-Google-Smtp-Source: APXvYqwiY9NxzI3K6jCzx0KigmeEu/ij1ES5XFEFcxCL/1DkKLMsiU6js8UGvcul+SLKt5/UEmw9vg==
-X-Received: by 2002:adf:f802:: with SMTP id s2mr36323251wrp.201.1582100235730; 
- Wed, 19 Feb 2020 00:17:15 -0800 (PST)
-Received: from [10.1.3.173]
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+OjifpqqKo8DYjh9Op+2jQZP+EdT+EofXUxP9wt2jCM=;
+ b=e7xYgQ3tvgdL8PoXFebfpQ8fz/X4GOyZZQoBPVslZSuJHA7EaI/IPZtv5y0/PMLIpB
+ amfoIXvNNdxbH3skT8zabWGEWWb3nND/iAfH1You80NVoajbILELWYCkOqSbs8TSs/yf
+ P049tYbkH2qeZnee+hZo6hZQ+xUdnyfSLvZyQ3Xu6VgaPgFQ2RFi3xQ/3inXI6LRrzUK
+ Q4etLc+JotS484fbL7tn4PDtoxRKgaVUZO7/tN+AE6nX+LOB1/DlsRQs3/R8EdGJlS9x
+ xGvQ52XaxjZLJf+9rAjeI2wVzJLnys2n+ljdUZ7/9Jb+YNpR5kit1kRM3QA4ileZ52By
+ NWUg==
+X-Gm-Message-State: APjAAAU2NQCGINqu6DkSTgVmgmAN13XQMp3vB/i1cAMgBDav9QCoPyf3
+ xYsVxTvZ1F84bvrYsBn3NpDSeA==
+X-Google-Smtp-Source: APXvYqyL5YkCPYRHLJKYfuh+lPCFN7xEaXE4fRNEWpjsiEPxFXo/1CgZlKkY9CP7IToKY/NzXjDeCQ==
+X-Received: by 2002:a1c:dc85:: with SMTP id t127mr9278562wmg.16.1582102176198; 
+ Wed, 19 Feb 2020 00:49:36 -0800 (PST)
+Received: from bender.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id p11sm1981998wrn.40.2020.02.19.00.17.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Feb 2020 00:17:14 -0800 (PST)
-Subject: Re: [PATCH v2 0/3] spi: meson-axg: add few enhanced features
-To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>
-References: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
+ by smtp.gmail.com with ESMTPSA id t13sm2021673wrw.19.2020.02.19.00.49.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 19 Feb 2020 00:49:35 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <cb4a7228-b75c-7b54-8228-14dbb370b19f@baylibre.com>
-Date: Wed, 19 Feb 2020 09:17:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+To: jbrunet@baylibre.com
+Subject: [PATCH 0/2] clk: meson: g12a: add support for the SPICC SCLK Source
+ clocks
+Date: Wed, 19 Feb 2020 09:49:26 +0100
+Message-Id: <20200219084928.28707-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200219_001717_945073_8F1E602F 
-X-CRM114-Status: GOOD (  13.42  )
+X-CRM114-CacheID: sfid-20200219_004938_349673_E8F1E2A5 
+X-CRM114-Status: UNSURE (   7.91  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,43 +95,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, Xingyu Chen <xingyu.chen@amlogic.com>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Sunny,
+Like on the AXG SoCs, the SPICC controllers can make use of an external clock
+source instead of it's internal divider over xtal to provide a better SCLK
+clock frequency.
 
-On 13/12/2018 09:39, Sunny Luo wrote:
-> add a few enhanced features for the SPICC controller of Meson-AXG SoC.
-> 
-> These patches are actually quite independent from each other, I send them
-> together in case to avoid the file conflicts.
-> 
-> Changes since v1 at [1]
-> - Add OF and COMMON_CLK dependence for SPICC in Kconfig to avoid compiling
->   error.
-> 
-> [1] https://lore.kernel.org/lkml/20180503213645.20694-1-yixun.lan@amlogic.com
-> 
-> Sunny Luo (3):
->   spi: meson-axg: support MAX 80M clock
->   spi: meson-axg: enhance output enable feature
->   spi: meson-axg: add a linear clock divider support
-> 
->  drivers/spi/Kconfig           |   2 +-
->  drivers/spi/spi-meson-spicc.c | 270 ++++++++++++++++++++++++++++++++++--------
->  2 files changed, 223 insertions(+), 49 deletions(-)
-> 
+This serie adds the new clock IDs and the associated clocks in the g12a driver.
 
-Is there still a plan to push an updated version for AXG and G12A ?
+Neil Armstrong (2):
+  dt-bindings: clk: g12a-clkc: add SPICC SCLK Source clock IDs
+  clk: meson: g12a: add support for the SPICC SCLK Source clocks
 
-Neil
+ drivers/clk/meson/g12a.c              | 129 ++++++++++++++++++++++++++
+ drivers/clk/meson/g12a.h              |   6 +-
+ include/dt-bindings/clock/g12a-clkc.h |   2 +
+ 3 files changed, 136 insertions(+), 1 deletion(-)
+
+-- 
+2.22.0
+
 
 _______________________________________________
 linux-amlogic mailing list
