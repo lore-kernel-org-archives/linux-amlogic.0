@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCB6CC34053
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:12:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51CF2C34047
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:12:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 82C8E20801
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:12:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2390E20801
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:12:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eBeQQK8E";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SSWbsby9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 82C8E20801
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="q/rv6+lL";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="i2LVVonT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2390E20801
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,61 +27,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=Dk8lqFcsDSScWuM0O2C2KD/Cmqk9vjPVBJORKxdAb3Y=; b=eBeQQK8EMZIQvvVt5LWSShFjBb
-	DKlNm9FMNSVb74kQMr/crgWErwQtWVRLo7xdgCUvYdaZky5I2hlOidPy3H/wcTKC6pEmKwHoejk29
-	38kO18RywOAAShIVrmbq7/PbRmXdvLJPfTeWPDaxqLObEnyMGiQWyQHTog9AzukpBJS16TUzD3+DV
-	B8jT2gtSq3a1q7wSBGFS6g5eC6H6sQkBZhvaREEg61s0V2+sThUMJ0f+uSh+SAo0xRimohKqci8wu
-	2s5bxyju6g7rlxIDjRAodf0qJ/yvIlpy2BXVbYNHUn0I77OHWSeOjrSOUIzuowbhvydjHt1A7WVfL
-	Zat/TV6w==;
+	bh=tOGe45slCUTsDAtwtjQz1GcRykmsaN1FBLxMJqvs39w=; b=q/rv6+lLTPL60k/6CZFe9WSaZk
+	Sqfac8f2b85DWvqWRFzrs1CwieUPnbMkwgTORWiqqRLwPqajwpUhbv3GBp829eb3uMCYMGDdNhfd9
+	hdcHJ3KJBBjnP9UUdMc+h/vQCaQU87hWbnXf5LSmSiz4cQwc4lwX7AWV3NPMJNneL7Wew2HT/AzX+
+	cAkdYAjte5e+uX+3Urj4g/D298dcZBQadfBvW9g4jFo/GnoEKN/5oH7uY1wVNhDGJfQIPh+AOwikR
+	br/SBDNAaRdgL/sPjV4nitTQLhzIK+jKEiZKjWIjbDokBrUn0Rl5vYhsbsP645C5khy8N8ekgs/Ar
+	sq8TZ9WQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j4Q58-0007JR-E3; Wed, 19 Feb 2020 14:12:06 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1j4Q59-0007LR-TK; Wed, 19 Feb 2020 14:12:07 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4Q4E-0006MK-2m
- for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 14:11:11 +0000
-Received: by mail-wm1-x343.google.com with SMTP id t23so808029wmi.1
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 06:11:09 -0800 (PST)
+ id 1j4Q4i-0006tP-GX
+ for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 14:11:42 +0000
+Received: by mail-wm1-x342.google.com with SMTP id t14so801555wmi.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 06:11:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:autocrypt:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=axCnyyhe3vAUMLJ59PD4TeWRmNjRWoddc9LmMj+qFXc=;
- b=SSWbsby9jv3tYUuDz2SGbRsIdHYLu3JWLF3JG1qCttqUXlvPiBg3JbWbhcbbl3JMaq
- GQ2dQYvtvlsbEEIH1EkuEpx2g3/r8O+0HHQNFDTdZsodMo9sbgn65Zva0vVW7r1HI6kX
- DF5Yip2+tfW92AB+a5MYXo3ahJQj2eFc4Gegq31UtRYm6bMc1yl0JuLcNiT5DWxloV8p
- c5x4a+XpRodadhbPIqbHKLqE4PZgCmIyO7DJV8DbJeeogNqAyBai/zby2PF3JrBI4Emp
- K9iXa+S/bJhI+6KwbJi88L0n9k/2LuPHrUNEo7I5928EUJJsr7Kx3TuL7JjnjowpSjrE
- mAjA==
+ bh=4nkXA+jvZycDtiW2JLZpr32cM5nz+bi6ODC7jxavZUE=;
+ b=i2LVVonTox0RRUmtPWHDV0Yq/9wOU2t5ersHaNOYpEd9n78M44TXVwllGapPWQK+uj
+ V3K4rcUyeO0ZYoo31eWZ6rlePLh1Vwhf/g60Rz5L/Ak814R4SwyuwMYIL8LV2jyv2vNi
+ +EQJimL1wUU1AWEL7VXP71D9iDF3dRW9WIVdoqevWfvXIrsmjfaJ6hyP8s1Qs+JsF0ch
+ jf86aRMNpYb/5S5YNfIAdu8jwQSItmxce+LCz/fLsEQZo0IRrmzjoS0mgvdW3+NTLR8A
+ rdhRdFV2kxZTAlRQ7N05OzCQOdV/FjnxrsWRH1+yitKhEHmz6jSxsLxUdQT9poK+IVZ/
+ Gtrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=axCnyyhe3vAUMLJ59PD4TeWRmNjRWoddc9LmMj+qFXc=;
- b=qkgM44Tjh2JSD6ozGomgPN4bTVfjxW6YgW71uqsZn7qTfR/te0poq0h/k7lqJTAAua
- BCJn1m+mA6pxu6UBH48OrdGXN55NQnY0vDz+/bA9cE8TDiNLNlDiCiO/IA5CD1cICs9q
- k7B2uNpy6rdzuUOMt8F0VIZ4INT058it5S0XmYHDOu/wqP1vy8gO0tGQQQIftgpTrHeG
- B27lvR7RnqIC+O7qECclfgfbsy8d7AB6niSrrQeix4OB9ZOXCIoiz1IlK1E8QRvpaHXW
- Y5/ogyY3E746KvLBtY1jXeV+1/+rDaduwxolb2ZskF6PcWO7eiSooX97yrZzQ5GVoW5U
- bZJw==
-X-Gm-Message-State: APjAAAXr/poZYVPfRxDMpA19PuIpMx6nTTb6htJKrhPMPdY5LANqiHQZ
- zlc/ykyMfgJ8ypYSb/D6InI401juuGau2w==
-X-Google-Smtp-Source: APXvYqyequ/xILYnc0wf3lEyrQ3FCRB4LWmzyYrsqThZk98WhI2yRvv66jVhvp+uhFakBDaMNbntdQ==
-X-Received: by 2002:a1c:1b42:: with SMTP id b63mr10563446wmb.16.1582121468395; 
- Wed, 19 Feb 2020 06:11:08 -0800 (PST)
+ bh=4nkXA+jvZycDtiW2JLZpr32cM5nz+bi6ODC7jxavZUE=;
+ b=XUCqCmPpszA7DUfaGuS1TdoIAh0AREjAp3c56Yt3lGX9s0MAjo9mLrFVG70KDqVP9A
+ Jp0V4vj+A/7HMFuR43c2fNPMOdQemFWqjuzj0l0b4a6bYV9P9chTGP1BPfknaK89xVjh
+ V/sQ+n6TniRP1pP2imbLoaysQgigYEPP4S3azRak+M/MblYTaEbpcV9LOkh9Erxq//CU
+ E/I7Y6RxP3k8pX7/vMqqvSG7+njxg7H/58abXYFKgGo8acXgyx7Sw22HT9cb+hIYGPYO
+ HNElysRhxWuPMnAmvqpkVw3WPO89gaqnkVgE1VZFCI9FfHi7B2ulrzw6TjJPP2Ic8WpI
+ idHQ==
+X-Gm-Message-State: APjAAAXgwL1vBrvPAbIJ8slNOZkQC6PZ72N7GLp8KmYIBev+xb+RalV7
+ yYXxie07SPKci5WgX+21qpWIEw==
+X-Google-Smtp-Source: APXvYqyZMNlULMYfn0/K7gSsBMvb6w0SpWocpOKx9RpmrsPauoMuh18dJqy7LXMjX1NVnQDDYB4++Q==
+X-Received: by 2002:a1c:8151:: with SMTP id c78mr9769819wmd.29.1582121498913; 
+ Wed, 19 Feb 2020 06:11:38 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:4ca8:b25b:98e4:858?
  ([2a01:e35:2ec0:82b0:4ca8:b25b:98e4:858])
- by smtp.gmail.com with ESMTPSA id u8sm3208949wmm.15.2020.02.19.06.11.07
+ by smtp.gmail.com with ESMTPSA id f62sm3217551wmf.36.2020.02.19.06.11.37
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Feb 2020 06:11:07 -0800 (PST)
-Subject: Re: [PATCH v5 1/3] media: rc: add keymap for Videostrong KII Pro
+ Wed, 19 Feb 2020 06:11:38 -0800 (PST)
+Subject: Re: [PATCH v5 3/3] arm64: dts: amlogic: add rc-videostrong-kii-pro
+ keymap
 To: Mohammad Rasim <mohammad.rasim96@gmail.com>, linux-media@vger.kernel.org, 
  Sean Young <sean@mess.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org
+ Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
 References: <20200214085802.28742-1-mohammad.rasim96@gmail.com>
- <20200214085802.28742-2-mohammad.rasim96@gmail.com>
+ <20200214085802.28742-4-mohammad.rasim96@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -133,16 +135,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <e9847ac1-e8cd-fc80-f97b-2bb0c2924fa5@baylibre.com>
-Date: Wed, 19 Feb 2020 15:11:07 +0100
+Message-ID: <7f5648f0-f04a-ab65-f096-f2cf259795c9@baylibre.com>
+Date: Wed, 19 Feb 2020 15:11:37 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200214085802.28742-2-mohammad.rasim96@gmail.com>
+In-Reply-To: <20200214085802.28742-4-mohammad.rasim96@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200219_061110_132390_FAF26B33 
-X-CRM114-Status: GOOD (  17.63  )
+X-CRM114-CacheID: sfid-20200219_061140_612520_08CEDEBA 
+X-CRM114-Status: GOOD (  14.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,129 +162,25 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 14/02/2020 09:58, Mohammad Rasim wrote:
-> This is an NEC remote control device shipped with the Videostrong KII Pro tv box.
+> videostrong kii pro comes with a nec rc, add the keymap to the dts
 > 
 > Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
 > ---
->  drivers/media/rc/keymaps/Makefile             |  1 +
->  .../media/rc/keymaps/rc-videostrong-kii-pro.c | 83 +++++++++++++++++++
->  include/media/rc-map.h                        |  1 +
->  3 files changed, 85 insertions(+)
->  create mode 100644 drivers/media/rc/keymaps/rc-videostrong-kii-pro.c
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/media/rc/keymaps/Makefile b/drivers/media/rc/keymaps/Makefile
-> index 63261ef6380a..aaa1bf81d00d 100644
-> --- a/drivers/media/rc/keymaps/Makefile
-> +++ b/drivers/media/rc/keymaps/Makefile
-> @@ -119,6 +119,7 @@ obj-$(CONFIG_RC_MAP) += rc-adstech-dvb-t-pci.o \
->  			rc-videomate-m1f.o \
->  			rc-videomate-s350.o \
->  			rc-videomate-tv-pvr.o \
-> +			rc-videostrong-kii-pro.o \
->  			rc-wetek-hub.o \
->  			rc-wetek-play2.o \
->  			rc-winfast.o \
-> diff --git a/drivers/media/rc/keymaps/rc-videostrong-kii-pro.c b/drivers/media/rc/keymaps/rc-videostrong-kii-pro.c
-> new file mode 100644
-> index 000000000000..74a278ffa3f1
-> --- /dev/null
-> +++ b/drivers/media/rc/keymaps/rc-videostrong-kii-pro.c
-> @@ -0,0 +1,83 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// Copyright (C) 2019 Mohammad Rasim <mohammad.rasim96@gmail.com>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+> index 2f1f829450a2..6c9cc45fb417 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+> @@ -76,3 +76,7 @@ eth_phy0: ethernet-phy@0 {
+>  		};
+>  	};
+>  };
 > +
-> +#include <media/rc-map.h>
-> +#include <linux/module.h>
-> +
-> +//
-> +// Keytable for the Videostrong KII Pro STB remote control
-> +//
-> +
-> +static struct rc_map_table kii_pro[] = {
-> +	{ 0x59, KEY_POWER },
-> +	{ 0x19, KEY_MUTE },
-> +	{ 0x42, KEY_RED },
-> +	{ 0x40, KEY_GREEN },
-> +	{ 0x00, KEY_YELLOW },
-> +	{ 0x03, KEY_BLUE },
-> +	{ 0x4a, KEY_BACK },
-> +	{ 0x48, KEY_FORWARD },
-> +	{ 0x08, KEY_PREVIOUSSONG},
-> +	{ 0x0b, KEY_NEXTSONG},
-> +	{ 0x46, KEY_PLAYPAUSE },
-> +	{ 0x44, KEY_STOP },
-> +	{ 0x1f, KEY_FAVORITES},	//KEY_F5?
-> +	{ 0x04, KEY_PVR},
-> +	{ 0x4d, KEY_EPG},
-> +	{ 0x02, KEY_INFO},
-> +	{ 0x09, KEY_SUBTITLE},
-> +	{ 0x01, KEY_AUDIO},
-> +	{ 0x0d, KEY_HOMEPAGE},
-> +	{ 0x11, KEY_TV},		// DTV ?
-> +	{ 0x06, KEY_UP},
-> +	{ 0x5a, KEY_LEFT},
-> +	{ 0x1a, KEY_ENTER},	// KEY_OK ?
-> +	{ 0x1b, KEY_RIGHT},
-> +	{ 0x16, KEY_DOWN},
-> +	{ 0x45, KEY_MENU},
-> +	{ 0x05, KEY_ESC},
-> +	{ 0x13, KEY_VOLUMEUP },
-> +	{ 0x17, KEY_VOLUMEDOWN },
-> +	{ 0x58, KEY_APPSELECT},
-> +	{ 0x12, KEY_VENDOR},	// mouse
-> +	{ 0x55, KEY_PAGEUP},	// KEY_CHANNELUP ?
-> +	{ 0x15, KEY_PAGEDOWN},	//KEY_CHANNELDOWN ?
-> +	{ 0x52, KEY_1},
-> +	{ 0x50, KEY_2},
-> +	{ 0x10, KEY_3},
-> +	{ 0x56, KEY_4},
-> +	{ 0x54, KEY_5},
-> +	{ 0x14, KEY_6},
-> +	{ 0x4e, KEY_7},
-> +	{ 0x4c, KEY_8},
-> +	{ 0x0c, KEY_9},
-> +	{ 0x18, KEY_F7},
-> +	{ 0x0f, KEY_0},
-> +	{ 0x51, KEY_BACKSPACE},
+> +&ir {
+> +	linux,rc-map-name = "rc-videostrong-kii-pro";
 > +};
-> +
-> +static struct rc_map_list kii_pro_map = {
-> +	.map = {
-> +		.scan     = kii_pro,
-> +		.size     = ARRAY_SIZE(kii_pro),
-> +		.rc_proto = RC_PROTO_NEC,
-> +		.name     = RC_MAP_KII_PRO,
-> +	}
-> +};
-> +
-> +static int __init init_rc_map_kii_pro(void)
-> +{
-> +	return rc_map_register(&kii_pro_map);
-> +}
-> +
-> +static void __exit exit_rc_map_kii_pro(void)
-> +{
-> +	rc_map_unregister(&kii_pro_map);
-> +}
-> +
-> +module_init(init_rc_map_kii_pro)
-> +module_exit(exit_rc_map_kii_pro)
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Mohammad Rasim <mohammad.rasim96@gmail.com>");
-> diff --git a/include/media/rc-map.h b/include/media/rc-map.h
-> index f99575a0d29c..d22810dcd85c 100644
-> --- a/include/media/rc-map.h
-> +++ b/include/media/rc-map.h
-> @@ -274,6 +274,7 @@ struct rc_map *rc_map_get(const char *name);
->  #define RC_MAP_VIDEOMATE_K100            "rc-videomate-k100"
->  #define RC_MAP_VIDEOMATE_S350            "rc-videomate-s350"
->  #define RC_MAP_VIDEOMATE_TV_PVR          "rc-videomate-tv-pvr"
-> +#define RC_MAP_KII_PRO                   "rc-videostrong-kii-pro"
->  #define RC_MAP_WETEK_HUB                 "rc-wetek-hub"
->  #define RC_MAP_WETEK_PLAY2               "rc-wetek-play2"
->  #define RC_MAP_WINFAST                   "rc-winfast"
 > --
 > 2.25.0
 > 
