@@ -2,90 +2,61 @@ Return-Path: <SRS0=kAN4=4H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E8B2C34047
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:19:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03A73C34047
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:55:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 174B4206ED
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:19:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CA475206ED
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:55:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IwuLbEIp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rGhtHgzF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 174B4206ED
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Haqv/8cV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA475206ED
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SfqnDiJCFdU7jqZbYN5HFten4ExRM+SKvNfi7Oofvlw=; b=IwuLbEIpMDO4Zm
-	3vw/IMaR6Qf7rw9/ugFJE0C/48d0mI7S68cNOCjW5z4UeXpvnSUxDaL42MLISM2Sm6DGfK4RvMk+t
-	2342Y/vTsHqQGyOsszBa5KAyFqeilqA3u+e8eckW1B2mcC/xaGwZ/pgr979t+LqTgs53JLHTFVGWL
-	n0YZllPKcYpk+0nuGFwnht4V/GoE7DeQP6o0W2AROuk1LGXR8Kz2xABg64i7K9hmte42J8+qMKBp7
-	3Vdu+4zDqdwUxIbKzJT2ZaiuisV8TyPZwhtpSYQjkVfz/iAM53qY1cSjhWCeFjgrcMpAkxF4upTBp
-	pNKK5fW8YAhGkkVaOXvw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=UnDu317uU5WCSyowaJ/+vuOWcDxKC4CurwTv+cT4zNw=; b=Haqv/8cVraSIOWA+4sB/54yQr
+	8qETLOOv2xpepigIPx4kEz6jjXRRTwgsadBD165p3gZ2IEVXjCthmjxQyEt9Afi8HQtNBUgM/ecJH
+	6BM4H8E0npHKuuLff5OGXBYiXH5sKXmxPcHY1HPPYkNpcX102jT/rBLv5dfftTRY+2mhpDj6cPuHJ
+	PDiZ9+GjFXi9KH+QQdeNfBorcPsB2Woden/o2FV8hjQthR3A6pJZL7+VRS2k+7YR4jkpqtVK345fj
+	lsTevHpdaVwaBUHiBsct+Ke0wFdDSN1XMiUpPfoP3fUNJyDvPQ+tQFto2kJCTm5YB81uAosVXqj5J
+	iw0R50DdA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j4QCB-0002tE-JP; Wed, 19 Feb 2020 14:19:23 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4QBF-0001q9-U2
- for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 14:18:28 +0000
-Received: by mail-wr1-x443.google.com with SMTP id z7so683875wrl.13
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 06:18:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=m6wyWMfpOh6h06xGncQF4ABfwmrzTVZCtOS7mfMUTXc=;
- b=rGhtHgzFPVIvyePVL2F0QQtaCcH4EzshdF9w0AcP3bP+qg/nXW7c5fAKfs2P25yueG
- 4bb6aNJhWh1zKuAPO102lIhF21/Lk9yOH3MX0kFyPZ2ReASa6Gs/10VKmhL/tG0KbYEh
- V4tOeMBent5Wu+nTrWZnOdVbFCTOxyq6LUCKI4o6dd/3hK++uzi0Fz6LFdDxifACcNfz
- W3N1tAbaKECcJn2uP1zKP2rDFnKHqfNJiSXUbiYwU2wa5N1YgTK4+qqYwES9U4cY/8N5
- Bexd5TZ/Wl5Q+y2ALcLJ7B7rqTyJ6pDoXlq72g/HgWCnZ7oO0rP9QTxGCTkkLpFT+9mf
- a/fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=m6wyWMfpOh6h06xGncQF4ABfwmrzTVZCtOS7mfMUTXc=;
- b=HrN0oyVHYjTgPMBYCLuvYq9Ncq6ZyYaNdi85P9gEDZYf8dXlW8VBznJrhq6tzxsvcC
- wEwMpcsZUJaZX67L6iP3cWSB+Euu5JwJ9tOIVGULN7oQ1f1dGxbsQyE1K2muwhCTs6/P
- mgRfAn9SpJTyrZFJZq1c5pXBE5VnmcULTqIwaoScLBOJmhVmFUJUk/as1W+X7a/ldMhb
- B3SUbuORLZl2GpNLtKfr0usIxiY0m7EK8th6O+xP0NHU0VTppxwDAX2gKXy+dPJ2FQCi
- etFrSBVmQd6mCXso5KdwiO6PoySkUJZZ4PRE8HIkGM9pToD1JQ1pT2rOARdJ9PfY1Oym
- Nx8g==
-X-Gm-Message-State: APjAAAW08RFUNAsZFj0G2HKUWgKqDJVjxIUEfkPB5EDM/CbypSwDLQ6/
- PhdFkcpoOxLhnEcgrZs0QwWK0w==
-X-Google-Smtp-Source: APXvYqxeF5cOXe12PQNqxlBBpiCnT3qQh/DDAtJr/M+esSQV0pKaEEHHxg3jUK5q+JMyj65o7WMEsA==
-X-Received: by 2002:adf:db84:: with SMTP id u4mr36849595wri.317.1582121904379; 
- Wed, 19 Feb 2020 06:18:24 -0800 (PST)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:510e:e29a:93ab:74c3])
- by smtp.gmail.com with ESMTPSA id b11sm3337772wrx.89.2020.02.19.06.18.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2020 06:18:23 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: balbi@kernel.org,
-	khilman@baylibre.com
-Subject: [PATCH v3 3/3] arm64: dts: g12-common: add parkmode_disable_ss_quirk
- on DWC3 controller
-Date: Wed, 19 Feb 2020 15:18:17 +0100
-Message-Id: <20200219141817.24521-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200219141817.24521-1-narmstrong@baylibre.com>
-References: <20200219141817.24521-1-narmstrong@baylibre.com>
+	id 1j4Qkl-0008Pd-8j; Wed, 19 Feb 2020 14:55:07 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1j4Qki-0008Cr-FP
+ for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 14:55:05 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ED8391FB;
+ Wed, 19 Feb 2020 06:55:02 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 725113F68F;
+ Wed, 19 Feb 2020 06:55:02 -0800 (PST)
+Date: Wed, 19 Feb 2020 14:55:00 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH 2/2] ASoC: meson: add t9015 internal DAC driver
+Message-ID: <20200219145500.GC4488@sirena.org.uk>
+References: <20200219133646.1035506-1-jbrunet@baylibre.com>
+ <20200219133646.1035506-3-jbrunet@baylibre.com>
 MIME-Version: 1.0
+In-Reply-To: <20200219133646.1035506-3-jbrunet@baylibre.com>
+X-Cookie: FORTH IF HONK THEN
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200219_061825_999309_01290334 
-X-CRM114-Status: UNSURE (   9.50  )
+X-CRM114-CacheID: sfid-20200219_065504_558453_D30404F0 
+X-CRM114-Status: UNSURE (   8.41  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -98,52 +69,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tim <elatllat@gmail.com>,
- Dongjin Kim <tobetter@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+ Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
+Content-Type: multipart/mixed; boundary="===============5138871771077227870=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When high load on the DWC3 SuperSpeed port, the controller crashes with:
-[  221.141621] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to stop endpoint command.
-[  221.157631] xhci-hcd xhci-hcd.0.auto: Host halt failed, -110
-[  221.157635] xhci-hcd xhci-hcd.0.auto: xHCI host controller not responding, assume dead
-[  221.159901] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to stop endpoint command.
-[  221.159961] hub 2-1.1:1.0: hub_ext_port_status failed (err = -22)
-[  221.160076] xhci-hcd xhci-hcd.0.auto: HC died; cleaning up
-[  221.165946] usb 2-1.1-port1: cannot reset (err = -22)
 
-Setting the parkmode_disable_ss_quirk quirk fixes the issue.
+--===============5138871771077227870==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="KN5l+BnMqAQyZLvT"
+Content-Disposition: inline
 
-CC: Dongjin Kim <tobetter@gmail.com>
-Cc: Jianxin Pan <jianxin.pan@amlogic.com>
-Reported-by: Tim <elatllat@gmail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index abe04f4ad7d8..87b9a47a51b9 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2220,6 +2220,7 @@
- 				dr_mode = "host";
- 				snps,dis_u2_susphy_quirk;
- 				snps,quirk-frame-length-adjustment;
-+				snps,parkmode-disable-ss-quirk;
- 			};
- 		};
- 
--- 
-2.22.0
+--KN5l+BnMqAQyZLvT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Wed, Feb 19, 2020 at 02:36:46PM +0100, Jerome Brunet wrote:
+
+Looks good, couple of small things below:
+
+> +static const struct snd_kcontrol_new t9015_snd_controls[] = {
+> +	/* Volume Controls */
+> +	SOC_SINGLE("Playback Mute", VOL_CTRL1, DAC_SOFT_MUTE, 1, 0),
+
+This should be Switch (see control-names.rst).
+
+> +	SOC_SINGLE("Volume Ramp Enable", VOL_CTRL1, VC_RAMP_MODE, 1, 0),
+> +	SOC_SINGLE("Mute Ramp Enable", VOL_CTRL1, MUTE_MODE, 1, 0),
+> +	SOC_SINGLE("Unmute Ramp Enable", VOL_CTRL1, UNMUTE_MODE, 1, 0),
+
+These too.
+
+> +	/* Channel Src */
+> +	SOC_ENUM("Right DAC Source", dacr_in_enum),
+> +	SOC_ENUM("Left DAC Source",  dacl_in_enum),
+
+Ideally these would be moved into DAPM (using an AIF_IN widget for the
+DAI).
+
+--KN5l+BnMqAQyZLvT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5NTEQACgkQJNaLcl1U
+h9Dlbwf9G+Zx9LnUXQiK9vVqNnfJy5o7uz95sBnsBro99NHp8ldxwtBqNpYjnE5w
+AT6qUKHSPUuGzRcTYuvILXhcp16Pmcl9TARppPrU3dnOxy+CMf4UfCdQvkU2Z+9z
+nVgs2o0WHFrwJaJb1LP8w9onR7Dj0sDx5q63FqSwkp5nTOjxDiwWtnFNcHx8aozG
+tL/ADQlqRABlDjvNz+/knxzF3ZIIbIbyYvGMrHTUWCCP8sn2oOUBeqg1wbJ2pFLf
+iFSl0OFtrYfRAlAMGwxLZl5utpkWU5DG94EceGpx/fK9hXuomNoeLscr+24dnqko
+f/W3R4gTxgSNrt43vmW2os6ejWa6Yg==
+=+YY/
+-----END PGP SIGNATURE-----
+
+--KN5l+BnMqAQyZLvT--
+
+
+--===============5138871771077227870==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5138871771077227870==--
+
