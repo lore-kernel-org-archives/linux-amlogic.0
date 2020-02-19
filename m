@@ -2,90 +2,92 @@ Return-Path: <SRS0=kAN4=4H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 29851C34056
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97129C3405F
 	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 17:35:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 03F0220801
+	by mail.kernel.org (Postfix) with ESMTPS id 70FF32465D
 	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 17:35:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="i+PAI2GN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="X2e0sx2O"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 03F0220801
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kFOLyQyq";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UpwCqyvK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 70FF32465D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Mzoi466IwoCLu/7cEzYZkyJVzxwtfN8umAL/SSnn6Yc=; b=i+PAI2GNQQwQU4
-	1l+k4tCmf4L3D2eNu/IKt08dfIz8E1NPxzCvG/vFZ0+5WZr1X0D7Uglnl1A+KfJkfJoKLKgneEwfC
-	WKh49a3HrK8vuljSPTkI2QWZLxsPx8uG7hxF/MHgYXHEB5yaClsa5dxV5R/cEEP2mqRqzub0vytbY
-	M9DLKfYbtHlZhUP3h993ITzqW/bPVcX7oZ+fpytWC19PQG8haYX0JnEQDIBmlviVKEffRHUD/Pgq0
-	JihD8kJ22SjkvGIPuPCt9ZxHbiv7RK8PzyvkQIQWlHQdkZX904VVm82wQUQ82eMVTTEjcFiODGouD
-	9JBPmhdL7DZ804riBjkQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=sjbrqzn8tok/yynDh6JhOhH7dCr8N477ghg5CPLxiKQ=; b=kFOLyQyq1fW8SV
+	3+6rFxy30t3zT+j0dCK5Fb/vB1P21alLMhPfwUBe6QQlRkoJCv/+LBYrJJaU36Tfab6q2wEQzla7G
+	1QQxEDm6otbLKYNt6zX4cTiF4s7ywV/+8Lo2bqBmSQC5K3c7meWHIMV4Ge5dl0zOSARe3IS1cW05W
+	oL6Wbf343Q0ZlCJWx5OkDFiFWpHlQgIfz9fgUNMK+BXeBEL9vkJpcTnV89DbBAfaBv/C+lsvoCv7M
+	TmhORphorWz2WGYvJ57fe2pV/Ir2j1OzybTcAQchM8NWGsgL/rHoTIaz0ywbkTUTig1b3QskAz0eS
+	LPk3dNhkNK37zTLKcjkQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j4TFh-0004Ds-FJ; Wed, 19 Feb 2020 17:35:13 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1j4TFi-0004Ez-Lz; Wed, 19 Feb 2020 17:35:14 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4TFe-0003wW-Gy
- for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 17:35:12 +0000
-Received: by mail-wr1-x442.google.com with SMTP id t3so1509976wru.7
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 09:35:10 -0800 (PST)
+ id 1j4TFf-000492-I4
+ for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 17:35:13 +0000
+Received: by mail-wm1-x343.google.com with SMTP id b17so1609096wmb.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 09:35:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=SKZ1ddDPfUYCjUQ7kAF3t+orQ6m6BZIYkrSaotWcAmM=;
- b=X2e0sx2O23WHDyj+CdogMOZnhLzlHGUY84Cw/1358tG4/lp0p4QzlF4gTn0S3FY5aF
- wlKpLxS0Pq7GvSWtJJZlnc1/BhuJaSmmxc957ERCeTZfWstj/7P9ynHWGySHKdNut72W
- OixpFUrGD9ADXYh9sGhd7pCeG+MDemjlpISXz9n5guTcFXHwC4ltNKQPsv1xZyo0nH/6
- oedY9idCZ394g4kRJLT2t10k1kTREfbTfiWs8hohLdnCJxCwkXRaSe0izO0rYPp5W3V3
- 9d0Pm7TJCz+eu+Qnazm4qvj9KIpCTIg+eKRCDKN8gdAj8G6lYG+tTsbqRHk2AaBkxfcw
- YygA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=idNFPyAtkmq04AJWh7a0/gnkZseJQQBbr31aSDqpxTo=;
+ b=UpwCqyvK/iJRqEAqXffCvhMHZsJiCId/XWRp1qUJ67tur32wk24vAMUqgQKqw8Kiz0
+ 3xYH1WP+uOZdF0NVZ5KB7/TZPxj1hxuBsB2sLzw/AcGMYzlBLgEwYhcNiJCcWMvNUrvu
+ NzLDpqQT6uYSTgjCnhpxva9aJBEHH8ZrY6E0jPo/SFJ9nz4g4HtZM/otufHJj6b01cKd
+ RnmEASpseEdFS6EkbuSlW0EMO6h9SwLERZqKBpmtQoNcUECq3Ll1ejX9W2GnJ6ZZjdy7
+ 9JDhz/sFaTexrLB86Nij5a/oMdAZfTqeM7WeK5T50q3T+iuWbrpVyj5sY60xmrENKeSY
+ 3sEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=SKZ1ddDPfUYCjUQ7kAF3t+orQ6m6BZIYkrSaotWcAmM=;
- b=XyjA3gjwZCmRLIkC6RJWpZK0hrcdoSVg+6HnSsVgDdj/P+gQ79o2lHp3LZck5UkE4a
- LrhF8NAbkgdr1VaTFcDS/LKrBSuXQ/z9BqAdm1AQiBY5jwc1fxXW630TdBAFY9pncpUI
- d1XC8UdiPpyc6FvgFxoUp1ptM3ieoYcSISjXxiWhwMe2n0E3xHG+OZAnV1VuR8oeTS0F
- HRh8yo7U3B+oRjcsEDduSTopt6U1khwhzu4XCAxzrlmonoEY+IdhGJW0JtwAeModej0t
- gjSaUuolxEOsz7HGv1dHPdHqauSh8+NvdCW2MknBWQaVR0TOoK/KpReyIQ2TMiYec1Wp
- Dk8g==
-X-Gm-Message-State: APjAAAXu6/man+plmFdt4QubAmXc9nVnm+GA+z8P6YfN3IKU7BD1WdrO
- jhPvI+UkYcf2SaIfNzY90SkKsw==
-X-Google-Smtp-Source: APXvYqzk6aYz8GK14PUd7/aAq+BxUqQaODL7ymtKvwWlFXfp7QfRzdYohN9IJrf2eOWE2Tw9MfdveA==
-X-Received: by 2002:adf:cd0a:: with SMTP id w10mr37515585wrm.107.1582133708455; 
- Wed, 19 Feb 2020 09:35:08 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=idNFPyAtkmq04AJWh7a0/gnkZseJQQBbr31aSDqpxTo=;
+ b=hW/tcI350uVon6r6XNJnF9UCZlu2UMOMSvd5gUVOBeIKGfwCh43USevBIaJsrjTLq8
+ FJibpsMNMBLEmXOWddcuvH5d5CTUky2hZa9N5rRpZAiMknGbffCJZWAUfv4IpKN6zA7N
+ cKoVsimqKsh0uTaPvLrMEAEfyPqTfj774MhDH3ftYL+SSuPAsqrWODO5hiOXDbABVMZy
+ WiXKnWBFTlurYHXk21nH93AGkMImC+lMMiDWXxUt+hwzq+FjIRzG0dqjJdmVs5pnxewe
+ RQfDFml093zE9/rX6wow9u1m1QvStMNIbB307zCpLr33TpSfNBri7D2pwbYtMBYUR1kw
+ eRgQ==
+X-Gm-Message-State: APjAAAWz4mFUrfzi3+nvmhdGbgRL7ap9mfDhveuLk9Xsw+LZWEmBS9mx
+ rB/vJ4MpoJFv1FFGXE/GXBtFqQ==
+X-Google-Smtp-Source: APXvYqzxucKgV4r8Bu6KtPj/ZgEuOzvUI3SexShfY8duouA2EFO2KyxxS3/Xo5gyoAzLBSrovztuWA==
+X-Received: by 2002:a7b:cb97:: with SMTP id m23mr10756741wmi.37.1582133710071; 
+ Wed, 19 Feb 2020 09:35:10 -0800 (PST)
 Received: from localhost.localdomain (cag06-3-82-243-161-21.fbx.proxad.net.
  [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id v15sm648120wrf.7.2020.02.19.09.35.07
+ by smtp.googlemail.com with ESMTPSA id v15sm648120wrf.7.2020.02.19.09.35.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2020 09:35:07 -0800 (PST)
+ Wed, 19 Feb 2020 09:35:09 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH v3 0/2] ASoC: meson: add internal DAC support
-Date: Wed, 19 Feb 2020 18:35:01 +0100
-Message-Id: <20200219173503.1112561-1-jbrunet@baylibre.com>
+Subject: [PATCH v3 1/2] ASoC: meson: add t9015 internal codec binding
+ documentation
+Date: Wed, 19 Feb 2020 18:35:02 +0100
+Message-Id: <20200219173503.1112561-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200219173503.1112561-1-jbrunet@baylibre.com>
+References: <20200219173503.1112561-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200219_093510_571749_2468FEC8 
-X-CRM114-Status: UNSURE (   8.23  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200219_093511_594502_1083D46E 
+X-CRM114-Status: GOOD (  10.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,33 +107,79 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset adds support for the internal audio DAC provided on the
-Amlogic gxl, g12a and sm1 SoC families. On each of these SoC families,
-there is glue between this codec on the audio provider. The architecture
-is similar to the one used for the synopsys hdmi codec on these SoCs
+Add the DT binding documention of the internal DAC found in the Amlogic
+gxl, g12a and sm1 SoC family.
 
-Changes since v2 [1]:
-* Fix Mute kcontrol name
-
-Changes since v1 [0]:
-* Change some kcontrol names
-* Move DAC sources to DAPM
-
-[0]: https://lore.kernel.org/r/20200219133646.1035506-1-jbrunet@baylibre.com
-[1]: https://lore.kernel.org/r/20200219161625.1078051-1-jbrunet@baylibre.com
-
-Jerome Brunet (2):
-  ASoC: meson: add t9015 internal codec binding documentation
-  ASoC: meson: add t9015 internal DAC driver
-
- .../bindings/sound/amlogic,t9015.yaml         |  58 +++
- sound/soc/meson/Kconfig                       |   8 +
- sound/soc/meson/Makefile                      |   2 +
- sound/soc/meson/t9015.c                       | 333 ++++++++++++++++++
- 4 files changed, 401 insertions(+)
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../bindings/sound/amlogic,t9015.yaml         | 58 +++++++++++++++++++
+ 1 file changed, 58 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
- create mode 100644 sound/soc/meson/t9015.c
 
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+new file mode 100644
+index 000000000000..b7c38c2b5b54
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/amlogic,t9015.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic T9015 Internal Audio DAC
++
++maintainers:
++  - Jerome Brunet <jbrunet@baylibre.com>
++
++properties:
++  $nodename:
++    pattern: "^audio-controller@.*"
++
++  "#sound-dai-cells":
++    const: 0
++
++  compatible:
++    items:
++      - const: amlogic,t9015
++
++  clocks:
++    items:
++      - description: Peripheral clock
++
++  clock-names:
++    items:
++      - const: pclk
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++required:
++  - "#sound-dai-cells"
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++
++examples:
++  - |
++    #include <dt-bindings/clock/g12a-clkc.h>
++    #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
++
++    acodec: audio-controller@32000 {
++        compatible = "amlogic,t9015";
++        reg = <0x0 0x32000 0x0 0x14>;
++        #sound-dai-cells = <0>;
++        clocks = <&clkc CLKID_AUDIO_CODEC>;
++        clock-names = "pclk";
++        resets = <&reset RESET_AUDIO_CODEC>;
++    };
++
 -- 
 2.24.1
 
