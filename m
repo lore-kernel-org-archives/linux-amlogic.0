@@ -2,61 +2,80 @@ Return-Path: <SRS0=kAN4=4H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCD36C34054
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 16:20:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BF0C5C34047
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 16:24:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 902C624671
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 16:20:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9295D24671
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 16:24:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kHj77qGJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 902C624671
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sGcMaUVj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tqwyRN7X"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9295D24671
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=511ulChYZsygpbbkqwq9098dXNCixVfCdFzRZ3t2qsU=; b=kHj77qGJZSDi+LD/e9dvUTa3m
-	B5uzf0WdePbjVX+kZQ+1rEcOLf9BBE9l8qODiAdLg4y8y7lvP1syjj5Zmxla2h47hX49BzCksoQPJ
-	l/sSXjQrGgSQ6iV0zaJI+R74HThTJWf2UuG9GVDaAjo5ZK4l1y1EuvNKxDAANckjzXpjnrZLVcEgK
-	meSoUoZo+PkgdeOtHBWU+XjmqlwfblHKC481wQcfCt+s52XOc+Od3iyehiXP/FoV6W7L7KNG8DTN9
-	p75pfzu71I0yaSEV6KzMTquSSWK44bgt/w1UTZILFb/yn6WHYqtgUEr09jU2bcLdCGgoN49SWIYGr
-	xi1qDGYWQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=tIcW7uKDgPTl0biwMXdIJ6gTvXHZikKNGvUEpQp1Ml8=; b=sGcMaUVj0998CF
+	txw0VY196zxtwmWhxDg3RQVCwjou0JeEVCynvqCRBgSZqYlXesMmAB8Xrj1gxo2+3ElCIjGDFFzFC
+	D2ApQifkkoX3prOVs6RNkp1AD2NOKAb0/Z3LNTt7k2mzlrC9LqbWWvbb3IpbQu7aozYPjA7YERC1g
+	irvVOKTNKbPvuUQtCuc9tjsTlEaXQ4z5pirfUeeE2LyN2fOYHZyvt/OhpdT1nkiITHPtl5vgbmBTB
+	gKFfWOfRdlo9sosKwzGuGOQChjxq0M+E6znQpkcGtjBtwB1LruHfoVQ9ys3wHCPcto/0YZCSuy0PS
+	McOYSlpsLtcFCi7xWWMw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j4S59-0008Kg-1W; Wed, 19 Feb 2020 16:20:15 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4S4w-00070r-Vb
- for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 16:20:04 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 732EB1FB;
- Wed, 19 Feb 2020 08:20:02 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EB43A3F703;
- Wed, 19 Feb 2020 08:20:01 -0800 (PST)
-Date: Wed, 19 Feb 2020 16:20:00 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH v2 2/2] ASoC: meson: add t9015 internal DAC driver
-Message-ID: <20200219162000.GF4488@sirena.org.uk>
-References: <20200219161625.1078051-1-jbrunet@baylibre.com>
- <20200219161625.1078051-3-jbrunet@baylibre.com>
+	id 1j4S8h-0001Qy-Km; Wed, 19 Feb 2020 16:23:55 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
+ by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1j4S8e-0001QZ-JA
+ for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 16:23:53 +0000
+Received: by mail-lj1-x241.google.com with SMTP id r19so1017389ljg.3
+ for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 08:23:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=V+koYLn7ZJhaqj25+W9188jeUQ5uNdHzeqMm7FamtmY=;
+ b=tqwyRN7XCiE959aKxjtEOi7/UiVPLzQgbupb84ZCRLoTrnACUhp19awz+tzxddbR1X
+ 9Yly0tVxiHyjnEOptVx9h+2uf8YOzE5dvLYJkwDqI+81p+8XHhPg9iGCPm0HJtE2JlIN
+ T1qaWa2iiTxPvshRd+3CGCmfMnZq80U/hWBatQRYUYlUClXPIgDK7pRWOri0lpuyWzu3
+ NBibHPKrpoVeYevXQaFye8xcnO1QgQuIk+je/kzXoFM4qtTR3f7899B7sEiilbXCfUA3
+ KPTriTwoL/s9tqAiZvdW9zYCz5Kmt8FriQ8IIGF8dXC08E0ZDt4nlf8pJZJPKLZc9jTr
+ 0rZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=V+koYLn7ZJhaqj25+W9188jeUQ5uNdHzeqMm7FamtmY=;
+ b=j7EgvgEOoI4RZICaE3LZybFH0/JwL7U92T4481ZuHd1ZLWRQNoeqV0Gm1T2ITpnpaA
+ Uf6WZGd/OrCpBX1LbGm0ZC1CLEri1wRSeqMqC0bO5JGpRj34pooH8hA69qTxCoDVL/w9
+ d+twVBjS+m5fkreo8RPHuhYpetpQG/2SjpgtCxQYaQqrgLTamlOvJs/F1ojbahtu1sdP
+ TKFMm2YDfDZRZ76gOCgRnq7U18nnmWem058+XHIjBsA2bUg3KWPWrgW6sk4quSyw/Jse
+ Fg9RfkUdSI1dwKVh1FSnrCyShbvcP+VJCdVrMobSg2ktWZ34x97HtuLs6r8RiqXJE1ST
+ zvMQ==
+X-Gm-Message-State: APjAAAU158D+RiMIAjnGF422xlETze1UwzDvIu9hl1/yPzIT4py1pu7w
+ dnXgfl/Xo27vv+vfEmPsaVFr8ycOjvPZTYqbZjxNmA==
+X-Google-Smtp-Source: APXvYqxJ7AMu2+7ZjAhkwR9hwSCjvmhllaXVwoznlwbfYWEU+J3T+FCENxb+Oo9gQMBsOOU7sXyzFQ8kRLk7wptkHE4=
+X-Received: by 2002:a2e:9013:: with SMTP id h19mr16811174ljg.223.1582129430832; 
+ Wed, 19 Feb 2020 08:23:50 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20200219161625.1078051-3-jbrunet@baylibre.com>
-X-Cookie: FORTH IF HONK THEN
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <CAJZgTGF2ihuu_bSzQ93iBTf1YQ4_NM29S4iBFM8Fhd_RUaw2vQ@mail.gmail.com>
+In-Reply-To: <CAJZgTGF2ihuu_bSzQ93iBTf1YQ4_NM29S4iBFM8Fhd_RUaw2vQ@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 19 Feb 2020 17:23:39 +0100
+Message-ID: <CACRpkdYXw0D9BJSBd6tvnKM3tkMir6ptcpg0nZxpbWQdAHYooA@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: meson-gxl: fix GPIOX sdio pins
+To: Nicolas Belin <nbelin@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200219_082003_123729_5BB0CFBE 
-X-CRM114-Status: UNSURE (   7.55  )
+X-CRM114-CacheID: sfid-20200219_082352_665504_30532FF0 
+X-CRM114-Status: UNSURE (   7.53  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -69,63 +88,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============1782220618780892338=="
+Cc: Kevin Hilman <khilman@baylibre.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Nicolas,
 
---===============1782220618780892338==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8TaQrIeukR7mmbKf"
-Content-Disposition: inline
+thanks for your patch!
 
+I can't apply it for some reason, something is weird with it...
 
---8TaQrIeukR7mmbKf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, Feb 5, 2020 at 12:22 PM Nicolas Belin <nbelin@baylibre.com> wrote:
 
-On Wed, Feb 19, 2020 at 05:16:25PM +0100, Jerome Brunet wrote:
+> @@ -147,8 +147,8 @@ static const unsigned int sdio_d0_pins[]    = { GPIOX_0 };
+>  static const unsigned int sdio_d1_pins[]       = { GPIOX_1 };
+>  static const unsigned int sdio_d2_pins[]       = { GPIOX_2 };
+>  static const unsigned int sdio_d3_pins[]       = { GPIOX_3 };
+> -static const unsigned int sdio_cmd_pins[]      = { GPIOX_4 };
+> -static const unsigned int sdio_clk_pins[]      = { GPIOX_5 };
+> +static const unsigned int sdio_clk_pins[]      = { GPIOX_4 };
+> +static const unsigned int sdio_cmd_pins[]      = { GPIOX_5 };
+>  static const unsigned int sdio_irq_pins[]      = { GPIOX_7 };
+>
+>  static const unsigned int nand_ce0_pins[]      = { BOOT_8 };
+> --
 
-> +	SOC_SINGLE("Playback Mute Switch", VOL_CTRL1, DAC_SOFT_MUTE, 1, 0),
-> +	SOC_DOUBLE_TLV("Playback Volume", VOL_CTRL1, DACL_VC, DACR_VC,
-> +		       0xff, 0, dac_vol_tlv),
+For example the patch just ends here with -- two dashes.
 
-Sorry, that should just be plain "Playback Switch" - this can be used by
-applications to present a combined mute/volume control together with the
-Volume control (though as in this case there's no per-channel control it
-is possible some applications will struggle with that).
+Please collect Jerome's ACK and resend using git-send-email if possible.
 
---8TaQrIeukR7mmbKf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5NYC8ACgkQJNaLcl1U
-h9CDuQf/fGT0VVRm9yQYse0qUFwaPpa/Nb3byf+rdC0Bisg4EtnyYM2uHFn0C1Mg
-PEDPJX9wIjjelZpQn6pNnQjo5jcZvbnoUK4ok+t+L2+wn0qS1u9sdZHqDO0/85tB
-vLFJutTkhsVu/0Ky+ejH12I+uJqIcSrWHxLdWfhOpXYoqFe+C3Jzr8WlhijxnlaR
-GW5b0bdf3lS4LDOYTDCHKnPXX6PiTf80RHHqoF5ZS/JyH5E1zob3FGPSzoo/8RIN
-PG/sz5w9+YJvlPHomclX1ZyMG+pnw3AdOrvtlvfkjiui7OPe8u/Z7BEoSVbKSxEF
-T2IfZRw1euojF6XagOVhMMpiBoShKg==
-=DBLh
------END PGP SIGNATURE-----
-
---8TaQrIeukR7mmbKf--
-
-
---===============1782220618780892338==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Yours,
+Linus Walleij
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1782220618780892338==--
-
