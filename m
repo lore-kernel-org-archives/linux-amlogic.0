@@ -2,84 +2,146 @@ Return-Path: <SRS0=kAN4=4H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9CC1C34047
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 10:22:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D575C3404D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 10:39:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9D58924658
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 10:22:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 043232465D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 10:39:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CkDvGo9a";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="PJzH6ke5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9D58924658
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k3RnVbun";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ez8jljT4"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 043232465D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mJbzigDgpTZzl6WhXqPfhCNWXfR+uKyBcC3iyoQXw9U=; b=CkDvGo9aT9+MH6
-	APL6E2HfJnySv32ET2OsZv5812RVNhh4ZFrTiGXT7WWuqxJouXQWyCAQXrkKDP8dNUKmlTIoYUSRY
-	cb+dmz2el1KOwPM+2+X8wjz9d5nwQ7ohh4HCnWFq1XS+s0FxCcDiVR1OaofaFwpVA1gnW0BY2T4n/
-	+P+w+gt+6vPFIguYf7WriKNK8FQcoa0hegvtLdDmMBITH8LSRyBX6UROw5I/LyU9MQqOwTWkmPFbd
-	jbadxs8PPKNsJUNL5ePIlo8DN5kEu9q0U1O63JYcdDGoN/2motcfcsctRtafFK7e1NsGHezH+/plm
-	GEQXmA4p30dIwq3Coq1Q==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=37xo5cRzRoSMya608b6ktTYqJKdOvJWtALJmk7Fx9eU=; b=k3RnVbunIeqxym
+	Zz3+OcND/1tKyhRJ4ESwEKAQXlJTy1HhpAIydr5wR1fG7fP9OwbMPpnG3N7ah38QRf+YruKMK5DvE
+	vAeG5mPiPfAaR6j5HD9DlkaG7FZgSd7GmuMZiNoYC4qa9BbkhZEg+3mtxDixR/95zSITvltuKOI1R
+	kDL8T80dkXyQzmkyDcXj2n4jUOGJapSYmtk2oM0zyBmZOtvYrJ1sBlNUSHnL3YFWCur31UHXcX5pA
+	UXZswgWrywJkFtlbdPFrTp3kPLHS9a2SSp5MAXQMZndD6vQiNzHnfw3UYyzIeVzi84KsfPg1koW4/
+	Q5J2maDKwM6CLfpOjbJw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j4MUt-0004ei-Us; Wed, 19 Feb 2020 10:22:27 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1j4Ml3-0004MS-4x; Wed, 19 Feb 2020 10:39:09 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4MUh-0004UB-CN
- for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 10:22:16 +0000
-Received: by mail-wm1-x341.google.com with SMTP id t23so5867992wmi.1
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 02:22:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=9HvFBn5C1ybJ3Jl6cvECGju7iOD2DUuUpqtaZAjKhPo=;
- b=PJzH6ke5ACy+gnyH1H0O/EOH30mw1GGgrDUmk5BBrZ/PUN2lMzraTEUZ80YFeUJy4i
- BT0R8EBhS9ae4DJVQVeEUw4g7yETEV2yMkMheO3s0PZmlK2E8r1Rt8aaMMGH+iMrxZ2+
- 6Km7jEfY3B17urqmHlHLEOm/FfWvNqws8o+K8=
+ id 1j4Ml0-0004Lg-1H
+ for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 10:39:07 +0000
+Received: by mail-wm1-x344.google.com with SMTP id p9so36098wmc.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 02:39:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=jZo1Yb+0h6t5U0DcHi0kEGS9lKX1K7WtbvX89q9dHoI=;
+ b=ez8jljT4gDIrCE+h70pdvZ1dNhKPhOGVrbkiW7h1PITsniCF9bGf8XmEFagzow8zrt
+ WW/Gk2thkvq50tOYy+oZtH5Q23zZtrmKU7X1JDgtJADV7FsZAxfSV0TsTHY0+UO7MK+S
+ aHjkIiDpVnoCStLU6iW5CblqBH+7CwEBxn/3tU24SoB34/5muAQ83z5tSexta74GRR86
+ LZsNkKUR3rFRe2yimSqOmZaVBvltaWwrNZut7nBytDBJcSsnEyw3DhfrIjv+sx3G+EWx
+ xsRDmF5zyvv38sGwT1ASbrJqirJoEPgCsgeVBJyYiP2ekG044bKFCGtXdU7nC9zWSL+G
+ vtuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=9HvFBn5C1ybJ3Jl6cvECGju7iOD2DUuUpqtaZAjKhPo=;
- b=HD6v9OnEFPtQ+BGFEWKvmxCdfdpd7m3SM9QYs6QrEJ/CvrTgqH2fpNvwYuXzXGk4sL
- xg7W3Y8evNP115FjIWvlhn/3DGtuWACp9JWAtD1zozTXJ1ilDOdyCZxL4EkdurJEJJMK
- 40AD7ObypPya+JiISiB/Vq0tTpoNNRGTf3HG0SpdID0CYD7FAAACsUmxM69iJ1BT5Zil
- l4b+hQ46c58NmlZQNCrIbuksXNw18zyBAu4IxccB0rgTcKSfTbqr4a0te0he+BZyCp4P
- +DQ9+pGML6N4yiqBqk1Wus8HPjk24zefrChtMPvXfQtTVNoGFU6miFJ2sD9NlaSTtnXO
- hEpQ==
-X-Gm-Message-State: APjAAAWXEliiDB+pV0zUNewe0U7QudkE043fbZ7oQFsSegQFvzODRvR9
- Np0eVXN8EuB9j89srP3jlGlMHw==
-X-Google-Smtp-Source: APXvYqwwkb8pYBRO6k0sbQ0TfL7rK6fN22BCq0dEtf+gNB0N9I1n8/PTpRHwumXVfIV0/n6efkAHzg==
-X-Received: by 2002:a1c:4905:: with SMTP id w5mr4798090wma.129.1582107733246; 
- Wed, 19 Feb 2020 02:22:13 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s23sm2370339wra.15.2020.02.19.02.22.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2020 02:22:12 -0800 (PST)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 35/52] drm/meson: Drop explicit drm_mode_config_cleanup call
-Date: Wed, 19 Feb 2020 11:21:05 +0100
-Message-Id: <20200219102122.1607365-36-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=jZo1Yb+0h6t5U0DcHi0kEGS9lKX1K7WtbvX89q9dHoI=;
+ b=EMSMFjCTKXlu4yabHUXcGK8NsOfYHypi+UleIV4poYVDRXVE3osI49KXbiDYVtDJZv
+ sTQ/n0e4yQfP0IOxvz53qePBwaNsZAnP88t0X9izGVQyEEmr1OISz4TKdmnhWhsOWxiA
+ QTMgUD+m8qWFycZfZdbXS8HnBdxjBbOcNWuJAoG9OnZyzbZ4hWm5modxYLK4gEDiFQMd
+ GjxBP6Ng9j4CGBJVfrQxeiMvb4FHB8Luv/UwLMdiOsCEWHw70sl1+89evj/ARx608GHB
+ fkCwDyNPNY3Ij7fa9GbWkVQlUMaFv+R9PAD1syBhmeG7LHpU0N40Yni+1w5fT4pnsXTK
+ xtUw==
+X-Gm-Message-State: APjAAAWLEzlMkhMPK4ZobgwHJ9VHd9w1P2Qg6lHBjjiey0Owe1Z+QC5s
+ cn1+5a255nkEYSCG1vv+m1JR6A==
+X-Google-Smtp-Source: APXvYqwpJmHvEU5dv04tUhbsAuPzRO/35/krjQssyv5K/42PFZNXn7QdrW2fCbZj1j1ZwONP8qO8HQ==
+X-Received: by 2002:a1c:e488:: with SMTP id b130mr8895810wmh.108.1582108744516; 
+ Wed, 19 Feb 2020 02:39:04 -0800 (PST)
+Received: from [10.1.3.173]
+ (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id w13sm2401050wru.38.2020.02.19.02.39.03
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 19 Feb 2020 02:39:03 -0800 (PST)
+Subject: Re: [PATCH 35/52] drm/meson: Drop explicit drm_mode_config_cleanup
+ call
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-36-daniel.vetter@ffwll.ch>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <43d8fdec-5ea5-1288-e886-0e608f6dd7b4@baylibre.com>
+Date: Wed, 19 Feb 2020 11:39:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
+In-Reply-To: <20200219102122.1607365-36-daniel.vetter@ffwll.ch>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200219_022215_487489_E867D157 
-X-CRM114-Status: GOOD (  12.05  )
+X-CRM114-CacheID: sfid-20200219_023906_081318_73F8A475 
+X-CRM114-Status: GOOD (  16.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,57 +153,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Kevin Hilman <khilman@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It's right above the drm_dev_put().
+On 19/02/2020 11:21, Daniel Vetter wrote:
+> It's right above the drm_dev_put().
+> 
+> Aside: This driver gets its devm_ stuff all wrong wrt drm_device and
+> anything hanging off that. Not the only one unfortunately.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+>  drivers/gpu/drm/meson/meson_drv.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index b5f5eb7b4bb9..ae94d14ab7bc 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -284,7 +284,9 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  	/* Remove early framebuffers (ie. simplefb) */
+>  	meson_remove_framebuffers();
+>  
+> -	drm_mode_config_init(drm);
+> +	ret = drm_mode_config_init(drm);
+> +	if (ret)
+> +		goto free_drm;
+>  	drm->mode_config.max_width = 3840;
+>  	drm->mode_config.max_height = 2160;
+>  	drm->mode_config.funcs = &meson_mode_config_funcs;
+> @@ -379,7 +381,6 @@ static void meson_drv_unbind(struct device *dev)
+>  	drm_dev_unregister(drm);
+>  	drm_irq_uninstall(drm);
+>  	drm_kms_helper_poll_fini(drm);
+> -	drm_mode_config_cleanup(drm);
+>  	drm_dev_put(drm);
+>  }
+>  
+> 
 
-Aside: This driver gets its devm_ stuff all wrong wrt drm_device and
-anything hanging off that. Not the only one unfortunately.
-
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
----
- drivers/gpu/drm/meson/meson_drv.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index b5f5eb7b4bb9..ae94d14ab7bc 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -284,7 +284,9 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	/* Remove early framebuffers (ie. simplefb) */
- 	meson_remove_framebuffers();
- 
--	drm_mode_config_init(drm);
-+	ret = drm_mode_config_init(drm);
-+	if (ret)
-+		goto free_drm;
- 	drm->mode_config.max_width = 3840;
- 	drm->mode_config.max_height = 2160;
- 	drm->mode_config.funcs = &meson_mode_config_funcs;
-@@ -379,7 +381,6 @@ static void meson_drv_unbind(struct device *dev)
- 	drm_dev_unregister(drm);
- 	drm_irq_uninstall(drm);
- 	drm_kms_helper_poll_fini(drm);
--	drm_mode_config_cleanup(drm);
- 	drm_dev_put(drm);
- }
- 
--- 
-2.24.1
-
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
