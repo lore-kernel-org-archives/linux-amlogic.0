@@ -2,22 +2,22 @@ Return-Path: <SRS0=kAN4=4H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-13.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6E40C34047
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:12:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DA94C34047
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:14:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 54A7F20801
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:12:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D5440206ED
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2020 14:14:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rzIiwaU3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gnIUEn7c"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54A7F20801
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S5UuKDtb";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YCNX2wA3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D5440206ED
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Q+5jqpUYDnbWU0k3p0UyZXoZfJRYHi5G8th/p04qETQ=; b=rzIiwaU3Motl3k
-	rK5ZssCb549aoCpzYOgjFRz2kBHn1e9inFU8QGeNpA5Ud4LWy/7ljh1uqA2GBYmd9ATOnH9YSMGsR
-	bvl+YWcFKI2M+v3gZP3cp1UILUySghPg0dfPy7cyYLckKwB3jNPWK7B+fxmv+U/MG279JhirlRos3
-	72WfNAf4pLVBcNHDmA1q5fpfg/F3OSQaLdSnH8HYPH7/cKUrg27X6ZPcxHn9MhKvSkp7l0p8bpveu
-	DmOQGi726gsqlxdQggpZ7Aabwb9RugrOLXPFthvkKB4J0NaA1zAxgyhzweBjBkKuEOsqUfewfFlCG
-	/Cy3j5gq2/vEJmK/WHOg==;
+	List-Owner; bh=0ywDDhdvZf9pBV18QycK5ctysnAxeTFgm6GDSHFUN8c=; b=S5UuKDtbbaBXqZ
+	eZW1qVLadOV0mFEdqeVHwQOyWhpQu7htgdBnKszyHtHxzQeJCwulJWGP3sFbmh3GygiqKDp+8Mbea
+	qSyGf/kemxHGigxDSQ0+KFaqFRzbxfKh0+P5BvyW5BV0Fj+kvZQxzK7Qqu53hNEQWiqiweZMPLXh8
+	Bw7ICOq1Vas8yfE3IH0IGCMJG7Tb23txG5bQ7udGxDplxH9W81Z2wx6fpNcp1B2tBj1rSObEFcaS5
+	NJqABN/GpPScProvxGjlr0+Z6zn3Cf08P0UnHR1VwNq9/KZj7AbPcXFFjB1Ogq/84rfjzCnILSUOA
+	P1udgfdQXSY6nW/nslkw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j4Q5L-0007TA-2R; Wed, 19 Feb 2020 14:12:19 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1j4Q7A-00088O-OC; Wed, 19 Feb 2020 14:14:12 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4Q5C-0007MQ-7k
- for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 14:12:17 +0000
-Received: by mail-wr1-x441.google.com with SMTP id g3so662278wrs.12
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 06:12:09 -0800 (PST)
+ id 1j4Q77-00087h-LM
+ for linux-amlogic@lists.infradead.org; Wed, 19 Feb 2020 14:14:11 +0000
+Received: by mail-wr1-x444.google.com with SMTP id y11so718860wrt.6
+ for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2020 06:14:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=RJKXqioDvyKKircULJkfX6xF3mRWI5j91/8iUVGAbK4=;
- b=gnIUEn7cQOwgOR+a39j7PjBIDnyjhMMvStC1RViFPRodsw41lGAumAfVE7fVVGecYZ
- UZdRW0VSu6cpscMAFJT3AZb3bEcTLrbnMFq36XhAkwcR4MF2WQCiprUlGRq9b7vJGPnZ
- Dik2c1mVYL0NM/E4HR7XQFhCKcSTPbu8CQjHzqmDA2Iw8CvADg8Wd8bZB//DpWZyoAB1
- A+3RfV0UZLWBf4hdrk1m/GsLiYM1JOeiRApU+HLGntd4outB6lPc1S0+FdYAi/tsYc8F
- YiLeNSwXSNeW4o0GsvIQ9RauY5nAAp8hJH0/mGnrYhi4qjY02e7w8EjcqvDum53JPIL+
- UkkA==
+ bh=uXdoUR0XgCTZxVCtiaoQw/MLf4PcvBIvxwOCFYMZSP4=;
+ b=YCNX2wA3dQsIG79xa3IR2n26dg4q4qH4bLfM+AsKqKBeX+9bmOyQfTcjNEkW9xgBli
+ 112xTlYPCu30nelz2okdUFmsEHxE//hPaSQcYQ+5lwcZXnc2TtGmyrOrIl8s2Rh7RAiQ
+ P9JbEbYbEHPamAv8Bh0EKOAfhYI8zqIz5Q0qMqYZ8hmvaQ0cAaDlcds0bNZjXQjxH+vM
+ fWVFii766TV10fLkrzbUCCNn11lhjWZU8rZ1dZzGjyse844SxJWwUzzCIUW/brG3tjJP
+ zlK76put0XMuKjQ1+ZSBQG5FRwPQHXQiFS7BjPDVd5/PfN0JwAUF4pTKVMLZXz19F47n
+ 7VVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=RJKXqioDvyKKircULJkfX6xF3mRWI5j91/8iUVGAbK4=;
- b=MOnLkC43NWXucakKuMxc8e+t9EsiOWguP7qRRbYTgir0yG+77G6FxmLdX31sRLxrXW
- py/uvlDrO7I6YnJUK3q1f2IpFSugG6qpNpaUlCntsAS+qCu5pwSSnYriQBJIv9Fmc2qY
- zTjy3UL0kx4HABn+XjRhT2PGGoC+6uRYyeUzT7wGUOx3DWtOKdA7Fn9u46rFxAMKi8y9
- yt0HWox/hJFZYOzo8BmmoKMurQGeoMMB7juRw1HtKgF9O+JLiqOukkGQHKLj0e7MPw/e
- hxAfTmc0A9k5Ru7D4QJVv6EqS8e1K7UXdYFiKh5SVvFBpLMxkTm3Lwlr9T2wWNGEzP3G
- yyyg==
-X-Gm-Message-State: APjAAAWa/jI7K7kdHWtiOA5ROQtpAmlWc40sdQv+nTQEHGL01nRx0oYW
- IQIzoVZVjAvXeLq1Z8ByrjU909lCnUxvsw==
-X-Google-Smtp-Source: APXvYqz9+aPQWqiRzMV6OfoWUEixLNJduNo0aaQM0SXm8v/eggAyRBWYQl2Jt5bo22PpgZdWzSi+mA==
-X-Received: by 2002:adf:f302:: with SMTP id i2mr36261663wro.21.1582121528555; 
- Wed, 19 Feb 2020 06:12:08 -0800 (PST)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:4ca8:b25b:98e4:858?
- ([2a01:e35:2ec0:82b0:4ca8:b25b:98e4:858])
- by smtp.gmail.com with ESMTPSA id x21sm2927157wmi.30.2020.02.19.06.12.06
+ bh=uXdoUR0XgCTZxVCtiaoQw/MLf4PcvBIvxwOCFYMZSP4=;
+ b=bc+3NfX1AduRpKFVvye0Iscsg+ufZbotbJtI0KiEqEBvys/8DN8cjcoE/qevy9xWrz
+ DQQi7QAPFzaDTM0a9nFl+UiytMX2qRqEdDPdnNNYVIox0kyb7WwIeaoxfkMymXC72Ish
+ XQyGn3XgtKFqdU2gHTW289Nvi9guPpre+RvZr49Z+TUwTG7GKS94teyaa+fd7len6Kdc
+ MYYCk3CqGkP5g+MWCmcnf7shG5yI+Viacukmhuo7s3lQqB14VVUGtnFqwa+L/hZqZxS7
+ QpteXydOQrGlYO2KuHzBJqBQ25u0gFX1DGh7tOFj8+D9pDURkgmuKhJMYBz7AtdZimlb
+ 8atw==
+X-Gm-Message-State: APjAAAXpI7+cqkjzRJ2tpA1C8cGqSXPVxJ30/5F6sZWBTr87UUnG6qhp
+ uk0C6cX+6G4JX/WUhyvE8g0A+A==
+X-Google-Smtp-Source: APXvYqxH9nOzidlAyGIVX7T2P8TGUAvMVJctZqUzmF3PYX7tf9LOYHAVrfPBg9SG1BZGGlCJf/qmDg==
+X-Received: by 2002:adf:f1cb:: with SMTP id z11mr35086030wro.375.1582121648290; 
+ Wed, 19 Feb 2020 06:14:08 -0800 (PST)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:510e:e29a:93ab:74c3?
+ ([2a01:e35:2ec0:82b0:510e:e29a:93ab:74c3])
+ by smtp.gmail.com with ESMTPSA id 5sm3254394wrc.75.2020.02.19.06.14.07
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Feb 2020 06:12:07 -0800 (PST)
-Subject: Re: [PATCH v9 3/3] arm64: dts: meson: a1: Enable USB2 PHY and DWC3
- controller
-To: Hanjie Lin <hanjie.lin@amlogic.com>,
- Kishon Vijay Abraham I <kishon@ti.com>, Jerome Brunet
- <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Kevin Hilman <khilman@baylibre.com>
-References: <1581990859-135234-1-git-send-email-hanjie.lin@amlogic.com>
- <1581990859-135234-4-git-send-email-hanjie.lin@amlogic.com>
+ Wed, 19 Feb 2020 06:14:07 -0800 (PST)
+Subject: Re: [PATCH] usb: dwc3: meson-g12a: Don't use ret uninitialized in
+ dwc3_meson_g12a_otg_init
+To: Nathan Chancellor <natechancellor@gmail.com>,
+ Felipe Balbi <balbi@kernel.org>
+References: <20200210225816.36598-1-natechancellor@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -135,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <37725e68-a24f-f76f-6730-630f24431e6f@baylibre.com>
-Date: Wed, 19 Feb 2020 15:12:06 +0100
+Message-ID: <d47c9cb2-9458-afc7-e91b-1a56ad87d1be@baylibre.com>
+Date: Wed, 19 Feb 2020 15:14:06 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <1581990859-135234-4-git-send-email-hanjie.lin@amlogic.com>
+In-Reply-To: <20200210225816.36598-1-natechancellor@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200219_061210_311911_2CB4DFC2 
-X-CRM114-Status: GOOD (  15.40  )
+X-CRM114-CacheID: sfid-20200219_061409_708153_DD4F9591 
+X-CRM114-Status: GOOD (  18.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,100 +152,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Stephen Boyd <sboyd@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
- Yue Wang <yue.wang@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jian Hu <jian.hu@amlogic.com>
+Cc: Hanjie Lin <hanjie.lin@amlogic.com>, kbuild test robot <lkp@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+ clang-built-linux@googlegroups.com, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/02/2020 02:54, Hanjie Lin wrote:
-> Enable USB2 PHY and DWC3 controller for Meson A1 SoC.
+On 10/02/2020 23:58, Nathan Chancellor wrote:
+> Clang warns:
 > 
-> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
-> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> ../drivers/usb/dwc3/dwc3-meson-g12a.c:421:6: warning: variable 'ret' is
+> used uninitialized whenever 'if' condition is false
+> [-Wsometimes-uninitialized]
+>         if (priv->otg_mode == USB_DR_MODE_OTG) {
+>             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/usb/dwc3/dwc3-meson-g12a.c:455:9: note: uninitialized use
+> occurs here
+>         return ret;
+>                ^~~
+> ../drivers/usb/dwc3/dwc3-meson-g12a.c:421:2: note: remove the 'if' if
+> its condition is always true
+>         if (priv->otg_mode == USB_DR_MODE_OTG) {
+>         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/usb/dwc3/dwc3-meson-g12a.c:415:9: note: initialize the
+> variable 'ret' to silence this warning
+>         int ret, irq;
+>                ^
+>                 = 0
+> 1 warning generated.
+> 
+> It is not wrong, ret is only used when that if statement is true. Just
+> directly return 0 at the end to avoid this.
+> 
+> Fixes: 729149c53f04 ("usb: dwc3: Add Amlogic A1 DWC3 glue")
+> Reported-by: kbuild test robot <lkp@intel.com>
+> Link: https://groups.google.com/d/msg/clang-built-linux/w5iBENco_m4/PPuXreAxBQAJ
+> Link: https://github.com/ClangBuiltLinux/linux/issues/869
+> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 43 +++++++++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> index 6fdc0dd..3b7ca50 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -6,6 +6,9 @@
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/power/meson-a1-power.h>
-> +#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
-> +#include <dt-bindings/clock/a1-pll-clkc.h>
-> +#include <dt-bindings/clock/a1-clkc.h>
+> Note: This patch is against Felipe's testing/next branch.
+> 
+>  drivers/usb/dwc3/dwc3-meson-g12a.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> index 70d24b98fcad..902553f39889 100644
+> --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
+> +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> @@ -452,7 +452,7 @@ static int dwc3_meson_g12a_otg_init(struct platform_device *pdev,
+>  	if (IS_ERR(priv->role_switch))
+>  		dev_warn(dev, "Unable to register Role Switch\n");
 >  
->  / {
->  	compatible = "amlogic,a1";
-> @@ -100,6 +103,17 @@
->  				#power-domain-cells = <1>;
->  				status = "okay";
->  			};
-> +
-> +			usb2_phy1: phy@40000 {
-> +				compatible = "amlogic,a1-usb2-phy";
-> +				clocks = <&clkc_periphs CLKID_XTAL_USB_PHY>;
-> +				clock-names = "xtal";
-> +				reg = <0x0 0x40000 0x0 0x2000>;
-> +				resets = <&reset RESET_USBPHY>;
-> +				reset-names = "phy";
-> +				#phy-cells = <0>;
-> +				power-domains = <&pwrc PWRC_USB_ID>;
-> +			};
->  		};
+> -	return ret;
+> +	return 0;
+>  }
 >  
->  		gic: interrupt-controller@ff901000 {
-> @@ -114,6 +128,35 @@
->  			#interrupt-cells = <3>;
->  			#address-cells = <0>;
->  		};
-> +
-> +		usb: usb@ffe09000 {
-> +			status = "disabled";
-> +			compatible = "amlogic,meson-a1-usb-ctrl";
-> +			reg = <0x0 0xffe09000 0x0 0xa0>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			clocks = <&clkc_periphs CLKID_USB_CTRL>,
-> +				 <&clkc_periphs CLKID_USB_BUS>,
-> +				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
-> +			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
-> +			resets = <&reset RESET_USBCTRL>;
-> +
-> +			dr_mode = "host";
-> +
-> +			phys = <&usb2_phy1>;
-> +			phy-names = "usb2-phy1";
-> +
-> +			dwc3: usb@ff400000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x0 0xff400000 0x0 0x100000>;
-> +				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> +				dr_mode = "host";
-> +				snps,dis_u2_susphy_quirk;
-> +				snps,quirk-frame-length-adjustment = <0x20>;
-> +			};
-> +		};
->  	};
->  
->  	timer {
+>  static int dwc3_meson_g12a_probe(struct platform_device *pdev)
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
