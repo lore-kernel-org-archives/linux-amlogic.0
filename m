@@ -7,82 +7,82 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E7CFC11D0C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Feb 2020 16:33:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 04028C11D0C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Feb 2020 16:33:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BA386206F4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Feb 2020 16:33:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C2F91206F4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Feb 2020 16:33:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K+r8KXOk";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="K8yy+C+5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA386206F4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ntroFyXQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nPiz7WQ1"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C2F91206F4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=dDeao/jnBgyMdcYI94JmwGa5HlrSGRTvFEmdVDFb9xw=; b=K+r8KXOkvEyc9WWPTQQz1ZovCV
-	RbDlqPpjCGMDjlpk9ypKaww2VQVc7hM03A/Lqc5Ab/DP04qbwzd2X1ONf/DbW0/ap7J4a0JcAOkS8
-	AVpgw+nCpHshFmkMqyFNcYOnRg0PVj374zTIQD6GBCrAcsbIfvAH1utNFw14PyvuP4hV1Vmaf7nV2
-	uF9GqXeBJJa5BevIZg9hibZXZGmAuvYfELvyWqKsbnmAICs6KpmU7Q9gSViIsCqx37tQOPQU1B4/m
-	f92HDgl7KqEj4a7mWjPLUAfvtTmhbPRGMGHFAR4I/op3vtXZl+FeeNLhvOrFV700GmswQ2A9QI5H/
-	LmkAVySQ==;
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=rHS2M85d2+61mufgpqaeAD68BgLmCxsO6UR+sXsv8to=; b=ntroFyXQuLl/jB
+	wJgvSxJdH4gLarDaW1itJRfRWjdQVO+wf/guZXsYgDbErtvXchN1VSTOMqzyHaXG1fZHNrySl1nmb
+	joMESnFsfCrWKfP909Nz2+LsLsCF08a9lzlPCYGv0e3XwvL/0JnzovZ0L+DUfLbXx0O/Q/r65kfE/
+	hwTFIye2dg57C3jZE6YJLl/Cw5FlIs0KaMoaeSH+2+LKisb4mHPRzY9UI6yiPIReCIO2P6apHujLi
+	2RUbPnyglQA1qHUK7xgC33Fh2/Rkrpj8cIOfuffvNRoenZ1vBo6RQn0ZFnBgKtwpFl3viIj5nXjSg
+	6uZ897oh0++b4AB4ODqw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j4olQ-0002Jh-3X; Thu, 20 Feb 2020 16:33:24 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1j4olS-0002Mo-8F; Thu, 20 Feb 2020 16:33:26 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4ojz-0000er-En
- for linux-amlogic@lists.infradead.org; Thu, 20 Feb 2020 16:31:58 +0000
-Received: by mail-wr1-x441.google.com with SMTP id m16so5312457wrx.11
- for <linux-amlogic@lists.infradead.org>; Thu, 20 Feb 2020 08:31:55 -0800 (PST)
+ id 1j4okf-0001RZ-9H
+ for linux-amlogic@lists.infradead.org; Thu, 20 Feb 2020 16:32:39 +0000
+Received: by mail-wm1-x343.google.com with SMTP id b17so2774854wmb.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 20 Feb 2020 08:32:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:autocrypt:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=amlZd6viWlESrGSSjzDoEUuoF9cpBj3Z6d9jmF9pQ0s=;
- b=K8yy+C+5IfxCxH3cgBkEK/Jp/WYJx3BB/swb0Rpn8OtnBeeC8zkVe4zRYKRar6k4Am
- RKSwz9AV1Zna2JAi9keFOw71ofcJ2dyJkHYC1eJUWq1Iwu4up7J9FdJJIpGDDeuwolVQ
- /iGGYwpWAe6KFdHZZT91SCPlNrnMSLu11LUaY7uRUd+wh+UAVs+uUZrvUOIbH8gCjB52
- H3lcobuY7b2Hua3oYanUEVo7HZQ6p5jpa7Qn6MwQLX4I5/pPQGwNfWp50vppuvzVFse4
- 7yDQuvB+YcSQbJbthSOCs1W8kxlir5BdAs35G1f1TAKR8M7/3fnr46y8y0D8JI9MF5mW
- n7GA==
+ bh=SlOadTqO4661gOcRE/x8L7NHs37N4MIhxZsmaIWZDtw=;
+ b=nPiz7WQ1K72haWRhB7vvw6uc2rkrLHju6NWwjrZ5uRZry6kdeBVkFRH19WZw3ruxOp
+ tUG21kchNQVqifWPI61PHaKJl5yMPsuelRcsdoZGoRku47O0YYTITDo7S+ZSLOfmJqqx
+ ml9fiX3PcNo3k5EzIN7Q4nfNoa8didONXjcYIwbi22HNxrNfDrgCncX+LJytJCVqE37T
+ H1DllCVyqRsv8EGehsMlUurBMJRXktwECXuRQjYBug9BHDHz3kB584enyPL3qAfrXU46
+ UHRfOXoYEq0B0gwSKgTcSfxshh3fkl2Rc0MPkKOp9YIg+TNoT/PUb97hK/bQl+ZZJuOh
+ oQVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:autocrypt
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=amlZd6viWlESrGSSjzDoEUuoF9cpBj3Z6d9jmF9pQ0s=;
- b=T8HcI11mohZ7QSz/CELWGTjHORlffTaTqY9BtpxX9VMpLXaNGYbijZCsjPa9vGuGPw
- zNATbLC9KqszbWxFpHo2sHL9x9KwPNhYP9cDQ4JMa8Nxoz6wekH+6Ntc2CXdmAn2lDlP
- KwYA0Lg6ri/GD1UjJgWVMDl8porCcqEpzMus3/kcbyPM7VfLJPskWTdW7GrLxB42T2pd
- jJSAz4hZ1isDe1gl4Jcd0t7L5MtP24VIla3YjYBOstyg37tL3BSCgFPClBvqCCpnNqcP
- eaoGCa7X0l0j25GTRqf0F3sAS/m5WS0mNDOPWDd07nvF8ipEraAbqFtDajdXpasWA81m
- qWQA==
-X-Gm-Message-State: APjAAAV8UKdnd3sUeMG7+vSwMhCUZdH7/WjhpNr+yt9n8Pi/BtOaovma
- aLad3RgAaWzgnNvM7HFBLdF/ew==
-X-Google-Smtp-Source: APXvYqxXR+WLtnmowmCs+gspOuKz0mLwPsKVBjkcc3RsvnpxuwlIUb9h04EBP+jIz8aOgsA/71UWPg==
-X-Received: by 2002:a5d:4bd0:: with SMTP id l16mr45681402wrt.271.1582216313995; 
- Thu, 20 Feb 2020 08:31:53 -0800 (PST)
+ bh=SlOadTqO4661gOcRE/x8L7NHs37N4MIhxZsmaIWZDtw=;
+ b=anEpsixOCL9oFEhGydkQOWetZdzAU353K2sap0ZwSA4WjqsAFjkjTFA1nJHYHg4jJQ
+ htaUuFrpj2Qv0vbBh/8LnWauEuXxyizJJxHeMJtrTohOR9uyBno5jru0vIsTEIX8Pvuc
+ 7zL0y1uOcRNLywIfgjEZgXQGcFDuZ5Lnhe/WzP7p4X+NbYYXEgS5cqAyqwF8ZQqBhBYl
+ 8mw0RvFp6KiBTryRuvI+fzyF/vmlKw2tqVRbsicu6kndCvhV3n1p2nSbUZAw7B5Cl4Oz
+ Fzvk508c1UWY3oQVd6UtjV2VhNxvx3PNDULg5d1G6MWsNRksvDuwFYwNFbDn3PnvuMf6
+ GgBg==
+X-Gm-Message-State: APjAAAWKKYCXhv4z2HH2s2lj+GR0J9sApB7PkiTDK4up2/dJK7wc3zVw
+ uIExWxVbZUfr5okCHUWnzGnWZw==
+X-Google-Smtp-Source: APXvYqxzT2QNf+URqPUbi7Om9QRwBVp+9U7uey9+4dgbM4AbexWtkVYaeYbOEzHMYaoUpPCKOAoX5g==
+X-Received: by 2002:a1c:7fd7:: with SMTP id a206mr1462842wmd.171.1582216353724; 
+ Thu, 20 Feb 2020 08:32:33 -0800 (PST)
 Received: from [10.1.3.173]
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id z6sm42254wrs.96.2020.02.20.08.31.52
+ by smtp.gmail.com with ESMTPSA id n3sm116468wrs.8.2020.02.20.08.32.32
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 20 Feb 2020 08:31:53 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: meson-gxbb-odroid-c2: add rc-odroid ir keymap
+ Thu, 20 Feb 2020 08:32:33 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: meson-gxbb-vega-s95: fix bindings and
+ bluetooth node
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <1582213085-11656-1-git-send-email-christianshewitt@gmail.com>
+References: <1582215900-12716-1-git-send-email-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -134,16 +134,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <a08e4db8-5086-12b8-6a13-c4f443fd61be@baylibre.com>
-Date: Thu, 20 Feb 2020 17:31:52 +0100
+Message-ID: <8f66d0cf-f5ed-045c-6ab6-2c83593ccf9b@baylibre.com>
+Date: Thu, 20 Feb 2020 17:32:32 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <1582213085-11656-1-git-send-email-christianshewitt@gmail.com>
+In-Reply-To: <1582215900-12716-1-git-send-email-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200220_083155_592757_796BCC99 
-X-CRM114-Status: GOOD (  15.53  )
+X-CRM114-CacheID: sfid-20200220_083237_379132_69F2673A 
+X-CRM114-Status: GOOD (  14.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,35 +155,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Oleg Ivanov <balbes-150@yandex.ru>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/02/2020 16:38, Christian Hewitt wrote:
-> Add the rc-odroid keymap to the Odroid C2 device-tree.
+On 20/02/2020 17:25, Christian Hewitt wrote:
+> This adds missing bindings and fixes BT output.
 > 
+> Fixes: b07a11dbdfeb ("arm64: dts: meson-gxbb-vega-s95: fix WiFi/BT module support")
+> 
+> Suggested-by: Oleg Ivanov <balbes-150@yandex.ru>
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 6ded279..b46ef98 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -248,6 +248,7 @@
->  	status = "okay";
->  	pinctrl-0 = <&remote_input_ao_pins>;
->  	pinctrl-names = "default";
-> +	linux,rc-map-name = "rc-odroid";
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> index 5eab3df..0012779 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> @@ -4,6 +4,8 @@
+>   */
+>  
+>  #include "meson-gxbb.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+
+These includes seems unnecessary otherwise the DT wouldn't build actually.
+
+>  
+>  / {
+>  	compatible = "tronsmart,vega-s95", "amlogic,meson-gxbb";
+> @@ -245,6 +247,9 @@
+>  	bluetooth {
+>  		compatible = "brcm,bcm43438-bt";
+>  		shutdown-gpios = <&gpio GPIOX_20 GPIO_ACTIVE_HIGH>;
+> +		max-speed = <2000000>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "lpo";
+>  	};
 >  };
 >  
->  &gpio_ao {
 > 
 
+Ok for this part.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
