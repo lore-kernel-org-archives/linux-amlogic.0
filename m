@@ -2,91 +2,60 @@ Return-Path: <SRS0=5fWL=4J=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15AD3C35657
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 15:36:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1004C35657
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 17:15:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DB0962073A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 15:36:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 928FB222C4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 17:15:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RqQhbRzv";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="T5/frcgS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DB0962073A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ST92HRm/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 928FB222C4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:
+	In-Reply-To:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nejAGUwVWnj1HJ3JgCFg8ez8gqqxrD5l+6N+r1rwnTA=; b=RqQhbRzvDgfxwp
-	Out93776YavvOuR+QmoJnyixSj6cJGoAdl9lhJtiTLDKEMeoyq0GQ5JS8CXNc1Llxwa2rieXgaleM
-	P07WUXGEzKvKfvsBU2WRslWhPf0/c530wLnvbqiaCJKMgB96JkMLV2lcAStN5YxAcBraLX7g6GmfS
-	Mpb1RSfQDHbq+cuxADbf0Li/DMhjBQGDmFSzcDaehCBa7HxcdD6sZsNzJJzK+6Ir7bb5dhXwYVyOB
-	qW24xmcHhi2KtC3twl6zzRIMr9tK6SCsB36H0bzJ0dvBiN2176fS/ZuTajZbTVPs4sqzvW9dLE8w9
-	h+L1HaeuOe1BBNx1ILTg==;
+	References:List-Owner; bh=aysr2Z+wStGofe6E1HnvnPDGK8LuSgiUrMkLmf9917c=; b=ST9
+	2HRm/KRKj+c2Xuag0W8cRixD/Gfqz4A9a9odBMrc2IdA3fRTR0LkvpjrDZQzqYrbRk8IFzoPvrVeO
+	wovRO6BvnVm6BvCJl/JuitlWr966CCwjzVzn64Z4sqfW60cEBGkYnbU6ajPARmek7tzYri6M0DcRg
+	sy9HCGONSoKtDR2Z5Lkl2b8dAJd2Hx6JVRm6uOJrzmCKb9K45OHPKEsbKlkXF6sjk29VZl/wIduI8
+	k7GHHdxjKa45I4sU2a+K2Wgg4fvtdOxQPEBixF2OB4NTijktimoAH4ZLIqKvsjXR6s7lkY88AoVdV
+	12ZtimteL8e4+hLTPBJeGTrmw0VhTSw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j5ALm-0006De-5Y; Fri, 21 Feb 2020 15:36:22 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j5ALi-00068e-W5
- for linux-amlogic@lists.infradead.org; Fri, 21 Feb 2020 15:36:20 +0000
-Received: by mail-wr1-x441.google.com with SMTP id w12so2553653wrt.2
- for <linux-amlogic@lists.infradead.org>; Fri, 21 Feb 2020 07:36:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=dRbqe4eUACpKWzXiYrKk2NUlvZT2+naCHgPcYXBYGCE=;
- b=T5/frcgSotgG1fZfrzTxZl0GKuBNiZDavgMnI0clSBzE1a6J6InIUguH75pZAHYGf5
- UR7JM+qugefZ63zlZZQPYReaVr4Umif5qUxEc5umOc6OUOSjGRyJ5u07p24QpB9xQVbZ
- nU9gtALkx4hE3e+WsPJxkJdUiukxSIVcSQRWL2s6W0PIDyOhpIRDtQts79LIxweOArls
- 9Lpv3O9IgxvTJtoSmU4S3jP/Np5pG5eCWzB6YyUMw/LhEhG9QUaeUMvPCGOA0GtkZLk6
- bMdlQXoipYKZ+qUatNDwmL6sw9Vx//OjTSuYaXFYC2wyA1tJl0AzyWkZbckftPTWf77d
- x1Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=dRbqe4eUACpKWzXiYrKk2NUlvZT2+naCHgPcYXBYGCE=;
- b=O43fZxRR4EkAKr8dNekhcV5c4P+lalF8TKtw4+QHpnQwCd3S/QrcpjdReQ9pNnJMN7
- dMrK/fJzvpInTWuzHD2GJFrw9kB+/U31XvVzHRzaNN8EsJcg7K6MijZnTGz7UorDKsrW
- v2yfkAPRo3gpXvnilPFE7UfeSBGXYinJtS1mHZwcsqjeUjvf2Zt9LpqJQ75mIUVeIESX
- stG3NNaLjAHxA9e6k5Gt6AOAzC+eznXyoDdN5ha7kr8Oe7ygRDMinJ1zFRg1HjQGOF0B
- EVZHWeBzcfLn12ZA5djyp0WVAir0pLEdNSL90DE+r/CmmLS8sDsbGRoMzubp9++5tNgA
- cq5A==
-X-Gm-Message-State: APjAAAX7ttKjD4aEJd3TAVwYX0zIV5cwiafN1/GzV/WIZzpnqKV9AIdp
- 31D3WmXiZ+kZlAbGe+LuBUUvRw==
-X-Google-Smtp-Source: APXvYqwTNuYrj7B0sYxkfGazLR5Rba6n2sk8/E+FHy5DEdiaKy12ZTnWDOOt4uM/epcimPjPrd2+8A==
-X-Received: by 2002:adf:f6c1:: with SMTP id y1mr48067933wrp.17.1582299377151; 
- Fri, 21 Feb 2020 07:36:17 -0800 (PST)
-Received: from localhost.localdomain (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id z25sm4198782wmf.14.2020.02.21.07.36.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 21 Feb 2020 07:36:16 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH v2 2/3] ASoC: meson: g12a: add internal DAC glue driver
-Date: Fri, 21 Feb 2020 16:36:06 +0100
-Message-Id: <20200221153607.1585499-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200221153607.1585499-1-jbrunet@baylibre.com>
-References: <20200221153607.1585499-1-jbrunet@baylibre.com>
-MIME-Version: 1.0
-X-Patchwork-Bot: notify
+	id 1j5Btc-00037z-WE; Fri, 21 Feb 2020 17:15:25 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1j5BtZ-00037b-Ci
+ for linux-amlogic@lists.infradead.org; Fri, 21 Feb 2020 17:15:23 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B989730E;
+ Fri, 21 Feb 2020 09:15:20 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2DCCB3F68F;
+ Fri, 21 Feb 2020 09:15:20 -0800 (PST)
+Date: Fri, 21 Feb 2020 17:15:18 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: g12a: add internal DAC glue driver" to the asoc
+ tree
+In-Reply-To: <20200221153607.1585499-3-jbrunet@baylibre.com>
+Message-Id: <applied-20200221153607.1585499-3-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200221_073619_045429_F61821D5 
-X-CRM114-Status: GOOD (  17.44  )
+X-CRM114-CacheID: sfid-20200221_091521_522984_7732DFAE 
+X-CRM114-Status: GOOD (  21.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,18 +68,54 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+ Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+ linux-amlogic@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
+
+The patch
+
+   ASoC: meson: g12a: add internal DAC glue driver
+
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From af2618a2eee8531e134c42194143c2f4faef94ba Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Fri, 21 Feb 2020 16:36:06 +0100
+Subject: [PATCH] ASoC: meson: g12a: add internal DAC glue driver
 
 Add support for the internal audio DAC glue found on the Amlogic g12a
 and sm1 SoC families. This allows to connect the TDM outputs of the SoC
 to the internal t9015 audio DAC.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Link: https://lore.kernel.org/r/20200221153607.1585499-3-jbrunet@baylibre.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
  sound/soc/meson/Kconfig         |   9 ++
  sound/soc/meson/Makefile        |   2 +
@@ -416,7 +421,7 @@ index 000000000000..9339fabccb79
 +MODULE_DESCRIPTION("Amlogic G12a To Internal DAC Codec Driver");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.24.1
+2.20.1
 
 
 _______________________________________________
