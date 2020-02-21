@@ -2,90 +2,146 @@ Return-Path: <SRS0=5fWL=4J=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49ED7C35640
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 09:10:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56B7BC35640
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 09:11:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1C91C206EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 09:10:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 16EC920679
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 09:11:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cI+KZO9e";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="d5Nga09g"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C91C206EF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UZXbQ8Z1";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nitPb5hY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 16EC920679
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/jB86XOopg30c73uphzo5cin5bwCrUcJi694VX3q2Vc=; b=cI+KZO9efQev55
-	ZxjwOIhqV3pFjTILOYICz0pSxjfH8mVIWssx86vyqCRbtT9ZrtUAWIljRmPhWGF2FUAhkf4SQPAvh
-	o7JAmjzYxMhE4qkGIA0A4fKQsvoX5fWVu8TfjOYQgMeYhErk8dm7BaSgvZtx4i6PxYZBNMKiuPv9Z
-	D+ci8dUmXlH8drsRkERnr1tbMJYQP/Q003UJtaZC5l6hcRzGKveF0dYrfQol2lW85tXQr4EBOX+jp
-	eTmu05w06u67a5ShwPb/iupAVN9RIP6Fx12B5R2m35tleOgJr5w8GI6rS8NvYOAZpQkS+1FE5hWBp
-	1wbvZ+0lVf2ItVDSHyKA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=wNBZDdtOhPY5+a0D2My+LYaya34/1/jbb6wLHJXmizw=; b=UZXbQ8Z1t+AJEU
+	3iKVWgAm9mHAFAcGwE+8CGRajcZ0cMl/bUP0KtjiyskFzWBrzxfkPnJ3vTIbxxC+KgWU5raSp14Mf
+	XfSL/AzbeYaU1gbDPAU3khN2pH7gkqmCswty9gS78BQM6xvue0i8XllfHfuB2u+Zc5dMxv8Mgf0WS
+	jSk4yAspvasBFG+r6m68QyeSOs2vFBgDs95hpTEszWh6WgdheMSuzMVTX0f4AfVPTLXvf7C7gmZ3I
+	qCyaQ2ihUKnx+isjpFjBtEQNnC1MTBwZV6lUmwFhImzYMzFsMudKbT1fFLyXilRMhIQkVOHia4I6R
+	ACmCrxnCip4/hzv2t9Pg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j54K3-0008VZ-7Z; Fri, 21 Feb 2020 09:10:11 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1j54Kw-0000sZ-Uo; Fri, 21 Feb 2020 09:11:06 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j54In-0006XG-Rl
- for linux-amlogic@lists.infradead.org; Fri, 21 Feb 2020 09:08:59 +0000
-Received: by mail-wm1-x344.google.com with SMTP id b17so855861wmb.0
- for <linux-amlogic@lists.infradead.org>; Fri, 21 Feb 2020 01:08:53 -0800 (PST)
+ id 1j54Kt-0000rc-Hh
+ for linux-amlogic@lists.infradead.org; Fri, 21 Feb 2020 09:11:05 +0000
+Received: by mail-wm1-x342.google.com with SMTP id s144so4687825wme.1
+ for <linux-amlogic@lists.infradead.org>; Fri, 21 Feb 2020 01:11:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ZrjMNHoguUcpFr30YrDzqs9vPrSEB6e8QQoRgTYGAKE=;
- b=d5Nga09gB0LHbPHKw0g7Qa/mYbdOUoG0IT7g0TvY1dC+E9S8ePsAUAcg5qGsvF7YD7
- 2Wr7ljuvQrjzb57ePGFYmLN/M/oIlms2ce68+O1se6yTP7iSB3VUJ2ORV+lBeBGR9Hcm
- IIbpc21jsguOsejszuoqNwqtdug01XsWiYqDd/apSypO8o/iuxgzKO3NzomWaSSJYST+
- N5tRzJ4lLBVmaB5Wdfr7S71u6n7OQdeJxKO0XMpPNrqmyau3qmx6AowmZy30vy2vJ2KC
- Od1KI8rrOkPYGQ3xY+Pcjo+dapOFG00eejnvfisIa3V3Lsd2ChIK7b1wYFTJbKrZQQYh
- xADQ==
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=lC2Ok05wDBJ11Mc+7XUHky9ZjVue0L36+JAbszAfxLM=;
+ b=nitPb5hY8JFvy36A15Vy2ZNcfH2vIQLKpCa9o97VvY+nLx1A5fr8PkdsPflphtORSp
+ t54HsjYCc0zoXbu5sC/2qwW9+Yj4gbdN7ZoPKJuicxkhz1tv1TCGZcbyhI5kWG1Dn/Bt
+ Fq8bqIouteP/5SuVrB3YVm+8pqUvR+dz1bDl06pTL9qWfnasz7flQ5Pu2qorpwJ0bKCc
+ JsX0XqsQcQv8PQNpdvZIC1VzRErxIu+tPstIRiuU7fMJfQsjY+Wu7iT5aCkJI2ne662b
+ o3vfGzOmsjso1ikg8zHPxqckRuw/jLhPcsy+0zpNfx1Pp80DUoVzSi2FuruoYUtgFE47
+ mv4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ZrjMNHoguUcpFr30YrDzqs9vPrSEB6e8QQoRgTYGAKE=;
- b=LBhpBpM2F7808XaaHsG4QzoVIYr1PTkHqPlI2orXhCDOshhnueCX01VT43uzPEHTY7
- L0oPgdjtNyg1jrwK6r/NChlVAiiAofWM5mpUfPW+OZuADRmaqwZjm/j6ILJ+6ByNXLcy
- bt5QfhlxdVuJ8zXa9/oD/iktvDSz22a7AJvhWugtvPiI2IeBTuScw9aML0kTjOAlfyoK
- 96aotg9XHbzFtCBEu1re5IkcVYU1syhpf9ugcfLiKUYf4doZoUixZLsIS2zr0khxQw3k
- Vhs9dKk3Kujxy39zWTwrpjhDRuEacEHsQmYpZrf0MTvcaPCIB5B0DlLVJJsLjG24cRTt
- lZsA==
-X-Gm-Message-State: APjAAAXA4sFuwXOmxh1z9CZ8E7QQpHk8QHh8qUdC7ir2J59R/+ZkZ5lQ
- xfF99PFGubxiGtzZuY6S7o90Bg==
-X-Google-Smtp-Source: APXvYqxDHSS3VKbSZtye4gfsFBN1cjOif37mY8qC4NlGDLcqE6/cR7F6MPI2+MEKF3d+RCpB0MfdrA==
-X-Received: by 2002:a1c:2d43:: with SMTP id t64mr2512627wmt.50.1582276132419; 
- Fri, 21 Feb 2020 01:08:52 -0800 (PST)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:4ca8:b25b:98e4:858])
- by smtp.gmail.com with ESMTPSA id
- h5sm3173288wmf.8.2020.02.21.01.08.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 21 Feb 2020 01:08:51 -0800 (PST)
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=lC2Ok05wDBJ11Mc+7XUHky9ZjVue0L36+JAbszAfxLM=;
+ b=ZNaH5OLw0Ce9xX4NTdKCNvc/mZ1Juu5/AU54ksVWmahGNvQVlJI6GnUECvXTfUBEoE
+ TLtw1E3pF3yj2WAm/Yll067OBObai1lWT7Ml+J/f2mbD6FlrDoLnZyRY7l3RnA1q+Po2
+ Qaln6IcDR3uZ62nCqn6ld3x6lG1C75bapSFVTvPwRa/yiWrpEUWguXVdEvDXevvBAJoa
+ jxssIgxnMqzH0ppwIdTDbtY4hL6XDdJZJom5ZEnvHH9H13KNCJnN1QAqeWzHg3XHQ+Xk
+ 4eniaSuXQq6Sz+Yz6We3vXs4S9XRjjclvqRYgHLPDfKfoDNqXMbY5tVCSCvWXO1tcZ4S
+ 3v6g==
+X-Gm-Message-State: APjAAAUzJIpcfQb1Vy9q6E+uEMPs9ztFacPOu/S1+VKsYZWT2f2ZXMfJ
+ qg0ZF2Vc0qLIjuTXfDPYsfGDuw==
+X-Google-Smtp-Source: APXvYqzW+erZHPEVYlb4cjR9TwZjlpd5fW07F9ngwXZnZ9+r5FiohTmukOgiek6LvZ+Pt5tBb+VSpw==
+X-Received: by 2002:a1c:4b0f:: with SMTP id y15mr2478639wma.87.1582276261828; 
+ Fri, 21 Feb 2020 01:11:01 -0800 (PST)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:4ca8:b25b:98e4:858?
+ ([2a01:e35:2ec0:82b0:4ca8:b25b:98e4:858])
+ by smtp.gmail.com with ESMTPSA id a22sm3025856wmd.20.2020.02.21.01.11.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 21 Feb 2020 01:11:01 -0800 (PST)
+Subject: Re: [PATCH v3 2/3] usb: dwc3: gadget: Add support for disabling SS
+ instances in park mode
+To: Jun Li <lijun.kernel@gmail.com>
+References: <20200219141817.24521-1-narmstrong@baylibre.com>
+ <20200219141817.24521-3-narmstrong@baylibre.com>
+ <CAKgpwJXVo_Psyu45+KfRKsTRBc6LRWSvUw2CWdUQseAoKd2p9g@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: daniel@ffwll.ch,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH 3/4] drm/meson: overlay: setup overlay for Amlogic FBC
-Date: Fri, 21 Feb 2020 10:08:44 +0100
-Message-Id: <20200221090845.7397-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200221090845.7397-1-narmstrong@baylibre.com>
-References: <20200221090845.7397-1-narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <b2439923-5590-349e-754b-6b047d4becaf@baylibre.com>
+Date: Fri, 21 Feb 2020 10:10:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
+In-Reply-To: <CAKgpwJXVo_Psyu45+KfRKsTRBc6LRWSvUw2CWdUQseAoKd2p9g@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200221_010854_034814_492B9368 
-X-CRM114-Status: GOOD (  17.72  )
+X-CRM114-CacheID: sfid-20200221_011103_590408_B37F1086 
+X-CRM114-Status: GOOD (  11.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,434 +153,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Felipe Balbi <balbi@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ khilman@baylibre.com, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Tim <elatllat@gmail.com>, Dongjin Kim <tobetter@gmail.com>,
+ linux-amlogic@lists.infradead.org, Thinh Nguyen <thinhn@synopsys.com>,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Setup the Amlogic FBC decoder for the VD1 video overlay plane.
-
-The VD1 Amlogic FBC decoder is integrated in the pipeline like the
-YUV pixel reading/formatter but used a direct memory address instead.
-
-The default mode needs to calculate the content body size since the header
-is allocated after.
-
-The scatter mode needs a simplier management since only the header is needed,
-since it contains an IOMMU scatter table to locate the superblocks in memory.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_drv.h     |  16 ++
- drivers/gpu/drm/meson/meson_overlay.c | 257 +++++++++++++++++++++++++-
- 2 files changed, 265 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
-index 04fdf3826643..da951964e988 100644
---- a/drivers/gpu/drm/meson/meson_drv.h
-+++ b/drivers/gpu/drm/meson/meson_drv.h
-@@ -80,6 +80,7 @@ struct meson_drm {
- 
- 		bool vd1_enabled;
- 		bool vd1_commit;
-+		bool vd1_afbc;
- 		unsigned int vd1_planes;
- 		uint32_t vd1_if0_gen_reg;
- 		uint32_t vd1_if0_luma_x0;
-@@ -105,6 +106,21 @@ struct meson_drm {
- 		uint32_t vd1_height0;
- 		uint32_t vd1_height1;
- 		uint32_t vd1_height2;
-+		uint32_t vd1_afbc_mode;
-+		uint32_t vd1_afbc_en;
-+		uint32_t vd1_afbc_head_addr;
-+		uint32_t vd1_afbc_body_addr;
-+		uint32_t vd1_afbc_conv_ctrl;
-+		uint32_t vd1_afbc_dec_def_color;
-+		uint32_t vd1_afbc_vd_cfmt_ctrl;
-+		uint32_t vd1_afbc_vd_cfmt_w;
-+		uint32_t vd1_afbc_vd_cfmt_h;
-+		uint32_t vd1_afbc_mif_hor_scope;
-+		uint32_t vd1_afbc_mif_ver_scope;
-+		uint32_t vd1_afbc_size_out;
-+		uint32_t vd1_afbc_pixel_hor_scope;
-+		uint32_t vd1_afbc_pixel_ver_scope;
-+		uint32_t vd1_afbc_size_in;
- 		uint32_t vpp_pic_in_height;
- 		uint32_t vpp_postblend_vd1_h_start_end;
- 		uint32_t vpp_postblend_vd1_v_start_end;
-diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
-index 2468b0212d52..1fbb81732e9a 100644
---- a/drivers/gpu/drm/meson/meson_overlay.c
-+++ b/drivers/gpu/drm/meson/meson_overlay.c
-@@ -5,6 +5,7 @@
-  * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
-  */
- 
-+#define DEBUG
- #include <linux/bitfield.h>
- 
- #include <drm/drm_atomic.h>
-@@ -76,6 +77,84 @@
- #define VD_REGION24_START(value)	FIELD_PREP(GENMASK(11, 0), value)
- #define VD_REGION13_END(value)		FIELD_PREP(GENMASK(27, 16), value)
- 
-+/* AFBC_ENABLE */
-+#define AFBC_DEC_ENABLE			BIT(8)
-+#define AFBC_FRM_START			BIT(0)
-+
-+/* AFBC_MODE */
-+#define AFBC_HORZ_SKIP_UV(value)	FIELD_PREP(GENMASK(1, 0), value)
-+#define AFBC_VERT_SKIP_UV(value)	FIELD_PREP(GENMASK(3, 2), value)
-+#define AFBC_HORZ_SKIP_Y(value)		FIELD_PREP(GENMASK(5, 4), value)
-+#define AFBC_VERT_SKIP_Y(value)		FIELD_PREP(GENMASK(7, 6), value)
-+#define AFBC_COMPBITS_YUV(value)	FIELD_PREP(GENMASK(13, 8), value)
-+#define AFBC_COMPBITS_8BIT		0
-+#define AFBC_COMPBITS_10BIT		(2 | (2 << 2) | (2 << 4))
-+#define AFBC_BURST_LEN(value)		FIELD_PREP(GENMASK(15, 14), value)
-+#define AFBC_HOLD_LINE_NUM(value)	FIELD_PREP(GENMASK(22, 16), value)
-+#define AFBC_MIF_URGENT(value)		FIELD_PREP(GENMASK(25, 24), value)
-+#define AFBC_REV_MODE(value)		FIELD_PREP(GENMASK(27, 26), value)
-+#define AFBC_BLK_MEM_MODE		BIT(28)
-+#define AFBC_SCATTER_MODE		BIT(29)
-+#define AFBC_SOFT_RESET			BIT(31)
-+
-+/* AFBC_SIZE_IN */
-+#define AFBC_HSIZE_IN(value)		FIELD_PREP(GENMASK(28, 16), value)
-+#define AFBC_VSIZE_IN(value)		FIELD_PREP(GENMASK(12, 0), value)
-+
-+/* AFBC_DEC_DEF_COLOR */
-+#define AFBC_DEF_COLOR_Y(value)		FIELD_PREP(GENMASK(29, 20), value)
-+#define AFBC_DEF_COLOR_U(value)		FIELD_PREP(GENMASK(19, 10), value)
-+#define AFBC_DEF_COLOR_V(value)		FIELD_PREP(GENMASK(9, 0), value)
-+
-+/* AFBC_CONV_CTRL */
-+#define AFBC_CONV_LBUF_LEN(value)	FIELD_PREP(GENMASK(11, 0), value)
-+
-+/* AFBC_LBUF_DEPTH */
-+#define AFBC_DEC_LBUF_DEPTH(value)	FIELD_PREP(GENMASK(27, 16), value)
-+#define AFBC_MIF_LBUF_DEPTH(value)	FIELD_PREP(GENMASK(11, 0), value)
-+
-+/* AFBC_OUT_XSCOPE/AFBC_SIZE_OUT */
-+#define AFBC_HSIZE_OUT(value)		FIELD_PREP(GENMASK(28, 16), value)
-+#define AFBC_VSIZE_OUT(value)		FIELD_PREP(GENMASK(12, 0), value)
-+#define AFBC_OUT_HORZ_BGN(value)	FIELD_PREP(GENMASK(28, 16), value)
-+#define AFBC_OUT_HORZ_END(value)	FIELD_PREP(GENMASK(12, 0), value)
-+
-+/* AFBC_OUT_YSCOPE */
-+#define AFBC_OUT_VERT_BGN(value)	FIELD_PREP(GENMASK(28, 16), value)
-+#define AFBC_OUT_VERT_END(value)	FIELD_PREP(GENMASK(12, 0), value)
-+
-+/* AFBC_VD_CFMT_CTRL */
-+#define AFBC_HORZ_RPT_PIXEL0		BIT(23)
-+#define AFBC_HORZ_Y_C_RATIO(value)	FIELD_PREP(GENMASK(22, 21), value)
-+#define AFBC_HORZ_FMT_EN		BIT(20)
-+#define AFBC_VERT_RPT_LINE0		BIT(16)
-+#define AFBC_VERT_INITIAL_PHASE(value)	FIELD_PREP(GENMASK(11, 8), value)
-+#define AFBC_VERT_PHASE_STEP(value)	FIELD_PREP(GENMASK(7, 1), value)
-+#define AFBC_VERT_FMT_EN		BIT(0)
-+
-+/* AFBC_VD_CFMT_W */
-+#define AFBC_VD_V_WIDTH(value)		FIELD_PREP(GENMASK(11, 0), value)
-+#define AFBC_VD_H_WIDTH(value)		FIELD_PREP(GENMASK(27, 16), value)
-+
-+/* AFBC_MIF_HOR_SCOPE */
-+#define AFBC_MIF_BLK_BGN_H(value)	FIELD_PREP(GENMASK(25, 16), value)
-+#define AFBC_MIF_BLK_END_H(value)	FIELD_PREP(GENMASK(9, 0), value)
-+
-+/* AFBC_MIF_VER_SCOPE */
-+#define AFBC_MIF_BLK_BGN_V(value)	FIELD_PREP(GENMASK(27, 16), value)
-+#define AFBC_MIF_BLK_END_V(value)	FIELD_PREP(GENMASK(11, 0), value)
-+
-+/* AFBC_PIXEL_HOR_SCOPE */
-+#define AFBC_DEC_PIXEL_BGN_H(value)	FIELD_PREP(GENMASK(28, 16), value)
-+#define AFBC_DEC_PIXEL_END_H(value)	FIELD_PREP(GENMASK(12, 0), value)
-+
-+/* AFBC_PIXEL_VER_SCOPE */
-+#define AFBC_DEC_PIXEL_BGN_V(value)	FIELD_PREP(GENMASK(28, 16), value)
-+#define AFBC_DEC_PIXEL_END_V(value)	FIELD_PREP(GENMASK(12, 0), value)
-+
-+/* AFBC_VD_CFMT_H */
-+#define AFBC_VD_HEIGHT(value)		FIELD_PREP(GENMASK(12, 0), value)
-+
- struct meson_overlay {
- 	struct drm_plane base;
- 	struct meson_drm *priv;
-@@ -157,6 +236,9 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
- 	unsigned int ratio_x, ratio_y;
- 	int temp_height, temp_width;
- 	unsigned int w_in, h_in;
-+	int afbc_left, afbc_right;
-+	int afbc_top_src, afbc_bottom_src;
-+	int afbc_top, afbc_bottom;
- 	int temp, start, end;
- 
- 	if (!crtc_state) {
-@@ -169,7 +251,7 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
- 
- 	w_in = fixed16_to_int(state->src_w);
- 	h_in = fixed16_to_int(state->src_h);
--	crop_top = fixed16_to_int(state->src_x);
-+	crop_top = fixed16_to_int(state->src_y);
- 	crop_left = fixed16_to_int(state->src_x);
- 
- 	video_top = state->crtc_y;
-@@ -243,6 +325,14 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
- 	DRM_DEBUG("vsc startp %d endp %d start_lines %d end_lines %d\n",
- 		 vsc_startp, vsc_endp, vd_start_lines, vd_end_lines);
- 
-+	afbc_top = round_down(vd_start_lines, 4);
-+	afbc_bottom = round_up(vd_end_lines + 1, 4);
-+	afbc_top_src = 0;
-+	afbc_bottom_src = round_up(h_in + 1, 4);
-+
-+	DRM_DEBUG("afbc top %d (src %d) bottom %d (src %d)\n",
-+		  afbc_top, afbc_top_src, afbc_bottom, afbc_bottom_src);
-+
- 	/* Horizontal */
- 
- 	start = video_left + video_width / 2 - ((w_in << 17) / ratio_x);
-@@ -278,6 +368,16 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
- 	DRM_DEBUG("hsc startp %d endp %d start_lines %d end_lines %d\n",
- 		 hsc_startp, hsc_endp, hd_start_lines, hd_end_lines);
- 
-+	if (hd_start_lines > 0 || (hd_end_lines < w_in)) {
-+		afbc_left = 0;
-+		afbc_right = round_up(w_in, 32);
-+	} else {
-+		afbc_left = round_down(hd_start_lines, 32);
-+		afbc_right = round_up(hd_end_lines + 1, 32);
-+	}
-+
-+	DRM_DEBUG("afbc left %d right %d\n", afbc_left, afbc_right);
-+
- 	priv->viu.vpp_vsc_start_phase_step = ratio_y << 6;
- 
- 	priv->viu.vpp_vsc_ini_phase = vphase << 8;
-@@ -293,6 +393,35 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
- 			VD_H_WIDTH(hd_end_lines - hd_start_lines + 1) |
- 			VD_V_WIDTH(hd_end_lines/2 - hd_start_lines/2 + 1);
- 
-+	priv->viu.vd1_afbc_vd_cfmt_w =
-+			AFBC_VD_H_WIDTH(afbc_right - afbc_left) |
-+			AFBC_VD_V_WIDTH(afbc_right / 2 - afbc_left / 2);
-+
-+	priv->viu.vd1_afbc_vd_cfmt_h =
-+			AFBC_VD_HEIGHT((afbc_bottom - afbc_top) / 2);
-+
-+	priv->viu.vd1_afbc_mif_hor_scope = AFBC_MIF_BLK_BGN_H(afbc_left / 32) |
-+				AFBC_MIF_BLK_END_H((afbc_right / 32) - 1);
-+
-+	priv->viu.vd1_afbc_mif_ver_scope = AFBC_MIF_BLK_BGN_V(afbc_top / 4) |
-+				AFBC_MIF_BLK_END_H((afbc_bottom / 4) - 1);
-+
-+	priv->viu.vd1_afbc_size_out =
-+			AFBC_HSIZE_OUT(afbc_right - afbc_left) |
-+			AFBC_VSIZE_OUT(afbc_bottom - afbc_top);
-+
-+	priv->viu.vd1_afbc_pixel_hor_scope =
-+			AFBC_DEC_PIXEL_BGN_H(hd_start_lines - afbc_left) |
-+			AFBC_DEC_PIXEL_END_H(hd_end_lines - afbc_left);
-+
-+	priv->viu.vd1_afbc_pixel_ver_scope =
-+			AFBC_DEC_PIXEL_BGN_V(vd_start_lines - afbc_top) |
-+			AFBC_DEC_PIXEL_END_V(vd_end_lines - afbc_top);
-+
-+	priv->viu.vd1_afbc_size_in =
-+				AFBC_HSIZE_IN(afbc_right - afbc_left) |
-+				AFBC_VSIZE_IN(afbc_bottom_src - afbc_top_src);
-+
- 	priv->viu.vd1_if0_luma_y0 = VD_Y_START(vd_start_lines) |
- 				    VD_Y_END(vd_end_lines);
- 
-@@ -350,11 +479,63 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
- 
- 	spin_lock_irqsave(&priv->drm->event_lock, flags);
- 
--	priv->viu.vd1_if0_gen_reg = VD_URGENT_CHROMA |
--				    VD_URGENT_LUMA |
--				    VD_HOLD_LINES(9) |
--				    VD_CHRO_RPT_LASTL_CTRL |
--				    VD_ENABLE;
-+	if ((fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0)) ==
-+			    DRM_FORMAT_MOD_AMLOGIC_FBC(0)) {
-+		priv->viu.vd1_afbc = true;
-+
-+		priv->viu.vd1_afbc_mode = AFBC_MIF_URGENT(3) |
-+					  AFBC_HOLD_LINE_NUM(8) |
-+					  AFBC_BURST_LEN(2);
-+
-+		if (fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC_SCATTER)
-+			priv->viu.vd1_afbc_mode |= AFBC_SCATTER_MODE;
-+
-+		if (fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC_MEM_SAVING)
-+			priv->viu.vd1_afbc_mode |= AFBC_BLK_MEM_MODE;
-+
-+		priv->viu.vd1_afbc_en = 0x1600 | AFBC_DEC_ENABLE;
-+
-+		priv->viu.vd1_afbc_conv_ctrl = AFBC_CONV_LBUF_LEN(256);
-+
-+		priv->viu.vd1_afbc_dec_def_color = AFBC_DEF_COLOR_Y(1023);
-+
-+		/* 420: horizontal / 2, vertical / 4 */
-+		priv->viu.vd1_afbc_vd_cfmt_ctrl = AFBC_HORZ_RPT_PIXEL0 |
-+						  AFBC_HORZ_Y_C_RATIO(1) |
-+						  AFBC_HORZ_FMT_EN |
-+						  AFBC_VERT_RPT_LINE0 |
-+						  AFBC_VERT_INITIAL_PHASE(12) |
-+						  AFBC_VERT_PHASE_STEP(8) |
-+						  AFBC_VERT_FMT_EN;
-+
-+		switch (fb->format->format) {
-+		/* AFBC Only formats */
-+		case DRM_FORMAT_YUV420_10BIT:
-+			priv->viu.vd1_afbc_mode |=
-+				AFBC_COMPBITS_YUV(AFBC_COMPBITS_10BIT);
-+			priv->viu.vd1_afbc_dec_def_color |=
-+					AFBC_DEF_COLOR_U(512) |
-+					AFBC_DEF_COLOR_V(512);
-+			break;
-+		case DRM_FORMAT_YUV420_8BIT:
-+			priv->viu.vd1_afbc_dec_def_color |=
-+					AFBC_DEF_COLOR_U(128) |
-+					AFBC_DEF_COLOR_V(128);
-+			break;
-+		}
-+
-+		priv->viu.vd1_if0_gen_reg = 0;
-+		priv->viu.vd1_if0_canvas0 = 0;
-+		priv->viu.viu_vd1_fmt_ctrl = 0;
-+	} else {
-+		priv->viu.vd1_afbc = false;
-+
-+		priv->viu.vd1_if0_gen_reg = VD_URGENT_CHROMA |
-+					    VD_URGENT_LUMA |
-+					    VD_HOLD_LINES(9) |
-+					    VD_CHRO_RPT_LASTL_CTRL |
-+					    VD_ENABLE;
-+	}
- 
- 	/* Setup scaler params */
- 	meson_overlay_setup_scaler_params(priv, plane, interlace_mode);
-@@ -370,6 +551,7 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
- 	priv->viu.vd1_if0_gen_reg2 = 0;
- 	priv->viu.viu_vd1_fmt_ctrl = 0;
- 
-+	/* None will match for AFBC Only formats */
- 	switch (fb->format->format) {
- 	/* TOFIX DRM_FORMAT_RGB888 should be supported */
- 	case DRM_FORMAT_YUYV:
-@@ -488,13 +670,42 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
- 		priv->viu.vd1_stride0 = fb->pitches[0];
- 		priv->viu.vd1_height0 =
- 			drm_format_info_plane_height(fb->format,
--						fb->height, 0);
-+						     fb->height, 0);
- 		DRM_DEBUG("plane 0 addr 0x%x stride %d height %d\n",
- 			 priv->viu.vd1_addr0,
- 			 priv->viu.vd1_stride0,
- 			 priv->viu.vd1_height0);
- 	}
- 
-+	if (priv->viu.vd1_afbc) {
-+		if (priv->viu.vd1_afbc_mode & AFBC_SCATTER_MODE) {
-+			/*
-+			 * In Scatter mode, the header contains the physical
-+			 * body content layout, thus the body content
-+			 * size isn't needed.
-+			 */
-+			priv->viu.vd1_afbc_head_addr = priv->viu.vd1_addr0 >> 4;
-+			priv->viu.vd1_afbc_body_addr = 0;
-+		} else {
-+			/* Default mode is 4k per superblock */
-+			unsigned long block_size = 4096;
-+			unsigned long body_size;
-+
-+			/* 8bit mem saving mode is 3072bytes per superblock */
-+			if (priv->viu.vd1_afbc_mode & AFBC_BLK_MEM_MODE)
-+				block_size = 3072;
-+
-+			body_size = (ALIGN(priv->viu.vd1_stride0, 64) / 64) *
-+				    (ALIGN(priv->viu.vd1_height0, 32) / 32) *
-+				    block_size;
-+
-+			priv->viu.vd1_afbc_body_addr = priv->viu.vd1_addr0 >> 4;
-+			/* Header is after body content */
-+			priv->viu.vd1_afbc_head_addr = (priv->viu.vd1_addr0 +
-+							body_size) >> 4;
-+		}
-+	}
-+
- 	priv->viu.vd1_enabled = true;
- 
- 	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
-@@ -531,6 +742,23 @@ static const struct drm_plane_helper_funcs meson_overlay_helper_funcs = {
- 	.prepare_fb	= drm_gem_fb_prepare_fb,
- };
- 
-+static bool meson_overlay_format_mod_supported(struct drm_plane *plane,
-+					       u32 format, u64 modifier)
-+{
-+	if (modifier == DRM_FORMAT_MOD_LINEAR &&
-+	    format != DRM_FORMAT_YUV420_8BIT &&
-+	    format != DRM_FORMAT_YUV420_10BIT)
-+		return true;
-+
-+	if ((modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0)) ==
-+			DRM_FORMAT_MOD_AMLOGIC_FBC(0) &&
-+	    (format == DRM_FORMAT_YUV420_8BIT ||
-+	     format == DRM_FORMAT_YUV420_10BIT))
-+		return true;
-+
-+	return false;
-+}
-+
- static const struct drm_plane_funcs meson_overlay_funcs = {
- 	.update_plane		= drm_atomic_helper_update_plane,
- 	.disable_plane		= drm_atomic_helper_disable_plane,
-@@ -538,6 +766,7 @@ static const struct drm_plane_funcs meson_overlay_funcs = {
- 	.reset			= drm_atomic_helper_plane_reset,
- 	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
- 	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
-+	.format_mod_supported   = meson_overlay_format_mod_supported,
- };
- 
- static const uint32_t supported_drm_formats[] = {
-@@ -549,6 +778,18 @@ static const uint32_t supported_drm_formats[] = {
- 	DRM_FORMAT_YUV420,
- 	DRM_FORMAT_YUV411,
- 	DRM_FORMAT_YUV410,
-+	DRM_FORMAT_YUV420_8BIT, /* Amlogic FBC Only */
-+	DRM_FORMAT_YUV420_10BIT, /* Amlogic FBC Only */
-+};
-+
-+static const uint64_t format_modifiers[] = {
-+	DRM_FORMAT_MOD_AMLOGIC_FBC(DRM_FORMAT_MOD_AMLOGIC_FBC_SCATTER |
-+				   DRM_FORMAT_MOD_AMLOGIC_FBC_MEM_SAVING),
-+	DRM_FORMAT_MOD_AMLOGIC_FBC(DRM_FORMAT_MOD_AMLOGIC_FBC_SCATTER),
-+	DRM_FORMAT_MOD_AMLOGIC_FBC(DRM_FORMAT_MOD_AMLOGIC_FBC_MEM_SAVING),
-+	DRM_FORMAT_MOD_AMLOGIC_FBC_DEFAULT,
-+	DRM_FORMAT_MOD_LINEAR,
-+	DRM_FORMAT_MOD_INVALID,
- };
- 
- int meson_overlay_create(struct meson_drm *priv)
-@@ -570,7 +811,7 @@ int meson_overlay_create(struct meson_drm *priv)
- 				 &meson_overlay_funcs,
- 				 supported_drm_formats,
- 				 ARRAY_SIZE(supported_drm_formats),
--				 NULL,
-+				 format_modifiers,
- 				 DRM_PLANE_TYPE_OVERLAY, "meson_overlay_plane");
- 
- 	drm_plane_helper_add(plane, &meson_overlay_helper_funcs);
--- 
-2.22.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjEvMDIvMjAyMCAwMjo1OSwgSnVuIExpIHdyb3RlOgo+IE5laWwgQXJtc3Ryb25nIDxuYXJt
+c3Ryb25nQGJheWxpYnJlLmNvbT4g5LqOMjAyMOW5tDLmnIgxOeaXpeWRqOS4iSDkuIvljYgxMDox
+OOWGmemBk++8mgo+Pgo+PiBJbiBjZXJ0YWluIGNpcmN1bXN0YW5jZXMsIHRoZSBYSENJIFN1cGVy
+U3BlZWQgaW5zdGFuY2UgaW4gcGFyayBtb2RlCj4+IGNhbiBmYWlsIHRvIHJlY292ZXIsIHRodXMg
+b24gQW1sb2dpYyBHMTJBL0cxMkIvU00xIFNvQ3Mgd2hlbiB0aGVyZSBpcyBoaWdoCj4+IGxvYWQg
+b24gdGhlIHNpbmdsZSBYSENJIFN1cGVyU3BlZWQgaW5zdGFuY2UsIHRoZSBjb250cm9sbGVyIGNh
+biBjcmFzaCBsaWtlOgo+PiAgeGhjaS1oY2QgeGhjaS1oY2QuMC5hdXRvOiB4SENJIGhvc3Qgbm90
+IHJlc3BvbmRpbmcgdG8gc3RvcCBlbmRwb2ludCBjb21tYW5kLgo+PiAgeGhjaS1oY2QgeGhjaS1o
+Y2QuMC5hdXRvOiBIb3N0IGhhbHQgZmFpbGVkLCAtMTEwCj4+ICB4aGNpLWhjZCB4aGNpLWhjZC4w
+LmF1dG86IHhIQ0kgaG9zdCBjb250cm9sbGVyIG5vdCByZXNwb25kaW5nLCBhc3N1bWUgZGVhZAo+
+PiAgeGhjaS1oY2QgeGhjaS1oY2QuMC5hdXRvOiB4SENJIGhvc3Qgbm90IHJlc3BvbmRpbmcgdG8g
+c3RvcCBlbmRwb2ludCBjb21tYW5kLgo+PiAgaHViIDItMS4xOjEuMDogaHViX2V4dF9wb3J0X3N0
+YXR1cyBmYWlsZWQgKGVyciA9IC0yMikKPj4gIHhoY2ktaGNkIHhoY2ktaGNkLjAuYXV0bzogSEMg
+ZGllZDsgY2xlYW5pbmcgdXAKPj4gIHVzYiAyLTEuMS1wb3J0MTogY2Fubm90IHJlc2V0IChlcnIg
+PSAtMjIpCj4+Cj4+IFNldHRpbmcgdGhlIFBBUktNT0RFX0RJU0FCTEVfU1MgYml0IGluIHRoZSBE
+V0MzX1VTQjNfR1VDVEwxIG1pdGlnYXRlcwo+PiB0aGUgaXNzdWUuIFRoZSBiaXQgaXMgZGVzY3Jp
+YmVkIGFzIDoKPj4gIldoZW4gdGhpcyBiaXQgaXMgc2V0IHRvICcxJyBhbGwgU1MgYnVzIGluc3Rh
+bmNlcyBpbiBwYXJrIG1vZGUgYXJlIGRpc2FibGVkIgo+Pgo+PiBTeW5vcHN5cyBleHBsYWlucyBp
+biBbMV06Cj4+IFRoZSBHVUNUTDEuUEFSS01PREVfRElTQUJMRV9TUyBpcyBvbmx5IGF2YWlsYWJs
+ZSBpbgo+PiBkd2NfdXNiMyBjb250cm9sbGVyIHJ1bm5pbmcgaW4gaG9zdCBtb2RlLgo+PiBUaGlz
+IHNob3VsZCBub3QgYmUgc2V0IGZvciBvdGhlciBJUHMuCj4+IFRoaXMgY2FuIGJlIGRpc2FibGVk
+IGJ5IGRlZmF1bHQgYmFzZWQgb24gSVAsIGJ1dCBJIHJlY29tbWVuZCB0byBoYXZlIGEKPj4gcHJv
+cGVydHkgdG8gZW5hYmxlIHRoaXMgZmVhdHVyZSBmb3IgZGV2aWNlcyB0aGF0IG5lZWQgdGhpcy4K
+Pj4KPj4gWzFdIGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXVzYi80NTIxMmRiOS1lMzY2
+LTI2NjktNWMwYS0zYzViZDA2Mjg3ZjZAc3lub3BzeXMuY29tCj4gCj4gVGhpcyBpcyBub3QgZm9y
+IGdhZGdldCwgcGF0Y2ggdGl0bGUgc2hvdWxkIGJlOgo+IAo+IHVzYjogZHdjMzogY29yZTogYWRk
+IHN1cHBvcnQuLi4KPiAKPiBMaSBKdW4KPiAKCkluZGVlZC4uLiB0aW1lIGZvciBhIHY0LgoKVGhh
+bmtzLAoKTmVpbAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
+YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
+YW1sb2dpYwo=
