@@ -2,95 +2,82 @@ Return-Path: <SRS0=5fWL=4J=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27022C35646
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 15:23:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 063BCC35656
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 15:28:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ED6AD20679
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 15:22:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C9F39208E4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 15:28:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Dxxf3tNd";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zYcfxKYh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED6AD20679
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="A3P0NbwO";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ipsLkFmM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C9F39208E4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=NRvJ6Cv5wRqJosZhz+GAs+7jDzy4UmJpJ/tNUy6p9j8=; b=Dxxf3tNdIjqvybcdrf6OXpn264
-	zS5g1Y2xSrVCIv3OriNlVbpxfRsqbOnjbSWozHvNdOFmZtM9fYRwMerVzjBJInwTBWHHwG6ToQUui
-	zakqOIj53jZ3a3OrymL/LbFQcc4BID7DV+RuWpRyPjAXOPuIYeK0AUpk7OeSxGi768n49+7sPB1rm
-	1++MZcXS1Z7h6xyU8WgSqy4ufXZSpgbRF97HPToOdJ4CsQKrhKSvXE8MxHSeMIBKVu51aD+KpgIso
-	Zk/44nLodfwNLDxYnQmntEtHo74MooDk34Y9iees8Qi4KYEY9oRvFDcSCyM1LkLPmnNHewjQrwTMx
-	UKG5njcA==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OKkL11PkIlBH91se/3/FB5OUB0Op8tXIjW9autLB73Q=; b=A3P0NbwOcg6bzN
+	7n9/xhkvWDgzhBZXFm5ycuAFXeERLJOhQPO/QKEHgKMzGArKris+P9/VZQI5I0asH+M2ziJ8uSMZh
+	5c3b7f5lJrGLWyF6mGmWrIx7nbcMdvwVjaHbLxbEQXYoEEGd3NzHcFNfrHAaUBJ+JeNbyVbwfeNox
+	dclL0skzmuyAGgS2wl2LmRfGWEl2Gs94Gf/71U7ZZdmXSFHmeWS8wvm6N2abCtiNUxuUk9zCa5Z3c
+	4G59OJyaoKVlFg8IWiCn8q4h+Ptf4IvIc74hluio6vQLcPiy0NjFMUmQ5uiCPn8n7iQVKD22uaVSM
+	WpkmIWpNnIyaSjIVfSaQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j5A8i-0007rh-JD; Fri, 21 Feb 2020 15:22:52 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1j5AE0-0001gc-I8; Fri, 21 Feb 2020 15:28:20 +0000
+Received: from mail-lj1-x243.google.com ([2a00:1450:4864:20::243])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j5A8Z-0007k7-5J
- for linux-amlogic@lists.infradead.org; Fri, 21 Feb 2020 15:22:45 +0000
-Received: by mail-wr1-x443.google.com with SMTP id g3so2473097wrs.12
- for <linux-amlogic@lists.infradead.org>; Fri, 21 Feb 2020 07:22:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=MWznUWcF0+GyJXpKc77sr8V6T2rancb73H0vzc+QLOc=;
- b=zYcfxKYh5GVdsZmg/VVJtJjJHidVAdAv1fnWLBYz9Qrz9X2tuzafr/TrwUnnZgrVJ0
- oo/BGktTtz5M5+iAIBxO/IZGYNX5JtB/f0qTHFByoAUnTTSWHZyr/vy4DNdhXAAnrd6p
- w9UC8cXQyanPoaRPr57NkWERkM+O7GE+0v3vDXHYVz7yirmIDpPSlTLARtU9LAKMwDGc
- AEGrmIdAQreDdhoms69YXG+cNkuylJ81TqDCurkrK8BVsmuNIz2Gmm92vbpHfdExJeNh
- kiivhGNsMa7XBrLqrpIuZCXL/vk00lxZEJ19nL9AqHm9selU5roj/NJmSNle5A+btUU8
- B/OA==
+ id 1j5ADx-0001fg-Ua
+ for linux-amlogic@lists.infradead.org; Fri, 21 Feb 2020 15:28:19 +0000
+Received: by mail-lj1-x243.google.com with SMTP id x14so2552133ljd.13
+ for <linux-amlogic@lists.infradead.org>; Fri, 21 Feb 2020 07:28:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=UN+CWiVcnl1t3iZVzq1TQm7oj61jG5zfG5blHJVYlAI=;
+ b=ipsLkFmM7mX3UmnaWZVKbi5pG0qQJn3b0UAAel0eQqHf0WXtgcQwKNwvfRoIsD37O1
+ 3zMEFbpBJiuC5/Og5GSvuWtysk8901K+gI8JMIy1Tw8rcVmYv4CKFhoSyJlVGk4WRR2d
+ zB2Kuo8EQP39F1O7bolUPpLaYWQM7x8ifZq1Q65owiKRk2GrnNvBlwgg+CstAhKLA+lG
+ dCjpfhI6GJh+8bYAspFB24GBKGVogPDsclfK8UdTplP18IMIjuO93ydyKj/xMIcVINxl
+ f9a/ri6ZvEpVz5XIpJn41uPWE91lWaMjyQD+A93dNBtzTKx+ho+LlJ7OlvfSbxRvRq4/
+ BZbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=MWznUWcF0+GyJXpKc77sr8V6T2rancb73H0vzc+QLOc=;
- b=NI1DbZIv35VqRdHvXVi3qeIWJQh7+yByA7/QBCgeRvHpqBqEpAdkRdPc/RuD4mUOUf
- MWRplQNjCtITuip0MSfECv1Yq1PaZWU7UOMd5ME5frn0TOoIPXGObqmCfw81imA3Sih7
- /0xTiPM8h5p9UR+LViJkWXecukx1Mx5yCRndDsuwzuAOMtkOLtNsS/wNx97Zlq+PxGBG
- En4rgH9WkHj0u+5QhYqfe/SoLR85qxkUvOrpFrvQO8yK1OyY/Zvtdx6HLNZoaX9rh7PB
- cAA4dqwFYpC3bZ2JnKjyfy6ATJmTngZtdxB0osBsWkcwAdQ+QwrT9odjqrwBhQRVV1Vi
- IA+w==
-X-Gm-Message-State: APjAAAXB9h6oQxXxYN0evoLRFkoaAlIzIcPlfrku7m55F3S10YajwKmj
- eFpX7aEhBy050wPHWfxbXvUpYg==
-X-Google-Smtp-Source: APXvYqzC5K20NkO6ffmWnXnuQxw7QWs99/LdHFkp7c8I5pDrFUq2vNJSnU4dgWi0dy2FTPOqHv04Eg==
-X-Received: by 2002:adf:e8ca:: with SMTP id k10mr46562839wrn.50.1582298561100; 
- Fri, 21 Feb 2020 07:22:41 -0800 (PST)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id z6sm4367616wrw.36.2020.02.21.07.22.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 21 Feb 2020 07:22:40 -0800 (PST)
-References: <20200220205711.77953-1-martin.blumenstingl@googlemail.com>
- <20200220205711.77953-4-martin.blumenstingl@googlemail.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
- alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 3/3] ASoC: meson: aiu: add support for the Meson8 and
- Meson8b SoC families
-In-reply-to: <20200220205711.77953-4-martin.blumenstingl@googlemail.com>
-Date: Fri, 21 Feb 2020 16:22:39 +0100
-Message-ID: <1jmu9c2ce8.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=UN+CWiVcnl1t3iZVzq1TQm7oj61jG5zfG5blHJVYlAI=;
+ b=Wocqkxhy3XX6sj3xhuIpSxvgoGQ5uhFppLGPqDQGAW8tm3uOmvpt+1Q4TKAz/Mt24l
+ /glxV4/7OWSgJ1dOwxmfWdBzGyZfRiZ+6pLJg8Hr4PPMQCYVutoaOx1anihrlM1ndOYN
+ 04NrX3qDhQSDA3wBMqI8DSHbf+CoDiovh3uC1MCNgIvJlfn2PRs3ExSFMH+jLdXPXLrN
+ eQROr1CBqBzA8WgCfmfLCj/YbZuxBBCcLTyF0PIoMoMN/GF1/PH4aHatSRcjIOsYYar/
+ aeDCeBMDLkO1FvhpdCzfEnjYyOeC8CHTzHUQJE0L20/lqcm9tneNTAA22BrcaNlDzZld
+ WP6g==
+X-Gm-Message-State: APjAAAVd6Gxhuw5lBebUNvXYvB9xubtSxnAUn55t1NJCZcwLvWe9wbGj
+ tWLNrnx5sahI8tKW9WEPvBvfamKLchZi5kzhaXnmVQ==
+X-Google-Smtp-Source: APXvYqzmRFe5+aD/XXxN155ljO/M/dRWkcx3FCLqbfPxZB8aGlo1hrJcZ2FMwgK4758C1WxaFEeTRiAAgqNT/nNrtts=
+X-Received: by 2002:a2e:9013:: with SMTP id h19mr23121445ljg.223.1582298895959; 
+ Fri, 21 Feb 2020 07:28:15 -0800 (PST)
 MIME-Version: 1.0
+References: <1582204512-7582-1-git-send-email-nbelin@baylibre.com>
+In-Reply-To: <1582204512-7582-1-git-send-email-nbelin@baylibre.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 21 Feb 2020 16:28:05 +0100
+Message-ID: <CACRpkdajEO3HvqG+4SNj1UoUpAZJoq9RHT+bqvHDbvP6UUjA+Q@mail.gmail.com>
+Subject: Re: [PATCH RESEND] pinctrl: meson-gxl: fix GPIOX sdio pins
+To: Nicolas Belin <nbelin@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200221_072243_205923_A3DEA1F2 
-X-CRM114-Status: GOOD (  21.47  )
+X-CRM114-CacheID: sfid-20200221_072817_988351_1242F2B9 
+X-CRM114-Status: UNSURE (   6.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,222 +89,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, tiwai@suse.com, lgirdwood@gmail.com,
- linux-arm-kernel@lists.infradead.org, perex@perex.cz
+Cc: Kevin Hilman <khilman@baylibre.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Thu, Feb 20, 2020 at 2:15 PM Nicolas Belin <nbelin@baylibre.com> wrote:
 
-On Thu 20 Feb 2020 at 21:57, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-
-> The AIU audio controller on the Meson8 and Meson8b SoC families is
-> compatible with the one found in the later GXBB family. Add compatible
-> strings for these two older SoC families so the driver can be loaded for
-> them.
+> In the gxl driver, the sdio cmd and clk pins are inverted. It has not caused
+> any issue so far because devices using these pins always take both pins
+> so the resulting configuration is OK.
 >
-> Instead of using the I2S divider from the AIU_CLK_CTRL_MORE register we
-> need to use the I2S divider from the AIU_CLK_CTRL register. This older
-> register is less flexible because it only supports four divider settings
-> (1, 2, 4, 8) compared to the AIU_CLK_CTRL_MORE register (which supports
-> dividers in the range 0..64).
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  sound/soc/meson/Kconfig           |  2 +-
->  sound/soc/meson/aiu-encoder-i2s.c | 92 +++++++++++++++++++++++--------
->  sound/soc/meson/aiu.c             |  9 +++
->  sound/soc/meson/aiu.h             |  1 +
->  4 files changed, 81 insertions(+), 23 deletions(-)
->
-> diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-> index 897a706dcda0..d27e9180b453 100644
-> --- a/sound/soc/meson/Kconfig
-> +++ b/sound/soc/meson/Kconfig
-> @@ -10,7 +10,7 @@ config SND_MESON_AIU
->  	imply SND_SOC_HDMI_CODEC if DRM_MESON_DW_HDMI
->  	help
->  	  Select Y or M to add support for the Audio output subsystem found
-> -	  in the Amlogic GX SoC family
-> +	  in the Amlogic Meson8, Meson8b and GX SoC families
->  
->  config SND_MESON_AXG_FIFO
->  	tristate
-> diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
-> index 4900e38e7e49..cc73b5d5c2b7 100644
-> --- a/sound/soc/meson/aiu-encoder-i2s.c
-> +++ b/sound/soc/meson/aiu-encoder-i2s.c
-> @@ -111,34 +111,40 @@ static int aiu_encoder_i2s_setup_desc(struct snd_soc_component *component,
->  	return 0;
->  }
->  
-> -static int aiu_encoder_i2s_set_clocks(struct snd_soc_component *component,
-> -				      struct snd_pcm_hw_params *params)
-> +static int aiu_encoder_i2s_set_legacy_div(struct snd_soc_component *component,
-> +					  struct snd_pcm_hw_params *params,
-> +					  unsigned int bs)
->  {
-> -	struct aiu *aiu = snd_soc_component_get_drvdata(component);
-> -	unsigned int srate = params_rate(params);
-> -	unsigned int fs, bs;
-> -
-> -	/* Get the oversampling factor */
-> -	fs = DIV_ROUND_CLOSEST(clk_get_rate(aiu->i2s.clks[MCLK].clk), srate);
-> +	switch (bs) {
-> +	case 1:
-> +	case 2:
-> +	case 4:
-> +	case 8:
-> +		/* These are the only valid legacy dividers */
-> +		break;
->  
-> -	if (fs % 64)
-> +	default:
-> +		dev_err(component->dev, "Unsupported i2s divider: %u\n", bs);
->  		return -EINVAL;
-> +	};
+> Fixes: 0f15f500ff2c ("pinctrl: meson: Add GXL pinctrl definitions")
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Nicolas Belin <nbelin@baylibre.com>
 
-Not major but this semicolon should be removed (Thx coccinelle!)
+Patch applied!
 
->  
-> -	/* Send data MSB first */
-> -	snd_soc_component_update_bits(component, AIU_I2S_DAC_CFG,
-> -				      AIU_I2S_DAC_CFG_MSB_FIRST,
-> -				      AIU_I2S_DAC_CFG_MSB_FIRST);
-> +	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
-> +				      AIU_CLK_CTRL_I2S_DIV,
-> +				      FIELD_PREP(AIU_CLK_CTRL_I2S_DIV,
-> +						 __ffs(bs)));
->  
-> -	/* Set bclk to lrlck ratio */
-> -	snd_soc_component_update_bits(component, AIU_CODEC_DAC_LRCLK_CTRL,
-> -				      AIU_CODEC_DAC_LRCLK_CTRL_DIV,
-> -				      FIELD_PREP(AIU_CODEC_DAC_LRCLK_CTRL_DIV,
-> -						 64 - 1));
-> +	snd_soc_component_update_bits(component, AIU_CLK_CTRL_MORE,
-> +				      AIU_CLK_CTRL_MORE_I2S_DIV,
-> +				      FIELD_PREP(AIU_CLK_CTRL_MORE_I2S_DIV,
-> +						 0));
->  
-> -	/* Use CLK_MORE for mclk to bclk divider */
-> -	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
-> -				      AIU_CLK_CTRL_I2S_DIV, 0);
-> +	return 0;
-> +}
->  
-> +static int aiu_encoder_i2s_set_more_div(struct snd_soc_component *component,
-> +					struct snd_pcm_hw_params *params,
-> +					unsigned int bs)
-> +{
->  	/*
->  	 * NOTE: this HW is odd.
->  	 * In most configuration, the i2s divider is 'mclk / blck'.
-> @@ -146,7 +152,6 @@ static int aiu_encoder_i2s_set_clocks(struct snd_soc_component *component,
->  	 * increased by 50% to get the correct output rate.
->  	 * No idea why !
->  	 */
-> -	bs = fs / 64;
->  	if (params_width(params) == 16 && params_channels(params) == 8) {
->  		if (bs % 2) {
->  			dev_err(component->dev,
-> @@ -156,11 +161,54 @@ static int aiu_encoder_i2s_set_clocks(struct snd_soc_component *component,
->  		bs += bs / 2;
->  	}
->  
-> +	/* Use CLK_MORE for mclk to bclk divider */
-> +	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
-> +				      AIU_CLK_CTRL_I2S_DIV,
-> +				      FIELD_PREP(AIU_CLK_CTRL_I2S_DIV, 0));
-> +
->  	snd_soc_component_update_bits(component, AIU_CLK_CTRL_MORE,
->  				      AIU_CLK_CTRL_MORE_I2S_DIV,
->  				      FIELD_PREP(AIU_CLK_CTRL_MORE_I2S_DIV,
->  						 bs - 1));
->  
-> +	return 0;
-> +}
-> +
-> +static int aiu_encoder_i2s_set_clocks(struct snd_soc_component *component,
-> +				      struct snd_pcm_hw_params *params)
-> +{
-> +	struct aiu *aiu = snd_soc_component_get_drvdata(component);
-> +	unsigned int srate = params_rate(params);
-> +	unsigned int fs, bs;
-> +	int ret;
-> +
-> +	/* Get the oversampling factor */
-> +	fs = DIV_ROUND_CLOSEST(clk_get_rate(aiu->i2s.clks[MCLK].clk), srate);
-> +
-> +	if (fs % 64)
-> +		return -EINVAL;
-> +
-> +	/* Send data MSB first */
-> +	snd_soc_component_update_bits(component, AIU_I2S_DAC_CFG,
-> +				      AIU_I2S_DAC_CFG_MSB_FIRST,
-> +				      AIU_I2S_DAC_CFG_MSB_FIRST);
-> +
-> +	/* Set bclk to lrlck ratio */
-> +	snd_soc_component_update_bits(component, AIU_CODEC_DAC_LRCLK_CTRL,
-> +				      AIU_CODEC_DAC_LRCLK_CTRL_DIV,
-> +				      FIELD_PREP(AIU_CODEC_DAC_LRCLK_CTRL_DIV,
-> +						 64 - 1));
-> +
-> +	bs = fs / 64;
-> +
-> +	if (aiu->platform->has_clk_ctrl_more_i2s_div)
-> +		ret = aiu_encoder_i2s_set_more_div(component, params, bs);
-> +	else
-> +		ret = aiu_encoder_i2s_set_legacy_div(component, params, bs);
-> +
-> +	if (ret)
-> +		return ret;
-> +
->  	/* Make sure amclk is used for HDMI i2s as well */
->  	snd_soc_component_update_bits(component, AIU_CLK_CTRL_MORE,
->  				      AIU_CLK_CTRL_MORE_HDMI_AMCLK,
-> diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-> index 38209312a8c3..dc35ca79021c 100644
-> --- a/sound/soc/meson/aiu.c
-> +++ b/sound/soc/meson/aiu.c
-> @@ -351,15 +351,24 @@ static int aiu_remove(struct platform_device *pdev)
->  
->  static const struct aiu_platform_data aiu_gxbb_pdata = {
->  	.has_acodec = false,
-> +	.has_clk_ctrl_more_i2s_div = true,
->  };
->  
->  static const struct aiu_platform_data aiu_gxl_pdata = {
->  	.has_acodec = true,
-> +	.has_clk_ctrl_more_i2s_div = true,
-> +};
-> +
-> +static const struct aiu_platform_data aiu_meson8_pdata = {
-> +	.has_acodec = false,
-> +	.has_clk_ctrl_more_i2s_div = false,
->  };
->  
->  static const struct of_device_id aiu_of_match[] = {
->  	{ .compatible = "amlogic,aiu-gxbb", .data = &aiu_gxbb_pdata },
->  	{ .compatible = "amlogic,aiu-gxl", .data = &aiu_gxl_pdata },
-> +	{ .compatible = "amlogic,aiu-meson8", .data = &aiu_meson8_pdata },
-> +	{ .compatible = "amlogic,aiu-meson8b", .data = &aiu_meson8_pdata },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, aiu_of_match);
-> diff --git a/sound/soc/meson/aiu.h b/sound/soc/meson/aiu.h
-> index ab003638d5e5..87aa19ac4af3 100644
-> --- a/sound/soc/meson/aiu.h
-> +++ b/sound/soc/meson/aiu.h
-> @@ -29,6 +29,7 @@ struct aiu_interface {
->  
->  struct aiu_platform_data {
->  	bool has_acodec;
-> +	bool has_clk_ctrl_more_i2s_div;
->  };
->  
->  struct aiu {
-
+Yours,
+Linus Walleij
 
 _______________________________________________
 linux-amlogic mailing list
