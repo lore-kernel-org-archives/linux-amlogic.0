@@ -2,22 +2,22 @@ Return-Path: <SRS0=iFsO=4K=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E76ADC35666
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 19:33:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6BC77C35666
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 19:42:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD81520702
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 19:33:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 41A40206EF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 19:42:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pLkaPof8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="VVA+Y0w2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD81520702
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JiTdqpwx";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="UMIrgNyD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 41A40206EF
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wmeMXEQ4HQIkD4Bj4nXEDNv2j+VIRvfH1NDChfBWJfE=; b=pLkaPof8CIwZMM
-	lpLWjXCl87r+kSF1LEzDGpXgls6VAaZKof8EU48Wy2Gr2mEYHwaqMNwKurjagSukJmRUQpwvpucx0
-	5afBr59RO5qqQgS3QlI82PluPWvV//IqZohPKs0nKIHxK3ibzppUXQcz64nUbpEgAxJblE0ecWbqf
-	MidX+PDQ93UiJXpvoGDrd4kSSe6VxjE8XBQ4q30EJm2JWdsgGdnL1DvAeVNvNxisiM+GZcBAwlo7j
-	eV5uBBBVsGtt/LtAXQeak6SoPRclReUb7pvDtuGGQoO2WNB+AvXqfOMEW2dGXlJFtHzW5qowSoWUN
-	v9jtO9EcX47bctfj9fzg==;
+	List-Owner; bh=T2v8N1JOuqBQcrL4Cqbhc+ziz6Aai64eOiN6EVosXJo=; b=JiTdqpwx5c261G
+	wTpIOShxLao3N+Xpb8eeCEXtDql3Z2+2T5WqOpIA/aF9O/xH/sZFxFRv+KlSKdSHb3EZR+AlpD+3I
+	r5wPpYnVNsRP8EtXZ/1DqQqeIssNkiCXyJN8w+Sot1SPTgYLS4D/PgunGDBjbtegJ0Imx6yHksymn
+	Tib2wR8BmSynlb7NPUsIAY704vnc+sevUiNC3kewAWhFHACqXtLtJyS7ovwpajldMDvj+rx9uEZF9
+	v5MS501nWonFdX4WHVETDDsUiSjDHGcvKBGxfe9e83FRHa0qMrJDHBYJOirwmkJ4vwATUBG8RbMWM
+	ZxZsYVWZEJ5tAFKuXg3g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j5aWP-000327-SJ; Sat, 22 Feb 2020 19:33:05 +0000
+	id 1j5afb-0006CK-Ro; Sat, 22 Feb 2020 19:42:35 +0000
 Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j5aWH-0002va-L8; Sat, 22 Feb 2020 19:32:58 +0000
-Received: by mail-ed1-x544.google.com with SMTP id p3so6797107edx.7;
- Sat, 22 Feb 2020 11:32:56 -0800 (PST)
+ id 1j5afY-0006BU-Li; Sat, 22 Feb 2020 19:42:34 +0000
+Received: by mail-ed1-x544.google.com with SMTP id p23so6821816edr.5;
+ Sat, 22 Feb 2020 11:42:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=abOo/01onxmCrl2+HYFGD4dtsZsCLfGBQC3tyHMZjis=;
- b=VVA+Y0w2cTzdFoO/atz+136TaD3pxtmudXz5C974oxFGSuVuye4uBLm4qLRipvyvov
- qIN4c/bWLfPMqXqWgV301z5bAYGmkahHY2wN/vwxRWeHdML97rpGAipSHtswTjK7F9Ux
- N9V9n3PCg97usS9WmJMO5+zMabE2ZMcu/vMjC14pWNNE//T2NNt1WX/pP2QA0sx6Ylun
- SY5sMJ2s1d3hXWFGYNoqRr6ih6wcvO8ubyo3eExk9clA8G9jriHTdaFppv1TApjRMINX
- gUlsX9eExM3ic02lxpue7imTI97AKYJAQhYUYYyEHiJCoox7GC3foF0L4X+fAn4r5PZJ
- Lfmg==
+ :cc; bh=jxXwmG/BoLt3/DuSIM90nibgbKIiQUu8A/JCVZrI5aE=;
+ b=UMIrgNyD6Xysh3omTsoSt+PHA41YQHPYK5cghpRVeHlz77TJ7VeDmYfWrDvhOmc1qI
+ jHj7IHIBLOuwbuN1YbltxeLjSG+oGJTz9lKiXLh0GMtSkLa3f1CwAu3mApEn9rY6zIWW
+ qnsZoJPouP5O0tOJ2Fg/kJvcf+p4ecUGrx6pfZfPCXo+4iInjRvgm14RUbXu0l9Elg0w
+ EN2Xi+CKWIITk0Rucsz09925+BtHNYF+NBKK8MSOemJ6EYCxNgqaNmXop5RgFYxkjfd9
+ I4IW9qJwpAxIZ8H6bp14M8B4losIzyNOG2OR4lniKVyn+PmOQhWAYji3fViIQWDlM1iY
+ MG9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=abOo/01onxmCrl2+HYFGD4dtsZsCLfGBQC3tyHMZjis=;
- b=AaED02dduSvEkqsJ76XAs6YcVTAo14t05I13xX0C7sJEaW+AQs5cAS04g8YIwrDJW6
- NH8Cs5jrsx0ugqHKUDvx5Ypu1TQXLyiwHLwHNyhGPSeWvPKdKPFWRMpMEigAnh8rm3tg
- oq6IpvxuqObz8+0Dc21H6J2ngiVvnz3VvlgnwXzagPKvQd9GveoiQjK/c4TWA/Tki71D
- pIdE7aOCV6Mt2Vmj9AT/bSDzfZ9Vdc+1wYSjL/SSOgM5VGRfUM6QkdTQ/Ia1UzGpv2VS
- oJg1yGAu3LTnDvnnUKBM9ERypatwmoFaU2PKN0RdM3NHGFNiAy7R7XN8OpgBIteq5J80
- t5fQ==
-X-Gm-Message-State: APjAAAUwqGwtcv8JD5eH7sfEhNJaJJkZbM5zjDDZ8bunzX7Hb6ldyG+N
- 6wiW7aWAUJZSG3u/14emRZeza7DM4FxyXxCX3Xw=
-X-Google-Smtp-Source: APXvYqwSDLn063dC13fCS2x5o5KSt+86sLTD3VApIdIahY8Td3TAnjcZDxUtKhOk4AFeH5hrqEFUhOchgc+A2h2gJIQ=
-X-Received: by 2002:a05:6402:3c6:: with SMTP id
- t6mr37429429edw.110.1582399975292; 
- Sat, 22 Feb 2020 11:32:55 -0800 (PST)
+ bh=jxXwmG/BoLt3/DuSIM90nibgbKIiQUu8A/JCVZrI5aE=;
+ b=pyNDvZYwO4T3U3Y8C+ttqJrZGPVRTAc6VQymHO1iJ0qmBDigpQSiiaLeyPoE/hBjHL
+ QlZ9aF++CDzYC/8JcEdgI67mrNQhMvDCm/vWxJlLgPH4n6HCuA6jobDGWLP/6C311vV8
+ C4vZlWFwVmcf+mdiC1Aq7CV9f1Mcl2w9byjhwGlE8e3DkxPA9CK0Wg1Ho3ptJCTNSXo5
+ 6pXyP2NleVNCr+dGWauyoQrcG0wNdWcYAT+pCpkZaEYqLIUcJEu9vrqFpg8/H6FXAICT
+ InPljSgQTdbLVxL/zOuzCgzu8SJAdYQELNvl1WVBOISY85pVvmW2vzhMMFXkpbuOQKGq
+ 8Phg==
+X-Gm-Message-State: APjAAAWx3vNJv2LpLh121EAA6IMnp6wpl3wxMF7KRh95PKsA+y8Hjy1m
+ ZmYxXGZ79IRCRyNyNR9Ey766o+CCw3TwcVDFAEs=
+X-Google-Smtp-Source: APXvYqwfAkL5gcMkA/17+706cDRZPOl9loVVEPtWeFZTvqzB7twy3wihTpHS8mLjeiRkAbjzkyTYXKADIgMaiqwtzIM=
+X-Received: by 2002:a05:6402:b2e:: with SMTP id
+ bo14mr41025601edb.13.1582400551407; 
+ Sat, 22 Feb 2020 11:42:31 -0800 (PST)
 MIME-Version: 1.0
-References: <202002230135.WpIL6nAs%lkp@intel.com>
- <20200222170154.GA119396@e50d7db646c3>
-In-Reply-To: <20200222170154.GA119396@e50d7db646c3>
+References: <20200112001623.2121227-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200112001623.2121227-1-martin.blumenstingl@googlemail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 22 Feb 2020 20:32:44 +0100
-Message-ID: <CAFBinCAveBrxYDH-SQpbYjF8rdzR5vDPOvXdzWyZyUG5A_-X3A@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: meson: aiu: fix semicolon.cocci warnings
-To: kbuild test robot <lkp@intel.com>
+Date: Sat, 22 Feb 2020 20:42:20 +0100
+Message-ID: <CAFBinCBLJyPxOBv0JNe7o0ME3rvPi+2Qv7Lwgw6T92f15ZXcxA@mail.gmail.com>
+Subject: Re: [PATCH RFT v2 0/3] devfreq fixes for panfrost
+To: steven.price@arm.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200222_113257_718103_5C4F7DDE 
-X-CRM114-Status: UNSURE (   6.17  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200222_114232_739180_5FEF980C 
+X-CRM114-Status: GOOD (  13.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,34 +89,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kbuild-all@lists.01.org,
- Kevin Hilman <khilman@baylibre.com>, Takashi Iwai <tiwai@suse.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: robh@kernel.org, tomeu.vizoso@collabora.com, airlied@linux.ie,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, daniel@ffwll.ch, sudeep.holla@arm.com,
+ linux-amlogic@lists.infradead.org, robin.murphy@arm.com, alyssa@rosenzweig.io
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Feb 22, 2020 at 6:02 PM kbuild test robot <lkp@intel.com> wrote:
->
-> From: kbuild test robot <lkp@intel.com>
->
-> sound/soc/meson/aiu-encoder-i2s.c:129:2-3: Unneeded semicolon
->
->
->  Remove unneeded semicolon.
->
-> Generated by: scripts/coccinelle/misc/semicolon.cocci
->
-> Fixes: 3e25c44598aa ("ASoC: meson: aiu: add support for the Meson8 and Meson8b SoC families")
-> CC: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: kbuild test robot <lkp@intel.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Steven,
 
-and also (as reply to my original patch yesterday):
-Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+On Sun, Jan 12, 2020 at 1:16 AM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> These are a bunch of devfreq fixes for panfrost that came up in a
+> discussion with Robin Murphy during the code-review of the lima
+> devfreq patches: [0]
+>
+> I am only able to test patch #1 properly because the only boards with
+> panfrost GPU that I have are using an Amlogic SoC. We don't have
+> support for the OPP tables or dynamic clock changes there yet.
+> So patches #2 and #3 are compile-tested only.
+>
+>
+> Changes since v1 at [1]
+> - added Steven's Reviewed-by to patch #2 (thank you!)
+> - only use dev_pm_opp_put_regulators() to clean up in
+>   panfrost_devfreq_init() if regulators_opp_table is not NULL to fix
+>   a potential crash inside dev_pm_opp_put_regulators() as spotted by
+>   Steven Price (thank you!). While here, I also switched to "goto err"
+>   pattern to avoid lines with more than 80 characters.
+>
+> Known discussion topics (I have no way to test either of these, so I am
+> looking for help here):
+> - Steven Price reported the following message on his firefly (RK3288)
+>   board:
+>   "debugfs: Directory 'ffa30000.gpu-mali' with parent 'vdd_gpu' already
+>   present!"
+> - Robin Murphy suggested that patch #1 may not work once the OPP table
+>   for the GPU comes from SCMI
+>
+>
+> [0] https://patchwork.freedesktop.org/patch/346898/
+> [1] https://patchwork.freedesktop.org/series/71744/
+>
+>
+> Martin Blumenstingl (3):
+>   drm/panfrost: enable devfreq based the "operating-points-v2" property
+>   drm/panfrost: call dev_pm_opp_of_remove_table() in all error-paths
+>   drm/panfrost: Use the mali-supply regulator for control again
+I don't have time to work on these patches in the near future
+can you (or if someone else is interested then please speak up) please
+take these over? you are familiar with the panfrost devfreq code and
+you have at least one board where the GPU regulator actually has to
+change the voltage (which means you can test this properly; on Amlogic
+SoCs the GPU voltage is fixed across all frequencies).
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
