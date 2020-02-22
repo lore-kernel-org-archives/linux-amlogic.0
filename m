@@ -2,22 +2,22 @@ Return-Path: <SRS0=iFsO=4K=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-10.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B8B18C35671
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 12:35:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6AA53C35671
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 17:02:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 89BB0208C4
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 12:35:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3E0FA20702
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 17:02:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SoX+DCQE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 89BB0208C4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IyZIJEeR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3E0FA20702
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -25,43 +25,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U5DCiUUTRzAiWxTj9HYu8fB9tRg0I2/TWD1nPeE2ykI=; b=SoX+DCQEbVD/Xy
-	FJI30F5cn8uN4B2E4tVRJmFXip8LoZmE511MujPPxKym14KCHQu4eYcs6MZNhiQeseMDyODwXyPED
-	XRK+a3idKPMgIM/daeKdiij4NxOaaaaaA8q2kEufJohWIjKTl4RG+PTgB9fJPoDK2O4tbi8YE3p98
-	b7yzuwwsOtI+U73WCGd6QfRdzFaMgj+wHbDqmHh30bqlk5FGK5kLsT9R38ZF0g8TMilpBwPJ0pM2R
-	sHULM4gMYd1VX4o4EmH/lxXdpJ3eLuyjDPogIs/a0NhmlxLS7cELZUYJM/wxPZ1Xqavy3cu4RDXby
-	jtyLpi9odtWUIz68unvg==;
+	List-Owner; bh=/6HEuELZlvmVjY/9GutWn0Yz+om41+NXNo+Jw1YL/jE=; b=IyZIJEeRigZqd5
+	3URe11Cwm/rMFAOE+l4lW9Q2JXj4OAS3rw4PqE3xvl3EYE1uEuNOsu4tWGK3/xeYVANo3jH5Aesrt
+	PlhJh0JFitMrhU1rVJIu2bh8p9tnFTJMRPpi+MR9ytKYCn8ywDydXPscD9FcfgZe774Ar3vF8d33C
+	VJCpG5W7wa72jRvc+XkR33W9Q9bJJZ+9T8d3XhiZZF4M+AA8uuik4BfDRqiOIra7kqwc3glLjWPNG
+	1rMVUXeZVskkA7oboHB652jGc9D4bSDw0NP2IdV+HiloplYg5sxIWAWGoLhogYpwCGyuE5AIg4lTx
+	XA1yeNWmH4Ql6F3bdTpw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j5U06-0001tA-NP; Sat, 22 Feb 2020 12:35:18 +0000
-Received: from asavdk3.altibox.net ([109.247.116.14])
+	id 1j5YB0-0005dX-J3; Sat, 22 Feb 2020 17:02:50 +0000
+Received: from mga04.intel.com ([192.55.52.120])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j5Tzo-0000BT-1U
- for linux-amlogic@lists.infradead.org; Sat, 22 Feb 2020 12:35:01 +0000
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 8BA26200A0;
- Sat, 22 Feb 2020 13:32:41 +0100 (CET)
-Date: Sat, 22 Feb 2020 13:32:40 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 04/12] drm: Nuke mode->vrefresh
-Message-ID: <20200222123240.GD28287@ravnborg.org>
-References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
- <20200219203544.31013-5-ville.syrjala@linux.intel.com>
+ id 1j5YAq-0005Vg-F6; Sat, 22 Feb 2020 17:02:41 +0000
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2020 09:02:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,472,1574150400"; d="scan'208";a="229476526"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+ by fmsmga007.fm.intel.com with ESMTP; 22 Feb 2020 09:02:35 -0800
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+ (envelope-from <lkp@intel.com>)
+ id 1j5YAk-0004NG-Ra; Sun, 23 Feb 2020 01:02:34 +0800
+Date: Sun, 23 Feb 2020 01:01:54 +0800
+From: kbuild test robot <lkp@intel.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH] ASoC: meson: aiu: fix semicolon.cocci warnings
+Message-ID: <20200222170154.GA119396@e50d7db646c3>
+References: <202002230135.WpIL6nAs%lkp@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200219203544.31013-5-ville.syrjala@linux.intel.com>
+In-Reply-To: <202002230135.WpIL6nAs%lkp@intel.com>
+X-Patchwork-Hint: ignore
 User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
- a=IwXrOhc2p5v2XRWg7c8A:9 a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200222_043500_262700_70D460E1 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20200222_090240_517922_E413C856 
+X-CRM114-Status: GOOD (  10.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,64 +75,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, nouveau@lists.freedesktop.org,
- Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Thomas Hellstrom <thellstrom@vmware.com>,
- Joonyoung Shim <jy0922.shim@samsung.com>, Stefan Mavrodiev <stefan@olimex.com>,
- Jerry Han <hanxu5@huaqin.corp-partner.google.com>,
- Ben Skeggs <bskeggs@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Jagan Teki <jagan@amarulasolutions.com>, Robert Chiras <robert.chiras@nxp.com>,
- Linus Walleij <linus.walleij@linaro.org>, Icenowy Zheng <icenowy@aosc.io>,
- Jonas Karlman <jonas@kwiboo.se>, intel-gfx@lists.freedesktop.org,
- Inki Dae <inki.dae@samsung.com>, CK Hu <ck.hu@mediatek.com>,
- linux-amlogic@lists.infradead.org, Vincent Abriou <vincent.abriou@st.com>,
- Jernej Skrabec <jernej.skrabec@siol.net>, Purism Kernel Team <kernel@puri.sm>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
+Cc: alsa-devel@alsa-project.org, kbuild-all@lists.01.org,
+ Kevin Hilman <khilman@baylibre.com>, Takashi Iwai <tiwai@suse.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+ Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ville.
+From: kbuild test robot <lkp@intel.com>
 
-Nice patch - and diffstat looks good:
->  63 files changed, 217 insertions(+), 392 deletions(-)
+sound/soc/meson/aiu-encoder-i2s.c:129:2-3: Unneeded semicolon
 
-There is an item in the Documentation/gpu/todo.rst that
-describes this.
-Could you drop this from todo.rst in this patch too.
 
-> diff --git a/drivers/gpu/drm/mcde/mcde_dsi.c b/drivers/gpu/drm/mcde/mcde_dsi.c
-> index bb6528b01cd0..6dca5344c0b3 100644
-> --- a/drivers/gpu/drm/mcde/mcde_dsi.c
-> +++ b/drivers/gpu/drm/mcde/mcde_dsi.c
-> @@ -538,7 +538,7 @@ static void mcde_dsi_setup_video_mode(struct mcde_dsi *d,
->  	 */
->  	/* (ps/s) / (pixels/s) = ps/pixels */
->  	pclk = DIV_ROUND_UP_ULL(1000000000000,
-> -				(mode->vrefresh * mode->htotal * mode->vtotal));
-> +				(drm_mode_vrefresh(mode) * mode->htotal * mode->vtotal));
->  	dev_dbg(d->dev, "picoseconds between two pixels: %llu\n",
->  		pclk);
->  
+ Remove unneeded semicolon.
 
-This just caught my eye while browsing the patch.
-It looks like a backward way to get the clock.
+Generated by: scripts/coccinelle/misc/semicolon.cocci
 
-But patch is fine, it was just a drive-by comment.
+Fixes: 3e25c44598aa ("ASoC: meson: aiu: add support for the Meson8 and Meson8b SoC families")
+CC: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: kbuild test robot <lkp@intel.com>
+---
 
-Whole patch is:
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-(with or without removal of todo item added)
+tree:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.7
+head:   b38c4a8a0291c31a660cd77761202ebb18332fb7
+commit: 3e25c44598aa44134207ad7b3c5ad6b586135777 [134/139] ASoC: meson: aiu: add support for the Meson8 and Meson8b SoC families
 
-	Sam
+ aiu-encoder-i2s.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/sound/soc/meson/aiu-encoder-i2s.c
++++ b/sound/soc/meson/aiu-encoder-i2s.c
+@@ -126,7 +126,7 @@ static int aiu_encoder_i2s_set_legacy_di
+ 	default:
+ 		dev_err(component->dev, "Unsupported i2s divider: %u\n", bs);
+ 		return -EINVAL;
+-	};
++	}
+ 
+ 	snd_soc_component_update_bits(component, AIU_CLK_CTRL,
+ 				      AIU_CLK_CTRL_I2S_DIV,
 
 _______________________________________________
 linux-amlogic mailing list
