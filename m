@@ -1,24 +1,23 @@
-Return-Path: <SRS0=5fWL=4J=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=iFsO=4K=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-15.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D457C35669
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 21:04:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 921C2C35672
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 09:00:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4C4F42073A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Feb 2020 21:04:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4B4412071E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Feb 2020 09:00:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aohD3+ph";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="kVUB7YsX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4C4F42073A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bVP/fbr7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4B4412071E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -26,60 +25,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=O1ewhtQ3RWB6msGCsGxJLmqzrUA/FaxGIG1awvNL7Ys=; b=aohD3+phRcy4mC
-	r0R/IyEejVOLoL/p+gKxhsn55blAjqp0Bw+WWRtWpUaPJDofNAcGlXfE9GK8ZO9iuZ4BgbVXHI2pG
-	qfJ1hdzGfo24LsAy5AYNJoi+IN5MvfMI+YCXVsxqR67tB/HLhsMDnXJzWWz4MnEytOQXjfG7PJ5FR
-	rh79+bGsJW8qWgcxG4IzbxOw6kEHJR9dgJ3gcb38ol5fII7eokmW5hFxdm5vY1UbsBx6HowuyCzeQ
-	wpN/zeAV8Cf9H0KVX+ZUR4Ge+YYPEWtJqQHlVGIRPcVd7IyHm2MCvyxuv1/78C/NQ6Koadn0KGNRt
-	pa7fDr6v9GwI+TFGbTWQ==;
+	List-Owner; bh=5zFdTrucpkr9yE51mO48l74/qBSQ89APpf5Y9EWJa7Y=; b=bVP/fbr7cXhF5q
+	uG2tAHa7WHgF8BMN3a8ScqIC/J0TZQ2Fd1WtmZEmIiaxVXvjyqyEhZGaE0BZHKXn9J3/q4WoMAgIe
+	hi7lbSDkKAKnGijlrzyCw3k6kwNW0ZsRgIdQezOs+BsmLEVZp9gziRr9xEhqRJnUStmpk2+TuwZgO
+	8MaJqf/g10X4e4N1ljkSbS1AGgAtbiBeAH1OvYzNDltR2yJL8WrQBSo4WEtngfBfiWNnFGOMKctqM
+	bwe4CuVue7qVM7jy/aq7JxKPO/GHlvIs35fAHLHYfs1in6BF5kcE+R00CIvj8T7CK+Moix19CxDOF
+	Oo1D4K2wyDIuKFxV0AzQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j5FTA-00088l-Sx; Fri, 21 Feb 2020 21:04:20 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j5FT6-00086f-C5
- for linux-amlogic@lists.infradead.org; Fri, 21 Feb 2020 21:04:19 +0000
-Received: by mail-wm1-x341.google.com with SMTP id p9so3169743wmc.2
- for <linux-amlogic@lists.infradead.org>; Fri, 21 Feb 2020 13:04:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=jT8UWtmCEe7v58pjwlPCLN4e+N26kni/TNK34oplFDI=;
- b=kVUB7YsXyQFdAalX8Zu/cVMVaG/L+cCDvwZ6URUB+WVQ5u2xM1ZQQTn6TdlDg7ARrm
- Vgs9NJuKKjiKCSnZKpUcxGvSNwSPngz8UUxPZCNqmsSsgjKwuVWEy48/cw+w4OsY1f2M
- GwuvdujNleYQ3vcEYDTCAo+29McLMgIe9Q0NA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=jT8UWtmCEe7v58pjwlPCLN4e+N26kni/TNK34oplFDI=;
- b=TN9HeDc0M/UvCG9OXDbra742Wzizucmkpw8V3g31kD4O/aAGtArTcCi9A7I/A1H8zS
- ADpnIno85Jgs63joPBEa4Pmissl+9RMO27ohY2w3zYGfBQf2wzomj9VUCu+pIFAtf31w
- E09Y2Lx2ahUkBq6cP1aT/aw68rB7p07fwghGq7IlIqi/erxw8B+d1q9J+cqZxFPsAvNE
- 8aWc8OWK3WIFY/D7KVGUK+iwWxeNRFDMBx9vCxXWaFDYNu498rt2SGcCRi/M6GlbKiXI
- sN5Cnqfinu66Bjjvn3f6lfur9tydmoKHKXKrDlS7I6Ep/UB+Jo37KLTCt0M2Ng9UPiiF
- V9VA==
-X-Gm-Message-State: APjAAAVVQG7E0d1FcONfTUpnOCZ0oJfoLVSPA8VtDSA9TEcSFQXnDYWM
- fbEImHgN2X7M9BZfhxSmkQ80lA==
-X-Google-Smtp-Source: APXvYqzTcLQxzJVLV0ul5onT0Wf22eotmH+CNCufnIy14x7rz8AwYEOSIX3ywkWjz6YNVTIxU50hXQ==
-X-Received: by 2002:a1c:a594:: with SMTP id o142mr5340108wme.146.1582319053293; 
- Fri, 21 Feb 2020 13:04:13 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z6sm5483930wrw.36.2020.02.21.13.04.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 21 Feb 2020 13:04:11 -0800 (PST)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 34/51] drm/meson: Drop explicit drm_mode_config_cleanup call
-Date: Fri, 21 Feb 2020 22:03:02 +0100
-Message-Id: <20200221210319.2245170-35-daniel.vetter@ffwll.ch>
+	id 1j5QeG-0007UP-8X; Sat, 22 Feb 2020 09:00:32 +0000
+Received: from [80.156.29.194] (helo=bombadil.infradead.org)
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1j5Qdz-0007Hq-AA; Sat, 22 Feb 2020 09:00:15 +0000
+Received: from mchehab by bombadil.infradead.org with local (Exim 4.92.3)
+ (envelope-from <mchehab@bombadil.infradead.org>)
+ id 1j5Qdx-001N4H-Hu; Sat, 22 Feb 2020 10:00:13 +0100
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Subject: [PATCH 2/7] docs: dt: fix several broken references due to renames
+Date: Sat, 22 Feb 2020 10:00:02 +0100
+Message-Id: <83c5df4acbbe0fa55a1d58d4c4a435b51cd2a7ad.1582361737.git.mchehab+huawei@kernel.org>
 X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
-References: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <cover.1582361737.git.mchehab+huawei@kernel.org>
+References: <cover.1582361737.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200221_130416_467495_3E8E74A6 
-X-CRM114-Status: GOOD (  12.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,63 +60,345 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kevin Hilman <khilman@baylibre.com>, Daniel Vetter <daniel.vetter@intel.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Stuart Yoder <stuyoder@gmail.com>, David Airlie <airlied@linux.ie>,
+ Michael Turquette <mturquette@baylibre.com>, dri-devel@lists.freedesktop.org,
+ Bjorn Andersson <bjorn.andersson@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+ linux-clk@vger.kernel.org, linux-leds@vger.kernel.org,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Amit Kucheria <amit.kucheria@verdurent.com>, linux-aspeed@lists.ozlabs.org,
+ Jonathan Corbet <corbet@lwn.net>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, openbmc@lists.ozlabs.org,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, Joel Stanley <joel@jms.id.au>,
+ Zhang Rui <rui.zhang@intel.com>, Linus Walleij <linus.walleij@linaro.org>,
+ devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ Jyri Sarha <jsarha@ti.com>, linux-gpio@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Dan Murphy <dmurphy@ti.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Andrew Jeffery <andrew@aj.id.au>,
+ Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Sudeep Holla <sudeep.holla@arm.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It's right above the drm_dev_put().
+Several DT references got broken due to txt->yaml conversion.
 
-This is made possible by a preceeding patch which added a drmm_
-cleanup action to drm_mode_config_init(), hence all we need to do to
-ensure that drm_mode_config_cleanup() is run on final drm_device
-cleanup is check the new error code for _init().
+Those are auto-fixed by running:
 
-Aside: This driver gets its devm_ stuff all wrong wrt drm_device and
-anything hanging off that. Not the only one unfortunately.
+	scripts/documentation-file-ref-check --fix
 
-v2: Explain why this cleanup is possible (Laurent).
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 ---
- drivers/gpu/drm/meson/meson_drv.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/arm/arm,scmi.txt        | 2 +-
+ Documentation/devicetree/bindings/arm/arm,scpi.txt        | 2 +-
+ .../devicetree/bindings/arm/bcm/brcm,bcm63138.txt         | 2 +-
+ .../devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt  | 2 +-
+ .../devicetree/bindings/arm/msm/qcom,idle-state.txt       | 2 +-
+ Documentation/devicetree/bindings/arm/omap/mpu.txt        | 2 +-
+ Documentation/devicetree/bindings/arm/psci.yaml           | 2 +-
+ .../devicetree/bindings/clock/qcom,gcc-apq8064.yaml       | 2 +-
+ .../devicetree/bindings/display/tilcdc/tilcdc.txt         | 2 +-
+ Documentation/devicetree/bindings/leds/common.yaml        | 2 +-
+ .../devicetree/bindings/leds/register-bit-led.txt         | 2 +-
+ .../devicetree/bindings/memory-controllers/ti/emif.txt    | 2 +-
+ Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt   | 2 +-
+ .../bindings/pinctrl/aspeed,ast2400-pinctrl.yaml          | 2 +-
+ .../bindings/pinctrl/aspeed,ast2500-pinctrl.yaml          | 2 +-
+ .../bindings/pinctrl/aspeed,ast2600-pinctrl.yaml          | 2 +-
+ .../devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml  | 2 +-
+ .../devicetree/bindings/reset/st,stm32mp1-rcc.txt         | 2 +-
+ .../devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml  | 2 +-
+ MAINTAINERS                                               | 8 ++++----
+ 20 files changed, 23 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index b5f5eb7b4bb9..ae94d14ab7bc 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -284,7 +284,9 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	/* Remove early framebuffers (ie. simplefb) */
- 	meson_remove_framebuffers();
+diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+index f493d69e6194..dc102c4e4a78 100644
+--- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
++++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+@@ -102,7 +102,7 @@ Required sub-node properties:
+ [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+ [2] Documentation/devicetree/bindings/power/power-domain.yaml
+ [3] Documentation/devicetree/bindings/thermal/thermal.txt
+-[4] Documentation/devicetree/bindings/sram/sram.txt
++[4] Documentation/devicetree/bindings/sram/sram.yaml
+ [5] Documentation/devicetree/bindings/reset/reset.txt
  
--	drm_mode_config_init(drm);
-+	ret = drm_mode_config_init(drm);
-+	if (ret)
-+		goto free_drm;
- 	drm->mode_config.max_width = 3840;
- 	drm->mode_config.max_height = 2160;
- 	drm->mode_config.funcs = &meson_mode_config_funcs;
-@@ -379,7 +381,6 @@ static void meson_drv_unbind(struct device *dev)
- 	drm_dev_unregister(drm);
- 	drm_irq_uninstall(drm);
- 	drm_kms_helper_poll_fini(drm);
--	drm_mode_config_cleanup(drm);
- 	drm_dev_put(drm);
- }
+ Example:
+diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+index 7b83ef43b418..dd04d9d9a1b8 100644
+--- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
++++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+@@ -109,7 +109,7 @@ Required properties:
+ [0] http://infocenter.arm.com/help/topic/com.arm.doc.dui0922b/index.html
+ [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+ [2] Documentation/devicetree/bindings/thermal/thermal.txt
+-[3] Documentation/devicetree/bindings/sram/sram.txt
++[3] Documentation/devicetree/bindings/sram/sram.yaml
+ [4] Documentation/devicetree/bindings/power/power-domain.yaml
  
+ Example:
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.txt b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.txt
+index b82b6a0ae6f7..8c7a4908a849 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.txt
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.txt
+@@ -62,7 +62,7 @@ Timer node:
+ 
+ Syscon reboot node:
+ 
+-See Documentation/devicetree/bindings/power/reset/syscon-reboot.txt for the
++See Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml for the
+ detailed list of properties, the two values defined below are specific to the
+ BCM6328-style timer:
+ 
+diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt
+index 115c5be0bd0b..8defacc44dd5 100644
+--- a/Documentation/devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt
++++ b/Documentation/devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt
+@@ -1,7 +1,7 @@
+ * Hisilicon Hi3519 System Controller Block
+ 
+ This bindings use the following binding:
+-Documentation/devicetree/bindings/mfd/syscon.txt
++Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ Required properties:
+ - compatible: "hisilicon,hi3519-sysctrl".
+diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt b/Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
+index 06df04cc827a..6ce0b212ec6d 100644
+--- a/Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
++++ b/Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
+@@ -81,4 +81,4 @@ Example:
+ 		};
+ 	};
+ 
+-[1]. Documentation/devicetree/bindings/arm/idle-states.txt
++[1]. Documentation/devicetree/bindings/arm/idle-states.yaml
+diff --git a/Documentation/devicetree/bindings/arm/omap/mpu.txt b/Documentation/devicetree/bindings/arm/omap/mpu.txt
+index f301e636fd52..e41490e6979c 100644
+--- a/Documentation/devicetree/bindings/arm/omap/mpu.txt
++++ b/Documentation/devicetree/bindings/arm/omap/mpu.txt
+@@ -17,7 +17,7 @@ am335x and am437x only:
+ - pm-sram: Phandles to ocmcram nodes to be used for power management.
+ 	   First should be type 'protect-exec' for the driver to use to copy
+ 	   and run PM functions, second should be regular pool to be used for
+-	   data region for code. See Documentation/devicetree/bindings/sram/sram.txt
++	   data region for code. See Documentation/devicetree/bindings/sram/sram.yaml
+ 	   for more details.
+ 
+ Examples:
+diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
+index 8ef85420b2ab..f8218e60e3e2 100644
+--- a/Documentation/devicetree/bindings/arm/psci.yaml
++++ b/Documentation/devicetree/bindings/arm/psci.yaml
+@@ -100,7 +100,7 @@ properties:
+       bindings in [1]) must specify this property.
+ 
+       [1] Kernel documentation - ARM idle states bindings
+-        Documentation/devicetree/bindings/arm/idle-states.txt
++        Documentation/devicetree/bindings/arm/idle-states.yaml
+ 
+   "#power-domain-cells":
+     description:
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+index 17f87178f6b8..3647007f82ca 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+@@ -42,7 +42,7 @@ properties:
+       be part of GCC and hence the TSENS properties can also be part
+       of the GCC/clock-controller node.
+       For more details on the TSENS properties please refer
+-      Documentation/devicetree/bindings/thermal/qcom-tsens.txt
++      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+ 
+   nvmem-cell-names:
+     minItems: 1
+diff --git a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
+index 7bf1bb444812..aac617acb64f 100644
+--- a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
++++ b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
+@@ -37,7 +37,7 @@ Optional nodes:
+    supports a single port with a single endpoint.
+ 
+  - See also Documentation/devicetree/bindings/display/tilcdc/panel.txt and
+-   Documentation/devicetree/bindings/display/tilcdc/tfp410.txt for connecting
++   Documentation/devicetree/bindings/display/bridge/ti,tfp410.txt for connecting
+    tfp410 DVI encoder or lcd panel to lcdc
+ 
+ [1] There is an errata about AM335x color wiring. For 16-bit color mode
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index d97d099b87e5..c60b994fe116 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -85,7 +85,7 @@ properties:
+         # LED will act as a back-light, controlled by the framebuffer system
+       - backlight
+         # LED will turn on (but for leds-gpio see "default-state" property in
+-        # Documentation/devicetree/bindings/leds/leds-gpio.txt)
++        # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+       - default-on
+         # LED "double" flashes at a load average based rate
+       - heartbeat
+diff --git a/Documentation/devicetree/bindings/leds/register-bit-led.txt b/Documentation/devicetree/bindings/leds/register-bit-led.txt
+index cf1ea403ba7a..c7af6f70a97b 100644
+--- a/Documentation/devicetree/bindings/leds/register-bit-led.txt
++++ b/Documentation/devicetree/bindings/leds/register-bit-led.txt
+@@ -5,7 +5,7 @@ where single bits in a certain register can turn on/off a
+ single LED. The register bit LEDs appear as children to the
+ syscon device, with the proper compatible string. For the
+ syscon bindings see:
+-Documentation/devicetree/bindings/mfd/syscon.txt
++Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ Each LED is represented as a sub-node of the syscon device. Each
+ node's name represents the name of the corresponding LED.
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ti/emif.txt b/Documentation/devicetree/bindings/memory-controllers/ti/emif.txt
+index 44d71469c914..63f674ffeb4f 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ti/emif.txt
++++ b/Documentation/devicetree/bindings/memory-controllers/ti/emif.txt
+@@ -32,7 +32,7 @@ Required only for "ti,emif-am3352" and "ti,emif-am4372":
+ - sram			: Phandles for generic sram driver nodes,
+   first should be type 'protect-exec' for the driver to use to copy
+   and run PM functions, second should be regular pool to be used for
+-  data region for code. See Documentation/devicetree/bindings/sram/sram.txt
++  data region for code. See Documentation/devicetree/bindings/sram/sram.yaml
+   for more details.
+ 
+ Optional properties:
+diff --git a/Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt b/Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+index bb7e896cb644..9134e9bcca56 100644
+--- a/Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
++++ b/Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+@@ -26,7 +26,7 @@ For generic IOMMU bindings, see
+ Documentation/devicetree/bindings/iommu/iommu.txt.
+ 
+ For arm-smmu binding, see:
+-Documentation/devicetree/bindings/iommu/arm,smmu.txt.
++Documentation/devicetree/bindings/iommu/arm,smmu.yaml.
+ 
+ Required properties:
+ 
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
+index bb690e20c368..135c7dfbc180 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
+@@ -17,7 +17,7 @@ description: |+
+                     "aspeed,ast2400-scu", "syscon", "simple-mfd"
+ 
+   Refer to the the bindings described in
+-  Documentation/devicetree/bindings/mfd/syscon.txt
++  Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
+index f7f5d57f2c9a..824f7fd1d51b 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
+@@ -18,7 +18,7 @@ description: |+
+   			"aspeed,g5-scu", "syscon", "simple-mfd"
+ 
+   Refer to the the bindings described in
+-  Documentation/devicetree/bindings/mfd/syscon.txt
++  Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
+index 3749fa233e87..ac8d1c30a8ed 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
+@@ -17,7 +17,7 @@ description: |+
+                 "aspeed,ast2600-scu", "syscon", "simple-mfd"
+ 
+   Refer to the the bindings described in
+-  Documentation/devicetree/bindings/mfd/syscon.txt
++  Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+index aab70e8b681e..d3098c924b25 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+@@ -18,7 +18,7 @@ description: |+
+                 "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
+ 
+   Refer to the the bindings described in
+-  Documentation/devicetree/bindings/mfd/syscon.txt
++  Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/reset/st,stm32mp1-rcc.txt b/Documentation/devicetree/bindings/reset/st,stm32mp1-rcc.txt
+index b4edaf7c7ff3..2880d5dda95e 100644
+--- a/Documentation/devicetree/bindings/reset/st,stm32mp1-rcc.txt
++++ b/Documentation/devicetree/bindings/reset/st,stm32mp1-rcc.txt
+@@ -3,4 +3,4 @@ STMicroelectronics STM32MP1 Peripheral Reset Controller
+ 
+ The RCC IP is both a reset and a clock controller.
+ 
+-Please see Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.txt
++Please see Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+diff --git a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
+index d9fdf4809a49..f3e68ed03abf 100644
+--- a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
+@@ -17,7 +17,7 @@ description: |+
+                 "brcm,bcm2711-avs-monitor", "syscon", "simple-mfd"
+ 
+   Refer to the the bindings described in
+-  Documentation/devicetree/bindings/mfd/syscon.txt
++  Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+   compatible:
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e8bcf73f63cc..d110256a6802 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4022,7 +4022,7 @@ M:	Cheng-Yi Chiang <cychiang@chromium.org>
+ S:	Maintained
+ R:	Enric Balletbo i Serra <enric.balletbo@collabora.com>
+ R:	Guenter Roeck <groeck@chromium.org>
+-F:	Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
++F:	Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
+ F:	sound/soc/codecs/cros_ec_codec.*
+ 
+ CIRRUS LOGIC AUDIO CODEC DRIVERS
+@@ -5673,7 +5673,7 @@ L:	dri-devel@lists.freedesktop.org
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+ S:	Maintained
+ F:	drivers/gpu/drm/stm
+-F:	Documentation/devicetree/bindings/display/st,stm32-ltdc.txt
++F:	Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+ 
+ DRM DRIVERS FOR TI LCDC
+ M:	Jyri Sarha <jsarha@ti.com>
+@@ -10193,7 +10193,7 @@ MAXBOTIX ULTRASONIC RANGER IIO DRIVER
+ M:	Andreas Klinger <ak@it-klinger.de>
+ L:	linux-iio@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
++F:	Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
+ F:	drivers/iio/proximity/mb1232.c
+ 
+ MAXIM MAX77650 PMIC MFD DRIVER
+@@ -10496,7 +10496,7 @@ M:	Hugues Fruchet <hugues.fruchet@st.com>
+ L:	linux-media@vger.kernel.org
+ T:	git git://linuxtv.org/media_tree.git
+ S:	Supported
+-F:	Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
++F:	Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+ F:	drivers/media/platform/stm32/stm32-dcmi.c
+ 
+ MEDIA DRIVERS FOR NVIDIA TEGRA - VDE
 -- 
 2.24.1
 
