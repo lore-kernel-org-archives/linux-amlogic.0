@@ -2,85 +2,72 @@ Return-Path: <SRS0=CzRW=4L=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF1A1C35666
-	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Feb 2020 13:34:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4F2FC35673
+	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Feb 2020 23:17:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9051B20637
-	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Feb 2020 13:34:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9954220880
+	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Feb 2020 23:17:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gV7PuLCC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S4wXPHlY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9051B20637
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="j4tBvYyZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="AKp3byLj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9954220880
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=canb.auug.org.au
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VZwqHhxU1d1yRvWC+aUaqR/Rkp5sepxgeADOOUEpAPI=; b=gV7PuLCCGCgk58
-	AtQuvVLQWZJ6a8OQceNJA50T3Xyh7RYwBvgOdn/K2jfPz6LWglQOjyjHFNqnM8ymPjBazDvmpAGFA
-	7hwe798rxyz4rp0q0XAs16Ok8B0E/PZCOQ9R8jEbAM4qrT0V0RDJUI7HLsgxn7i1GEiY5LMNf7ZBC
-	WAMpndl3YrRAYY22gtQzPjassWUlRyxneYaihuWmyno/wDB2Aj+j2c5+bCKFW7Hb4gpEq9CiImRzf
-	U/1NIcW3YHgh2qYD2Jnoj0UVGgA0FJdQuGVNen4r+s5OdSa8XXptvSVkN9Wg2AN+xMYT+UNVCWnV2
-	6maNwZIwFqX2X9O3UONw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=lxhFHSOVuiTLD0tikkU83wsR+3XqyR2tc3/OlczV15U=; b=j4tBvYyZzHocRxVB8sLoa5/qR
+	r2Ta4C1AnwD7iSVETdBZcCjnqqmolIKiYt6x74Z+qnFnbLevvkUg2VaLbe/clTUbedZiW9sDvUq3a
+	P/UwrOOyd/Aq0owNhsKyVaGpN4VNFOacxIj2BFAmSom2AOEZ2g72qza+uZxA5+wsutO/ZlrgB8b6K
+	zzU7k0z2T/EhjFlnS9u+c3P1poHMvnCe+dSoDrYOG3Vhww9ixI3EeNOR4czGFuzeATDKvcrPLutYx
+	bU7XwP+UtBQmy6KrS0iuKKK+tzHxjRJ03K9DpBqrbwTpWzIEjp50tQeLsYhMtGm8I8gs8w86SyDL9
+	BEJxM1Iyw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j5rPB-0003hM-1H; Sun, 23 Feb 2020 13:34:45 +0000
-Received: from mail-io1-xd2c.google.com ([2607:f8b0:4864:20::d2c])
+	id 1j60Ui-0001dH-Jd; Sun, 23 Feb 2020 23:17:04 +0000
+Received: from ozlabs.org ([2401:3900:2:1::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j5rP2-0003ZN-4g; Sun, 23 Feb 2020 13:34:37 +0000
-Received: by mail-io1-xd2c.google.com with SMTP id z16so7479165iod.11;
- Sun, 23 Feb 2020 05:34:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=pjlxCHc9TIK73b6JYIZFY6Ze1wSFh93pwbVlW0RqGQw=;
- b=S4wXPHlYe1klCwC0XEptaw2iN6cSWpw4NT4/SAS2S/cEWnCAhupLRvzoqpScE8/iw4
- OltgGfgfsOFQY82HJ8j7ZyEqT1KOJmDcXTRjnVzhlmaXIm2DPJB/eTcaJTSQzW1sVALD
- P9qYRd9J0SVEpUnl1HUmrTnAHZL/hx0r7DYsGda6b2ZlBE0goXdH5yqCUomUx1XeRjz/
- o0xh5HSIKDg7NfiVoCuK7Fdo+l0thF3jz5Q8DHmj6c/iptKCy7Zlc+6VhrNr7xcwyW3D
- csalaThVXhZI3jGAyo9o7fwy4PkhBtkb6gg/7S+ak8m2hKpzPg3v+oGU9qjVblYBZJwP
- 7Ggw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=pjlxCHc9TIK73b6JYIZFY6Ze1wSFh93pwbVlW0RqGQw=;
- b=fcAJDSwPCGQSS6mRq+joCPW2s7r17NzKptKxhsx9RdOFvzA9RFwQzzvSQV4D3bAbAS
- Vf89OrHSfTguHhyI5DYQs3Ra/OeiymRaeEa+GJWFHCp501eceNR8DnIWGLVg0oEUAsJf
- GYK8NvbChsO1jL1ndA6F2lRCgdGtcPnUnW4TItoXSouSp3yAT+PjNGfrBTPBNxrfBMWC
- uQrwKURKTEsFusX4BL+Yoaf7Ta3NztKL1lyReVjDFMC5aXR4k/oKlcu6yr3Hqqgv6yt5
- 4qINZZ1vhuEctwS1rq7eOr6Ax+IBEBynnOzv/CYHPK15fA/9F4PvLTcvKvzbrjKyCudW
- 4Yew==
-X-Gm-Message-State: APjAAAXYcV8E5Li0Fq5INTvHfuynqRWOZLWEG2vCCb35XxLGJdIKZCjo
- +rhr+gilUrlnaxj0+QImqT4HqZGU54tdWhC/k4M=
-X-Google-Smtp-Source: APXvYqzuka0HKg/Fr4Uu0KPzM3CzpCIv3wTW1akb/1w5wysjVXPDkvFNj8eadeNpBXZ1kbVST/UgckRZKgAKVMPUJY8=
-X-Received: by 2002:a5d:8790:: with SMTP id f16mr42917678ion.246.1582464874614; 
- Sun, 23 Feb 2020 05:34:34 -0800 (PST)
+ id 1j60Uf-0001cW-DW; Sun, 23 Feb 2020 23:17:03 +0000
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 48Qh0l2zmzz9sPK;
+ Mon, 24 Feb 2020 10:16:55 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1582499816;
+ bh=ZDsuoOV08OG4rWiKXytPH30q7PC/XrARg94GbSYzkBw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=AKp3byLjUgGeWJ48kznETWc0Q3R5R+v1q1teBHVmawsNupD3Pe0ucEI5ezfd7pOAy
+ PW/mL8pfaMHcX16KOvg6I71vLR4Bieg2nsmUWXZItzr0DqnsomYD7lx/lHov0Ft8fQ
+ Hf9+mEEH7uRY8xZKIUCj0bEH679ZzqORtM5yx8UTUHzGIBFxluhGQUmhq4N54emir2
+ DaqzTzxbhB0bQqArroPfI+p1d3N/FF3ywJHRFrTAM8fouTZOkblsC/wk0kpn1xMWFG
+ BG9VEhQqMOam6UjEzDAKYuuUNUCRK7y1rY9DM21KuhEbv+hcA0Ck6cutVtrQKqe0bu
+ jN215DYPbaD8g==
+Date: Mon, 24 Feb 2020 10:16:54 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>
+Subject: Re: [PATCH] soc: amlogic: fix compile failure with
+ MESON_SECURE_PM_DOMAINS & !MESON_SM
+Message-ID: <20200224101654.530f1837@canb.auug.org.au>
+In-Reply-To: <20200218092229.0448d266@canb.auug.org.au>
+References: <1581955933-69832-1-git-send-email-jianxin.pan@amlogic.com>
+ <20200218080743.07e58c6e@canb.auug.org.au>
+ <20200218092229.0448d266@canb.auug.org.au>
 MIME-Version: 1.0
-References: <20200216173446.1823-1-linux.amoon@gmail.com>
- <20200216173446.1823-4-linux.amoon@gmail.com>
- <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgSaQgU=H3h0S9deT11HA8z9R=Fhy5Kawii9tSBxKf2Wgw@mail.gmail.com>
- <CAFBinCCSosE1XfwbKZOR9G+DVYg8zFcKShmTNWUhh1e8W0VoAQ@mail.gmail.com>
-In-Reply-To: <CAFBinCCSosE1XfwbKZOR9G+DVYg8zFcKShmTNWUhh1e8W0VoAQ@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sun, 23 Feb 2020 19:04:23 +0530
-Message-ID: <CANAwSgRZy1K0GZq30cEoH2KiJfjX-5LvkMy79ZeM_aSEyrkD+g@mail.gmail.com>
-Subject: Re: [PATCHv1 3/3] clk: meson: g12a: set cpu clock divider flags too
- CLK_IS_CRITICAL
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200223_053436_208969_08581A10 
-X-CRM114-Status: GOOD (  16.50  )
+X-CRM114-CacheID: sfid-20200223_151701_658055_5F1352A2 
+X-CRM114-Status: GOOD (  14.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,189 +79,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- devicetree <devicetree@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org,
- "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
+ Xingyu Chen <xingyu.chen@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: multipart/mixed; boundary="===============6193711976459595286=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin / Jerome / Neil,
+--===============6193711976459595286==
+Content-Type: multipart/signed; boundary="Sig_/HRS=wqj=EXtghxVG08E8STH";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-On Fri, 21 Feb 2020 at 02:45, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+--Sig_/HRS=wqj=EXtghxVG08E8STH
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+On Tue, 18 Feb 2020 09:22:29 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
 >
-> Hi Anand,
->
-> On Mon, Feb 17, 2020 at 2:30 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > > > @@ -681,7 +682,7 @@ static struct clk_regmap g12b_cpub_clk = {
-> > > >                       &g12a_sys_pll.hw
-> > > >               },
-> > > >               .num_parents = 2,
-> > > > -             .flags = CLK_SET_RATE_PARENT,
-> > > > +             .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> On Tue, 18 Feb 2020 08:07:43 +1100 Stephen Rothwell <sfr@canb.auug.org.au=
+> wrote:
+> >
+> > On Tue, 18 Feb 2020 00:12:13 +0800 Jianxin Pan <jianxin.pan@amlogic.com=
+> wrote: =20
 > > >
-> > > Why not. Neil what do you think of this ?
-> > > If nothing is claiming this clock and enabling it then I suppose it
-> > > could make sense.
-> > >
-> > I would like core developers to handle this.
-> > Sorry for the noise.
-> can you please resend this patch with only the change to g12b_cpub_clk?
-> I have no G12B board myself so it would be great if you could take care of this!
->
->
-> Martin
+> > > When MESON_SECURE_PM_DOMAINS & !MESON_SM, there will be compile failu=
+re:
+> > > .../meson-secure-pwrc.o: In function `meson_secure_pwrc_on':
+> > > .../meson-secure-pwrc.c:76: undefined reference to `meson_sm_call'
+> > >=20
+> > > Fix this by adding depends on MESON_SM for MESON_SECURE_PM_DOMAINS.
+> > >=20
+> > > Fixes: b3dde5013e13 ("soc: amlogic: Add support for Secure power doma=
+ins controller")
+> > >=20
+> > > Reported-by: kbuild test robot <lkp@intel.com>
+> > > Reported-by: patchwork-bot+linux-amlogic<patchwork-bot+linux-amlogic@=
+kernel.org>
+> > > Reported-by: Stephen Rothwell<sfr@canb.auug.org.au>
+> > > Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> > > ---
+> > >  drivers/soc/amlogic/Kconfig | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)   =20
+> >=20
+> > I will apply that patch to linux-next today. =20
+>=20
+> This fixes the build for me.
+>=20
+> Tested-by: Stephen Rothwell<sfr@canb.auug.org.au>
+>=20
+> Also, please keep the commit message tags together at the end of the
+> commit message i.e. remove the blank line after the Fixes: tag above.
+> (see "git interpret-trailers ")
 
-Thanks, yes I will try again, but I have a question.
+I am still applying this patch ...
+--=20
+Cheers,
+Stephen Rothwell
 
-On eMMC module  *cpub_clk* is not getting enabled, see below is
-clk_summay of eMMC.
-[...]
-          fclk_div2_div               1        1        0   999999985
-        0     0  50000
-             fclk_div2                2        2        0   999999985
-        0     0  50000
-                ff3f0000.ethernet#m250_sel       1        1        0
-999999985          0     0  50000
-                   ff3f0000.ethernet#m250_div       1        1
-0   249999997          0     0  50000
-                      ff3f0000.ethernet#fixed_div2       1        1
-    0   124999998          0     0  50000
-                         ff3f0000.ethernet#rgmii_tx_en       1
-1        0   124999998          0     0  50000
-                ffe07000.mmc#mux       1        1        0   999999985
-         0     0  50000
-                   ffe07000.mmc#div       1        1        0
-199999997          0     0  50000
-                cpub_clk_dyn1_sel       0        0        0
-999999985          0     0  50000
-                   cpub_clk_dyn1       0        0        0   999999985
-         0     0  50000
-                      cpub_clk_dyn       0        0        0
-999999985          0     0  50000
-                         cpub_clk       0        0        0
-999999985          0     0  50000
-                            cpub_clk_div8       0        0        0
-124999998          0     0  50000
-                            cpub_clk_div7       0        0        0
-142857140          0     0  50000
-                            cpub_clk_div6       0        0        0
-166666664          0     0  50000
-                               cpub_clk_trace_sel       0        0
-   0   166666664          0     0  50000
-                                  cpub_clk_trace       0        0
-  0   166666664          0     0  50000
-                            cpub_clk_div5       0        0        0
-199999997          0     0  50000
-                               cpub_clk_apb_sel       0        0
- 0   199999997          0     0  50000
-                                  cpub_clk_apb       0        0
-0   199999997          0     0  50000
-                            cpub_clk_div4       0        0        0
-249999996          0     0  50000
-                            cpub_clk_div3       0        0        0
-333333328          0     0  50000
-                               cpub_clk_atb_sel       0        0
- 0   333333328          0     0  50000
-                                  cpub_clk_atb       0        0
-0   333333328          0     0  50000
-                            cpub_clk_div2       0        0        0
-499999992          0     0  50000
-                               cpub_clk_axi_sel       0        0
- 0   499999992          0     0  50000
-                                  cpub_clk_axi       0        0
-0   499999992          0     0  50000
-                            cpub_clk_div16_en       0        0
-0   999999985          0     0  50000
-                               cpub_clk_div16       0        0
-0    62499999          0     0  50000
+--Sig_/HRS=wqj=EXtghxVG08E8STH
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-After enable *cpub_clk* flags with
-.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
-this clk is enabled on microSD card see clk_summary below.
-[...]
-         fclk_div2_div               1        1        0   999999985
-       0     0  50000
-             fclk_div2                3        3        0   999999985
-        0     0  50000
-                ff3f0000.ethernet#m250_sel       1        1        0
-999999985          0     0  50000
-                   ff3f0000.ethernet#m250_div       1        1
-0   249999997          0     0  50000
-                      ff3f0000.ethernet#fixed_div2       1        1
-    0   124999998          0     0  50000
-                         ff3f0000.ethernet#rgmii_tx_en       1
-1        0   124999998          0     0  50000
-                ffe05000.sd#mux       1        1        0   999999985
-        0     0  50000
-                   ffe05000.sd#div       1        1        0
-50000000          0     0  50000
-                cpub_clk_dyn1_sel       1        1        0
-999999985          0     0  50000
-                   cpub_clk_dyn1       1        1        0   999999985
-         0     0  50000
-                      cpub_clk_dyn       1        1        0
-999999985          0     0  50000
-                         cpub_clk       1        1        0
-999999985          0     0  50000
-                            cpub_clk_div8       0        0        0
-124999998          0     0  50000
-                            cpub_clk_div7       0        0        0
-142857140          0     0  50000
-                            cpub_clk_div6       0        0        0
-166666664          0     0  50000
-                               cpub_clk_trace_sel       0        0
-   0   166666664          0     0  50000
-                                  cpub_clk_trace       0        0
-  0   166666664          0     0  50000
-                            cpub_clk_div5       0        0        0
-199999997          0     0  50000
-                               cpub_clk_apb_sel       0        0
- 0   199999997          0     0  50000
-                                  cpub_clk_apb       0        0
-0   199999997          0     0  50000
-                            cpub_clk_div4       0        0        0
-249999996          0     0  50000
-                            cpub_clk_div3       0        0        0
-333333328          0     0  50000
-                               cpub_clk_atb_sel       0        0
- 0   333333328          0     0  50000
-                                  cpub_clk_atb       0        0
-0   333333328          0     0  50000
-                            cpub_clk_div2       0        0        0
-499999992          0     0  50000
-                               cpub_clk_axi_sel       0        0
- 0   499999992          0     0  50000
-                                  cpub_clk_axi       0        0
-0   499999992          0     0  50000
-                            cpub_clk_div16_en       0        0
-0   999999985          0     0  50000
-                               cpub_clk_div16       0        0
-0    62499999          0     0  50000
-                   cpub_clk_dyn1_div       0        0        0
-999999985          0     0  50000
+-----BEGIN PGP SIGNATURE-----
 
-Is this correct approach to set the flags to enable *cpub_clk*.
-.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl5TB+YACgkQAVBC80lX
+0Gw1Ygf9FYA4QbsYVulSaeKZSzIU8INOux2IozBcABlP9zBBHobUJpQC28V80fti
+ImqOIwDNv+r67DnCKDg64+X5PfPyOySRYssr9sRSWcjwoud1qt2ln0iez9tDMG0t
+B7ntUEWmRAFZ0GtBYqSGZw73lldQRod4lD7B1RrxVK36xIVMUo+X/ZWAEbvlQGn1
+oWkoVMxhbDK6crqYBKgTfAVSa2QbpNQV++y0fmmfJUMl/8txhSYEhMIrKr+pr4i6
+xHLq3w3J4HJXTo/07+1RjlhgVHdO+e3JyLunOA5MA+aW215AjiCXGcSLHX7PD1QM
+mtWa7KCNYCHULAxJs6JOuzD+gOMLLg==
+=gH3w
+-----END PGP SIGNATURE-----
 
-What I meant is their *Dyn_enable[26]* field for enable/disable for
-HHI_SYS_CPU_CLK_CNTL0 and HHI_SYS_CPUB_CLK_CNTL clk controller.
-in the S922X datasheets which could help resolve this issue.
-Any thought on this.
+--Sig_/HRS=wqj=EXtghxVG08E8STH--
 
--Anand
+
+--===============6193711976459595286==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6193711976459595286==--
+
