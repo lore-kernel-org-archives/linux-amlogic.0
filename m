@@ -2,65 +2,85 @@ Return-Path: <SRS0=CzRW=4L=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99D0FC35669
-	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Feb 2020 02:17:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BF1A1C35666
+	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Feb 2020 13:34:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6AB1D20707
-	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Feb 2020 02:17:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9051B20637
+	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Feb 2020 13:34:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IoEukIE8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6AB1D20707
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gV7PuLCC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S4wXPHlY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9051B20637
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FvOe/G0WC3+Gh1xiFZsGzKJNbHk4n5wx3cIdjUd28SM=; b=IoEukIE8pb6yc8
-	pGP526F5Oh0rYxKqb0mSZSw7BEt0LlB5jGXHVr/NnEaIp9cqsFnQQamNfFjb8Jxmym+pJyBoV8m32
-	FgPAnBzbVpswVSifr/10g/t8DDQrjKaglPvUfXyCf9h30qpgen1p1BuwJv8Mg391S+IUP4SEPpE7S
-	1stdQn+Vhw5pO0ljQolHj4/DTKWnoImwCISDznLCLgq4d2xQCMUnvlC2O6oUlB+4aIshqVP2hdLpr
-	puy6WtHnD/YbbKe47E8SKUe9MOogBB3Vuzmm+SVfPsnHsyFw+1v6RjddN2I7fJ8SL2dws4CCJ9KVi
-	IZ+GQdw+uUMV++qNpI4w==;
+	List-Owner; bh=VZwqHhxU1d1yRvWC+aUaqR/Rkp5sepxgeADOOUEpAPI=; b=gV7PuLCCGCgk58
+	AtQuvVLQWZJ6a8OQceNJA50T3Xyh7RYwBvgOdn/K2jfPz6LWglQOjyjHFNqnM8ymPjBazDvmpAGFA
+	7hwe798rxyz4rp0q0XAs16Ok8B0E/PZCOQ9R8jEbAM4qrT0V0RDJUI7HLsgxn7i1GEiY5LMNf7ZBC
+	WAMpndl3YrRAYY22gtQzPjassWUlRyxneYaihuWmyno/wDB2Aj+j2c5+bCKFW7Hb4gpEq9CiImRzf
+	U/1NIcW3YHgh2qYD2Jnoj0UVGgA0FJdQuGVNen4r+s5OdSa8XXptvSVkN9Wg2AN+xMYT+UNVCWnV2
+	6maNwZIwFqX2X9O3UONw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j5gp3-0007wc-SJ; Sun, 23 Feb 2020 02:16:45 +0000
-Received: from smtprelay0147.hostedemail.com ([216.40.44.147]
- helo=smtprelay.hostedemail.com)
+	id 1j5rPB-0003hM-1H; Sun, 23 Feb 2020 13:34:45 +0000
+Received: from mail-io1-xd2c.google.com ([2607:f8b0:4864:20::d2c])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j5gp0-0007w9-Vh; Sun, 23 Feb 2020 02:16:44 +0000
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay03.hostedemail.com (Postfix) with ESMTP id D6704837F24D;
- Sun, 23 Feb 2020 02:16:39 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-HE-Tag: tank92_1ce31dc6cfa4f
-X-Filterd-Recvd-Size: 2400
-Received: from XPS-9350.home (unknown [47.151.143.254])
- (Authenticated sender: joe@perches.com)
- by omf08.hostedemail.com (Postfix) with ESMTPA;
- Sun, 23 Feb 2020 02:16:38 +0000 (UTC)
-Message-ID: <7792266dfede1df5742e527dc304b610fcfbd025.camel@perches.com>
-Subject: Re: [PATCH] phy: phy-meson-g12a-usb2: Fix GENMASK misuse
-From: Joe Perches <joe@perches.com>
-To: Ondrej Jirman <megous@megous.com>, linux-kernel@vger.kernel.org
-Date: Sat, 22 Feb 2020 18:15:12 -0800
-In-Reply-To: <20200222235142.242732-1-megous@megous.com>
-References: <20200222235142.242732-1-megous@megous.com>
-User-Agent: Evolution 3.34.1-2 
+ id 1j5rP2-0003ZN-4g; Sun, 23 Feb 2020 13:34:37 +0000
+Received: by mail-io1-xd2c.google.com with SMTP id z16so7479165iod.11;
+ Sun, 23 Feb 2020 05:34:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=pjlxCHc9TIK73b6JYIZFY6Ze1wSFh93pwbVlW0RqGQw=;
+ b=S4wXPHlYe1klCwC0XEptaw2iN6cSWpw4NT4/SAS2S/cEWnCAhupLRvzoqpScE8/iw4
+ OltgGfgfsOFQY82HJ8j7ZyEqT1KOJmDcXTRjnVzhlmaXIm2DPJB/eTcaJTSQzW1sVALD
+ P9qYRd9J0SVEpUnl1HUmrTnAHZL/hx0r7DYsGda6b2ZlBE0goXdH5yqCUomUx1XeRjz/
+ o0xh5HSIKDg7NfiVoCuK7Fdo+l0thF3jz5Q8DHmj6c/iptKCy7Zlc+6VhrNr7xcwyW3D
+ csalaThVXhZI3jGAyo9o7fwy4PkhBtkb6gg/7S+ak8m2hKpzPg3v+oGU9qjVblYBZJwP
+ 7Ggw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=pjlxCHc9TIK73b6JYIZFY6Ze1wSFh93pwbVlW0RqGQw=;
+ b=fcAJDSwPCGQSS6mRq+joCPW2s7r17NzKptKxhsx9RdOFvzA9RFwQzzvSQV4D3bAbAS
+ Vf89OrHSfTguHhyI5DYQs3Ra/OeiymRaeEa+GJWFHCp501eceNR8DnIWGLVg0oEUAsJf
+ GYK8NvbChsO1jL1ndA6F2lRCgdGtcPnUnW4TItoXSouSp3yAT+PjNGfrBTPBNxrfBMWC
+ uQrwKURKTEsFusX4BL+Yoaf7Ta3NztKL1lyReVjDFMC5aXR4k/oKlcu6yr3Hqqgv6yt5
+ 4qINZZ1vhuEctwS1rq7eOr6Ax+IBEBynnOzv/CYHPK15fA/9F4PvLTcvKvzbrjKyCudW
+ 4Yew==
+X-Gm-Message-State: APjAAAXYcV8E5Li0Fq5INTvHfuynqRWOZLWEG2vCCb35XxLGJdIKZCjo
+ +rhr+gilUrlnaxj0+QImqT4HqZGU54tdWhC/k4M=
+X-Google-Smtp-Source: APXvYqzuka0HKg/Fr4Uu0KPzM3CzpCIv3wTW1akb/1w5wysjVXPDkvFNj8eadeNpBXZ1kbVST/UgckRZKgAKVMPUJY8=
+X-Received: by 2002:a5d:8790:: with SMTP id f16mr42917678ion.246.1582464874614; 
+ Sun, 23 Feb 2020 05:34:34 -0800 (PST)
 MIME-Version: 1.0
+References: <20200216173446.1823-1-linux.amoon@gmail.com>
+ <20200216173446.1823-4-linux.amoon@gmail.com>
+ <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com>
+ <CANAwSgSaQgU=H3h0S9deT11HA8z9R=Fhy5Kawii9tSBxKf2Wgw@mail.gmail.com>
+ <CAFBinCCSosE1XfwbKZOR9G+DVYg8zFcKShmTNWUhh1e8W0VoAQ@mail.gmail.com>
+In-Reply-To: <CAFBinCCSosE1XfwbKZOR9G+DVYg8zFcKShmTNWUhh1e8W0VoAQ@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sun, 23 Feb 2020 19:04:23 +0530
+Message-ID: <CANAwSgRZy1K0GZq30cEoH2KiJfjX-5LvkMy79ZeM_aSEyrkD+g@mail.gmail.com>
+Subject: Re: [PATCHv1 3/3] clk: meson: g12a: set cpu clock divider flags too
+ CLK_IS_CRITICAL
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200222_181643_083003_47C7486F 
-X-CRM114-Status: GOOD (  11.56  )
+X-CRM114-CacheID: sfid-20200223_053436_208969_08581A10 
+X-CRM114-Status: GOOD (  16.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,52 +92,187 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I <kishon@ti.com>,
- "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>,
- "moderated
- list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, 2020-02-23 at 00:51 +0100, Ondrej Jirman wrote:
-> Arguments to GENMASK should be msb >= lsb.
-> 
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> ---
-> I just grepped the whole kernel tree for GENMASK argument order issues,
-> and this is one of the three that popped up. No testing was done.
+Hi Martin / Jerome / Neil,
 
-Both of these were submitted last year.
-https://lkml.org/lkml/2019/7/10/20
+On Fri, 21 Feb 2020 at 02:45, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Mon, Feb 17, 2020 at 2:30 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+> > > > @@ -681,7 +682,7 @@ static struct clk_regmap g12b_cpub_clk = {
+> > > >                       &g12a_sys_pll.hw
+> > > >               },
+> > > >               .num_parents = 2,
+> > > > -             .flags = CLK_SET_RATE_PARENT,
+> > > > +             .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> > >
+> > > Why not. Neil what do you think of this ?
+> > > If nothing is claiming this clock and enabling it then I suppose it
+> > > could make sense.
+> > >
+> > I would like core developers to handle this.
+> > Sorry for the noise.
+> can you please resend this patch with only the change to g12b_cpub_clk?
+> I have no G12B board myself so it would be great if you could take care of this!
+>
+>
+> Martin
 
-I hope they get applied one day.
+Thanks, yes I will try again, but I have a question.
 
-Neither patch has an affect today as none of the
-#defines are used.
+On eMMC module  *cpub_clk* is not getting enabled, see below is
+clk_summay of eMMC.
+[...]
+          fclk_div2_div               1        1        0   999999985
+        0     0  50000
+             fclk_div2                2        2        0   999999985
+        0     0  50000
+                ff3f0000.ethernet#m250_sel       1        1        0
+999999985          0     0  50000
+                   ff3f0000.ethernet#m250_div       1        1
+0   249999997          0     0  50000
+                      ff3f0000.ethernet#fixed_div2       1        1
+    0   124999998          0     0  50000
+                         ff3f0000.ethernet#rgmii_tx_en       1
+1        0   124999998          0     0  50000
+                ffe07000.mmc#mux       1        1        0   999999985
+         0     0  50000
+                   ffe07000.mmc#div       1        1        0
+199999997          0     0  50000
+                cpub_clk_dyn1_sel       0        0        0
+999999985          0     0  50000
+                   cpub_clk_dyn1       0        0        0   999999985
+         0     0  50000
+                      cpub_clk_dyn       0        0        0
+999999985          0     0  50000
+                         cpub_clk       0        0        0
+999999985          0     0  50000
+                            cpub_clk_div8       0        0        0
+124999998          0     0  50000
+                            cpub_clk_div7       0        0        0
+142857140          0     0  50000
+                            cpub_clk_div6       0        0        0
+166666664          0     0  50000
+                               cpub_clk_trace_sel       0        0
+   0   166666664          0     0  50000
+                                  cpub_clk_trace       0        0
+  0   166666664          0     0  50000
+                            cpub_clk_div5       0        0        0
+199999997          0     0  50000
+                               cpub_clk_apb_sel       0        0
+ 0   199999997          0     0  50000
+                                  cpub_clk_apb       0        0
+0   199999997          0     0  50000
+                            cpub_clk_div4       0        0        0
+249999996          0     0  50000
+                            cpub_clk_div3       0        0        0
+333333328          0     0  50000
+                               cpub_clk_atb_sel       0        0
+ 0   333333328          0     0  50000
+                                  cpub_clk_atb       0        0
+0   333333328          0     0  50000
+                            cpub_clk_div2       0        0        0
+499999992          0     0  50000
+                               cpub_clk_axi_sel       0        0
+ 0   499999992          0     0  50000
+                                  cpub_clk_axi       0        0
+0   499999992          0     0  50000
+                            cpub_clk_div16_en       0        0
+0   999999985          0     0  50000
+                               cpub_clk_div16       0        0
+0    62499999          0     0  50000
 
-Perhaps deleting the #defines is better.
+After enable *cpub_clk* flags with
+.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+this clk is enabled on microSD card see clk_summary below.
+[...]
+         fclk_div2_div               1        1        0   999999985
+       0     0  50000
+             fclk_div2                3        3        0   999999985
+        0     0  50000
+                ff3f0000.ethernet#m250_sel       1        1        0
+999999985          0     0  50000
+                   ff3f0000.ethernet#m250_div       1        1
+0   249999997          0     0  50000
+                      ff3f0000.ethernet#fixed_div2       1        1
+    0   124999998          0     0  50000
+                         ff3f0000.ethernet#rgmii_tx_en       1
+1        0   124999998          0     0  50000
+                ffe05000.sd#mux       1        1        0   999999985
+        0     0  50000
+                   ffe05000.sd#div       1        1        0
+50000000          0     0  50000
+                cpub_clk_dyn1_sel       1        1        0
+999999985          0     0  50000
+                   cpub_clk_dyn1       1        1        0   999999985
+         0     0  50000
+                      cpub_clk_dyn       1        1        0
+999999985          0     0  50000
+                         cpub_clk       1        1        0
+999999985          0     0  50000
+                            cpub_clk_div8       0        0        0
+124999998          0     0  50000
+                            cpub_clk_div7       0        0        0
+142857140          0     0  50000
+                            cpub_clk_div6       0        0        0
+166666664          0     0  50000
+                               cpub_clk_trace_sel       0        0
+   0   166666664          0     0  50000
+                                  cpub_clk_trace       0        0
+  0   166666664          0     0  50000
+                            cpub_clk_div5       0        0        0
+199999997          0     0  50000
+                               cpub_clk_apb_sel       0        0
+ 0   199999997          0     0  50000
+                                  cpub_clk_apb       0        0
+0   199999997          0     0  50000
+                            cpub_clk_div4       0        0        0
+249999996          0     0  50000
+                            cpub_clk_div3       0        0        0
+333333328          0     0  50000
+                               cpub_clk_atb_sel       0        0
+ 0   333333328          0     0  50000
+                                  cpub_clk_atb       0        0
+0   333333328          0     0  50000
+                            cpub_clk_div2       0        0        0
+499999992          0     0  50000
+                               cpub_clk_axi_sel       0        0
+ 0   499999992          0     0  50000
+                                  cpub_clk_axi       0        0
+0   499999992          0     0  50000
+                            cpub_clk_div16_en       0        0
+0   999999985          0     0  50000
+                               cpub_clk_div16       0        0
+0    62499999          0     0  50000
+                   cpub_clk_dyn1_div       0        0        0
+999999985          0     0  50000
 
->  drivers/phy/amlogic/phy-meson-g12a-usb2.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> index 9065ffc85eb47..cd7eccab26490 100644
-> --- a/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> @@ -66,7 +66,7 @@
->  #define PHY_CTRL_R14						0x38
->  	#define PHY_CTRL_R14_I_RDP_EN				BIT(0)
->  	#define PHY_CTRL_R14_I_RPU_SW1_EN			BIT(1)
-> -	#define PHY_CTRL_R14_I_RPU_SW2_EN			GENMASK(2, 3)
-> +	#define PHY_CTRL_R14_I_RPU_SW2_EN			GENMASK(3, 2)
->  	#define PHY_CTRL_R14_PG_RSTN				BIT(4)
->  	#define PHY_CTRL_R14_I_C2L_DATA_16_8			BIT(5)
->  	#define PHY_CTRL_R14_I_C2L_ASSERT_SINGLE_EN_ZERO	BIT(6)
+Is this correct approach to set the flags to enable *cpub_clk*.
+.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
 
+What I meant is their *Dyn_enable[26]* field for enable/disable for
+HHI_SYS_CPU_CLK_CNTL0 and HHI_SYS_CPUB_CLK_CNTL clk controller.
+in the S922X datasheets which could help resolve this issue.
+Any thought on this.
+
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
