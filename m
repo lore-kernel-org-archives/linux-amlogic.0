@@ -2,91 +2,79 @@ Return-Path: <SRS0=TU6n=4M=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A58E5C11D30
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 15:08:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 542A6C11D2F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 18:15:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 774E720828
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 15:08:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 29C982084E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 18:15:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Gu2OrWIO";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="solSGzyO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 774E720828
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U51Q7NmU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 29C982084E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U9Fj+8N2qrl5f+dUJWnzF5Ef9/GrQ6dzNjnNaQeGFNo=; b=Gu2OrWIOpU3Xlq
-	oLDWLHYS7i2GEDeQI12tY3rs+0AGHefYMqAqZxs6LkDB8R2/nY4nmEMUlAP8fSo+41LRZw6juDJ66
-	P8Dgwt6wNVya1hYvONEFrBhR9FlSl7HTB9tOYJl2jPcRNLimdJhrOKxlHHeZVCi7GLgbumn1kEDZf
-	CnN4kCsziyWTIWZqaWA+g3Yfr31cQD5hEVqbbj8xCbGluAfxy8Ek1EDGIYK+lHCwsl39TAjOUv3vO
-	7KGbjDmd5+IObtT834FEMZXvabL6HFepeurVJE6RCFIcNFcEEZ2fMvobqU2i95ZXS6+3BWqaPkceN
-	GEgWisxz/81yJl9O0Npw==;
+	List-Owner; bh=nDn1KiSyRoX7dQX1NekRDtaGz/9G1JbWJZJgpieute4=; b=U51Q7NmUyo7K3T
+	wFLGB5erELh9GeiPQqFXAMkuFVjCKfnrFSyg/SzQfW03lU+Voq993QUkZYaKnCXQw2kMIyySxgETQ
+	KEquK7yu+dMEmyu5DcTzOITJKzQ4UjCib2IpfHgoI+EkrqkPQK0y7hpj0GHylCP5Q6qCmI/bmJHDG
+	/wv8auTwE80qTABLyQLse41XZwz15PY1XuME1QePndFNJA7hOcMv5ljAepLmhhb+LAz4emLKoFVVI
+	VopElvni4N28K5HKcPlHfK2OzyXkSWTOUj5pF02mtGt5gnb2M3TyaHjY6P+cKWXkT9wCxXc0ugwzw
+	buO1fT7GEF62FJ7LclTQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j6FLP-0007zR-Nu; Mon, 24 Feb 2020 15:08:27 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1j6IFz-0000lh-5r; Mon, 24 Feb 2020 18:15:03 +0000
+Received: from mail-ot1-f68.google.com ([209.85.210.68])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j6FLJ-0007ss-Mw
- for linux-amlogic@lists.infradead.org; Mon, 24 Feb 2020 15:08:23 +0000
-Received: by mail-wm1-x341.google.com with SMTP id c84so9782995wme.4
- for <linux-amlogic@lists.infradead.org>; Mon, 24 Feb 2020 07:08:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Rm7gksVRI42mlVOGy1QSc0Bs/gLhlfgLmvHJ12ilWYc=;
- b=solSGzyOpCALZIol/9eX3klRZa/VQdMYTbQBEm3R2+CXxwHY7ORsZxepUjufVAgr/n
- lPvxwjjkKTf1a4uhuX6XOlCowMpj+tBU3a9kRsfw1+OTt7lyjTotIdKpTipAAeUF+Jf1
- +uuEW2OmCf5iPIKK6pSpCoQvppKws6WbMv/ybweGlPY1YVepgJXpbnHqgEu5f6zI8R2d
- 5dtOspEoU1EnQr+M+vo+MkRJ1bPVECvimj2eUJUTLBX/X/m7w3tNYeZ96lKRkAp2Sj80
- Iqjo/kDU3E/1TpsPAkOZLia1fdsIFzo4rjl4kQRbUA4cSyzwF3Xk0p8cfGApk/9PftSk
- 1WZw==
+ id 1j6IFi-0000ZC-G9; Mon, 24 Feb 2020 18:14:48 +0000
+Received: by mail-ot1-f68.google.com with SMTP id g64so9543147otb.13;
+ Mon, 24 Feb 2020 10:14:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Rm7gksVRI42mlVOGy1QSc0Bs/gLhlfgLmvHJ12ilWYc=;
- b=PxdQy3On7gEQqccTg+zRxs6kLBT20ifnIvDRDV5g0EHXzHRprhFgrURoVQ0am1+XEJ
- yb8oXEAL/YoBBMDFqwHG2qyBCvDp/8+6zTeOp68FNddhCnzHwNZMqMM1YGNNRi0EXRU6
- kOW0yJQClgS9tpPYMYmQSTLLUVAtwnUCRGpW9UwbCcHI2Opr9Q9kwZjaO+pjfR+F7oRN
- Ho4Bz/to9HomQYtH1mX5WBBRBlXZNP3nD7Ej/M2NPSZJ2PDoO3eQgxflH+Me7n811XP1
- PxRXPhHFy6mR3gJmbzawZwGqCZF6Uo9HFVfGKLeIpT8WH9GjaH1WbZImh5cKGQoqmDlU
- Olpw==
-X-Gm-Message-State: APjAAAWgNR3qdifMBwShRLa5bZHwdwHVnCD3+u1h/9kTmkX42+f/ykTI
- bF/1gLwBuiORRz8fth4EDL1FEg==
-X-Google-Smtp-Source: APXvYqxC477Fxo92CZIa3vtqqWrP1cxhxUqPpogpwG0PJda6xORaSel0ea0bHewHcS6+aS7i8BSsEw==
-X-Received: by 2002:a1c:6189:: with SMTP id
- v131mr23600114wmb.185.1582556900435; 
- Mon, 24 Feb 2020 07:08:20 -0800 (PST)
-Received: from starbuck.baylibre.local
- (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id c15sm19074794wrt.1.2020.02.24.07.08.19
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=4nmmGful+MegUr8aRgRCB1gCieEuCvrSiIBlqsABDmE=;
+ b=TksDOku6c0UqsoK6BHNsNS3vcl8klSg267QxMczLmXoVMgGqeJbpW9dsJXIRp8AB5U
+ TQLsK4JrM5EbTesOQrKpANVKUsCurn8oHqGF+0EgVw6Zo5QnkOJHWHphh7xdXlsS1pOS
+ VNTat6cGRLab/sRT8Q4ph1+BxJAcnnCj6r/vXA6spcbNrFSaaEXVVc1EnwN7kiCQ8io0
+ TW8PaxfF6mOe3md6vGaVigVH2mEsonQWTWGWSz9P+aIPUauLrYqIknfY1Roe1h474kM5
+ SLTZro+5XnU2owPQ4ikBib9LKy3i/dYZp8yXrdcFxZus9Cp5jf+VgvYH5lJJmHQOAmI3
+ pokQ==
+X-Gm-Message-State: APjAAAW8nI6HWPNvCKhAqYc5oy0dk7ANQT4Ct6/puO0hSlNE5QuMq5b/
+ T8gOtbrywv5DNVYEyCmEJw==
+X-Google-Smtp-Source: APXvYqzSAV62BhNi363gv0daEbhuDKzBdde3JmEZAlbjVYZ9GcAmP/tY+ZpDRe7P2Ti1DpLoIK6ciQ==
+X-Received: by 2002:a9d:68d9:: with SMTP id i25mr29162204oto.135.1582568083899; 
+ Mon, 24 Feb 2020 10:14:43 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id 60sm4761700otu.45.2020.02.24.10.14.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Feb 2020 07:08:19 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 3/3] arm64: dts: meson: sei510: fix sound card codec node
-Date: Mon, 24 Feb 2020 16:08:12 +0100
-Message-Id: <20200224150812.263980-4-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200224150812.263980-1-jbrunet@baylibre.com>
-References: <20200224150812.263980-1-jbrunet@baylibre.com>
+ Mon, 24 Feb 2020 10:14:43 -0800 (PST)
+Received: (nullmailer pid 24218 invoked by uid 1000);
+ Mon, 24 Feb 2020 18:14:41 -0000
+Date: Mon, 24 Feb 2020 12:14:41 -0600
+From: Rob Herring <robh@kernel.org>
+To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Subject: Re: [PATCH 2/7] docs: dt: fix several broken references due to renames
+Message-ID: <20200224181441.GA23262@bogus>
+References: <cover.1582361737.git.mchehab+huawei@kernel.org>
+ <83c5df4acbbe0fa55a1d58d4c4a435b51cd2a7ad.1582361737.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Disposition: inline
+In-Reply-To: <83c5df4acbbe0fa55a1d58d4c4a435b51cd2a7ad.1582361737.git.mchehab+huawei@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200224_070821_745178_EE55E22F 
-X-CRM114-Status: GOOD (  11.64  )
+X-CRM114-CacheID: sfid-20200224_101446_563399_C03D236D 
+X-CRM114-Status: GOOD (  10.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,42 +86,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Stuart Yoder <stuyoder@gmail.com>,
+ Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+ David Airlie <airlied@linux.ie>, Michael Turquette <mturquette@baylibre.com>,
+ dri-devel@lists.freedesktop.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Pavel Machek <pavel@ucw.cz>, linux-clk@vger.kernel.org,
+ linux-leds@vger.kernel.org, Alexandre Torgue <alexandre.torgue@st.com>,
+ Amit Kucheria <amit.kucheria@verdurent.com>, linux-aspeed@lists.ozlabs.org,
+ Jonathan Corbet <corbet@lwn.net>, Kevin Hilman <khilman@baylibre.com>,
+ openbmc@lists.ozlabs.org, Daniel Lezcano <daniel.lezcano@linaro.org>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, Joel Stanley <joel@jms.id.au>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Zhang Rui <rui.zhang@intel.com>,
+ Linus Walleij <linus.walleij@linaro.org>, devicetree@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, linux-pm@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Jyri Sarha <jsarha@ti.com>,
+ linux-gpio@vger.kernel.org, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Laurentiu Tudor <laurentiu.tudor@nxp.com>, Stephen Boyd <sboyd@kernel.org>,
+ Andy Gross <agross@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Dan Murphy <dmurphy@ti.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-A codec node of the sei510 sound card is numbered with the pattern
-codec@XX. This pattern should be used only if there is a reg property in
-the node which is not case here. Change this to something acceptable.
+On Sat, Feb 22, 2020 at 10:00:02AM +0100, Mauro Carvalho Chehab wrote:
+> Several DT references got broken due to txt->yaml conversion.
+> 
+> Those are auto-fixed by running:
+> 
+> 	scripts/documentation-file-ref-check --fix
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> Reviewed-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>  Documentation/devicetree/bindings/arm/arm,scmi.txt        | 2 +-
+>  Documentation/devicetree/bindings/arm/arm,scpi.txt        | 2 +-
+>  .../devicetree/bindings/arm/bcm/brcm,bcm63138.txt         | 2 +-
+>  .../devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt  | 2 +-
+>  .../devicetree/bindings/arm/msm/qcom,idle-state.txt       | 2 +-
+>  Documentation/devicetree/bindings/arm/omap/mpu.txt        | 2 +-
+>  Documentation/devicetree/bindings/arm/psci.yaml           | 2 +-
+>  .../devicetree/bindings/clock/qcom,gcc-apq8064.yaml       | 2 +-
+>  .../devicetree/bindings/display/tilcdc/tilcdc.txt         | 2 +-
+>  Documentation/devicetree/bindings/leds/common.yaml        | 2 +-
+>  .../devicetree/bindings/leds/register-bit-led.txt         | 2 +-
+>  .../devicetree/bindings/memory-controllers/ti/emif.txt    | 2 +-
+>  Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt   | 2 +-
+>  .../bindings/pinctrl/aspeed,ast2400-pinctrl.yaml          | 2 +-
+>  .../bindings/pinctrl/aspeed,ast2500-pinctrl.yaml          | 2 +-
+>  .../bindings/pinctrl/aspeed,ast2600-pinctrl.yaml          | 2 +-
+>  .../devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml  | 2 +-
+>  .../devicetree/bindings/reset/st,stm32mp1-rcc.txt         | 2 +-
+>  .../devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml  | 2 +-
+>  MAINTAINERS                                               | 8 ++++----
+>  20 files changed, 23 insertions(+), 23 deletions(-)
 
-This change is only to better comply with the DT spec. No functional
-changes expected.
+Applied.
 
-Fixes: 64c10554bf9c ("arm64: dts: meson: sei510: add sound card")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index 2ac9e3a43b96..168f460e11fa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-@@ -269,7 +269,7 @@ dai-link-7 {
- 			dai-tdm-slot-tx-mask-3 = <1 1>;
- 			mclk-fs = <256>;
- 
--			codec@0 {
-+			codec {
- 				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
- 			};
- 		};
--- 
-2.24.1
-
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
