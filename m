@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 01835C11D32
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 14:58:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 45541C11D35
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 14:58:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CA1112082F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 14:58:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1B56D2072D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 14:58:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mDrrEzRp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="lcWN9cUq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA1112082F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gsbNUl+e";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="MoDtdy/A"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B56D2072D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,68 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kepxY3h0GzByNBJtz4ZjMujx/em0MebreJ/phupXOmU=; b=mDrrEzRpvcxXZ6
-	izX1JWxzwL/EajCDCJYJNux/p2v++10kwAzBnovDozq3TOpImlvh3K0DCQLhWfi6tineSTHplTvwZ
-	TT2/zsQo0yCUiydBRBjvf9POusHB6t2eVt0WxdLTB4Z8hfj4hZYAuXTgvOZ/JT27tqW2urAG2Y7lJ
-	dvyyBOZixDgDDYXWRyW8VFrJqvxiozUsZw33PKrx8Eigih225XyEVF4MjCZYEuOWO+HyGEwQyuOH0
-	hgIJg/501wyrbiGEPHeUIumchpCjQO4gl/f9sJzcTxV92Sb6upmyyzK77jcWjICIbYTl8QGD94el5
-	9M3gcCTkui43Dqm7/g1w==;
+	List-Owner; bh=u/CMxeAMeT5/RCu1dtCxWa+rTrqaKPWPhChg5L1Cb4s=; b=gsbNUl+eConvvd
+	Z4ABJHZ8DnwAULlGBr3Zfcc9XMRvgYS3gMg5Bu+3N75A5q+NfwUQ/8GJ4U6kpoBnDkh2gf/defFjS
+	iDh9nr2GpWSUPfPwwNnMquFNOolSLIgI2CGk0XfExlJejW3ZRVsGQOC6K3dfS4fFbQr9KABuIgISQ
+	RTigPvrRvnptCy2M6N+xevidMCdwlZAuLw8TfHw3NOsozFbsCg//6GG97bXZTKjol0zTwW7NLK+ao
+	WIh9lPZAMkz8rNQKCt9WoyDYYkgtj4NWUjUB9kbH/YTMvLvNG6P5MwEdVEfXvNtFweD5p1OVBxSgD
+	n9GTzSTonJfZWJYoDOEA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j6FBo-0003vj-Dz; Mon, 24 Feb 2020 14:58:32 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1j6FBr-0003z7-Dk; Mon, 24 Feb 2020 14:58:35 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j6FBi-0003sC-Pe
- for linux-amlogic@lists.infradead.org; Mon, 24 Feb 2020 14:58:30 +0000
-Received: by mail-wr1-x442.google.com with SMTP id y17so1932765wrn.6
- for <linux-amlogic@lists.infradead.org>; Mon, 24 Feb 2020 06:58:26 -0800 (PST)
+ id 1j6FBl-0003t1-UU
+ for linux-amlogic@lists.infradead.org; Mon, 24 Feb 2020 14:58:33 +0000
+Received: by mail-wm1-x342.google.com with SMTP id m10so88431wmc.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 24 Feb 2020 06:58:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=eR8sRZ0eNtaE7U9M/Ye9eF8UlxBXj3WB9fmrHU+msXI=;
- b=lcWN9cUqpNnTBKxLL1DcDeE96TbfbhNrt4m4Zx+HhxEUh4/4IfxF+6fPGTklNwHtBV
- jNbp8eSsTC1LMdNWtEMJF6cwYJ0LM8mGwpEyzrNbUxd/RKJPZaWX1tNhbIvtJqZU6AHK
- im1JpjWuiJRALN2PkArUCotAgTMzlxnXW/1C4IrXSz6IRS4m3BmJ62w8DChEng86uLVO
- KmoB9kUfLuVae0i7qIM7uOfcV+h2J5yye52aLZZJ9Mrhl0hqq0szE3IUNRhhuOd3MWFy
- RBdNpRUZIhVY5ImD4FlGsQniP5+y8xIpyPGLN9iAoTm6DvQzkuJwKWfwBf3Fxnx9baYK
- gAuQ==
+ bh=+z+TEx8bhDzFW34QmPiBogPbKoWFxma+x2ar/YNcjJU=;
+ b=MoDtdy/ASSE81XvhIDEr7qmy2sjAw1QAcaXSfyHMIBU04We9KpnwK0vGNTV5THR7wI
+ iVrviVzuGIaxmeRIqHTm5G9vm8qv/iRnkeZW6BnvPh+KilhC6Nz8INKir9eu8dRr7g3Q
+ MUW3kTRWdIXPYXJ5QtrFpXYcB7p+rKRO/Br69oOguNbaY04mYnQo7vdovSnY+arRB0Tj
+ z0s1SIr9jh8NAEsJFKg3JcSdExn3BDdPia5en5m1NALv2z+Q9gcSL8z0jkMO5b507ltA
+ dDT3psslEf3pa2f9eamk92vx50VkK2vsnmmJTnAfYjK89mBYqCWA/TCBXIS7UXLL8xnI
+ C9Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=eR8sRZ0eNtaE7U9M/Ye9eF8UlxBXj3WB9fmrHU+msXI=;
- b=toyZMZzLGYvyKFfCD7OXASf+B8FmAapf4g4RvjF4v4AbqWKuo8nwXxlo1BbC8gWPt+
- iCsIqyC06obdwwODdOkGox4HVcgK8Buu3y/2tuHvSv3RWUm4wFU82obAkrLAcIIZB5sT
- 0VzBeJQKJXaSxt8rnMyl+bFwGZgjg/Im9PjkDm/wNG2A8bTlowghTN4vCP/KQ9pQ/V8i
- vag5EHY3N+hcSQjbxoOhKDY4XJKJSSo7lngO7X7Q5k2bJnSl9etPEYN/cLKRBSpF9B9p
- UGVG1UJNnpLb9iHmiF44TW+PKxsQnjM7BQ4jmCnBTresqXgNn4ZFDiBV8iaUmV4Lsn5u
- Bfig==
-X-Gm-Message-State: APjAAAWnCkBJFl1uyGKjcuT7L/QAN9Xha9NfNhTmM0Jb9iu0mGAl8M0+
- yLrY8ncwSOOpkP9Z9WOlIaI14g==
-X-Google-Smtp-Source: APXvYqyY/zCmUw3P89UUJMhoBFx2AFHF7hUSFeRrBu9pIR4glCF3WbIF9YxgUdR8YOokcfi9ViiMYg==
-X-Received: by 2002:a05:6000:110b:: with SMTP id
- z11mr14887981wrw.252.1582556305282; 
- Mon, 24 Feb 2020 06:58:25 -0800 (PST)
+ bh=+z+TEx8bhDzFW34QmPiBogPbKoWFxma+x2ar/YNcjJU=;
+ b=ffrVE91eVIssisQhXqZEFKwGtjpZMvcA7dYqEBd0lDecGPP1aks8KfyFpJEWyf1DSu
+ fPS3hkpI1tbSb+i3A/hkRxpw1gE0Rf6GKfEHmWDPhjf8sy8PGuyMuhjjDTcc3EcHX4fV
+ KNKFG5UZgqgy6wWhJvLnyHUYnv7p3PRAfeQ8Hl9Mh+yjs8+CqMUhL+P/tqxs+ZfedT8e
+ nXfUlI4p12Rojz8HNFhkmJFtb1ck3HkmLHoeLleO0sC3sUa5/rKA1s35T0QadcxN8hg8
+ v8sFIaqmRyMXT2G0w5KIDYdAZQq9YnZw/B/BdfwHRluC1GitpW8EczAm403cPdgCGKtY
+ LBmQ==
+X-Gm-Message-State: APjAAAXJkDOUBhTB1rUjADB/n5Ha5ljTOChYwVXM4lDpsYSKyKKO0mu6
+ 8aIvwAMNlAo4hpX5dpfpKYiJyg==
+X-Google-Smtp-Source: APXvYqxzdyMGHGJFlXqXOA3msq5jgOwUeemvvhttni/cYjCD+O7dBZXHWX3MEa6se4j6NPP37csdjA==
+X-Received: by 2002:a05:600c:1009:: with SMTP id
+ c9mr22245016wmc.162.1582556308456; 
+ Mon, 24 Feb 2020 06:58:28 -0800 (PST)
 Received: from starbuck.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id j12sm8035127wrt.35.2020.02.24.06.58.24
+ by smtp.googlemail.com with ESMTPSA id j12sm8035127wrt.35.2020.02.24.06.58.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Feb 2020 06:58:24 -0800 (PST)
+ Mon, 24 Feb 2020 06:58:27 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH 1/9] ASoC: meson: gx-card: fix sound-dai dt schema
-Date: Mon, 24 Feb 2020 15:58:13 +0100
-Message-Id: <20200224145821.262873-2-jbrunet@baylibre.com>
+Subject: [PATCH 3/9] ASoC: meson: convert axg tdm formatters to schema
+Date: Mon, 24 Feb 2020 15:58:15 +0100
+Message-Id: <20200224145821.262873-4-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200224145821.262873-1-jbrunet@baylibre.com>
 References: <20200224145821.262873-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200224_065826_829266_CC241876 
-X-CRM114-Status: GOOD (  10.55  )
+X-CRM114-CacheID: sfid-20200224_065830_024383_33DF3FA0 
+X-CRM114-Status: GOOD (  11.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,55 +107,157 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There is a fair amount of warnings when running 'make dtbs_check' with
-amlogic,gx-sound-card.yaml.
+Convert the DT binding documentation for the Amlogic tdm formatters to
+schema.
 
-Ex:
-arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:1: missing phandle tag in 0
-arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:2: missing phandle tag in 0
-arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0: [66, 0, 0] is too long
-
-The reason is that the sound-dai phandle provided has cells, and in such
-case the schema should use 'phandle-array' instead of 'phandle', even if
-the property expects a single phandle.
-
-Fixes: fd00366b8e41 ("ASoC: meson: gx: add sound card dt-binding documentation")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- Hi Mark,
+ .../sound/amlogic,axg-tdm-formatters.txt      | 36 --------
+ .../sound/amlogic,axg-tdm-formatters.yaml     | 92 +++++++++++++++++++
+ 2 files changed, 92 insertions(+), 36 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
 
- The statement above is based on this LKML discussion I found:
- https://lkml.org/lkml/2019/9/30/382
-
- To be honest, I don't really get why the consumer should know whether
- the phandle will have cells or not. AFAIK, the consumer does not care
- about this ...
-
- .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml      | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-index fb374c659be1..a48222e8cd08 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-@@ -57,7 +57,7 @@ patternProperties:
-           rate
- 
-       sound-dai:
--        $ref: /schemas/types.yaml#/definitions/phandle
-+        $ref: /schemas/types.yaml#/definitions/phandle-array
-         description: phandle of the CPU DAI
- 
-     patternProperties:
-@@ -71,7 +71,7 @@ patternProperties:
- 
-         properties:
-           sound-dai:
--            $ref: /schemas/types.yaml#/definitions/phandle
-+            $ref: /schemas/types.yaml#/definitions/phandle-array
-             description: phandle of the codec DAI
- 
-         required:
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+deleted file mode 100644
+index 5996c0cd89c2..000000000000
+--- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-* Amlogic Audio TDM formatters
+-
+-Required properties:
+-- compatible: 'amlogic,axg-tdmin' or
+-	      'amlogic,axg-tdmout' or
+-	      'amlogic,g12a-tdmin' or
+-	      'amlogic,g12a-tdmout' or
+-	      'amlogic,sm1-tdmin' or
+-	      'amlogic,sm1-tdmout
+-- reg: physical base address of the controller and length of memory
+-       mapped region.
+-- clocks: list of clock phandle, one for each entry clock-names.
+-- clock-names: should contain the following:
+-  * "pclk"     : peripheral clock.
+-  * "sclk"     : bit clock.
+-  * "sclk_sel" : bit clock input multiplexer.
+-  * "lrclk"    : sample clock
+-  * "lrclk_sel": sample clock input multiplexer
+-
+-Optional property:
+-- resets: phandle to the dedicated reset line of the tdm formatter.
+-
+-Example of TDMOUT_A on the S905X2 SoC:
+-
+-tdmout_a: audio-controller@500 {
+-	compatible = "amlogic,axg-tdmout";
+-	reg = <0x0 0x500 0x0 0x40>;
+-	resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
+-	clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
+-		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
+-		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
+-		 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
+-		 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
+-	clock-names = "pclk", "sclk", "sclk_sel",
+-		      "lrclk", "lrclk_sel";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
+new file mode 100644
+index 000000000000..f6f3bfb546f5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Audio AXG TDM formatters
++
++maintainers:
++  - Jerome Brunet <jbrunet@baylibre.com>
++
++properties:
++  $nodename:
++    pattern: "^audio-controller@.*"
++
++  compatible:
++    oneOf:
++      - items:
++        - enum:
++          - amlogic,g12a-tdmout
++          - amlogic,sm1-tdmout
++          - amlogic,axg-tdmout
++      - items:
++        - enum:
++          - amlogic,g12a-tdmin
++          - amlogic,sm1-tdmin
++        - const:
++            amlogic,axg-tdmin
++      - items:
++        - const:
++            amlogic,axg-tdmin
++
++  clocks:
++    items:
++      - description: Peripheral clock
++      - description: Bit clock
++      - description: Bit clock input multiplexer
++      - description: Sample clock
++      - description: Sample clock input multiplexer
++
++  clock-names:
++    items:
++      - const: pclk
++      - const: sclk
++      - const: sclk_sel
++      - const: lrclk
++      - const: lrclk_sel
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - amlogic,g12a-tdmin
++          - amlogic,sm1-tdmin
++          - amlogic,g12a-tdmout
++          - amlogic,sm1-tdmout
++then:
++  required:
++    - resets
++
++examples:
++  - |
++    #include <dt-bindings/clock/axg-audio-clkc.h>
++    #include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
++
++    tdmout_a: audio-controller@500 {
++        compatible = "amlogic,g12a-tdmout",
++                     "amlogic,axg-tdmout";
++        reg = <0x0 0x500 0x0 0x40>;
++        resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
++        clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
++                 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
++                 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
++                 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
++                 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
++        clock-names = "pclk", "sclk", "sclk_sel",
++                      "lrclk", "lrclk_sel";
++    };
++
 -- 
 2.24.1
 
