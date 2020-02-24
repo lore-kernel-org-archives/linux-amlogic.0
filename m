@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49CD2C11D35
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 14:58:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7183BC11D32
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 14:58:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 150622072D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 14:58:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3A78C2072D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 14:58:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rU0WRHDp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BxwsppZ2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 150622072D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fylZefJj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LpM7mpj7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A78C2072D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BNX48vx+ztgVsVbB14VOzQwX5G7dpIoJ3v/U8yjaED4=; b=rU0WRHDpTSTVmF
-	R3ongs38MxCDuTkZ+c7IkChDcXfaRDOvso33oWbpxc00ApHvqT1/z3X+8sXBvd8Z0gcZjkPFbyYZO
-	Ho+u/OVksf5U527PvHfv/8g9lNFJHKvQWs7iPUEqi56e2gWehvFQwfz3hNyMZxyP80bcBEw8T0wcO
-	Jv/LR+xBrfaYS5K3Lf9qE8PaLpspCKFAITqDmHk13DiCqWO4oH8wKxiaPpNAAjELI8WsNjkgfnJ4s
-	Z1tQwt97sv5jIgXIb2vU6Fn5hR6nfTLG15a82YNhBubR4UqTaD0YSfIy9l7Ixp1tSK7wEk/A2eX5O
-	kQ2HOVCBTh1eYzLEIAyg==;
+	List-Owner; bh=z4sQn1LgDZOuhCCqE0Ql9QzamczRISMqrfWiQysKkuM=; b=fylZefJjgVqT1P
+	Zj5f3nt7sX5LUWzqf0akQ9iXJLOT71z7Hg7R00wZNUZj7V64R5+JI7aqLKxf0ZeAsjRuIoR0FjtfA
+	AXGIrF8l3Gg0YjwNYtSmBUTml0WICHgozDHOKbWcstsU1GwRXW5+2fNEQVZG/FJjb8WcLC+AwUAkd
+	9NCqBxQ+yuAq22sLUVhOwmsMP5lb+lKSg3KZyuk1SzfMdQrQtGc8lNQ/Y65zae3sozXmFYM1pCBJr
+	1LdmdY4327JJQaFU867x6HPNW/hdI5dpBmANMmbOiFT5s73aRRZJ2qh61FWqSUYZhUzFQGYqvJo6n
+	cH6C1IKOypNlHauP526g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j6FC2-0004Bd-BY; Mon, 24 Feb 2020 14:58:46 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1j6FC4-0004Eg-6g; Mon, 24 Feb 2020 14:58:48 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j6FBq-0003x2-Dd
+ id 1j6FBr-0003y7-12
  for linux-amlogic@lists.infradead.org; Mon, 24 Feb 2020 14:58:36 +0000
-Received: by mail-wr1-x444.google.com with SMTP id e8so10742797wrm.5
+Received: by mail-wr1-x443.google.com with SMTP id g4so4387119wro.13
  for <linux-amlogic@lists.infradead.org>; Mon, 24 Feb 2020 06:58:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=+m5Zk6ATehdxswy6Hjbn0kVD8RHIMq9I1KqtdFphR4Y=;
- b=BxwsppZ2TqEjT+8Z3y25ke1pudvOilFOi8pPUubmpCnhiDngRYPXdE94G7U9Ava7zQ
- RomwNhFUanS4atJGqdbEqofH6EZH/03ujPLOashF22t7WT2B1Fhp7Z9KFA+8uPmxzRMt
- 0h2oPjI7KDMWdHsVDhW1N6Eu9/UVeLCDLPonER6wXezzegFK9KFX61o0pT2TOElUJex3
- gQv8ec3/kuemWFl7o+5ymRoCd6NmXdQ66o7/uaxH+5SIUtHSfr05mntPv7wZsULLI7Ij
- bWBoqaYzCjFr3npplC/8TRkuHWl35sd6nxfFn9P3WZ9X8q8LCuQOiF8stMRuF4ocpmby
- fbYw==
+ bh=UdwXQ7pH6rI6ueZApn+K43TDTHvz3mfvfA2n6YIMVTA=;
+ b=LpM7mpj7LiZYFY1F/LHsfKrbgKu9KMEEPBIR7iDONOQtj5dzo4PULT5jUyW8VBENL7
+ ErVZShkH6j+APMl0j47EspIm4CwGk9WYyH+f6FoSIYTjN4yTAoJh+CJiUTrJ5Gdtwqwq
+ b6w2PcF2xLt7hUCknO6OepJMPbtuZhua9fSEKjbXvhGoX/pERSl3Y9o7tppCYNjp8ESs
+ O1c993L2XPYgrMdjGFiGfQJAn6Tn75s3iH6AqFliUtHIChwfNQvJrCBf0tIFCjXOqOgl
+ S8Ons34q9AFhe8dmhrVCQ6kXq9TCLFxm1YFMA2n0G3vawr70esVlFNS5i9GgW4pgD8X2
+ 3vRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=+m5Zk6ATehdxswy6Hjbn0kVD8RHIMq9I1KqtdFphR4Y=;
- b=Aw7AevcZUCAzIbtxijWpYwFQrWpU1CufDKHPE+NF8bbuJSnncKlZRFRa8SudZCkcY7
- OXaqJ+uDbZAQCagxLEV4a/Kb9Xkczrf0OS2+ylzlknDMui9KJrQNTHbsRNLmcbmHnDvM
- Di8wp2BUmWrf+U82K7QLcA1F6JdAPF0Cqx5QTwHZZRehHVXImY0miwkJ4/54xYWEXDRk
- xn9q1ANxEni52p3GaY4InrSMe6Vl0bLv9tW2MlLkf6B4HRKV+mXsMF7cAI0AytlQaS0y
- 4q2JWg3XF2Fz7R/f8N+Rb1x4u9YrX7ezXcjj7fECMvpKrHDCxGyAZ2iNC1y6io571PTR
- aTIQ==
-X-Gm-Message-State: APjAAAUR0EBlmGiDCbtFlT1plCPL5ZbTlRf44rmPuxVSX3wGPJMVU1cd
- ypNT5jivqK10PrAvpScAxHFYnQ==
-X-Google-Smtp-Source: APXvYqwKJQRnmPqcIIix9h+Okty9D6LqCQRrxgqAPcpQ8cagQSHDEFG5tHJ6MlgBAUv48MiCgtTlPw==
-X-Received: by 2002:a5d:6411:: with SMTP id z17mr70933271wru.57.1582556312782; 
- Mon, 24 Feb 2020 06:58:32 -0800 (PST)
+ bh=UdwXQ7pH6rI6ueZApn+K43TDTHvz3mfvfA2n6YIMVTA=;
+ b=f5HfDzu6kfqpWrmjWDYYE2/AGFEV50ta4Q+xXE7VZFH/EaHHQM+z236Yd9WGGIL36K
+ epV0fK9jqvlObLMtyO03o1WgdC5aho+ERayNgKKFFnByVwCmuRC/jQr621lAHiZGnwLr
+ 6wE3UgOg3dWqyku+fG+wy0PnyeEkAYng/iS2/Dv1+VsSwnDIiGS89m5opsiprhxjM2xl
+ pqeDQ3HM21vSLR1QK8H/QBTOinM8R49+6MvZSw+FNkbJ/YaBfdStvdte+eus9zMjt/oh
+ 7IyFcR9Ln8lOY04qceg2qXb55k78oJxhgL8aGfl1Ri4lP+57Kx73yCWfDImofP63LXpd
+ FBAA==
+X-Gm-Message-State: APjAAAWtW5MetwAQ0/RU6U2GZChDT8zPno8T3xIihrXZvikacNGNWUvR
+ ctlXs5yaWlvdeJfncVUSJdz49Q==
+X-Google-Smtp-Source: APXvYqx6BBo21R5PTgXLbRReQuUMfO7alOUBEJcwx+E701SSNNZySFjVl7yKssosp1Wkvm7UURQw2Q==
+X-Received: by 2002:a5d:6b88:: with SMTP id n8mr69304362wrx.288.1582556313782; 
+ Mon, 24 Feb 2020 06:58:33 -0800 (PST)
 Received: from starbuck.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id j12sm8035127wrt.35.2020.02.24.06.58.31
+ by smtp.googlemail.com with ESMTPSA id j12sm8035127wrt.35.2020.02.24.06.58.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Feb 2020 06:58:32 -0800 (PST)
+ Mon, 24 Feb 2020 06:58:33 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH 7/9] ASoC: meson: convert axg spdif output to schema
-Date: Mon, 24 Feb 2020 15:58:19 +0100
-Message-Id: <20200224145821.262873-8-jbrunet@baylibre.com>
+Subject: [PATCH 8/9] ASoC: meson: convert g12a tohdmitx control to schema
+Date: Mon, 24 Feb 2020 15:58:20 +0100
+Message-Id: <20200224145821.262873-9-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200224145821.262873-1-jbrunet@baylibre.com>
 References: <20200224145821.262873-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200224_065834_471662_66D0DC6F 
-X-CRM114-Status: GOOD (  10.97  )
+X-CRM114-CacheID: sfid-20200224_065835_086525_E1CF6CF5 
+X-CRM114-Status: GOOD (  10.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,61 +106,94 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the DT binding documentation for the Amlogic axg spdif output to
-schema.
+Convert the DT binding documentation for the Amlogic g12a tohdmitx codec
+glue to schema.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../bindings/sound/amlogic,axg-spdifout.txt   | 25 ------
- .../bindings/sound/amlogic,axg-spdifout.yaml  | 77 +++++++++++++++++++
- 2 files changed, 77 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
- create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
+ .../bindings/sound/amlogic,g12a-tohdmitx.txt  | 58 -------------------
+ .../bindings/sound/amlogic,g12a-tohdmitx.yaml | 53 +++++++++++++++++
+ 2 files changed, 53 insertions(+), 58 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
 deleted file mode 100644
-index 28381dd1f633..000000000000
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+index 4e8cd7eb7cec..000000000000
+--- a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
 +++ /dev/null
-@@ -1,25 +0,0 @@
--* Amlogic Audio SPDIF Output
+@@ -1,58 +0,0 @@
+-* Amlogic HDMI Tx control glue
 -
 -Required properties:
--- compatible: 'amlogic,axg-spdifout' or
--	      'amlogic,g12a-spdifout' or
--	      'amlogic,sm1-spdifout'
--- clocks: list of clock phandle, one for each entry clock-names.
--- clock-names: should contain the following:
--  * "pclk" : peripheral clock.
--  * "mclk" : master clock
--- #sound-dai-cells: must be 0.
+-- compatible: "amlogic,g12a-tohdmitx" or
+-	      "amlogic,sm1-tohdmitx"
+-- reg: physical base address of the controller and length of memory
+-       mapped region.
+-- #sound-dai-cells: should be 1.
+-- resets: phandle to the dedicated reset line of the hdmitx glue.
 -
--Optional property:
--- resets: phandle to the dedicated reset line of the spdif output.
+-Example on the S905X2 SoC:
 -
--Example on the A113 SoC:
--
--spdifout: audio-controller@480 {
--	compatible = "amlogic,axg-spdifout";
--	reg = <0x0 0x480 0x0 0x50>;
--	#sound-dai-cells = <0>;
--	clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
--		 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
--	clock-names = "pclk", "mclk";
+-tohdmitx: audio-controller@744 {
+-	compatible = "amlogic,g12a-tohdmitx";
+-	reg = <0x0 0x744 0x0 0x4>;
+-	#sound-dai-cells = <1>;
+-	resets = <&clkc_audio AUD_RESET_TOHDMITX>;
 -};
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
+-
+-Example of an 'amlogic,axg-sound-card':
+-
+-sound {
+-	compatible = "amlogic,axg-sound-card";
+-
+-[...]
+-
+-	dai-link-x {
+-		sound-dai = <&tdmif_a>;
+-		dai-format = "i2s";
+-		dai-tdm-slot-tx-mask-0 = <1 1>;
+-
+-		codec-0 {
+-			sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
+-		};
+-
+-		codec-1 {
+-			sound-dai = <&external_dac>;
+-		};
+-	};
+-
+-	dai-link-y {
+-		sound-dai = <&tdmif_c>;
+-		dai-format = "i2s";
+-		dai-tdm-slot-tx-mask-0 = <1 1>;
+-
+-		codec {
+-			sound-dai = <&tohdmitx TOHDMITX_I2S_IN_C>;
+-		};
+-	};
+-
+-	dai-link-z {
+-		sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+-
+-		codec {
+-			sound-dai = <&hdmi_tx>;
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.yaml b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.yaml
 new file mode 100644
-index 000000000000..9ac52916f88b
+index 000000000000..fdd64d103f33
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
-@@ -0,0 +1,77 @@
++++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.yaml
+@@ -0,0 +1,53 @@
 +# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/amlogic,axg-spdifout.yaml#
++$id: http://devicetree.org/schemas/sound/amlogic,g12a-tohdmitx.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Audio AXG SPDIF Output
++title: Amlogic G12a HDMI Tx Control Glue
 +
 +maintainers:
 +  - Jerome Brunet <jbrunet@baylibre.com>
@@ -170,67 +203,43 @@ index 000000000000..9ac52916f88b
 +    pattern: "^audio-controller@.*"
 +
 +  "#sound-dai-cells":
-+    const: 0
++    const: 1
 +
 +  compatible:
 +    oneOf:
 +      - items:
 +        - const:
-+            amlogic,axg-spdifout
++            amlogic,g12a-tohdmitx
 +      - items:
 +        - enum:
-+          - amlogic,g12a-spdifout
-+          - amlogic,sm1-spdifout
++          - amlogic,sm1-tohdmitx
 +        - const:
-+            amlogic,axg-spdifout
-+
-+  clocks:
-+    items:
-+      - description: Peripheral clock
-+      - description: SPDIF output master clock
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: mclk
++            amlogic,g12a-tohdmitx
 +
 +  reg:
 +    maxItems: 1
 +
 +  resets:
-+    items:
-+      - description: dedicated device reset line
++    maxItems: 1
 +
 +required:
 +  - "#sound-dai-cells"
 +  - compatible
 +  - reg
-+  - clocks
-+  - clock-names
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - amlogic,g12a-spdifout
-+          - amlogic,sm1-spdifout
-+then:
-+  required:
-+    - resets
++  - resets
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/axg-audio-clkc.h>
++    #include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
 +
-+    spdifout: audio-controller@480 {
-+    	compatible = "amlogic,axg-spdifout";
-+        reg = <0x0 0x480 0x0 0x50>;
-+        #sound-dai-cells = <0>;
-+        clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
-+                 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
-+        clock-names = "pclk", "mclk";
++    tohdmitx: audio-controller@744 {
++    	compatible = "amlogic,g12a-tohdmitx";
++        reg = <0x0 0x744 0x0 0x4>;
++        #sound-dai-cells = <1>;
++        resets = <&clkc_audio AUD_RESET_TOHDMITX>;
 +    };
++
++
 -- 
 2.24.1
 
