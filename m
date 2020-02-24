@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21012C11D2F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BAD26C11D34
 	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 15:08:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E384320828
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 15:08:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8CF6520828
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2020 15:08:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T8M/WPyr";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BYcD3EXv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E384320828
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SnvC8Gtk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wBY/3vVu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8CF6520828
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I8lcBxPmIyDYeaEShcXO9gi5sJpDJI3r7n2zchP25rk=; b=T8M/WPyrk8CnFQ
-	TGfkPFyyRXbMfWPHJX4nCse8q8RqpqQMkxwuWf7aARj2BipV1Q20thpNFbFqN+jQBoHk6bpWaINfa
-	hkZzl1NZ6t8W8B2GC7/vrNR8Yy2pOOOci1IbCjmE2GyEYavzJIBAtedUsHxq+HGk5gAKNG80zZMIX
-	lVjdyJImVM0bPbAn0x0QzzPW5aemSlr4uT1+verfrsDaQdDso+ZwvmdHh4GBQbZ5ML3CffXF6YzE7
-	Q6VaxupvrySWePM/FgLLHaTtG2rMM1u1/HtX1wTcN6HiS2NG5q6zpzO0TuFMmEMMbTDecYCwQ1hBa
-	GQaMxF+QwTrxU4So0DRg==;
+	List-Owner; bh=+VFnYywb0Qjep8wWyVzlU/WXm+3X8YHtgm1kiOskwA4=; b=SnvC8GtkfcnpDB
+	6LY51QoFy35DglxVytVPkLyPodMt6bEj2/Zig1RfDpev1J05wD4MlMCXgtiXK82kJiwCRTEJh3FEp
+	OTQZ3+5N5+tFePBH94+UFRGDOGe40sQOXfdaqhpKRdLp0iC8B2u81U1enDCX1mDIvJ7Wbhi4uxHeE
+	1E5A8Rr/a42bQDGWLgD/M1X0DnCkwsQiEb37IVTVgxH4xg2PuUF9+EuZjoumoV/RgU8rmfK9b8UQ3
+	PMZoIrjVKSbqmm8UshgI099MpCa+spp1aAlP+ZbPLWjCwfSFIXRUrSl2do+mPZixjr/5c0aiM+loD
+	JqIU9l5keEsA7inRWpGQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j6FLJ-0007tV-WF; Mon, 24 Feb 2020 15:08:22 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1j6FLK-0007uL-Ty; Mon, 24 Feb 2020 15:08:22 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j6FLH-0007s3-FR
+ id 1j6FLI-0007sZ-EX
  for linux-amlogic@lists.infradead.org; Mon, 24 Feb 2020 15:08:21 +0000
-Received: by mail-wr1-x441.google.com with SMTP id z3so10789349wru.3
- for <linux-amlogic@lists.infradead.org>; Mon, 24 Feb 2020 07:08:19 -0800 (PST)
+Received: by mail-wm1-x342.google.com with SMTP id q9so9307848wmj.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 24 Feb 2020 07:08:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=fT05dRla7k6mi1JhUyZzqKYXuvZdKNrDT0WVGGFRTl0=;
- b=BYcD3EXvKfzozIA2053JwVUhJ9IPx5JuCxPDLSoD+2e1TGLiZUpUZCHd2MMdViO7Oi
- HzZ8tSQb2CglmS9jZ31gIsquRyMfcrLsxFTYsuVUSfJpGKoAAN/YUV/1Re1ubTXTEXwo
- i64S5HP2Rvg3tQhPeunM0uJex3kztuETRY15tqrfR2j4iYsRdyv82/t6mDFDNNFrjNuI
- xtBbXXeDXaSu8PTmXmmDndi6NcyqtvX2yyJXTh3FQ+iQU0RYEIchk8VIe7ljr1ScoQ3p
- NcJJDIqNpVyNMUy2qHp6iwxB826rpWgNToIvCWPusyW0wL8PgsVZVwS7A3ZbtHM5K0Bg
- bpnA==
+ bh=pWfBy6ev6bbSxjpQcvH0AV343qtHu4C4U0cUi6UfZnU=;
+ b=wBY/3vVubkI7wxLcoajaYhVvS0G5LexVcmABjQthWDix3gsSnXfBj57nUUKNiAdOZI
+ ApytnEuNGJdnemV7SgbbXHVI29sskaIY5Sp71/cGYPVtRutWuzjnZHEI41duu8JmINSD
+ BsefERmeChNIxs17rlV5BrsRcKPqRoeQXB4NASw88ZC0tlTGK3eD0wdDIBdYGUO5pXtn
+ /KlIZQQ63kYj/ATt0gQMlltG/BwYGJ3h57mK12AJcbkomZw/gIShztQVjxWdJuH+wDYG
+ A2yxvRv+BK5kvKdGXe2IZVUGtAnOuLFRzRA+aJ3VNAQhFR57pvJ6suNb0Xyaz3fpre4Q
+ alvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=fT05dRla7k6mi1JhUyZzqKYXuvZdKNrDT0WVGGFRTl0=;
- b=k/+JN957NjMiXHnVWhoTc3nL2YlYsPm4erCTJOPnZbcETx/Gv4+/gt1QvX0HOWZeBC
- a6zdrfmQWgosOPEzQ0qQqNXF2qhEcG02lTYDlNApEiWDmGjZSY4oleuSXIfDP4xMbqLC
- chLXv5TCob8XqhKlBfbTSqhVrOSoJn0SIIXXBfsH/42Wvkz/bMmOsP6FFsGV9eb961XH
- Q9ksQP575i9UP5TBjs9DQN1VQibnDNp6W21EXMb1yAGMwXuY885wVtzjU8QugylNTXwd
- 1xlStF1fqFzqKJwTCDKXCS7QsgeIKOfDCwXQ5XR6T2r0jc9i8uCQy9nrdhEnv4HGnz0k
- wAAQ==
-X-Gm-Message-State: APjAAAXXtWIzed3miRdhmKm9D7w+f9O5DtlmLUE5NEmYDRiWUP0BXj5s
- 3BiARztr8iJ2jgb5a2/k4n7EEw==
-X-Google-Smtp-Source: APXvYqzMKfwIAC3EPjlKXLjC88+oVE8Nagq9Gy14JsUqh3VEvQ3KLe3E/Wsf/vNE4nwruJpKV/hnmA==
-X-Received: by 2002:adf:8084:: with SMTP id 4mr15568503wrl.201.1582556898282; 
- Mon, 24 Feb 2020 07:08:18 -0800 (PST)
+ bh=pWfBy6ev6bbSxjpQcvH0AV343qtHu4C4U0cUi6UfZnU=;
+ b=l2zeEx30CH6PPFAt6BNEaFKLAz3H3bo33aKY+hPawI2C/GoBdn2t6NCkuRjESn5Nhw
+ 1oui6NHtEhEC2Ieg8tvnrix2SAnVwWLxVzZPO62uenqe4vawhKMDzXIa+NhOpqO4T+Li
+ M4fx7/zsUxi9G2QYdfza3+MPdE4+DPZ/KAhpwL6k0XkxAwCL8Us98stIYQNMpMHmimEy
+ rgKqihFYPHXnrflUoeaquz5bi3kBHUkX21WGCGJbwWm3F/UdGml7/X/eshJvRflp112C
+ jHus18wjXohgTy9Yyoy8q/rg5oDHlMZaErAE0clM74/sU37rBG+Cjp/0Z1lP4WH3to5i
+ 3/MQ==
+X-Gm-Message-State: APjAAAXXreCQpzUp2pG+UnAGm8sWrbxrjUZgyCDWUqzajqXLdGaW1svA
+ jrypHpvxknx9yBTHgn2wzFnb5Q==
+X-Google-Smtp-Source: APXvYqzDcFZ2YpuRUbGwu9xnZqepU2+kvnw7xrdYxp4hFRnTqNy7SXx1rJu4+siAQs7rix6lsB+m4w==
+X-Received: by 2002:a05:600c:3d1:: with SMTP id
+ z17mr23480791wmd.90.1582556899192; 
+ Mon, 24 Feb 2020 07:08:19 -0800 (PST)
 Received: from starbuck.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id c15sm19074794wrt.1.2020.02.24.07.08.17
+ by smtp.googlemail.com with ESMTPSA id c15sm19074794wrt.1.2020.02.24.07.08.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Feb 2020 07:08:17 -0800 (PST)
+ Mon, 24 Feb 2020 07:08:18 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 1/3] arm64: dts: meson: add pdm reset line
-Date: Mon, 24 Feb 2020 16:08:10 +0100
-Message-Id: <20200224150812.263980-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/3] arm64: dts: meson: s400: fix sound card codec nodes
+Date: Mon, 24 Feb 2020 16:08:11 +0100
+Message-Id: <20200224150812.263980-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200224150812.263980-1-jbrunet@baylibre.com>
 References: <20200224150812.263980-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200224_070819_519773_B39C7F7D 
-X-CRM114-Status: UNSURE (   9.12  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200224_070820_485471_9039D45A 
+X-CRM114-Status: GOOD (  10.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,38 +105,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the reset line of the PDM device to g12 and sm1 SoCs.
+Some codec nodes of the s400 sound card are numbered with the pattern
+codec@XX. This pattern should be used only if there is a reg property in
+the node which is not case here. Change this to something acceptable.
 
+This change is only to better comply with the DT spec. No functional
+changes expected.
+
+Fixes: 6f59dc1afbb2 ("arm64: dts: meson-axg: s400: add sound card")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 1 +
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 1 +
- 2 files changed, 2 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-index 03054c478896..55d39020ec72 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-@@ -56,6 +56,7 @@ pdm: audio-controller@40000 {
- 			 <&clkc_audio AUD_CLKID_PDM_DCLK>,
- 			 <&clkc_audio AUD_CLKID_PDM_SYSCLK>;
- 		clock-names = "pclk", "dclk", "sysclk";
-+		resets = <&clkc_audio AUD_RESET_PDM>;
- 		status = "disabled";
- 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index 4cd2d5951822..cb1360ae1211 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -313,15 +313,15 @@ dai-link-6 {
+ 			dai-tdm-slot-rx-mask-1 = <1 1>;
+ 			mclk-fs = <256>;
  
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index d847a3fcbc85..d4ec735fb1a5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -448,6 +448,7 @@ pdm: audio-controller@61000 {
- 			 <&clkc_audio AUD_CLKID_PDM_DCLK>,
- 			 <&clkc_audio AUD_CLKID_PDM_SYSCLK>;
- 		clock-names = "pclk", "dclk", "sysclk";
-+		resets = <&clkc_audio AUD_RESET_PDM>;
- 		status = "disabled";
- 	};
- };
+-			codec@0 {
++			codec-0 {
+ 				sound-dai = <&lineout>;
+ 			};
+ 
+-			codec@1 {
++			codec-1 {
+ 				sound-dai = <&speaker_amp1>;
+ 			};
+ 
+-			codec@2 {
++			codec-2 {
+ 				sound-dai = <&linein>;
+ 			};
+ 
 -- 
 2.24.1
 
