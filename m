@@ -2,73 +2,93 @@ Return-Path: <SRS0=ZEtl=4N=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_RHS_DOB,USER_AGENT_SANE_1 autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C855EC35E04
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Feb 2020 15:45:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97627C35E17
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Feb 2020 21:43:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9A20B2082F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Feb 2020 15:45:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6585E20675
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Feb 2020 21:43:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YnyCnYnJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9A20B2082F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WjSq1osQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=easyb-ch.20150623.gappssmtp.com header.i=@easyb-ch.20150623.gappssmtp.com header.b="oveJUVfN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6585E20675
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1HSELqwyOXTMZ3K7zREcw5fbGfq7aRAY5pATAVJTfYI=; b=YnyCnYnJYFW12M
-	v9TnsA39BjkpewRR0fCkzt1tbM49CftpGP01esA2/WMFiC0A2Ba2i/y39NOmGDpQNVA1qB19tvh0I
-	zX1+DaG3voyL+z3wsKD7ic0ZBHooX5zVHCzlYyhapc696PubXsspNpOb8zjiCZtHYZC/GJQ25IttT
-	5CjtbbXaxMDSgifcuWt40FAw8n4b4hBFDnGckZVcTeEG/6O5coV0zV4ybwDUuJDZLpZx6s8oy1Rxg
-	XGwtG+Dnwgj7hkHEDBPfhQxT5UD710ZS30JerrdFh2mRIOaAWjk/Qs86BduZvuzxhpeKShHo5m+QX
-	VYWGNrtPsPgYrDwbsU+w==;
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4JABV77t/i38f5HTKadRCNYhxdukOrvt8HqERm0avGI=; b=WjSq1osQ/c4w1I
+	/+Cm3ahr6r99lx3Q/vWin/ItAhTZ/QDNkeGylrSCzpsg9cwuzzYhpd8zqBkp9r/fpW5jVZniO5ShY
+	k+4ySEepQNlKA6+4KLLmvF5udjVwWSGZCoZhUdxOXCj2aVeTfzoyrfTqyLhsL8o+OauAebergpiNo
+	X1oQh+LtmIW3heCqaesB9/LltqHV4koHr2as4cuaRhQMhKDibHLf2h82CnmVmUPhWfyfm99+znn+v
+	3rLBbqyB+8cp54iq5afvu5n5cZpYLY6VbVjt+n3R947bIeUqlJV6SxJQgD8Y5P2NJQ4QYlquIZzLf
+	Z3/T3jJL3TfSLJrAFNxg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j6cOf-0002fb-Oh; Tue, 25 Feb 2020 15:45:21 +0000
-Received: from mga02.intel.com ([134.134.136.20])
+	id 1j6hyv-0005jM-Io; Tue, 25 Feb 2020 21:43:09 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j6cOa-0002f7-Jf
- for linux-amlogic@lists.infradead.org; Tue, 25 Feb 2020 15:45:20 +0000
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2020 07:45:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,484,1574150400"; d="scan'208";a="231057172"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 25 Feb 2020 07:45:07 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 25 Feb 2020 17:45:06 +0200
-Date: Tue, 25 Feb 2020 17:45:06 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andrzej Hajda <a.hajda@samsung.com>
-Subject: Re: [PATCH 04/12] drm: Nuke mode->vrefresh
-Message-ID: <20200225154506.GF13686@intel.com>
-References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
- <CGME20200219203620eucas1p24b4990a91e758dbcf3e9b943669b0c8f@eucas1p2.samsung.com>
- <20200219203544.31013-5-ville.syrjala@linux.intel.com>
- <0f278771-79ce-fe23-e72c-3935dbe82d24@samsung.com>
- <20200225112114.GA13686@intel.com>
- <3ca785f2-9032-aaf9-0965-8657d31116ba@samsung.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3ca785f2-9032-aaf9-0965-8657d31116ba@samsung.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
+ id 1j6hyq-0005hg-Qh
+ for linux-amlogic@lists.infradead.org; Tue, 25 Feb 2020 21:43:08 +0000
+Received: by mail-wm1-x344.google.com with SMTP id m3so854130wmi.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 25 Feb 2020 13:43:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=easyb-ch.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=kEVJ1n2NxQ1glfbZ9e15foebWC3MxMe0p/5A/jyD6H0=;
+ b=oveJUVfN4mGmIby/KrplpWvi32NOCpmb1Fej6u+eU25j1sso9bxSCmnS1HYlP5k+TS
+ MN55kLyOOXTrI5QiCGtP00bRnkJxE6q+aUpqdFsAsXwQh0dvu55FS/TXrAVS/ae6mu1l
+ NAlvopKlSspPGtPCVj0mdTNuFv+ZfhgIinLqRNatsNKvQI8KxR0B1VAiDYp321L4gtUZ
+ g8u+mkFIDr2NdhUV2f4JbQ3BTA7fhSsIoCINRAOSYNlefs7F0PuxzSG5YkiVtBklT+fO
+ oaD/MUhWA0PqDh9MWO9s+RAgppI/P3ICunuQwVb2PDrJVH31q6jq8+vTKG+aECdrMlUL
+ Kc9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=kEVJ1n2NxQ1glfbZ9e15foebWC3MxMe0p/5A/jyD6H0=;
+ b=Lz/mUjyEbTLi8Ll/+AoqefpeL5PAYywaBkaF2Ii41R72y0jXzU4oJ/sqfIO50Q0YsV
+ rU5kDdsGGRnDqKe34UOQ3eRsL8w7MhVNotdANhIA/ER8xAOU7bp8RYumQNBPGfQgZMNd
+ i4gsMpT9quXbCJj1OpGPEKlpot7QzwKdb6tKzuM8gt/DUn9fhHzqsHCrJByi9zkoYyT+
+ fPJ1hq/Ej80UpomSuVAl1bJMuzo3VEVep2AJw7VaRppwX3TTI/pAlhM1Bv/Y5B1UOmJ7
+ 5ThsHT+Vw+We18UhqRrRaq6zH8ClMXquHweyQnEjuzyIdPvngxWSgz+xX8XLUZK8kU9W
+ 8E6g==
+X-Gm-Message-State: APjAAAU4kuPoUyth8be3TxrCgy8GrFQjQVrz14qQTf2Vbeil9T/rIaeo
+ wxllgMnw/tIR8/sEZXR/9/eMmQ==
+X-Google-Smtp-Source: APXvYqzT6vU3uivqK3LFISSNim+ES8rBV5I3PSPpMQoyPtAT6binkjIz4QcxUjjxxm7ATqtLrWgIdA==
+X-Received: by 2002:a1c:7ec5:: with SMTP id z188mr1188559wmc.52.1582666980570; 
+ Tue, 25 Feb 2020 13:43:00 -0800 (PST)
+Received: from ?IPv6:2001:1715:4e22:c580:ed96:156f:9663:e7e4?
+ ([2001:1715:4e22:c580:ed96:156f:9663:e7e4])
+ by smtp.gmail.com with ESMTPSA id f1sm212602wro.85.2020.02.25.13.42.58
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 25 Feb 2020 13:43:00 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
+Subject: Re: [RFC 00/25] arm64: realtek: Add Xnano X5 and implement
+ TM1628/FD628/AiP1618 LED controllers
+From: Ezra Buehler <ezra@easyb.ch>
+In-Reply-To: <04e7d7cd-a8bc-621b-9205-1a058521cabe@arm.com>
+Date: Tue, 25 Feb 2020 22:42:57 +0100
+Message-Id: <E33E27B9-D33C-4182-A5B1-C72FA40470BC@easyb.ch>
+References: <20191212033952.5967-1-afaerber@suse.de>
+ <7110806f-ddbd-f055-e107-7a1f7e223102@arm.com>
+ <c86c6bc0-b0e5-c46e-da87-9d910b95f9f3@suse.de>
+ <04e7d7cd-a8bc-621b-9205-1a058521cabe@arm.com>
+To: Robin Murphy <robin.murphy@arm.com>,
+ =?utf-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
+X-Mailer: Apple Mail (2.3445.9.1)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200225_074516_698750_E2535A71 
-X-CRM114-Status: GOOD (  17.42  )
+X-CRM114-CacheID: sfid-20200225_134305_012546_76FD654B 
+X-CRM114-Status: GOOD (  11.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,99 +100,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, nouveau@lists.freedesktop.org,
- Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
- dri-devel@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Sam Ravnborg <sam@ravnborg.org>, Jagan Teki <jagan@amarulasolutions.com>,
- Thomas Hellstrom <thellstrom@vmware.com>,
- Joonyoung Shim <jy0922.shim@samsung.com>, Stefan Mavrodiev <stefan@olimex.com>,
- Jerry Han <hanxu5@huaqin.corp-partner.google.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>, Robert Chiras <robert.chiras@nxp.com>,
- Icenowy Zheng <icenowy@aosc.io>, Jonas Karlman <jonas@kwiboo.se>,
- intel-gfx@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- Vincent Abriou <vincent.abriou@st.com>,
- Jernej Skrabec <jernej.skrabec@siol.net>, Purism Kernel Team <kernel@puri.sm>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, csd@princeton.com.tw,
+ linux-realtek-soc@lists.infradead.org, sales@fdhisi.com,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ linux-spi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ zypeng@titanmec.com, linux-amlogic@lists.infradead.org,
+ Dan Murphy <dmurphy@ti.com>, linux-leds@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Feb 25, 2020 at 04:19:27PM +0100, Andrzej Hajda wrote:
-> On 25.02.2020 12:21, Ville Syrj=E4l=E4 wrote:
-> > On Mon, Feb 24, 2020 at 03:14:54PM +0100, Andrzej Hajda wrote:
-> >> On 19.02.2020 21:35, Ville Syrjala wrote:
-> >>> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> >>>
-> >>> Get rid of mode->vrefresh and just calculate it on demand. Saves
-> >>> a bit of space and avoids the cached value getting out of sync
-> >>> with reality.
-> >>>
-> >>> Mostly done with cocci, with the following manual fixups:
-> >>> - Remove the now empty loop in drm_helper_probe_single_connector_mode=
-s()
-> >>> - Fix __MODE() macro in ch7006_mode.c
-> >>> - Fix DRM_MODE_ARG() macro in drm_modes.h
-> >>> - Remove leftover comment from samsung_s6d16d0_mode
-> >> ...
-> >>> diff --git a/drivers/gpu/drm/panel/panel-arm-versatile.c b/drivers/gp=
-u/drm/panel/panel-arm-versatile.c
-> >>> index 41444a73c980..47b37fef7ee8 100644
-> >>> --- a/drivers/gpu/drm/panel/panel-arm-versatile.c
-> >>> +++ b/drivers/gpu/drm/panel/panel-arm-versatile.c
-> >>> @@ -143,7 +143,6 @@ static const struct versatile_panel_type versatil=
-e_panels[] =3D {
-> >>>  			.vsync_start =3D 240 + 5,
-> >>>  			.vsync_end =3D 240 + 5 + 6,
-> >>>  			.vtotal =3D 240 + 5 + 6 + 5,
-> >>> -			.vrefresh =3D 116,
-> >>
-> >> Are you sure vrefresh calculated (from totals and clock) is different
-> >> than this field? If not, we risk regressions.
-> >>
-> >> This case is OK, but there is plenty other cases.
-> > IIRC I did spot check a few of them. But which code exactly do you think
-> > is abusing vrefresh and thus could break?
-> =
-
-> =
-
-> I guess suspect/potential victim is every code which uses
-> drm_mode_vrefresh - after this patch the function can return different
-> value(if there are differences between provided and calculated vrefresh).
-> =
-
-> Quick examples where output of this function matters:
-> =
-
-> https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/msm/disp/d=
-pu1/dpu_encoder_phys_cmd.c#L387
-
-Already looks quite sketchy due to rounding.
-
-> =
-
-> https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/panel/pane=
-l-sharp-lq101r1sx01.c#L42
-
-msleep() is in no way accurate so looks rather sketchy as well.
-
-> https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/tilcdc/til=
-cdc_crtc.c#L810
-
-Another thing that suffers from rounding issues.
-
-So to me these all look like code that someone should fix regardless.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgUm9iaW4sCkhpIEFuZHJlYXMsCgo+IE9uIDEzIERlYyAyMDE5LCBhdCAxNTowNywgUm9iaW4g
+TXVycGh5IDxyb2Jpbi5tdXJwaHlAYXJtLmNvbT4gd3JvdGU6Cj4gCj4gSSBhbHNvIGhhdmUgb25l
+IG9mIHRoZSBIOTYgTWF4IGJveGVzICh3aGljaCBJIHBpY2tlZCB1cCBvdXQgb2YgY3VyaW9zaXR5
+Cj4gZm9yIHRoZSBteXN0ZXJpb3VzIFJLMzMxOCkgd2l0aCBhbiBGRDY1NTEsIGFsdGhvdWdoIEkn
+dmUgbm90IGF0dGFja2VkCj4gdGhhdCBvbmUgd2l0aCB0aGUgbG9naWMgYW5hbHlzZXIgeWV0IHRv
+IHNlZSBob3cgc2ltaWxhciBpdCBpcy4KCkkgaGF2ZSBhIFQ5IChSSzMzMjgpIFRWIGJveCB3aXRo
+IHRoZSBzYW1lIGNoaXAgaW4gaXQuIFRoZSBGRDY1NTEgdXNlcyBhbgpJMkMtbGlrZSBwcm90b2Nv
+bC4gRXZlcnkgZGlnaXQgKGFuZCB0aGUgc3ltYm9scykgaGF2ZSBhbiBJMkMgYWRkcmVzcywKYnV0
+LCB0aGUgZGlzcGxheSBkb2VzIG5vdCBzaWduYWwgQUNLLiBBRkFJSyB0aGUgRkQ2NTAgYW5kIEZE
+NjU1IHdoaWNoCmFyZSB1c2VkIGluIG90aGVyIGJveGVzIChBbWxvZ2ljKSBhcmUgdmVyeSBzaW1p
+bGFyLgoKU28gZmFyLCBJIGhhdmUgd2hpcHBlZCB1cCBhIHByb29mLW9mLWNvY2VwdCBkcml2ZXIg
+dGhhdCB1c2VzIGkyYy1ncGlvLgpUaGUgZGlnaXRzIHNlZW0gdG8gYmUgcm90YXRlZCBieSAxODAg
+ZGVncmVlcy4gU28sIGluIG9yZGVyIHRvIHVzZQptYXBfdG9fN3NlZ21lbnQuaCBJIGhhZCB0byBk
+ZWZpbmUgdGhlIEJJVF9TRUc3XyogY29uc3RhbnRzIGRpZmZlcmVudGx5LgpNeSBkaXNwbGF5IGFs
+c28gaGFzIG11bHRpcGxlIHN5bWJvbHMgKFdJRkksIG5ldHdvcmssIHBhdXNlLCBwbGF5LCBVU0Is
+CmFsYXJtKSB0aGF0IGFyZSBjb250cm9sbGVkIGJ5IHdyaXRpbmcgdG8gdGhlIHNhbWUgYWRkcmVz
+cyBhcyBmb3IgdGhlCmNvbG9uLgoKSeKAmWQgbG92ZSB0byB3b3JrIG9uIGEgZHJpdmVyIChzaW1p
+bGFyIHRvIEFuZHJlYXPigJkgU1BJIGJhc2VkIGRyaXZlcikgZm9yCnRoZXNlIEkyQyBjb25uZWN0
+ZWQgY2hpcHMuCgpDaGVlcnMsCkV6cmEuCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
