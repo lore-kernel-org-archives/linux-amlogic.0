@@ -2,20 +2,21 @@ Return-Path: <SRS0=AcXA=4Q=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38DB2C3F2D2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2020 15:48:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3635C3F2D2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2020 15:50:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 08C982469D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2020 15:48:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6B1622469F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2020 15:50:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pRqtcl/c"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08C982469D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="C4+9p387"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B1622469F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,59 +25,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HdEsAPdk/TGMmxrX71w+Ra/OFOtFeBQrmD0kVsVxUGk=; b=pRqtcl/c5uaW0b
-	V+s2kVMNevpSdN8wA3Bn78x/CBaREaI5liWO11NBGCHSxCePdBy0A57cgmON2RMCKWM6gussof7rQ
-	4qmAsL+5ZkIqTzCasx0FNhQv74k+Fqjq6dALYnf6jDCxhEJQatzmbHiCmHQFV0fzYGWKa8zvzwpWF
-	X2/HNzNeqadlxX8lIFA9S7vH4+VpCUITgn6PEkyxFIQsNmR058GvnHMliZB9/oK5xm0SWt4n9Pw54
-	iK8FL64FFIY+7MVCtdqqGsgar+E+wyHjoFof4nIJDIOi1UryOjmqSoZAYn5zMHPcyg+lgWW5yRN7z
-	B2hHtAxVjAa6YBac2N1A==;
+	List-Owner; bh=5CbnkGHaI3Byy/g29nPdmxi8LkFEcbXVsNZeOFYaX+Q=; b=C4+9p387uwwREI
+	wqageV1ASdFmBhVBWEtoJbnkVXc1CqT6UpLy7XYHl6L6u8ype93prnbQv3r9YGVIqIXjjmlYvc3Yw
+	f7/Y1nVVRel65137ilCzuXNc2bqU8wyQT/7QimXu4opa0BHQ5hO0Q34gCsx4jZPMC/+5CHb0WK97g
+	W0CCxhXkdmWqUWiEXU/AxbbgMDBtEf39BxTI2UEFEfI/g2RgubbnzPtZKkp5mUAmx7Mnul3Z5oXfL
+	jji0p9V7s3nM9ClpNQDvXDcpj2q3PO/dwKzpk7av/vYBGWlL5O3xxlldUXlzqw7h4mcmQpymCnoMy
+	sJeYSC0hlu2/EakzW2vQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j7hs5-0001An-Ad; Fri, 28 Feb 2020 15:48:13 +0000
-Received: from mail-ot1-f66.google.com ([209.85.210.66])
+	id 1j7huK-0002at-2L; Fri, 28 Feb 2020 15:50:32 +0000
+Received: from mail-ot1-f67.google.com ([209.85.210.67])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j7hs1-00019l-P2
- for linux-amlogic@lists.infradead.org; Fri, 28 Feb 2020 15:48:11 +0000
-Received: by mail-ot1-f66.google.com with SMTP id j5so2072789otn.10
- for <linux-amlogic@lists.infradead.org>; Fri, 28 Feb 2020 07:48:09 -0800 (PST)
+ id 1j7huG-0002a7-NK
+ for linux-amlogic@lists.infradead.org; Fri, 28 Feb 2020 15:50:30 +0000
+Received: by mail-ot1-f67.google.com with SMTP id b3so2993841otp.4
+ for <linux-amlogic@lists.infradead.org>; Fri, 28 Feb 2020 07:50:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=04LO6bJs9Ua8w0YW0IQRrzZktCzF8p2YIFQW4LHwyB0=;
- b=ONCweQokrzNJAHoV3Qijtx0KMLDWIPrJRHennPK1FNGdhXyh1CrYkmdKefMWpgmvaE
- f3l7MrScpK7u4KuRTu4caGZ/VlMRHMHuoe6fMb3g1dILhoGuS2invx3vOeYW96b9jYdx
- yeFwGlri8WfeGgaDV5OgyuuSrsODLk0On25FA9sK+lpbiBj+K1F3ONvx2WZhq+WFHLl4
- bEBA5mSng6emBFC6+OV9fDg8yzh7XTfe+xxiayk/ID7Vp616Yz2ZCtT3Ai92RRo4mxij
- C1ykANmUxT5x5Bxo5zrWTOrId2nQLXU8q2K4Vh63V1xfbh0dszMh4nbb7RkXeCdkrevl
- 2Lsw==
-X-Gm-Message-State: APjAAAV58X5dQhxyzTUUuJbEDua/Q4g+83ktlVtb1MRMGtzsM0Jma+aB
- 9dN3jf6BdMJrmy10DMMNu1MPtD0=
-X-Google-Smtp-Source: APXvYqwV+P2KDc8CtB9VtadeSMw2dPxupLHtu2jRnsumBHTjh6d8J/zLIoII9iqRfrM9E79eDylpmg==
-X-Received: by 2002:a05:6830:150:: with SMTP id
- j16mr3791728otp.301.1582904887823; 
- Fri, 28 Feb 2020 07:48:07 -0800 (PST)
+ bh=wojIa6rVa31vXzIE/lHtQ3suG/pesMoWRIYn0QkiXJQ=;
+ b=li2yi8neotmjYuoOXvAUw4UG/pE5DeNsfyaCKzKrd8EA+APHbe65riFaKD6K/lVjUO
+ jFzNiFCABTf6jQmVVrfmNYSbF/1kQvJLgeG5fY9D0Gse41nukPZGH4RxZwprE8N7/5xk
+ Epf819nSthH9JKBQi7+icMaav17qJ98VZ7VzWBNCpkqkl66W1LHJtui/TPf36pAL/B15
+ Uv1eyPBhY3gT4EMc5L6IM6h0Y4TLPWsQTYjv8TC6dRGzsP891/SDbYM0HM4GAta+8iIZ
+ PqRSVSkRj9bDpiCX0EGsBSf9VgvcgU3JWEcfBTzrGSYRGZJ8ohrdZTqWQFwwc7YKoHXN
+ aiZQ==
+X-Gm-Message-State: APjAAAWN4ECM0AZg8d59F6sCOWrneqAMyMKd4RiPE5MfBQIcmsOaGn7o
+ FDsLhBfxOKT04GWNuxKj2rzmCzg=
+X-Google-Smtp-Source: APXvYqwt/R/pC1bGU/7oJf7NOrLG0KKZF7zg8vbj/26gV3Nsi5k0hBqYVdC8MOsZ04YH1PU4R0ebjw==
+X-Received: by 2002:a9d:d06:: with SMTP id 6mr3954158oti.176.1582905019525;
+ Fri, 28 Feb 2020 07:50:19 -0800 (PST)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net.
  [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id k201sm3273559oih.43.2020.02.28.07.48.06
+ by smtp.gmail.com with ESMTPSA id e22sm3271814ote.32.2020.02.28.07.50.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Feb 2020 07:48:07 -0800 (PST)
-Received: (nullmailer pid 24254 invoked by uid 1000);
- Fri, 28 Feb 2020 15:48:06 -0000
-Date: Fri, 28 Feb 2020 09:48:06 -0600
+ Fri, 28 Feb 2020 07:50:18 -0800 (PST)
+Received: (nullmailer pid 27282 invoked by uid 1000);
+ Fri, 28 Feb 2020 15:50:17 -0000
+Date: Fri, 28 Feb 2020 09:50:17 -0600
 From: Rob Herring <robh@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH 1/9] ASoC: meson: gx-card: fix sound-dai dt schema
-Message-ID: <20200228154806.GA19636@bogus>
+Subject: Re: [PATCH 2/9] ASoC: meson: convert axg tdm interface to schema
+Message-ID: <20200228155017.GA24730@bogus>
 References: <20200224145821.262873-1-jbrunet@baylibre.com>
- <20200224145821.262873-2-jbrunet@baylibre.com>
+ <20200224145821.262873-3-jbrunet@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200224145821.262873-2-jbrunet@baylibre.com>
+In-Reply-To: <20200224145821.262873-3-jbrunet@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200228_074809_813245_F1A7717D 
-X-CRM114-Status: GOOD (  12.57  )
+X-CRM114-CacheID: sfid-20200228_075028_764900_7375DF79 
+X-CRM114-Status: GOOD (  14.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,41 +97,103 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Feb 24, 2020 at 03:58:13PM +0100, Jerome Brunet wrote:
-> There is a fair amount of warnings when running 'make dtbs_check' with
-> amlogic,gx-sound-card.yaml.
+On Mon, Feb 24, 2020 at 03:58:14PM +0100, Jerome Brunet wrote:
+> Convert the DT binding documentation for the Amlogic tdm interface to
+> schema.
 > 
-> Ex:
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:1: missing phandle tag in 0
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:2: missing phandle tag in 0
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0: [66, 0, 0] is too long
-> 
-> The reason is that the sound-dai phandle provided has cells, and in such
-> case the schema should use 'phandle-array' instead of 'phandle', even if
-> the property expects a single phandle.
-> 
-> Fixes: fd00366b8e41 ("ASoC: meson: gx: add sound card dt-binding documentation")
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  Hi Mark,
+>  .../bindings/sound/amlogic,axg-tdm-iface.txt  | 22 -------
+>  .../bindings/sound/amlogic,axg-tdm-iface.yaml | 57 +++++++++++++++++++
+>  2 files changed, 57 insertions(+), 22 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.yaml
 > 
->  The statement above is based on this LKML discussion I found:
->  https://lkml.org/lkml/2019/9/30/382
-> 
->  To be honest, I don't really get why the consumer should know whether
->  the phandle will have cells or not. AFAIK, the consumer does not care
->  about this ...
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
+> deleted file mode 100644
+> index cabfb26a5f22..000000000000
+> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -* Amlogic Audio TDM Interfaces
+> -
+> -Required properties:
+> -- compatible: 'amlogic,axg-tdm-iface'
+> -- clocks: list of clock phandle, one for each entry clock-names.
+> -- clock-names: should contain the following:
+> -  * "sclk" : bit clock.
+> -  * "lrclk": sample clock
+> -  * "mclk" : master clock
+> -	     -> optional if the interface is in clock slave mode.
+> -- #sound-dai-cells: must be 0.
+> -
+> -Example of TDM_A on the A113 SoC:
+> -
+> -tdmif_a: audio-controller@0 {
+> -	compatible = "amlogic,axg-tdm-iface";
+> -	#sound-dai-cells = <0>;
+> -	clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
+> -		 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
+> -		 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
+> -	clock-names = "mclk", "sclk", "lrclk";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.yaml
+> new file mode 100644
+> index 000000000000..5f04f9cf30a0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Audio TDM Interfaces
+> +
+> +maintainers:
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^audio-controller-.*"
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  compatible:
+> +    items:
+> +      - const: 'amlogic,axg-tdm-iface'
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 3
+> +    items:
+> +      - description: Bit clock
+> +      - description: Sample clock
+> +      - description: Master clock #optional
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 3
+> +    items:
+> +      - const: sclk
+> +      - const: lrclk
+> +      - const: mclk
+> +
+> +required:
+> +  - "#sound-dai-cells"
+> +  - compatible
+> +  - clocks
+> +  - clock-names
 
-Yeah, I think another type definition is needed here to distinguish 
-between a single phandle+args and an array of phandle+args.
+Add an:
 
-In any case,
+additionalProperties: false
 
-Acked-by: Rob Herring <robh@kernel.org>
+With that,
 
-> 
->  .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml      | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
