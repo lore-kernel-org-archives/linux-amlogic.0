@@ -2,90 +2,85 @@ Return-Path: <SRS0=pdBZ=4R=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F365C3F2CE
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Feb 2020 12:18:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 712D6C3F2CE
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Feb 2020 12:26:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F166A246AE
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Feb 2020 12:18:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 13740246B0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Feb 2020 12:26:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="b4HUoBvn";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VHh/96Vu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F166A246AE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fXO/KzP0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B8Mzf5jH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 13740246B0
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=ZCNQqO3qTFQa2SGD/H3I3zzdW024soClvbie16scHYg=; b=b4HUoBvnECpomHGzYAdCQcoLis
-	JsShWsq4JodG6SkfeCf4t082yH6mUgT+YsOvk08egxC2kOWnHM5UReTBNM8QDezvvqJjf79pyp4wZ
-	vHqEUpA04J4HEC2Obk0XIepZdh8KZ9tQrPyL4PXHrrZeDBrqpkQJllfXjnQNvfYShCBAYxljrEPNv
-	12DoSmENSZzVADlneaUZr/Fx26TVeOjRbq2IRJJ5J/RrJsPOJpN4tYJOA3uCpSoRQzkXQlFeQr6v5
-	P5zunJP1frU4ql8nxNef8yKg39uR0FpAOp8hTmFm1b9GATB/7Av8mtJEWcjUhLvO0bHFIRyuQk+wq
-	3sGyYmEQ==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=g5CmDCGgacw95GrpAuOMgzaDioHX4ukYBdspkFSQkuo=; b=fXO
+	/KzP0t2h3I1KjDSDaVdCh7tz4KSBEmOPryzQ3MIH5SpRTiXSrMJgT66IXNGvZyf+Gl8B8E6DWB5h5
+	ykYgx0O/bR+2nBJCQ2HxAfdEl6INPla5rVWhKj/aDbz226ZtiwZvFBZ87A2vsRc2CeZckqQhjWVyx
+	+9p3pkgql3jsDVgkso/VI9sy5zCQm3pC8cb+W93cvlf6QyKchlFuACbltokZLzBTpprLL6TD76B3E
+	LzjeOaOJ+hgETNTNw2LiCInClsIbmSET6BalldFoDmWm/zBVNgI2rQ6vekM5GNlJLlqUNUobPCgWA
+	1zBAkiIEYmY3lTuR0NTm3CGg/d6PGmQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j814T-0006DM-La; Sat, 29 Feb 2020 12:18:17 +0000
-Received: from mail-lj1-x243.google.com ([2a00:1450:4864:20::243])
+	id 1j81CW-000168-1V; Sat, 29 Feb 2020 12:26:36 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j813K-0005A4-T6; Sat, 29 Feb 2020 12:17:08 +0000
-Received: by mail-lj1-x243.google.com with SMTP id q23so6398773ljm.4;
- Sat, 29 Feb 2020 04:17:06 -0800 (PST)
+ id 1j81CD-0000r4-54; Sat, 29 Feb 2020 12:26:18 +0000
+Received: by mail-lj1-x241.google.com with SMTP id q8so6360291ljj.11;
+ Sat, 29 Feb 2020 04:26:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=nh1cYeo5kqu2beDaVvmrvEaSztko81+wDaHuvBL/5XI=;
- b=VHh/96VuHCzYtlU5F1X9kLntYdXBnNHrJ10lhNhcRIyw8gPSHtP7lwcDu/LJHdHuXK
- Jc8eXEpMXd59FBFGbGvWEhqac+s3aFRp3tRUBy04cdMULA13fCp2OqMjzkPmaHSRzvzs
- s/K6VXhza2AjHmBkquqj1tt7H7WBcFuf6Lj7ajUOtzWA7w2uqVfyGSRX9vHdml+IRWLV
- UYe4tP3TVCGNGYvQEkfETwnic+46UCzcEndh1CIEV0H1ZxeG/9pUgPSL6KkLckz887+9
- C11kqhssnXb4GbOu55VSpPj2ut3BGwx3TrOESwA0+E0rGk76lzllJPqNJUZD/XZDtTZd
- SOiQ==
+ h=from:to:cc:subject:date:message-id;
+ bh=G4M7No0W7MlL6TGtf4siKf2g8xY+Dklf+axbxbiJtTM=;
+ b=B8Mzf5jH+dGcmmB32lLf6PcfY7xrq2dnjVslNctEFHFHtid9N3MIcmvzITB/HW4V9w
+ ZSo+BneUIKjF2w3ojjf4IAi7GWZjbp760ajBn+xK6oKhQxSr5LEmWRs+9dHnjGe4ppLC
+ /Bw+2q29meF0WzIj2aLgpBMKnO0qZN54Nn2vlLUp2/6mCUQFXd171mjswBuGHNFxtuA6
+ lod978M/F9lY1lGGFDOtz4o+m18pXbpF3VUDYcoYTGuITrmmF0pkgga8U0VX9apwMSOk
+ 0eC5YlwG/yh1LdDiLCs47zpAOPGNgItWZ7SsGbvZniAOFWOq9HuEjjyOFO15GLe4K/uF
+ 3FCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=nh1cYeo5kqu2beDaVvmrvEaSztko81+wDaHuvBL/5XI=;
- b=ISsIFItGu63pyz23QcJHq/R8YfwkBh81g1IitntXKkNMmhc4YS6ddr9yrMfDVZ7sZI
- zz+HEZR9kZXLtz7wLTyd1oDQSwsbfJvDeYaCAkW4Sra0eNVsr1HTLS4SHCNZ39ruE+rk
- ItQ9XMfgDItCujC6Eu1tiX//9W3+jYQDwugPxVVsnm2KyxYVE2OSWTn1/PM0Tk7Rn1mj
- v8xLUDLk4PJXGzGldF7V4oIlbcCdJbnB0W1V1veAoNHjUwcA0sQz6omo8qIvR79oQuvf
- ZtV1Wmoopk/Mf+5SlwpkaJX7zhMX3gEDjSmAvRKq2pptwBJquOdZFQjPAYyTrEzzeRGc
- 4GVw==
-X-Gm-Message-State: ANhLgQ0oaxL08BApXTCj27mLuW1pTGagopxZSbZOlzsK2v/E+0AB9IzP
- e/msoPS4XHY7BP2EznQCNLc=
-X-Google-Smtp-Source: ADFU+vtpdp2I9mOX5lCkgrbRvP2tXRdIJDb4yCZ1jR26O7bByuWn3SnWeIGU4sJeD7Kmex0ZqWkesA==
-X-Received: by 2002:a2e:9744:: with SMTP id f4mr6250763ljj.267.1582978624757; 
- Sat, 29 Feb 2020 04:17:04 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=G4M7No0W7MlL6TGtf4siKf2g8xY+Dklf+axbxbiJtTM=;
+ b=k/ESmyD92r57UfqOKCYoP5Oq91uiom+SqCGPqgx3RW1BexTgO8/3I1Hfonwo93r6+n
+ aczDXYqxzZ4//soYQUpCkJfgIKqCNLF+nvyfW9XifOIBuQiYWS3FFqLhZ58TKJwexk3a
+ BCjun68I5XuBSB2IQxmXWUzJVOPnp5us4EP37x4xRYcCKybdEw2BEJyDfwD1PhWvrR+s
+ bSOtSyT8t/gQirw7xlJ46PLhruc1kR8X516Xcy8UnAE3p4l4lZGG3Vn5v0Kzv/ia3EHp
+ 8WY0LDwb4GwBvqa9ysVgvudDTOepHpnPHGd7zpEauP4kgV5OMfLgOcsk0/JKEDEFqR4o
+ nguA==
+X-Gm-Message-State: ANhLgQ30rbDp9DO91C3ILO407QJ3tegh+s/EH4qvFwF8WP/uJaLAji/Q
+ KNAGo1xmA9/6Ax3f81bpRRM=
+X-Google-Smtp-Source: ADFU+vsYAIbCafT2eJws1CSvVzOBOCk8/7EjzjX/TM+KJJihzuOclMzduIzohsc0yHhQSxT1+d9IMg==
+X-Received: by 2002:a2e:6a12:: with SMTP id f18mr6049058ljc.71.1582979175387; 
+ Sat, 29 Feb 2020 04:26:15 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id x1sm6270232lfq.46.2020.02.29.04.17.01
+ by smtp.gmail.com with ESMTPSA id r10sm8950775ljk.9.2020.02.29.04.26.12
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Sat, 29 Feb 2020 04:17:04 -0800 (PST)
+ Sat, 29 Feb 2020 04:26:14 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] arm64: dts: meson: add support for the SmartLabs
+Subject: [PATCH v5 0/3] arm64: dts: meson: add dts/bindings for SmartLabs
  SML-5442TW
-Date: Sat, 29 Feb 2020 16:16:04 +0400
-Message-Id: <1582978564-81491-4-git-send-email-christianshewitt@gmail.com>
+Date: Sat, 29 Feb 2020 16:25:21 +0400
+Message-Id: <1582979124-82363-1-git-send-email-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1582978564-81491-1-git-send-email-christianshewitt@gmail.com>
-References: <1582978564-81491-1-git-send-email-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200229_041706_989377_C13CA192 
-X-CRM114-Status: GOOD (  18.26  )
+X-CRM114-CacheID: sfid-20200229_042617_218730_7C18600B 
+X-CRM114-Status: GOOD (  13.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,425 +101,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The SmartLabs SML-5442TW is broadly similar to the P231 reference design
-but with the following differences:
+This series adds new bindings and a device-tree file for the Smartlabs
+SML-5442TW set-top box. The previous v3 attempt [1] was 15-months ago
+but nothing has really changed apart from a change to yaml bindings. I
+have checked and the hci_qca driver does not provide QCA9377 bindings
+so there is no alernative to the gpio-hog for enabling BT support.
 
-- The Yellow and Blue LEDs are available but disabled
-- The Red and Green LEDs are used to signal off/on status
-- uart_AO can be accessed after opening the case; soldered pins exist
-- GPIOX_17 is forced high to enable the QCA9377 module
+It would be good if Jerome would check the audio card config. It looks
+correct from dmesg output but the driver is new and there's currently
+no upstream prior-art to copy. I've cribbed node details from his WIP
+gitlab branches.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
+v5 - typo in card name
+
+v4 - typos/corrections from Andreas
+   - add sound node back
+   - confirmed gpio-hog is necessary
+
+v3 - change to Smartlabs LLC
+   - removed sound node
+
+v2 - removed audio nodes
+   - changes soundcard name to "meson-gx-audio"
+   - added missing uart-has-rtscts;
+
+[1] https://patchwork.kernel.org/cover/10674939/
+
+Christian Hewitt (3):
+  dt-bindings: add vendor prefix for SmartLabs LLC
+  dt-bindings: arm: amlogic: add support for the SmartLabs SML-5442TW
+  arm64: dts: meson: add support for the SmartLabs SML-5442TW
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
  .../boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts | 386 +++++++++++++++++++++
- 2 files changed, 387 insertions(+)
+ 4 files changed, 390 insertions(+)
  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index eef0045..6cf8c4a 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-sml5442tw.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
-new file mode 100644
-index 0000000..78ccfc3
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
-@@ -0,0 +1,386 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2016 Endless Computers, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ * Copyright (c) 2018 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905d.dtsi"
-+#include <dt-bindings/sound/meson-aiu.h>
-+
-+/ {
-+	compatible = "smartlabs,sml5442tw", "amlogic,s905d",
-+		"amlogic,meson-gxl";
-+	model = "SmartLabs SML-5442TW";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		serial1 = &uart_A;
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	dio2133: analog-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AU2";
-+		VCC-supply = <&hdmi_5v>;
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	spdif_dit: audio-codec-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		yellow {
-+			label = "sml5442tw:yellow";
-+			gpios = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		blue {
-+			label = "sml5442tw:blue";
-+			gpios = <&gpio GPIODV_28 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		green {
-+			label = "sml5442tw:green";
-+			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+
-+		red {
-+			label = "sml5442tw:red";
-+			gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	hdmi_5v: regulator-hdmi-5v {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "HDMI_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		gpio = <&gpio GPIOH_3 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vddio_boot: regulator-vddio_boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "GXl-S905D-SML5442TW";
-+		audio-aux-devs = <&dio2133>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "AU2 INL", "ACODEC LOLP",
-+				"AU2 INR", "ACODEC LORP",
-+				"AU2 INL", "ACODEC LOLN",
-+				"AU2 INR", "ACODEC LORN",
-+				"Lineout", "AU2 OUTL",
-+				"Lineout", "AU2 OUTR";
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
-+
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+	phy-mode = "rmii";
-+	phy-handle = <&internal_phy>;
-+};
-+
-+/* This will enable the bluetooth module */
-+&gpio {
-+	bt-en {
-+		gpio-hog;
-+		gpios = <GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "bt-en";
-+	};
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&hdmi_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&i2c_A {
-+	status = "okay";
-+	pinctrl-0 = <&i2c_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&internal_phy {
-+	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_FCLK_DIV4>;
-+	clock-names = "clkin0";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddio_ao18>;
-+};
-+
-+/* Wireless SDIO Module */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-+	cd-inverted;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	max-frequency = <100000000>;
-+	non-removable;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* This is connected to the Bluetooth module: */
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+};
-+
-+/* This UART is brought out to the debug header */
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
 -- 
 2.7.4
 
