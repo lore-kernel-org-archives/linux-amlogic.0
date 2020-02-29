@@ -2,85 +2,90 @@ Return-Path: <SRS0=pdBZ=4R=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 712D6C3F2CE
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Feb 2020 12:26:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4081C3F2D3
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Feb 2020 12:26:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 13740246B0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Feb 2020 12:26:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 914B2246A3
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Feb 2020 12:26:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fXO/KzP0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B8Mzf5jH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 13740246B0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="G9Aod9+y";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ketu3fQ6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 914B2246A3
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=g5CmDCGgacw95GrpAuOMgzaDioHX4ukYBdspkFSQkuo=; b=fXO
-	/KzP0t2h3I1KjDSDaVdCh7tz4KSBEmOPryzQ3MIH5SpRTiXSrMJgT66IXNGvZyf+Gl8B8E6DWB5h5
-	ykYgx0O/bR+2nBJCQ2HxAfdEl6INPla5rVWhKj/aDbz226ZtiwZvFBZ87A2vsRc2CeZckqQhjWVyx
-	+9p3pkgql3jsDVgkso/VI9sy5zCQm3pC8cb+W93cvlf6QyKchlFuACbltokZLzBTpprLL6TD76B3E
-	LzjeOaOJ+hgETNTNw2LiCInClsIbmSET6BalldFoDmWm/zBVNgI2rQ6vekM5GNlJLlqUNUobPCgWA
-	1zBAkiIEYmY3lTuR0NTm3CGg/d6PGmQ==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
+	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=3ktS6DYNCe1Um0b0tgFL1U7T+1j9iBw0t68jTtLKj9k=; b=G9Aod9+yyyL5mXQGKSVB7gFkyF
+	VN0A2pZ5+Ucn9daB0XOEVcz11MAZmxj1O7OVv1k7zY8Z76BdsC9vkVaT6akYAZDawuyoZP4uo1s9h
+	OgBuB1QLy7lqbVBpEfI5TsiMFd2Izn6EHV+Pr62SVsjpjQL0lDtc618geQNI2nxh6+lGo4AADo3TF
+	nZufGG8ckRDNUos9o4SkCCxm94HTItnS0quaVSJImvdx2mmQRmtBKm4NXqNDR/hYUc9DfAD6ZyfFn
+	ClhUaWhYbersMGHss4NE985pVn0UFAUGJK8gNTkhDBn2GO0inQO0auewUa3gJijSN2z1vepBf6XBR
+	/chEJYFA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j81CW-000168-1V; Sat, 29 Feb 2020 12:26:36 +0000
-Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
+	id 1j81Co-0001Mz-7z; Sat, 29 Feb 2020 12:26:54 +0000
+Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j81CD-0000r4-54; Sat, 29 Feb 2020 12:26:18 +0000
-Received: by mail-lj1-x241.google.com with SMTP id q8so6360291ljj.11;
- Sat, 29 Feb 2020 04:26:16 -0800 (PST)
+ id 1j81CG-0000rf-8G; Sat, 29 Feb 2020 12:26:22 +0000
+Received: by mail-lj1-x22c.google.com with SMTP id e3so6362105lja.10;
+ Sat, 29 Feb 2020 04:26:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=G4M7No0W7MlL6TGtf4siKf2g8xY+Dklf+axbxbiJtTM=;
- b=B8Mzf5jH+dGcmmB32lLf6PcfY7xrq2dnjVslNctEFHFHtid9N3MIcmvzITB/HW4V9w
- ZSo+BneUIKjF2w3ojjf4IAi7GWZjbp760ajBn+xK6oKhQxSr5LEmWRs+9dHnjGe4ppLC
- /Bw+2q29meF0WzIj2aLgpBMKnO0qZN54Nn2vlLUp2/6mCUQFXd171mjswBuGHNFxtuA6
- lod978M/F9lY1lGGFDOtz4o+m18pXbpF3VUDYcoYTGuITrmmF0pkgga8U0VX9apwMSOk
- 0eC5YlwG/yh1LdDiLCs47zpAOPGNgItWZ7SsGbvZniAOFWOq9HuEjjyOFO15GLe4K/uF
- 3FCA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=NmeW9ngS8eifN3sjrGPI1hv1F6A8Nf5uvazYyp+BS9k=;
+ b=Ketu3fQ6Ze4H9aFJMlXmKKQN7tIVmjfhxYLU8gbB37F7Wx3uqV0mPGvtfLG5BKG5pS
+ w3MLbR7v3B5J/+7fuwkHaE23gTJ11269NV/Bl/rBnkw+K8VaYyBkw60+3Hwki3lturdi
+ eEth5epY1HMBxNhZumxrtjlIttVRIWJhRIajeJ1oHcmMJjGZgALhP0cBO1HwWA1n4ixN
+ UHiJ6DGwnkUpnTOAaOdbgm6a0Ym8xYCVaohzfLrAWDFRMYlPJEVgeOfN2xaGIzQ2YieY
+ U1o/MeSNdyAoWRRIz+//DsGmdufdH3VRv457vvhzXTCmi4WKLJGXvvtvZe/9L6EghIQF
+ wnhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=G4M7No0W7MlL6TGtf4siKf2g8xY+Dklf+axbxbiJtTM=;
- b=k/ESmyD92r57UfqOKCYoP5Oq91uiom+SqCGPqgx3RW1BexTgO8/3I1Hfonwo93r6+n
- aczDXYqxzZ4//soYQUpCkJfgIKqCNLF+nvyfW9XifOIBuQiYWS3FFqLhZ58TKJwexk3a
- BCjun68I5XuBSB2IQxmXWUzJVOPnp5us4EP37x4xRYcCKybdEw2BEJyDfwD1PhWvrR+s
- bSOtSyT8t/gQirw7xlJ46PLhruc1kR8X516Xcy8UnAE3p4l4lZGG3Vn5v0Kzv/ia3EHp
- 8WY0LDwb4GwBvqa9ysVgvudDTOepHpnPHGd7zpEauP4kgV5OMfLgOcsk0/JKEDEFqR4o
- nguA==
-X-Gm-Message-State: ANhLgQ30rbDp9DO91C3ILO407QJ3tegh+s/EH4qvFwF8WP/uJaLAji/Q
- KNAGo1xmA9/6Ax3f81bpRRM=
-X-Google-Smtp-Source: ADFU+vsYAIbCafT2eJws1CSvVzOBOCk8/7EjzjX/TM+KJJihzuOclMzduIzohsc0yHhQSxT1+d9IMg==
-X-Received: by 2002:a2e:6a12:: with SMTP id f18mr6049058ljc.71.1582979175387; 
- Sat, 29 Feb 2020 04:26:15 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=NmeW9ngS8eifN3sjrGPI1hv1F6A8Nf5uvazYyp+BS9k=;
+ b=d045+AG8LuZFjL8Bxa8pRdjODSbFlM83raj9T6WlzNqDzBGIJAP8dGF30j8XyKmDBK
+ iWS1RqFv6AytHn5iy0NOlD+XX4eySBEcM1tmqz38gWK8oMfiIAd0PkwKMU0zj/jYoO/Y
+ oXo8MAoTPydiOfs9GFgMOHAO0f0I01kaOAV+uNs89zcFeiGMKCjzfo0Be+HXBZvA73Tg
+ uX8BZ8j/YEBl5HkG7YQEY0g7x/25WvxweNY9bEGo2geq10HYNPfDH1BxMFP0UPyomdig
+ vrXW/SEWnZE8lIkjjVC8mlEsJKUpgk/7cPy6DXj3+dN2PIfl6u6BN1Qlv8n5nMyaw8Br
+ x0pg==
+X-Gm-Message-State: ANhLgQ1+u2f1YOBQbYPHzCMIen/xGixNQ7/bhh7FiPKv3g7ZI/Kzhaqs
+ ftRHx1+4j10ahaJnmXXdJoE=
+X-Google-Smtp-Source: ADFU+vsAnBstYODjBmvZJiZ3Gr/avovYtapZ6FgPl7iPSa0uXBWmmqSC4JBhAdk+wwTrXPY2n6A4kw==
+X-Received: by 2002:a2e:3202:: with SMTP id y2mr6112641ljy.132.1582979178364; 
+ Sat, 29 Feb 2020 04:26:18 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id r10sm8950775ljk.9.2020.02.29.04.26.12
+ by smtp.gmail.com with ESMTPSA id r10sm8950775ljk.9.2020.02.29.04.26.15
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Sat, 29 Feb 2020 04:26:14 -0800 (PST)
+ Sat, 29 Feb 2020 04:26:17 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v5 0/3] arm64: dts: meson: add dts/bindings for SmartLabs
- SML-5442TW
-Date: Sat, 29 Feb 2020 16:25:21 +0400
-Message-Id: <1582979124-82363-1-git-send-email-christianshewitt@gmail.com>
+Subject: [PATCH v5 1/3] dt-bindings: add vendor prefix for SmartLabs LLC
+Date: Sat, 29 Feb 2020 16:25:22 +0400
+Message-Id: <1582979124-82363-2-git-send-email-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1582979124-82363-1-git-send-email-christianshewitt@gmail.com>
+References: <1582979124-82363-1-git-send-email-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200229_042617_218730_7C18600B 
-X-CRM114-Status: GOOD (  13.04  )
+X-CRM114-CacheID: sfid-20200229_042620_294020_A68F8835 
+X-CRM114-Status: UNSURE (   9.73  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,44 +106,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series adds new bindings and a device-tree file for the Smartlabs
-SML-5442TW set-top box. The previous v3 attempt [1] was 15-months ago
-but nothing has really changed apart from a change to yaml bindings. I
-have checked and the hci_qca driver does not provide QCA9377 bindings
-so there is no alernative to the gpio-hog for enabling BT support.
+SmartLabs LLC are a professional integrator of Interactive TV solutions
+and IPTV/VOD devices [1].
 
-It would be good if Jerome would check the audio card config. It looks
-correct from dmesg output but the driver is new and there's currently
-no upstream prior-art to copy. I've cribbed node details from his WIP
-gitlab branches.
+[1] https://www.smartlabs.tv/en/about/
 
-v5 - typo in card name
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-v4 - typos/corrections from Andreas
-   - add sound node back
-   - confirmed gpio-hog is necessary
-
-v3 - change to Smartlabs LLC
-   - removed sound node
-
-v2 - removed audio nodes
-   - changes soundcard name to "meson-gx-audio"
-   - added missing uart-has-rtscts;
-
-[1] https://patchwork.kernel.org/cover/10674939/
-
-Christian Hewitt (3):
-  dt-bindings: add vendor prefix for SmartLabs LLC
-  dt-bindings: arm: amlogic: add support for the SmartLabs SML-5442TW
-  arm64: dts: meson: add support for the SmartLabs SML-5442TW
-
- Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts | 386 +++++++++++++++++++++
- 4 files changed, 390 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 9e67944..a34ed82 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -901,6 +901,8 @@ patternProperties:
+     description: Sitronix Technology Corporation
+   "^skyworks,.*":
+     description: Skyworks Solutions, Inc.
++  "^smartlabs,.*":
++    description: SmartLabs LLC
+   "^smsc,.*":
+     description: Standard Microsystems Corporation
+   "^snps,.*":
 -- 
 2.7.4
 
