@@ -2,74 +2,89 @@ Return-Path: <SRS0=PYAY=4S=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE50CC3F2CD
-	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Mar 2020 00:48:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D87FC3F2CE
+	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Mar 2020 04:16:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A3D4A222C2
-	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Mar 2020 00:48:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E283020848
+	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Mar 2020 04:16:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WvVahHpE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="bQndGde9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A3D4A222C2
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=canb.auug.org.au
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cx1R/3TU";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I1JTMEkx"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E283020848
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=zLec7Mvw+aFn214P20+qnlC9dC3frK6ypSc2okcrB8E=; b=WvVahHpEy14J8Q2Oj4DpQ3fEJ
-	NwqWj3Fdnp1RsIp1UWQGyRWeijLaVyE/Ni6YwgvtkgpaVuSUwE8+7RyUMB07H6nvCCl8yeSHvPG5m
-	0vqWBoo6uxBRL1fOqCuQHWlM7PsZLEY3njN9kr9Yx0sNSmQNUuRQoUMbgRHdS/7+KcUKxF8vI7/Qi
-	7iVgdVQlDTnwAP22+B55NISUKpqK6N7PMqTZ3t4FNCGRHLi86eRlf2whcvPJdKjOUnglk49Xrs8Db
-	Yww1rIebmZAfzjqAFr7DzEVCQM6LffeYMR/z6hyihyEB/OtA3T763TkV2hDHN4iFdHD1X1J9IWad8
-	EoHx45j2A==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3Z/2puRTCXekqRTsCOWij9el3toyB+janEjJXoLKaWE=; b=cx1R/3TUsh1UUF
+	VIkj3SJm/YO3tRcVPLJh4bBwlyNrGvwuisG7bj/mD/AaYMZlvGYgudPlXWo94OGcXLhLKGuA7EKe6
+	OG80VwV8v4FAXaB8lD0FY/BWRKJo/LLnnotDqr1m5Z8aaxlbQtiiwuh/z/eZqar+p5xKBiJ5D/mq5
+	gm0TMO2WW6gApZJYhvSxN9Xl8GE7vJr2I3TIxxMlfpdt4Qk3NnPj0/BGfc05F3RvFcXkd55Fd2W5Y
+	ZMXPaTLiu7sdDJSuzwLpo4HLuZkMarbNhuv7jX4d2a+d6Ufw6saV0qA5yr486A+PnujKPLpQN3lcj
+	48NkRaCc/sUKcC8BkyAA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j8CmX-00047v-H3; Sun, 01 Mar 2020 00:48:33 +0000
-Received: from bilbo.ozlabs.org ([2401:3900:2:1::2] helo=ozlabs.org)
+	id 1j8G1u-0000Hy-90; Sun, 01 Mar 2020 04:16:38 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j8CmU-000475-BY; Sun, 01 Mar 2020 00:48:32 +0000
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 48VPlW5nYLz9sPk;
- Sun,  1 Mar 2020 11:48:23 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1583023705;
- bh=4nRI6rwZRJmJBCSa2D7NMwK+7ECxFcV3Jplu7f2M8vI=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=bQndGde94p9FyOTmTOsKt5AnSDdUQoxCwxy7l9+8ZpBXs+oyYGsT/USUpwwCYFUeB
- OAs2OK8w6ainF6Hb1E0AJ3CtUFbC/Gb0BjAl8V8sCSxedVthQ/5mF0cXHyhWH3URuy
- 548JnLhcYrDjKtEwM62cZV7xhRlwqKtlLRSnogfOpYniYaEqqhZXM/iY1dM+4u/X/N
- 6kc5DIlzx4Xg9x6Gdes2FktrED8OwRU/yMDa6+PP8t50g89z4T4PxnCkpVeVv3S4db
- oEtYHaxZc1SvKAmmMUypMuz3UqBveSsmjCegll5CS64Xsw+gfj6rEWt1n7xZ+786FC
- OU6eoFzkoU47Q==
-Date: Sun, 1 Mar 2020 11:47:50 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH] soc: amlogic: fix compile failure with
- MESON_SECURE_PM_DOMAINS & !MESON_SM
-Message-ID: <20200301114750.7d270124@canb.auug.org.au>
-In-Reply-To: <7hzhd19vuj.fsf@baylibre.com>
-References: <1581955933-69832-1-git-send-email-jianxin.pan@amlogic.com>
- <20200218080743.07e58c6e@canb.auug.org.au>
- <20200218092229.0448d266@canb.auug.org.au>
- <20200224101654.530f1837@canb.auug.org.au>
- <7hzhd19vuj.fsf@baylibre.com>
-MIME-Version: 1.0
+ id 1j8G1j-00009T-KG; Sun, 01 Mar 2020 04:16:29 +0000
+Received: by mail-lj1-x241.google.com with SMTP id o15so7970642ljg.6;
+ Sat, 29 Feb 2020 20:16:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=aUNhSk4XiLO4JVswFHsb4th4Idff4PdkPgnCTD0hgkI=;
+ b=I1JTMEkxzMBH3C/Ciby3PlqiyiMfD/nJ/o2wOAOjQvw2YH9yrAJ58t0Sapyndq6MYx
+ Qi0CD5xSzKT4bfeJZOLQqUkdWCJFDpLm6ZXdRGbwdSdJkWWsTIymgvYul03/pqr6GWYh
+ chzhBcioJY7OX1mg6jQd49fDNYa4VElpccDAV//P0NsoeF0jdioT6K8nHPMb0bq//jtb
+ wyUUU2txXE3y8W+Y9jI1HuGTgaWpjnNsuSl1KFHa1PRqzeqocnWSYa+gKIMkKh16m4ua
+ KQJxWxT2D1FsaccJV/gBTDLu+Rhi4+vkaSnc4u3vkPYB5Grz/tqwmoAZAEr4wF86eYeh
+ hg1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=aUNhSk4XiLO4JVswFHsb4th4Idff4PdkPgnCTD0hgkI=;
+ b=IimzL0GuEZkOQiQ4ygKfYPTL5Z0Zw6nHxHOpi6UzuYVEAfgYSNyXPUd8SSC4igmVeX
+ 21QzjAOFa3J2TPgXgV1nM9J+bX3cH7LbUQnWkE4CttzOcFq77vdwREy+EBif7diqnm0g
+ vtxXFcILxJsaf+xe5oid9ccqCviI2FHpfOlI8UFgFMYjY+BcqF9sH5xQe65PvJIYdGmJ
+ EIClNXReVyo1abjf2gFeIZyljqeaptkU/BuasR7PlO6Z2aMk7mLGnMAGAQ8/GAUQYyqN
+ g6ow7PnqccuHI3uP1YypvGVeQ9OAJvx0h9zkGhXlTTC/eSNCaNbwhoRWZhCcQGRBCAOd
+ q4Pw==
+X-Gm-Message-State: ANhLgQ0jng/UMs6BjiZirSvoW+M+S37fZmhg5McZBFzm8+pltgxnjJtp
+ hANfXrdtcFjc3tJZt3K2sGw=
+X-Google-Smtp-Source: ADFU+vuuiIbd/U+4zor59WByPUmKyTFfOsyde0g80YyZBbZZu0GA7x4k09I06Z7MX6R1gKrjKP0Pag==
+X-Received: by 2002:a2e:b895:: with SMTP id r21mr7293919ljp.126.1583036185172; 
+ Sat, 29 Feb 2020 20:16:25 -0800 (PST)
+Received: from [172.16.20.20] ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id a17sm1118378ljk.42.2020.02.29.20.16.22
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sat, 29 Feb 2020 20:16:24 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Subject: Re: [PATCH v5 3/3] arm64: dts: meson: add support for the SmartLabs
+ SML-5442TW
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <1jpndxgxqi.fsf@starbuckisacylon.baylibre.com>
+Date: Sun, 1 Mar 2020 08:16:20 +0400
+Message-Id: <7E2FA81A-9A24-433D-A674-C0C224FCB2DE@gmail.com>
+References: <1582979124-82363-1-git-send-email-christianshewitt@gmail.com>
+ <1582979124-82363-4-git-send-email-christianshewitt@gmail.com>
+ <1jpndxgxqi.fsf@starbuckisacylon.baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+X-Mailer: Apple Mail (2.3445.104.11)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200229_164830_597967_F46325E4 
-X-CRM114-Status: UNSURE (   6.37  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200229_201627_694584_AA1049B2 
+X-CRM114-Status: GOOD (  11.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,70 +96,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: multipart/mixed; boundary="===============1925698249855568875=="
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ =?utf-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============1925698249855568875==
-Content-Type: multipart/signed; boundary="Sig_/Kf1.E4dLddnNTqvZx6GlV0A";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/Kf1.E4dLddnNTqvZx6GlV0A
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi Kevin,
-
-On Sat, 29 Feb 2020 17:55:32 +0100 Kevin Hilman <khilman@baylibre.com> wrot=
-e:
->
-> I've fixed up the trailer whitespace an queued this up now, so should
-> show up in linux next shortly.
-
-Thanks.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/Kf1.E4dLddnNTqvZx6GlV0A
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl5bBjYACgkQAVBC80lX
-0Gw+KAgAhjy4Z4V15rVXk29DVizB7BmoTp0AHlbwyBOXdg1fqDDAgpSapQv/aaTF
-t/kpWrI8HPqJIV33mTw9Y4ihIwM3w3hurf1Z3fal9lem4IITW6hlcuXG8jm1I0Zh
-rMlvimE+P9nv7UYTDqgQx0+v7nw3Y0kxJTkkoRbtPMOBeX/mq3oEMqHmvyTRzjjf
-+uqsMBh50kotDakasWPX47i7cULdhXg3BUd/lPYg7n1wJ179GLOl0F83CLmbeCtK
-D5PxpxIZmQEvgFModR81zi8NPz46WCa1WeSQ0edqS2AYBe8p6FWYyEeBCmU2b2ER
-xjSTCdXBgNDI8gD67V0Tx7Qs1++sjA==
-=V59f
------END PGP SIGNATURE-----
-
---Sig_/Kf1.E4dLddnNTqvZx6GlV0A--
-
-
---===============1925698249855568875==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1925698249855568875==--
-
+Cj4gT24gMjkgRmViIDIwMjAsIGF0IDg6MzIgcG0sIEplcm9tZSBCcnVuZXQgPGpicnVuZXRAYmF5
+bGlicmUuY29tPiB3cm90ZToKCltzbmlwXQoKPiBUaGUgYWJvdmUgZG9lcyBub3QgY29tcGlsZSBh
+Z2FpbnN0IGtldmluJ3MgdHJlZToKPiAxIyB0aGUgYXVkaW8gZHQgZGV2aWNlIGhhdmUgbm90IGJl
+ZW4gYWRkZWQgeWV0Cj4gMiMgdGhlIGJpbmRpbmdzIGRlcHMgb2YgMyBkaWZmZXJlbnQgc3Vic3lz
+dGVtIHdpbGwgYmUgYXZhaWxhYmxlIGluIHRoaXMKPiB0cmVlIHdpdGggdGhlIG5leHQgcmMxCj4g
+Cj4gSSB3YXJuZWQgYWJvdXQgdGhpcyBvbiBJUkMuCgpTb3JyeS4uIEkgc2F3IG5vdGljZXMgb24g
+dGhlIG1haWxpbmcgbGlzdCB0aGF0IE1hcmsgQnJvd24gaGFkIGFwcGxpZWQgCmNoYW5nZXMgYW5k
+IGFzc3VtZWQgdGhpcyBtZWFudCB0aGF0IGF1ZGlvIHRoaW5ncyB3b3VsZCBiZSBhdmFpbGFibGUK
+Zm9yIHVzZS4gSeKAmWxsIHJlc3VibWl0IGEgdjYgc2VyaWVzIHdpdGhvdXQgdGhlIGF1ZGlvIG5v
+ZGVzIGFuZCB3YWl0IGZvcgp0aGUgYXVkaW8gY2hhbmdlcyB0byBwZXJjb2xhdGUgdGhyb3VnaC4K
+CkNocmlzdGlhbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
+ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
+bWxvZ2ljCg==
