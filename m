@@ -2,92 +2,90 @@ Return-Path: <SRS0=FFcv=4T=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CAF3C3F2D1
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 12:55:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C807C3F2D7
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 13:49:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4E587217F4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 12:55:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3EB6321739
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 13:49:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PW6RQLvS";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kAB4d29/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4E587217F4
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YLTtWhw7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UH5EmQ8x"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3EB6321739
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S/+wxjUA5KsbzbaT3kTgp7XNlAcy4HDh/wTAnHbTV+Q=; b=PW6RQLvSzFYQxL
-	XF2j5pBtkJMjsiAblqFDg/nenjy90/dYUxYW5a/Rhtrkv9Zm/MtM9wmE6q1N7u6HgrNCHKV4U5Ohr
-	RXeeYkPhrHXhQmEqZEKgceER17P4rbZ3nYnxJEVbPWvy7GZasrvK5lXfV4jPtx0K2pUoWUveUGtL7
-	FjfPhFF06rhUOf0n1RkM+Nj71qUO69aDzvaeBo5Y2kRYs4RktGcUrqYOWYYxfW64ihFRmcePt4tu3
-	vgM4Cx9Ccf74G4v3J/UD+wkcBTK53sTtW3OfUDBWZhumjB1zVecQXvD1Ecnwk4lRnnipW0dL+ffN1
-	QPHUA4qq77nF97r9jK8g==;
+	List-Owner; bh=yn+AI9nHeU6fl1o8gPGzRlB5EoOAYFooi6ET0XYKSqQ=; b=YLTtWhw7QkSk++
+	poIiY9BppqInD7U+5bkyWWdy3pSzp6vcuK0u5Dzex5MkwMV8XkuPp3ZqbC3U0pOCvDq+JV+xbZjCj
+	/G/gkavgB4PZMufiiP5MqJ1UG74l6Csw5xPUzZjythfZv+ItM9FywYxulLGnQe1uUfs04PWeZb8aA
+	TxDW699d1QJeYS6770m85zF6K/s8bbR2COXUgg3Wx8fOuVaYW9dACZFDNWggYf+NSQAxNLL8oxx4R
+	mpMpcwG6GmOPmiCXTnKrc4zW3NHBrDBa3tNlqG+6WishbFJxrp+aKQF4ZQ9UmRDfAvFWDS49cstNo
+	IXGEqCJqBRBSHEenIKFA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j8kbM-0002hM-N2; Mon, 02 Mar 2020 12:55:16 +0000
-Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
+	id 1j8lS1-0006og-VR; Mon, 02 Mar 2020 13:49:41 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j8kai-0000qy-Di; Mon, 02 Mar 2020 12:54:37 +0000
-Received: by mail-pf1-x443.google.com with SMTP id i19so5547106pfa.2;
- Mon, 02 Mar 2020 04:54:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=HEh7CqSCXgWfailCBb8Rs+qB5N+bl/4veud+2lfhJ3c=;
- b=kAB4d29/ko/klMw//ZuCCDjxlWJmKBj6aYjBLaaWpXUGa2HrPYNP995nR9WGuqSzEH
- fluQ71pG7wsJkuGZvSsfu9JFGjGYfuE2cE151OiwrNC8PZl9x7XioTn+VbgU4RWQ6Ufw
- GgU3QbFS+76CeEIMQMe0lV0COD1vE8CdUdiRrVXjRz3FrXNwnmW8+QUQN8L4Lafo/5fJ
- BWFDW81BAltxPyU7ZV8VjT9u6VvUnvAjS5i2hgMj2ydh4iKsv9v1Vlqq5jEN1vpvIg0Y
- QdIRXqAXYtyUBZ0QuRW7az7jsrlAdBclNrfA1UDgOlJbuZRMexRIy58eiuYpgu1KVA7m
- xv/Q==
+ id 1j8lRq-0006ft-FH
+ for linux-amlogic@lists.infradead.org; Mon, 02 Mar 2020 13:49:32 +0000
+Received: by mail-wm1-x342.google.com with SMTP id a5so11285651wmb.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 02 Mar 2020 05:49:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=pDQHChPAvHbaHiAh1rx2hc7lXXqfrv2AqyVIgjj3sL4=;
+ b=UH5EmQ8xNHA0Plu/McRn1qzyUYWuxXbSKQ2Os9L0yoktOYu7tCx3sdJI7YWZDxYoHd
+ +YL3OEUKvM/W7hKB41X+4FFEjSxBJAVk5gdh5ny/LUcvZAIIrr1B3WQhGeUbo8nhyhjJ
+ YErz9cLbumJ9EU8Q1wTQxX1Bo4aRM5DcDqFGnmdskcTtTl60EykI71bjpWhvL433KI6k
+ 1zp5xmHgz0vxdOb2LAhL2niLWDwbVPa+UYR0WaVrxCd+4X1KV0gISqCbaTXsch8ZTvpP
+ 2pSH5mZIJxey3CFXFP6hifTlnIokOwzOBrOrJD7jVSHNogev7ThF6WI4H0vnNCqvkDfL
+ J1iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=HEh7CqSCXgWfailCBb8Rs+qB5N+bl/4veud+2lfhJ3c=;
- b=WAeg7aMn38jCr9fi9eMBcvwpsfaZnHS67P4kaehhcpT3bGMQOuQiEpAlGfGQVz4KOx
- f1dgl3Jy5D3Irb+w3IKtKjxYTC+riXQtfDuEZE1KmVRtSdfOuMrxyQhDjbRnFg+ij5js
- j3y9YpKUppvAXEmNRViPaWfFrR7dROt17381X6UTSvwLo44G6B1wT8MuyvcZyBa8ZwzQ
- wj/5NmWAAzW07spTV8rVpin77az4vYG+q+Zq3khLPLYX40xF5vuKmWPPaF9UvCWXpZjc
- yfCipG7NbRG/BncbGF7rVTNKwPpL0Mg2ZM2MlnlkbHfD12xzkfvfb39hRKAyWMI0OB0E
- lMbA==
-X-Gm-Message-State: APjAAAVj+WnIJNlJftKFBy0sJ9n5fLzfKTOJeZ3TtAFAKX2DSye1lWx+
- mBUyF+U/oTxWv+Zz04SohxU=
-X-Google-Smtp-Source: APXvYqzvXVSEfr6bpf3GIPRYKUv7jKl6r8NlwZCenHEBeS4uW+3WkXAE27vkYrNhhLNvUn6R77Ka4w==
-X-Received: by 2002:aa7:8299:: with SMTP id s25mr17299604pfm.261.1583153675622; 
- Mon, 02 Mar 2020 04:54:35 -0800 (PST)
-Received: from localhost.localdomain ([103.51.74.208])
- by smtp.gmail.com with ESMTPSA id p2sm2138238pfb.41.2020.03.02.04.54.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Mar 2020 04:54:35 -0800 (PST)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>
-Subject: [PATCHv2 2/2] clk: meson: g12a: set cpub_clk flags to CLK_IS_CRITICAL
-Date: Mon,  2 Mar 2020 12:53:09 +0000
-Message-Id: <20200302125310.742-3-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200302125310.742-1-linux.amoon@gmail.com>
-References: <20200302125310.742-1-linux.amoon@gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=pDQHChPAvHbaHiAh1rx2hc7lXXqfrv2AqyVIgjj3sL4=;
+ b=e6FttcNeAajcNMspHo3+loPzjgCJ5Q8brEkw7aW/lCh5fg0NKyOMc0svxwZ5lLn6Ar
+ e4CeXGe5K8XyqumhZHt8LdxAAA1zeP0xk1V+ryJznlP74Mz9SvdfsaL7QE+q14UALOgZ
+ rntTkFcqav5l2Tsfk2zBTMWnGLDk12k7IgJ6zDBCBjTTuIGNG0YmXJIHlWLnqTM/hngf
+ VF93XDGkj9CQIsBWpYNkluchX1gsl6wkFfwOUHBbcCPFiKOYT7OpSpC09EdOtmfQQJLh
+ UdQEIHCm3vJFYwTUiDG9YeaYb+NOLFkFa9q9KJ8sQBrah5iMuSex4gkSNEh5zxANDsd1
+ Vxiw==
+X-Gm-Message-State: ANhLgQ2ndcQ9dTpC4Nnl2WKt7zrZjl9TnUyWLMs21XV4U7AEwDkdmHOR
+ +QE1OOFBRRxb9PfQKnTFAMAI4A==
+X-Google-Smtp-Source: ADFU+vvG6MBPGRkXYyxVAEaRWeNUehBlIcQSHO6fOGOEKIiRp511b6KjpX5fIWmrSFxV9Fue65UAYA==
+X-Received: by 2002:a1c:2d88:: with SMTP id t130mr7393177wmt.68.1583156963877; 
+ Mon, 02 Mar 2020 05:49:23 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id h10sm16163783wml.18.2020.03.02.05.49.23
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 02 Mar 2020 05:49:23 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: meson-g12b: fix N2/VIM3 audio card model names
+In-Reply-To: <1583135051-95529-1-git-send-email-christianshewitt@gmail.com>
+References: <1583135051-95529-1-git-send-email-christianshewitt@gmail.com>
+Date: Mon, 02 Mar 2020 14:49:22 +0100
+Message-ID: <7h8skisw7x.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200302_045436_479610_AC956FC7 
-X-CRM114-Status: GOOD (  13.32  )
+X-CRM114-CacheID: sfid-20200302_054930_514659_1FF66EA7 
+X-CRM114-Status: UNSURE (   7.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,52 +97,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Odroid n2, cpub_clk is not geting enable, which lead the stalling
-at booting of the device, updating flags to CLK_IS_CRITICAL which help
-enable all the parent for cpub_clk.
+Christian Hewitt <christianshewitt@gmail.com> writes:
 
-Fixes: ffae8475b90c (clk: meson: g12a: add notifiers to handle cpu clock change);
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-Previous changes
-	fix the commit $subject and $message as previously I was
-        wrong on the my findings.
-        Added the Fixed tags to the commit.
+> This is largely cosmetic, but Odroid N2 and Khadas VIM3 are G12B devices so
+> correct the card model names to reflect this.
+>
+> Fixes: aa7d5873bf6e ("arm64: dts: meson-g12b-odroid-n2: add sound card")
+> Fixes: c6d29c66e582 ("arm64: dts: meson-g12b-khadas-vim3: add initial device-tree")
 
-Following Neil's suggestion, I have prepared this patch.
-https://patchwork.kernel.org/patch/11177441/#22964889
----
- drivers/clk/meson/g12a.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+nit: no blank lines between Fixes tags and others (cf
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index d2760a021301..7237d08b4112 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -681,7 +681,7 @@ static struct clk_regmap g12b_cpub_clk = {
- 			&g12a_sys_pll.hw
- 		},
- 		.num_parents = 2,
--		.flags = CLK_SET_RATE_PARENT,
-+		.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
- 	},
- };
- 
--- 
-2.25.1
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 
+Queued for v5.7,
+
+Thanks for the cleanup,
+
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
