@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1248BC3F2D2
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 09:56:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A951C3F2D2
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 09:59:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D802921D56
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 09:56:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F0EEE21D56
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 09:59:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Mlp6ZTdc";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="n5wPZ1Vd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D802921D56
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u+0gCO7N";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mxrD3pbc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F0EEE21D56
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,46 +26,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CmctsnrHF9oVph6hLgv51MNR/sThXaUQUEWWzCtypRs=; b=Mlp6ZTdcY0XN49
-	noc/XDGG5zkMq1wTKPFADMdNj0RY97/k8weMbGJ5ZRrvdfdP6OVhsAUnnFms+HacUrg20M7GVR02O
-	1Frh+Oc66XLJo67Fz9euw2Irs/TfifS/eOxydYGdNmgBcgXFiLl637AqrIrNIfzxTGg2pICGi1PIV
-	BCZAzbfODPXhfqPjk1npxkDFR5TJBFEz36zR4hv52EYnHbr8cRvaOtiOy7HuVk5/ux6OkcN3DYDAw
-	kSRZz6xLghKWt730j1TBQmueE+xmJFK0kplEiOdN+horD9oMJ42f/8e1C1v18ZG5+BKucRcGPKn9Y
-	OCafs1RzPn4Fh9aHTagw==;
+	List-Owner; bh=VpU6FPDycDD2HhldtOw48FsVsUy3CHm8Y31m8DXxCbM=; b=u+0gCO7NXIlpJN
+	gOEtKNEZmkZuSWjMmkyWKlZsMkyK5Lwb2z10Pb+krputhQ9for0ut5ROSpRNhdkUPEgkT0Ym096EN
+	auuBM11aUlufklsIyU1ln/uKyUy0nMTzvdXAp2JUcrq3g2ajgUoJeWL/N1lFV6KDOT/Wxc8NNMv69
+	bysvgSxFPaQ4EVX3Ch2Z7bTqW1r8J+JEPHfI/u/MXfVd/lD/nqupF8txBi1t7iYOqD+cHLFhaSvrj
+	jGDabNY7f8za/QRKUKYvIlwacHf/lXux4J+IMeVmMHfZ3Iva4XpZh1AbJ7z7+V4I+ygPJDTV49g5R
+	co5LkdDsI1ijIiKPAZaA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j8hoT-0003gY-Af; Mon, 02 Mar 2020 09:56:37 +0000
-Received: from perceval.ideasonboard.com
- ([2001:4b98:dc2:55:216:3eff:fef7:d647])
+	id 1j8hrH-0004FD-1I; Mon, 02 Mar 2020 09:59:31 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j8hoQ-0003fn-Jy
- for linux-amlogic@lists.infradead.org; Mon, 02 Mar 2020 09:56:36 +0000
+ id 1j8hrE-0004ES-J8
+ for linux-amlogic@lists.infradead.org; Mon, 02 Mar 2020 09:59:30 +0000
 Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi
  [81.175.216.236])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id D308854A;
- Mon,  2 Mar 2020 10:56:32 +0100 (CET)
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 71BF454A;
+ Mon,  2 Mar 2020 10:59:26 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1583142993;
- bh=QXED3Ldnro9xx/8nL5IJOBDjr3YPn6bHKN3OhtIpvmA=;
+ s=mail; t=1583143166;
+ bh=5i4HpQvtX4R1slyHT+952QHgBdgl3htQsX3B0F6Xj3Q=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=n5wPZ1VdS6fljZ7Lehb9ytqdKfYGKbOyZ3DUFJMTWi73z+KctZRKi2Gd6sI1n+ou/
- 77JwsuI7Kctrnb8KOUqdMpdKoVIRmxrmkPvSphJ8WmicJTgz0ljoTpBLB4e957LFFQ
- ccOjRe/9yVbQagjkeBISR49uHOll9JNI9T3HjiPc=
-Date: Mon, 2 Mar 2020 11:56:08 +0200
+ b=mxrD3pbc3SRTjb14W8QJAbbVj9qN5FxqkZyS8CiumvpluJv2iFvSkaxTRyZ5vW9ZZ
+ 8TQMjaLKgs1gdZJ3P99IYfZSnkXezeOC4NjklKpumGr8Kl82afPcRBDFwa82isRnNh
+ C4DcfimCx1B2bep+2jvjye2CSNiqYN5FGn+aeraU=
+Date: Mon, 2 Mar 2020 11:59:02 +0200
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v4 03/11] drm/bridge: dw-hdmi: Plug atomic state hooks to
- the default implementation
-Message-ID: <20200302095608.GH11960@pendragon.ideasonboard.com>
+Subject: Re: [PATCH v4 06/11] drm/meson: venc: make drm_display_mode const
+Message-ID: <20200302095902.GA16626@pendragon.ideasonboard.com>
 References: <20200206191834.6125-1-narmstrong@baylibre.com>
- <20200206191834.6125-4-narmstrong@baylibre.com>
+ <20200206191834.6125-7-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200206191834.6125-4-narmstrong@baylibre.com>
+In-Reply-To: <20200206191834.6125-7-narmstrong@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200302_015634_809674_0B72FF85 
-X-CRM114-Status: GOOD (  12.32  )
+X-CRM114-CacheID: sfid-20200302_015928_778627_1420F4CE 
+X-CRM114-Status: GOOD (  11.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,31 +87,45 @@ Hi Neil,
 
 Thank you for the patch.
 
-On Thu, Feb 06, 2020 at 08:18:26PM +0100, Neil Armstrong wrote:
+On Thu, Feb 06, 2020 at 08:18:29PM +0100, Neil Armstrong wrote:
+> Before switching to bridge funcs, make sure drm_display_mode is passed
+> as const to the venc functions.
+> 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-How about adding a commit message ?
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
 > ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/gpu/drm/meson/meson_venc.c | 2 +-
+>  drivers/gpu/drm/meson/meson_venc.h | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index 051001f77dd4..fec4a4bcd1fe 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -2494,6 +2494,9 @@ static void dw_hdmi_bridge_enable(struct drm_bridge *bridge)
->  }
+> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+> index 4efd7864d5bf..a9ab78970bfe 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.c
+> +++ b/drivers/gpu/drm/meson/meson_venc.c
+> @@ -946,7 +946,7 @@ bool meson_venc_hdmi_venc_repeat(int vic)
+>  EXPORT_SYMBOL_GPL(meson_venc_hdmi_venc_repeat);
 >  
->  static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
-> +	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-> +	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-> +	.atomic_reset = drm_atomic_helper_bridge_reset,
->  	.attach = dw_hdmi_bridge_attach,
->  	.detach = dw_hdmi_bridge_detach,
->  	.enable = dw_hdmi_bridge_enable,
+>  void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+> -			      struct drm_display_mode *mode)
+> +			      const struct drm_display_mode *mode)
+>  {
+>  	union meson_hdmi_venc_mode *vmode = NULL;
+>  	union meson_hdmi_venc_mode vmode_dmt;
+> diff --git a/drivers/gpu/drm/meson/meson_venc.h b/drivers/gpu/drm/meson/meson_venc.h
+> index 576768bdd08d..1abdcbdf51c0 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.h
+> +++ b/drivers/gpu/drm/meson/meson_venc.h
+> @@ -60,7 +60,7 @@ extern struct meson_cvbs_enci_mode meson_cvbs_enci_ntsc;
+>  void meson_venci_cvbs_mode_set(struct meson_drm *priv,
+>  			       struct meson_cvbs_enci_mode *mode);
+>  void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+> -			      struct drm_display_mode *mode);
+> +			      const struct drm_display_mode *mode);
+>  unsigned int meson_venci_get_field(struct meson_drm *priv);
+>  
+>  void meson_venc_enable_vsync(struct meson_drm *priv);
 
 -- 
 Regards,
