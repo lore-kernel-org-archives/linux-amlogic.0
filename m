@@ -2,72 +2,89 @@ Return-Path: <SRS0=FFcv=4T=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF7E5C3F2CD
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 16:02:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67D7CC3F2D9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 16:23:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9255A2146E
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 16:02:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 04F69222C4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Mar 2020 16:23:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hAc8qbFS";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Qr8r2Ktj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9255A2146E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p0eHAndp";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="KaJyPlfL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 04F69222C4
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vT9wIfYNHpMOtRQITiI/veP4mMxJHYoV2FogBfTU8Ng=; b=hAc8qbFSwXJsla
-	VkhI2GJmemslrP2JsImLeJUl3xCJpDbPvFiBjdO9iAdA3667ZCZf8QZAQKCCbwo6fjkauKdDatY7L
-	DOQ6blfff1pxPggSK0P6ocnwKEriu9PagWHU541q7AeyYqb1ckaSsS62uZMQmFS6fvvAMe+0n4WjA
-	IFfppMtjSjayu9/h0BsSHtxXxIX84iSswZoyY0z5/Zw+UD7+JTHwM0eNqsXQIqGTCaEQEWxRMi01N
-	CwDGPrqyUhf5x/WeMFE970wuCgRcAwKyoY0RZlrQR2RXrk0+DkIRShfK/Y2SoPkRPRy+L6AZ7Jx7v
-	1feozDsNiD0R9Gz6h4UA==;
+	List-Owner; bh=zcPSFxQ10tIw0DIbaMb2HI51WxCeT1ueC0ceLDSJF0w=; b=p0eHAndpqkZODs
+	R+1btbQuIvJcaCmIoHjrkKwU04l5yiL+r5xaGbP7Bb+/6S/FBKTfM4Eio9MsC+0Bl+52IShj7VcOz
+	5fGO6CO4n1TyTpKjK3Um2jbsjiSbzQO7Eb8Pm5x8pELwucpundhj+rEhEGwpQXgF3gfxKervybm0W
+	dTkBR8LjBUuvgI0yHI7soKHrJMjND5k8rtwH/r5IVPH2ig6AqSh7cPIvf5C6jwXoPzVmP3gb2eBJf
+	Q+aob4FLw4Usp0aFuYM+p2bJiuwa9LJ45hDXa6IUEhnVC/rVK3GE+G+vFMte075KXpBA2fhugWkjm
+	+h4MSY+YTWRXhOWaa5AA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j8nW5-0008ES-NV; Mon, 02 Mar 2020 16:02:01 +0000
-Received: from perceval.ideasonboard.com
- ([2001:4b98:dc2:55:216:3eff:fef7:d647])
+	id 1j8nr2-0001XS-Mk; Mon, 02 Mar 2020 16:23:40 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j8nW3-0008E0-A0
- for linux-amlogic@lists.infradead.org; Mon, 02 Mar 2020 16:02:00 +0000
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi
- [81.175.216.236])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9D35E9D0;
- Mon,  2 Mar 2020 17:01:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1583164905;
- bh=8xsW9GAR0aM5jgCKtEVOt61W0h7SwaVnM/ckN7MbJKA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Qr8r2Ktj7KXelyNGWtC/to2sGwhKDEtdoFo80PR1O/jmYLYEffTuv81qeyshUYH3T
- QqJ1IF3L1qpPhjheuw6vM8MGVil2R1hXt9Cm1ZmidXNKxyn9uQvWYN/kfA/dvf837W
- 262ZSoS48nk+e4FkoT9Xr2V0tFJzu31ay1LSzKDQ=
-Date: Mon, 2 Mar 2020 18:01:21 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v4 01/11] drm/bridge: dw-hdmi: set mtmdsclock for deep
- color
-Message-ID: <20200302160121.GR11960@pendragon.ideasonboard.com>
-References: <20200206191834.6125-1-narmstrong@baylibre.com>
- <20200206191834.6125-2-narmstrong@baylibre.com>
- <20200302090527.GB11960@pendragon.ideasonboard.com>
- <a5b6d1f2-8f1c-ae3f-529d-baf7f4cecbe9@baylibre.com>
+ id 1j8nqu-0001Oc-KV
+ for linux-amlogic@lists.infradead.org; Mon, 02 Mar 2020 16:23:34 +0000
+Received: by mail-wr1-x441.google.com with SMTP id v2so399869wrp.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 02 Mar 2020 08:23:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=7dhtMCeqCCrozUAR7xWCIRbtdQoUsRNHKe3qSBD7eVQ=;
+ b=KaJyPlfL/YL/9IzhgPdg7VRoSA7LOYbGnEm5sD16nPwvywgw/HLr/bDtR4FfsNsW/a
+ 6ASEkqooYQDr/nEMmzqnEbo4tfjQNdWmVrBDJjijwQxIM691mp2AwBM6bTJ1u+JZ+xDE
+ GaVEo8Z+dEkN5CvjjpJduUgwMabGNiBqHWb7IhFQ9bN9Nn3wNVuBUtaz/PRNLZUrzDKU
+ YNj2bOhLVym29ovWeg+gHxcz4GP2iEzej132wvegafj2QR1PdOIrD9GMvLYX2xSgrLzU
+ XZI9V9LQjKtUP1Bz8GFfo1hZ1Ir5mY1RpNrO1be4JpShfuURRfd+GQLG/qI4djgTlmDT
+ 7FCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=7dhtMCeqCCrozUAR7xWCIRbtdQoUsRNHKe3qSBD7eVQ=;
+ b=SJkgg3PfT/oOMTuxT3asjLjLX7obBIkb3dZelfSo8XAVuh0IbQTuC1U4d2b9gDsAWD
+ 151Es6ezefEMq+J3sJJ5F9gB6fP8Y1wgP36W/NH84wwVOzb05lvkS19jLQ2aBush6Qnq
+ tfh6VEUrBHPpcgut1f+kVZ2sqzWVLURCY0zwWFH8gFhbYhw3ajUCr5+js/D4tpyVNudW
+ bYCE3nUmWgTiyROW8EVa1m0ro8BRLA7SkTEKB6+CiypxmvRMISek6dd57diaBe3QUQ5Q
+ KV3Y9V2e9zkH3vNnp4CbynrM3WwcMMQEXznKifjOXcFB7NXE5999sVo5BlYUmzPN0jls
+ k48Q==
+X-Gm-Message-State: ANhLgQ3RZ7ODG6yXjjxmXSsg4yViqcj1hzv6sN0QPo0xGkiFjIQ84jjO
+ skgfsllJN2qEgNBplLLtx3jPgg==
+X-Google-Smtp-Source: ADFU+vs0kNer+mtpZoTW7AZ3bv2U14dkD7HjJHBJ4bHZFfi3uzwaxEhingENvYB1CplhRWLQ9UgEcg==
+X-Received: by 2002:a05:6000:14d:: with SMTP id
+ r13mr355801wrx.63.1583166210659; 
+ Mon, 02 Mar 2020 08:23:30 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id n8sm27622995wrm.46.2020.03.02.08.23.29
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 02 Mar 2020 08:23:29 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, mchehab@kernel.org,
+ hans.verkuil@cisco.com
+Subject: Re: [PATCH v6 0/4] media: meson: vdec: Add compliant H264 support
+In-Reply-To: <20200219140156.22893-1-narmstrong@baylibre.com>
+References: <20200219140156.22893-1-narmstrong@baylibre.com>
+Date: Mon, 02 Mar 2020 17:23:29 +0100
+Message-ID: <7h4kv6sp32.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <a5b6d1f2-8f1c-ae3f-529d-baf7f4cecbe9@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200302_080159_499853_39943209 
-X-CRM114-Status: GOOD (  19.25  )
+X-CRM114-CacheID: sfid-20200302_082332_677309_8DF77FD3 
+X-CRM114-Status: UNSURE (   7.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,97 +96,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: jernej.skrabec@siol.net, jonas@kwiboo.se, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, a.hajda@samsung.com,
- boris.brezillon@collabora.com, linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
- 
-On Mon, Mar 02, 2020 at 04:54:17PM +0100, Neil Armstrong wrote:
-> On 02/03/2020 10:05, Laurent Pinchart wrote:
-> > On Thu, Feb 06, 2020 at 08:18:24PM +0100, Neil Armstrong wrote:
-> >> From: Jonas Karlman <jonas@kwiboo.se>
-> >>
-> >> Configure the correct mtmdsclock for deep colors to prepare support
-> >> for 10, 12 & 16bit output.
-> >>
-> >> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 17 +++++++++++++++++
-> >>  1 file changed, 17 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> >> index 67fca439bbfb..9e0927d22db6 100644
-> >> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> >> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> >> @@ -1818,9 +1818,26 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
-> >>  
-> >>  	dev_dbg(hdmi->dev, "final pixclk = %d\n", vmode->mpixelclock);
-> > 
-> > Nitpicking a bit, I would change
-> > 
-> > -	vmode->mtmdsclock = vmode->mpixelclock = mode->clock * 1000;
-> > +	vmode->mpixelclock = mode->clock * 1000;
-> > 
-> > above, and here add
-> > 
-> > 	vmode->mtmdsclock = vmode->mpixelclock;
-> > 
-> > to keep all mtmdsclock calculation in a single place.
-> > 
-> >> +	if (!hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format)) {
-> >> +		switch (hdmi_bus_fmt_color_depth(
-> >> +				hdmi->hdmi_data.enc_out_bus_format)) {
-> >> +		case 16:
-> >> +			vmode->mtmdsclock = (u64)vmode->mpixelclock * 2;
-> > 
-> > Both mpixelclock and mtmdsclock are unsigned int. Is the cast to u64
-> > needed ?
-> > 
-> > On a separate but related note, what does the 'm' in tmdsclock stand for
-> > ? It seems to originate from the 'm' prefix for mpixelclock, which has
-> > been there from the start. Unless there's a good reason for the prefix,
-> > renaming mtmdsclock to tmds_clock (and handling the other fields in the
-> > hdmi_vmode structure similarly) would increase clarity I think.
-> > 
-> >> +			break;
-> >> +		case 12:
-> >> +			vmode->mtmdsclock = (u64)vmode->mpixelclock * 3 / 2;
-> >> +			break;
-> >> +		case 10:
-> >> +			vmode->mtmdsclock = (u64)vmode->mpixelclock * 5 / 4;
-> >> +			break;
-> >> +		}
-> >> +	}
-> >> +
-> >>  	if (hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format))
-> >>  		vmode->mtmdsclock /= 2;
-> >>  
-> >> +	dev_dbg(hdmi->dev, "final tmdsclk = %d\n", vmode->mtmdsclock);
-> > 
-> > s/tmdsclk/tmdsclock/ to match the field name ?
-> > 
-> >> +
-> >>  	/* Set up HDMI_FC_INVIDCONF */
-> >>  	inv_val = (hdmi->hdmi_data.hdcp_enable ||
-> >>  		   (dw_hdmi_support_scdc(hdmi) &&
-> > 
-> 
-> I fixed the calculus and the cast, but I'll rename the mtmdsclock in a following patch.
-> 
-> is it ok for you ?
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Sure, works for me.
+> Hello,
+>
+> This patch series aims to bring H.264 support as well as compliance update
+> to the amlogic stateful video decoder driver.
+>
+> The issue in the V1 patchset at [1] is solved by patch #1 following comments
+> and requirements from hans. It moves the full draining & stopped state tracking
+> and handling from vicodec to core v4l2-mem2mem.
+>
+> The vicodec changes still passes the v4l2-utils "media-test" tests, log at [5]:
+> [...]
+> vicodec media controller compliance tests
 
--- 
-Regards,
+Tested on meson-sm1-sei610.
 
-Laurent Pinchart
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
