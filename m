@@ -2,88 +2,178 @@ Return-Path: <SRS0=kgfN=4U=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2 autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MSGID_FROM_MTA_HEADER,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B2D5AC3F2C6
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 10:10:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3781C3F2CD
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 10:53:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 88F9C214DB
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 10:10:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9ED1F2080C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 10:53:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SWFlKfFt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DUixScdO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 88F9C214DB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dbcpAI57";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=armh.onmicrosoft.com header.i=@armh.onmicrosoft.com header.b="miGjpXje";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=armh.onmicrosoft.com header.i=@armh.onmicrosoft.com header.b="miGjpXje"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9ED1F2080C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Wqbnnry7xUFMVlCUi99IJm9bOPifOTLrN3ACUPLK+1k=; b=SWFlKfFtW3r3RTPNxeAOwdP0A
-	Xt05dh/F9KcyaoxlEaGfT/HA8rRj7f5mfrutWZLmRSDMam3Q7WgyAv+Vv1rEBDkNR+J8ePst9/vgN
-	JFxk/qZB2FPy2TUa4Ox/Ixut3vt2jdf3eh7ZKzooZQDRL/LCiYkTi4MHleQZdVwBt2rsDukf8dqMV
-	RIYPXI2YFPzkSaYOqZmo+CZWPKFnK1RbNpcK86jWt2DZp1yYtjMmj6v/iBBGGwKdYFcEK4Eth3JaP
-	bpFabJqaPxIFd5kLtFTbDXBlT7FW+jAsX/jrZZkz1BnWf7CP/T7zmAcyPKoX6fyfGT13UlIn+ZMQT
-	9Yu7PqL+A==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=IFIRUCWR0lSEyBsdPIkd38O+31AXe+ExcNAf2kD6BCI=; b=dbcpAI57uZbmQi
+	uwhyJblfV7mGwtisFyX0agnalW+5hPvjzA9dX2Xmw+SHa1WjuEo7BsT+ExrRt9ewLuAKNSSSBfoBZ
+	WrTucyxUuEkXxlTUzJeGew1DEI1MNgoqaCh8IMyOltGKGIzf9w+YXZ07f8sOTBySozxOyfC+ZnAvc
+	SUGG094bpxAzkdxUMiAjQTwILNTBjrikFDLz5pbDSgXIgRYGoWqGZnYJ32ClONeirAm6VXOZdm8vH
+	a3SiYPrHEYgL/81ldO0o9mFTdIC91rYzhavXv9PbsS3hHfg2X2Vw/Lo0JIs5Mn1BLgdTq50JTXa7f
+	3bu1oJja46rkLo1L9BKQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j94Vc-0001ar-4J; Tue, 03 Mar 2020 10:10:40 +0000
-Received: from mail-lf1-x142.google.com ([2a00:1450:4864:20::142])
+	id 1j95BJ-0000mj-Tf; Tue, 03 Mar 2020 10:53:45 +0000
+Received: from mail-eopbgr00078.outbound.protection.outlook.com ([40.107.0.78]
+ helo=EUR02-AM5-obe.outbound.protection.outlook.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j94VY-0001Zu-7R; Tue, 03 Mar 2020 10:10:37 +0000
-Received: by mail-lf1-x142.google.com with SMTP id c20so2254257lfb.0;
- Tue, 03 Mar 2020 02:10:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=2lBH94o2PcHIglkC8tdFIZftFpVYeorWUf+G12zJQW4=;
- b=DUixScdOTtavztb6NXfZUx6eofx4PGD5zfvUfbjB4CXGeLO7Ur0s8TwPkEOUgEXvPu
- Ts8rCS9f1rGO1mjaIpUl347NhBjVlbjwofGVA4Nm2NuY6YuUA9XZOXWcAJ/8LyaJDwD6
- o3tqXXJHeLh2zJQTfdGqYj6bYRPkfN7/yjk8bwym/+yQ2bBrjbOaWAomDYXHa5KS4LVE
- XyC4IUhWqzizPlK75qgJKhZquU6yLZkoasT6vhchjnbSCjcVupK5pNqwM6yI43/05uMB
- vDmwbIqhdDtSXyWvSPmEnBkBtQlQiRc9YU7QZ+Rc2g5WeMqpuDNZlS0ZZ3HowXz/pVlv
- n7rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=2lBH94o2PcHIglkC8tdFIZftFpVYeorWUf+G12zJQW4=;
- b=G/KHqQ5rNgUBOk4P+1jLWaTYFYkXDuqrD7NHK04005KzOzY2FohkzxeEXlwPWEIp7J
- eqZ/223Dyqa2VAyvTrOUbOwQ25MWoODJe9bg0rZJ6UGP2qBeareKUIXg6Qlz2y4u+uJs
- NfTaoa3X1+c4gfCVATNDviwBja+Cdpxa3MJlZNypo0mCwflYt7uL5t9KRzLHLwqLe0jf
- 8Py2Te4dcgwLPBth+4OctU7HAa+0QapE4JI/bmwEX8hwgNKfJjfq19xmc/1XZr0ntEg8
- wMtCmo6y9ziQdBolqEridh8oaJbGFcJDINU9bQTyuchTtB0KaHO+JXaT1IMBCh/i3D0F
- hyLg==
-X-Gm-Message-State: ANhLgQ2fVFYncuAAXvLOHBBV3lhsX0xc+OhxUsbSxTezDdjIR3K7ndew
- FkUzXKB/AYY6cFkGPvIp+eA=
-X-Google-Smtp-Source: ADFU+vvCK/dhrA0HP90FSZ4H2gM/ZTfYDVGZI2QL86FFvhSRqOivBshJgAGF9V7MeYb1cB5n62gWKQ==
-X-Received: by 2002:ac2:48b6:: with SMTP id u22mr2319457lfg.18.1583230233683; 
- Tue, 03 Mar 2020 02:10:33 -0800 (PST)
-Received: from eldfell.localdomain ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id z1sm123878ljh.17.2020.03.03.02.10.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Mar 2020 02:10:33 -0800 (PST)
-Date: Tue, 3 Mar 2020 12:10:29 +0200
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
+ id 1j95BA-0000gn-S0; Tue, 03 Mar 2020 10:53:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DdIjeztbu4suoMrtRh5LJc3vAdFk+ORXzTNqLB9I1DQ=;
+ b=miGjpXjeWuKhal3oqdGKl2nZQbHH2EMvW60CIKFz5OPHy5mFRB5LhNki9Hd+VfHwYDVwLdjQToB9jLfaHAjG2hEfWbZ+tCD4C4pNONHM245gsX2xHK4EH/ped8E8DpFtg1FkXE6TRPxr1p4ImRgvXb+Z0Ei3imsOyxjNGme2M4k=
+Received: from VI1PR0802CA0001.eurprd08.prod.outlook.com
+ (2603:10a6:800:aa::11) by AM0PR08MB3860.eurprd08.prod.outlook.com
+ (2603:10a6:208:10b::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15; Tue, 3 Mar
+ 2020 10:53:31 +0000
+Received: from AM5EUR03FT044.eop-EUR03.prod.protection.outlook.com
+ (2a01:111:f400:7e08::203) by VI1PR0802CA0001.outlook.office365.com
+ (2603:10a6:800:aa::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.18 via Frontend
+ Transport; Tue, 3 Mar 2020 10:53:31 +0000
+Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; lists.infradead.org; dkim=pass (signature was
+ verified) header.d=armh.onmicrosoft.com;lists.infradead.org;
+ dmarc=bestguesspass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ AM5EUR03FT044.mail.protection.outlook.com (10.152.17.56) with
+ Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2772.14 via Frontend Transport; Tue, 3 Mar 2020 10:53:31 +0000
+Received: ("Tessian outbound 846b976b3941:v42");
+ Tue, 03 Mar 2020 10:53:31 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 2fb315371c14d04a
+X-CR-MTA-TID: 64aa7808
+Received: from 37e9f0de91be.1
+ by 64aa7808-outbound-1.mta.getcheckrecipient.com id
+ D554EB7A-A13B-4AF5-A4B8-84DBDC75D929.1; 
+ Tue, 03 Mar 2020 10:53:26 +0000
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+ by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 37e9f0de91be.1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+ Tue, 03 Mar 2020 10:53:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DrFds+ImEgWXXOaAkcEXfQ69QMAcceNGcj39KRfmajMXmrspi6LCI76jEqwevEER5VK1r1oqtEcxS/6mrE564zzJjLu4Kh/otNqB622W/8qltOPsQLA+FNeACCLZR6P6naxuwi8ZaD1Aa7yr1PwvWHn4YTx1Hst/yygAvb0ML/UpB+Yg8WIkcIPYLqTkXiGtd1CaoPKciBehIQacPxXihrFRkYXW5AaloY5Y06Tw8aqiVnXGPgT9ImGdgnSk4GjBDneH8ZWFmTCmvqWLhF5mN5iVMcu5xxorNlSjgIsS3SpdcczgStoCRjO0/yLcDfJdZ7DuJfZrqic4QRtIH2jiyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DdIjeztbu4suoMrtRh5LJc3vAdFk+ORXzTNqLB9I1DQ=;
+ b=a0i9LtBZ4lTI3DHzCg7acRg1QFaZk7k/ZHfAr6N4tQ+dlYOQOwu8PxMgI5SldevIcJOFqq3hNqnM6L+NSEuIFTrE+twK/w3KRNVD9TSa2PXVVTveqTCVbhd0oB96o8N2+LrCaWw3ZzQZqOUu18FY7zswyO0WGyOo/DXkUhqgma1OD2VwudizuNh6wWJzmAANYxKRIBmeaTHVz9D5lrY7o8B7nvFXNFn+r6sQWfeNNeAVXBUgzvkP9xxeASRY5XgAhd+zKTdHh7sh2rqLqQO/mfXGc/7ZUsF1vH2u6lCGRSYlGBRhxGfpZArjgcXwrZRdPHDRAf1hQbprAmTS+/o/JQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DdIjeztbu4suoMrtRh5LJc3vAdFk+ORXzTNqLB9I1DQ=;
+ b=miGjpXjeWuKhal3oqdGKl2nZQbHH2EMvW60CIKFz5OPHy5mFRB5LhNki9Hd+VfHwYDVwLdjQToB9jLfaHAjG2hEfWbZ+tCD4C4pNONHM245gsX2xHK4EH/ped8E8DpFtg1FkXE6TRPxr1p4ImRgvXb+Z0Ei3imsOyxjNGme2M4k=
+Authentication-Results-Original: spf=none (sender IP is )
+ smtp.mailfrom=Brian.Starkey@arm.com; 
+Received: from AM6PR08MB3829.eurprd08.prod.outlook.com (20.178.89.14) by
+ AM6PR08MB3046.eurprd08.prod.outlook.com (52.135.165.11) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2772.15; Tue, 3 Mar 2020 10:53:24 +0000
+Received: from AM6PR08MB3829.eurprd08.prod.outlook.com
+ ([fe80::75a9:e388:c1ff:6352]) by AM6PR08MB3829.eurprd08.prod.outlook.com
+ ([fe80::75a9:e388:c1ff:6352%5]) with mapi id 15.20.2772.018; Tue, 3 Mar 2020
+ 10:53:24 +0000
+Date: Tue, 3 Mar 2020 10:53:25 +0000
+From: Brian Starkey <brian.starkey@arm.com>
+To: Pekka Paalanen <ppaalanen@gmail.com>
 Subject: Re: [PATCH 1/4] drm/fourcc: Add modifier definitions for describing
  Amlogic Video Framebuffer Compression
-Message-ID: <20200303121029.5532669d@eldfell.localdomain>
-In-Reply-To: <20200221090845.7397-2-narmstrong@baylibre.com>
+Message-ID: <20200303105325.bn4sob6yrdf5mwrh@DESKTOP-E1NTVVP.localdomain>
 References: <20200221090845.7397-1-narmstrong@baylibre.com>
  <20200221090845.7397-2-narmstrong@baylibre.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ <20200303121029.5532669d@eldfell.localdomain>
+Content-Disposition: inline
+In-Reply-To: <20200303121029.5532669d@eldfell.localdomain>
+User-Agent: NeoMutt/20180716-849-147d51-dirty
+X-ClientProxiedBy: LO2P265CA0471.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:a2::27) To AM6PR08MB3829.eurprd08.prod.outlook.com
+ (2603:10a6:20b:85::14)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from DESKTOP-E1NTVVP.localdomain (217.140.106.52) by
+ LO2P265CA0471.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:a2::27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2772.14 via Frontend Transport; Tue, 3 Mar 2020 10:53:24 +0000
+X-Originating-IP: [217.140.106.52]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 7f25d5af-1073-4524-b57e-08d7bf611cfb
+X-MS-TrafficTypeDiagnostic: AM6PR08MB3046:|AM0PR08MB3860:
+X-Microsoft-Antispam-PRVS: <AM0PR08MB3860BFF2D47F798396ABE82CF0E40@AM0PR08MB3860.eurprd08.prod.outlook.com>
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;OLM:10000;
+X-Forefront-PRVS: 03319F6FEF
+X-Forefront-Antispam-Report-Untrusted: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(136003)(376002)(396003)(366004)(346002)(189003)(199004)(5660300002)(186003)(52116002)(7696005)(16526019)(9686003)(44832011)(86362001)(55016002)(6506007)(2906002)(1076003)(66946007)(81166006)(8676002)(4326008)(8936002)(478600001)(316002)(6916009)(66476007)(66556008)(26005)(81156014)(956004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:AM6PR08MB3046;
+ H:AM6PR08MB3829.eurprd08.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: arm.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: xZdJFGg77MD31b6coOgyxJsP6RdCvLqeFuKObUhZakFdYzzO9lkiam02zAik4ljgixfV92m9yJMk4wIYEkA64vStMcGIcDtnxb2taRAc9A3nJdjvTvdXjtyollbv+WjeLH98y85SyyoakdmGW4+SChIo6xy3xQsIjsbPgotiMly5LKv8tVVDQmnLmA6v/hzexDTQCEg9lXuoOgUT3bsxJPZM5qn0CdxUdHnbCYOoqZoMdH5saShcmUwZh7y33zgx6b6YpPMo0x3PnezyBbKff72hz5n23OY/DM65kdVG0aKga9wp07dEtJS6QJbpMQDEmn7ghoAYLGSrRCu8AmF6bTdc3/jGktOLht+2/V7NMFFe0vSw9WP6vBBZjpKJB2PoErjEDzPCtUovxDnUZPF7gx5xu2iGJd8LTETGsEDMpcqV9PSuBEg2qE07c4EMzI6G
+X-MS-Exchange-AntiSpam-MessageData: VlCO4z76c5qkgy8Q5XpMLWY00qPK7QORb3BZzNkAqjqK0Mt6Y4m3yH0eZKMZq4bOr1JOUFXfyim1gIA7SYNgTFhKzIow3lB7DcZo5q/NI5DwniEy50mPx/79v6i4x0viURSjX30nwAQ+6w5PUtFprQ==
+X-MS-Exchange-Transport-Forked: True
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR08MB3046
+Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Brian.Starkey@arm.com; 
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT044.eop-EUR03.prod.protection.outlook.com
+X-Forefront-Antispam-Report: CIP:63.35.35.123; IPV:CAL; SCL:-1; CTRY:IE;
+ EFV:NLI; SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(376002)(346002)(39860400002)(396003)(189003)(199004)(44832011)(5660300002)(55016002)(186003)(6862004)(336012)(7696005)(16526019)(6506007)(356004)(9686003)(86362001)(2906002)(450100002)(26826003)(81166006)(1076003)(70586007)(4326008)(8936002)(478600001)(8676002)(316002)(36906005)(956004)(26005)(81156014)(70206006);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:AM0PR08MB3860;
+ H:64aa7808-outbound-1.mta.getcheckrecipient.com; FPR:; SPF:Pass; LANG:en;
+ PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com; MX:1; A:1; 
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 61529b82-9df9-454f-c4c1-08d7bf6118bd
+X-Forefront-PRVS: 03319F6FEF
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BVA7KgzH5WXU5wA0OjthXhSby73mQ/Kfbj092a6B9eOrg6MiuGJzOkYYh/ujEnf6nfdasIsOHPTBQFmLjiTS5G9ua5E2DHusJbyeiFVKhZt6v7WuzEKSOI4w26paOVXK3c9aOfGrVoUzbDQnWvATwpHyuRLEmoETU6cNS4Ui15tXcJar+gjYiJOQfKj4gQ96UfOtHmVZSC0DSJY9/tGrknooSk7Du/jtIh6jAYQziYY8qfkkh24n5N0IYRw5WTdC8bAUj2lZQIG2Iwn+/z4ApsE/hJSYwQYTHc4/u15DhCL+wGdj6oo7i8hqs/McwpqgJISDT6B2IowSJnHFBHqB/c7YJgz8jdPIkhbIsH7ix1Rh/sdcY02KohMCg5RcZaPjLsBA/2KBd4N3ZO8+86ZFKD971S4T4DdJfeKBaSdozl2qPGqxq9W6/174XAq1bWiD
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2020 10:53:31.4434 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f25d5af-1073-4524-b57e-08d7bf611cfb
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d; Ip=[63.35.35.123];
+ Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB3860
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200303_021036_295774_CD0B35E1 
-X-CRM114-Status: GOOD (  28.66  )
+X-CRM114-CacheID: sfid-20200303_025337_316982_4C277242 
+X-CRM114-Status: GOOD (  28.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,209 +185,140 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch, linux-kernel@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============4645773700502502207=="
+Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, nd@arm.com,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============4645773700502502207==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/rszd0x.FOSs6mcQm0ZPJOpS"; protocol="application/pgp-signature"
-
---Sig_/rszd0x.FOSs6mcQm0ZPJOpS
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, 21 Feb 2020 10:08:42 +0100
-Neil Armstrong <narmstrong@baylibre.com> wrote:
-
-> Amlogic uses a proprietary lossless image compression protocol and format
-> for their hardware video codec accelerators, either video decoders or
-> video input encoders.
->=20
-> It considerably reduces memory bandwidth while writing and reading
-> frames in memory.
->=20
-> The underlying storage is considered to be 3 components, 8bit or 10-bit
-> per component, YCbCr 420, single plane :
-> - DRM_FORMAT_YUV420_8BIT
-> - DRM_FORMAT_YUV420_10BIT
->=20
-> This modifier will be notably added to DMA-BUF frames imported from the V=
-4L2
-> Amlogic VDEC decoder.
->=20
-> At least two options are supported :
-> - Scatter mode: the buffer is filled with a IOMMU scatter table referring
->   to the encoder current memory layout. This mode if more efficient in te=
-rms
->   of memory allocation but frames are not dumpable and only valid during =
-until
->   the buffer is freed and back in control of the encoder
-> - Memory saving: when the pixel bpp is 8b, the size of the superblock can
->   be reduced, thus saving memory.
->=20
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  include/uapi/drm/drm_fourcc.h | 56 +++++++++++++++++++++++++++++++++++
->  1 file changed, 56 insertions(+)
->=20
-> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-> index 8bc0b31597d8..8a6e87bacadb 100644
-> --- a/include/uapi/drm/drm_fourcc.h
-> +++ b/include/uapi/drm/drm_fourcc.h
-> @@ -309,6 +309,7 @@ extern "C" {
->  #define DRM_FORMAT_MOD_VENDOR_BROADCOM 0x07
->  #define DRM_FORMAT_MOD_VENDOR_ARM     0x08
->  #define DRM_FORMAT_MOD_VENDOR_ALLWINNER 0x09
-> +#define DRM_FORMAT_MOD_VENDOR_AMLOGIC 0x0a
-> =20
->  /* add more to the end as needed */
-> =20
-> @@ -804,6 +805,61 @@ extern "C" {
->   */
->  #define DRM_FORMAT_MOD_ALLWINNER_TILED fourcc_mod_code(ALLWINNER, 1)
-> =20
-> +/*
-> + * Amlogic Video Framebuffer Compression modifiers
-> + *
-> + * Amlogic uses a proprietary lossless image compression protocol and fo=
-rmat
-> + * for their hardware video codec accelerators, either video decoders or
-> + * video input encoders.
-> + *
-> + * It considerably reduces memory bandwidth while writing and reading
-> + * frames in memory.
-> + * Implementation details may be platform and SoC specific, and shared
-> + * between the producer and the decoder on the same platform.
-
 Hi,
 
-after a lengthy IRC discussion on #dri-devel, this "may be platform and
-SoC specific" is a problem.
+On Tue, Mar 03, 2020 at 12:10:29PM +0200, Pekka Paalanen wrote:
+> On Fri, 21 Feb 2020 10:08:42 +0100
+> Neil Armstrong <narmstrong@baylibre.com> wrote:
+> 
+> > Amlogic uses a proprietary lossless image compression protocol and format
+> > for their hardware video codec accelerators, either video decoders or
+> > video input encoders.
+> > 
+> > It considerably reduces memory bandwidth while writing and reading
+> > frames in memory.
+> > 
+> > The underlying storage is considered to be 3 components, 8bit or 10-bit
+> > per component, YCbCr 420, single plane :
+> > - DRM_FORMAT_YUV420_8BIT
+> > - DRM_FORMAT_YUV420_10BIT
+> > 
+> > This modifier will be notably added to DMA-BUF frames imported from the V4L2
+> > Amlogic VDEC decoder.
+> > 
+> > At least two options are supported :
+> > - Scatter mode: the buffer is filled with a IOMMU scatter table referring
+> >   to the encoder current memory layout. This mode if more efficient in terms
+> >   of memory allocation but frames are not dumpable and only valid during until
+> >   the buffer is freed and back in control of the encoder
+> > - Memory saving: when the pixel bpp is 8b, the size of the superblock can
+> >   be reduced, thus saving memory.
+> > 
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> > ---
+> >  include/uapi/drm/drm_fourcc.h | 56 +++++++++++++++++++++++++++++++++++
+> >  1 file changed, 56 insertions(+)
+> > 
+> > diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+> > index 8bc0b31597d8..8a6e87bacadb 100644
+> > --- a/include/uapi/drm/drm_fourcc.h
+> > +++ b/include/uapi/drm/drm_fourcc.h
+> > @@ -309,6 +309,7 @@ extern "C" {
+> >  #define DRM_FORMAT_MOD_VENDOR_BROADCOM 0x07
+> >  #define DRM_FORMAT_MOD_VENDOR_ARM     0x08
+> >  #define DRM_FORMAT_MOD_VENDOR_ALLWINNER 0x09
+> > +#define DRM_FORMAT_MOD_VENDOR_AMLOGIC 0x0a
+> >  
+> >  /* add more to the end as needed */
+> >  
+> > @@ -804,6 +805,61 @@ extern "C" {
+> >   */
+> >  #define DRM_FORMAT_MOD_ALLWINNER_TILED fourcc_mod_code(ALLWINNER, 1)
+> >  
+> > +/*
+> > + * Amlogic Video Framebuffer Compression modifiers
+> > + *
+> > + * Amlogic uses a proprietary lossless image compression protocol and format
+> > + * for their hardware video codec accelerators, either video decoders or
+> > + * video input encoders.
+> > + *
+> > + * It considerably reduces memory bandwidth while writing and reading
+> > + * frames in memory.
+> > + * Implementation details may be platform and SoC specific, and shared
+> > + * between the producer and the decoder on the same platform.
+> 
+> Hi,
+> 
+> after a lengthy IRC discussion on #dri-devel, this "may be platform and
+> SoC specific" is a problem.
+> 
+> It can be an issue in two ways:
+> 
+> - If something in the data acts like a sub-modifier, then advertising
+>   support for one modifier does not really tell if the data layout is
+>   supported or not.
+> 
+> - If you need to know the platform and/or SoC to be able to interpret
+>   the data, it means the modifier is ill-defined and cannot be used in
+>   inter-machine communication (e.g. Pipewire).
+> 
 
-It can be an issue in two ways:
+Playing devil's advocate, the comment sounds similar to
+I915_FORMAT_MOD_{X,Y}_TILED:
 
-- If something in the data acts like a sub-modifier, then advertising
-  support for one modifier does not really tell if the data layout is
-  supported or not.
+ * This format is highly platforms specific and not useful for cross-driver
+ * sharing. It exists since on a given platform it does uniquely identify the
+ * layout in a simple way for i915-specific userspace.
 
-- If you need to know the platform and/or SoC to be able to interpret
-  the data, it means the modifier is ill-defined and cannot be used in
-  inter-machine communication (e.g. Pipewire).
+Isn't the statement that this for sharing between producer and decoder
+_on the same platform_ a similar clause with the same effect?
 
-Neil mentioned the data contains a "header" that further specifies
-things, but there is no specification about the header itself.
-Therefore I don't think we can even know if the header contains
-something that acts like a sub-modifier or not.
+What advantage is there to exposing the gory details? For Arm AFBC
+it's necessary because IP on the SoC can be (likely to be) from
+different vendors with different capabilities.
 
-All this sounds like the modifier definitions here are not enough to
-fully interpret the data. At the very least I would expect a reference
-to a document explaining the "header", or even better, a kernel ReST
-doc.
-
-I wonder if this is at all suitable as a DRM format modifier as is. I
-have been assuming that a modifier together with all the usual FB
-parameters should be enough to interpret the stored data, but in this
-case I have doubt it actually is.
-
-I have no problem with proprietary data layouts as long as they are
-fully specified.
-
-I do feel like I would not be able to write a software decoder for this
-set of modifiers given the details below.
-
+If this is only for talking between Amlogic IP on the same SoC, and
+those devices support all the same "flavours", I don't see what is
+gained by making userspace care about internals.
 
 Thanks,
-pq
+-Brian
 
-> + *
-> + * The underlying storage is considered to be 3 components, 8bit or 10-b=
-it
-> + * per component YCbCr 420, single plane :
-> + * - DRM_FORMAT_YUV420_8BIT
-> + * - DRM_FORMAT_YUV420_10BIT
-> + *
-> + * The classic memory storage is composed of:
-> + * - a body content organized in 64x32 superblocks with 4096 bytes per
-> + *   superblock in default mode.
-> + * - a 32 bytes per 128x64 header block
-> + */
-> +#define DRM_FORMAT_MOD_AMLOGIC_FBC_DEFAULT fourcc_mod_code(AMLOGIC, 0)
-> +
-> +/*
-> + * Amlogic Video Framebuffer Compression Options
-> + *
-> + * Two optional features are available which may not supported/used on e=
-very
-> + * SoCs and Compressed Framebuffer producers.
-> + */
-> +#define DRM_FORMAT_MOD_AMLOGIC_FBC(__modes) fourcc_mod_code(AMLOGIC, __m=
-odes)
-> +
-> +/*
-> + * Amlogic FBC Scatter Memory layout
-> + *
-> + * Indicates the header contains IOMMU references to the compressed
-> + * frames content to optimize memory access and layout.
-> + * In this mode, only the header memory address is needed, thus the
-> + * content memory organization is tied to the current producer
-> + * execution and cannot be saved/dumped.
-> + */
-> +#define DRM_FORMAT_MOD_AMLOGIC_FBC_SCATTER	(1ULL << 0)
-> +
-> +/*
-> + * Amlogic FBC Memory Saving mode
-> + *
-> + * Indicates the storage is packed when pixel size is multiple of word
-> + * boudaries, i.e. 8bit should be stored in this mode to save allocation
-> + * memory.
-> + *
-> + * This mode reduces body layout to 3072 bytes per 64x32 superblock and
-> + * 3200 bytes per 64x32 superblock combined with scatter mode.
-> + */
-> +#define DRM_FORMAT_MOD_AMLOGIC_FBC_MEM_SAVING	(1ULL << 1)
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
-
-
---Sig_/rszd0x.FOSs6mcQm0ZPJOpS
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl5eLRUACgkQI1/ltBGq
-qqdL8xAAjMPK1D1qmrv9Tqdi/ZSw69SGwq6aCR6pDThCLT+q4CVDMg3fbMdA+Evy
-4owhcCrMY+SsDWV8wksuyfJSanusmFQjnRz0eiU6gP/Nnp/AhoMw5R0mqePmRen2
-XUN0CkTmbNQfaZtYnv3LkLG8/Azz/YPwx2V6iQ2LEbPScnxfsSEd4dvv0pdqynNw
-czBQEKLEKDOtLWfS/W3xB8Etc1i+HgBS97vLllbQ1UtEt1L5Q5CU7ZrxdwM3+7XH
-IM+uaBh9ud9sZJgyejAAU1e6FiD2KDkpI3A6VKMyhhBqMw8n+8Vo5kL878VvqfZO
-ufAwE056wNelfhWuSCpu5zi5cKBs3z7BvS55jdDi+whyorgZAOflPxk3XllWhPby
-YK/o5b8yPuL6WvZtYLjJNGx8skJrNpGfRDvpJqIS5803RofPRdYofB7JL45GjsNo
-vxD6zDfb8k8jK2rbaWzlSfzklwj422Nw1wkz9qs6qIbzih1n5lOzcqqSJGyQW/mG
-0liMnUqg2HvXFCFtvh1tNtO7eD6nI/pjSKaDatji/QPAHEkdYPVUlnWz1bWaweOV
-Xd944KvyOIpfMo/RLlgGOKXKF2ego9QG6PeE/lPoxLvznKLui4s4YIwC4cGcqAGb
-GZ9ZCw8A/wKOwOlRJwYmnT3eB9GPksMJPTsR/hVMCaNGmvVducM=
-=CoFq
------END PGP SIGNATURE-----
-
---Sig_/rszd0x.FOSs6mcQm0ZPJOpS--
-
-
---===============4645773700502502207==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> Neil mentioned the data contains a "header" that further specifies
+> things, but there is no specification about the header itself.
+> Therefore I don't think we can even know if the header contains
+> something that acts like a sub-modifier or not.
+> 
+> All this sounds like the modifier definitions here are not enough to
+> fully interpret the data. At the very least I would expect a reference
+> to a document explaining the "header", or even better, a kernel ReST
+> doc.
+> 
+> I wonder if this is at all suitable as a DRM format modifier as is. I
+> have been assuming that a modifier together with all the usual FB
+> parameters should be enough to interpret the stored data, but in this
+> case I have doubt it actually is.
+> 
+> I have no problem with proprietary data layouts as long as they are
+> fully specified.
+> 
+> I do feel like I would not be able to write a software decoder for this
+> set of modifiers given the details below.
+> 
+> 
+> Thanks,
+> pq
+> 
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4645773700502502207==--
-
