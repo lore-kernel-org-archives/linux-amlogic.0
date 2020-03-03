@@ -2,91 +2,76 @@ Return-Path: <SRS0=kgfN=4U=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_2 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 810C4C3F2C6
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 15:33:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92F24C3F2C6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 16:28:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 530892083E
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 15:33:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 65C2820838
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 16:28:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="r7vtSLrt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OM4XifN+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 530892083E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qUlknFA7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="aPsO3Nb3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 65C2820838
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=xs4all.nl
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=MBVTAm5TlKs9uztH9f4wvgwXaaqt5M1bOfOf4kopL8g=; b=r7vtSLrtAEnDnxDRNWKgNMJjO
-	RhHJ3zD3Sfy04fFtniLmiJJyjDGbagkyU6H5XKRr+0UCwCyNTFm4BxB0H3f7/mp8wC5hXB0TvgJ81
-	DUgmd6UF2t5hqBdKYLvIujBUlu0q6wmyAcyheVXRdy0dIaeGzPNtuP7BKmqVokXmu3NXZbUdKSnNV
-	hU5zJa7bb2YgGAvAkM5mPHMQsdhpGS3af0+kDul1FhzCezi9mwgs846SyjKak80Xe7fQ8Pe+ulJXo
-	7lgAAkjoEPM8OhQIWsAL8JwpWey8c20eSEYCqsalXF9yxZDmHvchvg/2oK6n1+xX4iKMySUN/5J9a
-	HQgKYX2oQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qK5P3f4sEbS/iutzYBGteoZY6iuWEcnpg3GfS8+8TSs=; b=qUlknFA7X7Scp1
+	Uy9b0f0usrvl2Vd1WMRNbIHejBj4Of0PHJiUQ4FNPMX39lMa2tjr5pKbF6GTQ+KKnk6LEIkS+H1mq
+	TpKU6+MEc57g0zPnBpJ5AACU3SN4D4f9lth8jARJW5eLvXuyD361J/167tISNt+ryvXNtIj479YgF
+	DXVBVfQeKJBJk3bwnRFypO0Oj96jZDbynAcUGOQBPgDLuNXWUSU3dHKSAyNA+MXh2NPkMKr+om319
+	KntWd6B4v/ekwe0H/tYaWxbaCnwyLtULuxpn2BQHakhccVNv/a0UhHZxdoCsl4hNkCHARUzkaG4sW
+	OkEkUc5rWk+ar4qJrcXg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j99YL-000084-Ng; Tue, 03 Mar 2020 15:33:49 +0000
-Received: from mail-lf1-x141.google.com ([2a00:1450:4864:20::141])
+	id 1j9AOg-00047D-Me; Tue, 03 Mar 2020 16:27:54 +0000
+Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j99YJ-00007P-3h; Tue, 03 Mar 2020 15:33:48 +0000
-Received: by mail-lf1-x141.google.com with SMTP id p5so3121912lfc.7;
- Tue, 03 Mar 2020 07:33:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=XytWu3r+dyU0/pBn+bsdKdNhWgIQTzaFhBsjgsKZH6w=;
- b=OM4XifN+M6+A2PZ9MzioR4F2cYY82qVtoiwI5RXGtYAs5NkggLnfT1CPA2bm/3wRLM
- mlMrIdcFk8AWRZHTqqjk7UNTGQtDsEvkn/OP/zeMw6l6qz+dddPOrc+qyI8KE9KkESFP
- qqGnqXabEjyd1UmBfvDjivPTWTfGshIsxo/8uq0iJY9bWAYW2t1rxUJDuDtXq7HDQ7hb
- 3ngv5LeBAZyA4pSL+EsIc2qgeoTRXtiFNzyZJXK02trUK52/klNOBWUM1/kFeAsRnWph
- bpynirb4f009m0s1GWjQMz+d20R1GyxrovTlOtGnUwc9GD5ExCE3KwOGaFnWKqPK0RKQ
- xEzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=XytWu3r+dyU0/pBn+bsdKdNhWgIQTzaFhBsjgsKZH6w=;
- b=Gp1LWQeBxCUw6DvgKND/uM4oz5IlIT3k9Z+7DSKsVfdZUbwGOHzTRwSIss6ZjObp6G
- 8NawiruqUibd+g4Jqwy/nhlqms4Ru3FUgWx20ryQDPqm4nHNiAZ1HHjj8fzV0dSYJFTX
- 2lKOBl6Za0b7eGkTXZjHLdfLpg5NpWLTbAP9dvfZK1N1yaqXRFg6X27vPkWCAFPddBns
- dMZLguWTIdSzDh5ZqzbobsQivC5iMnm6Mc7F102zkAHrTkuG5YDv7pgWsjZhuQEux9u3
- 3TThiiNpGqwAVqTerKD8byqohImsy3Pah/vOMQ0ykiqhUzX6lMSW6ELxCQd3lJh6k79v
- GIGg==
-X-Gm-Message-State: ANhLgQ0D9iSZiSPHotbwM+qkvachrCBwgMhoSyyOhZz+mxy68mseK/3Q
- TtbkunFykH4z2m3tlQsN9lw=
-X-Google-Smtp-Source: ADFU+vslCx/lECf3x2KeBaVe02BXfwEXpJUB9Z6hR0mPse2M4runJ7vPXLJpkcx8fGxX1wGryt40OA==
-X-Received: by 2002:ac2:58ee:: with SMTP id v14mr1297311lfo.62.1583249625234; 
- Tue, 03 Mar 2020 07:33:45 -0800 (PST)
-Received: from eldfell.localdomain ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id 19sm12036899lfp.86.2020.03.03.07.33.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Mar 2020 07:33:44 -0800 (PST)
-Date: Tue, 3 Mar 2020 17:33:32 +0200
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 1/4] drm/fourcc: Add modifier definitions for describing
- Amlogic Video Framebuffer Compression
-Message-ID: <20200303173332.1c6daa09@eldfell.localdomain>
-In-Reply-To: <20200303152541.68ab6f3d@eldfell.localdomain>
-References: <20200221090845.7397-1-narmstrong@baylibre.com>
- <20200221090845.7397-2-narmstrong@baylibre.com>
- <20200303121029.5532669d@eldfell.localdomain>
- <20200303105325.bn4sob6yrdf5mwrh@DESKTOP-E1NTVVP.localdomain>
- <CAKMK7uFgQGrnEkXyac15Wz8Opg43RTa=5cX0nN5=E_omb8oY8Q@mail.gmail.com>
- <20200303152541.68ab6f3d@eldfell.localdomain>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ id 1j9AOb-00046I-Go; Tue, 03 Mar 2020 16:27:52 +0000
+Received: from [IPv6:2001:983:e9a7:1:8c14:57ad:bac0:273b]
+ ([IPv6:2001:983:e9a7:1:8c14:57ad:bac0:273b])
+ by smtp-cloud9.xs4all.net with ESMTPA
+ id 9AOTjVxLD9Im29AOUj0Rov; Tue, 03 Mar 2020 17:27:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
+ t=1583252863; bh=nAhBOqoyzWQYWQG4n4GW41XdU2zcOob4IDHwv5hiphE=;
+ h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+ Subject;
+ b=aPsO3Nb3X9N1nle9iqSnfoqJA1dSnYfjTYoY/2tACailVPzerPXtDr8uxHwsjdVs4
+ kK1WfHu7qZhMiObuE26XBwXrutS6BQ8/w/bGSomF2j2v+p95PZtBpptRk5kvw+aiu5
+ DdEiJqyJEvh/MVupiRKNavHf65lmJ6sFeKlPj5eekw3TG5NsxBFBfcbApsSO5rhwXM
+ Pg/a2PTU+nzVyUmLAAvUafhw2hMeBX7EvBfyssUU9HzlHVZhZGzIcWj1GCKVOus9RK
+ 85f/tOYAXAIuBTMhGfVfvKrLkTr62U/HSjga9wssZMEo74/U/0l6bWVPzB+SvmVOUs
+ JZHDnAsar+RSA==
+Subject: Re: [PATCH v6 0/5] media: meson: vdec: Add VP9 decoding support
+To: Neil Armstrong <narmstrong@baylibre.com>, mchehab@kernel.org,
+ hans.verkuil@cisco.com
+References: <20200303143732.762-1-narmstrong@baylibre.com>
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <0935582a-ae80-f7b4-0616-a39c923a83f4@xs4all.nl>
+Date: Tue, 3 Mar 2020 17:27:41 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
+In-Reply-To: <20200303143732.762-1-narmstrong@baylibre.com>
+Content-Language: en-US
+X-CMAE-Envelope: MS4wfI9Th6hScGEa34B7TzBU0TgiR6sHbtIhRNAiF/k7CcVyr+KPzf5Ajah5esVwuvE9+ztuscQZhb6cH4rQQ6YDwLyiClUwg8qAAlX79nbCJui1OnlkTMX2
+ AZ4XyxoBv71Q+CzHm/g8WMaESXETdKV1L3h64/tMJ6oSxrCgExueFqL1wSA399siSgBrZaKVQVDnuHhahubrHaL0UN+mubUs6yu9KdL0UUvRZ81vuxRFAovj
+ qJsdy5Jl7I7bShpbg0rxsKDRFsUe70K2R7QE6g2Ks+fzHXqn+VVB2ike5apOl64DG2UhKzyfjXGvvDuuNbxDPu9/RABLzMlzoaUfZG5y/Nqx9s2OtkF5qkAT
+ uv2Rn+3qsZ2KS8ZFKVirLtrfiLB4bpVLG3atXAwl5cL7KE+L7lPqZb0/nu4UmQvE65CCJYi5ysb6kAczGHufYDeffUDrw5qy1LHz/i7tixdTZJzQzrpbE6S7
+ nJeB1j7hcJYbMhu4r44BHoapZ0kkO16LpjMechhuH+7kApDdnBKjbqPWvyY=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200303_073347_156972_AB38CF39 
-X-CRM114-Status: GOOD (  30.40  )
+X-CRM114-CacheID: sfid-20200303_082750_794531_7AB48EF9 
+X-CRM114-Status: GOOD (  19.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,168 +83,224 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-amlogic@lists.infradead.org,
- nd <nd@arm.com>, Brian Starkey <brian.starkey@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: multipart/mixed; boundary="===============0952682127661154786=="
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============0952682127661154786==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/20t=Q+C95R6JGDJv5djFJCC"; protocol="application/pgp-signature"
+Hi Neil,
 
---Sig_/20t=Q+C95R6JGDJv5djFJCC
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+I still get sparse warnings:
 
-On Tue, 3 Mar 2020 15:25:41 +0200
-Pekka Paalanen <ppaalanen@gmail.com> wrote:
+drivers/staging/media/meson/vdec/codec_hevc_common.h:15:18: warning: 'vdec_hevc_parser_cmd' defined but not used [-Wunused-const-variable=]
+drivers/staging/media/meson/vdec/esparser.c:83: warning: Function parameter or member 'core' not described in 'vp9_update_header'
+drivers/staging/media/meson/vdec/esparser.c:83: warning: Function parameter or member 'buf' not described in 'vp9_update_header'
+drivers/staging/media/meson/vdec/codec_vp9.c:1333: warning: Function parameter or member 'sess' not described in 'codec_vp9_fetch_rpm'
 
-> On Tue, 3 Mar 2020 12:37:16 +0100
-> Daniel Vetter <daniel@ffwll.ch> wrote:
->=20
-> > On Tue, Mar 3, 2020 at 11:53 AM Brian Starkey <brian.starkey@arm.com> w=
-rote: =20
-> > >
-> > > Hi,
-> > >
-> > > On Tue, Mar 03, 2020 at 12:10:29PM +0200, Pekka Paalanen wrote:   =20
-> > > > On Fri, 21 Feb 2020 10:08:42 +0100
-> > > > Neil Armstrong <narmstrong@baylibre.com> wrote:
-> > > >   =20
-...
-> > > > > +/*
-> > > > > + * Amlogic Video Framebuffer Compression modifiers
-> > > > > + *
-> > > > > + * Amlogic uses a proprietary lossless image compression protoco=
-l and format
-> > > > > + * for their hardware video codec accelerators, either video dec=
-oders or
-> > > > > + * video input encoders.
-> > > > > + *
-> > > > > + * It considerably reduces memory bandwidth while writing and re=
-ading
-> > > > > + * frames in memory.
-> > > > > + * Implementation details may be platform and SoC specific, and =
-shared
-> > > > > + * between the producer and the decoder on the same platform.   =
-=20
-> > > >
-> > > > Hi,
-> > > >
-> > > > after a lengthy IRC discussion on #dri-devel, this "may be platform=
- and
-> > > > SoC specific" is a problem.
-> > > >
-> > > > It can be an issue in two ways:
-> > > >
-> > > > - If something in the data acts like a sub-modifier, then advertisi=
-ng
-> > > >   support for one modifier does not really tell if the data layout =
-is
-> > > >   supported or not.
-> > > >
-> > > > - If you need to know the platform and/or SoC to be able to interpr=
-et
-> > > >   the data, it means the modifier is ill-defined and cannot be used=
- in
-> > > >   inter-machine communication (e.g. Pipewire).
-> > > >   =20
-> > >
-> > > Playing devil's advocate, the comment sounds similar to
-> > > I915_FORMAT_MOD_{X,Y}_TILED:
-> > >
-> > >  * This format is highly platforms specific and not useful for cross-=
-driver
-> > >  * sharing. It exists since on a given platform it does uniquely iden=
-tify the
-> > >  * layout in a simple way for i915-specific userspace.   =20
-> >=20
-> > Yeah which we regret now. We need to now roll out a new set of
-> > modifiers for at least some of the differences in these on the
-> > modern-ish chips (the old crap is pretty much lost cause anyway).
-> >=20
-> > This was kinda a nasty hack to smooth things over since we have epic
-> > amounts of userspace, but it's really not a great idea (and no one
-> > else really has epic amounts of existing userspace that uses tiling
-> > flags everywhere, this is all new code).
-> > -Daniel
-> >  =20
-> > > Isn't the statement that this for sharing between producer and decoder
-> > > _on the same platform_ a similar clause with the same effect?
-> > >
-> > > What advantage is there to exposing the gory details? For Arm AFBC
-> > > it's necessary because IP on the SoC can be (likely to be) from
-> > > different vendors with different capabilities.
-> > >
-> > > If this is only for talking between Amlogic IP on the same SoC, and
-> > > those devices support all the same "flavours", I don't see what is
-> > > gained by making userspace care about internals.   =20
-> >=20
-> > The trouble is if you mix&match IP cores, and one of them supports
-> > flavours A, B, C and the other C, D, E. But all you have is a single
-> > magic modifier for "whatever the flavour is that soc prefers". So
-> > someone gets to stuff this in DT.
-> >=20
-> > Also eventually, maybe, perhaps ARM does grow up into the
-> > client/server space with add-on pcie graphics, and at least for client
-> > you very often end up with integrated + add-in pcie gpu. At that point
-> > you really can't have magic per-soc modifiers anymore. =20
->=20
-> Hi,
->=20
-> I also heard that Pipewire will copy buffers and modifiers verbatim
-> from one machine to another when streaming across network, assuming
-> that the same modifier means the same thing on all machines.[Citation nee=
-ded]
->=20
-> If that is something that must not be done with DRM modifiers, then
-> please contact them and document that.
+They look trivial to fix to me.
 
-Sorry, it's waypipe, not pipewire:
-https://gitlab.freedesktop.org/mstoeckl/waypipe/
+The v7 series is fine, but I prefer to wait until this v6 is OK as well so I can
+combine them in one PR.
 
+Regards,
 
-Thanks,
-pq
+	Hans
 
---Sig_/20t=Q+C95R6JGDJv5djFJCC
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+On 03/03/2020 15:37, Neil Armstrong wrote:
+> Hello,
+> 
+> This patchset aims to bring VP9 decoding support to Amlogic GXL, G12A & SM1
+> platforms for the amlogic stateful video decoder driver.
+> 
+> With this, it passes v4l2-compliance with streaming on Amlogic G12A and
+> Amlogic SM1 SoCs successfully using the stream at [1] with a fixed
+> pyv4l2compliance script for VP9 at [2].
+> 
+> The original script kept the IVF headers in the stream, confusing the
+> decoder. The fixed script only extracts the payload from the IVF container.
+> 
+> The decoder has been tested using the Google CTS TestVectorsIttiam VP9 yuv420
+> samples and the VP9 Decoder Performance streams at [5], decoding all streams from
+> Profile 0 and 2 up to Level 4.1, with 10bit downsampling to 8bit.
+> 
+> This patchset depends on :
+> - H.264 and compliance v7 at [4]
+> 
+> Changes since v5 at [9]:
+> - Fixed sparse warnings in codec_hevc_common.h/codec_vp9.c/vdec_hevc.c
+> - No smatch warnings issued
+> 
+> Changes since v4 at [8]:
+> - Fixes checkpatch warning on patches 3 & 5
+> 
+> Changes since v3 at [7]:
+> - fixes necessary spare ref buffer handling in parser
+> - added a comment to indicate how it's handled
+> - fix VP9 on SM1, was working with G12A firmware, but needed some changed with SM1 specific firmware
+> - pushed (gxl) and switched to missing (sm1) vp9 firmwares to linux-firmware repo
+> 
+> Changes since v2 at [6]:
+> - Rebased on H.264 and compliance at [4]
+> 
+> Changes since v1 at [3]:
+> - Fixed compliance for delta frame resize, but proper ref keeping is broken
+> - Added warns for delta frame resize, to be fixed in a following patchset
+> - Added VP9 probabilities parsing and transformation support to decore the VP9 performance streams
+> - Fixed refs keeping, avoid deleting necessary refs for next frame
+> - Properly used the kernel clamp_val() macros
+> - Zeroed the workspace to avoid refs handling glitches
+> - Add lock around the flush & stop to avoid race between IRQ and drain/stop
+> 
+> [1] https://github.com/superna9999/pyv4l2compliance/raw/tests/output/Jellyfish_1080_10s_5MB.vp9.hdr
+> [2] https://github.com/superna9999/pyv4l2compliance
+> [3] https://lore.kernel.org/linux-media/20191205092454.26075-1-narmstrong@baylibre.com
+> [4] https://lore.kernel.org/linux-media/20200303143320.32562-1-narmstrong@baylibre.com
+> [5] https://www.webmproject.org/vp9/levels/
+> [6] https://lore.kernel.org/linux-media/20191217111939.10387-1-narmstrong@baylibre.com
+> [7] https://lore.kernel.org/linux-media/20200116133437.2443-1-narmstrong@baylibre.com
+> [8] https://lore.kernel.org/linux-media/20200206084152.7070-1-narmstrong@baylibre.com
+> [9] https://lore.kernel.org/linux-media/20200219140958.23542-1-narmstrong@baylibre.com
+> 
+> The compliance log is:
+> # v4l2-compliance --stream-from-hdr Jellyfish_1080_10s_5MB.vp9.hdr -s 200
+> v4l2-compliance SHA: 7ead0e1856b89f2e19369af452bb03fd0cd16793, 64 bits
+> 
+> Compliance test for meson-vdec device /dev/video0:
+> 
+> Driver Info:
+> 	Driver name      : meson-vdec
+> 	Card type        : Amlogic Video Decoder
+> 	Bus info         : platform:meson-vdec
+> 	Driver version   : 5.5.0
+> 	Capabilities     : 0x84204000
+> 		Video Memory-to-Memory Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04204000
+> 		Video Memory-to-Memory Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> 	Detected Stateful Decoder
+> 
+> Required ioctls:
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video0 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+> 	test VIDIOC_QUERYCTRL: OK
+> 	test VIDIOC_G/S_CTRL: OK
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 2 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK (Not Supported)
+> 
+> Test input 0:
+> 
+> Streaming ioctls:
+> 	test read/write: OK (Not Supported)
+> 	test blocking wait: OK
+> 	Video Capture Multiplanar: Captured 198 buffers   
+> 	test MMAP (select): OK
+> 	Video Capture Multiplanar: Captured 198 buffers   
+> 	test MMAP (epoll): OK
+> 	test USERPTR (select): OK (Not Supported)
+> 	test DMABUF: Cannot test, specify --expbuf-device
+> 
+> Total for meson-vdec device /dev/video0: 49, Succeeded: 49, Failed: 0, Warnings: 0
+> 
+> Maxime Jourdan (4):
+>   media: meson: vdec: add helpers for lossless framebuffer compression
+>     buffers
+>   media: meson: vdec: add common HEVC decoder support
+>   media: meson: vdec: add VP9 input support
+>   media: meson: vdec: add VP9 decoder support
+> 
+> Neil Armstrong (1):
+>   media: meson: vdec: align stride on 32 bytes
+> 
+>  drivers/staging/media/meson/vdec/Makefile     |    4 +-
+>  .../media/meson/vdec/codec_hevc_common.c      |  284 +++
+>  .../media/meson/vdec/codec_hevc_common.h      |   80 +
+>  drivers/staging/media/meson/vdec/codec_vp9.c  | 2141 +++++++++++++++++
+>  drivers/staging/media/meson/vdec/codec_vp9.h  |   13 +
+>  drivers/staging/media/meson/vdec/esparser.c   |  150 +-
+>  drivers/staging/media/meson/vdec/hevc_regs.h  |  218 ++
+>  drivers/staging/media/meson/vdec/vdec.c       |   15 +-
+>  .../staging/media/meson/vdec/vdec_helpers.c   |   35 +-
+>  .../staging/media/meson/vdec/vdec_helpers.h   |    4 +
+>  drivers/staging/media/meson/vdec/vdec_hevc.c  |  231 ++
+>  drivers/staging/media/meson/vdec/vdec_hevc.h  |   13 +
+>  .../staging/media/meson/vdec/vdec_platform.c  |   38 +
+>  13 files changed, 3213 insertions(+), 13 deletions(-)
+>  create mode 100644 drivers/staging/media/meson/vdec/codec_hevc_common.c
+>  create mode 100644 drivers/staging/media/meson/vdec/codec_hevc_common.h
+>  create mode 100644 drivers/staging/media/meson/vdec/codec_vp9.c
+>  create mode 100644 drivers/staging/media/meson/vdec/codec_vp9.h
+>  create mode 100644 drivers/staging/media/meson/vdec/hevc_regs.h
+>  create mode 100644 drivers/staging/media/meson/vdec/vdec_hevc.c
+>  create mode 100644 drivers/staging/media/meson/vdec/vdec_hevc.h
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl5eeMwACgkQI1/ltBGq
-qqf/Fg//cGf3Jl24cG2786dCZ6HUCq1M9Y8RBH9FF1vf3OKM+cc+1L4WTQSeMyBl
-mrIx/SCALVu00WoTKDL3raIX50dBnhx5jXp02bEQYpPVSvS4a9YD1DmgoqogGU6R
-2mq9M//HkRSUkM6bqSoHPUvyuhGnPSj99mEJ4nl/yaiUMLsgF/HLtwLB4i9lGtMo
-Ecdjd47ds/uMOFT6kBwwWvDDmSNbSGDtXFLbd5bGGZ4IAwue2BtHcEkZpwEIYB0w
-0Ckd0Cbx7Fw8Pz4/trYm8gmRrQRJg0d7uQK073O+gle8oqam/2Sldy4UQv7SuSLC
-sFW7dZWQ/M1B5s0hlnsXn17Vg/PAfu/iDbVwnIEtjEeCX3N26Kmh7yqeeuJnxaci
-+ULCDxDjXUVcoWKzP8hj/savLLgPWsHNg6M27CRwp3rcWW2I7hAzYK8cqc7ym5bW
-fEBdAJ2l81ciF/q7mLcch1zjVtmBtOwGWdVlBxZwsx7P+mwLOIOIa8jByYKvHh5R
-ObIQlo9fjg+001No3rIXwUHjYqLuXsKMM3qIZ9wNzFPRYf3y6nAaJFFLGMMcIVX7
-oeyppX/R7Shaj4x2O3b7ryEc7YKHxWMw1FneHYYP7tuWkz76e2OyLRB+x5XmEDe7
-qCcQN8MD/yaWaZDsns6GmmpV1k20V8iLqgKNXTyoSHYv8bNgrlg=
-=N4Y2
------END PGP SIGNATURE-----
-
---Sig_/20t=Q+C95R6JGDJv5djFJCC--
-
-
---===============0952682127661154786==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0952682127661154786==--
-
