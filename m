@@ -2,76 +2,65 @@ Return-Path: <SRS0=kgfN=4U=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_SANE_1
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92F24C3F2C6
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 16:28:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62116C3F2D1
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 17:19:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 65C2820838
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 16:28:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3509920848
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 17:19:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qUlknFA7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="aPsO3Nb3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 65C2820838
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=xs4all.nl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q9zVpbAD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3509920848
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qK5P3f4sEbS/iutzYBGteoZY6iuWEcnpg3GfS8+8TSs=; b=qUlknFA7X7Scp1
-	Uy9b0f0usrvl2Vd1WMRNbIHejBj4Of0PHJiUQ4FNPMX39lMa2tjr5pKbF6GTQ+KKnk6LEIkS+H1mq
-	TpKU6+MEc57g0zPnBpJ5AACU3SN4D4f9lth8jARJW5eLvXuyD361J/167tISNt+ryvXNtIj479YgF
-	DXVBVfQeKJBJk3bwnRFypO0Oj96jZDbynAcUGOQBPgDLuNXWUSU3dHKSAyNA+MXh2NPkMKr+om319
-	KntWd6B4v/ekwe0H/tYaWxbaCnwyLtULuxpn2BQHakhccVNv/a0UhHZxdoCsl4hNkCHARUzkaG4sW
-	OkEkUc5rWk+ar4qJrcXg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NY+d93wlUsuwpFCHsgVfGFfvZ3sBd3qq9zS73rs+AX8=; b=Q9zVpbADcGIhO0
+	tq3Q7Kec4szBj3KLsy2kG1gf67FdegBzx9rd3zW2s6LWu6QyeStvhGed2yHWH1x0RPkmsEdEnDTPx
+	2OgVS+U4FJ/ghmhl+sqX0iil++HQQZyJA8RQNy2+DN7Ifbclu4X262AXy2y4NMmVpg+xAOS3hrQwe
+	/Pp5x5lmOOpe/s54p1bkYyomZEoiofOwW5sDEnC4NjwE41s2r9DjwkJKy1yywX86vN1erLNvn3M9Q
+	D77ihZQ0WuybYS4J30JDW5PMXqX3+6auck3WyJO1unPy5ixuNXQhA/gTvagZar6DTTSkHKsLWx4lc
+	5aR7h5a68YvBVqG7p+PA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j9AOg-00047D-Me; Tue, 03 Mar 2020 16:27:54 +0000
-Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j9AOb-00046I-Go; Tue, 03 Mar 2020 16:27:52 +0000
-Received: from [IPv6:2001:983:e9a7:1:8c14:57ad:bac0:273b]
- ([IPv6:2001:983:e9a7:1:8c14:57ad:bac0:273b])
- by smtp-cloud9.xs4all.net with ESMTPA
- id 9AOTjVxLD9Im29AOUj0Rov; Tue, 03 Mar 2020 17:27:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
- t=1583252863; bh=nAhBOqoyzWQYWQG4n4GW41XdU2zcOob4IDHwv5hiphE=;
- h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
- Subject;
- b=aPsO3Nb3X9N1nle9iqSnfoqJA1dSnYfjTYoY/2tACailVPzerPXtDr8uxHwsjdVs4
- kK1WfHu7qZhMiObuE26XBwXrutS6BQ8/w/bGSomF2j2v+p95PZtBpptRk5kvw+aiu5
- DdEiJqyJEvh/MVupiRKNavHf65lmJ6sFeKlPj5eekw3TG5NsxBFBfcbApsSO5rhwXM
- Pg/a2PTU+nzVyUmLAAvUafhw2hMeBX7EvBfyssUU9HzlHVZhZGzIcWj1GCKVOus9RK
- 85f/tOYAXAIuBTMhGfVfvKrLkTr62U/HSjga9wssZMEo74/U/0l6bWVPzB+SvmVOUs
- JZHDnAsar+RSA==
-Subject: Re: [PATCH v6 0/5] media: meson: vdec: Add VP9 decoding support
-To: Neil Armstrong <narmstrong@baylibre.com>, mchehab@kernel.org,
- hans.verkuil@cisco.com
-References: <20200303143732.762-1-narmstrong@baylibre.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <0935582a-ae80-f7b4-0616-a39c923a83f4@xs4all.nl>
-Date: Tue, 3 Mar 2020 17:27:41 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+	id 1j9BCb-0006fF-Qd; Tue, 03 Mar 2020 17:19:29 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1j9BCY-0006eY-LN
+ for linux-amlogic@lists.infradead.org; Tue, 03 Mar 2020 17:19:28 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ED91F2F;
+ Tue,  3 Mar 2020 09:19:25 -0800 (PST)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com
+ [10.1.196.255])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 470403F534;
+ Tue,  3 Mar 2020 09:19:24 -0800 (PST)
+Date: Tue, 3 Mar 2020 17:19:21 +0000
+From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To: Remi Pommarel <repk@triplefau.lt>,
+ Neil Armstrong <narmstrong@baylibre.com>, kishon@ti.com
+Subject: Re: [PATCH v6 5/7] phy: amlogic: Add Amlogic AXG MIPI/PCIE analog
+ PHY Driver
+Message-ID: <20200303171921.GB9641@e121166-lin.cambridge.arm.com>
+References: <20200123232943.10229-1-repk@triplefau.lt>
+ <20200123232943.10229-6-repk@triplefau.lt>
 MIME-Version: 1.0
-In-Reply-To: <20200303143732.762-1-narmstrong@baylibre.com>
-Content-Language: en-US
-X-CMAE-Envelope: MS4wfI9Th6hScGEa34B7TzBU0TgiR6sHbtIhRNAiF/k7CcVyr+KPzf5Ajah5esVwuvE9+ztuscQZhb6cH4rQQ6YDwLyiClUwg8qAAlX79nbCJui1OnlkTMX2
- AZ4XyxoBv71Q+CzHm/g8WMaESXETdKV1L3h64/tMJ6oSxrCgExueFqL1wSA399siSgBrZaKVQVDnuHhahubrHaL0UN+mubUs6yu9KdL0UUvRZ81vuxRFAovj
- qJsdy5Jl7I7bShpbg0rxsKDRFsUe70K2R7QE6g2Ks+fzHXqn+VVB2ike5apOl64DG2UhKzyfjXGvvDuuNbxDPu9/RABLzMlzoaUfZG5y/Nqx9s2OtkF5qkAT
- uv2Rn+3qsZ2KS8ZFKVirLtrfiLB4bpVLG3atXAwl5cL7KE+L7lPqZb0/nu4UmQvE65CCJYi5ysb6kAczGHufYDeffUDrw5qy1LHz/i7tixdTZJzQzrpbE6S7
- nJeB1j7hcJYbMhu4r44BHoapZ0kkO16LpjMechhuH+7kApDdnBKjbqPWvyY=
+Content-Disposition: inline
+In-Reply-To: <20200123232943.10229-6-repk@triplefau.lt>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200303_082750_794531_7AB48EF9 
-X-CRM114-Status: GOOD (  19.84  )
+X-CRM114-CacheID: sfid-20200303_091926_792583_373E49D2 
+X-CRM114-Status: GOOD (  24.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,222 +72,280 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Yue Wang <yue.wang@Amlogic.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+On Fri, Jan 24, 2020 at 12:29:41AM +0100, Remi Pommarel wrote:
+> This adds support for the MIPI analog PHY which is also used for PCIE
+> found in the Amlogic AXG SoC Family.
+> 
+> MIPI or PCIE selection is done by the #phy-cells, making the mode
+> static and exclusive.
+> 
+> For now only PCIE fonctionality is supported.
+> 
+> This PHY will be used to replace the mipi_enable clock gating logic
+> which was mistakenly added in the clock subsystem. This also activate
+> a non documented band gap bit in those registers that allows reliable
+> PCIE clock signal generation on AXG platforms.
+> 
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  drivers/phy/amlogic/Kconfig                   |  11 +
+>  drivers/phy/amlogic/Makefile                  |  11 +-
+>  .../amlogic/phy-meson-axg-mipi-pcie-analog.c  | 188 ++++++++++++++++++
+>  3 files changed, 205 insertions(+), 5 deletions(-)
+>  create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
 
-I still get sparse warnings:
+Kishon, Neil,
 
-drivers/staging/media/meson/vdec/codec_hevc_common.h:15:18: warning: 'vdec_hevc_parser_cmd' defined but not used [-Wunused-const-variable=]
-drivers/staging/media/meson/vdec/esparser.c:83: warning: Function parameter or member 'core' not described in 'vp9_update_header'
-drivers/staging/media/meson/vdec/esparser.c:83: warning: Function parameter or member 'buf' not described in 'vp9_update_header'
-drivers/staging/media/meson/vdec/codec_vp9.c:1333: warning: Function parameter or member 'sess' not described in 'codec_vp9_fetch_rpm'
+can you please review/ack this patch and patch 6 ?
 
-They look trivial to fix to me.
+I would like to queue the series shortly, thanks.
 
-The v7 series is fine, but I prefer to wait until this v6 is OK as well so I can
-combine them in one PR.
+Lorenzo
 
-Regards,
-
-	Hans
-
-On 03/03/2020 15:37, Neil Armstrong wrote:
-> Hello,
+> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
+> index af774ac2b934..8c9cf2403591 100644
+> --- a/drivers/phy/amlogic/Kconfig
+> +++ b/drivers/phy/amlogic/Kconfig
+> @@ -59,3 +59,14 @@ config PHY_MESON_G12A_USB3_PCIE
+>  	  Enable this to support the Meson USB3 + PCIE Combo PHY found
+>  	  in Meson G12A SoCs.
+>  	  If unsure, say N.
+> +
+> +config PHY_MESON_AXG_MIPI_PCIE_ANALOG
+> +	tristate "Meson AXG MIPI + PCIE analog PHY driver"
+> +	default ARCH_MESON
+> +	depends on OF && (ARCH_MESON || COMPILE_TEST)
+> +	select GENERIC_PHY
+> +	select REGMAP_MMIO
+> +	help
+> +	  Enable this to support the Meson MIPI + PCIE analog PHY
+> +	  found in Meson AXG SoCs.
+> +	  If unsure, say N.
+> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
+> index 11d1c42ac2be..0aecf92d796a 100644
+> --- a/drivers/phy/amlogic/Makefile
+> +++ b/drivers/phy/amlogic/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> -obj-$(CONFIG_PHY_MESON8B_USB2)		+= phy-meson8b-usb2.o
+> -obj-$(CONFIG_PHY_MESON_GXL_USB2)	+= phy-meson-gxl-usb2.o
+> -obj-$(CONFIG_PHY_MESON_G12A_USB2)	+= phy-meson-g12a-usb2.o
+> -obj-$(CONFIG_PHY_MESON_GXL_USB3)	+= phy-meson-gxl-usb3.o
+> -obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)	+= phy-meson-g12a-usb3-pcie.o
+> +obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
+> +obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
+> +obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
+> +obj-$(CONFIG_PHY_MESON_GXL_USB3)		+= phy-meson-gxl-usb3.o
+> +obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)		+= phy-meson-g12a-usb3-pcie.o
+> +obj-$(CONFIG_PHY_MESON_AXG_MIPI_PCIE_ANALOG)	+= phy-meson-axg-mipi-pcie-analog.o
+> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> new file mode 100644
+> index 000000000000..1431cbf885e1
+> --- /dev/null
+> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> @@ -0,0 +1,188 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Amlogic AXG MIPI + PCIE analog PHY driver
+> + *
+> + * Copyright (C) 2019 Remi Pommarel <repk@triplefau.lt>
+> + */
+> +#include <linux/module.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/regmap.h>
+> +#include <linux/platform_device.h>
+> +#include <dt-bindings/phy/phy.h>
+> +
+> +#define HHI_MIPI_CNTL0 0x00
+> +#define		HHI_MIPI_CNTL0_COMMON_BLOCK	GENMASK(31, 28)
+> +#define		HHI_MIPI_CNTL0_ENABLE		BIT(29)
+> +#define		HHI_MIPI_CNTL0_BANDGAP		BIT(26)
+> +#define		HHI_MIPI_CNTL0_DECODE_TO_RTERM	GENMASK(15, 12)
+> +#define		HHI_MIPI_CNTL0_OUTPUT_EN	BIT(3)
+> +
+> +#define HHI_MIPI_CNTL1 0x01
+> +#define		HHI_MIPI_CNTL1_CH0_CML_PDR_EN	BIT(12)
+> +#define		HHI_MIPI_CNTL1_LP_ABILITY	GENMASK(5, 4)
+> +#define		HHI_MIPI_CNTL1_LP_RESISTER	BIT(3)
+> +#define		HHI_MIPI_CNTL1_INPUT_SETTING	BIT(2)
+> +#define		HHI_MIPI_CNTL1_INPUT_SEL	BIT(1)
+> +#define		HHI_MIPI_CNTL1_PRBS7_EN		BIT(0)
+> +
+> +#define HHI_MIPI_CNTL2 0x02
+> +#define		HHI_MIPI_CNTL2_CH_PU		GENMASK(31, 25)
+> +#define		HHI_MIPI_CNTL2_CH_CTL		GENMASK(24, 19)
+> +#define		HHI_MIPI_CNTL2_CH0_DIGDR_EN	BIT(18)
+> +#define		HHI_MIPI_CNTL2_CH_DIGDR_EN	BIT(17)
+> +#define		HHI_MIPI_CNTL2_LPULPS_EN	BIT(16)
+> +#define		HHI_MIPI_CNTL2_CH_EN(n)		BIT(15 - (n))
+> +#define		HHI_MIPI_CNTL2_CH0_LP_CTL	GENMASK(10, 1)
+> +
+> +struct phy_axg_mipi_pcie_analog_priv {
+> +	struct phy *phy;
+> +	unsigned int mode;
+> +	struct regmap *regmap;
+> +};
+> +
+> +static const struct regmap_config phy_axg_mipi_pcie_analog_regmap_conf = {
+> +	.reg_bits = 8,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +	.max_register = HHI_MIPI_CNTL2,
+> +};
+> +
+> +static int phy_axg_mipi_pcie_analog_power_on(struct phy *phy)
+> +{
+> +	struct phy_axg_mipi_pcie_analog_priv *priv = phy_get_drvdata(phy);
+> +
+> +	/* MIPI not supported yet */
+> +	if (priv->mode != PHY_TYPE_PCIE)
+> +		return -EINVAL;
+> +
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_BANDGAP, HHI_MIPI_CNTL0_BANDGAP);
+> +
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_ENABLE, HHI_MIPI_CNTL0_ENABLE);
+> +	return 0;
+> +}
+> +
+> +static int phy_axg_mipi_pcie_analog_power_off(struct phy *phy)
+> +{
+> +	struct phy_axg_mipi_pcie_analog_priv *priv = phy_get_drvdata(phy);
+> +
+> +	/* MIPI not supported yet */
+> +	if (priv->mode != PHY_TYPE_PCIE)
+> +		return -EINVAL;
+> +
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_BANDGAP, 0);
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_ENABLE, 0);
+> +	return 0;
+> +}
+> +
+> +static int phy_axg_mipi_pcie_analog_init(struct phy *phy)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int phy_axg_mipi_pcie_analog_exit(struct phy *phy)
+> +{
+> +	return 0;
+> +}
+> +
+> +static const struct phy_ops phy_axg_mipi_pcie_analog_ops = {
+> +	.init = phy_axg_mipi_pcie_analog_init,
+> +	.exit = phy_axg_mipi_pcie_analog_exit,
+> +	.power_on = phy_axg_mipi_pcie_analog_power_on,
+> +	.power_off = phy_axg_mipi_pcie_analog_power_off,
+> +	.owner = THIS_MODULE,
+> +};
+> +
+> +static struct phy *phy_axg_mipi_pcie_analog_xlate(struct device *dev,
+> +						  struct of_phandle_args *args)
+> +{
+> +	struct phy_axg_mipi_pcie_analog_priv *priv = dev_get_drvdata(dev);
+> +	unsigned int mode;
+> +
+> +	if (args->args_count != 1) {
+> +		dev_err(dev, "invalid number of arguments\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	mode = args->args[0];
+> +
+> +	/* MIPI mode is not supported yet */
+> +	if (mode != PHY_TYPE_PCIE) {
+> +		dev_err(dev, "invalid phy mode select argument\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	priv->mode = mode;
+> +	return priv->phy;
+> +}
+> +
+> +static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
+> +{
+> +	struct phy_provider *phy;
+> +	struct device *dev = &pdev->dev;
+> +	struct phy_axg_mipi_pcie_analog_priv *priv;
+> +	struct device_node *np = dev->of_node;
+> +	struct regmap *map;
+> +	struct resource *res;
+> +	void __iomem *base;
+> +	int ret;
+> +
+> +	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	base = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(base)) {
+> +		dev_err(dev, "failed to get regmap base\n");
+> +		return PTR_ERR(base);
+> +	}
+> +
+> +	map = devm_regmap_init_mmio(dev, base,
+> +				    &phy_axg_mipi_pcie_analog_regmap_conf);
+> +	if (IS_ERR(map)) {
+> +		dev_err(dev, "failed to get HHI regmap\n");
+> +		return PTR_ERR(map);
+> +	}
+> +	priv->regmap = map;
+> +
+> +	priv->phy = devm_phy_create(dev, np, &phy_axg_mipi_pcie_analog_ops);
+> +	if (IS_ERR(priv->phy)) {
+> +		ret = PTR_ERR(priv->phy);
+> +		if (ret != -EPROBE_DEFER)
+> +			dev_err(dev, "failed to create PHY\n");
+> +		return ret;
+> +	}
+> +
+> +	phy_set_drvdata(priv->phy, priv);
+> +	dev_set_drvdata(dev, priv);
+> +
+> +	phy = devm_of_phy_provider_register(dev,
+> +					    phy_axg_mipi_pcie_analog_xlate);
+> +
+> +	return PTR_ERR_OR_ZERO(phy);
+> +}
+> +
+> +static const struct of_device_id phy_axg_mipi_pcie_analog_of_match[] = {
+> +	{
+> +		.compatible = "amlogic,axg-mipi-pcie-analog-phy",
+> +	},
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, phy_axg_mipi_pcie_analog_of_match);
+> +
+> +static struct platform_driver phy_axg_mipi_pcie_analog_driver = {
+> +	.probe = phy_axg_mipi_pcie_analog_probe,
+> +	.driver = {
+> +		.name = "phy-axg-mipi-pcie-analog",
+> +		.of_match_table = phy_axg_mipi_pcie_analog_of_match,
+> +	},
+> +};
+> +module_platform_driver(phy_axg_mipi_pcie_analog_driver);
+> +
+> +MODULE_AUTHOR("Remi Pommarel <repk@triplefau.lt>");
+> +MODULE_DESCRIPTION("Amlogic AXG MIPI + PCIE analog PHY driver");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.24.1
 > 
-> This patchset aims to bring VP9 decoding support to Amlogic GXL, G12A & SM1
-> platforms for the amlogic stateful video decoder driver.
-> 
-> With this, it passes v4l2-compliance with streaming on Amlogic G12A and
-> Amlogic SM1 SoCs successfully using the stream at [1] with a fixed
-> pyv4l2compliance script for VP9 at [2].
-> 
-> The original script kept the IVF headers in the stream, confusing the
-> decoder. The fixed script only extracts the payload from the IVF container.
-> 
-> The decoder has been tested using the Google CTS TestVectorsIttiam VP9 yuv420
-> samples and the VP9 Decoder Performance streams at [5], decoding all streams from
-> Profile 0 and 2 up to Level 4.1, with 10bit downsampling to 8bit.
-> 
-> This patchset depends on :
-> - H.264 and compliance v7 at [4]
-> 
-> Changes since v5 at [9]:
-> - Fixed sparse warnings in codec_hevc_common.h/codec_vp9.c/vdec_hevc.c
-> - No smatch warnings issued
-> 
-> Changes since v4 at [8]:
-> - Fixes checkpatch warning on patches 3 & 5
-> 
-> Changes since v3 at [7]:
-> - fixes necessary spare ref buffer handling in parser
-> - added a comment to indicate how it's handled
-> - fix VP9 on SM1, was working with G12A firmware, but needed some changed with SM1 specific firmware
-> - pushed (gxl) and switched to missing (sm1) vp9 firmwares to linux-firmware repo
-> 
-> Changes since v2 at [6]:
-> - Rebased on H.264 and compliance at [4]
-> 
-> Changes since v1 at [3]:
-> - Fixed compliance for delta frame resize, but proper ref keeping is broken
-> - Added warns for delta frame resize, to be fixed in a following patchset
-> - Added VP9 probabilities parsing and transformation support to decore the VP9 performance streams
-> - Fixed refs keeping, avoid deleting necessary refs for next frame
-> - Properly used the kernel clamp_val() macros
-> - Zeroed the workspace to avoid refs handling glitches
-> - Add lock around the flush & stop to avoid race between IRQ and drain/stop
-> 
-> [1] https://github.com/superna9999/pyv4l2compliance/raw/tests/output/Jellyfish_1080_10s_5MB.vp9.hdr
-> [2] https://github.com/superna9999/pyv4l2compliance
-> [3] https://lore.kernel.org/linux-media/20191205092454.26075-1-narmstrong@baylibre.com
-> [4] https://lore.kernel.org/linux-media/20200303143320.32562-1-narmstrong@baylibre.com
-> [5] https://www.webmproject.org/vp9/levels/
-> [6] https://lore.kernel.org/linux-media/20191217111939.10387-1-narmstrong@baylibre.com
-> [7] https://lore.kernel.org/linux-media/20200116133437.2443-1-narmstrong@baylibre.com
-> [8] https://lore.kernel.org/linux-media/20200206084152.7070-1-narmstrong@baylibre.com
-> [9] https://lore.kernel.org/linux-media/20200219140958.23542-1-narmstrong@baylibre.com
-> 
-> The compliance log is:
-> # v4l2-compliance --stream-from-hdr Jellyfish_1080_10s_5MB.vp9.hdr -s 200
-> v4l2-compliance SHA: 7ead0e1856b89f2e19369af452bb03fd0cd16793, 64 bits
-> 
-> Compliance test for meson-vdec device /dev/video0:
-> 
-> Driver Info:
-> 	Driver name      : meson-vdec
-> 	Card type        : Amlogic Video Decoder
-> 	Bus info         : platform:meson-vdec
-> 	Driver version   : 5.5.0
-> 	Capabilities     : 0x84204000
-> 		Video Memory-to-Memory Multiplanar
-> 		Streaming
-> 		Extended Pix Format
-> 		Device Capabilities
-> 	Device Caps      : 0x04204000
-> 		Video Memory-to-Memory Multiplanar
-> 		Streaming
-> 		Extended Pix Format
-> 	Detected Stateful Decoder
-> 
-> Required ioctls:
-> 	test VIDIOC_QUERYCAP: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/video0 open: OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test VIDIOC_G/S_PRIORITY: OK
-> 	test for unlimited opens: OK
-> 
-> Debug ioctls:
-> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
-> 
-> Input ioctls:
-> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
-> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
-> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> 	test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls:
-> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
-> 	test VIDIOC_QUERYCTRL: OK
-> 	test VIDIOC_G/S_CTRL: OK
-> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
-> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
-> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> 	Standard Controls: 2 Private Controls: 0
-> 
-> Format ioctls:
-> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-> 	test VIDIOC_G/S_PARM: OK (Not Supported)
-> 	test VIDIOC_G_FBUF: OK (Not Supported)
-> 	test VIDIOC_G_FMT: OK
-> 	test VIDIOC_TRY_FMT: OK
-> 	test VIDIOC_S_FMT: OK
-> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> 	test Cropping: OK (Not Supported)
-> 	test Composing: OK (Not Supported)
-> 	test Scaling: OK (Not Supported)
-> 
-> Codec ioctls:
-> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> 	test VIDIOC_(TRY_)DECODER_CMD: OK
-> 
-> Buffer ioctls:
-> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-> 	test VIDIOC_EXPBUF: OK
-> 	test Requests: OK (Not Supported)
-> 
-> Test input 0:
-> 
-> Streaming ioctls:
-> 	test read/write: OK (Not Supported)
-> 	test blocking wait: OK
-> 	Video Capture Multiplanar: Captured 198 buffers   
-> 	test MMAP (select): OK
-> 	Video Capture Multiplanar: Captured 198 buffers   
-> 	test MMAP (epoll): OK
-> 	test USERPTR (select): OK (Not Supported)
-> 	test DMABUF: Cannot test, specify --expbuf-device
-> 
-> Total for meson-vdec device /dev/video0: 49, Succeeded: 49, Failed: 0, Warnings: 0
-> 
-> Maxime Jourdan (4):
->   media: meson: vdec: add helpers for lossless framebuffer compression
->     buffers
->   media: meson: vdec: add common HEVC decoder support
->   media: meson: vdec: add VP9 input support
->   media: meson: vdec: add VP9 decoder support
-> 
-> Neil Armstrong (1):
->   media: meson: vdec: align stride on 32 bytes
-> 
->  drivers/staging/media/meson/vdec/Makefile     |    4 +-
->  .../media/meson/vdec/codec_hevc_common.c      |  284 +++
->  .../media/meson/vdec/codec_hevc_common.h      |   80 +
->  drivers/staging/media/meson/vdec/codec_vp9.c  | 2141 +++++++++++++++++
->  drivers/staging/media/meson/vdec/codec_vp9.h  |   13 +
->  drivers/staging/media/meson/vdec/esparser.c   |  150 +-
->  drivers/staging/media/meson/vdec/hevc_regs.h  |  218 ++
->  drivers/staging/media/meson/vdec/vdec.c       |   15 +-
->  .../staging/media/meson/vdec/vdec_helpers.c   |   35 +-
->  .../staging/media/meson/vdec/vdec_helpers.h   |    4 +
->  drivers/staging/media/meson/vdec/vdec_hevc.c  |  231 ++
->  drivers/staging/media/meson/vdec/vdec_hevc.h  |   13 +
->  .../staging/media/meson/vdec/vdec_platform.c  |   38 +
->  13 files changed, 3213 insertions(+), 13 deletions(-)
->  create mode 100644 drivers/staging/media/meson/vdec/codec_hevc_common.c
->  create mode 100644 drivers/staging/media/meson/vdec/codec_hevc_common.h
->  create mode 100644 drivers/staging/media/meson/vdec/codec_vp9.c
->  create mode 100644 drivers/staging/media/meson/vdec/codec_vp9.h
->  create mode 100644 drivers/staging/media/meson/vdec/hevc_regs.h
->  create mode 100644 drivers/staging/media/meson/vdec/vdec_hevc.c
->  create mode 100644 drivers/staging/media/meson/vdec/vdec_hevc.h
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
