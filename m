@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2597BC3F2CD
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 14:41:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A6B8C3F2C6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 14:47:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E8D5E2083E
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 14:41:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6598E2083E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2020 14:47:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pVp9HR51";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hzXaNFOZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E8D5E2083E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MJcY+wkN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iYf79LP+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6598E2083E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/7dTyJlseMnQRuGAFQyBpByAaiLdzPwNuj0UFPFjAVE=; b=pVp9HR51PuOfUb
-	gf5ioF5df7NERn96M1jx6WDh8ZjzxYd24J4Nyl+HzNzPx67WDBFcPaJcKpAb/aH1xd2JuwZY+XNvD
-	Y+TtleqVDdr3D5acMe116BxnoTDJLJE7Dl0kNb4AF8fVn1qpVmmTr5zZfiJ/JHEgqa31xERvD4OQl
-	nqPlLU7ISrdqcootPMNXQysj/icUw4xWjaVhm95zegytfPvvG35/+wqNRCifoP5eJQANOIU2jFykR
-	psNQXr2s/vvPtrmXBybuSpsEkHXcmMAzD8xyoCZPJmN2F9M35noF8jEvfqcpvakVMd1ubtw9AqNay
-	dz0dd+LG83p+2yGVxKwA==;
+	List-Owner; bh=IIhiGOpM5WNHMM0rFeH/cIv37ztFFMu1CRC7/qQWPGM=; b=MJcY+wkNmp24tB
+	VgS8z5o2fAmOXH5gyBHC3KfUiuPt+slagxKVo6NPnPlNoqwb0n3zRu/ne++TGa6sXf3kg60Xdxz6d
+	mv/rDVDBRQFUiYM+QVf14tVLC9urdOnqjhB+pza961smQDYcRjoWYW5BTD10dZ5WF9pghJX0Jak54
+	G3pquBb9WKE3SpPr9HX45C37D/76lCAOb34bfphwMCaUVvSsMlOFAnucZKVYaUTcifMh1kGy1kUAA
+	z6CJ7meeR3tNRmTvOXjMxSvIm9z9vQpJy5NvdkoOUHPRBQ8RjVM6C3DJbzxZRZgok8Q/NDZHBVTwC
+	meDw1JHc9plHw2QacF7Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j98jl-0001Pk-3f; Tue, 03 Mar 2020 14:41:33 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1j98p4-0003S7-Mk; Tue, 03 Mar 2020 14:47:02 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j98ji-0001PA-Jg
- for linux-amlogic@lists.infradead.org; Tue, 03 Mar 2020 14:41:31 +0000
-Received: by mail-wm1-x343.google.com with SMTP id g83so3111006wme.1
- for <linux-amlogic@lists.infradead.org>; Tue, 03 Mar 2020 06:41:30 -0800 (PST)
+ id 1j98p1-0003Qo-IX
+ for linux-amlogic@lists.infradead.org; Tue, 03 Mar 2020 14:47:01 +0000
+Received: by mail-wr1-x444.google.com with SMTP id r17so4679438wrj.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 03 Mar 2020 06:46:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=X0eUAg/tFogdV3TKpIfLLY5g6oZSBbXOuTgRWqTEJLc=;
- b=hzXaNFOZDr53qXHU9t+U4XZx/Qola1cdX9WIQmpCM6fhUval0nS1tQpBHVBanM2boV
- XlyMNAmSH73jxiMfg1HCnBYasKaWj/IaMODqARdmWQeAIvf9Xn5+qL5yzioVROUELSbM
- /83a+kiWAq1IPp5F8xZyxbH0t4nm/NacveVWbXU0env6257fFApSsJiQgFYrTvk9GrgM
- DnH79hLSyFaOVczftwLm5ynXE1WsRQWxVN5OXlGo2kNvYikY2b61zKJqBfMFy8RjMflB
- 7Jay3NHZViu395Oyj5DE25CWBhGMkzXyei28FAfjsLWb+OJwy8ozL6tVQ7GMGNASS5pf
- tlYA==
+ bh=YlXpdgCgCxVLbA0DWJljFI84zXiu8Z8tgW6virKJ4Wk=;
+ b=iYf79LP++ES4zBL+18dxHew7hPg1bIQ51mQWazVrzMt61tlkZ9TdL5Uq5oqfFl3oNf
+ oyrQOXdycmXUk6cIxcKy1fxxTC8NJbF4UEGfzQwfFPTCkiRCIEBtcWbwvoLqrRkE+b1i
+ AsAkIycsx/bW718h09BbrcCXlrRAyiuGPDO5iGWxYqlZuKS5ioLD84lHc1pKLqSBUvKj
+ m6sIdb+IjdsiIpEEIa++UoIL9che0Hg403sO713dZOKcMgbEckFrW0wNWCIT55THbvBd
+ yTw/280159Kleewia3ifO+j5ywrtR3XuvVIx/WU46iSeLAUKuTQyInuO8UoBp6Inoj8O
+ tQUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=X0eUAg/tFogdV3TKpIfLLY5g6oZSBbXOuTgRWqTEJLc=;
- b=pzEqJ3q907oVcc6X4Dss54K1gDCFXmSAnIOWe2YTvvNQuReBzdgwKA5zAiyFJuqXxw
- FO5OOML4YuYooUbRHl75GYOd4QnGwqRg2zV6WA9k1wyr0roEWX7csdQH86+64XEVR6fx
- xtY10uoxc6MxbGmFY0TkKiOz/hZkZ/jEZ+RAmeDHRx3IxOuyvnSmLKtnU2bqR8N6qQaU
- 7bW/aGxMVwBPjT+ExB4dFAu727FXl5L7tPy+L8OtOgn/CprKuNPUncOkKdc9L/ZWYLzc
- 2b0Y1zxmUjW4JsT2dK5jAI025X4Bi545OB2wKwDZobq2ERyfbGyxVV6Oj4CgPFy0NQYj
- DhXQ==
-X-Gm-Message-State: ANhLgQ3KosIBgQLXyB9ucr2CXYiox2p37noRIgKUuHtvqJRBh3StycLp
- n+zfXIBshHY/HYSQLsS+rlmAyw==
-X-Google-Smtp-Source: ADFU+vsXBZr3ZoNM+sGqZantm2QOpVhwLbyz/rfSqfPNjFRNKQG7nLzW9BSB+Lw8gTIiUCrAw5egsQ==
-X-Received: by 2002:a1c:a4c4:: with SMTP id n187mr4829104wme.10.1583246489247; 
- Tue, 03 Mar 2020 06:41:29 -0800 (PST)
+ bh=YlXpdgCgCxVLbA0DWJljFI84zXiu8Z8tgW6virKJ4Wk=;
+ b=YAgLW5SJR7dnJ38a3eX2XnRwfOWVx2Te+h4XoUpshN1jmuzKbwjLbjLidAIqrJLQzc
+ tIt4wWx4KIz2yUUEYWwUe+8mAT3DNr+Z4F9OY07Di8IFMaZ3dmjB3OIwDsGLRkj8oY3X
+ Rsc533s1u39MRxK7yCVCIWwP03+vCBBcp/o6rmBws5hQlRHPsCca+xg1cBKVygAsNFUn
+ 7EnOwApjirAwXNfhWhbvnz/2Je+0lcFE6wMMmRd9DtQEvFaufqmhA0mTaeW9zFym9dW5
+ JIWmaH31bVGxo7pvoe1vUAhDXTIppoF/qoxVXffDqs3D2p1oqzDsLC/OiCRvJVPRI96K
+ SSDA==
+X-Gm-Message-State: ANhLgQ2PeYQE5FEh7YE/pB8gvAKbo9HhAew1M+pLpghNcTYpDMugFo3j
+ o6SvqBe7Onk71eD08qG+JZPUXg==
+X-Google-Smtp-Source: ADFU+vuRF4o/jkOwxoVmpsKmQ76Ktr+aziVd8deRYdZyS+ly/VI0IxBp55+MqNBu9dYFLzvABJ6/nA==
+X-Received: by 2002:a5d:4902:: with SMTP id x2mr6199315wrq.301.1583246817859; 
+ Tue, 03 Mar 2020 06:46:57 -0800 (PST)
 Received: from [10.1.3.173]
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id u20sm3996934wmj.14.2020.03.03.06.41.28
+ by smtp.gmail.com with ESMTPSA id p16sm33803254wrw.15.2020.03.03.06.46.56
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 03 Mar 2020 06:41:28 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: meson: add thermal zones to
- gxl-s905x-khadas-vim
+ Tue, 03 Mar 2020 06:46:57 -0800 (PST)
+Subject: Re: [PATCH v6 3/3] arm64: dts: meson: add support for the SmartLabs
+ SML-5442TW
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <1582870346-74145-1-git-send-email-christianshewitt@gmail.com>
+References: <1583036241-88937-1-git-send-email-christianshewitt@gmail.com>
+ <1583036241-88937-4-git-send-email-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -134,16 +135,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <ae6a3b30-e9d9-5fca-69be-180ed68f87a3@baylibre.com>
-Date: Tue, 3 Mar 2020 15:41:28 +0100
+Message-ID: <047e8315-9782-82a4-f14a-f7fa40ca854a@baylibre.com>
+Date: Tue, 3 Mar 2020 15:46:56 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <1582870346-74145-1-git-send-email-christianshewitt@gmail.com>
+In-Reply-To: <1583036241-88937-4-git-send-email-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200303_064130_656169_55087CB1 
-X-CRM114-Status: GOOD (  16.75  )
+X-CRM114-CacheID: sfid-20200303_064659_620684_151CF121 
+X-CRM114-Status: GOOD (  23.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,7 +156,8 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Nick Xie <nick@khadas.com>
+Cc: =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+ =?UTF-8?Q?Jer=c3=b4me_Brunet?= <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -163,95 +165,341 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On 28/02/2020 07:12, Christian Hewitt wrote:
-> Add thermal zones to the VIM1 board, copying the zone config from the
-> existing VIM2 board.
+On 01/03/2020 05:17, Christian Hewitt wrote:
+> The SmartLabs SML-5442TW is broadly similar to the P231 reference design
+> but with the following differences:
 > 
-> Suggested-by: Nick Xie <nick@khadas.com>
+> - The Yellow and Blue LEDs are available but disabled
+> - The Red and Green LEDs are used to signal off/on status
+> - uart_AO can be accessed after opening the case; soldered pins exist
+> - GPIOX_17 is forced high to enable the QCA9377 module
+> 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts     | 50 ++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
+>  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+>  .../boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts | 292 +++++++++++++++++++++
+>  2 files changed, 293 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> index 440bc23..2c198c4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  
->  #include "meson-gxl-s905x-p212.dtsi"
->  
-> @@ -63,6 +64,39 @@
->  			};
->  		};
->  	};
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index eef0045..6cf8c4a 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-sml5442tw.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
+> new file mode 100644
+> index 0000000..5fdf1ca
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
+> @@ -0,0 +1,292 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2016 Endless Computers, Inc.
+> + * Author: Carlo Caione <carlo@endlessm.com>
+> + * Copyright (c) 2018 BayLibre, SAS
+> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> + */
 > +
-> +	thermal-zones {
-> +		cpu-thermal {
-> +			polling-delay-passive = <250>; /* milliseconds */
-> +			polling-delay = <1000>; /* milliseconds */
+> +/dts-v1/;
 > +
-> +			thermal-sensors = <&scpi_sensors 0>;
+> +#include "meson-gxl-s905d.dtsi"
 > +
-> +			trips {
-> +				cpu_alert0: cpu-alert0 {
-> +					temperature = <70000>; /* millicelsius */
-> +					hysteresis = <2000>; /* millicelsius */
-> +					type = "active";
-> +				};
+> +/ {
+> +	compatible = "smartlabs,sml5442tw", "amlogic,s905d",
+> +		"amlogic,meson-gxl";
+> +	model = "SmartLabs SML-5442TW";
 > +
-> +				cpu_alert1: cpu-alert1 {
-> +					temperature = <80000>; /* millicelsius */
-> +					hysteresis = <2000>; /* millicelsius */
-> +					type = "passive";
-> +				};
-> +			};
+> +	aliases {
+> +		serial0 = &uart_AO;
+> +		serial1 = &uart_A;
+> +		ethernet0 = &ethmac;
+> +	};
 > +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&cpu_alert1>;
-> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		yellow {
+> +			label = "sml5442tw:yellow";
+
+
+The bindings of leds has changed, now you should use function and color ids as described in Documentation/devicetree/bindings/leds/common.yaml
+
+> +			gpios = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		blue {
+> +			label = "sml5442tw:blue";
+> +			gpios = <&gpio GPIODV_28 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		green {
+> +			label = "sml5442tw:green";
+> +			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +		};
+> +
+> +		red {
+> +			label = "sml5442tw:red";
+> +			gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +	};
+> +
+> +	hdmi_5v: regulator-hdmi-5v {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "HDMI_5V";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +
+> +		gpio = <&gpio GPIOH_3 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddio_ao18: regulator-vddio_ao18 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_AO18";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +	};
+> +
+> +	vddio_boot: regulator-vddio_boot {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_BOOT";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +	};
+> +
+> +	vddao_3v3: regulator-vddao_3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDAO_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +
+> +	vcc_3v3: regulator-vcc_3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +
+> +	emmc_pwrseq: emmc-pwrseq {
+> +		compatible = "mmc-pwrseq-emmc";
+> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	wifi32k: wifi32k {
+> +		compatible = "pwm-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "ext_clock";
+> +	};
+> +
+> +	cvbs-connector {
+> +		compatible = "composite-video-connector";
+> +
+> +		port {
+> +			cvbs_connector_in: endpoint {
+> +				remote-endpoint = <&cvbs_vdac_out>;
 > +			};
 > +		};
 > +	};
->  };
->  
->  &cec_AO {
-> @@ -72,6 +106,22 @@
->  	hdmi-phandle = <&hdmi_tx>;
->  };
->  
-> +&cpu0 {
-> +	#cooling-cells = <2>;
+> +
+> +	hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_connector_in: endpoint {
+> +				remote-endpoint = <&hdmi_tx_tmds_out>;
+> +			};
+> +		};
+> +	};
 > +};
 > +
-> +&cpu1 {
-> +	#cooling-cells = <2>;
+> +&cec_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&ao_cec_pins>;
+> +	pinctrl-names = "default";
+> +	hdmi-phandle = <&hdmi_tx>;
 > +};
 > +
-> +&cpu2 {
-> +	#cooling-cells = <2>;
+> +&cvbs_vdac_port {
+> +	cvbs_vdac_out: endpoint {
+> +		remote-endpoint = <&cvbs_connector_in>;
+> +	};
 > +};
 > +
-> +&cpu3 {
-> +	#cooling-cells = <2>;
+> +&ethmac {
+> +	status = "okay";
+> +	phy-mode = "rmii";
+> +	phy-handle = <&internal_phy>;
 > +};
 > +
->  &hdmi_tx {
->  	status = "okay";
->  	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-> 
+> +/* This will enable the bluetooth module */
+> +&gpio {
+> +	bt-en {
+> +		gpio-hog;
+> +		gpios = <GPIOX_17 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "bt-en";
+> +	};
+> +};
 
-Following the g12a/g12b/sm1 work, this should go into the meson-gx.dtsi instead, with some bits in meson-gxm.dtsi
-to handle the second spu cluster.
+Did you try using the qcom,qca6174-bt compatible similar to the broadcom BT module as
+described in Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt ?
+
+> +
+> +&hdmi_tx {
+> +	status = "okay";
+> +	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
+> +	pinctrl-names = "default";
+> +	hdmi-supply = <&hdmi_5v>;
+> +};
+> +
+> +&hdmi_tx_tmds_port {
+> +	hdmi_tx_tmds_out: endpoint {
+> +		remote-endpoint = <&hdmi_connector_in>;
+> +	};
+> +};
+> +
+> +&i2c_A {
+> +	status = "okay";
+> +	pinctrl-0 = <&i2c_a_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&internal_phy {
+> +	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&ir {
+> +	status = "okay";
+> +	pinctrl-0 = <&remote_input_ao_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&pwm_ef {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_e_pins>;
+> +	pinctrl-names = "default";
+> +	clocks = <&clkc CLKID_FCLK_DIV4>;
+> +	clock-names = "clkin0";
+> +};
+> +
+> +&saradc {
+> +	status = "okay";
+> +	vref-supply = <&vddio_ao18>;
+> +};
+> +
+> +/* Wireless SDIO Module */
+> +&sd_emmc_a {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdio_pins>;
+> +	pinctrl-1 = <&sdio_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	max-frequency = <100000000>;
+> +
+> +	non-removable;
+> +	disable-wp;
+> +
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +};
+> +
+> +/* SD card */
+> +&sd_emmc_b {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdcard_pins>;
+> +	pinctrl-1 = <&sdcard_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	max-frequency = <100000000>;
+> +	disable-wp;
+> +
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> +	cd-inverted;
+> +
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +};
+> +
+> +/* eMMC */
+> +&sd_emmc_c {
+> +	status = "okay";
+> +	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
+> +	pinctrl-1 = <&emmc_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +
+> +	bus-width = <8>;
+> +	cap-mmc-highspeed;
+> +	max-frequency = <100000000>;
+> +	non-removable;
+> +	disable-wp;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +
+> +	mmc-pwrseq = <&emmc_pwrseq>;
+> +	vmmc-supply = <&vcc_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +};
+> +
+> +/* This is connected to the Bluetooth module: */
+> +&uart_A {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+> +	pinctrl-names = "default";
+> +	uart-has-rtscts;
+> +};
+> +
+> +/* This UART is brought out to the debug header */
+> +&uart_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&usb0 {
+> +	status = "okay";
+> +};
+> 
 
 Neil
 
