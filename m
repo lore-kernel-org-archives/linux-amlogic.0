@@ -2,90 +2,66 @@ Return-Path: <SRS0=8tFv=4V=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA127C3F2DF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2020 10:41:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08F0AC3F2CD
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2020 10:44:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ACD1C21741
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2020 10:41:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C82BA2072D
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2020 10:44:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XarqiDZ1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="r2MYqfzd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ACD1C21741
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Rlg8Kb/Z"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C82BA2072D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1uniX0z+vBp1oF6FVCHIPg3uTh6grbba8bCYd4VXl8Y=; b=XarqiDZ1MkywgB
-	MKKtJvAA4DOYuhuoVa/UYjW3aN+Hx7jpQbkqjXeceQrqG8/zexbpO6SqQIvPVo9Pr6YlfI5DAkzpQ
-	ZITqFyDBL5ncjIekQe9LU0p/mZKSqpCH8O8pM1/Ktl0cqp813SfIqc8PSsdid/aYMx/1BDwgZRghX
-	rj1E37U7iK1Bje7dVAIHykvrLDCrZDWsmw88TbgYyqsq2tqbJuZuLOOH8/wbOcg78xn1jvL6He/hW
-	jV/YaKwlbr0Or5NRFbi+InQ5XrX3EFkPMFWUUmgWEguBxB63q9OElmBzIlLSKoLimk9qi/9jvZCcv
-	5h7yX6QHG8HWMrsUP9Rg==;
+	List-Owner; bh=q56H1DSl7sFPxsU4RAkYz91zByaReyhb/6zDB6tlQWQ=; b=Rlg8Kb/Z9/Lq4p
+	ugd/JE/BLXhduzHxH63ICtakle9uNr9I1OvUWQNI4n3Py+XGguO0s319NarrRvs6iPE5sDQvxgEu6
+	XeBoulNSkKGd407IHET1lEKhu9lRSh/UeIANNJzOUFzOh++Yp8ODe+G2vFfEl4bCDXlxong5Rm69s
+	rLDkWZ5NMrHjO6EVqp1vW5ipIewVv3qpTs7/k7HYAiWVKTQWpH63xH9dT9XCgEKoUxDYVKxqtSQXK
+	HGssKAz/ehtLpTovTJyT4z/MrNecBrziod08YjDjVA4whs7OSmHBlfpOhBTBqynI1WJqDNSHjlZR3
+	f7xXMrER7sSeMpi54hiA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1j9RSs-0007VI-83; Wed, 04 Mar 2020 10:41:22 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j9RSi-0007DR-0G
- for linux-amlogic@lists.infradead.org; Wed, 04 Mar 2020 10:41:13 +0000
-Received: by mail-wm1-x341.google.com with SMTP id p9so1450406wmc.2
- for <linux-amlogic@lists.infradead.org>; Wed, 04 Mar 2020 02:41:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=n38Pxw3whs5fznpPVxQ1dxhIU8Emvi8naZ5TfMMjuYM=;
- b=r2MYqfzdvVoDUW66p/VV4VfzD3pDZTULdjd/Fe2J80Z7imVNlSyofmxKLNb/2/89q6
- UD/0gn3kmjyaTd3j786ghUAjVxoh6m3bcF1HoTk08KNiS3ypv8cjQPxIwdB5e4wuvx1d
- p/QzSfQC7Ymv0QuJKpi9g2E0TA9SH74g5HpE0IGbsXH5x5NsVu/dxno6R515C7eXo929
- 64U2IimPXxxvrNz1yhZSq8VVnpxoe4ECC4QUdBVaSg8kzZDobPJxLzL9UlAnrYGh+yFo
- CKLk9sFWaRhU3+eOYxcO3CfKCvCj3xggz6yxW0UDSQgAqnKRqEoQREagH4IN94DpgXmO
- 6maA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=n38Pxw3whs5fznpPVxQ1dxhIU8Emvi8naZ5TfMMjuYM=;
- b=NRcOoMUcC8QxiwQ/9r8klN3V8G9b4ztuNgtCOMCf24rputM7J5Lqt9inNhXqebvB1k
- fp0nGLqVaZzpGxgbAnG7xyZ+RfamHjEfZ3srdZjPgqcU+uo1F59mMHD4t5yWNjcQ/WId
- 8lEIOI33CGSqC33tj5n3yd3h1EWedkz4+nrftV7ps8XpUdh1ACSFTlhw3MFOvDxq4Bld
- 5JR3A9sAsXB4REU+VJpmWft/vejQDPCgTWXiCq6IiUFQKr5aT8y+LqeJcVCyGUVN6KAJ
- BvBmHkAB7lUQ7m91G9U2+N/HAgkFkrC3emIY9N4ldVk9Pwo1xtvqTdYoifLoXnoG3ies
- k7dg==
-X-Gm-Message-State: ANhLgQ3hFpvuZRwGXMOnkhGBMMob84nY1WRrss6Iyg8qb3N/JmJw1hRz
- Ug5wtroRWq139LmR9cUqLQbP5A==
-X-Google-Smtp-Source: ADFU+vsENT48+5JvIVgSQf23iBf7GP5lA+KcoRwznuVpTeZxVqwpbePrrqLqD0iGtf6DyC1FQanS6A==
-X-Received: by 2002:a1c:b0c3:: with SMTP id z186mr2986960wme.36.1583318470363; 
- Wed, 04 Mar 2020 02:41:10 -0800 (PST)
-Received: from bender.baylibre.local
- (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id c14sm24006398wro.36.2020.03.04.02.41.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Mar 2020 02:41:09 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@siol.net, boris.brezillon@collabora.com
-Subject: [PATCH v5 11/11] drm/meson: Add YUV420 output support
-Date: Wed,  4 Mar 2020 11:40:52 +0100
-Message-Id: <20200304104052.17196-12-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200304104052.17196-1-narmstrong@baylibre.com>
-References: <20200304104052.17196-1-narmstrong@baylibre.com>
+	id 1j9RWA-0008CL-4o; Wed, 04 Mar 2020 10:44:46 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1j9RW7-0008BZ-1t
+ for linux-amlogic@lists.infradead.org; Wed, 04 Mar 2020 10:44:45 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D780130E;
+ Wed,  4 Mar 2020 02:44:41 -0800 (PST)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com
+ [10.1.196.255])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 084C93F534;
+ Wed,  4 Mar 2020 02:44:39 -0800 (PST)
+Date: Wed, 4 Mar 2020 10:44:34 +0000
+From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v6 5/7] phy: amlogic: Add Amlogic AXG MIPI/PCIE analog
+ PHY Driver
+Message-ID: <20200304104434.GA6613@e121166-lin.cambridge.arm.com>
+References: <20200123232943.10229-1-repk@triplefau.lt>
+ <20200123232943.10229-6-repk@triplefau.lt>
+ <20200303171921.GB9641@e121166-lin.cambridge.arm.com>
+ <af715acf-9ea4-8a82-92d3-578d09aec760@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <af715acf-9ea4-8a82-92d3-578d09aec760@baylibre.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200304_024112_087752_1FF721F6 
-X-CRM114-Status: GOOD (  19.77  )
+X-CRM114-CacheID: sfid-20200304_024443_415413_202505C8 
+X-CRM114-Status: GOOD (  26.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,162 +73,299 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Yue Wang <yue.wang@Amlogic.com>,
+ Remi Pommarel <repk@triplefau.lt>, linux-pci@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
+ kishon@ti.com, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhpcyBwYXRjaCBhZGRzIHN1cHBvcnQgZm9yIHRoZSBZVVY0MjAgb3V0cHV0IGZyb20gdGhlIEFt
-bG9naWMgTWVzb24gU29DcwpWaWRlbyBQcm9jZXNzaW5nIFVuaXQgdG8gdGhlIEhETUkgQ29udHJv
-bGxlci4KClRoZSBZVVY0MjAgaXMgb2J0YWluZWQgYnkgZ2VuZXJhdGluZyBhIFlVVjQ0NCBwaXhl
-bCBzdHJlYW0gbGlrZQp0aGUgY2xhc3NpYyBIRE1JIGRpc3BsYXkgbW9kZXMsIGJ1dCB0aGVuIHRo
-ZSBWaWRlbyBFbmNvZGVyIG91dHB1dApjYW4gYmUgY29uZmlndXJlZCB0byBkb3duLXNhbXBsZSB0
-aGUgWVVWNDQ0IHBpeGVsIHN0cmVhbSB0byBhIFlVVjQyMApzdHJlYW0uCkluIGFkZGl0aW9uIGlm
-IHBpeGVsIHN0cmVhbSBkb3duLXNhbXBsaW5nLCB0aGUgWSBDYiBDciBjb21wb25lbnRzIG11c3QK
-YWxzbyBiZSBtYXBwZWQgZGlmZmVyZW50bHkgdG8gYWxpZ24gd2l0aCB0aGUgSERNSTIuMCBzcGVj
-aWZpY2F0aW9ucy4KClRoaXMgbW9kZSBuZWVkcyBhIGRpZmZlcmVudCBjbG9jayBnZW5lcmF0aW9u
-IHNjaGVtZSBzaW5jZSB0aGUgVE1EUyBQSFkKY2xvY2sgbXVzdCBtYXRjaCB0aGUgMTB4IHJhdGlv
-IHdpdGggdGhlIFlVVjQyMCBwaXhlbCBjbG9jaywgYnV0CnRoZSB2aWRlbyBlbmNvZGVyIG11c3Qg
-cnVuIGF0IDJ4IHRoZSBwaXhlbCBjbG9jay4KClRoaXMgcGF0Y2ggZW5hYmxlcyB0aGUgYnJpZGdl
-IGJ1cyBmb3JtYXQgbmVnb2NpYXRpb24sIGFuZCBoYW5kbGVzCnRoZSBZVVY0MjAgY2FzZSBpZiBz
-ZWxlY3RlZCBieSB0aGUgbmVnb2NpYXRpb24uCgpTaWduZWQtb2ZmLWJ5OiBOZWlsIEFybXN0cm9u
-ZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+ClJldmlld2VkLWJ5OiBKZXJuZWogxaBrcmFiZWMg
-PGplcm5lai5za3JhYmVjQHNpb2wubmV0PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNv
-bl9kd19oZG1pLmMgfCA5MSArKysrKysrKysrKysrKysrKysrKy0tLS0tLS0KIDEgZmlsZSBjaGFu
-Z2VkLCA3MCBpbnNlcnRpb25zKCspLCAyMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jIGIvZHJpdmVycy9ncHUvZHJtL21lc29u
-L21lc29uX2R3X2hkbWkuYwppbmRleCBiNWIwZDQ1ZWIzMTQuLmU4Yzk0OTE1YTRmYyAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2R3X2hkbWkuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jCkBAIC0xNTAsNiArMTUwLDcgQEAgc3RydWN0
-IG1lc29uX2R3X2hkbWkgewogCXN0cnVjdCByZWd1bGF0b3IgKmhkbWlfc3VwcGx5OwogCXUzMiBp
-cnFfc3RhdDsKIAlzdHJ1Y3QgZHdfaGRtaSAqaGRtaTsKKwl1bnNpZ25lZCBsb25nIG91dHB1dF9i
-dXNfZm10OwogfTsKICNkZWZpbmUgZW5jb2Rlcl90b19tZXNvbl9kd19oZG1pKHgpIFwKIAljb250
-YWluZXJfb2YoeCwgc3RydWN0IG1lc29uX2R3X2hkbWksIGVuY29kZXIpCkBAIC0zMDEsNiArMzAy
-LDEwIEBAIHN0YXRpYyB2b2lkIG1lc29uX2hkbWlfcGh5X3NldHVwX21vZGUoc3RydWN0IG1lc29u
-X2R3X2hkbWkgKmR3X2hkbWksCiAJc3RydWN0IG1lc29uX2RybSAqcHJpdiA9IGR3X2hkbWktPnBy
-aXY7CiAJdW5zaWduZWQgaW50IHBpeGVsX2Nsb2NrID0gbW9kZS0+Y2xvY2s7CiAKKwkvKiBGb3Ig
-NDIwLCBwaXhlbCBjbG9jayBpcyBoYWxmIHVubGlrZSB2ZW5jIGNsb2NrICovCisJaWYgKGR3X2hk
-bWktPm91dHB1dF9idXNfZm10ID09IE1FRElBX0JVU19GTVRfVVlZVllZOF8wXzVYMjQpCisJCXBp
-eGVsX2Nsb2NrIC89IDI7CisKIAlpZiAoZHdfaGRtaV9pc19jb21wYXRpYmxlKGR3X2hkbWksICJh
-bWxvZ2ljLG1lc29uLWd4bC1kdy1oZG1pIikgfHwKIAkgICAgZHdfaGRtaV9pc19jb21wYXRpYmxl
-KGR3X2hkbWksICJhbWxvZ2ljLG1lc29uLWd4bS1kdy1oZG1pIikpIHsKIAkJaWYgKHBpeGVsX2Ns
-b2NrID49IDM3MTI1MCkgewpAQCAtMzgzLDYgKzM4OCwxMCBAQCBzdGF0aWMgdm9pZCBkd19oZG1p
-X3NldF92Y2xrKHN0cnVjdCBtZXNvbl9kd19oZG1pICpkd19oZG1pLAogCiAJdmNsa19mcmVxID0g
-bW9kZS0+Y2xvY2s7CiAKKwkvKiBGb3IgNDIwLCBwaXhlbCBjbG9jayBpcyBoYWxmIHVubGlrZSB2
-ZW5jIGNsb2NrICovCisJaWYgKGR3X2hkbWktPm91dHB1dF9idXNfZm10ID09IE1FRElBX0JVU19G
-TVRfVVlZVllZOF8wXzVYMjQpCisJCXZjbGtfZnJlcSAvPSAyOworCiAJLyogVE1EUyBjbG9jayBp
-cyBwaXhlbF9jbG9jayAqIDEwICovCiAJcGh5X2ZyZXEgPSB2Y2xrX2ZyZXEgKiAxMDsKIApAQCAt
-MzkyLDEzICs0MDEsMTYgQEAgc3RhdGljIHZvaWQgZHdfaGRtaV9zZXRfdmNsayhzdHJ1Y3QgbWVz
-b25fZHdfaGRtaSAqZHdfaGRtaSwKIAkJcmV0dXJuOwogCX0KIAorCS8qIDQ4MGkvNTc2aSBuZWVk
-cyBnbG9iYWwgcGl4ZWwgZG91YmxpbmcgKi8KIAlpZiAobW9kZS0+ZmxhZ3MgJiBEUk1fTU9ERV9G
-TEFHX0RCTENMSykKIAkJdmNsa19mcmVxICo9IDI7CiAKIAl2ZW5jX2ZyZXEgPSB2Y2xrX2ZyZXE7
-CiAJaGRtaV9mcmVxID0gdmNsa19mcmVxOwogCi0JaWYgKG1lc29uX3ZlbmNfaGRtaV92ZW5jX3Jl
-cGVhdCh2aWMpKQorCS8qIFZFTkMgZG91YmxlIHBpeGVscyBmb3IgMTA4MGksIDcyMHAgYW5kIFlV
-VjQyMCBtb2RlcyAqLworCWlmIChtZXNvbl92ZW5jX2hkbWlfdmVuY19yZXBlYXQodmljKSB8fAor
-CSAgICBkd19oZG1pLT5vdXRwdXRfYnVzX2ZtdCA9PSBNRURJQV9CVVNfRk1UX1VZWVZZWThfMF81
-WDI0KQogCQl2ZW5jX2ZyZXEgKj0gMjsKIAogCXZjbGtfZnJlcSA9IG1heCh2ZW5jX2ZyZXEsIGhk
-bWlfZnJlcSk7CkBAIC00NDUsOCArNDU3LDkgQEAgc3RhdGljIGludCBkd19oZG1pX3BoeV9pbml0
-KHN0cnVjdCBkd19oZG1pICpoZG1pLCB2b2lkICpkYXRhLAogCS8qIEVuYWJsZSBub3JtYWwgb3V0
-cHV0IHRvIFBIWSAqLwogCWR3X2hkbWktPmRhdGEtPnRvcF93cml0ZShkd19oZG1pLCBIRE1JVFhf
-VE9QX0JJU1RfQ05UTCwgQklUKDEyKSk7CiAKLQkvKiBUTURTIHBhdHRlcm4gc2V0dXAgKFRPRklY
-IEhhbmRsZSB0aGUgWVVWNDIwIGNhc2UpICovCi0JaWYgKG1vZGUtPmNsb2NrID4gMzQwMDAwKSB7
-CisJLyogVE1EUyBwYXR0ZXJuIHNldHVwICovCisJaWYgKG1vZGUtPmNsb2NrID4gMzQwMDAwICYm
-CisJICAgIGR3X2hkbWktPm91dHB1dF9idXNfZm10ID09IE1FRElBX0JVU19GTVRfWVVWOF8xWDI0
-KSB7CiAJCWR3X2hkbWktPmRhdGEtPnRvcF93cml0ZShkd19oZG1pLCBIRE1JVFhfVE9QX1RNRFNf
-Q0xLX1BUVE5fMDEsCiAJCQkJICAwKTsKIAkJZHdfaGRtaS0+ZGF0YS0+dG9wX3dyaXRlKGR3X2hk
-bWksIEhETUlUWF9UT1BfVE1EU19DTEtfUFRUTl8yMywKQEAgLTYyMSw2ICs2MzQsNyBAQCBkd19o
-ZG1pX21vZGVfdmFsaWQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKIAkJICAgY29u
-c3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGUpCiB7CiAJc3RydWN0IG1lc29uX2RybSAq
-cHJpdiA9IGNvbm5lY3Rvci0+ZGV2LT5kZXZfcHJpdmF0ZTsKKwlib29sIGlzX2hkbWkyX3Npbmsg
-PSBjb25uZWN0b3ItPmRpc3BsYXlfaW5mby5oZG1pLnNjZGMuc3VwcG9ydGVkOwogCXVuc2lnbmVk
-IGludCBwaHlfZnJlcTsKIAl1bnNpZ25lZCBpbnQgdmNsa19mcmVxOwogCXVuc2lnbmVkIGludCB2
-ZW5jX2ZyZXE7CkBAIC02MzAsOSArNjQ0LDExIEBAIGR3X2hkbWlfbW9kZV92YWxpZChzdHJ1Y3Qg
-ZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCiAJRFJNX0RFQlVHX0RSSVZFUigiTW9kZWxpbmUg
-IiBEUk1fTU9ERV9GTVQgIlxuIiwgRFJNX01PREVfQVJHKG1vZGUpKTsKIAotCS8qIElmIHNpbmsg
-bWF4IFRNRFMgY2xvY2ssIHdlIHJlamVjdCB0aGUgbW9kZSAqLworCS8qIElmIHNpbmsgZG9lcyBu
-b3Qgc3VwcG9ydCA1NDBNSHosIHJlamVjdCB0aGUgbm9uLTQyMCBIRE1JMiBtb2RlcyAqLwogCWlm
-IChjb25uZWN0b3ItPmRpc3BsYXlfaW5mby5tYXhfdG1kc19jbG9jayAmJgotCSAgICBtb2RlLT5j
-bG9jayA+IGNvbm5lY3Rvci0+ZGlzcGxheV9pbmZvLm1heF90bWRzX2Nsb2NrKQorCSAgICBtb2Rl
-LT5jbG9jayA+IGNvbm5lY3Rvci0+ZGlzcGxheV9pbmZvLm1heF90bWRzX2Nsb2NrICYmCisJICAg
-ICFkcm1fbW9kZV9pc180MjBfb25seSgmY29ubmVjdG9yLT5kaXNwbGF5X2luZm8sIG1vZGUpICYm
-CisJICAgICFkcm1fbW9kZV9pc180MjBfYWxzbygmY29ubmVjdG9yLT5kaXNwbGF5X2luZm8sIG1v
-ZGUpKQogCQlyZXR1cm4gTU9ERV9CQUQ7CiAKIAkvKiBDaGVjayBhZ2FpbnN0IG5vbi1WSUMgc3Vw
-cG9ydGVkIG1vZGVzICovCkBAIC02NDgsNiArNjY0LDEyIEBAIGR3X2hkbWlfbW9kZV92YWxpZChz
-dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCiAJdmNsa19mcmVxID0gbW9kZS0+Y2xv
-Y2s7CiAKKwkvKiBGb3IgNDIwLCBwaXhlbCBjbG9jayBpcyBoYWxmIHVubGlrZSB2ZW5jIGNsb2Nr
-ICovCisJaWYgKGRybV9tb2RlX2lzXzQyMF9vbmx5KCZjb25uZWN0b3ItPmRpc3BsYXlfaW5mbywg
-bW9kZSkgfHwKKwkgICAgKCFpc19oZG1pMl9zaW5rICYmCisJICAgICBkcm1fbW9kZV9pc180MjBf
-YWxzbygmY29ubmVjdG9yLT5kaXNwbGF5X2luZm8sIG1vZGUpKSkKKwkJdmNsa19mcmVxIC89IDI7
-CisKIAkvKiBUTURTIGNsb2NrIGlzIHBpeGVsX2Nsb2NrICogMTAgKi8KIAlwaHlfZnJlcSA9IHZj
-bGtfZnJlcSAqIDEwOwogCkBAIC02NTgsOCArNjgwLDExIEBAIGR3X2hkbWlfbW9kZV92YWxpZChz
-dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCXZlbmNfZnJlcSA9IHZjbGtfZnJlcTsK
-IAloZG1pX2ZyZXEgPSB2Y2xrX2ZyZXE7CiAKLQkvKiBWRU5DIGRvdWJsZSBwaXhlbHMgZm9yIDEw
-ODBpIGFuZCA3MjBwIG1vZGVzICovCi0JaWYgKG1lc29uX3ZlbmNfaGRtaV92ZW5jX3JlcGVhdCh2
-aWMpKQorCS8qIFZFTkMgZG91YmxlIHBpeGVscyBmb3IgMTA4MGksIDcyMHAgYW5kIFlVVjQyMCBt
-b2RlcyAqLworCWlmIChtZXNvbl92ZW5jX2hkbWlfdmVuY19yZXBlYXQodmljKSB8fAorCSAgICBk
-cm1fbW9kZV9pc180MjBfb25seSgmY29ubmVjdG9yLT5kaXNwbGF5X2luZm8sIG1vZGUpIHx8CisJ
-ICAgICghaXNfaGRtaTJfc2luayAmJgorCSAgICAgZHJtX21vZGVfaXNfNDIwX2Fsc28oJmNvbm5l
-Y3Rvci0+ZGlzcGxheV9pbmZvLCBtb2RlKSkpCiAJCXZlbmNfZnJlcSAqPSAyOwogCiAJdmNsa19m
-cmVxID0gbWF4KHZlbmNfZnJlcSwgaGRtaV9mcmVxKTsKQEAgLTY3Nyw2ICs3MDIsNyBAQCBkd19o
-ZG1pX21vZGVfdmFsaWQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKIAogc3RhdGlj
-IGNvbnN0IHUzMiBtZXNvbl9kd19oZG1pX291dF9idXNfZm10c1tdID0gewogCU1FRElBX0JVU19G
-TVRfWVVWOF8xWDI0LAorCU1FRElBX0JVU19GTVRfVVlZVllZOF8wXzVYMjQsCiB9OwogCiBzdGF0
-aWMgdm9pZCBtZXNvbl92ZW5jX2hkbWlfZW5jb2Rlcl9kZXN0cm95KHN0cnVjdCBkcm1fZW5jb2Rl
-ciAqZW5jb2RlcikKQEAgLTY5NywxOCArNzIzLDIzIEBAIG1lc29uX3ZlbmNfaGRtaV9lbmNvZGVy
-X2dldF9pbnBfYnVzX2ZtdHMoc3RydWN0IGRybV9icmlkZ2UgKmJyaWRnZSwKIAkJCQkJdW5zaWdu
-ZWQgaW50ICpudW1faW5wdXRfZm10cykKIHsKIAl1MzIgKmlucHV0X2ZtdHMgPSBOVUxMOworCWlu
-dCBpOwogCi0JaWYgKG91dHB1dF9mbXQgPT0gbWVzb25fZHdfaGRtaV9vdXRfYnVzX2ZtdHNbMF0p
-IHsKLQkJKm51bV9pbnB1dF9mbXRzID0gMTsKLQkJaW5wdXRfZm10cyA9IGtjYWxsb2MoKm51bV9p
-bnB1dF9mbXRzLAotCQkJCSAgICAgc2l6ZW9mKCppbnB1dF9mbXRzKSwKLQkJCQkgICAgIEdGUF9L
-RVJORUwpOwotCQlpZiAoIWlucHV0X2ZtdHMpCi0JCQlyZXR1cm4gTlVMTDsKKwkqbnVtX2lucHV0
-X2ZtdHMgPSAwOwogCi0JCWlucHV0X2ZtdHNbMF0gPSBvdXRwdXRfZm10OwotCX0gZWxzZSB7Ci0J
-CSpudW1faW5wdXRfZm10cyA9IDA7CisJZm9yIChpID0gMCA7IGkgPCBBUlJBWV9TSVpFKG1lc29u
-X2R3X2hkbWlfb3V0X2J1c19mbXRzKSA7ICsraSkgeworCQlpZiAob3V0cHV0X2ZtdCA9PSBtZXNv
-bl9kd19oZG1pX291dF9idXNfZm10c1tpXSkgeworCQkJKm51bV9pbnB1dF9mbXRzID0gMTsKKwkJ
-CWlucHV0X2ZtdHMgPSBrY2FsbG9jKCpudW1faW5wdXRfZm10cywKKwkJCQkJICAgICBzaXplb2Yo
-KmlucHV0X2ZtdHMpLAorCQkJCQkgICAgIEdGUF9LRVJORUwpOworCQkJaWYgKCFpbnB1dF9mbXRz
-KQorCQkJCXJldHVybiBOVUxMOworCisJCQlpbnB1dF9mbXRzWzBdID0gb3V0cHV0X2ZtdDsKKwor
-CQkJYnJlYWs7CisJCX0KIAl9CiAKIAlyZXR1cm4gaW5wdXRfZm10czsKQEAgLTcxOSw2ICs3NTAs
-MTIgQEAgc3RhdGljIGludCBtZXNvbl92ZW5jX2hkbWlfZW5jb2Rlcl9hdG9taWNfY2hlY2soc3Ry
-dWN0IGRybV9icmlkZ2UgKmJyaWRnZSwKIAkJCQkJc3RydWN0IGRybV9jcnRjX3N0YXRlICpjcnRj
-X3N0YXRlLAogCQkJCQlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZSkKIHsK
-KwlzdHJ1Y3QgbWVzb25fZHdfaGRtaSAqZHdfaGRtaSA9IGJyaWRnZV90b19tZXNvbl9kd19oZG1p
-KGJyaWRnZSk7CisKKwlkd19oZG1pLT5vdXRwdXRfYnVzX2ZtdCA9IGJyaWRnZV9zdGF0ZS0+b3V0
-cHV0X2J1c19jZmcuZm9ybWF0OworCisJRFJNX0RFQlVHX0RSSVZFUigib3V0cHV0X2J1c19mbXQg
-JWx4XG4iLCBkd19oZG1pLT5vdXRwdXRfYnVzX2ZtdCk7CisKIAlyZXR1cm4gMDsKIH0KIApAQCAt
-NzU2LDE4ICs3OTMsMjkgQEAgc3RhdGljIHZvaWQgbWVzb25fdmVuY19oZG1pX2VuY29kZXJfbW9k
-ZV9zZXQoc3RydWN0IGRybV9icmlkZ2UgKmJyaWRnZSwKIAlzdHJ1Y3QgbWVzb25fZHdfaGRtaSAq
-ZHdfaGRtaSA9IGJyaWRnZV90b19tZXNvbl9kd19oZG1pKGJyaWRnZSk7CiAJc3RydWN0IG1lc29u
-X2RybSAqcHJpdiA9IGR3X2hkbWktPnByaXY7CiAJaW50IHZpYyA9IGRybV9tYXRjaF9jZWFfbW9k
-ZShtb2RlKTsKKwl1bnNpZ25lZCBpbnQgeWNyY2JfbWFwID0gVlBVX0hETUlfT1VUUFVUX0NCWUNS
-OworCWJvb2wgeXV2NDIwX21vZGUgPSBmYWxzZTsKIAogCURSTV9ERUJVR19EUklWRVIoIlwiJXNc
-IiB2aWMgJWRcbiIsIG1vZGUtPm5hbWUsIHZpYyk7CiAKKwlpZiAoZHdfaGRtaS0+b3V0cHV0X2J1
-c19mbXQgPT0gTUVESUFfQlVTX0ZNVF9VWVlWWVk4XzBfNVgyNCkgeworCQl5Y3JjYl9tYXAgPSBW
-UFVfSERNSV9PVVRQVVRfQ1JZQ0I7CisJCXl1djQyMF9tb2RlID0gdHJ1ZTsKKwl9CisKIAkvKiBW
-RU5DICsgVkVOQy1EVkkgTW9kZSBzZXR1cCAqLwotCW1lc29uX3ZlbmNfaGRtaV9tb2RlX3NldChw
-cml2LCB2aWMsIHljcmNiX21hcCwgZmFsc2UsCi0JCQkJIFZQVV9IRE1JX09VVFBVVF9DQllDUik7
-CisJbWVzb25fdmVuY19oZG1pX21vZGVfc2V0KHByaXYsIHZpYywgeWNyY2JfbWFwLCB5dXY0MjBf
-bW9kZSwgbW9kZSk7CiAKIAkvKiBWQ0xLIFNldCBjbG9jayAqLwogCWR3X2hkbWlfc2V0X3ZjbGso
-ZHdfaGRtaSwgbW9kZSk7CiAKLQkvKiBTZXR1cCBZVVY0NDQgdG8gSERNSS1UWCwgbm8gMTBiaXQg
-ZGlwaGVyaW5nICovCi0Jd3JpdGVsX3JlbGF4ZWQoMCwgcHJpdi0+aW9fYmFzZSArIF9SRUcoVlBV
-X0hETUlfRk1UX0NUUkwpKTsKKwlpZiAoZHdfaGRtaS0+b3V0cHV0X2J1c19mbXQgPT0gTUVESUFf
-QlVTX0ZNVF9VWVlWWVk4XzBfNVgyNCkKKwkJLyogU2V0dXAgWVVWNDIwIHRvIEhETUktVFgsIG5v
-IDEwYml0IGRpcGhlcmluZyAqLworCQl3cml0ZWxfcmVsYXhlZCgyIHwgKDIgPDwgMiksCisJCQkg
-ICAgICAgcHJpdi0+aW9fYmFzZSArIF9SRUcoVlBVX0hETUlfRk1UX0NUUkwpKTsKKwllbHNlCisJ
-CS8qIFNldHVwIFlVVjQ0NCB0byBIRE1JLVRYLCBubyAxMGJpdCBkaXBoZXJpbmcgKi8KKwkJd3Jp
-dGVsX3JlbGF4ZWQoMCwgcHJpdi0+aW9fYmFzZSArIF9SRUcoVlBVX0hETUlfRk1UX0NUUkwpKTsK
-IH0KIAogc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fYnJpZGdlX2Z1bmNzIG1lc29uX3ZlbmNfaGRt
-aV9lbmNvZGVyX2JyaWRnZV9mdW5jcyA9IHsKQEAgLTEwMjQsNiArMTA3Miw3IEBAIHN0YXRpYyBp
-bnQgbWVzb25fZHdfaGRtaV9iaW5kKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRldmljZSAq
-bWFzdGVyLAogCWR3X3BsYXRfZGF0YS0+cGh5X25hbWUgPSAibWVzb25fZHdfaGRtaV9waHkiOwog
-CWR3X3BsYXRfZGF0YS0+cGh5X2RhdGEgPSBtZXNvbl9kd19oZG1pOwogCWR3X3BsYXRfZGF0YS0+
-aW5wdXRfYnVzX2VuY29kaW5nID0gVjRMMl9ZQ0JDUl9FTkNfNzA5OworCWR3X3BsYXRfZGF0YS0+
-eWNiY3JfNDIwX2FsbG93ZWQgPSB0cnVlOwogCiAJaWYgKGR3X2hkbWlfaXNfY29tcGF0aWJsZSht
-ZXNvbl9kd19oZG1pLCAiYW1sb2dpYyxtZXNvbi1neGwtZHctaGRtaSIpIHx8CiAJICAgIGR3X2hk
-bWlfaXNfY29tcGF0aWJsZShtZXNvbl9kd19oZG1pLCAiYW1sb2dpYyxtZXNvbi1neG0tZHctaGRt
-aSIpIHx8Ci0tIAoyLjIyLjAKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
-LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9saW51eC1hbWxvZ2ljCg==
+On Wed, Mar 04, 2020 at 10:08:55AM +0100, Neil Armstrong wrote:
+> Hi Lorenzo,
+> 
+> 
+> On 03/03/2020 18:19, Lorenzo Pieralisi wrote:
+> > On Fri, Jan 24, 2020 at 12:29:41AM +0100, Remi Pommarel wrote:
+> >> This adds support for the MIPI analog PHY which is also used for PCIE
+> >> found in the Amlogic AXG SoC Family.
+> >>
+> >> MIPI or PCIE selection is done by the #phy-cells, making the mode
+> >> static and exclusive.
+> >>
+> >> For now only PCIE fonctionality is supported.
+> >>
+> >> This PHY will be used to replace the mipi_enable clock gating logic
+> >> which was mistakenly added in the clock subsystem. This also activate
+> >> a non documented band gap bit in those registers that allows reliable
+> >> PCIE clock signal generation on AXG platforms.
+> >>
+> >> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> >> ---
+> >>  drivers/phy/amlogic/Kconfig                   |  11 +
+> >>  drivers/phy/amlogic/Makefile                  |  11 +-
+> >>  .../amlogic/phy-meson-axg-mipi-pcie-analog.c  | 188 ++++++++++++++++++
+> >>  3 files changed, 205 insertions(+), 5 deletions(-)
+> >>  create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> > 
+> > Kishon, Neil,
+> > 
+> > can you please review/ack this patch and patch 6 ?
+> 
+> Sure, it was already acked by jerome, but it's also ok for me:
+> 
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Thanks. Sorry for the pedantry but on patch (6) too.
+
+Lorenzo
+
+> Neil
+> > 
+> > I would like to queue the series shortly, thanks.
+> > 
+> > Lorenzo
+> > 
+> >> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
+> >> index af774ac2b934..8c9cf2403591 100644
+> >> --- a/drivers/phy/amlogic/Kconfig
+> >> +++ b/drivers/phy/amlogic/Kconfig
+> >> @@ -59,3 +59,14 @@ config PHY_MESON_G12A_USB3_PCIE
+> >>  	  Enable this to support the Meson USB3 + PCIE Combo PHY found
+> >>  	  in Meson G12A SoCs.
+> >>  	  If unsure, say N.
+> >> +
+> >> +config PHY_MESON_AXG_MIPI_PCIE_ANALOG
+> >> +	tristate "Meson AXG MIPI + PCIE analog PHY driver"
+> >> +	default ARCH_MESON
+> >> +	depends on OF && (ARCH_MESON || COMPILE_TEST)
+> >> +	select GENERIC_PHY
+> >> +	select REGMAP_MMIO
+> >> +	help
+> >> +	  Enable this to support the Meson MIPI + PCIE analog PHY
+> >> +	  found in Meson AXG SoCs.
+> >> +	  If unsure, say N.
+> >> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
+> >> index 11d1c42ac2be..0aecf92d796a 100644
+> >> --- a/drivers/phy/amlogic/Makefile
+> >> +++ b/drivers/phy/amlogic/Makefile
+> >> @@ -1,6 +1,7 @@
+> >>  # SPDX-License-Identifier: GPL-2.0-only
+> >> -obj-$(CONFIG_PHY_MESON8B_USB2)		+= phy-meson8b-usb2.o
+> >> -obj-$(CONFIG_PHY_MESON_GXL_USB2)	+= phy-meson-gxl-usb2.o
+> >> -obj-$(CONFIG_PHY_MESON_G12A_USB2)	+= phy-meson-g12a-usb2.o
+> >> -obj-$(CONFIG_PHY_MESON_GXL_USB3)	+= phy-meson-gxl-usb3.o
+> >> -obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)	+= phy-meson-g12a-usb3-pcie.o
+> >> +obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
+> >> +obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
+> >> +obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
+> >> +obj-$(CONFIG_PHY_MESON_GXL_USB3)		+= phy-meson-gxl-usb3.o
+> >> +obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)		+= phy-meson-g12a-usb3-pcie.o
+> >> +obj-$(CONFIG_PHY_MESON_AXG_MIPI_PCIE_ANALOG)	+= phy-meson-axg-mipi-pcie-analog.o
+> >> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> >> new file mode 100644
+> >> index 000000000000..1431cbf885e1
+> >> --- /dev/null
+> >> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> >> @@ -0,0 +1,188 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * Amlogic AXG MIPI + PCIE analog PHY driver
+> >> + *
+> >> + * Copyright (C) 2019 Remi Pommarel <repk@triplefau.lt>
+> >> + */
+> >> +#include <linux/module.h>
+> >> +#include <linux/phy/phy.h>
+> >> +#include <linux/regmap.h>
+> >> +#include <linux/platform_device.h>
+> >> +#include <dt-bindings/phy/phy.h>
+> >> +
+> >> +#define HHI_MIPI_CNTL0 0x00
+> >> +#define		HHI_MIPI_CNTL0_COMMON_BLOCK	GENMASK(31, 28)
+> >> +#define		HHI_MIPI_CNTL0_ENABLE		BIT(29)
+> >> +#define		HHI_MIPI_CNTL0_BANDGAP		BIT(26)
+> >> +#define		HHI_MIPI_CNTL0_DECODE_TO_RTERM	GENMASK(15, 12)
+> >> +#define		HHI_MIPI_CNTL0_OUTPUT_EN	BIT(3)
+> >> +
+> >> +#define HHI_MIPI_CNTL1 0x01
+> >> +#define		HHI_MIPI_CNTL1_CH0_CML_PDR_EN	BIT(12)
+> >> +#define		HHI_MIPI_CNTL1_LP_ABILITY	GENMASK(5, 4)
+> >> +#define		HHI_MIPI_CNTL1_LP_RESISTER	BIT(3)
+> >> +#define		HHI_MIPI_CNTL1_INPUT_SETTING	BIT(2)
+> >> +#define		HHI_MIPI_CNTL1_INPUT_SEL	BIT(1)
+> >> +#define		HHI_MIPI_CNTL1_PRBS7_EN		BIT(0)
+> >> +
+> >> +#define HHI_MIPI_CNTL2 0x02
+> >> +#define		HHI_MIPI_CNTL2_CH_PU		GENMASK(31, 25)
+> >> +#define		HHI_MIPI_CNTL2_CH_CTL		GENMASK(24, 19)
+> >> +#define		HHI_MIPI_CNTL2_CH0_DIGDR_EN	BIT(18)
+> >> +#define		HHI_MIPI_CNTL2_CH_DIGDR_EN	BIT(17)
+> >> +#define		HHI_MIPI_CNTL2_LPULPS_EN	BIT(16)
+> >> +#define		HHI_MIPI_CNTL2_CH_EN(n)		BIT(15 - (n))
+> >> +#define		HHI_MIPI_CNTL2_CH0_LP_CTL	GENMASK(10, 1)
+> >> +
+> >> +struct phy_axg_mipi_pcie_analog_priv {
+> >> +	struct phy *phy;
+> >> +	unsigned int mode;
+> >> +	struct regmap *regmap;
+> >> +};
+> >> +
+> >> +static const struct regmap_config phy_axg_mipi_pcie_analog_regmap_conf = {
+> >> +	.reg_bits = 8,
+> >> +	.val_bits = 32,
+> >> +	.reg_stride = 4,
+> >> +	.max_register = HHI_MIPI_CNTL2,
+> >> +};
+> >> +
+> >> +static int phy_axg_mipi_pcie_analog_power_on(struct phy *phy)
+> >> +{
+> >> +	struct phy_axg_mipi_pcie_analog_priv *priv = phy_get_drvdata(phy);
+> >> +
+> >> +	/* MIPI not supported yet */
+> >> +	if (priv->mode != PHY_TYPE_PCIE)
+> >> +		return -EINVAL;
+> >> +
+> >> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> >> +			   HHI_MIPI_CNTL0_BANDGAP, HHI_MIPI_CNTL0_BANDGAP);
+> >> +
+> >> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> >> +			   HHI_MIPI_CNTL0_ENABLE, HHI_MIPI_CNTL0_ENABLE);
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int phy_axg_mipi_pcie_analog_power_off(struct phy *phy)
+> >> +{
+> >> +	struct phy_axg_mipi_pcie_analog_priv *priv = phy_get_drvdata(phy);
+> >> +
+> >> +	/* MIPI not supported yet */
+> >> +	if (priv->mode != PHY_TYPE_PCIE)
+> >> +		return -EINVAL;
+> >> +
+> >> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> >> +			   HHI_MIPI_CNTL0_BANDGAP, 0);
+> >> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> >> +			   HHI_MIPI_CNTL0_ENABLE, 0);
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int phy_axg_mipi_pcie_analog_init(struct phy *phy)
+> >> +{
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int phy_axg_mipi_pcie_analog_exit(struct phy *phy)
+> >> +{
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static const struct phy_ops phy_axg_mipi_pcie_analog_ops = {
+> >> +	.init = phy_axg_mipi_pcie_analog_init,
+> >> +	.exit = phy_axg_mipi_pcie_analog_exit,
+> >> +	.power_on = phy_axg_mipi_pcie_analog_power_on,
+> >> +	.power_off = phy_axg_mipi_pcie_analog_power_off,
+> >> +	.owner = THIS_MODULE,
+> >> +};
+> >> +
+> >> +static struct phy *phy_axg_mipi_pcie_analog_xlate(struct device *dev,
+> >> +						  struct of_phandle_args *args)
+> >> +{
+> >> +	struct phy_axg_mipi_pcie_analog_priv *priv = dev_get_drvdata(dev);
+> >> +	unsigned int mode;
+> >> +
+> >> +	if (args->args_count != 1) {
+> >> +		dev_err(dev, "invalid number of arguments\n");
+> >> +		return ERR_PTR(-EINVAL);
+> >> +	}
+> >> +
+> >> +	mode = args->args[0];
+> >> +
+> >> +	/* MIPI mode is not supported yet */
+> >> +	if (mode != PHY_TYPE_PCIE) {
+> >> +		dev_err(dev, "invalid phy mode select argument\n");
+> >> +		return ERR_PTR(-EINVAL);
+> >> +	}
+> >> +
+> >> +	priv->mode = mode;
+> >> +	return priv->phy;
+> >> +}
+> >> +
+> >> +static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
+> >> +{
+> >> +	struct phy_provider *phy;
+> >> +	struct device *dev = &pdev->dev;
+> >> +	struct phy_axg_mipi_pcie_analog_priv *priv;
+> >> +	struct device_node *np = dev->of_node;
+> >> +	struct regmap *map;
+> >> +	struct resource *res;
+> >> +	void __iomem *base;
+> >> +	int ret;
+> >> +
+> >> +	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
+> >> +	if (!priv)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> >> +	base = devm_ioremap_resource(dev, res);
+> >> +	if (IS_ERR(base)) {
+> >> +		dev_err(dev, "failed to get regmap base\n");
+> >> +		return PTR_ERR(base);
+> >> +	}
+> >> +
+> >> +	map = devm_regmap_init_mmio(dev, base,
+> >> +				    &phy_axg_mipi_pcie_analog_regmap_conf);
+> >> +	if (IS_ERR(map)) {
+> >> +		dev_err(dev, "failed to get HHI regmap\n");
+> >> +		return PTR_ERR(map);
+> >> +	}
+> >> +	priv->regmap = map;
+> >> +
+> >> +	priv->phy = devm_phy_create(dev, np, &phy_axg_mipi_pcie_analog_ops);
+> >> +	if (IS_ERR(priv->phy)) {
+> >> +		ret = PTR_ERR(priv->phy);
+> >> +		if (ret != -EPROBE_DEFER)
+> >> +			dev_err(dev, "failed to create PHY\n");
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	phy_set_drvdata(priv->phy, priv);
+> >> +	dev_set_drvdata(dev, priv);
+> >> +
+> >> +	phy = devm_of_phy_provider_register(dev,
+> >> +					    phy_axg_mipi_pcie_analog_xlate);
+> >> +
+> >> +	return PTR_ERR_OR_ZERO(phy);
+> >> +}
+> >> +
+> >> +static const struct of_device_id phy_axg_mipi_pcie_analog_of_match[] = {
+> >> +	{
+> >> +		.compatible = "amlogic,axg-mipi-pcie-analog-phy",
+> >> +	},
+> >> +	{ },
+> >> +};
+> >> +MODULE_DEVICE_TABLE(of, phy_axg_mipi_pcie_analog_of_match);
+> >> +
+> >> +static struct platform_driver phy_axg_mipi_pcie_analog_driver = {
+> >> +	.probe = phy_axg_mipi_pcie_analog_probe,
+> >> +	.driver = {
+> >> +		.name = "phy-axg-mipi-pcie-analog",
+> >> +		.of_match_table = phy_axg_mipi_pcie_analog_of_match,
+> >> +	},
+> >> +};
+> >> +module_platform_driver(phy_axg_mipi_pcie_analog_driver);
+> >> +
+> >> +MODULE_AUTHOR("Remi Pommarel <repk@triplefau.lt>");
+> >> +MODULE_DESCRIPTION("Amlogic AXG MIPI + PCIE analog PHY driver");
+> >> +MODULE_LICENSE("GPL v2");
+> >> -- 
+> >> 2.24.1
+> >>
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
