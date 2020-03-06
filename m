@@ -2,82 +2,81 @@ Return-Path: <SRS0=uPkF=4X=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_2 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 93D08C10DCE
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Mar 2020 14:40:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24764C10DCE
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Mar 2020 16:18:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 64FF52072D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Mar 2020 14:40:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C732E2084E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Mar 2020 16:18:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OiDTCwne";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="l9aV7/iI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 64FF52072D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qgbC/Y8S";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mTpAGJks"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C732E2084E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JUv8Tcv/FIfKgGpZ7fUROyI74Dmhmlyiin7BWc0RNy0=; b=OiDTCwneLCaDP1
-	rfO3FiI7aqVti28HQuUMXn6n7sdjFMbyuzW2E2bQPRlOCIQlJE4vBB3GqAPJH78aKu2+UkuAWbbj4
-	jFWukH0bh8zf+7FWQ++84PvKRL75vhIyo6JNRkd+S3TcpXDwJgSOWfLq7I9giHUipOmi/9Rr8qGP/
-	1rmZdJvUsVJLPxt3w/L1B/HACn3pE+jM+T1KJJ2Vvxy1pR2I5Q2OwwFcg/0ZU6rsfruBviiZE8mT8
-	hsObrfpuvHgJxQ2g+nbNX6FWtPyn8niWdJNo6EkveN4xizCmOoL2xCLCLIgFImT4jAXhYFnbjrEDf
-	lhNyosbYwKHPAM0dJ4Yg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=eV+HPtG5t5hoRLmIXb+1hxenAtytKQ/5lPVpvBywpg4=; b=qgbC/Y8SMtWes8sJ3n3qWRxd3
+	3o9/5mrtoXZ6fgVIfAZVavtfnEVEHXpVdfrVAa6GXRy7OEj4Ymh78q7KAoAT7sg9pxINEvMOx+3T0
+	u5un7+2oazLh3FEkZM5+t0lD8yAsIp6+kc5m+zagYkzXV5rM8CEIw4NcBebTv76Gv6PY6h1V5JDri
+	FWxC7VW1WjhH0dJOQjUXzbiy2AmAFfhmF4nHVekOiUcY0vCPD7jFGujlIaA7HhdbvOTmFTBriJpk5
+	efBjCnJmi5qC2XyFaXZlheozoXMr7q3eRjDpZLt5JQCiouix2sayIDoiIWA18zkQtzKrtatN6+tsW
+	N2JGEJjIg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jAE9E-0003m1-Ft; Fri, 06 Mar 2020 14:40:20 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1jAFfn-0000Hv-LN; Fri, 06 Mar 2020 16:18:03 +0000
+Received: from mail-lf1-x143.google.com ([2a00:1450:4864:20::143])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jAE8z-0002rN-KG
- for linux-amlogic@lists.infradead.org; Fri, 06 Mar 2020 14:40:08 +0000
-Received: by mail-wm1-x343.google.com with SMTP id a141so2636754wme.2
- for <linux-amlogic@lists.infradead.org>; Fri, 06 Mar 2020 06:40:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:autocrypt:organization:cc:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=UHD8Cjg7cxe0FqPGUpuHhNgIy9D9uE3DNlkPjJCU8G8=;
- b=l9aV7/iIMZWP7WExZGHmYOkk4/U6qN4T0pes5Cu/n3yRVNNMvlqwXVjFL/eECPwcRC
- 0zfbRVw2vY3ZXn2qtFPJJfnYOaVr72U84zkD5uGe8cfrXdLT3SSjPnwe8G88GOrVFhuB
- p26/ZrbLxY/Hi4uovWbZoyYOG5/g2gZv3OUQdL8/RgRk/P1KVMOwQw4V1naKFzY97qEG
- zbUySt+FaP86FFKR6ypJkrZ7RjMRIfnccU7H2E3Hhm5yhH58GJ5hQBDG3IveGQwp51Zb
- JKCopBvF6mL6QBnRnjsTtDa2X3QkMPikLUpQvqYb4gpEP1zTXkREy1TV/LZuL1EiP1Q4
- 51Ww==
+ id 1jAFfk-0000HB-VK; Fri, 06 Mar 2020 16:18:02 +0000
+Received: by mail-lf1-x143.google.com with SMTP id j15so2361410lfk.6;
+ Fri, 06 Mar 2020 08:18:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=Z+TJMGEeVoGtC49ptXlQFv7le4nU8temgCblUT4vbVU=;
+ b=mTpAGJks0WsFlELSXp3Du/jidQlD93dWjc024/xOuNY30kBjARicDYFfvmosqSZXyq
+ IDx7jqBxS5J0xYtZe5jG8pEPuKBu/z6SNrj52+Bz9YmP0+nWu9kP60a57/4W4TqkLv+9
+ yvCmE6DDVl5vEy36xyI0gv68OW3yDlcKJ00hDSQNEBUqBoQhAYfllOVlQ62fQtad5Hhn
+ WIqGlIDQSbO7Nvp9Q2aGjkRGlxGxV1nVe4Xs4JXRuJEDT0Smb65gC5Bb8tSz1aX+73io
+ b/Cdxdkkqg9u1B0i5fYuaRtR+7NTH6brln6Zg0pnSQql7QdNlM6ktmv/0s6X0QFmCg2d
+ XKgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:autocrypt
- :organization:cc:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=UHD8Cjg7cxe0FqPGUpuHhNgIy9D9uE3DNlkPjJCU8G8=;
- b=FbUR5OnuI0IfWijkPr3ekH6Qwdye2SUKbM70eZHf1Cvy8T7P1+suo4UqCXOJZSN+Hc
- /Pci1INqlkcWVi+guR8M0jjBHAgKKJ0vIRyHX/dSIFRfWVXIrDpdmCx7JTwdBMtznTU6
- mahDeGWO1xXgxaE8bMfUQmMfhoyf0P22iTtNeq75ABI6eJejZMr6WKXuOrM4OFpILPox
- HtBh2kFzoiy3csGd0tQtTLWm6LVb4QyP0pO41omMnnVumxnbKoa+S2jI/4oop1NLHX/A
- uAo7irqyQyZkB7z/DwbMKM8nwFAoNGq7NOYsyTppNauge83zTZSYa5Q6PeSRbZF+kxrG
- rtzg==
-X-Gm-Message-State: ANhLgQ30QykujPkWcyJqR2lMmg9U5KJY/9z2fedm6M7tsWYYUmeSadjI
- EwNsRIVyGwx/5u+8R9RMyNd5Fw==
-X-Google-Smtp-Source: ADFU+vtrd1NhrnDH8NuluvSgfA17Px/Wd7uZBkEak0FqLMyq7DnyB2Oz9NJXqvdh6uYeJUMWEuqtCQ==
-X-Received: by 2002:a1c:7ec5:: with SMTP id z188mr4285735wmc.52.1583505603072; 
- Fri, 06 Mar 2020 06:40:03 -0800 (PST)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2?
- ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
- by smtp.gmail.com with ESMTPSA id d15sm47329840wrp.37.2020.03.06.06.40.01
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 06 Mar 2020 06:40:02 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=Z+TJMGEeVoGtC49ptXlQFv7le4nU8temgCblUT4vbVU=;
+ b=p7hHwCucLhQ2vSlHTxFL3PgXQBn3nMiidaicKZBlcQPmWIuSymvUroDFJYYctiNEi9
+ DjhAb2vEcY+Nz2iTQfccml7WpqzoFIXMgsccuwwhoBR169E7x9sP3rlE0r3WcYdtqhWB
+ yEuoZx5CjZBvQ7fOdRidoHe+4wTYGE9jcrxQfmo7UlqoUWUwdHagi9bP3ONEh86bnU0K
+ udOsX8haO9Ovz8j3VwKo03mW3fgOwhx5jiSEFz6ap+tOCVqTA74o9OoKWLDybKpxvGQV
+ 4sVePe254RU7oKUTAvuygrrNQ5x6jB0NlkH2VPfEMBZ29Y+fUPEyFgaeX3rcf0Sfa/Ap
+ Q2TA==
+X-Gm-Message-State: ANhLgQ1fU/9WmAFRdVxkgch7rirA/UUB0tx2Wul03Z0OCXxTVsGgZX5k
+ YLSXCSjYD5bU5aPt3Ijk+ww=
+X-Google-Smtp-Source: ADFU+vuwI6V8yMCkBVEfEewYfNim0qzEgKl4clXc2U7TnaM4A3YLgo87+3yB8AqQvMGoDHbSLJ1YPA==
+X-Received: by 2002:a05:6512:108a:: with SMTP id
+ j10mr2458169lfg.35.1583511478908; 
+ Fri, 06 Mar 2020 08:17:58 -0800 (PST)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id j26sm17383971lfm.3.2020.03.06.08.17.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 06 Mar 2020 08:17:58 -0800 (PST)
+Date: Fri, 6 Mar 2020 18:17:47 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
 Subject: Re: [PATCH 1/4] drm/fourcc: Add modifier definitions for describing
  Amlogic Video Framebuffer Compression
-To: Pekka Paalanen <ppaalanen@gmail.com>,
- Brian Starkey <brian.starkey@arm.com>, Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20200306181747.5dbda69d@eldfell.localdomain>
+In-Reply-To: <27d09559-055a-7bf3-0f23-9948da0e1f76@baylibre.com>
 References: <20200221090845.7397-1-narmstrong@baylibre.com>
  <20200221090845.7397-2-narmstrong@baylibre.com>
  <20200303121029.5532669d@eldfell.localdomain>
@@ -86,67 +85,12 @@ References: <20200221090845.7397-1-narmstrong@baylibre.com>
  <20200303152541.68ab6f3d@eldfell.localdomain>
  <20200303173332.1c6daa09@eldfell.localdomain>
  <20200306101328.GR2363188@phenom.ffwll.local>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <27d09559-055a-7bf3-0f23-9948da0e1f76@baylibre.com>
-Date: Fri, 6 Mar 2020 15:40:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ <27d09559-055a-7bf3-0f23-9948da0e1f76@baylibre.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20200306101328.GR2363188@phenom.ffwll.local>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200306_064005_675832_7243FF79 
-X-CRM114-Status: GOOD (  26.38  )
+X-CRM114-CacheID: sfid-20200306_081801_034184_0CD40AA5 
+X-CRM114-Status: GOOD (  13.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,173 +102,95 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Linux ARM <linux-arm-kernel@lists.infradead.org>,
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
  linux-amlogic@lists.infradead.org, nd <nd@arm.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Brian Starkey <brian.starkey@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: multipart/mixed; boundary="===============7289532601328665607=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Pekka, Brian, Daniel,
+--===============7289532601328665607==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/QRgxWOW3=LdfxDd168gPaIX"; protocol="application/pgp-signature"
 
-On 06/03/2020 11:13, Daniel Vetter wrote:
-> On Tue, Mar 03, 2020 at 05:33:32PM +0200, Pekka Paalanen wrote:
->> On Tue, 3 Mar 2020 15:25:41 +0200
->> Pekka Paalanen <ppaalanen@gmail.com> wrote:
->>
->>> On Tue, 3 Mar 2020 12:37:16 +0100
->>> Daniel Vetter <daniel@ffwll.ch> wrote:
->>>
->>>> On Tue, Mar 3, 2020 at 11:53 AM Brian Starkey <brian.starkey@arm.com> wrote:  
->>>>>
->>>>> Hi,
->>>>>
->>>>> On Tue, Mar 03, 2020 at 12:10:29PM +0200, Pekka Paalanen wrote:    
->>>>>> On Fri, 21 Feb 2020 10:08:42 +0100
->>>>>> Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>>>>    
->> ...
->>>>>>> +/*
->>>>>>> + * Amlogic Video Framebuffer Compression modifiers
->>>>>>> + *
->>>>>>> + * Amlogic uses a proprietary lossless image compression protocol and format
->>>>>>> + * for their hardware video codec accelerators, either video decoders or
->>>>>>> + * video input encoders.
->>>>>>> + *
->>>>>>> + * It considerably reduces memory bandwidth while writing and reading
->>>>>>> + * frames in memory.
->>>>>>> + * Implementation details may be platform and SoC specific, and shared
->>>>>>> + * between the producer and the decoder on the same platform.    
->>>>>>
->>>>>> Hi,
->>>>>>
->>>>>> after a lengthy IRC discussion on #dri-devel, this "may be platform and
->>>>>> SoC specific" is a problem.
+--Sig_/QRgxWOW3=LdfxDd168gPaIX
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-This one is definitely only for the SCATTER modifier, not the DEFAULT and MEM_SAVING.
+On Fri, 6 Mar 2020 15:40:01 +0100
+Neil Armstrong <narmstrong@baylibre.com> wrote:
 
->>>>>>
->>>>>> It can be an issue in two ways:
->>>>>>
->>>>>> - If something in the data acts like a sub-modifier, then advertising
->>>>>>   support for one modifier does not really tell if the data layout is
->>>>>>   supported or not.
+> Hi Pekka, Brian, Daniel,
+>=20
+> On 06/03/2020 11:13, Daniel Vetter wrote:
+> > On Tue, Mar 03, 2020 at 05:33:32PM +0200, Pekka Paalanen wrote: =20
 
-It's clearly not.
+...
 
-The DEFAULT and MEM_SAVING modifiers are clearly transferable, and their layout is
-extremely simple. While we don't have the memory compression algorithm, the memory
-layout is simple to describe and doesn't act as a sub-modifier.
+> >> Sorry, it's waypipe, not pipewire:
+> >> https://gitlab.freedesktop.org/mstoeckl/waypipe/ =20
+> >=20
+> > I do think this is very much something we want to make possible. They
+> > might pick a silly modifier (compression modifiers only compress bw, by
+> > necessity the lossless ones have to increase storage space so kinda dumb
+> > thing to push over the network if you don't add .xz or whatever on top)=
+. =20
+>=20
+> The AFBC, and Amlogic FBC are not size optimized compressions, but really
+> layout and memory access optimized compressions, without a proper network
+> size compression, transferring plain NV12 would be the same.
 
-The complexity lies in the SCATTER modifier, which describe an instant live memory
-layout, that is not transferable and with an unknown and variable layout.
+FWIW, waypipe is not intended to be the most efficient network
+streaming protocol, but it is intended to be a direct Wayland protocol
+proxy (X11 forwarding, anyone?), which means that it needs to be able to
+transmit also dmabuf buffers as is. It does not want to understand
+modifiers but just send opaque data.
 
->>>>>>
->>>>>> - If you need to know the platform and/or SoC to be able to interpret
->>>>>>   the data, it means the modifier is ill-defined and cannot be used in
->>>>>>   inter-machine communication (e.g. Pipewire).
+It may or may not do lossless compression of the data it sends over the
+wire, but it will replicate the dmabuf on the remote end.
 
-It's not the case for the DEFAULT and MEM_SAVING modifiers.
-
-The SCATTER modifier is mandatory for the Amlogic G12A and G12B HW video decoder,
-but the same HW is capable of displaying the non-SCATTER buffer for example.
-
->>>>>>    
->>>>>
->>>>> Playing devil's advocate, the comment sounds similar to
->>>>> I915_FORMAT_MOD_{X,Y}_TILED:
->>>>>
->>>>>  * This format is highly platforms specific and not useful for cross-driver
->>>>>  * sharing. It exists since on a given platform it does uniquely identify the
->>>>>  * layout in a simple way for i915-specific userspace.    
->>>>
->>>> Yeah which we regret now. We need to now roll out a new set of
->>>> modifiers for at least some of the differences in these on the
->>>> modern-ish chips (the old crap is pretty much lost cause anyway).
->>>>
->>>> This was kinda a nasty hack to smooth things over since we have epic
->>>> amounts of userspace, but it's really not a great idea (and no one
->>>> else really has epic amounts of existing userspace that uses tiling
->>>> flags everywhere, this is all new code).
->>>> -Daniel
->>>>   
->>>>> Isn't the statement that this for sharing between producer and decoder
->>>>> _on the same platform_ a similar clause with the same effect?
->>>>>
->>>>> What advantage is there to exposing the gory details? For Arm AFBC
->>>>> it's necessary because IP on the SoC can be (likely to be) from
->>>>> different vendors with different capabilities.
->>>>>
->>>>> If this is only for talking between Amlogic IP on the same SoC, and
->>>>> those devices support all the same "flavours", I don't see what is
->>>>> gained by making userspace care about internals.    
->>>>
->>>> The trouble is if you mix&match IP cores, and one of them supports
->>>> flavours A, B, C and the other C, D, E. But all you have is a single
->>>> magic modifier for "whatever the flavour is that soc prefers". So
->>>> someone gets to stuff this in DT.
-
-This is not the case here, maybe I should explicit the "DEFAULT" modifier with
-a bit like "BASIC" to explicitly define support for the currently defined
-DEFAULT mode.
-
->>>>
->>>> Also eventually, maybe, perhaps ARM does grow up into the
->>>> client/server space with add-on pcie graphics, and at least for client
->>>> you very often end up with integrated + add-in pcie gpu. At that point
->>>> you really can't have magic per-soc modifiers anymore.  
->>>
->>> Hi,
->>>
->>> I also heard that Pipewire will copy buffers and modifiers verbatim
->>> from one machine to another when streaming across network, assuming
->>> that the same modifier means the same thing on all machines.[Citation needed]
-
-Transferring AFBC buffers doesn't sound like a good idea to me....
-
->>>
->>> If that is something that must not be done with DRM modifiers, then
->>> please contact them and document that.
->>
->> Sorry, it's waypipe, not pipewire:
->> https://gitlab.freedesktop.org/mstoeckl/waypipe/
-> 
-> I do think this is very much something we want to make possible. They
-> might pick a silly modifier (compression modifiers only compress bw, by
-> necessity the lossless ones have to increase storage space so kinda dumb
-> thing to push over the network if you don't add .xz or whatever on top).
-
-The AFBC, and Amlogic FBC are not size optimized compressions, but really
-layout and memory access optimized compressions, without a proper network
-size compression, transferring plain NV12 would be the same.
-
-> 
-> I'm also hoping that intel's modifiers are definitely the one and only
-> that we ever screwed up, and we should be getting those fixed in the near
-> future too.
-
-I'd like too.
-
-> 
-> So maybe what we should do instead is add a comment to the modifier docs
-> that this stuff _is_ supposed to be transferrable over networks and work.
-
-Only the "SCATTER" is not transferable, the other options are definitely
-transferable, and across 6 families and at least between a minimum of 15
-different upstream supported SoCs.
-
-Should it be in the modifier description ? should I add a reserved bit
-in the Amlogic modifier space describing it's non-transferable nature ?
+Or so I'm told.
 
 
-> -Daniel
-> 
+Thanks,
+pq
 
-Neil
+--Sig_/QRgxWOW3=LdfxDd168gPaIX
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl5id6sACgkQI1/ltBGq
+qqd8PhAArj8wtOHDFlSHaRYFMSEtCurAGSLkUTpmQWl6J1kvS7Stv5XI9jgfSCws
+IITQFVQc/DxIvzf4KO9zECMi+oIrhw3vyrvJEIErhE6LuZdqgR2MNP3ATNBKU8WR
+OTEawk87ZvZQENGUYPiV9R3uF0+yr2Qlz2FqmizM8lD6fmWXV1QBBKr8AgkZ+/qK
+E4e6GRAn+3mBZLS4dxEeU/pATGoZNnOoMpmp/z27AIaibtN88Qpzxy+WtyYUREGm
+oTjidQaSOgwEt8nDdhdTFCfZcN4HwH8n5p5JleSvKVziTQlTy5IQZasa5ViuX0wB
+eC+x6OmdrxZ0wBuDfZBp26jKmWP3QDxfwaL+QCRnor+9Ao7Tty9MoGVAbPuy1mwc
+SzJpjIYsY0OGIjp6OL/Isi5wPZbawkeifutoPVdo9o9PdRIzhR3PJtoOZPN8Ywva
+yFP28GivCkapKxSlM3NDDjzA5dT+rUFEeBGurXuZqPZe9rKocN2CmXQ96wsmYJ/a
+WMsJNg7EiswQoUf/JadWfm5dpSK42wyGGs9M1i6yRpTo+QGGzQVkmT5Kx7uLAd+p
+vuYVc+bNjwNeELU4UhEBXZVWM3n7l7OIcL38NshrnBhdOs0Zy/ElXnSmHkgpccbv
+sfZp+i8Id5jdyzKGwzbFsG8OQ/zlUyM9B7yhHhejzP7Q482a3gA=
+=KY6f
+-----END PGP SIGNATURE-----
+
+--Sig_/QRgxWOW3=LdfxDd168gPaIX--
+
+
+--===============7289532601328665607==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7289532601328665607==--
+
