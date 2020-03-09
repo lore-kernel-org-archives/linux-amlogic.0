@@ -2,61 +2,73 @@ Return-Path: <SRS0=Mql2=42=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACEAEC10F25
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 20:54:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DCC4EC10F25
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 20:54:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8577E24654
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 20:54:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B406B20873
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 20:54:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lTtWMM/s"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8577E24654
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="q5zX1Fpd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="smc1nHTe"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B406B20873
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ycCB0laM7RbvvxMjgYO8lFMIvwLyKo0SCjQVTFCQ7dY=; b=lTtWMM/sYAGWVd
-	RQOa/YPG7NEFy5VllzwesaQHbvWo/pwufqd9dyEPvHPNQrQz6YNJsocwzRHc/HTz8CwVXNTP2rNxG
-	9axwoNiuvHp5+17BVrgGTJWDL/nsUTsAgxSfF40JNLRfk7apkcKny4t3HQPiLroryxvVc6Xl9eysA
-	TwNmOFyJ4XMUkjBl4W/UeKm91IynVqozLlgcExkrH56u90dd2JTc7rXAfqeLIqEHHOk5BUyupOUBE
-	Nkv0TlRprbqX+D5zLzf3nTTWmarWBk+3YqtFPRJJpYfShhGpuMAzHWlIdRCtauIhPcXvKe9ZOl6O+
-	mBd4k362Ua7Y22xWOgNw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=n85Gw461jpsmZV5Vs1jShDpE7uWUsigp1b3jpcrZAXo=; b=q5zX1Fpd6YY8Xh
+	BuiLpB7I2cBNpOax1+oH1fVZdNldRKDSHQwzZGZbKx/ixUSBx+DF5GgPoUeCCjqZLd5ZNdMAvxoBu
+	ZOI/9RYunBJlTXWU+kqhl6mgwj31f1i1aGwwo2orKt4wEiqBLGdlQrabRPBrkx1FndzG5bffZRbtu
+	o7Ui3sJsNTENipvM9SAI21/cEmdb5y+Mn+zFoIIbW0ay8E0Aj9/n5EUKsoLeyXRJnlNd3wyn5sjjY
+	rZp8rQVdBtW3UqTFkQLcaEsx7XqTHTNMlagFaYtq22Nr4OmbJA2Wdjoh3q5He2iYvw+iT5lC61uVd
+	Q0jDzYat+aA8V07+l88A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jBPPV-0006kQ-Mb; Mon, 09 Mar 2020 20:54:01 +0000
-Received: from relay10.mail.gandi.net ([217.70.178.230])
+	id 1jBPPq-00072x-9L; Mon, 09 Mar 2020 20:54:22 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jBPPJ-0006X7-CN; Mon, 09 Mar 2020 20:53:50 +0000
+ id 1jBPPU-0006jE-6H; Mon, 09 Mar 2020 20:54:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:In-Reply-To:References;
+ bh=SDsaTXgn8OfnRde4B1U3Q4l5GuNOok7RrJFAf43ZfcA=; b=smc1nHTepCF8nznko0+ulTrifV
+ Mk6/OXQORqDZQk50xogPu+9qpjFZdYtV8co5Z16eWEl8lGRA94ogtldSVDGcsKeldZ1piMcMyd6LE
+ /NQOBJ/TTr5IgRSjJYm5k8YA9VAfCdbQBkke2Tdp2cybsf6lbXZ3WFqRTPkx6pwkMKGnVP665xN3m
+ M99XLE0/Mg0JE3wau24dkvCDkEGtEVaa7PQhtCtjsNaaNblUBtyatpvmeAZMSYjsfrnmpNvVjDKxN
+ YiFZZvcovoW2b1VRIchN3HufUXj1PVIlY09UOOmfTzVBlkB4DI3oUnx02q8xlWAWXgPhroMx5qiRo
+ QzOZsi0w==;
+Received: from relay7-d.mail.gandi.net ([217.70.183.200])
+ by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jBPPP-0004zc-EO; Mon, 09 Mar 2020 20:53:58 +0000
+X-Originating-IP: 82.66.179.123
 Received: from localhost (unknown [82.66.179.123])
  (Authenticated sender: repk@triplefau.lt)
- by relay10.mail.gandi.net (Postfix) with ESMTPSA id 44922240003;
- Mon,  9 Mar 2020 20:53:29 +0000 (UTC)
+ by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id CC5E720008;
+ Mon,  9 Mar 2020 20:53:23 +0000 (UTC)
 From: Remi Pommarel <repk@triplefau.lt>
 To: Neil Armstrong <narmstrong@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>,
  Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH 1/2] clk: meson: axg: Remove MIPI enable clock gate
-Date: Mon,  9 Mar 2020 22:01:56 +0100
-Message-Id: <20200309210157.29860-2-repk@triplefau.lt>
+Subject: [PATCH 0/2] clk: meson: axg: Remove MIPI enable clock gate
+Date: Mon,  9 Mar 2020 22:01:55 +0100
+Message-Id: <20200309210157.29860-1-repk@triplefau.lt>
 X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200309210157.29860-1-repk@triplefau.lt>
-References: <20200309210157.29860-1-repk@triplefau.lt>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200309_135349_553092_3F8EF562 
-X-CRM114-Status: UNSURE (   8.83  )
+X-CRM114-CacheID: sfid-20200309_205355_664834_EB9CA848 
+X-CRM114-Status: UNSURE (   8.19  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -77,55 +89,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On AXG platforms HHI_MIPI_CNTL0 is part of the MIPI/PCIe analog PHY
-region and is not related to clock one and can be removed from it.
+As discussed here [0], HHI_MIPI_CNTL0 is part of the MIPI/PCIe analog
+PHY region and is not related to clock one. Since MIPI/PCIe PHY driver
+has been added with [1], this region can be removed from the clock
+driver.
 
-Signed-off-by: Remi Pommarel <repk@triplefau.lt>
----
- drivers/clk/meson/axg.c | 3 ---
- drivers/clk/meson/axg.h | 1 -
- 2 files changed, 4 deletions(-)
+Please not that this serie depends on [1] to be merged first.
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 13fc0006f63d..870e90a863fa 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -1141,7 +1141,6 @@ static MESON_GATE(axg_mmc_pclk, HHI_GCLK_MPEG2, 11);
- static MESON_GATE(axg_vpu_intr, HHI_GCLK_MPEG2, 25);
- static MESON_GATE(axg_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
- static MESON_GATE(axg_gic, HHI_GCLK_MPEG2, 30);
--static MESON_GATE(axg_mipi_enable, HHI_MIPI_CNTL0, 29);
- 
- /* Always On (AO) domain gates */
- 
-@@ -1236,7 +1235,6 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
- 		[CLKID_PCIE_REF]		= &axg_pcie_ref.hw,
- 		[CLKID_PCIE_CML_EN0]		= &axg_pcie_cml_en0.hw,
- 		[CLKID_PCIE_CML_EN1]		= &axg_pcie_cml_en1.hw,
--		[CLKID_MIPI_ENABLE]		= &axg_mipi_enable.hw,
- 		[CLKID_GEN_CLK_SEL]		= &axg_gen_clk_sel.hw,
- 		[CLKID_GEN_CLK_DIV]		= &axg_gen_clk_div.hw,
- 		[CLKID_GEN_CLK]			= &axg_gen_clk.hw,
-@@ -1331,7 +1329,6 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
- 	&axg_pcie_ref,
- 	&axg_pcie_cml_en0,
- 	&axg_pcie_cml_en1,
--	&axg_mipi_enable,
- 	&axg_gen_clk_sel,
- 	&axg_gen_clk_div,
- 	&axg_gen_clk,
-diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
-index 0431dabac629..fafe31739d0d 100644
---- a/drivers/clk/meson/axg.h
-+++ b/drivers/clk/meson/axg.h
-@@ -16,7 +16,6 @@
-  * Register offsets from the data sheet must be multiplied by 4 before
-  * adding them to the base address to get the right value.
-  */
--#define HHI_MIPI_CNTL0			0x00
- #define HHI_GP0_PLL_CNTL		0x40
- #define HHI_GP0_PLL_CNTL2		0x44
- #define HHI_GP0_PLL_CNTL3		0x48
+[0] https://lkml.org/lkml/2019/12/16/119
+[1] https://lkml.org/lkml/2020/1/23/945
+
+Remi Pommarel (2):
+  clk: meson: axg: Remove MIPI enable clock gate
+  clk: meson-axg: remove CLKID_MIPI_ENABLE
+
+ drivers/clk/meson/axg.c              | 3 ---
+ drivers/clk/meson/axg.h              | 1 -
+ include/dt-bindings/clock/axg-clkc.h | 1 -
+ 3 files changed, 5 deletions(-)
+
 -- 
 2.25.0
 
