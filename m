@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3E8DC10F25
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 20:53:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ACEAEC10F25
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 20:54:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9B5712464B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 20:53:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8577E24654
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 20:54:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bKCD12Xs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B5712464B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lTtWMM/s"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8577E24654
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,39 +25,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=J9C9JSpYemx9qPkhI12Dxj2ZDcxyzx+miMIUQqTFN8c=; b=bKCD12XsIblNtW
-	+zxAxEyhjUyDZtOaA2eKnfw3axE9JMXyE7DxZ3cZKrG80nByFpX6GJPdCNBV34U5DNEBoKzz9ro94
-	oT79FeO9RXlC8Ti3iPZod0C0h37uVB6lZRpMDn3AjWtbHxCGwCGw2twFO7FI72wsYmAEZg/4tJvYD
-	phJjC0I9EtvnVoVrYMVYtKOQa5RqGA5G3wXm+ObfppcY8lvNxk0abBaP01M6bqvstM3XrYseDgcgL
-	ZI8mWAr+elfQGcNkB5xp9UfRblFmoEFL1i87Y7gc5paFpdSB5BwXaXlYZJ2yjY3U2IdJxfMTLKNEn
-	E5tdlwwl02rY6n9RYRoQ==;
+	List-Owner; bh=ycCB0laM7RbvvxMjgYO8lFMIvwLyKo0SCjQVTFCQ7dY=; b=lTtWMM/sYAGWVd
+	RQOa/YPG7NEFy5VllzwesaQHbvWo/pwufqd9dyEPvHPNQrQz6YNJsocwzRHc/HTz8CwVXNTP2rNxG
+	9axwoNiuvHp5+17BVrgGTJWDL/nsUTsAgxSfF40JNLRfk7apkcKny4t3HQPiLroryxvVc6Xl9eysA
+	TwNmOFyJ4XMUkjBl4W/UeKm91IynVqozLlgcExkrH56u90dd2JTc7rXAfqeLIqEHHOk5BUyupOUBE
+	Nkv0TlRprbqX+D5zLzf3nTTWmarWBk+3YqtFPRJJpYfShhGpuMAzHWlIdRCtauIhPcXvKe9ZOl6O+
+	mBd4k362Ua7Y22xWOgNw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jBPPJ-0006YK-Rw; Mon, 09 Mar 2020 20:53:49 +0000
-Received: from relay7-d.mail.gandi.net ([217.70.183.200])
+	id 1jBPPV-0006kQ-Mb; Mon, 09 Mar 2020 20:54:01 +0000
+Received: from relay10.mail.gandi.net ([217.70.178.230])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jBPPH-0006Xc-5M; Mon, 09 Mar 2020 20:53:48 +0000
-X-Originating-IP: 82.66.179.123
+ id 1jBPPJ-0006X7-CN; Mon, 09 Mar 2020 20:53:50 +0000
 Received: from localhost (unknown [82.66.179.123])
  (Authenticated sender: repk@triplefau.lt)
- by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id A0FC420007;
- Mon,  9 Mar 2020 20:53:34 +0000 (UTC)
+ by relay10.mail.gandi.net (Postfix) with ESMTPSA id 44922240003;
+ Mon,  9 Mar 2020 20:53:29 +0000 (UTC)
 From: Remi Pommarel <repk@triplefau.lt>
 To: Neil Armstrong <narmstrong@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>,
  Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH 2/2] clk: meson-axg: remove CLKID_MIPI_ENABLE
-Date: Mon,  9 Mar 2020 22:01:57 +0100
-Message-Id: <20200309210157.29860-3-repk@triplefau.lt>
+Subject: [PATCH 1/2] clk: meson: axg: Remove MIPI enable clock gate
+Date: Mon,  9 Mar 2020 22:01:56 +0100
+Message-Id: <20200309210157.29860-2-repk@triplefau.lt>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200309210157.29860-1-repk@triplefau.lt>
 References: <20200309210157.29860-1-repk@triplefau.lt>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200309_135347_340037_B9DBED5B 
-X-CRM114-Status: UNSURE (   8.98  )
+X-CRM114-CacheID: sfid-20200309_135349_553092_3F8EF562 
+X-CRM114-Status: UNSURE (   8.83  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -78,26 +77,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CLKID_MIPI_ENABLE is not handled by the AXG clock driver anymore but by
-the MIPI/PCIe PHY driver.
+On AXG platforms HHI_MIPI_CNTL0 is part of the MIPI/PCIe analog PHY
+region and is not related to clock one and can be removed from it.
 
 Signed-off-by: Remi Pommarel <repk@triplefau.lt>
 ---
- include/dt-bindings/clock/axg-clkc.h | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/clk/meson/axg.c | 3 ---
+ drivers/clk/meson/axg.h | 1 -
+ 2 files changed, 4 deletions(-)
 
-diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
-index fd1f938c38d1..ab04b3a94959 100644
---- a/include/dt-bindings/clock/axg-clkc.h
-+++ b/include/dt-bindings/clock/axg-clkc.h
-@@ -70,7 +70,6 @@
- #define CLKID_HIFI_PLL				69
- #define CLKID_PCIE_CML_EN0			79
- #define CLKID_PCIE_CML_EN1			80
--#define CLKID_MIPI_ENABLE			81
- #define CLKID_GEN_CLK				84
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 13fc0006f63d..870e90a863fa 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -1141,7 +1141,6 @@ static MESON_GATE(axg_mmc_pclk, HHI_GCLK_MPEG2, 11);
+ static MESON_GATE(axg_vpu_intr, HHI_GCLK_MPEG2, 25);
+ static MESON_GATE(axg_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
+ static MESON_GATE(axg_gic, HHI_GCLK_MPEG2, 30);
+-static MESON_GATE(axg_mipi_enable, HHI_MIPI_CNTL0, 29);
  
- #endif /* __AXG_CLKC_H */
+ /* Always On (AO) domain gates */
+ 
+@@ -1236,7 +1235,6 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
+ 		[CLKID_PCIE_REF]		= &axg_pcie_ref.hw,
+ 		[CLKID_PCIE_CML_EN0]		= &axg_pcie_cml_en0.hw,
+ 		[CLKID_PCIE_CML_EN1]		= &axg_pcie_cml_en1.hw,
+-		[CLKID_MIPI_ENABLE]		= &axg_mipi_enable.hw,
+ 		[CLKID_GEN_CLK_SEL]		= &axg_gen_clk_sel.hw,
+ 		[CLKID_GEN_CLK_DIV]		= &axg_gen_clk_div.hw,
+ 		[CLKID_GEN_CLK]			= &axg_gen_clk.hw,
+@@ -1331,7 +1329,6 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
+ 	&axg_pcie_ref,
+ 	&axg_pcie_cml_en0,
+ 	&axg_pcie_cml_en1,
+-	&axg_mipi_enable,
+ 	&axg_gen_clk_sel,
+ 	&axg_gen_clk_div,
+ 	&axg_gen_clk,
+diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
+index 0431dabac629..fafe31739d0d 100644
+--- a/drivers/clk/meson/axg.h
++++ b/drivers/clk/meson/axg.h
+@@ -16,7 +16,6 @@
+  * Register offsets from the data sheet must be multiplied by 4 before
+  * adding them to the base address to get the right value.
+  */
+-#define HHI_MIPI_CNTL0			0x00
+ #define HHI_GP0_PLL_CNTL		0x40
+ #define HHI_GP0_PLL_CNTL2		0x44
+ #define HHI_GP0_PLL_CNTL3		0x48
 -- 
 2.25.0
 
