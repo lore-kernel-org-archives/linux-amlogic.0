@@ -2,91 +2,61 @@ Return-Path: <SRS0=Mql2=42=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ECA6FC10F27
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 16:46:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 78F40C10F27
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 16:59:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BE81721D56
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 16:46:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4C5CA20727
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Mar 2020 16:59:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fl0rOEPk";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="h5JVtoab"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BE81721D56
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Dlypd6t9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4C5CA20727
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=F+xWNZ1kHvZ3vEiN2GKgnnj/8Fq+7eQ/o7BB1daVEIU=; b=fl0rOEPkABFvBn/nKfcbQwX0Ub
-	ny+fTwMLk8erekC1vJF2iqgNlMPxctpTFmE1AGqAGB2x3USW5X61E4UCRT4r1u29G0is+gLF/D7jd
-	msz7axFVedBeyZdqo7PbVlnakETxQWzJHzPFmZ5AbUIcJjLpXyf87DzXz7yo7dQ87LkvcIgmeO1Ob
-	sseG91KWtRLweEAgMQy0WpTzfAyXqMmZy46XZO8eUNJlRhQHCjUor2XyOhQnlkDVeX59rqt7lplhx
-	RqI9Ihu+z05ckorTMdvgmS1++kLoNDTpIS7miKW85IVyx1vHrDj+6P06V+RNnwdSSLHWkefoze4wu
-	Rf8K7HGQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=L+IhXDkfg95Tt02JRG4DEyZAEZK9Geels6KhBhz+A6I=; b=Dlypd6t9D75g3djwgkgEi1W9y
+	YDPsAlP2pIIOBn5ymvyKIcnPfGIG12ub3V9KYcvv3vqdq58vJu5sUUc67CJ+WbVan/SyfEM84W4eY
+	v/fUdz94Ra0xOxs0vouHKxYFWdKWLboLlILLsOfzVwy0sBqA9KSYFWG9Y+2RtdZBS29jK01kgtbz0
+	O7r6YlRa+1O6ahHsxZpmE+tKsl/UGeUWb6i55p9zHvkw4+0xB773jqQ/5AjAvJjd5v+RiWy5fDsq2
+	RE5/1HC9Zo1VPYRo8ByYBdKVByH0uu1wK9lI3t6rpuHgk62SAVnwsyl8oC+vh0u7Z+uw54TMKbF+O
+	NgheUjuDg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jBLXx-00060Q-NJ; Mon, 09 Mar 2020 16:46:29 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jBLXt-0005zK-ON
- for linux-amlogic@lists.infradead.org; Mon, 09 Mar 2020 16:46:27 +0000
-Received: by mail-wm1-x344.google.com with SMTP id m3so231266wmi.0
- for <linux-amlogic@lists.infradead.org>; Mon, 09 Mar 2020 09:46:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:subject:in-reply-to:date:message-id
- :mime-version; bh=FcE2MUIl7tIBAlEEfVJMghDlrIoIaJrggtMzoLGQxtU=;
- b=h5JVtoabxOIa7/d1qTmT5zFHcuKiW3eFaUaAw56br6NvCKb7Xxtj2MSf6wc1+OXmHg
- /vHfQJh47n8iC0us2CSsP4Ac5/jxY5ma3lZIso7eZu16F7hYSdqcZz5xxOzmP3B3vzkS
- ubFLyWhRvA1Fre8XovsCqZ1AmD/HbIF/+hO1NUM1YjF1v7IvG2HmaTieZwBq8MvtlBHN
- ecPyfGyotLu7BxZJuWzYcWNxjedKrUDAoJrNDjT3Us+RfsOkXstzb2J9eba7kR5IFEF+
- a/lX1j5LS2op0Ft+pTfa05PHD3Fh3FD+p2XsC2zfjUdUTPV1pW+cmN5+2Na+99LWlIcX
- zBGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:subject
- :in-reply-to:date:message-id:mime-version;
- bh=FcE2MUIl7tIBAlEEfVJMghDlrIoIaJrggtMzoLGQxtU=;
- b=UHffs4X/VkJyFSH+epxmerosKVV0NZyCTy3akjrLvhnzMm/BwaNwapM1fh6I/T7fGe
- TblaQRM6iuj4sJ6pi6/iZ8Lf7M+oiqIQXFRqgXWJmon+Oged4BSrQUMqVno9/AYtWJZf
- pdxgofX14rbimEmMFy+yxFqZ3qlj6tLj2HfTiT+TnzaOX3vZk+aui+SdmDGgUkLgZsTq
- 3/AY7Y7Rxu4MNHWc1vVem1+pyYeDqvI2Q/Pekjah2dMaiXJhT2K4g4b6fcICsb4wW2Jx
- qCkfyrsXCmMf6c+c9QV+F/SQHnEYtWIVqm5Lslua63YXwCTJvaZALnhDcAQJOfgif5xs
- MGMA==
-X-Gm-Message-State: ANhLgQ0Bvr/AMlTyP0fbRXL39OCENQvRMjOOT3nukuuiyjnfGh17sMHy
- jsQ/ysaflgXI29TE6sNqJx6T/g==
-X-Google-Smtp-Source: ADFU+vt6CRz1E/i0REBSGntcAZc9hZwMe0YmueP+IrwFjMtabYMdUF0pqSki2o/pSjJ8sm/pLgl2wA==
-X-Received: by 2002:a1c:2786:: with SMTP id n128mr150270wmn.47.1583772382078; 
- Mon, 09 Mar 2020 09:46:22 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id e22sm110182wme.45.2020.03.09.09.46.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Mar 2020 09:46:21 -0700 (PDT)
-References: <20200309162912.GA21498@amd>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Pavel Machek <pavel@ucw.cz>, lgirdwood@gmail.com, broonie@kernel.org,
- perex@perex.cz, tiwai@suse.com, khilman@baylibre.com,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+	id 1jBLkR-0002rD-UZ; Mon, 09 Mar 2020 16:59:23 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jBLkP-0002qp-Li
+ for linux-amlogic@lists.infradead.org; Mon, 09 Mar 2020 16:59:22 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E48A41FB;
+ Mon,  9 Mar 2020 09:59:20 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.21])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 68E9A3F534;
+ Mon,  9 Mar 2020 09:59:20 -0700 (PDT)
+Date: Mon, 9 Mar 2020 16:59:18 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Pavel Machek <pavel@ucw.cz>
 Subject: Re: [PATCH] sound/soc/meson: fix irq leak in error path
-In-reply-to: <20200309162912.GA21498@amd>
-Date: Mon, 09 Mar 2020 17:46:20 +0100
-Message-ID: <1jeeu14gtf.fsf@starbuckisacylon.baylibre.com>
+Message-ID: <20200309165918.GI4101@sirena.org.uk>
+References: <20200309162912.GA21498@amd>
 MIME-Version: 1.0
+In-Reply-To: <20200309162912.GA21498@amd>
+X-Cookie: Above all things, reverence yourself.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200309_094625_938309_0BCA5CB3 
-X-CRM114-Status: GOOD (  13.46  )
+X-CRM114-CacheID: sfid-20200309_095921_758682_7FACA789 
+X-CRM114-Status: UNSURE (   7.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,68 +68,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: lgirdwood@gmail.com, khilman@baylibre.com, tiwai@suse.com, perex@perex.cz,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ jbrunet@baylibre.com
+Content-Type: multipart/mixed; boundary="===============1265141703760493287=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Mon 09 Mar 2020 at 17:29, Pavel Machek <pavel@ucw.cz> wrote:
+--===============1265141703760493287==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="FUFe+yI/t+r3nyH4"
+Content-Disposition: inline
 
+
+--FUFe+yI/t+r3nyH4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Mon, Mar 09, 2020 at 05:29:12PM +0100, Pavel Machek wrote:
 > Irq seems to be leaked in error path. Fix that.
->
 
-Thanks for fixing this.
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-the Fixes tag is missing here.
-Fixes: 6dc4fa179fb8 ("ASoC: meson: add axg fifo base driver")
+--FUFe+yI/t+r3nyH4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Signed-off-by: Pavel Machek <pavel@denx.de>
->
-> ---
->
-> I noticed problem during -stable review, and don't have hardware or
-> ability to test the patch. Handle with care.
->
-> diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
-> index 2f44e93359f6..fbac6de891cd 100644
-> --- a/sound/soc/meson/axg-fifo.c
-> +++ b/sound/soc/meson/axg-fifo.c
-> @@ -249,7 +249,7 @@ int axg_fifo_pcm_open(struct snd_soc_component *component,
->  	/* Enable pclk to access registers and clock the fifo ip */
->  	ret = clk_prepare_enable(fifo->pclk);
->  	if (ret)
-> -		return ret;
-> +		goto free_irq;
->  
->  	/* Setup status2 so it reports the memory pointer */
->  	regmap_update_bits(fifo->map, FIFO_CTRL1,
-> @@ -270,8 +269,14 @@ int axg_fifo_pcm_open(struct snd_soc_component *component,
->  	/* Take memory arbitror out of reset */
->  	ret = reset_control_deassert(fifo->arb);
->  	if (ret)
-> -		clk_disable_unprepare(fifo->pclk);
-> +		goto free_clk;
-> +
-> +	return 0;
->  
-> +free_clk:
+-----BEGIN PGP SIGNATURE-----
 
-This label is misleading as it won't free the clock but turn it off.
-how about 'err_rst' ?
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5mdeYACgkQJNaLcl1U
+h9CCoAf/Tg1V9NN7lBma6RAUr7lr0CLFWaDKyjqFXtwx7isnFIrUOkc4mXutsnch
+oDQPhuU/xFmiASiebvnpQfRl0OV/76zo9EE05eoDSJ2cxlZvoi21bPBQzJGmPpMW
+AYKwHtxF74xlqW93UdNk+ldRhSAkYg8piOt4vhKDEacLZXFhfWzbewCtsWkg5sER
++6cIAlYelohDbZCjKgxvyO1xCKNx2XM5LBhSZ3YZNABVR6Ft9hPPySv+8/qBDj4u
+bhbO5FaCY23DGdsylPzCHvg3IabQCWuc1GVSRGLrJcPWcaw9FD2uoMWfA3C4+eHw
+V1NnOlUZCmbhbesMUHZg1nVEtO+gdg==
+=71Fr
+-----END PGP SIGNATURE-----
 
-> +	clk_disable_unprepare(fifo->pclk);
-> +free_irq:
+--FUFe+yI/t+r3nyH4--
 
-and 'err_pclk' here ?
 
-> +	free_irq(fifo->irq, ss);
->  	return ret;
->  }
->  EXPORT_SYMBOL_GPL(axg_fifo_pcm_open);
-
+--===============1265141703760493287==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1265141703760493287==--
+
