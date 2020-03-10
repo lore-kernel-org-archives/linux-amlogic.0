@@ -2,68 +2,81 @@ Return-Path: <SRS0=sHZR=43=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AB514C18E5B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2020 18:35:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D2BFC18E5A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2020 18:49:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4F3C02253D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2020 18:35:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D3B3E208C3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2020 18:49:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SiHLQDHZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F3C02253D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hUlOFKf0"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D3B3E208C3
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vYFGs1Q8jGeR7drDqCh2Mklq47j07wZ+FCzF4Y2OTZI=; b=SiHLQDHZEqEdLN
-	3oYBeLY2nXg6tIVU2NC/9kO7M24KhJbsoMRK1biFg8lpNI1w5JktnCs0ySnokU6+pgnQq9xmXQGGq
-	MAORcamngUHzuIbi3d8/mFI5sQamY2g+A0kovtiESYmx3AgYHaXamzxLXRSaW9/mUYfhqhRw/rfYT
-	q6z6R04t4o1f+4Mo4dCT7LTdphng663inGZu+uvxVeIPw+mN2TKOeTol1yo4UrCE+wJ7hjur4v5eE
-	bLFWAOVi0aXoa613ZRkO/6FKe8BHQmom0QYB4Fnng5jqxS2QqfjwLeQqlAROhh0YKNzFw5W2tJsr9
-	c6qqSWt3x1H0Tne5ywgQ==;
+	List-Owner; bh=SqE/4s34kCfRkITm6R+AKsE+9+PJF2IUmD7XMqr7EEU=; b=hUlOFKf0QtVdxj
+	NtPtjCuHkHKwSmNoliCuXwgp1qVVDw8nuqIf4qG2zHgqWyzhkETZyLZ4Otn3RWYfnc7oxdlEOALoL
+	jFYDR2JgXipkQr0k98UXQ/fVvF8H6gDEHHMwYjIXsiDEmt40M7ZQQLT5eCaYqqML9xKp+oYRrFsv1
+	m9dfFzkZ81ZDNV9jQW3WaLirPb4fC1NYpRA2W7Z0R374j9/rNXIXCxNMBhiTLzKKTpBuzue5mPalT
+	VmBTepLcK2bV/eOLM+di+PKkJSSzwkBpv8kSYHNCjQaH5XpwsSdVcaR2XHKIF60yEo1YVmvkm18hK
+	4C5ZUvTHuau4Je2jqqRw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jBjiW-0007sT-Ku; Tue, 10 Mar 2020 18:35:00 +0000
-Received: from relay1-d.mail.gandi.net ([217.70.183.193])
+	id 1jBjwb-0007zw-UU; Tue, 10 Mar 2020 18:49:33 +0000
+Received: from mail-ot1-f65.google.com ([209.85.210.65])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jBjew-0004DL-18; Tue, 10 Mar 2020 18:31:19 +0000
-X-Originating-IP: 91.224.148.103
-Received: from localhost.localdomain (unknown [91.224.148.103])
- (Authenticated sender: miquel.raynal@bootlin.com)
- by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id C1BB4240008;
- Tue, 10 Mar 2020 18:31:13 +0000 (UTC)
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Liang Yang <liang.yang@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
- Xiaolei Li <xiaolei.li@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH] mtd: rawnand: Replace zero-length array with
- flexible-array member
-Date: Tue, 10 Mar 2020 19:31:12 +0100
-Message-Id: <20200310183112.18567-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200226222722.GA18020@embeddedor>
-References: 
+ id 1jBjwO-0007nT-FS; Tue, 10 Mar 2020 18:49:21 +0000
+Received: by mail-ot1-f65.google.com with SMTP id j14so14248591otq.3;
+ Tue, 10 Mar 2020 11:49:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=oJMNno1lQZX5Yt1T2cwhhyz5mFeIoqqe8lauC7RtIRA=;
+ b=BE8YNHE3GrEdYTohxaHtr1AbEIaP3ZgWXQO57rDMgltuaaUy5tOZGjwGawkjDr2VP3
+ ZPM4a9ALHzyw5TLmnPX9/8rREpQYYN/tvej64aibafNFEDd7e80qtxvqhFJCW5eBscKU
+ L3Upc83kyl8tWD5dToGldqLvonxozyMoYrEieK7tdJw+VIi1b0Nhxc2/5iGnnQcWXgUu
+ p62EnW6yqnf0ehJLaZMmjavJoV2JWQpgYeMrnJkhey1jhAHOMPWTZAS+0WZ1b/ocZP4e
+ Wcj6yFfVnHfSQ+fG6fHc1jDyEt73JIXZOnqgN4Li0lcQ8EFzr7Pc4gJ9yoPaUxf/Wz6+
+ bJpw==
+X-Gm-Message-State: ANhLgQ1kRKJaH3Ly4KHE8fFDyFrxPlCrUImggoXE8g/Sev7gELhmIDoo
+ xityHnl3Og2r0XFXAOnqww==
+X-Google-Smtp-Source: ADFU+vuY1E3rPvi2pXUsd32GlxgjEnTZz42NF9oeHquVvRsTdPF4ziEbeCb7z0ZUE5vT7X7YGYn5yA==
+X-Received: by 2002:a9d:4b0c:: with SMTP id q12mr18866881otf.77.1583866159629; 
+ Tue, 10 Mar 2020 11:49:19 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id v2sm3534546oiv.41.2020.03.10.11.49.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Mar 2020 11:49:19 -0700 (PDT)
+Received: (nullmailer pid 16240 invoked by uid 1000);
+ Tue, 10 Mar 2020 18:49:18 -0000
+Date: Tue, 10 Mar 2020 13:49:18 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for the
+ Beelink GT-King
+Message-ID: <20200310184918.GA16177@bogus>
+References: <1582985353-83371-1-git-send-email-christianshewitt@gmail.com>
+ <1582985353-83371-2-git-send-email-christianshewitt@gmail.com>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: 76d2f79cf5ae53bc5781903af98a1cb51ef12915
+Content-Disposition: inline
+In-Reply-To: <1582985353-83371-2-git-send-email-christianshewitt@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200310_113118_234034_CD1EB0F4 
-X-CRM114-Status: GOOD (  10.93  )
+X-CRM114-CacheID: sfid-20200310_114920_512005_82A6E56B 
+X-CRM114-Status: UNSURE (   9.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,49 +88,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-mtd@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>,
+ Christian Hewitt <christianshewitt@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2020-02-26 at 22:27:22 UTC, "Gustavo A. R. Silva" wrote:
-> The current codebase makes use of the zero-length array language
-> extension to the C90 standard, but the preferred mechanism to declare
-> variable-length types such as these ones is a flexible array member[1][2],
-> introduced in C99:
+On Sat, 29 Feb 2020 18:09:12 +0400, Christian Hewitt wrote:
+> The Shenzen AZW (Beelink) GT-King is based on the Amlogic W400 reference
+> board with an S922X chip.
 > 
-> struct foo {
->         int stuff;
->         struct boo array[];
-> };
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> By making use of the mechanism above, we will get a compiler warning
-> in case the flexible array does not occur last in the structure, which
-> will help us prevent some kind of undefined behavior bugs from being
-> inadvertently introduced[3] to the codebase from now on.
-> 
-> Also, notice that, dynamic memory allocations won't be affected by
-> this change:
-> 
-> "Flexible array members have incomplete type, and so the sizeof operator
-> may not be applied. As a quirk of the original implementation of
-> zero-length arrays, sizeof evaluates to zero."[1]
-> 
-> This issue was found with the help of Coccinelle.
-> 
-> [1] https://gcc.gnu.org/onlinedocs/gcc/Zero-Length.html
-> [2] https://github.com/KSPP/linux/issues/21
-> [3] commit 76497732932f ("cxgb3/l2t: Fix undefined behaviour")
-> 
-> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
-> Acked-by: Masahiro Yamada <yamada.masahiro@socionext.com>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
-
-Miquel
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
