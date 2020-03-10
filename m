@@ -2,93 +2,146 @@ Return-Path: <SRS0=sHZR=43=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89908C10F27
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2020 08:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2CC83C10F27
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2020 10:08:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 54AC324673
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2020 08:06:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F408B222D9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2020 10:08:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Yk5K6QYr";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Gkch99+E"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54AC324673
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ec9TCr2m";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WpNN9baU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F408B222D9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=lZvt1YbukZpu/rDiDKq20r5mcpzfNbaaZw0kDNsy7GA=; b=Yk5K6QYrZqYDxw+k+ljIvOGvGL
-	VQOZeg03kYZzTLE738JG6sqzzvzNXQ5NcrXE6ud3dgRG2j6Um/ZtSaOnhsKeyjFaJX5pi1mwCoVro
-	cHGL7cdb/SQoQVNu1j7lzW9oc12qy/xS3GVzwcCEqpfu+0i0laLaAAgAehxn0szd+xvhR4hobLvZY
-	2eyUrs4t+dfLQeihs20E7vRF0Fe1VRPElmdeGBeeJLROI88RAPShNKkXwWLae4JLgF8NoUMqF3Dm5
-	gfnqJ6lDCCQzZfsR6RBCFiIb/nYlXfFfNxEGaysbz/SzlyXBMLCuI7Y18H/M6a3ZFA9FNDtBqKm0o
-	OKcvYprw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=g5/tdH0fY3K2OlwFseNBpyqBkioTa4E3IlR1bIZQJgw=; b=Ec9TCr2mi+c9/r
+	n4YiSr+S4DFCxnp9/RmeDDOBnnhscgypvptIzkRspP7KSgx0gEguvo0GtZi0z5xP/Yb3obzrSKxQK
+	qeWaJl/JJCrlVh45M9lRh6xGMrd6Zb9B/qAkfwbTUbTf9Jv09CGJqEdSbp6jcagwkZZF4K+Vsfjec
+	4eglN1UFqtWx0HqfJolhDISxvfCIknfFE6QPILa1THtORcsW2hvUThFxyQ/oM85CDMfyv48Sv2zUN
+	wIC7tyef5nww+KNGryzKrURKyH9tFFIEB0OgL25mlN+u7eogrc0S+90nbF2xo6dxjjxwXBpHwyFEm
+	J4OLnl0L6+ima+F+ybPw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jBZtq-0003MU-O4; Tue, 10 Mar 2020 08:06:02 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1jBboD-0007fV-Bp; Tue, 10 Mar 2020 10:08:21 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jBZtn-0003LM-QI
- for linux-amlogic@lists.infradead.org; Tue, 10 Mar 2020 08:06:01 +0000
-Received: by mail-wm1-x344.google.com with SMTP id n2so199657wmc.3
- for <linux-amlogic@lists.infradead.org>; Tue, 10 Mar 2020 01:05:59 -0700 (PDT)
+ id 1jBbo9-0007ed-So
+ for linux-amlogic@lists.infradead.org; Tue, 10 Mar 2020 10:08:20 +0000
+Received: by mail-wr1-x444.google.com with SMTP id v9so14994133wrf.10
+ for <linux-amlogic@lists.infradead.org>; Tue, 10 Mar 2020 03:08:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=gCM3eKCMkvTlfMY0Veg8oR2cYHpdLigYutHbLkTujlU=;
- b=Gkch99+E0ayd2h/cgebsu59nkW35SijSWHjaOz7+wxlsHbjPr28l5wD8IXvcPyiPQE
- 3Q7GJOwurY2DPxY9f/IBMIZGv2j+VUDCTsSn9pv2l23OgTLs2y59SSC6rbOZrkY+0z/t
- GRKO4lu3CfY4tqfHvm2Efy+NU785WgasVawejcJh1HvqfLDPbzQTPdeTWec0XJJI3laY
- SXw0kwzNtJL1O4AoxZsV7unKW8+OJLGavD268cauZEOm5Nv3pSXotiVWQMxheioCZ2Io
- Skmlq6nVr1MvDckVY6LM7B1DLuv2jDgWzQIefp9tGXb4oA49yFb970OMHW6dAM9Help7
- IvEw==
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=+TKoQn9uvIFy0ZoipeT/ZeN8Lwib0rvtajj+lUWGDRw=;
+ b=WpNN9baUs0BSyN1oJfymmgXvgRLNBRQcKd8C/mu9ElAPG9DP1vn0Q6hWZnJrdaV6M5
+ K2bCOu+hswGit+uAAK6xW3WFnGTWDKg2ueeEAwnXc1vd8wozobLvt9Rv/R4vLSG4FI7K
+ h5Jroh64nQbsOg7slf0zSaQ5tqK/lGVRKLGZZWluOphASqEcZSxWUhZZtIyAAIVIvpQ7
+ RChIHBw9EddVl9fITGkUpaHiTbx7VkYpwgN2/VOZ0BKLIvfQX5hK94uIVRzqkBO+dNuR
+ 58OzyB7RhAr6cEETLDaCASYIjD+mkW0GW9hDotytQN1GbNrZYjznJyapNaRJHEL0zvox
+ B3bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=gCM3eKCMkvTlfMY0Veg8oR2cYHpdLigYutHbLkTujlU=;
- b=UZLsHNOtJHpR8DjPHNjykgH++5yY18+mbPnILilQ6Vdg00crTJbG3l9Zj76jjlQQSe
- 6sHnJY5+3CESerZ1zjHYs18DxbkwmB0dRe8QRC5rPsRk4mh0Ns+BhpBJ+02en9xECmn+
- /9bT9Go6ezz4XgSKwoDGHovSg7Nl/uyN+A2ZkaqH3duRaCFVjyJfM+Etd7Jtg93XjDMg
- yfvXVQzeFe0hlZg0M/wTl6ttVaiF4Xk/9FrM6Top/z7VHhdCmKvshwl35mFBLFCsPpSJ
- YUAXqFa42z8m8xvSRLze9nlcALyvFy5KTqbP3n9+THUsXQZnhtSxjqBPXKzPESQxNJwL
- XjsA==
-X-Gm-Message-State: ANhLgQ09M+K1m7YlioM3ipjLxOcBhM2hSEo2HJ419wxkrJ538iFwx73J
- rTh4oFalDhlnOXw1avfq0EbpOixdDaA=
-X-Google-Smtp-Source: ADFU+vv6gQuXKCcdbbs+cb3EKYqX/MrKjKjjgydELO3mqq1Ovc+aG9SUIv2bXYdKkA5RlQnE/H5Bwg==
-X-Received: by 2002:a7b:c92e:: with SMTP id h14mr808386wml.90.1583827558238;
- Tue, 10 Mar 2020 01:05:58 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id b16sm62295312wrq.14.2020.03.10.01.05.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Mar 2020 01:05:57 -0700 (PDT)
-References: <20200309210157.29860-1-repk@triplefau.lt>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Remi Pommarel <repk@triplefau.lt>, Neil Armstrong <narmstrong@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH 0/2] clk: meson: axg: Remove MIPI enable clock gate
-In-reply-to: <20200309210157.29860-1-repk@triplefau.lt>
-Date: Tue, 10 Mar 2020 09:05:56 +0100
-Message-ID: <1jd09k4ot7.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=+TKoQn9uvIFy0ZoipeT/ZeN8Lwib0rvtajj+lUWGDRw=;
+ b=BH3m10X9Dbt2AI8e8NtHSmbswF56Tj9N1nGWejl214OfkcuA5I1fatIOsCLsqby77X
+ jDl6KtWgpo4Aj7uuebNSHtZ0wpkQcg/VS0iM8A4AYffvt9SGCLxVXLDyRJBhsONG4x8r
+ thY2rdbNq3o6CeHlLJex7pKjtaEoQAGS1RctJqADMOK98jkQxxhSOB9Hj5nG7odN3+iN
+ ww2DhRBa/htoJzsYaBIkRJkZZiJVANiign7ZSMiuxfze3w+S6l3ilTSPb3jjvKwSmb6q
+ nbpKYgRTxakDYenNQjBNVEHVZha7Ll119P7uCdr9XD9zrHXDkn5A+bkQuNPR47jL1yul
+ qpjw==
+X-Gm-Message-State: ANhLgQ33N0BFrB0YtfLzU57QlbyJKGLaFYo6AtTZRv8/f/oT+vvT+8HM
+ 0db9E937dzcuqYoShkNuAEALSQ==
+X-Google-Smtp-Source: ADFU+vtohfjBcHjIXuAIDefzpKQsIiEGd5v4RV2wSiazaQrM/+Yvg1E4BxBgu+eJAkLX5ySbD+x34Q==
+X-Received: by 2002:adf:f547:: with SMTP id j7mr27039739wrp.139.1583834894428; 
+ Tue, 10 Mar 2020 03:08:14 -0700 (PDT)
+Received: from [10.1.3.173]
+ (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id w19sm3406275wmi.0.2020.03.10.03.08.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 10 Mar 2020 03:08:13 -0700 (PDT)
+Subject: Re: [PATCH v5 00/11] drm/bridge: dw-hdmi: implement bus-format
+ negotiation and YUV420 support
+To: p.zabel@pengutronix.de, heiko@sntech.de, a.hajda@samsung.com,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@siol.net,
+ boris.brezillon@collabora.com
+References: <20200304104052.17196-1-narmstrong@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <fb9ccd0d-8d7a-81a9-0a5a-c7ff959fcb94@baylibre.com>
+Date: Tue, 10 Mar 2020 11:08:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
+In-Reply-To: <20200304104052.17196-1-narmstrong@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200310_010559_884288_DF931A0D 
-X-CRM114-Status: UNSURE (   8.71  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200310_030818_070246_6E709C10 
+X-CRM114-Status: GOOD (  22.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,38 +153,99 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 04/03/2020 11:40, Neil Armstrong wrote:
+> Hi Philippe, Heiko, Maxime, Laurent,
+> 
+> A bad negociation was detected on platforms not implementing a bridge on the
+> encoder side, which has been fixed in this version.
+> 
+> Could you check it doesn't break your platforms using dw-hdmi ? Especially
+> patches 1-5.
+> 
+> Thanks,
+> Neil
+> 
+> This patchset is based on Boris's merged "drm: Add support for bus-format negotiation"
+> patchset to implement full bus-format negotiation for DW-HDMI, including YUV420 support and
+> 10/12/16bit YUV444, YUV422 and RGB. The Color Space Converter support is already implemented.
+> 
+> And the counterpart implementation in the Amlogic Meson VPU dw-hdmi glue :
+> - basic bus-format negotiation to select YUV444 bus-format as DW-HDMI input
+> - YUV420 support when HDMI2.0 YUV420 modeset
+> 
+> This is a follow-up from the previous attempts :
+> - "drm/meson: Add support for HDMI2.0 YUV420 4k60" at [2]
+> - "drm/meson: Add support for HDMI2.0 4k60" at [3]
+> 
+> Changes since v4 at [7]:
+> - Cleaned up patch 1
+> - Added comment on patch 2
+> - Added commit message on patch 3
+> - Fixed invalid negociation when encoder is not yet a bridge (seen on allwinner & rockchip platforms) on patch 4
+> - Fixed invalid defines, handled MEDIA_BUS_FMT_FIXED and cleaned negociation debug on patch 4
+> - Added tags on patch 5, 6
+> - Removed meson_venc_hdmi_encoder_get_out_bus_fmts on patch 7
+> - Add off-list r-b from Jernej
+> 
+> Changes since v3 at [6]:
+> - Added "Plug atomic state hooks to the default implementation" on drm/bridge: dw-hdmi
+> - Also added these atomic state hooks in meson-dw-hdmi in patch 7
+> - Rebased on latest drm-misc-next including patches 1-7 of [1]
+> 
+> Changes since RFC v2 at [5]:
+> - Added fixes from Jonas, who tested and integrated it for Rockchip SoCs
+> - Added support for 10/12/16bit tmds clock calculation
+> - Added support for max_bcp connector property
+> - Adapted to Boris's v4 patchset
+> - Fixed typos reported by boris
+> 
+> Changes since RFC v1 at [4]:
+> - Rewrote negociation using the v2 patchset, including full DW-HDMI fmt negociation
+> 
+> [2] https://patchwork.freedesktop.org/patch/msgid/20190520133753.23871-1-narmstrong@baylibre.com
+> [3] https://patchwork.freedesktop.org/patch/msgid/1549022873-40549-1-git-send-email-narmstrong@baylibre.com
+> [4] https://patchwork.freedesktop.org/patch/msgid/20190820084109.24616-1-narmstrong@baylibre.com
+> [5] https://patchwork.freedesktop.org/patch/msgid/20190827081425.15011-1-narmstrong@baylibre.com
+> [6] https://patchwork.freedesktop.org/patch/msgid/20191218154637.17509-1-narmstrong@baylibre.com
+> [7] https://patchwork.freedesktop.org/patch/msgid/20200206191834.6125-1-narmstrong@baylibre.com
+> 
+> Jonas Karlman (2):
+>   drm/bridge: dw-hdmi: set mtmdsclock for deep color
+>   drm/bridge: dw-hdmi: add max bpc connector property
+> 
+> Neil Armstrong (9):
+>   drm/bridge: dw-hdmi: Plug atomic state hooks to the default
+>     implementation
+>   drm/bridge: synopsys: dw-hdmi: add bus format negociation
+>   drm/bridge: synopsys: dw-hdmi: allow ycbcr420 modes for >= 0x200a
+>   drm/meson: venc: make drm_display_mode const
+>   drm/meson: meson_dw_hdmi: add bridge and switch to drm_bridge_funcs
+>   drm/meson: dw-hdmi: stop enforcing input_bus_format
+>   drm/meson: venc: add support for YUV420 setup
+>   drm/meson: vclk: add support for YUV420 setup
+>   drm/meson: Add YUV420 output support
+> 
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 319 +++++++++++++++++++++-
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c     | 180 +++++++++---
+>  drivers/gpu/drm/meson/meson_vclk.c        |  93 +++++--
+>  drivers/gpu/drm/meson/meson_vclk.h        |   7 +-
+>  drivers/gpu/drm/meson/meson_venc.c        |  10 +-
+>  drivers/gpu/drm/meson/meson_venc.h        |   4 +-
+>  drivers/gpu/drm/meson/meson_venc_cvbs.c   |   6 +-
+>  include/drm/bridge/dw_hdmi.h              |   1 +
+>  8 files changed, 544 insertions(+), 76 deletions(-)
+> 
 
-On Mon 09 Mar 2020 at 22:01, Remi Pommarel <repk@triplefau.lt> wrote:
+Pushed to drm-misc-next
 
-> As discussed here [0], HHI_MIPI_CNTL0 is part of the MIPI/PCIe analog
-> PHY region and is not related to clock one. Since MIPI/PCIe PHY driver
-> has been added with [1], this region can be removed from the clock
-> driver.
->
-> Please not that this serie depends on [1] to be merged first.
->
-> [0] https://lkml.org/lkml/2019/12/16/119
-> [1] https://lkml.org/lkml/2020/1/23/945
-
-Series look good. Will apply after v5.7-rc1
-
->
-> Remi Pommarel (2):
->   clk: meson: axg: Remove MIPI enable clock gate
->   clk: meson-axg: remove CLKID_MIPI_ENABLE
->
->  drivers/clk/meson/axg.c              | 3 ---
->  drivers/clk/meson/axg.h              | 1 -
->  include/dt-bindings/clock/axg-clkc.h | 1 -
->  3 files changed, 5 deletions(-)
-
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
