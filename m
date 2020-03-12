@@ -1,92 +1,86 @@
-Return-Path: <SRS0=TM5R=44=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=FxSk=45=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 17DD1C0044D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Mar 2020 19:24:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 277FCC10DCE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Mar 2020 04:39:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 00E4020578
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Mar 2020 19:24:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0B4B820746
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Mar 2020 04:39:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="svbXRn+m";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ARE6qGsm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 00E4020578
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u5P9wl+l";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J3ats9uK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0B4B820746
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y6fuJybqyDGglVTk3iM3EnN89hJ19tPgqFXUiOZ7tqk=; b=svbXRn+m8z2q7u
-	CPmMufH8Y7vFkxdn/s4yIwcr6evgQomKxjLmjMzocHMtkVNiDmnHCMhyiWYZiE2yMQ6qHwmUe+Q/V
-	AfwUB1dB2g4J4bDgB+OvgBUGoRC/1XUYYuShK5qGjIr9WRzkkxuOzrkS21iFm7JvO5uYKnua2Oo8t
-	te7dOp0aA16bMD4JxbOBHra9jB9s5W9autvRYJT/KBALVwOiiM423fX7pl/WS9+E1jz+W5VwnIqh5
-	ETUhSlNzqT+9P9dmA4xUxqdgIihoWBaTCLLb/F9jd3jx98dpO/v0vFOWZ/8sVuJzzUH7v0lO9Bm4c
-	j0p2tle9+oS/SOy35BLA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=fDqTKD8nKIzwsUrH/2okIJdjTilj/5mnlcGkSk0Yxi4=; b=u5P
+	9wl+lM7f6j99RgXbNdowLXs0qpDYRyBBRTVwMhUiDIQ6W4BhUK7+t/lPwSG/N+q8rPRM23pUtGOLe
+	XIybrsk+49JbQItA68zFy7dm/+OoqhAwRdIR0kxLVpGkIrkUIs0irxXO4PBb9YZapG70SzwD+lO0I
+	RPMctDJSspFuzK8H4FX2zIVLAY0nMYSittPIVg+e9kh9jjwOjbBDkpnRMd0f1Ytu8hYANEmorjZ5L
+	lD3JM1BwkyViceh41MoAJxULRlgz6rMr0Ou5J3Ih27/B6u0N+0pYr9xktUVYb7mgGBjJjCiR+UW+m
+	TYZ8QO+rdXmt1AugRWmzNsWsFklk9dg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jC6xp-0000qe-Cp; Wed, 11 Mar 2020 19:24:21 +0000
-Received: from mail-il1-x143.google.com ([2607:f8b0:4864:20::143])
+	id 1jCFcq-0003xv-At; Thu, 12 Mar 2020 04:39:16 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jC6xm-0000pe-3s
- for linux-amlogic@lists.infradead.org; Wed, 11 Mar 2020 19:24:19 +0000
-Received: by mail-il1-x143.google.com with SMTP id p1so3124741ils.12
- for <linux-amlogic@lists.infradead.org>; Wed, 11 Mar 2020 12:24:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8N/7KqaO2uHDIYZv/eBCikgO0CGFEy0TUrj3C3ZKTKg=;
- b=ARE6qGsmx2gNgSWJCSYU0TNiWLYMwyiRcF6ENWM3CzZ22PibB5K9mK6zqiGKXRuzWy
- KopIQ+9mN/zayHYAau1eIEgQO/CVEKQFu7DTE9CQOd0YytHsopNF7ePGCmgBn4lttdgq
- MMEyPTdXGQ7lKTsi+rgkBT4ejvtJ6j+kWqLpE=
+ id 1jCFcc-0003kv-68; Thu, 12 Mar 2020 04:39:03 +0000
+Received: by mail-lj1-x241.google.com with SMTP id d23so4790845ljg.13;
+ Wed, 11 Mar 2020 21:38:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=BjPdSfl+t8YwAch/qVVID02ShhhB89UbCThPW66gWLQ=;
+ b=J3ats9uK0YN0GDUacQWNhZ9Q+7kDlCcWnN2vo0ccfIY/D3nP6F87eOqtg56zTZKdyv
+ CIPDgyovCi42xIbwEjbJptkhrFt6J1VIDK0K8sgS4/uyGJnteNpmeleMaQXBP/kLznr2
+ NjAXhin+/hMJlRmbULU6cMXlgpXagldRgTBye+Sly4TOUII2c4u2Li3K9LlqxJwceFG6
+ JcIAR4YpMPOfMRSY4M10O0dMCwd9Y1ayWRsbdwOY/rx0tlSZepQKKpO3+mwTC09NaC8J
+ y716+pTEZsxs26RxQeajI2AO4rO5xD2z2F2kpmE58X655V2354h59GHVVZQ4hGTYLRhv
+ 5CrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8N/7KqaO2uHDIYZv/eBCikgO0CGFEy0TUrj3C3ZKTKg=;
- b=liwlfVsI0GfscPdWAF56UFOMl1nSWl0n4XHp2sQAxiJ+2f13LM5VrZO619tOTOe0AR
- olfMviQ2OnUHGc6BdHEmeZr7jBngF22AHuEPBZJoSOLaNOksIa8dyJZV58kCaiqcR/Ht
- dPeUDEtJn+HMkuazMYpu5kO0gHOIxCBn29IToXuUSXNQqfTsobOuV6ktNr0LFNIfqC/e
- L2bXJ6YSKmxXrwgwlfKAFEEbDXU7UtlbR1d+BCWegPEYTGORFvEhGiJIQWZB946nuHcZ
- vwYM5ESYI0OX0oAMvkFOrbwFzv9Cj0ey5n4u9L4Jpt57e2BAheEOUYZbeZi7QLA4KgVq
- FmoA==
-X-Gm-Message-State: ANhLgQ1DtdsMW0BhjZ/GvZ/fvtzgWBMMNobuWVusdJ97EBFYkhzIYs7s
- 3OA8ZZLIxNZyhlM+dlP5/wYGMMEkYIWQdmNDteEEdA==
-X-Google-Smtp-Source: ADFU+vu73cL6OluZ5si943eP+eQIpQ8nGNRk/kAu29sLxMb2Kjpld2YYVtSCdcWAgwpjVWtWsQ9Tjb7Cnb1d1i9YbQA=
-X-Received: by 2002:a92:52:: with SMTP id 79mr4698842ila.41.1583954653040;
- Wed, 11 Mar 2020 12:24:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200214062637.216209-1-evanbenn@chromium.org>
- <20200214172512.1.I02ebc5b8743b1a71e0e15f68ea77e506d4e6f840@changeid>
- <20200219223046.GA16537@bogus>
- <CAODwPW8JspiUtyU4CC95w9rbNRyUF-Aeb9TuPm1PzmP6u=y1EA@mail.gmail.com>
- <20200219232005.GA9737@roeck-us.net>
- <CAKz_xw2hvHL=a4s37dmuCTWDbxefQFR3rfcaNiWYJY4T+jqabA@mail.gmail.com>
- <e42320b8-266f-0b0e-b20b-b72228510e81@amlogic.com>
- <CAODwPW94KX46PzSrf_uuEFPKudXor=26d=g3Qta5veRfxmMDUA@mail.gmail.com>
- <1326f594-3cfd-c03d-4f2c-50eeb75724b2@amlogic.com>
- <CAODwPW8WwntWb_=dg2J3AMy-gHw2QvNj_g98SufN13+AuGnUSg@mail.gmail.com>
- <b4ba821a-eef6-4aea-1eba-897171b92c41@amlogic.com>
- <CAKz_xw2T1UceCwFZnBxg6WVp2D4+MziyvQPdU6tEnR_BdLh-PQ@mail.gmail.com>
- <ad28aa47-0490-937f-898f-0e4695ef6ec6@amlogic.com>
-In-Reply-To: <ad28aa47-0490-937f-898f-0e4695ef6ec6@amlogic.com>
-From: Julius Werner <jwerner@chromium.org>
-Date: Wed, 11 Mar 2020 12:24:01 -0700
-Message-ID: <CAODwPW9oxx33hkO3kv2_G8YyLWvigVHkfJU7xUHLVgB7QU2i3Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add arm,smc-wdt watchdog
- arm,smc-wdt compatible
-To: Xingyu Chen <xingyu.chen@amlogic.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=BjPdSfl+t8YwAch/qVVID02ShhhB89UbCThPW66gWLQ=;
+ b=R3xBT/4dME23qrzLYKIQ9PQeFOXdazPBDqSRbf5rc9PBHlDTXSarWrqYacaN5PjGrz
+ X0wHxFG6nOXZfU0NfRnSyukcimWWp10q9KGomLQz9pqQtm18AGgqQxTyK0StY9RcxJkL
+ KZSn/9jAqgjFm1pvxm7gf4IxVeEAWbb383BUeD0EPlIVBvDCsK5B3iUedAsh+x7y2a/S
+ eGHpDbvyyNmSo19M5ocDq7oEelig24gLua2o3WDZ21oPjlyERFaAwEH1BpnRG8P1Os8T
+ FfQu07CAG+CpJEqZbq/Y7KLwQ7ZOUKjEo3qW8ypLgHCLB2/DVI/wqmIglV2L/zGp+Rvh
+ WNug==
+X-Gm-Message-State: ANhLgQ2eyebZh5c9BozJWPf38qf/rzpRUWPWKa0QbzpVplf2ST0u5UQC
+ HyPgdjnIFVbVpsoMmSx/5PI=
+X-Google-Smtp-Source: ADFU+vu2LZt4dQBS1XvD9C73vqG+rDKvlOnUkwd2xy1BWVo1NQdNEU4cWSfzVugfz8Nv6UzykF9sbA==
+X-Received: by 2002:a2e:9b94:: with SMTP id z20mr3926494lji.147.1583987937218; 
+ Wed, 11 Mar 2020 21:38:57 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id u2sm8872866lfu.3.2020.03.11.21.38.54
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Wed, 11 Mar 2020 21:38:56 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/3] arm64: dts: meson: add dts/bindings for SmartLabs
+ SML-5442TW
+Date: Thu, 12 Mar 2020 08:38:03 +0400
+Message-Id: <1583987886-6288-1-git-send-email-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.7.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200311_122418_159673_F4663FE4 
-X-CRM114-Status: UNSURE (   9.85  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200311_213902_254289_C3841794 
+X-CRM114-Status: GOOD (  12.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,39 +92,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
- Evan Benn <evanbenn@chromium.org>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Yonghui Yu <yonghui.yu@amlogic.com>, Julius Werner <jwerner@chromium.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- "David S. Miller" <davem@davemloft.net>, Guenter Roeck <linux@roeck-us.net>
+Cc: Christian Hewitt <christianshewitt@gmail.com>,
+ =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+ =?UTF-8?q?Jer=C3=B4me=20Brunet?= <jbrunet@baylibre.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> - *_INIT and *GETTIMEOUT.      Although your driver does not need them, could you take them as options in your driver ?
+This series adds new bindings and a device-tree file for the Smartlabs
+SML-5442TW set-top box. The original attempt [1] was 15-months ago but
+nothing has really changed apart from a change to yaml bindings.
 
-The driver already has SMCWD_INFO which is used during probe to
-retrieve the minimum and maximum timeout values supported by the
-hardware at probe time. Maybe it would make sense to rename that to
-INIT (which would still return those values, but can also do whatever
-initialization needs to be done in TF)? GETTIMELEFT I agree we can
-implement optionally, and other platforms would just return a
-PSCI_RET_NOT_SUPPORTED for that.
+The QCA9377 BT device does not have bindings and early experiments to add
+them are partially successful but need further work. I have dropped the
+gpio-hog from the device-tree and will submit changes to add BT once the
+supporting bits exist elsewhere in the kernel.
 
-> - *_RESETNOW.      It is used to reset the system right now, similar to your SOFT RESET. could you reserve an operation index in ATF ?
+v7 - update gpio-led nodes
+   - remove gpio-hog for BT enable
+   - add bindings acks from Rob
 
-Just curious, why do you need this? Shouldn't you use the PSCI
-standard SYSTEM_RESET SMC for that? (If you want to control exactly
-how the platform is reset, you could also use SYSTEM_RESET2 with a
-vendor-defined reset_type.)
+v6 - removed audio nodes again
+
+v5 - typo in card name
+
+v4 - typos/corrections from Andreas
+   - convert to yaml bindings
+   - add sound node back
+   - confirmed gpio-hog is necessary
+
+v3 - change to Smartlabs LLC
+   - removed sound node
+
+v2 - removed audio nodes
+   - changes soundcard name to "meson-gx-audio"
+   - added missing uart-has-rtscts;
+
+[1] https://patchwork.kernel.org/cover/10674939/
+
+Christian Hewitt (3):
+  dt-bindings: add vendor prefix for SmartLabs LLC
+  dt-bindings: arm: amlogic: add support for the SmartLabs SML-5442TW
+  arm64: dts: meson: add support for the SmartLabs SML-5442TW
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts | 284 +++++++++++++++++++++
+ 4 files changed, 288 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
+
+-- 
+2.7.4
+
 
 _______________________________________________
 linux-amlogic mailing list
