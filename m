@@ -2,87 +2,90 @@ Return-Path: <SRS0=FxSk=45=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F116C10DCE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Mar 2020 06:48:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D224C10DCE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Mar 2020 07:10:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3C9B820578
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Mar 2020 06:48:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 88BBA206B1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Mar 2020 07:10:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fgHIA5ZM";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CHn2t8Gp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C9B820578
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lUMkmRys";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HEivLkFS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 88BBA206B1
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=K+N0X0r6vPbRpLw+gPJhGjrxKP3UbnmLLmVxYoYyRTQ=; b=fgHIA5ZMeUxfAzVIA+3cfmV/qi
-	yw1ij87Mspwp3cac33lsfq5y6omFlc4RqqJe+pz5vMWlZjMcEo7g+H1cHRDPxRTdM8UTzz1GXQxVr
-	YljraKr7LylcA6ECxifKxpOPP4ZTcdqWOVpOeGZI3m5SZyAjsA8Ku98a80M+Qxj9F46bIzJxY3lGC
-	flpuHu0Zjfhww2FrxBx3Oro7St+0Yopj1UUUrBgYJ002mbCrR37hkDh/0Ds9C45wmvZzM3e/GFhR4
-	mIWJi7m6QdPNnmm2WgyxaxJqCtl1WIou5WZGVNeJZVDEmwsqllpoRZl0qKWkHK0k/5E0PL4TFwR7z
-	63pZH4RA==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZmxRUIPGc/Bf6sUhT1srYYfKxAxzINWPiWeRMD8pwhg=; b=lUMkmRysOxjsPr
+	18JP8hJMlhi4iJbbGTTJurdD10pAzZSXBv0Frvg0twCZXBfo0iILsp4Q6JKJ1Kml3awNOW+YBEMtx
+	bNjx/RYBGHYdfHIy9RJpF/n+XuTcZGsuGMQEMJ5pGbvyyrmqy2SnCS2jrLnQHkPq2PLig3djTaDj7
+	E6Cw9aWnvGhl+QfFPqwgGBxbOOOMD5g/EhTFCfn31dtaFfpnGac3iX3aL6y8Y0BTtn1UGf9Y3AncG
+	5Zsny2i0/MdDM6yoCC99zjwo0yZBuLLiLBKgR16TtpLQv5D69uY6hQdKDh6feRtSykGl9vqb4TCgf
+	oZ679C5gSWgshOHu7/YQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jCHdx-0002eC-QS; Thu, 12 Mar 2020 06:48:33 +0000
-Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
+	id 1jCHyu-0002v6-9Q; Thu, 12 Mar 2020 07:10:12 +0000
+Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jCHdv-0002df-7F; Thu, 12 Mar 2020 06:48:32 +0000
-Received: by mail-pf1-x443.google.com with SMTP id x2so2393344pfn.9;
- Wed, 11 Mar 2020 23:48:31 -0700 (PDT)
+ id 1jCHyr-0002t8-L7; Thu, 12 Mar 2020 07:10:10 +0000
+Received: by mail-pg1-x543.google.com with SMTP id t3so2602864pgn.1;
+ Thu, 12 Mar 2020 00:10:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=lxjxhXNAD3AGywNMl8H5owtCRspegZReTpVXsaoFlvM=;
- b=CHn2t8Gp6E99syTcM5Av0LZWL8jbCoQ5jap7ar2l6fwwQ94ld29tvZ2SQaDyM2UU8G
- PW/TBP58I1SL36LotuxvC8sTUJ6ISHI1Ks+kH0bK09zP46a4aZ3tE9av/ya27yUt8qbU
- XoE7fVdMiU85mCK52RFMbR+nutYGYwxFK1LezC6Hd/PY6kJseH+I6HfBPlAaAtROTs/P
- VTtY/fhkw+1KfQ6s0fqwH3xjOPJE9GLWoYvrPtTJkhSTE0waj6AkPoJPOO+8yybr6HG9
- j5zWZWCdxKJE7YczJZnE4y4AJE04ML1XF5ToDQYzB6fERP0UIHA9gpvlQ4Os0pnmcpIt
- 8dYw==
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=ljw1ounoCZTVG+RnME8ZEWoXQjwz4MM2v65DKn4hE/c=;
+ b=HEivLkFSubwB666Df2bxBcldTFyNFCcVeJlLB4IE3SXpNB+MYnRL5cmEKoaGnwdB6R
+ 5AkNJPZ5rOOl23MD0YeEH7MvuVXq+VUPa+LrQsLriASOMMX5Go6dFIBbdLm5rAZH83h2
+ bp61TPv78yl6qw4W8Jeoc5NykErt4zo36Q2R4CvHHG0RjhQMTbtzqGz4EfuvYbv0/ZpM
+ mGihoQP12Xn1+VwAqI/55fLE2YrIdLOyQuwqp7cbfbK57RF5s4prOe726uWlLI4vbnkA
+ pZva6NJCRNH0hh8E6KdFBMwmwEBiVnLai38PfkOW5sm0Xok0E4jguOiTrXGJ/V1n3TsC
+ OjcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=lxjxhXNAD3AGywNMl8H5owtCRspegZReTpVXsaoFlvM=;
- b=skKXIfa4hewvayGZlIaS7asS3EisXRdEuwu5pC7MoKjIjG6GuW3p8etSzsUMcPqs5B
- V9D2lEJHAZB4XQJzeh3H1ksrghIJOvufm0BSTkLT4s8Vo3Czm5zPeRok+oxje73eUmAl
- /9AA5r0BLSRmTzzgxXO37lWjy/5VURKIKTffmd4l9qO10eTWJTDlR6hpEb4+DpSrICUZ
- NjfHz68xj3iI4fprp30GeIGTXqGMU/4Jy2mHhWmASFRbNGEd+vi0e8jTwLuFWLwKmhNI
- I/MRvgdR6Yn9BdmxHbSKjE3uk8wc3cKG9GpRuKjiHhj3AzTV5/UAjWH/JKgziKxzHZ30
- +hrw==
-X-Gm-Message-State: ANhLgQ0GHOYhDS5GrDl0bTOhmLac1cwvC9/yTar2Z6q0d9fCMDlf0mfe
- 6qhxQ/d2qg0frIvH8GG4ELs=
-X-Google-Smtp-Source: ADFU+vsZyABanN90ZhdifavscU6wtE4scsZ3AAJ8cEf7mvO9vLvMg7a4MP11N/8+VsKLJKB7fS7zqg==
-X-Received: by 2002:a63:4282:: with SMTP id p124mr6575179pga.59.1583995710764; 
- Wed, 11 Mar 2020 23:48:30 -0700 (PDT)
-Received: from localhost.localdomain ([106.51.232.35])
- by smtp.gmail.com with ESMTPSA id z20sm23429783pge.62.2020.03.11.23.48.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Mar 2020 23:48:30 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=ljw1ounoCZTVG+RnME8ZEWoXQjwz4MM2v65DKn4hE/c=;
+ b=qKKmYIDGcD4mBDDmBzIUzfVPKUnHCmAqsAFw8VUHJhmgQ0ahTj+45X5U8pG0xKtA3j
+ SinUUqVIJ47wAYb9T4AeFKBORYBDFx3Xn0uilaYi2KpjKd/JQWmOqd8JEpI3dDnUjTKQ
+ R+B9mbw5Sgm11TMqvBpT8XQqy+s3ZmHfiXNRrKJu02DbXDwRvNOJe4HwryvN5LWNtcGj
+ Jgju5SH+nXRmnwaCATCDrLjXaEpwRGasUpkPtCWbipzZlIoxtNNDsnkjrn59iNGXidKo
+ Mel/7IBR4IleMSk2hGNqVSaGekFfkok847mnXFqCgy0YFkSpOg3ISMhSEDnbLRih7OSg
+ oUiQ==
+X-Gm-Message-State: ANhLgQ3J857pccF3QhQAiInRZMH8n58VJ2C8RV1zQgfmad/mlCqS2BIA
+ itYvqO20yeI8p+vCMRS+y4Y=
+X-Google-Smtp-Source: ADFU+vsa8Kf3tsY8FS7mPDY4biE2SeexdcM7YCIk/K/oVtDeAHxnIOxoQhr5MChQiCBGU9DYXPmQ4g==
+X-Received: by 2002:a63:f44d:: with SMTP id p13mr6613839pgk.113.1583997009092; 
+ Thu, 12 Mar 2020 00:10:09 -0700 (PDT)
+Received: from localhost ([106.51.232.35])
+ by smtp.gmail.com with ESMTPSA id 134sm627049pfy.27.2020.03.12.00.10.08
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 12 Mar 2020 00:10:08 -0700 (PDT)
+Date: Thu, 12 Mar 2020 12:40:06 +0530
 From: afzal mohammed <afzal.mohd.ma@gmail.com>
 To: daniel.lezcano@linaro.org
-Subject: [PATCH v4] clocksource/drivers/timer-cs5535: request irq with
+Subject: Re: [PATCH v4] clocksource/drivers/timer-cs5535: request irq with
  non-NULL dev_id
-Date: Thu, 12 Mar 2020 12:18:17 +0530
-Message-Id: <20200312064817.19000-1-afzal.mohd.ma@gmail.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <e47ba222-bf4e-d13c-fbd3-6e7952097188@linaro.org>
+Message-ID: <20200312071006.GA5415@afzalpc>
 References: <e47ba222-bf4e-d13c-fbd3-6e7952097188@linaro.org>
+ <20200312064817.19000-1-afzal.mohd.ma@gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200312064817.19000-1-afzal.mohd.ma@gmail.com>
+User-Agent: Mutt/1.9.3 (2018-01-21)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200311_234831_286438_43F0E3F1 
-X-CRM114-Status: GOOD (  11.63  )
+X-CRM114-CacheID: sfid-20200312_001009_696983_4A33A62D 
+X-CRM114-Status: UNSURE (   5.87  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,69 +98,26 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: kstewart@linuxfoundation.org, linus.walleij@linaro.org, shawnguo@kernel.org,
- festevam@gmail.com, afzal.mohd.ma@gmail.com, f.fainelli@gmail.com,
- khilman@baylibre.com, krzk@kernel.org, kgene@kernel.org,
- bcm-kernel-feedback-list@broadcom.com, linux-imx@nxp.com,
- u.kleine-koenig@pengutronix.de, rjui@broadcom.com, s.hauer@pengutronix.de,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- tglx@linutronix.de, allison@lohutok.net, linux-arm-kernel@lists.infradead.org,
- baohua@kernel.org, sbranden@broadcom.com, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, linux@prisktech.co.nz, kernel@pengutronix.de,
- info@metux.net, nsaenzjulienne@suse.de
-MIME-Version: 1.0
+ festevam@gmail.com, f.fainelli@gmail.com, khilman@baylibre.com,
+ krzk@kernel.org, kgene@kernel.org, bcm-kernel-feedback-list@broadcom.com,
+ allison@lohutok.net, u.kleine-koenig@pengutronix.de, linux-imx@nxp.com,
+ rjui@broadcom.com, s.hauer@pengutronix.de, linux-samsung-soc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, tglx@linutronix.de,
+ linux-arm-kernel@lists.infradead.org, baohua@kernel.org, sbranden@broadcom.com,
+ gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+ linux@prisktech.co.nz, kernel@pengutronix.de, info@metux.net,
+ nsaenzjulienne@suse.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Recently all usages of setup_irq() was replaced by request_irq().
-request_irq() does a few sanity checks that were not done in
-setup_irq(), if they fail irq registration will fail. One of the check
-is to ensure that non-NULL dev_id is passed in the case of shared irq.
-
-Fix it by passing non-NULL dev_id while registering the shared irq.
-
-Fixes: cc2550b421aa ("clocksource: Replace setup_irq() by request_irq()")
-Signed-off-by: afzal mohammed <afzal.mohd.ma@gmail.com>
----
-
-Hi Daniel,
-
-i have assumed that you would not rebase your drivers/next tree & put the
-SHA-id in Fixes tag.
+subject was not supposed to have version info, happened by mistake, this
+is an incremental patch on top of v3 that has been applied to the
+timers/drivers/next branch.
 
 Regards
 afzal
-
- drivers/clocksource/timer-cs5535.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/clocksource/timer-cs5535.c b/drivers/clocksource/timer-cs5535.c
-index 51ea0509fb25..d47acfe848ae 100644
---- a/drivers/clocksource/timer-cs5535.c
-+++ b/drivers/clocksource/timer-cs5535.c
-@@ -133,6 +133,7 @@ static irqreturn_t mfgpt_tick(int irq, void *dev_id)
- 
- static int __init cs5535_mfgpt_init(void)
- {
-+	unsigned long flags = IRQF_NOBALANCING | IRQF_TIMER | IRQF_SHARED;
- 	struct cs5535_mfgpt_timer *timer;
- 	int ret;
- 	uint16_t val;
-@@ -152,9 +153,7 @@ static int __init cs5535_mfgpt_init(void)
- 	}
- 
- 	/* And register it with the kernel */
--	ret = request_irq(timer_irq, mfgpt_tick,
--			  IRQF_NOBALANCING | IRQF_TIMER | IRQF_SHARED,
--			  DRV_NAME, NULL);
-+	ret = request_irq(timer_irq, mfgpt_tick, flags, DRV_NAME, timer);
- 	if (ret) {
- 		printk(KERN_ERR DRV_NAME ": Unable to set up the interrupt.\n");
- 		goto err_irq;
--- 
-2.18.0
-
 
 _______________________________________________
 linux-amlogic mailing list
