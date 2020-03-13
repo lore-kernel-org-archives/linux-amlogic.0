@@ -2,74 +2,87 @@ Return-Path: <SRS0=FIcl=46=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9619FC10DCE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2020 16:13:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CC6AC4CECE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2020 20:18:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 688FD2072C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2020 16:13:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DD82820637
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2020 20:18:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ME5Cl7aJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 688FD2072C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jjGhCr03";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a14X4w4d"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DD82820637
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=rYEOBT1983tf6nM6Xp7a4ajj0R01ND8TFlsJ2rkcVo8=; b=ME5Cl7aJ6Y/21mmNqMvlRtMfK
-	vtCz6nBhVv+V1/1ESpLJ+0Dtl+3zrq2tJhvxZcuF9ujbEPzxot8gb2UDo7mtAlHDes5XY3ZRoD5Ka
-	tqB2iOL4M+Fob3jJMbZx3e2gk2SUejTNCS2kFe12uStVkttOWevysFQe1Sar9fd3gQj4mxxam0pzX
-	mWWzY9EtrSyR/JikqZEjfBKzQB5c1D/w71Z0sRU+Cn8CqdR+tzkvsGdQ00DZEG3or/wHaeKWmvHwZ
-	h22dG5hW7Ita1rHB2EPnRwKlz7EJqP99vQA4yKLiQRzvlZ2aS+44VyCLCvlwIA2JJIizZ9sX5CXDE
-	ha+yi4Q2g==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=cn4zyOeTYXu3S6Z6Mq9gkj5qmriydKFL2cdtbsX8eMM=; b=jjGhCr03qQkw/Y
+	yrmHQmtvyckuC/IuIZSxZTlG9l7zup1CjRZRKFD2EqW2GscZ3jemWfvrsx8o0Xb5dFt7XjWJC7br1
+	6AwyJnFg3+nCs+y3cluUhqIexOqvxRYnVUPYniX8d1c5wn62CzmEWiHBJxNLiZ6bFBkOYtm3V3Y++
+	Bv1nEMGF+Dw/AJFNNvP8EPobNcoQ6Q+ZptTiiL20YKfyzKtE92XN6jZF1yw6wSBjI3k3T2emenSvU
+	DrezjtzAn3o32XsrZArfTmxVVzQ2yX928VCnU8Vm9M4gZokw0CVojChBhz1mj3PqfLXsT4dhhVJQB
+	SSLCPyCEeLVV/JjeT0Pw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jCmvh-0005KD-Kc; Fri, 13 Mar 2020 16:12:57 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1jCqkv-0000xB-8Z; Fri, 13 Mar 2020 20:18:05 +0000
+Received: from mail-lj1-x243.google.com ([2a00:1450:4864:20::243])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jCmvf-0005JR-4m
- for linux-amlogic@lists.infradead.org; Fri, 13 Mar 2020 16:12:56 +0000
-Received: from [10.28.90.144] (10.28.90.144) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Sat, 14 Mar 2020
- 00:13:10 +0800
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add arm,smc-wdt watchdog
- arm,smc-wdt compatible
-To: Julius Werner <jwerner@chromium.org>
-References: <20200214062637.216209-1-evanbenn@chromium.org>
- <20200214172512.1.I02ebc5b8743b1a71e0e15f68ea77e506d4e6f840@changeid>
- <20200219223046.GA16537@bogus>
- <CAODwPW8JspiUtyU4CC95w9rbNRyUF-Aeb9TuPm1PzmP6u=y1EA@mail.gmail.com>
- <20200219232005.GA9737@roeck-us.net>
- <CAKz_xw2hvHL=a4s37dmuCTWDbxefQFR3rfcaNiWYJY4T+jqabA@mail.gmail.com>
- <e42320b8-266f-0b0e-b20b-b72228510e81@amlogic.com>
- <CAODwPW94KX46PzSrf_uuEFPKudXor=26d=g3Qta5veRfxmMDUA@mail.gmail.com>
- <1326f594-3cfd-c03d-4f2c-50eeb75724b2@amlogic.com>
- <CAODwPW8WwntWb_=dg2J3AMy-gHw2QvNj_g98SufN13+AuGnUSg@mail.gmail.com>
- <b4ba821a-eef6-4aea-1eba-897171b92c41@amlogic.com>
- <CAKz_xw2T1UceCwFZnBxg6WVp2D4+MziyvQPdU6tEnR_BdLh-PQ@mail.gmail.com>
- <ad28aa47-0490-937f-898f-0e4695ef6ec6@amlogic.com>
- <CAODwPW9oxx33hkO3kv2_G8YyLWvigVHkfJU7xUHLVgB7QU2i3Q@mail.gmail.com>
-From: Xingyu Chen <xingyu.chen@amlogic.com>
-Message-ID: <6e846246-dfd5-c002-cd61-41c2d11a2e54@amlogic.com>
-Date: Sat, 14 Mar 2020 00:13:01 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.2
+ id 1jCqkp-0000ps-DR; Fri, 13 Mar 2020 20:18:02 +0000
+Received: by mail-lj1-x243.google.com with SMTP id q19so11915110ljp.9;
+ Fri, 13 Mar 2020 13:17:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Y58XOkdziIOagbDJXaKPopb+GQlU9fbifw4eoZN3YIE=;
+ b=a14X4w4dS2yd7C/5VPno7i/nBzVNU5gbbv+Tld50flDKi1V2uj3T8h6/bqF56ixDIQ
+ epKRKteT7A80miLVVtDJi3lvb36JcaGYtUskmmoOqNaKJ1NhtEhyu2O2EAotEBWp0vT9
+ 9WxVBWDQZ3NOOOAnPnqFuwOoluVvfMrLSDkuPaw9WDbIK4blcU2ifQesuPyClX4FAKEs
+ 20CzvQQtSPOunxFWzyZAUq7Nt6KJj/ysnwxZsxhMBttkKp2bVYBC7zh8lFkV6nWVsRnn
+ cvQoH0PplvOPvD0k55tWiSo15BFZN0+ND6QYMNzWUr48SkzrTsb7gci8hvbjgK5znBXe
+ sG+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+ :mime-version:content-transfer-encoding;
+ bh=Y58XOkdziIOagbDJXaKPopb+GQlU9fbifw4eoZN3YIE=;
+ b=GRJ526XHDOxup5Q0JzXH/4wnmUGHfIUu1nZng+r1CVTxwae94wZcTm/sH7xKQ19GsN
+ H4Xj8LbSFckQJJkAtL8gmBX4mGCaF6qDOfz0SWWLRJN3eTaetm2XWT+2jebxMqZpbf7s
+ URZyQStyUiTrupeUOw1KOAPPi8Nf7abMJ1ES5C35fmE1Xa3/ZPmbeLwCktSEFprXwHuT
+ uU8A7UbLm3Xq3fTRqMt6En5pTGQj6GR6PMZrMh7/4AsPI8tCqgDP4NkaMX/Y9fkzGAKS
+ 7CkHpaMOLjLFBBlSKstglEw7HRb0BEGaHN0zcK7PR/DZ0530F5nGt2ftZeBJ8mECKe6M
+ 8d/Q==
+X-Gm-Message-State: ANhLgQ2p703MNISH34Fj82iUeFSNSBaKhuz5e163i1RNLSpUUVFmau0K
+ 188pwvrteIAD+AiYVy20UbI=
+X-Google-Smtp-Source: ADFU+vuuP8eLGHs61Pn00F6kfLCzZYEGZpi+HoTitf53XYXkeT4pF7N73LFSnuUIomov7m47p3b2kA==
+X-Received: by 2002:a05:651c:1047:: with SMTP id
+ x7mr6683206ljm.246.1584130676487; 
+ Fri, 13 Mar 2020 13:17:56 -0700 (PDT)
+Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
+ by smtp.gmail.com with ESMTPSA id
+ v10sm30774074lfb.61.2020.03.13.13.17.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Mar 2020 13:17:55 -0700 (PDT)
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v1 0/3] drm: drm_encoder_init() => drm_encoder_init_funcs()
+Date: Fri, 13 Mar 2020 21:17:41 +0100
+Message-Id: <20200313201744.19773-1-sam@ravnborg.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <CAODwPW9oxx33hkO3kv2_G8YyLWvigVHkfJU7xUHLVgB7QU2i3Q@mail.gmail.com>
-Content-Language: en-GB
-X-Originating-IP: [10.28.90.144]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200313_091255_186811_600A41A4 
-X-CRM114-Status: GOOD (  13.88  )
+X-CRM114-CacheID: sfid-20200313_131759_530975_0DBC5A1F 
+X-CRM114-Status: GOOD (  11.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,45 +94,185 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
- Evan Benn <evanbenn@chromium.org>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Yonghui Yu <yonghui.yu@amlogic.com>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- "David S. Miller" <davem@davemloft.net>, Guenter Roeck <linux@roeck-us.net>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ David Airlie <airlied@linux.ie>, Jose Roberto de Souza <jose.souza@intel.com>,
+ virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
+ Sam Ravnborg <sam@ravnborg.org>, linux-stm32@st-md-mailman.stormreply.com,
+ Emil Velikov <emil.velikov@collabora.com>, linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ NXP Linux Team <linux-imx@nxp.com>, Dave Airlie <airlied@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, linux-mediatek@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Boris Brezillon <bbrezillon@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksIEp1bGl1cwoKT24gMjAyMC8zLzEyIDM6MjQsIEp1bGl1cyBXZXJuZXIgd3JvdGU6Cj4+IC0g
-Kl9JTklUIGFuZCAqR0VUVElNRU9VVC4gICAgICBBbHRob3VnaCB5b3VyIGRyaXZlciBkb2VzIG5v
-dCBuZWVkIHRoZW0sIGNvdWxkIHlvdSB0YWtlIHRoZW0gYXMgb3B0aW9ucyBpbiB5b3VyIGRyaXZl
-ciA/Cj4gVGhlIGRyaXZlciBhbHJlYWR5IGhhcyBTTUNXRF9JTkZPIHdoaWNoIGlzIHVzZWQgZHVy
-aW5nIHByb2JlIHRvCj4gcmV0cmlldmUgdGhlIG1pbmltdW0gYW5kIG1heGltdW0gdGltZW91dCB2
-YWx1ZXMgc3VwcG9ydGVkIGJ5IHRoZQo+IGhhcmR3YXJlIGF0IHByb2JlIHRpbWUuIE1heWJlIGl0
-IHdvdWxkIG1ha2Ugc2Vuc2UgdG8gcmVuYW1lIHRoYXQgdG8KPiBJTklUICh3aGljaCB3b3VsZCBz
-dGlsbCByZXR1cm4gdGhvc2UgdmFsdWVzLCBidXQgY2FuIGFsc28gZG8gd2hhdGV2ZXIKPiBpbml0
-aWFsaXphdGlvbiBuZWVkcyB0byBiZSBkb25lIGluIFRGKT8KWWVz77yMSU5JVCB3b3VsZCBtYWtl
-IHNlbnNlIGZvciBtZS4KPiBHRVRUSU1FTEVGVCBJIGFncmVlIHdlIGNhbgo+IGltcGxlbWVudCBv
-cHRpb25hbGx5LCBhbmQgb3RoZXIgcGxhdGZvcm1zIHdvdWxkIGp1c3QgcmV0dXJuIGEKPiBQU0NJ
-X1JFVF9OT1RfU1VQUE9SVEVEIGZvciB0aGF0Lgo+Cj4+IC0gKl9SRVNFVE5PVy4gICAgICBJdCBp
-cyB1c2VkIHRvIHJlc2V0IHRoZSBzeXN0ZW0gcmlnaHQgbm93LCBzaW1pbGFyIHRvIHlvdXIgU09G
-VCBSRVNFVC4gY291bGQgeW91IHJlc2VydmUgYW4gb3BlcmF0aW9uIGluZGV4IGluIEFURiA/Cj4g
-SnVzdCBjdXJpb3VzLCB3aHkgZG8geW91IG5lZWQgdGhpcz8gU2hvdWxkbid0IHlvdSB1c2UgdGhl
-IFBTQ0kKPiBzdGFuZGFyZCBTWVNURU1fUkVTRVQgU01DIGZvciB0aGF0PyAoSWYgeW91IHdhbnQg
-dG8gY29udHJvbCBleGFjdGx5Cj4gaG93IHRoZSBwbGF0Zm9ybSBpcyByZXNldCwgeW91IGNvdWxk
-IGFsc28gdXNlIFNZU1RFTV9SRVNFVDIgd2l0aCBhCj4gdmVuZG9yLWRlZmluZWQgcmVzZXRfdHlw
-ZS4pCkkganVzdCB3YW50ZWQgaXQgdG8gYmUgY29tcGF0aWJsZSB3aXRoIG90aGVyIE9T77yMYW5k
-IEnCoCB0aGluayBpdCBvdmVyLCAKbWF5YmUgSSBjYW4gYWxzbyB1c2UgdGhlClBTQ0kgaW50ZXJm
-YWNlIHRvIGV4ZWN1YXRlIHRoZSBzeXN0ZW0gcmVzZXQgb24gdGhlIG90aGVyIE9TLiBBbnl3YXks
-IApwbGVhc2UgaWdub3JlIHRoaXMgcmVxdWVzdC4KClRoYW5rcy4KPgo+IC4KCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
-ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Thomas Zimmermann had made a nice patch-set that introduced
+drm_simple_encoder_init() which is already present in drm-misc-next.
+
+While looking at this it was suddenly obvious to me that
+this was functionalty that really should be included in drm_encoder.c
+The case where the core could handle the callback is pretty
+common and not part of the simple pipe line.
+
+So after some dialog on dri-devel the conclusion was to go for
+a change like this:
+
+    drm_encoder_init_funcs() for all users that specified a
+    drm_encoder_funcs to extend the functionality.
+
+    drm_encoder_init() for all users that did not
+    need to extend the basic functionality with
+    drm_encoder_funcs.
+
+A similar approach with a _funcs() prefix is used elsewhere in drm/
+
+This required a rename of the existing users, and
+a follow-up patch that moves drm_simple_encoder_init()
+to drm_encoder.c
+
+Patches 3 in this set demonstrate the use of drm_encoder_init().
+There are many more drivers that can be converted as Thomas
+has already demonstrated.
+
+This is all based on work done by Thomas Zimmermann,
+I just wanted to implement my suggestion so
+we could select the best way forward.
+
+Note: Daniel Vetter has hinted the approach implemented
+here smelled like middle-layer.
+IMO this is not so, it is just a way to handle cleanup
+for the simple cases.
+
+	Sam
+
+
+Sam Ravnborg (3):
+      drm: drm_encoder_init() => drm_encoder_init_funcs()
+      drm: drm_simple_encoder_init() => drm_encoder_init()
+      drm/atmel-hlcdc: Use drm_encoder_init()
+
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c             | 28 ++++++-------
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c             | 28 ++++++-------
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c              | 28 ++++++-------
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c              | 28 ++++++-------
+ drivers/gpu/drm/amd/amdgpu/dce_virtual.c           |  4 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 10 ++---
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    | 10 ++---
+ drivers/gpu/drm/arc/arcpgu_hdmi.c                  |  4 +-
+ drivers/gpu/drm/arc/arcpgu_sim.c                   |  4 +-
+ drivers/gpu/drm/ast/ast_mode.c                     |  3 +-
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_output.c   |  8 +---
+ drivers/gpu/drm/drm_encoder.c                      | 49 +++++++++++++++++++---
+ drivers/gpu/drm/drm_encoder_slave.c                |  2 +-
+ drivers/gpu/drm/drm_simple_kms_helper.c            | 45 +-------------------
+ drivers/gpu/drm/drm_writeback.c                    |  6 +--
+ drivers/gpu/drm/exynos/exynos_dp.c                 |  4 +-
+ drivers/gpu/drm/exynos/exynos_drm_dpi.c            |  4 +-
+ drivers/gpu/drm/exynos/exynos_drm_dsi.c            |  4 +-
+ drivers/gpu/drm/exynos/exynos_drm_vidi.c           |  4 +-
+ drivers/gpu/drm/exynos/exynos_hdmi.c               |  4 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c          |  4 +-
+ drivers/gpu/drm/gma500/cdv_intel_crt.c             |  5 ++-
+ drivers/gpu/drm/gma500/cdv_intel_dp.c              |  4 +-
+ drivers/gpu/drm/gma500/cdv_intel_hdmi.c            |  4 +-
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c            |  6 +--
+ drivers/gpu/drm/gma500/mdfld_dsi_dpi.c             |  7 ++--
+ drivers/gpu/drm/gma500/oaktrail_hdmi.c             |  6 +--
+ drivers/gpu/drm/gma500/oaktrail_lvds.c             |  4 +-
+ drivers/gpu/drm/gma500/psb_intel_lvds.c            |  6 +--
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c            |  4 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c   |  4 +-
+ drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c       |  4 +-
+ drivers/gpu/drm/i2c/tda998x_drv.c                  |  5 ++-
+ drivers/gpu/drm/i915/display/icl_dsi.c             |  4 +-
+ drivers/gpu/drm/i915/display/intel_crt.c           |  5 ++-
+ drivers/gpu/drm/i915/display/intel_ddi.c           |  6 ++-
+ drivers/gpu/drm/i915/display/intel_dp.c            |  6 +--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |  6 ++-
+ drivers/gpu/drm/i915/display/intel_dvo.c           |  6 +--
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |  6 +--
+ drivers/gpu/drm/i915/display/intel_lvds.c          |  4 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c          |  6 +--
+ drivers/gpu/drm/i915/display/intel_tv.c            |  4 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c             |  5 ++-
+ drivers/gpu/drm/imx/dw_hdmi-imx.c                  |  4 +-
+ drivers/gpu/drm/imx/imx-ldb.c                      |  4 +-
+ drivers/gpu/drm/imx/imx-tve.c                      |  4 +-
+ drivers/gpu/drm/imx/parallel-display.c             |  4 +-
+ drivers/gpu/drm/ingenic/ingenic-drm.c              |  5 ++-
+ drivers/gpu/drm/mediatek/mtk_dpi.c                 |  5 ++-
+ drivers/gpu/drm/mediatek/mtk_dsi.c                 |  4 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c              |  5 ++-
+ drivers/gpu/drm/meson/meson_venc_cvbs.c            |  5 ++-
+ drivers/gpu/drm/mgag200/mgag200_mode.c             |  7 +---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        |  4 +-
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_dsi_encoder.c   |  4 +-
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_dtv_encoder.c   |  4 +-
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c  |  4 +-
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_encoder.c       |  3 +-
+ drivers/gpu/drm/nouveau/dispnv04/dac.c             |  4 +-
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c             |  3 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv04.c          |  4 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c          |  4 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            | 16 +++----
+ drivers/gpu/drm/omapdrm/omap_encoder.c             |  4 +-
+ drivers/gpu/drm/qxl/qxl_display.c                  |  7 +---
+ drivers/gpu/drm/radeon/atombios_encoders.c         | 40 +++++++++---------
+ drivers/gpu/drm/radeon/radeon_dp_mst.c             |  4 +-
+ drivers/gpu/drm/radeon/radeon_legacy_encoders.c    | 20 ++++-----
+ drivers/gpu/drm/rcar-du/rcar_du_encoder.c          |  4 +-
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |  5 ++-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c             |  4 +-
+ drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c    |  5 ++-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |  4 +-
+ drivers/gpu/drm/rockchip/inno_hdmi.c               |  4 +-
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c             |  4 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c           |  5 ++-
+ drivers/gpu/drm/rockchip/rockchip_rgb.c            |  5 ++-
+ drivers/gpu/drm/shmobile/shmob_drm_crtc.c          |  4 +-
+ drivers/gpu/drm/sti/sti_tvout.c                    | 16 +++----
+ drivers/gpu/drm/stm/ltdc.c                         |  4 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             | 10 ++---
+ drivers/gpu/drm/sun4i/sun4i_lvds.c                 | 10 ++---
+ drivers/gpu/drm/sun4i/sun4i_rgb.c                  | 10 ++---
+ drivers/gpu/drm/sun4i/sun4i_tv.c                   | 10 ++---
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c             | 10 ++---
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |  4 +-
+ drivers/gpu/drm/tegra/dsi.c                        |  6 +--
+ drivers/gpu/drm/tegra/hdmi.c                       |  5 ++-
+ drivers/gpu/drm/tegra/rgb.c                        |  4 +-
+ drivers/gpu/drm/tegra/sor.c                        |  4 +-
+ drivers/gpu/drm/tidss/tidss_encoder.c              |  4 +-
+ drivers/gpu/drm/tilcdc/tilcdc_external.c           |  8 ++--
+ drivers/gpu/drm/tilcdc/tilcdc_panel.c              |  4 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c              |  4 +-
+ drivers/gpu/drm/vc4/vc4_dpi.c                      |  4 +-
+ drivers/gpu/drm/vc4/vc4_dsi.c                      |  4 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |  4 +-
+ drivers/gpu/drm/vc4/vc4_vec.c                      |  4 +-
+ drivers/gpu/drm/virtio/virtgpu_display.c           |  4 +-
+ drivers/gpu/drm/vkms/vkms_output.c                 |  4 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c                |  4 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |  5 ++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |  4 +-
+ drivers/gpu/drm/zte/zx_hdmi.c                      |  4 +-
+ drivers/gpu/drm/zte/zx_tvenc.c                     |  4 +-
+ drivers/gpu/drm/zte/zx_vga.c                       |  4 +-
+ include/drm/drm_encoder.h                          |  9 ++--
+ include/drm/drm_simple_kms_helper.h                |  4 --
+ 109 files changed, 394 insertions(+), 395 deletions(-)
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
