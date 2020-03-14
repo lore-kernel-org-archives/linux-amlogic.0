@@ -2,67 +2,69 @@ Return-Path: <SRS0=3H8E=47=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CED0DC1975A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Mar 2020 11:35:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19C6DC0044D
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Mar 2020 21:45:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A44702076B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Mar 2020 11:35:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DBAD520575
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Mar 2020 21:45:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mB37c+Jv";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="IHo9UHfg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A44702076B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p2F1Ehgn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DBAD520575
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=yXe1S/Hbvcrd1Cha2SVSXP2UlIMOuj3JRf76g7Q5p4k=; b=mB3
-	7c+JvFv83LBtyf0eW3F6VUVvc5cep/OlIeDEsO0v+NA+C4w24XhUyIezRwDQjnjEflwUAVEdmA3Nz
-	QPmDYt9yv1+Ddpd+ZEXMhPsnRf67WttBKPUqK6HArGTDUs53GP30GUArC7dWFueDxEhspIdw17x+n
-	F0tXvih/qd2wHha6AMLPFiaVgug2tuZ6+yxLERHwBYRXAst0UrXSSnkJgDh/Qwv0osZ+a4fRHPOb5
-	HVn1/4/KVMkCugCp5oIsxaHW9tIcQIe+wBw3CwaQqPMPDVVODS9cxXILQIqidM05CTXDPfyjdLX4F
-	cuopGERKKUzSSLwWpee9BdvUA1RxfMw==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=A+A0jb1N+ZzrXZuUQHhiyEfsgVwBweZ+BN4Zm4SpTdY=; b=p2F1EhgnNzLY0U
+	QXeBFUkbH2ihYUJzRo+jEEcG/xycI43XjIhoujek7sYhvGQK8xZrqC79Z/1C0qDAfH14t59HJtIov
+	Nq71BiGr2q6LyaGIu7jjvJF+uXmUcvCSO4iGoFLNhu0B9ha5p8p9rVeCzbvl0RPWQHD2vti96ovjN
+	sB3ZyWli4QtxqgyLHUxE0YJSmoqCpKSZVQAKmVG01GJHe8kCPcfyyySVeSpAvp7CaYLN7Q/PgSV4u
+	zB1Rfp0CpOHmOiZybfoeohOFv0ONj8ohvfjGTYZQIQ993N2QHCVJrIeqUpxRJHbShaF1iln2kJr/C
+	BtIJsfiFHKMJM2grrSLQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jD54p-0004G8-4P; Sat, 14 Mar 2020 11:35:35 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1jDEau-0003Yx-3W; Sat, 14 Mar 2020 21:45:20 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jD54l-0004Fb-T4; Sat, 14 Mar 2020 11:35:33 +0000
-Received: from localhost.localdomain (unknown [194.230.155.125])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 65AA920770;
- Sat, 14 Mar 2020 11:35:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1584185730;
- bh=coba9sPlVQlvtDyTnDgcgDbX0FGnfY7UH9T3w2NckRk=;
- h=From:To:Cc:Subject:Date:From;
- b=IHo9UHfgRAZndP5626xncCmMrGNzq2y+l8gtNe7gPnI02TVheNnld8vdjBcxriTDI
- M2SJzpOZCB19uEP/8ffnfke2PZfQgUEchLaOCdRGgX7O9NuV4iofCXktWefIcoL9zy
- sn1T7+L/ilxpKdQW8xsv0quXzPgeE9eqiVtDo1ZI=
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>,
- =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Kevin Hilman <khilman@baylibre.com>, linux-pwm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] pwm: meson: Fix confusing indentation
-Date: Sat, 14 Mar 2020 12:35:24 +0100
-Message-Id: <20200314113524.23031-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
+ id 1jDEZY-000220-Pm
+ for linux-amlogic@lists.infradead.org; Sat, 14 Mar 2020 21:44:00 +0000
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1jDEZQ-0002vd-NZ; Sat, 14 Mar 2020 22:43:48 +0100
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1jDEZP-0005Xp-Oz; Sat, 14 Mar 2020 22:43:47 +0100
+Date: Sat, 14 Mar 2020 22:43:47 +0100
+From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] pwm: meson: Fix confusing indentation
+Message-ID: <20200314214347.dun6ith5zamaa3m6@pengutronix.de>
+References: <20200314113524.23031-1-krzk@kernel.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200314113524.23031-1-krzk@kernel.org>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200314_043531_961227_28D38741 
-X-CRM114-Status: GOOD (  10.41  )
+X-CRM114-CacheID: sfid-20200314_144356_877072_540FF866 
+X-CRM114-Status: UNSURE (   6.33  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,38 +76,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Thierry Reding <thierry.reding@gmail.com>, kernel@pengutronix.de,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix indentation of return block.  Smatch warning:
-    drivers/pwm/pwm-meson.c:139 meson_pwm_request() warn: inconsistent indenting
+On Sat, Mar 14, 2020 at 12:35:24PM +0100, Krzysztof Kozlowski wrote:
+> Fix indentation of return block.  Smatch warning:
+>     drivers/pwm/pwm-meson.c:139 meson_pwm_request() warn: inconsistent in=
+denting
+> =
 
-Reported-by: kbuild test robot <lkp@intel.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- drivers/pwm/pwm-meson.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Reported-by: kbuild test robot <lkp@intel.com>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 6245bbdb6e6c..8cf9129caa39 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -136,7 +136,7 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
- 			dev_err(dev, "failed to set parent %s for %s: %d\n",
- 				__clk_get_name(channel->clk_parent),
- 				__clk_get_name(channel->clk), err);
--				return err;
-+			return err;
- 		}
- 	}
- 
--- 
-2.17.1
+This exists since commit 211ed630753d ("pwm: Add support for Meson PWM
+Controller") in 2016. Added Neil to Cc:.
 
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Thanks
+Uwe
+
+-- =
+
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
 _______________________________________________
 linux-amlogic mailing list
