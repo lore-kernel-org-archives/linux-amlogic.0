@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D691DC5ACC0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Mar 2020 02:35:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97C1FC5ACBF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Mar 2020 02:39:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7BDBA2074C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Mar 2020 02:35:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6CA7F206EB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Mar 2020 02:39:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jmlvPinf";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="15z2Hr4N"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7BDBA2074C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xs5+eA1C";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="ED0q+CUf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6CA7F206EB
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,45 +25,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wTHXC+GT0+Q8ndP01F3bEqrFVfokvrFHttkv28y+4fY=; b=jmlvPinfqGnRpt
-	OBShFZZG9XGaj83tz35Zv0ZQdqZV11Ofq7bDpPmmmeBVMPi40eIE3G2u7jCg5WbEosscxt09lmnzP
-	q71wveR6iBOjhjnwAZSnINdG4C/abG4xpoVH2TmW0YFLej/6Tleg4pKmcmnezM7P61ETTOcsZStZF
-	drhkEUcfynvH9UJMpUqMlzhnz4pPxq1RPP1YVCR/XqBfRq4tsPvcw8YsioO1+E3GBqi7Nei2NW/wB
-	O6pJnM1byxiPtQWqTtvaizhI0hrgZKEECbE0CsU1G7MTwv5iVyuO1wl8YE6Z7YFgMhJBNw7iEbL9W
-	ISKRhxzsg85/W0fG93PA==;
+	List-Owner; bh=wTHXC+GT0+Q8ndP01F3bEqrFVfokvrFHttkv28y+4fY=; b=Xs5+eA1CF8xUeh
+	fyu6IBZuLyum7uEUjZ+JYe2lDbdABL7vODTmnJZHpmatgsoyoKu0+/Gl+Z0cqyWit2Ye1orPOarGT
+	7I4n+7xzsNNTps0cKwAXse8+wJvLG4TQCtx3+3U8magj/7UYAHR9bs0L7ECThYok3L207TqYl50Zs
+	0ovCl6CIDaVH8g3EK/lOgy8tjaF3pUSa/sK1991CBxyOni4QxdugUgTgpfE5HGjTWAqvMhRte6thW
+	K+gZaBVqGLWf5SLB/s5UR7adnR9iQ6QDBpck66KkfUEcYQVc3dQblbeh+GC4mRvYanpTM/xQgy5cE
+	oGSy2GRfWTOnscaz4oXQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jDfbX-0005AY-4s; Mon, 16 Mar 2020 02:35:47 +0000
+	id 1jDffO-0000cI-Jc; Mon, 16 Mar 2020 02:39:46 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jDfZM-0002Az-60; Mon, 16 Mar 2020 02:33:34 +0000
+ id 1jDfa9-0002s4-KT; Mon, 16 Mar 2020 02:34:24 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 28F8B20722;
- Mon, 16 Mar 2020 02:33:30 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 2CBDD20722;
+ Mon, 16 Mar 2020 02:34:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1584326011;
+ s=default; t=1584326061;
  bh=zfd67u+rmC+7o1QvaUow5GVSNreqIe3rocf3yS5pvKo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=15z2Hr4N62lgDadgu2e6hhFsEsBVengXHRV3veArs8MJzogYZAAdxI1NOUHxS9adh
- 0Xx9A+ttRGdQNuCDWBnCZfhdYlkMr/yD8/d5EEuB/5vrVwOvcNWb3tEHNFmn7Fn4+v
- tpPGmV1/xwKc1LKtDOlUDXzVR1KDIZ+2xXaD83CE=
+ b=ED0q+CUfl2YqGgYt0lQgIDW7jMplZqeBmpZbZIqk4ySxgOYrihW4Z/XurFOMIr2LI
+ kzQyZkzyCcNVuNzyUg59tdUvN5mq2QF05WDrlW1Dhzpqh9b7J56znPdjceMeehWAPi
+ G+w3eOAwoWlDkYRk5cBnxrcoI1YwUns7Ee8mUodg=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 09/41] ASoC: meson: g12a: add tohdmitx reset
-Date: Sun, 15 Mar 2020 22:32:47 -0400
-Message-Id: <20200316023319.749-9-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 08/35] ASoC: meson: g12a: add tohdmitx reset
+Date: Sun, 15 Mar 2020 22:33:44 -0400
+Message-Id: <20200316023411.1263-8-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200316023319.749-1-sashal@kernel.org>
-References: <20200316023319.749-1-sashal@kernel.org>
+In-Reply-To: <20200316023411.1263-1-sashal@kernel.org>
+References: <20200316023411.1263-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200315_193332_266588_132696A0 
+X-CRM114-CacheID: sfid-20200315_193422_394872_3AE1541F 
 X-CRM114-Status: UNSURE (   9.24  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
