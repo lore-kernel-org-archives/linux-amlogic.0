@@ -2,68 +2,115 @@ Return-Path: <SRS0=Wf2j=5C=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4FB9C10F29
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Mar 2020 07:25:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46341C5ACBF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Mar 2020 12:32:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7121120674
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Mar 2020 07:25:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 157172076D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Mar 2020 12:32:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="suVnUnIB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7121120674
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Tzo1LwIt";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=toradex.com header.i=@toradex.com header.b="IPrQWPEh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 157172076D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=toradex.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f6pwBVDyhjvhUHa9ZJT7NTjv3Q8vOIUPydKahtpw/E8=; b=suVnUnIBZ+FtfX
-	yJRYxjErauY3aKi0T34kjFnk/g4Cq+8IyAjrcItsPrZOn++RN9feoRbPRMKqbtCWR+mU32rHke9ey
-	XPKnZZIw0nujhG9UYxpQbuA90ExFcQNdYpplmIr9VMhrPEDr1b/cMxW/Sf1OIr9+pIxEpIh9/cWky
-	+VG+ak/iSCRXf0w0a4Y4QbZy7Bxej0R4hdnIQUdmThB6EYY9bj9fzgxklR1/PgWJg27pBJV9kaQRa
-	1hhJePkJYLG0DduWmKf1DSHt7nc8jnoSNnNsjIBBQA5jVBW/uuXX0Iumi+koE7swv97k56k2AQzKm
-	WMnBbtYw9CldYc1tsLWQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=QgyLK0+JHm1w4zATvRGhA5akoSt25rvqOLOKxEl+RZ4=; b=Tzo1LwItqYjeUU
+	yyJPBwdSF4fFoYq/tM5us0fb8cqdfysr1N+RsPcFBxxnekd8HfOqlGQi0P6kNFQi4ksYNMMHiDpBF
+	rwDPtnK2XcKEcHwciibRX10BQp4qm3fTh5vevUxPQrH95++Ai2mYbxNC4WJQJ7r4TM8W8JPMxfIRQ
+	LbeG69M+YJwujoeVKQXTR7A1NP8dBFm5lb9qCk7flwt/iC/O5Br7FE++da79CxxgZ8uf1P3XQZrEY
+	h/LQR4T8kZi0DQVNhYqbnZnQYmLe6dWokKMkwDrOi+5cxidetYSfPkVxS2eMSm+fKlsSwXGnettKx
+	+gzUn+Gra1Dlfa9i3jqQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jE6av-0007rJ-G8; Tue, 17 Mar 2020 07:24:57 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1jEBOt-0007ok-Fc; Tue, 17 Mar 2020 12:32:51 +0000
+Received: from mail-db8eur05on2108.outbound.protection.outlook.com
+ ([40.107.20.108] helo=EUR05-DB8-obe.outbound.protection.outlook.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jE6at-0007qa-4K; Tue, 17 Mar 2020 07:24:56 +0000
-Received: from [10.18.38.194] (10.18.38.194) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 17 Mar
- 2020 15:25:21 +0800
-Subject: Re: [PATCH v9 3/3] arm64: dts: meson: a1: Enable USB2 PHY and DWC3
- controller
-To: Kevin Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I
- <kishon@ti.com>, Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>
-References: <1581990859-135234-1-git-send-email-hanjie.lin@amlogic.com>
- <1581990859-135234-4-git-send-email-hanjie.lin@amlogic.com>
- <7hd09cw9oh.fsf@baylibre.com>
-From: Hanjie Lin <hanjie.lin@amlogic.com>
-Message-ID: <cf688077-c980-0c25-a3fa-39b43423f11f@amlogic.com>
-Date: Tue, 17 Mar 2020 15:25:20 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+ id 1jEBOo-0007mK-7m; Tue, 17 Mar 2020 12:32:48 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ESHqWtOC3v9sz0JPkxqO79IZBKaoNM51srksC0wJGcsxZjkPiGYNLWQOxzNmnEj3U8IYC8jEGaeXwV8+1Qc4RigZ0XhE/3vqCg4iH192snDdyLuG6kg3v1dqBjam4NAdxjaN7GxNRNIYFc7Bv27+gfsnSpZw7M3gDFFhBGrnPz2qMyd53F7utzdEcYWZ6O+3dV21ap4I0zpUo9HAVytF47E8fRbA4Spco3nrYa3CqM6cN7a68G8f1W3Ygi5T5nM9gmA3GtIZu1vVzCvDcoD5vTmg2s7fClXFtsdZt5dnecd4nQ5WnO+Wqms5FSDuRkOOmjnviHOTN2ECbYhExA9Xsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=X1kzIb4eTW5m19cXA3bGGxxlI19Ra1xshRUwlCjvXDI=;
+ b=UXrQUOvRbZeXEw4JUIHXIPd5AfDQhTJbznX6sSq43KvLbVWwZbCC54aXH46nA2Eq8sG+2q4GCiSMyAUk1RLzCsFE4uRk6dHB8HgVrsPHHLdaNKVn0UwEcphB5UVxvGNR6GIwGJpWRzn31HCCupA14HSliflNcPQCEED63v+xl0dJ3iaNfsnHfRAXimNaG3abnC8+l91diDgB7PFtzNDQHpf3Tg+YM27MbyBnXsewQptiTkUQlSuOYWl46+4MH9AZ3yTnXGOvIdS7pot5PtUDb53gDtgsmHTVOorem3arAFZWgP43OZxSSe2j3345vDyToCG7KLtaKLNFTywNrx/aQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=X1kzIb4eTW5m19cXA3bGGxxlI19Ra1xshRUwlCjvXDI=;
+ b=IPrQWPEh1VoNYW1WO4BEA4b8yJysWW4tcL6hPJy+tvk0w7u9u+T7GbKaFqSroB5bjduhN/zfrnW8DNEidg82S42mh69wp+X9e0o+ERSQNZi1pmtDz6309NhXL/pfB1LnppoYUfxu99iseCIJl1GRkT+q6oZEilcwcsQ8zCmGMTk=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=oleksandr.suvorov@toradex.com; 
+Received: from VI1PR05MB3279.eurprd05.prod.outlook.com (10.170.238.24) by
+ VI1PR05MB4462.eurprd05.prod.outlook.com (10.171.182.156) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2814.13; Tue, 17 Mar 2020 12:32:40 +0000
+Received: from VI1PR05MB3279.eurprd05.prod.outlook.com
+ ([fe80::7cdd:4feb:a8b6:a6d2]) by VI1PR05MB3279.eurprd05.prod.outlook.com
+ ([fe80::7cdd:4feb:a8b6:a6d2%7]) with mapi id 15.20.2814.021; Tue, 17 Mar 2020
+ 12:32:40 +0000
+From: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+To: devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org
+Subject: [RFC PATCH 0/7] Rework PWM_POLARITY_* flags
+Date: Tue, 17 Mar 2020 14:32:24 +0200
+Message-Id: <20200317123231.2843297-1-oleksandr.suvorov@toradex.com>
+X-Mailer: git-send-email 2.24.1
+X-ClientProxiedBy: PR0P264CA0058.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:100:1d::22) To VI1PR05MB3279.eurprd05.prod.outlook.com
+ (2603:10a6:802:1c::24)
 MIME-Version: 1.0
-In-Reply-To: <7hd09cw9oh.fsf@baylibre.com>
-Content-Language: en-US
-X-Originating-IP: [10.18.38.194]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost (82.193.109.226) by
+ PR0P264CA0058.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100:1d::22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2814.16 via Frontend Transport; Tue, 17 Mar 2020 12:32:39 +0000
+X-Mailer: git-send-email 2.24.1
+X-Originating-IP: [82.193.109.226]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 92f24b8f-5335-4211-67f5-08d7ca6f484d
+X-MS-TrafficTypeDiagnostic: VI1PR05MB4462:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR05MB44628731F18F14F7CEA38AA8F9F60@VI1PR05MB4462.eurprd05.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-Forefront-PRVS: 0345CFD558
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10019020)(4636009)(39850400004)(396003)(136003)(366004)(346002)(376002)(199004)(66946007)(6666004)(66476007)(66556008)(5660300002)(7406005)(36756003)(7416002)(7336002)(1076003)(4326008)(7366002)(26005)(6496006)(44832011)(52116002)(54906003)(81166006)(81156014)(2906002)(8676002)(55236004)(316002)(186003)(8936002)(956004)(478600001)(2616005)(6486002)(86362001)(16526019);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR05MB4462;
+ H:VI1PR05MB3279.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; 
+Received-SPF: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ajbru8RbLQmgjKwD+95r2KCid79cKzjDo03netdLt+HAWjyngf9jw0cT51IHD8agmsUDBreJ48OzhG/PgghyhnuDmqqo0bg7m17hlhuUw9lDdeUlgdoL2nwzxrsTai0nDxktojNfKmImYoa8l1gGtJPkCt7BTyNIPqRMjFYsvGuljdurMwIVSVB0/z3c5DGSrIG0+/Wh0JyZghswX077mjVbbza7x3w/N+Zs+8y64d4lKxJhYgwBhehNxonij18bq6EdzWxNEpI3dupulYhX9PXr6zd8b/DhM0a3c8B7KSv1PUb5UThx0V708z6YmC4Z/FB4D90C7/KrtW7ZNem61ZRCVvtS0/lA22b/HHkPsD/0qeNNOTUtTwofLO+g96hiY+h17UPa/Sjis0uL+DDVe4qI1b/LGKhB8vDBtCGad8NVe4ZUlsZBOROxpes+fb4v
+X-MS-Exchange-AntiSpam-MessageData: EGpmD3tLLdvnd4GrcyLclYhQyBBCFMZozHtqfPv08FPrjYoImY0rCyhXl9vJrzDuzQVqeLBY3PUx1gp6qYRGhtjlE181vtIV6NbaS9AaSM1ABLzDumIqvbvN7buNZzplJQk8/gANax6tTTT7LWlO5Q==
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 92f24b8f-5335-4211-67f5-08d7ca6f484d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2020 12:32:40.1226 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zz/FEFsAObuiUoMoYiFwvs6Kups5z5Shlju/DdLCfKiNEjs2mBSiP8Jdf+YqLwOq8INbIuD82e6zXBWoCcfGWfkknYHoK8UuJGXlnD7L0ZM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB4462
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200317_002455_171568_B1B9769F 
-X-CRM114-Status: GOOD (  11.57  )
+X-CRM114-CacheID: sfid-20200317_053246_475836_48A2180D 
+X-CRM114-Status: GOOD (  10.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,65 +122,227 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Stephen Boyd <sboyd@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
- Yue Wang <yue.wang@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jian Hu <jian.hu@amlogic.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Marcel Ziswiler <marcel.ziswiler@toradex.com>, Sekhar Nori <nsekhar@ti.com>,
+ dri-devel@lists.freedesktop.org, Soeren Moch <smoch@web.de>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Hugh Cole-Baker <sigmaris@gmail.com>, linux-stm32@st-md-mailman.stormreply.com,
+ linux-samsung-soc@vger.kernel.org,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+ Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ NXP Linux Team <linux-imx@nxp.com>,
+ =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, linux-omap@vger.kernel.org,
+ Alex Elder <elder@kernel.org>, Scott Branden <sbranden@broadcom.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Magnus Damm <magnus.damm@gmail.com>, linux-rockchip@lists.infradead.org,
+ Kukjin Kim <kgene@kernel.org>, Jagan Teki <jagan@amarulasolutions.com>,
+ Alexandre Torgue <alexandre.torgue@st.com>, Maxime Ripard <mripard@kernel.org>,
+ greybus-dev@lists.linaro.org, linux-rpi-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, Johan Jonker <jbx6244@gmail.com>,
+ Fabrice Gasnier <fabrice.gasnier@st.com>, linux-arm-kernel@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+ Christoph Muellner <christoph.muellner@theobroma-systems.com>,
+ linux-fbdev@vger.kernel.org, Stefan Agner <stefan@agner.ch>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Philipp Tomsich <philipp.tomsich@theobroma-systems.com>,
+ Fabio Estevam <festevam@gmail.com>,
+ Daniel Thompson <daniel.thompson@linaro.org>,
+ Florian Fainelli <f.fainelli@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, bcm-kernel-feedback-list@broadcom.com,
+ Nick Xie <nick@khadas.com>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ Ray Jui <rjui@broadcom.com>, Steven Rostedt <rostedt@goodmis.org>,
+ Vladimir Zapolskiy <vz@mleia.com>, Paul Barker <pbarker@konsulko.com>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+ Shawn Guo <shawnguo@kernel.org>, Peter Rosin <peda@axentia.se>,
+ Milo Kim <milo.kim@ti.com>, Tony Lindgren <tony@atomide.com>,
+ Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+ linux-riscv@lists.infradead.org, Lee Jones <lee.jones@linaro.org>,
+ devel@driverdev.osuosl.org, Marc Zyngier <maz@kernel.org>,
+ Markus Reichl <m.reichl@fivetechno.de>, Ingo Molnar <mingo@redhat.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ David Lechner <david@lechnology.com>, Johan Hovold <johan@kernel.org>,
+ Philippe Schenker <philippe.schenker@toradex.com>,
+ Rob Herring <robh+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ =?UTF-8?q?Andrius=20=C5=A0tikonas?= <andrius@stikonas.eu>,
+ Igor Opaniuk <igor.opaniuk@toradex.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Tony Prisk <linux@prisktech.co.nz>,
+ Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+ Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
+PWM_POLARITY_* flags were defined in include/linux/pwm.h as a enum and
+in include/dt-bindings/pwm/pwm.h as macros.
 
-On 2020/3/17 0:23, Kevin Hilman wrote:
-> Hi Hanjie,
-> 
-> Hanjie Lin <hanjie.lin@amlogic.com> writes:
-> 
->> Enable USB2 PHY and DWC3 controller for Meson A1 SoC.
->>
->> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
->> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 43 +++++++++++++++++++++++++++++++
->>  1 file changed, 43 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> index 6fdc0dd..3b7ca50 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> @@ -6,6 +6,9 @@
->>  #include <dt-bindings/interrupt-controller/irq.h>
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  #include <dt-bindings/power/meson-a1-power.h>
->> +#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
->> +#include <dt-bindings/clock/a1-pll-clkc.h>
->> +#include <dt-bindings/clock/a1-clkc.h>
-> 
-> The driver is now merged, but the DT cannot be merged because it has
-> dependencies on the A1 clock series which is still under review.
-> 
-> When that is merged, please resend this patch.
+This patchset fixes duplication and introduces using PWM_POLARITY_NORMAL
+flag instead of '0' constant in DT files.
 
-Hi Kevin,
 
-Ok, Thanks.
+Oleksandr Suvorov (7):
+  pwm: rename the PWM_POLARITY_INVERSED enum
+  dt-bindings: pwm: document the PWM polarity flag
+  dt-bindings: pwm: add normal PWM polarity flag
+  dt-bindings: pwm: add description of PWM polarity
+  pwm: replace polarity enum with macros
+  arm64: dts: pwm: replace polarity constant with macro
+  arm: dts: pwm: replace polarity constant with macro
 
-Hanjie
+ Documentation/devicetree/bindings/pwm/pwm.txt |  1 +
+ arch/arm/boot/dts/am335x-cm-t335.dts          |  2 +-
+ arch/arm/boot/dts/am335x-evm.dts              |  2 +-
+ arch/arm/boot/dts/am3517-evm.dts              |  2 +-
+ arch/arm/boot/dts/at91-dvk_su60_somc_lcm.dtsi |  2 +-
+ arch/arm/boot/dts/at91-kizbox2-common.dtsi    |  6 ++--
+ arch/arm/boot/dts/at91-kizbox3_common.dtsi    |  8 ++---
+ arch/arm/boot/dts/at91-kizboxmini-common.dtsi |  6 ++--
+ arch/arm/boot/dts/at91-nattis-2-natte-2.dts   |  2 +-
+ arch/arm/boot/dts/at91-sama5d4_ma5d4evk.dts   |  2 +-
+ arch/arm/boot/dts/at91sam9n12ek.dts           |  2 +-
+ arch/arm/boot/dts/at91sam9x5dm.dtsi           |  2 +-
+ .../boot/dts/berlin2cd-google-chromecast.dts  |  4 +--
+ arch/arm/boot/dts/da850-evm.dts               |  2 +-
+ arch/arm/boot/dts/da850-lego-ev3.dts          |  4 +--
+ arch/arm/boot/dts/exynos4412-midas.dtsi       |  2 +-
+ arch/arm/boot/dts/exynos4412-odroidu3.dts     |  2 +-
+ arch/arm/boot/dts/exynos5250-snow-common.dtsi |  2 +-
+ arch/arm/boot/dts/exynos5410-odroidxu.dts     |  2 +-
+ arch/arm/boot/dts/exynos5420-peach-pit.dts    |  2 +-
+ arch/arm/boot/dts/exynos5422-odroidhc1.dts    |  2 +-
+ .../boot/dts/exynos5422-odroidxu3-common.dtsi |  2 +-
+ arch/arm/boot/dts/exynos5422-odroidxu4.dts    |  2 +-
+ .../boot/dts/exynos54xx-odroidxu-leds.dtsi    |  4 +--
+ arch/arm/boot/dts/exynos5800-peach-pi.dts     |  2 +-
+ arch/arm/boot/dts/imx53-tx53-x13x.dts         |  5 ++--
+ arch/arm/boot/dts/imx6dl-tx6dl-comtft.dts     |  2 +-
+ arch/arm/boot/dts/imx6q-display5.dtsi         |  2 +-
+ arch/arm/boot/dts/imx6q-tx6q-1010-comtft.dts  |  2 +-
+ arch/arm/boot/dts/imx6q-tx6q-1020-comtft.dts  |  2 +-
+ arch/arm/boot/dts/imx6qdl-tx6-lvds.dtsi       |  4 +--
+ arch/arm/boot/dts/imx7-colibri.dtsi           |  4 ++-
+ arch/arm/boot/dts/imx7d-nitrogen7.dts         |  3 +-
+ arch/arm/boot/dts/imx7d-pico.dtsi             |  3 +-
+ arch/arm/boot/dts/imx7d-sdb.dts               |  3 +-
+ arch/arm/boot/dts/imx7ulp-evk.dts             |  3 +-
+ arch/arm/boot/dts/iwg20d-q7-common.dtsi       |  2 +-
+ .../boot/dts/logicpd-torpedo-baseboard.dtsi   |  2 +-
+ arch/arm/boot/dts/meson8b-ec100.dts           |  4 +--
+ arch/arm/boot/dts/meson8b-mxq.dts             |  4 +--
+ arch/arm/boot/dts/meson8b-odroidc1.dts        |  4 +--
+ .../boot/dts/motorola-mapphone-common.dtsi    |  3 +-
+ arch/arm/boot/dts/omap3-gta04.dtsi            |  2 +-
+ arch/arm/boot/dts/omap3-n900.dts              |  2 +-
+ arch/arm/boot/dts/rk3288-veyron-edp.dtsi      |  2 +-
+ arch/arm/boot/dts/rk3288-veyron.dtsi          |  2 +-
+ arch/arm/boot/dts/rv1108-evb.dts              |  2 +-
+ arch/arm/boot/dts/s3c6410-mini6410.dts        |  2 +-
+ arch/arm/boot/dts/s5pv210-aries.dtsi          |  2 +-
+ arch/arm/boot/dts/s5pv210-smdkv210.dts        |  2 +-
+ arch/arm/boot/dts/sun5i-gr8-evb.dts           |  2 +-
+ arch/arm/boot/dts/vf-colibri.dtsi             |  4 ++-
+ .../dts/allwinner/sun50i-a64-pinebook.dts     |  2 +-
+ .../boot/dts/allwinner/sun50i-a64-teres-i.dts |  2 +-
+ .../arm64/boot/dts/amlogic/meson-axg-s400.dts |  3 +-
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  1 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  1 +
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    |  5 ++--
+ .../boot/dts/amlogic/meson-g12a-u200.dts      |  2 +-
+ .../boot/dts/amlogic/meson-g12a-x96-max.dts   |  5 ++--
+ .../dts/amlogic/meson-g12b-khadas-vim3.dtsi   |  4 +--
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts |  4 +--
+ .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts |  7 +++--
+ .../boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  |  3 +-
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |  1 +
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts |  3 +-
+ .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  3 +-
+ .../boot/dts/amlogic/meson-gxbb-p20x.dtsi     |  3 +-
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi |  3 +-
+ .../boot/dts/amlogic/meson-gxbb-wetek.dtsi    |  3 +-
+ .../boot/dts/amlogic/meson-gxl-s805x-p241.dts |  3 +-
+ .../meson-gxl-s905x-hwacom-amazetv.dts        |  3 +-
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    |  2 +-
+ .../amlogic/meson-gxl-s905x-nexbox-a95x.dts   |  3 +-
+ .../dts/amlogic/meson-gxl-s905x-p212.dtsi     |  3 +-
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     |  5 ++--
+ .../boot/dts/amlogic/meson-gxm-rbox-pro.dts   |  3 +-
+ .../boot/dts/amlogic/meson-khadas-vim3.dtsi   |  4 ++-
+ .../dts/amlogic/meson-sm1-khadas-vim3l.dts    |  2 +-
+ .../boot/dts/amlogic/meson-sm1-sei610.dts     |  7 +++--
+ .../dts/exynos/exynos5433-tm2-common.dtsi     |  3 +-
+ arch/arm64/boot/dts/rockchip/px30-evb.dts     |  2 +-
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |  1 +
+ .../arm64/boot/dts/rockchip/rk3308-roc-cc.dts |  2 +-
+ arch/arm64/boot/dts/rockchip/rk3308.dtsi      |  1 +
+ arch/arm64/boot/dts/rockchip/rk3399-evb.dts   |  4 +--
+ .../boot/dts/rockchip/rk3399-firefly.dts      |  2 +-
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  2 +-
+ .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  4 +--
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  6 ++--
+ .../boot/dts/rockchip/rk3399-khadas-edge.dtsi |  2 +-
+ .../boot/dts/rockchip/rk3399-nanopc-t4.dts    |  2 +-
+ .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |  2 +-
+ .../boot/dts/rockchip/rk3399-rockpro64.dtsi   |  2 +-
+ .../rockchip/rk3399-sapphire-excavator.dts    |  2 +-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  1 +
+ drivers/pwm/core.c                            |  6 ++--
+ drivers/pwm/pwm-atmel-hlcdc.c                 |  2 +-
+ drivers/pwm/pwm-atmel-tcb.c                   | 24 +++++++--------
+ drivers/pwm/pwm-atmel.c                       |  2 +-
+ drivers/pwm/pwm-bcm-iproc.c                   |  2 +-
+ drivers/pwm/pwm-bcm-kona.c                    |  4 +--
+ drivers/pwm/pwm-bcm2835.c                     |  2 +-
+ drivers/pwm/pwm-berlin.c                      |  2 +-
+ drivers/pwm/pwm-ep93xx.c                      |  4 +--
+ drivers/pwm/pwm-fsl-ftm.c                     |  2 +-
+ drivers/pwm/pwm-hibvt.c                       |  4 +--
+ drivers/pwm/pwm-imx-tpm.c                     |  2 +-
+ drivers/pwm/pwm-imx27.c                       |  4 +--
+ drivers/pwm/pwm-jz4740.c                      |  2 +-
+ drivers/pwm/pwm-lpc18xx-sct.c                 |  2 +-
+ drivers/pwm/pwm-meson.c                       |  6 ++--
+ drivers/pwm/pwm-omap-dmtimer.c                |  6 ++--
+ drivers/pwm/pwm-renesas-tpu.c                 | 10 +++----
+ drivers/pwm/pwm-rockchip.c                    |  4 +--
+ drivers/pwm/pwm-samsung.c                     |  2 +-
+ drivers/pwm/pwm-sifive.c                      |  4 +--
+ drivers/pwm/pwm-stm32.c                       |  2 +-
+ drivers/pwm/pwm-sun4i.c                       |  2 +-
+ drivers/pwm/pwm-tiecap.c                      |  4 +--
+ drivers/pwm/pwm-tiehrpwm.c                    |  8 ++---
+ drivers/pwm/pwm-vt8500.c                      |  4 +--
+ drivers/pwm/pwm-zx.c                          |  4 +--
+ drivers/pwm/sysfs.c                           |  6 ++--
+ drivers/staging/greybus/pwm.c                 |  2 +-
+ drivers/video/backlight/lp8788_bl.c           |  2 +-
+ include/dt-bindings/pwm/pwm.h                 | 10 +++++++
+ include/linux/mfd/lp8788.h                    |  2 +-
+ include/linux/pwm.h                           | 29 +++++--------------
+ include/trace/events/pwm.h                    |  2 +-
+ 130 files changed, 239 insertions(+), 205 deletions(-)
 
-> 
-> Thanks,
-> 
-> Kevin
-> 
-> .
-> 
+-- 
+2.24.1
+
 
 _______________________________________________
 linux-amlogic mailing list
