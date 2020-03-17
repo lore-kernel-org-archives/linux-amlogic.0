@@ -2,130 +2,87 @@ Return-Path: <SRS0=Wf2j=5C=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15B90C10F29
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Mar 2020 16:46:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 473FCC1975A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Mar 2020 17:40:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DA1EA20724
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Mar 2020 16:46:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1DB0F20738
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Mar 2020 17:40:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l9h1xyw6";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=toradex.com header.i=@toradex.com header.b="CZnXsEPP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DA1EA20724
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=toradex.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g27e7a0s";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YEGcuymm"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1DB0F20738
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:To:Subject:Message-ID:Date
-	:From:In-Reply-To:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z7XtUU1B5PZzNEWwV1x7FtEoCnKV6Gl13IlsomuMVt8=; b=l9h1xyw6JZjxBn
-	JWCkx3FYQ1DB3LVMcB9nLNuEXYJcBXHj11KzE/meVZwugr6RGhr179yOFIIrjyJ2Wzej5Dia9jhlk
-	DdIpy1Qws6JiLbrvokd2Pry9peOXx+j7GzrnnaNuGFreqpv/Vq3LkriTXYtWC+BjpQ69y7faSYM8n
-	SVmSlH1aXW7BZ0XfBb6zAwna7qSGjmlfhP6UC85NFaSCq7fMU+k1q3+2juNftWciahfdVLxwToo5j
-	npYCMpD1qhzq/VCpGpxRQiLW5NNjTUPU5oois46xWRFpIdSTTVZ/GxezPSJllV5fNb4iCm9vRh+8b
-	iQBAzlK3hx9JF2nDf8gQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=rVn7STfC/HbM3/bs3IfaPhS1kUYg8XUFFVJEzBjrCkk=; b=g27e7a0s50L5QcRGD0uy1ooye
+	2+7wFxXAnq6JzHG5AiTEkFa6qov29y5hsj/MuHAHDAKzom5sV0zMZmVTvlxQfXaxsqP0PwL+K5Q8E
+	C6e1MGZd62N+ah8y6Srw1girRljObl+13n6Gi8cx6Zhncm/QtUBlpmT+1nyDpu+E1xiV5gDN9F/m7
+	SRUK3fyQ9CyvCPWjK8Mm7CEPCL4yI8iYz22LZgMtBTry1ETDfMJdl+roRPaBuIz57hsDQESzEBy7z
+	lcJZKNcNTZ1shuje8PAt/v3YctBMVhXQtuWlTj81od893AjM1720NPA37bMQkPrpmy8CYnvC9bchm
+	MWhiQRjlg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jEFMH-00012I-Tb; Tue, 17 Mar 2020 16:46:25 +0000
-Received: from mail-vi1eur05on2091.outbound.protection.outlook.com
- ([40.107.21.91] helo=EUR05-VI1-obe.outbound.protection.outlook.com)
+	id 1jEGCx-0005nT-Rv; Tue, 17 Mar 2020 17:40:51 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jEFMF-0000z2-1S; Tue, 17 Mar 2020 16:46:24 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mrvvEqP2ygVb+Sd0YTwao/vWLbzJGQWL01F0VwUM1XQdNghGuIhfKBa6eXHje/eP6z1wsAP0E+MQox2YP4a//kQcATTduGfZzMYkUIhkyi+a3AX+4wV+vAB55VzXGb07bXFRemJ3eqhZk9Oqlfp+71NqVDmopUZbIvx6LFrk/okwpQ7JcxOTvijIrubpFmAtMkXdpQj/TXb6sftsBGP238c9Fn5ufR9d2UebaQCAPvm+VGyfnJ6MNNyjciPB94/YZcfejUrEaeD2VyYSbZ5bd1CB/t8l45rNy+4bTpLIrnRZY46r8C93Nr1x8cA6H3gqQbm/aCNTIRUHxd/JtSg+Dw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gm6ch8xR8b3H1sbgs0W8m2O59cJyjN8XfUoPDBtfv7w=;
- b=O4y0g0MRXbJl2AkAE17pnwznX25xU6lSF91G+rB4/JZmo40rDb/ObCBraJhzpCPiRPQSFVpsCjLpsCNMh6pchdePBgJtl8d8jMNTDhaL11v0jsrmST/5xjWNhm6fpNC4qa6feovaBMJvY0FQqcXoFLNIgWeJJQiCjae7gekciOO02P1ZgAP+ZF4S5biFwLzSN7XRUQK/e3blQGUuLF9qko/YQOoL+55h44enn8fG66qAa/XzuVZg+9x5Ocz94SHvHDqhzUe/0m+Zwc9FQNIpovAt6ogwJ6Cu8hw61yp33g9rPNN39PdGtTW2h5lXMY1bIodBkU9RG+eR/3oJZm2VJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
- dkim=pass header.d=toradex.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gm6ch8xR8b3H1sbgs0W8m2O59cJyjN8XfUoPDBtfv7w=;
- b=CZnXsEPPC1j7crjvgwSuh0B0u8sCzbMPoIlCRc7SuySkxI3zFW411zkDGg0kpneFRTEB9eBlzEAiD2MYVi1N3v+k9DiZX0eMDSFTWlkIN+eFLqeZ87dDjELcQC1ihdParMqlJ1frxB7h/ZBeo5FHLilUmy2nKh7fZ9gLjhQpKSI=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=oleksandr.suvorov@toradex.com; 
-Received: from VI1PR05MB3279.eurprd05.prod.outlook.com (10.170.238.24) by
- VI1PR05MB6608.eurprd05.prod.outlook.com (20.178.204.223) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.23; Tue, 17 Mar 2020 16:46:20 +0000
-Received: from VI1PR05MB3279.eurprd05.prod.outlook.com
- ([fe80::7cdd:4feb:a8b6:a6d2]) by VI1PR05MB3279.eurprd05.prod.outlook.com
- ([fe80::7cdd:4feb:a8b6:a6d2%7]) with mapi id 15.20.2814.021; Tue, 17 Mar 2020
- 16:46:20 +0000
-X-Gm-Message-State: ANhLgQ3xrTFYzx0s2caDK0w4GTYBPLlk5i3HaRO5R0c0/vX/8Xpn2/Oz
- IxzODnviwQ7mrXIQ7BAt+mVjhy6QYtiN25Kk2AI=
-X-Google-Smtp-Source: ADFU+vs5IiH5xOxAVk1tazaO0nIxfpUiMfX+F2pIOjfJJXHSK1Aww98AZOBwwAUZz85BhDppVfRRsQImlnrWq2Voyv0=
-X-Received: by 2002:a0c:c389:: with SMTP id o9mr5577qvi.232.1584463209922;
- Tue, 17 Mar 2020 09:40:09 -0700 (PDT)
+ id 1jEGCv-0005ls-Jf; Tue, 17 Mar 2020 17:40:50 +0000
+Received: by mail-wr1-x444.google.com with SMTP id h6so6496330wrs.6;
+ Tue, 17 Mar 2020 10:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=rc0VhOzC+cfi+lRAZOsev4h8V+6Va+aJEr9E8LvZgKM=;
+ b=YEGcuymmdA1koXtAzKhxXyAqsGbSjuSF9Gf/r5/tFJpfpAJtl554f4SPyWu4D9aPdV
+ U1eo6YunSh38qtdiE2pmwVXCk7x/6E+LUHBUXpj/6NzaBoI3mk9tVxADAX71vbvYYtX7
+ 66RIYKj036o3dm0SH6DosZE7PZ/n2S2Y8m0QKysF21GALcCvi0vOh0Pf2hIoWCfXWwTb
+ 2Pik0pZnRjaB8asBt5THZVPIeBbuefcq/q9BC7MrSE4pI7jjJirG6cV4mUfz0eAXK2zr
+ PLD9ZOrib1yfSqRJly+eqUh6JGh4Jo7XpIUo0HDdZNjOuWqMXbIYxkDmssiKhtFNCm9E
+ dPEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=rc0VhOzC+cfi+lRAZOsev4h8V+6Va+aJEr9E8LvZgKM=;
+ b=PSaiqrm41BAm4WXs4/jhwTZNLUsRU67EmbzH+GhRyHN7X4Z0dUcvGA1MFFuxeGDq9d
+ bIURDuFGtxeda29tTZaqd6yXmTGnwBjApMMrPrzqOVPNl/1/3Cadzub8s3xoAKf9B9lh
+ DANJth7HjySC9Swes31DwAdChx6+h6BcPD1S3KYzgK3ue36m7X9b4UNKqceAgSwtdPAJ
+ 8fqCbXppondQuvUOmxGzdQQcy0pKpLMvH7rytwbaAy4XMU6GjTWpnwiiDSBl959/buv9
+ bH/AH3sZ/v1qzX2gN/moRNh8+frDMyrMHxiFdsKTjYhbhW7ULXQuoJNsCosHsUXRUwvx
+ ft7A==
+X-Gm-Message-State: ANhLgQ1WwlduUS5Z7/zjQeYbmXNkrOadRCs+RxEDkN1oNyYAiVZ1b9Zq
+ 20NYhpsLnuuA3TBM++dNduQ=
+X-Google-Smtp-Source: ADFU+vvJMLEildc7nNypq9mzxdWXUau/bFgKNV+o6iv6Bg9xgKaVE/V2kZVdo5OKLUcxi2q+rfgi8g==
+X-Received: by 2002:a5d:69cc:: with SMTP id s12mr161953wrw.20.1584466845960;
+ Tue, 17 Mar 2020 10:40:45 -0700 (PDT)
+Received: from localhost (pD9E516A9.dip0.t-ipconnect.de. [217.229.22.169])
+ by smtp.gmail.com with ESMTPSA id o4sm5467990wrp.84.2020.03.17.10.40.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Mar 2020 10:40:44 -0700 (PDT)
+Date: Tue, 17 Mar 2020 18:40:43 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+Subject: Re: [RFC PATCH 1/7] pwm: rename the PWM_POLARITY_INVERSED enum
+Message-ID: <20200317174043.GA1464607@ulmo>
 References: <20200317123231.2843297-1-oleksandr.suvorov@toradex.com>
  <20200317123231.2843297-2-oleksandr.suvorov@toradex.com>
- <f281a6a0-a150-514d-ef02-4e51192031d7@microchip.com>
-In-Reply-To: <f281a6a0-a150-514d-ef02-4e51192031d7@microchip.com>
-From: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
-Date: Tue, 17 Mar 2020 18:39:58 +0200
-X-Gmail-Original-Message-ID: <CAGgjyvE9+fHDKiua=BWBaTRGaChsOvnUnG6RGA9Q4V4uPuPEhQ@mail.gmail.com>
-Message-ID: <CAGgjyvE9+fHDKiua=BWBaTRGaChsOvnUnG6RGA9Q4V4uPuPEhQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/7] pwm: rename the PWM_POLARITY_INVERSED enum
-To: Claudiu.Beznea@microchip.com
-X-ClientProxiedBy: MWHPR12CA0029.namprd12.prod.outlook.com
- (2603:10b6:301:2::15) To VI1PR05MB3279.eurprd05.prod.outlook.com
- (2603:10a6:802:1c::24)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from mail-pl1-f179.google.com (209.85.214.179) by
- MWHPR12CA0029.namprd12.prod.outlook.com (2603:10b6:301:2::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.21 via Frontend Transport; Tue, 17 Mar 2020 16:46:19 +0000
-Received: by mail-pl1-f179.google.com with SMTP id b22so9849341pls.12;
- Tue, 17 Mar 2020 09:46:19 -0700 (PDT)
-X-Gm-Message-State: ANhLgQ3xrTFYzx0s2caDK0w4GTYBPLlk5i3HaRO5R0c0/vX/8Xpn2/Oz
- IxzODnviwQ7mrXIQ7BAt+mVjhy6QYtiN25Kk2AI=
-X-Google-Smtp-Source: ADFU+vs5IiH5xOxAVk1tazaO0nIxfpUiMfX+F2pIOjfJJXHSK1Aww98AZOBwwAUZz85BhDppVfRRsQImlnrWq2Voyv0=
-X-Received: by 2002:a0c:c389:: with SMTP id o9mr5577qvi.232.1584463209922;
- Tue, 17 Mar 2020 09:40:09 -0700 (PDT)
-X-Gmail-Original-Message-ID: <CAGgjyvE9+fHDKiua=BWBaTRGaChsOvnUnG6RGA9Q4V4uPuPEhQ@mail.gmail.com>
-X-Originating-IP: [209.85.214.179]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 50907ea5-5b99-4d99-d01c-08d7ca92b7f0
-X-MS-TrafficTypeDiagnostic: VI1PR05MB6608:
-X-Microsoft-Antispam-PRVS: <VI1PR05MB66087C0DBCFD1E4912A3BD7EF9F60@VI1PR05MB6608.eurprd05.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-Forefront-PRVS: 0345CFD558
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10019020)(4636009)(366004)(199004)(9686003)(4744005)(53546011)(34206002)(8936002)(81166006)(81156014)(5660300002)(54906003)(66556008)(52116002)(66946007)(8676002)(66476007)(86362001)(55446002)(186003)(42186006)(44832011)(498600001)(6666004)(2906002)(450100002)(26005)(4326008);
- DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR05MB6608;
- H:VI1PR05MB3279.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; 
-Received-SPF: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xr+ozUwOk9IQP1uXqg/AGsLK/4bagC4G/kDPgZuaG5yBAJH55dPMOgTJXC6LEacqqH9fCb9X1H51pFkoCoIMpAh4Yo/7tdq1YF+vBH7/7rHjH3i7aVEUGs2aebUlr8k7wZhDBQBd69QNxDAoORVnEoFDI+VXDg+LeKyArJHQfmgTbJ5Ohg9mFRpCaOmfj1qcVGf5gC66mh0Hdfde/bezsgZ3UuZpd5PFuLIo27WLL3oJOq3eOYzWRY4MN4uXibxi2zNwfEyX1LDGB8VdkGx2BuwGBzEXLGanTVows0ik2L+y6VXBR4g73kXT+8AUxLRV5Nl1rKT1jlVosta3m72iArACXzIR2XQ7p2sD+K+bpXJ0dBY1uFAt/wrRDZG12KTihlzCjhtta2gp5/azyc8bA4tVPcK9A8twBkefJSo21qdW7HzupF9g7gDrttZtzQte
-X-MS-Exchange-AntiSpam-MessageData: tW8/58qT4nzdQjHyCzLk2noGBVvhkadG9KoaPvXYg3CqVEv49oHCQkiKQw2cAEFAa8Tnz5m3cnZX5DTMxcP9y/O08CTH1pvzDzw9prNm7CfYVf4pw0RXzrOW8BqYMyYR5HbQ/rWrNqxwV2tWeYqmLA==
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50907ea5-5b99-4d99-d01c-08d7ca92b7f0
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2020 16:46:19.8491 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +FKNS/wVduTGI98t1nTVOKigIuga1za9ADvehVMQqg+WH/vxf7GWpO6VYmRw+6YFo7/QCG8QJyCeblxLjP5H7TkqBumhAyqfV2873n5oupo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB6608
+In-Reply-To: <20200317123231.2843297-2-oleksandr.suvorov@toradex.com>
+User-Agent: Mutt/1.13.1 (2019-12-14)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200317_094623_093501_B4FB7E67 
-X-CRM114-Status: UNSURE (   9.25  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200317_104049_673444_1F52D069 
+X-CRM114-Status: GOOD (  11.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,62 +94,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alexandre.belloni@bootlin.com, heiko@sntech.de, linux-pwm@vger.kernel.org,
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org,
  Marcel Ziswiler <marcel.ziswiler@toradex.com>, linux-kernel@vger.kernel.org,
- paul@crapouillou.net, Thierry Reding <thierry.reding@gmail.com>,
+ Paul Cercueil <paul@crapouillou.net>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  linux-riscv@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- f.fainelli@gmail.com, khilman@baylibre.com, wens@csie.org,
- linux-rockchip@lists.infradead.org, Ludovic.Desroches@microchip.com,
+ Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Chen-Yu Tsai <wens@csie.org>, linux-rockchip@lists.infradead.org,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
  bcm-kernel-feedback-list@broadcom.com, NXP Linux Team <linux-imx@nxp.com>,
- =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- devicetree@vger.kernel.org, rjui@broadcom.com,
- Sascha Hauer <s.hauer@pengutronix.de>, mripard@kernel.org,
+ Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Maxime Ripard <mripard@kernel.org>,
  Philippe Schenker <philippe.schenker@toradex.com>,
- Paul Barker <pbarker@konsulko.com>, paul.walmsley@sifive.com,
+ Paul Barker <pbarker@konsulko.com>, Paul Walmsley <paul.walmsley@sifive.com>,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Igor Opaniuk <igor.opaniuk@toradex.com>, sbranden@broadcom.com,
- Nicolas.Ferre@microchip.com, linux@prisktech.co.nz, palmer@dabbelt.com,
+ Igor Opaniuk <igor.opaniuk@toradex.com>, Scott Branden <sbranden@broadcom.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Tony Prisk <linux@prisktech.co.nz>, Palmer Dabbelt <palmer@dabbelt.com>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Shawn Guo <shawnguo@kernel.org>, Claudiu Beznea <claudiu.beznea@microchip.com>
+Content-Type: multipart/mixed; boundary="===============0712852510499354955=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Mar 17, 2020 at 6:27 PM <Claudiu.Beznea@microchip.com> wrote:
->
->
->
-> On 17.03.2020 14:32, Oleksandr Suvorov wrote:
-> > @@ -187,7 +187,7 @@ static ssize_t polarity_store(struct device *child,
-> >         if (sysfs_streq(buf, "normal"))
-> >                 polarity = PWM_POLARITY_NORMAL;
-> >         else if (sysfs_streq(buf, "inversed"))
->
-> You may also consider this string     ^
 
-Thanks for the feedback, Claudiu.
-
-I thought about it and decided not to change the ABI, as this change
-can impact lots of user-land applications.
-As a minimum, I can push this change as a separate patch to be able to
-revert the change of ABI only.
-What do you think?
-
-> > -               polarity = PWM_POLARITY_INVERSED;
-> > +               polarity = PWM_POLARITY_INVERTED;
+--===============0712852510499354955==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sdtB3X0nJg68CQEu"
+Content-Disposition: inline
 
 
+--sdtB3X0nJg68CQEu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-Best regards
-Oleksandr Suvorov
+On Tue, Mar 17, 2020 at 02:32:25PM +0200, Oleksandr Suvorov wrote:
+> The polarity enum definition PWM_POLARITY_INVERSED is misspelled.
+> Rename it to PWM_POLARITY_INVERTED.
 
-Toradex AG
-Ebenaustrasse 10 | 6048 Horw | Switzerland | T: +41 41 500 48 00
+It isn't misspelled. "inversed" is a synonym for "inverted". Both
+spellings are correct.
+
+And as you noted in the cover letter, there's a conflict between the
+macro defined in dt-bindings/pwm/pwm.txt. If they end up being included
+in the wrong order you'll get a compile error.
+
+The enum was named this way on purpose to make it separate from the
+definition for the DT bindings. Note that DT bindings are an ABI and can
+never change, whereas the enum pwm_polarity is part of a Linux internal
+API and doesn't have the same restrictions as an ABI.
+
+As far as I'm concerned this is completely unnecessary churn that's
+potentially going to come back and bite us, so I see no reason to accept
+this.
+
+Thierry
+
+--sdtB3X0nJg68CQEu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl5xC5cACgkQ3SOs138+
+s6Fzrg//W6eAtrfA02CGekiB6CchW1v901SEIXd0i/BUbGhUbBXgNAk0CdFr1oZF
+oWh3FArEd2Ugq3qvpgf4UqWlO/2IptBucOUVSwQ5Imuc+eS/JKxC3lriUcpyI519
+b5+MI+QPztSa8Nae3cVvDVd1zs+s5QE1J9TOJTINsayE0yxs2QDk7px+T2hP6S5y
+fZmxD7DxmhzzTjY9pUb7B8Km/c+g3iLZ2dOrjizHPQ0D6gjni2sAljxJXKBkExBG
+nSSO7pOuxA1Koi0/lKAQGtxKl1QbfH5aerdiSj8wi74C4DXTG/yHIU0x4YKpbu1d
+C0nSwCafh3P/dIz0ja7iv+8y02HB43gdu9tyA6dlVzIs7UAS/upZfwtLCI49zdOL
+Qq28oqgpytPujRWyFSdT7EisrlmqA4TlG6jvndwdhKiurjM98oNob5FiUYz/QebP
+cX0mZQFNM8UJjzhu51wkfu3NwtdIBXMWv+EhD8Kh7Ash60aI7LE2HltEC5Y/KqiW
+uprdNVNa09YyyZLgE0W1rDU4rsdPw+yxp/XR/vzPWR4eivXlrbPtkBxcZcZfHAmj
+Yg13OeYRbxUgR1Jx4vGYyRgV2wSNSyDcwqZ0vU0Z8C4C3qLFNqQPllTPonTSdcnX
+gQU9NZOlpo00W4TwrlO7I+3Ww9qNIvnHhMwcaOQGIca6+ZVYyfQ=
+=EuQk
+-----END PGP SIGNATURE-----
+
+--sdtB3X0nJg68CQEu--
+
+
+--===============0712852510499354955==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0712852510499354955==--
+
