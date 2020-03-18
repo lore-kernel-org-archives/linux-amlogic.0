@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04EDBC4332E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Mar 2020 20:53:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C19DC4332E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Mar 2020 20:54:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CB31C208CA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Mar 2020 20:53:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 70D7120B1F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Mar 2020 20:54:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X2AatxrU";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="z0OO+MVt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CB31C208CA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="j4CXu/T+";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="mBG7VUtu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 70D7120B1F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,45 +25,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iKwyoRUynd7kr+cmnmrhvxAIthOWhGWs+5mxw1GaO6A=; b=X2AatxrU80XQ6s
-	UZNp73D7btRBQRdRGTxhGlAyEDe2rtceo44Ur3PkbGxC9oLpGzPPI4twWK30kGes7zrM79BDQ651S
-	tUQAqvW9yuVmV1c5efSdF3pnrUFxoQU23UVThDVwH93xC4dUWeb0xolSE30VpKuiFOC2dEBjcUaLG
-	J05LxlJrk9coX7T12FETfjU6POcHbf5UAWdjSa6EPtuPMhWNVH0UzVePY9tQQVz75FIvD1AxCSGUW
-	O3PEEzG9hSa21hvq6Xy+is3Wv7o0Uv/TfVctrAdui51QgA75OQbT0p0SIf6Ir3O81VKg88YuqmXsY
-	ad0YYxvG+41N2vs/zjGg==;
+	List-Owner; bh=dwWeHwERE29tSKt8PzYkeXALbzBfvbd8ZniY0d6874o=; b=j4CXu/T+GGNzQw
+	dZriuc6PmYmL5CVUEYLGdtRrF+kfguXiLaUd7nSxcF44jtlmQMlx2zzQ9BYJH242a9gZXc96GGL7g
+	IqGHrBqixe0C7t6Pat/9wLpA5pS9qzOfOsE4GkA6nBFbr9IDMnD0wEIJYZDRSB3Nc944iZOq1d7wH
+	QXSmEOg2PFFVIw5p6zwfJlK5sbyegU+NdEGkByY7W8D+y1RxrRYI+9Mt3UrscmvNn4BvOMwo8lGQq
+	hAYOIgQz8/7sTvYh7aH7lOVv87eFunP/g2ij1Vx28NxsBSsaCBkQkAPKFVvP7gCkExkoh3ftxmpSE
+	HtUhPPpBykrXFRt+Eh2Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jEfh3-0004Tx-Uf; Wed, 18 Mar 2020 20:53:37 +0000
+	id 1jEfhY-00054u-CA; Wed, 18 Mar 2020 20:54:08 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jEfgw-0004LN-47; Wed, 18 Mar 2020 20:53:31 +0000
+ id 1jEfhB-0004cj-6S; Wed, 18 Mar 2020 20:53:46 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id E868220775;
- Wed, 18 Mar 2020 20:53:28 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 3011620A8B;
+ Wed, 18 Mar 2020 20:53:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1584564809;
- bh=B7CGiG0pCM17QhTb775VkylPBpMzSdyEGtH1Vf/QKG8=;
+ s=default; t=1584564824;
+ bh=o2e8wMh9z7NTCPwAMSIFuXNtUqwqXclZwX/VgJCxUEI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=z0OO+MVthe28tFk4crvVSemJY8NQPOi7nOpGb0V5yANfImXuzMfgjVoTbvSNWNMdx
- C7tC30PsM3VMOiTKixPODr50lyyJgvAt9qNpLX/G/e4vtrZGSQfIkkFw9it/+sLWv5
- +Hw+x2Z1M6cq0/FPoIq9okzB9575eNcC19URxtv0=
+ b=mBG7VUtuIo2fRHJ3K9hUNrdtMGMCziQrqAhfDoRpgbiBQlYtCVgU9PyYhiFYpVEgt
+ s5AEp5301HUJ6/k2J986dSUIxtx0jxYc5zV7Zmmr6jnom3kfKFHzeKGUVIzRz53iHP
+ Bd9097ZXiBa+JppnMHQtgfOYPQExdDjHk+YHlM1c=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 06/84] pinctrl: meson-gxl: fix GPIOX sdio pins
-Date: Wed, 18 Mar 2020 16:52:03 -0400
-Message-Id: <20200318205321.16066-6-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 05/73] pinctrl: meson-gxl: fix GPIOX sdio pins
+Date: Wed, 18 Mar 2020 16:52:29 -0400
+Message-Id: <20200318205337.16279-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200318205321.16066-1-sashal@kernel.org>
-References: <20200318205321.16066-1-sashal@kernel.org>
+In-Reply-To: <20200318205337.16279-1-sashal@kernel.org>
+References: <20200318205337.16279-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200318_135330_184353_C7EEDB61 
+X-CRM114-CacheID: sfid-20200318_135345_361578_A9E19F2C 
 X-CRM114-Status: UNSURE (   9.55  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -105,7 +105,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-index 1b6e8646700f9..2ac921c83da91 100644
+index 72c5373c8dc1e..e8d1f3050487f 100644
 --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
 +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
 @@ -147,8 +147,8 @@ static const unsigned int sdio_d0_pins[]	= { GPIOX_0 };
