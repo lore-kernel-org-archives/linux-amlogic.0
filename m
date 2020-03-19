@@ -2,88 +2,92 @@ Return-Path: <SRS0=2SAA=5E=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 39CD9C43332
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Mar 2020 20:35:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7264DC4332B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Mar 2020 20:35:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 10BFE2072C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Mar 2020 20:35:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 418EC2072C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Mar 2020 20:35:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a57DXoAN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="F6XgOmwh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10BFE2072C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u+hP/SbN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="eKxP82ka"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 418EC2072C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kYF+VSzbhRB7X083DRp1nQ7Eai91j0TlmKHYblIDXtU=; b=a57DXoAN6m/wRj
-	N651Ylzwp6CESpmpZdpaI6TjU7HAusfMo/IgedMr92anegDwaLi/wHyGpaXtIUUvqAgYn5DvhS9mN
-	PggNCQ0QB/fhY5r4mKKDvxTpSqPkCkcUUKxGqJC6BqA1EqEYs+wDurJeUa6ArtMXrdiAeWF4Ah0KR
-	lsbhvs+kFsjitfALta5DiQFnwY8DuFsydmww0XKx+zfO2MK2dHLyg+N3iWgsFj47XYIEET1uZVRlO
-	ri9KrpIL6lfxFuj7iVtnlnEC+xvvKmJ9MtnX51fvEADshHo1rx+AKsBdwned9Ohkd4A0+xLjfvpiB
-	T5owovxm4+Ao5gmILlgQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Ab8khCU0Ex+lmiaPCeu5m056/XS1+UHMXYERTAV0M6Y=; b=u+hP/SbNIhwvtx
+	nBCH1Cz0xXvQl1y2DUd7q2MAIclmWAI+1BfTZ9kiN3cKdxcVWYL8DkH4JMnnfPmc0Q3YI0OT0GZir
+	YfUtYE/pv5CxWmxZLBXQCpvodXfXCpNpD8UiFKGdgIWqpJyS99v2MwS8W46W8DXraFMYcAWa54HaR
+	0PXYhe/bWdfQUjJ4rKuI3vILCkFXVGgE9HxXdza01t5VlRxoaNEh+SF++Dba0pMIDf6S0PIwaZ58E
+	THQSVh58QaJEpS7OAlLVCMo+60FCvF16jupwBmVjF/KelRXNlWi6og6lpTrTMXn2fmZKUZZpZMGpf
+	UcR5Qsy9VJRpZmzXDwUQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jF1se-00030d-Vn; Thu, 19 Mar 2020 20:35:05 +0000
+	id 1jF1sp-0003tC-DK; Thu, 19 Mar 2020 20:35:15 +0000
 Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jF1sc-0002Xx-36; Thu, 19 Mar 2020 20:35:03 +0000
-Received: by mail-wm1-x344.google.com with SMTP id z13so4221629wml.0;
- Thu, 19 Mar 2020 13:35:01 -0700 (PDT)
+ id 1jF1se-0002sJ-L2; Thu, 19 Mar 2020 20:35:07 +0000
+Received: by mail-wm1-x344.google.com with SMTP id g62so3979250wme.1;
+ Thu, 19 Mar 2020 13:35:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=F9A5apcWfgHbzIqTxkzNkSW99c5Jwz5rXzLyR34TMAY=;
- b=F6XgOmwhJh/gwPXvcFQ3g35VhaqVS6H7wbZYGDdOZ/59xuk2dxFSNTlGYWF4EpX5SV
- Ibl1WkLnpvoi4S6W5lO50eCpeqljmiLyxcSl0OOrOi3f9o14+mVJrjSEc/0jLARtmzTw
- 0PaNWhkJyZTJ2j3DnwzVbuqqJbnYgmQukFBanjDBkEfRu7Q7s9ioTHQ3AUokTwDCkBpX
- ssCSfhHL4HxNzZt1PJ6QER879pr2l7SHo+fnLSunY5bcj2xFJnT7iykt5ZfIX4IQJMrB
- Jjbv6CuhBup3i8Jkv4wwSgpFIBv/zsEFOl+ivz+aUs837Lt2f1EOiCty2OcbxtMR1xi5
- wLAQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=ziVyD9FCJN4HG2z3+da7r9GM//DAxlOZcLamqBGLWB0=;
+ b=eKxP82kaHZyJ2eOg0JyFtYiy2cKsXjY0adzjQEVq23qlXCkR2f6z8Gy7qYqEbd/kaH
+ 6qhu/kx3rkL71nTzrj47WuHu3E4jqdTmRm6l5Nv2x1y189f7GZmuwuK5w5A9VtROo0hM
+ miCaFOijdFJ3JIA6MIjvsqjAkkaH3g9I3PKQMntQSZmptg70T+idWOPaGJVyJtfoBWJy
+ vOACXlbUGDdynVBTAmpW0ouxh1ImCDRtaWXrbIYbN70SIAT5iChKU4IwnKgywwzIQVnH
+ CmPeQ2ByVTARCZELAiZ7iNOSet7dqUbhExQCVAVtiebHOnF+YEwYLMSW/y1DaJg/LBtU
+ dsvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=F9A5apcWfgHbzIqTxkzNkSW99c5Jwz5rXzLyR34TMAY=;
- b=kINBo29j6A4hIbhqSHuy371KO32I0Kq8W2EXtCva+orexDFMC1TxwdpgloVXQ/L68o
- mXhhUeDKX3amX7JoM/r+uUUKPL6wQkAMKdtLsU4WDJbIJbkOhsCqiTlWT6ls2ey8tDyg
- b/nOC2AXdVf9tsmH85GmbmSc56soYSrbjMfcY/2EjbZE51akzzxpfTyJ80MTdV4uBB5p
- 6SG6yq5NdfBA33PRmAgHIN9/4fasZRlvK3erCrKdYPn05bt/K7s0WZLfUXj70zFrnK5h
- gKJqnW6dLwjN+NST/IFdYzv97KOJKSst7jzYFyI6RWYWB4ZEBE6HQMYoeIOGrhVJmJeR
- pZnw==
-X-Gm-Message-State: ANhLgQ2N+c9Hoqw2V8lT9PalCZchTeU0Sb3DHAfcRqQj9AgbME6bvZ5K
- UUzbG4A1RdsoCu4uhyUqhP0=
-X-Google-Smtp-Source: ADFU+vue6L/D3vO5GpBh6ik04h+bVos1cH18QGewBBlQCMdLUaGmuiQ7UHEJrwRc08Fxtn+e7GR/OA==
-X-Received: by 2002:a1c:bc84:: with SMTP id m126mr5722632wmf.171.1584650099865; 
- Thu, 19 Mar 2020 13:34:59 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=ziVyD9FCJN4HG2z3+da7r9GM//DAxlOZcLamqBGLWB0=;
+ b=QuwScBRFE/pHix3rKfLklLswYA538rgfDgZe1gtmXhdwUQsDoBLecDR3sCM7EnXQKx
+ 0gMfSHfJ/D4l+UNwZ+RibJPs3fV99Hxf+SCcj7D3BgbEnliMfpxAgI9BD12qI0wLSozm
+ 5K/Jk51IxhoAU8a7R+jdhALAu59IJURzQu1ePC7/MZGDQmOizpWBHIkxbT/vk6a6k7hV
+ y0TlKshnvPuwNl1oZIxECsgWccQn6qzXOopHlexKBNDRlM1HyGMTvFFdyUZmbV9nL/OV
+ CZJoD0XYvv2crspCDqbDNu6wTVpz+cn0CplPFYtzTfCRVWxdfTxiTrWmCCQ4f85drOiD
+ OTLA==
+X-Gm-Message-State: ANhLgQ0ZpyflZPMYctJ3YoZ+UeQmCHxbBb1C4ESR6YAJe3xTOcxnuiVB
+ iYNC6gFCO56bhn9Gm7ntXQ8=
+X-Google-Smtp-Source: ADFU+vsUytrUAI2t+cc3E1j9XRtenXcuMyKcFRE0qTNjCbNH+P0lzplaW3CcIr8Evw/umHjSzkzxnA==
+X-Received: by 2002:a1c:ba06:: with SMTP id k6mr5553945wmf.136.1584650103166; 
+ Thu, 19 Mar 2020 13:35:03 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300F13710ED00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:3710:ed00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id r9sm4744968wma.47.2020.03.19.13.34.58
+ by smtp.googlemail.com with ESMTPSA id r9sm4744968wma.47.2020.03.19.13.35.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Mar 2020 13:34:59 -0700 (PDT)
+ Thu, 19 Mar 2020 13:35:02 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: yuq825@gmail.com,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v4 0/2] drm: lima: devfreq and cooling device support
-Date: Thu, 19 Mar 2020 21:34:25 +0100
-Message-Id: <20200319203427.2259891-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v4 2/2] drm/lima: Add optional devfreq and cooling device
+ support
+Date: Thu, 19 Mar 2020 21:34:27 +0100
+Message-Id: <20200319203427.2259891-3-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.25.2
+In-Reply-To: <20200319203427.2259891-1-martin.blumenstingl@googlemail.com>
+References: <20200319203427.2259891-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200319_133502_164414_3D6F8F40 
-X-CRM114-Status: GOOD (  15.14  )
+X-CRM114-CacheID: sfid-20200319_133504_811385_5098EBCB 
+X-CRM114-Status: GOOD (  26.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,90 +110,498 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is my attempt at adding devfreq (and cooling device) support to
-the lima driver.
+Most platforms with a Mali-400 or Mali-450 GPU also have support for
+changing the GPU clock frequency. Add devfreq support so the GPU clock
+rate is updated based on the actual GPU usage when the
+"operating-points-v2" property is present in the board.dts.
 
-Test results from a Meson8m2 board:
-TEST #1: glmark2-es2-drm --off-screen in an infinite loop while cycling
-         through all available frequencies using the userspace governor
+The actual devfreq code is taken from panfrost_devfreq.c and modified so
+it matches what the lima hardware needs:
+- a call to dev_pm_opp_set_clkname() during initialization because there
+  are two clocks on Mali-4x0 IPs. "core" is the one that actually clocks
+  the GPU so we need to control it using devfreq.
+- locking when reading or writing the devfreq statistics because (unlike
+  than panfrost) we have multiple PP and GP IRQs which may finish jobs
+  concurrently.
 
-     From  :   To
-           : 182142857 318750000 425000000 510000000 637500000   time(ms)
-  182142857:         0      1274      1274      1273      1279   5399468
-  318750000:      1274         0      1274      1273      1272   5114700
-  425000000:      1276      1274         0      1272      1271   5122008
-  510000000:      1909      1273      1273         0       636   5274292
-* 637500000:       640      1272      1272      1273         0   5186796
-Total transition : 24834
-
-TEST #2: glmark2-es2-drm --off-screen in an infinite loop with the
-         simple_ondemand governor
-     From  :   To
-           : 182142857 318750000 425000000 510000000 637500000   time(ms)
-  182142857:         0         0         0         0       203    318328
-  318750000:        53         0         0         0        21     56044
-  425000000:        27        18         0         0         2     34172
-  510000000:        27         6        14         0         1     41348
-* 637500000:        95        50        33        48         0   2085312
-
-
-Changes since RFC v3 at [2]:
-- fix devfreq init error handling and allow lima_devfreq_fini to be
-  called multiple times (thanks Qiang)
-- switch from atomic counter to a simple int which is only accessed
-  under the devfreq spinlock (thanks Qiang)
-- union lock areas in same function (thanks Qiang)
-- select DEVFREQ_GOV_SIMPLE_ONDEMAND like panfrost does (thanks Qiang)
-- move lima_devfreq struct to lima_devfreq.h (thanks Qiang)
-- fix duplicate variable in lima_sched_pipe_task_done
-- only call dev_pm_opp_of_remove_table if dev_pm_opp_of_add_table
-  succeeded previously
-- update copyright year to 2020
-- rebased on top of drm-misc-next
-- dropped RFC status
-
-Changes since RFC v2 at [1]:
-- added #cooling-cells to the dt-bindings (new patch #1)
-- skip devfreq initialization when the operating-points-v2 property is
-  absent
-- call dev_pm_opp_set_regulators() so devfreq will actually manage the
-  mali-supply regulator
-- rebased on top of drm-misc-next-2020-02-21
-
-Changes since RFC v1 at [0]:
-- added lock to protect the statistics as these can be written
-  concurrently for example when the GP and PP IRQ are firing at the
-  same time. Thanks to Qiang Yu for the suggestion!
-- updated the copyright notice of lima_devfreq.c to indicate that the
-  code is derived from panfrost_devfreq.c. Thanks to  Chen-Yu Tsai  for
-  the suggestion!
-- I did not unify the code with panfrost yet because I don't know where
-  to put the result. any suggestion is welcome though!
-
-
-[0] https://patchwork.freedesktop.org/series/70967/
-[1] https://patchwork.kernel.org/cover/11311293/
-[2] https://patchwork.kernel.org/cover/11398365/
-
-
-Martin Blumenstingl (2):
-  dt-bindings: gpu: mali-utgard: Add the #cooling-cells property
-  drm/lima: Add optional devfreq and cooling device support
-
- .../bindings/gpu/arm,mali-utgard.yaml         |   4 +
- drivers/gpu/drm/lima/Kconfig                  |   2 +
- drivers/gpu/drm/lima/Makefile                 |   3 +-
- drivers/gpu/drm/lima/lima_devfreq.c           | 234 ++++++++++++++++++
- drivers/gpu/drm/lima/lima_devfreq.h           |  41 +++
- drivers/gpu/drm/lima/lima_device.c            |   4 +
- drivers/gpu/drm/lima/lima_device.h            |   3 +
- drivers/gpu/drm/lima/lima_drv.c               |  14 +-
- drivers/gpu/drm/lima/lima_sched.c             |   7 +
- drivers/gpu/drm/lima/lima_sched.h             |   3 +
- 10 files changed, 312 insertions(+), 3 deletions(-)
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/gpu/drm/lima/Kconfig        |   2 +
+ drivers/gpu/drm/lima/Makefile       |   3 +-
+ drivers/gpu/drm/lima/lima_devfreq.c | 234 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/lima/lima_devfreq.h |  41 +++++
+ drivers/gpu/drm/lima/lima_device.c  |   4 +
+ drivers/gpu/drm/lima/lima_device.h  |   3 +
+ drivers/gpu/drm/lima/lima_drv.c     |  14 +-
+ drivers/gpu/drm/lima/lima_sched.c   |   7 +
+ drivers/gpu/drm/lima/lima_sched.h   |   3 +
+ 9 files changed, 308 insertions(+), 3 deletions(-)
  create mode 100644 drivers/gpu/drm/lima/lima_devfreq.c
  create mode 100644 drivers/gpu/drm/lima/lima_devfreq.h
 
+diff --git a/drivers/gpu/drm/lima/Kconfig b/drivers/gpu/drm/lima/Kconfig
+index d589f09d04d9..fa1d4f5df31e 100644
+--- a/drivers/gpu/drm/lima/Kconfig
++++ b/drivers/gpu/drm/lima/Kconfig
+@@ -10,5 +10,7 @@ config DRM_LIMA
+        depends on OF
+        select DRM_SCHED
+        select DRM_GEM_SHMEM_HELPER
++       select PM_DEVFREQ
++       select DEVFREQ_GOV_SIMPLE_ONDEMAND
+        help
+ 	 DRM driver for ARM Mali 400/450 GPUs.
+diff --git a/drivers/gpu/drm/lima/Makefile b/drivers/gpu/drm/lima/Makefile
+index a85444b0a1d4..5e5c29875e9c 100644
+--- a/drivers/gpu/drm/lima/Makefile
++++ b/drivers/gpu/drm/lima/Makefile
+@@ -14,6 +14,7 @@ lima-y := \
+ 	lima_sched.o \
+ 	lima_ctx.o \
+ 	lima_dlbu.o \
+-	lima_bcast.o
++	lima_bcast.o \
++	lima_devfreq.o
+ 
+ obj-$(CONFIG_DRM_LIMA) += lima.o
+diff --git a/drivers/gpu/drm/lima/lima_devfreq.c b/drivers/gpu/drm/lima/lima_devfreq.c
+new file mode 100644
+index 000000000000..8c4d21d07529
+--- /dev/null
++++ b/drivers/gpu/drm/lima/lima_devfreq.c
+@@ -0,0 +1,234 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright 2020 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
++ *
++ * Based on panfrost_devfreq.c:
++ *   Copyright 2019 Collabora ltd.
++ */
++#include <linux/clk.h>
++#include <linux/devfreq.h>
++#include <linux/devfreq_cooling.h>
++#include <linux/device.h>
++#include <linux/platform_device.h>
++#include <linux/pm_opp.h>
++#include <linux/property.h>
++
++#include "lima_device.h"
++#include "lima_devfreq.h"
++
++static void lima_devfreq_update_utilization(struct lima_devfreq *devfreq)
++{
++	ktime_t now, last;
++
++	now = ktime_get();
++	last = devfreq->time_last_update;
++
++	if (devfreq->busy_count > 0)
++		devfreq->busy_time += ktime_sub(now, last);
++	else
++		devfreq->idle_time += ktime_sub(now, last);
++
++	devfreq->time_last_update = now;
++}
++
++static int lima_devfreq_target(struct device *dev, unsigned long *freq,
++			       u32 flags)
++{
++	struct dev_pm_opp *opp;
++	int err;
++
++	opp = devfreq_recommended_opp(dev, freq, flags);
++	if (IS_ERR(opp))
++		return PTR_ERR(opp);
++	dev_pm_opp_put(opp);
++
++	err = dev_pm_opp_set_rate(dev, *freq);
++	if (err)
++		return err;
++
++	return 0;
++}
++
++static void lima_devfreq_reset(struct lima_devfreq *devfreq)
++{
++	devfreq->busy_time = 0;
++	devfreq->idle_time = 0;
++	devfreq->time_last_update = ktime_get();
++}
++
++static int lima_devfreq_get_dev_status(struct device *dev,
++				       struct devfreq_dev_status *status)
++{
++	struct lima_device *ldev = dev_get_drvdata(dev);
++	struct lima_devfreq *devfreq = &ldev->devfreq;
++	unsigned long irqflags;
++
++	status->current_frequency = clk_get_rate(ldev->clk_gpu);
++
++	spin_lock_irqsave(&devfreq->lock, irqflags);
++
++	lima_devfreq_update_utilization(devfreq);
++
++	status->total_time = ktime_to_ns(ktime_add(devfreq->busy_time,
++						   devfreq->idle_time));
++	status->busy_time = ktime_to_ns(devfreq->busy_time);
++
++	lima_devfreq_reset(devfreq);
++
++	spin_unlock_irqrestore(&devfreq->lock, irqflags);
++
++	dev_dbg(ldev->dev, "busy %lu total %lu %lu %% freq %lu MHz\n",
++		status->busy_time, status->total_time,
++		status->busy_time / (status->total_time / 100),
++		status->current_frequency / 1000 / 1000);
++
++	return 0;
++}
++
++static struct devfreq_dev_profile lima_devfreq_profile = {
++	.polling_ms = 50, /* ~3 frames */
++	.target = lima_devfreq_target,
++	.get_dev_status = lima_devfreq_get_dev_status,
++};
++
++void lima_devfreq_fini(struct lima_device *ldev)
++{
++	struct lima_devfreq *devfreq = &ldev->devfreq;
++
++	if (devfreq->cooling) {
++		devfreq_cooling_unregister(devfreq->cooling);
++		devfreq->cooling = NULL;
++	}
++
++	if (devfreq->devfreq) {
++		devm_devfreq_remove_device(&ldev->pdev->dev,
++					   devfreq->devfreq);
++		devfreq->devfreq = NULL;
++	}
++
++	if (devfreq->opp_of_table_added) {
++		dev_pm_opp_of_remove_table(&ldev->pdev->dev);
++		devfreq->opp_of_table_added = false;
++	}
++
++	if (devfreq->regulators_opp_table) {
++		dev_pm_opp_put_regulators(devfreq->regulators_opp_table);
++		devfreq->regulators_opp_table = NULL;
++	}
++
++	if (devfreq->clkname_opp_table) {
++		dev_pm_opp_put_clkname(devfreq->clkname_opp_table);
++		devfreq->clkname_opp_table = NULL;
++	}
++}
++
++int lima_devfreq_init(struct lima_device *ldev)
++{
++	struct thermal_cooling_device *cooling;
++	struct device *dev = &ldev->pdev->dev;
++	struct opp_table *opp_table;
++	struct devfreq *devfreq;
++	struct lima_devfreq *ldevfreq = &ldev->devfreq;
++	struct dev_pm_opp *opp;
++	unsigned long cur_freq;
++	int ret;
++
++	if (!device_property_present(dev, "operating-points-v2"))
++		/* Optional, continue without devfreq */
++		return 0;
++
++	spin_lock_init(&ldevfreq->lock);
++
++	opp_table = dev_pm_opp_set_clkname(dev, "core");
++	if (IS_ERR(opp_table)) {
++		ret = PTR_ERR(opp_table);
++		goto err_fini;
++	}
++
++	ldevfreq->clkname_opp_table = opp_table;
++
++	opp_table = dev_pm_opp_set_regulators(dev,
++					      (const char *[]){ "mali" },
++					      1);
++	if (IS_ERR(opp_table)) {
++		ret = PTR_ERR(opp_table);
++
++		/* Continue if the optional regulator is missing */
++		if (ret != -ENODEV)
++			goto err_fini;
++	} else {
++		ldevfreq->regulators_opp_table = opp_table;
++	}
++
++	ret = dev_pm_opp_of_add_table(dev);
++	if (ret)
++		goto err_fini;
++	ldevfreq->opp_of_table_added = true;
++
++	lima_devfreq_reset(ldevfreq);
++
++	cur_freq = clk_get_rate(ldev->clk_gpu);
++
++	opp = devfreq_recommended_opp(dev, &cur_freq, 0);
++	if (IS_ERR(opp)) {
++		ret = PTR_ERR(opp);
++		goto err_fini;
++	}
++
++	lima_devfreq_profile.initial_freq = cur_freq;
++	dev_pm_opp_put(opp);
++
++	devfreq = devm_devfreq_add_device(dev, &lima_devfreq_profile,
++					  DEVFREQ_GOV_SIMPLE_ONDEMAND, NULL);
++	if (IS_ERR(devfreq)) {
++		dev_err(dev, "Couldn't initialize GPU devfreq\n");
++		ret = PTR_ERR(devfreq);
++		goto err_fini;
++	}
++
++	ldevfreq->devfreq = devfreq;
++
++	cooling = of_devfreq_cooling_register(dev->of_node, devfreq);
++	if (IS_ERR(cooling))
++		dev_info(dev, "Failed to register cooling device\n");
++	else
++		ldevfreq->cooling = cooling;
++
++	return 0;
++
++err_fini:
++	lima_devfreq_fini(ldev);
++	return ret;
++}
++
++void lima_devfreq_record_busy(struct lima_devfreq *devfreq)
++{
++	unsigned long irqflags;
++
++	if (!devfreq->devfreq)
++		return;
++
++	spin_lock_irqsave(&devfreq->lock, irqflags);
++
++	lima_devfreq_update_utilization(devfreq);
++
++	devfreq->busy_count++;
++
++	spin_unlock_irqrestore(&devfreq->lock, irqflags);
++}
++
++void lima_devfreq_record_idle(struct lima_devfreq *devfreq)
++{
++	unsigned long irqflags;
++
++	if (!devfreq->devfreq)
++		return;
++
++	spin_lock_irqsave(&devfreq->lock, irqflags);
++
++	lima_devfreq_update_utilization(devfreq);
++
++	WARN_ON(--devfreq->busy_count < 0);
++
++	spin_unlock_irqrestore(&devfreq->lock, irqflags);
++}
+diff --git a/drivers/gpu/drm/lima/lima_devfreq.h b/drivers/gpu/drm/lima/lima_devfreq.h
+new file mode 100644
+index 000000000000..8d71ba9fb22a
+--- /dev/null
++++ b/drivers/gpu/drm/lima/lima_devfreq.h
+@@ -0,0 +1,41 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/* Copyright 2020 Martin Blumenstingl <martin.blumenstingl@googlemail.com> */
++
++#ifndef __LIMA_DEVFREQ_H__
++#define __LIMA_DEVFREQ_H__
++
++#include <linux/spinlock.h>
++#include <linux/ktime.h>
++
++struct devfreq;
++struct opp_table;
++struct thermal_cooling_device;
++
++struct lima_device;
++
++struct lima_devfreq {
++	struct devfreq *devfreq;
++	struct opp_table *clkname_opp_table;
++	struct opp_table *regulators_opp_table;
++	struct thermal_cooling_device *cooling;
++	bool opp_of_table_added;
++
++	ktime_t busy_time;
++	ktime_t idle_time;
++	ktime_t time_last_update;
++	int busy_count;
++	/*
++	 * Protect busy_time, idle_time, time_last_update and busy_count
++	 * because these can be updated concurrently, for example by the GP
++	 * and PP interrupts.
++	 */
++	spinlock_t lock;
++};
++
++int lima_devfreq_init(struct lima_device *ldev);
++void lima_devfreq_fini(struct lima_device *ldev);
++
++void lima_devfreq_record_busy(struct lima_devfreq *devfreq);
++void lima_devfreq_record_idle(struct lima_devfreq *devfreq);
++
++#endif
+diff --git a/drivers/gpu/drm/lima/lima_device.c b/drivers/gpu/drm/lima/lima_device.c
+index 19829b543024..7f1f7a1c03e5 100644
+--- a/drivers/gpu/drm/lima/lima_device.c
++++ b/drivers/gpu/drm/lima/lima_device.c
+@@ -214,6 +214,8 @@ static int lima_init_gp_pipe(struct lima_device *dev)
+ 	struct lima_sched_pipe *pipe = dev->pipe + lima_pipe_gp;
+ 	int err;
+ 
++	pipe->ldev = dev;
++
+ 	err = lima_sched_pipe_init(pipe, "gp");
+ 	if (err)
+ 		return err;
+@@ -244,6 +246,8 @@ static int lima_init_pp_pipe(struct lima_device *dev)
+ 	struct lima_sched_pipe *pipe = dev->pipe + lima_pipe_pp;
+ 	int err, i;
+ 
++	pipe->ldev = dev;
++
+ 	err = lima_sched_pipe_init(pipe, "pp");
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/lima/lima_device.h b/drivers/gpu/drm/lima/lima_device.h
+index 31158d86271c..d6c0f8b8f7e8 100644
+--- a/drivers/gpu/drm/lima/lima_device.h
++++ b/drivers/gpu/drm/lima/lima_device.h
+@@ -8,6 +8,7 @@
+ #include <linux/delay.h>
+ 
+ #include "lima_sched.h"
++#include "lima_devfreq.h"
+ 
+ enum lima_gpu_id {
+ 	lima_gpu_mali400 = 0,
+@@ -94,6 +95,8 @@ struct lima_device {
+ 
+ 	u32 *dlbu_cpu;
+ 	dma_addr_t dlbu_dma;
++
++	struct lima_devfreq devfreq;
+ };
+ 
+ static inline struct lima_device *
+diff --git a/drivers/gpu/drm/lima/lima_drv.c b/drivers/gpu/drm/lima/lima_drv.c
+index 2daac64d8955..d9f64e52ae9e 100644
+--- a/drivers/gpu/drm/lima/lima_drv.c
++++ b/drivers/gpu/drm/lima/lima_drv.c
+@@ -10,6 +10,7 @@
+ #include <drm/drm_prime.h>
+ #include <drm/lima_drm.h>
+ 
++#include "lima_device.h"
+ #include "lima_drv.h"
+ #include "lima_gem.h"
+ #include "lima_vm.h"
+@@ -306,18 +307,26 @@ static int lima_pdev_probe(struct platform_device *pdev)
+ 	if (err)
+ 		goto err_out1;
+ 
++	err = lima_devfreq_init(ldev);
++	if (err) {
++		dev_err(&pdev->dev, "Fatal error during devfreq init\n");
++		goto err_out2;
++	}
++
+ 	/*
+ 	 * Register the DRM device with the core and the connectors with
+ 	 * sysfs.
+ 	 */
+ 	err = drm_dev_register(ddev, 0);
+ 	if (err < 0)
+-		goto err_out2;
++		goto err_out3;
+ 
+ 	return 0;
+ 
+-err_out2:
++err_out3:
+ 	lima_device_fini(ldev);
++err_out2:
++	lima_devfreq_fini(ldev);
+ err_out1:
+ 	drm_dev_put(ddev);
+ err_out0:
+@@ -331,6 +340,7 @@ static int lima_pdev_remove(struct platform_device *pdev)
+ 	struct drm_device *ddev = ldev->ddev;
+ 
+ 	drm_dev_unregister(ddev);
++	lima_devfreq_fini(ldev);
+ 	lima_device_fini(ldev);
+ 	drm_dev_put(ddev);
+ 	lima_sched_slab_fini();
+diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
+index 3886999b4533..d937d626b892 100644
+--- a/drivers/gpu/drm/lima/lima_sched.c
++++ b/drivers/gpu/drm/lima/lima_sched.c
+@@ -5,6 +5,7 @@
+ #include <linux/slab.h>
+ #include <linux/xarray.h>
+ 
++#include "lima_devfreq.h"
+ #include "lima_drv.h"
+ #include "lima_sched.h"
+ #include "lima_vm.h"
+@@ -214,6 +215,8 @@ static struct dma_fence *lima_sched_run_job(struct drm_sched_job *job)
+ 	 */
+ 	ret = dma_fence_get(task->fence);
+ 
++	lima_devfreq_record_busy(&pipe->ldev->devfreq);
++
+ 	pipe->current_task = task;
+ 
+ 	/* this is needed for MMU to work correctly, otherwise GP/PP
+@@ -285,6 +288,8 @@ static void lima_sched_timedout_job(struct drm_sched_job *job)
+ 	pipe->current_vm = NULL;
+ 	pipe->current_task = NULL;
+ 
++	lima_devfreq_record_idle(&pipe->ldev->devfreq);
++
+ 	drm_sched_resubmit_jobs(&pipe->base);
+ 	drm_sched_start(&pipe->base, true);
+ }
+@@ -364,5 +369,7 @@ void lima_sched_pipe_task_done(struct lima_sched_pipe *pipe)
+ 	} else {
+ 		pipe->task_fini(pipe);
+ 		dma_fence_signal(task->fence);
++
++		lima_devfreq_record_idle(&pipe->ldev->devfreq);
+ 	}
+ }
+diff --git a/drivers/gpu/drm/lima/lima_sched.h b/drivers/gpu/drm/lima/lima_sched.h
+index d64393fb50a9..19bbc5214cf2 100644
+--- a/drivers/gpu/drm/lima/lima_sched.h
++++ b/drivers/gpu/drm/lima/lima_sched.h
+@@ -6,6 +6,7 @@
+ 
+ #include <drm/gpu_scheduler.h>
+ 
++struct lima_device;
+ struct lima_vm;
+ 
+ struct lima_sched_task {
+@@ -44,6 +45,8 @@ struct lima_sched_pipe {
+ 	u32 fence_seqno;
+ 	spinlock_t fence_lock;
+ 
++	struct lima_device *ldev;
++
+ 	struct lima_sched_task *current_task;
+ 	struct lima_vm *current_vm;
+ 
 -- 
 2.25.2
 
