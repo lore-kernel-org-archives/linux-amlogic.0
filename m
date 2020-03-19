@@ -2,65 +2,92 @@ Return-Path: <SRS0=2SAA=5E=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D9534C4332E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Mar 2020 14:20:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A450C4332D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Mar 2020 16:37:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B11702080C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Mar 2020 14:20:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2B2942072C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Mar 2020 16:37:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AMj+RTFn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B11702080C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="e5uM6beL";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kRFKQKfE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2B2942072C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=78RaRqJhZcQY9yjr+gd0ZKn8cXeJd+OgSanxIvJXVWU=; b=AMj+RTFnHXcrGK
-	VSyqAxZQxSMoH6PkwVusMEdIaRZyX0V6Vfq02ZgJkexYugvBZkHg7pKq3E7a9YC/hih1Gy57apsBR
-	ZeMbqMeL/Dv+KhKPbOjKzcXfhnNbhTvrwq2X4zmqnzTGNwRRYWvhNH9OX+JCeEO4IVPIngY4nbs00
-	SLP1o4mUqw4OuZrwgXogXG8yFt7dMYBfmVrujH8Vvr9xgQpPEYEDJVPPc9FLOPY9tVNdO5hypld0L
-	MLR8ucBexjJHg/8TwdCNiXIW/qHdpoPO0AKMi7H84siCAgbtEnqXicOM5/8+7+fIUNo8xHnZp32U5
-	TMr8cGMzv57Rbz4VGM8g==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=Ur0Zc1LtI/NTGt2EQC6DTXkntpw5asnxFTtxbpEZ/vI=; b=e5uM6beLJNILMHJ7OFe4omfZe
+	ULAxpq6y8CIn3ul7LU3m8Acfvs9Xk7ARmiUpMk40jL5+Vxz18RLAh5imbouBNSoK5dghnojetlRN2
+	hCenx5I3TR3YKw8V7fI3VavPQKHY4+jUrhuZcswWay/mfh6r0nFSMYXGc71h+dXLzdXniVIh2MXtl
+	Or1L246iNODBhtxDq9N7yLYYcNpbrak1STB6LWgLMci7nCgPFBdrjMAosPr7ZjaFspsS5V0TBYHw8
+	omwd3Zv/T1Nhbat/X47z4/v5keCMtH1wQ6nXbrWH5qKkaqb5CHZ4rFqZKxAW6kUheqnTbFmua0ik6
+	jPzTLrZ4Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jEw1n-0004kB-M0; Thu, 19 Mar 2020 14:20:07 +0000
-Received: from asavdk4.altibox.net ([109.247.116.15])
+	id 1jEyAQ-00056H-4g; Thu, 19 Mar 2020 16:37:10 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jEw1k-0003vd-89; Thu, 19 Mar 2020 14:20:05 +0000
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id E0EAA8052B;
- Thu, 19 Mar 2020 15:19:55 +0100 (CET)
-Date: Thu, 19 Mar 2020 15:19:54 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v1 0/3] drm: drm_encoder_init() => drm_encoder_init_funcs()
-Message-ID: <20200319141954.GA25036@ravnborg.org>
-References: <20200313201744.19773-1-sam@ravnborg.org>
+ id 1jEyAL-000558-0E; Thu, 19 Mar 2020 16:37:08 +0000
+Received: by mail-wr1-x442.google.com with SMTP id h4so3947839wru.2;
+ Thu, 19 Mar 2020 09:37:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=NMueQiP9jz9O+z3rNtEF0OHXn/KJHT1fioATarE40G8=;
+ b=kRFKQKfEBEqihNIaveyPStDvKrgGhFdZYXEgGipYSaA/2qb6vfhLO+/QfXCyCFXgSF
+ 4F9OSwGjKC73SFYPFCirtCRMbpEEoDU3RUq+OjredkiZDGPLh5a47GO0D6W+wOc90ph7
+ VF9FDlcb17/e3+Ta1efGon4YAfa5fgDS4iEpV+0BmBtdIA1z6lRAepOpcej3xMKWo/ux
+ Vg8pKnGn9tr2cb5/j+Mc193lHK4mxDTwsK+cC3L/LI6irZpb0ZVA50uMqMMR//1l7yZB
+ kun/1ogBpRNi9sP3YX7gPc3nz4ngJ4FX5E4UnQvyiQODgPw0LbfZxDr7lHa2ya6glUVd
+ PhUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=NMueQiP9jz9O+z3rNtEF0OHXn/KJHT1fioATarE40G8=;
+ b=sjQyBVmp7llktNTJ0+X4GSKXLM3Ot0eqrNqBiv5DXvO7tInRSxtdm6l+KiDPI2y5Zv
+ njPH2djSZvZ+PQbXI9p8GT5vYCIpuGG0md57APGsxPt33bYtuXBKtcnhHCSWVfDj7HPG
+ E/c76VOAa9SNNFiT1piCj+JzY99AUD9hnNPpYxIGqdadqDi0EQ6Jm9NsAZrsA+SbSyBd
+ 2acAd/nRd7rE9uekjIJCRJZSfaUfgaK5pyAA5clxewMpiatFgzfz0fxzSDBRLSpP9+0o
+ 1hCjhq6vpAwHaYsxUXKYhp2l/w6+PdJY5547IBa9BhUMqOJZeXGBQ58rt7300MKWGlTK
+ 5+jw==
+X-Gm-Message-State: ANhLgQ2T+YtRV8CD5sshGKwr2goZYS+m1M3OA3ARF07JaxxqSM0mtDQb
+ /Ycbpybc/dw2cSQN4NPxDDg=
+X-Google-Smtp-Source: ADFU+vtoxuuyxX+HT1GPJKiSCaAgThQGtgPWSsP45bIWCEbkNowuDDd0U3X4oTdHznURld4tZlgyhg==
+X-Received: by 2002:a05:6000:d0:: with SMTP id
+ q16mr5551345wrx.71.1584635822900; 
+ Thu, 19 Mar 2020 09:37:02 -0700 (PDT)
+Received: from localhost (pD9E51CDC.dip0.t-ipconnect.de. [217.229.28.220])
+ by smtp.gmail.com with ESMTPSA id z22sm3851524wmi.1.2020.03.19.09.37.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 19 Mar 2020 09:37:01 -0700 (PDT)
+Date: Thu, 19 Mar 2020 17:37:00 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Subject: Re: [RFC PATCH 1/7] pwm: rename the PWM_POLARITY_INVERSED enum
+Message-ID: <20200319163700.GA3354541@ulmo>
+References: <20200317123231.2843297-1-oleksandr.suvorov@toradex.com>
+ <20200317123231.2843297-2-oleksandr.suvorov@toradex.com>
+ <20200317174043.GA1464607@ulmo>
+ <20200317210042.ryrof3amr7fxp4w5@pengutronix.de>
+ <20200318225953.GA2874972@ulmo>
+ <20200319065039.szhh5dm6v3ejwijd@pengutronix.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200313201744.19773-1-sam@ravnborg.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
- a=MgBhUfZuEF2DRmvJ2N4A:9 a=CjuIK1q_8ugA:10
+In-Reply-To: <20200319065039.szhh5dm6v3ejwijd@pengutronix.de>
+User-Agent: Mutt/1.13.1 (2019-12-14)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200319_072004_477456_B270F38B 
-X-CRM114-Status: GOOD (  17.12  )
+X-CRM114-CacheID: sfid-20200319_093705_047249_9F5AB4ED 
+X-CRM114-Status: GOOD (  38.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,72 +100,253 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-samsung-soc@vger.kernel.org, Boris Brezillon <bbrezillon@kernel.org>,
- David Airlie <airlied@linux.ie>,
- Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- NXP Linux Team <linux-imx@nxp.com>,
- Jose Roberto de Souza <jose.souza@intel.com>,
- virtualization@lists.linux-foundation.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
+ Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org,
+ Marcel Ziswiler <marcel.ziswiler@toradex.com>, linux-kernel@vger.kernel.org,
+ Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-riscv@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Chen-Yu Tsai <wens@csie.org>, linux-rockchip@lists.infradead.org,
  Ludovic Desroches <ludovic.desroches@microchip.com>,
- linux-mediatek@lists.infradead.org, Gerd Hoffmann <kraxel@redhat.com>,
- linux-amlogic@lists.infradead.org, linux-tegra@vger.kernel.org,
- Dave Airlie <airlied@redhat.com>, amd-gfx@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
- Emil Velikov <emil.velikov@collabora.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ bcm-kernel-feedback-list@broadcom.com, NXP Linux Team <linux-imx@nxp.com>,
+ devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Maxime Ripard <mripard@kernel.org>,
+ Philippe Schenker <philippe.schenker@toradex.com>,
+ Paul Barker <pbarker@konsulko.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Paul Cercueil <paul@crapouillou.net>, Igor Opaniuk <igor.opaniuk@toradex.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Claudiu Beznea <claudiu.beznea@microchip.com>
+Content-Type: multipart/mixed; boundary="===============8576791352630745143=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Mar 13, 2020 at 09:17:41PM +0100, Sam Ravnborg wrote:
-> Thomas Zimmermann had made a nice patch-set that introduced
-> drm_simple_encoder_init() which is already present in drm-misc-next.
-> 
-> While looking at this it was suddenly obvious to me that
-> this was functionalty that really should be included in drm_encoder.c
-> The case where the core could handle the callback is pretty
-> common and not part of the simple pipe line.
-> 
-> So after some dialog on dri-devel the conclusion was to go for
-> a change like this:
-> 
->     drm_encoder_init_funcs() for all users that specified a
->     drm_encoder_funcs to extend the functionality.
-> 
->     drm_encoder_init() for all users that did not
->     need to extend the basic functionality with
->     drm_encoder_funcs.
-> 
-> A similar approach with a _funcs() prefix is used elsewhere in drm/
-> 
-> This required a rename of the existing users, and
-> a follow-up patch that moves drm_simple_encoder_init()
-> to drm_encoder.c
-> 
-> Patches 3 in this set demonstrate the use of drm_encoder_init().
-> There are many more drivers that can be converted as Thomas
-> has already demonstrated.
-> 
-> This is all based on work done by Thomas Zimmermann,
-> I just wanted to implement my suggestion so
-> we could select the best way forward.
-> 
-> Note: Daniel Vetter has hinted the approach implemented
-> here smelled like middle-layer.
-> IMO this is not so, it is just a way to handle cleanup
-> for the simple cases.
 
-We discussed this patch-set briefly on irc.
-With the upcoming drmm_ changes and such this is bad timing..
-And in the end this may be pointless code-chrunch.
+--===============8576791352630745143==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="LZvS9be/3tNcYl/X"
+Content-Disposition: inline
 
-Patch-set shelfed for now - may re-visit it later.
 
-	Sam
+--LZvS9be/3tNcYl/X
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Mar 19, 2020 at 07:50:39AM +0100, Uwe Kleine-K=C3=B6nig wrote:
+>=20
+> [Dropped Tony Prisk from recipients as the address bounces]
+>=20
+> Hello,
+>=20
+> On Wed, Mar 18, 2020 at 11:59:53PM +0100, Thierry Reding wrote:
+> > On Tue, Mar 17, 2020 at 10:00:42PM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > > Hello,
+> > >=20
+> > > On Tue, Mar 17, 2020 at 06:40:43PM +0100, Thierry Reding wrote:
+> > > > On Tue, Mar 17, 2020 at 02:32:25PM +0200, Oleksandr Suvorov wrote:
+> > > > > The polarity enum definition PWM_POLARITY_INVERSED is misspelled.
+> > > > > Rename it to PWM_POLARITY_INVERTED.
+> > > >=20
+> > > > It isn't misspelled. "inversed" is a synonym for "inverted". Both
+> > > > spellings are correct.
+> > >=20
+> > > Some time ago I stumbled about "inversed", too. My spell checker does=
+n't
+> > > know it and I checked some dictionaries and none of them knew that wo=
+rd:
+> > >=20
+> > > https://www.lexico.com/search?utf8=3D%E2%9C%93&filter=3Ddictionary&di=
+ctionary=3Den&query=3Dinversed
+> > > https://de.pons.com/%C3%BCbersetzung/englisch-deutsch/inversed
+> > > https://dictionary.cambridge.org/spellcheck/english-german/?q=3Dinver=
+sed
+> > >=20
+> > > https://en.wiktionary.org/wiki/inverse#Verb mentions "inverse" as a v=
+erb
+> > > having "inversed" as past participle.
+> >=20
+> > Here are the first three results from a Google query:
+> >=20
+> > 	https://www.yourdictionary.com/inversed
+>=20
+> There is something fishy. In the Verb section it says indeed, that it is
+> the past participle and simple past of inverse. The entry for inverse
+> however only has sections that identify this word as adjective or noun;
+> not a verb.
+>=20
+> > 	https://www.dictionary.com/browse/inversed
+>=20
+> Not sure I'd count this as hint that inversed exists. The entry shown to
+> me under this URL is about "inverse" and it has
+>=20
+> 	verb (used with object), in=C2=B7versed, in=C2=B7vers=C2=B7ing.
+> 		? to invert.
+>=20
+> Does this mean: "Did you mean invert instead?"
+>=20
+> > 	https://en.wiktionary.org/wiki/inversed
+>=20
+> Yeah, that's the one I found, too.
+>=20
+> I still have the impression that "inversed" is in use because people
+> don't know better and understand the intended meaning. And this results
+> in leaking of this word into the references.
+>=20
+> > > Having said this I think (independent of the question if "inversed"
+> > > exists) using two similar terms for the same thing just results in
+> > > confusion. I hit that in the past already and I like it being address=
+ed.
+> >=20
+> > I don't know. It's pretty common to use different words for the same
+> > thing. They're called synonyms.
+>=20
+> In literature yes, I agree. In a novel it is annoying to repeat the same
+> words over and over again and some variation is good. In programming
+> however the goal is a different one. There the goal should be to be
+> precise and consistent.
+
+We also need to make sure that things don't break. It's a very bad idea
+to have a macro with the same name as an enum value for reasons I stated
+before. I think that's the most important thing here.
+
+Also, if inversed is a synonym of inverted, we don't loose any precision
+at all. All you have to remember is that you're dealing with a device
+tree constant in one case and an API enumeration in the other.
+
+So I think the current form is actually more precise, though I guess it
+could be confusing if you don't care about the difference.
+
+> > > > And as you noted in the cover letter, there's a conflict between the
+> > > > macro defined in dt-bindings/pwm/pwm.txt. If they end up being incl=
+uded
+> > > > in the wrong order you'll get a compile error.
+> > >=20
+> > > There are also other symbols that exist twice (GPIO_ACTIVE_HIGH was t=
+he
+> > > first to come to my mind). I'm not aware of any problems related to
+> > > these. What am I missing?
+> >=20
+> > There's currently no problem, obviously. But if for some reason the
+> > include files end up being included in a different order (i.e. the
+> > dt-bindings header is included before linux/pwm.h) then the macro will
+> > be evaluated and result in something like:
+> >=20
+> > 	enum pwm_polarity {
+> > 		PWM_POLARITY_NORMAL,
+> > 		1,
+> > 	};
+> >=20
+> > and that's not valid C, so will cause a build error.
+>=20
+> I admit I didn't look closely here and I assume you are right. If I
+> understand Oleksandr right this is only an intermediate step and when
+> the series is applied completely this issue is gone. Still it might be
+> worth to improve the series here.
+
+	$ gcc -o /dev/null -x c - <<- EOF
+	>     #define PWM_POLARITY_INVERTED (1 << 0)
+	>
+	>     enum pwm_polarity {
+	>         PWM_POLARITY_NORMAL,
+	>         PWM_POLARITY_INVERTED,
+	>     };
+	> EOF
+	<stdin>:1:35: error: expected identifier before =E2=80=98(=E2=80=99 token
+	<stdin>:5:9: note: in expansion of macro =E2=80=98PWM_POLARITY_INVERTED=E2=
+=80=99
+
+Q.E.D.
+
+> My original question was about similar problems with GPIO_ACTIVE_HIGH.
+> Are you aware of problems there?
+
+The problem exists there equally. We're probably not running into it
+because drivers don't end up including dt-bindings/gpio/gpio.h and
+include/linux/gpio/machine.h at the same time. Or they end up always
+including them in the right order.
+
+For PWM the situation is slightly more complicated because we only have
+one header for the kernel API, so the likelihood of including it along
+with the dt-bindings header is increased compared to GPIO.
+
+> > > > Note that DT bindings are an ABI and can
+> > > > never change, whereas the enum pwm_polarity is part of a Linux inte=
+rnal
+> > > > API and doesn't have the same restrictions as an ABI.
+> > >=20
+> > > I thought only binary device trees (dtb) are supposed to be ABI.
+> >=20
+> > Yes, the DTB is the ABI. dt-bindings/pwm/pwm.h is used to generate DTBs,
+> > which basically makes it ABI as well.
+>=20
+> We disagree here. With this argument you could fix quite some things as
+> ABI.
+
+I don't understand what you're trying to say.
+
+> > Yes, the symbol name may not be part of the ABI, but changing the
+> > symbol becomes very inconvenient because everyone that depends on it
+> > would have to change.
+>=20
+> Oleksandr adapted all in-tree users, so it only affects out-of-tree
+> users. In my book this is fine.
+
+There used to be a time when it was assumed that eventually device tree
+sources would live outside of the kernel tree. Given that they are a HW
+description, they really ought not to be relying on the Linux kernel
+tree as a way of keeping them consistent. That's really only out of
+convenience.
+
+> > Why bother?
+>=20
+> To make the API more precise and consistent. That's a good goal in my
+> eyes.
+
+PWM_POLARITY_INVERTED is not part of the API. It doesn't exist for
+anything other than to make the device tree more readable.
+
+I now regret that we ever introduced this in the first place. Perhaps it
+would've been better to just deal with raw numbers instead.
+
+Thierry
+
+--LZvS9be/3tNcYl/X
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl5zn6kACgkQ3SOs138+
+s6G0qA//TRbmBTBaIgA8loJnEh1oNwlzPblJdiH8lXKLSVxfyTXfaFGDQcOzMyBg
+DkLtpO51Rah1o+3yB/j6b8TXA9amdpD65SP2FBL2dFLyBn8K5Ot5ZWuvTapyclcz
+2TI8cG1Du/xLWxMDDX+Rylj+9XTlQxu3lGssuCM56hF0VXmhyvEzD3/aLlA/MjeY
+QQky3apxaRT+lnGsAzRLGbLHZufTV+OaZ9ZYZZGTlsXR1VAUsyR44TGM+290Ut6p
+Ds8bLPjI3xTa6uy66MlsUcYAAo1/jCQMAS+Nr/B0XGRPJdtK2G+MY3vtTZENSvqr
+VKDulCTAEGE/uP+7qZVOmxOZIhX7n1zBdwSdZS5FgjCok6QjfOUa9SlT77O4bGAM
+lGaeG9h8gBYpE2wk+9Wd6V9vm8UoJXPujpsyJXRHpQa5nJhgqr/VNYCeHlYhKXuQ
+ymd6V9cwXRk/0xoRKR8WnRl5ZgfZtTYDfh/dGD7CdUBcyfCFZVcYEI01iO54m5Dr
+/kakaDhUXRLv+xBGk4CocrSgo92DQeFUWyb2QnoW/5yYbHEOYEsfz+pWUicxin/y
+Yf9ZNfDh5MPRidZyJ5b/wy3xz2OHEkyGKGGIb2em5E5AwvDZiDXhQkjhf5hzb2fD
+xgjBAa+LbbBZYCs2a4Y85i+tpsJpp72cE4Xamu4rr3Pz7URiAnw=
+=VES6
+-----END PGP SIGNATURE-----
+
+--LZvS9be/3tNcYl/X--
+
+
+--===============8576791352630745143==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8576791352630745143==--
+
