@@ -2,22 +2,22 @@ Return-Path: <SRS0=WAM1=5J=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2199DC4332B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Mar 2020 10:22:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EEE88C43331
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Mar 2020 10:22:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ECC6620870
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Mar 2020 10:21:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BAE312080C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Mar 2020 10:22:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QqinYxxs";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="HbnGU3ks"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ECC6620870
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X5cj8e+C";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yNB0vrfU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BAE312080C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dLQ4iLyZsJvnCGqRkBvU9yNFlkyc6Hgo0zJNCdfVILQ=; b=QqinYxxsHAFHzV
-	UP2L8/9CdzmsEJNFW8JRgXnrf1+/StvJlvRMUeyMRIuDiSpHh6nXrhuHHlEtNKmWZ46tbNDGzxXSU
-	an0br/kEVYZkvAipdM5vimlnMABCZxnZKpgcfe1ySO0+P9BbMk1x7GtmtTbuhrMxInECigvTtB2pw
-	Sm0+l40rmAizvBSYz22CdwGjh+pM7xYS2c21SkgChKuoXgjDTydG6e7UX8tMwFWvDmgSl+SM8HiuV
-	xqgk1faZ2XP4E0jYljasEZNQ5x9cROtkp0Yxv6uSpIJfL3idCxeD9LssSWjYcVuqbHs6fKphOpivb
-	nue2THZfKdD7U7g817yA==;
+	List-Owner; bh=6fr+lHaRvF2sZLQhJoVBymtOSHBQBhKywe/XXpwBZbY=; b=X5cj8e+CPlH0bZ
+	GjxpQ/GhTgo3DntQKI9EmbtQc5rJ+a8BNDaRU1l5O+wgiwpQuKiEcDuaw7IpAkailYSY2OtqyFKt8
+	VsIUxdknIF1J6h+mkSJgLIYF66Uy9pIn5714a6NL3vEWrQ9aey9vYeruMDzjdu+XbjheNQ8tcxhnM
+	5udrXS4ItvHeRoKhXDdMyHRWcKvHUkxyHjglQ7VI8Nm22uKosq5K/wJOpWQRrjmFvyP8NqMTbFZbW
+	ANbuVRMHRPiSazPEGWL/UaItz6allyH499vJaI/7a/SSugXlg5J20Jypk3tDwx9RIfaL81Q4kYkkj
+	A7Jx+tfFJz1ZJajQonFw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jGgh1-0002p5-3I; Tue, 24 Mar 2020 10:21:55 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jGghG-00033a-VF; Tue, 24 Mar 2020 10:22:10 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jGgfs-0001sA-Nv
- for linux-amlogic@lists.infradead.org; Tue, 24 Mar 2020 10:20:46 +0000
-Received: by mail-wr1-x443.google.com with SMTP id h9so20674070wrc.8
- for <linux-amlogic@lists.infradead.org>; Tue, 24 Mar 2020 03:20:44 -0700 (PDT)
+ id 1jGgfr-0001re-Uw
+ for linux-amlogic@lists.infradead.org; Tue, 24 Mar 2020 10:20:47 +0000
+Received: by mail-wm1-x341.google.com with SMTP id d198so2550898wmd.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 24 Mar 2020 03:20:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=KI52fHKBvtrGusYvw7Q2/R12M0oemVtKyr237b8MTzI=;
- b=HbnGU3ksWwKYaDYIFzK8ksR/SQ3onXKHrRVcznA3yWXtOExele27744AtZtENYylUE
- XB1eTwxK+uxLIsY4lUWbaiQFNNbL2xjGxqweWiHpMwD6qFrA/XwODfR5ZjsV3Sd70fqE
- zPkCCO2+5RHfajUT4DgFF/NadGCpAjNYpAf23vdcIg8M2eno9t59EcAUZPlN3NDYk8eT
- aTi/rWEhk70sT3a5+s8r5Cex/PZLYUKxH7UGPR2eSmaW1FmVroEJZ19QA4XiPpoWNihM
- /34ymlhMzhxe9mNCIQHrM+DXhoXZDCGXvL1a6zIM+dAwN0ggnsDSBUKCCg+SV7w477h0
- 5cvw==
+ bh=qIi6DStEnKK85qo3VXkqHwhPK4JPG6SYpmkviudAtgo=;
+ b=yNB0vrfUae1bLhDDueD6IvkRVuFx+DHjpDQpIGvD4juprP0hNjyDUcYTYlHtAYEBaa
+ JYMCZ5rqzkKBY4RU8VZGe/4ogm+t3lVUycNOlOe0hMxkL6hGtULugWapBH5LuuBDiC4J
+ eMiRw3sCcfZ6v295bJaMwl7DVXRi/eYGwzR2h4yqY8xbXPDxiJFrkVGw90PHdtbJqz2j
+ vCyYwxM/QpwIUiHNzKTACYLt6C0/a8qCm7zgESBPnaD1r/lG1b/Z00GGwAdZ37BtlOhK
+ gKBEqHbFQu4pkd1QGRZFfLtafMnT1LH25i9laotZDmv6xjjx9h5kbgTL85731DtzFr5w
+ Ghig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=KI52fHKBvtrGusYvw7Q2/R12M0oemVtKyr237b8MTzI=;
- b=a//tKIDr99L14uZ9hkGNyhkDNjioH+6AKFqfLjNrTHnVJqz+Ke7eVnEnv9cNoEORKB
- 2fFcNh60BHZWLGiOco5vveFyKZR5Rr3sClyOjlocvFIfhuf+Q9eZxYIQg6DV9JL/oc49
- 5NOHKCaS2vE9iJiS9ZllkF60RVkyIXfXhbBG8ZCVpCw/6LGWzibD628pkVm9WFTYzZEa
- PNGvAx5OUReqZxXd3L0aaeoL0rqFfSbMHhQIuHyjPLb5rQsTKGV2cJ7IArjTCBgF66Dy
- SDX4TX0/wGn5inTMbOCtvLMX5MzszxV2eOu8tnospGsZU8WgiiAjD53QWfDfRpQbGo9z
- hSPg==
-X-Gm-Message-State: ANhLgQ0R4rWM10mcVb8M/HHMnejI+KCXx6Sv+K2dHR5/AEo/13krTsnR
- zhDcs3d91mN9aJUvgX7ZbonfP7hw5Q35Dw==
-X-Google-Smtp-Source: ADFU+vsBJo4JIByy6QwLcd6LZaesoFRObtwNkln++Z/CZwR3R4weo99RWZsyd59eYBY1tPqW5Q0MZA==
-X-Received: by 2002:a05:6000:a:: with SMTP id
- h10mr8575345wrx.226.1585045243372; 
- Tue, 24 Mar 2020 03:20:43 -0700 (PDT)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
- by smtp.gmail.com with ESMTPSA id h5sm2879527wro.83.2020.03.24.03.20.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ bh=qIi6DStEnKK85qo3VXkqHwhPK4JPG6SYpmkviudAtgo=;
+ b=coDzFmsIe6UU430YHET1inIpU39CHZAWYnCPEeF5qRktOxX/0jhX4cb6yJH+ikaFPZ
+ fe+RWkNuIsqpMHG8t1RXh+/BwBzJeGWsMNymVN9IXyppTJShk5x2T2xkpwZKVQduJ+ov
+ nFwZIghYbi+24CKZgYSMRoosDHNstkn6pMZqVpZ6sf8QzsoZyOtPNqRCvY/yfiT0krlI
+ Zny6OyUTGnmkY4UfLI567y3T908mq28jmZUKKSZ0PT248vb7wHrz5HRXrM7ZregeCLZs
+ yztFEwFNDaDuNqd/qyfnDqGNQ5ygVlSJzL8fM5XH9F0Pw774IqFZX89ETnW0uXWf+mB4
+ MG8Q==
+X-Gm-Message-State: ANhLgQ1YluunLcXRnm6/lRjuEXdjAKgZdPyynJ1EOS+2bnNq5icXdxbb
+ sG7ezCtKLCwF1MBGGCGSsGJXmw==
+X-Google-Smtp-Source: ADFU+vtmo5MWC9IiaCXoDBxQdHzo7bTNA0LL3bh8P71KLYlXVHnAQvVAEFRZ9ikMDI6Ar21/Htk4Hw==
+X-Received: by 2002:a1c:bc84:: with SMTP id m126mr4669314wmf.171.1585045242170; 
  Tue, 24 Mar 2020 03:20:42 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
+ by smtp.gmail.com with ESMTPSA id h5sm2879527wro.83.2020.03.24.03.20.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 24 Mar 2020 03:20:41 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: kishon@ti.com, balbi@kernel.org, khilman@baylibre.com,
  martin.blumenstingl@googlemail.com
-Subject: [PATCH 04/13] usb: dwc3: meson-g12a: get the reset as shared
-Date: Tue, 24 Mar 2020 11:20:21 +0100
-Message-Id: <20200324102030.31000-5-narmstrong@baylibre.com>
+Subject: [PATCH 03/13] usb: dwc3: meson-g12a: handle the phy and glue
+ registers separately
+Date: Tue, 24 Mar 2020 11:20:20 +0100
+Message-Id: <20200324102030.31000-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200324102030.31000-1-narmstrong@baylibre.com>
 References: <20200324102030.31000-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200324_032044_799404_E2A3E509 
-X-CRM114-Status: GOOD (  10.57  )
+X-CRM114-CacheID: sfid-20200324_032043_996262_7F694A22 
+X-CRM114-Status: GOOD (  16.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,27 +105,353 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In order to support the Amlogic GXL/GXM SoCs, the reset line must
-be handled as shared since also used by the PHYs.
+On the Amlogic GXL/GXM SoCs, only the USB control registers are available,
+the PHY mode being handled in the PHY registers.
+
+Thus, handle the PHY mode registers in separate regmaps and prepare
+support for Amlogic GXL/GXM SoCs by moving the regmap setup in a callback
+set in the SoC match data.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/usb/dwc3/dwc3-meson-g12a.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 124 ++++++++++++++++++++---------
+ 1 file changed, 85 insertions(+), 39 deletions(-)
 
 diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-index f608ffb059b3..24a50dde685c 100644
+index 7ba5fb3d0e22..f608ffb059b3 100644
 --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
 +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-@@ -556,7 +556,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+@@ -30,7 +30,7 @@
+ #include <linux/usb/role.h>
+ #include <linux/regulator/consumer.h>
+ 
+-/* USB2 Ports Control Registers */
++/* USB2 Ports Control Registers, offsets are per-port */
+ 
+ #define U2P_REG_SIZE						0x20
+ 
+@@ -50,14 +50,16 @@
+ 
+ /* USB Glue Control Registers */
+ 
+-#define USB_R0							0x80
++#define G12A_GLUE_OFFSET					0x80
++
++#define USB_R0							0x00
+ 	#define USB_R0_P30_LANE0_TX2RX_LOOPBACK			BIT(17)
+ 	#define USB_R0_P30_LANE0_EXT_PCLK_REQ			BIT(18)
+ 	#define USB_R0_P30_PCS_RX_LOS_MASK_VAL_MASK		GENMASK(28, 19)
+ 	#define USB_R0_U2D_SS_SCALEDOWN_MODE_MASK		GENMASK(30, 29)
+ 	#define USB_R0_U2D_ACT					BIT(31)
+ 
+-#define USB_R1							0x84
++#define USB_R1							0x04
+ 	#define USB_R1_U3H_BIGENDIAN_GS				BIT(0)
+ 	#define USB_R1_U3H_PME_ENABLE				BIT(1)
+ 	#define USB_R1_U3H_HUB_PORT_OVERCURRENT_MASK		GENMASK(4, 2)
+@@ -69,23 +71,23 @@
+ 	#define USB_R1_U3H_FLADJ_30MHZ_REG_MASK			GENMASK(24, 19)
+ 	#define USB_R1_P30_PCS_TX_SWING_FULL_MASK		GENMASK(31, 25)
+ 
+-#define USB_R2							0x88
++#define USB_R2							0x08
+ 	#define USB_R2_P30_PCS_TX_DEEMPH_3P5DB_MASK		GENMASK(25, 20)
+ 	#define USB_R2_P30_PCS_TX_DEEMPH_6DB_MASK		GENMASK(31, 26)
+ 
+-#define USB_R3							0x8c
++#define USB_R3							0x0c
+ 	#define USB_R3_P30_SSC_ENABLE				BIT(0)
+ 	#define USB_R3_P30_SSC_RANGE_MASK			GENMASK(3, 1)
+ 	#define USB_R3_P30_SSC_REF_CLK_SEL_MASK			GENMASK(12, 4)
+ 	#define USB_R3_P30_REF_SSP_EN				BIT(13)
+ 
+-#define USB_R4							0x90
++#define USB_R4							0x10
+ 	#define USB_R4_P21_PORT_RESET_0				BIT(0)
+ 	#define USB_R4_P21_SLEEP_M0				BIT(1)
+ 	#define USB_R4_MEM_PD_MASK				GENMASK(3, 2)
+ 	#define USB_R4_P21_ONLY					BIT(4)
+ 
+-#define USB_R5							0x94
++#define USB_R5							0x14
+ 	#define USB_R5_ID_DIG_SYNC				BIT(0)
+ 	#define USB_R5_ID_DIG_REG				BIT(1)
+ 	#define USB_R5_ID_DIG_CFG_MASK				GENMASK(3, 2)
+@@ -117,20 +119,27 @@ static const char *meson_a1_phy_names[] = {
+ 	"usb2-phy0", "usb2-phy1"
+ };
+ 
++struct dwc3_meson_g12a;
++
+ struct dwc3_meson_g12a_drvdata {
+ 	bool otg_switch_supported;
+ 	struct clk_bulk_data *clks;
+ 	int num_clks;
+ 	const char **phy_names;
+ 	int num_phys;
++	int (*setup_regmaps)(struct dwc3_meson_g12a *priv, void __iomem *base);
+ };
+ 
++static int dwc3_meson_g12a_setup_regmaps(struct dwc3_meson_g12a *priv,
++					 void __iomem *base);
++
+ static struct dwc3_meson_g12a_drvdata g12a_drvdata = {
+ 	.otg_switch_supported = true,
+ 	.clks = meson_g12a_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
+ 	.phy_names = meson_g12a_phy_names,
+ 	.num_phys = ARRAY_SIZE(meson_g12a_phy_names),
++	.setup_regmaps = dwc3_meson_g12a_setup_regmaps,
+ };
+ 
+ static struct dwc3_meson_g12a_drvdata a1_drvdata = {
+@@ -139,11 +148,13 @@ static struct dwc3_meson_g12a_drvdata a1_drvdata = {
+ 	.num_clks = ARRAY_SIZE(meson_a1_clocks),
+ 	.phy_names = meson_a1_phy_names,
+ 	.num_phys = ARRAY_SIZE(meson_a1_phy_names),
++	.setup_regmaps = dwc3_meson_g12a_setup_regmaps,
+ };
+ 
+ struct dwc3_meson_g12a {
+ 	struct device		*dev;
+-	struct regmap		*regmap;
++	struct regmap		*u2p_regmap[PHY_COUNT];
++	struct regmap		*usb_glue_regmap;
+ 	struct reset_control	*reset;
+ 	struct phy		*phys[PHY_COUNT];
+ 	enum usb_dr_mode	otg_mode;
+@@ -160,11 +171,11 @@ static void dwc3_meson_g12a_usb2_set_mode(struct dwc3_meson_g12a *priv,
+ 					  int i, enum phy_mode mode)
+ {
+ 	if (mode == PHY_MODE_USB_HOST)
+-		regmap_update_bits(priv->regmap, U2P_R0 + (U2P_REG_SIZE * i),
++		regmap_update_bits(priv->u2p_regmap[i], U2P_R0,
+ 				U2P_R0_HOST_DEVICE,
+ 				U2P_R0_HOST_DEVICE);
+ 	else
+-		regmap_update_bits(priv->regmap, U2P_R0 + (U2P_REG_SIZE * i),
++		regmap_update_bits(priv->u2p_regmap[i], U2P_R0,
+ 				U2P_R0_HOST_DEVICE, 0);
+ }
+ 
+@@ -184,13 +195,12 @@ static int dwc3_meson_g12a_usb2_init(struct dwc3_meson_g12a *priv)
+ 		if (!strstr(priv->drvdata->phy_names[i], "usb2"))
+ 			continue;
+ 
+-		regmap_update_bits(priv->regmap, U2P_R0 + (U2P_REG_SIZE * i),
++		regmap_update_bits(priv->u2p_regmap[i], U2P_R0,
+ 				   U2P_R0_POWER_ON_RESET,
+ 				   U2P_R0_POWER_ON_RESET);
+ 
+ 		if (priv->drvdata->otg_switch_supported && i == USB2_OTG_PHY) {
+-			regmap_update_bits(priv->regmap,
+-				U2P_R0 + (U2P_REG_SIZE * i),
++			regmap_update_bits(priv->u2p_regmap[i], U2P_R0,
+ 				U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS,
+ 				U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS);
+ 
+@@ -200,7 +210,7 @@ static int dwc3_meson_g12a_usb2_init(struct dwc3_meson_g12a *priv)
+ 			dwc3_meson_g12a_usb2_set_mode(priv, i,
+ 						      PHY_MODE_USB_HOST);
+ 
+-		regmap_update_bits(priv->regmap, U2P_R0 + (U2P_REG_SIZE * i),
++		regmap_update_bits(priv->u2p_regmap[i], U2P_R0,
+ 				   U2P_R0_POWER_ON_RESET, 0);
+ 	}
+ 
+@@ -209,7 +219,7 @@ static int dwc3_meson_g12a_usb2_init(struct dwc3_meson_g12a *priv)
+ 
+ static void dwc3_meson_g12a_usb3_init(struct dwc3_meson_g12a *priv)
+ {
+-	regmap_update_bits(priv->regmap, USB_R3,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R3,
+ 			USB_R3_P30_SSC_RANGE_MASK |
+ 			USB_R3_P30_REF_SSP_EN,
+ 			USB_R3_P30_SSC_ENABLE |
+@@ -217,21 +227,21 @@ static void dwc3_meson_g12a_usb3_init(struct dwc3_meson_g12a *priv)
+ 			USB_R3_P30_REF_SSP_EN);
+ 	udelay(2);
+ 
+-	regmap_update_bits(priv->regmap, USB_R2,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R2,
+ 			USB_R2_P30_PCS_TX_DEEMPH_3P5DB_MASK,
+ 			FIELD_PREP(USB_R2_P30_PCS_TX_DEEMPH_3P5DB_MASK, 0x15));
+ 
+-	regmap_update_bits(priv->regmap, USB_R2,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R2,
+ 			USB_R2_P30_PCS_TX_DEEMPH_6DB_MASK,
+ 			FIELD_PREP(USB_R2_P30_PCS_TX_DEEMPH_6DB_MASK, 0x20));
+ 
+ 	udelay(2);
+ 
+-	regmap_update_bits(priv->regmap, USB_R1,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R1,
+ 			USB_R1_U3H_HOST_PORT_POWER_CONTROL_PRESENT,
+ 			USB_R1_U3H_HOST_PORT_POWER_CONTROL_PRESENT);
+ 
+-	regmap_update_bits(priv->regmap, USB_R1,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R1,
+ 			USB_R1_P30_PCS_TX_SWING_FULL_MASK,
+ 			FIELD_PREP(USB_R1_P30_PCS_TX_SWING_FULL_MASK, 127));
+ }
+@@ -239,16 +249,16 @@ static void dwc3_meson_g12a_usb3_init(struct dwc3_meson_g12a *priv)
+ static void dwc3_meson_g12a_usb_otg_apply_mode(struct dwc3_meson_g12a *priv)
+ {
+ 	if (priv->otg_phy_mode == PHY_MODE_USB_DEVICE) {
+-		regmap_update_bits(priv->regmap, USB_R0,
++		regmap_update_bits(priv->usb_glue_regmap, USB_R0,
+ 				USB_R0_U2D_ACT, USB_R0_U2D_ACT);
+-		regmap_update_bits(priv->regmap, USB_R0,
++		regmap_update_bits(priv->usb_glue_regmap, USB_R0,
+ 				USB_R0_U2D_SS_SCALEDOWN_MODE_MASK, 0);
+-		regmap_update_bits(priv->regmap, USB_R4,
++		regmap_update_bits(priv->usb_glue_regmap, USB_R4,
+ 				USB_R4_P21_SLEEP_M0, USB_R4_P21_SLEEP_M0);
+ 	} else {
+-		regmap_update_bits(priv->regmap, USB_R0,
++		regmap_update_bits(priv->usb_glue_regmap, USB_R0,
+ 				USB_R0_U2D_ACT, 0);
+-		regmap_update_bits(priv->regmap, USB_R4,
++		regmap_update_bits(priv->usb_glue_regmap, USB_R4,
+ 				USB_R4_P21_SLEEP_M0, 0);
+ 	}
+ }
+@@ -261,17 +271,17 @@ static int dwc3_meson_g12a_usb_init(struct dwc3_meson_g12a *priv)
+ 	if (ret)
+ 		return ret;
+ 
+-	regmap_update_bits(priv->regmap, USB_R1,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R1,
+ 			USB_R1_U3H_FLADJ_30MHZ_REG_MASK,
+ 			FIELD_PREP(USB_R1_U3H_FLADJ_30MHZ_REG_MASK, 0x20));
+ 
+-	regmap_update_bits(priv->regmap, USB_R5,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R5,
+ 			USB_R5_ID_DIG_EN_0,
+ 			USB_R5_ID_DIG_EN_0);
+-	regmap_update_bits(priv->regmap, USB_R5,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R5,
+ 			USB_R5_ID_DIG_EN_1,
+ 			USB_R5_ID_DIG_EN_1);
+-	regmap_update_bits(priv->regmap, USB_R5,
++	regmap_update_bits(priv->usb_glue_regmap, USB_R5,
+ 			USB_R5_ID_DIG_TH_MASK,
+ 			FIELD_PREP(USB_R5_ID_DIG_TH_MASK, 0xff));
+ 
+@@ -284,7 +294,8 @@ static int dwc3_meson_g12a_usb_init(struct dwc3_meson_g12a *priv)
+ 	return 0;
+ }
+ 
+-static const struct regmap_config phy_meson_g12a_usb3_regmap_conf = {
++static const struct regmap_config phy_meson_g12a_usb_glue_regmap_conf = {
++	.name = "usb-glue",
+ 	.reg_bits = 8,
+ 	.val_bits = 32,
+ 	.reg_stride = 4,
+@@ -321,7 +332,7 @@ static enum phy_mode dwc3_meson_g12a_get_id(struct dwc3_meson_g12a *priv)
+ {
+ 	u32 reg;
+ 
+-	regmap_read(priv->regmap, USB_R5, &reg);
++	regmap_read(priv->usb_glue_regmap, USB_R5, &reg);
+ 
+ 	if (reg & (USB_R5_ID_DIG_SYNC | USB_R5_ID_DIG_REG))
+ 		return PHY_MODE_USB_DEVICE;
+@@ -396,7 +407,8 @@ static irqreturn_t dwc3_meson_g12a_irq_thread(int irq, void *data)
+ 			dev_warn(priv->dev, "Failed to switch OTG mode\n");
+ 	}
+ 
+-	regmap_update_bits(priv->regmap, USB_R5, USB_R5_ID_DIG_IRQ, 0);
++	regmap_update_bits(priv->usb_glue_regmap, USB_R5,
++			   USB_R5_ID_DIG_IRQ, 0);
+ 
+ 	return IRQ_HANDLED;
+ }
+@@ -431,7 +443,7 @@ static int dwc3_meson_g12a_otg_init(struct platform_device *pdev,
+ 
+ 	if (priv->otg_mode == USB_DR_MODE_OTG) {
+ 		/* Ack irq before registering */
+-		regmap_update_bits(priv->regmap, USB_R5,
++		regmap_update_bits(priv->usb_glue_regmap, USB_R5,
+ 				   USB_R5_ID_DIG_IRQ, 0);
+ 
+ 		irq = platform_get_irq(pdev, 0);
+@@ -466,6 +478,41 @@ static int dwc3_meson_g12a_otg_init(struct platform_device *pdev,
+ 	return 0;
+ }
+ 
++static int dwc3_meson_g12a_setup_regmaps(struct dwc3_meson_g12a *priv,
++					 void __iomem *base)
++{
++	int i;
++
++	priv->usb_glue_regmap = devm_regmap_init_mmio(priv->dev,
++					base + G12A_GLUE_OFFSET,
++					&phy_meson_g12a_usb_glue_regmap_conf);
++	if (IS_ERR(priv->usb_glue_regmap))
++		return PTR_ERR(priv->usb_glue_regmap);
++
++	/* Create a regmap for each USB2 PHY control register set */
++	for (i = 0; i < priv->usb2_ports; i++) {
++		struct regmap_config u2p_regmap_config = {
++			.reg_bits = 8,
++			.val_bits = 32,
++			.reg_stride = 4,
++			.max_register = U2P_R1,
++		};
++
++		u2p_regmap_config.name = devm_kasprintf(priv->dev, GFP_KERNEL,
++							"u2p-%d", i);
++		if (!u2p_regmap_config.name)
++			return -ENOMEM;
++
++		priv->u2p_regmap[i] = devm_regmap_init_mmio(priv->dev,
++						base + (i * U2P_REG_SIZE),
++						&u2p_regmap_config);
++		if (IS_ERR(priv->u2p_regmap[i]))
++			return PTR_ERR(priv->u2p_regmap[i]);
++	}
++
++	return 0;
++}
++
+ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ {
+ 	struct dwc3_meson_g12a	*priv;
+@@ -482,10 +529,12 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	if (IS_ERR(base))
+ 		return PTR_ERR(base);
+ 
+-	priv->regmap = devm_regmap_init_mmio(dev, base,
+-					     &phy_meson_g12a_usb3_regmap_conf);
+-	if (IS_ERR(priv->regmap))
+-		return PTR_ERR(priv->regmap);
++	priv->drvdata = of_device_get_match_data(&pdev->dev);
++
++	priv->dev = dev;
++	ret = priv->drvdata->setup_regmaps(priv, base);
++	if (ret)
++		return ret;
+ 
+ 	priv->vbus = devm_regulator_get_optional(dev, "vbus");
+ 	if (IS_ERR(priv->vbus)) {
+@@ -494,8 +543,6 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 		priv->vbus = NULL;
+ 	}
+ 
+-	priv->drvdata = of_device_get_match_data(&pdev->dev);
+-
+ 	ret = devm_clk_bulk_get(dev,
+ 				priv->drvdata->num_clks,
+ 				priv->drvdata->clks);
+@@ -508,7 +555,6 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 		return ret;
  
  	platform_set_drvdata(pdev, priv);
+-	priv->dev = dev;
  
--	priv->reset = devm_reset_control_get(dev, NULL);
-+	priv->reset = devm_reset_control_get_shared(dev, NULL);
+ 	priv->reset = devm_reset_control_get(dev, NULL);
  	if (IS_ERR(priv->reset)) {
- 		ret = PTR_ERR(priv->reset);
- 		dev_err(dev, "failed to get device reset, err=%d\n", ret);
 -- 
 2.22.0
 
