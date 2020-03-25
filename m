@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 249B3C1975A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2020 08:51:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F101C18E5B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2020 08:52:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E5497206F8
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2020 08:51:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D9403206F8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2020 08:52:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VLvwkf/z";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WNW1hxOU"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E5497206F8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Yavqe0VM";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bLCvRhdg"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9403206F8
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IG39BUnF5J2U1Gxg2JcP9EZz+kTkoO+ja8qM4mouaTk=; b=VLvwkf/zqFgYM4
-	ktL06b3izkflm6BWf5iH8nLHPyaI/C8mV+uzneUnMJJesmwPRoOa8qa4u9gfrG+KVFgJuKNyN3TnU
-	XLYJReCtm4mEnzhOBtmf1TiFzmkL/d86SSABbdhg9i8k9ZzAZ0P4q1O+6hHpAHlG6d6k7j8/P6Rvc
-	PTOl1BgQljO86zWGTvgnuJvjM3wlELXUNpGIcIf2kK/mgLsw7vdO4llsCBfdU2VrqtBQxi+8BI9/T
-	MB+FWGeRHXJ8u8H+Pq+zNVawFWG4w+Ztvhesxb+e91VpXeoSOboQurLnXEB9SVOguxNqa3pFJIRN1
-	AKy+l0gCXsTyGi/TelRg==;
+	List-Owner; bh=hP1dj1a8990DbGajyAoDACyKexIoeX4YDiStFuwByzI=; b=Yavqe0VM5JpKel
+	nmbs/qtAIVV1CVZ3GMYhW6ee+Dx5UPNyMfamjZwAjQyOGAQ8FtItqzPDGSy+DBnmuksk4rmS1a0x7
+	dvukfSxjsy/5tzcswK7teRQQ634UzR06fCtjFOHkWcslfpfFRFDN0ACUEBZOBDfHQAiTD5vQGHwPP
+	4OUdOC9PPfgD35E1LNBSti5CVqwxPxU8SEhhYZEzcwC7gkf9UnIPsrrZ4icxbpcyC0uAsdKSRvnc0
+	uw9Cp0YlAMeDpRFt1GYeas/PjuM1rs4uAHIaRBnZVCP9n22Dy1ppqBsfQOHwRPRzWqlOMPYmFgDKv
+	9siO8FxZUn5IeWuT3wdQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jH1lM-0004I4-Uu; Wed, 25 Mar 2020 08:51:48 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1jH1lb-0004Yy-PL; Wed, 25 Mar 2020 08:52:03 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jH1kB-0002cX-Aq
- for linux-amlogic@lists.infradead.org; Wed, 25 Mar 2020 08:50:43 +0000
-Received: by mail-wm1-x341.google.com with SMTP id d1so1511714wmb.2
- for <linux-amlogic@lists.infradead.org>; Wed, 25 Mar 2020 01:50:34 -0700 (PDT)
+ id 1jH1kB-0002i2-VP
+ for linux-amlogic@lists.infradead.org; Wed, 25 Mar 2020 08:50:44 +0000
+Received: by mail-wm1-x344.google.com with SMTP id z18so1395366wmk.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 25 Mar 2020 01:50:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=wEt0VLaSvhUT7nyu4RhagnuYQaTu9Oo49aJG5CKXEWA=;
- b=WNW1hxOUyik3KNX89dbIVqZHKUp+GeaU0mIGsx5AGcA2EuJud5J9sgmXPwNAJNWUhS
- 3gzEx2ZwHgM7FY0xV6TiqFygdp+aX3qLpCLJBMSetYpCI4lRzi+S2qb+ybOQunU9lEcU
- W2wR6p9oXBw0yAnuBnGoEp2uKJhxhcwrREF99XjFNJf/mnsMXzF/Aw4pDRwtRyiBcfmq
- TuSriR6W1vjly0cRdJQy+MoZQnTDWqcHPRq69iku1IpaKT1oTWUavMfDQBxkdzc0lNWU
- t6tlAydLJYLQ4coxz3OqEOHlom5Hazdyz4wmZcST/jTrdm4ZVBilqsyYQCB5/mU/X9sO
- gGFg==
+ bh=tEJnMkZw0RJ36/X+ECc1wDu3rwX96mNLlTRyC+ecg4U=;
+ b=bLCvRhdgNUMT3Anw+ZukdEJY7tsTiML8vCscb4Bw8kZlknymFU0eZFB6Z7N+e42Aky
+ RFni9+355MPUuI0n3O/yROSlTGUvl8joVFXgWfGQtI7+lc2/5QXga4GAN+JPOoOgsDoj
+ 9XKnvnEgXuqZYPZBrgLq9TD99faTNJA9owig9SjjIS467wcRIR4oNTkCUkxn/UqkLWlY
+ 5f920/fY2JRQgw7ACpU6zBKu//48snTBunQPJA2KH5uUyEyruyeGHMv7tqscX94bC6p1
+ njwX2i84u+IU6LmFG7hAJGuXz6Qq6L7wyAYBivn92HY9Bbc/6bw1UQrOgs6FbSRExKq8
+ kwwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=wEt0VLaSvhUT7nyu4RhagnuYQaTu9Oo49aJG5CKXEWA=;
- b=DdCY0EcmiR9fAv2n7jtZG1Ag+NXQ6eXo3qNVp4nFxYssOQ+OoykR7Yml6zTWCv7yZW
- u8EUEdW0pjFO4hlBVxWUWgaDVdCgJDllUiyPhdH5wseQ4WLW7t579pzypFZYgVh2NNgn
- 61tUaRZo8llktaEoWDiH8R6W3zbXio+e+trfXViOozfEx5vxIVbklKPU+RWjtHYBjurV
- R7fBhhqawihHEUwEVpmKzbEeMSrqrya9Bm+na92v4TEIPEmR4bGQOZy+P9CkQbimezKU
- 12FHaTcovg8d4OYWX7c3co7qvkxyRmhWggnooYe+yTuTL1XZk+ogzFX3jR2+zUYzy7JP
- z78g==
-X-Gm-Message-State: ANhLgQ3ubD+EJj/Qs/xHVCmz57iWLvKn+Mpjrt4PglYNSGh2rGGgHvRV
- C2bo30lq5ve5wtyHn1xIsqDxgA==
-X-Google-Smtp-Source: ADFU+vuaSMZ3OxlYUBsL4QVXZmKvzAkmgnAjbIq0Fo7kTd5yKttbT/uXfyWOqm/ruqBs2RU6wMv7IQ==
-X-Received: by 2002:a05:600c:581:: with SMTP id
- o1mr2375592wmd.111.1585126231690; 
- Wed, 25 Mar 2020 01:50:31 -0700 (PDT)
+ bh=tEJnMkZw0RJ36/X+ECc1wDu3rwX96mNLlTRyC+ecg4U=;
+ b=mabqDY8cgjEOw9IMkYPlnar8oAKMEi6T47f8A1vMj5euat3UucCV2tpc9TepFqeixg
+ N3DiDfwRCL/oVjWqv9x+PL28psNJwhR8EFxJwzXzlCQ/3gYHBt6r2V8c8cB8rvgPWnwn
+ 1IsN5EuVURtY5gw02FbyknttawbJ9NJ4kZ2eOk8YsyaL3rZNtpeVNEL4fa7Syf3y305/
+ xI+5/HN8DQ+vtNDpUf04Z1h1RQU6V+KAjw7ANX2RbjuOv5yOlE6sSrUtxH7eH+mt1pkt
+ y4pI81ssjWJxpQYGehakLG6e0N2sN1+Up9PU3eY65t4GtLb1wSKRcSx+b57xU5ekgnxQ
+ L/Ww==
+X-Gm-Message-State: ANhLgQ3lPBUfzeFgv6w6xRzuFj5TCSVC5txZ+BuXxONJcB36e+7XUjan
+ 6zMdLbI52G33lG07MzbBJb2TpA==
+X-Google-Smtp-Source: ADFU+vvqKHVyOxY9TW3t5po58LCSxbmCyt+v7ALL7HAGzLOS3pQtx9Y1bFlqx8jsZeAObBhXZihU5Q==
+X-Received: by 2002:a1c:96cf:: with SMTP id y198mr2333342wmd.186.1585126234648; 
+ Wed, 25 Mar 2020 01:50:34 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
- by smtp.gmail.com with ESMTPSA id o16sm33892229wrs.44.2020.03.25.01.50.30
+ by smtp.gmail.com with ESMTPSA id o16sm33892229wrs.44.2020.03.25.01.50.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Mar 2020 01:50:31 -0700 (PDT)
+ Wed, 25 Mar 2020 01:50:33 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: daniel@ffwll.ch,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v4 2/8] drm/meson: add Amlogic Video FBC registers
-Date: Wed, 25 Mar 2020 09:50:19 +0100
-Message-Id: <20200325085025.30631-3-narmstrong@baylibre.com>
+Subject: [PATCH v4 4/8] drm/meson: crtc: handle commit of Amlogic FBC frames
+Date: Wed, 25 Mar 2020 09:50:21 +0100
+Message-Id: <20200325085025.30631-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200325085025.30631-1-narmstrong@baylibre.com>
 References: <20200325085025.30631-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200325_015035_416630_0FDE0F13 
-X-CRM114-Status: UNSURE (   6.80  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200325_015036_023149_4F3F8B27 
+X-CRM114-Status: GOOD (  10.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,59 +105,158 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the registers of the VPU VD1 Amlogic FBC decoder module, and routing
-register.
+Since the VD1 Amlogic FBC decoder is now configured by the overlay driver,
+commit the right registers to decode the Amlogic FBC frame.
 
 Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_registers.h | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/meson/meson_crtc.c | 118 +++++++++++++++++++++--------
+ 1 file changed, 88 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-index 8ea00546cd4e..08631fdfe4b9 100644
---- a/drivers/gpu/drm/meson/meson_registers.h
-+++ b/drivers/gpu/drm/meson/meson_registers.h
-@@ -144,10 +144,15 @@
- #define		VIU_SW_RESET_OSD1               BIT(0)
- #define VIU_MISC_CTRL0 0x1a06
- #define		VIU_CTRL0_VD1_AFBC_MASK         0x170000
-+#define		VIU_CTRL0_AFBC_TO_VD1		BIT(20)
- #define VIU_MISC_CTRL1 0x1a07
- #define		MALI_AFBC_MISC			GENMASK(15, 8)
- #define D2D3_INTF_LENGTH 0x1a08
- #define D2D3_INTF_CTRL0 0x1a09
-+#define VD1_AFBCD0_MISC_CTRL 0x1a0a
-+#define		VD1_AXI_SEL_AFBC		(1 << 12)
-+#define		AFBC_VD1_SEL			(1 << 10)
-+#define VD2_AFBCD1_MISC_CTRL 0x1a0b
- #define VIU_OSD1_CTRL_STAT 0x1a10
- #define		VIU_OSD1_OSD_BLK_ENABLE         BIT(0)
- #define		VIU_OSD1_OSD_MEM_MODE_LINEAR	BIT(2)
-@@ -365,6 +370,23 @@
- #define VIU_OSD1_OETF_LUT_ADDR_PORT 0x1add
- #define VIU_OSD1_OETF_LUT_DATA_PORT 0x1ade
- #define AFBC_ENABLE 0x1ae0
-+#define AFBC_MODE 0x1ae1
-+#define AFBC_SIZE_IN 0x1ae2
-+#define AFBC_DEC_DEF_COLOR 0x1ae3
-+#define AFBC_CONV_CTRL 0x1ae4
-+#define AFBC_LBUF_DEPTH 0x1ae5
-+#define AFBC_HEAD_BADDR 0x1ae6
-+#define AFBC_BODY_BADDR 0x1ae7
-+#define AFBC_SIZE_OUT 0x1ae8
-+#define AFBC_OUT_YSCOPE 0x1ae9
-+#define AFBC_STAT 0x1aea
-+#define AFBC_VD_CFMT_CTRL 0x1aeb
-+#define AFBC_VD_CFMT_W 0x1aec
-+#define AFBC_MIF_HOR_SCOPE 0x1aed
-+#define AFBC_MIF_VER_SCOPE 0x1aee
-+#define AFBC_PIXEL_HOR_SCOPE 0x1aef
-+#define AFBC_PIXEL_VER_SCOPE 0x1af0
-+#define AFBC_VD_CFMT_H 0x1af1
+diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+index e66b6271ff58..d6dcfd654e9c 100644
+--- a/drivers/gpu/drm/meson/meson_crtc.c
++++ b/drivers/gpu/drm/meson/meson_crtc.c
+@@ -291,6 +291,10 @@ static void meson_crtc_enable_vd1(struct meson_drm *priv)
+ 			    VPP_VD1_PREBLEND | VPP_VD1_POSTBLEND |
+ 			    VPP_COLOR_MNG_ENABLE,
+ 			    priv->io_base + _REG(VPP_MISC));
++
++	writel_bits_relaxed(VIU_CTRL0_AFBC_TO_VD1,
++			    priv->viu.vd1_afbc ? VIU_CTRL0_AFBC_TO_VD1 : 0,
++			    priv->io_base + _REG(VIU_MISC_CTRL0));
+ }
  
- /* vpp */
- #define VPP_DUMMY_DATA 0x1d00
+ static void meson_g12a_crtc_enable_vd1(struct meson_drm *priv)
+@@ -300,6 +304,10 @@ static void meson_g12a_crtc_enable_vd1(struct meson_drm *priv)
+ 		       VD_BLEND_POSTBLD_SRC_VD1 |
+ 		       VD_BLEND_POSTBLD_PREMULT_EN,
+ 		       priv->io_base + _REG(VD1_BLEND_SRC_CTRL));
++
++	writel_relaxed(priv->viu.vd1_afbc ?
++		       (VD1_AXI_SEL_AFBC | AFBC_VD1_SEL) : 0,
++		       priv->io_base + _REG(VD1_AFBCD0_MISC_CTRL));
+ }
+ 
+ void meson_crtc_irq(struct meson_drm *priv)
+@@ -383,36 +391,86 @@ void meson_crtc_irq(struct meson_drm *priv)
+ 	/* Update the VD1 registers */
+ 	if (priv->viu.vd1_enabled && priv->viu.vd1_commit) {
+ 
+-		switch (priv->viu.vd1_planes) {
+-		case 3:
+-			meson_canvas_config(priv->canvas,
+-					    priv->canvas_id_vd1_2,
+-					    priv->viu.vd1_addr2,
+-					    priv->viu.vd1_stride2,
+-					    priv->viu.vd1_height2,
+-					    MESON_CANVAS_WRAP_NONE,
+-					    MESON_CANVAS_BLKMODE_LINEAR,
+-					    MESON_CANVAS_ENDIAN_SWAP64);
+-		/* fallthrough */
+-		case 2:
+-			meson_canvas_config(priv->canvas,
+-					    priv->canvas_id_vd1_1,
+-					    priv->viu.vd1_addr1,
+-					    priv->viu.vd1_stride1,
+-					    priv->viu.vd1_height1,
+-					    MESON_CANVAS_WRAP_NONE,
+-					    MESON_CANVAS_BLKMODE_LINEAR,
+-					    MESON_CANVAS_ENDIAN_SWAP64);
+-		/* fallthrough */
+-		case 1:
+-			meson_canvas_config(priv->canvas,
+-					    priv->canvas_id_vd1_0,
+-					    priv->viu.vd1_addr0,
+-					    priv->viu.vd1_stride0,
+-					    priv->viu.vd1_height0,
+-					    MESON_CANVAS_WRAP_NONE,
+-					    MESON_CANVAS_BLKMODE_LINEAR,
+-					    MESON_CANVAS_ENDIAN_SWAP64);
++		if (priv->viu.vd1_afbc) {
++			writel_relaxed(priv->viu.vd1_afbc_head_addr,
++				       priv->io_base +
++				       _REG(AFBC_HEAD_BADDR));
++			writel_relaxed(priv->viu.vd1_afbc_body_addr,
++				       priv->io_base +
++				       _REG(AFBC_BODY_BADDR));
++			writel_relaxed(priv->viu.vd1_afbc_en,
++				       priv->io_base +
++				       _REG(AFBC_ENABLE));
++			writel_relaxed(priv->viu.vd1_afbc_mode,
++				       priv->io_base +
++				       _REG(AFBC_MODE));
++			writel_relaxed(priv->viu.vd1_afbc_size_in,
++				       priv->io_base +
++				       _REG(AFBC_SIZE_IN));
++			writel_relaxed(priv->viu.vd1_afbc_dec_def_color,
++				       priv->io_base +
++				       _REG(AFBC_DEC_DEF_COLOR));
++			writel_relaxed(priv->viu.vd1_afbc_conv_ctrl,
++				       priv->io_base +
++				       _REG(AFBC_CONV_CTRL));
++			writel_relaxed(priv->viu.vd1_afbc_size_out,
++				       priv->io_base +
++				       _REG(AFBC_SIZE_OUT));
++			writel_relaxed(priv->viu.vd1_afbc_vd_cfmt_ctrl,
++				       priv->io_base +
++				       _REG(AFBC_VD_CFMT_CTRL));
++			writel_relaxed(priv->viu.vd1_afbc_vd_cfmt_w,
++				       priv->io_base +
++				       _REG(AFBC_VD_CFMT_W));
++			writel_relaxed(priv->viu.vd1_afbc_mif_hor_scope,
++				       priv->io_base +
++				       _REG(AFBC_MIF_HOR_SCOPE));
++			writel_relaxed(priv->viu.vd1_afbc_mif_ver_scope,
++				       priv->io_base +
++				       _REG(AFBC_MIF_VER_SCOPE));
++			writel_relaxed(priv->viu.vd1_afbc_pixel_hor_scope,
++				       priv->io_base+
++				       _REG(AFBC_PIXEL_HOR_SCOPE));
++			writel_relaxed(priv->viu.vd1_afbc_pixel_ver_scope,
++				       priv->io_base +
++				       _REG(AFBC_PIXEL_VER_SCOPE));
++			writel_relaxed(priv->viu.vd1_afbc_vd_cfmt_h,
++				       priv->io_base +
++				       _REG(AFBC_VD_CFMT_H));
++		} else {
++			switch (priv->viu.vd1_planes) {
++			case 3:
++				meson_canvas_config(priv->canvas,
++						    priv->canvas_id_vd1_2,
++						    priv->viu.vd1_addr2,
++						    priv->viu.vd1_stride2,
++						    priv->viu.vd1_height2,
++						    MESON_CANVAS_WRAP_NONE,
++						    MESON_CANVAS_BLKMODE_LINEAR,
++						    MESON_CANVAS_ENDIAN_SWAP64);
++			/* fallthrough */
++			case 2:
++				meson_canvas_config(priv->canvas,
++						    priv->canvas_id_vd1_1,
++						    priv->viu.vd1_addr1,
++						    priv->viu.vd1_stride1,
++						    priv->viu.vd1_height1,
++						    MESON_CANVAS_WRAP_NONE,
++						    MESON_CANVAS_BLKMODE_LINEAR,
++						    MESON_CANVAS_ENDIAN_SWAP64);
++			/* fallthrough */
++			case 1:
++				meson_canvas_config(priv->canvas,
++						    priv->canvas_id_vd1_0,
++						    priv->viu.vd1_addr0,
++						    priv->viu.vd1_stride0,
++						    priv->viu.vd1_height0,
++						    MESON_CANVAS_WRAP_NONE,
++						    MESON_CANVAS_BLKMODE_LINEAR,
++						    MESON_CANVAS_ENDIAN_SWAP64);
++			}
++
++			writel_relaxed(0, priv->io_base + _REG(AFBC_ENABLE));
+ 		}
+ 
+ 		writel_relaxed(priv->viu.vd1_if0_gen_reg,
 -- 
 2.22.0
 
