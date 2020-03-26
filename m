@@ -2,145 +2,91 @@ Return-Path: <SRS0=29RQ=5L=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_2 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E4C2C43331
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 08:39:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 20BEAC43331
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 09:36:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 74F9920772
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 08:39:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E0E472073E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 09:36:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Zk1y6OKG";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="J5gCYRRb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 74F9920772
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ch3mK/By";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g2VcgcN9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E0E472073E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ItMTS8541VbP4BVCVTX+JPhy4B7Xl5b9D/+RZoieEgY=; b=Zk1y6OKG1vnezi
-	ZlYq+khK+X585W2yI5bYYFLMk7b8tmLbJX1EQ3IWInyCMjr1XlxKytvToJs/Z/vsmBV2Wqlh1LR3q
-	UwqZuNBf8AKDjrhiuHHT1JqJASM8B/03tzbmG/8Dde9SzlpRZi+O+hAvhtc17YDSSzaY8te78aCx4
-	0YCEU5QwzH+Tbon99Jp9jNE547BdYmBhTtP2QPySa2bZQLvoNe4d/91ZkRxtsPwwVf1Gez3IfJsr5
-	f43SzAVvYyg9xM6Am4Nqb1CQPweuLl2j5Iy4hDEItTo0b/Fhl+SA20l86DLq8Gj83spDBcbXvP81Y
-	YdL34bD9QBM8CMgTGJ6g==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=4YhAF7m4ued/GMK1KyNahtTXG5SrCF8dLw9OD/Xj3S4=; b=Ch3mK/Byz9sGZ0aRdHbzWZ36F
+	fMiM2M2u5/ejDasfvu5ni8WnF+QqYHfVTTILaLPV7Ws07rdsn57VSV/Jqp+CDtolwfAui3tcBdwQx
+	JWAGmBbKWRteiqcuZwtMcOkFfoPkdUrAhzUb3wtnojC5fwTaQ1bjOgacpSkPEUfROri6gX8Qp3nAm
+	GFiwjjmV9Ye2RS0n2SGOdzCEG8llud0yxOm7ngNR1ScX90hSgWguvRSBCaS7pALZkk7PwF7sitw0g
+	i8bjTPxu3EkBYLQ0+a3FNDBCJ9d2rDMy8chG1cng6eTzOLf/Akwep196wuBeCE0NJ/Xg1KG6dWeAD
+	20y7o5ENA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jHO2x-0002Bf-H3; Thu, 26 Mar 2020 08:39:27 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1jHOwQ-0004pe-5O; Thu, 26 Mar 2020 09:36:46 +0000
+Received: from mail-lj1-x243.google.com ([2a00:1450:4864:20::243])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jHO2u-0002Af-CQ
- for linux-amlogic@lists.infradead.org; Thu, 26 Mar 2020 08:39:25 +0000
-Received: by mail-wr1-x441.google.com with SMTP id j17so6564090wru.13
- for <linux-amlogic@lists.infradead.org>; Thu, 26 Mar 2020 01:39:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=TLKfrWP8AcWMfXeFe+OL6HzlrP4WSBWNABjm4srbTno=;
- b=J5gCYRRbYEj1hCUaEBVlU8bi9gpdFIkdCjjUKomRB01ovaQLmGoZezSV4UymD5J3Vk
- UAQxUniYX12deWTkW2AoIfX8E0qqGRlViNFjELQqjswB0Ky5fe73mKF7U2oK3f+87AGk
- apIJUNtPXDBW+DXgBlYQQ8G2wNlz5goRvUYS2XlnXUNWPg/ZkWNo6JPPdnEam/DLwCQo
- lcizhqwTuoW7QH+u8TPnsYPhxgo0kuYLCsz+05OmYvB080/4lnQthTrOeNgwUYsfHhuY
- V82r7rl7iMbh/wAzhsNyWZYchZdm8rEWBKL/b9eIdJLE9vEG7Zgqfl5mTb1K50VXGdJJ
- UVew==
+ id 1jHOwM-0004og-J5; Thu, 26 Mar 2020 09:36:45 +0000
+Received: by mail-lj1-x243.google.com with SMTP id n17so5638670lji.8;
+ Thu, 26 Mar 2020 02:36:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=KWNJ9nKqdX2PYz2rRTz5fzXvUp45Mc3ytYvD3OtT0eE=;
+ b=g2VcgcN9pYclqWggLp7CVml2ARuue1zY3ZGNd0Nz9IfJ18RRG5X/PKdmetO4U9l9LY
+ WhtGQasEFMiqy3Qzk9DkCR5j67NkRPP2ZchKPr/hJ6Ba4c4AzQ8BikkPIyaLlH2zC9+t
+ IE4SEkSf46fR+ridPgoJNr7mu50wECxASwNRJBia9nKSWj+mGnkt3kYS7Ix8duZFbG7L
+ QewWqyhDFLmpFvIgXjjyCaYWA/Ex/zkm6iolWFieXcejNzMnIwY2xHMCfu/Trj6NYSNH
+ Gjg6w03dbJ3gN/YlWrKMCKh4535RyNeN//pKfIoJ0GwK7lfStRNMdOEWfSUR2DhDM3Ok
+ rthA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=TLKfrWP8AcWMfXeFe+OL6HzlrP4WSBWNABjm4srbTno=;
- b=XBEFGKDghK6Xw8+4blexgfuZij2qx3o4JoI/qX9STsVAsabugceGDTopGg8Kuw/QBQ
- u1HFsfZMsElPbsWPN69zfTRk1xWB2RHTFgYnnKvIagKNAJjwXdeQyqpbagWvmB4H5jGm
- CM9+4aUTWYsV0RfYEOQBDDWF7W3I8WvecIM07miRHT9HT3sSNakVubJelfVMiQmU1k2W
- AB30sXxMLtMN/ELYJmjqtl6g/loB/AYVFk5WQqIq7dm9FXrhXciO6kKMoxAnVdI1QulK
- F7LrQv75phv9Da+wb6O8lwB6fMJmkhD0YoeQouwOg6zmPV6a3Swrt+aTUYhcbKvUOVXd
- ftyQ==
-X-Gm-Message-State: ANhLgQ2mewJ1OI1p2zOD1f4oXwu07JxWPMuICcGlqPkmJF0sXpOBtc55
- wDsijDyEOPcWdj7Xs32GHErL9w==
-X-Google-Smtp-Source: ADFU+vvzuQ4QxVS/s0ibmVMZp4jdcmJoedPChELBVbuKyTFcPAB+5OcyntAwpr9Tl9sZS9yiTvZRQg==
-X-Received: by 2002:adf:c587:: with SMTP id m7mr8354429wrg.64.1585211961242;
- Thu, 26 Mar 2020 01:39:21 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:25f2:833f:2a30:1344?
- ([2a01:e35:2ec0:82b0:25f2:833f:2a30:1344])
- by smtp.gmail.com with ESMTPSA id l4sm1317884wru.1.2020.03.26.01.39.17
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 26 Mar 2020 01:39:20 -0700 (PDT)
-Subject: Re: [PATCH 3/4] dt-bindings: Clean-up schema errors due to missing
- 'addtionalProperties: false'
-To: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-References: <20200325220542.19189-1-robh@kernel.org>
- <20200325220542.19189-4-robh@kernel.org>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <e60df575-c70d-a194-6c54-32b5ae69a041@baylibre.com>
-Date: Thu, 26 Mar 2020 09:39:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=KWNJ9nKqdX2PYz2rRTz5fzXvUp45Mc3ytYvD3OtT0eE=;
+ b=kb0V8LZ77SRntKSJtvGHx28h/30hSV+Wt1kV6Rm7Yrghb441uQxe9ieHzjJHCOqSYa
+ PUCtKuUf27cV4sIfy6ocuvm5DTMxrl0qDySlWpTW6NtFtYreVU3iU0B/W8hg7mTq6PSX
+ QWFFTlja+344EP7eBBk6RMMPYtzIDHLsTMlTuJMua3dJ4eAcy7jSODxgPbEuwYAeKyVu
+ UGogOMpqYvnc4cB26+4kXX4mn3RPjA8ynaJ+5CURs0EOcZ6LKvUw65pzMpF7kI8DjRu4
+ jR6ZY0N1dAngbzeDiyAEF7SuHD3PkB9KQj40xK2xAdw9RPPSgVQaoTJbbU03gD8u54tM
+ JUnA==
+X-Gm-Message-State: AGi0PubCixRd7RaAD1KCsTpL5Pg4Z8xJcfVsSfOZ3kywTJflGXf6C9yz
+ G+BR5BIvUTfY0z+1GGET9zU=
+X-Google-Smtp-Source: ADFU+vu3vZ8AvLNRzSZLJOZzi/DjZPgsWfluY5a03XJz/5PI9hSC8DSZ5HGxQHx+PXRxeE6OqJN8fw==
+X-Received: by 2002:a2e:a412:: with SMTP id p18mr4848583ljn.39.1585215399334; 
+ Thu, 26 Mar 2020 02:36:39 -0700 (PDT)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id x128sm1087236lff.67.2020.03.26.02.36.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Mar 2020 02:36:39 -0700 (PDT)
+Date: Thu, 26 Mar 2020 11:36:32 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v4 7/8] drm/fourcc: amlogic: Add modifier definitions
+ for the Scatter layout
+Message-ID: <20200326113632.6585cf7b@eldfell.localdomain>
+In-Reply-To: <a385e2f6-52fa-e195-15e0-2132befc9f35@baylibre.com>
+References: <20200325085025.30631-1-narmstrong@baylibre.com>
+ <20200325085025.30631-8-narmstrong@baylibre.com>
+ <JgBZ7eZYMgXRNu_-E4ItS1bud9mEe15xptZEX_XhsM_h8_iIZTOmPokEVxPJYwX0wP0pmb5p-ymubyyZP3kVbcfuDNdmM0__L8wBR5IykfE=@emersion.fr>
+ <b1386ef5-c3e3-c07b-5982-e3f02441b431@baylibre.com>
+ <20200325154921.2a87930c@eldfell.localdomain>
+ <a385e2f6-52fa-e195-15e0-2132befc9f35@baylibre.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20200325220542.19189-4-robh@kernel.org>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200326_013924_430319_7D3665CC 
-X-CRM114-Status: GOOD (  13.36  )
+X-CRM114-CacheID: sfid-20200326_023642_655056_99DD7091 
+X-CRM114-Status: GOOD (  22.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,92 +98,172 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-iio@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Guillaume La Roque <glaroque@baylibre.com>,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Lee Jones <lee.jones@linaro.org>,
- linux-clk@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+Cc: "mjourdan@baylibre.com" <mjourdan@baylibre.com>,
+ Simon Ser <contact@emersion.fr>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
  Kevin Hilman <khilman@baylibre.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>,
- Zhang Rui <rui.zhang@intel.com>, Brian Masney <masneyb@onstation.org>,
- Michael Hennerich <michael.hennerich@analog.com>, linux-pm@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- linux-arm-kernel@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
- netdev@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
- Hartmut Knaack <knaack.h@gmx.de>, linux-media@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>, Jonathan Cameron <jic23@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: multipart/mixed; boundary="===============5377455451019649804=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/03/2020 23:05, Rob Herring wrote:
-> Numerous schemas are missing 'additionalProperties: false' statements which
-> ensures a binding doesn't have any extra undocumented properties or child
-> nodes. Fixing this reveals various missing properties, so let's fix all
-> those occurrences.
-> 
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Hartmut Knaack <knaack.h@gmx.de>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Guillaume La Roque <glaroque@baylibre.com>
-> Cc: Zhang Rui <rui.zhang@intel.com>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Cc: linux-amlogic@lists.infradead.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/clock/fsl,plldig.yaml |  3 +++
->  .../gpio/socionext,uniphier-gpio.yaml         |  2 ++
->  .../bindings/gpu/arm,mali-bifrost.yaml        |  6 ++---
->  .../bindings/gpu/arm,mali-midgard.yaml        |  3 +++
->  .../bindings/iio/adc/adi,ad7192.yaml          |  1 -
->  .../bindings/iio/pressure/bmp085.yaml         |  3 +++
->  .../media/amlogic,meson-gx-ao-cec.yaml        |  9 +++++---
->  .../bindings/mfd/rohm,bd71828-pmic.yaml       |  3 +++
->  .../bindings/net/ti,cpsw-switch.yaml          | 23 ++++++++++++-------
->  .../regulator/max77650-regulator.yaml         |  2 +-
->  .../bindings/thermal/amlogic,thermal.yaml     |  2 ++
->  .../bindings/timer/arm,arch_timer_mmio.yaml   |  2 ++
->  12 files changed, 43 insertions(+), 16 deletions(-)
-> 
+--===============5377455451019649804==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/F2Ih.eNxkQvUVkW9+CfEnKJ"; protocol="application/pgp-signature"
 
-For:
-  .../bindings/gpu/arm,mali-bifrost.yaml        |  6 ++---
-  .../bindings/gpu/arm,mali-midgard.yaml        |  3 +++
-  .../media/amlogic,meson-gx-ao-cec.yaml        |  9 +++++---
-  .../bindings/thermal/amlogic,thermal.yaml     |  2 ++
+--Sig_/F2Ih.eNxkQvUVkW9+CfEnKJ
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 25 Mar 2020 17:18:15 +0100
+Neil Armstrong <narmstrong@baylibre.com> wrote:
+
+> Hi,
+>=20
+> On 25/03/2020 14:49, Pekka Paalanen wrote:
+> > On Wed, 25 Mar 2020 11:24:15 +0100
+> > Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >  =20
+> >> Hi,
+> >>
+> >> On 25/03/2020 10:04, Simon Ser wrote: =20
+> >>> On Wednesday, March 25, 2020 9:50 AM, Neil Armstrong <narmstrong@bayl=
+ibre.com> wrote:
+> >>>    =20
+> >>>> Amlogic uses a proprietary lossless image compression protocol and f=
+ormat
+> >>>> for their hardware video codec accelerators, either video decoders or
+> >>>> video input encoders.
+> >>>>
+> >>>> This introduces the Scatter Memory layout, means the header contains=
+ IOMMU
+> >>>> references to the compressed frames content to optimize memory access
+> >>>> and layout.
+> >>>>
+> >>>> In this mode, only the header memory address is needed, thus the con=
+tent
+> >>>> memory organization is tied to the current producer execution and ca=
+nnot
+> >>>> be saved/dumped neither transferrable between Amlogic SoCs supportin=
+g this
+> >>>> modifier.   =20
+> >>>
+> >>> I don't think this is suitable for modifiers. User-space relies on
+> >>> being able to copy a buffer from one machine to another over the
+> >>> network. It would be pretty annoying for user-space to have a blackli=
+st
+> >>> of modifiers that don't work this way.
+> >>>
+> >>> Example of such user-space:
+> >>> https://gitlab.freedesktop.org/mstoeckl/waypipe/
+> >>>    =20
+> >>
+> >> I really understand your point, but this is one of the use-cases we ne=
+ed solve.
+> >> This is why I split the fourcc patch and added an explicit comment.
+> >>
+> >> Please point me a way to display such buffer, the HW exists, works lik=
+e that and
+> >> it's a fact and can't change.
+> >>
+> >> It will be the same for secure zero-copy buffers we can't map from use=
+rspace, but
+> >> only the HW decoder can read/write and HW display can read. =20
+> >=20
+> > The comparison to secure buffers is a good one.
+> >=20
+> > Are buffers with the DRM_FORMAT_MOD_AMLOGIC_FBC_LAYOUT_SCATTER modifier
+> > meaningfully mmappable to CPU always / sometimes / never /
+> > varies-and-cannot-know? =20
+>=20
+> mmappable, yes in our WIP V4L2 driver in non-secure path, meaningful, abs=
+olutely never.
+>=20
+> So yeah, these should not be mmappable since not meaningful.
+
+Ok. So we have a modifier that means there is no point in even trying to
+mmap the buffer.
+
+Not being able to mmap automatically makes things like waypipe not be
+able to work on the buffer, so the buffer cannot be replicated over a
+network, hence there is no compatibility issue. However, it still
+leaves the problem that, since waypipe is "just" a message relay that
+does not participate in the protocol really, the two end points might
+still negotiate to use a modifier that waypipe cannot handle.
+
+Secure buffers have the same problem: by definition, one must not be
+able to replicate the buffer elsewhere.
+
+To me it seems there needs to be a way to identify buffers that cannot
+be mmapped. mmap() failing is obvious, but in waypipe's case it is too
+late - the end points have already negotiated the formats and modifiers
+and they cannot handle failures afterwards.
+
+> >=20
+> > Maybe this type should be handled similar to secure buffers, with the
+> > exception that they are not actually secured but only mostly
+> > inaccessible. Then again, I haven't looked at any of the secure buffer
+> > proposals. =20
+>=20
+> Actually, the Amlogic platforms offers secure video path using these exact
+> modifiers, AFAIK it doesn't support the NV12 dual-write output in secure.
+>=20
+> AFAIK last submission is from AMD, and it doesn't talk at all about mmapa=
+bility
+> of the secure BOs.
+
+To me, a secure buffer concept automatically implies that there cannot
+be CPU access to it. The CPU is not trusted, right? Not even the kernel.
+I would assume secure implies no mmap. So I wonder, how does the secure
+buffers proposal manage userspace like waypipe?
+
+Or, is the secure buffer proposal allowing mmap, but the content is
+indecipherable? Maybe they shouldn't allow mmap?
+
+I think much of the criticism against this modifier should also be
+presented to a secure buffers proposal and see how that turns out. If
+they have the same problem, maybe you could use their solution?
 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Thanks,
+pq
 
+--Sig_/F2Ih.eNxkQvUVkW9+CfEnKJ
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl58d6AACgkQI1/ltBGq
+qqfv1g//d/m5shjV09aO55+5dizEtNZQS5y+iI9nVhzwBaiiaWEHq1dQrBza/73Y
+gy3Gh0ML0Al/kUy9oQYdYwKhlAiO/Hx1HEPxANiqCKkikf7mhnTftkLUXuMrGA38
+O/+vq1v+srGKLpAznNXNE5qIl98/yWP3MJXTe7Kenl4hUrIjZLz3bx8+93WZvpOZ
+Tbh9uJuTouKTeQ//Yt7EG2wpkERQv21wGGFFOdSPBLkl3O/DiyDP50WKHEqVzBNB
+CWFdQgFMi+k/MVxB7xDswMxxwzaDRcFfQpUCF441mYsV/glMrH5gVbbaT7T8ZTfu
+azojy8CRM5ZbBB4wdd98ta75EL9PkXnNQBW6SVdZsT4i2utoc7lq0bLkDdrpIicC
+1E7Zuxmu/wQ9Pm7Kob+2ZqvFKR7Ey9thbeSsoZlzX7hgpO1XfgHramWPkR/eUh5x
+3hczryq9Zenlkv1EzOHWGUUsUPaiJh0HW+9Yc07h9WTuGkOgJkkP7Ll0R0hNQxiv
+1DAkBB5SBE+DSDyUXpd0ucZMTr3v0Fin9SxeeX0rQIKfUWNoyYn+QTnD/xYmtTqF
+3JrP3swNnaHKLB2p25K4N32ggHamAl0Roc0ohPlh5Z7ZleVW95va5ttP6jdawObq
+6R1xVH6EsJ0wtsGjxNvRO2Bod4W6v2UDcM/IjXHA0WWwm4bar2k=
+=zAly
+-----END PGP SIGNATURE-----
+
+--Sig_/F2Ih.eNxkQvUVkW9+CfEnKJ--
+
+
+--===============5377455451019649804==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5377455451019649804==--
+
