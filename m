@@ -1,71 +1,134 @@
-Return-Path: <SRS0=FVXd=5K=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=29RQ=5L=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F0BD4C43331
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2020 23:34:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 14E14C2D0E8
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 07:58:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C08A220719
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2020 23:34:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DC62520719
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 07:58:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l/iQOrQX";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=onstation.org header.i=@onstation.org header.b="BPWtzEWe"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C08A220719
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=onstation.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S2bYNhrY";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=analog.onmicrosoft.com header.i=@analog.onmicrosoft.com header.b="j6WI87FI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DC62520719
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=analog.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Gg6OGgdp4RzhfdUdP8HzCk/SXuA/hWkimM+Tyyz1KD0=; b=l/iQOrQXXj7nQK
-	OXL+VWk6lrZ7RbDBbxQsDxsYrd37FvF253Ay/cxlQJqWSgrEkg3OqxVeKq7wg/sLUVhYc0tIvbCU2
-	VvoSrSoZq0bGGrgI6vgbE+XhAnfNPHBWru596o936uGflzx0AGAimGkpC8DznhFK9iBEf7vrmcdC1
-	RGkyXqQtzetBoDNkcA8thi8x+CCDS18gFE+XFsJUtcFSJTkbEjWeKOXwGO5PTtBLusSFLBGc5JtRR
-	+SPymv3jNTAX4vJ/tK+HtOF7jxUltI4aJLuHgPXoEv6bTDRnI46irhNd9T1FkEhyo++3jndbQ2Svb
-	9Xs/aNnuDleRmPQTwjqA==;
+	List-Owner; bh=KexC1kPhAjjhMFXtM2Uc8Z36f/llGKbM1uNtzOjNb14=; b=S2bYNhrY6KKzB4
+	STDQ+2NuBqshy/h+1rOsEu14llT3IIeG3fzzX5bX4rStif/BYiKfb7vuwKrP8iJO9bHcDjyphVZfa
+	IOxVoGVHlCAHasObytE4o6eMCWhApZbw1EztJ8mQwoIeSATr7qgjJsuayJfYR+0aDmCkftLUC+S9h
+	bEtjzgHmeSZHwm1aznakanydpVsXO9PXYAx3QnbLdT1J53Xwb8N/YK+atVJBCfQUlyWDNOadPNXxR
+	adlQ1zSBzp/JzJeTb5s6v7Me+YP6DrmvknXezxq9nPWE8tkJJJde6nZ+MCLKURBZ8KLm7EYG0X6Ti
+	ERd6ChiPkGu1w3bVOE5g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jHFXO-0003nd-4f; Wed, 25 Mar 2020 23:34:18 +0000
-Received: from onstation.org ([52.200.56.107])
+	id 1jHNOr-0003Z7-5q; Thu, 26 Mar 2020 07:58:01 +0000
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jHFXK-0003lh-33; Wed, 25 Mar 2020 23:34:16 +0000
-Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net
- [98.239.145.235])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: masneyb)
- by onstation.org (Postfix) with ESMTPSA id D9ADB3E993;
- Wed, 25 Mar 2020 23:34:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
- s=default; t=1585179251;
- bh=UmMfQfL2Dh6nfn2syBX2sC1MPLmcaAcwUvfWVe3vkpM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BPWtzEWeaE0xPqB52s39r4KFFu9CAc2XWbyWEeiYjMFFp4zI3Jnc7Ce1qomgad3+i
- Zssb5erETKV/5tFlC9CDhOpLk9pnxg2NCChpeKVZIiBN8eTPwpTU1e5qXBz7i2qmMi
- ohX+2HrLcdpwIAUyrpKCZpDJiGxTBey+OAukZuAo=
-Date: Wed, 25 Mar 2020 19:34:09 -0400
-From: Brian Masney <masneyb@onstation.org>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: sram: qcom: Clean-up 'ranges' and child
- node names
-Message-ID: <20200325233409.GB16767@onstation.org>
+ id 1jHNOh-0003S3-Rd; Thu, 26 Mar 2020 07:57:53 +0000
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+ by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 02Q7qfdq016674; Thu, 26 Mar 2020 03:57:34 -0400
+Received: from nam12-dm6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12lp2168.outbound.protection.outlook.com [104.47.59.168])
+ by mx0a-00128a01.pphosted.com with ESMTP id 2ywfu5fu0v-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 26 Mar 2020 03:57:33 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MdBn+sC2Tb5tydML86Kh23cDRaQQaqChzl7pGBy19h5Xi1aVVem8VhoiXZKbcAxu1cYGsjBE43+9+b9lILmZeabTxKzT3w3eXW5RDo9w5C96qlY1MCWLi9styTAFKgFej3ugzStQQ/AHpWHOkM3gXLNwWOcLExeDaXrCYdp52LVGKVFhCF2aDBUwSi8wAfXl1/hVxeJFIR+tGQDmwHzwxycssCOvoSIYhK48eJgNLBtly+YQRwNeB5FUbNn2o/b38UXJq38s0U18JC1Omy5+x0TskZlmOcMNxCIIE5dow2pf1MwJx0CaMQSyR/h681W0jTf/U8j+h+cibpe3bkm4Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RJj6mHsRM8ZyZ0YjEAR1Z3YqAAK+NOPskXPs2S5GWBk=;
+ b=iZZzLNp6f46J0jsB56HvKkmDMDwxYLRqO+wAx9nfftWGi5AW8GSSAQZExPv4FV6PtOy/Jxdct6PfDga5LHjBz3j4qnKBH0nX5io89H1OQZsjKzfwhcSBUkEbQQzTfmpsn/BgP7qpShVxagNaGh13AeKd+LCYUw5oNJNO5ol2V9oahe5bhzOi5HkhraxsES+zAVKesrnFGLVVe0EVZyHp5mMejMzGGxvG49U3HJjmrPX1K1Jgt5NKkeQ5HbH1LoaHdeUbZet5bNtBcf3MzRCiHsBRiWXK2vHQ+AgPjlzId7uzJyPNOailMoxDTT3twT72SGJWqkfaLoTbDWPgjT/Qdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RJj6mHsRM8ZyZ0YjEAR1Z3YqAAK+NOPskXPs2S5GWBk=;
+ b=j6WI87FIj/9GXIzmB1TspUzfgILyhJgVPzOrvG3jDb0uCkvjLsoLyEDHZm8ENR4r0me+pbZutk5eyiJdzC0qjiRM1zaD4Tw0Hxr/5yfFDzFcRoQcUopSl5FMRzN+dhrF5lamXRhtNxBsmyVBPHZ3BecGwTwIsxwJGiR4ok1waLU=
+Received: from DM6PR03MB4411.namprd03.prod.outlook.com (2603:10b6:5:10f::14)
+ by DM6PR03MB4762.namprd03.prod.outlook.com (2603:10b6:5:180::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.22; Thu, 26 Mar
+ 2020 07:57:31 +0000
+Received: from DM6PR03MB4411.namprd03.prod.outlook.com
+ ([fe80::c47f:ceee:cfda:6a7f]) by DM6PR03MB4411.namprd03.prod.outlook.com
+ ([fe80::c47f:ceee:cfda:6a7f%3]) with mapi id 15.20.2856.019; Thu, 26 Mar 2020
+ 07:57:31 +0000
+From: "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
+To: "robh@kernel.org" <robh@kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: iio/accel: Drop duplicate adi, adxl345/6
+ from trivial-devices.yaml
+Thread-Topic: [PATCH 1/4] dt-bindings: iio/accel: Drop duplicate adi, adxl345/6
+ from trivial-devices.yaml
+Thread-Index: AQHWAvGRyh1nr3AmYUSmiHCWtT/kdahag2iA
+Date: Thu, 26 Mar 2020 07:57:31 +0000
+Message-ID: <ede75c098e3e354ff7e93e4e1d6191e35ea1fbd2.camel@analog.com>
 References: <20200325220542.19189-1-robh@kernel.org>
- <20200325220542.19189-3-robh@kernel.org>
+ <20200325220542.19189-2-robh@kernel.org>
+In-Reply-To: <20200325220542.19189-2-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [188.26.73.247]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 6ca15d55-1984-4079-b6a7-08d7d15b5643
+x-ms-traffictypediagnostic: DM6PR03MB4762:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR03MB4762ED8CDD560DAB31C3B763F9CF0@DM6PR03MB4762.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4125;
+x-forefront-prvs: 0354B4BED2
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(396003)(39860400002)(366004)(136003)(346002)(376002)(6512007)(66476007)(110136005)(6486002)(36756003)(76116006)(8936002)(316002)(66946007)(4326008)(66556008)(54906003)(6506007)(91956017)(66446008)(71200400001)(64756008)(2906002)(8676002)(81166006)(5660300002)(81156014)(2616005)(186003)(7406005)(7416002)(478600001)(86362001)(26005)(142933001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR03MB4762;
+ H:DM6PR03MB4411.namprd03.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; 
+received-spf: None (protection.outlook.com: analog.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wQ0XwLPE82pjmOfXN8D2upY4UOg52ChOHFRbAW/6OLBxFeZTSh/QUIWgjUubSmzuKNuHNhPUp4bgCgeVpOj60ipg3AyUvo3cj63kDMKOgnaGYxY3pfZStQDwWCnV25KefFP38pnfOarVl1/L2jR5+YLC2W2K6fRrbJIKuPU90sOUoohRM3RFdPYxBcDb6Hcyk3h4qrqj0yBXmFieyPnpA6AVqxxqmQQlwRBYwB16HbwIPIPo1zJAE37MxOAwkpewAzm/oMNOQiwYwcbesdF8z/6pgpOZPwmhN46xK5xBRp3N8vC3oIqwkcoJgwAipYyAczpS2LaWAMhLjaAhl2aS61bzszWnaZIWfHTKfEXpr1bAyrYCspQT0WtlRBHBhJjDtkspYHwZvdjxUt9rtBixqwLhK1ZOe/+4VzBpu/hIGuoOROH4e8Qr89mlA0MMPF6C0LzPbccR/v8E66aUZTPUfKNkYORspWARkvmdwaNFAb3jHp3qgFm9VCeNMhj2jNEG
+x-ms-exchange-antispam-messagedata: wbXuKhkVQH9bp3R9WC5ntrX4kBK6uSrA3lrcL+2VZYxVhydA8vDjH9mvP7vCxR2FWxpwxTKm3G92nei98Dxs4+Ku63UiYsZcPTkB4fEYjsMdsF6swi9e7asZTOpGQWXwaN2ij8PI6sXEShjR+p0O0g==
+Content-ID: <0AB7565D36DC2A49B1E7778675A10B25@namprd03.prod.outlook.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200325220542.19189-3-robh@kernel.org>
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ca15d55-1984-4079-b6a7-08d7d15b5643
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2020 07:57:31.4602 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wpT8Wp1jOAK2vWbTqa1ZE8ykXUiCVd2lUdIYEV7sqkVzuVQ8wmJVWLM/+pq1mbnkdsRGDni3xVACcsTIok52zSeYAS+W437RMUwyPq6Tszw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB4762
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138, 18.0.645
+ definitions=2020-03-25_15:2020-03-24,
+ 2020-03-25 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 bulkscore=0
+ clxscore=1011 impostorscore=0 adultscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 suspectscore=0 phishscore=0
+ lowpriorityscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2003020000 definitions=main-2003260055
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200325_163414_211827_8874092C 
-X-CRM114-Status: UNSURE (   9.44  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200326_005751_905444_50107490 
+X-CRM114-Status: GOOD (  14.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,45 +140,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-iio@vger.kernel.org,
- Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Masahiro Yamada <yamada.masahiro@socionext.com>,
- Guillaume La Roque <glaroque@baylibre.com>,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Lee Jones <lee.jones@linaro.org>,
- linux-clk@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
- Kevin Hilman <khilman@baylibre.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>,
- Zhang Rui <rui.zhang@intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, Michael Hennerich <michael.hennerich@analog.com>,
- linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-gpio@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
- Thomas Gleixner <tglx@linutronix.de>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- linux-arm-kernel@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
- netdev@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
- Hartmut Knaack <knaack.h@gmx.de>, "David S. Miller" <davem@davemloft.net>,
- Jonathan Cameron <jic23@kernel.org>
+Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>,
+ "glaroque@baylibre.com" <glaroque@baylibre.com>,
+ "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+ "lee.jones@linaro.org" <lee.jones@linaro.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "lars@metafoo.de" <lars@metafoo.de>,
+ "khilman@baylibre.com" <khilman@baylibre.com>,
+ "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+ "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+ "rui.zhang@intel.com" <rui.zhang@intel.com>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, "Hennerich, 
+ Michael" <Michael.Hennerich@analog.com>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+ "knaack.h@gmx.de" <knaack.h@gmx.de>,
+ "masneyb@onstation.org" <masneyb@onstation.org>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "jic23@kernel.org" <jic23@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 25, 2020 at 04:05:39PM -0600, Rob Herring wrote:
-> The regex for child nodes doesn't match the example. This wasn't flagged
-> with 'additionalProperties: false' missing. The child node schema was also
-> incorrect with 'ranges' property as it applies to child nodes and should
-> be moved up to the parent node.
+On Wed, 2020-03-25 at 16:05 -0600, Rob Herring wrote:
+> [External]
 > 
-> Fixes: 957fd69d396b ("dt-bindings: soc: qcom: add On Chip MEMory (OCMEM) bindings")
-> Cc: Brian Masney <masneyb@onstation.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: linux-arm-msm@vger.kernel.org
+> The 'adi,adxl345' definition is a duplicate as there's a full binding in:
+> Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> 
+> The trivial-devices binding doesn't capture that 'adi,adxl346' has a
+> fallback compatible 'adi,adxl345', so let's add it to adi,adxl345.yaml.
+> 
+
+Acked-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+
+> Cc: Michael Hennerich <michael.hennerich@analog.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Hartmut Knaack <knaack.h@gmx.de>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+> Cc: linux-iio@vger.kernel.org
 > Signed-off-by: Rob Herring <robh@kernel.org>
-
-Reviewed-by: Brian Masney <masneyb@onstation.org>
-
+> ---
+>  .../devicetree/bindings/iio/accel/adi,adxl345.yaml     | 10 +++++++---
+>  Documentation/devicetree/bindings/trivial-devices.yaml |  4 ----
+>  2 files changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> index c602b6fe1c0c..d124eba1ce54 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> @@ -17,9 +17,13 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - adi,adxl345
+> -      - adi,adxl375
+> +    oneOf:
+> +      - items:
+> +          - const: adi,adxl346
+> +          - const: adi,adxl345
+> +      - enum:
+> +          - adi,adxl345
+> +          - adi,adxl375
+>  
+>    reg:
+>      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml
+> b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 978de7d37c66..51d1f6e43c02 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -42,10 +42,6 @@ properties:
+>            - adi,adt7476
+>              # +/-1C TDM Extended Temp Range I.C
+>            - adi,adt7490
+> -            # Three-Axis Digital Accelerometer
+> -          - adi,adxl345
+> -            # Three-Axis Digital Accelerometer (backward-compatibility value
+> "adi,adxl345" must be listed too)
+> -          - adi,adxl346
+>              # AMS iAQ-Core VOC Sensor
+>            - ams,iaq-core
+>              # i2c serial eeprom  (24cxx)
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
