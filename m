@@ -2,91 +2,71 @@ Return-Path: <SRS0=29RQ=5L=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_2 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_2
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20BEAC43331
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 09:36:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88947C43331
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 12:44:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E0E472073E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 09:36:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 362C12073E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 12:44:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ch3mK/By";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g2VcgcN9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E0E472073E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lbQWkYFb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 362C12073E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=Huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=4YhAF7m4ued/GMK1KyNahtTXG5SrCF8dLw9OD/Xj3S4=; b=Ch3mK/Byz9sGZ0aRdHbzWZ36F
-	fMiM2M2u5/ejDasfvu5ni8WnF+QqYHfVTTILaLPV7Ws07rdsn57VSV/Jqp+CDtolwfAui3tcBdwQx
-	JWAGmBbKWRteiqcuZwtMcOkFfoPkdUrAhzUb3wtnojC5fwTaQ1bjOgacpSkPEUfROri6gX8Qp3nAm
-	GFiwjjmV9Ye2RS0n2SGOdzCEG8llud0yxOm7ngNR1ScX90hSgWguvRSBCaS7pALZkk7PwF7sitw0g
-	i8bjTPxu3EkBYLQ0+a3FNDBCJ9d2rDMy8chG1cng6eTzOLf/Akwep196wuBeCE0NJ/Xg1KG6dWeAD
-	20y7o5ENA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2jN292uGmFysbi0Okprsa0ikuLaBreIBa7ZzbmeCMO0=; b=lbQWkYFb1K+B7K
+	fYezzdUNXWI5oJFijwGh6xkh+gOeB0tL2XtpedcSerOzKQsS7xdu8z1ueKZy2yf6c+nENY0PDcjEK
+	pSPUzCffLhdmHHp4rLiIwy4wkAKbj2FqKp32tR5RCGXvrXq93YhypXCx9rvV0UVA8aYa+tGcdv3Pf
+	TzXYeXWbmzlugSd5n7qXf88aodg/azswI3lgPkdC2y8TdeoPmOsSCNIe1O1+pih12CYaXx7kLfb04
+	+vDphesb9UK1PQqVwrUsBJm8jAc3f0F2LG75QQkf6EhPlU8FyS/B2kUlOsSh4udqA8bszi6H6i4ra
+	Hck0V1gP3akzrQ3ZwKYQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jHOwQ-0004pe-5O; Thu, 26 Mar 2020 09:36:46 +0000
-Received: from mail-lj1-x243.google.com ([2a00:1450:4864:20::243])
+	id 1jHRrq-0005cR-KC; Thu, 26 Mar 2020 12:44:14 +0000
+Received: from lhrrgout.huawei.com ([185.176.76.210] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jHOwM-0004og-J5; Thu, 26 Mar 2020 09:36:45 +0000
-Received: by mail-lj1-x243.google.com with SMTP id n17so5638670lji.8;
- Thu, 26 Mar 2020 02:36:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=KWNJ9nKqdX2PYz2rRTz5fzXvUp45Mc3ytYvD3OtT0eE=;
- b=g2VcgcN9pYclqWggLp7CVml2ARuue1zY3ZGNd0Nz9IfJ18RRG5X/PKdmetO4U9l9LY
- WhtGQasEFMiqy3Qzk9DkCR5j67NkRPP2ZchKPr/hJ6Ba4c4AzQ8BikkPIyaLlH2zC9+t
- IE4SEkSf46fR+ridPgoJNr7mu50wECxASwNRJBia9nKSWj+mGnkt3kYS7Ix8duZFbG7L
- QewWqyhDFLmpFvIgXjjyCaYWA/Ex/zkm6iolWFieXcejNzMnIwY2xHMCfu/Trj6NYSNH
- Gjg6w03dbJ3gN/YlWrKMCKh4535RyNeN//pKfIoJ0GwK7lfStRNMdOEWfSUR2DhDM3Ok
- rthA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=KWNJ9nKqdX2PYz2rRTz5fzXvUp45Mc3ytYvD3OtT0eE=;
- b=kb0V8LZ77SRntKSJtvGHx28h/30hSV+Wt1kV6Rm7Yrghb441uQxe9ieHzjJHCOqSYa
- PUCtKuUf27cV4sIfy6ocuvm5DTMxrl0qDySlWpTW6NtFtYreVU3iU0B/W8hg7mTq6PSX
- QWFFTlja+344EP7eBBk6RMMPYtzIDHLsTMlTuJMua3dJ4eAcy7jSODxgPbEuwYAeKyVu
- UGogOMpqYvnc4cB26+4kXX4mn3RPjA8ynaJ+5CURs0EOcZ6LKvUw65pzMpF7kI8DjRu4
- jR6ZY0N1dAngbzeDiyAEF7SuHD3PkB9KQj40xK2xAdw9RPPSgVQaoTJbbU03gD8u54tM
- JUnA==
-X-Gm-Message-State: AGi0PubCixRd7RaAD1KCsTpL5Pg4Z8xJcfVsSfOZ3kywTJflGXf6C9yz
- G+BR5BIvUTfY0z+1GGET9zU=
-X-Google-Smtp-Source: ADFU+vu3vZ8AvLNRzSZLJOZzi/DjZPgsWfluY5a03XJz/5PI9hSC8DSZ5HGxQHx+PXRxeE6OqJN8fw==
-X-Received: by 2002:a2e:a412:: with SMTP id p18mr4848583ljn.39.1585215399334; 
- Thu, 26 Mar 2020 02:36:39 -0700 (PDT)
-Received: from eldfell.localdomain ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id x128sm1087236lff.67.2020.03.26.02.36.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2020 02:36:39 -0700 (PDT)
-Date: Thu, 26 Mar 2020 11:36:32 +0200
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v4 7/8] drm/fourcc: amlogic: Add modifier definitions
- for the Scatter layout
-Message-ID: <20200326113632.6585cf7b@eldfell.localdomain>
-In-Reply-To: <a385e2f6-52fa-e195-15e0-2132befc9f35@baylibre.com>
-References: <20200325085025.30631-1-narmstrong@baylibre.com>
- <20200325085025.30631-8-narmstrong@baylibre.com>
- <JgBZ7eZYMgXRNu_-E4ItS1bud9mEe15xptZEX_XhsM_h8_iIZTOmPokEVxPJYwX0wP0pmb5p-ymubyyZP3kVbcfuDNdmM0__L8wBR5IykfE=@emersion.fr>
- <b1386ef5-c3e3-c07b-5982-e3f02441b431@baylibre.com>
- <20200325154921.2a87930c@eldfell.localdomain>
- <a385e2f6-52fa-e195-15e0-2132befc9f35@baylibre.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ id 1jHRrn-0005at-NA; Thu, 26 Mar 2020 12:44:13 +0000
+Received: from lhreml709-cah.china.huawei.com (unknown [172.18.7.108])
+ by Forcepoint Email with ESMTP id DB07DE27201CDD85434C;
+ Thu, 26 Mar 2020 12:43:59 +0000 (GMT)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ lhreml709-cah.china.huawei.com (10.201.108.32) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Thu, 26 Mar 2020 12:43:59 +0000
+Received: from localhost (10.47.88.85) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 26 Mar
+ 2020 12:43:58 +0000
+Date: Thu, 26 Mar 2020 12:43:49 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
+Subject: Re: [PATCH 1/4] dt-bindings: iio/accel: Drop duplicate adi,
+ adxl345/6 from trivial-devices.yaml
+Message-ID: <20200326124349.00001d32@Huawei.com>
+In-Reply-To: <ede75c098e3e354ff7e93e4e1d6191e35ea1fbd2.camel@analog.com>
+References: <20200325220542.19189-1-robh@kernel.org>
+ <20200325220542.19189-2-robh@kernel.org>
+ <ede75c098e3e354ff7e93e4e1d6191e35ea1fbd2.camel@analog.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
+X-Originating-IP: [10.47.88.85]
+X-ClientProxiedBy: lhreml739-chm.china.huawei.com (10.201.108.189) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200326_023642_655056_99DD7091 
-X-CRM114-Status: GOOD (  22.80  )
+X-CRM114-CacheID: sfid-20200326_054411_904196_11D5C8EA 
+X-CRM114-Status: GOOD (  14.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,172 +78,122 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "mjourdan@baylibre.com" <mjourdan@baylibre.com>,
- Simon Ser <contact@emersion.fr>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Kevin Hilman <khilman@baylibre.com>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>,
+ "glaroque@baylibre.com" <glaroque@baylibre.com>,
+ "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+ "lee.jones@linaro.org" <lee.jones@linaro.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>, "lars@metafoo.de" <lars@metafoo.de>,
+ "khilman@baylibre.com" <khilman@baylibre.com>,
+ "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+ "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+ "rui.zhang@intel.com" <rui.zhang@intel.com>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "Hennerich, 
+ Michael" <Michael.Hennerich@analog.com>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "broonie@kernel.org" <broonie@kernel.org>,
  "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Content-Type: multipart/mixed; boundary="===============5377455451019649804=="
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+ "knaack.h@gmx.de" <knaack.h@gmx.de>,
+ "masneyb@onstation.org" <masneyb@onstation.org>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "jic23@kernel.org" <jic23@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============5377455451019649804==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/F2Ih.eNxkQvUVkW9+CfEnKJ"; protocol="application/pgp-signature"
+On Thu, 26 Mar 2020 07:57:31 +0000
+"Ardelean, Alexandru" <alexandru.Ardelean@analog.com> wrote:
 
---Sig_/F2Ih.eNxkQvUVkW9+CfEnKJ
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+> On Wed, 2020-03-25 at 16:05 -0600, Rob Herring wrote:
+> > [External]
+> > 
+> > The 'adi,adxl345' definition is a duplicate as there's a full binding in:
+> > Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> > 
+> > The trivial-devices binding doesn't capture that 'adi,adxl346' has a
+> > fallback compatible 'adi,adxl345', so let's add it to adi,adxl345.yaml.
+> >   
+> 
+> Acked-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
 
-On Wed, 25 Mar 2020 17:18:15 +0100
-Neil Armstrong <narmstrong@baylibre.com> wrote:
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-> Hi,
->=20
-> On 25/03/2020 14:49, Pekka Paalanen wrote:
-> > On Wed, 25 Mar 2020 11:24:15 +0100
-> > Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >  =20
-> >> Hi,
-> >>
-> >> On 25/03/2020 10:04, Simon Ser wrote: =20
-> >>> On Wednesday, March 25, 2020 9:50 AM, Neil Armstrong <narmstrong@bayl=
-ibre.com> wrote:
-> >>>    =20
-> >>>> Amlogic uses a proprietary lossless image compression protocol and f=
-ormat
-> >>>> for their hardware video codec accelerators, either video decoders or
-> >>>> video input encoders.
-> >>>>
-> >>>> This introduces the Scatter Memory layout, means the header contains=
- IOMMU
-> >>>> references to the compressed frames content to optimize memory access
-> >>>> and layout.
-> >>>>
-> >>>> In this mode, only the header memory address is needed, thus the con=
-tent
-> >>>> memory organization is tied to the current producer execution and ca=
-nnot
-> >>>> be saved/dumped neither transferrable between Amlogic SoCs supportin=
-g this
-> >>>> modifier.   =20
-> >>>
-> >>> I don't think this is suitable for modifiers. User-space relies on
-> >>> being able to copy a buffer from one machine to another over the
-> >>> network. It would be pretty annoying for user-space to have a blackli=
-st
-> >>> of modifiers that don't work this way.
-> >>>
-> >>> Example of such user-space:
-> >>> https://gitlab.freedesktop.org/mstoeckl/waypipe/
-> >>>    =20
-> >>
-> >> I really understand your point, but this is one of the use-cases we ne=
-ed solve.
-> >> This is why I split the fourcc patch and added an explicit comment.
-> >>
-> >> Please point me a way to display such buffer, the HW exists, works lik=
-e that and
-> >> it's a fact and can't change.
-> >>
-> >> It will be the same for secure zero-copy buffers we can't map from use=
-rspace, but
-> >> only the HW decoder can read/write and HW display can read. =20
-> >=20
-> > The comparison to secure buffers is a good one.
-> >=20
-> > Are buffers with the DRM_FORMAT_MOD_AMLOGIC_FBC_LAYOUT_SCATTER modifier
-> > meaningfully mmappable to CPU always / sometimes / never /
-> > varies-and-cannot-know? =20
->=20
-> mmappable, yes in our WIP V4L2 driver in non-secure path, meaningful, abs=
-olutely never.
->=20
-> So yeah, these should not be mmappable since not meaningful.
-
-Ok. So we have a modifier that means there is no point in even trying to
-mmap the buffer.
-
-Not being able to mmap automatically makes things like waypipe not be
-able to work on the buffer, so the buffer cannot be replicated over a
-network, hence there is no compatibility issue. However, it still
-leaves the problem that, since waypipe is "just" a message relay that
-does not participate in the protocol really, the two end points might
-still negotiate to use a modifier that waypipe cannot handle.
-
-Secure buffers have the same problem: by definition, one must not be
-able to replicate the buffer elsewhere.
-
-To me it seems there needs to be a way to identify buffers that cannot
-be mmapped. mmap() failing is obvious, but in waypipe's case it is too
-late - the end points have already negotiated the formats and modifiers
-and they cannot handle failures afterwards.
-
-> >=20
-> > Maybe this type should be handled similar to secure buffers, with the
-> > exception that they are not actually secured but only mostly
-> > inaccessible. Then again, I haven't looked at any of the secure buffer
-> > proposals. =20
->=20
-> Actually, the Amlogic platforms offers secure video path using these exact
-> modifiers, AFAIK it doesn't support the NV12 dual-write output in secure.
->=20
-> AFAIK last submission is from AMD, and it doesn't talk at all about mmapa=
-bility
-> of the secure BOs.
-
-To me, a secure buffer concept automatically implies that there cannot
-be CPU access to it. The CPU is not trusted, right? Not even the kernel.
-I would assume secure implies no mmap. So I wonder, how does the secure
-buffers proposal manage userspace like waypipe?
-
-Or, is the secure buffer proposal allowing mmap, but the content is
-indecipherable? Maybe they shouldn't allow mmap?
-
-I think much of the criticism against this modifier should also be
-presented to a secure buffers proposal and see how that turns out. If
-they have the same problem, maybe you could use their solution?
+> 
+> > Cc: Michael Hennerich <michael.hennerich@analog.com>
+> > Cc: Jonathan Cameron <jic23@kernel.org>
+> > Cc: Hartmut Knaack <knaack.h@gmx.de>
+> > Cc: Lars-Peter Clausen <lars@metafoo.de>
+> > Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+> > Cc: linux-iio@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../devicetree/bindings/iio/accel/adi,adxl345.yaml     | 10 +++++++---
+> >  Documentation/devicetree/bindings/trivial-devices.yaml |  4 ----
+> >  2 files changed, 7 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> > b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> > index c602b6fe1c0c..d124eba1ce54 100644
+> > --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> > @@ -17,9 +17,13 @@ description: |
+> >  
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > -      - adi,adxl345
+> > -      - adi,adxl375
+> > +    oneOf:
+> > +      - items:
+> > +          - const: adi,adxl346
+> > +          - const: adi,adxl345
+> > +      - enum:
+> > +          - adi,adxl345
+> > +          - adi,adxl375
+> >  
+> >    reg:
+> >      maxItems: 1
+> > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml
+> > b/Documentation/devicetree/bindings/trivial-devices.yaml
+> > index 978de7d37c66..51d1f6e43c02 100644
+> > --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> > +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> > @@ -42,10 +42,6 @@ properties:
+> >            - adi,adt7476
+> >              # +/-1C TDM Extended Temp Range I.C
+> >            - adi,adt7490
+> > -            # Three-Axis Digital Accelerometer
+> > -          - adi,adxl345
+> > -            # Three-Axis Digital Accelerometer (backward-compatibility value
+> > "adi,adxl345" must be listed too)
+> > -          - adi,adxl346
+> >              # AMS iAQ-Core VOC Sensor
+> >            - ams,iaq-core
+> >              # i2c serial eeprom  (24cxx)  
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
 
-Thanks,
-pq
-
---Sig_/F2Ih.eNxkQvUVkW9+CfEnKJ
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl58d6AACgkQI1/ltBGq
-qqfv1g//d/m5shjV09aO55+5dizEtNZQS5y+iI9nVhzwBaiiaWEHq1dQrBza/73Y
-gy3Gh0ML0Al/kUy9oQYdYwKhlAiO/Hx1HEPxANiqCKkikf7mhnTftkLUXuMrGA38
-O/+vq1v+srGKLpAznNXNE5qIl98/yWP3MJXTe7Kenl4hUrIjZLz3bx8+93WZvpOZ
-Tbh9uJuTouKTeQ//Yt7EG2wpkERQv21wGGFFOdSPBLkl3O/DiyDP50WKHEqVzBNB
-CWFdQgFMi+k/MVxB7xDswMxxwzaDRcFfQpUCF441mYsV/glMrH5gVbbaT7T8ZTfu
-azojy8CRM5ZbBB4wdd98ta75EL9PkXnNQBW6SVdZsT4i2utoc7lq0bLkDdrpIicC
-1E7Zuxmu/wQ9Pm7Kob+2ZqvFKR7Ey9thbeSsoZlzX7hgpO1XfgHramWPkR/eUh5x
-3hczryq9Zenlkv1EzOHWGUUsUPaiJh0HW+9Yc07h9WTuGkOgJkkP7Ll0R0hNQxiv
-1DAkBB5SBE+DSDyUXpd0ucZMTr3v0Fin9SxeeX0rQIKfUWNoyYn+QTnD/xYmtTqF
-3JrP3swNnaHKLB2p25K4N32ggHamAl0Roc0ohPlh5Z7ZleVW95va5ttP6jdawObq
-6R1xVH6EsJ0wtsGjxNvRO2Bod4W6v2UDcM/IjXHA0WWwm4bar2k=
-=zAly
------END PGP SIGNATURE-----
-
---Sig_/F2Ih.eNxkQvUVkW9+CfEnKJ--
-
-
---===============5377455451019649804==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5377455451019649804==--
-
