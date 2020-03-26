@@ -2,100 +2,90 @@ Return-Path: <SRS0=29RQ=5L=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 64008C43331
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 16:27:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B0D2C2D0EC
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 17:01:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 361C920787
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 16:27:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3DA602073E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2020 17:01:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eRRnoL9J";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=st.com header.i=@st.com header.b="0HnG5uLo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 361C920787
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=st.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lSmZHiqT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wox7ZbpJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3DA602073E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dKK9cdXkEjCY5332pXiJz3YyBX89JR4w9BKRmpCxyxY=; b=eRRnoL9Jno8AQc
-	gqHHujwqKqhVDjO1VOFPaFjYO28/eA/+xxjyuZ6L+YTPaDYZ+sxF0p1bfW6iTsuqThmEHByqk59Tt
-	wIX00NPpA6AGjhSO2yAyL5xQpJwkt1pEqsTb7zBQJ+EkfZLEc7R5AxRYgJbHjuJ4WKlEd/wuKOn5G
-	Hmrui4Rd8kQwuOuK4PVMCA6Dkm2bgcJoFEOfvIoKCh4Vi/GwbWDh6g1MCNUrwtkDJt3SbwEn02nJd
-	Q4LCNyWcxJkJ+cVzD4JNpJGUhfXkFhIROcjvFqoAaInxQhDLu5GunzOvS85DWc1R/cgd29rtQlRgN
-	lNJa2vIjIb7UcKdAQBhw==;
+	List-Owner; bh=uZULGd5DPKkbBTUVVY1d+eomO5+7z/oXYq2/4z1Ml24=; b=lSmZHiqTFp1/ul
+	HkQCnyp31evqdUIp168ZTWDiRgC6QfpCjtDbpY26jNz3UOApwZXYf2QnBrA/nXCro9TmremNQZ+yb
+	G1W0IvpVFkBD+ueh8SQkyFXuppDrhShsRNCOyNgW6L5jbI8EKIEqof8VUpYUDN9CUtDZZJ4CVtCVj
+	OI2nrRTU97QUpofe74Etb9roEO+p9LQ63qsfNURSe+QYompsIJ9gT6yKMHfRyMVpvCgEOJEnJq+Ds
+	UoIfxCVrzucZjLc9x+vtagWmxB4E0DQGVD6MlNyXmP9qPbzeyGXfxALWIk4cIDHS+BawU2xbB7xn+
+	nZ2PKSSO/ub/hH5TuhlA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jHVLd-0006pT-UP; Thu, 26 Mar 2020 16:27:13 +0000
-Received: from mx07-00178001.pphosted.com ([62.209.51.94])
+	id 1jHVt8-0006Nm-9V; Thu, 26 Mar 2020 17:01:50 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jHVLQ-0006f3-Hc; Thu, 26 Mar 2020 16:27:02 +0000
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
- by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 02QGNFlJ025185; Thu, 26 Mar 2020 17:26:55 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com;
- h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=1xKLuh0CMGGeFs0L/qRqkwlJw3iv6JDUdN6d2APZlR0=;
- b=0HnG5uLoeEsbI+fFw2vsqkwtWLxAo/KD2pzJPg1na3rYU9vLfKQQ1Ip0pXY9NCwdyku+
- Q31RwCI4B2X/GlZkoDdkduJbdqsHjy/42Qxbg3ogxPDA+U7vf786hhrgLJT8jLLdmNN7
- bDcJDsVxgDzdkqARlQX12b1gkTJRaasnd5dKlK5q29JE135Jl+ZecwDjsT//zNH6KC5y
- wuIxewifITzYpJUobLNUA7f1vl96y3YhGJsEIbyhCeaoTDTL1IkXvpeA6k4uwqZYVzz4
- soC/I8nIaFYynYxe+ziVLCFBbMf5Haf87V1UtPUuWUnsCj04KufyQ4jhbla9EYZr+cRS fA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
- by mx07-00178001.pphosted.com with ESMTP id 2yw9k0ctc2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 26 Mar 2020 17:26:55 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
- by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0F8A210002A;
- Thu, 26 Mar 2020 17:26:48 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
- by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EB6C52B9067;
- Thu, 26 Mar 2020 17:26:47 +0100 (CET)
-Received: from SFHDAG3NODE3.st.com (10.75.127.9) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 26 Mar
- 2020 17:26:47 +0100
-Received: from SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476]) by
- SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476%20]) with mapi id
- 15.00.1347.000; Thu, 26 Mar 2020 17:26:47 +0100
-From: Benjamin GAIGNARD <benjamin.gaignard@st.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: usb: dwc2: fix bindings for
- amlogic,meson-gxbb-usb
-Thread-Topic: [PATCH] dt-bindings: usb: dwc2: fix bindings for
- amlogic,meson-gxbb-usb
-Thread-Index: AQHWA4kfrKmvM7C2NESne7Y0qff0Aqha/tkA
-Date: Thu, 26 Mar 2020 16:26:47 +0000
-Message-ID: <e7820b83-670d-f619-c5fa-8c97379a6471@st.com>
-References: <20200326161046.12111-1-narmstrong@baylibre.com>
-In-Reply-To: <20200326161046.12111-1-narmstrong@baylibre.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.51]
-Content-ID: <8C128BFFBE124340B62493BB8102458F@st.com>
+ id 1jHVrS-0004TK-Fb
+ for linux-amlogic@lists.infradead.org; Thu, 26 Mar 2020 17:00:14 +0000
+Received: by mail-wm1-x342.google.com with SMTP id z5so7260415wml.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 26 Mar 2020 10:00:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=gxa9/8xWJiWiAnJoP5kcdi2AFtJ6sEZwxgWVvybuWHI=;
+ b=wox7ZbpJR2NASF2XImey0+PMq5gjabP88qzzrAzsgIO2mqkDbs/puc5HB0nHa32xQk
+ TXTvt06zZQwxr82wCkOyNUqWip+K4gcBV0/yfjHqZOB2D9CwNZ6+d/w1wm8ff5Jp7Mg2
+ 8Lswl8d+TITSc1mb8W4blydnLKgn7V84yBF/4TqWhFxhMPejKD+KiwaoTTjY/0FKBL2y
+ /NTigJwaM8l7xFWt9jldZyq1e7u98g4b0cMCCv/UHurzcEBLY9KYDgbvAoBbqGHoBZrG
+ FmX+xIPglME3YMudrQ6VCcj1v99R9WvBJ6rm3wuXXvuUu2BmMsxpah4S18PQzuMUERF9
+ LwHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=gxa9/8xWJiWiAnJoP5kcdi2AFtJ6sEZwxgWVvybuWHI=;
+ b=UtuYxE+WLgr8ti7sqdHaSXOCvro2OmQTg2slIq2usdbKpYrYpiF6UF7g9bekJePLDY
+ 5CWR7jObAyqRM/eblXweQ2wB59ynCqFrEYE7+KZWTlG5uXXmPhyTXS+GYRdWIy2YvLT6
+ pQsLon17wdC13eeAKpW62y/q2s54u6ZDTCayiI1TgGjUdYRN4Kkl+Wzj/LbtSf3jGxuB
+ nfGERMVLlnHzSBfBScWdAxDC08GijBDFBA2rFjTXuaO8hZrV+LAuEBVr+KHO7axNiTYh
+ JXa3SH0hT8JdX2k6dxCj2qCaIrmwXLdGlkjae3rE7EsPlamCJFKoWY9QjkaBBSlqTdaJ
+ lDvQ==
+X-Gm-Message-State: ANhLgQ0P1U0PI2+1ckK4nfhn1LyknjZoAXFuDE4b5ZR+dgpu3EYWXUX3
+ TIlimADO18REf47tfE80qdJ68g==
+X-Google-Smtp-Source: ADFU+vv6qM1KmchXEKdNWuCW7bywdYt5WvtsW2577e4jpNyneZiOrb68QnerCwIAlSk3xpt9y+hc9g==
+X-Received: by 2002:a1c:2c85:: with SMTP id s127mr905935wms.18.1585242004777; 
+ Thu, 26 Mar 2020 10:00:04 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
+ by smtp.gmail.com with ESMTPSA id r15sm4609823wra.19.2020.03.26.10.00.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Mar 2020 10:00:03 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: khilman@baylibre.com,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/5] dt-bindings: sram: Add Amlogic SCP SRAM compatibles
+Date: Thu, 26 Mar 2020 17:59:54 +0100
+Message-Id: <20200326165958.19274-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200326165958.19274-1-narmstrong@baylibre.com>
+References: <20200326165958.19274-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138, 18.0.645
- definitions=2020-03-26_08:2020-03-26,
- 2020-03-26 signatures=0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200326_092700_942089_A16B8D35 
-X-CRM114-Status: GOOD (  16.86  )
+X-CRM114-CacheID: sfid-20200326_100006_718531_18936B07 
+X-CRM114-Status: UNSURE (   8.21  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,43 +97,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Add compatibles for the Amlogic SCP SRAM memory zones.
+
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/sram/sram.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
+index 7b83cc6c9bfa..0aea3d239a48 100644
+--- a/Documentation/devicetree/bindings/sram/sram.yaml
++++ b/Documentation/devicetree/bindings/sram/sram.yaml
+@@ -73,6 +73,8 @@ patternProperties:
+             - allwinner,sun50i-a64-sram-c
+             - amlogic,meson8-smp-sram
+             - amlogic,meson8b-smp-sram
++            - amlogic,meson-gxbb-scp-shmem
++            - amlogic,meson-axg-scp-shmem
+             - renesas,smp-sram
+             - rockchip,rk3066-smp-sram
+             - samsung,exynos4210-sysram
+-- 
+2.22.0
 
 
-On 3/26/20 5:10 PM, Neil Armstrong wrote:
-> The amlogic,meson-gxbb-usb compatible needs snps,dwc2 aswell like other
-> Amlogic SoC.
->
-> Fixes: f3ca745d8a0e ("dt-bindings: usb: Convert DWC2 bindings to json-schema")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-> ---
->   Documentation/devicetree/bindings/usb/dwc2.yaml | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> index 71cf7ba32237..b7b9ddcbc637 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> @@ -49,7 +49,9 @@ properties:
->         - items:
->             - const: amlogic,meson8b-usb
->             - const: snps,dwc2
-> -      - const: amlogic,meson-gxbb-usb
-> +      - items:
-> +          - const: amlogic,meson-gxbb-usb
-> +          - const: snps,dwc2
->         - items:
->             - const: amlogic,meson-g12a-usb
->             - const: snps,dwc2
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
