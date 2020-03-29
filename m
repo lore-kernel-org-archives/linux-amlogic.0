@@ -2,86 +2,84 @@ Return-Path: <SRS0=Hgg4=5O=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6683AC43331
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Mar 2020 09:57:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 27563C43331
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Mar 2020 10:30:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3900F20675
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Mar 2020 09:57:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EE43920675
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Mar 2020 10:30:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s+IOq2MF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PlBBbPjo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3900F20675
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FXUZoCga";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W+6jrG6C"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EE43920675
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BKgM9qQk4AfiLgAOLImW9QOtcqx+0cyh5G9QoJ/prJ4=; b=s+IOq2MFfTSKe/
-	7WNshhbKItCm0cbvME/eWZ6tlkq/tyrMc/EQOi2gKMND9G1+P5/lEcDkA+U4+8M7MW4sRoRBOVi7k
-	FMZIU2dLs0rKBsDxcvhDpZzSZ7+NdOGzA9CjfHiOFvacYy+ADmQ66CPAviUI0E1yZxexgSZYERAw+
-	dLwsG2ZaOHN0cr231Je84BvwGJFsf7IqHeW6fAAnTSbQIGcB4sK6g7DUOx2M8vzqxc3ouF23Fo98s
-	6mf2UsHieb5EJNpxvRRwqsZdF+bRlrdRc0BdrVsnktX6STKFDG3bH4nfxXADcZTDo2rCgw7kul08Y
-	I5W0ElM1r8uxNgVfVU0w==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=tIPv1rxgXPE1umcw7IUfCqID1sewwr7CHBeZXAoIkow=; b=FXUZoCgaZiLNv+fG/BR7e92jS
+	SDFzAhDxdh7BSIIgri5ajeBb4g/HEYX0kcpaC5DDz9r2xXCArJPSrrN+ODb1Ew4XmRqXSJnj/SCkc
+	86nGHvmsWUrJui+qz6fIQutf8bttD84tA8T/vHEuQhcSu5SoXcI6a+D9lle47tDzDHdTzcqjpnGzR
+	5FzwtfeQ/cl5pSVymXe4JvXyXDX2iX/tmM9sxrn33sXTl+hw+ROwyHdl3tHbKT3fRdbG/JWCr6WH8
+	/rqXsyN41za3E5v+XhyZ9qCFQEMXAQoFa0KF+Etx1WpYCx243JSveXZZQYE+XVVeigZuWEu5ltlHd
+	lNphoSWpw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jIUhC-0005aa-80; Sun, 29 Mar 2020 09:57:34 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1jIVCz-0007ga-Rg; Sun, 29 Mar 2020 10:30:25 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jIUh7-0005ZD-3v; Sun, 29 Mar 2020 09:57:31 +0000
-Received: by mail-wm1-x344.google.com with SMTP id d1so17797022wmb.2;
- Sun, 29 Mar 2020 02:57:25 -0700 (PDT)
+ id 1jIVCo-0007Zo-SF; Sun, 29 Mar 2020 10:30:17 +0000
+Received: by mail-lj1-x241.google.com with SMTP id k21so14747145ljh.2;
+ Sun, 29 Mar 2020 03:30:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=X5/ybwGZw15O183cB6hxraMKImcCya/+VsT5AgJC+wk=;
- b=PlBBbPjoSfFFs7coNzHn9y18vAv7tg8/gEY0ie5YIkK13kmI6SbdzQoLrfMgSy8Rm5
- M6+sZHbgLbuUP3x7Yi4JOEBmBfnVda+LdwY0Bj/l8h0ZA7GwdUMMPV9FgLFKvYJaQfy9
- dD02x2Np6E67W8gO2RBaVF56KZAtqp1CEFtuUIbWKhYVCXseO4V7/kzmWJsWVWZ9RPT2
- MTCiMRujzIQ9JvGhJ3qoItKdllyaL5MnMUvQlC6O810X5BaS9f5mhH3x/grKuoDdvGDe
- vVpv82zY7bvOSu48mbqHv8jw67oBX8GWFwfg19KElJa2K4zU3TB3rSUoXgPMAwgFG8Mf
- gAFQ==
+ h=sender:from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=N3NqZnJ/CxQz+vgNsvaAHWGkQWp4JEs+xGk3PJVLusw=;
+ b=W+6jrG6CBhLnlYGkAOJDbZ7SHq4ouY7T1YUPiP9PcofJuFJgtKpaaFWbkA6mhqr3w5
+ wXhxJcdc+ZOSitnxl3+MEfB5kQHpDvIZuX8O3OfvkCmtxAUBgR6LnCh+0fpxuhcDIs5P
+ QI1r+lSrE9ONAI2VwG86GljK+V0i+afoN+uI4Yg8rjIjdskpBqE2HcAwyLDhRWeYKWNP
+ waa4sRGz04xikLcM5l5fgiptWD1YkkL80G8q2RI8iHvkN563BB+d3uVhst6G3CPAZSvn
+ WLQvNalAXxnUfrGm5flsL94DudT1AjPE0XUPY678Ck0S9IguY0hdAc6KkBoy7oe6kkA/
+ Z5NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=X5/ybwGZw15O183cB6hxraMKImcCya/+VsT5AgJC+wk=;
- b=Tk0etenGsGOKRLacFjtKIRikOMrrI4Sd1zd+0ASJfIIbUY5FufY3LIf8btDxTUCgd5
- 9SsffS0v9TIu3Yv8/3iOi27T3/riDaXwVuy+/EnkzIYepoij51uw4/6SOWyEgNo76FKS
- 36N4FfXpLEyU3XqqJpEu9Sv1Yo1b2KT66dNmyYBW6DUM9d4WYusyb0UgnpWxeOSkzFa+
- qVDY/30tsZ655cWcOeVi47oIzKhAZQcXNfOzWd8tnI2OTA+M1Q70NN7UUmEJtUVj3ukV
- KUM4/cGvviNxPRfSg3SWua+0M66RPfwJh75EN48kKEu3uyMFhe3ELFCjn5XZJjDCZozR
- KEXQ==
-X-Gm-Message-State: ANhLgQ280r53lBhwfOJnKpet8BoY1z413ZmTT/0Aj+I/SMuKe47iB3W1
- KL4eK9O1BZXkB1bIuvN7cc15ZED+4U2Baq5K4z0=
-X-Google-Smtp-Source: ADFU+vt/KWuDksi8mUndNDmzSr2QWqqKzTuw0aQvhAAxtapcUeVPe+tjCaP46IlOCkv0ET3XIlL1gz6wNhFoqGMdrKY=
-X-Received: by 2002:a1c:1942:: with SMTP id 63mr4990909wmz.133.1585475844683; 
- Sun, 29 Mar 2020 02:57:24 -0700 (PDT)
+ h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
+ :date:message-id:mime-version;
+ bh=N3NqZnJ/CxQz+vgNsvaAHWGkQWp4JEs+xGk3PJVLusw=;
+ b=s9V2yIHDsOnaaJuV3+RbH3E0X6+n6H2NIqX0RafjGEKWZhl92dhZx/igEnxw8UhGqP
+ qZZFwmWZqRQ+k5jZphzQEs1xIVwGmZbO1BgamsplF2+yvgtc1m+7EBSTkBS/WQ+lqp3J
+ a+RIunxXRGZitcqhOBw6DHM5L7WKK3Sh9yrf0gvpFg9Coz0uO9lsr6dK31b53UOERUFO
+ kJX4/Uk9CiXzohcOky3RexDM5/rZ1TUvAVq1WvZUI51ELPxRMBZbKGMg5xWJEi5K83uw
+ 7qicNCQuTSjEf8vDsVKPbg/PE8JUiMqyA5mAGo+P1QReodthb7ZFb9cYjn2txtsDKkhc
+ zecA==
+X-Gm-Message-State: AGi0PubNK1rPTxBQxHT8hiJsMsVyVRBKSrQlxvLiyOZPRJcxG8RjltuM
+ tpMBGk1UV7ZsR+RvCX9ciUo=
+X-Google-Smtp-Source: APiQypL26pRPoTg8hmK0zo9sxRXo65MAqpvyF6aUMysm+aHZ4u2UZCTAa1IwphYZOi+xJmhaZznDkw==
+X-Received: by 2002:a2e:9146:: with SMTP id q6mr4211254ljg.240.1585477810916; 
+ Sun, 29 Mar 2020 03:30:10 -0700 (PDT)
+Received: from saruman (91-155-214-58.elisa-laajakaista.fi. [91.155.214.58])
+ by smtp.gmail.com with ESMTPSA id r10sm5229827ljk.13.2020.03.29.03.30.09
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Sun, 29 Mar 2020 03:30:10 -0700 (PDT)
+From: Felipe Balbi <balbi@kernel.org>
+To: Neil Armstrong <narmstrong@baylibre.com>, kishon@ti.com,
+ khilman@baylibre.com, martin.blumenstingl@googlemail.com
+Subject: Re: [PATCH 00/13] usb: dwc3: meson: add OTG support for GXL/GXM
+In-Reply-To: <20200324102030.31000-1-narmstrong@baylibre.com>
+References: <20200324102030.31000-1-narmstrong@baylibre.com>
+Date: Sun, 29 Mar 2020 13:30:06 +0300
+Message-ID: <87369rfo7l.fsf@kernel.org>
 MIME-Version: 1.0
-References: <20200319203427.2259891-1-martin.blumenstingl@googlemail.com>
- <20200319203427.2259891-3-martin.blumenstingl@googlemail.com>
- <CAKGbVbtKqdCEcawkjG=7TRd30df6GJ+gagV_JegntyqRpzC4cg@mail.gmail.com>
- <CAKGbVbvAvk0L5sGQmuqfxeL6AwtVnSsYyCp6YBYV6ZHKepWBXg@mail.gmail.com>
- <CAFBinCDUhVaky6EUA7dOAhAZM9itbydQ+w=0P-1m2u0o0HUUeA@mail.gmail.com>
-In-Reply-To: <CAFBinCDUhVaky6EUA7dOAhAZM9itbydQ+w=0P-1m2u0o0HUUeA@mail.gmail.com>
-From: Qiang Yu <yuq825@gmail.com>
-Date: Sun, 29 Mar 2020 17:57:13 +0800
-Message-ID: <CAKGbVbsHXUhpaU34ovRPqc51LSavERUzMySx3hG7AqdO-oobHw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] drm/lima: Add optional devfreq and cooling device
- support
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200329_025729_186446_70D8F836 
-X-CRM114-Status: UNSURE (   9.49  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200329_033015_912855_35B6B6A6 
+X-CRM114-Status: GOOD (  15.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,48 +91,102 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- linux-pm@vger.kernel.org, David Airlie <airlied@linux.ie>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Steven Price <steven.price@arm.com>, linux-rockchip@lists.infradead.org,
- Chen-Yu Tsai <wens@csie.org>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: multipart/mixed; boundary="===============5994350478904330459=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-I'm not the maintainer of patch 1 file, so please contact:
-  - Rob Herring <robh@kernel.org>
-  - Maxime Ripard <maxime.ripard@free-electrons.com>
-  - Heiko Stuebner <heiko@sntech.de>
-to review and apply patch 1.
+--===============5994350478904330459==
+Content-Type: multipart/signed; boundary="=-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-Regards,
-Qiang
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Mar 28, 2020 at 6:20 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+Neil Armstrong <narmstrong@baylibre.com> writes:
+
+> The USB support was initialy done with a set of PHYs and dwc3-of-simple
+> because the architecture of the USB complex was not understood correctly
+> at the time (and proper documentation was missing...).
 >
-> On Sat, Mar 28, 2020 at 9:40 AM Qiang Yu <yuq825@gmail.com> wrote:
-> >
-> > Applied to drm-misc-next.
-> thank you!
+> But with the G12A family, the USB complex was correctly understood and
+> implemented correctly.
+> But seems the G12A architecture was derived for the GXL USB architecture,
+> with minor differences and looks we can share most of the USB DWC3 glue
+> driver.
 >
-> regarding patch #1 - can you apply this as well?
-> patch #1 just takes this midgard change [0] and ports it to utgard
+> This patchset refactors and adds callbacks to handle the architecture
+> difference while keeping the main code shared.
 >
+> The main difference is that on GXL/GXM the USB2 PHY control registers
+> are mixed with the PHY registers (we already handle correctly), and
+> the GLUE registers are allmost (99%) the same as G12A.
 >
-> Thank you!
-> Martin
+> But, the GXL/GXM HW is buggy, here are the quirks :
+> - for the DWC2 controller to reset correctly, the GLUE mux must be switch=
+ed
+>   to peripheral when the DWC2 controlle probes. For now it's handled by s=
+imply
+>   switching to device when probing the subnodes, but it may be not enough
+> - when manually switching from Host to Device when the USB port is not
+>   populated (should not happen with proper Micro-USB/USB-C OTG switch), it
+>   makes the DWC3 to crash. The only way to avoid that is to use the Host
+>   Disconnect bit to disconnect the DWC3 controller from the port, but we =
+can't
+>   recover the Host functionnality unless resetting the DWC3 controller.
+>   This bit is set when only manual switch is done, and a warning is print=
+ed
+>   on manual switching.
 >
->
-> [0] https://cgit.freedesktop.org/drm/drm-misc/commit/Documentation/devicetree/bindings/gpu?id=982c0500fd1a8012c31d3c9dd8de285129904656
+> The patches 1-8 should be applied first, then either waiting the next rel=
+ease
+> or if the usb maintainer can provide us a stable tag, we can use it to me=
+rge
+> the DT and bindings.
+
+it's unclear to me if this series is ready to be merged. Can someone
+confirm? If it is, can you resend with all reviewed by tags in place?
+
+Thanks
+
+=2D-=20
+balbi
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEElLzh7wn96CXwjh2IzL64meEamQYFAl6AeK4ACgkQzL64meEa
+mQaBrg/9HlcRQjYQsutKmZuRscMQWwFrkkYrNIRYUYOM13FibjrTl8YEv/ocy2Gk
+huJi0X7JUcERQoCZsvkP6aORdnZ7LNdc/qLJ8uuaBGWCYcIy1uHZnMbqLsESrIXr
+VaSBjW9v4Qon/YAKnQbb3JTo2sa9yBOdaJx4B/t0g0ke4QD2zaF9g+8UsAgU8HQX
+DyE89wAn92AC399gPwF4U6xIPEXSHesRH4dSFcFajiaIEfG/rTleN+gZZYy/1Jag
+owp+mE38Gr3nvNeYRUNsW5vJVibvVKv8pTv6CO4CZj3ZuACLqAm/zHmHZS1ML/pV
+QoU02X9uK8O6hLl/coAvDQwwou9fvJ9c68dbgdkRMGC9M4Y0QqDkjYEWdyAHgdZN
+TE0wmGkOZvVTrEorWSyrUDQGDSwp/mFJinYnAVMuZZPfLEHala6uUpojD1dvuCvj
+A7Ljwj5ya84mbY+D5RbAoWfFayeDMoJcla7HHtz0wb9g+WzV6JwhZVJP4vaLbDDw
+EeeSt6vBXOuh24lFVcGeKwrACbT38z9c+ZrbBKujrkYERR3zC5jQsoudxI2nSgb9
+U/dew4yKRT1VUbK8y+mbneesrFSDcPDZO+uTkoKzSdW6NnbWM0Lnc2klmt1iYrYa
+aplBe2DwyMcCIBFfqQo4NYj0HMzFzGqeG7qxX2E+0vI661nDE+k=
+=LsIt
+-----END PGP SIGNATURE-----
+--=-=-=--
+
+
+--===============5994350478904330459==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5994350478904330459==--
+
