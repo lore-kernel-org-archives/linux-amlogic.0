@@ -2,89 +2,92 @@ Return-Path: <SRS0=cow0=5P=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 45EC9C2D0F1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 22:11:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CEB3C43331
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 22:11:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B2A220784
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 22:11:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1FD5A20771
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 22:11:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="t/6GQ3D6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="rLucE9/R"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B2A220784
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nYbvkfqm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="EF4TwF51"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1FD5A20771
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GIgFLF0X38SV/rASkfhHE0HcnI7AlLCpsWEgqnPHCZg=; b=t/6GQ3D6PT9jeX
-	LNS3jGkjkMrThln3gW53uPEcCRudrGCpxNcmp0AQaGTJ3d1wEnxdNC5pxPtJfVCJCAUrOPLXfP4/j
-	kdOcnJcb59775aNcb78w0lJIN/s2a3ZIYonXaejSU47IX8b2NcriAPUhF3dyYdqyW4Qj8TpuOtSd5
-	/y/Fm69P3dgYiNfIm/KFAJHoP3QxzHwGN0ZE7CrpTvgxmkKvUNXyGLMdtwZ34tUnv/f2nqgRlt72t
-	JZ2GLdU6hHCh3ESRysdsqDY6zrEY4X1NOaR5g7sdSXkA3+YbwcqQBQn7L8WTgst4yUAoU+CZo+x6m
-	3eZZoNd6Jl7ByC+YmqXA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7H648Qfv+ph/Ex0/dD6kBmaeDSq1gngsW62DyD/WDD4=; b=nYbvkfqmOfkAyQ
+	PYubh/sVOCFfA3K/XvgpGaFkbktFjEXCJs1XNbEhoPFyHfpyIh7lAUnDkniUW1Jo3neoU+TxkWKtq
+	oDNIAqkFtOFHTp1L6KTREPGwb4AlaCW2lFSIy8V/qspcc8FvAWsGgYWqKRqmCwXwR9H2m8Q5YaIUl
+	H2TW8BDvhgS/Gxvz1dvLREXrrXB2eOzD2/Nkp/L80Ux/6x1zBvw67ngM07KtmjZaw7SvFhairWvES
+	wFjGIzKcXSWvRj0FVZNIL/3dMKJCta/dPaBdTr6kTJ93yDZ9q+RxZFbcKqqLmUBFH3TicpP0O7Fhf
+	9kvGIHN+g4hBxaeNRUSA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jJ2d2-0001ke-Oh; Mon, 30 Mar 2020 22:11:32 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jJ2dK-00021B-Tr; Mon, 30 Mar 2020 22:11:51 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jJ2d0-0001jR-5q; Mon, 30 Mar 2020 22:11:31 +0000
-Received: by mail-wr1-x443.google.com with SMTP id 65so23611616wrl.1;
- Mon, 30 Mar 2020 15:11:29 -0700 (PDT)
+ id 1jJ2d1-0001jY-9X; Mon, 30 Mar 2020 22:11:32 +0000
+Received: by mail-wr1-x442.google.com with SMTP id 31so23568673wrs.3;
+ Mon, 30 Mar 2020 15:11:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=2VkoQedczWLBus6tX3n5y4wQRH1ftctG/cF/BNNp5TE=;
- b=rLucE9/RYbxcQsiwyj8s+DMFOnyqScGjogDDQTt/ysPfoWFsvldH4Eb5BFVYuF1K3Y
- Nb0YBeTl4mWGVBP84wku6pbJvTZvSP/br/lx95SLIIWji2b83He3DMHuRnNgM3tmVQgj
- gQBj9BhZyYl9DONJppZ/Cqa71rjlTqM612S3YnpPtokD32kmU7J79ZvVjoHyuuRFZtj0
- c9YVfGzaNMJ0GjNRwAuIsl5RKkfxf4Jc9I42GUpAMvpoDT1RxHhHWb32MdREz/TO2i6s
- i7OJVW5mfJWPrWY3l8xLtUjpDMFMx0q0GV1rzN5I+gztT1PCQ0hPwl1zAG2LfXwX0rG2
- ymZQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=PKd+/SwaFc/8uopc54d2zl4DkYvufR8oUaq7MhGEZW0=;
+ b=EF4TwF51AfUN1lIwRYek6+eBZzsQcUmm8bYWbbXGb2mnRZLl1bp+BFHcJbg2P+stbv
+ NFnVkDzaV5X/I1su61qbHRah5jskYUf8kzjpDHNCjDHsl+rLSdm2aNoiJHyHtUwCWlGb
+ laEVNC+Lv9Y6JUG3Dm0b2NdJ1OOB7+C0q7JHoFjrKJJlk2OKm4D9OdSM+K3TIPl9PnqJ
+ a+XHAid03t4cTctRHHHdyUgvwvRMn1GUeHsB8hQYKgRFEcto6iQQc4cV83R+otSC1b61
+ cavCZ78jaDH7OScxrngocBBYwK5PTlB9YVMNqmftrhkqdokN79IZHIkPZIHP06aKzdga
+ BaAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=2VkoQedczWLBus6tX3n5y4wQRH1ftctG/cF/BNNp5TE=;
- b=flv3QJlYTvB3mnGNsaDw1D/lIPpkpGpb7lcjei3R0htpKl0yyEQp15ri0cfUQ0M8rS
- Z1NJcpppcFYCqt0nd1HhksPdIrEtVxhRUpESNW+wTJH5kkE3YkbJGn3+xjYCLytiicxG
- bvySgIERn5UBzpvMFcsQQaA7DkgRJQ+MMQYQObbadqc2/BJLsNvQyWHDxnq32DzroWnI
- Y3EbRSJS103UBOAktHk7yqoQuW3SzyDzZI0j67Mi0oTfEVw6BD/FKL0iRQJgAycAZz4T
- yZB1E/9DvuY74wVCJNvaXcVCokuijzHcx+l/RtWMFBhjj2znJKbi5zIK+kFRGvGX8KsZ
- Y2qQ==
-X-Gm-Message-State: ANhLgQ1h4HDmo7fP4nvtGHvqpXHr/W5ldGo/A20NGg9wlzJJmbrHOYm7
- wZX+hxMAvB54uYL25hozQL3imRl5
-X-Google-Smtp-Source: ADFU+vt3Xdhd1l9/VCPq5miOEsLgn0jBbyBbBYz0y9zmPaIrN6jUxlNqvubLbBoVAA2/eXbmEAb3mw==
-X-Received: by 2002:a5d:4401:: with SMTP id z1mr16739067wrq.259.1585606288271; 
- Mon, 30 Mar 2020 15:11:28 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=PKd+/SwaFc/8uopc54d2zl4DkYvufR8oUaq7MhGEZW0=;
+ b=E2+Yord0dJio6LcbjErvoIBwVA1YcmXhT1Y+lBqnzrTFjUCrhWGyvzuf8ktM+lizXE
+ 17gdT7PSkjI2iBzX4R79ztWLZxh30IE9CldypVQpUcnICdGSrS38RNBgB43h/rCJmRhj
+ VOH8vK+QQkfC4hFuPdFcqGGrr3D3TlgDSLdfVfwSl+9gNGQj69fnQEddmaXRaYeNqO6D
+ qpZQPoBkUVCMpnJzYZ9gc3wpCr2UBwQe0LXAF7ZEdlGzH5qzNgSwOC7PGwEs62HtUIzx
+ 0zLfm5dzmv3KoPbRx86qxvk7Ka/+bK61cqxFQsylTtI7ljtBrvt0/WJ1E0Ys+0mjoM/3
+ BZxg==
+X-Gm-Message-State: ANhLgQ3yY1vyeN4xisRUWP707JTee1AMiCn6/+1Wq5Y7u9Q9XAzFImZo
+ /ueqmZedwdUM+UiRyDAN5J3zF28G
+X-Google-Smtp-Source: ADFU+vuzqjpSAFP9jLZ0jvH6APY0YiXy3oxdro+kCvlvWkDnfGPkNvMs4WdyNjCnUsk3/+L+tWmfGA==
+X-Received: by 2002:a5d:630b:: with SMTP id i11mr16188951wru.94.1585606289301; 
+ Mon, 30 Mar 2020 15:11:29 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300F13710ED00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:3710:ed00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id b187sm1260509wmc.14.2020.03.30.15.11.26
+ by smtp.googlemail.com with ESMTPSA id b187sm1260509wmc.14.2020.03.30.15.11.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Mar 2020 15:11:27 -0700 (PDT)
+ Mon, 30 Mar 2020 15:11:28 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, khilman@baylibre.com,
  jbrunet@baylibre.com, narmstrong@baylibre.com
-Subject: [RFC v1 0/5] GPU DVFS for Meson GXBB/GXL/GXM/G12A/G12B/SM1
-Date: Tue, 31 Mar 2020 00:10:59 +0200
-Message-Id: <20200330221104.3163788-1-martin.blumenstingl@googlemail.com>
+Subject: [RFC v1 1/5] clk: meson: gxbb: Prepare the GPU clock tree to change
+ at runtime
+Date: Tue, 31 Mar 2020 00:11:00 +0200
+Message-Id: <20200330221104.3163788-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200330221104.3163788-1-martin.blumenstingl@googlemail.com>
+References: <20200330221104.3163788-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200330_151130_219474_C5ED7B76 
-X-CRM114-Status: GOOD (  11.07  )
+X-CRM114-CacheID: sfid-20200330_151131_330891_E5968C1F 
+X-CRM114-Status: GOOD (  14.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,47 +107,125 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now that we have GPU DVFS support in lima [0] (queued for Linux 5.7)
-and panfrost we can make it work on Amlogic SoCs.
+The "mali_0" or "mali_1" clock trees should not be updated while the
+clock is running. Enforce this by setting CLK_SET_RATE_GATE on the
+"mali_0" and "mali_1" gates. This makes the CCF switch to the "mali_1"
+tree when "mali_0" is currently active and vice versa, which is exactly
+what the vendor driver does when updating the frequency of the mali
+clock.
+Also populate set_rate requests from the divider to the mux so the GPU
+clock frequency can be updated at runtime (which will be required for
+GPU DVFS).
 
-The first two patches update the clock drivers to allow runtime
-frequency changes of the mali clock tree. This is similar to what I
-have implemented for Meson8b/Meson8m2 already.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/clk/meson/gxbb.c | 40 ++++++++++++++++++++++------------------
+ 1 file changed, 22 insertions(+), 18 deletions(-)
 
-The remaining three patches add the GPU OPP tables to the .dtsi files.
-I decided to remove code duplication for the Mali-450 GPU on GXBB and
-GXL so it will be easier to maintain this. This refactoring is part of
-patch #3. Patches #4 (GXM) and #5 (G12A, G12B, SM1) are straight
-forward; it replaces the hardcoded clock settings with the the GPU OPP
-table.
-
-I used the userspace devfreq governor to cycle through all available
-GPU frequency settings on GXL, GXM and G12A (which covers all relevant
-GPU driver and clock driver combinations). I have taken the GPU OPP
-tables from Amlogic's 4.9 vendor kernel and the voltage settings
-(opp-microvolt property) from the public dataseheets for all SoCs.
-
-
-[0] https://cgit.freedesktop.org/drm-misc/commit/?id=1996970773a323533e1cc1b6b97f00a95d675f32
-
-
-Martin Blumenstingl (5):
-  clk: meson: gxbb: Prepare the GPU clock tree to change at runtime
-  clk: meson: g12a: Prepare the GPU clock tree to change at runtime
-  arm64: dts: amlogic: meson-gx: add the Mali-450 OPP table and use DVFS
-  arm64: dts: amlogic: meson-gxm: add the Mali OPP table and use DVFS
-  arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS
-
- .../boot/dts/amlogic/meson-g12-common.dtsi    | 49 ++++++++++-----
- .../boot/dts/amlogic/meson-gx-mali450.dtsi    | 61 +++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   | 51 ++++------------
- .../boot/dts/amlogic/meson-gxl-mali.dtsi      | 46 +++-----------
- arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    | 45 +++++++++-----
- drivers/clk/meson/g12a.c                      | 30 ++++++---
- drivers/clk/meson/gxbb.c                      | 40 ++++++------
- 7 files changed, 189 insertions(+), 133 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gx-mali450.dtsi
-
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 5fd6a574f8c3..0a68af6eec3d 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -957,7 +957,9 @@ static struct clk_regmap gxbb_sar_adc_clk = {
+ 
+ /*
+  * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
+- * muxed by a glitch-free switch.
++ * muxed by a glitch-free switch. The CCF can manage this glitch-free
++ * mux because it does top-to-bottom updates the each clock tree and
++ * switches to the "inactive" one when CLK_SET_RATE_GATE is set.
+  */
+ 
+ static const struct clk_parent_data gxbb_mali_0_1_parent_data[] = {
+@@ -980,14 +982,15 @@ static struct clk_regmap gxbb_mali_0_sel = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mali_0_sel",
+ 		.ops = &clk_regmap_mux_ops,
+-		/*
+-		 * bits 10:9 selects from 8 possible parents:
+-		 * xtal, gp0_pll, mpll2, mpll1, fclk_div7,
+-		 * fclk_div4, fclk_div3, fclk_div5
+-		 */
+ 		.parent_data = gxbb_mali_0_1_parent_data,
+ 		.num_parents = 8,
+-		.flags = CLK_SET_RATE_NO_REPARENT,
++		/*
++		 * Don't request the parent to change the rate because
++		 * all GPU frequencies can be derived from the fclk_*
++		 * clocks and one special GP0_PLL setting. This is
++		 * important because we need the MPLL clocks for audio.
++		 */
++		.flags = 0,
+ 	},
+ };
+ 
+@@ -1004,7 +1007,7 @@ static struct clk_regmap gxbb_mali_0_div = {
+ 			&gxbb_mali_0_sel.hw
+ 		},
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_NO_REPARENT,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -1020,7 +1023,7 @@ static struct clk_regmap gxbb_mali_0 = {
+ 			&gxbb_mali_0_div.hw
+ 		},
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -1033,14 +1036,15 @@ static struct clk_regmap gxbb_mali_1_sel = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mali_1_sel",
+ 		.ops = &clk_regmap_mux_ops,
+-		/*
+-		 * bits 10:9 selects from 8 possible parents:
+-		 * xtal, gp0_pll, mpll2, mpll1, fclk_div7,
+-		 * fclk_div4, fclk_div3, fclk_div5
+-		 */
+ 		.parent_data = gxbb_mali_0_1_parent_data,
+ 		.num_parents = 8,
+-		.flags = CLK_SET_RATE_NO_REPARENT,
++		/*
++		 * Don't request the parent to change the rate because
++		 * all GPU frequencies can be derived from the fclk_*
++		 * clocks and one special GP0_PLL setting. This is
++		 * important because we need the MPLL clocks for audio.
++		 */
++		.flags = 0,
+ 	},
+ };
+ 
+@@ -1057,7 +1061,7 @@ static struct clk_regmap gxbb_mali_1_div = {
+ 			&gxbb_mali_1_sel.hw
+ 		},
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_NO_REPARENT,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -1073,7 +1077,7 @@ static struct clk_regmap gxbb_mali_1 = {
+ 			&gxbb_mali_1_div.hw
+ 		},
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -1093,7 +1097,7 @@ static struct clk_regmap gxbb_mali = {
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_hws = gxbb_mali_parent_hws,
+ 		.num_parents = 2,
+-		.flags = CLK_SET_RATE_NO_REPARENT,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
 -- 
 2.26.0
 
