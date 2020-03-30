@@ -1,85 +1,78 @@
-Return-Path: <SRS0=Hgg4=5O=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=cow0=5P=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B5E36C43331
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Mar 2020 10:36:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 105D2C43331
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 07:10:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 89E0F20675
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Mar 2020 10:36:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D6C0B2073B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 07:10:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ebm1rcDW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZKWeswJz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 89E0F20675
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aEkrsWYg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nifty.com header.i=@nifty.com header.b="1sthGaoH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D6C0B2073B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=T8JIKv+ti3ODZrlBSbm7VEf/Mzos0dVc6V0VYL9wzTk=; b=ebm1rcDWsOD57rg0B7Dy2xbIp
-	M4WF8O3sOCT46iUyG1CDZm6c09VJOntCECQ4P7PSfKW0KQ0OPL7LJ/25WvAbqrGJjnaD2+fegV/vQ
-	m0aFNqrORdrSmUSk/YOd6fVYMqMjYr3fKtHKd+GCSuuyTBlRmg2+gNLkksHr23oga6mWjrFczVrDH
-	Ohb9QCq6QgH4bZI+jDZRUIBlPvkjeTeoRrxqr0hb5WuxnIjzimaDiFdgQ63DB4B5tiaSmGVv+F3YE
-	FrOXibdXN8ARfKEpuEts/BVYNAqN/uteKRgoRe/tg/vJY0cTjrVu5kVsoWo8gmeuplr5seQPpIjpd
-	A8ACCAJbQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8jQakK1uoQHNMBwYo2+6VpDQz+Ak59rEYFtNVTQ437w=; b=aEkrsWYgS8BJgr
+	vhJv5cbQdm3D5WHY66L09QEvkHLw/X6ToTYWei/xv2nFtZ54R6cwZdu3lgIOzk8wKLLjLgpVj4ZBG
+	xaIEaePSkaxrA+DvqW9PchaXyHIPTikcZEHtiqqNF+lQFPmiLIswpjr9u+dHRR899LURCNeIm+wjw
+	aTrlXvyLkeY3H8REcW7DrkGVCh2HKOncFSUwoq0RbWGZ3LvdcTZf/VE6lh5zmDUq49IG4adZfRRyX
+	RmD18ZkKaLVDYrhIoR1fw4K55nyhGfrbt2UQomu/EIo3HV2FMTQjy+/qzyicvv0KNFq89UKNBRDB7
+	Aau0hJL6wvp+xQ0bhAxQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jIVJA-0001RN-P7; Sun, 29 Mar 2020 10:36:48 +0000
-Received: from mail-lj1-x244.google.com ([2a00:1450:4864:20::244])
+	id 1jIoYw-0003qU-Se; Mon, 30 Mar 2020 07:10:22 +0000
+Received: from conssluserg-03.nifty.com ([210.131.2.82])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jIVIy-0001HA-Dh; Sun, 29 Mar 2020 10:36:37 +0000
-Received: by mail-lj1-x244.google.com with SMTP id t17so14733475ljc.12;
- Sun, 29 Mar 2020 03:36:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=cEsIe8nn/S1lT0wrpqG10UN56pPApRKTKN29r4c4Uu8=;
- b=ZKWeswJz2TjBGfAJe3HbiPdCAr3SAOh2sPYa0TzzpncnDPFVrILal0hxoCJog0t8uW
- Ksu4ct+oISI8eYATUgwqFuctJVD+KM7iKyZxVXe6YYDS4CZdzrQz1vO69vhpLgDNTOnC
- hDj0hOnVAqkxHlO8Xmejq8lhPxTij/tFHZdUk9SoBRTyC6c4LRMIGBl5EBpvcy8zXG/u
- fRTlspMAYfdgBtudbe90nhcleTSmtaNEOLtkQwXErND9RjiUQAyk3IZv0FB6ev9pfkWG
- uRLIRt55E0sMNw78VnDLg9bTubhpd4oEruWQPDd1RTBqejrRw8hMrd52fbX/Y9hPVl3I
- intA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
- :date:message-id:mime-version;
- bh=cEsIe8nn/S1lT0wrpqG10UN56pPApRKTKN29r4c4Uu8=;
- b=d/YCYsG4n81juTajP85kt00hE7qxyEOaN9KdTNxHdaLzdCf3rRWuW8vLGENPH/3eRF
- E1oo+pCqa5rPRjS1FDTJmfJhFBjqtwcIWUTReR5RxWwTAd1KIklV+BKNM7DT77Du1SN8
- PAAOClt5KP5WZJoSvKu1WvQRlqFsSkespS4xTtZdtHIF7wpMcuE/5B3SHzLiyb7HLwhp
- x5mlqxSNXlf24VVXtNmyNSe1WHqlclAONyAarVwvvYHmeKP/Mlp0vE8RLPwkxO1j0MBR
- OX0DFKqHG/My9LbswjgXj3Au8ERzwoQsQqsQd+j/JuPTyOkp7uKAU92HVbF7xiEIVs5g
- z7Kg==
-X-Gm-Message-State: AGi0PuZZNhA2S//Bfw42wSnvjzHpw22tzRbETcgfqiierknGCjw2fnPi
- Aw8iuTGaU+fB4PmtBtNBUAWnWPt6xMh9Yg==
-X-Google-Smtp-Source: APiQypJThIFhVwSBsidNoBC3qKZrQY2GoxPRqD+WnxsypL80S0UNgy5WV/AaIIZEVzJM6IJFC8PXkw==
-X-Received: by 2002:a2e:8954:: with SMTP id b20mr4134503ljk.176.1585478194949; 
- Sun, 29 Mar 2020 03:36:34 -0700 (PDT)
-Received: from saruman (91-155-214-58.elisa-laajakaista.fi. [91.155.214.58])
- by smtp.gmail.com with ESMTPSA id k3sm5332976lji.43.2020.03.29.03.36.33
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Sun, 29 Mar 2020 03:36:34 -0700 (PDT)
-From: Felipe Balbi <balbi@kernel.org>
-To: Neil Armstrong <narmstrong@baylibre.com>, kishon@ti.com,
- khilman@baylibre.com, martin.blumenstingl@googlemail.com
-Subject: Re: [PATCH v2 00/14] usb: dwc3: meson: add OTG support for GXL/GXM
-In-Reply-To: <20200326134507.4808-1-narmstrong@baylibre.com>
-References: <20200326134507.4808-1-narmstrong@baylibre.com>
-Date: Sun, 29 Mar 2020 13:36:28 +0300
-Message-ID: <87v9mne9cj.fsf@kernel.org>
+ id 1jIoYt-0003pV-Q1; Mon, 30 Mar 2020 07:10:21 +0000
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com
+ [209.85.217.44]) (authenticated)
+ by conssluserg-03.nifty.com with ESMTP id 02U79xRc029741;
+ Mon, 30 Mar 2020 16:09:59 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com 02U79xRc029741
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+ s=dec2015msa; t=1585552200;
+ bh=ln1CQt+YaUVnJf/8SbMK3iPTVvG1KE5EE/FUul8MWQc=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=1sthGaoHw8qoSp3F/D3eH8NqZjk++zLNoSrFExAge5M5k4o6izC7znUZmDsjrR95d
+ 3LRi45OyZDxUKTfu4A/3P4aV5+yY39DtCxwP5T2nox/GAPp7PJ3ZaF7u226D4E6kMs
+ pxp3tchjSZY1dsGYXfpp7Fyf63ssOrWN+V8tr3iI8kkkZhdSc6hQrcCJehpowCH1tV
+ t5Ybjs0wWAwMh0SzhZruoB9o66WBYJD1t+qP7ZqRNrr7efxFSXjCoLMubpsREjCj3w
+ uh2OG10xugvGzdVuKY1o+FeM5bjbz3bVeCv27FcaCEJ6WsaSLhERu5H58t5BiMZ2Xi
+ G3vbpTZyiHDew==
+X-Nifty-SrcIP: [209.85.217.44]
+Received: by mail-vs1-f44.google.com with SMTP id j128so10319668vsd.6;
+ Mon, 30 Mar 2020 00:09:59 -0700 (PDT)
+X-Gm-Message-State: AGi0PuYXZQS+fQhfbbyeRQbcnksYHX4o4kpapq3/huuCXksEg895DOaj
+ t/NzCpAxYM5LJv+uWDXJZggJ2wDQ38Ai/wzEdQE=
+X-Google-Smtp-Source: APiQypLmGnB9GmkGFIr7L8MQtdRTKDMNPR3ere0jKX6O5/r2adqpWFQ5TPcwWpLgYxRGXDf4dZ6YCv27RE8dCFz54+s=
+X-Received: by 2002:a67:2d55:: with SMTP id t82mr7452280vst.215.1585552198446; 
+ Mon, 30 Mar 2020 00:09:58 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200325220542.19189-1-robh@kernel.org>
+ <20200325220542.19189-5-robh@kernel.org>
+In-Reply-To: <20200325220542.19189-5-robh@kernel.org>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Mon, 30 Mar 2020 16:09:22 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARJn4uugHxcjK+WOWBs0gPVZQsCu4y6M8hkNK1U5FehRA@mail.gmail.com>
+Message-ID: <CAK7LNARJn4uugHxcjK+WOWBs0gPVZQsCu4y6M8hkNK1U5FehRA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] dt-bindings: Add missing 'additionalProperties: false'
+To: Rob Herring <robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200329_033636_465737_DE497A70 
-X-CRM114-Status: GOOD (  17.32  )
+X-CRM114-CacheID: sfid-20200330_001020_102349_E1739945 
+X-CRM114-Status: GOOD (  11.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,108 +84,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: multipart/mixed; boundary="===============7948507919306609364=="
+Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-iio@vger.kernel.org,
+ Linus Walleij <linus.walleij@linaro.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Guillaume La Roque <glaroque@baylibre.com>,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Lee Jones <lee.jones@linaro.org>,
+ linux-clk <linux-clk@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+ Zhang Rui <rui.zhang@intel.com>, Brian Masney <masneyb@onstation.org>,
+ DTML <devicetree@vger.kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ Linux PM mailing list <linux-pm@vger.kernel.org>,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Stephen Boyd <sboyd@kernel.org>, Networking <netdev@vger.kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Hartmut Knaack <knaack.h@gmx.de>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Jonathan Cameron <jic23@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============7948507919306609364==
-Content-Type: multipart/signed; boundary="=-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
-
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-
-
-Hi,
-
-Neil Armstrong <narmstrong@baylibre.com> writes:
-> The USB support was initialy done with a set of PHYs and dwc3-of-simple
-> because the architecture of the USB complex was not understood correctly
-> at the time (and proper documentation was missing...).
+On Thu, Mar 26, 2020 at 7:06 AM Rob Herring <robh@kernel.org> wrote:
 >
-> But with the G12A family, the USB complex was correctly understood and
-> implemented correctly.
-> But seems the G12A architecture was derived for the GXL USB architecture,
-> with minor differences and looks we can share most of the USB DWC3 glue
-> driver.
+> Setting 'additionalProperties: false' is frequently omitted, but is
+> important in order to check that there aren't extra undocumented
+> properties in a binding.
 >
-> This patchset refactors and adds callbacks to handle the architecture
-> difference while keeping the main code shared.
+> Ideally, we'd just add this automatically and make this the default, but
+> there's some cases where it doesn't work. For example, if a common
+> schema is referenced, then properties in the common schema aren't part
+> of what's considered for 'additionalProperties'. Also, sometimes there
+> are bus specific properties such as 'spi-max-frequency' that go into
+> bus child nodes, but aren't defined in the child node's schema.
 >
-> The main difference is that on GXL/GXM the USB2 PHY control registers
-> are mixed with the PHY registers (we already handle correctly), and
-> the GLUE registers are allmost (99%) the same as G12A.
+> So let's stick with the json-schema defined default and add
+> 'additionalProperties: false' where needed. This will be a continual
+> review comment and game of wack-a-mole.
 >
-> But, the GXL/GXM HW is buggy, here are the quirks :
-> - for the DWC2 controller to reset correctly, the GLUE mux must be switch=
-ed
->   to peripheral when the DWC2 controller probes. For now it's handled by =
-simply
->   switching to device when probing the subnodes, but it may be not enough
-> - when manually switching from Host to Device when the USB port is not
->   populated (should not happen with proper Micro-USB/USB-C OTG switch), it
->   makes the DWC3 to crash. The only way to avoid that is to use the Host
->   Disconnect bit to disconnect the DWC3 controller from the port, but we =
-can't
->   recover the Host functionnality unless resetting the DWC3 controller.
->   This bit is set when only manual switch is done, and a warning is print=
-ed
->   on manual switching.
->
-> The patches 1-9 should be applied first, then either waiting the next rel=
-ease
-> or if the usb maintainer can provide us a stable tag, we can use it to me=
-rge
-> the DT and bindings.
->
-> Changes since v1 at [1]:
-> - Fixed DT bindings to take in account usb2-phy2 on GXM
-> - Added comment in patch2
-> - Fixed patch 5 and moved fix out
-> - Collected tags
-> - Lower DT patch changes, switch p20x-q20x port B as OTG by default
-
-patches 1-6 are applied to my testing/next
-
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEElLzh7wn96CXwjh2IzL64meEamQYFAl6Aei4ACgkQzL64meEa
-mQaamxAAwuHxU4drRBYL0UhnH4ujHmfw9zVuZeEVjxAf0eTeCXjxw0u76bgZlbm1
-z407kK9bU2znxIUFAEtYZ8SNuPQcnGkEkJBRIAKr9sBlcoqnVl0I6UCCgpAhZh0P
-/Mkpea+QjUrtIgojPkyM9xnxi42+JwBT6S+rGqgq9KulVVC5TzNWTY5b3IvlJinW
-7OruoTHahtfiVqSi5DOzzNRsWvX6R6JolMq8wsa1KOQiVnlB0GTLJFqf8TKrZgWn
-/PQpbbhk5MUnDgUTIaOWYbfcJrUZd4yt0kkgH8tO3jIH8getvK3JKgZcrsQQ2em6
-gmXrQ+o64TaJ+5RFNMJknhcMfnB5jKCAWj8FVHB2P/wOFt1eHu6XOIxBozraEkYW
-OEa+3RNEFilashPRbm7plsHlqQX98HpliM2+p7mtcgTjWKJeDRMiBc2RXqd8SKcp
-U7kwWYGv6BZ/EVncImIHgVJ2uTvriB+yeUuMVrZU8u/Rr3eRaOHikb/KJANh00k/
-UlpxS89UD2zAd+HT3BqVYuzvtoKJOYO8z0d6DlvV/bzaxSOpWoIFNEL8tGjGDRtu
-R9HlOcqhoi3amtqVFMR+huIB6ZQIcilLcNA+1mzxwq0qXyVNA+oyY2dskRhgoV+t
-kFZs/a6g4e5bN8HxaWdDeEdWgts/Cmz+A4PfCTsD26XKggaw8f4=
-=uyGs
------END PGP SIGNATURE-----
---=-=-=--
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
 
---===============7948507919306609364==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>  .../devicetree/bindings/gpio/socionext,uniphier-gpio.yaml      | 2 ++
+
+
+You may have already queue this up, but just in case.
+
+Acked-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+
+-- 
+Best Regards
+Masahiro Yamada
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7948507919306609364==--
-
