@@ -2,78 +2,93 @@ Return-Path: <SRS0=cow0=5P=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_2 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30AAFC2D0EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 08:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B26DC43331
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 14:41:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F3A6D20776
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 08:38:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 405F7206DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 14:41:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mZWa6igi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nifty.com header.i=@nifty.com header.b="0xApPfPk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F3A6D20776
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gbRMbBd6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tr4b75/5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 405F7206DB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=imNmuMncfUAjVTz7fUQ28ei1Vvg7NrPNiF+wYtWmVX0=; b=mZWa6igiUx4Ps+
-	Abq2IL9V/ZwStITmVvmsbmOHqtZvTqraMXQ7nZS5L5LC/YbplRL0VIvS4r+iBbibObVnxoqr2MD+Z
-	OhUsVS/Gl/AS8ifdrUsdEkxg6cRqa6LK0K0eKygp8y88ncnt2Gsx75QdN7G+CqgvkPpsmfWgvaWQg
-	WO80ruFfqa7Zj1xj8ZMhp7NLI86UNYV+DMHsPX1ZzPUJqcYI+Xp7f8j4zvrOMHYFex6fwjWM1WBPz
-	KDGZEQuhxG6SYr5rfKdXD/erPCG7kVOC+f97sBqyq9q3kyPV3JV0f86Ucn82ISNC/ThT/ttpeTrdG
-	PbxrmrAZRFUkGsorS7uQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=C83lXxqpuJti2AxnggTh/af4PYRSY+UPdPmlhb8AGjg=; b=gbRMbBd6Xf7dHbQqUheGnQAaG
+	kqpp/0JjFEH7BNXTfNNbeD7w/muOgEvLVHYfaRwtBHx0TH7ZxxavYFJ+xOXsTmvcP0W8j7qdgUF7B
+	ud6gO2q3K4vqx/s7vQu/qlGTz5Jkz02CsIIuzd7azcYVDvb0l+PVOeOsE/zfXureacUQ/wAdFHu/R
+	FCAe5iREd3j8odAggHMm2SROwN9un5HxtWluf6MaIJWkGxNZrCcxY864SKK1m+HGmOyxCGZBwE5XW
+	S1ii+nHQFyC4x0DzWXRX9PuEKNiZO4nG7pi316jiZedUUuSl+T3ajvrPYZpYMcYJNeQl0o9qI55cn
+	OrfYHQLBQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jIpw7-0003fK-Ga; Mon, 30 Mar 2020 08:38:23 +0000
-Received: from conssluserg-01.nifty.com ([210.131.2.80])
+	id 1jIvbL-0002N1-1f; Mon, 30 Mar 2020 14:41:19 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jIpw4-0003dy-Gp; Mon, 30 Mar 2020 08:38:22 +0000
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com
- [209.85.222.41]) (authenticated)
- by conssluserg-01.nifty.com with ESMTP id 02U8bmpK026269;
- Mon, 30 Mar 2020 17:37:49 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-01.nifty.com 02U8bmpK026269
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
- s=dec2015msa; t=1585557469;
- bh=PxRmu3HuDIYTqEJxiJ5PqE2LXmQuo3D9zlavzY5jVI4=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=0xApPfPkJT36UPQQQaEfop5fSpIUYhpTWJLaYsBRAX1aCRJBkhLj8njhainNsLg2u
- le1aIUtI2Hyttctt9YzGRcnqLNOc7g/Y9c4Na1L/JGvuFf2thLVQ741LWePwsQjQFd
- 8ZPMSTOZdGlMn4VNmVA2KbfUyWO+Sz2pYJ/jBeCAm0GUi7NTGZLfhnftW1BFNtVxVs
- koEoJ5f0KbkTsXz16CnGyQ7ncViAdnNVl8jmKxuBbcamfQTsAxEds+KrVZt30geLOY
- kJsfcs9LYjm9GBSAnVzp9co+bbmEgFTt5nSsOoUvG3dZWolfVaPo5nOdMoVsTdOBGm
- 6B1w6fQlsf19w==
-X-Nifty-SrcIP: [209.85.222.41]
-Received: by mail-ua1-f41.google.com with SMTP id l18so5973093uak.4;
- Mon, 30 Mar 2020 01:37:49 -0700 (PDT)
-X-Gm-Message-State: AGi0Puaf2LMixBWnF6GgASzJvmeuguv7JZcPVOHaqEVZ0bdf5ydhZXg/
- IRtoE8Bn/ARG65+0330capZcnYNu30PmUYZ3aFA=
-X-Google-Smtp-Source: APiQypJeTOypTow5s/orWLiqA+luxDBNhpwR1xE86uZ7tA8NnJnWdBsJgIswlbl89EaZoapGrF/J2WDHqcRU1fH6V1M=
-X-Received: by 2002:a9f:28c5:: with SMTP id d63mr6911883uad.25.1585557468135; 
- Mon, 30 Mar 2020 01:37:48 -0700 (PDT)
+ id 1jIvbH-0002ME-MX; Mon, 30 Mar 2020 14:41:17 +0000
+Received: by mail-lj1-x241.google.com with SMTP id g12so18391470ljj.3;
+ Mon, 30 Mar 2020 07:41:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=epGP9PMNlJZHcB9SQeovMPld4EXmyON6fdMXbQw6ctk=;
+ b=Tr4b75/53N7F3lQKDm58ZgR+5CQ3k0XrSfsIMtvAWDVV6wllqmffHDckG7Qk7wBKkX
+ dBNwb5XODKTDyKMpjQ2Cpe2aEmn511P5hhH5R3hMrnJItHhetRGirn4i5LwA/Br+N6iS
+ MtFqGPztQxlXTi6/I6WNowVLZ4YAwsePq4PUVda6gjJsCXgi3klBW3aFvY0bna7SxOcG
+ EJfhSt0c1dUgzu0kr9lajPsAxOFntDlPD9Nslh0rKC2Idobe2tQ4mqn+nTpAtglKM5vy
+ DsehBJacXDi1PcOJf6AVs/2IUyFzeuWoR8IhHgnr6BHwlHJQcnCpvTpbe1zW7lzPHAJ1
+ FAVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=epGP9PMNlJZHcB9SQeovMPld4EXmyON6fdMXbQw6ctk=;
+ b=aNiltvjhs1PB7gdjiSKhSG2uunRMHpaiFaoFwPvnWcIFvx3Usf0FSc4cpb2pj3cbcr
+ 9h8ZlCPoJJET7vz9rIney0pkAVH5oQDC+uqIJmZMsUC26NUYIGL2BSrL+6gVAPpbw0yx
+ YddePRNdKoYi2gv7ZCq5HGxMpRGbgmGqACFDM5C2DvUwiFr81kjtCeHvR02G/iM0UmnO
+ rYR3XTi5rgsjdJih5KZkXgXNzFi1lBbzQQdYraM2kgjFUGSnBSEWV9W0XOM5/23/7L+V
+ qqxgULkxKLpRGHJ9P07hsQljYYxmmiXACie68F8o5vw4rVPG7h7e0jZqNyvVwxnHracc
+ MB0w==
+X-Gm-Message-State: AGi0PuaFUNLzq3jIj3YfDXBVJpDUrpqibUKVTv34eLA3+V+tE5JoEQVF
+ /Q1UOHvVdiVur9gRUOvY+P0=
+X-Google-Smtp-Source: APiQypLij2junLsRYlGcxvO72I0+NagELD7M2Fum/IVNxmdF+fFujP753SxY5sHW00RrGQbR982wYw==
+X-Received: by 2002:a2e:9798:: with SMTP id y24mr3364372lji.267.1585579273383; 
+ Mon, 30 Mar 2020 07:41:13 -0700 (PDT)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id d27sm4486557lfq.73.2020.03.30.07.41.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 30 Mar 2020 07:41:12 -0700 (PDT)
+Date: Mon, 30 Mar 2020 17:41:03 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, code@mstoeckl.com
+Subject: Re: [PATCH v4 7/8] drm/fourcc: amlogic: Add modifier definitions
+ for the Scatter layout
+Message-ID: <20200330174103.10cf2f37@eldfell.localdomain>
+In-Reply-To: <7acc751d-161f-af9c-d896-b4e43fb9b0ac@baylibre.com>
+References: <20200325085025.30631-1-narmstrong@baylibre.com>
+ <20200325085025.30631-8-narmstrong@baylibre.com>
+ <JgBZ7eZYMgXRNu_-E4ItS1bud9mEe15xptZEX_XhsM_h8_iIZTOmPokEVxPJYwX0wP0pmb5p-ymubyyZP3kVbcfuDNdmM0__L8wBR5IykfE=@emersion.fr>
+ <b1386ef5-c3e3-c07b-5982-e3f02441b431@baylibre.com>
+ <20200325154921.2a87930c@eldfell.localdomain>
+ <a385e2f6-52fa-e195-15e0-2132befc9f35@baylibre.com>
+ <20200326113632.6585cf7b@eldfell.localdomain>
+ <7acc751d-161f-af9c-d896-b4e43fb9b0ac@baylibre.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20200325220542.19189-1-robh@kernel.org>
- <20200325220542.19189-5-robh@kernel.org>
- <CAK7LNARJn4uugHxcjK+WOWBs0gPVZQsCu4y6M8hkNK1U5FehRA@mail.gmail.com>
-In-Reply-To: <CAK7LNARJn4uugHxcjK+WOWBs0gPVZQsCu4y6M8hkNK1U5FehRA@mail.gmail.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Mon, 30 Mar 2020 17:37:11 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARXj3=1VPWL4kFmGkZuvV=yKb7gVaX2nbeiO54f-zWeHQ@mail.gmail.com>
-Message-ID: <CAK7LNARXj3=1VPWL4kFmGkZuvV=yKb7gVaX2nbeiO54f-zWeHQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: Add missing 'additionalProperties: false'
-To: Rob Herring <robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200330_013820_788000_9B9CFA07 
-X-CRM114-Status: GOOD (  15.59  )
+X-CRM114-CacheID: sfid-20200330_074115_765028_45B4CC59 
+X-CRM114-Status: GOOD (  29.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,103 +100,210 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-iio@vger.kernel.org,
- Linus Walleij <linus.walleij@linaro.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Guillaume La Roque <glaroque@baylibre.com>,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Lee Jones <lee.jones@linaro.org>,
- linux-clk <linux-clk@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Kevin Hilman <khilman@baylibre.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>,
- Zhang Rui <rui.zhang@intel.com>, Brian Masney <masneyb@onstation.org>,
- DTML <devicetree@vger.kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- Linux PM mailing list <linux-pm@vger.kernel.org>,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
- Thomas Gleixner <tglx@linutronix.de>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Stephen Boyd <sboyd@kernel.org>, Networking <netdev@vger.kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Hartmut Knaack <knaack.h@gmx.de>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Jonathan Cameron <jic23@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "mjourdan@baylibre.com" <mjourdan@baylibre.com>,
+ Simon Ser <contact@emersion.fr>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: multipart/mixed; boundary="===============3383346340476408223=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
+--===============3383346340476408223==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/dvN3iCsthpEZCSKTeqjvfgH"; protocol="application/pgp-signature"
 
-On Mon, Mar 30, 2020 at 4:09 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
->
-> On Thu, Mar 26, 2020 at 7:06 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > Setting 'additionalProperties: false' is frequently omitted, but is
-> > important in order to check that there aren't extra undocumented
-> > properties in a binding.
-> >
-> > Ideally, we'd just add this automatically and make this the default, but
-> > there's some cases where it doesn't work. For example, if a common
-> > schema is referenced, then properties in the common schema aren't part
-> > of what's considered for 'additionalProperties'. Also, sometimes there
-> > are bus specific properties such as 'spi-max-frequency' that go into
-> > bus child nodes, but aren't defined in the child node's schema.
-> >
-> > So let's stick with the json-schema defined default and add
-> > 'additionalProperties: false' where needed. This will be a continual
-> > review comment and game of wack-a-mole.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
->
->
-> >  .../devicetree/bindings/gpio/socionext,uniphier-gpio.yaml      | 2 ++
->
->
-> You may have already queue this up, but just in case.
->
-> Acked-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+--Sig_/dvN3iCsthpEZCSKTeqjvfgH
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, 27 Mar 2020 15:14:46 +0100
+Neil Armstrong <narmstrong@baylibre.com> wrote:
+
+> Hi,
+>=20
+> On 26/03/2020 10:36, Pekka Paalanen wrote:
+> > On Wed, 25 Mar 2020 17:18:15 +0100
+> > Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >  =20
+> >> Hi,
+> >>
+> >> On 25/03/2020 14:49, Pekka Paalanen wrote: =20
+> >>> On Wed, 25 Mar 2020 11:24:15 +0100
+> >>> Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >>>    =20
+> >>>> Hi,
+> >>>>
+> >>>> On 25/03/2020 10:04, Simon Ser wrote:   =20
+> >>>>> On Wednesday, March 25, 2020 9:50 AM, Neil Armstrong <narmstrong@ba=
+ylibre.com> wrote:
+> >>>>>      =20
+> >>>>>> Amlogic uses a proprietary lossless image compression protocol and=
+ format
+> >>>>>> for their hardware video codec accelerators, either video decoders=
+ or
+> >>>>>> video input encoders.
+> >>>>>>
+> >>>>>> This introduces the Scatter Memory layout, means the header contai=
+ns IOMMU
+> >>>>>> references to the compressed frames content to optimize memory acc=
+ess
+> >>>>>> and layout.
+> >>>>>>
+> >>>>>> In this mode, only the header memory address is needed, thus the c=
+ontent
+> >>>>>> memory organization is tied to the current producer execution and =
+cannot
+> >>>>>> be saved/dumped neither transferrable between Amlogic SoCs support=
+ing this
+> >>>>>> modifier.     =20
+> >>>>>
+> >>>>> I don't think this is suitable for modifiers. User-space relies on
+> >>>>> being able to copy a buffer from one machine to another over the
+> >>>>> network. It would be pretty annoying for user-space to have a black=
+list
+> >>>>> of modifiers that don't work this way.
+> >>>>>
+> >>>>> Example of such user-space:
+> >>>>> https://gitlab.freedesktop.org/mstoeckl/waypipe/
+> >>>>>      =20
+> >>>>
+> >>>> I really understand your point, but this is one of the use-cases we =
+need solve.
+> >>>> This is why I split the fourcc patch and added an explicit comment.
+> >>>>
+> >>>> Please point me a way to display such buffer, the HW exists, works l=
+ike that and
+> >>>> it's a fact and can't change.
+> >>>>
+> >>>> It will be the same for secure zero-copy buffers we can't map from u=
+serspace, but
+> >>>> only the HW decoder can read/write and HW display can read.   =20
+> >>>
+> >>> The comparison to secure buffers is a good one.
+> >>>
+> >>> Are buffers with the DRM_FORMAT_MOD_AMLOGIC_FBC_LAYOUT_SCATTER modifi=
+er
+> >>> meaningfully mmappable to CPU always / sometimes / never /
+> >>> varies-and-cannot-know?   =20
+> >>
+> >> mmappable, yes in our WIP V4L2 driver in non-secure path, meaningful, =
+absolutely never.
+> >>
+> >> So yeah, these should not be mmappable since not meaningful. =20
+> >=20
+> > Ok. So we have a modifier that means there is no point in even trying to
+> > mmap the buffer.
+> >=20
+> > Not being able to mmap automatically makes things like waypipe not be
+> > able to work on the buffer, so the buffer cannot be replicated over a
+> > network, hence there is no compatibility issue. However, it still
+> > leaves the problem that, since waypipe is "just" a message relay that
+> > does not participate in the protocol really, the two end points might
+> > still negotiate to use a modifier that waypipe cannot handle. =20
+>=20
+> Not mmapable won't be limited to this kind of buffer, or secure, any DMA-=
+BUF
+> provider can decide to disable mmaping, so waypipe should work with this
+> whatever this discussion goes to.
+>=20
+> >=20
+> > Secure buffers have the same problem: by definition, one must not be
+> > able to replicate the buffer elsewhere.
+> >=20
+> > To me it seems there needs to be a way to identify buffers that cannot
+> > be mmapped. mmap() failing is obvious, but in waypipe's case it is too
+> > late - the end points have already negotiated the formats and modifiers
+> > and they cannot handle failures afterwards. =20
+>=20
+> The AFAIK last open question was on this thread:
+> https://lore.kernel.org/dri-devel/d6f8092d-9f90-d5ff-2ab3-b1867f8f5700@ti=
+.com/
+> But it was more like, how the consumer driver knows the buffer is secure.
+>=20
+> Daniel, is there something new ?
+>=20
+> >  =20
+> >>>
+> >>> Maybe this type should be handled similar to secure buffers, with the
+> >>> exception that they are not actually secured but only mostly
+> >>> inaccessible. Then again, I haven't looked at any of the secure buffer
+> >>> proposals.   =20
+> >>
+> >> Actually, the Amlogic platforms offers secure video path using these e=
+xact
+> >> modifiers, AFAIK it doesn't support the NV12 dual-write output in secu=
+re.
+> >>
+> >> AFAIK last submission is from AMD, and it doesn't talk at all about mm=
+apability
+> >> of the secure BOs. =20
+> >=20
+> > To me, a secure buffer concept automatically implies that there cannot
+> > be CPU access to it. The CPU is not trusted, right? Not even the kernel.
+> > I would assume secure implies no mmap. So I wonder, how does the secure
+> > buffers proposal manage userspace like waypipe? =20
+>=20
+> None, as I said, waypipe whould handle non mmapable buffers, by asking
+> for a different modifier set, or sending a gray buffer with a llama
+> instead.
+
+Hi,
+
+the only thing waypipe can do, is not forward some of the modifiers
+during negotiation, before any buffers are created. That is, assuming
+Waypipe actually understands the protocol it shovels through
+(libwayland does not understand Wayland, in comparison).
+
+Or disconnect when mmap() fails.
+
+I'm having second thoughts here on the feasibility of the waypipe use
+case. It seems to be simply mutually exclusive with secure buffers and
+this modifier here.
+
+Manuel, could you check through this thread and let us know what you
+think? Maybe I have misassumed something.
 
 
+Thanks,
+pq
 
-I take back Ack for socionext,uniphier-gpio.yaml
+--Sig_/dvN3iCsthpEZCSKTeqjvfgH
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl6CBP8ACgkQI1/ltBGq
+qqf5Ng//YdfYRUp3D7YF759IzfAmSRCoRKEnGOqTdIOdQCYj7OA7y0WpRepfhto8
+DuJmANCTL2HVKjWNOiTaPbFkwnvuLT99VWH+4iSKRH4k76UqqwHYxF0aILT0jfX+
+9EE+iokzNQNui9kSrXPOxnT1ZWF1v8ivaA9fwWFTMXFsPLyapUPfJjojMZR+chme
+fQrt/XhMlDhS+9dCZEW8eQcPsZ1uSMQsz4wvJ7hGSSH8/FkRotyVhcC3wHEajNkr
+AIlQXRe+jXWVnXrhYdHL8ozigTpU0NOO1IhafnTWKIj99r9vV04GMJKIo1wWtsZ7
+o3s6P2nUPEK4FhiLEYPJAQYLrNRbV5yPQTw9voIurs/Cz7fhjQ1QMpHS114s/KAW
+KsY8lr7aUTjk/legfKN/HNG05KPf0Qm0vak+XA4TceinTHm4tbgnEIzXvHLvTp/q
+9iYrE/jm2fEfFy4x6PukNMB0KlgfQOQfB12E4nqkAACoA3vjuv62qrcbW/OBvCeY
+gRLxw9Fi20S1cWLFrZraf7eYIxne4LPK7b8cgiE6v9hY81KR5gMu9M3PUkWHFQKC
+hQfRXPhc669DBXrxJvHx+9z1ZI8TmGLWo6AnmxgKCxOx4pblbMieL5q//wDdvWJ/
+Tu8K/TIEZYxYq5aJciAfJ2cr7DXkBLBsZ9rUFI8gm1En9h53o3o=
+=FYDj
+-----END PGP SIGNATURE-----
 
-Now "make dt_binding_check" produces a new warning.
-
-gpio@55000000: 'interrupt-parent' does not match any of the regexes:
-'pinctrl-[0-9]+'
-
-
-This binding uses 'interrupt-parent'
-without 'interrupts'.
-
-Instead, the mapping of the interrupt numbers
-is specified by the vendor-specific property
-socionext,interrupt-ranges
-
-
-
-I cannot add   "interrupt-parent: true" because
-dt-schema/meta-schemas/interrupts.yaml
-has "interrupt-parent: false".
-
-
-Is there any solution?
-
+--Sig_/dvN3iCsthpEZCSKTeqjvfgH--
 
 
--- 
-Best Regards
-Masahiro Yamada
+--===============3383346340476408223==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3383346340476408223==--
+
