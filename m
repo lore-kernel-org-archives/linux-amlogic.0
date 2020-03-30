@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B437C43331
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 23:46:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE8D2C2D0F2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 23:46:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 52CD120771
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 23:46:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7C73F20733
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 23:46:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d+pnuFLW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="iRUVjpwz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 52CD120771
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PwN7ys8t";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="U4dAz5Jv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C73F20733
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,66 +27,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k/rqSBH0jyd/euXSoh01k+RLlgYYYCSVyjkk8dmG8n4=; b=d+pnuFLWOBsaXd
-	EgJastcyNrgM+d6mfWlgKHydjByEeQ+SfKNoJDVPblv+8V09wx44jikYIMY/WvTrERo3FkffZg7CF
-	SYyIbhjUFv0LA0oLg1T0Ish4PXiUAtQKTwzt6HpfH87P6E2hIG9chOcuPQI1NeE9vNpXfc8RrKmKF
-	Bc/i+YSnGABYxD7oERobKDRrjJCelznhpjSKx8bTfEdYki4pHYC/GvlaDtRzxCBvBBX54pAC0p20w
-	hc7SRVfbclRj9iNObrccvqyk/GAg4wHnyECkyNhl7H7R9mnlMZ9vOzRifOfPy7ykPBJIDcbv0gYJP
-	AZLVYwb4ht804Dh68p2g==;
+	List-Owner; bh=Mu6JbQHLwVjBjJKtJonB/YvSh/Dav3lUiR+K1yaEItA=; b=PwN7ys8txLvnJ0
+	1ob7RVJD69h6LVc244ZVjxaVR0iWcWlg5QqquAO+ebWG6nY7fsulQdIHsbF25ba9qk/3utfpAt4D4
+	a6knUmUoaGJdCn8tUcb795v6cYkolGMxJiywZKWYNIkz+9JTxeIs0Z0zmXxlgj77xKdTINwZASAU0
+	yf08ppL+U3um34W8wPWZWdWCeqgSrG3RSnx3/JGVKUvRyTWdl6Myz4rNGmRPXwteiXRtZQ56zKV6v
+	w4FdQQRTBqlpuxmFV1tPNTjvzwGP8xA7+tZZRuGTr4BD2vtOk6Exm+n+oapel55FEx9d2Qg+u3SZ3
+	rO9cO9ElkjDCld179OKA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jJ46b-0004gK-JA; Mon, 30 Mar 2020 23:46:09 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1jJ46w-00050L-BT; Mon, 30 Mar 2020 23:46:30 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jJ46J-0004Qe-Aw; Mon, 30 Mar 2020 23:45:52 +0000
-Received: by mail-wr1-x444.google.com with SMTP id h15so23731049wrx.9;
- Mon, 30 Mar 2020 16:45:50 -0700 (PDT)
+ id 1jJ46M-0004Qp-8H; Mon, 30 Mar 2020 23:45:55 +0000
+Received: by mail-wm1-x343.google.com with SMTP id c187so647786wme.1;
+ Mon, 30 Mar 2020 16:45:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=DxK6o0d762Zl57HAnhWXL/U279uSuVK4xM7r8LkbtfU=;
- b=iRUVjpwzhUgZWdAu9OhKc2QrrebME/a6PvPbBtwpO/QXWfNUP1cSPkUM8V1DPCppIt
- Z0CsUnSr4EEZfJad+Btd6XHnDBMRP0GI8ZTpVMapuFzv5XRwEEIU8okXXnQAIoQdKHTN
- duUcuETE1GDEw9Nn502Kkhi6wH0qt1RwFhCwRHDtTc2gzJjwnJmkea/Da0961UmhzFgA
- y5f4Cf0DpkYBQ38YboNqsrC+1nAJHojyvjbzoPmKhCsSj+NICy/l0vSgyNMCc4jI/k1b
- UR59ucu7S1ftnBnyzj5iz64c7qaPFhta83VUfxkG3KsUDL1Qyot2jVqBY8ubtcm7/kwD
- yAKw==
+ bh=5uzSi9/VYcTraEBB9HY7h/rXS2xZdLMR03bizri5gj4=;
+ b=U4dAz5JvC5Fm0PIcTcWwiVNghqf0QdYuFyDYQm3OPsDtjHrCfMpE46Qo7orMdSK05Y
+ P5DXJy38lM1lC7YIgMPBGH16GG5xBtNDRcaO6VhqWdmxtggajwky/+qcHKKF6NYHg00G
+ W9dFPn3vX5HJ5BC7X8j9SbXwS6bz5LpzRR4vsM7CdR1Yyyr61PXhKsAsfJFGgRFavQaF
+ EZ9CIwME/Ja3sdR3Y3OZLi5gA0KPfwcKI1DMz0CqjqajGHI5/TQsHPOpEJQX0P7FH1xD
+ 51fdQHUq+OFjP3ufeY+q8KJZYGaed/SA62fyiiORqKhq8vCQbVrEpKBxkAZ4+oEyOazH
+ ZXnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=DxK6o0d762Zl57HAnhWXL/U279uSuVK4xM7r8LkbtfU=;
- b=H3sNwU3NOAlvZcw7KljALVl62rKhUep6i70qA2escTiBJjnHZhZph6DZo0/lDSy+qQ
- XHGI9tg+K7NhS18vaJoWfAXSUhTd9flHkAe1JS0MNuPNiOf3KzrDEuxl+uCY4FxpEreL
- VLig5LCJVvs0uuwfGI59zn6k3um95Z9WRC55l9BPMXs6FFTwUyU4BVGR4hQwFaFOEoCA
- HrqtApdtFZgTHdh8G0Qt0x7iUcTo6RhAGDnN2FrJ2nWXznZIuwWC2CG+103Q/Ba7HPrC
- mI4LF7XPRAHb1rOegO+Ix7FHxSyv5gV/T6XGkC4Nve1GDYi4veeCjp2h1EDakVUCcZ45
- qmrw==
-X-Gm-Message-State: ANhLgQ1fSfuP54p/OUiyqw7woZPX/pscQodAyF2Ci+lgLpUGGOHdSDSf
- ef8d3ByltUG/g3DBKAwIlQhs8SCf
-X-Google-Smtp-Source: ADFU+vviGdVjMK+SeAP3YtjOZuI2rOV6Ly+eqgrfC2ttV2VBMynT39e3PrONu63IHkoumJXpawRGWA==
-X-Received: by 2002:a5d:4d07:: with SMTP id z7mr17767249wrt.92.1585611948819; 
- Mon, 30 Mar 2020 16:45:48 -0700 (PDT)
+ bh=5uzSi9/VYcTraEBB9HY7h/rXS2xZdLMR03bizri5gj4=;
+ b=KVGSgoKH7IQ7aP6qBsNRyWcWcoa/C44/398a60hUDiTwSjPCbzSQpnhFUYvQP/vFJD
+ k7jgu0MTbe1XqEeAi6D+DEUjXWX8+RCwFiTkmJxYO0Di3WH1KK6bz+ZsdVckZqWib6W1
+ otL7ASBxsv6VI0yR7URwEqqImPhYr4ZjQ7VHqfXgSNqh47H7OOEeFMHOeBzTrTR+mOx0
+ bMXoIZ9YZniDTTICYf71aeWKxamoQioRG53a/NHqZpoRN2ajL/F8RWdJZqvEy6Nts/yC
+ WjrGIDcg1kTBWL8nd1ppV/KTCj5MOsfzlsDYwyUm1UvM/InqCAiteiAiv9aHo6Lwbypn
+ t00A==
+X-Gm-Message-State: ANhLgQ3YMp5TXqf60nOV76thWj89HZblXWSV3yqXM8cjMzz3wAg6uVcA
+ 8NMmyIHyiTJNTsiXj2Gly0G7z/Sa
+X-Google-Smtp-Source: ADFU+vvtXm6WQtlMFz5iqFRMXzrlv57Bxn7PrxUOdXCnqT1tXpKTo5A1T4R+dQC9PFDeLc8AG/pT8Q==
+X-Received: by 2002:a1c:2484:: with SMTP id k126mr575356wmk.52.1585611949773; 
+ Mon, 30 Mar 2020 16:45:49 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300F13710ED00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:3710:ed00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id v186sm1392953wme.24.2020.03.30.16.45.47
+ by smtp.googlemail.com with ESMTPSA id v186sm1392953wme.24.2020.03.30.16.45.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Mar 2020 16:45:48 -0700 (PDT)
+ Mon, 30 Mar 2020 16:45:49 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
  narmstrong@baylibre.com
-Subject: [PATCH 1/2] clk: meson8b: export the HDMI system clock
-Date: Tue, 31 Mar 2020 01:45:34 +0200
-Message-Id: <20200330234535.3327513-2-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 2/2] clk: meson: meson8b: make the hdmi_sys clock tree mutable
+Date: Tue, 31 Mar 2020 01:45:35 +0200
+Message-Id: <20200330234535.3327513-3-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200330234535.3327513-1-martin.blumenstingl@googlemail.com>
 References: <20200330234535.3327513-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200330_164551_372899_B580C682 
-X-CRM114-Status: GOOD (  11.97  )
+X-CRM114-CacheID: sfid-20200330_164554_322518_9DE9F7DA 
+X-CRM114-Status: GOOD (  11.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,39 +106,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Export the HDMI system clock (used by the HDMI transmitter) so it can be
-used in the dt-bindings.
+The HDMI TX controller requires the hdmi_sys clock to be enabled. Allow
+changing the whole clock tree now that we know that one of our drivers
+requires this.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/clk/meson/meson8b.h              | 1 -
- include/dt-bindings/clock/meson8b-clkc.h | 1 +
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/meson/meson8b.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index c889fbeec30f..94ce3ef0c1d5 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -146,7 +146,6 @@
- #define CLKID_CTS_VDAC0		171
- #define CLKID_HDMI_SYS_SEL	172
- #define CLKID_HDMI_SYS_DIV	173
--#define CLKID_HDMI_SYS		174
- #define CLKID_MALI_0_SEL	175
- #define CLKID_MALI_0_DIV	176
- #define CLKID_MALI_0		177
-diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
-index 68862aaf977e..4c5965ae1df4 100644
---- a/include/dt-bindings/clock/meson8b-clkc.h
-+++ b/include/dt-bindings/clock/meson8b-clkc.h
-@@ -107,6 +107,7 @@
- #define CLKID_PERIPH		126
- #define CLKID_AXI		128
- #define CLKID_L2_DRAM		130
-+#define CLKID_HDMI_SYS		174
- #define CLKID_VPU		190
- #define CLKID_VDEC_1		196
- #define CLKID_VDEC_HCODEC	199
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 34a70c4b4899..7c55c695cbae 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -1725,7 +1725,7 @@ static struct clk_regmap meson8b_hdmi_sys_sel = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_sys_sel",
+-		.ops = &clk_regmap_mux_ro_ops,
++		.ops = &clk_regmap_mux_ops,
+ 		/* FIXME: all other parents are unknown */
+ 		.parent_data = &(const struct clk_parent_data) {
+ 			.fw_name = "xtal",
+@@ -1745,7 +1745,7 @@ static struct clk_regmap meson8b_hdmi_sys_div = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_sys_div",
+-		.ops = &clk_regmap_divider_ro_ops,
++		.ops = &clk_regmap_divider_ops,
+ 		.parent_hws = (const struct clk_hw *[]) {
+ 			&meson8b_hdmi_sys_sel.hw
+ 		},
+@@ -1761,7 +1761,7 @@ static struct clk_regmap meson8b_hdmi_sys = {
+ 	},
+ 	.hw.init = &(struct clk_init_data) {
+ 		.name = "hdmi_sys",
+-		.ops = &clk_regmap_gate_ro_ops,
++		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) {
+ 			&meson8b_hdmi_sys_div.hw
+ 		},
 -- 
 2.26.0
 
