@@ -2,88 +2,91 @@ Return-Path: <SRS0=cow0=5P=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F120C2D0F2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 23:46:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B437C43331
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 23:46:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F010C20774
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 23:46:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 52CD120771
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2020 23:46:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eYY0xWiM";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ABb6LM8T"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F010C20774
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d+pnuFLW";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="iRUVjpwz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 52CD120771
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=3sU3JqUgjF4RzHaheX3cs9v3BSumlp409N4xoYyvke8=; b=eYY0xWiMMfm6ES
-	tyeoc1tL8ttMl4PWmFjBbyb5BC95Tj3OjBujmTegsD+eTbtlJ4g9Elm+vM5JiGXl0vCvwShSs0JWs
-	SN/qQwSM+feD3VMReD9Ny8CgjWW3DaStiPxI99FcXz8SebuQBkA5vE7ktl/io/ZDhZ+PMNJyvnd77
-	N5su6dwUpfHp4otOvMbwEwhqHeLXtGjRu1dEXJFyksmoeEBLVFTWgL+xHwJ8bjHI5toiNKN0BvBYK
-	9b+na6ZFhhC/jj7QTGNRQegHK8qifL48WVBeIMFjVS7qVSgtMwGQwMtTCCgGE3Przkxk7tNp4eYNl
-	jLmdZm8iXBFTHSY+Q9Bw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=k/rqSBH0jyd/euXSoh01k+RLlgYYYCSVyjkk8dmG8n4=; b=d+pnuFLWOBsaXd
+	EgJastcyNrgM+d6mfWlgKHydjByEeQ+SfKNoJDVPblv+8V09wx44jikYIMY/WvTrERo3FkffZg7CF
+	SYyIbhjUFv0LA0oLg1T0Ish4PXiUAtQKTwzt6HpfH87P6E2hIG9chOcuPQI1NeE9vNpXfc8RrKmKF
+	Bc/i+YSnGABYxD7oERobKDRrjJCelznhpjSKx8bTfEdYki4pHYC/GvlaDtRzxCBvBBX54pAC0p20w
+	hc7SRVfbclRj9iNObrccvqyk/GAg4wHnyECkyNhl7H7R9mnlMZ9vOzRifOfPy7ykPBJIDcbv0gYJP
+	AZLVYwb4ht804Dh68p2g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jJ46L-0004Rr-SW; Mon, 30 Mar 2020 23:45:53 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1jJ46b-0004gK-JA; Mon, 30 Mar 2020 23:46:09 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jJ46I-0004QX-UK; Mon, 30 Mar 2020 23:45:52 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id 65so23792471wrl.1;
- Mon, 30 Mar 2020 16:45:49 -0700 (PDT)
+ id 1jJ46J-0004Qe-Aw; Mon, 30 Mar 2020 23:45:52 +0000
+Received: by mail-wr1-x444.google.com with SMTP id h15so23731049wrx.9;
+ Mon, 30 Mar 2020 16:45:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=GDnGHW3qNkgvLRDgu5vu6hawny2amkhzRWQ0FmPc35g=;
- b=ABb6LM8ToMRg6Yrah5JleJW/rhbs3rC5+MnLM5ss4L9Xfh1nULPqhBYzglKJ13bYnM
- GeMRq2+Nae3IN7gnVkDxuLoCOSqaXmP3MXm2UxG5mWjL36W+Ya2eqTCk4NFSwP0k2SYN
- WxuwWXZV1tzZ0bydrILV8rQTb4H1n7CLzuxE1H0slY4VXo+0N8gIVUNCsGhMgxSQ9euT
- k6aFpVUbFO3hYCImRqCGFZOWn8Ua52XZPtsPRe2hRh1FcsqWqJf1lcdnDgyDnU5XjZVz
- 7f9PE5gLJi+8GIpORxYMWz6v3qCnGsJZLirxmsBijnz7AqnYcccjMG3WmJDP/+FkHeYi
- ocOQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=DxK6o0d762Zl57HAnhWXL/U279uSuVK4xM7r8LkbtfU=;
+ b=iRUVjpwzhUgZWdAu9OhKc2QrrebME/a6PvPbBtwpO/QXWfNUP1cSPkUM8V1DPCppIt
+ Z0CsUnSr4EEZfJad+Btd6XHnDBMRP0GI8ZTpVMapuFzv5XRwEEIU8okXXnQAIoQdKHTN
+ duUcuETE1GDEw9Nn502Kkhi6wH0qt1RwFhCwRHDtTc2gzJjwnJmkea/Da0961UmhzFgA
+ y5f4Cf0DpkYBQ38YboNqsrC+1nAJHojyvjbzoPmKhCsSj+NICy/l0vSgyNMCc4jI/k1b
+ UR59ucu7S1ftnBnyzj5iz64c7qaPFhta83VUfxkG3KsUDL1Qyot2jVqBY8ubtcm7/kwD
+ yAKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=GDnGHW3qNkgvLRDgu5vu6hawny2amkhzRWQ0FmPc35g=;
- b=Loxh7HvyW1nmhefS9Vi6QiuIjRKTzE+ax0vYGlDkRVzhT2nK8TsT2NjUQthbHoCzx6
- MEvhbC7EMgoPexb+BHzRNinxQWaeCzmslykTren8GPdz70gLUmYmx7mgyZXOLRzMakkw
- FSYS6YdN0pvTnoBybTUo0jjni/DDr2p78VmRKVmpk+TndxLLIgKf/sxSNh8B5HVj1Maz
- pvoCVESz0qwDBLkZlt6qFy/r+uc9sy0wTBNCOkIFGXVqbig2ox9Aswcr5c3qV01ogkxm
- UlXwEDx9c1QyX7YdjtSVWAR+7w0YcNoML5yI+IeKN17zbwpzBt4LjLQWiqIJN1YRYmcV
- EdHw==
-X-Gm-Message-State: ANhLgQ2zJPe0A3LNsefrV4NxS+FgwqHeACaBdgthKHexPH+zJIJ6IP9M
- J2OXwq/mFSGITOYcJzks9kwYOq9o
-X-Google-Smtp-Source: ADFU+vsRAJpOrFH+eER9+kJfJgrHjQ2G/YBnZW8feggG/5Lyp88bIurZ3HekKzw9sQpYyAPLoBJuvA==
-X-Received: by 2002:a5d:60ca:: with SMTP id x10mr11321086wrt.372.1585611947798; 
- Mon, 30 Mar 2020 16:45:47 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=DxK6o0d762Zl57HAnhWXL/U279uSuVK4xM7r8LkbtfU=;
+ b=H3sNwU3NOAlvZcw7KljALVl62rKhUep6i70qA2escTiBJjnHZhZph6DZo0/lDSy+qQ
+ XHGI9tg+K7NhS18vaJoWfAXSUhTd9flHkAe1JS0MNuPNiOf3KzrDEuxl+uCY4FxpEreL
+ VLig5LCJVvs0uuwfGI59zn6k3um95Z9WRC55l9BPMXs6FFTwUyU4BVGR4hQwFaFOEoCA
+ HrqtApdtFZgTHdh8G0Qt0x7iUcTo6RhAGDnN2FrJ2nWXznZIuwWC2CG+103Q/Ba7HPrC
+ mI4LF7XPRAHb1rOegO+Ix7FHxSyv5gV/T6XGkC4Nve1GDYi4veeCjp2h1EDakVUCcZ45
+ qmrw==
+X-Gm-Message-State: ANhLgQ1fSfuP54p/OUiyqw7woZPX/pscQodAyF2Ci+lgLpUGGOHdSDSf
+ ef8d3ByltUG/g3DBKAwIlQhs8SCf
+X-Google-Smtp-Source: ADFU+vviGdVjMK+SeAP3YtjOZuI2rOV6Ly+eqgrfC2ttV2VBMynT39e3PrONu63IHkoumJXpawRGWA==
+X-Received: by 2002:a5d:4d07:: with SMTP id z7mr17767249wrt.92.1585611948819; 
+ Mon, 30 Mar 2020 16:45:48 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300F13710ED00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:3710:ed00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id v186sm1392953wme.24.2020.03.30.16.45.46
+ by smtp.googlemail.com with ESMTPSA id v186sm1392953wme.24.2020.03.30.16.45.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Mar 2020 16:45:47 -0700 (PDT)
+ Mon, 30 Mar 2020 16:45:48 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
  narmstrong@baylibre.com
-Subject: [PATCH 0/2] clk: meson8b: allow the HDMI driver to manage "hdmi_sys"
-Date: Tue, 31 Mar 2020 01:45:33 +0200
-Message-Id: <20200330234535.3327513-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 1/2] clk: meson8b: export the HDMI system clock
+Date: Tue, 31 Mar 2020 01:45:34 +0200
+Message-Id: <20200330234535.3327513-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200330234535.3327513-1-martin.blumenstingl@googlemail.com>
+References: <20200330234535.3327513-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200330_164551_001591_9FA4748F 
-X-CRM114-Status: GOOD (  10.40  )
+X-CRM114-CacheID: sfid-20200330_164551_372899_B580C682 
+X-CRM114-Status: GOOD (  11.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,25 +106,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The "hdmi_sys" clock is driving the HDMI TX controller. The
-controller's IP seems to use this clock for example to derived the DDC
-clock.
+Export the HDMI system clock (used by the HDMI transmitter) so it can be
+used in the dt-bindings.
 
-Testing has shown that we can disable this clock without locking up the
-system (as long as we don't read the HDMI TX registers while this clock
-is disabled - this can't happen as we don't have a driver yet and once
-we have one that driver will enable this clock).
-
-
-Martin Blumenstingl (2):
-  clk: meson8b: export the HDMI system clock
-  clk: meson: meson8b: make the hdmi_sys clock tree mutable
-
- drivers/clk/meson/meson8b.c              | 6 +++---
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
  drivers/clk/meson/meson8b.h              | 1 -
  include/dt-bindings/clock/meson8b-clkc.h | 1 +
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ 2 files changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+index c889fbeec30f..94ce3ef0c1d5 100644
+--- a/drivers/clk/meson/meson8b.h
++++ b/drivers/clk/meson/meson8b.h
+@@ -146,7 +146,6 @@
+ #define CLKID_CTS_VDAC0		171
+ #define CLKID_HDMI_SYS_SEL	172
+ #define CLKID_HDMI_SYS_DIV	173
+-#define CLKID_HDMI_SYS		174
+ #define CLKID_MALI_0_SEL	175
+ #define CLKID_MALI_0_DIV	176
+ #define CLKID_MALI_0		177
+diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
+index 68862aaf977e..4c5965ae1df4 100644
+--- a/include/dt-bindings/clock/meson8b-clkc.h
++++ b/include/dt-bindings/clock/meson8b-clkc.h
+@@ -107,6 +107,7 @@
+ #define CLKID_PERIPH		126
+ #define CLKID_AXI		128
+ #define CLKID_L2_DRAM		130
++#define CLKID_HDMI_SYS		174
+ #define CLKID_VPU		190
+ #define CLKID_VDEC_1		196
+ #define CLKID_VDEC_HCODEC	199
 -- 
 2.26.0
 
