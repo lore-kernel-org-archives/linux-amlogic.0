@@ -2,22 +2,22 @@ Return-Path: <SRS0=GB2T=5Q=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 75C67C43331
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 16:10:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E7DB5C43331
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 16:17:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 143BB206CC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 16:10:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AC82D20786
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 16:17:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RujnJiy9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="DuCn1jb5";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="EbrJxT9+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 143BB206CC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="f9N51Ate";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="qexlpxKB";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="w9kKXD8z"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AC82D20786
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2KeRyKdnYLurS2vKJ+SgmrA0EQrLKPvvlYrc/aCKJ4s=; b=RujnJiy9bHflXY
-	Rn2FIrInOAHOLqKR07Xoy4gcSKYn3q4zzXDYTXG7pjNmoDz0vFr/Z+eAShXpZyr9N/RzFOE5SehLr
-	Tvb1yQeDcGYY5qo2lACiWEg69xY3MxERrBiylNiE44etTf4UaLZ9xXncvL9+tlL5ZplnfgTohWIUa
-	El+gWUe8Z01tlAxjLXzntAVGpLzTPeUds0shBWpKxdobPq6OMwz5o6W9LUwbVgMR7r0dfJ5AcUcIm
-	ps6DH2UCDTM0z3f1s6nAzgiTlhHNAvwm1CGJiZYaEmHCHdaT6aYYVbbeeYVK9ve0C1iTJ6Dm6DrFJ
-	AYSGHBDs8oXe69CoRtQg==;
+	List-Owner; bh=YLaUy8XiW9c3AcN24GmcvLsF4JTpoYeenDEdup2tPF8=; b=f9N51AteCZraGj
+	+XFYi46M9I8TyXWvJqJV3PGDYb9QMacoHeQxSsRn1xwuzmZ9d/2euOGVydMIl5PWMzQJUb0scmGIQ
+	spbEB8OPAfm4vS2/YtxQjmP1o3aQcixgz2ERtrzSB69mocodbRYAgryEe9QEPrJesqYe8BjfTLfRq
+	6S/1PF2t5/iYoc5ay6K9dcuaXvYAHYBjjCYSGtL9cpxq+AdNpceIVyrNDBOa9v7V97bS+6MDJ4C/K
+	D8wegaj0zCPPw5NpC2BMaQxVcJ9Mgf89uv6fc8bPERyu6A9zmpgag9wklj1Non3eYRMNNdWj9ro3R
+	5NheQN+lVdlgtwtL5vIA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jJJSY-00024S-SN; Tue, 31 Mar 2020 16:09:50 +0000
+	id 1jJJZe-00040M-Ko; Tue, 31 Mar 2020 16:17:10 +0000
 Received: from merlin.infradead.org ([2001:8b0:10b:1231::1])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jJJSE-0001ox-W6; Tue, 31 Mar 2020 16:09:31 +0000
+ id 1jJJZF-0003en-Kz; Tue, 31 Mar 2020 16:16:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=merlin.20170209; h=Content-Type:Cc:To:Subject:Message-ID:
  Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=4YMjUqvn1g16RkZxnamj/llluRX/Zmwc24eVst39m28=; b=DuCn1jb5ejgWXlMFOsZqpCvNio
- 92aCdzkTbkMpP32gJFPD1oBfB+vt6JDjuXXNWcfk715CUpGuQ8nRKZHbWEtZqQlA8mxs+M7hKDhP1
- hGOwWvGL2xp5z0MLDYmFRrUNHBwZYPcm1Zh16Gaie6LI9wfSelTk9D8h/6iGgXcn2DKUlVh1gEyET
- cZgkh+FaeDSXVFo7VzizkDIVTs2CGax3na+PII35L7Ze3hM2M6A3JmX6QMkUiYTy+OC/01Wkeg7Vw
- dVA8vIoNIMrssMaraToY/OMYd8OldNW2Tx3lRJjoord0+VSOTZf6tG4sw4JynNJwV1ecHZJ8uIQqV
- E+UrYmpQ==;
+ bh=IK9k6BsytbnW1EXy7FI1eJsDUE+tu84D7QZT4uS5ZlU=; b=qexlpxKBLryiGBX+iCkyUSOeTz
+ 5JQ6Br7SWcZmqQv5hE3fT0P4eW4wtZWGuDas8jasGbqTAAvj+y+7eaCi+hapSePOquQ1HQQl8Gls/
+ G5aIE+GVHy0L8CwcXlx4VLBoZeag++QtxcgQH6H8IbMEoUHN6WAayUf+91dhFuuulif6gBS7ZZcEc
+ 7Mcp1dOuOaNoyQyythrowVTGR53opccKTgQForYVkgQWEI+aw1D03V6ZWxRtI/l5fuqfu2hizna4y
+ 3XtRqtcEWEKhqLncBRRbYA6jlXZ4vtT6LInIqkQH6V9O+roqqQ1p2VKTdANMMXlehBltLdKvNtGuV
+ b3/ZWLbA==;
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jJIC9-0004Tt-BG; Tue, 31 Mar 2020 14:48:50 +0000
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
- [209.85.219.49])
+ id 1jJI2s-0004FN-Le; Tue, 31 Mar 2020 14:39:15 +0000
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
+ [209.85.222.178])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 800BA20848;
- Tue, 31 Mar 2020 14:48:48 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id AA89E2145D;
+ Tue, 31 Mar 2020 14:39:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1585666128;
- bh=e/7jTSv5Ln/7N2erMxSAhTPfQO0mGgov7i4pB0Kxz8M=;
+ s=default; t=1585665552;
+ bh=VQTYjDLJpBPL64v+KHcwfSavLEUmQ5VPbYuKeDQvfh4=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=EbrJxT9+qQ4vbmfQodNUZ75MqmrVy3/2NQDxPg4GsBywCzjeqIw2fq6lj3s7435X2
- NIM+7Ydop9wv5/4CkHGw9c7dOJtPBA/zSDJDrPe+DungVFsSYeZaSpNvpWfCUq24L2
- R+q388+xL8Vgv6ukYJr671hgBiLOn4kma+Cvp9Ro=
-Received: by mail-qv1-f49.google.com with SMTP id t4so6778724qvz.8;
- Tue, 31 Mar 2020 07:48:48 -0700 (PDT)
-X-Gm-Message-State: ANhLgQ1M5VssF55xxp0BYiiWZwq03NJJCAk2mkz4Oq+8Tasw5AkSra3O
- m4G4aPSk8Ck1eKrM7MnQQwYMoUvtfZIdkoWAHg==
-X-Google-Smtp-Source: ADFU+vsm7QnLg9VC47OO+I8GiU3/k2tefVEY+Sy39Kwt/VBNT1kmLS6ih/sV4b6JI7vayYbVNykmFae5IwQbSwKy9fk=
-X-Received: by 2002:ad4:4bc3:: with SMTP id l3mr16286378qvw.79.1585666127545; 
- Tue, 31 Mar 2020 07:48:47 -0700 (PDT)
+ b=w9kKXD8z4sqI86PU33XbHmfq5R7o1rl1Yc6oUOAz42cwHppv6UAYyiBVNzHr/8rGq
+ fiuijzJ4syHgX49+YFivKcsWhdJV6fv/bOG69I3vdo0Lq1npTDVuNQt+ItarZp4b9G
+ a/bP28cpaoxY9yg7N1tSpyTZfOjD00o0nNDF4FO0=
+Received: by mail-qk1-f178.google.com with SMTP id j4so23141537qkc.11;
+ Tue, 31 Mar 2020 07:39:12 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ1LnmuRsJnnhlBo2Ivk2BrFcJvuVj30abEykvUd6WYzUXI01EM9
+ Aq/2I/R+jgiiyfruAU4QAsJG8of+ukWxSFKoSg==
+X-Google-Smtp-Source: ADFU+vs96kIPVk/bUhQUvXuwHTzxBhEjf4smiGd+iZOn7jyc5rfIytLi140jinW+le6E+iSeEnGKe3qbfJEIB3it89g=
+X-Received: by 2002:a37:aa92:: with SMTP id t140mr4802134qke.119.1585665551704; 
+ Tue, 31 Mar 2020 07:39:11 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200325220542.19189-1-robh@kernel.org>
- <20200325220542.19189-2-robh@kernel.org>
- <20200327202159.GA12749@ravnborg.org>
-In-Reply-To: <20200327202159.GA12749@ravnborg.org>
+ <20200325220542.19189-5-robh@kernel.org>
+ <CAK7LNARJn4uugHxcjK+WOWBs0gPVZQsCu4y6M8hkNK1U5FehRA@mail.gmail.com>
+ <CAK7LNARXj3=1VPWL4kFmGkZuvV=yKb7gVaX2nbeiO54f-zWeHQ@mail.gmail.com>
+In-Reply-To: <CAK7LNARXj3=1VPWL4kFmGkZuvV=yKb7gVaX2nbeiO54f-zWeHQ@mail.gmail.com>
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 31 Mar 2020 08:48:36 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+zFGvJ+3CmKw3OzgEWi-p4Uz9+nmnS5ax0J9ewoz5qZg@mail.gmail.com>
-Message-ID: <CAL_Jsq+zFGvJ+3CmKw3OzgEWi-p4Uz9+nmnS5ax0J9ewoz5qZg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: iio/accel: Drop duplicate adi, adxl345/6
- from trivial-devices.yaml
-To: Sam Ravnborg <sam@ravnborg.org>
+Date: Tue, 31 Mar 2020 08:39:00 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLDL6mVZ3Bb3f6eObF9SNwy6WK_srX5=m=NCN8Jq+-R+g@mail.gmail.com>
+Message-ID: <CAL_JsqLDL6mVZ3Bb3f6eObF9SNwy6WK_srX5=m=NCN8Jq+-R+g@mail.gmail.com>
+Subject: Re: [PATCH 4/4] dt-bindings: Add missing 'additionalProperties: false'
+To: Masahiro Yamada <masahiroy@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,28 +96,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Neil Armstrong <narmstrong@baylibre.com>,
  "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
  dri-devel <dri-devel@lists.freedesktop.org>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Guillaume La Roque <glaroque@baylibre.com>,
  Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Lee Jones <lee.jones@linaro.org>,
- linux-clk <linux-clk@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ linux-clk <linux-clk@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Kevin Hilman <khilman@baylibre.com>,
  Daniel Lezcano <daniel.lezcano@linaro.org>,
  Bartosz Golaszewski <bgolaszewski@baylibre.com>,
  Zhang Rui <rui.zhang@intel.com>, Brian Masney <masneyb@onstation.org>,
- devicetree@vger.kernel.org, Michael Hennerich <michael.hennerich@analog.com>,
- "open list:THERMAL" <linux-pm@vger.kernel.org>,
+ DTML <devicetree@vger.kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ Linux PM mailing list <linux-pm@vger.kernel.org>,
  linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
  "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
  Mark Brown <broonie@kernel.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
  Thomas Gleixner <tglx@linutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Stephen Boyd <sboyd@kernel.org>, netdev <netdev@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Hartmut Knaack <knaack.h@gmx.de>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Stephen Boyd <sboyd@kernel.org>, Networking <netdev@vger.kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Hartmut Knaack <knaack.h@gmx.de>,
  Linux Media Mailing List <linux-media@vger.kernel.org>,
  "David S. Miller" <davem@davemloft.net>, Jonathan Cameron <jic23@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
@@ -125,64 +126,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Mar 27, 2020 at 2:22 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+On Mon, Mar 30, 2020 at 2:38 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
-> Hi Rob.
+> Hi Rob,
 >
-> On Wed, Mar 25, 2020 at 04:05:38PM -0600, Rob Herring wrote:
-> > The 'adi,adxl345' definition is a duplicate as there's a full binding in:
-> > Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> On Mon, Mar 30, 2020 at 4:09 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
 > >
-> > The trivial-devices binding doesn't capture that 'adi,adxl346' has a
-> > fallback compatible 'adi,adxl345', so let's add it to adi,adxl345.yaml.
+> > On Thu, Mar 26, 2020 at 7:06 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > Setting 'additionalProperties: false' is frequently omitted, but is
+> > > important in order to check that there aren't extra undocumented
+> > > properties in a binding.
+> > >
+> > > Ideally, we'd just add this automatically and make this the default, but
+> > > there's some cases where it doesn't work. For example, if a common
+> > > schema is referenced, then properties in the common schema aren't part
+> > > of what's considered for 'additionalProperties'. Also, sometimes there
+> > > are bus specific properties such as 'spi-max-frequency' that go into
+> > > bus child nodes, but aren't defined in the child node's schema.
+> > >
+> > > So let's stick with the json-schema defined default and add
+> > > 'additionalProperties: false' where needed. This will be a continual
+> > > review comment and game of wack-a-mole.
+> > >
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
 > >
-> > Cc: Michael Hennerich <michael.hennerich@analog.com>
-> > Cc: Jonathan Cameron <jic23@kernel.org>
-> > Cc: Hartmut Knaack <knaack.h@gmx.de>
-> > Cc: Lars-Peter Clausen <lars@metafoo.de>
-> > Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-> > Cc: linux-iio@vger.kernel.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../devicetree/bindings/iio/accel/adi,adxl345.yaml     | 10 +++++++---
-> >  Documentation/devicetree/bindings/trivial-devices.yaml |  4 ----
-> >  2 files changed, 7 insertions(+), 7 deletions(-)
 > >
-> > diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > index c602b6fe1c0c..d124eba1ce54 100644
-> > --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > @@ -17,9 +17,13 @@ description: |
+> > >  .../devicetree/bindings/gpio/socionext,uniphier-gpio.yaml      | 2 ++
 > >
-> >  properties:
-> >    compatible:
-> > -    enum:
-> > -      - adi,adxl345
-> > -      - adi,adxl375
-> > +    oneOf:
-> > +      - items:
-> > +          - const: adi,adxl346
-> > +          - const: adi,adxl345
-> > +      - enum:
-> > +          - adi,adxl345
-> > +          - adi,adxl375
+> >
+> > You may have already queue this up, but just in case.
+> >
+> > Acked-by: Masahiro Yamada <yamada.masahiro@socionext.com>
 >
-> I assume it is my schema understanding that is poor.
-> But I cannot parse the above.
 >
-> The mix of items, enum and const confuses me.
+>
+> I take back Ack for socionext,uniphier-gpio.yaml
+>
+>
+>
+> Now "make dt_binding_check" produces a new warning.
+>
+> gpio@55000000: 'interrupt-parent' does not match any of the regexes:
+> 'pinctrl-[0-9]+'
+>
+>
+> This binding uses 'interrupt-parent'
+> without 'interrupts'.
+>
+> Instead, the mapping of the interrupt numbers
+> is specified by the vendor-specific property
+> socionext,interrupt-ranges
+>
+>
+>
+> I cannot add   "interrupt-parent: true" because
+> dt-schema/meta-schemas/interrupts.yaml
+> has "interrupt-parent: false".
+>
+>
+> Is there any solution?
 
-compatible can be one of 3 possibilities:
-"adi,adxl346", "adi,adxl345"
-"adi,adxl345"
-"adi,adxl375"
-
-For a single entry, 'items' can be omitted.
-
-> I guess that if I am confused then others may end in the same situation.
-> Can we improve readability here or amybe add a comment?
-
-example-schema.yaml explains this to some extent. I'd rather improve that.
+I'd meant to just drop socionext,uniphier-gpio.yaml.
 
 Rob
 
