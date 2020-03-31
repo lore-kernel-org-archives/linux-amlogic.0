@@ -6,77 +6,79 @@ X-Spam-Status: No, score=-2.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5285AC2D0E8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 08:40:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35925C2D0E8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 08:45:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 13F6A206F6
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 08:40:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F2CE020848
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 08:45:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AOWIOFn2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UQLmh+SX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 13F6A206F6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fG7GDlw3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OosQ0HCK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F2CE020848
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=9dE8yP4nir8XFC30YZYFsXKYJQ27R1p+s4cICJjLY9o=; b=AOWIOFn2L+8c3dqDREXeFdovi
-	v71HjV8fYu50VcyDNL57S8vO5xXEt24cygAQIyHpjHZyIpbju7p2iWlK8AOQ0EOBAGbAXpPqtsNXT
-	l4T6aRiBRXQmrGl5Dag1b2DRaEG4WQPSUn8n17oNPK7WduweOot382RhxaLfqvTuvGUYZpx+4rrXd
-	Smh0LhMHZWk4FgRDiPHvIfPbP3xhMaXVK269bHQxWjjVgMRP0/oddGolR06JzDk8KNgFITSQlTy9E
-	P1kpKBqc/ni2xSVOebOtd2MLqqqWbU0oJ5iUswn1bz7xmEQ0fdmmwvgOyuDP+qRsJj2JKxnlvQqVF
-	VSmu2VfyA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/p79C3EIsqUzCczKszVF7wui0AJZNS3L+u1DX24rqkg=; b=fG7GDlw3NEDVEQ
+	AjFBA0By5c1V+0a6il74GFwfb6w31MygJL1gV1Tjhuz3CD93oDt9gT3982NNI/7ywIbLzuz8mp72B
+	OM9fvQ4Rk48mPKVCAaHsk/0X7GewcqrzYxVtoz9t1TECV4ucMyQ9qfw9un0wEkJRs9GKk5QznG0+L
+	tIDFBNJCLOwBU2lTmxEaUyLbYQGIPGCFkAyKbEoD6etfah4LuFOX5dgYQea51zfG7Oyl4VRTRhwpI
+	7Iih2zK+QaV+V9bJtFxkRlAzuVYmNeGJNM2xKwephng8gMW4cGZkPMvLZu3vZL9YnGbI+dyelc8FH
+	lGpKsLahyCNb4IxO+niQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jJCRi-0006BZ-RB; Tue, 31 Mar 2020 08:40:30 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jJCW2-0006is-VJ; Tue, 31 Mar 2020 08:44:58 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jJCRg-0006Au-Im
- for linux-amlogic@lists.infradead.org; Tue, 31 Mar 2020 08:40:29 +0000
-Received: by mail-wr1-x443.google.com with SMTP id a25so24859998wrd.0
- for <linux-amlogic@lists.infradead.org>; Tue, 31 Mar 2020 01:40:28 -0700 (PDT)
+ id 1jJCW0-0006ht-0a
+ for linux-amlogic@lists.infradead.org; Tue, 31 Mar 2020 08:44:57 +0000
+Received: by mail-wr1-x441.google.com with SMTP id h15so24792126wrx.9
+ for <linux-amlogic@lists.infradead.org>; Tue, 31 Mar 2020 01:44:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to;
- bh=Z+CuPkRKVZ7tXW2TEkC/gPbqUuvCiTo7Xi+BBGMFZqc=;
- b=UQLmh+SXl74Pc4nUiurpH+zT6Tjy4hhpYkLvUjqTErcH4YU3S2eGCnpjz0GMJ6IGrw
- axmN9L5qMBoKv9yaQlkYmOFe+daXZk/cwefGPTNesKBEMuyiP1seQ1mC/WS5uNmGU05z
- AMk2IVC6EDdozcfv+siuzB8r7vOF7T4c9drSOju00kFCeQSb25CWNFgQLV3/LOzmVXlJ
- NZUrLuh0KYQnNhd3DC+OzF5FOeJyye9c6yW66BuCs3gXZLaRD83zknjA3K1Tlj5til1t
- g5hogd7nF+RV500NPknEm72FsNFV218HAHWh2jgRQNX8qkUYX9csc3RvmQf9McXx+pc2
- BviA==
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=QIkmlfx36HGCgPU+aOqGn881RKM1Ep6+aFFH7tFDOhI=;
+ b=OosQ0HCKJVJK883tMwqdytNtnisnFVTbVSAv33kEKGcShhT9KahgOg5nt4mCRZDVVj
+ GRvYaWlyBOAImJgfKLpgTVPaQwj6uNrL81av2KJsd5R4hYNhVYfrqP5ZFjMitXnDns/G
+ UheC/WQVjSWsWXIKVCSWP+MXhC6y5MILsaPphDT6YBIpuPnF4R+gl9YhBVdWLTDzOe7/
+ ONSWh3OU63eQdVYH0ykPwoObPT18fbSjiNFKSighxXqcPG4vymeJrBCg/yYInOxBGM0E
+ WDfLBaYTIK7LpMkBedjjtid6ENztVz0mUAhgLtodvYMgqZFC5kod5nZkj9aG+CH0n2l1
+ M+Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to;
- bh=Z+CuPkRKVZ7tXW2TEkC/gPbqUuvCiTo7Xi+BBGMFZqc=;
- b=ndzm9m7P+oq9LbMlncWMKD1ggMMqVx5L0IdtnNqOUu6cH1Pw3vXi59IfvqvaamCVHO
- pKDGnHNbOkQ/3g/ituuz/grHJKrS3UzurPol9g+yTCLuHA7qxukiJZI4jRCl1JD2PpOv
- nag/o4r9HACKbPz4cTu2HrqGm47k2m8GUT0nAA4aGqIAAe/rgcxiGiDeEv1zatBOjvYS
- bNoJ7Z8uXvyjAfnEnd/8f6B8sQPeJSg1KEBG10u3WDQxgiKLvg7BX6PanwbjCc3VVLBw
- /8nYNK1/jjYmGmTGUinD6i/o8bHU35NYtMnDP9uwyGHyqe4PqzJnylEoPWdbh5IJydp6
- /m4A==
-X-Gm-Message-State: ANhLgQ31z4U7Zb2FF1gxRyJ2TXOuhHfHq7UZj5KVXWoCtNRR/i2KO4q/
- EVgJKcN52s2PiMWdCxSul3F+mA==
-X-Google-Smtp-Source: ADFU+vtUMJku+tASP4viJHeLjxnEp27F8NMyUaWNWolbNSxhZm0/swXSv0jViU0/jGuXTCK3JgjZTA==
-X-Received: by 2002:adf:a48d:: with SMTP id g13mr20357187wrb.38.1585644027208; 
- Tue, 31 Mar 2020 01:40:27 -0700 (PDT)
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=QIkmlfx36HGCgPU+aOqGn881RKM1Ep6+aFFH7tFDOhI=;
+ b=DLdPaVEje86tNahXAuaePogjW9hjq4pKzymaOBDDWdPWuvzrq8GV/mJiKKnAkC9f3I
+ Pg6qqam5IZIzjYFOaqIztW4eqE0WfTEmlEvr3wxNYMt3pFqqf4siD8npQAYJ+8KQtH1r
+ ecl46grSExtkhy6ZROkLPMKmOxYHYL6BOy3uBqbeW2Lj7ayIIYT7kRJKZAyGvsvEyJC+
+ yMPtOiEfKiZ5JnSdyxrDQBoJl4QHxk/Xz+Vp8ODHi+nGBFk7Cl8cQRlJd6aGYB0e6L5Z
+ eN4EUhsJZYGNYghZQkfzbXRZG5CmSIx7/5Vg+DyIabOEqShDQlFf8wtc26OZ1FJmPFMi
+ YmlQ==
+X-Gm-Message-State: ANhLgQ0yIQ3W1LPFgQ7KldtiBMAARAXpaIKYhaOeqYirO6q4taEXjSjw
+ gbP2o/yUJLlOxgmzJsJtNZqG+g==
+X-Google-Smtp-Source: ADFU+vuaVOaUoT0zyHX5/tEVtCCmxjG7l+rLMxVL+7kbvA10dfu3T++VV/d1rs7v2dEU+MZhY0m9GQ==
+X-Received: by 2002:adf:f3c5:: with SMTP id g5mr19054130wrp.230.1585644293987; 
+ Tue, 31 Mar 2020 01:44:53 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2?
  ([2a01:e35:2ec0:82b0:5c5f:613e:f775:b6a2])
- by smtp.gmail.com with ESMTPSA id u204sm2877774wmg.40.2020.03.31.01.40.25
+ by smtp.gmail.com with ESMTPSA id y11sm27059194wrd.65.2020.03.31.01.44.52
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 31 Mar 2020 01:40:26 -0700 (PDT)
-Subject: Re: [PATCH v2 00/14] usb: dwc3: meson: add OTG support for GXL/GXM
-To: Felipe Balbi <balbi@kernel.org>, kishon@ti.com, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com
+ Tue, 31 Mar 2020 01:44:53 -0700 (PDT)
+Subject: Re: [PATCH v2 07/14] usb: dwc3: meson-g12a: refactor usb init
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20200326134507.4808-1-narmstrong@baylibre.com>
- <87v9mne9cj.fsf@kernel.org>
+ <20200326134507.4808-8-narmstrong@baylibre.com>
+ <CAFBinCBhk+XvjGODBaNH7tzCfGktYdmk1wED8UC6cYmS3ucbig@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -128,15 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <351fa51d-9772-13a5-8b44-538a61a19c88@baylibre.com>
-Date: Tue, 31 Mar 2020 10:40:25 +0200
+Message-ID: <aaea637a-4fef-9914-16f5-5b71458bd7e4@baylibre.com>
+Date: Tue, 31 Mar 2020 10:44:52 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <87v9mne9cj.fsf@kernel.org>
+In-Reply-To: <CAFBinCBhk+XvjGODBaNH7tzCfGktYdmk1wED8UC6cYmS3ucbig@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200331_014028_646832_D0486192 
-X-CRM114-Status: GOOD (  16.30  )
+X-CRM114-CacheID: sfid-20200331_014456_053848_8951F9FA 
+X-CRM114-Status: GOOD (  17.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,144 +151,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============4445159545082186283=="
+Cc: balbi@kernel.org, khilman@baylibre.com, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kishon@ti.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============4445159545082186283==
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="TThNyReAmkHP58i9ENNBdtf2VVvIpqMrA"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---TThNyReAmkHP58i9ENNBdtf2VVvIpqMrA
-Content-Type: multipart/mixed; boundary="tmOsREy25oKgpUiW8lnALGejyda7lIbzP";
- protected-headers="v1"
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Felipe Balbi <balbi@kernel.org>, kishon@ti.com, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Message-ID: <351fa51d-9772-13a5-8b44-538a61a19c88@baylibre.com>
-Subject: Re: [PATCH v2 00/14] usb: dwc3: meson: add OTG support for GXL/GXM
-References: <20200326134507.4808-1-narmstrong@baylibre.com>
- <87v9mne9cj.fsf@kernel.org>
-In-Reply-To: <87v9mne9cj.fsf@kernel.org>
-
---tmOsREy25oKgpUiW8lnALGejyda7lIbzP
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-On 29/03/2020 12:36, Felipe Balbi wrote:
->=20
-> Hi,
->=20
-> Neil Armstrong <narmstrong@baylibre.com> writes:
->> The USB support was initialy done with a set of PHYs and dwc3-of-simpl=
-e
->> because the architecture of the USB complex was not understood correct=
-ly
->> at the time (and proper documentation was missing...).
+On 27/03/2020 00:26, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Thu, Mar 26, 2020 at 2:45 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> [...]
+>> -static int dwc3_meson_g12a_usb2_init(struct dwc3_meson_g12a *priv)
+>> +static int dwc3_meson_g12a_usb2_init(struct dwc3_meson_g12a *priv,
+>> +                                    enum phy_mode mode)
+>>  {
+>>         int i, ret;
 >>
->> But with the G12A family, the USB complex was correctly understood and=
+>> -       if (priv->otg_mode == USB_DR_MODE_PERIPHERAL)
+>> -               priv->otg_phy_mode = PHY_MODE_USB_DEVICE;
+>> -       else
+>> -               priv->otg_phy_mode = PHY_MODE_USB_HOST;
+>> -
+>>         for (i = 0; i < priv->drvdata->num_phys; ++i) {
+>>                 if (!priv->phys[i])
+>>                         continue;
+>> @@ -284,9 +286,10 @@ static void dwc3_meson_g12a_usb3_init(struct dwc3_meson_g12a *priv)
+>>                         FIELD_PREP(USB_R1_P30_PCS_TX_SWING_FULL_MASK, 127));
+>>  }
+> There is something strange with dwc3_meson_g12a_usb2_init.
+> enum phy_mode mode is added here but it's not used inside this function
 
->> implemented correctly.
->> But seems the G12A architecture was derived for the GXL USB architectu=
-re,
->> with minor differences and looks we can share most of the USB DWC3 glu=
-e
->> driver.
->>
->> This patchset refactors and adds callbacks to handle the architecture
->> difference while keeping the main code shared.
->>
->> The main difference is that on GXL/GXM the USB2 PHY control registers
->> are mixed with the PHY registers (we already handle correctly), and
->> the GLUE registers are allmost (99%) the same as G12A.
->>
->> But, the GXL/GXM HW is buggy, here are the quirks :
->> - for the DWC2 controller to reset correctly, the GLUE mux must be swi=
-tched
->>   to peripheral when the DWC2 controller probes. For now it's handled =
-by simply
->>   switching to device when probing the subnodes, but it may be not eno=
-ugh
->> - when manually switching from Host to Device when the USB port is not=
+You are right...
 
->>   populated (should not happen with proper Micro-USB/USB-C OTG switch)=
-, it
->>   makes the DWC3 to crash. The only way to avoid that is to use the Ho=
-st
->>   Disconnect bit to disconnect the DWC3 controller from the port, but =
-we can't
->>   recover the Host functionnality unless resetting the DWC3 controller=
-=2E
->>   This bit is set when only manual switch is done, and a warning is pr=
-inted
->>   on manual switching.
->>
->> The patches 1-9 should be applied first, then either waiting the next =
-release
->> or if the usb maintainer can provide us a stable tag, we can use it to=
- merge
->> the DT and bindings.
->>
->> Changes since v1 at [1]:
->> - Fixed DT bindings to take in account usb2-phy2 on GXM
->> - Added comment in patch2
->> - Fixed patch 5 and moved fix out
->> - Collected tags
->> - Lower DT patch changes, switch p20x-q20x port B as OTG by default
->=20
-> patches 1-6 are applied to my testing/next
->=20
+> 
+> I also think that we should not pass enum phy_mode to
+> dwc3_meson_g12a_usb_otg_apply_mode
+> I'm aware that the original function used enum phy_mode inside but
+> this doesn't seem right:
+> we're not configuring a PHY there
+> instead we're setting up the OTG switch so I think we should use enum
+> usb_role instead
 
-Thanks !
+Indirectly yes, we setup how the phy_mode is set in the glue, and passing
+usb_role will need an useless conversion in dwc3_meson_g12a_usb_init_glue
+also calling dwc3_meson_g12a_usb_otg_apply_mode.
+
+> 
+> [...]
+> not part of this patch but should be:
+> there's a still a direct call to dwc3_meson_g12a_usb_init() in
+> dwc3_meson_g12a_resume()
+> I think that needs to be changed to priv->drvdata->usb_init(priv); as well
+> 
+
+Indeed, I'll fix that.
+
+Again, thanks for reviewing !
 
 Neil
-
-
---tmOsREy25oKgpUiW8lnALGejyda7lIbzP--
-
---TThNyReAmkHP58i9ENNBdtf2VVvIpqMrA
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEPVPGJshWBf4d9CyLd9zb2sjISdEFAl6DAfkACgkQd9zb2sjI
-SdFjyw//RckrqEYSwol9EjScA0sqLvAE1qwaHsolDgF9Jm0ZwMzsU0S08cm7n6XA
-AVFhiS5y12XVG7oPrOBhjQhssaH9+QxTsBWWR4E2pDVHU8F7Co90QWUpaoG9cQkX
-2vpwLVxwj7lk/JhsW+STQySfBeeCltGZ/z7Wc4jYN4u55Ija0HgoOlSkFYWMWvqT
-F7RDYafcZCQvk4HFNNcrBpibxAfvz8UAzF6eCVKrErt1efKR/uzhBYfr5o07fbPI
-WMis8oAFWhKH2D19XHG2wpwPYdBbDtGhmUNp6NSko2aB4Q6p3YEv6JQKoH98TKQQ
-cZBw+0in54LQIkkziDU9QyPI+Bqgk8xIO8IdznBW7E85UBf/N071LHcAl7vHvMpn
-F4apG+yeV+SXgPlfsyLEZL43Ufm/z3dptos7CRqpuEo4xYGmgDNfofMJ4o2KFY/s
-2Eu0Zz4lp09RkhNWXXUZH2LoS5z3djpdPJYoI/ilc3DDr0gzhyzEf7q3/oNyAZM0
-PeCdu3V5gI2EOSzwCKQJtlO6Z5MjQ7A9iw/WQBQcDHz2xTopKBkc+2XreFfcJNqk
-6HURsz/Df4k/cUy1ufwirDVaIdSfOlT87hYZlC6NN+6U3OGLv4bVkEUm0L8FqGcl
-13H2rbqZVGX3r/atM6FpV/jV0Pe2RM+iwLI+g8cwYCOiKbyEppo=
-=MKHU
------END PGP SIGNATURE-----
-
---TThNyReAmkHP58i9ENNBdtf2VVvIpqMrA--
-
-
---===============4445159545082186283==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4445159545082186283==--
-
