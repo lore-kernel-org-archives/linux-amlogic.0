@@ -4,18 +4,18 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7B35C43331
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 22:07:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68777C43331
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 22:09:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 798DA20838
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 22:07:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 37A122080C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2020 22:09:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GbmUN6C1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 798DA20838
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n4mPBzki"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37A122080C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,56 +24,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rw5ZINCT0JQnj+toWqDBPGw22Dz0nArdI7PmCN4zxpQ=; b=GbmUN6C1pI1B7D
-	BJgz9JOFFxBJ28LN76HJ/r9DLGYqNEfbvucQj5GTerkdH+osD7N3Dc59pUCZIcLN2Ntc+B1vu/dg5
-	QmWuGamSwrPVDQ4ZsbepePKyEQUFrSNoUu8CaLT/f6RXHG0WEdK0/xEEs5rMxW1rakY1ZdH6wvsUf
-	ezd6wU8WbgcdF2HWlmKj3bFKFMZj/4I5ghn+0Y5UPPZLbkKVYNOZXVIn+03o6ydxdVAEEfcvTz7l9
-	WEdPadtih42DS6LsQXL+bvHDt0GVSOeF+WyOIZTOIsfG0bArzJXT+/SUtJNTNiZoELefv2lmyx4Cg
-	Uds/HlHCA75ICfOfNFtw==;
+	List-Owner; bh=4IRBU18VjJtyvDj4ChYX3uyAkhiTd2GLWMTfRxGh9H4=; b=n4mPBzkiw/loyD
+	7BOi5KmRuWZfl5LqSTAXsHSXBsU2eCKjDceFbYheA8msZf10TYoPR3DmJ8jXL8vEGvDXoCVwjSp0C
+	Vr6vcsoxPTOY9MnC4gbsmk2BqqPAdzsl/U0tY7BTnyGv2THE3PlEGPKrwMwnCyXmJM6tp6uDYeGno
+	MUPL9ONBSxhJYrfwlfVDJGQlGc9E8xL6EJjzUL1ZAMjIw1HR1ceOmdm7woeVTIo1HG9LreqkFhnzX
+	dEZJVaxM8MDP3rgaOZJno/d/2ITX+OOCrFYhzmCniEzeJURva/99PReCfSYuPUjzvhqmuIXJBXqoR
+	H/PRX643v2Vsj7THV5Mg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jJP2Z-0008VH-6x; Tue, 31 Mar 2020 22:07:23 +0000
-Received: from mail-il1-f195.google.com ([209.85.166.195])
+	id 1jJP43-0000vF-1o; Tue, 31 Mar 2020 22:08:55 +0000
+Received: from mail-il1-f194.google.com ([209.85.166.194])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jJP2W-0008Ul-Pf; Tue, 31 Mar 2020 22:07:21 +0000
-Received: by mail-il1-f195.google.com with SMTP id j69so21029978ila.11;
- Tue, 31 Mar 2020 15:07:20 -0700 (PDT)
+ id 1jJP3q-0000kW-9S; Tue, 31 Mar 2020 22:08:43 +0000
+Received: by mail-il1-f194.google.com with SMTP id 7so21066945ill.2;
+ Tue, 31 Mar 2020 15:08:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=gwWUAkb8abOTifbHiNXnwsQ9Dtd0p1eR1MIaYvko6Eo=;
- b=KeUu15gCaivBr6f4tnmO77/5As4DRscTtixis8IByNTyBVEpTIcS9m+FRuzxM4hLEn
- GDqi3Eo/9G5av+fyKkTHbfy7wVvBiJJUi9S+aUpexDuI8vlSQOwDJEjUzLQXnRmvbwYt
- Cos4H6ph6C6ROsutDJanDkODiMDv6HSwEhteEZJnplXhO4D6ZPoGh8ADJsczH8dKeQ6E
- QRK/uHg3M2gZSNOO6HxImFeSiN9HQVTbpEqssWUqfzc77Zzto9j4PNgbNDktyxq2d2G4
- QtWw3Yb4fMkMX/ChI/TYjcXqQBRCptAp0WmIFq1o8HnPYjcl8S4ytzUTSFimH/WGuc/v
- D14g==
-X-Gm-Message-State: ANhLgQ2tNRvDo6ohh7bWEMjkyc8y/Op0z3LC9/4OxwHigmjhflajZwcz
- Ep5wz+PGexJRhHH/8AENvMlbHjN8fw==
-X-Google-Smtp-Source: ADFU+vtDNeOnim0HaWP5CQDpX6NvB9k8NLTc28IoNQAKLHA3sOrQLqnEllJxTDgRB6tbM1TZC74HUw==
-X-Received: by 2002:a92:5bd7:: with SMTP id c84mr19057734ilg.26.1585692440128; 
- Tue, 31 Mar 2020 15:07:20 -0700 (PDT)
+ bh=zq6lnen4wO1ZG0dffCWm2RGQcT8LeYtwqJqjBTsJ3GA=;
+ b=ZUl5FKYJHMhIdhXuNJhjUcN33+pIrlQgDxsu3HhGUSki5oCDmh3/q6kW0rgcaaazd8
+ /D8pzcJWpUPdexpA2P/etLJrFcevmp+vmCAaeNJfPWdEfYNZd/VxYEUD/dMQbtgBA3mX
+ FeBPyQoBP+wx0mgiJ93YDFVVsLyJfpX3Hk8jIIuYeCyYCth9KJpZBnpcIFzbhFdCvOBN
+ aHcDtY/OIGsxhljRR7QNFVsoRnN/rEQp8b6QTMC/0CcR1fnER1mZeSdJWpCE3+eNf5SR
+ EvOQfSRdWMw79DjbHRd4xrPtd01EQjVLQ52c8fH6mQSND00a4X5Kn4nksEXZA+Io4OlH
+ lU3Q==
+X-Gm-Message-State: ANhLgQ14Xmw5OYIPUdYd6JB2nxiEp3t15DqXPvzVfKVBXFdb0ihlKaI9
+ U6A/sFV0/64FQwYjjavTfQ==
+X-Google-Smtp-Source: ADFU+vvsqcZ/8hm+2F9xJLmsIK4neA63BSqusqM0rClIuHLAaTmsTnIJm6Qo7foDMZxypZHs0knNlw==
+X-Received: by 2002:a92:7e0d:: with SMTP id z13mr18753339ilc.202.1585692521393; 
+ Tue, 31 Mar 2020 15:08:41 -0700 (PDT)
 Received: from rob-hp-laptop ([64.188.179.250])
- by smtp.gmail.com with ESMTPSA id g78sm50132ild.36.2020.03.31.15.07.18
+ by smtp.gmail.com with ESMTPSA id l3sm42738iob.31.2020.03.31.15.08.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Mar 2020 15:07:19 -0700 (PDT)
-Received: (nullmailer pid 32334 invoked by uid 1000);
- Tue, 31 Mar 2020 22:07:18 -0000
-Date: Tue, 31 Mar 2020 16:07:18 -0600
+ Tue, 31 Mar 2020 15:08:40 -0700 (PDT)
+Received: (nullmailer pid 2535 invoked by uid 1000);
+ Tue, 31 Mar 2020 22:08:39 -0000
+Date: Tue, 31 Mar 2020 16:08:39 -0600
 From: Rob Herring <robh@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH] dt-bindings: display: meson-vpu: fix indentation of
- reg-names' "items"
-Message-ID: <20200331220718.GA32235@bogus>
-References: <20200328004157.1259385-1-martin.blumenstingl@googlemail.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2] dt-bindings: usb: dwc2: fix bindings for
+ amlogic,meson-gxbb-usb
+Message-ID: <20200331220839.GA2373@bogus>
+References: <20200331083729.24906-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200328004157.1259385-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200331083729.24906-1-narmstrong@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200331_150720_830991_7ED4C7FD 
-X-CRM114-Status: UNSURE (   9.21  )
+X-CRM114-CacheID: sfid-20200331_150842_325494_A43261F8 
+X-CRM114-Status: UNSURE (   8.98  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -86,26 +86,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, narmstrong@baylibre.com,
- airlied@linux.ie, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, robh+dt@kernel.org,
- daniel@ffwll.ch, linux-amlogic@lists.infradead.org,
+Cc: devicetree@vger.kernel.org, benjamin.gaignard@st.com,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 28 Mar 2020 01:41:57 +0100, Martin Blumenstingl wrote:
-> Use two spaces for indentation instead of one to be consistent with the
-> rest of the file. No functional changes.
+On Tue, 31 Mar 2020 10:37:29 +0200, Neil Armstrong wrote:
+> The amlogic,meson-gxbb-usb compatible needs snps,dwc2 aswell like other
+> Amlogic SoC.
 > 
-> Fixes: 6b9ebf1e0e678b ("dt-bindings: display: amlogic, meson-vpu: convert to yaml")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Fixes: f3ca745d8a0e ("dt-bindings: usb: Convert DWC2 bindings to json-schema")
+> Reviewed-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  .../devicetree/bindings/display/amlogic,meson-vpu.yaml      | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/usb/dwc2.yaml | 13 +++++--------
+>  1 file changed, 5 insertions(+), 8 deletions(-)
 > 
 
 Applied, thanks.
