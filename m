@@ -2,23 +2,22 @@ Return-Path: <SRS0=kcVe=53=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A23EC2BA2B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 16:57:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A383C2BB55
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 17:04:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1C88C2075E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 16:57:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E022420757
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 17:04:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pmsPcFK4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="RWrw26nq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C88C2075E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tTsj1mVm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Yily2VDj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E022420757
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,66 +26,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=oRVuZRpmPjiGs7qxEpDijBkgwOY9npq8yY9EMUOsyOE=; b=pmsPcFK4aRaEh6
-	jAsMnQLurZDY20cqk1WcpuPOzvoeP6iiDx+Lcg+vVangqWW8H12i36QiqXH1riTlG3nuH8yoT/a7Q
-	F0+JSpsdqYJAX+j1fRFOQJYTcdwSnjvYI9+qCrvZ9e0a2nTmDIn0UlMe5HR9vZ46L+nR+nWMwmXhd
-	Jx4VODUBHy8HYBnk7yLtex5O3u+TZ1DCRKL4L7ubM+R7sufNy8QRyaTxoNX3nEd5wlorN6BdzAMeU
-	Hk1ZqUHjYTPQ/VmnMaQJLKTnXi53jVVrGYEQp43vptiobXG/y0ST6iWkzXHnmUpFNpqEDYfwdZ/gk
-	u8DSB+sMB/PP8/s8C6lA==;
+	List-Owner; bh=7QN3jsgA+KDBs6MStnJNPmSyJdX6iXypxqr/hwWWjM4=; b=tTsj1mVm2lQ2iY
+	V4BIRWrJrW6wJPV3vCEYlXMp0bGiuhGLHqsQC9sT3TjegOsgLeDV8WfMCsIg4wRWKAwZ80AQtZJ6G
+	3uOD+NTfbrKedMOJ0ggkVhZ8pK0VdIVGCYC/mKFO1mdOQCzYsDY0jzh+fgxLVKZHWvZ11mYKFCc+B
+	g8gmdnPfN2fea8udfAHKRKI/uDeU/3/c6kNmbj8jHxMo/7lJomCAUyXGElm6njiICE9l8JOCntvSS
+	zrQv0dejVMa05bTl8TKvSSR/7QpvR9ouHKJ6aSaTjG2lPGHl4+BhnON0qCgEd3x82zzMIYneo5joQ
+	n6mvN/yXPi4LA9d9LMRg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jNJRk-00015I-VX; Sat, 11 Apr 2020 16:57:32 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1jNJY7-0004eM-MT; Sat, 11 Apr 2020 17:04:07 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jNJRi-00014X-GP
- for linux-amlogic@lists.infradead.org; Sat, 11 Apr 2020 16:57:32 +0000
-Received: by mail-wr1-x444.google.com with SMTP id h9so5595810wrc.8
- for <linux-amlogic@lists.infradead.org>; Sat, 11 Apr 2020 09:57:27 -0700 (PDT)
+ id 1jNJY5-0004d8-4Z; Sat, 11 Apr 2020 17:04:06 +0000
+Received: by mail-wr1-x441.google.com with SMTP id f13so5582529wrm.13;
+ Sat, 11 Apr 2020 10:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=XHtQD/meuXaYe8UaCWq5ou0S7rpgnlSgQuuCrxXrgqE=;
- b=RWrw26nqS4KT9PlkFPDn2JxIpRqcyPHhXMFaV2xV/LRA5u0k8ivXmdSjtFyCEqZfs/
- w6d951CQrL1mkIvQKsxH9o9MjSCclbzSWvG8mH72tmFcKpKfRqa3g1YP8QzUIoSPuWRl
- VfC7wxNrZMh142P0OaR5q4xJ3A8rcTAIzhZSXShlqTSlELXp0V+oV4zQjnrmXwL8gBp7
- 8Iy1gSh8L065we/ErvRTUYKpFeXymglr0A96fJfQmniKcFkQnfRxAr6e07HealZfhgrm
- H0r7FiZGM1Np9CXQUXmq3rMU4WLM/x6xnx8oh3NXwpxvXewCfyiF5eM6LzfF1sZdS2hU
- IflA==
+ bh=IOsMm1GoNxNPYYmUzD6jyXB9lWe+DZS5AsZXr/XfoUc=;
+ b=Yily2VDjSsMda9iki03gFoCEaOVqcW+S746+ti6agF+KG13Utd3IY5W3YTK/aLJKEc
+ 79QFNOFfc+aMVMREmQ8KYlkzCsrPVhId0Myk0Id0b/oGg4RycTaAzxdP0bY60MtwvvEt
+ naIVlKYlbHFIpjNmUhY5vZB3bsIGKGBBw0A4LlvmhZFWj0wg3D/rEtgTEte4pd8huIH7
+ HqNhzI7qBf8F1sV/TuRsGefjKIf3k18Hzkg8EJ1s78ydC/syNA32PDUTE03R4ts38sgM
+ VPukKz6XJvhay4pW1tHjGMqnRBlKTNelSBnjdntnqb2RrnRlQyJLCWemvapW/oqPg86K
+ oIlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=XHtQD/meuXaYe8UaCWq5ou0S7rpgnlSgQuuCrxXrgqE=;
- b=CFBFO6hbfNc/Oau8Qx+IYcTrvfqJOP30y5Pm0sWeJFsohKA2mM7BC91fwP8rSvwnsX
- Jj1iVMF8aEd6Ke/TZge85kOhDlFb6VM3aWuuQUZBpoJKejfijRBSMPBP5VrvhPAMJ1zA
- SBrTmmkHjn2cjbIeSik212BqDsRPi6kZ34aPxN5jXy0EF+MOSHxCXmBGzUpxWmUdc33K
- ksDYK9y8Kp+ky2UqNJUGIwLGeDX1DQ/DFa2hI+cKTNDzt0uHVE15r6y5XlpjlBy3dW2+
- FUC8f1EviK4UJ7/bpne7/WGXaYbsBobOZCeRI3D63Bn1iMhfwbZdF2ZghBraZylKIucj
- iinw==
-X-Gm-Message-State: AGi0Pub5CLX23MZM+JGTXeAMi8ljGhytLq40Lgn0sQLuQKUlWjDx1Oar
- dJU/CBQitdPHThGAH/ryepA=
-X-Google-Smtp-Source: APiQypI831li2YGPKN/VZUe6xPsQn9Sks+evd0nSUfRQDu+keljhtZbYvFFAXX996GgtLV3jKygrbA==
-X-Received: by 2002:adf:80af:: with SMTP id 44mr10792605wrl.241.1586624246453; 
- Sat, 11 Apr 2020 09:57:26 -0700 (PDT)
+ bh=IOsMm1GoNxNPYYmUzD6jyXB9lWe+DZS5AsZXr/XfoUc=;
+ b=VNSIgllaazjR6lSGmLBDcIwzhvlNyYIQvL0Y9eHNy+vNPAZmKRUSqLxTnUwVWd4grB
+ ZdPDH4uSNiygmdsebr5YbgQZw1H/tWiYefnpMa0h5PJUVPH/OJSUXGZNNhNwR20oyU/1
+ D5vntFy8Cm3FLXAfVxUdwWgt0SMc6zGKU75GjEeT/KhA5hFFC22upUhvuewPat2cFEW3
+ gjVRZSp09QeIGKZw3h5B3w5R4L0IKd1KPiCI+0iyDkOK8Ke8Yqsxqlo9XfZaS//GnSi8
+ b8MuYav7xCsbRj3VGLtl47VWFmCy9BWrdRy77ltoSCefQGF30VhmQ7NonTXBq8LZVku3
+ LGRQ==
+X-Gm-Message-State: AGi0Pua3+06TwPzuT3OY+Kxh++PyjKTk8qZo7qIFsBpL00gLxJChN/yg
+ LY7jNsDdjVwfKbQ/sY+M8+w=
+X-Google-Smtp-Source: APiQypIMueKGRpDHbSjx55N7jiNFBXeZ09WkesAqa0IiAUoyQbK4pwSfYGNHPwWisyKHBoW7d61usw==
+X-Received: by 2002:adf:92c2:: with SMTP id 60mr7091115wrn.379.1586624642970; 
+ Sat, 11 Apr 2020 10:04:02 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300F13710ED00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:3710:ed00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id z11sm7781992wrv.58.2020.04.11.09.57.25
+ by smtp.googlemail.com with ESMTPSA id x18sm7105067wmi.29.2020.04.11.10.04.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 11 Apr 2020 09:57:25 -0700 (PDT)
+ Sat, 11 Apr 2020 10:04:02 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-Subject: [PATCH v5] dt-bindings: gpu: mali-utgard: Add the #cooling-cells
- property
-Date: Sat, 11 Apr 2020 18:57:00 +0200
-Message-Id: <20200411165700.1576314-1-martin.blumenstingl@googlemail.com>
+To: linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Subject: [PATCH RFC v1 0/2] pinctrl-meson: two small improvements
+Date: Sat, 11 Apr 2020 19:03:54 +0200
+Message-Id: <20200411170356.1578031-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200411_095730_570226_E568894D 
-X-CRM114-Status: UNSURE (   7.76  )
+X-CRM114-CacheID: sfid-20200411_100405_200759_2FB08FC4 
+X-CRM114-Status: UNSURE (   6.83  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -100,54 +97,31 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, Qiang Yu <yuq825@gmail.com>,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The GPU can be one of the big heat sources on a SoC. Allow the
-"#cooling-cells" property to be specified for ARM Mali Utgard GPUs so
-the GPU clock speeds (and voltages) can be reduced to prevent a SoC from
-overheating.
+While playing with audio output on Meson8b I found out that the
+vendor kernel uses a custom version of the GPIO_PULL_UP flag. I
+suspect that we will need this for audio support on Meson8b and/or
+Meson8m2 but I don't see it hurt other platforms.
 
-Reviewed-by: Qiang Yu <yuq825@gmail.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
-Changes since v4 at [0]:
-- Added Qiang's Reviewed-by (many thanks)
-- re-send because I missed the devicetree mailing list in v4
+Also while comparing the register bits with the GPIO direction (of
+GPIOs exported to sysfs) I sometimes had a mismatch. This also wires
+up gpio_chip.get_direction to have sysfs and the actual registers in
+sync.
 
 
-[0] https://patchwork.kernel.org/patch/11448013/
+Martin Blumenstingl (2):
+  pinctrl: meson: implement the gpio_chip get_direction callback
+  pinctrl: meson: wire up the gpio_chip's set_config callback
 
+ drivers/pinctrl/meson/pinctrl-meson.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
- Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-index f5401cc8de4a..4869258daadb 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-@@ -107,6 +107,9 @@ properties:
- 
-   operating-points-v2: true
- 
-+  "#cooling-cells":
-+    const: 2
-+
- required:
-   - compatible
-   - reg
-@@ -164,6 +167,7 @@ examples:
-       clocks = <&ccu 1>, <&ccu 2>;
-       clock-names = "bus", "core";
-       resets = <&ccu 1>;
-+      #cooling-cells = <2>;
-     };
- 
- ...
 -- 
 2.26.0
 
