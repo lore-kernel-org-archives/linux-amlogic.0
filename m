@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90E7EC2BA19
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 23:15:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 94A68C2BA19
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 23:20:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 489FD2166E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 23:15:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5D7ED20769
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 23:20:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HpIVkmik";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="vNm7SFIM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 489FD2166E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CRDJ9jRF";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+Z4qNTy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5D7ED20769
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,46 +26,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BK5zGgKEHfcYpVHm4OpYtBG9ATc9uchGYk6j0og5M1I=; b=HpIVkmikFnrG4I
-	W5pCRucovxeAyIf/6wu76t9eVRYehmK9HwCsUlQ3HbrWSFU/8nxslmzkakZTVmILOhO/V2yNgtM6W
-	0dCna6eqb62v2pVQqJXWeP/CJb2XrMEkJ5fNU7GqjAAOrMG/oUTyWM96i5iibSmDKg4UiGerZeLtO
-	NU6a/2VLKjKrJy76jricO+y/WirFFVwTydc9gZLbtNnn3dvQSRlvyJNfS2A2DdFBfjKB6UN/QZowY
-	JBqC5H4qOVZlMrkLAxIM7A2z70QkxLB4yDIohkgS6EG8pDf9l9gJqpmxF87TOM3JVYrjcsPZJjEep
-	WS7j3C7bPy9btPY8hZnQ==;
+	List-Owner; bh=NhLUrv1FmuFSpjxWzFxxkPQ4JlxzhCjDg6YIVo+BtzU=; b=CRDJ9jRFfEmved
+	/bexLfLEpzxYlceGVIv9oMKhYjNSb4e2bS9F5i1jIPR9pMsK101ZBkLL5VhBcFGilWYycKzfwDQ4S
+	Z1GEUt09b3ssM+FEqwAHqX7ndQm3L33F4tCtHROWK7ATsREFyFgW+/sJ6lIqp6QA33Y7eSoc/b6hg
+	29sWh2yqaXhINKEHPb+RMltDKrf3aujDT5O5bqg4QHR77+B6wzpy1h2ymEDa+rId75avIJCVhMH5n
+	XxWNsZbo0b1H6nfqlv6mFlsAj5pEsHrspMAutwyqOTzKSpgC+VtobmShSXmsIOG0KhHQocKfI8VdU
+	teT5MrR6jTv5lWDDN/Tw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jNPLa-0005Jy-Gu; Sat, 11 Apr 2020 23:15:34 +0000
+	id 1jNPPs-0001A4-9I; Sat, 11 Apr 2020 23:20:00 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jNPFb-0003Jc-HM; Sat, 11 Apr 2020 23:09:25 +0000
+ id 1jNPHv-0007hv-7V; Sat, 11 Apr 2020 23:11:49 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 0CBA720708;
- Sat, 11 Apr 2020 23:09:21 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 5787D21841;
+ Sat, 11 Apr 2020 23:11:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1586646563;
- bh=rQ+FMFDbzRJVIClmJqZrm30Jm4qhTCvvooV36aXECIo=;
+ s=default; t=1586646706;
+ bh=S9W5pKRzZW7QaFWCeMpBQp2JqclXu0y6o6TP4of1WsI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=vNm7SFIM03zhfOnbAyN6fP3cFVKryAkv7pzx7wslurpTYI7Ye4HqIugtEkZn7f1Qz
- KXvkf2IOtvVkAw+wu4ZWEHpbYjXef0poldt4NnSUX7Ch5PdJXTSGDVdx8H9UxWvIMA
- Nr3MQv+0nvBCSjf2BvjioFIZPoG6/3zqvcsLQkfA=
+ b=i+Z4qNTydk+sZikAn5sLohpFUDufLp/XbODKRWFOWykHGxUS8MxxjGQdAqIYjb2xj
+ Wvo2nOq8ALB4Nj/G9iEiHzohVeARR8yYsnw1PVzQT2OJv6lDXZGE65+53+lTRkUje+
+ qL8U7Mk+MfMUMVawahhsL+FaiKg5Ueq+ETAQ+e7U=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 111/121] arm64: dts: g12-common: add
+Subject: [PATCH AUTOSEL 5.4 098/108] arm64: dts: g12-common: add
  parkmode_disable_ss_quirk on DWC3 controller
-Date: Sat, 11 Apr 2020 19:06:56 -0400
-Message-Id: <20200411230706.23855-111-sashal@kernel.org>
+Date: Sat, 11 Apr 2020 19:09:33 -0400
+Message-Id: <20200411230943.24951-98-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200411230706.23855-1-sashal@kernel.org>
-References: <20200411230706.23855-1-sashal@kernel.org>
+In-Reply-To: <20200411230943.24951-1-sashal@kernel.org>
+References: <20200411230943.24951-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200411_160923_617773_073F62C8 
+X-CRM114-CacheID: sfid-20200411_161147_314864_6A8F715E 
 X-CRM114-Status: UNSURE (   8.84  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -116,10 +116,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 7fabc8d9654a5..46eea2bdbeabd 100644
+index 0ee8a369c5474..e79fef042d974 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2197,6 +2197,7 @@
+@@ -2381,6 +2381,7 @@
  				dr_mode = "host";
  				snps,dis_u2_susphy_quirk;
  				snps,quirk-frame-length-adjustment;
