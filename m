@@ -2,88 +2,92 @@ Return-Path: <SRS0=kcVe=53=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A383C2BB55
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 17:04:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE456C2BBFD
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 17:04:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E022420757
+	by mail.kernel.org (Postfix) with ESMTPS id A374F20757
 	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 17:04:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tTsj1mVm";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Yily2VDj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E022420757
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FtBRqV8T";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="vIHIAPgN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A374F20757
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=7QN3jsgA+KDBs6MStnJNPmSyJdX6iXypxqr/hwWWjM4=; b=tTsj1mVm2lQ2iY
-	V4BIRWrJrW6wJPV3vCEYlXMp0bGiuhGLHqsQC9sT3TjegOsgLeDV8WfMCsIg4wRWKAwZ80AQtZJ6G
-	3uOD+NTfbrKedMOJ0ggkVhZ8pK0VdIVGCYC/mKFO1mdOQCzYsDY0jzh+fgxLVKZHWvZ11mYKFCc+B
-	g8gmdnPfN2fea8udfAHKRKI/uDeU/3/c6kNmbj8jHxMo/7lJomCAUyXGElm6njiICE9l8JOCntvSS
-	zrQv0dejVMa05bTl8TKvSSR/7QpvR9ouHKJ6aSaTjG2lPGHl4+BhnON0qCgEd3x82zzMIYneo5joQ
-	n6mvN/yXPi4LA9d9LMRg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qfYuIbTXJvUdFVDLk7f/3VwNyuCdqwCoIc58WVxQyXs=; b=FtBRqV8T0Hx+yB
+	/XLb3cwyW/8adAltjckeRcXffSnL6R4azRYrxjJMk3IPayiZmjvHWvkhg/cMrW+Ay+N17xt5iZ6pb
+	XFNPxTJmHy/oxZBnZf053rBZBnjL9GGV/jDu0MMOWEhZ0cNy05dJii8o6RdrlLbdDYxfryxPwUw5B
+	I6uzNFqyY9sT+uqUYgPfHJuNfOtwFxVUm5eq20rFnple/lZVBXap96uZ4cgGUf6dIc9aCHhKIfLIA
+	xzuWAN3TFmxDYOdJQkpuAXX6L11rHml/V1CWyTnx7685FlbYNQujxoXyAJYvtpGuv4wJlCnZmcz+P
+	MYJNrLDr5JLoKTNdMZTg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jNJY7-0004eM-MT; Sat, 11 Apr 2020 17:04:07 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1jNJY8-0004f7-Dh; Sat, 11 Apr 2020 17:04:08 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jNJY5-0004d8-4Z; Sat, 11 Apr 2020 17:04:06 +0000
-Received: by mail-wr1-x441.google.com with SMTP id f13so5582529wrm.13;
- Sat, 11 Apr 2020 10:04:04 -0700 (PDT)
+ id 1jNJY5-0004dE-7V; Sat, 11 Apr 2020 17:04:06 +0000
+Received: by mail-wr1-x444.google.com with SMTP id a25so5647597wrd.0;
+ Sat, 11 Apr 2020 10:04:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=IOsMm1GoNxNPYYmUzD6jyXB9lWe+DZS5AsZXr/XfoUc=;
- b=Yily2VDjSsMda9iki03gFoCEaOVqcW+S746+ti6agF+KG13Utd3IY5W3YTK/aLJKEc
- 79QFNOFfc+aMVMREmQ8KYlkzCsrPVhId0Myk0Id0b/oGg4RycTaAzxdP0bY60MtwvvEt
- naIVlKYlbHFIpjNmUhY5vZB3bsIGKGBBw0A4LlvmhZFWj0wg3D/rEtgTEte4pd8huIH7
- HqNhzI7qBf8F1sV/TuRsGefjKIf3k18Hzkg8EJ1s78ydC/syNA32PDUTE03R4ts38sgM
- VPukKz6XJvhay4pW1tHjGMqnRBlKTNelSBnjdntnqb2RrnRlQyJLCWemvapW/oqPg86K
- oIlg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=hn0sT3llx8dpfWYLFXBaKS2N7KsXP2uNkFQw7JnlQ78=;
+ b=vIHIAPgNSZBSqUHtWgWpknpwGthPyNqOLnQPEJLgduq5OPJYbigDsQ4DoqO81Vl2Iq
+ 6aZNwQTeAtQSg3PlhToI4e84NvRqpYD9RcQeqrBZ6yvUC4RMqMj2GuGBz4iJb8hMpJqV
+ QrbRxjIHEOHmeCSgIggWktC/1vFbScQ8v1T4oiQmq95hqESTBLmeY88xebeMGwp6pNOL
+ 8z6i77rhvklK/AMHgPQgUD8JFLfJzA2znsoC594BZpVmAeHZwMZby6pccq4EMFM5Tmh1
+ k9/60OxKUe5Lr2/PYi/65fj8jkpFCH6OAMDDD73QspPPqWMGYq7PdJNl9EIhts+lQd10
+ d1eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=IOsMm1GoNxNPYYmUzD6jyXB9lWe+DZS5AsZXr/XfoUc=;
- b=VNSIgllaazjR6lSGmLBDcIwzhvlNyYIQvL0Y9eHNy+vNPAZmKRUSqLxTnUwVWd4grB
- ZdPDH4uSNiygmdsebr5YbgQZw1H/tWiYefnpMa0h5PJUVPH/OJSUXGZNNhNwR20oyU/1
- D5vntFy8Cm3FLXAfVxUdwWgt0SMc6zGKU75GjEeT/KhA5hFFC22upUhvuewPat2cFEW3
- gjVRZSp09QeIGKZw3h5B3w5R4L0IKd1KPiCI+0iyDkOK8Ke8Yqsxqlo9XfZaS//GnSi8
- b8MuYav7xCsbRj3VGLtl47VWFmCy9BWrdRy77ltoSCefQGF30VhmQ7NonTXBq8LZVku3
- LGRQ==
-X-Gm-Message-State: AGi0Pua3+06TwPzuT3OY+Kxh++PyjKTk8qZo7qIFsBpL00gLxJChN/yg
- LY7jNsDdjVwfKbQ/sY+M8+w=
-X-Google-Smtp-Source: APiQypIMueKGRpDHbSjx55N7jiNFBXeZ09WkesAqa0IiAUoyQbK4pwSfYGNHPwWisyKHBoW7d61usw==
-X-Received: by 2002:adf:92c2:: with SMTP id 60mr7091115wrn.379.1586624642970; 
- Sat, 11 Apr 2020 10:04:02 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=hn0sT3llx8dpfWYLFXBaKS2N7KsXP2uNkFQw7JnlQ78=;
+ b=PpYAG49YKZ7zyIbb7aMk+C8x5SeN4SjMrjqvbsR9qHK3SMT6fq0k46iIEX8omv79AB
+ AEjL6Z4bmvQPceuZiDhaQHSbzgCiKXES6R9uEFHh9q/kt6iGIgGSvv74LjyRlMyMF6YW
+ 3U6tqGKJpepzxBkjmAV8I5YD8eQenAIMhIb4Ln3meUaAgiib7AU3OsXMQfsorwrH1VsF
+ ljgzJzcNrHmLzfx0/G2TtODN/cjAW0b4kGlxrZHuqGQkJLQSGselWsTL0XCbz6fy6ART
+ p0Y3izQdJ31ml8/7BEsoOC08JYCA8fAuY9Ur3ObJJkMbwGA1CCqXUoPgscTU/TXgLIgX
+ 3+8A==
+X-Gm-Message-State: AGi0PuaWEdqHyL5gB0YtyKriuecuNRAuYjEplOroErV+MoxtsiRygbfi
+ 5XnC+Rp+8PGNXy6WPfXG3K8=
+X-Google-Smtp-Source: APiQypKffhed79h64CgKowH7kOFGYoOVBE6NWJV8QjVqZV2b6YDMGzsVwnNQqJKbQtiDP1fe/aLApQ==
+X-Received: by 2002:adf:a28e:: with SMTP id s14mr10524687wra.208.1586624643968; 
+ Sat, 11 Apr 2020 10:04:03 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300F13710ED00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:3710:ed00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id x18sm7105067wmi.29.2020.04.11.10.04.02
+ by smtp.googlemail.com with ESMTPSA id x18sm7105067wmi.29.2020.04.11.10.04.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 11 Apr 2020 10:04:02 -0700 (PDT)
+ Sat, 11 Apr 2020 10:04:03 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
  linux-amlogic@lists.infradead.org
-Subject: [PATCH RFC v1 0/2] pinctrl-meson: two small improvements
-Date: Sat, 11 Apr 2020 19:03:54 +0200
-Message-Id: <20200411170356.1578031-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH RFC v1 1/2] pinctrl: meson: implement the gpio_chip
+ get_direction callback
+Date: Sat, 11 Apr 2020 19:03:55 +0200
+Message-Id: <20200411170356.1578031-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200411170356.1578031-1-martin.blumenstingl@googlemail.com>
+References: <20200411170356.1578031-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200411_100405_200759_2FB08FC4 
-X-CRM114-Status: UNSURE (   6.83  )
+X-CRM114-CacheID: sfid-20200411_100405_267862_67AEF9A6 
+X-CRM114-Status: UNSURE (   9.62  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -104,24 +108,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-While playing with audio output on Meson8b I found out that the
-vendor kernel uses a custom version of the GPIO_PULL_UP flag. I
-suspect that we will need this for audio support on Meson8b and/or
-Meson8m2 but I don't see it hurt other platforms.
+Implement the get_direction callback so we read the direction from the
+actual GPIO controller register. This is recommended by the gpio_chip
+kernel doc.
 
-Also while comparing the register bits with the GPIO direction (of
-GPIOs exported to sysfs) I sometimes had a mismatch. This also wires
-up gpio_chip.get_direction to have sysfs and the actual registers in
-sync.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-
-Martin Blumenstingl (2):
-  pinctrl: meson: implement the gpio_chip get_direction callback
-  pinctrl: meson: wire up the gpio_chip's set_config callback
-
- drivers/pinctrl/meson/pinctrl-meson.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index bbc919bef2bf..291f3078e7c7 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -549,6 +549,18 @@ static const struct pinconf_ops meson_pinconf_ops = {
+ 	.is_generic		= true,
+ };
+ 
++static int meson_gpio_get_direction(struct gpio_chip *chip, unsigned gpio)
++{
++	struct meson_pinctrl *pc = gpiochip_get_data(chip);
++	int ret;
++
++	ret = meson_pinconf_get_output(pc, gpio);
++	if (ret < 0)
++		return ret;
++
++	return ret ? GPIO_LINE_DIRECTION_OUT : GPIO_LINE_DIRECTION_IN;
++}
++
+ static int meson_gpio_direction_input(struct gpio_chip *chip, unsigned gpio)
+ {
+ 	return meson_pinconf_set_output(gpiochip_get_data(chip), gpio, false);
+@@ -591,6 +603,7 @@ static int meson_gpiolib_register(struct meson_pinctrl *pc)
+ 	pc->chip.parent = pc->dev;
+ 	pc->chip.request = gpiochip_generic_request;
+ 	pc->chip.free = gpiochip_generic_free;
++	pc->chip.get_direction = meson_gpio_get_direction;
+ 	pc->chip.direction_input = meson_gpio_direction_input;
+ 	pc->chip.direction_output = meson_gpio_direction_output;
+ 	pc->chip.get = meson_gpio_get;
 -- 
 2.26.0
 
