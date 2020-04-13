@@ -1,73 +1,70 @@
-Return-Path: <SRS0=kcVe=53=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=XO7w=55=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 94A68C2BA19
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 23:20:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1D2BC2BA19
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Apr 2020 17:19:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5D7ED20769
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2020 23:20:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A5EFD2072D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Apr 2020 17:19:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CRDJ9jRF";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+Z4qNTy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5D7ED20769
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LAbivwAd";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="YvkMhGDz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5EFD2072D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NhLUrv1FmuFSpjxWzFxxkPQ4JlxzhCjDg6YIVo+BtzU=; b=CRDJ9jRFfEmved
-	/bexLfLEpzxYlceGVIv9oMKhYjNSb4e2bS9F5i1jIPR9pMsK101ZBkLL5VhBcFGilWYycKzfwDQ4S
-	Z1GEUt09b3ssM+FEqwAHqX7ndQm3L33F4tCtHROWK7ATsREFyFgW+/sJ6lIqp6QA33Y7eSoc/b6hg
-	29sWh2yqaXhINKEHPb+RMltDKrf3aujDT5O5bqg4QHR77+B6wzpy1h2ymEDa+rId75avIJCVhMH5n
-	XxWNsZbo0b1H6nfqlv6mFlsAj5pEsHrspMAutwyqOTzKSpgC+VtobmShSXmsIOG0KhHQocKfI8VdU
-	teT5MrR6jTv5lWDDN/Tw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=7qqk2yXGRf1sfoMUOEMpEZdMD1G/go11yUJk28e0ppM=; b=LAbivwAdn0JHI5LjNqGDItiI3
+	QqkqvbBv7KdE6ZA9NknnoKCMiz1d7eNZYa+XN2BoAAa2PKhgPSdfrN932lxXNegAXaTcnEQbG8iaG
+	9j16BfHtwIcEKd+xiOd1WsHSsk71ajNtngyqfLKxjqKNNLS33GEdo9IY4mVc2Va1uFsui54HHP2LG
+	ekongCsCS4FZf1hzwac65jxPHMmE+mI5h3zPn8X8hYU4VqjgRkEItL+8VgffisWl0OA3pvdl+9cTS
+	DNvnv36dP2+uoz7dfQsz8jX+wJzrZ6rMEuY+5+tMmier/gdcubFKhZCJBbLkvJ6nN0/eqtrdf95ZA
+	OKd3pdXWQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jNPPs-0001A4-9I; Sat, 11 Apr 2020 23:20:00 +0000
+	id 1jO2jq-0004I5-IS; Mon, 13 Apr 2020 17:19:14 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jNPHv-0007hv-7V; Sat, 11 Apr 2020 23:11:49 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ id 1jO2jn-0004HU-SH; Mon, 13 Apr 2020 17:19:13 +0000
+Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5787D21841;
- Sat, 11 Apr 2020 23:11:45 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id D7FC22072D;
+ Mon, 13 Apr 2020 17:19:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1586646706;
- bh=S9W5pKRzZW7QaFWCeMpBQp2JqclXu0y6o6TP4of1WsI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=i+Z4qNTydk+sZikAn5sLohpFUDufLp/XbODKRWFOWykHGxUS8MxxjGQdAqIYjb2xj
- Wvo2nOq8ALB4Nj/G9iEiHzohVeARR8yYsnw1PVzQT2OJv6lDXZGE65+53+lTRkUje+
- qL8U7Mk+MfMUMVawahhsL+FaiKg5Ueq+ETAQ+e7U=
+ s=default; t=1586798351;
+ bh=cOHgDLG2OEFMbA+A0xqNSmIjg/9Q/4+VZgYjP32HOK4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=YvkMhGDzbkQJ5IvqSsLJMy9CWA6UNG4IxfMvS+UoFAsU+UEO9UNkS9b4YcZRdQ6Bk
+ vhcfTLFDkgguW6HkI5Ex8GY07MxcpUl3o6V6yBIgeg8hpaLIzcNX5Mkk3yhuWrLuK+
+ uZul8kU6tCSbErGxg5cODhWOZynWgcEIdPYFLRWg=
+Date: Mon, 13 Apr 2020 13:19:09 -0400
 From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 098/108] arm64: dts: g12-common: add
- parkmode_disable_ss_quirk on DWC3 controller
-Date: Sat, 11 Apr 2020 19:09:33 -0400
-Message-Id: <20200411230943.24951-98-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200411230943.24951-1-sashal@kernel.org>
-References: <20200411230943.24951-1-sashal@kernel.org>
+To: Sean Young <sean@mess.org>
+Subject: Re: [PATCH AUTOSEL 5.6 11/68] media: arm64: dts: amlogic: add
+ rc-videostrong-kii-pro keymap
+Message-ID: <20200413171909.GP27528@sasha-vm>
+References: <20200410034634.7731-1-sashal@kernel.org>
+ <20200410034634.7731-11-sashal@kernel.org>
+ <20200410060712.GA13759@gofer.mess.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+Content-Disposition: inline
+In-Reply-To: <20200410060712.GA13759@gofer.mess.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200411_161147_314864_6A8F715E 
-X-CRM114-Status: UNSURE (   8.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200413_101911_933466_C7C511F7 
+X-CRM114-Status: GOOD (  10.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,57 +76,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Tim <elatllat@gmail.com>, Dongjin Kim <tobetter@gmail.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Mohammad Rasim <mohammad.rasim96@gmail.com>,
+ linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+On Fri, Apr 10, 2020 at 07:07:12AM +0100, Sean Young wrote:
+>On Thu, Apr 09, 2020 at 11:45:36PM -0400, Sasha Levin wrote:
+>> From: Mohammad Rasim <mohammad.rasim96@gmail.com>
+>>
+>> [ Upstream commit 806d06161af045dba29f3c7747550c93b2ea3ca9 ]
+>>
+>> videostrong kii pro comes with a nec rc, add the keymap to the dts
+>>
+>> Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
+>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Signed-off-by: Sean Young <sean@mess.org>
+>> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+>> Signed-off-by: Sasha Levin <sashal@kernel.org>
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+>> index 2f1f829450a29..6c9cc45fb417e 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+>> @@ -76,3 +76,7 @@
+>>  		};
+>>  	};
+>>  };
+>> +
+>> +&ir {
+>> +	linux,rc-map-name = "rc-videostrong-kii-pro";
+>> +};
+>
+>The will need the keymap itself as well. It was added in commit
+>30defecb98400575349a7d32f0526e1dc42ea83e.
 
-[ Upstream commit a81bcfb6ac20cdd2e8dec3da14c8bbe1d18f6321 ]
+I'll grab it too, thanks!
 
-When high load on the DWC3 SuperSpeed port, the controller crashes with:
-[  221.141621] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to stop endpoint command.
-[  221.157631] xhci-hcd xhci-hcd.0.auto: Host halt failed, -110
-[  221.157635] xhci-hcd xhci-hcd.0.auto: xHCI host controller not responding, assume dead
-[  221.159901] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to stop endpoint command.
-[  221.159961] hub 2-1.1:1.0: hub_ext_port_status failed (err = -22)
-[  221.160076] xhci-hcd xhci-hcd.0.auto: HC died; cleaning up
-[  221.165946] usb 2-1.1-port1: cannot reset (err = -22)
-
-Setting the parkmode_disable_ss_quirk quirk fixes the issue.
-
-Reported-by: Tim <elatllat@gmail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-Cc: Jianxin Pan <jianxin.pan@amlogic.com>
-CC: Dongjin Kim <tobetter@gmail.com>
-Link: https://lore.kernel.org/r/20200221091532.8142-4-narmstrong@baylibre.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 0ee8a369c5474..e79fef042d974 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2381,6 +2381,7 @@
- 				dr_mode = "host";
- 				snps,dis_u2_susphy_quirk;
- 				snps,quirk-frame-length-adjustment;
-+				snps,parkmode-disable-ss-quirk;
- 			};
- 		};
- 
 -- 
-2.20.1
-
+Thanks,
+Sasha
 
 _______________________________________________
 linux-amlogic mailing list
