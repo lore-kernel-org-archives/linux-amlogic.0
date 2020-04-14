@@ -2,75 +2,75 @@ Return-Path: <SRS0=FMGI=56=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE3E2C2BB85
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Apr 2020 08:32:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A3BFC352BE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Apr 2020 09:01:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9F9E5206D5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Apr 2020 08:32:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F32672087E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Apr 2020 09:01:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fXtAGNlk";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="sx6IKJIx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F9E5206D5
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=zx2c4.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hwBsVAtU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F32672087E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=MXulXpTK3DGszD6M6edSBbUoacTG30+tgPIIxilbduE=; b=fXtAGNlkgEZqhqB0Q5hML8FiK
-	014OknP15J6fariBWwFBKKa48WjXQfUQLVY/EOdhWz1bXoSaaM4vbshEIav2gktQBhkeDsObHZDVP
-	rFFI1LAbjMmfemNMJjAk93YkAANyD4xkBa8oEvFvJjdJAWU5M9iSEAnFtfHvUd1JjWAyabeSpzhtv
-	HLaDDzK0dg0a8R05UkNWtbQksfNafmxtlZJnrOxa28ixVMbtPHSUayZWTCPR5lpDpFlrgDbZ1qpv5
-	rwnEcGcAb68BX6a0TtmFZSlfvhNF9eBYEZJq/6rtn3FomB4HOSjlzlbCJUipsFZi+QNW3iN9RrWYd
-	hUZalUvSA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=MwDj7yHC+RpISqizNTVO1fJh659BVRrsWpy2/m6Jo9Y=; b=hwBsVAtU63+zfr
+	oLroijjicPhE1Isjq9fxbkFy/yayNvqu22QQm5vWH+RyQ7ZScNsOcW4KUBJ73/ORRipngshMUySFx
+	KiB3NBh3ErqXwmLZ2vLTmMAqJ+uYEXSYXUUFcy5fzRP5wWhCLxfATZo5DDEiamOaCmKmlRXJ2jtmW
+	ULHtHVHUOb8knqLS5566FiPePgKM1H8tcHQOELJNsv64uRv8d4/DKc+jTkkB5655r+XydWbKJr9ui
+	lwTNq5zwbOh2/urKnS2Wvl4Vkr7X3vjAjvEqLiqVbMKgaOVbQkhx1IsI0XAeDuClpEeN0Jcbr3ayE
+	ghI4DQvfTqM2OjCqB1VA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jOGzV-0001hn-9J; Tue, 14 Apr 2020 08:32:21 +0000
-Received: from mail.zx2c4.com ([192.95.5.64])
+	id 1jOHRx-0003xW-MP; Tue, 14 Apr 2020 09:01:45 +0000
+Received: from mail-wm1-f65.google.com ([209.85.128.65])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jOGzL-0001Yx-P0; Tue, 14 Apr 2020 08:32:13 +0000
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 9d220a78;
- Tue, 14 Apr 2020 08:22:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=subject:to:cc
- :references:from:message-id:date:mime-version:in-reply-to
- :content-type:content-transfer-encoding; s=mail; bh=Bn42dUX94nPZ
- VI2aresTt2verm4=; b=sx6IKJIxzuEOA3MDWmGK5eH/64R8mpMYlG8WURWdfzRD
- XFeah0rjLnpfJ/wNxDNPuLqvGkOXg2tTc6/J9yxFJV/B/IyVASTm/xV1AWFh8sOT
- E+Zkl2VUcl4Y0wf6Mu5iapMmn3g8Ztyi36JLXdlWN66PEuOJynjCGScQFzOu0tep
- 4+h/FZal3et8UceGQF9vqtL2mbwwUOtzAFh6NniwZkygh5iiMorXd4zwhnYD2AoL
- UBjxDBvR+PqwgLJDDNN43HRxAe1Ka1ICHvrV5FNQIfjCNS9xZTJzxiJXAqnsHyrN
- w3BT8jw4OmracAotC1L9+6WCZMUQn8YWdWOjpIB/Jw==
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id e4f42b92
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
- Tue, 14 Apr 2020 08:22:18 +0000 (UTC)
+ id 1jOHRm-0003nn-Du; Tue, 14 Apr 2020 09:01:35 +0000
+Received: by mail-wm1-f65.google.com with SMTP id z6so13086678wml.2;
+ Tue, 14 Apr 2020 02:01:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=ZSEHFc2eh+N6K60wyVHbBWfK0AmjMN90oe2OMNtMMJ0=;
+ b=GtKaf91eW07hs5ZvoZWDWycdlqZDJkvVIXG1RD+OU059M5H47MIWrH05PvVQk5ZtJx
+ s4R/xbdUcdNnTlbtleblOGKvlNzoo1i/p/VqM3R+ExqH9QQKdOco3uJZZjHBKmywoY8+
+ 43Ep3tVvdRBoOIqLobPxFGzzwIzu+4/yRC854dSFKaWr7REmJYXna/kZQ2XteYRW2yMu
+ oDLaqZpHTgbFWQznaFscU0FQybIS/IlnDuFGLOYSy+tPKpweluAIGC+Cy/OsG4TkW/wi
+ h8qBuGIGJ4Je/TAKLm6Ag7jp3aQAlI/N7GkFNaXJYCTJqNqKb5xD1VWjDOhuiCjUYzSW
+ 6yeQ==
+X-Gm-Message-State: AGi0PuYePdFaMzRTYrJe/TYE+CFuX8xL60T+GCeEcmxri/a1knfsk371
+ nJoPMLzODxJZ49xMbcCg6Xw=
+X-Google-Smtp-Source: APiQypIjMMKQ1krTcIb7iRe2Mn/fScrYHKTluZiYEwYRZsrwjhiGsUjKHrgwCKNk20IxGSD17N1euw==
+X-Received: by 2002:a1c:a913:: with SMTP id s19mr23660673wme.134.1586854891811; 
+ Tue, 14 Apr 2020 02:01:31 -0700 (PDT)
+Received: from localhost (ip-37-188-180-223.eurotel.cz. [37.188.180.223])
+ by smtp.gmail.com with ESMTPSA id n6sm18637096wrs.81.2020.04.14.02.01.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Apr 2020 02:01:30 -0700 (PDT)
+Date: Tue, 14 Apr 2020 11:01:29 +0200
+From: Michal Hocko <mhocko@kernel.org>
+To: Waiman Long <longman@redhat.com>
 Subject: Re: [PATCH 1/2] mm, treewide: Rename kzfree() to kfree_sensitive()
-To: Waiman Long <longman@redhat.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- David Howells <dhowells@redhat.com>,
- Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
- James Morris <jmorris@namei.org>, "Serge E. Hallyn" <serge@hallyn.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, Joe Perches
- <joe@perches.com>, Matthew Wilcox <willy@infradead.org>,
- David Rientjes <rientjes@google.com>
+Message-ID: <20200414090129.GE4629@dhcp22.suse.cz>
 References: <20200413211550.8307-1-longman@redhat.com>
  <20200413211550.8307-2-longman@redhat.com>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Message-ID: <4babf834-c531-50ba-53f6-e88410b15ce3@zx2c4.com>
-Date: Tue, 14 Apr 2020 02:32:03 -0600
 MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <20200413211550.8307-2-longman@redhat.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200414_013211_975356_E4BB287C 
-X-CRM114-Status: GOOD (  14.24  )
+X-CRM114-CacheID: sfid-20200414_020134_467429_F4A61F41 
+X-CRM114-Status: GOOD (  11.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,39 +82,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: samba-technical@lists.samba.org, virtualization@lists.linux-foundation.org,
- linux-mm@kvack.org, linux-sctp@vger.kernel.org, target-devel@vger.kernel.org,
+Cc: linux-btrfs@vger.kernel.org,
+ Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+ virtualization@lists.linux-foundation.org, David Howells <dhowells@redhat.com>,
+ linux-mm@kvack.org, linux-sctp@vger.kernel.org, keyrings@vger.kernel.org,
+ kasan-dev@googlegroups.com, samba-technical@lists.samba.org,
  linux-stm32@st-md-mailman.stormreply.com, devel@driverdev.osuosl.org,
  linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org, x86@kernel.org,
- kasan-dev@googlegroups.com, cocci@systeme.lip6.fr, linux-wpan@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, linux-crypto@vger.kernel.org,
- linux-pm@vger.kernel.org, ecryptfs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ James Morris <jmorris@namei.org>, Matthew Wilcox <willy@infradead.org>,
+ cocci@systeme.lip6.fr, linux-wpan@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, David Rientjes <rientjes@google.com>,
+ "Serge E. Hallyn" <serge@hallyn.com>, linux-pm@vger.kernel.org,
+ ecryptfs@vger.kernel.org, linux-nfs@vger.kernel.org,
  linux-fscrypt@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-cifs@vger.kernel.org, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, linux-security-module@vger.kernel.org,
- keyrings@vger.kernel.org, tipc-discussion@lists.sourceforge.net,
- wireguard@lists.zx2c4.com, linux-ppp@vger.kernel.org,
- linux-integrity@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-btrfs@vger.kernel.org
+ linux-amlogic@lists.infradead.org, linux-integrity@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-cifs@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-security-module@vger.kernel.org, target-devel@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ netdev@vger.kernel.org, Joe Perches <joe@perches.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org,
+ wireguard@lists.zx2c4.com, linux-ppp@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 4/13/20 3:15 PM, Waiman Long wrote:
+On Mon 13-04-20 17:15:49, Waiman Long wrote:
 > As said by Linus:
 > 
->    A symmetric naming is only helpful if it implies symmetries in use.
->    Otherwise it's actively misleading.
+>   A symmetric naming is only helpful if it implies symmetries in use.
+>   Otherwise it's actively misleading.
 > 
->    In "kzalloc()", the z is meaningful and an important part of what the
->    caller wants.
+>   In "kzalloc()", the z is meaningful and an important part of what the
+>   caller wants.
 > 
->    In "kzfree()", the z is actively detrimental, because maybe in the
->    future we really _might_ want to use that "memfill(0xdeadbeef)" or
->    something. The "zero" part of the interface isn't even _relevant_.
+>   In "kzfree()", the z is actively detrimental, because maybe in the
+>   future we really _might_ want to use that "memfill(0xdeadbeef)" or
+>   something. The "zero" part of the interface isn't even _relevant_.
 > 
 > The main reason that kzfree() exists is to clear sensitive information
 > that should not be leaked to other future users of the same memory
@@ -122,27 +128,27 @@ On 4/13/20 3:15 PM, Waiman Long wrote:
 > 
 > Rename kzfree() to kfree_sensitive() to follow the example of the
 > recently added kvfree_sensitive() and make the intention of the API
-> more explicit. 
+> more explicit. In addition, memzero_explicit() is used to clear the
+> memory to make sure that it won't get optimized away by the compiler.
+> 
+> The renaming is done by using the command sequence:
+> 
+>   git grep -w --name-only kzfree |\
+>   xargs sed -i 's/\bkzfree\b/kfree_sensitive/'
+> 
+> followed by some editing of the kfree_sensitive() kerneldoc and the
+> use of memzero_explicit() instead of memset().
+> 
+> Suggested-by: Joe Perches <joe@perches.com>
+> Signed-off-by: Waiman Long <longman@redhat.com>
 
-Seems reasonable to me. One bikeshed, that you can safely discard and 
-ignore as a mere bikeshed: kfree_memzero or kfree_scrub or 
-kfree_{someverb} seems like a better function name, as it describes what 
-the function does, rather than "_sensitive" that suggests something 
-about the data maybe but who knows what that entails. If you disagree, 
-not a big deal either way.
+Makes sense. I haven't checked all the conversions and will rely on the
+script doing the right thing. The core MM part is correct.
 
- > In addition, memzero_explicit() is used to clear the
- > memory to make sure that it won't get optimized away by the compiler.
-
-This had occurred to me momentarily a number of years ago, but I was 
-under the impression that the kernel presumes extern function calls to 
-always imply a compiler barrier, making it difficult for the compiler to 
-reason about what happens in/after kfree, in order to be able to 
-optimize out the preceding memset. With LTO, that rule obviously 
-changes. I guess new code should be written with cross-object 
-optimizations in mind now a days? [Meanwhile, it would be sort of 
-interesting to teach gcc about kfree to enable additional scary 
-optimizations...]
+Acked-by: Michal Hocko <mhocko@suse.com>
+-- 
+Michal Hocko
+SUSE Labs
 
 _______________________________________________
 linux-amlogic mailing list
