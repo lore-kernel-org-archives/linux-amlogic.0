@@ -2,93 +2,84 @@ Return-Path: <SRS0=FMGI=56=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 824E2C2BA19
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Apr 2020 13:05:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73098C2BA19
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Apr 2020 13:10:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4DDD22078B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Apr 2020 13:05:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 432B8208FE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Apr 2020 13:10:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hmlkzid9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UyQbo7MJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DDD22078B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="THNp3BeR";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="d69w67h5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 432B8208FE
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=7CbZNH7sWAugvU76vZmSQdKS6oghfc+Dkl0nQAzv0IQ=; b=hmlkzid9hfZpLmFQ5uwLKPWkEI
-	iB0Sv6rI+2XqIvEXcVzpsWMse0YghMy+Be90olK1vs9WudTuyZyZpvi3EwAElk1lNzsWq+0DKvAuD
-	vaEvO3xEgPN0no2QjryILc2qBB7kXDIX/0194lBx90IEUTYr7rREL9da6nefez3YDCm//QCftDla/
-	pb6NZKoXlOA0Ro2SRRod3E74fx0/9zV5b10Y9Gw+8Ym38/9ZHUa7T3Nuw+T5Aujxt1PqtVWcq41Xg
-	g0wGYMgl8ZCD+xYAc7ej/NfBBZBzfRGH7UOEmHOBayrDKoYfXhNJvhY9fs5TBreoQIeXRLina0e2i
-	fbonSMiA==;
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:Content-ID:MIME-Version
+	:Subject:To:References:In-Reply-To:From:Reply-To:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=hsYJCU2sD1tVbOosXj0FFE5UCbcn9AND+kbekn2Qz7w=; b=THNp3BeR713rw8
+	QURPh+DpvPGSb2U6amiJbEp8SX/91U6vOZybX4r2Pyde+eDqDqL5QhcMW1/toHJqCVXwnplnjl181
+	Y9XrX9JfYWsW2e58payQCUp/e+SRglZ5QGBGrUPLRG9D9DDqbuVTC+k3k1Aah984fNKhgee5bec4S
+	1+Dgpskl01j34mu41d2S723oded+20D1VBYuz5Q48Y6QFeCfHTx7dTJ1QyeOpz9gKsgXKFL++9eOe
+	r0UD9o8dWizC1K2YNy+QHyGrpxbeFNxfHTF+AWOMU1UCCzhCSo+JtJKQri8MJGS3RszCBGBsye+nP
+	annbUkRAgGCfpM4TSqCw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jOLG9-0000ys-PB; Tue, 14 Apr 2020 13:05:49 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1jOLKL-0005At-Kg; Tue, 14 Apr 2020 13:10:09 +0000
+Received: from us-smtp-delivery-1.mimecast.com ([207.211.31.120]
+ helo=us-smtp-1.mimecast.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jOLFo-0000dG-0C
- for linux-amlogic@lists.infradead.org; Tue, 14 Apr 2020 13:05:30 +0000
-Received: by mail-wr1-x442.google.com with SMTP id d27so5024086wra.1
- for <linux-amlogic@lists.infradead.org>; Tue, 14 Apr 2020 06:05:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=hXwIQYgoQP2Wup93C1/59d2xx2g3UUkrum6b3g6XEYk=;
- b=UyQbo7MJKG1NihktiWx4FwRnJw5Y/jhDfqPKDzBCTAnc3WqjnfQ/r8MXmIK4H2tTcc
- p/suue+ZEK+pVaNOs6LS+XEDherVb2ELvDV3m+CCOdnmZ7LUmlSkF83KfwIE0byLOtbw
- iHvrkfYP+0z/V/MbtwnwT1czz90p5UT2RrjBNhc6GjdHa7Af859SsPQAzcnFmpM/zkCG
- ongBPvM7Zj3IMiwBjBcpWjBJewL221NaOWh7Y1Y4IFBXdjQAQ1SRqHVMiSf4LwkETeiv
- lsHf4UojuwH3EeQvz64OlDVcDd2O8e8O0UvizYkWaPpibK0sDuMefLzpyhTJC5+5qfRr
- p1rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=hXwIQYgoQP2Wup93C1/59d2xx2g3UUkrum6b3g6XEYk=;
- b=sEpIoz1qKMfWfzf+xNyqpZ3EWWgOD/2ZWJIAbXRI/WFhqmWNI/rjmbyZTW3LyrWerO
- GMCOVT6jVqcEDxqW00Se+75WWuK58uXU4S+vR9Fjt0GR37zZXQamnAH+RBNd78o/h1uK
- yLt/W00lBUxzsHwB5n+F3cHhrkVUtaoe5/rW3yaIVwx8KvaHbQCsMqJCqQrU/rard1y/
- ubq02mYN7iWCTegLHgIY04NP3cWnHXf4tvYcWzAY/cP4M7dOvB2T2V5P7Zz5oyhUd5UT
- IPCYF2gs/VHDNaZ1KMLO/eeahWR/kiK3iPivxWoUmAohuHFfHWhw0/JtN/b8nOcVUO6R
- xB0A==
-X-Gm-Message-State: AGi0PuZObVGliW1LlWzO6aga8GZi4p4ZhE5ieeSSy2jye2hI39Z7yabb
- aJYjnfMUTNNwshhh8fDMcEO/PQ==
-X-Google-Smtp-Source: APiQypLVat6kUor59eAwhpTgIo0JZwEUdzMv6AqD1oJjYDhA/1hYzmlEALMZYP/w2KFVxCghsnhsSw==
-X-Received: by 2002:adf:a54a:: with SMTP id j10mr22627237wrb.233.1586869526464; 
- Tue, 14 Apr 2020 06:05:26 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id k3sm9397220wru.90.2020.04.14.06.05.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Apr 2020 06:05:23 -0700 (PDT)
-References: <20200330221104.3163788-1-martin.blumenstingl@googlemail.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, khilman@baylibre.com,
- narmstrong@baylibre.com
-Subject: Re: [RFC v1 0/5] GPU DVFS for Meson GXBB/GXL/GXM/G12A/G12B/SM1
-In-reply-to: <20200330221104.3163788-1-martin.blumenstingl@googlemail.com>
-Date: Tue, 14 Apr 2020 15:05:22 +0200
-Message-ID: <1jftd6tdyl.fsf@starbuckisacylon.baylibre.com>
+ id 1jOLKI-0003qb-6b
+ for linux-amlogic@lists.infradead.org; Tue, 14 Apr 2020 13:10:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1586869804;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=hBYiVbPBfUS+AcwD+sXBpDKSbw0tQLOGN9sYzZKYAmI=;
+ b=d69w67h5kvE9gmsIcEefycimIbN75NxA1PnEEHYhD0mnx3paj4aooxI4KzViTTI/XgPEAd
+ 7mlZSjin5IGMS5rp7HP/qmmlrbZSwZ8ZvYUXtWSE++A7UItWh6J7craWJls/YV492Hwmcf
+ memICackbjVbTkwJpfB1t6gWGcKx5v8=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-106-PA7uLtZsM327ACx1G3T_7g-1; Tue, 14 Apr 2020 09:07:49 -0400
+X-MC-Unique: PA7uLtZsM327ACx1G3T_7g-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 96CEA8048E4;
+ Tue, 14 Apr 2020 13:07:05 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-113-129.rdu2.redhat.com
+ [10.10.113.129])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 5AB5418A8E;
+ Tue, 14 Apr 2020 13:06:57 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <20200413211550.8307-2-longman@redhat.com>
+References: <20200413211550.8307-2-longman@redhat.com>
+ <20200413211550.8307-1-longman@redhat.com>
+To: Waiman Long <longman@redhat.com>, herbert@gondor.apana.org.au
+Subject: Re: [PATCH 1/2] mm, treewide: Rename kzfree() to kfree_sensitive()
 MIME-Version: 1.0
+Content-ID: <3807473.1586869616.1@warthog.procyon.org.uk>
+Date: Tue, 14 Apr 2020 14:06:56 +0100
+Message-ID: <3807474.1586869616@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200414_060528_082391_B3E68C77 
-X-CRM114-Status: UNSURE (   6.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200414_061006_506161_A40E23A2 
+X-CRM114-Status: GOOD (  13.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,39 +91,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Cc: linux-btrfs@vger.kernel.org,
+ Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+ virtualization@lists.linux-foundation.org, David Howells <dhowells@redhat.com>,
+ linux-mm@kvack.org, linux-sctp@vger.kernel.org, keyrings@vger.kernel.org,
+ kasan-dev@googlegroups.com, samba-technical@lists.samba.org,
+ linux-stm32@st-md-mailman.stormreply.com, devel@driverdev.osuosl.org,
+ linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org, x86@kernel.org,
+ James Morris <jmorris@namei.org>, Matthew Wilcox <willy@infradead.org>,
+ cocci@systeme.lip6.fr, linux-wpan@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, David Rientjes <rientjes@google.com>,
+ "Serge E. Hallyn" <serge@hallyn.com>, linux-pm@vger.kernel.org,
+ ecryptfs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ linux-fscrypt@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-integrity@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-cifs@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-security-module@vger.kernel.org, target-devel@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ netdev@vger.kernel.org, Joe Perches <joe@perches.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org,
+ wireguard@lists.zx2c4.com, linux-ppp@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Waiman Long <longman@redhat.com> wrote:
 
-On Tue 31 Mar 2020 at 00:10, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+> As said by Linus:
+> 
+>   A symmetric naming is only helpful if it implies symmetries in use.
+>   Otherwise it's actively misleading.
+> 
+>   In "kzalloc()", the z is meaningful and an important part of what the
+>   caller wants.
+> 
+>   In "kzfree()", the z is actively detrimental, because maybe in the
+>   future we really _might_ want to use that "memfill(0xdeadbeef)" or
+>   something. The "zero" part of the interface isn't even _relevant_.
+> 
+> The main reason that kzfree() exists is to clear sensitive information
+> that should not be leaked to other future users of the same memory
+> objects.
+> 
+> Rename kzfree() to kfree_sensitive() to follow the example of the
+> recently added kvfree_sensitive() and make the intention of the API
+> more explicit. In addition, memzero_explicit() is used to clear the
+> memory to make sure that it won't get optimized away by the compiler.
+> 
+> The renaming is done by using the command sequence:
+> 
+>   git grep -w --name-only kzfree |\
+>   xargs sed -i 's/\bkzfree\b/kfree_sensitive/'
+> 
+> followed by some editing of the kfree_sensitive() kerneldoc and the
+> use of memzero_explicit() instead of memset().
+> 
+> Suggested-by: Joe Perches <joe@perches.com>
+> Signed-off-by: Waiman Long <longman@redhat.com>
 
->
-> [0] https://cgit.freedesktop.org/drm-misc/commit/?id=1996970773a323533e1cc1b6b97f00a95d675f32
->
->
-> Martin Blumenstingl (5):
->   clk: meson: gxbb: Prepare the GPU clock tree to change at runtime
->   clk: meson: g12a: Prepare the GPU clock tree to change at runtime
->   arm64: dts: amlogic: meson-gx: add the Mali-450 OPP table and use DVFS
->   arm64: dts: amlogic: meson-gxm: add the Mali OPP table and use DVFS
->   arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS
->
->  .../boot/dts/amlogic/meson-g12-common.dtsi    | 49 ++++++++++-----
->  .../boot/dts/amlogic/meson-gx-mali450.dtsi    | 61 +++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   | 51 ++++------------
->  .../boot/dts/amlogic/meson-gxl-mali.dtsi      | 46 +++-----------
->  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    | 45 +++++++++-----
->  drivers/clk/meson/g12a.c                      | 30 ++++++---
->  drivers/clk/meson/gxbb.c                      | 40 ++++++------
->  7 files changed, 189 insertions(+), 133 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gx-mali450.dtsi
+Since this changes a lot of crypto stuff, does it make sense for it to go via
+the crypto tree?
 
-Clock part looks good to me and aligns with meson8.
-Please resend the clock part without the RFC tag
+Acked-by: David Howells <dhowells@redhat.com>
+
 
 _______________________________________________
 linux-amlogic mailing list
