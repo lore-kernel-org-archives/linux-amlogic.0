@@ -2,22 +2,21 @@ Return-Path: <SRS0=3iKr=57=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BB7CC3815B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 07:52:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 973FDC3815B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 07:53:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 01BE420768
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 07:52:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 31B2020768
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 07:53:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kKxyU8DQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="CirdU7N6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 01BE420768
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ouwq+Fem";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Wjkf2zcC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 31B2020768
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +25,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2oGFZz7o9aUhu2nGn4q4Ckjv02KW24wBDbT7o4PUzag=; b=kKxyU8DQvAmFFv
-	SgyTlwML78oHdggrVDU9K42//aUV/ZzAotEm/NNZE4tAclPRKqOIxwjCsIa3SUnsXDmqID7/BZRBp
-	9ZNhDXMQ6vYQuQKU5n0CaZF20zEB9FNwvxLGvaEdV2xAXtL8i5LJ+G5jGXfB8dWyKw2ow9A3uB1ln
-	YmfN9I3f1okFVxAiMab5/KSq4iL/Be0RfmkZaUn+j0Eudagixqe/xV7NEBHcIukr0tccS42p3YFIy
-	N0G/s/Npw9lQ+K5Q6R/AZXxBo1zh6NOLNn7MjicKX16ospQ42dwNBE/LgQacIRIbUNnS5JbmSnnQV
-	KQyZvmTSIN58PtSQEO7A==;
+	List-Owner; bh=C95LzPOsjHWp7Uasn29csv7qUZRNq2/rtfvJ2PWmRjw=; b=ouwq+FemqCoddp
+	7sV0kKz2WhZDDIHSPPJ34bdaFDWwQOAYLOqVSWmJRJf4DbJEy5d2njL5KhpwwUi092GdKL+ownbnQ
+	9e1N7IkDoxfGOeUo7k3MW5VVD9tu4a0ixN7LaQAeiEg1VedEE8aJRk4argKsTBgUwcMHW4q/NiOJW
+	eLXd5kHJ2Gb1DpPXl9DqM1pgjZRrMQDb+ewalJ/CkckoVKXom0DzSq7mb+XAGe28dXTTLFqP9Nj3G
+	vPkGNcGp5TRggo8sl8sbPzC5CIrt3AqP0/Jj9Y9w+kYIsuKU3KDxcChMyZOUmFHfTOHUHwmnK8xbJ
+	Fkeh86zuxv9ozaYHwwOg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jOcqf-0007Tk-CZ; Wed, 15 Apr 2020 07:52:41 +0000
+	id 1jOcrU-0007d0-6j; Wed, 15 Apr 2020 07:53:32 +0000
 Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jOcqY-0007SR-TO
- for linux-amlogic@lists.infradead.org; Wed, 15 Apr 2020 07:52:39 +0000
-Received: by mail-wr1-x442.google.com with SMTP id k11so17286173wrp.5
- for <linux-amlogic@lists.infradead.org>; Wed, 15 Apr 2020 00:52:32 -0700 (PDT)
+ id 1jOcrR-0007cH-Hq
+ for linux-amlogic@lists.infradead.org; Wed, 15 Apr 2020 07:53:30 +0000
+Received: by mail-wr1-x442.google.com with SMTP id t14so4685156wrw.12
+ for <linux-amlogic@lists.infradead.org>; Wed, 15 Apr 2020 00:53:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=zA1RW0E4LHbvRiBzYVD9TW8bj9I50h1yfH2fmmj+Mvk=;
- b=CirdU7N6WykwfPV7PkyDF1Ybr40ofovSUwAyT5PW/Ax0hL9RPrAKlpScBP5P+1ZXFb
- MbnCIBmfjgEsWsTerE5o57V+RXcJfuS/brs68rS2AJZMYXDwxOhbLZzfUb9YPftTUGPb
- hrf3usocc7y+ghLY1mdESXQr0ImZ1zO85bLUZ49NunQfQiGHUIlNwBpeY5TcDnvo9cLN
- 6qNhzXEFFO6xpIzuDxziQzYdNQgbFWFwfD94R9/CV0cYbMmIsOriNZmWBPVDSv9l6g2u
- TNeuexHzNB0Pz5Ag/aWrDLqKDWOXChwpIzcOKii3Wdq2g6LjXGn0VX58MJ82/msW6QT5
- KOjA==
+ bh=kBML5p9FTR/cSP2nmZwVa8/pgzdTVSXOXZP4sLP4ogs=;
+ b=Wjkf2zcCTUG0Ok/lmmvQx1NU3ss3JLnGjq1ip3x7xuG8mX6QkhkJYKhkW/3x+4YhXC
+ sc/hWNKOOyzsx5aNjSF9L5KaC1VFrGC12XwZYVNIVN0TS+Hp1RIDRjuSCiSjtC/i6NXm
+ FL1Sd//FQu62V9kfT/pxFHSB0ZjyXw8ZPfIC/ptx00qwBmN2QakxTpwkRNslE0N/LQrB
+ IXouroTWaS9U4k4Ju07aEhV2EZiYw/aQmnRao6LG1hQIwDW8LZ1eoz82EMRRv6n358SP
+ AUuZcAlwEQ064jgSriufkm35olJYkn2D29G3HEO+lGgKD5mmFrRgiOYImNA0ZouIs6Bx
+ Ft3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=zA1RW0E4LHbvRiBzYVD9TW8bj9I50h1yfH2fmmj+Mvk=;
- b=mVgMdp4Cc5WVTei/Z5D7aExxwelIZPs+zl16g+BsbR7snxPDWpvPk7JD+F98S5BTgs
- auLCEF3H5tBj3jBgWv/HRQiSx/P2gCRwwV2CkDr8gdECH/A9lkPHqU7UKCxIevQXTXTO
- g38AKT4Ta40WWiNOSG6OasGYo1YWXLSjB57vyzVWsz2gZ21yZGyDHRrT8z6E6FlYy3kn
- e1/gSU1F2kZCrsgDMv69wQTV4a1h/Oo+yp4E+kw2hV02lrZc5MzAzLYclgsiQbBvWoHT
- ozap24XA9/l3r3bW0Dvosk6JfwUiJgCH+s6uSbbVywgRyOAQkuygzRTayOEq/aiPjuB0
- hdrA==
-X-Gm-Message-State: AGi0PuY73oL2kYcBVfEa6tke+2+s/8B/uXc8zZehR+ybWbR/65pHTePU
- yPU3kxAJVOPJRsioquxLByVr0w==
-X-Google-Smtp-Source: APiQypJvUOD448z0Y8+mNOfEKPlgI6V+0hgfkD6U4XBybk9YAPMSasJfzRC9jBrXNw0u9bPSdGw2kw==
-X-Received: by 2002:adf:fecd:: with SMTP id q13mr19617087wrs.12.1586937151035; 
- Wed, 15 Apr 2020 00:52:31 -0700 (PDT)
+ bh=kBML5p9FTR/cSP2nmZwVa8/pgzdTVSXOXZP4sLP4ogs=;
+ b=mYXqH0gd3OQdVEFWf7jS6ZKI7wS1/HaA8RqgK7/3Ra79L56wxdO3PoOUuVrdQiG6Yp
+ o+qLyhsJRpLQMSxOFGrq1S8U1oIt5rzY5jNNCmruMblGNaXznOdCsxsTcRka2E2pldvL
+ rBfGimHpGUvTFfu7mSUbljPEmk/A+Sp0+bpWA/ZI0bQa6HhBMpa8KQqYZM4ujqbOLvMP
+ gjGp5jJXnI2ypGznFQKrJDK63tMZOAP4yiORNvHAJvDJfYxmX3X1uH60hr8GbU+Hugoc
+ iRn87wSdUuGVCR02tpSdhEhnCiBB/s0jWrTlhH+M9qDcfOQ1jSz/FB6g/3T991WGkIuP
+ IFxA==
+X-Gm-Message-State: AGi0PuaypTePdtVLEEBWJa34W/RllT1RFPa7189YpwvefcInBl9nItLi
+ ftcKHwYp8CMHlw3sSFVpaj4jIw==
+X-Google-Smtp-Source: APiQypKy1+Tc3Y0hGUfB49///1SHeOTBpfPZpDWXkJypIieHtRzn2n8uDhg2Uo4QBcdWnBEmeE/s1g==
+X-Received: by 2002:adf:e944:: with SMTP id m4mr14535852wrn.366.1586937208116; 
+ Wed, 15 Apr 2020 00:53:28 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56?
  ([2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56])
- by smtp.gmail.com with ESMTPSA id u17sm24626982wra.63.2020.04.15.00.52.28
+ by smtp.gmail.com with ESMTPSA id b4sm17408679wrv.42.2020.04.15.00.53.25
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Apr 2020 00:52:29 -0700 (PDT)
-Subject: Re: [PATCH v5] dt-bindings: gpu: mali-utgard: Add the #cooling-cells
- property
+ Wed, 15 Apr 2020 00:53:27 -0700 (PDT)
+Subject: Re: [PATCH v2 0/2] clk: meson: prepare GX and G12 for GPU DVFS
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-References: <20200411165700.1576314-1-martin.blumenstingl@googlemail.com>
+ jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20200414195031.224021-1-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <8f2b7074-98b3-dd17-dffd-ef0c10f6aeba@baylibre.com>
-Date: Wed, 15 Apr 2020 09:52:27 +0200
+Message-ID: <fda0f007-4377-c78a-e2d7-aecb12779287@baylibre.com>
+Date: Wed, 15 Apr 2020 09:53:25 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200411165700.1576314-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200414195031.224021-1-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200415_005236_719632_38EBF75A 
-X-CRM114-Status: GOOD (  16.36  )
+X-CRM114-CacheID: sfid-20200415_005329_591279_639DF90D 
+X-CRM114-Status: GOOD (  12.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,58 +151,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-pm@vger.kernel.org,
- Qiang Yu <yuq825@gmail.com>, linux-kernel@vger.kernel.org
+Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/04/2020 18:57, Martin Blumenstingl wrote:
-> The GPU can be one of the big heat sources on a SoC. Allow the
-> "#cooling-cells" property to be specified for ARM Mali Utgard GPUs so
-> the GPU clock speeds (and voltages) can be reduced to prevent a SoC from
-> overheating.
-> 
-> Reviewed-by: Qiang Yu <yuq825@gmail.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
-> Changes since v4 at [0]:
-> - Added Qiang's Reviewed-by (many thanks)
-> - re-send because I missed the devicetree mailing list in v4
+On 14/04/2020 21:50, Martin Blumenstingl wrote:
+> This contains only the clock driver updates from my other series titled
+> "GPU DVFS for Meson GXBB/GXL/GXM/G12A/G12B/SM1" from [0]
 > 
 > 
-> [0] https://patchwork.kernel.org/patch/11448013/
+> Changes since v1 at [0]:
+> - update the patch descriptions to indicate that we explicitly don't
+>   want CLK_SET_RATE_PARENT on the muxes
+> - split into clock driver (this series) and .dts changes (future
+>   series, waiting for testing feedback on v1 from [0])
 > 
 > 
->  Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+> [0] https://patchwork.kernel.org/cover/11466399/
 > 
-> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-> index f5401cc8de4a..4869258daadb 100644
-> --- a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-> @@ -107,6 +107,9 @@ properties:
->  
->    operating-points-v2: true
->  
-> +  "#cooling-cells":
-> +    const: 2
-> +
->  required:
->    - compatible
->    - reg
-> @@ -164,6 +167,7 @@ examples:
->        clocks = <&ccu 1>, <&ccu 2>;
->        clock-names = "bus", "core";
->        resets = <&ccu 1>;
-> +      #cooling-cells = <2>;
->      };
->  
->  ...
+> 
+> Martin Blumenstingl (2):
+>   clk: meson: gxbb: Prepare the GPU clock tree to change at runtime
+>   clk: meson: g12a: Prepare the GPU clock tree to change at runtime
+> 
+>  drivers/clk/meson/g12a.c | 30 ++++++++++++++++++++++--------
+>  drivers/clk/meson/gxbb.c | 40 ++++++++++++++++++++++------------------
+>  2 files changed, 44 insertions(+), 26 deletions(-)
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
