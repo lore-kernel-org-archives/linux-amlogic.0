@@ -2,144 +2,62 @@ Return-Path: <SRS0=3iKr=57=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66233C38A2C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 11:43:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CF882C3815B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 11:54:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B3182168B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 11:43:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A5DB120737
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 11:54:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TBPMF4IK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zNM1ymuF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B3182168B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fe/DwKBc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5DB120737
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AMB9p8PCejRVZZ8HUmXwMS/EPtY5rvRb1SvIME0wwdk=; b=TBPMF4IK+69FC8
-	S/6R42TY1AW+HWyEqGtfFNUAmhTkGCt62z3ZQTtZUC3sJvoz7AKOvl9J6dPNftwaPvsXJS+Whatig
-	D1A8mvfltd5r/0xB/CXDE9aaZ/YaAMcKzRQktFZAvVclGzWlLK+7grMePT9oEqHLvng5+THzD1CLy
-	1ekogXZhtFnRuiVRzo4EcGZQ3p6lMPDUsv0vqkeOM8qzg+IscKenfQd6m9Cch2Auu68z7scKUITRh
-	ZICO8TA/G/ezWJ6DDQ4bra4csMN3lXFC9NkRly60Ajve8sJT2JKWlDMGFnYkIMeuHY5Z4NCDBgFX8
-	fiPP6xM86a8B0zAx5aIw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:References:
+	To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=N88EOMm/I6VsEThxKXSNDnScqn8A+gw1059YTIu065U=; b=fe/DwKBcOYre8LGIllfxM3+WN
+	CK6vFRum7OPPFpNEOTrXR56SJw8IGZCdwwk8aebIXJpkSsIxb3EnaBd4ClF3CF+ujmFajeyeH2yGN
+	N7QcdWCpeSlAhL/+Me/oS68FRt92CGkXHulwvv48ZY5LQh5wI1nlTXAtZ5GX3bEueOSwT9a/cU3CI
+	PyFLPgbW8EQvWWxneMjlxaNX8yXwGFQJZGE2hA/xhFASZW8Tmj30qxDi4DkmSx1/K2r/djg6OyfR8
+	K5EdqmR3BlMAqIJy12efygxRVLc3gVR5f4rG/8wLDG3r1okyTjhq+2j40Yo+wwATF2xYus53fxqny
+	SsExuyeLQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jOgRj-0008Ij-1z; Wed, 15 Apr 2020 11:43:11 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1jOgco-0006Az-KS; Wed, 15 Apr 2020 11:54:38 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jOgR7-0007pR-Nk
- for linux-amlogic@lists.infradead.org; Wed, 15 Apr 2020 11:42:35 +0000
-Received: by mail-wm1-x341.google.com with SMTP id d77so17010157wmd.3
- for <linux-amlogic@lists.infradead.org>; Wed, 15 Apr 2020 04:42:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=S9NmSo8JYusTYBPeXCjsDWvSr0H2P83LYIrI2dFlh/o=;
- b=zNM1ymuF/t/0wgYH9aMRGQkUWrK9g2ZV1f01utn3MAoaHPXu0+sQAs8JGAaXdhLFF4
- 0HDDTjeC9CDQsrFfa+3MqHr7Swm1azNj4QJtJn16j4vcD7dxjG8BCVk3eKcRVwiUrast
- XAOsF0ZjrCWdri1OlRj8CnwAz/o5ZUYoRWKnYvRzTS/Mxd0lbQ8o21sQwL4DBHidb84T
- +s3Y4N0YobXh9JjWm8DyKkmcNrOugM2ty7HTjrTU3JN08Niyh/gab/zmKERLvTfM8nxm
- Wrj3LQnO8kAoQF5Wac1LLQKMOGlxU9rSY/ZcoSPfIUu34OvPf72gGPmADOBWeB+GZSfm
- 8f0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=S9NmSo8JYusTYBPeXCjsDWvSr0H2P83LYIrI2dFlh/o=;
- b=BYbwE1zeMQ0Yy8b3PiTSTODuLbFS31CvuYS85baLLqwMCEdg1kD0xRhkp95TnedzWM
- K4erNWeBDxEmHok1QXb0k1Ylud7aDxYeuG4aeUdNB0tN7BeskpHw9N5JwYojLl5iIkT8
- hWbUejur/vH28gzsndkJy7iqYjDI1QuZ+dFi5ZjX46XFQQyEveLaAS1LgQxa1+Nsvy37
- IKq4eFdtif8KBbjChp8q49Yy3Phvp7FXYQ2uPOVR/Bz59e3/ZEUVX7rJ8mQj9gcSjpAn
- r1/2CO01ZlKI/WtWKKVPTKVIW6iFGMIgE2nCv9WZ7q/NO8aNL7HDH1BX9vLgSOn5kceO
- VdKA==
-X-Gm-Message-State: AGi0Pua+Q1hjvB+KLaKnDsNFKyDdCrZ24WoGfBNGBOFvc/QXoTHYd+TG
- zHupIZxSbEqzxFlvLaUlJ0cXRQ==
-X-Google-Smtp-Source: APiQypJGD+q2Ft/TJmt8VvCj6kbcQkafuaJGUYJfC46bS2nB9371SIyp/JhQIRWLDtAlLmkxSPO70Q==
-X-Received: by 2002:a1c:ded4:: with SMTP id v203mr4852590wmg.106.1586950952051; 
- Wed, 15 Apr 2020 04:42:32 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56?
- ([2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56])
- by smtp.gmail.com with ESMTPSA id n6sm21746253wmc.28.2020.04.15.04.42.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Apr 2020 04:42:31 -0700 (PDT)
-Subject: Re: [PATCH v2 0/6] Move CEC drivers and menu to be out of
- MEDIA_SUPPORT
-To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>
-References: <cover.1586946605.git.mchehab+huawei@kernel.org>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <bcee4bd5-33f7-daad-f06c-78516c4ae29d@baylibre.com>
-Date: Wed, 15 Apr 2020 13:42:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ id 1jOgcR-0005ik-23; Wed, 15 Apr 2020 11:54:17 +0000
+Received: from [10.28.39.241] (10.28.39.241) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Wed, 15 Apr 2020
+ 19:54:57 +0800
+Subject: Re: [PATCH v2 0/2] Add a watchdog driver that uses ARM Secure Monitor
+ Calls.
+From: Xingyu Chen <xingyu.chen@amlogic.com>
+To: Evan Benn <evanbenn@google.com>, LKML <linux-kernel@vger.kernel.org>
+References: <20200403052900.258855-1-evanbenn@chromium.org>
+ <CAKz_xw0gV+w_gMkLfB4qUBdULLfFoiv1TBWp9_PHy33wP_XWyA@mail.gmail.com>
+ <890948ef-7276-fdae-d270-eb30eff3eab2@amlogic.com>
+Message-ID: <243e107c-35c1-2d14-5285-c9e13744963c@amlogic.com>
+Date: Wed, 15 Apr 2020 19:54:57 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <cover.1586946605.git.mchehab+huawei@kernel.org>
-Content-Language: en-US
+In-Reply-To: <890948ef-7276-fdae-d270-eb30eff3eab2@amlogic.com>
+Content-Language: en-GB
+X-Originating-IP: [10.28.39.241]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200415_044233_804202_B08008B6 
-X-CRM114-Status: GOOD (  17.55  )
+X-CRM114-CacheID: sfid-20200415_045415_519101_65F139D1 
+X-CRM114-Status: GOOD (  21.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,161 +69,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
- Alexandre Torgue <alexandre.torgue@st.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Enric Balletbo i Serra <enric.balletbo@collabora.com>,
- Russell King <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk@kernel.org>,
- Ettore Chimenti <ek5.chimenti@gmail.com>, Guenter Roeck <groeck@chromium.org>,
- Kukjin Kim <kgene@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, linux-amlogic@lists.infradead.org,
- Jonathan Hunter <jonathanh@nvidia.com>, Benson Leung <bleung@chromium.org>,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Yonghui Yu <yonghui.yu@amlogic.com>, Leonard Crestez <leonard.crestez@nxp.com>,
+ Will Deacon <will@kernel.org>, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Rob Herring <robh@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Anson Huang <Anson.Huang@nxp.com>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
+ Valentin Schneider <valentin.schneider@arm.com>,
+ Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, "moderated list:ARM/Mediatek SoC
+ support" <linux-mediatek@lists.infradead.org>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, "moderated
+ list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Vinod Koul <vkoul@kernel.org>,
+ Olof Johansson <olof@lixom.net>, Julius Werner <jwerner@chromium.org>,
+ Shawn Guo <shawnguo@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/04/2020 12:31, Mauro Carvalho Chehab wrote:
-> The CEC_CORE doesn't depend on MEDIA_SUPPORT. So, it doesn't make
-> much sense to keep it under its menu.
-> 
-> This series move it to be just after RC support. As a side effect, now
-> dependencies like PCI and USB are now selected, making easier to
-> enable CEC drivers.
-> 
-> - v2:
->   - move more CEC drivers from platform/
->   - rename kconfig options to be more coherent
-> 
-> Mauro Carvalho Chehab (6):
->   media: cec: move the core to a separate directory
->   media: place CEC menu before MEDIA_SUPPORT
->   media: move CEC platform drivers to a separate directory
->   media: move CEC USB drivers to a separate directory
->   media: cec: rename CEC platform drivers config options
->   media: cec: rename USB config options
-> 
->  arch/arm/configs/exynos_defconfig             |   2 +-
->  arch/arm/configs/multi_v7_defconfig           |   2 +-
->  drivers/media/Kconfig                         |  30 +----
->  drivers/media/cec/Kconfig                     |  25 ++++
->  drivers/media/cec/Makefile                    |  16 +--
->  drivers/media/cec/core/Makefile               |  16 +++
->  drivers/media/cec/{ => core}/cec-adap.c       |   0
->  drivers/media/cec/{ => core}/cec-api.c        |   0
->  drivers/media/cec/{ => core}/cec-core.c       |   0
->  drivers/media/cec/{ => core}/cec-notifier.c   |   0
->  .../media/cec/{ => core}/cec-pin-error-inj.c  |   0
->  drivers/media/cec/{ => core}/cec-pin-priv.h   |   0
->  drivers/media/cec/{ => core}/cec-pin.c        |   0
->  drivers/media/cec/{ => core}/cec-priv.h       |   0
->  drivers/media/cec/platform/Kconfig            | 121 +++++++++++++++++
->  drivers/media/cec/platform/Makefile           |  14 ++
->  .../{ => cec}/platform/cec-gpio/Makefile      |   0
->  .../{ => cec}/platform/cec-gpio/cec-gpio.c    |   0
->  drivers/media/cec/platform/cros-ec/Makefile   |   2 +
->  .../platform/cros-ec}/cros-ec-cec.c           |   0
->  drivers/media/cec/platform/meson/Makefile     |   3 +
->  .../{ => cec}/platform/meson/ao-cec-g12a.c    |   0
->  .../media/{ => cec}/platform/meson/ao-cec.c   |   0
->  .../s5p-cec => cec/platform/s5p}/Makefile     |   2 +-
->  .../platform/s5p}/exynos_hdmi_cec.h           |   0
->  .../platform/s5p}/exynos_hdmi_cecctrl.c       |   0
->  .../s5p-cec => cec/platform/s5p}/regs-cec.h   |   0
->  .../s5p-cec => cec/platform/s5p}/s5p_cec.c    |   0
->  .../s5p-cec => cec/platform/s5p}/s5p_cec.h    |   0
->  drivers/media/cec/platform/seco/Makefile      |   2 +
->  .../seco-cec => cec/platform/seco}/seco-cec.c |   2 +-
->  .../seco-cec => cec/platform/seco}/seco-cec.h |   0
->  drivers/media/cec/platform/sti/Makefile       |   2 +
->  .../sti/cec => cec/platform/sti}/stih-cec.c   |   0
->  drivers/media/cec/platform/stm32/Makefile     |   2 +
->  .../{ => cec}/platform/stm32/stm32-cec.c      |   0
->  drivers/media/cec/platform/tegra/Makefile     |   2 +
->  .../platform/tegra}/tegra_cec.c               |   0
->  .../platform/tegra}/tegra_cec.h               |   0
->  drivers/media/cec/usb/Kconfig                 |   6 +
->  drivers/media/cec/usb/Makefile                |   6 +
->  .../pulse8-cec => cec/usb/pulse8}/Kconfig     |   5 +-
->  drivers/media/cec/usb/pulse8/Makefile         |   2 +
->  .../usb/pulse8}/pulse8-cec.c                  |   0
->  .../usb/rainshadow}/Kconfig                   |   5 +-
->  drivers/media/cec/usb/rainshadow/Makefile     |   2 +
->  .../usb/rainshadow}/rainshadow-cec.c          |   0
->  drivers/media/platform/Kconfig                | 125 ------------------
->  drivers/media/platform/Makefile               |  12 --
->  drivers/media/platform/cros-ec-cec/Makefile   |   2 -
->  drivers/media/platform/meson/Makefile         |   3 -
->  drivers/media/platform/seco-cec/Makefile      |   2 -
->  drivers/media/platform/sti/cec/Makefile       |   2 -
->  drivers/media/platform/stm32/Makefile         |   1 -
->  drivers/media/platform/tegra-cec/Makefile     |   2 -
->  drivers/media/usb/Kconfig                     |   6 -
->  drivers/media/usb/Makefile                    |   2 -
->  drivers/media/usb/pulse8-cec/Makefile         |   2 -
->  drivers/media/usb/rainshadow-cec/Makefile     |   2 -
->  59 files changed, 218 insertions(+), 212 deletions(-)
->  create mode 100644 drivers/media/cec/core/Makefile
->  rename drivers/media/cec/{ => core}/cec-adap.c (100%)
->  rename drivers/media/cec/{ => core}/cec-api.c (100%)
->  rename drivers/media/cec/{ => core}/cec-core.c (100%)
->  rename drivers/media/cec/{ => core}/cec-notifier.c (100%)
->  rename drivers/media/cec/{ => core}/cec-pin-error-inj.c (100%)
->  rename drivers/media/cec/{ => core}/cec-pin-priv.h (100%)
->  rename drivers/media/cec/{ => core}/cec-pin.c (100%)
->  rename drivers/media/cec/{ => core}/cec-priv.h (100%)
->  create mode 100644 drivers/media/cec/platform/Kconfig
->  create mode 100644 drivers/media/cec/platform/Makefile
->  rename drivers/media/{ => cec}/platform/cec-gpio/Makefile (100%)
->  rename drivers/media/{ => cec}/platform/cec-gpio/cec-gpio.c (100%)
->  create mode 100644 drivers/media/cec/platform/cros-ec/Makefile
->  rename drivers/media/{platform/cros-ec-cec => cec/platform/cros-ec}/cros-ec-cec.c (100%)
->  create mode 100644 drivers/media/cec/platform/meson/Makefile
->  rename drivers/media/{ => cec}/platform/meson/ao-cec-g12a.c (100%)
->  rename drivers/media/{ => cec}/platform/meson/ao-cec.c (100%)
->  rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/Makefile (63%)
->  rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/exynos_hdmi_cec.h (100%)
->  rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/exynos_hdmi_cecctrl.c (100%)
->  rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/regs-cec.h (100%)
->  rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/s5p_cec.c (100%)
->  rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/s5p_cec.h (100%)
->  create mode 100644 drivers/media/cec/platform/seco/Makefile
->  rename drivers/media/{platform/seco-cec => cec/platform/seco}/seco-cec.c (99%)
->  rename drivers/media/{platform/seco-cec => cec/platform/seco}/seco-cec.h (100%)
->  create mode 100644 drivers/media/cec/platform/sti/Makefile
->  rename drivers/media/{platform/sti/cec => cec/platform/sti}/stih-cec.c (100%)
->  create mode 100644 drivers/media/cec/platform/stm32/Makefile
->  rename drivers/media/{ => cec}/platform/stm32/stm32-cec.c (100%)
->  create mode 100644 drivers/media/cec/platform/tegra/Makefile
->  rename drivers/media/{platform/tegra-cec => cec/platform/tegra}/tegra_cec.c (100%)
->  rename drivers/media/{platform/tegra-cec => cec/platform/tegra}/tegra_cec.h (100%)
->  create mode 100644 drivers/media/cec/usb/Kconfig
->  create mode 100644 drivers/media/cec/usb/Makefile
->  rename drivers/media/{usb/pulse8-cec => cec/usb/pulse8}/Kconfig (86%)
->  create mode 100644 drivers/media/cec/usb/pulse8/Makefile
->  rename drivers/media/{usb/pulse8-cec => cec/usb/pulse8}/pulse8-cec.c (100%)
->  rename drivers/media/{usb/rainshadow-cec => cec/usb/rainshadow}/Kconfig (85%)
->  create mode 100644 drivers/media/cec/usb/rainshadow/Makefile
->  rename drivers/media/{usb/rainshadow-cec => cec/usb/rainshadow}/rainshadow-cec.c (100%)
->  delete mode 100644 drivers/media/platform/cros-ec-cec/Makefile
->  delete mode 100644 drivers/media/platform/meson/Makefile
->  delete mode 100644 drivers/media/platform/seco-cec/Makefile
->  delete mode 100644 drivers/media/platform/sti/cec/Makefile
->  delete mode 100644 drivers/media/platform/tegra-cec/Makefile
->  delete mode 100644 drivers/media/usb/pulse8-cec/Makefile
->  delete mode 100644 drivers/media/usb/rainshadow-cec/Makefile
-> 
-
-For meson CEC drivers and cros-ec-cec:
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksRXZhbgoKT24gMjAyMC80LzExIDIzOjA2LCBYaW5neXUgQ2hlbiB3cm90ZToKPiBIaSwgRXZh
+bgo+IAo+IE9uIDIwMjAvNC8zIDE0OjA0LCBFdmFuIEJlbm4gd3JvdGU6Cj4+IEFwb2xvZ2llcyBJ
+IGZvcmdvdCB0byBhZGQgdGhpcyBub3RlIHRvIG15IGNvdmVyIGxldHRlci4KPj4KPj4gWGluZ3l1
+IGRvIHlvdSBtaW5kIHNlZWluZyBpZiB5b3UgY2FuIG1vZGlmeSB5b3VyIEFURiBmaXJtd2FyZSB0
+byBtYXRjaCAKPj4gdGhpcyBkcml2ZXI/Cj4+IFdlIGNhbiBhZGQgYSBjb21wYXRpYmxlIG9yIG1h
+a2Ugb3RoZXIgY2hhbmdlcyB0byBzdWl0IHlvdS4KPiBUaGFua3MgZm9yIHlvdXIgcGF0Y2ggWzBd
+LMKgIEkgd2lsbCB0ZXN0IHRoaXMgcGF0Y2ggb24gdGhlIG1lc29uLUExIAo+IHBsYXRmb3JtLCBi
+dXQgSXQgbG9va3MgbW9yZQo+IGNvbnZlbmllbnQgdG8gYmUgY29tcGF0aWJsZSB3aXRoIG90aGVy
+IHBsYXRmb3JtcyBpZiB1c2luZyB0aGUgY29tcGF0aWJsZSAKPiBzdHJpbmdzIHRvIGNvcnJlbGF0
+ZQo+IHBsYXRmb3JtIGRpZmZlcmVuY2VzIGluY2x1ZGUgZnVuY3Rpb24gSUQgYW5kIHdkdF9vcHMu
+Cj4gCj4gWzBdOiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzExNDcxODI5LwoK
+SSBoYXZlIHRlc3RlZCB5b3VyIHBhdGNoIG9uIHRoZSBtZXNvbi1BMSwgYnV0IEkgdXNlIHRoZSBj
+b21wYXRpYmxlIApzdHJpbmdzIHRvIGNvcnJlbGF0ZSB0aGUgZm9sbG93aW5nIHBsYXRmb3JtIGRp
+ZmZlcmVuY2Vz77yMaXQgd29ya3Mgbm9ybWFsbHkuCgpzdGF0aWMgY29uc3Qgc3RydWN0IHNtY3dk
+X2RhdGEgc21jd2RfbXRrX2RhdGEgPSB7CgkuZnVuY19pZCA9IDB4ODIwMDNkMDYsCgkub3BzICAg
+ICA9ICZzbWN3ZF9vcHMsCn0KCnN0YXRpYyBjb25zdCBzdHJ1Y3Qgc21jd2RfZGF0YSBzbWN3ZF9t
+ZXNvbl9kYXRhID0gewoJLmZ1bmNfaWQgPSAweDgyMDAwMDg2LAoJLm9wcyAgICAgPSAmc21jd2Rf
+dGltZWxlZnRfb3BzLAp9CgpJbiBhZGRpdGlvbiwgSXQgbG9va3MgbW9yZSByZWFzb25hYmxlIHRv
+IHVzZSB0aGUgIm1zZWMiIGFzIHRoZSB1bml0IG9mIAp0aW1lb3V0IHBhcmFtZXRlciBmb3IgdGhl
+IEFURiBmdyBpbnRlcmZhY2Ugd2l0aCBTTUNXRF9TRVRfVElNRU9VVDoKCi0gVGhlIGZ3IGludGVy
+ZmFjZSB3aWxsIGNvbXBhdGlibGUgd2l0aCB0aGUgdWJvb3QgZ2VuZXJpYyB3YXRjaGRvZyAKaW50
+ZXJmYWNlIGF0IFswXSwgYW5kIHRoZXJlIGlzIG5vIG5lZWQgdG8gY29udmVydCB0aW1lb3V0IGZy
+b20gbXNlYwp0byBzZWMuCgotIFNvbWUgdmVuZG9yJ3Mgd2F0Y2hkb2cgbWF5IGJlIG5vdCBzdXBw
+b3J0IHRoZSAid2R0X3RyaWdnZXJfcmVzZXQiIApyZXNldCBvcGVyYXRpb24sIGJ1dCB0aGV5IGNh
+biB1c2UgdGhlIG1ldGhvZCBiZWxvdyB0byByZXNldCB0aGUgc3lzdGVtCmJ5IHRoZSB3YXRjaGRv
+ZyByaWdodCBub3cuCgp3YXRjaGRvZ19zZXRfdGltZSgxKTsgIC8vMW1zCndhdGNoZG9nX2VuYWJs
+ZSgpOwoKWzBdOiAKaHR0cHM6Ly9naXRsYWIuZGVueC5kZS91LWJvb3QvdS1ib290Ly0vYmxvYi9t
+YXN0ZXIvZHJpdmVycy93YXRjaGRvZy93ZHQtdWNsYXNzLmMKCkJlc3QgUmVnYXJkcwo+PiBUaGFu
+a3MKPj4KPj4gT24gRnJpLCBBcHIgMywgMjAyMCBhdCA0OjI5IFBNIEV2YW4gQmVubiA8ZXZhbmJl
+bm5AY2hyb21pdW0ub3JnIAo+PiA8bWFpbHRvOmV2YW5iZW5uQGNocm9taXVtLm9yZz4+IHdyb3Rl
+Ogo+Pgo+PiAgICAgVGhpcyBpcyBjdXJyZW50bHkgc3VwcG9ydGVkIGluIGZpcm13YXJlIGRlcGxv
+eWVkIG9uIG9haywgaGFuYSBhbmQKPj4gICAgIGVsbSBtdDgxNzMKPj4gICAgIGNocm9tZWJvb2sg
+ZGV2aWNlcy4gVGhlIGtlcm5lbCBkcml2ZXIgaXMgd3JpdHRlbiB0byBiZSBhIGdlbmVyaWMgU01D
+Cj4+ICAgICB3YXRjaGRvZyBkcml2ZXIuCj4+Cj4+ICAgICBBcm0gVHJ1c3RlZCBGaXJtd2FyZSB1
+cHN0cmVhbWluZyByZXZpZXc6Cj4+ICAgICBodHRwczovL3Jldmlldy50cnVzdGVkZmlybXdhcmUu
+b3JnL2MvVEYtQS90cnVzdGVkLWZpcm13YXJlLWEvKy8zNDA1Cj4+Cj4+ICAgICBQYXRjaCB0byBh
+ZGQgb2FrLCBoYW5hLCBlbG0gZGV2aWNlIHRyZWU6Cj4+ICAgICBodHRwczovL2xvcmUua2VybmVs
+Lm9yZy9saW51eC1hcm0ta2VybmVsLzIwMjAwMTEwMDczNzMwLjIxMzc4OS0xLWhzaW55aUBjaHJv
+bWl1bS5vcmcvCj4+ICAgICBJIHdvdWxkIGxpa2UgdG8gYWRkIHRoZSBkZXZpY2UgdHJlZSBzdXBw
+b3J0IGFmdGVyIHRoZSBhYm92ZSBwYXRjaCBpcwo+PiAgICAgYWNjZXB0ZWQuCj4+Cj4+ICAgICBD
+aGFuZ2VzIGluIHYzOgo+PiAgICAgLSBDaGFuZ2UgbmFtZSBiYWNrIHRvIGFybQo+PiAgICAgLSBB
+ZGQgb3B0aW9uYWwgZ2V0X3RpbWVsZWZ0IG9wCj4+ICAgICAtIGNoYW5nZSBuYW1lIHRvIGFybV9z
+bWNfd2R0Cj4+Cj4+ICAgICBDaGFuZ2VzIGluIHYyOgo+PiAgICAgLSBDaGFuZ2UgbmFtZSBhcm0g
+PiBtdDgxNzMKPj4gICAgIC0gdXNlIHdhdGNoZG9nX3N0b3Bfb25fcmVib290Cj4+ICAgICAtIHVz
+ZSB3YXRjaGRvZ19zdG9wX29uX3VucmVnaXN0ZXIKPj4gICAgIC0gdXNlIGRldm1fd2F0Y2hkb2df
+cmVnaXN0ZXJfZGV2aWNlCj4+ICAgICAtIHJlbW92ZSBzbWN3ZF9zaHV0ZG93biwgc21jd2RfcmVt
+b3ZlCj4+ICAgICAtIGNoYW5nZSBlcnJvciBjb2Rlcwo+Pgo+PiAgICAgRXZhbiBCZW5uICgxKToK
+Pj4gICAgIMKgIGR0LWJpbmRpbmdzOiB3YXRjaGRvZzogQWRkIEFSTSBzbWMgd2R0IGZvciBtdDgx
+NzMgd2F0Y2hkb2cKPj4KPj4gICAgIEp1bGl1cyBXZXJuZXIgKDEpOgo+PiAgICAgwqAgd2F0Y2hk
+b2c6IEFkZCBuZXcgYXJtX3NtZF93ZHQgd2F0Y2hkb2cgZHJpdmVyCj4+Cj4+ICAgICDCoC4uLi9i
+aW5kaW5ncy93YXRjaGRvZy9hcm0tc21jLXdkdC55YW1swqAgwqAgwqAgwqAgfMKgIDMwICsrKwo+
+PiAgICAgwqBNQUlOVEFJTkVSU8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgfMKgIMKgNyArCj4+ICAgICDCoGFyY2gvYXJtNjQvY29uZmlncy9kZWZj
+b25maWfCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCB8wqAgwqAxICsKPj4gICAgIMKgZHJpdmVy
+cy93YXRjaGRvZy9LY29uZmlnwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgfMKgIDEz
+ICsrCj4+ICAgICDCoGRyaXZlcnMvd2F0Y2hkb2cvTWFrZWZpbGXCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoHzCoCDCoDEgKwo+PiAgICAgwqBkcml2ZXJzL3dhdGNoZG9nL2FybV9zbWNf
+d2R0LmPCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCB8IDE4MQo+PiAgICAgKysrKysrKysrKysrKysr
+KysrCj4+ICAgICDCoDYgZmlsZXMgY2hhbmdlZCwgMjMzIGluc2VydGlvbnMoKykKPj4gICAgIMKg
+Y3JlYXRlIG1vZGUgMTAwNjQ0Cj4+ICAgICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3Mvd2F0Y2hkb2cvYXJtLXNtYy13ZHQueWFtbAo+PiAgICAgwqBjcmVhdGUgbW9kZSAxMDA2NDQg
+ZHJpdmVycy93YXRjaGRvZy9hcm1fc21jX3dkdC5jCj4+Cj4+ICAgICAtLSAKPj4gICAgIDIuMjYu
+MC4yOTIuZzMzZWY2YjJmMzgtZ29vZwo+PgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
