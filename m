@@ -2,23 +2,22 @@ Return-Path: <SRS0=3iKr=57=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F458C2BB55
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 11:10:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 66233C38A2C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 11:43:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 579E420732
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 11:10:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1B3182168B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 11:43:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GR6Y4ASQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="ZV4QxIT6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 579E420732
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=xs4all.nl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TBPMF4IK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zNM1ymuF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B3182168B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -26,56 +25,121 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=41PcvQIijaiIA/8kl7mUyZipQeWCpD59y/ZLsQOXXvg=; b=GR6Y4ASQl9BTSX
-	cbbYYkEJH6AyRE9WkE2e8nZPyoqvUYsKq8RELKb2J3+654I1rA4CsuG3nGnfCV3hhDsIWmxNwYwDl
-	a9JeHhfjKTzionqz9iDoXagsL/E4DgcaPuiFoL3hKQ9mjI3V0XMtbQWvpIf//AzmGowlATp1aSETP
-	w5iVDEgv5qok5Htj14u+hLNB/8egvW8mIcgggYerhodY7yrMbcDmGUwEz4Zda4iaTK02HLlz6VKlJ
-	oUVxJg4GNQgWUenip0I/iQV8QSgN3h3sRblpf9rP3Q5Fu+ipVukHBRFB+N0LuqBsF4qdAQvpooInq
-	Bye5PHTGORFhL4KleS0A==;
+	List-Owner; bh=AMB9p8PCejRVZZ8HUmXwMS/EPtY5rvRb1SvIME0wwdk=; b=TBPMF4IK+69FC8
+	S/6R42TY1AW+HWyEqGtfFNUAmhTkGCt62z3ZQTtZUC3sJvoz7AKOvl9J6dPNftwaPvsXJS+Whatig
+	D1A8mvfltd5r/0xB/CXDE9aaZ/YaAMcKzRQktFZAvVclGzWlLK+7grMePT9oEqHLvng5+THzD1CLy
+	1ekogXZhtFnRuiVRzo4EcGZQ3p6lMPDUsv0vqkeOM8qzg+IscKenfQd6m9Cch2Auu68z7scKUITRh
+	ZICO8TA/G/ezWJ6DDQ4bra4csMN3lXFC9NkRly60Ajve8sJT2JKWlDMGFnYkIMeuHY5Z4NCDBgFX8
+	fiPP6xM86a8B0zAx5aIw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jOfve-0002ag-Cb; Wed, 15 Apr 2020 11:10:02 +0000
-Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28])
+	id 1jOgRj-0008Ij-1z; Wed, 15 Apr 2020 11:43:11 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jOfva-0002VN-JI; Wed, 15 Apr 2020 11:10:01 +0000
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
- by smtp-cloud7.xs4all.net with ESMTPA
- id OfvEjW0aK7xncOfvHj4Xoj; Wed, 15 Apr 2020 13:09:49 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
- t=1586948989; bh=KvgcRhkkMIcBPhFyfvfr0ndt7euIQsGvniakb86DSHI=;
- h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
- Subject;
- b=ZV4QxIT6bvkSCSasI8Zij/Oetbj5jk9EkFRAmL9NsVCCPBpRACJmMpdT0TxlZ1DaD
- Ln/5uq8wNvnoQUDoQPYP5QoAub3W+ePJgVhWnzggrwHXj4ENIJHfQhUp4zNy/PUPtt
- MMLg11MJtiq3iZ3UMjLGjwTfdPWI0ebEK5B+Wo4VjQbMaRpfiiu2U7DSecmM7m7TLn
- Ltkq0hHY+h2c/OP/scesKk2xXTt/gmwBq2EegbqvzlsnU4tphMhKgZ55Ey4S5VQM7+
- Dv/H8cxtcESqSCG7weyIlGXkXIOPQMqzaSxgXNGOzB6lELA+H453M4UGjNYpD6Tx5n
- IR5Y9MpivzNVg==
+ id 1jOgR7-0007pR-Nk
+ for linux-amlogic@lists.infradead.org; Wed, 15 Apr 2020 11:42:35 +0000
+Received: by mail-wm1-x341.google.com with SMTP id d77so17010157wmd.3
+ for <linux-amlogic@lists.infradead.org>; Wed, 15 Apr 2020 04:42:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=S9NmSo8JYusTYBPeXCjsDWvSr0H2P83LYIrI2dFlh/o=;
+ b=zNM1ymuF/t/0wgYH9aMRGQkUWrK9g2ZV1f01utn3MAoaHPXu0+sQAs8JGAaXdhLFF4
+ 0HDDTjeC9CDQsrFfa+3MqHr7Swm1azNj4QJtJn16j4vcD7dxjG8BCVk3eKcRVwiUrast
+ XAOsF0ZjrCWdri1OlRj8CnwAz/o5ZUYoRWKnYvRzTS/Mxd0lbQ8o21sQwL4DBHidb84T
+ +s3Y4N0YobXh9JjWm8DyKkmcNrOugM2ty7HTjrTU3JN08Niyh/gab/zmKERLvTfM8nxm
+ Wrj3LQnO8kAoQF5Wac1LLQKMOGlxU9rSY/ZcoSPfIUu34OvPf72gGPmADOBWeB+GZSfm
+ 8f0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=S9NmSo8JYusTYBPeXCjsDWvSr0H2P83LYIrI2dFlh/o=;
+ b=BYbwE1zeMQ0Yy8b3PiTSTODuLbFS31CvuYS85baLLqwMCEdg1kD0xRhkp95TnedzWM
+ K4erNWeBDxEmHok1QXb0k1Ylud7aDxYeuG4aeUdNB0tN7BeskpHw9N5JwYojLl5iIkT8
+ hWbUejur/vH28gzsndkJy7iqYjDI1QuZ+dFi5ZjX46XFQQyEveLaAS1LgQxa1+Nsvy37
+ IKq4eFdtif8KBbjChp8q49Yy3Phvp7FXYQ2uPOVR/Bz59e3/ZEUVX7rJ8mQj9gcSjpAn
+ r1/2CO01ZlKI/WtWKKVPTKVIW6iFGMIgE2nCv9WZ7q/NO8aNL7HDH1BX9vLgSOn5kceO
+ VdKA==
+X-Gm-Message-State: AGi0Pua+Q1hjvB+KLaKnDsNFKyDdCrZ24WoGfBNGBOFvc/QXoTHYd+TG
+ zHupIZxSbEqzxFlvLaUlJ0cXRQ==
+X-Google-Smtp-Source: APiQypJGD+q2Ft/TJmt8VvCj6kbcQkafuaJGUYJfC46bS2nB9371SIyp/JhQIRWLDtAlLmkxSPO70Q==
+X-Received: by 2002:a1c:ded4:: with SMTP id v203mr4852590wmg.106.1586950952051; 
+ Wed, 15 Apr 2020 04:42:32 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56?
+ ([2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56])
+ by smtp.gmail.com with ESMTPSA id n6sm21746253wmc.28.2020.04.15.04.42.28
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 15 Apr 2020 04:42:31 -0700 (PDT)
 Subject: Re: [PATCH v2 0/6] Move CEC drivers and menu to be out of
  MEDIA_SUPPORT
 To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
  Linux Media Mailing List <linux-media@vger.kernel.org>
 References: <cover.1586946605.git.mchehab+huawei@kernel.org>
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <a81dee7b-2641-0d2f-c659-f08fe7af94f6@xs4all.nl>
-Date: Wed, 15 Apr 2020 13:09:36 +0200
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <bcee4bd5-33f7-daad-f06c-78516c4ae29d@baylibre.com>
+Date: Wed, 15 Apr 2020 13:42:27 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+ Thunderbird/68.4.1
 MIME-Version: 1.0
 In-Reply-To: <cover.1586946605.git.mchehab+huawei@kernel.org>
 Content-Language: en-US
-X-CMAE-Envelope: MS4wfAoQtOqqqoVPHMdN5oX53UyHTmQQMULnRUjFyTATs/v6GWsXgRHarqzS1ELM0muaKrF3VHksfe1o3zy75bIhrVkkxn3gbBl1BdmIN5+lcREmQFChMpoz
- Ju9QQwCZI1BB9UntkfqJG+BgbfOeElcX/CEOIyxtYOaNE8WXyiVQwgXU08RSqvTQxpoRyl++31wJYQUdLRDMyvHnbpmZwP4DqUYw4IQp4AKSMr1T3+8u3MKh
- OI6pngpl8MQLGEkOh5oVajnj05PyuPqp6ucSipF/SIK/u7zTN8mszOFEeKdpp0ntMC29ccEZs4n2DnbmCp1wSH/OFb4DUQ/DZrgFfRDWVm9QZbtbRhNkS5vj
- 7Noc09ibpD7T2jTrOwru7jYQzqV+oYfBmoXZzM2Gs73fP4RzuMTv+MNFB87lsbq+64eUia/jg66F9niepDng4k63TfR+gXGKWr02QMF5Np4eAGJrb5rr14kd
- yMEQKD/UvLPFlEi/1zuOidhRNdcFUg8bGiX7e6b+Sy/l34NdU/Tlc8ohcjplskom04uX66ChZEtb5coyIrpLOk7jyrJ5tJX/LjkTkbrezS8qELHEYc2/iLFj
- iQhF5tS82wfwc7Y7BK4YGSC6WOToZW1pwgKX4s9vbIWx2c6L17TucLjxuSPMEG+X71NkJL8oO/OALqBd4vwvHtAGzqXXUzBq0fMo9olwSFxHHD9YscyO+LzP
- /UKGTBJ5pucBIix9ZBK/sWlNXDD3p7RnYPQNphEKuj4VRc/T2Z8l9o3OlH3H9z/8JaHLcJ9TsOpA0+ATk8HKz/WaJuLjyKJFL4qiW51UYYbq7l/PQD+mf+Y9
- izE2CkfYawIr9c/RD1VfwzWSATTNCym7frlNvrayUiITjutvJpc7j4RLWwO4FykV7fDjQlWYP8wvMxYkd9u9DiLzE4OR0PFSz/OXM4wIzMYG8Vp93UEcTQ0T
- VycV0+v50PAJPn+lpTbWxBg0tZJZmrie3ujgadnEVqG+oGbz
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200415_040959_091703_53BBB4E8 
-X-CRM114-Status: GOOD (  15.84  )
+X-CRM114-CacheID: sfid-20200415_044233_804202_B08008B6 
+X-CRM114-Status: GOOD (  17.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,14 +152,15 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- linux-samsung-soc@vger.kernel.org, Alexandre Torgue <alexandre.torgue@st.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Kevin Hilman <khilman@baylibre.com>,
  Enric Balletbo i Serra <enric.balletbo@collabora.com>,
  Russell King <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk@kernel.org>,
- Ettore Chimenti <ek5.chimenti@gmail.com>, linux-tegra@vger.kernel.org,
+ Ettore Chimenti <ek5.chimenti@gmail.com>, Guenter Roeck <groeck@chromium.org>,
  Kukjin Kim <kgene@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
  Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Guenter Roeck <groeck@chromium.org>, linux-amlogic@lists.infradead.org,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, linux-amlogic@lists.infradead.org,
  Jonathan Hunter <jonathanh@nvidia.com>, Benson Leung <bleung@chromium.org>,
  linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
  Marek Szyprowski <m.szyprowski@samsung.com>
@@ -111,15 +176,6 @@ On 15/04/2020 12:31, Mauro Carvalho Chehab wrote:
 > This series move it to be just after RC support. As a side effect, now
 > dependencies like PCI and USB are now selected, making easier to
 > enable CEC drivers.
-
-For this series:
-
-Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-
-Thanks!
-
-	Hans
-
 > 
 > - v2:
 >   - move more CEC drivers from platform/
@@ -244,6 +300,10 @@ Thanks!
 >  delete mode 100644 drivers/media/usb/rainshadow-cec/Makefile
 > 
 
+For meson CEC drivers and cros-ec-cec:
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
