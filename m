@@ -2,86 +2,67 @@ Return-Path: <SRS0=3iKr=57=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FD3FC2BA19
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 10:23:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 34521C2BB55
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 10:31:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 42D2220775
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 10:23:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0BC11206D9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2020 10:31:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qHo+9lQ7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="u0aNUsA/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 42D2220775
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tdMKczJP";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="LjvFPPv1"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0BC11206D9
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=QdUwHmSi100LRXMfYE4rn6ygop7fIpvShOQCGLZ+s64=; b=qHo
-	+9lQ7e+MW1l8X+KkakbvcEU0EICuS8ocajVxGBTPdvObM3WuAEKb8IIZCeBaorlRW5Bkg/8okvlwd
-	qsVLSqCWeweVBz+AzkBQwXvsfwPo7ywIs+y6yhK0l+sY75fbUp6YZo3aOjsRtpa608ZCwlIYlLQ4q
-	gdmX2rJuqx8vZCr9esn7uSY7qNNNHHEHMjBBBb3xW2uX1+psu+IA4RtlhUQnmyiXtnJ42OpRDueN/
-	dj0SRmCdAt6ITxLZewweFAE3uaqZl12FfmGWVB/tQDKY0UciVLpvlTPdC+GiZNgg//DcQVzqa7KNM
-	gyZOmEdViy9i9+4nOkzN/WXGronmKNg==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=t3S9VuxZdzqPkaLj0BKy4yMB8oaDkOTqdLBY9b0yoe4=; b=tdMKczJPO55dN0
+	zxjl/9WfOEDP8c9m11pVrh3H4BubVGhI4kY92RnXGvDhsk2Hzd+7+MslgtzY1ePEYLZnSXp2NQAR9
+	Q3YC9zgJEPS3CRrWdqXuzdP7gLMzAEsMPkQe2/t6tlLamRCd3AFC3sdtd9xApjHSjZDRZCPy+ngDk
+	mCflg3Y+V8Sq7NKuwvGNb5WEOWN2QyspT3upPzVfFWPyRVCfcGZvt0iYZvv3/WW8DO3Ct542NgMu9
+	h4JvwsqhKMRF9UsxAHtZMxAf0mkw3/xVZC/9Rh6RzYzrp4W8JRfbK2Rtijv/2tstSIkya9VqiwyTm
+	UTRTKRLR/Ksy67YV8+mg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jOfCy-00033n-2E; Wed, 15 Apr 2020 10:23:52 +0000
-Received: from mail-lf1-x144.google.com ([2a00:1450:4864:20::144])
+	id 1jOfKZ-0001pE-V3; Wed, 15 Apr 2020 10:31:43 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jOfCZ-0002vc-5L; Wed, 15 Apr 2020 10:23:29 +0000
-Received: by mail-lf1-x144.google.com with SMTP id r17so2221030lff.2;
- Wed, 15 Apr 2020 03:23:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=jKeaCgFpnmK28M7xOrZHtgGEs75wSDfctsMr7/8EUQ4=;
- b=u0aNUsA/ajvK6mw+4oTArTjesmheWK9IOjPXwcTInScU0ziIdquqPvAoRZ7JWHtU3e
- azgL3J3mFyNQ45f8l01s2gr+SSy3qihJSborjmg4ASd2rSEMBbhq0/ELiC+24ngeR37Z
- QOOOJn6nml0YT4MCSCwiFivQdSppsMUYq4y3blVHh9Vdtd4vgzVEAdm+DZnZ4EqT8mZC
- qEwXBMqVmVuBQeOkxPUkeg+I3OXA7KgWg1mHwKplqBn1diR32MgW/e2JzccROABQ6H5h
- 5kcu1b0A0piOrKPAnsFZD9qUeMfzuMRVoUEJiC6TlLbm6ENviT5U66hzt5bR4JngrtJL
- 91Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=jKeaCgFpnmK28M7xOrZHtgGEs75wSDfctsMr7/8EUQ4=;
- b=irH52M4ej6mbks1wwrk2vh7k6P3yjoq16fMb9PCGiEU6q++FliKqoFAYtK1lilTE5/
- E7uJvDVe7bn3QyrPKdHie8BADPhlYlZeXFEX0aMkx1afKJOppiNB/8Dc45MchmDv3EcT
- 7huVDNnSXl0Dj5B0mDagwbcpE8xz0b5cpd52deJYtbTg171/QTjz12Bg8WSlVVmQe2yr
- CopbIjxSQOIUejsak5m/TZ4ab1fIEChigoqz6rThtrQXPfr+uvSg5z6EbZ58Nozmm0te
- o3FDiUBj84om7/DiASjYkfs4K1tVKroTNbI6bjhgGdTKRpzhZtikFDlEnk3YHhYRJhlq
- oxug==
-X-Gm-Message-State: AGi0PuY27b3DuzYksZhVqc46jAcrb6LmwjNnKgJVZ9WPoeMVVc16+/20
- vJnpPzEznpJF/LY3P/mvRu4=
-X-Google-Smtp-Source: APiQypINp9dsLX1m+G4LnnN392ZDggMCz6RWVuPhP53iuSY5f9+1hGDl1lDNmn3boXKr/63qJ5pMqg==
-X-Received: by 2002:a19:c8cf:: with SMTP id y198mr2545251lff.197.1586946205638; 
- Wed, 15 Apr 2020 03:23:25 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id x23sm12442810lfe.51.2020.04.15.03.23.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 03:23:24 -0700 (PDT)
-From: chewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: sm1-khadas-vim3l: add audio playback to
- vim3l
-Date: Wed, 15 Apr 2020 10:23:20 +0000
-Message-Id: <20200415102320.4606-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ id 1jOfKX-0001o6-FJ; Wed, 15 Apr 2020 10:31:43 +0000
+Received: from mail.kernel.org (ip5f5ad4d8.dynamic.kabel-deutschland.de
+ [95.90.212.216])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id DCEED208FE;
+ Wed, 15 Apr 2020 10:31:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1586946701;
+ bh=uRks2HYiRyRdiR4g4ENZwFdl3nuMvUwAgHch1gvWFtU=;
+ h=From:To:Cc:Subject:Date:From;
+ b=LjvFPPv18vTxu7vRGD7+5SofqLQC3JFt2Yh/g1J8TyUMrRbcnYNDjKFZXMbTvP+l2
+ 2b6QydhAIOc5+m83jy/p6rLevh6dSKnSQATtz2x1JvYlUAG1VDGoiNvLGHpZQ7NVpv
+ YUWuwFJRmt04Jol1FBOsxz2sWmgBvn5JgZW8sQPg=
+Received: from mchehab by mail.kernel.org with local (Exim 4.92.3)
+ (envelope-from <mchehab@kernel.org>)
+ id 1jOfKV-006gM0-23; Wed, 15 Apr 2020 12:31:39 +0200
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Linux Media Mailing List <linux-media@vger.kernel.org>
+Subject: [PATCH v2 0/6] Move CEC drivers and menu to be out of MEDIA_SUPPORT
+Date: Wed, 15 Apr 2020 12:31:31 +0200
+Message-Id: <cover.1586946605.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.25.2
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200415_032328_229979_7E25B8C3 
-X-CRM114-Status: GOOD (  10.78  )
+X-CRM114-CacheID: sfid-20200415_033141_559596_BB941465 
+X-CRM114-Status: GOOD (  14.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,141 +74,158 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-MIME-Version: 1.0
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Ettore Chimenti <ek5.chimenti@gmail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Guenter Roeck <groeck@chromium.org>, linux-stm32@st-md-mailman.stormreply.com,
+ Marek Szyprowski <m.szyprowski@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Russell King <linux@armlinux.org.uk>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Kukjin Kim <kgene@kernel.org>, Alexandre Torgue <alexandre.torgue@st.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Benson Leung <bleung@chromium.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Enric Balletbo i Serra <enric.balletbo@collabora.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Christian Hewitt <christianshewitt@gmail.com>
+The CEC_CORE doesn't depend on MEDIA_SUPPORT. So, it doesn't make
+much sense to keep it under its menu.
 
-Add the sound and related audio nodes to the VIM3L board.
+This series move it to be just after RC support. As a side effect, now
+dependencies like PCI and USB are now selected, making easier to
+enable CEC drivers.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../dts/amlogic/meson-sm1-khadas-vim3l.dts    | 88 +++++++++++++++++++
- 1 file changed, 88 insertions(+)
+- v2:
+  - move more CEC drivers from platform/
+  - rename kconfig options to be more coherent
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-index dbbf29a0dbf6..b900a433ef7a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-@@ -8,6 +8,7 @@
- 
- #include "meson-sm1.dtsi"
- #include "meson-khadas-vim3.dtsi"
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
- 
- / {
- 	compatible = "khadas,vim3l", "amlogic,sm1";
-@@ -31,6 +32,69 @@
- 		regulator-boot-on;
- 		regulator-always-on;
- 	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "SM1-KHADAS-VIM3L";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-4 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&clkc_audio {
-+	status = "okay";
- };
- 
- &cpu0 {
-@@ -61,6 +125,18 @@
- 	clock-latency = <50000>;
- };
- 
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
- &pwm_AO_cd {
- 	pinctrl-0 = <&pwm_ao_d_e_pins>;
- 	pinctrl-names = "default";
-@@ -93,3 +169,15 @@
- 	phy-names = "usb2-phy0", "usb2-phy1";
- };
-  */
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
+Mauro Carvalho Chehab (6):
+  media: cec: move the core to a separate directory
+  media: place CEC menu before MEDIA_SUPPORT
+  media: move CEC platform drivers to a separate directory
+  media: move CEC USB drivers to a separate directory
+  media: cec: rename CEC platform drivers config options
+  media: cec: rename USB config options
+
+ arch/arm/configs/exynos_defconfig             |   2 +-
+ arch/arm/configs/multi_v7_defconfig           |   2 +-
+ drivers/media/Kconfig                         |  30 +----
+ drivers/media/cec/Kconfig                     |  25 ++++
+ drivers/media/cec/Makefile                    |  16 +--
+ drivers/media/cec/core/Makefile               |  16 +++
+ drivers/media/cec/{ => core}/cec-adap.c       |   0
+ drivers/media/cec/{ => core}/cec-api.c        |   0
+ drivers/media/cec/{ => core}/cec-core.c       |   0
+ drivers/media/cec/{ => core}/cec-notifier.c   |   0
+ .../media/cec/{ => core}/cec-pin-error-inj.c  |   0
+ drivers/media/cec/{ => core}/cec-pin-priv.h   |   0
+ drivers/media/cec/{ => core}/cec-pin.c        |   0
+ drivers/media/cec/{ => core}/cec-priv.h       |   0
+ drivers/media/cec/platform/Kconfig            | 121 +++++++++++++++++
+ drivers/media/cec/platform/Makefile           |  14 ++
+ .../{ => cec}/platform/cec-gpio/Makefile      |   0
+ .../{ => cec}/platform/cec-gpio/cec-gpio.c    |   0
+ drivers/media/cec/platform/cros-ec/Makefile   |   2 +
+ .../platform/cros-ec}/cros-ec-cec.c           |   0
+ drivers/media/cec/platform/meson/Makefile     |   3 +
+ .../{ => cec}/platform/meson/ao-cec-g12a.c    |   0
+ .../media/{ => cec}/platform/meson/ao-cec.c   |   0
+ .../s5p-cec => cec/platform/s5p}/Makefile     |   2 +-
+ .../platform/s5p}/exynos_hdmi_cec.h           |   0
+ .../platform/s5p}/exynos_hdmi_cecctrl.c       |   0
+ .../s5p-cec => cec/platform/s5p}/regs-cec.h   |   0
+ .../s5p-cec => cec/platform/s5p}/s5p_cec.c    |   0
+ .../s5p-cec => cec/platform/s5p}/s5p_cec.h    |   0
+ drivers/media/cec/platform/seco/Makefile      |   2 +
+ .../seco-cec => cec/platform/seco}/seco-cec.c |   2 +-
+ .../seco-cec => cec/platform/seco}/seco-cec.h |   0
+ drivers/media/cec/platform/sti/Makefile       |   2 +
+ .../sti/cec => cec/platform/sti}/stih-cec.c   |   0
+ drivers/media/cec/platform/stm32/Makefile     |   2 +
+ .../{ => cec}/platform/stm32/stm32-cec.c      |   0
+ drivers/media/cec/platform/tegra/Makefile     |   2 +
+ .../platform/tegra}/tegra_cec.c               |   0
+ .../platform/tegra}/tegra_cec.h               |   0
+ drivers/media/cec/usb/Kconfig                 |   6 +
+ drivers/media/cec/usb/Makefile                |   6 +
+ .../pulse8-cec => cec/usb/pulse8}/Kconfig     |   5 +-
+ drivers/media/cec/usb/pulse8/Makefile         |   2 +
+ .../usb/pulse8}/pulse8-cec.c                  |   0
+ .../usb/rainshadow}/Kconfig                   |   5 +-
+ drivers/media/cec/usb/rainshadow/Makefile     |   2 +
+ .../usb/rainshadow}/rainshadow-cec.c          |   0
+ drivers/media/platform/Kconfig                | 125 ------------------
+ drivers/media/platform/Makefile               |  12 --
+ drivers/media/platform/cros-ec-cec/Makefile   |   2 -
+ drivers/media/platform/meson/Makefile         |   3 -
+ drivers/media/platform/seco-cec/Makefile      |   2 -
+ drivers/media/platform/sti/cec/Makefile       |   2 -
+ drivers/media/platform/stm32/Makefile         |   1 -
+ drivers/media/platform/tegra-cec/Makefile     |   2 -
+ drivers/media/usb/Kconfig                     |   6 -
+ drivers/media/usb/Makefile                    |   2 -
+ drivers/media/usb/pulse8-cec/Makefile         |   2 -
+ drivers/media/usb/rainshadow-cec/Makefile     |   2 -
+ 59 files changed, 218 insertions(+), 212 deletions(-)
+ create mode 100644 drivers/media/cec/core/Makefile
+ rename drivers/media/cec/{ => core}/cec-adap.c (100%)
+ rename drivers/media/cec/{ => core}/cec-api.c (100%)
+ rename drivers/media/cec/{ => core}/cec-core.c (100%)
+ rename drivers/media/cec/{ => core}/cec-notifier.c (100%)
+ rename drivers/media/cec/{ => core}/cec-pin-error-inj.c (100%)
+ rename drivers/media/cec/{ => core}/cec-pin-priv.h (100%)
+ rename drivers/media/cec/{ => core}/cec-pin.c (100%)
+ rename drivers/media/cec/{ => core}/cec-priv.h (100%)
+ create mode 100644 drivers/media/cec/platform/Kconfig
+ create mode 100644 drivers/media/cec/platform/Makefile
+ rename drivers/media/{ => cec}/platform/cec-gpio/Makefile (100%)
+ rename drivers/media/{ => cec}/platform/cec-gpio/cec-gpio.c (100%)
+ create mode 100644 drivers/media/cec/platform/cros-ec/Makefile
+ rename drivers/media/{platform/cros-ec-cec => cec/platform/cros-ec}/cros-ec-cec.c (100%)
+ create mode 100644 drivers/media/cec/platform/meson/Makefile
+ rename drivers/media/{ => cec}/platform/meson/ao-cec-g12a.c (100%)
+ rename drivers/media/{ => cec}/platform/meson/ao-cec.c (100%)
+ rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/Makefile (63%)
+ rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/exynos_hdmi_cec.h (100%)
+ rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/exynos_hdmi_cecctrl.c (100%)
+ rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/regs-cec.h (100%)
+ rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/s5p_cec.c (100%)
+ rename drivers/media/{platform/s5p-cec => cec/platform/s5p}/s5p_cec.h (100%)
+ create mode 100644 drivers/media/cec/platform/seco/Makefile
+ rename drivers/media/{platform/seco-cec => cec/platform/seco}/seco-cec.c (99%)
+ rename drivers/media/{platform/seco-cec => cec/platform/seco}/seco-cec.h (100%)
+ create mode 100644 drivers/media/cec/platform/sti/Makefile
+ rename drivers/media/{platform/sti/cec => cec/platform/sti}/stih-cec.c (100%)
+ create mode 100644 drivers/media/cec/platform/stm32/Makefile
+ rename drivers/media/{ => cec}/platform/stm32/stm32-cec.c (100%)
+ create mode 100644 drivers/media/cec/platform/tegra/Makefile
+ rename drivers/media/{platform/tegra-cec => cec/platform/tegra}/tegra_cec.c (100%)
+ rename drivers/media/{platform/tegra-cec => cec/platform/tegra}/tegra_cec.h (100%)
+ create mode 100644 drivers/media/cec/usb/Kconfig
+ create mode 100644 drivers/media/cec/usb/Makefile
+ rename drivers/media/{usb/pulse8-cec => cec/usb/pulse8}/Kconfig (86%)
+ create mode 100644 drivers/media/cec/usb/pulse8/Makefile
+ rename drivers/media/{usb/pulse8-cec => cec/usb/pulse8}/pulse8-cec.c (100%)
+ rename drivers/media/{usb/rainshadow-cec => cec/usb/rainshadow}/Kconfig (85%)
+ create mode 100644 drivers/media/cec/usb/rainshadow/Makefile
+ rename drivers/media/{usb/rainshadow-cec => cec/usb/rainshadow}/rainshadow-cec.c (100%)
+ delete mode 100644 drivers/media/platform/cros-ec-cec/Makefile
+ delete mode 100644 drivers/media/platform/meson/Makefile
+ delete mode 100644 drivers/media/platform/seco-cec/Makefile
+ delete mode 100644 drivers/media/platform/sti/cec/Makefile
+ delete mode 100644 drivers/media/platform/tegra-cec/Makefile
+ delete mode 100644 drivers/media/usb/pulse8-cec/Makefile
+ delete mode 100644 drivers/media/usb/rainshadow-cec/Makefile
+
 -- 
-2.17.1
+2.25.2
+
 
 
 _______________________________________________
