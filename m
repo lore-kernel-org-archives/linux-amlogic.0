@@ -2,21 +2,22 @@ Return-Path: <SRS0=I4qu=6A=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D18F4C2BB85
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 16:08:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F825C352BE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 16:08:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9D4C62223F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 16:08:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4EE362223E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 16:08:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fEBJYBU0";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="puTqEKho"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9D4C62223F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mxk2M6Sx";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="WkKqc8Sv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4EE362223E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,38 +26,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:
 	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+kJrFTi8AoczyjElT3EgP10cQfgsTz9dUVUPW+6FGyU=; b=fEBJYBU0ZyUE+h
-	FsFTpG0TxfjEO7VdY1GtwIpzRYdPgLgzzds2c/ufwQH4iW5yZ68QeyLHPyPtdxyloKyw9Lgs5lwCH
-	oD4dxHkH9Rea6uDSUScid0q/i9RVwLt2lBvy5BI4S/KJsH6Ppyv2wGrIjVJcEPeqGRCZ1nVu09+VN
-	eDvfUDzfy03m4CYXh81TlPZMlAwtO8yT1H090CtTatqQYrfEet/rvXuVYP3dGaRHVqwkkh/kn4GX8
-	trITnyuhEgcmo96uWPgzJ670pYHjSUV0I7UPjBHJX320kl090Vnk9H4XxawsATj4iEGHTuivvgLsy
-	bmILgmt3ZL0a507uWTWg==;
+	List-Owner; bh=lCs3YIQJ29ISlw8JkMwCTOCj7KKcVgD+YRIQGP8Y12Y=; b=mxk2M6SxgMxjay
+	hqBfDjV/uG/eCDntJvFD2BHvFTYxNQwKVN+FdPGIhz73giWq505/mwxMdd9Tn76gmzRuwKrGcpqBc
+	3wT4IBjKzkb91t917F4PoCzXjNsWiYMJF72/m8PLpYpPLQ7g9ynHWcigy5A2Aawujnyrgop4J3YDZ
+	ZRUfvmLWbRS9MMTTmoeLPDaWZzOxF1CLYIkZQM7A64qkCFBY4C2K28rxtiD6SYJ/9o6FOtLBKEfPM
+	4rqEOCK2lNjeOTBEHb2q0YeqXeSnRLOKM6WH4QwxCkJLzKQlowrLk0iTBs4bJJZi2dwJXLAN/Pnw3
+	f3k6tgJjT6v28embeLvg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jP73v-0008Qj-Dg; Thu, 16 Apr 2020 16:08:23 +0000
+	id 1jP73x-0008TG-9Y; Thu, 16 Apr 2020 16:08:25 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jP73a-000800-Iv
- for linux-amlogic@lists.infradead.org; Thu, 16 Apr 2020 16:08:04 +0000
+ id 1jP73a-00080T-Si
+ for linux-amlogic@lists.infradead.org; Thu, 16 Apr 2020 16:08:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1587053280;
- bh=WPW5N87csv6pI6yIW06dGZ/DAwJzoP3oo2KNnay3nKY=;
+ s=default; t=1587053281;
+ bh=gpKiVcNqlhPeYxb/XDmPYNejINYiHQjvBiW4Sh7lQGE=;
  h=Subject:From:Date:References:In-Reply-To:To:Cc:Cc:From;
- b=puTqEKhoqNX/MisnmBv/DXM+OCIzoS44/SS+Vc3uRNi5A8tooUy+13wQWxQjYERxW
- gdP7lADtDRQlbhZnfMIYECJRzlQbBNmIrAoNFZ6uQYbH/CIQPLv7O8iZacFCEt2Y7x
- g6ye7hyYtJBZDbLw9ND+qDcPjw5ko3Hhxy6TcvIA=
+ b=WkKqc8Svk3hEheodhV95yNu9BuQsjvqhvoXfY39KGLUzqtC9OXv0hfbyRNv3u87pf
+ ixA5jYjWp/eBfH1wGDxIzqE3S5YxHfhU7JrZfvnLvPeCACNOm0AO+VvMl2GucBHH0X
+ m7WtDKV20AT3mthFx5AHlbUHGJdq3IFqBBv338b4=
 MIME-Version: 1.0
-Subject: Re: [PATCH] mtd: rawnand: Replace zero-length array with
- flexible-array member
+Subject: Re: [PATCH] pwm: meson: remove redundant assignment to variable
+ fin_freq
 From: patchwork-bot+linux-amlogic@kernel.org
-Message-Id: <158705328088.8629.11835381038570156425.git-patchwork-notify@kernel.org>
-Date: Thu, 16 Apr 2020 16:08:00 +0000
-References: <20200226222722.GA18020@embeddedor>
-In-Reply-To: <20200226222722.GA18020@embeddedor>
-To: Gustavo A. R. Silva <gustavo@embeddedor.com>
+Message-Id: <158705328158.8629.3396382198019517190.git-patchwork-notify@kernel.org>
+Date: Thu, 16 Apr 2020 16:08:01 +0000
+References: <20200402110857.509844-1-colin.king@canonical.com>
+In-Reply-To: <20200402110857.509844-1-colin.king@canonical.com>
+To: Colin King <colin.king@canonical.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200416_090802_649903_F14F7422 
-X-CRM114-Status: UNSURE (   4.78  )
+X-CRM114-CacheID: sfid-20200416_090803_006969_EED66CDB 
+X-CRM114-Status: UNSURE (   5.52  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -79,23 +80,22 @@ Hello:
 
 This patch was applied to khilman/linux-amlogic.git (refs/heads/for-next).
 
-On Wed, 26 Feb 2020 16:27:22 -0600 you wrote:
-> The current codebase makes use of the zero-length array language
-> extension to the C90 standard, but the preferred mechanism to declare
-> variable-length types such as these ones is a flexible array member[1][2],
-> introduced in C99:
+On Thu,  2 Apr 2020 12:08:57 +0100 you wrote:
+> From: Colin Ian King <colin.king@canonical.com>
 > 
-> struct foo {
->         int stuff;
->         struct boo array[];
-> };
+> The variable fin_freq is being initialized with a value that is never
+> read and it is being updated later with a new value. The initialization
+> is redundant and can be removed.
+> 
+> Addresses-Coverity: ("Unused value")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 > 
 > [...]
 
 
 Here is a summary with links:
-  - mtd: rawnand: Replace zero-length array with flexible-array member
-    https://git.kernel.org/khilman/linux-amlogic/c/49f1c33076ca56871ffddc4800b04524204ea889
+  - pwm: meson: remove redundant assignment to variable fin_freq
+    https://git.kernel.org/khilman/linux-amlogic/c/437fb760d046340d0dee3b4307e1cf4578fd8ca8
 
 You are awesome, thank you!
 
