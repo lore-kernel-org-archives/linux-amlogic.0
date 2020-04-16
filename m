@@ -2,93 +2,82 @@ Return-Path: <SRS0=I4qu=6A=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 020BBC2BB85
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 10:38:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D487C2BB55
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 11:27:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C8D5221D91
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 10:38:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 40EE821841
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 11:27:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xk/SdexZ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="i9oZ+y2G"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C8D5221D91
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gcoOlL6F";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oH33bDG2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 40EE821841
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=OgX22gsjgyQ5YWMjmt1PMSF2mQpD54jJBxoHYB6ts7Q=; b=Xk/SdexZi1xFwxC2gPZHHOJqI9
-	8xF3dihyNKjddO/y9Zq4Tk5eeY8wTrAt0pASGEJy5k2R8vn19afu0bhAKvdl7+FTmdyK3pHrmzfyT
-	StCHkZ+DIt0Xwow31tDihhfbFB+ds/1qmEuyOobx+Zvw7Z5AljmDU3d7zSSavBWIf3KqvXXiophZt
-	0C9Q8MA3iqfzxr9zE2ZEGSnT+FtceAZzndbevQOj84YqXsnUxgOT0kaW6XScL53EZU7ElH7C207c3
-	/OJB+aJ7i/sOd6fiSfgcW7V+qW24F6S0CWZDcOzkUj8phP1gXB6nKXEA2gpw9pV0ySpCIWXdaJkR/
-	bfu3pnUQ==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QLOP8AVNouA+R6hNe+WEtbsdQfmHeMD+kJ0u1hvJwdo=; b=gcoOlL6F9dkgDT
+	FFbOCjU6V/hTEw3+3V7n5DrK6Mk6me9wpyrrGgl/Jz34hsIbKDSmUrUETEHE6t3wZ1D15/Kd+7w3I
+	uNnTeZK7q/FLbf885viyw6974/YUOrhu4lED3JVgp48eUyAyu3LNNZmw/ufo2FaBYRXJ8oUi+3EvK
+	YTRUoIHqFzEfYviRwgrTFW9QSp6MuizgD0Mh4b1imSNI9MmuBWdRuXs6BuBG15Y0y9e18z26ORN4L
+	Xi/KKF9TvCtLMqBJEvDr+FWv3pui97Mz42J4AA1/lBhjo7rbVg+AQo5x8Ew1d0f0IjZ/r79pTPj2O
+	6CsZJyJy9mDJYaR4Dq6Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jP1uy-0000gx-Or; Thu, 16 Apr 2020 10:38:48 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1jP2fb-0003NM-BI; Thu, 16 Apr 2020 11:26:59 +0000
+Received: from mail-vk1-xa31.google.com ([2607:f8b0:4864:20::a31])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jP1uo-0000X2-Ev
- for linux-amlogic@lists.infradead.org; Thu, 16 Apr 2020 10:38:39 +0000
-Received: by mail-wr1-x441.google.com with SMTP id d17so4178780wrg.11
- for <linux-amlogic@lists.infradead.org>; Thu, 16 Apr 2020 03:38:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=pSjSCo+R3nw6Mi3WgTdlVGEQK1cZ5sHURhNm1msjdTw=;
- b=i9oZ+y2GOFfxTK1a5ceBZ6AFtsRyWZturgwWSIzu0ubbthr/zDvbQIlhqpL9KQ+Akf
- iRHamma5/OBwrFLC7wFH2TGQpQI8Uqr/mK2ZlnGswi7y4iSeL3PAbHFVttOAeb2yJMg6
- wbjEn2oAT+H4FpDaBQYfOSlS3HVjxO0y4fG8sFsSMFyrDBdlJZklr/Uv8NL7uZ6ZVrGB
- QcBEqdQMhigJmJRKosP/nueTsLOcT0Lp9ckPDHZip8stn+yTKyQKeINIQjPOcLac54ES
- ewZXUEaNNSEHp4rS5VebyWCJRGnhEerGVxVMh0oKL2fmEAwsEkSpD3nethOrJj97Gbd4
- dqAA==
+ id 1jP2fY-0003MR-Cu
+ for linux-amlogic@lists.infradead.org; Thu, 16 Apr 2020 11:26:58 +0000
+Received: by mail-vk1-xa31.google.com with SMTP id v129so1776789vkf.10
+ for <linux-amlogic@lists.infradead.org>; Thu, 16 Apr 2020 04:26:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=XNpefsuCct6B4uZId4JS7PFlnG0t9azfDKQ0UhJ7Rz0=;
+ b=oH33bDG29P2eFR0uj2731SAQsoJ8sGIizT62wdYvS1qnjl/GmqpEBWuoqQWb8wLvLc
+ ByMlPaCKTWfabQtKILa6EoWp7X5glWTBhBfEgtOxg8kEtIvDu8Cxk6biWGBkSq9pyZyf
+ nIHN8AJRMMPgDhN/FEm5LmVmBsHyM8cgx9F5rYpMBdhteTMXryXoY5gMTxUPyAFxAh2i
+ /m3xjxAX19as/PK5ZnwujffpkmxY04XNlfWfqeVSnsvNIbo0m1d4VMgrf3/DIcGeotq0
+ HGcbO/Vtp/yZB9ROiEoH92UlPQ0ZT1YbOSd3AaHxJ7eVFN5hTrpn3qPF0k96HWdD9XEL
+ FcAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=pSjSCo+R3nw6Mi3WgTdlVGEQK1cZ5sHURhNm1msjdTw=;
- b=umrmGzMUrRJLIpjPjOSJ49vKX8iKppkBJKv5UPWIhIL6A2VQ0WQPjdUhxm9ZW76VEY
- gOXJCKIRycAMMvb78wJle7E8edlG2j+di+7JNi8kdI/LFTVy1lhwlLeTvmUH1EqTSIuj
- a5L5ln3MNUoT0ICyqZlmxndOnaYR8zydzKVZTpn2DW630Sd6uTiHzI6/3lCOgXjGO08Q
- 7QkTv6i28Tfr0aqkFhfOZRP9M9PnRFH5h5ngz6mGwSiqa6S5T7TUney72LSIPksId+uk
- sL5q2IOiDatg+ZHBg2fqnAkNbQ6UYZlHhCX6JYMk6TsuJxMYmtJyx3T3nL3UYpUHRKx0
- miiQ==
-X-Gm-Message-State: AGi0PubgXEa9pZz87A0WOkoqZPdeEqwK0AEw6Bf77DXxf2nFPC86G3xV
- zffFQKnp+He7lCSRNzBuQjVEYQ==
-X-Google-Smtp-Source: APiQypJRkCtqhGOi3dzTBuCbBVYy1aeVZ14BVM0pG6hWY3E79FseizYNTA5LM6TJWETKq3a/bTDp4A==
-X-Received: by 2002:adf:e591:: with SMTP id l17mr5282824wrm.268.1587033516109; 
- Thu, 16 Apr 2020 03:38:36 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id y16sm26567044wrp.78.2020.04.16.03.38.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Apr 2020 03:38:35 -0700 (PDT)
-References: <20200414200017.226136-1-martin.blumenstingl@googlemail.com>
- <20200414200017.226136-3-martin.blumenstingl@googlemail.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/4] clk: meson: meson8b: Fix the polarity of the RESET_N
- lines
-In-reply-to: <20200414200017.226136-3-martin.blumenstingl@googlemail.com>
-Date: Thu, 16 Apr 2020 12:38:34 +0200
-Message-ID: <1ja73bbtqt.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=XNpefsuCct6B4uZId4JS7PFlnG0t9azfDKQ0UhJ7Rz0=;
+ b=HLq5gMQMTXmJ/O81CgoEk48LlwjEm9mO8xvZF/eO9AE5pbrjHnEYIYWdDt/Z/rtZmC
+ VeN/XUVTUr1A0Qoj1OBHbB2b4TV62BlRwZdIHZtlVK7mcjzjA90dXJI2kjwSa4vqcneA
+ tPZUp66EjRYIUZbCR3XbRZuiWDYViCKQTqREfnsAIkOBxo/RmQO27u3DxW+kF8Id5Y9D
+ YB9Ar/qriKhXks2RX1NIYEMEm7vuP0TlAzokSGByno58CDd7G2v53A8416d5Hh9FGy/l
+ tRKbUSFkJsehv0ouKlb+NLWjK5j6KABwiRE3JCtuwNIXWIgmZjG743U7BNCMWDKQZTJx
+ d6lQ==
+X-Gm-Message-State: AGi0Pub6a2z1fZsgxzOpa5b52y+J+kzjsKDjmKimSeSwAY6OvyIYkExS
+ XS6DzgBzYITLZhs8q4IR9iIxCfyB0PxySuFwZOn8jw==
+X-Google-Smtp-Source: APiQypLcGn1fYqboLHcVfdnv/Lsv2p38zPGyTmjdkGNZzgb4SpztrL44PvzB1YPeh3KkNt/RYmmsPbYBqy7xc+E+v1c=
+X-Received: by 2002:a1f:d084:: with SMTP id h126mr21651387vkg.25.1587036414671; 
+ Thu, 16 Apr 2020 04:26:54 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200410213043.1091851-1-martin.blumenstingl@googlemail.com>
+ <CAPDyKFpsTTUaTLy--DvOr0oAB71cTBdH1pfTV63LtcKOKOsnDw@mail.gmail.com>
+ <CAFBinCAhfgEdT383x61mh9E0y3-3MLA-fUmZj-4C-_VUdGWtGQ@mail.gmail.com>
+In-Reply-To: <CAFBinCAhfgEdT383x61mh9E0y3-3MLA-fUmZj-4C-_VUdGWtGQ@mail.gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 16 Apr 2020 13:26:18 +0200
+Message-ID: <CAPDyKFrj6jdHe8OSvtuT7=QdreZ1YzMt=791ABSZfos8yux71A@mail.gmail.com>
+Subject: Re: [PATCH 1/1] mmc: meson-mx-sdio: Set MMC_CAP_WAIT_WHILE_BUSY
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200416_033838_499940_D796F72F 
-X-CRM114-Status: GOOD (  12.88  )
+X-CRM114-CacheID: sfid-20200416_042656_444825_6CCD2FCD 
+X-CRM114-Status: GOOD (  31.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,181 +89,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, narmstrong@baylibre.com
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue 14 Apr 2020 at 22:00, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-
-> CLKC_RESET_VID_DIVIDER_CNTL_RESET_N_POST and
-> CLKC_RESET_VID_DIVIDER_CNTL_RESET_N_PRE are active low. This means:
-> - asserting them requires setting the register value to 0
-> - de-asserting them requires setting the register value to 1
+On Wed, 15 Apr 2020 at 23:24, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
-> Set the register value accordingly for these two reset lines by setting
-> the inverted the register value compared to all other reset lines.
+> Hi Ulf,
 >
-> Fixes: 189621726bc2f6 ("clk: meson: meson8b: register the built-in reset controller")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/clk/meson/meson8b.c | 81 ++++++++++++++++++++++++++-----------
->  1 file changed, 58 insertions(+), 23 deletions(-)
+> thank you very much for taking the time to look into this!
 >
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index 90d284ffc780..fa251e45e208 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -3506,54 +3506,87 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
->  static const struct meson8b_clk_reset_line {
->  	u32 reg;
->  	u8 bit_idx;
-> +	bool active_low;
->  } meson8b_clk_reset_bits[] = {
->  	[CLKC_RESET_L2_CACHE_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 30
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 30,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_AXI_64_TO_128_BRIDGE_A5_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 29
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 29,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_SCU_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 28
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 28,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_CPU3_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 27
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 27,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_CPU2_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 26
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 26,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_CPU1_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 25
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 25,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_CPU0_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 24
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 24,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_A5_GLOBAL_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 18
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 18,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_A5_AXI_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 17
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 17,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_A5_ABP_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 16
-> +		.reg = HHI_SYS_CPU_CLK_CNTL0,
-> +		.bit_idx = 16,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_AXI_64_TO_128_BRIDGE_MMC_SOFT_RESET] = {
-> -		.reg = HHI_SYS_CPU_CLK_CNTL1, .bit_idx = 30
-> +		.reg = HHI_SYS_CPU_CLK_CNTL1,
-> +		.bit_idx = 30,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_VID_CLK_CNTL_SOFT_RESET] = {
-> -		.reg = HHI_VID_CLK_CNTL, .bit_idx = 15
-> +		.reg = HHI_VID_CLK_CNTL,
-> +		.bit_idx = 15,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_VID_DIVIDER_CNTL_SOFT_RESET_POST] = {
-> -		.reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 7
-> +		.reg = HHI_VID_DIVIDER_CNTL,
-> +		.bit_idx = 7,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_VID_DIVIDER_CNTL_SOFT_RESET_PRE] = {
-> -		.reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 3
-> +		.reg = HHI_VID_DIVIDER_CNTL,
-> +		.bit_idx = 3,
-> +		.active_low = false,
->  	},
->  	[CLKC_RESET_VID_DIVIDER_CNTL_RESET_N_POST] = {
-> -		.reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 1
-> +		.reg = HHI_VID_DIVIDER_CNTL,
-> +		.bit_idx = 1,
-> +		.active_low = true,
->  	},
->  	[CLKC_RESET_VID_DIVIDER_CNTL_RESET_N_PRE] = {
-> -		.reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 0
-> +		.reg = HHI_VID_DIVIDER_CNTL,
-> +		.bit_idx = 0,
-> +		.active_low = true,
->  	},
->  };
->  
-> @@ -3562,22 +3595,24 @@ static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
->  {
->  	struct meson8b_clk_reset *meson8b_clk_reset =
->  		container_of(rcdev, struct meson8b_clk_reset, reset);
-> -	unsigned long flags;
->  	const struct meson8b_clk_reset_line *reset;
-> +	unsigned long flags;
-> +	unsigned int value;
+> On Wed, Apr 15, 2020 at 2:57 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> [...]
+> > Thanks for sending this! I assume it's a regression and caused by one
+> > of my patches that went in for 5.7. Probably this one:
+> > 0d84c3e6a5b2 mmc: core: Convert to mmc_poll_for_busy() for erase/trim/discard
+> indeed, I only observed this with 5.7-rc1-ish, before everything was
+> working fine
+>
+> > Now, even if enabling MMC_CAP_WAIT_WHILE_BUSY seems like the correct
+> > thing to do, I suggest we really try understand why it works, so we
+> > don't overlook some other issue that needs to be fixed.
+> great, that's why I'm seeking for help!
+>
+> > Would you be willing to try a few debug patches, according to the below?
+> sure
+> while reading your suggestions I went back to the vendor driver and
+> observed that they don't implement card_busy for this controller
+> Thus I added the following line to meson_mx_mmc_card_busy for all of
+> your tests to see what the controller sees in terms of our card busy
+> implementation:
+>   dev_info(mmc_dev(host->mmc), "%s read IRQC = 0x%08x\n",
+>                  __func__, irqc);
+>
+> > First, can you double check so the original polling with CMD13 is
+> > still okay, by trying the below minor change. The intent is to force
+> > polling with CMD13 for the erase/discard operation.
+> I have tried this one and it seems to work around the problem (before
+> I reverted my change and dropped MMC_CAP_WAIT_WHILE_BUSY from
+> mmc->caps)
+> also I did not see meson_mx_mmc_card_busy being invoked (not even
+> once, but I don't know if that's expected)
 
-suggestion:
+For eMMC it should be used quite frequently, as CMD6 is sent quite
+often, during initialization for example (see mmc_switch() and
+__mmc_switch()).
 
-unsigned int value = 0;
+For SD cards, it's being used for erase/trim/discard and while
+changing to UHS-I speed modes (1.8V I/O voltage, see
+mmc_set_uhs_voltage(). The latter also requires your host driver to
+implement the ->start_signal_voltage_switch() host ops, which isn't
+the case (yet!?)
 
->  
->  	if (id >= ARRAY_SIZE(meson8b_clk_reset_bits))
->  		return -EINVAL;
->  
->  	reset = &meson8b_clk_reset_bits[id];
->  
-> +	if (assert == reset->active_low)
-> +		value = 0;
-> +	else
-> +		value = BIT(reset->bit_idx);
+For SDIO cards it's being used in-between requests to make sure the
+SDIO card is ready for the next command (see __mmc_start_request())
 
-if (assert ^ reset->active_low)
-	value = BIT(reset->bit_idx);
+>
+> [...]
+> > Second, if the above works, it looks like the polling with
+> > ->card_busy() isn't really working for meson-mx-sdio.c, together with
+> > erase/discard. To narrow down that problem, I suggest to try with a
+> > longer erase/discard timeout in a retry fashion, while using
+> > ->card_busy(). Along the lines of the below:
+> I have tried this one as well (before I reverted the earlier CMD13
+> patch) and with MMC_CAP_WAIT_WHILE_BUSY unset in mmc->caps
+> This doesn't seem to work around the issue - kernel log extract attached.
+> Also I'm seeing that the the current meson_mx_mmc_card_busy
+> implementation returns that the card is busy.
+> example: 0x1f001f10 & 0x3c00 = 0x1c00. the busy logic in the driver
+> is: !!0x1c00 = 1
+>
+> My conclusion is:
+> - meson_mx_mmc_card_busy is not working and should be removed (because
+> I don't know how to make it work). it probably never worked but we
+> didn't notice until a recent change
 
-?
+I see.
 
-> +
->  	spin_lock_irqsave(&meson_clk_lock, flags);
->  
-> -	if (assert)
-> -		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
-> -				   BIT(reset->bit_idx), BIT(reset->bit_idx));
-> -	else
-> -		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
-> -				   BIT(reset->bit_idx), 0);
-> +	regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
-> +			   BIT(reset->bit_idx), value);
->  
->  	spin_unlock_irqrestore(&meson_clk_lock, flags);
+Depending on what your driver plans to support for the future, see
+above, you may need to come back to this in future.
 
+> - set MMC_CAP_WAIT_WHILE_BUSY as per my initial patch
+> - use Fixes: ed80a13bb4c4c9 ("mmc: meson-mx-sdio: Add a driver for the
+> Amlogic Meson8 and Meson8b SoCs")
+>
+> Does this make sense?
+
+Yes, I think so.
+
+> Also please let me know if you want me to try something else
+
+I would also suggest adding a patch that removes the ->card_busy() ops
+from the meson driver - and that should probably also carry the same
+fixes tag as above. Just to make sure the callback doesn't get used in
+some other circumstances, when going forward.
+
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
