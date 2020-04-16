@@ -2,82 +2,87 @@ Return-Path: <SRS0=I4qu=6A=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D487C2BB55
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 11:27:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3744C2BB55
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 12:19:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 40EE821841
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 11:27:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 817E6206B9
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 12:19:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gcoOlL6F";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oH33bDG2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 40EE821841
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qzJCk+DG";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GSDX3VHH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 817E6206B9
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QLOP8AVNouA+R6hNe+WEtbsdQfmHeMD+kJ0u1hvJwdo=; b=gcoOlL6F9dkgDT
-	FFbOCjU6V/hTEw3+3V7n5DrK6Mk6me9wpyrrGgl/Jz34hsIbKDSmUrUETEHE6t3wZ1D15/Kd+7w3I
-	uNnTeZK7q/FLbf885viyw6974/YUOrhu4lED3JVgp48eUyAyu3LNNZmw/ufo2FaBYRXJ8oUi+3EvK
-	YTRUoIHqFzEfYviRwgrTFW9QSp6MuizgD0Mh4b1imSNI9MmuBWdRuXs6BuBG15Y0y9e18z26ORN4L
-	Xi/KKF9TvCtLMqBJEvDr+FWv3pui97Mz42J4AA1/lBhjo7rbVg+AQo5x8Ew1d0f0IjZ/r79pTPj2O
-	6CsZJyJy9mDJYaR4Dq6Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=sLms4kNw7mvzpa90fErlJbOd6/hP1CF4DqDtbV0ddmk=; b=qzJCk+DGtwGyVr
+	jWxdcQlWWhQxVIgCby8SCXkobOHz+Pjenn2HQYPb5Bnen+eoUewMlJB+6Igi5Wpd1r6MOnCqUjAn+
+	B9Ccwg1LQZGIbMm/dCKYJHiA+NRvYt9mTY+1VBn+Pq3Pgv72xDvQfMx3BgFyNALXzhhJANDs2ODC6
+	7kzvtsXsKVXuyAoLWnv1PvG8QUe/JwgAyoubP99CnIWOrh27I0YAUaeQbumUGMWf0mdxzTSBGv1QH
+	vz1ZneQyd2IyAJpXCEhax7fJkbgYbvmIYtAUr862IQETXyfXkwFFxjFeamgSIfj1sFOYugZQwhV2e
+	8FYV65tY/RNeD7g//EXg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jP2fb-0003NM-BI; Thu, 16 Apr 2020 11:26:59 +0000
-Received: from mail-vk1-xa31.google.com ([2607:f8b0:4864:20::a31])
+	id 1jP3UG-00069m-S9; Thu, 16 Apr 2020 12:19:20 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jP2fY-0003MR-Cu
- for linux-amlogic@lists.infradead.org; Thu, 16 Apr 2020 11:26:58 +0000
-Received: by mail-vk1-xa31.google.com with SMTP id v129so1776789vkf.10
- for <linux-amlogic@lists.infradead.org>; Thu, 16 Apr 2020 04:26:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XNpefsuCct6B4uZId4JS7PFlnG0t9azfDKQ0UhJ7Rz0=;
- b=oH33bDG29P2eFR0uj2731SAQsoJ8sGIizT62wdYvS1qnjl/GmqpEBWuoqQWb8wLvLc
- ByMlPaCKTWfabQtKILa6EoWp7X5glWTBhBfEgtOxg8kEtIvDu8Cxk6biWGBkSq9pyZyf
- nIHN8AJRMMPgDhN/FEm5LmVmBsHyM8cgx9F5rYpMBdhteTMXryXoY5gMTxUPyAFxAh2i
- /m3xjxAX19as/PK5ZnwujffpkmxY04XNlfWfqeVSnsvNIbo0m1d4VMgrf3/DIcGeotq0
- HGcbO/Vtp/yZB9ROiEoH92UlPQ0ZT1YbOSd3AaHxJ7eVFN5hTrpn3qPF0k96HWdD9XEL
- FcAw==
+ id 1jP3UD-00067l-Ha
+ for linux-amlogic@lists.infradead.org; Thu, 16 Apr 2020 12:19:19 +0000
+Received: by mail-wr1-x444.google.com with SMTP id k11so4576632wrp.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 16 Apr 2020 05:19:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cgQlCVQO9pBNsgy45GkR+QaBMwuO1ye6FK+8ZBQuqLg=;
+ b=GSDX3VHHG88xM3mtByW3kylrfF9uR3ho2qomZj3hjn2IOBzWlUBOxC7de0eg/Jb9Si
+ b5g7SydZhavPRYDU8BJtqEIn7R32o9rtDCfEaPXvZ/Z/5ZNC5R85NX59OGBHagfXDr1U
+ BGvKtUlz0uba18NEmOVXtvie0gmwfrVHodVl72JLWPq50dd1/ndLBCd1uaJzfHDH9nsB
+ juGRKkvJ6n7gJiluBYO+oYfaHjSR4Dg68EN5ntZ05gHzPDJKpmTvSp+zyZ1ogiD0iNUx
+ vI546DxmjqYYm/6GZwZVbjOVRUXXfh8Fpha0JHs1YlyRC78WHgH4n+HZ0TfGzSUuukFn
+ 4URw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=XNpefsuCct6B4uZId4JS7PFlnG0t9azfDKQ0UhJ7Rz0=;
- b=HLq5gMQMTXmJ/O81CgoEk48LlwjEm9mO8xvZF/eO9AE5pbrjHnEYIYWdDt/Z/rtZmC
- VeN/XUVTUr1A0Qoj1OBHbB2b4TV62BlRwZdIHZtlVK7mcjzjA90dXJI2kjwSa4vqcneA
- tPZUp66EjRYIUZbCR3XbRZuiWDYViCKQTqREfnsAIkOBxo/RmQO27u3DxW+kF8Id5Y9D
- YB9Ar/qriKhXks2RX1NIYEMEm7vuP0TlAzokSGByno58CDd7G2v53A8416d5Hh9FGy/l
- tRKbUSFkJsehv0ouKlb+NLWjK5j6KABwiRE3JCtuwNIXWIgmZjG743U7BNCMWDKQZTJx
- d6lQ==
-X-Gm-Message-State: AGi0Pub6a2z1fZsgxzOpa5b52y+J+kzjsKDjmKimSeSwAY6OvyIYkExS
- XS6DzgBzYITLZhs8q4IR9iIxCfyB0PxySuFwZOn8jw==
-X-Google-Smtp-Source: APiQypLcGn1fYqboLHcVfdnv/Lsv2p38zPGyTmjdkGNZzgb4SpztrL44PvzB1YPeh3KkNt/RYmmsPbYBqy7xc+E+v1c=
-X-Received: by 2002:a1f:d084:: with SMTP id h126mr21651387vkg.25.1587036414671; 
- Thu, 16 Apr 2020 04:26:54 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cgQlCVQO9pBNsgy45GkR+QaBMwuO1ye6FK+8ZBQuqLg=;
+ b=EiCpFnCY8RflHrQC+zL+mzlMn3lQEvdf3guRL9C2Z/sEwrt1v6j1CcmtFAn6q+dEuX
+ 6GwNmnB4qmOne4rBXN1A1rwLujAS0W9UZZOoFbqWxN8XxPWiP16Lk3YCxv8rKxsMgf3a
+ upWd3ucWvkLw8/z3nqTzGrlIsWsAeIGO608VRDSBB7D/qlTS9kK+Si92qpbJ2aW1n6JZ
+ F1Y7krqQ7nxPVmZGrs4WL+zB+q9NI45qi/SA2jBJaL+acy2Wk/DG7yEDQhHiVHMz8jsB
+ LK3c2FQOFMJAwvEcKW5UFJqWShTcMJ8CsdR3kZx1gRn8Fou6ozoeI5eHE6+UuG4G6qsy
+ DUSg==
+X-Gm-Message-State: AGi0PuZdJebhJLJs8ALsmi4N3bSuzvgaZXsNi1ngXu0ukNER0xFAiLB8
+ kIpZqX0uNRxLL+Tap0D1WO/2iA==
+X-Google-Smtp-Source: APiQypLTj7n231YjW9KZveUAuWshsg0VFn1BjUl/fM2Nz8xWJAbfeAZSMC/2cUq3G4OR7PkfurWwAg==
+X-Received: by 2002:adf:e7ca:: with SMTP id e10mr12384684wrn.18.1587039555206; 
+ Thu, 16 Apr 2020 05:19:15 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56])
+ by smtp.gmail.com with ESMTPSA id
+ i13sm22035602wro.50.2020.04.16.05.19.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 16 Apr 2020 05:19:14 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: kishon@ti.com, balbi@kernel.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Subject: [PATCH v3 0/8] usb: dwc3: meson: add OTG support for GXL/GXM
+Date: Thu, 16 Apr 2020 14:19:02 +0200
+Message-Id: <20200416121910.12723-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20200410213043.1091851-1-martin.blumenstingl@googlemail.com>
- <CAPDyKFpsTTUaTLy--DvOr0oAB71cTBdH1pfTV63LtcKOKOsnDw@mail.gmail.com>
- <CAFBinCAhfgEdT383x61mh9E0y3-3MLA-fUmZj-4C-_VUdGWtGQ@mail.gmail.com>
-In-Reply-To: <CAFBinCAhfgEdT383x61mh9E0y3-3MLA-fUmZj-4C-_VUdGWtGQ@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 16 Apr 2020 13:26:18 +0200
-Message-ID: <CAPDyKFrj6jdHe8OSvtuT7=QdreZ1YzMt=791ABSZfos8yux71A@mail.gmail.com>
-Subject: Re: [PATCH 1/1] mmc: meson-mx-sdio: Set MMC_CAP_WAIT_WHILE_BUSY
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200416_042656_444825_6CCD2FCD 
-X-CRM114-Status: GOOD (  31.90  )
+X-CRM114-CacheID: sfid-20200416_051917_584024_85802A04 
+X-CRM114-Status: GOOD (  15.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,109 +94,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 15 Apr 2020 at 23:24, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Ulf,
->
-> thank you very much for taking the time to look into this!
->
-> On Wed, Apr 15, 2020 at 2:57 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> [...]
-> > Thanks for sending this! I assume it's a regression and caused by one
-> > of my patches that went in for 5.7. Probably this one:
-> > 0d84c3e6a5b2 mmc: core: Convert to mmc_poll_for_busy() for erase/trim/discard
-> indeed, I only observed this with 5.7-rc1-ish, before everything was
-> working fine
->
-> > Now, even if enabling MMC_CAP_WAIT_WHILE_BUSY seems like the correct
-> > thing to do, I suggest we really try understand why it works, so we
-> > don't overlook some other issue that needs to be fixed.
-> great, that's why I'm seeking for help!
->
-> > Would you be willing to try a few debug patches, according to the below?
-> sure
-> while reading your suggestions I went back to the vendor driver and
-> observed that they don't implement card_busy for this controller
-> Thus I added the following line to meson_mx_mmc_card_busy for all of
-> your tests to see what the controller sees in terms of our card busy
-> implementation:
->   dev_info(mmc_dev(host->mmc), "%s read IRQC = 0x%08x\n",
->                  __func__, irqc);
->
-> > First, can you double check so the original polling with CMD13 is
-> > still okay, by trying the below minor change. The intent is to force
-> > polling with CMD13 for the erase/discard operation.
-> I have tried this one and it seems to work around the problem (before
-> I reverted my change and dropped MMC_CAP_WAIT_WHILE_BUSY from
-> mmc->caps)
-> also I did not see meson_mx_mmc_card_busy being invoked (not even
-> once, but I don't know if that's expected)
+The USB support was initialy done with a set of PHYs and dwc3-of-simple
+because the architecture of the USB complex was not understood correctly
+at the time (and proper documentation was missing...).
 
-For eMMC it should be used quite frequently, as CMD6 is sent quite
-often, during initialization for example (see mmc_switch() and
-__mmc_switch()).
+But with the G12A family, the USB complex was correctly understood and
+implemented correctly.
+But seems the G12A architecture was derived for the GXL USB architecture,
+with minor differences and looks we can share most of the USB DWC3 glue
+driver.
 
-For SD cards, it's being used for erase/trim/discard and while
-changing to UHS-I speed modes (1.8V I/O voltage, see
-mmc_set_uhs_voltage(). The latter also requires your host driver to
-implement the ->start_signal_voltage_switch() host ops, which isn't
-the case (yet!?)
+This patchset refactors and adds callbacks to handle the architecture
+difference while keeping the main code shared.
 
-For SDIO cards it's being used in-between requests to make sure the
-SDIO card is ready for the next command (see __mmc_start_request())
+The main difference is that on GXL/GXM the USB2 PHY control registers
+are mixed with the PHY registers (we already handle correctly), and
+the GLUE registers are allmost (99%) the same as G12A.
 
->
-> [...]
-> > Second, if the above works, it looks like the polling with
-> > ->card_busy() isn't really working for meson-mx-sdio.c, together with
-> > erase/discard. To narrow down that problem, I suggest to try with a
-> > longer erase/discard timeout in a retry fashion, while using
-> > ->card_busy(). Along the lines of the below:
-> I have tried this one as well (before I reverted the earlier CMD13
-> patch) and with MMC_CAP_WAIT_WHILE_BUSY unset in mmc->caps
-> This doesn't seem to work around the issue - kernel log extract attached.
-> Also I'm seeing that the the current meson_mx_mmc_card_busy
-> implementation returns that the card is busy.
-> example: 0x1f001f10 & 0x3c00 = 0x1c00. the busy logic in the driver
-> is: !!0x1c00 = 1
->
-> My conclusion is:
-> - meson_mx_mmc_card_busy is not working and should be removed (because
-> I don't know how to make it work). it probably never worked but we
-> didn't notice until a recent change
+But, the GXL/GXM HW is buggy, here are the quirks :
+- for the DWC2 controller to reset correctly, the GLUE mux must be switched
+  to peripheral when the PHYs are powered up.
+- when manually switching from Host to Device when the USB port is not
+  populated (should not happen with proper Micro-USB/USB-C OTG switch), it
+  makes the DWC3 to crash. The only way to avoid that is to use the Host
+  Disconnect bit to disconnect the DWC3 controller from the port, but we can't
+  recover the Host functionnality unless resetting the DWC3 controller.
+  This bit is set when only manual switch is done, and a warning is printed
+  on manual switching.
 
-I see.
+The patches 1-3 should be applied first, then either waiting the next release
+or if the usb maintainer can provide us a stable tag, we can use it to merge
+the DT and bindings.
 
-Depending on what your driver plans to support for the future, see
-above, you may need to come back to this in future.
+Changes since v2 at [2]:
+- Removed first 6 applied patches
+- rebased on usb/testing/next
+- Fixed dwc3_meson_g12a_usb2_init in patch 1
+- Fixed leftover usage of dwc3_meson_g12a_usb_init in patch 1
+- Moved post_init callback before child node probe to avoid bad dwc3 init
 
-> - set MMC_CAP_WAIT_WHILE_BUSY as per my initial patch
-> - use Fixes: ed80a13bb4c4c9 ("mmc: meson-mx-sdio: Add a driver for the
-> Amlogic Meson8 and Meson8b SoCs")
->
-> Does this make sense?
+Changes since v1 at [1]:
+- Fixed DT bindings to take in account usb2-phy2 on GXM
+- Added comment in patch2
+- Fixed patch 5 and moved fix out
+- Collected tags
+- Lower DT patch changes, switch p20x-q20x port B as OTG by default
 
-Yes, I think so.
+[1] http://lkml.kernel.org/r/20200324102030.31000-1-narmstrong@baylibre.com
+[2] http://lkml.kernel.org/r/20200326134507.4808-1-narmstrong@baylibre.com
 
-> Also please let me know if you want me to try something else
+Martin Blumenstingl (4):
+  arm64: dts: amlogic: use the new USB control driver for GXL and GXM
+  phy: amlogic: meson-gxl-usb3: remove code for non-existing PHY
+  usb: dwc3: of-simple: remove Amlogic GXL and AXG compatibles
+  dt-bindings: usb: dwc3: remove old DWC3 wrapper
 
-I would also suggest adding a patch that removes the ->card_busy() ops
-from the meson driver - and that should probably also carry the same
-fixes tag as above. Just to make sure the callback doesn't get used in
-some other circumstances, when going forward.
+Neil Armstrong (4):
+  usb: dwc3: meson-g12a: refactor usb init
+  usb: dwc3: meson-g12a: support the GXL/GXM DWC3 host phy disconnect
+  usb: dwc3: meson-g12a: add support for GXL and GXM SoCs
+  doc: dt: bindings: usb: dwc3: remove amlogic compatible entries
 
-Kind regards
-Uffe
+ .../bindings/phy/meson-gxl-usb3-phy.txt       |  31 --
+ .../devicetree/bindings/usb/amlogic,dwc3.txt  |  42 ---
+ .../devicetree/bindings/usb/dwc3.txt          |   2 -
+ .../dts/amlogic/meson-gx-libretech-pc.dtsi    |   3 +-
+ .../boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  |   3 +-
+ .../amlogic/meson-gxl-s805x-libretech-ac.dts  |   3 +-
+ .../boot/dts/amlogic/meson-gxl-s805x-p241.dts |   3 +-
+ .../amlogic/meson-gxl-s905d-phicomm-n1.dts    |   4 +
+ .../boot/dts/amlogic/meson-gxl-s905w-p281.dts |   4 +
+ .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  |   4 +
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    |   4 +
+ .../amlogic/meson-gxl-s905x-libretech-cc.dts  |   3 +-
+ .../amlogic/meson-gxl-s905x-nexbox-a95x.dts   |   3 +-
+ .../dts/amlogic/meson-gxl-s905x-p212.dtsi     |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |  45 +--
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     |   3 +-
+ .../boot/dts/amlogic/meson-gxm-nexbox-a1.dts  |   3 +-
+ .../boot/dts/amlogic/meson-gxm-vega-s96.dts   |   4 +
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    |   7 +-
+ drivers/phy/amlogic/Kconfig                   |  12 -
+ drivers/phy/amlogic/Makefile                  |   1 -
+ drivers/phy/amlogic/phy-meson-gxl-usb3.c      | 283 ------------------
+ drivers/usb/dwc3/dwc3-meson-g12a.c            | 188 +++++++++++-
+ drivers/usb/dwc3/dwc3-of-simple.c             |  30 +-
+ 24 files changed, 246 insertions(+), 442 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
+ delete mode 100644 Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+ delete mode 100644 drivers/phy/amlogic/phy-meson-gxl-usb3.c
+
+-- 
+2.22.0
+
 
 _______________________________________________
 linux-amlogic mailing list
