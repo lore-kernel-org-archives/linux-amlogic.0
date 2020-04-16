@@ -2,147 +2,88 @@ Return-Path: <SRS0=I4qu=6A=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FAA7C2D0EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 08:46:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 121A4C2BB85
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 09:06:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 143982076A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 08:46:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9FA8820771
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2020 09:06:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pTAvvE8H";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PSV2/Wsi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 143982076A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ac6zajZX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CDIbpLAX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9FA8820771
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YDSzAgH20Gq1OW6mpflloouSkvPbDU/+7PSMBGP3WAI=; b=pTAvvE8HEkJPhR
-	YeZkpO3I3UnoSIljG69netzMHCurvTdhWL+5XVcXQoW/7z31xQINc5U2/2Zy1ijySPSzVuswx0zU2
-	mrZFGvY5N//lpecKu8xih1ELCW0NdJEjIl9aXBcitQRKfxHJznl2RWFpjjizyJegFgRDW9a9epqcZ
-	c/VDPQ5y0ZsaEYeyiQrVrQoUexlV9/TWrDkCBophXYsVIsm++pN4LwxWIuJ8Wv67l6V6Opq0z0VeU
-	UQuNiDCMXCtHt+dBno+PAWYkHtto+OFAZUJSeyLuObUFHyv+ul1KH8zssR9S7bwJ31zmj39jCXEph
-	Cbzq4EOg7kBF9Dp7vRmw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vp4FabUqLpEMZ4CZPXhspHIMrZOuJo8g5fYPgaw46+I=; b=Ac6zajZXnbx1k2
+	9qbGa4jrzshwBgkxxzePi7weudJKSn/vyrPj+aR98zfFYh4IVEsHdNswkAz4JH3okCeSNWZ+ptV0m
+	z08C9XXahTlPGX9a0ZKvFApzVVjPe4Cn2jmaUxedh/qpk7j/2VwQQfczJly6LYF46l7gQpg61wm3G
+	nDvKWF8Iiig4OYNrLTkUSU3yhXMejvjglICxTEp6o5ssPvQgjHOiFz1jYGlmuQdUxoT1JwO7UrHU/
+	szfwaigUDqRAAhz05auI3Bgj3u9PFo8XB3mp6Id+nj4BnGhctoMs43haBnCeh5Af2qu63g9tw2pEA
+	2nch1qaoy5RhDKSx4P5g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jP0A0-0006Xl-66; Thu, 16 Apr 2020 08:46:12 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1jP0Tf-0006hj-4w; Thu, 16 Apr 2020 09:06:31 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jP09i-0006FU-HI
- for linux-amlogic@lists.infradead.org; Thu, 16 Apr 2020 08:45:57 +0000
-Received: by mail-wr1-x442.google.com with SMTP id h26so3827107wrb.7
- for <linux-amlogic@lists.infradead.org>; Thu, 16 Apr 2020 01:45:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=pG5pTBNnBkwwGuBlyrG6mcZI2ukqVqhCYbLD9sb/dDs=;
- b=PSV2/WsivdzxHyL+seILBnveYYKP/4wX4u1AimJross2I1vrN6lmgubyZJ1UHGCwzB
- vIjxzmsMFx/jCenXlHazkGZn8TPvR9IcYM9MRoe1zSZrCtAZM+HmFrPoBXUUaGgSsePV
- kHgZDdW/wE1r/CqPoz0PDgnGKrqMVOlNqAe9dKLBio3Yynp+9s4AfJBLIrmCCb3iBdbW
- Q6aGIp6OCDZVwtWpzqTOTSy5gbB/O6O/5X3nA3TSuBaTot9ntLaGxOWF1WMS+8thTuaQ
- GaWfXI2y89ovDB2z90PFqu5c3VVTYscI/eLjBfCPZOdqxWSlRLKXI3M8AFDncBnNljMt
- B+gA==
+ id 1jP0TW-0006aL-Jk; Thu, 16 Apr 2020 09:06:24 +0000
+Received: by mail-wm1-x344.google.com with SMTP id a81so3936093wmf.5;
+ Thu, 16 Apr 2020 02:06:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=yAv2GmlpRM4DHIRBfsgxasc2IYmBEhDxXdtOBrWJ4U8=;
+ b=CDIbpLAXS1EKEN13b1kSvVLcPacISXzq1NCV1iNJQ773+hnlYxG6Is9sS4JShoc9n9
+ k3G+6a27oWeEwt1pJwSRR0lOqb7uuEEBotwWpvxkLBGK4sdBUm8VpyGwZR2F5LMIYqmk
+ jdGMEpxdJ/9JULk5sX11duK6rZAqJyG/z56EqlK13PYxHHxIL+8WRSUbU5ji/DGzNUGm
+ HOARn5L1Ub3isaoR3g2aijZ5lSKOTG9AyfvU2TfqATFGm5A0bNt42+GLwleMkWBtAL45
+ NP+kQIWlgHBldPKo/9BCkRg6xGazgJNk5fkBnBgzz39Ee28aFn0FcpL1N6kRJexGyPZ3
+ 9o/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=pG5pTBNnBkwwGuBlyrG6mcZI2ukqVqhCYbLD9sb/dDs=;
- b=QxNZ6tW0NXjU9NGoKudcifciK5hkAibDQAZsMu5D8T3jy+CaVpNrLJVGhEznkc/ufp
- Q3o+/Y3oN2Hl6rPDG4DebmEf4N8RsXK5ZOF8R4H4E8AKoG8x/c26sBqe7gUHYmlPi9op
- ylfc7HZNE0zvIPkECw4EWeKnhYOdydP8Z8hRzL688uez05xd/lYwnxzr3suTn3j05mX6
- groPa3t4UsIrQ7gqaCbw+pS8AY7ybC5gBkYQwuCS83TmzZHEn9Qh9YUTdfJ9Kd+06z4B
- MkJD8q7sBTcm3itaMGnzSD3VVM2JYZ2AyWxPswUTSdvIMgplYYtF28H2T5Zzg2y/POhn
- AVcQ==
-X-Gm-Message-State: AGi0PuaaD6JgmwwvaLxVAafDa4XNH0cLiqVPohMR36GUS5Hr9K1KsjyV
- c9nEmT+zOd13zVKekm1BhUr46Q==
-X-Google-Smtp-Source: APiQypKwRC3KxfWB2Nk1IWtYadWxsX71VLcHiZy6uWJqxMhTktoctHL6cUEMeSZQer7o3pIsf+GpYw==
-X-Received: by 2002:adf:ef51:: with SMTP id c17mr32971097wrp.130.1587026752266; 
- Thu, 16 Apr 2020 01:45:52 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56?
- ([2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56])
- by smtp.gmail.com with ESMTPSA id o28sm12095874wra.84.2020.04.16.01.45.50
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 16 Apr 2020 01:45:51 -0700 (PDT)
-Subject: Re: [PATCH RFC v1 2/4] dt-bindings: power: meson-ee-pwrc: add support
- for the Meson GX SoCs
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20200414201457.229131-1-martin.blumenstingl@googlemail.com>
- <20200414201457.229131-3-martin.blumenstingl@googlemail.com>
- <907211b1-c8d5-39cd-5d2b-dd41efbdc7a7@baylibre.com>
- <CAFBinCCjHtSNigkeG_M4sVs27SemTMu0hUEQEHk53odAybm6sA@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <342d4083-783a-41ad-18a2-62b75cae5027@baylibre.com>
-Date: Thu, 16 Apr 2020 10:45:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=yAv2GmlpRM4DHIRBfsgxasc2IYmBEhDxXdtOBrWJ4U8=;
+ b=QvV2ER7FadwO2IyyXXxtDtR5A4FN3weZASlPnDT4tqDQbdmK8cNlPp2d8crUdGiEEB
+ 3M4/Mb61HshtIbnKP1/M/X8mg6aFLr2umy/N1S4latj9fJ2EZ5pGr8tmRUy6KfyioH7h
+ VhK9kqYKPQGlmjaoRfXZW0VshTbZIGrXd02tRQ5paOfWKZSsig8vhoSasJGHFstBHhsu
+ Mdh8fayejGRkPCdIlapBTO0e8sBknKL3AWHt88AuWbRkqrILNBgctWjmPBRVwNZXyL/F
+ NinOwLBm/Ztheze+B2OZgLqcDxEIsH+p8SvXdn6zoQqYxnBJbXAC0wqUYKYwhglEnhip
+ CzYw==
+X-Gm-Message-State: AGi0PuZjhFmLzerGvoBsjKbNmwKPB5AR0Z55P2FKFE4JFdWbRF9tcnee
+ GnCBEzkXz+a+wiM6WijyXgY=
+X-Google-Smtp-Source: APiQypIT5qLrY1V6iR8ope7blS6HLhe0vatqp7eT57ABrFQv0dME7fPlM3XipHt6eXvUq16Sx0qycg==
+X-Received: by 2002:a1c:e242:: with SMTP id z63mr3963633wmg.72.1587027981096; 
+ Thu, 16 Apr 2020 02:06:21 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:2e56:dcff:fed2:c6d6])
+ by smtp.googlemail.com with ESMTPSA id s18sm17572177wrv.2.2020.04.16.02.06.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 16 Apr 2020 02:06:20 -0700 (PDT)
+Date: Thu, 16 Apr 2020 11:06:18 +0200
+From: Corentin Labbe <clabbe.montjoie@gmail.com>
+To: Waiman Long <longman@redhat.com>
+Subject: Re: [PATCH v3 2/3] crypto: Remove unnecessary memzero_explicit()
+Message-ID: <20200416090618.GB29148@Red>
+References: <20200413211550.8307-1-longman@redhat.com>
+ <20200414200214.1873-1-longman@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCjHtSNigkeG_M4sVs27SemTMu0hUEQEHk53odAybm6sA@mail.gmail.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20200414200214.1873-1-longman@redhat.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200416_014554_645220_E9CD1568 
-X-CRM114-Status: GOOD (  15.06  )
+X-CRM114-CacheID: sfid-20200416_020622_650878_D9370EBC 
+X-CRM114-Status: GOOD (  17.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,45 +95,194 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-crypto@vger.kernel.org, Herbert Xu <herbert@gondor.apana.org.au>,
+ James Morris <jmorris@namei.org>,
+ Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+ linux-kernel@vger.kernel.org, David Howells <dhowells@redhat.com>,
+ linux-mm@kvack.org, Chen-Yu Tsai <wens@csie.org>, keyrings@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>, David Rientjes <rientjes@google.com>,
+ Joe Perches <joe@perches.com>, linux-amlogic@lists.infradead.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ "David S. Miller" <davem@davemloft.net>, linux-arm-kernel@lists.infradead.org,
+ "Serge E. Hallyn" <serge@hallyn.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
-
-On 15/04/2020 20:31, Martin Blumenstingl wrote:
-> Hi Neil,
+On Tue, Apr 14, 2020 at 04:02:14PM -0400, Waiman Long wrote:
+> Since kfree_sensitive() will do an implicit memzero_explicit(),
+> there is no need to call memzero_explicit() before it. Eliminate those
+> memzero_explicit() and simplify the call sites. For better correctness,
+> keylen is cleared if key memory allocation fails.
 > 
-> On Wed, Apr 15, 2020 at 10:51 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> [...]
->>> +            - const: dvin
-
-
-Yes I rechecked, and it's part of the VPU.
-
-> before I resend, can you please double-check this reset line?
-> it's the only difference compared to G12A so I thought it would make
-> sense to check if this is really related to the VPU when we're
-> switching from one binding to the other anyways (as now is the time to
-> sort out pending issues - in case there is an issue here)
+> Signed-off-by: Waiman Long <longman@redhat.com>
+> ---
+>  .../allwinner/sun8i-ce/sun8i-ce-cipher.c      | 23 +++++++-----------
+>  .../allwinner/sun8i-ss/sun8i-ss-cipher.c      | 24 +++++++------------
+>  drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 14 ++++-------
+>  drivers/crypto/inside-secure/safexcel_hash.c  |  3 +--
+>  4 files changed, 24 insertions(+), 40 deletions(-)
 > 
->>> +#define PWRC_GXBB_VPU_ID             0
->>> +#define PWRC_GXBB_ETH_ID             1
->>
->> Should be PWRC_GXBB_ETHERNET_MEM_ID like meson8 bindings.
-> I can do that, thank you for looking into this!
+> diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
+> index aa4e8fdc2b32..a2bac10d2876 100644
+> --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
+> +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
+> @@ -366,10 +366,7 @@ void sun8i_ce_cipher_exit(struct crypto_tfm *tfm)
+>  {
+>  	struct sun8i_cipher_tfm_ctx *op = crypto_tfm_ctx(tfm);
+>  
+> -	if (op->key) {
+> -		memzero_explicit(op->key, op->keylen);
+> -		kfree(op->key);
+> -	}
+> +	kfree_sensitive(op->key);
+>  	crypto_free_sync_skcipher(op->fallback_tfm);
+>  	pm_runtime_put_sync_suspend(op->ce->dev);
+>  }
+> @@ -391,14 +388,13 @@ int sun8i_ce_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+>  		dev_dbg(ce->dev, "ERROR: Invalid keylen %u\n", keylen);
+>  		return -EINVAL;
+>  	}
+> -	if (op->key) {
+> -		memzero_explicit(op->key, op->keylen);
+> -		kfree(op->key);
+> -	}
+> +	kfree_sensitive(op->key);
+>  	op->keylen = keylen;
+>  	op->key = kmemdup(key, keylen, GFP_KERNEL | GFP_DMA);
+> -	if (!op->key)
+> +	if (unlikely(!op->key)) {
+> +		op->keylen = 0;
+>  		return -ENOMEM;
+> +	}
+>  
+>  	crypto_sync_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
+>  	crypto_sync_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
+> @@ -416,14 +412,13 @@ int sun8i_ce_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
+>  	if (err)
+>  		return err;
+>  
+> -	if (op->key) {
+> -		memzero_explicit(op->key, op->keylen);
+> -		kfree(op->key);
+> -	}
+> +	kfree_sensitive(op->key);
+>  	op->keylen = keylen;
+>  	op->key = kmemdup(key, keylen, GFP_KERNEL | GFP_DMA);
+> -	if (!op->key)
+> +	if (unlikely(!op->key)) {
+> +		op->keylen = 0;
+>  		return -ENOMEM;
+> +	}
+>  
+>  	crypto_sync_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
+>  	crypto_sync_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
+> diff --git a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
+> index 5246ef4f5430..a24d567a6c36 100644
+> --- a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
+> +++ b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
+> @@ -249,7 +249,6 @@ static int sun8i_ss_cipher(struct skcipher_request *areq)
+>  			offset = areq->cryptlen - ivsize;
+>  			if (rctx->op_dir & SS_DECRYPTION) {
+>  				memcpy(areq->iv, backup_iv, ivsize);
+> -				memzero_explicit(backup_iv, ivsize);
+>  				kfree_sensitive(backup_iv);
+>  			} else {
+>  				scatterwalk_map_and_copy(areq->iv, areq->dst, offset,
+> @@ -367,10 +366,7 @@ void sun8i_ss_cipher_exit(struct crypto_tfm *tfm)
+>  {
+>  	struct sun8i_cipher_tfm_ctx *op = crypto_tfm_ctx(tfm);
+>  
+> -	if (op->key) {
+> -		memzero_explicit(op->key, op->keylen);
+> -		kfree(op->key);
+> -	}
+> +	kfree_sensitive(op->key);
+>  	crypto_free_sync_skcipher(op->fallback_tfm);
+>  	pm_runtime_put_sync(op->ss->dev);
+>  }
+> @@ -392,14 +388,13 @@ int sun8i_ss_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+>  		dev_dbg(ss->dev, "ERROR: Invalid keylen %u\n", keylen);
+>  		return -EINVAL;
+>  	}
+> -	if (op->key) {
+> -		memzero_explicit(op->key, op->keylen);
+> -		kfree(op->key);
+> -	}
+> +	kfree_sensitive(op->key);
+>  	op->keylen = keylen;
+>  	op->key = kmemdup(key, keylen, GFP_KERNEL | GFP_DMA);
+> -	if (!op->key)
+> +	if (unlikely(!op->key))
+> +		op->keylen = 0;
+>  		return -ENOMEM;
+> +	}
+>  
+>  	crypto_sync_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
+>  	crypto_sync_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
+> @@ -418,14 +413,13 @@ int sun8i_ss_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
+>  		return -EINVAL;
+>  	}
+>  
+> -	if (op->key) {
+> -		memzero_explicit(op->key, op->keylen);
+> -		kfree(op->key);
+> -	}
+> +	kfree_sensitive(op->key);
+>  	op->keylen = keylen;
+>  	op->key = kmemdup(key, keylen, GFP_KERNEL | GFP_DMA);
+> -	if (!op->key)
+> +	if (unlikely(!op->key))
+> +		op->keylen = 0;
+>  		return -ENOMEM;
+> +	}
+>  
+>  	crypto_sync_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
+>  	crypto_sync_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
+> diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+> index fd1269900d67..5312bad7534e 100644
+> --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+> +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+> @@ -341,10 +341,7 @@ void meson_cipher_exit(struct crypto_tfm *tfm)
+>  {
+>  	struct meson_cipher_tfm_ctx *op = crypto_tfm_ctx(tfm);
+>  
+> -	if (op->key) {
+> -		memzero_explicit(op->key, op->keylen);
+> -		kfree(op->key);
+> -	}
+> +	kfree_sensitive(op->key);
+>  	crypto_free_sync_skcipher(op->fallback_tfm);
+>  }
+>  
+> @@ -368,14 +365,13 @@ int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+>  		dev_dbg(mc->dev, "ERROR: Invalid keylen %u\n", keylen);
+>  		return -EINVAL;
+>  	}
+> -	if (op->key) {
+> -		memzero_explicit(op->key, op->keylen);
+> -		kfree(op->key);
+> -	}
+> +	kfree_sensitive(op->key);
+>  	op->keylen = keylen;
+>  	op->key = kmemdup(key, keylen, GFP_KERNEL | GFP_DMA);
+> -	if (!op->key)
+> +	if (unlikely(!op->key))
+> +		op->keylen = 0;
+>  		return -ENOMEM;
+> +	}
+>  
+>  	return crypto_sync_skcipher_setkey(op->fallback_tfm, key, keylen);
+>  }
 
-Neil
+For sun8i-ss/sun8i-ce
+Acked-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+For amlogic
+Acked-by: Corentin Labbe <clabbe@baylibre.com>
 
-> 
-> 
-> Martin
-> 
-
+Thanks
 
 _______________________________________________
 linux-amlogic mailing list
