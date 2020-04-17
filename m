@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63307C38A2C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2020 19:09:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B3115C2D0EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2020 19:09:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E549020780
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2020 19:09:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7F78520780
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2020 19:09:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BIwBRfJF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="CdJFoo8x"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E549020780
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QurS4dhi";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="X/vV81ld"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7F78520780
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,67 +27,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eXbc+ZXdye2wpeaRxLeWhisRTXkdY8lbJHLMzZ2KdJM=; b=BIwBRfJFZRMoU1
-	RdAz0A2CKhcUE68U+YYcKkkkBhHhiyG+36gGXbZcRfnJb53/gk/cERaJuTC8vUajMjDeLmfG4/lhR
-	QsK0ve2053+LPYjQoFY5R7P/JoMyWgnmiVn9+KgI1SEmdqutuBgAX29cQQJKJfp6TBUA7TZEGaq5A
-	8aEMByoKAFr/7/mAdkonn1jUxY445TLgGDUGkoLBTs7iFLXe4Hop91/uqvjUhoSBTK65aMgxcgiBs
-	d4G74PNNNJNiVLVF57e5CLPROLC6T2G89tgfRHKYtGIo0VxmSVxZtvAg6iSCzUEOkF0lFi+TbDAtl
-	jCNj7gZvUydhl2vS0tbQ==;
+	List-Owner; bh=+0Lp7SwRtDAezKsnXmKYk8vcJ9QjI5R0pMGdeSYRGi0=; b=QurS4dhib11FpS
+	z5bMdr4RURESZrwMcHFeY9IQobVFMbP+WH9GXAUMH0y4ENO4tmmJ6Nonj0+mpZlO7Gx8jAdPv3cqU
+	sMUiyG8A7qBHxi3xxrlgrLtSieSpf2xAZxeqJuJmbzAWT5YsSSA3qtXTHo4hm2/07XiV09ozgnjbe
+	R7dLuNCaqKjWcyVyNyF17aJrzXm/OJQrGk1LuRBTBzJSOmrS8UtStney1rfe5ms/qZ0GaiwwpR5zD
+	orD6a9wkmHaUwxMNu1Onxi4hVLy6Bjp9Wj19kkKar2gS3SnA4KsSXUnRcYo22I3BGsgTXJcdLV794
+	Yw3rdYDmlvKylMfhKUQQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jPWMA-0002GP-KY; Fri, 17 Apr 2020 19:08:54 +0000
+	id 1jPWML-0002Oo-GR; Fri, 17 Apr 2020 19:09:05 +0000
 Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jPWM0-00024z-MS; Fri, 17 Apr 2020 19:08:46 +0000
-Received: by mail-wr1-x442.google.com with SMTP id t14so4234784wrw.12;
- Fri, 17 Apr 2020 12:08:44 -0700 (PDT)
+ id 1jPWM0-00024w-16; Fri, 17 Apr 2020 19:08:46 +0000
+Received: by mail-wr1-x442.google.com with SMTP id b11so4277005wrs.6;
+ Fri, 17 Apr 2020 12:08:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=0n5h0em/Nkh2RKJZHyjjtZ5ecG51J1roeZUvKOcCbPU=;
- b=CdJFoo8xQOIRbA85683Lw5+DGKDpA0LVrzc8RACY32VlWa3C3srqTXMosWANNzpQQq
- gDLJcrkqKOW4zv0yf2zsVsLVXc+9/9APUcBqfHjj3Z1MDY5e+TSk++U1EF756tvmSFuZ
- BLaQpuW8x+mkCwi4vyx1l3tYz4f+uNzRijv6bVC+LRwmjVnrw3b06cpRejtnrfxeY0df
- 8g4hAL57lWst3RbypPXYuscsifQUXTEDDe8m4wR+K09bsJ7dhi8p4aH9zWterHZluKDg
- ijHtatg6kPH0GXZlK80S7m1dakMzurDGgcZeogjk1FZ94VCy0PknYTWzNfUXHQsUE7QJ
- Qy3g==
+ bh=d7toYxcHEl8iaWER3ZlC9JRifsVMdDzRalye45CJVzA=;
+ b=X/vV81ld6aX8iOfd6EBTWFdYDsUkRAv5VbWiyJLuN2n6qvsyvf+siW7gcPKuFYUZjV
+ dINlrbrxg3TldmDOV+osKfVUv4y/jiqMX3o+CVsPft30H3clB+VVpxDmIjbD5RpPoEQq
+ vEpLEiVqnmAaSIDcdjM5wMHVNpymJYJW7qpx9RDbY2t8ZUlLM//JDNZ9UaXnRBFafceI
+ a9AANq6ofLYjY0CCFNl5Yy18yur4Um7FmgGjIB6/U7thSkDjPMEchUbap8+u9K0f9+8j
+ HU1cIBm/dRplGGP2p514mZci0z/naifFDJmTHJVGn9vSKoMA2FuSEWGmLey1QmfWBD84
+ xpfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=0n5h0em/Nkh2RKJZHyjjtZ5ecG51J1roeZUvKOcCbPU=;
- b=QyT9wDnJJXxH7T6QyU6LdB1C5IjhYfPZcXyDgMSxPO5iyvlpD4Fvz3L0EppZYE6VB4
- iqHaQ6GPnP8bv/vvEP0bvVGdo9H+ZeaXKqccVlIm2pM4ue22q9wi6xLIksYbd9GaHblR
- P1XGF3tOn6JECoOfDZi01WT2B6np60nR9KFSDSnU3JSbtXWyK3Q3eQhbQJSKiKOkw0+r
- V7I27DgKVQRDXqNG6KH8bCwTsYrXdVJyzfsuEi/T8bMnUGAWYqrotEMk7MQRcXfvES78
- qRYXjuoDQQyfgan/9hdUHejHrT05e5FLc+YrV5+KX5CDlhZ+wkP7VMl+diC1dSgoLMLW
- QmbQ==
-X-Gm-Message-State: AGi0PubG1/92LBIHBq//FoT0iG6tQWba33y3IBbnUDHQsFRn5ied1R3c
- gWqJdsjh4WTHyYmoi3xOPlM=
-X-Google-Smtp-Source: APiQypIFsvMSQP73dHqTXb7Xph+RtyVZSYMy9XHKo8uXqdgr54fAj+ozLVMozg+o08rkh4y0ch6EZg==
-X-Received: by 2002:adf:e5c8:: with SMTP id a8mr6000656wrn.56.1587150523506;
- Fri, 17 Apr 2020 12:08:43 -0700 (PDT)
+ bh=d7toYxcHEl8iaWER3ZlC9JRifsVMdDzRalye45CJVzA=;
+ b=pyhnC1dJ/5+a4XrLQ41pKdgeBz0vZA/HAu4wB6F4lpdR9a8iv5aTsz3b0g7jdW9RN1
+ Sp+eMLiPGSbd/wsuXj9CQDRSTj4w6+mXc8KqVuojAKnZJDxDv8tUaUKE5CdNShIDgx8k
+ HuLiHvU1bO6PO8PtZP2UnjatOLzG047cnHxb0gVFyquS43TmIM7kqv27Q65QvsQvtn7K
+ W+94L0FLc4Eer5UNxfFA3o7RXqqMvxzvWlLksTMtkiddmbHPcIB9CAonL+Mliooh2TAz
+ CH4ScjRfliEdQOGdyFqUx8idpPCppmqzt80fwD15OXRLGLFRpqJSStW8inONT07v2c2o
+ k+rA==
+X-Gm-Message-State: AGi0Pubb74PcJyFFiTELnoym8ngKOBe5dPq1Ds3n0rIHEktk2fP8VeyB
+ GrLqSiBhB4yshcKjzdvIdIDC5o+bXLg=
+X-Google-Smtp-Source: APiQypLiWbVAQam5qXO040+ZMNoB7DJ7i6qLa2IMuFLeKPMH2DWEfFa6GMS2cppkLOnQjdi14lMr4g==
+X-Received: by 2002:a5d:4a4b:: with SMTP id v11mr5267702wrs.32.1587150522537; 
+ Fri, 17 Apr 2020 12:08:42 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300F137142E00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:3714:2e00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id q17sm8722220wmj.45.2020.04.17.12.08.42
+ by smtp.googlemail.com with ESMTPSA id q17sm8722220wmj.45.2020.04.17.12.08.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Apr 2020 12:08:43 -0700 (PDT)
+ Fri, 17 Apr 2020 12:08:42 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: robh+dt@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
  linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/4] dt-bindings: power: meson-ee-pwrc: add support for the
- Meson GX SoCs
-Date: Fri, 17 Apr 2020 21:08:23 +0200
-Message-Id: <20200417190825.1363345-3-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 1/4] dt-bindings: power: meson-ee-pwrc: add support for
+ Meson8/8b/8m2
+Date: Fri, 17 Apr 2020 21:08:22 +0200
+Message-Id: <20200417190825.1363345-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.26.1
 In-Reply-To: <20200417190825.1363345-1-martin.blumenstingl@googlemail.com>
 References: <20200417190825.1363345-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200417_120844_731041_B03C089F 
-X-CRM114-Status: GOOD (  12.94  )
+X-CRM114-CacheID: sfid-20200417_120844_066007_4DA76EF3 
+X-CRM114-Status: GOOD (  13.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,51 +106,107 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The power domains on the GX SoCs are very similar to G12A. The only
-known differences so far are:
-- The GX SoCs do not have the HHI_VPU_MEM_PD_REG2 register (for the
-  VPU power-domain)
-- The GX SoCs have an additional reset line called "dvin"
+The power domains on the 32-bit Meson8/Meson8b/Meson8m2 SoCs are very
+similar to what G12A still uses. The (known) differences are:
+- Meson8 doesn't use any reset lines at all
+- Meson8b and Meson8m2 use the same reset lines, which are different
+  from what the 64-bit SoCs use
+- there is no "vapb" clock on the older SoCs
+- amlogic,ao-sysctrl cannot point to the whole AO sysctrl region but
+  only the power management related registers
 
-Add a new compatible string and adjust the reset line expectations for
-these SoCs.
+Add a new compatible string and adjust clock and reset line expectations
+for each SoC.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- .../bindings/power/amlogic,meson-ee-pwrc.yaml | 27 +++++++++++++++++++
- include/dt-bindings/power/meson-gxbb-power.h  | 13 +++++++++
- 2 files changed, 40 insertions(+)
- create mode 100644 include/dt-bindings/power/meson-gxbb-power.h
+ .../bindings/power/amlogic,meson-ee-pwrc.yaml | 75 ++++++++++++++-----
+ include/dt-bindings/power/meson8-power.h      | 13 ++++
+ 2 files changed, 71 insertions(+), 17 deletions(-)
+ create mode 100644 include/dt-bindings/power/meson8-power.h
 
 diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-index a0e4cf143b9c..15a29ed19327 100644
+index 6c6079fe1351..a0e4cf143b9c 100644
 --- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
 +++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-@@ -26,6 +26,7 @@ properties:
-       - amlogic,meson8-pwrc
-       - amlogic,meson8b-pwrc
-       - amlogic,meson8m2-pwrc
-+      - amlogic,meson-gxbb-pwrc
+@@ -23,13 +23,19 @@ description: |+
+ properties:
+   compatible:
+     enum:
++      - amlogic,meson8-pwrc
++      - amlogic,meson8b-pwrc
++      - amlogic,meson8m2-pwrc
        - amlogic,meson-g12a-pwrc
        - amlogic,meson-sm1-pwrc
  
-@@ -42,6 +43,7 @@ properties:
+   clocks:
+-    minItems: 2
++    minItems: 1
++    maxItems: 2
  
+   clock-names:
++    minItems: 1
++    maxItems: 2
+     items:
+       - const: vpu
+       - const: vapb
+@@ -37,20 +43,6 @@ properties:
    resets:
      minItems: 11
-+    maxItems: 12
  
+-  reset-names:
+-    items:
+-      - const: viu
+-      - const: venc
+-      - const: vcbus
+-      - const: bt656
+-      - const: rdma
+-      - const: venci
+-      - const: vencp
+-      - const: vdac
+-      - const: vdi6
+-      - const: vencl
+-      - const: vid_lock
+-
    "#power-domain-cells":
      const: 1
-@@ -77,6 +79,31 @@ allOf:
-         - resets
-         - reset-names
  
+@@ -59,12 +51,61 @@ properties:
+     allOf:
+       - $ref: /schemas/types.yaml#/definitions/phandle
+ 
++allOf:
 +  - if:
 +      properties:
 +        compatible:
 +          enum:
-+            - amlogic,meson-gxbb-pwrc
++            - amlogic,meson8b-pwrc
++            - amlogic,meson8m2-pwrc
++    then:
++      properties:
++        reset-names:
++          items:
++            - const: dblk
++            - const: pic_dc
++            - const: hdmi_apb
++            - const: hdmi_system
++            - const: venci
++            - const: vencp
++            - const: vdac
++            - const: vencl
++            - const: viu
++            - const: venc
++            - const: rdma
++      required:
++        - resets
++        - reset-names
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-g12a-pwrc
++            - amlogic,meson-sm1-pwrc
 +    then:
 +      properties:
 +        reset-names:
@@ -159,7 +215,6 @@ index a0e4cf143b9c..15a29ed19327 100644
 +            - const: venc
 +            - const: vcbus
 +            - const: bt656
-+            - const: dvin
 +            - const: rdma
 +            - const: venci
 +            - const: vencp
@@ -171,28 +226,34 @@ index a0e4cf143b9c..15a29ed19327 100644
 +        - resets
 +        - reset-names
 +
-   - if:
-       properties:
-         compatible:
-diff --git a/include/dt-bindings/power/meson-gxbb-power.h b/include/dt-bindings/power/meson-gxbb-power.h
+ required:
+   - compatible
+   - clocks
+   - clock-names
+-  - resets
+-  - reset-names
+   - "#power-domain-cells"
+   - amlogic,ao-sysctrl
+ 
+diff --git a/include/dt-bindings/power/meson8-power.h b/include/dt-bindings/power/meson8-power.h
 new file mode 100644
-index 000000000000..1262dac696c0
+index 000000000000..dd8b2ddb82a7
 --- /dev/null
-+++ b/include/dt-bindings/power/meson-gxbb-power.h
++++ b/include/dt-bindings/power/meson8-power.h
 @@ -0,0 +1,13 @@
 +/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
 +/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ * Copyright (c) 2019 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 + */
 +
-+#ifndef _DT_BINDINGS_MESON_GXBB_POWER_H
-+#define _DT_BINDINGS_MESON_GXBB_POWER_H
++#ifndef _DT_BINDINGS_MESON8_POWER_H
++#define _DT_BINDINGS_MESON8_POWER_H
 +
-+#define PWRC_GXBB_VPU_ID		0
-+#define PWRC_GXBB_ETHERNET_MEM_ID	1
++#define PWRC_MESON8_VPU_ID			0
++#define PWRC_MESON8_ETHERNET_MEM_ID		1
++#define PWRC_MESON8_AUDIO_DSP_MEM_ID		2
 +
-+#endif
++#endif /* _DT_BINDINGS_MESON8_POWER_H */
 -- 
 2.26.1
 
