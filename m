@@ -6,91 +6,76 @@ X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D9A39C2BB1D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2020 07:43:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7DDF4C352BE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2020 09:31:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AC09B206D9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2020 07:43:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4C28F20776
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2020 09:31:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eGq/yE6R";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eepHxWx0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AC09B206D9
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g2Ckx7VS";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MjESJIAG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4C28F20776
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=zjMK7jIMHarL9LWjkNTe4K3BQ5P/mxUPI5N5pElX3cc=; b=eGq/yE6RtnxkKhl4WyX9hYqwCI
-	EM5vaofKuv58SYQ4NgNH6zOVOBB4QKa/if1F4112tGihi4b1daB5NctGLhWCuppplaC2DfFUtioUL
-	dtc1Nvkmkt9lhkNcCwIBZfAByGYdrUbfuXa3sqQ/iQxKUQVXJ5Vb8gDMx2l07gQE3DZ0g1R1oW7rb
-	IDzwoTg2Lxp0y9VLZQTT5O+x8wf/TMemAv1L7Kr62CTp7L8PeVYTP3WxG+u/LfAbfeI0ZFg13miAz
-	XY6jHsjNip98dJCgG3UFx2wSrTaa+INWSVXFPAaAsiDYu8YAPH0fUU5Nt1NDF5tMVOSgEifLIn3rV
-	h17iQAqw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mpYye60lbHcgipUg0t+qwQ35FVnQ5eb2HDK7kEDvID0=; b=g2Ckx7VSTuQO/4
+	XwpC+u33cbqjNeP0qVuW5F/g+2vqwuXm+vdZ+DQPjq+vpTCU3pmSKJJO5/eRCFbVq388rs+4cYlP7
+	C+/lCNig/seqr7Gpi1x0DF90xAii9vh6uaL2Jll8b+yrZObUss17fnlhhvEgYt8hJTgrQPW9dwemN
+	bLRRisLsDghPAr8xDwr9GpqtLEi1pg4TkDLLJ6boqWP0HKVKzZSUtSS/Egfvc0nQDU7HL0dChOZws
+	DIkCn0GLMq1mZcTglXdlbY0TSMDdF0UqY/R5aPNY0jN3JdYz+zYzDcFJdeyrLfYkWH1oEi+BnNhhB
+	l25Qe8N8CnYJRe2bLn2g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jPLfB-0001OV-LE; Fri, 17 Apr 2020 07:43:49 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1jPNLN-0000iD-Rt; Fri, 17 Apr 2020 09:31:29 +0000
+Received: from mail-vk1-xa41.google.com ([2607:f8b0:4864:20::a41])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jPLf8-0001Ni-9h
- for linux-amlogic@lists.infradead.org; Fri, 17 Apr 2020 07:43:48 +0000
-Received: by mail-wm1-x341.google.com with SMTP id z6so1895964wml.2
- for <linux-amlogic@lists.infradead.org>; Fri, 17 Apr 2020 00:43:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=7VxUyCozUFRQ3HWyk/FR84Y855XH8vC8ACtL+uxdHOg=;
- b=eepHxWx0UCQ3bBjYPAxbl27Om6GC70uRgirDesMlw0GcwtwctP16SCiHB+9lipG9Q0
- MgNdJoEZVSmbzmwNbFctN8vwR/E4WL5PrBitcvaR4Mv5RZyqao5nKchsF6SAoVjQw6q8
- 1sBR/TQ8qY8RmucdLYRWbxuvwjwkdplwZck/fYRcvy1zb+UVhxu540CJET3ACX9t6WuQ
- IAlO3q/oQ0fiIwt/0iD1Y5oFpSq3BcdbdHfOVxTsU7YR4v7fa0aOShrllZ4IZQDEdY1z
- wcrFjOJJqsSYcm+HvrKBxOn3cHvgNXvN8UbAciWfiS7exv4J4Q6YoZlD4nsCuLB51+ze
- HL6w==
+ id 1jPNLK-0000hI-OQ
+ for linux-amlogic@lists.infradead.org; Fri, 17 Apr 2020 09:31:28 +0000
+Received: by mail-vk1-xa41.google.com with SMTP id h200so398757vke.3
+ for <linux-amlogic@lists.infradead.org>; Fri, 17 Apr 2020 02:31:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=wiAjeMfcURelxBHuZUMdahz3hslfuep2aSIiGdvB4+U=;
+ b=MjESJIAGjhwM+OrbAF9iPGpZJ/vkK1eikxiMgw0yxaSOcuysZ9JVFY/FVkUul49Yb+
+ ovf+VnarnjcO59QYSQd3TdLtK3EwPQLBRvbZrzEppGkSwL/E2vjW0Zi5wxDFNTnhFhjq
+ Dw0Z7KvjigjoPpQ1Oi+ppIM/XAF+Q9U7X850eljiesC/vYF/04hRrI3MXW2XIiCKwnPW
+ 2OFZTk0iC/A+Ph+H6IANq/DNHJPd6d9W0yvIPsQ+f6mrvDJ3sqydF5DKb/Tuc50PdYso
+ ZYFrcO4wneJmMqPZGqcZ64OwN1shzuLS7/LRqsHjnYoec4cZEAuRv8fEmOvMRhRwCyhd
+ Atjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=7VxUyCozUFRQ3HWyk/FR84Y855XH8vC8ACtL+uxdHOg=;
- b=Pb8Xafg1k/mQZNJKYuFLS1yF3q9BWNdz46bpIoeeCMWRNGcRfRz4V2/WVwdVx1SX9B
- yqRJeZS0rr+2z5atC1+aO9QgB0RwNpP/uL2YA6hCykPFmdwJuWD1fvmvdyyLVeZYggzU
- P3ynqfY+S2tNlZeoTaIKTbLF6DVN3jYzmsdDCtQj502q93zuGqd3SNyl8E/H3k4NOl99
- /2RMVnrKaMsXDb2ewKki8CmUIGJZHOsXjqQ0CrMrenNis+sIP2PQJ3rNV95h4S2dKNqf
- PcvowFIRu6o7Np5MW52R7lWdLiPU9sTsDoeGW66Y05UpRYG6+Kma2GsaSDvr8YQ2m9Tp
- Il0g==
-X-Gm-Message-State: AGi0PuawOwPJIfWWYisvrOT9msM4CwI8ExN2f9KLq95EFuS34D4VAGP7
- R1PajGe7r5aG6niqjw4Ucky2ww==
-X-Google-Smtp-Source: APiQypKB/8+cZvXsHO1NRHGVVpm+LapGF68siOZwDYjt2dTxd7u+tUAFWwcTxeJ3csNYW5kgsVQ09w==
-X-Received: by 2002:a05:600c:2214:: with SMTP id
- z20mr2124159wml.189.1587109423806; 
- Fri, 17 Apr 2020 00:43:43 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id l185sm6779244wml.44.2020.04.17.00.43.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Apr 2020 00:43:43 -0700 (PDT)
-References: <20200414200017.226136-1-martin.blumenstingl@googlemail.com>
- <20200414200017.226136-3-martin.blumenstingl@googlemail.com>
- <1ja73bbtqt.fsf@starbuckisacylon.baylibre.com>
- <CAFBinCAtSPTHfbr5KGNFFg3eo_d2p2q59fQfMXu+XkOb8WVrDQ@mail.gmail.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 2/4] clk: meson: meson8b: Fix the polarity of the RESET_N
- lines
-In-reply-to: <CAFBinCAtSPTHfbr5KGNFFg3eo_d2p2q59fQfMXu+XkOb8WVrDQ@mail.gmail.com>
-Date: Fri, 17 Apr 2020 09:43:42 +0200
-Message-ID: <1j8siublqp.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=wiAjeMfcURelxBHuZUMdahz3hslfuep2aSIiGdvB4+U=;
+ b=eXIcVz36l5gR1fcYXp8sZr8hq7nH0lNW/0niM/RDvzDDpcv/cat7yxvH9jyVCetgS/
+ 3hkCCNq4PwA8rg4Y8c5atYlT75xtM9Jg8e6m2bNr5TLnabmMHpOY3Cr4kCux1JU1jrIv
+ k/oYZWyJn0sgoDaiGEiXyh36bsyE4UN1AAQm1a0UKMcGu7X1ij0wttjIObmddsfCGcRa
+ QZShlOOqXPAnse1EfmR63WQ2+9pdemFRWFM/yTht41eTENPn8pT7g+p8mvUHqg3I4hPh
+ OfBERArDwFK0Jgw3UyGE00Ok3LJ8njrxNmsCFO650VwxH3oPfwbteBwlRZ7F6p5uTZH5
+ MEEQ==
+X-Gm-Message-State: AGi0PuZCNkLCWZEJYFki10r26LPhfkYaQdvLxIGEv4VeeSI6GBlz6qmp
+ NJe10XM4GqBObqAOmspTeWFyx9fH1R5ZbfNq5DrEeA==
+X-Google-Smtp-Source: APiQypIhgrTQ9F4wV2XftulBfc+nuqItiJK/bLZiDLrTiNf3ydl2NH2qIiRMIU9GYujl8QU/p2GD5YgyX4Hb2jNJNZg=
+X-Received: by 2002:a1f:5003:: with SMTP id e3mr1648075vkb.59.1587115883938;
+ Fri, 17 Apr 2020 02:31:23 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200416183513.993763-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200416183513.993763-1-martin.blumenstingl@googlemail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Fri, 17 Apr 2020 11:30:48 +0200
+Message-ID: <CAPDyKFrKs-NAYH7aCbEUCBw9wkwQEg-HmDun_cVw+L-EPSyZ_g@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] meson-mx-sdhc card busy detection fixes
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200417_004346_401043_6C1C3699 
-X-CRM114-Status: UNSURE (   9.02  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200417_023126_805296_01A9E29E 
+X-CRM114-Status: GOOD (  13.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,46 +87,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, sboyd@kernel.org,
- mturquette@baylibre.com, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Thu 16 Apr 2020 at 20:12, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-
-> Hi Jerome,
+On Thu, 16 Apr 2020 at 20:37, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
-> On Thu, Apr 16, 2020 at 12:38 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> [...]
->> >
->> >       if (id >= ARRAY_SIZE(meson8b_clk_reset_bits))
->> >               return -EINVAL;
->> >
->> >       reset = &meson8b_clk_reset_bits[id];
->> >
->> > +     if (assert == reset->active_low)
->> > +             value = 0;
->> > +     else
->> > +             value = BIT(reset->bit_idx);
->>
->> if (assert ^ reset->active_low)
->>         value = BIT(reset->bit_idx);
-> I can do that, but I prefer "!=" over "^" because the result is
-> expected to be a bool (and because I'm not used to reading "^" for
-> logical comparisons)
-> will this work for you as well?
+> The following errors were observed with Linux 5.7-rc1 and an SD card
+> hooked up to the meson-mx-sdio controller:
+>   mmc1: Card stuck being busy! __mmc_poll_for_busy
+>   blk_update_request: I/O error, dev mmcblk1, sector 17111080 op
+>    0x3:(DISCARD) flags 0x0 phys_seg 1 prio class 0
+>
+>
+> At least patch #1 should go to a -fixes branch so it can make it
+> into v5.7.
 
-yes
+Applied for both patches for fixes, and adding stable tags, thanks!
+
+Kind regards
+Uffe
+
 
 >
 >
-> Martin
-
+> Changes since v1 at [0]:
+> - added correct Fixes tag for patch #1
+> - added a patch which drops the ->card_busy() implementation from
+>   the meson-mx-sdio driver because this is not working
+> - special thanks to Ulf for taking the time to provide debug
+>   patches, explaining things and answering my questions!
+>
+>
+> [0] https://patchwork.kernel.org/patch/11483621/
+>
+>
+> Martin Blumenstingl (2):
+>   mmc: meson-mx-sdio: Set MMC_CAP_WAIT_WHILE_BUSY
+>   mmc: meson-mx-sdio: remove the broken ->card_busy() op
+>
+>  drivers/mmc/host/meson-mx-sdio.c | 11 +----------
+>  1 file changed, 1 insertion(+), 10 deletions(-)
+>
+> --
+> 2.26.1
+>
 
 _______________________________________________
 linux-amlogic mailing list
