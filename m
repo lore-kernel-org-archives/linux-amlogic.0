@@ -2,81 +2,87 @@ Return-Path: <SRS0=Bjr1=6C=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8389AC352BE
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Apr 2020 18:15:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9D54C2BA19
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Apr 2020 21:42:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 57AF820724
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Apr 2020 18:15:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B9F1221927
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Apr 2020 21:42:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dfRCyeTs";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZK6C8xr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 57AF820724
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sNLpDk13";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZVUggX0x"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9F1221927
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From
+	:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ebUQLUimrwQwBY/3c90qJY9lP1Ty3ExS/KosytaOWLs=; b=dfRCyeTsJ+Dt3w
-	D8MkE7827MnQKDeaDR9chXD7Yt1URyDA4Jd1BL0BGuYjkoPtkRtWm2ZkR6F9z4pWrE/sShHxnvLwC
-	jQoufH7NeAX7vGP6mTtjc1YR36TvAfKZC3enXxDDsWVbk0jNJvWv5iaytEL1ApLarQHviWzGhMUU0
-	jzTFXNnxb2CiEcDT8zzxxIuLaQw/VZzQ+law1/Ioo0zg29lBd8D/XCHb7oRUnxPewABf71Jl1s911
-	RNzL+qteuV6Uhx/xlbTNMjgJ5DSETk1A22X5F6cuaI7t/ayF5XKr8jFUXBVgyJsqi0Y9Iid8l5sV9
-	8uRFBMkfSFl3RgWXe26Q==;
+	List-Owner; bh=k9dVyh6wHIWEkkLnIaLTEZyQYjrCOZy2LgsN4tSbdHM=; b=sNLpDk13hIc/TU
+	tYur4KtfSrfq1y+FCPIT1RtURtPH0Q5QDGu5JaNDjHx6ErIwQOnA5TQYGfZ+rOz9qokDzqflTyIbu
+	zcQSglYSIns+/weCr24QvFf7jcCif7Npsl30h06k/qRk8OBDKMp7Hf/3nqSdpLfmydkkdOcop+fqr
+	AGn18cbCMtl/d53bxaU2GqfdQPtJBci3kix8P9Ca6MtgTRbfR6F6zI91nUqBVUZmMHCzvbiSvF7e1
+	MD+qa59H7KSxQDLYJ55303LJhPIe6TBabR9M+Ehp2rhmQ+78MD84440+ynDT+PJOsG1uGhfDsuaXm
+	g3MVaUzq4McuBvDbJnRQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jPrzj-0000KB-Fd; Sat, 18 Apr 2020 18:15:11 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1jPvEN-0004HV-A6; Sat, 18 Apr 2020 21:42:31 +0000
+Received: from mail-qt1-x842.google.com ([2607:f8b0:4864:20::842])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jPrzg-00085U-JM; Sat, 18 Apr 2020 18:15:10 +0000
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org
- [51.254.78.96])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id D1B9D20724;
- Sat, 18 Apr 2020 18:15:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1587233707;
- bh=KtXXKvkVx6nmTgkrhaXXeJdQ0VBttc8MSA5biUMFsqQ=;
- h=From:To:Cc:Subject:Date:From;
- b=mZK6C8xriOzlOLhzPA+VSzfm+EUGTXGNXDO3l4P7tiVGYEO0qcojJR+8PoWnon19w
- HKquJE5GZkfoFHYjP4RqBurmxQ13BamYSZ/BgnfV0yeGlrRbqFb7QN/PBtlsR6idfq
- EuGG1cqIJM9CjoBroVtm35bewlJOddyyGLl14yfM=
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78]
- helo=why.lan) by disco-boy.misterjones.org with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <maz@kernel.org>)
- id 1jPrzd-004UT4-4q; Sat, 18 Apr 2020 19:15:05 +0100
-From: Marc Zyngier <maz@kernel.org>
-To: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Subject: [PATCH] net: stmmac: dwmac-meson8b: Add missing boundary to RGMII TX
- clock array
-Date: Sat, 18 Apr 2020 19:14:57 +0100
-Message-Id: <20200418181457.3193175-1-maz@kernel.org>
-X-Mailer: git-send-email 2.26.1
+ id 1jPvEK-0004H4-78; Sat, 18 Apr 2020 21:42:29 +0000
+Received: by mail-qt1-x842.google.com with SMTP id o10so5318632qtr.6;
+ Sat, 18 Apr 2020 14:42:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+ :user-agent; bh=w/47EmjUE3OUhd2M0nQ4aXQ8hyh3Kb7PGgRqxtZ7DE0=;
+ b=ZVUggX0x5rhoXJFUBIldk0DtR/0RR5CPGISHzpnQ+TQnYKrfeMt/KhQQ6q8bIhavOj
+ zS5q0fnSx2Qee65hTc8gbTJ22xqcr+E296piNk9oudT07Nb82xX0hBs724JULPmy2x4q
+ GJJwWJcNpbmjPbYl1I3v7RhZl331/lkk1TY7969iA0lNpVOYq6SKDsqasccvZ9MjMB4i
+ 0kUKFWtdXOtUj+1L/TOQnaMqL4x10dyz57zTQnjSaLraneT0/j3K6BnGGG1Pq/Avekeu
+ NGM/J24mt5TYyVDDqTHVsWWj/2lHkGdr1t9WzV7e2IJ+pq+90XlqbWTaYHg99pIxSELt
+ 5wwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition:user-agent;
+ bh=w/47EmjUE3OUhd2M0nQ4aXQ8hyh3Kb7PGgRqxtZ7DE0=;
+ b=LzUnFkFEjTC4XOXF1Fvgjsb5sAXHM8DBcbYqPzsF87I6VOykEU60j7JQlUZ93V9WdN
+ +9QYt+0mktVzPdI0hGeHfE/Y73JB7+Mb32/fZEgIlN/xJCED4GOlJ+t/141nQqP51nGY
+ TcFi3/5tziQlYEv/N7GNpogxoaySd/Qy26c+D/osIiR9h3f5TS0tLQLfI9PU+8B7ctrd
+ 285omaopFuKWC/AwIMnYpex3q7qdrmR4XjIq6Io7vBX+ya3KWfIhe2JYTHyJ/C/JD39X
+ ZS1n11pyEJwbj0KRWgCmMj+h4ZlC6v10E/Ep4MG1yq98wdZOS7idCYOc+/RTqgKkWV3S
+ uPhA==
+X-Gm-Message-State: AGi0Pua5FO3wC3fob/hFE/9HzbDbEi+umaoXsjPIWpze5I0fDFz+MMK9
+ arzf5vV9KdFKXx8s4MT27pg=
+X-Google-Smtp-Source: APiQypK/ZNb28CwxyoAZvAhkzL57dtO3+k9ZptxS3i9hczv3oFx6wdSujk2rkeT1CVCQDJTCIa6JzA==
+X-Received: by 2002:ac8:1904:: with SMTP id t4mr9678039qtj.367.1587246146742; 
+ Sat, 18 Apr 2020 14:42:26 -0700 (PDT)
+Received: from imac (dhcp-108-168-12-59.cable.user.start.ca. [108.168.12.59])
+ by smtp.gmail.com with ESMTPSA id
+ p31sm18381085qtf.11.2020.04.18.14.42.25
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Sat, 18 Apr 2020 14:42:26 -0700 (PDT)
+Date: Sat, 18 Apr 2020 17:42:23 -0400
+From: Tim Lewis <elatllat@gmail.com>
+To: elatllat@gmail.com
+Subject: [v2] arm64: dts: meson: odroid-n2: extend cpu opp-points
+Message-ID: <20200418214223.GA4484@imac>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, peppe.cavallaro@st.com,
- alexandre.torgue@st.com, joabreu@synopsys.com, davem@davemloft.net,
- khilman@baylibre.com, martin.blumenstingl@googlemail.com,
- stable@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
- SAEximRunCond expanded to false
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200418_111508_688667_B0487BA5 
-X-CRM114-Status: GOOD (  11.90  )
+X-CRM114-CacheID: sfid-20200418_144228_286880_02DB0965 
+X-CRM114-Status: UNSURE (   7.63  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,107 +94,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, stable@vger.kernel.org,
- Jose Abreu <joabreu@synopsys.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- "David S. Miller" <davem@davemloft.net>
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, joy.cho@hardkernel.com,
+ narmstrong@baylibre.com, khilman@baylibre.com, christianshewitt@gmail.com,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org, tobetter@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Running with KASAN on a VIM3L systems leads to the following splat
-when probing the Ethernet device:
+Odroid N2 has a large heatsink and HardKernel supports overclock
+through the addition to extra opp points in their official kernel
+sources [1]. Add these to the N2 dts only, as other S922X devices
+may not have suitable heatsinks.
 
-==================================================================
-BUG: KASAN: global-out-of-bounds in _get_maxdiv+0x74/0xd8
-Read of size 4 at addr ffffa000090615f4 by task systemd-udevd/139
-CPU: 1 PID: 139 Comm: systemd-udevd Tainted: G            E     5.7.0-rc1-00101-g8624b7577b9c #781
-Hardware name: amlogic w400/w400, BIOS 2020.01-rc5 03/12/2020
-Call trace:
- dump_backtrace+0x0/0x2a0
- show_stack+0x20/0x30
- dump_stack+0xec/0x148
- print_address_description.isra.12+0x70/0x35c
- __kasan_report+0xfc/0x1d4
- kasan_report+0x4c/0x68
- __asan_load4+0x9c/0xd8
- _get_maxdiv+0x74/0xd8
- clk_divider_bestdiv+0x74/0x5e0
- clk_divider_round_rate+0x80/0x1a8
- clk_core_determine_round_nolock.part.9+0x9c/0xd0
- clk_core_round_rate_nolock+0xf0/0x108
- clk_hw_round_rate+0xac/0xf0
- clk_factor_round_rate+0xb8/0xd0
- clk_core_determine_round_nolock.part.9+0x9c/0xd0
- clk_core_round_rate_nolock+0xf0/0x108
- clk_core_round_rate_nolock+0xbc/0x108
- clk_core_set_rate_nolock+0xc4/0x2e8
- clk_set_rate+0x58/0xe0
- meson8b_dwmac_probe+0x588/0x72c [dwmac_meson8b]
- platform_drv_probe+0x78/0xd8
- really_probe+0x158/0x610
- driver_probe_device+0x140/0x1b0
- device_driver_attach+0xa4/0xb0
- __driver_attach+0xcc/0x1c8
- bus_for_each_dev+0xf4/0x168
- driver_attach+0x3c/0x50
- bus_add_driver+0x238/0x2e8
- driver_register+0xc8/0x1e8
- __platform_driver_register+0x88/0x98
- meson8b_dwmac_driver_init+0x28/0x1000 [dwmac_meson8b]
- do_one_initcall+0xa8/0x328
- do_init_module+0xe8/0x368
- load_module+0x3300/0x36b0
- __do_sys_finit_module+0x120/0x1a8
- __arm64_sys_finit_module+0x4c/0x60
- el0_svc_common.constprop.2+0xe4/0x268
- do_el0_svc+0x98/0xa8
- el0_svc+0x24/0x68
- el0_sync_handler+0x12c/0x318
- el0_sync+0x158/0x180
+[1] https://github.com/hardkernel/linux/commit/f86cd9487c7483b2a05f448b9ebacf6bd5a2ad2f
+Signed-off-by: Tim Lewis <elatllat@gmail.com>
 
-The buggy address belongs to the variable:
- div_table.63646+0x34/0xfffffffffffffa40 [dwmac_meson8b]
-
-Memory state around the buggy address:
- ffffa00009061480: fa fa fa fa 00 00 00 01 fa fa fa fa 00 00 00 00
- ffffa00009061500: 05 fa fa fa fa fa fa fa 00 04 fa fa fa fa fa fa
->ffffa00009061580: 00 03 fa fa fa fa fa fa 00 00 00 00 00 00 fa fa
-                                                             ^
- ffffa00009061600: fa fa fa fa 00 01 fa fa fa fa fa fa 01 fa fa fa
- ffffa00009061680: fa fa fa fa 00 01 fa fa fa fa fa fa 04 fa fa fa
-==================================================================
-
-Digging into this indeed shows that the clock divider array is
-lacking a final fence, and that the clock subsystems goes in the
-weeds. Oh well.
-
-Let's add the empty structure that indicates the end of the array.
-
-Fixes: bd6f48546b9c ("net: stmmac: dwmac-meson8b: Fix the RGMII TX delay on Meson8b/8m2 SoCs")
-Signed-off-by: Marc Zyngier <maz@kernel.org>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: stable@vger.kernel.org
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 0e2fa14f14237..a3934ca6a043b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -119,6 +119,7 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
- 		{ .div = 5, .val = 5, },
- 		{ .div = 6, .val = 6, },
- 		{ .div = 7, .val = 7, },
-+		{ /* end of array */ }
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+index 42f154057..6f32ac83f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+@@ -260,6 +260,25 @@
+ 			};
+ 		};
  	};
++
++	cpu_opp_table_0: opp-table-0 {
++		opp-1992000000 {
++			opp-hz = /bits/ 64 <1992000000>;
++			opp-microvolt = <1001000>;
++		};
++	};
++
++	cpub_opp_table_1: opp-table-1 {
++		opp-1800000000 {
++			opp-hz = /bits/ 64 <1800000000>;
++			opp-microvolt = <981000>;
++		};
++
++		opp-1908000000 {
++			opp-hz = /bits/ 64 <1908000000>;
++			opp-microvolt = <1022000>;
++		};
++	};
+ };
  
- 	clk_configs = devm_kzalloc(dev, sizeof(*clk_configs), GFP_KERNEL);
+ &arb {
 -- 
-2.26.1
+2.17.1
 
 
 _______________________________________________
