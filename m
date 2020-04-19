@@ -2,89 +2,84 @@ Return-Path: <SRS0=x2rd=6D=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C577C2BA2B
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Apr 2020 05:54:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9FA4BC38A30
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Apr 2020 16:59:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5C96E206B8
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Apr 2020 05:54:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 686B5212CC
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Apr 2020 16:59:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="E5tARDef";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LLnuM0lo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C96E206B8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lxcZCjWP";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="GSVsDoWN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 686B5212CC
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=nrm860jvZHozS7qRUi5ORzj6cDCPn1WM/Kb6yIK3ORQ=; b=E5tARDefLHbQyHm+fmU6aSOq7G
-	6+CP0j4z65CW6XVc1FgC+ntW8a0/uSeOzfuolS/2ze1TwZso1vXjdL9fv5Dm9iIpCi8MdNVhiBloI
-	LWy0FCk6hR+rEco4I4HnEJcufq/dYhQ+KqZbq9FtPdiExmMnmR9D8fetF1ETHseLIZxpdi9ANLGeG
-	7R0XFVovLhxVieR7hy/5+celpNO1GvFGtD9Veh/MP0nmJCdwytjr6iBBN+LJs7UA69BXEJl5817SG
-	VMtdAeoefqfmIVQ+UsCKKNbRfSskuiDtQAzPkCMnPyzFHgaVOs2wzKdc8ApWsQmygVV56JivhDLBB
-	pTo2UYcQ==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=cyyqQeWrMR9WTtirXxueMgHbgVfcK5Fz2g6BD+A1yow=; b=lxcZCjWP4nWvXN
+	dI+Rlsuq0OBhCUfxbBt2OywGVn6mzb05oAfEEloW7IiT1UIfnSvW2PfLRlOJhwuM3PdHIWmzaQy16
+	bKgMg6SzTLM/FASHz/oArCJ10/YvGYjlLq0tX1qB6dd7Gj4TSEJXnRw4xHV2Z8PREO4XEsJ6Ixozi
+	NATIfxqpKlMdSHphJ32r3KTltRDkw7flOKqteyIQlqHgUJaqlqXteDfju2FN33Uzd26Ks5pvjh85w
+	GsgoHGZelZxjroxgY1K2DF0l3S8OJHDuT0kfWZ2JcX3pP43SsQDFgYUspEOMurbPjQw38kFCV5JgM
+	ILlfFi1XzDaSAyjEcjdQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jQ2uq-0001zc-Jb; Sun, 19 Apr 2020 05:54:52 +0000
-Received: from mail-lj1-x244.google.com ([2a00:1450:4864:20::244])
+	id 1jQDHl-0004iP-Gn; Sun, 19 Apr 2020 16:59:13 +0000
+Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jQ2te-0000hr-Nn; Sun, 19 Apr 2020 05:53:40 +0000
-Received: by mail-lj1-x244.google.com with SMTP id y4so6354911ljn.7;
- Sat, 18 Apr 2020 22:53:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=xN3miRWZzdsMsxxSHU7bXZvm24cCusdBgj9dMFbMgFE=;
- b=LLnuM0lokDj6WShWfzAm7IQ3C2Ry/rP7akF1AWqIr1yEymcuF4s/lrT+i9l7w5Og4N
- +dCqigzJ3ypQAXiJOYS+hpg63f926bI2Y9dxSo/zZmYSdDD9wmywtQw+Q7tsvag63jXb
- V+VhY3w0Qsb4/2MqNWJvYbcfe+Gkao2oPUtIZG5jrxuWGUzA/xZVh0a49eaQ+qAeA5EC
- 0RxNFbVHQMAblEuTv+OLK8R3Ulr6MnGBj35OCOv8eB6ixelH8Li717QcTVYKY9q6nVl/
- qYT/x2jZA2eZ9rm4j1y1tK+nObSOinZt9mDUvL2GGoBO5NgGJRPM8kVcqM+DJTOoy4xG
- Ceqg==
+ id 1jQDHd-0004bR-MG; Sun, 19 Apr 2020 16:59:06 +0000
+Received: by mail-ej1-x641.google.com with SMTP id gr25so5886421ejb.10;
+ Sun, 19 Apr 2020 09:59:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Yaz56HMp/S89gaKfJpEhbFFnazFPo/RmIrwLmVduCoI=;
+ b=GSVsDoWNqHMk1a/muWiXRDv5VANp+vqo4c08fPkDbG9pNXGJRYCfhBZv19nTVghEV/
+ rR1emnmvALzm3mBWNYCb0tCXhj/GfMY3BYzeoBauJhrrRlhcvWODFDzalNcgQiZnlPhB
+ ZDPKvd6TuNENzsUlt/+aJ2D4KeYw7DbL1Xu9ryn67NfucngIFG5j7z0q7ocNEJzbJmUx
+ SRU25/mNFOHWOVjhmQajYOOgAngNAQCBuYtLc56flZ0Z6Bgu4BqB/z/zgXf0Kl/Ks4k6
+ ymF3jNCnP0eu5hL1crG77BCfqeE3R/o0nZR2x4u83cHj1p0GHFmOpVOfyN+/sztPbXWj
+ vM/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=xN3miRWZzdsMsxxSHU7bXZvm24cCusdBgj9dMFbMgFE=;
- b=j/M8b1rwnVleVyOhJKhre6HdXbcIfr+0Or38SJB4qo/6vKJWsUTHAXF0RHGD9d/75p
- abi/rPC7yy9+xy+J07/K4ORXcwpymEn98Ur8A9d1ZOCZXpyFDsCFr8KIq8XRqNrxPzwb
- niO69RUHbXK31phRB+hIKKwlBUP2WYHH+C9HuCGvq8aaCiS7rpj0OIgDeU0G7V4ES42R
- yZ3n8RNj3mPPcRrl5cJgCE6g3JKnzAuyJA4o6aVOyD4+OL/wo1q/+EFvafRfZkzsMbM9
- Ey8pekxzgtMtONRVSZBRfPwCa4C5cjCEkZizC282NRrYaBZ9ETBpWNizSSJRztw3xfem
- ypKw==
-X-Gm-Message-State: AGi0PuYfdj+JdgFEJ5j6HmPFe8z2UVObiYHfSMfT58uUOWMbWMmufreX
- R3CQcGJAjMEqCgJF8dXlsW0=
-X-Google-Smtp-Source: APiQypL9B78BpDHqzcdSxXcsbHU3s5I24MyU0cJ5Fjh+KgzcIB6iYgtHo9Bc5eUX8MkqBzw/Qqa6yA==
-X-Received: by 2002:a2e:9456:: with SMTP id o22mr6510374ljh.94.1587275616923; 
- Sat, 18 Apr 2020 22:53:36 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id h7sm3366247ljg.37.2020.04.18.22.53.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Apr 2020 22:53:36 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: meson-g12b-gtking-pro: add initial device-tree
-Date: Sun, 19 Apr 2020 05:53:22 +0000
-Message-Id: <20200419055322.16138-5-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200419055322.16138-1-christianshewitt@gmail.com>
-References: <20200419055322.16138-1-christianshewitt@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Yaz56HMp/S89gaKfJpEhbFFnazFPo/RmIrwLmVduCoI=;
+ b=jcbZVYxj3keKBRLXyk9c6bGXk68dPuLNpai4is2FYNk5BaE6J8dt8MWRpDyvAKUhHW
+ CAZbfXLx6yXziozuBKS83tNrdwN2nfeNw7TSJYR4ontTy6CLzoBzd7ZaVej3Lf7uAlt2
+ hUcIVUFhBx5cKb2NijZFkpqg3IR628lFNfFcG8t/kb6uRrDEMtujfqT05ccZ2JGwNt0x
+ n5AlhKq2Tl2IjsLyXQlN4PCmxZ627uqRj1hnVqWT5X1zgnIrp4Qut4z8yfwmYNp8zugG
+ XLC9l5gQIGUZPURA8OONId/kplpmRWYq5uPnTJmmNfZ9hF9GpdjWEZS/f5rDTYc49rCt
+ +HYg==
+X-Gm-Message-State: AGi0PuaLeN1uz7c3L/tLQ4xAMJUCY5tGevE0xKx64ULW03e5XMtKZVbZ
+ 5MZylIi77wWP/pJ/HeTlWAE3aEj4y1ckbqEJTZtNUQ9y0dgz0g==
+X-Google-Smtp-Source: APiQypInUWs4bxD4QvtZtJ/yVZmP+/efzMlqnIUknrqdkFj4i6HrJej16oCfUeGD8zDR58ToIyQMVGpbDdwIYRbGjLs=
+X-Received: by 2002:a17:906:4048:: with SMTP id
+ y8mr12436425ejj.258.1587315543506; 
+ Sun, 19 Apr 2020 09:59:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200418181457.3193175-1-maz@kernel.org>
+In-Reply-To: <20200418181457.3193175-1-maz@kernel.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 19 Apr 2020 18:58:52 +0200
+Message-ID: <CAFBinCDOw07_MHa=EBiLZsw24z3x5ngcW8_xmN6fJ8SqPmyyqg@mail.gmail.com>
+Subject: Re: [PATCH] net: stmmac: dwmac-meson8b: Add missing boundary to RGMII
+ TX clock array
+To: Marc Zyngier <maz@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200418_225338_779469_F09B0C44 
-X-CRM114-Status: GOOD (  12.77  )
+X-CRM114-CacheID: sfid-20200419_095905_726401_64AE0B2B 
+X-CRM114-Status: UNSURE (   8.47  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,98 +91,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-MIME-Version: 1.0
+Cc: Alexandre Torgue <alexandre.torgue@st.com>, netdev@vger.kernel.org,
+ stable@vger.kernel.org, Jose Abreu <joabreu@synopsys.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ "David S. Miller" <davem@davemloft.net>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Shenzen AZW (Beelink) GT-King Pro is based on the Amlogic W400 reference
-board with an S922X chip.
+Hi Marc,
 
-- 4GB LPDDR4 RAM
-- 64GB eMMC storage
-- 10/100/1000 Base-T Ethernet
-- AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
-- HDMI 2.1 video
-- Analogue audio output
-- 1x RS232 port
-- 2x USB 2.0 port
-- 2x USB 3.0 ports
-- IR receiver
-- 1x full-size (not micro) SD card slot
-- 1x Power on/off button
+On Sat, Apr 18, 2020 at 8:15 PM Marc Zyngier <maz@kernel.org> wrote:
+[...]
+> Digging into this indeed shows that the clock divider array is
+> lacking a final fence, and that the clock subsystems goes in the
+> weeds. Oh well.
+>
+> Let's add the empty structure that indicates the end of the array.
+oh. Thank you for fixing this!
 
-The rear RS232 port is not currently supported in the device-tree.
-
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-g12b-gtking-pro.dts     | 39 +++++++++++++++++++
- 2 files changed, 40 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 1fd28e84e808..0f377031cccb 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-new file mode 100644
-index 000000000000..c2bc1ca5a136
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-w400.dtsi"
-+#include "meson-g12-audio-hdmi.dtsi"
-+
-+/ {
-+	compatible = "azw,gtking", "amlogic,g12b";
-+	model = "Beelink GT-King Pro";
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		poll-interval = <100>;
-+
-+		power-button {
-+			label = "suspend";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		white {
-+			label = "power:white";
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+};
--- 
-2.17.1
-
+> Fixes: bd6f48546b9c ("net: stmmac: dwmac-meson8b: Fix the RGMII TX delay on Meson8b/8m2 SoCs")
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
