@@ -2,81 +2,88 @@ Return-Path: <SRS0=tbsV=6E=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EAFE5C3A5A0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 19:15:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67CCBC54FCF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 20:26:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C0CF5208FE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 19:15:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3C88620782
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 20:26:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RDxEx+It"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C0CF5208FE
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p5mA4lRW";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="MNaaf1hF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C88620782
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7KBcmoA2ffghhlzCGGgn0Vi4TqVOSlQ5hF5s9dDqqpo=; b=RDxEx+Itn5tgEx
-	UjC9MzQtah14nkLRSDkrkwZ4s8W0Oih9ja99Z4iHn2tswF9nkSebgWcq2FQWQmXalicX41hkRGdIK
-	yhwVN7OPOBL2ahlGDs7BwcutCS6rNZ9bPIY26Bt0V0vCg2JU3PR3COLV73FVB+yT0Ui8pyXPB5l4v
-	r8qkWcDc2sIqtsjB/IGbUTbZl7MAnDgYXj3EE+MDE9L9etSO/BkeORa3cmDBGA3+Q0ldhiwgab/CM
-	tTZXgneti7lykSRlbgHfbT7rY0qzPb0PkmsD5omXYEZJEoZfEzKRSDg+MBwnZHr28BLTiTTcqFNGM
-	guCmzUWiUVbkqh1gCztQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Yaozl72PlBZf3OsHkov1aHZ3uK6FdTptEq25EioqYPE=; b=p5mA4lRWwl/Z9d
+	4QvFPBQKb4JhNTGfVWorfr3JMGYsNfzPS+ZFWqFEPlWT2TMVG8zRMp6oaHGwpENT9bylRkGMQYQQO
+	JVbivvBjcA970Tdcjbx+Yu8VJW//gF7PTcCSjZvjNWWtfCDnltBlYrI1qNIHwFPfGrbTbk9U7kjCL
+	uyW3z+wa0mROs0T7Ln9sWGwggGTO2JKjdb5c/bV+3i/QhqdBooDgvja4T4M1YvRc8P1ZbYvbR02yP
+	lbxdUqnookwJUpqdoqQiL2A6fFttvvyb+zSbhXi2ZAc8XzzCr489DzoJkYU5RTN495oDYcIRHVszr
+	M03/FA2OEjjKpUOaUS3g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jQbtK-0006us-2G; Mon, 20 Apr 2020 19:15:38 +0000
-Received: from mail-ot1-f68.google.com ([209.85.210.68])
+	id 1jQczs-0000kh-HG; Mon, 20 Apr 2020 20:26:28 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jQbt7-0006fb-A4
- for linux-amlogic@lists.infradead.org; Mon, 20 Apr 2020 19:15:26 +0000
-Received: by mail-ot1-f68.google.com with SMTP id 72so2697787otu.1
- for <linux-amlogic@lists.infradead.org>; Mon, 20 Apr 2020 12:15:24 -0700 (PDT)
+ id 1jQczp-0000j3-76; Mon, 20 Apr 2020 20:26:27 +0000
+Received: by mail-wr1-x441.google.com with SMTP id b11so13828579wrs.6;
+ Mon, 20 Apr 2020 13:26:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=m86kfkguQyuXw4Padwd/5nB4RFgQInyY94SnHr1Z+AI=;
+ b=MNaaf1hFhkSNGsG0/WejBweFAMVqbFBOqTAhKWVbiIqSizUOwh+IXdBtBdMQOCBokB
+ vv+yP9h2nNbyp6aTAwifzxnJbGPVJqTGq4LRcyJUWDGhz9jUEuWFbBWpcaXRNRmd/YMf
+ RCs6t56EELxuk4xEKs+aqdw0M8QA2xnRRU28HKvQf1dqgCP3rcnFbrALfZGdQjgadPMw
+ Uq6PKbW3wtfYIzF3QHPHCuvePPApbnd0V+z2ZGc4HpJ2tCq3EA0oAn/deiaC8+9KEanT
+ iVDYBcvbxNT142KA+Mrwyo2m3kkBUAJ8vdFRnEFZlHAcHmM1Yfs1FE53iFsveq6S5GyB
+ my8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=/E8gPmAs5q5j5c6IF7Y5E5C7JdeQS0MYhxEcRGnaPxs=;
- b=tZFNHRcOh36hkcNmgYX6ngd+Bhn8rxhWLovcH+KACAgimo5XerSxdorozh6Yp+o1I4
- Cb/ozNSsFAZ1eIHng+TifXM5zvkBx6tzlN89v4y0amZ6dKX6dW7DASkjM5xaa9FiLUUX
- wW5xY/NBflUnYVm0TDP3m1yp6KzLDDd80jSPYn+Uoa4Ucn0tjoos/cVxYchFFMUy1fAA
- 6k+P9UyPqinTPuqGz4ZBNMpUCxbSElNG07SPnftp+Gad0PzRgneKVejHwnDwYINBwhpm
- d0MGQJd+HwuD7tPCl96NSyAOGoHxg27Pl2Yxa6H6axI9bDdtd5tdkW6AnCtbrf7zkP8I
- lCLg==
-X-Gm-Message-State: AGi0Pub+Kt0UW+YyXHJ6ugDQ/mtt1oJt66xqG++yNg4+DSlfqX2EMLZy
- VrHBKOtUikTAHNt8hL4OMw==
-X-Google-Smtp-Source: APiQypK4KWrrROkD5Z7eemFuC8Y5bdOwXzixxByT6sDywR+zGy0AuTzZVDCA0mXYc0mjjBP9d9R3jA==
-X-Received: by 2002:a9d:6a98:: with SMTP id l24mr10442730otq.133.1587410124253; 
- Mon, 20 Apr 2020 12:15:24 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id s13sm71633oic.27.2020.04.20.12.15.22
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=m86kfkguQyuXw4Padwd/5nB4RFgQInyY94SnHr1Z+AI=;
+ b=Rlyqm7jx88xmdWWmSyhIcBudWpG9Zlq2jf6N8P4MIlQfJRyOWQYrsnB82Sm3+zhWsy
+ Fo22ody7JZmxUvXQo2e8impMmU7KbyweFqBImHRDSUmUBmfQRSv64mlQBt86Ja+nCJ9h
+ Lg6dE848lx5NijPDUMLjQnAD8VXIUYK+WSLBf5zX1CcC2p+bfAgvnOipFiBdZD47C9OH
+ V7cQSowCpGRqlg7SEyhXO0iIkgNrvDCgMDZJBRLdRI0bPRafn20UacDKmL1gcwb7d6qW
+ T2VONzPIuL4pACVFP3S3Y4Jk4M5pVofXKG0mkhzxXJXQBAL+8F/3krqlmIqsiCVdkdl+
+ TqAw==
+X-Gm-Message-State: AGi0PuazBJKbl177s6Nzzs5zrsSjIqOivmFWwyAha8uhw+8QnjbF3xFK
+ hTjNUvnpuiBjFWtVv5J9jOw=
+X-Google-Smtp-Source: APiQypKTMMF9oO9FvAFJ4xYhaXCar71+2ejW0w10+TOcqLClxYzLCLiWyqCAI3/BWVAKJrMuDVhxew==
+X-Received: by 2002:adf:ea44:: with SMTP id j4mr22176574wrn.38.1587414383380; 
+ Mon, 20 Apr 2020 13:26:23 -0700 (PDT)
+Received: from localhost.localdomain
+ (p200300F137142E00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
+ [2003:f1:3714:2e00:428d:5cff:feb9:9db8])
+ by smtp.googlemail.com with ESMTPSA id l19sm657846wmj.14.2020.04.20.13.26.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Apr 2020 12:15:23 -0700 (PDT)
-Received: (nullmailer pid 3203 invoked by uid 1000);
- Mon, 20 Apr 2020 19:15:22 -0000
-Date: Mon, 20 Apr 2020 14:15:22 -0500
-From: Rob Herring <robh@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v5] dt-bindings: gpu: mali-utgard: Add the #cooling-cells
- property
-Message-ID: <20200420191522.GA3122@bogus>
-References: <20200411165700.1576314-1-martin.blumenstingl@googlemail.com>
+ Mon, 20 Apr 2020 13:26:22 -0700 (PDT)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: robh+dt@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/4] meson-ee-pwrc: support for Meson8/8b/8m2 and GX
+Date: Mon, 20 Apr 2020 22:26:08 +0200
+Message-Id: <20200420202612.369370-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200411165700.1576314-1-martin.blumenstingl@googlemail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200420_121525_374386_82E4CCF3 
-X-CRM114-Status: UNSURE (   9.95  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200420_132625_262491_D31EA518 
+X-CRM114-Status: GOOD (  11.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,40 +95,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- robh+dt@kernel.org, Qiang Yu <yuq825@gmail.com>,
- linux-amlogic@lists.infradead.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 11 Apr 2020 18:57:00 +0200, Martin Blumenstingl wrote:
-> The GPU can be one of the big heat sources on a SoC. Allow the
-> "#cooling-cells" property to be specified for ARM Mali Utgard GPUs so
-> the GPU clock speeds (and voltages) can be reduced to prevent a SoC from
-> overheating.
-> 
-> Reviewed-by: Qiang Yu <yuq825@gmail.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
-> Changes since v4 at [0]:
-> - Added Qiang's Reviewed-by (many thanks)
-> - re-send because I missed the devicetree mailing list in v4
-> 
-> 
-> [0] https://patchwork.kernel.org/patch/11448013/
-> 
-> 
->  Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+This series adds support for all "older" SoCs to the meson-ee-pwrc
+driver. I wanted to compare as much as I could between my Meson8b EC-100
+(Endless Mini) and the Le Potato board so I added support for GXBB, GXL
+and GXM as well as for the SoCs that I'm actually working on. I will
+send the ARM64 dts patches once all of this is reviewed and merged.
 
-Applied, thanks.
+I successfully tested the Meson8b part on EC-100 where u-boot does not
+initialize the VPU controller. So this the board where I have been
+struggling most.
 
-Rob
+
+Changes since v2 at [1]:
+- don't remove the "reset-names" property from the main description
+  (only make it optional and switch from items to minItems) to fix
+  a dt_binding_check found by Rob (or his bot) - thanks and sorry!
+
+Changes since v1 at [0]:
+- rename PWRC_GXBB_ETH_ID to PWRC_GXBB_ETHERNET_MEM_ID. Spotted by
+  Neil, thanks!
+- update cover-letter since Neil confirmed (thanks!) that the "dvin"
+  reset really belongs to the VPU on GXBB, GXL and GXM
+- removed RFC status
+
+
+[0] https://patchwork.kernel.org/cover/11489163/
+[1] https://patchwork.kernel.org/cover/11496013/
+
+
+Martin Blumenstingl (4):
+  dt-bindings: power: meson-ee-pwrc: add support for Meson8/8b/8m2
+  dt-bindings: power: meson-ee-pwrc: add support for the Meson GX SoCs
+  soc: amlogic: meson-ee-pwrc: add support for Meson8/Meson8b/Meson8m2
+  soc: amlogic: meson-ee-pwrc: add support for the Meson GX SoCs
+
+ .../bindings/power/amlogic,meson-ee-pwrc.yaml | 102 +++++++++++++++---
+ drivers/soc/amlogic/meson-ee-pwrc.c           |  98 ++++++++++++++++-
+ include/dt-bindings/power/meson-gxbb-power.h  |  13 +++
+ include/dt-bindings/power/meson8-power.h      |  13 +++
+ 4 files changed, 206 insertions(+), 20 deletions(-)
+ create mode 100644 include/dt-bindings/power/meson-gxbb-power.h
+ create mode 100644 include/dt-bindings/power/meson8-power.h
+
+-- 
+2.26.1
+
 
 _______________________________________________
 linux-amlogic mailing list
