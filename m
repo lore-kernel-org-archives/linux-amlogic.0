@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EF915C3815B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 11:45:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9279C3A5A0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 11:45:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C557220724
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 11:45:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AC9C220724
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 11:45:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FgUKD14a";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1SIVE6W4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C557220724
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SKL7HQZH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="H63+etA+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AC9C220724
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,68 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=daGyHSr+3APjOZmOth1/V7NTMu4HYRENPYWmzxg/9yA=; b=FgUKD14aZO+mUh
-	oXK9PfjdbgqNjseJKPPTfLsz13/sk4cEVYQcMduYBIbJASt5yJbonKiwQeFT19QsbnxGFus0vpoMD
-	tIoBELI0guJWBzyNGIquaPPzMRIHho9WxQOPdIKdkVuX1rqhfXPaVQRX+mQSgMWQzJ2yQPOZzfilr
-	fgmErndtF7rHTa0SPEQSx8IsJFbUFL3T1DPVCYE0TQGZz+GxSo1mXFUMxXQAdZqFT8wCYkWhqxFci
-	Yh4QL1ygE+tki88jdckBk3tPcCk5sGhizs6doNNaBIz0kijfCjKF6+QOg19NqApN0TBFQO37DJtNS
-	XO/odRf3+KmC/a83hvDQ==;
+	List-Owner; bh=SwUsTOfXrRIrXonsY6II4AN6+uXvsN/ahAzGrYbI02s=; b=SKL7HQZHYv1cSw
+	WoOeqfkbkyDQcBSdOxb4ZIybdMfljbEZl4Sm9/WQDVnBb1fXGDd25yQzBQsBSBirgtUT7j3HnkUHW
+	OyRWejJHctwW0HbohOM2WRGyfcC310yml2BDVafWVqosZee9QJs2fAzhLeW5+3Z9PPWgYenXAV/+w
+	BpCA1HGD6iL/eQiCl7W8/YrOYAc04gisZxCUQSmtCD9JOkWAYUaWxBaPu6yhQtWOQLmVqFo0uKnJe
+	kiYVcZW37tzGq0R7hDiZLeXrZlhCDr8HgdfizBwl4ObPBwX4MIVqiird+1tZ+g1ZNT8A8fvlUD+z0
+	hdJx367eoHRT41ABLGtQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jQUrk-0001M3-55; Mon, 20 Apr 2020 11:45:32 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1jQUrn-0001Ou-EG; Mon, 20 Apr 2020 11:45:35 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jQUrW-00015U-S3
+ id 1jQUrY-00016c-2F
  for linux-amlogic@lists.infradead.org; Mon, 20 Apr 2020 11:45:25 +0000
-Received: by mail-wm1-x342.google.com with SMTP id u16so2375215wmc.5
- for <linux-amlogic@lists.infradead.org>; Mon, 20 Apr 2020 04:45:18 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id t14so11684303wrw.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 20 Apr 2020 04:45:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=/Eo7z/bW/75JbK01dAXq1seEbWg98VkTUnan0t5hkQw=;
- b=1SIVE6W4mcJTTZWKBGYOHiT3uHXcmVOkHZQEgxjGTgee8IoV3FNLpqrFJnZH923Fbc
- O39HPbopLAKYTRR45NG3vTPnxj5NHjj8qR2uA+BkBQj7XtBehqKHLrfwwLN7f+/st2WD
- fbmTHYA24mggSSRuPIZwNruyXT4eWW+uMBp2QCLJ05Ap7oFG8pcGGCEZ1duH0RK3cDr7
- UTuoV9A8YjhkemvD0Ex9zHzyjnoM5DW9pegWP7m3SOic/0r97TfutOjBBdrHU1zi/cyk
- nyebTDYjUvVUl/iTOyJ0Fcg+K7pnhJpb/4JoVs+q0Cg4QXq/DEhIl6IVNC1z2LV3HU84
- E4Fw==
+ bh=ncP3J/qEg/xypRpjtJqFD+RT7/yjhZOFPm/IKzFyAyk=;
+ b=H63+etA+aBJlMVl9xXpa86QHXb9a5dX32vkn2AEsYOB2Lr39BmuXB9GZNtuMJLMEio
+ F53gZCaOUDJ9+0KKUFKultag1E9Pa9jDIFNz1e7t1UJu3JLjq24zZripnzQjBRDGmSF9
+ Tz5s/Ougfco1mti4PclNrUptOOMomFy+9D52yQI+aAlnCNA9VO9iMMbcShgbNWy1jH1w
+ tvb5CpgD4H2+MLjYLlhSdpDX/DFYnzbVpndTRT5ipifwYaB9crfOlT8QUByVkQ1STmqu
+ /FbzVWAhCaKUXnZCaJUQml4fQ8rRIY8Rzlc1Ky/A3LuYEKp8jS16VQjRt+cIcgZ3obsq
+ HyWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=/Eo7z/bW/75JbK01dAXq1seEbWg98VkTUnan0t5hkQw=;
- b=qSleeUrYcSwhy5dtIptZSjK2JPIJxorSjmI7FumQeqqQOrg/AL8TO6P2aQ+XiuU2KF
- ZwCUV2PID3L4ic6CwQt47x52NWBXZXnAt+cfSCTJ6xP/YUogSe2LSyKn+l09rb1zm1pd
- VdmLHW2SZCjDgIrBFjSHqBY2HfxxqbClfplw7yx0idtzL4BfEglb9d6HyiaDiDerJaNT
- macisbsi0mBK7/nU30vEXXRjQQ+sn9NMgSzJ+BfYWdfKtQcPNTSEJU6qkW0p02U9yPwW
- Wtwhwl8QHudH2GRZtHVxZP5xig9v+vkr21os+AWhHFbN3BOF7LyzgmqgQMVm1U4KsiI7
- OdSA==
-X-Gm-Message-State: AGi0PuYN6i4akFuqI4KvHawEO6TlcXdkbM1blYRVx0dna3DvSB7npHEy
- hDOHreMbXnO1fEDthj9PEUV5Cg==
-X-Google-Smtp-Source: APiQypIXImpuNN70wYFRkSp5hlI7aYph/2B0xZyzWhfHsi7Idg5iyDUi1yNEDGrbmDiFOIN9oJI1fQ==
-X-Received: by 2002:a05:600c:29c2:: with SMTP id
- s2mr17145704wmd.111.1587383117186; 
- Mon, 20 Apr 2020 04:45:17 -0700 (PDT)
+ bh=ncP3J/qEg/xypRpjtJqFD+RT7/yjhZOFPm/IKzFyAyk=;
+ b=i2Kyq5euajpDgjgASYmCITZs4oTJffBOQGglKQpyAF+V5SulcJLBczbMgGWEiuRZFl
+ qyiJmf0mQ/SQkhXn8MEE5jPvKwgxGQTvRE6vzNBLZ4hz85bM88B/ZNkQiEZL+lQW+74I
+ BR0XYJUNycBNLk/Q8wSk3afchKUsmhiw89Dwfn2/r3of9q2eiIXQG2SCoKFBDJCxQHMo
+ g0myDlpSneZOpXFtbU5IDlWkddCWZGvQ+Id+9EqAQdzqe9oZUQRjC5wrcd8U1f97tKbM
+ 00lFIMB/HLPKqshbqbRwINB9SQCtPj1BQiPQ8H6F15zJBnsO4GqJGB/itjtrzhNLXIle
+ XZfA==
+X-Gm-Message-State: AGi0PuYRU6QtgGQSIU+adDz8Execf4tULKxr6fZEP4xagTN3rJg9zh+v
+ BfOYyXhSAG8ypVP/HZ/OEUQeOg==
+X-Google-Smtp-Source: APiQypJtZQCS5Jcc+6Wrcet51tOZw+iTZukm4wlAyWIuiJnqxjolLoYFCVIQCmLUUeNj3EDTq5gHsg==
+X-Received: by 2002:adf:bb0d:: with SMTP id r13mr19633300wrg.251.1587383118410; 
+ Mon, 20 Apr 2020 04:45:18 -0700 (PDT)
 Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net.
  [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id k6sm1079182wma.19.2020.04.20.04.45.16
+ by smtp.googlemail.com with ESMTPSA id k6sm1079182wma.19.2020.04.20.04.45.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Apr 2020 04:45:16 -0700 (PDT)
+ Mon, 20 Apr 2020 04:45:17 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH 1/2] ASoC: meson: axg-card: fix codec-to-codec link setup
-Date: Mon, 20 Apr 2020 13:45:10 +0200
-Message-Id: <20200420114511.450560-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/2] ASoC: meson: gx-card: fix codec-to-codec link setup
+Date: Mon, 20 Apr 2020 13:45:11 +0200
+Message-Id: <20200420114511.450560-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.25.2
 In-Reply-To: <20200420114511.450560-1-jbrunet@baylibre.com>
 References: <20200420114511.450560-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200420_044518_930084_C3DB2DF9 
-X-CRM114-Status: GOOD (  11.20  )
+X-CRM114-CacheID: sfid-20200420_044520_121557_602E77CC 
+X-CRM114-Status: GOOD (  11.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,7 +108,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Since the addition of commit 9b5db059366a ("ASoC: soc-pcm: dpcm: Only allow
 playback/capture if supported"), meson-axg cards which have codec-to-codec
-links fail to init and Oops:
+links fail to init and Oops.
 
   Unable to handle kernel NULL pointer dereference at virtual address 0000000000000128
   Internal error: Oops: 96000044 [#1] PREEMPT SMP
@@ -127,6 +126,9 @@ links fail to init and Oops:
    snd_open+0xac/0x1a8
    ...
 
+While this error was initially reported the axg-card type, it also applies
+to the gx-card type.
+
 While initiliazing the links, ASoC treats the codec-to-codec links of this
 card type as a DPCM backend. This error eventually leads to the Oops.
 
@@ -134,22 +136,22 @@ Most of the card driver code is shared between DPCM backends and
 codec-to-codec links. The property "no_pcm" marking DCPM BE was left set on
 codec-to-codec links, leading to this problem. This commit fixes that.
 
-Fixes: 0a8f1117a680 ("ASoC: meson: axg-card: add basic codec-to-codec link support")
+Fixes: e37a0c313a0f ("ASoC: meson: gx: add sound card support")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/axg-card.c | 4 +++-
+ sound/soc/meson/gx-card.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index af46845f4ef2..89f7f64747cd 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -338,8 +338,10 @@ static int axg_card_add_link(struct snd_soc_card *card, struct device_node *np,
+diff --git a/sound/soc/meson/gx-card.c b/sound/soc/meson/gx-card.c
+index 7b01dcb73e5e..4abf7efb7eac 100644
+--- a/sound/soc/meson/gx-card.c
++++ b/sound/soc/meson/gx-card.c
+@@ -108,8 +108,10 @@ static int gx_card_add_link(struct snd_soc_card *card, struct device_node *np,
+ 		ret = gx_card_parse_i2s(card, np, index);
  
- 	if (axg_card_cpu_is_tdm_iface(dai_link->cpus->of_node))
- 		ret = axg_card_parse_tdm(card, np, index);
--	else if (axg_card_cpu_is_codec(dai_link->cpus->of_node))
-+	else if (axg_card_cpu_is_codec(dai_link->cpus->of_node)) {
+ 	/* Or apply codec to codec params if necessary */
+-	else if (gx_card_cpu_identify(dai_link->cpus, "CODEC CTRL"))
++	else if (gx_card_cpu_identify(dai_link->cpus, "CODEC CTRL")) {
  		dai_link->params = &codec_params;
 +		dai_link->no_pcm = 0; /* link is not a DPCM BE */
 +	}
