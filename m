@@ -1,93 +1,99 @@
-Return-Path: <SRS0=tbsV=6E=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=oV4S=6F=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68D5AC54FCF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 20:27:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D137C38A30
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 01:15:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1C87A20857
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2020 20:27:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2B7E32070B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 01:15:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FRDcUmS6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="okWrxS3z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C87A20857
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YuJwKAQj";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jGemw2P2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2B7E32070B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=D0j0D7sauT+eAGJQNmcOcuIZ37L6J56kdchbIkvIUfg=; b=FRDcUmS6hAlTsL
-	lVoHAng7rZBHaFmPJlV48Rnlupmpx6Hts7lgveN6FQQaQ94mzfkqm9H7Rj3yQnb7Ls9n/KeLSbVs9
-	4jBWsCQp1KOdVN6py2TcYUntz3GZWrjgOwu9WWYWDsn/BL5svjIrG87FLbLuSgLfCdhBcuLNCpJYp
-	c2UyiTCCc1BOjromqOH+peiVJFCBLTn2SURhwJUVWVAkRRtB66RSBYRTsPL5V/CBq3uKkPqUOk2WO
-	W5S+dXuM0+3nS953EOyj5/qIW90RvUrSbCBhpAm/ykPVWNyXUNa7a8qMkccI5q5hyMQAV/uzeIxRt
-	KAZGdZDKepFpNHFPwi7A==;
+	List-Owner; bh=RPGLUIcwUEhiD0mFZnm4CU8NKZqq/MxvU0tt3AUaNf4=; b=YuJwKAQj8dTPXl
+	41Gxb0UlchABM73FEvc9yetlFC/u7QqhhU9yb7D/USgldL0+1DBvZEURwamyChdIfikWzOOSD0d9G
+	o5te9edJROLBb2PKiuEYekgbKKBF+VIeLCNhMcyoPuKeeZ1HN0yv3DhQ4MCDe8JGptEGAGZuxri1c
+	PqDt80j1qYFdRS/lfJqS/JbGKPyAts4S1OqnlEvivForwfi4BCpbLctyGmpkj0fqUEArkscXVq5s/
+	19NUGjeN2f/NWAKR63utuGMx0L/VS0nwlvigvYLSzrviaTnn7gZhbdBc2z+ud9jFLppfsD4MUCSno
+	o3Qxdoqb9VQrH60P97OA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jQd0a-0001VR-L5; Mon, 20 Apr 2020 20:27:12 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1jQhVj-0002Dk-E1; Tue, 21 Apr 2020 01:15:39 +0000
+Received: from mail-vs1-xe43.google.com ([2607:f8b0:4864:20::e43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jQczr-0000jr-Qj; Mon, 20 Apr 2020 20:26:29 +0000
-Received: by mail-wm1-x341.google.com with SMTP id e26so1012000wmk.5;
- Mon, 20 Apr 2020 13:26:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=RSI3Jk2pdt1qXkGfoD18aihrdmY02gauY+JtpjGwyDs=;
- b=okWrxS3zKsghA3wwaoShgZNntUrd5rxxz6n7VCEMDs5saEXQ7LMHqVSbyywPr7tyyd
- jJI1uA/nMu62H2Xe6ulc+Fu63I56z3RzI6voU+Q91U6B5uMvJjBgj3EkL976EQ1g+6bZ
- ikcdC5I2nqN54HQovcW2r5SBQ5qbGzr3M0qmTD01Iv/IUIQXYTlotSc1KnZe6sJxUceU
- SdwkC0q5VeOk4nkEhkrQtg6epFZg6eiEBmSGNFIFLpEk3CBwkg8cFGM7TR+bwEY8lPRO
- nWzAKGgGxZ0pISxEUmgxyw9BX60Z941JDJpLe7vJisMo4Czsf4WTS4tgeZRxEWFyJlXI
- kqpg==
+ id 1jQhVg-0002D9-OA
+ for linux-amlogic@lists.infradead.org; Tue, 21 Apr 2020 01:15:38 +0000
+Received: by mail-vs1-xe43.google.com with SMTP id 184so7420399vsu.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 20 Apr 2020 18:15:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=aFRq3RluqVTW3eItiffvhrul27fygOSDx5LOp792/cY=;
+ b=jGemw2P2rq8+zKge7bcDV6mMP5GeCYSBjW21Yga4LFd+SRnJNGAo1LIyCZsecJrAj+
+ 3Y2nk68i50FiVZkjKg3XewJTSb85k963UHIJB4QyqWe/KfxK1rup1VWPKA6RhXdb/LbF
+ ZALCrIEKJacoE0XvLyBHMyRJFtUd8Qd5IXRqI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=RSI3Jk2pdt1qXkGfoD18aihrdmY02gauY+JtpjGwyDs=;
- b=dJs1/dywQuL7BUnC4tz4955Lzhqdop30PoiZhuhS/9pC55Ggzfv4GZH+Z4NgGuaht8
- TwnnKcwN7bbkE36o6758AC3SbOXs077HemInIKRQfJ8jOdOmpMndrGBBH5UjtIy+qw6w
- YS+1x4NwwjXCkYT3Xm/U3KBsHZ8HnGEf9NpIjKYk6vyEc2oeZYtJuyQK4QQThEto6ZZt
- PTQAIFo8TxkerRdU8gdiQ1uYAz72eogzrWWsaaknUeinsHr/xW5p9/fdwn8h8RXkRih4
- qQfDvb8oQf5Xa6bQ4MFabEGdEpZRXrxj40DgY7vtfIwagAcESVAyYPK4PVFkklIvdfSe
- a6Jw==
-X-Gm-Message-State: AGi0PuYzG/R7UddC1L9HbjN1Q+Hcf82lcYoMcAGlqeGjbZN9uz7+AMe2
- f/V8wigzJGIc2IVEC5QbM2+rGWXH+o8=
-X-Google-Smtp-Source: APiQypKXtH8KlynahWmEcXPdtSUMr/NB8JnstgmRYZwp59O/gOlzx5c7GNAbcGpJuIXLoZ+XHtUe8g==
-X-Received: by 2002:a1c:a7d7:: with SMTP id q206mr1091139wme.45.1587414386260; 
- Mon, 20 Apr 2020 13:26:26 -0700 (PDT)
-Received: from localhost.localdomain
- (p200300F137142E00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
- [2003:f1:3714:2e00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id l19sm657846wmj.14.2020.04.20.13.26.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Apr 2020 13:26:25 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: robh+dt@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 3/4] soc: amlogic: meson-ee-pwrc: add support for
- Meson8/Meson8b/Meson8m2
-Date: Mon, 20 Apr 2020 22:26:11 +0200
-Message-Id: <20200420202612.369370-4-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200420202612.369370-1-martin.blumenstingl@googlemail.com>
-References: <20200420202612.369370-1-martin.blumenstingl@googlemail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=aFRq3RluqVTW3eItiffvhrul27fygOSDx5LOp792/cY=;
+ b=gilZBNNczWtyyFl2ULaOUQh8QPaykfTBxveS0G1uLQnY5ZMlZLTVxgIP0WcApo6lJs
+ CD4VJx26qV9kwWCUurGaFKmZvMAnAuqC/ywXQ3kt+iQjQOZCgCMRaiNg+sCUp85E1ZyU
+ ueYQlE+m3VyHHNahGEOr8RkMc99IH0MXoBaKFSlGG6Rq/cLstdmcakxuAo6TVk0V3PPa
+ K2roABdg8SY0CktFNk8UOB3VH4zNOyjZHQSFJCkaiwD1BplioSdroIu9k2Zfousehisn
+ zlhAnJCFzthOmmkDZwRBE/NKNAO92Vudj7XHHsgW1qj56f/lgjNcQmxGsOrBSScS6mgt
+ 7Kxw==
+X-Gm-Message-State: AGi0Pua1mTlcTAin0o12ZECqr5dpiVINkSIe8g6RTyCA8yVA91TYPYzU
+ 4Gqr+l8t8fSkGXRioS+THejTkk8mN1A=
+X-Google-Smtp-Source: APiQypILr5KYL+tLCC4NdT32V1rbtSqt1SEoT0uZe1QbM0ht7hUai3oxYkzNyApT/dgFm6jb5SFVhg==
+X-Received: by 2002:a67:f81:: with SMTP id 123mr14235349vsp.50.1587431735487; 
+ Mon, 20 Apr 2020 18:15:35 -0700 (PDT)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com.
+ [209.85.217.48])
+ by smtp.gmail.com with ESMTPSA id f188sm343936vke.54.2020.04.20.18.15.35
+ for <linux-amlogic@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 20 Apr 2020 18:15:35 -0700 (PDT)
+Received: by mail-vs1-f48.google.com with SMTP id m24so4369809vsq.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 20 Apr 2020 18:15:35 -0700 (PDT)
+X-Received: by 2002:a67:d61c:: with SMTP id n28mr14119322vsj.70.1587431365930; 
+ Mon, 20 Apr 2020 18:09:25 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200403052900.258855-1-evanbenn@chromium.org>
+ <CAKz_xw0gV+w_gMkLfB4qUBdULLfFoiv1TBWp9_PHy33wP_XWyA@mail.gmail.com>
+ <890948ef-7276-fdae-d270-eb30eff3eab2@amlogic.com>
+ <243e107c-35c1-2d14-5285-c9e13744963c@amlogic.com>
+ <CAODwPW9RSB37+4EJ2QXAwz=ShFB23L1GKC2mLYE5L5JuQR2tPw@mail.gmail.com>
+ <20200415231215.GA182398@roeck-us.net>
+ <CAKz_xw0+gKBM1jp-Avnd+4j9vSxUix67RZBX-NNbStb0+ri4+Q@mail.gmail.com>
+ <CAODwPW9Vt7TcWfKYDmRgLndb2-+5HoNvA6XMJJznXCudQDngqw@mail.gmail.com>
+ <9d029a04-2a37-cbbe-1932-be34d34f6b69@gmail.com>
+In-Reply-To: <9d029a04-2a37-cbbe-1932-be34d34f6b69@gmail.com>
+From: Evan Benn <evanbenn@chromium.org>
+Date: Tue, 21 Apr 2020 11:08:57 +1000
+X-Gmail-Original-Message-ID: <CAKz_xw33YBChSCDHcki2JCR=LXrvfEN2pseEN471xVvqhqrUfA@mail.gmail.com>
+Message-ID: <CAKz_xw33YBChSCDHcki2JCR=LXrvfEN2pseEN471xVvqhqrUfA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Add a watchdog driver that uses ARM Secure Monitor
+ Calls.
+To: Florian Fainelli <f.fainelli@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200420_132627_867687_66421BFE 
-X-CRM114-Status: GOOD (  15.64  )
+X-CRM114-CacheID: sfid-20200420_181536_810103_58885B14 
+X-CRM114-Status: UNSURE (   9.57  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,172 +105,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Yonghui Yu <yonghui.yu@amlogic.com>, Leonard Crestez <leonard.crestez@nxp.com>,
+ Will Deacon <will@kernel.org>, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Rob Herring <robh@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Anson Huang <Anson.Huang@nxp.com>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
+ Valentin Schneider <valentin.schneider@arm.com>,
+ Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ LKML <linux-kernel@vger.kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Olof Johansson <olof@lixom.net>, Julius Werner <jwerner@chromium.org>,
+ Shawn Guo <shawnguo@kernel.org>, "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds support for the power domains on Meson8/Meson8b/Meson8m2.
-Meson8 doesn't use any reset lines while Meson8b and Meson8m2 use the
-same set of reset lines (which is different from the newer SoCs).
-Add dedicated compatible strings for Meson8, Meson8b and Meson8m2 to
-support these differences.
+Thanks Florian,
 
-Notable differences between Meson8 and G12A are:
-- there is no HHI_VPU_MEM_PD_REG2 on the 32-bit SoCs
-- the Meson8b datasheet describes an "audio DSP memory" power domain
-  which is used for the hardware audio decoder
-- the "amlogic,ao-sysctrl" only includes the power management related
-  registers on the 32-bit SoCs, meaning the for example the
-  AO_RTI_GEN_PWR_SLEEP0 register is at offset (0x2 << 2) rather than
-  (0x3a << 2). As result of this (0x38 << 2) is subtracted from the
-  register offsets, which is the start of the power management related
-  registers.
+> The PSCI binding itself has provision for specifying function IDs for
+> different functions, and this seems to be followed by other subsystems
+> as well like SCMI:
+>
+> https://www.spinics.net/lists/arm-kernel/msg791270.html
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/soc/amlogic/meson-ee-pwrc.c | 72 +++++++++++++++++++++++++++--
- 1 file changed, 69 insertions(+), 3 deletions(-)
+Are you referring to this line in the devicetree linked?
 
-diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-index 3f0261d53ad9..b30868da456a 100644
---- a/drivers/soc/amlogic/meson-ee-pwrc.c
-+++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-@@ -14,6 +14,7 @@
- #include <linux/reset-controller.h>
- #include <linux/reset.h>
- #include <linux/clk.h>
-+#include <dt-bindings/power/meson8-power.h>
- #include <dt-bindings/power/meson-g12a-power.h>
- #include <dt-bindings/power/meson-sm1-power.h>
- 
-@@ -22,6 +23,12 @@
- #define AO_RTI_GEN_PWR_SLEEP0		(0x3a << 2)
- #define AO_RTI_GEN_PWR_ISO0		(0x3b << 2)
- 
-+/*
-+ * Meson8/Meson8b/Meson8m2 only expose the power management registers of
-+ * the AO-bus as syscon. Above register offsets need to subtract this offset.
-+ */
-+#define AO_RTI_GEN_MESON8_PMU_OFFSET	(0x38 << 2)
-+
- /* HHI Offsets */
- 
- #define HHI_MEM_PD_REG0			(0x40 << 2)
-@@ -73,6 +80,13 @@ static struct meson_ee_pwrc_top_domain g12a_pwrc_vpu = {
- 	.iso_mask = BIT(9),
- };
- 
-+static struct meson_ee_pwrc_top_domain meson8_pwrc_vpu = {
-+	.sleep_reg = AO_RTI_GEN_PWR_SLEEP0 - AO_RTI_GEN_MESON8_PMU_OFFSET,
-+	.sleep_mask = BIT(8),
-+	.iso_reg = AO_RTI_GEN_PWR_SLEEP0 - AO_RTI_GEN_MESON8_PMU_OFFSET,
-+	.iso_mask = BIT(9),
-+};
-+
- #define SM1_EE_PD(__bit)					\
- 	{							\
- 		.sleep_reg = AO_RTI_GEN_PWR_SLEEP0, 		\
-@@ -124,10 +138,20 @@ static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_vpu[] = {
- 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
- };
- 
--static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_eth[] = {
-+static struct meson_ee_pwrc_mem_domain meson8_pwrc_mem_eth[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(3, 2) },
- };
- 
-+static struct meson_ee_pwrc_mem_domain meson8_pwrc_audio_dsp_mem[] = {
-+	{ HHI_MEM_PD_REG0, GENMASK(1, 0) },
-+};
-+
-+static struct meson_ee_pwrc_mem_domain meson8_pwrc_mem_vpu[] = {
-+	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
-+	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
-+	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
-+};
-+
- static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_vpu[] = {
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
-@@ -201,7 +225,27 @@ static bool pwrc_ee_get_power(struct meson_ee_pwrc_domain *pwrc_domain);
- static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
- 	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &g12a_pwrc_vpu, g12a_pwrc_mem_vpu,
- 				     pwrc_ee_get_power, 11, 2),
--	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", g12a_pwrc_mem_eth),
-+	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", meson8_pwrc_mem_eth),
-+};
-+
-+static struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
-+	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
-+				       meson8_pwrc_mem_vpu, pwrc_ee_get_power,
-+				       0, 1),
-+	[PWRC_MESON8_ETHERNET_MEM_ID] = MEM_PD("ETHERNET_MEM",
-+						  meson8_pwrc_mem_eth),
-+	[PWRC_MESON8_AUDIO_DSP_MEM_ID] = MEM_PD("AUDIO_DSP_MEM",
-+						meson8_pwrc_audio_dsp_mem),
-+};
-+
-+static struct meson_ee_pwrc_domain_desc meson8b_pwrc_domains[] = {
-+	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
-+				       meson8_pwrc_mem_vpu, pwrc_ee_get_power,
-+				       11, 1),
-+	[PWRC_MESON8_ETHERNET_MEM_ID] = MEM_PD("ETHERNET_MEM",
-+						  meson8_pwrc_mem_eth),
-+	[PWRC_MESON8_AUDIO_DSP_MEM_ID] = MEM_PD("AUDIO_DSP_MEM",
-+						meson8_pwrc_audio_dsp_mem),
- };
- 
- static struct meson_ee_pwrc_domain_desc sm1_pwrc_domains[] = {
-@@ -216,7 +260,7 @@ static struct meson_ee_pwrc_domain_desc sm1_pwrc_domains[] = {
- 	[PWRC_SM1_GE2D_ID] = TOP_PD("GE2D", &sm1_pwrc_ge2d, sm1_pwrc_mem_ge2d,
- 				    pwrc_ee_get_power),
- 	[PWRC_SM1_AUDIO_ID] = MEM_PD("AUDIO", sm1_pwrc_mem_audio),
--	[PWRC_SM1_ETH_ID] = MEM_PD("ETH", g12a_pwrc_mem_eth),
-+	[PWRC_SM1_ETH_ID] = MEM_PD("ETH", meson8_pwrc_mem_eth),
- };
- 
- struct meson_ee_pwrc_domain {
-@@ -470,12 +514,34 @@ static struct meson_ee_pwrc_domain_data meson_ee_g12a_pwrc_data = {
- 	.domains = g12a_pwrc_domains,
- };
- 
-+static struct meson_ee_pwrc_domain_data meson_ee_m8_pwrc_data = {
-+	.count = ARRAY_SIZE(meson8_pwrc_domains),
-+	.domains = meson8_pwrc_domains,
-+};
-+
-+static struct meson_ee_pwrc_domain_data meson_ee_m8b_pwrc_data = {
-+	.count = ARRAY_SIZE(meson8b_pwrc_domains),
-+	.domains = meson8b_pwrc_domains,
-+};
-+
- static struct meson_ee_pwrc_domain_data meson_ee_sm1_pwrc_data = {
- 	.count = ARRAY_SIZE(sm1_pwrc_domains),
- 	.domains = sm1_pwrc_domains,
- };
- 
- static const struct of_device_id meson_ee_pwrc_match_table[] = {
-+	{
-+		.compatible = "amlogic,meson8-pwrc",
-+		.data = &meson_ee_m8_pwrc_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson8b-pwrc",
-+		.data = &meson_ee_m8b_pwrc_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson8m2-pwrc",
-+		.data = &meson_ee_m8b_pwrc_data,
-+	},
- 	{
- 		.compatible = "amlogic,meson-g12a-pwrc",
- 		.data = &meson_ee_g12a_pwrc_data,
--- 
-2.26.1
++- arm,smc-id : SMC id required when using smc or hvc transports
 
+I cannot find any prior definition of this in the devicetree yaml
+format, so I will add that as well.
+Did you have a link for the psci usage that you referenced?
+
+Thanks
+
+Evan
 
 _______________________________________________
 linux-amlogic mailing list
