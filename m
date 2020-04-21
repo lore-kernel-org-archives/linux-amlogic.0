@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EE477C54FC9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F03FC54FCC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD55E206E9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 053FC206D5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mnrvjNE6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="scFSd6kR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD55E206E9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cpt4rg2R";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="joKEWWbe"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 053FC206D5
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qipsX5ho6zVq8K+MmUSXn8jJobI1kh68iO/ozMggNHc=; b=mnrvjNE6X39YZx
-	w5X8JcoJv+Hfud4Uj4K1ABuOpBPNL79Y1NKBt9zg6QkM41DXQ8VAKTAmU1aWHPnOQ1wKcpIQAh7Zi
-	4J7wpQJdess5j3PtcedkYoPNru7/rKh+DBOGr3pzsr6E6fUzZomNXApTvbQCfVZKqD774U7OZyzRL
-	ELsU29cj/t5RzEF0QH6x+md3k2O/XlYx/Yy1Rm0z7STzgjyYk+Y/RccLiqnv5zAmADcVNEsOgHexV
-	eky5S486XzOxr/NwoD7e/WPTC25Xv05OCqggOBaJetEw+9sf8PdWy9HVcwjioq6m7ffukYi2axHaf
-	61SV5LVKO3iea6YuE00w==;
+	List-Owner; bh=5t1l4fKbyzztoYqjO6ul7mxpI/gUhc/Ifn4saWBPl7Q=; b=Cpt4rg2RhUJCYv
+	HW0dqvipI9Crz+0ENS8chWreTdt9imGT++5ZO+8timWTe9ubBsOrY+J7mMLxqe4tzzb7kDgCe29Fw
+	ypdxiwq9W8e3qRiYRxqWZtev/h5ghdNCfowehvVax7VEJoMmORhV6EMtjN8emnqlRXV+AP3lZnrGu
+	AM9nspsG4hIjW3I4ao20URoNqWH0+M1CrwqJyGdU1L8VJsh9Lwi1Dt1vRReQRXX1zCNkmUlMxpJ85
+	10jZxk5aUmh7tUbHlWkCh7jJle074pOmg8VGVz0/6iuv8JG4gljIgg+PB+oWt4a78CRFDCxPLqFCO
+	r9odTEt3XDPzjKRi9xEg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jQvyW-00006W-Mk; Tue, 21 Apr 2020 16:42:20 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1jQvya-00009i-Vr; Tue, 21 Apr 2020 16:42:24 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jQvw2-00042O-8F
+ id 1jQvw2-00042e-Jt
  for linux-amlogic@lists.infradead.org; Tue, 21 Apr 2020 16:39:47 +0000
-Received: by mail-wr1-x431.google.com with SMTP id k13so16000729wrw.7
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2020 09:39:45 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id u16so4451421wmc.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2020 09:39:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=xKmLK36D5ePOofNh2z9LJJY0hW0yXIObsbFpgPZ4stA=;
- b=scFSd6kR22NbefgQCOOBhngvbiZ0c31M3dTEIx5F3Sk7pmhEHNgXb0e4EY/+qdEVZb
- LSd4lsTRzs61FMxbJXUeLO8lrgMcTLBhS4S3shrg4R3iX8mK2WsW8kWw4CAjaVV0pu+g
- JBP9z2wAGV1MAp3XFBoFkqadch7J5IaEGeMRp3yKO4kSElsCV/RmnWrlFYvZS5YYCRzZ
- RMYFL1qkQfaz0kR+F1qVI7G2Ehxh02OSL1puncdK6tYCctggrG5oQXU32trYEwrFmOd+
- 95hFn2JTWb2LbGvo/STySUHpMhGmer+53SB2HYv9toAW/M7+wRAJuSelYriub74Iw/G7
- m2ug==
+ bh=4FeSfq0SbFRvsjsae2dqUFLAosEvVfnKGKDeV866Vd0=;
+ b=joKEWWbecQFTGp49IdUG7AVVPBsl5IGLoYWVU3epHWQrjH3uwn4E5xuirg0zYfDd9p
+ qhFW5/Gj51pBAGFHoX3zaXQ1SPx4XoDq7KJ8lF7YgyEvBSdKZlBlA7k+C1hQeR4ICifq
+ 2Zu1rRRr0QRl6aC6fY1pY96/hHL5UP6yHh5ExYcO5FcFQvTAxXVu72uqi+ixLpIyrFyR
+ nXh+8HOi8q4xq5KOQLTJe4jOWSaDk/HJ9omjJ9W9UayDpAf2S2mDoieQTxys5nhCJUyS
+ 64KAeZm5A7g26tYosbyYgEnIVNNegXO+2wtt91H1YSYKY5nD0CDQkV+OsgTnce29XvNc
+ nRow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=xKmLK36D5ePOofNh2z9LJJY0hW0yXIObsbFpgPZ4stA=;
- b=WKwgYl81XDupxO8R/3qfgQwJOQBa+TLxOLaCDXVuzwL+SifyCYWD1JohTem4Y3kFhe
- 1pDt6/3eDTFPjHPrKUYQrVeys6vXF1J8+SQYtVxMIrJO7IUdZSh1Q0ZKqvtCKHAouBKR
- OvVs9BQjCLr5yzKSovJd910OM2DppPOVS1/hk130n5CrBtwoHdL2VrbsPKMr6slD8dRr
- kOb1cSS3kS8tnPgmifiB552VROW3tSt7yapx5T62kfYOgxfJrHmejJ22IYBicVw6jsI9
- Gd2td7SSgbZujHrHwOLtqr4XesCGzcpXLgOSCnrrbfhJ/JoqT4ufj7hlEbrbhONjYv/4
- FXJA==
-X-Gm-Message-State: AGi0PuZc8nmpcuZQVP0TskmDS9qqZyJI73M8WPi1GViDBHJUQeIaMUki
- Fv3XRDL8GDUA52dz5wOzX9ErGg==
-X-Google-Smtp-Source: APiQypKHfmUFprFdhBnn15JljJ7ABZ+0AZ4k8oC4dbcrvuMDjJGGxwmN08jYLL77CoC8E5twQzp7fQ==
-X-Received: by 2002:adf:84c1:: with SMTP id 59mr25438014wrg.350.1587487184369; 
- Tue, 21 Apr 2020 09:39:44 -0700 (PDT)
+ bh=4FeSfq0SbFRvsjsae2dqUFLAosEvVfnKGKDeV866Vd0=;
+ b=hkEArVNonll5GMmYOfTMC0RbLXmppd0wRztEnRWfJVPv107nCrk+c/VMdgu0DWciLs
+ D5GIs6e2NYXZZi3FU0vVtLFeTNBr3c2ygvhWv+j6L0bRnURiGsWrzW7B28gUKNEoCYaU
+ JDe0+652WuUBPg9w0O12PPLow7rlmXsCeJDHAeacHeE4Dy4E8yq0ES+K1BLUW/JC5m4j
+ ft1bf0277d4ubm2GtCSLOsRB93bsf69SRBidGYtrQwN9glPkooQ51Zn5qccTQFcnNKWx
+ ie6+6k0aWmb5JJc3BP3zauZQcogPeh6AYMR+TxD7sSQ6EviKF7ideDL3d9ZJGHlt4107
+ NO1A==
+X-Gm-Message-State: AGi0PuZBTOYbPxiPwOoO6J2BfcUb/Y97QZ70fCjqHyA8jCaYqiCGl3lV
+ LZxjMIWlLEgxcUhlOcsHNyDDPQ==
+X-Google-Smtp-Source: APiQypKXTtJbQhO+15cTo6RFP4JjXspUh3zBUvgNI+9LCngm2igxTtUgqbu8jjjG5I6HtgtzrMeMfQ==
+X-Received: by 2002:a7b:ce0b:: with SMTP id m11mr5871123wmc.67.1587487185355; 
+ Tue, 21 Apr 2020 09:39:45 -0700 (PDT)
 Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net.
  [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id 33sm4578513wrp.5.2020.04.21.09.39.43
+ by smtp.googlemail.com with ESMTPSA id 33sm4578513wrp.5.2020.04.21.09.39.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Apr 2020 09:39:43 -0700 (PDT)
+ Tue, 21 Apr 2020 09:39:44 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 4/6] arm64: dts: meson: libretech-cc: add initial audio
+Subject: [PATCH 5/6] arm64: dts: meson: libretech-ac: add initial audio
  playback support
-Date: Tue, 21 Apr 2020 18:39:33 +0200
-Message-Id: <20200421163935.775935-5-jbrunet@baylibre.com>
+Date: Tue, 21 Apr 2020 18:39:34 +0200
+Message-Id: <20200421163935.775935-6-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.25.2
 In-Reply-To: <20200421163935.775935-1-jbrunet@baylibre.com>
 References: <20200421163935.775935-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200421_093946_291959_76241A0B 
-X-CRM114-Status: UNSURE (   8.25  )
+X-CRM114-CacheID: sfid-20200421_093946_650898_0AC1001D 
+X-CRM114-Status: UNSURE (   8.14  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -110,13 +110,13 @@ Add initial audio support limited to HDMI i2s.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../amlogic/meson-gxl-s905x-libretech-cc.dts  | 40 +++++++++++++++++++
+ .../amlogic/meson-gxl-s805x-libretech-ac.dts  | 40 +++++++++++++++++++
  1 file changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index e8348b2728db..4c9dded836e2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
+index 4d5949496596..3f35331c1652 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
 @@ -8,6 +8,7 @@
  /dts-v1/;
  
@@ -125,14 +125,14 @@ index e8348b2728db..4c9dded836e2 100644
  
  #include "meson-gxl-s905x.dtsi"
  
-@@ -124,6 +125,45 @@ vddio_boot: regulator-vddio_boot {
- 		regulator-max-microvolt = <1800000>;
+@@ -105,6 +106,45 @@ vddio_boot: regulator-vddio_boot {
  		vin-supply = <&vcc_3v3>;
+ 		regulator-always-on;
  	};
 +
 +	sound {
 +		compatible = "amlogic,gx-sound-card";
-+		model = "GXL-LIBRETECH-S905X-CC";
++		model = "GXL-LIBRETECH-S805X-AC";
 +		assigned-clocks = <&clkc CLKID_MPLL0>,
 +				  <&clkc CLKID_MPLL1>,
 +				  <&clkc CLKID_MPLL2>;
