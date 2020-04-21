@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E78BC54FC9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE870C54FCC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8FEAC206D5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A07D4206D5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R+ND997K";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qVwuQ94E"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8FEAC206D5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CrUkFO3k";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="syXioSJX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A07D4206D5
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=W3zKMnnhIlBKk5P9d2j6+njU3DAukU4mkDlCCKy+E/w=; b=R+ND997KYAUAl2
-	xZ+7+74TuaP5GoRp3z5/Xfki5qKnt4qZtsaJ3WjD0fjF7Of/V+xvCxYfRiq0rL1QBAng5ecvCcwQ5
-	kDFPwsPlYKLMapKaXZTqTcXon9XgZMuCFrREFiagExQ2El6YGYf3ssmbG2EihtvrTVjOne85wNJaZ
-	tX/6nAfdIExJHh2gpsuO0wnEORbQckPP5szcCZB0Cl2F8+Fm0DuWhEUMy8rwJFQSmyNOlEmO/g4Kb
-	Xnf5rfsqCRVehym0Rc8yXk2gedjRG+8sKCs9q7bH7sdZ45JvcdjkMSUYIQf/JwCpERTGXaq76z5pi
-	NU7TvfZXXR70culixM1Q==;
+	List-Owner; bh=G0ZqZY8KlBzWb5/dVeuFWDeKrY0veCA3f/1+veeGvNY=; b=CrUkFO3kxCek7J
+	pq1Bw5Fl54Z5Yoh+whORT4F8SdtAJUxrtIkOxZX8hcparD+sUUiFrMZJ2RJ3bsLqrfz3cStTolVv/
+	DkF21R4zPdFcPmy7lI6pGN1oaTI/c4Gf8zj6EVas4TQwx25KFJHb+fpX11o+lK8BqMmg2001lY0YT
+	x62I8Wd1fyMzHJUuDgalaRzeEUafa1TLiipB1t1QB84h1vshvjZZbswaf5zZZ69egMEYqPgq61K52
+	I9yIl8s8X8BO/q01YzJCenXdVFeSLCDIyHUEtRTu8vFL6yPJjZQj0vjENtzK3CNuX4j2SMAfOrYhx
+	U0hGAxHNj5OcW/C87Riw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jQvyN-0008PX-8F; Tue, 21 Apr 2020 16:42:11 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1jQvyQ-0008Se-R0; Tue, 21 Apr 2020 16:42:14 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jQvvz-00040z-F6
- for linux-amlogic@lists.infradead.org; Tue, 21 Apr 2020 16:39:44 +0000
-Received: by mail-wm1-x343.google.com with SMTP id u127so4482134wmg.1
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2020 09:39:43 -0700 (PDT)
+ id 1jQvw0-00041j-Mc
+ for linux-amlogic@lists.infradead.org; Tue, 21 Apr 2020 16:39:45 +0000
+Received: by mail-wr1-x443.google.com with SMTP id b11so17173819wrs.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2020 09:39:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=NSq+1dY+s2wqxJXpzBejZpUD2cmQ/ZnOcfRfM3+zRhM=;
- b=qVwuQ94EVKJNM5c4/L7Lq0dWLPAS3S5he/E8AN2JESJwREN7swYVQFZo6N0+H0DpIY
- 6lk/Fuazohmex7z6sh1Vb623QDDHdcY3AldEo2PhoJVnAIV3s9oAe8sm4XwjPMWFWJLz
- m3jDyFijpDtAa9EM1UIhMXAWeE3eQecde6TusuSY8fqzYO+7zVxoELV0Zzi74fAhvsKf
- LAnUf0UHW7qt70FpcyRQGFeyQ+JJYFo4dQ5lk0io+Suyrf5KC9YRCokQ3WZiL27Qdsv+
- vSS17j3siMe/SIXtByoT6Vjq7CSUbXnMVyVoQ01PHuwgwMYZIJppaogSDZ5MBd+VyJjC
- iwUQ==
+ bh=Jpek3q2loqJyecaKq8eFZOLHe2Q7PPqEkKIKbdnjsuc=;
+ b=syXioSJXMr4c9pygdNpcUDoH20cDfYzVNEWQcBHBbPsiFIpKXIkAlDIGG3enBDdfn+
+ 7VrL6RPKhLMMyFHRQv54Sxk2p/AcaijAKWvoKvOKVgBSZ0vdtGwXGEDVYqC1FRsq/9rv
+ CpyV36l5a3YMzK2X9kUOOaD9BE0WXjLs7hkNax84I6TrJ8NcTGv1ed+YnZ2d7HB20Tgh
+ Zb+hsZmN+ufYGqAbV81sVyN67XRjd77C8czj3E7Cn0LftQDT+XXE4xYaAdl5KEnzYdTA
+ txRuWeEhMlBrcE3NjgccoMn9JVojH63mwB7j/aT/DGdMclxEP2WZBkZNZjd6gOSiqUCA
+ 5VdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=NSq+1dY+s2wqxJXpzBejZpUD2cmQ/ZnOcfRfM3+zRhM=;
- b=D4GwCJAR1WjowzV00CqNToGUUFhn4Yg7pVVSTrCCNOPFBvl165/pg9JHCr6TLVES9I
- a6+tutHsseP829fkJ63fzUhuXNIUq+QLPV3Vgn4n/vuDgy0YN9H1XBhdKDrTjoUlctGc
- /WkBpmnjogM5pCiH/1G4SA1OzOGFI9fdgT6Xt6KytxXKM82cOAcm5/t0gKWvowBs2uRp
- pnKVT6Kx0DBmilbvKRiFD1070PJdMsFyI87lONpcNa6vCoMdDKMFP/cCcNS6t9Ea+n+I
- 0KBbTuBUHh2gZIHxG5l6WJEwJZxDrnWJ9bbtxIUz5bu2VFSqQF7mRzev8lWOeWVcwZvk
- gprw==
-X-Gm-Message-State: AGi0PubSudhNXvyIG7D0RQXNP3hTNo49yAGxmO4ZyARWys3LCxxVVfMO
- aao7rg22b4kyW1Ye01qJWTNx+w==
-X-Google-Smtp-Source: APiQypKp5LX/dlC8rFMls5G6cEKKafXN01MeK8ZE1Tn9jhSLH4l0aCCuLRtXEmonmT6Y6Yh8sa7fUQ==
-X-Received: by 2002:a05:600c:225a:: with SMTP id
- a26mr5756984wmm.104.1587487182212; 
- Tue, 21 Apr 2020 09:39:42 -0700 (PDT)
+ bh=Jpek3q2loqJyecaKq8eFZOLHe2Q7PPqEkKIKbdnjsuc=;
+ b=Zq3Pryjtk0nxBEwmNFxozAum91V+BdhHXWoawqmHRePYmX/lcj++ajz7bQGpQ6c3tE
+ wUWXFL1RJmgVrimxPWOyMw1lD4fT1yz+zSGxpPwgDf97mXJH0ZAo7Eb0kYqP/Z0bE2pm
+ olikj0h5Hs/pWRO3w1X6iAHdv2LlK86KXufskInwt9ScqkgeVSYqa19+MZ8d8I0P7Ary
+ Tgv6kOmrbAzsmTkHdaRxug7yyBGSlPgtGkdopmwVodyymLGxr9b8MJ6Xe3M9G/tnQ8cQ
+ pkIgdu0EPhrkt+kE9TeUrFxAD2COBjyZwQYSj7GQkrgrRBFn5JEo7ZhPjca1IS4UTS0A
+ zOFw==
+X-Gm-Message-State: AGi0PuaEu3en4s//rO8h+i5Ba5FLEswBFYKUkvZeQQspypdh02fhlZ3O
+ VIXLLjzr1D5jOBCmPFwlswg+HQ==
+X-Google-Smtp-Source: APiQypL2NjtboQWhtG5PhzxZLO8YuWESCro1o+9YaZTPQGbfw0/sKj8ABVJHP5tMcwb+y/vdXnhDWA==
+X-Received: by 2002:a5d:68ca:: with SMTP id p10mr25089530wrw.154.1587487183317; 
+ Tue, 21 Apr 2020 09:39:43 -0700 (PDT)
 Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net.
  [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id 33sm4578513wrp.5.2020.04.21.09.39.41
+ by smtp.googlemail.com with ESMTPSA id 33sm4578513wrp.5.2020.04.21.09.39.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Apr 2020 09:39:41 -0700 (PDT)
+ Tue, 21 Apr 2020 09:39:42 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 2/6] arm64: dts: meson-gx: add aiu support
-Date: Tue, 21 Apr 2020 18:39:31 +0200
-Message-Id: <20200421163935.775935-3-jbrunet@baylibre.com>
+Subject: [PATCH 3/6] arm64: dts: meson: p230-q200: add initial audio playback
+ support
+Date: Tue, 21 Apr 2020 18:39:32 +0200
+Message-Id: <20200421163935.775935-4-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.25.2
 In-Reply-To: <20200421163935.775935-1-jbrunet@baylibre.com>
 References: <20200421163935.775935-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200421_093943_508789_BE09BE1F 
-X-CRM114-Status: UNSURE (   9.50  )
+X-CRM114-CacheID: sfid-20200421_093944_736556_72B31138 
+X-CRM114-Status: UNSURE (   9.59  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -106,116 +106,101 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the AIU audio device to the Amlogic GX SoC family DT.
-ATM, this device provides the i2s and spdif output stages and also
-the hdmi and internal codec glues.
+Add basic audio support on the p230/q200 reference design.
+This initial support is limited to HDMI i2s and SPDIF (LPCM).
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 13 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 23 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 23 +++++++++++++++++++++
- 3 files changed, 59 insertions(+)
+ .../boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 03f79fe045b7..a8dc8f810253 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -278,6 +278,17 @@ reset: reset-controller@4404 {
- 				#reset-cells = <1>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+index 12d5e333e5f2..99c1f7f9d37e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+@@ -8,12 +8,21 @@
+  * the pin-compatible S912 (GXM) or S905D (GXL) SoCs.
+  */
+ 
++#include <dt-bindings/sound/meson-aiu.h>
++
+ / {
+ 	aliases {
+ 		serial0 = &uart_AO;
+ 		ethernet0 = &ethmac;
+ 	};
+ 
++	spdif_dit: audio-codec-0 {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "DIT";
++	};
++
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+@@ -102,6 +111,60 @@ hdmi_connector_in: endpoint {
  			};
- 
-+			aiu: audio-controller@5400 {
-+				compatible = "amlogic,aiu";
-+				#sound-dai-cells = <2>;
-+				sound-name-prefix = "AIU";
-+				reg = <0x0 0x5400 0x0 0x2ac>;
-+				interrupts = <GIC_SPI 48 IRQ_TYPE_EDGE_RISING>,
-+					     <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
-+				interrupt-names = "i2s", "spdif";
-+				status = "disabled";
+ 		};
+ 	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "GX-P230-Q200";
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
 +			};
++		};
 +
- 			uart_A: serial@84c0 {
- 				compatible = "amlogic,meson-gx-uart";
- 				reg = <0x0 0x84c0 0x0 0x18>;
-@@ -626,6 +637,8 @@ hdmi_tx: hdmi-tx@c883a000 {
- 			interrupts = <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "HDMITX";
- 			status = "disabled";
- 
- 			/* VPU VENC Input */
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 0cb40326b0d3..234490d3ee68 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -60,6 +60,29 @@ usb1: usb@c9100000 {
- 	};
- };
- 
-+&aiu {
-+	compatible = "amlogic,aiu-gxbb", "amlogic,aiu";
-+	clocks = <&clkc CLKID_AIU_GLUE>,
-+		 <&clkc CLKID_I2S_OUT>,
-+		 <&clkc CLKID_AOCLK_GATE>,
-+		 <&clkc CLKID_CTS_AMCLK>,
-+		 <&clkc CLKID_MIXER_IFACE>,
-+		 <&clkc CLKID_IEC958>,
-+		 <&clkc CLKID_IEC958_GATE>,
-+		 <&clkc CLKID_CTS_MCLK_I958>,
-+		 <&clkc CLKID_CTS_I958>;
-+	clock-names = "pclk",
-+		      "i2s_pclk",
-+		      "i2s_aoclk",
-+		      "i2s_mclk",
-+		      "i2s_mixer",
-+		      "spdif_pclk",
-+		      "spdif_aoclk",
-+		      "spdif_mclk",
-+		      "spdif_mclk_sel";
-+	resets = <&reset RESET_AIU>;
++		dai-link-3 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
++
++			codec-0 {
++				sound-dai = <&spdif_dit>;
++			};
++		};
++
++		dai-link-4 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
 +};
 +
- &aobus {
- 	pinctrl_aobus: pinctrl@14 {
- 		compatible = "amlogic,meson-gxbb-aobus-pinctrl";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 259d86399390..d9f00c5a9a5c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -49,6 +49,29 @@ crypto: crypto@c883e000 {
- 	};
++&aiu {
++	status = "okay";
++	pinctrl-0 = <&spdif_out_h_pins>;
++	pinctrl-names = "default";
++
  };
  
-+&aiu {
-+	compatible = "amlogic,aiu-gxl", "amlogic,aiu";
-+	clocks = <&clkc CLKID_AIU_GLUE>,
-+		 <&clkc CLKID_I2S_OUT>,
-+		 <&clkc CLKID_AOCLK_GATE>,
-+		 <&clkc CLKID_CTS_AMCLK>,
-+		 <&clkc CLKID_MIXER_IFACE>,
-+		 <&clkc CLKID_IEC958>,
-+		 <&clkc CLKID_IEC958_GATE>,
-+		 <&clkc CLKID_CTS_MCLK_I958>,
-+		 <&clkc CLKID_CTS_I958>;
-+	clock-names = "pclk",
-+		      "i2s_pclk",
-+		      "i2s_aoclk",
-+		      "i2s_mclk",
-+		      "i2s_mixer",
-+		      "spdif_pclk",
-+		      "spdif_aoclk",
-+		      "spdif_mclk",
-+		      "spdif_mclk_sel";
-+	resets = <&reset RESET_AIU>;
-+};
-+
- &apb {
- 	usb2_phy0: phy@78000 {
- 		compatible = "amlogic,meson-gxl-usb2-phy";
+ &cec_AO {
 -- 
 2.25.2
 
