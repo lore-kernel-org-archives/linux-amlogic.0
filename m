@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE870C54FCC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE477C54FC9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A07D4206D5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BD55E206E9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:42:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CrUkFO3k";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="syXioSJX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A07D4206D5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mnrvjNE6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="scFSd6kR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD55E206E9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=G0ZqZY8KlBzWb5/dVeuFWDeKrY0veCA3f/1+veeGvNY=; b=CrUkFO3kxCek7J
-	pq1Bw5Fl54Z5Yoh+whORT4F8SdtAJUxrtIkOxZX8hcparD+sUUiFrMZJ2RJ3bsLqrfz3cStTolVv/
-	DkF21R4zPdFcPmy7lI6pGN1oaTI/c4Gf8zj6EVas4TQwx25KFJHb+fpX11o+lK8BqMmg2001lY0YT
-	x62I8Wd1fyMzHJUuDgalaRzeEUafa1TLiipB1t1QB84h1vshvjZZbswaf5zZZ69egMEYqPgq61K52
-	I9yIl8s8X8BO/q01YzJCenXdVFeSLCDIyHUEtRTu8vFL6yPJjZQj0vjENtzK3CNuX4j2SMAfOrYhx
-	U0hGAxHNj5OcW/C87Riw==;
+	List-Owner; bh=qipsX5ho6zVq8K+MmUSXn8jJobI1kh68iO/ozMggNHc=; b=mnrvjNE6X39YZx
+	w5X8JcoJv+Hfud4Uj4K1ABuOpBPNL79Y1NKBt9zg6QkM41DXQ8VAKTAmU1aWHPnOQ1wKcpIQAh7Zi
+	4J7wpQJdess5j3PtcedkYoPNru7/rKh+DBOGr3pzsr6E6fUzZomNXApTvbQCfVZKqD774U7OZyzRL
+	ELsU29cj/t5RzEF0QH6x+md3k2O/XlYx/Yy1Rm0z7STzgjyYk+Y/RccLiqnv5zAmADcVNEsOgHexV
+	eky5S486XzOxr/NwoD7e/WPTC25Xv05OCqggOBaJetEw+9sf8PdWy9HVcwjioq6m7ffukYi2axHaf
+	61SV5LVKO3iea6YuE00w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jQvyQ-0008Se-R0; Tue, 21 Apr 2020 16:42:14 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jQvyW-00006W-Mk; Tue, 21 Apr 2020 16:42:20 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jQvw0-00041j-Mc
- for linux-amlogic@lists.infradead.org; Tue, 21 Apr 2020 16:39:45 +0000
-Received: by mail-wr1-x443.google.com with SMTP id b11so17173819wrs.6
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2020 09:39:44 -0700 (PDT)
+ id 1jQvw2-00042O-8F
+ for linux-amlogic@lists.infradead.org; Tue, 21 Apr 2020 16:39:47 +0000
+Received: by mail-wr1-x431.google.com with SMTP id k13so16000729wrw.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2020 09:39:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Jpek3q2loqJyecaKq8eFZOLHe2Q7PPqEkKIKbdnjsuc=;
- b=syXioSJXMr4c9pygdNpcUDoH20cDfYzVNEWQcBHBbPsiFIpKXIkAlDIGG3enBDdfn+
- 7VrL6RPKhLMMyFHRQv54Sxk2p/AcaijAKWvoKvOKVgBSZ0vdtGwXGEDVYqC1FRsq/9rv
- CpyV36l5a3YMzK2X9kUOOaD9BE0WXjLs7hkNax84I6TrJ8NcTGv1ed+YnZ2d7HB20Tgh
- Zb+hsZmN+ufYGqAbV81sVyN67XRjd77C8czj3E7Cn0LftQDT+XXE4xYaAdl5KEnzYdTA
- txRuWeEhMlBrcE3NjgccoMn9JVojH63mwB7j/aT/DGdMclxEP2WZBkZNZjd6gOSiqUCA
- 5VdQ==
+ bh=xKmLK36D5ePOofNh2z9LJJY0hW0yXIObsbFpgPZ4stA=;
+ b=scFSd6kR22NbefgQCOOBhngvbiZ0c31M3dTEIx5F3Sk7pmhEHNgXb0e4EY/+qdEVZb
+ LSd4lsTRzs61FMxbJXUeLO8lrgMcTLBhS4S3shrg4R3iX8mK2WsW8kWw4CAjaVV0pu+g
+ JBP9z2wAGV1MAp3XFBoFkqadch7J5IaEGeMRp3yKO4kSElsCV/RmnWrlFYvZS5YYCRzZ
+ RMYFL1qkQfaz0kR+F1qVI7G2Ehxh02OSL1puncdK6tYCctggrG5oQXU32trYEwrFmOd+
+ 95hFn2JTWb2LbGvo/STySUHpMhGmer+53SB2HYv9toAW/M7+wRAJuSelYriub74Iw/G7
+ m2ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Jpek3q2loqJyecaKq8eFZOLHe2Q7PPqEkKIKbdnjsuc=;
- b=Zq3Pryjtk0nxBEwmNFxozAum91V+BdhHXWoawqmHRePYmX/lcj++ajz7bQGpQ6c3tE
- wUWXFL1RJmgVrimxPWOyMw1lD4fT1yz+zSGxpPwgDf97mXJH0ZAo7Eb0kYqP/Z0bE2pm
- olikj0h5Hs/pWRO3w1X6iAHdv2LlK86KXufskInwt9ScqkgeVSYqa19+MZ8d8I0P7Ary
- Tgv6kOmrbAzsmTkHdaRxug7yyBGSlPgtGkdopmwVodyymLGxr9b8MJ6Xe3M9G/tnQ8cQ
- pkIgdu0EPhrkt+kE9TeUrFxAD2COBjyZwQYSj7GQkrgrRBFn5JEo7ZhPjca1IS4UTS0A
- zOFw==
-X-Gm-Message-State: AGi0PuaEu3en4s//rO8h+i5Ba5FLEswBFYKUkvZeQQspypdh02fhlZ3O
- VIXLLjzr1D5jOBCmPFwlswg+HQ==
-X-Google-Smtp-Source: APiQypL2NjtboQWhtG5PhzxZLO8YuWESCro1o+9YaZTPQGbfw0/sKj8ABVJHP5tMcwb+y/vdXnhDWA==
-X-Received: by 2002:a5d:68ca:: with SMTP id p10mr25089530wrw.154.1587487183317; 
- Tue, 21 Apr 2020 09:39:43 -0700 (PDT)
+ bh=xKmLK36D5ePOofNh2z9LJJY0hW0yXIObsbFpgPZ4stA=;
+ b=WKwgYl81XDupxO8R/3qfgQwJOQBa+TLxOLaCDXVuzwL+SifyCYWD1JohTem4Y3kFhe
+ 1pDt6/3eDTFPjHPrKUYQrVeys6vXF1J8+SQYtVxMIrJO7IUdZSh1Q0ZKqvtCKHAouBKR
+ OvVs9BQjCLr5yzKSovJd910OM2DppPOVS1/hk130n5CrBtwoHdL2VrbsPKMr6slD8dRr
+ kOb1cSS3kS8tnPgmifiB552VROW3tSt7yapx5T62kfYOgxfJrHmejJ22IYBicVw6jsI9
+ Gd2td7SSgbZujHrHwOLtqr4XesCGzcpXLgOSCnrrbfhJ/JoqT4ufj7hlEbrbhONjYv/4
+ FXJA==
+X-Gm-Message-State: AGi0PuZc8nmpcuZQVP0TskmDS9qqZyJI73M8WPi1GViDBHJUQeIaMUki
+ Fv3XRDL8GDUA52dz5wOzX9ErGg==
+X-Google-Smtp-Source: APiQypKHfmUFprFdhBnn15JljJ7ABZ+0AZ4k8oC4dbcrvuMDjJGGxwmN08jYLL77CoC8E5twQzp7fQ==
+X-Received: by 2002:adf:84c1:: with SMTP id 59mr25438014wrg.350.1587487184369; 
+ Tue, 21 Apr 2020 09:39:44 -0700 (PDT)
 Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net.
  [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id 33sm4578513wrp.5.2020.04.21.09.39.42
+ by smtp.googlemail.com with ESMTPSA id 33sm4578513wrp.5.2020.04.21.09.39.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Apr 2020 09:39:42 -0700 (PDT)
+ Tue, 21 Apr 2020 09:39:43 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 3/6] arm64: dts: meson: p230-q200: add initial audio playback
- support
-Date: Tue, 21 Apr 2020 18:39:32 +0200
-Message-Id: <20200421163935.775935-4-jbrunet@baylibre.com>
+Subject: [PATCH 4/6] arm64: dts: meson: libretech-cc: add initial audio
+ playback support
+Date: Tue, 21 Apr 2020 18:39:33 +0200
+Message-Id: <20200421163935.775935-5-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.25.2
 In-Reply-To: <20200421163935.775935-1-jbrunet@baylibre.com>
 References: <20200421163935.775935-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200421_093944_736556_72B31138 
-X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-CacheID: sfid-20200421_093946_291959_76241A0B 
+X-CRM114-Status: UNSURE (   8.25  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -106,48 +106,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add basic audio support on the p230/q200 reference design.
-This initial support is limited to HDMI i2s and SPDIF (LPCM).
+Add initial audio support limited to HDMI i2s.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
+ .../amlogic/meson-gxl-s905x-libretech-cc.dts  | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-index 12d5e333e5f2..99c1f7f9d37e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-@@ -8,12 +8,21 @@
-  * the pin-compatible S912 (GXM) or S905D (GXL) SoCs.
-  */
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+index e8348b2728db..4c9dded836e2 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+@@ -8,6 +8,7 @@
+ /dts-v1/;
  
+ #include <dt-bindings/input/input.h>
 +#include <dt-bindings/sound/meson-aiu.h>
-+
- / {
- 	aliases {
- 		serial0 = &uart_AO;
- 		ethernet0 = &ethmac;
- 	};
  
-+	spdif_dit: audio-codec-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -102,6 +111,60 @@ hdmi_connector_in: endpoint {
- 			};
- 		};
+ #include "meson-gxl-s905x.dtsi"
+ 
+@@ -124,6 +125,45 @@ vddio_boot: regulator-vddio_boot {
+ 		regulator-max-microvolt = <1800000>;
+ 		vin-supply = <&vcc_3v3>;
  	};
 +
 +	sound {
 +		compatible = "amlogic,gx-sound-card";
-+		model = "GX-P230-Q200";
++		model = "GXL-LIBRETECH-S905X-CC";
 +		assigned-clocks = <&clkc CLKID_MPLL0>,
 +				  <&clkc CLKID_MPLL1>,
 +				  <&clkc CLKID_MPLL2>;
@@ -162,10 +147,6 @@ index 12d5e333e5f2..99c1f7f9d37e 100644
 +		};
 +
 +		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
-+		};
-+
-+		dai-link-2 {
 +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
 +			dai-format = "i2s";
 +			mclk-fs = <256>;
@@ -175,15 +156,7 @@ index 12d5e333e5f2..99c1f7f9d37e 100644
 +			};
 +		};
 +
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
-+
-+		dai-link-4 {
++		dai-link-2 {
 +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
 +
 +			codec-0 {
@@ -195,9 +168,6 @@ index 12d5e333e5f2..99c1f7f9d37e 100644
 +
 +&aiu {
 +	status = "okay";
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
-+
  };
  
  &cec_AO {
