@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 02273C54FC9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:20:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5723DC54FC9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:20:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BE682206E9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:20:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 25040206E9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2020 16:20:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ibH8fK9Z";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NGgecMLb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BE682206E9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Eae/AEwm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TJcxWuWz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25040206E9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IG39BUnF5J2U1Gxg2JcP9EZz+kTkoO+ja8qM4mouaTk=; b=ibH8fK9ZrJNhIW
-	XAVt21CwXBS0FhIu8PM8OPzwM1ZmSU6yVnphQLANU9O1cTaAjwSIjIC5nWPWT2VGbsRifMTtT4KdY
-	1SvMNp9yRmhzTjriH/kPoqO8fyIz6rQOuWHnBV0pm0MJvCUPObYG7eGZXNv2paAdeNEDselL4Akba
-	bJ8TUibclKh+N3EG3AZYrT1Mq03niMfqTwU/I5IInk/AKA0SwTrTosHl7PqE7pZv1Fz2uCztFe06N
-	Q/kwiRrBb2V00g0HYPQwLZOiDNKzL92HtDOH9J99Lh0V25m3UCHHS5mrV8OUsziJUEtJHYHFv2rs0
-	uSRAcy7BKZFhbtuaByYA==;
+	List-Owner; bh=hqvVHwHPr7OVx9J6YARg4tU2jnqdj+duio+Tt8OjKG8=; b=Eae/AEwmU/0Hkx
+	SjZwQUt7F3KRH066hND1fm0AcfvPVbBPJ5HaRIe3X9c3yt7fXCeiIVVDhJEOLkULEbJ51+JE9HbcO
+	u1rVqGyNIsZ/HVB1+5DdnJbB104Ha8F2KWFsyDFU1/PNm9majw5LS3JOYvReoiibCkFG7PqQe99U1
+	MW9736gLv1gqGMpJgHgoUydTTaDmcu7jK1rWCTqui2wzrltr75W2c6ZGP9hkz9s7YGTWrS3E4FR91
+	EtZcHWa8X406oLnIptIMRJEliw/MY0EpMTHy0dLwfjW7YXBbc1K7kmbri8XwujRPmO8PBfFKC6rx/
+	Cvl522uc0Neu5XI3P1bw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jQvdG-0007fF-Kg; Tue, 21 Apr 2020 16:20:22 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1jQvdP-0007nW-JP; Tue, 21 Apr 2020 16:20:31 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jQvZB-0001h2-O4
- for linux-amlogic@lists.infradead.org; Tue, 21 Apr 2020 16:16:16 +0000
-Received: by mail-wm1-x343.google.com with SMTP id z6so4387102wml.2
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2020 09:16:09 -0700 (PDT)
+ id 1jQvZE-0001jD-NS
+ for linux-amlogic@lists.infradead.org; Tue, 21 Apr 2020 16:16:18 +0000
+Received: by mail-wr1-x443.google.com with SMTP id i10so17076675wrv.10
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2020 09:16:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=wEt0VLaSvhUT7nyu4RhagnuYQaTu9Oo49aJG5CKXEWA=;
- b=NGgecMLbtC3PDBUY6z/AYFi1locTndBe2dvXfhXuoT58q4xdHw4EWuhWQrT4AEepwJ
- rNDUYpKQnKVSC4ulOjpKkAL3AtXaWs/6ddc6Rqa5zbPUIgifptOHCtw4A2YBVZjn/9/P
- HTESIv5cj56mRjKJOb6zpszwPHwBKL2XzTxGmTkR5CzJheM8NWw4wdLAHa7aDkd9knxh
- OUvzYbI8Ig+gcy67146tEFuosPOTq+KikWJLSiy5fbskn8PzX66zbDwiWqdPIv4vItaJ
- oBvR6tJzVtmZfTMeeBq6MPaf5tmvEnP1O9QTKj1eCsQQ1XQQ5tB79W6VeFS7RmbKauEr
- gHeg==
+ bh=bxjlfwjwrOxt5UTQatxMHEDDG1cEpZr3A7ziLWB5/Ps=;
+ b=TJcxWuWz1iZePtAcZ/E3AYbh3x+CNrtUx8v+FYQOP4C4vDnuaNYFBe62GSKGvLmjbM
+ Woqrs/gyHv5eVrRzPm8uUypT5aAAZAg20wQCY3Fve0YvAmOSpOlhE3akCajen3htbIdd
+ G2oi3Y5BAT5RaFfbPBeAbQSu1rRlHjOhEMOO5iYTDUWEyoG4s9TFWs2YEV58HKQBpqkC
+ vwCJ3FFAqXVQkX29Er0wLd6IufmyQne/UOYpZFYBhswlmjqJHMa8dYNs3eO0nzq0oR6P
+ +3zz/pq8pkMR6cm2GA0c25SjOtEGAOJz9KDoorgX7XKsCGARbp3epRV8jwt0VEEnfFKQ
+ iDZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=wEt0VLaSvhUT7nyu4RhagnuYQaTu9Oo49aJG5CKXEWA=;
- b=Oh7YD3z6UTq1ryjcs0RkH0KHCZHA30b78XJyimoQQ2iEbfLO6uXK3ujI2R3S1iZMbD
- WLdMEdjyAPylrsDCak7C+A3qGKXttXiLoO2TIvXd9GCMaBGdGmFEd7JP55IAasNZBKKM
- nZvancyUZloFElJrcN6nK6OcLpAUDhdPqzOE7KFlCiv12Scik15Gpip6g1Gt9cROMd37
- KwvwpT1yiGOC8Y3gQIWiyrLnumBEIS8c3VWpZQamld2LP9OEBOFLx/IXkoK8hKQ5+Wm2
- HbHUh1ZFgfepSLtGRyxgS13LIlxA7YVuCdWIVguIeF4GhBaYJ+SLqMixfrAtCrRXZrm4
- A/yQ==
-X-Gm-Message-State: AGi0PuY0AP/bTun7jKqexul56mm1KUYFWwVVzVIfswg4uMZQuzHDEKs/
- eDoCMaVUGBy5Ln8wzn+B6CAlBw==
-X-Google-Smtp-Source: APiQypI3cie8pkqJDDqXzSqoQ2mnR5NO+rWE/2lxIKLD/sckQ4zuzNmDLYDnaGtbYCraqJ9NfSJ/uw==
-X-Received: by 2002:a1c:6a0b:: with SMTP id f11mr5608062wmc.123.1587485767562; 
- Tue, 21 Apr 2020 09:16:07 -0700 (PDT)
+ bh=bxjlfwjwrOxt5UTQatxMHEDDG1cEpZr3A7ziLWB5/Ps=;
+ b=JHRFOLQf0QEXDZbpFcIid+ntjWsLpH/5xzlO2id7mOjA5w0v+EQ8yFh/ztqg5RVQCm
+ xpMsY4A1P5jZrZNFc3ut8zfo0b0rFAuzp+prG9ucoKWlxegzQeZjbfSLJgEI51LAeIuy
+ dh5KsfcG7Ri4MXFBlvWbn2LfG4D/T3R9aUhEaBQPZPQXLuSAnUVWG3Px3o/16584QBbi
+ +ntNSn/KlqvbV48zmYUwvvtJhwNoDfhePtwcBsX6s78Z9JLL1THEzyCXrD+vPVr8Paqt
+ 6sJhxjNzP90y/81wzKkOjsLKVCwRTOPhSf1GogzqQ8dIBFhfUPcGeX/JZQ/2v5jn/HeN
+ nWjg==
+X-Gm-Message-State: AGi0PuZMi231iVbFgVBOiWb/x5Dru4hQUjcQ8qpMKhZ6frmdIGLksMZT
+ Ba+b72lK+jvwPH7W6KzZWOewbA==
+X-Google-Smtp-Source: APiQypKSrF90nkPUeJv1B6kw+A1LEftlhBMrqlOM7dX47kD7No68QmGRWBakv5/GctmtsKTElciSog==
+X-Received: by 2002:adf:b310:: with SMTP id j16mr23012380wrd.95.1587485770685; 
+ Tue, 21 Apr 2020 09:16:10 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:39cc:a07:8b48:cc56])
  by smtp.gmail.com with ESMTPSA id
- m8sm4410873wrx.54.2020.04.21.09.16.06
+ m8sm4410873wrx.54.2020.04.21.09.16.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Apr 2020 09:16:06 -0700 (PDT)
+ Tue, 21 Apr 2020 09:16:10 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: daniel@ffwll.ch,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v6 2/6] drm/meson: add Amlogic Video FBC registers
-Date: Tue, 21 Apr 2020 18:15:55 +0200
-Message-Id: <20200421161559.2347-3-narmstrong@baylibre.com>
+Subject: [PATCH v6 4/6] drm/meson: overlay: setup overlay for Amlogic FBC
+ Memory Saving mode
+Date: Tue, 21 Apr 2020 18:15:57 +0200
+Message-Id: <20200421161559.2347-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200421161559.2347-1-narmstrong@baylibre.com>
 References: <20200421161559.2347-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200421_091610_032510_9CA0EC5A 
-X-CRM114-Status: UNSURE (   7.22  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200421_091612_787979_233FEC2E 
+X-CRM114-Status: GOOD (  12.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,59 +106,83 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the registers of the VPU VD1 Amlogic FBC decoder module, and routing
-register.
+Setup the Amlogic FBC decoder for the VD1 video overlay plane to use
+a different superblock size for the Memory Saving mode.
 
 Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_registers.h | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/meson/meson_overlay.c | 25 +++++++++++++++++++++++--
+ 1 file changed, 23 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-index 8ea00546cd4e..08631fdfe4b9 100644
---- a/drivers/gpu/drm/meson/meson_registers.h
-+++ b/drivers/gpu/drm/meson/meson_registers.h
-@@ -144,10 +144,15 @@
- #define		VIU_SW_RESET_OSD1               BIT(0)
- #define VIU_MISC_CTRL0 0x1a06
- #define		VIU_CTRL0_VD1_AFBC_MASK         0x170000
-+#define		VIU_CTRL0_AFBC_TO_VD1		BIT(20)
- #define VIU_MISC_CTRL1 0x1a07
- #define		MALI_AFBC_MISC			GENMASK(15, 8)
- #define D2D3_INTF_LENGTH 0x1a08
- #define D2D3_INTF_CTRL0 0x1a09
-+#define VD1_AFBCD0_MISC_CTRL 0x1a0a
-+#define		VD1_AXI_SEL_AFBC		(1 << 12)
-+#define		AFBC_VD1_SEL			(1 << 10)
-+#define VD2_AFBCD1_MISC_CTRL 0x1a0b
- #define VIU_OSD1_CTRL_STAT 0x1a10
- #define		VIU_OSD1_OSD_BLK_ENABLE         BIT(0)
- #define		VIU_OSD1_OSD_MEM_MODE_LINEAR	BIT(2)
-@@ -365,6 +370,23 @@
- #define VIU_OSD1_OETF_LUT_ADDR_PORT 0x1add
- #define VIU_OSD1_OETF_LUT_DATA_PORT 0x1ade
- #define AFBC_ENABLE 0x1ae0
-+#define AFBC_MODE 0x1ae1
-+#define AFBC_SIZE_IN 0x1ae2
-+#define AFBC_DEC_DEF_COLOR 0x1ae3
-+#define AFBC_CONV_CTRL 0x1ae4
-+#define AFBC_LBUF_DEPTH 0x1ae5
-+#define AFBC_HEAD_BADDR 0x1ae6
-+#define AFBC_BODY_BADDR 0x1ae7
-+#define AFBC_SIZE_OUT 0x1ae8
-+#define AFBC_OUT_YSCOPE 0x1ae9
-+#define AFBC_STAT 0x1aea
-+#define AFBC_VD_CFMT_CTRL 0x1aeb
-+#define AFBC_VD_CFMT_W 0x1aec
-+#define AFBC_MIF_HOR_SCOPE 0x1aed
-+#define AFBC_MIF_VER_SCOPE 0x1aee
-+#define AFBC_PIXEL_HOR_SCOPE 0x1aef
-+#define AFBC_PIXEL_VER_SCOPE 0x1af0
-+#define AFBC_VD_CFMT_H 0x1af1
+diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+index 2713d008cee8..b5c502876428 100644
+--- a/drivers/gpu/drm/meson/meson_overlay.c
++++ b/drivers/gpu/drm/meson/meson_overlay.c
+@@ -487,6 +487,10 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 					  AFBC_HOLD_LINE_NUM(8) |
+ 					  AFBC_BURST_LEN(2);
  
- /* vpp */
- #define VPP_DUMMY_DATA 0x1d00
++		if (fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0,
++						AMLOGIC_FBC_OPTION_MEM_SAVING))
++			priv->viu.vd1_afbc_mode |= AFBC_BLK_MEM_MODE;
++
+ 		priv->viu.vd1_afbc_en = 0x1600 | AFBC_DEC_ENABLE;
+ 
+ 		priv->viu.vd1_afbc_conv_ctrl = AFBC_CONV_LBUF_LEN(256);
+@@ -672,12 +676,17 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 	}
+ 
+ 	if (priv->viu.vd1_afbc) {
++		/* Default mode is 4k per superblock */
++		unsigned long block_size = 4096;
+ 		unsigned long body_size;
+ 
+-		/* Default mode is 4k per superblock */
++		/* 8bit mem saving mode is 3072bytes per superblock */
++		if (priv->viu.vd1_afbc_mode & AFBC_BLK_MEM_MODE)
++			block_size = 3072;
++
+ 		body_size = (ALIGN(priv->viu.vd1_stride0, 64) / 64) *
+ 			    (ALIGN(priv->viu.vd1_height0, 32) / 32) *
+-			    4096;
++			    block_size;
+ 
+ 		priv->viu.vd1_afbc_body_addr = priv->viu.vd1_addr0 >> 4;
+ 
+@@ -735,6 +744,9 @@ static bool meson_overlay_format_mod_supported(struct drm_plane *plane,
+ 		unsigned int layout = modifier &
+ 			DRM_FORMAT_MOD_AMLOGIC_FBC(
+ 				__fourcc_mod_amlogic_layout_mask, 0);
++		unsigned int options =
++			(modifier >> __fourcc_mod_amlogic_options_shift) &
++			__fourcc_mod_amlogic_options_mask;
+ 
+ 		if (format != DRM_FORMAT_YUV420_8BIT &&
+ 		    format != DRM_FORMAT_YUV420_10BIT) {
+@@ -749,6 +761,13 @@ static bool meson_overlay_format_mod_supported(struct drm_plane *plane,
+ 			return false;
+ 		}
+ 
++		if (options &&
++		    options != AMLOGIC_FBC_OPTION_MEM_SAVING) {
++			DRM_DEBUG_KMS("%llx invalid layout %x\n",
++				      modifier, layout);
++			return false;
++		}
++
+ 		return true;
+ 	}
+ 
+@@ -782,6 +801,8 @@ static const uint32_t supported_drm_formats[] = {
+ };
+ 
+ static const uint64_t format_modifiers[] = {
++	DRM_FORMAT_MOD_AMLOGIC_FBC(AMLOGIC_FBC_LAYOUT_BASIC,
++				   AMLOGIC_FBC_OPTION_MEM_SAVING),
+ 	DRM_FORMAT_MOD_AMLOGIC_FBC(AMLOGIC_FBC_LAYOUT_BASIC, 0),
+ 	DRM_FORMAT_MOD_LINEAR,
+ 	DRM_FORMAT_MOD_INVALID,
 -- 
 2.22.0
 
