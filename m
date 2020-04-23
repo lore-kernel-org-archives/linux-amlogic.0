@@ -2,88 +2,87 @@ Return-Path: <SRS0=FRsS=6H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 831DEC55185
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2020 00:39:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D0C3DC55185
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2020 01:34:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 57AF82076C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2020 00:39:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A441A2074F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2020 01:34:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LicwsH6o";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mj30sjvr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 57AF82076C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="J9W3x/Fm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eUVd8k2O"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A441A2074F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Date:
-	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HlFaMhKZvAuOTs8V+4MfOGmmCgGK8Z7lFE94NBd2Qq4=; b=LicwsH6o/5fZkk
-	Moq/43d1jkby9fi2BfdNkFgXYhL4jLVTrVN40ebOjEF78vo+n+TrGTBOpChTbSuxRWIojOVPGdw2r
-	0SeuMdWybsmSXHGQGwa81mZQkJNnRe1IJKj9z44b3nZ2rmwDBair6HtkHJVcChyDNoZdqeN5cKGcK
-	XXgIjKiczyOemj9eUvYAoOBdFvpJjo2KV7BE5MjmuxvXdNYOENLBvkodfLGZPnP+KMCYra12CPVe2
-	JyibS+LIUVkKu2U3Qxbee9vK40hjLsP5IccVVda1EoHj920dxiAQ4QJvgRxfr3BgWTIPLqeVQD3NF
-	W/niC1iMw6W9Sg2k9bvw==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=mG1wyMP2rKP7ASsC+3MNO5uy6FQGhkeI0721LdlWmFA=; b=J9W
+	3x/FmoPE3RQcOR1RtEZjTeaCEa+vUywk6rQrhpk5FkjumiF9ud9bRHNEMmPl0L3FAABwY7tWS8H3X
+	vbrv0SWp2++5kiTbEjA5qsZSXcsq9n7j0zcm27tnPbrxscefWEJTQJkAMRguL0C0ptq7fYLnMLiVN
+	1LK4XyOvKjEjLjbzPsJh4G5jkSbA6c48r1hF8RCudjoddrrXAoXj9r7GVS/iIQbNtG25c8S8vZcmx
+	6JxEVl4aYg8byLICL50FBI3floGAWhb21gJxumbkFgGopiU4Ohww65CWi+/bV9OcAC62lkodAO+Rd
+	Pxd+CSC9ClrD48Ljuc+X25j9RC4NW0Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jRPtw-0001E2-Te; Thu, 23 Apr 2020 00:39:36 +0000
-Received: from mail-lf1-x142.google.com ([2a00:1450:4864:20::142])
+	id 1jRQlD-00075C-Gu; Thu, 23 Apr 2020 01:34:39 +0000
+Received: from mail-lf1-x141.google.com ([2a00:1450:4864:20::141])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jRPtu-0001CO-VS
- for linux-amlogic@lists.infradead.org; Thu, 23 Apr 2020 00:39:36 +0000
-Received: by mail-lf1-x142.google.com with SMTP id g10so3285990lfj.13
- for <linux-amlogic@lists.infradead.org>; Wed, 22 Apr 2020 17:39:34 -0700 (PDT)
+ id 1jRQlB-00074f-PI
+ for linux-amlogic@lists.infradead.org; Thu, 23 Apr 2020 01:34:38 +0000
+Received: by mail-lf1-x141.google.com with SMTP id 198so3404028lfo.7
+ for <linux-amlogic@lists.infradead.org>; Wed, 22 Apr 2020 18:34:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=5fl4A7nRdQONkc+Ns32BwHf/X7YnX+et/nIg9JJL2zU=;
- b=Mj30sjvrkHvbKMqqfHKFNV5+YQEGBrwRZ0z+4T3vXh7n5MBP9x3dRJ6j2LmHioOge6
- QYB43T4G4zJsbQVQ7BH3EqooNVpHMppSpitVpDBQztmzTnG24oBhFVzD/pbnt9ghXCDO
- lIPvj3hYEECgw/yZYPuNE0KHnYN0oFHy/bnaLJb8G8jh4Pwt0ER9hkd3ECRaHkHJU+iO
- goBbHo0eb/KFYdoDWis9mS1esjCM8LF+3/iN/bWJpmfHjiEIUFmfqjNzVq6UTTEZbD6/
- cq6F+gZvE/nYHjEyGeNUuF/JF95Q6/HLQv3qf/7y4paceeOPZpHl3Ev/446VWEv+B+4b
- IBCA==
+ h=from:to:cc:subject:date:message-id;
+ bh=DAjDO2syVihYfSYHVPHnBlRhOt9duNjgHctpjQ0ix6c=;
+ b=eUVd8k2O2d2zxPxp8rFtZ7IDbc6v/LYYWEtLilnhk89o1oS1POopQeOtxW9hMjQyrg
+ hnw/uKRLApQXMBqmHw/Wt1ybEHUXEO/j3o89rYQ66McADGjAU4fNtKTq2EaPMwpreHHd
+ bXwGW7BOqm+gSJUhWf2JJAt2AEr2eKDsv1ao6iRVY3v24ywl8+I3ExhuRUVChw7ndNmr
+ Omd48AdkdaZ/KhfwVtv3jM/KGdyyGL4+zhSwzouhXsYP2T6uJLH22W/sYD184aEu+sCF
+ qaA0MweY69Y5u+ZdsvkDLb8XI4t27jeR3Y5DYLWq+tQJWM9QY2KbDHod5HHOL/FRyekp
+ dPJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=5fl4A7nRdQONkc+Ns32BwHf/X7YnX+et/nIg9JJL2zU=;
- b=B6BucEsjxF+7PvCEmYb9k2fKzxwR1bS+FjpSRPb5+1iXcyCxvm2ztEG6K/9cQoGvVw
- 2TxPDcaDz3F/7Ght6S+3MJ026kpO38+by7W+sYJ29YbmB94crokLF8KmP+3I7zs+VmkS
- A+ZwqXoHva0VVuljZJJJhGzeP3Rha2nOepHDt+N9KlVO1u29x/t/jnnb7evQkocWkp3O
- YgfjyWDIEGIRvKchZ1IDbafvEC+x1kcYbQmvjJ77+cEpCVjabNGHeP0Icw6WIKLgSHeG
- BF/U62eNTbySkmh3vHkNd7ZFbtarRU9DBXLDjEwzNrLA5tPar+m0A9nE5saxSN75wAUN
- XSgA==
-X-Gm-Message-State: AGi0Pub/lin3Vgj1urHhOJJKhdVdH1rILCnTYyw5vdAnY362J1+6sFeh
- yf4534ZP83CMAtAiixrEu1g=
-X-Google-Smtp-Source: APiQypKEnU1zF7+eWCBcmj0qvCVqLKmZHMNFwVXoZaQrmlJkac50VlkAbDcbpHZOQ6d2aDNMPqqV1g==
-X-Received: by 2002:a19:c3c5:: with SMTP id t188mr718181lff.199.1587602373144; 
- Wed, 22 Apr 2020 17:39:33 -0700 (PDT)
-Received: from [172.16.20.20] ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id t19sm502360lfl.53.2020.04.22.17.39.30
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 22 Apr 2020 17:39:32 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.14\))
-Subject: Re: [PATCH 0/3] Bluetooth: hci_qca: add support for QCA9377
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=DAjDO2syVihYfSYHVPHnBlRhOt9duNjgHctpjQ0ix6c=;
+ b=mBvWT+SKT+wz9b9ZL7S7HcJCD146iWis6zPhTX5KBf+UuE8zm8iV5CYL73yvNPuoDg
+ F+6CCisrY4X0ArVVWxg2ohlE05nfeeoXAyJHZEgRiylbtEnKUMI53k0CMIqkllpMdF/c
+ S1By8349Ecvzw0M9TdJ2vySd3VkJLdpU4W/TbRFctwxwHwQAPSlVvQFrapkkc9pq+YHL
+ YTeH0+mG4mPF91SWjkkj4Jj/5n1X6Eutp0TmnYFXAeOveLw6v7xWgft9YMg1Rno121z4
+ z18YAE26bDsCP3sxD4muOnKe1KgpahecYSwGWA5WiBGVG0Jf1Et/Wy517a4PGL/k9bTd
+ gojg==
+X-Gm-Message-State: AGi0PubX0ABbrU8otgnIX3SNrPGAXEWPDbxh/+Agg79DI1hbVAd+VPh4
+ cYR8/xvmwKAez2Js9oY0C6yYzu0ZXYw=
+X-Google-Smtp-Source: APiQypLVF8k5uqxjiwCBFvVf1xeH58dehjnKwlyRN+zx1HBI6paxUET+mG4Tcr86VknKMveN0sPEbg==
+X-Received: by 2002:a19:946:: with SMTP id 67mr848245lfj.142.1587605675892;
+ Wed, 22 Apr 2020 18:34:35 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id h21sm564967lfp.1.2020.04.22.18.34.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 22 Apr 2020 18:34:35 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <D965D634-A881-43E0-B9F8-DF4679BB9C6D@holtmann.org>
-Date: Thu, 23 Apr 2020 04:39:24 +0400
-Message-Id: <6103BC70-F2AC-4CA5-BF6F-152466AEEBD1@gmail.com>
-References: <20200421081656.9067-1-christianshewitt@gmail.com>
- <D965D634-A881-43E0-B9F8-DF4679BB9C6D@holtmann.org>
-To: Marcel Holtmann <marcel@holtmann.org>
-X-Mailer: Apple Mail (2.3445.104.14)
+To: Marcel Holtmann <marcel@holtmann.org>,
+ Johan Hedberg <johan.hedberg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-bluetooth@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Bluetooth: hci_qca: add support for QCA9377
+Date: Thu, 23 Apr 2020 01:34:27 +0000
+Message-Id: <20200423013430.21399-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200422_173935_021517_10A6E40A 
-X-CRM114-Status: GOOD (  10.24  )
+X-CRM114-CacheID: sfid-20200422_183437_820129_AA35F0DB 
+X-CRM114-Status: UNSURE (   7.06  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,35 +94,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Johan Hedberg <johan.hedberg@gmail.com>, netdev <netdev@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Bluez mailing list <linux-bluetooth@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Abhishek Pandit-Subedi <abhishekpandit@chromium.org>,
- linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Abhishek Pandit-Subedi <abhishekpandit@chromium.org>,
+ Christian Hewitt <christianshewitt@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Cj4gT24gMjIgQXByIDIwMjAsIGF0IDk6MzkgcG0sIE1hcmNlbCBIb2x0bWFubiA8bWFyY2VsQGhv
-bHRtYW5uLm9yZz4gd3JvdGU6Cj4gCj4gSGkgQ2hyaXN0aWFuLAo+IAo+PiBUaGlzIHNlcmllcyBh
-ZGRzIGEgbmV3IGNvbXBhdGlibGUgZm9yIHRoZSBRQ0E5Mzc3IEJUIGRldmljZSB0aGF0IGlzIGZv
-dW5kCj4+IGluIG1hbnkgQW5kcm9pZCBUViBib3ggZGV2aWNlcywgbWFrZXMgbWlub3IgY2hhbmdl
-cyB0byBhbGxvdyBtYXgtc3BlZWQKPj4gdmFsdWVzIGZvciB0aGUgZGV2aWNlIHRvIGJlIHJlYWQg
-ZnJvbSBkZXZpY2UtdHJlZSwgYW5kIHVwZGF0ZXMgYmluZGluZ3MKPj4gdG8gcmVmbGVjdCB0aG9z
-ZSBjaGFuZ2VzLgo+PiAKPj4gQ2hyaXN0aWFuIEhld2l0dCAoMyk6Cj4+IGR0LWJpbmRpbmdzOiBu
-ZXQ6IGJsdWV0b290aDogQWRkIGRldmljZSB0cmVlIGJpbmRpbmdzIGZvciBRQ0E5Mzc3Cj4+IEJs
-dWV0b290aDogaGNpX3FjYTogYWRkIGNvbXBhdGlibGUgZm9yIFFDQTkzNzcKPj4gQmx1ZXRvb3Ro
-OiBoY2lfcWNhOiBhbGxvdyBtYXgtc3BlZWQgdG8gYmUgc2V0IGZvciBRQ0E5Mzc3IGRldmljZXMK
-Pj4gCj4+IC4uLi9iaW5kaW5ncy9uZXQvcXVhbGNvbW0tYmx1ZXRvb3RoLnR4dCAgICAgICAgIHwg
-IDUgKysrKysKPj4gZHJpdmVycy9ibHVldG9vdGgvaGNpX3FjYS5jICAgICAgICAgICAgICAgICAg
-ICAgfCAxNyArKysrKysrKysrLS0tLS0tLQo+PiAyIGZpbGVzIGNoYW5nZWQsIDE1IGluc2VydGlv
-bnMoKyksIDcgZGVsZXRpb25zKC0pCj4gCj4gdGhlIHNlcmllcyBkb2VzbuKAmXQgYXBwbHkgY2xl
-YW5seSBhZ2FpbnN0IGJsdWV0b290aC1uZXh0IHRyZWUuIENhbiB5b3UgcGxlYXNlIHJlc3BpbiBp
-dC4KCkFoaCwgaXQgd2FzIGJhc2VkIG9uIDUuNy1yYzEsIHdpbGwgZG8sIHRoYW5rcy4KCkNocmlz
-dGlhbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51
-eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcK
-aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2lj
-Cg==
+From: Christian Hewittt <christianshewitt@gmail.com>
+
+This series adds a new compatible for the QCA9377 BT device that is found
+in many Android TV box devices, makes minor changes to allow max-speed
+values for the device to be read from device-tree, and updates bindings
+to reflect those changes.
+
+v2 changes: rebase against bluetooth-next
+
+Christian Hewitt (3):
+  dt-bindings: net: bluetooth: Add device tree bindings for QCA9377
+  Bluetooth: hci_qca: add compatible for QCA9377
+  Bluetooth: hci_qca: allow max-speed to be set for QCA9377 devices
+
+ .../bindings/net/qualcomm-bluetooth.txt         |  5 +++++
+ drivers/bluetooth/hci_qca.c                     | 17 ++++++++++-------
+ 2 files changed, 15 insertions(+), 7 deletions(-)
+
+-- 
+2.17.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
