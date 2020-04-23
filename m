@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E03E6C5518E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2020 01:34:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B33DC55189
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2020 01:34:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A5F982074F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2020 01:34:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6146620787
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2020 01:34:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dPVa2G3y";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YdTGzAGk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5F982074F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T1kUkGAX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cm++pq9P"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6146620787
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -28,66 +28,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=tLDnkInLMYhqBg5UbkDU76ayp5XRog7jQt0YY61t7aQ=; b=dPVa2G3yvol/hgh8g3AJVDRa8h
-	PywdRCbDUBOxxqyVkqSVfWwM/lHJFxtobm/eK8o/JlWktbyzOg86faVdKoJ/IDRcczidSOzOlKyED
-	pOE34Lqlg7yUVfrPnQ3S5JFKV4Ww3qRyN+AGGhyS3rGti9qb77AdRi2RZF75cRd/4EvGPrGt42NjX
-	xXCZfMYPq0aIgmYNmzx9vrgjWgc+NbE+McqXm5JOGD4hgWdMAu8oG0A6BvY8XoCEJMTFe1NR/Fldh
-	ZfBBmHN5ThI+J3puASMKXEB8D0b5kpCf08+IT8gxkTEoC7wAqJglAzXgRABHrmIvIew6kFd2vHMuq
-	aKpoYZ6Q==;
+	bh=/Xp42LwnetVQTJo1kP9bFr0L7eQoPuNnS/GnjRDxt5I=; b=T1kUkGAX9lzHxEaOyOE6UrMqj3
+	7agZilT+J1ccSzPtaqYTnQMCbghYND6axt181xrEQh4AMTC0JChxRTiSSdRtqciikMyFrqCcAZ0Vs
+	3gZt1GMKAOvM8b6/BZ/pPTUX/u7kvYblT75buKEAQ9sKew4CzWtXoyVBSuRff/BR9FELc7jRRZqQW
+	hhBy47N8MWRIuP2UQAOdKBPzYz9E6CzxH58A+6HplQ8czgpWHtfGT1ocWwJ/aeoonnloU97uhu98M
+	NjYZwGJGiqLobF8KWIe2hFFqT3TO60xaanno11o9eEtjYRilmjw6PZzu5GJG7GcgzjyEPTvJQl0W1
+	j8LbuNsw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jRQlH-00077q-6d; Thu, 23 Apr 2020 01:34:43 +0000
-Received: from mail-lf1-x143.google.com ([2a00:1450:4864:20::143])
+	id 1jRQlL-0007CF-9L; Thu, 23 Apr 2020 01:34:47 +0000
+Received: from mail-lf1-x142.google.com ([2a00:1450:4864:20::142])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jRQlE-00075B-Ja
- for linux-amlogic@lists.infradead.org; Thu, 23 Apr 2020 01:34:41 +0000
-Received: by mail-lf1-x143.google.com with SMTP id w145so3408827lff.3
- for <linux-amlogic@lists.infradead.org>; Wed, 22 Apr 2020 18:34:40 -0700 (PDT)
+ id 1jRQlH-00077T-8Z
+ for linux-amlogic@lists.infradead.org; Thu, 23 Apr 2020 01:34:44 +0000
+Received: by mail-lf1-x142.google.com with SMTP id r17so3413633lff.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 22 Apr 2020 18:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=DsCsLkML8vM9o9JxjC1JcTLr6rGiyK9/YPUi2mV+hHw=;
- b=YdTGzAGkjEBzcnx49rbGvNS1WOd+XJ8J9lgxA6IPs6gu4S+tg+tEYFwjVKgcUBvoHk
- 1oLNnIxmP+G/Y1fJpSkLvUMj2QrhyORezRtkJK1lMolyNl5JPHwZ0FleA8o+BEyGTdOY
- WRfjsvdnGxSG52uUlmxNtGJe+szGQUWDuM/B9Tm2/z74WET6j/GRGi/yKWcwI7rCm6TZ
- 8O1Ygk3E09cp+lbJ4Z+hmQ2iKyYbnXlSmwvU8TJ5/h/IKM3Q/A7DSnXqVf47EiWcyclT
- GeUvUyk6s50zwP5+lWTAkN3CTA51O890tDWZbj7r/+W1iau8gF7W9s6u8uS8vz+lvjw2
- aRCw==
+ bh=SjIpWwjlKzcDo7C6DWuyOHHv+FcusMs+xC0Ay0zQfow=;
+ b=cm++pq9PqU09LWqOhZICWe+XkH+rovOt0WcKcXhCkV68g2OLmySWEs8eAD81MSrcw/
+ Sy8Kt5GeHkQT+OEui9SMm19xLNGepSRVK807WGewtLrKHE1zOSjA+s+KWiPo6EkRpPC1
+ qUhtor3UpK+M0NTcMHR21oJ9SoAIPc4Giu2g7/xmzL+mLc30/RHTuIWT1h0de6xYI/JP
+ ZeBqb3tEwDtOvrsXWJbL1tzttr9/QZtRVEdc7HGRFaNn9NuSUgLla1y+FuN5Si5WVqsX
+ /0BYtRb8PYZOBVCZJ57YuqEYSVQzr6pDansJMBrdSYrQRVC2OCjdptHXIkAg2PIHg29a
+ RBQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=DsCsLkML8vM9o9JxjC1JcTLr6rGiyK9/YPUi2mV+hHw=;
- b=pjb+Z8rNtbNjhXlHoQ0pf2+qgNpilYdrRW1QMSeE7jkQnbFyguEzReFeumLER+wdAr
- DM3vikHuYNS5EKaqdVax8JRoVGDnRL6UQ0bzUOdqzr4gnfNuJ490cZqUQvbSMoqc4aUH
- 77vXbbcTkmnkb8hbMX/5QnmxYO/SWdNsnl/0+Rvfzsmrgle9qLCVCoHf3FHgq7gwNe3U
- GnEmDrHj3jIl5waFrIgsC0UjcrORYPErzx4W4Bf0behIb+h6b3YEqaUFvZk4NAbFTG6a
- /EnvxDJnZS06URaSO8kEgW6WJi0EFEfs7xlMYjC0jf7fzCkibKAdsarBy5yeen9wESQP
- Ozvw==
-X-Gm-Message-State: AGi0PuZFWMk4Nr97UxtouxeRPKthU8wu0dmWcnw3AHIdQLeP/owNzwRV
- tSIVnOJW97vZ/ci/0ZW+Exs=
-X-Google-Smtp-Source: APiQypKpOxCqGo2vEH5cRAwTfl60WT+Lj+sRkrcgjF4/zfgt2tmFvQw3sVSr9hLuEXo/Vw1v+NKg9A==
-X-Received: by 2002:a19:5f04:: with SMTP id t4mr825926lfb.208.1587605678890;
- Wed, 22 Apr 2020 18:34:38 -0700 (PDT)
+ bh=SjIpWwjlKzcDo7C6DWuyOHHv+FcusMs+xC0Ay0zQfow=;
+ b=mKewfSAnKIwDkdPvIWcpFAPwmimZZKJdxFl3KwLydrS9LveSWb8hXok1RS7wGscX2z
+ afkZSbgGALwxpGMD7LEn/SAENbnEQ1ZvXHYB6ZrrVTQby2Ccgc6EKQ1u/0wtsnd5miQG
+ aOBvDM4NSZbeevRwrmm6cSP41pTbGJtIGO+jD1NJpe3DnMXJkGe+jPr5qltyv8r112Lk
+ 1/Xy1HQR0+/2MlN1Kwh+06d/eBTCGMLcCNHcuDD42wNJGG3euUzk1xcYX0jw0jOZFjr5
+ fQ/FJGJIV8CiyJIS1bI1y150kdUt5ZfT0UcYXjNyILZY5eo0vPTlvLIPC/BTpJHCIpTD
+ BOfA==
+X-Gm-Message-State: AGi0PuYGd6dIt71ulbKlsY5aSEEVytt+qxLK08rggM6MibhtcivuvHGr
+ sYjoS3AFRBinBu8ba/7sQvI=
+X-Google-Smtp-Source: APiQypIyfajWd1CR5VR7pjWZXmAEpBB85Z/O3xF0H/BMnaIMr+pEz7yjtjAH8cE9ZAsZJiENbSjegg==
+X-Received: by 2002:a19:4f48:: with SMTP id a8mr815575lfk.174.1587605681743;
+ Wed, 22 Apr 2020 18:34:41 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id h21sm564967lfp.1.2020.04.22.18.34.36
+ by smtp.gmail.com with ESMTPSA id h21sm564967lfp.1.2020.04.22.18.34.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Apr 2020 18:34:38 -0700 (PDT)
+ Wed, 22 Apr 2020 18:34:41 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Marcel Holtmann <marcel@holtmann.org>,
  Johan Hedberg <johan.hedberg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  netdev@vger.kernel.org, devicetree@vger.kernel.org,
  linux-amlogic@lists.infradead.org, linux-bluetooth@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/3] dt-bindings: net: bluetooth: Add device tree bindings
- for QCA9377
-Date: Thu, 23 Apr 2020 01:34:28 +0000
-Message-Id: <20200423013430.21399-2-christianshewitt@gmail.com>
+Subject: [PATCH v2 2/3] Bluetooth: hci_qca: add compatible for QCA9377
+Date: Thu, 23 Apr 2020 01:34:29 +0000
+Message-Id: <20200423013430.21399-3-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200423013430.21399-1-christianshewitt@gmail.com>
 References: <20200423013430.21399-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200422_183440_639826_AA4968D3 
-X-CRM114-Status: UNSURE (   8.08  )
+X-CRM114-CacheID: sfid-20200422_183443_301656_33F257D5 
+X-CRM114-Status: UNSURE (   9.82  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -108,36 +107,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-QCA9377 is a QCA ROME device frequently found in Android TV boxes.
+Add a compatible so QCA9377 devices can be defined in device-tree.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/bluetooth/hci_qca.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
-index aad2632c6443..709ca6d51650 100644
---- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
-+++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
-@@ -10,6 +10,7 @@ device the slave device is attached to.
- Required properties:
-  - compatible: should contain one of the following:
-    * "qcom,qca6174-bt"
-+   * "qcom,qca9377-bt"
-    * "qcom,wcn3990-bt"
-    * "qcom,wcn3991-bt"
-    * "qcom,wcn3998-bt"
-@@ -21,6 +22,10 @@ Optional properties for compatible string qcom,qca6174-bt:
-  - clocks: clock provided to the controller (SUSCLK_32KHZ)
-  - firmware-name: specify the name of nvm firmware to load
- 
-+Optional properties for compatible string qcom,qca9377-bt:
-+
-+ - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
-+
- Required properties for compatible string qcom,wcn399x-bt:
- 
-  - vddio-supply: VDD_IO supply regulator handle.
+diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
+index d0ac554584a4..072983dc07e3 100644
+--- a/drivers/bluetooth/hci_qca.c
++++ b/drivers/bluetooth/hci_qca.c
+@@ -2058,6 +2058,7 @@ static SIMPLE_DEV_PM_OPS(qca_pm_ops, qca_suspend, qca_resume);
+ static const struct of_device_id qca_bluetooth_of_match[] = {
+ 	{ .compatible = "qcom,qca6174-bt" },
+ 	{ .compatible = "qcom,qca6390-bt", .data = &qca_soc_data_qca6390},
++	{ .compatible = "qcom,qca9377-bt" },
+ 	{ .compatible = "qcom,wcn3990-bt", .data = &qca_soc_data_wcn3990},
+ 	{ .compatible = "qcom,wcn3991-bt", .data = &qca_soc_data_wcn3991},
+ 	{ .compatible = "qcom,wcn3998-bt", .data = &qca_soc_data_wcn3998},
 -- 
 2.17.1
 
