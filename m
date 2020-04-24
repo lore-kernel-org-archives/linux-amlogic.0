@@ -2,70 +2,87 @@ Return-Path: <SRS0=67Zv=6I=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B461C54FD0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2020 12:23:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E7CAC54FCB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2020 12:44:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C8812087E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2020 12:23:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5510720728
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2020 12:44:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sUVvVrzp";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="zpYwtPo/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C8812087E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PDBHsTRO";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eK6sY+50"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5510720728
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FazYLZGBOIZMCsoeGklTIC63wgo3HPmRcJ29X6aG9Rw=; b=sUVvVrzpVKJJVT
-	wXcu53GR5o58Gk+jm8XvJ8SafYova4MCSxBchryrQZNC6docHcclpYehg9UgzAmCf9bQS64EZGgvE
-	0OiaH8wMhtwfPAdRp26n62Q2E0KaaaqGt4Y29qzUUEjugbwmtWfe/FYmT5FMlMrxJ0ksMH/3XvRrV
-	ONVlm4rKHB0x44XQhKfb0rU9lpnASMyngjRQaSaQLLU7ATK8gZcoF+mKE4Vn1ADI8u+7WSJnpMVAq
-	F3wUAbTNUZX607Dtds0NPpR5nF150yPCJWIaCS0RYtuVdQurI5W9B8Kcw2C/mx+7z+yyFOfca5hr2
-	xZaCnSbLVtS1k9EPWBvw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=rtLYQ4koFKqlUFYl3eaxeAB09hUHYvuT/KaRlVaOXjM=; b=PDBHsTRODe2sPr
+	1loJCAuNMCugp6OmplnEcsvBJ/tkO/KtOz4HsRZcq3Mx+VZpVg5O15TahasT+ve+L8hFhTy8fHgHJ
+	ngIpXzyGNPkfzsqJkRx6EVCQNiyFLsGFvhVlP9ujgmUrXm3pMnr37GhqcgI+mR6ilMbhVK0QtcVIP
+	FmmKB2cZ9rMiN1A+fj2lF05uMeKr/CD64gU0mHNt1YBSWihYhdoEKiEsr6OdV3J38L3p0s1hm79Fc
+	19+4oGtSARdYsXzbLt8KjY2KEdS6enNZJ4oqUWeySauqGU+CLJDrKOEHQ752UT40q0rnDPgq5aR4q
+	hHDI8YlxA+3FSYwwXYcA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jRxMk-00056V-1z; Fri, 24 Apr 2020 12:23:34 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1jRxgm-0005Vh-Cj; Fri, 24 Apr 2020 12:44:16 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jRxMW-0004tI-Sn; Fri, 24 Apr 2020 12:23:22 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5E47920776;
- Fri, 24 Apr 2020 12:23:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1587731000;
- bh=DvlDhBQmYF808qQX01D63ZW+IKHd1PwrrIUL1r/J/2o=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=zpYwtPo/NnFgcPU4wHSRDFUa2L4y3ub/zNyp5nacaLvyELCOKFR6m4IhIu8IL5nHU
- 0Y9one9kEebA6bR7k7aFgOvbskIc8UpW9Zh4OIQ1VZvq+QhflrnKbqwF/Fdf0Kd8ip
- 1gAG7R703nGm3pFFcQQDE5N1RBf8anYWCGXayAhU=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.6 37/38] irqchip/meson-gpio: Fix HARDIRQ-safe ->
- HARDIRQ-unsafe lock order
-Date: Fri, 24 Apr 2020 08:22:35 -0400
-Message-Id: <20200424122237.9831-37-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200424122237.9831-1-sashal@kernel.org>
-References: <20200424122237.9831-1-sashal@kernel.org>
+ id 1jRxgj-0005UC-4o
+ for linux-amlogic@lists.infradead.org; Fri, 24 Apr 2020 12:44:15 +0000
+Received: by mail-wm1-x343.google.com with SMTP id v8so9929589wma.0
+ for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2020 05:44:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=vqrR8RcK3jQJ7N6BJUpZZzAOlag+e4M/HVsKVtYGanM=;
+ b=eK6sY+5096Up6Tuo/atZU75DoQn0eb/5SeL9gtwXHBOMdu1C77ORcvObcdRc5/s1cj
+ G3NWka3kjRFf6NbThNWmpC38Lu0XwjP8QX3yYdDcPnXdrCK4fnp0DmI9EINtqraDs0yK
+ neHsIpC4yO8+Jgzb3kGiu0u0KUcINz9NZCCozQlfSyg9qh6xwe1eU8Ogd9PbQhivuUyK
+ X1BeqLMNSEncfAv0krblxEA+pTXhZwJ9mX3cORgsF8OQf5k4FPl/sIfUUXK2DFX3Hsfp
+ IaCHrq+BYg5kEXj/XmLNbzHI5BQBMyT0RVYG1MGdpAFT4BHvCvzPXIQB+/G1l3FQyIeA
+ Juxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=vqrR8RcK3jQJ7N6BJUpZZzAOlag+e4M/HVsKVtYGanM=;
+ b=B9+8LOxRvZ75N27uJoDfZ5TVGIWplb0J4mqfPGWhk7NBDaeFDhV+EE1IdNBAfieAlc
+ UbIFs1tIsFKyfSeBJnLAUKOXvbkCZwIRkkv2NbGUwiJm/Ky7iGyF52TFO6pnxrQqCFUE
+ O9vY2sx1TgUJPw0aW9a6TSebRbtg8FyaOXxRI7NGD4WD8rP0JZxB+GuGYxl0UYIle8w7
+ Fs5UtGxCoM2hJ0q+9OxrUFxT8SjB6q9p52McuY6fQ09cM5Wy0BE/fkZHYp1MZV1GWQci
+ ON9pn1V9jPaJgmAZf/c/rp8ve/+Hc97HimhKViIPdiKGPsSBvu4PMBBetcxgHb5WxtfQ
+ Yv4A==
+X-Gm-Message-State: AGi0PuZsGEAfirmm4RS5w5w9YMXD2nUDQbhqn5bOelMos+5xQwELq1J/
+ 1XoWOb9TFjhgnXHnNHJgmNgIYr4NPZY7aw==
+X-Google-Smtp-Source: APiQypKxnci1OIVtsyUwDnRvBaRtP0SdCtKIlKTF+ChQS3TlaLeRLU0KtKZ/IOUbIu+Q2WHUYH9qQQ==
+X-Received: by 2002:a1c:c345:: with SMTP id t66mr10514947wmf.189.1587732251350; 
+ Fri, 24 Apr 2020 05:44:11 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
+ by smtp.gmail.com with ESMTPSA id
+ q184sm2692689wma.25.2020.04.24.05.44.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 24 Apr 2020 05:44:10 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: khilman@baylibre.com
+Subject: [PATCH 0/2] arm64: meson-sm1: add support for Hardkernel ODROID-C4
+Date: Fri, 24 Apr 2020 14:44:04 +0200
+Message-Id: <20200424124406.13870-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200424_052320_987344_184E6674 
-X-CRM114-Status: GOOD (  14.23  )
+X-CRM114-CacheID: sfid-20200424_054413_249662_353D3357 
+X-CRM114-Status: UNSURE (   8.44  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,189 +94,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Marc Zyngier <maz@kernel.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Marc Zyngier <maz@kernel.org>
+This serie adds support for the Hardkernel Odroid-C4 single board computer.
 
-[ Upstream commit 0a66d6f90cf7d704c6a0f663f7058099eb8c97b0 ]
+The Odroid-C4 is the Odroid-C2 successor with same form factor, but using
+a modern Amlogic S905X3 (SM1) SoC and 4x USB3 ports.
 
-Running a lockedp-enabled kernel on a vim3l board (Amlogic SM1)
-leads to the following splat:
+Fully functionnal:
+- USB2+USB3
+- USB2 OTG
+- eMMC
+- SDCard
+- HDMI
+- DVFS
+- Gigabit Ethernet with RTL8211F PHY
+- ADC
+- Debug UART
 
-[   13.557138] WARNING: HARDIRQ-safe -> HARDIRQ-unsafe lock order detected
-[   13.587485] ip/456 [HC0[0]:SC0[0]:HE0:SE1] is trying to acquire:
-[   13.625922] ffff000059908cf0 (&irq_desc_lock_class){-.-.}-{2:2}, at: __setup_irq+0xf8/0x8d8
-[   13.632273] which would create a new lock dependency:
-[   13.637272]  (&irq_desc_lock_class){-.-.}-{2:2} -> (&ctl->lock){+.+.}-{2:2}
-[   13.644209]
-[   13.644209] but this new dependency connects a HARDIRQ-irq-safe lock:
-[   13.654122]  (&irq_desc_lock_class){-.-.}-{2:2}
-[   13.654125]
-[   13.654125] ... which became HARDIRQ-irq-safe at:
-[   13.664759]   lock_acquire+0xec/0x368
-[   13.666926]   _raw_spin_lock+0x60/0x88
-[   13.669979]   handle_fasteoi_irq+0x30/0x178
-[   13.674082]   generic_handle_irq+0x38/0x50
-[   13.678098]   __handle_domain_irq+0x6c/0xc8
-[   13.682209]   gic_handle_irq+0x5c/0xb0
-[   13.685872]   el1_irq+0xd0/0x180
-[   13.689010]   arch_cpu_idle+0x40/0x220
-[   13.692732]   default_idle_call+0x54/0x60
-[   13.696677]   do_idle+0x23c/0x2e8
-[   13.699903]   cpu_startup_entry+0x30/0x50
-[   13.703852]   rest_init+0x1e0/0x2b4
-[   13.707301]   arch_call_rest_init+0x18/0x24
-[   13.711449]   start_kernel+0x4ec/0x51c
-[   13.715167]
-[   13.715167] to a HARDIRQ-irq-unsafe lock:
-[   13.722426]  (&ctl->lock){+.+.}-{2:2}
-[   13.722430]
-[   13.722430] ... which became HARDIRQ-irq-unsafe at:
-[   13.732319] ...
-[   13.732324]   lock_acquire+0xec/0x368
-[   13.735985]   _raw_spin_lock+0x60/0x88
-[   13.739452]   meson_gpio_irq_domain_alloc+0xcc/0x290
-[   13.744392]   irq_domain_alloc_irqs_hierarchy+0x24/0x60
-[   13.749586]   __irq_domain_alloc_irqs+0x160/0x2f0
-[   13.754254]   irq_create_fwspec_mapping+0x118/0x320
-[   13.759073]   irq_create_of_mapping+0x78/0xa0
-[   13.763360]   of_irq_get+0x6c/0x80
-[   13.766701]   of_mdiobus_register_phy+0x10c/0x238 [of_mdio]
-[   13.772227]   of_mdiobus_register+0x158/0x380 [of_mdio]
-[   13.777388]   mdio_mux_init+0x180/0x2e8 [mdio_mux]
-[   13.782128]   g12a_mdio_mux_probe+0x290/0x398 [mdio_mux_meson_g12a]
-[   13.788349]   platform_drv_probe+0x5c/0xb0
-[   13.792379]   really_probe+0xe4/0x448
-[   13.795979]   driver_probe_device+0xe8/0x140
-[   13.800189]   __device_attach_driver+0x94/0x120
-[   13.804639]   bus_for_each_drv+0x84/0xd8
-[   13.808474]   __device_attach+0xe4/0x168
-[   13.812361]   device_initial_probe+0x1c/0x28
-[   13.816592]   bus_probe_device+0xa4/0xb0
-[   13.820430]   deferred_probe_work_func+0xa8/0x100
-[   13.825064]   process_one_work+0x264/0x688
-[   13.829088]   worker_thread+0x4c/0x458
-[   13.832768]   kthread+0x154/0x158
-[   13.836018]   ret_from_fork+0x10/0x18
-[   13.839612]
-[   13.839612] other info that might help us debug this:
-[   13.839612]
-[   13.850354]  Possible interrupt unsafe locking scenario:
-[   13.850354]
-[   13.855720]        CPU0                    CPU1
-[   13.858774]        ----                    ----
-[   13.863242]   lock(&ctl->lock);
-[   13.866330]                                local_irq_disable();
-[   13.872233]                                lock(&irq_desc_lock_class);
-[   13.878705]                                lock(&ctl->lock);
-[   13.884297]   <Interrupt>
-[   13.886857]     lock(&irq_desc_lock_class);
-[   13.891014]
-[   13.891014]  *** DEADLOCK ***
+Missing:
+- HDMI audio
 
-The issue can occur when CPU1 is doing something like irq_set_type()
-and CPU0 performing an interrupt allocation, for example. Taking
-an interrupt (like the one being reconfigured) would lead to a deadlock.
+Dongjin Kim (1):
+  arm64: dts: meson-sm1: add support for Hardkernel ODROID-C4
 
-A solution to this is:
+Neil Armstrong (1):
+  dt-bindings: arm: amlogic: add odroid-c4 bindings
 
-- Reorder the locking so that meson_gpio_irq_update_bits takes the lock
-  itself at all times, instead of relying on the caller to lock or not,
-  hence making the RMW sequence atomic,
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  | 399 ++++++++++++++++++
+ 3 files changed, 401 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
 
-- Rework the critical section in meson_gpio_irq_request_channel to only
-  cover the allocation itself, and let the gpio_irq_sel_pin callback
-  deal with its own locking if required,
-
-- Take the private spin-lock with interrupts disabled at all times
-
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Marc Zyngier <maz@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/irqchip/irq-meson-gpio.c | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index ccc7f823911bd..bc7aebcc96e9c 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -144,12 +144,17 @@ struct meson_gpio_irq_controller {
- static void meson_gpio_irq_update_bits(struct meson_gpio_irq_controller *ctl,
- 				       unsigned int reg, u32 mask, u32 val)
- {
-+	unsigned long flags;
- 	u32 tmp;
- 
-+	spin_lock_irqsave(&ctl->lock, flags);
-+
- 	tmp = readl_relaxed(ctl->base + reg);
- 	tmp &= ~mask;
- 	tmp |= val;
- 	writel_relaxed(tmp, ctl->base + reg);
-+
-+	spin_unlock_irqrestore(&ctl->lock, flags);
- }
- 
- static void meson_gpio_irq_init_dummy(struct meson_gpio_irq_controller *ctl)
-@@ -196,14 +201,15 @@ meson_gpio_irq_request_channel(struct meson_gpio_irq_controller *ctl,
- 			       unsigned long  hwirq,
- 			       u32 **channel_hwirq)
- {
-+	unsigned long flags;
- 	unsigned int idx;
- 
--	spin_lock(&ctl->lock);
-+	spin_lock_irqsave(&ctl->lock, flags);
- 
- 	/* Find a free channel */
- 	idx = find_first_zero_bit(ctl->channel_map, NUM_CHANNEL);
- 	if (idx >= NUM_CHANNEL) {
--		spin_unlock(&ctl->lock);
-+		spin_unlock_irqrestore(&ctl->lock, flags);
- 		pr_err("No channel available\n");
- 		return -ENOSPC;
- 	}
-@@ -211,6 +217,8 @@ meson_gpio_irq_request_channel(struct meson_gpio_irq_controller *ctl,
- 	/* Mark the channel as used */
- 	set_bit(idx, ctl->channel_map);
- 
-+	spin_unlock_irqrestore(&ctl->lock, flags);
-+
- 	/*
- 	 * Setup the mux of the channel to route the signal of the pad
- 	 * to the appropriate input of the GIC
-@@ -225,8 +233,6 @@ meson_gpio_irq_request_channel(struct meson_gpio_irq_controller *ctl,
- 	 */
- 	*channel_hwirq = &(ctl->channel_irqs[idx]);
- 
--	spin_unlock(&ctl->lock);
--
- 	pr_debug("hwirq %lu assigned to channel %d - irq %u\n",
- 		 hwirq, idx, **channel_hwirq);
- 
-@@ -287,13 +293,9 @@ static int meson_gpio_irq_type_setup(struct meson_gpio_irq_controller *ctl,
- 			val |= REG_EDGE_POL_LOW(params, idx);
- 	}
- 
--	spin_lock(&ctl->lock);
--
- 	meson_gpio_irq_update_bits(ctl, REG_EDGE_POL,
- 				   REG_EDGE_POL_MASK(params, idx), val);
- 
--	spin_unlock(&ctl->lock);
--
- 	return 0;
- }
- 
 -- 
-2.20.1
+2.22.0
 
 
 _______________________________________________
