@@ -2,22 +2,22 @@ Return-Path: <SRS0=mJnT=6M=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D321EC83000
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 08:38:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D7AD3C83000
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:11:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A16B52053B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 08:38:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A6D6A2072A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:11:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OgPnKO4p";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dyMFUVUf"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A16B52053B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AvDzyqWj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zdCQylS5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A6D6A2072A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/LL3BgQZvLwRsVYmtk6Q7wgYcxncCg9EBxdtuWQrRP4=; b=OgPnKO4pOpYevW
-	oX/LeWgPVablkZQZOrPeWXoI1oWLvuEoBRjpRetr2eg6fH2eEDI4KCHbT1oLjsmlnk166rxxa8vBo
-	kdcwks/Q+rudmUeMWxGohuvJrl6I+p37Mqllr1FlpDP9bz160DB3a0Di9PxRKyRPXNW42jiy07jy2
-	QcHT04d/KD8crZH05uqqF1mCA5NRRzpDlLS3FCFneAjO+fWoeY4v5vtl2tqEmJO3CJwfCVrt7vri4
-	pCMOleKgDxPk94JuwHWiYCHaVoICzxRrV2p3hTMhlt8AkX+KK+r7ck1Oq0rNiD9KSMtGtLopQECWc
-	HfoAURVWz7WT2eejnQyw==;
+	List-Owner; bh=oHW2DYzBNE98WJ8oHgJ3qMZuUrwr1AgcersVdEPnpIc=; b=AvDzyqWjvZi4IX
+	JmI43NSGZepss/daZbJTx54eetO0h20GzX8t3iuMrngcJRG29p4D0sF1P99cffzDY9n+fozoDL91s
+	nhTaD553i8y+ej25MgiK+923u09OnMDfeGI81/SiDEZaOAavF110DDtbrh4FhJra3eB4pVpwfxui6
+	IdGe6CLMWhtDR1072QF0ifhvUZPTltUwJBJSPKZgQGwxaKxfMkK5tKgB91DOca+avQyH/rBDtPeNh
+	PtTt29T2xV4fjNlzA7LhFPQ8FpSDiD8H/qCEewNMHUdGnuwIPQ4CNE2RYYPmBb+zGKDxiD37kkGsY
+	8Ano9p+Vf0bQdq/2SXqw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jTLku-0001Ft-VO; Tue, 28 Apr 2020 08:38:16 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1jTMHG-0001UO-C2; Tue, 28 Apr 2020 09:11:42 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jTLki-000151-Tc
- for linux-amlogic@lists.infradead.org; Tue, 28 Apr 2020 08:38:07 +0000
-Received: by mail-wm1-x344.google.com with SMTP id x25so1768319wmc.0
- for <linux-amlogic@lists.infradead.org>; Tue, 28 Apr 2020 01:38:04 -0700 (PDT)
+ id 1jTMHC-0001TS-VX
+ for linux-amlogic@lists.infradead.org; Tue, 28 Apr 2020 09:11:40 +0000
+Received: by mail-wm1-x343.google.com with SMTP id r26so2004745wmh.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 28 Apr 2020 02:11:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=IcPRO5g/VCTnULbqSnLVLbjVPsn/n6r8qlxzkItb/0c=;
- b=dyMFUVUfnsuTwPJYGgoOaQBnh4haZwH+VXhe9XAEpXt9J8IKW89AYZkJIt8RfWw86I
- NixArA7yDE2u0z3R+ic2tgKMzJYLbNvnonl98IjsmtrTbslOl+sCJ8N8z7/IiXi08P6K
- dt9tuMS45tRVL0wm0wy3n5Ix2Ev+SNMErU0btJMcwPgXeoeihRhHkWAQYyg+3uB1trKt
- AbULJwsWwnaHqpz7qrDQ2FF159wD2p+F2kEb56n3DPhac4iORPaz2wExK9CNMP0QxXx0
- 8NDvCGur+Sk8lDsIwSAvsrxiCQye/iZKIIs/wm+wPbhpNLo8WZR6lsXcTb43402iylUZ
- hgWg==
+ bh=AcZv63SO/bZM4YK0vrff1pUjiSMZ/JjiL2uVdhInnTo=;
+ b=zdCQylS5c2EVlb2WQLEfp2+x4ZARSOqYiu8Wsx3aVpzESLFI+310vpWHfcqQJMpGw/
+ tSntmLXjWmgDLSXCzYH3MNMmJG32/WW0n8KkfGMR5BuD7Ahfk/cuwJgnIhTQatyzRLwq
+ RsTc3dIHb6Ky7Tc4Py0gQsL4G0TqTV2SoUUGDqGH+ibV7UJ5S+08gdX0nemYh3XLFrV9
+ P++MC3guhRB6ZOMjSijKQHV3kqDXNUx0ehR3PkAd85mCgp6eBa+wjUOoxeSO9McPLhei
+ HNIfSZsevibG2nJPXiMxem1bRQny5un/kkq6QPVBPJ+2bhEd1b51migUb3e8krTRsshw
+ o8bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=IcPRO5g/VCTnULbqSnLVLbjVPsn/n6r8qlxzkItb/0c=;
- b=HR89nA7tfAGjDJ3MJJv/sIVls0jsxq8nBsCz6vcjoJDZseeTaJfdnQPa2usxtv8j24
- 56IZYusfJjseg7PW8M4b9kNmfP+maxNWX0eMpvVngfJJpi95uz3LuPOvSVD74y14j3DF
- iYmylFgyviAD5UvQu1aUVmAZ7VrFVBw8JgaKCOQFDkVM/j/frzLuzFeeOo/MDb5X4wmg
- 0ZxkFuE+ERHwHljWU2JFPKf5KgI4PHu+QJhgIgFjwRFj+YJEe2gz+Mr44CUR76lILB6W
- 8vDL+MVYWAtAIfxlr6mfrcMM2OM0U1PamndUbUWQVE1MYZbRNlahhK4F2wD7O4ReS/ia
- +wmQ==
-X-Gm-Message-State: AGi0PuaXMyvRCBt+aDXcoDpIlB1VS1qVZPEQhIckVadaMtH6Aj1KijWe
- xAvDkeVO99DZ7ioHcESDiByO/rDMTUi9xA==
-X-Google-Smtp-Source: APiQypJCQ9QNvYDLMKWJSh3JLTGM7uv0NjAFS+LMmSm9a+7MZstFyB4poXpoYNSf6Vms9DcCyeqmtg==
-X-Received: by 2002:a1c:e0c3:: with SMTP id x186mr3242446wmg.146.1588063082706; 
- Tue, 28 Apr 2020 01:38:02 -0700 (PDT)
+ bh=AcZv63SO/bZM4YK0vrff1pUjiSMZ/JjiL2uVdhInnTo=;
+ b=OW+oz3nwYO4cEnN28zbVHyrsjRJY5rTJ1x4MhH8CYWaPCK1E8CAs4cIQZv7UhnlgLe
+ XfByhyDAWVLlSkygKMfqaMqgXfe1PKIfFQF/eDrsPbeeyMaETNoDiyyGRQ+w5mV7cDPO
+ HROzv/X2/kCZSmck+p80wwNlV5K10bJLsSYM5y4t/90jd6jiarf7oVcetA1O4GSX/Ext
+ 7w35UUTCdCkrdCzdSfWZRA2wQXFatMYUYtd8i8sNTJI95ETJqSvZ40M4iuEZOXq5eeaw
+ IQ/fRVuYXEOcM7j9eKJYMzSF3CD+zlhj9LIS8np89MtaWz/vZgRbMtVT6XZ9fhI/7bUY
+ +cPQ==
+X-Gm-Message-State: AGi0PubCjcluRM5U67kRSzst0zI9cvtGHj5M9XhUt17TgpGacQ0N0raC
+ SP1vcxac58+FdIdP8YCwSfgjEQ==
+X-Google-Smtp-Source: APiQypK1NWyXSk9p04/81oyI/OiCuz29JQPQwjE3rvhCHYsCxrhocseLd6JAk5TXs3AUqppYBWMDKA==
+X-Received: by 2002:a1c:4304:: with SMTP id q4mr3708436wma.152.1588065097030; 
+ Tue, 28 Apr 2020 02:11:37 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71?
  ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
- by smtp.gmail.com with ESMTPSA id t67sm2494640wmg.40.2020.04.28.01.38.00
+ by smtp.gmail.com with ESMTPSA id v131sm2585128wmb.19.2020.04.28.02.11.35
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Apr 2020 01:38:01 -0700 (PDT)
-Subject: Re: [PATCH] drm/meson: viu: fix setting the OSD burst length in
- VIU_OSD1_FIFO_CTRL_STAT
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- jmasson@baylibre.com, linux-amlogic@lists.infradead.org
-References: <20200425203941.3188000-1-martin.blumenstingl@googlemail.com>
+ Tue, 28 Apr 2020 02:11:35 -0700 (PDT)
+Subject: Re: [PATCH] drm/meson: add mode selection limits against specific SoC
+ revisions
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20200421134410.30603-1-narmstrong@baylibre.com>
+ <CAFBinCAGP7ZE-OksaE=6E54r2e0VJk2wMTEwKU65qAoR4dQvxw@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <bf7e6eb5-4655-e958-819b-9d14effe745e@baylibre.com>
-Date: Tue, 28 Apr 2020 10:38:00 +0200
+Message-ID: <4e2ca733-15f4-67c7-caf5-62807a49ecbd@baylibre.com>
+Date: Tue, 28 Apr 2020 11:11:34 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200425203941.3188000-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <CAFBinCAGP7ZE-OksaE=6E54r2e0VJk2wMTEwKU65qAoR4dQvxw@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200428_013805_009509_E821E0AA 
-X-CRM114-Status: GOOD (  17.79  )
+X-CRM114-CacheID: sfid-20200428_021139_013824_C5462056 
+X-CRM114-Status: GOOD (  13.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,93 +152,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 Hi,
-On 25/04/2020 22:39, Martin Blumenstingl wrote:
-> The burst length is configured in VIU_OSD1_FIFO_CTRL_STAT[31] and
-> VIU_OSD1_FIFO_CTRL_STAT[11:10]. The public S905D3 datasheet describes
-> this as:
-> - 0x0 = up to 24 per burst
-> - 0x1 = up to 32 per burst
-> - 0x2 = up to 48 per burst
-> - 0x3 = up to 64 per burst
-> - 0x4 = up to 96 per burst
-> - 0x5 = up to 128 per burst
-> 
-> The lower two bits map to VIU_OSD1_FIFO_CTRL_STAT[11:10] while the upper
-> bit maps to VIU_OSD1_FIFO_CTRL_STAT[31].
-> 
-> Replace meson_viu_osd_burst_length_reg() with pre-defined macros which
-> set these values. meson_viu_osd_burst_length_reg() always returned 0
-> (for the two used values: 32 and 64 at least) and thus incorrectly set
-> the burst size to 24.
-> 
-> Fixes: 147ae1cbaa1842 ("drm: meson: viu: use proper macros instead of magic constants")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/gpu/drm/meson/meson_registers.h |  6 ++++++
->  drivers/gpu/drm/meson/meson_viu.c       | 11 ++---------
->  2 files changed, 8 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-> index 8ea00546cd4e..049c4bfe2a3a 100644
-> --- a/drivers/gpu/drm/meson/meson_registers.h
-> +++ b/drivers/gpu/drm/meson/meson_registers.h
-> @@ -261,6 +261,12 @@
->  #define VIU_OSD_FIFO_DEPTH_VAL(val)      ((val & 0x7f) << 12)
->  #define VIU_OSD_WORDS_PER_BURST(words)   (((words & 0x4) >> 1) << 22)
->  #define VIU_OSD_FIFO_LIMITS(size)        ((size & 0xf) << 24)
-> +#define VIU_OSD_BURST_LENGTH_24          (0x0 << 31 | 0x0 << 10)
-> +#define VIU_OSD_BURST_LENGTH_32          (0x0 << 31 | 0x1 << 10)
-> +#define VIU_OSD_BURST_LENGTH_48          (0x0 << 31 | 0x2 << 10)
-> +#define VIU_OSD_BURST_LENGTH_64          (0x0 << 31 | 0x3 << 10)
-> +#define VIU_OSD_BURST_LENGTH_96          (0x1 << 31 | 0x0 << 10)
-> +#define VIU_OSD_BURST_LENGTH_128         (0x1 << 31 | 0x1 << 10)
->  
->  #define VD1_IF0_GEN_REG 0x1a50
->  #define VD1_IF0_CANVAS0 0x1a51
-> diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
-> index 304f8ff1339c..aede0c67a57f 100644
-> --- a/drivers/gpu/drm/meson/meson_viu.c
-> +++ b/drivers/gpu/drm/meson/meson_viu.c
-> @@ -411,13 +411,6 @@ void meson_viu_gxm_disable_osd1_afbc(struct meson_drm *priv)
->  			    priv->io_base + _REG(VIU_MISC_CTRL1));
->  }
->  
-> -static inline uint32_t meson_viu_osd_burst_length_reg(uint32_t length)
-> -{
-> -	uint32_t val = (((length & 0x80) % 24) / 12);
-> -
-> -	return (((val & 0x3) << 10) | (((val & 0x4) >> 2) << 31));
-> -}
-> -
->  void meson_viu_init(struct meson_drm *priv)
->  {
->  	uint32_t reg;
-> @@ -444,9 +437,9 @@ void meson_viu_init(struct meson_drm *priv)
->  		VIU_OSD_FIFO_LIMITS(2);      /* fifo_lim: 2*16=32 */
->  
->  	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
-> -		reg |= meson_viu_osd_burst_length_reg(32);
-> +		reg |= VIU_OSD_BURST_LENGTH_32;
->  	else
-> -		reg |= meson_viu_osd_burst_length_reg(64);
-> +		reg |= VIU_OSD_BURST_LENGTH_64;
->  
->  	writel_relaxed(reg, priv->io_base + _REG(VIU_OSD1_FIFO_CTRL_STAT));
->  	writel_relaxed(reg, priv->io_base + _REG(VIU_OSD2_FIFO_CTRL_STAT));
-> 
 
-Thanks,
-Will run some tests !
+On 22/04/2020 23:12, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Tue, Apr 21, 2020 at 3:44 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> [...]
+>> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+>> index e8c94915a4fc..dc3d5122475a 100644
+>> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+>> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+>> @@ -695,6 +695,13 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+>>         dev_dbg(connector->dev->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
+>>                 __func__, phy_freq, vclk_freq, venc_freq, hdmi_freq);
+>>
+>> +       /* Check against soc revision/package limits */
+>> +       if (priv->limits) {
+>> +               if (priv->limits->max_hdmi_phy_freq &&
+>> +                   phy_freq > priv->limits->max_hdmi_phy_freq)
+>> +                       return MODE_CLOCK_HIGH;
+>> +       }
+> I think that this will also be useful for the 32-bit SoCs as well.
+> is there a chance you can move it to meson_vclk_vic_supported_freq
+> (called right below), where all the existing frequency limit checks
+> are already?
+
+It would need to add priv to meson_vclk_vic_supported_freq(), but indeed,
+would be cleaner.
+
+And the meson_vclk_dmt_supported_freq() would also need this test aswell.
+
+I'll resend with these fixed.
 
 Neil
+
+> 
+> 
+> Thank you!
+> Martin
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
