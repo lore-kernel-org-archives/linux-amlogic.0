@@ -1,85 +1,146 @@
-Return-Path: <SRS0=4IOV=6L=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=mJnT=6M=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CD393C4CECC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Apr 2020 19:46:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D321EC83000
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 08:38:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A3967206B8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Apr 2020 19:46:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A16B52053B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 08:38:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l6jZA5XY";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="otJ/1Xsx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A3967206B8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OgPnKO4p";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dyMFUVUf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A16B52053B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KYhKH/gH1jtfEgK7EMiwCOyIS97BCXSj9kfijx0RDB4=; b=l6jZA5XYxubk/i
-	UdWw+J8nR/v1COjHUkh1Pp25XIVpEi5CuDhbHyaguEyJWARbD7qs2vc4pQLoIQtMhcEyAUYzYccoL
-	hzB7VilKajGIeNsXBiSNbxzN4urHO4desLwMe4Cy/ezhg5UNDQbOb2f9mw6dHgurI4WsKbnQCVubs
-	8scL8U8q6d1Z7ND6jm/2z4i1QNsBlOBWo8ju8+9tYs8egAG8BAk3x8cELiJh02yfG+yMJVETlzdoH
-	wfExKLzbCw2UbCyVrHEHCBK3GMWRVmJE1vs7Oe6PpbBqNOcDemthUsWU/o1eotPi+jLJx5MAF5UUj
-	7BGQ8JnMDUUHb+6ZWgZw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/LL3BgQZvLwRsVYmtk6Q7wgYcxncCg9EBxdtuWQrRP4=; b=OgPnKO4pOpYevW
+	oX/LeWgPVablkZQZOrPeWXoI1oWLvuEoBRjpRetr2eg6fH2eEDI4KCHbT1oLjsmlnk166rxxa8vBo
+	kdcwks/Q+rudmUeMWxGohuvJrl6I+p37Mqllr1FlpDP9bz160DB3a0Di9PxRKyRPXNW42jiy07jy2
+	QcHT04d/KD8crZH05uqqF1mCA5NRRzpDlLS3FCFneAjO+fWoeY4v5vtl2tqEmJO3CJwfCVrt7vri4
+	pCMOleKgDxPk94JuwHWiYCHaVoICzxRrV2p3hTMhlt8AkX+KK+r7ck1Oq0rNiD9KSMtGtLopQECWc
+	HfoAURVWz7WT2eejnQyw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jT9hS-0008PQ-IH; Mon, 27 Apr 2020 19:45:54 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1jTLku-0001Ft-VO; Tue, 28 Apr 2020 08:38:16 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jT9gS-0004uu-2z; Mon, 27 Apr 2020 19:44:53 +0000
-Received: by mail-ed1-x541.google.com with SMTP id r7so14443864edo.11;
- Mon, 27 Apr 2020 12:44:51 -0700 (PDT)
+ id 1jTLki-000151-Tc
+ for linux-amlogic@lists.infradead.org; Tue, 28 Apr 2020 08:38:07 +0000
+Received: by mail-wm1-x344.google.com with SMTP id x25so1768319wmc.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 28 Apr 2020 01:38:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VQcsbuP3pB8CDC+cItJJV21Dnh5PuIRR4nPKttHGjzE=;
- b=otJ/1XsxOtfHp14bHd8Kf93q9ptKtRm3hglsJawWMzxNHKYCD7z6ECVnscbS/vBVha
- Zs0kLO2wdbw68nXZrww0yrjzXzy++SVTTkfKjR+ovO1otx1+cGbTyeruo2DDg0bJrb2K
- /1lk1vT5EhWAFPpVmqCweZ7vf5ZgmEuzHwCe7focxGC0MWEXvhLb+q5NBFzpRnWcTNWh
- XEvqoHCsoVjLAMeFAwBsLrDGX41nzUvanE6tM370s5f4+IZl5CFfYCvEdjIv44JBjrK1
- q0YpwfJ50+lUfdzfPcXiUwiryMAQY8+BXLGb54Y/dLv/7ruwUlDi36CBtdHTZYZrvUf7
- u0Qw==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=IcPRO5g/VCTnULbqSnLVLbjVPsn/n6r8qlxzkItb/0c=;
+ b=dyMFUVUfnsuTwPJYGgoOaQBnh4haZwH+VXhe9XAEpXt9J8IKW89AYZkJIt8RfWw86I
+ NixArA7yDE2u0z3R+ic2tgKMzJYLbNvnonl98IjsmtrTbslOl+sCJ8N8z7/IiXi08P6K
+ dt9tuMS45tRVL0wm0wy3n5Ix2Ev+SNMErU0btJMcwPgXeoeihRhHkWAQYyg+3uB1trKt
+ AbULJwsWwnaHqpz7qrDQ2FF159wD2p+F2kEb56n3DPhac4iORPaz2wExK9CNMP0QxXx0
+ 8NDvCGur+Sk8lDsIwSAvsrxiCQye/iZKIIs/wm+wPbhpNLo8WZR6lsXcTb43402iylUZ
+ hgWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=VQcsbuP3pB8CDC+cItJJV21Dnh5PuIRR4nPKttHGjzE=;
- b=BslOvVdgALoHavsMaacUxJSC3uFxxivY+8Z53pAOR5LBNcKrCSmeW0RVtMbQdJBnl/
- sRVZN44Z6zfP/GCNc+T0XG/cIOwohLSQDYe04j7D2eS8WB1sgs8ZuuQJmRBrgWTzBzIa
- FctqkMhxY1NywZuXhebQv9kRjz8BjOPKrO0Ntod7dGyWjdQ33hw5VxEgsZ+VOh5Kha+5
- AIVKVUJqurPAnxNmv9M1jrnucvfsmr0rfL9azYYxt8xOBZPfr5fk8tA+dPmMEb2RqLxE
- 8x3gJbKTG8j9X1NlzD/cPK6P7YaRAhvMBs3raxzurIfEX+nWDyX+VTQLj+xn+sOcqUNi
- aOGg==
-X-Gm-Message-State: AGi0PuZinQ6GXHtRqKA/VbLSulc1qnhw1pi0kqMy8+xlR3phwsWfoxRS
- URzAkTIAu95yPSMAfrXXhLoqFMxoWYYcZvgPIj8=
-X-Google-Smtp-Source: APiQypKdvwLdxCF/E1pxaH6di+8W+pTb7+5wMbfJFWXAgXSq3W+jSu6jwARdIVsNAY136N7lf7NMNpJEjCTrQ7cHC7k=
-X-Received: by 2002:a50:f61c:: with SMTP id c28mr18663659edn.365.1588016690108; 
- Mon, 27 Apr 2020 12:44:50 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=IcPRO5g/VCTnULbqSnLVLbjVPsn/n6r8qlxzkItb/0c=;
+ b=HR89nA7tfAGjDJ3MJJv/sIVls0jsxq8nBsCz6vcjoJDZseeTaJfdnQPa2usxtv8j24
+ 56IZYusfJjseg7PW8M4b9kNmfP+maxNWX0eMpvVngfJJpi95uz3LuPOvSVD74y14j3DF
+ iYmylFgyviAD5UvQu1aUVmAZ7VrFVBw8JgaKCOQFDkVM/j/frzLuzFeeOo/MDb5X4wmg
+ 0ZxkFuE+ERHwHljWU2JFPKf5KgI4PHu+QJhgIgFjwRFj+YJEe2gz+Mr44CUR76lILB6W
+ 8vDL+MVYWAtAIfxlr6mfrcMM2OM0U1PamndUbUWQVE1MYZbRNlahhK4F2wD7O4ReS/ia
+ +wmQ==
+X-Gm-Message-State: AGi0PuaXMyvRCBt+aDXcoDpIlB1VS1qVZPEQhIckVadaMtH6Aj1KijWe
+ xAvDkeVO99DZ7ioHcESDiByO/rDMTUi9xA==
+X-Google-Smtp-Source: APiQypJCQ9QNvYDLMKWJSh3JLTGM7uv0NjAFS+LMmSm9a+7MZstFyB4poXpoYNSf6Vms9DcCyeqmtg==
+X-Received: by 2002:a1c:e0c3:: with SMTP id x186mr3242446wmg.146.1588063082706; 
+ Tue, 28 Apr 2020 01:38:02 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71?
+ ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
+ by smtp.gmail.com with ESMTPSA id t67sm2494640wmg.40.2020.04.28.01.38.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 28 Apr 2020 01:38:01 -0700 (PDT)
+Subject: Re: [PATCH] drm/meson: viu: fix setting the OSD burst length in
+ VIU_OSD1_FIFO_CTRL_STAT
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ jmasson@baylibre.com, linux-amlogic@lists.infradead.org
+References: <20200425203941.3188000-1-martin.blumenstingl@googlemail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <bf7e6eb5-4655-e958-819b-9d14effe745e@baylibre.com>
+Date: Tue, 28 Apr 2020 10:38:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <20200328003249.1248978-1-martin.blumenstingl@googlemail.com>
- <20200328003249.1248978-4-martin.blumenstingl@googlemail.com>
- <CAPDyKFqsG4kyABmxn__gAbe4fBmuZ=4mdFpRaCL0ih7QZEhwzQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFqsG4kyABmxn__gAbe4fBmuZ=4mdFpRaCL0ih7QZEhwzQ@mail.gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 27 Apr 2020 21:44:39 +0200
-Message-ID: <CAFBinCCr2yk5WOG_Y7E14ekpkOsyurkCfYBO0DOWg1MSjvxaTw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] mmc: host: meson-mx-sdhc: new driver for the
- Amlogic Meson SDHC host
-To: Ulf Hansson <ulf.hansson@linaro.org>
+In-Reply-To: <20200425203941.3188000-1-martin.blumenstingl@googlemail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200427_124452_140977_A3A159F8 
-X-CRM114-Status: GOOD (  20.14  )
+X-CRM114-CacheID: sfid-20200428_013805_009509_E821E0AA 
+X-CRM114-Status: GOOD (  17.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,84 +152,93 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, DTML <devicetree@vger.kernel.org>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- yinxin_1989@aliyun.com, Rob Herring <robh+dt@kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, lnykww@gmail.com
+Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ulf,
+Hi,
+On 25/04/2020 22:39, Martin Blumenstingl wrote:
+> The burst length is configured in VIU_OSD1_FIFO_CTRL_STAT[31] and
+> VIU_OSD1_FIFO_CTRL_STAT[11:10]. The public S905D3 datasheet describes
+> this as:
+> - 0x0 = up to 24 per burst
+> - 0x1 = up to 32 per burst
+> - 0x2 = up to 48 per burst
+> - 0x3 = up to 64 per burst
+> - 0x4 = up to 96 per burst
+> - 0x5 = up to 128 per burst
+> 
+> The lower two bits map to VIU_OSD1_FIFO_CTRL_STAT[11:10] while the upper
+> bit maps to VIU_OSD1_FIFO_CTRL_STAT[31].
+> 
+> Replace meson_viu_osd_burst_length_reg() with pre-defined macros which
+> set these values. meson_viu_osd_burst_length_reg() always returned 0
+> (for the two used values: 32 and 64 at least) and thus incorrectly set
+> the burst size to 24.
+> 
+> Fixes: 147ae1cbaa1842 ("drm: meson: viu: use proper macros instead of magic constants")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/gpu/drm/meson/meson_registers.h |  6 ++++++
+>  drivers/gpu/drm/meson/meson_viu.c       | 11 ++---------
+>  2 files changed, 8 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
+> index 8ea00546cd4e..049c4bfe2a3a 100644
+> --- a/drivers/gpu/drm/meson/meson_registers.h
+> +++ b/drivers/gpu/drm/meson/meson_registers.h
+> @@ -261,6 +261,12 @@
+>  #define VIU_OSD_FIFO_DEPTH_VAL(val)      ((val & 0x7f) << 12)
+>  #define VIU_OSD_WORDS_PER_BURST(words)   (((words & 0x4) >> 1) << 22)
+>  #define VIU_OSD_FIFO_LIMITS(size)        ((size & 0xf) << 24)
+> +#define VIU_OSD_BURST_LENGTH_24          (0x0 << 31 | 0x0 << 10)
+> +#define VIU_OSD_BURST_LENGTH_32          (0x0 << 31 | 0x1 << 10)
+> +#define VIU_OSD_BURST_LENGTH_48          (0x0 << 31 | 0x2 << 10)
+> +#define VIU_OSD_BURST_LENGTH_64          (0x0 << 31 | 0x3 << 10)
+> +#define VIU_OSD_BURST_LENGTH_96          (0x1 << 31 | 0x0 << 10)
+> +#define VIU_OSD_BURST_LENGTH_128         (0x1 << 31 | 0x1 << 10)
+>  
+>  #define VD1_IF0_GEN_REG 0x1a50
+>  #define VD1_IF0_CANVAS0 0x1a51
+> diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
+> index 304f8ff1339c..aede0c67a57f 100644
+> --- a/drivers/gpu/drm/meson/meson_viu.c
+> +++ b/drivers/gpu/drm/meson/meson_viu.c
+> @@ -411,13 +411,6 @@ void meson_viu_gxm_disable_osd1_afbc(struct meson_drm *priv)
+>  			    priv->io_base + _REG(VIU_MISC_CTRL1));
+>  }
+>  
+> -static inline uint32_t meson_viu_osd_burst_length_reg(uint32_t length)
+> -{
+> -	uint32_t val = (((length & 0x80) % 24) / 12);
+> -
+> -	return (((val & 0x3) << 10) | (((val & 0x4) >> 2) << 31));
+> -}
+> -
+>  void meson_viu_init(struct meson_drm *priv)
+>  {
+>  	uint32_t reg;
+> @@ -444,9 +437,9 @@ void meson_viu_init(struct meson_drm *priv)
+>  		VIU_OSD_FIFO_LIMITS(2);      /* fifo_lim: 2*16=32 */
+>  
+>  	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+> -		reg |= meson_viu_osd_burst_length_reg(32);
+> +		reg |= VIU_OSD_BURST_LENGTH_32;
+>  	else
+> -		reg |= meson_viu_osd_burst_length_reg(64);
+> +		reg |= VIU_OSD_BURST_LENGTH_64;
+>  
+>  	writel_relaxed(reg, priv->io_base + _REG(VIU_OSD1_FIFO_CTRL_STAT));
+>  	writel_relaxed(reg, priv->io_base + _REG(VIU_OSD2_FIFO_CTRL_STAT));
+> 
 
-thank you for looking into this!
+Thanks,
+Will run some tests !
 
-On Mon, Apr 27, 2020 at 9:20 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-[...]
-> > +static void meson_mx_sdhc_wait_cmd_ready(struct mmc_host *mmc)
-> > +{
-> > +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
-> > +       u32 stat, esta;
-> > +       int ret;
-> > +
-> > +       ret = regmap_read_poll_timeout(host->regmap, MESON_SDHC_STAT, stat,
-> > +                                      !(stat & MESON_SDHC_STAT_CMD_BUSY), 1,
-> > +                                      100000);
->
-> Please use defines for timeout values.
-I'll take care of this here and all other places which you have found
-
-[...]
-> > +       if (cmd->data)
-> > +               host->platform->set_pdma(mmc);
-> > +
-> > +       if (host->platform->wait_before_send)
-> > +               host->platform->wait_before_send(mmc);
-> > +
-> > +       regmap_write(host->regmap, MESON_SDHC_SEND, send);
->
-> Isn't there a configurable timeout to set for the command?
->
-> I mean the driver sets mmc->max_busy_timeout to 30s in ->probe(), but
-> can the timeout be configured to a lower value?
-there's MESON_SDHC_CTRL_RX_TIMEOUT and MESON_SDHC_CTRL_RX_PERIOD
-here's what the datasheet has to say about them:
-- rx_timeout(cmd or wcrc Receiving Timeout, default 64)
-- rc_period(Period between response/cmd and default next cmd,default
-8) - I'm not even sure if this is related somehow
-
-if you have a specific test-case for me to provoke these timeouts I
-can try playing around with these values
-otherwise we have to ask Jianxin and see whether he can get some
-information about this from the internal team at Amlogic
-
-[...]
-> > +       mmc->caps |= MMC_CAP_ERASE | MMC_CAP_HW_RESET;
->
-> Should you also set MMC_CAP_WAIT_WHILE_BUSY? It sounded like the
-> driver supported this.
-I can try setting it.
-From our previous discussion (on the meson-mx-sdio driver) I have
-learned that eMMC will be a good test-case for it ;-)
-
-[...]
-> FYI: I left out all comments related to the clock provider
-> initialization. I think it makes better sense to review that code,
-> after you have converted to use the devm_clk_hw_register() and avoid
-> registering a separate driver for it.
-yes, that makes sense
-I expect the code to be easier since it'll be one big driver with the
-next version (so no more platform device allocation, etc.)
-
-> Other than the minor comments, this looks good to me.
-great - it would be great if this could finally make it into v5.8
-
-
-Martin
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
