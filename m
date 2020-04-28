@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63E66C83004
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:17:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC31FC83000
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:18:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 37DE3206D6
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:17:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8D5A22053B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:18:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="C3qDoEzi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="cPgE9XU5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37DE3206D6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NYZ+Dqsc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Axa0zTFE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D5A22053B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,55 +27,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=0BAWfDhcrIxdTYQEKfYSKnpHExuwSdxguCRpdOxloIM=; b=C3qDoEzip8PGNelUNDxG1fQph/
-	A4dJwfQKbY66JZm7psf6LjQXq1jUwbA6CzAXm4NSgbhdRt6BdIWM+h3sfkaoIDXAHN0uxfhnn02U7
-	y5Vty1dYQDlL99bFXa4ixCB5qaQKrug7suO7Zc8Nbkkk3j36tASP8vxx3ZCi/8bh7F9uKBaYzFfDJ
-	zHC+E0lrK8X27O3LXrt1tlb3BpUdE8LF5D9r2pwC3CkZXgbWJzTDyNpSejNA+EO838+owkMCCKW3D
-	JHG888+ppL9Erqz1a2RESyVRQ9GaHIh5M5lX+RrmY6Bn0GvwiL10vG202oebvotqnoYI6YV7ymP9Y
-	HX1U9cVQ==;
+	bh=5KgcsRGbb3UkNnuZJspPVgqulS2dRC1QAB5OTWF41Zo=; b=NYZ+DqscJlJssmaiuLdiFYP5Rv
+	Ci6IicWzkfRQ/6O/dxeXglFK5Xh0kKE8zFKTnaHAHjdCMFdjGrmnUxVK9pi4yvi4D/KjYDZ40ovpY
+	mH34sJ8ZOZIh10B5MXi35beUia9AlBm6PHhaYwifREiQmiOFJr7RvQaBHglCMFGrZroeAOkUg9KsD
+	1AqsiE5J/CjRMZ3Ae9devQIbhahvGRbBZhmx6zAX7mUtm2rIXmUnPAs+f6UKOeh55egxE7V6IABH4
+	RDn3bLmypa8MbvpY/moso/itOhznWVwkn//RXlPVVrbFfnvIpmh8l3TbzqDsO+X9CEzMXswDPbnoK
+	ZAmc2brA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jTMMp-0004yi-UT; Tue, 28 Apr 2020 09:17:27 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1jTMNh-0005YQ-N3; Tue, 28 Apr 2020 09:18:21 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jTMMm-0004xu-R1
- for linux-amlogic@lists.infradead.org; Tue, 28 Apr 2020 09:17:26 +0000
-Received: by mail-wm1-x343.google.com with SMTP id u127so2010656wmg.1
- for <linux-amlogic@lists.infradead.org>; Tue, 28 Apr 2020 02:17:24 -0700 (PDT)
+ id 1jTMNS-0005JB-Bh
+ for linux-amlogic@lists.infradead.org; Tue, 28 Apr 2020 09:18:07 +0000
+Received: by mail-wr1-x441.google.com with SMTP id j2so23760137wrs.9
+ for <linux-amlogic@lists.infradead.org>; Tue, 28 Apr 2020 02:18:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:autocrypt:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=hxRFxgzfbY4fG5zDG8kNf2BxkovyUOAXka3Z/9SntaM=;
- b=cPgE9XU5NTlXVKzcxihqA8wMrM8wexyi92a9ojbpLwGUQ+cDbI1kovQcsaLK5IeqmP
- Iom9EvUPI57FF/b4rPheQX1njMKgxORbAbnfqGQivoV9F8ZhQr+C3Q46WCoAKmTvSF8M
- jwRbMmhzShCNGiy7KBDeNRoJCLTMK4V43dntY3B1z9NNaUXCD+QvExkb8aTa4fhUI8pg
- jg0OhqjVd7USvXsG4KXpw71i5FS4st0ZtWbwP8KU0Z49Ib1XnSqOIkRBpJBNVDOIzrOT
- 69inrkF080vjkomyKpkQQmYY2ewf7R4JteQERJFheFel2x3KlV/hAQ0Yw/Kc6Wkcom5z
- u7Hw==
+ bh=iP8Gqu6pUGGGOlIHJ9NtxKdj7vpj5Mjw7h1t/BfyRls=;
+ b=Axa0zTFE0gOShxiDjNrI1Qoux2ujDamYP2BRgnpdVD0EReYnjpdoUjqRRmvDW6YaKU
+ nsyqolwloVt+6wEMob8ap4zBKpzx6lX0e/wjj2pTQu1Wp87nJeuWm2X4nY13zMYb3c4k
+ Mmc7Q6y3NTVvhpBRpx0ploXPM7BhWUxq67UR+NSf7ah+tGY1Z2sfLfawbqu2/7Oym0qV
+ 1GhY8ae9VOM5RrsSXUKHJ3Tw+j3fpyCNVlzxgF27arJQ2cYcV39J6w+1pYYQZt5TAPbY
+ lwiiBIYZyxFpRwfDd5EOWbKCu9al/GTzs6V4Ip+lw4F3d0jvL9RKe7yUb1fQt1+S2Cqe
+ sxLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=hxRFxgzfbY4fG5zDG8kNf2BxkovyUOAXka3Z/9SntaM=;
- b=hnAsTf+g2fkjNXZnLfShE+tZw92DL0SQhWh/1iaoj0xAq5db2O4oX32kau/Pl5bHq1
- t9fd0me9OX4mHmvlJlR+5Fr1fgYljvE5Hqn4tRM3iCz0rsrgF4Bx3UkjrDd61gqDKkdG
- Sg3bmi/Us1xUUrQOuW4Fec7kENQO5ONACybP1iwlAociiCwUhLbA63mnqv1mkPp5R+mH
- JiaUbLa8nb0D5G6VJTbS3ZmoDQkR/2DJBz04hawsfr7whski9VPja/7JjtuvuSeuY7qE
- aOR0j5zjELOM2W+k6i3n0OZ41FaZQ+MJ9iukMMdbnaKUUdnTW5pfFQgbHoEMo6vewTbN
- 3a2g==
-X-Gm-Message-State: AGi0PuYnIOjM2YavUb7c8zBcsal2h0wOawhEFOtnc7w42uGgy1kcjySW
- bYM0Z2for00jIfFr0CZSw/DQfL3PhbPnBQ==
-X-Google-Smtp-Source: APiQypJz/ci6GTN3Orxmj45mS0Ksldxcq/H7zWBpjyovDf8f8smhU98Y03YsqpcEtYChC6mYm/MUVQ==
-X-Received: by 2002:a7b:c5d4:: with SMTP id n20mr3650389wmk.92.1588065443027; 
- Tue, 28 Apr 2020 02:17:23 -0700 (PDT)
+ bh=iP8Gqu6pUGGGOlIHJ9NtxKdj7vpj5Mjw7h1t/BfyRls=;
+ b=ZINrhao3Qh1+sfZ8qg70IpG1R4qpWEusIadogGYk156068gY2faqxqDoq6GXHhVSFf
+ 4zCOpBtRDN1J5mm4h+LSwEFg8B0K5bBDseJojUGpzDHboKDRB2VyjAf2vwG4t7NDxXZ1
+ utW+7NNDmJRLLCgk+jhGziThiIQQ+BJRQ9vesD5G62cJFosuUz9n/1Jnh3hLvkkeQxWs
+ RM+THFAtm0ODEsjX854u+u+Ow7PsLg1He0Z2uEAewYYkGv9r9McG0fPNspvqWafC88bE
+ UP8E3aR2bLYlIc+ZzoATfDrO+KygWiAqo3YJ04U2gaGoFCnj+ai6pc3mfAg7zeEO8qjx
+ 56kw==
+X-Gm-Message-State: AGi0PuYgFwXYeuq2SBwalj82p5dqTmf6tp7tsqfbMnEv0bNe20E14PK2
+ dY5v7zwaaYuk8hCVyAhUayYVE5xx01Kiow==
+X-Google-Smtp-Source: APiQypJ/dlK2v3uHfy2WC21n1pbr1jSVMF6xKfJa5E0dOoaoZFv3TXeOzu25/z1o34BuS5IcL0PSBw==
+X-Received: by 2002:a05:6000:12c5:: with SMTP id
+ l5mr33178827wrx.185.1588065483943; 
+ Tue, 28 Apr 2020 02:18:03 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71?
  ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
- by smtp.gmail.com with ESMTPSA id y7sm2596132wmb.43.2020.04.28.02.17.21
+ by smtp.gmail.com with ESMTPSA id g25sm2433513wmh.24.2020.04.28.02.18.02
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Apr 2020 02:17:22 -0700 (PDT)
+ Tue, 28 Apr 2020 02:18:03 -0700 (PDT)
 Subject: Re: [PATCH] drm/meson: Remove unneeded semicolon
 To: Zheng Bin <zhengbin13@huawei.com>, khilman@baylibre.com,
  airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
@@ -132,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <e02655f4-1fed-3c13-2355-2dea7f0fbed7@baylibre.com>
-Date: Tue, 28 Apr 2020 11:17:21 +0200
+Message-ID: <45523b6f-4cd5-3f13-782f-d23d284fea1f@baylibre.com>
+Date: Tue, 28 Apr 2020 11:18:02 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
 In-Reply-To: <20200424074949.12309-1-zhengbin13@huawei.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200428_021724_876602_081097DD 
-X-CRM114-Status: GOOD (  13.91  )
+X-CRM114-CacheID: sfid-20200428_021806_399662_CCF2A5AA 
+X-CRM114-Status: GOOD (  13.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,7 +187,7 @@ On 24/04/2020 09:49, Zheng Bin wrote:
 > 2.26.0.106.g9fadedd
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Applied to drm-misc-next
 
 _______________________________________________
 linux-amlogic mailing list
