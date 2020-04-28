@@ -2,84 +2,85 @@ Return-Path: <SRS0=mJnT=6M=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7AD3C83000
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:11:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63E66C83004
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:17:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A6D6A2072A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:11:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 37DE3206D6
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2020 09:17:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AvDzyqWj";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zdCQylS5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A6D6A2072A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="C3qDoEzi";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="cPgE9XU5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37DE3206D6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oHW2DYzBNE98WJ8oHgJ3qMZuUrwr1AgcersVdEPnpIc=; b=AvDzyqWjvZi4IX
-	JmI43NSGZepss/daZbJTx54eetO0h20GzX8t3iuMrngcJRG29p4D0sF1P99cffzDY9n+fozoDL91s
-	nhTaD553i8y+ej25MgiK+923u09OnMDfeGI81/SiDEZaOAavF110DDtbrh4FhJra3eB4pVpwfxui6
-	IdGe6CLMWhtDR1072QF0ifhvUZPTltUwJBJSPKZgQGwxaKxfMkK5tKgB91DOca+avQyH/rBDtPeNh
-	PtTt29T2xV4fjNlzA7LhFPQ8FpSDiD8H/qCEewNMHUdGnuwIPQ4CNE2RYYPmBb+zGKDxiD37kkGsY
-	8Ano9p+Vf0bQdq/2SXqw==;
+	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=0BAWfDhcrIxdTYQEKfYSKnpHExuwSdxguCRpdOxloIM=; b=C3qDoEzip8PGNelUNDxG1fQph/
+	A4dJwfQKbY66JZm7psf6LjQXq1jUwbA6CzAXm4NSgbhdRt6BdIWM+h3sfkaoIDXAHN0uxfhnn02U7
+	y5Vty1dYQDlL99bFXa4ixCB5qaQKrug7suO7Zc8Nbkkk3j36tASP8vxx3ZCi/8bh7F9uKBaYzFfDJ
+	zHC+E0lrK8X27O3LXrt1tlb3BpUdE8LF5D9r2pwC3CkZXgbWJzTDyNpSejNA+EO838+owkMCCKW3D
+	JHG888+ppL9Erqz1a2RESyVRQ9GaHIh5M5lX+RrmY6Bn0GvwiL10vG202oebvotqnoYI6YV7ymP9Y
+	HX1U9cVQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jTMHG-0001UO-C2; Tue, 28 Apr 2020 09:11:42 +0000
+	id 1jTMMp-0004yi-UT; Tue, 28 Apr 2020 09:17:27 +0000
 Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jTMHC-0001TS-VX
- for linux-amlogic@lists.infradead.org; Tue, 28 Apr 2020 09:11:40 +0000
-Received: by mail-wm1-x343.google.com with SMTP id r26so2004745wmh.0
- for <linux-amlogic@lists.infradead.org>; Tue, 28 Apr 2020 02:11:38 -0700 (PDT)
+ id 1jTMMm-0004xu-R1
+ for linux-amlogic@lists.infradead.org; Tue, 28 Apr 2020 09:17:26 +0000
+Received: by mail-wm1-x343.google.com with SMTP id u127so2010656wmg.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 28 Apr 2020 02:17:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
+ h=subject:to:references:from:autocrypt:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=AcZv63SO/bZM4YK0vrff1pUjiSMZ/JjiL2uVdhInnTo=;
- b=zdCQylS5c2EVlb2WQLEfp2+x4ZARSOqYiu8Wsx3aVpzESLFI+310vpWHfcqQJMpGw/
- tSntmLXjWmgDLSXCzYH3MNMmJG32/WW0n8KkfGMR5BuD7Ahfk/cuwJgnIhTQatyzRLwq
- RsTc3dIHb6Ky7Tc4Py0gQsL4G0TqTV2SoUUGDqGH+ibV7UJ5S+08gdX0nemYh3XLFrV9
- P++MC3guhRB6ZOMjSijKQHV3kqDXNUx0ehR3PkAd85mCgp6eBa+wjUOoxeSO9McPLhei
- HNIfSZsevibG2nJPXiMxem1bRQny5un/kkq6QPVBPJ+2bhEd1b51migUb3e8krTRsshw
- o8bA==
+ bh=hxRFxgzfbY4fG5zDG8kNf2BxkovyUOAXka3Z/9SntaM=;
+ b=cPgE9XU5NTlXVKzcxihqA8wMrM8wexyi92a9ojbpLwGUQ+cDbI1kovQcsaLK5IeqmP
+ Iom9EvUPI57FF/b4rPheQX1njMKgxORbAbnfqGQivoV9F8ZhQr+C3Q46WCoAKmTvSF8M
+ jwRbMmhzShCNGiy7KBDeNRoJCLTMK4V43dntY3B1z9NNaUXCD+QvExkb8aTa4fhUI8pg
+ jg0OhqjVd7USvXsG4KXpw71i5FS4st0ZtWbwP8KU0Z49Ib1XnSqOIkRBpJBNVDOIzrOT
+ 69inrkF080vjkomyKpkQQmYY2ewf7R4JteQERJFheFel2x3KlV/hAQ0Yw/Kc6Wkcom5z
+ u7Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=AcZv63SO/bZM4YK0vrff1pUjiSMZ/JjiL2uVdhInnTo=;
- b=OW+oz3nwYO4cEnN28zbVHyrsjRJY5rTJ1x4MhH8CYWaPCK1E8CAs4cIQZv7UhnlgLe
- XfByhyDAWVLlSkygKMfqaMqgXfe1PKIfFQF/eDrsPbeeyMaETNoDiyyGRQ+w5mV7cDPO
- HROzv/X2/kCZSmck+p80wwNlV5K10bJLsSYM5y4t/90jd6jiarf7oVcetA1O4GSX/Ext
- 7w35UUTCdCkrdCzdSfWZRA2wQXFatMYUYtd8i8sNTJI95ETJqSvZ40M4iuEZOXq5eeaw
- IQ/fRVuYXEOcM7j9eKJYMzSF3CD+zlhj9LIS8np89MtaWz/vZgRbMtVT6XZ9fhI/7bUY
- +cPQ==
-X-Gm-Message-State: AGi0PubCjcluRM5U67kRSzst0zI9cvtGHj5M9XhUt17TgpGacQ0N0raC
- SP1vcxac58+FdIdP8YCwSfgjEQ==
-X-Google-Smtp-Source: APiQypK1NWyXSk9p04/81oyI/OiCuz29JQPQwjE3rvhCHYsCxrhocseLd6JAk5TXs3AUqppYBWMDKA==
-X-Received: by 2002:a1c:4304:: with SMTP id q4mr3708436wma.152.1588065097030; 
- Tue, 28 Apr 2020 02:11:37 -0700 (PDT)
+ bh=hxRFxgzfbY4fG5zDG8kNf2BxkovyUOAXka3Z/9SntaM=;
+ b=hnAsTf+g2fkjNXZnLfShE+tZw92DL0SQhWh/1iaoj0xAq5db2O4oX32kau/Pl5bHq1
+ t9fd0me9OX4mHmvlJlR+5Fr1fgYljvE5Hqn4tRM3iCz0rsrgF4Bx3UkjrDd61gqDKkdG
+ Sg3bmi/Us1xUUrQOuW4Fec7kENQO5ONACybP1iwlAociiCwUhLbA63mnqv1mkPp5R+mH
+ JiaUbLa8nb0D5G6VJTbS3ZmoDQkR/2DJBz04hawsfr7whski9VPja/7JjtuvuSeuY7qE
+ aOR0j5zjELOM2W+k6i3n0OZ41FaZQ+MJ9iukMMdbnaKUUdnTW5pfFQgbHoEMo6vewTbN
+ 3a2g==
+X-Gm-Message-State: AGi0PuYnIOjM2YavUb7c8zBcsal2h0wOawhEFOtnc7w42uGgy1kcjySW
+ bYM0Z2for00jIfFr0CZSw/DQfL3PhbPnBQ==
+X-Google-Smtp-Source: APiQypJz/ci6GTN3Orxmj45mS0Ksldxcq/H7zWBpjyovDf8f8smhU98Y03YsqpcEtYChC6mYm/MUVQ==
+X-Received: by 2002:a7b:c5d4:: with SMTP id n20mr3650389wmk.92.1588065443027; 
+ Tue, 28 Apr 2020 02:17:23 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71?
  ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
- by smtp.gmail.com with ESMTPSA id v131sm2585128wmb.19.2020.04.28.02.11.35
+ by smtp.gmail.com with ESMTPSA id y7sm2596132wmb.43.2020.04.28.02.17.21
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Apr 2020 02:11:35 -0700 (PDT)
-Subject: Re: [PATCH] drm/meson: add mode selection limits against specific SoC
- revisions
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20200421134410.30603-1-narmstrong@baylibre.com>
- <CAFBinCAGP7ZE-OksaE=6E54r2e0VJk2wMTEwKU65qAoR4dQvxw@mail.gmail.com>
+ Tue, 28 Apr 2020 02:17:22 -0700 (PDT)
+Subject: Re: [PATCH] drm/meson: Remove unneeded semicolon
+To: Zheng Bin <zhengbin13@huawei.com>, khilman@baylibre.com,
+ airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20200424074949.12309-1-zhengbin13@huawei.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <4e2ca733-15f4-67c7-caf5-62807a49ecbd@baylibre.com>
-Date: Tue, 28 Apr 2020 11:11:34 +0200
+Message-ID: <e02655f4-1fed-3c13-2355-2dea7f0fbed7@baylibre.com>
+Date: Tue, 28 Apr 2020 11:17:21 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCAGP7ZE-OksaE=6E54r2e0VJk2wMTEwKU65qAoR4dQvxw@mail.gmail.com>
+In-Reply-To: <20200424074949.12309-1-zhengbin13@huawei.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200428_021139_013824_C5462056 
-X-CRM114-Status: GOOD (  13.59  )
+X-CRM114-CacheID: sfid-20200428_021724_876602_081097DD 
+X-CRM114-Status: GOOD (  13.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,54 +153,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 22/04/2020 23:12, Martin Blumenstingl wrote:
-> Hi Neil,
+On 24/04/2020 09:49, Zheng Bin wrote:
+> Fixes coccicheck warning:
 > 
-> On Tue, Apr 21, 2020 at 3:44 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> [...]
->> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
->> index e8c94915a4fc..dc3d5122475a 100644
->> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
->> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
->> @@ -695,6 +695,13 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
->>         dev_dbg(connector->dev->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
->>                 __func__, phy_freq, vclk_freq, venc_freq, hdmi_freq);
->>
->> +       /* Check against soc revision/package limits */
->> +       if (priv->limits) {
->> +               if (priv->limits->max_hdmi_phy_freq &&
->> +                   phy_freq > priv->limits->max_hdmi_phy_freq)
->> +                       return MODE_CLOCK_HIGH;
->> +       }
-> I think that this will also be useful for the 32-bit SoCs as well.
-> is there a chance you can move it to meson_vclk_vic_supported_freq
-> (called right below), where all the existing frequency limit checks
-> are already?
-
-It would need to add priv to meson_vclk_vic_supported_freq(), but indeed,
-would be cleaner.
-
-And the meson_vclk_dmt_supported_freq() would also need this test aswell.
-
-I'll resend with these fixed.
-
-Neil
-
+> drivers/gpu/drm/meson/meson_plane.c:226:3-4: Unneeded semicolon
 > 
+> Reported-by: Hulk Robot <hulkci@huawei.com>
+> Signed-off-by: Zheng Bin <zhengbin13@huawei.com>
+> ---
+>  drivers/gpu/drm/meson/meson_plane.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Thank you!
-> Martin
+> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+> index d5cbc47835bf..35338ed18209 100644
+> --- a/drivers/gpu/drm/meson/meson_plane.c
+> +++ b/drivers/gpu/drm/meson/meson_plane.c
+> @@ -223,7 +223,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+>  			priv->viu.osd1_blk0_cfg[0] |= OSD_BLK_MODE_16 |
+>  						OSD_COLOR_MATRIX_16_RGB565;
+>  			break;
+> -		};
+> +		}
+>  	}
+> 
+>  	switch (fb->format->format) {
+> --
+> 2.26.0.106.g9fadedd
 > 
 
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
