@@ -2,94 +2,145 @@ Return-Path: <SRS0=SdFN=6N=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15959C83003
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Apr 2020 12:37:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5529AC83004
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Apr 2020 13:33:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D7B0A2072A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Apr 2020 12:37:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2C447206D6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Apr 2020 13:33:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sFbMP+ET";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RB2S6Kbc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D7B0A2072A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YA3ow4iV";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ABiQRIwn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2C447206D6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=9KReDthDlocambja8ee2/AThvw9T+mY1JEwIruJUG34=; b=sFbMP+ETO3mdSIJbymAOxdRvwa
-	wDa+ttQipKKfAWF4vap+VgH+X04a7ShLPM/NvXnVNMBWAj5r5rMiTuw7F0jt+bs/4sOmDBm2P1yrt
-	DNDlVJp4TET+acDlsj4/OOT1jN2GJCW8z9/9CfOT0qTzPSTvTKVjhkH3JE3Y3tye/I90qiz8+E35e
-	poj33Kr8dUsIy/ZcygBlm/Db8LaqGWVm4LEeykgGaSdfER8DXbI3LlBYxja6vWmXGZKLnQdGr0hVl
-	Td4vrE+wU00qNe7dUTk5MA+eNiSmmY2GPAyKKMRAOLxeiz4begSlI1YQithHF6nyYrxgPr60HNKMp
-	P332oo2w==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HU4GFQn/LvPDSh0MT1tO5w7E3jyDBqr+SnmOGLvjz04=; b=YA3ow4iVKiuGH3
+	b2q9LZe8vgOEunExQTqm/uRTWX0g5rIRhjPQD95fO1FDvSoLgN25dyeJLHJ63UwNcIKdSB19r+9t5
+	gqZhYmYjLz2A76mcRQndQaRX2L9WdZ258B4Ym8owj7/BLwXfA8+U19I0qFzCbT+iie55Fh8YEAymM
+	rdf5Z+5QjQvDuprJgrSPG94tRmDY/7jb9WCWzKMt0VRNVhQXPTqzoy/IlUeausQ6PU/1pmSlYjPfk
+	lmrJmq6/0i+VLAlWlQgmNotIHnAqW5PR4kiIlyoxUM5KUPZdjgM+ZQhwIZU2I2V4g44+IAwILYI5C
+	cx71dQFSXZTuyE+w4c2w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jTlxk-0002i4-1H; Wed, 29 Apr 2020 12:37:16 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1jTmq8-0002DK-FN; Wed, 29 Apr 2020 13:33:28 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jTlxg-0002h8-Da
- for linux-amlogic@lists.infradead.org; Wed, 29 Apr 2020 12:37:14 +0000
-Received: by mail-wm1-x342.google.com with SMTP id y24so1833654wma.4
- for <linux-amlogic@lists.infradead.org>; Wed, 29 Apr 2020 05:37:12 -0700 (PDT)
+ id 1jTmq5-0002Bx-RS
+ for linux-amlogic@lists.infradead.org; Wed, 29 Apr 2020 13:33:27 +0000
+Received: by mail-wr1-x443.google.com with SMTP id x17so2552945wrt.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 29 Apr 2020 06:33:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=NkpmzV5D80JNy4ts2YZIu3+YM84vR2UzyeLRZ8y2XUk=;
- b=RB2S6Kbc+kfXu6qf/y6WSvhN9KPpKce18ars9tpM2GQHKrokwDv6/gMX4kdak20F6j
- KXNYe2U3QdGzROWkaeE5+5esEhR6IdymhTSFRH5is6PbUfFZjdXEhNZXda8pGH9KVC2H
- wX/PkvDEyEKQ+60pRvswRIlPgDyTsEywC3MJkTI+LCDEJ//QbLAJ0qmL31Ql306LvGM6
- 5o+o682PQZk5WTzs0jbP/ePdF4FvqO+2vokdsZ2rnTvaqBsOLpIvsOr3AmoToWMeieYb
- HoJxSlRteoXodvsrMnkadcgDRcAmpXv/EkkM0q4N6XjFvFN+jDEk1BF908zvESsOTGvR
- Znrw==
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=57KpVyxFiIynSOtLWM5S1qu9oG0E8FFGMRYGzL0PtQs=;
+ b=ABiQRIwnnGgnP7DXwh5VSPW3qFWj2FcDVAgkYap4Sep2VKflFx4N/3UKNVOrNvHK5f
+ XttYZI0S7MqVMonv8SzdRLVL+QgpFNksG1Ov1gH0sBsnm5ZwXkWWcglAUcDoecIgVDKv
+ TA0d/5OOhCjf3aeu0+ukRzQme0Pof1jHr0s9VmSqQOJvxLkVzvgmNqXBhnQsf82RuGh5
+ nGSfyDjdej/n9WKXpFKfkTK6vAHyrSmyZq5RjjElWNgoasSIQINoQRnst/8pUz0RBefl
+ wxUHuhRndYMqGu/IE9TR5h6FOdCU4eI/gcjp+NLfWE4HjmePW2eoEhj4KASneqM8iCPE
+ U6nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=NkpmzV5D80JNy4ts2YZIu3+YM84vR2UzyeLRZ8y2XUk=;
- b=dNF03WGDeKtumAbSYKNyZJOxOWw3QXOm9TVreirN0KrsRA0o/1RqRtV8+Ce79jIAj7
- soz09e/3abV+RqUUzkUC/FEFOQB9PeIX7W5/ijWtgzvukkKG4/HdAtLu9RJNAQ2IPJEd
- KavChK09X+zEXwFkB6poPV4DrhNxGdLwbc73K1Ly5xIMlg4tCKG4UK+fZ45AJ1urDmQ5
- OIQ6uHEspSqtJcsTY42rIPtFiUfMC9HA0HtwRdgl8ETghGUyKVXBZntb0yfYDkZMKDSL
- 5MM5VbZ2IwVH37fdFvEyA+nlH3QVPiP3U3eBXRuOn5M75Yl7sWhtLXTCKZV9DtB75ev/
- MA6w==
-X-Gm-Message-State: AGi0PuYjjk2UC7/5dHX/CX+HFvaYec2UCislhAldYjEds7z0GrBDWTNz
- oqsHeHeMcBzQJlfMEByad2PcTw==
-X-Google-Smtp-Source: APiQypJ9Jp2lZbXV6sSejvUm+Db6rvnl5p9Dp9DKoDBbqDndVu48hMIlklKxV/5CTB1MdnSh1tZZ3A==
-X-Received: by 2002:a1c:5403:: with SMTP id i3mr3302337wmb.10.1588163830921;
- Wed, 29 Apr 2020 05:37:10 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id k23sm7597481wmi.46.2020.04.29.05.37.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Apr 2020 05:37:10 -0700 (PDT)
-References: <20200429031416.3900-1-bernard@vivo.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com> ,
- Bernard Zhao <bernard@vivo.com>, Neil Armstrong <narmstrong@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] clk/meson: fixes memleak issue in init err branch
-In-reply-to: <20200429031416.3900-1-bernard@vivo.com>
-Date: Wed, 29 Apr 2020 14:37:09 +0200
-Message-ID: <1jpnbqii2y.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=57KpVyxFiIynSOtLWM5S1qu9oG0E8FFGMRYGzL0PtQs=;
+ b=qxCjHOGtkwR6+r5bh+WNYVFgX+cdtithl8d+nq7o9zHibo3CU84jDCPEgOBujH4xEB
+ mM8Dxh5TOImLDBZEjIiE13pjQA8e6hd9kZiZ7MlnhfIGDpENW61/nQOaxeHJigc4wMCC
+ jDlt864o440pT5onW06qPvF5U/M5D0qY/eQXSCZ3U2JFN7/y/xO7zC87JEhhPmsVbz5b
+ wxYi2LBKnHjm6ued2v93RayZyLZgB4XsGPQQgV48z3/+2enpRHAqKTGkkU9C1t75qkWJ
+ /b78XOX5xUltZPcmncyETxHyzlCQiUS9TRpurGO+CaRFf0WNYlNrk38nETl8GYQH3W2z
+ JtXQ==
+X-Gm-Message-State: AGi0Pubab08WVXVioxpecHF1FgiCOEuKHvTmDELwxv/2y2GdMA1A+b12
+ O9j9sMzvV6QQfZnn1J4R5yW9Vw==
+X-Google-Smtp-Source: APiQypLeL8JXb5wg6K5NkhgJTycyIPyVnsKkihsopNfL2tb7HT1xgcWccOBeuwpneP2REnFZ67aTSw==
+X-Received: by 2002:a5d:4e02:: with SMTP id p2mr42130290wrt.302.1588167203674; 
+ Wed, 29 Apr 2020 06:33:23 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71?
+ ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
+ by smtp.gmail.com with ESMTPSA id s17sm7644244wmc.48.2020.04.29.06.33.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 29 Apr 2020 06:33:22 -0700 (PDT)
+Subject: Re: [PATCH v2] drm/meson: add mode selection limits against specific
+ SoC revisions
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20200428092147.13698-1-narmstrong@baylibre.com>
+ <CAFBinCBb=FTH6aken5K9zoedBPYBJUCSj0eA+_Eghv+mnU_3vg@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <f7aadb74-4351-3c55-7d99-afabc34b0712@baylibre.com>
+Date: Wed, 29 Apr 2020 15:33:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
+In-Reply-To: <CAFBinCBb=FTH6aken5K9zoedBPYBJUCSj0eA+_Eghv+mnU_3vg@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200429_053712_459190_0A3FE56F 
-X-CRM114-Status: GOOD (  17.81  )
+X-CRM114-CacheID: sfid-20200429_063325_923312_D18E3545 
+X-CRM114-Status: GOOD (  15.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,92 +152,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: opensource.kernel@vivo.com
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
-On Wed 29 Apr 2020 at 05:14, Bernard Zhao <bernard@vivo.com> wrote:
+On 29/04/2020 00:03, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Tue, Apr 28, 2020 at 11:21 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> The Amlogic S805X/Y uses the same die as the S905X, but with more
+>> limited graphics capabilities.
+>>
+>> This adds a soc version detection adding specific limitations on the HDMI
+>> mode selections.
+>>
+>> Here, we limit to HDMI 1.3a max HDMI PHY clock frequency.
+> for my own education: 1.65GHz from the PLL will be divided down to 165MHz
+> isn't this more like the limit of HDMI 1.2a?
 
-> In common init function, when run into err branch, we didn`t
-> use kfree to release kzmalloc area, this may bring in memleak
+indeed from [1] :
+```
+HDMI 1.3 / 1.3a:
+- Higher speed: HDMI 1.3 increases its single-link bandwidth to 340 MHz (10.2 Gbps) to support the
+demands of future HD display devices, such as higher resolutions, Deep Color and high frame rates.
+In addition, built into the HDMI 1.3 specification is the technical foundations that will let future
+versions of HDMI reach significantly higher speeds.
+```
 
-Thx for reporting this Bernard.
-I'm not a fan of adding kfree everywhere. I'd much prefer a label and
-clear error exit path.
+So yes, it must be HDMI 1.2a, I'll fixup while applying.
 
-That being said, the allocation is probably not the only thing that
-needs to be undone in case of error. I guess this is due to conversion
-to CLK_OF_DECLARE_DRIVER() which forced to drop all the devm_
-This was done because the clock controller was required early in the
-boot sequence.
+> 
+>> Changes sinces v1:
+>> - Moved frequency check in the vclk code, and also checks DMT modes
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 
+> This looks good to me based on the current limitations of meson_vclk.c
+> If we switch to CCF based VPU clock rate changes then we should do
+> this in the clock driver by calling clk_hw_set_rate_range(hdmi_pll, 0,
+> 1.65GHz)
+> 
+> The good thing is: we can re-use struct meson_drm_soc_limits even
+> after switching to CCF.
+> We will just need to set the max PHY freq using
+> clk_round_rate(hdmi_pll, ULONG_MAX)
 
-There is 2 paths to properly solve this:
-1) Old school: manually undo everything with every error exit condition
-   Doable but probably a bit messy
-2) Convert back the driver to a real platform driver and use devm_.
-   We would still need the controller to register early but I wonder if
-   we could use the same method as drivers/clk/mediatek/clk-mt2701.c and
-   use arch_initcall() ?
+Exact !
 
-Martin, you did the initial conversion, what do you think of option 2 ?
-Would it still answer the problem you were trying to solve back then ?
+Neil
 
-One added benefit of option 2 is we could drop CLK_OF_DECLARE_DRIVER().
-We could even do the same in for the other SoCs, which I suppose would
-avoid a fair amount of probe deferral.
+> 
+> 
+> Martin
+> 
 
->
-> Signed-off-by: Bernard Zhao <bernard@vivo.com>
-> ---
->  drivers/clk/meson/meson8b.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index 34a70c4b4899..0f07d5a4cd16 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -3687,6 +3687,7 @@ static void __init meson8b_clkc_init_common(struct device_node *np,
->  	if (ret) {
->  		pr_err("%s: Failed to register clkc reset controller: %d\n",
->  		       __func__, ret);
-> +		kfree(rstc);
->  		return;
->  	}
->  
-> @@ -3710,8 +3711,10 @@ static void __init meson8b_clkc_init_common(struct device_node *np,
->  			continue;
->  
->  		ret = of_clk_hw_register(np, clk_hw_onecell_data->hws[i]);
-> -		if (ret)
-> +		if (ret) {
-> +			kfree(rstc);
->  			return;
-> +		}
->  	}
->  
->  	meson8b_cpu_nb_data.cpu_clk = clk_hw_onecell_data->hws[CLKID_CPUCLK];
-> @@ -3727,13 +3730,16 @@ static void __init meson8b_clkc_init_common(struct device_node *np,
->  	if (ret) {
->  		pr_err("%s: failed to register the CPU clock notifier\n",
->  		       __func__);
-> +		kfree(rstc);
->  		return;
->  	}
->  
->  	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get,
->  				     clk_hw_onecell_data);
-> -	if (ret)
-> +	if (ret) {
->  		pr_err("%s: failed to register clock provider\n", __func__);
-> +		kfree(rstc);
-> +	}
->  }
->  
->  static void __init meson8_clkc_init(struct device_node *np)
-
+[1] https://denon.custhelp.com/app/answers/detail/a_id/192/~/differences-between-hdmi-versions-1.1%2C-1.2%2C-1.3a%2C-1.4-and-2.0%3F
 
 _______________________________________________
 linux-amlogic mailing list
