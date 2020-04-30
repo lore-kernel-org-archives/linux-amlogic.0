@@ -2,81 +2,88 @@ Return-Path: <SRS0=G+6o=6O=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C30EC4724C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Apr 2020 14:11:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 02EE9C47253
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Apr 2020 14:57:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7255220870
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Apr 2020 14:11:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C4B212076D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Apr 2020 14:57:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kCqpg3KR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7255220870
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EBIC2kgl";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YAkERCzN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C4B212076D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SlQ/LMKdJJhLpmpRgQxbUpA5yosdWVeY0CBPmVCvL3A=; b=kCqpg3KRyuCDpJ
-	mXLG1dc6PX7n214GDbTd308Um30OAzuE9h8vPdXg4SL4tjhbDcKIcIKQ2BSPQjqmNSdvzY0FfUNc8
-	0nrPT/rWaS8NyZIJXPpS/B8SKwcHsqZafA0XHYdbSZbw+c7GUMH/BAmjsu5C0h8cKjWwve4pbd1hN
-	loQqgdwpNPEATQTQyNFyyRvEKc7HqTpMz+25/v7000pJXuVHiE86dhl1F2scgOdYLJVqViYc8WEzp
-	FlrBDVdjR2ygSJ018rp/M+njXEf8daJo2oo10LOoo0TgVS0Odl1e6WBWn1Zp7uYj/QSdYM7WgRTfn
-	1U1jvxQDtGYwdhtHX9sg==;
+	List-Owner; bh=r75uANf98OtYZMquE+I4P6kjwdtYwmAfCsRHVXUKM2g=; b=EBIC2kglj3P65W
+	CU6cGHcQTS0OwCLOkfapjtQ9KQZFVF9BggaUdJeV8avcSAZKMNIzLMoiKLXSY20J4ElM9C7C47wiO
+	4Bhxc0H/rWRpDHTWgz4xbEyJlIC1GhqtmWoo9ARjmzpoaLZHyZ5ZE7qyPnKkF9Kc4z5xTtB4Xf5+u
+	VxydKjQIAan0MvpLbgl6XJtmTjJRFvTnWwtjt+uDWWTICEV5+T/CjOd2QDkd/yedwVdiX3qHI7jX2
+	JM+zIcP/8stUwq6WXV/LGNXOML9fzPucIoYGgsT9zXeUjrRvjJraVRTHIZvWTXVPrCyCE3A3nCYXv
+	RuDxgrFfgtrPlrfJOe7g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jU9tu-0004hb-Mh; Thu, 30 Apr 2020 14:10:54 +0000
-Received: from mail-oi1-f194.google.com ([209.85.167.194])
+	id 1jUAcO-0006oD-Pv; Thu, 30 Apr 2020 14:56:52 +0000
+Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jU9tc-0004T7-2z; Thu, 30 Apr 2020 14:10:38 +0000
-Received: by mail-oi1-f194.google.com with SMTP id t199so5319612oif.7;
- Thu, 30 Apr 2020 07:10:36 -0700 (PDT)
+ id 1jUAaV-0002PE-A4
+ for linux-amlogic@lists.infradead.org; Thu, 30 Apr 2020 14:54:58 +0000
+Received: by mail-pf1-x441.google.com with SMTP id w65so2966720pfc.12
+ for <linux-amlogic@lists.infradead.org>; Thu, 30 Apr 2020 07:54:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=fWdVwZpxTzIWQlIVn1v7lQVJtnSnYJZudWOQcLoP49I=;
+ b=YAkERCzNfN7g+/n92gXNoXYjlC2ZipmRbAznjZ3wDFVgx/oWf9xt19ZwJeSEzUo9jZ
+ jBhfxD5AnjQ4v2nAbD6uMxjlXZRIRl135ar8/cU1rQsVOKgNPsnxIVR3stT7J5IXsybR
+ y4dBVVOYvIb9Obgk/yOwdIGkFQkuD6QIcxwCUYVY8/k+YRecMLvuaJv8+JhkG/+3gujS
+ chGM8sbEwTffJ8KFa0cPqOuC2JNwI5wrmRBjCaNpdH0+60dLcJCBXVqnfMhQKe8nagzd
+ xHv3ugV3D2JEiEDu5X41rWj+Z2X+ty9SWYj9/dofO/SQJmZyCE9OzRNgqs63X58Oez1r
+ 4+9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=UgTzeSieOrk7bgrXOEEKGS4vqDfJdjTM5De/Mq9VpvA=;
- b=aGZR5mcut/baWDjEh6S/x4WJD23SJDT83E2bP4iv/kJ50XsO7PoAJ14MZOv3zgo5xG
- KtBg2G+GDE6QRJoEIbhOr9iHjLd7kI9M1A6fZ+DdOqOrEKsGXvDk08Sy78/l6/zs4HQP
- iAKSCRHPfKu84HBLPG2P7HyS86ZnQIrlXXzaazpt8z0+/1+Ay6j4mR7lse6++UmCuM4Y
- /ZCZswVHH/sSzfhpOEhb6zG1GHVZBxngY2aV9/q/bZLilDV8ngvj6VGmstYyl2ON05aL
- gKClUiwQSnEbSE7RB3uh88Si1e/3nA3PSFmVBpb53avXLg7M8J/lMibUIZThKvqsNXSO
- oG+Q==
-X-Gm-Message-State: AGi0PuZKgSabpOmgWuWwOlzSGq2yM+kaKkZStxdUOIVDvSYeGsMMG6zw
- 4TXCrnZi8xorqrFvkQyRIw==
-X-Google-Smtp-Source: APiQypLd3ij132amZqmzb1pb6Pu49V28sjYMfyg7bc6xj1bapelOBMaB7UdhZBZ0xlBAKCAGhjm7Iw==
-X-Received: by 2002:aca:6546:: with SMTP id j6mr29159oiw.155.1588255835409;
- Thu, 30 Apr 2020 07:10:35 -0700 (PDT)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id w24sm1346250oor.47.2020.04.30.07.10.33
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=fWdVwZpxTzIWQlIVn1v7lQVJtnSnYJZudWOQcLoP49I=;
+ b=BOdVfPR3YUNW35voI7ccejW/Sb3t9rHAdNXIJQhloAZD9umw+4DIjFf7060OIIljtR
+ ssIb0ZpXOjAR4cNwaeuUHT2a83wm9pdb9v9kEcMYsf+mgROz96FL5FNvxPusV/jNSTgC
+ f1X7stGZTTn3EtuW12FD/lwr6NaI5aVtzYxWWt897pgwTVG5oHpGrDDmUwp49oCikr8K
+ 2n0qn0NbAnKw3bKp5pFM5Wql8ZwhXAq7ir1zlc4hgZmNTObXhPOai6pEbSYiGtYixTdW
+ cuNX5cFVyX03n7Vr+cT27Ml/A/sszk+tBifnbUM1vfFJ5B464brHMpRnYuH/lkdcPSfm
+ hlNg==
+X-Gm-Message-State: AGi0PuZdNLVvHGlN5CazvaZzrpL2DvHm3PWDSHF8EGmhHczjVpN7+VVl
+ t7Mhq1Gz2vEiuRuGx+oavLzn1rXTLD0kZA==
+X-Google-Smtp-Source: APiQypJmRDIiwYQczCQ+RlC8U3mufvCX98/lwGUY9wB6oSl/i5kom+hz99JSzolzYsWmSJBSydECdQ==
+X-Received: by 2002:a62:1549:: with SMTP id 70mr3671841pfv.43.1588258493773;
+ Thu, 30 Apr 2020 07:54:53 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:da9d:67ff:fec6:ee6b])
+ by smtp.gmail.com with ESMTPSA id x63sm108060pfc.56.2020.04.30.07.54.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Apr 2020 07:10:34 -0700 (PDT)
-Received: (nullmailer pid 5452 invoked by uid 1000);
- Thu, 30 Apr 2020 14:10:33 -0000
-Date: Thu, 30 Apr 2020 09:10:33 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: arm: amlogic: add support for the
- Beelink GT-King Pro
-Message-ID: <20200430141033.GA5382@bogus>
-References: <20200419055322.16138-1-christianshewitt@gmail.com>
- <20200419055322.16138-4-christianshewitt@gmail.com>
+ Thu, 30 Apr 2020 07:54:53 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH 0/6] arm64: dts: meson-gx: add initial playback support
+Date: Thu, 30 Apr 2020 07:54:52 -0700
+Message-Id: <158825831864.12709.14835236321376596645.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200421163935.775935-1-jbrunet@baylibre.com>
+References: <20200421163935.775935-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200419055322.16138-4-christianshewitt@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200430_071036_125664_556591B3 
-X-CRM114-Status: UNSURE (   8.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200430_075455_433206_16C1873D 
+X-CRM114-Status: GOOD (  13.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,26 +95,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, 19 Apr 2020 05:53:21 +0000, Christian Hewitt wrote:
-> The Shenzen AZW (Beelink) GT-King Pro is based on the Amlogic W400 reference
-> board with an S922X chip.
+On Tue, 21 Apr 2020 18:39:29 +0200, Jerome Brunet wrote:
+> This patchset is adding the aiu support in DT and well as basic card
+> support for the p230/q200 and libretech boards
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> I was hoping to provide the internal codec support with this series but
+> this is still blocked on the reset dt-bindings of the DAC [0].
 > 
+> So far, things are fairly stable on these boards. I have experienced
+> a few glitches on rare occasions. I have not been able to precisely found
+> out why. It seems to be linked the AIU resets and 8ch support. Maybe more
+> eyes (and ears) on this will help. If things get annoying and no solution
+> is found, I'll submit a change to restrict the output to i2s 2ch.
+> 
+> [...]
 
-Acked-by: Rob Herring <robh@kernel.org>
+Queued for v5.8, thanks!
+
+[1/6] arm64: defconfig: enable meson gx audio as module
+      commit: cba26aef31ec791bc4d5ea13cb2c1288fcd95c0e
+[2/6] arm64: dts: meson-gx: add aiu support
+      commit: c531ca35ad54abcf6ceb35767ff25355557aa7ca
+[3/6] arm64: dts: meson: p230-q200: add initial audio playback support
+      commit: ace867239dd8059f2e92556895e7e13aea7b2e8a
+[4/6] arm64: dts: meson: libretech-cc: add initial audio playback support
+      commit: 9644eb9dc8bd1ac1112e267d771c6b492af1ff79
+[5/6] arm64: dts: meson: libretech-ac: add initial audio playback support
+      commit: 74c601fa46d109049472bb66adee88b3290b4bb8
+[6/6] arm64: dts: meson: libretech-pc: add initial audio playback support
+      commit: 1c75a81473153c211478e37152223aa585631b87
+
+Best regards,
+-- 
+Kevin Hilman <khilman@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
