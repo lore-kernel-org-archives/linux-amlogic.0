@@ -4,20 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2A5EC47253
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 May 2020 15:30:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29322C47253
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 May 2020 15:33:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 917002137B
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 May 2020 15:30:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EBE1F20757
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 May 2020 15:33:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="orhzWCEX";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZqncxFdW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 917002137B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="o7xhrK14";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yZUzlud6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EBE1F20757
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lunn.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,44 +25,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rMkp46jVeW8DjwNhB2+n8Mcja11A1cDbOekol6q8eaI=; b=orhzWCEXnAYabi
-	TRxVzGvAAMkP/itlxeCNXy69coTJ1n2gbIVZB331GEJyjvzXtAzNAhdfL1gkl1gFfsevKWjHLddP+
-	gal53UWAG0rdjieeXFmnumL890tArqrrn8Dvkr2mbhzM9MrFQWgwsJYMr9U4enDL5X6XviBHIZ4l9
-	O924a9+5SbczXnGXKDSPXnHy7oUtBxUVMb/xtZUW8TtTxGRmdAkAszlzt2E7NVUYFvShfvEGSdo1R
-	W/Z+zPZQGkXo2pEcT8ZfdTMatFPrTTwWRr6utC9zwXz3qoALmx6vit7voYpMSo0YFywUSxO5u/th3
-	bOPvnXaojUFdN5O/jfCg==;
+	List-Owner; bh=cSoO/T8XYdjYkcVbqqX583u64CU4ONaKyM3XpuQwJyI=; b=o7xhrK147/REIF
+	C7DVBrM+3uxn12kH63pBpShjXqE1AKhitijlej37tznHUdktmt+5/E8u19YPQA4cwD+h2H795yhYZ
+	2ffUyZPRCma2yJJ7zKIGuqD2BkGfDuaoEbu7XoapYm3ZUt4fnwuGTDFWeWdxncCxF+7Ftrel5scsE
+	6AHPjrjGRZJsDVv9x8cq5N4B5ayXLeqfNecQw+17VKGrH/CeFtSZ553ElFjVe6BDAgHFgq0PvAuSa
+	DgGggvv24hL0E+OpHjbAZI8SSpG9nQSfOd3EgCiVuEo7hKSDtpopHtMI/mePclU0q7IBsH3tkyVev
+	OVHQQj352uTdaNcPBwAg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jUXbw-0000BJ-Kg; Fri, 01 May 2020 15:29:56 +0000
+	id 1jUXfU-0003Ii-HT; Fri, 01 May 2020 15:33:36 +0000
 Received: from vps0.lunn.ch ([185.16.172.187])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jUXbu-0000Ao-Dw; Fri, 01 May 2020 15:29:55 +0000
+ id 1jUXfS-0003Ht-Vw; Fri, 01 May 2020 15:33:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
  s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
  Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=0oFnvmjDPVBMOQrnKCtF1VSBYWpdcWGbY1ugeUjkCs0=; b=ZqncxFdWqbRuDkB4HOmtEjSR6D
- rRHaLpAOMIlNMmOYMWOBWBYlrQCFBgpdRwiZahZZkQ2XwCg6kizZiDRLGxISbUo/bRKYa2fLsL4+t
- 7K5mZ/UMaLO+hEA08YH+8MnZGOK1cSfcLbm4/bRchTxDV1rHijO2JKDFc8PAiTEherfU=;
+ bh=A9TtI7VDQObXMoinioifEuMMByRyNVr20UDZ67M6hYc=; b=yZUzlud6epMH0rEU0IRXDZbHVO
+ psLnZuQBQZRYMOUsS2KbfcdVWoGrWugIYjaFYEjLsjbpODuV9QdTvNEOkNIzb4lv2trCr3kMRXolH
+ Ay2Ilm9Ul1qrT1hcurbLJ0B0jQLMiuBK/PUGdz/DTnP0Z4AZO9vgQ+ulxcNu7OGhGDls=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
  (envelope-from <andrew@lunn.ch>)
- id 1jUXbo-000YEH-9Z; Fri, 01 May 2020 17:29:48 +0200
-Date: Fri, 1 May 2020 17:29:48 +0200
+ id 1jUXfL-000YGS-MU; Fri, 01 May 2020 17:33:27 +0200
+Date: Fri, 1 May 2020 17:33:27 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH RFC v2 04/11] net: stmmac: dwmac-meson8b: Move the
- documentation for the TX delay
-Message-ID: <20200501152948.GD128733@lunn.ch>
+Subject: Re: [PATCH RFC v2 05/11] net: stmmac: dwmac-meson8b: Add the
+ PRG_ETH0_ADJ_* bits
+Message-ID: <20200501153327.GE128733@lunn.ch>
 References: <20200429201644.1144546-1-martin.blumenstingl@googlemail.com>
- <20200429201644.1144546-5-martin.blumenstingl@googlemail.com>
+ <20200429201644.1144546-6-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200429201644.1144546-5-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200429201644.1144546-6-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200501_082954_465090_F6484DFC 
-X-CRM114-Status: UNSURE (   6.85  )
+X-CRM114-CacheID: sfid-20200501_083335_029173_456AD9B3 
+X-CRM114-Status: UNSURE (   6.12  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -85,12 +84,14 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Apr 29, 2020 at 10:16:37PM +0200, Martin Blumenstingl wrote:
-> Move the documentation for the TX delay above the PRG_ETH0_TXDLY_MASK
-> definition. Future commits will add more registers also with
-> documentation above their register bit definitions. Move the existing
-> comment so it will be consistent with the upcoming changes.
+On Wed, Apr 29, 2020 at 10:16:38PM +0200, Martin Blumenstingl wrote:
+> The PRG_ETH0_ADJ_* are used for applying the RGMII RX delay. The public
+> datasheets only have very limited description for these registers, but
+> Jianxin Pan provided more detailed documentation from an (unnamed)
+> Amlogic engineer. Add the PRG_ETH0_ADJ_* bits along with the improved
+> description.
 > 
+> Suggested-by: Jianxin Pan <jianxin.pan@amlogic.com>
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
