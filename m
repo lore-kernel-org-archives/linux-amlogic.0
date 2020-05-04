@@ -1,92 +1,82 @@
-Return-Path: <SRS0=Edwp=6R=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=PlEO=6S=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CE00C28CBC
-	for <linux-amlogic@archiver.kernel.org>; Sun,  3 May 2020 22:28:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 14A22C3A5A9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 May 2020 10:56:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1A32320643
-	for <linux-amlogic@archiver.kernel.org>; Sun,  3 May 2020 22:28:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C97EB206A5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 May 2020 10:55:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mThofBQp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="g5CtopVi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A32320643
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cMgD9FB1";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m/PZmuLt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C97EB206A5
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=CaSxrGK/TcF9r9D3LW3ryWvcuXaz65dJKBPyC3jn8EI=; b=mThofBQpB9GgpX
-	xE7vqoaIMqqYZzPwbLHzinGttpO3B/ky8l/ExIlfyDZsHvNw85ViUxyK0Id76Q/G4k0NPrYhemCmf
-	/TZDg7v+B7FX16yV3g75tcrdOsEJJH7BjdxKXiMDVPDjtUHBVMvP7r6mn6SBWRLjtNJu6jWNiXGcI
-	jl5l9N0Wqpr6VLViNb6YgYQqMxLjs01i6uMYuAM+e+8Flxs0HZ1sx3r6HolczjdI63BGrrZxmO29C
-	SI+9EvwjPYyiLlzSqBpwvEYWalu4OukUflLiANNXY3IjUx/7fy43hXPVWOcqC9FlNH0erQQgXOxGU
-	xWMG3M8SsB+fX7hO6xFg==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=60sjcRq8ABSqMn7IHE9FT95nJiNm6wLUpqHmDCkw0jA=; b=cMgD9FB1snDVqv
+	Lr2WluERMtNcz46KXTBMFWMJ5k6l0xR+rV12n62Fngq8WaBAUZJJLj0dKS1E3n+ZayJj6YppTKMAR
+	MtQ8uCdvX3lrp2WtKxGWV422YjVq2OZhs8P2tf76Q3mwF5D5b6z2/4gMY9w3yrY69p00z0N8SsU3J
+	XaL2963E+yMj7SX2RNg4SsX/Ht12H6nk45Tr3pUAV7q+yhOXvekRH8Thk7uj9SsnKkKSxANXwavg2
+	uBo4bgbCr2bAe8S5VqnuN7AX0op28/pgwBYoNk7WFj+3TDUOtVRXQH3SOhjHVukAJm62Q3Pgq2rNR
+	AOynyeSWTuEWOtXoyPGg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jVN60-0000Lb-2K; Sun, 03 May 2020 22:28:24 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jVYlK-0008VI-7m; Mon, 04 May 2020 10:55:50 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVN5x-0000Kc-1N; Sun, 03 May 2020 22:28:22 +0000
-Received: by mail-wr1-x443.google.com with SMTP id f13so18659944wrm.13;
- Sun, 03 May 2020 15:28:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Y69lAmBUHqgE1AImwpWCVOk5aRft5ihzG6qW/7B3meA=;
- b=g5CtopVisuuYHom2E36JzSmflZ8Vpts4weEltBoFA5PHeqZuw7xpF4tDEugEIDRJTT
- TSB2h+14aRVNkj+RQbcbjhQQdnxc8Kq2mlRrdjUItjzh1V4liq3aYuRgmnadNQ8usjgA
- YM7ogrF4rnFPdpKT6rijBFR9aemkr8yt7UJRt/Ke97sabnwNNB3HqBewu9sbrEh9QOR4
- wCHVpKdtEzfjFb6Ji23FM4HfLGh/FdkDPnpPZWY8pk7HycjmCWAWf3xWDNvYGOVKQT8U
- O7KmlKYW2V/+xzF56s5uTVYaBP3Fmx727jy1s/DXxOdh8wRJhR0IYipKQ8Jck434a0ic
- Ttqg==
+ id 1jVYlG-0008Uj-QM; Mon, 04 May 2020 10:55:48 +0000
+Received: by mail-wm1-x344.google.com with SMTP id v4so15234790wme.1;
+ Mon, 04 May 2020 03:55:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MQzZFCIobcGRmD/3+2nuvnxHv+aNaXAHRF5s3/10ij8=;
+ b=m/PZmuLtPqcrVYqQd8qj0jK+TnpKJK5MX7Eozj10EZs/2HHL50KGQbVzu8gMp02gQJ
+ 6F9pbqJxSIP5cyRweFxpWJmvEjHRO8iYRZ7uJtUkgDOuGJdz6ddKmppLGZR3e5PZRy8p
+ lscDnAenUEC22uEp+XgYw32aZ+HkLVSqsvC75MSuht8EuPG6ScVjIjvMEFV9pdkEkkcf
+ OArBZA9Q1sjFRuzpgxMJe/LVC99w/wnQt0E3X/QvpCR24OL4Clof6mIPLcYdTz1iOWT0
+ IgmiGmXOguP6TDTfqbTQZvpTCTiMEWCPmXlM5UOvtimIP+GKpRwOyklM3Lsq6jw5VEvG
+ JW4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Y69lAmBUHqgE1AImwpWCVOk5aRft5ihzG6qW/7B3meA=;
- b=Kk1WN6mHSiwoYpFSgR4V+fNG/0ai1klzRCbZ2gO8gRC4rAj/AxVhQ+wml2jXx5BSz8
- YEMch45HfrAxd/8gjUBKu4OZ88XCuOEFdM00oQE0Ew/JNrviz7073gNW+KRQ7vPgvmnJ
- vRcDKHrqp8jAziOZyOanh9K3wYJpzg/lXLtx41Cepq62U99IuvxVCwbEnDcInsNEK5ZF
- 1awA8w0Y7JbO5UNGxCJGXOVXBjKQeT6h1qZwGFmLsJhF29Sqpwf4NqG9fEIWYa+Dsofn
- 4j4H5vQ9y2EHBY6V+cfSvS4ck8U6mZv1vZACdwbKRkAbeFpQDPxt5Y8u+TTRxj035r/l
- 9Ptw==
-X-Gm-Message-State: AGi0Pua/zGWklgrtSirnWgb7/MnTNHXCnPvEuVRz7vQPY2Zvka8am22Q
- UhGeFQA3EQUb+EIm7dPjEoukuy/g
-X-Google-Smtp-Source: APiQypKTFvLpzJxWxC/mVKGKRYn8CTyLnoU9CuxJncu5LvibrivSYXR2dENDCWKJUUC+YmHk1ohmUw==
-X-Received: by 2002:adf:cd88:: with SMTP id q8mr13169106wrj.67.1588544898444; 
- Sun, 03 May 2020 15:28:18 -0700 (PDT)
-Received: from localhost.localdomain
- (p200300F137142E00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
- [2003:f1:3714:2e00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id
- i129sm11200081wmi.20.2020.05.03.15.28.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 03 May 2020 15:28:17 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
- ulf.hansson@linaro.org
-Subject: [PATCH] mmc: meson-mx-sdio: trigger a soft reset after a timeout or
- CRC error
-Date: Mon,  4 May 2020 00:28:05 +0200
-Message-Id: <20200503222805.2668941-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.26.2
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MQzZFCIobcGRmD/3+2nuvnxHv+aNaXAHRF5s3/10ij8=;
+ b=I8Fr7WFGX54ttDuzIX+mtbn2UERGj3LhvRib9q/YDEUIsw655gBkJGdFBxJgvu/pQa
+ +pbNDIsIiLlLz8pIJjksjzgyhvY2M6RIEEjm2zxxKPS6YVMUJYoSMlbqN3RWDs2IZKQ5
+ pgexBM91myK3o+OvZKhUdR5TeTJ+fmVAM22MtzGVm0jRGfFPR8lJAEQgLTPbRCQVOu0i
+ Lu3Gn+DDaoXjvPTs7KglD5dUur0ywNRNsZ1n969cLdzphNdDGrwcF25OJcc0Xx+2JV+F
+ FdDESzrTCDw6bYDB7kITsZ+kAmgHxJlbxY+0/s4YVnoSJI+Mb3vu1rqSigVP7M/A0b9J
+ YvCg==
+X-Gm-Message-State: AGi0Pualh9mzDei2I8hoTcrxy6SIgQ3udXhWIYcAl8xWEp1EHs9A0cw+
+ eXfdkm2XruLl4UyflNHE7jifiU/ST9WP75DX+GY=
+X-Google-Smtp-Source: APiQypIYRxd9Jarg4XaVun2QaTdEW4Ftk+7SlWd5NIBX1wOKIWiArNVS6La7qmbqT0diARP8mRcyXHfJL2xmf4cg4Io=
+X-Received: by 2002:a7b:c0c5:: with SMTP id s5mr13769191wmh.134.1588589744849; 
+ Mon, 04 May 2020 03:55:44 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200502114752.1048500-1-martin.blumenstingl@googlemail.com>
+ <20200502114752.1048500-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200502114752.1048500-2-martin.blumenstingl@googlemail.com>
+From: hex dump <hexdump0815@gmail.com>
+Date: Mon, 4 May 2020 12:55:30 +0200
+Message-ID: <CAKTihDVy6oSuQe4eP87hWO17tBu3=XZ-PM41YOqLVOtXJ8+YeQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: phy: meson8b-usb2: Convert to json-schema
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200503_152821_104266_9F7B2B84 
-X-CRM114-Status: GOOD (  13.97  )
+X-CRM114-CacheID: sfid-20200504_035546_880670_AEE0AD52 
+X-CRM114-Status: GOOD (  18.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,85 +88,141 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, narmstrong@baylibre.com,
+ linux-kernel@vger.kernel.org, kishon@ti.com, vkoul@kernel.org,
+ robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The vendor driver (from the 3.10 kernel) triggers a soft reset every
-time before starting a new command. While this fixes a problem where
-SDIO cards are not detected at all (because all commands simply
-timed out) this hurts SD card read performance a bit (in my tests
-between 10% to 20%).
+On Sat, May 2, 2020 at 1:48 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for the Amlogic Meson8, Meson8b, Meson8m2 and GXBB USB2
+> PHY over to a YAML schema.
+>
+> While here, also add the fallback compatible string
+> "amlogic,meson-gxbb-usb2-phy" which is already used in
+> arch/arm/boot/dts/meson{,8,8b}.dtsi.
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Trigger a soft reset after we got a CRC error or if the previous command
-timed out (just like the vendor driver from the same 3.10 kernel for the
-newer SDHC controller IP does). This fixes detection of SDIO cards and
-doesn't hurt SD card read performance at the same time.
+Tested-by: hexdump <hexdump0815@googlemail.com>
 
-With this patch the initialization of an RTL8723BS SDIO card looks like
-this:
-  req done (CMD52): -110: 00000000 00000000 00000000 00000000
-  clock 400000Hz busmode 2 powermode 2 cs 1 Vdd 21 width 1 timing 0
-  starting CMD0 arg 00000000 flags 000000c0
-  req done (CMD0): 0: 00000000 00000000 00000000 00000000
-  clock 400000Hz busmode 2 powermode 2 cs 0 Vdd 21 width 1 timing 0
-  starting CMD8 arg 000001aa flags 000002f5
-  req done (CMD8): -110: 00000000 00000000 00000000 00000000
-  starting CMD5 arg 00000000 flags 000002e1
-  req done (CMD5): 0: 90ff0000 00000000 00000000 00000000
-  starting CMD5 arg 00200000 flags 000002e1
-  req done (CMD5): 0: 90ff0000 00000000 00000000 00000000
-  starting CMD3 arg 00000000 flags 00000075
-  req done (CMD3): 0: 00010000 00000000 00000000 00000000
-  starting CMD7 arg 00010000 flags 00000015
-  req done (CMD7): 0: 00001e00 00000000 00000000 00000000
-  starting CMD52 arg 00000000 flags 00000195
-  req done (CMD52): 0: 00001032 00000000 00000000 00000000
-  [... more CMD52 omitted ...]
-  clock 400000Hz busmode 2 powermode 2 cs 0 Vdd 21 width 1 timing 2
-  clock 50000000Hz busmode 2 powermode 2 cs 0 Vdd 21 width 1 timing 2
-  starting CMD52 arg 00000e00 flags 00000195
-  req done (CMD52): 0: 00001000 00000000 00000000 00000000
-  starting CMD52 arg 80000e02 flags 00000195
-  req done (CMD52): 0: 00001002 00000000 00000000 00000000
-  clock 50000000Hz busmode 2 powermode 2 cs 0 Vdd 21 width 4 timing 2
-  starting CMD52 arg 00020000 flags 00000195
-  req done (CMD52): 0: 00001007 00000000 00000000 00000000
-  [... more CMD52 omitted ...]
-  new high speed SDIO card at address 0001
-
-Fixes: ed80a13bb4c4c9 ("mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8 and Meson8b SoCs")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
-Ulf, I consider this non-critical because as long as the meson-mx-sdhc
-driver is not merged we only have one MMC driver for these platforms.
-I don't know anybody to prefer SDIO wifi over SD card access, so this
-can go into -next (in my option at least).
-
-
- drivers/mmc/host/meson-mx-sdio.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index 2e58743d83bb..3813b544f571 100644
---- a/drivers/mmc/host/meson-mx-sdio.c
-+++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -246,6 +246,9 @@ static void meson_mx_mmc_request_done(struct meson_mx_mmc_host *host)
- 
- 	mrq = host->mrq;
- 
-+	if (host->cmd->error)
-+		meson_mx_mmc_soft_reset(host);
-+
- 	host->mrq = NULL;
- 	host->cmd = NULL;
- 
--- 
-2.26.2
-
+> ---
+>  .../phy/amlogic,meson8b-usb2-phy.yaml         | 61 +++++++++++++++++++
+>  .../bindings/phy/meson8b-usb2-phy.txt         | 28 ---------
+>  2 files changed, 61 insertions(+), 28 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+>
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml
+> new file mode 100644
+> index 000000000000..c2fe8c08d99e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/amlogic,meson8b-usb2-phy.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY
+> +
+> +maintainers:
+> +  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +            - amlogic,meson8-usb2-phy
+> +            - amlogic,meson8b-usb2-phy
+> +          - const: amlogic,meson-mx-usb2-phy
+> +      - const: amlogic,meson-gxbb-usb2-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: usb_general
+> +      - const: usb
+> +
+> +  resets:
+> +    minItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  phy-supply:
+> +     description:
+> +       Phandle to a regulator that provides power to the PHY. This
+> +       regulator will be managed during the PHY power on/off sequence.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - "#phy-cells"
+> +
+> +examples:
+> +  - |
+> +    usb-phy@c0000000 {
+> +      compatible = "amlogic,meson-gxbb-usb2-phy";
+> +      reg = <0xc0000000 0x20>;
+> +      resets = <&reset_usb_phy>;
+> +      clocks = <&clk_usb_general>, <&reset_usb>;
+> +      clock-names = "usb_general", "usb";
+> +      phy-supply = <&usb_vbus>;
+> +      #phy-cells = <0>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt b/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+> deleted file mode 100644
+> index d81d73aea608..000000000000
+> --- a/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -* Amlogic Meson8, Meson8b and GXBB USB2 PHY
+> -
+> -Required properties:
+> -- compatible:  Depending on the platform this should be one of:
+> -       "amlogic,meson8-usb2-phy"
+> -       "amlogic,meson8b-usb2-phy"
+> -       "amlogic,meson-gxbb-usb2-phy"
+> -- reg:         The base address and length of the registers
+> -- #phys-cells: should be 0 (see phy-bindings.txt in this directory)
+> -- clocks:      phandle and clock identifier for the phy clocks
+> -- clock-names: "usb_general" and "usb"
+> -
+> -Optional properties:
+> -- resets:      reference to the reset controller
+> -- phy-supply:  see phy-bindings.txt in this directory
+> -
+> -
+> -Example:
+> -
+> -usb0_phy: usb-phy@c0000000 {
+> -       compatible = "amlogic,meson-gxbb-usb2-phy";
+> -       #phy-cells = <0>;
+> -       reg = <0x0 0xc0000000 0x0 0x20>;
+> -       resets = <&reset RESET_USB_OTG>;
+> -       clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB0>;
+> -       clock-names = "usb_general", "usb";
+> -       phy-supply = <&usb_vbus>;
+> -};
+> --
+> 2.26.2
+>
 
 _______________________________________________
 linux-amlogic mailing list
