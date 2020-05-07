@@ -2,68 +2,145 @@ Return-Path: <SRS0=qPrc=6V=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MSGID_FROM_MTA_HEADER,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 109D0C28CBC
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2020 03:10:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B3E76C38A24
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2020 07:44:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DB1EC2075A
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2020 03:10:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8997C207DD
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2020 07:44:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K/BIFnJP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DB1EC2075A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=vivo.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Z8c5pfUt";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="CrkVX65s"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8997C207DD
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:From:MIME-Version:In-Reply-To:
-	Subject:To:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=wA4sSt9zpPneVcq0bj728Wwy3CbgVfmQoU8bORRxVMs=; b=K/BIFnJPNRhMQj
-	qijEByssofuwW4nQbsYlOgfNuNJyTJHds0y/Woy90gz8FpFezbAgBX+rSp7yQz3usnKSTFQHthqIP
-	6Ad45kQtBl8TzN90Kb/RMV5QzHu3ne1mmvKwc7suv4ptb3+J3WJijF0W0X1WkYLzgMJzhRbE/jIat
-	+y40G/iKWE5dFhR9CMjNFjjdu4kXDDWy0gMxDTdzgb4FltHLNhvI/BZgsOVew3fBxjSEfJOwZrlEG
-	V41INK15oBz/F2nIxc6TbtUYCqLmnxVQIy+xLSn8IehQWkEPwp+SvurrUAsI4VwSbtDDbHS0kArvt
-	vHwayqgqlovfMHvkiWtg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+jUhVNOOw0MzS+LmrdTc8DFVmPkyOwpN/tz5rR965tY=; b=Z8c5pfUtW1jRXC
+	uQ3P3MIkEiHtmcShaJAqU9uDLLOW6LsXc+0s9fplIuQ4Aq7JnMxLyuL0IpAZAS7eHQGby/8aqUuoC
+	ui0N+IGJnUW6WNoK9/8NIQL/v7RnZaJjsIjA1/LRuQJ1mml9TLXShNcL3zI6Nwv/D52oaUmzoQLBT
+	XyNT+68H7ob0WHdZZQp//cb6glRQkhx21MvYPftwLeA9MTAi+v20cEY38qBIOiYJYGO7V+zV/R8GN
+	ioXaux0Wy43zBu9mPKY4hxAgxN14GrtoMYwpnkRO3V6hwMQZ4Fha2CtM9pzaxa9k/U03x3uuxSFdf
+	W4kF5PeG3vQ2XUkdKzpg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jWWvQ-0006MD-VY; Thu, 07 May 2020 03:10:16 +0000
-Received: from m176150.mail.qiye.163.com ([59.111.176.150])
+	id 1jWbCY-0007oD-Kk; Thu, 07 May 2020 07:44:14 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWWv6-0003lw-OL
- for linux-amlogic@lists.infradead.org; Thu, 07 May 2020 03:09:58 +0000
-Received: from vivo.com (wm-10.qy.internal [127.0.0.1])
- by m176150.mail.qiye.163.com (Hmail) with ESMTP id E210C1A30A3;
- Thu,  7 May 2020 11:09:15 +0800 (CST)
-Message-ID: <AAsA8gAQCF1C9rDJm0RSQaqC.3.1588820955909.Hmail.bernard@vivo.com>
-To: Bernard Zhao <bernard@vivo.com>
-Subject: =?UTF-8?B?UmU6W1BBVENIXSBkcm0vbWVzb246IHBtIHJlc3VtZSBhZGQgcmV0dXJuIGVycm5vIGJyYW5jaA==?=
-X-Priority: 3
-X-Mailer: HMail Webmail Server V2.0 Copyright (c) 2016-163.com
-X-Originating-IP: 157.0.31.122
-In-Reply-To: <20200428131747.2099-1-bernard@vivo.com>
+ id 1jWbCV-0007mw-RV
+ for linux-amlogic@lists.infradead.org; Thu, 07 May 2020 07:44:13 +0000
+Received: by mail-wr1-x444.google.com with SMTP id x17so5097001wrt.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 07 May 2020 00:44:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=uUBf9MfWNdQa1baFay3uOB30PnoCuD4Q9VGGkHO8szo=;
+ b=CrkVX65sHKx9G0UXdHi7qaJz1EZN4oFmhJT5zUwZA2E/KPV1olSaKU96MTtc3FNYaw
+ OqJ5OkQj33bgFbcRzwmRoArye1tIPWrhlIRLr0qjmreQPGWrNqjl752OqaCzFfYyEAbq
+ mTrJ0p+UxBTFeDujaEjA2Gc0O+oMli1W84YzeCVvG86RllyK9LmHgjccZm/MDAiXKe6g
+ RuMoaCBda78kryLSX8omGCTVlJYGGYdTlZwnvgzOARhjYUWoThgEJIzUQo+GoHiUxAbN
+ zNNUo6TH7l7Jtdj9L6rGU9SFWa6B/Dzeo1CBZRE8vSOYNr4QmBzCdCZjOfVyGDAAnfxE
+ q8Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=uUBf9MfWNdQa1baFay3uOB30PnoCuD4Q9VGGkHO8szo=;
+ b=foqjYO97ck/wQ6wj4EBVjmKUMntPAzxeshpgO8n2+GZHEIeMysiBd99NWX4SU6bEIi
+ wO6vn/AT02b/FcCosiaH+R66g6emrGKx1lxNmjHVJeWC1BxTFHBLcnzljA5tTI2MpYWa
+ mX3glbZCZeju/mmd5GJoiIjgBuZe/NGYfrv9NaY69Q1vupVsPhifBDldTVs4+0C7w1WT
+ 5WGC3PSXcwM4+6eM8Z0U3ukoFhsz/Y/R29DmqgSovTTQMXLhgfl3Qq64fYlhF4SjaOER
+ OKW51GPLWEXzZD0ewUBbYbinBThN+yPcPfgywtwkemlpqvWxBoPiwmaxdpQLNiOT5GYQ
+ B49Q==
+X-Gm-Message-State: AGi0PuZduJ85awBKWe6/+50fAMtC02/oK8AumcKsgp/iOg+qOkeCeZF1
+ AoBILmbbMnaPe4el9/vv1XHEBw==
+X-Google-Smtp-Source: APiQypLzuXRyxxCUpOTaVywUtUvYjKZQknhge2JrssH5jZATODOz2orqaMmw/te0EdXI9uKkj3Ls+Q==
+X-Received: by 2002:adf:80ee:: with SMTP id 101mr14267190wrl.156.1588837449147; 
+ Thu, 07 May 2020 00:44:09 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71?
+ ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
+ by smtp.gmail.com with ESMTPSA id s11sm6785519wms.5.2020.05.07.00.44.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 07 May 2020 00:44:08 -0700 (PDT)
+Subject: Re: [RFC 0/8] mfd: Add support for Khadas Microcontroller
+To: Kevin Hilman <khilman@baylibre.com>, lee.jones@linaro.org,
+ jdelvare@suse.com, linux@roeck-us.net, srinivas.kandagatla@linaro.org
+References: <20200421080102.22796-1-narmstrong@baylibre.com>
+ <7h4kt2ksqb.fsf@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <29ef9a37-fc6f-4cbe-4b4c-7248866adaca@baylibre.com>
+Date: Thu, 7 May 2020 09:44:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Received: from bernard@vivo.com( [157.0.31.122) ] by ajax-webmail (
- [127.0.0.1] ) ; Thu, 7 May 2020 11:09:15 +0800 (GMT+08:00)
-From: Bernard <bernard@vivo.com>
-Date: Thu, 7 May 2020 11:09:15 +0800 (GMT+08:00)
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZSFVNQ0lLS0tKTUtJSkxJQllXWShZQU
- hPN1dZLVlBSVdZCQ4XHghZQVk1NCk2OjckKS43PlkG
-X-HM-Sender-Digest: e1kJHlYWEh9ZQUhMTktISU9MQk5JN1dZDB4ZWUEPCQ4eV1kSHx4VD1lB
- WUc6Ogg6Qxw6Kjg9SjhCCT8xFkspKCoaCjhVSFVKTkNDQ0lLQk5NS0hIVTMWGhIXVRkeCRUaCR87
- DRINFFUYFBZFWVdZEgtZQVlKTkxVS1VISlVKSUlZV1kIAVlBT0tOSDcG
-X-HM-Tid: 0a71ed1bd32393b4kuwse210c1a30a3
-X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
+In-Reply-To: <7h4kt2ksqb.fsf@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200506_200957_329956_12FDC732 
-X-CRM114-Status: UNSURE (   5.61  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200507_004411_954520_870E63E9 
+X-CRM114-Status: GOOD (  12.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,50 +152,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: opensource.kernel@vivo.com, Neil Armstrong <narmstrong@baylibre.com>,
- David Airlie <airlied@linux.ie>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, linux-amlogic@lists.infradead.org,
+Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, nick@khadas.com,
+ linux-amlogic@lists.infradead.org, art@khadas.com,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-From: Bernard Zhao <bernard@vivo.com>
-Date: 2020-04-28 21:17:47
-To:  Neil Armstrong <narmstrong@baylibre.com>,David Airlie <airlied@linux.ie>,Daniel Vetter <daniel@ffwll.ch>,Kevin Hilman <khilman@baylibre.com>,dri-devel@lists.freedesktop.org,linux-amlogic@lists.infradead.org,linux-arm-kernel@lists.infradead.org,linux-kernel@vger.kernel.org
-Cc:  opensource.kernel@vivo.com,Bernard Zhao <bernard@vivo.com>
-Subject: [PATCH] drm/meson: pm resume add return errno branch>pm_resump api did not handle drm_mode_config_helper_resume error.
->This change add handle to return drm_mode_config_helper_resume`s
->error number. This code logic is aligned with api pm_suspend.
->After this change, the code maybe a bit readable.
->
->Signed-off-by: Bernard Zhao <bernard@vivo.com>
->---
-> drivers/gpu/drm/meson/meson_drv.c | 4 +---
-> 1 file changed, 1 insertion(+), 3 deletions(-)
->
->diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
->index b5f5eb7b4bb9..8c2e1b47e81a 100644
->--- a/drivers/gpu/drm/meson/meson_drv.c
->+++ b/drivers/gpu/drm/meson/meson_drv.c
->@@ -412,9 +412,7 @@ static int __maybe_unused meson_drv_pm_resume(struct device *dev)
-> 	if (priv->afbcd.ops)
-> 		priv->afbcd.ops->init(priv);
+On 29/04/2020 21:16, Kevin Hilman wrote:
+> Neil Armstrong <narmstrong@baylibre.com> writes:
 > 
->-	drm_mode_config_helper_resume(priv->drm);
->-
->-	return 0;
->+	return drm_mode_config_helper_resume(priv->drm);
-> }
+>> The new Khadas VIM2, VIM3 and Edge boards embeds an on-board microcontroller
+>> connected via I2C.
+>>
+>> This Microcontroller is present on the Khadas VIM1, VIM2, VIM3 and Edge
+>> boards.
+>>
+>> It has multiple boot control features like password check, power-on
+>> options, power-off control and system FAN control on recent boards.
+>>
+>> Thie serie adds :
+>> - the bindings
+>> - the MFD driver
+>> - the HWMON cell driver
+>> - the NVMEM cell driver
+>> - updates MAINTAINERS
+>> - add support into the Khadas VIM3/VIM3L DT
+>>
+>> Neil Armstrong (8):
+>>   dt-bindings: mfd: add Khadas Microcontroller bindings
+>>   mfd: add support for the Khadas System control Microcontroller
+>>   hwmon: add support for the MCU controlled FAN on Khadas boards
+>>   nvmem: add support for the Khadas MCU Programmable User Memory
+>>   MAINTAINERS: add myself as maintainer for Khadas MCU drivers
+>>   arm64: dts: meson-g12b: move G12B thermal nodes to meson-g12b.dtsi
+>>   arm64: dts: meson-sm1: add cpu thermal nodes
 > 
-> static int compare_of(struct device *dev, void *data)
->-- 
->2.26.2
->
+> These two could/should be sent separately from this RFC series and
+> queued for v5.8.
+> 
+> Kevin
+> 
 
+Ok
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
