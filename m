@@ -1,84 +1,91 @@
-Return-Path: <SRS0=JJMf=6X=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=YblX=6Y=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76030C47247
-	for <linux-amlogic@archiver.kernel.org>; Sat,  9 May 2020 13:07:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67D02C38A2A
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 May 2020 12:42:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4663A214D8
-	for <linux-amlogic@archiver.kernel.org>; Sat,  9 May 2020 13:07:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 30FE82080C
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 May 2020 12:42:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MqTpJApp";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="pE6AviOj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4663A214D8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QO3ZkPAy";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gdonWKi/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 30FE82080C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Subject:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=x5EbVxYpE3VoZYc417Gee9+GXYK5I/eChaQZdl8uxDs=; b=MqTpJAppH0D/7J
-	ui3mEq15fMA3AZEy8Py2XxfJ++geFEQaLW51Eqmji53ZwMS8Qg9BO58YVGaqcjssE0hQhkE19h0Ms
-	V+9DKgPPZiKzBLuw8DAsBVpxwaFEU0EW2bMKqn6PBFXShr3x/f+vmRKAD2kZFyVwQh+HtYGfQehjX
-	HT5dfMtqw/XfuKwZ0VPNMEayyl7Mmgod6fS8Abs/TJY0AWiblWUX8AQ/4KsnyyYDtaMTQJGhKD3YD
-	ckMc2RmhGGjy7B5Bs+DAKEOMhOkmvojIPQF/SSGHp9r4C5KxokkEqrFxCXFkR3MflGOijIoid81Wg
-	RXH+br9l2uZM7KKIu1dQ==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
+	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=fqs75wLMqg4qsYljWbBwfSXXy1M1bkopdYvm5gJ/C8k=; b=QO3ZkPAyAbIldwuCSfIakr+qQ/
+	V5XDev3+HjTTv+/cpEoJnEMuqe411ETkmcROlJRKm415it+agO/UwJMMDMEvT9LeLCpqaD2ouR9hD
+	BMyJ4wFS72V0+M300k4RFM3ddJiCi1Wp6177ucA04aX2jgYswfDYDmT11CJ2i7YPgo65v2Y9o8lDx
+	TINLEgM/ZMwvp0I3gUHM5vLRtcABAbu7632gA9SWIYwT4cIbj1PXPeTnjHZqK9Vll/v1PSFgRcJc7
+	UcYID+UY+435pn2DOOwABfh1Sod3Fw3TQF2WbaXTWXv7Mv43eD4AsZ2SBenXqVzkxAVp4R3htRJ9F
+	0iIgUbkg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jXPCG-0006xo-UD; Sat, 09 May 2020 13:07:16 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1jXlHQ-0003lW-Iz; Sun, 10 May 2020 12:42:04 +0000
+Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jXPCD-0006wY-W3; Sat, 09 May 2020 13:07:15 +0000
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org
- [51.254.78.96])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 55828214D8;
- Sat,  9 May 2020 13:07:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1589029630;
- bh=LDChgAezC2cELQgFUK931l+lj9IS98Sqd6nkTxmMfyo=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=pE6AviOjbhLTmMGlBQ4CUAwnftlLGIRNd5p189eKB/VlJ0Xl+5O9E/w0AUXSZE1Xx
- 82qB+Bnc+ZB37q3Tk4Yg2QtGG9mc8XKAN9y1eVNmZbuPBA9PH8ZVAupS9mnLixL5BB
- qwXw4IZwdYf9XoNqdwuiXeRgbFVllybkCT4my1N0=
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78]
- helo=wait-a-minute.misterjones.org)
- by disco-boy.misterjones.org with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <maz@kernel.org>)
- id 1jXPC8-00Aroh-Ia; Sat, 09 May 2020 14:07:08 +0100
-Date: Sat, 09 May 2020 14:07:07 +0100
-Message-ID: <874ksp1clg.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: "yue.wang@amlogic.com" <yue.wang@amlogic.com>
-Subject: Re: [PATCH] PCI: amlogic: meson: Don't use FAST_LINK_MODE to set up
- link
-In-Reply-To: <2020050709433087691414@amlogic.com>
-References: <20200429164230.309922-1-maz@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: yue.wang@amlogic.com, linux-pci@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, khilman@baylibre.com, bhelgaas@google.com,
- robh@kernel.org, lorenzo.pieralisi@arm.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
- SAEximRunCond expanded to false
+ id 1jXlH1-0003Lx-E6; Sun, 10 May 2020 12:41:40 +0000
+Received: by mail-lj1-x22d.google.com with SMTP id g4so6475942ljl.2;
+ Sun, 10 May 2020 05:41:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=OmLblKHrv112GKxqHbeDQgwgFy094x2GnPIPyu9TDGA=;
+ b=gdonWKi/jxShiuLpIiWTUwbr629M/CFCwxIQ7nNWuKyfEA8mlJlqTMG8yjMaOZhV43
+ eeKxkFNhTVwDx+LePw0IrZhIHu5mOH4Andud4qWQRpFzFTlacP+xLPbtnwCq0wkFKFcO
+ WPw1ieg2/56U/swtCAM+5erpW2l2+X2KlI2ItRr1QLmHq7RqJqQaJ08FbUjvq+uvwRMQ
+ Jb+ZhZWqU7YjrtyVWNXamniUfNATihiDjXDgom8q8mXcvM0ZKlJ+ELhK8XXVW9hUitRg
+ rShCLVIAg4tWQijE0w2QvRMJywUU5EYhhd2RwaA8Tv315xESz+mhd868911ZokUGfE73
+ FMYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=OmLblKHrv112GKxqHbeDQgwgFy094x2GnPIPyu9TDGA=;
+ b=URQnfTnAjICHz4MQudC9x+JcXeuIsN6jy7b3Wh1ecXUMg9yG77BO0pNDrA3jVf6sQs
+ R830So5+vfjWy1jR6uZJD19Wuf0obUTN5H0SPs+VtPfNthWWBseYuqDOEPoUaSXscA3m
+ R8v3sGO4VeaJ9HC/Kjb4qBnGXXWC3hjU+CCJt4EwCR21Xp/2BjeuSobB+sfnwGgstoNX
+ aJyLbT1EI4hiMw8+vj04SW+LKzgCNlrJf00psKp54ns9Y2e4I8woEiQSkJ6ZwhRGrz2y
+ TaO83ZS/mPmcmd3Wl4WFADlb7SYPvxYLKXr98ghgfelVF4tyNagNycyXnQvDr1pmSW/y
+ qE4Q==
+X-Gm-Message-State: AOAM533magEkbfoS6LZerF6DL178NAG/8WV1j9RLfYy24dO13BsSulu8
+ qFrN4oWjJvJkWsnHnpnbDe0=
+X-Google-Smtp-Source: ABdhPJyM3eroHRn/+jtPGXG+Q+2R58RdtBc0ba7D/6DPJwlIhQ6INwvSdqjUNip+ikryoul/4ns20w==
+X-Received: by 2002:a2e:8603:: with SMTP id a3mr7343916lji.153.1589114497541; 
+ Sun, 10 May 2020 05:41:37 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id m11sm7136611lfo.55.2020.05.10.05.41.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 10 May 2020 05:41:37 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v8 1/3] dt-bindings: add vendor prefix for Smartlabs LLC
+Date: Sun, 10 May 2020 12:41:27 +0000
+Message-Id: <20200510124129.31575-2-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200510124129.31575-1-christianshewitt@gmail.com>
+References: <20200510124129.31575-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200509_060714_072948_AA4B9B94 
-X-CRM114-Status: GOOD (  26.26  )
+X-CRM114-CacheID: sfid-20200510_054139_469024_13442E58 
+X-CRM114-Status: UNSURE (   8.38  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,114 +97,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- linux-pci <linux-pci@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Yue,
+Smartlabs LLC are a professional integrator of Interactive TV solutions
+and IPTV/VOD devices [1].
 
-On Thu, 07 May 2020 02:43:31 +0100,
-"yue.wang@amlogic.com" <yue.wang@amlogic.com> wrote:
-> 
-> [1  <text/plain; utf-8 (base64)>]
-> Marc,
-> 
-> This patch looks all right. I tested in my meson board and pcie
-> EP(QCA9888) worked well.
-> 
-> Fast link mode is enabled for simulation purposes, it should be
-> disabled in the real hardware.
+[1] https://www.smartlabs.tv/en/about/
 
-Thanks for confirming my reading of the manual and having tested it.
-Can I take this as an "Acked-by:" and a "Tested-by:"?
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Cheers,
-
-	M.
-
->
-> yue.wang@amlogic.com
->  
-> From: Marc Zyngier
-> Date: 2020-05-06 18:43
-> To: linux-pci; linux-amlogic; linux-arm-kernel; linux-kernel; Kevin Hilman; Yue Wang
-> CC: Bjorn Helgaas; Rob Herring; Lorenzo Pieralisi
-> Subject: Re: [PATCH] PCI: amlogic: meson: Don't use FAST_LINK_MODE to set up link
-> On Wed, 29 Apr 2020 17:42:30 +0100
-> Marc Zyngier <maz@kernel.org> wrote:
->  
-> > My vim3l board stubbornly refuses to play ball with a bog
-> > standard PCIe switch (ASM1184e), spitting all kind of errors
-> > ranging from link never coming up to crazy things like downstream
-> > ports falling off the face of the planet.
-> > 
-> > Upon investigating how the PCIe RC is configured, I found the
-> > following nugget: the Sysnopsys DWC PCIe Reference Manual, in the
-> > section dedicated to the PLCR register, describes bit 7 (FAST_LINK_MODE)
-> > as:
-> > 
-> > "Sets all internal timers to fast mode for simulation purposes."
-> > 
-> > I completely understand the need for setting this bit from a simulation
-> > perspective, but what I have on my desk is actual silicon, which
-> > expects timers to have a nominal value (and I expect this is the
-> > case for most people).
-> > 
-> > Making sure the FAST_LINK_MODE bit is cleared when configuring the RC
-> > solves this problem.
-> > 
-> > Fixes: 9c0ef6d34fdb ("PCI: amlogic: Add the Amlogic Meson PCIe controller driver")
-> > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  drivers/pci/controller/dwc/pci-meson.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> > index 3715dceca1bf..ca59ba9e0ecd 100644
-> > --- a/drivers/pci/controller/dwc/pci-meson.c
-> > +++ b/drivers/pci/controller/dwc/pci-meson.c
-> > @@ -289,11 +289,11 @@ static void meson_pcie_init_dw(struct meson_pcie *mp)
-> >  meson_cfg_writel(mp, val, PCIE_CFG0);
-> >  
-> >  val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
-> > - val &= ~LINK_CAPABLE_MASK;
-> > + val &= ~(LINK_CAPABLE_MASK | FAST_LINK_MODE);
-> >  meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
-> >  
-> >  val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
-> > - val |= LINK_CAPABLE_X1 | FAST_LINK_MODE;
-> > + val |= LINK_CAPABLE_X1;
-> >  meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
-> >  
-> >  val = meson_elb_readl(mp, PCIE_GEN2_CTRL_OFF);
->  
-> Yue, Kevin: any comment on this?
->  
-> I found that the issue is reproducible even without a PCIe switch,
-> depending on the single device I plug in this machine (an Intel SSD
-> works fine, while a Marvell Ethernet adapter never shows up) as the
-> LTSSM times out much earlier than it really should (HW timers running
-> too quickly). Applying this patch makes every single device I have
-> lying around work fine.
->  
-> Thanks,
->  
-> M.
-> -- 
-> Jazz is not dead. It just smells funny...
->  
-> [2  <text/html; utf-8 (quoted-printable)>]
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index d3891386d671..a0adda624fc4 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -936,6 +936,8 @@ patternProperties:
+     description: Sitronix Technology Corporation
+   "^skyworks,.*":
+     description: Skyworks Solutions, Inc.
++  "^smartlabs,.*":
++    description: SmartLabs LLC
+   "^smsc,.*":
+     description: Standard Microsystems Corporation
+   "^snps,.*":
 -- 
-Without deviation from the norm, progress is not possible.
+2.17.1
+
 
 _______________________________________________
 linux-amlogic mailing list
