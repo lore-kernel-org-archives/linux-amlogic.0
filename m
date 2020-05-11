@@ -2,147 +2,87 @@ Return-Path: <SRS0=qsgt=6Z=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+X-Spam-Status: No, score=-10.9 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EF03C54E4B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2020 08:59:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DAFC6C54E4B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2020 09:28:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6F31F2075E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2020 08:59:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A7D03206E6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2020 09:28:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RgwsIwwC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="L2oWkVDr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6F31F2075E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ooE2yujv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="pBaG7fHp"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7D03206E6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bXjgJmCJBIa880G9a8grYunjoqwF3H6mGeyenVMiuFM=; b=RgwsIwwCXupnGI
-	/g+HH8UmvbzXz51akAD8q7Kzno7pHFbxKaAG1UJSv6kPKOWW1nY050ZU5AEueMEmINERHf0qy2GW+
-	2+IoYrVWC8FFNh+P+qYZj8pjFkIuiBMfoSNHbCrm2lXOaKGLAvmOJwMsdkSciVVSclxNItrKz5z6n
-	u7ED5yTfk8syWTzHKTf/e3RsRAQ+/AZFArlRMPEQHS0mxZbTDlG7nN3L0hK0REzVOEP5BV/wvdy7G
-	w5wZe7vdwZvNbAcrAh4weBplUNtAbokPz6Irmoez67hKNKP/IouJBf96pHYBQ33eEcaadGRE8o3Z6
-	67MuHlZQbcBtX0awj3aQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0J31UK5IYv3basdngmcrtFAOaf2rjXg6cjkZ2poozvE=; b=ooE2yujvH02chh
+	ATSLP8zMMtljjqJMoyn/h/NM6+Qlm1Snk/OljYyvmcGI2PYo8lusDBEh2wdG7DQE0sOR2Z21dCXzl
+	DSpL7hCubS+U69S7mQjTacxFAtrXfpH7px+CNTLTJlWwBK80CPd0mkBwIEg6QjJ4BG6YoBmJc7o23
+	Q1E1HYLxLGw8Ni9PEm+sHGJsfSJNm8oERl71XMtrRCRyF8EuprFirUmy8r5XzO1dis50w6R0JOhQK
+	Eyeaus3mBIUe/McD0BRDwx4mH3PpJ9nJXUjIMzHA+ZhdthU76LubRgfWgIDmWhCWgO5RjFIquc510
+	vCXSWeoBnLoaVZFvTAcg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jY4HI-0002Rb-UC; Mon, 11 May 2020 08:59:12 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jY4k0-0007Xx-7C; Mon, 11 May 2020 09:28:52 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jY4H9-0002Iq-4e
- for linux-amlogic@lists.infradead.org; Mon, 11 May 2020 08:59:05 +0000
-Received: by mail-wr1-x443.google.com with SMTP id y16so2700002wrs.3
- for <linux-amlogic@lists.infradead.org>; Mon, 11 May 2020 01:59:02 -0700 (PDT)
+ id 1jY4jx-0007Xg-RP
+ for linux-amlogic@lists.infradead.org; Mon, 11 May 2020 09:28:51 +0000
+Received: by mail-wm1-x330.google.com with SMTP id h4so17267087wmb.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 11 May 2020 02:28:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=4594gfI4UDDb5BHmkZ1Vrt7zRtwvI2AafBdXlVzokpE=;
- b=L2oWkVDrMt7rC8usziISopoeQywYM13P71sCRLx6RBxxnU86/yId4ghA7YBeY/O9H5
- GBODbPhF+WzbSqOl75+W4rtO/K7UIRDYO0mULqPhepXqx7jxrcXjHe6G1KcENpNSFq15
- TvjUOgfDoP3MvUp7YckbCaIRZyCjCKUvqkgkwe1Wgg05q06mA9kURltlQ+oZTsIm9T4L
- JM+hGCZVBGuVdnDQiO3YSoge1nnTwLgmVPuQ4Otv/tm4bn0DIiZCbJ5aFsJ2weSeY0Ox
- D7X6iOb7X77kF3vWNH2hXmt4E0m3HsmAAk7dg+ldT7goS4FgQn5teh4q5UUVopEYbw+y
- wOZg==
+ h=user-agent:from:to:cc:subject:date:message-id:mime-version;
+ bh=Mh8BUB33BkRpM8aRwNinU38S2vUC6fEvoov1NKAowG0=;
+ b=pBaG7fHpfSyn91qMTy91WjirPbPNwfVY7UW/JkojDMasPZx6lER9z3xS9q+97dUJn4
+ Hiq1pnaisrwwq/nCdHLAV2r+67h4Dfhu0WIF+AUh1jrxG0VuvGhkLC1OIwE54J3d/W5h
+ O+SG4LTHlZnkd+hR3f1DhxDwp0mVmuNjeK0JRv4A7taIUJUtgZ7XcRNBCayhX89WmzoV
+ rMQCdGRgwLUqAK8mz34ilZzahJcHHj5KGY2kNpzS/eIP2UsulAe6LNi7JvP8XrM/y1XO
+ As56NoE7r1gaV18Q+NX0jl/GEqN+pFPanX6a10CldokF1P5AzJK9HsNW0U2L4udCGPJu
+ GEhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=4594gfI4UDDb5BHmkZ1Vrt7zRtwvI2AafBdXlVzokpE=;
- b=LS8UJ0qGb5kk4Y8r8grZPcqaLnu4fg+CRa/5lRd0wbBXPrNsPhh3u869JB0NIESRX5
- H49OJwnq83aPeQaOFX1EApTwlMRndpqCgS4Cmk4CVlPCYJf6KOWMcYJ5/yM8icM7xWPt
- zkQAb0Ue2m6xgqFw4XaiiFipS6C+hLsobI5bsaCWWtSc1UeaA/0YGVWhXl8x2uAmK8Cz
- WG8zhr8Myd/+TRPHDMAvZI6Ibpuzvp8Nmrwubw0dgC9ofaiTgTkdIPHs6gAccDu9sJD5
- U4V3FZ51v4voXk7/pcVVIqcZo3VkKLyEwxZ+vAq3CeUWX6QB4VXD3XX24Cy4mXJ3SrrB
- wAvw==
-X-Gm-Message-State: AGi0Pub1rvI8uu+8vnrXBKnDPi6quPnlZtzmrhbXvW4cNsjT/meHHhy8
- K561uUM2JLs12RGcDV3gH+IdXw==
-X-Google-Smtp-Source: APiQypKL22mEB7w5xWfFhhD4mc35jDTt+J1mNIuLFLl9oZlb878iIn3z1XWKnQh7gYznR9Vvq8zv/g==
-X-Received: by 2002:a05:6000:1150:: with SMTP id
- d16mr9947563wrx.197.1589187541097; 
- Mon, 11 May 2020 01:59:01 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71?
- ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
- by smtp.gmail.com with ESMTPSA id u16sm16660514wrq.17.2020.05.11.01.58.59
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 May 2020 01:59:00 -0700 (PDT)
-Subject: Re: [PATCH] PCI: amlogic: meson: Don't use FAST_LINK_MODE to set up
- link
-To: Marc Zyngier <maz@kernel.org>, linux-pci@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20200429164230.309922-1-maz@kernel.org>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <02c1ce97-109a-90da-46ce-f8394f00de74@baylibre.com>
-Date: Mon, 11 May 2020 10:58:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ h=x-gm-message-state:user-agent:from:to:cc:subject:date:message-id
+ :mime-version;
+ bh=Mh8BUB33BkRpM8aRwNinU38S2vUC6fEvoov1NKAowG0=;
+ b=F6njDlAuuAMXOokoG+ADKrtvkP+eL2zur8E77cY/KR+fHCUGXokzZaR5Lgtg+9t/j3
+ BFrvaut73EGHzlTjuGGJmeBEBpWjfT9wxC1rz1VoIibwBK3WjN3CO2hrCOO13KtODLwZ
+ 3qGeABcTwjbWI8yM23hwTQfgUUf80LifYyDMTDLDfvxODjQSpxvLEUzZW3U/Pyr4fxfS
+ RL5JR/9epIs+G5XKteyN4wW1WR84p1MGAFg/YV7paQvYuncPuWfyOk0q9oCbBmf1mHDw
+ Z/Eb4s3eyddHcnI7p5x7IeNniI8y06zT5xFTcDGD8MgYEDqn3Y87H09tSnV2u4tZE6tn
+ S+mw==
+X-Gm-Message-State: AGi0PuYikRTnCXC7T76Lj3zBDiOL+aw6QI7f6H0jgiK0iDeZl+hmxjOy
+ whBLBnior/iFhQtKPnXfJQ3Ncg==
+X-Google-Smtp-Source: APiQypKERVZrItZkKv3SFAqMxzeC3pVuCzo0/ct6fZp7Ucz/892XCm/L0uc0xYtYm6t2UV3w6TMK6g==
+X-Received: by 2002:a7b:c459:: with SMTP id l25mr29862222wmi.52.1589189327567; 
+ Mon, 11 May 2020 02:28:47 -0700 (PDT)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id f26sm25790278wmj.11.2020.05.11.02.28.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 May 2020 02:28:47 -0700 (PDT)
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Subject: [GIT PULL] clk: meson: updates for v5.8
+Date: Mon, 11 May 2020 11:28:45 +0200
+Message-ID: <1j3686g6r6.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20200429164230.309922-1-maz@kernel.org>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200511_015903_233543_B8289B87 
-X-CRM114-Status: GOOD (  19.80  )
+X-CRM114-CacheID: sfid-20200511_022849_886944_04AA5624 
+X-CRM114-Status: UNSURE (   6.91  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,67 +94,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Yue Wang <yue.wang@Amlogic.com>,
- Kevin Hilman <khilman@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-clk@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/04/2020 18:42, Marc Zyngier wrote:
-> My vim3l board stubbornly refuses to play ball with a bog
-> standard PCIe switch (ASM1184e), spitting all kind of errors
-> ranging from link never coming up to crazy things like downstream
-> ports falling off the face of the planet.
-> 
-> Upon investigating how the PCIe RC is configured, I found the
-> following nugget: the Sysnopsys DWC PCIe Reference Manual, in the
-> section dedicated to the PLCR register, describes bit 7 (FAST_LINK_MODE)
-> as:
-> 
-> "Sets all internal timers to fast mode for simulation purposes."
-> 
-> I completely understand the need for setting this bit from a simulation
-> perspective, but what I have on my desk is actual silicon, which
-> expects timers to have a nominal value (and I expect this is the
-> case for most people).
-> 
-> Making sure the FAST_LINK_MODE bit is cleared when configuring the RC
-> solves this problem.
-> 
-> Fixes: 9c0ef6d34fdb ("PCI: amlogic: Add the Amlogic Meson PCIe controller driver")
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> ---
->  drivers/pci/controller/dwc/pci-meson.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> index 3715dceca1bf..ca59ba9e0ecd 100644
-> --- a/drivers/pci/controller/dwc/pci-meson.c
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -289,11 +289,11 @@ static void meson_pcie_init_dw(struct meson_pcie *mp)
->  	meson_cfg_writel(mp, val, PCIE_CFG0);
->  
->  	val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
-> -	val &= ~LINK_CAPABLE_MASK;
-> +	val &= ~(LINK_CAPABLE_MASK | FAST_LINK_MODE);
->  	meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
->  
->  	val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
-> -	val |= LINK_CAPABLE_X1 | FAST_LINK_MODE;
-> +	val |= LINK_CAPABLE_X1;
->  	meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
->  
->  	val = meson_elb_readl(mp, PCIE_GEN2_CTRL_OFF);
-> 
+Hi Stephen,
 
-I don't have HW to test on non NVMe, but I'm reading the same as you in the
-DWC PCIe Reference Manual, and it seems coherent.
+Here are the amlogic clock updates for v5.8.
+Nothing fancy, please pull.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Cheers
 
-Neil
+The following changes since commit 8f3d9f354286745c751374f5f1fcafee6b3f3136:
+
+  Linux 5.7-rc1 (2020-04-12 12:35:55 -0700)
+
+are available in the Git repository at:
+
+  git://github.com/BayLibre/clk-meson.git tags/clk-meson-v5.8-1
+
+for you to fetch changes up to a29ae8600d50ece1856b062a39ed296b8b952259:
+
+  clk: meson: meson8b: Don't rely on u-boot to init all GP_PLL registers (2020-05-02 01:53:32 +0200)
+
+----------------------------------------------------------------
+Amlogic clock updates for v5.8:
+
+* Meson8b: Updates and fixup HDMI and video clocks
+* Meson8b: Fixup reset polarity
+* Meson gx and g12: fix GPU glitch free mux switch
+
+----------------------------------------------------------------
+Martin Blumenstingl (9):
+      clk: meson8b: export the HDMI system clock
+      clk: meson: meson8b: make the hdmi_sys clock tree mutable
+      clk: meson: gxbb: Prepare the GPU clock tree to change at runtime
+      clk: meson: g12a: Prepare the GPU clock tree to change at runtime
+      clk: meson: meson8b: Fix the first parent of vid_pll_in_sel
+      clk: meson: meson8b: Fix the polarity of the RESET_N lines
+      clk: meson: meson8b: Fix the vclk_div{1, 2, 4, 6, 12}_en gate bits
+      clk: meson: meson8b: Make the CCF use the glitch-free VPU mux
+      clk: meson: meson8b: Don't rely on u-boot to init all GP_PLL registers
+
+ drivers/clk/meson/g12a.c                 |  30 +++++---
+ drivers/clk/meson/gxbb.c                 |  40 ++++++-----
+ drivers/clk/meson/meson8b.c              | 120 ++++++++++++++++++++++---------
+ drivers/clk/meson/meson8b.h              |   5 +-
+ include/dt-bindings/clock/meson8b-clkc.h |   1 +
+ 5 files changed, 134 insertions(+), 62 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
