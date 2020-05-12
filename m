@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.9 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06D0FC54E8E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 May 2020 13:26:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81EB8C54E8B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 May 2020 13:27:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CCC14206F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 May 2020 13:26:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 444B3206F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 May 2020 13:27:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nhcU7oo9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="H7zv+pIK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CCC14206F5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bxMeedKu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XGVmw6wv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 444B3206F5
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Blc+n/4ww+GuF/2OfZq9CQ8ql7LGbRbcbUONJg26Uko=; b=nhcU7oo90kMa4O
-	Feph4EgfabBz8oFiXDjLxcZLEAeaUv1hzDqsJRIeFwuapdnzSgSk6ZivXKZnOc0YMXERLDGw8JSsP
-	DTgHvs5FlyZlsQivyeE/HrLfKX1JZPEJXxv4R7rPK6IlYXFlTowou5iwGJYxEpsM8YZcDAw35iXTE
-	vVpSGhDZzlu/izzaajV1FX1Ido+e2J53/O/fJ1scm/r8PukEHqCoOfik3BMoLS+KUJFf0GjPiwDW4
-	gjg/XCBsodZxOFyxsobmZjTN7Qr02xkHqZ/JfIfNk4szJLpaFTMCuGNKRKClAORLCbvSTN46FhlbJ
-	9JcP80mzqqlKC7/YmFtw==;
+	List-Owner; bh=iU8b4YL6tvDvlBRkb+ABbdyewaxzZYEd6z5CCbfZF2Q=; b=bxMeedKus2o5n4
+	vVM4VKhhGzqtUiXVX5ieLjDKkIEGMMwxrlSAW2FpE7dhWV0KWrygvhM5ODB/bzMPit2IcH2pq1Wrc
+	ElguI22RNrp70SQxD9XYUVNOYEQHWLiiM5gZc56esurC56Ar6gsbBFst4WIO2HiaQ6RfoexiYomog
+	d7oCr89JccU2z4e9SvibaOhpJNYM1nol7s5zECQN91TlXRo35ebk2BEA8lb5UrgSSQ75fZQBWNWsz
+	QVfyrv064VMrQZvUZ+tUM2c369C1B+koXeB6uCWFSzR5A41NFwntgsnlSDtgppxcc5waXnwIYlpEk
+	UMAqJ/ojqvwuZ4kpTeEA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jYUvg-0001ma-Ea; Tue, 12 May 2020 13:26:40 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1jYUw7-0002G0-JE; Tue, 12 May 2020 13:27:07 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jYUvM-0001U3-DQ
- for linux-amlogic@lists.infradead.org; Tue, 12 May 2020 13:26:23 +0000
-Received: by mail-wr1-x444.google.com with SMTP id v12so15338471wrp.12
- for <linux-amlogic@lists.infradead.org>; Tue, 12 May 2020 06:26:20 -0700 (PDT)
+ id 1jYUvO-0001VD-AD
+ for linux-amlogic@lists.infradead.org; Tue, 12 May 2020 13:26:24 +0000
+Received: by mail-wr1-x443.google.com with SMTP id l18so15357210wrn.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 12 May 2020 06:26:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Lm/JhSU6WIUD9liaClHiq2/rbC+K/Ls1HtNWMD1Nn2A=;
- b=H7zv+pIKMn1DFXWX7wYhzX5b9gbDPxAk9SE9ltGb5WnBojjIrTWGwZ7FVO7YXf1AoR
- COZHSxtOlkVLwcmTh97ohzAq4n9C7J6uHa4n4D27rkj+w/kfYeWrBD3lktPkCBd7OyNK
- O8P/pCK5xonSvWm29SHHyKomqkG8A+B7SHPE0Hdxxub08pQdFMBOAnAQGaUN+jnC5W1I
- DAw62gdKYZhW3y6Pzrg+noXMZ4eeW1RZlY/S2D9py4Eofn7OiX980AilKycW3g3jxVMX
- STxvCkdIKo7Txkpgq0z0bR0Ka58vlC02RDjsUwtAdg3aW0j9ktnqbckm4J6OXV57CjW8
- 0RSw==
+ bh=FfLgbV8JxCX0+O1S1urP+VjTlHc4+FfJzM+tdEpjLV4=;
+ b=XGVmw6wvBxizd+DpUyTg2YZbQMD30bYmBtqfI+SGkzxegQF+ZD4Tfx9lcG3KB8SA0z
+ I/B1hOibqJMM7pL8zQYYYTy5j2xE9CY638fNnVdEIdghqIfuDLc2jjflX5GaXeUY8ZIl
+ k1dG02ys8VljhdkhlRKJ/gHk3j9asW4Cg4jxpNM7JLqlyzzc/i5HPUZ05tyrpoHKHql7
+ OlbD/caaBtkh8Fb/2A20tojRSCZUz+QUIUb3nuYp8CPXQHPShsHJzEJ1QHf000g86KQn
+ F/hN++p0H+tnsvDNRsKxt0H9j5WHk/HSaE6hTYTQCN9D7TfN2UtEZ5tbIUAhT5gxF238
+ tEeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Lm/JhSU6WIUD9liaClHiq2/rbC+K/Ls1HtNWMD1Nn2A=;
- b=B0aoCQOJnc5zzhr8MTVTjBd7t9YJhQq6SpSWSv5JAGrIQ+vrRfdNtzDWmOvh5ih0pN
- 3sc+3303luiYkEFYejr+4C+a/18rMs7fcslMprp8DpgRBQiocyeqiBwYWmkekraMGlWV
- k5kgrtbNJDLwHSMyY1rfBM7lGSTR4uySQ/0VW1acBd8uouoVfN55Iis9MTkfgXrU/Mtc
- j7/6DzE8qrr9NpRzAcGx2xQB/LosmRt5jVKmsjY0/4mje0XiFhQjBmdgewhhEgceDasT
- vkVA/ewvjKQ6AeacZj2ssQRCFEwVL9L3QQzFu6PEu5b997kB9mzTku4sdm16009sPFy1
- YEWQ==
-X-Gm-Message-State: AGi0PuaWKg6Bx2IEtkiKMKGG2juf5KPJwlwfLLfSn8vr73fqbChj+H5P
- JsaN9JGDeHwn/IhIRIngMk6ihg==
-X-Google-Smtp-Source: APiQypIMA843k3ZGcFq05wJywOzCbRuZBo362vVj3No/BJt89ev1hi92yc4IMHltKbZdcHKKO8Tw5g==
-X-Received: by 2002:a5d:4d0f:: with SMTP id z15mr24948754wrt.411.1589289979092; 
- Tue, 12 May 2020 06:26:19 -0700 (PDT)
+ bh=FfLgbV8JxCX0+O1S1urP+VjTlHc4+FfJzM+tdEpjLV4=;
+ b=liXj0tY+cNYQ0f9uVRql3NF35gLdY5bSfjF/7o3TbiXQL6qDvOpLQj14VtpXKvCl3B
+ VWrBcx+B/dHZqtxnt3TsL4f2XTqU+221/LcUMHHWcMV4GfiTk+FiBdqqkXflt6coPNTf
+ DeiLE0oXHdO2MrmRQmeh+tt1pE7lC1gEzLQmUhD0Htt4WF8pawwGpqOQ0V2LLIzxwS3x
+ zYGli0zhX7rw19vuH5I4J2AhKPmGeU8u3qhe6TYmn9acxzm+XUY3chQZ1x1ButSbl3/k
+ EnB6dG+jM0IsqZc3z0oW1VSJfEY2mAve85LAL8GxF+qoIN/+SY0eiF1KOPnFwYFp+L+L
+ QmZg==
+X-Gm-Message-State: AGi0PuYr1mrWRKf9pBbjP3Gw9gr3P03nW4ZLHgVFEGax/WV9H/WIpwea
+ mixyAnPSE+rPrBclV9V8DO0Nfg==
+X-Google-Smtp-Source: APiQypI8EP/HoI9eKUl9on4yjIRVxocsOM2akcylLsk5B9T7t0qAEWkMTL9hpg9vY1c0Is3iwbRfcA==
+X-Received: by 2002:adf:efd0:: with SMTP id i16mr24626176wrp.315.1589289980619; 
+ Tue, 12 May 2020 06:26:20 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
  by smtp.gmail.com with ESMTPSA id
- g15sm14441844wro.71.2020.05.12.06.26.17
+ g15sm14441844wro.71.2020.05.12.06.26.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 12 May 2020 06:26:18 -0700 (PDT)
+ Tue, 12 May 2020 06:26:20 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: lee.jones@linaro.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
- amit.kucheria@verdurent.com, srinivas.kandagatla@linaro.org,
- devicetree@vger.kernel.org
-Subject: [PATCH v2 1/6] dt-bindings: mfd: add Khadas Microcontroller bindings
-Date: Tue, 12 May 2020 15:26:08 +0200
-Message-Id: <20200512132613.31507-2-narmstrong@baylibre.com>
+To: lee.jones@linaro.org
+Subject: [PATCH v2 2/6] mfd: add support for the Khadas System control
+ Microcontroller
+Date: Tue, 12 May 2020 15:26:09 +0200
+Message-Id: <20200512132613.31507-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200512132613.31507-1-narmstrong@baylibre.com>
 References: <20200512132613.31507-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200512_062620_451841_5CAF3C35 
-X-CRM114-Status: GOOD (  10.32  )
+X-CRM114-CacheID: sfid-20200512_062622_359170_F50B6024 
+X-CRM114-Status: GOOD (  17.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,9 +97,9 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -112,63 +111,301 @@ boards.
 It has multiple boot control features like password check, power-on
 options, power-off control and system FAN control on recent boards.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/mfd/khadas,mcu.yaml   | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+This implements a very basic MFD driver with the fan control and User
+NVMEM cells.
 
-diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/mfd/Kconfig            |  14 ++++
+ drivers/mfd/Makefile           |   1 +
+ drivers/mfd/khadas-mcu.c       | 143 +++++++++++++++++++++++++++++++++
+ include/linux/mfd/khadas-mcu.h |  91 +++++++++++++++++++++
+ 4 files changed, 249 insertions(+)
+ create mode 100644 drivers/mfd/khadas-mcu.c
+ create mode 100644 include/linux/mfd/khadas-mcu.h
+
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 0a59249198d3..b95091397052 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -2003,6 +2003,20 @@ config MFD_WCD934X
+ 	  This driver provides common support WCD934x audio codec and its
+ 	  associated Pin Controller, Soundwire Controller and Audio codec.
+ 
++config MFD_KHADAS_MCU
++	tristate "Support for Khadas System control Microcontroller"
++	depends on I2C
++	depends on OF || COMPILE_TEST
++	select MFD_CORE
++	select REGMAP_I2C
++	help
++	  Support for the Khadas System control Microcontroller interface present
++	  on their VIM and Edge boards.
++
++	  This driver provides common support for accessing the device,
++	  additional drivers must be enabled in order to use the functionality
++	  of the device.
++
+ menu "Multimedia Capabilities Port drivers"
+ 	depends on ARCH_SA1100
+ 
+diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+index f935d10cbf0f..0f1633b096bb 100644
+--- a/drivers/mfd/Makefile
++++ b/drivers/mfd/Makefile
+@@ -257,5 +257,6 @@ obj-$(CONFIG_MFD_ROHM_BD70528)	+= rohm-bd70528.o
+ obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
+ obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
+ obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
++obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
+ 
+ obj-$(CONFIG_SGI_MFD_IOC3)	+= ioc3.o
+diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
 new file mode 100644
-index 000000000000..a3b976f101e8
+index 000000000000..6d08fa2e373a
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/khadas,mcu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/mfd/khadas-mcu.c
+@@ -0,0 +1,143 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Driver for Khadas System control Microcontroller
++ *
++ * Copyright (C) 2020 BayLibre SAS
++ * Author(s): Neil Armstrong <narmstrong@baylibre.com>
++ */
++#include <linux/bitfield.h>
++#include <linux/i2c.h>
++#include <linux/mfd/khadas-mcu.h>
++#include <linux/regmap.h>
++#include <linux/mfd/core.h>
++#include <linux/module.h>
 +
-+title: Khadas on-board Microcontroller Device Tree Bindings
++static bool khadas_mcu_reg_volatile(struct device *dev, unsigned int reg)
++{
++	if (reg >= KHADAS_MCU_USER_DATA_0_REG &&
++	    reg < KHADAS_MCU_PWR_OFF_CMD_REG)
++		return true;
 +
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
++	switch (reg) {
++	case KHADAS_MCU_PWR_OFF_CMD_REG:
++	case KHADAS_MCU_PASSWD_START_REG:
++	case KHADAS_MCU_CHECK_VEN_PASSWD_REG:
++	case KHADAS_MCU_CHECK_USER_PASSWD_REG:
++	case KHADAS_MCU_WOL_INIT_START_REG:
++	case KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG:
++		return true;
++	default:
++		return false;
++	}
++}
 +
-+description: |
-+  Khadas embeds a microcontroller on their VIM and Edge boards adding some
-+  system feature as PWM Fan control (for VIM2 rev14 or VIM3), User memory
-+  storage, IR/Key resume control, system power LED control and more.
++static bool khadas_mcu_reg_writeable(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case KHADAS_MCU_PASSWD_VEN_0_REG:
++	case KHADAS_MCU_PASSWD_VEN_1_REG:
++	case KHADAS_MCU_PASSWD_VEN_2_REG:
++	case KHADAS_MCU_PASSWD_VEN_3_REG:
++	case KHADAS_MCU_PASSWD_VEN_4_REG:
++	case KHADAS_MCU_PASSWD_VEN_5_REG:
++	case KHADAS_MCU_MAC_0_REG:
++	case KHADAS_MCU_MAC_1_REG:
++	case KHADAS_MCU_MAC_2_REG:
++	case KHADAS_MCU_MAC_3_REG:
++	case KHADAS_MCU_MAC_4_REG:
++	case KHADAS_MCU_MAC_5_REG:
++	case KHADAS_MCU_USID_0_REG:
++	case KHADAS_MCU_USID_1_REG:
++	case KHADAS_MCU_USID_2_REG:
++	case KHADAS_MCU_USID_3_REG:
++	case KHADAS_MCU_USID_4_REG:
++	case KHADAS_MCU_USID_5_REG:
++	case KHADAS_MCU_VERSION_0_REG:
++	case KHADAS_MCU_VERSION_1_REG:
++	case KHADAS_MCU_DEVICE_NO_0_REG:
++	case KHADAS_MCU_DEVICE_NO_1_REG:
++	case KHADAS_MCU_FACTORY_TEST_REG:
++	case KHADAS_MCU_SHUTDOWN_NORMAL_STATUS_REG:
++		return false;
++	default:
++		return true;
++	}
++}
 +
-+properties:
-+  compatible:
-+    enum:
-+      - khadas,mcu # MCU revision is discoverable
++static const struct regmap_config khadas_mcu_regmap_config = {
++	.reg_bits	= 8,
++	.reg_stride	= 1,
++	.val_bits	= 8,
++	.max_register	= KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
++	.volatile_reg	= khadas_mcu_reg_volatile,
++	.writeable_reg	= khadas_mcu_reg_writeable,
++	.cache_type	= REGCACHE_RBTREE,
++};
 +
-+  "#cooling-cells": # Only needed for boards having FAN control feature
-+    const: 2
++static struct mfd_cell khadas_mcu_fan_cells[] = {
++	/* Feature supported only on VIM1/2 Rev13+ and VIM3 */
++	{ .name = "khadas-mcu-fan-ctrl", },
++};
 +
-+  reg:
-+    maxItems: 1
++static struct mfd_cell khadas_mcu_cells[] = {
++	/* Features supported on all board revisions */
++	{ .name = "khadas-mcu-user-mem", },
++};
 +
-+required:
-+  - compatible
-+  - reg
++static int khadas_mcu_probe(struct i2c_client *client,
++		       const struct i2c_device_id *id)
++{
++	struct device *dev = &client->dev;
++	struct khadas_mcu *khadas_mcu;
++	int ret;
 +
-+additionalProperties: false
++	khadas_mcu = devm_kzalloc(dev, sizeof(*khadas_mcu), GFP_KERNEL);
++	if (!khadas_mcu)
++		return -ENOMEM;
 +
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      khadas_mcu: system-controller@18 {
-+        compatible = "khadas,mcu";
-+        reg = <0x18>;
-+        #cooling-cells = <2>;
-+      };
-+    };
++	i2c_set_clientdata(client, khadas_mcu);
++
++	khadas_mcu->dev = dev;
++
++	khadas_mcu->map = devm_regmap_init_i2c(client,
++					       &khadas_mcu_regmap_config);
++	if (IS_ERR(khadas_mcu->map)) {
++		ret = PTR_ERR(khadas_mcu->map);
++		dev_err(dev, "Failed to allocate register map: %d\n", ret);
++		return ret;
++	}
++
++	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
++				   khadas_mcu_cells,
++				   ARRAY_SIZE(khadas_mcu_cells),
++				   NULL, 0, NULL);
++	if (ret)
++		return ret;
++
++	if (of_find_property(dev->of_node, "#cooling-cells", NULL))
++		return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
++					    khadas_mcu_fan_cells,
++					    ARRAY_SIZE(khadas_mcu_fan_cells),
++					    NULL, 0, NULL);
++
++	return 0;
++}
++
++static const struct of_device_id khadas_mcu_of_match[] = {
++	{ .compatible = "khadas,mcu", },
++	{},
++};
++MODULE_DEVICE_TABLE(of, khadas_mcu_of_match);
++
++static struct i2c_driver khadas_mcu_driver = {
++	.driver = {
++		.name = "khadas-mcu-core",
++		.of_match_table = of_match_ptr(khadas_mcu_of_match),
++	},
++	.probe = khadas_mcu_probe,
++};
++module_i2c_driver(khadas_mcu_driver);
++
++MODULE_DESCRIPTION("Khadas MCU core driver");
++MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
++MODULE_LICENSE("GPL v2");
+diff --git a/include/linux/mfd/khadas-mcu.h b/include/linux/mfd/khadas-mcu.h
+new file mode 100644
+index 000000000000..2e68af21735c
+--- /dev/null
++++ b/include/linux/mfd/khadas-mcu.h
+@@ -0,0 +1,91 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Khadas System control Microcontroller Register map
++ *
++ * Copyright (C) 2020 BayLibre SAS
++ * Author(s): Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#ifndef MFD_KHADAS_MCU_H
++#define MFD_KHADAS_MCU_H
++
++#define KHADAS_MCU_PASSWD_VEN_0_REG		0x0 /* RO */
++#define KHADAS_MCU_PASSWD_VEN_1_REG		0x1 /* RO */
++#define KHADAS_MCU_PASSWD_VEN_2_REG		0x2 /* RO */
++#define KHADAS_MCU_PASSWD_VEN_3_REG		0x3 /* RO */
++#define KHADAS_MCU_PASSWD_VEN_4_REG		0x4 /* RO */
++#define KHADAS_MCU_PASSWD_VEN_5_REG		0x5 /* RO */
++#define KHADAS_MCU_MAC_0_REG			0x6 /* RO */
++#define KHADAS_MCU_MAC_1_REG			0x7 /* RO */
++#define KHADAS_MCU_MAC_2_REG			0x8 /* RO */
++#define KHADAS_MCU_MAC_3_REG			0x9 /* RO */
++#define KHADAS_MCU_MAC_4_REG			0xa /* RO */
++#define KHADAS_MCU_MAC_5_REG			0xb /* RO */
++#define KHADAS_MCU_USID_0_REG			0xc /* RO */
++#define KHADAS_MCU_USID_1_REG			0xd /* RO */
++#define KHADAS_MCU_USID_2_REG			0xe /* RO */
++#define KHADAS_MCU_USID_3_REG			0xf /* RO */
++#define KHADAS_MCU_USID_4_REG			0x10 /* RO */
++#define KHADAS_MCU_USID_5_REG			0x11 /* RO */
++#define KHADAS_MCU_VERSION_0_REG		0x12 /* RO */
++#define KHADAS_MCU_VERSION_1_REG		0x13 /* RO */
++#define KHADAS_MCU_DEVICE_NO_0_REG		0x14 /* RO */
++#define KHADAS_MCU_DEVICE_NO_1_REG		0x15 /* RO */
++#define KHADAS_MCU_FACTORY_TEST_REG		0x16 /* R */
++#define KHADAS_MCU_BOOT_MODE_REG		0x20 /* RW */
++#define KHADAS_MCU_BOOT_EN_WOL_REG		0x21 /* RW */
++#define KHADAS_MCU_BOOT_EN_RTC_REG		0x22 /* RW */
++#define KHADAS_MCU_BOOT_EN_EXP_REG		0x23 /* RW */
++#define KHADAS_MCU_BOOT_EN_IR_REG		0x24 /* RW */
++#define KHADAS_MCU_BOOT_EN_DCIN_REG		0x25 /* RW */
++#define KHADAS_MCU_BOOT_EN_KEY_REG		0x26 /* RW */
++#define KHADAS_MCU_KEY_MODE_REG			0x27 /* RW */
++#define KHADAS_MCU_LED_MODE_ON_REG		0x28 /* RW */
++#define KHADAS_MCU_LED_MODE_OFF_REG		0x29 /* RW */
++#define KHADAS_MCU_SHUTDOWN_NORMAL_REG		0x2c /* RW */
++#define KHADAS_MCU_MAC_SWITCH_REG		0x2d /* RW */
++#define KHADAS_MCU_MCU_SLEEP_MODE_REG		0x2e /* RW */
++#define KHADAS_MCU_IR_CODE1_0_REG		0x2f /* RW */
++#define KHADAS_MCU_IR_CODE1_1_REG		0x30 /* RW */
++#define KHADAS_MCU_IR_CODE1_2_REG		0x31 /* RW */
++#define KHADAS_MCU_IR_CODE1_3_REG		0x32 /* RW */
++#define KHADAS_MCU_USB_PCIE_SWITCH_REG		0x33 /* RW */
++#define KHADAS_MCU_IR_CODE2_0_REG		0x34 /* RW */
++#define KHADAS_MCU_IR_CODE2_1_REG		0x35 /* RW */
++#define KHADAS_MCU_IR_CODE2_2_REG		0x36 /* RW */
++#define KHADAS_MCU_IR_CODE2_3_REG		0x37 /* RW */
++#define KHADAS_MCU_PASSWD_USER_0_REG		0x40 /* RW */
++#define KHADAS_MCU_PASSWD_USER_1_REG		0x41 /* RW */
++#define KHADAS_MCU_PASSWD_USER_2_REG		0x42 /* RW */
++#define KHADAS_MCU_PASSWD_USER_3_REG		0x43 /* RW */
++#define KHADAS_MCU_PASSWD_USER_4_REG		0x44 /* RW */
++#define KHADAS_MCU_PASSWD_USER_5_REG		0x45 /* RW */
++#define KHADAS_MCU_USER_DATA_0_REG		0x46 /* RW 56 bytes */
++#define KHADAS_MCU_PWR_OFF_CMD_REG		0x80 /* WO */
++#define KHADAS_MCU_PASSWD_START_REG		0x81 /* WO */
++#define KHADAS_MCU_CHECK_VEN_PASSWD_REG		0x82 /* WO */
++#define KHADAS_MCU_CHECK_USER_PASSWD_REG	0x83 /* WO */
++#define KHADAS_MCU_SHUTDOWN_NORMAL_STATUS_REG	0x86 /* RO */
++#define KHADAS_MCU_WOL_INIT_START_REG		0x87 /* WO */
++#define KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG	0x88 /* WO */
++
++/* Boards */
++enum {
++	KHADAS_BOARD_VIM1 = 0x1,
++	KHADAS_BOARD_VIM2,
++	KHADAS_BOARD_VIM3,
++	KHADAS_BOARD_EDGE = 0x11,
++	KHADAS_BOARD_EDGE_V,
++};
++
++/**
++ * struct khadas_mcu_data - Khadas MCU MFD structure
++ * @device:		device reference used for logs
++ * @map:		register map
++ */
++struct khadas_mcu {
++	struct device *dev;
++	struct regmap *map;
++};
++
++#endif /* MFD_KHADAS_MCU_H */
 -- 
 2.22.0
 
