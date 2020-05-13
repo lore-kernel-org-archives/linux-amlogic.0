@@ -2,22 +2,22 @@ Return-Path: <SRS0=ZxT9=63=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 48A94CA90AF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2020 14:20:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7159CA90AF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2020 14:28:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0BA4220690
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2020 14:20:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6E58C20659
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2020 14:28:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WOsnU7Fa";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EMSk3UsQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0BA4220690
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BVnZ6i3b";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TqD+dbV2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6E58C20659
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,62 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MCPhB2+6ItrXYhNOQeKbsN767Fz4XJejl6yrvLlBmB4=; b=WOsnU7FaB29WHp
-	5+Me40B6V0aoIiViHBtFrNJ51bUzsPNNJ0fHpaIH4KxNI4mfs3UIFbWMekA1yqkLPtdJafknYZq1f
-	vJB964ejPFfqjmCJYuxZbXrg6EFLIOItZ2gHmPz32auD8MRN2CrbtT84PeXDEEiDCjx8kN5C4qZdm
-	q0T2kdSRUkUCr/ywUU8XbIyLUnbZGfrghWKejCEKU4n1YdWoXUbBlL0qWJ7BnkKnEbkQZ31s64/RE
-	/gKuieZjWez7Zu2A6Omqzwu6usGx++jFGLhp00Dmtw9L90YmV0R0LjT8uTUlz5HHdHbR7NcJmkoGx
-	YsAaMUgaPGkzDTUPdyJw==;
+	List-Owner; bh=IR17anUunTgKJXPmpbI4YaDXZSLT5Fel1iLPZASyv5A=; b=BVnZ6i3bAVO2q1
+	eZkfN6sDEsIEMaAPt0xlmbrwGUZdfn8xhf1dS4EmN3oKVpkAqCJM/KwZzb3wvG2b3BPCr9RrAVgT9
+	yYe/V8hbd0AagyhaQWFYinaqtK0FKNxDavNMqj4sgxccWGa3Ad4arllibbV3TnxT8vlNWpR8M0nu4
+	ECHwyfqsw/+hUYLgsKKT/IW1PGLpTbzWaoyLxxHkRo9xMpLynZsKyIY2N4WVk50Vs9hOfqg5m6kBP
+	UYuXef8rdnUTQLdvU5W6FlL8SdM9KCIzLScYPkUkd8BniPEMHvhyBQ5x8BFn2nm1MaWwHJxeQBgjk
+	kOsdGecJ6W8Q2+ykiJRQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jYsFW-0003Uc-86; Wed, 13 May 2020 14:20:42 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1jYsMa-0007qO-Cy; Wed, 13 May 2020 14:28:00 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jYsEZ-0000Nq-Ti
- for linux-amlogic@lists.infradead.org; Wed, 13 May 2020 14:19:48 +0000
-Received: by mail-wm1-x342.google.com with SMTP id n5so13799602wmd.0
- for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2020 07:19:43 -0700 (PDT)
+ id 1jYsMX-0007pV-Ej
+ for linux-amlogic@lists.infradead.org; Wed, 13 May 2020 14:27:58 +0000
+Received: by mail-wr1-x441.google.com with SMTP id s8so21159901wrt.9
+ for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2020 07:27:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=BzAexTZdGzkbU+qJJMsz3TVTPGgn5vUNElmT2RDA+0U=;
- b=EMSk3UsQmqMg3qEBeIiZBKeutU51C2Am8qcTqR7Q2SowTC8lSSMSOTktt+pODhHRqu
- /zflH4TS2WyqQZ1bXRIN22wwOvMJCkJj1MfbpJtMBW2brWoJlSqqkWsnLOjHvij6SGt1
- eDQNH/b9oxeBVrvMV7yB7YGvt8GEHzvCmz0oTUPs79f2ghXYwlEk6x4XECsJywANYj15
- B6NpF89xsgtyaYqwfXgFF5bJ45LB/wRkbPI8zvn+8MWbrk3bTII/QMl0xuYmcx0rsTS5
- 6netlog87B91EQZD9i6sfEILUPnRx13EFZUG4UtDPWTcwYESOI7PV7Lxfq1vTXWcHalv
- x/Yw==
+ bh=sz/vqv+lTAVJHGBuVia1oT3CtYcRnsqUyeDs53H5t4Q=;
+ b=TqD+dbV2KXE3BdGLtd+lhz3qD77t0frGhCQLChoYZD9hYHpB53P8Q6phuRfqVHxvB0
+ vn1GsvONQCsPsUd/gHSgC2Q+Do208rOo8LusIF0JI2zw3ZKSJCuPjco042884mUYpoi2
+ HaQYVMhrepi6Zk4umpGtQtX48jewFxdDf0P6F4WNZ5XVlVyM2Hlg5gYrsx0vzJMPQZ/e
+ NHhjooRruUa21VzPMy8dnL2MsToZCoQGXryksKKbc9gaH4UtNuX4L0W5a/ZNhG1skOX6
+ nVSij653sXQDsXHlvqejKcJGT8kFK9vGXAlVixlBAUIIxsvO5rB87Zk1aXeRQd7EXIoW
+ FpqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=BzAexTZdGzkbU+qJJMsz3TVTPGgn5vUNElmT2RDA+0U=;
- b=eoRATWhfxVQD5/+uqHZ3AshcrOE9gMswRoCBrbX+rRexjo8FXhsO20E3GDClKwZh55
- cEh4AbYflldcVbqx+osKTXec5dOlhexMk5qwV9PHhTe8zG3cqY07L2euRgRytZoXB07S
- z7brex04J1qR4CUH4a78FjnlpBGzLeVjpD1Da1ZCluYpPki8pTGBFSom/KYLuI4INg7O
- G6olEVr5JvI6e7eahcMhZ+HVwnQL3ffmqKCTTN0fo0qH3KnbITVr+EweOq1ryHi5EHFF
- VKabdP9RjypAZLCbm+ZMI3piZdMgdznSe5Pyw+0xu2xwuOYpOmgjonMffcjsNO3SUpYz
- FJSw==
-X-Gm-Message-State: AGi0PuYTCrn4ksPPliv9Hmd+L0JoO9FVdw65b0EkKhhCY37bY0ItNuGM
- c2ty7IEKCTUZewKZenjuMFUdlw==
-X-Google-Smtp-Source: APiQypLlLxrBWuZUOf7uO7jUrf5MahbqULe0GeT1lcuPz15SOwBAA5AV5SB9vJ2x/uvf5Q7yBD3egw==
-X-Received: by 2002:a1c:9e51:: with SMTP id h78mr46248266wme.177.1589379581774; 
- Wed, 13 May 2020 07:19:41 -0700 (PDT)
+ bh=sz/vqv+lTAVJHGBuVia1oT3CtYcRnsqUyeDs53H5t4Q=;
+ b=X9vbnw/8S3EJMrTBOfZafnGPoW1xVstVlwTngqTQ/s5wrBj6IpFT36B1ApgyCUFgp0
+ /uOThrj4uO+vUUvgDi2e9Y4svPNc6sbsGmWyIvZOiEjkfQHDcYOALAToMC923cXP44FH
+ mEW5ojN3WW2IlugbDO2sxEm0lPy9FC7xMeQXJ8WUT9MZQGtgHqgewuV6U1vpdKh6MgtP
+ mFmQzV9L7kAwpF1RBMxnw6evVuXXWjaVCsfMgUoMLEgTX/vw3HARsO4mGCAkdagdLAvP
+ bqacDr0lsLG+coaBWOYYxjiiWB7bModBAhzzQ0AAvXYt2VP+osbruNiOxENk/VF0NctY
+ 9cbA==
+X-Gm-Message-State: AGi0PuZROR+oe8XX1JvsPtfvpwq5dhYsRiQjydjxEypmiTeZ0RpYIYqQ
+ DKo9pYx+M5PI+eZGu7MIaz7/zLmkiB7SQw==
+X-Google-Smtp-Source: APiQypJrTaLXdAUiJKG32EsCVJ3I7iskuUP897tEPANcklr+DyCM0VuYnbSrS2uXKirZdkmSs/RLgQ==
+X-Received: by 2002:a5d:438c:: with SMTP id i12mr31250088wrq.14.1589380075809; 
+ Wed, 13 May 2020 07:27:55 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71?
  ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
- by smtp.gmail.com with ESMTPSA id s15sm1950722wro.80.2020.05.13.07.19.40
+ by smtp.gmail.com with ESMTPSA id c25sm35045664wmb.44.2020.05.13.07.27.54
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 13 May 2020 07:19:41 -0700 (PDT)
-Subject: Re: [PATCH v3 4/4] soc: amlogic: meson-ee-pwrc: add support for the
- Meson GX SoCs
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- robh+dt@kernel.org, khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20200420202612.369370-1-martin.blumenstingl@googlemail.com>
- <20200420202612.369370-5-martin.blumenstingl@googlemail.com>
+ Wed, 13 May 2020 07:27:55 -0700 (PDT)
+Subject: Re: [PATCH] drm/meson: pm resume add return errno branch
+To: Bernard Zhao <bernard@vivo.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20200428131747.2099-1-bernard@vivo.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -133,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <b8399d8f-5ff7-0911-21a1-70158d93789b@baylibre.com>
-Date: Wed, 13 May 2020 16:19:40 +0200
+Message-ID: <01ca8a47-af88-72b7-0637-78371f1dd9bd@baylibre.com>
+Date: Wed, 13 May 2020 16:27:53 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200420202612.369370-5-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200428131747.2099-1-bernard@vivo.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200513_071944_162966_55236DFD 
-X-CRM114-Status: GOOD (  19.04  )
+X-CRM114-CacheID: sfid-20200513_072757_499902_A5F3E1E4 
+X-CRM114-Status: GOOD (  16.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,108 +153,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: opensource.kernel@vivo.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/04/2020 22:26, Martin Blumenstingl wrote:
-> Add support for the Meson GX SoCs to the meson-ee-pwrc driver.
+On 28/04/2020 15:17, Bernard Zhao wrote:
+> pm_resump api did not handle drm_mode_config_helper_resume error.
+> This change add handle to return drm_mode_config_helper_resume`s
+> error number. This code logic is aligned with api pm_suspend.
+> After this change, the code maybe a bit readable.
 > 
-> The power domains on the GX SoCs are very similar to G12A. The only
-> known differences so far are:
-> - The GX SoCs do not have the HHI_VPU_MEM_PD_REG2 register (for the
->   VPU power-domain)
-> - The GX SoCs have an additional reset line called "dvin"
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Bernard Zhao <bernard@vivo.com>
 > ---
->  drivers/soc/amlogic/meson-ee-pwrc.c | 26 ++++++++++++++++++++++++--
->  1 file changed, 24 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/meson/meson_drv.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 > 
-> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-> index b30868da456a..a90572cb9c82 100644
-> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-> @@ -16,6 +16,7 @@
->  #include <linux/clk.h>
->  #include <dt-bindings/power/meson8-power.h>
->  #include <dt-bindings/power/meson-g12a-power.h>
-> +#include <dt-bindings/power/meson-gxbb-power.h>
->  #include <dt-bindings/power/meson-sm1-power.h>
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index b5f5eb7b4bb9..8c2e1b47e81a 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -412,9 +412,7 @@ static int __maybe_unused meson_drv_pm_resume(struct device *dev)
+>  	if (priv->afbcd.ops)
+>  		priv->afbcd.ops->init(priv);
 >  
->  /* AO Offsets */
-> @@ -73,7 +74,7 @@ struct meson_ee_pwrc_domain_data {
+> -	drm_mode_config_helper_resume(priv->drm);
+> -
+> -	return 0;
+> +	return drm_mode_config_helper_resume(priv->drm);
+>  }
 >  
->  /* TOP Power Domains */
->  
-> -static struct meson_ee_pwrc_top_domain g12a_pwrc_vpu = {
-> +static struct meson_ee_pwrc_top_domain gxbb_pwrc_vpu = {
-
-I thing it could be renamed gx_pwrc_vpu, but it's not a strong one
-
->  	.sleep_reg = AO_RTI_GEN_PWR_SLEEP0,
->  	.sleep_mask = BIT(8),
->  	.iso_reg = AO_RTI_GEN_PWR_SLEEP0,
-> @@ -138,6 +139,12 @@ static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_vpu[] = {
->  	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
->  };
->  
-> +static struct meson_ee_pwrc_mem_domain gxbb_pwrc_mem_vpu[] = {
-> +	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
-> +	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
-> +	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
-> +};
-> +
->  static struct meson_ee_pwrc_mem_domain meson8_pwrc_mem_eth[] = {
->  	{ HHI_MEM_PD_REG0, GENMASK(3, 2) },
->  };
-> @@ -223,11 +230,17 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
->  static bool pwrc_ee_get_power(struct meson_ee_pwrc_domain *pwrc_domain);
->  
->  static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
-> -	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &g12a_pwrc_vpu, g12a_pwrc_mem_vpu,
-> +	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &gxbb_pwrc_vpu, g12a_pwrc_mem_vpu,
->  				     pwrc_ee_get_power, 11, 2),
->  	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", meson8_pwrc_mem_eth),
->  };
->  
-> +static struct meson_ee_pwrc_domain_desc gxbb_pwrc_domains[] = {
-> +	[PWRC_GXBB_VPU_ID]  = VPU_PD("VPU", &gxbb_pwrc_vpu, gxbb_pwrc_mem_vpu,
-> +				     pwrc_ee_get_power, 12, 2),
-> +	[PWRC_GXBB_ETHERNET_MEM_ID] = MEM_PD("ETH", meson8_pwrc_mem_eth),
-> +};
-> +
->  static struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
->  	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
->  				       meson8_pwrc_mem_vpu, pwrc_ee_get_power,
-> @@ -514,6 +527,11 @@ static struct meson_ee_pwrc_domain_data meson_ee_g12a_pwrc_data = {
->  	.domains = g12a_pwrc_domains,
->  };
->  
-> +static struct meson_ee_pwrc_domain_data meson_ee_gxbb_pwrc_data = {
-> +	.count = ARRAY_SIZE(gxbb_pwrc_domains),
-> +	.domains = gxbb_pwrc_domains,
-> +};
-> +
->  static struct meson_ee_pwrc_domain_data meson_ee_m8_pwrc_data = {
->  	.count = ARRAY_SIZE(meson8_pwrc_domains),
->  	.domains = meson8_pwrc_domains,
-> @@ -542,6 +560,10 @@ static const struct of_device_id meson_ee_pwrc_match_table[] = {
->  		.compatible = "amlogic,meson8m2-pwrc",
->  		.data = &meson_ee_m8b_pwrc_data,
->  	},
-> +	{
-> +		.compatible = "amlogic,meson-gxbb-pwrc",
-> +		.data = &meson_ee_gxbb_pwrc_data,
-> +	},
->  	{
->  		.compatible = "amlogic,meson-g12a-pwrc",
->  		.data = &meson_ee_g12a_pwrc_data,
+>  static int compare_of(struct device *dev, void *data)
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Applied to drm-misc-fixes
+
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
