@@ -1,93 +1,90 @@
-Return-Path: <SRS0=wX20=65=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=CFv1=67=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABC92C433E3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 May 2020 20:48:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D90D3C433E0
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 May 2020 22:29:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7D2532076A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 May 2020 20:48:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A98B720671
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 May 2020 22:29:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NePPWqIY";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="nn2YC4tu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7D2532076A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H7xGwfVd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="my4ubcsy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A98B720671
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yEoZuhsroeA5RPRy/432N1Xbeuqz8LmVyDi6lEJEavQ=; b=NePPWqIYAIThHH
-	FtbQgl04Tf3DKBAV4uWKWODNxax7V6iWGstmsle4kLDe81E/fI5S8uA909lBC5WTY/mI3w9L2PaPw
-	INbsXyFbSaUsCJf5UnGdpIVOMIIWlnLAJmkD5ZDIFpLcXL97o2dP+fuy3JcMFNTpZ0tKGxhVafrGW
-	LambeaJ9YMibVBvfa/4tq4ZNPstaVqjNAXn8kns1SjgMZ0DbiMPkH/yitu/GufqgwLIBJerCmlcNS
-	1LwjFuC/BALrNq1+TEkZs+lm3Apg5thnRHAJKikkrtn062M/c5qu0c+t8sx6BsHoFCTq+wLDQbjfu
-	POc/NRKnS+zhR2ArSq2Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=bk9bZDAHlllA1P+sAXw3yI8r1a+GgL/xn8Dqpi6+jzY=; b=H7xGwfVdtaCpCM
+	fIS3M57x+5THy5m1OAgnU8bb4uh6AAzcqyluKwsy4ueyFlsBDWzJHuGv21Tj9P4Guhnnbt+jXZacj
+	wYsepaL1Z1+tRDrBJue3WremGms0+G4sZhf6nAvxwJxuSd5PTaApvIdieIgswh35jRibRsiloLBof
+	sPcbU0lYp98Y5dV1JpPFp7d/ZfEMcUwX+qjQGs8kuvqAT+0XYkKsTlL2oc2ZQJe6eaGy1LMDW/Bhv
+	W5MBrrEZwJ7Cwwq0lM0o+99X4CnK/7suXQWmfy1Aljsz3Ln23a3gLvKCoCxGI4Wxm8DSCvzMb/bXt
+	kGqKXKO7cHV291+J/wDg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jZhFy-0007XL-Eh; Fri, 15 May 2020 20:48:34 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1jaRms-0003Js-Gw; Sun, 17 May 2020 22:29:38 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jZhFF-0006rD-Ip; Fri, 15 May 2020 20:47:53 +0000
-Received: by mail-wm1-x342.google.com with SMTP id u16so3989938wmc.5;
- Fri, 15 May 2020 13:47:49 -0700 (PDT)
+ id 1jaRmp-0003Ih-PY; Sun, 17 May 2020 22:29:37 +0000
+Received: by mail-wm1-x341.google.com with SMTP id g14so21039891wme.1;
+ Sun, 17 May 2020 15:29:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Htr9aP0MdmZMA6tHRCPfn7CVcfVXmM6eKysrnP4vvx4=;
- b=nn2YC4tuAlxMOpmulipXR1B4lwciUn/Hjzcoy/YWxZyXiKVSyB9kWA6ws1ryBoH+sN
- tT0GQ8XabQvBbddAZG7M8jVWkou2cGY6OCU5a/MCuGv3G3bLsWfPyvAxe0wGf3JbjczO
- BPYoW87ZGyY8gUW21K8klitq1D7S2sGbTtq6baBS8hMTrDDt6VDXLMtxYOUQvKclUeii
- h13Yv0vlfGxzQEjJSP6PRYKWBqymBqInc8lqAqkE22TGw9wmpsN3t6jGD3PRogDOQbgp
- X4c3zp4uvZnOF7iPbplxWxcpzjCshmolNiSVkKeQ07yhRSxCuzkd/x/rk7m+0Q8jgR+h
- +p+w==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=3zBbpyoelvZMQi2sOj6TWYdOKOApt3dyMAzoTjYhpAc=;
+ b=my4ubcsyz+v4QpyWlb/muucdIIfwEzKHPRDj65Ud1hff5Sw5+RL6mtJJ0tg7ZXtjaK
+ eXo0Brwj/Yy+L+TQFkLy9eYTRBoFsPP9KlmatvE/StbtXirjWl591t5qIcPlJkCkXiFo
+ qeTMbSv8ou2Y45QB7rOKtwrYCVaQPvhSJxs8xhlHThodFsT9SiVZ8eiYKOo3w6OeuEmk
+ jb3K6S5ieYl8cvL24CcQmU3bjyzuHa+4rAVRHYg5viauNa6XwTNnk7g+1/SOdtJuQ6HN
+ ZO3aoPP1UekJUSm62JwmAf3Y1icer6CxzCAmfLBclIWZG4uv+ybf4wjj9uUvket80ljP
+ 4g/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Htr9aP0MdmZMA6tHRCPfn7CVcfVXmM6eKysrnP4vvx4=;
- b=EwZH2u0kc29PBrbvYzd8Z0DO8mik6ZHXwSEc9AzyXpIxuQsKi3SMAcVPT7n18PYYOe
- ZEDx6ZPMx7Xfu4SsHDyTUNt5KWViGSwX/JQdAARNe8p4nU/QrjJUU7KmevYqLG47rDnk
- ug2J5AAkVo245Diz3dk5Nx5WP93XbBTlbBTuOa+ZF1DW2mWnpFL4BAFFslUb+ggPJxqA
- Fp64BI/w4y1DR+OQj42QStZjvpFuQtlggVnGeX0f32N+bNlSjSYC5p2yVIdukoO3lq5W
- kGrOKXL6MTZLpjp37yhK8OfkFhIotrCPe6kkPFCz46jvWP+zIJU7QeSvq2QWyvb8Kvf/
- xY6Q==
-X-Gm-Message-State: AOAM530BeL7vcYxz8K7HLqXFVpnPXwY/IdOznFYabuW//aTzPYdDUYIf
- C5E/CQaz/q1oM+HS3vbuQCc=
-X-Google-Smtp-Source: ABdhPJwPG5IbBwRFaBO+atkF2dV5bW8f4t0HRbsX7IPZ7+5FbEpFOtLhRU26PA/xGJ1TAkXSspYOUw==
-X-Received: by 2002:a1c:4641:: with SMTP id t62mr5604215wma.37.1589575667954; 
- Fri, 15 May 2020 13:47:47 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=3zBbpyoelvZMQi2sOj6TWYdOKOApt3dyMAzoTjYhpAc=;
+ b=Ga/E+G6EWDvWhBRqOu1a8Pslg5bwW6LRz6nBVkfnApKK1OLuV+KDZpJm7GWyIo8t0H
+ TiuL3rfS+Zm2S8yL2jWMh8e6CZwLSTC8TUwl5OqJ/cXEo0D78uKv0Lj+38AUgc7P7d09
+ d4s7ZAbFWcC9BZiLJPyu9mA0ycRQBOT9S106QLwvgp/I6r4DSBJiQq/W0dpx8NoNktZE
+ zrSQqFmGrrlZv0eyHUm3jcmHHhjjRZ4CewQO9UH3DJi3ZDfgTHqtQUAT3QVacAJG9ija
+ 7+XOSNoR28gsiD3l+2OomTepONbCjdTHdeYYKJ5vNKQSsFIrYbQz8Fsk3X05fNF6IVGa
+ I7nw==
+X-Gm-Message-State: AOAM530ua4ah9zpx8Wq2RmnWt3lsX7G0fQm9NnyDkmghVu9cLV6W4WDz
+ HYgF2g2j08RdwqgszMBwPz8=
+X-Google-Smtp-Source: ABdhPJzt6T58mlmoPDLD8v56EY1rb+viEArjc61WgheODN7BSzGKeU9Rf3irgi2uWOLZsMpm1KOpcg==
+X-Received: by 2002:a7b:cd04:: with SMTP id f4mr15304085wmj.3.1589754573183;
+ Sun, 17 May 2020 15:29:33 -0700 (PDT)
 Received: from localhost.localdomain
- (p200300F137132E00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
+ (p200300f137132e00428d5cfffeb99db8.dip0.t-ipconnect.de.
  [2003:f1:3713:2e00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id r11sm5296211wma.35.2020.05.15.13.47.46
+ by smtp.googlemail.com with ESMTPSA id b65sm14624702wmc.30.2020.05.17.15.29.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 May 2020 13:47:47 -0700 (PDT)
+ Sun, 17 May 2020 15:29:32 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: khilman@baylibre.com,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH v4 4/4] soc: amlogic: meson-ee-pwrc: add support for the Meson
- GX SoCs
-Date: Fri, 15 May 2020 22:47:09 +0200
-Message-Id: <20200515204709.1505498-5-martin.blumenstingl@googlemail.com>
+To: ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Subject: [PATCH 1/2] mmc: host: meson-mx-sdhc: fix manual RX FIFO flushing
+Date: Mon, 18 May 2020 00:29:06 +0200
+Message-Id: <20200517222907.1277787-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200515204709.1505498-1-martin.blumenstingl@googlemail.com>
-References: <20200515204709.1505498-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200515_134749_625086_FAD9BF94 
-X-CRM114-Status: GOOD (  14.28  )
+X-CRM114-CacheID: sfid-20200517_152935_854089_80343581 
+X-CRM114-Status: GOOD (  14.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,105 +96,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, narmstrong@baylibre.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thomas Graichen <thomas.graichen@gmail.com>, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the Meson GX SoCs to the meson-ee-pwrc driver.
+For Meson8 and Meson8b SoCs the vendor driver follows the following
+pattern:
+- for eMMC and SD cards in .set_pdma it sets:
+  pdma->rxfifo_manual_flush = 1;
+- for SDIO cards in .set_pdma it sets:
+  pdma->rxfifo_manual_flush = 0;
+- before syncing the DMA read buffer is sets:
+  pdma->rxfifo_manual_flush |= 0x02;
 
-The power domains on the GX SoCs are very similar to G12A. The only
-known differences so far are:
-- The GX SoCs do not have the HHI_VPU_MEM_PD_REG2 register (for the
-  VPU power-domain)
-- The GX SoCs have an additional reset line called "dvin"
+Set the second bit of MESON_SDHC_PDMA_RXFIFO_MANUAL_FLUSH without
+clearing the first bit before syncing the DMA read buffer. This fixes a
+problem where Meson8 and Meson8b SoCs would read random garbage from SD
+cards. It is not clear why it worked for eMMC cards. This manifested in
+the following errors when plugging in an SD card:
+  unrecognised SCR structure version <random number>
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Fixes: 53ded1b676d199 ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
+Cc: Thomas Graichen <thomas.graichen@gmail.com>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/soc/amlogic/meson-ee-pwrc.c | 26 ++++++++++++++++++++++++--
- 1 file changed, 24 insertions(+), 2 deletions(-)
+ drivers/mmc/host/meson-mx-sdhc.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-index 390eb0dd0a79..43665b77aa9e 100644
---- a/drivers/soc/amlogic/meson-ee-pwrc.c
-+++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-@@ -16,6 +16,7 @@
- #include <linux/clk.h>
- #include <dt-bindings/power/meson8-power.h>
- #include <dt-bindings/power/meson-g12a-power.h>
-+#include <dt-bindings/power/meson-gxbb-power.h>
- #include <dt-bindings/power/meson-sm1-power.h>
+diff --git a/drivers/mmc/host/meson-mx-sdhc.c b/drivers/mmc/host/meson-mx-sdhc.c
+index 5c00958d7754..53e3f6a4245a 100644
+--- a/drivers/mmc/host/meson-mx-sdhc.c
++++ b/drivers/mmc/host/meson-mx-sdhc.c
+@@ -586,10 +586,17 @@ static irqreturn_t meson_mx_sdhc_irq_thread(int irq, void *irq_data)
+ 		    cmd->data->flags & MMC_DATA_READ) {
+ 			meson_mx_sdhc_wait_cmd_ready(host->mmc);
  
- /* AO Offsets */
-@@ -75,7 +76,7 @@ struct meson_ee_pwrc_domain_data {
++			/*
++			 * If MESON_SDHC_PDMA_RXFIFO_MANUAL_FLUSH was
++			 * previously 0x1 then it has to be set to 0x3. If it
++			 * was 0x0 before then it has to be set to 0x2. Without
++			 * this reading SD cards sometimes transfers garbage,
++			 * which results in cards not being detected due to:
++			 *   unrecognised SCR structure version <random number>
++			 */
+ 			val = FIELD_PREP(MESON_SDHC_PDMA_RXFIFO_MANUAL_FLUSH,
+ 					 2);
+-			regmap_update_bits(host->regmap, MESON_SDHC_PDMA,
+-					   MESON_SDHC_PDMA_RXFIFO_MANUAL_FLUSH,
++			regmap_update_bits(host->regmap, MESON_SDHC_PDMA, val,
+ 					   val);
+ 		}
  
- /* TOP Power Domains */
- 
--static struct meson_ee_pwrc_top_domain g12a_pwrc_vpu = {
-+static struct meson_ee_pwrc_top_domain gx_pwrc_vpu = {
- 	.sleep_reg = GX_AO_RTI_GEN_PWR_SLEEP0,
- 	.sleep_mask = BIT(8),
- 	.iso_reg = GX_AO_RTI_GEN_PWR_SLEEP0,
-@@ -140,6 +141,12 @@ static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_vpu[] = {
- 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
- };
- 
-+static struct meson_ee_pwrc_mem_domain gxbb_pwrc_mem_vpu[] = {
-+	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
-+	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
-+	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
-+};
-+
- static struct meson_ee_pwrc_mem_domain meson_pwrc_mem_eth[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(3, 2) },
- };
-@@ -225,11 +232,17 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
- static bool pwrc_ee_get_power(struct meson_ee_pwrc_domain *pwrc_domain);
- 
- static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
--	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &g12a_pwrc_vpu, g12a_pwrc_mem_vpu,
-+	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, g12a_pwrc_mem_vpu,
- 				     pwrc_ee_get_power, 11, 2),
- 	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
- };
- 
-+static struct meson_ee_pwrc_domain_desc gxbb_pwrc_domains[] = {
-+	[PWRC_GXBB_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, gxbb_pwrc_mem_vpu,
-+				     pwrc_ee_get_power, 12, 2),
-+	[PWRC_GXBB_ETHERNET_MEM_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
-+};
-+
- static struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
- 	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
- 				       meson8_pwrc_mem_vpu, pwrc_ee_get_power,
-@@ -516,6 +529,11 @@ static struct meson_ee_pwrc_domain_data meson_ee_g12a_pwrc_data = {
- 	.domains = g12a_pwrc_domains,
- };
- 
-+static struct meson_ee_pwrc_domain_data meson_ee_gxbb_pwrc_data = {
-+	.count = ARRAY_SIZE(gxbb_pwrc_domains),
-+	.domains = gxbb_pwrc_domains,
-+};
-+
- static struct meson_ee_pwrc_domain_data meson_ee_m8_pwrc_data = {
- 	.count = ARRAY_SIZE(meson8_pwrc_domains),
- 	.domains = meson8_pwrc_domains,
-@@ -544,6 +562,10 @@ static const struct of_device_id meson_ee_pwrc_match_table[] = {
- 		.compatible = "amlogic,meson8m2-pwrc",
- 		.data = &meson_ee_m8b_pwrc_data,
- 	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-pwrc",
-+		.data = &meson_ee_gxbb_pwrc_data,
-+	},
- 	{
- 		.compatible = "amlogic,meson-g12a-pwrc",
- 		.data = &meson_ee_g12a_pwrc_data,
 -- 
 2.26.2
 
