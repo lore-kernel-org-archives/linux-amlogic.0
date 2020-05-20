@@ -7,90 +7,85 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A077AC433DF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2020 00:09:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D6B40C433E0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2020 00:09:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4CB8720825
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2020 00:09:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9A561207C4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2020 00:09:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PlksWiG7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Un58eWjK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4CB8720825
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Hx1kDuFf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Gqo34c3m"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9A561207C4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BUXB9vzwLqeJwVPTodcej8ojjxE+es/oeIsPAfQG1JM=; b=PlksWiG7f4ueAm
-	iiOdzQDa8xbnaqzQEoSoGv95mqJUdLL0qHS00C4oYEltd4XO8TChCZHC3Y1R+2XANvpC+peGqj3vZ
-	QJnRJhUlfJ40wW+HBkd0uP2LWMlsTR4m2bY+sk8lMvEzNEafchbU1qFy4XSUAxR6Psh51hQ4iYIXV
-	wtpJQJtoslNFkDyXmMOb3pjz2pos+sh7zC4mcfJxvabWz7ma9XcOsG0k8ijkaXgcPuPsB2c8c+53u
-	ODu0Q7PYqWKTGbO9alAYIwuGM0zi9XtWtwta6lGGxt1r0SiPTGFnofXg3eoVqYJRzH8DIqIT5/D3A
-	nKk+aU1sVn2Kwtfb6OqA==;
+	List-Owner; bh=GQcOVwol1ACivZ5NgELUM6E7UfjFE9b0HnIyWQPgB8E=; b=Hx1kDuFfnSa4Ct
+	uETWgwWuO6ofPhf+oHbj3iBImBbU5UiceHQAN/awgV6orpPu1IAgtQgbsYwt8BOHpHwe1BJlWO50+
+	kcCtFEmTFerhJVn6xss2L+FZeum08IUJlUVnfBbqekLwY3fDkh4ueix+1mIcr6EI32rTxJX6RW1J1
+	ufyXIAa/GAve+nHhgTwyV08Nuf8OvUcqNUgEkBArw10eYOLq+eg8fiPONjOURtKNTtQrr1iC2hmdR
+	3aDiRH/wkJlCwx1heGsvI5DpJZRPsNpeQv8gLPOnO+2+M5h/S38XGmFvcrjTaX2NdYIhRWDm/0GVC
+	7iP8cBvSK0kfQOxk8E3w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jbCIM-0001p2-Ep; Wed, 20 May 2020 00:09:14 +0000
-Received: from mail-pj1-x1044.google.com ([2607:f8b0:4864:20::1044])
+	id 1jbCIs-0002Pv-Vj; Wed, 20 May 2020 00:09:46 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jbCH3-0000WX-5Y
- for linux-amlogic@lists.infradead.org; Wed, 20 May 2020 00:07:55 +0000
-Received: by mail-pj1-x1044.google.com with SMTP id ci23so437326pjb.5
- for <linux-amlogic@lists.infradead.org>; Tue, 19 May 2020 17:07:52 -0700 (PDT)
+ id 1jbCH4-0000dD-VE
+ for linux-amlogic@lists.infradead.org; Wed, 20 May 2020 00:07:57 +0000
+Received: by mail-pf1-x444.google.com with SMTP id x15so711739pfa.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 May 2020 17:07:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:subject:date:message-id:in-reply-to:references:mime-version
- :content-transfer-encoding;
- bh=7E+96xLWXR0/8hTuHXZFZz8+gdr1UiuXEJRZqhXw6X8=;
- b=Un58eWjKctefrHRqJ7dvLIb7h0CPEt1iuXzxR4n6qCP42XpGpHDwdTrRBb8PUXaAQg
- RhZKNOwt+EIDA2KgD0SaK8LdZNQoP5sJrMbj7Y7Zq0E0V78tPE0/lRWWYF5QX2c2bikH
- 1FIhVCjJGAAbPHuYgUelWXSgf4gKjJSGu3XBaBBsjuZi0BuZ9qdywxDNVGK/AYtr/hOH
- uy9nwtgdpyyFM+uk1CRZCJEn59m+0tfqRpdHwerg5gK1G/Vb+oSrlru5xR86WxFzNat7
- XgZ9n1GZAEuOty9dXFkbRVOcYUXb492Fyay+gUFKaQytL0zjwZ3/Wdd+PczxxDQ/0jjL
- 5yFA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=nLMfwQbrlF1iv4LcSoROIabrcfKs0/jUzCRJPsjpM/g=;
+ b=Gqo34c3m0MlNoFL+YXBmISvMCjL1uAr1dCIk+C2xcHpi/NSgJAkMkbIB54SVo3iPr2
+ HaZgzNyTF1lmEeD7MvMTZmyASk+yYU+KRNjjuLz/gkNyajNTTMpy+westprggwgYHgeu
+ H18O/XFDeMrrZ83+TekriuOSfUOKTYo0bQjBP5XEEJhAzPLW0eDyNm1lAycXCLgPH4my
+ 5OkzNS9XRiDor39MYDWxeHHIJeNebLJIzM8O/UVe8sZHS6hWPl2jBe+/MjLVYqVeFwWD
+ C1Qm8oJgZQMAeE32cJMZ0614HbLkp4WCrD4CJKa70EWir5uchhrv0+WONADhNEGNEUXk
+ QOog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=7E+96xLWXR0/8hTuHXZFZz8+gdr1UiuXEJRZqhXw6X8=;
- b=MGOFB/HpeK3kH0ZLQM9DqDk3PnDGewSIwrzOaNxS4mlww5RL8EDpcvO5kdVXqKx2HN
- ecDERb5lbqJhtRxfajgGUfRTCUt7QUNiFJvN5JEcZfmu6t2nWwg/Tx6H6mMBdMOBMaLr
- g6eEOC+VcOM6FcKAOjAHYQjlK0CwX5DpZTv28bKKrcTHXuTuW3sQUF0bASBupvMieH6e
- 1XB2sNGLJG+gWtXO1VOU1MU7I5OEHM3gFYrBVjEOCSF5tWlmobAVwuVC4WU8fzspG4cC
- GLzwM8UInNiKcRogjUlk7bLHRvUiIjCcyiLzYsVitJOjPvlKzqS5YUHM2Fw4O5AqDaKL
- IFGw==
-X-Gm-Message-State: AOAM533EJQSL97Dgg7FUvVQGkyMYO4BTGnMHU0Ry0SCDn8t1udjLK45Y
- dvqjlkMWz9+nIDLsVUW50GR46xO/8AnYQw==
-X-Google-Smtp-Source: ABdhPJwJXapV3XSyLdWBlyJa/j1Qrxy4J3disNJEFzP9hMGHSRWKAhJBD6HgUG+V+BJQnf+U8c014w==
-X-Received: by 2002:a17:90a:2a03:: with SMTP id
- i3mr2158657pjd.29.1589933270413; 
- Tue, 19 May 2020 17:07:50 -0700 (PDT)
+ bh=nLMfwQbrlF1iv4LcSoROIabrcfKs0/jUzCRJPsjpM/g=;
+ b=f7PkCCh1GJsRjvPIW5Ps5AxOkVzFJn585CX3VAA0pLdry5QIIau2TBxPbhtPW337A2
+ /pO03KaJ3k6fj5OD2qmBwUoi696NEo9/HXQgTuUOe+zmIzkzwlgeQFNu1vqAj4EoSQgC
+ 2nAHnJhhggt7c9UOJwzeq7dMuQhjVxfjEU/wn4t1bXJhAaBmAkMQM0Y22ydN06fKTZQX
+ PmbYgew+9qPa+vHPDcpClli5ykgucz4WeXyggyq9sD6HriGhBiXFoXriAMIDjlAdfSbD
+ qrphB8f74zYWYmdeS2FKoum552d/8a2K7CIGuhyqovCjEDfTnxfkjLbXLuCV15QLMuOa
+ y0Gg==
+X-Gm-Message-State: AOAM530GzOkH/S1V+MGmGtVPG3hTLtIwxbDhOQKB6A2L7g9IHKPuj5p7
+ pfkHuIp+HAwilRk+Nv4RW2RMNhJVQccG5w==
+X-Google-Smtp-Source: ABdhPJzsFZRQ9C+8oILR+S4MtBFIKYd2qCmva0PiBVlgTEiaWCLW5r8plQBhSkfJpMmL9SFle7gCyA==
+X-Received: by 2002:a63:7519:: with SMTP id q25mr1555590pgc.224.1589933272730; 
+ Tue, 19 May 2020 17:07:52 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id y13sm501497pfq.107.2020.05.19.17.07.49
+ by smtp.gmail.com with ESMTPSA id go14sm504705pjb.42.2020.05.19.17.07.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2020 17:07:49 -0700 (PDT)
+ Tue, 19 May 2020 17:07:52 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH v8 0/3] arm64: dts: meson: add dts/bindings for SmartLabs
- SML-5442TW
-Date: Tue, 19 May 2020 17:07:44 -0700
-Message-Id: <158993320300.34448.2467899478322210990.b4-ty@baylibre.com>
+To: linux-amlogic@lists.infradead.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 0/2] ARM: dts: meson8b/m2: RGMII improvements
+Date: Tue, 19 May 2020 17:07:46 -0700
+Message-Id: <158993320300.34448.6005768486014716103.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200510124129.31575-1-christianshewitt@gmail.com>
-References: <20200510124129.31575-1-christianshewitt@gmail.com>
+In-Reply-To: <20200512215148.540322-1-martin.blumenstingl@googlemail.com>
+References: <20200512215148.540322-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200519_170753_279787_1A9C3EC1 
-X-CRM114-Status: UNSURE (   9.29  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200519_170755_159039_CE39BB20 
+X-CRM114-Status: GOOD (  13.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,29 +97,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: andrew@lunn.ch, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, 10 May 2020 12:41:26 +0000, Christian Hewitt wrote:
-> This series adds new bindings and a device-tree file for the Smartlabs
-> SML-5442TW set-top box which is based on the P231 reference design.
+On Tue, 12 May 2020 23:51:46 +0200, Martin Blumenstingl wrote:
+> the fist patch in this series connects FCLK_DIV2 to the PRG_ETH
+> "additional" registers for the dwmac Ethernet controller.
+> Now that we know how RGMII and FCLK_DIV2 are connected we can
+> add this dependency to get rid of CLK_IS_CRITICAL for FCLK_DIV2
+> at some point.
 > 
-> As requested, I have reworked the device-tree on the p23x-q20x dtsi. I
-> have also re-added the BT device with new bindings that have now  been
-> merged in bluetooth-next for inclusion in Linux 5.8. See [1].
+> The second patch fixes the RX and TX delay. The 4ns TX delay which
+> we have used so far is incorrect and only worked because we were
+> using an unsupported clock divider in the PRG_ETH registers. That
+> divider has been fixed with commit bd6f48546b9c ("net: stmmac:
+> dwmac-meson8b: Fix the RGMII TX delay on Meson8b/8m2 SoCs").
+> Instead of "just" fixing the TX delay we can even do better and
+> switch to phy-mode = "rgmii-id" to let the PHY generate the RX
+> and TX delay. However, previously we didn't know that there was
+> an RX delay applied by the MAC on these boards. Only the additional
+> information from Jianxin in the other series [0] made us aware
+> of this. Without the other series there will be a 4ns RX delay
+> (2ns from the MAC and additional 2ns from the PHY). Due to this
+> dependency I did not add a Fixes tag, because backporting these
+> .dts patches without their runtime dependency will break stable
+> kernels.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/3] dt-bindings: add vendor prefix for Smartlabs LLC
-      commit: bc15895e142396fed5ebf1f60139d9ca9a56a4e4
-[2/3] dt-bindings: arm: amlogic: add support for the Smartlabs SML-5442TW
-      commit: 341e85047bdbc0196c91ccb4612ffab87bae9cfe
-[3/3] arm64: dts: meson: add support for the Smartlabs SML-5442TW
-      commit: 1d6ece87b750cf26fed4eb794ea0b2fc7ff2be10
+[1/2] ARM: dts: meson: Add the Ethernet "timing-adjustment" clock
+      commit: b632506c5af22a9a7c63674fc605d24cf94d585b
+[2/2] ARM: dts: meson: Switch existing boards with RGMII PHY to "rgmii-id"
+      commit: 005231128e9e97461e81fa32421957a7664317ca
 
 Best regards,
 -- 
