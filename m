@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D6B40C433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2020 00:09:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3E443C433DF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2020 00:09:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9A561207C4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2020 00:09:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 10076207C4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2020 00:09:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Hx1kDuFf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Gqo34c3m"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9A561207C4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O0mljzB3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Y+UE5guH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10076207C4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GQcOVwol1ACivZ5NgELUM6E7UfjFE9b0HnIyWQPgB8E=; b=Hx1kDuFfnSa4Ct
-	uETWgwWuO6ofPhf+oHbj3iBImBbU5UiceHQAN/awgV6orpPu1IAgtQgbsYwt8BOHpHwe1BJlWO50+
-	kcCtFEmTFerhJVn6xss2L+FZeum08IUJlUVnfBbqekLwY3fDkh4ueix+1mIcr6EI32rTxJX6RW1J1
-	ufyXIAa/GAve+nHhgTwyV08Nuf8OvUcqNUgEkBArw10eYOLq+eg8fiPONjOURtKNTtQrr1iC2hmdR
-	3aDiRH/wkJlCwx1heGsvI5DpJZRPsNpeQv8gLPOnO+2+M5h/S38XGmFvcrjTaX2NdYIhRWDm/0GVC
-	7iP8cBvSK0kfQOxk8E3w==;
+	List-Owner; bh=oHPVIWuH8DWTYO0OYZZ2kmhOKxpOB4aYf8eoPYqF0UQ=; b=O0mljzB3buH9sa
+	hfu7SkSjPypeyXWrcqzOk5+TgQ579aYNs07IXKUjIAHmi9CdK6CG5Z8OEe4HM59Hr4fImgoe2XO1N
+	Y4WmS/rMGbs6mOhvcbFwqh2IbCBE0mYyULW4ZgKTASPKaN1vWWd+eZkcmicTDLA7z8uZmrREE5t12
+	HSr006gAcJ8JiNX1r/s9lvJ90DlQMnD5TNi2VpYtKaYifjZjqdzRr/wqYT5DpyOPSFFjsZj2t0QoH
+	Avyb53rLHA+uncJrPcbcBOsdig72++kt1z6Fc1E1q+vIPJbFwqRDdz7xkM1aEjUy3evs8SRDp/yWP
+	L16fHHs4zqGtPhf9cwzA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jbCIs-0002Pv-Vj; Wed, 20 May 2020 00:09:46 +0000
-Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
+	id 1jbCIu-0002Si-NV; Wed, 20 May 2020 00:09:48 +0000
+Received: from mail-pj1-x1042.google.com ([2607:f8b0:4864:20::1042])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jbCH4-0000dD-VE
- for linux-amlogic@lists.infradead.org; Wed, 20 May 2020 00:07:57 +0000
-Received: by mail-pf1-x444.google.com with SMTP id x15so711739pfa.1
- for <linux-amlogic@lists.infradead.org>; Tue, 19 May 2020 17:07:53 -0700 (PDT)
+ id 1jbCH6-0000iw-IA
+ for linux-amlogic@lists.infradead.org; Wed, 20 May 2020 00:07:58 +0000
+Received: by mail-pj1-x1042.google.com with SMTP id z15so1691225pjb.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 May 2020 17:07:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=nLMfwQbrlF1iv4LcSoROIabrcfKs0/jUzCRJPsjpM/g=;
- b=Gqo34c3m0MlNoFL+YXBmISvMCjL1uAr1dCIk+C2xcHpi/NSgJAkMkbIB54SVo3iPr2
- HaZgzNyTF1lmEeD7MvMTZmyASk+yYU+KRNjjuLz/gkNyajNTTMpy+westprggwgYHgeu
- H18O/XFDeMrrZ83+TekriuOSfUOKTYo0bQjBP5XEEJhAzPLW0eDyNm1lAycXCLgPH4my
- 5OkzNS9XRiDor39MYDWxeHHIJeNebLJIzM8O/UVe8sZHS6hWPl2jBe+/MjLVYqVeFwWD
- C1Qm8oJgZQMAeE32cJMZ0614HbLkp4WCrD4CJKa70EWir5uchhrv0+WONADhNEGNEUXk
- QOog==
+ bh=7+DomKPOv1yE5ESFBkQ8ud9ihgskj98nGfYMrpZrFiM=;
+ b=Y+UE5guHV5/L0b0srWJiFebv61WLr8NQyvWXiq7/hoWAmuxvU+BiDdDJstV5EiD1wJ
+ jtu7ikRXv0voVZPUKIDXZ7B7+tHOxVVlnNeUvCM/Q0Ce+G5B13h9o6rVJt8WGvgF7/0Q
+ BbaJzcfEifhz+nObg1SXlEOSOOWuHpsiW1WhnO0L4NTEEVNW2BL9GTRhlxu2tyPiX25O
+ BrImsHgtj5OTLVzqFOZAAjyeAnX9aFuPMpHhuKwhu/Su44sd9e2AeFx/Ow2ydEaiuWDp
+ xEGKbFTyn0UaHKZzDlbLToadjznoL506wIT+MoMugLhhFH9pc4+RS+Cgha3wi1Gr1lTu
+ JkbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=nLMfwQbrlF1iv4LcSoROIabrcfKs0/jUzCRJPsjpM/g=;
- b=f7PkCCh1GJsRjvPIW5Ps5AxOkVzFJn585CX3VAA0pLdry5QIIau2TBxPbhtPW337A2
- /pO03KaJ3k6fj5OD2qmBwUoi696NEo9/HXQgTuUOe+zmIzkzwlgeQFNu1vqAj4EoSQgC
- 2nAHnJhhggt7c9UOJwzeq7dMuQhjVxfjEU/wn4t1bXJhAaBmAkMQM0Y22ydN06fKTZQX
- PmbYgew+9qPa+vHPDcpClli5ykgucz4WeXyggyq9sD6HriGhBiXFoXriAMIDjlAdfSbD
- qrphB8f74zYWYmdeS2FKoum552d/8a2K7CIGuhyqovCjEDfTnxfkjLbXLuCV15QLMuOa
- y0Gg==
-X-Gm-Message-State: AOAM530GzOkH/S1V+MGmGtVPG3hTLtIwxbDhOQKB6A2L7g9IHKPuj5p7
- pfkHuIp+HAwilRk+Nv4RW2RMNhJVQccG5w==
-X-Google-Smtp-Source: ABdhPJzsFZRQ9C+8oILR+S4MtBFIKYd2qCmva0PiBVlgTEiaWCLW5r8plQBhSkfJpMmL9SFle7gCyA==
-X-Received: by 2002:a63:7519:: with SMTP id q25mr1555590pgc.224.1589933272730; 
- Tue, 19 May 2020 17:07:52 -0700 (PDT)
+ bh=7+DomKPOv1yE5ESFBkQ8ud9ihgskj98nGfYMrpZrFiM=;
+ b=GqPYHpqOgXpUIcuFu1Mk5e7+Frtac2rpCdnagXMUIl0/68yUYwM0AxDHJ7XbWwexda
+ paapLFGgbPHEtW71uFkp374PEJOohbgWC5nbPvYEBf9d2oJfB1r9Mv5B1+OibsYGddLQ
+ E9N3SLPe8XN0Qys5B9jZPbh5HN/RI1lXe9VRyVRWXIKTeqhVpg2+CIGd+kPsyvZ0U9jE
+ UcX8sQEMfULezNEfr+gE5yeLyP+AWFRqdfOXKgTj36IxE2oZsnAdIZoUmKhPdS4dJkSp
+ h72Xea4H1EkcWLjn4Kjv3EDk8j64yZLIAA2FUuqef0A+RxcWYJa8YKfGgv/OhiBMg+Os
+ EHDw==
+X-Gm-Message-State: AOAM530dh9Mv5GvLjfte9LaBtfQOhTOrmeP6ZMAKVzXxLXOzaIEUMN4N
+ UaTyloCqvuiZZ/1Tpo/k5MTSzw==
+X-Google-Smtp-Source: ABdhPJwE9FiCv3g5zVYgc8Z9qAKSS+WbDh+SIgfGNnxYbx9qLd+gBy+NviN0qWa6eFC+ZUcHtHRuVQ==
+X-Received: by 2002:a17:90b:3c7:: with SMTP id
+ go7mr2258358pjb.67.1589933274893; 
+ Tue, 19 May 2020 17:07:54 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id go14sm504705pjb.42.2020.05.19.17.07.52
+ by smtp.gmail.com with ESMTPSA id z6sm502190pfb.87.2020.05.19.17.07.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2020 17:07:52 -0700 (PDT)
+ Tue, 19 May 2020 17:07:54 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 0/2] ARM: dts: meson8b/m2: RGMII improvements
-Date: Tue, 19 May 2020 17:07:46 -0700
-Message-Id: <158993320300.34448.6005768486014716103.b4-ty@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2 0/2] arm64: meson-sm1: add support for Hardkernel
+ ODROID-C4
+Date: Tue, 19 May 2020 17:07:48 -0700
+Message-Id: <158993320300.34448.14860271730266890592.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200512215148.540322-1-martin.blumenstingl@googlemail.com>
-References: <20200512215148.540322-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200506080702.6645-1-narmstrong@baylibre.com>
+References: <20200506080702.6645-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200519_170755_159039_CE39BB20 
-X-CRM114-Status: GOOD (  13.59  )
+X-CRM114-CacheID: sfid-20200519_170756_647457_DAFAA71C 
+X-CRM114-Status: UNSURE (   9.19  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,44 +99,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: andrew@lunn.ch, linux-kernel@vger.kernel.org,
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 12 May 2020 23:51:46 +0200, Martin Blumenstingl wrote:
-> the fist patch in this series connects FCLK_DIV2 to the PRG_ETH
-> "additional" registers for the dwmac Ethernet controller.
-> Now that we know how RGMII and FCLK_DIV2 are connected we can
-> add this dependency to get rid of CLK_IS_CRITICAL for FCLK_DIV2
-> at some point.
+On Wed, 6 May 2020 10:07:00 +0200, Neil Armstrong wrote:
+> This serie adds support for the Hardkernel Odroid-C4 single board computer.
 > 
-> The second patch fixes the RX and TX delay. The 4ns TX delay which
-> we have used so far is incorrect and only worked because we were
-> using an unsupported clock divider in the PRG_ETH registers. That
-> divider has been fixed with commit bd6f48546b9c ("net: stmmac:
-> dwmac-meson8b: Fix the RGMII TX delay on Meson8b/8m2 SoCs").
-> Instead of "just" fixing the TX delay we can even do better and
-> switch to phy-mode = "rgmii-id" to let the PHY generate the RX
-> and TX delay. However, previously we didn't know that there was
-> an RX delay applied by the MAC on these boards. Only the additional
-> information from Jianxin in the other series [0] made us aware
-> of this. Without the other series there will be a 4ns RX delay
-> (2ns from the MAC and additional 2ns from the PHY). Due to this
-> dependency I did not add a Fixes tag, because backporting these
-> .dts patches without their runtime dependency will break stable
-> kernels.
+> The Odroid-C4 is the Odroid-C2 successor with same form factor, but using
+> a modern Amlogic S905X3 (SM1) SoC and 4x USB3 ports.
+> 
+> Fully functionnal:
+> - USB2+USB3
+> - USB2 OTG
+> - eMMC
+> - SDCard
+> - HDMI
+> - DVFS
+> - Gigabit Ethernet with RTL8211F PHY
+> - ADC
+> - Debug UART
+> - Infrared Receiver
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] ARM: dts: meson: Add the Ethernet "timing-adjustment" clock
-      commit: b632506c5af22a9a7c63674fc605d24cf94d585b
-[2/2] ARM: dts: meson: Switch existing boards with RGMII PHY to "rgmii-id"
-      commit: 005231128e9e97461e81fa32421957a7664317ca
+[1/2] dt-bindings: arm: amlogic: add odroid-c4 bindings
+      commit: 838f0905aaeefce443eca124b27e6474e6862aa3
+[2/2] arm64: dts: meson-sm1: add support for Hardkernel ODROID-C4
+      commit: 326e57518b0dc8789d78e59563afbb3f4107e6e1
 
 Best regards,
 -- 
