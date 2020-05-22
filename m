@@ -1,86 +1,83 @@
-Return-Path: <SRS0=Ru2C=7D=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=edKc=7E=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A669BC433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2020 21:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E5DDC433DF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 May 2020 08:54:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6275C204EA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2020 21:41:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 31672206DD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 May 2020 08:54:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qrqNFu6V";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YsTGUaAi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6275C204EA
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uKLVmIwk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qjnD8pyz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 31672206DD
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:To:From:
-	Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=DP8/uj8BicqFKNe8N/n2U9l7hcy3LFEFkVEvFy/cAag=; b=qrq
-	NFu6VhGFs9su/1dVr2+KQAGCAhz67r16KKtntidKA7/68c9CqB03z0DPb0hSe4FMhgwNDRoBM1i6v
-	UgD2l0D6Z8gK54880VYljQnEbLOhihvnKXtqSBJ0ysoVALyqoPXWGO7+RpEo1K1GjBDvsTwq7wg1+
-	vF8gc2R55EXUva9QHGyBHuODctk6iUeZvu86pVqfeR8eJjZfCeJLW6dtjrIs9tELXwo1juXgIwa2x
-	8hm3/LOKMlhFAehLOhzLi9f5aKgrp0A89cV1ndTSu03PIiDRka15zqxP9/gJ1VwfNiLd3lKJCWptl
-	U/+u82snhZgCWoMIWw7uj/rksEOyfog==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+ERe/yU+5st9eot+XmgSYU8/lS3jbOrR8if6OMrxP6Y=; b=uKLVmIwk49G9UJ
+	8JGrJ/zjR4U/V4MGySZTUVsau/+e+xwhBRPXnfVhbhG8HhPq6aLWnLZsLtYpIETLz3HtYq0NV0t/i
+	3TJazBwLLLO49BG1v+KNxZG8/0qOOowYQEhz6sw5M6byYZiGsQkBsEiNCnLGiVuNOkOZHIwXSJCtu
+	dIAT8LzvfqHTt4vPZF5DRD3eQ5IwnCrrnEOPAxt8x/cD908lZaAqBxRHTFzi5pu4qI55CsCRScY1W
+	1WuL52MLOn6Cps/jIn42KcLD82VROoRgxlJ4FLofXkAoSaLDvZFElee2a0dn45DPXc9w7RU+u5uzq
+	TnUXp81agwbaXNkx2QTg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jbswU-0000wt-Kv; Thu, 21 May 2020 21:41:30 +0000
-Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
+	id 1jc3RU-0008W3-Ld; Fri, 22 May 2020 08:54:12 +0000
+Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jbsw6-0000Yu-28
- for linux-amlogic@lists.infradead.org; Thu, 21 May 2020 21:41:07 +0000
-Received: by mail-pl1-x642.google.com with SMTP id f15so3503037plr.3
- for <linux-amlogic@lists.infradead.org>; Thu, 21 May 2020 14:41:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:date:from:to:cc:subject;
- bh=wOxdbqXiaXBd2oUXdT6DezR8UoCyJMduXlbTu9FfJAo=;
- b=YsTGUaAiPOFTplFldDoy3qXs7axwoNClcY8jBgJ1fRlo3pwumGdJPdZurxWpiuH02e
- BW3E9fQXXoukKiS26LV766/C8RRSBG4vUXiHkwDtpBNb5OqdlkAQHGfFwwC0H9IQq+7J
- bhiRwasuFGNTNy6XOLrTyRT/1uzlv8vruOHeFfWHQuSweAozaqnR/S/fqACBMqZOntqA
- bT7wlO6wuYO1DH8rOjqCtMw2NtCl24xQpJMSh84N7hT4LV+Lk2xXEu1eMWxy7LYsRQlJ
- FKwRpQmWdOXPFr81rfSvmQ5m8LSh66GEWzTK+BiXIhuQDIYfDipwIohYczjYwTEg1qv0
- 6y3g==
+ id 1jc3RQ-0008VO-Gy; Fri, 22 May 2020 08:54:09 +0000
+Received: by mail-pl1-x643.google.com with SMTP id q16so4149931plr.2;
+ Fri, 22 May 2020 01:54:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=KrT1SoD15NLfQ8qq9A2L0z3L7OIW2vz0cfwoycZIaSk=;
+ b=qjnD8pyzQ9vLSGK+9aXm4h6rt56i4s0ANzW6Vh27qbaJB1MZkwcLIaZitcpOn1XAoT
+ O5wzjfLRVQ7eurTzJi/uB64raupxzP+oBMlxnXbiuP4QdlKuhKrnMtylQPMWFigxEvlm
+ LIfHwh5uL2pKKcXGUNAkVxR4dxtZDEZIyZ/6H44opVpDR8rrrlBwOJzLs8iNe7g5J0TH
+ gg5A5VFwSm+7CGU15o78QgWK5okcvbRKe+6UGIg2/kMi4vEmUS82SVeB3naQ8jmRcvrC
+ iIMmvVtr33HdqpOuPv0o4OOS54U1vu4PL+jfQ/ftMRFRFoN9075NHtRNKC0mhg+jIsG4
+ r7og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:to:cc:subject;
- bh=wOxdbqXiaXBd2oUXdT6DezR8UoCyJMduXlbTu9FfJAo=;
- b=OEUguUvRLxL2NAr9RNBC7aA3BqQPqKjeOSnqsF4CxZbGGdPBxg4yPjdgUonaT1LfNe
- rby6avQTu7jpgl5AOZJ5hzkIOhanAf02IIQarRIHhQBoDxenlcaCEvwxEOXConzlccGM
- w/YYIXOPtER26gBM5uls1VE1R7/8dmxKkRq41tOG8y1Fs9XCycJtqJ79T1SHdDv2OSD7
- S+XMkbajELnESTB+0Ftm9DBhMROdaw34fmwoqeZDShES4Z3qQ6dbrgSjb4415wwFCg/H
- 5LM/6N90/uyrXY5ebgvhRzbCInSOcc6acyhB8xScxJQ/vnXmZuCFkD+d3f04kWe5LymS
- 5DPA==
-X-Gm-Message-State: AOAM532GFGGXYfdxnSZ5fKdYWoDLiG0dTrHJ2+M8lcjOmBssII9HlNoA
- UoGeW4qtRimzV+a8Wg4/dWEkRg==
-X-Google-Smtp-Source: ABdhPJxfUbpzlSMaijpVUwP6mvp00/JtS3ccdv7HJNWQCQzKgde3F0tI9DSd/M/28OcLKj6aCPK9Kg==
-X-Received: by 2002:a17:90a:f0cd:: with SMTP id
- fa13mr574467pjb.95.1590097264983; 
- Thu, 21 May 2020 14:41:04 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id y5sm4800044pge.50.2020.05.21.14.41.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 21 May 2020 14:41:04 -0700 (PDT)
-Message-ID: <5ec6f570.1c69fb81.a3753.711b@mx.google.com>
-Date: Thu, 21 May 2020 14:41:03 -0700
-From: Kevin Hilman <khilman@baylibre.com>
-List-Id: <soc.lore.kernel.org>
-To: soc@kernel.org, arm@kernel.org
-Subject: [GIT PULL 4/4] soc: amlogic: driver updates for v5.8
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=KrT1SoD15NLfQ8qq9A2L0z3L7OIW2vz0cfwoycZIaSk=;
+ b=T80/jw2yJ5tlEj20G3zbmaGlb5cKPRtYmiYZUcMrFoznZ1g4gr8KEOYJnlckr779QC
+ +r/zL55zMpJbQHNno9EqNBfr3QGSpXn0ooyNdZI2Kr44mFX5uGQ9phx3i23IWnPMcIcn
+ hjRhZGEQKcR5rxlpV7yVPdzjVuea5Fu2K2MEEzpLkfYk4mlryjIqS+vQeyRiusGVPWk0
+ HvyTEyDCXCOzitTsxQ5JalPT8eAtDwffyIY6vkQEkIjNzfGR297cbGrG9x3B1ePjhaEd
+ J2pwb4WLxLZC23Xqs2o/qSyitx2K7HIjrV367pWZDtkeJikgUDUpxB1P9Yil3tKuVNO9
+ tl7Q==
+X-Gm-Message-State: AOAM5318IRISl9WKnBQcaCTpm7IEbQz1dlVqWcyQNKNX1qpiIuuyVu6P
+ 2WMrS0wGGYxsiyrACr0JFHOyXqVIHVc+PQqGhE8=
+X-Google-Smtp-Source: ABdhPJySNKcXXQ4O+svlbz8UMlrw8yXexA5v6PdsFEo3QaiPpyqed+BtGvQDsL+oQ2C+xIYCZ8vw55AsPQiGlSKaAfE=
+X-Received: by 2002:a17:90b:3651:: with SMTP id
+ nh17mr3325673pjb.228.1590137647307; 
+ Fri, 22 May 2020 01:54:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200522082208.383631-1-alexandru.ardelean@analog.com>
+ <20200522082208.383631-5-alexandru.ardelean@analog.com>
+In-Reply-To: <20200522082208.383631-5-alexandru.ardelean@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 22 May 2020 11:53:50 +0300
+Message-ID: <CAHp75VewoA-jcRDpvNdoRyS4Tdaw_QsBDJ5_ETc6crwuuefdyg@mail.gmail.com>
+Subject: Re: [PATCH 5/5] iio: remove left-over parent assignments
+To: Alexandru Ardelean <alexandru.ardelean@analog.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200521_144106_186119_797A51E6 
-X-CRM114-Status: UNSURE (   8.02  )
+X-CRM114-CacheID: sfid-20200522_015408_565567_E7761B97 
+X-CRM114-Status: UNSURE (   8.60  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -93,43 +90,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-MIME-Version: 1.0
+Cc: milo.kim@ti.com, tomislav.denis@avl.com,
+ Dan Robertson <dan@dlrobertson.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ linux-aspeed@lists.ozlabs.org, linux-iio <linux-iio@vger.kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Eddie James <eajames@linux.ibm.com>,
+ Platform Driver <platform-driver-x86@vger.kernel.org>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
+ Song Qiang <songqiang1304521@gmail.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+ linux-samsung-soc@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+ tduszyns@gmail.com, Krzysztof Kozlowski <krzk@kernel.org>,
+ linux-rockchip@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+ Kukjin Kim <kgene@kernel.org>,
+ bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+ agross@kernel.org, linux-input <linux-input@vger.kernel.org>,
+ orsonzhai@gmail.com, Alexandre TORGUE <alexandre.torgue@st.com>,
+ Linux PM <linux-pm@vger.kernel.org>, linux-arm-msm@vger.kernel.org,
+ Sascha Hauer <s.hauer@pengutronix.de>, Jiri Kosina <jikos@kernel.org>,
+ William Breathitt Gray <vilhelm.gray@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ Andreas Klinger <ak@it-klinger.de>, Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-amlogic@lists.infradead.org, Fabrice GASNIER <fabrice.gasnier@st.com>,
+ linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+ Scott Branden <sbranden@broadcom.com>, rmfrfs@gmail.com,
+ Shawn Guo <shawnguo@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Azael Avalos <coproscefalo@gmail.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Ray Jui <rjui@broadcom.com>, Sylvain Lemieux <slemieux.tyco@gmail.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, zhang.lyra@gmail.com,
+ baolin.wang7@gmail.com, Kevin Tsai <ktsai@capellamicro.com>,
+ Syed Nayyar Waris <syednwaris@gmail.com>, Peter Rosin <peda@axentia.se>,
+ Jonathan Cameron <jic23@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The following changes since commit 8f3d9f354286745c751374f5f1fcafee6b3f3136:
+On Fri, May 22, 2020 at 11:37 AM Alexandru Ardelean
+<alexandru.ardelean@analog.com> wrote:
+>
+> These were found by doing some shell magic:
+> ------------
+> for file in $(git grep -w devm_iio_device_alloc | cut -d: -f1 | sort | uniq) ; do
+>         if grep 'parent =' $file | grep -v trig | grep -vq devm_; then
+>                 echo "$file -> $(grep "parent =" $file)"
+>         fi
+> done
+> -----------
 
-  Linux 5.7-rc1 (2020-04-12 12:35:55 -0700)
+Side note: time to learn coccinelle or shell better :-)
 
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
-
-for you to fetch changes up to 53773f2dfd9c847304b184d5617e36aeafdf5d87:
-
-  soc: amlogic: meson-ee-pwrc: add support for the Meson GX SoCs (2020-05-19 16:02:14 -0700)
-
-----------------------------------------------------------------
-soc: amlogic: driver updates for v5.8
-- support GX SoCs in the EE power-controller driver
-
-----------------------------------------------------------------
-Martin Blumenstingl (4):
-      dt-bindings: power: meson-ee-pwrc: add support for Meson8/8b/8m2
-      dt-bindings: power: meson-ee-pwrc: add support for the Meson GX SoCs
-      soc: amlogic: meson-ee-pwrc: add support for Meson8/Meson8b/Meson8m2
-      soc: amlogic: meson-ee-pwrc: add support for the Meson GX SoCs
-
- Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml | 102 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------
- drivers/soc/amlogic/meson-ee-pwrc.c                                | 112 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
- include/dt-bindings/power/meson-gxbb-power.h                       |  13 +++++++++
- include/dt-bindings/power/meson8-power.h                           |  13 +++++++++
- 4 files changed, 214 insertions(+), 26 deletions(-)
- create mode 100644 include/dt-bindings/power/meson-gxbb-power.h
- create mode 100644 include/dt-bindings/power/meson8-power.h
+-- 
+With Best Regards,
+Andy Shevchenko
 
 _______________________________________________
 linux-amlogic mailing list
