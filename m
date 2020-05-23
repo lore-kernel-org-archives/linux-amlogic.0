@@ -2,21 +2,21 @@ Return-Path: <SRS0=JaJY=7F=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 096A3C433E0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 23 May 2020 17:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B56E0C433E0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 23 May 2020 17:19:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D0A0D20723
-	for <linux-amlogic@archiver.kernel.org>; Sat, 23 May 2020 17:18:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5470620738
+	for <linux-amlogic@archiver.kernel.org>; Sat, 23 May 2020 17:19:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ezFcUdF8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D0A0D20723
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="beydZ5N5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5470620738
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,38 +25,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0Fvds7gfnfxlkz1PGS1Qw0enTzt1To6VvzK/Ptk46g4=; b=ezFcUdF82eftDT
-	wp1z1a3NYomkGvmlnCsD8E5/gVXIsYPjQEZ7ha6jYxdh0v/oxLEEXhPcYf7osqGRWVzRU4rDMbjuP
-	qNxr11o+xoNTlHeMGyZkroQ8HSKoVYTxUJz6xLTkpUGbHG+V0CxjLIv8v5WL8WrXtqDt8+bYa6Min
-	zBp0PLdOXAPG0rZw1Fvf529rk1C+4Ht9uh7trjMqcYVQ1B7gHWq62qosFozNbUblrToMIsMMdWk8t
-	6SNz0E76ODdrbeahns0IXoakrLva9F46tyw/9t3n5UJ8OIZaPrufJCuF7Tkm6ehkm/GuSRORhqXdX
-	ANYj6ZzPXC8Dgyk/eTxg==;
+	List-Owner; bh=M6nYCT/uaLV7rSCCkE/BoXBGmcDgzlVLV99JbPlKhz8=; b=beydZ5N5zEMVqe
+	3QFTSwRez3niVqjVJCHqPHEszd+67XsEPVE66UWhXKzvpu0GOVpnLZ3eTapImZ/gdcnANK8kQns0k
+	zwA3FhiptOcwu6k+DTmhrUJ/TzRKewLSrKcSbov5dXjnw34Fy4kMUOkuRwwCVRDGw2K9GsVoGO8no
+	4qxIzkZhSfsEaT0UBdZmUoIaktjnWU62LTfBw4bUw7yQvxvvph04kTnHB5o633988m/W2ZlGt9Kor
+	/N19+RvjiSTOIN3tDSMgOrxHNICQgXXQsvr852E1WWscTQdW4gvstH8zgHnNZtyLHmwszpi6eEB9G
+	Oy3oNEgfzDJI9naUQVpA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jcXnP-0006oA-4v; Sat, 23 May 2020 17:18:51 +0000
+	id 1jcXnt-0007Gk-Ji; Sat, 23 May 2020 17:19:21 +0000
 Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jcXnG-0006dz-1v
- for linux-amlogic@lists.infradead.org; Sat, 23 May 2020 17:18:44 +0000
+ id 1jcXne-00071y-6e
+ for linux-amlogic@lists.infradead.org; Sat, 23 May 2020 17:19:07 +0000
 Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
  by metis.ext.pengutronix.de with esmtps
  (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
  (envelope-from <ukl@pengutronix.de>)
- id 1jcXn0-0000je-7c; Sat, 23 May 2020 19:18:26 +0200
+ id 1jcXnO-0000mi-2T; Sat, 23 May 2020 19:18:50 +0200
 Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
  (envelope-from <ukl@pengutronix.de>)
- id 1jcXmz-0004z2-Du; Sat, 23 May 2020 19:18:25 +0200
-Date: Sat, 23 May 2020 19:18:25 +0200
+ id 1jcXnN-0004zA-HE; Sat, 23 May 2020 19:18:49 +0200
+Date: Sat, 23 May 2020 19:18:49 +0200
 From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
 To: Yangtao Li <tiny.windzz@gmail.com>
-Subject: Re: [PATCH 23/32] pwm: berlin: convert to
+Subject: Re: [PATCH 22/32] pwm: bcm2835: convert to
  devm_platform_ioremap_resource
-Message-ID: <20200523171825.etlhz2fi7hjonkyq@pengutronix.de>
+Message-ID: <20200523171849.uybbbpqwma4oqqai@pengutronix.de>
 References: <20191229080610.7597-1-tiny.windzz@gmail.com>
- <20191229080610.7597-23-tiny.windzz@gmail.com>
+ <20191229080610.7597-22-tiny.windzz@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191229080610.7597-23-tiny.windzz@gmail.com>
+In-Reply-To: <20191229080610.7597-22-tiny.windzz@gmail.com>
 User-Agent: NeoMutt/20170113 (1.7.2)
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
 X-SA-Exim-Mail-From: ukl@pengutronix.de
@@ -64,8 +64,8 @@ X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
  SAEximRunCond expanded to false
 X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200523_101842_093485_ECB3893C 
-X-CRM114-Status: UNSURE (   5.34  )
+X-CRM114-CacheID: sfid-20200523_101906_251483_FFA25ABE 
+X-CRM114-Status: UNSURE (   5.63  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -99,7 +99,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hello,
 
-On Sun, Dec 29, 2019 at 08:06:01AM +0000, Yangtao Li wrote:
+On Sun, Dec 29, 2019 at 08:06:00AM +0000, Yangtao Li wrote:
 > Use devm_platform_ioremap_resource() to simplify code.
 > =
 
