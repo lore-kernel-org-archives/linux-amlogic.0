@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-5.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A45D1C433E0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 23 May 2020 17:30:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A9FE0C433DF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 23 May 2020 17:30:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6F81620679
-	for <linux-amlogic@archiver.kernel.org>; Sat, 23 May 2020 17:30:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7F46020679
+	for <linux-amlogic@archiver.kernel.org>; Sat, 23 May 2020 17:30:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u63n/Uv2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6F81620679
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nz8nwCL/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7F46020679
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,38 +25,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7aTznvc6Yk2/jx0pZNDLtLK2o1oSWga2Es+DUdy2UKw=; b=u63n/Uv2a2yoM2
-	qOe5EpdULaW+/ftKYIRL/UXXWas7VuS/mezKmFhVhHSqvWNjpVpVA6PMIILNureiBfm8s4ve5Z67T
-	Z5r2SDdcAgh/tGsNf1Ip/Hs5Qy6xBaegzURLhxqgsVaRzJjkJz9UMIU0/6B0VrrWja8M5uWjZtfdb
-	uz9m77jiZGmhaO5yWAFNyJU5kjaA73Hyqgsp+jQuDdmfJnCoWfgwlbWSbZtMs9ey5PVHDITJlB4s1
-	1TGpWhxEvrKTuAwBtpQ3VmjuIVO3GgDovVo3slbnEkKj56egUI1M8DJRKXOgRrbV/UEfD/NjTp3uT
-	/HInL/0brySxkheENMuQ==;
+	List-Owner; bh=/La7NsDzm71tCHueuglRLVPU7GYX9hlMVxO69hWnINU=; b=nz8nwCL/fdSU3s
+	/EsQR2SB6D6YPWRuy26xj7uG0LPrNpV50hs7723Z+XlqFPu2t28DyazeBw/TVJ6JVADj0vZj7hzU7
+	RCkAphFMuizfavtN08DO/pQ1R4h6VSrjrB0dvA+ZxySghgecigF6ZluR1c/gFe2lChUhmMaYuIEwY
+	fE8YnYCop8bMynPY7kZsMg9FrnyqpQ+WJDFrls7EiCQrLfxGYohXDARpjxqY7oc72xP77Unn3Uimc
+	n/VMahBKzYcJ0Q6PidhhBtFdE9SVlvqR1mdr7cF7STEIzsakEQ4Ce+bbj2LNff7kNt/DK53ziMwRJ
+	3FwLY53uUJnEiKwDXSNg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jcXyY-0007ka-4p; Sat, 23 May 2020 17:30:22 +0000
+	id 1jcXyt-00089T-41; Sat, 23 May 2020 17:30:43 +0000
 Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jcXu9-0001Ea-Dh
- for linux-amlogic@lists.infradead.org; Sat, 23 May 2020 17:25:52 +0000
+ id 1jcXuU-0001Z7-Rk
+ for linux-amlogic@lists.infradead.org; Sat, 23 May 2020 17:26:13 +0000
 Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
  by metis.ext.pengutronix.de with esmtps
  (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
  (envelope-from <ukl@pengutronix.de>)
- id 1jcXts-0002lj-4y; Sat, 23 May 2020 19:25:32 +0200
+ id 1jcXuF-00031G-Ky; Sat, 23 May 2020 19:25:55 +0200
 Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
  (envelope-from <ukl@pengutronix.de>)
- id 1jcXtr-0005G5-D3; Sat, 23 May 2020 19:25:31 +0200
-Date: Sat, 23 May 2020 19:25:31 +0200
+ id 1jcXuF-0005GC-2g; Sat, 23 May 2020 19:25:55 +0200
+Date: Sat, 23 May 2020 19:25:55 +0200
 From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
 To: Yangtao Li <tiny.windzz@gmail.com>
-Subject: Re: [PATCH 32/32] pwm: atmel: convert to
+Subject: Re: [PATCH 25/32] pwm: brcmstb: convert to
  devm_platform_ioremap_resource
-Message-ID: <20200523172531.mw4bifb4t6ouwsxd@pengutronix.de>
+Message-ID: <20200523172555.lu7nhxodksgottyv@pengutronix.de>
 References: <20191229080610.7597-1-tiny.windzz@gmail.com>
- <20191229080610.7597-32-tiny.windzz@gmail.com>
+ <20191229080610.7597-25-tiny.windzz@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191229080610.7597-32-tiny.windzz@gmail.com>
+In-Reply-To: <20191229080610.7597-25-tiny.windzz@gmail.com>
 User-Agent: NeoMutt/20170113 (1.7.2)
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
 X-SA-Exim-Mail-From: ukl@pengutronix.de
@@ -64,7 +64,7 @@ X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
  SAEximRunCond expanded to false
 X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200523_102549_475669_D7CA56CF 
+X-CRM114-CacheID: sfid-20200523_102610_915002_D851193A 
 X-CRM114-Status: UNSURE (   5.45  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -99,7 +99,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hello,
 
-On Sun, Dec 29, 2019 at 08:06:10AM +0000, Yangtao Li wrote:
+On Sun, Dec 29, 2019 at 08:06:03AM +0000, Yangtao Li wrote:
 > Use devm_platform_ioremap_resource() to simplify code.
 > =
 
