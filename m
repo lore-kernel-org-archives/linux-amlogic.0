@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8038C433DF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2020 09:48:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 99589C433E0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2020 12:33:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 742A52070A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2020 09:48:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 67E312084C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2020 12:33:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YSivUNhp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="i518M9yv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 742A52070A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nvDFKFl6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NeWFwHZA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 67E312084C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=V+MXMzb3wShqUYSUTvGfE0syEwDdxQ+MWUadB0O9hpU=; b=YSivUNhp9r7fEX
-	BlKq7EZQCFL86b1dMz0m1GLFpz1OrDFn5ioXYksTgnvDVsIQr3VzegRP9xrXcEEViWpdtLX1P62sR
-	5YrY/iTK7RPHz+hkBY53Uf3fgaRK8VQ/rgePSuaSZQB5PUrrmYZNQRXsHg1DaPb4ihST8yA7bUYBl
-	+iibz8GP5hUz1Z8+ny6sp2ejXZNm2Gn3kFaeFYvPM14+IWdITguQlFsQacemS+XeAQJkL6o4owHSn
-	ZLMhHxxUxr1+x4PHw0pKpIhQlBE5nFQgq3p+DAaD4ckBiiCh5kFAk2jsH2LW7KMLmKGN3EPSd1L02
-	m+y7v7gmC5+Q7yKwUnfA==;
+	List-Owner; bh=HmRUhn+PM323YCDwbjm0iAKXn/8jXA/yXgoumbd7q0A=; b=nvDFKFl6ZRg9Iq
+	lxj8i73PFY7kgSBpQe9WWdsaMFTz9rul6JoroFGZMknQjezBdtmDkwBejOSI5UCaRMpimnNffdsjQ
+	oIUgsvGIrk46OPWKDAYZbkdzulHSDyyABUzXA+/a5/BFBsfKOAyRidorTjHNSCSCzDdYANZSdnP29
+	QUcarU+xuXU0ce6PuRK6SrQAqNhAYmo/CiuMuv656oAMwkW82FduXwq7HwwFQZmSfSUwisdh9moyC
+	takUv8v5IyDzK8ME9Cj6bsxVrVRscONwkiMQFS9SOpJRfGzQtOcFD496S+/9N0lmKKDxVqT6VA3/7
+	ELitIF2ru8bw0L2Uwp4w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jdWCa-0004tn-LX; Tue, 26 May 2020 09:48:52 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jdYlF-0002ZQ-21; Tue, 26 May 2020 12:32:49 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jdWCY-0004tR-1f
- for linux-amlogic@lists.infradead.org; Tue, 26 May 2020 09:48:51 +0000
-Received: by mail-wr1-x443.google.com with SMTP id q11so7598704wrp.3
- for <linux-amlogic@lists.infradead.org>; Tue, 26 May 2020 02:48:49 -0700 (PDT)
+ id 1jdYlB-0002Yv-1s
+ for linux-amlogic@lists.infradead.org; Tue, 26 May 2020 12:32:47 +0000
+Received: by mail-wm1-x344.google.com with SMTP id u12so3032786wmd.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 26 May 2020 05:32:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=EPVXrvJmNbbfCfrmR/PZeAoKO9WxrjIdB7sfKLq1McA=;
- b=i518M9yvpS9qLzL854gmEW1bGOh1K/BfaDa1yQpse/CnIlGcjH50V3IESvTqTZwX0l
- tnpa24EImC4Sw6zVgEumGp1wJA05bsDL3r6aLnQsh78503x3uegOaG7Y/vpIzMRFh0pV
- BfeBSbvQ+0t1MABsemmQ0rvCHSPR0GdzNn5NsbeMzn+tG0QLm5kJEVBBZKJMzMbHbzxY
- HRTS9COejNAiIXuobP+OxCeVRZzVX7kQDqgAmTFIJQMIHZAXqz57LHS92YvswAicVUIj
- T9hQAt2FJE8wids6w4KjqHDkLPUTSQvW73am3WJT10LjkPXbhSNkJkm3ibFvl7LXs7R4
- 1U1g==
+ bh=LbsXZlSJ6mM5YuG/Buamk1h7fSSiXTc8VSuG+rzaVVM=;
+ b=NeWFwHZARMp6IWl1uL16S4jUhaLeXaJEr+BttgJXRl4aqbWWz1UuWiMj9kwRvwC9eV
+ dyFNFEG9CJ9G1a8TpwwvV3RnzxMOB8YBRExNstaqtxXA2rEyiI+A3pp8B3ElUYPoMCEs
+ 2R1O4i/p2UEMI/i2iCjUTvJQbYh1yhxB99omUzzhQhfNk/PCQZpEEgK5sJgYFEFrs5SC
+ GyTy0iZcP7C9H2dE/hVbOpxVazVlnbMiUtAzF1/rZFtLS+8IO8VK8Q/H1VlCVSTM3Hw+
+ q1gvASeK6HOPdEvJ8fWuqGRlUQjzWfwSps+9ipSmiS/bUgN8SMsIr/lXONHHHwj88klt
+ Kdhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=EPVXrvJmNbbfCfrmR/PZeAoKO9WxrjIdB7sfKLq1McA=;
- b=BBFrS2QsKsCd22WRYGr4051lKWYfPRXpZx6sMGkfNu/uZlYDo8C/+TL07q3nNCjDGD
- cj98Yf+8n1lgXflmjjOl9bq1UWNBBGRXTwqOO4Kn8/FkhB6EAV5q+aF1gJ+kzMJwFLU6
- wgSl2In5/4g+Go67+ECxN2Op+mMvxOEU5xMVt7p5UvGG8t8f7bvqnNwm9K6b1wwD2/jf
- qkIRQCDtXPuoY8HhCQ+HqhmdkGKpvbwyOkSAdaCbu9j+yCL3MI6bkdI9iMobKPYY0VXG
- b4Q2laKrZ1AUyZAP8yHwA5Qh+oJberHmSlLwukeNl+aBlbwy++bqnV14bzGSt3c5Goba
- 1SEQ==
-X-Gm-Message-State: AOAM533yOPwmPu3sP6pUorNGJ3eDYvWSP71o5yvwnhIYjSwV4XIovBrR
- gq/2FqVt6827hZSSTdHOwoDYO3bii3u7Cw==
-X-Google-Smtp-Source: ABdhPJzaL8ohyrNkfStcCHtB0zzEc5WTr+27JgujYlm9HGKjXGDgs1mhlc209BcznwOTirCioaODQg==
-X-Received: by 2002:adf:ee47:: with SMTP id w7mr13624907wro.171.1590486527551; 
- Tue, 26 May 2020 02:48:47 -0700 (PDT)
+ bh=LbsXZlSJ6mM5YuG/Buamk1h7fSSiXTc8VSuG+rzaVVM=;
+ b=c1wq7jFog2U1pnFMM2qhL1JjNDmBufZb4LTIqA8EiJk2mM/tK7lttpIosVsXAfyzs1
+ TWA3p+EmhM8qfi2WUYXD+cxm45zAn2yUY6/kU2XET8SEJrn6drs6BwCF7yQUqKEhFRPs
+ 5Iwr+hS6pWeR6J1CNVfNAHpfox0in4LbhkoffiOuYQu+xM/OnLl2YeK75sI58hFI+ExB
+ m5uMS1vUfu3qeK7L7aMjavVkYYoKNQ0VYWIGfXorN5ADU9vmFnm3XLZ3l+zCQ0qWVGT6
+ hktaKLzzbQV4CQE9NxrZrILD+mzmC6LC+2/q3bjos+dMjBsgFyd3FbkPl+hLxKfbWaM4
+ M9gw==
+X-Gm-Message-State: AOAM530/8g5tYAIZLu5YLDv07bey3dInNfeguKwTj+n9Pkz301E+S4Wt
+ A4h5w+x6AFx9SrmCY+vMQEbcF111ibTkQQ==
+X-Google-Smtp-Source: ABdhPJzczdS2K1qtXO9fpwHdLXNiwkWPJbooUA5vQn+T2ijPeHFHzDWnBUiNbg0hCDFbD8sk3CcWpA==
+X-Received: by 2002:a1c:6042:: with SMTP id u63mr1178660wmb.65.1590496359644; 
+ Tue, 26 May 2020 05:32:39 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:acf8:18a8:b3a5:a17b?
  ([2a01:e35:2ec0:82b0:acf8:18a8:b3a5:a17b])
- by smtp.gmail.com with ESMTPSA id r11sm21242669wrv.14.2020.05.26.02.48.45
+ by smtp.gmail.com with ESMTPSA id 94sm22284340wrf.74.2020.05.26.05.32.38
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 26 May 2020 02:48:46 -0700 (PDT)
-Subject: Re: [PATCH 18/27] drm: bridge: dw-hdmi: Pass drm_display_info to
- dw_hdmi_support_scdc()
+ Tue, 26 May 2020 05:32:39 -0700 (PDT)
+Subject: Re: [PATCH 14/27] drm: meson: dw-hdmi: Use dw_hdmi context to replace
+ hack
 To: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
  dri-devel@lists.freedesktop.org
 References: <20200526011505.31884-1-laurent.pinchart+renesas@ideasonboard.com>
- <20200526011505.31884-19-laurent.pinchart+renesas@ideasonboard.com>
+ <20200526011505.31884-15-laurent.pinchart+renesas@ideasonboard.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <a1d9dc96-d889-8172-e411-922dd7d2c3b9@baylibre.com>
-Date: Tue, 26 May 2020 11:48:45 +0200
+Message-ID: <16f998ea-6666-c2ca-56f9-dfde14bb8769@baylibre.com>
+Date: Tue, 26 May 2020 14:32:37 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200526011505.31884-19-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <20200526011505.31884-15-laurent.pinchart+renesas@ideasonboard.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200526_024850_098165_92AE2246 
-X-CRM114-Status: GOOD (  22.36  )
+X-CRM114-CacheID: sfid-20200526_053245_147434_59A5F145 
+X-CRM114-Status: GOOD (  17.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,224 +153,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Jernej Skrabec <jernej.skrabec@siol.net>,
- =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
- Jonas Karlman <jonas@kwiboo.se>,
+Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Jonas Karlman <jonas@kwiboo.se>,
  Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Maxime Ripard <mripard@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
  linux-renesas-soc@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>,
- Chen-Yu Tsai <wens@csie.org>, linux-amlogic@lists.infradead.org,
- Sam Ravnborg <sam@ravnborg.org>
+ linux-amlogic@lists.infradead.org, Sam Ravnborg <sam@ravnborg.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 26/05/2020 03:14, Laurent Pinchart wrote:
-> To prepare for making connector creation optional in the driver, pass
-> the drm_display_info explicitly to dw_hdmi_support_scdc(). The pointer
-> is passed to the callers where required, particularly to the
-> dw_hdmi_phy_ops .init() function.
+> The meson-dw-hdmi driver needs to access its own context from the
+> .mode_valid() operation. It currently gets it from the dev_private field
+> of the drm_device retrieved from the connector, which is a hack. Use the
+> private data passed to the .mode_valid() operation instead.
 > 
 > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 > ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c   | 32 ++++++++++++---------
->  drivers/gpu/drm/meson/meson_dw_hdmi.c       |  3 +-
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c |  1 +
->  drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c      |  1 +
->  include/drm/bridge/dw_hdmi.h                |  4 ++-
->  5 files changed, 26 insertions(+), 15 deletions(-)
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index 5b5f07a23400..a18794cce0d8 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -1241,10 +1241,9 @@ void dw_hdmi_phy_i2c_write(struct dw_hdmi *hdmi, unsigned short data,
->  EXPORT_SYMBOL_GPL(dw_hdmi_phy_i2c_write);
->  
->  /* Filter out invalid setups to avoid configuring SCDC and scrambling */
-> -static bool dw_hdmi_support_scdc(struct dw_hdmi *hdmi)
-> +static bool dw_hdmi_support_scdc(struct dw_hdmi *hdmi,
-> +				 const struct drm_display_info *display)
->  {
-> -	struct drm_display_info *display = &hdmi->connector.display_info;
-> -
->  	/* Completely disable SCDC support for older controllers */
->  	if (hdmi->version < 0x200a)
->  		return false;
-> @@ -1282,12 +1281,13 @@ static bool dw_hdmi_support_scdc(struct dw_hdmi *hdmi)
->   * helper should called right before enabling the TMDS Clock and Data in
->   * the PHY configuration callback.
->   */
-> -void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi)
-> +void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi,
-> +				       const struct drm_display_info *display)
->  {
->  	unsigned long mtmdsclock = hdmi->hdmi_data.video_mode.mtmdsclock;
->  
->  	/* Control for TMDS Bit Period/TMDS Clock-Period Ratio */
-> -	if (dw_hdmi_support_scdc(hdmi)) {
-> +	if (dw_hdmi_support_scdc(hdmi, display)) {
->  		if (mtmdsclock > HDMI14_MAX_TMDSCLK)
->  			drm_scdc_set_high_tmds_clock_ratio(hdmi->ddc, 1);
->  		else
-> @@ -1490,7 +1490,8 @@ static int hdmi_phy_configure_dwc_hdmi_3d_tx(struct dw_hdmi *hdmi,
->  	return 0;
->  }
->  
-> -static int hdmi_phy_configure(struct dw_hdmi *hdmi)
-> +static int hdmi_phy_configure(struct dw_hdmi *hdmi,
-> +			      const struct drm_display_info *display)
->  {
->  	const struct dw_hdmi_phy_data *phy = hdmi->phy.data;
->  	const struct dw_hdmi_plat_data *pdata = hdmi->plat_data;
-> @@ -1500,7 +1501,7 @@ static int hdmi_phy_configure(struct dw_hdmi *hdmi)
->  
->  	dw_hdmi_phy_power_off(hdmi);
->  
-> -	dw_hdmi_set_high_tmds_clock_ratio(hdmi);
-> +	dw_hdmi_set_high_tmds_clock_ratio(hdmi, display);
->  
->  	/* Leave low power consumption mode by asserting SVSRET. */
->  	if (phy->has_svsret)
-> @@ -1531,6 +1532,7 @@ static int hdmi_phy_configure(struct dw_hdmi *hdmi)
->  }
->  
->  static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
-> +			    const struct drm_display_info *display,
->  			    const struct drm_display_mode *mode)
->  {
->  	int i, ret;
-> @@ -1540,7 +1542,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
->  		dw_hdmi_phy_sel_data_en_pol(hdmi, 1);
->  		dw_hdmi_phy_sel_interface_control(hdmi, 0);
->  
-> -		ret = hdmi_phy_configure(hdmi);
-> +		ret = hdmi_phy_configure(hdmi, display);
->  		if (ret)
->  			return ret;
->  	}
-> @@ -1846,10 +1848,11 @@ static void hdmi_config_drm_infoframe(struct dw_hdmi *hdmi)
->  }
->  
->  static void hdmi_av_composer(struct dw_hdmi *hdmi,
-> +			     const struct drm_display_info *display,
->  			     const struct drm_display_mode *mode)
->  {
->  	u8 inv_val, bytes;
-> -	struct drm_hdmi_info *hdmi_info = &hdmi->connector.display_info.hdmi;
-> +	const struct drm_hdmi_info *hdmi_info = &display->hdmi;
->  	struct hdmi_vmode *vmode = &hdmi->hdmi_data.video_mode;
->  	int hblank, vblank, h_de_hs, v_de_vs, hsync_len, vsync_len;
->  	unsigned int vdisplay, hdisplay;
-> @@ -1882,7 +1885,7 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
->  
->  	/* Set up HDMI_FC_INVIDCONF */
->  	inv_val = (hdmi->hdmi_data.hdcp_enable ||
-> -		   (dw_hdmi_support_scdc(hdmi) &&
-> +		   (dw_hdmi_support_scdc(hdmi, display) &&
->  		    (vmode->mtmdsclock > HDMI14_MAX_TMDSCLK ||
->  		     hdmi_info->scdc.scrambling.low_rates)) ?
->  		HDMI_FC_INVIDCONF_HDCP_KEEPOUT_ACTIVE :
-> @@ -1950,7 +1953,7 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
->  	}
->  
->  	/* Scrambling Control */
-> -	if (dw_hdmi_support_scdc(hdmi)) {
-> +	if (dw_hdmi_support_scdc(hdmi, display)) {
->  		if (vmode->mtmdsclock > HDMI14_MAX_TMDSCLK ||
->  		    hdmi_info->scdc.scrambling.low_rates) {
->  			/*
-> @@ -2116,6 +2119,7 @@ static void hdmi_disable_overflow_interrupts(struct dw_hdmi *hdmi)
->  static int dw_hdmi_setup(struct dw_hdmi *hdmi,
->  			 const struct drm_display_mode *mode)
->  {
-> +	struct drm_connector *connector = &hdmi->connector;
->  	int ret;
->  
->  	hdmi_disable_overflow_interrupts(hdmi);
-> @@ -2161,10 +2165,12 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
->  	hdmi->hdmi_data.video_mode.mdataenablepolarity = true;
->  
->  	/* HDMI Initialization Step B.1 */
-> -	hdmi_av_composer(hdmi, mode);
-> +	hdmi_av_composer(hdmi, &connector->display_info, mode);
->  
->  	/* HDMI Initializateion Step B.2 */
-> -	ret = hdmi->phy.ops->init(hdmi, hdmi->phy.data, &hdmi->previous_mode);
-> +	ret = hdmi->phy.ops->init(hdmi, hdmi->phy.data,
-> +				  &connector->display_info,
-> +				  &hdmi->previous_mode);
->  	if (ret)
->  		return ret;
->  	hdmi->phy.enabled = true;
 > diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 757c17fbb29f..15e62f327894 100644
+> index 5cc311c1b8e0..34ba94922605 100644
 > --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
 > +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -427,6 +427,7 @@ static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
->  }
->  
->  static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
-> +			    const struct drm_display_info *display,
->  			    const struct drm_display_mode *mode)
+> @@ -634,7 +634,8 @@ dw_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
+>  		   struct drm_connector *connector,
+>  		   const struct drm_display_mode *mode)
 >  {
->  	struct meson_dw_hdmi *dw_hdmi = (struct meson_dw_hdmi *)data;
-> @@ -496,7 +497,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
->  	/* Disable clock, fifo, fifo_wr */
->  	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0);
+> -	struct meson_drm *priv = connector->dev->dev_private;
+> +	struct meson_dw_hdmi *dw_hdmi = data;
+> +	struct meson_drm *priv = dw_hdmi->priv;
+>  	bool is_hdmi2_sink = connector->display_info.hdmi.scdc.supported;
+>  	unsigned int phy_freq;
+>  	unsigned int vclk_freq;
+> @@ -693,7 +694,7 @@ dw_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
+>  	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+>  		venc_freq /= 2;
 >  
-> -	dw_hdmi_set_high_tmds_clock_ratio(hdmi);
-> +	dw_hdmi_set_high_tmds_clock_ratio(hdmi, display);
+> -	dev_dbg(connector->dev->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
+> +	dev_dbg(dw_hdmi->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
+>  		__func__, phy_freq, vclk_freq, venc_freq, hdmi_freq);
 >  
->  	msleep(100);
+>  	return meson_vclk_vic_supported_freq(priv, phy_freq, vclk_freq);
+> @@ -1068,6 +1069,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
 >  
-> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> index 10e210f6455d..23de359a1dec 100644
-> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> @@ -312,6 +312,7 @@ static const struct drm_encoder_helper_funcs dw_hdmi_rockchip_encoder_helper_fun
->  };
+>  	/* Bridge / Connector */
 >  
->  static int dw_hdmi_rockchip_genphy_init(struct dw_hdmi *dw_hdmi, void *data,
-> +					const struct drm_display_info *display,
->  					const struct drm_display_mode *mode)
->  {
->  	struct rockchip_hdmi *hdmi = (struct rockchip_hdmi *)data;
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c b/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
-> index 8e078cacf063..156d00e5165b 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
-> @@ -341,6 +341,7 @@ static int sun8i_hdmi_phy_config_h3(struct dw_hdmi *hdmi,
->  }
->  
->  static int sun8i_hdmi_phy_config(struct dw_hdmi *hdmi, void *data,
-> +				 const struct drm_display_info *display,
->  				 const struct drm_display_mode *mode)
->  {
->  	struct sun8i_hdmi_phy *phy = (struct sun8i_hdmi_phy *)data;
-> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-> index f930d218cc6b..ea34ca146b82 100644
-> --- a/include/drm/bridge/dw_hdmi.h
-> +++ b/include/drm/bridge/dw_hdmi.h
-> @@ -114,6 +114,7 @@ struct dw_hdmi_phy_config {
->  
->  struct dw_hdmi_phy_ops {
->  	int (*init)(struct dw_hdmi *hdmi, void *data,
-> +		    const struct drm_display_info *display,
->  		    const struct drm_display_mode *mode);
->  	void (*disable)(struct dw_hdmi *hdmi, void *data);
->  	enum drm_connector_status (*read_hpd)(struct dw_hdmi *hdmi, void *data);
-> @@ -174,7 +175,8 @@ void dw_hdmi_set_channel_status(struct dw_hdmi *hdmi, u8 *channel_status);
->  void dw_hdmi_set_channel_allocation(struct dw_hdmi *hdmi, unsigned int ca);
->  void dw_hdmi_audio_enable(struct dw_hdmi *hdmi);
->  void dw_hdmi_audio_disable(struct dw_hdmi *hdmi);
-> -void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi);
-> +void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi,
-> +				       const struct drm_display_info *display);
->  
->  /* PHY configuration */
->  void dw_hdmi_phy_i2c_set_addr(struct dw_hdmi *hdmi, u8 address);
+> +	dw_plat_data->priv_data = meson_dw_hdmi;
+>  	dw_plat_data->mode_valid = dw_hdmi_mode_valid;
+>  	dw_plat_data->phy_ops = &meson_dw_hdmi_phy_ops;
+>  	dw_plat_data->phy_name = "meson_dw_hdmi_phy";
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
