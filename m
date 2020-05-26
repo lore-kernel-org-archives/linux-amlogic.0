@@ -1,60 +1,70 @@
-Return-Path: <SRS0=ry3l=7H=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=ok2G=7I=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CFFBC433DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 May 2020 20:18:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F0987C433DF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2020 01:16:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 34616205CB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 May 2020 20:18:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C8DE62068D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2020 01:16:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rRd2Nese"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 34616205CB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ucw.cz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lyXve8/w";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pkNOGtHz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C8DE62068D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=vuCJ4BUd8DWeKdcG01L9tFkNgMT8DhwWw+/ICQ4uJf0=; b=rRd2NeseGO2yIkVmPCMBmG3tC
-	5cdjU0sh4z14cvSd+C84hd+3Iub9yfAZCAgmQEytHOqrqiht7u4tbHtsMCBWjBEf3PaUwPnPFOtgg
-	70SGTzJyiNbxPysYfpApY+pknUWFGal+YgJcHjpVy/MdXoPpVwhbW7v/ZUHO9jrBFM+KhYKCBK78M
-	lcyy0LDgN+eeQF+mVyePVGSArQhaAGmD5bvoM8UyB4CbTIrl7GCPQJFkWjnm+SMn/jv2ACgtgv3Yo
-	DwG7mExjB5KdBMc0iMRDr+5TlIbCZFgaq/ivdGraoaYfPj4dNmg9WZq1pU8CAaGWox10ThX6wpR0G
-	5eeI/4njg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=aRRvSAdv6YAanCBsadXn4JvABjn086yaFOdRbT3K7Vs=; b=lyXve8/wkk5NPZ
+	gonpSpx4IfI9oFRuxFNpOulM/GOfXCmG/2q3LGizaprQMTSIqL3yFM4q4qGGCMh4MFImpLZbL+H2M
+	14TNB5lQ8FOEkH0aK8GeelxZnoTxngKMahzMJ2yjXHrFq+Pz3JGCsvKS//G1u6WcymRQDTZmAGfNM
+	cNyiULwGFsZakX6+OwG8GA10vai9zNFpM8uABnJR+8y7TbAllf7YJq6N8aLx14X8QkG+jZHSn0uGL
+	4gVM7FZubqu3kPHbi3GplC9POjpDyh7/91jjMDa4/CCWFqLkAEBoO8n+XL08WGJ0FOexU59z1TRzz
+	dYM18rbhsQJvvYxVjp5w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jdJXl-0006T6-Mg; Mon, 25 May 2020 20:17:53 +0000
-Received: from jabberwock.ucw.cz ([46.255.230.98])
+	id 1jdOCB-0007yh-4h; Tue, 26 May 2020 01:15:55 +0000
+Received: from perceval.ideasonboard.com
+ ([2001:4b98:dc2:55:216:3eff:fef7:d647])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jdJXi-0006SW-DU; Mon, 25 May 2020 20:17:52 +0000
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id D8C551C02CC; Mon, 25 May 2020 22:17:46 +0200 (CEST)
-Date: Mon, 25 May 2020 22:17:46 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v3 1/8] dt-bindings: net: meson-dwmac: Add the
- amlogic,rx-delay-ns property
-Message-ID: <20200525201746.GA5528@duo.ucw.cz>
-References: <20200512211103.530674-1-martin.blumenstingl@googlemail.com>
- <20200512211103.530674-2-martin.blumenstingl@googlemail.com>
- <20200524212843.GF1192@bug>
- <d3f596d7-fb7f-5da7-4406-b5c0e9e9dc3f@gmail.com>
- <20200525090718.GB16796@amd> <20200525135728.GE752669@lunn.ch>
+ id 1jdOC4-0007t9-SN
+ for linux-amlogic@lists.infradead.org; Tue, 26 May 2020 01:15:50 +0000
+Received: from pendragon.bb.dnainternet.fi (81-175-216-236.bb.dnainternet.fi
+ [81.175.216.236])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4874CE28;
+ Tue, 26 May 2020 03:15:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1590455743;
+ bh=Onc2Aey+F57jx6Zo7KZGar40NeL9Xogccx5D+2gUZV4=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=pkNOGtHzgrbqla4CYKmxH2RHAGf57zaKp+031f5qvVErC6JJd28LHH0D8kXZC4ts0
+ rxS322WcAh2zuAtW9DVviD/d4UXjp8ljqcx9SmzXfoHsnSFxOxEyx+tKQedd1LwFJ6
+ KeVcflfhaDEPa7l7IE+AyWHhH/knBSDX9hRiwhWA=
+From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH 16/27] drm: bridge: dw-hdmi: Constify mode argument to
+ dw_hdmi_phy_ops .init()
+Date: Tue, 26 May 2020 04:14:54 +0300
+Message-Id: <20200526011505.31884-17-laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200526011505.31884-1-laurent.pinchart+renesas@ideasonboard.com>
+References: <20200526011505.31884-1-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
-In-Reply-To: <20200525135728.GE752669@lunn.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200525_131750_610339_136FB684 
-X-CRM114-Status: GOOD (  10.49  )
+X-CRM114-CacheID: sfid-20200525_181549_062179_BD720E0D 
+X-CRM114-Status: UNSURE (   9.12  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,76 +76,112 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
- jianxin.pan@amlogic.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- linux-amlogic@lists.infradead.org, davem@davemloft.net,
- linux-arm-kernel@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============6607752021804685181=="
+Cc: Jernej Skrabec <jernej.skrabec@siol.net>,
+ =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Neil Armstrong <narmstrong@baylibre.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Maxime Ripard <mripard@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ linux-renesas-soc@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>,
+ Chen-Yu Tsai <wens@csie.org>, linux-amlogic@lists.infradead.org,
+ Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+The PHY .init() must not modify the mode it receives. Make the pointer
+const to enfore that.
 
---===============6607752021804685181==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="bp/iNruPH9dso1Pn"
-Content-Disposition: inline
+Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c   | 2 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c       | 4 ++--
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 2 +-
+ drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c      | 2 +-
+ include/drm/bridge/dw_hdmi.h                | 2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index 23650e69604c..6e6a3d95e68e 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -1531,7 +1531,7 @@ static int hdmi_phy_configure(struct dw_hdmi *hdmi)
+ }
+ 
+ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+-			    struct drm_display_mode *mode)
++			    const struct drm_display_mode *mode)
+ {
+ 	int i, ret;
+ 
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index 71d599970ec7..757c17fbb29f 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -297,7 +297,7 @@ static inline void dw_hdmi_dwc_write_bits(struct meson_dw_hdmi *dw_hdmi,
+ 
+ /* Setup PHY bandwidth modes */
+ static void meson_hdmi_phy_setup_mode(struct meson_dw_hdmi *dw_hdmi,
+-				      struct drm_display_mode *mode)
++				      const struct drm_display_mode *mode)
+ {
+ 	struct meson_drm *priv = dw_hdmi->priv;
+ 	unsigned int pixel_clock = mode->clock;
+@@ -427,7 +427,7 @@ static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
+ }
+ 
+ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+-			    struct drm_display_mode *mode)
++			    const struct drm_display_mode *mode)
+ {
+ 	struct meson_dw_hdmi *dw_hdmi = (struct meson_dw_hdmi *)data;
+ 	struct meson_drm *priv = dw_hdmi->priv;
+diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+index d286751bb333..10e210f6455d 100644
+--- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+@@ -312,7 +312,7 @@ static const struct drm_encoder_helper_funcs dw_hdmi_rockchip_encoder_helper_fun
+ };
+ 
+ static int dw_hdmi_rockchip_genphy_init(struct dw_hdmi *dw_hdmi, void *data,
+-			     struct drm_display_mode *mode)
++					const struct drm_display_mode *mode)
+ {
+ 	struct rockchip_hdmi *hdmi = (struct rockchip_hdmi *)data;
+ 
+diff --git a/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c b/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
+index 43643ad31730..8e078cacf063 100644
+--- a/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
++++ b/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
+@@ -341,7 +341,7 @@ static int sun8i_hdmi_phy_config_h3(struct dw_hdmi *hdmi,
+ }
+ 
+ static int sun8i_hdmi_phy_config(struct dw_hdmi *hdmi, void *data,
+-				 struct drm_display_mode *mode)
++				 const struct drm_display_mode *mode)
+ {
+ 	struct sun8i_hdmi_phy *phy = (struct sun8i_hdmi_phy *)data;
+ 	u32 val = 0;
+diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+index fec293b21c2e..f930d218cc6b 100644
+--- a/include/drm/bridge/dw_hdmi.h
++++ b/include/drm/bridge/dw_hdmi.h
+@@ -114,7 +114,7 @@ struct dw_hdmi_phy_config {
+ 
+ struct dw_hdmi_phy_ops {
+ 	int (*init)(struct dw_hdmi *hdmi, void *data,
+-		    struct drm_display_mode *mode);
++		    const struct drm_display_mode *mode);
+ 	void (*disable)(struct dw_hdmi *hdmi, void *data);
+ 	enum drm_connector_status (*read_hpd)(struct dw_hdmi *hdmi, void *data);
+ 	void (*update_hpd)(struct dw_hdmi *hdmi, void *data,
+-- 
+Regards,
 
---bp/iNruPH9dso1Pn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Laurent Pinchart
 
-On Mon 2020-05-25 15:57:28, Andrew Lunn wrote:
-> > > standardizing on rx-delay-ps and tx-delay-ps would make sense since t=
-hat
-> > > is the lowest resolution and the property would be correctly named wi=
-th
-> > > an unit in the name.
-> >=20
-> > Seems like similar patch is already being reviewed from Dan Murphy (?)
-> > from TI.
->=20
-> Dan is working on the PHY side. But there is probably code which can
-> be shared.
->=20
-> One question to consider, do we want the same properties names for MAC
-> and PHY, or do we want to make them different, to avoid confusion?
-
-We have same properties accross different hardware (compatible, reg),
-so same property between MAC and PHY seems to make sense.
-
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---bp/iNruPH9dso1Pn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXswn6gAKCRAw5/Bqldv6
-8i7zAJ4jCAV144tVxiIyf3sNBn1JDz7j+QCgvR80vjeIJZeqGeR77nVrZk4D4ck=
-=JqOQ
------END PGP SIGNATURE-----
-
---bp/iNruPH9dso1Pn--
-
-
---===============6607752021804685181==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6607752021804685181==--
-
