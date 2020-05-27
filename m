@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BD812C433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 May 2020 07:54:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73960C433DF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 May 2020 08:17:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9025E20C56
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 May 2020 07:54:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3CF0F20EDD
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 May 2020 08:17:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KFplAXPT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="uP8qKtET"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9025E20C56
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Vl21HpUl";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YgVqEsnH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3CF0F20EDD
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,62 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=r8lktPNaYZydUaZrK3LBVukapsjGP1Ps6GHvPiiKd7Y=; b=KFplAXPTqkN2mw
-	3pSnMJQyQj4b6EdCwQYtMbst/068Z7N93Q0xcSrso2EjhHOYmSufK1tCmlhrUr8n3Xfm+X3y2JyiI
-	bOScJG0ZElRu2a5quJaV5UEWoGUXOyNHsHTwpjmjxv5wLAKBooVQPe64zNrR2xL7Iomw4CCL2Ukql
-	vOvymyAL9FLyyRL61OvigE+UBGNyahx0ddRSu0Ph41xVgMgDy2fSoudd5dAx/I+YGSuGWHx6+TB6w
-	TpgS0XUr2cDgRSqAunGkMEbfHnzOsf5/o8RrnwqiumuLHtgtlqaySxq1ZV8nP6Fry6m2yarxT3zt5
-	3t+xEMYDqyKe+qpWIOcQ==;
+	List-Owner; bh=+7OY98/RULM3Pz20uem2pMx7OgchqeinhJxoKmrKYOo=; b=Vl21HpUlcwPl3Z
+	oK+ZQyF901FP6+SKjG3mdF+CZ54kACl1+H3VU1GTBTb3xkVZVNGv14Vlhx62aOKM9mi/RZvKsLuvd
+	r5iEIQiojGt1fIwUtdVBM0CstHKA8DvQ7ar4XK+dSboAeKfHHjK1MsNOu7KnXVN8F4suRKYWoCQzl
+	dZ0PXOJZ3h4fQ9XefSynRRdPdsHIJRP3rJ3a5g1NU2QCUh6jPMFgdVT9kksnMdQGdwPn9YSIYovcU
+	mttd0QdktMOmWftZT/ek13ZXBbD7rjECEdlhHiwXdkXFdYlg5m2aKS9zrb3oJlFOwffanf+Wd+aiU
+	36k4S1iwOv+bUfzBikPA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jdqsq-0006kn-9w; Wed, 27 May 2020 07:53:52 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1jdrG1-0006Qu-Ge; Wed, 27 May 2020 08:17:49 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jdqsc-0006Zd-1e
- for linux-amlogic@lists.infradead.org; Wed, 27 May 2020 07:53:39 +0000
-Received: by mail-wr1-x444.google.com with SMTP id x14so17635590wrp.2
- for <linux-amlogic@lists.infradead.org>; Wed, 27 May 2020 00:53:37 -0700 (PDT)
+ id 1jdrFo-0006Ho-NQ
+ for linux-amlogic@lists.infradead.org; Wed, 27 May 2020 08:17:38 +0000
+Received: by mail-wm1-x343.google.com with SMTP id u188so2141363wmu.1
+ for <linux-amlogic@lists.infradead.org>; Wed, 27 May 2020 01:17:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=0uXOIK76KSs40fnk/nPthqtyEhJ+m0Y/dYNUNGL8EzA=;
- b=uP8qKtET22Dmlqb49Ul3D8lgyOk3haU2hVybPhJrVAT+QAKmCAEAJiW4D4nVp2oZTD
- 6WLECOGS8MI6Kwn2DGqMxOiNzWi2czeFM+i9AGQwj16db/QBtfsa9dpJzFACABMbcQ+b
- zyYGLY2fFy5wwzqiyYUIASb+e50kPYF5QuG4yhw650XBCB/pij/D6NjL1C+bHe7SU1b6
- S86iNSeSI8DgwNc6n5sCwvUrW4LCBbRJCq8khWPXTqhs8MXoew9yGdcwEl7jSyxA9pGf
- wLzeMCJSyefqqDZbaxMJ9it+bKJt6pf9Z9ZJCjXQpQ++UOQPEuLgqhUaLve9dcfTRERm
- XGvA==
+ bh=zQPsUVCqNfzFIU8v+ZDf1R9blbjp1zF0pTEs4sFWhWU=;
+ b=YgVqEsnHHZp93t+SQ2Ae73TGpl85Q6L1tDROvs8Tobv4eKCAT6IccsQt9lTRvQbuxT
+ O6gRYjdUeWehx0AhZ3hloWHfGclDcE6lRxvAxSjFiM/u5tuFFkqPHi6VvC4idg/peWJJ
+ PXmxtXbc2FPfb2G9YJnwd9blYMCKwXce1c3qDOE8qUunH9ZMXoFKSgzzxJEIWwhdX8HI
+ LJK2hTqGT1GbT0D+R5KLVgVnjZwCzVPGSOToiINSZojZ5Y8yqparHQ4hIa0LpHq4Be5M
+ Htj/D/oSFAmmNjpiQS6cjzqkIgLwn/QLo938SrxL9OxivAv4pqjJF7IbiEVfjtRQE9x+
+ d0aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=0uXOIK76KSs40fnk/nPthqtyEhJ+m0Y/dYNUNGL8EzA=;
- b=huI3iakUCKCH2/mozZYzfrte+CVI7ETuyvryMWyhKovMDlTe7xB8xd78RF9U7+ooki
- Q4lgXv3UerIfHoXNStq/KEySLZV1BWZ210Ln8bDKi+lgEH9fsJDp1qZ4/cuBvmSkrVTU
- x/NeSsEf79h33fWTY6664NlMU81XR9AZhhcnwrcSXeRo8eTWHXUVN9EkMagIt0D5zkFY
- O3pSUEPhI096VHx7LDPam2uGzGwVs5ZcY7dIK7N5yI4hYbjOuH0bQz0Y5gftDucTetW+
- 5P/zoR2+PYx0oHBaAvQelGpp7ELiQuTWAp0g57i3sVHEHkWo6uK0744bgTOomGd4JH0Y
- A0Zg==
-X-Gm-Message-State: AOAM5315Ow8k+En1FIf78gDZMLdUdzc0rLfBXWds73kfH853cqnmLoBZ
- q5EXLkY9VyewiOuxsp5zTenVqA==
-X-Google-Smtp-Source: ABdhPJxn28gk0kw3P6BCtiNPU+2IYx7W2LVb8NiQ4cjXVBUay1OBUQ0UwOCoSCQYZXQYFDKE+dooOg==
-X-Received: by 2002:a5d:4701:: with SMTP id y1mr78311wrq.310.1590566016324;
- Wed, 27 May 2020 00:53:36 -0700 (PDT)
+ bh=zQPsUVCqNfzFIU8v+ZDf1R9blbjp1zF0pTEs4sFWhWU=;
+ b=Ou7WUdm0Yvgi104ansCSGSmdbeeSlPGfYa4r7aixo/X5p0PzNE28mildG0rc6ATOwn
+ j05I6eKpJXggUzW/hFw4yrtHA0V29W63zQm0Sx1TZ8VbBVBUs7a85uhTFqPqsTTHsyh+
+ /NLLeciqEYXwmWFED3w62+BY2g+dpWSS2PnkwaX4giI1KQanH5Ea3QlEeDzu2Fp3cr3t
+ 2o+TQZMLTscWJ9dHIm6Exnnja1W73S+QFcVS1lt2M3yJ29zrGmtdlDG+rErCrz1jUAs/
+ QarLKGh4TXqUbvKGlfka6uPmyEwDrpXp0z8EizWE7rjRoPzWoYAuEDHhXi9StCGzNSgA
+ oQiw==
+X-Gm-Message-State: AOAM530at54cFKFpTOSY9RqFtySAOIGY20v2Gl3Q/2fnZnLPBppJFhdG
+ xu+lPgmU1JuZWpwEPykJsDz+nQ==
+X-Google-Smtp-Source: ABdhPJx8wptAoFsnZYW04E1TTKd7bYnndpnmEkPYZcaM4kED49FKX+cqXxfItLqmi7vSzsFcR5xCkA==
+X-Received: by 2002:a1c:64c1:: with SMTP id y184mr3055622wmb.175.1590567453814; 
+ Wed, 27 May 2020 01:17:33 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:acf8:18a8:b3a5:a17b?
  ([2a01:e35:2ec0:82b0:acf8:18a8:b3a5:a17b])
- by smtp.gmail.com with ESMTPSA id w15sm1959515wmi.35.2020.05.27.00.53.34
+ by smtp.gmail.com with ESMTPSA id t14sm2165032wrb.94.2020.05.27.01.17.32
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 27 May 2020 00:53:35 -0700 (PDT)
-Subject: Re: [PATCH for-5.8 1/2] usb: dwc3: meson-g12a: fix error path when
- fetching the reset line fails
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
- linux-amlogic@lists.infradead.org
+ Wed, 27 May 2020 01:17:33 -0700 (PDT)
+Subject: Re: [PATCH for-5.8 2/2] usb: dwc3: meson-g12a: fix USB2 PHY
+ initialization on G12A and A1 SoCs
+To: balbi@kernel.org, gregkh@linuxfoundation.org
 References: <20200526202943.715220-1-martin.blumenstingl@googlemail.com>
- <20200526202943.715220-2-martin.blumenstingl@googlemail.com>
+ <20200526202943.715220-3-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -133,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <f4428633-4a7b-226d-d7df-0a43efb9d6ec@baylibre.com>
-Date: Wed, 27 May 2020 09:53:34 +0200
+Message-ID: <40a874eb-1a2b-533e-ee3e-bd90510abaf9@baylibre.com>
+Date: Wed, 27 May 2020 10:17:31 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200526202943.715220-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200526202943.715220-3-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200527_005338_085910_8745C348 
-X-CRM114-Status: GOOD (  15.93  )
+X-CRM114-CacheID: sfid-20200527_011736_772915_96B4A969 
+X-CRM114-Status: GOOD (  13.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,42 +152,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: hanjie.lin@amlogic.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, yue.wang@amlogic.com
+Cc: hanjie.lin@amlogic.com, "kernelci.org bot" <bot@kernelci.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, yue.wang@amlogic.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Martin,
+
 On 26/05/2020 22:29, Martin Blumenstingl wrote:
-> Disable and unprepare the clocks when devm_reset_control_get_shared()
-> fails. This fixes the error path as this must disable the clocks which
-> were previously enabled.
+> dwc3_meson_g12a_usb2_init_phy() crashes with NULL pointer on an SM1
+> board (which uses the same USB setup as G12A) dereference as reported
+> by the Kernel CI bot. This is because of the following call flow:
+>   dwc3_meson_g12a_probe
+>     priv->drvdata->setup_regmaps
+>       dwc3_meson_g12a_setup_regmaps
+>         priv->usb2_ports is still 0 so priv->u2p_regmap[i] will be NULL
+>     dwc3_meson_g12a_get_phys
+>       initializes priv->usb2_ports
+>     priv->drvdata->usb_init
+>       dwc3_meson_g12a_usb_init
+>         dwc3_meson_g12a_usb_init_glue
+>           dwc3_meson_g12a_usb2_init
+>             priv->drvdata->usb2_init_phy
+>               dwc3_meson_g12a_usb2_init_phy
+>                 dereferences priv->u2p_regmap[i]
 > 
-> Fixes: 1e355f21d3fb96 ("usb: dwc3: Add Amlogic A1 DWC3 glue")
-> Cc: Yue Wang <yue.wang@amlogic.com>
-> Cc: Hanjie Lin <hanjie.lin@amlogic.com>
+> Call priv->drvdata->setup_regmaps only after dwc3_meson_g12a_get_phys so
+> priv->usb2_ports is initialized and the regmaps will be set up
+> correctly. This fixes the NULL dereference later on.
+> 
+> Fixes: 013af227f58a97 ("usb: dwc3: meson-g12a: handle the phy and glue registers separately")
+> Reported-by: "kernelci.org bot" <bot@kernelci.org>
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  drivers/usb/dwc3/dwc3-meson-g12a.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/usb/dwc3/dwc3-meson-g12a.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
 > diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> index bd744e82cad4..ce5388338389 100644
+> index ce5388338389..1f7f4d88ed9d 100644
 > --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
 > +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> @@ -738,7 +738,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->  	if (IS_ERR(priv->reset)) {
->  		ret = PTR_ERR(priv->reset);
->  		dev_err(dev, "failed to get device reset, err=%d\n", ret);
-> -		return ret;
-> +		goto err_disable_clks;
->  	}
->  
->  	ret = reset_control_reset(priv->reset);
-> 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+[...]
+
+Fixes regression reported at [1] on SEI510 board based on Amlogic G12A.
+
+Felipe, Greg, can this be queued on uxb-next for 5.8 ?
+
+Acked-by: Neil Armstrong <narmstron@baylibre.com>
+
+Thanks,
+Neil
+
+[1] http://lore.kernel.org/r/ffe2c64c-62ed-9b59-3754-7ede0f0203be@collabora.com
 
 _______________________________________________
 linux-amlogic mailing list
