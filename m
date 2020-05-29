@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15E3EC433E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 May 2020 15:20:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B059C433E0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 May 2020 15:21:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DFBB02073B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 May 2020 15:20:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 18B6B206A4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 May 2020 15:21:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="epOSL/xZ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="INoEBYRJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DFBB02073B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="unnJ4io7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jA1h+nlG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 18B6B206A4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gurO5cekFcj6KMA0lsZXqxa3v9Jp/NXMbyLXMJRf+z0=; b=epOSL/xZpXuGPm
-	1wm3iSd4V5F4jVuM44JJ2Ky5MYHNxyXrKkHDX5xGlRoxij5tTmLk8L56K6Z5JrpBfz0U0p1rXRTry
-	LEMVSbsoXDRhc0flVcmZ4mvFczOVpTjeAJApEPom6w7InF4XyOXzEe1Tx3VtVleM8BGdoEWG6wLaR
-	sl+jfNfBWm5BIqdaynAFY4SAy6+uXZvjEkt3f2cH+Hz376O5pR0+QCNWea3DrwDk5FmhYnH0bZg8Y
-	E6qIfPxpl37mKX0Ulxrb+6DBqkbPquDuuaqAVkMKqYAk+UDeAW7qJTh5Wj1IZWWyPyuT2hU8oVbuS
-	4pn9wNyUEpcdOvvD9wVA==;
+	List-Owner; bh=NmuHHVAKLixbIy4qkB1mghBfmBn8qsnRwvNzWVTmiCU=; b=unnJ4io7ynyiaL
+	thIZGL0JRecVoeZwQN4cISmNLN6UZrrdKwnz2nqypQrLXdsvoiF6Ww+MT/Kh25HSUNOns99IJgx+n
+	x1d/8knfpG/iISg6sDZh1R2vLgMBIGwSPXHMsz3oF4uFGHKGDt0GbMzPqpzAubXtk3g5GVLMLwh+O
+	a9jwbxr7VgdWmwjXvaxX/MEDetZMApaJYV58jk/ZqOZy1myuPantmAB4uUZkBVwshZi1Y7sw4udHM
+	nZCPGsuGveKzjjOtPmMMMmIjkohtImK2SbLBfEY5MwqkmapGdOVIIeC4wOyyib1l2WSE6XsxNlMtq
+	bwfUYopEp3YBdYbETjiQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jegoE-0000Oj-Ta; Fri, 29 May 2020 15:20:34 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1jegop-0000wX-At; Fri, 29 May 2020 15:21:11 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jegnP-0005me-0v
- for linux-amlogic@lists.infradead.org; Fri, 29 May 2020 15:19:46 +0000
-Received: by mail-wr1-x444.google.com with SMTP id e1so4100354wrt.5
- for <linux-amlogic@lists.infradead.org>; Fri, 29 May 2020 08:19:42 -0700 (PDT)
+ id 1jegnS-0005oX-P3
+ for linux-amlogic@lists.infradead.org; Fri, 29 May 2020 15:19:50 +0000
+Received: by mail-wr1-x441.google.com with SMTP id s8so4033690wrt.9
+ for <linux-amlogic@lists.infradead.org>; Fri, 29 May 2020 08:19:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=sXSSwzUY45Tzam9RmLSgT3NUjnL8G0U3TkqO4f30tyg=;
- b=INoEBYRJKiMBcRrdZ3KCtef6ctCTf7ko+wPETDhQXfSBRDUtY3RmXq6uLNHQOOGOHE
- FDvV+0mztVlS32ktvbFoWLb+GHgr1Oval/z31sxOUsIxyo/Ieeer2W2G+/kQ9OnoT4bj
- As57P/V55olt1ZRAz3QKnJrwBZ3e0/OD8RS2x8Vfn3jHJYUQ2rsuZSx3vMA/lkqOG81L
- sbypwrtsGnrL3ikncYB6OtFX8OIK4ycgQHzxQzkZzNHPnBnVEPYv3Vr2JAQPpJ0emVXp
- JKQ+ZTGHN4KfR50TQy8zAnP3GAS3aTl7Wbq9yCjX2L5h0SMr//ex24uLLtyeIqMWKZJf
- YCdQ==
+ bh=2uj1k6P94oWmmkd1GVJik2KLOcluOM/TgEUDw7s+yUY=;
+ b=jA1h+nlGW8rI7JqXseRkDcUOGFHo8rj9RLI2VJrVIdPFjRQBvUWFfZaS9UsUms/8Zm
+ plkSxQe3gMAspNsW+9MZhf1PwtrfoYjtOwZg2tdwQ94m1TQ/z8T3izTbTQPIOoMBBkhJ
+ Z3KHGATVPZmwyl7Tdf5zg3iEsasUH6Ewb1RfQdMaBJJGenOtwh6Cg/R4ZmmY1zSv+4sN
+ +EP/Q5tFMENNpsJPB0k56kKvCOn8id/FD5vGbLihqz9vTp/GdAcffZ3uDZNz3EmXmp8/
+ zrdvMdbgHrk12DAma63ubBjGsEV3MXkBlDNfaKW0rcFdC7wURpogqMMLUvS66AvRUpnN
+ 1xbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=sXSSwzUY45Tzam9RmLSgT3NUjnL8G0U3TkqO4f30tyg=;
- b=dteAmcWPoCaiQ6xMHNwWon3O40T3zDmjrDWW0Xet+KGsF9/EuVQqat+Q7116TgZGyW
- 2EAH9ruUiBm6iGvOfV2RIFsOL4G+D7gX/wUtOLf2yNnsBdGiRgV9PBOsY0QuvXXpr8aa
- PRip+ath1npd0OOhPxqDZheZ87aK9pjELzsDtbMgIdnAOwgky6tjKJG9cYpjTYpuKu6k
- Q7vsv4xghlpX0tGNm33E/AibLiDG3sL/7f27zXRqKUDwB4EOBopwLDL7qGeOhBuHD6nz
- 2rj8wf2HuYlzoSEnyzX+nCpNdWQgfZTXYyUnDCslgIrh4gTfoZO7JKB/KTr4U1w3CMrw
- 8G2A==
-X-Gm-Message-State: AOAM532gGF1UHIsA4LrIOnZbriHHaXMcfNMoIyv8WYyDbUeO2pDz03Km
- UcuRNzL2CLKY6k+7YT4U1zwaGg==
-X-Google-Smtp-Source: ABdhPJwqvnJnWqhwVAesxwkNMVAizdqs1uKuIvd8jRacJUioeNcvwATRrxSWsQE1u6j+Mw/1JkaekA==
-X-Received: by 2002:adf:dfcf:: with SMTP id q15mr8920904wrn.373.1590765581283; 
- Fri, 29 May 2020 08:19:41 -0700 (PDT)
+ bh=2uj1k6P94oWmmkd1GVJik2KLOcluOM/TgEUDw7s+yUY=;
+ b=pADDfbLV02Myo4/7ojQ/HWtKc5AGTEmF+cIrU0NhQNLLiBKrpg0qdcXbMlqlT8jcoE
+ ipPh4elGb3UB70njIEYPH0ruImzV+g7M5W/qza7oVRy4K1ZGQnTuNOo/htzgMXPvn2mt
+ S0ebiIVDbWw2NptTVNf9IpCIvL68jeSraLBneCbXqYtE59i0iVp1cKb4npBCQmYv/W6X
+ u9zZGVvebGdXeeNqB5NpAAvwTlqRjVUy3jbb7EXU+jpY1RPyjErOSnHnrxNHUnQZ/cfy
+ fEcL9d3P1LhFpIvhKvYEL5guPJofjZC/TAAHl15RtYp20ZAy7F5BXayQx+0beLW3t5B8
+ Xfig==
+X-Gm-Message-State: AOAM5302mfl0K5YO83nAGaD6IALS/ZTA+JPTUdAyquo/krGUe3BzaibL
+ sr9C4wRkJ7ZDeg+5Fr9MtdIGtA==
+X-Google-Smtp-Source: ABdhPJzzvWbUKOs7Sq6gFb2D5QD7BtuJuwXm2F9GR4bbeL6xAiPr1RXawHmEj9bRSeia5FeNE+qRFg==
+X-Received: by 2002:a5d:5605:: with SMTP id l5mr8895534wrv.318.1590765585301; 
+ Fri, 29 May 2020 08:19:45 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:acf8:18a8:b3a5:a17b])
- by smtp.gmail.com with ESMTPSA id x66sm9220421wmb.40.2020.05.29.08.19.39
+ by smtp.gmail.com with ESMTPSA id x66sm9220421wmb.40.2020.05.29.08.19.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 May 2020 08:19:40 -0700 (PDT)
+ Fri, 29 May 2020 08:19:44 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: daniel@ffwll.ch,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v7 1/6] drm/fourcc: Add modifier definitions for describing
- Amlogic Video Framebuffer Compression
-Date: Fri, 29 May 2020 17:19:30 +0200
-Message-Id: <20200529151935.13418-2-narmstrong@baylibre.com>
+Subject: [PATCH v7 3/6] drm/meson: overlay: setup overlay for Amlogic FBC
+Date: Fri, 29 May 2020 17:19:32 +0200
+Message-Id: <20200529151935.13418-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200529151935.13418-1-narmstrong@baylibre.com>
 References: <20200529151935.13418-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200529_081943_065528_6B8E09CE 
-X-CRM114-Status: GOOD (  13.29  )
+X-CRM114-CacheID: sfid-20200529_081946_942601_BEB66D7E 
+X-CRM114-Status: GOOD (  17.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,138 +104,415 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic uses a proprietary lossless image compression protocol and format
-for their hardware video codec accelerators, either video decoders or
-video input encoders.
+Setup the Amlogic FBC decoder for the VD1 video overlay plane.
 
-It considerably reduces memory bandwidth while writing and reading
-frames in memory.
+The VD1 Amlogic FBC decoder is integrated in the pipeline like the
+YUV pixel reading/formatter but used a direct memory address instead.
 
-The underlying storage is considered to be 3 components, 8bit or 10-bit
-per component, YCbCr 420, single plane :
-- DRM_FORMAT_YUV420_8BIT
-- DRM_FORMAT_YUV420_10BIT
-
-This modifier will be notably added to DMA-BUF frames imported from the V4L2
-Amlogic VDEC decoder.
-
-This introduces the basic layout composed of:
-- a body content organized in 64x32 superblocks with 4096 bytes per
-  superblock in default mode.
-- a 32 bytes per 128x64 header block
-
-This layout is tranferrable between Amlogic SoCs supporting this modifier.
-
-The Memory Saving option exist changing the layout superblock size to save memory when
-using 8bit components pixels size.
-
-Finally is also adds the Scatter Memory layout, meaning the header contains IOMMU
-references to the compressed frames content to optimize memory access
-and layout.
-
-In this mode, only the header memory address is needed, thus the content
-memory organization is tied to the current producer execution and cannot
-be saved/dumped neither transferrable between Amlogic SoCs supporting this
-modifier.
+This adds support for the basic layout, and needs to calculate the content
+body size since the header is allocated after.
 
 Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- include/uapi/drm/drm_fourcc.h | 74 +++++++++++++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+ drivers/gpu/drm/meson/meson_drv.h     |  16 ++
+ drivers/gpu/drm/meson/meson_overlay.c | 252 +++++++++++++++++++++++++-
+ 2 files changed, 260 insertions(+), 8 deletions(-)
 
-diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-index 9e488d10f8b4..f7692fa2d32d 100644
---- a/include/uapi/drm/drm_fourcc.h
-+++ b/include/uapi/drm/drm_fourcc.h
-@@ -309,6 +309,7 @@ extern "C" {
- #define DRM_FORMAT_MOD_VENDOR_BROADCOM 0x07
- #define DRM_FORMAT_MOD_VENDOR_ARM     0x08
- #define DRM_FORMAT_MOD_VENDOR_ALLWINNER 0x09
-+#define DRM_FORMAT_MOD_VENDOR_AMLOGIC 0x0a
+diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+index 5b23704a80d6..177dac3ca3be 100644
+--- a/drivers/gpu/drm/meson/meson_drv.h
++++ b/drivers/gpu/drm/meson/meson_drv.h
+@@ -86,6 +86,7 @@ struct meson_drm {
  
- /* add more to the end as needed */
- 
-@@ -810,6 +811,79 @@ extern "C" {
+ 		bool vd1_enabled;
+ 		bool vd1_commit;
++		bool vd1_afbc;
+ 		unsigned int vd1_planes;
+ 		uint32_t vd1_if0_gen_reg;
+ 		uint32_t vd1_if0_luma_x0;
+@@ -111,6 +112,21 @@ struct meson_drm {
+ 		uint32_t vd1_height0;
+ 		uint32_t vd1_height1;
+ 		uint32_t vd1_height2;
++		uint32_t vd1_afbc_mode;
++		uint32_t vd1_afbc_en;
++		uint32_t vd1_afbc_head_addr;
++		uint32_t vd1_afbc_body_addr;
++		uint32_t vd1_afbc_conv_ctrl;
++		uint32_t vd1_afbc_dec_def_color;
++		uint32_t vd1_afbc_vd_cfmt_ctrl;
++		uint32_t vd1_afbc_vd_cfmt_w;
++		uint32_t vd1_afbc_vd_cfmt_h;
++		uint32_t vd1_afbc_mif_hor_scope;
++		uint32_t vd1_afbc_mif_ver_scope;
++		uint32_t vd1_afbc_size_out;
++		uint32_t vd1_afbc_pixel_hor_scope;
++		uint32_t vd1_afbc_pixel_ver_scope;
++		uint32_t vd1_afbc_size_in;
+ 		uint32_t vpp_pic_in_height;
+ 		uint32_t vpp_postblend_vd1_h_start_end;
+ 		uint32_t vpp_postblend_vd1_v_start_end;
+diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+index 2468b0212d52..2713d008cee8 100644
+--- a/drivers/gpu/drm/meson/meson_overlay.c
++++ b/drivers/gpu/drm/meson/meson_overlay.c
+@@ -5,6 +5,7 @@
+  * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
   */
- #define DRM_FORMAT_MOD_ALLWINNER_TILED fourcc_mod_code(ALLWINNER, 1)
  
-+/*
-+ * Amlogic Video Framebuffer Compression modifiers
-+ *
-+ * Amlogic uses a proprietary lossless image compression protocol and format
-+ * for their hardware video codec accelerators, either video decoders or
-+ * video input encoders.
-+ *
-+ * It considerably reduces memory bandwidth while writing and reading
-+ * frames in memory.
-+ *
-+ * The underlying storage is considered to be 3 components, 8bit or 10-bit
-+ * per component YCbCr 420, single plane :
-+ * - DRM_FORMAT_YUV420_8BIT
-+ * - DRM_FORMAT_YUV420_10BIT
-+ *
-+ * The first 8 bits of the mode defines the layout, then the following 8 bits
-+ * defines the options changing the layout.
-+ *
-+ * Not all combinations are valid, and different SoCs may support different
-+ * combinations of layout and options.
-+ */
-+#define __fourcc_mod_amlogic_layout_mask 0xf
-+#define __fourcc_mod_amlogic_options_shift 8
-+#define __fourcc_mod_amlogic_options_mask 0xf
++#define DEBUG
+ #include <linux/bitfield.h>
+ 
+ #include <drm/drm_atomic.h>
+@@ -76,6 +77,84 @@
+ #define VD_REGION24_START(value)	FIELD_PREP(GENMASK(11, 0), value)
+ #define VD_REGION13_END(value)		FIELD_PREP(GENMASK(27, 16), value)
+ 
++/* AFBC_ENABLE */
++#define AFBC_DEC_ENABLE			BIT(8)
++#define AFBC_FRM_START			BIT(0)
 +
-+#define DRM_FORMAT_MOD_AMLOGIC_FBC(__layout, __options) \
-+	fourcc_mod_code(AMLOGIC, \
-+			((__layout) & __fourcc_mod_amlogic_layout_mask) | \
-+			((__options) & __fourcc_mod_amlogic_options_mask \
-+			 << __fourcc_mod_amlogic_options_shift))
++/* AFBC_MODE */
++#define AFBC_HORZ_SKIP_UV(value)	FIELD_PREP(GENMASK(1, 0), value)
++#define AFBC_VERT_SKIP_UV(value)	FIELD_PREP(GENMASK(3, 2), value)
++#define AFBC_HORZ_SKIP_Y(value)		FIELD_PREP(GENMASK(5, 4), value)
++#define AFBC_VERT_SKIP_Y(value)		FIELD_PREP(GENMASK(7, 6), value)
++#define AFBC_COMPBITS_YUV(value)	FIELD_PREP(GENMASK(13, 8), value)
++#define AFBC_COMPBITS_8BIT		0
++#define AFBC_COMPBITS_10BIT		(2 | (2 << 2) | (2 << 4))
++#define AFBC_BURST_LEN(value)		FIELD_PREP(GENMASK(15, 14), value)
++#define AFBC_HOLD_LINE_NUM(value)	FIELD_PREP(GENMASK(22, 16), value)
++#define AFBC_MIF_URGENT(value)		FIELD_PREP(GENMASK(25, 24), value)
++#define AFBC_REV_MODE(value)		FIELD_PREP(GENMASK(27, 26), value)
++#define AFBC_BLK_MEM_MODE		BIT(28)
++#define AFBC_SCATTER_MODE		BIT(29)
++#define AFBC_SOFT_RESET			BIT(31)
 +
-+/* Amlogic FBC Layouts */
++/* AFBC_SIZE_IN */
++#define AFBC_HSIZE_IN(value)		FIELD_PREP(GENMASK(28, 16), value)
++#define AFBC_VSIZE_IN(value)		FIELD_PREP(GENMASK(12, 0), value)
 +
-+/*
-+ * Amlogic FBC Basic Layout
-+ *
-+ * The basic layout is composed of:
-+ * - a body content organized in 64x32 superblocks with 4096 bytes per
-+ *   superblock in default mode.
-+ * - a 32 bytes per 128x64 header block
-+ *
-+ * This layout is transferrable between Amlogic SoCs supporting this modifier.
-+ */
-+#define AMLOGIC_FBC_LAYOUT_BASIC		(1ULL)
++/* AFBC_DEC_DEF_COLOR */
++#define AFBC_DEF_COLOR_Y(value)		FIELD_PREP(GENMASK(29, 20), value)
++#define AFBC_DEF_COLOR_U(value)		FIELD_PREP(GENMASK(19, 10), value)
++#define AFBC_DEF_COLOR_V(value)		FIELD_PREP(GENMASK(9, 0), value)
 +
-+/*
-+ * Amlogic FBC Scatter Memory layout
-+ *
-+ * Indicates the header contains IOMMU references to the compressed
-+ * frames content to optimize memory access and layout.
-+ *
-+ * In this mode, only the header memory address is needed, thus the
-+ * content memory organization is tied to the current producer
-+ * execution and cannot be saved/dumped neither transferrable between
-+ * Amlogic SoCs supporting this modifier.
-+ */
-+#define AMLOGIC_FBC_LAYOUT_SCATTER		(2ULL)
++/* AFBC_CONV_CTRL */
++#define AFBC_CONV_LBUF_LEN(value)	FIELD_PREP(GENMASK(11, 0), value)
 +
-+/* Amlogic FBC Layout Options Bit Mask */
++/* AFBC_LBUF_DEPTH */
++#define AFBC_DEC_LBUF_DEPTH(value)	FIELD_PREP(GENMASK(27, 16), value)
++#define AFBC_MIF_LBUF_DEPTH(value)	FIELD_PREP(GENMASK(11, 0), value)
 +
-+/*
-+ * Amlogic FBC Memory Saving mode
-+ *
-+ * Indicates the storage is packed when pixel size is multiple of word
-+ * boudaries, i.e. 8bit should be stored in this mode to save allocation
-+ * memory.
-+ *
-+ * This mode reduces body layout to 3072 bytes per 64x32 superblock with
-+ * the basic layout and 3200 bytes per 64x32 superblock combined with
-+ * the scatter layout.
-+ */
-+#define AMLOGIC_FBC_OPTION_MEM_SAVING		(1ULL << 0)
++/* AFBC_OUT_XSCOPE/AFBC_SIZE_OUT */
++#define AFBC_HSIZE_OUT(value)		FIELD_PREP(GENMASK(28, 16), value)
++#define AFBC_VSIZE_OUT(value)		FIELD_PREP(GENMASK(12, 0), value)
++#define AFBC_OUT_HORZ_BGN(value)	FIELD_PREP(GENMASK(28, 16), value)
++#define AFBC_OUT_HORZ_END(value)	FIELD_PREP(GENMASK(12, 0), value)
 +
- #if defined(__cplusplus)
- }
- #endif
++/* AFBC_OUT_YSCOPE */
++#define AFBC_OUT_VERT_BGN(value)	FIELD_PREP(GENMASK(28, 16), value)
++#define AFBC_OUT_VERT_END(value)	FIELD_PREP(GENMASK(12, 0), value)
++
++/* AFBC_VD_CFMT_CTRL */
++#define AFBC_HORZ_RPT_PIXEL0		BIT(23)
++#define AFBC_HORZ_Y_C_RATIO(value)	FIELD_PREP(GENMASK(22, 21), value)
++#define AFBC_HORZ_FMT_EN		BIT(20)
++#define AFBC_VERT_RPT_LINE0		BIT(16)
++#define AFBC_VERT_INITIAL_PHASE(value)	FIELD_PREP(GENMASK(11, 8), value)
++#define AFBC_VERT_PHASE_STEP(value)	FIELD_PREP(GENMASK(7, 1), value)
++#define AFBC_VERT_FMT_EN		BIT(0)
++
++/* AFBC_VD_CFMT_W */
++#define AFBC_VD_V_WIDTH(value)		FIELD_PREP(GENMASK(11, 0), value)
++#define AFBC_VD_H_WIDTH(value)		FIELD_PREP(GENMASK(27, 16), value)
++
++/* AFBC_MIF_HOR_SCOPE */
++#define AFBC_MIF_BLK_BGN_H(value)	FIELD_PREP(GENMASK(25, 16), value)
++#define AFBC_MIF_BLK_END_H(value)	FIELD_PREP(GENMASK(9, 0), value)
++
++/* AFBC_MIF_VER_SCOPE */
++#define AFBC_MIF_BLK_BGN_V(value)	FIELD_PREP(GENMASK(27, 16), value)
++#define AFBC_MIF_BLK_END_V(value)	FIELD_PREP(GENMASK(11, 0), value)
++
++/* AFBC_PIXEL_HOR_SCOPE */
++#define AFBC_DEC_PIXEL_BGN_H(value)	FIELD_PREP(GENMASK(28, 16), value)
++#define AFBC_DEC_PIXEL_END_H(value)	FIELD_PREP(GENMASK(12, 0), value)
++
++/* AFBC_PIXEL_VER_SCOPE */
++#define AFBC_DEC_PIXEL_BGN_V(value)	FIELD_PREP(GENMASK(28, 16), value)
++#define AFBC_DEC_PIXEL_END_V(value)	FIELD_PREP(GENMASK(12, 0), value)
++
++/* AFBC_VD_CFMT_H */
++#define AFBC_VD_HEIGHT(value)		FIELD_PREP(GENMASK(12, 0), value)
++
+ struct meson_overlay {
+ 	struct drm_plane base;
+ 	struct meson_drm *priv;
+@@ -157,6 +236,9 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
+ 	unsigned int ratio_x, ratio_y;
+ 	int temp_height, temp_width;
+ 	unsigned int w_in, h_in;
++	int afbc_left, afbc_right;
++	int afbc_top_src, afbc_bottom_src;
++	int afbc_top, afbc_bottom;
+ 	int temp, start, end;
+ 
+ 	if (!crtc_state) {
+@@ -169,7 +251,7 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
+ 
+ 	w_in = fixed16_to_int(state->src_w);
+ 	h_in = fixed16_to_int(state->src_h);
+-	crop_top = fixed16_to_int(state->src_x);
++	crop_top = fixed16_to_int(state->src_y);
+ 	crop_left = fixed16_to_int(state->src_x);
+ 
+ 	video_top = state->crtc_y;
+@@ -243,6 +325,14 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
+ 	DRM_DEBUG("vsc startp %d endp %d start_lines %d end_lines %d\n",
+ 		 vsc_startp, vsc_endp, vd_start_lines, vd_end_lines);
+ 
++	afbc_top = round_down(vd_start_lines, 4);
++	afbc_bottom = round_up(vd_end_lines + 1, 4);
++	afbc_top_src = 0;
++	afbc_bottom_src = round_up(h_in + 1, 4);
++
++	DRM_DEBUG("afbc top %d (src %d) bottom %d (src %d)\n",
++		  afbc_top, afbc_top_src, afbc_bottom, afbc_bottom_src);
++
+ 	/* Horizontal */
+ 
+ 	start = video_left + video_width / 2 - ((w_in << 17) / ratio_x);
+@@ -278,6 +368,16 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
+ 	DRM_DEBUG("hsc startp %d endp %d start_lines %d end_lines %d\n",
+ 		 hsc_startp, hsc_endp, hd_start_lines, hd_end_lines);
+ 
++	if (hd_start_lines > 0 || (hd_end_lines < w_in)) {
++		afbc_left = 0;
++		afbc_right = round_up(w_in, 32);
++	} else {
++		afbc_left = round_down(hd_start_lines, 32);
++		afbc_right = round_up(hd_end_lines + 1, 32);
++	}
++
++	DRM_DEBUG("afbc left %d right %d\n", afbc_left, afbc_right);
++
+ 	priv->viu.vpp_vsc_start_phase_step = ratio_y << 6;
+ 
+ 	priv->viu.vpp_vsc_ini_phase = vphase << 8;
+@@ -293,6 +393,35 @@ static void meson_overlay_setup_scaler_params(struct meson_drm *priv,
+ 			VD_H_WIDTH(hd_end_lines - hd_start_lines + 1) |
+ 			VD_V_WIDTH(hd_end_lines/2 - hd_start_lines/2 + 1);
+ 
++	priv->viu.vd1_afbc_vd_cfmt_w =
++			AFBC_VD_H_WIDTH(afbc_right - afbc_left) |
++			AFBC_VD_V_WIDTH(afbc_right / 2 - afbc_left / 2);
++
++	priv->viu.vd1_afbc_vd_cfmt_h =
++			AFBC_VD_HEIGHT((afbc_bottom - afbc_top) / 2);
++
++	priv->viu.vd1_afbc_mif_hor_scope = AFBC_MIF_BLK_BGN_H(afbc_left / 32) |
++				AFBC_MIF_BLK_END_H((afbc_right / 32) - 1);
++
++	priv->viu.vd1_afbc_mif_ver_scope = AFBC_MIF_BLK_BGN_V(afbc_top / 4) |
++				AFBC_MIF_BLK_END_H((afbc_bottom / 4) - 1);
++
++	priv->viu.vd1_afbc_size_out =
++			AFBC_HSIZE_OUT(afbc_right - afbc_left) |
++			AFBC_VSIZE_OUT(afbc_bottom - afbc_top);
++
++	priv->viu.vd1_afbc_pixel_hor_scope =
++			AFBC_DEC_PIXEL_BGN_H(hd_start_lines - afbc_left) |
++			AFBC_DEC_PIXEL_END_H(hd_end_lines - afbc_left);
++
++	priv->viu.vd1_afbc_pixel_ver_scope =
++			AFBC_DEC_PIXEL_BGN_V(vd_start_lines - afbc_top) |
++			AFBC_DEC_PIXEL_END_V(vd_end_lines - afbc_top);
++
++	priv->viu.vd1_afbc_size_in =
++				AFBC_HSIZE_IN(afbc_right - afbc_left) |
++				AFBC_VSIZE_IN(afbc_bottom_src - afbc_top_src);
++
+ 	priv->viu.vd1_if0_luma_y0 = VD_Y_START(vd_start_lines) |
+ 				    VD_Y_END(vd_end_lines);
+ 
+@@ -350,11 +479,57 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 
+ 	spin_lock_irqsave(&priv->drm->event_lock, flags);
+ 
+-	priv->viu.vd1_if0_gen_reg = VD_URGENT_CHROMA |
+-				    VD_URGENT_LUMA |
+-				    VD_HOLD_LINES(9) |
+-				    VD_CHRO_RPT_LASTL_CTRL |
+-				    VD_ENABLE;
++	if ((fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) ==
++			    DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) {
++		priv->viu.vd1_afbc = true;
++
++		priv->viu.vd1_afbc_mode = AFBC_MIF_URGENT(3) |
++					  AFBC_HOLD_LINE_NUM(8) |
++					  AFBC_BURST_LEN(2);
++
++		priv->viu.vd1_afbc_en = 0x1600 | AFBC_DEC_ENABLE;
++
++		priv->viu.vd1_afbc_conv_ctrl = AFBC_CONV_LBUF_LEN(256);
++
++		priv->viu.vd1_afbc_dec_def_color = AFBC_DEF_COLOR_Y(1023);
++
++		/* 420: horizontal / 2, vertical / 4 */
++		priv->viu.vd1_afbc_vd_cfmt_ctrl = AFBC_HORZ_RPT_PIXEL0 |
++						  AFBC_HORZ_Y_C_RATIO(1) |
++						  AFBC_HORZ_FMT_EN |
++						  AFBC_VERT_RPT_LINE0 |
++						  AFBC_VERT_INITIAL_PHASE(12) |
++						  AFBC_VERT_PHASE_STEP(8) |
++						  AFBC_VERT_FMT_EN;
++
++		switch (fb->format->format) {
++		/* AFBC Only formats */
++		case DRM_FORMAT_YUV420_10BIT:
++			priv->viu.vd1_afbc_mode |=
++				AFBC_COMPBITS_YUV(AFBC_COMPBITS_10BIT);
++			priv->viu.vd1_afbc_dec_def_color |=
++					AFBC_DEF_COLOR_U(512) |
++					AFBC_DEF_COLOR_V(512);
++			break;
++		case DRM_FORMAT_YUV420_8BIT:
++			priv->viu.vd1_afbc_dec_def_color |=
++					AFBC_DEF_COLOR_U(128) |
++					AFBC_DEF_COLOR_V(128);
++			break;
++		}
++
++		priv->viu.vd1_if0_gen_reg = 0;
++		priv->viu.vd1_if0_canvas0 = 0;
++		priv->viu.viu_vd1_fmt_ctrl = 0;
++	} else {
++		priv->viu.vd1_afbc = false;
++
++		priv->viu.vd1_if0_gen_reg = VD_URGENT_CHROMA |
++					    VD_URGENT_LUMA |
++					    VD_HOLD_LINES(9) |
++					    VD_CHRO_RPT_LASTL_CTRL |
++					    VD_ENABLE;
++	}
+ 
+ 	/* Setup scaler params */
+ 	meson_overlay_setup_scaler_params(priv, plane, interlace_mode);
+@@ -370,6 +545,7 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 	priv->viu.vd1_if0_gen_reg2 = 0;
+ 	priv->viu.viu_vd1_fmt_ctrl = 0;
+ 
++	/* None will match for AFBC Only formats */
+ 	switch (fb->format->format) {
+ 	/* TOFIX DRM_FORMAT_RGB888 should be supported */
+ 	case DRM_FORMAT_YUYV:
+@@ -488,13 +664,28 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 		priv->viu.vd1_stride0 = fb->pitches[0];
+ 		priv->viu.vd1_height0 =
+ 			drm_format_info_plane_height(fb->format,
+-						fb->height, 0);
++						     fb->height, 0);
+ 		DRM_DEBUG("plane 0 addr 0x%x stride %d height %d\n",
+ 			 priv->viu.vd1_addr0,
+ 			 priv->viu.vd1_stride0,
+ 			 priv->viu.vd1_height0);
+ 	}
+ 
++	if (priv->viu.vd1_afbc) {
++		unsigned long body_size;
++
++		/* Default mode is 4k per superblock */
++		body_size = (ALIGN(priv->viu.vd1_stride0, 64) / 64) *
++			    (ALIGN(priv->viu.vd1_height0, 32) / 32) *
++			    4096;
++
++		priv->viu.vd1_afbc_body_addr = priv->viu.vd1_addr0 >> 4;
++
++		/* Header is after body content */
++		priv->viu.vd1_afbc_head_addr = (priv->viu.vd1_addr0 +
++						body_size) >> 4;
++	}
++
+ 	priv->viu.vd1_enabled = true;
+ 
+ 	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
+@@ -531,6 +722,42 @@ static const struct drm_plane_helper_funcs meson_overlay_helper_funcs = {
+ 	.prepare_fb	= drm_gem_fb_prepare_fb,
+ };
+ 
++static bool meson_overlay_format_mod_supported(struct drm_plane *plane,
++					       u32 format, u64 modifier)
++{
++	if (modifier == DRM_FORMAT_MOD_LINEAR &&
++	    format != DRM_FORMAT_YUV420_8BIT &&
++	    format != DRM_FORMAT_YUV420_10BIT)
++		return true;
++
++	if ((modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) ==
++			DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) {
++		unsigned int layout = modifier &
++			DRM_FORMAT_MOD_AMLOGIC_FBC(
++				__fourcc_mod_amlogic_layout_mask, 0);
++
++		if (format != DRM_FORMAT_YUV420_8BIT &&
++		    format != DRM_FORMAT_YUV420_10BIT) {
++			DRM_DEBUG_KMS("%llx invalid format 0x%08x\n",
++				      modifier, format);
++			return false;
++		}
++
++		if (layout != AMLOGIC_FBC_LAYOUT_BASIC) {
++			DRM_DEBUG_KMS("%llx invalid layout %x\n",
++				      modifier, layout);
++			return false;
++		}
++
++		return true;
++	}
++
++	DRM_DEBUG_KMS("invalid modifier %llx for format 0x%08x\n",
++		      modifier, format);
++
++	return false;
++}
++
+ static const struct drm_plane_funcs meson_overlay_funcs = {
+ 	.update_plane		= drm_atomic_helper_update_plane,
+ 	.disable_plane		= drm_atomic_helper_disable_plane,
+@@ -538,6 +765,7 @@ static const struct drm_plane_funcs meson_overlay_funcs = {
+ 	.reset			= drm_atomic_helper_plane_reset,
+ 	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
+ 	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
++	.format_mod_supported   = meson_overlay_format_mod_supported,
+ };
+ 
+ static const uint32_t supported_drm_formats[] = {
+@@ -549,6 +777,14 @@ static const uint32_t supported_drm_formats[] = {
+ 	DRM_FORMAT_YUV420,
+ 	DRM_FORMAT_YUV411,
+ 	DRM_FORMAT_YUV410,
++	DRM_FORMAT_YUV420_8BIT, /* Amlogic FBC Only */
++	DRM_FORMAT_YUV420_10BIT, /* Amlogic FBC Only */
++};
++
++static const uint64_t format_modifiers[] = {
++	DRM_FORMAT_MOD_AMLOGIC_FBC(AMLOGIC_FBC_LAYOUT_BASIC, 0),
++	DRM_FORMAT_MOD_LINEAR,
++	DRM_FORMAT_MOD_INVALID,
+ };
+ 
+ int meson_overlay_create(struct meson_drm *priv)
+@@ -570,7 +806,7 @@ int meson_overlay_create(struct meson_drm *priv)
+ 				 &meson_overlay_funcs,
+ 				 supported_drm_formats,
+ 				 ARRAY_SIZE(supported_drm_formats),
+-				 NULL,
++				 format_modifiers,
+ 				 DRM_PLANE_TYPE_OVERLAY, "meson_overlay_plane");
+ 
+ 	drm_plane_helper_add(plane, &meson_overlay_helper_funcs);
 -- 
 2.22.0
 
