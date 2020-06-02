@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF9D3C433DF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jun 2020 08:27:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C391C433DF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jun 2020 08:29:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 54CCF206C3
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jun 2020 08:27:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3C8AC206C3
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jun 2020 08:29:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U8h4/AzL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BMex2UqM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54CCF206C3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="arwi+yYW";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0OW29RiR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C8AC206C3
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e/CVGx5/TY0ftGON2ddbEHy+UbMJpT27dlGMNLeqae8=; b=U8h4/AzLL6qdw/
-	79Vgq0IaDagJ8mfNgjCEMk2WhC6PZEAU/VcHxpFXDySGrxyW2idZRM70LpK+VPnoLfAZ88enGLqD0
-	MN+ifGNn6SxfUNnot9aYSGqucg24Nj8n9NH5TQA8pLGzjpiZ5V7A6sEoeRmy5Q+50G6YCj8n8UCja
-	Qq4LZLp7lTCM6iTaSOxQe7dBR49+kctIcm9XWtBuqe469I7B1IaqPxUNn2fa53ng/Ddp8250UsR7j
-	ka1Go8tuM2cRvXXhYs86+VdkU04OXM+loaVO9seeg3APao1fAzhIjKYpU4lLIiLLkz3CCSTj/rTZs
-	o6Whf8aOEGgizPneBkkw==;
+	List-Owner; bh=Q659EeYv4HQGb0IjRII3RQrvN95Y4Fdb0az/VktT7ZA=; b=arwi+yYWRqp9vx
+	OQjxuyHgCTDLsbnEUX+IUNMXre4w7wGBle+GBNYrwuBAaGq7zeoCmOfcBYHY1geRzeSin8SMFNali
+	Tul05lkOQ5ufsxvx07P6J9w03vSZXy6LUEmGiY90KdJyTO6CezuMNpWIscoiD8ROfIuItWVtvPHzE
+	DyptysyEOc6O0Mc4KweAEBqA4ea2O/vJkOaueCqxxVkB8WtTcz9HbdFTZc4NYve9VatGPb/tw2Y1a
+	Rgr4+rBdBPvw6WHyYGiJZvAe9qtFneDb404zOBhC/ib1pLi8PIhcxyKNBb1HPQoUrck+2Yu498VVW
+	QgadkbBUZCpLB1XtWi3w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jg2GK-0006Ik-8b; Tue, 02 Jun 2020 08:27:08 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1jg2IU-0007LL-Sh; Tue, 02 Jun 2020 08:29:22 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jg2GC-00069z-Sq
- for linux-amlogic@lists.infradead.org; Tue, 02 Jun 2020 08:27:04 +0000
-Received: by mail-wr1-x441.google.com with SMTP id x13so2451418wrv.4
- for <linux-amlogic@lists.infradead.org>; Tue, 02 Jun 2020 01:26:59 -0700 (PDT)
+ id 1jg2IS-0007K2-4Q
+ for linux-amlogic@lists.infradead.org; Tue, 02 Jun 2020 08:29:21 +0000
+Received: by mail-wr1-x443.google.com with SMTP id h5so2428489wrc.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 02 Jun 2020 01:29:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=9iCXZSHoQIXChWxRpGbJdiyfBVJFkoVsgSKtvaGUDDE=;
- b=BMex2UqMIKtWc12N+ht34kvCEVwkuEFcLfh/zOuN18UXnaApVBCbQze1dtWVChxHsC
- dsV8TIhVrk/DsEk4hQzx+HHBNClk24BHAZXB/dH4+lwgnirICIelK3FguVwh75U6D1nL
- iA3wteUo2x2oXaKXQI7jLu6aKOAOJcauBwrG2FLcZCy1AMUXSIhP0JT7RNweNRhju5U7
- wPO/RYUBoP0yncO1mZivcM42LRMUWzqVH/ReG1b+E0Cz+YelPwb1l+biQryfBBcPovTl
- c5hoycXDUi36YtJRPufxinLXUS1oiFK77XGl75cK88B9hX31/2raNqJTj673DD4dAQwY
- kKCw==
+ bh=3RTuazf5i9JHlMDykeEXlm8G4ttdBjukN2WPd0K9oQg=;
+ b=0OW29RiRVrfl1PAiM7rWBjohG+AAVluEPhljP95FZqwFFw30iKHw7brDAg0f/GeMVs
+ +bZi3ifbwWDC2aqMtiP+sW0o/H8L5noshDV3nYGhapv1/02S0kziFr4wm8cokVCCMRi+
+ KEqc15Dd6t2sJZ9QH1OywiaPL2jATu/JGsBP+M9snh13IhglFi10nzCZop3SOV6NBkjw
+ QABJn8kiiggY3oa0u5XC6YO3dLHmsMPX7LGFq6fsAsWDJ3ZeOBa7dSI0HtC5A1nUOxRX
+ yLZkkYtYsPIZKlUQSOqNOtqkFxs+6yuMgVgrV2xJLYNKR+/UaKKrxUoKbSYjHt/6JKd1
+ OdJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=9iCXZSHoQIXChWxRpGbJdiyfBVJFkoVsgSKtvaGUDDE=;
- b=NYoSVDJOs93Xz+n2wagafWyH9hegwc6pjTi4S+jboGElpq/21dQHVoWKM69Ic81clL
- CRgZD+oZA26S30o8IgGlvDR/uW3OEUn4COhPV9rCHR2rXEpo7XHzE1tImf9Tbocykg7p
- Bcu/CTnMWId1V4tJplyujSsy18PTM2GgrKUlnUdfoHsxhQRNGvsjG1vWqgTSLLq2kIA2
- pMzkqmzOpbYdkRNIZRhy9SyBwnmUQHMICfw5lErCKEF0pmOffLjKsWQMINauNpFzQPz9
- JQoqVq+v24rCd+STyOmLYtfaLdIoPKQsnAcpDYnAiLA32ahyQbniMY0iF7p1ogkWPOXD
- xBoQ==
-X-Gm-Message-State: AOAM533LYKi+ibVcptM0vp745WiQEX10c1mgob5E/6c9nz0y3V+roBcW
- yHSeI26oAnwtMrSKAsApP695sA==
-X-Google-Smtp-Source: ABdhPJxm3u1r4/gYE6qwAo+bw0LBlm8qFtLcG1rpeCO7A8p+pGJp4rUpANDZKAXG/PDk9g9nonYnHg==
-X-Received: by 2002:adf:a18b:: with SMTP id u11mr25111061wru.102.1591086417978; 
- Tue, 02 Jun 2020 01:26:57 -0700 (PDT)
+ bh=3RTuazf5i9JHlMDykeEXlm8G4ttdBjukN2WPd0K9oQg=;
+ b=az8N9rW0VTARhg7TFtu/0pxr+TQCXhQqq0pZVyNqEbrU1D4+bX/PkesI2MMHuhrkgH
+ n4T45Ec9Z44NfDRw+0v63+Zy7z5htAcmCe42a/Os2H20Im2f9va3GaCiiDCyJukNkvbW
+ dmOp5lw4nW5h6MIYN/Wy955NZkNcxpMwbx4+KcatY6lZy+htk1/+EYN0uRN0PFBQ1tNs
+ fIFl1FmMoStRTdv7sEVTfdxRRUnVU1Uaw47qWyFwhzCwUOkbdki0s1TYoN8/fLwse0mF
+ SoirkeZ53DEbqJxqmSW+d6JTBOpoCrwr1EwfyXfdbOscbN3/YW2z6U8GJXl87U7kEWSY
+ UW8w==
+X-Gm-Message-State: AOAM530h7ycT8zp5MccGwEoT8X+BWnTFUuhgo/yLBYR38h82ha3bLa+P
+ UvFAor1MJZuLlvKbTrWT1K4c7w==
+X-Google-Smtp-Source: ABdhPJyWerqEhvE3tfQLKuPmXHOVf/qgAEIWm2qP/V5PsTcizuOP+D88lFcd81u5QEwSkvhLU9+eCg==
+X-Received: by 2002:adf:9404:: with SMTP id 4mr22319789wrq.367.1591086558569; 
+ Tue, 02 Jun 2020 01:29:18 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:acf8:18a8:b3a5:a17b?
  ([2a01:e35:2ec0:82b0:acf8:18a8:b3a5:a17b])
- by smtp.gmail.com with ESMTPSA id l17sm2821054wrq.17.2020.06.02.01.26.55
+ by smtp.gmail.com with ESMTPSA id b14sm2401421wmj.47.2020.06.02.01.29.17
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 02 Jun 2020 01:26:57 -0700 (PDT)
-Subject: Re: [PATCH v2 3/6] thermal: add support for the MCU controlled FAN on
- Khadas boards
-To: Amit Kucheria <amit.kucheria@verdurent.com>
+ Tue, 02 Jun 2020 01:29:17 -0700 (PDT)
+Subject: Re: [PATCH v2 4/6] nvmem: add support for the Khadas MCU Programmable
+ User Memory
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 References: <20200512132613.31507-1-narmstrong@baylibre.com>
- <20200512132613.31507-4-narmstrong@baylibre.com>
- <CAHLCerPiC3QS5u5CGX20q_5aUk4sN5knF4043_=WjtbhDDGuUg@mail.gmail.com>
+ <20200512132613.31507-5-narmstrong@baylibre.com>
+ <09026bde-0ae7-b1a4-835f-bf2481199398@linaro.org>
+ <b885eeb5-1542-775f-ab7b-b1218c6a337a@baylibre.com>
+ <5f24e094-088b-5787-f1be-158ab9412812@linaro.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +134,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <ea96167b-4382-b2b1-c22e-746641a33768@baylibre.com>
-Date: Tue, 2 Jun 2020 10:26:55 +0200
+Message-ID: <b55b68fa-1872-199f-77e7-532ba9c78a61@baylibre.com>
+Date: Tue, 2 Jun 2020 10:29:16 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAHLCerPiC3QS5u5CGX20q_5aUk4sN5knF4043_=WjtbhDDGuUg@mail.gmail.com>
+In-Reply-To: <5f24e094-088b-5787-f1be-158ab9412812@linaro.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200602_012701_126871_77568C8A 
-X-CRM114-Status: GOOD (  19.98  )
+X-CRM114-CacheID: sfid-20200602_012920_179176_16F0C774 
+X-CRM114-Status: GOOD (  25.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,257 +155,176 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Linux PM list <linux-pm@vger.kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Srini Kandagatla <srinivas.kandagatla@linaro.org>,
- linux-amlogic@lists.infradead.org, Zhang Rui <rui.zhang@intel.com>,
- lakml <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/05/2020 08:41, Amit Kucheria wrote:
-> On Tue, May 12, 2020 at 6:56 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> The new Khadas VIM2 and VIM3 boards controls the cooling fan via the
->> on-board microcontroller.
->>
->> This implements the FAN control as thermal devices and as cell of the Khadas
->> MCU MFD driver.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/thermal/Kconfig          |  10 ++
->>  drivers/thermal/Makefile         |   1 +
->>  drivers/thermal/khadas_mcu_fan.c | 174 +++++++++++++++++++++++++++++++
->>  3 files changed, 185 insertions(+)
->>  create mode 100644 drivers/thermal/khadas_mcu_fan.c
->>
->> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
->> index 91af271e9bb0..72b3960cc5ac 100644
->> --- a/drivers/thermal/Kconfig
->> +++ b/drivers/thermal/Kconfig
->> @@ -490,4 +490,14 @@ config SPRD_THERMAL
->>         help
->>           Support for the Spreadtrum thermal sensor driver in the Linux thermal
->>           framework.
->> +
->> +config KHADAS_MCU_FAN_THERMAL
->> +       tristate "Khadas MCU controller FAN cooling support"
->> +       depends on OF || COMPILE_TEST
-> 
-> Could you add a depends on the some board/SoC Kconfig option here so
-> this doesn't show up for non-Amlogic/non-Khadas boards?
-
-Ok
-
-> 
-> Looks OK otherwise.
-> 
->> +       select MFD_CORE
->> +       select REGMAP
->> +       help
->> +         If you say yes here you get support for the FAN controlled
->> +         by the Microcontroller found on the Khadas VIM boards.
->> +
->>  endif
->> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
->> index 8c8ed7b79915..460428c2122c 100644
->> --- a/drivers/thermal/Makefile
->> +++ b/drivers/thermal/Makefile
->> @@ -60,3 +60,4 @@ obj-$(CONFIG_ZX2967_THERMAL)  += zx2967_thermal.o
->>  obj-$(CONFIG_UNIPHIER_THERMAL) += uniphier_thermal.o
->>  obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
->>  obj-$(CONFIG_SPRD_THERMAL)     += sprd_thermal.o
->> +obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)   += khadas_mcu_fan.o
->> diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/khadas_mcu_fan.c
->> new file mode 100644
->> index 000000000000..044d4aba8be2
->> --- /dev/null
->> +++ b/drivers/thermal/khadas_mcu_fan.c
->> @@ -0,0 +1,174 @@
->> +// SPDX-License-Identifier: GPL-2.0-or-later
->> +/*
->> + * Khadas MCU Controlled FAN driver
->> + *
->> + * Copyright (C) 2020 BayLibre SAS
->> + * Author(s): Neil Armstrong <narmstrong@baylibre.com>
->> + */
->> +
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/mfd/khadas-mcu.h>
->> +#include <linux/regmap.h>
->> +#include <linux/sysfs.h>
->> +#include <linux/thermal.h>
->> +
->> +#define MAX_LEVEL 3
->> +
->> +struct khadas_mcu_fan_ctx {
->> +       struct khadas_mcu *mcu;
->> +       unsigned int level;
->> +       struct thermal_cooling_device *cdev;
->> +};
->> +
->> +static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
->> +                                   unsigned int level)
->> +{
->> +       int ret;
->> +
->> +       ret = regmap_write(ctx->mcu->map, KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
->> +                          level);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ctx->level = level;
->> +
->> +       return 0;
->> +}
->> +
->> +static int khadas_mcu_fan_get_max_state(struct thermal_cooling_device *cdev,
->> +                                       unsigned long *state)
->> +{
->> +       struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
->> +
->> +       if (!ctx)
->> +               return -EINVAL;
->> +
->> +       *state = MAX_LEVEL;
->> +
->> +       return 0;
->> +}
->> +
->> +static int khadas_mcu_fan_get_cur_state(struct thermal_cooling_device *cdev,
->> +                                       unsigned long *state)
->> +{
->> +       struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
->> +
->> +       if (!ctx)
->> +               return -EINVAL;
->> +
->> +       *state = ctx->level;
->> +
->> +       return 0;
->> +}
->> +
->> +static int
->> +khadas_mcu_fan_set_cur_state(struct thermal_cooling_device *cdev,
->> +                            unsigned long state)
->> +{
->> +       struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
->> +
->> +       if (!ctx || (state > MAX_LEVEL))
->> +               return -EINVAL;
->> +
->> +       if (state == ctx->level)
->> +               return 0;
->> +
->> +       return khadas_mcu_fan_set_level(ctx, state);
->> +}
->> +
->> +static const struct thermal_cooling_device_ops khadas_mcu_fan_cooling_ops = {
->> +       .get_max_state = khadas_mcu_fan_get_max_state,
->> +       .get_cur_state = khadas_mcu_fan_get_cur_state,
->> +       .set_cur_state = khadas_mcu_fan_set_cur_state,
->> +};
->> +
->> +static int khadas_mcu_fan_probe(struct platform_device *pdev)
->> +{
->> +       struct khadas_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
->> +       struct thermal_cooling_device *cdev;
->> +       struct device *dev = &pdev->dev;
->> +       struct khadas_mcu_fan_ctx *ctx;
->> +       int ret;
->> +
->> +       ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
->> +       if (!ctx)
->> +               return -ENOMEM;
->> +       ctx->mcu = mcu;
->> +       platform_set_drvdata(pdev, ctx);
->> +
->> +       cdev = devm_thermal_of_cooling_device_register(dev->parent,
->> +                       dev->parent->of_node, "khadas-mcu-fan", ctx,
->> +                       &khadas_mcu_fan_cooling_ops);
->> +       if (IS_ERR(cdev)) {
->> +               ret = PTR_ERR(cdev);
->> +               dev_err(dev,
->> +                               "Failed to register khadas-mcu-fan as cooling device: %d\n",
->> +                               ret);
->> +               return ret;
->> +       }
->> +       ctx->cdev = cdev;
->> +       thermal_cdev_update(cdev);
->> +
->> +       return 0;
->> +}
->> +
->> +static int khadas_mcu_fan_disable(struct device *dev)
->> +{
->> +       struct khadas_mcu_fan_ctx *ctx = dev_get_drvdata(dev);
->> +       unsigned int level_save = ctx->level;
->> +       int ret;
->> +
->> +       ret = khadas_mcu_fan_set_level(ctx, 0);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ctx->level = level_save;
->> +
->> +       return 0;
->> +}
->> +
->> +static void khadas_mcu_fan_shutdown(struct platform_device *pdev)
->> +{
->> +       khadas_mcu_fan_disable(&pdev->dev);
->> +}
->> +
->> +#ifdef CONFIG_PM_SLEEP
->> +static int khadas_mcu_fan_suspend(struct device *dev)
->> +{
->> +       return khadas_mcu_fan_disable(dev);
->> +}
->> +
->> +static int khadas_mcu_fan_resume(struct device *dev)
->> +{
->> +       struct khadas_mcu_fan_ctx *ctx = dev_get_drvdata(dev);
->> +
->> +       return khadas_mcu_fan_set_level(ctx, ctx->level);
->> +}
->> +#endif
->> +
->> +static SIMPLE_DEV_PM_OPS(khadas_mcu_fan_pm, khadas_mcu_fan_suspend,
->> +                        khadas_mcu_fan_resume);
->> +
->> +static const struct platform_device_id khadas_mcu_fan_id_table[] = {
->> +       { .name = "khadas-mcu-fan-ctrl", },
->> +       {},
->> +};
->> +MODULE_DEVICE_TABLE(platform, khadas_mcu_fan_id_table);
->> +
->> +static struct platform_driver khadas_mcu_fan_driver = {
->> +       .probe          = khadas_mcu_fan_probe,
->> +       .shutdown       = khadas_mcu_fan_shutdown,
->> +       .driver = {
->> +               .name           = "khadas-mcu-fan-ctrl",
->> +               .pm             = &khadas_mcu_fan_pm,
->> +       },
->> +       .id_table       = khadas_mcu_fan_id_table,
->> +};
->> +
->> +module_platform_driver(khadas_mcu_fan_driver);
->> +
->> +MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
->> +MODULE_DESCRIPTION("Khadas MCU FAN driver");
->> +MODULE_LICENSE("GPL");
->> --
->> 2.22.0
->>
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTUvMDUvMjAyMCAxMjo1NSwgU3Jpbml2YXMgS2FuZGFnYXRsYSB3cm90ZToKPiAKPiAKPiBP
+biAxMy8wNS8yMDIwIDEzOjMzLCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPj4gT24gMTMvMDUvMjAy
+MCAxMjozNCwgU3Jpbml2YXMgS2FuZGFnYXRsYSB3cm90ZToKPj4+Cj4+Pgo+Pj4gT24gMTIvMDUv
+MjAyMCAxNDoyNiwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4+Pj4gVGhlIG5ldyBLaGFkYXMgVklN
+MiwgVklNMyBhbmQgRWRnZSBib2FyZHMgZW1iZWRzIGFuIG9uLWJvYXJkIG1pY3JvY29udHJvbGxl
+cgo+Pj4+IG9mZmVyaW5nIGEgNTZieXRlcyBVc2VyIFByb2dyYW1tYWJsZSBOVk1FTSBhcnJheS4K
+Pj4+Pgo+Pj4+IFRoaXMgYXJyYXkgbmVlZHMgYSBwYXNzd29yZCB0byBiZSB3cml0YWJsZSwgdGh1
+cyBhIHBhc3N3b3JkIHN5c2ZzIGZpbGUKPj4+PiBoYXMgYmVlbiBhZGRlZCBvbiB0aGUgZGV2aWNl
+IG5vZGUgdG8gdW5sb2NrIHRoZSBOVk1FTS4KPj4+Cj4+PiBJcyB0aGlzIG9uZSB0aW1lIHByb2dy
+YW1tYWJsZT8gT3IgZG9lcyBpdCBuZWVkIHRvIGJlIHVubG9ja2VkIGZvciBldmVyeSByZWFkL3dy
+aXRlPwo+Pgo+PiBJdCBjYW4gYmUgcmV3cml0dGVuLCBhbmQgbmVlZHMgdGhlIHBhc3N3b3JkIHRv
+IHJlYWQgJiB3cml0ZS4KPj4KPj4+Cj4+PiBIb3cgY2FuIHlvdSBtYWtlIHN1cmUgdGhhdCB0aGUg
+bWVtb3J5IGlzIHVubG9ja2VkIGJlZm9yZSBtYWtpbmcgYXR0ZW1wdCB0byByZWFkL3dyaXRlPwo+
+Pgo+PiBUaGUgb25seSB3YXkgdG8ga25vdyBpdCdzIHVubG9jayBpcyByZWFkaW5nIGJhY2sgdGhl
+IHBhc3N3b3JkIHdoZW4gdW5sb2NrZWQuCj4gCj4gCj4gQ3VycmVudCBjb2RlIGhhcyBubyBzdWNo
+IGNoZWNrcyBmb3IgZXZlcnkgcmVhZC93cml0ZT8KPiBhbmQgbG9va3MgdmVyeSBkaXNjb25uZWN0
+ZWQgdy5yLnQgdG8gcGFzc3dvcmQgYW5kIHJlYWQvd3JpdGVzLgo+IAo+IElmIHVzZXIgYXR0ZW1w
+dHMgdG8gcmVhZC93cml0ZSBoZSB3aWxsIG5vdCBiZSBhd2FyZSB0aGF0IGhlIHNob3VsZCBwcm9n
+cmFtIHRoZSBwYXNzd29yZCBmaXJzdCEKPiAKPiBBbHNvIGlmIHRoZSBwYXNzd29yZCBpcyBzdGF0
+aWMgb3IgdW4tY2hhbmdlZCB0aGVuIHdoeSBub3QganVzdCBzdGF0aWNhbGx5IHByb2dyYW0gdGhp
+cyBmcm9tIHRoZSBkcml2ZXIgcmF0aGVyIHRoYW4gcHJvdmlkaW5nIHN5c2ZzIGZpbGU/CgpUaGUg
+cGFzc3dvcnNkIGNhbiBiZSBjaGFuZ2VkLCBob3cgc2hvdWxkIHRoaXMgYmUgdGFrZW4gaW4gYWNj
+b3VudCA/Cgo+IAo+IEkgZG9udCBzZWUgaG93IGtlcm5lbCBudm1lbSByZWFkL3dyaXRlIGludGVy
+ZmFjZSBjYW4gbWFrZSBzdXJlIHRoYXQgbWVtb3J5IGlzIHVubG9ja2VkPwoKTm90IHN1cmUgaG93
+IHRvIGJlIHN1cmUsIGlmIGxvY2tlZCBhbGwgdGhlIHVzZXIgbWVtb3J5IGFuZCBwYXNzd29yZCBp
+cyByZWFkIGFzIDB4ZmYKCj4gCj4gV2hvIGlzIHRoZSByZWFsIGNvbnN1bWVyIGZvciB0aGlzIHBy
+b3ZpZGVyPwoKd2VsbCwgaXQncyBtb3JlIHVzZXItc3BhY2UsIGluZGVlZCB3aXRob3V0IHRoZSBp
+bi1rZXJuZWwgcGFzc3dvcmQgdW5sb2NrLCBrZXJuZWwgd29uJ3QgYmUgYWJsZQp0byBtYWtlIGdy
+ZWF0IHVzZSBvZiB0aGUgZGF0YS4KCkknbGwgZHJvcCBmb3IgbmV4dCBzZXJpZSB1bnRpbCB3ZSBo
+YXZlIGEgY2xlYXJlciB2aWV3LgoKTmVpbAoKPiAKPiAtLXNyaW5pCj4gCj4gCj4+Cj4+Pgo+Pj4+
+Cj4+Pj4gVGhlIGRlZmF1bHQgNmJ5dGVzIHBhc3N3b3JkIGlkOiAiS2hhZGFzIgo+Pj4+Cj4+Pj4g
+VGhpcyBpbXBsZW1lbnRzIHRoZSB1c2VyIE5WTUVNIGRldmljZXMgYXMgY2VsbCBvZiB0aGUgS2hh
+ZGFzIE1DVSBNRkQgZHJpdmVyLgo+Pj4+Cj4+Pj4gU2lnbmVkLW9mZi1ieTogTmVpbCBBcm1zdHJv
+bmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgo+Pj4+IC0tLQo+Pj4+IMKgwqAgZHJpdmVycy9u
+dm1lbS9LY29uZmlnwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoCA4ICsrCj4+Pj4g
+wqDCoCBkcml2ZXJzL252bWVtL01ha2VmaWxlwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKg
+wqAgMiArCj4+Pj4gwqDCoCBkcml2ZXJzL252bWVtL2toYWRhcy1tY3UtdXNlci1tZW0uYyB8IDEy
+OCArKysrKysrKysrKysrKysrKysrKysrKysrKysrCj4+Pj4gwqDCoCAzIGZpbGVzIGNoYW5nZWQs
+IDEzOCBpbnNlcnRpb25zKCspCj4+Pj4gwqDCoCBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9u
+dm1lbS9raGFkYXMtbWN1LXVzZXItbWVtLmMKPj4+Pgo+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L252bWVtL0tjb25maWcgYi9kcml2ZXJzL252bWVtL0tjb25maWcKPj4+PiBpbmRleCBkN2I3ZjZk
+Njg4ZTcuLjkyY2Q0ZjZhYTkzMSAxMDA2NDQKPj4+PiAtLS0gYS9kcml2ZXJzL252bWVtL0tjb25m
+aWcKPj4+PiArKysgYi9kcml2ZXJzL252bWVtL0tjb25maWcKPj4+PiBAQCAtNjcsNiArNjcsMTQg
+QEAgY29uZmlnIEpaNDc4MF9FRlVTRQo+Pj4+IMKgwqDCoMKgwqDCoMKgwqAgVG8gY29tcGlsZSB0
+aGlzIGRyaXZlciBhcyBhIG1vZHVsZSwgY2hvb3NlIE0gaGVyZTogdGhlIG1vZHVsZQo+Pj4+IMKg
+wqDCoMKgwqDCoMKgwqAgd2lsbCBiZSBjYWxsZWQgbnZtZW1fano0NzgwX2VmdXNlLgo+Pj4+IMKg
+wqAgK2NvbmZpZyBOVk1FTV9LSEFEQVNfTUNVX1VTRVJfTUVNCj4+Pj4gK8KgwqDCoCB0cmlzdGF0
+ZSAiS2hhZGFzIE1DVSBVc2VyIHByb2dyYW1tYWJsZSBtZW1vcnkgc3VwcG9ydCIKPj4+PiArwqDC
+oMKgIGRlcGVuZHMgb24gTUZEX0tIQURBU19NQ1UKPj4+PiArwqDCoMKgIGRlcGVuZHMgb24gUkVH
+TUFQCj4+Pj4gK8KgwqDCoCBoZWxwCj4+Pj4gK8KgwqDCoMKgwqAgVGhpcyBpcyBhIGRyaXZlciBm
+b3IgdGhlIE1DVSBVc2VyIHByb2dyYW1tYWJsZSBtZW1vcnkKPj4+PiArwqDCoMKgwqDCoCBhdmFp
+bGFibGUgb24gdGhlIEtoYWRhcyBWSU0gYW5kIEVkZ2UgYm9hcmRzLgo+Pj4+ICsKPj4+PiDCoMKg
+IGNvbmZpZyBOVk1FTV9MUEMxOFhYX0VFUFJPTQo+Pj4+IMKgwqDCoMKgwqDCoCB0cmlzdGF0ZSAi
+TlhQIExQQzE4WFggRUVQUk9NIE1lbW9yeSBTdXBwb3J0Igo+Pj4+IMKgwqDCoMKgwqDCoCBkZXBl
+bmRzIG9uIEFSQ0hfTFBDMThYWCB8fCBDT01QSUxFX1RFU1QKPj4+PiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9udm1lbS9NYWtlZmlsZSBiL2RyaXZlcnMvbnZtZW0vTWFrZWZpbGUKPj4+PiBpbmRleCBh
+N2MzNzcyMTgzNDEuLjA1MTZhMzA5NTQyZCAxMDA2NDQKPj4+PiAtLS0gYS9kcml2ZXJzL252bWVt
+L01ha2VmaWxlCj4+Pj4gKysrIGIvZHJpdmVycy9udm1lbS9NYWtlZmlsZQo+Pj4+IEBAIC0xNyw2
+ICsxNyw4IEBAIG9iai0kKENPTkZJR19OVk1FTV9JTVhfT0NPVFBfU0NVKcKgwqDCoCArPSBudm1l
+bS1pbXgtb2NvdHAtc2N1Lm8KPj4+PiDCoMKgIG52bWVtLWlteC1vY290cC1zY3UtecKgwqDCoMKg
+wqDCoMKgIDo9IGlteC1vY290cC1zY3Uubwo+Pj4+IMKgwqAgb2JqLSQoQ09ORklHX0paNDc4MF9F
+RlVTRSnCoMKgwqDCoMKgwqDCoCArPSBudm1lbV9qejQ3ODBfZWZ1c2Uubwo+Pj4+IMKgwqAgbnZt
+ZW1fano0NzgwX2VmdXNlLXnCoMKgwqDCoMKgwqDCoCA6PSBqejQ3ODAtZWZ1c2Uubwo+Pj4+ICtv
+YmotJChDT05GSUdfTlZNRU1fS0hBREFTX01DVV9VU0VSX01FTSnCoMKgwqAgKz0gbnZtZW0ta2hh
+ZGFzLW1jdS11c2VyLW1lbS5vCj4+Pj4gK252bWVtLWtoYWRhcy1tY3UtdXNlci1tZW0tecKgwqDC
+oCA6PSBraGFkYXMtbWN1LXVzZXItbWVtLm8KPj4+PiDCoMKgIG9iai0kKENPTkZJR19OVk1FTV9M
+UEMxOFhYX0VFUFJPTSnCoMKgwqAgKz0gbnZtZW1fbHBjMTh4eF9lZXByb20ubwo+Pj4+IMKgwqAg
+bnZtZW1fbHBjMTh4eF9lZXByb20tecKgwqDCoCA6PSBscGMxOHh4X2VlcHJvbS5vCj4+Pj4gwqDC
+oCBvYmotJChDT05GSUdfTlZNRU1fTFBDMThYWF9PVFApwqDCoMKgICs9IG52bWVtX2xwYzE4eHhf
+b3RwLm8KPj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9udm1lbS9raGFkYXMtbWN1LXVzZXItbWVt
+LmMgYi9kcml2ZXJzL252bWVtL2toYWRhcy1tY3UtdXNlci1tZW0uYwo+Pj4+IG5ldyBmaWxlIG1v
+ZGUgMTAwNjQ0Cj4+Pj4gaW5kZXggMDAwMDAwMDAwMDAwLi5hMWQ1YWU5YTAzMGMKPj4+PiAtLS0g
+L2Rldi9udWxsCj4+Pj4gKysrIGIvZHJpdmVycy9udm1lbS9raGFkYXMtbWN1LXVzZXItbWVtLmMK
+Pj4+PiBAQCAtMCwwICsxLDEyOCBAQAo+Pj4+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+R1BMLTIuMAo+Pj4+ICsvKgo+Pj4+ICsgKiBEcml2ZXIgZm9yIEtoYWRhcyBNQ1UgVXNlciBwcm9n
+cmFtbWFibGUgTWVtb3J5Cj4+Pj4gKyAqCj4+Pj4gKyAqIENvcHlyaWdodCAoQykgMjAyMCBCYXlM
+aWJyZSBTQVMKPj4+PiArICogQXV0aG9yKHMpOiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0Bi
+YXlsaWJyZS5jb20+Cj4+Pj4gKyAqLwo+Pj4+ICsKPj4+PiArI2luY2x1ZGUgPGxpbnV4L2Nsay5o
+Pgo+Pj4KPj4+IFdoeSBkbyB3ZSBuZWVkIHRoaXMgaGVhZGVyPwo+Pgo+PiBXaWxsIGRyb3AKPj4K
+Pj4+Cj4+Pj4gKyNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4KPj4+PiArI2luY2x1ZGUgPGxpbnV4
+L252bWVtLXByb3ZpZGVyLmg+Cj4+Pj4gKyNpbmNsdWRlIDxsaW51eC9tZmQva2hhZGFzLW1jdS5o
+Pgo+Pj4+ICsjaW5jbHVkZSA8bGludXgvcmVnbWFwLmg+Cj4+Pj4gKyNpbmNsdWRlIDxsaW51eC9v
+Zi5oPgo+Pj4+ICsjaW5jbHVkZSA8bGludXgvcGxhdGZvcm1fZGV2aWNlLmg+Cj4+Pj4gKwo+Pj4+
+ICtzdGF0aWMgaW50IGtoYWRhc19tY3VfdXNlcl9tZW1fcmVhZCh2b2lkICpjb250ZXh0LCB1bnNp
+Z25lZCBpbnQgb2Zmc2V0LAo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdm9p
+ZCAqdmFsLCBzaXplX3QgYnl0ZXMpCj4+Pj4gK3sKPj4+PiArwqDCoMKgIHN0cnVjdCBraGFkYXNf
+bWN1ICpraGFkYXNfbWN1ID0gY29udGV4dDsKPj4+PiArCj4+Pj4gK8KgwqDCoCByZXR1cm4gcmVn
+bWFwX2J1bGtfcmVhZChraGFkYXNfbWN1LT5tYXAsCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBLSEFEQVNfTUNVX1VTRVJfREFUQV8wX1JFRyArIG9mZnNldCwKPj4+PiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHZhbCwgYnl0ZXMpOwo+Pj4+ICt9Cj4+Pj4gKwo+
+Pj4+ICtzdGF0aWMgaW50IGtoYWRhc19tY3VfdXNlcl9tZW1fd3JpdGUodm9pZCAqY29udGV4dCwg
+dW5zaWduZWQgaW50IG9mZnNldCwKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgdm9pZCAqdmFsLCBzaXplX3QgYnl0ZXMpCj4+Pj4gK3sKPj4+PiArwqDCoMKgIHN0cnVjdCBr
+aGFkYXNfbWN1ICpraGFkYXNfbWN1ID0gY29udGV4dDsKPj4+PiArCj4+Pj4gK8KgwqDCoCByZXR1
+cm4gcmVnbWFwX2J1bGtfd3JpdGUoa2hhZGFzX21jdS0+bWFwLAo+Pj4+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgS0hBREFTX01DVV9VU0VSX0RBVEFfMF9SRUcgKyBvZmZzZXQsCj4+
+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2YWwsIGJ5dGVzKTsKPj4+PiArfQo+
+Pj4+ICsKPj4+PiArc3RhdGljIHNzaXplX3QgcGFzc3dvcmRfc3RvcmUoc3RydWN0IGRldmljZSAq
+ZGV2LCBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0ciwKPj4+PiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgY29uc3QgY2hhciAqYnVmLCBzaXplX3QgY291bnQpCj4+Pj4gK3sK
+Pj4+PiArwqDCoMKgIHN0cnVjdCBraGFkYXNfbWN1ICpraGFkYXNfbWN1ID0gZGV2X2dldF9kcnZk
+YXRhKGRldik7Cj4+Pj4gK8KgwqDCoCBpbnQgaSwgcmV0Owo+Pj4+ICsKPj4+PiArwqDCoMKgIGlm
+IChjb3VudCA8IDYpCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiAtRUlOVkFMOwo+Pj4KPj4+
+IFBvc3NpYmx5IHRoaXMgbWFnaWMgNiB2YWx1ZSBuZWVkcyBwcm9wZXIgZGVmaW5lLiBBbiBhZGRp
+dGlvbmFsIGNoZWNrIGhlcmUgZm9yID4gNiB3b3VsZCBiZSBiZXR0ZXIgYXMgd2VsbC4KPj4KPj4g
+T2sKPj4KPj4+Cj4+Pj4gKwo+Pj4+ICvCoMKgwqAgcmV0ID0gcmVnbWFwX3dyaXRlKGtoYWRhc19t
+Y3UtPm1hcCwgS0hBREFTX01DVV9QQVNTV0RfU1RBUlRfUkVHLCAxKTsKPj4+PiArwqDCoMKgIGlm
+IChyZXQpCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7Cj4+Pj4gKwo+Pj4+ICvCoMKg
+wqAgZm9yIChpID0gMCA7IGkgPCA2IDsgKytpKSB7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9
+IHJlZ21hcF93cml0ZShraGFkYXNfbWN1LT5tYXAsCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBLSEFEQVNfTUNVX0NIRUNLX1VTRVJfUEFTU1dEX1JFRywKPj4+PiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJ1ZltpXSk7Cj4+Pj4gK8KgwqDC
+oMKgwqDCoMKgIGlmIChyZXQpCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBvdXQ7
+Cj4+Pj4gK8KgwqDCoCB9Cj4+Pj4gKwo+Pj4+ICvCoMKgwqAgcmV0ID0gcmVnbWFwX3dyaXRlKGto
+YWRhc19tY3UtPm1hcCwgS0hBREFTX01DVV9QQVNTV0RfU1RBUlRfUkVHLCAwKTsKPj4+PiArwqDC
+oMKgIGlmIChyZXQpCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7Cj4+Pj4gKwo+Pj4+
+ICvCoMKgwqAgcmV0dXJuIGNvdW50Owo+Pj4+ICtvdXQ6Cj4+Pj4gK8KgwqDCoCByZWdtYXBfd3Jp
+dGUoa2hhZGFzX21jdS0+bWFwLCBLSEFEQVNfTUNVX1BBU1NXRF9TVEFSVF9SRUcsIDApOwo+Pj4+
+ICsKPj4+PiArwqDCoMKgIHJldHVybiByZXQ7Cj4+Pj4gK30KPj4+PiArCj4+Pj4gK3N0YXRpYyBE
+RVZJQ0VfQVRUUl9XTyhwYXNzd29yZCk7Cj4+Pj4gKwo+Pj4+ICtzdGF0aWMgc3RydWN0IGF0dHJp
+YnV0ZSAqa2hhZGFzX21jdV91c2VyX21lbV9zeXNmc19hdHRyaWJ1dGVzW10gPSB7Cj4+Pj4gK8Kg
+wqDCoCAmZGV2X2F0dHJfcGFzc3dvcmQuYXR0ciwKPj4+PiArwqDCoMKgIE5VTEwsCj4+Pj4gK307
+Cj4+Pj4gKwo+Pj4+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGF0dHJpYnV0ZV9ncm91cCBraGFkYXNf
+bWN1X3VzZXJfbWVtX3N5c2ZzX2F0dHJfZ3JvdXAgPSB7Cj4+Pj4gK8KgwqDCoCAuYXR0cnMgPSBr
+aGFkYXNfbWN1X3VzZXJfbWVtX3N5c2ZzX2F0dHJpYnV0ZXMsCj4+Pj4gK307Cj4+Pj4gKwo+Pj4+
+ICtzdGF0aWMgaW50IGtoYWRhc19tY3VfdXNlcl9tZW1fcHJvYmUoc3RydWN0IHBsYXRmb3JtX2Rl
+dmljZSAqcGRldikKPj4+PiArewo+Pj4+ICvCoMKgwqAgc3RydWN0IGtoYWRhc19tY3UgKmtoYWRh
+c19tY3UgPSBkZXZfZ2V0X2RydmRhdGEocGRldi0+ZGV2LnBhcmVudCk7Cj4+Pgo+Pj4gWW91IGNv
+dWxkIHByb2JhYmx5IGdldCBhd2F5IHdpdGggZGVwZW5kZW5jeSBvZiB0aGlzIHN0cnVjdHVyZSBh
+bmQgdGhlIGhlYWRlciBpdHNlbGYgYnkgZGlyZWN0bHkgZ2V0dGluZyBob2xkIG9mIHJlZ21hcCBm
+cm9tIHBhcmVudCBkZXZpY2UuCj4+Cj4+IE9rCj4+Cj4+Pgo+Pj4KPj4+PiArwqDCoMKgIHN0cnVj
+dCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7Cj4+Pj4gK8KgwqDCoCBzdHJ1Y3QgbnZtZW1fZGV2
+aWNlICpudm1lbTsKPj4+PiArwqDCoMKgIHN0cnVjdCBudm1lbV9jb25maWcgKmVjb25maWc7Cj4+
+Pj4gKwo+Pj4+ICvCoMKgwqAgZWNvbmZpZyA9IGRldm1fa3phbGxvYyhkZXYsIHNpemVvZigqZWNv
+bmZpZyksIEdGUF9LRVJORUwpOwo+Pj4+ICvCoMKgwqAgaWYgKCFlY29uZmlnKQo+Pj4+ICvCoMKg
+wqDCoMKgwqDCoCByZXR1cm4gLUVOT01FTTsKPj4+PiArCj4+Pj4gK8KgwqDCoCBlY29uZmlnLT5k
+ZXYgPSBwZGV2LT5kZXYucGFyZW50Owo+Pj4+ICvCoMKgwqAgZWNvbmZpZy0+bmFtZSA9IGRldl9u
+YW1lKHBkZXYtPmRldi5wYXJlbnQpOwo+Pj4+ICvCoMKgwqAgZWNvbmZpZy0+c3RyaWRlID0gMTsK
+Pj4+PiArwqDCoMKgIGVjb25maWctPndvcmRfc2l6ZSA9IDE7Cj4+Pj4gK8KgwqDCoCBlY29uZmln
+LT5yZWdfcmVhZCA9IGtoYWRhc19tY3VfdXNlcl9tZW1fcmVhZDsKPj4+PiArwqDCoMKgIGVjb25m
+aWctPnJlZ193cml0ZSA9IGtoYWRhc19tY3VfdXNlcl9tZW1fd3JpdGU7Cj4+Pj4gK8KgwqDCoCBl
+Y29uZmlnLT5zaXplID0gNTY7Cj4+PiBkZWZpbmUgNTYgdG8gbWFrZSBpdCBtb3JlIHJlYWRhYmxl
+IQo+Pgo+PiBPawo+Pgo+Pj4KPj4+PiArwqDCoMKgIGVjb25maWctPnByaXYgPSBraGFkYXNfbWN1
+Owo+Pj4+ICsKPj4+PiArwqDCoMKgIHBsYXRmb3JtX3NldF9kcnZkYXRhKHBkZXYsIGtoYWRhc19t
+Y3UpOwo+Pj4+ICsKPj4+PiArwqDCoMKgIG52bWVtID0gZGV2bV9udm1lbV9yZWdpc3RlcigmcGRl
+di0+ZGV2LCBlY29uZmlnKTsKPj4+PiArwqDCoMKgIGlmIChJU19FUlIobnZtZW0pKQo+Pj4+ICvC
+oMKgwqDCoMKgwqDCoCByZXR1cm4gUFRSX0VSUihudm1lbSk7Cj4+Pj4gKwo+Pj4+ICvCoMKgwqAg
+cmV0dXJuIHN5c2ZzX2NyZWF0ZV9ncm91cCgmcGRldi0+ZGV2LmtvYmosCj4+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJmtoYWRhc19tY3VfdXNlcl9tZW1fc3lzZnNfYXR0
+cl9ncm91cCk7Cj4+Pj4gK30KPj4+PiArCj4+Pj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgcGxhdGZv
+cm1fZGV2aWNlX2lkIGtoYWRhc19tY3VfdXNlcl9tZW1faWRfdGFibGVbXSA9IHsKPj4+PiArwqDC
+oMKgIHsgLm5hbWUgPSAia2hhZGFzLW1jdS11c2VyLW1lbSIsIH0sCj4+Pj4gK8KgwqDCoCB7fSwK
+Pj4+PiArfTsKPj4+PiArTU9EVUxFX0RFVklDRV9UQUJMRShwbGF0Zm9ybSwga2hhZGFzX21jdV91
+c2VyX21lbV9pZF90YWJsZSk7Cj4+Pj4gKwo+Pj4+ICtzdGF0aWMgc3RydWN0IHBsYXRmb3JtX2Ry
+aXZlciBraGFkYXNfbWN1X3VzZXJfbWVtX2RyaXZlciA9IHsKPj4+PiArwqDCoMKgIC5wcm9iZSA9
+IGtoYWRhc19tY3VfdXNlcl9tZW1fcHJvYmUsCj4+Pj4gK8KgwqDCoCAuZHJpdmVyID0gewo+Pj4+
+ICvCoMKgwqDCoMKgwqDCoCAubmFtZSA9ICJraGFkYXMtbWN1LXVzZXItbWVtIiwKPj4+PiArwqDC
+oMKgIH0sCj4+Pj4gK8KgwqDCoCAuaWRfdGFibGUgPSBraGFkYXNfbWN1X3VzZXJfbWVtX2lkX3Rh
+YmxlLAo+Pj4+ICt9Owo+Pj4+ICsKPj4+PiArbW9kdWxlX3BsYXRmb3JtX2RyaXZlcihraGFkYXNf
+bWN1X3VzZXJfbWVtX2RyaXZlcik7Cj4+Pj4gKwo+Pj4+ICtNT0RVTEVfQVVUSE9SKCJOZWlsIEFy
+bXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+Iik7Cj4+Pj4gK01PRFVMRV9ERVNDUklQ
+VElPTigiS2hhZGFzIE1DVSBVc2VyIE1FTSBkcml2ZXIiKTsKPj4+PiArTU9EVUxFX0xJQ0VOU0Uo
+IkdQTCB2MiIpOwo+Pj4+Cj4+Cj4+IFRoYW5rcyBmb3IgdGhlIHJldmlldy4KPj4KPj4gTmVpbAo+
+PgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
+LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
+dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
