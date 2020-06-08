@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 16848C433DF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 23:41:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9AA39C433E0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 23:48:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CECA52078D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 23:41:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 47693204EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 23:48:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K8OAtrIv";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="E3XvqYrl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CECA52078D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sytqX1Hh";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="0uVi0YoB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 47693204EF
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,46 +25,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KB+UZfPuga1cGbRrQRG8tw2djFwMclWwWd6XBHjKyLs=; b=K8OAtrIvkEAEvL
-	AYwfADvKsKIc0I59Qq19BsN85oHUBicGaxy4b98yDhcbF/XP7NF0zP3QetMZ/q3wUAR/x9WupAr6g
-	pj5rwslaCeo+2dKsnwIgtjTMkQQb2lsbNOB7LYbCa121evER92aX1SAtJe+2psegGgohEpMm5Ep1C
-	xiCUzpojdWcrtwyfzM8YqnA9NQjx21QcC7eQGAMHpkil1cLOXetRP+F3V8g/svhkNdtIHLFqimlOC
-	lO6e4fJjwCUZNmWWNLUhQu6ykUtoeBChprUD5TAxEkAa1kGzG5NEZPILy1rAHwN0iEXffJyTZYsyD
-	LDK7F5aJzVDEWRPdNtiA==;
+	List-Owner; bh=cdDE6BKv94umK7kOy1QT5ShMm0JGaGxObo7d7GoCYmU=; b=sytqX1HhaKZdp2
+	8n/cm7jeH//7QDy3CzCySpTYsVZ9gj/AV6ioU3eEADI65KNsnbOuFj70pP7lVYApJuTKx7afZgWWe
+	8dNo66NwCY2WW/3nI4htEuKF12OJy3WeCHDi2lKvbS5czFRDGI/VXWm+dBvKapwKRB/hwkJPJlk4g
+	/TbPDqtcFWOsO0BWuEiwfP8Js7KYYKgiQBJUZtW2GJ1SJcdXRzBGwLyZ2t8iFtHvXqdY1a0f2sXdm
+	e2FpDrsdzjqLm+Xb8Y1lZrSa2Ib32DXZ3mbtJXUE8oy2VzRDk58gSCuY35votMlGMyvcN3uyXHlj2
+	wg1boeWNdJ7jRhDm8roA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jiRO1-00036m-FL; Mon, 08 Jun 2020 23:41:01 +0000
+	id 1jiRVL-0003sX-Ie; Mon, 08 Jun 2020 23:48:35 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiR3e-0006Hm-MD; Mon, 08 Jun 2020 23:20:02 +0000
+ id 1jiR6n-0002Y5-Ug; Mon, 08 Jun 2020 23:23:16 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 4FE3120870;
- Mon,  8 Jun 2020 23:19:57 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 011672086A;
+ Mon,  8 Jun 2020 23:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1591658398;
- bh=7vHlbNH5y8voS2cDM4bKwMfkLZfQfTj4TTeCBy55ia8=;
+ s=default; t=1591658592;
+ bh=jYmhetrVkNgZTNo37SbeiWGjdac6A+k42aQczdxV2LA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=E3XvqYrlHzxxgFx7bhYxb56zfsaI9UPrlC3C+ypYIrGorp6jKSq7vI5HvbmESI2cv
- SObygjJHSlDYP8dMmag5rL1E8ehUNnZu/Bshd/VQSn5SdFYU9uJex2BiwTwOxf6P4+
- KSk3A47XdSwo1UGWmhqBBNzQakgO/N1RGwfWpp0o=
+ b=0uVi0YoBaICQEV3bJq6ljwtnIoJJJBQNH9ElzS7exHaM+6izANrsQQdPZuAYcavKW
+ ceF48tZnlvA7G14p2td8m7+zoMNnXTnijBlOmcuYY2d/Sjg30fF/tEVkCXsmwAnQqQ
+ QHQFKYw6Sae7BEkSXgqyH0mmNZ7uvQ1VHnMgUA7c=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 054/175] mmc: meson-mx-sdio: trigger a soft reset
+Subject: [PATCH AUTOSEL 4.19 026/106] mmc: meson-mx-sdio: trigger a soft reset
  after a timeout or CRC error
-Date: Mon,  8 Jun 2020 19:16:47 -0400
-Message-Id: <20200608231848.3366970-54-sashal@kernel.org>
+Date: Mon,  8 Jun 2020 19:21:18 -0400
+Message-Id: <20200608232238.3368589-26-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200608231848.3366970-1-sashal@kernel.org>
-References: <20200608231848.3366970-1-sashal@kernel.org>
+In-Reply-To: <20200608232238.3368589-1-sashal@kernel.org>
+References: <20200608232238.3368589-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200608_161959_421575_38FB1138 
+X-CRM114-CacheID: sfid-20200608_162314_048861_24BD5372 
 X-CRM114-Status: GOOD (  13.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -145,10 +145,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+)
 
 diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index 999214e8cf2b..360d523132bd 100644
+index 1c062473b1c2..27837a794e7b 100644
 --- a/drivers/mmc/host/meson-mx-sdio.c
 +++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -246,6 +246,9 @@ static void meson_mx_mmc_request_done(struct meson_mx_mmc_host *host)
+@@ -249,6 +249,9 @@ static void meson_mx_mmc_request_done(struct meson_mx_mmc_host *host)
  
  	mrq = host->mrq;
  
