@@ -2,88 +2,148 @@ Return-Path: <SRS0=J82+=7V=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 319B7C433E0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 08:45:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 55D6EC433DF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 08:58:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E8BB0206D5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 08:45:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 23810206D5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 08:58:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ub+8e0u7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nOdR02uF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E8BB0206D5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KG8sBxWJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="U2MXGgYg"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 23810206D5
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=M7yDsol+FasFR0ggZZ6ET0oCMoXYUEnb9GNXdHiS8RI=; b=Ub+8e0u7TZPbVH
-	NE3GuHl66wvHHk+VGaPPIFApMbKHefH4sQytMOmXba1F6dzpt3DgLtZ05TX3qoucbn5sqR6ZD82Dw
-	hpi4gIDot/K/pZqXe9bDb0+bEh/rObVI7ZsElPj+5RmCWctdfLEoRA21YqyJkFWHYhDvB63NB1k4b
-	anWfapdtR4Yi95k+sD2wqf0D77yNXtsAgY/pP8dMDx6xp7jnTL8ipolZ7OicmnYAFKMzK8S9wsmev
-	Rg//8/F36nvK01HUx7/aJ6oeehRqzKexpOQqI8hUOuSXtPDF+QMQRxvEnvjBjxcF2UABVOW5pOFLs
-	qkjWsAlt3VQWHJVu0xPQ==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=dZtDCWrTTMtFPkcYOfMrz4+LSuG6DOkK41PqoFWU+tQ=; b=KG8sBxWJ01idGhAQEhZANBY4zr
+	avjCLSjxL1WkF4RPtoVbY+H7bXmY19ERlNFPed8wf+oi75MJ0gS7I5dWokulXoxIRrUx2zmJs+9YP
+	hkccWrJUm63TysnLZrf2FUZw2CxBVyHA7NVPzIKjASCQ5+Nls972r7R+sBzq7Ly02R4LTNRsL4rJT
+	zEWLi6g+obN7XArZup/ZzucfobvvDCFqHj+rddi4LMlRIPRuXq3aAqJFieOQoApfORxZhCVYMHiRD
+	WylxyjVQwpIwGGlL4FSIFzCqXFojZK+70vVsf9BxqGVvJNxbw8Pl1xn5zjWR1ddjhack3PlNoSv+2
+	xOEP9QBA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jiDP6-0005x9-17; Mon, 08 Jun 2020 08:45:12 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jiDc6-0006hX-VF; Mon, 08 Jun 2020 08:58:38 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiDP0-00049v-Ml
- for linux-amlogic@lists.infradead.org; Mon, 08 Jun 2020 08:45:09 +0000
-Received: by mail-wr1-x443.google.com with SMTP id l10so16415613wrr.10
- for <linux-amlogic@lists.infradead.org>; Mon, 08 Jun 2020 01:45:04 -0700 (PDT)
+ id 1jiDc2-0006fF-24
+ for linux-amlogic@lists.infradead.org; Mon, 08 Jun 2020 08:58:36 +0000
+Received: by mail-wr1-x442.google.com with SMTP id l10so16459590wrr.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 08 Jun 2020 01:58:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
+ h=subject:to:references:from:autocrypt:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=hVI/LKXmUenAikANgxMZ2mka5xmWY6K/t9X8/sizo9k=;
- b=nOdR02uF9gxHffq36L024aApJfanJ36qvrDfqHocFBNPwBj1zVqUlHv4JTl5tgmCcS
- 1E5xr4HzpEST/wJ9ei1RIu764lQsxYCzIUYmrsf9OFx7U7lqMaH03Hfarv+KkHn6svmG
- iO1SlY0zs+QPSQa/mOdjGgXLzFQkxmsGR/1nbEfsHvAPcyoVMSHW3mVZBNFbRy2oP+FV
- DFQtcL/cI176KwTz8hVX2JVVNo5tDEQ9wxqSef7WKLw/vKsdgvDaYl647p/hcvW8DEpg
- EDG/M/8EUFJIMPin+EQAWzuvohpoGiMmqPCvLOWThfrZF01SZqB1Aplb2ZBti4cPYGiz
- 6p8w==
+ bh=eOsSx8TO4GPhy55v1CqoOAgdbtSQo/SHQ+NgMjMA2Yk=;
+ b=U2MXGgYgcXrRM+aLfbAO2iRky+nl+BvJRUC1Eis64grwX/xgbNKGUwVTOH9piWF6De
+ EbW96ciF2F/AKJ4hC6NmJXdPE6ptBcg7FquqnVVNS0I4lhj9t0Uv++3UunL/V8uGKs72
+ fyE+lg25kbd9rc77jwqrL6IQP6gTpXXuy4sTQm5jmLy0J60QHw/L7ciIMH9iapx+Ix71
+ LSJn0Mkxh/PJP1QWiXJzgjzhilDKGIH7V6ZJCeU3/MXin8MdSbEZHP579/qXE/NWlLm+
+ 8A+lt0UFGeyUW34w5mma6OBgHNYCIjC7aA24/27uBiC8Wz/7CZwYNOv/x4ZHMkgb1TWS
+ r3kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=hVI/LKXmUenAikANgxMZ2mka5xmWY6K/t9X8/sizo9k=;
- b=gAulTNdLmdY4v4pLgn+KCXzPsnKOQhvcXqX0l9R+5/LA+MV/4T/t6eRur9eRxgF4f3
- P9aZxUaj1nWY18xjme9ots4XSriMiKw77TyVbk3CdBfHcx0R+JyFO8bhG/GWggKVYN9c
- 8RfXFkraG4tsLvIxmGDj0d4avbqJDa59p2yVZCpprGG+fX2x6u5QEUQ4vMRPQPtkTYEe
- hEPBuiX/VUd16debTmKxE6Pah7GI6uxW2wRfHtcwpTuNSeYyVeEtHcGQvkOZIQ/6WYBG
- /2L+rEqBSsDiBidxdiplFjfho60qgdou2aEkImmh+fxgKyxOpsf5jEu5TPaw805b+wTp
- WRzQ==
-X-Gm-Message-State: AOAM531NuJhjEWGjFZGAsXNHsp+9FkHfHecj8mK2hJcbcMCcLp38edxX
- uWbqvNWzM3f/hV3IW2qq8CMsyg==
-X-Google-Smtp-Source: ABdhPJzNz9G3Dmg3Wt11LpS3mqTMRQpQKBSoZCNvuKQYXSIoKruR+1SCjYkdnFetJ9Vz8+g9JMRFDQ==
-X-Received: by 2002:adf:a15c:: with SMTP id r28mr21180984wrr.337.1591605903037; 
- Mon, 08 Jun 2020 01:45:03 -0700 (PDT)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:22:5867:d2c6:75f4])
- by smtp.gmail.com with ESMTPSA id
- d17sm25031888wrg.75.2020.06.08.01.45.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Jun 2020 01:45:01 -0700 (PDT)
+ h=x-gm-message-state:subject:to:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=eOsSx8TO4GPhy55v1CqoOAgdbtSQo/SHQ+NgMjMA2Yk=;
+ b=IrOraYBEsO0JhjzRGVAUbwEYzLHv6Z3UHSLX5BVvFEBneqLuRlQTxXwXbTishbaB0D
+ 6wm+heu5GkNON2DofteLSrNurxxzS8LAwvJvBrLaLS1jlWkPjDLrvU8AdXkAgx7K0B9/
+ Lp9Ry4bEaLP/L8+hQ9UyS9LK/zXLGp7lpDbPjqI2OnWMYaHc7HDWqdeV2TxdVXfIXdRd
+ ex7i8MYy+S+kriv8a9gdu6mf71KpRQYd0fBTlGHT9viFxPuNEXhuJI5YEFDGe7xcdcPx
+ zQ1GmdMaum8vKUNXp37Qnku33SV4S2NiHeGwj/lW8A1Hhm4buX4JC+HOcs1xxkS4Ux7S
+ +mog==
+X-Gm-Message-State: AOAM533OVGAcbYyPofAPPLkg7AE/YK7hGG3NyAxkHIyd8yAw5GkG+Igj
+ VOKnDYVVrvEjLEqJ5NUKqSqjJw==
+X-Google-Smtp-Source: ABdhPJyEVEciXStXqHeGxwSSTRdKtKQl2EaYqQ62y/rqtrnUKzV3w9ikPqQmnUDh+v/gCPo+c47Diw==
+X-Received: by 2002:adf:dec5:: with SMTP id i5mr23825847wrn.16.1591606708537; 
+ Mon, 08 Jun 2020 01:58:28 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:22:5867:d2c6:75f4?
+ ([2a01:e35:2ec0:82b0:22:5867:d2c6:75f4])
+ by smtp.gmail.com with ESMTPSA id f11sm22859698wrj.2.2020.06.08.01.58.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 08 Jun 2020 01:58:27 -0700 (PDT)
+Subject: Re: [PATCH] soc: amlogic: meson-gx-socinfo: Fix S905X3 ID
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20200604044808.30995-1-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: ulf.hansson@linaro.org
-Subject: [PATCH] mmc: meson-gx: limit segments to 1 when dram-access-quirk is
- needed
-Date: Mon,  8 Jun 2020 10:44:58 +0200
-Message-Id: <20200608084458.32014-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <7d58e4db-2893-3675-eb93-ea14c3534b5b@baylibre.com>
+Date: Mon, 8 Jun 2020 10:58:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
+In-Reply-To: <20200604044808.30995-1-christianshewitt@gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200608_014506_782864_FAA878E3 
-X-CRM114-Status: GOOD (  12.05  )
+X-CRM114-CacheID: sfid-20200608_015834_108802_DD1FCF71 
+X-CRM114-Status: GOOD (  16.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,54 +155,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>, linux-mmc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Art Nikpal <art@khadas.com>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The actual max_segs computation leads to failure while using the broadcom
-sdio brcmfmac/bcmsdh driver, since the driver tries to make usage of scatter
-gather.
+Hi,
 
-But with the dram-access-quirk we use a 1,5K SRAM bounce buffer, and the
-max_segs current value of 3 leads to max transfers to 4,5k, which doesn't work.
+On 04/06/2020 06:48, Christian Hewitt wrote:
+> The current value is taken from Amlogic's 4.9 bsp kernel which appears
+> to use the wrong ID. For comparison, here's before/after:
+> 
+> [    0.152237] soc soc0: Amlogic Meson SM1 (Unknown) Revision 2b:c (10:2) Detected
+> [    0.152463] soc soc0: Amlogic Meson SM1 (S905X3) Revision 2b:c (10:2) Detected
 
-This patch sets max_segs to 1 to better describe the hardware limitation,
-and fix the SDIO functionnality with the brcmfmac/bcmsdh driver on Amlogic
-G12A/G12B SoCs on boards like SEI510 or Khadas VIM3.
+For SM1 we have weird values, here are the one we gen on KernelCI:
+SEI610 (S905D3):
+Amlogic Meson SM1 (Unknown) Revision 2b:c (50:2)
 
-Reported-by: Art Nikpal <art@khadas.com>
-Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-Fixes: acdc8e71d9bb ("mmc: meson-gx: add dram-access-quirk")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+VIM3L (S905D3)
+Amlogic Meson SM1 (Unknown) Revision 2b:c (4:2)
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 35400cf2a2e4..cfaf8e7e22ec 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -1143,9 +1143,11 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 
- 	mmc->caps |= MMC_CAP_CMD23;
- 	if (host->dram_access_quirk) {
-+		/* Limit segments to 1 due to low available sram memory */
-+		mmc->max_segs = 1;
- 		/* Limit to the available sram memory */
--		mmc->max_segs = SD_EMMC_SRAM_DATA_BUF_LEN / mmc->max_blk_size;
--		mmc->max_blk_count = mmc->max_segs;
-+		mmc->max_blk_count = SD_EMMC_SRAM_DATA_BUF_LEN /
-+				     mmc->max_blk_size;
- 	} else {
- 		mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
- 		mmc->max_segs = SD_EMMC_DESC_BUF_LEN /
--- 
-2.22.0
+And you report now:
+Odroid-C4 (S905X4)
+Amlogic Meson SM1 (Unknown) Revision 2b:c (10:2)
+
+And at the time you reported:
+VIM3L (S905D3)
+Amlogic Meson SM1 (S905D3) Revision 2b:c (b0:2)
+
+So I'm quite lost here....
+
+Neil
+
+> 
+> Fixes c9cc9bec36d0 ("soc: amlogic: meson-gx-socinfo: Add SM1 and S905X3 IDs")
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  drivers/soc/amlogic/meson-gx-socinfo.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+> index 01fc0d20a70d..c38a1e4db28b 100644
+> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
+> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+> @@ -68,7 +68,7 @@ static const struct meson_gx_package_id {
+>  	{ "S905X2", 0x28, 0x40, 0xf0 },
+>  	{ "S922X", 0x29, 0x40, 0xf0 },
+>  	{ "A311D", 0x29, 0x10, 0xf0 },
+> -	{ "S905X3", 0x2b, 0x5, 0xf },
+> +	{ "S905X3", 0x2b, 0x10, 0xf0 },
+>  	{ "S905D3", 0x2b, 0xb0, 0xf0 },
+>  	{ "A113L", 0x2c, 0x0, 0xf8 },
+>  };
+> 
 
 
 _______________________________________________
