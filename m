@@ -2,97 +2,70 @@ Return-Path: <SRS0=J82+=7V=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 536A3C433DF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 18:59:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ACA88C433E1
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 23:11:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 102E32074B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 18:59:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7883020897
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2020 23:11:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jOcrR1Gh";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ndufresne-ca.20150623.gappssmtp.com header.i=@ndufresne-ca.20150623.gappssmtp.com header.b="XKzY/dMo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 102E32074B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZW2EeefT";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="XCZo0I1Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7883020897
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UWX0BzyBY8ZUp3gv/lROsWkNg1fk8DeOARMYTsLHHN4=; b=jOcrR1Gh3X0IE6
-	BFlC0P1xhPv09akdA5A0mrWSlqU0549TsobQdlGsiDJ6RsGJcEoXGD5iUQN9Rzhmu/bmEd/IWXRp1
-	x5fTWOfyWU7xCuxs/Bl5l1Zeb68xLhMGSXcIlQxzMDXjQrc2iyOeuMmkYiDive0DJsqRNU6CSzeW+
-	apbhjNtZxmaNa+1ST9wnug/UifuoUqlqrokZsJsi//K3HJ3QTfxCeRANtzHlSf8pt/wAgvP8KuWEd
-	k2RUSBeDC+ZfGn1nCRrFa4V0l93XMH8ZZJ/jehNUfjxf6gSI9V4hMqwJIUG5U/wcFy4/WTtDlgOOo
-	ptGrUHFIYpV+fJBubtvA==;
+	List-Owner; bh=aDUhx2UhZrZXOCZRYi4s8/ms/HRx8wkxaQvlPQX3muY=; b=ZW2EeefTd0vBwq
+	YoyZ+hcUnS8396ZdWZ3EFQzl0n+AcN2BSvQKQsch3xWL/1pgA32Wdw/B+94VGUQtmOLb3HVSZJAgp
+	LbdByB+ulczTERX8raHRCSr8RJMqcKhUMgzpHs/Afyb8C5EUq/1YDnKZE2ugJT5pkf+jOn18+qqQO
+	08V9utapDg6VkHEdO/wLDNVYqw0beyg9EKOl3vcnHmeiWHI/MSWqWU9WUCaNM4j5PhLx0izL+mKGF
+	KqZPOkdyEsmsYG8nbHU48N6PR79HDj6CmpGYrrxdGDye5Lhf40Anfh5yN+1ol4mRQZA5msAtc0C0c
+	0OS5ndOHaEpqW412oPwA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jiMzh-0001hB-Tf; Mon, 08 Jun 2020 18:59:37 +0000
-Received: from mail-qt1-x841.google.com ([2607:f8b0:4864:20::841])
+	id 1jiQv8-0004Vp-Cx; Mon, 08 Jun 2020 23:11:10 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiMzf-0001gI-4r
- for linux-amlogic@lists.infradead.org; Mon, 08 Jun 2020 18:59:36 +0000
-Received: by mail-qt1-x841.google.com with SMTP id d27so15595843qtg.4
- for <linux-amlogic@lists.infradead.org>; Mon, 08 Jun 2020 11:59:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=1LNXy0gulshDF6Am2ORMrlABkF4RBeFdpjJ6l6ghlxc=;
- b=XKzY/dMoRNR8g2sNEYdfjb4hTfUUulqOlT+yf47tp2KJzcr32jQMJqtK5NJop2cINl
- 9Ebd8hsMhE+MWHwkXW/PjQHzQNVi+QxoJYp5ggn+JZbE6bIhHzJaCbg54yeBdVYaKhiU
- GLOT0fN/40VD6Gf5soYESTPoFMs5u410zhTCtMMxSiTNAF1IeqSGJW4F19rGX+ddm8Lh
- 2XsHczdkDeRkyYoLm+k6ElJtv/2AnJKWR7j2B8380LonwThSgmeNaioKv+cKsl8yX/fK
- v69JfJPGaD79z/9nCqUM3LDP+XzmX2bnG5R8IMygXAh/DNaCOzAO7QTc8Jl1vn0W6Czd
- fQRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=1LNXy0gulshDF6Am2ORMrlABkF4RBeFdpjJ6l6ghlxc=;
- b=r5zs+ZlGFEFvTa8b42DejY57T3EvBfcK4QfTO0NketCRW3dEtve2TcSQoU6jyonOmP
- S+tMuLsJPOd2Di9x9uo/oSRP7IsZjAnpDwz4/Ja7RHlyE1FS3ohZlCWavEKbe8HO2RI0
- rWAr9rICLSsJi89Am34j1ZjuRrbc6iOH/bJBkXDdK5S2moUtSsBE9tXHPe0cUXo9XBA4
- C8sPgNdPF9UPrkFXgCC8S2WA0x6a3616vohDBpkE78eyyk6MbPXiRh39YHYn7hHFgJRQ
- rzVU6nOPNFXoIpSV6hhrDbWIzeqCNzgk67f9eSYv8Otzxfskg1p2I3xV0vrfz6Dc/jgj
- TdxA==
-X-Gm-Message-State: AOAM531ZW3BMTC/c2WMLNpm4wYdIYbwI317ngxMWbtgDuTB2/H2VwvXY
- siM9N4kKaS5PExZfVcpM7rVWzg==
-X-Google-Smtp-Source: ABdhPJzsZQLMeKY0DCqtO/KRhmtkfC5lUzy0bMjqjQup+oWO9tomqEZelGqLBLNBAwZlmugb1j09Jg==
-X-Received: by 2002:ac8:7350:: with SMTP id q16mr24420939qtp.74.1591642773976; 
- Mon, 08 Jun 2020 11:59:33 -0700 (PDT)
-Received: from skullcanyon
- (marriott-chateau-champlain-montreal.sites.intello.com. [66.171.169.34])
- by smtp.gmail.com with ESMTPSA id z194sm7357905qkb.73.2020.06.08.11.59.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Jun 2020 11:59:33 -0700 (PDT)
-Message-ID: <f6d35521b61da395528d6dd1164a9af6c3acd664.camel@ndufresne.ca>
-Subject: Re: [PATCH 1/5] media: videodev2: add Compressed Framebuffer pixel
- formats
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Neil Armstrong
- <narmstrong@baylibre.com>
-Date: Mon, 08 Jun 2020 14:59:32 -0400
-In-Reply-To: <2a0db0a4-9d04-f20c-39d8-ff25e07e64b7@xs4all.nl>
-References: <20200604135317.9235-1-narmstrong@baylibre.com>
- <20200604135317.9235-2-narmstrong@baylibre.com>
- <02aa06fd8397b77c9a75d3a8399cb55d3b4d39c1.camel@ndufresne.ca>
- <4d22ff40-11ac-c77a-564d-af9a678f23af@baylibre.com>
- <a15dea55-3ca4-2a65-5c56-6c1edd2de405@xs4all.nl>
- <a4c5ae79-1d4d-4c1e-1535-c6c8b02d4b6f@baylibre.com>
- <2a0db0a4-9d04-f20c-39d8-ff25e07e64b7@xs4all.nl>
-User-Agent: Evolution 3.36.2 (3.36.2-1.fc32) 
+ id 1jiQrs-0007gb-35; Mon, 08 Jun 2020 23:07:50 +0000
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 68FA22085B;
+ Mon,  8 Jun 2020 23:07:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1591657667;
+ bh=gaxOcen6Q9dN8HfcwwrP4yk5frKodCMa00mJuEccJdw=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=XCZo0I1Ybf6xpusNtSPDjTtVn7SdvFYmZsk8z4q0H65Gp0xd9wKbKvdRp6oG8Rrhn
+ uFlmGyQzPYeD88aIdsKXqGmOVE5sg0XYBd80Et3Yr7O7Fnw3z6zsSH+919Oe8q9g/N
+ wvUzGuhXgwrSsbXZlKUGMdHWJhXujfzlpmVU6t0I=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.7 077/274] mmc: meson-mx-sdio: trigger a soft reset
+ after a timeout or CRC error
+Date: Mon,  8 Jun 2020 19:02:50 -0400
+Message-Id: <20200608230607.3361041-77-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200608230607.3361041-1-sashal@kernel.org>
+References: <20200608230607.3361041-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200608_115935_252690_00345353 
-X-CRM114-Status: GOOD (  30.25  )
+X-CRM114-CacheID: sfid-20200608_160748_188569_00C5C4F6 
+X-CRM114-Status: GOOD (  13.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,131 +77,92 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>, linux-kernel@vger.kernel.org,
- Tomasz Figa <tfiga@chromium.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Sasha Levin <sashal@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-mmc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Tobias Baumann <017623705678@o2online.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgbHVuZGkgMDgganVpbiAyMDIwIMOgIDE2OjQzICswMjAwLCBIYW5zIFZlcmt1aWwgYSDDqWNy
-aXQgOgo+IE9uIDA4LzA2LzIwMjAgMTY6MTQsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+ID4gT24g
-MDgvMDYvMjAyMCAxMToyNiwgSGFucyBWZXJrdWlsIHdyb3RlOgo+ID4gPiBPbiAwOC8wNi8yMDIw
-IDEwOjE2LCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPiA+ID4gPiBIaSBOaWNvbGFzLAo+ID4gPiA+
-IAo+ID4gPiA+IE9uIDA1LzA2LzIwMjAgMTc6MzUsIE5pY29sYXMgRHVmcmVzbmUgd3JvdGU6Cj4g
-PiA+ID4gPiBMZSBqZXVkaSAwNCBqdWluIDIwMjAgw6AgMTU6NTMgKzAyMDAsIE5laWwgQXJtc3Ry
-b25nIGEgw6ljcml0IDoKPiA+ID4gPiA+ID4gRnJvbTogTWF4aW1lIEpvdXJkYW4gPG1qb3VyZGFu
-QGJheWxpYnJlLmNvbT4KPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+IEFkZCB0d28gZ2VuZXJpYyBD
-b21wcmVzc2VkIEZyYW1lYnVmZmVyIHBpeGVsIGZvcm1hdHMgdG8gYmUgdXNlZAo+ID4gPiA+ID4g
-PiB3aXRoIGEgbW9kaWZpZXIgd2hlbiBpbXBvcnRlZCBiYWNrIGluIGFub3RoZXIgc3Vic3lzdGVt
-IGxpa2UgRFJNL0tNUy4KPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+IFRoZXNlIHBpeGVsIGZvcm1h
-dHMgcmVwcmVzZW50cyBnZW5lcmljIDhiaXRzIGFuZCAxMGJpdHMgY29tcHJlc3NlZCBidWZmZXJz
-Cj4gPiA+ID4gPiA+IHdpdGggYSB2ZW5kb3Igc3BlY2lmaWMgbGF5b3V0Lgo+ID4gPiA+ID4gPiAK
-PiA+ID4gPiA+ID4gVGhlc2UgYXJlIGFsaWduZWQgd2l0aCB0aGUgRFJNX0ZPUk1BVF9ZVVY0MjBf
-OEJJVCBhbmQgRFJNX0ZPUk1BVF9ZVVY0MjBfMTBCSVQKPiA+ID4gPiA+ID4gdXNlZCB0byBkZXNj
-cmliZSB0aGUgdW5kZXJseWluZyBjb21wcmVzc2VkIGJ1ZmZlcnMgdXNlZCBmb3IgQVJNIEZyYW1l
-YnVmZmVyCj4gPiA+ID4gPiA+IENvbXByZXNzaW9uLiBJbiB0aGUgQW1sb2dpYyBjYXNlLCB0aGUg
-Y29tcHJlc3Npb24gaXMgZGlmZmVyZW50IGJ1dCB0aGUKPiA+ID4gPiA+ID4gdW5kZXJseWluZyBi
-dWZmZXIgY29tcG9uZW50cyBpcyB0aGUgc2FtZS4KPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+IFNp
-Z25lZC1vZmYtYnk6IE1heGltZSBKb3VyZGFuIDxtam91cmRhbkBiYXlsaWJyZS5jb20+Cj4gPiA+
-ID4gPiA+IFNpZ25lZC1vZmYtYnk6IE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJl
-LmNvbT4KPiA+ID4gPiA+ID4gLS0tCj4gPiA+ID4gPiA+ICBkcml2ZXJzL21lZGlhL3Y0bDItY29y
-ZS92NGwyLWlvY3RsLmMgfCAyICsrCj4gPiA+ID4gPiA+ICBpbmNsdWRlL3VhcGkvbGludXgvdmlk
-ZW9kZXYyLmggICAgICAgfCA5ICsrKysrKysrKwo+ID4gPiA+ID4gPiAgMiBmaWxlcyBjaGFuZ2Vk
-LCAxMSBpbnNlcnRpb25zKCspCj4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdjRsMi1pb2N0bC5jIGIvZHJpdmVycy9tZWRpYS92NGwy
-LWNvcmUvdjRsMi1pb2N0bC5jCj4gPiA+ID4gPiA+IGluZGV4IDIzMjJmMDhhOThiZS4uOGYxNGFk
-ZmQ1YmM1IDEwMDY0NAo+ID4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL21lZGlhL3Y0bDItY29yZS92
-NGwyLWlvY3RsLmMKPiA+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdjRs
-Mi1pb2N0bC5jCj4gPiA+ID4gPiA+IEBAIC0xNDQ3LDYgKzE0NDcsOCBAQCBzdGF0aWMgdm9pZCB2
-NGxfZmlsbF9mbXRkZXNjKHN0cnVjdCB2NGwyX2ZtdGRlc2MgKmZtdCkKPiA+ID4gPiA+ID4gIAkJ
-Y2FzZSBWNEwyX1BJWF9GTVRfUzVDX1VZVllfSlBHOglkZXNjciA9ICJTNUM3M01YIGludGVybGVh
-dmVkIFVZVlkvSlBFRyI7IGJyZWFrOwo+ID4gPiA+ID4gPiAgCQljYXNlIFY0TDJfUElYX0ZNVF9N
-VDIxQzoJZGVzY3IgPSAiTWVkaWF0ZWsgQ29tcHJlc3NlZCBGb3JtYXQiOyBicmVhazsKPiA+ID4g
-PiA+ID4gIAkJY2FzZSBWNEwyX1BJWF9GTVRfU1VOWElfVElMRURfTlYxMjogZGVzY3IgPSAiU3Vu
-eGkgVGlsZWQgTlYxMiBGb3JtYXQiOyBicmVhazsKPiA+ID4gPiA+ID4gKwkJY2FzZSBWNEwyX1BJ
-WF9GTVRfWVVWNDIwXzhCSVQ6CWRlc2NyID0gIkNvbXByZXNzZWQgWVVWIDQ6MjowIDgtYml0IEZv
-cm1hdCI7IGJyZWFrOwo+ID4gPiA+ID4gPiArCQljYXNlIFY0TDJfUElYX0ZNVF9ZVVY0MjBfMTBC
-SVQ6CWRlc2NyID0gIkNvbXByZXNzZWQgWVVWIDQ6MjowIDEwLWJpdCBGb3JtYXQiOyBicmVhazsK
-PiA+IAo+ID4gWy4uXQo+ID4gCj4gPiA+ID4gPiBJJ2xsIHJlbWluZCB0aGF0IHRoZSBtb2RpZmll
-ciBpbXBsZW1lbnRhdGlvbiBoYXMgZ3JlYXQgdmFsdWUgYW5kIGlzCj4gPiA+ID4gPiBtdWNoIG1v
-cmUgc2NhbGFibGUgdGhlbiB0aGUgY3VycmVudCBWNEwyIGFwcHJvYWNoLiBUaGVyZSBoYXMgYmVl
-biBzb21lCj4gPiA+ID4gPiBlYXJseSBwcm9wb3NhbCBmb3IgdGhpcywgbWF5YmUgaXQncyB0aW1l
-IHRvIHByaW9yaXRpemUgYmVjYXVzZSB0aGlzCj4gPiA+ID4gPiBsaXN0IHdpbGwgc3RhcnRzIGdy
-b3dpbmcgd2l0aCBodW5kcmVkIG9yIGV2ZW4gdGhvdXNhbmRzIG9yIGZvcm1hdCwKPiA+ID4gPiA+
-IHdoaWNoIGlzIGNsZWFybHkgaW5kaWNhdGVkIGJ5IHRoZSBpbmNyZWFzZSBvZiBtb2RpZmllciBn
-ZW5lcmF0b3IgbWFjcm8KPiA+ID4gPiA+IG9uIHRoZSBEUk0gc2lkZS4KPiA+ID4gPiAKPiA+ID4g
-PiBZZXMsIGJ1dCB1bnRpbCB0aGUgbWlncmF0aW9uIG9mIGRybV9mb3VyY2MgYW5kIHY0bDIgZm91
-cmNjIGludG8gYSBjb21tb24gb25lCj4gPiA+ID4gaXMgZGVjaWRlZCwgSSdtIHN0dWNrIGFuZCB0
-aGlzIGlzIHRoZSBvbmx5IGludGVybWVkaWF0ZSBzb2x1dGlvbiBJIGZvdW5kLgo+ID4gPiAKPiA+
-ID4gV2UgY2FuIHNhZmVseSBhc3N1bWUgdGhhdCBkcm0gZm91cmNjIGFuZCB2NGwyIGZvdXJjYyB3
-b24ndCBiZSBtZXJnZWQuCj4gPiA+IAo+ID4gPiBUaGVyZSBpcyB0b28gbXVjaCBkaXZlcmdlbmNl
-IGFuZCBub3QgZW5vdWdoIGludGVyZXN0IGluIGNyZWF0aW5nIGNvbW1vbgo+ID4gPiBmb3VyY2Nz
-Lgo+ID4gPiAKPiA+ID4gQnV0IHdlICpkbyogd2FudCB0byBzaGFyZSB0aGUgbW9kaWZpZXJzLgo+
-ID4gPiAKPiA+ID4gPiBXZSBoYXZlIGEgd29ya2luZyBzb2x1dGlvbiB3aXRoIEJvcmlzJ3MgcGF0
-Y2hzZXQgd2l0aCBleHRfZm10IHBhc3NpbmcgdGhlCj4gPiA+ID4gbW9kaWZpZXIgdG8gdXNlci1z
-cGFjZS4KPiA+ID4gPiAKPiA+ID4gPiBidXQgYW55d2F5LCBzaW5jZSB0aGUgZ29hbCBpcyB0byBt
-ZXJnZSB0aGUgZm91cmNjIGJldHdlZW4gRFJNICYgVjRMMiwgdGhlc2UgWVVWNDIwXypCSVQKPiA+
-ID4gPiB3aWxsIHN0aWxsIGJlIG5lZWRlZCBpZiB3ZSBwYXNzIHRoZSBtb2RpZmllciB3aXRoIGFu
-IGV4dGVuZGVkIGZvcm1hdCBzdHJ1Y3QuCj4gPiA+IAo+ID4gPiBXZSB0cmllZCBtZXJnaW5nIGZv
-dXJjY3MgYnV0IHRoYXQgcmFuIGludG8gcmVzaXN0YW5jZS4gRnJhbmtseSwgSSB3b3VsZG4ndAo+
-ID4gPiBib3RoZXIgd2l0aCB0aGlzLCBpdCBpcyBtdWNoIGVhc2llciB0byBqdXN0IGNyZWF0ZSBh
-IGNvbnZlcnNpb24gdGFibGUgaW4gdGhlCj4gPiA+IGtlcm5lbCBkb2NzLgo+ID4gPiAKPiA+ID4g
-U28gZG9uJ3QgYmxvY2sgb24gdGhpcywgSSB3b3VsZCByZWFsbHkgcHJlZmVyIGlmIHRoZSBleHRf
-Zm10IHNlcmllcyBpcyBwaWNrZWQKPiA+ID4gdXAgYWdhaW4gYW5kIHJlYmFzZWQgYW5kIHJlcG9z
-dGVkIGFuZCB0aGVuIHdvcmtlZCBvbi4gVGhlIHN0YXRlbGVzcyBjb2RlYyBzdXBwb3J0Cj4gPiA+
-IGlzIHRha2luZyBsZXNzIHRpbWUgKGl0J3Mgc2hhcGluZyB1cCB3ZWxsKSBzbyB0aGVyZSBpcyBt
-b3JlIHRpbWUgdG8gd29yayBvbiB0aGlzLgo+ID4gCj4gPiBPaywgSSBhbHJlYWR5IHN0YXJ0aW5n
-IGRpc2N1c3Npbmcgd2l0aCBIZWxlbiBLb2lrZSBhYm91dCB0aGUgZXh0X2ZudCByZS1zcGluLgo+
-ID4gCj4gPiBTaG91bGQgSSByZS1pbnRyb2R1Y2UgZGlmZmVyZW50IHY0bDIgcGl4Zm10IGZvciB0
-aGVzZSBEUk0gWVVWNDIwXypCSVQgb3IgSSBjYW4ga2VlcCB0aGlzCj4gPiBwYXRjaCBhbG9uZyB0
-aGUgbmV3IGV4dF9mbXQgYW5kIHNoYXJlZCBtb2RpZmllcnMgPwo+IAo+IFNvIHRvIGJlIGNsZWFy
-IHRoZSBEUk1fRk9STUFUX1lVVjQyMF84QklULzEwQklUIGZvdXJjY3MgZGVmaW5lIHRoYXQgdGhp
-cyBpcyBhCj4gYnVmZmVyIGNvbnRhaW5pbmcgY29tcHJlc3NlZCBZVVY0MjAgaW4gOCBvciAxMCBi
-aXQgYW5kIHRoZSBtb2RpZmllciB0ZWxscyB1c2Vyc3BhY2UKPiB3aGljaCBjb21wcmVzc2lvbiBp
-cyB1c2VkLCByaWdodD8KPiAKPiBBbmQgd2Ugd291bGQgYWRkIFY0TDJfUElYX0ZNVF9ZVVY0MjBf
-OEJJVC9fMTBCSVQgdGhhdCwgSSBhc3N1bWUsIHVzZSB0aGUgc2FtZQo+IGZvdXJjYyB2YWx1ZXMg
-YXMgdGhlIERSTSB2YXJpYW50cz8KPiAKPiBTaW5jZSB0aGVzZSBmb3VyY2NzIGFyZSBiYXNpY2Fs
-bHkgdXNlbGVzcyB3aXRob3V0IFY0TDIgbW9kaWZpZXIgc3VwcG9ydCBpdCB3b3VsZAo+IG9ubHkg
-bWFrZSBzZW5zZSBpbiBjb21iaW5hdGlvbiB3aXRoIHRoZSBleHRfZm10IHNlcmllcy4KCkkgcGVy
-c29uYWxseSBzdGlsbCB0aGluayB0aGF0IGFkZGluZyB0aGVzZSBmb3VyY2Mgd2lsbCBqdXN0IGNy
-ZWF0ZSBhCnNvdXJjZSBvZiBjb25mdXNpb24gYW5kIHRoYXQgZm91cmNjIHNob3VsZCBub3QgYmUg
-dHJpZWQgdG8gYmUgbWF0Y2hlZAphdCB0aGUgY29zdCBvZiB0cmlwbGluZyB0aGUgYWxyZWFkeSBk
-dXBsaWNhdGVkIHBpeGVsIGZvcm1hdHMuIFVzZXJzcGFjZQphbHJlYWR5IG5lZWQgdG8gaW1wbGVt
-ZW50IHRyYW5zbGF0aW9uIGFueXdheS4KCk9uIERSTSBzaWRlLCBuZXcgZm91cmNjIHdhcyBub3Qg
-Y3JlYXRlIGZvciBOVjEyK21vZGlmaWVyLCBJIGRvbid0IHNlZQp3aHkgcGxhbmFyIFlVVjQyMCBo
-YXMgdG8gYmUgZGlmZmVyZW50LCB3aXRoIG9yIHdpdGhvdXQgZXh0X2ZtdC4KCk5pY29sYXMKIAo+
-IAo+IFJlZ2FyZHMsCj4gCj4gCUhhbnMKPiAKPiA+IE5laWwKPiA+IAo+ID4gPiBJIGJlbGlldmUg
-d2UgcmVhbGx5IG5lZWQgdGhpcyBzaW5jZSB2NGwyX2J1ZmZlciBhbmQgdjRsMl9mb3JtYXQgYXJl
-IGEgcmVhbCBtZXNzLgo+ID4gPiAKPiA+ID4gUmVnYXJkcywKPiA+ID4gCj4gPiA+IAlIYW5zCj4g
-PiA+IAo+ID4gPiA+ID4gPiAgCQlkZWZhdWx0Ogo+ID4gPiA+ID4gPiAgCQkJaWYgKGZtdC0+ZGVz
-Y3JpcHRpb25bMF0pCj4gPiA+ID4gPiA+ICAJCQkJcmV0dXJuOwo+ID4gPiA+ID4gPiBkaWZmIC0t
-Z2l0IGEvaW5jbHVkZS91YXBpL2xpbnV4L3ZpZGVvZGV2Mi5oIGIvaW5jbHVkZS91YXBpL2xpbnV4
-L3ZpZGVvZGV2Mi5oCj4gPiA+ID4gPiA+IGluZGV4IGMzYTFjZjFjNTA3Zi4uOTBiOTk0OWFjYjhh
-IDEwMDY0NAo+ID4gPiA+ID4gPiAtLS0gYS9pbmNsdWRlL3VhcGkvbGludXgvdmlkZW9kZXYyLmgK
-PiA+ID4gPiA+ID4gKysrIGIvaW5jbHVkZS91YXBpL2xpbnV4L3ZpZGVvZGV2Mi5oCj4gPiA+ID4g
-PiA+IEBAIC03MDUsNiArNzA1LDE1IEBAIHN0cnVjdCB2NGwyX3BpeF9mb3JtYXQgewo+ID4gPiA+
-ID4gPiAgI2RlZmluZSBWNEwyX1BJWF9GTVRfRldIVCAgICAgdjRsMl9mb3VyY2MoJ0YnLCAnVycs
-ICdIJywgJ1QnKSAvKiBGYXN0IFdhbHNoIEhhZGFtYXJkIFRyYW5zZm9ybSAodmljb2RlYykgKi8K
-PiA+ID4gPiA+ID4gICNkZWZpbmUgVjRMMl9QSVhfRk1UX0ZXSFRfU1RBVEVMRVNTICAgICB2NGwy
-X2ZvdXJjYygnUycsICdGJywgJ1cnLCAnSCcpIC8qIFN0YXRlbGVzcyBGV0hUICh2aWNvZGVjKSAq
-Lwo+ID4gPiA+ID4gPiAgCj4gPiA+ID4gPiA+ICsvKgo+ID4gPiA+ID4gPiArICogQ29tcHJlc3Nl
-ZCBMdW1pbmFuY2UrQ2hyb21pbmFuY2UgbWV0YS1mb3JtYXRzCj4gPiA+ID4gPiA+ICsgKiBJbiB0
-aGVzZSBmb3JtYXRzLCB0aGUgY29tcG9uZW50IG9yZGVyaW5nIGlzIHNwZWNpZmllZCAoWSwgZm9s
-bG93ZWQgYnkgVQo+ID4gPiA+ID4gPiArICogdGhlbiBWKSwgYnV0IHRoZSBleGFjdCBMaW5lYXIg
-bGF5b3V0IGlzIHVuZGVmaW5lZC4KPiA+ID4gPiA+ID4gKyAqIFRoZXNlIGZvcm1hdHMgY2FuIG9u
-bHkgYmUgdXNlZCB3aXRoIGEgbm9uLUxpbmVhciBtb2RpZmllci4KPiA+ID4gPiA+ID4gKyAqLwo+
-ID4gPiA+ID4gPiArI2RlZmluZSBWNEwyX1BJWF9GTVRfWVVWNDIwXzhCSVQJdjRsMl9mb3VyY2Mo
-J1knLCAnVScsICcwJywgJzgnKSAvKiAxLXBsYW5lIFlVViA0OjI6MCA4LWJpdCAqLwo+ID4gPiA+
-ID4gPiArI2RlZmluZSBWNEwyX1BJWF9GTVRfWVVWNDIwXzEwQklUCXY0bDJfZm91cmNjKCdZJywg
-J1UnLCAnMScsICcwJykgLyogMS1wbGFuZSBZVVYgNDoyOjAgMTAtYml0ICovCj4gPiA+ID4gPiA+
-ICsKPiA+ID4gPiA+ID4gIC8qICBWZW5kb3Itc3BlY2lmaWMgZm9ybWF0cyAgICovCj4gPiA+ID4g
-PiA+ICAjZGVmaW5lIFY0TDJfUElYX0ZNVF9DUElBMSAgICB2NGwyX2ZvdXJjYygnQycsICdQJywg
-J0knLCAnQScpIC8qIGNwaWExIFlVViAqLwo+ID4gPiA+ID4gPiAgI2RlZmluZSBWNEwyX1BJWF9G
-TVRfV05WQSAgICAgdjRsMl9mb3VyY2MoJ1cnLCAnTicsICdWJywgJ0EnKSAvKiBXaW5ub3YgaHcg
-Y29tcHJlc3MgKi8KPiA+ID4gPiAKPiA+ID4gPiBbMV0gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRl
-c2t0b3Aub3JnL3Nlcmllcy83MzcyMi8jcmV2Nwo+ID4gPiA+IAoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+[ Upstream commit 91995b904ec2e44b5c159ac6a5d3f154345a4de7 ]
+
+The vendor driver (from the 3.10 kernel) triggers a soft reset every
+time before starting a new command. While this fixes a problem where
+SDIO cards are not detected at all (because all commands simply
+timed out) this hurts SD card read performance a bit (in my tests
+between 10% to 20%).
+
+Trigger a soft reset after we got a CRC error or if the previous command
+timed out (just like the vendor driver from the same 3.10 kernel for the
+newer SDHC controller IP does). This fixes detection of SDIO cards and
+doesn't hurt SD card read performance at the same time.
+
+With this patch the initialization of an RTL8723BS SDIO card looks like
+this:
+  req done (CMD52): -110: 00000000 00000000 00000000 00000000
+  clock 400000Hz busmode 2 powermode 2 cs 1 Vdd 21 width 1 timing 0
+  starting CMD0 arg 00000000 flags 000000c0
+  req done (CMD0): 0: 00000000 00000000 00000000 00000000
+  clock 400000Hz busmode 2 powermode 2 cs 0 Vdd 21 width 1 timing 0
+  starting CMD8 arg 000001aa flags 000002f5
+  req done (CMD8): -110: 00000000 00000000 00000000 00000000
+  starting CMD5 arg 00000000 flags 000002e1
+  req done (CMD5): 0: 90ff0000 00000000 00000000 00000000
+  starting CMD5 arg 00200000 flags 000002e1
+  req done (CMD5): 0: 90ff0000 00000000 00000000 00000000
+  starting CMD3 arg 00000000 flags 00000075
+  req done (CMD3): 0: 00010000 00000000 00000000 00000000
+  starting CMD7 arg 00010000 flags 00000015
+  req done (CMD7): 0: 00001e00 00000000 00000000 00000000
+  starting CMD52 arg 00000000 flags 00000195
+  req done (CMD52): 0: 00001032 00000000 00000000 00000000
+  [... more CMD52 omitted ...]
+  clock 400000Hz busmode 2 powermode 2 cs 0 Vdd 21 width 1 timing 2
+  clock 50000000Hz busmode 2 powermode 2 cs 0 Vdd 21 width 1 timing 2
+  starting CMD52 arg 00000e00 flags 00000195
+  req done (CMD52): 0: 00001000 00000000 00000000 00000000
+  starting CMD52 arg 80000e02 flags 00000195
+  req done (CMD52): 0: 00001002 00000000 00000000 00000000
+  clock 50000000Hz busmode 2 powermode 2 cs 0 Vdd 21 width 4 timing 2
+  starting CMD52 arg 00020000 flags 00000195
+  req done (CMD52): 0: 00001007 00000000 00000000 00000000
+  [... more CMD52 omitted ...]
+  new high speed SDIO card at address 0001
+
+Fixes: ed80a13bb4c4c9 ("mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8 and Meson8b SoCs")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Link: https://lore.kernel.org/r/20200503222805.2668941-1-martin.blumenstingl@googlemail.com
+Tested-by: Tobias Baumann <017623705678@o2online.de>
+Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/mmc/host/meson-mx-sdio.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
+index 2e58743d83bb..3813b544f571 100644
+--- a/drivers/mmc/host/meson-mx-sdio.c
++++ b/drivers/mmc/host/meson-mx-sdio.c
+@@ -246,6 +246,9 @@ static void meson_mx_mmc_request_done(struct meson_mx_mmc_host *host)
+ 
+ 	mrq = host->mrq;
+ 
++	if (host->cmd->error)
++		meson_mx_mmc_soft_reset(host);
++
+ 	host->mrq = NULL;
+ 	host->cmd = NULL;
+ 
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
