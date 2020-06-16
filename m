@@ -2,82 +2,85 @@ Return-Path: <SRS0=khgl=75=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 399BEC433E1
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2020 11:33:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D6315C433E1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2020 13:05:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0804E20B1F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2020 11:33:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AC7792098B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2020 13:05:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H0oP8oQm";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VibwAZSD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0804E20B1F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OVWy3LEB";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="DrTWSdc5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AC7792098B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CqIGbWqZQp6kwT77czr+Ezwr4itF/H9o4udEQvZqp8s=; b=H0oP8oQmVNvK0V
-	FBYjxQxn8kNjoDjoUuAK1zUQhkRumjqiF244JSrjUYqw4wdRbhWV1QOybykXn8hf/0/EGWyv2FlW/
-	ewgNQHN5LPZR4KWB7fNf5EqwTKIlEO5cIdQceDulxr0J1AthlzVYv/BIo+sNmcz6/RSa/+d0Sv5sq
-	QN0kDGdD3LaxrcsQ6HdX55PmS+PTr4K/32HZF86a9TeizuBjI3Vt7/LhWI6zzOoW70ZwRFfBR9b17
-	yQjXZdGeTgR+o1+IX2BRhl+a+3WBBACGTp1n2JkoyflXJAUUqbpblY3XiQMffUNr4Um0jdACuUq5Z
-	NLpij2lUF4Z4ZdqZSHtw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=XbXoD0pFXHYyiFbPnbuQ2zQB2HrveHnsQtPlujlVgA4=; b=OVWy3LEBJybHuUiigxe8Hq3Ls
+	a3Ie5xRqhfsEihlEsk5LsIiKScHz8viqjxWx7UINp2gq+IO0dZLR3X49KmS6b9969zjWcYelErYQz
+	xN460PN0yt/w9bAa/cZYS5UfmCs2t97vTP6smc9VlnMKw7BB2F8bJeHVr2W9s2XZEb+HjyxLjswhp
+	/k1DMyfaUK7YweaSD+aJffsjv8bBI/b7TYIMSuawK+Dvymix5Nqf3UX/e7zqrdeXc3nP1heK21bBJ
+	SBONE97mY7mYhq0gvB/su/9PNJ0NokbeFqFGw3jYPuans238elwziLsImYj9zLdov0ayDWXQGTIsu
+	SCb8a5nRg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jl9qJ-0005Ww-Fn; Tue, 16 Jun 2020 11:33:27 +0000
-Received: from mail-vk1-xa41.google.com ([2607:f8b0:4864:20::a41])
+	id 1jlBHJ-0004Im-8o; Tue, 16 Jun 2020 13:05:25 +0000
+Received: from us-smtp-1.mimecast.com ([207.211.31.81]
+ helo=us-smtp-delivery-1.mimecast.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jl9q6-0005Kz-3n
- for linux-amlogic@lists.infradead.org; Tue, 16 Jun 2020 11:33:15 +0000
-Received: by mail-vk1-xa41.google.com with SMTP id s192so4711279vkh.3
- for <linux-amlogic@lists.infradead.org>; Tue, 16 Jun 2020 04:33:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZSg0muGbkwOyh6Ot3lTlpvo0Mmt4wgCAweHT5tRHxm0=;
- b=VibwAZSD84LU+4hHmx7H20bVV8ZpftSbkJ7qeyM+fPSnWy5b52HMmY8uC6oN/TOJ3N
- Ppd7MeLLzhu4lLdwL1u8+HFFzEJwEkIRbPl3l2liiO84a2tEXnOOLJLVeD2eQr2LEdo1
- GuqKU5ksA+/+QuCtf656nkvB+l8BnzLR+CwMeWI8NMKjSG87T6hTFLog6RcU8uJ5b42y
- lBqr6ENJXZQ31zwwwbbWm8fG8NZlpIVe4l6fg47KvRL/VkNsBi3g56UkQTQ64+dQKFpF
- 89zZO5b6w/YjOAiLDeGYGxLcR5EKhAFvvlLFVKqumAr2y0DtwWTd9++bWUxaqHYG4fEh
- NmyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZSg0muGbkwOyh6Ot3lTlpvo0Mmt4wgCAweHT5tRHxm0=;
- b=pT1xZjpciymmgIocLGCB83RwdhJz7A70TalDpQY+puwfo13r3hJY1sk6by5ae+44le
- 70x0WehIKoCwV64FvbgJJlXEMZsXkS63MRSdxW242VyjnEwm6MHlSInUdGrZFxWf8SCO
- 4UbmsjFEZwQEm9EYh3dn49loRqWksa48Pwjd1mNSCTrGYfLcUtDnukj0YZh1ZuZRAkIv
- tVKgrVW4DgDjigbZXyXmFZNsyRiDE+HPDWVUbDnlczi5vbuaJCM8u1h6HVSRl6/MXZyE
- 6bs5/xG7DR0F/wEG6Kl8Yga5ByTOycbLRRo7ilPtCUCpU9oLq/6+t5Zp1mjKLXZjA3lt
- aD7Q==
-X-Gm-Message-State: AOAM5314SC0oTAuVpHZlIdFCCRvN0zpEIRRcFIC37A5foflQ/piuOfFC
- 973FJ4/vl+dlk+D8077wtrgMQ8sWQPBZ/wNmekc6kA==
-X-Google-Smtp-Source: ABdhPJznqqxzYSq4IwrFjXL5kmjhHPScZNDOA7H32xZbM7qlqeiuriVkd5OOYnJKbb8oO4Q4Ov7r07YvZL4Xn1v7YjE=
-X-Received: by 2002:a1f:2145:: with SMTP id h66mr1118293vkh.53.1592307192362; 
- Tue, 16 Jun 2020 04:33:12 -0700 (PDT)
+ id 1jlBHF-0004DK-5o
+ for linux-amlogic@lists.infradead.org; Tue, 16 Jun 2020 13:05:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1592312719;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=7nZX/JZoMn+I5qsocsgLqRgQUtpNpbf+EHIybmwJtOc=;
+ b=DrTWSdc51IgcrjaAMEbVTNIUuwKk9tbvc65esaiRUfyf6HC89eIAFP1HkgIwMQcloe71Zx
+ ZrZ3XJ+4bVa1pDQj6zbc3JfNAKPe4H+gjkeZq/QkWFjQYfqmOgahNwU+1FLrUPHDaDY0YO
+ F6zs7fjkWicjD+JvfM+fl05yhD3NjX8=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-395-9xOyBG-QPzmPq6osX1JXvA-1; Tue, 16 Jun 2020 09:05:14 -0400
+X-MC-Unique: 9xOyBG-QPzmPq6osX1JXvA-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 108C8107B7CB;
+ Tue, 16 Jun 2020 13:05:07 +0000 (UTC)
+Received: from llong.remote.csb (ovpn-114-156.rdu2.redhat.com [10.10.114.156])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 3337D5D9E4;
+ Tue, 16 Jun 2020 13:05:01 +0000 (UTC)
+Subject: Re: [PATCH v4 1/3] mm/slab: Use memzero_explicit() in kzfree()
+To: Eric Biggers <ebiggers@kernel.org>
+References: <20200616015718.7812-1-longman@redhat.com>
+ <20200616015718.7812-2-longman@redhat.com>
+ <20200616033035.GB902@sol.localdomain>
+From: Waiman Long <longman@redhat.com>
+Organization: Red Hat
+Message-ID: <56c2304c-73cc-8f48-d8d0-5dd6c39f33f3@redhat.com>
+Date: Tue, 16 Jun 2020 09:05:00 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <20200608084458.32014-1-narmstrong@baylibre.com>
-In-Reply-To: <20200608084458.32014-1-narmstrong@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 16 Jun 2020 13:32:36 +0200
-Message-ID: <CAPDyKFo7VA-wbOZUxExUpPoc+u446KecFARX0KNCakaubowpXg@mail.gmail.com>
-Subject: Re: [PATCH] mmc: meson-gx: limit segments to 1 when dram-access-quirk
- is needed
-To: Neil Armstrong <narmstrong@baylibre.com>
+In-Reply-To: <20200616033035.GB902@sol.localdomain>
+Content-Language: en-US
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200616_043314_408039_160BE814 
-X-CRM114-Status: GOOD (  17.15  )
+X-CRM114-CacheID: sfid-20200616_060521_314096_E917749D 
+X-CRM114-Status: GOOD (  22.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,65 +92,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Art Nikpal <art@khadas.com>, Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>, Michal Hocko <mhocko@suse.com>,
+ linux-btrfs@vger.kernel.org, Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+ David Sterba <dsterba@suse.cz>, David Howells <dhowells@redhat.com>,
+ linux-mm@kvack.org, linux-sctp@vger.kernel.org, keyrings@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-stm32@st-md-mailman.stormreply.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ linux-scsi@vger.kernel.org, James Morris <jmorris@namei.org>,
+ Matthew Wilcox <willy@infradead.org>, linux-wpan@vger.kernel.org,
+ David Rientjes <rientjes@google.com>, Dan Carpenter <dan.carpenter@oracle.com>,
+ "Serge E. Hallyn" <serge@hallyn.com>, linux-pm@vger.kernel.org,
+ ecryptfs@vger.kernel.org, linux-fscrypt@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ virtualization@lists.linux-foundation.org, linux-integrity@vger.kernel.org,
+ linux-nfs@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-security-module@vger.kernel.org, target-devel@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ Johannes Weiner <hannes@cmpxchg.org>, Joe Perches <joe@perches.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>, netdev@vger.kernel.org,
+ wireguard@lists.zx2c4.com, linux-ppp@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 8 Jun 2020 at 10:45, Neil Armstrong <narmstrong@baylibre.com> wrote:
+On 6/15/20 11:30 PM, Eric Biggers wrote:
+> On Mon, Jun 15, 2020 at 09:57:16PM -0400, Waiman Long wrote:
+>> The kzfree() function is normally used to clear some sensitive
+>> information, like encryption keys, in the buffer before freeing it back
+>> to the pool. Memset() is currently used for the buffer clearing. However,
+>> it is entirely possible that the compiler may choose to optimize away the
+>> memory clearing especially if LTO is being used. To make sure that this
+>> optimization will not happen, memzero_explicit(), which is introduced
+>> in v3.18, is now used in kzfree() to do the clearing.
+>>
+>> Fixes: 3ef0e5ba4673 ("slab: introduce kzfree()")
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Waiman Long <longman@redhat.com>
+>> ---
+>>   mm/slab_common.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/mm/slab_common.c b/mm/slab_common.c
+>> index 9e72ba224175..37d48a56431d 100644
+>> --- a/mm/slab_common.c
+>> +++ b/mm/slab_common.c
+>> @@ -1726,7 +1726,7 @@ void kzfree(const void *p)
+>>   	if (unlikely(ZERO_OR_NULL_PTR(mem)))
+>>   		return;
+>>   	ks = ksize(mem);
+>> -	memset(mem, 0, ks);
+>> +	memzero_explicit(mem, ks);
+>>   	kfree(mem);
+>>   }
+>>   EXPORT_SYMBOL(kzfree);
+> This is a good change, but the commit message isn't really accurate.  AFAIK, no
+> one has found any case where this memset() gets optimized out.  And even with
+> LTO, it would be virtually impossible due to all the synchronization and global
+> data structures that kfree() uses.  (Remember that this isn't the C standard
+> function "free()", so the compiler can't assign it any special meaning.)
+> Not to mention that LTO support isn't actually upstream yet.
 >
-> The actual max_segs computation leads to failure while using the broadcom
-> sdio brcmfmac/bcmsdh driver, since the driver tries to make usage of scatter
-> gather.
->
-> But with the dram-access-quirk we use a 1,5K SRAM bounce buffer, and the
-> max_segs current value of 3 leads to max transfers to 4,5k, which doesn't work.
->
-> This patch sets max_segs to 1 to better describe the hardware limitation,
-> and fix the SDIO functionnality with the brcmfmac/bcmsdh driver on Amlogic
-> G12A/G12B SoCs on boards like SEI510 or Khadas VIM3.
->
-> Reported-by: Art Nikpal <art@khadas.com>
-> Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-> Fixes: acdc8e71d9bb ("mmc: meson-gx: add dram-access-quirk")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> I still agree with the change, but it might be helpful if the commit message
+> were honest that this is really a hardening measure and about properly conveying
+> the intent.  As-is this sounds like a critical fix, which might confuse people.
 
-Applied for fixes and by adding a stable tag, thanks!
+Yes, I agree that the commit log may look a bit scary. How about the 
+following:
 
-Kind regards
-Uffe
+The kzfree() function is normally used to clear some sensitive
+information, like encryption keys, in the buffer before freeing it back
+to the pool. Memset() is currently used for buffer clearing. However
+unlikely, there is still a non-zero probability that the compiler may
+choose to optimize away the memory clearing especially if LTO is being
+used in the future. To make sure that this optimization will never
+happen, memzero_explicit(), which is introduced in v3.18, is now used
+in kzfree() to future-proof it.
 
+Cheers,
+Longman
 
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 35400cf2a2e4..cfaf8e7e22ec 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -1143,9 +1143,11 @@ static int meson_mmc_probe(struct platform_device *pdev)
->
->         mmc->caps |= MMC_CAP_CMD23;
->         if (host->dram_access_quirk) {
-> +               /* Limit segments to 1 due to low available sram memory */
-> +               mmc->max_segs = 1;
->                 /* Limit to the available sram memory */
-> -               mmc->max_segs = SD_EMMC_SRAM_DATA_BUF_LEN / mmc->max_blk_size;
-> -               mmc->max_blk_count = mmc->max_segs;
-> +               mmc->max_blk_count = SD_EMMC_SRAM_DATA_BUF_LEN /
-> +                                    mmc->max_blk_size;
->         } else {
->                 mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
->                 mmc->max_segs = SD_EMMC_DESC_BUF_LEN /
-> --
-> 2.22.0
->
 
 _______________________________________________
 linux-amlogic mailing list
