@@ -2,101 +2,82 @@ Return-Path: <SRS0=khgl=75=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B6E9C433DF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2020 09:12:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 399BEC433E1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2020 11:33:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D147A20679
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2020 09:12:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0804E20B1F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2020 11:33:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n1uqO7PX";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="cVx0KE5h"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D147A20679
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=oracle.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H0oP8oQm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VibwAZSD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0804E20B1F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EAf6+7jKgL0+G5lxY6G3zgzsD1jBYfXoKAeWGohnEW8=; b=n1uqO7PXnl1paq
-	JaEcoiIM6w4dQ8QeUd2x0iptTv8TMZFL3jQfZ+B044d9J7DXqu+E3+jDwA93a+7zpRwmlK0+Z6Sqj
-	G7FrhU0NjUMlLZa/m5PNpuRgJC5sVhszkody8CUZrlF3ROGZVlUJHmVjVojJ59NissABxDPwLp36q
-	6xRiXPQc6cG09PyrD4AsnST65QvMxBtt9I+XSGgKEZsJIEvrK5/AI4TVkXvpfYwZlkUR7aqrUTdcE
-	tvQ/rFv2BmxMYn2h8Y1Ax9fvMhl9kSdLl5j5jcJHHR5g+NwWxqIERg0V7aZgNjKl2P2cnvRV0cHkj
-	5yjeSpbzpo+FhFNx4z7w==;
+	List-Owner; bh=CqIGbWqZQp6kwT77czr+Ezwr4itF/H9o4udEQvZqp8s=; b=H0oP8oQmVNvK0V
+	FBYjxQxn8kNjoDjoUuAK1zUQhkRumjqiF244JSrjUYqw4wdRbhWV1QOybykXn8hf/0/EGWyv2FlW/
+	ewgNQHN5LPZR4KWB7fNf5EqwTKIlEO5cIdQceDulxr0J1AthlzVYv/BIo+sNmcz6/RSa/+d0Sv5sq
+	QN0kDGdD3LaxrcsQ6HdX55PmS+PTr4K/32HZF86a9TeizuBjI3Vt7/LhWI6zzOoW70ZwRFfBR9b17
+	yQjXZdGeTgR+o1+IX2BRhl+a+3WBBACGTp1n2JkoyflXJAUUqbpblY3XiQMffUNr4Um0jdACuUq5Z
+	NLpij2lUF4Z4ZdqZSHtw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jl7dP-0001UB-Rx; Tue, 16 Jun 2020 09:11:59 +0000
-Received: from userp2120.oracle.com ([156.151.31.85])
+	id 1jl9qJ-0005Ww-Fn; Tue, 16 Jun 2020 11:33:27 +0000
+Received: from mail-vk1-xa41.google.com ([2607:f8b0:4864:20::a41])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jl7dM-0001SK-Kb; Tue, 16 Jun 2020 09:11:58 +0000
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
- by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 05G93Vcj108652;
- Tue, 16 Jun 2020 09:10:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=vHFhOuRLkm8vQDg8Dof4S5HKAiKznh8tBQ+Mr1OID/Q=;
- b=cVx0KE5h1EIzH/Nv6xjfZ5nTWCPzlMev+meeNe8ig/R6zGb1hcI4zPyrerRBxYg+mmc+
- qKwemscmFpcbtZudgCHIJKFWU2+MEqUR3sjHNYzDUDCSWPx5pmD4LBuQpWhngStPV5H0
- 4QQ1w6PiSDdHFWQ+ndzL39yxLvqknoA5VRhKUkk0TCj0AiX8q664S4ecxGUJH34dsTgv
- f9QhZLAjaVCh+OyWTAfnAqTx90cKQuDChSnHHM+F7Utt0PRApBfU8iMActdQhiOLrCqP
- +xx+YuMkqnBp9yLLOcyvwHAC7rCtpaJ69Rrf1s2Xt7AKk0laObtgJ3Pt4+o8dQUQESCt bA== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
- by userp2120.oracle.com with ESMTP id 31p6e5wptp-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Tue, 16 Jun 2020 09:10:36 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
- by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 05G933ih037660;
- Tue, 16 Jun 2020 09:08:35 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
- by aserp3030.oracle.com with ESMTP id 31p6s6w4s2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 16 Jun 2020 09:08:35 +0000
-Received: from abhmp0019.oracle.com (abhmp0019.oracle.com [141.146.116.25])
- by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 05G98O1L002227;
- Tue, 16 Jun 2020 09:08:25 GMT
-Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Tue, 16 Jun 2020 02:08:24 -0700
-Date: Tue, 16 Jun 2020 12:08:07 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Michal Hocko <mhocko@kernel.org>
-Subject: Re: [PATCH v4 1/3] mm/slab: Use memzero_explicit() in kzfree()
-Message-ID: <20200616090807.GK4151@kadam>
-References: <20200616015718.7812-1-longman@redhat.com>
- <20200616015718.7812-2-longman@redhat.com>
- <20200616064208.GA9499@dhcp22.suse.cz>
+ id 1jl9q6-0005Kz-3n
+ for linux-amlogic@lists.infradead.org; Tue, 16 Jun 2020 11:33:15 +0000
+Received: by mail-vk1-xa41.google.com with SMTP id s192so4711279vkh.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 16 Jun 2020 04:33:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ZSg0muGbkwOyh6Ot3lTlpvo0Mmt4wgCAweHT5tRHxm0=;
+ b=VibwAZSD84LU+4hHmx7H20bVV8ZpftSbkJ7qeyM+fPSnWy5b52HMmY8uC6oN/TOJ3N
+ Ppd7MeLLzhu4lLdwL1u8+HFFzEJwEkIRbPl3l2liiO84a2tEXnOOLJLVeD2eQr2LEdo1
+ GuqKU5ksA+/+QuCtf656nkvB+l8BnzLR+CwMeWI8NMKjSG87T6hTFLog6RcU8uJ5b42y
+ lBqr6ENJXZQ31zwwwbbWm8fG8NZlpIVe4l6fg47KvRL/VkNsBi3g56UkQTQ64+dQKFpF
+ 89zZO5b6w/YjOAiLDeGYGxLcR5EKhAFvvlLFVKqumAr2y0DtwWTd9++bWUxaqHYG4fEh
+ NmyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ZSg0muGbkwOyh6Ot3lTlpvo0Mmt4wgCAweHT5tRHxm0=;
+ b=pT1xZjpciymmgIocLGCB83RwdhJz7A70TalDpQY+puwfo13r3hJY1sk6by5ae+44le
+ 70x0WehIKoCwV64FvbgJJlXEMZsXkS63MRSdxW242VyjnEwm6MHlSInUdGrZFxWf8SCO
+ 4UbmsjFEZwQEm9EYh3dn49loRqWksa48Pwjd1mNSCTrGYfLcUtDnukj0YZh1ZuZRAkIv
+ tVKgrVW4DgDjigbZXyXmFZNsyRiDE+HPDWVUbDnlczi5vbuaJCM8u1h6HVSRl6/MXZyE
+ 6bs5/xG7DR0F/wEG6Kl8Yga5ByTOycbLRRo7ilPtCUCpU9oLq/6+t5Zp1mjKLXZjA3lt
+ aD7Q==
+X-Gm-Message-State: AOAM5314SC0oTAuVpHZlIdFCCRvN0zpEIRRcFIC37A5foflQ/piuOfFC
+ 973FJ4/vl+dlk+D8077wtrgMQ8sWQPBZ/wNmekc6kA==
+X-Google-Smtp-Source: ABdhPJznqqxzYSq4IwrFjXL5kmjhHPScZNDOA7H32xZbM7qlqeiuriVkd5OOYnJKbb8oO4Q4Ov7r07YvZL4Xn1v7YjE=
+X-Received: by 2002:a1f:2145:: with SMTP id h66mr1118293vkh.53.1592307192362; 
+ Tue, 16 Jun 2020 04:33:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200616064208.GA9499@dhcp22.suse.cz>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9653
- signatures=668680
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- malwarescore=0 mlxscore=0
- suspectscore=0 mlxlogscore=781 phishscore=0 bulkscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
- definitions=main-2006160066
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9653
- signatures=668680
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
- priorityscore=1501 adultscore=0
- mlxscore=0 phishscore=0 mlxlogscore=814 lowpriorityscore=0 clxscore=1011
- suspectscore=0 spamscore=0 bulkscore=0 malwarescore=0 impostorscore=0
- cotscore=-2147483648 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2004280000 definitions=main-2006160066
+References: <20200608084458.32014-1-narmstrong@baylibre.com>
+In-Reply-To: <20200608084458.32014-1-narmstrong@baylibre.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 16 Jun 2020 13:32:36 +0200
+Message-ID: <CAPDyKFo7VA-wbOZUxExUpPoc+u446KecFARX0KNCakaubowpXg@mail.gmail.com>
+Subject: Re: [PATCH] mmc: meson-gx: limit segments to 1 when dram-access-quirk
+ is needed
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200616_021156_820029_32FAF0E1 
-X-CRM114-Status: GOOD (  17.08  )
+X-CRM114-CacheID: sfid-20200616_043314_408039_160BE814 
+X-CRM114-Status: GOOD (  17.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,57 +89,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>,
- Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
- virtualization@lists.linux-foundation.org, David Howells <dhowells@redhat.com>,
- linux-mm@kvack.org, linux-sctp@vger.kernel.org, keyrings@vger.kernel.org,
- kasan-dev@googlegroups.com, linux-stm32@st-md-mailman.stormreply.com,
- devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
- linux-scsi@vger.kernel.org, James Morris <jmorris@namei.org>,
- Matthew Wilcox <willy@infradead.org>, David Rientjes <rientjes@google.com>,
- Waiman Long <longman@redhat.com>, linux-pm@vger.kernel.org,
- ecryptfs@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- wireguard@lists.zx2c4.com, linux-fscrypt@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- Andrew Morton <akpm@linux-foundation.org>, linux-nfs@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-wireless@vger.kernel.org,
- David Sterba <dsterba@suse.cz>, stable@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-security-module@vger.kernel.org, target-devel@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
- Johannes Weiner <hannes@cmpxchg.org>, Joe Perches <joe@perches.com>,
- linux-integrity@vger.kernel.org, linux-wpan@vger.kernel.org,
- netdev@vger.kernel.org, linux-btrfs@vger.kernel.org, linux-ppp@vger.kernel.org
+Cc: "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Art Nikpal <art@khadas.com>, Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jun 16, 2020 at 08:42:08AM +0200, Michal Hocko wrote:
-> On Mon 15-06-20 21:57:16, Waiman Long wrote:
-> > The kzfree() function is normally used to clear some sensitive
-> > information, like encryption keys, in the buffer before freeing it back
-> > to the pool. Memset() is currently used for the buffer clearing. However,
-> > it is entirely possible that the compiler may choose to optimize away the
-> > memory clearing especially if LTO is being used. To make sure that this
-> > optimization will not happen, memzero_explicit(), which is introduced
-> > in v3.18, is now used in kzfree() to do the clearing.
-> > 
-> > Fixes: 3ef0e5ba4673 ("slab: introduce kzfree()")
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Waiman Long <longman@redhat.com>
-> 
-> Acked-by: Michal Hocko <mhocko@suse.com>
-> 
-> Although I am not really sure this is a stable material. Is there any
-> known instance where the memset was optimized out from kzfree?
+On Mon, 8 Jun 2020 at 10:45, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> The actual max_segs computation leads to failure while using the broadcom
+> sdio brcmfmac/bcmsdh driver, since the driver tries to make usage of scatter
+> gather.
+>
+> But with the dram-access-quirk we use a 1,5K SRAM bounce buffer, and the
+> max_segs current value of 3 leads to max transfers to 4,5k, which doesn't work.
+>
+> This patch sets max_segs to 1 to better describe the hardware limitation,
+> and fix the SDIO functionnality with the brcmfmac/bcmsdh driver on Amlogic
+> G12A/G12B SoCs on boards like SEI510 or Khadas VIM3.
+>
+> Reported-by: Art Nikpal <art@khadas.com>
+> Reported-by: Christian Hewitt <christianshewitt@gmail.com>
+> Fixes: acdc8e71d9bb ("mmc: meson-gx: add dram-access-quirk")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-I told him to add the stable.  Otherwise it will just get reported to
-me again.  It's a just safer to backport it before we forget.
+Applied for fixes and by adding a stable tag, thanks!
 
-regards,
-dan carpenter
+Kind regards
+Uffe
 
+
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 35400cf2a2e4..cfaf8e7e22ec 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -1143,9 +1143,11 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>
+>         mmc->caps |= MMC_CAP_CMD23;
+>         if (host->dram_access_quirk) {
+> +               /* Limit segments to 1 due to low available sram memory */
+> +               mmc->max_segs = 1;
+>                 /* Limit to the available sram memory */
+> -               mmc->max_segs = SD_EMMC_SRAM_DATA_BUF_LEN / mmc->max_blk_size;
+> -               mmc->max_blk_count = mmc->max_segs;
+> +               mmc->max_blk_count = SD_EMMC_SRAM_DATA_BUF_LEN /
+> +                                    mmc->max_blk_size;
+>         } else {
+>                 mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
+>                 mmc->max_segs = SD_EMMC_DESC_BUF_LEN /
+> --
+> 2.22.0
+>
 
 _______________________________________________
 linux-amlogic mailing list
