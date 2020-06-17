@@ -2,21 +2,21 @@ Return-Path: <SRS0=vfsC=76=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 342C9C433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 11:32:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B52D6C433E0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 12:23:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 000FD208B3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 11:32:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 88D1120CC7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 12:23:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CnSaMKZY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 000FD208B3
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uLxCNl19"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 88D1120CC7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -24,58 +24,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OWA8pIu0ZMarf0vs2vZZYvQLOryf6zXm28SRjouJPpY=; b=CnSaMKZYum+81H
-	GuySBeODQdNbSyzYl13oV+OHxK3pHaLXZg/HSWJFUhVOlIbteY1OAATzx+NGJ1EX3Ndt0/37oSfJU
-	7JbLFGhDKw10SdqsY2dESbmiTjnirWxYgoqZf6jA1JPbUpcw3+J3OoH3hxOLf23/KBWYZ/r2Z+f+2
-	pjJ/6hJgFEk9yzfeSf5+y4p77YZAwVCMSefc/BJ369u8i0MT7xT7YBiXKF6vAi5lGVw6q5Bs9yOxv
-	r24hh/4AA1wYjFZn577y38BVf4J/YvABK+7LzeEWY4ixqGSvlrpFcQJev58zpMR5PdZkN4MFOEROE
-	3Hrq6Mx32Y1lSag1DziQ==;
+	List-Owner; bh=Ish9uukDWpMOUfIbL2YEx1VQlU8+GncKmNfCfb56eFo=; b=uLxCNl19+be/D8
+	KEIRdzFN8efzFKARpK7wnd1S8Q5vC+jnT8YiROJUG6WAti3qjJv6VuMIABXFODflX9lgmbFy8DlZZ
+	lh+vUPqP/VW45qIFR7P/acxaFL7GW+XnlwVjxhwTe8myMcAXDiTfMctI+2MD4CdoDjrMbZ/LLNiV6
+	96PdE7LPjyg8SGmoceufON3B43I/+wjPHtHzxZAplVydOsYNiIKvjIrWeeqL4EY7+QUOQmvqRrOrl
+	Yc+DxnAjQhXp31BJT+4MjAUxTWY5oUWEfyL26840T7eUaPQyUOBsFccDFECmDKpK0Th8qhKPj7AfO
+	9BUtoNBpP4tqSgBHIO7g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jlWIV-0006VK-PE; Wed, 17 Jun 2020 11:32:03 +0000
-Received: from mail-ed1-f67.google.com ([209.85.208.67])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlWIT-0006Uu-QA; Wed, 17 Jun 2020 11:32:03 +0000
-Received: by mail-ed1-f67.google.com with SMTP id w7so1689439edt.1;
- Wed, 17 Jun 2020 04:32:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=FYdkGKfQbhF4PHnRrzgzko0Pu9PmmGSrtwLwQw3bXCE=;
- b=pVl5rpCQE8eNtuwrYD3NJIPxAyAoqv5WjV0mJDwjBO84PngqlRPLCoffL7G7JTJHZL
- x5GTu+6cmYuZEWUI94xzJilZwTrPqzRbeYXkN8l1mt8fOGW+WqjkZ6x2hbz+TMP8mFdk
- eQ1ctEsk7rmm1bkOPy6ka9qQKwHwFMlZkmjug9Ys30Lq4isG7OKXxTaQBWYzR8lSqZne
- SRlDI9ga9yolHHogkoNZL5fvsGY1K6ycVEuLNTh0I1cp8fXKAB7LyS9X5x4dW1xG2Zsy
- em9ivP+Dk5+k3F6DHw7hVPrG2qHdHltNT9AWwsDP/P3GceGtnLc92k0GzcaeyT7ZsV28
- rItQ==
-X-Gm-Message-State: AOAM5334lmQJPita+y9GtLEaWgpkH0WlhqZ6weXZ0xylBf+MyTOz4Ini
- dTjo2JuZ3QYiKVyGd+k1cmQ=
-X-Google-Smtp-Source: ABdhPJzbijHiPBJ8QWNf9hQXsnh9CB5HA28VxqbN6FIY1pPr6HYmH8EGA0XHv2KQOLuy+zTeoR016w==
-X-Received: by 2002:a05:6402:3106:: with SMTP id
- dc6mr6587998edb.375.1592393520398; 
- Wed, 17 Jun 2020 04:32:00 -0700 (PDT)
-Received: from localhost (ip-37-188-158-19.eurotel.cz. [37.188.158.19])
- by smtp.gmail.com with ESMTPSA id y62sm12010608edy.61.2020.06.17.04.31.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Jun 2020 04:31:59 -0700 (PDT)
-Date: Wed, 17 Jun 2020 13:31:57 +0200
-From: Michal Hocko <mhocko@kernel.org>
-To: Matthew Wilcox <willy@infradead.org>
+	id 1jlX6C-0005Y4-Bp; Wed, 17 Jun 2020 12:23:24 +0000
+Received: from willy by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1jlX69-0005Xm-3Z; Wed, 17 Jun 2020 12:23:21 +0000
+Date: Wed, 17 Jun 2020 05:23:21 -0700
+From: Matthew Wilcox <willy@infradead.org>
+To: Michal Hocko <mhocko@kernel.org>
 Subject: Re: [PATCH v4 0/3] mm, treewide: Rename kzfree() to kfree_sensitive()
-Message-ID: <20200617113157.GM9499@dhcp22.suse.cz>
+Message-ID: <20200617122321.GJ8681@bombadil.infradead.org>
 References: <20200616015718.7812-1-longman@redhat.com>
  <fe3b9a437be4aeab3bac68f04193cb6daaa5bee4.camel@perches.com>
  <20200616230130.GJ27795@twin.jikos.cz>
  <20200617003711.GD8681@bombadil.infradead.org>
  <20200617071212.GJ9499@dhcp22.suse.cz>
  <20200617110820.GG8681@bombadil.infradead.org>
+ <20200617113157.GM9499@dhcp22.suse.cz>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200617110820.GG8681@bombadil.infradead.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200617_043201_846243_BB33E7A1 
-X-CRM114-Status: GOOD (  12.68  )
+In-Reply-To: <20200617113157.GM9499@dhcp22.suse.cz>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,34 +87,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed 17-06-20 04:08:20, Matthew Wilcox wrote:
-> On Wed, Jun 17, 2020 at 09:12:12AM +0200, Michal Hocko wrote:
-> > On Tue 16-06-20 17:37:11, Matthew Wilcox wrote:
-> > > Not just performance critical, but correctness critical.  Since kvfree()
-> > > may allocate from the vmalloc allocator, I really think that kvfree()
-> > > should assert that it's !in_atomic().  Otherwise we can get into trouble
-> > > if we end up calling vfree() and have to take the mutex.
-> > 
-> > FWIW __vfree already checks for atomic context and put the work into a
-> > deferred context. So this should be safe. It should be used as a last
-> > resort, though.
+On Wed, Jun 17, 2020 at 01:31:57PM +0200, Michal Hocko wrote:
+> On Wed 17-06-20 04:08:20, Matthew Wilcox wrote:
+> > If you call vfree() under
+> > a spinlock, you're in trouble.  in_atomic() only knows if we hold a
+> > spinlock for CONFIG_PREEMPT, so it's not safe to check for in_atomic()
+> > in __vfree().  So we need the warning in order that preempt people can
+> > tell those without that there is a bug here.
 > 
-> Actually, it only checks for in_interrupt().
+> ... Unless I am missing something in_interrupt depends on preempt_count() as
+> well so neither of the two is reliable without PREEMPT_COUNT configured.
 
-You are right. I have misremembered. You have made me look (thanks) ...
-
-> If you call vfree() under
-> a spinlock, you're in trouble.  in_atomic() only knows if we hold a
-> spinlock for CONFIG_PREEMPT, so it's not safe to check for in_atomic()
-> in __vfree().  So we need the warning in order that preempt people can
-> tell those without that there is a bug here.
-
-... Unless I am missing something in_interrupt depends on preempt_count() as
-well so neither of the two is reliable without PREEMPT_COUNT configured.
-
--- 
-Michal Hocko
-SUSE Labs
+preempt_count() always tracks whether we're in interrupt context,
+regardless of CONFIG_PREEMPT.  The difference is that CONFIG_PREEMPT
+will track spinlock acquisitions as well.
 
 _______________________________________________
 linux-amlogic mailing list
