@@ -2,107 +2,79 @@ Return-Path: <SRS0=vfsC=76=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6CB5C433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 21:31:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0258BC433E0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 22:19:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BBA0B2168B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 21:31:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C7B1921556
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 22:19:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pnxrMA3f"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BBA0B2168B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=ispras.ru
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SbGShV0Q"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7B1921556
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:Subject:From:References:To:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8Tpwt2l7mnkVUeEaeqDYDa0S6gwQlwWL0zCTDmBf7Bk=; b=pnxrMA3fSyMhkw
-	n8VhTuDVvKLLacjAnWKUIZU2clziooeyhSNGcuUrGUoE0sAjps34Y+uPBMd5I1NkS5dAEl9sVakm5
-	M+jIMl3z5dHsMU4Dgx1Tcx46HkQsTqloQllbasCQttganOXT3C5H9IVpQASo92KU/spmB7dfoPOaG
-	vRMcj6EZrpqr28M8I4zYG5OO+RNUjfWHSywjoWG9bYT9oIvbhkK0KjNnU9aeVUWSS1T6Kd9+PHuzH
-	M4CKESdn+MvPumRcL+u2qJEHrQbUxE1dPNyeA5HjwSAUkxp+XTY8mmHDWEFmq1kIKm3lAYYovhD68
-	mM6h/34LoVWgxAyx/CHw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=k5pcwfAi0VRe4RNcex6Ux17hg2Tp3GLaH0m7YCLVx8c=; b=SbGShV0QKNvy1G
+	Zx2pbKWw0oN62cZvxOuv8UhW3tWqz9GYKa/CAQmsSEhJRp18Q5zj55D7CLoNtCfobAzqYDugRWvhw
+	2iPxLeHRNjMoeRtttS0pzGY5Q1Pzc0aQSpyc49lJSIxaLR+9XGyDCE0U7cmWIimByvnkxCDUVQInr
+	gANYBfNMiliP4BdpdsI5qksmA2WjQ3oR7OyIKsoVMpDKtxUbL6zkDVa2FrYKGZxURUWKMWBbK3lKU
+	mERZvwDElRMay6G2J0ONwCaoO/HYqcYznDufhIOy37YnEZl26phgaWRZBPZLZdnR2mNHAP6GKgMv9
+	IJB/1u+6EyOeBJsEuXQg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jlfeV-00080D-Kb; Wed, 17 Jun 2020 21:31:23 +0000
-Received: from mail.ispras.ru ([83.149.199.45])
- by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlfeS-0007zW-6Y; Wed, 17 Jun 2020 21:31:22 +0000
-Received: from [192.168.1.8] (unknown [213.87.137.195])
- by mail.ispras.ru (Postfix) with ESMTPSA id 54355BFD1E;
- Thu, 18 Jun 2020 00:31:03 +0300 (MSK)
-To: Joe Perches <joe@perches.com>, Waiman Long <longman@redhat.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- David Howells <dhowells@redhat.com>,
- Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
- James Morris <jmorris@namei.org>, "Serge E. Hallyn" <serge@hallyn.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Matthew Wilcox <willy@infradead.org>, David Rientjes <rientjes@google.com>
-References: <20200616015718.7812-1-longman@redhat.com>
- <fe3b9a437be4aeab3bac68f04193cb6daaa5bee4.camel@perches.com>
-From: Denis Efremov <efremov@ispras.ru>
-Autocrypt: addr=efremov@ispras.ru; keydata=
- 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
-Subject: Re: [PATCH v4 0/3] mm, treewide: Rename kzfree() to kfree_sensitive()
-Message-ID: <17e4fede-bab0-d93c-6964-69decc889d7d@ispras.ru>
-Date: Thu, 18 Jun 2020 00:31:01 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+	id 1jlgON-00050f-Gf; Wed, 17 Jun 2020 22:18:47 +0000
+Received: from mail-il1-f196.google.com ([209.85.166.196])
+ by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jlgNv-0004Zg-CT; Wed, 17 Jun 2020 22:18:21 +0000
+Received: by mail-il1-f196.google.com with SMTP id i1so3860485ils.11;
+ Wed, 17 Jun 2020 15:18:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Uz7g0bB18ztxeQgM+/H4yxv4w/AtkVlw+WDwFr6g8Ao=;
+ b=cLAn3Uy2JGBY4VCicjcrIKA77BQn3VluMHTTHDrkTdGafcEEOci4r8iID25LTq7+nz
+ QakZ7nQaDBGu4f1uHu37WGmN1+9CeYDqwL/ELHsqFlHbP7DZkj11AARW4x5VXD1N2xEj
+ hVfws41xhtx1oUExAXDbMadNvSnKxV3PlZ7yfoFnOEXFMtFqfybVowe1JqUV5q+XWKoT
+ vvTbxFaC+ih8qss+Yge88gVsFxDXt9RXJWk2x8AbBlPJcL+aHYNjjECTH60BWlXlubdh
+ 2Iy79dc1lHEey/hg7M/7jz4kkoWBAlwFkxbVE4JhQ+GMlpAKwPNExl6ArA67N5V1SymF
+ VS0w==
+X-Gm-Message-State: AOAM532KhCxiQmkh3Xuodwadqn5W4sJVlRh73gQ5C8CzKoVnHZBqc5Ck
+ 9pUeBNfEl3TPpLSQd+V2rw==
+X-Google-Smtp-Source: ABdhPJwldBKKgVwMhWTp6+BTPDjZ5+GjxiMRxxsH5coqpGLhBPEg/c67Ti4jXWHLFczF1LllOIWBwg==
+X-Received: by 2002:a92:cb03:: with SMTP id s3mr1132707ilo.161.1592432298592; 
+ Wed, 17 Jun 2020 15:18:18 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+ by smtp.gmail.com with ESMTPSA id t72sm552531ilk.23.2020.06.17.15.18.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Jun 2020 15:18:18 -0700 (PDT)
+Received: (nullmailer pid 2934152 invoked by uid 1000);
+ Wed, 17 Jun 2020 22:18:17 -0000
+Date: Wed, 17 Jun 2020 16:18:17 -0600
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clk: g12a-clkc: Add NNA CLK Source
+ clock IDs
+Message-ID: <20200617221817.GA2934098@bogus>
+References: <20200610083012.5024-1-narmstrong@baylibre.com>
+ <20200610083012.5024-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <fe3b9a437be4aeab3bac68f04193cb6daaa5bee4.camel@perches.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20200610083012.5024-2-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200617_143120_598622_66460BF7 
-X-CRM114-Status: GOOD (  10.57  )
+X-CRM114-CacheID: sfid-20200617_151819_435853_D9B1D454 
+X-CRM114-Status: UNSURE (   7.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,59 +86,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>, Michal Hocko <mhocko@suse.com>,
- linux-btrfs@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- linux-sctp@vger.kernel.org, target-devel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, devel@driverdev.osuosl.org,
- linux-cifs@vger.kernel.org, linux-scsi@vger.kernel.org,
- kasan-dev@googlegroups.com, linux-wpan@vger.kernel.org,
- Dan Carpenter <dan.carpenter@oracle.com>, linux-pm@vger.kernel.org,
- ecryptfs@vger.kernel.org, linux-fscrypt@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- virtualization@lists.linux-foundation.org, linux-nfs@vger.kernel.org,
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
- David Sterba <dsterba@suse.cz>, linux-bluetooth@vger.kernel.org,
- linux-security-module@vger.kernel.org, keyrings@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
- Johannes Weiner <hannes@cmpxchg.org>, linux-integrity@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, wireguard@lists.zx2c4.com,
- linux-ppp@vger.kernel.org
+Cc: devicetree@vger.kernel.org, Dmitry Shmidt <dimitrysh@google.com>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 6/16/20 9:53 PM, Joe Perches wrote:
-> On Mon, 2020-06-15 at 21:57 -0400, Waiman Long wrote:
->>  v4:
->>   - Break out the memzero_explicit() change as suggested by Dan Carpenter
->>     so that it can be backported to stable.
->>   - Drop the "crypto: Remove unnecessary memzero_explicit()" patch for
->>     now as there can be a bit more discussion on what is best. It will be
->>     introduced as a separate patch later on after this one is merged.
+On Wed, 10 Jun 2020 10:30:11 +0200, Neil Armstrong wrote:
+> From: Dmitry Shmidt <dimitrysh@google.com>
 > 
-> To this larger audience and last week without reply:
-> https://lore.kernel.org/lkml/573b3fbd5927c643920e1364230c296b23e7584d.camel@perches.com/
+> This adds the Neural Network Accelerator IP source clocks.
 > 
-> Are there _any_ fastpath uses of kfree or vfree?
+> Signed-off-by: Dmitry Shmidt <dimitrysh@google.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  include/dt-bindings/clock/g12a-clkc.h | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Many patches have been posted recently to fix mispairings
-> of specific types of alloc and free functions.
 
-I've prepared a coccinelle script to highlight these mispairings in a function
-a couple of days ago: https://lkml.org/lkml/2020/6/5/953
-I've listed all the fixes in the commit message. 
-
-Not so many mispairings actually, and most of them are harmless like:
-kmalloc(E) -> kvfree(E)
-
-However, coccinelle script can't detect cross-functions mispairings, i.e.
-allocation in one function, free in another funtion.
-
-Thanks,
-Denis
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
