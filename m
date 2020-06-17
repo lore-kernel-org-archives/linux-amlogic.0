@@ -2,89 +2,82 @@ Return-Path: <SRS0=vfsC=76=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C49E7C433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 12:54:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CB09C433DF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 12:56:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 99FE8214DB
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 12:54:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D5F2021527
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 12:56:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gcnb3E4+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2DziLIZz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 99FE8214DB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Iph+by2F"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D5F2021527
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=QgTzKTqW+UweA1DbDZ1Mh8MU9U3idWPdtJ8QTFUsnkk=; b=gcnb3E4+EUsocR
-	saPCVNGdcw9wpm0oGOaoByNI8/1fGg/y0ZyhxeUer1Txnp3Yk27ELtQ3YNs2RL72fUODxGja3nX6t
-	xAu6xNypuUpVlM1FfqasMY9Jt8t1zUtw5XPas2OG8919lz6nYfimM1sqSRsImfWo1nri7IB6+le1U
-	3NOCra3Oiy6vi7sZ8vU4Bn3/FfRFY8E+t+gpTbTeJ//tgDVYM9X1QMSSw7xVMo6JLrrvum45XMVXP
-	CDxHAWMD+Pyfi00x9mxIX2SVKuFabDq11xZJP1L50Ryr99yVlPtixBmFDsLc837/5ij9k00WhXSsT
-	LcEgWhkQtf2ovv2btuYA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/744guh2VcTbdEsDQot/UldNcf1ceTkwMvI6HH+t+wk=; b=Iph+by2FTkZD4B
+	qxm1OOdFSDkGeYDCQwKJNaF5E281KwayGqxlnY8CBkPN572wPUBUIV0zxGC5KXDNP9kD5WHrGgzhl
+	P/azRlHBNOs11XtiBOLYrBcSdRFXd1geWA6XdyqfjT9DPmGV3j0M/GxeU40gv35wSsTR8EWW+xkku
+	gohe3e7sGXjKqocj4yBgX5vXfogDc/HYXDjWJbUthQqfWyWhhPIKicVTbieOUG5ncwlhjpD/ZsQSP
+	dvdM6HcDN4209+sTQ7ov2ngzf+mwxaXGJ+sevhADpRv4Dj78k6cCE7tTLVYobf0KHYO7txSVBHeEl
+	fH/t4pmtREEnAoCe5qYQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jlXZn-0000id-BY; Wed, 17 Jun 2020 12:53:59 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jlXbj-0003Gt-OF; Wed, 17 Jun 2020 12:55:59 +0000
+Received: from mail-ej1-f67.google.com ([209.85.218.67])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlXZj-0000fl-Kn
- for linux-amlogic@lists.infradead.org; Wed, 17 Jun 2020 12:53:57 +0000
-Received: by mail-wr1-x443.google.com with SMTP id x6so2186678wrm.13
- for <linux-amlogic@lists.infradead.org>; Wed, 17 Jun 2020 05:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OUb64193SWqYIql7DIKLMy9V1uabiBdxixXk3fqRnNs=;
- b=2DziLIZzTZeDGGUTlRaBxWRYbxmn6E+JLiHPzp1Mk53M3nNvoyxiNjIU+bIQV7aFI1
- rZzChTIg3GCeTEAockNd7uXAD8MYY45FStielAJqB8cueELLXv/Do3yJV6c6YH7/zCbs
- WPECD0nmen+IaZSwSZshVGFFTpN8AN677eCBYyZ9gZl/VVbsJUJjPbgbVh3K8AobF2Up
- Lsyj5SefZrKalz21AG0xcpF7mYIwUCXoN/0UJOfBXYdkb/aUoKmKSXIbEoMcHVYVKCr5
- F4BnAaM6p3OcGPizYpa1CfisBWhwy+3UZShh0O/n/bwEQ0EPAccE9+ZEk2C96/TwLKEc
- misg==
+ id 1jlXbh-0003GQ-AL; Wed, 17 Jun 2020 12:55:58 +0000
+Received: by mail-ej1-f67.google.com with SMTP id gl26so2172386ejb.11;
+ Wed, 17 Jun 2020 05:55:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OUb64193SWqYIql7DIKLMy9V1uabiBdxixXk3fqRnNs=;
- b=ogkSPtor1z44d31TvcXsrZcVs7j+rUERhbXYZgALrlfn86nO6/4DT4ingNh6DDSt7t
- y/HzuA8kSJ7hW3rzjEcHwVNGDph7Dn1EJ7al21cTnlOS//BE4WxoLD6BeI/nq6f7zNTZ
- Soc0PmgGOE8e4Psm5eKZ4dADtFVfi1yULyNxDaWtYamYBcY2pvSEA8nUkESq4nttQfMm
- TJDyT8bj3EBn7S67eQU4YpK0LzPjwFSRvJMnoWs9gaGl/ta7I7ILWwoFfZ8Sd344Lc8E
- c0DZVIBdUJInJ4Xt29YWBHncG2MnhYbcQLQm10Exlgi6WSZ+5t7dFskDcuLzRKTnP1so
- w2YA==
-X-Gm-Message-State: AOAM531UM80EwFgETKkTyoj0fAaYCoCGNLLONT3mOmdVacPBfa6JBGYd
- wHY8kCEdmUfL4PTCcIIATsbHew==
-X-Google-Smtp-Source: ABdhPJw8wkqbz32oAgpEFT7agRATCW2IXTTcvN5ZJw5GOdwURx9gtNd8s4EpB21kZp+UwN5ZuB65FQ==
-X-Received: by 2002:a5d:6751:: with SMTP id l17mr9020528wrw.179.1592398433677; 
- Wed, 17 Jun 2020 05:53:53 -0700 (PDT)
-Received: from localhost.localdomain (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id h29sm36233697wrc.78.2020.06.17.05.53.52
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=fOVgSeVqTVqWvUfLoOdj4nt+48hh42lucWZp1VWswtg=;
+ b=RoP5aPtX534LZ5JX+G6RIMSc9PJACJbZQUZyrqCaHSY3sV6o2tfBchJlIv15hMKdEY
+ IIz2qoBsm/qu9qMTqXyoCr8EaAbIkBTnTrO84BsVo1XRM32cGR15X1OUu/+sTqxyzMmw
+ XwLJvy2t6wi0KqqASEuk2/ayd0z4RZHynWVKEne80KeYGoRXWG46yhY+yZhiVBI9Z2ih
+ BGXUuscEeUzs0H/eKD6JydCBMDEZ9Sw6Bvseg8RVm4nwTAZJrLZ1BqjlhYnrQdkXyK78
+ vnPfUMpAtFf0QryxjIWx+MZLQtCW5tE2WsfdOCs0IdfqXMbudUq+WshEYGLaZYM9Rdew
+ NWrg==
+X-Gm-Message-State: AOAM5321D+bk7CmtvniN0lQD4O6cFF7FHu8eoOGX3Lk4niiz6wGyOWO7
+ +5rr0x8UldL8HameC9P0zUA=
+X-Google-Smtp-Source: ABdhPJz5smjYQcDGdXsq8Ug+fgHwHPeIMnfqM9kX0E57nHrzErZZpyVOrifVPC/iAZURBZCGoIl/9Q==
+X-Received: by 2002:a17:906:aad8:: with SMTP id
+ kt24mr7265073ejb.527.1592398555771; 
+ Wed, 17 Jun 2020 05:55:55 -0700 (PDT)
+Received: from localhost (ip-37-188-158-19.eurotel.cz. [37.188.158.19])
+ by smtp.gmail.com with ESMTPSA id mh14sm13501385ejb.116.2020.06.17.05.55.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Jun 2020 05:53:52 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] arm64: dts: meson: add missing gxl rng clock
-Date: Wed, 17 Jun 2020 14:53:46 +0200
-Message-Id: <20200617125346.1163527-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.25.4
+ Wed, 17 Jun 2020 05:55:54 -0700 (PDT)
+Date: Wed, 17 Jun 2020 14:55:53 +0200
+From: Michal Hocko <mhocko@kernel.org>
+To: Matthew Wilcox <willy@infradead.org>
+Subject: Re: [PATCH v4 0/3] mm, treewide: Rename kzfree() to kfree_sensitive()
+Message-ID: <20200617125553.GO9499@dhcp22.suse.cz>
+References: <20200616015718.7812-1-longman@redhat.com>
+ <fe3b9a437be4aeab3bac68f04193cb6daaa5bee4.camel@perches.com>
+ <20200616230130.GJ27795@twin.jikos.cz>
+ <20200617003711.GD8681@bombadil.infradead.org>
+ <20200617071212.GJ9499@dhcp22.suse.cz>
+ <20200617110820.GG8681@bombadil.infradead.org>
+ <20200617113157.GM9499@dhcp22.suse.cz>
+ <20200617122321.GJ8681@bombadil.infradead.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Disposition: inline
+In-Reply-To: <20200617122321.GJ8681@bombadil.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200617_055355_743750_F827C960 
-X-CRM114-Status: UNSURE (   7.56  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200617_055557_354417_757600D8 
+X-CRM114-Status: GOOD (  13.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,41 +89,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>, linux-btrfs@vger.kernel.org,
+ Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>, dsterba@suse.cz,
+ David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
+ linux-sctp@vger.kernel.org, keyrings@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ James Morris <jmorris@namei.org>, kasan-dev@googlegroups.com,
+ linux-wpan@vger.kernel.org, David Rientjes <rientjes@google.com>,
+ Waiman Long <longman@redhat.com>, Dan Carpenter <dan.carpenter@oracle.com>,
+ "Serge E. Hallyn" <serge@hallyn.com>, linux-pm@vger.kernel.org,
+ ecryptfs@vger.kernel.org, linux-fscrypt@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ virtualization@lists.linux-foundation.org, linux-integrity@vger.kernel.org,
+ linux-nfs@vger.kernel.org, Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, linux-security-module@vger.kernel.org,
+ target-devel@vger.kernel.org, tipc-discussion@lists.sourceforge.net,
+ linux-crypto@vger.kernel.org, Johannes Weiner <hannes@cmpxchg.org>,
+ Joe Perches <joe@perches.com>, Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
+ wireguard@lists.zx2c4.com, linux-ppp@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The peripheral clock of the RNG is missing for gxl while it is present
-for gxbb.
+On Wed 17-06-20 05:23:21, Matthew Wilcox wrote:
+> On Wed, Jun 17, 2020 at 01:31:57PM +0200, Michal Hocko wrote:
+> > On Wed 17-06-20 04:08:20, Matthew Wilcox wrote:
+> > > If you call vfree() under
+> > > a spinlock, you're in trouble.  in_atomic() only knows if we hold a
+> > > spinlock for CONFIG_PREEMPT, so it's not safe to check for in_atomic()
+> > > in __vfree().  So we need the warning in order that preempt people can
+> > > tell those without that there is a bug here.
+> > 
+> > ... Unless I am missing something in_interrupt depends on preempt_count() as
+> > well so neither of the two is reliable without PREEMPT_COUNT configured.
+> 
+> preempt_count() always tracks whether we're in interrupt context,
+> regardless of CONFIG_PREEMPT.  The difference is that CONFIG_PREEMPT
+> will track spinlock acquisitions as well.
 
-Fixes: 1b3f6d148692 ("ARM64: dts: meson-gx: add clock CLKID_RNG0 to hwrng node")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Right you are! Thanks for the clarification. I find the situation
+around preempt_count quite confusing TBH. Looking at existing users
+of in_atomic() (e.g. a random one zd_usb_iowrite16v_async which check
+in_atomic and then does GFP_KERNEL allocation which would be obviously
+broken on !PREEMPT if the function can be called from an atomic
+context), I am wondering whether it would make sense to track atomic
+context also for !PREEMPT. This check is just terribly error prone.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index fc59c8534c0f..6c8b189884ca 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -337,6 +337,11 @@ clkc: clock-controller {
- 	};
- };
- 
-+&hwrng {
-+	clocks = <&clkc CLKID_RNG0>;
-+	clock-names = "core";
-+};
-+
- &i2c_A {
- 	clocks = <&clkc CLKID_I2C>;
- };
 -- 
-2.25.4
-
+Michal Hocko
+SUSE Labs
 
 _______________________________________________
 linux-amlogic mailing list
