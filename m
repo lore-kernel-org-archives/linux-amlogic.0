@@ -2,83 +2,78 @@ Return-Path: <SRS0=vfsC=76=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6BB15C433DF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 05:40:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E98FC433E0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 07:12:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3A68420707
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 05:40:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D78E02098B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 07:12:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dU54RXkS";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=verdurent-com.20150623.gappssmtp.com header.i=@verdurent-com.20150623.gappssmtp.com header.b="tV5VmVtH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A68420707
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=verdurent.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AoFByFFh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D78E02098B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wDexkVIlC6ZgKEleXqET0yki+AwyIm55i6bpf+miZag=; b=dU54RXkSMlG1LC
-	pJPEWxQu0Xfu710X5hQRrU4RrWyh2tsP/P+HCogisemFo1iRMuGFro5cCkPhKs0QemLHk5eRpgYji
-	3GqQ/i7SEmXabHXhzHBdEa49YXtCGYMjnK/9C+M5FmSL0wrVWTCH3lMzP9G6MrTZ57vdcsXgdVpOc
-	2SzAO55dHTGc7HpN0ttCUVUWq18fkyIHe0BxJ5Bqp1mnazYVa/Tg7Ve5bNdePdJoFbZkBJPy5/R9A
-	QcEoWRrwf1gOUkCfCFkhAdyYbIuMID+AMXOnnHyOjB33AoUrr5SjXRFI5EKD7nFxulrVqeXqBV2bf
-	AxXnGh2LQhZoxxzO2MlQ==;
+	List-Owner; bh=UN+gGVrY/6RYFYMIuBFk4qALwArmcajP8RBHC6GXtY4=; b=AoFByFFhzXZYNN
+	utOlF5oaNtrVgpJv3jUW1F8Z0Gy6KZUvgHG8L51g64kIuf1UIghkcGSaIaz6Jj1bevQFyV1HBxILV
+	dAFczMfZ3099tc94KNNKPnXJmQ8RY42BHIcHehdT35BxJcmRZcxa6KqIyl4pwoCIuK4T/VDoBQGU2
+	8Uf/x/6kmwE39TCZ9XzQ2nA+xFPxa/ux+qQS5HWK4TWP6HUzt7gUfTKzWKEIKZykKpQjtQgCBV2vC
+	GTC6nvLVazHvEj2RzjiBGekNV+JKpvdRGsA200e6nnbgBkjym3YO4yodnkbcU5KSxYA4aHupxCKaO
+	zixHGTJE9lSWdBFHU3fw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jlQo6-0005rw-TL; Wed, 17 Jun 2020 05:40:18 +0000
-Received: from mail-ua1-x943.google.com ([2607:f8b0:4864:20::943])
+	id 1jlSF8-0007fT-4M; Wed, 17 Jun 2020 07:12:18 +0000
+Received: from mail-ej1-f68.google.com ([209.85.218.68])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlQnU-0002zU-C8
- for linux-amlogic@lists.infradead.org; Wed, 17 Jun 2020 05:39:41 +0000
-Received: by mail-ua1-x943.google.com with SMTP id c9so357178uao.11
- for <linux-amlogic@lists.infradead.org>; Tue, 16 Jun 2020 22:39:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=verdurent-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=v9qIRx2tmhQ3c3ThbA5nkdagn3KrF5Ngnlh6eWWB5sQ=;
- b=tV5VmVtHEExLDAgnm3QHdrBX6Z+X2xewEeIPR6nHkE1YvO2YLuZj5m7aMMzZc0N5qn
- b+bHb3H1Pc+gT0kD2XioSKa20MP/FHGwtV/+Ku/ZtIp1b1oux3Iapejc2V8uF24wb84E
- iGb7tbt9DpISBvbBvsKSNtrp9WUTQMdXNgm5SX6l5DWFH999VJdCu1JcxskvBo+k2OZQ
- /Oz077l3N08uClrw1bPyI3kIatKaQbccwkvGEVq1gF7KwfD3tn5OMSSBypaFjkdpH7m4
- 0SVo1rcoH6DlH7ilS9OSS3zJzdheVKSrfuPcWqR5TLKQeSrLrMatTJo4OiBQ9ZDSl+L5
- e/zg==
+ id 1jlSF6-0007eD-A6; Wed, 17 Jun 2020 07:12:17 +0000
+Received: by mail-ej1-f68.google.com with SMTP id k11so1132267ejr.9;
+ Wed, 17 Jun 2020 00:12:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=v9qIRx2tmhQ3c3ThbA5nkdagn3KrF5Ngnlh6eWWB5sQ=;
- b=QgKBK1Yduuny2kdfvdhndTsd6YY4Phzx4qrI/M9V2vEpUTJOONAikGy8JXA0c0ZX9x
- 0WSn+8UW83M5AP8DS50t351MaOtChg/vXI4PZY/GHt9tCmQhfy8GuFhXtyW7bNITvXh0
- CMbewY8ZUXuwJYWof+eUuOCjNiqPdx2wdCPfNl/7lKCjzDpQi0I8DOxIoDtnvIYk0kzL
- +U1JdltPcpDLauY4iWTXUg2BJ8B/5gQimTwKR/eGsCQseFPz2afIoSZ/qabUAAdBZCvf
- lSBKMQr3stMK2p06IT2JxcNC9oGJWy+n7Znxxo/TzjjdPrZtUysIr30qUzw2OEJsD1j7
- hbkA==
-X-Gm-Message-State: AOAM532WtXDMwMFrYgUiRWju9b3pFux2IyAVVYHnNqPM3KfyUpS3LK9N
- UADl1dN2eYOs0abuBsYoFAgaI0FSJkIBFiWK6OCPxQ==
-X-Google-Smtp-Source: ABdhPJz89Ef33YgEHunwRCxdjaFBZmv3URUcXF7ranAVS8kN/9HInOJDHD51KTNr0Mh1t1tL3cEoGx09WYVLD327dfg=
-X-Received: by 2002:ab0:1eca:: with SMTP id p10mr4534103uak.94.1592372379134; 
- Tue, 16 Jun 2020 22:39:39 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=E5EcWVbc+7tsS+GAmjqiwsU8zuC9ZQ4KDsXaJSfWulo=;
+ b=ar5UyNMHXi0y3gOT26kjJmDb8baqhjlMwUi4OJHxJSImQHG86YPz4hzsew+O3VCWfE
+ ZHh8az2Xy4/vtI40hNN8X2YFeZBHZdvurCTV41hw3xME9BhTacoZfmSb8qVja0n9brcU
+ lsLKrFMQXc2aHgNXYIHoGPvj34zxR2qg2EKZKAzeTYNAcGWP0RsIMdBeNqhx8P4rcNjd
+ 8xp8fLKwiCmkALBG3pypNGN3v/NltkYD0i8mSadLmehqlMYY2hMQZJe//oabsPCl+BRU
+ snAsjKDY+LxCjmMXjGmbwe8sw8xjTo+3aMUpCsx65THdExRmV8DhldwINAIlJXmgKTls
+ 6mEA==
+X-Gm-Message-State: AOAM530Kf9MIs2v/0oc+sTMll+XVbdVbD2bZVojHCwEOCE0qMfuc0w6C
+ II7vLu9DqF5thnGzToScv0g=
+X-Google-Smtp-Source: ABdhPJzxXEZ/32Vk1uutSgWgDm/2Kml+FRFv6q/oUOzaHXvM3d9a7wcEm5DrSyb0iZ8v3ZPtZ+pKKg==
+X-Received: by 2002:a17:906:2581:: with SMTP id
+ m1mr6681797ejb.89.1592377934427; 
+ Wed, 17 Jun 2020 00:12:14 -0700 (PDT)
+Received: from localhost (ip-37-188-158-19.eurotel.cz. [37.188.158.19])
+ by smtp.gmail.com with ESMTPSA id g22sm12516138ejo.1.2020.06.17.00.12.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Jun 2020 00:12:13 -0700 (PDT)
+Date: Wed, 17 Jun 2020 09:12:12 +0200
+From: Michal Hocko <mhocko@kernel.org>
+To: Matthew Wilcox <willy@infradead.org>
+Subject: Re: [PATCH v4 0/3] mm, treewide: Rename kzfree() to kfree_sensitive()
+Message-ID: <20200617071212.GJ9499@dhcp22.suse.cz>
+References: <20200616015718.7812-1-longman@redhat.com>
+ <fe3b9a437be4aeab3bac68f04193cb6daaa5bee4.camel@perches.com>
+ <20200616230130.GJ27795@twin.jikos.cz>
+ <20200617003711.GD8681@bombadil.infradead.org>
 MIME-Version: 1.0
-References: <20200608091739.2368-1-narmstrong@baylibre.com>
- <20200608091739.2368-6-narmstrong@baylibre.com>
-In-Reply-To: <20200608091739.2368-6-narmstrong@baylibre.com>
-From: Amit Kucheria <amit.kucheria@verdurent.com>
-Date: Wed, 17 Jun 2020 11:09:28 +0530
-Message-ID: <CAHLCerP+jEhZJs7yPmwPEm15FnrShJjNzOJ2UNcXVP5-WFbwVg@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] arm64: dts: meson-khadas-vim3: add Khadas MCU nodes
-To: Neil Armstrong <narmstrong@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <20200617003711.GD8681@bombadil.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200616_223940_434301_4FA193E7 
-X-CRM114-Status: GOOD (  12.02  )
+X-CRM114-CacheID: sfid-20200617_001216_348035_C56E4986 
+X-CRM114-Status: GOOD (  16.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,73 +85,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>,
- Linux PM list <linux-pm@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
- lakml <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic@lists.infradead.org
+Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>, linux-btrfs@vger.kernel.org,
+ Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>, dsterba@suse.cz,
+ David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
+ linux-sctp@vger.kernel.org, keyrings@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ James Morris <jmorris@namei.org>, kasan-dev@googlegroups.com,
+ linux-wpan@vger.kernel.org, David Rientjes <rientjes@google.com>,
+ Waiman Long <longman@redhat.com>, Dan Carpenter <dan.carpenter@oracle.com>,
+ "Serge E. Hallyn" <serge@hallyn.com>, linux-pm@vger.kernel.org,
+ ecryptfs@vger.kernel.org, linux-fscrypt@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ virtualization@lists.linux-foundation.org, linux-integrity@vger.kernel.org,
+ linux-nfs@vger.kernel.org, Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, linux-security-module@vger.kernel.org,
+ target-devel@vger.kernel.org, tipc-discussion@lists.sourceforge.net,
+ linux-crypto@vger.kernel.org, Johannes Weiner <hannes@cmpxchg.org>,
+ Joe Perches <joe@perches.com>, Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
+ wireguard@lists.zx2c4.com, linux-ppp@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 8, 2020 at 2:47 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Add the Khadas MCU node with active FAN thermal nodes for all the
-> Khadas VIM3 variants.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+On Tue 16-06-20 17:37:11, Matthew Wilcox wrote:
+> On Wed, Jun 17, 2020 at 01:01:30AM +0200, David Sterba wrote:
+> > On Tue, Jun 16, 2020 at 11:53:50AM -0700, Joe Perches wrote:
+> > > On Mon, 2020-06-15 at 21:57 -0400, Waiman Long wrote:
+> > > >  v4:
+> > > >   - Break out the memzero_explicit() change as suggested by Dan Carpenter
+> > > >     so that it can be backported to stable.
+> > > >   - Drop the "crypto: Remove unnecessary memzero_explicit()" patch for
+> > > >     now as there can be a bit more discussion on what is best. It will be
+> > > >     introduced as a separate patch later on after this one is merged.
+> > > 
+> > > To this larger audience and last week without reply:
+> > > https://lore.kernel.org/lkml/573b3fbd5927c643920e1364230c296b23e7584d.camel@perches.com/
+> > > 
+> > > Are there _any_ fastpath uses of kfree or vfree?
+> > 
+> > I'd consider kfree performance critical for cases where it is called
+> > under locks. If possible the kfree is moved outside of the critical
+> > section, but we have rbtrees or lists that get deleted under locks and
+> > restructuring the code to do eg. splice and free it outside of the lock
+> > is not always possible.
+> 
+> Not just performance critical, but correctness critical.  Since kvfree()
+> may allocate from the vmalloc allocator, I really think that kvfree()
+> should assert that it's !in_atomic().  Otherwise we can get into trouble
+> if we end up calling vfree() and have to take the mutex.
 
-Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
+FWIW __vfree already checks for atomic context and put the work into a
+deferred context. So this should be safe. It should be used as a last
+resort, though.
 
-
-> ---
->  .../boot/dts/amlogic/meson-khadas-vim3.dtsi   | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 094ecf2222bb..3325e54ea690 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -183,6 +183,23 @@
->         hdmi-phandle = <&hdmi_tx>;
->  };
->
-> +&cpu_thermal {
-> +       trips {
-> +               cpu_active: cpu-active {
-> +                       temperature = <80000>; /* millicelsius */
-> +                       hysteresis = <2000>; /* millicelsius */
-> +                       type = "active";
-> +               };
-> +       };
-> +
-> +       cooling-maps {
-> +               map {
-> +                       trip = <&cpu_active>;
-> +                       cooling-device = <&khadas_mcu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +               };
-> +       };
-> +};
-> +
->  &ext_mdio {
->         external_phy: ethernet-phy@0 {
->                 /* Realtek RTL8211F (0x001cc916) */
-> @@ -222,6 +239,12 @@
->         pinctrl-0 = <&i2c_ao_sck_pins>, <&i2c_ao_sda_pins>;
->         pinctrl-names = "default";
->
-> +       khadas_mcu: system-controller@18 {
-> +               compatible = "khadas,mcu";
-> +               reg = <0x18>;
-> +               #cooling-cells = <2>;
-> +       };
-> +
->         gpio_expander: gpio-controller@20 {
->                 compatible = "ti,tca6408";
->                 reg = <0x20>;
-> --
-> 2.22.0
->
+-- 
+Michal Hocko
+SUSE Labs
 
 _______________________________________________
 linux-amlogic mailing list
