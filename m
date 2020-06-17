@@ -2,79 +2,71 @@ Return-Path: <SRS0=vfsC=76=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0258BC433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 22:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 259C7C433E0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 23:12:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C7B1921556
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 22:19:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ED8A820734
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2020 23:12:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SbGShV0Q"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7B1921556
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eHo7bXfi"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED8A820734
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k5pcwfAi0VRe4RNcex6Ux17hg2Tp3GLaH0m7YCLVx8c=; b=SbGShV0QKNvy1G
-	Zx2pbKWw0oN62cZvxOuv8UhW3tWqz9GYKa/CAQmsSEhJRp18Q5zj55D7CLoNtCfobAzqYDugRWvhw
-	2iPxLeHRNjMoeRtttS0pzGY5Q1Pzc0aQSpyc49lJSIxaLR+9XGyDCE0U7cmWIimByvnkxCDUVQInr
-	gANYBfNMiliP4BdpdsI5qksmA2WjQ3oR7OyIKsoVMpDKtxUbL6zkDVa2FrYKGZxURUWKMWBbK3lKU
-	mERZvwDElRMay6G2J0ONwCaoO/HYqcYznDufhIOy37YnEZl26phgaWRZBPZLZdnR2mNHAP6GKgMv9
-	IJB/1u+6EyOeBJsEuXQg==;
+	List-Owner; bh=XAveF6CmvOaTOe3loDHaaNIk/ETJyV4b6/dw5A/v150=; b=eHo7bXfix7qkI3
+	oXyLq/sHwtqiag5oSYMKNmQzQjfll7MZBH+Jrdo4KNbRdgHvTtIAyEZISDAjFOveDXmoSmX0ssjFH
+	83RK5reW4kMdZxvqezv8j5AFcy6qONHxWTYf5NdbxcqwOLEsXnO3TG3lYn6T9WGmRKAJZxlVNJVRm
+	F+l0uAc8qZ6++N6PZPv8INbiMpMFE+CoXy9i3rvsQ/V/T9F4cHlolQpy1Q2aYQ/hFWU9f3486nE+w
+	0VgGGVwEqB/zpGy3Ha0X7j63zBIEO/Z3rirrrpyp0I6MwgJv0KLj0ljMdlcHc4uBuBhruCw47tmtv
+	5VhGU/79s3LEGD4MUB4w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jlgON-00050f-Gf; Wed, 17 Jun 2020 22:18:47 +0000
-Received: from mail-il1-f196.google.com ([209.85.166.196])
+	id 1jlhEH-0005Qh-4A; Wed, 17 Jun 2020 23:12:25 +0000
+Received: from smtprelay0057.hostedemail.com ([216.40.44.57]
+ helo=smtprelay.hostedemail.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlgNv-0004Zg-CT; Wed, 17 Jun 2020 22:18:21 +0000
-Received: by mail-il1-f196.google.com with SMTP id i1so3860485ils.11;
- Wed, 17 Jun 2020 15:18:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Uz7g0bB18ztxeQgM+/H4yxv4w/AtkVlw+WDwFr6g8Ao=;
- b=cLAn3Uy2JGBY4VCicjcrIKA77BQn3VluMHTTHDrkTdGafcEEOci4r8iID25LTq7+nz
- QakZ7nQaDBGu4f1uHu37WGmN1+9CeYDqwL/ELHsqFlHbP7DZkj11AARW4x5VXD1N2xEj
- hVfws41xhtx1oUExAXDbMadNvSnKxV3PlZ7yfoFnOEXFMtFqfybVowe1JqUV5q+XWKoT
- vvTbxFaC+ih8qss+Yge88gVsFxDXt9RXJWk2x8AbBlPJcL+aHYNjjECTH60BWlXlubdh
- 2Iy79dc1lHEey/hg7M/7jz4kkoWBAlwFkxbVE4JhQ+GMlpAKwPNExl6ArA67N5V1SymF
- VS0w==
-X-Gm-Message-State: AOAM532KhCxiQmkh3Xuodwadqn5W4sJVlRh73gQ5C8CzKoVnHZBqc5Ck
- 9pUeBNfEl3TPpLSQd+V2rw==
-X-Google-Smtp-Source: ABdhPJwldBKKgVwMhWTp6+BTPDjZ5+GjxiMRxxsH5coqpGLhBPEg/c67Ti4jXWHLFczF1LllOIWBwg==
-X-Received: by 2002:a92:cb03:: with SMTP id s3mr1132707ilo.161.1592432298592; 
- Wed, 17 Jun 2020 15:18:18 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
- by smtp.gmail.com with ESMTPSA id t72sm552531ilk.23.2020.06.17.15.18.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Jun 2020 15:18:18 -0700 (PDT)
-Received: (nullmailer pid 2934152 invoked by uid 1000);
- Wed, 17 Jun 2020 22:18:17 -0000
-Date: Wed, 17 Jun 2020 16:18:17 -0600
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clk: g12a-clkc: Add NNA CLK Source
- clock IDs
-Message-ID: <20200617221817.GA2934098@bogus>
-References: <20200610083012.5024-1-narmstrong@baylibre.com>
- <20200610083012.5024-2-narmstrong@baylibre.com>
+ id 1jlhED-0005Pq-SH; Wed, 17 Jun 2020 23:12:23 +0000
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay07.hostedemail.com (Postfix) with ESMTP id C6BF8181D330D;
+ Wed, 17 Jun 2020 23:12:13 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-HE-Tag: anger66_3706ec726e0b
+X-Filterd-Recvd-Size: 3931
+Received: from XPS-9350.home (unknown [47.151.133.149])
+ (Authenticated sender: joe@perches.com)
+ by omf11.hostedemail.com (Postfix) with ESMTPA;
+ Wed, 17 Jun 2020 23:12:07 +0000 (UTC)
+Message-ID: <38c5745d14cff75fe264a3bc61d19fd837baf7ad.camel@perches.com>
+Subject: Re: [PATCH v4 0/3] mm, treewide: Rename kzfree() to kfree_sensitive()
+From: Joe Perches <joe@perches.com>
+To: Denis Efremov <efremov@ispras.ru>, Waiman Long <longman@redhat.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, David Howells
+ <dhowells@redhat.com>, Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+ James Morris <jmorris@namei.org>, "Serge E. Hallyn" <serge@hallyn.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>, Matthew Wilcox
+ <willy@infradead.org>, David Rientjes <rientjes@google.com>
+Date: Wed, 17 Jun 2020 16:12:06 -0700
+In-Reply-To: <17e4fede-bab0-d93c-6964-69decc889d7d@ispras.ru>
+References: <20200616015718.7812-1-longman@redhat.com>
+ <fe3b9a437be4aeab3bac68f04193cb6daaa5bee4.camel@perches.com>
+ <17e4fede-bab0-d93c-6964-69decc889d7d@ispras.ru>
+User-Agent: Evolution 3.36.2-0ubuntu1 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200610083012.5024-2-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200617_151819_435853_D9B1D454 
-X-CRM114-Status: UNSURE (   7.92  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200617_161221_978464_44755C9C 
+X-CRM114-Status: GOOD (  14.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,28 +78,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Dmitry Shmidt <dimitrysh@google.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>, Michal Hocko <mhocko@suse.com>,
+ linux-btrfs@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ linux-sctp@vger.kernel.org, target-devel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-wpan@vger.kernel.org,
+ Dan Carpenter <dan.carpenter@oracle.com>, linux-pm@vger.kernel.org,
+ ecryptfs@vger.kernel.org, linux-fscrypt@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ virtualization@lists.linux-foundation.org, linux-nfs@vger.kernel.org,
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ David Sterba <dsterba@suse.cz>, linux-bluetooth@vger.kernel.org,
+ linux-security-module@vger.kernel.org, keyrings@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ Johannes Weiner <hannes@cmpxchg.org>, linux-integrity@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, wireguard@lists.zx2c4.com,
+ linux-ppp@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 10 Jun 2020 10:30:11 +0200, Neil Armstrong wrote:
-> From: Dmitry Shmidt <dimitrysh@google.com>
+On Thu, 2020-06-18 at 00:31 +0300, Denis Efremov wrote:
 > 
-> This adds the Neural Network Accelerator IP source clocks.
+> On 6/16/20 9:53 PM, Joe Perches wrote:
+> > On Mon, 2020-06-15 at 21:57 -0400, Waiman Long wrote:
+> > >  v4:
+> > >   - Break out the memzero_explicit() change as suggested by Dan Carpenter
+> > >     so that it can be backported to stable.
+> > >   - Drop the "crypto: Remove unnecessary memzero_explicit()" patch for
+> > >     now as there can be a bit more discussion on what is best. It will be
+> > >     introduced as a separate patch later on after this one is merged.
+> > 
+> > To this larger audience and last week without reply:
+> > https://lore.kernel.org/lkml/573b3fbd5927c643920e1364230c296b23e7584d.camel@perches.com/
+> > 
+> > Are there _any_ fastpath uses of kfree or vfree?
+> > 
+> > Many patches have been posted recently to fix mispairings
+> > of specific types of alloc and free functions.
 > 
-> Signed-off-by: Dmitry Shmidt <dimitrysh@google.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  include/dt-bindings/clock/g12a-clkc.h | 2 ++
->  1 file changed, 2 insertions(+)
+> I've prepared a coccinelle script to highlight these mispairings in a function
+> a couple of days ago: https://lkml.org/lkml/2020/6/5/953
+> I've listed all the fixes in the commit message. 
 > 
+> Not so many mispairings actually, and most of them are harmless like:
+> kmalloc(E) -> kvfree(E)
+> 
+> However, coccinelle script can't detect cross-functions mispairings, i.e.
+> allocation in one function, free in another funtion.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Hey Denis, thanks for those patches.
+
+If possible, it's probably better to not require these pairings
+and use a single standard kfree/free function.
+
+Given the existing ifs in kfree in slab/slob/slub, it seems
+likely that adding a few more wouldn't have much impact.
+
+
 
 _______________________________________________
 linux-amlogic mailing list
