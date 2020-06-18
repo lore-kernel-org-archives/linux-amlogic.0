@@ -2,87 +2,144 @@ Return-Path: <SRS0=F2gE=77=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5442C433DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 08:20:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FD21C433E0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 09:39:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 54F84207DD
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 08:20:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D67A421D6C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 09:39:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R23voHFY";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JP6cdM6f"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54F84207DD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Wm5+WS3M";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="HrFXgaGS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D67A421D6C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=N/djdzOhfl7aD6jHfsoRJOHp/HGfpk/9UrIFkgfv1iM=; b=R23voHFYQxr543
-	bkHBgE2yXZSnRHI0TLJqM0Z/cUNuCwGAoFsYbmPQWKoU3XFKh6mXRoZ5aTSrGy3eCEm922wLu49cJ
-	f0mxhOE8zoBbbhOk0LZfEdxsPUOETbEk416IdYQHcY7BNt+ABWPz0Y3f8sMKY+G4ob6oPTfy8IUCl
-	VubxeaHRvKJyr/GZkBA6gDNTIXzI7Ay7ask1EqEwfdsBMCvBCyWj51+BOzPSjOmQPxl1ogD/ZnW7X
-	hnp21dDm18CDabMqyhxLKtbHe6dZNmeNW/EvE/qVMtCa0vsqZcJo08s9COSO85mah9PURFdHukU9N
-	Q1JJM020bMiVyxTsZVsQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qiFS1hr1MkMYc9dHYzA7bpN41EVo1hoO5Y4yAnxk2kg=; b=Wm5+WS3Mbdy11J
+	TyNy/sUlh4shPEwDtaCKJkHeZHFAwnXDHRjOjCHFElbDjyAQAAfnfre72nODWHK/IVvCSwSNHOARE
+	TeWJtLPjcLRP76xtOyvdtfnDEbchg8G+uLIPMz9dAWKQwLf6T27atQkKReCsgxsiCqIFOuEu2C3cI
+	R1jOXQ9uw07KtXaVBKfheRS1EgXBDJiRpczCyYhpluGMCqjs+zOtBfmcvNfaAGCJ5UNEqG1JxZuf2
+	h2UR3J8HwUlQFuw1mYRxsVaBFtBJwqq4CzcnNei3ZuIJ5koAk8xcvMXsZkAX3b62RUZA3fjjI/Eo3
+	sFW9sRkNp08H5U27OdyA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jlpmF-0006TF-CR; Thu, 18 Jun 2020 08:20:03 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jlr15-0003TR-Jn; Thu, 18 Jun 2020 09:39:27 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlpmC-0006Fc-NF
- for linux-amlogic@lists.infradead.org; Thu, 18 Jun 2020 08:20:02 +0000
-Received: by mail-wr1-x443.google.com with SMTP id a6so3092689wrm.4
- for <linux-amlogic@lists.infradead.org>; Thu, 18 Jun 2020 01:20:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=4KcujSsS1jyjnsxMXRZfCGa39cS76YnVtoeGFVxCFgc=;
- b=JP6cdM6fRlsxkBS/oB90AVgYIES7VE8ArtqzXGZ8RnERg8aj8ytd++B2GEjbx3XJdh
- 5fEtk7p/TKEXMSNfLVJ5haAGojW2NatyNxLjq36RasROlWCd+J0EsfKG/rZhX4F0cI+D
- o1sXVokcbprB6k95jboAGE/WYgr86lK24y7US+dgADQbL9YjPqJZzXgSy+Uf9eNOivmX
- GW8LmoFy1DiTHCgWKG1s3KlKKGKKLHRyHSJrvRMz4tLjVycxiexpvkzkFzfIwlod3Vm+
- 8hV2AuaYNUhl1dsJMCHSPChuCldzgGma/AiWvTUgKnmcEP3YIaaC1df5xJt5QtCAFZAU
- rOxQ==
+ id 1jlr0u-0003Ke-N7
+ for linux-amlogic@lists.infradead.org; Thu, 18 Jun 2020 09:39:19 +0000
+Received: by mail-wr1-x442.google.com with SMTP id p5so5295956wrw.9
+ for <linux-amlogic@lists.infradead.org>; Thu, 18 Jun 2020 02:39:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Y0bpfyCrWt4zdb6/EXasOU3eozhBYxN9FnwzUj24PuQ=;
+ b=HrFXgaGS7FFW9ZOTUWlteIRaEZJwVITr5ZAu2e5bdEoy147Js7Q5r2LGOa4voki6g8
+ HkoaScEFNyzMmgarJOTQIWYtKS2qHA8iuwffCBbKyjMEU/xsL66QRzxXXiTTxYxun0OF
+ O1qgqkUB5Futt/bNmPzw94+KN/bBBXSFNzt5WTx9JX2P5LjOGiKaToAJT4rD/uMd4Pj7
+ YZQlvsFNqR7PgKAv1NA1KA7XZCIa0H2iU4Oqj4ajoneQMHMFUkjYTM/47M1vR1tWh0C+
+ vcNilQK19bPM6sz20IYs5wp/LjD7xhS9wqZXFwsgP0M67BqdGJsduLgNZAnvFB0Rk41f
+ D6AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=4KcujSsS1jyjnsxMXRZfCGa39cS76YnVtoeGFVxCFgc=;
- b=QUR2UeB4V7tOMLimFF1AqpKZExMXIrbC/0ch5bD33wpIxwhQcXYYDDkmZGlfC5URGQ
- fnWCGIor4fkpvzNOSlghFVyB5dUyIFkz9dk3Nsj3YAIQQ+p+3nyTAMdRy42NuMBY3iUA
- oDBv8Q7HbZM+wFpY8PAd1fgPcytv4nV+SgfrHt5+qBjUS9VjzME8aUnhzqG9oaEGPJNX
- vwlsEvBs/5e26tRTN9Kz1g9MowT1rhG2dlIE72c/XFwqan+SLk2Oqgxr6Pd7aFVzaPBj
- S3yiSfxJRpft+JhnaLjcs0UcIn7BblT4JLAsTFENnfR8M7wKyDDhFrhsuBK91mi18UsF
- /e3A==
-X-Gm-Message-State: AOAM533iJaNrhTACnfgsNafIlqoT86TEjxRUAckpWTKspBEKLAOK0sDG
- VGwX42BRyIEOuRQt63mVcMSrqg==
-X-Google-Smtp-Source: ABdhPJzHjbMVQLF+FVct8ot/7YOMYRsMDLX1hN75mvGjfOq63MOC8UTFzu2niGdYKHrjduUo6iHLhw==
-X-Received: by 2002:adf:82d0:: with SMTP id 74mr3124134wrc.138.1592468399531; 
- Thu, 18 Jun 2020 01:19:59 -0700 (PDT)
-Received: from dell ([95.149.164.118])
- by smtp.gmail.com with ESMTPSA id l17sm749882wmh.14.2020.06.18.01.19.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Jun 2020 01:19:58 -0700 (PDT)
-Date: Thu, 18 Jun 2020 09:19:57 +0100
-From: Lee Jones <lee.jones@linaro.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=Y0bpfyCrWt4zdb6/EXasOU3eozhBYxN9FnwzUj24PuQ=;
+ b=s83ZmacB65mmqfnEdeM9a3jJoruMFMUTivRBIj9BKfC1KAPA7LdyzuGII5F6ccCyRH
+ vfuCbyiIlBG3rrJpb8LrJMZB/FNZkFN9d0aQM1+rLLvhiF5NbXk9Sm6eB9MSOLCzerki
+ mIektlYhv6Et7pi5pHXrA+hqjgWOftPCOdZOaEcBgrruDIashadzwUT/po+kF7/4nN4l
+ 8rGAC+eCZ3PleOQydWybEYeoq1I/2Me+zhKtIKlaAi0Zk42WOIC8O9rucRgrFEE9kmcx
+ QuJnwqmVjHTmThWnEjodhE54aoNxcOWG277j/IhCaY/i/FTe5OZKZiCziqcMIscamvob
+ U4dg==
+X-Gm-Message-State: AOAM531iQ2ZJLG2ECyKQSLv0EEER7EZrlWbnZrDF64Ef0C4T3yHqe9/J
+ n0eUPjtJvPHtX3niWpMF9U5plw==
+X-Google-Smtp-Source: ABdhPJyny8MDP2sg5Mtlq0GbaCcSgZBavlAzzJe7n1sbnDyHK+gk5UBc1SkF5CD/s9Dt8tirFraflQ==
+X-Received: by 2002:adf:db47:: with SMTP id f7mr3801168wrj.101.1592473154635; 
+ Thu, 18 Jun 2020 02:39:14 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:9902:c1f0:76c7:9dbc?
+ ([2a01:e35:2ec0:82b0:9902:c1f0:76c7:9dbc])
+ by smtp.gmail.com with ESMTPSA id d11sm2912413wrm.64.2020.06.18.02.39.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 18 Jun 2020 02:39:13 -0700 (PDT)
 Subject: Re: [PATCH v3 0/5] mfd: Add support for Khadas Microcontroller
-Message-ID: <20200618081957.GD2608702@dell>
+To: Lee Jones <lee.jones@linaro.org>
 References: <20200608091739.2368-1-narmstrong@baylibre.com>
+ <20200618081957.GD2608702@dell>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT7CwHsEEwEKACUC
+ GyMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJXDO2CAhkBAAoJEBaat7Gkz/iubGIH/iyk
+ RqvgB62oKOFlgOTYCMkYpm2aAOZZLf6VKHKc7DoVwuUkjHfIRXdslbrxi4pk5VKU6ZP9AKsN
+ NtMZntB8WrBTtkAZfZbTF7850uwd3eU5cN/7N1Q6g0JQihE7w4GlIkEpQ8vwSg5W7hkx3yQ6
+ 2YzrUZh/b7QThXbNZ7xOeSEms014QXazx8+txR7jrGF3dYxBsCkotO/8DNtZ1R+aUvRfpKg5
+ ZgABTC0LmAQnuUUf2PHcKFAHZo5KrdO+tyfL+LgTUXIXkK+tenkLsAJ0cagz1EZ5gntuheLD
+ YJuzS4zN+1Asmb9kVKxhjSQOcIh6g2tw7vaYJgL/OzJtZi6JlIXOwU0EVid/pAEQAND7AFhr
+ 5faf/EhDP9FSgYd/zgmb7JOpFPje3uw7jz9wFb28Cf0Y3CcncdElYoBNbRlesKvjQRL8mozV
+ 9RN+IUMHdUx1akR/A4BPXNdL7StfzKWOCxZHVS+rIQ/fE3Qz/jRmT6t2ZkpplLxVBpdu95qJ
+ YwSZjuwFXdC+A7MHtQXYi3UfCgKiflj4+/ITcKC6EF32KrmIRqamQwiRsDcUUKlAUjkCLcHL
+ CQvNsDdm2cxdHxC32AVm3Je8VCsH7/qEPMQ+cEZk47HOR3+Ihfn1LEG5LfwsyWE8/JxsU2a1
+ q44LQM2lcK/0AKAL20XDd7ERH/FCBKkNVzi+svYJpyvCZCnWT0TRb72mT+XxLWNwfHTeGALE
+ +1As4jIS72IglvbtONxc2OIid3tR5rX3k2V0iud0P7Hnz/JTdfvSpVj55ZurOl2XAXUpGbq5
+ XRk5CESFuLQV8oqCxgWAEgFyEapI4GwJsvfl/2Er8kLoucYO1Id4mz6N33+omPhaoXfHyLSy
+ dxD+CzNJqN2GdavGtobdvv/2V0wukqj86iKF8toLG2/Fia3DxMaGUxqI7GMOuiGZjXPt/et/
+ qeOySghdQ7Sdpu6fWc8CJXV2mOV6DrSzc6ZVB4SmvdoruBHWWOR6YnMz01ShFE49pPucyU1h
+ Av4jC62El3pdCrDOnWNFMYbbon3vABEBAAHCwn4EGAECAAkFAlYnf6QCGwICKQkQFpq3saTP
+ +K7BXSAEGQECAAYFAlYnf6QACgkQd9zb2sjISdGToxAAkOjSfGxp0ulgHboUAtmxaU3viucV
+ e2Hl1BVDtKSKmbIVZmEUvx9D06IijFaEzqtKD34LXD6fjl4HIyDZvwfeaZCbJbO10j3k7FJE
+ QrBtpdVqkJxme/nYlGOVzcOiKIepNkwvnHVnuVDVPcXyj2wqtsU7VZDDX41z3X4xTQwY3SO1
+ 9nRO+f+i4RmtJcITgregMa2PcB0LvrjJlWroI+KAKCzoTHzSTpCXMJ1U/dEqyc87bFBdc+DI
+ k8mWkPxsccdbs4t+hH0NoE3Kal9xtAl56RCtO/KgBLAQ5M8oToJVatxAjO1SnRYVN1EaAwrR
+ xkHdd97qw6nbg9BMcAoa2NMc0/9MeiaQfbgW6b0reIz/haHhXZ6oYSCl15Knkr4t1o3I2Bqr
+ Mw623gdiTzotgtId8VfLB2Vsatj35OqIn5lVbi2ua6I0gkI6S7xJhqeyrfhDNgzTHdQVHB9/
+ 7jnM0ERXNy1Ket6aDWZWCvM59dTyu37g3VvYzGis8XzrX1oLBU/tTXqo1IFqqIAmvh7lI0Se
+ gCrXz7UanxCwUbQBFjzGn6pooEHJYRLuVGLdBuoApl/I4dLqCZij2AGa4CFzrn9W0cwm3HCO
+ lR43gFyz0dSkMwNUd195FrvfAz7Bjmmi19DnORKnQmlvGe/9xEEfr5zjey1N9+mt3//geDP6
+ clwKBkq0JggA+RTEAELzkgPYKJ3NutoStUAKZGiLOFMpHY6KpItbbHjF2ZKIU1whaRYkHpB2
+ uLQXOzZ0d7x60PUdhqG3VmFnzXSztA4vsnDKk7x2xw0pMSTKhMafpxaPQJf494/jGnwBHyi3
+ h3QGG1RjfhQ/OMTX/HKtAUB2ct3Q8/jBfF0hS5GzT6dYtj0Ci7+8LUsB2VoayhNXMnaBfh+Q
+ pAhaFfRZWTjUFIV4MpDdFDame7PB50s73gF/pfQbjw5Wxtes/0FnqydfId95s+eej+17ldGp
+ lMv1ok7K0H/WJSdr7UwDAHEYU++p4RRTJP6DHWXcByVlpNQ4SSAiivmWiwOt490+Ac7ATQRN
+ WQbPAQgAvIoM384ZRFocFXPCOBir5m2J+96R2tI2XxMgMfyDXGJwFilBNs+fpttJlt2995A8
+ 0JwPj8SFdm6FBcxygmxBBCc7i/BVQuY8aC0Z/w9Vzt3Eo561r6pSHr5JGHe8hwBQUcNPd/9l
+ 2ynP57YTSE9XaGJK8gIuTXWo7pzIkTXfN40Wh5jeCCspj4jNsWiYhljjIbrEj300g8RUT2U0
+ FcEoiV7AjJWWQ5pi8lZJX6nmB0lc69Jw03V6mblgeZ/1oTZmOepkagwy2zLDXxihf0GowUif
+ GphBDeP8elWBNK+ajl5rmpAMNRoKxpN/xR4NzBg62AjyIvigdywa1RehSTfccQARAQABwsBf
+ BBgBAgAJBQJNWQbPAhsMAAoJEBaat7Gkz/iuteIH+wZuRDqK0ysAh+czshtG6JJlLW6eXJJR
+ Vi7dIPpgFic2LcbkSlvB8E25Pcfz/+tW+04Urg4PxxFiTFdFCZO+prfd4Mge7/OvUcwoSub7
+ ZIPo8726ZF5/xXzajahoIu9/hZ4iywWPAHRvprXaim5E/vKjcTeBMJIqZtS4u/UK3EpAX59R
+ XVxVpM8zJPbk535ELUr6I5HQXnihQm8l6rt9TNuf8p2WEDxc8bPAZHLjNyw9a/CdeB97m2Tr
+ zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <0421002f-5e09-b292-9066-310bd6a5ead8@baylibre.com>
+Date: Thu, 18 Jun 2020 11:39:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200608091739.2368-1-narmstrong@baylibre.com>
+In-Reply-To: <20200618081957.GD2608702@dell>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200618_012000_761762_FE0778C2 
-X-CRM114-Status: GOOD (  16.41  )
+X-CRM114-CacheID: sfid-20200618_023916_825557_187D90FD 
+X-CRM114-Status: GOOD (  17.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,59 +155,90 @@ Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org, khilman@baylibre.com,
  daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, rui.zhang@intel.com,
  linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCAwOCBKdW4gMjAyMCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cgo+IFRoZSBuZXcgS2hh
-ZGFzIFZJTTIsIFZJTTMgYW5kIEVkZ2UgYm9hcmRzIGVtYmVkcyBhbiBvbi1ib2FyZCBtaWNyb2Nv
-bnRyb2xsZXIKPiBjb25uZWN0ZWQgdmlhIEkyQy4KPiAKPiBUaGlzIE1pY3JvY29udHJvbGxlciBp
-cyBwcmVzZW50IG9uIHRoZSBLaGFkYXMgVklNMSwgVklNMiwgVklNMyBhbmQgRWRnZQo+IGJvYXJk
-cy4KPiAKPiBJdCBoYXMgbXVsdGlwbGUgYm9vdCBjb250cm9sIGZlYXR1cmVzIGxpa2UgcGFzc3dv
-cmQgY2hlY2ssIHBvd2VyLW9uCj4gb3B0aW9ucywgcG93ZXItb2ZmIGNvbnRyb2wgYW5kIHN5c3Rl
-bSBGQU4gY29udHJvbCBvbiByZWNlbnQgYm9hcmRzLgo+IAo+IFRoaWUgc2VyaWUgYWRkcyA6Cj4g
-LSB0aGUgYmluZGluZ3MKPiAtIHRoZSBNRkQgZHJpdmVyCj4gLSB0aGUgVGhlcm1hbCBDb29saW5n
-IGNlbGwgZHJpdmVyCj4gLSB1cGRhdGVzIE1BSU5UQUlORVJTCj4gLSBhZGQgc3VwcG9ydCBpbnRv
-IHRoZSBLaGFkYXMgVklNMy9WSU0zTCBEVAo+IAo+IENoYW5nZXMgc2luY2UgdjIgYXQgWzNdOgo+
-IC0gUmVtb3ZlZCBOVk1FTSBkcml2ZXIgZm9yIHNlcGFyYXRlIHN1Ym1pc3Npb24KPiAtIGZpeGVk
-IE1GRCBkcml2ZXIsIGhlYWRlciBhbmQgS2NvbmZpZwo+IC0gZml4ZWQgVGhlcm1hbCBLY29uZmln
-Cj4gLSBmaXhlZCBNQUlOVEFJTkVSUyBmaWxlcyBhbmQgcGF0aAo+IAo+IENoYW5nZXMgc2luY2Ug
-UkZDIHYxIGF0IFsyXToKPiAtIG1vdmVkIGh3bW9uIGRyaXZlciB0byB0aGVybWFsLW9ubHkKPiAt
-IG1vdmVkIHRoZSBTTTEgdGhlcm1hbCBub2RlcyBpbiBhIHNlcGFyYXRlIHNlcmllCj4gLSBhZGRl
-ZCB0aGUgYmluZGluZ3MgcmV2aWV3IHRhZyBmcm9tIHJvYgo+IAo+IFsxXSBodHRwOi8vbG9yZS5r
-ZXJuZWwub3JnL3IvMjAyMDA1MTIwOTM5MTYuMTk2NzYtMS1uYXJtc3Ryb25nQGJheWxpYnJlLmNv
-bQo+IFsyXSBodHRwOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyMDA0MjEwODAxMDIuMjI3OTYtMS1u
-YXJtc3Ryb25nQGJheWxpYnJlLmNvbQo+IFszXSBodHRwOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAy
-MDA1MTIxMzI2MTMuMzE1MDctMS1uYXJtc3Ryb25nQGJheWxpYnJlLmNvbQo+IAo+IE5laWwgQXJt
-c3Ryb25nICg1KToKPiAgIGR0LWJpbmRpbmdzOiBtZmQ6IGFkZCBLaGFkYXMgTWljcm9jb250cm9s
-bGVyIGJpbmRpbmdzCj4gICBtZmQ6IGFkZCBzdXBwb3J0IGZvciB0aGUgS2hhZGFzIFN5c3RlbSBj
-b250cm9sIE1pY3JvY29udHJvbGxlcgo+ICAgdGhlcm1hbDogYWRkIHN1cHBvcnQgZm9yIHRoZSBN
-Q1UgY29udHJvbGxlZCBGQU4gb24gS2hhZGFzIGJvYXJkcwo+ICAgTUFJTlRBSU5FUlM6IGFkZCBt
-eXNlbGYgYXMgbWFpbnRhaW5lciBmb3IgS2hhZGFzIE1DVSBkcml2ZXJzCj4gICBhcm02NDogZHRz
-OiBtZXNvbi1raGFkYXMtdmltMzogYWRkIEtoYWRhcyBNQ1Ugbm9kZXMKCkknbSBhIGJpdCBjb25j
-ZXJuZWQgYnkgdGhlIG1pc3NpbmcgcGF0Y2hlcyBmcm9tIG15IGluYm94LgoKTG9va3MgbGlrZSB5
-b3Ugb21pdHRlZCB0byBzZW5kIG1lIHBhdGNoIDMgYW5kIDUuCgpIb3BlZnVsbHkgdGhlIFRoZXJt
-YWwgcGF0Y2ggZG9lc24ndCBkZXBlbmQgb24gdGhlIE1GRCBvbmUhCgo+ICAuLi4vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9tZmQva2hhZGFzLG1jdS55YW1sICAgfCAgNDQgKysrKysKPiAgTUFJTlRBSU5F
-UlMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA5ICsKPiAgLi4uL2Jvb3Qv
-ZHRzL2FtbG9naWMvbWVzb24ta2hhZGFzLXZpbTMuZHRzaSAgIHwgIDIzICsrKwo+ICBkcml2ZXJz
-L21mZC9LY29uZmlnICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMjEgKysrCj4gIGRyaXZl
-cnMvbWZkL01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMSArCj4gIGRyaXZl
-cnMvbWZkL2toYWRhcy1tY3UuYyAgICAgICAgICAgICAgICAgICAgICB8IDE0MiArKysrKysrKysr
-KysrKwo+ICBkcml2ZXJzL3RoZXJtYWwvS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICAgfCAg
-MTEgKysKPiAgZHJpdmVycy90aGVybWFsL01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgIHwg
-ICAxICsKPiAgZHJpdmVycy90aGVybWFsL2toYWRhc19tY3VfZmFuLmMgICAgICAgICAgICAgIHwg
-MTc0ICsrKysrKysrKysrKysrKysrKwo+ICBpbmNsdWRlL2xpbnV4L21mZC9raGFkYXMtbWN1Lmgg
-ICAgICAgICAgICAgICAgfCAgOTEgKysrKysrKysrCj4gIDEwIGZpbGVzIGNoYW5nZWQsIDUxNyBp
-bnNlcnRpb25zKCspCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvbWZkL2toYWRhcyxtY3UueWFtbAo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
-dmVycy9tZmQva2hhZGFzLW1jdS5jCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3RoZXJt
-YWwva2hhZGFzX21jdV9mYW4uYwo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9saW51eC9t
-ZmQva2hhZGFzLW1jdS5oCj4gCgotLSAKTGVlIEpvbmVzIFvmnY7nkLzmlq9dClNlbmlvciBUZWNo
-bmljYWwgTGVhZCAtIERldmVsb3BlciBTZXJ2aWNlcwpMaW5hcm8ub3JnIOKUgiBPcGVuIHNvdXJj
-ZSBzb2Z0d2FyZSBmb3IgQXJtIFNvQ3MKRm9sbG93IExpbmFybzogRmFjZWJvb2sgfCBUd2l0dGVy
-IHwgQmxvZwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+Hi,
+
+On 18/06/2020 10:19, Lee Jones wrote:
+> On Mon, 08 Jun 2020, Neil Armstrong wrote:
+> 
+>> The new Khadas VIM2, VIM3 and Edge boards embeds an on-board microcontroller
+>> connected via I2C.
+>>
+>> This Microcontroller is present on the Khadas VIM1, VIM2, VIM3 and Edge
+>> boards.
+>>
+>> It has multiple boot control features like password check, power-on
+>> options, power-off control and system FAN control on recent boards.
+>>
+>> Thie serie adds :
+>> - the bindings
+>> - the MFD driver
+>> - the Thermal Cooling cell driver
+>> - updates MAINTAINERS
+>> - add support into the Khadas VIM3/VIM3L DT
+>>
+>> Changes since v2 at [3]:
+>> - Removed NVMEM driver for separate submission
+>> - fixed MFD driver, header and Kconfig
+>> - fixed Thermal Kconfig
+>> - fixed MAINTAINERS files and path
+>>
+>> Changes since RFC v1 at [2]:
+>> - moved hwmon driver to thermal-only
+>> - moved the SM1 thermal nodes in a separate serie
+>> - added the bindings review tag from rob
+>>
+>> [1] http://lore.kernel.org/r/20200512093916.19676-1-narmstrong@baylibre.com
+>> [2] http://lore.kernel.org/r/20200421080102.22796-1-narmstrong@baylibre.com
+>> [3] http://lore.kernel.org/r/20200512132613.31507-1-narmstrong@baylibre.com
+>>
+>> Neil Armstrong (5):
+>>   dt-bindings: mfd: add Khadas Microcontroller bindings
+>>   mfd: add support for the Khadas System control Microcontroller
+>>   thermal: add support for the MCU controlled FAN on Khadas boards
+>>   MAINTAINERS: add myself as maintainer for Khadas MCU drivers
+>>   arm64: dts: meson-khadas-vim3: add Khadas MCU nodes
+> 
+> I'm a bit concerned by the missing patches from my inbox.
+
+Oops sorry, I'll resend the full serie with you in CC
+
+> 
+> Looks like you omitted to send me patch 3 and 5.
+> 
+> Hopefully the Thermal patch doesn't depend on the MFD one!
+
+It does ! It includes the include/linux/mfd/khadas-mcu.h file
+
+Amit reviewed the thermal patches already.
+
+Neil
+
+> 
+>>  .../devicetree/bindings/mfd/khadas,mcu.yaml   |  44 +++++
+>>  MAINTAINERS                                   |   9 +
+>>  .../boot/dts/amlogic/meson-khadas-vim3.dtsi   |  23 +++
+>>  drivers/mfd/Kconfig                           |  21 +++
+>>  drivers/mfd/Makefile                          |   1 +
+>>  drivers/mfd/khadas-mcu.c                      | 142 ++++++++++++++
+>>  drivers/thermal/Kconfig                       |  11 ++
+>>  drivers/thermal/Makefile                      |   1 +
+>>  drivers/thermal/khadas_mcu_fan.c              | 174 ++++++++++++++++++
+>>  include/linux/mfd/khadas-mcu.h                |  91 +++++++++
+>>  10 files changed, 517 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+>>  create mode 100644 drivers/mfd/khadas-mcu.c
+>>  create mode 100644 drivers/thermal/khadas_mcu_fan.c
+>>  create mode 100644 include/linux/mfd/khadas-mcu.h
+>>
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
