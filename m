@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 72DB1C433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:27:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A2D5C433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:28:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4A553221FA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:27:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B003A2220B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:28:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="N3KCwAQF";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="sDI9CgYH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A553221FA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UEqld9V3";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="OFJp0m2P"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B003A2220B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,38 +26,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PxJ878l2I5SrooHe2F9CdVi3Fx1JNxBsqyHAVfYMJtA=; b=N3KCwAQFqf7Qjl
-	TJCrQ5ZfiITrSLVjMcug8rjj3zYI7YDIYzevI+76mBRR8lpiUvJ2NEmMDys7cmaofr8WY2PDguXWu
-	hplJpmlk3zTsyV+22zS+12YxVDx+G1dQIvqNKzVTmiP3pbL+9HmZ1uFqZlVtouvAMCkmBX4fSmqsD
-	5kX98j/jU3fNs2CbwRaOq8UZHtzwZQ1JjR5psfNk4Z5JfXGei5Dd74w+qwfBs+ifmjrYjZfyY4wnm
-	1/g56qh5t1ofQbVqQBH0iR8umqWl364PWG4Ka4ExkuenxNk3SimTlMYkUPmsQgRQV/OGub94a4+e/
-	8Km/8aCxiXK23fmIdhwg==;
+	List-Owner; bh=82Gxs21eLN7ZAuA6G+yfxEiBSdluVFYFCbTm344sAJY=; b=UEqld9V3h8uIGG
+	Lmow3OWQ0HGr35XBNY9G751yUCyvNBSahoiTE/znEejCZ66ZaQmrIbuW1G2RIW/14Mk6ZuIA/p/xU
+	3WvC8Gc8NSvhwr7AL7dZ+Bzt/Mt17sz3zetJN43gWvNsG1Z8nT42IMVV+HUTCJDFVpGdICAYCx0Qy
+	fAhY/Z5IUlvlr5N/QBBBYaEWkDeTTk9vLwEUL7h8JXNiUDEVzPD1wJ71LdTji7h7AL5iTjTUjG93e
+	5o5rfdlWlbXBm33oX4bImwhEY41SMaLA8bcdABsnSAIenxonm3bT1oHZQn8TYCCS4D9NKxkkYkxMp
+	JLg5HIuxBOO44ozj+Iiw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jljKy-0004OM-UK; Thu, 18 Jun 2020 01:27:28 +0000
+	id 1jljLo-000553-Bn; Thu, 18 Jun 2020 01:28:20 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlj7G-0002ko-SO; Thu, 18 Jun 2020 01:13:20 +0000
+ id 1jlj7f-00033Q-GA; Thu, 18 Jun 2020 01:13:45 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5479C21974;
- Thu, 18 Jun 2020 01:13:17 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id DCA91221ED;
+ Thu, 18 Jun 2020 01:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1592442798;
- bh=o7jQeRpPUwhbbMSmXYLCbTuET0qoCT5C8qjj9tJ+f9g=;
+ s=default; t=1592442822;
+ bh=78btlO7Vr7itdFV3U5z5DJ2DrSrGncjQyVvThiu09Tk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=sDI9CgYH/MZrcBK7yWFVhgpLodROJmMfrWux7187D+dye1yZxHtwl2wpSgpDPH4hE
- Byiu6skEslryl71TTGAm3S6ADHmry3lZzf33sIb67tdPit4mylqUM5eVLzJEzFNpDU
- LkJeNuiCxVuchWgGqN3eTeybNA/SH06aNpdjO0w0=
+ b=OFJp0m2PUHF02kQ/OeK4GYUuuIK1wTTRjBpqYBqEw0jC74TdcXXdpD7ZUftnhfMOr
+ w9CnBvT+VMBTq0pWdx6jEdWBW0gTzi78Yla6Uy6uUkPFl+R/zFijLOTgadxGv7D/AR
+ e4qqwY1c4P14OzR/Kn92Oz4/CbLyRwZPTUEWd/X4=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.7 239/388] ARM: dts: meson: Switch existing boards
- with RGMII PHY to "rgmii-id"
-Date: Wed, 17 Jun 2020 21:05:36 -0400
-Message-Id: <20200618010805.600873-239-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.7 259/388] PCI: amlogic: meson: Don't use
+ FAST_LINK_MODE to set up link
+Date: Wed, 17 Jun 2020 21:05:56 -0400
+Message-Id: <20200618010805.600873-259-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200618010805.600873-1-sashal@kernel.org>
 References: <20200618010805.600873-1-sashal@kernel.org>
@@ -65,8 +65,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200617_181319_080146_72599E6A 
-X-CRM114-Status: GOOD (  12.65  )
+X-CRM114-CacheID: sfid-20200617_181343_568783_307F27BF 
+X-CRM114-Status: GOOD (  10.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,79 +78,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+Cc: Sasha Levin <sashal@kernel.org>, Rob Herring <robh@kernel.org>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Marc Zyngier <maz@kernel.org>,
+ linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+From: Marc Zyngier <maz@kernel.org>
 
-[ Upstream commit 005231128e9e97461e81fa32421957a7664317ca ]
+[ Upstream commit 87dccf09323fc363bd0d072fcc12b96622ab8c69 ]
 
-Let the PHY generate the RX and TX delay on the Odroid-C1 and MXIII
-Plus.
+The vim3l board does not work with a standard PCIe switch (ASM1184e),
+spitting all kind of errors - hinting at HW misconfiguration (no link,
+port enumeration issues, etc).
 
-Previously we did not know that these boards used an RX delay. We
-assumed that setting the TX delay on the MAC side It turns out that
-these boards also require an RX delay of 2ns (verified on Odroid-C1,
-but the u-boot code uses the same setup on both boards). Ethernet only
-worked because u-boot added this RX delay on the MAC side.
+According to the the Synopsys DWC PCIe Reference Manual, in the section
+dedicated to the PLCR register, bit 7 is described (FAST_LINK_MODE) as:
 
-The 4ns TX delay was also wrong and the result of using an unsupported
-RGMII TX clock divider setting. This has been fixed in the driver with
-commit bd6f48546b9cb7 ("net: stmmac: dwmac-meson8b: Fix the RGMII TX
-delay on Meson8b/8m2 SoCs").
+"Sets all internal timers to fast mode for simulation purposes."
 
-Switch to phy-mode "rgmii-id" to let the PHY side handle all the delays,
-(as recommended by the Ethernet maintainers anyways) to correctly
-describe the need for a 2ns RX as well as 2ns TX delay on these boards.
-This fixes the Ethernet performance on Odroid-C1 where there was a huge
-amount of packet loss when transmitting data due to the incorrect TX
-delay.
+it is sound to set this bit from a simulation perspective, but on actual
+silicon, which expects timers to have a nominal value, it is not.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-Link: https://lore.kernel.org/r/20200512215148.540322-3-martin.blumenstingl@googlemail.com
+Make sure the FAST_LINK_MODE bit is cleared when configuring the RC
+to solve this problem.
+
+Link: https://lore.kernel.org/r/20200429164230.309922-1-maz@kernel.org
+Fixes: 9c0ef6d34fdb ("PCI: amlogic: Add the Amlogic Meson PCIe controller driver")
+Signed-off-by: Marc Zyngier <maz@kernel.org>
+[lorenzo.pieralisi@arm.com: commit log]
+Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/meson8b-odroidc1.dts    | 3 +--
- arch/arm/boot/dts/meson8m2-mxiii-plus.dts | 4 +---
- 2 files changed, 2 insertions(+), 5 deletions(-)
+ drivers/pci/controller/dwc/pci-meson.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-index a2a47804fc4a..cb21ac9f517c 100644
---- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-+++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-@@ -202,9 +202,8 @@ &ethmac {
- 	pinctrl-0 = <&eth_rgmii_pins>;
- 	pinctrl-names = "default";
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 3715dceca1bf..ca59ba9e0ecd 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -289,11 +289,11 @@ static void meson_pcie_init_dw(struct meson_pcie *mp)
+ 	meson_cfg_writel(mp, val, PCIE_CFG0);
  
--	phy-mode = "rgmii";
- 	phy-handle = <&eth_phy>;
--	amlogic,tx-delay-ns = <4>;
-+	phy-mode = "rgmii-id";
+ 	val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
+-	val &= ~LINK_CAPABLE_MASK;
++	val &= ~(LINK_CAPABLE_MASK | FAST_LINK_MODE);
+ 	meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
  
- 	nvmem-cells = <&ethernet_mac_address>;
- 	nvmem-cell-names = "mac-address";
-diff --git a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-index d54477b1001c..cc498191ddd1 100644
---- a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-+++ b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-@@ -69,9 +69,7 @@ &ethmac {
- 	pinctrl-names = "default";
+ 	val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
+-	val |= LINK_CAPABLE_X1 | FAST_LINK_MODE;
++	val |= LINK_CAPABLE_X1;
+ 	meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
  
- 	phy-handle = <&eth_phy0>;
--	phy-mode = "rgmii";
--
--	amlogic,tx-delay-ns = <4>;
-+	phy-mode = "rgmii-id";
- 
- 	mdio {
- 		compatible = "snps,dwmac-mdio";
+ 	val = meson_elb_readl(mp, PCIE_GEN2_CTRL_OFF);
 -- 
 2.25.1
 
