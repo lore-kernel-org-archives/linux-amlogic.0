@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD23DC433E4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:19:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3011DC433E1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:19:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 63B6F21D79
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:19:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E6FEC221F1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:19:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sLA+/NsO";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="xUj7x4qJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63B6F21D79
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="diCqeem4";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDJfJdRZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E6FEC221F1
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,38 +26,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yphJ1ZbuxC97IGNMzmT7PQhs8E3Mp7QJTuqv+YVXgO8=; b=sLA+/NsOWqJbD+
-	atBPuRxjhzPfLNmxqE4G9NfHB5ig3zdUHeE+ao4GaEAzI3LeGk1zQHXK672Ts51DPip7NsnzJVbpd
-	AJuU+hwGjHmfkbenUcZFwcgKbiv4zsuCzysma1+3gxQ/VQ9IaEYWXhW0V+9YmhbvHzu3mYUakqkZ4
-	UzBWoNajnrGETS7MllAqpcLOC6NEjeF78R9z1HZtkiQtmcDNqMyi7T1a951TNSwfa1X1CsVjR0aUB
-	UMvaM8NBjuAyMa0Neojap48w8RRUR2a98fFDt2b9N7guMtA1n4Q4yuZVBXPAcFdQuu7Ok2eDnCYYT
-	l4LKMBLaAX2pAxok7phg==;
+	List-Owner; bh=H6w9lodmABllpYD8aY7JobCkmJPVSRStPHObGxQLf4w=; b=diCqeem4kmePzt
+	fsxpPYgkHx24QW802L4vI3jl0fkUtgZWuNa533TrGdaJ9M9VLiLhX8Y/5hC0hDiN00QzndSp2E3BI
+	7PhObdM8KBPlMKUs4EG2TcWu/DZpU8B5y3EQs2FGF3zgRymA9QP/LlrHKoq41P/ANYUnQewLJU4T8
+	2cCf1LidHCUyfUD93sFwkGDc/V069UjX2jq3MHj5fKKSNJqgTIXCevsm9BUjZBwgqtjeR9t9LnquC
+	FHRUaljDjXWausc+ZvYlo/88gqJHcRAmtz2QvQFZ9d1653tJtHF5boLL3jBd7M8zSEwVMSMN0fqhw
+	u/RAf8005UWNaneZer1w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jljCh-0000ob-I7; Thu, 18 Jun 2020 01:18:55 +0000
+	id 1jljD3-00017K-Qs; Thu, 18 Jun 2020 01:19:17 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlj5Q-0001AZ-Te; Thu, 18 Jun 2020 01:11:26 +0000
+ id 1jlj5T-0001CK-5Q; Thu, 18 Jun 2020 01:11:29 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 88EC621D7E;
- Thu, 18 Jun 2020 01:11:23 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 06D0321D7B;
+ Thu, 18 Jun 2020 01:11:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1592442684;
- bh=Sp+62r1czfVEY6NOVZ4jDMPfXjcGVIulcPXjrSyusyg=;
+ s=default; t=1592442685;
+ bh=ugz/FRCBTs2WMkvKZaWcLiNIAiqR8i+sTXBhORd1pbQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=xUj7x4qJzrHG1HajKv+J3y5zydovRimhfkSiPJS+4R4ePND9SLCI9DICJE2AiT5uR
- s8/cISoNfcuk5RJENlC1iF8QSkDLtYUbfLXJqTLP3wyguyrx0QFlH+VJBeLr1nclBj
- XBpl1XkxRfYovP3GJiNCyuzhpBTnpDaYCI062c+k=
+ b=bDJfJdRZfM1lgezqVWMsRWAQlQW+Fnn+fQT60acegepX6IM3LyzzkWarjnnGsSSDR
+ 4YXYYvzmbW52zAnZanlyv/GN2udR44JdE32yKE5s1w7ynmygcidIh/VPBjKG3oJkBJ
+ pFDigaTdSox+XnKPW1UgovpeV4bneXzw2RxeFdnI=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.7 151/388] clk: meson: meson8b: Fix the first parent
- of vid_pll_in_sel
-Date: Wed, 17 Jun 2020 21:04:08 -0400
-Message-Id: <20200618010805.600873-151-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.7 152/388] clk: meson: meson8b: Fix the polarity of
+ the RESET_N lines
+Date: Wed, 17 Jun 2020 21:04:09 -0400
+Message-Id: <20200618010805.600873-152-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200618010805.600873-1-sashal@kernel.org>
 References: <20200618010805.600873-1-sashal@kernel.org>
@@ -65,8 +65,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200617_181124_992783_E8FD5FD4 
-X-CRM114-Status: GOOD (  12.22  )
+X-CRM114-CacheID: sfid-20200617_181127_461289_0EFAEBD1 
+X-CRM114-Status: GOOD (  10.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,7 +78,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
+Cc: Sasha Levin <sashal@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
@@ -89,44 +89,163 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[ Upstream commit da1978ac3d6cf278dedf5edbf350445a0fff2f08 ]
+[ Upstream commit 0d3051c790ed2ef6bd91b92b07220313f06b95b3 ]
 
-Use hdmi_pll_lvds_out as parent of the vid_pll_in_sel clock. It's not
-easy to see that the vendor kernel does the same, but it actually does.
-meson_clk_pll_ops in mainline still cannot fully recalculate all rates
-from the HDMI PLL registers because some register bits (at the time of
-writing it's unknown which bits are used for this) double the HDMI PLL
-output rate (compared to simply considering M, N and FRAC) for some (but
-not all) PLL settings.
+CLKC_RESET_VID_DIVIDER_CNTL_RESET_N_POST and
+CLKC_RESET_VID_DIVIDER_CNTL_RESET_N_PRE are active low. This means:
+- asserting them requires setting the register value to 0
+- de-asserting them requires setting the register value to 1
 
-Update the vid_pll_in_sel parent so our clock calculation works for
-simple clock settings like the CVBS output (where no rate doubling is
-going on). The PLL ops need to be fixed later on for more complex clock
-settings (all HDMI rates).
+Set the register value accordingly for these two reset lines by setting
+the inverted the register value compared to all other reset lines.
 
-Fixes: 6cb57c678bb70 ("clk: meson: meson8b: add the read-only video clock trees")
-Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+Fixes: 189621726bc2f6 ("clk: meson: meson8b: register the built-in reset controller")
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20200417184127.1319871-2-martin.blumenstingl@googlemail.com
+Link: https://lore.kernel.org/r/20200417184127.1319871-3-martin.blumenstingl@googlemail.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/clk/meson/meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/meson/meson8b.c | 79 ++++++++++++++++++++++++++-----------
+ 1 file changed, 56 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 34a70c4b4899..ac4a883acd2a 100644
+index ac4a883acd2a..ecd78cdca8ce 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -1077,7 +1077,7 @@ static struct clk_regmap meson8b_vid_pll_in_sel = {
- 		 * Meson8m2: vid2_pll
- 		 */
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_hdmi_pll_dco.hw
-+			&meson8b_hdmi_pll_lvds_out.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
+@@ -3506,54 +3506,87 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
+ static const struct meson8b_clk_reset_line {
+ 	u32 reg;
+ 	u8 bit_idx;
++	bool active_low;
+ } meson8b_clk_reset_bits[] = {
+ 	[CLKC_RESET_L2_CACHE_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 30
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 30,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_AXI_64_TO_128_BRIDGE_A5_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 29
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 29,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_SCU_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 28
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 28,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_CPU3_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 27
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 27,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_CPU2_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 26
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 26,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_CPU1_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 25
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 25,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_CPU0_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 24
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 24,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_A5_GLOBAL_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 18
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 18,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_A5_AXI_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 17
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 17,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_A5_ABP_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 16
++		.reg = HHI_SYS_CPU_CLK_CNTL0,
++		.bit_idx = 16,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_AXI_64_TO_128_BRIDGE_MMC_SOFT_RESET] = {
+-		.reg = HHI_SYS_CPU_CLK_CNTL1, .bit_idx = 30
++		.reg = HHI_SYS_CPU_CLK_CNTL1,
++		.bit_idx = 30,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_VID_CLK_CNTL_SOFT_RESET] = {
+-		.reg = HHI_VID_CLK_CNTL, .bit_idx = 15
++		.reg = HHI_VID_CLK_CNTL,
++		.bit_idx = 15,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_VID_DIVIDER_CNTL_SOFT_RESET_POST] = {
+-		.reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 7
++		.reg = HHI_VID_DIVIDER_CNTL,
++		.bit_idx = 7,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_VID_DIVIDER_CNTL_SOFT_RESET_PRE] = {
+-		.reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 3
++		.reg = HHI_VID_DIVIDER_CNTL,
++		.bit_idx = 3,
++		.active_low = false,
+ 	},
+ 	[CLKC_RESET_VID_DIVIDER_CNTL_RESET_N_POST] = {
+-		.reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 1
++		.reg = HHI_VID_DIVIDER_CNTL,
++		.bit_idx = 1,
++		.active_low = true,
+ 	},
+ 	[CLKC_RESET_VID_DIVIDER_CNTL_RESET_N_PRE] = {
+-		.reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 0
++		.reg = HHI_VID_DIVIDER_CNTL,
++		.bit_idx = 0,
++		.active_low = true,
+ 	},
+ };
+ 
+@@ -3562,22 +3595,22 @@ static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
+ {
+ 	struct meson8b_clk_reset *meson8b_clk_reset =
+ 		container_of(rcdev, struct meson8b_clk_reset, reset);
+-	unsigned long flags;
+ 	const struct meson8b_clk_reset_line *reset;
++	unsigned int value = 0;
++	unsigned long flags;
+ 
+ 	if (id >= ARRAY_SIZE(meson8b_clk_reset_bits))
+ 		return -EINVAL;
+ 
+ 	reset = &meson8b_clk_reset_bits[id];
+ 
++	if (assert != reset->active_low)
++		value = BIT(reset->bit_idx);
++
+ 	spin_lock_irqsave(&meson_clk_lock, flags);
+ 
+-	if (assert)
+-		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
+-				   BIT(reset->bit_idx), BIT(reset->bit_idx));
+-	else
+-		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
+-				   BIT(reset->bit_idx), 0);
++	regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
++			   BIT(reset->bit_idx), value);
+ 
+ 	spin_unlock_irqrestore(&meson_clk_lock, flags);
+ 
 -- 
 2.25.1
 
