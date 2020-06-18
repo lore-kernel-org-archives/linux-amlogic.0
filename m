@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 215E5C433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:10:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C139DC433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:15:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A023B221E7
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:10:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 772E621D81
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2020 01:15:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BKc5wmgm";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="AAyZD+Ct"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A023B221E7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="skszghUq";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="aCZxilbw"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 772E621D81
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,37 +26,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y88OrvbIWL2tpaaRt/NvmIZjZMHlq6k9AcxxpuN/27A=; b=BKc5wmgmSyhL0V
-	bAP7XJkMe4NIEHI+Q7zjD5gC0jxg8sUeFUMzAuLNdzbcfUfwxkovsO9gex691GMsTipjrNPchb4Si
-	hptz/Ri+Mxbja+AsT7Is4qeD+9uVPGVLW2zWdPLEnmtDUv0jaxzci8Aj6SrJ23rYQXIF+6AgxDyro
-	/HSI21Crl47QDWnLGnNy1x956EEQjg1PvN2W9JoKl3w+WZccXa4++WQ8dM/V2fI34dEvBJf7JwGTv
-	ziSUZQ1ZONFoasubDZpHa2Ncg8jpr4zf2/L3Mie5DnldZD5wxD3bC3NgTGV05udSUfLJBenbaV1Iz
-	lqnccmaqUpwdxTaQYACg==;
+	List-Owner; bh=X1C2szvBLf9aQSAV/OFeGINZJZeF0DMZmgigLeu2rPI=; b=skszghUqwq42Am
+	bXIHK/sEx6iPfMiXq807axfP+Pi5GN1PjHYFvgKNTsNpwgQ2BLlxAjB7GTkCnIciX9k6Pv+/Zr8up
+	w7Gk5ngex1ykwBl3mt32kahZK8cKUvoVOvmkteIN2BXoMRaGVkfQvpRrzSHXQ+gWdJGxQSkSMgGQq
+	6OhzTK9/c9QKclURuJ6gJ5JdGks6HgfVOsAHnAubrLqIrRxCuo85j2U0dvyfvvLpkYD6qLTFTu6lz
+	4Q/QYJpfbGQJnz0mveI8B8GTazjD//LVre7Vs8OCuU72RwDBNvY+xEqyOCu/9Dlj3wCHML7/p8bjt
+	uFX7bkKI0Enajl2oax9Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jlj3x-0005zc-LS; Thu, 18 Jun 2020 01:09:53 +0000
+	id 1jlj9M-0006kW-65; Thu, 18 Jun 2020 01:15:28 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlj2l-0004qm-So; Thu, 18 Jun 2020 01:08:43 +0000
+ id 1jlj4I-0006hw-Pg; Thu, 18 Jun 2020 01:10:16 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 42EF22193E;
- Thu, 18 Jun 2020 01:08:38 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 937F321974;
+ Thu, 18 Jun 2020 01:10:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1592442519;
- bh=LxL7S9dAh4/os9b+6g3X1dJuv95ULz6V2uieImdNiH4=;
+ s=default; t=1592442613;
+ bh=ZeP8K0zOh9XWf/M6ZeyFsdFt9/ZjTz/WXT7NJMGHJ0w=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=AAyZD+CtvDXX3NXhh0Mc4sTe3c7fzfYaNNyVghCnHmisAS3SBpvy6sOb/X+7sKHUj
- +VzdCH+cDN970k1d4amziub/GPi5CSjhgTAnA5gbX9aylCsE46efGp6zzxKrYoM/ID
- dkS/jIAxSBFBUFn0NoAomwGPKRnmzLrMG6D3wy+A=
+ b=aCZxilbwtxz18Z/u+R/SCS+fnsOc4+WeUA3Fe94ursURI6skcMPYo0e5I9PnThSoF
+ 4MzTalCn66s7PnSPQtbSUtprrZVPkrBEJ5cPEJo9WpokznXFtLnxWwaXzYxrFsGQrp
+ fsOTBW9ML/GODNtnzuEPay0uq2FO2kplNUhZWMSo=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.7 024/388] arm64: dts: meson: fixup SCP sram nodes
-Date: Wed, 17 Jun 2020 21:02:01 -0400
-Message-Id: <20200618010805.600873-24-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.7 094/388] ASoC: meson: fix memory leak of links if
+ allocation of ldata fails
+Date: Wed, 17 Jun 2020 21:03:11 -0400
+Message-Id: <20200618010805.600873-94-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200618010805.600873-1-sashal@kernel.org>
 References: <20200618010805.600873-1-sashal@kernel.org>
@@ -64,9 +65,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200617_180840_311546_F82695A4 
-X-CRM114-Status: UNSURE (   8.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200617_181015_345056_03C8F451 
+X-CRM114-Status: GOOD (  10.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,91 +78,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Sasha Levin <sashal@kernel.org>, alsa-devel@alsa-project.org,
+ Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
+ Colin Ian King <colin.king@canonical.com>,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+From: Colin Ian King <colin.king@canonical.com>
 
-[ Upstream commit 9ecded10b4b6af238da0c86197b0418912e7513e ]
+[ Upstream commit 6e801dc411329aff592fbd48fb116183d0acdb00 ]
 
-The GX and AXG SCP sram nodes were using invalid compatible and
-node names for the sram entries.
+Currently if the allocation of ldata fails the error return path
+does not kfree the allocated links object.  Fix this by adding
+an error exit return path that performs the necessary kfree'ing.
 
-Fixup the sram entries node names, and use proper compatible for them.
-
-It notably fixes:
-sram@c8000000: 'scp-shmem@0', 'scp-shmem@200' do not match any of the regexes: '^([a-z]*-)?sram(-section)?@[a-f0-9]+$', 'pinctrl-[0-9]+'
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-Link: https://lore.kernel.org/r/20200326165958.19274-3-narmstrong@baylibre.com
+Fixes: 7864a79f37b5 ("ASoC: meson: add axg sound card support")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Addresses-Coverity: ("Resource leak")
+Link: https://lore.kernel.org/r/20200604171216.60043-1-colin.king@canonical.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi |  6 +++---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 10 +++++-----
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ sound/soc/meson/meson-card-utils.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index aace3d32a3df..8e6281c685fa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1735,18 +1735,18 @@ sd_emmc_c: mmc@7000 {
- 		};
+diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
+index 2ca8c98e204f..5a4a91c88734 100644
+--- a/sound/soc/meson/meson-card-utils.c
++++ b/sound/soc/meson/meson-card-utils.c
+@@ -49,19 +49,26 @@ int meson_card_reallocate_links(struct snd_soc_card *card,
+ 	links = krealloc(priv->card.dai_link,
+ 			 num_links * sizeof(*priv->card.dai_link),
+ 			 GFP_KERNEL | __GFP_ZERO);
++	if (!links)
++		goto err_links;
++
+ 	ldata = krealloc(priv->link_data,
+ 			 num_links * sizeof(*priv->link_data),
+ 			 GFP_KERNEL | __GFP_ZERO);
+-
+-	if (!links || !ldata) {
+-		dev_err(priv->card.dev, "failed to allocate links\n");
+-		return -ENOMEM;
+-	}
++	if (!ldata)
++		goto err_ldata;
  
- 		sram: sram@fffc0000 {
--			compatible = "amlogic,meson-axg-sram", "mmio-sram";
-+			compatible = "mmio-sram";
- 			reg = <0x0 0xfffc0000 0x0 0x20000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0 0x0 0xfffc0000 0x20000>;
+ 	priv->card.dai_link = links;
+ 	priv->link_data = ldata;
+ 	priv->card.num_links = num_links;
+ 	return 0;
++
++err_ldata:
++	kfree(links);
++err_links:
++	dev_err(priv->card.dev, "failed to allocate links\n");
++	return -ENOMEM;
++
+ }
+ EXPORT_SYMBOL_GPL(meson_card_reallocate_links);
  
--			cpu_scp_lpri: scp-shmem@13000 {
-+			cpu_scp_lpri: scp-sram@13000 {
- 				compatible = "amlogic,meson-axg-scp-shmem";
- 				reg = <0x13000 0x400>;
- 			};
- 
--			cpu_scp_hpri: scp-shmem@13400 {
-+			cpu_scp_hpri: scp-sram@13400 {
- 				compatible = "amlogic,meson-axg-scp-shmem";
- 				reg = <0x13400 0x400>;
- 			};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 03f79fe045b7..e2bb68ec8502 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -398,20 +398,20 @@ gic: interrupt-controller@c4301000 {
- 		};
- 
- 		sram: sram@c8000000 {
--			compatible = "amlogic,meson-gx-sram", "amlogic,meson-gxbb-sram", "mmio-sram";
-+			compatible = "mmio-sram";
- 			reg = <0x0 0xc8000000 0x0 0x14000>;
- 
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0 0x0 0xc8000000 0x14000>;
- 
--			cpu_scp_lpri: scp-shmem@0 {
--				compatible = "amlogic,meson-gx-scp-shmem", "amlogic,meson-gxbb-scp-shmem";
-+			cpu_scp_lpri: scp-sram@0 {
-+				compatible = "amlogic,meson-gxbb-scp-shmem";
- 				reg = <0x13000 0x400>;
- 			};
- 
--			cpu_scp_hpri: scp-shmem@200 {
--				compatible = "amlogic,meson-gx-scp-shmem", "amlogic,meson-gxbb-scp-shmem";
-+			cpu_scp_hpri: scp-sram@200 {
-+				compatible = "amlogic,meson-gxbb-scp-shmem";
- 				reg = <0x13400 0x400>;
- 			};
- 		};
 -- 
 2.25.1
 
