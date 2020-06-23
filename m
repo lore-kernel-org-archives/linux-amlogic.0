@@ -1,94 +1,77 @@
-Return-Path: <SRS0=BR63=AB=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=9YHE=AE=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 36B56C433DF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Jun 2020 19:27:49 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A193C433E0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jun 2020 19:41:54 +0000 (UTC)
+Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D61562463D
-	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Jun 2020 19:27:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 31AAD20EDD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jun 2020 19:41:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nX7oX+f+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="qbC+poHv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D61562463D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JhH/TgRR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Z1BzIYpf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 31AAD20EDD
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=feerGYlpmu4OgKaUrCrQiQQVUvyNrj4KPifRqLwCQX4=; b=nX7oX+f+Kp8oAx
-	DgJKl1VlIr55SFfNgrESFTFZFjEYLuYh+InvWpQfdr3IoyH5xXfVNhNbgVG/cUaDY5AagcPP3ZAtv
-	WZCvEjeUTZy5DgpI7qiHwgmHxdQdzseNl6MVv5XbdWGVV93isQTCcqA7hIsK4zDNBoyL1DzkkaDPn
-	eveAg/cfuSfLkdDvXIoKjnZPmxt2sTjIIGTxpsWFjt3imxRZLXxyHddGaSRFcOUio+xk9Wa1otPr5
-	ZGyryEOXsjK+w1HUqugrf9nlzHoSWc3Hb+tEXklaatYBnQHQasqEjBdJ77JeWN4RQMXVaIQjd65Fi
-	cElBta2d6LwjmiBrLGfg==;
-Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
-	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jmj9Q-0002dI-RQ; Sat, 20 Jun 2020 19:27:40 +0000
-Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jmj8r-00029e-Hc; Sat, 20 Jun 2020 19:27:06 +0000
-Received: by mail-ed1-x544.google.com with SMTP id g1so10457888edv.6;
- Sat, 20 Jun 2020 12:27:05 -0700 (PDT)
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:MIME-Version:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=2oLiZSmD2SF/+ZIw6EUUB8WrFe6QauTFQJSGxc5bMak=; b=JhH/TgRRY5sQk7SNbeBdTemI13
+	u+DA+ZrfJTWf7v0YvtM05Uvc47MbGxBRWorNcSbWwGQ0Id86H92LUqxWxsyMRyV3ZmkTvNWZPkX1h
+	DkTSRk9MpMh9Fx+V+JBUU8yxId4T/WFaWV7aoYrpojKyrBxzZ6mOhI8oyeWSkUkCqq0gnxUynFOGx
+	UnRyA0YvusvJP6tzCKspo9wT+DT6Kvw7raqG1Bfo+Shg6SATDFlBz2Ol5kiJJL/fQGxvPi3i+62S6
+	SBCxcHQQyCkAVpxhT/s6D4cZtCKITuOaPwnvgHrnAjgxSCQu4F8g+KPRck8mePPnmK/z8QILb2K9S
+	kr+Cznrw==;
+Received: from localhost ([::1] helo=merlin.infradead.org)
+	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+	id 1jnonU-0002xN-93; Tue, 23 Jun 2020 19:41:32 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jnonS-0002wZ-7X
+ for linux-amlogic@lists.infradead.org; Tue, 23 Jun 2020 19:41:31 +0000
+Received: by mail-ed1-x533.google.com with SMTP id b15so2489063edy.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 23 Jun 2020 12:41:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=scA6CqquoWk914rmLn3+nLtaspjuXK54NYNT8t78XLk=;
- b=qbC+poHvs39ZVCGTzMyJeIJUpytQ6pFd5qeGE3oFWIyiMKZEs3zbCIIiubSaxryjqV
- fHZRmmlzPFxZAmT4fjc315VsprFu9yXwFVTZN0vi4+ogvLhR+DUhLmUmDWlARfH4lqP0
- r6IiIGw2ywL+HM32SWPgf681lb9qGq8eGvDXWEeP7vGDUbWHKB4A3orCW0P0W8Y6nkSZ
- OgbgK/AvNr8N2kaXrsvn/ZibEN+NvJI3DnlZF4FJWQZOu5Cuhzmm1vvW9LZurAgweB8C
- cz7vBuOmkMsfWs5srbSEo67PGDoGURRN6jPG9y+GnpFnomPdS9ocuZVCOabSLdFbm0uZ
- 2lHw==
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=QaWXoPvb/UY82AUyLY2HAwc+4ucBN+b7gaAd2SXS4aA=;
+ b=Z1BzIYpfavKlaytyJPr3uz/U9s6H56dpeqqRkXwKgchnqFAgbtKqbk6Yzwxt2a6u0I
+ s50dMV6qwoNXoBK7tcBbzEUaG/eEOVN7F4lOOSbBbUvnFmKeqfZ0REi8rTDFcEUBR6lJ
+ 3mnWvoCmhydjiW6T97UbfL3G9eXJ+uJOEy/TuDgnT67I8nECYWnu8EAnhshC0RY8us1/
+ OyzEl38pG27JqD+xe4RlQ1uwfndh7S/pPQB7rXrUh3RwlekaSJDOvX/6K52CK3aLbLFq
+ ycRzewu6k6NJUksrLX+D/wMowcI+eax2H4qF3Vr31tXrcqO8pd5yChE4d4m9OPnNFRbZ
+ JWHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=scA6CqquoWk914rmLn3+nLtaspjuXK54NYNT8t78XLk=;
- b=HzLq4R3cQBVWEJ60N8fnnDQu0JHSFQZRoPeQ4McstGdbCumPi6nGSv/rNbUsUWFA7Y
- 8HJeLmY7GPukJhClo976UaLPwt9JC0IaALK1b3dewWqxh3g+9mzZ/4W106u44W2wtgYI
- vOsOqi7kEoSTPJbZuPVpBU3bf3XFn84J2Q+iQqkeHSDLykWBdEWtCg4H4YyOaEhr45f3
- MVw9KVb9XXicpZeik152oJsIxfnsQEMqfzpPlHl+LfqvwMfZPtmWdb7PgDDl0g73P9wr
- eAaSUbFHZEl5VrjHNY3e0GLOlUOHwwYuovDMnhkH2v93btnY5typvmQ2+KP0o6Iwn99/
- 32DQ==
-X-Gm-Message-State: AOAM5333veUqHzkSE6ZYzxzEPbJPapbWZPMTA5PRdm+G9c32fh9iEMMD
- 0B+Phvtr+0gtswR4t2Lct7qOJ/Uo
-X-Google-Smtp-Source: ABdhPJy+PKswvEJEFTPfiOtJ7Poy9kSHj4bTMlki+nCfU+FckH9OWUmHYVZxY191m6NdiJ0yfebZbA==
-X-Received: by 2002:a50:d78f:: with SMTP id w15mr9700997edi.245.1592681224048; 
- Sat, 20 Jun 2020 12:27:04 -0700 (PDT)
-Received: from localhost.localdomain
- (p200300f1371df700428d5cfffeb99db8.dip0.t-ipconnect.de.
- [2003:f1:371d:f700:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id
- gv18sm8034044ejb.113.2020.06.20.12.27.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 20 Jun 2020 12:27:03 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: davem@davemloft.net, netdev@vger.kernel.org,
- linux-amlogic@lists.infradead.org, robh+dt@kernel.org
-Subject: [PATCH 2/2] net: stmmac: dwmac-meson8b: add a compatible string for
- G12A SoCs
-Date: Sat, 20 Jun 2020 21:26:41 +0200
-Message-Id: <20200620192641.175754-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200620192641.175754-1-martin.blumenstingl@googlemail.com>
-References: <20200620192641.175754-1-martin.blumenstingl@googlemail.com>
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=QaWXoPvb/UY82AUyLY2HAwc+4ucBN+b7gaAd2SXS4aA=;
+ b=X+ATKuiHTJs1ztMIBwIZ+DrNKrM4VoCj0t9cAE72X4tH+hH5h0v+V6DI7xI27/d6w7
+ UW+pZvVln5xznLPVnnI5qLLOHmoQsZcA/9ML9P9/yJ39t9nliZUt5l56jPWWb3+s+hGU
+ Sn5QQ+lW/+0DJHLcbd6LIuS2d1QDsXL0Et4jW+eX/0QP1rqXkT++KKr2XjJsRry4YQhU
+ p7YhrHuNQcs/v2LImIW5FCOu7uc7U7kVXJ+tyPNXBxEged4mdDOYfWkL197l1gPuqzMj
+ o5jZyLsOpLdX1p56sGTnFZNcGDmVijIBzXgASkHwNkeUGnNgx5EkrWDYxC+cA7IDFs5t
+ WIEQ==
+X-Gm-Message-State: AOAM5311SQVa5DxjilavAy/P+bOidOCmjwFKdGrd+qecZIdXGti4PfP+
+ 8WHUyq2O9bi1EvoeFggP4xOMr0V8IrOv7TAJrQC/sGsM
+X-Google-Smtp-Source: ABdhPJw73gylm8WplYNO2ELN9N09MjAKUXuyLKkrZArdo1stRawWcfIBWvCUdJTmWofaX9gQf+P6qVkDHXoUTrXiNco=
+X-Received: by 2002:a50:b022:: with SMTP id i31mr23801293edd.301.1592941287233; 
+ Tue, 23 Jun 2020 12:41:27 -0700 (PDT)
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200620_122705_577000_FB3DD67D 
-X-CRM114-Status: GOOD (  10.74  )
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 23 Jun 2020 21:41:16 +0200
+Message-ID: <CAFBinCAMWmt9x_B3PwoqSNm-SQJpe5dD9C0PHS5Tg1eBo49juw@mail.gmail.com>
+Subject: mailing list archives / subscriber list reset
+To: linux-amlogic@lists.infradead.org
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,46 +83,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: khilman@baylibre.com, dwmw2@infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic Meson G12A, G12B and SM1 have the same (at least as far as we
-know at the time of writing) PRG_ETHERNET glue register implementation.
-This implementation however is slightly different from AXG as it now has
-an undocument "auto cali idx val" register in PRG_ETH1[17:16] which
-seems to be related to RGMII Ethernet.
+Hello,
 
-Add a new compatible string for G12A SoCs so the logic for this new
-register can be implemented in the future.
+this is an extract of a discussion from the #openwrt-adm IRC channel:
+[10:38:23] <dwmw2_gone> My mailman backup is even older than I
+thought. It's from May 2018.
+[10:38:33] <dwmw2_gone> it has lede-bugs, lede-commits, openwrt-adm,
+openwrt-devel.
+[...]
+[14:38:45] <dwmw2_gone> ok, the lists should be running again
+[14:38:54] <dwmw2_gone> with subscriber lists reset to May 2018.
+[...]
+[15:10:36] <jow> people who unsubscribed since may 2018: sorry. people
+who subscribed since may 2018: please resubscribe
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 4 ++++
- 1 file changed, 4 insertions(+)
+As far as I can tell the linux-amlogic list is also affected.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 234e8b6816ce..544bc621146c 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -491,6 +491,10 @@ static const struct of_device_id meson8b_dwmac_match[] = {
- 		.compatible = "amlogic,meson-axg-dwmac",
- 		.data = &meson_axg_dwmac_data,
- 	},
-+	{
-+		.compatible = "amlogic,meson-g12a-dwmac",
-+		.data = &meson_axg_dwmac_data,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, meson8b_dwmac_match);
--- 
-2.27.0
+Lists are back up and as far as I can see no (queued) mails were lost
+(based on emails which I expected to show up in patchwork -> all of
+them are showing up in patchwork).
 
+There are two reasons why I'm sending this email:
+1. I think everybody should be aware of this
+2. to start the discussion if any action is needed on our side now
+(for example: do we want to restore the archive by handing over a
+mailbox backup of some sort to David?)
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
