@@ -2,84 +2,82 @@ Return-Path: <SRS0=3F0F=AF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88898C433DF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2020 10:11:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3DB7C433DF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2020 16:15:59 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 54C462084D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2020 10:11:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A32D820768
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2020 16:15:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="3BUulF1i";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xZqQbfz7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54C462084D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lr6atprN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qB6nG+KN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A32D820768
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=QO6v9C20gFW4lltKzXdY3Iqb/MXcqbJrA1bDf0Gj7QE=; b=3BUulF1iSoIYR0CUZn/2dZbp/
-	roc1Oy3rnXbYmK0iDUk3islNkxgf5QmvXEOBn4oHJPSWOI1OgjsQkQqzSIM0aILtG4As2sxFtJwQf
-	iGZA8cj/iBKEJrhFxJfv+tIM94s/P0PQGMSzNyu6P/xUeluNZBwFeHS9ok+HhSq/xNUCrV4Gu7zy6
-	YLzmYmBw55K72UqkUAMdcio1l/4FQ0+3Nm+OXJGsmvTzhdfR2y2+ct/ov/5G9h/POi6p9gCT/5sPv
-	F7NxkkfG0CmAviQ0yf2neIJIIWZAX1VGz4U4xGLzeLuMfEtaJ1Y4/UkUpGMP4cuKRTSyCkiZgOgsO
-	g2p1zAGAQ==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=WZHegT7WmOZzwHYiTL+Vu24huZFMxe6+M4GxGU/zzys=; b=lr6atprNfsBh2jMKzScBKrpwjC
+	2Ev5CeVNImHuv1eHq1TUKmTzTH6kl5obQTEOmXJdwkOIXlYEoGDdIqryRF1L2mhYrd44FE8AKohQ4
+	w+EYXXayq6AIYlTNDHXBsUDIgW/WSBJAJ1b+KXV1PY/xleRDY1Al1cyPD/fTVDUet09jhrAXgmG1O
+	STXpmFAraW3MRpSidNqLBSLdmUVxAbysbTsrE+rdrDJqPCx5svzLe7Nnz3RisbXenVwmNfVINL3OH
+	93GVE5OTeERsuwD6H0+Al4gxEfKBPUS27CoNuJr00FSKe7GV0nVvjGpU7DKZXHVOLNF4K7RADo3Oq
+	U8Tf7pgA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jo2Na-0005Sk-8L; Wed, 24 Jun 2020 10:11:42 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1jo83s-0002pc-1K; Wed, 24 Jun 2020 16:15:44 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jo2NR-0005Pa-VZ
- for linux-amlogic@lists.infradead.org; Wed, 24 Jun 2020 10:11:37 +0000
-Received: by mail-wm1-x341.google.com with SMTP id 17so1955950wmo.1
- for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2020 03:11:32 -0700 (PDT)
+ id 1jo83i-0002mM-Nw
+ for linux-amlogic@lists.infradead.org; Wed, 24 Jun 2020 16:15:36 +0000
+Received: by mail-wm1-x342.google.com with SMTP id f139so3072394wmf.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2020 09:15:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=igZtrvoVRESa1OptkNZlf7jr2wxCNuT6tHPjKiqOH2Y=;
- b=xZqQbfz7SczvKrDSaN7j6UnsFBhfXGEAdKPoRtxIkkmU+Fk1A8U0WuWhj5RlUn36gb
- oEdZRYnoMZkHbxbJghWTTAMIJIqMVxEYZTo9Jd5xA6pP5bVkRp2d6HKhFk4dWN1ecwfR
- XjADbrLnuibFwLv4BfXq7ioG8MA7dwNhVp2e3wFZBxzUrmrRUtMTvpNXr7H9G5Ii5M3W
- Nw9o/HnY4pR5O8udEAuE+VEiln7XxBF9FJzVAr1isdys++0iL8KX1oztEPOwhluKnbRC
- 03uIWzrzxjOQfBxjxcr5URfZp4vn1+Tx/cNWWKNUfX+EcGUNJc4YeDO0jInCBVgis3V7
- Rbsw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=7OXl1VWgKNRCb648iCdiM0hRIiCL6AhzBqKEHJfyjiU=;
+ b=qB6nG+KNrKtiZam3wMwJAbHJsDTlEi5ywCENbJGiAy/9gUHQzrWo/mlMOiLbh1UY45
+ FrhwaE4dGPrFpoPYUGYx0/+QyOMPd9NhTaEp0tECkuEMTB5zenR1AEnWfsuHPecIaS40
+ zPG2T3KkeE85K7IkzsqLajVYG6iStaPm93IThbUtJhjIy2Zr98UAhnToy2fIRJAClJRw
+ KVQcZijjd4K8ZIU86mrCYHcIKXSAWJOpajk1oWIuxk7mMZEVxYjwD3J6ubhspYyde2yl
+ tX0V6GpKBC+i2WCzq9B/yUkQnm+3BcWSMnFxexBGt582WyL6gYuSjcvkZVkqLOC8dZog
+ PP/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=igZtrvoVRESa1OptkNZlf7jr2wxCNuT6tHPjKiqOH2Y=;
- b=HrpSypUTcvZjXVZ0OeQjHhhXLfEfA2ZEkwqIDHoA7U62ZavS3B/6fdLway8WfBMi+m
- DcTImOXC9qRdNevfCefdspVP1cc+E4YO983Z8UeX0fCpQ7LtucfbcHdwpSfYGxlVbmax
- OFCispGveUMRIxlL5xdhvL3lglIGd3fh1Y5wxQMdLNmJd8l7v6sHeEf+EihpCZRoBIGb
- h0CxNRC8T/zOyccHc5rklSu6BEmEvmXJLuG6Sh2yKcVX3OiyPqiIZBCAYlWXGOAFLpjz
- 6AIafFcVWnSZjEDIvhTmWRBGWVM/MkL7yL7Mg/ZKBatC7hg/yr0Q+B8RB95J0OkoofKY
- EScw==
-X-Gm-Message-State: AOAM5315Dt4r27sfSGeyrgRB64N9p/unZCu1lZyL4nUaHOyzhKbLtjYV
- RyP+dumLbcc+cAkfjPU8o7EytA==
-X-Google-Smtp-Source: ABdhPJwgLFr0/kRDRVXP8K8wBpQtcOlMyFUgKez+F/Ly7c+/i/o83wAuC+PTRyhhEUV32a5BV3tn7A==
-X-Received: by 2002:a7b:c158:: with SMTP id z24mr30586736wmi.12.1592993491424; 
- Wed, 24 Jun 2020 03:11:31 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 92sm18571397wrr.96.2020.06.24.03.11.30
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=7OXl1VWgKNRCb648iCdiM0hRIiCL6AhzBqKEHJfyjiU=;
+ b=Zu1hoKCiNONYTzoRa8aokZp5Gid5aaQU6cjbx/SG81K2WWu4lO1MiXZB2V/fnU6t54
+ s2H18S9sUbDVbuzSNL6dYtVW4JUx69A+C/zMrmjS2nuECnt43SDbx+BIOo9bom+VAaBT
+ F5KHgS2jhvq/fGEPdP7qOxMgEy2VtJWTjKuTBfYwF/9I4Ke4KW2MR7GnExpDwXDP+64x
+ WJrhpMJAAJ+n7sZQ2g7EQ+XZFY49Flm4Z2OqxIn55JKf5h9/7J7N9mFplhhTxwWL7uzR
+ lutH41xGlkAsf25Aol8hwOvXSwZkvDt1HdIqBoj+nOB+ADp9kjCQW5JBKwA0B5IEAzlD
+ pRLQ==
+X-Gm-Message-State: AOAM532ZYmcGywnKND3Xf7ZTZ6T41zotjnn54YJtSb79DSbhcDg5TibJ
+ KnVWsQoEtyNzUsXSVqKwpjMouA==
+X-Google-Smtp-Source: ABdhPJwfsCqowmEbq8vy1eMaii9xA0WfQR0mUXBz8KRSJZyN8d8xCxvc1FQZ4gDIDuT/R9Xz5DEVdw==
+X-Received: by 2002:a1c:2b81:: with SMTP id r123mr2106109wmr.72.1593015331738; 
+ Wed, 24 Jun 2020 09:15:31 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:89ac:d9e8:f44c:b137])
+ by smtp.gmail.com with ESMTPSA id t15sm8716207wmj.14.2020.06.24.09.15.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Jun 2020 03:11:30 -0700 (PDT)
-References: <20200610083012.5024-1-narmstrong@baylibre.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 0/2] clk: meson: g12a: Add the NNA source clocks
-In-reply-to: <20200610083012.5024-1-narmstrong@baylibre.com>
-Date: Wed, 24 Jun 2020 12:11:29 +0200
-Message-ID: <1jpn9oixim.fsf@starbuckisacylon.baylibre.com>
+ Wed, 24 Jun 2020 09:15:30 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: khilman@baylibre.com,
+	lee.jones@linaro.org
+Subject: [PATCH v5 0/2] *mfd: Add support for Khadas Microcontroller
+Date: Wed, 24 Jun 2020 18:15:26 +0200
+Message-Id: <20200624161528.12664-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -92,29 +90,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: amit.kucheria@verdurent.com, daniel.lezcano@linaro.org,
+ linux-pm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ rui.zhang@intel.com, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+The new Khadas VIM2, VIM3 and Edge boards embeds an on-board microcontroller
+connected via I2C.
 
-On Wed 10 Jun 2020 at 10:30, Neil Armstrong <narmstrong@baylibre.com> wrote:
+This Microcontroller is present on the Khadas VIM1, VIM2, VIM3 and Edge
+boards.
 
-> This patchset adds the Neural Network Accelerator source clocks present
-> on the Amlogic SM1 SoCs family.
->
-> Dmitry Shmidt (2):
->   dt-bindings: clk: g12a-clkc: Add NNA CLK Source clock IDs
->   clk: meson: g12a: Add support for NNA CLK source clocks
->
->  drivers/clk/meson/g12a.c              | 119 ++++++++++++++++++++++++++
->  drivers/clk/meson/g12a.h              |   7 +-
->  include/dt-bindings/clock/g12a-clkc.h |   2 +
->  3 files changed, 127 insertions(+), 1 deletion(-)
+It has multiple boot control features like password check, power-on
+options, power-off control and system FAN control on recent boards.
 
-Applied, Thx
+Thie serie adds :
+- the Thermal Cooling cell driver
+- add support into the Khadas VIM3/VIM3L DT
+
+Changes since v4 at [5]:
+- Removed ctx checks in thermal driver
+- Removed the useless khadas_mcu_fan_disable() helper in thermal driver
+- Fixed a small indentation issue in thermal driver
+
+Changes since v3 at [4]:
+- Removed Applied patches 1, 2 & 4
+- Added reviewed-by tags for patch 3 & 5
+
+Changes since v2 at [3]:
+- Removed NVMEM driver for separate submission
+- fixed MFD driver, header and Kconfig
+- fixed Thermal Kconfig
+- fixed MAINTAINERS files and path
+
+Changes since RFC v1 at [2]:
+- moved hwmon driver to thermal-only
+- moved the SM1 thermal nodes in a separate serie
+- added the bindings review tag from rob
+
+[1] http://lore.kernel.org/r/20200512093916.19676-1-narmstrong@baylibre.com
+[2] http://lore.kernel.org/r/20200421080102.22796-1-narmstrong@baylibre.com
+[3] http://lore.kernel.org/r/20200512132613.31507-1-narmstrong@baylibre.com
+[4] http://lore.kernel.org/r/20200608091739.2368-1-narmstrong@baylibre.com
+[5] http://lore.kernel.org/r/20200618133818.15857-1-narmstrong@baylibre.com
+
+Neil Armstrong (2):
+  thermal: add support for the MCU controlled FAN on Khadas boards
+  arm64: dts: meson-khadas-vim3: add Khadas MCU nodes
+
+ .../boot/dts/amlogic/meson-khadas-vim3.dtsi   |  23 +++
+ drivers/thermal/Kconfig                       |  11 ++
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/khadas_mcu_fan.c              | 162 ++++++++++++++++++
+ 4 files changed, 197 insertions(+)
+ create mode 100644 drivers/thermal/khadas_mcu_fan.c
+
+-- 
+2.22.0
+
 
 _______________________________________________
 linux-amlogic mailing list
