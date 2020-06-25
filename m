@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1422FC433E3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jun 2020 12:43:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B1BEFC433E1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jun 2020 12:43:42 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D9725206BE
+	by mail.kernel.org (Postfix) with ESMTPS id 851D3206BE
 	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jun 2020 12:43:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KvLaxWxw";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="XHnxyn+u"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9725206BE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oQhXqtDq";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="q3/XepTQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 851D3206BE
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,36 +25,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=E+ALKjxtOwHF4723khZRItSy+KQ06ePsAn1oH0AoKZ0=; b=KvLaxWxwZW+cz38/4iXKmHdVN
-	OzIL7tiQ7Njabay7DFIBxrGt5O9nZrcKnpkavZM3l31bMCkIoOoIfws+HTuH61MLanLy0kq9TgVzi
-	FGpbPbkqQsX301Ae9VtFdnSCZdpJ8CEwZqgROYyl+2gp1/gJPbztPXRQqLsQ+iL2FY3dpnv0151dj
-	KQUqrPFe0paN51epozVyUnqjVwkWNEVtFxkHhccPG8tx2AkofAuZ/Ez6J+RkOISJcuWWs5buKRb1o
-	2xVlL4f6pxWWCM6Ac0Xg39DJ+LpkoTF8sKZ+Qwr2zOJxWCBRcWSqAvVltRv5HoDWX0nMFg9pFeRoY
-	3Ag3HN2/Q==;
+	 bh=iTy4n5EmW3t+DYyqvEd2TbnbiaVvI/65BKVJ6FAxKAQ=; b=oQhXqtDqFbrvkneWvbKPrHrqw
+	h+12oxXuPmH1KMVKxj2Dhz/+9UJEufNRcM+P7B9qNCLkrkIQAjYFVsdWrl7LfBDavYl/p75oKrTQG
+	A3KR2BpEdl4/k/iLicDmpsBkBOR16GxlNFc/d9RXxkORIhQFvv7KWGfYAyGrcP45I7yIg/8pg8jGU
+	CV5YuyFDVC2Ah8Hm37WSbWxknbwF/ushhhZbVjS+wJWeeXQ+eMKzJh6I5wIWCRS+trQP66jvDNWEo
+	9ZpFc1c9aqYdFfA06+ALanIcy/QddfmuwHV63qL8OD933hqPD5KdYhvghuKGpoZnNOuu9ccJMIz1X
+	4Af43DAyA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1joRE0-0005LZ-1d; Thu, 25 Jun 2020 12:43:28 +0000
+	id 1joRE8-0005OE-4U; Thu, 25 Jun 2020 12:43:36 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1joRDv-0005Kk-P1; Thu, 25 Jun 2020 12:43:24 +0000
+ id 1joRE3-0005Mk-W9; Thu, 25 Jun 2020 12:43:33 +0000
 Received: from localhost.localdomain (lfbn-nic-1-188-42.w2-15.abo.wanadoo.fr
  [2.15.37.42])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 9368A207E8;
- Thu, 25 Jun 2020 12:43:19 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id A40A92082F;
+ Thu, 25 Jun 2020 12:43:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1593089003;
- bh=c+inIYObGSZUVYp7oF5MvXqUUSrjOBVfIrZv9HY3hO8=;
+ s=default; t=1593089011;
+ bh=7g45QWyrYUg0An4TDCghUfvpEHV1X2Se+dPPjGObVdQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XHnxyn+umL7xjsWbcPaEEpz9fmEaU36nRZlbaYhyeyHyJ7svn/xv3pTucjhOHQT/U
- W+0kAGtDwk48a+grcEYWi2/HaF3cgvOlAoPQtbXsUYqHoQzI1yQ8pRlCLjoSgWsjq+
- SdGtX6T3Kq7hMNPi6uenO6mm5dmnvaEpgDvgDbdw=
+ b=q3/XepTQLoJhJKhn8/LBvEE9s+FbxrQLKtjsvC6S+AamPxSAD+v3rq3k8ov1gZ8jm
+ ix1UsEqvKt2dqP/shAQkAzhBZXgDTBzog0jga5Gp2bp6hCeUR85HLXrYJWdguao6tR
+ Fnbw1pH9Vmu41hADjmc9EHfDvkHPgXFXiKH075Zs=
 From: Ard Biesheuvel <ardb@kernel.org>
 To: linux-crypto@vger.kernel.org
-Subject: [PATCH 01/12] crypto: amlogic-gxl - default to build as module
-Date: Thu, 25 Jun 2020 14:42:42 +0200
-Message-Id: <20200625124253.1906557-2-ardb@kernel.org>
+Subject: [PATCH 03/12] crypto: omap-aes - permit asynchronous skcipher as
+ fallback
+Date: Thu, 25 Jun 2020 14:42:44 +0200
+Message-Id: <20200625124253.1906557-4-ardb@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200625124253.1906557-1-ardb@kernel.org>
 References: <20200625124253.1906557-1-ardb@kernel.org>
@@ -87,33 +88,127 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The AmLogic GXL crypto accelerator driver is built into the kernel if
-ARCH_MESON is set. However, given the single image policy of arm64, its
-defconfig enables all platforms by default, and so ARCH_MESON is usually
-enabled.
+Even though the omap-aes driver implements asynchronous versions of
+ecb(aes), cbc(aes) and ctr(aes), the fallbacks it allocates are required
+to be synchronous. Given that SIMD based software implementations are
+usually asynchronous as well, even though they rarely complete
+asynchronously (this typically only happens in cases where the request was
+made from softirq context, while SIMD was already in use in the task
+context that it interrupted), these implementations are disregarded, and
+either the generic C version or another table based version implemented in
+assembler is selected instead.
 
-This means that the AmLogic driver causes the arm64 defconfig build to
-pull in a huge chunk of the crypto stack as a builtin as well, which is
-undesirable, so let's make the amlogic GXL driver default to 'm' instead.
+Since falling back to synchronous AES is not only a performance issue, but
+potentially a security issue as well (due to the fact that table based AES
+is not time invariant), let's fix this, by allocating an ordinary skcipher
+as the fallback, and invoke it with the completion routine that was given
+to the outer request.
 
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- drivers/crypto/amlogic/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/crypto/omap-aes.c | 35 ++++++++++----------
+ drivers/crypto/omap-aes.h |  3 +-
+ 2 files changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/crypto/amlogic/Kconfig b/drivers/crypto/amlogic/Kconfig
-index cf9547602670..cf2c676a7093 100644
---- a/drivers/crypto/amlogic/Kconfig
-+++ b/drivers/crypto/amlogic/Kconfig
-@@ -1,7 +1,7 @@
- config CRYPTO_DEV_AMLOGIC_GXL
- 	tristate "Support for amlogic cryptographic offloader"
- 	depends on HAS_IOMEM
--	default y if ARCH_MESON
-+	default m if ARCH_MESON
- 	select CRYPTO_SKCIPHER
- 	select CRYPTO_ENGINE
- 	select CRYPTO_ECB
+diff --git a/drivers/crypto/omap-aes.c b/drivers/crypto/omap-aes.c
+index b5aff20c5900..25154b74dcc6 100644
+--- a/drivers/crypto/omap-aes.c
++++ b/drivers/crypto/omap-aes.c
+@@ -548,20 +548,18 @@ static int omap_aes_crypt(struct skcipher_request *req, unsigned long mode)
+ 		  !!(mode & FLAGS_CBC));
+ 
+ 	if (req->cryptlen < aes_fallback_sz) {
+-		SYNC_SKCIPHER_REQUEST_ON_STACK(subreq, ctx->fallback);
+-
+-		skcipher_request_set_sync_tfm(subreq, ctx->fallback);
+-		skcipher_request_set_callback(subreq, req->base.flags, NULL,
+-					      NULL);
+-		skcipher_request_set_crypt(subreq, req->src, req->dst,
+-					   req->cryptlen, req->iv);
++		skcipher_request_set_tfm(&rctx->fallback_req, ctx->fallback);
++		skcipher_request_set_callback(&rctx->fallback_req,
++					      req->base.flags,
++					      req->base.complete,
++					      req->base.data);
++		skcipher_request_set_crypt(&rctx->fallback_req, req->src,
++					   req->dst, req->cryptlen, req->iv);
+ 
+ 		if (mode & FLAGS_ENCRYPT)
+-			ret = crypto_skcipher_encrypt(subreq);
++			ret = crypto_skcipher_encrypt(&rctx->fallback_req);
+ 		else
+-			ret = crypto_skcipher_decrypt(subreq);
+-
+-		skcipher_request_zero(subreq);
++			ret = crypto_skcipher_decrypt(&rctx->fallback_req);
+ 		return ret;
+ 	}
+ 	dd = omap_aes_find_dev(rctx);
+@@ -590,11 +588,11 @@ static int omap_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+ 	memcpy(ctx->key, key, keylen);
+ 	ctx->keylen = keylen;
+ 
+-	crypto_sync_skcipher_clear_flags(ctx->fallback, CRYPTO_TFM_REQ_MASK);
+-	crypto_sync_skcipher_set_flags(ctx->fallback, tfm->base.crt_flags &
++	crypto_skcipher_clear_flags(ctx->fallback, CRYPTO_TFM_REQ_MASK);
++	crypto_skcipher_set_flags(ctx->fallback, tfm->base.crt_flags &
+ 						 CRYPTO_TFM_REQ_MASK);
+ 
+-	ret = crypto_sync_skcipher_setkey(ctx->fallback, key, keylen);
++	ret = crypto_skcipher_setkey(ctx->fallback, key, keylen);
+ 	if (!ret)
+ 		return 0;
+ 
+@@ -640,15 +638,16 @@ static int omap_aes_init_tfm(struct crypto_skcipher *tfm)
+ {
+ 	const char *name = crypto_tfm_alg_name(&tfm->base);
+ 	struct omap_aes_ctx *ctx = crypto_skcipher_ctx(tfm);
+-	struct crypto_sync_skcipher *blk;
++	struct crypto_skcipher *blk;
+ 
+-	blk = crypto_alloc_sync_skcipher(name, 0, CRYPTO_ALG_NEED_FALLBACK);
++	blk = crypto_alloc_skcipher(name, 0, CRYPTO_ALG_NEED_FALLBACK);
+ 	if (IS_ERR(blk))
+ 		return PTR_ERR(blk);
+ 
+ 	ctx->fallback = blk;
+ 
+-	crypto_skcipher_set_reqsize(tfm, sizeof(struct omap_aes_reqctx));
++	crypto_skcipher_set_reqsize(tfm, sizeof(struct omap_aes_reqctx) +
++					 crypto_skcipher_reqsize(blk));
+ 
+ 	ctx->enginectx.op.prepare_request = omap_aes_prepare_req;
+ 	ctx->enginectx.op.unprepare_request = NULL;
+@@ -662,7 +661,7 @@ static void omap_aes_exit_tfm(struct crypto_skcipher *tfm)
+ 	struct omap_aes_ctx *ctx = crypto_skcipher_ctx(tfm);
+ 
+ 	if (ctx->fallback)
+-		crypto_free_sync_skcipher(ctx->fallback);
++		crypto_free_skcipher(ctx->fallback);
+ 
+ 	ctx->fallback = NULL;
+ }
+diff --git a/drivers/crypto/omap-aes.h b/drivers/crypto/omap-aes.h
+index 2d111bf906e1..23d073e87bb8 100644
+--- a/drivers/crypto/omap-aes.h
++++ b/drivers/crypto/omap-aes.h
+@@ -97,7 +97,7 @@ struct omap_aes_ctx {
+ 	int		keylen;
+ 	u32		key[AES_KEYSIZE_256 / sizeof(u32)];
+ 	u8		nonce[4];
+-	struct crypto_sync_skcipher	*fallback;
++	struct crypto_skcipher	*fallback;
+ };
+ 
+ struct omap_aes_gcm_ctx {
+@@ -110,6 +110,7 @@ struct omap_aes_reqctx {
+ 	unsigned long mode;
+ 	u8 iv[AES_BLOCK_SIZE];
+ 	u32 auth_tag[AES_BLOCK_SIZE / sizeof(u32)];
++	struct skcipher_request fallback_req;	// keep at the end
+ };
+ 
+ #define OMAP_AES_QUEUE_LENGTH	1
 -- 
 2.27.0
 
