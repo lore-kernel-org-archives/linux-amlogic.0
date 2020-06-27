@@ -1,81 +1,66 @@
-Return-Path: <SRS0=11Ec=AH=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=1ECN=AI=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CE63C433DF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2020 20:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E3B4C433E1
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2020 08:37:15 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 03A5C207E8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2020 20:31:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1EB44207FC
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2020 08:37:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ShvDKMYD";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="mgOrXJYk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 03A5C207E8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LAaGYafs";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="sG33aql5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1EB44207FC
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=SZN2m14LJNqVxJ5RnRAZusEyb7kGjKSzxRPgDXJVk0M=; b=ShvDKMYDjLKIJWtuCDRZw8agp
-	VpjWFssYm+mPcpFkbcU2gDZFRRkC6UiyuBQv1X3RCv7+SwdbTjLgMWWEQBAwb/8wXKqTCkTH1R0FM
-	1Jux9TGoEqCoTJpyoJoStbocX8gcjYtGuSoJyDJk7RyXH8n0ZAOuERevSHhuJXMU7VyG6opGDzq+1
-	RRmXbIWZxA3zGmq2WoyrJFQ1Anc51x4fzMhNjFjK7iVXRDmyir+98nxd85j5OONmYetEtzsI9emkI
-	OUDrm9l2hFNoKPlSsqV5DgXYnmIjF6sBO1eZbpna8N5mEUuCogRn6y7PQXFTQ6o4IfU+qetgI/oqw
-	Un+1oft1A==;
+	 bh=pW3fPTfigRULS2DieSKb1ysoMTzL31QoAJ41Te7bd2M=; b=LAaGYafsi4Gv8sxqINkLVtBXA
+	wZKGGON1/eOOpGer/7s/YdymySdaWldQdb0ZKq1mVBcexnOqspvFkoFeBMiUAxnhgJA1j9ebkbAlg
+	EiwS8TWdcj280ySHwY+F+M7BQ8a13Bv4SI2d5txpvlGmsO5cBDkpu0/wyV0VStGll041zPEwit7l8
+	RA21e9Fl4KfkEF0b0NSmhDntSspeQ+AIBXnjiFgymt0KYg+WqNDF9forEk0eXZ+PhQocr10UThO5x
+	3+brpl7CPGNVOS2DpB6bS2ekcJw7Sk2iumH7kd/qRhB9cUYO4U4teACsgVgD5R+o3CuQn8skT9dyU
+	4LM8d9enw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jov0e-0008Fm-KW; Fri, 26 Jun 2020 20:31:40 +0000
-Received: from mail-ej1-x644.google.com ([2a00:1450:4864:20::644])
+	id 1jp6Kd-0007ke-Fc; Sat, 27 Jun 2020 08:37:03 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jov0c-0008FS-5v; Fri, 26 Jun 2020 20:31:38 +0000
-Received: by mail-ej1-x644.google.com with SMTP id mb16so10585801ejb.4;
- Fri, 26 Jun 2020 13:31:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=GHskhK5zJYDmbrTDrhLsCeFDGpbooMe1GlCaRqXte2c=;
- b=mgOrXJYknIP41R6HpllvCjRTYl8geQlQG1XCOfdcqDUyoH/ViuScQo+rOpl3apvTyp
- Iy3tGV1Pl+z9gn5wLmJsR5Z8/2wmsBISF63UU82+G1qxkzfg8iEMw8kmKAJ9h0Bn8+wc
- US5Pw3A/gtlN8np8Sdzt32rJSE00QCljY53f8XGDl9qhvlKAmGrXpydxBjQZNM+Aw25d
- fOD3BzBDwqnlCuESSETovlzXhlHC1+nP5L012hGQGlgMKBD02NYj630P9Tz9sfpmirnF
- yvENJS9pqNMO0Dw1qxM+0yjudtRqfb0UIIxheifVXW0o300Th4g0/Wx3qf4HUVLc2hz4
- hISw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=GHskhK5zJYDmbrTDrhLsCeFDGpbooMe1GlCaRqXte2c=;
- b=BbGppMLJPdwA2wypTDWSFhcQZGgmN0vhO5HXbnxsVmFB8emC73K06eN+JZ+NADrWy/
- mQ7uwve6dHSKiPGnkpgZNzyDwWN1rRdhVZ1F9ZyugNSdxYOOcU1BExeBevZOHL0VyA5n
- T3aFGv/ZKWHXieqgXb8v8PbdtsBZjCWFwfpJlcZstbjGqalRn+vbv6eM3yqQzpNIcRic
- 3V4awy+Kt0jt1Q/dZ9A6m6JrZGlqRHqsVh3MdA1Pim4+vAOSbzpow8GPEtlcOMpFM4Ml
- P6L3inFOuiOC2zMQXFNqV+CNvu0vt+ceoWC8mAP2RI54ZFhgX9tajlkklHVaQ11EJy/A
- 1Prg==
-X-Gm-Message-State: AOAM532fNr21EJsx7keIBLszrOCNUGzXBCRyEgJi1cyLnLJ5uBX+2Trs
- o2dVhXbpw028LoPjV1hcrDV3eUn9RF1AMbs+pcM=
-X-Google-Smtp-Source: ABdhPJx5ZIx7dwJXxETKotyYevsiB5MFzMoyXAVoKNNps4L45zbMI4CMKkdQs99fhN4iRy0pnR2HoLfzr1r89Wss2GQ=
-X-Received: by 2002:a17:906:35cd:: with SMTP id
- p13mr4178063ejb.172.1593203492761; 
- Fri, 26 Jun 2020 13:31:32 -0700 (PDT)
+ id 1jp6KU-0007i0-2w; Sat, 27 Jun 2020 08:36:55 +0000
+Received: from dogfood.home (lfbn-nic-1-188-42.w2-15.abo.wanadoo.fr
+ [2.15.37.42])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 81D06207FC;
+ Sat, 27 Jun 2020 08:36:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1593247013;
+ bh=hood+SBSrfD8rlAvUlszp6fbHnc3dUB49g4uRq5KZac=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=sG33aql52sl8EBuC4PxvhlewQ85dfoR1O2RPdCFcjveoCWP3KmrPSCat7J1H3HHRq
+ gfRZa++y7vjdIiAhniY4g6WRbZQxPbT86bTsT+rxe1SIzD/07gQJrU8U8WOI4mvBRJ
+ Px4BIvv82/TjM9cIoxUAtjFha/4bTwWmVyLKjpdM=
+From: Ard Biesheuvel <ardb@kernel.org>
+To: linux-crypto@vger.kernel.org
+Subject: [PATCH v2 04/13] crypto: sun4i - permit asynchronous skcipher as
+ fallback
+Date: Sat, 27 Jun 2020 10:36:14 +0200
+Message-Id: <20200627083623.2428333-5-ardb@kernel.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200627083623.2428333-1-ardb@kernel.org>
+References: <20200627083623.2428333-1-ardb@kernel.org>
 MIME-Version: 1.0
-References: <20200626080626.4080-1-krzk@kernel.org>
-In-Reply-To: <20200626080626.4080-1-krzk@kernel.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 26 Jun 2020 22:31:22 +0200
-Message-ID: <CAFBinCCKm44c2k2w2R1MG2f7OFytpk0DOShuxNKDbFoiPreTTg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: meson: Align L2 cache-controller nodename with
- dtschema
-To: Krzysztof Kozlowski <krzk@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,30 +72,179 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Eric Biggers <ebiggers@google.com>,
+ Corentin Labbe <clabbe.montjoie@gmail.com>,
+ Ayush Sawal <ayush.sawal@chelsio.com>, Jamie Iles <jamie@jamieiles.com>,
+ Fabio Estevam <festevam@gmail.com>, Ard Biesheuvel <ardb@kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Rohit Maheshwari <rohitm@chelsio.com>, Chen-Yu Tsai <wens@csie.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Tom Lendacky <thomas.lendacky@amd.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Vinay Kumar Yadav <vinay.yadav@chelsio.com>,
+ Maxime Ripard <mripard@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Tero Kristo <t-kristo@ti.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
+Even though the sun4i driver implements asynchronous versions of ecb(aes)
+and cbc(aes), the fallbacks it allocates are required to be synchronous.
+Given that SIMD based software implementations are usually asynchronous
+as well, even though they rarely complete asynchronously (this typically
+only happens in cases where the request was made from softirq context,
+while SIMD was already in use in the task context that it interrupted),
+these implementations are disregarded, and either the generic C version
+or another table based version implemented in assembler is selected
+instead.
 
-thank you for this patch!
+Since falling back to synchronous AES is not only a performance issue, but
+potentially a security issue as well (due to the fact that table based AES
+is not time invariant), let's fix this, by allocating an ordinary skcipher
+as the fallback, and invoke it with the completion routine that was given
+to the outer request.
 
-On Fri, Jun 26, 2020 at 1:59 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> Fix dtschema validator warnings like:
->      l2-cache-controller@c4200000: $nodename:0:
->          'l2-cache-controller@c4200000' does not match '^(cache-controller|cpu)(@[0-9a-f,]+)*$'
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+---
+ drivers/crypto/allwinner/sun4i-ss/sun4i-ss-cipher.c | 46 ++++++++++----------
+ drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h        |  3 +-
+ 2 files changed, 25 insertions(+), 24 deletions(-)
 
+diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-cipher.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-cipher.c
+index 7f22d305178e..b72de8939497 100644
+--- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-cipher.c
++++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-cipher.c
+@@ -122,19 +122,17 @@ static int noinline_for_stack sun4i_ss_cipher_poll_fallback(struct skcipher_requ
+ 	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
+ 	struct sun4i_tfm_ctx *op = crypto_skcipher_ctx(tfm);
+ 	struct sun4i_cipher_req_ctx *ctx = skcipher_request_ctx(areq);
+-	SYNC_SKCIPHER_REQUEST_ON_STACK(subreq, op->fallback_tfm);
+ 	int err;
+ 
+-	skcipher_request_set_sync_tfm(subreq, op->fallback_tfm);
+-	skcipher_request_set_callback(subreq, areq->base.flags, NULL,
+-				      NULL);
+-	skcipher_request_set_crypt(subreq, areq->src, areq->dst,
++	skcipher_request_set_tfm(&ctx->fallback_req, op->fallback_tfm);
++	skcipher_request_set_callback(&ctx->fallback_req, areq->base.flags,
++				      areq->base.complete, areq->base.data);
++	skcipher_request_set_crypt(&ctx->fallback_req, areq->src, areq->dst,
+ 				   areq->cryptlen, areq->iv);
+ 	if (ctx->mode & SS_DECRYPTION)
+-		err = crypto_skcipher_decrypt(subreq);
++		err = crypto_skcipher_decrypt(&ctx->fallback_req);
+ 	else
+-		err = crypto_skcipher_encrypt(subreq);
+-	skcipher_request_zero(subreq);
++		err = crypto_skcipher_encrypt(&ctx->fallback_req);
+ 
+ 	return err;
+ }
+@@ -494,23 +492,25 @@ int sun4i_ss_cipher_init(struct crypto_tfm *tfm)
+ 			    alg.crypto.base);
+ 	op->ss = algt->ss;
+ 
+-	crypto_skcipher_set_reqsize(__crypto_skcipher_cast(tfm),
+-				    sizeof(struct sun4i_cipher_req_ctx));
+-
+-	op->fallback_tfm = crypto_alloc_sync_skcipher(name, 0, CRYPTO_ALG_NEED_FALLBACK);
++	op->fallback_tfm = crypto_alloc_skcipher(name, 0, CRYPTO_ALG_NEED_FALLBACK);
+ 	if (IS_ERR(op->fallback_tfm)) {
+ 		dev_err(op->ss->dev, "ERROR: Cannot allocate fallback for %s %ld\n",
+ 			name, PTR_ERR(op->fallback_tfm));
+ 		return PTR_ERR(op->fallback_tfm);
+ 	}
+ 
++	crypto_skcipher_set_reqsize(__crypto_skcipher_cast(tfm),
++				    sizeof(struct sun4i_cipher_req_ctx) +
++				    crypto_skcipher_reqsize(op->fallback_tfm));
++
++
+ 	err = pm_runtime_get_sync(op->ss->dev);
+ 	if (err < 0)
+ 		goto error_pm;
+ 
+ 	return 0;
+ error_pm:
+-	crypto_free_sync_skcipher(op->fallback_tfm);
++	crypto_free_skcipher(op->fallback_tfm);
+ 	return err;
+ }
+ 
+@@ -518,7 +518,7 @@ void sun4i_ss_cipher_exit(struct crypto_tfm *tfm)
+ {
+ 	struct sun4i_tfm_ctx *op = crypto_tfm_ctx(tfm);
+ 
+-	crypto_free_sync_skcipher(op->fallback_tfm);
++	crypto_free_skcipher(op->fallback_tfm);
+ 	pm_runtime_put(op->ss->dev);
+ }
+ 
+@@ -546,10 +546,10 @@ int sun4i_ss_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+ 	op->keylen = keylen;
+ 	memcpy(op->key, key, keylen);
+ 
+-	crypto_sync_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
+-	crypto_sync_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
++	crypto_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
++	crypto_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
+ 
+-	return crypto_sync_skcipher_setkey(op->fallback_tfm, key, keylen);
++	return crypto_skcipher_setkey(op->fallback_tfm, key, keylen);
+ }
+ 
+ /* check and set the DES key, prepare the mode to be used */
+@@ -566,10 +566,10 @@ int sun4i_ss_des_setkey(struct crypto_skcipher *tfm, const u8 *key,
+ 	op->keylen = keylen;
+ 	memcpy(op->key, key, keylen);
+ 
+-	crypto_sync_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
+-	crypto_sync_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
++	crypto_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
++	crypto_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
+ 
+-	return crypto_sync_skcipher_setkey(op->fallback_tfm, key, keylen);
++	return crypto_skcipher_setkey(op->fallback_tfm, key, keylen);
+ }
+ 
+ /* check and set the 3DES key, prepare the mode to be used */
+@@ -586,9 +586,9 @@ int sun4i_ss_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
+ 	op->keylen = keylen;
+ 	memcpy(op->key, key, keylen);
+ 
+-	crypto_sync_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
+-	crypto_sync_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
++	crypto_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
++	crypto_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
+ 
+-	return crypto_sync_skcipher_setkey(op->fallback_tfm, key, keylen);
++	return crypto_skcipher_setkey(op->fallback_tfm, key, keylen);
+ 
+ }
+diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
+index 2b4c6333eb67..163962f9e284 100644
+--- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
++++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
+@@ -170,11 +170,12 @@ struct sun4i_tfm_ctx {
+ 	u32 keylen;
+ 	u32 keymode;
+ 	struct sun4i_ss_ctx *ss;
+-	struct crypto_sync_skcipher *fallback_tfm;
++	struct crypto_skcipher *fallback_tfm;
+ };
+ 
+ struct sun4i_cipher_req_ctx {
+ 	u32 mode;
++	struct skcipher_request fallback_req;   // keep at the end
+ };
+ 
+ struct sun4i_req_ctx {
+-- 
+2.27.0
 
-Best regards,
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
