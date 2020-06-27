@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 393FCC433E1
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2020 08:37:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11926C433E0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2020 08:37:59 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E70A7207FC
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2020 08:37:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CF59A207FC
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2020 08:37:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jFCwWsAZ";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="AvhUeTeD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E70A7207FC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="17PSoJNK";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="kYgIR6EU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CF59A207FC
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,37 +26,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=N/9kubKxjrry9zafhX+NlC7yX4Dv/vNLuSvryvAJxak=; b=jFCwWsAZrBGEm6/aF/VOTxFj2
-	9hUZMXpYJWKZ20xy7xjIFMiPCxrVRuL532FknLAelJ3c4KBfxMTEdbs6s4mt8JQiOzuMeM2ZyjDH9
-	fH6frMkjDA4fYUaxHuafJsqM5MWWGSrn/USRdWXeVEYfR8s1gsCd60WkfGpWlMTXCKo1qoaEeOi+C
-	Xc8MjJmwMeplUHbpRt6XdOGEVQe1kg2WzPTJ+0xCcHUi3q2kz9JCGG4n1iRbC0WltLxmPegFRRbQT
-	PTGiHrSe/6UqnEuFEVC06dA+j5zQtYf/sCHoEd2B2w2K/iThtfN8wYGWgTNPBrUCl7zs+AJsQJSVv
-	TR17urTZg==;
+	 bh=uov9O5wq0emLvSRg02tPAIsLto0Pp4ECwxHKPboRmk0=; b=17PSoJNKlixQmnMIs6cXGMeFJ
+	jGmDgf8kRM5i7HO+SVmn1gYwnnjKkevoBxJBKWiTk88fsKW6eIQfT3JL2HbzFwBlwHNdW0XKcAMnk
+	4AZfrVUHcFyarvO4wlmCoIki4BTwhG+ouhS6kEpM1GoOA3VR2v8UiyW3rQ+YWEliiLERBzy3AwBFO
+	Vlf6cmlBbCdZSbccoOHucy/6w9SvvJOlzQchS5nYIW8GZTF8hyxKB56tBMk87Bu8Ot38K35ltG+Rl
+	6XHGWXGO+yn4dQZ2uDIAuKs9OZdrRk7I4X60djFuLIAUBMVE4L6DDuaq/B9FDfTZPqsT2OJPU0eqh
+	UZxZdsosQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jp6Ks-0007pZ-OT; Sat, 27 Jun 2020 08:37:18 +0000
+	id 1jp6LH-0007xd-MI; Sat, 27 Jun 2020 08:37:43 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jp6KY-0007jA-JG; Sat, 27 Jun 2020 08:37:00 +0000
+ id 1jp6Kd-0007kF-4D; Sat, 27 Jun 2020 08:37:04 +0000
 Received: from dogfood.home (lfbn-nic-1-188-42.w2-15.abo.wanadoo.fr
  [2.15.37.42])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id EDE7420B80;
- Sat, 27 Jun 2020 08:36:53 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 66332207FC;
+ Sat, 27 Jun 2020 08:36:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1593247018;
- bh=P1hf02tXhdwPbGM+6yMTQXpLfUnkB8fw+ZcUm1FA84g=;
+ s=default; t=1593247022;
+ bh=tpcze3XSHyZPREkPUbsCkWhR8rfSX5Y6bvgG9Oth1A8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=AvhUeTeDXVkAVC12r7dha2A/ibM0S8cDE3/3srbuHK3HxXCxVNS/8hXSTRwlz4JDa
- zJncIPSRrPEiMfjCxQQcnaQaP0PCYv9tl9DAN3G+Zq7AVkI8/zTc7OsdcZdvJHLmFP
- F74lQuXT+EC+9X1awyYNLRTab5HmJ9QTOMNfdLac=
+ b=kYgIR6EUldgyN0nplR86Hw7Wyi+99IiWT3r73jl6mkFEXhDt6yKIde8iIPeIJBxJZ
+ yuMYQm9s/zAp9B9+QCmCOCkk6J6wNQ1krG7e0TADMxXXPGg3VdGanMLGEVwV/YC3Hr
+ qgFgiAaYD+IlZBl31yJJau7nAJi+mgBeKdkAogCQ=
 From: Ard Biesheuvel <ardb@kernel.org>
 To: linux-crypto@vger.kernel.org
-Subject: [PATCH v2 05/13] crypto: sun8i-ce - permit asynchronous skcipher as
+Subject: [PATCH v2 06/13] crypto: sun8i-ss - permit asynchronous skcipher as
  fallback
-Date: Sat, 27 Jun 2020 10:36:15 +0200
-Message-Id: <20200627083623.2428333-6-ardb@kernel.org>
+Date: Sat, 27 Jun 2020 10:36:16 +0200
+Message-Id: <20200627083623.2428333-7-ardb@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200627083623.2428333-1-ardb@kernel.org>
 References: <20200627083623.2428333-1-ardb@kernel.org>
@@ -91,7 +91,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Even though the sun8i-ce driver implements asynchronous versions of
+Even though the sun8i-ss driver implements asynchronous versions of
 ecb(aes) and cbc(aes), the fallbacks it allocates are required to be
 synchronous. Given that SIMD based software implementations are usually
 asynchronous as well, even though they rarely complete asynchronously
@@ -109,26 +109,26 @@ to the outer request.
 
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c | 41 ++++++++++----------
- drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h        |  3 +-
- 2 files changed, 22 insertions(+), 22 deletions(-)
+ drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c | 39 ++++++++++----------
+ drivers/crypto/allwinner/sun8i-ss/sun8i-ss.h        |  3 +-
+ 2 files changed, 22 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-index a6abb701bfc6..82c99da24dfd 100644
---- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-+++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-@@ -58,23 +58,20 @@ static int sun8i_ce_cipher_fallback(struct skcipher_request *areq)
- #ifdef CONFIG_CRYPTO_DEV_SUN8I_CE_DEBUG
- 	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
- 	struct sun8i_ce_alg_template *algt;
--#endif
--	SYNC_SKCIPHER_REQUEST_ON_STACK(subreq, op->fallback_tfm);
+diff --git a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
+index c89cb2ee2496..7a131675a41c 100644
+--- a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
++++ b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
+@@ -73,7 +73,6 @@ static int sun8i_ss_cipher_fallback(struct skcipher_request *areq)
+ 	struct sun8i_cipher_req_ctx *rctx = skcipher_request_ctx(areq);
+ 	int err;
  
--#ifdef CONFIG_CRYPTO_DEV_SUN8I_CE_DEBUG
- 	algt = container_of(alg, struct sun8i_ce_alg_template, alg.skcipher);
+-	SYNC_SKCIPHER_REQUEST_ON_STACK(subreq, op->fallback_tfm);
+ #ifdef CONFIG_CRYPTO_DEV_SUN8I_SS_DEBUG
+ 	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
+ 	struct sun8i_ss_alg_template *algt;
+@@ -81,15 +80,15 @@ static int sun8i_ss_cipher_fallback(struct skcipher_request *areq)
+ 	algt = container_of(alg, struct sun8i_ss_alg_template, alg.skcipher);
  	algt->stat_fb++;
  #endif
- 
 -	skcipher_request_set_sync_tfm(subreq, op->fallback_tfm);
 -	skcipher_request_set_callback(subreq, areq->base.flags, NULL, NULL);
 -	skcipher_request_set_crypt(subreq, areq->src, areq->dst,
@@ -137,7 +137,7 @@ index a6abb701bfc6..82c99da24dfd 100644
 +				      areq->base.complete, areq->base.data);
 +	skcipher_request_set_crypt(&rctx->fallback_req, areq->src, areq->dst,
  				   areq->cryptlen, areq->iv);
- 	if (rctx->op_dir & CE_DECRYPTION)
+ 	if (rctx->op_dir & SS_DECRYPTION)
 -		err = crypto_skcipher_decrypt(subreq);
 +		err = crypto_skcipher_decrypt(&rctx->fallback_req);
  	else
@@ -147,16 +147,16 @@ index a6abb701bfc6..82c99da24dfd 100644
  	return err;
  }
  
-@@ -335,18 +332,20 @@ int sun8i_ce_cipher_init(struct crypto_tfm *tfm)
- 	algt = container_of(alg, struct sun8i_ce_alg_template, alg.skcipher);
- 	op->ce = algt->ce;
+@@ -334,18 +333,20 @@ int sun8i_ss_cipher_init(struct crypto_tfm *tfm)
+ 	algt = container_of(alg, struct sun8i_ss_alg_template, alg.skcipher);
+ 	op->ss = algt->ss;
  
 -	sktfm->reqsize = sizeof(struct sun8i_cipher_req_ctx);
 -
 -	op->fallback_tfm = crypto_alloc_sync_skcipher(name, 0, CRYPTO_ALG_NEED_FALLBACK);
 +	op->fallback_tfm = crypto_alloc_skcipher(name, 0, CRYPTO_ALG_NEED_FALLBACK);
  	if (IS_ERR(op->fallback_tfm)) {
- 		dev_err(op->ce->dev, "ERROR: Cannot allocate fallback for %s %ld\n",
+ 		dev_err(op->ss->dev, "ERROR: Cannot allocate fallback for %s %ld\n",
  			name, PTR_ERR(op->fallback_tfm));
  		return PTR_ERR(op->fallback_tfm);
  	}
@@ -165,14 +165,14 @@ index a6abb701bfc6..82c99da24dfd 100644
 +			 crypto_skcipher_reqsize(op->fallback_tfm);
 +
 +
- 	dev_info(op->ce->dev, "Fallback for %s is %s\n",
+ 	dev_info(op->ss->dev, "Fallback for %s is %s\n",
  		 crypto_tfm_alg_driver_name(&sktfm->base),
 -		 crypto_tfm_alg_driver_name(crypto_skcipher_tfm(&op->fallback_tfm->base)));
 +		 crypto_tfm_alg_driver_name(crypto_skcipher_tfm(op->fallback_tfm)));
  
- 	op->enginectx.op.do_one_request = sun8i_ce_handle_cipher_request;
+ 	op->enginectx.op.do_one_request = sun8i_ss_handle_cipher_request;
  	op->enginectx.op.prepare_request = NULL;
-@@ -358,7 +357,7 @@ int sun8i_ce_cipher_init(struct crypto_tfm *tfm)
+@@ -359,7 +360,7 @@ int sun8i_ss_cipher_init(struct crypto_tfm *tfm)
  
  	return 0;
  error_pm:
@@ -181,16 +181,16 @@ index a6abb701bfc6..82c99da24dfd 100644
  	return err;
  }
  
-@@ -370,7 +369,7 @@ void sun8i_ce_cipher_exit(struct crypto_tfm *tfm)
+@@ -371,7 +372,7 @@ void sun8i_ss_cipher_exit(struct crypto_tfm *tfm)
  		memzero_explicit(op->key, op->keylen);
  		kfree(op->key);
  	}
 -	crypto_free_sync_skcipher(op->fallback_tfm);
 +	crypto_free_skcipher(op->fallback_tfm);
- 	pm_runtime_put_sync_suspend(op->ce->dev);
+ 	pm_runtime_put_sync(op->ss->dev);
  }
  
-@@ -400,10 +399,10 @@ int sun8i_ce_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+@@ -401,10 +402,10 @@ int sun8i_ss_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
  	if (!op->key)
  		return -ENOMEM;
  
@@ -203,8 +203,8 @@ index a6abb701bfc6..82c99da24dfd 100644
 +	return crypto_skcipher_setkey(op->fallback_tfm, key, keylen);
  }
  
- int sun8i_ce_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
-@@ -425,8 +424,8 @@ int sun8i_ce_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
+ int sun8i_ss_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
+@@ -427,8 +428,8 @@ int sun8i_ss_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
  	if (!op->key)
  		return -ENOMEM;
  
@@ -216,22 +216,22 @@ index a6abb701bfc6..82c99da24dfd 100644
 -	return crypto_sync_skcipher_setkey(op->fallback_tfm, key, keylen);
 +	return crypto_skcipher_setkey(op->fallback_tfm, key, keylen);
  }
-diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-index 0e9eac397e1b..4ac0f91e2800 100644
---- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-+++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-@@ -187,6 +187,7 @@ struct sun8i_ce_dev {
- struct sun8i_cipher_req_ctx {
- 	u32 op_dir;
- 	int flow;
+diff --git a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss.h b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss.h
+index 29c44f279112..42658b134228 100644
+--- a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss.h
++++ b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss.h
+@@ -159,6 +159,7 @@ struct sun8i_cipher_req_ctx {
+ 	unsigned int ivlen;
+ 	unsigned int keylen;
+ 	void *biv;
 +	struct skcipher_request fallback_req;   // keep at the end
  };
  
  /*
-@@ -202,7 +203,7 @@ struct sun8i_cipher_tfm_ctx {
+@@ -174,7 +175,7 @@ struct sun8i_cipher_tfm_ctx {
  	u32 *key;
  	u32 keylen;
- 	struct sun8i_ce_dev *ce;
+ 	struct sun8i_ss_dev *ss;
 -	struct crypto_sync_skcipher *fallback_tfm;
 +	struct crypto_skcipher *fallback_tfm;
  };
