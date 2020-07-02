@@ -2,90 +2,144 @@ Return-Path: <SRS0=naQK=AN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C847C433DF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2020 07:48:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58462C433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2020 07:49:58 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4D50C20936
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2020 07:48:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 22FCD20936
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2020 07:49:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="0PWucFYP";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LNV/MQa4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4D50C20936
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Qx8nmSSX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WgVIfEWI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 22FCD20936
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=v7x58jvDQphLDX7/pjCjPImfC1BRfe9oI9UXAnn7fH8=; b=0PWucFYP9Rn07FJ95aKeCS3YZ
-	ecKIAykPD4ouAwlCdDhgXXooLULVyfxJD48YeoHYSniUsf2dx7uAmtmQCqTjmGM2rWZ/OMJ9knEvS
-	dqsrED4knMFWCQZcNEn4BJ3xELiSYqfLs1gzT73Bx5OI2DOQ+1HMSjX8W5Wa7RrMgS5I23c+y7+yV
-	MAzMnJ7c7ZgqMgmgGCu9sAeKikT+pzRaxMICWfVRK3zh/HyL7ZANAKhz8PVbYfXQHvfM+6IzoroZr
-	nMQtYOazvJr4tuBFRAJfRlxWzA57/zEyLx4Vv/bmBzhn3DxANbpPzEE52fDT3HL7Wwt6sKKi4KLdN
-	59puftsOw==;
+	 bh=gblsgOHMtvfxo9Ro/Jc+UMUK9fvg0ZrXNGqJSm05IQo=; b=Qx8nmSSX3K+8Q8xOu8ETr4/0K
+	lFqBJQOqx3KzfQ4nRRYV/L5IlGqg5/N63PyC7cqnt1YRYkaBibzPNTQ/eH8HqT06htQD2tJEOICuu
+	e0BexEEqcwY2DG5vIB+EFQh8TMFyCUL3z9sH4J8nJ7rUvW5Y+aD3XHMUzJGBWN5XzBS5WcxMdZ0Gy
+	jO61y5cBphBfYyiXeBkzJSJpNNq3Wy6qKzLTpxh9OboCOTewbLrV1eNW2MO7TS+rgBP8tuS5JkcWv
+	3TlEqmklIn/3uuAXBvd4BlGsrNDqqa6YEuEGmWteoV3hNi2IdG/liZBd8PY6FKbO9j4l2MQbMU9cS
+	78xn4gxGA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jqtxc-0000wF-88; Thu, 02 Jul 2020 07:48:44 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jqtyd-0001dM-FS; Thu, 02 Jul 2020 07:49:47 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jqtx7-0000f7-DN
- for linux-amlogic@lists.infradead.org; Thu, 02 Jul 2020 07:48:17 +0000
-Received: by mail-wr1-x443.google.com with SMTP id q5so26930909wru.6
- for <linux-amlogic@lists.infradead.org>; Thu, 02 Jul 2020 00:48:13 -0700 (PDT)
+ id 1jqtyW-0001Yp-Rn
+ for linux-amlogic@lists.infradead.org; Thu, 02 Jul 2020 07:49:42 +0000
+Received: by mail-wr1-x441.google.com with SMTP id s10so26918405wrw.12
+ for <linux-amlogic@lists.infradead.org>; Thu, 02 Jul 2020 00:49:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ci6ooCorfZ5Pyg0EKRJeiIb8tL4fvaY6SA1psV8+SCw=;
- b=LNV/MQa46fdkURV0u2B9ejwweqqRpDIKhbBKeEfqQcMmNjWyXRBajz9QDNiMKyTvHH
- 6gCtxD86tRUjjW+s8TPUXvkvbr+OS3YJmDP/gHeMhNhQUmSotRgCSjKufKXvQIm+mMGf
- 45WlajdJ8HA6WbJTPr2ybTp+4kuKLodRk1M/Ar2ySwtoMijjG6DrZpV971+ZQCP9GqK6
- M0q1v08l3I0mYN0A8eztbGf+XZMi5Sa2tEkkVPvse1xndXRvpU6iaFzInjnZzLffMk11
- uEjN4Oak4gG/6Zqt1H3TdkYAy8G5ytuYlu5nFtvT3XxVgT04P+bg9smB4+ak9LRY40GG
- IkHw==
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=fwfpJbIOu9tCKwQoSyX3k34gERv16DOUHr82n13fFPU=;
+ b=WgVIfEWIWIZsDgecYoHJoSr0ORxYBQu1XyICcQFQee2m5YpxvE/7h5C44SOwIIPfA7
+ B4s1XH8HyBK1NBAGTJO7fqytoZjouQN997rHEETXqn6YJNYAIWkZWnAQ1BwO020NEsab
+ fdDNbw3qPxfdcbCu+zHDpjucvXECP1Zo6kH4QqX5KEW7oKV1QepizpDHPgX3nH1uZ+Hu
+ L94LtUMjOQSl8aJMGSgHFKW8TeZzyDCwtCPC4Xe3zkPijqhSqMF/lrUI6VX4YkmChuVR
+ fziM3EWaVCZZFrGWajtFRrmCSSDl7AphYxCpxVLgy7BxashK8ws/d/s20l9Ao01eIa0b
+ 1/1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ci6ooCorfZ5Pyg0EKRJeiIb8tL4fvaY6SA1psV8+SCw=;
- b=iZLY0iY9LNax0aGgYkOrx40ueoMtqkeqxzq5kY8xux/ShkVdk72h3zti05e4E6PmvT
- eR8QNixOnQ0uSJ3qMiXo7zMAWN3htOeyydf6R/qhK/a3h9sfsTs3yr8o59X76ICfbquq
- Ic39iO9BQ2xWRXB8W81keVL0HJaGi6318YHiQZL42nVGspaylgagXTO5Jbh7nFIYgUNG
- GunebVXRuXKEqkBHJ26ZWegBsUmGxu9gmUu74FPZfE1eeOT89fvkjMaU9cVwr1Yg8mja
- 4l1kbeW1FRqletacZaMTyPq8G5aMapVWPLkF1AgSQZ9qugYGIAimgoFqOp/HlQWVYOF1
- o8KQ==
-X-Gm-Message-State: AOAM533TAoGtItvbMQPz8M/LFq8ocCGsjeNEFVU4SIol0H4JjKhrZ5Ri
- MaqrSJbpENzVYn3OUarvCiEsMw==
-X-Google-Smtp-Source: ABdhPJzRyKGfdgm9MhttaHg18K3kT7W+KjIdtWl18Cnj7zu3qrmOSvKfv2O+bPsm4/+MxHKkrvWfIA==
-X-Received: by 2002:a5d:4687:: with SMTP id u7mr31938378wrq.357.1593676092277; 
- Thu, 02 Jul 2020 00:48:12 -0700 (PDT)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:7023:727a:c688:cf9b])
- by smtp.gmail.com with ESMTPSA id z1sm10001882wru.30.2020.07.02.00.48.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Jul 2020 00:48:11 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=fwfpJbIOu9tCKwQoSyX3k34gERv16DOUHr82n13fFPU=;
+ b=kUrEBd0uHeX0WJAtl+YmH+bfoRy2UgvQZ+F9LcH3dL7Q/4sKAOiLglUHAg97AH7qCP
+ rTHM/SPcsOG/IPXV1hCNiUhnyRfqQ4Hcc7efTuM/0CLX1P9aDAhVM3Ut3HLz4Z9i39sD
+ kiGcma/AsVwCBZVFn37dw52sAnuLXBKWa+nlAmn0dauCgfitU+wCd2Lz4mfAmtdg0ZAd
+ RHOrruj23uWSTBLyRLd3TBG+euDpaDca37mMedIS1wl7Y8QBSt+iNVrwRVeU3h5V3ziQ
+ ozfh51+x/tWW7lUIWMcF/Adr5rz7VE6A/8+jyffnXelWayl5pXnbHTukY6fWCKvUUDin
+ uJVA==
+X-Gm-Message-State: AOAM531XDtuX6fb/C0DDQnnxfTc1yOt1EUy6m90Bu3b2pHgTftzt7iMW
+ mFlc35wT0hZwzU0wFVq4e/SXMQ==
+X-Google-Smtp-Source: ABdhPJwaAX9WCvA+Cv/JH1yjVGwEZ4Dgk4rEsDhdosusI9cN1k4Mq+Th3cnJEOK4rARIaKZ76qpJ0Q==
+X-Received: by 2002:adf:edc8:: with SMTP id v8mr29618741wro.125.1593676179630; 
+ Thu, 02 Jul 2020 00:49:39 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:7023:727a:c688:cf9b?
+ ([2a01:e35:2ec0:82b0:7023:727a:c688:cf9b])
+ by smtp.gmail.com with ESMTPSA id y20sm9704926wmi.8.2020.07.02.00.49.38
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 02 Jul 2020 00:49:38 -0700 (PDT)
+Subject: Re: [PATCH v5 2/2] arm64: dts: meson-khadas-vim3: add Khadas MCU nodes
+To: khilman@baylibre.com
+References: <20200624161528.12664-1-narmstrong@baylibre.com>
+ <20200624161528.12664-3-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: daniel@ffwll.ch,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v8 6/6] drm/meson: crtc: handle commit of Amlogic FBC frames
-Date: Thu,  2 Jul 2020 09:47:59 +0200
-Message-Id: <20200702074759.32356-7-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200702074759.32356-1-narmstrong@baylibre.com>
-References: <20200702074759.32356-1-narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <b5a5de24-2fed-ebc4-52e1-9ff1ce3cfbc6@baylibre.com>
+Date: Thu, 2 Jul 2020 09:49:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
+In-Reply-To: <20200624161528.12664-3-narmstrong@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200702_034813_645756_83184F19 
-X-CRM114-Status: UNSURE (   9.65  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200702_034940_999555_3BFA8761 
+X-CRM114-Status: GOOD (  18.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,168 +151,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: jianxin.pan@amlogic.com, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
+ daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
+ Amit Kucheria <amit.kucheria@linaro.org>, linux-amlogic@lists.infradead.org,
+ rui.zhang@intel.com, lee.jones@linaro.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Since the VD1 Amlogic FBC decoder is now configured by the overlay driver,
-commit the right registers to decode the Amlogic FBC frame.
+Hi Kevin,
 
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_crtc.c | 118 +++++++++++++++++++++--------
- 1 file changed, 88 insertions(+), 30 deletions(-)
+Can you apply this patch ? the rest of the serie has been pulled into Lee's tree.
 
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index e66b6271ff58..2854272dc2d9 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -291,6 +291,10 @@ static void meson_crtc_enable_vd1(struct meson_drm *priv)
- 			    VPP_VD1_PREBLEND | VPP_VD1_POSTBLEND |
- 			    VPP_COLOR_MNG_ENABLE,
- 			    priv->io_base + _REG(VPP_MISC));
-+
-+	writel_bits_relaxed(VIU_CTRL0_AFBC_TO_VD1,
-+			    priv->viu.vd1_afbc ? VIU_CTRL0_AFBC_TO_VD1 : 0,
-+			    priv->io_base + _REG(VIU_MISC_CTRL0));
- }
- 
- static void meson_g12a_crtc_enable_vd1(struct meson_drm *priv)
-@@ -300,6 +304,10 @@ static void meson_g12a_crtc_enable_vd1(struct meson_drm *priv)
- 		       VD_BLEND_POSTBLD_SRC_VD1 |
- 		       VD_BLEND_POSTBLD_PREMULT_EN,
- 		       priv->io_base + _REG(VD1_BLEND_SRC_CTRL));
-+
-+	writel_relaxed(priv->viu.vd1_afbc ?
-+		       (VD1_AXI_SEL_AFBC | AFBC_VD1_SEL) : 0,
-+		       priv->io_base + _REG(VD1_AFBCD0_MISC_CTRL));
- }
- 
- void meson_crtc_irq(struct meson_drm *priv)
-@@ -383,36 +391,86 @@ void meson_crtc_irq(struct meson_drm *priv)
- 	/* Update the VD1 registers */
- 	if (priv->viu.vd1_enabled && priv->viu.vd1_commit) {
- 
--		switch (priv->viu.vd1_planes) {
--		case 3:
--			meson_canvas_config(priv->canvas,
--					    priv->canvas_id_vd1_2,
--					    priv->viu.vd1_addr2,
--					    priv->viu.vd1_stride2,
--					    priv->viu.vd1_height2,
--					    MESON_CANVAS_WRAP_NONE,
--					    MESON_CANVAS_BLKMODE_LINEAR,
--					    MESON_CANVAS_ENDIAN_SWAP64);
--		/* fallthrough */
--		case 2:
--			meson_canvas_config(priv->canvas,
--					    priv->canvas_id_vd1_1,
--					    priv->viu.vd1_addr1,
--					    priv->viu.vd1_stride1,
--					    priv->viu.vd1_height1,
--					    MESON_CANVAS_WRAP_NONE,
--					    MESON_CANVAS_BLKMODE_LINEAR,
--					    MESON_CANVAS_ENDIAN_SWAP64);
--		/* fallthrough */
--		case 1:
--			meson_canvas_config(priv->canvas,
--					    priv->canvas_id_vd1_0,
--					    priv->viu.vd1_addr0,
--					    priv->viu.vd1_stride0,
--					    priv->viu.vd1_height0,
--					    MESON_CANVAS_WRAP_NONE,
--					    MESON_CANVAS_BLKMODE_LINEAR,
--					    MESON_CANVAS_ENDIAN_SWAP64);
-+		if (priv->viu.vd1_afbc) {
-+			writel_relaxed(priv->viu.vd1_afbc_head_addr,
-+				       priv->io_base +
-+				       _REG(AFBC_HEAD_BADDR));
-+			writel_relaxed(priv->viu.vd1_afbc_body_addr,
-+				       priv->io_base +
-+				       _REG(AFBC_BODY_BADDR));
-+			writel_relaxed(priv->viu.vd1_afbc_en,
-+				       priv->io_base +
-+				       _REG(AFBC_ENABLE));
-+			writel_relaxed(priv->viu.vd1_afbc_mode,
-+				       priv->io_base +
-+				       _REG(AFBC_MODE));
-+			writel_relaxed(priv->viu.vd1_afbc_size_in,
-+				       priv->io_base +
-+				       _REG(AFBC_SIZE_IN));
-+			writel_relaxed(priv->viu.vd1_afbc_dec_def_color,
-+				       priv->io_base +
-+				       _REG(AFBC_DEC_DEF_COLOR));
-+			writel_relaxed(priv->viu.vd1_afbc_conv_ctrl,
-+				       priv->io_base +
-+				       _REG(AFBC_CONV_CTRL));
-+			writel_relaxed(priv->viu.vd1_afbc_size_out,
-+				       priv->io_base +
-+				       _REG(AFBC_SIZE_OUT));
-+			writel_relaxed(priv->viu.vd1_afbc_vd_cfmt_ctrl,
-+				       priv->io_base +
-+				       _REG(AFBC_VD_CFMT_CTRL));
-+			writel_relaxed(priv->viu.vd1_afbc_vd_cfmt_w,
-+				       priv->io_base +
-+				       _REG(AFBC_VD_CFMT_W));
-+			writel_relaxed(priv->viu.vd1_afbc_mif_hor_scope,
-+				       priv->io_base +
-+				       _REG(AFBC_MIF_HOR_SCOPE));
-+			writel_relaxed(priv->viu.vd1_afbc_mif_ver_scope,
-+				       priv->io_base +
-+				       _REG(AFBC_MIF_VER_SCOPE));
-+			writel_relaxed(priv->viu.vd1_afbc_pixel_hor_scope,
-+				       priv->io_base+
-+				       _REG(AFBC_PIXEL_HOR_SCOPE));
-+			writel_relaxed(priv->viu.vd1_afbc_pixel_ver_scope,
-+				       priv->io_base +
-+				       _REG(AFBC_PIXEL_VER_SCOPE));
-+			writel_relaxed(priv->viu.vd1_afbc_vd_cfmt_h,
-+				       priv->io_base +
-+				       _REG(AFBC_VD_CFMT_H));
-+		} else {
-+			switch (priv->viu.vd1_planes) {
-+			case 3:
-+				meson_canvas_config(priv->canvas,
-+						    priv->canvas_id_vd1_2,
-+						    priv->viu.vd1_addr2,
-+						    priv->viu.vd1_stride2,
-+						    priv->viu.vd1_height2,
-+						    MESON_CANVAS_WRAP_NONE,
-+						    MESON_CANVAS_BLKMODE_LINEAR,
-+						    MESON_CANVAS_ENDIAN_SWAP64);
-+				fallthrough;
-+			case 2:
-+				meson_canvas_config(priv->canvas,
-+						    priv->canvas_id_vd1_1,
-+						    priv->viu.vd1_addr1,
-+						    priv->viu.vd1_stride1,
-+						    priv->viu.vd1_height1,
-+						    MESON_CANVAS_WRAP_NONE,
-+						    MESON_CANVAS_BLKMODE_LINEAR,
-+						    MESON_CANVAS_ENDIAN_SWAP64);
-+				fallthrough;
-+			case 1:
-+				meson_canvas_config(priv->canvas,
-+						    priv->canvas_id_vd1_0,
-+						    priv->viu.vd1_addr0,
-+						    priv->viu.vd1_stride0,
-+						    priv->viu.vd1_height0,
-+						    MESON_CANVAS_WRAP_NONE,
-+						    MESON_CANVAS_BLKMODE_LINEAR,
-+						    MESON_CANVAS_ENDIAN_SWAP64);
-+			}
-+
-+			writel_relaxed(0, priv->io_base + _REG(AFBC_ENABLE));
- 		}
- 
- 		writel_relaxed(priv->viu.vd1_if0_gen_reg,
--- 
-2.22.0
+Thanks,
+Neil
+
+On 24/06/2020 18:15, Neil Armstrong wrote:
+> Add the Khadas MCU node with active FAN thermal nodes for all the
+> Khadas VIM3 variants.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
+> ---
+> Hi Kevin,
+> 
+> The bindings has been reviewed and merged by Lee,
+> could you apply this one via the amlogic tree ?
+> 
+> Thanks,
+> Neil
+> 
+>  .../boot/dts/amlogic/meson-khadas-vim3.dtsi   | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> index 1ef1e3672b96..27408c10a811 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> @@ -183,6 +183,23 @@
+>  	hdmi-phandle = <&hdmi_tx>;
+>  };
+>  
+> +&cpu_thermal {
+> +	trips {
+> +		cpu_active: cpu-active {
+> +			temperature = <80000>; /* millicelsius */
+> +			hysteresis = <2000>; /* millicelsius */
+> +			type = "active";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map {
+> +			trip = <&cpu_active>;
+> +			cooling-device = <&khadas_mcu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +		};
+> +	};
+> +};
+> +
+>  &ext_mdio {
+>  	external_phy: ethernet-phy@0 {
+>  		/* Realtek RTL8211F (0x001cc916) */
+> @@ -222,6 +239,12 @@
+>  	pinctrl-0 = <&i2c_ao_sck_pins>, <&i2c_ao_sda_pins>;
+>  	pinctrl-names = "default";
+>  
+> +	khadas_mcu: system-controller@18 {
+> +		compatible = "khadas,mcu";
+> +		reg = <0x18>;
+> +		#cooling-cells = <2>;
+> +	};
+> +
+>  	gpio_expander: gpio-controller@20 {
+>  		compatible = "ti,tca6408";
+>  		reg = <0x20>;
+> 
 
 
 _______________________________________________
