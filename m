@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 292A5C433DF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA79EC433E0
 	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2020 08:08:22 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EA8AD207DA
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2020 08:08:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AAF32206A1
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2020 08:08:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vXVIDhG6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="irvooNni"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA8AD207DA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZLWvYac6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Laus+5j3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AAF32206A1
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ErKlKhRPdZtLLp0HxOh0rDN1jbfhisyDaLT0u61SMcQ=; b=vXVIDhG65GTE/8W/h946aVs8w
-	4+SU+G6ppXL5XETIGUh4ML/y/wpuBNvCPWcA9bgjgO/3RuzpZDjGYSe3uhT6o1ZZ7DUuE8Cwj2Gmi
-	HNdsbYciMBihVnWMYYwcp0w3bSPaxe6DtzBQwPndLxMHeDVDmblJNDN0AhoLpI4gHjNBlTolURy9T
-	HUXQKGglJVkQ0X5rwLd97mrd+ybSko+rAIUPfZ8DucQwYB44dsLzClYApmsUlZKsUmQ7rZGNeguP1
-	oReT5eA7fh8IfTVWYUjyaNi4GhFAUf6JJ1qA6WskXATW2Cko5k7IPkhp9W5tOcCrJMbuJSwW9hiUm
-	jzNf5ph3w==;
+	 bh=dQA/tjuw23E3IIzQ2/fD0UUM+0mfzkmEeHn2vEb2aDY=; b=ZLWvYac6ksKiWCOQXQZrAfq7A
+	JsCEDbeeVvU6wWa6Owv3sC+zxO0K12agI9CRcD0mBYzBaJ0lHIF0roYQ2xLyrA+P4XMvH/Y88TQpe
+	fY1s5Awa3aoWbs8XI1ZDkFUs/PO8NX3Sqw4s3YA79IS95b1PjzslYPwgE3UrnynPAVNrTEIbkwC4Z
+	ZZY3ZIPuLUjMolZDUYq6WnaPTyny1tzC+C7SXz+DLYpemIygwWgFfjH7fM2CUO2YwZgdib91FVJ9N
+	2icMZ5OLTs7pI90pqaepC1LwU4Mg4l/rSXpb/kbMD/8YOcchzMF4bhReZuksM3RWQI9qSYJa0WRVC
+	B5L4a+x6A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jrGjx-0002Pf-8i; Fri, 03 Jul 2020 08:08:09 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1jrGjy-0002QE-EY; Fri, 03 Jul 2020 08:08:10 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jrGjU-0002AF-08
- for linux-amlogic@lists.infradead.org; Fri, 03 Jul 2020 08:07:44 +0000
-Received: by mail-wr1-x441.google.com with SMTP id z2so9424674wrp.2
- for <linux-amlogic@lists.infradead.org>; Fri, 03 Jul 2020 01:07:39 -0700 (PDT)
+ id 1jrGjY-0002Dk-Vg
+ for linux-amlogic@lists.infradead.org; Fri, 03 Jul 2020 08:07:47 +0000
+Received: by mail-wm1-x341.google.com with SMTP id q15so31130800wmj.2
+ for <linux-amlogic@lists.infradead.org>; Fri, 03 Jul 2020 01:07:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=S/mjHwVM8f0rq/Zev4sBdcwtGb3gRo37tSIraZ81Plk=;
- b=irvooNni8ppF3zhYSkb/ma6Pn6BlcuWTZojl7IUEdTWT36NOdSsRD7FBBpzx1dKc8V
- bHL83/EEdFaG4ln+dbldWAHt3tysxIGry6zJbQCDHs1ic6yUaWjCtwpVlIJOUr/DbeI4
- gj7InTpRBK+jW4ZY8HJGoEnGI/+Gj5FkuUwqwgzImwxdUrHtDUpnRwhD6xW71WXwngaM
- 59H2nEh0/s3yO91j0l/BeQ5zenmqSKX2pxb3U0loZqupj8XUqoCzsl2D92mP9YhbLxzg
- BZuRrPE3qsgAVBEDdaCGopVWl9gCfSC94SERSvCLnz5cQyp8uq6IrGiMaKVrQ+gz1pF7
- MCIA==
+ bh=LrAaYs53s/z1iv5bVLRtnzC+1Oun/iXiyK2qaKijDuU=;
+ b=Laus+5j3YNevclRYYUCi4YVDK91XWl8BUwxhii80Ed/v0IggUlAan8JZ4E8+3CFXli
+ X3Cygr/7qIG41o4kOs9ipx+mQpAjiaxoWIYVeZ0ZNDopMdGXNycAi4MNSdDBi7UybeX2
+ JYBvxGgGQXs+jSZYUdf7eYviqIag8z5oU68CnZFA+EOCqnurd+VJK46c6jAAtJz1wtxC
+ EwKSuQZl49S+L4VGV8Q9qdtb+7Y+w4BeRCXqvUuiciKd1JXZam39V/Y1W3M0D0UOYsnL
+ yw+yGjxKoyJI6iQlxzTVYDBQsBysHuz4Ip5U3FzVra5M8WnW/ITD/PoOKyBcv3hcAcVV
+ 9rvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=S/mjHwVM8f0rq/Zev4sBdcwtGb3gRo37tSIraZ81Plk=;
- b=S/kd2B2Da3re91jBa1XO9JdS8y4WxuyNDk+qB6q6u0A5iYX4uHTnTBVM67IXbR+BB/
- 6Fm+GIBYjk1gNDmv7kA6J+sIY8TWWn1Gna1ooXWsQeyVh46sG4kmqdW9i2ge9IDFuoF4
- pFVkeQD1xKc5kpiH1ey6kfF1jsc2HtgdFEdfGyv6BvOlIfu7TsQpaJLzXTPMY5x1MuZa
- ELJj8TvqaRu9iE0lYnkyHei4nyiHtIf7GjPnYhJNdBRE6LN3YTa7tXXWnIicIE+f9YXq
- IfEgsKrtxBVMdF8fDWARv0/DkK9337/K7l1m/YizWAv05bIrF1gZy/5j1HwnL4SW4Utr
- LTFg==
-X-Gm-Message-State: AOAM531RZfasMNn2b32TAC03l9VBDc2OQSL2szXRASzKSZSspPOpJQtT
- u3HWHdtevzrg553sbvXcB8kpvg==
-X-Google-Smtp-Source: ABdhPJxJJLudOK1rkxvKjKdG1LD8N7XgXA9RJ1vkVwlFVeqM2UG9fzwUDJOU18lmeGymV5QC28y1RQ==
-X-Received: by 2002:adf:e74e:: with SMTP id c14mr37517057wrn.143.1593763658916; 
- Fri, 03 Jul 2020 01:07:38 -0700 (PDT)
+ bh=LrAaYs53s/z1iv5bVLRtnzC+1Oun/iXiyK2qaKijDuU=;
+ b=bdWF2j2RaYfjHkfS+NXAmgiLgfictpds6QAZbacKv2tvilyiGB6YWovgXUkk3F+tdk
+ Sp41LC4+mUS3/GJuoq6IjhssiE9vqgnOg437uzjqX01zIPRYy0pniYOVG5DOExHKpxm3
+ XGnvC8TgaD47P6NW26busgshsSecarcBqPU3Y6gVE+2KANfeI/Zx5p96taJXAAHbuJ1N
+ S/3DBZBJQTKeTeRcLGt20oNz0Y6tsmBBAoCZJya1lHlNQ63QTsDUOF0HcrwOiC1YJqA5
+ 1Bi15zzUaiU3PLGm8tIeK2MZt69rGGvWo2fg4xtQLlicgT4UDOLoneFy5F7Y1E/zFKNc
+ uTDQ==
+X-Gm-Message-State: AOAM531Ge9fx+iIXxFG5nCXGXZ06ONjCgmTnFhVW5T8/ew8JPM04p0iL
+ eIQWgSxZGSq9UPppgDxQ7fvOTQ==
+X-Google-Smtp-Source: ABdhPJzX5k1i5r8s9fDNvSWDNAPPRelDlrCD79abcF4sbtYxOfHwj8r0iEmeXN9k9vmXsKp9KAMilw==
+X-Received: by 2002:a1c:2906:: with SMTP id p6mr35885064wmp.68.1593763663665; 
+ Fri, 03 Jul 2020 01:07:43 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:6959:e617:6562:cabf])
- by smtp.gmail.com with ESMTPSA id 1sm12682403wmf.0.2020.07.03.01.07.37
+ by smtp.gmail.com with ESMTPSA id 1sm12682403wmf.0.2020.07.03.01.07.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Jul 2020 01:07:38 -0700 (PDT)
+ Fri, 03 Jul 2020 01:07:42 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: daniel@ffwll.ch,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v9 1/6] drm/fourcc: Add modifier definitions for describing
- Amlogic Video Framebuffer Compression
-Date: Fri,  3 Jul 2020 10:07:23 +0200
-Message-Id: <20200703080728.25207-2-narmstrong@baylibre.com>
+Subject: [PATCH v9 4/6] drm/meson: overlay: setup overlay for Amlogic FBC
+ Memory Saving mode
+Date: Fri,  3 Jul 2020 10:07:26 +0200
+Message-Id: <20200703080728.25207-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200703080728.25207-1-narmstrong@baylibre.com>
 References: <20200703080728.25207-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200703_040740_189063_00B9BD60 
-X-CRM114-Status: GOOD (  14.26  )
+X-CRM114-CacheID: sfid-20200703_040745_199198_0EDC1CA5 
+X-CRM114-Status: GOOD (  11.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,154 +99,90 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: jianxin.pan@amlogic.com, Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic uses a proprietary lossless image compression protocol and format
-for their hardware video codec accelerators, either video decoders or
-video input encoders.
-
-It considerably reduces memory bandwidth while writing and reading
-frames in memory.
-
-The underlying storage is considered to be 3 components, 8bit or 10-bit
-per component, YCbCr 420, single plane :
-- DRM_FORMAT_YUV420_8BIT
-- DRM_FORMAT_YUV420_10BIT
-
-This modifier will be notably added to DMA-BUF frames imported from the V4L2
-Amlogic VDEC decoder.
-
-This introduces the basic layout composed of:
-- a body content organized in 64x32 superblocks with 4096 bytes per
-  superblock in default mode.
-- a 32 bytes per 128x64 header block
-
-This layout is tranferrable between Amlogic SoCs supporting this modifier.
-
-The Memory Saving option exist changing the layout superblock size to save memory when
-using 8bit components pixels size.
-
-Finally is also adds the Scatter Memory layout, meaning the header contains IOMMU
-references to the compressed frames content to optimize memory access
-and layout.
-
-In this mode, only the header memory address is needed, thus the content
-memory organization is tied to the current producer execution and cannot
-be saved/dumped neither transferrable between Amlogic SoCs supporting this
-modifier.
+Setup the Amlogic FBC decoder for the VD1 video overlay plane to use
+a different superblock size for the Memory Saving mode.
 
 Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 ---
- include/uapi/drm/drm_fourcc.h | 81 +++++++++++++++++++++++++++++++++++
- 1 file changed, 81 insertions(+)
+ drivers/gpu/drm/meson/meson_overlay.c | 25 +++++++++++++++++++++++--
+ 1 file changed, 23 insertions(+), 2 deletions(-)
 
-diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-index 993c1b342315..cbf92fdf2712 100644
---- a/include/uapi/drm/drm_fourcc.h
-+++ b/include/uapi/drm/drm_fourcc.h
-@@ -331,6 +331,7 @@ extern "C" {
- #define DRM_FORMAT_MOD_VENDOR_BROADCOM 0x07
- #define DRM_FORMAT_MOD_VENDOR_ARM     0x08
- #define DRM_FORMAT_MOD_VENDOR_ALLWINNER 0x09
-+#define DRM_FORMAT_MOD_VENDOR_AMLOGIC 0x0a
+diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+index 293f606ba164..1566a887d482 100644
+--- a/drivers/gpu/drm/meson/meson_overlay.c
++++ b/drivers/gpu/drm/meson/meson_overlay.c
+@@ -486,6 +486,10 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 					  AFBC_HOLD_LINE_NUM(8) |
+ 					  AFBC_BURST_LEN(2);
  
- /* add more to the end as needed */
++		if (fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0,
++						AMLOGIC_FBC_OPTION_MEM_SAVING))
++			priv->viu.vd1_afbc_mode |= AFBC_BLK_MEM_MODE;
++
+ 		priv->viu.vd1_afbc_en = 0x1600 | AFBC_DEC_ENABLE;
  
-@@ -950,6 +951,86 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
-  */
- #define DRM_FORMAT_MOD_ALLWINNER_TILED fourcc_mod_code(ALLWINNER, 1)
+ 		priv->viu.vd1_afbc_conv_ctrl = AFBC_CONV_LBUF_LEN(256);
+@@ -671,12 +675,17 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 	}
  
-+/*
-+ * Amlogic Video Framebuffer Compression modifiers
-+ *
-+ * Amlogic uses a proprietary lossless image compression protocol and format
-+ * for their hardware video codec accelerators, either video decoders or
-+ * video input encoders.
-+ *
-+ * It considerably reduces memory bandwidth while writing and reading
-+ * frames in memory.
-+ *
-+ * The underlying storage is considered to be 3 components, 8bit or 10-bit
-+ * per component YCbCr 420, single plane :
-+ * - DRM_FORMAT_YUV420_8BIT
-+ * - DRM_FORMAT_YUV420_10BIT
-+ *
-+ * The first 8 bits of the mode defines the layout, then the following 8 bits
-+ * defines the options changing the layout.
-+ *
-+ * Not all combinations are valid, and different SoCs may support different
-+ * combinations of layout and options.
-+ */
-+#define __fourcc_mod_amlogic_layout_mask 0xf
-+#define __fourcc_mod_amlogic_options_shift 8
-+#define __fourcc_mod_amlogic_options_mask 0xf
+ 	if (priv->viu.vd1_afbc) {
++		/* Default mode is 4k per superblock */
++		unsigned long block_size = 4096;
+ 		unsigned long body_size;
+ 
+-		/* Default mode is 4k per superblock */
++		/* 8bit mem saving mode is 3072bytes per superblock */
++		if (priv->viu.vd1_afbc_mode & AFBC_BLK_MEM_MODE)
++			block_size = 3072;
 +
-+#define DRM_FORMAT_MOD_AMLOGIC_FBC(__layout, __options) \
-+	fourcc_mod_code(AMLOGIC, \
-+			((__layout) & __fourcc_mod_amlogic_layout_mask) | \
-+			((__options) & __fourcc_mod_amlogic_options_mask \
-+			 << __fourcc_mod_amlogic_options_shift))
+ 		body_size = (ALIGN(priv->viu.vd1_stride0, 64) / 64) *
+ 			    (ALIGN(priv->viu.vd1_height0, 32) / 32) *
+-			    4096;
++			    block_size;
+ 
+ 		priv->viu.vd1_afbc_body_addr = priv->viu.vd1_addr0 >> 4;
+ 
+@@ -734,6 +743,9 @@ static bool meson_overlay_format_mod_supported(struct drm_plane *plane,
+ 		unsigned int layout = modifier &
+ 			DRM_FORMAT_MOD_AMLOGIC_FBC(
+ 				__fourcc_mod_amlogic_layout_mask, 0);
++		unsigned int options =
++			(modifier >> __fourcc_mod_amlogic_options_shift) &
++			__fourcc_mod_amlogic_options_mask;
+ 
+ 		if (format != DRM_FORMAT_YUV420_8BIT &&
+ 		    format != DRM_FORMAT_YUV420_10BIT) {
+@@ -748,6 +760,13 @@ static bool meson_overlay_format_mod_supported(struct drm_plane *plane,
+ 			return false;
+ 		}
+ 
++		if (options &&
++		    options != AMLOGIC_FBC_OPTION_MEM_SAVING) {
++			DRM_DEBUG_KMS("%llx invalid layout %x\n",
++				      modifier, layout);
++			return false;
++		}
 +
-+/* Amlogic FBC Layouts */
-+
-+/*
-+ * Amlogic FBC Basic Layout
-+ *
-+ * The basic layout is composed of:
-+ * - a body content organized in 64x32 superblocks with 4096 bytes per
-+ *   superblock in default mode.
-+ * - a 32 bytes per 128x64 header block
-+ *
-+ * This layout is transferrable between Amlogic SoCs supporting this modifier.
-+ */
-+#define AMLOGIC_FBC_LAYOUT_BASIC		(1ULL)
-+
-+/*
-+ * Amlogic FBC Scatter Memory layout
-+ *
-+ * Indicates the header contains IOMMU references to the compressed
-+ * frames content to optimize memory access and layout.
-+ *
-+ * In this mode, only the header memory address is needed, thus the
-+ * content memory organization is tied to the current producer
-+ * execution and cannot be saved/dumped neither transferrable between
-+ * Amlogic SoCs supporting this modifier.
-+ *
-+ * Due to the nature of the layout, these buffers are not expected to
-+ * be accessible by the user-space clients, but only accessible by the
-+ * hardware producers and consumers.
-+ *
-+ * The user-space clients should expect a failure while trying to mmap
-+ * the DMA-BUF handle returned by the producer.
-+ */
-+#define AMLOGIC_FBC_LAYOUT_SCATTER		(2ULL)
-+
-+/* Amlogic FBC Layout Options Bit Mask */
-+
-+/*
-+ * Amlogic FBC Memory Saving mode
-+ *
-+ * Indicates the storage is packed when pixel size is multiple of word
-+ * boudaries, i.e. 8bit should be stored in this mode to save allocation
-+ * memory.
-+ *
-+ * This mode reduces body layout to 3072 bytes per 64x32 superblock with
-+ * the basic layout and 3200 bytes per 64x32 superblock combined with
-+ * the scatter layout.
-+ */
-+#define AMLOGIC_FBC_OPTION_MEM_SAVING		(1ULL << 0)
-+
- #if defined(__cplusplus)
- }
- #endif
+ 		return true;
+ 	}
+ 
+@@ -781,6 +800,8 @@ static const uint32_t supported_drm_formats[] = {
+ };
+ 
+ static const uint64_t format_modifiers[] = {
++	DRM_FORMAT_MOD_AMLOGIC_FBC(AMLOGIC_FBC_LAYOUT_BASIC,
++				   AMLOGIC_FBC_OPTION_MEM_SAVING),
+ 	DRM_FORMAT_MOD_AMLOGIC_FBC(AMLOGIC_FBC_LAYOUT_BASIC, 0),
+ 	DRM_FORMAT_MOD_LINEAR,
+ 	DRM_FORMAT_MOD_INVALID,
 -- 
 2.22.0
 
