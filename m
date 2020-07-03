@@ -2,87 +2,90 @@ Return-Path: <SRS0=oWvG=AO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EB6A8C433E0
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2020 08:08:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4AC6CC433E0
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2020 08:08:17 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B7416206A1
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2020 08:08:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 18541206A1
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2020 08:08:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M6pcGco+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="s0Mz/Wdq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B7416206A1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ylGHVyTH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="cA7HaW9o"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 18541206A1
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=vFw3ZuEownJiugJP38UBKHW1XEjRJ8pNkecnPXYtCV8=; b=M6pcGco+9qJmXZd4eWWco6XS7i
-	+zs1XAScBc9U1SuF5NUUdBd5hib/PPEZ3xymg1g/oIZNkVVtTTxtttcJwLfdmjtY6v3rXGViEKdjN
-	Gh6KMdax4Zd/ZAypncRd3R/hSY/k39+bdP/7YWRVq8VWIpHRnMghBllsbUqNLyg9IF4I3bcjKzx4O
-	lifTX7tG+Tc54TCgJLP+TUMBu59E0UD9SHEYAZ9z52nS75Y95kyweEpjTsvtB9UfxyZlBM+dxf+rG
-	hyMtKsPbvUVKPAyvL6cdnv9n/okvvIJeiCN0OCBMbPtMmPQ+iwhZkAOHOHWzV8So21mkiESB2Gq3O
-	NIesD2HA==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=gnvrxlX+OiAdT3p/eKlo3LfQgfbZ1xG/3Vfv8mWblDE=; b=ylGHVyTHVRmsf/Xtm0+EBCcwV
+	yWpynSfsmc5xbwLeDM/BHDU6G7+Z5jBa9F5gxBbl4+XcjCQau8ZdRc+1F9tnDxJu0AvpMIpPJiwZ3
+	nUudxHrCbCQEajQVq4+FAmmI0V96SD5pIcFsHMilZfN8fyLAyDVq327GWspX/1jh1S8VJ0WC9Kqtd
+	cKvCiu1ZpPqZcnwge8Rgm4B9wi51nO07UME618RVKGnXKjuEmszZIBvkYpBuFCt2FVS0tCMX3clSP
+	5cycox0nTWMKiC6iVby5e9ERT7bxNIPE/r3gUCd21DUNUus+thW9kbwEZlXUb7/HQ+XISwDXC8Af1
+	wHrDcX/hQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jrGjm-0002Kq-Pp; Fri, 03 Jul 2020 08:07:58 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1jrGju-0002OR-MX; Fri, 03 Jul 2020 08:08:06 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jrGjT-00029q-VB
- for linux-amlogic@lists.infradead.org; Fri, 03 Jul 2020 08:07:41 +0000
-Received: by mail-wr1-x443.google.com with SMTP id z13so31689444wrw.5
- for <linux-amlogic@lists.infradead.org>; Fri, 03 Jul 2020 01:07:38 -0700 (PDT)
+ id 1jrGjV-0002BU-CK
+ for linux-amlogic@lists.infradead.org; Fri, 03 Jul 2020 08:07:44 +0000
+Received: by mail-wm1-x341.google.com with SMTP id w3so20649581wmi.4
+ for <linux-amlogic@lists.infradead.org>; Fri, 03 Jul 2020 01:07:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=c1TNzycKuUCG/Lpw8LCZ7YtLXjAvDFp2TFsGPUACq2s=;
- b=s0Mz/Wdq8iqu3dPfohf7u7IAcdckwYBi+DxKcwrRE4abFYeLQqdL+pBXBr4ow5g9cq
- 3n8fkCLWPAbRJ/wTcif1Iv8lrF2TD7HwYVov6GvAh3CNLk39Sme8m26ckcqGhUnkn6Bn
- VZF4v5m3IpLhAUmGAoBdpDq2DdhnkWO5x2+R/s4xz68MmnHXJ1yDy2Jb9U+wKO+SX+7g
- SXMozQhnUH5lOON2n3f2IlmKZNCC16CkEW7qxClyJ6/zaUmnUJ/yBIM2fXaUru47gjyV
- vwSuqsxqUeNitO+JKHdCp2N2h8vZ292KsnBh+XdsYxhz4KSX//OyJzLvbOzJMAGHP8mq
- Oc+Q==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=+8L2ymad7uoE5dUtck9cxUKwpycxjoxw6UPplO4++sw=;
+ b=cA7HaW9ozERboAuFN1YKyL0eJ9qTEfjabd73QLZYCr8JYx4MDRAY4sr1CrwKxd7e+0
+ +2qaUWTyjHD2UNG5edk+loEfOfALbhN42YcMZ/HzDyzRfYTcE3DWKeECrUeImTL7sw92
+ peWipbKkC0KxjjZhFz9PrenW0V/O8wWfGbqQAbdzpq3Qhh1rssa2psDvVD55QUHEgwNR
+ S8c2J0nmpdi7VQ9sA2PLt8EWyzDUaevnN/BQXHjDxCA3GiJ38FzcoHPP7SYKwtvBy21M
+ 14LF6HL1WcbbI0QlLreutc0zQ6IazLYgG0CmG8GuCLt5n+UiUF06HupOpCYd+oGaLN7H
+ RAsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=c1TNzycKuUCG/Lpw8LCZ7YtLXjAvDFp2TFsGPUACq2s=;
- b=l0E7Cbj590VEg3FBn+4PxyioUHHORxq1853BBDYG9+6ffhm0pNc8oFztp/NTRkM7q4
- 6OUx7FRmhUFPexAIWVT58oDOv19A4EtwC+zs9PBsCojegjlZ5xGEoqEcuIcQ5G3xhYqK
- dQscRPmkX4z5oN6e8jcW8dKup57IK5v+lX7yawWUPJNzm2VSUFSWtXccPaB2980aFNrP
- aV5R41oDFgxx55No2tMLudI9EarQuht0D6GvSa5cKbGAuldY4zMg7imOPsd6Wr371mHt
- fnjBydD3sRHX1GxsDp3w4qkhxnuwO9xy3eAOlmab/Hf9gkrgQPA9iOUlPNzs/oqTzKQu
- IlTQ==
-X-Gm-Message-State: AOAM531QL67VKEQuzli4dDCc2eSSO9GVPzikfSUAMXdJNZ1uvrQF/KTR
- loiU25scqptflxeOdoVzE5xrTg==
-X-Google-Smtp-Source: ABdhPJyg7KEBrWbXbNhkwuxhamaT+87wYHYXZdWBW6ZFOSDlt0fJRgbFVLhpqyvx5pqYzjUvi5GUlQ==
-X-Received: by 2002:adf:e40e:: with SMTP id g14mr38512820wrm.271.1593763657349; 
- Fri, 03 Jul 2020 01:07:37 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=+8L2ymad7uoE5dUtck9cxUKwpycxjoxw6UPplO4++sw=;
+ b=dQBk7NHcZWlhcs7/EZoiHpGrVvh/nbEYsN7ja5PHgTeaFbMaEvztdxt0EJsr0zZ2jo
+ B47mloIQNp8QKnFQscx/8coqpcIt1Kd26S04w/KmwtFw6n+nmg9xWk5GIvmlRmnW3VfE
+ o5ExIEEjlGr9AOnIXvCgTo0giBuRAdQJcL2z6arhPo6AR1Y6J1DJwjYkG/lRM2qp/ang
+ CO3l32TzDkk6Va1qTa934zY0fCaHaqnSfbKXpKBHuwrtVLgOPwOkltS037wi+uOPR0xO
+ sFWuWMM+ePiG7nAoH4bU8BgZuAlfuBDBpAZ7ry5H9WpOL5cM6ipMzQyhzTjaODEyIkfE
+ sHcQ==
+X-Gm-Message-State: AOAM532Nk1PM//N9OFD5iOQ6nh6TOhLTwj4JYnw5N/sBV+6tVVNk9EUO
+ CNTcSXkByn1rmFXdfCVJ41IIyidnFHRLcA==
+X-Google-Smtp-Source: ABdhPJxFqjpvl3b0UJve6c0iOJ4MjwZ0scn2Vk9ofpstuBtdKJs4JuNzymRK6MsAmFbBysjHmny/RQ==
+X-Received: by 2002:a1c:a70d:: with SMTP id q13mr34051103wme.55.1593763660377; 
+ Fri, 03 Jul 2020 01:07:40 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:6959:e617:6562:cabf])
- by smtp.gmail.com with ESMTPSA id 1sm12682403wmf.0.2020.07.03.01.07.36
+ by smtp.gmail.com with ESMTPSA id 1sm12682403wmf.0.2020.07.03.01.07.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Jul 2020 01:07:36 -0700 (PDT)
+ Fri, 03 Jul 2020 01:07:39 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: daniel@ffwll.ch,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v9 0/6] drm/meson: add support for Amlogic Video FBC
-Date: Fri,  3 Jul 2020 10:07:22 +0200
-Message-Id: <20200703080728.25207-1-narmstrong@baylibre.com>
+Subject: [PATCH v9 2/6] drm/meson: add Amlogic Video FBC registers
+Date: Fri,  3 Jul 2020 10:07:24 +0200
+Message-Id: <20200703080728.25207-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200703080728.25207-1-narmstrong@baylibre.com>
+References: <20200703080728.25207-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200703_040740_188342_5DC112DF 
-X-CRM114-Status: GOOD (  11.65  )
+X-CRM114-CacheID: sfid-20200703_040741_480034_B5532A1A 
+X-CRM114-Status: UNSURE (   7.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,114 +97,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, jianxin.pan@amlogic.com,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: jianxin.pan@amlogic.com, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic uses a proprietary lossless image compression protocol and format
-for their hardware video codec accelerators, either video decoders or
-video input encoders.
+Add the registers of the VPU VD1 Amlogic FBC decoder module, and routing
+register.
 
-It considerably reduces memory bandwidth while writing and reading
-frames in memory.
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+---
+ drivers/gpu/drm/meson/meson_registers.h | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-The underlying storage is considered to be 3 components, 8bit or 10-bit
-per component, YCbCr 420, single plane :
-- DRM_FORMAT_YUV420_8BIT
-- DRM_FORMAT_YUV420_10BIT
-
-This modifier will be notably added to DMA-BUF frames imported from the V4L2
-Amlogic VDEC decoder.
-
-At least two layout are supported :
-- Basic: composed of a body and a header
-- Scatter: the buffer is filled with a IOMMU scatter table referring
-  to the encoder current memory layout. This mode if more efficient in terms
-  of memory allocation but frames are not dumpable and only valid during until
-  the buffer is freed and back in control of the encoder
-
-At least two options are supported :
-- Memory saving: when the pixel bpp is 8b, the size of the superblock can
-  be reduced, thus saving memory.
-
-This serie adds the missing register, updated the FBC decoder registers
-content to be committed by the crtc code.
-
-The Amlogic FBC has been tested with compressed content from the Amlogic
-HW VP9 decoder on S905X (GXL), S905D2 (G12A) and S905X3 (SM1) in 8bit
-(Scatter+Mem Saving on G12A/SM1, Mem Saving on GXL) and 10bit
-(Scatter on G12A/SM1, default on GXL).
-
-It's expected to work as-is on GXM and G12B SoCs.
-
-Changes since v8 at [8]:
-- added clarification of scatter mmap behavior as suggested by daniel
-- added ack and review tags
-
-Changes since v7 at [7]:
-- rebased on drm-misc-next
-- removed spurious DEBUG in drivers/gpu/drm/meson/meson_overlay.c
-
-Changes since v6 at [6]:
-- rebased on drm-misc-next (after drm-misc-next-2020-05-14)
-- updated patch 1 commit log for completion
-
-Changes since v5 at [5]:
-- merged all fourcc patches in 1
-- fixed fourcc definition to have only a single DRM_MOD_
-- fixed 2 checkpatch issues
-
-Changes since v4 at [4]:
-- added layout and options mask
-- cosmetic changes in fourcc.h
-- fixed mod check using the masks
-- fixed plane apply using the masks
-
-Changes since v3 at [3]:
-- added dropped fourcc patch for scatter
-- fixed build of last patch
-
-Changes since v2 at [2]:
-- Added "BASIC" layout and moved the SCATTER mode as layout, making
-  BASIC and SCATTER layout exclusives
-- Moved the Memory Saving at bit 8 for options fields
-- Split fourcc and overlay patch to introduce basic, mem saving and then
-  scatter in separate patches
-- Added comment about "transferability" of the buffers
-
-Changes since v1 at [1]:
-- s/VD1_AXI_SEL_AFB/VD1_AXI_SEL_AFBC/ into meson_registers.h
-
-[1] https://patchwork.freedesktop.org/series/73722/#rev1
-[2] https://patchwork.freedesktop.org/series/73722/#rev2
-[3] https://patchwork.freedesktop.org/series/73722/#rev3
-[4] https://patchwork.freedesktop.org/series/73722/#rev4
-[5] https://patchwork.freedesktop.org/series/73722/#rev5
-[6] https://patchwork.freedesktop.org/series/73722/#rev6
-[7] https://patchwork.freedesktop.org/series/73722/#rev7
-[7] https://patchwork.freedesktop.org/series/73722/#rev8
-
-Neil Armstrong (6):
-  drm/fourcc: Add modifier definitions for describing Amlogic Video
-    Framebuffer Compression
-  drm/meson: add Amlogic Video FBC registers
-  drm/meson: overlay: setup overlay for Amlogic FBC
-  drm/meson: overlay: setup overlay for Amlogic FBC Memory Saving mode
-  drm/meson: overlay: setup overlay for Amlogic FBC Scatter Memory
-    layout
-  drm/meson: crtc: handle commit of Amlogic FBC frames
-
- drivers/gpu/drm/meson/meson_crtc.c      | 118 +++++++---
- drivers/gpu/drm/meson/meson_drv.h       |  16 ++
- drivers/gpu/drm/meson/meson_overlay.c   | 289 +++++++++++++++++++++++-
- drivers/gpu/drm/meson/meson_registers.h |  22 ++
- include/uapi/drm/drm_fourcc.h           |  81 +++++++
- 5 files changed, 488 insertions(+), 38 deletions(-)
-
+diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
+index 8ea00546cd4e..08631fdfe4b9 100644
+--- a/drivers/gpu/drm/meson/meson_registers.h
++++ b/drivers/gpu/drm/meson/meson_registers.h
+@@ -144,10 +144,15 @@
+ #define		VIU_SW_RESET_OSD1               BIT(0)
+ #define VIU_MISC_CTRL0 0x1a06
+ #define		VIU_CTRL0_VD1_AFBC_MASK         0x170000
++#define		VIU_CTRL0_AFBC_TO_VD1		BIT(20)
+ #define VIU_MISC_CTRL1 0x1a07
+ #define		MALI_AFBC_MISC			GENMASK(15, 8)
+ #define D2D3_INTF_LENGTH 0x1a08
+ #define D2D3_INTF_CTRL0 0x1a09
++#define VD1_AFBCD0_MISC_CTRL 0x1a0a
++#define		VD1_AXI_SEL_AFBC		(1 << 12)
++#define		AFBC_VD1_SEL			(1 << 10)
++#define VD2_AFBCD1_MISC_CTRL 0x1a0b
+ #define VIU_OSD1_CTRL_STAT 0x1a10
+ #define		VIU_OSD1_OSD_BLK_ENABLE         BIT(0)
+ #define		VIU_OSD1_OSD_MEM_MODE_LINEAR	BIT(2)
+@@ -365,6 +370,23 @@
+ #define VIU_OSD1_OETF_LUT_ADDR_PORT 0x1add
+ #define VIU_OSD1_OETF_LUT_DATA_PORT 0x1ade
+ #define AFBC_ENABLE 0x1ae0
++#define AFBC_MODE 0x1ae1
++#define AFBC_SIZE_IN 0x1ae2
++#define AFBC_DEC_DEF_COLOR 0x1ae3
++#define AFBC_CONV_CTRL 0x1ae4
++#define AFBC_LBUF_DEPTH 0x1ae5
++#define AFBC_HEAD_BADDR 0x1ae6
++#define AFBC_BODY_BADDR 0x1ae7
++#define AFBC_SIZE_OUT 0x1ae8
++#define AFBC_OUT_YSCOPE 0x1ae9
++#define AFBC_STAT 0x1aea
++#define AFBC_VD_CFMT_CTRL 0x1aeb
++#define AFBC_VD_CFMT_W 0x1aec
++#define AFBC_MIF_HOR_SCOPE 0x1aed
++#define AFBC_MIF_VER_SCOPE 0x1aee
++#define AFBC_PIXEL_HOR_SCOPE 0x1aef
++#define AFBC_PIXEL_VER_SCOPE 0x1af0
++#define AFBC_VD_CFMT_H 0x1af1
+ 
+ /* vpp */
+ #define VPP_DUMMY_DATA 0x1d00
 -- 
 2.22.0
 
