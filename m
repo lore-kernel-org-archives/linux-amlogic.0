@@ -4,65 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE75BC433E0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 06:34:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5A75C433DF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 06:35:06 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A1133206CD
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 06:34:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 63FAD206CD
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 06:35:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DDjKGH4q";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="gFSYxowZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A1133206CD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="yy9IMFhD";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="SRWfbF76"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63FAD206CD
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=q9zps0nSwtmHOQExM84xeku3R6l3Qx9ecrt9a5fhDCQ=; b=DDjKGH4qDpWP5zH+Iq6feLATrk
-	jC5iXn4WiBX58y6ecwALx6ILrnZQOy5KmPxlbmJyvO8N0P1B2//HKOtBiNDYonCtjNcqpX/j+OfhB
-	T05znmyuIzOUvWWtlptW6iPrFWPY1KYJGWKUZVuSMN94ZZb2bZbFy2em/TAyB7nKpR4FkM40BRgE9
-	UhyFSdjv8Os1Qai3dSUuEvwOwgQfyF1NIktXagKNVN2ZbQKSIyO2OOhX43gcD5W0bZxb7jiCEQpMV
-	iN7qoLOQqMgWxzbqwzLndj9eTF1zELJkqb+KVe4taxGYPSu7iqHLoE4NEqO3nHFU4eGGfutKDBlOu
-	X8SJWsyA==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=P/EIP7pCgCRjwH6FQB+EHoxPZB4iPR17p9RJjkOC7qw=; b=yy9IMFhDIWWXhB2Isy0be79Iu
+	73Co3iCmYRD7YRYAsvtGNpMXhAfZBNN8MJnKk6xZ+TY3J2dJBLzKjzoDsO613rhnzUQ3uAys3j5V6
+	prrKuFWe6tLjzT3yReDev8LE0raF4Wthj70zbut+eGOF+9GWaPgKbkKH/3TZnFH4se7/fJD7wkYHf
+	OK36qEDvj764MvTLQC7kDvbtT4vgIiSjA5dhQLEzWv8Yo8IWpKr1pXHNEzT2x6h3bfeF1oq792ucf
+	E/OiDfcgeWI/xfO0T082cnUZ0SlQ+SnUVJ6kPtlCQw3o5TdLWQLd8gn/v5rauS+fAtZqN0SiEQOIc
+	4v+LHYMqg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jshBm-0002yy-6b; Tue, 07 Jul 2020 06:34:46 +0000
+	id 1jshBy-000384-8F; Tue, 07 Jul 2020 06:34:58 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jshB4-0002XN-5B; Tue, 07 Jul 2020 06:34:03 +0000
+ id 1jshBB-0002cK-Vq; Tue, 07 Jul 2020 06:34:12 +0000
 Received: from e123331-lin.nice.arm.com (adsl-70.109.242.21.tellas.gr
  [109.242.21.70])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6A35F206DF;
- Tue,  7 Jul 2020 06:33:53 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 81019206CD;
+ Tue,  7 Jul 2020 06:34:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1594103641;
- bh=xtNbkebtMctQdpvkm5ZhZR31pleEX5efnRbSCp2ZF4o=;
+ s=default; t=1594103649;
+ bh=6U7XguKXGmmibU47z0Py8zOQR8BTQqlqFCMXn3UNzgE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=gFSYxowZEHOLyY+Ipf7RU3fgh0E92aOYIxLyhqK/3TYSbTj0CttxfdLuSh7MmgFlW
- PWkJ01ls+bBokuC51UUu9ghub1utZK4OQEsS4U6IpjfYy7KudQxcOnIdoPD6nrx2TK
- DIF3pCBAXWJ9fv1KSbkhVc5wDApltgKvBmM1ySac=
+ b=SRWfbF76+3qXp6z2vLxeWgCTtyuEzCKcQ0prmUAZL0007ahMKJjqKBYiKe3An1Y4N
+ deZ/RU3lvOM/jmuSXJ8cZLZnlnem2buSV+u1Si2Pk3TvV9DffseDB++tLuwNiNF9D7
+ hiQl2R1htEBqSTbKgNHT3Kw66Psge6htN5GMgr38=
 From: Ard Biesheuvel <ardb@kernel.org>
 To: linux-crypto@vger.kernel.org
-Subject: [PATCH v4 11/13] crypto: qce - permit asynchronous skcipher as
+Subject: [PATCH v4 12/13] crypto: sahara - permit asynchronous skcipher as
  fallback
-Date: Tue,  7 Jul 2020 09:32:01 +0300
-Message-Id: <20200707063203.5018-12-ardb@kernel.org>
+Date: Tue,  7 Jul 2020 09:32:02 +0300
+Message-Id: <20200707063203.5018-13-ardb@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200707063203.5018-1-ardb@kernel.org>
 References: <20200707063203.5018-1-ardb@kernel.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200707_023402_385479_2758611F 
-X-CRM114-Status: GOOD (  17.41  )
+X-CRM114-CacheID: sfid-20200707_023411_066409_77ACE905 
+X-CRM114-Status: GOOD (  17.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,143 +90,150 @@ Cc: Eric Biggers <ebiggers@google.com>,
  linux-arm-kernel@lists.infradead.org, John Allen <john.allen@amd.com>,
  Tero Kristo <t-kristo@ti.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
  Shawn Guo <shawnguo@kernel.org>, "David S. Miller" <davem@davemloft.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Even though the qce driver implements asynchronous versions of ecb(aes),
-cbc(aes)and xts(aes), the fallbacks it allocates are required to be
-synchronous. Given that SIMD based software implementations are usually
-asynchronous as well, even though they rarely complete asynchronously
-(this typically only happens in cases where the request was made from
-softirq context, while SIMD was already in use in the task context that
-it interrupted), these implementations are disregarded, and either the
-generic C version or another table based version implemented in assembler
-is selected instead.
-
-Since falling back to synchronous AES is not only a performance issue, but
-potentially a security issue as well (due to the fact that table based AES
-is not time invariant), let's fix this, by allocating an ordinary skcipher
-as the fallback, and invoke it with the completion routine that was given
-to the outer request.
-
-While at it, remove the pointless memset() from qce_skcipher_init(), and
-remove the call to it qce_skcipher_init_fallback().
-
-Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
----
- drivers/crypto/qce/cipher.h   |  3 +-
- drivers/crypto/qce/skcipher.c | 42 ++++++++++----------
- 2 files changed, 24 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/crypto/qce/cipher.h b/drivers/crypto/qce/cipher.h
-index 7770660bc853..cffa9fc628ff 100644
---- a/drivers/crypto/qce/cipher.h
-+++ b/drivers/crypto/qce/cipher.h
-@@ -14,7 +14,7 @@
- struct qce_cipher_ctx {
- 	u8 enc_key[QCE_MAX_KEY_SIZE];
- 	unsigned int enc_keylen;
--	struct crypto_sync_skcipher *fallback;
-+	struct crypto_skcipher *fallback;
- };
- 
- /**
-@@ -43,6 +43,7 @@ struct qce_cipher_reqctx {
- 	struct sg_table src_tbl;
- 	struct scatterlist *src_sg;
- 	unsigned int cryptlen;
-+	struct skcipher_request fallback_req;	// keep at the end
- };
- 
- static inline struct qce_alg_template *to_cipher_tmpl(struct crypto_skcipher *tfm)
-diff --git a/drivers/crypto/qce/skcipher.c b/drivers/crypto/qce/skcipher.c
-index 9412433f3b21..a8147381b774 100644
---- a/drivers/crypto/qce/skcipher.c
-+++ b/drivers/crypto/qce/skcipher.c
-@@ -178,7 +178,7 @@ static int qce_skcipher_setkey(struct crypto_skcipher *ablk, const u8 *key,
- 		break;
- 	}
- 
--	ret = crypto_sync_skcipher_setkey(ctx->fallback, key, keylen);
-+	ret = crypto_skcipher_setkey(ctx->fallback, key, keylen);
- 	if (!ret)
- 		ctx->enc_keylen = keylen;
- 	return ret;
-@@ -235,16 +235,15 @@ static int qce_skcipher_crypt(struct skcipher_request *req, int encrypt)
- 	      req->cryptlen <= aes_sw_max_len) ||
- 	     (IS_XTS(rctx->flags) && req->cryptlen > QCE_SECTOR_SIZE &&
- 	      req->cryptlen % QCE_SECTOR_SIZE))) {
--		SYNC_SKCIPHER_REQUEST_ON_STACK(subreq, ctx->fallback);
--
--		skcipher_request_set_sync_tfm(subreq, ctx->fallback);
--		skcipher_request_set_callback(subreq, req->base.flags,
--					      NULL, NULL);
--		skcipher_request_set_crypt(subreq, req->src, req->dst,
--					   req->cryptlen, req->iv);
--		ret = encrypt ? crypto_skcipher_encrypt(subreq) :
--				crypto_skcipher_decrypt(subreq);
--		skcipher_request_zero(subreq);
-+		skcipher_request_set_tfm(&rctx->fallback_req, ctx->fallback);
-+		skcipher_request_set_callback(&rctx->fallback_req,
-+					      req->base.flags,
-+					      req->base.complete,
-+					      req->base.data);
-+		skcipher_request_set_crypt(&rctx->fallback_req, req->src,
-+					   req->dst, req->cryptlen, req->iv);
-+		ret = encrypt ? crypto_skcipher_encrypt(&rctx->fallback_req) :
-+				crypto_skcipher_decrypt(&rctx->fallback_req);
- 		return ret;
- 	}
- 
-@@ -263,10 +262,9 @@ static int qce_skcipher_decrypt(struct skcipher_request *req)
- 
- static int qce_skcipher_init(struct crypto_skcipher *tfm)
- {
--	struct qce_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
--
--	memset(ctx, 0, sizeof(*ctx));
--	crypto_skcipher_set_reqsize(tfm, sizeof(struct qce_cipher_reqctx));
-+	/* take the size without the fallback skcipher_request at the end */
-+	crypto_skcipher_set_reqsize(tfm, offsetof(struct qce_cipher_reqctx,
-+						  fallback_req));
- 	return 0;
- }
- 
-@@ -274,17 +272,21 @@ static int qce_skcipher_init_fallback(struct crypto_skcipher *tfm)
- {
- 	struct qce_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
- 
--	qce_skcipher_init(tfm);
--	ctx->fallback = crypto_alloc_sync_skcipher(crypto_tfm_alg_name(&tfm->base),
--						   0, CRYPTO_ALG_NEED_FALLBACK);
--	return PTR_ERR_OR_ZERO(ctx->fallback);
-+	ctx->fallback = crypto_alloc_skcipher(crypto_tfm_alg_name(&tfm->base),
-+					      0, CRYPTO_ALG_NEED_FALLBACK);
-+	if (IS_ERR(ctx->fallback))
-+		return PTR_ERR(ctx->fallback);
-+
-+	crypto_skcipher_set_reqsize(tfm, sizeof(struct qce_cipher_reqctx) +
-+					 crypto_skcipher_reqsize(ctx->fallback));
-+	return 0;
- }
- 
- static void qce_skcipher_exit(struct crypto_skcipher *tfm)
- {
- 	struct qce_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
- 
--	crypto_free_sync_skcipher(ctx->fallback);
-+	crypto_free_skcipher(ctx->fallback);
- }
- 
- struct qce_skcipher_def {
--- 
-2.17.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RXZlbiB0aG91Z2ggdGhlIHNhaGFyYSBkcml2ZXIgaW1wbGVtZW50cyBhc3luY2hyb25vdXMgdmVy
+c2lvbnMgb2YKZWNiKGFlcykgYW5kIGNiYyhhZXMpLCB0aGUgZmFsbGJhY2tzIGl0IGFsbG9jYXRl
+cyBhcmUgcmVxdWlyZWQgdG8gYmUKc3luY2hyb25vdXMuIEdpdmVuIHRoYXQgU0lNRCBiYXNlZCBz
+b2Z0d2FyZSBpbXBsZW1lbnRhdGlvbnMgYXJlIHVzdWFsbHkKYXN5bmNocm9ub3VzIGFzIHdlbGws
+IGV2ZW4gdGhvdWdoIHRoZXkgcmFyZWx5IGNvbXBsZXRlIGFzeW5jaHJvbm91c2x5Cih0aGlzIHR5
+cGljYWxseSBvbmx5IGhhcHBlbnMgaW4gY2FzZXMgd2hlcmUgdGhlIHJlcXVlc3Qgd2FzIG1hZGUg
+ZnJvbQpzb2Z0aXJxIGNvbnRleHQsIHdoaWxlIFNJTUQgd2FzIGFscmVhZHkgaW4gdXNlIGluIHRo
+ZSB0YXNrIGNvbnRleHQgdGhhdAppdCBpbnRlcnJ1cHRlZCksIHRoZXNlIGltcGxlbWVudGF0aW9u
+cyBhcmUgZGlzcmVnYXJkZWQsIGFuZCBlaXRoZXIgdGhlCmdlbmVyaWMgQyB2ZXJzaW9uIG9yIGFu
+b3RoZXIgdGFibGUgYmFzZWQgdmVyc2lvbiBpbXBsZW1lbnRlZCBpbiBhc3NlbWJsZXIKaXMgc2Vs
+ZWN0ZWQgaW5zdGVhZC4KClNpbmNlIGZhbGxpbmcgYmFjayB0byBzeW5jaHJvbm91cyBBRVMgaXMg
+bm90IG9ubHkgYSBwZXJmb3JtYW5jZSBpc3N1ZSwgYnV0CnBvdGVudGlhbGx5IGEgc2VjdXJpdHkg
+aXNzdWUgYXMgd2VsbCAoZHVlIHRvIHRoZSBmYWN0IHRoYXQgdGFibGUgYmFzZWQgQUVTCmlzIG5v
+dCB0aW1lIGludmFyaWFudCksIGxldCdzIGZpeCB0aGlzLCBieSBhbGxvY2F0aW5nIGFuIG9yZGlu
+YXJ5IHNrY2lwaGVyCmFzIHRoZSBmYWxsYmFjaywgYW5kIGludm9rZSBpdCB3aXRoIHRoZSBjb21w
+bGV0aW9uIHJvdXRpbmUgdGhhdCB3YXMgZ2l2ZW4KdG8gdGhlIG91dGVyIHJlcXVlc3QuCgpTaWdu
+ZWQtb2ZmLWJ5OiBBcmQgQmllc2hldXZlbCA8YXJkYkBrZXJuZWwub3JnPgpSZXZpZXdlZC1ieTog
+SG9yaWEgR2VhbnTEgyA8aG9yaWEuZ2VhbnRhQG54cC5jb20+Ci0tLQogZHJpdmVycy9jcnlwdG8v
+c2FoYXJhLmMgfCA5NiArKysrKysrKystLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDQ1IGlu
+c2VydGlvbnMoKyksIDUxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvY3J5cHRv
+L3NhaGFyYS5jIGIvZHJpdmVycy9jcnlwdG8vc2FoYXJhLmMKaW5kZXggNDY2ZTMwYmQ1MjljLi4w
+YzhjYjIzYWU3MDggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvY3J5cHRvL3NhaGFyYS5jCisrKyBiL2Ry
+aXZlcnMvY3J5cHRvL3NhaGFyYS5jCkBAIC0xNDYsMTEgKzE0NiwxMiBAQCBzdHJ1Y3Qgc2FoYXJh
+X2N0eCB7CiAJLyogQUVTLXNwZWNpZmljIGNvbnRleHQgKi8KIAlpbnQga2V5bGVuOwogCXU4IGtl
+eVtBRVNfS0VZU0laRV8xMjhdOwotCXN0cnVjdCBjcnlwdG9fc3luY19za2NpcGhlciAqZmFsbGJh
+Y2s7CisJc3RydWN0IGNyeXB0b19za2NpcGhlciAqZmFsbGJhY2s7CiB9OwogCiBzdHJ1Y3Qgc2Fo
+YXJhX2Flc19yZXFjdHggewogCXVuc2lnbmVkIGxvbmcgbW9kZTsKKwlzdHJ1Y3Qgc2tjaXBoZXJf
+cmVxdWVzdCBmYWxsYmFja19yZXE7CS8vIGtlZXAgYXQgdGhlIGVuZAogfTsKIAogLyoKQEAgLTYx
+NywxMCArNjE4LDEwIEBAIHN0YXRpYyBpbnQgc2FoYXJhX2Flc19zZXRrZXkoc3RydWN0IGNyeXB0
+b19za2NpcGhlciAqdGZtLCBjb25zdCB1OCAqa2V5LAogCS8qCiAJICogVGhlIHJlcXVlc3RlZCBr
+ZXkgc2l6ZSBpcyBub3Qgc3VwcG9ydGVkIGJ5IEhXLCBkbyBhIGZhbGxiYWNrLgogCSAqLwotCWNy
+eXB0b19zeW5jX3NrY2lwaGVyX2NsZWFyX2ZsYWdzKGN0eC0+ZmFsbGJhY2ssIENSWVBUT19URk1f
+UkVRX01BU0spOwotCWNyeXB0b19zeW5jX3NrY2lwaGVyX3NldF9mbGFncyhjdHgtPmZhbGxiYWNr
+LCB0Zm0tPmJhc2UuY3J0X2ZsYWdzICYKKwljcnlwdG9fc2tjaXBoZXJfY2xlYXJfZmxhZ3MoY3R4
+LT5mYWxsYmFjaywgQ1JZUFRPX1RGTV9SRVFfTUFTSyk7CisJY3J5cHRvX3NrY2lwaGVyX3NldF9m
+bGFncyhjdHgtPmZhbGxiYWNrLCB0Zm0tPmJhc2UuY3J0X2ZsYWdzICYKIAkJCQkJCSBDUllQVE9f
+VEZNX1JFUV9NQVNLKTsKLQlyZXR1cm4gY3J5cHRvX3N5bmNfc2tjaXBoZXJfc2V0a2V5KGN0eC0+
+ZmFsbGJhY2ssIGtleSwga2V5bGVuKTsKKwlyZXR1cm4gY3J5cHRvX3NrY2lwaGVyX3NldGtleShj
+dHgtPmZhbGxiYWNrLCBrZXksIGtleWxlbik7CiB9CiAKIHN0YXRpYyBpbnQgc2FoYXJhX2Flc19j
+cnlwdChzdHJ1Y3Qgc2tjaXBoZXJfcmVxdWVzdCAqcmVxLCB1bnNpZ25lZCBsb25nIG1vZGUpCkBA
+IC02NTEsMjEgKzY1MiwxOSBAQCBzdGF0aWMgaW50IHNhaGFyYV9hZXNfY3J5cHQoc3RydWN0IHNr
+Y2lwaGVyX3JlcXVlc3QgKnJlcSwgdW5zaWduZWQgbG9uZyBtb2RlKQogCiBzdGF0aWMgaW50IHNh
+aGFyYV9hZXNfZWNiX2VuY3J5cHQoc3RydWN0IHNrY2lwaGVyX3JlcXVlc3QgKnJlcSkKIHsKKwlz
+dHJ1Y3Qgc2FoYXJhX2Flc19yZXFjdHggKnJjdHggPSBza2NpcGhlcl9yZXF1ZXN0X2N0eChyZXEp
+OwogCXN0cnVjdCBzYWhhcmFfY3R4ICpjdHggPSBjcnlwdG9fc2tjaXBoZXJfY3R4KAogCQljcnlw
+dG9fc2tjaXBoZXJfcmVxdGZtKHJlcSkpOwotCWludCBlcnI7CiAKIAlpZiAodW5saWtlbHkoY3R4
+LT5rZXlsZW4gIT0gQUVTX0tFWVNJWkVfMTI4KSkgewotCQlTWU5DX1NLQ0lQSEVSX1JFUVVFU1Rf
+T05fU1RBQ0soc3VicmVxLCBjdHgtPmZhbGxiYWNrKTsKLQotCQlza2NpcGhlcl9yZXF1ZXN0X3Nl
+dF9zeW5jX3RmbShzdWJyZXEsIGN0eC0+ZmFsbGJhY2spOwotCQlza2NpcGhlcl9yZXF1ZXN0X3Nl
+dF9jYWxsYmFjayhzdWJyZXEsIHJlcS0+YmFzZS5mbGFncywKLQkJCQkJICAgICAgTlVMTCwgTlVM
+TCk7Ci0JCXNrY2lwaGVyX3JlcXVlc3Rfc2V0X2NyeXB0KHN1YnJlcSwgcmVxLT5zcmMsIHJlcS0+
+ZHN0LAotCQkJCQkgICByZXEtPmNyeXB0bGVuLCByZXEtPml2KTsKLQkJZXJyID0gY3J5cHRvX3Nr
+Y2lwaGVyX2VuY3J5cHQoc3VicmVxKTsKLQkJc2tjaXBoZXJfcmVxdWVzdF96ZXJvKHN1YnJlcSk7
+Ci0JCXJldHVybiBlcnI7CisJCXNrY2lwaGVyX3JlcXVlc3Rfc2V0X3RmbSgmcmN0eC0+ZmFsbGJh
+Y2tfcmVxLCBjdHgtPmZhbGxiYWNrKTsKKwkJc2tjaXBoZXJfcmVxdWVzdF9zZXRfY2FsbGJhY2so
+JnJjdHgtPmZhbGxiYWNrX3JlcSwKKwkJCQkJICAgICAgcmVxLT5iYXNlLmZsYWdzLAorCQkJCQkg
+ICAgICByZXEtPmJhc2UuY29tcGxldGUsCisJCQkJCSAgICAgIHJlcS0+YmFzZS5kYXRhKTsKKwkJ
+c2tjaXBoZXJfcmVxdWVzdF9zZXRfY3J5cHQoJnJjdHgtPmZhbGxiYWNrX3JlcSwgcmVxLT5zcmMs
+CisJCQkJCSAgIHJlcS0+ZHN0LCByZXEtPmNyeXB0bGVuLCByZXEtPml2KTsKKwkJcmV0dXJuIGNy
+eXB0b19za2NpcGhlcl9lbmNyeXB0KCZyY3R4LT5mYWxsYmFja19yZXEpOwogCX0KIAogCXJldHVy
+biBzYWhhcmFfYWVzX2NyeXB0KHJlcSwgRkxBR1NfRU5DUllQVCk7CkBAIC02NzMsMjEgKzY3Miwx
+OSBAQCBzdGF0aWMgaW50IHNhaGFyYV9hZXNfZWNiX2VuY3J5cHQoc3RydWN0IHNrY2lwaGVyX3Jl
+cXVlc3QgKnJlcSkKIAogc3RhdGljIGludCBzYWhhcmFfYWVzX2VjYl9kZWNyeXB0KHN0cnVjdCBz
+a2NpcGhlcl9yZXF1ZXN0ICpyZXEpCiB7CisJc3RydWN0IHNhaGFyYV9hZXNfcmVxY3R4ICpyY3R4
+ID0gc2tjaXBoZXJfcmVxdWVzdF9jdHgocmVxKTsKIAlzdHJ1Y3Qgc2FoYXJhX2N0eCAqY3R4ID0g
+Y3J5cHRvX3NrY2lwaGVyX2N0eCgKIAkJY3J5cHRvX3NrY2lwaGVyX3JlcXRmbShyZXEpKTsKLQlp
+bnQgZXJyOwogCiAJaWYgKHVubGlrZWx5KGN0eC0+a2V5bGVuICE9IEFFU19LRVlTSVpFXzEyOCkp
+IHsKLQkJU1lOQ19TS0NJUEhFUl9SRVFVRVNUX09OX1NUQUNLKHN1YnJlcSwgY3R4LT5mYWxsYmFj
+ayk7Ci0KLQkJc2tjaXBoZXJfcmVxdWVzdF9zZXRfc3luY190Zm0oc3VicmVxLCBjdHgtPmZhbGxi
+YWNrKTsKLQkJc2tjaXBoZXJfcmVxdWVzdF9zZXRfY2FsbGJhY2soc3VicmVxLCByZXEtPmJhc2Uu
+ZmxhZ3MsCi0JCQkJCSAgICAgIE5VTEwsIE5VTEwpOwotCQlza2NpcGhlcl9yZXF1ZXN0X3NldF9j
+cnlwdChzdWJyZXEsIHJlcS0+c3JjLCByZXEtPmRzdCwKLQkJCQkJICAgcmVxLT5jcnlwdGxlbiwg
+cmVxLT5pdik7Ci0JCWVyciA9IGNyeXB0b19za2NpcGhlcl9kZWNyeXB0KHN1YnJlcSk7Ci0JCXNr
+Y2lwaGVyX3JlcXVlc3RfemVybyhzdWJyZXEpOwotCQlyZXR1cm4gZXJyOworCQlza2NpcGhlcl9y
+ZXF1ZXN0X3NldF90Zm0oJnJjdHgtPmZhbGxiYWNrX3JlcSwgY3R4LT5mYWxsYmFjayk7CisJCXNr
+Y2lwaGVyX3JlcXVlc3Rfc2V0X2NhbGxiYWNrKCZyY3R4LT5mYWxsYmFja19yZXEsCisJCQkJCSAg
+ICAgIHJlcS0+YmFzZS5mbGFncywKKwkJCQkJICAgICAgcmVxLT5iYXNlLmNvbXBsZXRlLAorCQkJ
+CQkgICAgICByZXEtPmJhc2UuZGF0YSk7CisJCXNrY2lwaGVyX3JlcXVlc3Rfc2V0X2NyeXB0KCZy
+Y3R4LT5mYWxsYmFja19yZXEsIHJlcS0+c3JjLAorCQkJCQkgICByZXEtPmRzdCwgcmVxLT5jcnlw
+dGxlbiwgcmVxLT5pdik7CisJCXJldHVybiBjcnlwdG9fc2tjaXBoZXJfZGVjcnlwdCgmcmN0eC0+
+ZmFsbGJhY2tfcmVxKTsKIAl9CiAKIAlyZXR1cm4gc2FoYXJhX2Flc19jcnlwdChyZXEsIDApOwpA
+QCAtNjk1LDIxICs2OTIsMTkgQEAgc3RhdGljIGludCBzYWhhcmFfYWVzX2VjYl9kZWNyeXB0KHN0
+cnVjdCBza2NpcGhlcl9yZXF1ZXN0ICpyZXEpCiAKIHN0YXRpYyBpbnQgc2FoYXJhX2Flc19jYmNf
+ZW5jcnlwdChzdHJ1Y3Qgc2tjaXBoZXJfcmVxdWVzdCAqcmVxKQogeworCXN0cnVjdCBzYWhhcmFf
+YWVzX3JlcWN0eCAqcmN0eCA9IHNrY2lwaGVyX3JlcXVlc3RfY3R4KHJlcSk7CiAJc3RydWN0IHNh
+aGFyYV9jdHggKmN0eCA9IGNyeXB0b19za2NpcGhlcl9jdHgoCiAJCWNyeXB0b19za2NpcGhlcl9y
+ZXF0Zm0ocmVxKSk7Ci0JaW50IGVycjsKIAogCWlmICh1bmxpa2VseShjdHgtPmtleWxlbiAhPSBB
+RVNfS0VZU0laRV8xMjgpKSB7Ci0JCVNZTkNfU0tDSVBIRVJfUkVRVUVTVF9PTl9TVEFDSyhzdWJy
+ZXEsIGN0eC0+ZmFsbGJhY2spOwotCi0JCXNrY2lwaGVyX3JlcXVlc3Rfc2V0X3N5bmNfdGZtKHN1
+YnJlcSwgY3R4LT5mYWxsYmFjayk7Ci0JCXNrY2lwaGVyX3JlcXVlc3Rfc2V0X2NhbGxiYWNrKHN1
+YnJlcSwgcmVxLT5iYXNlLmZsYWdzLAotCQkJCQkgICAgICBOVUxMLCBOVUxMKTsKLQkJc2tjaXBo
+ZXJfcmVxdWVzdF9zZXRfY3J5cHQoc3VicmVxLCByZXEtPnNyYywgcmVxLT5kc3QsCi0JCQkJCSAg
+IHJlcS0+Y3J5cHRsZW4sIHJlcS0+aXYpOwotCQllcnIgPSBjcnlwdG9fc2tjaXBoZXJfZW5jcnlw
+dChzdWJyZXEpOwotCQlza2NpcGhlcl9yZXF1ZXN0X3plcm8oc3VicmVxKTsKLQkJcmV0dXJuIGVy
+cjsKKwkJc2tjaXBoZXJfcmVxdWVzdF9zZXRfdGZtKCZyY3R4LT5mYWxsYmFja19yZXEsIGN0eC0+
+ZmFsbGJhY2spOworCQlza2NpcGhlcl9yZXF1ZXN0X3NldF9jYWxsYmFjaygmcmN0eC0+ZmFsbGJh
+Y2tfcmVxLAorCQkJCQkgICAgICByZXEtPmJhc2UuZmxhZ3MsCisJCQkJCSAgICAgIHJlcS0+YmFz
+ZS5jb21wbGV0ZSwKKwkJCQkJICAgICAgcmVxLT5iYXNlLmRhdGEpOworCQlza2NpcGhlcl9yZXF1
+ZXN0X3NldF9jcnlwdCgmcmN0eC0+ZmFsbGJhY2tfcmVxLCByZXEtPnNyYywKKwkJCQkJICAgcmVx
+LT5kc3QsIHJlcS0+Y3J5cHRsZW4sIHJlcS0+aXYpOworCQlyZXR1cm4gY3J5cHRvX3NrY2lwaGVy
+X2VuY3J5cHQoJnJjdHgtPmZhbGxiYWNrX3JlcSk7CiAJfQogCiAJcmV0dXJuIHNhaGFyYV9hZXNf
+Y3J5cHQocmVxLCBGTEFHU19FTkNSWVBUIHwgRkxBR1NfQ0JDKTsKQEAgLTcxNywyMSArNzEyLDE5
+IEBAIHN0YXRpYyBpbnQgc2FoYXJhX2Flc19jYmNfZW5jcnlwdChzdHJ1Y3Qgc2tjaXBoZXJfcmVx
+dWVzdCAqcmVxKQogCiBzdGF0aWMgaW50IHNhaGFyYV9hZXNfY2JjX2RlY3J5cHQoc3RydWN0IHNr
+Y2lwaGVyX3JlcXVlc3QgKnJlcSkKIHsKKwlzdHJ1Y3Qgc2FoYXJhX2Flc19yZXFjdHggKnJjdHgg
+PSBza2NpcGhlcl9yZXF1ZXN0X2N0eChyZXEpOwogCXN0cnVjdCBzYWhhcmFfY3R4ICpjdHggPSBj
+cnlwdG9fc2tjaXBoZXJfY3R4KAogCQljcnlwdG9fc2tjaXBoZXJfcmVxdGZtKHJlcSkpOwotCWlu
+dCBlcnI7CiAKIAlpZiAodW5saWtlbHkoY3R4LT5rZXlsZW4gIT0gQUVTX0tFWVNJWkVfMTI4KSkg
+ewotCQlTWU5DX1NLQ0lQSEVSX1JFUVVFU1RfT05fU1RBQ0soc3VicmVxLCBjdHgtPmZhbGxiYWNr
+KTsKLQotCQlza2NpcGhlcl9yZXF1ZXN0X3NldF9zeW5jX3RmbShzdWJyZXEsIGN0eC0+ZmFsbGJh
+Y2spOwotCQlza2NpcGhlcl9yZXF1ZXN0X3NldF9jYWxsYmFjayhzdWJyZXEsIHJlcS0+YmFzZS5m
+bGFncywKLQkJCQkJICAgICAgTlVMTCwgTlVMTCk7Ci0JCXNrY2lwaGVyX3JlcXVlc3Rfc2V0X2Ny
+eXB0KHN1YnJlcSwgcmVxLT5zcmMsIHJlcS0+ZHN0LAotCQkJCQkgICByZXEtPmNyeXB0bGVuLCBy
+ZXEtPml2KTsKLQkJZXJyID0gY3J5cHRvX3NrY2lwaGVyX2RlY3J5cHQoc3VicmVxKTsKLQkJc2tj
+aXBoZXJfcmVxdWVzdF96ZXJvKHN1YnJlcSk7Ci0JCXJldHVybiBlcnI7CisJCXNrY2lwaGVyX3Jl
+cXVlc3Rfc2V0X3RmbSgmcmN0eC0+ZmFsbGJhY2tfcmVxLCBjdHgtPmZhbGxiYWNrKTsKKwkJc2tj
+aXBoZXJfcmVxdWVzdF9zZXRfY2FsbGJhY2soJnJjdHgtPmZhbGxiYWNrX3JlcSwKKwkJCQkJICAg
+ICAgcmVxLT5iYXNlLmZsYWdzLAorCQkJCQkgICAgICByZXEtPmJhc2UuY29tcGxldGUsCisJCQkJ
+CSAgICAgIHJlcS0+YmFzZS5kYXRhKTsKKwkJc2tjaXBoZXJfcmVxdWVzdF9zZXRfY3J5cHQoJnJj
+dHgtPmZhbGxiYWNrX3JlcSwgcmVxLT5zcmMsCisJCQkJCSAgIHJlcS0+ZHN0LCByZXEtPmNyeXB0
+bGVuLCByZXEtPml2KTsKKwkJcmV0dXJuIGNyeXB0b19za2NpcGhlcl9kZWNyeXB0KCZyY3R4LT5m
+YWxsYmFja19yZXEpOwogCX0KIAogCXJldHVybiBzYWhhcmFfYWVzX2NyeXB0KHJlcSwgRkxBR1Nf
+Q0JDKTsKQEAgLTc0MiwxNCArNzM1LDE1IEBAIHN0YXRpYyBpbnQgc2FoYXJhX2Flc19pbml0X3Rm
+bShzdHJ1Y3QgY3J5cHRvX3NrY2lwaGVyICp0Zm0pCiAJY29uc3QgY2hhciAqbmFtZSA9IGNyeXB0
+b190Zm1fYWxnX25hbWUoJnRmbS0+YmFzZSk7CiAJc3RydWN0IHNhaGFyYV9jdHggKmN0eCA9IGNy
+eXB0b19za2NpcGhlcl9jdHgodGZtKTsKIAotCWN0eC0+ZmFsbGJhY2sgPSBjcnlwdG9fYWxsb2Nf
+c3luY19za2NpcGhlcihuYW1lLCAwLAorCWN0eC0+ZmFsbGJhY2sgPSBjcnlwdG9fYWxsb2Nfc2tj
+aXBoZXIobmFtZSwgMCwKIAkJCQkJICAgICAgQ1JZUFRPX0FMR19ORUVEX0ZBTExCQUNLKTsKIAlp
+ZiAoSVNfRVJSKGN0eC0+ZmFsbGJhY2spKSB7CiAJCXByX2VycigiRXJyb3IgYWxsb2NhdGluZyBm
+YWxsYmFjayBhbGdvICVzXG4iLCBuYW1lKTsKIAkJcmV0dXJuIFBUUl9FUlIoY3R4LT5mYWxsYmFj
+ayk7CiAJfQogCi0JY3J5cHRvX3NrY2lwaGVyX3NldF9yZXFzaXplKHRmbSwgc2l6ZW9mKHN0cnVj
+dCBzYWhhcmFfYWVzX3JlcWN0eCkpOworCWNyeXB0b19za2NpcGhlcl9zZXRfcmVxc2l6ZSh0Zm0s
+IHNpemVvZihzdHJ1Y3Qgc2FoYXJhX2Flc19yZXFjdHgpICsKKwkJCQkJIGNyeXB0b19za2NpcGhl
+cl9yZXFzaXplKGN0eC0+ZmFsbGJhY2spKTsKIAogCXJldHVybiAwOwogfQpAQCAtNzU4LDcgKzc1
+Miw3IEBAIHN0YXRpYyB2b2lkIHNhaGFyYV9hZXNfZXhpdF90Zm0oc3RydWN0IGNyeXB0b19za2Np
+cGhlciAqdGZtKQogewogCXN0cnVjdCBzYWhhcmFfY3R4ICpjdHggPSBjcnlwdG9fc2tjaXBoZXJf
+Y3R4KHRmbSk7CiAKLQljcnlwdG9fZnJlZV9zeW5jX3NrY2lwaGVyKGN0eC0+ZmFsbGJhY2spOwor
+CWNyeXB0b19mcmVlX3NrY2lwaGVyKGN0eC0+ZmFsbGJhY2spOwogfQogCiBzdGF0aWMgdTMyIHNh
+aGFyYV9zaGFfaW5pdF9oZHIoc3RydWN0IHNhaGFyYV9kZXYgKmRldiwKLS0gCjIuMTcuMQoKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
+aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
+bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
