@@ -2,67 +2,82 @@ Return-Path: <SRS0=38i7=AS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0957EC433DF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 06:35:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 633E0C433DF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 11:16:02 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C7842206F6
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 06:35:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3067020708
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 11:16:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ixjkfkmE";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="fWakJNjF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7842206F6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jJ7g5cbS";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MbMMReVh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3067020708
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=br6fAJawME+9ilulONjeY6DoGVZSGu2ckhuVDR1nkgU=; b=ixjkfkmEe9TvvTGF22tEAucH5K
-	m8MJiKBOq8dLg9EFa638C52ZrN7y6Rwl2JLFEFT0Atpq+wtuRZ1OnMDgz0glJWJiWriEuKV8fGB4P
-	QEJbBsznzZi+DUNZ77rVI58qnG+JHOzSb+84MkyA76YCDLvAxnB1NULZ632cb2F37ibY779L9SMHe
-	DbWpfdANQAwpNbzpJkE+Ab786aj0ScNpMSPxGStPVnborFMPqqcadopd4PRjyS9i9xHHGQ9ET/Nwo
-	xCMQq3XTXhp1SX3yBbqL2cMuXvbcfSxShYdz4aQaje22vDejxxJ1ZquvdYmIqbKgYP6ScfxJFLGf6
-	pA35kR1Q==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=BGZpa7LuXh1EfmaSiwt4g3wpLNcVFh1SA7HmYl8w1ZA=; b=jJ7g5cbS1pn4dqkpOybrEe4oS
+	Nnca9O5HoYhuk+GGuPus5qhXFxfLgRIoCjIYSuCg2RWrDMVqxEi2wrO0wMGcWJvIc2+gOvmpH4IV2
+	rD2R04gsI/c9u4tGMt7VsWp9aPf3sPq7fYLNwzK1ymzQOKmzq/JctjYm3TAvnra4UiUgqLp28ysYj
+	3QabAYfG/q21t2um66q7zb4k9M+hVKifNbczO59vo5nnYdvF2P4/BoAmrSZz/S5GmIFrgl6Ol/ZoO
+	IlFRmvmk59+BdvD9MRJJ+V34CZRlBzhTeE0KRCiJWhNgVn/bK4i9bdtIp92EdCj4WYq8T9+1yNyTZ
+	jCqr36J6Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jshCJ-0003Lt-BE; Tue, 07 Jul 2020 06:35:19 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1jslZp-0003YQ-T1; Tue, 07 Jul 2020 11:15:53 +0000
+Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jshBK-0002gl-CY; Tue, 07 Jul 2020 06:34:19 +0000
-Received: from e123331-lin.nice.arm.com (adsl-70.109.242.21.tellas.gr
- [109.242.21.70])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id E1C20206DF;
- Tue,  7 Jul 2020 06:34:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1594103657;
- bh=FlnqUkR6D2FzpMUbB72LD/tiEaX3AxeocPOstTJminM=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=fWakJNjFwn/Vqm9MCsOcTSlyCVc/jgj57qDaGQGrAAIPyYH050HQMOZHYk0ccj7UR
- Bi85Z5PCHyFzd34bIY7s06nW9x1rjnwVRzpzJhJr1YycvVZvHZpD9DZ8KMZR2aqnFU
- 04dprrqJJiAY0Vwl3k10YQ2gv+Ia/gVb5Q1hJel0=
-From: Ard Biesheuvel <ardb@kernel.org>
-To: linux-crypto@vger.kernel.org
-Subject: [PATCH v4 13/13] crypto: mediatek - use AES library for GCM key
- derivation
-Date: Tue,  7 Jul 2020 09:32:03 +0300
-Message-Id: <20200707063203.5018-14-ardb@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200707063203.5018-1-ardb@kernel.org>
-References: <20200707063203.5018-1-ardb@kernel.org>
+ id 1jslZo-0003Xl-6Y
+ for linux-amlogic@lists.infradead.org; Tue, 07 Jul 2020 11:15:53 +0000
+Received: by mail-lj1-x22a.google.com with SMTP id h19so49450344ljg.13
+ for <linux-amlogic@lists.infradead.org>; Tue, 07 Jul 2020 04:15:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=IME/GKmb03RMGZjHJLw9fB5q2hWSVThgD6kxOkSv7K4=;
+ b=MbMMReVhvU1Ziovve/YFlmTeUU52Pj/orKnR7kX0NlykcVik8u67E66OxRylvX4Oaz
+ EklcD2sTe2vWnBBM/OrMJN9XhiXGr9KnB3NO0SaKVMbMRzzmQv0mpSIU3l8usw++6Di/
+ YATzyor3V8fa3yajhQQ0JvV+5UyJ2t4+EWpgJquP7iad6/KuBlQkef3UOB+wgdDGi+zi
+ M7tRYg96icGx5VqDZulWFiw/mEN+gdLBERSj5VsUwT3xllZrYNq5/vXaDf2h70MBnUa3
+ G61L17PrwXwrz72aXhT8lIDpbDP8M5nEucOcfgujb4xoACysDuy4vpC1krs7qL1xDlzN
+ BhOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=IME/GKmb03RMGZjHJLw9fB5q2hWSVThgD6kxOkSv7K4=;
+ b=feJvU/Ta+ApB1usby4bNrXymXWonhOU5YBFmlGudk8jzpc9EijQpRrFDbWyVj/QrCI
+ dC4wNxCf63LuR5aY/ldgZWEaW+UFABoo3TL5YKdoZaP62HEcdB9cI6QY/6zKYytUoDXb
+ +EeVldF5wcvST8xVYWjFLMGOshsDI622t1434pTubZS1uHykqiL+FRFAu5M7S/yMgdc7
+ AWPWEg2LnN9GjsKfIpoz2tHf/ljLNWAsUJOCnhDHf3l1HYWc3aTqTVGlVQT1Bp7kSCoJ
+ MQnn4MnUQzvoAS1t1Hen3tXthysDD1MiY0clg75xa5P/sn4Eo0DcF9vXgntdKZlHd9ou
+ fCPQ==
+X-Gm-Message-State: AOAM532hxJ+vs87Z9DyRVtNxBsbk8aIel4NnR731p3m6AVK/61kGaC2b
+ g8lccca6T5vzMJbMTCA9+2fBEQyQz8a11sin7lCBKA==
+X-Google-Smtp-Source: ABdhPJwbsoWVmqeN0/WQZpQJHIRzq9HpNh3Mx3xudoIWyjVcuG5GzzrQ0ViAG5GTTFplqmcdl8EFB/wvQqzTDo1sta8=
+X-Received: by 2002:a2e:9a4d:: with SMTP id k13mr8480046ljj.283.1594120550675; 
+ Tue, 07 Jul 2020 04:15:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200618025916.GA19368@home-desktop>
+In-Reply-To: <20200618025916.GA19368@home-desktop>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 7 Jul 2020 13:15:39 +0200
+Message-ID: <CACRpkdZqkAXpH83H88=phtVcJRhqh-1865X8gJun_oOqBwzxrw@mail.gmail.com>
+Subject: Re: [PATCH] [v2] pinctrl: meson: fix drive strength register and bit
+ calculation
+To: Hyeonki Hong <hhk7734@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200707_023418_663129_8EF75F38 
-X-CRM114-Status: GOOD (  15.48  )
+X-CRM114-CacheID: sfid-20200707_071552_370929_68C67F71 
+X-CRM114-Status: GOOD (  11.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,171 +89,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Eric Biggers <ebiggers@google.com>,
- Corentin Labbe <clabbe.montjoie@gmail.com>,
- Ayush Sawal <ayush.sawal@chelsio.com>, Jamie Iles <jamie@jamieiles.com>,
- Fabio Estevam <festevam@gmail.com>, Ard Biesheuvel <ardb@kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- =?UTF-8?q?Horia=20Geant=C4=83?= <horia.geanta@nxp.com>,
- Rohit Maheshwari <rohitm@chelsio.com>, Chen-Yu Tsai <wens@csie.org>,
- Corentin Labbe <clabbe@baylibre.com>, NXP Linux Team <linux-imx@nxp.com>,
- Tom Lendacky <thomas.lendacky@amd.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Vinay Kumar Yadav <vinay.yadav@chelsio.com>,
- Maxime Ripard <mripard@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, John Allen <john.allen@amd.com>,
- Tero Kristo <t-kristo@ti.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, "David S. Miller" <davem@davemloft.net>
-MIME-Version: 1.0
+Cc: Kevin Hilman <khilman@baylibre.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Mediatek accelerator driver calls into a dynamically allocated
-skcipher of the ctr(aes) variety to perform GCM key derivation, which
-involves AES encryption of a single block consisting of NUL bytes.
+On Thu, Jun 18, 2020 at 4:59 AM Hyeonki Hong <hhk7734@gmail.com> wrote:
 
-There is no point in using the skcipher API for this, so use the AES
-library interface instead.
+> If a GPIO bank has greater than 16 pins, PAD_DS_REG is split into two
+> or more registers. However, when register and bit were calculated, the
+> first register defined in the bank was used, and the bit was calculated
+> based on the first pin. This causes problems in setting the driving
+> strength.
+>
+> The following method was used to solve this problem:
+> A bit is calculated first using predefined strides. Then, If the bit is
+> 32 or more, the register is changed by the quotient of the bit divided
+> by 32. And the bit is set to the remainder.
+>
+> Signed-off-by: Hyeonki Hong <hhk7734@gmail.com>
 
-Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
----
- drivers/crypto/Kconfig            |  3 +-
- drivers/crypto/mediatek/mtk-aes.c | 63 +++-----------------
- 2 files changed, 9 insertions(+), 57 deletions(-)
+Patch applied.
 
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 7bc58bf99703..585ad584e421 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -758,10 +758,9 @@ config CRYPTO_DEV_ZYNQMP_AES
- config CRYPTO_DEV_MEDIATEK
- 	tristate "MediaTek's EIP97 Cryptographic Engine driver"
- 	depends on (ARM && ARCH_MEDIATEK) || COMPILE_TEST
--	select CRYPTO_AES
-+	select CRYPTO_LIB_AES
- 	select CRYPTO_AEAD
- 	select CRYPTO_SKCIPHER
--	select CRYPTO_CTR
- 	select CRYPTO_SHA1
- 	select CRYPTO_SHA256
- 	select CRYPTO_SHA512
-diff --git a/drivers/crypto/mediatek/mtk-aes.c b/drivers/crypto/mediatek/mtk-aes.c
-index 78d660d963e2..4ad3571ab6af 100644
---- a/drivers/crypto/mediatek/mtk-aes.c
-+++ b/drivers/crypto/mediatek/mtk-aes.c
-@@ -137,8 +137,6 @@ struct mtk_aes_gcm_ctx {
- 
- 	u32 authsize;
- 	size_t textlen;
--
--	struct crypto_skcipher *ctr;
- };
- 
- struct mtk_aes_drv {
-@@ -996,17 +994,8 @@ static int mtk_aes_gcm_setkey(struct crypto_aead *aead, const u8 *key,
- 			      u32 keylen)
- {
- 	struct mtk_aes_base_ctx *ctx = crypto_aead_ctx(aead);
--	struct mtk_aes_gcm_ctx *gctx = mtk_aes_gcm_ctx_cast(ctx);
--	struct crypto_skcipher *ctr = gctx->ctr;
--	struct {
--		u32 hash[4];
--		u8 iv[8];
--
--		struct crypto_wait wait;
--
--		struct scatterlist sg[1];
--		struct skcipher_request req;
--	} *data;
-+	u8 hash[AES_BLOCK_SIZE] __aligned(4) = {};
-+	struct crypto_aes_ctx aes_ctx;
- 	int err;
- 
- 	switch (keylen) {
-@@ -1026,39 +1015,18 @@ static int mtk_aes_gcm_setkey(struct crypto_aead *aead, const u8 *key,
- 
- 	ctx->keylen = SIZE_IN_WORDS(keylen);
- 
--	/* Same as crypto_gcm_setkey() from crypto/gcm.c */
--	crypto_skcipher_clear_flags(ctr, CRYPTO_TFM_REQ_MASK);
--	crypto_skcipher_set_flags(ctr, crypto_aead_get_flags(aead) &
--				  CRYPTO_TFM_REQ_MASK);
--	err = crypto_skcipher_setkey(ctr, key, keylen);
-+	err = aes_expandkey(&aes_ctx, key, keylen);
- 	if (err)
- 		return err;
- 
--	data = kzalloc(sizeof(*data) + crypto_skcipher_reqsize(ctr),
--		       GFP_KERNEL);
--	if (!data)
--		return -ENOMEM;
--
--	crypto_init_wait(&data->wait);
--	sg_init_one(data->sg, &data->hash, AES_BLOCK_SIZE);
--	skcipher_request_set_tfm(&data->req, ctr);
--	skcipher_request_set_callback(&data->req, CRYPTO_TFM_REQ_MAY_SLEEP |
--				      CRYPTO_TFM_REQ_MAY_BACKLOG,
--				      crypto_req_done, &data->wait);
--	skcipher_request_set_crypt(&data->req, data->sg, data->sg,
--				   AES_BLOCK_SIZE, data->iv);
--
--	err = crypto_wait_req(crypto_skcipher_encrypt(&data->req),
--			      &data->wait);
--	if (err)
--		goto out;
-+	aes_encrypt(&aes_ctx, hash, hash);
-+	memzero_explicit(&aes_ctx, sizeof(aes_ctx));
- 
- 	mtk_aes_write_state_le(ctx->key, (const u32 *)key, keylen);
--	mtk_aes_write_state_be(ctx->key + ctx->keylen, data->hash,
-+	mtk_aes_write_state_be(ctx->key + ctx->keylen, (const u32 *)hash,
- 			       AES_BLOCK_SIZE);
--out:
--	kzfree(data);
--	return err;
-+
-+	return 0;
- }
- 
- static int mtk_aes_gcm_setauthsize(struct crypto_aead *aead,
-@@ -1095,32 +1063,17 @@ static int mtk_aes_gcm_init(struct crypto_aead *aead)
- {
- 	struct mtk_aes_gcm_ctx *ctx = crypto_aead_ctx(aead);
- 
--	ctx->ctr = crypto_alloc_skcipher("ctr(aes)", 0,
--					 CRYPTO_ALG_ASYNC);
--	if (IS_ERR(ctx->ctr)) {
--		pr_err("Error allocating ctr(aes)\n");
--		return PTR_ERR(ctx->ctr);
--	}
--
- 	crypto_aead_set_reqsize(aead, sizeof(struct mtk_aes_reqctx));
- 	ctx->base.start = mtk_aes_gcm_start;
- 	return 0;
- }
- 
--static void mtk_aes_gcm_exit(struct crypto_aead *aead)
--{
--	struct mtk_aes_gcm_ctx *ctx = crypto_aead_ctx(aead);
--
--	crypto_free_skcipher(ctx->ctr);
--}
--
- static struct aead_alg aes_gcm_alg = {
- 	.setkey		= mtk_aes_gcm_setkey,
- 	.setauthsize	= mtk_aes_gcm_setauthsize,
- 	.encrypt	= mtk_aes_gcm_encrypt,
- 	.decrypt	= mtk_aes_gcm_decrypt,
- 	.init		= mtk_aes_gcm_init,
--	.exit		= mtk_aes_gcm_exit,
- 	.ivsize		= GCM_AES_IV_SIZE,
- 	.maxauthsize	= AES_BLOCK_SIZE,
- 
--- 
-2.17.1
-
+Yours,
+Linus Walleij
 
 _______________________________________________
 linux-amlogic mailing list
