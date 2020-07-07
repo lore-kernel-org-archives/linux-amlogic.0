@@ -2,70 +2,119 @@ Return-Path: <SRS0=38i7=AS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MSGID_FROM_MTA_HEADER,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BD3FC433E1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 19:23:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5E72C433DF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 20:04:45 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 023692065D
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 19:23:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B4B33206F6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2020 20:04:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vEm1/N2U"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 023692065D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fmPmRLSj";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=amdcloud.onmicrosoft.com header.i=@amdcloud.onmicrosoft.com header.b="M0RiF84r"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B4B33206F6
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amd.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=gkLo7+F2IgqRKMfR8IxcD+ApvnDLDZrZFC20Mmw2Foo=; b=vEm1/N2UqM1AIFkX6XgkAkdti
-	Ua35ld24vZlNQC7JlrGLh85cjbA+PtPw4R0yRWHn9nBznFlFPQdB8Kjx5ymLJcQ8TaoNXbscXwIUx
-	x8wfoXq5fzD6WzVGBc6BsT6cR25hmnXBlrGblAA9q3f9q/B8S5sNkry0nNbrqYqRgCXzySZZiyss4
-	bURdfzFYVfkA6uH+LLed+CWiJNF4ug9xm0gzTR+HsAsDrL1pP4hcrW3egppUVTpWjkouKqCwKwj1O
-	RUWewiuith8/pK02gDzZVr+MAiqXewNH5z50rdPY2s6BvpVvg5bZ3D1XPSfdzuR1mPR1WFZokNJ/X
-	zlBTGSGhA==;
+	 bh=DmhPXVAuzqy6+lScB4r3Y6OadcAnFBdEqUGRo4dIZoQ=; b=fmPmRLSjhvGRTZC1WeeGme8ut
+	NyD3LwR5+82QnzGv6B6Dz1EwtZiqL5Wj2sPP7JT0q1H7bUcGjjZ1nYNMm254kv359kAYbOKBSegd2
+	hEl+kpRvJ9eCETV+9hpVJKOQN0Mrli+CTUZo2z1QnARERTaekGeG4A/gAyxFLhe+rXRdWxFejyW69
+	58MMNp/+dE5Q3h6c4RY8mo5FaHbGseLjjqGxqDBytrilQnfnorG7Ss5SC6I7eTu/W9Nr68jyM1usg
+	I8F9Yq+FfX2hc4zxg0rUrMJng8Ths1Tas0+PczhUhptJBtyaAZtetv2WGFEWV8hyW6jWJSqgrgMtY
+	5hjcOKWCw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jstBp-0004dj-KU; Tue, 07 Jul 2020 19:23:37 +0000
-Received: from mga06.intel.com ([134.134.136.31])
+	id 1jstpT-0007l9-9i; Tue, 07 Jul 2020 20:04:35 +0000
+Received: from mail-eopbgr770042.outbound.protection.outlook.com
+ ([40.107.77.42] helo=NAM02-SN1-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jstBi-0004bq-Jc; Tue, 07 Jul 2020 19:23:31 +0000
-IronPort-SDR: MX/5i4tsc/PCs0flx3WO8J3j4cJJ6GIuNBN9pPICTETpyMI9AMnXzB3cCHCfbRi/Bsiim0Yhxm
- 5ujlZ5gE5sqw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="209212154"
-X-IronPort-AV: E=Sophos;i="5.75,324,1589266800"; d="scan'208";a="209212154"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2020 12:23:29 -0700
-IronPort-SDR: K33tZHbvjJJz+antiIUzSPM8PCsbQXC/0det2ssOH3Ql+QVJxbrxSEX7yRQ07VjmGga7TrT+CC
- VjVS0Z0i/9qg==
-X-IronPort-AV: E=Sophos;i="5.75,324,1589266800"; d="scan'208";a="266915978"
-Received: from mrtorger-mobl1.amr.corp.intel.com (HELO
- pbossart-mobl3.amr.corp.intel.com) ([10.254.77.62])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2020 12:23:28 -0700
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-To: alsa-devel@alsa-project.org
-Subject: [PATCH 3/3] ASoC: meson: axg-spdifin: remove comparison always false
- warning
-Date: Tue,  7 Jul 2020 14:23:10 -0500
-Message-Id: <20200707192310.98663-4-pierre-louis.bossart@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200707192310.98663-1-pierre-louis.bossart@linux.intel.com>
-References: <20200707192310.98663-1-pierre-louis.bossart@linux.intel.com>
+ id 1jstpO-0007jp-HF; Tue, 07 Jul 2020 20:04:31 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A3J1E3gxEDrBoVdt3rs0YqDl0m7JrbipgUQ38EFkLOurh5HzHsRxbuIqHtJrCgBNJJk886LBxl5u1k/9FThjMs4sUAjYF9GRx6Zf1QKyuJrLDTktiMhhminUSBSYXwko1UAxQo7NCLkpzS1Rrb6Jvd2cQhaLn+oND4sdOzge+Lo+Ebja72JoCPy6RHGNOgt6yz4TDDLNmOD3r+jCP24h5zRprwXvW/3964Q955xpoZrIzkK8qGjkKQufiBPeFmoUbkWCJJMiLaxQpEpbiI5OKSwSzBqGwaBNdos/6hRoZ9oH7eorIR/LuduU9hDJVbTllMjxVOgFL1+KImNNO3Qyaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RQWNGQ2dJvXojFQN6qUP29zvrHH/0lVt3ygOEfkEEUI=;
+ b=M6vy+BU4YQaUPgJo3Has8tz8XWmdfEdXGVsbEthavnaygNkkaCc120tPJcnUNcduEp1qzdf/QchnOtvG73PN++ilWMRNFSetNncao2s3CFhgk0dycowTOUfHd/FZFqNmUU1lr/eCqVtsz9ASfOAJuuzsliT3GOdaQ8EXRC9VyNnjGP2DeRBEqWIvyC+yy2ooRdQnTyci9boxVpaM50VIckZSziLxF/wr8w3Qx/Z567AyX3zD20vBRrDU8zonZEtPHE7s83UDpYVBL2dkRiOb5YXz66FUv9DkueYqsLDcaUr0TNW+PLilv8/wY6KM/lQw8zxobH4MjJVmgnwXElhC/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RQWNGQ2dJvXojFQN6qUP29zvrHH/0lVt3ygOEfkEEUI=;
+ b=M0RiF84r9WoS0HaFb7IsUOm10qWfCA5d2PrAGxQPk0IwYGm6Dwj07VelDMsmWxr9ueRcdA/+CajW6Ryn+2Nut7KeyI905sJR7jsZixDMQDmLaXbtBVH6c6qgbegtgHFiDzaaKQoqR0oP4dhkOTdXf98IIVKPKionSVBJp5vsY2k=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=amd.com;
+Received: from SN1PR12MB2590.namprd12.prod.outlook.com (2603:10b6:802:2e::17)
+ by SA0PR12MB4496.namprd12.prod.outlook.com (2603:10b6:806:9b::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3153.23; Tue, 7 Jul
+ 2020 20:04:26 +0000
+Received: from SN1PR12MB2590.namprd12.prod.outlook.com
+ ([fe80::c179:ec27:4476:8e05]) by SN1PR12MB2590.namprd12.prod.outlook.com
+ ([fe80::c179:ec27:4476:8e05%7]) with mapi id 15.20.3153.029; Tue, 7 Jul 2020
+ 20:04:26 +0000
+Date: Tue, 7 Jul 2020 15:04:18 -0500
+From: John Allen <john.allen@amd.com>
+To: Ard Biesheuvel <ardb@kernel.org>
+Subject: Re: [PATCH v4 07/13] crypto: ccp - permit asynchronous skcipher as
+ fallback
+Message-ID: <20200707200348.GA127522@mojo.amd.com>
+References: <20200707063203.5018-1-ardb@kernel.org>
+ <20200707063203.5018-8-ardb@kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200707063203.5018-8-ardb@kernel.org>
+X-ClientProxiedBy: SN2PR01CA0051.prod.exchangelabs.com (2603:10b6:800::19) To
+ SN1PR12MB2590.namprd12.prod.outlook.com
+ (2603:10b6:802:2e::17)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from mojo.amd.com (165.204.77.1) by
+ SN2PR01CA0051.prod.exchangelabs.com (2603:10b6:800::19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3153.23 via Frontend Transport; Tue, 7 Jul 2020 20:04:25 +0000
+X-Originating-IP: [165.204.77.1]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: b393c32a-c880-47e9-8314-08d822b0f300
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4496:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SA0PR12MB4496C2646662A9928D444C619A660@SA0PR12MB4496.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-Forefront-PRVS: 0457F11EAF
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dTwtxGCgVESod0ofTo3TKbYK9RkbqXd+92ipVnWyU6aDNm/wv4Ejq6qRBMjo1DQWKZ5Z+NxUILgqmerv6oqqL6HkY8EKFPqqx/CJi5r2xHSC81SmzBouWIvC3sT/ryaU1GbuAzdSnlehlFPd3ZAWvTLvvFlmyDplz1d3ECopqaTF3qGmCGmndzJQ+P5xSCC4o/RiEMkuN5AQsquS6jRdA28wr1vthNzJjhmcjg2VHVVbw4nwHFwbRoIeomrU9XFX2e/XvmId91gh7isbWFziFM07c1X4g4q5xyfFR58vn6Iu4AgDfExQgYgoij1Zh1uY
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN1PR12MB2590.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(39860400002)(396003)(376002)(366004)(346002)(136003)(44832011)(83380400001)(6666004)(316002)(956004)(54906003)(66946007)(66556008)(66476007)(7416002)(4326008)(6916009)(478600001)(55016002)(8676002)(2906002)(52116002)(7696005)(5660300002)(33656002)(1076003)(8936002)(26005)(186003)(16526019)(86362001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: YeGb2stMMcMRTzsP7vfzpcpVwMdaSBN/IHzlOoGT089aC/PJIeIpMLWcymQeEY5cAcn/aKNBCodZQt/OslIGZbWQlOxMYZHlBqlYsotojHvj8qS10ItkfvebGx0Mt/tNJURku69/VqM0eth89LVmhgGvpPt8k2/bNuvGwYGKq4DFnASjTaKgNws3IldTbDXX+wjKUUDSP9zUHNMBET/z6eVqKnqhljyI0D4FxbALq1Zjv2CuagdtNi66i1mqm63anadT4kpPt/qm7tli3sbb3IBxV0T7WbknmP8PBSUMWJq36wCw5yb2DPQOqOYTVn5knM2+rBWYXyEi8IKStLfrLdcKcgH48NBoCjICzBN6JTqNw5F+ZZa70Bdh/NmizfFgGWoQg7Gt9SSamudyfEnUMkZ8f4PwjMD+1LJh/xlv9IdFsNMKKUs1+UD7R2yiYLE8U5eCvUVkmoRFoa34qfD2b/kN5gFRmQexoFhaCoklokw=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b393c32a-c880-47e9-8314-08d822b0f300
+X-MS-Exchange-CrossTenant-AuthSource: SN1PR12MB2590.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2020 20:04:26.3218 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IW32qZl7sQGZLPjTFnIkn89LCajYPQBiho9LKjrkka+RWllG4/o/V9a7bdu1S/2Q3wmlMulhYMs+ROcBfCc2yA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4496
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200707_152330_785353_210018E8 
-X-CRM114-Status: GOOD (  10.48  )
+X-CRM114-CacheID: sfid-20200707_160430_699630_63F2106F 
+X-CRM114-Status: GOOD (  11.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,38 +126,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: open list <linux-kernel@vger.kernel.org>, tiwai@suse.de,
- Kevin Hilman <khilman@baylibre.com>, Takashi Iwai <tiwai@suse.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
- broonie@kernel.org,
- "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>,
- Jaroslav Kysela <perex@perex.cz>, Lee Jones <lee.jones@linaro.org>,
- "moderated list:ARM/Amlogic Meson SoC support"
- <linux-arm-kernel@lists.infradead.org>, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Eric Biggers <ebiggers@google.com>,
+ Corentin Labbe <clabbe.montjoie@gmail.com>,
+ Ayush Sawal <ayush.sawal@chelsio.com>, Jamie Iles <jamie@jamieiles.com>,
+ Fabio Estevam <festevam@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>,
+ Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
+ Rohit Maheshwari <rohitm@chelsio.com>, Chen-Yu Tsai <wens@csie.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Corentin Labbe <clabbe@baylibre.com>,
+ Tom Lendacky <thomas.lendacky@amd.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Vinay Kumar Yadav <vinay.yadav@chelsio.com>,
+ Maxime Ripard <mripard@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Tero Kristo <t-kristo@ti.com>,
+ linux-crypto@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rml4IFc9MSB3YXJuaW5nOgoKc291bmQvc29jL21lc29uL2F4Zy1zcGRpZmluLmM6IEluIGZ1bmN0
-aW9uIOKAmGF4Z19zcGRpZmluX3dyaXRlX21vZGVfcGFyYW3igJk6CmluY2x1ZGUvbGludXgvYml0
-cy5oOjI2OjI4OiB3YXJuaW5nOiBjb21wYXJpc29uIG9mIHVuc2lnbmVkIGV4cHJlc3Npb24KPCAw
-IGlzIGFsd2F5cyBmYWxzZSBbLVd0eXBlLWxpbWl0c10KCkNhc3Qgd2lkdGggdG8gYW4gaW50IHRv
-IGF2b2lkIGNoZWNraW5nIGlmIGFuIHVuc2lnbmVkIHZhbHVlIGlzIGxvd2VyCnRoYW4gemVyby4K
-ClNpZ25lZC1vZmYtYnk6IFBpZXJyZS1Mb3VpcyBCb3NzYXJ0IDxwaWVycmUtbG91aXMuYm9zc2Fy
-dEBsaW51eC5pbnRlbC5jb20+Ci0tLQogc291bmQvc29jL21lc29uL2F4Zy1zcGRpZmluLmMgfCAy
-ICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYg
-LS1naXQgYS9zb3VuZC9zb2MvbWVzb24vYXhnLXNwZGlmaW4uYyBiL3NvdW5kL3NvYy9tZXNvbi9h
-eGctc3BkaWZpbi5jCmluZGV4IGQwZDA5Zjk0NWI0OC4uNWZhNDExZDRlOTg1IDEwMDY0NAotLS0g
-YS9zb3VuZC9zb2MvbWVzb24vYXhnLXNwZGlmaW4uYworKysgYi9zb3VuZC9zb2MvbWVzb24vYXhn
-LXNwZGlmaW4uYwpAQCAtMTU0LDcgKzE1NCw3IEBAIHN0YXRpYyB2b2lkIGF4Z19zcGRpZmluX3dy
-aXRlX21vZGVfcGFyYW0oc3RydWN0IHJlZ21hcCAqbWFwLCBpbnQgbW9kZSwKIAlyZWcgPSBvZmZz
-ZXQgKiByZWdtYXBfZ2V0X3JlZ19zdHJpZGUobWFwKSArIGJhc2VfcmVnOwogCXNoaWZ0ID0gd2lk
-dGggKiAobnVtX3Blcl9yZWcgLSAxIC0gcmVtKTsKIAotCXJlZ21hcF91cGRhdGVfYml0cyhtYXAs
-IHJlZywgR0VOTUFTSyh3aWR0aCAtIDEsIDApIDw8IHNoaWZ0LAorCXJlZ21hcF91cGRhdGVfYml0
-cyhtYXAsIHJlZywgR0VOTUFTSygoaW50KXdpZHRoIC0gMSwgMCkgPDwgc2hpZnQsCiAJCQkgICB2
-YWwgPDwgc2hpZnQpOwogfQogCi0tIAoyLjI1LjEKCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Tue, Jul 07, 2020 at 09:31:57AM +0300, Ard Biesheuvel wrote:
+> Even though the ccp driver implements an asynchronous version of xts(aes),
+> the fallback it allocates is required to be synchronous. Given that SIMD
+> based software implementations are usually asynchronous as well, even
+> though they rarely complete asynchronously (this typically only happens
+> in cases where the request was made from softirq context, while SIMD was
+> already in use in the task context that it interrupted), these
+> implementations are disregarded, and either the generic C version or
+> another table based version implemented in assembler is selected instead.
+> 
+> Since falling back to synchronous AES is not only a performance issue, but
+> potentially a security issue as well (due to the fact that table based AES
+> is not time invariant), let's fix this, by allocating an ordinary skcipher
+> as the fallback, and invoke it with the completion routine that was given
+> to the outer request.
+> 
+> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+
+Acked-by: John Allen <john.allen@amd.com>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
