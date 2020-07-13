@@ -2,71 +2,89 @@ Return-Path: <SRS0=9eFL=AY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E115C433E6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 16:06:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE36AC433E5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 18:51:49 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2F53A2076D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 16:06:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 51BE720758
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 18:51:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bmUFGMfX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F53A2076D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=dlrobertson.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cia2MFpC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LYgd5M71"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 51BE720758
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:Subject:
-	Message-ID:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Y49jJ1meuC6Bp9huv3P6cQo5xxRhfYtdOfTJBYkWj4g=; b=bmUFGMfXzA1fSbzzGhb/9A7uA
-	Jj3xjmi77VeDpJmJqYr9tH069JNv+d0WnkV5hu/oYJDFXMFXAQXP107flYCgnHPlRavqKWfO/MorH
-	OdCvGMIDcKlgKwhwUYzJDzmZPNT5mAUs6ThXvCmZ6ysxNgPZZzVK2l90UXBJITAgMIq52KYeqYvHb
-	C1+n7+ZgLWwfme0+0oQ3OpTIJwx939GxDwrHzfiyxTK5j+F6EH4VbDTV3qpRcqJUlK84YrBsqjmww
-	g+XGCZ18Ss2pZfGSTlH+j51zi7v3Cb1ozgEa8Sx90BPPcoY1AUHzKYpPL3VJxzei964Giabw+EF4t
-	6crcQLUTw==;
+	 bh=NHSq5bblFPi9yfBl0sGMdZIFou7cgZbCuUgiFMryydw=; b=Cia2MFpCRWpd5XI0eGRWCvkD0
+	KKrLyvsK4SXrV+VzeAjheoIjwjx6rotBgNUxzIM8qEgyBBCtcE2DwIizIS2CffKtveSWJpOX0jrUh
+	ws3WGPgCRE9blPUvCY5QYpsf2nayWNB3uMDFpCulp5sTwertOYcOFD1MuFx0eY/oI9IBZkiHu0O0v
+	gghKZQLbi1S0wG8aNYP08J8Ds3tZJLnYqwlRly1ahMMrNz1hS0alQpwh7mWQFrm+q+YQEbEghDF8D
+	/h+SKn6WX0ZX/JmI8bCrs+MTHrNXL05T5nPCmTpJ46s9A9GS7zACA1Q6IN0zvtn4XwsV8CmZ/FJeU
+	3EQnqVnnw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jv0yK-0004x3-3b; Mon, 13 Jul 2020 16:06:28 +0000
-Received: from sender4-op-o17.zoho.com ([136.143.188.17])
+	id 1jv3YD-0001a9-4F; Mon, 13 Jul 2020 18:51:41 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jv0yH-0004vT-10; Mon, 13 Jul 2020 16:06:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1594656375; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=anHNvDYLVviZgCgUDUF6dCZdJfUNO2U+Z2EHMp6EDEMHzYVRUXb5aS1J3oMxSa46Dh0AWnRsafmT6ujyKL/F2EZsKdtSw9tWjpfvNEcm7WOldQNRXQvLw8ZzdoKaau2owgf6U9mQvbr+1guajb+qFcPBrNU5DmGqCFSoyeZg29A=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1594656375;
- h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To;
- bh=F8q5Lt6dWY922aSaNvVVgURPZJwVNB1Tw4FOG4FL+JA=; 
- b=MhLuRg7qi+wUizJCQcN9boU1rtGGucp9m4AnUkWqvWdShEAV3mwCPAtZnm7mRniyrJPqX6wPATtybVc/j6Sj7hE5mQX3BWAEpQQVp5JZ1ZY3POWx5uVYsnsOO0f99cY1L2ZDW1wCDWb6OYZJ3IWuQcmnEPEg+W/G6iFheau0wQ0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- spf=pass  smtp.mailfrom=dan@dlrobertson.com;
- dmarc=pass header.from=<dan@dlrobertson.com> header.from=<dan@dlrobertson.com>
-Received: from gothmog.test (pool-108-28-30-30.washdc.fios.verizon.net
- [108.28.30.30]) by mx.zohomail.com
- with SMTPS id 1594656373280412.43216096061997;
- Mon, 13 Jul 2020 09:06:13 -0700 (PDT)
-From: Dan Robertson <dan@dlrobertson.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>
-Message-ID: <20200713160522.19345-2-dan@dlrobertson.com>
-Subject: [PATCH 1/1] usb: dwc3: meson-g12a: fix shared reset control use
-Date: Mon, 13 Jul 2020 12:05:22 -0400
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200713160522.19345-1-dan@dlrobertson.com>
-References: <20200713160522.19345-1-dan@dlrobertson.com>
+ id 1jv3Y8-0001Yc-62
+ for linux-amlogic@lists.infradead.org; Mon, 13 Jul 2020 18:51:37 +0000
+Received: by mail-pf1-x444.google.com with SMTP id m9so6418310pfh.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2020 11:51:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=617BtXfhDhCxYwKbF1MbJDp6FkHkJ91InZTtwhgrWAc=;
+ b=LYgd5M71atEpjo9+l5VDZyOrkPHo9IZuDVdMJYTe4U36kp8vOrC2TapmJ94j/8UYjJ
+ jIEt+3OwdsGQQYvAr3ySOyYYhy4X26dlaOpJV9sAg1NvJQn1Oxrm3vxfzDSrEDJaHUzj
+ g/VMUbc5LxVbW9KyCIxKvMDO3FGJwRAhPNAEfElYDGjrjAND8qcfgqmAREnmg+2Pqj72
+ 62k/UVl4GaFMj7zTDTSL8MbS0J/2LKASLUMNdB5y6YbBPfyP8G3ZOpPFmj5q/M8sW0wV
+ ilJG4VB7U77x8hJ7LvAYcrgW6vtacGTNQJzs6T1K/QG3pey6yfK6fwF+1aapm2TRW9xW
+ 2VBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=617BtXfhDhCxYwKbF1MbJDp6FkHkJ91InZTtwhgrWAc=;
+ b=Jb5ulhvyIXMQXfLGRQdyG+jDSac8hmhCfum9mK3FW4NuMtQ8XDbMju4T2Fm/AddA/H
+ iHiAQ5fbJ+hWvPF2/csA4lp1Fd1F07K94XuwHyiwPDnsMb4yDYzyytwl7kqArwBJm4+9
+ sLJTS+JF8lxvfMSqqZRNQ4/TkhdDICBV9NEk5NSbe1ff2lln0np/gmIa82RoYVarT41V
+ 9EU1J5stvlGT5vNcSi2+aJa82rLFH/2hv7Kkh0sQKU9WzKKPKdZ0TWDyMh1S4NOCFhxl
+ pMzOUbKqPn4UzZigSdBLg5GoA8fmKZOeNMf1n+rt/z5tlzPwW2La+gFXdCeewuq5VX4O
+ rO3Q==
+X-Gm-Message-State: AOAM532XeArGs8IcWJukeopFealWzZ3iB43oRzK2ZxeMTSCRy0GRX8G5
+ uAXoJF+3TSKHeWJjrQ9i7u6B6g==
+X-Google-Smtp-Source: ABdhPJwkB7sITv68w2uhGuGyIEDhJuVxctNfcClDDMcucA+tPHFjkiTXUaT2RW1CffXlgMiXC6FjFQ==
+X-Received: by 2002:aa7:97b6:: with SMTP id d22mr1134558pfq.202.1594666292267; 
+ Mon, 13 Jul 2020 11:51:32 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id t5sm13652413pgl.38.2020.07.13.11.51.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Jul 2020 11:51:31 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: meson-khadas-vim3: add Khadas MCU nodes
+Date: Mon, 13 Jul 2020 11:51:31 -0700
+Message-Id: <159466628489.14780.16650652644732625599.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200713065931.19845-1-narmstrong@baylibre.com>
+References: <20200713065931.19845-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200713_120625_236535_2102951E 
-X-CRM114-Status: UNSURE (   7.08  )
+X-CRM114-CacheID: sfid-20200713_145136_238985_27920AEA 
+X-CRM114-Status: UNSURE (   6.87  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -79,97 +97,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
- Dan Robertson <dan@dlrobertson.com>, linux-arm-kernel@lists.infradead.org
+Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
+ daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
+ Amit Kucheria <amit.kucheria@linaro.org>, linux-amlogic@lists.infradead.org,
+ rui.zhang@intel.com, lee.jones@linaro.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The reset is a shared reset line, but reset_control_reset is still used
-and reset_control_deassert is not guaranteed to have been called before
-the first reset_control_assert call. When suspending the following
-warning may be seen:
+On Mon, 13 Jul 2020 08:59:31 +0200, Neil Armstrong wrote:
+> Add the Khadas MCU node with active FAN thermal nodes for all the
+> Khadas VIM3 variants.
 
-WARNING: CPU: 1 PID: 5530 at drivers/reset/core.c:355 reset_control_assert+0x184/0x19c
-Hardware name: Hardkernel ODROID-N2 (DT)
-[..]
-pc : reset_control_assert+0x184/0x19c
-lr : dwc3_meson_g12a_suspend+0x68/0x7c
-[..]
-Call trace:
- reset_control_assert+0x184/0x19c
- dwc3_meson_g12a_suspend+0x68/0x7c
- platform_pm_suspend+0x28/0x54
- __device_suspend+0x590/0xabc
- dpm_suspend+0x104/0x404
- dpm_suspend_start+0x84/0x1bc
- suspend_devices_and_enter+0xc4/0x4fc
- pm_suspend+0x198/0x2d4
+Applied, thanks!
 
-Fixes: 6d9fa35a347a87 ("usb: dwc3: meson-g12a: get the reset as shared")
-Signed-off-by: Dan Robertson <dan@dlrobertson.com>
----
- drivers/usb/dwc3/dwc3-meson-g12a.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+[1/1] arm64: dts: meson-khadas-vim3: add Khadas MCU nodes
+      commit: cabb1f3827109372dcb80081cc654eb54f997afc
 
-diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-index 1f7f4d88ed9d..88b75b5a039c 100644
---- a/drivers/usb/dwc3/dwc3-meson-g12a.c
-+++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-@@ -737,13 +737,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 		goto err_disable_clks;
- 	}
- 
--	ret = reset_control_reset(priv->reset);
-+	ret = reset_control_deassert(priv->reset);
- 	if (ret)
--		goto err_disable_clks;
-+		goto err_assert_reset;
- 
- 	ret = dwc3_meson_g12a_get_phys(priv);
- 	if (ret)
--		goto err_disable_clks;
-+		goto err_assert_reset;
- 
- 	ret = priv->drvdata->setup_regmaps(priv, base);
- 	if (ret)
-@@ -752,7 +752,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 	if (priv->vbus) {
- 		ret = regulator_enable(priv->vbus);
- 		if (ret)
--			goto err_disable_clks;
-+			goto err_assert_reset;
- 	}
- 
- 	/* Get dr_mode */
-@@ -765,13 +765,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 
- 	ret = priv->drvdata->usb_init(priv);
- 	if (ret)
--		goto err_disable_clks;
-+		goto err_assert_reset;
- 
- 	/* Init PHYs */
- 	for (i = 0 ; i < PHY_COUNT ; ++i) {
- 		ret = phy_init(priv->phys[i]);
- 		if (ret)
--			goto err_disable_clks;
-+			goto err_assert_reset;
- 	}
- 
- 	/* Set PHY Power */
-@@ -809,6 +809,9 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 	for (i = 0 ; i < PHY_COUNT ; ++i)
- 		phy_exit(priv->phys[i]);
- 
-+err_assert_reset:
-+	reset_control_assert(priv->reset);
-+
- err_disable_clks:
- 	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
- 				   priv->drvdata->clks);
-
+Best regards,
+-- 
+Kevin Hilman <khilman@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
