@@ -2,82 +2,97 @@ Return-Path: <SRS0=9eFL=AY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,
+X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 37772C433F7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 13:22:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98CE4C433FB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 13:22:55 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E6203206F0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 13:22:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4F2A0206F4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 13:22:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kcjnHeLY";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hlFk02nn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E6203206F0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iMNxILU4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GeKR1wwQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F2A0206F4
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Gi+0Zc5F0/dM2mSDfB2+21x+cNyXZmBq3sLYxciWFYw=; b=kcjnHeLYuIhfmT/3yDDjDYNyXf
-	07zNcqdPTlGL3Wbp4b2yMemHrEcncrgja9KjOdLrYxwlWTEIdsOzCtHuMc1YqpTPFkg0oVlfRsT6L
-	FxuT3+wui2GVAD4VxFP4MlT+MA3FogLGc3wr6XatZKn2xIh4PfCQXELfojEaDePJGdrNW2/Elj3g+
-	MxBjfNPZqJbXlk6O5LotDeFAGqokq3WQigG6FR/C4bnE7EgFXcQKLBW0cONQSGtmxkP3Mi0mSwY4j
-	NnQVQXiB5bnC/DNgKfjZ0y3oJwH8YBubZPSeFCDiJ+gyItrCBP1puF+gDQPhopMhAu+uhBk5TVH3t
-	8SEaaYcQ==;
+	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=JoHncHPNUQjC61/IUntZjke2SRokNTNUg+eDVXXJ5dY=; b=iMNxILU4spGwLkGkjCtL5w5fjo
+	uIWEAFcTiKdQWpmdBVO3FATFuvJnFgQPqUQsv4AeCAv+b1uF0oAlaxmeFOu4eRHcZrePvT73/D9y8
+	pXasv62syUMXezQwNz4Ehis8ZreOala6jbWE6YvPJsOxXM6+sxwY6gNp5aUofPsu6Kc5tX9qDvPzF
+	FvSrr6IO0ft1g26qmnKJV+gg3ivpaR6uksJ/qqcY1uHGjRN45ptkmLD32qNyqqwUdVN5ap5FBCb7o
+	oBayQsyg5iMuzD1LoLZvWl2WxXue4YqBHTV4w0+fXzsIjfCMAU9qJisDX65xCJxLq19yDVAqnpg6s
+	fvBHU6yQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1juyPq-0006GP-Al; Mon, 13 Jul 2020 13:22:42 +0000
-Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
+	id 1juyPw-0006JC-Uf; Mon, 13 Jul 2020 13:22:49 +0000
+Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1juyPn-0006FL-2I; Mon, 13 Jul 2020 13:22:39 +0000
-Received: by mail-ed1-x543.google.com with SMTP id a1so8212198edt.10;
- Mon, 13 Jul 2020 06:22:37 -0700 (PDT)
+ id 1juyPs-0006HG-SV; Mon, 13 Jul 2020 13:22:46 +0000
+Received: by mail-ej1-x641.google.com with SMTP id ga4so17128286ejb.11;
+ Mon, 13 Jul 2020 06:22:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=TEh/JkkBeDq0BmwWDLkY2ALcEwIhER9cNUR1loI6e78=;
- b=hlFk02nnRr+rQKvpcmIRPBcv9Vppks3wU3BsbHQlS35RNRr0Lm2YUw7/utWjHu70OH
- fu21BCriHQitKJ9VJJ9HkQBoc0oNiPianJ9DfryJ5s4iB77Gi9+P+wSDFA8dw7sDMdjN
- CRk+C/cn77UZdk8p4eMVCYK2N1kZ9NOWbvXAMsA8NoetiFgB4PjRem+NJr8k6FdLryN7
- KSXqy55pf7Mo7GW41Rrh43kHUodvpJcq7yyqbdwHNICmnMteEU7rrwF/z8u+pZc3nMOJ
- t5bRIsTEDAnzpyq0Z/t5ptBct6erL48Bl/rPmxQHyXzHf8lqWgUjMDOqwGt/I2ULZZSO
- jYxQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=U+4fgAl092jtpf8p0sVznNDqJH6s4jt37g7dyTJMbT4=;
+ b=GeKR1wwQG/K1n4qF9XFSlFSzkaVyPMkd8BinPHhutRMJlF6usPHfpDeFKpKWpdFEHC
+ 0h95NiN2S2AmTQBzH80M78PHSIahI/tcCflBsQZpyaYkOuVh2yVYZ+UixlUJuMt+hPO6
+ na8XFN6usT0qNDW1S5C+z2EdEshbJVZKxMUpAMKkl0GucN4BQFdfgRt9KavWcs5Bug+j
+ 9lc+xWBOwCBLZjjodCWx/Zx9F0a0UYWYivLHs1F2MMcYS/BALXoLjEZZHNdFO8AEOfOk
+ x5jdjVAZYgPCY6D+ou6VAowrzYM4w1KwTh5T10OeLJdUZ6Zvcsen6kZWsgTyGnK5Gxi6
+ e/hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=TEh/JkkBeDq0BmwWDLkY2ALcEwIhER9cNUR1loI6e78=;
- b=QJlB6EqlAgoZp66GMjBY+RAA1eXFnc1xLjjQR2W9kCmXrGd9li1nf26hzEwl8tm+xg
- FhSM1vFF6JjMDE/wIWL8XGdStT0THoFrWa56sWX3KpcthBLzUnR2D8uoS2asI+fYzVpI
- AAfMR5EISaz+8Iy4T+cr8kFLudwOzGE0EThB+qQRuPz3+a9L46DalFXg2keGYjrss0Zm
- jcTC25lDevCQRJeyFAyc6UEXWN/atCDeYIEEb77XhL3Huj+FB6ONXK3aIOYXhRNV0HWM
- Oji+SgD9ToSarFXxg6qwvvcqj5knQAIte2GF1B7MeUHHQsq1O8HURncvwyNPE73wyf+8
- XAig==
-X-Gm-Message-State: AOAM531F0YWt8N47iarCpyahIA9QEIryxUCEU1e/wMi4D1tj8kLhlcA1
- TWWlEv677ZvzSKt0HovdRIY=
-X-Google-Smtp-Source: ABdhPJw69dKLZM419xxp02IeffDX2nQ+F52A+jh3cXUOZ7YUfQhM+G+xXauU5Oq4EhNqFD1PfU4cXQ==
-X-Received: by 2002:a50:fb93:: with SMTP id e19mr83849853edq.106.1594646556147; 
- Mon, 13 Jul 2020 06:22:36 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=U+4fgAl092jtpf8p0sVznNDqJH6s4jt37g7dyTJMbT4=;
+ b=D61Fyg6V1i1uqW93ysU2tc5DrzKFE6hzDjQmjgEXA0QTdX3rW1h4KSn0ZbjRp5mk3x
+ xcswpCogxrrjUOcqadDIqhaTGYXJQzZNHvc73GM99tmL8MDz3cvmM3FPB0RmyY1c2sl7
+ J+jYozpajTyIaR3M9x9JlJK+Q3mRWPKDMw3cOqXjL63heYzHahPA9kETCFWZsZu+/Tvj
+ 9DKVpKU9aWz/rjyko8wpbyXCecdisqmG1ZvrzhEwPB55pAP+jrEkzewjnXYweRkY9GjY
+ yHAYqUBFS3NnJ6Wri6yzZQtZL4M+ILLz/czKW0sk6cvN3ks+qKrFw3rmNFOYsldO3rqG
+ QBbg==
+X-Gm-Message-State: AOAM531Vq9O2EX62UZ2XbAAKz0Zb2c9wsmVWmkUHfegTXwaI7TcpuXtT
+ Pm7NLuvKfqDrhnJNYo+aPGw=
+X-Google-Smtp-Source: ABdhPJztyeurCQmHlxNniEhwD0qLqlX0SG+kgarnE5HX7VAl7vYbh07uZ079fvI7dqpSfYl6niKNmg==
+X-Received: by 2002:a17:906:9387:: with SMTP id
+ l7mr70960800ejx.274.1594646563415; 
+ Mon, 13 Jul 2020 06:22:43 -0700 (PDT)
 Received: from net.saheed (54007186.dsl.pool.telekom.hu. [84.0.113.134])
- by smtp.gmail.com with ESMTPSA id n9sm11806540edr.46.2020.07.13.06.22.30
+ by smtp.gmail.com with ESMTPSA id n9sm11806540edr.46.2020.07.13.06.22.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Jul 2020 06:22:35 -0700 (PDT)
+ Mon, 13 Jul 2020 06:22:42 -0700 (PDT)
 From: "Saheed O. Bolarinwa" <refactormyself@gmail.com>
-To: helgaas@kernel.org
-Subject: [RFC PATCH 00/35] Move all PCIBIOS* definitions into arch/x86
-Date: Mon, 13 Jul 2020 14:22:12 +0200
-Message-Id: <20200713122247.10985-1-refactormyself@gmail.com>
+To: helgaas@kernel.org, Yue Wang <yue.wang@Amlogic.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Jingoo Han <jingoohan1@gmail.com>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Toan Le <toan@os.amperecomputing.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com,
+ Ley Foon Tan <ley.foon.tan@intel.com>,
+ Marek Vasut <marek.vasut+renesas@gmail.com>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [RFC PATCH 05/35] PCI: Change PCIBIOS_SUCCESSFUL to 0
+Date: Mon, 13 Jul 2020 14:22:17 +0200
+Message-Id: <20200713122247.10985-6-refactormyself@gmail.com>
 X-Mailer: git-send-email 2.18.2
+In-Reply-To: <20200713122247.10985-1-refactormyself@gmail.com>
+References: <20200713122247.10985-1-refactormyself@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200713_092239_167761_D9BF485D 
-X-CRM114-Status: GOOD (  13.21  )
+X-CRM114-CacheID: sfid-20200713_092245_006332_57FC4DBA 
+X-CRM114-Status: GOOD (  17.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,240 +104,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rich Felker <dalias@libc.org>,
- "Martin K. Petersen" <martin.petersen@oracle.com>, linux-sh@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-nvme@lists.infradead.org,
- Yicong Yang <yangyicong@hisilicon.com>, Keith Busch <kbusch@kernel.org>,
- netdev@vger.kernel.org, Paul Mackerras <paulus@samba.org>,
- linux-i2c@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
- sparclinux@vger.kernel.org, rfi@lists.rocketboards.org,
- Toan Le <toan@os.amperecomputing.com>, Greg Ungerer <gerg@linux-m68k.org>,
- Marek Vasut <marek.vasut+renesas@gmail.com>, Rob Herring <robh@kernel.org>,
- Stefano Stabellini <sstabellini@kernel.org>, Sagi Grimberg <sagi@grimberg.me>,
- Yoshinori Sato <ysato@users.sourceforge.jp>, linux-scsi@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Michael Ellerman <mpe@ellerman.id.au>, linux-atm-general@lists.sourceforge.net,
- Russell King <linux@armlinux.org.uk>,
- Realtek linux nic maintainers <nic_swsd@realtek.com>,
- Christoph Hellwig <hch@lst.de>, Ley Foon Tan <ley.foon.tan@intel.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
- Chas Williams <3chas3@gmail.com>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- xen-devel@lists.xenproject.org, Matt Turner <mattst88@gmail.com>,
- linux-mips@vger.kernel.org, linux-kernel-mentees@lists.linuxfoundation.org,
- Kevin Hilman <khilman@baylibre.com>, Guenter Roeck <linux@roeck-us.net>,
- linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- Andrew Donnellan <ajd@linux.ibm.com>, Arnd Bergmann <arnd@arndb.de>,
- Ray Jui <rjui@broadcom.com>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Yue Wang <yue.wang@Amlogic.com>, Jens Axboe <axboe@fb.com>,
- Jakub Kicinski <kuba@kernel.org>, linux-m68k@lists.linux-m68k.org,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Ivan Kokshaysky <ink@jurassic.park.msu.ru>, Michael Buesch <m@bues.ch>,
- skhan@linuxfoundation.org, bjorn@helgaas.com,
- linux-amlogic@lists.infradead.org,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Guan Xuetao <gxt@pku.edu.cn>,
- linux-arm-kernel@lists.infradead.org, Richard Henderson <rth@twiddle.net>,
- Juergen Gross <jgross@suse.com>, Michal Simek <monstr@monstr.eu>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Scott Branden <sbranden@broadcom.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Jingoo Han <jingoohan1@gmail.com>,
- "Saheed O. Bolarinwa" <refactormyself@gmail.com>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Brian King <brking@us.ibm.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-alpha@vger.kernel.org,
- Frederic Barrat <fbarrat@linux.ibm.com>,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
- linuxppc-dev@lists.ozlabs.org, "David S. Miller" <davem@davemloft.net>,
- Heiner Kallweit <hkallweit1@gmail.com>
+Cc: "Saheed O. Bolarinwa" <refactormyself@gmail.com>, skhan@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, rfi@lists.rocketboards.org,
+ linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org,
+ bjorn@helgaas.com, linux-amlogic@lists.infradead.org,
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ linux-arm-kernel@lists.infradead.org
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+In reference to the PCI spec (Chapter 2), PCIBIOS* is an x86 concept.
+Their scope should be limited within arch/x86.
 
+Change all PCIBIOS_SUCCESSFUL to 0
 
-This goal of these series is to move the definition of *all* PCIBIOS* from
-include/linux/pci.h to arch/x86 and limit their use within there.
-All other tree specific definition will be left for intact. Maybe they can
-be renamed.
-
-PCIBIOS* is an x86 concept as defined by the PCI spec. The returned error
-codes of PCIBIOS* are positive values and this introduces some complexities
-which other archs need not incur.
-
-PLAN:
-
-1.   [PATCH v0 1-36] Replace all PCIBIOS_SUCCESSFUL with 0
-
-2a.  Audit all functions returning PCIBIOS_* error values directly or
-     indirectly and prevent possible bug coming in (2b)
-
-2b.  Make all functions returning PCIBIOS_* error values call 
-     pcibios_err_to_errno(). *This will change their behaviour, for good.*
-
-3.   Clone a pcibios_err_to_errno() into arch/x86/pci/pcbios.c as _v2.
-     This handles the positive error codes directly and will not use any
-     PCIBIOS* definitions. So calls to it have no outside dependence.
-
-4.   Make all x86 codes that needs to convert to -E* values call the 
-     cloned version - pcibios_err_to_errno_v2()
-
-5.   Assign PCIBIOS_* errors values directly to generic -E* errors
-
-6.   Refactor pcibios_err_to_errno() and mark it deprecated
-
-7.   Replace all calls to pcibios_err_to_errno() with the proper -E* value
-     or 0.
-
-8.   Remove all PCIBIOS* definitions in include/linux/pci.h and 
-     pcibios_err_to_errno() too.
-
-9.   Redefine all PCIBIOS* definitions with original values inside 
-     arch/x86/pci/pcbios.c
-
-10.  Redefine pcibios_err_to_errno() inside arch/x86/pci/pcbios.c
-
-11.  Replace pcibios_err_to_errno_v2() calls with pcibios_err_to_errno()
-
-12.  Remove pcibios_err_to_errno_v2()
-
-Suggested-by: Bjorn Helgaas <bjorn@helgaas.com>
-Suggested-by: Yicong Yang <yangyicong@hisilicon.com>
 Signed-off-by: "Saheed O. Bolarinwa" <refactormyself@gmail.com>
-
-
-Bolarinwa Olayemi Saheed (35):
-  Change PCIBIOS_SUCCESSFUL to 0
-  Change PCIBIOS_SUCCESSFUL to 0
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Fix Style ERROR: assignment in if condition
-  Change PCIBIOS_SUCCESSFUL to 0
-  Change PCIBIOS_SUCCESSFUL to 0
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Change PCIBIOS_SUCCESSFUL to 0
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-  Change PCIBIOS_SUCCESSFUL to 0
-  Tidy Success/Failure checks
-
- arch/alpha/kernel/core_apecs.c                |  4 +--
- arch/alpha/kernel/core_cia.c                  |  4 +--
- arch/alpha/kernel/core_irongate.c             |  4 +--
- arch/alpha/kernel/core_lca.c                  |  4 +--
- arch/alpha/kernel/core_marvel.c               |  4 +--
- arch/alpha/kernel/core_mcpcia.c               |  4 +--
- arch/alpha/kernel/core_polaris.c              |  4 +--
- arch/alpha/kernel/core_t2.c                   |  4 +--
- arch/alpha/kernel/core_titan.c                |  4 +--
- arch/alpha/kernel/core_tsunami.c              |  4 +--
- arch/alpha/kernel/core_wildfire.c             |  4 +--
- arch/alpha/kernel/sys_miata.c                 |  2 +-
- arch/arm/common/it8152.c                      |  4 +--
- arch/arm/mach-cns3xxx/pcie.c                  |  2 +-
- arch/arm/mach-footbridge/dc21285.c            |  4 +--
- arch/arm/mach-iop32x/pci.c                    |  6 ++--
- arch/arm/mach-ixp4xx/common-pci.c             |  8 ++---
- arch/arm/mach-orion5x/pci.c                   |  4 +--
- arch/arm/plat-orion/pcie.c                    |  8 ++---
- arch/m68k/coldfire/pci.c                      |  8 ++---
- arch/microblaze/pci/indirect_pci.c            |  4 +--
- arch/mips/pci/fixup-ath79.c                   |  2 +-
- arch/mips/pci/ops-bcm63xx.c                   | 14 ++++----
- arch/mips/pci/ops-bonito64.c                  |  4 +--
- arch/mips/pci/ops-gt64xxx_pci0.c              |  4 +--
- arch/mips/pci/ops-lantiq.c                    |  4 +--
- arch/mips/pci/ops-loongson2.c                 |  4 +--
- arch/mips/pci/ops-mace.c                      |  4 +--
- arch/mips/pci/ops-msc.c                       |  4 +--
- arch/mips/pci/ops-rc32434.c                   |  6 ++--
- arch/mips/pci/ops-sni.c                       |  4 +--
- arch/mips/pci/ops-tx3927.c                    |  2 +-
- arch/mips/pci/ops-tx4927.c                    |  2 +-
- arch/mips/pci/ops-vr41xx.c                    |  4 +--
- arch/mips/pci/pci-alchemy.c                   |  6 ++--
- arch/mips/pci/pci-ar2315.c                    |  5 ++-
- arch/mips/pci/pci-ar71xx.c                    |  4 +--
- arch/mips/pci/pci-ar724x.c                    |  6 ++--
- arch/mips/pci/pci-bcm1480.c                   |  4 +--
- arch/mips/pci/pci-bcm1480ht.c                 |  4 +--
- arch/mips/pci/pci-mt7620.c                    |  4 +--
- arch/mips/pci/pci-octeon.c                    | 12 +++----
- arch/mips/pci/pci-rt2880.c                    |  4 +--
- arch/mips/pci/pci-rt3883.c                    |  4 +--
- arch/mips/pci/pci-sb1250.c                    |  4 +--
- arch/mips/pci/pci-virtio-guest.c              |  4 +--
- arch/mips/pci/pci-xlp.c                       |  4 +--
- arch/mips/pci/pci-xlr.c                       |  4 +--
- arch/mips/pci/pci-xtalk-bridge.c              | 14 ++++----
- arch/mips/pci/pcie-octeon.c                   |  4 +--
- arch/mips/txx9/generic/pci.c                  |  5 ++-
- arch/powerpc/kernel/rtas_pci.c                |  4 +--
- arch/powerpc/platforms/4xx/pci.c              |  4 +--
- arch/powerpc/platforms/52xx/efika.c           |  4 +--
- arch/powerpc/platforms/52xx/mpc52xx_pci.c     |  4 +--
- arch/powerpc/platforms/82xx/pq2.c             |  2 +-
- arch/powerpc/platforms/85xx/mpc85xx_cds.c     |  2 +-
- arch/powerpc/platforms/85xx/mpc85xx_ds.c      |  2 +-
- arch/powerpc/platforms/86xx/mpc86xx_hpcn.c    |  2 +-
- arch/powerpc/platforms/chrp/pci.c             |  8 ++---
- arch/powerpc/platforms/embedded6xx/holly.c    |  2 +-
- .../platforms/embedded6xx/mpc7448_hpc2.c      |  2 +-
- arch/powerpc/platforms/fsl_uli1575.c          |  2 +-
- arch/powerpc/platforms/maple/pci.c            | 18 +++++-----
- arch/powerpc/platforms/pasemi/pci.c           |  6 ++--
- arch/powerpc/platforms/powermac/pci.c         |  8 ++---
- arch/powerpc/platforms/powernv/eeh-powernv.c  |  4 +--
- arch/powerpc/platforms/powernv/pci.c          |  4 +--
- arch/powerpc/platforms/pseries/eeh_pseries.c  |  4 +--
- arch/powerpc/sysdev/fsl_pci.c                 |  2 +-
- arch/powerpc/sysdev/indirect_pci.c            |  4 +--
- arch/powerpc/sysdev/tsi108_pci.c              |  4 +--
- arch/sh/drivers/pci/common.c                  |  3 +-
- arch/sh/drivers/pci/ops-dreamcast.c           |  4 +--
- arch/sh/drivers/pci/ops-sh4.c                 |  4 +--
- arch/sh/drivers/pci/ops-sh7786.c              |  8 ++---
- arch/sh/drivers/pci/pci.c                     |  2 +-
- arch/sparc/kernel/pci_common.c                | 28 +++++++--------
- arch/unicore32/kernel/pci.c                   |  4 +--
- drivers/atm/iphase.c                          | 20 ++++++-----
- drivers/atm/lanai.c                           |  8 ++---
- drivers/bcma/driver_pci_host.c                |  4 +--
- drivers/hwmon/sis5595.c                       | 13 +++----
- drivers/hwmon/via686a.c                       | 13 +++----
- drivers/hwmon/vt8231.c                        | 13 +++----
- drivers/i2c/busses/i2c-ali15x3.c              |  5 ++-
- drivers/i2c/busses/i2c-nforce2.c              |  3 +-
- drivers/i2c/busses/i2c-sis5595.c              | 15 +++-----
- drivers/misc/cxl/vphb.c                       |  4 +--
- drivers/net/ethernet/realtek/r8169_main.c     |  2 +-
- drivers/nvme/host/pci.c                       |  2 +-
- drivers/pci/access.c                          | 14 ++++----
+---
  drivers/pci/controller/dwc/pci-meson.c        |  4 +--
  .../pci/controller/dwc/pcie-designware-host.c |  2 +-
  drivers/pci/controller/dwc/pcie-designware.c  |  4 +--
@@ -335,26 +135,675 @@ Bolarinwa Olayemi Saheed (35):
  drivers/pci/controller/pci-mvebu.c            |  4 +--
  drivers/pci/controller/pci-thunder-ecam.c     | 36 +++++++++----------
  drivers/pci/controller/pci-thunder-pem.c      |  4 +--
- drivers/pci/controller/pci-xgene.c            |  5 ++-
+ drivers/pci/controller/pci-xgene.c            |  4 +--
  drivers/pci/controller/pcie-altera.c          | 16 ++++-----
  drivers/pci/controller/pcie-iproc.c           | 10 +++---
  drivers/pci/controller/pcie-mediatek.c        |  4 +--
  drivers/pci/controller/pcie-rcar-host.c       |  8 ++---
  drivers/pci/controller/pcie-rockchip-host.c   | 10 +++---
- drivers/pci/pci-bridge-emul.c                 | 14 ++++----
- drivers/pci/pci.c                             |  8 ++---
- drivers/pci/pcie/bw_notification.c            |  4 +--
- drivers/pci/probe.c                           |  4 +--
- drivers/pci/quirks.c                          |  4 +--
- drivers/pci/syscall.c                         |  8 ++---
- drivers/pci/xen-pcifront.c                    |  2 +-
- drivers/scsi/ipr.c                            | 16 ++++-----
- drivers/scsi/pmcraid.c                        |  6 ++--
- drivers/ssb/driver_gige.c                     |  4 +--
- drivers/ssb/driver_pcicore.c                  |  4 +--
- drivers/xen/xen-pciback/conf_space.c          |  2 +-
- 122 files changed, 347 insertions(+), 369 deletions(-)
+ 18 files changed, 67 insertions(+), 67 deletions(-)
 
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index ca59ba9e0ecd..58142f03d300 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -390,7 +390,7 @@ static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
+ 	int ret;
+ 
+ 	ret = dw_pcie_read(pci->dbi_base + where, size, val);
+-	if (ret != PCIBIOS_SUCCESSFUL)
++	if (ret != 0)
+ 		return ret;
+ 
+ 	/*
+@@ -407,7 +407,7 @@ static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
+ 	else if (where == PCI_CLASS_DEVICE + 1 && size == 1)
+ 		*val = (PCI_CLASS_BRIDGE_PCI >> 8) & 0xff;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int meson_pcie_wr_own_conf(struct pcie_port *pp, int where,
+diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+index 0a4a5aa6fe46..7c97c54f787c 100644
+--- a/drivers/pci/controller/dwc/pcie-designware-host.c
++++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+@@ -459,7 +459,7 @@ int dw_pcie_host_init(struct pcie_port *pp)
+ 	}
+ 
+ 	ret = dw_pcie_rd_own_conf(pp, PCI_HEADER_TYPE, 1, &hdr_type);
+-	if (ret != PCIBIOS_SUCCESSFUL) {
++	if (ret != 0) {
+ 		dev_err(pci->dev, "Failed reading PCI_HEADER_TYPE cfg space reg (ret: 0x%x)\n",
+ 			ret);
+ 		ret = pcibios_err_to_errno(ret);
+diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+index c92496e36fd5..2494e1be1f96 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.c
++++ b/drivers/pci/controller/dwc/pcie-designware.c
+@@ -113,7 +113,7 @@ int dw_pcie_read(void __iomem *addr, int size, u32 *val)
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 	}
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ EXPORT_SYMBOL_GPL(dw_pcie_read);
+ 
+@@ -131,7 +131,7 @@ int dw_pcie_write(void __iomem *addr, int size, u32 val)
+ 	else
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ EXPORT_SYMBOL_GPL(dw_pcie_write);
+ 
+diff --git a/drivers/pci/controller/dwc/pcie-hisi.c b/drivers/pci/controller/dwc/pcie-hisi.c
+index 0ad4e07dd4c2..10a46aded227 100644
+--- a/drivers/pci/controller/dwc/pcie-hisi.c
++++ b/drivers/pci/controller/dwc/pcie-hisi.c
+@@ -163,7 +163,7 @@ static int hisi_pcie_cfg_read(struct pcie_port *pp, int where, int size,
+ 	else
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ /* HipXX PCIe host only supports 32-bit config access */
+@@ -190,7 +190,7 @@ static int hisi_pcie_cfg_write(struct pcie_port *pp, int where, int  size,
+ 	} else
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int hisi_pcie_link_up_hip05(struct hisi_pcie *hisi_pcie)
+diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+index 92b77f7d8354..34fe0084a4d1 100644
+--- a/drivers/pci/controller/dwc/pcie-tegra194.c
++++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+@@ -581,7 +581,7 @@ static int tegra_pcie_dw_rd_own_conf(struct pcie_port *pp, int where, int size,
+ 	 */
+ 	if (where == PORT_LOGIC_MSIX_DOORBELL) {
+ 		*val = 0x00000000;
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 
+ 	return dw_pcie_read(pci->dbi_base + where, size, val);
+@@ -599,7 +599,7 @@ static int tegra_pcie_dw_wr_own_conf(struct pcie_port *pp, int where, int size,
+ 	 * So skip accessing it altogether
+ 	 */
+ 	if (where == PORT_LOGIC_MSIX_DOORBELL)
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 
+ 	return dw_pcie_write(pci->dbi_base + where, size, val);
+ }
+diff --git a/drivers/pci/controller/mobiveil/pcie-mobiveil.c b/drivers/pci/controller/mobiveil/pcie-mobiveil.c
+index 62ecbaeb0a60..f9f03b022d0e 100644
+--- a/drivers/pci/controller/mobiveil/pcie-mobiveil.c
++++ b/drivers/pci/controller/mobiveil/pcie-mobiveil.c
+@@ -71,7 +71,7 @@ static int mobiveil_pcie_read(void __iomem *addr, int size, u32 *val)
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 	}
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int mobiveil_pcie_write(void __iomem *addr, int size, u32 val)
+@@ -93,7 +93,7 @@ static int mobiveil_pcie_write(void __iomem *addr, int size, u32 val)
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 	}
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ u32 mobiveil_csr_read(struct mobiveil_pcie *pcie, u32 off, size_t size)
+diff --git a/drivers/pci/controller/pci-aardvark.c b/drivers/pci/controller/pci-aardvark.c
+index 90ff291c24f0..b9a2d3359317 100644
+--- a/drivers/pci/controller/pci-aardvark.c
++++ b/drivers/pci/controller/pci-aardvark.c
+@@ -700,7 +700,7 @@ static int advk_pcie_rd_conf(struct pci_bus *bus, u32 devfn,
+ 	else if (size == 2)
+ 		*val = (*val >> (8 * (where & 3))) & 0xffff;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int advk_pcie_wr_conf(struct pci_bus *bus, u32 devfn,
+@@ -760,7 +760,7 @@ static int advk_pcie_wr_conf(struct pci_bus *bus, u32 devfn,
+ 
+ 	advk_pcie_check_pio_status(pcie);
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static struct pci_ops advk_pcie_ops = {
+diff --git a/drivers/pci/controller/pci-ftpci100.c b/drivers/pci/controller/pci-ftpci100.c
+index 1b67564de7af..449187e8c298 100644
+--- a/drivers/pci/controller/pci-ftpci100.c
++++ b/drivers/pci/controller/pci-ftpci100.c
+@@ -204,7 +204,7 @@ static int faraday_raw_pci_read_config(struct faraday_pci *p, int bus_number,
+ 	else if (size == 2)
+ 		*value = (*value >> (8 * (config & 3))) & 0xFFFF;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int faraday_pci_read_config(struct pci_bus *bus, unsigned int fn,
+@@ -223,7 +223,7 @@ static int faraday_raw_pci_write_config(struct faraday_pci *p, int bus_number,
+ 					 unsigned int fn, int config, int size,
+ 					 u32 value)
+ {
+-	int ret = PCIBIOS_SUCCESSFUL;
++	int ret = 0;
+ 
+ 	writel(PCI_CONF_BUS(bus_number) |
+ 			PCI_CONF_DEVICE(PCI_SLOT(fn)) |
+diff --git a/drivers/pci/controller/pci-hyperv.c b/drivers/pci/controller/pci-hyperv.c
+index bf40ff09c99d..b1552394e2d6 100644
+--- a/drivers/pci/controller/pci-hyperv.c
++++ b/drivers/pci/controller/pci-hyperv.c
+@@ -807,7 +807,7 @@ static void _hv_pcifront_write_config(struct hv_pci_dev *hpdev, int where,
+  * @size: Byte/word/dword
+  * @val: Value to be read
+  *
+- * Return: PCIBIOS_SUCCESSFUL on success
++ * Return: 0 on success
+  *	   PCIBIOS_DEVICE_NOT_FOUND on failure
+  */
+ static int hv_pcifront_read_config(struct pci_bus *bus, unsigned int devfn,
+@@ -824,7 +824,7 @@ static int hv_pcifront_read_config(struct pci_bus *bus, unsigned int devfn,
+ 	_hv_pcifront_read_config(hpdev, where, size, val);
+ 
+ 	put_pcichild(hpdev);
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ /**
+@@ -835,7 +835,7 @@ static int hv_pcifront_read_config(struct pci_bus *bus, unsigned int devfn,
+  * @size: Byte/word/dword
+  * @val: Value to be written to device
+  *
+- * Return: PCIBIOS_SUCCESSFUL on success
++ * Return: 0 on success
+  *	   PCIBIOS_DEVICE_NOT_FOUND on failure
+  */
+ static int hv_pcifront_write_config(struct pci_bus *bus, unsigned int devfn,
+@@ -852,7 +852,7 @@ static int hv_pcifront_write_config(struct pci_bus *bus, unsigned int devfn,
+ 	_hv_pcifront_write_config(hpdev, where, size, val);
+ 
+ 	put_pcichild(hpdev);
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ /* PCIe operations */
+diff --git a/drivers/pci/controller/pci-mvebu.c b/drivers/pci/controller/pci-mvebu.c
+index 153a64676bc9..30ef5ece4a3b 100644
+--- a/drivers/pci/controller/pci-mvebu.c
++++ b/drivers/pci/controller/pci-mvebu.c
+@@ -246,7 +246,7 @@ static int mvebu_pcie_hw_rd_conf(struct mvebu_pcie_port *port,
+ 		break;
+ 	}
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int mvebu_pcie_hw_wr_conf(struct mvebu_pcie_port *port,
+@@ -272,7 +272,7 @@ static int mvebu_pcie_hw_wr_conf(struct mvebu_pcie_port *port,
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 	}
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ /*
+diff --git a/drivers/pci/controller/pci-thunder-ecam.c b/drivers/pci/controller/pci-thunder-ecam.c
+index 7e8835fee5f7..8e30e1f9622e 100644
+--- a/drivers/pci/controller/pci-thunder-ecam.c
++++ b/drivers/pci/controller/pci-thunder-ecam.c
+@@ -37,7 +37,7 @@ static int handle_ea_bar(u32 e0, int bar, struct pci_bus *bus,
+ 
+ 	if (where_a == 0) {
+ 		set_val(e0, where, size, val);
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 	if (where_a == 0x4) {
+ 		addr = bus->ops->map_bus(bus, devfn, bar); /* BAR 0 */
+@@ -49,7 +49,7 @@ static int handle_ea_bar(u32 e0, int bar, struct pci_bus *bus,
+ 		v &= ~0xf;
+ 		v |= 2; /* EA entry-1. Base-L */
+ 		set_val(v, where, size, val);
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 	if (where_a == 0x8) {
+ 		u32 barl_orig;
+@@ -68,7 +68,7 @@ static int handle_ea_bar(u32 e0, int bar, struct pci_bus *bus,
+ 		v = ~barl_rb & ~3;
+ 		v |= 0xc; /* EA entry-2. Offset-L */
+ 		set_val(v, where, size, val);
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 	if (where_a == 0xc) {
+ 		addr = bus->ops->map_bus(bus, devfn, bar + 4); /* BAR 1 */
+@@ -78,7 +78,7 @@ static int handle_ea_bar(u32 e0, int bar, struct pci_bus *bus,
+ 		}
+ 		v = readl(addr); /* EA entry-3. Base-H */
+ 		set_val(v, where, size, val);
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 	return PCIBIOS_DEVICE_NOT_FOUND;
+ }
+@@ -121,7 +121,7 @@ static int thunder_ecam_p2_config_read(struct pci_bus *bus, unsigned int devfn,
+ 	v |= node_bits;
+ 	set_val(v, where, size, val);
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int thunder_ecam_config_read(struct pci_bus *bus, unsigned int devfn,
+@@ -172,7 +172,7 @@ static int thunder_ecam_config_read(struct pci_bus *bus, unsigned int devfn,
+ 	     (where >= 0x1a4 && where < 0x1bc))) {
+ 		/* BAR or SR-IOV BAR */
+ 		*val = 0;
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 
+ 	addr = bus->ops->map_bus(bus, devfn, 0);
+@@ -207,7 +207,7 @@ static int thunder_ecam_config_read(struct pci_bus *bus, unsigned int devfn,
+ 		if (!has_msix && where_a == 0x70) {
+ 			v |= 0xbc00; /* next capability is EA at 0xbc */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xb0) {
+ 			addr = bus->ops->map_bus(bus, devfn, where_a);
+@@ -220,7 +220,7 @@ static int thunder_ecam_config_read(struct pci_bus *bus, unsigned int devfn,
+ 				pr_err("Bad MSIX cap header: %08x\n", v);
+ 			v |= 0xbc00; /* next capability is EA at 0xbc */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xbc) {
+ 			if (is_nic)
+@@ -232,7 +232,7 @@ static int thunder_ecam_config_read(struct pci_bus *bus, unsigned int devfn,
+ 			else
+ 				v = 0x10014; /* EA last in chain, 1 entry */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a >= 0xc0 && where_a < 0xd0)
+ 			/* EA entry-0. PP=0, BAR0 Size:3 */
+@@ -277,7 +277,7 @@ static int thunder_ecam_config_read(struct pci_bus *bus, unsigned int devfn,
+ 				pr_err("Bad PCIe cap header: %08x\n", v);
+ 			v |= 0xbc00; /* next capability is EA at 0xbc */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xbc) {
+ 			if (is_nic_bridge)
+@@ -285,7 +285,7 @@ static int thunder_ecam_config_read(struct pci_bus *bus, unsigned int devfn,
+ 			else
+ 				v = 0x00014; /* EA last in chain, no entries */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xc0) {
+ 			if (is_rsl_bridge || is_nic_bridge)
+@@ -297,33 +297,33 @@ static int thunder_ecam_config_read(struct pci_bus *bus, unsigned int devfn,
+ 			else if (is_dfa_bridge)
+ 				v = 0x0404; /* subordinate:secondary = 4:4 */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xc4 && is_nic_bridge) {
+ 			/* Enabled, not-Write, SP=ff, PP=05, BEI=6, ES=4 */
+ 			v = 0x80ff0564;
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xc8 && is_nic_bridge) {
+ 			v = 0x00000002; /* Base-L 64-bit */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xcc && is_nic_bridge) {
+ 			v = 0xfffffffe; /* MaxOffset-L 64-bit */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xd0 && is_nic_bridge) {
+ 			v = 0x00008430; /* NIC Base-H */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 		if (where_a == 0xd4 && is_nic_bridge) {
+ 			v = 0x0000000f; /* MaxOffset-H */
+ 			set_val(v, where, size, val);
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 	}
+ no_emulation:
+@@ -340,7 +340,7 @@ static int thunder_ecam_config_write(struct pci_bus *bus, unsigned int devfn,
+ 	if ((where >= 0x10 && where < 0x2c) ||
+ 	    (where >= 0x1a4 && where < 0x1bc))
+ 		/* BAR or SR-IOV BAR */
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 
+ 	return pci_generic_config_write(bus, devfn, where, size, val);
+ }
+diff --git a/drivers/pci/controller/pci-thunder-pem.c b/drivers/pci/controller/pci-thunder-pem.c
+index 3f847969143e..ae747d203514 100644
+--- a/drivers/pci/controller/pci-thunder-pem.c
++++ b/drivers/pci/controller/pci-thunder-pem.c
+@@ -123,7 +123,7 @@ static int thunder_pem_bridge_read(struct pci_bus *bus, unsigned int devfn,
+ 		break;
+ 	}
+ 	*val = read_val;
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int thunder_pem_config_read(struct pci_bus *bus, unsigned int devfn,
+@@ -272,7 +272,7 @@ static int thunder_pem_bridge_write(struct pci_bus *bus, unsigned int devfn,
+ 	 */
+ 	write_val = (((u64)val) << 32) | where_aligned;
+ 	writeq(write_val, pem_pci->pem_reg_base + PEM_CFG_WR);
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int thunder_pem_config_write(struct pci_bus *bus, unsigned int devfn,
+diff --git a/drivers/pci/controller/pci-xgene.c b/drivers/pci/controller/pci-xgene.c
+index d1efa8ffbae1..bf74f0a8b451 100644
+--- a/drivers/pci/controller/pci-xgene.c
++++ b/drivers/pci/controller/pci-xgene.c
+@@ -168,7 +168,7 @@ static int xgene_pcie_config_read32(struct pci_bus *bus, unsigned int devfn,
+ 	struct xgene_pcie_port *port = pcie_bus_to_port(bus);
+ 
+ 	if (pci_generic_config_read32(bus, devfn, where & ~0x3, 4, val) !=
+-	    PCIBIOS_SUCCESSFUL)
++	    0)
+ 		return PCIBIOS_DEVICE_NOT_FOUND;
+ 
+ 	/*
+@@ -187,7 +187,7 @@ static int xgene_pcie_config_read32(struct pci_bus *bus, unsigned int devfn,
+ 	if (size <= 2)
+ 		*val = (*val >> (8 * (where & 3))) & ((1 << (size * 8)) - 1);
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ #endif
+ 
+diff --git a/drivers/pci/controller/pcie-altera.c b/drivers/pci/controller/pcie-altera.c
+index 24cb1c331058..96f5bda32b58 100644
+--- a/drivers/pci/controller/pcie-altera.c
++++ b/drivers/pci/controller/pcie-altera.c
+@@ -226,7 +226,7 @@ static int tlp_read_packet(struct altera_pcie *pcie, u32 *value)
+ 				if (value)
+ 					*value = reg0;
+ 
+-				return PCIBIOS_SUCCESSFUL;
++				return 0;
+ 			}
+ 		}
+ 		udelay(5);
+@@ -273,7 +273,7 @@ static int s10_tlp_read_packet(struct altera_pcie *pcie, u32 *value)
+ 			    count == 4)
+ 				*value = dw[3];
+ 
+-			return PCIBIOS_SUCCESSFUL;
++			return 0;
+ 		}
+ 	}
+ 
+@@ -367,7 +367,7 @@ static int tlp_cfg_dword_write(struct altera_pcie *pcie, u8 bus, u32 devfn,
+ 						    value, false);
+ 
+ 	ret = pcie->pcie_data->ops->tlp_read_pkt(pcie, NULL);
+-	if (ret != PCIBIOS_SUCCESSFUL)
++	if (ret != 0)
+ 		return ret;
+ 
+ 	/*
+@@ -377,7 +377,7 @@ static int tlp_cfg_dword_write(struct altera_pcie *pcie, u8 bus, u32 devfn,
+ 	if ((bus == pcie->root_bus_nr) && (where == PCI_PRIMARY_BUS))
+ 		pcie->root_bus_nr = (u8)(value);
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int s10_rp_read_cfg(struct altera_pcie *pcie, int where,
+@@ -397,7 +397,7 @@ static int s10_rp_read_cfg(struct altera_pcie *pcie, int where,
+ 		break;
+ 	}
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int s10_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
+@@ -424,7 +424,7 @@ static int s10_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
+ 	if (busno == pcie->root_bus_nr && where == PCI_PRIMARY_BUS)
+ 		pcie->root_bus_nr = value & 0xff;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int _altera_pcie_cfg_read(struct altera_pcie *pcie, u8 busno,
+@@ -453,7 +453,7 @@ static int _altera_pcie_cfg_read(struct altera_pcie *pcie, u8 busno,
+ 
+ 	ret = tlp_cfg_dword_read(pcie, busno, devfn,
+ 				 (where & ~DWORD_MASK), byte_en, &data);
+-	if (ret != PCIBIOS_SUCCESSFUL)
++	if (ret != 0)
+ 		return ret;
+ 
+ 	switch (size) {
+@@ -468,7 +468,7 @@ static int _altera_pcie_cfg_read(struct altera_pcie *pcie, u8 busno,
+ 		break;
+ 	}
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int _altera_pcie_cfg_write(struct altera_pcie *pcie, u8 busno,
+diff --git a/drivers/pci/controller/pcie-iproc.c b/drivers/pci/controller/pcie-iproc.c
+index 8c7f875acf7f..dac9352c0cb2 100644
+--- a/drivers/pci/controller/pcie-iproc.c
++++ b/drivers/pci/controller/pcie-iproc.c
+@@ -584,7 +584,7 @@ static int iproc_pcie_config_read(struct pci_bus *bus, unsigned int devfn,
+ 	/* root complex access */
+ 	if (busno == 0) {
+ 		ret = pci_generic_config_read32(bus, devfn, where, size, val);
+-		if (ret == PCIBIOS_SUCCESSFUL)
++		if (ret == 0)
+ 			iproc_pcie_fix_cap(pcie, where, val);
+ 
+ 		return ret;
+@@ -620,7 +620,7 @@ static int iproc_pcie_config_read(struct pci_bus *bus, unsigned int devfn,
+ 		    (PCI_DEVICE_ID_NX2_57810 << DEVICE_ID_SHIFT))
+ 			return PCIBIOS_FUNC_NOT_SUPPORTED;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ /**
+@@ -677,7 +677,7 @@ static int iproc_pci_raw_config_read32(struct iproc_pcie *pcie,
+ 	if (size <= 2)
+ 		*val = (*val >> (8 * (where & 3))) & ((1 << (size * 8)) - 1);
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int iproc_pci_raw_config_write32(struct iproc_pcie *pcie,
+@@ -693,7 +693,7 @@ static int iproc_pci_raw_config_write32(struct iproc_pcie *pcie,
+ 
+ 	if (size == 4) {
+ 		writel(val, addr);
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 
+ 	mask = ~(((1 << (size * 8)) - 1) << ((where & 0x3) * 8));
+@@ -701,7 +701,7 @@ static int iproc_pci_raw_config_write32(struct iproc_pcie *pcie,
+ 	tmp |= val << ((where & 0x3) * 8);
+ 	writel(tmp, addr);
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int iproc_pcie_config_read32(struct pci_bus *bus, unsigned int devfn,
+diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+index ebfa7d5a4e2d..9e8adec04ac2 100644
+--- a/drivers/pci/controller/pcie-mediatek.c
++++ b/drivers/pci/controller/pcie-mediatek.c
+@@ -274,7 +274,7 @@ static int mtk_pcie_check_cfg_cpld(struct mtk_pcie_port *port)
+ 	if (readl(port->base + PCIE_APP_TLP_REQ) & APP_CPL_STATUS)
+ 		return PCIBIOS_SET_FAILED;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int mtk_pcie_hw_rd_cfg(struct mtk_pcie_port *port, u32 bus, u32 devfn,
+@@ -306,7 +306,7 @@ static int mtk_pcie_hw_rd_cfg(struct mtk_pcie_port *port, u32 bus, u32 devfn,
+ 	else if (size == 2)
+ 		*val = (*val >> (8 * (where & 3))) & 0xffff;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int mtk_pcie_hw_wr_cfg(struct mtk_pcie_port *port, u32 bus, u32 devfn,
+diff --git a/drivers/pci/controller/pcie-rcar-host.c b/drivers/pci/controller/pcie-rcar-host.c
+index d210a36561be..363a8630de28 100644
+--- a/drivers/pci/controller/pcie-rcar-host.c
++++ b/drivers/pci/controller/pcie-rcar-host.c
+@@ -110,7 +110,7 @@ static int rcar_pcie_config_access(struct rcar_pcie_host *host,
+ 			rcar_pci_write_reg(pcie, *data, PCICONF(index));
+ 		}
+ 
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 
+ 	if (host->root_bus_nr < 0)
+@@ -146,7 +146,7 @@ static int rcar_pcie_config_access(struct rcar_pcie_host *host,
+ 	/* Disable the configuration access */
+ 	rcar_pci_write_reg(pcie, 0, PCIECCTLR);
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int rcar_pcie_read_conf(struct pci_bus *bus, unsigned int devfn,
+@@ -157,7 +157,7 @@ static int rcar_pcie_read_conf(struct pci_bus *bus, unsigned int devfn,
+ 
+ 	ret = rcar_pcie_config_access(host, RCAR_PCI_ACCESS_READ,
+ 				      bus, devfn, where, val);
+-	if (ret != PCIBIOS_SUCCESSFUL) {
++	if (ret != 0) {
+ 		*val = 0xffffffff;
+ 		return ret;
+ 	}
+@@ -184,7 +184,7 @@ static int rcar_pcie_write_conf(struct pci_bus *bus, unsigned int devfn,
+ 
+ 	ret = rcar_pcie_config_access(host, RCAR_PCI_ACCESS_READ,
+ 				      bus, devfn, where, &data);
+-	if (ret != PCIBIOS_SUCCESSFUL)
++	if (ret != 0)
+ 		return ret;
+ 
+ 	dev_dbg(&bus->dev, "pcie-config-write: bus=%3d devfn=0x%04x where=0x%04x size=%d val=0x%08x\n",
+diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
+index 94af6f5828a3..6455f48d4e9c 100644
+--- a/drivers/pci/controller/pcie-rockchip-host.c
++++ b/drivers/pci/controller/pcie-rockchip-host.c
+@@ -125,7 +125,7 @@ static int rockchip_pcie_rd_own_conf(struct rockchip_pcie *rockchip,
+ 		*val = 0;
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 	}
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int rockchip_pcie_wr_own_conf(struct rockchip_pcie *rockchip,
+@@ -139,7 +139,7 @@ static int rockchip_pcie_wr_own_conf(struct rockchip_pcie *rockchip,
+ 
+ 	if (size == 4) {
+ 		writel(val, addr);
+-		return PCIBIOS_SUCCESSFUL;
++		return 0;
+ 	}
+ 
+ 	mask = ~(((1 << (size * 8)) - 1) << ((where & 0x3) * 8));
+@@ -153,7 +153,7 @@ static int rockchip_pcie_wr_own_conf(struct rockchip_pcie *rockchip,
+ 	tmp |= val << ((where & 0x3) * 8);
+ 	writel(tmp, addr);
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int rockchip_pcie_rd_other_conf(struct rockchip_pcie *rockchip,
+@@ -187,7 +187,7 @@ static int rockchip_pcie_rd_other_conf(struct rockchip_pcie *rockchip,
+ 		*val = 0;
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 	}
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int rockchip_pcie_wr_other_conf(struct rockchip_pcie *rockchip,
+@@ -217,7 +217,7 @@ static int rockchip_pcie_wr_other_conf(struct rockchip_pcie *rockchip,
+ 	else
+ 		return PCIBIOS_BAD_REGISTER_NUMBER;
+ 
+-	return PCIBIOS_SUCCESSFUL;
++	return 0;
+ }
+ 
+ static int rockchip_pcie_rd_conf(struct pci_bus *bus, u32 devfn, int where,
 -- 
 2.18.2
 
