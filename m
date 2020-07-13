@@ -2,91 +2,60 @@ Return-Path: <SRS0=9eFL=AY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCBD2C433E6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 19:04:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CEB97C433E1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 19:21:50 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8BB812067D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 19:04:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9F28920663
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 19:21:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JJFntKVr";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BfpHJimG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8BB812067D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CyVNouHH";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="E4Q6Id91"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F28920663
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:Message-Id:From:
+	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=5oZh5C8qQpIwo6jLAA6DlUy7fKI5cJkENTDLsaJyfgI=; b=JJFntKVr5tZiz2E2q2ZAyK6P9
-	CCvC58UpTlCFJFcc4FOV/4tsiS7BBsQHWXg+8uh03Os3JqVIb4wv7KJr3KWMQ9tUMuxoFKRfcqjWX
-	/psMnGftf+BqaSDtfPyQxL8wJSRR3rLbAmBtg71f3bU1sNhd9Frp+dP9eGtGj9OKAXiyg31AAlICc
-	5V0ewwIIx3DuYLbew5rtKIobbmjxRKLGJOC8sYkEhJmh7kGRpNQSvPQoFLIJD1fBNddm7P9xAO1ub
-	WYq66+PttUTFHuk/7Ca/YAZFjy0uw19F6fJ8I9rDEkQrTR7ueTHBeGv3PzoAh9puhzpesok/iOZjw
-	oSqGEqyXw==;
+	 bh=MFXU7uRNLZPmN+nqoBFKzexMCsITLRLo2TqawCky0pk=; b=CyVNouHHqfGkEdKxMP4GN5QUs
+	ncmYTz91EvPyTacpKUin5BKoKfcMj3VK2V1M4/NaLxCJg6973RxaTvG8LMNWuNVzPhPj2Lp86p78n
+	L+DQQeAgDno6f2pnMF4WerL7e7UUoicfBpU73fRZGRGScnN8HadL0dPZ1It5b2vBmncyDY/Ly1I+e
+	HwHhY2RPfqbmoyW3/9EpA38PxMBe5knKH6RyCO/Zu2m1pYchLivlqge5snmGAGtEcRkOZ5YU/AxVt
+	FLr9Z6yV2zLxKbJ4KOKchlIFngD0Mi7nUg/NZ6CEF9QA2s1HxlQNIEEPBlEP4L6eevvANgdh/PvKk
+	uOYdkkj8w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jv3kA-00031l-SX; Mon, 13 Jul 2020 19:04:02 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1jv41J-0005Y7-HR; Mon, 13 Jul 2020 19:21:45 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jv3jn-0002sy-Be
- for linux-amlogic@lists.infradead.org; Mon, 13 Jul 2020 19:03:41 +0000
-Received: by mail-pg1-x543.google.com with SMTP id t6so6444470pgq.1
- for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2020 12:03:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=cxvIt7oMcO1BT79Wsiw8Q1qnT5txfws4FlG9t77T9c0=;
- b=BfpHJimGE7qUmYJVs1EA7aE9Rx33XRBpTkMJ2V1aEgTbAV/h16a2cmRV2CGoHP657N
- qg9OgSyj1sAZVCOFFYipNALOiydy1xPOHjA28ab91/JUvnndU/jNzVXVCtNY4YAyQ8VT
- 3ayLxkiHayuJMGBdy6I14+SHaTPyH0bWp/mY7We0iwdqeD5W2BEAJJLCI7YgFJO/QoDO
- EZjlxwQISbYqHHdHzi4kB0MPiEm2cpADsW6j3yAmCMkYZtg2vTy5rsYmLf6GxPfOV3sg
- d7VzCigAdIQ2Upitrm0qFKinv5oiPKUmzHCJi2JrR9ZfFmCGWe3tjbnz9lAsMNqqSEsm
- lUJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=cxvIt7oMcO1BT79Wsiw8Q1qnT5txfws4FlG9t77T9c0=;
- b=MeYvt6QGPM6WB7+KJ24ZgU40gq+gcrNjqpIwIoDgrCb4+D5tAtJHqNoLdvp4IcXVA/
- XqB9l/BtxuNgqZLEQ4EbFv6kdM7qXtqYypfn9xbx8nsM4jXy2CspoBw1b4ED5pHwBS0o
- MRezGnITcky/gcFIbpG3XBnj9/R3HQIplTy7h7GlVMBHhVMNabmVg31MPMN7v1Wojg7i
- +6zI0y9KZiHosm+b3FQqWZCvUHvkSt4dVTCw+jb4H3jAjDm5rEaV044s3xQVZZc2H48y
- 6/5TKqH3Ut1ZCxwfFdXs8Rry1Nj9Y8ijbLn1vOBMnUE/JR01VOy5CmHVykPcXT/RNS2J
- hKXQ==
-X-Gm-Message-State: AOAM530RVN0x2XA0CtnB8UFvDiOVsuXUeBVe2OhUJc5HNJcyF0c2ofs5
- +CrvKI4bGzYSHbrUD568MCLzVsX4QbZcaQ==
-X-Google-Smtp-Source: ABdhPJzkZfffeazfxUUKT/KX5KVZg/NU11I6xsUM7dCUL1k/5c+oHCs7ac26AzXT3No02tfuMMAdOg==
-X-Received: by 2002:a65:6448:: with SMTP id s8mr416300pgv.405.1594667017044;
- Mon, 13 Jul 2020 12:03:37 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id w1sm14553021pfq.53.2020.07.13.12.03.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Jul 2020 12:03:36 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Add the Ethernet
- "timing-adjustment" clock
-Date: Mon, 13 Jul 2020 12:03:32 -0700
-Message-Id: <159466696386.22745.2608870599482313734.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200620162347.26159-1-martin.blumenstingl@googlemail.com>
-References: <20200620162347.26159-1-martin.blumenstingl@googlemail.com>
+ id 1jv41F-0005Vk-CE
+ for linux-amlogic@lists.infradead.org; Mon, 13 Jul 2020 19:21:43 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1594668100;
+ bh=wP155b10UEQkXW90MpdXqs/qO4t4L18Z0epIbl/8/I4=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:Cc:From;
+ b=E4Q6Id91BOnJuZapK8pUTJF9R+mcjci9L7pEOBtN6m7BrATuKvhSLT5vkSu64v3iA
+ i4yLbzq7rE1H4xkuZ2kA1Gw4L1csnI4RtpjlmIIeLca8/hziapnU1vXlb1KjF+JKOr
+ D9uxyeqI9J7aIQyyptBEcZfHLjXQbKyYK/7k4B9o=
 MIME-Version: 1.0
+Subject: Re: [PATCH 0/3] ARM: dts: wire up the power domains on Meson8/8b/8m2
+From: patchwork-bot+linux-amlogic@kernel.org
+Message-Id: <159466810027.23057.14767482992300363024.git-patchwork-notify@kernel.org>
+Date: Mon, 13 Jul 2020 19:21:40 +0000
+References: <20200620161010.23171-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200620161010.23171-1-martin.blumenstingl@googlemail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200713_150339_465256_5D94A1A8 
-X-CRM114-Status: UNSURE (   6.90  )
+X-CRM114-CacheID: sfid-20200713_152141_672128_F665A875 
+X-CRM114-Status: UNSURE (   6.51  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -99,26 +68,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: andrew@lunn.ch, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, khilman@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 20 Jun 2020 18:23:47 +0200, Martin Blumenstingl wrote:
-> Add the "timing-adjustment" clock now that we know how it is connected
-> to the PRG_ETHERNET registers. It is used internally to generate the
-> RGMII RX delay on the MAC side (if needed).
+Hello:
 
-Applied, thanks!
+This series was applied to khilman/linux-amlogic.git (refs/heads/for-next).
 
-[1/1] arm64: dts: amlogic: Add the Ethernet "timing-adjustment" clock
-      (no commit info)
+On Sat, 20 Jun 2020 18:10:07 +0200 you wrote:
+> Now that the meson-ee-pwrc driver has gained support for the power
+> domains on Meson8/Meson8b/Meson8m2 we can add it to the corresponding
+> .dtsi files.
+> 
+> So far this doesn't fix (or break) anything for me (probably because all
+> vendor u-boots are enabling the Ethernet power domains unconditionally).
+> But at least it's one preparation step which is needed for video output
+> in the future.
+> 
+> [...]
 
-Best regards,
+
+Here is a summary with links:
+  - [1/3] ARM: dts: meson8: add power domain controller
+    https://git.kernel.org/khilman/linux-amlogic/c/aecc72b14d11327804f7ca1fc76ca88a22cc1136
+  - [2/3] ARM: dts: meson8m2: add resets for the power domain controller
+    https://git.kernel.org/khilman/linux-amlogic/c/c5d3d3cf00d5ed74359e71f7b5d003cf34ba014c
+  - [3/3] ARM: dts: meson8b: add power domain controller
+    https://git.kernel.org/khilman/linux-amlogic/c/9960cacbaeb1ccc1b2d9840cadb18844d48a337b
+
+You are awesome, thank you!
+
 -- 
-Kevin Hilman <khilman@baylibre.com>
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/pwbot
 
 _______________________________________________
 linux-amlogic mailing list
