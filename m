@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D484C433ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 19:03:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCBD2C433E6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 19:04:09 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0FF2D20758
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 19:03:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8BB812067D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2020 19:04:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vCv18NNB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="05j+Bnjl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0FF2D20758
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JJFntKVr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BfpHJimG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8BB812067D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=tFVjymvPhWeZ2ehcwnoK40tyz+6Pg/0IDeosnh0kzKo=; b=vCv18NNBO3Q6+vDOT9Ptjh0FO
-	HY06LGnHEc1qrE6c2QRW1CYqx73m5DfdTocnVV7D4+E7tjbcHwHlt0HrLRku6zOy23vGWES7q2Ieq
-	DF2A/H9mD5No8gNc0F96BrxZTRueQj39V0XKWrXGwUJSwCU0lr1tZ2SAptz/MMYsLcapVuP9rEQa4
-	GWEqf65vHlM6KXepeOadzv+Iw7ePegX8ksPe2IX01sy1zuaPjCZ6tmkFIP9ymSfld6DBX5nHfQtuI
-	VUuhuaii79HDjnBCWlD8rAn97jZfXQXUaXf0eEU5kDiJMZRc4b0qKBgU9coTR4YeUR7PpUn/tLiJz
-	TfOZG0B5g==;
+	 bh=5oZh5C8qQpIwo6jLAA6DlUy7fKI5cJkENTDLsaJyfgI=; b=JJFntKVr5tZiz2E2q2ZAyK6P9
+	CCvC58UpTlCFJFcc4FOV/4tsiS7BBsQHWXg+8uh03Os3JqVIb4wv7KJr3KWMQ9tUMuxoFKRfcqjWX
+	/psMnGftf+BqaSDtfPyQxL8wJSRR3rLbAmBtg71f3bU1sNhd9Frp+dP9eGtGj9OKAXiyg31AAlICc
+	5V0ewwIIx3DuYLbew5rtKIobbmjxRKLGJOC8sYkEhJmh7kGRpNQSvPQoFLIJD1fBNddm7P9xAO1ub
+	WYq66+PttUTFHuk/7Ca/YAZFjy0uw19F6fJ8I9rDEkQrTR7ueTHBeGv3PzoAh9puhzpesok/iOZjw
+	oSqGEqyXw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jv3jm-0002tN-UN; Mon, 13 Jul 2020 19:03:38 +0000
-Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
+	id 1jv3kA-00031l-SX; Mon, 13 Jul 2020 19:04:02 +0000
+Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jv3jj-0002rI-Rg
- for linux-amlogic@lists.infradead.org; Mon, 13 Jul 2020 19:03:37 +0000
-Received: by mail-pf1-x444.google.com with SMTP id i14so6406137pfu.13
- for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2020 12:03:35 -0700 (PDT)
+ id 1jv3jn-0002sy-Be
+ for linux-amlogic@lists.infradead.org; Mon, 13 Jul 2020 19:03:41 +0000
+Received: by mail-pg1-x543.google.com with SMTP id t6so6444470pgq.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2020 12:03:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=sHxhQAK9LuDavbBz6xN+mD6z/1m9f7zdjELv2spH1pY=;
- b=05j+BnjlorcJPySlCT/ivZ5MViO89ApDtowq3wqQUo8El1N6cvn570cw125ycyN3kK
- 5yJQIbQPS10yRu4LAFau/igdow96BuAsVDc/wZbjNeZnm/kZg4D87bNXyaNrHGLYZBPz
- AT98bVgUq2M60/W2D5wyUkj4A+OIsjd0hAlDHNf9I0b6mxmBppiahxTVyhCI6574WoiB
- 1WnQ8TZWliQquHmGXSvIc8D4WeCQeovAzbCEqOYX+kyhPxVHtYmD9L/+jjSGrr70txh8
- xAD9DTup1vHxJhl7hC+OYsvtxX7ZVyQoqT70TdB23XeCVsHLmjN2dEZ+YvkvYB50ioKH
- DPKA==
+ bh=cxvIt7oMcO1BT79Wsiw8Q1qnT5txfws4FlG9t77T9c0=;
+ b=BfpHJimGE7qUmYJVs1EA7aE9Rx33XRBpTkMJ2V1aEgTbAV/h16a2cmRV2CGoHP657N
+ qg9OgSyj1sAZVCOFFYipNALOiydy1xPOHjA28ab91/JUvnndU/jNzVXVCtNY4YAyQ8VT
+ 3ayLxkiHayuJMGBdy6I14+SHaTPyH0bWp/mY7We0iwdqeD5W2BEAJJLCI7YgFJO/QoDO
+ EZjlxwQISbYqHHdHzi4kB0MPiEm2cpADsW6j3yAmCMkYZtg2vTy5rsYmLf6GxPfOV3sg
+ d7VzCigAdIQ2Upitrm0qFKinv5oiPKUmzHCJi2JrR9ZfFmCGWe3tjbnz9lAsMNqqSEsm
+ lUJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=sHxhQAK9LuDavbBz6xN+mD6z/1m9f7zdjELv2spH1pY=;
- b=a6uFToxhb/96e01tTRI6jDCGurVsM/NjHMYFdYob7Qws9siubNlW7l9eeYJkkYs4PP
- On9zR6LEoum9OrHi0PPW/c3bYPeRuXcs/gjNSiRoRNK1YaJHOxoiuwxqQitJA80sL7nw
- CDY2EkYEy9FgV0vxehDYDtsQFA3PH0S8sUzfLhweHRZCdmfxKbKE2dSeRYrqRr7wzCte
- fhQuzxa7kuyoXNAbKdr5sl8W8zPkVox4o+Ngm1WGgdn/owvY2O4NA6JdO6/WS/iJVNm4
- kyrKhJ/NF/Yk2XlriBwK5JxgHFh7pmJBqcpC3Do2kKntSY2wObrA9azk8ASuGRBozSDc
- YYwg==
-X-Gm-Message-State: AOAM533aff3zzH8tlRBAo+PvvLlj/LPoPu9fPzlgzwhlfKNbV/zi8lYC
- r51xaCs8N5mtARMQg89d4y4vZeq4Ul61NA==
-X-Google-Smtp-Source: ABdhPJwOT5rZ1S0GznDd+GMpG7ahpacIwFQXvwa4kPwp5tRxMqgDkXigFS7p16td6wzZcb4YnUbiCg==
-X-Received: by 2002:a62:3582:: with SMTP id c124mr1144852pfa.288.1594667013653; 
- Mon, 13 Jul 2020 12:03:33 -0700 (PDT)
+ bh=cxvIt7oMcO1BT79Wsiw8Q1qnT5txfws4FlG9t77T9c0=;
+ b=MeYvt6QGPM6WB7+KJ24ZgU40gq+gcrNjqpIwIoDgrCb4+D5tAtJHqNoLdvp4IcXVA/
+ XqB9l/BtxuNgqZLEQ4EbFv6kdM7qXtqYypfn9xbx8nsM4jXy2CspoBw1b4ED5pHwBS0o
+ MRezGnITcky/gcFIbpG3XBnj9/R3HQIplTy7h7GlVMBHhVMNabmVg31MPMN7v1Wojg7i
+ +6zI0y9KZiHosm+b3FQqWZCvUHvkSt4dVTCw+jb4H3jAjDm5rEaV044s3xQVZZc2H48y
+ 6/5TKqH3Ut1ZCxwfFdXs8Rry1Nj9Y8ijbLn1vOBMnUE/JR01VOy5CmHVykPcXT/RNS2J
+ hKXQ==
+X-Gm-Message-State: AOAM530RVN0x2XA0CtnB8UFvDiOVsuXUeBVe2OhUJc5HNJcyF0c2ofs5
+ +CrvKI4bGzYSHbrUD568MCLzVsX4QbZcaQ==
+X-Google-Smtp-Source: ABdhPJzkZfffeazfxUUKT/KX5KVZg/NU11I6xsUM7dCUL1k/5c+oHCs7ac26AzXT3No02tfuMMAdOg==
+X-Received: by 2002:a65:6448:: with SMTP id s8mr416300pgv.405.1594667017044;
+ Mon, 13 Jul 2020 12:03:37 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id k8sm16551380pfu.68.2020.07.13.12.03.32
+ by smtp.gmail.com with ESMTPSA id w1sm14553021pfq.53.2020.07.13.12.03.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Jul 2020 12:03:32 -0700 (PDT)
+ Mon, 13 Jul 2020 12:03:36 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
 To: linux-amlogic@lists.infradead.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 0/3] ARM: dts: use the SDHC MMC controller for eMMC
-Date: Mon, 13 Jul 2020 12:03:29 -0700
-Message-Id: <159466696386.22745.6301055317421562776.b4-ty@baylibre.com>
+Subject: Re: [PATCH v2] arm64: dts: amlogic: Add the Ethernet
+ "timing-adjustment" clock
+Date: Mon, 13 Jul 2020 12:03:32 -0700
+Message-Id: <159466696386.22745.2608870599482313734.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200620163654.37207-1-martin.blumenstingl@googlemail.com>
-References: <20200620163654.37207-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200620162347.26159-1-martin.blumenstingl@googlemail.com>
+References: <20200620162347.26159-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200713_150335_951331_6892E135 
-X-CRM114-Status: GOOD (  11.20  )
+X-CRM114-CacheID: sfid-20200713_150339_465256_5D94A1A8 
+X-CRM114-Status: UNSURE (   6.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,35 +99,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: andrew@lunn.ch, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 20 Jun 2020 18:36:51 +0200, Martin Blumenstingl wrote:
-> Amlogic Meson6/8/8b/8m2 SoCs have two built-in MMC controllers:
-> - SDIO (which is supported on mainline for a long time now but is
->   limited to ~40MHz bus frequency)
-> - SDHC (which supports up to HS-200 modes at ~100MHz bus frequency but
->   for which we didn't have a driver)
-> 
-> Boards with NAND flash will now be able to use the SDIO controller for
-> SDIO based wifi cards and the SDHC controller for the SD card slot.
-> Boards with eMMC, SD card and SDIO wifi can only use two out of three
-> MMC based devices for now until the MMC core and Meson SDIO driver gain
-> support for multiple "mmc-slots" per controller.
-> 
-> [...]
+On Sat, 20 Jun 2020 18:23:47 +0200, Martin Blumenstingl wrote:
+> Add the "timing-adjustment" clock now that we know how it is connected
+> to the PRG_ETHERNET registers. It is used internally to generate the
+> RGMII RX delay on the MAC side (if needed).
 
 Applied, thanks!
 
-[1/3] ARM: dts: meson: add the SDHC MMC controller
-      commit: 73106f75bf9498ff5d50f1052ad3cf03730d806d
-[2/3] ARM: dts: meson8b: ec100: enable the SDHC controller
-      commit: 73501b890a6f15460613878b463319d0e0cd1632
-[3/3] ARM: dts: meson8b: odroidc1: enable the SDHC controller
-      commit: d6a3873c7be6d58914ea5584dc7875f2045d6721
+[1/1] arm64: dts: amlogic: Add the Ethernet "timing-adjustment" clock
+      (no commit info)
 
 Best regards,
 -- 
