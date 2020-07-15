@@ -2,85 +2,117 @@ Return-Path: <SRS0=rXaj=A2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,
+	CHARSET_FARAWAY_HEADER,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28D73C433E4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2020 16:24:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 80035C433E0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2020 22:04:31 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E813020663
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2020 16:24:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0129C20657
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2020 22:04:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZAa2qpWc";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KXHv6g8Z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E813020663
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PcQfcXIe";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="QaONSO2+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0129C20657
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=outlook.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=vY0MOcBvzQfUBfd+iXg6NzM6t5BDzMOghPxIZGaqY94=; b=ZAa2qpWcSdajrwAGkm+7eLgyi
-	ju8hhdus/yCgGsAE2bHd32Ad+nABJmQkGZ980Aq2J7nFM7lulauvhXpbQL01lsz+hQAVL1suwxRNQ
-	satC+og1aFLViRZtupMPLVOt+eCa9q2dYTok8E4jPSCDpA1dS2kMNWDDXBmkJQOoc5HzcmUMqmJB2
-	tfGwAKulgZKbPkykCevSz+nU1NmQTc777IMGenGzM0euJFzTJlQUCdGIQcQL2naEqLGFf8qFleKx5
-	hgjL0dJLNjt+ulOqerbhJWaob5CVd9bwrUWpNmgO5DVtuiP3MU/8SsKkR1/Gpv8kdFDmZeCiD/eMD
-	klfKYWiCA==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=IuEbZR0t/JJNh3OjJfJimxQQIP64+BLizcSjJR0vh08=; b=PcQfcXIe/u/lxbo5L1Dbbl1Jce
+	2stLsf8i9qyaPJGhfDEWG0ZZXyg7dlim4WsIoQ8paOVxZe6YLXqF/kcyrthKg/QQUeiUO3OvVXAPi
+	TVD9yWB0FJzjHJfd2Tx2a+ZGB6nPpyFDjcx5ShEQvBpiSguyW2aqTbZchRiX81g2MGx6Q6PzNn9J7
+	Uaf6/sNDz1BOXTGPQhcHcDyh+XWXySWk0lDRBdCWvF9TnPqdC/6wdP9/xkJteLOMSINMbxzVnTSxj
+	ezFk9i0NViBKHbb3NbIwtvhSNkHE4fMNxDxWxYXjiBIPzDZTSWqZ34dqBKHk6OKL6F4+5pbK64V9c
+	FKYbbF6g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jvkCZ-0002c0-Mp; Wed, 15 Jul 2020 16:24:11 +0000
-Received: from mail-io1-xd41.google.com ([2607:f8b0:4864:20::d41])
+	id 1jvpVn-0001Kh-6n; Wed, 15 Jul 2020 22:04:23 +0000
+Received: from mail-dm6nam10olkn2109.outbound.protection.outlook.com
+ ([40.92.41.109] helo=NAM10-DM6-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jvkCX-0002bN-Ox; Wed, 15 Jul 2020 16:24:10 +0000
-Received: by mail-io1-xd41.google.com with SMTP id y2so2876803ioy.3;
- Wed, 15 Jul 2020 09:24:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=12LxliN030EpDlt82garvZNOZBnbWkfz0ZbLC9PZFCY=;
- b=KXHv6g8ZCBEvX2uhDddeeCw+EExI+/b+2lTH1x6AnGC0pqlqm9UI8/ReWwkxE7y7Wx
- kpfTIiwSOs0tZXMZYRCKNwtRBlVnF+TuW7zZOw4kcUP7hW8qjo1X6xYLjkZBSxveLNF/
- ZofhlzimIyoTbzM1ZooA9FiyWuLnzgUPMXF31oC7xjKW+oBRAQfo6k0Bwe8A60zR8UPM
- nZ5XP67zW3xVbesg4fRiSLqLERP9uOLY53N249cX6lc+RlsGx9TQ/F8xrSmVN8iNfjM8
- 8bvmnTldYQIZUz/cMoDwZSMJ24LtjJKxxhoL80LCAt3zDQp7ieSXdwPF3BBtM0fKaUGs
- 6OCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=12LxliN030EpDlt82garvZNOZBnbWkfz0ZbLC9PZFCY=;
- b=Gmu+BrPKAqPRSsEUpYgTi5mMsG+dxH+8reADzWnORXsYmuiJA9A8jnuE2F/LEenZ1j
- AXLUEbzzWmGv94VPme7HrbSbDxzJVHfw1LBkRlVBH4kWPqjzE+TJjzPdFnpQcGFS7p3q
- HF+s6snPbFuv20p+3OPYMtSsnyay/vVXH1wQ5eyruXpSXFphDH4FEIP039L5H5r0VBut
- OiNAegGIOngVwwbCSl1sE9NpIa3qOI8p/8z/nsEPwEEqjDDkpTnWprBTB2lFqigA7dzU
- D6QmfgjlREf6pNqeqh+FsSQIEkjbl1KV2EWOGJak+OewMZGbyW3f3ofq2eKA2eb0ky1/
- ZP9Q==
-X-Gm-Message-State: AOAM533adoeipUC6VM8dJFGeLozXvrUiMoiAFM9ToVwHTyohwCf6dD9F
- CwEoXmfZ9yiT/tRJctoCzSgmsI3E7N0Laoa0RE8=
-X-Google-Smtp-Source: ABdhPJy2kt+e/iOL81CiSbq6iHd4SFXsD9dDUWUbPh4F2dWxNpf8kILAMnAMsnJkPMZT9SphqXGwElr06H8atBUuROQ=
-X-Received: by 2002:a05:6638:164a:: with SMTP id
- a10mr192538jat.126.1594830247326; 
- Wed, 15 Jul 2020 09:24:07 -0700 (PDT)
+ id 1jvpVj-0001JA-R9
+ for linux-amlogic@lists.infradead.org; Wed, 15 Jul 2020 22:04:21 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZQ1jWK9Xtj+Wt/RGtQ2ym0Xu2WBDVfua0iYYROKdrx69yKC5fCfKPBsEEJ1PRAU5iQLqDmQPJimf+++meDfbPtrlSo2yPv9fHOA2r+uxcaNY5ZH07FzRVPqm46LT0gIga7HWAsieX8l7IB7+AKIdmPg6NLwqKA7lAEWUkm8ysmFBAD/PsJ687icNaiZgw/d4E9vSjqZZ1D6PGcO7RuQuyTONAZA88wUfxYp9vDtMcp1nT5RlPzMMFpeAdVg4w+Lu+WZg9OnAo/sT0vhdufJgWqoMD940JaHjlGFEMuE5i4Cf09t2OsadNKI1v6OyooSpUmkYhkbXxnjoeSoa7J1cMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PyUJstjLKhDjQWgG1o6ZfIDpm5PzOC9Tp+yGVginwCc=;
+ b=MelSSmHhj58wZ+FQ+XUepUuAVz2S3lIeR40ncJgqHnigaKgFGtaw9bAH7TJtg0ta2jSDR7DiUXzac2YWFGm5cTK+dAyYDYahYJQ/ewXBvkCLHkuPgwr3S6eAfIrU6slb67POFVirWo2zJCRmQHmWtCc0QBd18MvLIfzu97+FGYsjo0CVomkfDdFFa62uQl7e5OxdxEOrzAG3ETJBgwJqeTYqPl5JG7YLdv3Hj9x/SSvMQbbpSzwYZrrsmaIc5kepOOW4W4dKRFMrPeA8QFx1yH3V+szFtsZ3iQcftGrwtZv4UEgOS1ozGeItUqqImsIPiCYZZGT69quU/sjlN434dA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PyUJstjLKhDjQWgG1o6ZfIDpm5PzOC9Tp+yGVginwCc=;
+ b=QaONSO2+iid+HYocN3Ivef9hFsDEKHWp2g39Zh6MX6/vvdqZvmawKdfNLX6KZNG+Ot+aBHid1kGC56BQ/EEF6pTmZRiqsad9jVxKpHet01EfIYaLE+ZuJc/BbMi+M8Qkkj+y+KU40pMzMx49qE71rQ8wsjtuDgQrb9WzZkvbTTHZuStfIoTstiPGgXzjFWIB5flfzDMo47/SJJW8UYNTCYf6Z+Crm7Punx4dvi1mbyGwd+K3PwPOj2LY8YxIFjztPNODBUVEAHxbRP3W0BqvIax8F98qtU8egtbZ1VEomWhoeLphDr3xCVqr+9x7q+N1PmuEHV1gbfOvP0wu0eMQIQ==
+Received: from BN7NAM10FT040.eop-nam10.prod.protection.outlook.com
+ (2a01:111:e400:7e8f::4b) by
+ BN7NAM10HT149.eop-nam10.prod.protection.outlook.com (2a01:111:e400:7e8f::404)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22; Wed, 15 Jul
+ 2020 22:04:15 +0000
+Received: from MWHPR1601MB1343.namprd16.prod.outlook.com
+ (2a01:111:e400:7e8f::4e) by BN7NAM10FT040.mail.protection.outlook.com
+ (2a01:111:e400:7e8f::238) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22 via Frontend
+ Transport; Wed, 15 Jul 2020 22:04:15 +0000
+Received: from MWHPR1601MB1343.namprd16.prod.outlook.com
+ ([fe80::41c:7919:14d7:223e]) by MWHPR1601MB1343.namprd16.prod.outlook.com
+ ([fe80::41c:7919:14d7:223e%10]) with mapi id 15.20.3174.026; Wed, 15 Jul 2020
+ 22:04:15 +0000
+From: =?gb2312?B?1cUgxP4=?= <zhangn1985@outlook.com>
+To: "pierre-louis.bossart@linux.intel.com"
+ <pierre-louis.bossart@linux.intel.com>
+Subject: S905x: No sound with error log.
+Thread-Topic: S905x: No sound with error log.
+Thread-Index: AQHWWvOtBibOHwz8MEuVyuIa9iGXNw==
+Date: Wed, 15 Jul 2020 22:04:14 +0000
+Message-ID: <MWHPR1601MB13434435DE38471CEB6675CECD7E0@MWHPR1601MB1343.namprd16.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:97397DBACB0FDCBCD5651CC45BB85398CC2473DAF2AE2AA694900086B2A9B0A6;
+ UpperCasedChecksum:3AB3E093D99CAB2F3B6C49EBBEC7FD98251D735BD0D23AEEEFF3B592FAC0BF28;
+ SizeAsReceived:6744; Count:42
+x-tmn: [Dfhf/Arst6xiVaMlCEvEondjpuuq4P8U]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 7f5e6593-7b7c-457c-2706-08d8290b035d
+x-ms-traffictypediagnostic: BN7NAM10HT149:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 9HgFj5FlyTINuZ39C7YU9KH0GvS7RSEbKexp+wFpde0wozHgAfekIKxQDDzZ24mab/swO03DXtDcu6ykjaBcL/5YBeRGeOIUVDZGzB1KLLTqixEVa2GTXASPQYEIY/3h+khVQ+0kBKL/TiAHuuNtgWfRC6cOFIEe5Ppug6fsd7dtmTWbMyvLIWfCL2DYEUFaulftFHQoeD5QjCSZ6wk5bDGkdp75Iurs//9wq+DOOBkzYzziptieuCwfZfoMmP7x
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR1601MB1343.namprd16.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:; SFS:; DIR:OUT; SFP:1901; 
+x-ms-exchange-antispam-messagedata: kx7z7Rpf4wMnRmmowePpTsZQe5Y0GMwilmXXyZEe+H1us9Y8XX8JbwSkRziijJxBV3dSFrY952GarfET/09ec7fE2bw0tRADD8LO2kuvmzKqnv3ZA4fs1eeXfXrFue/Iy5qMQ8Fi/bUfxcQEiS98sg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <20200713160522.19345-1-dan@dlrobertson.com>
- <CANAwSgR3ry19bxi8ZG026tHi-Bj+mP_O=PHuzUR_ujhjsdeLzA@mail.gmail.com>
- <20200714133024.GA27406@gothmog.test>
- <CANAwSgQJgqHC41D8f+9J5cEpeg71PD-Oc08wQgzdjRPY6ZsuLQ@mail.gmail.com>
- <20200715025849.GA8160@nessie>
-In-Reply-To: <20200715025849.GA8160@nessie>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 15 Jul 2020 21:53:56 +0530
-Message-ID: <CANAwSgRpfex_SroibCNxzOooXoUCi1NyRShoyonS5R=GrtH38A@mail.gmail.com>
-Subject: Re: [PATCH 0/1] usb: dwc3: meson-g12a: fix shared reset control use
-To: Dan Robertson <dan@dlrobertson.com>
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: BN7NAM10FT040.eop-nam10.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f5e6593-7b7c-457c-2706-08d8290b035d
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2020 22:04:14.9431 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7NAM10HT149
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200715_122409_835287_88D8ED75 
-X-CRM114-Status: GOOD (  45.61  )
+X-CRM114-CacheID: sfid-20200715_180420_192689_7DD80D8E 
+X-CRM114-Status: UNSURE (   5.27  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,156 +124,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Linux USB Mailing List <linux-usb@vger.kernel.org>,
- linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Dan,
-
-On Wed, 15 Jul 2020 at 08:48, Dan Robertson <dan@dlrobertson.com> wrote:
->
-> On Tue, Jul 14, 2020 at 08:57:35PM +0530, Anand Moon wrote:
-> > Hi Dan,
-> >
-> > On Tue, 14 Jul 2020 at 19:00, Dan Robertson <dan@dlrobertson.com> wrote:
-> > >
-> > > Hi Anand!
-> > >
-> > > On Tue, Jul 14, 2020 at 12:26:57PM +0530, Anand Moon wrote:
-> > > > hi Dan,
-> > > >
-> > > > On Mon, 13 Jul 2020 at 21:37, Dan Robertson <dan@dlrobertson.com> wrote:
-> > > > >
-> > > > > When testing suspend for another driver I noticed the following warning:
-> > > > >
-> > > > > WARNING: CPU: 1 PID: 5530 at drivers/reset/core.c:355 reset_control_assert+0x184/0x19c
-> > > > > Hardware name: Hardkernel ODROID-N2 (DT)
-> > > > > [..]
-> > > > > pc : reset_control_assert+0x184/0x19c
-> > > > > lr : dwc3_meson_g12a_suspend+0x68/0x7c
-> > > > > [..]
-> > > > > Call trace:
-> > > > >  reset_control_assert+0x184/0x19c
-> > > > >  dwc3_meson_g12a_suspend+0x68/0x7c
-> > > > >  platform_pm_suspend+0x28/0x54
-> > > > >  __device_suspend+0x590/0xabc
-> > > > >  dpm_suspend+0x104/0x404
-> > > > >  dpm_suspend_start+0x84/0x1bc
-> > > > >  suspend_devices_and_enter+0xc4/0x4fc
-> > > > >
-> > > > > In my limited experience and knowlege it appears that we hit this
-> > > > > because the reset control was switched to shared and the the use
-> > > > > of the reset control was not changed.
-> > > > >
-> > > > > > * Calling reset_control_assert without first calling reset_control_deassert
-> > > > > > * is not allowed on a shared reset control. Calling reset_control_reset is
-> > > > > > * also not allowed on a shared reset control.
-> > > > >
-> > > > > The above snippet from reset_control_get_shared() seems to indicate that
-> > > > > this is due to the use of reset_control_reset() in dwc3_meson_g12a_probe()
-> > > > > and reset_control_deassert is not guaranteed to have been called
-> > > > > before dwc3_meson_g12a_suspend() and reset_control_assert().
-> > > > >
-> > > > > After some basic tests with the following patch I no longer hit the
-> > > > > warning. Comments and critiques on the patch are welcome. If there is a
-> > > > > reason for the current use of the reset control, I'd love to learn why!
-> > > > > Like I said before, I have not really looked at this driver before and
-> > > > > have verify limited experience with reset controls... Was working on
-> > > > > another driver, hit the warning, and thought I'd take a shot at the
-> > > > > fix :-)
-> > > > >
-> > > > Thanks, I was also looking into this issue
-> > >
-> > > Awesome!
-> > >
-> > > > So best Fix to this issue is to drop the call of reset_control_assert
-> > > > from dwc3_meson_g12a_suspend
-> > > > and drop the call of reset_control_deassert from dwc3_meson_g12a_resume
-> > > > With these changes we do not see the warning on suspend and resume
-> > >
-> > > We definitely would avoid hitting the warning without the
-> > > reset_control_(de)assert calls in suspend and resume. That is a valid use of
-> > > the reset control, but why would that be best?
-> > >
-> > > From reset_control_reset():
-> >
-> > Before entering the suspend state the code tries to do following
-> >      clk_bulk_disable_unprepare
-> >      regulator_disable
-> >      phy_power_off
-> >      phy_exit
-> >
-> > After this operation it's needless to call *reset_control_assert*
-> > I tried to move this call before all the above operations
-> > but still no success with this.
->
-> How so? Once the reset() is removed prope() and deassert() is guaranteed
-> to have been called before suspend, like what is in the patch and similar
-> to other uses of shared reset controllers, this is possible.
->
-> > Similarly on resume we should avoid calling resume
-> > *reset_control_deassert* earlier
-> > as the core is just reinitializing the devices.
-> >       clk_bulk_prepare_enable
-> >       usb_init
-> >       phy_init
-> >       phy_power_on
-> >       regulator_enable
-> > >
-> > > > * Consumers must not use reset_control_(de)assert on shared reset lines when
-> > > > * reset_control_reset has been used.
-> > >
-> > > If we use reset_control_reset() then we can not (de)assert the reset line
-> > > on suspend/resume or any other time. Wouldn't we want to be able to
-> > > (de)assert the reset line? And why do we no longer want to (de)assert the
-> > > reset line on suspend/resume?
-> > >
-> > > > > Can you try this attached patch?
-> > > >
-> > > I think I had already tested something similar. Removing the (de)assert calls
-> > > but keeping reset will definitely remove the warning, but it means we can not
-> > > (de)assert the line. My guess is that this is not what we want, but I could be
-> > > wrong. Thoughts, input, or references to documentation on this would be
-> > > appreciated.
-> > >
-> >
-> > As per my knowledge suspend to mem will do complete power down of the
-> > devices with support suspend and resume feature sequentially and then it tries
-> > to bring the device up one by one.
-> > So it should also take care of reset lines as well.
->
-> So do we only _actually_ care about the reset line in the probe? Seems like we
-> should remove the reset controller from the structure if that is the case.
->
-> Cheers,
->
->  - Dan
-
-Sorry I am not the _expert_ in suspend/resume feature but I can debug this,
-Certainly we need to look into whether reset controller calls are needed
-to suspend or resume for this driver.
-
-First thing we need to get the RTC driver to work on Odroid N2 for
-suspend wakeup
-to work properly.
-For this I have created the following patches.
-
-[0] https://patchwork.kernel.org/cover/11665865/
-
-With these patches the RTC feature for wake up is broken right now in
-my testing.
-Once I get something to work further I will update you.
-
---Anand
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgpSZWNlbnQgYXNvYyBjaGFuZ2UgbWFrZXMgUzkwNXggYXVkaW8gY2FyZCBwcm9iIGZhaWxl
+ZC4KClsgICAgNi4zMzg0MjhdIGd4LXNvdW5kLWNhcmQgc291bmQ6IENQVSBEQUkgSTJTIEVuY29k
+ZXIgZm9yIHJ0ZCBiZS5kYWktbGluay0xIGRvZXMgbm90IHN1cHBvcnQgY2FwdHVyZQpbICAgIDYu
+MzQyMTc2XSBneC1zb3VuZC1jYXJkIHNvdW5kOiBBU29DOiBjYW4ndCBjcmVhdGUgcGNtIGJlLmRh
+aS1saW5rLTEgOi0yMgoKR29vZDogNS43LjMKQmFkOiA1LjcuNgoKQWZ0ZXIgcmVhZCBwYXRjaGVz
+LCBJIGZpbmQgc3VzcGVjdDoKCmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9r
+ZXJuZWwvZ2l0L3N0YWJsZS9saW51eC5naXQvY29tbWl0L3NvdW5kL3NvYz9oPXY1LjcuOCZpZD0x
+YmI3MDdmYmZkNWMyNDYwMjhkNzZiOGYxMWExOWRmZDExOGQ2MzA2IAoKdGhpcyBwYXRjaCBkb2Vz
+bqGvdCBhbGxvdyBwbGF5YmFjayBvbmx5IG9yIGNhcHR1cmUgb25seSBkYWktbGluay4gV2h5PwoK
+QlIuCk5pbmcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
+Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
+bG9naWMK
