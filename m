@@ -2,88 +2,87 @@ Return-Path: <SRS0=rXaj=A2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68B5DC433EB
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2020 15:08:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BE0B0C433E2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2020 16:02:34 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 32A9420658
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2020 15:08:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 89A2020658
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2020 16:02:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NlI1zso8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ic4mFINw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 32A9420658
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="wSEd66YH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jE7dK7a5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 89A2020658
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=DiWVIoMTXEJzAPwVmJGBBwCvhh/F0Z5oqr1xYKdqGvk=; b=NlI1zso8DXMzqtTqWbCOp+PHR
-	/dbCGCJdCMdXa0A5GRHZsZNYLJQMAJkkenPMadupUGvk0GUMjvWaAgPG6N3A5Q086Z6P8tviOH7Gx
-	d/VcKPsCWbUTcICnKuNveWzkwSWyyPRz3Ecxu7IOtPc8SeujmRBKLOuVIlbo8DxGQbTgWS0izn1Tp
-	SYLYyWFFNxWKN68vyxKld71IOXlpw+hY9j4ykYeTBswqcgBpbGnQAHrG6YleDelW5OLOBclKqs+E8
-	IiumF5eyh071sTKT6Sa6SRY0wtszBwXAhxPJcSUOiAB9bhE1DsYq9wFg8WvCChcd1JAHNigp87OpK
-	SfX0Slctw==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=NUeSJe1T+MW3y3cZEgbA3i9XXWHC3UgJ+K+tFgtO/XM=; b=wSEd66YHsyxpTVQLXZ9BOVRbd9
+	26MIw8o8yTbK/8E5yGJVj947PFowqRj5K/CjToAypFnGJTRt6X9DBVEbuKVHoHZg+YRK77tgkDK0Z
+	JG8BbEUgz6Yt6dZv67ojd7GSIecw0GXVweB+cZjLJJkUYgQtdjKzv9Y/do1dChuQr2IMHrVcVv7ZV
+	7azCzXdR/NqUKL8t5/oTMZH4XPASle+ceMT1A8lVh/vmfAGGWrn4SVE/SY4IY1jZfdcA1+AuzpuD3
+	/wz7N9yHD+/zjbBQT8mewtwL63f0DP6V4LSQS2ZUCOKzoSzA6G5THfoK5QHsVdQgzKQtyMuC9dm+s
+	Vp1LZ6vA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jvj0l-0006xD-An; Wed, 15 Jul 2020 15:07:55 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1jvjrV-0008Cx-IV; Wed, 15 Jul 2020 16:02:25 +0000
+Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jvizb-0006U9-3Q
- for linux-amlogic@lists.infradead.org; Wed, 15 Jul 2020 15:06:47 +0000
-Received: by mail-wm1-x344.google.com with SMTP id w3so6163583wmi.4
- for <linux-amlogic@lists.infradead.org>; Wed, 15 Jul 2020 08:06:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Neuk7hlxyMHOEJZl+c3Ce+fuWuJ+zLYxzzvecm8U2ZQ=;
- b=ic4mFINwL49QSVPf3k9/rgWYim5/9jEoZkN3gqetr4K9fAHlJVyJ3XypL6SuWfRqDz
- +S7WszcHEof6BWrZKfFj9g/YLF71Qcm1yt4zHcQPPYgdqTAQxCrOZh51+TZvW0YQ8Ck0
- aLn5KjCQKZ3Gd/aFzV5L2DQfyiqU8ujb9Iv4xSapyMw6tqW4tt5JwZPpcrPnOA8PiwaE
- 0yOlSql13qvWzpkdNz/tyd6HeetzNbv+eay/5/xjytCtAkIYMyDbb9Uefd2mAG3NGm2+
- EaVE9UW+LkFfgx1Zg5Rp6RueZCf8/5881/TkICwUazyXDTk14I4cs6dLDvr0xHFNjtcl
- EisA==
+ id 1jvjrR-0008C4-LG; Wed, 15 Jul 2020 16:02:22 +0000
+Received: by mail-pg1-x529.google.com with SMTP id p3so3300520pgh.3;
+ Wed, 15 Jul 2020 09:02:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=hzwdaSJqXx3p3pleSnirAKc5FuZuMmD64i/5xQ4XNio=;
+ b=jE7dK7a5lhTtjrQLAsCwCspzIedtM/RdEOZA7aQDY8KSIQAh5tOi9EzKzN2MVp7xmk
+ U6KixMBnY4Eb80roYMY9aQ47Ovx7D6zwsohn3H9DppKCQT6Evysny3M/mSA2EkRvmlcF
+ vaQV4qxXLCT5cbEA1HoU+Px/knDoi55/JU46TYRwVwwboIuP0y5mqduAk6ZOVOMxA2oV
+ s3zR/AVB3lWrbQM0WmKfkzu6qBbMQd9TBRzVt/BcrEYcei9vmJQh3NruUj8M04KHAGht
+ idJzYwWYmMfzJWjubiAsTG/f+rge59fTd00EbGWKNsTNxl97UPoFX8CW0BSldgzNwJ0g
+ vecw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Neuk7hlxyMHOEJZl+c3Ce+fuWuJ+zLYxzzvecm8U2ZQ=;
- b=EN5SlaItybv0AXWY3dV4IiykYywkYc3MMcJ+GYIzFyQZaNPmF7LgEZkq2Ajc2ojcBy
- MPX62y7gGpZHFPllQRicRJ7BlrtpqRIuy5snSawr1LKUmijPZs4xcjigpGmSiP5qr5qU
- iSCZ5Igr5Db2bmMLT2I6WadC04JOUl7wXFCUHz0RiW3Dc4F1eFWacWCC+YjiEGeHryg0
- k9rpss4hPD6iRV5s/Zuf7QcI3cF4+O+2rOxiLevcFLqtuzDSXPItNDAiAVAQo+ST8DZt
- jyNOo/+me7KgmoYneH7kl1ZliWRxJKMtdmd+DVKwjLk0BBkLVdH0vPbvMW1co9u3ALWG
- wTJw==
-X-Gm-Message-State: AOAM532LbFxg6zG5u3bcTTa97K7GQpoqJA0HJ5acfXxW2WfX9ttc4PLt
- UcMS5E0VrwJGpNmdGKjEnEO/Gw==
-X-Google-Smtp-Source: ABdhPJyhQwehdC5E5vWdp2tq0inGEyTI0AsEuhIDReVDRKACyOC/THNq1DETNswb/m5QQ3kSVY3afQ==
-X-Received: by 2002:a1c:7315:: with SMTP id d21mr8770056wmb.108.1594825602210; 
- Wed, 15 Jul 2020 08:06:42 -0700 (PDT)
-Received: from localhost.localdomain ([2.31.163.61])
- by smtp.gmail.com with ESMTPSA id w2sm3906140wrs.77.2020.07.15.08.06.40
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=hzwdaSJqXx3p3pleSnirAKc5FuZuMmD64i/5xQ4XNio=;
+ b=qFjI2yycXwIdnR9J3KMO8sL3Yx6C/RQyOiiM58slfu9mr4Ua0o+inQDbK33G9VWASs
+ VMBf4gc9OTFOB1bUbbl6zVvoyAEhg3yHU+cN4GCr3nETu1W8qos1KWrLM6xaYuR2LQKb
+ wyriWOabqf0RDZjDn4G5gDVYnZyZ353T/zhqCLxwxgthBs8is9hmtgdQk3jMZxnvAgjr
+ sU0OkpAoPWXdVioKTvuj9aUFO4EvtfRv8q6za6PblP0WAStJ/zExHncdvC6eJrnaPeyM
+ wd/D/QQxALX3YIKGmsSh3NGkKxB5rYRuxD9c6XNSaxt0MiROnnW4mzyWpuJbtLozoB9x
+ YwnQ==
+X-Gm-Message-State: AOAM530dLHEl4dEBnbxaLBkrlOEx6hgcvvPKndNc1LwfKPsCevkcJmAX
+ jYOAhxFOeZo605GZIf/OIq0=
+X-Google-Smtp-Source: ABdhPJz4CQCJOkCHojwVDLWtNcmCdZv764QmOe880vUng49/spIODUdMB9fwR87vn3J3xg/sM54wbw==
+X-Received: by 2002:a05:6a00:2292:: with SMTP id
+ f18mr11595pfe.192.1594828937689; 
+ Wed, 15 Jul 2020 09:02:17 -0700 (PDT)
+Received: from localhost.localdomain ([103.51.74.198])
+ by smtp.gmail.com with ESMTPSA id 4sm2520157pgk.68.2020.07.15.09.02.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Jul 2020 08:06:41 -0700 (PDT)
-From: Lee Jones <lee.jones@linaro.org>
-To: broonie@kernel.org
-Subject: [PATCH 06/14] spi: spi-meson-spicc: Remove set but never used
- variable 'data' from meson_spicc_reset_fifo()
-Date: Wed, 15 Jul 2020 16:06:24 +0100
-Message-Id: <20200715150632.409077-7-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200715150632.409077-1-lee.jones@linaro.org>
-References: <20200715150632.409077-1-lee.jones@linaro.org>
+ Wed, 15 Jul 2020 09:02:16 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+Subject: [PATCHv1 0/3] Enable RTC on Odroid N2
+Date: Wed, 15 Jul 2020 16:02:06 +0000
+Message-Id: <20200715160209.652-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200715_110643_253802_C9C4ECCF 
-X-CRM114-Status: GOOD (  10.86  )
+X-CRM114-CacheID: sfid-20200715_120221_705111_A466EE03 
+X-CRM114-Status: UNSURE (   9.94  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,40 +94,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Lee Jones <lee.jones@linaro.org>, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TG9va3MgbGlrZSBpdCBoYXNuJ3QgZXZlciBiZWVuIGNoZWNrZWQuCgpGaXhlcyB0aGUgZm9sbG93
-aW5nIFc9MSBrZXJuZWwgYnVpbGQgd2FybmluZyhzKToKCiBkcml2ZXJzL3NwaS9zcGktbWVzb24t
-c3BpY2MuYzogSW4gZnVuY3Rpb24g4oCYbWVzb25fc3BpY2NfcmVzZXRfZmlmb+KAmToKIGRyaXZl
-cnMvc3BpL3NwaS1tZXNvbi1zcGljYy5jOjM2NTo2OiB3YXJuaW5nOiB2YXJpYWJsZSDigJhkYXRh
-4oCZIHNldCBidXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGVdCiAzNjUgfCB1
-MzIgZGF0YTsKIHwgXn5+fgoKQ2M6IEtldmluIEhpbG1hbiA8a2hpbG1hbkBiYXlsaWJyZS5jb20+
-CkNjOiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+CkNjOiBsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKU2lnbmVkLW9mZi1ieTogTGVlIEpvbmVzIDxsZWUu
-am9uZXNAbGluYXJvLm9yZz4KLS0tCiBkcml2ZXJzL3NwaS9zcGktbWVzb24tc3BpY2MuYyB8IDQg
-Ky0tLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAzIGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvc3BpL3NwaS1tZXNvbi1zcGljYy5jIGIvZHJpdmVycy9zcGkvc3Bp
-LW1lc29uLXNwaWNjLmMKaW5kZXggNzdmN2QwZTBlNDZhZC4uZWNiYTZiNGE1ZDg1ZCAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9zcGkvc3BpLW1lc29uLXNwaWNjLmMKKysrIGIvZHJpdmVycy9zcGkvc3Bp
-LW1lc29uLXNwaWNjLmMKQEAgLTM2Miw4ICszNjIsNiBAQCBzdGF0aWMgdm9pZCBtZXNvbl9zcGlj
-Y19zZXR1cF94ZmVyKHN0cnVjdCBtZXNvbl9zcGljY19kZXZpY2UgKnNwaWNjLAogCiBzdGF0aWMg
-dm9pZCBtZXNvbl9zcGljY19yZXNldF9maWZvKHN0cnVjdCBtZXNvbl9zcGljY19kZXZpY2UgKnNw
-aWNjKQogewotCXUzMiBkYXRhOwotCiAJaWYgKHNwaWNjLT5kYXRhLT5oYXNfb2VuKQogCQl3cml0
-ZWxfYml0c19yZWxheGVkKFNQSUNDX0VOSF9NQUlOX0NMS19BTywKIAkJCQkgICAgU1BJQ0NfRU5I
-X01BSU5fQ0xLX0FPLApAQCAtMzczLDcgKzM3MSw3IEBAIHN0YXRpYyB2b2lkIG1lc29uX3NwaWNj
-X3Jlc2V0X2ZpZm8oc3RydWN0IG1lc29uX3NwaWNjX2RldmljZSAqc3BpY2MpCiAJCQkgICAgc3Bp
-Y2MtPmJhc2UgKyBTUElDQ19URVNUUkVHKTsKIAogCXdoaWxlIChtZXNvbl9zcGljY19yeHJlYWR5
-KHNwaWNjKSkKLQkJZGF0YSA9IHJlYWRsX3JlbGF4ZWQoc3BpY2MtPmJhc2UgKyBTUElDQ19SWERB
-VEEpOworCQlyZWFkbF9yZWxheGVkKHNwaWNjLT5iYXNlICsgU1BJQ0NfUlhEQVRBKTsKIAogCWlm
-IChzcGljYy0+ZGF0YS0+aGFzX29lbikKIAkJd3JpdGVsX2JpdHNfcmVsYXhlZChTUElDQ19FTkhf
-TUFJTl9DTEtfQU8sIDAsCi0tIAoyLjI1LjEKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxv
-Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Inoder for test suspend resume feature on Odroid N2
+we need to enable RTC module on this device.
+
+Following patches enable rtc on Odroid N2
+but sill rtcwakeup is not working se bellow.
+Any inputs are welcome.
+
+# sudo hwclock -r && date
+2020-07-15 15:53:27.706883+00:00
+Wed Jul 15 15:53:27 UTC 2020
+
+# echo 1 > /sys/power/pm_debug_messages
+bash: /sys/power/pm_debug_messages: Permission denied
+# time rtcwake -s 30 -m mem
+rtcwake: /dev/rtc0 not enabled for wakeup events
+
+real    0m0.003s
+user    0m0.003s
+sys     0m0.000s
+#
+
+-Anand
+
+Anand Moon (3):
+  arm64: dts: meson-g12b-odroid-n2: Enable RTC controller node
+  arm64: dts: meson-g12b-odroid-n2: Disable virtual wake RTC
+  arm64: defconfig: Enable RTC devices for Amlogic boards
+
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts  | 18 ++++++++++++++++++
+ arch/arm64/configs/defconfig                   |  1 +
+ 2 files changed, 19 insertions(+)
+
+-- 
+2.27.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
