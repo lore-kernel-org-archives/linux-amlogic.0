@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D200C433E1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2020 07:19:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6DF14C433E3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2020 08:02:43 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EC5B62067D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2020 07:19:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 398D22071B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2020 08:02:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qM9Z+9d0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kFZLCLyh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EC5B62067D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="wbYE3waA";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ioMBvp9t"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 398D22071B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,59 +27,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=3JOa+0mj1U0yRioSr2StmupdTfgLImwJPjViMR3TU8U=; b=qM9Z+9d05wZ350q1pjPQqB2Wm
-	DY6r8fxpavyodAmKQz6KBVptpKt1dgUCdeJGVTA5ob41C9DlCHW2FZWQaQwbYeceMhibIwduusPs5
-	S28Ech0IMZ9jM2ZwXt8m9O3yvT1r18tjRaBCTJXONkYQeoy+5Bw9FYeNnSrgYXp4cdcVqpAHc3HDE
-	y29VJCTi06OBxrIaK/2XKUkwaHhjHx7QF3r7Dl3fPw3VLDQSwvQsik7PdO2B/blE7pnkosGs6+btl
-	2pqOBBLRPxXJi5K0gOA/svHBeX801cYI8gUTQ5e+qH0Uhb6bkQmxxvMSY04fzMvGtkzmPQrInE1P6
-	kRa3mWYUA==;
+	 bh=6PnsPYoSY6vtcxuwFdscwqZCKd43lPVfsLn02UPQl9k=; b=wbYE3waA8XMQnubaZeTWAWfDb
+	6PkGhz677wHbFumhA/dK1TuVATs0vsYH9/8uXrh8ro+fpCpjBLPMzj6GlBaxs/OuNUvZEdiL9y6Ei
+	kE558xK02dqwQdWfUqrcShmfwdlsYjI7Ha3xsijnRqVSiLnifv78WsxSl8qDm4SwEaQ1Z3sGNBJio
+	gKGLqPt30y57NK7p2GUjSMXMDexMF0a9vJuhO+IkfWmuA4NaZNCgLIgH5RBhj8HgsheD4tKG2YOwi
+	FfbstIzDQJgvSMQp6sPAsnKpyxPCCApBBOZTJ9wqAcjnstOOX/EMSbA6L5IiKChoYWM+DYOZ+BbBp
+	pitVBercQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jvyB8-000694-3D; Thu, 16 Jul 2020 07:19:38 +0000
-Received: from mail-il1-x143.google.com ([2607:f8b0:4864:20::143])
+	id 1jvyqj-0001xb-FV; Thu, 16 Jul 2020 08:02:37 +0000
+Received: from mail-il1-x141.google.com ([2607:f8b0:4864:20::141])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jvyB4-00068E-5F; Thu, 16 Jul 2020 07:19:36 +0000
-Received: by mail-il1-x143.google.com with SMTP id q3so4188163ilt.8;
- Thu, 16 Jul 2020 00:19:32 -0700 (PDT)
+ id 1jvyqe-0001wR-SV; Thu, 16 Jul 2020 08:02:33 +0000
+Received: by mail-il1-x141.google.com with SMTP id r12so4282737ilh.4;
+ Thu, 16 Jul 2020 01:02:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=cPaT6yZEAJv5zgMr+GGSz/mVbWAnh4CvCC7E3BFSNuo=;
- b=kFZLCLyh9bKYLfSTlRxO8mJLZZ58nkjBlTwxdrnh39p/xgaSL9wcj0VvzPOKr0LBgx
- btzVmMrpX81ZxyqoYDGXtiDb4nxpVGSSSmRo5JN/7voTi0wS1XFlPoA8LccnY6ylDkRk
- UdPVNbtQYAYjN+W2FvdC7RfG3G87fqmhY7Gk7OQfT0+NL1Wuvr+fflbaY8HgPyHetIAL
- CsVGrrBoLZI1gs+vBlLOgGzr/2LQaI9LtcfARWvI7zNgPwvkS8GsrJy1O/pk91ykntO1
- xgYvvaD4kyhhrbMpanMNDt9Itz5/EQ//1POtC2mY9W/s9BfyIyW65e0pNGaNrGe5joN7
- RgIg==
+ :cc; bh=x8Ce9j7zk91Xc63rHhNEf95IY70/+EmDpEcw9U4m9jo=;
+ b=ioMBvp9teLR1HYUEl0KtqdLDBB9P0+jiD7Ax4pKzABAY0HdU65W1xMtORZ22h/b7qj
+ SdTCtQMgFZ53UTiaOoeA84t5mjXsFX42l9T5wG1CpPTC9tefdGmYlzjwg4WSh8/gM2BW
+ qGKjV8XPylz02mcMFGG+nmthaR1MyjG/vnL3vxdIIkrvFESNSJoqEjbVJyWpHjFYaOi/
+ fK8fUZ12GqF940Hl+5lpXF5puy9Is4RPwIL3V0vhp+2ffuUkTVkTP4GjTyJnSoakOtAT
+ zQjxdE0TfBm1CT9r/LBfQDpxL7CAgR55sUbU1PoM8seFJ7A2VhVvkz8ixUtf3jk1xlnw
+ FMlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=cPaT6yZEAJv5zgMr+GGSz/mVbWAnh4CvCC7E3BFSNuo=;
- b=Ua25YHAEfYfmJA43VC2hZmkTqiALpZBJawyy7pBARS9Oe/SwDIC8z4J3mM2zV6anTn
- TekS5rQLnTR2emvM9LTAOtPEbQCmG3/GldYGCV1/MyKsucll0Tfl1YJun6Ov4biao+Bl
- QKI3i+SBBsUwFVBNTWysMUJVj/uepmEGIwb+1vI175g6AtJtcMKphzX20Mj8z2dVdwM1
- 49FctoHfXdKiLheZrRk81gwT0vi7fGXdn063EJPWAiaycipDyqMw+JOl4KxgYkhx5uZ/
- 8BTSG/P6yrYWxuxD6OGHqAqfpspuhYjFR78Tp6xagAxhYSuAuEpx7E2fBBzKj1Fk+Ssh
- p59w==
-X-Gm-Message-State: AOAM531QAKJM6ZIMVIHjEGsPGuPU01OG9/dNZh+l/OPH4Uf3GlkFWyAA
- IOp5l4KshKGQ/Za8WIqIy5JRUdAQHD2Sg5IVqBE=
-X-Google-Smtp-Source: ABdhPJzmif/eCN5WZYiPDkZWSKHSviO6v4kNHP9sNOOTth0eb4+QpR2hcyzrdXQgwRVNiaiFr9IimTHeR7Nf697yfZQ=
-X-Received: by 2002:a92:98c2:: with SMTP id a63mr3233353ill.246.1594883971232; 
- Thu, 16 Jul 2020 00:19:31 -0700 (PDT)
+ bh=x8Ce9j7zk91Xc63rHhNEf95IY70/+EmDpEcw9U4m9jo=;
+ b=gSG7uqpO5BSZSA6AxBFrT4CGVPcsaN41nWeSuyBEVt+2XuKJWpUkei6wu1oCc0a7SN
+ QSrj1kA5HwtLl7S/6gtbWPEW83a40FSdnWelQCn7WaYk2PXqvSrFqVBwxNBaWot0ZS8s
+ /uXXCyWH5IvLH3SRyoEatJSMNE65QWpGwRU8YlRSrXJMjl5vBhYk3y0AkM6U7kIvbq1B
+ c6cH3N4zvRjBX/YE4m1J6VjEF9U+Ylcl5quUPefGiRSh8v5C5FdX6FalVP2x7mKzGn/i
+ OFw66hB9fQYLM2M3VS8dqJGVWKsoFQTDxann+S6XLFLbX53eUbdI6QYmxwxDO1eph8zV
+ HQlw==
+X-Gm-Message-State: AOAM531Nr4QYGL1IZ6iL65OoLkRffFGw/ZayrgSnkDLgYnPWpfoe+xAj
+ thnqxus7zvoG38T64fgWBIAkx9fK9t/ZitSHveQ=
+X-Google-Smtp-Source: ABdhPJzcIm9z3NmSkVW5PNnnqLFE0Sg0Xe+eDAwGmuJuSVaGREwAbJNIJw8WDqyqqWpbQnInV7A0ByzS2XY68AtGWcY=
+X-Received: by 2002:a92:5ecf:: with SMTP id f76mr3654015ilg.6.1594886550795;
+ Thu, 16 Jul 2020 01:02:30 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200715160209.652-1-linux.amoon@gmail.com>
- <20200715160209.652-3-linux.amoon@gmail.com>
- <630df1a7-8809-1af2-e424-8190a503a9d6@baylibre.com>
-In-Reply-To: <630df1a7-8809-1af2-e424-8190a503a9d6@baylibre.com>
+ <20200715160209.652-2-linux.amoon@gmail.com>
+ <de587578-9da5-cd1d-826a-ab83b7c3dcc1@baylibre.com>
+In-Reply-To: <de587578-9da5-cd1d-826a-ab83b7c3dcc1@baylibre.com>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 16 Jul 2020 12:49:20 +0530
-Message-ID: <CANAwSgTkFd0P0zJ48AVRWB4roQHsLainzypokYOD+L4v6gbGxw@mail.gmail.com>
-Subject: Re: [PATCHv1 2/3] arm64: dts: meson-g12b-odroid-n2: Disable virtual
- wake RTC
+Date: Thu, 16 Jul 2020 13:32:20 +0530
+Message-ID: <CANAwSgT9KPt5xTMd77LtSm3ojUiUqVHzJ3mKuKKbFW2c11J=Ag@mail.gmail.com>
+Subject: Re: [PATCHv1 1/3] arm64: dts: meson-g12b-odroid-n2: Enable RTC
+ controller node
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200716_031934_214412_03E619B0 
-X-CRM114-Status: GOOD (  15.52  )
+X-CRM114-CacheID: sfid-20200716_040232_990053_77673AA5 
+X-CRM114-Status: GOOD (  17.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,44 +107,72 @@ Hi Neil,
 
 Thanks for your review comments.
 
-On Thu, 16 Jul 2020 at 12:35, Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Thu, 16 Jul 2020 at 12:38, Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > Hi,
 >
 > On 15/07/2020 18:02, Anand Moon wrote:
-> > Disable virtual wake RTC node on Odroid N2.
-> >
-> > [    7.171149] meson-vrtc ff8000a8.rtc: registered as rtc0
-> > [    7.182875] meson-vrtc ff8000a8.rtc: setting system clock to 1970-01-01T00:00:07 UTC (7)
+> > Enable RTC PCF8563 node on Odroid-N2 SBC, In order
+> > to support the RTC wakealarm feature for suspend and resume.
 > >
 > > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > > Cc: Kevin Hilman <khilman@baylibre.com>
 > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > > ---
+> > $ sudo hwclock -r && date
+> > 2020-07-15 13:11:53.862508+00:00
+> > Wed Jul 15 13:11:54 UTC 2020
+> >
+> > $ hwclock --show
+> > 2020-07-15 13:17:30.903300+00:00
+> >
+> > But RTC wake up is not working at my end.
+> > Any inputs are welcome.
+> >
+> > $ time rtcwake -s 30 -m mem
+> > rtcwake: /dev/rtc0 not enabled for wakeup events
+> >
+> > real    0m0.002s
+> > user    0m0.002s
+> > sys     0m0.000s
 > > ---
-> >  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 4 ++++
-> >  1 file changed, 4 insertions(+)
+> >  .../boot/dts/amlogic/meson-g12b-odroid-n2.dts      | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
 > >
 > > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > index a447cba4dd53..c8c1262a7bfc 100644
+> > index 169ea283d4ee..a447cba4dd53 100644
 > > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
 > > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > @@ -517,3 +517,7 @@ &usb2_phy1 {
-> >       /* Enable the hub which is connected to this port */
-> >       phy-supply = <&hub_5v>;
+> > @@ -391,6 +391,20 @@ hdmi_tx_tmds_out: endpoint {
+> >       };
 > >  };
+> >
+> > +&i2c3 {
+> > +     pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
+> > +     pinctrl-names = "default";
+> > +     status = "okay";
 > > +
-> > +&vrtc {
-> > +     status = "disabled";
+> > +     rtc: rtc@51 {
+> > +             reg = <0x51>;
+> > +             compatible = "nxp,pcf8563";
+> > +             #clock-cells = <0>;
+> > +             clock-frequency = <32768>;
+> > +             clock-output-names = "rtc_clkout";
+>
+> The clkout output is not used, so I don't think these 3 lines are needed.
+
+Ok Thanks I will drop these 3 clock lines.
+
+>
+> > +     };
 > > +};
+> > +
+> >  &ir {
+> >       status = "okay";
+> >       pinctrl-0 = <&remote_input_ao_pins>;
 > >
 >
-> Please don't, the vrtc is here to wake up the device.
->
 > Neil
-
-Ok, I thought that there would be conflicts with the RTC module,
-that's why I disable this node. I will drop this patch.
 
 -Anand
 
