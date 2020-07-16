@@ -2,92 +2,81 @@ Return-Path: <SRS0=svws=A3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 857D3C433E5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2020 08:09:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7ABEC433E1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2020 08:14:44 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 54BB220657
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2020 08:09:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 727AC2070E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2020 08:14:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ekj+S8oU";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="cZ5RxiL/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54BB220657
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AMsHgVJ6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c3uytgrv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 727AC2070E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=B3nFC4dhd2TgZq9w7y+Qxigw82DkMuG9oGbUpiGyyAg=; b=Ekj+S8oUDFwMZ7KSwmwc/W5ug
-	RaIBoNMC4HVS+IOzZqfn5NQ/3axhvbC/HShMUqVthwQ5BaN7D8U9dCkuInJk1PI89ZZVe9HWHE9QA
-	kmG+lUiG5E5y+9bI3auHLwrw6cbr8DB+IVfAmcV5NXqhEZkYKhbOF6RzFZsEDi3LHJKjYqJsK+NyP
-	a8OqHaGVDE+AdjCzQqMaUG0lzlGtyfNlv8DKc9C8GdGyUpbGFILQtVD1BuTs+sobKCqSRB0eTSoMu
-	yhTsDwuhxnpfH9lZYonTQPAy3V+bnO0zJvsguE9DD+B4tE/jThAQ7DgzjndM4mu7hRwcYoueKvID9
-	u/OskVzXg==;
+	 bh=QkcJ9MyRS+jL0MwxJfM4jPZqxv3Xa6qNM1WmM9RRBXs=; b=AMsHgVJ68GjfLcKEzO1ejXnZm
+	QdWiZMmtza+6hrl36rGWpPFngYqfII3SGoP5Vw3X/Jri53/WjsD9PpvEl+1Q9RlLaRArATtq0Lefu
+	tR1WTZPcrxBQD6aSHhT5z9qWKVGHdzZkej5CUXCkzC0aQptYZ5wWH+seyC8/b3BXm56x1PJ2LDeBW
+	SvFwjINKYnq6bosF4nt6BweufrvmzzXG98Pke9LBOk0hqoWMEG3TVnmL4xi/ZsHZJs34xyvDrdNxl
+	n2d9dpuR/fqSUSP9PI1GEnQz4PSFlY8f5/HWGZhHgQG4sfGH/PLT0LJxFXFq3qOY+Fp5wqlEXNb0G
+	nYB/Qf3/A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jvywy-00030M-DP; Thu, 16 Jul 2020 08:09:04 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1jvz2M-0004o0-Gh; Thu, 16 Jul 2020 08:14:38 +0000
+Received: from mail-il1-x12d.google.com ([2607:f8b0:4864:20::12d])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jvywv-0002yo-Qy
- for linux-amlogic@lists.infradead.org; Thu, 16 Jul 2020 08:09:02 +0000
-Received: by mail-wr1-x441.google.com with SMTP id r12so5952231wrj.13
- for <linux-amlogic@lists.infradead.org>; Thu, 16 Jul 2020 01:08:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=jhULUF+x2vcXvW/jUomFav+ORqgbARKcOMlyJFwZDX8=;
- b=cZ5RxiL/5ONw1GCcNgBN6c81UUACzDib8nIbXx00FfE+wnQUEVXGZ+VDqTDgwgLezp
- jocMVNFBi9M/eQgGk8MPQqWgaNCfFyTrXmd2eEaSdIqzd6TdjExKhF0Lp8y6Y2iOaft0
- 1twosnPUNvSLKHtUkrzrC6Opb9n5c1rO7vrnT5IBqHJI/NHm1Z4H1vmUtGpVYyYn3QG2
- zCy8ZRkxuN0OfHLBMNbB3VRRTca9sEKtPGAkJMITE0DHic2otYjPWYHbAD4yPZRymMjt
- 3lGZfl3vWrRxotDMt0FiToUw1i0MaatXChin+XfA4dmyGGS/XPhyVkT4gCRUY312/kqm
- qDyg==
+ id 1jvz2H-0004lm-DI; Thu, 16 Jul 2020 08:14:34 +0000
+Received: by mail-il1-x12d.google.com with SMTP id e18so4301815ilr.7;
+ Thu, 16 Jul 2020 01:14:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Sb202bnMpR2L+FueL+OZRlSFJ9ClUCwQhcovgXlWEIE=;
+ b=c3uytgrv60iea+g2Iy4az5CXHfYXhnKOMxcitOEDiE2mxPDdoGj5tlEocEAT8JPnFp
+ 8vZ6+ZpayANkGzGHcM3CNJePrfcN/8/KI+ycb2XEe3Cs6dgZ3SA51aQmNC/ySOziE4IG
+ onCp5UAww7qXdyLat6PO1ctpxGJHAup9gfm7/jfVFwAUqDVirCUvs0bIcV1xVU9XBH6U
+ nckI25Qa7Vnr0+3cr1+0GWO6Ks8bJB9KvmBMfFG047nApTky13RdvtGnKnqXNLEqyywu
+ 8fC4JgWBm4Krw7uNr+aKsbbDvWxTm5t9ZUWdQ2Cg2Bhw1z46swTYStUmobxQbZnva3+l
+ sg7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=jhULUF+x2vcXvW/jUomFav+ORqgbARKcOMlyJFwZDX8=;
- b=TP0JOnHUnIVlz8ii9an0AWkn4iNIoYWPJoRhMf9zR6srckvMHtcA1wSsFQttV3nxyi
- zsRjeCvUFvrjXwQ8DXb03ooE3pqEvHS8E17oHmhH2i7tKM3vpmHugs6qq8NXJfq6C6mD
- oGjRdHzp/kTfZOvjssZnrcVwq6QO+EvIF25NB28JO5Zm89m5vTl7PvixBO8xdoje0CAA
- CaPpqO+L/Ekcjb1Wc4k65dHMnERRFgSNFMZqNuIIDT/mC/z7v9HY3fGBLy4r41igHupR
- 63EpPb+OZwdXczwiM6hch7dJfI4bMfNjop0eyKISYqx6wh1O4tJV1duTUnjY1aumpDeC
- Rodw==
-X-Gm-Message-State: AOAM531aFIZpfw4PRzDrTL58WrEqQWLsWLU7hYxMs/LZVzdbjUSmrBbF
- bclSdgxyVHf7wbRVYg2YkMUQ/w==
-X-Google-Smtp-Source: ABdhPJyHFwArR0lFRh+NQ73ElhRk6hFXaCF8nj8MBazu7YOMsgCsc3bh+VSwR5PfXDHz7D1HxBvJng==
-X-Received: by 2002:adf:cc85:: with SMTP id p5mr3765145wrj.273.1594886939056; 
- Thu, 16 Jul 2020 01:08:59 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id g82sm7023292wma.37.2020.07.16.01.08.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 01:08:58 -0700 (PDT)
-References: <20200715160209.652-1-linux.amoon@gmail.com>
- <20200715160209.652-2-linux.amoon@gmail.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCHv1 1/3] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-In-reply-to: <20200715160209.652-2-linux.amoon@gmail.com>
-Date: Thu, 16 Jul 2020 10:08:57 +0200
-Message-ID: <1j1rlbg9uu.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Sb202bnMpR2L+FueL+OZRlSFJ9ClUCwQhcovgXlWEIE=;
+ b=ONoSaSTUkSGmnCUAVYVrkfzdBPS11D4AGefarqFJIMtVIJUpLr4wND3B++oGYMz+ME
+ CqSgk56IwWNAeszZFSyNp+U5pes8ovv7wyWKxAFAy+gv1TwcSx8bFeUYztO8UIEHzsdb
+ npv8XOmgRAQECHTyXblQnT57xpBsCrbbVVA1PFecZhMCwL2vvRdrQ/fbXyQQAeRFcPdt
+ e7Ml5SQXpgA4KA89Gl05EMcegyyJZ571MYHq5hCUQGWycAidhf6G8Nk4rMkzWLLjk57S
+ 7KQKvletc5CMVdZVF8k9QjZsvcP24xBwedVLQSyzUM1E+QiCTfwHFQHttbRt0zfMH62M
+ P2Yw==
+X-Gm-Message-State: AOAM530SdwPgOrDHktUJuBqdUFLOR/HZtxBj5GrfBS1ejfXwoUOlbG9h
+ pVjdMeCa4v41q7IW+VkkcemoTzxs/tvpujfRD84=
+X-Google-Smtp-Source: ABdhPJx70BD/CO0Vg0/CK048ltr5UHKj/YXBwSS65IPYtXx9dkPIK4ydIyOWjTTlEOG5K0KawrCFDvV9iFR6l8mAYf8=
+X-Received: by 2002:a92:4810:: with SMTP id v16mr3470348ila.75.1594887271665; 
+ Thu, 16 Jul 2020 01:14:31 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200715160209.652-1-linux.amoon@gmail.com>
+ <455f5dcc-3be3-45cd-4947-50f261a502a4@baylibre.com>
+In-Reply-To: <455f5dcc-3be3-45cd-4947-50f261a502a4@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 16 Jul 2020 13:44:21 +0530
+Message-ID: <CANAwSgRXLUqqSqnguV2pgPdumMi8i6T9rh6hNQ0Y03mv_j7V-g@mail.gmail.com>
+Subject: Re: [PATCHv1 0/3] Enable RTC on Odroid N2
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200716_040902_030607_473770ED 
-X-CRM114-Status: GOOD (  13.14  )
+X-CRM114-CacheID: sfid-20200716_041433_541912_0DDB5C1C 
+X-CRM114-Status: GOOD (  10.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,77 +88,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh+dt@kernel.org>,
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ devicetree <devicetree@vger.kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>
+ Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Neil,
 
-On Wed 15 Jul 2020 at 18:02, Anand Moon <linux.amoon@gmail.com> wrote:
+Thanks for your review comments.
 
-> Enable RTC PCF8563 node on Odroid-N2 SBC, In order
-> to support the RTC wakealarm feature for suspend and resume.
+On Thu, 16 Jul 2020 at 12:35, Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> $ sudo hwclock -r && date
-> 2020-07-15 13:11:53.862508+00:00
-> Wed Jul 15 13:11:54 UTC 2020
+> Hi Anand,
 >
-> $ hwclock --show
-> 2020-07-15 13:17:30.903300+00:00
+> Only the vrtc is able to wakeup the device from suspend,
+> the external RTC is not capable.
 >
-> But RTC wake up is not working at my end.
-> Any inputs are welcome.
->
-> $ time rtcwake -s 30 -m mem
-> rtcwake: /dev/rtc0 not enabled for wakeup events
->
-> real    0m0.002s
-> user    0m0.002s
-> sys     0m0.000s
-> ---
->  .../boot/dts/amlogic/meson-g12b-odroid-n2.dts      | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> index 169ea283d4ee..a447cba4dd53 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> @@ -391,6 +391,20 @@ hdmi_tx_tmds_out: endpoint {
->  	};
->  };
->  
-> +&i2c3 {
-> +	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	rtc: rtc@51 {
-> +		reg = <0x51>;
-> +		compatible = "nxp,pcf8563";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		clock-output-names = "rtc_clkout";
-> +	};
+> Neil
 
-This rtc being on a connector, optional and not fitted by default,
-should it really be enabled for all odroid-n2 ?
+Now I have two RTC driver registered
 
-We tend not do that usually
+$ dmesg | grep rtc
+[    4.737315] rtc-pcf8563 0-0051: registered as rtc0
+[    4.738763] rtc-pcf8563 0-0051: setting system clock to
+2020-07-16T08:00:46 UTC (1594886446)
+[    4.790206] meson-vrtc ff8000a8.rtc: registered as rtc1
 
-> +};
-> +
->  &ir {
->  	status = "okay";
->  	pinctrl-0 = <&remote_input_ao_pins>;
+And there are two nodes
+# ls /dev/rtc*
+/dev/rtc  /dev/rtc0  /dev/rtc1
 
+So it seames an issue that /dev/rtc0 is not able to handle wakeup events.
+How can we resolve this issue?
+
+# time rtcwake -s 30 -m mem
+rtcwake: /dev/rtc0 not enabled for wakeup events
+
+real    0m0.002s
+user    0m0.001s
+sys     0m0.002s
+
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
