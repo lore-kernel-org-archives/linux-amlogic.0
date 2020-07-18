@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F265C43458
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2020 06:58:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FFB1C433E5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2020 06:59:16 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 694642076D
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2020 06:58:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0E63920724
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2020 06:59:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KOSo7CWk";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="caYg/F1C"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 694642076D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QcknrGJc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="neHTgbqf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E63920724
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,63 +27,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=asE5S9SkJwiFyxEVX1d4dB0PPFcoC8gFkgyBO8KVPRM=; b=KOSo7CWkkzRqsSbOG6f/L03bih
-	KNfxld+0JZcsZFbImmIeIa2UTRe1ieMwlt2g3D5+ha5pPrGe9+KYExTOw+3VbwNYCX5fuX9Q/DLbd
-	Z3jcbFCfFsjsZTIcMA+qapF77dByfCrnhZDU8xPDtSVbjUM4kCQza+1uEyK1fpYwRSoAq7oelsyu6
-	TFKaLp27IstWmNkJzm0v5G7MMHr2zhYAOvQ37nJNOiGs3BsCWS5LLjaslLnUdn2YMxAe3I3wAhsTz
-	20DA+SWpXz3NYhhtgGzTQrgksRJyeH8rsw5AEnA9hEp3Q1fNMwzaTErgSUMW91LqrFkT/n9RFCnDS
-	Yxv2txLA==;
+	bh=Y17kKEVlBSrZBxTR0WFjnwVod5LtYPPsA2ZKDMxR+Ps=; b=QcknrGJc8kE2ZhQq4ksALLi1za
+	QA0POQrjZVOdEf1TJLQ6C8O4aSJYOJfDLZEIs3zr5np9MioEm6bbZhFYgViEqsehVBJU5eQdLzzVE
+	PNmi4P6pbH8Gz0ojsE+1ahh4UqE1l/XH51qNw97p3Kb9slJ36AK7LzGabe7DtR4ttljY/y5rEDqil
+	l2IFPB6yXqxbiNYk2l90y5o1QIq3Su/iTWTpRrVWHLLf28kqbhsvCtSQAz+R30xzFD+B/va7Ft/5W
+	bz50TtDEmwFlngyZSYsxAcW02CufNpX9kdsYkbJzBjKDptwLIb92oTPymAxZieEmzJN0RWr28JNTH
+	Q5hcLP7g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jwgne-0001Qx-Lk; Sat, 18 Jul 2020 06:58:22 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1jwgoP-0001lM-PZ; Sat, 18 Jul 2020 06:59:09 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jwgnA-0001DL-Gg; Sat, 18 Jul 2020 06:57:53 +0000
-Received: by mail-wm1-x342.google.com with SMTP id j18so17745964wmi.3;
- Fri, 17 Jul 2020 23:57:51 -0700 (PDT)
+ id 1jwgnI-0001Gj-Js; Sat, 18 Jul 2020 06:58:01 +0000
+Received: by mail-wr1-x441.google.com with SMTP id z13so13242572wrw.5;
+ Fri, 17 Jul 2020 23:58:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=0aTKJ5HZFsSQ+eCcPAw4QelVRGYoHt0VsuUcLv/a/yw=;
- b=caYg/F1CiwwGkHeQR/B4qjCLeL6H2OxPLCrC64xVRKZ5qK692K0AEr6GJgBw6r16zd
- 9n1fNjzLqULafFSRpHgpPBmvwQ1xWACjR7Ml10/v6S+2XTAJ7bok15B/jllJYgmL2PLi
- NiAl0QriTi6R5ak+hJaTtj45aMicNAJP8WQaWNaLNm4T00Q0ZXuFfvNcu6/eRGQYD37i
- XsMR7dQ5SHUKS2GfXlK8lE0p3Xrynm4nxpt2cYvKs2118gAWngDJVdOhmDk8vaEX4hxz
- /0pO8GfJiXUed2NNCcdpaWUBXjkhuqTAdn27VpUygM8J6az8Wx3QpyTtcx9oJ/Vx3aZz
- rPNQ==
+ bh=3IIVS7MhfURH0UVnp76zcUfKlv8hfdezuu29h1qTO9Q=;
+ b=neHTgbqfGpClsL0gQHB67RRXau6lnk7fbLn9xgBy3PbSToJl1m5N4Z3HP05r7yFwiv
+ +FPXZgtCdnDtY/9lx51m4vVBJXvPhBj9W/BUsnDRCHVm1a3dTNtVViXysW2aL/uHorYp
+ 6mJSJyfgpxfwbkRUVvnUPAzQDzrflpv73pXKg9R5Vtuiv6g42DRzxw5e0X1HmesTM+4O
+ J988NtRNnW+ea1shLNC9e0xMmIR2aTPnNKT5pfZh8vKZ4cRVK0Yp0PNs1nL/ZcyIzbru
+ aAiIwppV2XgbKPm71NusWFxxSPUFSYM5XBt/iEYcS2JHd5/AICUVeQVMGsn8LVFhhyAp
+ 9t7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=0aTKJ5HZFsSQ+eCcPAw4QelVRGYoHt0VsuUcLv/a/yw=;
- b=dogMelk1BZtfslKFqglOXQLHTqsC51qUO5vXzl8A3KUeCok8vYyHjv4PzpOt5srHTu
- xigWqH6OfPMk60KuOoBEcWB5lv/Rce6RPSRqstgYpFJMS8pNpvdvYX8csfTLuGedd5rH
- sD5sq3lst6VCrUMJHhOx7OK4kTD5iYqcvtrjFl9sTzvZCstQ35fDOq2LQ9xEOL36i8bN
- 1qRFr9qNNStPVk5BIs/v2gmeRwV2Zf9TKxiSA26s8yCs61Gq7CbsOhUMYu5bUfKop0IH
- cOU9s542+NT98yCl1uXXpoyqNUSYP8omYDBgUnekSRkOhEdhl8YDuSrAKxJ0TQY6QUbX
- ZxoQ==
-X-Gm-Message-State: AOAM533nIbELgIJf4zbKbfassqBe+YUTzqdQevQYLORMZ1dWohDwOBTn
- kkgOuyDsL4UOpkh6yCElzwc7POT+
-X-Google-Smtp-Source: ABdhPJx+0bXWdJ5NE92Hqa5rIB9eDMnmi3al+CVIzyGEaTEXb1ufuNsWoDnDnbQDUATAG7sFuy5bVg==
-X-Received: by 2002:a7b:c956:: with SMTP id i22mr13218592wml.95.1595055471013; 
- Fri, 17 Jul 2020 23:57:51 -0700 (PDT)
+ bh=3IIVS7MhfURH0UVnp76zcUfKlv8hfdezuu29h1qTO9Q=;
+ b=Jf8GHbluQ1zgsMz+xsB68Fld+k1KHaQrxmJzHBDy5dbAR9rJSqgwIkU+osvJLQ3MPn
+ y5+hnRNh3Nrki/PVBXXPeT6FzdUyxYPPsrh0mip7j1wgQWUU65rjsin41Tf2+0A4SIDq
+ zBpkXhqUEOz91rwPw+z0SreqZ5u8Zjd7b6Qm25zmXtcyonRNILJTmUxG7baqXgjbjfKC
+ rW3PhmcL3kjullkknFj+LRAdOnIi1s1Nubs/qCkEPK76vFTuZ/MPkXXx/FjybwbQzxOY
+ wu0MHsFJevbCA0WFJ+6PfJWHgjGJbqvSBCV1DmwL2L2upnfmJg/Xv2ttJoipFqiXLSzT
+ UnPg==
+X-Gm-Message-State: AOAM531U5Zqweg8mAQ35ETmqHcPY4uRvSRfrCk4WV2w1vp4dW6wHcnv5
+ b8vbwr8wO0QD4/k4kZBpTBs=
+X-Google-Smtp-Source: ABdhPJxENi3dgreYnZ/rBF9Fp1/H2p/cBJM+q9VtdrscIG6c3xfl5obsf4gBCK3S/TGY2xHmPM4rsA==
+X-Received: by 2002:a5d:6284:: with SMTP id k4mr643263wru.372.1595055479486;
+ Fri, 17 Jul 2020 23:57:59 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id x5sm18749191wmg.2.2020.07.17.23.57.49
+ by smtp.gmail.com with ESMTPSA id x5sm18749191wmg.2.2020.07.17.23.57.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Jul 2020 23:57:50 -0700 (PDT)
+ Fri, 17 Jul 2020 23:57:59 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH 03/12] arm64: dts: meson: add audio playback to nanopi-k2
-Date: Sat, 18 Jul 2020 06:57:30 +0000
-Message-Id: <20200718065739.7802-4-christianshewitt@gmail.com>
+Subject: [PATCH 07/12] arm64: dts: meson: add audio playback to p200
+Date: Sat, 18 Jul 2020 06:57:34 +0000
+Message-Id: <20200718065739.7802-8-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200718065739.7802-1-christianshewitt@gmail.com>
 References: <20200718065739.7802-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200718_025752_608126_AAF610FD 
-X-CRM114-Status: GOOD (  10.83  )
+X-CRM114-CacheID: sfid-20200718_025800_739447_9A2A4449 
+X-CRM114-Status: GOOD (  11.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,33 +102,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add initial audio support limited to HDMI i2s.
+Add initial support limited to HDMI i2s and SPDIF (LPCM).
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ .../boot/dts/amlogic/meson-gxbb-p200.dts      | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-index 7be3e354093b..8e5df00b06a2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-@@ -7,6 +7,7 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+index 3c93d1898b40..a16dac72600d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+@@ -9,11 +9,19 @@
  
- #include "meson-gxbb.dtsi"
- #include <dt-bindings/gpio/gpio.h>
+ #include "meson-gxbb-p20x.dtsi"
+ #include <dt-bindings/input/input.h>
 +#include <dt-bindings/sound/meson-aiu.h>
  
  / {
- 	compatible = "friendlyarm,nanopi-k2", "amlogic,meson-gxbb";
-@@ -130,6 +131,45 @@
- 			};
+ 	compatible = "amlogic,p200", "amlogic,meson-gxbb";
+ 	model = "Amlogic Meson GXBB P200 Development Board";
+ 
++	spdif_dit: audio-codec-0 {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "DIT";
++	};
++
+ 	avdd18_usb_adc: regulator-avdd18_usb_adc {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "AVDD18_USB_ADC";
+@@ -57,6 +65,59 @@
+ 			press-threshold-microvolt = <0>; /* 0% */
  		};
  	};
 +
 +	sound {
 +		compatible = "amlogic,gx-sound-card";
-+		model = "GXBB-NANOPI-K2";
++		model = "GXBB-P200";
 +		assigned-clocks = <&clkc CLKID_MPLL0>,
 +				  <&clkc CLKID_MPLL1>,
 +				  <&clkc CLKID_MPLL2>;
@@ -143,6 +155,10 @@ index 7be3e354093b..8e5df00b06a2 100644
 +		};
 +
 +		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
++		};
++
++		dai-link-2 {
 +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
 +			dai-format = "i2s";
 +			mclk-fs = <256>;
@@ -152,7 +168,15 @@ index 7be3e354093b..8e5df00b06a2 100644
 +			};
 +		};
 +
-+		dai-link-2 {
++		dai-link-3 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
++
++			codec-0 {
++				sound-dai = <&spdif_dit>;
++			};
++		};
++
++		dai-link-4 {
 +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
 +
 +			codec-0 {
@@ -164,9 +188,11 @@ index 7be3e354093b..8e5df00b06a2 100644
 +
 +&aiu {
 +	status = "okay";
++	pinctrl-0 = <&spdif_out_y_pins>;
++	pinctrl-names = "default";
  };
  
- &cec_AO {
+ &ethmac {
 -- 
 2.17.1
 
