@@ -2,84 +2,90 @@ Return-Path: <SRS0=UX1O=A6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 515FEC433E6
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Jul 2020 02:14:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C60D9C433E5
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Jul 2020 02:15:00 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1E70921741
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Jul 2020 02:14:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9558221741
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Jul 2020 02:15:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="0FByiVaE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EEksNnty"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1E70921741
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="1Hf/v45z";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="shJGdMFS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9558221741
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=LyhOs6ejlhHyTONfSvEfTpZRTelzmicxwgKJuxgztWc=; b=0FByiVaEX+xXpYnxcY4chMrWM6
-	MCFQQGAIxnWRCk6zOf5U0OS0TOYQyjjOaPiz6PwPE43Ipz3U94mGr98Kd0K3xyoyzwMOWkttTTtFj
-	vigIrcJe9+WEQ6vYHg8GhaZKkG4K1KuHKsIBgq1Vvxync4aMC3mBkEKpslVP6f5nCDGSBO9rs8DHJ
-	DTFr8JePSpi0v6RxyAw9qisNIQPHuTOtzNr+WX+iaQi4S/R9j7EzIs9OnW2oYJ5xMVbLYp5Iv1//0
-	R+cy/C2TYY2j3fhtsu/3bjmaYk0PF4tbAzejHvriYCru95VzvDXjIBG4pMvnTWWWt4OqfVR3uks29
-	1ckz/P2w==;
+	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=giq9jtMtVwec5hmGiN9K3I7kjPgdoyrQ7eT0yucZlfY=; b=1Hf/v45zXYoxJouqBWLT/ucHLC
+	hZ6ajE3XRQ7dZ2Xtp0RFMCUWflqsZbjqz3dSCyF/MFrfJgbFtQxmRXu4VKdrn/S1eYFuqVRy4Hnwj
+	wkpCMVaIIYJTCeYcVQ1s0k4oY2QgC0vkvyHDrblYF8maZD67eesI5nZ6wBAJBEJm0VW+YdUH41XCc
+	iu2i1ZYBYPEh0rkBhhOJnsVP2cmuKgnd0IOQ9lApctw3zkF7rN1Jqwo56rb5LDt+GxSqJ+sWZVVT9
+	wICwO5+P3c8VwTaL54vnPJrdA0mjXcVxriMrLVFK2VWPt74yzvrwqCQWWzUega+cIytmFa+LyCYli
+	X8/wPcZg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jwyqi-0000xM-9U; Sun, 19 Jul 2020 02:14:45 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1jwyqm-0000xo-KQ; Sun, 19 Jul 2020 02:14:48 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jwyqX-0000v4-KF; Sun, 19 Jul 2020 02:14:34 +0000
-Received: by mail-wr1-x442.google.com with SMTP id o11so14623219wrv.9;
- Sat, 18 Jul 2020 19:14:27 -0700 (PDT)
+ id 1jwyqa-0000v6-9d; Sun, 19 Jul 2020 02:14:39 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 17so21913137wmo.1;
+ Sat, 18 Jul 2020 19:14:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=GQcRfWfKvTiTGWJVDo12RjwKZPjrWsIntIaVCQbrSC8=;
- b=EEksNntyCoEPwQY3xYrBZWIzhKc83N3cgeGCMmSy6lWgOpmtTyaqdbZ8uSFaT8DMqS
- khuFZdI898/PNOK8pJvkJQgiGUDR4XJ/X9GcJyMqU5pDViSBJjVueJUBzq5+WnzeYg2Z
- EMeH3br7cED0PvsH8G3qdYz1OGlEW1oXeMFXiUYKd49x3TYDoqWj/CC6wYyl7ioFlbGY
- wA0XqXKZvGynUrcGiDKkxmjmCSPxM3iabJ0P9TyZrRUrayzt+aMNYzBAZfAQE0qDNYX5
- RzSLcUokWHaXGdhNApEBmvyuYP82CraQBm3fMR6oNuBhcnBJUWYiKFI1gXsCN2OsWAH9
- d5NA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=EfRpQHmTESiZa6dhnw2iqpiFLGjitNFlRILsGoZarsc=;
+ b=shJGdMFSrIFx2UkV3EqrEmoYnfAE0XXaMRbOkQJumHnk1GOebQDX58vtRnxNlPzAj+
+ GXoI2yffkLZ8QVeGvMCoWtWwdPp1gOVxG7p4+Y65bCztkhNJpNA0+y2Nu4hL32LhI2CH
+ dkqZR3UG3IJWShZKVD/41HMY8fR1ao/Kn4MYQ/PWkUCOuR1lKc0N0bQ8wQBvHtl8ZEr3
+ rjP3QQN8TXokfi5uFsNngkjHGXh/pxZNzHXPjraVZS4o5QFar3tRMOkQDVqrH4pdFpho
+ rnsmLwcClk2dUo3SwiLIPlXkEHgQsAaeneRs3VDzgjCgKD5/4y8WeaM+erM2hYcMbsML
+ yD+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=GQcRfWfKvTiTGWJVDo12RjwKZPjrWsIntIaVCQbrSC8=;
- b=XpX30ORoN6B/UIOrMVzPG96QBUHa86YFZrMS15KQYfgWsFL2nazK6lvnWQfauaNI8B
- Of6kwrWlzqAvN1D74gjRqccywzldKPbEpnNIAQkes8g93P1XCJliDeJpev92+oiM5XKB
- D3p0kv909uQvI1xNgsx4VlU+E3MbZLNvTQ520sdwyHxJKeewWz8bv1+XXiCYyf4VBGrG
- lAVVoiN0xPa7t7z/6ErwzRSks2j3aIC+87R1UVRoVW8Gd++SV7KBzSX9cedaB3snpNNs
- KTzkh3sgfV76+rFN4/PrAQ7yb/avRhkIpjmT4fqP9XCHrvxJ9XZASWez0PuYzhQmkHig
- GVkA==
-X-Gm-Message-State: AOAM532F3Yq+3y+0ns4tmgdzKne3jaj9HiJGwaIbr69tZHixcebfrpbj
- fyxlkMfSADtLhNNf4WD/910MOz2+
-X-Google-Smtp-Source: ABdhPJywyrLKgJdRmHbXz3zHbMTBO4eBr791eYA8Ju6itSElwwx3fccwDoLOJ7ETLMkFW7guWQR+oQ==
-X-Received: by 2002:adf:f18c:: with SMTP id h12mr15744657wro.375.1595124866592; 
- Sat, 18 Jul 2020 19:14:26 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=EfRpQHmTESiZa6dhnw2iqpiFLGjitNFlRILsGoZarsc=;
+ b=Mnos/7M5MPWLgZe2iyoAqDAHiQgLVQJv32lbDRUYIJHgZD/Ul6XGvyeCWi9mghCBN7
+ xfsORKt5pOLwq3sT2FkSljnj/JvNXO+6GodhW7LieKr3R6ossK4ug3g40ymuSzNSd4pf
+ 0J/hJvALWJ+hiTaUeaCK/+V66s3uhAk2oVcJLYYSJRBo5T5q8u+Ybp3cze75Xwfmc1VG
+ /3vDl6r+NkCCTjSg22fddbz1nPZlQD42vH+sXfVsGh7C3MdR9pTzCp7JBrHCp9BAHEsY
+ /3qjBRa1nVfL7bxOG5Rm/hnejFNWDIcxMdNodQKODZQdgS67UptFNL7NfEp0VKG78ATZ
+ QTuw==
+X-Gm-Message-State: AOAM533shT6r+M06uKEEMPgPX1fY4dVYJ3yylo7aGkVGqTQWwXEED1vm
+ OiHIJF9lIzmrPqPkQyPz2Zs=
+X-Google-Smtp-Source: ABdhPJwbx7zQAyjjmZbD7WUHvgisDzdZUs/ei6PvMfz/Lj+pHUKEG43rF9MZT7hZxXK/oQbf7Fhv0g==
+X-Received: by 2002:a05:600c:249:: with SMTP id
+ 9mr14656801wmj.80.1595124868889; 
+ Sat, 18 Jul 2020 19:14:28 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id v15sm22078103wmh.24.2020.07.18.19.14.24
+ by smtp.gmail.com with ESMTPSA id v15sm22078103wmh.24.2020.07.18.19.14.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Jul 2020 19:14:26 -0700 (PDT)
+ Sat, 18 Jul 2020 19:14:28 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v3 0/2] arm64: dts: meson: add support for WeTek Core 2
-Date: Sun, 19 Jul 2020 02:14:19 +0000
-Message-Id: <20200719021421.7959-1-christianshewitt@gmail.com>
+Subject: [PATCH v3 1/2] dt-bindings: arm: amlogic: add support for the WeTek
+ Core 2
+Date: Sun, 19 Jul 2020 02:14:20 +0000
+Message-Id: <20200719021421.7959-2-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200719021421.7959-1-christianshewitt@gmail.com>
+References: <20200719021421.7959-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200718_221433_777682_57E486AE 
-X-CRM114-Status: GOOD (  10.49  )
+X-CRM114-CacheID: sfid-20200718_221438_381485_F04E3A43 
+X-CRM114-Status: GOOD (  13.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,24 +104,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: chewitt <christianshewitt@gmail.com>
+The WeTek Core 2 is a commercial Android device based on the Amlogic Q200
+reference design using the S912-H chipset. Specs:
 
-This series adds support for the WeTek Core 2 which is a commercial box
-device based on the Amlogic Q200 reference design.
+3GB DDR3 RAM
+32GB eMMC storage
+10/100 Ethernet using Realtek RTL8152 (internal USB)
+802.11 a/b/g/n/ac + BT 4.1 sdio wireless module (AP6356S)
+2x single colour LEDs to indicate power
+1x power button
+1x reset button on the underside of the box
+HDMI 2.0 (4k@60p) video
+Composite video + 2-channel audio output on 3.5mm jack
+S/PDIF audio output
+2x USB 2.0 ports
+1x USB OTG port (internal)
+1x micro SD card slot
+UART pins (internal)
+IR Sensor
 
-v3 changes - fix BT node (enable-gpios > shutdown-gpios)
-v2 changes - simplify ethernet disable
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Christian Hewitt (2):
-  dt-bindings: arm: amlogic: add support for the WeTek Core 2
-  arm64: dts: meson: add support for the WeTek Core 2
-
- .../devicetree/bindings/arm/amlogic.yaml      |  1 +
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-gxm-wetek-core2.dts     | 87 +++++++++++++++++++
- 3 files changed, 89 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 378229fa8310..5eba9f48823e 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -121,6 +121,7 @@ properties:
+               - libretech,aml-s912-pc
+               - nexbox,a1
+               - tronsmart,vega-s96
++              - wetek,core2
+           - const: amlogic,s912
+           - const: amlogic,meson-gxm
+ 
 -- 
 2.17.1
 
