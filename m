@@ -2,89 +2,91 @@ Return-Path: <SRS0=UX1O=A6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5C42C433EB
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Jul 2020 14:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D012EC433E6
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Jul 2020 17:37:45 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A50F522BEB
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Jul 2020 14:11:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A428E21744
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Jul 2020 17:37:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GkwCoXzQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NFhIzRLt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A50F522BEB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S7TZKjEb";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="PqocFj0J"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A428E21744
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=j42Q4VhHqN2yTHQI1mF0PmTz5Hcekc7nK6wpGaw+UXU=; b=GkwCoXzQbooh1uBw7a4mFWMb0g
-	Wov6tp+nEIgyP69CARTNQbSXx51DWCJDRmeUEvfRhH6Mp5RrqbvhQvO/SQd1Wvz+2noSnL0LUYXPg
-	bH5WkLu8kq/NZ6xDpwA0Pqz6PwgqcEgfxl2+raomMEVQg7tK8NEJdGBEQYZz+jXFq4efN2HKUut4f
-	kjPIOzCqCxJbdAbDN6dO7AhN30gKlKNEcL1U9AM9QChhliPLYBBma+tKaRNrsxzO31HaY3XK5uwdQ
-	Vlq16RVKDIYqBKClifuvG2idKiAYTS/w0G6lGmFxcydDtAclPoa7kX3wQNWAnX/xR5oG3g48r+gMg
-	YwThTYDQ==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=EzhivENwxrPFzeF5fsBlcTUV72/+JZmaucYcQR48NZA=; b=S7TZKjEbiUjO5WpXU2/eWRVwiu
+	e7Viri2p8RLCEs04QI2C8kuswf0B67UhPDRETEMNpRNOkqCh3pirQwGe7Ff9AoTTc2KOzIZgxZZZW
+	nkB518gOeGMZG3iZovocRbiAzefOY42Sz1KLLcprUond5MNJoVIeNp45VNAef8d83pZMHdr6in7rV
+	fJl23hNVgpwJpMYqZHsSHDzl5OTkd0yRdBK2dtWM6CJYVhkMA5BHaGNemOdndzlWffxuxoCOXBAXe
+	OoIR5LZ75sZxH+roGgA/Q2BUrZqedTc6ERieGXozqh3AADaH1Q0dTB86x4WhkR3hMLVzVy214xXI+
+	/uTUYqXQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jxA1v-0002XM-Ng; Sun, 19 Jul 2020 14:11:03 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1jxDFo-0007pu-VA; Sun, 19 Jul 2020 17:37:37 +0000
+Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jxA1b-0002Sv-KN; Sun, 19 Jul 2020 14:10:46 +0000
-Received: by mail-wm1-x342.google.com with SMTP id f18so22674832wml.3;
- Sun, 19 Jul 2020 07:10:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=b1OqMG0mLBtSpFzdER8CFvxNc7hFvLz6YsVttrhiofY=;
- b=NFhIzRLtxklOjQpsl0Uj7X7Ltsk96u4sq4gYwG9m3XMeWOR8ydPWKzBMklWYLSihsA
- emxkYnRwMUh8/10uMoJEQy2K8uML4ywEd3NYozxKNoUZbcDWWhStKhzWuUELFpvDRR56
- jufoHJAuip7ITtSDHwTeenvye7x4NOyDZo04q8O6B7K5XZIttIEg/TjHMyVkv7DEdiyA
- LGuZPyWbwFTsjpxfaADdhXh7zffKPJJHiDlUDMpTV9+i3XGnRZjbgEaGFW66sKr9VYE9
- vQ4bs55efmUcC2efqmlYRezEXW1mipzJYghcz0K7wkAQhcbL4Wmmf6DTizw8BlZhMaP5
- Tq6g==
+ id 1jxDFm-0007ot-Ku; Sun, 19 Jul 2020 17:37:35 +0000
+Received: by mail-ej1-x641.google.com with SMTP id a21so15782381ejj.10;
+ Sun, 19 Jul 2020 10:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=9mR0eGFh9MH9sNZOZh0ch4XwokpANORC/EtJxy7S/4c=;
+ b=PqocFj0Jsii8lhfLE+i9nkHhQxwb+4fvkmQpIk+6oQvM4O3P1R6HdSLNpjJ2S0vqmy
+ ImMCCRT9lJxe6ZvaVRavb8zChQ48lbv52AN/5xEA7ZeDWl4psh9eNt+ILjvRy4SYfN/P
+ VB9+wrEW9dck4RyXBIToou5kroxexoONJE25Esnmj9A+jYpgeZ8kkmp26VUup9m3S1mg
+ AodQzZrEgo9hTSYVCYvcPpQdLOZJSiejtxpHpofvHVlSutLrX2TOeJii3XVXweAQboF+
+ Xw9K4SgsQH3jVPTqQkCZ2KKW7S9T9z9HHS3GZjbwiG6p14VToyv8ALRjIBIg2cFWHk+O
+ +cLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=b1OqMG0mLBtSpFzdER8CFvxNc7hFvLz6YsVttrhiofY=;
- b=WMzk4qq+Ikg+pJAOOp7jE18c6es9Jgy3CenP9SHfQP0EgSlZlHqr7Nvm1wa5dZUShQ
- cnAnQJ5aKeA2pknQI25Ymo9VKdS18qv7d35khrwAfKmciIiUkBjqTgJUQYCPm0QGznw2
- PimBVV2/w7B64+btb1BfZA8qCQkbvjSZGblWpdh2XXS0TRIftfRU8ODFsEy3GmzrIz7E
- PkfY++5v2iAyhF0HOCivhFvPxjM0xXZyPL00IT7PUgkqf/hRAMh0/UMC+3j6er3FbGvI
- LYNOaKNleBggMmkamzX5ej/XZnVtKEB5l7eFWUZK0fxNJMCzz9sy6gELouW3v4cuhwWD
- xWjw==
-X-Gm-Message-State: AOAM531HLQA7zmEB759o9s9OTQsoQFe2dtsMK/6ss7330ILtrcGemVI6
- LzjTyeLF9IiGzk6tObmS4zk=
-X-Google-Smtp-Source: ABdhPJxr2wCeQKaoeSQJIOB5a6FC/hrRl0hr3FfNchLa0Hlg7DcOwa9ku05OcmPxvheQ0pjRJOou6A==
-X-Received: by 2002:a05:600c:218f:: with SMTP id
- e15mr16526758wme.63.1595167841347; 
- Sun, 19 Jul 2020 07:10:41 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id y11sm9215554wrs.80.2020.07.19.07.10.39
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=9mR0eGFh9MH9sNZOZh0ch4XwokpANORC/EtJxy7S/4c=;
+ b=U8olkdAofWyC/o6TtFtOe1hMnEn9Vx8WTC/ZnsBtUqP6a2JNxX5qw/gbzDxg9aF2zV
+ rU116oJctt7YTr464OBKQ5fwIZFyTxR4PbAyx34Q5VyGgN3F8y4kf0a8dRT6pGgHvlIV
+ EV7NIXYilaeHSs44klRe7v58nQBlWcNopl0GmgHPimXCGWVG39q25MJSBsawxviqVB5N
+ h9gN6sok0RLctL/d/pIBuaViA0pMmyLR6dS4JRw5SknYqnyScZvnxX/g8B0IcEYS0g++
+ 1Wx5I4UBhIr6J5JFO/QnugNp3BiSjyFn49HrBKwhlPWoo/lUqU21WvfgNpAMFFyb4fGn
+ kLbA==
+X-Gm-Message-State: AOAM531I4+20iBJ1nt61XueUhIwsW/B4CvZU0cayHdh9oCkzF9g133wD
+ HQm+mv+wAvET61WJm7O3zQGOO/0Rp1A=
+X-Google-Smtp-Source: ABdhPJzdG3bG+QiQ6JAaqQvzVrYAYHyHbzTb+FaypiX/eZFje/aNBPy5qd9VGW+15tq5at4aC546Eg==
+X-Received: by 2002:a17:906:d057:: with SMTP id
+ bo23mr17450701ejb.210.1595180252411; 
+ Sun, 19 Jul 2020 10:37:32 -0700 (PDT)
+Received: from localhost.localdomain
+ (p200300f13716be00428d5cfffeb99db8.dip0.t-ipconnect.de.
+ [2003:f1:3716:be00:428d:5cff:feb9:9db8])
+ by smtp.googlemail.com with ESMTPSA id
+ bc23sm13563208edb.90.2020.07.19.10.37.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 19 Jul 2020 07:10:40 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] arm64: dts: meson: convert ODROID-N2 to dtsi
-Date: Sun, 19 Jul 2020 14:10:32 +0000
-Message-Id: <20200719141034.8403-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200719141034.8403-1-christianshewitt@gmail.com>
-References: <20200719141034.8403-1-christianshewitt@gmail.com>
+ Sun, 19 Jul 2020 10:37:31 -0700 (PDT)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org,
+	khilman@baylibre.com
+Subject: [PATCH v2 0/3] GPU DVFS for Meson GXBB/GXL/GXM/G12A/G12B/SM1
+Date: Sun, 19 Jul 2020 19:32:10 +0200
+Message-Id: <20200719173213.639540-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200719_101043_794333_EB998921 
-X-CRM114-Status: GOOD (  19.30  )
+X-CRM114-CacheID: sfid-20200719_133734_763785_5BCBC37F 
+X-CRM114-Status: GOOD (  13.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,1038 +98,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Dongjin Kim <tobetter@hardkernel.com>,
- Christian Hewitt <christianshewitt@gmail.com>
-MIME-Version: 1.0
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ narmstrong@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the current ODROID-N2 dts into a common dtsi in preparation
-for adding ODROID-N2+ support.
+Now that we have GPU DVFS support in lima [0] (in Linux 5.7) and
+panfrost we can make it work on Amlogic SoCs.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../boot/dts/amlogic/meson-g12b-odroid-n2.dts | 493 +----------------
- .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 500 ++++++++++++++++++
- 2 files changed, 501 insertions(+), 492 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+I decided to remove code duplication for the Mali-450 GPU on GXBB and
+GXL so it will be easier to maintain this. This refactoring is part of
+patch #1. Patches #2 (GXM) and #3 (G12A, G12B, SM1) are straight
+forward; it replaces the hardcoded clock settings with the the GPU OPP
+table.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-index 169ea283d4ee..5fd51a87ae9b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-@@ -6,500 +6,9 @@
- 
- /dts-v1/;
- 
--#include "meson-g12b-s922x.dtsi"
--#include <dt-bindings/input/input.h>
--#include <dt-bindings/gpio/meson-g12a-gpio.h>
--#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+#include "meson-g12b-odroid-n2.dtsi"
- 
- / {
- 	compatible = "hardkernel,odroid-n2", "amlogic,s922x", "amlogic,g12b";
- 	model = "Hardkernel ODROID-N2";
--
--	aliases {
--		serial0 = &uart_AO;
--		ethernet0 = &ethmac;
--	};
--
--	chosen {
--		stdout-path = "serial0:115200n8";
--	};
--
--	memory@0 {
--		device_type = "memory";
--		reg = <0x0 0x0 0x0 0x40000000>;
--	};
--
--	emmc_pwrseq: emmc-pwrseq {
--		compatible = "mmc-pwrseq-emmc";
--		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
--	};
--
--	leds {
--		compatible = "gpio-leds";
--
--		blue {
--			label = "n2:blue";
--			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
--			linux,default-trigger = "heartbeat";
--		};
--	};
--
--	tflash_vdd: regulator-tflash_vdd {
--		compatible = "regulator-fixed";
--
--		regulator-name = "TFLASH_VDD";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--
--		gpio = <&gpio_ao GPIOAO_8 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--		regulator-always-on;
--	};
--
--	tf_io: gpio-regulator-tf_io {
--		compatible = "regulator-gpio";
--
--		regulator-name = "TF_IO";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <3300000>;
--
--		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
--		gpios-states = <0>;
--
--		states = <3300000 0>,
--			 <1800000 1>;
--	};
--
--	flash_1v8: regulator-flash_1v8 {
--		compatible = "regulator-fixed";
--		regulator-name = "FLASH_1V8";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--		vin-supply = <&vcc_3v3>;
--		regulator-always-on;
--	};
--
--	main_12v: regulator-main_12v {
--		compatible = "regulator-fixed";
--		regulator-name = "12V";
--		regulator-min-microvolt = <12000000>;
--		regulator-max-microvolt = <12000000>;
--		regulator-always-on;
--	};
--
--	vcc_5v: regulator-vcc_5v {
--		compatible = "regulator-fixed";
--		regulator-name = "5V";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		regulator-always-on;
--		vin-supply = <&main_12v>;
--	};
--
--	vcc_1v8: regulator-vcc_1v8 {
--		compatible = "regulator-fixed";
--		regulator-name = "VCC_1V8";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--		vin-supply = <&vcc_3v3>;
--		regulator-always-on;
--	};
--
--	vcc_3v3: regulator-vcc_3v3 {
--		compatible = "regulator-fixed";
--		regulator-name = "VCC_3V3";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		vin-supply = <&vddao_3v3>;
--		regulator-always-on;
--		/* FIXME: actually controlled by VDDCPU_B_EN */
--	};
--
--	vddcpu_a: regulator-vddcpu-a {
--		/*
--		 * MP8756GD Regulator.
--		 */
--		compatible = "pwm-regulator";
--
--		regulator-name = "VDDCPU_A";
--		regulator-min-microvolt = <721000>;
--		regulator-max-microvolt = <1022000>;
--
--		vin-supply = <&main_12v>;
--
--		pwms = <&pwm_ab 0 1250 0>;
--		pwm-dutycycle-range = <100 0>;
--
--		regulator-boot-on;
--		regulator-always-on;
--	};
--
--	vddcpu_b: regulator-vddcpu-b {
--		/*
--		 * Silergy SY8120B1ABC Regulator.
--		 */
--		compatible = "pwm-regulator";
--
--		regulator-name = "VDDCPU_B";
--		regulator-min-microvolt = <721000>;
--		regulator-max-microvolt = <1022000>;
--
--		vin-supply = <&main_12v>;
--
--		pwms = <&pwm_AO_cd 1 1250 0>;
--		pwm-dutycycle-range = <100 0>;
--
--		regulator-boot-on;
--		regulator-always-on;
--	};
--
--	hub_5v: regulator-hub_5v {
--		compatible = "regulator-fixed";
--		regulator-name = "HUB_5V";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		vin-supply = <&vcc_5v>;
--
--		/* Connected to the Hub CHIPENABLE, LOW sets low power state */
--		gpio = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--	};
--
--	usb_pwr_en: regulator-usb_pwr_en {
--		compatible = "regulator-fixed";
--		regulator-name = "USB_PWR_EN";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		vin-supply = <&vcc_5v>;
--
--		/* Connected to the microUSB port power enable */
--		gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--	};
--
--	vddao_1v8: regulator-vddao_1v8 {
--		compatible = "regulator-fixed";
--		regulator-name = "VDDAO_1V8";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--		vin-supply = <&vddao_3v3>;
--		regulator-always-on;
--	};
--
--	vddao_3v3: regulator-vddao_3v3 {
--		compatible = "regulator-fixed";
--		regulator-name = "VDDAO_3V3";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		vin-supply = <&main_12v>;
--		regulator-always-on;
--	};
--
--	hdmi-connector {
--		compatible = "hdmi-connector";
--		type = "a";
--
--		port {
--			hdmi_connector_in: endpoint {
--				remote-endpoint = <&hdmi_tx_tmds_out>;
--			};
--		};
--	};
--
--	sound {
--		compatible = "amlogic,axg-sound-card";
--		model = "G12B-ODROID-N2";
--		audio-aux-devs = <&tdmout_b>;
--		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
--				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
--				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
--				"TDM_B Playback", "TDMOUT_B OUT";
--
--		assigned-clocks = <&clkc CLKID_MPLL2>,
--				  <&clkc CLKID_MPLL0>,
--				  <&clkc CLKID_MPLL1>;
--		assigned-clock-parents = <0>, <0>, <0>;
--		assigned-clock-rates = <294912000>,
--				       <270950400>,
--				       <393216000>;
--		status = "okay";
--
--		dai-link-0 {
--			sound-dai = <&frddr_a>;
--		};
--
--		dai-link-1 {
--			sound-dai = <&frddr_b>;
--		};
--
--		dai-link-2 {
--			sound-dai = <&frddr_c>;
--		};
--
--		/* 8ch hdmi interface */
--		dai-link-3 {
--			sound-dai = <&tdmif_b>;
--			dai-format = "i2s";
--			dai-tdm-slot-tx-mask-0 = <1 1>;
--			dai-tdm-slot-tx-mask-1 = <1 1>;
--			dai-tdm-slot-tx-mask-2 = <1 1>;
--			dai-tdm-slot-tx-mask-3 = <1 1>;
--			mclk-fs = <256>;
--
--			codec {
--				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
--			};
--		};
--
--		/* hdmi glue */
--		dai-link-4 {
--			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
--
--			codec {
--				sound-dai = <&hdmi_tx>;
--			};
--		};
--	};
--};
--
--&arb {
--	status = "okay";
--};
--
--&cec_AO {
--	pinctrl-0 = <&cec_ao_a_h_pins>;
--	pinctrl-names = "default";
--	status = "disabled";
--	hdmi-phandle = <&hdmi_tx>;
--};
--
--&cecb_AO {
--	pinctrl-0 = <&cec_ao_b_h_pins>;
--	pinctrl-names = "default";
--	status = "okay";
--	hdmi-phandle = <&hdmi_tx>;
--};
--
--&clkc_audio {
--	status = "okay";
--};
--
--&cpu0 {
--	cpu-supply = <&vddcpu_b>;
--	operating-points-v2 = <&cpu_opp_table_0>;
--	clocks = <&clkc CLKID_CPU_CLK>;
--	clock-latency = <50000>;
--};
--
--&cpu1 {
--	cpu-supply = <&vddcpu_b>;
--	operating-points-v2 = <&cpu_opp_table_0>;
--	clocks = <&clkc CLKID_CPU_CLK>;
--	clock-latency = <50000>;
--};
--
--&cpu100 {
--	cpu-supply = <&vddcpu_a>;
--	operating-points-v2 = <&cpub_opp_table_1>;
--	clocks = <&clkc CLKID_CPUB_CLK>;
--	clock-latency = <50000>;
--};
--
--&cpu101 {
--	cpu-supply = <&vddcpu_a>;
--	operating-points-v2 = <&cpub_opp_table_1>;
--	clocks = <&clkc CLKID_CPUB_CLK>;
--	clock-latency = <50000>;
--};
--
--&cpu102 {
--	cpu-supply = <&vddcpu_a>;
--	operating-points-v2 = <&cpub_opp_table_1>;
--	clocks = <&clkc CLKID_CPUB_CLK>;
--	clock-latency = <50000>;
--};
--
--&cpu103 {
--	cpu-supply = <&vddcpu_a>;
--	operating-points-v2 = <&cpub_opp_table_1>;
--	clocks = <&clkc CLKID_CPUB_CLK>;
--	clock-latency = <50000>;
--};
--
--&ext_mdio {
--	external_phy: ethernet-phy@0 {
--		/* Realtek RTL8211F (0x001cc916) */	
--		reg = <0>;
--		max-speed = <1000>;
--
--		reset-assert-us = <10000>;
--		reset-deassert-us = <30000>;
--		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
--
--		interrupt-parent = <&gpio_intc>;
--		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
--	};
--};
--
--&ethmac {
--	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
--	pinctrl-names = "default";
--	status = "okay";
--	phy-mode = "rgmii";
--	phy-handle = <&external_phy>;
--	amlogic,tx-delay-ns = <2>;
--};
--
--&frddr_a {
--	status = "okay";
--};
--
--&frddr_b {
--	status = "okay";
--};
--
--&frddr_c {
--	status = "okay";
--};
--
--&gpio {
--	/*
--	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
--	 * to be turned high in order to be detected by the USB Controller
--	 * This signal should be handled by a USB specific power sequence
--	 * in order to reset the Hub when USB bus is powered down.
--	 */
--	usb-hub {
--		gpio-hog;
--		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
--		output-high;
--		line-name = "usb-hub-reset";
--	};
--};
--
--&hdmi_tx {
--	status = "okay";
--	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
--	pinctrl-names = "default";
--	hdmi-supply = <&vcc_5v>;
--};
--
--&hdmi_tx_tmds_port {
--	hdmi_tx_tmds_out: endpoint {
--		remote-endpoint = <&hdmi_connector_in>;
--	};
--};
--
--&ir {
--	status = "okay";
--	pinctrl-0 = <&remote_input_ao_pins>;
--	pinctrl-names = "default";
--	linux,rc-map-name = "rc-odroid";
--};
--
--&pwm_ab {
--	pinctrl-0 = <&pwm_a_e_pins>;
--	pinctrl-names = "default";
--	clocks = <&xtal>;
--	clock-names = "clkin0";
--	status = "okay";
--};
--
--&pwm_AO_cd {
--	pinctrl-0 = <&pwm_ao_d_e_pins>;
--	pinctrl-names = "default";
--	clocks = <&xtal>;
--	clock-names = "clkin1";
--	status = "okay";
--};
--
--/* SD card */
--&sd_emmc_b {
--	status = "okay";
--	pinctrl-0 = <&sdcard_c_pins>;
--	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
--	pinctrl-names = "default", "clk-gate";
--
--	bus-width = <4>;
--	cap-sd-highspeed;
--	max-frequency = <50000000>;
--	disable-wp;
--
--	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
--	vmmc-supply = <&tflash_vdd>;
--	vqmmc-supply = <&tf_io>;
--
--};
--
--/* eMMC */
--&sd_emmc_c {
--	status = "okay";
--	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
--	pinctrl-1 = <&emmc_clk_gate_pins>;
--	pinctrl-names = "default", "clk-gate";
--
--	bus-width = <8>;
--	cap-mmc-highspeed;
--	mmc-ddr-1_8v;
--	mmc-hs200-1_8v;
--	max-frequency = <200000000>;
--	disable-wp;
--
--	mmc-pwrseq = <&emmc_pwrseq>;
--	vmmc-supply = <&vcc_3v3>;
--	vqmmc-supply = <&flash_1v8>;
--};
--
--/*
-- * EMMC_D4, EMMC_D5, EMMC_D6 and EMMC_D7 pins are shared between SPI NOR pins
-- * and eMMC Data 4 to 7 pins.
-- * Replace emmc_data_8b_pins to emmc_data_4b_pins from sd_emmc_c pinctrl-0,
-- * and change bus-width to 4 then spifc can be enabled.
-- * The SW1 slide should also be set to the correct position.
-- */
--&spifc {
--	status = "disabled";
--	pinctrl-0 = <&nor_pins>;
--	pinctrl-names = "default";
--
--	mx25u64: spi-flash@0 {
--		#address-cells = <1>;
--		#size-cells = <1>;
--		compatible = "mxicy,mx25u6435f", "jedec,spi-nor";
--		reg = <0>;
--		spi-max-frequency = <104000000>;
--	};
--};
--
--&tdmif_b {
--	status = "okay";
--};
--
--&tdmout_b {
--	status = "okay";
--};
--
--&tohdmitx {
--	status = "okay";
--};
--
--&uart_AO {
--	status = "okay";
--	pinctrl-0 = <&uart_ao_a_pins>;
--	pinctrl-names = "default";
--};
--
--&usb {
--	status = "okay";
--	vbus-supply = <&usb_pwr_en>;
--};
--
--&usb2_phy0 {
--	phy-supply = <&vcc_5v>;
--};
--
--&usb2_phy1 {
--	/* Enable the hub which is connected to this port */
--	phy-supply = <&hub_5v>;
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-new file mode 100644
-index 000000000000..ce49973678b8
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -0,0 +1,500 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#include "meson-g12b-s922x.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		blue {
-+			label = "n2:blue";
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	tflash_vdd: regulator-tflash_vdd {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "TFLASH_VDD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&gpio_ao GPIOAO_8 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	tf_io: gpio-regulator-tf_io {
-+		compatible = "regulator-gpio";
-+
-+		regulator-name = "TF_IO";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+
-+		states = <3300000 0>,
-+			 <1800000 1>;
-+	};
-+
-+	flash_1v8: regulator-flash_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "FLASH_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	main_12v: regulator-main_12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		vin-supply = <&main_12v>;
-+	};
-+
-+	vcc_1v8: regulator-vcc_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+		/* FIXME: actually controlled by VDDCPU_B_EN */
-+	};
-+
-+	vddcpu_a: regulator-vddcpu-a {
-+		/*
-+		 * MP8756GD Regulator.
-+		 */
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU_A";
-+		regulator-min-microvolt = <721000>;
-+		regulator-max-microvolt = <1022000>;
-+
-+		vin-supply = <&main_12v>;
-+
-+		pwms = <&pwm_ab 0 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddcpu_b: regulator-vddcpu-b {
-+		/*
-+		 * Silergy SY8120B1ABC Regulator.
-+		 */
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU_B";
-+		regulator-min-microvolt = <721000>;
-+		regulator-max-microvolt = <1022000>;
-+
-+		vin-supply = <&main_12v>;
-+
-+		pwms = <&pwm_AO_cd 1 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	hub_5v: regulator-hub_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "HUB_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
-+
-+		/* Connected to the Hub CHIPENABLE, LOW sets low power state */
-+		gpio = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	usb_pwr_en: regulator-usb_pwr_en {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR_EN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
-+
-+		/* Connected to the microUSB port power enable */
-+		gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vddao_1v8: regulator-vddao_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&main_12v>;
-+		regulator-always-on;
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "G12B-ODROID-N2";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-4 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table_0>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table_0>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu100 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu101 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu102 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu103 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&ext_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211F (0x001cc916) */
-+		reg = <0>;
-+		max-speed = <1000>;
-+
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <30000>;
-+		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+
-+		interrupt-parent = <&gpio_intc>;
-+		/* MAC_INTR on GPIOZ_14 */
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&external_phy>;
-+	amlogic,tx-delay-ns = <2>;
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&gpio {
-+	/*
-+	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
-+	 * to be turned high in order to be detected by the USB Controller
-+	 * This signal should be handled by a USB specific power sequence
-+	 * in order to reset the Hub when USB bus is powered down.
-+	 */
-+	usb-hub {
-+		gpio-hog;
-+		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "usb-hub-reset";
-+	};
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+	linux,rc-map-name = "rc-odroid";
-+};
-+
-+&pwm_ab {
-+	pinctrl-0 = <&pwm_a_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+	status = "okay";
-+};
-+
-+&pwm_AO_cd {
-+	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+	status = "okay";
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&tflash_vdd>;
-+	vqmmc-supply = <&tf_io>;
-+
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&flash_1v8>;
-+};
-+
-+/*
-+ * EMMC_D4, EMMC_D5, EMMC_D6 and EMMC_D7 pins are shared between SPI NOR pins
-+ * and eMMC Data 4 to 7 pins.
-+ * Replace emmc_data_8b_pins to emmc_data_4b_pins from sd_emmc_c pinctrl-0,
-+ * and change bus-width to 4 then spifc can be enabled.
-+ * The SW1 slide should also be set to the correct position.
-+ */
-+&spifc {
-+	status = "disabled";
-+	pinctrl-0 = <&nor_pins>;
-+	pinctrl-names = "default";
-+
-+	mx25u64: spi-flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "mxicy,mx25u6435f", "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <104000000>;
-+	};
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	vbus-supply = <&usb_pwr_en>;
-+};
-+
-+&usb2_phy0 {
-+	phy-supply = <&vcc_5v>;
-+};
-+
-+&usb2_phy1 {
-+	/* Enable the hub which is connected to this port */
-+	phy-supply = <&hub_5v>;
-+};
+I used the userspace devfreq governor to cycle through all available
+GPU frequency settings on GXL, GXM and G12A (which covers all relevant
+GPU driver and clock driver combinations). I have taken the GPU OPP
+tables from Amlogic's 4.9 vendor kernel and the voltage settings
+(opp-microvolt property) from the public dataseheets for all SoCs.
+
+
+Changes since v1 at [1]:
+- removed the clock patches from this series as they are already
+  applied (in Linux 5.8)
+- rebased on top of Neil's recent patch "arm64: dts: meson-gxl-s805x:
+  reduce initial Mali450 core frequency"
+- adapted patch #1 after Neil's GXL S805X patch to keep the 744MHz OPP
+  disabled on that package
+- added a comment about GP0_PLL (as to why it's needed) to all patch
+  descriptions
+- removed RFC prefix
+
+
+[0] https://cgit.freedesktop.org/drm-misc/commit/?id=1996970773a323533e1cc1b6b97f00a95d675f32
+[1] https://patchwork.kernel.org/cover/11466399/
+
+
+Martin Blumenstingl (3):
+  arm64: dts: amlogic: meson-gx: add the Mali-450 OPP table and use DVFS
+  arm64: dts: amlogic: meson-gxm: add the Mali OPP table and use DVFS
+  arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS
+
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 49 ++++++++++-----
+ .../boot/dts/amlogic/meson-gx-mali450.dtsi    | 61 +++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   | 51 ++++------------
+ .../boot/dts/amlogic/meson-gxl-mali.dtsi      | 46 +++-----------
+ .../boot/dts/amlogic/meson-gxl-s805x.dtsi     | 17 +++---
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    | 45 +++++++++-----
+ 6 files changed, 153 insertions(+), 116 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gx-mali450.dtsi
+
 -- 
-2.17.1
+2.27.0
 
 
 _______________________________________________
