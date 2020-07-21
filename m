@@ -2,85 +2,146 @@ Return-Path: <SRS0=nSb1=BA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47EADC433E6
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2020 02:00:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C38EEC433EC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2020 08:01:20 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 150F3206E9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2020 02:00:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 938A620709
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2020 08:01:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EtQV9fet";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pB5hBti5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 150F3206E9
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gyVPuhIi";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zsvHmLfj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 938A620709
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=1chzYSlwX3JQr8Ye570qJZmpC39gi1viUPQssgq5cDc=; b=EtQV9fetZzZh6wATpVn01BMazV
-	QCzXqUmKtwGssm3/w2hpNQEOJjQFgsMjsednhV34VXiasX3BgoImMahknyDKAeHygK/aDGLUTGGZl
-	DJ4PqtT7NGYlT4nyLDYN74u4QkoL5ZXq/Cf+ys1K0qCW3V0RUHiMd+dS7ZUsj0mqQuc1q6gaE/lGa
-	igJkYRMujCs1g7LKCANbULr7/Bo9u34qHGLjoJy5A5oSEdIDyXiQNWwKOWqJhZf7kcGtvbKVcJxI2
-	XMrNhpyb+UKh9B97iOPLrRWle5AxRS0UmTrOpR7pu2R/5xYHuvNzH3evHvNT4gXB6VQjBoB29SrRk
-	E60Emnyg==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=IrvgBAqbHPimKx/xPHwK19nYto7EQTYKWqAsBANNN3Q=; b=gyVPuhIiSpFrJj3dbPcmnxWiG
+	hwLVlX8gtFu1v/WyvojxySUyU4uSp2nERU2unltMwDgXM+4SxcksQCTY591T54CijHIePP2/ojcHL
+	oxESj6j2xycLL9y7rwLVEB0cxiBHDGeylF2mHAzjtgVCgVOEwEmt1JT6hSM5BBe5E1iZC8F+fu4TP
+	34kMVrovfRKIi4TRl7OPB5nueunT6IqCsdq7zrAVfz4L3RB2bt9YpaDxxQFQW9R7HqcFbd/BcHNhG
+	OMwY5Mtu1Tbhv23wWB1QcriEU8uJswUh5DD4JLrNPhrCsHrbVwPzH4hDBznm7P6jnDk+XRHhEhrbZ
+	yP0nGn3Yw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jxhZX-0006i2-RD; Tue, 21 Jul 2020 01:59:59 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1jxnD2-0006tY-60; Tue, 21 Jul 2020 08:01:08 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jxhZT-0006gE-KX; Tue, 21 Jul 2020 01:59:56 +0000
-Received: by mail-wr1-x444.google.com with SMTP id b6so19575109wrs.11;
- Mon, 20 Jul 2020 18:59:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=Re6La/qV3n1ukkxNTX/ju/OZLeqen/7aiCy5YNlMaBo=;
- b=pB5hBti5DRoBjJS0TkkYddmaRA6YmLjbKVqgTjUx/cBp91jDcw7cN9/TagT1y9htZF
- GVMeF5bbvlYerM1+LYKkstpzgn4gJq2EEveijDRFQ96zOyUh1PauLe9Oo2yIOxG3/dQB
- UJNJ12yeYzV4dUIZTXYR47hR4xn6VNoHsRK5caBa+HrFxZwtyBOcz9voMxZ/beH0fb2f
- TBDxkX7Dc1owqPdjtZfaowXJFZRP+SK5Uu9dTJ/HeMW4mSv5PffWY4HSQS9fnBaOyTw7
- P9O5d2Ns7oGIqwoUQhEzqFG3Oj97Jmw+heq6u0rZHZhQ9zpHnqpi49MceoWTP+mfjTOD
- PvMQ==
+ id 1jxnCy-0006s9-Ow
+ for linux-amlogic@lists.infradead.org; Tue, 21 Jul 2020 08:01:06 +0000
+Received: by mail-wm1-x341.google.com with SMTP id o2so1913606wmh.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Jul 2020 01:01:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Xe1xj2UJLfRzN8/gTK/6++OrG88WTatlRMlGCyzzmm0=;
+ b=zsvHmLfjJ3qIlSGraoav1lLUCKJ/WL8hivFRPMZNBQHsH2XPKEh2SAQzhDCIpwiats
+ fhjY+KetWr8J33BQn6NZHAg3Y+MFvouR4bFQir9X3ZmFALluilzLXqoXzlXbHA8zsWpB
+ Qwou99IYa9UBi509MshAlJ0GqkURcmdzNgsK6216LL03oMhW52Tc1WFpdUAE3HgrmOwi
+ IEbV1Zc1MQjLOSNutwmxJsoU7CNK38wPZXKz1lBOd81g6NGj9mydvIWrHiBeg3DLWd17
+ P9+ttlijTMJJeJNmHKoh3TbEEy+/cQe2LRixU9JTBkbl91gjmY9mS4f58ehOhhJzkyZq
+ leCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=Re6La/qV3n1ukkxNTX/ju/OZLeqen/7aiCy5YNlMaBo=;
- b=EyJBsv3ba95ji/oWwrr14OzrJbkDT49LDq4aTPs4H6SJUCC6JVtHwZZ+JclecLddFY
- 8DNbayIzn48F/ntt3BJN8tgEmukoD2Y5ylnJxpb0nn+pO27Dg4XnfNCoT/y1YCCrVwmr
- W7a1V4LP4W/KBopHH4Syoqhenmu6Y+wdqLpxmw8Nklc1y/cD38fJFRnyaDfHaUVSqKTT
- fx6K2pOGcdJeGuhMx7Or5rpShVNXsQsa23T78+mwuMp3cJitDbl2zPUr5lr6gTClzVqV
- CwvjhgIRKTW9cTmpnBctttvUro5vxldURVdLn9qdD7s/gUnxp6Y/TY2wft/eutI5yNRo
- bbIQ==
-X-Gm-Message-State: AOAM530UoiLLg9Zm2vltcIVV3bIOtoXaGBhcfZsegcfqGD+KMc6D++NI
- DNgwshbIpFL1mGYGCUaUPaQ=
-X-Google-Smtp-Source: ABdhPJwdcC9jByWPNIZBOEA9DB5O7rqqiVArp+ZASBJj+ETWteWd4vVfPTsYntco232mpddtdCTd4g==
-X-Received: by 2002:a5d:550e:: with SMTP id b14mr16832282wrv.392.1595296794662; 
- Mon, 20 Jul 2020 18:59:54 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id e8sm34479069wrp.26.2020.07.20.18.59.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Jul 2020 18:59:54 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: meson: fix mmc0 tuning error on Khadas VIM3
-Date: Tue, 21 Jul 2020 01:59:50 +0000
-Message-Id: <20200721015950.11816-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=Xe1xj2UJLfRzN8/gTK/6++OrG88WTatlRMlGCyzzmm0=;
+ b=QIDnFGj8TQHH/2TbEWtHU5bpW72yXJ+HjQcrDcTuG4kvtxN5iqg6zgFopoDJhmI5xK
+ +0PxT+6qWWz49TEuY6OGv+O/crfQsZFrMvQMH1FnbwRfg1VyuFpeK5q5wr9UT7dWCZU3
+ FeIOgRQqsq6Ei6w5hGmiccFi9yLmG06DsU+JXnaNSG0uGUytLLz11iPdsAuEQhU/c+ps
+ Ls5Gn6hThBEqW2QDh2BrnNHWJ09oGJRQNBEfY48BkGnBGganWa90DkjTd94aFN2Kg27K
+ 3Q5qacmM8p8MNfm4DSGfh/QjKoe4LpOz+/6WXfGjUOwwKTGBvoQRIuHjMJh+kXD02wAF
+ S9JQ==
+X-Gm-Message-State: AOAM531oWxF0neJLoCXAzAJWpf5bYexovxk+d1HUdYWcAXIPOo+MyPnj
+ gvNRR3ekvK7CIuHe7MocTl3shQ==
+X-Google-Smtp-Source: ABdhPJxIG3rVQw6vw0k3oB8t3+wUKdYuDLOTbrVMTvJW5oh4CXFN4wQ+Swr+xv7YFmD05HcBhlsuEQ==
+X-Received: by 2002:a1c:48c5:: with SMTP id v188mr2796746wma.58.1595318461729; 
+ Tue, 21 Jul 2020 01:01:01 -0700 (PDT)
+Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id 26sm2294065wmj.25.2020.07.21.01.01.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 21 Jul 2020 01:01:00 -0700 (PDT)
+Subject: Re: [PATCH v2 05/14] spi: spi-meson-spifc: Fix misdocumenting of
+ 'dev' in 'struct meson_spifc'
+To: Lee Jones <lee.jones@linaro.org>, broonie@kernel.org
+References: <20200717135424.2442271-1-lee.jones@linaro.org>
+ <20200717135424.2442271-6-lee.jones@linaro.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <6655a485-fc5a-690e-b752-59f12d545cc0@baylibre.com>
+Date: Tue, 21 Jul 2020 10:00:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200717135424.2442271-6-lee.jones@linaro.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200720_215955_685096_9F284E91 
-X-CRM114-Status: GOOD (  13.12  )
+X-CRM114-CacheID: sfid-20200721_040104_954436_3E33E60D 
+X-CRM114-Status: GOOD (  16.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,63 +153,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-MIME-Version: 1.0
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org, Beniamino Galvani <b.galvani@gmail.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Similar to other G12B devices using the W400 dtsi, I see reports of mmc0
-tuning errors on VIM3 after a few hours uptime:
+On 17/07/2020 15:54, Lee Jones wrote:
+> Fixes the following W=1 kernel build warning(s):
+> 
+>  drivers/spi/spi-meson-spifc.c:80: warning: Function parameter or member 'dev' not described in 'meson_spifc'
+> 
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Beniamino Galvani <b.galvani@gmail.com>
+> Cc: linux-amlogic@lists.infradead.org
+> Signed-off-by: Lee Jones <lee.jones@linaro.org>
+> ---
+>  drivers/spi/spi-meson-spifc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/spi/spi-meson-spifc.c b/drivers/spi/spi-meson-spifc.c
+> index c7b0399802913..8eca6f24cb799 100644
+> --- a/drivers/spi/spi-meson-spifc.c
+> +++ b/drivers/spi/spi-meson-spifc.c
+> @@ -70,7 +70,7 @@
+>   * @master:	the SPI master
+>   * @regmap:	regmap for device registers
+>   * @clk:	input clock of the built-in baud rate generator
+> - * @device:	the device structure
+> + * @dev:	the device structure
+>   */
+>  struct meson_spifc {
+>  	struct spi_master *master;
+> 
 
-[12483.917391] mmc0: tuning execution failed: -5
-[30535.551221] mmc0: tuning execution failed: -5
-[35359.953671] mmc0: tuning execution failed: -5
-[35561.875332] mmc0: tuning execution failed: -5
-[61733.348709] mmc0: tuning execution failed: -5
-
-I do not see the same on VIM3L, so remove sd-uhs-sdr50 from the common dtsi
-to silence the error, then (re)add it to the VIM3L dts.
-
-Fixes: 4f26cc1c96c9 ("arm64: dts: khadas-vim3: move common nodes into meson-khadas-vim3.dtsi")
-Fixes: 700ab8d83927 ("arm64: dts: khadas-vim3: add support for the SM1 based VIM3L")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi     | 1 -
- arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts | 4 ++++
- 2 files changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-index 27408c10a811..ddfd52b88002 100644
---- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-@@ -293,7 +293,6 @@
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
--	sd-uhs-sdr50;
- 	max-frequency = <100000000>;
- 
- 	non-removable;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-index dbbf29a0dbf6..026b21708b07 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-@@ -88,6 +88,10 @@
- 	status = "okay";
- };
- 
-+&sd_emmc_a {
-+	sd-uhs-sdr50;
-+};
-+
- &usb {
- 	phys = <&usb2_phy0>, <&usb2_phy1>;
- 	phy-names = "usb2-phy0", "usb2-phy1";
--- 
-2.17.1
-
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
