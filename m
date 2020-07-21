@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-11.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C38EEC433EC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2020 08:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 152E9C433ED
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2020 08:01:29 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 938A620709
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2020 08:01:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DA00920709
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2020 08:01:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gyVPuhIi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zsvHmLfj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 938A620709
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KAtEv2pp";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OUKerrG1"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DA00920709
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,60 +27,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=IrvgBAqbHPimKx/xPHwK19nYto7EQTYKWqAsBANNN3Q=; b=gyVPuhIiSpFrJj3dbPcmnxWiG
-	hwLVlX8gtFu1v/WyvojxySUyU4uSp2nERU2unltMwDgXM+4SxcksQCTY591T54CijHIePP2/ojcHL
-	oxESj6j2xycLL9y7rwLVEB0cxiBHDGeylF2mHAzjtgVCgVOEwEmt1JT6hSM5BBe5E1iZC8F+fu4TP
-	34kMVrovfRKIi4TRl7OPB5nueunT6IqCsdq7zrAVfz4L3RB2bt9YpaDxxQFQW9R7HqcFbd/BcHNhG
-	OMwY5Mtu1Tbhv23wWB1QcriEU8uJswUh5DD4JLrNPhrCsHrbVwPzH4hDBznm7P6jnDk+XRHhEhrbZ
-	yP0nGn3Yw==;
+	 bh=eeysidlSFGvh699wmXcOYHXAaAfYiyf0o5dWMYLNwyo=; b=KAtEv2pp6ZR0YRzvv/4Mk4f4e
+	jcJv4ZXxzPjALFi+P2QX8bMpwIu98M2DqaMeyCukZiHSLTlcQPDf2MW3XMGXfSfj5923ldwOFi9+F
+	5x1sIhvq/Q8n8sLwLMaARPVgLwWsFRLCykEV17N9e3eOsg8cSIjXUT6HbDW/Foy9Ipg2YcRiXyA6Y
+	z7XdCk3G+RsnKWZ6lx4ROEH2zppXcq/OL716Ydi/xU192kA/ojP7VkzSBxUXLopCshPjC4MQvFvOG
+	hw86YwhvYjf0IWZn7loQIsz3f4HFmcqVBYyKQUtvgqo9FEkVqVe96v5Xmy5+QIxIGgCkiuuffcBJp
+	wo6gdIiPA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jxnD2-0006tY-60; Tue, 21 Jul 2020 08:01:08 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1jxnDE-0006xd-M6; Tue, 21 Jul 2020 08:01:20 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jxnCy-0006s9-Ow
- for linux-amlogic@lists.infradead.org; Tue, 21 Jul 2020 08:01:06 +0000
-Received: by mail-wm1-x341.google.com with SMTP id o2so1913606wmh.2
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Jul 2020 01:01:02 -0700 (PDT)
+ id 1jxnD8-0006vN-UV
+ for linux-amlogic@lists.infradead.org; Tue, 21 Jul 2020 08:01:15 +0000
+Received: by mail-wm1-x344.google.com with SMTP id 22so1855211wmg.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Jul 2020 01:01:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=Xe1xj2UJLfRzN8/gTK/6++OrG88WTatlRMlGCyzzmm0=;
- b=zsvHmLfjJ3qIlSGraoav1lLUCKJ/WL8hivFRPMZNBQHsH2XPKEh2SAQzhDCIpwiats
- fhjY+KetWr8J33BQn6NZHAg3Y+MFvouR4bFQir9X3ZmFALluilzLXqoXzlXbHA8zsWpB
- Qwou99IYa9UBi509MshAlJ0GqkURcmdzNgsK6216LL03oMhW52Tc1WFpdUAE3HgrmOwi
- IEbV1Zc1MQjLOSNutwmxJsoU7CNK38wPZXKz1lBOd81g6NGj9mydvIWrHiBeg3DLWd17
- P9+ttlijTMJJeJNmHKoh3TbEEy+/cQe2LRixU9JTBkbl91gjmY9mS4f58ehOhhJzkyZq
- leCw==
+ bh=ewM2HJBUENxVg5qVvtrerZEb13ZbfM5w015hCw1HWwU=;
+ b=OUKerrG1CySXbE77AKjQTvZgURBDiJ8f5dM/ZTkNpvjlyjyGvgoRboUhkdz5Q1p2nG
+ kdJGeGDV//+zLSfC2HjqH/PxUzr4NIv2rY9wBQy8t1u98pM4dThwBucBBoPtmpLPAgHG
+ zVhus9H7/LfdjTONZ+DA/NjkregDNiExdBCWYSjDMr1FXzB/RrRfexbbNe47Znb6jZTN
+ ivMpJRXmsYu5zx5XsWUk8lbQT7x1vix5IGyAZqJXz1zvbxfSYJtpB+tKDQ6MS9SVX53e
+ TEvu2PeXdVj5pjctiSdnMMoPbnhEhSKW+JzrACP/Mx+AiADzmbVZ2Fc8iOQTl25+sJgL
+ thFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Xe1xj2UJLfRzN8/gTK/6++OrG88WTatlRMlGCyzzmm0=;
- b=QIDnFGj8TQHH/2TbEWtHU5bpW72yXJ+HjQcrDcTuG4kvtxN5iqg6zgFopoDJhmI5xK
- +0PxT+6qWWz49TEuY6OGv+O/crfQsZFrMvQMH1FnbwRfg1VyuFpeK5q5wr9UT7dWCZU3
- FeIOgRQqsq6Ei6w5hGmiccFi9yLmG06DsU+JXnaNSG0uGUytLLz11iPdsAuEQhU/c+ps
- Ls5Gn6hThBEqW2QDh2BrnNHWJ09oGJRQNBEfY48BkGnBGganWa90DkjTd94aFN2Kg27K
- 3Q5qacmM8p8MNfm4DSGfh/QjKoe4LpOz+/6WXfGjUOwwKTGBvoQRIuHjMJh+kXD02wAF
- S9JQ==
-X-Gm-Message-State: AOAM531oWxF0neJLoCXAzAJWpf5bYexovxk+d1HUdYWcAXIPOo+MyPnj
- gvNRR3ekvK7CIuHe7MocTl3shQ==
-X-Google-Smtp-Source: ABdhPJxIG3rVQw6vw0k3oB8t3+wUKdYuDLOTbrVMTvJW5oh4CXFN4wQ+Swr+xv7YFmD05HcBhlsuEQ==
-X-Received: by 2002:a1c:48c5:: with SMTP id v188mr2796746wma.58.1595318461729; 
- Tue, 21 Jul 2020 01:01:01 -0700 (PDT)
+ bh=ewM2HJBUENxVg5qVvtrerZEb13ZbfM5w015hCw1HWwU=;
+ b=leeGU8PubiEYOZGw85heowzbxKC9KzY8JpPLZryH4Pu8oQ2570xTeBNVYELb6SL+J4
+ eAjfr7izpa0S1OtQcm+aLeQaAkuUAB9HM7eKINZCuEvhZk03bTDl/NHuPcLpuCeSBzit
+ yLpWGrfWoGAJfWdTs0EiF9mLqt7uf8gZX4EbKLmxTFRQSbyUXwbjVgfmkVfD7iTvTv24
+ 2Cx13JsLk/ihnH32qynSL7MLPp4SSUrre7/AMAzdzgNS4J7hJPOWti0bL0riKGHx0ihk
+ Sf/VvxT+W7piLiTwELaSLsxVfWszryxzPRaVpD7F5G3BNNbZjubxfvhJCmr7g+lG8amK
+ Ff5g==
+X-Gm-Message-State: AOAM531qNMW5Z9Keg72zRNsqrV1N1+9kZUBzgGi69m3X+7uoC8+qCUgj
+ ngTE6f8XA6iQ04pJeE+g1AeNhGuCzCvW+Q==
+X-Google-Smtp-Source: ABdhPJxoolgSA1w4rtOowZsyDXoO2mjTWJRQ9NaqCcfQ0hJvLcn/3oQWq/h8EGXW56PO81MG40LUDQ==
+X-Received: by 2002:a1c:b007:: with SMTP id z7mr2718946wme.37.1595318473343;
+ Tue, 21 Jul 2020 01:01:13 -0700 (PDT)
 Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 26sm2294065wmj.25.2020.07.21.01.01.00
+ by smtp.gmail.com with ESMTPSA id s19sm14322354wrb.54.2020.07.21.01.01.12
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 21 Jul 2020 01:01:00 -0700 (PDT)
-Subject: Re: [PATCH v2 05/14] spi: spi-meson-spifc: Fix misdocumenting of
- 'dev' in 'struct meson_spifc'
+ Tue, 21 Jul 2020 01:01:12 -0700 (PDT)
+Subject: Re: [PATCH v2 06/14] spi: spi-meson-spicc: Remove set but never used
+ variable 'data' from meson_spicc_reset_fifo()
 To: Lee Jones <lee.jones@linaro.org>, broonie@kernel.org
 References: <20200717135424.2442271-1-lee.jones@linaro.org>
- <20200717135424.2442271-6-lee.jones@linaro.org>
+ <20200717135424.2442271-7-lee.jones@linaro.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <6655a485-fc5a-690e-b752-59f12d545cc0@baylibre.com>
-Date: Tue, 21 Jul 2020 10:00:59 +0200
+Message-ID: <7509786b-1a89-2238-cb74-c1662f393983@baylibre.com>
+Date: Tue, 21 Jul 2020 10:01:11 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200717135424.2442271-6-lee.jones@linaro.org>
+In-Reply-To: <20200717135424.2442271-7-lee.jones@linaro.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200721_040104_954436_3E33E60D 
-X-CRM114-Status: GOOD (  16.31  )
+X-CRM114-CacheID: sfid-20200721_040115_049097_FC9AFFAC 
+X-CRM114-Status: GOOD (  15.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,45 +153,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org, Beniamino Galvani <b.galvani@gmail.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 17/07/2020 15:54, Lee Jones wrote:
-> Fixes the following W=1 kernel build warning(s):
-> 
->  drivers/spi/spi-meson-spifc.c:80: warning: Function parameter or member 'dev' not described in 'meson_spifc'
-> 
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Beniamino Galvani <b.galvani@gmail.com>
-> Cc: linux-amlogic@lists.infradead.org
-> Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> ---
->  drivers/spi/spi-meson-spifc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/spi/spi-meson-spifc.c b/drivers/spi/spi-meson-spifc.c
-> index c7b0399802913..8eca6f24cb799 100644
-> --- a/drivers/spi/spi-meson-spifc.c
-> +++ b/drivers/spi/spi-meson-spifc.c
-> @@ -70,7 +70,7 @@
->   * @master:	the SPI master
->   * @regmap:	regmap for device registers
->   * @clk:	input clock of the built-in baud rate generator
-> - * @device:	the device structure
-> + * @dev:	the device structure
->   */
->  struct meson_spifc {
->  	struct spi_master *master;
-> 
-
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTcvMDcvMjAyMCAxNTo1NCwgTGVlIEpvbmVzIHdyb3RlOgo+IExvb2tzIGxpa2UgaXQgaGFz
+bid0IGV2ZXIgYmVlbiBjaGVja2VkLgo+IAo+IEZpeGVzIHRoZSBmb2xsb3dpbmcgVz0xIGtlcm5l
+bCBidWlsZCB3YXJuaW5nKHMpOgo+IAo+ICBkcml2ZXJzL3NwaS9zcGktbWVzb24tc3BpY2MuYzog
+SW4gZnVuY3Rpb24g4oCYbWVzb25fc3BpY2NfcmVzZXRfZmlmb+KAmToKPiAgZHJpdmVycy9zcGkv
+c3BpLW1lc29uLXNwaWNjLmM6MzY1OjY6IHdhcm5pbmc6IHZhcmlhYmxlIOKAmGRhdGHigJkgc2V0
+IGJ1dCBub3QgdXNlZCBbLVd1bnVzZWQtYnV0LXNldC12YXJpYWJsZV0KPiAgMzY1IHwgdTMyIGRh
+dGE7Cj4gIHwgXn5+fgo+IAo+IENjOiBLZXZpbiBIaWxtYW4gPGtoaWxtYW5AYmF5bGlicmUuY29t
+Pgo+IENjOiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+Cj4gQ2M6IGxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IFNpZ25lZC1vZmYtYnk6IExlZSBKb25l
+cyA8bGVlLmpvbmVzQGxpbmFyby5vcmc+Cj4gLS0tCj4gIGRyaXZlcnMvc3BpL3NwaS1tZXNvbi1z
+cGljYy5jIHwgNCArLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMyBkZWxl
+dGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zcGkvc3BpLW1lc29uLXNwaWNjLmMg
+Yi9kcml2ZXJzL3NwaS9zcGktbWVzb24tc3BpY2MuYwo+IGluZGV4IDc3ZjdkMGUwZTQ2YWQuLmVj
+YmE2YjRhNWQ4NWQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9zcGkvc3BpLW1lc29uLXNwaWNjLmMK
+PiArKysgYi9kcml2ZXJzL3NwaS9zcGktbWVzb24tc3BpY2MuYwo+IEBAIC0zNjIsOCArMzYyLDYg
+QEAgc3RhdGljIHZvaWQgbWVzb25fc3BpY2Nfc2V0dXBfeGZlcihzdHJ1Y3QgbWVzb25fc3BpY2Nf
+ZGV2aWNlICpzcGljYywKPiAgCj4gIHN0YXRpYyB2b2lkIG1lc29uX3NwaWNjX3Jlc2V0X2ZpZm8o
+c3RydWN0IG1lc29uX3NwaWNjX2RldmljZSAqc3BpY2MpCj4gIHsKPiAtCXUzMiBkYXRhOwo+IC0K
+PiAgCWlmIChzcGljYy0+ZGF0YS0+aGFzX29lbikKPiAgCQl3cml0ZWxfYml0c19yZWxheGVkKFNQ
+SUNDX0VOSF9NQUlOX0NMS19BTywKPiAgCQkJCSAgICBTUElDQ19FTkhfTUFJTl9DTEtfQU8sCj4g
+QEAgLTM3Myw3ICszNzEsNyBAQCBzdGF0aWMgdm9pZCBtZXNvbl9zcGljY19yZXNldF9maWZvKHN0
+cnVjdCBtZXNvbl9zcGljY19kZXZpY2UgKnNwaWNjKQo+ICAJCQkgICAgc3BpY2MtPmJhc2UgKyBT
+UElDQ19URVNUUkVHKTsKPiAgCj4gIAl3aGlsZSAobWVzb25fc3BpY2NfcnhyZWFkeShzcGljYykp
+Cj4gLQkJZGF0YSA9IHJlYWRsX3JlbGF4ZWQoc3BpY2MtPmJhc2UgKyBTUElDQ19SWERBVEEpOwo+
+ICsJCXJlYWRsX3JlbGF4ZWQoc3BpY2MtPmJhc2UgKyBTUElDQ19SWERBVEEpOwo+ICAKPiAgCWlm
+IChzcGljYy0+ZGF0YS0+aGFzX29lbikKPiAgCQl3cml0ZWxfYml0c19yZWxheGVkKFNQSUNDX0VO
+SF9NQUlOX0NMS19BTywgMCwKPiAKCkFja2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9u
+Z0BiYXlsaWJyZS5jb20+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
+ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
+aW51eC1hbWxvZ2ljCg==
