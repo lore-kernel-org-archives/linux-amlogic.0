@@ -4,18 +4,18 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2DEAC433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jul 2020 21:07:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96504C433E5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jul 2020 21:10:52 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6DE082065F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jul 2020 21:07:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 615652067D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jul 2020 21:10:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S9Kerk5A"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6DE082065F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VcpEqWaP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 615652067D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,55 +24,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=9YqQOrXnsfO34k2K03FDdi4RgaJyI6sFt5qcFjqWSkQ=; b=S9Kerk5AzNXj11NHyGUxul8LI
-	KMfvbvHrhIIvsa3lK90P7N2ouaU8UOnrQPNmodyKgA8wROyBNk2pjrJonin4KPB6ZE7nVDquqcTIQ
-	FszJtwmUXVQD18voS0TK4OkZ9OkAX75k6pH756cQwboCnHGTtvd9L45M0RKb9WID16UICAHVU0Tqd
-	Fw0y46CBscj3aDRYj1QiflZue5ZmilQh2oqGNUJS7IAf57pDaPKymAuEnfPzegMbNssHGQOscvS4d
-	Yjw0YRfLFbCxFDQ/LuuaeYSu6Y9h21xZIlyF3wPxF+onkgRgDUYlafqfDSOt+Hk/HWhDp9kzXII/U
-	5ByvDOQkw==;
+	 bh=/GpuiFfQO7prT9VN1/S8E5BT/LGU+XPjtQ6vbNfCAgY=; b=VcpEqWaPosCcN6oJwVpmEiLow
+	kP3dKcRzAjqrJqzPtZ/GdG3LZ6ukXEZnBBAbQs45/lS7A4/W493qZZJmWgN3ZqjsTKbR9iyc/xH+T
+	Lg0dVbLxgTc+vMuD7IQ55rt9uzCT47sjtz8vl0tHXHJoCwqIXa+6U2W/5WgDnHgbx8N7XO48qBjj8
+	Hbis1rKtidTzC6w1tYunEA0nRuzQPQstLDouNIBdOLbi/hue+6+iK0OKCP2FWQgYuc2rCqe3vL12P
+	afaEnQv63ElsA58hiTVbpi+O4MMjh6vytlk+80PCWjdoRy7DI9zQMKHEgbdukXZ1D+csncUC+467p
+	0rDiLZA0A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jyiRC-0001Vj-Em; Thu, 23 Jul 2020 21:07:34 +0000
-Received: from mail-io1-f65.google.com ([209.85.166.65])
+	id 1jyiUI-0001sH-A4; Thu, 23 Jul 2020 21:10:46 +0000
+Received: from mail-io1-f68.google.com ([209.85.166.68])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jyiR8-0001Us-7a; Thu, 23 Jul 2020 21:07:30 +0000
-Received: by mail-io1-f65.google.com with SMTP id l1so7733718ioh.5;
- Thu, 23 Jul 2020 14:07:29 -0700 (PDT)
+ id 1jyiUG-0001re-58; Thu, 23 Jul 2020 21:10:44 +0000
+Received: by mail-io1-f68.google.com with SMTP id v6so7784808iob.4;
+ Thu, 23 Jul 2020 14:10:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=DqiJg+iVm+KO76sfvCQ1PcB5FB3q5avv7am6yCHETiw=;
- b=GrJ+hiyiDZCkLdtWGkRi0tj2w8pNAPJqJtTTQYacH7Iptty/dNJESWvum+D6KM7SIB
- TAoicUdC/z3u1+XSB0Hq/L3j+k+ief3IAZKeSqPRDGEs85O+eIBK+UHPT3cBkUJMsvwx
- jzYjqAPMT+k9vGAX/P1eWS+VT2pxzQus6H2mA20VO8I/siWVsvsTKA8BPXOdmF1ndeVU
- +TR1hABYJsTXHwAZg5NQ4fGdMa4Wi7zex+dGUvwP6iJGe9J9VUZIfL/iS7CGT41DhQ6B
- Lc74G3jvkRbVP9Yv2Ju/eVAbUUVUT49grIyQ8s2Jd24kSuzoGJoWESWAyoRE+nC3msC0
- 63Cw==
-X-Gm-Message-State: AOAM530QscNngwnPvuNHgXXcUT5pxEDEz18c3g8c/i9NNoVTLD5aCUOm
- Bl5i5DJ7qfq24oohw8zdaA==
-X-Google-Smtp-Source: ABdhPJw41flIcVg/c3woDitOvrf2Wnz/THl1yI2iKhN3PaLn3hSvaeMmDaHtlOtXhqqQjr/qpfOk1Q==
-X-Received: by 2002:a5d:97d1:: with SMTP id k17mr6942837ios.100.1595538449560; 
- Thu, 23 Jul 2020 14:07:29 -0700 (PDT)
+ bh=rFnG6OjqqnnpckoLrF3IZeXaDva71gf7e2ghfJANXJg=;
+ b=msQ5p6/Ae032Mgznv57EgLYnN/kRjnEultU3YAUvKjvjDEW3it4qR859eL96x90YpB
+ BwIDO1c0dYf6WOEsaC/EHQrh+yPR60negbrVsEHMOj3a878iAZgl04xZg84nK6D4PBl4
+ pA68lh24Iq5bk+p98RP4CDd0loo6gjxS7fb551KiNRW+uWZ91f1lY3NYvW7Fi2NwUkQJ
+ RvA37BDD7eyVB3+acGKIhUGRLr+L1rwEc/S52/dBqlxP+OUMW25/7+Uxx6mTXWE2zoJE
+ mZ1bLDaiyEMMASA2tcEyUtMRTuAyl1wqhzQ+MpkKV+V4urm+hoilks7uMhZJxodUenJL
+ 4BTw==
+X-Gm-Message-State: AOAM533KwjFp5/Jw2xvug+g4FTem4mjal0SyggGLca1MSVe0j6BOgkS6
+ jRgBJnE8IHbqqxLv4Gtogg==
+X-Google-Smtp-Source: ABdhPJzPkVpagcW3ivBb3LUe2ly7ZSWK85Q3R+Kf30ArUVlbxiQmo8M85lxbkm/bp9JvXSVnb1L/Jw==
+X-Received: by 2002:a6b:4f19:: with SMTP id d25mr233891iob.190.1595538642326; 
+ Thu, 23 Jul 2020 14:10:42 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
- by smtp.gmail.com with ESMTPSA id g1sm2001627ilk.51.2020.07.23.14.07.27
+ by smtp.gmail.com with ESMTPSA id d6sm2086764ioo.9.2020.07.23.14.10.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Jul 2020 14:07:28 -0700 (PDT)
-Received: (nullmailer pid 860277 invoked by uid 1000);
- Thu, 23 Jul 2020 21:07:26 -0000
-Date: Thu, 23 Jul 2020 15:07:26 -0600
+ Thu, 23 Jul 2020 14:10:41 -0700 (PDT)
+Received: (nullmailer pid 864810 invoked by uid 1000);
+ Thu, 23 Jul 2020 21:10:40 -0000
+Date: Thu, 23 Jul 2020 15:10:40 -0600
 From: Rob Herring <robh@kernel.org>
 To: Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for the
- Beelink GS-King-X
-Message-ID: <20200723210726.GA860231@bogus>
-References: <20200718052258.2890-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: arm: amlogic: add support for the
+ ODROID-N2+
+Message-ID: <20200723211040.GA864520@bogus>
+References: <20200719141034.8403-1-christianshewitt@gmail.com>
+ <20200719141034.8403-3-christianshewitt@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200718052258.2890-1-christianshewitt@gmail.com>
+In-Reply-To: <20200719141034.8403-3-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200723_170730_325506_92194D9C 
-X-CRM114-Status: UNSURE (   9.43  )
+X-CRM114-CacheID: sfid-20200723_171044_213853_C8767C99 
+X-CRM114-Status: UNSURE (   9.60  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -87,16 +88,16 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
  Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+ Rob Herring <robh+dt@kernel.org>, Dongjin Kim <tobetter@hardkernel.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 18 Jul 2020 05:22:57 +0000, Christian Hewitt wrote:
-> The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference
-> board with an S922X-H chip.
+On Sun, 19 Jul 2020 14:10:33 +0000, Christian Hewitt wrote:
+> HardKernel ODROID-N2+ uses a revised Amlogic S922X v2 chip that supports
+> higher cpu clock speeds than the original ODROID-N2.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
