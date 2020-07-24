@@ -1,80 +1,89 @@
-Return-Path: <SRS0=T680=BC=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=y/h1=BD=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96504C433E5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jul 2020 21:10:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE4DFC433E0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jul 2020 08:03:38 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 615652067D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jul 2020 21:10:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5E6262068F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jul 2020 08:03:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VcpEqWaP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 615652067D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GJEzWjBy";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OkMii34c"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E6262068F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=/GpuiFfQO7prT9VN1/S8E5BT/LGU+XPjtQ6vbNfCAgY=; b=VcpEqWaPosCcN6oJwVpmEiLow
-	kP3dKcRzAjqrJqzPtZ/GdG3LZ6ukXEZnBBAbQs45/lS7A4/W493qZZJmWgN3ZqjsTKbR9iyc/xH+T
-	Lg0dVbLxgTc+vMuD7IQ55rt9uzCT47sjtz8vl0tHXHJoCwqIXa+6U2W/5WgDnHgbx8N7XO48qBjj8
-	Hbis1rKtidTzC6w1tYunEA0nRuzQPQstLDouNIBdOLbi/hue+6+iK0OKCP2FWQgYuc2rCqe3vL12P
-	afaEnQv63ElsA58hiTVbpi+O4MMjh6vytlk+80PCWjdoRy7DI9zQMKHEgbdukXZ1D+csncUC+467p
-	0rDiLZA0A==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:From:References:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=hW+A0MAmDOlFUWDznKP9mhKeB/sysmyrPf7cyC1kV7c=; b=GJEzWjByfzG5tIsEvaokDLN2l2
+	Ww15+21fxQgF62Iy89Hlb4Ax9hetZemGeskYckJqRjJTuLiseIwvxHxEgJRA/kJRPTv122C/yD2DN
+	/yzQvE/lGVlk/d2dFCSOzWQKJF0X4A9Ieor01u8uYxGDEOSQT46I+TycLO+XgVCnaCmMgIYZ4I0eq
+	CWuVSYOXf0q6LD93AHpVhIDv6/Fdn3Mb7g5+/l5JZtk0q6fA4ysDATL62t6/3JUevA/Blbcgqo7cw
+	ltNITJYo4IPztyKLBcRdiQtNvC+Su0+GrkgYybVxY+K94i2AfULaMInjM1AgctlmCFihhEHqkCAUn
+	+tBGMojw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jyiUI-0001sH-A4; Thu, 23 Jul 2020 21:10:46 +0000
-Received: from mail-io1-f68.google.com ([209.85.166.68])
+	id 1jysfv-0003PS-AY; Fri, 24 Jul 2020 08:03:27 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jyiUG-0001re-58; Thu, 23 Jul 2020 21:10:44 +0000
-Received: by mail-io1-f68.google.com with SMTP id v6so7784808iob.4;
- Thu, 23 Jul 2020 14:10:43 -0700 (PDT)
+ id 1jysfs-0003OD-H9
+ for linux-amlogic@lists.infradead.org; Fri, 24 Jul 2020 08:03:25 +0000
+Received: by mail-wm1-x343.google.com with SMTP id 184so7428981wmb.0
+ for <linux-amlogic@lists.infradead.org>; Fri, 24 Jul 2020 01:03:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:subject:in-reply-to:date:message-id
+ :mime-version; bh=FYiTPvCoukbaoOFTOrl0fYrPJFjGy0NfoB1Jha2RLlM=;
+ b=OkMii34c/jcIVhqhBl4W39sg7WR9rU+Bb9utghfAXwYg1Tn8IX1vAcF2DjFHOSpI/p
+ bN3bJkhXHhTUQ8nrwMdBsFKnalpmG62l3ZOC7Ur2VzqU4LhtcM4pooOsdzC9qHnuo4qU
+ /RQYj9icMehbn7ow7MBsWvRNA+/+cWSuKNk458Fz7S0/Hr7Ik8OQmEqBT3QSj/vab96Y
+ qii/vqqgY/+y2LjPZgtvRx6uZFnmWJfS7aKgvLI+VyrcErUxY366BVx7blDySXhvQSgL
+ nkSl9aH4bSmsICKhmn69lSvXFZMkF0dOI5vi6HsyFPbQ6USBHO8uhYHZCppHsAnpTltp
+ ZcXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=rFnG6OjqqnnpckoLrF3IZeXaDva71gf7e2ghfJANXJg=;
- b=msQ5p6/Ae032Mgznv57EgLYnN/kRjnEultU3YAUvKjvjDEW3it4qR859eL96x90YpB
- BwIDO1c0dYf6WOEsaC/EHQrh+yPR60negbrVsEHMOj3a878iAZgl04xZg84nK6D4PBl4
- pA68lh24Iq5bk+p98RP4CDd0loo6gjxS7fb551KiNRW+uWZ91f1lY3NYvW7Fi2NwUkQJ
- RvA37BDD7eyVB3+acGKIhUGRLr+L1rwEc/S52/dBqlxP+OUMW25/7+Uxx6mTXWE2zoJE
- mZ1bLDaiyEMMASA2tcEyUtMRTuAyl1wqhzQ+MpkKV+V4urm+hoilks7uMhZJxodUenJL
- 4BTw==
-X-Gm-Message-State: AOAM533KwjFp5/Jw2xvug+g4FTem4mjal0SyggGLca1MSVe0j6BOgkS6
- jRgBJnE8IHbqqxLv4Gtogg==
-X-Google-Smtp-Source: ABdhPJzPkVpagcW3ivBb3LUe2ly7ZSWK85Q3R+Kf30ArUVlbxiQmo8M85lxbkm/bp9JvXSVnb1L/Jw==
-X-Received: by 2002:a6b:4f19:: with SMTP id d25mr233891iob.190.1595538642326; 
- Thu, 23 Jul 2020 14:10:42 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
- by smtp.gmail.com with ESMTPSA id d6sm2086764ioo.9.2020.07.23.14.10.41
+ h=x-gm-message-state:references:user-agent:from:to:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=FYiTPvCoukbaoOFTOrl0fYrPJFjGy0NfoB1Jha2RLlM=;
+ b=hR/gC26MCCAfJ3qGNaKlVm841zeEROUJIJ9p0nkTJkINnSsHnMG2qiiC35kvnmTK/w
+ cLftaH4CjkofYeP+ctiytJ/6NzA715e55GEmKYKpCXhEN/RhkgXpGSyJf2XSWDv7DiaE
+ 7IytKNGXNJbLrYh0qY45tRf0WmRSfJs6L7LFm/TQH3hCRDq/V1mQBmNFhsGD6UgG3I/C
+ NSt1yi5vKNFvSAMZcLmK590OsMWo2owq5dw1smpqzJX+8XCXpQQaoEKkg1fXIhi/ueYs
+ LqefR+nwIx/RUXr0pg6cMFOocuYUop8XfQxT/8pH+BiIB6SADfW12qkkeY7s1c+TXvzl
+ DVzw==
+X-Gm-Message-State: AOAM532vhrnvtkY/2fSW43IaAfcQOSX++ISLhAEWxjcbNLDZ06FOhKXR
+ EKSdnWnQBgbyYetDXvcYpy5IMA==
+X-Google-Smtp-Source: ABdhPJyn/pB/fCAPuj3pGYNWK8VM7JdK1qdI7EHELV4GQ+wKVN+Bgz5vRxb+6s3Q1O6mLyAAwTohpg==
+X-Received: by 2002:a1c:c256:: with SMTP id s83mr5140670wmf.17.1595577802102; 
+ Fri, 24 Jul 2020 01:03:22 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id l1sm432897wrb.12.2020.07.24.01.03.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Jul 2020 14:10:41 -0700 (PDT)
-Received: (nullmailer pid 864810 invoked by uid 1000);
- Thu, 23 Jul 2020 21:10:40 -0000
-Date: Thu, 23 Jul 2020 15:10:40 -0600
-From: Rob Herring <robh@kernel.org>
-To: Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: amlogic: add support for the
- ODROID-N2+
-Message-ID: <20200723211040.GA864520@bogus>
-References: <20200719141034.8403-1-christianshewitt@gmail.com>
- <20200719141034.8403-3-christianshewitt@gmail.com>
+ Fri, 24 Jul 2020 01:03:21 -0700 (PDT)
+References: <1356858918.38098893.1595529644632.JavaMail.zimbra@mailid.telus.net>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: "honsch\@telus.net" <a6b04393@telus.net>, linux-amlogic@lists.infradead.org
+Subject: Re: GPIO Interrupts
+In-reply-to: <1356858918.38098893.1595529644632.JavaMail.zimbra@mailid.telus.net>
+Date: Fri, 24 Jul 2020 10:03:20 +0200
+Message-ID: <1jmu3p8hmf.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200719141034.8403-3-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200723_171044_213853_C8767C99 
-X-CRM114-Status: UNSURE (   9.60  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200724_040324_709513_9D680E17 
+X-CRM114-Status: GOOD (  11.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,26 +95,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Dongjin Kim <tobetter@hardkernel.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, 19 Jul 2020 14:10:33 +0000, Christian Hewitt wrote:
-> HardKernel ODROID-N2+ uses a revised Amlogic S922X v2 chip that supports
-> higher cpu clock speeds than the original ODROID-N2.
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Thu 23 Jul 2020 at 20:40, honsch@telus.net <a6b04393@telus.net> wrote:
+
+> Hi there,
+> I've been working on a ODroid C2 project for a while, (meson, gxbb) and I cannot get gpio interrupts working from the devicetree.
+>
+> I'm trying to hook up the PPS gpio driver as well as some gpio IIO triggers.  I had it all working on a 4.x kernel a couple of years ago but on the 5.7 it's a no-go.
+>
+> The pinctrl-meson driver is missing the hook for gpiod_to_irq(), and the irq-meson-gpio driver is missing the activate function for platform_get_irq() to function.
+>
+> Has either of these paths ever been implemented or tested?  Am I missing something simple?
+
+Yes, Look at the eth0_phy0 DT node of your odroid-c2, it does use a gpio interrupt.
+
+> Thanks.
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
 
 _______________________________________________
 linux-amlogic mailing list
