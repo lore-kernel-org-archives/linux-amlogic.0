@@ -1,86 +1,77 @@
-Return-Path: <SRS0=y/h1=BD=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=MxIh=BE=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F0F2C433E4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jul 2020 19:34:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CECAC433E0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Jul 2020 06:01:10 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 70DA6206D7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jul 2020 19:34:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5DD72206D8
+	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Jul 2020 06:01:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vap8ZSlV";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NMAaAOih"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 70DA6206D7
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nvn2aTZw";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=telus.net header.i=@telus.net header.b="XjjpJ0XK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5DD72206D8
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=telus.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=p+odo0Ic+G+Qc2tEIMivizscB6c5i6g/cxaMnhvEHKg=; b=vap8ZSlVx/u23eNVsVdkeQcS+1
-	lvKGm9VTVy5eUOB0F33c9ttAn8WCETb8gsblfNM/ACnE4wAkmt8CS7MADP2khUNtiEvjF+1jLmZmk
-	sh/+aIkG2oK5bqT5ZA5rirgWV7nKLKjyiFWlKcz2bF+t0j4VN8kQ2rKSXLqMv3SSt3UdQ7tIGK5kW
-	JnaHxNcGeyaezYSsMcF4WsnDqEfNqQoOkOiLEfGTb5XtZrPZZFi3k4XqAq5ywdkb/qwyPdxzdLFZH
-	V8pAp4IzQlfUKUhbQVR+bIPvmmzD9LBy7dxelE0JYzCPbiyoaAqi3pn8AKNtjmcbr0HjjlYhQlLpf
-	f7YKKNvQ==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=6NPIRoZ9js+F483cNm07dXnisCsOg57SbhzqJ2kMBc0=; b=nvn2aTZwTqgqRhWp+Qq5oN3Ig
+	XAkheKsQ3PxE0aLc6mjUKaPdM+n58VlE+vkOzQqFazJn8HB72/rk6CnzpjJhcPENVD9M9BaTemC7U
+	jzHTZS6t3Af79UytmieAJw8AjUZe5DHI6a8BJfDYpflFoIbh6fQTzUeGUa/yBFrhYhbqWypT3LTrk
+	ZJmOcdaFowMPxkYN9+27RW7O7sDTa1LIeH6RMJ0PHvcHCvvotJpBJS/yLxyocJ1s2PBOZKNs0s5Oe
+	iryhtpwssOmVCNZA5fc4KhdulKhyA4/UQFGSVNKRtJK4P96JbbIlXwXBzp8/2JuIugTW1+4WSdC4X
+	0yI2CZvOw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jz3St-0003NL-0I; Fri, 24 Jul 2020 19:34:43 +0000
-Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
+	id 1jzDEt-00078C-O8; Sat, 25 Jul 2020 06:00:55 +0000
+Received: from cmta20.telus.net ([209.171.16.93])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jz3Sq-0003MS-Uo
- for linux-amlogic@lists.infradead.org; Fri, 24 Jul 2020 19:34:42 +0000
-Received: by mail-pg1-x542.google.com with SMTP id w2so5876352pgg.10
- for <linux-amlogic@lists.infradead.org>; Fri, 24 Jul 2020 12:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=UkfGCPDv6/4XwldyIZfxfs3il0UL6u6K3tEwTsy+SyE=;
- b=NMAaAOihB6sFkoOfOPbchIm+TY1ZSG8O1XIdIu9h7Ke0ma8CeBXpRblbWyw4DaEz23
- NCqJjAUfZ3iNbC5B6gIZVHEnPqHSGqCMQqKUCVS0Yfdm60dTGV6Zy5LzWJ5G4sFc3qGr
- O79LbQgEknbgo0hKkEFgXxCVBIfWKYIhQowctlMLOyVOx9rH9YhIiknMhPkrBxqMTqVq
- CcHir16SexRV+qKqjmgdwXApImn/nGLU6G1nY/FcEyEFlaui7YtpoDHUmbt8ZXeDkTLd
- jkZWJ7ckSNUHp+w/E1FnLNGOebAEWxf2Yw5WqBc37vzpPWrLl0mpwl3mP8Oip0rEewRg
- y02g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=UkfGCPDv6/4XwldyIZfxfs3il0UL6u6K3tEwTsy+SyE=;
- b=gAFl3kLhU0MZzMgHdC2j0b6ARCUVd47f7Yuvu1wXpT1x9dBt0vmC25pYCNIC7Vxpil
- wy5T2N5KlLUHElNzBILSj+Blwz3y/regWcIdAZOAY0wwkVzRqZxxThngAILS9Y5fwnsj
- iPeUzyR3c9Px5TdUCXD81xLOhx3QTEfpQdcIzEq7jDyyk55mADjEF+cMzBZZP26bdkLI
- zTThGMG+1qWNMELaADFUa1uk8cBxqdhHIIbNgAnE40zQMI0PiKlAf+e9AE5dKKVF/KBk
- 9w4LaaHhBxjchN30zAYNV750l3eo3HT5ONctFGqozezgwXyPuph37X9dZma8yY05+xK9
- tGCA==
-X-Gm-Message-State: AOAM5316vno8S5UVher5xnnLKLEHWwghRcOcjTltoiCxpg4xcbAuGIZA
- tNqhD+i/ZOW/4Bk/+QRp3S+j3g==
-X-Google-Smtp-Source: ABdhPJy3m/Jg6VLgGB19nA+IZjymdeacc1lMbOBRwHNb6G+jJD8A8SRixVjs2Hs0CM35u5zWwd+CHw==
-X-Received: by 2002:a65:5649:: with SMTP id m9mr9588114pgs.279.1595619278441; 
- Fri, 24 Jul 2020 12:34:38 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id y18sm7201242pff.10.2020.07.24.12.34.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Jul 2020 12:34:37 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-List-Id: <soc.lore.kernel.org>
-To: soc@kernel.org, arm@kernel.org
-Subject: [GIT PULL] arm64: dts: amlogic: updates for v5.9 (round 2)
-Date: Fri, 24 Jul 2020 12:34:37 -0700
-Message-ID: <7h8sf8671u.fsf@baylibre.com>
+ id 1jzDEq-00076I-QL
+ for linux-amlogic@lists.infradead.org; Sat, 25 Jul 2020 06:00:54 +0000
+Received: from [192.168.1.209] ([173.180.110.58]) by cmsmtp with SMTP
+ id zDEkjk5zcljNxzDEljW0tA; Sat, 25 Jul 2020 00:00:48 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=telus.net; s=neo;
+ t=1595656848; bh=sZggzFN6k3juphxvK1+74Zq7kmWFBtt8K/Bs1SKEsWI=;
+ h=Subject:To:References:From:Date:In-Reply-To;
+ b=XjjpJ0XK1z5twKElFAco7q7EFPOjIE5uL7CE94f8hc1+d1xOPvsHF3z2XQApNiavi
+ f1UmEq8lXxvLfbrP1H5WfvF4EWbLWXNl5tVnI75h3CMqdjs3SXpU9b+mJLZHMO38F0
+ B7HHEGMWHwhat/iuF8mcFJFhx8Ed08JClDEdCz/ELLxA77yoUQpuxrYm5buHs2x5PC
+ rkdfkaw1KcNe0rFMUIVapv1j2n1Lxwz6/aC+zmM+Oi6PBnnAX88+v7RV9WSks6Hv84
+ fS6nNAqEkN3JqtzhhEyT/8be9XfdbaF9AsOsPNnTefClrMGTUpVnyQ2+3BSNASbcpO
+ PyrnARR6WF5+Q==
+X-Telus-Authed: YTZiMDQzOTM=
+X-Authority-Analysis: v=2.3 cv=Z8aS40ZA c=1 sm=1 tr=0
+ a=TGg0qk4LsF+PfxzQJA4TSg==:117 a=TGg0qk4LsF+PfxzQJA4TSg==:17
+ a=IkcTkHD0fZMA:10 a=aatUQebYAAAA:8 a=JfrnYn6hAAAA:8 a=Jozsuq5hV7MS9ukgvVMA:9
+ a=QEXdDO2ut3YA:10 a=7715FyvI7WU-l6oqrZBK:22 a=1CNFftbPRP8L7MoqJWF3:22
+Subject: Re: GPIO Interrupts
+To: linux-amlogic@lists.infradead.org
+References: <1356858918.38098893.1595529644632.JavaMail.zimbra@mailid.telus.net>
+ <a212ea3d-dc08-73e6-0706-79c01d0be377@baylibre.com>
+From: E Honsch <honsch@telus.net>
+Message-ID: <482a6743-db2a-c66f-f644-f139a0ae0d8a@telus.net>
+Date: Fri, 24 Jul 2020 23:00:46 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <a212ea3d-dc08-73e6-0706-79c01d0be377@baylibre.com>
+Content-Language: en-US
+X-CMAE-Envelope: MS4wfC9k2gc/1U9vLbUsvM6TW2Iok9W1MOBs1B/LXBRcGEd7+8w4EnE9Bvf9hzQB593iX6ZAUd/ODLY0Exf7hnL75XP3U99tun8MslwZCPWgEBAtpZwxA/he
+ 66bCS6X8ssK95in/tyY5pYPxSpeQxIJ1PsbraVZR2mswM33Q9RVlOmjGZtvZorKYwmSvRIZfUTVkww==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200724_153441_049594_1589D46E 
-X-CRM114-Status: GOOD (  10.28  )
+X-CRM114-CacheID: sfid-20200725_020052_977492_68DD3E3F 
+X-CRM114-Status: GOOD (  18.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,94 +83,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Arnd, Olof,
-
-Here's another round of DT updates for Amlogic SoCs.
-
-A couple of these had dependecies on some earlier fixes, so you'll
-notice that the amlogic-fixes tag (which I already sent) is merged here.
-
-Please pull.
-
-Thanks,
-
-Kevin
-
-
-The following changes since commit 32b5f4b63487a24712c3bfa1d6a8eb9257beb8bd:
-
-  arm64: dts: amlogic: Add the Ethernet "timing-adjustment" clock (2020-07-13 11:57:46 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
-
-for you to fetch changes up to 916a0edc43f03f86b13fbc9943e5dc936671ea6e:
-
-  arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS (2020-07-21 14:12:38 -0700)
-
-----------------------------------------------------------------
-arm64: dts: amlogic: updates for v5.9 (round 2)
-- new board: WeTek Core2
-- audio playback support on more boards
-- add GPU DVFS
-
-----------------------------------------------------------------
-Christian Hewitt (6):
-      soc: amlogic: meson-gx-socinfo: Fix S905X3 and S905D3 ID's
-      arm64: dts: meson: update spifc node name on Khadas VIM3/VIM3L
-      arm64: dts: meson: add audio playback to odroid-c4
-      arm64: dts: meson: add audio playback to khadas-vim3l
-      dt-bindings: arm: amlogic: add support for the WeTek Core 2
-      arm64: dts: meson: add support for the WeTek Core 2
-
-Jerome Brunet (1):
-      arm64: dts: meson: add missing gxl rng clock
-
-Kevin Hilman (1):
-      Merge tag 'amlogic-fixes' into v5.9/dt64
-
-Krzysztof Kozlowski (1):
-      ARM: dts: meson: Align L2 cache-controller nodename with dtschema
-
-Martin Blumenstingl (3):
-      arm64: dts: amlogic: meson-gx: add the Mali-450 OPP table and use DVFS
-      arm64: dts: amlogic: meson-gxm: add the Mali OPP table and use DVFS
-      arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS
-
-Neil Armstrong (1):
-      arm64: dts: meson-gxl-s805x: reduce initial Mali450 core frequency
-
- Documentation/devicetree/bindings/arm/amlogic.yaml           |  1 +
- arch/arm/boot/dts/meson.dtsi                                 |  2 +-
- arch/arm64/boot/dts/amlogic/Makefile                         |  1 +
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi            | 49 +++++++++++++++++++++++++++++--------------
- arch/arm64/boot/dts/amlogic/meson-gx-mali450.dtsi            | 61 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                  | 51 ++++++++++-----------------------------------
- arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi              | 46 ++++++++---------------------------------
- arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts         |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl-s805x.dtsi             | 23 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                   |  5 +++++
- arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts        | 87 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxm.dtsi                   | 45 ++++++++++++++++++++++++++--------------
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi           |  2 +-
- arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts       | 88 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts          | 88 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/soc/amlogic/meson-gx-socinfo.c                       |  8 +++++---
- 17 files changed, 447 insertions(+), 114 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gx-mali450.dtsi
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805x.dtsi
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+TmVpbCwKClRoYW5rcyBmb3IgdGhlIHZlcmlmaWNhdGlvbiBvZiB0aGUgc3RhdGUgb2YgdGhlIHN5
+c3RlbS7CoCBBcmUgdGhlcmUgCmludGVyZXN0aW5nIHN0b3JpZXMgYmVoaW5kIHRoZSBoaXN0b3Jp
+Y2FsIHJlYXNvbnMgaXQncyBicm9rZW4/CgpJIGRpZCBnZXQgdGhlIGludGVycnVwdHMgdG8gd29y
+ayB0b25pZ2h0LCBzbyB0aGVyZSdzIHRoYXQuCgpJIGp1c3Qgd2lzaCBJIGRpZG4ndCBoYXZlIHRv
+IG1vZGlmeSB0aGUgZHJpdmVycyB0byBnZXQgaXQgdG8gd29yay4KClRoYW5rcyBhZ2Fpbi4KCgpF
+cmljCgpPbiAyMDIwLTA3LTI0IDE6MDUgYS5tLiwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gSGks
+Cj4KPiBPbiAyMy8wNy8yMDIwIDIwOjQwLCBob25zY2hAdGVsdXMubmV0IHdyb3RlOgo+PiBIaSB0
+aGVyZSwKPj4gSSd2ZSBiZWVuIHdvcmtpbmcgb24gYSBPRHJvaWQgQzIgcHJvamVjdCBmb3IgYSB3
+aGlsZSwgKG1lc29uLCBneGJiKSBhbmQgSSBjYW5ub3QgZ2V0IGdwaW8gaW50ZXJydXB0cyB3b3Jr
+aW5nIGZyb20gdGhlIGRldmljZXRyZWUuCj4+Cj4+IEknbSB0cnlpbmcgdG8gaG9vayB1cCB0aGUg
+UFBTIGdwaW8gZHJpdmVyIGFzIHdlbGwgYXMgc29tZSBncGlvIElJTyB0cmlnZ2Vycy4gIEkgaGFk
+IGl0IGFsbCB3b3JraW5nIG9uIGEgNC54IGtlcm5lbCBhIGNvdXBsZSBvZiB5ZWFycyBhZ28gYnV0
+IG9uIHRoZSA1LjcgaXQncyBhIG5vLWdvLgo+Pgo+PiBUaGUgcGluY3RybC1tZXNvbiBkcml2ZXIg
+aXMgbWlzc2luZyB0aGUgaG9vayBmb3IgZ3Bpb2RfdG9faXJxKCksIGFuZCB0aGUgaXJxLW1lc29u
+LWdwaW8gZHJpdmVyIGlzIG1pc3NpbmcgdGhlIGFjdGl2YXRlIGZ1bmN0aW9uIGZvciBwbGF0Zm9y
+bV9nZXRfaXJxKCkgdG8gZnVuY3Rpb24uCj4+Cj4+IEhhcyBlaXRoZXIgb2YgdGhlc2UgcGF0aHMg
+ZXZlciBiZWVuIGltcGxlbWVudGVkIG9yIHRlc3RlZD8gIEFtIEkgbWlzc2luZyBzb21ldGhpbmcg
+c2ltcGxlPwo+IFRoZSBvbmx5IGF2YWlsYWJsZSBkcml2ZXIgZm9yIEdQSU8gaW50ZXJydXB0cyBp
+cyBpcnEtbWVzb24tZ3BpbyBhbmQgc2hvdWxkIGJlIGVub3VnaCBmb3IgbW9zdCBvZiB5b3VyIHVz
+ZS1jYXNlcwo+IGlmIHlvdSBwYXNzIHRoZSBHUElPIGludGVycnVwdCBhcyBgaW50ZXJydXB0ID0g
+YCBhbmQgYGludGVycnVwdC1wYXJlbnQgPWAgYXMgd2UgZG8gZm9yIHRoZSBFdGhlcm5ldCBQSFkg
+b24gc29tZQo+IGJvYXJkcy4KPgo+IEZvciBoaXN0b3JpY2FsICYgSFcgYXJjaGl0ZWN0dXJlIHJl
+YXNvbnMsIGl0J3Mgbm90IHBvc3NpYmxlIHRvIGltcGxlbWVudCB1cHN0cmVhbSBzdXBwb3J0IGZv
+ciB0aGUgZ3Bpb2RfdG9faXJxKCkgaW4gdGhlIHBpbmN0cmwgZHJpdmVyLgo+Cj4gTmVpbAo+Cj4+
+IFRoYW5rcy4KPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPj4gbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKPj4gbGludXgtYW1sb2dpY0BsaXN0
+cy5pbmZyYWRlYWQub3JnCj4+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtYW1sb2dpYwo+Pgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+IGxpbnV4LWFt
+bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1s
+b2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxt
+YW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
