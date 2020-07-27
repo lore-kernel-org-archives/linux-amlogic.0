@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
 	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DD81AC433E3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 19:21:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C43EC433E4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 19:21:47 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A7B9D20729
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 19:21:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DF6ED20729
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 19:21:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p0dNU3oV";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="GiOYenH9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7B9D20729
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k6H3nyCu";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfQ6Panx"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DF6ED20729
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,37 +25,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:Message-Id:From:
 	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=lTYTIf9JWt1hGY7RJvvGiboBtzXnLj34ky8N3TQGBQw=; b=p0dNU3oVDSYy6KtcVisLzo5Ge
-	3hCwaM+u1IQlbyaxSgWr11i31pQtpVrCC2SofrK6pL4T0F4T8fKFeDflFjeGqtLdXMXiECIieWQJ0
-	hJAUbzbVyXe32qI9FNq74aNn0sWjQR604Uxkfk5fIOfpacCd4nyUMVgbmdQRCQ21vbRaxRufWii1M
-	PtGAFaqoGVU4PhBzl2onve9YMxSbzKeRV+AsoNJKCL7Na10KPJMWe3CFEABoF7/BcySNzsqx6+YAF
-	rvqUPyQl00ewvo8//LW4xYgaKHaN4FgrQYrIYCRAKKbyvJAKkAXW29Edg79s4ZaEF2KPYc/8PDnOv
-	WwIYK4bSA==;
+	 bh=NY0Qq0XjVCpjzlkI/SU87mUMhlhSQMm5fEnLemLwZWk=; b=k6H3nyCuSMPKWBHZI9dBDQBST
+	Rd/BlDXVl3WnFV7UVkJUMkuCOHUZiQQjJrk0mPoxPV8bowYWl+9l7IZEoKAk2upb/3jLAqjj6Gi2w
+	wMiz7w28QcnxsGSUGTtr9rjI968v/JeLhVsX9D1HmXsBd8jXRu7j/Zux8o5ejBths+8t5VLS+0xQJ
+	nv6fQak5Azx41+hCRcPf4mu8Z2bAwYC+3QgtoRU8lNLFJKKLedAGmm9GC18GcxJ6frOGzYZ9ROF/g
+	jCxCvQSCaNEgcNO0ZwQD9Gsix6Dk2iERY9O2zH0uBCnDxdLED4Sh6We/VTnRw3AC20bamSrUqgnX0
+	jt9JNd7tA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k08gt-0004r1-Ae; Mon, 27 Jul 2020 19:21:39 +0000
+	id 1k08gu-0004rG-SK; Mon, 27 Jul 2020 19:21:41 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k08gp-0004pk-IS
+ id 1k08gp-0004pj-HD
  for linux-amlogic@lists.infradead.org; Mon, 27 Jul 2020 19:21:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=default; t=1595877693;
- bh=T/U6FriC5+Wmrs3XCdxTcVG5cMO8cvRSf4U4++K+xqU=;
+ bh=ccKsC5HY98nGZvQjRkl8fwSuRiL7qAroMt+H/vCmOa4=;
  h=Subject:From:Date:References:In-Reply-To:To:Cc:Cc:From;
- b=GiOYenH9RyA711b5p33BP4K/Okp9vKeDIWN7g009nXSqs1u4twTueOTHJCerVZNEm
- Fw4Z5FFBv9wbAx8fXqnwUQOIF2gIBZXQLwt1GRdFZ3iUj/0uR+o0nGKMENUW/zirSx
- 4U61+r1weDiuKNlAyqvsntCZDDkdauDz7drGnr2w=
+ b=LfQ6PanxIXtdBpaWkbQhEerzYR6N/evQWNU0TeIG11khtYYccI13tGoOWwiEwuMbM
+ n8Kj5XozwQ/cDoDNAfJ/7JNIAYUa20SKbRPF3rouMuQFP5u1p3ZdNqh1yA168XJlnW
+ Bzwqf+f/FRtISEX8BBhNxja5nWrJTiEQKpuS+gaw=
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] arm64: dts: meson: fix mmc0 tuning error on Khadas VIM3
+Subject: Re: [PATCH v2] arm64: dts: meson: misc fixups for w400 dtsi
 From: patchwork-bot+linux-amlogic@kernel.org
-Message-Id: <159587769327.4970.8492967376665082145.git-patchwork-notify@kernel.org>
+Message-Id: <159587769304.4970.9731283669202451232.git-patchwork-notify@kernel.org>
 Date: Mon, 27 Jul 2020 19:21:33 +0000
-References: <20200721015950.11816-1-christianshewitt@gmail.com>
-In-Reply-To: <20200721015950.11816-1-christianshewitt@gmail.com>
+References: <20200721013952.11635-1-christianshewitt@gmail.com>
+In-Reply-To: <20200721013952.11635-1-christianshewitt@gmail.com>
 To: Christian Hewitt <christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200727_152135_772550_F8A466C7 
-X-CRM114-Status: UNSURE (   6.11  )
+X-CRM114-CacheID: sfid-20200727_152135_713356_DABEA34B 
+X-CRM114-Status: UNSURE (   5.42  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -78,9 +78,8 @@ Hello:
 
 This patch was applied to khilman/linux-amlogic.git (refs/heads/for-next).
 
-On Tue, 21 Jul 2020 01:59:50 +0000 you wrote:
-> Similar to other G12B devices using the W400 dtsi, I see reports of mmc0
-> tuning errors on VIM3 after a few hours uptime:
+On Tue, 21 Jul 2020 01:39:52 +0000 you wrote:
+> Current devices using the W400 dtsi show mmc tuning errors:
 > 
 > [12483.917391] mmc0: tuning execution failed: -5
 > [30535.551221] mmc0: tuning execution failed: -5
@@ -92,8 +91,8 @@ On Tue, 21 Jul 2020 01:59:50 +0000 you wrote:
 
 
 Here is a summary with links:
-  - [v2] arm64: dts: meson: fix mmc0 tuning error on Khadas VIM3
-    https://git.kernel.org/khilman/linux-amlogic/c/f1bb924e8f5b50752a80fa5b48c43003680a7b64
+  - [v2] arm64: dts: meson: misc fixups for w400 dtsi
+    https://git.kernel.org/khilman/linux-amlogic/c/2fa17dd09533d5d83201be3229a28c1010a8ea3e
 
 You are awesome, thank you!
 
