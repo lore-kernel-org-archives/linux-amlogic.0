@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
 	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E856C433E8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 07:29:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2651DC433EA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 07:44:07 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1A43E2070B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 07:29:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E8F8320738
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 07:44:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="phuYPL52";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RcFtDGx2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A43E2070B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VDZRFxbJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="f3WirhU2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E8F8320738
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=by/8hmSBS74miiei+UxL4rJNeG7tCsrq4w/eSwVI+F0=; b=phuYPL52BBXYgk2ORsli7MP08
-	M9O1LPJvTEhfNiAuBlPJ7IfQOzPovswqPPdOizIpTtzaI3b8RtvddX8Ssa7nDwKexrcMLcmx5Pxpv
-	XZ3gmdLLzBnJigjkdqEKKSqpJPA/zhUAboxfPQt7hR0N8oHnFRy6SRLmEGC2+larwMcN4sH/VyZPi
-	+HY+erSX961kvZIjxtCVmb+FEr6R4vVgW0vfRPx3w7pU9033ffwnxSyYfDfVaVwHWNO/LgDSue1nv
-	0b/66mrd4WAZ0RpIuWa8NnltfB90pWSR8BzJjw8PHr4fksdE7G3dkM3BWQWNuWJwj1ur6w4SVLnsW
-	BtlqP+W5g==;
+	 bh=KmJO4+ACg1xLNzvYBKFEflrFJxtABjcs92Ppoe+BxAA=; b=VDZRFxbJxQW/ueIqKoVLjkFeX
+	pJf7noENayMuQtQPRlBCO2swU2jABorPptodbXxgfjqmdRejlNYV6elZ/6x02zMKd+nS84nkMn2Ac
+	RQCXknN4o9UYet+m1D0wVnPiislQa0ekHHa4fDG2uLn8d5e27Jhz3MKJ6ihDzWFjKcUtrOYCRZ8e9
+	HH6gP35WjzyOo+qW4T81Z6f6KynZ+hn272d0eYa/C4EgzmLvZLAaZ3Z6BiaEdmdFBfcuM41t5/W9D
+	/71o1Ogl8ntZmR2LoALW2wgppxxIDQFDZjWh1FwDGQAu8hDLFseAQZ7G0x1HTtI49wpi9QuimvsGk
+	PwJotZGpA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1jzxZ7-0001tS-2a; Mon, 27 Jul 2020 07:28:53 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1jzxni-0003wt-Sa; Mon, 27 Jul 2020 07:43:58 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jzxZ3-0001rR-E2
- for linux-amlogic@lists.infradead.org; Mon, 27 Jul 2020 07:28:51 +0000
-Received: by mail-wm1-x342.google.com with SMTP id k20so6017520wmi.5
- for <linux-amlogic@lists.infradead.org>; Mon, 27 Jul 2020 00:28:47 -0700 (PDT)
+ id 1jzxne-0003vv-Tm
+ for linux-amlogic@lists.infradead.org; Mon, 27 Jul 2020 07:43:55 +0000
+Received: by mail-wr1-x443.google.com with SMTP id a15so13796400wrh.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 Jul 2020 00:43:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=esRwbTCzDO7x2Eh5vxgXr51hblMhF7XMAdzGe185q58=;
- b=RcFtDGx2prygoi/goLympmWmMWrHgs+W+Mu8GWjpCcrcy5qljVybkEdf4FSqlvKvB5
- gFsyOki6z1CTxJB85UYVCV/xddThoGl56Gm+kIOMzsY8x+RR0QH8EQ+uC011LxY6y6DN
- FO1lP8Ne4sJg+kDhGugIRthqY6y7LCKhwmskh+k1GXjrhOCdEqiKdsUh7L+5nkJ0ke49
- rTq5PuDKFubDWBaXPdjJRE9lf7nPbwKv8uf3z/R6jsFIVndcLu8K11Cg2YaQ+fDmjTyZ
- 8pBAd8vmo3eK/LCzxVW1LfhiVeU6EnNz5lS5ZmDxbz4HqpSEzrlxtmW6vDSn0/nCamL+
- 5Ppw==
+ bh=n76OAMb5Tt3PVnv5VATHcXtiCTfx97V2mQj3/Hsw20I=;
+ b=f3WirhU2S1e3/eG/2ANWw47oDKuLqcd8Ff+8EUzv7kjOLYsmXHVdFCntdGDtEJcr8O
+ m7oZll7UG8XH4GFEi+67fSsoW1RMJ2RqsjeVEWgIMdpHk7Mi2Ns/zhuMMNTjVsuPosHi
+ JHVbstG68JfDU7u8cxPp4BfFgtT4xVUoaCABqNucRn+IhKU2c5+wIRXe95T50tmWuB2z
+ +6YNG+EUf+4RFUjbCzCMkS8OJqliU1/htDv9iq0Ex4WXpn8rruerOs8+8I6XXKKMpf+t
+ 8kvaTBhRfUbYfUSY6uaS1PtfG8cMCnfVZfSmbsFr7bBIFHxmPxsnyQbBzIs5N3jM8dxz
+ uPGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=esRwbTCzDO7x2Eh5vxgXr51hblMhF7XMAdzGe185q58=;
- b=DkH1wiMvl+wL3RJgfWm7RdFr7r8qQZYIg2TJr6stJ59OBUgB7O6VQjYVlybYuv4+q3
- dAgs2od63+gLq9kpqvLksfQ1kfKJdYKpn8SKgWz9d2uMhsiwR9pprbAGk//o2aD7IeEW
- J7x1mMGkYlc9Z7+Fl+OanjjLmdK4EN6RDfqV/IgwuHI6xvfFihBcHhn8RtLFeOklvVDy
- eq6N5NgT+xK882sk49JDdu+PmnqVOibEac2vl0Qf416TIAS0qJPjTfrtb/rHUE/2ru+o
- +8oBo/85KeegwuyGN6e6xOJlDCx7AQ3cai4VLHHEP0w4AhuehHcRB7PiDYX099G0RroU
- ujMw==
-X-Gm-Message-State: AOAM53164jqsnnAS7fxtyJw9cBFmXmfH35jAVhA0GRTL6DdC4jFXkqQU
- ho+5qj3BAcyVNy0zSghZ7JUOHfYcBakoMw==
-X-Google-Smtp-Source: ABdhPJwwFyXP9m/QKHlWEoJgeVi7242QOXUA6jx28eAS7kwNdU7yV7fLodxpOYPkpJ7kyPDLJVd3yg==
-X-Received: by 2002:a1c:c256:: with SMTP id s83mr17451497wmf.17.1595834926293; 
- Mon, 27 Jul 2020 00:28:46 -0700 (PDT)
+ bh=n76OAMb5Tt3PVnv5VATHcXtiCTfx97V2mQj3/Hsw20I=;
+ b=iHRRuJF0bbaqJUCyN1/bI2HeF9vul3FX13HEJh5+sAQRV8XT2HhmMo46pXfUnYD87Y
+ PMTw1/HXzr6SWWfygP1Lxc2JbMoWEH5QeWUGGOEVYlGTSSjzLZh/c+rDz4zFLKJTnZVq
+ QR0fV40uWoHFQajuGBQlrd8odwN9th3VpuKw52pUa6YnuC/SwUqVIn3LdVe7O7dyj/dn
+ ABYBMgzpL42eoRpJrUqwAbg85tjn3WefdM5d5UgBpv6fmEB3L3uRSNQ49CWROI9st4/m
+ ngveBm/K7UJaJFLCO1m17jG1pqjlZSczYkMij+jnv5diB7fn7PuP/Iyq1o5X0LoRKlVI
+ HayA==
+X-Gm-Message-State: AOAM5324xTR/7CaSNpbbrC9fa9WCPyivb6EwIHJrk8tSt+C2wLtjleo9
+ yfsu05DWWDnWareqtptvRtDMIQ==
+X-Google-Smtp-Source: ABdhPJyEugb6noek3n+sezFH307IWMz+yYjtVPghcwmCyjkfFxb+15FzEelZXjEDcSWfgo2zfGjggw==
+X-Received: by 2002:a5d:464a:: with SMTP id j10mr20086961wrs.187.1595835833418; 
+ Mon, 27 Jul 2020 00:43:53 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:c02:85df:32ef:2826?
  ([2a01:e35:2ec0:82b0:c02:85df:32ef:2826])
- by smtp.gmail.com with ESMTPSA id y189sm19988868wmd.27.2020.07.27.00.28.44
+ by smtp.gmail.com with ESMTPSA id t17sm2656807wmj.34.2020.07.27.00.43.52
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 27 Jul 2020 00:28:45 -0700 (PDT)
-Subject: Re: [PATCH 1/2] drm/fourcc: fix Amlogic Video Framebuffer Compression
- macro
-To: Sam Ravnborg <sam@ravnborg.org>
-References: <20200723090551.27529-1-narmstrong@baylibre.com>
- <20200726172549.GH3275923@ravnborg.org>
+ Mon, 27 Jul 2020 00:43:52 -0700 (PDT)
+Subject: Re: [PATCH] MAINTAINERS: arm/amlogic: add designated reviewers
+List-Id: <soc.lore.kernel.org>
+To: Kevin Hilman <khilman@baylibre.com>, soc@kernel.org
+References: <20200724184107.24600-1-khilman@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <c056f317-c705-8356-e83b-ef3e206f4811@baylibre.com>
-Date: Mon, 27 Jul 2020 09:28:43 +0200
+Message-ID: <0d1b4df2-ac63-c7d6-bed0-e14497fe26e4@baylibre.com>
+Date: Mon, 27 Jul 2020 09:43:51 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200726172549.GH3275923@ravnborg.org>
+In-Reply-To: <20200724184107.24600-1-khilman@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200727_032849_630668_7B1FCFEB 
-X-CRM114-Status: GOOD (  17.75  )
+X-CRM114-CacheID: sfid-20200727_034354_965749_4B6642A9 
+X-CRM114-Status: GOOD (  14.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,61 +151,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, daniel@ffwll.ch,
- linux-amlogic@lists.infradead.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 26/07/2020 19:25, Sam Ravnborg wrote:
-> Hi Neil.
-> 
-> On Thu, Jul 23, 2020 at 11:05:50AM +0200, Neil Armstrong wrote:
->> Fix the Amlogic Video Framebuffer Compression modifier macro to
->> correctly add the layout options, a pair of parenthesis was missing.
->>
->> Fixes: d6528ec88309 ("drm/fourcc: Add modifier definitions for describing Amlogic Video Framebuffer Compression")
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Looks correct just looking at the patch below.
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> 
-> I assume you will apply the patch.
+Hi,
 
-Yes, indeed
+On 24/07/2020 20:41, Kevin Hilman wrote:
+> It's already been the case for some time that Neil, Jerome and Martin
+> are doing the bulk of the important reviewing.  Update MAINTAINERS to
+> reflect reality.
+> 
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+> Arnd, Olof: feel free to apply this one directly, otherwise I'll
+> include in my amlogic pulls.
+> 
+>  MAINTAINERS | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 68f21d46614c..7f405aea706f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1597,6 +1597,9 @@ F:	sound/soc/meson/
+>  
+>  ARM/Amlogic Meson SoC support
+>  M:	Kevin Hilman <khilman@baylibre.com>
+> +R:	Neil Armstrong <narmstrong@baylibre.com>
+> +R:	Jerome Brunet <jbrunet@baylibre.com>
+> +R:	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>  L:	linux-amlogic@lists.infradead.org
+>  S:	Maintained
+> 
 
 Thanks !
-Neil
 
-> 
-> 	Sam
-> 
->> ---
->>  include/uapi/drm/drm_fourcc.h | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
->> index 4bee7de5f306..82f327801267 100644
->> --- a/include/uapi/drm/drm_fourcc.h
->> +++ b/include/uapi/drm/drm_fourcc.h
->> @@ -1004,7 +1004,7 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
->>  #define DRM_FORMAT_MOD_AMLOGIC_FBC(__layout, __options) \
->>  	fourcc_mod_code(AMLOGIC, \
->>  			((__layout) & __fourcc_mod_amlogic_layout_mask) | \
->> -			((__options) & __fourcc_mod_amlogic_options_mask \
->> +			(((__options) & __fourcc_mod_amlogic_options_mask) \
->>  			 << __fourcc_mod_amlogic_options_shift))
->>  
->>  /* Amlogic FBC Layouts */
->> -- 
->> 2.22.0
->>
->> _______________________________________________
->> dri-devel mailing list
->> dri-devel@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
