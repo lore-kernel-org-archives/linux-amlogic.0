@@ -2,94 +2,60 @@ Return-Path: <SRS0=KqJO=BG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B5BEC433E3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 19:19:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD81AC433E3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 19:21:45 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F26692073E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 19:19:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A7B9D20729
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2020 19:21:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AeNSI1Kt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QI0S4cLO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F26692073E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p0dNU3oV";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="GiOYenH9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7B9D20729
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
-	:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:To:From:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=m1AftxBM4qQx/lMuWMan3i1N/npZuf70JZo7Aq2mELg=; b=AeNSI1KtcYPH2sguj2y6cGxokp
-	tFgHYz/Q43teYrd6DA2QLpmXE6RhNoh1VVPQznl+4VDT12a5y/6oE5azFl0y++jzeLVdhNSyjHA5Y
-	dXaJtcNVvEQkZasBArBw1lV1e2xml9BokI92y6gURL+VQEatbSOMllScp/Z4D4DDzg+DkAWhv3NA/
-	d1q+qOUvFPE044YtdcB7XHNRyRMURXj9Cp00xyem4f3jfy5ORcQ1dPZUJp5jLhcl+FEID2kZXPVw1
-	hYuBRfOgDpy7C4LY7RYwIfmAmqNNuzGWsv37iInpI3Y9uHnfVXFXvqX0+CbGyDeUYV5giZKUroTyz
-	Qqwxf8Dg==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:Message-Id:From:
+	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=lTYTIf9JWt1hGY7RJvvGiboBtzXnLj34ky8N3TQGBQw=; b=p0dNU3oVDSYy6KtcVisLzo5Ge
+	3hCwaM+u1IQlbyaxSgWr11i31pQtpVrCC2SofrK6pL4T0F4T8fKFeDflFjeGqtLdXMXiECIieWQJ0
+	hJAUbzbVyXe32qI9FNq74aNn0sWjQR604Uxkfk5fIOfpacCd4nyUMVgbmdQRCQ21vbRaxRufWii1M
+	PtGAFaqoGVU4PhBzl2onve9YMxSbzKeRV+AsoNJKCL7Na10KPJMWe3CFEABoF7/BcySNzsqx6+YAF
+	rvqUPyQl00ewvo8//LW4xYgaKHaN4FgrQYrIYCRAKKbyvJAKkAXW29Edg79s4ZaEF2KPYc/8PDnOv
+	WwIYK4bSA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k08eV-0004WD-3F; Mon, 27 Jul 2020 19:19:11 +0000
-Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
+	id 1k08gt-0004r1-Ae; Mon, 27 Jul 2020 19:21:39 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k08eL-0004Td-M4
- for linux-amlogic@lists.infradead.org; Mon, 27 Jul 2020 19:19:03 +0000
-Received: by mail-pf1-x441.google.com with SMTP id 1so9612769pfn.9
- for <linux-amlogic@lists.infradead.org>; Mon, 27 Jul 2020 12:18:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:subject:date:message-id:in-reply-to:references:mime-version
- :content-transfer-encoding;
- bh=vPONL8jDDWT9fXi/ahftLNzCw8+CDunpmbjxHjMrVbw=;
- b=QI0S4cLOJFMFEMp3YMT40BfDTK44eBLO9IamyTLDNIMJFckjEAwj+tpeXFoa2fKhXT
- hnU/xn/9sP2zotY5qfKqcycmp3AmpkB/UhqFsqGDflI2zIzfAOMgro2gKZqZ1ItWav3F
- /QWn0ai+icRoQs3x6pTkQP8hcf+gW52+Dj3tjeTLmxNuaPnLmPIBsTBeBUA5AqynVODe
- bCd1q59qfZVd/qNZk9/Qmzt+II4nVhYwQ9WrD4HXPFkTW1xPQ0p6bPdN0oolxTgDnUq+
- 88XYdbBm9KajxW6efrDDIHkREHXF3+mouADVWxNnPJHpKbRSA7OXYdk4RRlWFixd3bkF
- UayA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=vPONL8jDDWT9fXi/ahftLNzCw8+CDunpmbjxHjMrVbw=;
- b=BQYYXTm8A1NRRwiGMeV/sxzkamLRkOJXn9mrK5XUhDk/qsmIctkK8fHgWppDt2e/wH
- p/jMpZH4Kmrxsy3AHCwXAk5baQ33jZl6ZyvYWpLqTaFr52lPoPrKuCw66qZu7ocU/TLi
- LAUMrEai4guPmggSFtJAYmU3vINZYzu/9s3QjhqgdVNYtYD6lOj4NIKff83w5PRzZD8w
- FfHbLm7sziggH3emvBJonIgjtak7u4nolRfEcewlqWmD6ZlePlBtRYzHMURXaMAdl4WN
- EFTUJa6j9KOJYLbC2mE4EMSuSyuJ/QxnMdxjbPMpYPm9CIM+7w3VOU0xPqDQJCEo8FM5
- yUQg==
-X-Gm-Message-State: AOAM532++mW35Ed/vYsweil8KWCUKwwnP9rdTIhSwmWe8tgwy8DQ+FaI
- WzN/I3bQoSp9lpNClsuuXOws9Fh5Xp4Hjw==
-X-Google-Smtp-Source: ABdhPJw70u2U6IdBQSQNyaAl8QDp+dY7uPOtbnAIO4CpXehnlk2QP7ZIrrHIi3qtfG+wqY0oZLlWpA==
-X-Received: by 2002:a62:3684:: with SMTP id
- d126mr10165410pfa.234.1595877537733; 
- Mon, 27 Jul 2020 12:18:57 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id a13sm16560457pfn.171.2020.07.27.12.18.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Jul 2020 12:18:57 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>,
- linux-kernel@vger.kernel.org,
- Christian Hewitt <christianshewitt@gmail.com>,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: meson: misc fixups for w400 dtsi
-Date: Mon, 27 Jul 2020 12:18:54 -0700
-Message-Id: <159587752409.20735.1674533362096903330.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200721013952.11635-1-christianshewitt@gmail.com>
-References: <20200721013952.11635-1-christianshewitt@gmail.com>
+ id 1k08gp-0004pk-IS
+ for linux-amlogic@lists.infradead.org; Mon, 27 Jul 2020 19:21:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1595877693;
+ bh=T/U6FriC5+Wmrs3XCdxTcVG5cMO8cvRSf4U4++K+xqU=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:Cc:From;
+ b=GiOYenH9RyA711b5p33BP4K/Okp9vKeDIWN7g009nXSqs1u4twTueOTHJCerVZNEm
+ Fw4Z5FFBv9wbAx8fXqnwUQOIF2gIBZXQLwt1GRdFZ3iUj/0uR+o0nGKMENUW/zirSx
+ 4U61+r1weDiuKNlAyqvsntCZDDkdauDz7drGnr2w=
 MIME-Version: 1.0
+Subject: Re: [PATCH v2] arm64: dts: meson: fix mmc0 tuning error on Khadas VIM3
+From: patchwork-bot+linux-amlogic@kernel.org
+Message-Id: <159587769327.4970.8492967376665082145.git-patchwork-notify@kernel.org>
+Date: Mon, 27 Jul 2020 19:21:33 +0000
+References: <20200721015950.11816-1-christianshewitt@gmail.com>
+In-Reply-To: <20200721015950.11816-1-christianshewitt@gmail.com>
+To: Christian Hewitt <christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200727_151901_753256_EF257BF9 
-X-CRM114-Status: UNSURE (   9.48  )
+X-CRM114-CacheID: sfid-20200727_152135_772550_F8A466C7 
+X-CRM114-Status: UNSURE (   6.11  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -102,13 +68,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: linux-amlogic@lists.infradead.org, khilman@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 21 Jul 2020 01:39:52 +0000, Christian Hewitt wrote:
-> Current devices using the W400 dtsi show mmc tuning errors:
+Hello:
+
+This patch was applied to khilman/linux-amlogic.git (refs/heads/for-next).
+
+On Tue, 21 Jul 2020 01:59:50 +0000 you wrote:
+> Similar to other G12B devices using the W400 dtsi, I see reports of mmc0
+> tuning errors on VIM3 after a few hours uptime:
 > 
 > [12483.917391] mmc0: tuning execution failed: -5
 > [30535.551221] mmc0: tuning execution failed: -5
@@ -118,14 +90,16 @@ On Tue, 21 Jul 2020 01:39:52 +0000, Christian Hewitt wrote:
 > 
 > [...]
 
-Applied, thanks!
 
-[1/1] arm64: dts: meson: misc fixups for w400 dtsi
-      commit: 2fa17dd09533d5d83201be3229a28c1010a8ea3e
+Here is a summary with links:
+  - [v2] arm64: dts: meson: fix mmc0 tuning error on Khadas VIM3
+    https://git.kernel.org/khilman/linux-amlogic/c/f1bb924e8f5b50752a80fa5b48c43003680a7b64
 
-Best regards,
+You are awesome, thank you!
+
 -- 
-Kevin Hilman <khilman@baylibre.com>
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/pwbot
 
 _______________________________________________
 linux-amlogic mailing list
