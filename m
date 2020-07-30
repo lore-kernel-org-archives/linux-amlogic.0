@@ -2,22 +2,21 @@ Return-Path: <SRS0=1HBj=BJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20A78C433DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Jul 2020 18:13:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F85DC433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Jul 2020 18:53:00 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E40F220829
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Jul 2020 18:13:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6C7BF20809
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Jul 2020 18:53:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LlcWQl4s";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="qEBcihMz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E40F220829
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NJrZWIFl";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="iWJFJd+r"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C7BF20809
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,47 +25,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=APkf3VWmUsvJ/gCAJZyfdK2sPm9Qt8GZ2lhJl7a/CnQ=; b=LlcWQl4sS5sLLj2aKhG4G7EWX
-	VSy324/G8PQ7VDzMGGVDqfEOovK29JqJbGLN3KpJvGGajxUdBhm5ObGXzR1M75OWiwrT2i3z9qfr1
-	9aWZ+qZSi1WBez1aEtPNLVFaroDNSbh29i3fgL6HWQepPndmZ4TsM6BLse2WlizaG2lxuH0Ic5ZmZ
-	x6XtjMCcQleNR7PFUJP+SWalMoju7S1yH6j00Y/p+XZJZarQY5JUw+HCTKTNWBBkNPjI8OHEza0+i
-	l5DrUffscATKuElQizG5jufHP0zsBXGZgrPnrrFXnwAq/7qM/qYJJts1HPNZ9gSsshpxkbmP/bA8v
-	0kMTw4LsA==;
+	 bh=OxqEhZ5D7CZfbcyMBvGEpgc42QKTl0wrE7K0JUE0Ke4=; b=NJrZWIFlJmdWpaLmuz5G51W1p
+	n9e+34UuzD2a1Ltbhcud/WYqjuxm8hiSuOkEr3BE9kQq6z82Wb/3YCXiK0eKSQSsiMHp38K2Z7kZ6
+	67A2tSQeUCZjL045f3//DN7fDpKlXMgqSa45ArnK1nHppq2tOYQ69my/u280sInM4w/HHMd0U3P++
+	/Uzacr2HspUUuGWZo9EOUvY0lvrXHm1QiJ/6TEiNsVgsU7RF8Fgl6FTjiyqhYLKguVQTw3f9XMwe+
+	PqKr7T4X1BGbNI5+67jF5p2Xuk24vjFfNC8hNQ+x2VC0FAVYwQKPy2eg5XddQpSqYm+EsDAFWNqGh
+	FU5A59k3w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k1D3Q-00080r-Bo; Thu, 30 Jul 2020 18:13:20 +0000
+	id 1k1Dfg-000326-VU; Thu, 30 Jul 2020 18:52:53 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k1D3O-00080P-CQ
- for linux-amlogic@lists.infradead.org; Thu, 30 Jul 2020 18:13:19 +0000
+ id 1k1Dfe-00031a-Pa
+ for linux-amlogic@lists.infradead.org; Thu, 30 Jul 2020 18:52:51 +0000
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B5C6D20829;
- Thu, 30 Jul 2020 18:13:16 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 0543B20809;
+ Thu, 30 Jul 2020 18:52:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1596132797;
- bh=vIJFWrnXpMFHH8EimughuB8y+lmfzGjAgR03PPlEdOk=;
+ s=default; t=1596135169;
+ bh=p9oPba0mvh+97oJckDtVD2Q3rUl/khvzbYhc/m/Wsrk=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=qEBcihMz9YjzJB2lwWShh3zEfgGGSl291HW4Zvh8Bc18dbNAvzbYgPG/tHuiihSBU
- jjyvar5wpDBOzT+X6soS9Ny2YyOBoVvbauv+mEFSwlpyjzsq/Si73sVCsUvBl3ZzTG
- rGdennpMtSdGeT66ngzeEAffDlKV9bHKCyxk6RyY=
-Date: Thu, 30 Jul 2020 19:12:57 +0100
+ b=iWJFJd+rtMgYBOsBvF27NSJHWipQKLgElYBHEU6AO+7oj00vU85cw458+CwQ6nU2E
+ 7v8IfL/PsQpLmnkvm9Ke+QNRay67GMHHbxadMWcf2pLfAWcrWb3KP3vZUHRA0MDJpu
+ fxKyeiy8R/Aj0WUCwc8NOfu9xVuAJ4BleP0rV7l8=
+Date: Thu, 30 Jul 2020 19:52:29 +0100
 From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
 Subject: Re: [PATCH] ASoC: core: restore dpcm flags semantics
-Message-ID: <20200730181257.GF5055@sirena.org.uk>
+Message-ID: <20200730185229.GH5055@sirena.org.uk>
 References: <20200723180533.220312-1-pierre-louis.bossart@linux.intel.com>
  <20200729154639.1983854-1-jbrunet@baylibre.com>
  <2ad13f95-434d-376a-bc38-b209623b461e@linux.intel.com>
  <1jft998jbe.fsf@starbuckisacylon.baylibre.com>
+ <936d6e37-0ad0-b0d7-814a-1ace12087746@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <1jft998jbe.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <936d6e37-0ad0-b0d7-814a-1ace12087746@linux.intel.com>
 X-Cookie: Alex Haley was adopted!
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200730_141318_552148_88AAA836 
-X-CRM114-Status: GOOD (  22.11  )
+X-CRM114-CacheID: sfid-20200730_145250_990951_B6BD55A6 
+X-CRM114-Status: GOOD (  23.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,116 +79,89 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: alsa-devel@alsa-project.org, Stephan Gerhold <stephan@gerhold.net>,
- Liam Girdwood <lgirdwood@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
- zhangn1985@outlook.com, linux-amlogic@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============4736783088721397623=="
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Liam Girdwood <lgirdwood@gmail.com>, zhangn1985@outlook.com,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: multipart/mixed; boundary="===============7968469144384812229=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============4736783088721397623==
+--===============7968469144384812229==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="udcq9yAoWb9A4FsZ"
+	protocol="application/pgp-signature"; boundary="wj9ZLJVQDRFjGSdK"
 Content-Disposition: inline
 
 
---udcq9yAoWb9A4FsZ
+--wj9ZLJVQDRFjGSdK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 30, 2020 at 11:04:53AM +0200, Jerome Brunet wrote:
+On Thu, Jul 30, 2020 at 11:06:23AM -0500, Pierre-Louis Bossart wrote:
+> On 7/30/20 4:04 AM, Jerome Brunet wrote:
+> > On Wed 29 Jul 2020 at 17:56, Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com> wrote:
+> > > On 7/29/20 10:46 AM, Jerome Brunet wrote:
 
-> Carrying redundant information makes things complex and error prone.
-> If you really want to update this, here is another proposition:
->  * Removing snd_soc_dai_link_set_capabilities()
->  * Removing both flags completely
->  * Let ASoC figure out what is needed based on the components present.
+> > > > The flag previously allowed card drivers to disable a stream direction on
+> > > > a link (whether or not such feature is deemed useful).
 
-My understanding is that that was broadly where we were headed with this
-stuff - snd_soc_dai_link_set_capabilities() is trying to figure things
-out from the components already, it's storing the flags as a cache but
-could be modified so we use it every time we need a value.
+Right, and I can see a use case for this if someone has a board that
+for some reason didn't physically connect one of the directions for some
+reason - perhaps they were running out of pins or something.  It's not
+clear if anyone's actually doing that though.
 
->=20
-> >
-> >>
-> >> Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-> >> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> >> ---
-> >>
-> >>   Hi Mark,
-> >>
-> >>   Because b73287f0b0745 ('ASoC: soc-pcm: dpcm: fix playback/capture ch=
-ecks')
-> >>   introduced more than one problem, the change
-> >>   "ASoC: core: use less strict tests for dailink capabilities" [0] is =
-still
-> >>   necessary but the change of semantic remains a problem with it.
-> >>
-> >>   This patch applies on top of it.
-> >>
-> >>   sound/soc/soc-pcm.c | 14 --------------
-> >>   1 file changed, 14 deletions(-)
-> >>
-> >> diff --git a/sound/soc/soc-pcm.c b/sound/soc/soc-pcm.c
-> >> index 00ac1cbf6f88..2e205b738eae 100644
-> >> --- a/sound/soc/soc-pcm.c
-> >> +++ b/sound/soc/soc-pcm.c
-> >> @@ -2749,13 +2749,6 @@ int soc_new_pcm(struct snd_soc_pcm_runtime *rtd=
-, int num)
-> >>   					break;
-> >>   				}
-> >>   			}
-> >> -
-> >> -			if (!playback) {
-> >> -				dev_err(rtd->card->dev,
-> >> -					"No CPU DAIs support playback for stream %s\n",
-> >> -					rtd->dai_link->stream_name);
-> >> -				return -EINVAL;
-> >> -			}
-> >>   		}
-> >>   		if (rtd->dai_link->dpcm_capture) {
-> >>   			stream =3D SNDRV_PCM_STREAM_CAPTURE;
-> >> @@ -2766,13 +2759,6 @@ int soc_new_pcm(struct snd_soc_pcm_runtime *rtd=
-, int num)
-> >>   					break;
-> >>   				}
-> >>   			}
-> >> -
-> >> -			if (!capture) {
-> >> -				dev_err(rtd->card->dev,
-> >> -					"No CPU DAIs support capture for stream %s\n",
-> >> -					rtd->dai_link->stream_name);
-> >> -				return -EINVAL;
-> >> -			}
-> >>   		}
-> >>   	} else {
-> >>   		/* Adapt stream for codec2codec links */
-> >>
->=20
+> > > > Forcing the flags to be aligned with DAI caps just make the information
+> > > > the flag carry redundant with DAI caps, breaking a few cards along the way.
 
---udcq9yAoWb9A4FsZ
+> > > > This change drops the added error conditions and restore the initial flag
+> > > > semantics.
+
+I'm not 100% clear, have we actually found cases where the flags are
+used or is this something found through inspection and review?
+
+> >   * It worked for every user of DPCM so a far.
+
+> Not completely true, when Morimoto-san added snd_soc_dai_stream_valid() it
+> exposed tons of cases where the information on direction was not provided in
+> a reliable at the DAI level. I will assert that we are still finding out
+> cases with broken DAI configurations, and as a result we will also find
+> broken dailink configurations. Your picture of DPCM as a perfectly
+> functional system that I broke is a distortion of reality.
+
+> The reality is that we have to work in steps, first make sure all DAIs are
+> properly described, then work on the dailinks and optimize at a later point.
+> we will need warnings to find out what the problem cases are, and move
+> slowly.
+
+This was all triggered by Morimoto-san's changes like you say.  DPCM has
+quite a lot of problems in general, here IIRC the issues were that we
+had multiple different ways of doing similar things which it wasn't
+quite clear if people were even using.  The intention with the warnings
+was to remove them one way or another, they're mainly intended to flush
+out actual active usage of the flags as opposed to redundant usage of
+them which could be confused/broken.
+
+This could definitely have been clearer in the changelogs though.
+
+--wj9ZLJVQDRFjGSdK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl8jDagACgkQJNaLcl1U
-h9AuXgf8C4yoy4FY4cfbvcLUvUftWpBQ68HnBjmmDssWMcnsYPZ7eZAuo12Pivif
-aUOrt8CMxCHQ2wDuoSwzLRNhAIHNUMBwGqLwTiLtT5vivhKDjZjnZqjtkswHWb2T
-fJMyArIjKroVQWjmOkarx4gjKfx5mfv1RZmS3xnNvyD+YVY6AcCaITZuEo7j86td
-QN1iHXQ1TPJI0wcql4Y3PEVkLC0O7F+4pReUCugbsPAfjTPvUc63KMfbtqzpQeov
-WYBOnSzQyhJyeaT7YC9AaiGLgWcHq8o1TrmtQT+DD/qZotxlGOcaxx9GgHdkM3mq
-X1YVKyKa3/VCh1h9xxE1P38ZSeo0qA==
-=y7TQ
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl8jFuwACgkQJNaLcl1U
+h9AhwQf/eNX0synxDEgjT7FmPWLDHvEYP9WwcQyfMCzHdEvV8d3Iiq/P+C6GW13d
+ehcDWOK1wzrqJjMyjh8jp+04kuRwwsL+YHnRD2FqYm1ajOp3ADdT3+ekGQXG5rZ4
+KG99yZALADgpmbl6VOluas2lkeiWIjO3nZEFJypz0VJKtEyxCiXzzPbA81wgsyr4
+pu0Q1XmfbUpAsLCeGlrjdENOLdW0Kfb0fjXcEy8ks0NHUfbAOj2JEr5uYTjPLZTt
+8OH9bbhLUIhwGirTdF5piPsHbYq8ybFWDvKQ37qjqK0L7Nec0UdaTIqlroiOs1Xo
+fFI19TW9/zN4P9cxHXwEC07WllXelA==
+=Icbr
 -----END PGP SIGNATURE-----
 
---udcq9yAoWb9A4FsZ--
+--wj9ZLJVQDRFjGSdK--
 
 
---===============4736783088721397623==
+--===============7968469144384812229==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -199,5 +172,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============4736783088721397623==--
+--===============7968469144384812229==--
 
