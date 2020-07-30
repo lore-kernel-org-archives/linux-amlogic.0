@@ -2,117 +2,92 @@ Return-Path: <SRS0=1HBj=BJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=BAYES_00,
-	CHARSET_FARAWAY_HEADER,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BA38C433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Jul 2020 02:23:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D362C433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Jul 2020 09:05:13 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D9A5420FC3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Jul 2020 02:23:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0A5772072A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Jul 2020 09:05:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TNsPeJBJ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="B6MtliSb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9A5420FC3
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=outlook.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TfIfPXZE";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0aanofb1"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A5772072A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
-	:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=5nqrXG7FPGUUm4CKZLhZLNSH76vRfsk+xS5ezH5cLac=; b=TNsPeJBJKugLD5L08uUvTbe5cL
-	sj5sT5veadm0UJP7npnayY7eFBWzqhnB1BanFYSSguPubCRRtGnaS72DDu956OdgZwnYBjXd5mPjZ
-	vBsf/7cU+/UeOowY2StDZNv8ttwb8tewOFVHA7ZyRlKqVnbAbk2IpG+hoZ3oNLdVumI0sUkTxA/75
-	AeW/efZxXNyHKBagtztFVymBEteUETB7x0UFmL/8DtoVuxVxxW4fG80v/4fUMmHaKIbZP6j9DIpG1
-	XQAAGmHDeXx3EoysNzKPeW5MYknwwtegK87FWiPKLlU/CpZcDdML/n2oeDxK2MV/h9vx0giTy6EnE
-	Cy3D59uw==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=OrB4CxA4KcNIBErzWpGE+Teknj0C2FepujW4iq4sHxg=; b=TfIfPXZEVdFXSVHzGnpJ6dWZA
+	xHV4Ts8kJpUmhWmh4ukCKlvdKYllh3GmTdwK34aaPeSoenLD9/lJ9SCxowZFnf0uJ0zLAYm71cxGw
+	QQ0XbTzzVd0cozlaMcSSrh78CWOxLEWYQkuss8G2eBnGLeJV5uG3GYiviA/33ndN0kK0KnIIwrreh
+	O1NhpN/SimPu4VH39MW+aR5/RDKrDK6eDfeFxuzKyCjd3a6rpICugeycME2hgU8edtY0Yd41veEjy
+	XZOWuXJ9BA/NXWSAog8dNZ3pd+qjbAFDcKs1suMcz/is7pFy9CYTo6vNjMyLXxWig5Mv0DuOvHM0P
+	C+yDEeW3Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k0yDv-0001cD-Er; Thu, 30 Jul 2020 02:23:11 +0000
-Received: from mail-oln040092005030.outbound.protection.outlook.com
- ([40.92.5.30] helo=NAM02-SN1-obe.outbound.protection.outlook.com)
+	id 1k14Uk-0001x8-F0; Thu, 30 Jul 2020 09:04:58 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k0yDt-0001bS-4T
- for linux-amlogic@lists.infradead.org; Thu, 30 Jul 2020 02:23:10 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=assymYHQ+SLKJyEnixbLdpkwXGGdY4v/zzfSlPmnmu7KqHAVhab67OGU7EK7Ry1NzmGS4ydDdfH+MvF9qgGg/d9N3Tf8FBlxCuqQ/gorbILMIPgUTP9JmxwYGaZC50iXQkgt/nWiV48v+WGp49GjYsqf+b2qhrzUGqqyj6DWIt4Up65k/3UWnlIbVg+6R7rgGpcG1jyBocc6ekTIN8UDbrtN7O9RZR+GIKqj2h9ZvNbY/UI/atqr5jN/cDPYNvfiWcvDFiZwkO096Q8gLs9kayW/8ybFwM2vTryry6NTNyDC16i5LU7O01b/ScPvQ8188Q9rENW4Bl5V7pFnwqtyiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9hd71o2kBnmucdS8IuFjYO30qsRK/0JIX/GUtK2s6Q8=;
- b=UjXwJBgEcLdKRqOOouACysGME6WIhpNLjwkzl6zuDKKkpkA51BblhdD1lK1EEaUz/dh/IEq59TzFQb9yZYpWjn4Zyi5WMmqLaD1QU3G/NEOt2MWdFDoM8To7Aiv6dIAC2YP6l1GQGBxxRlNsjNkUJIOa4sTYmGcQrHT+CsjJACXNqw7dsbKFz+BV9MId3RKb0yHqdFwTglVT8BSicehdUHX256krdUF2L+LXhd5w9eAWyHdziuCEfLP5ef5j1duaXRZuDe3H9JjaLPOUycRVZ3kIAwf2l4v8qI48Ug0uRYhXqScjNyvpADan/PN/9/6PA2eNYnI8fdgiMLg1SNGOcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9hd71o2kBnmucdS8IuFjYO30qsRK/0JIX/GUtK2s6Q8=;
- b=B6MtliSb9UfmJlobXEtiTlBDmKbEBUcg05puKJ+gKzZXJIAnQLZwBgK4hqqrOTZldMea/3rOQhQtEQBmw8mc//NFxMM3D8eOtbDlA3FInIUgeHSfiqmxgt6N/+MoOM35Ts7Mi0Y62mJE4HsOY1g70xnh75JSH/EubzWnUOaPS4dP2sKRIpmCCHpmFBLQLK3y1bm2KdRPS/jEHU3fGcrWGS5rAaGaoAyeZjIK4oKUU0YCQrMkMd4tSvcl+IEYmHOhfTbwELNv4leVsr/sSNJ/QhPZAFW3RDCBWVN1iTUMSTawfhM/Zj+m2H9Cwu32ccHfuOu5bF7LTe+5e+M/2yNWBQ==
-Received: from SN1NAM02FT013.eop-nam02.prod.protection.outlook.com
- (10.152.72.54) by SN1NAM02HT046.eop-nam02.prod.protection.outlook.com
- (10.152.73.119) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.31; Thu, 30 Jul
- 2020 02:23:06 +0000
-Received: from MWHPR1601MB1343.namprd16.prod.outlook.com
- (2a01:111:e400:7e44::44) by SN1NAM02FT013.mail.protection.outlook.com
- (2a01:111:e400:7e44::98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.17 via Frontend
- Transport; Thu, 30 Jul 2020 02:23:06 +0000
-Received: from MWHPR1601MB1343.namprd16.prod.outlook.com
- ([fe80::41c:7919:14d7:223e]) by MWHPR1601MB1343.namprd16.prod.outlook.com
- ([fe80::41c:7919:14d7:223e%10]) with mapi id 15.20.3216.034; Thu, 30 Jul 2020
- 02:23:06 +0000
-From: =?gb2312?B?1cUgxP4=?= <zhangn1985@outlook.com>
-To: Nick <nick@khadas.com>, "linux-amlogic@lists.infradead.org"
- <linux-amlogic@lists.infradead.org>
-Subject: VIM1: not able to poweroff with "xhci-hcd xhci-hcd.0.auto: Host halt
- failed, -110"
-Thread-Topic: VIM1: not able to poweroff with "xhci-hcd xhci-hcd.0.auto: Host
- halt failed, -110"
-Thread-Index: AQHWZhaxSxW3488jy0Wchm0dttpfkw==
-Date: Thu, 30 Jul 2020 02:23:06 +0000
-Message-ID: <MWHPR1601MB134345D310D9D1311EE01F41CD710@MWHPR1601MB1343.namprd16.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:3E2D1ECFF130E75A3C552EABD21F03178393BF2B2FB0FB015B5B4092FFE993EF;
- UpperCasedChecksum:CC0C6C3CC3BD1BA839F7C02971855C8045E114540B539E898ED378D1DE9A8A5D;
- SizeAsReceived:6807; Count:41
-x-tmn: [SZB+aKQMp4qyKXVbAFJUZ3FT2kYblbec]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 41
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: ac2f91b9-f8c9-4254-bf75-08d8342f7eaf
-x-ms-traffictypediagnostic: SN1NAM02HT046:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HeC3Hu9a6erIKgSnvdaBjiGtV3YBu5u+yE6uohl6yJNEMqHFEqNSSB9DzPKlAH7sfsiaxSx0Ih4Vs6/pC7J8lZs1BJfY1WHtHQQyyXn1JxKpULFTEa7mGMZxj2SboBptTSopJ0MbxlofP1pLtCCx6unNXQXAi4NUEprzg5Uy/QgpjULSGnP5QW8JrItxrlvOTtfXUTzLYeSjKHlB1tVmIA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1601MB1343.namprd16.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:; SFS:; DIR:OUT; SFP:1901; 
-x-ms-exchange-antispam-messagedata: Ox3hyFrm6W0QLMw2ZHC+x6ALx8ZtcFTBsigLPLJ3BXRUCHHytKWic0UlNY6E8xUBuFfUMqlBEo0pgwK9ZlLrcBJA6QzLOeAIjMVjHTsWqMFI89Wq44czB3WvVSrKP/jEb/wyrgTlE7zCMelc5a1wQg==
-x-ms-exchange-transport-forked: True
+ id 1k14Uh-0001vs-PM
+ for linux-amlogic@lists.infradead.org; Thu, 30 Jul 2020 09:04:56 +0000
+Received: by mail-wr1-x443.google.com with SMTP id f18so24153760wrs.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 30 Jul 2020 02:04:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=dLkPvQCKJgLmtxhAhpgyq0oaVyl4KxaYKmt7VGxtZKM=;
+ b=0aanofb1Pmi8Nb2xkH5hxKqD1W6jNUmzzGZWcOtUg5PG2nTWPO7GJu35uTo19IUOkB
+ eNtBnJNr+YjS0Gx3HH16j25Xp0LH1Z1V5hMf0CBcpCh++w6Dgm4TFgHb1fPiMC2/RiQq
+ Q2hK/VI6CZtzWOvjY/S9m3TXJkNKwDKCT0udZlAbN/jn/enZfPlJt4313AVsHCZvgMo8
+ eybQZDlCsTzR589AMcbm1lOg57wPv3Fjj2iCWoQoL0meT7WwJoSDT20SpicBaEr3uUHq
+ tNjqFVx1moKHIET4kxzC+bzMXtmILtHGvpLU5emNES0xqRBqpat1bAmOxjYZ3w8C1SFU
+ LUmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=dLkPvQCKJgLmtxhAhpgyq0oaVyl4KxaYKmt7VGxtZKM=;
+ b=LcbKomDo+ZiXGwU1AFkUbbjD/64dhhC6kWHC5k0xSfEwBJCK8H3hiqfWhlsj8gTcKZ
+ FYHYMkGXLEsD/RpNKcuV4rX6ivfwzpbYReXohHA5VQk1SwS3qfS6ena9T3/jH46bkVad
+ Cv5An2QAA53QHwy9o5aEclJ6wME3HhRJnbb6q7jrf1Id9tum9OG9dSiondserb5jDTZk
+ NKN2ZV6XkL4En1QIJuFC+cYIXewRDIjVdc/pHufVv27qAdBFoXb///iCScPQLOj5maXD
+ efvbzcRX53zlcH6RKAEE0+lMyJ1jM9VHpHadTsglM8GHxabFS5YT1QxTP8DG99bEwSmI
+ WBTw==
+X-Gm-Message-State: AOAM531gczarGLICGqeWlJeYLDNdWl4Xhl91d4iuG4VBtYF/ChxoRQUR
+ JesZOCgA7XTZMhror7nae3qKtA==
+X-Google-Smtp-Source: ABdhPJxmATJSo4KpPLqzaNfFVe6yY8EX64Ugci/foH9vN4kteOvN9e7bLXtuTCYoxKZ4BDhP9b8Njw==
+X-Received: by 2002:a5d:4a0b:: with SMTP id m11mr32602052wrq.407.1596099894612; 
+ Thu, 30 Jul 2020 02:04:54 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id n5sm8555408wrx.22.2020.07.30.02.04.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 30 Jul 2020 02:04:53 -0700 (PDT)
+References: <20200723180533.220312-1-pierre-louis.bossart@linux.intel.com>
+ <20200729154639.1983854-1-jbrunet@baylibre.com>
+ <2ad13f95-434d-376a-bc38-b209623b461e@linux.intel.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+ Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH] ASoC: core: restore dpcm flags semantics
+In-reply-to: <2ad13f95-434d-376a-bc38-b209623b461e@linux.intel.com>
+Date: Thu, 30 Jul 2020 11:04:53 +0200
+Message-ID: <1jft998jbe.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT013.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac2f91b9-f8c9-4254-bf75-08d8342f7eaf
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2020 02:23:06.4680 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1NAM02HT046
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200729_222309_286228_E216B3C6 
-X-CRM114-Status: UNSURE (   6.58  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200730_050455_942256_92103BA2 
+X-CRM114-Status: GOOD (  24.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,40 +99,131 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: alsa-devel@alsa-project.org, Stephan Gerhold <stephan@gerhold.net>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ zhangn1985@outlook.com, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-hi, all
 
-I find in certain case VIM1 can't poweroff or reboot, with below log in console.
+On Wed 29 Jul 2020 at 17:56, Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com> wrote:
 
-```
-[   68.965258] systemd-shutdown[1]: Syncing filesystems and block devices.
-[   68.967336] systemd-shutdown[1]: Powering off.
-[   68.970769] kvm: exiting hardware virtualization
-[   68.994071] xhci-hcd xhci-hcd.0.auto: Host halt failed, -110
-[   69.020136] xhci-hcd xhci-hcd.0.auto: remove, state 4
-[   69.020285] usb usb2: USB disconnect, device number 1
-[   69.025355] xhci-hcd xhci-hcd.0.auto: USB bus 2 deregistered
-[   69.030315] xhci-hcd xhci-hcd.0.auto: remove, state 1
-[   69.035275] usb usb1: USB disconnect, device number 1
-[   69.040306] usb 1-1: USB disconnect, device number 2
-[   69.045206] usb 1-1.3: USB disconnect, device number 3
-```
+> On 7/29/20 10:46 AM, Jerome Brunet wrote:
+>> commit b73287f0b0745 ('ASoC: soc-pcm: dpcm: fix playback/capture checks')
+>> changed dpcm_playback and dpcm_capture semantic by throwing an error if
+>> these flags are not aligned with DAIs capabilities on the link.
+>>
+>> The former semantic did not force the flags and DAI caps to be aligned.
+>> The flag previously allowed card drivers to disable a stream direction on
+>> a link (whether or not such feature is deemed useful).
+>>
+>> With change ('ASoC: core: use less strict tests for dailink capabilities')
+>> an error is thrown if the flags and and the DAI caps are not aligned. Those
+>> parameters were not meant to aligned initially. No technical reason was
+>> given about why cards should now be considered "broken" in such condition
+>> is not met, or why it should be considered to be an improvement to enforce
+>> that.
+>>
+>> Forcing the flags to be aligned with DAI caps just make the information
+>> the flag carry redundant with DAI caps, breaking a few cards along the way.
+>>
+>> This change drops the added error conditions and restore the initial flag
+>> semantics.
+>
+> or rather lack thereof.
 
-Linux kernel: 5.7.10
+Again, why ? All there is so far is your personal preference. no facts.
 
-reproduce steps:
-1, connect USB/Bluetooth combo keyboard via USB cable, keyboard in USB mode.
-2, switch keyboard to bluetooth mode, do not remove USB cable.
-3, poweroff.
+ * What we had gave capabilities to the link, independent of the DAI
+   components. ASoC just computes the intersection of all that to
+   determine which direction needs to be enabled. Seems rather simple
+   and straight forward.
+ * It worked for every user of DPCM so a far.
 
-The keyboard I use: DAREU EK820. no link provided.
+Your changes:
+ * Causes regression
+ * Makes information redundant. The code used to build the flag in
+   snd_soc_dai_link_set_capabilities() and check it soc_new_pcm() is
+   more or less the same. It just adds complexity and waste cycles.
 
-BR.
-Ning.
+I don't see the upside to it.
+ 
+>
+> I am ok to move dev_err to dev_warn and remove the return -EINVAL, but I
+> maintain that we have to reach a point where configurations make sense
+> before we can clean them up. If we implicitly push issues under the rug by
+> not even being aware of them we'll never make progress.
+
+But why should we bother the user with that ? How is throwing this
+error/warning an improvement ? What does not make sense in the
+configuration ? What are we pushing under the rug exactly ?
+
+I'm willing to go your way, even help you out, but you need to:
+ * explain concretely why changing the semantics improve the overall
+   situation, concretely ?
+ * update all the users of DPCM. Causing regression is not OK.
+
+Carrying redundant information makes things complex and error prone.
+If you really want to update this, here is another proposition:
+ * Removing snd_soc_dai_link_set_capabilities()
+ * Removing both flags completely
+ * Let ASoC figure out what is needed based on the components present.
+
+>
+>>
+>> Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
+>>
+>>   Hi Mark,
+>>
+>>   Because b73287f0b0745 ('ASoC: soc-pcm: dpcm: fix playback/capture checks')
+>>   introduced more than one problem, the change
+>>   "ASoC: core: use less strict tests for dailink capabilities" [0] is still
+>>   necessary but the change of semantic remains a problem with it.
+>>
+>>   This patch applies on top of it.
+>>
+>>   sound/soc/soc-pcm.c | 14 --------------
+>>   1 file changed, 14 deletions(-)
+>>
+>> diff --git a/sound/soc/soc-pcm.c b/sound/soc/soc-pcm.c
+>> index 00ac1cbf6f88..2e205b738eae 100644
+>> --- a/sound/soc/soc-pcm.c
+>> +++ b/sound/soc/soc-pcm.c
+>> @@ -2749,13 +2749,6 @@ int soc_new_pcm(struct snd_soc_pcm_runtime *rtd, int num)
+>>   					break;
+>>   				}
+>>   			}
+>> -
+>> -			if (!playback) {
+>> -				dev_err(rtd->card->dev,
+>> -					"No CPU DAIs support playback for stream %s\n",
+>> -					rtd->dai_link->stream_name);
+>> -				return -EINVAL;
+>> -			}
+>>   		}
+>>   		if (rtd->dai_link->dpcm_capture) {
+>>   			stream = SNDRV_PCM_STREAM_CAPTURE;
+>> @@ -2766,13 +2759,6 @@ int soc_new_pcm(struct snd_soc_pcm_runtime *rtd, int num)
+>>   					break;
+>>   				}
+>>   			}
+>> -
+>> -			if (!capture) {
+>> -				dev_err(rtd->card->dev,
+>> -					"No CPU DAIs support capture for stream %s\n",
+>> -					rtd->dai_link->stream_name);
+>> -				return -EINVAL;
+>> -			}
+>>   		}
+>>   	} else {
+>>   		/* Adapt stream for codec2codec links */
+>>
+
+
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
