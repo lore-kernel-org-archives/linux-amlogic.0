@@ -2,89 +2,94 @@ Return-Path: <SRS0=qkt4=BK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F30CC433E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Jul 2020 12:06:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0D8AC433E0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Jul 2020 12:16:55 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EE47020663
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Jul 2020 12:06:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8B81F22BF3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Jul 2020 12:16:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="A/iRXuG1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mbO9Ho2w"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EE47020663
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M7OUZ2PL";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="guQm0pLx"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B81F22BF3
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=5YlhiTKOp+nv99KePi7qvnj23OSmJnolC3bU1+UsyRY=; b=A/iRXuG1incRZ0K2ZcCSlXBw59
-	DfaB6FiOaRHNTVBOkwFtdkWZ6MxoD6ZgqyQV5gUMzisSJco8DWxK1ouHO8LIlIsqhaNs6F4df2RsN
-	IUzaG0v2CMMbitHIBu/o9s/gUS+APhP5IQaiNJS+1SbOGqyBH/eTehIroyQEY0QYGeqs7rQiV3Ufe
-	TR87TK3O8Yg/WyiI1mRE/Oi06bQl5Rc4JPZPGwUOgj06t9TXeebG6d41DreAgTT9fAgBpSKMde9j1
-	Cteyg75aYnTB5mMDoW62gl+/LZPMarfEgb7najT3/+SfFvWVK6SgAgXR4wCrIjS3jZsdJE1c0HrFv
-	Zt5doQ6Q==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=m7tzf13cojJ9YL+3vcE0TqQDt0p6T23koAiECuLf6fs=; b=M7OUZ2PLqqC4xHOAghDq3bf8m
+	kACKBGB7D9hpsik9kAGwqMsrsjk+84StIgDI9E7gzLYnQuHMQDNjw/RyGs2T69oLYyJneXf5QU7BP
+	xI2a6JRvM/DPOVro9lS8whHcBOy9MCUjPsZdLW1F06qBNISCoBdFjyzLJwUQPeADZljYIY/hmKt+9
+	DYNyT+IU/2//BL7eROELn8Fyc30++P3ybIB8AmnAHUL8070GyGppFfbuKAY5mW1x2SJKYJDKQRKf5
+	Jbf5RA1A4Tkkhyas7RDL8WQF8lvENKLKs7wQbamEdXXYvlepzaHaqdRZBfbBsWwtdO2GeY+Rlq0VC
+	ON23mOKKQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k1Tnj-0002E5-UN; Fri, 31 Jul 2020 12:06:15 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1k1Txw-0003DE-Na; Fri, 31 Jul 2020 12:16:48 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k1Tng-0002DL-Jq
- for linux-amlogic@lists.infradead.org; Fri, 31 Jul 2020 12:06:14 +0000
-Received: by mail-wm1-x343.google.com with SMTP id 9so8327185wmj.5
- for <linux-amlogic@lists.infradead.org>; Fri, 31 Jul 2020 05:06:12 -0700 (PDT)
+ id 1k1Txu-0003CY-08
+ for linux-amlogic@lists.infradead.org; Fri, 31 Jul 2020 12:16:46 +0000
+Received: by mail-wr1-x444.google.com with SMTP id r12so27755551wrj.13
+ for <linux-amlogic@lists.infradead.org>; Fri, 31 Jul 2020 05:16:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OPGbKdWpP4J/auHhQU9i6g+5dqKdyKhc2qV2F7IdWpw=;
- b=mbO9Ho2whEsjgCbIV1QWsFLUK2smi52qT7wWaKiW87L26VYF+z85RR6d4vFtQK4cLG
- aSVCGMxewoVtU32g0OBkWB1/uTt6ws+Jcj0zjKJg1cSz26Kl0NedCWAwx6l2I45fGQMB
- HpzupOvHluciFnutq5bdGPaIif0FrBawHZQZ/plVzeHiJygqe9zNxIbYLmj5yufRoBhb
- iDADif1cXGMb981LyLn70QSAar4rIG7O/6hHjtP1jgMcSZfdVXZ5MFhz6Y0elhl8S4QG
- PrkAuR0sOjA827BBKqfj/TGF5Iw15t+iawU9sqv7/VuVoSKfXEPyW0+hqoO8nG+m8M6H
- 1v+g==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=xABj9o/+LF58yiAkW0qlTl8H60o66EHmFAlpoGa2r4s=;
+ b=guQm0pLxZhuiFMgT/YoFDq1qAQEhYLykNn383MHzp5vyWxpMrZ36YkRNI78Ke5XpUO
+ wq1Q16/L+GkWgoNJLEf/o9HsPCU4002b1qrN9oB5YQTivbxhsh1zAj0g5r0ZMwxbvFs1
+ txNvI+MFOaQIhzLW6qF79AjMywqpt6i/uYmN/8D2yUkRL2lcCo6Gkf0uBOCa2BbXDEao
+ 4qz9YkoQ+hEyjr96b5l/hRkD13LxOen7ADjs35KCziHBvXijJ+P1sTq5917Lqjz9Qhls
+ GuhtcRBBoFrYjiEniyu6H5zZ+JPnAkF9+FBAarSjzbmGdrE9u2Ki04mtXhJ06YEYcu5m
+ yA3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OPGbKdWpP4J/auHhQU9i6g+5dqKdyKhc2qV2F7IdWpw=;
- b=q6VedwUSIKY7V2d8swOLEiM7DG76NAmLkg8uzWgg0a8EYpRjoY3C0NY8T9jXkSio+G
- SWqJ+bHj8wX+gx2oMDQJBkFvxWgtNgtM+Q9GgBnUpp99PDK2c7/r28jL59HMgQL/AakV
- OBIZLQeDEr4Qva3nG2TVK+3RBnidDMqyv0mB30BB/qN6w+D6pV1/5TEpmTDlx8lSdMbY
- w17WZfaa+AnQ9n+Lvu4crW68BwXA2lPFRdv3JplSwArWU4LwmSbyNUme2yVNImrotwkF
- dtjaww1saWxeU89lsarFNUuV3YyQJPaVwgt/2nFERpokeSYypAviYEoQ8EHggcDavI4w
- irIw==
-X-Gm-Message-State: AOAM5327XLvshgRJsAZ0JNammgfHJZ7eA8yCgBWNm8Av+M9MHxWBzQZ0
- 2IcVN+1QQYzogAPHxm5d2AhO7A==
-X-Google-Smtp-Source: ABdhPJykW4KqeQYC9r3oDy7vW1cPW/jfK2qRpSTFF8xJ+gqC4QgmMJ93gKPbRy305pn2zd/hqHZuCw==
-X-Received: by 2002:a1c:7511:: with SMTP id o17mr3855492wmc.49.1596197171510; 
- Fri, 31 Jul 2020 05:06:11 -0700 (PDT)
-Received: from starbuck.baylibre.local
- (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id c135sm5438017wmd.31.2020.07.31.05.06.10
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=xABj9o/+LF58yiAkW0qlTl8H60o66EHmFAlpoGa2r4s=;
+ b=J7N8z3Q7F397Vo3X7VBkb+KRxQG/27112rgOjvS0Zblt2FZHPDwFt+MetSBjSShjb4
+ PwuFxgOb5Z8x6SounJuX69FYWlSHRDlyMbyyVSIsu1uQ1QytOphB+AvIgswezqy4ccBg
+ 21bfWcd+2CzDW8lLYcgo8iyKtzAViRCyofpEw0lmtZ3FYLb8JO14GCc04kCeldKFnzfb
+ ddALTNxvHo84RFd8HOk/FzXVJUES5lerwOuHaEW88o/X0rtRxrFU9N7Jidstq9MjidH6
+ A5eEr+IVDy02+0Ovy+lTjI+FNNiJetPJDdANgUxa0QXWkf6+2sCpgmN+Ao5E3bL+INUP
+ 1aPw==
+X-Gm-Message-State: AOAM533aQ0t523Z2wi2zQGur7OlNJDvD7shwPWjBI4W/bfuKf9QDsg4M
+ of9C7iRpV5Jwz5kyluZkZv4FLw==
+X-Google-Smtp-Source: ABdhPJwnWi9tvSXSrHuqSUu1kDUIIUV324uwyEKL0/F8EHAeFwamGr+7Nm01PLL6fMFhOXcprj35Sg==
+X-Received: by 2002:adf:e6cc:: with SMTP id y12mr3266378wrm.391.1596197804388; 
+ Fri, 31 Jul 2020 05:16:44 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id g126sm12527702wme.16.2020.07.31.05.16.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Jul 2020 05:06:10 -0700 (PDT)
+ Fri, 31 Jul 2020 05:16:43 -0700 (PDT)
+References: <20200723180533.220312-1-pierre-louis.bossart@linux.intel.com>
+ <20200729154639.1983854-1-jbrunet@baylibre.com>
+ <2ad13f95-434d-376a-bc38-b209623b461e@linux.intel.com>
+ <1jft998jbe.fsf@starbuckisacylon.baylibre.com>
+ <936d6e37-0ad0-b0d7-814a-1ace12087746@linux.intel.com>
+ <20200730185229.GH5055@sirena.org.uk>
+User-agent: mu4e 1.3.3; emacs 26.3
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH] ASoC: meson: cards: deal dpcm flag change
-Date: Fri, 31 Jul 2020 14:06:03 +0200
-Message-Id: <20200731120603.2243261-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.25.4
+ Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Subject: Re: [PATCH] ASoC: core: restore dpcm flags semantics
+In-reply-to: <20200730185229.GH5055@sirena.org.uk>
+Date: Fri, 31 Jul 2020 14:16:43 +0200
+Message-ID: <1j7duj98wk.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200731_080612_779673_69F3480F 
-X-CRM114-Status: GOOD (  14.72  )
+X-CRM114-CacheID: sfid-20200731_081646_065951_A55FA413 
+X-CRM114-Status: GOOD (  24.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,130 +101,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, Kevin Hilman <khilman@baylibre.com>,
+Cc: alsa-devel@alsa-project.org, Stephan Gerhold <stephan@gerhold.net>,
+ Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
  linux-kernel@vger.kernel.org, zhangn1985@outlook.com,
- linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Commit b73287f0b074 ("ASoC: soc-pcm: dpcm: fix playback/capture checks")
-changed the meaning of dpcm_playback/dpcm_capture and now requires the
-CPU DAI BE to aligned with those flags.
 
-This broke all Amlogic cards with uni-directional backends (All gx and
-most axg cards).
+On Thu 30 Jul 2020 at 20:52, Mark Brown <broonie@kernel.org> wrote:
 
-While I'm still confused as to how this change is an improvement, those
-cards can't remain broken forever. Hopefully, next time an API change is
-done like that, all the users will be updated as part of the change, and
-not left to fend for themselves.
+> On Thu, Jul 30, 2020 at 11:06:23AM -0500, Pierre-Louis Bossart wrote:
+>> On 7/30/20 4:04 AM, Jerome Brunet wrote:
+>> > On Wed 29 Jul 2020 at 17:56, Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com> wrote:
+>> > > On 7/29/20 10:46 AM, Jerome Brunet wrote:
+>
+>> > > > The flag previously allowed card drivers to disable a stream direction on
+>> > > > a link (whether or not such feature is deemed useful).
+>
+> Right, and I can see a use case for this if someone has a board that
+> for some reason didn't physically connect one of the directions for some
+> reason - perhaps they were running out of pins or something.  It's not
+> clear if anyone's actually doing that though.
+>
+>> > > > Forcing the flags to be aligned with DAI caps just make the information
+>> > > > the flag carry redundant with DAI caps, breaking a few cards along the way.
+>
+>> > > > This change drops the added error conditions and restore the initial flag
+>> > > > semantics.
+>
+> I'm not 100% clear, have we actually found cases where the flags are
+> used or is this something found through inspection and review?
 
-Fixes: b73287f0b074 ("ASoC: soc-pcm: dpcm: fix playback/capture checks")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
+One last thing I'd like to understand. Is this behavior of throwing an
+error going to applied to the non-DPCM case as well ? so at least thing
+are consistent between both cases ?
 
- Hi,
-
- For the cards be actually fixed, change 'ASoC: core: use less strict tests for dailink capabilities'
- will need to merged as well. snd_soc_dai_link_set_capabilities() as
- implemented in 25612477d20b5 ('ASoC: soc-dai: set dai_link dpcm_ flags with a helper')
- does not support link with multiple codec with different direction
- capabilities. This quite a common case on these cards.
-
- sound/soc/meson/axg-card.c         | 18 ++++++++++--------
- sound/soc/meson/gx-card.c          | 18 +++++++++---------
- sound/soc/meson/meson-card-utils.c |  4 ----
- 3 files changed, 19 insertions(+), 21 deletions(-)
-
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index 5176be165210..2b77010c2c5c 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -327,20 +327,22 @@ static int axg_card_add_link(struct snd_soc_card *card, struct device_node *np,
- 		return ret;
+IOW:
+ * An error is now throw if dpcm_capture is set on the link and the CPU
+ DAI support playback_only
+ * on non-DPCM links, will an error be thrown as well if playback_only
+ is not set and the CPU on the link happen to not support capture ?
  
- 	if (axg_card_cpu_is_playback_fe(dai_link->cpus->of_node))
--		ret = meson_card_set_fe_link(card, dai_link, np, true);
-+		return meson_card_set_fe_link(card, dai_link, np, true);
- 	else if (axg_card_cpu_is_capture_fe(dai_link->cpus->of_node))
--		ret = meson_card_set_fe_link(card, dai_link, np, false);
--	else
--		ret = meson_card_set_be_link(card, dai_link, np);
-+		return meson_card_set_fe_link(card, dai_link, np, false);
- 
-+
-+	ret = meson_card_set_be_link(card, dai_link, np);
- 	if (ret)
- 		return ret;
- 
--	if (axg_card_cpu_is_tdm_iface(dai_link->cpus->of_node))
--		ret = axg_card_parse_tdm(card, np, index);
--	else if (axg_card_cpu_is_codec(dai_link->cpus->of_node)) {
-+	if (axg_card_cpu_is_codec(dai_link->cpus->of_node)) {
- 		dai_link->params = &codec_params;
--		dai_link->no_pcm = 0; /* link is not a DPCM BE */
-+	} else {
-+		dai_link->no_pcm = 1;
-+		snd_soc_dai_link_set_capabilities(dai_link);
-+		if (axg_card_cpu_is_tdm_iface(dai_link->cpus->of_node))
-+			ret = axg_card_parse_tdm(card, np, index);
- 	}
- 
- 	return ret;
-diff --git a/sound/soc/meson/gx-card.c b/sound/soc/meson/gx-card.c
-index 6da8535f4dd2..5119434a81c4 100644
---- a/sound/soc/meson/gx-card.c
-+++ b/sound/soc/meson/gx-card.c
-@@ -96,21 +96,21 @@ static int gx_card_add_link(struct snd_soc_card *card, struct device_node *np,
- 		return ret;
- 
- 	if (gx_card_cpu_identify(dai_link->cpus, "FIFO"))
--		ret = meson_card_set_fe_link(card, dai_link, np, true);
--	else
--		ret = meson_card_set_be_link(card, dai_link, np);
-+		return  meson_card_set_fe_link(card, dai_link, np, true);
- 
-+	ret = meson_card_set_be_link(card, dai_link, np);
- 	if (ret)
- 		return ret;
- 
--	/* Check if the cpu is the i2s encoder and parse i2s data */
--	if (gx_card_cpu_identify(dai_link->cpus, "I2S Encoder"))
--		ret = gx_card_parse_i2s(card, np, index);
--
- 	/* Or apply codec to codec params if necessary */
--	else if (gx_card_cpu_identify(dai_link->cpus, "CODEC CTRL")) {
-+	if (gx_card_cpu_identify(dai_link->cpus, "CODEC CTRL")) {
- 		dai_link->params = &codec_params;
--		dai_link->no_pcm = 0; /* link is not a DPCM BE */
-+	} else {
-+		dai_link->no_pcm = 1;
-+		snd_soc_dai_link_set_capabilities(dai_link);
-+		/* Check if the cpu is the i2s encoder and parse i2s data */
-+		if (gx_card_cpu_identify(dai_link->cpus, "I2S Encoder"))
-+			ret = gx_card_parse_i2s(card, np, index);
- 	}
- 
- 	return ret;
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index f9ce03f3921f..6a64ac01b5ca 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -147,10 +147,6 @@ int meson_card_set_be_link(struct snd_soc_card *card,
- 	struct device_node *np;
- 	int ret, num_codecs;
- 
--	link->no_pcm = 1;
--	link->dpcm_playback = 1;
--	link->dpcm_capture = 1;
--
- 	num_codecs = of_get_child_count(node);
- 	if (!num_codecs) {
- 		dev_err(card->dev, "be link %s has no codec\n",
--- 
-2.25.4
+>
+>> >   * It worked for every user of DPCM so a far.
+>
+>> Not completely true, when Morimoto-san added snd_soc_dai_stream_valid() it
+>> exposed tons of cases where the information on direction was not provided in
+>> a reliable at the DAI level. I will assert that we are still finding out
+>> cases with broken DAI configurations, and as a result we will also find
+>> broken dailink configurations. Your picture of DPCM as a perfectly
+>> functional system that I broke is a distortion of reality.
+>
+>> The reality is that we have to work in steps, first make sure all DAIs are
+>> properly described, then work on the dailinks and optimize at a later point.
+>> we will need warnings to find out what the problem cases are, and move
+>> slowly.
+>
+> This was all triggered by Morimoto-san's changes like you say.  DPCM has
+> quite a lot of problems in general, here IIRC the issues were that we
+> had multiple different ways of doing similar things which it wasn't
+> quite clear if people were even using.  The intention with the warnings
+> was to remove them one way or another, they're mainly intended to flush
+> out actual active usage of the flags as opposed to redundant usage of
+> them which could be confused/broken.
+>
+> This could definitely have been clearer in the changelogs though.
 
 
 _______________________________________________
