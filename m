@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D30FBC433DF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:03:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26293C433DF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:03:32 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CC52222BED
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:03:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DC98F22BED
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:03:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iXh+inHQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CC52222BED
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="spxJDyyV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DC98F22BED
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,56 +25,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=k4P2JLxFKVX3W777GElru6s7ADc+1QntFVEPAFJB2mw=; b=iXh+inHQuE+3k1IXGg0EkllNE
-	FId8KPalk9sgS83oN49fnc5fEUJijFpcei5xl2N1e3E1zZaG4+GalYI0qZtz5GMUwE/ns4OidC3kY
-	G6/XoW9EswmPlPr2VYZEiL5iZTqbsZo2BLttfbIieQsAdKe9w0+1xsOiir/lZGUviJo/mnLGsZxoP
-	QCb3YO7/EChEo3C9MGgEg2GvYoWDh4siGxwqRXAk4B2USpoeEvlpg9mCkr5l6cxFmftv2rHXPpYKq
-	n7SulY/szukkOdDGC5TE7l5+cdKhH0Nd5WLC/HxdbVsMYSZa7J+Q+oWCfcThKyxmEGDvHL8w3uqqc
-	NUnIEcDuw==;
+	 bh=2L1t/Bp3U3a2g105Qij1J9Jjb1hI/wA8U7BVRmkW/Dk=; b=spxJDyyVeF+40bRX9eXDRG9pc
+	h1kzljN1CTSfWp1maPz+GCjMyQXJ+GIRIbGWDCBPY8Qup02tCo6OM+4301ro99bXdsGKMUSXoLVXU
+	fbxoKqtDz/np1KBET72SFE5QG8L+zZsYHA9+9CGpc6IR0XPpggFnuWnFKEB75X4SRyG2ffH1hr7qx
+	DPsrJvOyH5Ogh1ZsAngaIJRavpJgROm8u35SXJSC35L2r5e4h2tUTLn91GcFHhlwPTclgvdx8lQg3
+	NPBTV96XUD14GaqvWqp3QPoGcv/tpy+YoTsRpZs74zIRYe1UUpOwOD4jImn6HNEZ0vyzYAcI+Ry65
+	QmHb7RhGg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k2hc2-0000vJ-RF; Mon, 03 Aug 2020 21:03:14 +0000
-Received: from mail-il1-f194.google.com ([209.85.166.194])
+	id 1k2hc8-000100-67; Mon, 03 Aug 2020 21:03:20 +0000
+Received: from mail-io1-f68.google.com ([209.85.166.68])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k2haY-0008VR-DJ; Mon, 03 Aug 2020 21:01:43 +0000
-Received: by mail-il1-f194.google.com with SMTP id p13so3872679ilh.4;
- Mon, 03 Aug 2020 14:01:42 -0700 (PDT)
+ id 1k2hab-00005c-Ip; Mon, 03 Aug 2020 21:01:46 +0000
+Received: by mail-io1-f68.google.com with SMTP id s189so32772460iod.2;
+ Mon, 03 Aug 2020 14:01:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=w74e1Ztc1qAn6gEbliDEy8D1xkphK6dVWVgtaNcLV4w=;
- b=dk5ZJtv9v03EZ/bjm+8o+728EMj8XAB6wkqsDaMZa18Dx6qtAy3g3gphfFFO4fwO2R
- xhgErUoUG8dciq1msu2tAPVgLJxVP4By1WFoGwHb/IR8FsZAjyiHS6Goj9ZidNhrwuTg
- 3Ejijrm7URspqh5mrxRGfrthEds1JRIc7yQCGmfO1D4gfBLemxBjIyx5IA0IWcNFGWAq
- I3CqFcSD8LU8rGr+8cHadDXxV59YwdWKIDwwlIZKn7UA3VycV7PdPdhnV4iMPhyUeMI2
- yAmHLw5E/09jX7XJ3NX3Q8j3h7h5+16BZxJj2ML7et+Va5pCtF4XltjLDUktEhS19Dp4
- q+PA==
-X-Gm-Message-State: AOAM532o4AKvjZO2a2x4Qd1hJXHOHCkinGrfqSbDN9TYAgRN3+TJY0Xj
- iE56s8ek3bYuIDCXmMLTzA==
-X-Google-Smtp-Source: ABdhPJxfAjXpg9S6OMpw6Nsv1iLQNUvPbf7BO8gLdDkl8+aUBf9YmuX7VSlCNgb+o/i5Ag3SVp1l9g==
-X-Received: by 2002:a92:1b42:: with SMTP id b63mr1415959ilb.76.1596488501865; 
- Mon, 03 Aug 2020 14:01:41 -0700 (PDT)
+ bh=cgcVbPqzxoZQ8BD2LBqh5z0DmxU5aGMCc3S38te1hMk=;
+ b=Kmttq/H2jMrR9JIEPM7pD4AE/DpmJ+e6x3DCzzOUYWf954HYpWcCqK6r1lTHnjioGX
+ tHfbGMh5l3ShD9ltn49mVl9bZu+7mJmLEGESKwUseeac7gm0pdte/NkShxAXzLTkFy1H
+ nUy5j1KnFCpCv+vw+XZiQEHCnAEJ/ogod2xTq3z94jTGY9QP1JtT1+Qm1CSDxyDigsT9
+ /O1acsZOmXpaf6YBnUM3vV4326P883D2FVb1S5ysHXnFI1wrCUew67pA3leXw3f5VzA7
+ /WzAYzmbdCnjKErP2enM7qvCHjuPhj6H/E6qBNAKEO3YG8gKlln+JnuScp46PT2a/+Bl
+ 05WQ==
+X-Gm-Message-State: AOAM531viZX2ryLmlwrDzwcB/HH0wctJOQal9uYG8FLE5JBOzno+YLwu
+ W9aYcUUd4cFtAz0TZYoZ+A==
+X-Google-Smtp-Source: ABdhPJwZ2v3QRbVXEHElHg+0cQOqL+nUwqS+NoWUw+dR20bJGFNYxn6FK+LKQ0Ij90nYJuTJGr2nyQ==
+X-Received: by 2002:a05:6638:1690:: with SMTP id
+ f16mr1822826jat.91.1596488504104; 
+ Mon, 03 Aug 2020 14:01:44 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.252])
- by smtp.googlemail.com with ESMTPSA id r6sm9292280iod.7.2020.08.03.14.01.39
+ by smtp.googlemail.com with ESMTPSA id r6sm9292280iod.7.2020.08.03.14.01.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Aug 2020 14:01:41 -0700 (PDT)
+ Mon, 03 Aug 2020 14:01:43 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
  Jingoo Han <jingoohan1@gmail.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [RFC 10/27] PCI: dwc: exynos: Use pci_ops for root config space
+Subject: [RFC 11/27] PCI: dwc: histb: Use pci_ops for root config space
  accessors
-Date: Mon,  3 Aug 2020 15:00:59 -0600
-Message-Id: <20200803210116.3132633-11-robh@kernel.org>
+Date: Mon,  3 Aug 2020 15:01:00 -0600
+Message-Id: <20200803210116.3132633-12-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200803210116.3132633-1-robh@kernel.org>
 References: <20200803210116.3132633-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200803_170142_747693_A5C13FA1 
-X-CRM114-Status: GOOD (  18.29  )
+X-CRM114-CacheID: sfid-20200803_170145_708643_DB2630F5 
+X-CRM114-Status: GOOD (  17.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,104 +104,99 @@ Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
  linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, Stanimir Varbanov <svarbanov@mm-sol.com>,
  Kukjin Kim <kgene@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
+ Shawn Guo <shawn.guo@linaro.org>, Shawn Guo <shawnguo@kernel.org>,
+ Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 Now that DWC drivers can setup their own pci_ops for the root and child
-buses, convert the Samsung Exynos driver to use the standard pci_ops for
-root bus config accesses.
+buses, convert the HiSilicon histb driver to use the standard pci_ops
+for root bus config accesses.
 
-Cc: Jingoo Han <jingoohan1@gmail.com>
+Cc: Shawn Guo <shawn.guo@linaro.org>
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Kukjin Kim <kgene@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-samsung-soc@vger.kernel.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/controller/dwc/pci-exynos.c | 45 ++++++++++++++-----------
- 1 file changed, 25 insertions(+), 20 deletions(-)
+ drivers/pci/controller/dwc/pcie-histb.c | 41 ++++++++++++++-----------
+ 1 file changed, 23 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
-index c5043d951e80..d5d37cffa441 100644
---- a/drivers/pci/controller/dwc/pci-exynos.c
-+++ b/drivers/pci/controller/dwc/pci-exynos.c
-@@ -338,32 +338,37 @@ static void exynos_pcie_write_dbi(struct dw_pcie *pci, void __iomem *base,
- 	exynos_pcie_sideband_dbi_w_mode(ep, false);
+diff --git a/drivers/pci/controller/dwc/pcie-histb.c b/drivers/pci/controller/dwc/pcie-histb.c
+index 811b5c6d62ea..0d93088deea3 100644
+--- a/drivers/pci/controller/dwc/pcie-histb.c
++++ b/drivers/pci/controller/dwc/pcie-histb.c
+@@ -122,32 +122,37 @@ static void histb_pcie_write_dbi(struct dw_pcie *pci, void __iomem *base,
+ 	histb_pcie_dbi_w_mode(&pci->pp, false);
  }
  
--static int exynos_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
--				u32 *val)
-+static int exynos_pcie_rd_own_conf(struct pci_bus *bus, unsigned int devfn,
-+				   int where, int size, u32 *val)
+-static int histb_pcie_rd_own_conf(struct pcie_port *pp, int where,
+-				  int size, u32 *val)
++static int histb_pcie_rd_own_conf(struct pci_bus *bus, unsigned int devfn,
++				  int where, int size, u32 *val)
  {
 -	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
--	struct exynos_pcie *ep = to_exynos_pcie(pci);
 -	int ret;
 +	struct dw_pcie *pci = to_dw_pcie_from_pp(bus->sysdata);
  
--	exynos_pcie_sideband_dbi_r_mode(ep, true);
+-	histb_pcie_dbi_r_mode(pp, true);
 -	ret = dw_pcie_read(pci->dbi_base + where, size, val);
--	exynos_pcie_sideband_dbi_r_mode(ep, false);
--	return ret;
+-	histb_pcie_dbi_r_mode(pp, false);
 +	if (PCI_SLOT(devfn)) {
 +		*val = ~0;
 +		return PCIBIOS_DEVICE_NOT_FOUND;
 +	}
-+
+ 
+-	return ret;
 +	*val = dw_pcie_read_dbi(pci, where, size);
 +	return PCIBIOS_SUCCESSFUL;
  }
  
--static int exynos_pcie_wr_own_conf(struct pcie_port *pp, int where, int size,
--				u32 val)
-+static int exynos_pcie_wr_own_conf(struct pci_bus *bus, unsigned int devfn,
-+				   int where, int size, u32 val)
+-static int histb_pcie_wr_own_conf(struct pcie_port *pp, int where,
+-				  int size, u32 val)
++static int histb_pcie_wr_own_conf(struct pci_bus *bus, unsigned int devfn,
++				  int where, int size, u32 val)
  {
 -	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
--	struct exynos_pcie *ep = to_exynos_pcie(pci);
 -	int ret;
 +	struct dw_pcie *pci = to_dw_pcie_from_pp(bus->sysdata);
  
--	exynos_pcie_sideband_dbi_w_mode(ep, true);
+-	histb_pcie_dbi_w_mode(pp, true);
 -	ret = dw_pcie_write(pci->dbi_base + where, size, val);
--	exynos_pcie_sideband_dbi_w_mode(ep, false);
--	return ret;
+-	histb_pcie_dbi_w_mode(pp, false);
 +	if (PCI_SLOT(devfn))
 +		return PCIBIOS_DEVICE_NOT_FOUND;
-+
+ 
+-	return ret;
 +	dw_pcie_write_dbi(pci, where, size, val);
 +	return PCIBIOS_SUCCESSFUL;
  }
  
-+static struct pci_ops exynos_pci_ops = {
-+	.read = exynos_pcie_rd_own_conf,
-+	.write = exynos_pcie_wr_own_conf,
++static struct pci_ops histb_pci_ops = {
++	.read = histb_pcie_rd_own_conf,
++	.write = histb_pcie_wr_own_conf,
 +};
 +
- static int exynos_pcie_link_up(struct dw_pcie *pci)
+ static int histb_pcie_link_up(struct dw_pcie *pci)
  {
- 	struct exynos_pcie *ep = to_exynos_pcie(pci);
-@@ -381,6 +386,8 @@ static int exynos_pcie_host_init(struct pcie_port *pp)
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct exynos_pcie *ep = to_exynos_pcie(pci);
+ 	struct histb_pcie *hipcie = to_histb_pcie(pci);
+@@ -194,6 +199,8 @@ static int histb_pcie_establish_link(struct pcie_port *pp)
  
-+	pp->bridge->ops = &exynos_pci_ops;
+ static int histb_pcie_host_init(struct pcie_port *pp)
+ {
++	pp->bridge->ops = &histb_pci_ops;
 +
- 	exynos_pcie_establish_link(ep);
- 	exynos_pcie_enable_interrupts(ep);
+ 	histb_pcie_establish_link(pp);
  
-@@ -388,8 +395,6 @@ static int exynos_pcie_host_init(struct pcie_port *pp)
+ 	if (IS_ENABLED(CONFIG_PCI_MSI))
+@@ -203,8 +210,6 @@ static int histb_pcie_host_init(struct pcie_port *pp)
  }
  
- static const struct dw_pcie_host_ops exynos_pcie_host_ops = {
--	.rd_own_conf = exynos_pcie_rd_own_conf,
--	.wr_own_conf = exynos_pcie_wr_own_conf,
- 	.host_init = exynos_pcie_host_init,
+ static const struct dw_pcie_host_ops histb_pcie_host_ops = {
+-	.rd_own_conf = histb_pcie_rd_own_conf,
+-	.wr_own_conf = histb_pcie_wr_own_conf,
+ 	.host_init = histb_pcie_host_init,
  };
  
 -- 
