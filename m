@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C3D2C433E0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:04:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8613CC433E0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:05:22 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5C66E22BED
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:04:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7FC5B20738
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:05:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GBl0FhMX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C66E22BED
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mZv1fI8p"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7FC5B20738
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,55 +25,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=LbZnvSo/92FTy/bGHdaapMprv3QYGa40YDHjMEoOt6I=; b=GBl0FhMXJWjuXsV2Ou8PhcX2+
-	rXpDSsq1BeNHzshrQyP2ASjUq8EotXOR4yc9sWnnxqeOGEGILMJY2ryHczbjcEpHyLP/M8THsi80/
-	W9N6iqSG6yPa/aFZfBy/npEBBJsh+G1ZA46WNq1fMLGhx1IFVXOHAaqk2pZwVGLsIxWze0ElGwr59
-	SCc1qoMljKN+vfhXHYY8olPmbe5wjvzTQyntWZgbbgc4N9UJc16cwZtdHypFrPmTmHL7hHucAmV+5
-	A1Xq7ZrbzJsmvgca4q0k/ph/KUKAt/xka+VfLugIbzcuZI5bosokBemWkzbJLOKy3knjxEnmxmEJJ
-	z1IlDvV2A==;
+	 bh=NRZbhDf+ZZ8gCxWGe+X2zvYLHc5WyCq4nOy2oxfHTXM=; b=mZv1fI8p/YpMLiE5kesFKO3CN
+	bWDUGmanFKlGSYFlUy5FCNch2lvVEBbL1mejTmX8xJ0eSNvLnM7COj7r3zk+iEbebLENZXV/m/6fe
+	UGcNjgfU9AfcZ7EPesFWFC10XBFEL1z+7qVxk7bqPgqkZKw/31zyChE+GUtFnYqZNNs8zIVvMENwH
+	HfkV3KW70mtdKDyz2TYMur6o38sVmYYXzsZOUFxC1uy74WNaNNVsNgUYwU9LZu4TS7l1gQ3VbqEbS
+	ZqFFyxDCRAI7WBKuZPpQgLghfFlObn18jtVTfOy1zxPyAST/3oegpS6268YJ6Yyqpj3QNedlwq8+A
+	TLhRBcQ1A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k2hd9-0001fu-9T; Mon, 03 Aug 2020 21:04:23 +0000
-Received: from mail-il1-f195.google.com ([209.85.166.195])
+	id 1k2hdu-0002Dr-5H; Mon, 03 Aug 2020 21:05:10 +0000
+Received: from mail-io1-f68.google.com ([209.85.166.68])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k2has-0000Fr-Cd; Mon, 03 Aug 2020 21:02:03 +0000
-Received: by mail-il1-f195.google.com with SMTP id x1so12027337ilp.7;
- Mon, 03 Aug 2020 14:02:02 -0700 (PDT)
+ id 1k2hau-0000H7-DI; Mon, 03 Aug 2020 21:02:05 +0000
+Received: by mail-io1-f68.google.com with SMTP id s189so32773471iod.2;
+ Mon, 03 Aug 2020 14:02:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=+aVzUrW/b+OR7PsyqkF7d3uV9W2kuObPvJUPmZOvAKM=;
- b=CfOyGVu3LVPdvlfrp4Y+pgt0h40zRESmg6rwKGxAiHB2gh/D/T8zLHgxqxB9+v6jkB
- 7HFEKXsqQdFv7KmcSSDn3uQGY9igeTPsRsJBlLPBP9NFWtyGBVGKIjJpxWWQOFLDD0pc
- Tab4sZj/XFNdMdfFUGFUV7fQ25eOJM4V/VwMOGYFbcDrR4QN94ErVy1Sr17NjN+6gcVe
- EsnJ4KHNh6GGQxRVexj+1Jn7Sx4mO+H6OzE5VseJ7Wv1/dntDA9rqQeRIoxHM+DRLR/1
- 6mm7fIvS/EbBnYNpbsTZKAKGXnsI55L2OJ9lTTYqJHq5chpjP0+SnxBzZ1q8Dg3Dmvun
- qKKQ==
-X-Gm-Message-State: AOAM530l6JZsgUxCLI/HwhudHj3sMvRD12xPNkaVWPpECICXewjTUvIR
- JWIajYJ6wX19LilTZZVfHg==
-X-Google-Smtp-Source: ABdhPJzvMiwNh6mYspCSiLag2A19Z5Dkvf/eGkppl3qfixJbFF7IVuurRzwNE2IrpB0eB0YCgBL/0A==
-X-Received: by 2002:a92:c883:: with SMTP id w3mr1144796ilo.2.1596488521305;
- Mon, 03 Aug 2020 14:02:01 -0700 (PDT)
+ bh=KBszrZoR6KfV8PIUJ9TAD0pOH/WhVXS7vLHSzuibxQI=;
+ b=DqsMOFERQu6TtUVu0unI7iJEk+YeV/4hjP5TzHe4L6Wnu2Ikezp/1H9V3nZBsfrq7m
+ iL4rhm8gAYheQSctx1du73AbohBZyOjC90OLDUbsdCAQd1saGpblldId3uQGfmUOk77L
+ vH9wEY/kXrfAJ3qLBF30oQ7DmboPMkp8stLcV0MeYxQkVJ1RJq9evJKutCezmtoCKRwN
+ WiRkKuL2zs/TX2+5UwG6UtLiTSbGHqXhPslFmaScK8Hadr0rmMNxBRkol06Xi0fxnb+i
+ rS7kyd5f/vhsJitZA4ZfH9Ox7ckqNOMtjTFmfsh4Gy+XhlzJ8t0l9J6IMhDbU9p5mtVx
+ 0Dvw==
+X-Gm-Message-State: AOAM530lHYLZlPWvJ0HW4mobjwgx28RF+anGlf2sz6GSiNwe1iByk8rH
+ /9HZnj3Mr6AmEEe8HzNLjg==
+X-Google-Smtp-Source: ABdhPJwRuSSPOninoBNPo5aHkonSJpYI9fAmTlwclA+BVNVifs96k/azUtlQrFpO1XKMGj3SdjN9iw==
+X-Received: by 2002:a02:c735:: with SMTP id h21mr1877476jao.90.1596488523308; 
+ Mon, 03 Aug 2020 14:02:03 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.252])
- by smtp.googlemail.com with ESMTPSA id r6sm9292280iod.7.2020.08.03.14.01.59
+ by smtp.googlemail.com with ESMTPSA id r6sm9292280iod.7.2020.08.03.14.02.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Aug 2020 14:02:00 -0700 (PDT)
+ Mon, 03 Aug 2020 14:02:02 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
  Jingoo Han <jingoohan1@gmail.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [RFC 16/27] PCI: dwc: Convert to use pci_host_probe()
-Date: Mon,  3 Aug 2020 15:01:05 -0600
-Message-Id: <20200803210116.3132633-17-robh@kernel.org>
+Subject: [RFC 17/27] PCI: dwc: Remove root_bus pointer
+Date: Mon,  3 Aug 2020 15:01:06 -0600
+Message-Id: <20200803210116.3132633-18-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200803210116.3132633-1-robh@kernel.org>
 References: <20200803210116.3132633-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200803_170202_484470_67CDC719 
-X-CRM114-Status: GOOD (  16.27  )
+X-CRM114-CacheID: sfid-20200803_170204_594885_C86993D3 
+X-CRM114-Status: GOOD (  16.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,70 +108,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now that there are no more .scan_bus() callbacks, we can remove it and just
-use pci_host_probe().
+The pci_host_bridge struct already has a pointer to its pci_bus, so
+let's convert the one user to use the bridge struct and remove the
+private 'root_bus' pointer.
 
 Cc: Jingoo Han <jingoohan1@gmail.com>
 Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-tegra@vger.kernel.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../pci/controller/dwc/pcie-designware-host.c | 21 +++----------------
- drivers/pci/controller/dwc/pcie-designware.h  |  1 -
- 2 files changed, 3 insertions(+), 19 deletions(-)
+ drivers/pci/controller/dwc/pcie-designware-host.c | 4 ++--
+ drivers/pci/controller/dwc/pcie-designware.h      | 1 -
+ drivers/pci/controller/dwc/pcie-tegra194.c        | 4 ++--
+ 3 files changed, 4 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index e9778f8ee955..dc336163104a 100644
+index dc336163104a..9528c8b1c9ab 100644
 --- a/drivers/pci/controller/dwc/pcie-designware-host.c
 +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -300,7 +300,6 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 	struct device_node *np = dev->of_node;
- 	struct platform_device *pdev = to_platform_device(dev);
- 	struct resource_entry *win;
--	struct pci_bus *child;
- 	struct pci_host_bridge *bridge;
- 	struct resource *cfg_res;
- 	int ret;
-@@ -447,23 +446,9 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 	bridge->map_irq = of_irq_parse_and_map_pci;
- 	bridge->swizzle_irq = pci_common_swizzle;
+@@ -459,8 +459,8 @@ EXPORT_SYMBOL_GPL(dw_pcie_host_init);
  
--	ret = pci_scan_root_bus_bridge(bridge);
--	if (ret)
--		goto err_free_msi;
--
--	pp->root_bus = bridge->bus;
--
--	if (pp->ops->scan_bus)
--		pp->ops->scan_bus(pp);
--
--	pci_bus_size_bridges(pp->root_bus);
--	pci_bus_assign_resources(pp->root_bus);
--
--	list_for_each_entry(child, &pp->root_bus->children, node)
--		pcie_bus_configure_settings(child);
--
--	pci_bus_add_devices(pp->root_bus);
--	return 0;
-+	ret = pci_host_probe(bridge);
-+	if (!ret)
-+		return 0;
- 
- err_free_msi:
+ void dw_pcie_host_deinit(struct pcie_port *pp)
+ {
+-	pci_stop_root_bus(pp->root_bus);
+-	pci_remove_root_bus(pp->root_bus);
++	pci_stop_root_bus(pp->bridge->bus);
++	pci_remove_root_bus(pp->bridge->bus);
  	if (pci_msi_enabled() && !pp->ops->msi_host_init)
+ 		dw_pcie_free_msi(pp);
+ }
 diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index 28e7ad3eb89f..10d22269254a 100644
+index 10d22269254a..67aac6fdca24 100644
 --- a/drivers/pci/controller/dwc/pcie-designware.h
 +++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -161,7 +161,6 @@ enum dw_pcie_device_mode {
+@@ -193,7 +193,6 @@ struct pcie_port {
+ 	struct irq_chip		*msi_irq_chip;
+ 	u32			num_vectors;
+ 	u32			irq_mask[MAX_MSI_CTRLS];
+-	struct pci_bus		*root_bus;
+ 	struct pci_host_bridge  *bridge;
+ 	raw_spinlock_t		lock;
+ 	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
+diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+index 52bb145c42d1..c567c9c09ff6 100644
+--- a/drivers/pci/controller/dwc/pcie-tegra194.c
++++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+@@ -1264,9 +1264,9 @@ static void tegra_pcie_downstream_dev_to_D0(struct tegra_pcie_dw *pcie)
+ 	 * 5.2 Link State Power Management (Page #428).
+ 	 */
  
- struct dw_pcie_host_ops {
- 	int (*host_init)(struct pcie_port *pp);
--	void (*scan_bus)(struct pcie_port *pp);
- 	void (*set_num_vectors)(struct pcie_port *pp);
- 	int (*msi_host_init)(struct pcie_port *pp);
- };
+-	list_for_each_entry(child, &pp->root_bus->children, node) {
++	list_for_each_entry(child, &pp->bridge->bus->children, node) {
+ 		/* Bring downstream devices to D0 if they are not already in */
+-		if (child->parent == pp->root_bus) {
++		if (child->parent == pp->bridge->bus) {
+ 			root_bus = child;
+ 			break;
+ 		}
 -- 
 2.25.1
 
