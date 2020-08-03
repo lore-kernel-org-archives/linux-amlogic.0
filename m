@@ -2,21 +2,21 @@ Return-Path: <SRS0=/1bK=BN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 36F13C433E0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:09:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B26E2C433E0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:10:05 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 96B7022C9F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:09:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9923822BF3
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:10:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="igtX/xZ+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 96B7022C9F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="zr+CZw7y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9923822BF3
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,57 +25,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ppHNhTHPhGiPJxpVAqoTvDIRHaIGnvJeRsySdEasrO4=; b=igtX/xZ+Ds/V1LUUGOchf1JpI
-	WwG+yadmKMAdVIPNeTIX2coBki4cfZcu7cy8zSKYzbl9UzETJYIOyTXRWEoiXd5IPDXsLxt/Roucv
-	Xzzb2hvBvX747SOgcvl47FLC5QDL7h0fQ5AOeNxUMXkiDIbFiayIR7KNp1AbURL9lTJRrDfG7DHdK
-	kzi/+b8N6+yGdMxTnYHxxyhPU9DkQTxO5JXLgR+f9ZfP+9glWI6LaEydQSVBqBo4u3f0WsyAflww6
-	DT3REo9qSCQBPXouxWWZeTW2l4RNYkYLJu0UulkwKH3Rxzulq/6Dfr7MJsJrrcu4q56etAELPHguj
-	aoxpHuBiw==;
+	 bh=fuyQjY21GJGhcKzr42+TRTSmR2jWEskH57ee5UrRU8o=; b=zr+CZw7yfJFbKDnigy/i/7hjH
+	Pv4+nEBPr8J5QKor/fwVXCYNWAqetxEQy5WdQ+NrfCHyctjr2kuRLB+evPp1Ix7/8ypjJepzzTe8E
+	cSWDSDMwjrQUn3XaF/stOs6Loazb5CBAykgfctKJV88AreKu19qlnpjUyyFc20MjGhfBvm7vigJmy
+	l/Cs7nWKAM8ljIHKYAopmHVAzh2b4UGQGlhmPYBJbrgh39vBkxFjkR0ep1Hao30JubxNAsPIM402w
+	2pLgneCCR2ltkJSnOrTWaocnQOI5//Q6i3DxTfDyM2Ti/Ncvy0+OCGGzdjq7vr5FrtX90mu93qFq/
+	02GqedWww==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k2hhS-0004Gm-KQ; Mon, 03 Aug 2020 21:08:50 +0000
+	id 1k2hiS-0004nv-Qx; Mon, 03 Aug 2020 21:09:52 +0000
 Received: from mail-io1-f66.google.com ([209.85.166.66])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k2hbF-0000TL-LZ; Mon, 03 Aug 2020 21:02:26 +0000
-Received: by mail-io1-f66.google.com with SMTP id k23so39951061iom.10;
- Mon, 03 Aug 2020 14:02:25 -0700 (PDT)
+ id 1k2hbK-0000VI-10; Mon, 03 Aug 2020 21:02:33 +0000
+Received: by mail-io1-f66.google.com with SMTP id g14so2509795iom.0;
+ Mon, 03 Aug 2020 14:02:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=PM8zrR6BXOfDRWMk7IOmZATjTEqDEPOnq1HMPd0fm+I=;
- b=Hs7YkLU9+VHhsxR9yzPhvc529KqQaX5ucT5PFIwOcoeant6KwZVF3v0Zu9G6VkUJx+
- hTWjOWxBECWtaH7Lej6g98GH9aiBfwEqGoFe/i75i/BkqsRyg0rSzOAw0El1dZzzs4Pe
- zVJVfX3MX4w63lhmXz+Pb+OmK0dlSKQkr2gapILbq6f4VZlMoRkOFel0bRgtIqwD8Q0q
- p+prK+d3B057VBfnpRbWU69u0kfHmsiyMBubkTn0L1oAImbJfGdxCND6VIDl9Z1zVueP
- ltL9XTKCQzER/O5Ubc5pHWQubd9NqAyfd3rwO90zQjJY/zz8m8kmKH6TiiLb5UUnfBrp
- iLnQ==
-X-Gm-Message-State: AOAM533HAXfT8RI3yI0J5Ia6IcWndeQV5zdigVIkgPDc0nxv9EwipjLY
- ioN6vfXboqMiYH0RppZvhQ==
-X-Google-Smtp-Source: ABdhPJw96k8lyNK11/NlxPpmp4xlor/b3WWjFcRtY1Ld3dnCdpoOVounuLgtCLR+q/EA7hpBdE6Lnw==
-X-Received: by 2002:a05:6638:1690:: with SMTP id
- f16mr1826708jat.91.1596488544963; 
- Mon, 03 Aug 2020 14:02:24 -0700 (PDT)
+ bh=VwFTr4t0lrmNy8f4Fgv3/l49uahHgczW7Wdy7hSwZ1w=;
+ b=scaQbwZIUnJY378XPaFKigyOHtN8fJTMKeA+Dc8mWxUKBns6KtnEpv4l+NCQNmmoZr
+ /wK5ioWB71YbF8GEOwJXsjMoQd9L6CxOJGW081Y7Ov1IoUMbJoQz129L6Y4yXdx02Rg6
+ yoEYE0ls+DNQYMeQfFJVR0phbojhWYFnZM1s/ot6rSYlTmdjq9fvNayNQkfLEB3jbZPZ
+ SSzGxhUVWfSQqqqJorORdzkJPNzOS8bNVlhejeOJGm5+r48FQKLJiSIH3AJ/5PQcwWHF
+ h3pHlUMw5OPZpmgFbzJFQGXtXtskduIdsQ2GQF+oFVw9E2wlK5dUguFd85ely3VL6l6b
+ HNlA==
+X-Gm-Message-State: AOAM533HFNTFGK+c6Uz7HyuBgGoSwhlNN4eWZ1jjWZPprqbSE0ZDHyk1
+ rMBFuB61FaCqinRq+M0n9Q==
+X-Google-Smtp-Source: ABdhPJzMEhzv37+IQcarhuMxavAyD+FE8gqZIx02+KuoDY977KQ4tDj1eOPm1iwpPoPc4bKstznlOA==
+X-Received: by 2002:a5d:9b96:: with SMTP id r22mr1878334iom.66.1596488549634; 
+ Mon, 03 Aug 2020 14:02:29 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.252])
- by smtp.googlemail.com with ESMTPSA id r6sm9292280iod.7.2020.08.03.14.02.21
+ by smtp.googlemail.com with ESMTPSA id r6sm9292280iod.7.2020.08.03.14.02.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Aug 2020 14:02:24 -0700 (PDT)
+ Mon, 03 Aug 2020 14:02:29 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
  Jingoo Han <jingoohan1@gmail.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [RFC 24/27] PCI: dwc/meson: Rework PCI config and DW port logic
- register accesses
-Date: Mon,  3 Aug 2020 15:01:13 -0600
-Message-Id: <20200803210116.3132633-25-robh@kernel.org>
+Subject: [RFC 25/27] PCI: dwc/qcom: Use common PCI register definitions
+Date: Mon,  3 Aug 2020 15:01:14 -0600
+Message-Id: <20200803210116.3132633-26-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200803210116.3132633-1-robh@kernel.org>
 References: <20200803210116.3132633-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200803_170225_762776_E3FF91B2 
-X-CRM114-Status: GOOD (  19.80  )
+X-CRM114-CacheID: sfid-20200803_170230_322999_97FE0A6F 
+X-CRM114-Status: GOOD (  14.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,253 +100,100 @@ Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
  linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
  Yue Wang <yue.wang@Amlogic.com>, linux-tegra@vger.kernel.org,
  linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Stanimir Varbanov <svarbanov@mm-sol.com>,
- Kukjin Kim <kgene@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ linux-arm-kernel@lists.infradead.org, Andy Gross <agross@kernel.org>,
+ Stanimir Varbanov <svarbanov@mm-sol.com>, Kukjin Kim <kgene@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
  Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The meson 'elbi' registers are just the Designware 'dbi' space and all
-the registers accessed are either standard PCI config space or DWC port
-logic registers. Convert the accesses to use the common defines and
-register accessors.
+The QCom driver has its own defines for common PCI config space
+registers. It also hard codes the capability register offsets which are
+discoverable. Convert it to use the standard register definitions.
 
-Cc: Yue Wang <yue.wang@Amlogic.com>
+Cc: Stanimir Varbanov <svarbanov@mm-sol.com>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Jingoo Han <jingoohan1@gmail.com>
-Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
 Cc: linux-pci@vger.kernel.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-msm@vger.kernel.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/controller/dwc/pci-meson.c       | 113 +++++++------------
- drivers/pci/controller/dwc/pcie-designware.h |   1 +
- 2 files changed, 39 insertions(+), 75 deletions(-)
+ drivers/pci/controller/dwc/pcie-qcom.c | 27 ++++++++++----------------
+ 1 file changed, 10 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index d1cfc65f0a69..734aace62173 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -22,23 +22,7 @@
+diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+index 9f1d3ba686fa..dba5f7d7f727 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom.c
++++ b/drivers/pci/controller/dwc/pcie-qcom.c
+@@ -39,11 +39,6 @@
+ #define L23_CLK_RMV_DIS				BIT(2)
+ #define L1_CLK_RMV_DIS				BIT(1)
  
- #define to_meson_pcie(x) dev_get_drvdata((x)->dev)
- 
--/* External local bus interface registers */
--#define PLR_OFFSET			0x700
--#define PCIE_PORT_LINK_CTRL_OFF		(PLR_OFFSET + 0x10)
--#define FAST_LINK_MODE			BIT(7)
--#define LINK_CAPABLE_MASK		GENMASK(21, 16)
--#define LINK_CAPABLE_X1			BIT(16)
+-#define PCIE20_COMMAND_STATUS			0x04
+-#define CMD_BME_VAL				0x4
+-#define PCIE20_DEVICE_CONTROL2_STATUS2		0x98
+-#define PCIE_CAP_CPL_TIMEOUT_DISABLE		0x10
 -
--#define PCIE_GEN2_CTRL_OFF		(PLR_OFFSET + 0x10c)
--#define NUM_OF_LANES_MASK		GENMASK(12, 8)
--#define NUM_OF_LANES_X1			BIT(8)
--#define DIRECT_SPEED_CHANGE		BIT(17)
--
--#define PCIE_CAP_OFFSET			0x70
--#define PCIE_DEV_CTRL_DEV_STUS		(PCIE_CAP_OFFSET + 0x08)
--#define PCIE_CAP_MAX_PAYLOAD_MASK	GENMASK(7, 5)
- #define PCIE_CAP_MAX_PAYLOAD_SIZE(x)	((x) << 5)
--#define PCIE_CAP_MAX_READ_REQ_MASK	GENMASK(14, 12)
- #define PCIE_CAP_MAX_READ_REQ_SIZE(x)	((x) << 12)
+ #define PCIE20_PARF_PHY_CTRL			0x40
+ #define PCIE20_PARF_PHY_REFCLK			0x4C
+ #define PCIE20_PARF_DBI_BASE_ADDR		0x168
+@@ -65,10 +60,6 @@
+ #define PCIE20_AXI_MSTR_RESP_COMP_CTRL1		0x81c
+ #define CFG_BRIDGE_SB_INIT			BIT(0)
  
- /* PCIe specific config registers */
-@@ -68,11 +52,6 @@ enum pcie_data_rate {
- 	PCIE_GEN4
- };
+-#define PCIE20_CAP				0x70
+-#define PCIE20_CAP_LINK_CAPABILITIES		(PCIE20_CAP + 0xC)
+-#define PCIE20_CAP_ACTIVE_STATE_LINK_PM_SUPPORT	(BIT(10) | BIT(11))
+-#define PCIE20_CAP_LINK_1			(PCIE20_CAP + 0x14)
+ #define PCIE_CAP_LINK1_VAL			0x2FD7F
  
--struct meson_pcie_mem_res {
--	void __iomem *elbi_base;
--	void __iomem *cfg_base;
--};
--
- struct meson_pcie_clk_res {
- 	struct clk *clk;
- 	struct clk *port_clk;
-@@ -86,7 +65,7 @@ struct meson_pcie_rc_reset {
- 
- struct meson_pcie {
- 	struct dw_pcie pci;
--	struct meson_pcie_mem_res mem_res;
-+	void __iomem *cfg_base;
- 	struct meson_pcie_clk_res clk_res;
- 	struct meson_pcie_rc_reset mrst;
- 	struct gpio_desc *reset_gpio;
-@@ -125,28 +104,18 @@ static int meson_pcie_get_resets(struct meson_pcie *mp)
- 	return 0;
- }
- 
--static void __iomem *meson_pcie_get_mem(struct platform_device *pdev,
--					struct meson_pcie *mp,
--					const char *id)
--{
--	struct device *dev = mp->pci.dev;
--	struct resource *res;
--
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
--
--	return devm_ioremap_resource(dev, res);
--}
--
- static int meson_pcie_get_mems(struct platform_device *pdev,
- 			       struct meson_pcie *mp)
- {
--	mp->mem_res.elbi_base = meson_pcie_get_mem(pdev, mp, "elbi");
--	if (IS_ERR(mp->mem_res.elbi_base))
--		return PTR_ERR(mp->mem_res.elbi_base);
-+	struct dw_pcie *pci = &mp->pci;
- 
--	mp->mem_res.cfg_base = meson_pcie_get_mem(pdev, mp, "cfg");
--	if (IS_ERR(mp->mem_res.cfg_base))
--		return PTR_ERR(mp->mem_res.cfg_base);
-+	pci->dbi_base = devm_platform_ioremap_resource_byname(pdev, "elbi");
-+	if (IS_ERR(pci->dbi_base))
-+		return PTR_ERR(pci->dbi_base);
-+
-+	mp->cfg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
-+	if (IS_ERR(mp->cfg_base))
-+		return PTR_ERR(mp->cfg_base);
- 
- 	return 0;
- }
-@@ -244,24 +213,14 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
- 	return 0;
- }
- 
--static inline void meson_elb_writel(struct meson_pcie *mp, u32 val, u32 reg)
--{
--	writel(val, mp->mem_res.elbi_base + reg);
--}
--
--static inline u32 meson_elb_readl(struct meson_pcie *mp, u32 reg)
--{
--	return readl(mp->mem_res.elbi_base + reg);
--}
--
- static inline u32 meson_cfg_readl(struct meson_pcie *mp, u32 reg)
- {
--	return readl(mp->mem_res.cfg_base + reg);
-+	return readl(mp->cfg_base + reg);
- }
- 
- static inline void meson_cfg_writel(struct meson_pcie *mp, u32 val, u32 reg)
- {
--	writel(val, mp->mem_res.cfg_base + reg);
-+	writel(val, mp->cfg_base + reg);
- }
- 
- static void meson_pcie_assert_reset(struct meson_pcie *mp)
-@@ -273,27 +232,28 @@ static void meson_pcie_assert_reset(struct meson_pcie *mp)
- 
- static void meson_pcie_init_dw(struct meson_pcie *mp)
- {
-+	struct dw_pcie *pci = &mp->pci;
- 	u32 val;
- 
- 	val = meson_cfg_readl(mp, PCIE_CFG0);
- 	val |= APP_LTSSM_ENABLE;
- 	meson_cfg_writel(mp, val, PCIE_CFG0);
- 
--	val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
--	val &= ~(LINK_CAPABLE_MASK | FAST_LINK_MODE);
--	meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
-+	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
-+	val &= ~(PORT_LINK_MODE_MASK | PORT_LINK_FAST_LINK_MODE);
-+	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
- 
--	val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
--	val |= LINK_CAPABLE_X1;
--	meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
-+	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
-+	val |= PORT_LINK_MODE_1_LANES;
-+	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
- 
--	val = meson_elb_readl(mp, PCIE_GEN2_CTRL_OFF);
--	val &= ~NUM_OF_LANES_MASK;
--	meson_elb_writel(mp, val, PCIE_GEN2_CTRL_OFF);
-+	val = dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
-+	val &= ~PORT_LOGIC_LINK_WIDTH_MASK;
-+	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
- 
--	val = meson_elb_readl(mp, PCIE_GEN2_CTRL_OFF);
--	val |= NUM_OF_LANES_X1 | DIRECT_SPEED_CHANGE;
--	meson_elb_writel(mp, val, PCIE_GEN2_CTRL_OFF);
-+	val = dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
-+	val |= PORT_LOGIC_LINK_WIDTH_1_LANES | PORT_LOGIC_SPEED_CHANGE;
-+	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
- }
- 
- static int meson_size_to_payload(struct meson_pcie *mp, int size)
-@@ -315,30 +275,34 @@ static int meson_size_to_payload(struct meson_pcie *mp, int size)
- 
- static void meson_set_max_payload(struct meson_pcie *mp, int size)
- {
-+	struct dw_pcie *pci = &mp->pci;
- 	u32 val;
+ #define PCIE20_PARF_Q2A_FLUSH			0x1AC
+@@ -974,6 +965,7 @@ static int qcom_pcie_init_2_3_3(struct qcom_pcie *pcie)
+ 	struct qcom_pcie_resources_2_3_3 *res = &pcie->res.v2_3_3;
+ 	struct dw_pcie *pci = pcie->pci;
+ 	struct device *dev = pci->dev;
 +	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	int max_payload_size = meson_size_to_payload(mp, size);
- 
--	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
--	val &= ~PCIE_CAP_MAX_PAYLOAD_MASK;
--	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
-+	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-+	val &= ~PCI_EXP_DEVCTL_PAYLOAD;
-+	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
- 
--	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
-+	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
- 	val |= PCIE_CAP_MAX_PAYLOAD_SIZE(max_payload_size);
--	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
-+	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
- }
- 
- static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
- {
-+	struct dw_pcie *pci = &mp->pci;
+ 	int i, ret;
  	u32 val;
+ 
+@@ -1047,16 +1039,16 @@ static int qcom_pcie_init_2_3_3(struct qcom_pcie *pcie)
+ 		pcie->parf + PCIE20_PARF_SYS_CTRL);
+ 	writel(0, pcie->parf + PCIE20_PARF_Q2A_FLUSH);
+ 
+-	writel(CMD_BME_VAL, pci->dbi_base + PCIE20_COMMAND_STATUS);
++	writel(PCI_COMMAND_MASTER, pci->dbi_base + PCI_COMMAND);
+ 	writel(DBI_RO_WR_EN, pci->dbi_base + PCIE20_MISC_CONTROL_1_REG);
+-	writel(PCIE_CAP_LINK1_VAL, pci->dbi_base + PCIE20_CAP_LINK_1);
++	writel(PCIE_CAP_LINK1_VAL, pci->dbi_base + offset + PCI_EXP_SLTCAP);
+ 
+-	val = readl(pci->dbi_base + PCIE20_CAP_LINK_CAPABILITIES);
+-	val &= ~PCIE20_CAP_ACTIVE_STATE_LINK_PM_SUPPORT;
+-	writel(val, pci->dbi_base + PCIE20_CAP_LINK_CAPABILITIES);
++	val = readl(pci->dbi_base + offset + PCI_EXP_LNKCAP);
++	val &= ~PCI_EXP_LNKCAP_ASPMS;
++	writel(val, pci->dbi_base + offset + PCI_EXP_LNKCAP);
+ 
+-	writel(PCIE_CAP_CPL_TIMEOUT_DISABLE, pci->dbi_base +
+-		PCIE20_DEVICE_CONTROL2_STATUS2);
++	writel(PCI_EXP_DEVCTL2_COMP_TMOUT_DIS, pci->dbi_base + offset +
++		PCI_EXP_DEVCTL2);
+ 
+ 	return 0;
+ 
+@@ -1209,7 +1201,8 @@ static void qcom_pcie_post_deinit_2_7_0(struct qcom_pcie *pcie)
+ 
+ static int qcom_pcie_link_up(struct dw_pcie *pci)
+ {
+-	u16 val = readw(pci->dbi_base + PCIE20_CAP + PCI_EXP_LNKSTA);
 +	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	int max_rd_req_size = meson_size_to_payload(mp, size);
++	u16 val = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
  
--	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
--	val &= ~PCIE_CAP_MAX_READ_REQ_MASK;
--	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
-+	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-+	val &= ~PCI_EXP_DEVCTL_READRQ;
-+	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
- 
--	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
-+	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
- 	val |= PCIE_CAP_MAX_READ_REQ_SIZE(max_rd_req_size);
--	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
-+	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+ 	return !!(val & PCI_EXP_LNKSTA_DLLLA);
  }
- 
- static int meson_pcie_establish_link(struct meson_pcie *mp)
-@@ -466,7 +430,6 @@ static int meson_add_pcie_port(struct meson_pcie *mp,
- 	}
- 
- 	pp->ops = &meson_pcie_host_ops;
--	pci->dbi_base = mp->mem_res.elbi_base;
- 
- 	ret = dw_pcie_host_init(pp);
- 	if (ret) {
-diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index 2db6f52dfe81..b18a9a5f48d2 100644
---- a/drivers/pci/controller/dwc/pcie-designware.h
-+++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -36,6 +36,7 @@
- 
- #define PCIE_PORT_LINK_CONTROL		0x710
- #define PORT_LINK_DLL_LINK_EN		BIT(5)
-+#define PORT_LINK_FAST_LINK_MODE	BIT(7)
- #define PORT_LINK_MODE_MASK		GENMASK(21, 16)
- #define PORT_LINK_MODE(n)		FIELD_PREP(PORT_LINK_MODE_MASK, n)
- #define PORT_LINK_MODE_1_LANES		PORT_LINK_MODE(0x1)
 -- 
 2.25.1
 
