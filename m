@@ -2,75 +2,79 @@ Return-Path: <SRS0=/1bK=BN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1F95C43445
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CAAD0C43458
 	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:01:37 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BAA4822C9F
+	by mail.kernel.org (Postfix) with ESMTPS id BA71E22BED
 	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2020 21:01:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CVPi2dQU"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BAA4822C9F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BA/xCfuJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA71E22BED
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=hALB0b5YusCoXXaIa5zQqeko5e55PQtDuLjAReYFI04=; b=CVPi2dQU0i0hd5JgEp4hs8Pn+r
-	DhWtZenNoALWn+zvOuJYuKmVk2Bh8y1YnwOIrQtSjEmNucKQpocJ5LGlZE8EjekQ3Vz8sPXtvNOQh
-	uZqHpPdwJEVkHEqn9gxFSuoAUR9Noaty+ax+m8dOb3kqmpABtdl+aTVrU36xaKsU6QrA2TF+J0Ux3
-	UN+fpMgBUSXFLZh4lojLM6V4rIS6dNQNO5nDlPhGOmPHoO7w0zzYw2eHEVK480LXutgSjK2IqQ4VD
-	BxXTQGIfn7PN6hzARiyt2pTLTr07lbXmU/sNX/bTOz4QtEuPYEwqUYBSB3yxZ9IIknGgqvDmi6+qn
-	drHRcPNQ==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=wB4SJHMPo6wTUL3mHfo6FhvyqSKF8Npg3SRFKrK0GxY=; b=BA/xCfuJ68FA9i6piNybkwRlN
+	qh0ErbS98f+bBCteoy1dpbmSh+B79F+rarLfDjanKQy2oqie/tMuzY7gio4iRe6W3edQr47RSL2vU
+	I6Xdu2ilYZvT4z0OGU1ytS1dXh7zuANY7n3pfUVdi0oQLHzONfCmRp8uUE6ftsPjqVW3Op9MTXA2S
+	pbNNtrIVTUTe9rgEqK54RwbwRvnIzirp1/CIQh2zhYbiZcxE75cgSb30FVpcW5ZSKfSHS4l6Tnv2p
+	DzskBLvIir6hCWSVC0+tbhLISCTA2ZRoqhVFakuqvdX4kj2PysWrY6lctmT1tfPlvJoixwahv0I1Z
+	b1Zh3/1Mw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k2haF-0008MW-6f; Mon, 03 Aug 2020 21:01:23 +0000
-Received: from mail-io1-f53.google.com ([209.85.166.53])
+	id 1k2haH-0008N5-2X; Mon, 03 Aug 2020 21:01:25 +0000
+Received: from mail-io1-f65.google.com ([209.85.166.65])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k2haC-0008Lj-Ab; Mon, 03 Aug 2020 21:01:21 +0000
-Received: by mail-io1-f53.google.com with SMTP id l17so39997629iok.7;
- Mon, 03 Aug 2020 14:01:19 -0700 (PDT)
+ id 1k2haE-0008MC-Ho; Mon, 03 Aug 2020 21:01:23 +0000
+Received: by mail-io1-f65.google.com with SMTP id u126so2716341iod.12;
+ Mon, 03 Aug 2020 14:01:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=caU68Vks0Qq0qRNr1RcbbJo83bu5SQyVcphbC7uR/pw=;
- b=pKNryIduFtcz7qXkBQY5jxQtC/s73yD9v5o5rGvfvW8QcPpMNGONgbqN/JX56cJ9Yk
- fKA6Xqv9XpfATc/Z7xvKK5yAJvhPwBVziHijsTfB/R9f4Zk0tNdcoIOsWVlv4OLVMw/e
- QZxe4AoKkOr8FbUrObWO57IKqApVe0IDJRCbuhD0p6/yRgqjfO+q6ou3zF40M+CIrZHa
- pWnTcYA16dSSUfHCbqs1+A5xoeY3tqXNM42wGmhWurLnZkUIKnfMtKch5C5zXKQpkwYb
- 9axqib4uPm+kdBLbcTx20VZR6fUGnxeKIHQsrVCo3MbV3+W8MzAzjDDolT8JNFaNbQs2
- fr/A==
-X-Gm-Message-State: AOAM530kimZK2KwN8OgnVmx3MiRPVS0ovPKEmLxe7PKIuJs7b/DvftvC
- jL1Gs6ALRwE2bRt0+ciEPg==
-X-Google-Smtp-Source: ABdhPJwLvkQ8nLiW6KyvJ0FE/ZZBxba/47A0nMcMogCK9MlyD6FPHyseUZgrOPhESgV+UWpEU2XPBA==
-X-Received: by 2002:a5d:9b96:: with SMTP id r22mr1872679iom.66.1596488479389; 
- Mon, 03 Aug 2020 14:01:19 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=bKskqR1BQLcQkRJa4jVCjBb26v/8ydnan9t1CfXlQP0=;
+ b=pleApfyELme+4uIBO42PoDZssFVjl3PHLZbLlp9zNyKm1wEXt+6dIY2dQjl7EZ13qf
+ v2wXqtW3ng5WGzDiCe5AtJP35mAaJNgxb9d9GeJOaHXpO1uxDQy1p7geCt/Le/3kRNO4
+ H7k9/3jB4BjfHcN08SEHDYPnYnkIeGTl1l46zg0aVG9d0ca0S6AeJxTstuGN8goXKg4K
+ jvK1UJddl4VAp+nVWUZUm/M+GyNDprocKpf86WCGKu++QGZXOgLAOMrJy6MRYvCI9R/Q
+ wSk812M4BdhfOQsesnLn0GU+KWmqoH9iXiFAfqR+zYrJor5VWhqysp8y9J+5JwqhVv46
+ lQIQ==
+X-Gm-Message-State: AOAM530+aIm7YiQen5zjEgxv/d94FwKw4g8MwkcjfO8dNeX9V4pQGIXr
+ fLL4GselcZUwTX8WQw92Jg==
+X-Google-Smtp-Source: ABdhPJy4qG4p8bfrwbYSt3lvEPjhQpXlxLgUy+tuEvf+7Lf39Luq/OZA9TVNwuc57X3DpMVIygnSPw==
+X-Received: by 2002:a05:6638:2601:: with SMTP id
+ m1mr1810484jat.141.1596488481653; 
+ Mon, 03 Aug 2020 14:01:21 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.252])
- by smtp.googlemail.com with ESMTPSA id r6sm9292280iod.7.2020.08.03.14.01.17
+ by smtp.googlemail.com with ESMTPSA id r6sm9292280iod.7.2020.08.03.14.01.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Aug 2020 14:01:18 -0700 (PDT)
+ Mon, 03 Aug 2020 14:01:21 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
  Jingoo Han <jingoohan1@gmail.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [RFC 00/27] PCI: dwc: Driver clean-ups
-Date: Mon,  3 Aug 2020 15:00:49 -0600
-Message-Id: <20200803210116.3132633-1-robh@kernel.org>
+Subject: [RFC 01/27] PCI: Allow root and child buses to have different pci_ops
+Date: Mon,  3 Aug 2020 15:00:50 -0600
+Message-Id: <20200803210116.3132633-2-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200803210116.3132633-1-robh@kernel.org>
+References: <20200803210116.3132633-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200803_170120_406368_8BE743A0 
-X-CRM114-Status: GOOD (  12.44  )
+X-CRM114-CacheID: sfid-20200803_170122_650540_030A4781 
+X-CRM114-Status: GOOD (  16.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,70 +109,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is a series of clean-ups for the Designware PCI driver. The series
-primarily reworks the config space accessors to use the existing pci_ops
-struct and removes various private data that's also present in the
-pci_host_bridge struct. There's also some duplicated common (PCI and
-DWC) register defines which I converted to use the common defines.
+PCI host bridges often have different ways to access the root and child
+bus config spaces. The host bridge drivers have invented their own
+abstractions to handle this. Let's support having different root and
+child bus pci_ops so these per driver abstractions can be removed.
 
-This is compile tested only as I don't have any DWC based h/w, so any
-testing would be helpful. This is an RFC as it will need to be rebased
-on 5.9-rc1 and my previous clean-up series.
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ drivers/pci/probe.c | 8 +++++++-
+ include/linux/pci.h | 1 +
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
-Rob
-
-
-Rob Herring (27):
-  PCI: Allow root and child buses to have different pci_ops
-  PCI: dwc: Use DBI accessors instead of own config accessors
-  PCI: dwc: Allow overriding bridge pci_ops
-  PCI: dwc: Add a default pci_ops.map_bus for root port
-  PCI: dwc: al: Use pci_ops for child config space accessors
-  PCI: dwc: keystone: Use pci_ops for config space accessors
-  PCI: dwc: tegra: Use pci_ops for root config space accessors
-  PCI: dwc: meson: Use pci_ops for root config space accessors
-  PCI: dwc: kirin: Use pci_ops for root config space accessors
-  PCI: dwc: exynos: Use pci_ops for root config space accessors
-  PCI: dwc: histb: Use pci_ops for root config space accessors
-  PCI: dwc: Remove dwc specific config accessor ops
-  PCI: dwc: Use generic config accessors
-  PCI: Also call .add_bus() callback for root bus
-  PCI: dwc: keystone: Convert .scan_bus() callback to use add_bus
-  PCI: dwc: Convert to use pci_host_probe()
-  PCI: dwc: Remove root_bus pointer
-  PCI: dwc: Remove storing of PCI resources
-  PCI: dwc: Simplify config space handling
-  PCI: dwc/keystone: Drop duplicated 'num-viewport'
-  PCI: dwc: Check CONFIG_PCI_MSI inside dw_pcie_msi_init()
-  PCI: dwc/imx6: Remove duplicate define PCIE_LINK_WIDTH_SPEED_CONTROL
-  PCI: dwc/meson: Drop unnecessary RC config space initialization
-  PCI: dwc/meson: Rework PCI config and DW port logic register accesses
-  PCI: dwc/qcom: Use common PCI register definitions
-  PCI: dwc: Remove hardcoded PCI_CAP_ID_EXP offset
-  PCI: dwc/tegra: Use common Designware port logic register definitions
-
- drivers/pci/controller/dwc/pci-dra7xx.c       |   4 +-
- drivers/pci/controller/dwc/pci-exynos.c       |  45 +--
- drivers/pci/controller/dwc/pci-imx6.c         |   6 +-
- drivers/pci/controller/dwc/pci-keystone.c     |  90 +++--
- drivers/pci/controller/dwc/pci-meson.c        | 164 +++------
- drivers/pci/controller/dwc/pcie-al.c          |  70 +---
- drivers/pci/controller/dwc/pcie-artpec6.c     |  11 +-
- .../pci/controller/dwc/pcie-designware-host.c | 319 ++++++------------
- .../pci/controller/dwc/pcie-designware-plat.c |   4 +-
- drivers/pci/controller/dwc/pcie-designware.h  |  28 +-
- drivers/pci/controller/dwc/pcie-histb.c       |  45 +--
- drivers/pci/controller/dwc/pcie-kirin.c       |  43 +--
- drivers/pci/controller/dwc/pcie-qcom.c        |  31 +-
- drivers/pci/controller/dwc/pcie-spear13xx.c   |   4 +-
- drivers/pci/controller/dwc/pcie-tegra194.c    |  90 +++--
- drivers/pci/controller/dwc/pcie-uniphier.c    |   3 +-
- drivers/pci/probe.c                           |  14 +-
- include/linux/pci.h                           |   1 +
- 18 files changed, 368 insertions(+), 604 deletions(-)
-
---
+diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+index 2f66988cea25..8712e595174d 100644
+--- a/drivers/pci/probe.c
++++ b/drivers/pci/probe.c
+@@ -1030,6 +1030,7 @@ static struct pci_bus *pci_alloc_child_bus(struct pci_bus *parent,
+ 					   struct pci_dev *bridge, int busnr)
+ {
+ 	struct pci_bus *child;
++	struct pci_host_bridge *host;
+ 	int i;
+ 	int ret;
+ 
+@@ -1039,11 +1040,16 @@ static struct pci_bus *pci_alloc_child_bus(struct pci_bus *parent,
+ 		return NULL;
+ 
+ 	child->parent = parent;
+-	child->ops = parent->ops;
+ 	child->msi = parent->msi;
+ 	child->sysdata = parent->sysdata;
+ 	child->bus_flags = parent->bus_flags;
+ 
++	host = pci_find_host_bridge(parent);
++	if (host->child_ops)
++		child->ops = host->child_ops;
++	else
++		child->ops = parent->ops;
++
+ 	/*
+ 	 * Initialize some portions of the bus device, but don't register
+ 	 * it now as the parent is not properly set up yet.
+diff --git a/include/linux/pci.h b/include/linux/pci.h
+index c79d83304e52..cec789a0437e 100644
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -516,6 +516,7 @@ struct pci_host_bridge {
+ 	struct device	dev;
+ 	struct pci_bus	*bus;		/* Root bus */
+ 	struct pci_ops	*ops;
++	struct pci_ops	*child_ops;
+ 	void		*sysdata;
+ 	int		busnr;
+ 	struct list_head windows;	/* resource_entry */
+-- 
 2.25.1
+
 
 _______________________________________________
 linux-amlogic mailing list
