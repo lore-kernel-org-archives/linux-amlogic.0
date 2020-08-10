@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B31BC433E1
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CB4AC433E3
 	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Aug 2020 22:18:15 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C3D35206E9
+	by mail.kernel.org (Postfix) with ESMTPS id C65EB2073E
 	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Aug 2020 22:18:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ba6ObD1c";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Q7MSp+6Z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C3D35206E9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="huDIrMWp";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gpgI9nME"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C65EB2073E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=SYxA+4G+k80cDJPvVbPIZyfLIE6tz5frKEz36yuRYY4=; b=Ba6ObD1cz3ZPMJm/7sxEWZRBi
-	lG3Ig/XMwnkQ9ONfveZuddpz19JokKzFtfQ1sTp7UQSdHfrrWpWrDscFvIrhuDMy60BcK/JJVsur6
-	Gl+6wu3UE4+8ryqTRn7ixKgsNqFsLnod11cs/5bA+m56vji+AixYxpPNWvn9J0s3+cxVzYFIUccw0
-	63eIQJpyE82lnIfeMW7zekQSxPN8IFCs06jYb/3rXhleRG/YhgOQ05XElOnFChwNLkmn1B1issHYY
-	zFBGpWe2m6Aw9kGw/pQgx2yvsQjfPmf3VKsuoqayvxi26rZSg6Dd8IrnLcvmrodQXePJOz+bKL+FB
-	dsu9+yjCw==;
+	 bh=PH/P4X9GbK4js4aQXPoJRK4sKIxDSPGyWmjG2oo6x8U=; b=huDIrMWpTYx07wT+Q1D1P//VS
+	JZM2BKvQt8UoWkNTemJ3pTymeIHybNV/3oHf89QqRRNNepiqZVcfbjJeN4o1Sfway2Pg2OOV+ShNT
+	nV3uwiVG81YC0yKeATMGO5eI6DEip2BBkcfqpNo5u5GWGJBB+DkpYOxznS6qOo/A2rNDlD3ANJFYU
+	Vo6A1DqSjA2vTamlJJ4Yi9mgxeIYkNxrnVSDlatj9eOt5AEzZt15B1+h/vH0hgnurPimqIj2+PC2Q
+	h1RC15d12s/uauq9POYx1MMjgsp27IAoMHf/jqFe1fWG7NcHkCgbw8L3cD1W0LB/MFvFeUp6TVSph
+	vlJlwTJtQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k5G7M-0001KQ-6d; Mon, 10 Aug 2020 22:18:08 +0000
-Received: from mail-pj1-x1041.google.com ([2607:f8b0:4864:20::1041])
+	id 1k5G7O-0001L3-3Q; Mon, 10 Aug 2020 22:18:10 +0000
+Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k5G7J-0001Ir-75
- for linux-amlogic@lists.infradead.org; Mon, 10 Aug 2020 22:18:06 +0000
-Received: by mail-pj1-x1041.google.com with SMTP id ha11so819068pjb.1
- for <linux-amlogic@lists.infradead.org>; Mon, 10 Aug 2020 15:18:03 -0700 (PDT)
+ id 1k5G7K-0001J4-CV
+ for linux-amlogic@lists.infradead.org; Mon, 10 Aug 2020 22:18:07 +0000
+Received: by mail-pf1-x430.google.com with SMTP id d22so6508588pfn.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 10 Aug 2020 15:18:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=vBIQCcYBYKE0CK0O3JpZQF/aDW336DAnKM6R6BbGj7s=;
- b=Q7MSp+6ZeJHNiLkPjUGr27POOQJapymBm+bWfnrg7JjPU2IOhuG0rjzJcgwrsnCZf3
- o7kRE3EtutAIoom++pDXYgEYbAVTHvEyyn5iZE0qpifrLum2nytjCPfGafkpr4PbKYMQ
- ET/ILf4IJcGITVrOeX/FDpL5yRVQ+q5n3YBHvwSoeWBVXyspmmizhpw0BIg6Kbr244es
- 4L9fzG2DiJaVNQcS42UsP7ZFm3meuelftPbhw8Fk1HkxIXdGcU4Fx+mwaX/OhMdxoK8s
- 0QgsZI3jOolUvzXWqpQLFXcMDDAVnfWs9LWtuagyzEL3NqIv6VFeEQhjR7ZjuUDMEFVn
- VRdA==
+ bh=JTpNTLZEF1YuYGMjvco22c5p9oj/9YQ3/7+kfvmutjo=;
+ b=gpgI9nME6ebeu07iGuAbt98CnW9J3B4iRK7Mj6+5t3/n4TRwduP2BFOEfbdabewJrv
+ vFBtqSEG773dbf0Im8KIRLjn6bFhIfdRl4kJ1bC9rY4hXRNtMZ8Qmg2/zDkoJ2RloT0q
+ WnuqhWpQDC66pBsO/t9ub9tZKMDxZHCfepGlgybh7SePt1dPo/W5qGny9DAfblLjQF3N
+ 8htKX3/bP4ITeARNNi1SLNkujUvPMwVl631hDidyijKdWZ/INg/Ziks+zb+skyeZKRtT
+ 5U4FS0vb3o0T0ofCRgQABAxOPKXhLud3HhuBnyYVVFnkfqx+UJmX0Y+mk6cSbV22wcy6
+ guGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=vBIQCcYBYKE0CK0O3JpZQF/aDW336DAnKM6R6BbGj7s=;
- b=cYz+aaq0K0sCBdTrg2fxYDNcuQxfiX+lIXNWzixBBW7WJZ9z6DdZ0Q1uignPQk0qUH
- 8VacpPzwISdOPXDxd3Yb79j/OlzHywG0xRo6AArN3tdWawjMC1dRuk+nsXSKjauYUSGO
- j/6IzMJlNTRtAD5cvQg2wJVOL3OGCCOrrSahyPy2fJuwr5KOgyeyllJX2vrJXua5lrLJ
- unAl4VlhtcJZwpWLdsHxtEAJ0W+ZjtQUAtwJBoqjdI4x8CQqdNvTF8GgLb2n/T+5jHve
- /+iHhsR00TpLGycux7UNvO7iRZvKbLOJ7u84E+AIlDR73fXt1sqlr10CrLWj9tgpXbJZ
- HVQw==
-X-Gm-Message-State: AOAM530/4OQ7oSTEdtbLhIB0DVcf7cYtAfkMOA+S5vH4k9tL+XAZrN6w
- QDnyoVyEqWKOQW8uamXeNWcMQQ==
-X-Google-Smtp-Source: ABdhPJwsV7V0NSLQKQ7xjhZ4JJpUKz4dZj+ie2tUgdeIEyL7BWjueK/+zdWZ27iCa1NMdqyQ4rhkcQ==
-X-Received: by 2002:a17:902:ac82:: with SMTP id
- h2mr26126281plr.300.1597097881464; 
- Mon, 10 Aug 2020 15:18:01 -0700 (PDT)
+ bh=JTpNTLZEF1YuYGMjvco22c5p9oj/9YQ3/7+kfvmutjo=;
+ b=DPlWnPClOJECFutW62dlsLWc6O6x+kyoYzINs4z/JHYX4N2QN8YNXUbuTg2wP2D6iS
+ 6HwNaCYvLrIv5ldS2G21at/JX5NLcgIF0PRiufjs4lwE/JLqvPtdB0zPUMDeg2ZoZKMw
+ 0MIOw7+jrp3IsxUqTZR8RcbVP8drfbjHK/YjgXGylbUOcNmOb9zDu6osot8v2SqzVKTE
+ 52HzdSaFFkEy25tgNRbeYTI7zmeyW6dGJ/8CbhJyH7Dma0t7+DTimGwAq5rNpPaQRWDf
+ cGyvYKDcOu4a+aCHcTgzHsnwiFMfENR/OQP/pc/fMSD84WQwxf8mu9AdN0f9iKh9pAj1
+ B+RQ==
+X-Gm-Message-State: AOAM530++KZTVZY8Gf9wTrpcbZO3JTJOy/7p2UKheULMIHJtjzdw5IDI
+ XwZWOKiJ/qHr8mCyXh0PUxBzTw==
+X-Google-Smtp-Source: ABdhPJxBm7Zw256hy2vVGlHoSSzO0FkytWwFgr+sWfiGGyL+LjW9MEiZs0vZqABHDrIEDhVlZO9Jcg==
+X-Received: by 2002:a63:485f:: with SMTP id x31mr23694566pgk.49.1597097882636; 
+ Mon, 10 Aug 2020 15:18:02 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id 63sm22311820pfu.196.2020.08.10.15.18.00
+ by smtp.gmail.com with ESMTPSA id l63sm19147230pgl.24.2020.08.10.15.18.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 10 Aug 2020 15:18:00 -0700 (PDT)
+ Mon, 10 Aug 2020 15:18:02 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH 0/2] arm64: dts: meson: odroid-n2: update sound card
-Date: Mon, 10 Aug 2020 15:17:58 -0700
-Message-Id: <159709786936.10576.16096406991867503196.b4-ty@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: meson: vim3: correct led polarity
+Date: Mon, 10 Aug 2020 15:17:59 -0700
+Message-Id: <159709786936.10576.18026946638295707275.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200701094556.194498-1-jbrunet@baylibre.com>
-References: <20200701094556.194498-1-jbrunet@baylibre.com>
+In-Reply-To: <20200803141850.172704-1-jbrunet@baylibre.com>
+References: <20200803141850.172704-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200810_181805_264953_F7FC1D37 
-X-CRM114-Status: GOOD (  11.14  )
+X-CRM114-CacheID: sfid-20200810_181806_515954_BFE3433E 
+X-CRM114-Status: UNSURE (   9.44  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,21 +104,12 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 1 Jul 2020 11:45:54 +0200, Jerome Brunet wrote:
-> This patchset adds the support for the TDM loopback and audio on the jack
-> output using the internal codec.
-> 
-> Jerome Brunet (2):
->   arm64: dts: meson: odroid-n2: enable audio loopback
->   arm64: dts: meson: odroid-n2: add jack audio output support
-> 
-> [...]
+On Mon, 3 Aug 2020 16:18:50 +0200, Jerome Brunet wrote:
+> The LEDs on the vim3 are active when the gpio is high, not low.
 
 Applied, thanks!
 
-[1/2] arm64: dts: meson: odroid-n2: enable audio loopback
-      (no commit info)
-[2/2] arm64: dts: meson: odroid-n2: add jack audio output support
+[1/1] arm64: dts: meson: vim3: correct led polarity
       (no commit info)
 
 Best regards,
