@@ -2,83 +2,90 @@ Return-Path: <SRS0=38m5=BZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B4888C433DF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Aug 2020 09:00:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98544C433DF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Aug 2020 18:14:39 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7210C22D08
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Aug 2020 09:00:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 624AA23B6F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Aug 2020 18:14:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Na5e6vGO";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="i2sick42"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7210C22D08
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GRZjH28j";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Gdr6dMre"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 624AA23B6F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=pk52L/6s7JuvWLa+RIN5XM1bwg03YGDkMHhHQfeREJU=; b=Na5e6vGOfvWaF6K1+QK+mHFFF
-	tf2FOeCpPr8HZnm5tDQMDGK4itEnWPh847Z4QyLXZrdR+S2V6UrLh33FimXkaG5u4B5SY5DeaP7EP
-	ij52DHzkmZosI3Ph/8nEgLsMNLW+Oo9zw3YcGCCCxekSzqzQ9upZ6b9QHHTr9JCtjxbYYVviza3Kv
-	habyiEK7V2NWY84KDqm0jqWAI88IvZQPBTrSp7YubJS3G3TxSzAn/ydVbdAGjkmYLFZJgJCOpSntg
-	l9J8nQw/jRbpisLv//Jma9rUnDO1rTYrj+cgYEjh3IDxGsHx9yNY9mENvuot1SudN6RPxZIAyBqRC
-	2Dm7kOjKQ==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=mbN4Sk4eFMOPSgaqZjocl8fQUYGgE5zUyUQJy/O4aOo=; b=GRZjH28jj90M/MKVR4v3azNBx2
+	ZkJUXMesU1v8wOdYAh9TvJEtlEtvrGxizcqeWBGbiYHNZiJuV1DkmZVSX4s75QRdF7VSQOj6wiGos
+	Y+pfyX11IStpe0crdJP4rA8phoaUSKfVXCoYwv83R0WTr1ZFreUROLHKftTdvs6X+zPixRp9ZE36x
+	cIrZkCjSxemvngCA3NRXBHmE1f6oLkScTn7omIqLMwjO3G+7wrf/u9ddIOiBV641sX+ve+/tlNQ/N
+	m8gZGpceJXDrpC63JEPCPCI1Y2bYfUajq3qG9LAanX3YkAB4/Em0+4OZPWHWF261IM2wCNDTBAf3q
+	sQjo3S/g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k6s2y-0004Nn-Iu; Sat, 15 Aug 2020 09:00:16 +0000
-Received: from mail-ej1-x644.google.com ([2a00:1450:4864:20::644])
+	id 1k70hB-00057A-Mn; Sat, 15 Aug 2020 18:14:21 +0000
+Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k6s2w-0004NM-GV
- for linux-amlogic@lists.infradead.org; Sat, 15 Aug 2020 09:00:15 +0000
-Received: by mail-ej1-x644.google.com with SMTP id f24so12355614ejx.6
- for <linux-amlogic@lists.infradead.org>; Sat, 15 Aug 2020 02:00:10 -0700 (PDT)
+ id 1k70h9-00056k-M5; Sat, 15 Aug 2020 18:14:20 +0000
+Received: by mail-ed1-x544.google.com with SMTP id bs17so9201330edb.1;
+ Sat, 15 Aug 2020 11:14:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Qpm5gX5nuo7Aaqi4F3czpr69l0G//Vv2ZVAKhvtEPUA=;
- b=i2sick42PS2LD3k6tAI/LO118YCiYpKlX4JzuIlrD31uQZuZS0BESSv/+MQcqrth5S
- hQIeEc34Brdxp/M1LmL3O4pkV/yVZkLabPcX4SEe2PFyIhoC5YSOBU7UtVYpL7CC7bT4
- JJORcJwQpyIxcR7RGSN/0DBKde0+O3mOrEmjWa0w/RQLlmK+wVP86F9XueJctEo49Qny
- 91Ns2xrazz9gbKDdJPlqDOwSYj0eAssEyz857V8sDAF+ViqBNT+wm95JY5CZnHmMEwA2
- kUBE1x34AszHnjBM6UpGntA2+OjE2T6GOhaNaKBs4oMl9rdnXN2zmhHk7NXw/ba0oxrD
- luBQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=uINicZ+DHLLF2gMCG0S676L3/FxAXJzjhmV0ZOtqSWw=;
+ b=Gdr6dMreL94m8umOuQw9Gnk6ALyI4bOz2J1jkX35OCYz3vZKzzenUPY7Ou4pt7B8ef
+ YJsst3uPEBlvpkwDPyewbZgJgOjgiNwSsczgytdaT+7aoMkT41HAqp+y/SVjxqTuRE0K
+ w2TcKieWe9IP4o56pK8MOrDoPjfJdTjQtaivDkmWUJGgNvm0ieiOkqHu6StyMDfph4qN
+ xpF8wCfpRrbEf5ADtrMk6uvpQsPpO2jlcaUdvc4fRSxf2A3KkfZICjMcQYaL5SYfqSsq
+ ZDtY2tMvamx8CHjoldemO2Qx+I3oPj8zYp0ulm/kGNiz+45hySJIQTTeji3rPUIAUdo/
+ r05A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Qpm5gX5nuo7Aaqi4F3czpr69l0G//Vv2ZVAKhvtEPUA=;
- b=OvqN0tFs5QMrhA+0iRT+F6ApyEJxRdZCuUK9z7XZf7TChc0d/VIOE4oCT0F4U+LZE5
- /D1F5X31vDnZ08Oc3h2QpVchPKOP2Koq5GuWlIWaFKkhXo+V5UG7b4wqcWqoIJlBn9PB
- ZPsXSUJhl0S4ffFnL7/YXmab258BXWMKp+B3ASCeV7zhQxobKLRDP6KuylQwqXMLTrty
- SVTnCdWFFGzd/Q3dGrc4VPPvk38Qb2dRyEd6pnru/RHtlhoxI/dfjHkhdv+m3vY9izh1
- w09j7VsU1KUlsV5wLXKeR64W1UqZU/KLds/AXLW6vlP4hqLMXR4ZqjUVuP18MFC7z50D
- njCA==
-X-Gm-Message-State: AOAM5338yZ0vTB0Rwcx2fA5BCSUdisHEkgNkwjvjPEhwLNNdFN6V5rVi
- vSHagVIayBaZQTjtp+fqljM/upLnels41JpuoRE=
-X-Google-Smtp-Source: ABdhPJzTylVvNkBZFToVWw0tjL11SsynpW9sQy690Vi+S5grRe6WbYCE6xPJpH4obOwFIJY0JQ3Su5cQ7Figbu+Pwi8=
-X-Received: by 2002:a17:906:cb91:: with SMTP id
- mf17mr6057916ejb.527.1597482009490; 
- Sat, 15 Aug 2020 02:00:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAPpJ_efVhfH-aq2NcDmK61vn7+mM_wy+nisuMg9AZhHEr=hu7A@mail.gmail.com>
-In-Reply-To: <CAPpJ_efVhfH-aq2NcDmK61vn7+mM_wy+nisuMg9AZhHEr=hu7A@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=uINicZ+DHLLF2gMCG0S676L3/FxAXJzjhmV0ZOtqSWw=;
+ b=O3D2I0Idhs3qfhRNmPVT1c16lhVnyjblVopoDdZBbUS1RAVS5Zrkz64jXOcd7JZE05
+ Nz5XDCT96iP5kNdu5wp4h9SEk6/NIfetXk37tiyjgBk4uBSoK3/WBp2bioKuIEW3r5B7
+ 5wE4DJ4VQEfwT8MUOm8LiiRzVCHKOMxCh8zO6vODmGTp4NfG9Ou4YCfEdH8p3S+C4Zfq
+ /snNPX66N2H56HOonzP6smw3OkJBOOb/V+7rMYlPPXxjxv4HAftBDaT3tytCTk3ujnIW
+ IG4BA4v9oaobIwr/ltiJtfItvSyGw6iZvZi2TmZ/tCxnXHYQbIuKK2I1HC53X23UylhH
+ USCQ==
+X-Gm-Message-State: AOAM533G99uECqsurTwhgSl9tya4SlxMEOOValdMklXsAXu6lvQH/P8I
+ d1CFFuZpQPZTyqGkU8rfmYQ=
+X-Google-Smtp-Source: ABdhPJwUM4wX2FiiLD7s/Ocw/648bw8oWRk3tLISpQebRyQQAOcj3KJ3d7OnMxtmXJxUG4ZpOd+/8w==
+X-Received: by 2002:aa7:de13:: with SMTP id h19mr7587769edv.322.1597515257318; 
+ Sat, 15 Aug 2020 11:14:17 -0700 (PDT)
+Received: from localhost.localdomain
+ (p200300f1371a97000000000000000fcc.dip0.t-ipconnect.de.
+ [2003:f1:371a:9700::fcc])
+ by smtp.googlemail.com with ESMTPSA id u13sm10353549eje.9.2020.08.15.11.14.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 15 Aug 2020 11:14:16 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 15 Aug 2020 10:59:58 +0200
-Message-ID: <CAFBinCCxXd_9EL-P-aHiX+nVVkgeK7X6jOitsPWgRN6PjUUH1A@mail.gmail.com>
-Subject: Re: [QUESTION] drm/meson: Hardware cursor plane for Amlogic/meson
-To: Jian-Hong Pan <jian-hong@endlessm.com>
+To: jic23@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Subject: [PATCH for-5.9] iio: adc: meson-saradc: Use the parent device to look
+ up the calib data
+Date: Sat, 15 Aug 2020 20:13:55 +0200
+Message-Id: <20200815181355.407034-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200815_050014_618580_A7D05E23 
-X-CRM114-Status: GOOD (  10.98  )
+X-CRM114-CacheID: sfid-20200815_141420_048727_34B025B9 
+X-CRM114-Status: GOOD (  16.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,33 +97,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org,
- Linux Upstreaming Team <linux@endlessm.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ knaack.h@gmx.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Jian-Hong Pan,
+On the older-gen 32-bit SoCs the meson-saradc driver is used to read the
+SoC temperature. This requires reading calibration data from the eFuse.
 
-On Wed, Aug 5, 2020 at 9:54 AM Jian-Hong Pan <jian-hong@endlessm.com> wrote:
-[...]
-> We also learned there is the hardware cursor plane supported by
-> Amlogic chips from the slide "Mainline Linux on AmLogic SoCs" [3]. Is
-> it possible to have the hardware cursor available over the drm
-> interface?
-as far as I understand it is technically possible but currently not implemented.
-We have a specific TODO item for this, see [0]
+Looking up the calibration data nvmem-cell requires the OF device_node
+pointer to be available in the struct device which is passed to
+devm_nvmem_cell_get(). This however got lost with commit 8cb631ccbb1952
+("iio: Remove superfluous of_node assignments") from indio_dev->dev. As
+devm_nvmem_cell_get() is called in the initialization phase the
+device_node is not yet available because the NVMEM cell is looked up
+before iio_device_register() is called (which would then set the
+device_node automatically).
+Use the parent device to look up the NVMEM cell instead to fix this
+issue.
 
-also I'm not sure if this is trivial to implement and whether there
-are any plans to do so
+Fixes: 8cb631ccbb1952 ("iio: Remove superfluous of_node assignments")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/iio/adc/meson_saradc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index 93c2252c0b89..1a9189ba69ae 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -707,7 +707,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
+ 	size_t read_len;
+ 	int ret;
+ 
+-	temperature_calib = devm_nvmem_cell_get(&indio_dev->dev,
++	temperature_calib = devm_nvmem_cell_get(indio_dev->dev.parent,
+ 						"temperature_calib");
+ 	if (IS_ERR(temperature_calib)) {
+ 		ret = PTR_ERR(temperature_calib);
+-- 
+2.28.0
 
-Best regards,
-Martin
-
-
-[0] http://linux-meson.com/doku.php#todo
 
 _______________________________________________
 linux-amlogic mailing list
