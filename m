@@ -2,88 +2,61 @@ Return-Path: <SRS0=3lRj=B3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DD420C433E1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Aug 2020 10:22:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5BC6C433DF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Aug 2020 17:49:05 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A77CE2078E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Aug 2020 10:22:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 75E5D2067C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Aug 2020 17:49:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pO/tAfRO";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pN1BhJbk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A77CE2078E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rB/+rYTR";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="G3L4mDSc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 75E5D2067C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:Message-Id:From:
+	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=tc/qLazAd04WdZKi3QrJELYwj0v8yERMJlFGu20Xk8E=; b=pO/tAfRO/+wmmDLQANRjAG+ES
-	m2GwVlUFmf/wXZOEIfu/QaTggSuLt/3/zC0WOPrYnEGA97vXy2M4o4LXxUuS9qffvVTwAmExTTr1E
-	3VqiZFCmJqvSzHATZTjRf+A7rHUylzc9Rhu5TanvPGN12SDb5e+3fMxTda4ZdlW5QVU7Hp+hnG11F
-	g7A6IussZTiIFgnjOpbt+x8KNzx2CaWfjdGwYB97O4XWGGRdimB8EL7xavCo/C6DxjzuPD6OWNFeU
-	IWlzpEOSPGcZg6Hew8SsRxJKZz+f2okUURWlu1xF4o7KKaE9nRRBOpD0Oyw9I43jClBJpj7yRgcVI
-	55m2LYYrg==;
+	 bh=Bpb2SU0H8ZTmYhCazkXWGBJdfiI9qoUPqzPURFhTsV8=; b=rB/+rYTRW0GkGSDRbSDOB7DTd
+	ui6czJT2FlSZp7BNZgODddMvgEIiY9VpY+vIXUc8b6qCmD1XzDE7Cp5gGkWPrGat2vUa2T852q97E
+	JTwDH3RgnKT0Z3cEErGymr/TJkEajeMakeEJ/Ebc4Dg4x5m2xTU5KXT7iSx8Ld35qlL606zzBdaFT
+	LMWu07qhFyj1EPJAmmVMt08HTouGBM3b9Gyr0r0HkgwXWNDrPMKWBuGy7gNVJC40ua6mEIR3HiG78
+	UBcybiobHdNKVxIujSo0XwrRVD0oeJsCv0PsA7kIgGfrddT2FIY7ToSCuBIAGKDohKHioHEiM2a6T
+	9frTBNyWA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k7cHD-0004Fy-11; Mon, 17 Aug 2020 10:22:03 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1k7jFh-000227-WC; Mon, 17 Aug 2020 17:48:58 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k7cGx-00044H-Fl; Mon, 17 Aug 2020 10:21:48 +0000
-Received: by mail-pg1-x543.google.com with SMTP id o13so7916160pgf.0;
- Mon, 17 Aug 2020 03:21:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Lty6facXqNiOm5uMHf69/sWVwYZMbpQy+5RWM2GRtIg=;
- b=pN1BhJbko63bRfN8Sp914IbopiUiqNfP1BodnjxKtgh42cd6Jc/A5kf+Ufy0DoSrSS
- QOur7EcqvNqO2Wxv/J6GcMUy5L3ZyWFkmrWeeEnAK0LT3+9ALAI01Uuzvz9NMTZehZ2s
- zBTwUWg+XxKctwLb6qIlXcFRqQJJ+YXbnP6fqXH2ONOTqS9dXRLmMqarNgJXjKc0SvRl
- awxc1ZCw5AvuYPpNNhy0Tp6OXNarmSN77P9Z3Bz6e7P7YHSw46vTDRsq5UnPaoYb6cC1
- a3Ta1okPIBj1WlczEqBJMomIM6Kpiwk+qxKDy3sOF9PsQV61RPzQtzCTLDZ5PnP2klPM
- wnVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Lty6facXqNiOm5uMHf69/sWVwYZMbpQy+5RWM2GRtIg=;
- b=bYuNimA8vmiwUqsAc8jC9e2o7PRUoHwiB7fI+9mtytJOueWx3O26hJz8H0OjgOZAON
- zaaWzYyeufpVHuPGOR00ZpIdQdXThEOy8qOXFSW81ZQaAHY4zapp9OovHrzcLKCoVBNs
- 1dLuXYqGUOGNRPCoJhX2OexfhdKp1fCpZwwqJzasdy1dhSntko3N+A1w5jWGeg7rskoO
- kqXYKKvsCBMSyH8JOZM+zW+NqpJJkwx9pBFznj58UPlhGiliQGXPdGQcygtISbOf1a8J
- j1u3yGKZGNol1TAc8oTL+Q8Aflkcu6sIw51GSXRHLCs34GX7B/Yekd14o9W9+bPSWPMQ
- IUeA==
-X-Gm-Message-State: AOAM533Z/KAQIbZ4MNrD9fpUjXRDAnMSgxySCRU4aXHjiyHJHh+6qUE2
- jRwF9+jvNmeAWPHNt33Fwlw=
-X-Google-Smtp-Source: ABdhPJylJwiE+zRYuMkQNccV7+uAK/8roRhHGyenffyM530Ozi5JeiojHOGJNXKpQacb+PD6qixZxg==
-X-Received: by 2002:a65:40c1:: with SMTP id u1mr9110103pgp.379.1597659705173; 
- Mon, 17 Aug 2020 03:21:45 -0700 (PDT)
-Received: from localhost.localdomain ([45.114.62.137])
- by smtp.gmail.com with ESMTPSA id l67sm16773206pga.41.2020.08.17.03.21.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 17 Aug 2020 03:21:44 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 3/3] arm64: defconfig: Enable RTC devices for Amlogic boards
-Date: Mon, 17 Aug 2020 10:21:22 +0000
-Message-Id: <20200817102122.434-4-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200817102122.434-1-linux.amoon@gmail.com>
-References: <20200817102122.434-1-linux.amoon@gmail.com>
+ id 1k7jFc-0001xS-Ts
+ for linux-amlogic@lists.infradead.org; Mon, 17 Aug 2020 17:48:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1597686531;
+ bh=Q/9B7fPWXb3FWe9WzMQUhBeB6Hw49K0R5QkHETETqgc=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:Cc:From;
+ b=G3L4mDScTnYqay/9NLqTVX+aac0MyK+SsR6yaOcOdh+L7LWysoPkoSuDpxO6dh+3u
+ 5EsV9Qnsbx8AuKU5KBZGP3ANX1LnaMgUyYfa8iXZx+2eLZtq5LkhptDM5KLpmikLn3
+ Ue0Ssswrg4AZZaCywci7M2NgHR4zURZd0fLqY2JM=
 MIME-Version: 1.0
+Subject: Re: [PATCH 0/1] usb: dwc3: meson-g12a: fix shared reset control use
+From: patchwork-bot+linux-amlogic@kernel.org
+Message-Id: <159768653162.32160.9829331777853339749.git-patchwork-notify@kernel.org>
+Date: Mon, 17 Aug 2020 17:48:51 +0000
+References: <20200713160522.19345-1-dan@dlrobertson.com>
+In-Reply-To: <20200713160522.19345-1-dan@dlrobertson.com>
+To: Dan Robertson <dan@dlrobertson.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200817_062147_611383_ADC2CAA2 
-X-CRM114-Status: GOOD (  14.03  )
+X-CRM114-CacheID: sfid-20200817_134853_082026_E4EEFACE 
+X-CRM114-Status: UNSURE (   6.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,45 +68,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, khilman@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enables the RTC PCF8563 driver used on Amlogic Libretech-pc
-and Odroid-N2 boards supported in mainline kernel.
+Hello:
 
-Cc: Kevin Hilman <khilman@baylibre.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-Changes v2
-Added Neil's ACK.
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+This patch was applied to khilman/linux-amlogic.git (refs/heads/for-next).
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e0f33826819f..3d9756833e0e 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -773,6 +773,7 @@ CONFIG_RTC_DRV_DS1307=m
- CONFIG_RTC_DRV_MAX77686=y
- CONFIG_RTC_DRV_RK808=m
- CONFIG_RTC_DRV_PCF85363=m
-+CONFIG_RTC_DRV_PCF8563=m
- CONFIG_RTC_DRV_RX8581=m
- CONFIG_RTC_DRV_RV8803=m
- CONFIG_RTC_DRV_S5M=y
+On Mon, 13 Jul 2020 12:05:21 -0400 you wrote:
+> When testing suspend for another driver I noticed the following warning:
+> 
+> WARNING: CPU: 1 PID: 5530 at drivers/reset/core.c:355 reset_control_assert+0x184/0x19c
+> Hardware name: Hardkernel ODROID-N2 (DT)
+> [..]
+> pc : reset_control_assert+0x184/0x19c
+> lr : dwc3_meson_g12a_suspend+0x68/0x7c
+> [..]
+> Call trace:
+>  reset_control_assert+0x184/0x19c
+>  dwc3_meson_g12a_suspend+0x68/0x7c
+>  platform_pm_suspend+0x28/0x54
+>  __device_suspend+0x590/0xabc
+>  dpm_suspend+0x104/0x404
+>  dpm_suspend_start+0x84/0x1bc
+>  suspend_devices_and_enter+0xc4/0x4fc
+> 
+> [...]
+
+
+Here is a summary with links:
+  - [1/1] usb: dwc3: meson-g12a: fix shared reset control use
+    https://git.kernel.org/khilman/linux-amlogic/c/7a410953d1fb4dbe91ffcfdee9cbbf889d19b0d7
+
+You are awesome, thank you!
+
 -- 
-2.28.0
-
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/pwbot
 
 _______________________________________________
 linux-amlogic mailing list
