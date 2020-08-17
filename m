@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
 	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D3131C433E8
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF586C433E4
 	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Aug 2020 17:49:06 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A18B420758
+	by mail.kernel.org (Postfix) with ESMTPS id 7FA8C2067C
 	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Aug 2020 17:49:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dac6LYqT";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="cXT5TQX0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A18B420758
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kjC1YkiR";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="MPBQhW8O"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7FA8C2067C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,37 +25,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:Message-Id:From:
 	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=N1KhFlQYz6NqXK7nO9Y3fuReKZnG0ZWhqaochUz9+/M=; b=dac6LYqTwoTj6mfGOdvPkCRbo
-	Be6phx3at+7iVqeJbPFBv8ggR557ix6BI6neZv7bOp02xXvDcIYjvfCgV+MphKZKKvvq4c/JiwrYo
-	AXxv8T7pDue6LVMuTnP8Wf+PpXXqCXV5EdLS7mA8251cPl7/FpTiVcSGZASI6bxx5j02vKvyIpCzE
-	klVPXqQgWBNv6nMZ9lJAyAgoD636tATvcPr5TKVrOvCtUuTVybMw8Qxl9DSqLV/yL/mpB01qnec9T
-	I7MtxUKRsbhbcG/nO0QvOg3CDT4KRTOsWm0xIFI0KwBRxcj+M5n/dB8FrF9OuGJjTG+sBOO9dzacI
-	NgXEUbW0A==;
+	 bh=cFb0n3t+vvo6cMNzmu3Fs4MXRa2A8tzgaXlh649Pkaw=; b=kjC1YkiRmZ4hyLR3pHd8hXAyr
+	VP7zKP27aChezu/UirGJbzBoXEYMjdCpu+Vov3wRsVSTkg29wSqeq+HtI0HBqYAarHbkLkc4RUpAr
+	FVBIHoz6bZFxApyrQLNlNMtg4PnNkzvmjCXG2AHIKkqty7Hvqx7dC5ZbYZg3rDUfVPNHYBoxDjHNc
+	AVup6XWyfYB+IsFeFQ8Lp0MLVdO3Dfj0PBnkQN1Zr5NsrYmZLLs6kvcKkXKzzLYUTYJEbo/piccig
+	u6VnpDsfzeAPZNzk63YMSpqf1DkFWGZqWhyE9g6K61L0h4gaLG3cVWuDNUUONM8SDnBVXnJbg2qag
+	BZm97tMLQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k7jFm-000246-AC; Mon, 17 Aug 2020 17:49:02 +0000
+	id 1k7jFl-00023l-Mn; Mon, 17 Aug 2020 17:49:01 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k7jFe-0001zC-OF
+ id 1k7jFd-0001xZ-EH
  for linux-amlogic@lists.infradead.org; Mon, 17 Aug 2020 17:48:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=default; t=1597686532;
- bh=GNfKLCMxQqgnGTtpDYk4zjrzYXiJUnvhFm3f6p4n2J0=;
+ bh=+DhmLcaVye2vOTvkJuIO1Vgkfm75NfROjn3U5/Jzaoc=;
  h=Subject:From:Date:References:In-Reply-To:To:Cc:Cc:From;
- b=cXT5TQX0chsX3JufGQfryvKqTwW+mfVUlJeQImzFo+4xRnriAllNWC/F8Tnm6w+1C
- dluzPJSlLOuwYP6CLBkSLqENhauLQgczyl9YbFkwzQD/+gZNEJ4hAMn5L3JXCVP5BB
- +FAUc9OLE56nrAw7Sfi2DQMLTv7akWbyTr4WZvnA=
+ b=MPBQhW8O3Rvxl6Hhwz0sLqB0Smc6kO3MjOqvNCuMJj/YlwHVAT2chI7dFfw/bPiFM
+ U7yGAP3Xm4nQd7/StcqdvUidUakBV30nBwE4CXojPDc7QjeLAslWm0qd5IqkUrWc+O
+ 2z5L2THGbkc5GHW9f6K5xtXttgTITU/P/iz5MbnQ=
 MIME-Version: 1.0
-Subject: Re: [PATCH v9 0/6] drm/meson: add support for Amlogic Video FBC
+Subject: Re: [PATCH v4 00/13] crypto: permit asynchronous skciphers as driver
+ fallbacks
 From: patchwork-bot+linux-amlogic@kernel.org
-Message-Id: <159768653258.32160.605245020544571256.git-patchwork-notify@kernel.org>
+Message-Id: <159768653218.32160.10971898010897300855.git-patchwork-notify@kernel.org>
 Date: Mon, 17 Aug 2020 17:48:52 +0000
-References: <20200703080728.25207-1-narmstrong@baylibre.com>
-In-Reply-To: <20200703080728.25207-1-narmstrong@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
+References: <20200707063203.5018-1-ardb@kernel.org>
+In-Reply-To: <20200707063203.5018-1-ardb@kernel.org>
+To: Ard Biesheuvel <ardb@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200817_134854_934054_35DB7F3D 
-X-CRM114-Status: UNSURE (   5.73  )
+X-CRM114-CacheID: sfid-20200817_134853_578762_D3ABEA78 
+X-CRM114-Status: UNSURE (   6.64  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -78,30 +79,48 @@ Hello:
 
 This series was applied to khilman/linux-amlogic.git (refs/heads/for-next).
 
-On Fri,  3 Jul 2020 10:07:22 +0200 you wrote:
-> Amlogic uses a proprietary lossless image compression protocol and format
-> for their hardware video codec accelerators, either video decoders or
-> video input encoders.
+On Tue,  7 Jul 2020 09:31:50 +0300 you wrote:
+> The drivers for crypto accelerators in drivers/crypto all implement skciphers
+> of an asynchronous nature, given that they are backed by hardware DMA that
+> completes asynchronously wrt the execution flow.
 > 
-> It considerably reduces memory bandwidth while writing and reading
-> frames in memory.
+> However, in many cases, any fallbacks they allocate are limited to the
+> synchronous variety, which rules out the use of SIMD implementations of
+> AES in ECB, CBC and XTS modes, given that they are usually built on top
+> of the asynchronous SIMD helper, which queues requests for asynchronous
+> completion if they are issued from a context that does not permit the use
+> of the SIMD register file.
 > 
 > [...]
 
 
 Here is a summary with links:
-  - [v9,1/6] drm/fourcc: Add modifier definitions for describing Amlogic Video Framebuffer Compression
-    https://git.kernel.org/khilman/linux-amlogic/c/d6528ec883096e7ccdb08257bcc45670bc878519
-  - [v9,2/6] drm/meson: add Amlogic Video FBC registers
-    https://git.kernel.org/khilman/linux-amlogic/c/1d4eff87878977fde110f311c4fa123e93ba2b3d
-  - [v9,3/6] drm/meson: overlay: setup overlay for Amlogic FBC
-    https://git.kernel.org/khilman/linux-amlogic/c/e860785d5730665e04e0ac301aa14ed3779c4d92
-  - [v9,4/6] drm/meson: overlay: setup overlay for Amlogic FBC Memory Saving mode
-    https://git.kernel.org/khilman/linux-amlogic/c/376b1391d9e99f24b8d9461a08c4735ba9d5495e
-  - [v9,5/6] drm/meson: overlay: setup overlay for Amlogic FBC Scatter Memory layout
-    https://git.kernel.org/khilman/linux-amlogic/c/be26a04bb70b6d4f4fb66ce4ed149153133aaef9
-  - [v9,6/6] drm/meson: crtc: handle commit of Amlogic FBC frames
-    https://git.kernel.org/khilman/linux-amlogic/c/bc84ee948124868e2affaf0492225a365f3943f0
+  - [v4,01/13] crypto: amlogic-gxl - default to build as module
+    https://git.kernel.org/khilman/linux-amlogic/c/3f368b886e95080daf811d228795c28716495279
+  - [v4,02/13] crypto: amlogic-gxl - permit async skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/1d63e4557f0d11fd795c7acd50a241da2d8bf89f
+  - [v4,03/13] crypto: omap-aes - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/6a99d7a2d73cbeaa0b93551fc8ec887295821bbe
+  - [v4,04/13] crypto: sun4i - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/89fb00f245681d0c951cd889d3d165cf9959d70c
+  - [v4,05/13] crypto: sun8i-ce - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/31abd3eb3df6bd520fece598e31047a0f377953e
+  - [v4,06/13] crypto: sun8i-ss - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/44b591753731f12dcf5d8e72df69baa9f3c48921
+  - [v4,07/13] crypto: ccp - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/413b61ce0b4de0e55a9f8cf91bbce1ad7e0870cd
+  - [v4,08/13] crypto: chelsio - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/d8c6d1886c8f436da96c0d91010040ca7caae9ac
+  - [v4,09/13] crypto: mxs-dcp - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/c9598d4e13ca0a6747235257a8e38cdef6973d8e
+  - [v4,10/13] crypto: picoxcell - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/dc6e71c9d9cfef98b95cb6e7e91ed2bb64b63e76
+  - [v4,11/13] crypto: qce - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/90e2f782719fc5ad2af63096815a69c5320704cb
+  - [v4,12/13] crypto: sahara - permit asynchronous skcipher as fallback
+    https://git.kernel.org/khilman/linux-amlogic/c/56ca499f1b58235d5b3f247a887cc636d849d351
+  - [v4,13/13] crypto: mediatek - use AES library for GCM key derivation
+    https://git.kernel.org/khilman/linux-amlogic/c/f441ba2ad34102692b9836923776f017b40afc88
 
 You are awesome, thank you!
 
