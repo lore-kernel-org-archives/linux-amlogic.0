@@ -2,80 +2,86 @@ Return-Path: <SRS0=HvuL=B6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.0 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04DB8C433DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Aug 2020 11:45:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 100BBC433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Aug 2020 12:13:45 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BF94A2054F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Aug 2020 11:45:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D1E18207BB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Aug 2020 12:13:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DPQNlkwW";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wumWcYu2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BF94A2054F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=ti.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KqCrZU0r";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kecqFKVD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D1E18207BB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=PbJi5nuwMnFGGtp0GfbV7246mt7LlYLWVQHQ0pVScI8=; b=DPQNlkwWbQ/zvdJ8Umc16h4Qu
-	BxneR/7uVeyLW2qP70SjHkk1nBCg/mihujxfFccPTrQ8OeQ6vGRWRfTZ0EQbboQJwVCv+wI/p+bUJ
-	e6tDRF56rZYunGJOSSLVhp61bZYLKLB2zpKbMxnNTd2BT9poDiEWFmZ5ondnPs5BMzdoWGbV0iPG/
-	ZdZtcEiX2V8l4flyoU4znbS/i1sjRrZNl7xGb0umWRaj+1j8N3DckvPRBj+EkoIgaffMWlRbr6lW6
-	Ae18/K/OuSFUDQqZP9v+wuMFWdgOmhRczFXz0fNXeqP3rArKVqnfGfHw99XD+z/CXLxf5qDutNNqX
-	5HvmO8zEg==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Jt2oY4HiWanLyZeR19iu0SR5AxbzZPp26fPVu1WkyQQ=; b=KqCrZU0rVtQWjnNY4kl4utNFzh
+	GnuBoV6FcE3sY1hA2hOZ/3UWLcLoI0qIwaoPPIQmgCePaCGZAX7VkSFe2rAo6S4SbcAac6srlK1Jm
+	ykTNjxZ23jaNvPEaCD5m/L69O5JaUDEoKUCSfkzU69f2sMOAlxgx2UXbttpEWfZKJ2ZY96aVF/y5w
+	Aq41ILb0KwNbbRtIz0KqxdUiO9G66TnSk9ANjtbs3Vpcvm+MvPexvDZPENeStn/kiRNtcWyRNoUGr
+	mH9fiL99XmZVvhuIvIhxVrsxUuH2Hpl8SYov3sPjE1/KHhU1q+hTC/lfvkRAzfVVZGKHo0lOkbIBR
+	fvVKJoig==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k8j00-0007wz-C5; Thu, 20 Aug 2020 11:44:52 +0000
-Received: from lelv0143.ext.ti.com ([198.47.23.248])
+	id 1k8jRq-0003eO-8N; Thu, 20 Aug 2020 12:13:38 +0000
+Received: from mail-pl1-x644.google.com ([2607:f8b0:4864:20::644])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8izr-0007t9-V9; Thu, 20 Aug 2020 11:44:44 +0000
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
- by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07KBiLjh034621;
- Thu, 20 Aug 2020 06:44:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
- s=ti-com-17Q1; t=1597923861;
- bh=KekPuX5bW5OV7WGA42Ji5+dWGwrpNIKAh0IFJGWPkgw=;
- h=Date:From:To:CC:Subject:References:In-Reply-To;
- b=wumWcYu2C1Uab0K7/BhHt6am8WARnusXkgQxTV42cLperHvWAMr73TNd+wDsAw3wy
- hNKVGdTP4DXYch+0pLpm6EayzBWxfb8hWJXgwCbJaBPkYV500cFpib37witpJiU5fe
- I4uAGHEHelb5GRoGXgpVe6o/YlhZ9+BiuU3VMDj8=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
- by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07KBiLbD128554
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
- Thu, 20 Aug 2020 06:44:21 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 20
- Aug 2020 06:44:20 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 20 Aug 2020 06:44:20 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
- by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KBiK7d068400;
- Thu, 20 Aug 2020 06:44:20 -0500
-Date: Thu, 20 Aug 2020 06:44:20 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: Reformat PCI ranges/dma-ranges entries
-Message-ID: <20200820114420.sjlqvn2tbpa7vcbb@akan>
-References: <20200819221750.2055932-1-robh@kernel.org>
+ id 1k8jRn-0003dV-7w; Thu, 20 Aug 2020 12:13:35 +0000
+Received: by mail-pl1-x644.google.com with SMTP id f5so939306plr.9;
+ Thu, 20 Aug 2020 05:13:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=2doVaeqHMIq6t5euMsS8lD+HylC+Pn28RLN5whjYgmM=;
+ b=kecqFKVD+AL538Wpa8QOeSpjP0b4QE3rnhDNMJeEa05G98KrWR0dQkqpldBVRM+zQl
+ wFjYLLkU+ICC9rBbV7GCFLACH9i0Wg3TIYaacfhi4m2KD1bRID/MgEpsnU6N1gIgnL68
+ y+NG+JGyCft7oTd0YfkRlDJSSasQ3KEIa/UaYCNfT6azmUIvZPPoMhtzriPhfYJNbPef
+ YtKJ1HRFn9ijb2FE6L7hDS4vqRdKGFMCOd1iv39sUfa7DXD7S8VWKw7k5GoyypJRhic2
+ nzvyJX/CqzX2VgUH76CQNaYBJpbDf+RGrIWoxt7MY/h+vRm/Q4NbFuR6vWYyfGjAxnRV
+ OrIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=2doVaeqHMIq6t5euMsS8lD+HylC+Pn28RLN5whjYgmM=;
+ b=Iqph0fJsePK4eRWjXkoC4oZ09un+iEHAdyoTIUvClg+aXbl5uiHV7SLfCgFS076yjV
+ dA0XgS/FUNS/2bragsqUvDo52lVJp43/fWJhvsmP2d1Ysm4gFUZt4Vw8ieAy5Ur1S/hn
+ 9WHVBi4/nLHJSF5HU8tdeo0C8f771s2LevW8QX0Ab7wAH9ZJzyc+1uTS9FBx4pWSfQwq
+ p2cO9z0BthyN+D/s+biWRC06EOULbm47PBKLM5vQoNpmVwZ+Z1WR6JzgKJl+5i4lzaKG
+ iYbAr7Hd4m1030MReIjYALbQYCUXwGaloEJxTca3Mso3HlSYMfo5pKY6Wkk/wBGJKG/w
+ 4O8A==
+X-Gm-Message-State: AOAM533QJO04XPqn6SWrx3O3jePvGWM9cC6gFIaoYHU+t+hCz/6XjHVh
+ Uyui2TtWRcBkIGG8kRb1wmE=
+X-Google-Smtp-Source: ABdhPJzgUWn6iNqf1YNd6Nz1hgdV1NAP4WZDvIpStKf8rWEuXtpr1RrAWUlFBOD7GEibXYQyKvZYkQ==
+X-Received: by 2002:a17:90a:3b09:: with SMTP id
+ d9mr2441229pjc.210.1597925611491; 
+ Thu, 20 Aug 2020 05:13:31 -0700 (PDT)
+Received: from localhost.localdomain ([45.114.62.137])
+ by smtp.gmail.com with ESMTPSA id p20sm1985937pjg.44.2020.08.20.05.13.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 20 Aug 2020 05:13:31 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+Subject: [PATCH v3 0/2]Enable RTC on Odroid N2
+Date: Thu, 20 Aug 2020 17:43:21 +0530
+Message-Id: <20200820121323.564-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20200819221750.2055932-1-robh@kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200820_074444_120185_F9A6A0BD 
-X-CRM114-Status: GOOD (  13.85  )
+X-CRM114-CacheID: sfid-20200820_081335_298022_3515B2A0 
+X-CRM114-Status: GOOD (  12.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,115 +93,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-List-Id: <soc.lore.kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Khuong Dinh <khuong@os.amperecomputing.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Michal Simek <michal.simek@xilinx.com>, Wei Xu <xuwei5@hisilicon.com>,
- linux-rockchip@lists.infradead.org, Andy Gross <agross@kernel.org>,
- NXP Linux Team <linux-imx@nxp.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- devicetree@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>,
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- soc@kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>,
- Tero Kristo <t-kristo@ti.com>, Robert Richter <rrichter@marvell.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>
-Content-Type: multipart/mixed; boundary="===============1672331043526236771=="
+ Kevin Hilman <khilman@baylibre.com>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============1672331043526236771==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jgbt6anitnjafjun"
-Content-Disposition: inline
+Inorder for test suspend/resume feature on Odroid N2
+we need to enable RTC module on this device.
 
---jgbt6anitnjafjun
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes v3
+Drop the patch disable on VRTC driver.
+Drop the INT pinctrl for RTC - not required for I2C.
+Add the alias for RTC nodes.
 
-On 16:17-20200819, Rob Herring wrote:
-> While bracketing doesn't matter for a DTB, the DT schema checks rely on
-[..]
-> ---
-> SoC maintainers, please apply this directly.
-	  [...]
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/d=
-ts/ti/k3-am65-main.dtsi
-> index 9edfae5944f7..2c762e725d89 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -678,8 +678,8 @@ pcie0_rc: pcie@5500000 {
->  		power-domains =3D <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
->  		#address-cells =3D <3>;
->  		#size-cells =3D <2>;
-> -		ranges =3D <0x81000000 0 0          0x0 0x10020000 0 0x00010000
-> -			  0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
-> +		ranges =3D <0x81000000 0 0          0x0 0x10020000 0 0x00010000>,
-> +			 <0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
->  		ti,syscon-pcie-id =3D <&pcie_devid>;
->  		ti,syscon-pcie-mode =3D <&pcie0_mode>;
->  		bus-range =3D <0x0 0xff>;
-> @@ -710,8 +710,8 @@ pcie1_rc: pcie@5600000 {
->  		power-domains =3D <&k3_pds 121 TI_SCI_PD_EXCLUSIVE>;
->  		#address-cells =3D <3>;
->  		#size-cells =3D <2>;
-> -		ranges =3D <0x81000000 0 0          0x0   0x18020000 0 0x00010000
-> -			  0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
-> +		ranges =3D <0x81000000 0 0          0x0   0x18020000 0 0x00010000>,
-> +			 <0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
->  		ti,syscon-pcie-id =3D <&pcie_devid>;
->  		ti,syscon-pcie-mode =3D <&pcie1_mode>;
->  		bus-range =3D <0x0 0xff>;
+Changes v2
+Fix the missing INT pinctrl for RTC.
 
-For the TI chunk:
-Acked-by: Nishanth Menon <nm@ti.com>
---=20
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5=
- 849D 1736 249D
+Note: Now the rtcwake feature works occordingly,
+But after resume I have observed a Kernel Opps
+Hope some body able to repoduce this.
 
---jgbt6anitnjafjun
-Content-Type: application/pgp-signature; name="signature.asc"
+-Anand Moon
 
------BEGIN PGP SIGNATURE-----
+Anand Moon (2):
+  arm64: dts: meson-g12b-odroid-n2: Enable RTC controller node
+  arm64: defconfig: Enable RTC devices for Amlogic boards
 
-iQIzBAABCgAdFiEE+KKGk1TrgjIXoxo03bWEnRc2JJ0FAl8+YgwACgkQ3bWEnRc2
-JJ0WIg//YBZVg8WDT/O8r7i2UkktHsq0s0v55hHAOfcl47v8FQtw84RgUhFCn+9i
-U/VpPbU7ZvIUlpbADflEHrnXkYfhikLBFJ90DEde63M1DkFyvjnMXJVImmuiK7E7
-WbWZpo21fRKfbFje9l6upMgfiM4ZB7GS/NkKssavEX22oaG5+GTjNjEI1EJijNG/
-K0hD2jvRdQ59eyfdvKL8ezXthEaJdCyWuREOKCsE/VUDHC/KgXcpZjLA7BICegYn
-J/UeEhSJGtV2UaUkU621yg3gRF2f7on236lG4cs4QnYIzACww4MA2r3UdM+zsOI0
-RJR8/LbNzBtfzPUmyQldvvBKQ80HtgMe0jhuFGflT4rjzbMQXYbOdIFR0A2Jhw2/
-tt2YH0rmxV3rhRLsPtcmltMQW/2iccVbvHZaz8xQ9HirP2XaAvhTUfG5ayFTD3jb
-uxU9HV/SMapoo56gvFRkg09K4vNAtTwc8TZLOo29FbKSv0+PUXFDBODeygVgNYxL
-RI8OFjIgAiWTgAow/5CNkPwKLjR7F/dMj5T2hX1WVjwD5ds1bdl6dJP6WejEs3OU
-iEYUy5PR23cZoVrH6V4FMcyWv/6D+7C8UzHIqzkUulviPpSofpb8muTAlsyAe9gx
-YZPxS3DHyObqDoJbspVmD2acwVGz6KQBvvyEqvsC42qkJ0T5ByA=
-=TsAH
------END PGP SIGNATURE-----
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts      | 14 ++++++++++++++
+ arch/arm64/configs/defconfig                       |  1 +
+ 2 files changed, 15 insertions(+)
 
---jgbt6anitnjafjun--
+-- 
+2.28.0
 
-
---===============1672331043526236771==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1672331043526236771==--
-
