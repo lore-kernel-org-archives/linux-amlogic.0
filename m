@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 57526C433E1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 03:59:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31A73C433E1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:01:08 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2112820714
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 03:59:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C3B4520855
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:01:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PIqL6RR4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2112820714
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZTfHCQz6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C3B4520855
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,53 +25,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=HB3inG6OLapW+euk9Pfv4WBCi4SNbx7NcQKtxsZxvpU=; b=PIqL6RR40PPrbU0WNdpYdKPP0
-	YiG1u6grWaltRdlDQizDKqGkR0B0Hvu5xY1HiNbJ6eGxTsfGpshYvLNtLAiNS9H0fzhE+WVncnpKI
-	Ku51+KfaDauGSteaqMMgaRsr4IMlqjrMFMUHfPkopk4B2iWyzkQDreD4++rZRYAWNSLIqlYamc0lm
-	OafdvFXZerCHWFuRuxRSGG/8ns2RS5/dtQvF73614KzmFMG5MrhOOtOhWQByiCHtteV3+/7tvGhBU
-	79Rd78svLG/MSIlM3gsRprp1ojuPsmzt5dMzsCisepLyg+GhVUewmH/g2IiWkgAW7tdGM6fxx8cm+
-	tK07hicVA==;
+	 bh=c+tkX5EmXQVaw25iW2FALSwXmiNfqdUelIpSTkEgqLM=; b=ZTfHCQz6jRF9tTwT0LJbEFDlo
+	1fQwb4EPqp03XLyN5Rx4Y8WXwQEPjkRVAya9C4sqjI2LxqH95AeHwhHbO70ah9WcNKcyTKem3P8mj
+	3Mn56VLKnIy4SPu4I0roMXybI9sq6KUFOaQeO1IfIBycT/w0L7uOwq+EUywY4xmTjQMnPAoHpzMrA
+	heln+R5QHrxQVRYJ6uCoRH2nABPyYJi64jWPmfuQPEYrRhL59aOQwEtxbgms9EqMAwCQUXntk+EmH
+	lM0PUFJK3xBLeZHeJk3Dya58q+4EkTkUcILxfwKMYnDkNya1bpb9+1Ey3xydwpmwP4/3rPCs+CR5F
+	zfSBkogiA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k8yCv-0006DL-1Z; Fri, 21 Aug 2020 03:59:13 +0000
-Received: from mail-io1-f67.google.com ([209.85.166.67])
+	id 1k8yEd-000734-3a; Fri, 21 Aug 2020 04:00:59 +0000
+Received: from mail-io1-f65.google.com ([209.85.166.65])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8y99-0004b9-DI; Fri, 21 Aug 2020 03:55:40 +0000
-Received: by mail-io1-f67.google.com with SMTP id g13so464654ioo.9;
- Thu, 20 Aug 2020 20:55:18 -0700 (PDT)
+ id 1k8y9d-0004mU-1I; Fri, 21 Aug 2020 03:56:15 +0000
+Received: by mail-io1-f65.google.com with SMTP id g14so496079iom.0;
+ Thu, 20 Aug 2020 20:55:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=7oe9LLB2O2qB8amIUwgNF8kLMAkuXQasFfOXSkrgGMU=;
- b=SpMpjfiWeXiyKavD9XlbMZ0zruwxUCaMocDMPUb88rgi/uRwPUBLtmK5TMBECSINQ1
- qeaEPXmYW4BtdhS6yTQIkmvr6jf2boXReHdELsRB/BHxrHYwgIj/dblKAjzByowUoD72
- FddjpeHQgKjxelT3EfVqAQaYVUNHprMQBnKEd/PpxhWrXBEj6rMhF50SPMvoiM6yEbuR
- gD5+dODKUmj8w3AWeptWs8SoFkAZnEp1gjW5kLukIoQpMKTWjXM06w1XnSdXwF9A8Z7r
- A5tddP41ic+l57dzZ9eWu0L3o0ROWlT+woFJrhanMALHDvFT8x6Nxbf36YZaUySM1GQm
- twRA==
-X-Gm-Message-State: AOAM531fTz8jQqqKt4rBFPavj/lCGweKa6fPg1OTdi/EB7k5Fs7pFaEp
- ZX5YG7y+fVkAsNrIgeNiWg==
-X-Google-Smtp-Source: ABdhPJygnWxXYKbB1eQHu7GGV718XGpKfRlbYVFwHsWaFGJAWtGyZHG0umEXXUD8qfphr3hVV6FIrA==
-X-Received: by 2002:a02:454:: with SMTP id 81mr965925jab.142.1597982116863;
- Thu, 20 Aug 2020 20:55:16 -0700 (PDT)
+ bh=kumZHZjUFIvX3SHWpXpEUET8g4KV80WJmK3nUIgHIRs=;
+ b=RFsjLA1j1YhSW0t0JisFlX1n/bhp3jqM0UHCVLoWqKWAGZ0YxymePP8TD0Zn8kEJXE
+ ADwYHIPvRh+o+P8M413xb3R/dQ7CA6mu+cW6ijs0eoeXfHLPRNzue3TzFqig1MLuKeN3
+ IBfHLZR+RVynRd9oCWeDJftqU5BmM7Etb0JlrJC4QXMiGPUHDa/2KIyE0U0UbmgBNIJT
+ 3JjEgADQeOo8ngOdcJcqFWUdXVU1TgFWPI7NCKVsM+tK7c/1pv5HP1n5+vY088zRk6+6
+ ayIG8Wm8q24rRVJJJwTrLZVdQDTqHPHAFNJOiOFqcvjagP52f3e1LfoB4OydHVoM6tzm
+ J/sw==
+X-Gm-Message-State: AOAM533WU97IHKTSGJv2wAhpNA6EGX/fVRKr2N4EdHf2CCUqqNbXKUE4
+ PFuiWyOam+kzhQKIK7IoGg==
+X-Google-Smtp-Source: ABdhPJxRKUtV0n+dK2NRfpXEvZsHGODGBsP7rLd+TFntUVfJ0RA8JVZq7czdDNbyUGCiMPAKKGQyTA==
+X-Received: by 2002:a05:6638:22c7:: with SMTP id
+ j7mr840801jat.77.1597982145790; 
+ Thu, 20 Aug 2020 20:55:45 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.249])
- by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.55.14
+ by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.55.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Aug 2020 20:55:16 -0700 (PDT)
+ Thu, 20 Aug 2020 20:55:45 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH v2 12/40] PCI: dwc: Remove dwc specific config accessor ops
-Date: Thu, 20 Aug 2020 21:53:52 -0600
-Message-Id: <20200821035420.380495-13-robh@kernel.org>
+Subject: [PATCH v2 20/40] PCI: dwc/keystone: Drop duplicated 'num-viewport'
+Date: Thu, 20 Aug 2020 21:54:00 -0600
+Message-Id: <20200821035420.380495-21-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200821035420.380495-1-robh@kernel.org>
 References: <20200821035420.380495-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200820_235519_809360_DDB7D4B5 
-X-CRM114-Status: GOOD (  13.80  )
+X-CRM114-CacheID: sfid-20200820_235549_343349_77A5B188 
+X-CRM114-Status: GOOD (  16.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,83 +114,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now that all the drivers needing custom config accessors have been
-converted to define their own pci_ops, we can remove the DWC specific
-function callbacks {rd,wr}_{own,other}_conf.
+The DWC core driver already parses and stores the 'num-viewport' DT
+property, so there is no need for the Keystone driver to store it.
 
-Cc: Jingoo Han <jingoohan1@gmail.com>
-Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+Cc: Murali Karicheri <m-karicheri2@ti.com>
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/controller/dwc/pcie-designware-host.c | 14 --------------
- drivers/pci/controller/dwc/pcie-designware.h      |  6 ------
- 2 files changed, 20 deletions(-)
+ drivers/pci/controller/dwc/pci-keystone.c | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index e87edce9b8da..33e632a24466 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -26,9 +26,6 @@ static int dw_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
- {
- 	struct dw_pcie *pci;
+diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+index 983069a4a561..0fe792f6c253 100644
+--- a/drivers/pci/controller/dwc/pci-keystone.c
++++ b/drivers/pci/controller/dwc/pci-keystone.c
+@@ -123,7 +123,6 @@ struct keystone_pcie {
  
--	if (pp->ops->rd_own_conf)
--		return pp->ops->rd_own_conf(pp, where, size, val);
--
- 	pci = to_dw_pcie_from_pp(pp);
- 	return dw_pcie_read(pci->dbi_base + where, size, val);
- }
-@@ -38,9 +35,6 @@ static int dw_pcie_wr_own_conf(struct pcie_port *pp, int where, int size,
+ 	int			msi_host_irq;
+ 	int			num_lanes;
+-	u32			num_viewport;
+ 	struct phy		**phy;
+ 	struct device_link	**link;
+ 	struct			device_node *msi_intc_np;
+@@ -397,9 +396,9 @@ static void ks_pcie_clear_dbi_mode(struct keystone_pcie *ks_pcie)
+ static void ks_pcie_setup_rc_app_regs(struct keystone_pcie *ks_pcie)
  {
- 	struct dw_pcie *pci;
+ 	u32 val;
+-	u32 num_viewport = ks_pcie->num_viewport;
+ 	struct dw_pcie *pci = ks_pcie->pci;
+ 	struct pcie_port *pp = &pci->pp;
++	u32 num_viewport = pci->num_viewport;
+ 	u64 start, end;
+ 	struct resource *mem;
+ 	int i;
+@@ -1199,7 +1198,6 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
+ 	struct resource *res;
+ 	unsigned int version;
+ 	void __iomem *base;
+-	u32 num_viewport;
+ 	struct phy **phy;
+ 	int link_speed;
+ 	u32 num_lanes;
+@@ -1349,12 +1347,6 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
+ 			goto err_get_sync;
+ 		}
  
--	if (pp->ops->wr_own_conf)
--		return pp->ops->wr_own_conf(pp, where, size, val);
+-		ret = of_property_read_u32(np, "num-viewport", &num_viewport);
+-		if (ret < 0) {
+-			dev_err(dev, "unable to read *num-viewport* property\n");
+-			goto err_get_sync;
+-		}
 -
- 	pci = to_dw_pcie_from_pp(pp);
- 	return dw_pcie_write(pci->dbi_base + where, size, val);
- }
-@@ -537,10 +531,6 @@ static int dw_pcie_access_other_conf(struct pcie_port *pp, struct pci_bus *bus,
- static int dw_pcie_rd_other_conf(struct pcie_port *pp, struct pci_bus *bus,
- 				 u32 devfn, int where, int size, u32 *val)
- {
--	if (pp->ops->rd_other_conf)
--		return pp->ops->rd_other_conf(pp, bus, devfn, where,
--					      size, val);
--
- 	return dw_pcie_access_other_conf(pp, bus, devfn, where, size, val,
- 					 false);
- }
-@@ -548,10 +538,6 @@ static int dw_pcie_rd_other_conf(struct pcie_port *pp, struct pci_bus *bus,
- static int dw_pcie_wr_other_conf(struct pcie_port *pp, struct pci_bus *bus,
- 				 u32 devfn, int where, int size, u32 val)
- {
--	if (pp->ops->wr_other_conf)
--		return pp->ops->wr_other_conf(pp, bus, devfn, where,
--					      size, val);
--
- 	return dw_pcie_access_other_conf(pp, bus, devfn, where, size, &val,
- 					 true);
- }
-diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index a9d805b28c2a..4ed59b051b2b 100644
---- a/drivers/pci/controller/dwc/pcie-designware.h
-+++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -160,12 +160,6 @@ enum dw_pcie_device_mode {
- };
+ 		/*
+ 		 * "Power Sequencing and Reset Signal Timings" table in
+ 		 * PCI EXPRESS CARD ELECTROMECHANICAL SPECIFICATION, REV. 2.0
+@@ -1368,7 +1360,6 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
+ 			gpiod_set_value_cansleep(gpiod, 1);
+ 		}
  
- struct dw_pcie_host_ops {
--	int (*rd_own_conf)(struct pcie_port *pp, int where, int size, u32 *val);
--	int (*wr_own_conf)(struct pcie_port *pp, int where, int size, u32 val);
--	int (*rd_other_conf)(struct pcie_port *pp, struct pci_bus *bus,
--			     unsigned int devfn, int where, int size, u32 *val);
--	int (*wr_other_conf)(struct pcie_port *pp, struct pci_bus *bus,
--			     unsigned int devfn, int where, int size, u32 val);
- 	int (*host_init)(struct pcie_port *pp);
- 	void (*scan_bus)(struct pcie_port *pp);
- 	void (*set_num_vectors)(struct pcie_port *pp);
+-		ks_pcie->num_viewport = num_viewport;
+ 		pci->pp.ops = host_ops;
+ 		ret = ks_pcie_add_pcie_port(ks_pcie, pdev);
+ 		if (ret < 0)
 -- 
 2.25.1
 
