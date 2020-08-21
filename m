@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 617F8C433E1
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFE2FC433E5
 	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 05:05:11 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2FC1221741
+	by mail.kernel.org (Postfix) with ESMTPS id B178922B40
 	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 05:05:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AAJxP59l"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2FC1221741
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AGoIEwz+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B178922B40
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,54 +25,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=pl4hR5SI7XeHsvUTUeu22RaU9SdvyjMZ2ictLrGWv6Y=; b=AAJxP59l3Q9NuAfuplbJwx0gp
-	tNR51xVps/n+DQwo5a5Wel3w2qqjLeDlIaEG7bzDh4tLiDkJm05DWkKlqdNr3Mdsz44k/LMCAAcjg
-	Udpzz04F5StLhfe1lp6VdK5ebeVxWd7LRMRTC9mpK3O06Y21fsZcFYnvCbkYPWlMrHe+40IRY/oNh
-	5hJa6UVCNvj0Yap52fli6aC+dd5BUrf6M8eFSBGAQyt1cIHPgNO//e8hNFv2eiWNK+3IM4OYoyRU4
-	ajsoyQft2bK5j32pUxncWUVUAfDXDVbtSrjRY4FTSm4IR9ymGQCi+Y8CRO67Ty873iDEiMMZPNfkO
-	Xk3vX+jGg==;
+	 bh=lDLR2to5prX8AQkrL49jQqVaD4QXL3ucV3mmVh/LA2g=; b=AGoIEwz+/8UcLQRAVV7vwJzP8
+	ei4fiLDRpJKG2AAs4TrN8B8+efaM4CEix1EDkLsB6Q8tlxMotA4hqN8OEm350JgBJJ7QX8/3z+gP5
+	J0gEh1oH47wKNjqDXK94SdF+qkgOfS8MdgNU83gcMENZCRw29x5oR/+Ml4LXczGa716qMQQxgyvnP
+	l0W6A90NXraD9Q/lRNq1Miw7LCNzB+NJVXXhLy2j5nVqmalOPOMK1+72ep0m/yflDG1A9I4SG4Ya/
+	cSRuSljpy/9gR08m+eHYelJ4Kd9fRDcUEc4p1aCPkycNP9oXHX5PNBoe6pEkELe4jIKxenWfrHiIE
+	K1/Y9Q6eg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k8zEW-0005kq-GA; Fri, 21 Aug 2020 05:04:56 +0000
-Received: from mail-il1-f193.google.com ([209.85.166.193])
+	id 1k8zEX-0005lL-FM; Fri, 21 Aug 2020 05:04:57 +0000
+Received: from mail-il1-f196.google.com ([209.85.166.196])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8y9E-0004dt-Oa; Fri, 21 Aug 2020 03:55:40 +0000
-Received: by mail-il1-f193.google.com with SMTP id 77so337909ilc.5;
- Thu, 20 Aug 2020 20:55:24 -0700 (PDT)
+ id 1k8y9J-0004ej-Jy; Fri, 21 Aug 2020 03:55:44 +0000
+Received: by mail-il1-f196.google.com with SMTP id e11so322543ils.10;
+ Thu, 20 Aug 2020 20:55:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=0qdov0F91JWjBX0RDvms+7RoXkdqALpZh74Eq1hAWng=;
- b=GW+4lnRCLxhhElgZ72QF6Tbefby9+poZJCS7qETqAwTEvg4lTzJW188ZdELyDKRKiy
- wspE6KKolMqaZosVpfgV9f7tDUhM8UqV3dBsFqkq3EUtFnRbcXmVX95IH8Ud4jroehiq
- JGG3RwHbbPQ8k60zYwR3qOudxzdiok8mCsls3N9BAIof5rB+uBYxD4BWK61DV0H6bNal
- ixl5v85IVnrIhFUmUv2tk2pRgzqYfCWF7ohImcev7HmM7rTZkK6Yjdw0umUtT9TV5W0S
- P8rvGQYH0fTG+NGd7Hpeh9SAaNPv7qCez/zVu+I6EA5mkPIJONGfVJSoeODEfW11sOAF
- 8Uvg==
-X-Gm-Message-State: AOAM531PdBL3t4Uj34HGOMvYD5D6OgtDgSf4j9mutOP0yoVoy03Kqq4p
- WJXX9AiR2rsyOdxm0uLPsg==
-X-Google-Smtp-Source: ABdhPJxWfa3WQm5y8iByx2YiSDizCP8lwHMdCpOAAyhD1GwWnlqkAP+HsAEkjue1fkD8tbEL/F4XFg==
-X-Received: by 2002:a92:dd85:: with SMTP id g5mr1026111iln.210.1597982124146; 
- Thu, 20 Aug 2020 20:55:24 -0700 (PDT)
+ bh=xcT/tBt5hzVcOFIbbxsACp+IaB0FfUbF9lTytCWuySo=;
+ b=JuZvu3s8UFojUmWzT8RIc/l62f8ttNOyauu1ujPWsXoI61c0gIr3f+xEXGyPRYgZQU
+ 0kAB5athveYOektpiOEfNf3oN+T8F9ieXFo+2k6qxQJk/KvVJ+ud5BttIggdXFVUPlr0
+ 7FEk7VbyfbFY+rtnTA9CA2/OKpyjrRbKsprP5QRMPp9KE5HWWHUJI6Os0cdwrGhwANoL
+ QMppQ7+XrQqBvYlOikJTnnszu8XSEbqvOac+xz/qj0bp279Bb/hDutjE83gcTGyAcDey
+ FVrLhmmqUej73yrokPQH+ca6pozNdSjLWdQ8wR1YmZXDJzZTcbpgVTWzn90u1YxtNfXA
+ bNTw==
+X-Gm-Message-State: AOAM533D9MjaqO178WD6VD0/F/Oawi5hJSWBmNttA4jed3nYrAkZuFzU
+ v3ed8u47z1YUxDZx8rgqYQ==
+X-Google-Smtp-Source: ABdhPJwb+JNqT15FRuhKwW2bKzsNM7yeAHD0rWW3xkgvROAQ42nkfFVQ2Kjlc+K/WmlwAfYFGPHgyA==
+X-Received: by 2002:a92:6a0c:: with SMTP id f12mr952021ilc.213.1597982126498; 
+ Thu, 20 Aug 2020 20:55:26 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.249])
- by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.55.21
+ by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.55.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Aug 2020 20:55:23 -0700 (PDT)
+ Thu, 20 Aug 2020 20:55:25 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH v2 15/40] PCI: dwc: keystone: Convert .scan_bus() callback to
- use add_bus
-Date: Thu, 20 Aug 2020 21:53:55 -0600
-Message-Id: <20200821035420.380495-16-robh@kernel.org>
+Subject: [PATCH v2 16/40] PCI: dwc: Convert to use pci_host_probe()
+Date: Thu, 20 Aug 2020 21:53:56 -0600
+Message-Id: <20200821035420.380495-17-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200821035420.380495-1-robh@kernel.org>
 References: <20200821035420.380495-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200820_235525_372347_FA6F33B1 
-X-CRM114-Status: GOOD (  16.89  )
+X-CRM114-CacheID: sfid-20200820_235529_931925_92C77D43 
+X-CRM114-Status: GOOD (  16.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,68 +113,70 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TI keystone is the only Designware driver using .scan_bus(). This
-function pointer is the only thing preventing the Designware driver from
-using pci_host_probe(). Let's use the pci_ops.add_bus hook instead.
+Now that there are no more .scan_bus() callbacks, we can remove it and just
+use pci_host_probe().
 
-Cc: Murali Karicheri <m-karicheri2@ti.com>
+Cc: Jingoo Han <jingoohan1@gmail.com>
+Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/controller/dwc/pci-keystone.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ .../pci/controller/dwc/pcie-designware-host.c | 21 +++----------------
+ drivers/pci/controller/dwc/pcie-designware.h  |  1 -
+ 2 files changed, 3 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-index 2b0906e1e0d3..fd000384fd2a 100644
---- a/drivers/pci/controller/dwc/pci-keystone.c
-+++ b/drivers/pci/controller/dwc/pci-keystone.c
-@@ -454,15 +454,19 @@ static struct pci_ops ks_child_pcie_ops = {
- };
+diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+index 07791b4ebaa7..42b13a7a7383 100644
+--- a/drivers/pci/controller/dwc/pcie-designware-host.c
++++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+@@ -300,7 +300,6 @@ int dw_pcie_host_init(struct pcie_port *pp)
+ 	struct device_node *np = dev->of_node;
+ 	struct platform_device *pdev = to_platform_device(dev);
+ 	struct resource_entry *win;
+-	struct pci_bus *child;
+ 	struct pci_host_bridge *bridge;
+ 	struct resource *cfg_res;
+ 	int ret;
+@@ -436,23 +435,9 @@ int dw_pcie_host_init(struct pcie_port *pp)
  
- /**
-- * ks_pcie_v3_65_scan_bus() - keystone scan_bus post initialization
-+ * ks_pcie_v3_65_add_bus() - keystone add_bus post initialization
-  *
-  * This sets BAR0 to enable inbound access for MSI_IRQ register
-  */
--static void ks_pcie_v3_65_scan_bus(struct pcie_port *pp)
-+static int ks_pcie_v3_65_add_bus(struct pci_bus *bus)
- {
-+	struct pcie_port *pp = bus->sysdata;
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct keystone_pcie *ks_pcie = to_keystone_pcie(pci);
+ 	bridge->sysdata = pp;
  
-+	if (!pci_is_root_bus(bus))
+-	ret = pci_scan_root_bus_bridge(bridge);
+-	if (ret)
+-		goto err_free_msi;
+-
+-	pp->root_bus = bridge->bus;
+-
+-	if (pp->ops->scan_bus)
+-		pp->ops->scan_bus(pp);
+-
+-	pci_bus_size_bridges(pp->root_bus);
+-	pci_bus_assign_resources(pp->root_bus);
+-
+-	list_for_each_entry(child, &pp->root_bus->children, node)
+-		pcie_bus_configure_settings(child);
+-
+-	pci_bus_add_devices(pp->root_bus);
+-	return 0;
++	ret = pci_host_probe(bridge);
++	if (!ret)
 +		return 0;
-+
- 	/* Configure and set up BAR0 */
- 	ks_pcie_set_dbi_mode(ks_pcie);
  
-@@ -477,12 +481,15 @@ static void ks_pcie_v3_65_scan_bus(struct pcie_port *pp)
- 	  * be sufficient.  Use physical address to avoid any conflicts.
- 	  */
- 	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, ks_pcie->app.start);
-+
-+	return 0;
- }
+ err_free_msi:
+ 	if (pci_msi_enabled() && !pp->ops->msi_host_init)
+diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+index 4ed59b051b2b..6cd61892f24f 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.h
++++ b/drivers/pci/controller/dwc/pcie-designware.h
+@@ -161,7 +161,6 @@ enum dw_pcie_device_mode {
  
- static struct pci_ops ks_pcie_ops = {
- 	.map_bus = dw_pcie_own_conf_map_bus,
- 	.read = pci_generic_config_read,
- 	.write = pci_generic_config_write,
-+	.add_bus = ks_pcie_v3_65_add_bus,
+ struct dw_pcie_host_ops {
+ 	int (*host_init)(struct pcie_port *pp);
+-	void (*scan_bus)(struct pcie_port *pp);
+ 	void (*set_num_vectors)(struct pcie_port *pp);
+ 	int (*msi_host_init)(struct pcie_port *pp);
  };
- 
- /**
-@@ -842,7 +849,6 @@ static int __init ks_pcie_host_init(struct pcie_port *pp)
- static const struct dw_pcie_host_ops ks_pcie_host_ops = {
- 	.host_init = ks_pcie_host_init,
- 	.msi_host_init = ks_pcie_msi_host_init,
--	.scan_bus = ks_pcie_v3_65_scan_bus,
- };
- 
- static const struct dw_pcie_host_ops ks_pcie_am654_host_ops = {
 -- 
 2.25.1
 
