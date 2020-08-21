@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AE165C433DF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:12:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF8E8C433E3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:12:32 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2F481206FA
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:12:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3745420855
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:12:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="auk3K67x";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="lUf0Y/cY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F481206FA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s3sp1Lqy";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="CxuoTSrG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3745420855
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=4wntPXjDlPzg6n+hHIvOSAO+86KjA4i1Ua7EPR7ynko=; b=auk3K67xSm0oiVK1xD1NwNcAz
-	aK+YOxGeRMFC5qW6ibUx883CuRvKuYv0egcSn4b2o/pIBjP/xbpG+AAHkkKTpLt4aHlNieFrEV+18
-	AAtIMYJscxXaM1z6hdy29zHNbp63ZA+l8S1KoAD/sbDeyVrWzfsDn4FUfrEzz04ncCCWnlH6UQ7dG
-	bsaXNM+H6JQmdlwTu5sRsqxBZEIe0FbUQdmTqvG8cqmhwGpGhisOK8TqyZ36oOWMw0g96bhBmV/3N
-	LLcxTLAbqBPlLrmJZcxQ5Tu+Z+MGALuThddXB5y6jKw1pAeFh3/NDj1ES9xK4/rHw2kPNksFg2XlC
-	DsCFmIRiw==;
+	 bh=PwtnippQSqXSxfc/U2qulgVBl5hLhBFAGO+SQ9xDYEE=; b=s3sp1Lqyu2PCAvFWxFJI1/8eB
+	d/FI5SdNjpfixMp3FnkaBmpRXe/LA5k/6qC94N1EEpQxymplEvhQ0L3nUor66Pt2o4WfJSwc7IoKa
+	n2WeuJP2ysoZtp9a/MH9j8asA3QUbJmRMAkJBD1U/ClWmdhv44rWYw1MIOjmYaupgCWd2dAzmV7q5
+	0NjikPnjGE1ip50QNIOSrcXYUQgVkYDWZEjYxvlxTx+JMnen2Sw+4r6e4hDMLrFzmznrDzgPD6F84
+	f5FGTMYkv8MUz86jXnohFvKVz4gG5UV7UAvq8L8xBQSgEMVemNzZDGRQ9HKwFOhajM2CFWGvsKeUl
+	HS7e//C7w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k8yPK-0003u4-Nf; Fri, 21 Aug 2020 04:12:02 +0000
+	id 1k8yPY-0003yt-QE; Fri, 21 Aug 2020 04:12:16 +0000
 Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8yO6-00034Q-AE; Fri, 21 Aug 2020 04:10:46 +0000
+ id 1k8yO7-00034Q-An; Fri, 21 Aug 2020 04:10:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=edvGUGpaPjRq5umLUm+6u58eZpeK1XpSMHPWcWJ22Uc=; b=lUf0Y/cYTPrP26+RHcF+kOLuYH
- rouRXaeANB1gunauqVtMDX5LFYKpEgU+tz6bRweDfRD7uSGJs+YsTH6hQZpWNQBKF17VusqiAaV6g
- 7KKxhoNh2+bEIpS07pvslaSOp2VExXgTcA1m73+xRurKsUkx3Y/0Y+Dg5yN/KsFV0X3k/GoChCPkd
- jhsDpD5104pvMqHdxNAcD+8LQwFNNgH5g+C4AGZhA193JwucJ51DYPLEZ1skYcKuKl2bAhjHyNtZG
- xIQFufB/2S60pL2k0YW8YFxDPcubl9cUad5gqoEDd6TA0e9H7QaUI4vEl/Ro83SLghQOzc0TRv5om
- iBsMN5Og==;
-Received: from mail-io1-f66.google.com ([209.85.166.66])
+ bh=U5dhy5lfNiv2CBspsoOGjvk1pottUqD5VgIGcHG48iU=; b=CxuoTSrGElECaHoRCVH5MnpvCZ
+ u3r6dBNqylroiW9fmv42ix3fN6lyCubyM7aCZg6FpZEo3mMQISgVvvlNekKN7XmlL7Yqfn8RCs+Q4
+ aYUawMQx/A5vi8Sl3id0YZZsKWlr0X2O5frZvMxTtfHejOQUL3s/5Xo+y5x27mFFbRzXtyyLhhdvR
+ XSWpXVYE4XNnM0nLmEvCYZHzvnqkmY4XTogVd1sof7yw//ZgBiK0mYHVD0X5ZriPA5MQJ8MWLGGKO
+ Wx6EAS1ESSsijbOjitzzzs68akee2GC0sqnquevkyecZZuJyM23TF+DBQf6UsrA4D1Z6rwPHlSCsT
+ gMGPBQUA==;
+Received: from mail-io1-f67.google.com ([209.85.166.67])
  by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8yAF-0001Lx-7A; Fri, 21 Aug 2020 03:56:30 +0000
-Received: by mail-io1-f66.google.com with SMTP id 4so450277ion.13;
- Thu, 20 Aug 2020 20:56:26 -0700 (PDT)
+ id 1k8yA3-0001LL-Cm; Fri, 21 Aug 2020 03:56:17 +0000
+Received: by mail-io1-f67.google.com with SMTP id z17so473163ioi.6;
+ Thu, 20 Aug 2020 20:56:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=edvGUGpaPjRq5umLUm+6u58eZpeK1XpSMHPWcWJ22Uc=;
- b=KSR7fgfxdPTlxBPOIrD5n2WafIl6MUeQxDlvHiHIzA4NDiJzluNV4W18wECMk19p82
- rt7SCtaPWXZQ1RfhTjxstqsKu/kVH/unYYYwwBZWCeWy2vWSznVTOTvLKgQDZ4BqX5FF
- haScnXfh7qu2Dwf3k61JXL+qhwqSQl3ZJd6QS6ZKqjG+sInXyJnwJ4BYxjrIhRULyjmD
- f2w6/3Lmm7hQS7UU4c6Ve2ZM1SY70vYVwpu/z004SRSoOtYc934kixjHHIh0fGR6Tfn7
- 7UQJKdCAKkrBocxTR4oIzPKVKFutW6VPJgA7oSXYOrOhKVR7KrZkA0dkOLx0lSiYKyh8
- 0X3w==
-X-Gm-Message-State: AOAM533TKywUZIs9SKYsGTTySxoTXJSQf6s8lbCxfrBvvWzpC8r+nFWt
- UEP0I31e38ADAWKNQLNfog==
-X-Google-Smtp-Source: ABdhPJzMKcXOoA67DdtZomKXJ3hcCjg+p+4UND5Vd7stRJubIRYKDJim6SwRyBPjPn5FZKEVR20Ruw==
-X-Received: by 2002:a6b:c94e:: with SMTP id z75mr898531iof.196.1597982185446; 
- Thu, 20 Aug 2020 20:56:25 -0700 (PDT)
+ bh=U5dhy5lfNiv2CBspsoOGjvk1pottUqD5VgIGcHG48iU=;
+ b=W7q389R0iL1dP5OIwYILdYuuRlqSIYT418UJIWnMQ7loGRKkRHQHgr5nQzf/UW4Go7
+ igOP9mJlDB1b9GBpLzyQp2TWwHhwXGYIIKMpJQckLxdyfQsI7mvqb2u4vsTAglqfPTiW
+ zBz3RtDDl6Wg+lxGA+C6EWprfv60wBnJlDfmgu508QYqEtyg8+Lls0S6hOA4c1gVMDpZ
+ itaywrhh6Yr9JZ77r7qpb3qWjtdfpvg849muLUrPB8VpkKI+QJvEMXAzsSzSY04v6dsW
+ gAtL/GGxXeKS0mlecxVt4KhKxq0SvTCL4BpQ/VXE3ulAjx/f5QfuT+mCV6j3WFpik71T
+ KU5Q==
+X-Gm-Message-State: AOAM5308QxbO8U9CbLvBK/MjYUKIdkq7hNGmjCBsR+cHCNOrs8WsRNN/
+ LDpQH1X7E6CHbaAOmTwGfA==
+X-Google-Smtp-Source: ABdhPJxzrVgFDfxvtmE+MBNV+SieBk2ccjoW678S5hB6PbaJ4gStjqTHhwpWyikffZyFaD36Hauq7Q==
+X-Received: by 2002:a05:6638:bc2:: with SMTP id g2mr963413jad.21.1597982174122; 
+ Thu, 20 Aug 2020 20:56:14 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.249])
- by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.56.23
+ by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.56.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Aug 2020 20:56:24 -0700 (PDT)
+ Thu, 20 Aug 2020 20:56:13 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH v2 29/40] PCI: dwc/qcom: Use common PCI register definitions
-Date: Thu, 20 Aug 2020 21:54:09 -0600
-Message-Id: <20200821035420.380495-30-robh@kernel.org>
+Subject: [PATCH v2 26/40] PCI: dwc/meson: Drop unnecessary RC config space
+ initialization
+Date: Thu, 20 Aug 2020 21:54:06 -0600
+Message-Id: <20200821035420.380495-27-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200821035420.380495-1-robh@kernel.org>
 References: <20200821035420.380495-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200821_045628_067233_A0DD60A6 
+X-CRM114-CacheID: sfid-20200821_045615_894738_115AD4AF 
 X-CRM114-Status: GOOD (  12.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -127,74 +128,74 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The QCom driver has its own defines for common PCI config space
-registers. It also hard codes the capability register offsets which are
-discoverable. Convert it to use the standard register definitions.
+The common Designware init already initializes the RC PCI_COMMAND, BAR0
+and BAR1 registers.
 
-Cc: Stanimir Varbanov <svarbanov@mm-sol.com>
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+The only difference here is the common code sets SERR. If clearing SERR
+is what's desired, then the Meson driver should do that instead.
+
+Cc: Yue Wang <yue.wang@Amlogic.com>
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: linux-arm-msm@vger.kernel.org
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++----------
- 1 file changed, 8 insertions(+), 10 deletions(-)
+ drivers/pci/controller/dwc/pci-meson.c | 20 --------------------
+ 1 file changed, 20 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index fe7fc2ccd76d..d8d1fb7e0b8f 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -67,10 +67,6 @@
- #define PCIE20_AXI_MSTR_RESP_COMP_CTRL1		0x81c
- #define CFG_BRIDGE_SB_INIT			BIT(0)
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 96308743faf4..cca423e834e8 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -22,15 +22,6 @@
  
--#define PCIE20_CAP				0x70
--#define PCIE20_DEVICE_CONTROL2_STATUS2		(PCIE20_CAP + PCI_EXP_DEVCTL2)
--#define PCIE20_CAP_LINK_CAPABILITIES		(PCIE20_CAP + PCI_EXP_LNKCAP)
--#define PCIE20_CAP_LINK_1			(PCIE20_CAP + 0x14)
- #define PCIE_CAP_LINK1_VAL			0x2FD7F
+ #define to_meson_pcie(x) dev_get_drvdata((x)->dev)
  
- #define PCIE20_PARF_Q2A_FLUSH			0x1AC
-@@ -1017,6 +1013,7 @@ static int qcom_pcie_init_2_3_3(struct qcom_pcie *pcie)
- 	struct qcom_pcie_resources_2_3_3 *res = &pcie->res.v2_3_3;
- 	struct dw_pcie *pci = pcie->pci;
- 	struct device *dev = pci->dev;
-+	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	int i, ret;
- 	u32 val;
- 
-@@ -1092,14 +1089,14 @@ static int qcom_pcie_init_2_3_3(struct qcom_pcie *pcie)
- 
- 	writel(PCI_COMMAND_MASTER, pci->dbi_base + PCI_COMMAND);
- 	writel(DBI_RO_WR_EN, pci->dbi_base + PCIE20_MISC_CONTROL_1_REG);
--	writel(PCIE_CAP_LINK1_VAL, pci->dbi_base + PCIE20_CAP_LINK_1);
-+	writel(PCIE_CAP_LINK1_VAL, pci->dbi_base + offset + PCI_EXP_SLTCAP);
- 
--	val = readl(pci->dbi_base + PCIE20_CAP_LINK_CAPABILITIES);
-+	val = readl(pci->dbi_base + offset + PCI_EXP_LNKCAP);
- 	val &= ~PCI_EXP_LNKCAP_ASPMS;
--	writel(val, pci->dbi_base + PCIE20_CAP_LINK_CAPABILITIES);
-+	writel(val, pci->dbi_base + offset + PCI_EXP_LNKCAP);
- 
--	writel(PCI_EXP_DEVCTL2_COMP_TMOUT_DIS, pci->dbi_base +
--		PCIE20_DEVICE_CONTROL2_STATUS2);
-+	writel(PCI_EXP_DEVCTL2_COMP_TMOUT_DIS, pci->dbi_base + offset +
-+		PCI_EXP_DEVCTL2);
- 
- 	return 0;
- 
-@@ -1252,7 +1249,8 @@ static void qcom_pcie_post_deinit_2_7_0(struct qcom_pcie *pcie)
- 
- static int qcom_pcie_link_up(struct dw_pcie *pci)
- {
--	u16 val = readw(pci->dbi_base + PCIE20_CAP + PCI_EXP_LNKSTA);
-+	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u16 val = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
- 
- 	return !!(val & PCI_EXP_LNKSTA_DLLLA);
+-#define TYPE1_HDR_OFFSET		0x0
+-#define PCIE_STATUS_COMMAND		(TYPE1_HDR_OFFSET + 0x04)
+-#define PCI_IO_EN			BIT(0)
+-#define PCI_MEM_SPACE_EN		BIT(1)
+-#define PCI_BUS_MASTER_EN		BIT(2)
+-
+-#define PCIE_BASE_ADDR0			(TYPE1_HDR_OFFSET + 0x10)
+-#define PCIE_BASE_ADDR1			(TYPE1_HDR_OFFSET + 0x14)
+-
+ #define PCIE_CAP_OFFSET			0x70
+ #define PCIE_DEV_CTRL_DEV_STUS		(PCIE_CAP_OFFSET + 0x08)
+ #define PCIE_CAP_MAX_PAYLOAD_MASK	GENMASK(7, 5)
+@@ -275,9 +266,6 @@ static void meson_pcie_init_dw(struct meson_pcie *mp)
+ 	val = meson_cfg_readl(mp, PCIE_CFG0);
+ 	val |= APP_LTSSM_ENABLE;
+ 	meson_cfg_writel(mp, val, PCIE_CFG0);
+-
+-	meson_elb_writel(mp, 0x0, PCIE_BASE_ADDR0);
+-	meson_elb_writel(mp, 0x0, PCIE_BASE_ADDR1);
  }
+ 
+ static int meson_size_to_payload(struct meson_pcie *mp, int size)
+@@ -325,13 +313,6 @@ static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
+ 	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
+ }
+ 
+-static inline void meson_enable_memory_space(struct meson_pcie *mp)
+-{
+-	/* Set the RC Bus Master, Memory Space and I/O Space enables */
+-	meson_elb_writel(mp, PCI_IO_EN | PCI_MEM_SPACE_EN | PCI_BUS_MASTER_EN,
+-			 PCIE_STATUS_COMMAND);
+-}
+-
+ static int meson_pcie_establish_link(struct meson_pcie *mp)
+ {
+ 	struct dw_pcie *pci = &mp->pci;
+@@ -342,7 +323,6 @@ static int meson_pcie_establish_link(struct meson_pcie *mp)
+ 	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
+ 
+ 	dw_pcie_setup_rc(pp);
+-	meson_enable_memory_space(mp);
+ 
+ 	meson_pcie_assert_reset(mp);
+ 
 -- 
 2.25.1
 
