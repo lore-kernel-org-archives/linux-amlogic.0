@@ -2,91 +2,77 @@ Return-Path: <SRS0=W5Tv=B7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B922C433E1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 02:53:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23B8FC433E4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 03:55:09 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 276D5207DE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 02:53:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A7EE320714
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 03:55:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="19jRFIfQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lixom-net.20150623.gappssmtp.com header.i=@lixom-net.20150623.gappssmtp.com header.b="DGxvlbCv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 276D5207DE
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lixom.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Vm15mfat"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7EE320714
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=nrA/H3KqaogkpOKnl71aJ2YU1MidGDlm6xo3nZMOh6U=; b=19jRFIfQVRWD3FdAKemmkNQZG
-	WgH39I+6KZVdZJ7wqp1gAtf9nIsesIGS3sHPYQITJYIKlS1VqBK5Fl7y/KBtWXdXU0sKSqFxLOwTc
-	xHOaGwtelm01gQPZwLR6OO8Sz6DxTk/P+05e+nfuGPmIazc4ZH/XBMQrX/Ony8VZE0mcddqKpJNsv
-	Wud/DULBvpIbfzqNNgWq95PNPdPlTPzgAkPPLCM+dfZjGi+ok8e0yjUpCeP7hO2pMzt1oHLWUqQEt
-	01Z5xz+hUPoeGF3eUtKTVzcq81dy8mfglnBzTHyUwCwqfaoVBYhO00AmkzlaAq9tP17NwbEivmON9
-	F127wG9PA==;
+	 bh=p96Qpq/5q5ioyl05RV7vdmy1cyRncn3Ipt0RXd3DGTA=; b=Vm15mfatrEx+qEagGXRg9xJYL
+	bSk1phMeH2YhkETdDY/B/KiPgfT6YhRse2SUGpHo0X3IaEBn282NbYNQkT4LaFJX7a/fZDMKUYFgf
+	GtSmRlm2attSPNMEJ1bWAb1czrasUT9m1gUE7/2WCViizYrJhtowlJGJ7Re+TlYECaoXDV2+IuImB
+	MnaQl0HRTme2nchE1vguvDAKLZQQb5qcIiZg4hAIaFxtur+eT5ok0fedVof5Ueb7p+sKLrvgvNIhy
+	3u6JxE7AYjOucl4SrHe2s0e4ye3+9sCwHfnCyayW8tOSwIWL5mXvz9rmbf+pqVgHPEdNRReHEb0vW
+	xTGwmULpA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k8xBK-0007FO-LV; Fri, 21 Aug 2020 02:53:30 +0000
-Received: from mail-lf1-x142.google.com ([2a00:1450:4864:20::142])
+	id 1k8y8h-0004PT-Va; Fri, 21 Aug 2020 03:54:52 +0000
+Received: from mail-il1-f193.google.com ([209.85.166.193])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8xBF-0007DT-Lw
- for linux-amlogic@lists.infradead.org; Fri, 21 Aug 2020 02:53:28 +0000
-Received: by mail-lf1-x142.google.com with SMTP id s9so207320lfs.4
- for <linux-amlogic@lists.infradead.org>; Thu, 20 Aug 2020 19:53:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lixom-net.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=Wzatctpc+FvYoJ99XNB10sH67rwujcIhjY3BuCzGmho=;
- b=DGxvlbCvoNaXKOL43sWgecH+O/rJOe8W4VqpjFTJYxFzJBroPwv6ZW7nKDSZ9cXAE3
- XNV/WYUct8UNPtotuM5AqBb/psyW1ucP/6ChfXPdOyK67XVSz9pLhfkrViLGuRH+6jOs
- G/tFEYlVdK66gecWM6blGG07JniIdL56mxlmkXr2ODHNHAi11yDYQFZI3vuGgc2IFQns
- S/PMahcl3DrE60IYZGBc60MD14C5gbRplDkxJW7B7oS5cjBEshx669zny+WUpzTEe0HX
- 1DM0Ib5EXEWOKDWYWaLTSSDjXtV+8r4kaLoQB3MCwPLTeDbdL9IftChcG57HMlOnWTjT
- IezA==
+ id 1k8y8M-0004DW-W4; Fri, 21 Aug 2020 03:54:41 +0000
+Received: by mail-il1-f193.google.com with SMTP id t4so347064iln.1;
+ Thu, 20 Aug 2020 20:54:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=Wzatctpc+FvYoJ99XNB10sH67rwujcIhjY3BuCzGmho=;
- b=Xcdeaq+7VX7UARVZivg4mDLOT5Y94agHvjuigf8tRvdGJA8sxoVRDQxS7np7IGES8K
- xJKAfYFuyFJ3qo6sC2wKe9BRVkAwLD8eXpAkj6YnfKzbScoeD1gRZgUZjAftEMhIPRwR
- 62lfJN+lkaGZDdpWtsUNgaNfS/1F/Oe+iwUF8DI8ZOCNHBHmtfepSXZPp93smO14P54F
- wpfH1B+vnZJyYtp6Cuet1dljYx+gePqOkzlJOoL8CaqiZLNTV0gQv/FcPzOi7q3ZoNXH
- oAR4YM8MJpT2ATte8dSTOUUqHVdEwrMpuWp9XlNbzm+MOSFLn6Ul+XAtxISbbt7OapmO
- K+VQ==
-X-Gm-Message-State: AOAM532z4yv042WHFcHC3GPRzNhTUI4Udqm3yYS3lBp1Bs7zBLn/IEwN
- 3W0KAoF7s7Mz13aZgTly/yfM2Q==
-X-Google-Smtp-Source: ABdhPJx5BACHGdQcQmOu4crig7h0bACuVOhuDxlrNBnorAknrztXwhtNeu8pBf3h5iwfb1sTggzNHA==
-X-Received: by 2002:a05:6512:3444:: with SMTP id
- j4mr350206lfr.161.1597978402213; 
- Thu, 20 Aug 2020 19:53:22 -0700 (PDT)
-Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
- by smtp.gmail.com with ESMTPSA id a12sm89140lfi.83.2020.08.20.19.53.20
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=cRJMVMF9r7qXs+QDp+bx+ovjwoVdm4UDqS7o+cHIDVk=;
+ b=AI+sjIWvOV/K4ijzZaA3zgam3BeqLhapX2ocWnJkwEF076UQ7vlJHoszmgQY+xD6Kc
+ PatnB6R6dLJT+xOjtY++BYi7zTBElGZv0bm5z/8mkAe2pKZMRRMBoqo2EZEDzKgqfg2v
+ nhd7YjTNWEHTHb3F4NH0WyOo0q6ES8jeqAtC9dmNrkRMY78zY2fLHN486i+nn9xddw0u
+ YAfpsG1REVl/r3j2IQMGVEv4nP4KsSXFEE3kdN3Fn9AaKlIEKvrEctp9I90MZKS3fc8W
+ mMc/hONKyx7rLu/KnPlFoZoDZYgpCwx3QrvgX/rgkfb33+PF2HT4NdaCSsZZI/UesPJk
+ 03wQ==
+X-Gm-Message-State: AOAM532JfQbG3099xSOhVqEcKPeIP7bCxFuiNAXF13AboGre7RnDvbmI
+ 281u69sJlh6RvQjRXQS4wQ==
+X-Google-Smtp-Source: ABdhPJwRNaZICDow1OKY9hk3FD5LXGPW+N8Amx9fFJ/qk2fSUYYNRaZO952kdfGlBWIGO25JKRrzVA==
+X-Received: by 2002:a92:c081:: with SMTP id h1mr1021694ile.41.1597982069449;
+ Thu, 20 Aug 2020 20:54:29 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.249])
+ by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.54.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Aug 2020 19:53:20 -0700 (PDT)
-Date: Thu, 20 Aug 2020 18:12:37 -0700
-From: Olof Johansson <olof@lixom.net>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: Reformat PCI ranges/dma-ranges entries
-Message-ID: <20200821011237.GA4527@lx2k>
-References: <20200819221750.2055932-1-robh@kernel.org>
+ Thu, 20 Aug 2020 20:54:28 -0700 (PDT)
+From: Rob Herring <robh@kernel.org>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Subject: [PATCH v2 01/40] PCI: Allow root and child buses to have different
+ pci_ops
+Date: Thu, 20 Aug 2020 21:53:41 -0600
+Message-Id: <20200821035420.380495-2-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200821035420.380495-1-robh@kernel.org>
+References: <20200821035420.380495-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200819221750.2055932-1-robh@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200820_225325_889337_619E9F42 
-X-CRM114-Status: UNSURE (   9.88  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200820_235431_140495_D6271097 
+X-CRM114-Status: GOOD (  16.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,45 +84,93 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-List-Id: <soc.lore.kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <narmstrong@baylibre.com>,
+Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
+ Binghui Wang <wangbinghui@hisilicon.com>,
  Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Thierry Reding <thierry.reding@gmail.com>, linux-arm-kernel@axis.com,
+ Jonathan Chocron <jonnyc@amazon.com>, Jonathan Hunter <jonathanh@nvidia.com>,
  Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Khuong Dinh <khuong@os.amperecomputing.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Michal Simek <michal.simek@xilinx.com>, Wei Xu <xuwei5@hisilicon.com>,
- linux-rockchip@lists.infradead.org, Andy Gross <agross@kernel.org>,
- NXP Linux Team <linux-imx@nxp.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- devicetree@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>,
+ Marc Zyngier <maz@kernel.org>, Jesper Nilsson <jesper.nilsson@axis.com>,
+ linux-samsung-soc@vger.kernel.org, Dilip Kota <eswara.kota@linux.intel.com>,
+ Kevin Hilman <khilman@baylibre.com>, Pratyush Anand <pratyush.anand@gmail.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+ Xiaowei Song <songxiaowei@hisilicon.com>, Richard Zhu <hongxing.zhu@nxp.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- soc@kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>,
- Tero Kristo <t-kristo@ti.com>, Robert Richter <rrichter@marvell.com>,
+ Yue Wang <yue.wang@Amlogic.com>, Murali Karicheri <m-karicheri2@ti.com>,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jingoo Han <jingoohan1@gmail.com>, Andy Gross <agross@kernel.org>,
+ Stanimir Varbanov <svarbanov@mm-sol.com>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Shawn Guo <shawn.guo@linaro.org>, Shawn Guo <shawnguo@kernel.org>,
+ Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Aug 19, 2020 at 04:17:50PM -0600, Rob Herring wrote:
-> While bracketing doesn't matter for a DTB, the DT schema checks rely on
-> bracketing around each distinct entry. Reformat ranges and dma-ranges
-> entries to fix warnings such as:
-> 
-> arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yaml: pcie@f8000000: ranges: [[2197815296, 0, 4194304000, 0, 4194304000, 0, 31457280, 2164260864, 0, 4225761280, 0, 4225761280, 0, 1048576]] is not valid under any of the given schemas (Possible causes of the failure):
->         arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yaml: pcie@f8000000: ranges: True was expected
->         arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yaml: pcie@f8000000: ranges:0: [2197815296, 0, 4194304000, 0, 4194304000, 0, 31457280, 2164260864, 0, 4225761280, 0, 4225761280, 0, 1048576] is too long
->         arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yaml: pcie@f8000000: ranges:0:0: 2197815296 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472]
+PCI host bridges often have different ways to access the root and child
+bus config spaces. The host bridge drivers have invented their own
+abstractions to handle this. Let's support having different root and
+child bus pci_ops so these per driver abstractions can be removed.
 
-Seems like a bug in your tool? Why would we bother with this churn?
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ drivers/pci/probe.c | 8 +++++++-
+ include/linux/pci.h | 1 +
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+index 03d37128a24f..0c9ebc72532e 100644
+--- a/drivers/pci/probe.c
++++ b/drivers/pci/probe.c
+@@ -1036,6 +1036,7 @@ static struct pci_bus *pci_alloc_child_bus(struct pci_bus *parent,
+ 					   struct pci_dev *bridge, int busnr)
+ {
+ 	struct pci_bus *child;
++	struct pci_host_bridge *host;
+ 	int i;
+ 	int ret;
+ 
+@@ -1045,11 +1046,16 @@ static struct pci_bus *pci_alloc_child_bus(struct pci_bus *parent,
+ 		return NULL;
+ 
+ 	child->parent = parent;
+-	child->ops = parent->ops;
+ 	child->msi = parent->msi;
+ 	child->sysdata = parent->sysdata;
+ 	child->bus_flags = parent->bus_flags;
+ 
++	host = pci_find_host_bridge(parent);
++	if (host->child_ops)
++		child->ops = host->child_ops;
++	else
++		child->ops = parent->ops;
++
+ 	/*
+ 	 * Initialize some portions of the bus device, but don't register
+ 	 * it now as the parent is not properly set up yet.
+diff --git a/include/linux/pci.h b/include/linux/pci.h
+index 835530605c0d..1fbe95a7d386 100644
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -523,6 +523,7 @@ struct pci_host_bridge {
+ 	struct device	dev;
+ 	struct pci_bus	*bus;		/* Root bus */
+ 	struct pci_ops	*ops;
++	struct pci_ops	*child_ops;
+ 	void		*sysdata;
+ 	int		busnr;
+ 	struct list_head windows;	/* resource_entry */
+-- 
+2.25.1
 
--Olof
 
 _______________________________________________
 linux-amlogic mailing list
