@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 31A73C433E1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:01:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FA11C433E3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:01:09 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C3B4520855
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:01:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D51AB206B5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:01:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZTfHCQz6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C3B4520855
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pDN+Bsuu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D51AB206B5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,54 +25,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=c+tkX5EmXQVaw25iW2FALSwXmiNfqdUelIpSTkEgqLM=; b=ZTfHCQz6jRF9tTwT0LJbEFDlo
-	1fQwb4EPqp03XLyN5Rx4Y8WXwQEPjkRVAya9C4sqjI2LxqH95AeHwhHbO70ah9WcNKcyTKem3P8mj
-	3Mn56VLKnIy4SPu4I0roMXybI9sq6KUFOaQeO1IfIBycT/w0L7uOwq+EUywY4xmTjQMnPAoHpzMrA
-	heln+R5QHrxQVRYJ6uCoRH2nABPyYJi64jWPmfuQPEYrRhL59aOQwEtxbgms9EqMAwCQUXntk+EmH
-	lM0PUFJK3xBLeZHeJk3Dya58q+4EkTkUcILxfwKMYnDkNya1bpb9+1Ey3xydwpmwP4/3rPCs+CR5F
-	zfSBkogiA==;
+	 bh=NIeYCPONbo9Wom5LC/Hh1X7e/R+11PO6HSlWpnDuIH4=; b=pDN+BsuuQa+ufzF78/r+/iaK7
+	Tmy8Rv6TvYhdzQELyOmFd0pExGRCPAOpDkyM47v7qZVH1MH1fPWpEIi7G1huIUNHfkzc7YzlSWk19
+	V4UbY8kqrmXtGAlwbRl/SNmYIqaO0P477txr341Q7Ak6fFFEol1NYd/h1DEAQE09s4YvPH7RE+I6S
+	4utf1P2aD6j1bxbOQdRu2TMBwa0+pfwCEMyqq0CsbR06LA/5MFpub8dRABuyy+8E2IwQLQPwwNPp0
+	lPEs71mTWpiMZ+IWmIbgVhVYSFpNeCyHAAIJUpFjKssK7j9baUj2f8/+8BXu1j9NSeQKyCOTnVTAB
+	ynGoGtRtw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k8yEd-000734-3a; Fri, 21 Aug 2020 04:00:59 +0000
-Received: from mail-io1-f65.google.com ([209.85.166.65])
+	id 1k8yEg-00075b-Nn; Fri, 21 Aug 2020 04:01:02 +0000
+Received: from mail-il1-f196.google.com ([209.85.166.196])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8y9d-0004mU-1I; Fri, 21 Aug 2020 03:56:15 +0000
-Received: by mail-io1-f65.google.com with SMTP id g14so496079iom.0;
- Thu, 20 Aug 2020 20:55:47 -0700 (PDT)
+ id 1k8y9q-0004rb-GW; Fri, 21 Aug 2020 03:56:22 +0000
+Received: by mail-il1-f196.google.com with SMTP id v2so341728ilq.4;
+ Thu, 20 Aug 2020 20:56:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=kumZHZjUFIvX3SHWpXpEUET8g4KV80WJmK3nUIgHIRs=;
- b=RFsjLA1j1YhSW0t0JisFlX1n/bhp3jqM0UHCVLoWqKWAGZ0YxymePP8TD0Zn8kEJXE
- ADwYHIPvRh+o+P8M413xb3R/dQ7CA6mu+cW6ijs0eoeXfHLPRNzue3TzFqig1MLuKeN3
- IBfHLZR+RVynRd9oCWeDJftqU5BmM7Etb0JlrJC4QXMiGPUHDa/2KIyE0U0UbmgBNIJT
- 3JjEgADQeOo8ngOdcJcqFWUdXVU1TgFWPI7NCKVsM+tK7c/1pv5HP1n5+vY088zRk6+6
- ayIG8Wm8q24rRVJJJwTrLZVdQDTqHPHAFNJOiOFqcvjagP52f3e1LfoB4OydHVoM6tzm
- J/sw==
-X-Gm-Message-State: AOAM533WU97IHKTSGJv2wAhpNA6EGX/fVRKr2N4EdHf2CCUqqNbXKUE4
- PFuiWyOam+kzhQKIK7IoGg==
-X-Google-Smtp-Source: ABdhPJxRKUtV0n+dK2NRfpXEvZsHGODGBsP7rLd+TFntUVfJ0RA8JVZq7czdDNbyUGCiMPAKKGQyTA==
-X-Received: by 2002:a05:6638:22c7:: with SMTP id
- j7mr840801jat.77.1597982145790; 
- Thu, 20 Aug 2020 20:55:45 -0700 (PDT)
+ bh=uu4tpLpSWlZgPNlTgALarmZOQ965fdEPoxw3GPbhQMY=;
+ b=NTXWPKMr2ZuqKHAsbmm4rrmOxWdxL1h7VzxhEZkkpwLlZdJ46VWFPLryEJqqYdPdi9
+ /+ccVviCYSsNtrfCR4dxNjrYFg4KgQBZvt6LYW24nxKUATU9G64kdLspNrEBD6Y392Ao
+ r5YWwH+Ml/EsEr0udDrJEewQ5ILFV/7RScS1TWIuT6wIEGQJErQrSvvZyjkwhoz0NhFP
+ 5cdvlsqE8KhvXADoWKwPrVJ5O3FLPvO9WEFdYOigE/4rvPVps+JX+xL8Cypzne6Jftje
+ tvvbq6uC1G2yHnRdSTbuuXYGAfUIFZOOAHuoMJrBRnp83d7niJGNdJ8G4YsDV73Ar9iW
+ fd3w==
+X-Gm-Message-State: AOAM5315BSo6J/fbRgUaAA22hBRK4NlyBQC0hZPTw2u9g6fwvuieBGcv
+ 7D1BJ0vRIye4zTI3z3Y1WA==
+X-Google-Smtp-Source: ABdhPJzZNZOWZm6KD7ItWV2xaPG0DqxpYvEl6L0qi9rFaLP6Bl6ngDqvWZqxYrl0EKniHIjOc3szPw==
+X-Received: by 2002:a92:b05:: with SMTP id b5mr1008672ilf.14.1597982160472;
+ Thu, 20 Aug 2020 20:56:00 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.249])
- by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.55.40
+ by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.55.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Aug 2020 20:55:45 -0700 (PDT)
+ Thu, 20 Aug 2020 20:55:59 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH v2 20/40] PCI: dwc/keystone: Drop duplicated 'num-viewport'
-Date: Thu, 20 Aug 2020 21:54:00 -0600
-Message-Id: <20200821035420.380495-21-robh@kernel.org>
+Subject: [PATCH v2 23/40] PCI: dwc: Add a 'num_lanes' field to struct dw_pcie
+Date: Thu, 20 Aug 2020 21:54:03 -0600
+Message-Id: <20200821035420.380495-24-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200821035420.380495-1-robh@kernel.org>
 References: <20200821035420.380495-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200820_235549_343349_77A5B188 
-X-CRM114-Status: GOOD (  16.26  )
+X-CRM114-CacheID: sfid-20200820_235602_695035_71A30513 
+X-CRM114-Status: GOOD (  17.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,69 +113,84 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The DWC core driver already parses and stores the 'num-viewport' DT
-property, so there is no need for the Keystone driver to store it.
+Add a 'num_lanes' field to allow drivers to provide a the number of lanes
+if not in DT or using a custom DT property. A driver can provide a
+non-zero value which is used if the DT doesn't have a 'num-lanes'
+property.
 
-Cc: Murali Karicheri <m-karicheri2@ti.com>
+Cc: Jingoo Han <jingoohan1@gmail.com>
+Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/controller/dwc/pci-keystone.c | 11 +----------
- 1 file changed, 1 insertion(+), 10 deletions(-)
+ drivers/pci/controller/dwc/pcie-designware.c | 13 ++++++-------
+ drivers/pci/controller/dwc/pcie-designware.h |  1 +
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-index 983069a4a561..0fe792f6c253 100644
---- a/drivers/pci/controller/dwc/pci-keystone.c
-+++ b/drivers/pci/controller/dwc/pci-keystone.c
-@@ -123,7 +123,6 @@ struct keystone_pcie {
- 
- 	int			msi_host_irq;
- 	int			num_lanes;
--	u32			num_viewport;
- 	struct phy		**phy;
- 	struct device_link	**link;
- 	struct			device_node *msi_intc_np;
-@@ -397,9 +396,9 @@ static void ks_pcie_clear_dbi_mode(struct keystone_pcie *ks_pcie)
- static void ks_pcie_setup_rc_app_regs(struct keystone_pcie *ks_pcie)
+diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+index b723e0cc41fb..14ac87fa21a2 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.c
++++ b/drivers/pci/controller/dwc/pcie-designware.c
+@@ -548,7 +548,6 @@ void dw_pcie_setup(struct dw_pcie *pci)
  {
+ 	int ret;
  	u32 val;
--	u32 num_viewport = ks_pcie->num_viewport;
- 	struct dw_pcie *pci = ks_pcie->pci;
- 	struct pcie_port *pp = &pci->pp;
-+	u32 num_viewport = pci->num_viewport;
- 	u64 start, end;
- 	struct resource *mem;
- 	int i;
-@@ -1199,7 +1198,6 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	unsigned int version;
- 	void __iomem *base;
--	u32 num_viewport;
- 	struct phy **phy;
- 	int link_speed;
- 	u32 num_lanes;
-@@ -1349,12 +1347,6 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
- 			goto err_get_sync;
- 		}
+-	u32 lanes;
+ 	struct device *dev = pci->dev;
+ 	struct device_node *np = dev->of_node;
  
--		ret = of_property_read_u32(np, "num-viewport", &num_viewport);
--		if (ret < 0) {
--			dev_err(dev, "unable to read *num-viewport* property\n");
--			goto err_get_sync;
--		}
--
- 		/*
- 		 * "Power Sequencing and Reset Signal Timings" table in
- 		 * PCI EXPRESS CARD ELECTROMECHANICAL SPECIFICATION, REV. 2.0
-@@ -1368,7 +1360,6 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
- 			gpiod_set_value_cansleep(gpiod, 1);
- 		}
+@@ -562,16 +561,16 @@ void dw_pcie_setup(struct dw_pcie *pci)
+ 		"enabled" : "disabled");
  
--		ks_pcie->num_viewport = num_viewport;
- 		pci->pp.ops = host_ops;
- 		ret = ks_pcie_add_pcie_port(ks_pcie, pdev);
- 		if (ret < 0)
+ 
+-	ret = of_property_read_u32(np, "num-lanes", &lanes);
+-	if (ret) {
+-		dev_dbg(pci->dev, "property num-lanes isn't found\n");
++	ret = of_property_read_u32(np, "num-lanes", &pci->num_lanes);
++	if (!pci->num_lanes) {
++		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
+ 		return;
+ 	}
+ 
+ 	/* Set the number of lanes */
+ 	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
+ 	val &= ~PORT_LINK_MODE_MASK;
+-	switch (lanes) {
++	switch (pci->num_lanes) {
+ 	case 1:
+ 		val |= PORT_LINK_MODE_1_LANES;
+ 		break;
+@@ -585,7 +584,7 @@ void dw_pcie_setup(struct dw_pcie *pci)
+ 		val |= PORT_LINK_MODE_8_LANES;
+ 		break;
+ 	default:
+-		dev_err(pci->dev, "num-lanes %u: invalid value\n", lanes);
++		dev_err(pci->dev, "num-lanes %u: invalid value\n", pci->num_lanes);
+ 		return;
+ 	}
+ 	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+@@ -593,7 +592,7 @@ void dw_pcie_setup(struct dw_pcie *pci)
+ 	/* Set link width speed control register */
+ 	val = dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
+ 	val &= ~PORT_LOGIC_LINK_WIDTH_MASK;
+-	switch (lanes) {
++	switch (pci->num_lanes) {
+ 	case 1:
+ 		val |= PORT_LOGIC_LINK_WIDTH_1_LANES;
+ 		break;
+diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+index 7cc322f8596c..43d3729101c3 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.h
++++ b/drivers/pci/controller/dwc/pcie-designware.h
+@@ -246,6 +246,7 @@ struct dw_pcie {
+ 	struct dw_pcie_ep	ep;
+ 	const struct dw_pcie_ops *ops;
+ 	unsigned int		version;
++	int			num_lanes;
+ };
+ 
+ #define to_dw_pcie_from_pp(port) container_of((port), struct dw_pcie, pp)
 -- 
 2.25.1
 
