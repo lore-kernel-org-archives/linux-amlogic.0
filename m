@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0462C433E1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:02:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E422C433E1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:02:28 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7141D208B3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:02:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F0E5B206B5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:02:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jrz3VusF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7141D208B3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kLxtC4CN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F0E5B206B5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,54 +25,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=tgm+TiPGkxRjTld5rkVgRWe/FundoSd97bvsoXSClY0=; b=jrz3VusFhAQnOhBFZKrA7JUl/
-	KcS9aEE0HUGi4dvLJoJjjkrkyx5VSRjXiH0/rHKKC2kYfc5LvVF35EIVEY2B+lDtKdP78iK0uoIZj
-	0o79UEqp3jJ1g6k2z5vd/tFgmkgNHKNG2JcKpzZnf5ftXdOYC9/L9BQBJ5DmanJjky20y5Z8i33aW
-	eTXpc1wiSKIZ2yq6j+Q5E+7I92jMwizMqRvW61WySHpSWuF8hrUYGwt9SFJ4w/Ob+B0SxJCG78MnK
-	bTcj2d4f/lD2QtT9TfKUjKB2GqjL7G4QQv8ZtYF5X/TfkeBW3hIr/Sdjp8R3iPVNW/aohVWSrQMC2
-	eSgFP1oMQ==;
+	 bh=vZ0kfAqwaaLechUknoQWZFUF+efQiLOStAqufBnEyJ0=; b=kLxtC4CNZMxmyMGc7w1x2C32w
+	PuxqLVRZrhy1bVxeNC2LaTR8lZDpOhG1hP1w7TbDbjKBC8ybb5y5XgLpHV8953d3cPqRC1+DKXRZs
+	DNWISutgk4vAYzMvrxHYuyQZmwk5CSHq9bsgIGJ8Ew4RKDWEBqWFDR0ALr1Yi6Ed382jID/5E3QTQ
+	b7wg3FJj2ljFvedptWGHTwqAVIVIyM/FFVRvVWhi5LU/31C1hoNwdDf3K6ROmKLKW+kMyoep3hwYQ
+	WnN36P7SHC2UFaT1NBfHFUQwxMYXSoBetwTTU+Vp66IF26ud1jFeHIMGcLL+SOX2qMz/WBLcIZjKc
+	HuXBdsDPA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k8yFr-0007nh-PY; Fri, 21 Aug 2020 04:02:15 +0000
+	id 1k8yFt-0007pC-PQ; Fri, 21 Aug 2020 04:02:17 +0000
 Received: from mail-io1-f68.google.com ([209.85.166.68])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8yAa-00059p-RS; Fri, 21 Aug 2020 03:57:12 +0000
-Received: by mail-io1-f68.google.com with SMTP id q75so489021iod.1;
- Thu, 20 Aug 2020 20:56:47 -0700 (PDT)
+ id 1k8yAg-0005Bz-QC; Fri, 21 Aug 2020 03:57:12 +0000
+Received: by mail-io1-f68.google.com with SMTP id s1so462404iot.10;
+ Thu, 20 Aug 2020 20:56:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=977wihraQvLF0SPRRQJhF+YrG+p3/qEwPqMrKAY+nbQ=;
- b=Zbx2tsC1YIaaE8P2UzVoLoG05ZeBH+QGLLm86bJogFmjPy1LFVTBKYGJJ4mgDH7PM8
- MdR8xtTQLxAkAJ82WThbBMRiNZpHpSbGWNqNRNjO8PYJ4up69StRuI4vocE5sv/jOXtx
- Tz6Awkyo3pHMl4PJrq8WDvAlddLigfHgdY+Msn1KmByXk9vcEiRyASLqhNbfLiutgw/Y
- vOvL+gFIV4tk5/XQZwsSZhzSmsiTck69axiEBuF6L8Kg9QKovNp0ExuNtILSPA/UpPvP
- 6sZU3tXvcYfJ0og0hksXhwjNkrctiz7Fby8Yaehz083NRqGZzQyGz2BXNa9kG8o+gCB4
- Hjhw==
-X-Gm-Message-State: AOAM532eB+nOD9rB6hVmHD5IBOnDoGo/afc7gyQwWuhGrJJGhrKHsVSk
- EcwdQUl9HvLQLvW/5SYqbA==
-X-Google-Smtp-Source: ABdhPJw/uNByXN0aCl+4jyJ73JOY4dDBXCFrmTrhHNDlH5OMH+mWhGn9ESZSwCXXys59FN3TPFATHw==
-X-Received: by 2002:a02:29ca:: with SMTP id p193mr859557jap.131.1597982205997; 
- Thu, 20 Aug 2020 20:56:45 -0700 (PDT)
+ bh=by4oX7Q9EHMVJaM1a51OAzD7P0ljQOmX5mYz/PVurNU=;
+ b=D8lnrvswDnrkAZhCFQLPqhfILAmjpcMi3HdO7RdNBnKgG4S2+Fs483ohyL2TMk+l1G
+ oO3BGJbikR41hml4JNBfugfJ3r+K/zPNzAdKNpL9LSYlglw0ec6kOOB5J65vfaaDnFgx
+ Qtu83HO9iwLK8c74fMwc7nrBdHOUOteBXlRWg0BI8EPbVN2B1AOzAZO4zVetQyih21P1
+ GdTxMKE+KB0cQJlPPh91fOEbB/zpenWmjY46rh7LfqFlzqYyOgtU6ktNIIqYq+SyC1mq
+ e/8FPODBtQAsel9RdII54DkYDb5bUCcd9XIO9zRl+rsSWcaMo0UxAKRP08pqfg8yn+4/
+ 6S7g==
+X-Gm-Message-State: AOAM533ZjlgBKHsRquwsCKz4nl5cv6Io5MSPb0J667uOPUJvysdRdWsG
+ IXGidd+37NksktLGDmba9w==
+X-Google-Smtp-Source: ABdhPJxM5kjSHd3L5b8T/on1Z1mm06cBCvBOTiUQ8rjsJmv63ck+8CPmCubjjHoxbemoW0uKPGWg4g==
+X-Received: by 2002:a02:aa87:: with SMTP id u7mr925566jai.13.1597982212144;
+ Thu, 20 Aug 2020 20:56:52 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.249])
- by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.56.41
+ by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.56.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Aug 2020 20:56:45 -0700 (PDT)
+ Thu, 20 Aug 2020 20:56:51 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH v2 36/40] PCI: dwc/intel-gw: Drop unnecessary checking of DT
- 'device_type' property
-Date: Thu, 20 Aug 2020 21:54:16 -0600
-Message-Id: <20200821035420.380495-37-robh@kernel.org>
+Subject: [PATCH v2 38/40] PCI: dwc/intel-gw: Drop unused max_width
+Date: Thu, 20 Aug 2020 21:54:18 -0600
+Message-Id: <20200821035420.380495-39-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200821035420.380495-1-robh@kernel.org>
 References: <20200821035420.380495-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200820_235649_109234_A3C02F90 
-X-CRM114-Status: GOOD (  13.16  )
+X-CRM114-CacheID: sfid-20200820_235655_080631_E87CA253 
+X-CRM114-Status: GOOD (  12.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,34 +113,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-A driver doesn't need to check for DT 'device_type' property, so let's
-remove the check.
+'max_width' is read, but never used, so let's remove it.
 
 Cc: Dilip Kota <eswara.kota@linux.intel.com>
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/controller/dwc/pcie-intel-gw.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/pci/controller/dwc/pcie-intel-gw.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
-index d15e49b8df2a..6b102197a1b6 100644
+index 807e1fa1bd6f..333f11561807 100644
 --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
 +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
-@@ -268,12 +268,6 @@ static int intel_pcie_get_resources(struct platform_device *pdev)
- 		return ret;
- 	}
+@@ -67,7 +67,6 @@ struct intel_pcie_port {
+ 	void __iomem		*app_base;
+ 	struct gpio_desc	*reset_gpio;
+ 	u32			rst_intrvl;
+-	u32			max_width;
+ 	u32			n_fts;
+ 	struct clk		*core_clk;
+ 	struct reset_control	*core_rst;
+@@ -133,9 +132,6 @@ static void intel_pcie_link_setup(struct intel_pcie_port *lpp)
+ 	u32 val;
+ 	u8 offset = dw_pcie_find_capability(&lpp->pci, PCI_CAP_ID_EXP);
  
--	ret = device_property_match_string(dev, "device_type", "pci");
--	if (ret) {
--		dev_err(dev, "Failed to find pci device type: %d\n", ret);
--		return ret;
--	}
+-	val = pcie_rc_cfg_rd(lpp, offset + PCI_EXP_LNKCAP);
+-	lpp->max_width = FIELD_GET(PCI_EXP_LNKCAP_MLW, val);
 -
- 	ret = device_property_read_u32(dev, "reset-assert-ms",
- 				       &lpp->rst_intrvl);
- 	if (ret)
+ 	val = pcie_rc_cfg_rd(lpp, offset + PCI_EXP_LNKCTL);
+ 
+ 	val &= ~(PCI_EXP_LNKCTL_LD | PCI_EXP_LNKCTL_ASPMC);
 -- 
 2.25.1
 
