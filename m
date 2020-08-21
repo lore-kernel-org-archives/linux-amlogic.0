@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A908C433DF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:14:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67B32C433E1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:14:48 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EC80A20855
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:14:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0C8B5206FA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2020 04:14:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="V8xG07jI";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="Wj5w7P2l"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EC80A20855
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s5jO6CuZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="hdtxvuqR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0C8B5206FA
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=LbRdiePe1usUOIOHrXAFCiePVTA/gw4a3Ud5bt4n3i4=; b=V8xG07jIGBoPebMWxKHS5Q9UN
-	V06l5teJOtvLrq/JweMk1ITFp0/SzHMe4KwbUuwwRawOuI/iRfnFzHukabav9S+V/Hnk//T7YC+ou
-	WOQx8zQuA1OvE1PEY0m2KsgX+7ygnpnZRvJ5MNUsJ7L1cKR3qUO8ZD5MNTO3axs5yYXqdwWyO73lj
-	EILhC9o2FusdrDobZiJR7r5y5iTzMCVHauq9qxuV+A22HZRrdtFgZnKZv0b0wNPPQ7HPC+8TWH8WO
-	m1Z/381hdUhkIpJxNJxRMxVVwF26mQmbc8N8/FySAHhjh+/wYxLH4VGNct8zZp4eiJJo/z8cVoigx
-	p8QediRkg==;
+	 bh=O53+IRoaqIzSMnkJoYgeOqYfmPaQkM6Kn9tNOwIY8Bg=; b=s5jO6CuZSjB2x4VN9pXvAzy4T
+	SCtXPpplT1XymBfwXZa363p3+N+X6Yi6Lad08laAyZl48zShuiZLoWdC52qaqqb3kZFRx5c7MAVR2
+	OaGKNHOWyHUER3Iq1ZZ3EVIA95nL0IV7pH7RpWFoA0MUGbxyCYoKg/du0oUq4F0SaF1Xw1htMTtMi
+	y9z1YtgkdeUeVkOu25FNdoXafvbpoZttcJFI36qlG9GOmLb804NOtC5noF2iWm7SP6nlRgYGpkfXK
+	FRjJAa8G2X/VX22UTwU8p8bBHRpyWB79bwrytGLltGsvJBI8TF/ZYrubsxIjk8AMhNkolphfvP9Sd
+	J2m07WdMg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k8yRg-0005NJ-Qn; Fri, 21 Aug 2020 04:14:28 +0000
+	id 1k8yRl-0005PR-7V; Fri, 21 Aug 2020 04:14:33 +0000
 Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8yOL-00034Q-5Z; Fri, 21 Aug 2020 04:11:01 +0000
+ id 1k8yOM-00034Q-4Z; Fri, 21 Aug 2020 04:11:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=OdbUqaHlOxpNwKxtKQG+iMJdH7wgWqKuZeq7kbv/krA=; b=Wj5w7P2ljEh+/ksXnnYFl/nkYi
- hzhAtwnvGgMxdqWvn8iKIKQm+m6kTMdZOpmen0Ntbb3QnE6DVokJLfp7I4tNLnEfHKDsI34YJ9H2Y
- gEmz5Baz2VAklwJlo97g5FE7oKaoSfrhDbgAURsfBddm0dAqEm0X1r4tZJzvXTb1oihqo+BWeNvhV
- 9Hg54quySpR3nrBSHA89BX2UAKc8SwF534+BrpdjMrNz4QxLKGzdP2zK36en/bJFrUEFnGUvZZ4Vx
- uCXcOc/M3/guIKNs7h/B32o9ZwV5wVVhYtAeyzAB6ktwaHZ56/oSWHCEdgQTFCP9XdRqxLECSPSjn
- O+RwHj9A==;
+ bh=qKmjK2jvfVRVb7Er4EDpjePrGGwdJv1IZniABBvajKY=; b=hdtxvuqRNJ7qFxjkfIQpD2R/Ey
+ 5tdKzaejmVackTMDyQEcqOsyAVTUkdTgXAnllBiwMk6MNQkn8iaHm+nFCfSO0rCuXrusmWeS9Yhjg
+ exn1NzZ0gC/pC5GTAWxVE/q8YkmsdZexycHXMW4RwIf6b1psFQDP/tDuTDNDmxaDTZzsjVISTGvEe
+ 0zzU5d406SL71kVeOtbLh4hd+JL/YpRt84hBxAt9GHCgk4EZn6TLElycZ5uEW2K4MWdBtCt1mr2qg
+ +fprGBfnbmsRkIo/AOUtwpEDsV/IoMlJkMMemqV3znLaPOL8ptETRK00I64EiI8ceoee3165cV2ya
+ vpDbb9pg==;
 Received: from mail-il1-f193.google.com ([209.85.166.193])
  by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8y9C-0001EQ-NO; Fri, 21 Aug 2020 03:55:24 +0000
-Received: by mail-il1-f193.google.com with SMTP id k4so313977ilr.12;
- Thu, 20 Aug 2020 20:55:22 -0700 (PDT)
+ id 1k8y96-0001Db-4R; Fri, 21 Aug 2020 03:55:20 +0000
+Received: by mail-il1-f193.google.com with SMTP id t4so348010iln.1;
+ Thu, 20 Aug 2020 20:55:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=OdbUqaHlOxpNwKxtKQG+iMJdH7wgWqKuZeq7kbv/krA=;
- b=mlX3nR/JdBB5YPQ1tcsYKnCeYHTGGG/K0eWwIU6aKami/Mk6frroFUFd1TS34nyqbi
- /9tTgZcZnHdUmFih4+pBOEPMOXnqEh7dQoTc6SsbqMYNhvIUGVWOhuLE2+m+WD8n6Swr
- /FfloYDbt33H2ZO1Ww1uPnsFrZLHlwiSVwiWe/MGsd9+IklgOTM373blALbw0BedCxkI
- lAOIsKoY6shhPQZezgxUWzCNlt9cR+TCZvAYfD/pkyhFdQ6Vj87EaiP80urhc41KBvsl
- TrxbnQkN11ZFsij6olmCPKNPWQiggsaxYZIp4ulM1CqUCTG3Tp8Uq/ZIUefe3IcWV6Qb
- qZJA==
-X-Gm-Message-State: AOAM533SJjtKDm+GAAAS3/ESvkoPsIr0olzFSe3VYYb3DzdueTYW6tdB
- vsyXK+yGfymm0xKpLQfVCA==
-X-Google-Smtp-Source: ABdhPJwE4917c5+NGuqLlyA9JDGlrpGe+mH9Eho+5KNlJKwz9WZvaxODvXKvQEAkENi0q4FM4lOqPw==
-X-Received: by 2002:a92:ad12:: with SMTP id w18mr941662ilh.218.1597982121701; 
- Thu, 20 Aug 2020 20:55:21 -0700 (PDT)
+ bh=qKmjK2jvfVRVb7Er4EDpjePrGGwdJv1IZniABBvajKY=;
+ b=JeM52ft4Vrx7hVHA9ETpc/iqFJLTPN6ptmLXtQR3sTCJu+0tXLcjG2rCIS4ykN1sbW
+ 13d6mJQ4OnolxasLHzja+daiOAI/O7ObMguYhISx1kepDIWHcFupsXu0h5+AgYCV3dNu
+ oDz+BBjjuCR5uJaGPsNaFrHlR5n5JMNgcTCvj1tV+Kw9MptOYvuLspkcP6iPngcpLkpY
+ yS9oAztZACAtyztC36Xs8/yMx14rZywiMbU7uYwlnoeVkfUKppguqwNIRz/WhL9RSvi2
+ OhRyCjbysFSdKa0/Os4nSZkoDmOF0gvTAMTn5BrPvwRv3IlGnAUMzObL5hc9vUx/2DXi
+ +oTQ==
+X-Gm-Message-State: AOAM532fo70JqWSQ2qykfLQwZUwOQ8XuSU8NoqT/V5yhALigZDY7oTjG
+ mjkBTst6L9EFQvYNqwJGtg==
+X-Google-Smtp-Source: ABdhPJyFyuPqncuoqZ1fAZCdBINxVRQghyiJl0ptgs9OL2HhJzv6JYxxzj1pcCD8hN6EHRc1CXmRqQ==
+X-Received: by 2002:a05:6e02:14c2:: with SMTP id
+ o2mr1027045ilk.54.1597982114575; 
+ Thu, 20 Aug 2020 20:55:14 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.249])
- by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.55.19
+ by smtp.googlemail.com with ESMTPSA id 79sm413923ilc.9.2020.08.20.20.55.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Aug 2020 20:55:21 -0700 (PDT)
+ Thu, 20 Aug 2020 20:55:14 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH v2 14/40] PCI: Also call .add_bus() callback for root bus
-Date: Thu, 20 Aug 2020 21:53:54 -0600
-Message-Id: <20200821035420.380495-15-robh@kernel.org>
+Subject: [PATCH v2 11/40] PCI: dwc: histb: Use pci_ops for root config space
+ accessors
+Date: Thu, 20 Aug 2020 21:53:51 -0600
+Message-Id: <20200821035420.380495-12-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200821035420.380495-1-robh@kernel.org>
 References: <20200821035420.380495-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200821_045522_922508_0ACDEFBC 
-X-CRM114-Status: GOOD (  12.20  )
+X-CRM114-CacheID: sfid-20200821_045517_130525_4F3D9F94 
+X-CRM114-Status: GOOD (  15.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,34 +129,93 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Similar to pcibios_add_bus(), call pci_ops.add_bus() when the root bus
-is added. This allows host bridge drivers to do any setup requiring a
-bus pointer.
+Now that DWC drivers can setup their own pci_ops for the root and child
+buses, convert the HiSilicon histb driver to use the standard pci_ops
+for root bus config accesses.
 
-There are currently no .add_bus() callbacks, so this is safe to do.
-
+Cc: Shawn Guo <shawn.guo@linaro.org>
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/probe.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/pci/controller/dwc/pcie-histb.c | 41 ++++++++++++++-----------
+ 1 file changed, 23 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 0c9ebc72532e..d8bf3fe8dacd 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -941,6 +941,12 @@ static int pci_register_host_bridge(struct pci_host_bridge *bridge)
+diff --git a/drivers/pci/controller/dwc/pcie-histb.c b/drivers/pci/controller/dwc/pcie-histb.c
+index 2a2835746077..af1deae2b15d 100644
+--- a/drivers/pci/controller/dwc/pcie-histb.c
++++ b/drivers/pci/controller/dwc/pcie-histb.c
+@@ -122,32 +122,37 @@ static void histb_pcie_write_dbi(struct dw_pcie *pci, void __iomem *base,
+ 	histb_pcie_dbi_w_mode(&pci->pp, false);
+ }
  
- 	pcibios_add_bus(bus);
+-static int histb_pcie_rd_own_conf(struct pcie_port *pp, int where,
+-				  int size, u32 *val)
++static int histb_pcie_rd_own_conf(struct pci_bus *bus, unsigned int devfn,
++				  int where, int size, u32 *val)
+ {
+-	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+-	int ret;
++	struct dw_pcie *pci = to_dw_pcie_from_pp(bus->sysdata);
  
-+	if (bus->ops->add_bus) {
-+		err = bus->ops->add_bus(bus);
-+		if (WARN_ON(err < 0))
-+			dev_err(&bus->dev, "failed to add bus: %d\n", err);
+-	histb_pcie_dbi_r_mode(pp, true);
+-	ret = dw_pcie_read(pci->dbi_base + where, size, val);
+-	histb_pcie_dbi_r_mode(pp, false);
++	if (PCI_SLOT(devfn)) {
++		*val = ~0;
++		return PCIBIOS_DEVICE_NOT_FOUND;
 +	}
+ 
+-	return ret;
++	*val = dw_pcie_read_dbi(pci, where, size);
++	return PCIBIOS_SUCCESSFUL;
+ }
+ 
+-static int histb_pcie_wr_own_conf(struct pcie_port *pp, int where,
+-				  int size, u32 val)
++static int histb_pcie_wr_own_conf(struct pci_bus *bus, unsigned int devfn,
++				  int where, int size, u32 val)
+ {
+-	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+-	int ret;
++	struct dw_pcie *pci = to_dw_pcie_from_pp(bus->sysdata);
+ 
+-	histb_pcie_dbi_w_mode(pp, true);
+-	ret = dw_pcie_write(pci->dbi_base + where, size, val);
+-	histb_pcie_dbi_w_mode(pp, false);
++	if (PCI_SLOT(devfn))
++		return PCIBIOS_DEVICE_NOT_FOUND;
+ 
+-	return ret;
++	dw_pcie_write_dbi(pci, where, size, val);
++	return PCIBIOS_SUCCESSFUL;
+ }
+ 
++static struct pci_ops histb_pci_ops = {
++	.read = histb_pcie_rd_own_conf,
++	.write = histb_pcie_wr_own_conf,
++};
 +
- 	/* Create legacy_io and legacy_mem files for this bus */
- 	pci_create_legacy_files(bus);
+ static int histb_pcie_link_up(struct dw_pcie *pci)
+ {
+ 	struct histb_pcie *hipcie = to_histb_pcie(pci);
+@@ -194,6 +199,8 @@ static int histb_pcie_establish_link(struct pcie_port *pp)
+ 
+ static int histb_pcie_host_init(struct pcie_port *pp)
+ {
++	pp->bridge->ops = &histb_pci_ops;
++
+ 	histb_pcie_establish_link(pp);
+ 
+ 	if (IS_ENABLED(CONFIG_PCI_MSI))
+@@ -203,8 +210,6 @@ static int histb_pcie_host_init(struct pcie_port *pp)
+ }
+ 
+ static const struct dw_pcie_host_ops histb_pcie_host_ops = {
+-	.rd_own_conf = histb_pcie_rd_own_conf,
+-	.wr_own_conf = histb_pcie_wr_own_conf,
+ 	.host_init = histb_pcie_host_init,
+ };
  
 -- 
 2.25.1
