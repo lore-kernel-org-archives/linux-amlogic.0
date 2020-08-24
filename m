@@ -2,91 +2,72 @@ Return-Path: <SRS0=4XcC=CC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C5B0BC433DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 08:14:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19284C433E3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 10:25:39 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 669BF2072D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 08:14:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C92D120738
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 10:25:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GYSZ86jH";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="t9HZTtVs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 669BF2072D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KzZVR8AM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C92D120738
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:To:From:
+	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=JZG8G9vBobtEf1BcLnlc9M+lR6A4oZPEYhugatqsk5c=; b=GYSZ86jHWuzogQem2SotuDml9
-	/5xcNGHsxm9OJLJvEoR9tNEMOWo7egX94vWKOZ6zIb2Cir+LlkrOkE5g3A/M89PIXEHEf6d+U+z4H
-	kPv54c87PVx9suaRKWz+bCtRgt014EAngV6wKHP04N8zPoXEhgPzHt68mg2Rj6wgskR3l4orBtIHF
-	Cya3Ae99KD+/QUHGv8LXXfNOSyQ6YpFXH3MtWGMHRwIYZ++KoHKQx8yxwul0xjDJuiK16x8ErlvxT
-	iaHVYJx0FI8Ez+jgEsVGvtrvVfqj5YNzRF6sNU5M81mQWHUfOkYc+9Otm6vN+ShInnpYedtFn8Apx
-	wRymeTolg==;
+	 bh=g2hoEM8BrsUvD6/kXP7lbBcTbwycpKXH9mRbvPOWZw0=; b=KzZVR8AMmE5c2FZRAeMnN15tj
+	leYfaE3+j5M7Zs1aD6lzXj7vqOvGcjZ/uQkEPibF5GV2ByOcA6gwH8q6Sru1tTdsLWlOKsGZys1TX
+	G8c/W5Uv1u7+XMcThyu1U6rypAhwg6URu+PtcSoPhMDj19hxfkF9G1oBVXAtQoT8qoY6Hy4mE8gix
+	DqhixbFWeTMWdbwbUEiiSioxlqxPGDb5/NZA408jIaQXwiFPNmuxrtaju+6uix7tuO90882cGGOjO
+	QTTwIUXuRm00Jt2lvfbHEDGPOIDBvV0gvdXOUfZ/3/QJsNR5dtK9fJiKQ1FkozRvyrnE66iQGtiP/
+	opoCnWucg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kA7ct-0004LT-4d; Mon, 24 Aug 2020 08:14:47 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1kA9fL-0004tc-2X; Mon, 24 Aug 2020 10:25:27 +0000
+Received: from metis.ext.pengutronix.de ([85.220.165.71])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kA7cn-0004HR-Ci
- for linux-amlogic@lists.infradead.org; Mon, 24 Aug 2020 08:14:43 +0000
-Received: by mail-wr1-x442.google.com with SMTP id o4so3682967wrn.0
- for <linux-amlogic@lists.infradead.org>; Mon, 24 Aug 2020 01:14:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=64g1Q7AZWdsO3D5S6qaCtbVA6/9fWnLGBi0ctFzWUzY=;
- b=t9HZTtVswLsys3ECXl7sLXTj6WW4EfN/+NlfRYMwuHV33YhAtMPmb4mMYLRANtPXii
- avQO8fp2OTQyF4/bQv9/YeRuJljvJl1kiKLBCRAHTrvJ6ILuf00plzvJkGM13j4OJQ2L
- bIjhF7sw0P+oJrmgs0259v8QP7F2CQS2SNlVB+DySTgLf9yuYN0YihT1X6eLnLi7QKIu
- amb6TR9BoUFvXhBco+vhMTUybYP7FQ/2ysBSwMNqDyGEocQLkrAg1MhI8LLO/QyGkODp
- Z3UkpscR0PsxJNpdlXduDnE0ebmwvCi/tAup0BmHAKx8mNp+ULZt2uTnS4zAgzJ3/MUu
- SgPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=64g1Q7AZWdsO3D5S6qaCtbVA6/9fWnLGBi0ctFzWUzY=;
- b=TrsePnoN/zERvU7Qd9zfeNOaSOBC6vtkEJT6pltJDIALpqVYv8ZJVcwI+oSfHcfN6T
- Vg6ERUsnw4HwTHdcEVbFmB957QjOwC7ihZYDMQlAVdZNjx1eBw5Jf3IPY6giia8/uaO+
- lEDRF985+3op4PNLsHhqdpYTZ21IPGhX+y2Xqllyj2V8tcyssroLaeU319Y1JvtM7HoG
- HuhTD69xryU4ydS/ykf2CDznPNS7h5jZUR5ulV4EYIhi9tZIkD3kxkyYPi8822/sSVtg
- cr31VN7FZGcfPTp/PqUvvjLAYByMVzoeWN5ArLxOkADNKBapRsodWSbWIGV3ALLyhqo0
- kOrw==
-X-Gm-Message-State: AOAM530QEfsfl75iGqDMGyr1aBmJo2TJX7FoXOCqWzJ2p6LIz6CA/Uov
- Y4uaBwXKiZmbUPseoGTV7sa7aJrpi1VNgA==
-X-Google-Smtp-Source: ABdhPJybCtQlTlDscuRB4vJUYTuaZX3Jh57pmfzFzQa/+eqUvw+fghCMxnYejaCjezhiY5LGEtJJtA==
-X-Received: by 2002:a5d:5551:: with SMTP id g17mr4642448wrw.396.1598256878874; 
- Mon, 24 Aug 2020 01:14:38 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o66sm24290460wmb.27.2020.08.24.01.14.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Aug 2020 01:14:37 -0700 (PDT)
+ id 1kA9eR-0004Oo-DL
+ for linux-amlogic@lists.infradead.org; Mon, 24 Aug 2020 10:24:33 +0000
+Received: from [2001:67c:670:100:3ad5:47ff:feaf:1a17] (helo=lupine)
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1kA9eJ-0003Tl-3A; Mon, 24 Aug 2020 12:24:23 +0200
+Received: from pza by lupine with local (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1kA9eH-0004u0-Ro; Mon, 24 Aug 2020 12:24:21 +0200
+Message-ID: <ff07b04450080fd14d8da4470aeb6e1c28e4215f.camel@pengutronix.de>
+Subject: Re: [PATCH 1/1] usb: dwc3: meson-g12a: fix shared reset control use
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>, Dan Robertson
+ <dan@dlrobertson.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Date: Mon, 24 Aug 2020 12:24:21 +0200
+In-Reply-To: <1jy2maekzf.fsf@starbuckisacylon.baylibre.com>
 References: <20200713160522.19345-1-dan@dlrobertson.com>
  <20200713160522.19345-2-dan@dlrobertson.com>
- <1jy2maekzf.fsf@starbuckisacylon.baylibre.com> <20200820184437.GA4528@nessie>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dan Robertson <dan@dlrobertson.com>
-Subject: Re: [PATCH 1/1] usb: dwc3: meson-g12a: fix shared reset control use
-In-reply-to: <20200820184437.GA4528@nessie>
-Date: Mon, 24 Aug 2020 10:14:37 +0200
-Message-ID: <1ja6yk4g0i.fsf@starbuckisacylon.baylibre.com>
+ <1jy2maekzf.fsf@starbuckisacylon.baylibre.com>
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200824_041441_577135_C9EF4899 
-X-CRM114-Status: GOOD (  35.17  )
+X-CRM114-CacheID: sfid-20200824_062431_939099_A0918125 
+X-CRM114-Status: GOOD (  29.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,213 +79,106 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
- aouledameur@baylibre.com, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+ aouledameur@baylibre.com, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Jerome,
 
-On Thu 20 Aug 2020 at 20:44, Dan Robertson <dan@dlrobertson.com> wrote:
+On Wed, 2020-08-19 at 17:03 +0200, Jerome Brunet wrote:
+> On Mon 13 Jul 2020 at 18:05, Dan Robertson <dan@dlrobertson.com> wrote:
+> 
+> > The reset is a shared reset line, but reset_control_reset is still used
+> > and reset_control_deassert is not guaranteed to have been called before
+> > the first reset_control_assert call. When suspending the following
+> > warning may be seen:
+> 
+> And now the same type of warning maybe seen on boot. This is
+> happening for me on the libretech-cc (s905x - gxl).
+> 
+> [    1.863469] ------------[ cut here ]------------
+> [    1.867914] WARNING: CPU: 1 PID: 16 at drivers/reset/core.c:309 reset_control_reset+0x130/0x150
+[...]
+> This breaks USB on this device. reverting the change brings it back.
+> 
+> Looking at the reset framework code, I don't think drivers sharing the
+> same reset line should mix using reset_control_reset() VS
+> reset_control_assert()/reset_control_deassert()
 
-> On Wed, Aug 19, 2020 at 05:03:32PM +0200, Jerome Brunet wrote:
->> 
->> On Mon 13 Jul 2020 at 18:05, Dan Robertson <dan@dlrobertson.com> wrote:
->> 
->> > The reset is a shared reset line, but reset_control_reset is still used
->> > and reset_control_deassert is not guaranteed to have been called before
->> > the first reset_control_assert call. When suspending the following
->> > warning may be seen:
->> 
->> And now the same type of warning maybe seen on boot. This is
->> happening for me on the libretech-cc (s905x - gxl).
->> 
->> [    1.863469] ------------[ cut here ]------------
->> [    1.867914] WARNING: CPU: 1 PID: 16 at drivers/reset/core.c:309 reset_control_reset+0x130/0x150
->> [    1.876525] Modules linked in:
->> [    1.879548] CPU: 1 PID: 16 Comm: kworker/1:0 Not tainted 5.9.0-rc1-00167-ga2e4e3a34775 #64
->> [    1.887737] Hardware name: Libre Computer AML-S905X-CC V2 (DT)
->> [    1.893525] Workqueue: events deferred_probe_work_func
->> [    1.898607] pstate: 80000005 (Nzcv daif -PAN -UAO BTYPE=--)
->> [    1.904126] pc : reset_control_reset+0x130/0x150
->> [    1.908700] lr : phy_meson_gxl_usb2_init+0x24/0x70
->> [    1.913439] sp : ffff8000123ebad0
->> [    1.916717] x29: ffff8000123ebad0 x28: 0000000000000000 
->> [    1.921978] x27: ffff00007c4b1ac8 x26: ffff00007c4b1ab0 
->> [    1.927239] x25: ffff00007fc149b0 x24: ffff00007c4b1ab0 
->> [    1.932500] x23: ffff00007cd03800 x22: ffff800011fb9000 
->> [    1.937761] x21: ffff00007c60db08 x20: ffff00007c468a80 
->> [    1.943023] x19: ffff00007c466b00 x18: ffffffffffffffff 
->> [    1.948284] x17: 0000000000000000 x16: 000000000000000e 
->> [    1.953545] x15: ffff800011fb9948 x14: ffffffffffffffff 
->> [    1.958806] x13: ffffffff00000000 x12: ffffffffffffffff 
->> [    1.964068] x11: 0000000000000020 x10: 7f7f7f7f7f7f7f7f 
->> [    1.969329] x9 : 78676f2c32617274 x8 : 0000000000000000 
->> [    1.974590] x7 : ffffffffffffffff x6 : 0000000000000000 
->> [    1.979851] x5 : 0000000000000000 x4 : 0000000000000000 
->> [    1.985112] x3 : 0000000000000000 x2 : ffff8000107aa370 
->> [    1.990374] x1 : 0000000000000001 x0 : 0000000000000001 
->> [    1.995636] Call trace:
->> [    1.998054]  reset_control_reset+0x130/0x150
->> [    2.002279]  phy_meson_gxl_usb2_init+0x24/0x70
->> [    2.006677]  phy_init+0x78/0xd0
->> [    2.009784]  dwc3_meson_g12a_probe+0x2c8/0x560
->> [    2.014182]  platform_drv_probe+0x58/0xa8
->> [    2.018149]  really_probe+0x114/0x3d8
->> [    2.021770]  driver_probe_device+0x5c/0xb8
->> [    2.025824]  __device_attach_driver+0x98/0xb8
->> [    2.030138]  bus_for_each_drv+0x74/0xd8
->> [    2.033933]  __device_attach+0xec/0x148
->> [    2.037726]  device_initial_probe+0x24/0x30
->> [    2.041868]  bus_probe_device+0x9c/0xa8
->> [    2.045663]  deferred_probe_work_func+0x7c/0xb8
->> [    2.050150]  process_one_work+0x1f0/0x4b0
->> [    2.054115]  worker_thread+0x210/0x480
->> [    2.057824]  kthread+0x158/0x160
->> [    2.061017]  ret_from_fork+0x10/0x18
->> [    2.064550] ---[ end trace 94d737efe593c6f6 ]---
->> [    2.069158] phy phy-d0078000.phy.0: phy init failed --> -22
->> [    2.074858] dwc3-meson-g12a: probe of d0078080.usb failed with error -22
->> 
->> This breaks USB on this device. reverting the change brings it back.
->> 
->> Looking at the reset framework code, I don't think drivers sharing the
->> same reset line should mix using reset_control_reset() VS
->> reset_control_assert()/reset_control_deassert()
->> 
+That is correct, users must not mix the assert/deassert and reset calls
+on shared resets:
+
+/**
+ * reset_control_reset - reset the controlled device
+ * @rstc: reset controller
+ *
+ * On a shared reset line the actual reset pulse is only triggered once for the
+ * lifetime of the reset_control instance: for all but the first caller this is
+ * a no-op.
+ * Consumers must not use reset_control_(de)assert on shared reset lines when
+ * reset_control_reset has been used.
+ *
+ * If rstc is NULL it is an optional reset and the function will just
+ * return 0.
+ */
+
+[...]
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-
+meson-g12a.c
+> > index 1f7f4d88ed9d..88b75b5a039c 100644
+> > --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
+> > +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> > @@ -737,13 +737,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+> >  		goto err_disable_clks;
+> >  	}
+> >  
+> > -	ret = reset_control_reset(priv->reset);
+> > +	ret = reset_control_deassert(priv->reset);
+> 
+> The change introduced here is significant. If the reset is not initially
+> asserted, it never will be before the life of the device.
 >
-> Thanks for finding this. I was only able to test on the Odroid N2
+> This means that Linux will have to deal which whatever state is left by the
+> bootloader. This looks sketchy ...
 >
->> >
->> > WARNING: CPU: 1 PID: 5530 at drivers/reset/core.c:355 reset_control_assert+0x184/0x19c
->> > Hardware name: Hardkernel ODROID-N2 (DT)
->> > [..]
->> > pc : reset_control_assert+0x184/0x19c
->> > lr : dwc3_meson_g12a_suspend+0x68/0x7c
->> > [..]
->> > Call trace:
->> >  reset_control_assert+0x184/0x19c
->> >  dwc3_meson_g12a_suspend+0x68/0x7c
->> >  platform_pm_suspend+0x28/0x54
->> >  __device_suspend+0x590/0xabc
->> >  dpm_suspend+0x104/0x404
->> >  dpm_suspend_start+0x84/0x1bc
->> >  suspend_devices_and_enter+0xc4/0x4fc
->> >  pm_suspend+0x198/0x2d4
->> >
->> > Fixes: 6d9fa35a347a87 ("usb: dwc3: meson-g12a: get the reset as shared")
->> > Signed-off-by: Dan Robertson <dan@dlrobertson.com>
->> > ---
->> >  drivers/usb/dwc3/dwc3-meson-g12a.c | 15 +++++++++------
->> >  1 file changed, 9 insertions(+), 6 deletions(-)
->> >
->> > diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
->> > index 1f7f4d88ed9d..88b75b5a039c 100644
->> > --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
->> > +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
->> > @@ -737,13 +737,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->> >  		goto err_disable_clks;
->> >  	}
->> >  
->> > -	ret = reset_control_reset(priv->reset);
->> > +	ret = reset_control_deassert(priv->reset);
->> 
->> The change introduced here is significant. If the reset is not initially
->> asserted, it never will be before the life of the device.
->> 
->> This means that Linux will have to deal which whatever state is left by the
->> bootloader. This looks sketchy ...
->> 
->> I think the safer way solve the problem here would be to keep using
->> reset_control_reset() and introduce a new API in the reset
->> framework to decrement the reset line "triggered_count"
->> (reset_control_clear() ??)
+> I think the safer way solve the problem here would be to keep using
+> reset_control_reset() and introduce a new API in the reset
+> framework to decrement the reset line "triggered_count"
+> (reset_control_clear() ??)
+> 
+> That way, if all device using the reset line go to suspend, the line will
+> be "reset-able" again by the first device coming out of suspend ?
 >
-> I have very limited experience with reset controls, but phy_meson_gxl_usb2_init
-> calls reset_control_reset on a shared reset line, which should not be done
-> according to the reset control docs. Would removing the use of reset_control_reset,
-> or using reset_control_(de)assert in phy_meson_gxl_usb2_init also resolve the
-> issue?
+> Philip, would you be ok with such new API ?
 
- As pointed out before, using the deassert() in probe does not provide
- any guarantee that a reset will actually be trigerred on the
- device. Reset are deasserted on boot on these chips so it actually
- likely to never be triggered.
- This defeats the purpose of using resets in our case.
+I'd like to first evaluate whether the already available APIs might be a
+better fit. There is already the option of handing off exclusive control
+between multiple drivers via the reset_control_acquire/release APIs on
+exclusive reset controls.
 
->
->> That way, if all device using the reset line go to suspend, the line will
->> be "reset-able" again by the first device coming out of suspend ?
->> 
->> Philip, would you be ok with such new API ?
->> 
->> In the meantime, I think this change should be reverted. A warning on
->> suspend seems less critical than a regression breaking USB completly.
->
-> The reset_control_(de)assert() calls could also be removed from the
-> suspend/resume calls for now.
+If all drivers that are now sharing the reset line would switch to
+requesting resets via devm_reset_control_get_exclusive_released()
+and then prepend their reset handling with reset_control_acquire() (but
+ignore -EBUSY) and the driver that got exclusive control releases the
+reset via reset_control_release() during suspend, this should do exactly
+what you want. Note that reset_control_release() must not be called on a
+reset control that has not been successfully acquired by the same
+driver.
 
-If it is not causing issue, why not.
+Is this something that would be feasible for your combination of
+drivers? Otherwise it is be unclear to me under which condition a driver
+should be allowed to call the proposed reset_control_clear().
 
->
->> >  	if (ret)
->> > -		goto err_disable_clks;
->> > +		goto err_assert_reset;
->> >  
->> >  	ret = dwc3_meson_g12a_get_phys(priv);
->> >  	if (ret)
->> > -		goto err_disable_clks;
->> > +		goto err_assert_reset;
->> >  
->> >  	ret = priv->drvdata->setup_regmaps(priv, base);
->> >  	if (ret)
->> > @@ -752,7 +752,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->> >  	if (priv->vbus) {
->> >  		ret = regulator_enable(priv->vbus);
->> >  		if (ret)
->> > -			goto err_disable_clks;
->> > +			goto err_assert_reset;
->> >  	}
->> >  
->> >  	/* Get dr_mode */
->> > @@ -765,13 +765,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->> >  
->> >  	ret = priv->drvdata->usb_init(priv);
->> >  	if (ret)
->> > -		goto err_disable_clks;
->> > +		goto err_assert_reset;
->> >  
->> >  	/* Init PHYs */
->> >  	for (i = 0 ; i < PHY_COUNT ; ++i) {
->> >  		ret = phy_init(priv->phys[i]);
->> >  		if (ret)
->> > -			goto err_disable_clks;
->> > +			goto err_assert_reset;
->> >  	}
->> >  
->> >  	/* Set PHY Power */
->> > @@ -809,6 +809,9 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->> >  	for (i = 0 ; i < PHY_COUNT ; ++i)
->> >  		phy_exit(priv->phys[i]);
->> >  
->> > +err_assert_reset:
->> > +	reset_control_assert(priv->reset);
->> > +
->> >  err_disable_clks:
->> >  	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
->> >  				   priv->drvdata->clks);
->> >
->> >
->> > _______________________________________________
->> > linux-amlogic mailing list
->> > linux-amlogic@lists.infradead.org
->> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
->> 
+> In the meantime, I think this change should be reverted. A warning on
+> suspend seems less critical than a regression breaking USB completly.
 
+Agreed.
+
+regards
+Philipp
 
 _______________________________________________
 linux-amlogic mailing list
