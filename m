@@ -2,145 +2,91 @@ Return-Path: <SRS0=4XcC=CC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FE1FC433DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 08:05:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5B0BC433DF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 08:14:54 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4DB022075B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 08:05:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 669BF2072D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 08:14:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d9c4nGTC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eFyxT51p"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DB022075B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GYSZ86jH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="t9HZTtVs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 669BF2072D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
-	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AC8XyTRiBwZ3yR23reStTNX4jrig8oOL2EdNfs5ryjY=; b=d9c4nGTC0rJh9GgMy5ThrstqdU
-	AdNW94HfbIBfSJcS/IgsF8i80MhDb9zdQWR/U2QhCGEtskAYY7oAR+I1A13L2rNdWxCq7X4mJpyAO
-	76KEK52NJP8oQnNsH6/chpYWCYGC8MnsCZMrRvJ0apoxN0/NlRFG4lENjybqFqR6bfepX7QfNRV0a
-	7SM1ZImB62+yNCI3MYkDcanf/tB6O1TsrXIgz5fGDUjnJLB/VlTVUCn0lXgISqaSSxjS/6IAQYyX/
-	9UgtguvR+qX20Ogeqk6JJoICKf28Ejupsg4TlbnTTRceKrNjcXgbYNNR2+TuAlfXfERzr/xga9BrQ
-	aR/85OkA==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=JZG8G9vBobtEf1BcLnlc9M+lR6A4oZPEYhugatqsk5c=; b=GYSZ86jHWuzogQem2SotuDml9
+	/5xcNGHsxm9OJLJvEoR9tNEMOWo7egX94vWKOZ6zIb2Cir+LlkrOkE5g3A/M89PIXEHEf6d+U+z4H
+	kPv54c87PVx9suaRKWz+bCtRgt014EAngV6wKHP04N8zPoXEhgPzHt68mg2Rj6wgskR3l4orBtIHF
+	Cya3Ae99KD+/QUHGv8LXXfNOSyQ6YpFXH3MtWGMHRwIYZ++KoHKQx8yxwul0xjDJuiK16x8ErlvxT
+	iaHVYJx0FI8Ez+jgEsVGvtrvVfqj5YNzRF6sNU5M81mQWHUfOkYc+9Otm6vN+ShInnpYedtFn8Apx
+	wRymeTolg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kA7To-000331-AT; Mon, 24 Aug 2020 08:05:24 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1kA7ct-0004LT-4d; Mon, 24 Aug 2020 08:14:47 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kA7Tl-00032P-Sj
- for linux-amlogic@lists.infradead.org; Mon, 24 Aug 2020 08:05:22 +0000
-Received: by mail-wr1-x441.google.com with SMTP id c15so7661901wrs.11
- for <linux-amlogic@lists.infradead.org>; Mon, 24 Aug 2020 01:05:21 -0700 (PDT)
+ id 1kA7cn-0004HR-Ci
+ for linux-amlogic@lists.infradead.org; Mon, 24 Aug 2020 08:14:43 +0000
+Received: by mail-wr1-x442.google.com with SMTP id o4so3682967wrn.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 24 Aug 2020 01:14:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:autocrypt:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=RxYlaozXzNIHCwC3SR/mMB6yw7G1tSXTWGlhURF9aFs=;
- b=eFyxT51pDRafK9ArRH7DEXetE7huze3uNF4UUju45j8XiYWBaI5wQGvLExgBGPfo3A
- bqxdMxDbT/odaSki6XLhnio0mxSeQ24EBjSJ4ydrPn6lI5cSptEFfYEnQ/yip5Ed/+Ey
- qN5Y26SjOdArDzRpH4G3LFEYYaErcM9i24mCqPIgez9Y5wQ46od5ZGMul+FHcTQaCLnG
- 4ClWsK46T2xljQ9J4qOGgNg0YUjn2nk7Yi7T2as8ONbMI3Q9rD+SiSqU+91j/TEhj1xW
- 8xNjYGAxzRcYuX1sTWjBGuuEktfcCOB/vniLhe25kRowA2Caa8gnxckCokPFmmFPcVgu
- 9Bzg==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=64g1Q7AZWdsO3D5S6qaCtbVA6/9fWnLGBi0ctFzWUzY=;
+ b=t9HZTtVswLsys3ECXl7sLXTj6WW4EfN/+NlfRYMwuHV33YhAtMPmb4mMYLRANtPXii
+ avQO8fp2OTQyF4/bQv9/YeRuJljvJl1kiKLBCRAHTrvJ6ILuf00plzvJkGM13j4OJQ2L
+ bIjhF7sw0P+oJrmgs0259v8QP7F2CQS2SNlVB+DySTgLf9yuYN0YihT1X6eLnLi7QKIu
+ amb6TR9BoUFvXhBco+vhMTUybYP7FQ/2ysBSwMNqDyGEocQLkrAg1MhI8LLO/QyGkODp
+ Z3UkpscR0PsxJNpdlXduDnE0ebmwvCi/tAup0BmHAKx8mNp+ULZt2uTnS4zAgzJ3/MUu
+ SgPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=RxYlaozXzNIHCwC3SR/mMB6yw7G1tSXTWGlhURF9aFs=;
- b=NRD29JwJAlIGDnDkHtcPyNpKqVM4Zxm2PWlt8hmgIo/rc6OErYZFDmBsEVMOZU2coM
- Z2rlAh1OglP7+robXLI3Lq8mBFkMa6PBRjJO9aK5yIBJJT6DHNxMQl1u2IswmgihBBAL
- MVUwXrjlavTUuSV6Geqk8/tTTTZbVLVdVTwP6dV+b+/0BvOmZdO6JayZ47Qz4txr3tSZ
- kjPfJUvXl9+F726Bo56R5j7gTnlgD4O2+IXmM/B4g5y2c6PNHWZx0oXZBfb2FfGeYD6v
- hcYyFxcknIbvIY+zsccm7Ox1Xstt1lZfLopV3ha36L/cFfW0af4tB+IJSe02jSy9vh9o
- Ncng==
-X-Gm-Message-State: AOAM533Hy36IxJTObJ2NMLAu5taXPgT5EtEE/hQyRZ88Y6XcGW8PUgOE
- LZeiX7ZOn7pXy3LIoHTDJMxQhmeo5+mmGFWl
-X-Google-Smtp-Source: ABdhPJy4la0OfU4gLFwUbaq1IyrkOsgN4zk4AVC6NZHmVFhK6ydpN7hQD+XRfPjPe7lyrqSwpTnW/g==
-X-Received: by 2002:a5d:5272:: with SMTP id l18mr4500541wrc.89.1598256320462; 
- Mon, 24 Aug 2020 01:05:20 -0700 (PDT)
-Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=64g1Q7AZWdsO3D5S6qaCtbVA6/9fWnLGBi0ctFzWUzY=;
+ b=TrsePnoN/zERvU7Qd9zfeNOaSOBC6vtkEJT6pltJDIALpqVYv8ZJVcwI+oSfHcfN6T
+ Vg6ERUsnw4HwTHdcEVbFmB957QjOwC7ihZYDMQlAVdZNjx1eBw5Jf3IPY6giia8/uaO+
+ lEDRF985+3op4PNLsHhqdpYTZ21IPGhX+y2Xqllyj2V8tcyssroLaeU319Y1JvtM7HoG
+ HuhTD69xryU4ydS/ykf2CDznPNS7h5jZUR5ulV4EYIhi9tZIkD3kxkyYPi8822/sSVtg
+ cr31VN7FZGcfPTp/PqUvvjLAYByMVzoeWN5ArLxOkADNKBapRsodWSbWIGV3ALLyhqo0
+ kOrw==
+X-Gm-Message-State: AOAM530QEfsfl75iGqDMGyr1aBmJo2TJX7FoXOCqWzJ2p6LIz6CA/Uov
+ Y4uaBwXKiZmbUPseoGTV7sa7aJrpi1VNgA==
+X-Google-Smtp-Source: ABdhPJybCtQlTlDscuRB4vJUYTuaZX3Jh57pmfzFzQa/+eqUvw+fghCMxnYejaCjezhiY5LGEtJJtA==
+X-Received: by 2002:a5d:5551:: with SMTP id g17mr4642448wrw.396.1598256878874; 
+ Mon, 24 Aug 2020 01:14:38 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id n21sm12668822wmc.11.2020.08.24.01.05.19
- for <linux-amlogic@lists.infradead.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 24 Aug 2020 01:05:19 -0700 (PDT)
-Subject: Re: [PATCH] ARM: dts: meson: move the L2 cache-controller inside the
- SoC node
-To: linux-amlogic@lists.infradead.org
-References: <20200815182223.408965-1-martin.blumenstingl@googlemail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <31d486c0-b039-f45d-50b1-d795c4321c7e@baylibre.com>
-Date: Mon, 24 Aug 2020 10:05:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ by smtp.gmail.com with ESMTPSA id o66sm24290460wmb.27.2020.08.24.01.14.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 24 Aug 2020 01:14:37 -0700 (PDT)
+References: <20200713160522.19345-1-dan@dlrobertson.com>
+ <20200713160522.19345-2-dan@dlrobertson.com>
+ <1jy2maekzf.fsf@starbuckisacylon.baylibre.com> <20200820184437.GA4528@nessie>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dan Robertson <dan@dlrobertson.com>
+Subject: Re: [PATCH 1/1] usb: dwc3: meson-g12a: fix shared reset control use
+In-reply-to: <20200820184437.GA4528@nessie>
+Date: Mon, 24 Aug 2020 10:14:37 +0200
+Message-ID: <1ja6yk4g0i.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20200815182223.408965-1-martin.blumenstingl@googlemail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200824_040521_981894_B75FD883 
-X-CRM114-Status: GOOD (  16.51  )
+X-CRM114-CacheID: sfid-20200824_041441_577135_C9EF4899 
+X-CRM114-Status: GOOD (  35.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,56 +98,213 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
+ aouledameur@baylibre.com, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/08/2020 20:22, Martin Blumenstingl wrote:
-> All IO mapped SoC peripherals should be within the "soc" node. Move the
-> L2 cache-controller there as well since it's the only one not following
-> this pattern.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  arch/arm/boot/dts/meson.dtsi | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-> index eadb0832bcfc..7649dd1e0b9e 100644
-> --- a/arch/arm/boot/dts/meson.dtsi
-> +++ b/arch/arm/boot/dts/meson.dtsi
-> @@ -11,13 +11,6 @@ / {
->  	#size-cells = <1>;
->  	interrupt-parent = <&gic>;
->  
-> -	L2: cache-controller@c4200000 {
-> -		compatible = "arm,pl310-cache";
-> -		reg = <0xc4200000 0x1000>;
-> -		cache-unified;
-> -		cache-level = <2>;
-> -	};
-> -
->  	soc {
->  		compatible = "simple-bus";
->  		#address-cells = <1>;
-> @@ -172,6 +165,13 @@ timer_abcde: timer@9940 {
->  			};
->  		};
->  
-> +		L2: cache-controller@c4200000 {
-> +			compatible = "arm,pl310-cache";
-> +			reg = <0xc4200000 0x1000>;
-> +			cache-unified;
-> +			cache-level = <2>;
-> +		};
-> +
->  		periph: bus@c4300000 {
->  			compatible = "simple-bus";
->  			reg = <0xc4300000 0x10000>;
-> 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+On Thu 20 Aug 2020 at 20:44, Dan Robertson <dan@dlrobertson.com> wrote:
+
+> On Wed, Aug 19, 2020 at 05:03:32PM +0200, Jerome Brunet wrote:
+>> 
+>> On Mon 13 Jul 2020 at 18:05, Dan Robertson <dan@dlrobertson.com> wrote:
+>> 
+>> > The reset is a shared reset line, but reset_control_reset is still used
+>> > and reset_control_deassert is not guaranteed to have been called before
+>> > the first reset_control_assert call. When suspending the following
+>> > warning may be seen:
+>> 
+>> And now the same type of warning maybe seen on boot. This is
+>> happening for me on the libretech-cc (s905x - gxl).
+>> 
+>> [    1.863469] ------------[ cut here ]------------
+>> [    1.867914] WARNING: CPU: 1 PID: 16 at drivers/reset/core.c:309 reset_control_reset+0x130/0x150
+>> [    1.876525] Modules linked in:
+>> [    1.879548] CPU: 1 PID: 16 Comm: kworker/1:0 Not tainted 5.9.0-rc1-00167-ga2e4e3a34775 #64
+>> [    1.887737] Hardware name: Libre Computer AML-S905X-CC V2 (DT)
+>> [    1.893525] Workqueue: events deferred_probe_work_func
+>> [    1.898607] pstate: 80000005 (Nzcv daif -PAN -UAO BTYPE=--)
+>> [    1.904126] pc : reset_control_reset+0x130/0x150
+>> [    1.908700] lr : phy_meson_gxl_usb2_init+0x24/0x70
+>> [    1.913439] sp : ffff8000123ebad0
+>> [    1.916717] x29: ffff8000123ebad0 x28: 0000000000000000 
+>> [    1.921978] x27: ffff00007c4b1ac8 x26: ffff00007c4b1ab0 
+>> [    1.927239] x25: ffff00007fc149b0 x24: ffff00007c4b1ab0 
+>> [    1.932500] x23: ffff00007cd03800 x22: ffff800011fb9000 
+>> [    1.937761] x21: ffff00007c60db08 x20: ffff00007c468a80 
+>> [    1.943023] x19: ffff00007c466b00 x18: ffffffffffffffff 
+>> [    1.948284] x17: 0000000000000000 x16: 000000000000000e 
+>> [    1.953545] x15: ffff800011fb9948 x14: ffffffffffffffff 
+>> [    1.958806] x13: ffffffff00000000 x12: ffffffffffffffff 
+>> [    1.964068] x11: 0000000000000020 x10: 7f7f7f7f7f7f7f7f 
+>> [    1.969329] x9 : 78676f2c32617274 x8 : 0000000000000000 
+>> [    1.974590] x7 : ffffffffffffffff x6 : 0000000000000000 
+>> [    1.979851] x5 : 0000000000000000 x4 : 0000000000000000 
+>> [    1.985112] x3 : 0000000000000000 x2 : ffff8000107aa370 
+>> [    1.990374] x1 : 0000000000000001 x0 : 0000000000000001 
+>> [    1.995636] Call trace:
+>> [    1.998054]  reset_control_reset+0x130/0x150
+>> [    2.002279]  phy_meson_gxl_usb2_init+0x24/0x70
+>> [    2.006677]  phy_init+0x78/0xd0
+>> [    2.009784]  dwc3_meson_g12a_probe+0x2c8/0x560
+>> [    2.014182]  platform_drv_probe+0x58/0xa8
+>> [    2.018149]  really_probe+0x114/0x3d8
+>> [    2.021770]  driver_probe_device+0x5c/0xb8
+>> [    2.025824]  __device_attach_driver+0x98/0xb8
+>> [    2.030138]  bus_for_each_drv+0x74/0xd8
+>> [    2.033933]  __device_attach+0xec/0x148
+>> [    2.037726]  device_initial_probe+0x24/0x30
+>> [    2.041868]  bus_probe_device+0x9c/0xa8
+>> [    2.045663]  deferred_probe_work_func+0x7c/0xb8
+>> [    2.050150]  process_one_work+0x1f0/0x4b0
+>> [    2.054115]  worker_thread+0x210/0x480
+>> [    2.057824]  kthread+0x158/0x160
+>> [    2.061017]  ret_from_fork+0x10/0x18
+>> [    2.064550] ---[ end trace 94d737efe593c6f6 ]---
+>> [    2.069158] phy phy-d0078000.phy.0: phy init failed --> -22
+>> [    2.074858] dwc3-meson-g12a: probe of d0078080.usb failed with error -22
+>> 
+>> This breaks USB on this device. reverting the change brings it back.
+>> 
+>> Looking at the reset framework code, I don't think drivers sharing the
+>> same reset line should mix using reset_control_reset() VS
+>> reset_control_assert()/reset_control_deassert()
+>> 
+>
+> Thanks for finding this. I was only able to test on the Odroid N2
+>
+>> >
+>> > WARNING: CPU: 1 PID: 5530 at drivers/reset/core.c:355 reset_control_assert+0x184/0x19c
+>> > Hardware name: Hardkernel ODROID-N2 (DT)
+>> > [..]
+>> > pc : reset_control_assert+0x184/0x19c
+>> > lr : dwc3_meson_g12a_suspend+0x68/0x7c
+>> > [..]
+>> > Call trace:
+>> >  reset_control_assert+0x184/0x19c
+>> >  dwc3_meson_g12a_suspend+0x68/0x7c
+>> >  platform_pm_suspend+0x28/0x54
+>> >  __device_suspend+0x590/0xabc
+>> >  dpm_suspend+0x104/0x404
+>> >  dpm_suspend_start+0x84/0x1bc
+>> >  suspend_devices_and_enter+0xc4/0x4fc
+>> >  pm_suspend+0x198/0x2d4
+>> >
+>> > Fixes: 6d9fa35a347a87 ("usb: dwc3: meson-g12a: get the reset as shared")
+>> > Signed-off-by: Dan Robertson <dan@dlrobertson.com>
+>> > ---
+>> >  drivers/usb/dwc3/dwc3-meson-g12a.c | 15 +++++++++------
+>> >  1 file changed, 9 insertions(+), 6 deletions(-)
+>> >
+>> > diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+>> > index 1f7f4d88ed9d..88b75b5a039c 100644
+>> > --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
+>> > +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+>> > @@ -737,13 +737,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>> >  		goto err_disable_clks;
+>> >  	}
+>> >  
+>> > -	ret = reset_control_reset(priv->reset);
+>> > +	ret = reset_control_deassert(priv->reset);
+>> 
+>> The change introduced here is significant. If the reset is not initially
+>> asserted, it never will be before the life of the device.
+>> 
+>> This means that Linux will have to deal which whatever state is left by the
+>> bootloader. This looks sketchy ...
+>> 
+>> I think the safer way solve the problem here would be to keep using
+>> reset_control_reset() and introduce a new API in the reset
+>> framework to decrement the reset line "triggered_count"
+>> (reset_control_clear() ??)
+>
+> I have very limited experience with reset controls, but phy_meson_gxl_usb2_init
+> calls reset_control_reset on a shared reset line, which should not be done
+> according to the reset control docs. Would removing the use of reset_control_reset,
+> or using reset_control_(de)assert in phy_meson_gxl_usb2_init also resolve the
+> issue?
+
+ As pointed out before, using the deassert() in probe does not provide
+ any guarantee that a reset will actually be trigerred on the
+ device. Reset are deasserted on boot on these chips so it actually
+ likely to never be triggered.
+ This defeats the purpose of using resets in our case.
+
+>
+>> That way, if all device using the reset line go to suspend, the line will
+>> be "reset-able" again by the first device coming out of suspend ?
+>> 
+>> Philip, would you be ok with such new API ?
+>> 
+>> In the meantime, I think this change should be reverted. A warning on
+>> suspend seems less critical than a regression breaking USB completly.
+>
+> The reset_control_(de)assert() calls could also be removed from the
+> suspend/resume calls for now.
+
+If it is not causing issue, why not.
+
+>
+>> >  	if (ret)
+>> > -		goto err_disable_clks;
+>> > +		goto err_assert_reset;
+>> >  
+>> >  	ret = dwc3_meson_g12a_get_phys(priv);
+>> >  	if (ret)
+>> > -		goto err_disable_clks;
+>> > +		goto err_assert_reset;
+>> >  
+>> >  	ret = priv->drvdata->setup_regmaps(priv, base);
+>> >  	if (ret)
+>> > @@ -752,7 +752,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>> >  	if (priv->vbus) {
+>> >  		ret = regulator_enable(priv->vbus);
+>> >  		if (ret)
+>> > -			goto err_disable_clks;
+>> > +			goto err_assert_reset;
+>> >  	}
+>> >  
+>> >  	/* Get dr_mode */
+>> > @@ -765,13 +765,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>> >  
+>> >  	ret = priv->drvdata->usb_init(priv);
+>> >  	if (ret)
+>> > -		goto err_disable_clks;
+>> > +		goto err_assert_reset;
+>> >  
+>> >  	/* Init PHYs */
+>> >  	for (i = 0 ; i < PHY_COUNT ; ++i) {
+>> >  		ret = phy_init(priv->phys[i]);
+>> >  		if (ret)
+>> > -			goto err_disable_clks;
+>> > +			goto err_assert_reset;
+>> >  	}
+>> >  
+>> >  	/* Set PHY Power */
+>> > @@ -809,6 +809,9 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>> >  	for (i = 0 ; i < PHY_COUNT ; ++i)
+>> >  		phy_exit(priv->phys[i]);
+>> >  
+>> > +err_assert_reset:
+>> > +	reset_control_assert(priv->reset);
+>> > +
+>> >  err_disable_clks:
+>> >  	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
+>> >  				   priv->drvdata->clks);
+>> >
+>> >
+>> > _______________________________________________
+>> > linux-amlogic mailing list
+>> > linux-amlogic@lists.infradead.org
+>> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>> 
+
 
 _______________________________________________
 linux-amlogic mailing list
