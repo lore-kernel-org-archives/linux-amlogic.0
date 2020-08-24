@@ -2,22 +2,22 @@ Return-Path: <SRS0=4XcC=CC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CA264C433DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 07:45:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EFD28C433DF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 08:04:21 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 721D1206BE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 07:45:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9E3952072D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 08:04:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="okE0Q0KJ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="c084BhzY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 721D1206BE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uQs81SNy";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ri1aUEox"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9E3952072D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
 	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=QCfP3JgPBPwUB0wqarXYpWytiOi+wZTNQHsYZbALpQQ=; b=okE0Q0KJWnLY05+BYx1rXbbz5W
-	Vba6FWsLmziLtlQhM8dOj64Gw5aJrBhWrsoRzllWBakyR4YumU+AcTdDEvoyjg063V+3UqpL/4qnv
-	AKUsvN0FATcJjLSL5tleHgectSiVyzzy4jdZ5nDGyea62pcNTvaK+i6i55rGMH5ESu50Ld3kAAMB0
-	JVoJZMtarj2LJCFRUjzTJcPmiZtPOlOMYMXfAfzQ+GOdPhi2SsmIXl2qSJ1fBXI5AYunYZS9L2hgK
-	mN2GusCSKZaQ9b6SZwiVPwg9zTZUsZ7j1Rpizl8SfjhrD/skQ8vsRBscis6SggkBU7rqOHq/B3MtR
-	ckH7Dmbw==;
+	bh=r+gmFPPLYCH006eHUeRt/LYxA5bQMN1zjVUBgzhc4AQ=; b=uQs81SNyoD4jVkq9+gITehgggC
+	8zVm+w9P4tsEDPR5gtyKSLnZDu5sapztZldhCFZW3FfyyaqwW/n3ZvLdVQ/YbCdSW21jdNtvCs8rU
+	JRRYzUErjowGtM48EssD1e3XSvTGaiu0QbgB2pS4uj7ZZINMwmKoCpNGseABjsXm37rqhtt4/NQQu
+	0uMHdxd7VkTTpgOM6JtxWXa32i+1s31L0eXcp6RTlnC2BavaZRciuq+wKw+lIjie/Cll5zb8xpI0n
+	onFAI2t04jm8/B3DUvMhp9bcrfA1nuI/xqt7rxcJXSEENy5P2t88vONmiIIFfz9qPQLFmDFfIGV4k
+	W5yG0gbw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kA7AR-0007zW-47; Mon, 24 Aug 2020 07:45:23 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1kA7Si-0002rb-Cv; Mon, 24 Aug 2020 08:04:16 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kA7AO-0007yL-72
- for linux-amlogic@lists.infradead.org; Mon, 24 Aug 2020 07:45:21 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id a65so3745083wme.5
- for <linux-amlogic@lists.infradead.org>; Mon, 24 Aug 2020 00:45:18 -0700 (PDT)
+ id 1kA7Sf-0002qk-MD
+ for linux-amlogic@lists.infradead.org; Mon, 24 Aug 2020 08:04:15 +0000
+Received: by mail-wr1-x441.google.com with SMTP id x7so1620138wro.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 24 Aug 2020 01:04:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:autocrypt:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=+S8Ykqs0ZQ8t+yop1ljMlx1N00OmTfQ19sguq9KXX8A=;
- b=c084BhzYjy3yPCTwWcV7IyuxzHuPz3/dJcyQdLTMUIBB6QXZpCSeTYKM802AOVMlWJ
- JqgZD+9cDgFflyzsUdbUpcHUg6wX2ppq09Ex0ajTU0BN9o4XFiCUN6Q/tiOtYN8tvbpW
- 5KWExNHx2vfYzLV6MMdtedvy3IkVgjPzOqEWhUDu3YnuL+zi4fZEzJ1GnfUQznWzQDqs
- TcS3+mnJUPMyrX4aIy/1OOws4tmXpt1wMMIvu6hxyzVxRYm6iwV5v9t6Bfx1i1c8KRiU
- HCvtf0BGebyloeDxyl+Z/bfGxEx/OMQH1bVItqsJk8JJNIScCdjLzamPf+3bdwaaP8fd
- C6gw==
+ bh=t8poi0h9d21R/zQKCXPptf19Wdqx5hSgNeWe80grQXo=;
+ b=ri1aUEox9wBjc8XLUYmOpDKpgqxABmattNDUirz6EKWfqIW0n2G75dAmmnq6cXrwVt
+ cggg+bYOxf+W7RqDrQkAImTtw/8GhTEvaKo/h3sQK1od6xERKa/t6lvN5CPDl/czQLYt
+ KXMEadSFL3Qsp+yNNTPp/xSYxVhuqgCJw5WkzZUgl+FvcpEyh/dkLfAOltFCUpbtWXVD
+ 2lM5S7+O3685rtrY0y2fQbq3N3Ip1rKg5fFrab/zmPrHy3tGEa1nv4+80vO65xjyG8kN
+ DJN3CfeyxkZGuav1NfGw5x8Z4TDjbRkD350EDJ/owudsatlTLjCw/GT5HkRz7vjSyoIU
+ eq0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=+S8Ykqs0ZQ8t+yop1ljMlx1N00OmTfQ19sguq9KXX8A=;
- b=OE27nIJHL4ytRdc/XskDQ8E7xl2UkvKerGVvXNu51gQE5UQFD38VCshk+3cZE0EpcJ
- Z16tGncaGfDQInibnG2aBCzjLZVIV8S2i07gb0XnLYaDHdVACJwzp2V1+7E4Y6Wq2DXt
- /MZTV97mqwea8byfuiIQErnRmeKNpfCdGgruTD0VjjufN9f4iRvNFlhBRhGXPrF2oDgj
- VVijqLdpjazlgX3vwodFLT44lS1jP6JfT6fXAUnNOHrq9+Wk2C7xYaOPZHw1MgxiPAuU
- 55/1amnILVw/PjblcjMykHwSAUHviCZMgjQzxvLVhEVGyL2NtGPnEKMAkQJHpp8mxg4+
- Z3Gg==
-X-Gm-Message-State: AOAM530yLdYwv6SxpKmSwTfulINdXqyTOKqeBA1hQ75e67sVSxf+h/Gi
- HvN+/8nTBTG0cOX0Q76cA+598JA7Lg/7yw==
-X-Google-Smtp-Source: ABdhPJxxOR4bMXpl5NpGAwHJjIz0rWnrPTU21JWob5Qmn5kIh00jQB9qUHY/sh4Y9tvYPKH2vpSLQA==
-X-Received: by 2002:a7b:cc13:: with SMTP id f19mr4335344wmh.168.1598255117364; 
- Mon, 24 Aug 2020 00:45:17 -0700 (PDT)
+ bh=t8poi0h9d21R/zQKCXPptf19Wdqx5hSgNeWe80grQXo=;
+ b=HJHqOYY3DoviKiRWI1JnCw3m9QXRif2JS4zrHqzC4gyIrjUdteiJoArA5tLLwV4Opi
+ XPEWyciw2Im6wA8LEiSdycCoVtPWD/Gfmi4lO1q8Kd/Q1DpNQRZFQLtAefcbkCfRUN8M
+ pBduRGzq4NE7BVLXDp2k4Yp2NS2fULgqaCfumYlDuS2eW53H+Ih9JP12usmyRV94+UBT
+ lVpl/BVpKYj0eMh7GCEnuaZwgcnWFXL/p1dnEedJKIfOXhyLB9RbBJvV9y8pTIdWlDXe
+ zv8pbm4l5+sHkUjTUVTmejMB1cl7MqsIeVSk3kSRpugLPSKXdyXgnrW3RAqhaD55hcX2
+ sFYA==
+X-Gm-Message-State: AOAM5336c9SrFv4GXkdMSI3JagTwKcuZ5MXcmyo6k4AIUdn4W0EIJcvW
+ QAwLD+mgEzwFtSQkh3MyH1l3ldmc4SkhuG10
+X-Google-Smtp-Source: ABdhPJyBNcuZ9909jNriJyI/sqYb65eVUttsNcn4n/S46ASmfrhg4mcyIZnK2J37qpwn1LFDS+0B4A==
+X-Received: by 2002:a05:6000:11ca:: with SMTP id
+ i10mr3770161wrx.252.1598256252104; 
+ Mon, 24 Aug 2020 01:04:12 -0700 (PDT)
 Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id t9sm1190267wmt.15.2020.08.24.00.45.16
+ by smtp.gmail.com with ESMTPSA id g18sm22908182wru.27.2020.08.24.01.04.11
  for <linux-amlogic@lists.infradead.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 24 Aug 2020 00:45:16 -0700 (PDT)
-Subject: Re: [QUESTION] drm/meson: Hardware cursor plane for Amlogic/meson
+ Mon, 24 Aug 2020 01:04:11 -0700 (PDT)
+Subject: Re: [PATCH RESEND v1] ARM: dts: meson8: remove two invalid interrupt
+ lines from the GPU node
 To: linux-amlogic@lists.infradead.org
-References: <CAPpJ_efVhfH-aq2NcDmK61vn7+mM_wy+nisuMg9AZhHEr=hu7A@mail.gmail.com>
- <CAFBinCCxXd_9EL-P-aHiX+nVVkgeK7X6jOitsPWgRN6PjUUH1A@mail.gmail.com>
+References: <20200815181957.408649-1-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <dc6e91f1-771a-c9ff-06c6-e4e38c8cf37b@baylibre.com>
-Date: Mon, 24 Aug 2020 09:45:16 +0200
+Message-ID: <e1ed42fc-b740-bd9e-9765-bbd2a2934e1f@baylibre.com>
+Date: Mon, 24 Aug 2020 10:04:10 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCxXd_9EL-P-aHiX+nVVkgeK7X6jOitsPWgRN6PjUUH1A@mail.gmail.com>
+In-Reply-To: <20200815181957.408649-1-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200824_034520_458770_74D1AFCB 
-X-CRM114-Status: GOOD (  21.38  )
+X-CRM114-CacheID: sfid-20200824_040413_936164_6B571BDC 
+X-CRM114-Status: GOOD (  19.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,54 +158,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 15/08/2020 10:59, Martin Blumenstingl wrote:
-> Hello Jian-Hong Pan,
+On 15/08/2020 20:19, Martin Blumenstingl wrote:
+> The 3.10 vendor kernel defines the following GPU 20 interrupt lines:
+>   #define INT_MALI_GP                 AM_IRQ(160)
+>   #define INT_MALI_GP_MMU             AM_IRQ(161)
+>   #define INT_MALI_PP                 AM_IRQ(162)
+>   #define INT_MALI_PMU                AM_IRQ(163)
+>   #define INT_MALI_PP0                AM_IRQ(164)
+>   #define INT_MALI_PP0_MMU            AM_IRQ(165)
+>   #define INT_MALI_PP1                AM_IRQ(166)
+>   #define INT_MALI_PP1_MMU            AM_IRQ(167)
+>   #define INT_MALI_PP2                AM_IRQ(168)
+>   #define INT_MALI_PP2_MMU            AM_IRQ(169)
+>   #define INT_MALI_PP3                AM_IRQ(170)
+>   #define INT_MALI_PP3_MMU            AM_IRQ(171)
+>   #define INT_MALI_PP4                AM_IRQ(172)
+>   #define INT_MALI_PP4_MMU            AM_IRQ(173)
+>   #define INT_MALI_PP5                AM_IRQ(174)
+>   #define INT_MALI_PP5_MMU            AM_IRQ(175)
+>   #define INT_MALI_PP6                AM_IRQ(176)
+>   #define INT_MALI_PP6_MMU            AM_IRQ(177)
+>   #define INT_MALI_PP7                AM_IRQ(178)
+>   #define INT_MALI_PP7_MMU            AM_IRQ(179)
 > 
-> On Wed, Aug 5, 2020 at 9:54 AM Jian-Hong Pan <jian-hong@endlessm.com> wrote:
-> [...]
->> We also learned there is the hardware cursor plane supported by
->> Amlogic chips from the slide "Mainline Linux on AmLogic SoCs" [3]. Is
->> it possible to have the hardware cursor available over the drm
->> interface?
-> as far as I understand it is technically possible but currently not implemented.
-> We have a specific TODO item for this, see [0]
+> However, the driver from the 3.10 vendor kernel does not use the
+> following four interrupt lines:
+> - INT_MALI_PP3
+> - INT_MALI_PP3_MMU
+> - INT_MALI_PP7
+> - INT_MALI_PP7_MMU
 > 
-> also I'm not sure if this is trivial to implement and whether there
-> are any plans to do so
-
-Sorry I was on vacation !
-
-Yes it's technically possible, but not trivial.
-
-The blocking point is Interlaced support, currently we use the single available
-scaler to automatically switch the field on each vsync on the primary plane.
-
-But if we were using a secondary plane for cursor, we would need to switch the field
-manually for this plane.
-
-Clearly it's not an issue, but the plane management has changed for G12A and support for
-this would need to be added at the same time.
-
-We (BayLibre) do not plan to implement it in the short or long term, but it's clearly a wanted feature.
-
-Neil
-
+> Drop the "pp3" and "ppmmu3" interrupt lines. This is also important
+> because there is no matching entry in interrupt-names for it (meaning
+> the "pp2" interrupt is actually assigned to the "pp3" interrupt line).
+> 
+> Fixes: 7d3f6b536e72c9 ("ARM: dts: meson8: add the Mali-450 MP6 GPU")
+> Reported-by: Thomas Graichen <thomas.graichen@gmail.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+> re-send of v1 from [0] because it was never picked up
 > 
 > 
-> Best regards,
-> Martin
+> [0] https://patchwork.kernel.org/patch/11582619/
 > 
 > 
-> [0] http://linux-meson.com/doku.php#todo
+>  arch/arm/boot/dts/meson8.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+> index 277c0bb10453..04688e8abce2 100644
+> --- a/arch/arm/boot/dts/meson8.dtsi
+> +++ b/arch/arm/boot/dts/meson8.dtsi
+> @@ -240,8 +240,6 @@ mali: gpu@c0000 {
+>  				     <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>,
+> -				     <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>,
+> -				     <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>,
 > 
 
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
