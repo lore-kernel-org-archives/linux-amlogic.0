@@ -2,86 +2,94 @@ Return-Path: <SRS0=4XcC=CC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 739A7C433DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 13:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35116C433E1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 14:27:13 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 39739207CD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 13:58:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D4D3F205CB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 14:27:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BJKItRPR";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C0r8fn3r"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 39739207CD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="N70djmEv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GQzOCkl7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D4D3F205CB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=RwE3W1LC9+1lptxYLweSq2HXkmbcRVvQkNpBN3ItJKc=; b=BJKItRPRvjqGNnNLPmfZIJ0v6
-	EOtEaGpJMOUKZqfnRB3WMsJrOpu6wYo06LrlBJ2+5X7mLeYozh1oFgCgmkCTJTGP4zpLN+gwZ45Xa
-	9XufnRGEcAeJCNbmcg/FOBceXA5OJ4umux452914boho0vkWn8WnkrvV+OZVNA7eAiIjTT4Ucy4ET
-	MoDXvTsehlayajw+K0NDKrtuayxWapXnyLM2VfAK42DarF21KRdSGRUe5qYTFjQhayjPAkAXkSWWq
-	Q8PC2qtzofHQBCK1qItYj/p4//2ZQAC21gk3UPBzdrGbggHqJFh8dVk1Md6pZgCzt7XWtdbg33K/1
-	PVyblX5AQ==;
+	 bh=UtNe5OT0Oj4mEk7JLmk+oyd7RHDqYSwNFBWyx1yo9MA=; b=N70djmEvViIJwu26vY3iAkb3K
+	ZowZX87hYvlYyG+mv9SaiQ/n+ZBobx2ZYv672WrPBdwYWb2e27C6ykuT1ackUkffQ2y/dx2JF5cQN
+	6XTFwD0+i2sUKjl4tJj09vu3psGyiQucnXCbMdOmn1VLBArqUJe8ZI4mgf7lAtCrmx6PuoaC4h0LK
+	1orLFTkfiQFUjU/93qGihKrvrXZoiVzfkuJaZY+/dIa8O88/SjKoHDjeutQ9J2Jgc8JwxOLvDGHYr
+	fQLKRGz8cyR8EYbjj6RtS/HXyC8k5+rhtkhf7ypvthKKco2Rv7IQKYMox+Azl3xDHQGhiMxuVBu8y
+	7ub7JN+8w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kACyv-0006tF-P9; Mon, 24 Aug 2020 13:57:53 +0000
-Received: from mail-io1-xd41.google.com ([2607:f8b0:4864:20::d41])
+	id 1kADRB-0001PW-66; Mon, 24 Aug 2020 14:27:05 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kACys-0006sF-BE; Mon, 24 Aug 2020 13:57:51 +0000
-Received: by mail-io1-xd41.google.com with SMTP id z17so8708944ioi.6;
- Mon, 24 Aug 2020 06:57:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dMeguMm96pDyAxCNEWFE6tm74xeCtyVll4TegHbBwcA=;
- b=C0r8fn3rtGIqTXG84StIGa8c91BO2qgo5z2OsnJIDt20bxO6byuQwT0b3H7LNVi4+C
- JYOeUYLo93Uh9C4ggps/W+xiOllb82xPFhAXp+ZDFhEgLNWn1Z2ywvLhlI5WKSM4nWG8
- LKZWhCU7GH2RsuRywILfNLk4V2vrVl0LpAv3pcGjmDd1sHscEiQNR5pSztBq0HRDd39v
- e/11XBOxxXcovZVWfgSd5OtLpqHywfeTktXPV6/JQH24XpppLdTXhogkHUYkEwFa6fN7
- duzHCqU3vJBWxQI2Ezm1rp+Pgv/WH4JnC6fNJcCZVDa2SqeuF+LqEYfPxNGAO1tXEYF5
- vfeg==
+ id 1kADR8-0001OF-2W
+ for linux-amlogic@lists.infradead.org; Mon, 24 Aug 2020 14:27:03 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w13so8576111wrk.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 24 Aug 2020 07:27:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=2emyNJrlb5jnYs1P9Do7LS3bNbFY/IfjxvJcHgILF3A=;
+ b=GQzOCkl7SM0GbJfPqA1ei4ixX5vptg0iMa5giiWN7QkOrsE2WSMHk9TUdhiIrKu50s
+ koKvRmF43Xc/TpHOswEJxYEaN9i2Irra/INxrZWyy/FVkUbZDSG/OQkHUX4PZI8IXuUv
+ BGWHfMb8pa4ShXrMqslHqT8w+rIMz1MzexcHHCpSxpOZ2Qfu1N/E8O715mmI2sNFgrS9
+ Ika2iR/Z8CajnvnlE5937OjY8UsUO4BcG4ZqBjlASwMg7qKB6/PFpXH28DQLPuiwB0lC
+ OLML+ihQ4xyjndzsk58tMyJNhT/8LtJU28PxrQXi5iYabPModdvcBPV1hetRFdvWebkb
+ j2DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=dMeguMm96pDyAxCNEWFE6tm74xeCtyVll4TegHbBwcA=;
- b=Jck0uam6ry2kDHMl4ttczI2GEmqFBO/e2V28VActzFDHkSdp5sBOrRlQ17hapIJ2Am
- TwLNWahQtO5coMWSLJZmOjgK7LJ0JwgCnQlU9GH5NFr8mqqqXyvtBEbke1SX8LaGPQw0
- B6pJKb2NA4fBqG7TczsMD9S3J88EMVbalziBBWGue+WIdWG7vMCsEA62eh1ZTZIt4yKi
- tYZMbfHlUBk54+F5XevqSNHJhuXuj4B3JBmTUGfDhTuuXt3SXcTe07aXP5U48gl2fFgK
- PJXpvzfTymCwAc/MhON6SwOFEKDp7xTye+ADbV2GKmR5/1s7R6ENP9kYokL1n7lEcv2Q
- N16Q==
-X-Gm-Message-State: AOAM532GiF1au9WOjdVTLfGUPRstbCAKZqIVajVSSRdN9zWGgb4Dsclh
- ugR27GrotH3g1a+ZUVcb16lzO1JEi1nllQA05yI=
-X-Google-Smtp-Source: ABdhPJxv7Fzjo4etNqTn4asSi5M9XwBcfHBkl94QtZjSYX2e0e/pRxGvEnYwh72t4jk6oMt1yyR0pJZAEKXCjQqimjw=
-X-Received: by 2002:a02:a90f:: with SMTP id n15mr5809057jam.120.1598277468498; 
- Mon, 24 Aug 2020 06:57:48 -0700 (PDT)
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=2emyNJrlb5jnYs1P9Do7LS3bNbFY/IfjxvJcHgILF3A=;
+ b=W7J4POKYkcvkYJbNpURkWxosqUOY8g7Etd638BZpUAcLOf7xsTjEaF5sVMLAKHCQrq
+ eFyL6qrv7uVM+3+0/p9GOg2oVLgKa/+YYB3Rr/l9c2U62HHl2E6BGa208Xvey6nPYdj2
+ uecWmHNCe1S3Ues/3FiaKjWKaoIlbSxRlDJz5hpD/75xZ2eKJ7i9GvQ6BJv1z9FlqXqo
+ /uj7WXI98V3U4z4PDE7UPTGnA0jtabUjZIHBapIbpL1zzo/NAx1ybA/zY9qmAiWea3u6
+ fnRJDBvsG7H3Aij9hCaRCCRTZYjEtdXgLJOdVHozXaifc2of/MVBdiL7CxfMLLleEpTE
+ nGDQ==
+X-Gm-Message-State: AOAM530lFJdT21/vFtxv+zSjP4QR9kkI/dDRuo6O6mrSXvkIdY/+fwui
+ U10rlmNTtGrh72YCZFBhfZRPew==
+X-Google-Smtp-Source: ABdhPJxhaK7T/M0F8uerHG/6BtyfrIa9WjDU8cbekxjYnSuxXuEXNdRACf99oX8emBSDFEB6g3LSgA==
+X-Received: by 2002:adf:ee11:: with SMTP id y17mr6040291wrn.294.1598279220534; 
+ Mon, 24 Aug 2020 07:27:00 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id z8sm23264799wmf.10.2020.08.24.07.26.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 24 Aug 2020 07:26:59 -0700 (PDT)
+References: <20200713160522.19345-1-dan@dlrobertson.com>
+ <20200713160522.19345-2-dan@dlrobertson.com>
+ <1jy2maekzf.fsf@starbuckisacylon.baylibre.com>
+ <ff07b04450080fd14d8da4470aeb6e1c28e4215f.camel@pengutronix.de>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>, Dan Robertson <dan@dlrobertson.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH 1/1] usb: dwc3: meson-g12a: fix shared reset control use
+In-reply-to: <ff07b04450080fd14d8da4470aeb6e1c28e4215f.camel@pengutronix.de>
+Date: Mon, 24 Aug 2020 16:26:59 +0200
+Message-ID: <1j8se43yrw.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20200820121323.564-1-linux.amoon@gmail.com>
- <20200820121323.564-2-linux.amoon@gmail.com>
- <7hlfi9xgch.fsf@baylibre.com>
- <CANAwSgTZ23jFPAO46vRg1Dx_Bzi=4Bg6KHE0ozLQGky4p_fgKQ@mail.gmail.com>
- <CANAwSgQLnqDnuQvLv4cvaeTPeBW=H_g5F2aaNue_hb4nKLdovg@mail.gmail.com>
- <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com>
-In-Reply-To: <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 24 Aug 2020 19:27:37 +0530
-Message-ID: <CANAwSgRm3yKgqrW50L0w4bzhrGF1GNe08oMgd4T59uK1D=fb=Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200824_095750_425850_7F269C56 
-X-CRM114-Status: GOOD (  21.02  )
+X-CRM114-CacheID: sfid-20200824_102702_154812_8930F4C8 
+X-CRM114-Status: GOOD (  39.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,81 +101,149 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+ aouledameur@baylibre.com, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
 
-On Mon, 24 Aug 2020 at 19:20, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> On 24/08/2020 15:41, Anand Moon wrote:
-> > hi All,
-> >
-> > On Fri, 21 Aug 2020 at 10:13, Anand Moon <linux.amoon@gmail.com> wrote:
-> >>
-> >> Hi Kevin,
-> >>
-> >> Thanks for your review comments.
-> >>
-> >> On Fri, 21 Aug 2020 at 01:03, Kevin Hilman <khilman@baylibre.com> wrote:
-> >>>
-> >>> Anand Moon <linux.amoon@gmail.com> writes:
-> >>>
-> >>>> Enable RTC PCF8563 node on Odroid-N2 SBC, In order to
-> >>>> support the RTC wakealarm feature for suspend and resume.
-> >>>> Also assign an alias to the pcf8563 to rtc0 and meson-vrtc to rtc1
-> >>>> timer device to prevent it being assigned to /dev/rtc0
-> >>>> which disto userspace tools assume is a clock device.
-> >>>>
-> >>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> >>>> Cc: Kevin Hilman <khilman@baylibre.com>
-> >>>> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
-> >>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> >>>> ---
-> >>>> Changes V3
-> >>>> --Drop the INI GPIOAO.BIT7 pinctrl.
-> >>>
-> >>> Why did you drop this GPIO?  Isn't this the GPIO that the RTC uses to
-> >>> wakeup the system?  If so, this should be included as part of this
-> >>> patch.
-> >>>
-> >>> It probably still works because the bootloader configures this GPIO as
-> >>> input, but the kernel should not rely on the booloader for that, so
-> >>> please include as part of this patch.
-> >>>
-> >>
-> >> Ok I will figure out the correct pinctrl need for this settings.
-> >> looking into the Odroid N2 schematics.
-> >>
-> >
-> > I am trying to map the RTC INT pinctrl, ie RTC INT GPIOAO.BIT7.
->
->
-> Simply add:
->
-> interrupt-parent = <&gpio_intc>;
-> interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
->
-> to reflect the interrupt connection.
->
-> No need to setup pinctrl here since the GPIO input is always connected to the gpio irq generator whatever pinctrl mode is set.
->
-> Neil
->
+On Mon 24 Aug 2020 at 12:24, Philipp Zabel <p.zabel@pengutronix.de> wrote:
 
-Thanks for this input.
+> Hi Jerome,
+>
+> On Wed, 2020-08-19 at 17:03 +0200, Jerome Brunet wrote:
+>> On Mon 13 Jul 2020 at 18:05, Dan Robertson <dan@dlrobertson.com> wrote:
+>> 
+>> > The reset is a shared reset line, but reset_control_reset is still used
+>> > and reset_control_deassert is not guaranteed to have been called before
+>> > the first reset_control_assert call. When suspending the following
+>> > warning may be seen:
+>> 
+>> And now the same type of warning maybe seen on boot. This is
+>> happening for me on the libretech-cc (s905x - gxl).
+>> 
+>> [    1.863469] ------------[ cut here ]------------
+>> [    1.867914] WARNING: CPU: 1 PID: 16 at drivers/reset/core.c:309 reset_control_reset+0x130/0x150
+> [...]
+>> This breaks USB on this device. reverting the change brings it back.
+>> 
+>> Looking at the reset framework code, I don't think drivers sharing the
+>> same reset line should mix using reset_control_reset() VS
+>> reset_control_assert()/reset_control_deassert()
+>
+> That is correct, users must not mix the assert/deassert and reset calls
+> on shared resets:
+>
+> /**
+>  * reset_control_reset - reset the controlled device
+>  * @rstc: reset controller
+>  *
+>  * On a shared reset line the actual reset pulse is only triggered once for the
+>  * lifetime of the reset_control instance: for all but the first caller this is
+>  * a no-op.
+>  * Consumers must not use reset_control_(de)assert on shared reset lines when
+>  * reset_control_reset has been used.
+>  *
+>  * If rstc is NULL it is an optional reset and the function will just
+>  * return 0.
+>  */
+>
+> [...]
+> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-
+> meson-g12a.c
+>> > index 1f7f4d88ed9d..88b75b5a039c 100644
+>> > --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
+>> > +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+>> > @@ -737,13 +737,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>> >  		goto err_disable_clks;
+>> >  	}
+>> >  
+>> > -	ret = reset_control_reset(priv->reset);
+>> > +	ret = reset_control_deassert(priv->reset);
+>> 
+>> The change introduced here is significant. If the reset is not initially
+>> asserted, it never will be before the life of the device.
+>>
+>> This means that Linux will have to deal which whatever state is left by the
+>> bootloader. This looks sketchy ...
+>>
+>> I think the safer way solve the problem here would be to keep using
+>> reset_control_reset() and introduce a new API in the reset
+>> framework to decrement the reset line "triggered_count"
+>> (reset_control_clear() ??)
+>> 
+>> That way, if all device using the reset line go to suspend, the line will
+>> be "reset-able" again by the first device coming out of suspend ?
+>>
+>> Philip, would you be ok with such new API ?
+>
+> I'd like to first evaluate whether the already available APIs might be a
+> better fit. There is already the option of handing off exclusive control
+> between multiple drivers via the reset_control_acquire/release APIs on
+> exclusive reset controls.
+>
+> If all drivers that are now sharing the reset line would switch to
+> requesting resets via devm_reset_control_get_exclusive_released()
+> and then prepend their reset handling with reset_control_acquire() (but
+> ignore -EBUSY) and the driver that got exclusive control releases the
+> reset via reset_control_release() during suspend, this should do exactly
+> what you want. Note that reset_control_release() must not be called on a
+> reset control that has not been successfully acquired by the same
+> driver.
 
-Best Regards
--Anand Moon
+In practice, I think your proposition would work since the drivers
+sharing this USB reset line are likely to be probed/suspended/resumed at
+the same time but ...
+
+If we imagine a situation where 2 device share a reset line, 1 go in
+suspend, the other does not - if the first device as control of the
+reset, it could trigger it and break the 2nd device. Same goes for
+probe/remove()
+
+I agree it could be seen as unlikely but leaving such race condition
+open looks dangerous to me.
+
+>
+> Is this something that would be feasible for your combination of
+> drivers? Otherwise it is be unclear to me under which condition a driver
+> should be allowed to call the proposed reset_control_clear().
+
+I was thinking of reset_control_clear() as the counter part of
+reset_control_reset().
+
+When a reset_control_reset() has been called once, "triggered_count" is
+incremented which signals that the ressource under the reset is
+"in_use" and the reset should not be done again. reset_control_clear()
+would be the way to state that the ressource is no longer used and, that
+from the caller perspective, the reset can fired again if necessary.
+
+If we take the probe / suspend / resume example:
+* 1st device using the shared will actually trigger it (as it is now)
+* following device just increase triggered_count
+
+If all devices go to suspend (calling reset_control_clear()) then
+triggered_count will reach zero, allowing the first device resuming to
+trigger the reset again ... this is important since it might not be the
+one which would have got the exclusive control
+
+If any device don't go to suspend, meaning the ressource under reset
+keep on being used, no reset will performed. With exlusive control,
+there is a risk that the resuming device resets something already in use.
+
+Regarding the condition, on shared resets, call reset_control_reset()
+should be balanced reset_control_clear() - no clear before reset.
+
+>
+>> In the meantime, I think this change should be reverted. A warning on
+>> suspend seems less critical than a regression breaking USB completly.
+>
+> Agreed.
+>
+> regards
+> Philipp
+
 
 _______________________________________________
 linux-amlogic mailing list
