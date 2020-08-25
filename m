@@ -1,93 +1,88 @@
-Return-Path: <SRS0=4XcC=CC=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=/aBW=CD=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 540FAC433E1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 21:17:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB668C433DF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Aug 2020 09:02:03 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 20B5F20656
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2020 21:17:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 654E22067C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Aug 2020 09:02:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ik2W4mMK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="sEILnmsV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 20B5F20656
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="2x1gptGB";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="sRE1cL8e"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 654E22067C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ZoUEo5YjsuDNiMZmfrXxJ+CEUlnRl6nPJ9vDyTeceOo=; b=ik2W4mMKHr3OiQMUpNlpEV5Jo
-	YJaLo4wr7iFrQ6XkUiByEYCi7lorN+3HvzjwKexBffx15is7/w6L2qUaQEse/BPMct190bpWuWDQJ
-	p2t5sZmw5vOYgHCJiX7piMJT8DxSmXtSSNSwZDGBN9rKh1AwKobGE/5ZowfcU7ax1Kc0vBnVCWY39
-	i3RyvSJNFTQue8CH7cv4en6yAE9c47T1Pju32xHCYMhBAy7fEo3mvmTP6nvCPN7LsRhTNAc2OoAQJ
-	ESrOETT8knWVb+/gQfsoqapLacnM80EDrtYbAoUeNZlee/6zL7+D5zq45TA/4WVIZ/lW3RKf9nTkM
-	1cYEcKGVA==;
+	 bh=scSKpWvOAnZVhIgVtxpXu1ToBsOATrt8mPdvUFY49BM=; b=2x1gptGBlvqWbK6baPyD9MKbH
+	VSMzuSXFglGXAHXUfEk4tGcRqLD8UMJ3jNmsk+i8WvUBvUJg1hpWEG6CEmF1OB0G8+DHC2KZyxIyl
+	mJUCiGBOjGapS5S4xbo8QQeo37qH6uidwmYxODY/hKm3mVEHaF6UzChAIW7lCukjZRjlYL6O5Cf31
+	/E1yje5/t926NfePa9GLSBFKMl8G3RZxq/GPLq/Qwt7NJ7VgYy1jhDoDpZAaaGaigJ0lnuyOag6it
+	cA2CB6lDRMtjXhoAC9i9kT4gltB+Ey9Q1dR6FnZyY58v+PpYayGpKp95P00urZ2HXZQ7w4Qid3PU+
+	etviPuK4Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kAJq0-0004e2-FO; Mon, 24 Aug 2020 21:17:08 +0000
-Received: from mail-pj1-x1044.google.com ([2607:f8b0:4864:20::1044])
+	id 1kAUpy-0002c5-8O; Tue, 25 Aug 2020 09:01:50 +0000
+Received: from mail-io1-xd42.google.com ([2607:f8b0:4864:20::d42])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kAJpo-0004Yu-48
- for linux-amlogic@lists.infradead.org; Mon, 24 Aug 2020 21:16:57 +0000
-Received: by mail-pj1-x1044.google.com with SMTP id q1so99203pjd.1
- for <linux-amlogic@lists.infradead.org>; Mon, 24 Aug 2020 14:16:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=FQ557hoZ2m6wPs+B8z3gsPGHazVrjeepyEdR7xdhh1I=;
- b=sEILnmsVGJYQIQ1kZjL/bfYE6J3X18O5MGpTQhrCsvBCO/eh5FRRNd4X5eJm+hUi3d
- hcG4S+Xz+aHuZoTy2u5/rhdpujpa0JYImftVXFwVt3/JCxIWbNeUtg9Z73MK+aiNSqoU
- eFb2n1qsRJXSm83KAHCqerzbmJ4cuBdkDMJnLyNUM0Ju2eps4dVXlM8HR3LTkRXcI3DH
- y9HFTwLJpOKM87CFndS57VCIO6dI0NOSWSwRtpgTqn8b9wbo7ZOtq7jetjazIMwy/KGE
- 1VOrLqQJ8KjBEIeS5Q24VWoFUwIljijZh66GL+a+Yac2YeUR+hQOMYKsTCbp4ZMW+IGQ
- ef0g==
+ id 1kAUpq-0002bD-0X; Tue, 25 Aug 2020 09:01:43 +0000
+Received: by mail-io1-xd42.google.com with SMTP id z17so11679774ioi.6;
+ Tue, 25 Aug 2020 02:01:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/JxcgaDbULCnptHgVEYW3WE8fpXfhJ/PrwruZOn3iWo=;
+ b=sRE1cL8eQlPm5tP6WDbjsfJCehc4TmxikrDSl7AkQFUhAIkbIPPGPyB3WqUHgda5st
+ u6bgChyX/ZZEhuLR9Xw5HItqY1KVEY14UeypxYD8gsg41vTwza4F8vMePBtS7HGRpFMm
+ PNBsRuIzv6FS1kuj9HPZrzJviCmNGqXwHaA3IlyKBoWMB5sbDOh6FgcLIZyVMAfX57xG
+ D2Tktomhd2pT2m5sPXwQeeaDv4AvY0gvElrcp40Un9sQCnHP0H8Iwe4NmBnx5Pzfp4+8
+ Xz2mpK8d4QBTjqs5Sz5lQ4ev9L8LKkcRjRWBv6+JnE99irXTgtWF3IGAXkkBwQqqtb7b
+ UCVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=FQ557hoZ2m6wPs+B8z3gsPGHazVrjeepyEdR7xdhh1I=;
- b=q1IiVrg1UsS8Zlf06DGxLZQL6LCw9V0JQcqWCUAIoa1XVZPVMze5vMX5l/X8sYdxQ9
- DXeDKpn2XBi5n06aT5d9D3kxIXIsiCYCT4UIU3jY2dVZoN6v3c47CKSghVdpsfogndxQ
- rEFpieuKYmRHFJUPogy9pdJ66e4cwpHigef8fEjsEBBXwGxTADDfS2aJWpsc9XA7Fk3C
- +fCyJj+4LAS932JX8O35YjO3FXBMEvVtajwFbk54sKYRO24keQiwczdf3wu56/ahVzaf
- hg5BrgYHdajkMKASLb73aJBWPq82c4slpUPKUafYna39nATM8bTWKTku2kbjaB+9tUqA
- 3p5A==
-X-Gm-Message-State: AOAM531PYSj5ITAGLnS9inP8D6rY8fjx3wvDVUiWRg8WEa4IHxRca4+8
- 6YJnGiU6uWdarCFoRXTDFxblWYFaeqpg9uX1
-X-Google-Smtp-Source: ABdhPJxWXFWTTayf1UP+I8dQBt7qackDj95OuguDZWI865z8URWvIVg736s7YibH3MRh/uNbiHVDcQ==
-X-Received: by 2002:a17:90a:6301:: with SMTP id e1mr889487pjj.5.1598303809377; 
- Mon, 24 Aug 2020 14:16:49 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id o192sm13596290pfg.81.2020.08.24.14.16.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Aug 2020 14:16:48 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH RESEND v1] ARM: dts: meson8: remove two invalid interrupt
- lines from the GPU node
-Date: Mon, 24 Aug 2020 14:16:47 -0700
-Message-Id: <159830380185.24712.3464811968459073992.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200815181957.408649-1-martin.blumenstingl@googlemail.com>
-References: <20200815181957.408649-1-martin.blumenstingl@googlemail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/JxcgaDbULCnptHgVEYW3WE8fpXfhJ/PrwruZOn3iWo=;
+ b=dF7hVD1nLwOho1ZZ12pEd5xd2v8hP0gtTqTOQWOoZx4hMa0mwb5c7/zKNbJlMyIoMF
+ 92qoi10JZboKVYNWH5UEJEpGWB1CCCyAds4U7d++4fkf2CZVD7RdF1Gd+RIiJ/h554OA
+ Yd5lOVoyrX9LGKQT97bMcLVERaHQHzNmgfuK539S2K4CChLctqp3Z5YPLN1gOqqXmdbG
+ Qc4kmDdpJZGClxMOb5OKb2nHKCErEyKA47IZCPuX2KYn9s+vd/LKAyeZvsof85kzNvyH
+ eLdsucFKAxIEF31GL0lNmGkDGnlLk0CHwwBCYlfCqvEFtIOAvG2VLosgJ4tGhYGDcGMp
+ m/1g==
+X-Gm-Message-State: AOAM533BgJgQ5DHVRAqML44/U3TdDyAVGYq1RkVREaJBcC35k7qqPUKx
+ 9xJ2Asu1Sc88ksuKXFdJgIiRQAvLoAV2BBCwkQE=
+X-Google-Smtp-Source: ABdhPJy/Lz3gTkcMcA7Fnu2cejGn4aBju3+/h6ns8W73b0vBxJEtaO56YrqX4053pfUaNVRsvej2hr6CGTxPKxRpz3w=
+X-Received: by 2002:a6b:e419:: with SMTP id u25mr8281919iog.159.1598346100178; 
+ Tue, 25 Aug 2020 02:01:40 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200820121323.564-1-linux.amoon@gmail.com>
+ <20200820121323.564-2-linux.amoon@gmail.com>
+ <7hlfi9xgch.fsf@baylibre.com>
+ <CANAwSgTZ23jFPAO46vRg1Dx_Bzi=4Bg6KHE0ozLQGky4p_fgKQ@mail.gmail.com>
+ <CANAwSgQLnqDnuQvLv4cvaeTPeBW=H_g5F2aaNue_hb4nKLdovg@mail.gmail.com>
+ <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com>
+ <1j7dto3ylq.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1j7dto3ylq.fsf@starbuckisacylon.baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 25 Aug 2020 14:31:29 +0530
+Message-ID: <CANAwSgQ1Miu73hfdK+cgL3howpekn2xj_5qwGasQZwtQpSGj5Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
+ controller node
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200824_171656_239779_B6C9D822 
-X-CRM114-Status: UNSURE (   8.91  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200825_050142_110095_4EC014C0 
+X-CRM114-Status: GOOD (  23.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,46 +94,101 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Thomas Graichen <thomas.graichen@gmail.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 15 Aug 2020 20:19:57 +0200, Martin Blumenstingl wrote:
-> The 3.10 vendor kernel defines the following GPU 20 interrupt lines:
->   #define INT_MALI_GP                 AM_IRQ(160)
->   #define INT_MALI_GP_MMU             AM_IRQ(161)
->   #define INT_MALI_PP                 AM_IRQ(162)
->   #define INT_MALI_PMU                AM_IRQ(163)
->   #define INT_MALI_PP0                AM_IRQ(164)
->   #define INT_MALI_PP0_MMU            AM_IRQ(165)
->   #define INT_MALI_PP1                AM_IRQ(166)
->   #define INT_MALI_PP1_MMU            AM_IRQ(167)
->   #define INT_MALI_PP2                AM_IRQ(168)
->   #define INT_MALI_PP2_MMU            AM_IRQ(169)
->   #define INT_MALI_PP3                AM_IRQ(170)
->   #define INT_MALI_PP3_MMU            AM_IRQ(171)
->   #define INT_MALI_PP4                AM_IRQ(172)
->   #define INT_MALI_PP4_MMU            AM_IRQ(173)
->   #define INT_MALI_PP5                AM_IRQ(174)
->   #define INT_MALI_PP5_MMU            AM_IRQ(175)
->   #define INT_MALI_PP6                AM_IRQ(176)
->   #define INT_MALI_PP6_MMU            AM_IRQ(177)
->   #define INT_MALI_PP7                AM_IRQ(178)
->   #define INT_MALI_PP7_MMU            AM_IRQ(179)
-> 
-> [...]
+Hi Jerome
 
-Applied, thanks!
+On Mon, 24 Aug 2020 at 20:00, Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>
+> On Mon 24 Aug 2020 at 15:50, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> > On 24/08/2020 15:41, Anand Moon wrote:
+> >> hi All,
+> >>
+> >> On Fri, 21 Aug 2020 at 10:13, Anand Moon <linux.amoon@gmail.com> wrote:
+> >>>
+> >>> Hi Kevin,
+> >>>
+> >>> Thanks for your review comments.
+> >>>
+> >>> On Fri, 21 Aug 2020 at 01:03, Kevin Hilman <khilman@baylibre.com> wrote:
+> >>>>
+> >>>> Anand Moon <linux.amoon@gmail.com> writes:
+> >>>>
+> >>>>> Enable RTC PCF8563 node on Odroid-N2 SBC, In order to
+> >>>>> support the RTC wakealarm feature for suspend and resume.
+> >>>>> Also assign an alias to the pcf8563 to rtc0 and meson-vrtc to rtc1
+> >>>>> timer device to prevent it being assigned to /dev/rtc0
+> >>>>> which disto userspace tools assume is a clock device.
+> >>>>>
+> >>>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> >>>>> Cc: Kevin Hilman <khilman@baylibre.com>
+> >>>>> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
+> >>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> >>>>> ---
+> >>>>> Changes V3
+> >>>>> --Drop the INI GPIOAO.BIT7 pinctrl.
+> >>>>
+> >>>> Why did you drop this GPIO?  Isn't this the GPIO that the RTC uses to
+> >>>> wakeup the system?  If so, this should be included as part of this
+> >>>> patch.
+> >>>>
+> >>>> It probably still works because the bootloader configures this GPIO as
+> >>>> input, but the kernel should not rely on the booloader for that, so
+> >>>> please include as part of this patch.
+> >>>>
+> >>>
+> >>> Ok I will figure out the correct pinctrl need for this settings.
+> >>> looking into the Odroid N2 schematics.
+> >>>
+> >>
+> >> I am trying to map the RTC INT pinctrl, ie RTC INT GPIOAO.BIT7.
+> >
+> >
+> > Simply add:
+> >
+> > interrupt-parent = <&gpio_intc>;
+> > interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+> >
+> > to reflect the interrupt connection.
 
-[1/1] ARM: dts: meson8: remove two invalid interrupt lines from the GPU node
-      commit: b468412409c0e5752ad3396b147cac563ff8dd3b
+I have tried this setting, but it is not working.
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+[alarm@archl-on2e ~]$ dmesg| grep rtc
+[    5.378002] meson-vrtc ff8000a8.rtc: registered as rtc1
+[    5.942307] rtc-pcf8563 0-0051: pcf8563_write_block_data: err=-110
+addr=0e, data=03
+[    5.942316] rtc-pcf8563 0-0051: pcf8563_probe: write error
+[    5.945983] rtc-pcf8563: probe of 0-0051 failed with error -5
+
+
+> >
+> > No need to setup pinctrl here since the GPIO input is always connected
+> > to the gpio irq generator whatever pinctrl mode is set.
+>
+> It is actually better to setup pinctrl. Yes the irq controller can work
+> whatever the pin setup but if an output function is active it can mess with
+> what the irq controller gets.
+>
+> Think about applying/removing bias if necessary too.
+>
+
+Ok, I am trying to add a new pinctrl configuration for
+TSIN_A_DIN0 //  TDMB_FS // TDMB_SLV_FS
+But it's still not working at my end.
+
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
