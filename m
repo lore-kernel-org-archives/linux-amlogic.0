@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1EDB7C433DF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Aug 2020 14:56:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB51FC433E1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Aug 2020 14:56:52 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D324D214F1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Aug 2020 14:56:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B039A2078D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Aug 2020 14:56:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pXJckqsp";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="lp7M6zPO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D324D214F1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VAqVnqjb";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="cPny5w0b"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B039A2078D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2UjiPLQn95QMCoY2GX3/0UoFh4vy3tTw/QwF8O8isMk=; b=pXJckqspA76EeSNZgUtNXgb6mE
-	O/6cUNHwYwzpc3I1Wao6dsQVLHsBLhhmo7eUUl85/giA4PREkbtOb7V4kQSmEso2oz+UOUMEIr2KE
-	1iaG0aTGrV1iJ72+W5So+5/K4HQ+eVnzbn9c8OXJ7a/rG7XXsfqRuJZ+uVavToXXh3hiiW533BZKG
-	V97zXbvmCUbqoJoMCcQ30xjMEoGaReTDo7HW5vdF7f+r1sjyQ/bqxAKLvO0umkdcwsXEfYoRWlvtL
-	ryXJgHTS6n8tfuZkSrQ/CcUzoXrmgnIBCReFS9L94ishusq6c02jJ53ueAuHnHD0ouiepcoef/G07
-	UntOHl/A==;
+	bh=XS5UGsYZ/2N+Y3Ocl2RlIZbebQz6LOGvQLh+dp0zMAQ=; b=VAqVnqjbVq9JhFbbjLhpN7Huqd
+	Hg5L2F/IVYrN7K94c6zkRI0rGewZssJXuy02OhA2VlXEcMo7/Aijw+vnP5+0n3C14nbTbYZbFtF04
+	Zc1CI+rdPB0N3+og262ZI60rD/YRPM98XA4GNMXx+XlteaBhtZjy/hy6wQO6kQon/spqFlytGocAc
+	kYK4Xc5IKstTddw4GxZF9whRMlbIf3dWD/R/rIj7Q+eGjhzieesoDXgt0A2DENu2aXurxKzTRQTzP
+	jN3OeipM7EhhFSc82Z+RxQYUnmYBDJFKymXZPrqR4Z7iGxzH+OlTdeKHGTIEjux4iKegTV1PREtIQ
+	mAFo9PgA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kAwqD-0003cd-8y; Wed, 26 Aug 2020 14:55:57 +0000
+	id 1kAwqx-00043W-Aq; Wed, 26 Aug 2020 14:56:43 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kAwnM-0002C1-9Q; Wed, 26 Aug 2020 14:53:02 +0000
+ id 1kAwnR-0002En-S8; Wed, 26 Aug 2020 14:53:13 +0000
 Received: from localhost.localdomain (unknown [194.230.155.216])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id D9E0F21741;
- Wed, 26 Aug 2020 14:52:52 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id B9CD2221E2;
+ Wed, 26 Aug 2020 14:52:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598453578;
- bh=EO6+OrtQUwKwY8gZU4JakHT0nILSB70xFqDRJMkESZY=;
+ s=default; t=1598453583;
+ bh=OTM2oBQoZiAlV+XAfIAKT7r/gquf8Xx7bYhHoSUNzOQ=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=lp7M6zPOo/NbXV/KmnrIZP2j/7osA6KnrnBkn7shBUFVg2hnnQTzWduD5TiLx0Ht8
- fq7PppS6Qip528k2PlASRjtE6lMvHH0fsQdhFZGue0pxH7GKSotNtOcdL8qHiWjMfG
- CeSJAVZKWw9V3sMB8ZmCdfUUIu/6WJ+KVF8kZqgg=
+ b=cPny5w0b1gWvr3veWEmXDwmzRaVz/k83PcuL7utLmHw6zWfvrjQ1r6J/30m+cS/GT
+ l8d8fx/q4VeNxkCTanQP2tmfPr3jbjSoj4hZNCmUnTX8UfXBB6p6FCgjtLO6rbQ0yE
+ KjkIP9LM/fH97f44ri+rZextJ4xkzG56osJMHMac=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jonathan Cameron <jic23@kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
  Lars-Peter Clausen <lars@metafoo.de>,
@@ -71,15 +71,15 @@ To: Jonathan Cameron <jic23@kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 10/16] iio: amplifiers: hmc425a: Simplify with dev_err_probe()
-Date: Wed, 26 Aug 2020 16:51:47 +0200
-Message-Id: <20200826145153.10444-10-krzk@kernel.org>
+Subject: [PATCH 11/16] iio: chemical: scd30: Simplify with dev_err_probe()
+Date: Wed, 26 Aug 2020 16:51:48 +0200
+Message-Id: <20200826145153.10444-11-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200826145153.10444-1-krzk@kernel.org>
 References: <20200826145153.10444-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200826_105300_568519_85D3FCF8 
-X-CRM114-Status: GOOD (  14.93  )
+X-CRM114-CacheID: sfid-20200826_105306_428007_312B1508 
+X-CRM114-Status: GOOD (  15.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,29 +102,30 @@ dev_err_probe().  Less code and also it prints the error value.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- drivers/iio/amplifiers/hmc425a.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/iio/chemical/scd30_core.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hmc425a.c
-index 582708924e4f..9efa692151f0 100644
---- a/drivers/iio/amplifiers/hmc425a.c
-+++ b/drivers/iio/amplifiers/hmc425a.c
-@@ -201,12 +201,9 @@ static int hmc425a_probe(struct platform_device *pdev)
- 	st->gain = st->chip_info->default_gain;
+diff --git a/drivers/iio/chemical/scd30_core.c b/drivers/iio/chemical/scd30_core.c
+index eac76972f83e..92358797796d 100644
+--- a/drivers/iio/chemical/scd30_core.c
++++ b/drivers/iio/chemical/scd30_core.c
+@@ -705,13 +705,9 @@ int scd30_probe(struct device *dev, int irq, const char *name, void *priv,
+ 	indio_dev->available_scan_masks = scd30_scan_masks;
  
- 	st->gpios = devm_gpiod_get_array(&pdev->dev, "ctrl", GPIOD_OUT_LOW);
--	if (IS_ERR(st->gpios)) {
--		ret = PTR_ERR(st->gpios);
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev, "failed to get gpios\n");
--		return ret;
+ 	state->vdd = devm_regulator_get(dev, "vdd");
+-	if (IS_ERR(state->vdd)) {
+-		if (PTR_ERR(state->vdd) == -EPROBE_DEFER)
+-			return -EPROBE_DEFER;
+-
+-		dev_err(dev, "failed to get regulator\n");
+-		return PTR_ERR(state->vdd);
 -	}
-+	if (IS_ERR(st->gpios))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(st->gpios),
-+				     "failed to get gpios\n");
++	if (IS_ERR(state->vdd))
++		return dev_err_probe(dev, PTR_ERR(state->vdd),
++				     "failed to get regulator\n");
  
- 	if (st->gpios->ndescs != st->chip_info->num_gpios) {
- 		dev_err(&pdev->dev, "%d GPIOs needed to operate\n",
+ 	ret = regulator_enable(state->vdd);
+ 	if (ret)
 -- 
 2.17.1
 
