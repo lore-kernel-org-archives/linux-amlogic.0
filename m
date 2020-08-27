@@ -2,135 +2,84 @@ Return-Path: <SRS0=UOMd=CF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95252C433E1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 14:46:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5514C433E1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 14:48:38 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 538CA2054F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 14:46:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 762EF2054F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 14:48:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GnFCrpcR";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="QqekevUc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 538CA2054F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Tl5RVVDQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="S4pcjGYX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 762EF2054F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:Date:Message-ID:
-	From:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=RwQkPjSnkM3JyR8yU3lVmGccmGrnnIPslgqGtoUOHEc=; b=GnFCrpcRJXJc/XCmDKCe6Qjkr
-	CVE2EOJsqm8n5M6zhOcPuoh+Vpf5lYli53o2pnBIieOLXy/N5Oo9pWu8J9AX/cuz6i3fGqUC0aBRg
-	WztZETKN7321ai8sVgOJmaouNBxKUfgdxO2wzWBHI7U93ERnhEppFXA5erOc9OsIhb52ZFxYTg/5J
-	ZEiJh8WiOpR7tcOsaSJsybuwectxVq2Nvw9fGImR+R0q5Lbjfn0cenxEvSUptxqrkMCZCievpGrJK
-	2zqwh9PeooNE12wwoxIwMHSW9ikKATAFbNgBIXdOI/f3++ljcBxKe5wDQ4Cm/v5h5rTC675FTp9i2
-	0yXMUxT2w==;
+	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=rdSuZlQXpO6Spzp+iL4/6ljohdSsn7vqUDUdQrpVjxI=; b=Tl5RVVDQRb01885rkIBueNnBsh
+	TCszBEhkXcpZZ0bGhwzSFEPT99svrk2vPFf7kl/ISid68XgP5wV2ee4VPEncareST2fNmjKYMdIW2
+	wBzHzqDSMUa2Qmuavv19sZqa7urZiLP83P1gJXiEmL3ichVjIXejY7Gfd3S+7aDYwYZcQnlfRJA5n
+	ncklNvJ60seANRnYfSjgwou3s6OIsI7GEev4qrIJXU/vF59OlSdkaebYwCGFQK3uT0uQvO8ZApddh
+	HYB4O5N+HK//cBtT8ZaDGtpQRCxuzYUjyslrG92UW43TNe9Y4EScnUadjqTwZ0Jgmyq4FZy7i0zQZ
+	eSYZ2Kpg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBJAV-0005Xo-Jk; Thu, 27 Aug 2020 14:46:23 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1kBJCa-0005qq-Rv; Thu, 27 Aug 2020 14:48:32 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBJAS-0005Ww-Fm
- for linux-amlogic@lists.infradead.org; Thu, 27 Aug 2020 14:46:21 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
- by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
- 20200827144616euoutp01594d88f07c8443dfac13bf5c08dfd4ee~vJ0aAOaQ20647106471euoutp01A
- for <linux-amlogic@lists.infradead.org>; Thu, 27 Aug 2020 14:46:16 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
- 20200827144616euoutp01594d88f07c8443dfac13bf5c08dfd4ee~vJ0aAOaQ20647106471euoutp01A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1598539576;
- bh=bfYHG/OvY7faFyGz2klWMd1yoNRtbGbgih2IyrZiibc=;
- h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
- b=QqekevUcHsSO2ZsiZpBHKNHUGio5hI0U+c7/nWp16dyhjCl3CKxf3F8tKN1J0/Xnq
- rgoOvMAAC/+ufUnD1w+Zpc5OgfrFZq7p09P7yqK82m+Xt9MavpaetJHBNjGQZxDJ0C
- TIGLkRYp4g6sBUNpXiBH82hA+UQ7GNj7Do9rsrxk=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTP id
- 20200827144616eucas1p1401d8fe408315d454a3b3af23c4e2a16~vJ0Z0C0sz2332423324eucas1p11;
- Thu, 27 Aug 2020 14:46:16 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
- eusmges2new.samsung.com (EUCPMTA) with SMTP id DC.59.05997.837C74F5; Thu, 27
- Aug 2020 15:46:16 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
- 20200827144615eucas1p26e2e13f503ad810fb7eabb145a2ff75c~vJ0ZUGWdK1538615386eucas1p2c;
- Thu, 27 Aug 2020 14:46:15 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
- eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
- 20200827144615eusmtrp22fbe258574a204ed1a90634f927698fd~vJ0ZTYB0P2232022320eusmtrp2P;
- Thu, 27 Aug 2020 14:46:15 +0000 (GMT)
-X-AuditID: cbfec7f4-677ff7000000176d-3d-5f47c7384aca
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
- eusmgms1.samsung.com (EUCPMTA) with SMTP id 8D.E8.06314.737C74F5; Thu, 27
- Aug 2020 15:46:15 +0100 (BST)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
- eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
- 20200827144615eusmtip2c3a8bec75faa8f4d014885d05a89d39f~vJ0YnyOLU0209002090eusmtip2Z;
- Thu, 27 Aug 2020 14:46:14 +0000 (GMT)
-Subject: Re: [PATCH] ASoC: meson: cards: deal dpcm flag change
-To: Jerome Brunet <jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Pierre-Louis Bossart
- <pierre-louis.bossart@intel.com>, Stephan Gerhold <stephan@gerhold.net>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Kuninori Morimoto
- <kuninori.morimoto.gx@renesas.com>
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <1b540f64-bf03-af59-756a-c4981fc43259@samsung.com>
-Date: Thu, 27 Aug 2020 16:46:15 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
-MIME-Version: 1.0
-In-Reply-To: <1jmu2g6wq0.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAKsWRmVeSWpSXmKPExsWy7djPc7oWx93jDV6e4rW4cvEQk8XUh0/Y
- LN48OsJs8bN9C5PFq8O7GC2+Xelgslgwm9vi8q45bBbf7vezWLQdO8ZqcWOuiUXj6ZVMDjwe
- Gz43sXm8v9HK7tG2wN5j56y77B6L97xk8ti0qpPN4861PWwem5fUe2x+/YLZ49uZiSwenzfJ
- BXBHcdmkpOZklqUW6dslcGV87rzNXHBUo+LgFZkGxnalLkZODgkBE4kPq7pZuxi5OIQEVjBK
- nG86yQLhfGGU6H3UyQ7hfGaU2PhxMjtMy7XDjVAtyxklLp9qZYZw3jNKHD9xjAWkSljATuL3
- zx1gCRGBA0wSOya8YQNxmAUWMkocfrGYFaSKTcBQouttFxuIzQvUse/oeWYQm0VAVeLwlfmM
- ILaoQJzE1uNXmSBqBCVOznwCtoFTwFqib2YDWC+zgLzE9rdzmCFscYlbT+YzgSyTEGjkkJja
- /5YZ4nAXiclPr0A9ISzx6vgWKFtG4v9OmIZmRomH59ayQzg9QN81zWCEqLKWuHPuF9A6DqAV
- mhLrd+lDhB0l9hzazgwSlhDgk7jxVhDiCD6JSdumQ4V5JTrahCCq1SRmHV8Ht/bghUvMExiV
- ZiF5bRaSd2YheWcWwt4FjCyrGMVTS4tz01OLjfJSy/WKE3OLS/PS9ZLzczcxAtPd6X/Hv+xg
- 3PUn6RCjAAejEg/vjn3u8UKsiWXFlbmHGCU4mJVEeJ3Ono4T4k1JrKxKLcqPLyrNSS0+xCjN
- waIkzmu86GWskEB6YklqdmpqQWoRTJaJg1OqgXHKST8+DYuT5dMstBk2xLHvClvd2fszXaHC
- PjxsfbKh/qHJ7iGM/m31zrULv3xJiPy8ZB2/9z9/n4T/+xMErt9OmDpb2Wj1qYILWlXNemG5
- h9oENujf3BnoL/KtKrr50Z/yqcVfO3pUuwpb2M6tV38tbn/PUy5fUylpTlKj0rqbjzfX9NTp
- KLEUZyQaajEXFScCANL3dXFzAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrIIsWRmVeSWpSXmKPExsVy+t/xe7rmx93jDXqeqFtcuXiIyWLqwyds
- Fm8eHWG2+Nm+hcni1eFdjBbfrnQwWSyYzW1xedccNotv9/tZLNqOHWO1uDHXxKLx9EomBx6P
- DZ+b2Dze32hl92hbYO+xc9Zddo/Fe14yeWxa1cnmcefaHjaPzUvqPTa/fsHs8e3MRBaPz5vk
- Arij9GyK8ktLUhUy8otLbJWiDS2M9AwtLfSMTCz1DI3NY62MTJX07WxSUnMyy1KL9O0S9DI+
- d95mLjiqUXHwikwDY7tSFyMnh4SAicS1w42sXYxcHEICSxkluh7PZodIyEicnNbACmELS/y5
- 1sUGYgsJvGWU+Ho6B8QWFrCT+P1zBzNIs4jAISaJdTcWsoA4zAILGSV+zf/FCDH2K6PEtH89
- jCAtbAKGEl1vIUbxArXvO3qeGcRmEVCVOHxlPliNqECcxOPe/8wQNYISJ2c+YQGxOQWsJfpm
- NoD1MguYSczb/JAZwpaX2P52DpQtLnHryXymCYxCs5C0z0LSMgtJyywkLQsYWVYxiqSWFuem
- 5xYb6hUn5haX5qXrJefnbmIERve2Yz8372C8tDH4EKMAB6MSD++Ofe7xQqyJZcWVuYcYJTiY
- lUR4nc6ejhPiTUmsrEotyo8vKs1JLT7EaAr03ERmKdHkfGDiySuJNzQ1NLewNDQ3Njc2s1AS
- 5+0QOBgjJJCeWJKanZpakFoE08fEwSnVwNhqffs3/+kfx3+Ub9DglK0RPrzztIimT/Wlzeur
- vIrvcCt77p0yq1CuxHlVrtyjK9W3fmtt32QZYH5gWp2fcuM/40lGx7bdS7ze1Zty/1rUcacP
- FrcLXQ1+H5jozcp7dNeWL1si799n+jyTkfved72wae0vKp+//2Xl7c7bemXPq5/bF94ROhSs
- xFKckWioxVxUnAgAkM0SnAQDAAA=
-X-CMS-MailID: 20200827144615eucas1p26e2e13f503ad810fb7eabb145a2ff75c
-X-Msg-Generator: CA
-X-RootMTR: 20200827124306eucas1p2c355345ca848e396f1fb06a7ef7a111e
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200827124306eucas1p2c355345ca848e396f1fb06a7ef7a111e
-References: <20200731120603.2243261-1-jbrunet@baylibre.com>
- <CGME20200827124306eucas1p2c355345ca848e396f1fb06a7ef7a111e@eucas1p2.samsung.com>
- <e950898e-0a07-4f75-2640-ec8039d81464@samsung.com>
- <1jmu2g6wq0.fsf@starbuckisacylon.baylibre.com>
+ id 1kBJCX-0005pd-RD
+ for linux-amlogic@lists.infradead.org; Thu, 27 Aug 2020 14:48:31 +0000
+Received: by mail-wm1-x341.google.com with SMTP id w2so5211751wmi.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 27 Aug 2020 07:48:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id;
+ bh=US0rKLWi0Ij67svDuIlZzqQZrRksxzdQhyeGx2i0lHA=;
+ b=S4pcjGYXLbtMtCdpP90WCSGT29fBBzW7vj9f/R0GaIuYOTidERM3wLubMrY4hB2pbg
+ blCZiFzfpu7LOlZm6YLit8h2vBenAXIDzbDKpM1nyGz68tCsEf6aFR2LSVWXDA7UQFCi
+ WdYhRjw+1HzPQng1fIkDEVMVYcChzzL2se2+/0o39WTH6pL6dzkjK9YOX3zfOt59Hpov
+ GFIB09ihBviRr0RBGQ/59DE1I0zW9GY3AXKRJmmsRdkAzy83fGSOOEGX4+VsQReIfA77
+ o1ay6NYxCmZ3A6ZpgyPhpvuXQanBmWwCd5U0T9nIpgxp/O7eFuV6j2CmKkNpXrP58sHC
+ l3SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=US0rKLWi0Ij67svDuIlZzqQZrRksxzdQhyeGx2i0lHA=;
+ b=EIVUdn4Dlkbn46GQOY9TYMWB0iXkC5rtjbS8tuA/pldBR7Z/sBfeQZxlSj7QH6SW+0
+ mpRXUoQ7CsHP2Np6istcNR4xe++5bzfFPKUY51JO6EmjhIiszLTiosFX8cLk4GaZnuGs
+ NONJHWdoZrqKikz3wGjUlWxTtTWig4Ax6ik8btMR4KEblPGU3UJkeUI8CSxqmQKZu68s
+ oRG/NwVChKfVw+1vAVGqzWjBKLjQ/BwvCRYG+8ZysnR/aknS3UCWel3FoSyJzedJd49h
+ CuJfih1KR4j+gkT5d62JERXk3CkVdAbJS7X1MjW6CU+Vt8UfMSJLXYoEyNW85v31llSO
+ MFjQ==
+X-Gm-Message-State: AOAM530ibehPGbXxAuxhx6OHxDFvudhXFtbhPijhM+rOewIu38UbQ+zK
+ RS0Nn+rO7rgcdfS402Wz0fzkDA==
+X-Google-Smtp-Source: ABdhPJz1h5Fc45F5daqe66MhiGIVffd268qdCjCnPYhDLTXCqIsKqtcM61Fi0N5Ml5xq7+km3yCXYw==
+X-Received: by 2002:a1c:7c11:: with SMTP id x17mr10242160wmc.122.1598539707094; 
+ Thu, 27 Aug 2020 07:48:27 -0700 (PDT)
+Received: from amjad-ThinkPad-T490.baylibre.local
+ (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id 33sm6756659wri.16.2020.08.27.07.48.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Aug 2020 07:48:26 -0700 (PDT)
+From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+To: Felipe Balbi <balbi@kernel.org>
+Subject: [PATCH] Revert "usb: dwc3: meson-g12a: fix shared reset control use"
+Date: Thu, 27 Aug 2020 16:48:10 +0200
+Message-Id: <20200827144810.26657-1-aouledameur@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_104620_754362_D6871D91 
-X-CRM114-Status: GOOD (  24.89  )
+X-CRM114-CacheID: sfid-20200827_104830_016335_831F5AD6 
+X-CRM114-Status: GOOD (  13.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,130 +91,101 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, alsa-devel@alsa-project.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- zhangn1985@outlook.com
+Cc: Dan Robertson <dan@dlrobertson.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi
+This reverts commit 7a410953d1fb4dbe91ffcfdee9cbbf889d19b0d7.
 
-On 27.08.2020 15:32, Jerome Brunet wrote:
-> On Thu 27 Aug 2020 at 14:43, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
->> On 31.07.2020 14:06, Jerome Brunet wrote:
->>> Commit b73287f0b074 ("ASoC: soc-pcm: dpcm: fix playback/capture checks")
->>> changed the meaning of dpcm_playback/dpcm_capture and now requires the
->>> CPU DAI BE to aligned with those flags.
->>>
->>> This broke all Amlogic cards with uni-directional backends (All gx and
->>> most axg cards).
->>>
->>> While I'm still confused as to how this change is an improvement, those
->>> cards can't remain broken forever. Hopefully, next time an API change is
->>> done like that, all the users will be updated as part of the change, and
->>> not left to fend for themselves.
->>>
->>> Fixes: b73287f0b074 ("ASoC: soc-pcm: dpcm: fix playback/capture checks")
->>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> This patch landed finally in v5.9-rc1. I've noticed it causes a
->> following warning on Hardkernel's Odroid N2 board
->> (arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb):
-> Looks like the after match of the flag change again ...
->
->> meson-drm ff900000.vpu: [drm] fb0: mesondrmfb frame buffer device
->> ------------[ cut here ]------------
->> WARNING: CPU: 3 PID: 66 at sound/soc/soc-core.c:817
-> Marek, is it possible that you have CONFIG_LOCKDEP enabled in your
-> configuration ?
-Right, I have CONFIG_PROVE_LOCKING and CONFIG_LOCKDEP enabled.
-> snd_soc_find_dai() is called by snd_soc_dai_link_set_capabilities().
-> Indeed, the client_mutex will not be help by any of the user of
-> snd_soc_dai_link_set_capabilities() when called.
->
-> So I believe simple card and qcom will be impacted as well.
->
->> snd_soc_find_dai+0xe4/0xf0
->> Modules linked in: dw_hdmi_i2s_audio dw_hdmi_cec meson_gxl realtek
->> dwmac_generic crct10dif_ce snd_soc_meson_axg_sound_card
->> snd_soc_meson_card_utils rc_odroid pwm_meson meson_ir
->> snd_soc_meson_g12a_toacodec snd_soc_meson_axg_tdmout rtc_meson_vrtc
->> snd_soc_meson_g12a_tohdmitx snd_soc_meson_codec_glue mdio_mux_meson_g12a
->> snd_soc_meson_axg_tdmin dwmac_meson8b stmmac_platform
->> reset_meson_audio_arb snd_soc_meson_axg_frddr axg_audio
->> snd_soc_meson_axg_toddr sclk_div clk_phase meson_rng stmmac rng_core
->> meson_dw_hdmi snd_soc_meson_axg_fifo meson_drm meson_canvas mdio_xpcs
->> dw_hdmi snd_soc_meson_t9015 display_connector nvmem_meson_efuse
->> snd_soc_meson_axg_tdm_interface snd_soc_meson_axg_tdm_formatter
->> snd_soc_simple_amplifier
->> CPU: 3 PID: 66 Comm: kworker/3:1 Not tainted 5.9.0-rc1 #1527
->> Hardware name: Hardkernel ODROID-N2 (DT)
->> Workqueue: events deferred_probe_work_func
->> pstate: 60000005 (nZCv daif -PAN -UAO BTYPE=--)
->> pc : snd_soc_find_dai+0xe4/0xf0
->> lr : snd_soc_find_dai+0xe0/0xf0
->> ...
->> Call trace:
->>    snd_soc_find_dai+0xe4/0xf0
->>    snd_soc_dai_link_set_capabilities+0x68/0x160
->>    axg_card_add_link+0x188/0x5c4 [snd_soc_meson_axg_sound_card]
->>    meson_card_probe+0x1e0/0x960 [snd_soc_meson_card_utils]
->>    platform_drv_probe+0x50/0xa8
->>    really_probe+0x110/0x400
->>    driver_probe_device+0x54/0xb8
->>    __device_attach_driver+0x90/0xc0
->>    bus_for_each_drv+0x70/0xc8
->>    __device_attach+0xec/0x150
->>    device_initial_probe+0x10/0x18
->>    bus_probe_device+0x94/0xa0
->>    deferred_probe_work_func+0x70/0xa8
->>    process_one_work+0x2a8/0x718
->>    worker_thread+0x48/0x460
->>    kthread+0x134/0x160
->>    ret_from_fork+0x10/0x1c
->> irq event stamp: 269690
->> hardirqs last  enabled at (269689): [<ffff800010f6048c>]
->> _raw_spin_unlock_irqrestore+0x7c/0x98
->> hardirqs last disabled at (269690): [<ffff800010025a68>]
->> do_debug_exception+0x140/0x26c
->> softirqs last  enabled at (269318): [<ffff800010001654>]
->> efi_header_end+0x654/0x6d4
->> softirqs last disabled at (269313): [<ffff80001008929c>]
->> irq_exit+0x16c/0x178
->> ---[ end trace 56a3ea4fa00c37c8 ]---
->> ...
->> axg-sound-card sound: ASoC: no DMI vendor name!
->>
->> The warning is repeated 10 times.
-> That's the probe defferal mechanism causing the repeat
->
->> The bisect between v5.8-rc1 and v5.9-rc1 points to the commit
->> c8f7dbdbaa15 ("Merge remote-tracking branch 'asoc/for-5.8' into
->> asoc-linus"), which introduced a branch with this patch.
->>
->> The commit with this patch is applied on the earlier kernel release
->> (da3f23fde9d7 "ASoC: meson: cards: deal dpcm flag change" on top of
->> v5.7-rc1) worked fine, so it looks that there is an interference with
->> something merged later.
->>
->> If I revert this patch on top of v5.9-rc1 or current linux-next, the
->> warning is gone.
-> ... but any aml platform with uni-directional backend (not the N2, lucky
-> you) would be broken.
->
->> Let me know how I can help debugging this issue.
-> If you have CONFIG_LOCKDEP enabled, try disabling see how it goes and
-> report. It is not a fix but at least you'll be unblocked.
+This commit breaks USB on meson-gxl-s905x-libretech-cc. Reverting
+the change solves the issue.
 
-Right, disabling LOCKDEP hides it. The issue is not a problem for me. 
-I've just added OdroidN2 to my test machines and wanted to report what I 
-found and help fixing it.
+In fact, according to the reset framework code, consumers must not use
+reset_control_(de)assert() on shared reset lines when reset_control_reset
+has been used, and vice-versa.
 
-Best regards
+Moreover, with this commit, usb is not guaranted to be reset since the
+reset is likely to be initially deasserted.
+
+Reverting the commit will bring back the suspend warning mentioned in the
+commit description. Nevertheless, a warning is much less critical than
+breaking dwc3-meson-g12a USB completely. We will address the warning
+issue in another way as a 2nd step.
+
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index 88b75b5a039c..1f7f4d88ed9d 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -737,13 +737,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 		goto err_disable_clks;
+ 	}
+ 
+-	ret = reset_control_deassert(priv->reset);
++	ret = reset_control_reset(priv->reset);
+ 	if (ret)
+-		goto err_assert_reset;
++		goto err_disable_clks;
+ 
+ 	ret = dwc3_meson_g12a_get_phys(priv);
+ 	if (ret)
+-		goto err_assert_reset;
++		goto err_disable_clks;
+ 
+ 	ret = priv->drvdata->setup_regmaps(priv, base);
+ 	if (ret)
+@@ -752,7 +752,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	if (priv->vbus) {
+ 		ret = regulator_enable(priv->vbus);
+ 		if (ret)
+-			goto err_assert_reset;
++			goto err_disable_clks;
+ 	}
+ 
+ 	/* Get dr_mode */
+@@ -765,13 +765,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 
+ 	ret = priv->drvdata->usb_init(priv);
+ 	if (ret)
+-		goto err_assert_reset;
++		goto err_disable_clks;
+ 
+ 	/* Init PHYs */
+ 	for (i = 0 ; i < PHY_COUNT ; ++i) {
+ 		ret = phy_init(priv->phys[i]);
+ 		if (ret)
+-			goto err_assert_reset;
++			goto err_disable_clks;
+ 	}
+ 
+ 	/* Set PHY Power */
+@@ -809,9 +809,6 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	for (i = 0 ; i < PHY_COUNT ; ++i)
+ 		phy_exit(priv->phys[i]);
+ 
+-err_assert_reset:
+-	reset_control_assert(priv->reset);
+-
+ err_disable_clks:
+ 	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
+ 				   priv->drvdata->clks);
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+2.17.1
 
 
 _______________________________________________
