@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FE9AC433E1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:01:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D562C433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:02:17 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1E8CC227BF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:01:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2F8FF208C9
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:02:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ehnnEIAr";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H8LyWEgN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1E8CC227BF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="3CHkckEg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B784Lqlh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F8FF208C9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,58 +27,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=xuktC8oV3pkQFOV6COyOEmVweFGK2ErvZjMgU4AF1JQ=; b=ehnnEIArAFQHErT6KxZ+J/Zo4
-	wbkxMIeWWSLCbIPA9ZDug4o7sKClJqIkRlmfF7Fw+H6dEcQxcKNGlwV54ZxvbanySxyF5Q8ZIdIO5
-	KGjebbdZIbN57al3XXPn0eG41ja0d8tz/+knYEbSt/ufV3c74nS3gn/vZXeFjRdZy9ht2o7z7OmrA
-	ZJG3HSv7+8+JXdWSHJjkTabZBQ1MDjsYWhzl7GzWzw16Fn6EH+Pdey4+m07lvu2yD25EBtM2TBFg3
-	Meyh1OT5cHob6957wCt80kbdrNupwpDwhF/ZyClUe7COvT4bUNPqPn9v89ac2iao77iMqxEC2mlci
-	so/J3vj0A==;
+	 bh=O7VsPa3mV2zncdtmlk/JqZLZ2k5QWKxUZF1Zs3JF8PA=; b=3CHkckEghvNJ85CDUYnasyTih
+	0cosH9q44jChYqLSZcCLLzsP7+2ZFT2WT5MEPVNUKCkKVzzbYJS5CgWjyWja0gdAZ27WAvRvznTk/
+	s7klqwxYnkPwS+WqFBynlwpB2MOnKkQ3UVojm31pxjEuV6lQGxbS5GmLApNDT7WYOlRjyf9Gv7IWF
+	Expv7SZZySs0Ggrlf4ZUx2HIsL5+xjayqrJijzmiaAjm8TO1F+LQMYHK/54tLETf/Ti1qLCrAMJmq
+	3JrL6i7hqoZH8+AOUp/yAGVLr7hKlMiUfh2Ep2p4xYbcox/4e/mhZBPw4zVEsJ+V8fhqoGGOHCJL5
+	c4JPGv9XA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBO5a-0002m9-Il; Thu, 27 Aug 2020 20:01:38 +0000
-Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
+	id 1kBO67-0002zV-P3; Thu, 27 Aug 2020 20:02:12 +0000
+Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBO5Q-0002hB-HF; Thu, 27 Aug 2020 20:01:29 +0000
-Received: by mail-pf1-x441.google.com with SMTP id d22so4338783pfn.5;
- Thu, 27 Aug 2020 13:01:28 -0700 (PDT)
+ id 1kBO5v-0002uQ-QY; Thu, 27 Aug 2020 20:02:00 +0000
+Received: by mail-pg1-x543.google.com with SMTP id i10so4143397pgk.1;
+ Thu, 27 Aug 2020 13:01:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=pvjSdv4nUxPfwBP9PKjoRBAQ4y+6+2F4ni6LT9Fuaqw=;
- b=H8LyWEgNqOpDRjSSDYB9n9KmWL3CtBr2jnO1bgCkicNJQLaAzjXu56afxptqb2MvJr
- QE+3oafRBg5l1ARaKoGkOAqtmaPZR2pYOm1smalhZaJv6ND6sCy2q1yMwD1CQb+ny5bT
- jo+/Uve7QIH8I3TGoiXlFrnRmFnDrMxL41sZa2WJlyMnxr/ewFu0azP2BolPZNw8FL9S
- mYFfPBlosvKpNaNeBlCPfPbQOFWX775syR8FZmU9289TyTEPXQOOZi+KDmdAGqZC7Ir0
- Zuy0V/AZ0QwQ0N6MekI9WFEVkauZr4xejAvIIW+nQw6Phj7CBtrcnlI69zL1vrD0KYAs
- xc3w==
+ :cc; bh=l6QdgtQwuCtCJCOXFFSMuQPOtSKidk6SZriT8+KhQKU=;
+ b=B784LqlhlWCORMwjfseGM9afIz00NTvMypFlKUBZTooVep4/T0/aixsxongGyx3wDz
+ Vg2+U4LCeAI7Yib+KiJZ24l/0/FfhRaidOdFvUUWRes3nDyPcm5VV2ogvlsIYbadSuA+
+ 7hVKFLzj3mIih5YVGxJste5+4zT0jWH6QCHJ7a599HH1cEynJHhvbDzUrJNcVg+2LdYU
+ vJz7JB1MzlPVeFxH+Ywz5BuZVnrsLEQqYGbsgA9TxfLbz9vHqcNbp9L8M3BveliFy6F6
+ slZQAUspB+XSx2BvCSYHwxT68ofD/WjT3JZJ47bsp376mZrFgkcUnV3hrR2G7TeJh8k8
+ Kv3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=pvjSdv4nUxPfwBP9PKjoRBAQ4y+6+2F4ni6LT9Fuaqw=;
- b=OEaJ93pONpHqs60xXI/BRRJ4wRAJiMbVxrzscvodNs+2Ork7AiA/6OH5j9csAxmr5l
- kGK7TygKlMKGH7JQHurDF3oZdmayRYOmr3m32ngbGKzWwSVG0zbFgx2Dn9DduFXTKoTy
- O8NQoedKkPjaOj9uE5eRwPGdA8N2Y74Qxq8i8wZFFhBFL9Z1OcLdeLc1r8bgVjVY+ez1
- pswPT+yLYjjG0ev9ZvHMFa8Xi16YAeyHZpRIhGSem+jtZmBRCqEs0VGpLbrKzBPIoovg
- hSoaMRdnRWalpX/9uDnjR6xMLUYh1kMwKf+SigwUn0qBI9tO6+wFY8u+zq8DA7jguzlK
- EsPw==
-X-Gm-Message-State: AOAM531L/PPXaZIDAbquXq/v40LTOL9jZx+uvxg28lu6qE2L22WmxAOl
- NIlmOumAIkHxkme8UT+kxDwnnElcBTLrGA3KhSA=
-X-Google-Smtp-Source: ABdhPJwSRYUZsSB/8KnvgLSmu13GxDxmWJ06S1nuD0ZKldgoptbvJ3SrDq+X27CzDqiFe3ukQbDy/QDCjgIaF8SxOns=
-X-Received: by 2002:a63:f24a:: with SMTP id d10mr15676744pgk.4.1598558486512; 
- Thu, 27 Aug 2020 13:01:26 -0700 (PDT)
+ bh=l6QdgtQwuCtCJCOXFFSMuQPOtSKidk6SZriT8+KhQKU=;
+ b=ASlzKHhYOfCTgUn4raaGXWgmhR9/K04lmhWP96h7FM71PV5jNnY3/FWaCTj0hRV1J3
+ 1vJjpqfX4pV49YHKw4XExMWAr2/b3XhW2U5RexO7SagyOCL13ADqrmlPko9XuYzsZq2m
+ 3CzELuaEKVidEIkzTOvTEiKqL58CvFQqhtTxvPi7D31Hf4MfdbPBdLz5SbnibYZpIazc
+ a/DrV1ZDVO0yRDsiHXOYKd6MS5bE35UrtJ2/6CWt/Xp3ayATXXMvw2kYG/YX8jis0UJV
+ iM484i4zfV6SdS7SNEOUerk+AHWI1SSCSxTIaSFPRmzCNsxJ9f+r71etM09eT62KjBiL
+ +6Fw==
+X-Gm-Message-State: AOAM530lALkvPk3tKPsT9scyz87P7cjCOR9m1tgwcbPBVvCPBw2QbuFe
+ lKIIGZhn4H71I/61ok2bd9uiNMX/gBZjD9URqFc=
+X-Google-Smtp-Source: ABdhPJzCSEzURvMIShpRrKsXdEjhN4LSdnjS+SJS9io1bcAC4MW3DZYDijZQo+ehN/ojjLNrNphCrhRo/58GmQug+Io=
+X-Received: by 2002:a17:902:8208:: with SMTP id
+ x8mr6322386pln.65.1598558517933; 
+ Thu, 27 Aug 2020 13:01:57 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-16-krzk@kernel.org>
-In-Reply-To: <20200827192642.1725-16-krzk@kernel.org>
+ <20200827192642.1725-17-krzk@kernel.org>
+In-Reply-To: <20200827192642.1725-17-krzk@kernel.org>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 27 Aug 2020 23:01:10 +0300
-Message-ID: <CAHp75VdTTH3ZNxoFqsXLMBnGcBwaCdRZYUJrHBznvcb46i9Afg@mail.gmail.com>
-Subject: Re: [PATCH v2 16/18] iio: magnetometer: ak8974: Simplify with
+Date: Thu, 27 Aug 2020 23:01:41 +0300
+Message-ID: <CAHp75VfoaSvnECbtQ_HRNBrnQK6avvnmymrgcge5wLPH89_Vnw@mail.gmail.com>
+Subject: Re: [PATCH v2 17/18] iio: magnetometer: mag3110: Simplify with
  dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_160128_596294_5EC9EB06 
-X-CRM114-Status: GOOD (  19.07  )
+X-CRM114-CacheID: sfid-20200827_160159_915409_299854B0 
+X-CRM114-Status: GOOD (  19.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,37 +120,43 @@ On Thu, Aug 27, 2020 at 10:29 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->
 > ---
+>  drivers/iio/magnetometer/mag3110.c | 20 ++++++--------------
+>  1 file changed, 6 insertions(+), 14 deletions(-)
 >
-> Changes since v1:
-> 1. Wrap dev_err_probe() lines at 100 character
-> ---
->  drivers/iio/magnetometer/ak8974.c | 11 ++---------
->  1 file changed, 2 insertions(+), 9 deletions(-)
+> diff --git a/drivers/iio/magnetometer/mag3110.c b/drivers/iio/magnetometer/mag3110.c
+> index 4d305a21c379..838b13c8bb3d 100644
+> --- a/drivers/iio/magnetometer/mag3110.c
+> +++ b/drivers/iio/magnetometer/mag3110.c
+> @@ -476,22 +476,14 @@ static int mag3110_probe(struct i2c_client *client,
+>         data = iio_priv(indio_dev);
 >
-> diff --git a/drivers/iio/magnetometer/ak8974.c b/drivers/iio/magnetometer/ak8974.c
-> index cbb44e401c0a..548c686e29d6 100644
-> --- a/drivers/iio/magnetometer/ak8974.c
-> +++ b/drivers/iio/magnetometer/ak8974.c
-> @@ -843,15 +843,8 @@ static int ak8974_probe(struct i2c_client *i2c,
->         ret = devm_regulator_bulk_get(&i2c->dev,
->                                       ARRAY_SIZE(ak8974->regs),
->                                       ak8974->regs);
-> -       if (ret < 0) {
-> -               if (ret != -EPROBE_DEFER)
-> -                       dev_err(&i2c->dev, "cannot get regulators: %d\n", ret);
-> -               else
-> -                       dev_dbg(&i2c->dev,
-> -                               "regulators unavailable, deferring probe\n");
+>         data->vdd_reg = devm_regulator_get(&client->dev, "vdd");
+> -       if (IS_ERR(data->vdd_reg)) {
+> -               if (PTR_ERR(data->vdd_reg) == -EPROBE_DEFER)
+> -                       return -EPROBE_DEFER;
 > -
-> -               return ret;
+> -               dev_err(&client->dev, "failed to get VDD regulator!\n");
+> -               return PTR_ERR(data->vdd_reg);
 > -       }
-> +       if (ret < 0)
-> +               return dev_err_probe(&i2c->dev, ret, "cannot get regulators\n");
+> +       if (IS_ERR(data->vdd_reg))
+> +               return dev_err_probe(&client->dev, PTR_ERR(data->vdd_reg),
+> +                                    "failed to get VDD regulator!\n");
 >
->         ret = regulator_bulk_enable(ARRAY_SIZE(ak8974->regs), ak8974->regs);
->         if (ret < 0) {
+>         data->vddio_reg = devm_regulator_get(&client->dev, "vddio");
+> -       if (IS_ERR(data->vddio_reg)) {
+> -               if (PTR_ERR(data->vddio_reg) == -EPROBE_DEFER)
+> -                       return -EPROBE_DEFER;
+> -
+> -               dev_err(&client->dev, "failed to get VDDIO regulator!\n");
+> -               return PTR_ERR(data->vddio_reg);
+> -       }
+> +       if (IS_ERR(data->vddio_reg))
+> +               return dev_err_probe(&client->dev, PTR_ERR(data->vddio_reg),
+> +                                    "failed to get VDDIO regulator!\n");
+>
+>         ret = regulator_enable(data->vdd_reg);
+>         if (ret) {
 > --
 > 2.17.1
 >
