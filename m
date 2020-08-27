@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27322C433DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:55:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 287D7C433E1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:55:53 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E3FD12080C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:55:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EE71E2074A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:55:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sXyPMdQe";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fmDKpG7J"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E3FD12080C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QzFeh37a";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iJNPerv+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EE71E2074A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,59 +27,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=aiIFzj3zIOY7SWYMlQrHp8AdsROOAbT9RLPMjVSFKDk=; b=sXyPMdQeDsAZEu0lfM4LDbz+F
-	3NcK/cdsfvtsN21Z6ahvzBg4W3pSYRp/hLzB0rZOpV9tbEQsyQbX82EeGgqAN7P+GVGazjPdhkbbv
-	9X2FuR2eiUc7lD8Ofc5eR4wwJNGlLMNuo4QjYXDHDj/0g6Wl65vDtZYOaXtrMMdBhvYRbTe6ffRI9
-	g+vZqArrsMRNcMg4khWOwZOPNQrO/cTYY2g/9aQnU21oSW4GdpphAQ0mhduymtDeVzhz3pBeOykk2
-	k270Tt6a6hhwjGxiKy66i/V6+cEYZrsgoVJSLZBQuDH55oKMHITv/ZvmQG+U22STWhDw4aK34CNLY
-	3X8kT16zQ==;
+	 bh=u0bszl9yERMXO73TiVwwqt0lDO6HyG5Xa7yWDQWLlto=; b=QzFeh37a5e4JeJIc4NwlEvAkc
+	Zlmn0tEABfel/6m6KLfyMPah4ZtRsiRBVWdnJyT4uXgKPOOpQ0M3dmT+ydyKJ3p+BHqdFb4+VwVXv
+	8BR4rtAfAJWClyq4c0pTeESzK3xjsR1OAqK8DtreWrtItyVewrZNIQXURJU2wHcnqWpOpKpwA1FVO
+	I0Tgg6jzXupusaXZ5GAgZkHfL4sYlTU9tEIr5ozsMGL5nkyRGMjdNtOIaayRP0HkgK71olFi6HbEC
+	48f1npnCa5P3vGLzZ2R4rBAH7cAn2L8K9NtZmKTNj/xpoQU+L4CV/jQdnZtflHTO1jjOAayWHkE5z
+	gh5fzjE9A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBNzW-0000qn-OR; Thu, 27 Aug 2020 19:55:23 +0000
-Received: from mail-pj1-x1042.google.com ([2607:f8b0:4864:20::1042])
+	id 1kBNzw-00010j-05; Thu, 27 Aug 2020 19:55:48 +0000
+Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBNzF-0000kL-2e; Thu, 27 Aug 2020 19:55:12 +0000
-Received: by mail-pj1-x1042.google.com with SMTP id q93so3097110pjq.0;
- Thu, 27 Aug 2020 12:55:03 -0700 (PDT)
+ id 1kBNzZ-0000rl-4Q; Thu, 27 Aug 2020 19:55:36 +0000
+Received: by mail-pf1-x441.google.com with SMTP id k15so4311527pfc.12;
+ Thu, 27 Aug 2020 12:55:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1iCBP+9jZBWChmw6UiUb37gEZ3nyFFfurQpHrGXgKOo=;
- b=fmDKpG7JsNZWYR4WnBcEBetb/oHsOCdtX523ndIe2IZMPYsIrBIKn1XtshfI4TqHwu
- D08AXB8uTUFH9zriG8lI0eNgDKRlaSQ9a+EWr/izTx93LB42f1p07HwFExW+QrUgdzyd
- ilaVRZ8+BDgLBgmCDQoEuZoEJTPlFaZWucf3rXVXkqEzzE9MpG9unIWKWpgco9V4FBG8
- CPvCh+d3lPSpQGZwMLm0Rg+2Ygk4XldfIOOPsXF+p9+3iCHmyKGE8aFMr8pYT4nRCAqb
- eEVyijsnhpi5gSlqNea/keX3CLEEgpzZulaCr/n7I8TIfrBd63KA70brURiKiTw0S43y
- LaEA==
+ :cc; bh=a447o0TIIe56Effe0RiDEzq1r8VXzso23Bql8Sh47SQ=;
+ b=iJNPerv+D6Wlv6jntU6RuRXEHqUp0FtUPafG+q6O82bxjmsX3wu7vAqvlxhZaghmSH
+ dUNPoFLCxeQT9RuzUpIQ2d+NiOiS0UACXwcF5I17AfP+xEbYRmaqzxZEDbKx4KekJt0/
+ o/zQVjSyDNFrTQRZRXUONJ8yRxCiBNZgwZTwnCzUgJdnJtYXkG/g70yPUVIjLa0w+/JA
+ Tx3TDT9Z0upM8vHEOacF2i6Ow8CajOZIWnlL8NU0rd+QN2ctK8aTkUHNxM4wv4oiSONl
+ 3nS6f94NDBc2sfh5IC73mwfWYinCyfMaWBDtva/HV69+ec5NQT+QJzccwa6HzQx67i4R
+ /f0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=1iCBP+9jZBWChmw6UiUb37gEZ3nyFFfurQpHrGXgKOo=;
- b=krhqmCeiX0AUimYckGFuxL7sqsd//0Qhogqp6IVIT6s7Gp/OjTeL1G6KfzFAolUq33
- ZrD1c4JOu/bltTAQwyMEm5XZid2chZe16rVbc6YHyZ041RqfhJ0SuA0GFc0pTJNd0cO/
- m98DKtlvQTn5xghfjpRwFsCRDdBUjIqdlyngf5TcY4uhxWJAYVXI2NCD4IYsyTXMTsJ1
- R28SDJSCh/xC+2CEvdMD4ZOJ99UgH8sXMi8bMtWUP6qf8fbyd/BmR/RFVQZIrYJ4JlKg
- z6blqTOruMDCJcEaoHWl2YnSI+iZKaasBWWZcNNk1RrZWe4AujE6yzCxFWXhYip3JSsR
- HEGg==
-X-Gm-Message-State: AOAM532MnNzdHaN+E5JH4CcEDc9NYXWXtAu8H1Lg948EcdxPYYYe896+
- y3BZyy/PtUaj6WIHnXa9xguPsw/cWn7LpkFc1dE=
-X-Google-Smtp-Source: ABdhPJy3db6CIQJ4K7OGhMgQan8eyYxEg/iBHcrwmiOZE1uEdOWivJYmfC67a+ptd7Jp7WYZumerqKG+TuNU5caIQKE=
-X-Received: by 2002:a17:90a:2c06:: with SMTP id
- m6mr418944pjd.129.1598558101205; 
- Thu, 27 Aug 2020 12:55:01 -0700 (PDT)
+ bh=a447o0TIIe56Effe0RiDEzq1r8VXzso23Bql8Sh47SQ=;
+ b=d2NCMayFBzCgf3IjdRsZUT+fjH/j/8zzoHyxI7bNqulN1q0kvLW0fssQQgDLiRCUpE
+ QfEl9bN6z+FL5BbqbjvOg7POdQj7OAWVrrMQxrQk62NbNyWJFbheNghmqN3SjJGZiPcC
+ JJ9wyYg8ufeOUX6bMxmOjuT8KDPJ6JrJkXXOBe2R+0XAv+Y4UlrIOoCDg0znEkgaqbox
+ c4oDApVReNy89a5i6ceXpvUcN+AQ98GMVp5q+aI8iRr3SxF+2t4+EKKcwuxC9n8dmed2
+ rpLG728oOTLQyROsJND6hYsVeRG6QeujtZE2OxxiGgZ96UslOCJaKsxvqD6GGdrqy+zR
+ RB9w==
+X-Gm-Message-State: AOAM532UI/LEBgvkcvxcUV+weM2EBGU2LWgpkqF5SrVWGvo01wN1D5c3
+ 6KcLSSeE4mhimnZwYS9jtVQVxTTAY1uH5scBb48=
+X-Google-Smtp-Source: ABdhPJw67IkikO0xwQzWrqUZ4T363Hvhj2FtfLCQk/A2GvTmAUns7Z2+M8nm+bLCgXnjK3iq2pIei3aEvQrODJB24bM=
+X-Received: by 2002:a63:c543:: with SMTP id g3mr8405213pgd.203.1598558122833; 
+ Thu, 27 Aug 2020 12:55:22 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-9-krzk@kernel.org>
-In-Reply-To: <20200827192642.1725-9-krzk@kernel.org>
+ <20200827192642.1725-10-krzk@kernel.org>
+In-Reply-To: <20200827192642.1725-10-krzk@kernel.org>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 27 Aug 2020 22:54:45 +0300
-Message-ID: <CAHp75VeH1dcn7TzdWf7N5kQ2EQeBXFyXRpRHBb4TyUrx+g4q8A@mail.gmail.com>
-Subject: Re: [PATCH v2 09/18] iio: afe: iio-rescale: Simplify with
+Date: Thu, 27 Aug 2020 22:55:05 +0300
+Message-ID: <CAHp75VcNQzZCWMg-jyOYuVfcJ-C9+=3Z2hn1-7yQ6yXNfOz-yQ@mail.gmail.com>
+Subject: Re: [PATCH v2 10/18] iio: amplifiers: hmc425a: Simplify with
  dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_155505_199198_30A32016 
-X-CRM114-Status: GOOD (  20.14  )
+X-CRM114-CacheID: sfid-20200827_155525_219125_63DE0FD1 
+X-CRM114-Status: GOOD (  20.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,27 +126,28 @@ Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 > Changes since v1:
 > 1. Wrap dev_err_probe() lines at 100 character
 > ---
->  drivers/iio/afe/iio-rescale.c | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
+>  drivers/iio/amplifiers/hmc425a.c | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
-> index 69c0f277ada0..8cd9645c50e8 100644
-> --- a/drivers/iio/afe/iio-rescale.c
-> +++ b/drivers/iio/afe/iio-rescale.c
-> @@ -276,11 +276,8 @@ static int rescale_probe(struct platform_device *pdev)
->         int ret;
+> diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hmc425a.c
+> index 582708924e4f..bde11df4bb9e 100644
+> --- a/drivers/iio/amplifiers/hmc425a.c
+> +++ b/drivers/iio/amplifiers/hmc425a.c
+> @@ -201,12 +201,8 @@ static int hmc425a_probe(struct platform_device *pdev)
+>         st->gain = st->chip_info->default_gain;
 >
->         source = devm_iio_channel_get(dev, NULL);
-> -       if (IS_ERR(source)) {
-> -               if (PTR_ERR(source) != -EPROBE_DEFER)
-> -                       dev_err(dev, "failed to get source channel\n");
-> -               return PTR_ERR(source);
+>         st->gpios = devm_gpiod_get_array(&pdev->dev, "ctrl", GPIOD_OUT_LOW);
+> -       if (IS_ERR(st->gpios)) {
+> -               ret = PTR_ERR(st->gpios);
+> -               if (ret != -EPROBE_DEFER)
+> -                       dev_err(&pdev->dev, "failed to get gpios\n");
+> -               return ret;
 > -       }
-> +       if (IS_ERR(source))
-> +               return dev_err_probe(dev, PTR_ERR(source), "failed to get source channel\n");
+> +       if (IS_ERR(st->gpios))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(st->gpios), "failed to get gpios\n");
 >
->         sizeof_ext_info = iio_get_channel_ext_info_count(source);
->         if (sizeof_ext_info) {
+>         if (st->gpios->ndescs != st->chip_info->num_gpios) {
+>                 dev_err(&pdev->dev, "%d GPIOs needed to operate\n",
 > --
 > 2.17.1
 >
