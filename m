@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFBB4C433E1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:01:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FE9AC433E1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:01:43 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A64082087E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:01:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1E8CC227BF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:01:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Yfws728+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b7gOG6wg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A64082087E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ehnnEIAr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H8LyWEgN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1E8CC227BF
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,58 +27,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Db6nhj+CYD3Bt5vG+8f40441Rdti6Q/zLvmjg2YBNZg=; b=Yfws728+oUkBQ58vgJEjXfwrW
-	nsFNBzZgOpGm+f3wfGvDhhGttqa88oZUSsitJ9xJv1rbZ0eh8F/GLIP1DPIscIQ0d9KHvel335M+j
-	uccXxAS3ZpYORORraIJbReetkll3Enp2BOmOSKUae62UclL0RFxRi9ehjH0U65UuGCUnI8GrnmwFX
-	mXIw8Eavj91Bxa+JwlQZbKEfWSBvYaIXck2w+yn9jHZ7+MqN8s07FXv4AROAVCpQaJxk1chl9iFVT
-	s4OgYtzDWAbEqBI86wFQZO4TGymJTw2ByQDbWRrTHJEosST+mA9H8wCw4vcWn0O5RvAO13XwUxgyA
-	yesm2s+5w==;
+	 bh=xuktC8oV3pkQFOV6COyOEmVweFGK2ErvZjMgU4AF1JQ=; b=ehnnEIArAFQHErT6KxZ+J/Zo4
+	wbkxMIeWWSLCbIPA9ZDug4o7sKClJqIkRlmfF7Fw+H6dEcQxcKNGlwV54ZxvbanySxyF5Q8ZIdIO5
+	KGjebbdZIbN57al3XXPn0eG41ja0d8tz/+knYEbSt/ufV3c74nS3gn/vZXeFjRdZy9ht2o7z7OmrA
+	ZJG3HSv7+8+JXdWSHJjkTabZBQ1MDjsYWhzl7GzWzw16Fn6EH+Pdey4+m07lvu2yD25EBtM2TBFg3
+	Meyh1OT5cHob6957wCt80kbdrNupwpDwhF/ZyClUe7COvT4bUNPqPn9v89ac2iao77iMqxEC2mlci
+	so/J3vj0A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBO56-0002YV-5M; Thu, 27 Aug 2020 20:01:08 +0000
-Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
+	id 1kBO5a-0002m9-Il; Thu, 27 Aug 2020 20:01:38 +0000
+Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBO4w-0002Tt-61; Thu, 27 Aug 2020 20:00:58 +0000
-Received: by mail-pg1-x541.google.com with SMTP id g33so4124874pgb.4;
- Thu, 27 Aug 2020 13:00:57 -0700 (PDT)
+ id 1kBO5Q-0002hB-HF; Thu, 27 Aug 2020 20:01:29 +0000
+Received: by mail-pf1-x441.google.com with SMTP id d22so4338783pfn.5;
+ Thu, 27 Aug 2020 13:01:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6PibWI1WPUcSBuRxCpQduFOuzkYtMaBM/7TN/dC+YiE=;
- b=b7gOG6wgCzT8BP986bm1kkzzFNR5NMwx61bMRrJN7WECwQlCKbLJ0mj+ASuG3rLlY6
- sqRQr5z+Q5tmBHLiaNmXtpOJF/m8HhJKOC0N3BnLyEbvLECd9gi43KZGF2mLOy/Fx4eF
- agm1klSih22rh2dQo7IKSSeLNshpUwc1PCIvsvcCgIR4zda8EF+aBJ++duzL8wRoYBRC
- lV+0tCCiFNxVlpGSz7CUbjh0RX+LcmJ5edho3Lr1QZwtUFcqdZGWYHGcG5ZsUTsQWcFN
- mA0KZnlMJH3puC9gFYa7jPr92KVbp1OjVTWGkYZ+h+qUcWiPSjgBhwkVisWpkBweIh4Z
- T5ww==
+ :cc; bh=pvjSdv4nUxPfwBP9PKjoRBAQ4y+6+2F4ni6LT9Fuaqw=;
+ b=H8LyWEgNqOpDRjSSDYB9n9KmWL3CtBr2jnO1bgCkicNJQLaAzjXu56afxptqb2MvJr
+ QE+3oafRBg5l1ARaKoGkOAqtmaPZR2pYOm1smalhZaJv6ND6sCy2q1yMwD1CQb+ny5bT
+ jo+/Uve7QIH8I3TGoiXlFrnRmFnDrMxL41sZa2WJlyMnxr/ewFu0azP2BolPZNw8FL9S
+ mYFfPBlosvKpNaNeBlCPfPbQOFWX775syR8FZmU9289TyTEPXQOOZi+KDmdAGqZC7Ir0
+ Zuy0V/AZ0QwQ0N6MekI9WFEVkauZr4xejAvIIW+nQw6Phj7CBtrcnlI69zL1vrD0KYAs
+ xc3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=6PibWI1WPUcSBuRxCpQduFOuzkYtMaBM/7TN/dC+YiE=;
- b=sDMGFQRj8uSSp2nJ/K6trW4rXgnUFitTpimLyovmlMTFjfr/bTsXd5rXOYEInMFsG6
- c0t3BaiKm79cMwDx4SwDCuNngbbDaNhL8F1+E4qXy180ahPfadOHyu3fApaXQINKnr2j
- +jk2dup5+Bg4FMsU/IlhEz127RdebPDGZtkxBJEclb1W0PqOk+LkA7DqAm771z2uG0nO
- qK0tAKFDMMKfFdhf52k0njdqk5tM8oGu7UWqHNz6YIfkSAyncLWSYf5dALgQ1OpQITQH
- X4asNh0LB7UJE5tgE8YOyp99jSyAa6QBNyOo11ARj/nUqtDz8fD/0xQRixw9FIva/+YK
- E4cw==
-X-Gm-Message-State: AOAM5316ebH8Ptkq9JMbT4X1uGeGOw5NE9owGIJ6UzzsSxWG2DCCq6kq
- E6fiyPJ2TNyXZNXCnnA2o60uqZS2Mo9nBfOX3nc=
-X-Google-Smtp-Source: ABdhPJyEG1MTF89o46Q1T9Rrytm05a/DG3yol0nSkedmBByh0DN6BD25pKcq0V/H+yCjPfC4PIEK9jFZo90rwd/rC5g=
-X-Received: by 2002:a62:9215:: with SMTP id o21mr6817717pfd.268.1598558456196; 
- Thu, 27 Aug 2020 13:00:56 -0700 (PDT)
+ bh=pvjSdv4nUxPfwBP9PKjoRBAQ4y+6+2F4ni6LT9Fuaqw=;
+ b=OEaJ93pONpHqs60xXI/BRRJ4wRAJiMbVxrzscvodNs+2Ork7AiA/6OH5j9csAxmr5l
+ kGK7TygKlMKGH7JQHurDF3oZdmayRYOmr3m32ngbGKzWwSVG0zbFgx2Dn9DduFXTKoTy
+ O8NQoedKkPjaOj9uE5eRwPGdA8N2Y74Qxq8i8wZFFhBFL9Z1OcLdeLc1r8bgVjVY+ez1
+ pswPT+yLYjjG0ev9ZvHMFa8Xi16YAeyHZpRIhGSem+jtZmBRCqEs0VGpLbrKzBPIoovg
+ hSoaMRdnRWalpX/9uDnjR6xMLUYh1kMwKf+SigwUn0qBI9tO6+wFY8u+zq8DA7jguzlK
+ EsPw==
+X-Gm-Message-State: AOAM531L/PPXaZIDAbquXq/v40LTOL9jZx+uvxg28lu6qE2L22WmxAOl
+ NIlmOumAIkHxkme8UT+kxDwnnElcBTLrGA3KhSA=
+X-Google-Smtp-Source: ABdhPJwSRYUZsSB/8KnvgLSmu13GxDxmWJ06S1nuD0ZKldgoptbvJ3SrDq+X27CzDqiFe3ukQbDy/QDCjgIaF8SxOns=
+X-Received: by 2002:a63:f24a:: with SMTP id d10mr15676744pgk.4.1598558486512; 
+ Thu, 27 Aug 2020 13:01:26 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-15-krzk@kernel.org>
-In-Reply-To: <20200827192642.1725-15-krzk@kernel.org>
+ <20200827192642.1725-16-krzk@kernel.org>
+In-Reply-To: <20200827192642.1725-16-krzk@kernel.org>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 27 Aug 2020 23:00:39 +0300
-Message-ID: <CAHp75VeC248LYFUX2q-EU9c-d1pO2Fr0TCbS_U5+SaoQt3gn_A@mail.gmail.com>
-Subject: Re: [PATCH v2 15/18] iio: light: tsl2772: Simplify with
+Date: Thu, 27 Aug 2020 23:01:10 +0300
+Message-ID: <CAHp75VdTTH3ZNxoFqsXLMBnGcBwaCdRZYUJrHBznvcb46i9Afg@mail.gmail.com>
+Subject: Re: [PATCH v2 16/18] iio: magnetometer: ak8974: Simplify with
  dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_160058_246942_6CA73BED 
-X-CRM114-Status: GOOD (  19.49  )
+X-CRM114-CacheID: sfid-20200827_160128_596294_5EC9EB06 
+X-CRM114-Status: GOOD (  19.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,29 +125,30 @@ Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 > Changes since v1:
 > 1. Wrap dev_err_probe() lines at 100 character
 > ---
->  drivers/iio/light/tsl2772.c | 10 ++--------
->  1 file changed, 2 insertions(+), 8 deletions(-)
+>  drivers/iio/magnetometer/ak8974.c | 11 ++---------
+>  1 file changed, 2 insertions(+), 9 deletions(-)
 >
-> diff --git a/drivers/iio/light/tsl2772.c b/drivers/iio/light/tsl2772.c
-> index 735399405417..d79205361dfa 100644
-> --- a/drivers/iio/light/tsl2772.c
-> +++ b/drivers/iio/light/tsl2772.c
-> @@ -1776,14 +1776,8 @@ static int tsl2772_probe(struct i2c_client *clientp,
->         ret = devm_regulator_bulk_get(&clientp->dev,
->                                       ARRAY_SIZE(chip->supplies),
->                                       chip->supplies);
+> diff --git a/drivers/iio/magnetometer/ak8974.c b/drivers/iio/magnetometer/ak8974.c
+> index cbb44e401c0a..548c686e29d6 100644
+> --- a/drivers/iio/magnetometer/ak8974.c
+> +++ b/drivers/iio/magnetometer/ak8974.c
+> @@ -843,15 +843,8 @@ static int ak8974_probe(struct i2c_client *i2c,
+>         ret = devm_regulator_bulk_get(&i2c->dev,
+>                                       ARRAY_SIZE(ak8974->regs),
+>                                       ak8974->regs);
 > -       if (ret < 0) {
 > -               if (ret != -EPROBE_DEFER)
-> -                       dev_err(&clientp->dev,
-> -                               "Failed to get regulators: %d\n",
-> -                               ret);
+> -                       dev_err(&i2c->dev, "cannot get regulators: %d\n", ret);
+> -               else
+> -                       dev_dbg(&i2c->dev,
+> -                               "regulators unavailable, deferring probe\n");
 > -
 > -               return ret;
 > -       }
 > +       if (ret < 0)
-> +               return dev_err_probe(&clientp->dev, ret, "Failed to get regulators\n");
+> +               return dev_err_probe(&i2c->dev, ret, "cannot get regulators\n");
 >
->         ret = regulator_bulk_enable(ARRAY_SIZE(chip->supplies), chip->supplies);
+>         ret = regulator_bulk_enable(ARRAY_SIZE(ak8974->regs), ak8974->regs);
 >         if (ret < 0) {
 > --
 > 2.17.1
