@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 33FFDC433DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:47:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 42950C433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:48:38 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0581E207DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:47:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0BC38207DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:48:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HBIM7k8q";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TV1dA5Xo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0581E207DF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="yHty4iRV";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="uCHxCyol"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0BC38207DF
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,58 +27,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=90tXs1UWH45IKML5dcRFOU6CXa4YL4j3cH+XV8TY53c=; b=HBIM7k8qdGeuWyoRTsz51maGy
-	54CL6A8OdUenWfY+HhVhYqdcxnP2xv5sNwuPH7ciYFsMiYjofY8hw1HXf66znd5sdfvR0xTOpKlH6
-	WdXZ+gHUKuqUSwiVJiKV1wyKsaMG6sV2s7ryPlAJ68YhlicWrA4cR0L7Yz5bjyx5XEBRqyZLD1tO1
-	sL0WfoRBcovN3gupA1jJUfLrmsD9ImLik3zA3TDBiaWHm4VVI1Enq5IC0rBmMTCr0x+Ks65VNCZ3J
-	FRAQNVVbsz3ekyaYT66rybdzIl8Vb4zhDOCwT2GAAoIXkZVTI88T7FYXt94oxjIMGN/ab+nJ2C0TV
-	sc7c/inow==;
+	 bh=9MvgWGgx++TVfDp62m6GQTyC2lZaJfuwz4iC/kcMqWE=; b=yHty4iRV+ISHbLL7Rs9TQyhDV
+	PjdYsKrfVCyANZenpbehkQMqGW7U0glnaUKVCz5j5w+DP1Qn28XrNLgknZAXW5fvjslJixXmZJuA3
+	Ec9GyxMgJot52c/texVHrgXkz1zFIdN5CnN3VuwWw7ii1KH+s4ErzLLiVjrcP7CSzLBjYs6NLKwoQ
+	riCZq/YAXUL2RJqoS/uVl23r5+1KoAFqv4yW0Z9jWAvQVkxZZUZV9+d/BZacPY5ClRt989sPk9UWN
+	TsoseYLrhQp0y6AL1oONmuUyH0IOWutv5A0KiEiGNnSoGAGPRnjbyBsHeS4O9W+IzImUgNDNYjFud
+	UY9ANrsow==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBNrZ-00053T-Ps; Thu, 27 Aug 2020 19:47:09 +0000
-Received: from mail-pj1-x1044.google.com ([2607:f8b0:4864:20::1044])
+	id 1kBNst-0005lW-CR; Thu, 27 Aug 2020 19:48:31 +0000
+Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBNrM-0004wv-90; Thu, 27 Aug 2020 19:46:57 +0000
-Received: by mail-pj1-x1044.google.com with SMTP id z18so3194000pjr.2;
- Thu, 27 Aug 2020 12:46:55 -0700 (PDT)
+ id 1kBNsn-0005iw-Pc; Thu, 27 Aug 2020 19:48:26 +0000
+Received: by mail-pg1-x544.google.com with SMTP id 31so4089074pgy.13;
+ Thu, 27 Aug 2020 12:48:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rF/IVgk4h5+MJuABqXa02sDX7QSYWX1qauCg5n/+jTM=;
- b=TV1dA5Xov0ck9OozRII/ftao8/R/YHMTCO/1WHAIME1O4niFg+OgXtzAY2zjfXEpz3
- e0y6JKc4ubTRQp2/5w0foJUYIoIiuNW4CZ8lovjPOZqrdFroT5QwHYWrBp5yjg1/iO4K
- SVI5qRKlgZYwcEEDVM5YA0sI7csZKPJ2go+y1RjxW6Y47BgMpwAgSmA1F/niu3rX4LJI
- Luhg6tmGDAO8T0kxLUogjDa7/r9vrR6E9YDb+FNA7Bgv3VY5XQqe3DghJZnJPELSU4YQ
- Y2d132gTzXLclulfMER6/ZCCJ+q1KmVWZnuoZuPJmXNmjdAxfrHlY0Y88zQ4nI6ZZMT9
- 9/Rw==
+ :cc; bh=kacN1ThtNH5U40mcv/4k6dMARnX9bfV0PWOTTEKKot4=;
+ b=uCHxCyolCflVbO+WUbO5LZqzBxHhrvlh9Pfc4sUAey8ZLgzdCoqYIrLEdx8BpwQcBh
+ s2GFIussGGUrYPA0MF7HrS5LyrCzsMV7f3icVtHxQDnUdBsayujKjO4yklbNWparyLk6
+ 6s/hYZYO7z9qF50wRRq3vSxKkZRtHXpiiZPUoABcbB8tpDAXLFRK8W47KyZVcZSsbKFl
+ GcpeBcMwA/NHfGzT7yOp5nwKgLoqG3eJzac9x4Zrkxu9rtMnmOVUdbEfRzxdmbXvjGpK
+ VnntcUFcoKeILOSwGYEdjuUalT1APy+Ayiduu0gb6oeP6w5roa17Qj+Rtnan3NJD4kzq
+ Izgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=rF/IVgk4h5+MJuABqXa02sDX7QSYWX1qauCg5n/+jTM=;
- b=HVnK/K0zOu9UpA/xCtCzVCWnY7DCJLW3hXbeI/SnDsNkbS+hZqymFmMJpdSUPiHFPt
- riPMy0VAZ9k8QnXeY1rSduF+gB05b4iyTx6A8eaASK+XfoOFDwLxhzjMu8o+60WP6aC+
- nbIdJ55BZLTPbg6BStnmI7reYf9onFRAXdDjBnLvKFHM89HQJqTCgpCyXa1qQSDaS3w/
- jq6z9EqZA1vimsMSdWAG8jf57U4EBHwEwufbMpFvywP++MiZPwoBzp2OQ5FqEKzy/cX1
- FiZUG7YovVMiRCQoP17rEUeeSTYC5Ob1C7uKxW2JFjwr57wnIVe4xtd6HlcOme3SYApk
- gWNQ==
-X-Gm-Message-State: AOAM532I+vOXn7n11tsVvHEkpsSTIKpaNh2Qhoggv8e/Pd1qBMats+gS
- 8bluwFY9+9jjA1mBdA0cEk3lGvxl77v5XbIhICA=
-X-Google-Smtp-Source: ABdhPJz+mPBt1w0ZVF5ot5qjiuaeOhaA9v5A1SLVkElmmTlR8IGArmMT4pz9gEJ+J7LbWY73M9EE9DJ74oGTNNcog7A=
-X-Received: by 2002:a17:90b:509:: with SMTP id r9mr410422pjz.228.1598557614008; 
- Thu, 27 Aug 2020 12:46:54 -0700 (PDT)
+ bh=kacN1ThtNH5U40mcv/4k6dMARnX9bfV0PWOTTEKKot4=;
+ b=tjdMX06OyDBLA93XrkCa818rW8Lg3ejGD3q8vK3oBloB/MeCwmOIMX5qMUMbPP6g76
+ 4yw/vSGlFu8dvVGsg67jbenaMeZDgqkH6IdGCh+UWwePQC9TWuGEds46EovFCNKHfokf
+ OTp6TuS5m0nSPQ+CcJvw4aXtJKPKzKQGj1ZVUZwo0+1CBqCwBLRMP256nNRURKtN0zsm
+ riSb16xW9AjSQgINig9wlGSE9qobf5A+TCs4p5zeZ0Fbb36RujNVQd8SW04F/QUqzw4p
+ jykYnb1sbFw1VBU7eWPeIk97OsBF4SOesearkQVyBBJhps9LO4Wo8+sEjRrVW0xA0m7n
+ EWDA==
+X-Gm-Message-State: AOAM530VZrKKXhBEExqx0Of7TxImbXHFwY0elB8qKKoB2telQ7wKg2HX
+ Gf4+MBZtqtxfaA0V/vrkezl3mrd4JGA2ff9v0TE=
+X-Google-Smtp-Source: ABdhPJzMBvf3SlQ4MXHwemF7WLO50QwdlrwNqcBo2uex50d1LsuaXz279AsMkddgVB3byOEu0XId2Ie0ozFdCkvrviw=
+X-Received: by 2002:a17:902:407:: with SMTP id
+ 7mr17541240ple.167.1598557703780; 
+ Thu, 27 Aug 2020 12:48:23 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-4-krzk@kernel.org>
-In-Reply-To: <20200827192642.1725-4-krzk@kernel.org>
+ <20200827192642.1725-5-krzk@kernel.org>
+In-Reply-To: <20200827192642.1725-5-krzk@kernel.org>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 27 Aug 2020 22:46:37 +0300
-Message-ID: <CAHp75VcKctq6pAw+D5fYMtASGP_NuYOf4GJ+8t=Otxf_RVjKyA@mail.gmail.com>
-Subject: Re: [PATCH v2 04/18] iio: adc: exynos_adc: Simplify with
- dev_err_probe()
+Date: Thu, 27 Aug 2020 22:48:07 +0300
+Message-ID: <CAHp75VepFzdeN=jaXvmSmkQauDJfgSU5ut3hA6a+Cer_SC52Og@mail.gmail.com>
+Subject: Re: [PATCH v2 05/18] iio: adc: ltc2497: Simplify with dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_154656_440114_73C5C55D 
-X-CRM114-Status: GOOD (  19.35  )
+X-CRM114-CacheID: sfid-20200827_154825_840472_CD14D517 
+X-CRM114-Status: GOOD (  19.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,29 +126,29 @@ Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 > Changes since v1:
 > 1. Wrap dev_err_probe() lines at 100 character
 > ---
->  drivers/iio/adc/exynos_adc.c | 9 ++-------
+>  drivers/iio/adc/ltc2497-core.c | 9 ++-------
 >  1 file changed, 2 insertions(+), 7 deletions(-)
 >
-> diff --git a/drivers/iio/adc/exynos_adc.c b/drivers/iio/adc/exynos_adc.c
-> index 7d23b6c33284..40585a96c848 100644
-> --- a/drivers/iio/adc/exynos_adc.c
-> +++ b/drivers/iio/adc/exynos_adc.c
-> @@ -844,13 +844,8 @@ static int exynos_adc_probe(struct platform_device *pdev)
->         }
+> diff --git a/drivers/iio/adc/ltc2497-core.c b/drivers/iio/adc/ltc2497-core.c
+> index 9b8fd9c32364..d337ed96bbb0 100644
+> --- a/drivers/iio/adc/ltc2497-core.c
+> +++ b/drivers/iio/adc/ltc2497-core.c
+> @@ -180,13 +180,8 @@ int ltc2497core_probe(struct device *dev, struct iio_dev *indio_dev)
+>                 return ret;
 >
->         info->vdd = devm_regulator_get(&pdev->dev, "vdd");
-> -       if (IS_ERR(info->vdd)) {
-> -               if (PTR_ERR(info->vdd) != -EPROBE_DEFER)
-> -                       dev_err(&pdev->dev,
-> -                               "failed getting regulator, err = %ld\n",
-> -                               PTR_ERR(info->vdd));
-> -               return PTR_ERR(info->vdd);
+>         ddata->ref = devm_regulator_get(dev, "vref");
+> -       if (IS_ERR(ddata->ref)) {
+> -               if (PTR_ERR(ddata->ref) != -EPROBE_DEFER)
+> -                       dev_err(dev, "Failed to get vref regulator: %pe\n",
+> -                               ddata->ref);
+> -
+> -               return PTR_ERR(ddata->ref);
 > -       }
-> +       if (IS_ERR(info->vdd))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(info->vdd), "failed getting regulator");
+> +       if (IS_ERR(ddata->ref))
+> +               return dev_err_probe(dev, PTR_ERR(ddata->ref), "Failed to get vref regulator\n");
 >
->         ret = regulator_enable(info->vdd);
->         if (ret)
+>         ret = regulator_enable(ddata->ref);
+>         if (ret < 0) {
 > --
 > 2.17.1
 >
