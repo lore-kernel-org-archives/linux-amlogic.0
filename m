@@ -5,20 +5,20 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C8F6C433DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:51:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A7ABC433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:52:32 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C29CF2080C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:51:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DFC622080C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:52:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="swCGQL+E";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ix3Va+o+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C29CF2080C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="3YAGpfdk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ex/gpgjo"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DFC622080C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,59 +27,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=rcOgOkMkues1gCS0DZ8tOjK+UT28e3MXWfQnbF+BEcg=; b=swCGQL+E/H08VoCRGo0DgGBvq
-	AOi2An/Yd6lkRYF1/XvVmO8gmqdUJLCI1p7qsM2v2jl7ShpKo66BRzPNJ8WwLeg059ZDO4Z3X8UAh
-	bOvA6V6wuNybxcJk+AUF0diXk9h6CsjLQyMEcZ4ZkpyRR6XZRhOB645ZaTS/8Gj5ZeIbnUv+itJ6R
-	bEF2pGavybm2B1dbz5QFD04k8jJqyXDNRJFE7hH6171FnFTE/Lbz8ms8G0dTjNytw4orhpLhNBjp+
-	o1VdlDMSQE/yrmoStlF04SWe9Zsh2cKJNCbA+poye7IjOG84BOQ9DH2R0h3pN9uCSP3zaR7KmJXro
-	KopJehyhA==;
+	 bh=/lWMf8z9CpWBr3OFy223GPnQ5gTJmK3PYELOXDqlPUM=; b=3YAGpfdkfUam+V4MJdWY6YFzC
+	g0gE+aRHGsdtLwv3lyn4TI78kyrH1RyjB+tsu2BRo3f/MHHezy+YFcI+3WFdw/K3sTwu+H+nAKGA+
+	Bul5PZpIofe65xMbsXULiAl0WFNS5lEZQvFRqemSEvA4ObYbeuJy1qoHvP3SpUKy3+6agve4sZn4o
+	SUAstvTCiTWLFKejfO4Z1p14YPaZ3qvueRbwe4yQHTOpsgxZbRHHO8uP+4jLxM0/OKrSIYlcsVhUu
+	6wU+WAzfT4Yz1L4suojN+gC/koAPYogrCO99zi+17YHpBZ252rzqz5RlL3D+WGBUGIb4bs8MBbLg+
+	kOp9JBb/w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBNvh-0007MA-Om; Thu, 27 Aug 2020 19:51:25 +0000
-Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
+	id 1kBNwb-0007rY-JX; Thu, 27 Aug 2020 19:52:21 +0000
+Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBNu3-0006Mo-FS; Thu, 27 Aug 2020 19:49:47 +0000
-Received: by mail-pf1-x444.google.com with SMTP id y206so4302692pfb.10;
- Thu, 27 Aug 2020 12:49:42 -0700 (PDT)
+ id 1kBNvp-0007QU-VS; Thu, 27 Aug 2020 19:51:49 +0000
+Received: by mail-pf1-x441.google.com with SMTP id u20so4331561pfn.0;
+ Thu, 27 Aug 2020 12:51:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=J3gzyzO1gbxLdidSqR6d1wlDjGQFBUJvUcq8FiJnVtg=;
- b=Ix3Va+o+3XbmB70WBqBC725rnsHUyDm6ZoPZy2b6hcZ+38QrgQbROqTVcHhuzh8SXK
- rMQANp0HWGAK0S3jGGDuzX8pV7jIMANFnK9ew4PiVoz4gml/9QsbVZBlaad6zaN1zTHh
- L56Wy4g5LQD9tNdVMaYcFb7N6DSCrhozT7oT7ICoIwsrJXoKJ35rzoD+7dpGgpwdSemG
- QSZ1F8DLFO0OU5j/xtnuxVyj9N16sMJ07M9DSs8l6Ckbjdjz+9xWDA08Xegmz7/mZkJG
- XlgePyfePvWDzYQBw5KQxNn3PpFfJTT0e70LTT9XoS7BmcRJcAJrKFseBYXuCfY+VAcz
- tHeg==
+ :cc; bh=gcd1nB19OTH1zKv6qhSqc5xobRaHVee78g1PzbEl6fI=;
+ b=ex/gpgjovMoKhy+gwxNUzVmwdddR+jvZu5aH2FiNpjTquN08Wii0oVRnzjAILdzc7M
+ 0bmTucnzTPnopfTBGMk80abYdFtN69xKYbokxYZKljcp18CujGDWVFUIQ6npTqta0xzD
+ 2Crf7GPhGLOOpwZDpCbQtsDRqjAEyhwlO4xV0UbLnTA02CJwXm9JiZs05MEVbs1c/4eT
+ QfQssqJBixDV7Sp7cxuZJgGJzU9S/uHgB8g++h6p/qJWBKpK2+z8B215WH4hxRDVJkQa
+ EjuT59THU9Een7KH8ca9JDOmfxqbYYQQj8re2bgrC+uMbxy9tZMrJuIP0+X8iOzyV3xJ
+ kchA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=J3gzyzO1gbxLdidSqR6d1wlDjGQFBUJvUcq8FiJnVtg=;
- b=cKkcK3Jcfz9FtC8iZph92i6/Ta7u2seOBdZq2+RMPIG1zriDKXeaZTCSHHBfKRHfo7
- 0TIDOTvKQn5/313D4MUOqdWpiA1h8xb/+CaSOw89QYud9DGnZBAM4+oadQFsBg6ZjN4f
- WloUgiMoBxrgQ/mDIsST/Y+NMUWfiLZQhycHNH4b2iLLK9phaE2BVBMKjVSGym1s6TQr
- nuTDLo3U391XZxx9zrfHRi3bdZAhmj67eGhrM775XXK4afJZxzOfdXgbUnQ9kUXIkLXf
- zRhXtBnqUF1GLN0cMTOMPuypcdJyMF+CMNnUjjv4TBmmBsSUHwFTyBt/0p4x9K0CtGaW
- CK4Q==
-X-Gm-Message-State: AOAM5337R3QB+mURcW+gZZjbq2oLQKBYUII2jt7vG1HrBnKNOT9+NDQK
- /+3Rj1Owx8kFatuFPrXOagdyYXdvW5rAT1M1FIA=
-X-Google-Smtp-Source: ABdhPJywOKJ7nbos0Vl5TfFihLljc3WSP3/cAdSxhBmVa6rR4UoZP9/yzEnECmoNYbP22WFTY+hpwLKOC2YaPImjw0A=
+ bh=gcd1nB19OTH1zKv6qhSqc5xobRaHVee78g1PzbEl6fI=;
+ b=gQTItbg8ft0tsm9X3yL3mQQGNirnIUeioOBCMVwZT2fXEhIO37dGa+jyS1fqDsOgD2
+ 94k8DiAg/Chtkt6u23F2wEhhqE9wauQl7X7+MuqkG1xSpUqvvmWJIk/dlFrWFuZxQKaJ
+ JfEKRHq1kN/NxFLNq/5o9662qdlg2BzFl4MUbumQWFYnIKOvqq2JArumtY4eOy5nIoKN
+ u90YJQ6Wl7mTfxAi8kTQVeDtD/yZBnyMYYqepsU8JwXD9h1E07WfZiJbMWVZRcG6oxp9
+ tU5tDdGFZG43K+8EbP0D+jZDXx60il6FTYuSqRiBifwLxUdQUl2xMrRnimrQ4991nynv
+ 67ew==
+X-Gm-Message-State: AOAM530iyOn38D7MnvOJfI53072bKuwSQRmC/cblHStPNBdTLj1ZuxcY
+ UKm4E2QOH+w7RQksdh2z3VtPTWaClbvm5Wy9GRg=
+X-Google-Smtp-Source: ABdhPJygfJzIrG3kwV1/jhIjw8ITN96yhEa6YFN7u9Xjf/ec+8mvoIJ8bbkGi47nXk15GCawUM1CW08gWBIe8YlHpT4=
 X-Received: by 2002:a17:902:8208:: with SMTP id
- x8mr6288066pln.65.1598557780819; 
- Thu, 27 Aug 2020 12:49:40 -0700 (PDT)
+ x8mr6293153pln.65.1598557891210; 
+ Thu, 27 Aug 2020 12:51:31 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-7-krzk@kernel.org>
-In-Reply-To: <20200827192642.1725-7-krzk@kernel.org>
+ <20200827192642.1725-8-krzk@kernel.org>
+In-Reply-To: <20200827192642.1725-8-krzk@kernel.org>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 27 Aug 2020 22:49:24 +0300
-Message-ID: <CAHp75VezjCWG+_qLWevc9nX5zQUoB+2UpLJo9HXqnV5svmwX-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 07/18] iio: adc: rcar-gyroadc: Simplify with
- dev_err_probe()
+Date: Thu, 27 Aug 2020 22:51:14 +0300
+Message-ID: <CAHp75VfhmCBG615xW5XD6m9Fzkbv_3C5LiQCjTjhOAC7yFmE+A@mail.gmail.com>
+Subject: Re: [PATCH v2 08/18] iio: adc: stm32: Simplify with dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_154943_671757_8F12849C 
-X-CRM114-Status: GOOD (  19.95  )
+X-CRM114-CacheID: sfid-20200827_155134_307416_9EA9145E 
+X-CRM114-Status: GOOD (  24.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,30 +124,195 @@ Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 > ---
 >
 > Changes since v1:
-> 1. Wrap dev_err_probe() lines at 100 character
+> 1. Convert to devm_clk_get_optional
+> 2. Update also stm32-dfsdm-core and stm32-dac-core.
+> 3. Wrap around 100 characters (accepted by checkpatch).
 > ---
->  drivers/iio/adc/rcar-gyroadc.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
+>  drivers/iio/adc/stm32-adc-core.c   | 67 +++++++++---------------------
+>  drivers/iio/adc/stm32-adc.c        |  9 +---
+>  drivers/iio/adc/stm32-dfsdm-adc.c  |  9 +---
+>  drivers/iio/adc/stm32-dfsdm-core.c |  8 +---
+>  drivers/iio/dac/stm32-dac-core.c   |  5 +--
+>  5 files changed, 26 insertions(+), 72 deletions(-)
 >
-> diff --git a/drivers/iio/adc/rcar-gyroadc.c b/drivers/iio/adc/rcar-gyroadc.c
-> index d2c1419e72a0..e1a7c93fc2db 100644
-> --- a/drivers/iio/adc/rcar-gyroadc.c
-> +++ b/drivers/iio/adc/rcar-gyroadc.c
-> @@ -495,12 +495,8 @@ static int rcar_gyroadc_probe(struct platform_device *pdev)
->                 return PTR_ERR(priv->regs);
+> diff --git a/drivers/iio/adc/stm32-adc-core.c b/drivers/iio/adc/stm32-adc-core.c
+> index 0e2068ec068b..707c85dab7df 100644
+> --- a/drivers/iio/adc/stm32-adc-core.c
+> +++ b/drivers/iio/adc/stm32-adc-core.c
+> @@ -582,11 +582,9 @@ static int stm32_adc_core_switches_probe(struct device *dev,
+>         priv->syscfg = syscon_regmap_lookup_by_phandle(np, "st,syscfg");
+>         if (IS_ERR(priv->syscfg)) {
+>                 ret = PTR_ERR(priv->syscfg);
+> -               if (ret != -ENODEV) {
+> -                       if (ret != -EPROBE_DEFER)
+> -                               dev_err(dev, "Can't probe syscfg: %d\n", ret);
+> -                       return ret;
+> -               }
+> +               if (ret != -ENODEV)
+> +                       return dev_err_probe(dev, ret, "Can't probe syscfg\n");
+> +
+>                 priv->syscfg = NULL;
+>         }
 >
->         priv->clk = devm_clk_get(dev, "fck");
+> @@ -596,12 +594,9 @@ static int stm32_adc_core_switches_probe(struct device *dev,
+>                 priv->booster = devm_regulator_get_optional(dev, "booster");
+>                 if (IS_ERR(priv->booster)) {
+>                         ret = PTR_ERR(priv->booster);
+> -                       if (ret != -ENODEV) {
+> -                               if (ret != -EPROBE_DEFER)
+> -                                       dev_err(dev, "can't get booster %d\n",
+> -                                               ret);
+> -                               return ret;
+> -                       }
+> +                       if (ret != -ENODEV)
+> +                               dev_err_probe(dev, ret, "can't get booster\n");
+> +
+>                         priv->booster = NULL;
+>                 }
+>         }
+> @@ -612,11 +607,9 @@ static int stm32_adc_core_switches_probe(struct device *dev,
+>                 priv->vdd = devm_regulator_get_optional(dev, "vdd");
+>                 if (IS_ERR(priv->vdd)) {
+>                         ret = PTR_ERR(priv->vdd);
+> -                       if (ret != -ENODEV) {
+> -                               if (ret != -EPROBE_DEFER)
+> -                                       dev_err(dev, "can't get vdd %d\n", ret);
+> -                               return ret;
+> -                       }
+> +                       if (ret != -ENODEV)
+> +                               return dev_err_probe(dev, ret, "can't get vdd\n");
+> +
+>                         priv->vdd = NULL;
+>                 }
+>         }
+> @@ -669,42 +662,20 @@ static int stm32_adc_probe(struct platform_device *pdev)
+>         priv->common.phys_base = res->start;
+>
+>         priv->vdda = devm_regulator_get(&pdev->dev, "vdda");
+> -       if (IS_ERR(priv->vdda)) {
+> -               ret = PTR_ERR(priv->vdda);
+> -               if (ret != -EPROBE_DEFER)
+> -                       dev_err(&pdev->dev, "vdda get failed, %d\n", ret);
+> -               return ret;
+> -       }
+> +       if (IS_ERR(priv->vdda))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(priv->vdda), "vdda get failed\n");
+>
+>         priv->vref = devm_regulator_get(&pdev->dev, "vref");
+> -       if (IS_ERR(priv->vref)) {
+> -               ret = PTR_ERR(priv->vref);
+> -               if (ret != -EPROBE_DEFER)
+> -                       dev_err(&pdev->dev, "vref get failed, %d\n", ret);
+> -               return ret;
+> -       }
+> +       if (IS_ERR(priv->vref))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(priv->vref), "vref get failed\n");
+>
+> -       priv->aclk = devm_clk_get(&pdev->dev, "adc");
+> -       if (IS_ERR(priv->aclk)) {
+> -               ret = PTR_ERR(priv->aclk);
+> -               if (ret != -ENOENT) {
+> -                       if (ret != -EPROBE_DEFER)
+> -                               dev_err(&pdev->dev, "Can't get 'adc' clock\n");
+> -                       return ret;
+> -               }
+> -               priv->aclk = NULL;
+> -       }
+> +       priv->aclk = devm_clk_get_optional(&pdev->dev, "adc");
+> +       if (IS_ERR(priv->aclk))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(priv->aclk), "Can't get 'adc' clock\n");
+>
+> -       priv->bclk = devm_clk_get(&pdev->dev, "bus");
+> -       if (IS_ERR(priv->bclk)) {
+> -               ret = PTR_ERR(priv->bclk);
+> -               if (ret != -ENOENT) {
+> -                       if (ret != -EPROBE_DEFER)
+> -                               dev_err(&pdev->dev, "Can't get 'bus' clock\n");
+> -                       return ret;
+> -               }
+> -               priv->bclk = NULL;
+> -       }
+> +       priv->bclk = devm_clk_get_optional(&pdev->dev, "bus");
+> +       if (IS_ERR(priv->bclk))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(priv->bclk), "Can't get 'bus' clock\n");
+>
+>         ret = stm32_adc_core_switches_probe(dev, priv);
+>         if (ret)
+> diff --git a/drivers/iio/adc/stm32-adc.c b/drivers/iio/adc/stm32-adc.c
+> index 3eb9ebe8372f..b8e764ca54a6 100644
+> --- a/drivers/iio/adc/stm32-adc.c
+> +++ b/drivers/iio/adc/stm32-adc.c
+> @@ -1805,13 +1805,8 @@ static int stm32_adc_dma_request(struct device *dev, struct iio_dev *indio_dev)
+>         adc->dma_chan = dma_request_chan(dev, "rx");
+>         if (IS_ERR(adc->dma_chan)) {
+>                 ret = PTR_ERR(adc->dma_chan);
+> -               if (ret != -ENODEV) {
+> -                       if (ret != -EPROBE_DEFER)
+> -                               dev_err(dev,
+> -                                       "DMA channel request failed with %d\n",
+> -                                       ret);
+> -                       return ret;
+> -               }
+> +               if (ret != -ENODEV)
+> +                       return dev_err_probe(dev, ret, "DMA channel request failed with\n");
+>
+>                 /* DMA is optional: fall back to IRQ mode */
+>                 adc->dma_chan = NULL;
+> diff --git a/drivers/iio/adc/stm32-dfsdm-adc.c b/drivers/iio/adc/stm32-dfsdm-adc.c
+> index 5e10fb4f3704..12c951078c1f 100644
+> --- a/drivers/iio/adc/stm32-dfsdm-adc.c
+> +++ b/drivers/iio/adc/stm32-dfsdm-adc.c
+> @@ -1473,13 +1473,8 @@ static int stm32_dfsdm_adc_init(struct device *dev, struct iio_dev *indio_dev)
+>         /* Optionally request DMA */
+>         ret = stm32_dfsdm_dma_request(dev, indio_dev);
+>         if (ret) {
+> -               if (ret != -ENODEV) {
+> -                       if (ret != -EPROBE_DEFER)
+> -                               dev_err(dev,
+> -                                       "DMA channel request failed with %d\n",
+> -                                       ret);
+> -                       return ret;
+> -               }
+> +               if (ret != -ENODEV)
+> +                       return dev_err_probe(dev, ret, "DMA channel request failed with\n");
+>
+>                 dev_dbg(dev, "No DMA support\n");
+>                 return 0;
+> diff --git a/drivers/iio/adc/stm32-dfsdm-core.c b/drivers/iio/adc/stm32-dfsdm-core.c
+> index 26e2011c5868..34e4e6e59acf 100644
+> --- a/drivers/iio/adc/stm32-dfsdm-core.c
+> +++ b/drivers/iio/adc/stm32-dfsdm-core.c
+> @@ -243,12 +243,8 @@ static int stm32_dfsdm_parse_of(struct platform_device *pdev,
+>          * on use case.
+>          */
+>         priv->clk = devm_clk_get(&pdev->dev, "dfsdm");
 > -       if (IS_ERR(priv->clk)) {
 > -               ret = PTR_ERR(priv->clk);
 > -               if (ret != -EPROBE_DEFER)
-> -                       dev_err(dev, "Failed to get IF clock (ret=%i)\n", ret);
+> -                       dev_err(&pdev->dev, "Failed to get clock (%d)\n", ret);
 > -               return ret;
 > -       }
 > +       if (IS_ERR(priv->clk))
-> +               return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed to get IF clock\n");
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(priv->clk), "Failed to get clock\n");
 >
->         ret = rcar_gyroadc_parse_subdevs(indio_dev);
->         if (ret)
+>         priv->aclk = devm_clk_get(&pdev->dev, "audio");
+>         if (IS_ERR(priv->aclk))
+> diff --git a/drivers/iio/dac/stm32-dac-core.c b/drivers/iio/dac/stm32-dac-core.c
+> index 7e5809ba0dee..906436780347 100644
+> --- a/drivers/iio/dac/stm32-dac-core.c
+> +++ b/drivers/iio/dac/stm32-dac-core.c
+> @@ -150,10 +150,7 @@ static int stm32_dac_probe(struct platform_device *pdev)
+>         rst = devm_reset_control_get_optional_exclusive(dev, NULL);
+>         if (rst) {
+>                 if (IS_ERR(rst)) {
+> -                       ret = PTR_ERR(rst);
+> -                       if (ret != -EPROBE_DEFER)
+> -                               dev_err(dev, "reset get failed, %d\n", ret);
+> -
+> +                       ret = dev_err_probe(dev, PTR_ERR(rst), "reset get failed\n");
+>                         goto err_hw_stop;
+>                 }
+>
 > --
 > 2.17.1
 >
