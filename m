@@ -2,77 +2,128 @@ Return-Path: <SRS0=UOMd=CF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D3D5C433E1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 11:29:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4615AC433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 12:43:23 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C605922CAE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 11:29:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0B2742177B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 12:43:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="V/pPACyF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C605922CAE
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DYy+jKak";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="mpSbrexX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0B2742177B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:Date:Message-ID:
+	From:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Gm6kv1dpjCM6ElWBT4TQG8M5Kn//AVBVzqUpZtKD7bo=; b=V/pPACyF7Z4YnBFXlzD7gaOGJ
-	TirowwaS5xMcsqCP1LYXqIMNNFi8NqG6w2xZQ+wBJfjhAxnw2aywLrVzETLOsLqI/2SxDsZLKLcP2
-	BdmjRnizxzTnOnIB7VWWdbqxeTLJVttNTGeXxFkqG9cU1t2WGs08AzdrxnUnz79CZbNhKQwwtvi9P
-	x8RrMj8CQbAVqnN2cZWmpfaAD/6MdWNUTb4dCCflj/aSqBlIYIU20Mg0hXLvu0x4fSByQdtlGBXbV
-	dkNnLZc80IBTLzSuEFIObNNgmZGNUjW/jw1l/cmzSCakk7+pOJq97WWm+8Vs/u0/YhGGH6EYr0SJw
-	JMFT3djQg==;
+	 bh=IpHOHFNtvlTMJ1PPACsXjA59tWL5vbBtwupCpDDzRZo=; b=DYy+jKakD4aVP15IScbm8rICn
+	ZrZLP8Nf3iX+hq8QPw1GG8dGjmnPQdoUZWDdRwX4SwKdnJ9qJFFMXXb8EynteXkpMsUh1vIdJqX4j
+	FK4HAQUZf2Zo4fWTTNR9Aw8vH6itsvL6mzibPQYdUxzS5Ux1zrb4wruSLCpzg/rSbElWkyUhggcs8
+	V+RAAs5Shp0aRXu9B/wEXDM3UHE2VcFvvf9fMmehNRcW26BknB0TGAGHpZfs9aMKNp7NP8NSIV3u6
+	A/DaDCI8jjvgWne4V4meXRWjKl2ai+ew4rbcBW+mmyTt6E0bxl6CbzQBY4Dag1NLKdC/SWVUmAge+
+	7n8+8jmOg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBG5c-0006UU-Ew; Thu, 27 Aug 2020 11:29:08 +0000
-Received: from mail-ej1-f65.google.com ([209.85.218.65])
+	id 1kBHFJ-0006gP-Jp; Thu, 27 Aug 2020 12:43:13 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBG5Y-0006TL-AA; Thu, 27 Aug 2020 11:29:05 +0000
-Received: by mail-ej1-f65.google.com with SMTP id a26so7177580ejc.2;
- Thu, 27 Aug 2020 04:29:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=iXm+BK1XseUH+QiQCNWCtflu2oIe/pb8DPKprrM24Fk=;
- b=F0fxSFMfHFHUr69RHk2JpJNN9p6+MzTlM8FWMOlSx2B7K7bwXiwFb9oUdO1C0F04Gp
- 69zyt6I/+DuB8nHXYQiiZjFhKuwMQPcgeLKT1TbxQYnQpqmrYllIc2+eeexBZDO4ZyuF
- ghQfM8Y3FDXxVxw6I1XE+FqTf1pvgbYW8qQxM36JHZVAi0u8pQzun3xwAOZTVTmS/uiG
- bpurgsrcTK8kXZWYbw90yGm0gJW/ZpK2V+dXgeouBXWFM8tPxvEsZvw21/6EnztyTug/
- UGpJUFHGsTnu3VkH8H8aSfMLKNgqq4PZlR3EyDMJ3OjifWNeaRgwjTJ4Bc2XrMzwlzgA
- oXJA==
-X-Gm-Message-State: AOAM530QUeoFE6P0W72NR6wXEKGy/XTmr9P4paxm1JZ3mvcSu0lZOjKq
- rM3SBLwnD1L192EVdbDgHk4=
-X-Google-Smtp-Source: ABdhPJyEwtZ0NCeIt0EbDqNivfcPk1e08kNJdKFzd3GWd/Lf1IHJnIxd+vov5vkjwPfN2ooxo9kx2A==
-X-Received: by 2002:a17:906:8d8:: with SMTP id
- o24mr19868792eje.384.1598527743036; 
- Thu, 27 Aug 2020 04:29:03 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.216])
- by smtp.googlemail.com with ESMTPSA id o8sm1631358eji.34.2020.08.27.04.29.01
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 27 Aug 2020 04:29:02 -0700 (PDT)
-Date: Thu, 27 Aug 2020 13:28:59 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 01/16] iio: accel: bma180: Simplify with dev_err_probe()
-Message-ID: <20200827112859.GA11849@kozik-lap>
-References: <20200826145153.10444-1-krzk@kernel.org>
- <20200827122605.0000770f@huawei.com>
+ id 1kBHFF-0006fQ-U6
+ for linux-amlogic@lists.infradead.org; Thu, 27 Aug 2020 12:43:11 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+ by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20200827124307euoutp012e564a4c12393d7f46b2c31fe1169dc0~vII4Z-SLh3059330593euoutp01V
+ for <linux-amlogic@lists.infradead.org>; Thu, 27 Aug 2020 12:43:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
+ 20200827124307euoutp012e564a4c12393d7f46b2c31fe1169dc0~vII4Z-SLh3059330593euoutp01V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1598532187;
+ bh=Z9hoJjw+81T5d4pJyA/LSGFD+r9gkXkSP2oCwCRDj/s=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+ b=mpSbrexXWmIrjNeaWi0UvaNcMdEEa6RfMWvdsIoNuzvZ+YrX/X+B6aBkMIGgxvltm
+ jtWqVxWIywnC6qhz9ezo31fODvixT/24lU8SKw3WTMSRK3Mgjaaa3+zHbxTZDaA16e
+ YGqdM751e/AGWo639VIo7W8vIrWTnCjc4zO51OdM=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+ 20200827124307eucas1p2bcb9e419e35857280b8711eca24d56fa~vII4B8Oc21506815068eucas1p2j;
+ Thu, 27 Aug 2020 12:43:07 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges1new.samsung.com (EUCPMTA) with SMTP id FF.E7.06456.A5AA74F5; Thu, 27
+ Aug 2020 13:43:06 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20200827124306eucas1p2c355345ca848e396f1fb06a7ef7a111e~vII3as-jG1506815068eucas1p2i;
+ Thu, 27 Aug 2020 12:43:06 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20200827124306eusmtrp217aba062195652cb3c9307038294aa83~vII3aFimg1149811498eusmtrp2M;
+ Thu, 27 Aug 2020 12:43:06 +0000 (GMT)
+X-AuditID: cbfec7f2-7efff70000001938-58-5f47aa5a2bfc
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id 14.35.06314.A5AA74F5; Thu, 27
+ Aug 2020 13:43:06 +0100 (BST)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+ eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20200827124305eusmtip1041113616a0be8c7ef401b6b6a44d189~vII2yU-jO1715217152eusmtip1W;
+ Thu, 27 Aug 2020 12:43:05 +0000 (GMT)
+Subject: Re: [PATCH] ASoC: meson: cards: deal dpcm flag change
+To: Jerome Brunet <jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <e950898e-0a07-4f75-2640-ec8039d81464@samsung.com>
+Date: Thu, 27 Aug 2020 14:43:06 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200827122605.0000770f@huawei.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200731120603.2243261-1-jbrunet@baylibre.com>
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJKsWRmVeSWpSXmKPExsWy7djP87pRq9zjDW5Ms7a4cvEQk8XUh0/Y
+ LN48OsJs8bN9C5PFtysdTBYLZnNbXN41h82i8fRKJgcOjw2fm9g83t9oZffYOesuu8emVZ1s
+ HpuX1Htsfv2C2ePzJrkA9igum5TUnMyy1CJ9uwSujIPv9jEWnJKrmLhasIFxiVQXIyeHhICJ
+ xJ69nexdjFwcQgIrGCV2TehjgnC+MEp0fXjJCOF8ZpTYvOAmI0zL+4s/oKqWM0rMnLuRFcJ5
+ zyhxb+EWsCphATuJ3z93MIPYIgIFEs8mPAUbxSywkFHi8IvFrCAJNgFDia63XWwgNi9Qw8Pv
+ a8GaWQRUJZ7dX8MEYosKxElsPX6VCaJGUOLkzCcsIDangI1E/5JlYDazgLxE89bZzBC2uMSt
+ J/PBzpMQOMYusWLFe2aIu10k+m+sZ4KwhSVeHd/CDmHLSPzfCdPQzCjx8Nxadginh1HictMM
+ qK+tJe6c+wV0KgfQCk2J9bv0IcKOEnsObWcGCUsI8EnceCsIcQSfxKRt06HCvBIdbUIQ1WoS
+ s46vg1t78MIl5gmMSrOQvDYLyTuzkLwzC2HvAkaWVYziqaXFuempxYZ5qeV6xYm5xaV56XrJ
+ +bmbGIEJ6vS/4592MH69lHSIUYCDUYmHVyPeLV6INbGsuDL3EKMEB7OSCK/T2dNxQrwpiZVV
+ qUX58UWlOanFhxilOViUxHmNF72MFRJITyxJzU5NLUgtgskycXBKNTCm/ZzyV7X011OmvnUN
+ V09+Pum++sumKUve+zQky2TU+9p7fwxM5TK/PTfjbU/+u8Rux32hLRM4Her39ForBDuIGumf
+ c8wpmrbpoUN40sqHb7f9186fdmpa+fXmBW8DzmwK4zrVknU+iO+arEnTdONKrS+RS1kOK9s9
+ W6S06frvNrVwXh+PMDUlluKMREMt5qLiRAC9ob5zTAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFIsWRmVeSWpSXmKPExsVy+t/xu7pRq9zjDZ7fFrS4cvEQk8XUh0/Y
+ LN48OsJs8bN9C5PFtysdTBYLZnNbXN41h82i8fRKJgcOjw2fm9g83t9oZffYOesuu8emVZ1s
+ HpuX1Htsfv2C2ePzJrkA9ig9m6L80pJUhYz84hJbpWhDCyM9Q0sLPSMTSz1DY/NYKyNTJX07
+ m5TUnMyy1CJ9uwS9jIPv9jEWnJKrmLhasIFxiVQXIyeHhICJxPuLP5i6GLk4hASWMkp8nvuG
+ GSIhI3FyWgMrhC0s8edaFxtE0VtGiV33J4IVCQvYSfz+uQPMFhEokJh+8D8zSBGzwEJGiV/z
+ fzGCJIQErCWmrv0IVsQmYCjR9RZkEicHL1Dzw+9rwWpYBFQlnt1fwwRiiwrESTzu/c8MUSMo
+ cXLmExYQm1PARqJ/yTIwm1nATGLe5ofMELa8RPPW2VC2uMStJ/OZJjAKzULSPgtJyywkLbOQ
+ tCxgZFnFKJJaWpybnltsqFecmFtcmpeul5yfu4kRGI/bjv3cvIPx0sbgQ4wCHIxKPLwa8W7x
+ QqyJZcWVuYcYJTiYlUR4nc6ejhPiTUmsrEotyo8vKs1JLT7EaAr03ERmKdHkfGCqyCuJNzQ1
+ NLewNDQ3Njc2s1AS5+0QOBgjJJCeWJKanZpakFoE08fEwSnVwCj8Wdkr6ETc/7XFz1atfvqw
+ 4Sx396q3AQv3pDRfcNM17m+z8yqy56ie+Cxumqgm4/VXwioLZwhd1hL3ncu62jPZ+gCTp+6y
+ 9mpPzsf2KeUzV1hcOPbq3MlTUyLCnl7uc/x92XS++68jW9dm7TM9fV3nj6OQYeujhusea7L1
+ Fya4BYWWz53oulWJpTgj0VCLuag4EQBTUQm+3QIAAA==
+X-CMS-MailID: 20200827124306eucas1p2c355345ca848e396f1fb06a7ef7a111e
+X-Msg-Generator: CA
+X-RootMTR: 20200827124306eucas1p2c355345ca848e396f1fb06a7ef7a111e
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200827124306eucas1p2c355345ca848e396f1fb06a7ef7a111e
+References: <20200731120603.2243261-1-jbrunet@baylibre.com>
+ <CGME20200827124306eucas1p2c355345ca848e396f1fb06a7ef7a111e@eucas1p2.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_072904_363390_D2A9833F 
-X-CRM114-Status: GOOD (  13.20  )
+X-CRM114-CacheID: sfid-20200827_084310_185827_D623602E 
+X-CRM114-Status: GOOD (  16.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,44 +135,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
- Neil Armstrong <narmstrong@baylibre.com>, Jonathan Bakker <xc-racer2@live.ca>,
- Tomasz Duszynski <tomasz.duszynski@octakon.com>,
- linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Kevin Hilman <khilman@baylibre.com>,
- Marek Vasut <marek.vasut@gmail.com>, Kukjin Kim <kgene@kernel.org>,
- Alexandru Ardelean <alexandru.ardelean@analog.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Alexandre Torgue <alexandre.torgue@st.com>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Beniamin Bia <beniamin.bia@analog.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Hartmut Knaack <knaack.h@gmx.de>,
- Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Kevin Hilman <khilman@baylibre.com>, alsa-devel@alsa-project.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ zhangn1985@outlook.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Aug 27, 2020 at 12:26:05PM +0100, Jonathan Cameron wrote:
-> On Wed, 26 Aug 2020 16:51:38 +0200
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
-> > Common pattern of handling deferred probe can be simplified with
-> > dev_err_probe().  Less code and also it prints the error value.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> Please make sure to send v2 to linux-iio@vger.kernel.org
-
-Sure, my bad.
-
-Best regards,
-Krzysztof
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSmVyb21lLAoKT24gMzEuMDcuMjAyMCAxNDowNiwgSmVyb21lIEJydW5ldCB3cm90ZToKPiBD
+b21taXQgYjczMjg3ZjBiMDc0ICgiQVNvQzogc29jLXBjbTogZHBjbTogZml4IHBsYXliYWNrL2Nh
+cHR1cmUgY2hlY2tzIikKPiBjaGFuZ2VkIHRoZSBtZWFuaW5nIG9mIGRwY21fcGxheWJhY2svZHBj
+bV9jYXB0dXJlIGFuZCBub3cgcmVxdWlyZXMgdGhlCj4gQ1BVIERBSSBCRSB0byBhbGlnbmVkIHdp
+dGggdGhvc2UgZmxhZ3MuCj4KPiBUaGlzIGJyb2tlIGFsbCBBbWxvZ2ljIGNhcmRzIHdpdGggdW5p
+LWRpcmVjdGlvbmFsIGJhY2tlbmRzIChBbGwgZ3ggYW5kCj4gbW9zdCBheGcgY2FyZHMpLgo+Cj4g
+V2hpbGUgSSdtIHN0aWxsIGNvbmZ1c2VkIGFzIHRvIGhvdyB0aGlzIGNoYW5nZSBpcyBhbiBpbXBy
+b3ZlbWVudCwgdGhvc2UKPiBjYXJkcyBjYW4ndCByZW1haW4gYnJva2VuIGZvcmV2ZXIuIEhvcGVm
+dWxseSwgbmV4dCB0aW1lIGFuIEFQSSBjaGFuZ2UgaXMKPiBkb25lIGxpa2UgdGhhdCwgYWxsIHRo
+ZSB1c2VycyB3aWxsIGJlIHVwZGF0ZWQgYXMgcGFydCBvZiB0aGUgY2hhbmdlLCBhbmQKPiBub3Qg
+bGVmdCB0byBmZW5kIGZvciB0aGVtc2VsdmVzLgo+Cj4gRml4ZXM6IGI3MzI4N2YwYjA3NCAoIkFT
+b0M6IHNvYy1wY206IGRwY206IGZpeCBwbGF5YmFjay9jYXB0dXJlIGNoZWNrcyIpCj4gU2lnbmVk
+LW9mZi1ieTogSmVyb21lIEJydW5ldCA8amJydW5ldEBiYXlsaWJyZS5jb20+CgpUaGlzIHBhdGNo
+IGxhbmRlZCBmaW5hbGx5IGluIHY1LjktcmMxLiBJJ3ZlIG5vdGljZWQgaXQgY2F1c2VzIGEgCmZv
+bGxvd2luZyB3YXJuaW5nIG9uIEhhcmRrZXJuZWwncyBPZHJvaWQgTjIgYm9hcmQgCihhcmNoL2Fy
+bTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi1vZHJvaWQtbjIuZHRiKToKCm1lc29uLWRy
+bSBmZjkwMDAwMC52cHU6IFtkcm1dIGZiMDogbWVzb25kcm1mYiBmcmFtZSBidWZmZXIgZGV2aWNl
+Ci0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0tLQpXQVJOSU5HOiBDUFU6IDMgUElE
+OiA2NiBhdCBzb3VuZC9zb2Mvc29jLWNvcmUuYzo4MTcgCnNuZF9zb2NfZmluZF9kYWkrMHhlNC8w
+eGYwCk1vZHVsZXMgbGlua2VkIGluOiBkd19oZG1pX2kyc19hdWRpbyBkd19oZG1pX2NlYyBtZXNv
+bl9neGwgcmVhbHRlayAKZHdtYWNfZ2VuZXJpYyBjcmN0MTBkaWZfY2Ugc25kX3NvY19tZXNvbl9h
+eGdfc291bmRfY2FyZCAKc25kX3NvY19tZXNvbl9jYXJkX3V0aWxzIHJjX29kcm9pZCBwd21fbWVz
+b24gbWVzb25faXIgCnNuZF9zb2NfbWVzb25fZzEyYV90b2Fjb2RlYyBzbmRfc29jX21lc29uX2F4
+Z190ZG1vdXQgcnRjX21lc29uX3ZydGMgCnNuZF9zb2NfbWVzb25fZzEyYV90b2hkbWl0eCBzbmRf
+c29jX21lc29uX2NvZGVjX2dsdWUgbWRpb19tdXhfbWVzb25fZzEyYSAKc25kX3NvY19tZXNvbl9h
+eGdfdGRtaW4gZHdtYWNfbWVzb244YiBzdG1tYWNfcGxhdGZvcm0gCnJlc2V0X21lc29uX2F1ZGlv
+X2FyYiBzbmRfc29jX21lc29uX2F4Z19mcmRkciBheGdfYXVkaW8gCnNuZF9zb2NfbWVzb25fYXhn
+X3RvZGRyIHNjbGtfZGl2IGNsa19waGFzZSBtZXNvbl9ybmcgc3RtbWFjIHJuZ19jb3JlIAptZXNv
+bl9kd19oZG1pIHNuZF9zb2NfbWVzb25fYXhnX2ZpZm8gbWVzb25fZHJtIG1lc29uX2NhbnZhcyBt
+ZGlvX3hwY3MgCmR3X2hkbWkgc25kX3NvY19tZXNvbl90OTAxNSBkaXNwbGF5X2Nvbm5lY3RvciBu
+dm1lbV9tZXNvbl9lZnVzZSAKc25kX3NvY19tZXNvbl9heGdfdGRtX2ludGVyZmFjZSBzbmRfc29j
+X21lc29uX2F4Z190ZG1fZm9ybWF0dGVyIApzbmRfc29jX3NpbXBsZV9hbXBsaWZpZXIKQ1BVOiAz
+IFBJRDogNjYgQ29tbToga3dvcmtlci8zOjEgTm90IHRhaW50ZWQgNS45LjAtcmMxICMxNTI3Ckhh
+cmR3YXJlIG5hbWU6IEhhcmRrZXJuZWwgT0RST0lELU4yIChEVCkKV29ya3F1ZXVlOiBldmVudHMg
+ZGVmZXJyZWRfcHJvYmVfd29ya19mdW5jCnBzdGF0ZTogNjAwMDAwMDUgKG5aQ3YgZGFpZiAtUEFO
+IC1VQU8gQlRZUEU9LS0pCnBjIDogc25kX3NvY19maW5kX2RhaSsweGU0LzB4ZjAKbHIgOiBzbmRf
+c29jX2ZpbmRfZGFpKzB4ZTAvMHhmMAouLi4KQ2FsbCB0cmFjZToKIMKgc25kX3NvY19maW5kX2Rh
+aSsweGU0LzB4ZjAKIMKgc25kX3NvY19kYWlfbGlua19zZXRfY2FwYWJpbGl0aWVzKzB4NjgvMHgx
+NjAKIMKgYXhnX2NhcmRfYWRkX2xpbmsrMHgxODgvMHg1YzQgW3NuZF9zb2NfbWVzb25fYXhnX3Nv
+dW5kX2NhcmRdCiDCoG1lc29uX2NhcmRfcHJvYmUrMHgxZTAvMHg5NjAgW3NuZF9zb2NfbWVzb25f
+Y2FyZF91dGlsc10KIMKgcGxhdGZvcm1fZHJ2X3Byb2JlKzB4NTAvMHhhOAogwqByZWFsbHlfcHJv
+YmUrMHgxMTAvMHg0MDAKIMKgZHJpdmVyX3Byb2JlX2RldmljZSsweDU0LzB4YjgKIMKgX19kZXZp
+Y2VfYXR0YWNoX2RyaXZlcisweDkwLzB4YzAKIMKgYnVzX2Zvcl9lYWNoX2RydisweDcwLzB4YzgK
+IMKgX19kZXZpY2VfYXR0YWNoKzB4ZWMvMHgxNTAKIMKgZGV2aWNlX2luaXRpYWxfcHJvYmUrMHgx
+MC8weDE4CiDCoGJ1c19wcm9iZV9kZXZpY2UrMHg5NC8weGEwCiDCoGRlZmVycmVkX3Byb2JlX3dv
+cmtfZnVuYysweDcwLzB4YTgKIMKgcHJvY2Vzc19vbmVfd29yaysweDJhOC8weDcxOAogwqB3b3Jr
+ZXJfdGhyZWFkKzB4NDgvMHg0NjAKIMKga3RocmVhZCsweDEzNC8weDE2MAogwqByZXRfZnJvbV9m
+b3JrKzB4MTAvMHgxYwppcnEgZXZlbnQgc3RhbXA6IDI2OTY5MApoYXJkaXJxcyBsYXN0wqAgZW5h
+YmxlZCBhdCAoMjY5Njg5KTogWzxmZmZmODAwMDEwZjYwNDhjPl0gCl9yYXdfc3Bpbl91bmxvY2tf
+aXJxcmVzdG9yZSsweDdjLzB4OTgKaGFyZGlycXMgbGFzdCBkaXNhYmxlZCBhdCAoMjY5NjkwKTog
+WzxmZmZmODAwMDEwMDI1YTY4Pl0gCmRvX2RlYnVnX2V4Y2VwdGlvbisweDE0MC8weDI2Ywpzb2Z0
+aXJxcyBsYXN0wqAgZW5hYmxlZCBhdCAoMjY5MzE4KTogWzxmZmZmODAwMDEwMDAxNjU0Pl0gCmVm
+aV9oZWFkZXJfZW5kKzB4NjU0LzB4NmQ0CnNvZnRpcnFzIGxhc3QgZGlzYWJsZWQgYXQgKDI2OTMx
+Myk6IFs8ZmZmZjgwMDAxMDA4OTI5Yz5dIAppcnFfZXhpdCsweDE2Yy8weDE3OAotLS1bIGVuZCB0
+cmFjZSA1NmEzZWE0ZmEwMGMzN2M4IF0tLS0KLi4uCmF4Zy1zb3VuZC1jYXJkIHNvdW5kOiBBU29D
+OiBubyBETUkgdmVuZG9yIG5hbWUhCgpUaGUgd2FybmluZyBpcyByZXBlYXRlZCAxMCB0aW1lcy4K
+ClRoZSBiaXNlY3QgYmV0d2VlbiB2NS44LXJjMSBhbmQgdjUuOS1yYzEgcG9pbnRzIHRvIHRoZSBj
+b21taXQgCmM4ZjdkYmRiYWExNSAoIk1lcmdlIHJlbW90ZS10cmFja2luZyBicmFuY2ggJ2Fzb2Mv
+Zm9yLTUuOCcgaW50byAKYXNvYy1saW51cyIpLCB3aGljaCBpbnRyb2R1Y2VkIGEgYnJhbmNoIHdp
+dGggdGhpcyBwYXRjaC4KClRoZSBjb21taXQgd2l0aCB0aGlzIHBhdGNoIGlzIGFwcGxpZWQgb24g
+dGhlIGVhcmxpZXIga2VybmVsIHJlbGVhc2UgCihkYTNmMjNmZGU5ZDcgIkFTb0M6IG1lc29uOiBj
+YXJkczogZGVhbCBkcGNtIGZsYWcgY2hhbmdlIiBvbiB0b3Agb2YgCnY1LjctcmMxKSB3b3JrZWQg
+ZmluZSwgc28gaXQgbG9va3MgdGhhdCB0aGVyZSBpcyBhbiBpbnRlcmZlcmVuY2Ugd2l0aCAKc29t
+ZXRoaW5nIG1lcmdlZCBsYXRlci4KCklmIEkgcmV2ZXJ0IHRoaXMgcGF0Y2ggb24gdG9wIG9mIHY1
+LjktcmMxIG9yIGN1cnJlbnQgbGludXgtbmV4dCwgdGhlIAp3YXJuaW5nIGlzIGdvbmUuIExldCBt
+ZSBrbm93IGhvdyBJIGNhbiBoZWxwIGRlYnVnZ2luZyB0aGlzIGlzc3VlLgoKQmVzdCByZWdhcmRz
+Ci0tIApNYXJlayBTenlwcm93c2tpLCBQaEQKU2Ftc3VuZyBSJkQgSW5zdGl0dXRlIFBvbGFuZAoK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
+bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
+Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
