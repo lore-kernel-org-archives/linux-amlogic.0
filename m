@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6240BC433E3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:28:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B8F5C433E3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:29:17 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C19C52087E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:28:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1792622B4D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 19:29:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DOywwGaT";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="cxhJv2mR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C19C52087E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uPjIISZ+";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="NRU/Za1E"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1792622B4D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qVi/Xuy+gBNs6lFGJ05KPEhcS6TVLl4QZR3hGxWtuic=; b=DOywwGaTWOf/WC4zQh/hI240CH
-	APXfi/oY86p/4y+/noE9uIVQpIqoGZ1m4Mj9D78Jea4rNhjBLX/s2u2/72Wk1zMmQqe3J8ruOZ1/6
-	QsQB1bblS3sK3uMi2aLHWA5S2ELS3QORzo+O47wYTU4qmDLUbS/Xg7O0bmoMqA7xyT7K2KhiQV9fn
-	wfRCo2ZKsI/DONa0mVBx/q/wk8CeoNTL0NuwE7saNS40SQ0N1NWnb5gKEESDY6x/RDp09kMqR5es1
-	gQb35htcnwzZrHZhBrBG6dcg9Di5PZ/0lPMlpJEyqAjZautfXGMMEX09d1DYjZPT/umqSeJHKqoSE
-	AaWS8h+w==;
+	bh=6j/29B8jcTj2zU9AjwoulixrUxL22PqIv/wQ3swizhM=; b=uPjIISZ+dl3UY2e1FlhWq1xKGd
+	KtbakVGChk8b38hROoGlH1dRJ/RtIQbFo2S2+HJOl1uLiEQ0m2TeLN/cEtwlR6NDT9Aub2U1SpyXI
+	AVFcKKkUWqMzMBL8nEQAqXClnt/AiScab9r0NtV2u1YAUYUvC5V930YMBdEeYDvAQZ3s6Zvm8yzeR
+	LAM7BuOnoZScN++VTfwzBkb/bqxmZ1ZLVv2qTrvLc4WxRNvZrY1poJkMwWR4yz8E8nANGcOk2T5aL
+	czs+LyGdDJZA0GEzex7m2orepQx9iH5XuGQgeLSpPMwivfCrvNvnER3V1tWJZBjfcS2QLDe4fcpXN
+	KQOts/mg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBNZS-0006Ob-Mu; Thu, 27 Aug 2020 19:28:26 +0000
+	id 1kBNa4-0006gj-Bf; Thu, 27 Aug 2020 19:29:04 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBNZ5-0006E0-Ja; Thu, 27 Aug 2020 19:28:04 +0000
+ id 1kBNZC-0006HH-90; Thu, 27 Aug 2020 19:28:11 +0000
 Received: from localhost.localdomain (unknown [194.230.155.216])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 9BB10207DF;
- Thu, 27 Aug 2020 19:27:56 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7F4C222BEA;
+ Thu, 27 Aug 2020 19:28:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598556482;
- bh=63gj/uTCsFYMkt/AT+w/CDkwgSGu5Zbr+ERRB5p1wnM=;
+ s=default; t=1598556489;
+ bh=cd1km85U5G2EJ8pOjILLlqj3JvMWasUe/TU7d+n3MGs=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=cxhJv2mRkaAjMGY7eC8aNZGedE/iwVcclAU3napyra8QfmIEYonkfRWoflQ/CCNi4
- MBTT9/iN4vHxrRhLR7eBaVZ8tNSc7ZHXRkyrhaPEhwd8cPG6xcpUvlE3tHZ+7n/062
- M9BToTnR2Z7Qn15KmL16A336fkhvJNaNX6VtP/EM=
+ b=NRU/Za1EEG5VkSgpYbpZUxJdmcsqIpdhv5CVwdFBEWrvZJnbhGtA7LIPPYulIaqyF
+ 3uuKAt/dgdkeTaob+YgsRseLvVaUvCgnlfbap5wwe/Z/Rb3c5kYvsOTJGrDaJs3Sf3
+ hg7dqoXaKAmsmSE6sj4iHOfH+s7JZZAgPt/hmsTE=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jonathan Cameron <jic23@kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
  Lars-Peter Clausen <lars@metafoo.de>,
@@ -70,15 +70,15 @@ To: Jonathan Cameron <jic23@kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v2 06/18] iio: adc: meson_saradc: Simplify with dev_err_probe()
-Date: Thu, 27 Aug 2020 21:26:30 +0200
-Message-Id: <20200827192642.1725-6-krzk@kernel.org>
+Subject: [PATCH v2 07/18] iio: adc: rcar-gyroadc: Simplify with dev_err_probe()
+Date: Thu, 27 Aug 2020 21:26:31 +0200
+Message-Id: <20200827192642.1725-7-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200827192642.1725-1-krzk@kernel.org>
 References: <20200827192642.1725-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_152803_867044_16816E85 
-X-CRM114-Status: GOOD (  14.62  )
+X-CRM114-CacheID: sfid-20200827_152810_478955_662D1035 
+X-CRM114-Status: GOOD (  15.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,28 +100,34 @@ Common pattern of handling deferred probe can be simplified with
 dev_err_probe().  Less code and also it prints the error value.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- drivers/iio/adc/meson_saradc.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 93c2252c0b89..a9d06e8a576a 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -719,11 +719,8 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- 		if (ret == -ENODEV)
- 			return 0;
+---
+
+Changes since v1:
+1. Wrap dev_err_probe() lines at 100 character
+---
+ drivers/iio/adc/rcar-gyroadc.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/iio/adc/rcar-gyroadc.c b/drivers/iio/adc/rcar-gyroadc.c
+index d2c1419e72a0..e1a7c93fc2db 100644
+--- a/drivers/iio/adc/rcar-gyroadc.c
++++ b/drivers/iio/adc/rcar-gyroadc.c
+@@ -495,12 +495,8 @@ static int rcar_gyroadc_probe(struct platform_device *pdev)
+ 		return PTR_ERR(priv->regs);
  
+ 	priv->clk = devm_clk_get(dev, "fck");
+-	if (IS_ERR(priv->clk)) {
+-		ret = PTR_ERR(priv->clk);
 -		if (ret != -EPROBE_DEFER)
--			dev_err(indio_dev->dev.parent,
--				"failed to get temperature_calib cell\n");
--
+-			dev_err(dev, "Failed to get IF clock (ret=%i)\n", ret);
 -		return ret;
-+		return dev_err_probe(indio_dev->dev.parent, ret,
-+				     "failed to get temperature_calib cell\n");
- 	}
+-	}
++	if (IS_ERR(priv->clk))
++		return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed to get IF clock\n");
  
- 	priv->tsc_regmap =
+ 	ret = rcar_gyroadc_parse_subdevs(indio_dev);
+ 	if (ret)
 -- 
 2.17.1
 
