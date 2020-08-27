@@ -5,20 +5,20 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 586D1C433DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:00:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DC574C433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:00:35 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 275D620825
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:00:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A37A6207CD
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:00:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="o3bUlXTf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AjsVfQcb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 275D620825
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="b3eA4iG7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H9Avjr9T"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A37A6207CD
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,59 +27,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=rZVzKlA1VpokjPfdfPL0VXmeq+VrL4+A3J81F4+lG8w=; b=o3bUlXTf3dMsUmdAvUtHYzAxD
-	0V3KdsNHWzMuY83Tisc4IpIjR+BdSuUHEFQ1nl9b6eSowzg2iriiVbDFl5B4vPYQbgnmeOMxFJaxI
-	IooO2/NG5LjEHRChb+mzi7IC5zr5WnCBwPQyFPG1uJ9dT9pnhzVVpPDw0BoQt7oMoXciae4Hn8BRF
-	52NcsBrnOJDzxFpNTkOih7fHxFVgEwX9LqiZXTQKTeqbHgkbRroAp7KRZmLKgXxkNnODh9jC1fT5M
-	ycSi9cibNMRoZ7Z1rsO2Hv96WMkbH9Dcbxvzq+q0qdGzz7eCHHosY+O8lA73VdbTBD/FqDwdZFfbD
-	klwn84HKQ==;
+	 bh=h19dL8Bz+RMgAfLIG7ZTiZSh5YwqYoBAALDhULHdonI=; b=b3eA4iG7jYByJkbyZLMl/exg6
+	vaNWQMqTdZ4DlyslyXBUrNEcNW1Lr182qPnli3wlYNcibe54RWKKHUKOgqoPMROcVBI5s1ewdwb/C
+	aQ89BO6akZyCrpUpNn3jscX4wB1hFz2Ua4lhrUXp+C7mjHKe1tVm7QceIvqgIh9Y6xSpnNJIMzCox
+	2Y4Jlmggm7gwpgh4IGX/ILqV1NkmhVkfBeJLks3ZBcGLkIWVATaf7gV04FmPpjHbpoVnagxID3MzI
+	TUf2Qt7x6cLxl8KcrNJAXsr/Rc5rmYQZoJhV3z9BOdjgJcgNg15Ykn8iouFnzMumyZRVXTzabJIyt
+	TDCQqIp9Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBO3x-00029p-P9; Thu, 27 Aug 2020 19:59:57 +0000
-Received: from mail-pj1-x1041.google.com ([2607:f8b0:4864:20::1041])
+	id 1kBO4T-0002K6-Fj; Thu, 27 Aug 2020 20:00:29 +0000
+Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBO3s-00027e-NB; Thu, 27 Aug 2020 19:59:53 +0000
-Received: by mail-pj1-x1041.google.com with SMTP id z18so3210227pjr.2;
- Thu, 27 Aug 2020 12:59:52 -0700 (PDT)
+ id 1kBO4N-0002Hd-4k; Thu, 27 Aug 2020 20:00:23 +0000
+Received: by mail-pg1-x543.google.com with SMTP id g1so4110338pgm.9;
+ Thu, 27 Aug 2020 13:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BtW/ozpx4qaFKtR4WdRiyJH+a5pa+/rdp0E0zYCBtiw=;
- b=AjsVfQcbbs8m2CmFrHV0gwxOPDDFel6Dtuz0EVsMe9pOvePSe2KyCjg5R54J213aA0
- dYs7dOdAsqUXhUKoWNElRVtmUGHCALn0WOiQUKE3W6V6pIo5TVmtY5wvgoJScOJBWpF2
- ZwroeOfqHbSXgH9NOC4gFVc4jTWoND5bcI6V09T8yOcf2ohLyiHpQVEaPEZNqdAIqkPI
- UeZlWWC0M/SJWy9F5wyNplXtqhJHSmtWHVsSFfV7wIy865aw2DytyMKKrm30aAaK0iG0
- tmW4yhgyhYPR7janwCUFLJmWVHIfAqhea6q549D12zbhnsK/fJvsZeTjhzSky3l/gGR3
- 9QZQ==
+ :cc; bh=J7FsTR8MREGabBVt8LZ1j+20Xw6tV3sc64t+TrTmz1s=;
+ b=H9Avjr9TBzYfwPOkz9EdvQOD/Hp2R/foNgj3n1RhDeUBaZ+T5lK3N+jmOVnF21fOPt
+ cveijGliKTaLjmDGdxLWA8yVPczBusBiXh8fEduLfVMgyZ0AxHteuhJDmjK+uvJjLgPq
+ hM8m0PARzvkixd1ZpgNhwBjSF1Ql6JaTzlrCF6hmmq+YjKNxQIvus1kjO8clKsH8C/t2
+ Nr82ezEM0MgwJqZL7nrR3nrQCfjaqM4GPuz/FwXoB+2fw+2pY2HJ58nma+QCs85J+WsJ
+ mBjjdnKmcvQsh0zyRUoV3RFVkHHilb03CsDzzWN0tKOzpTSWidOkEcJRc4N+Npaqr7Eh
+ iyLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=BtW/ozpx4qaFKtR4WdRiyJH+a5pa+/rdp0E0zYCBtiw=;
- b=aBI5V3Yx42atuQuzND9Vlj/fx4zvfgDgnMJH5M6IGQFkGGdk8fteiaH8LLtjGraZJ3
- I3Cok2BT4Okzk2vqJnasQfLG8PNWhm2UBnz8cAWDxHcwJ6evVWdKi2qDEkXziBs0XmKN
- Lo+lTX0hP1PT7BRRTLc3XCs7lxa8Sd+ntuONIYUHY8X1BcjDGNKhDA8nNCnnyPeQ1KfQ
- sZfHYjvaq3R2IaQNOOwcno7fWw+K/S1bhaD1peyZl6vaUg+mInndvsoVuJM0Zneuksct
- nQ+fE9FywYL0cR/Xre1W0OYjZ7pvIrrsOHMQ3EQdK7MrNSKtfH94CARJxuy7QCSeXiXJ
- 9LNg==
-X-Gm-Message-State: AOAM532eYhzfBRZILvN0QA9stk5NL//hG6m4TCTQvr6Z4fXNu+lDom11
- Pfv0f63eYzW4jTq9KZxVU96qdecc206sGgC4P6Q=
-X-Google-Smtp-Source: ABdhPJztdvx7l/Bma3wdHdw/Knt4y7nn4/yOSwjk8CneJT6blQkPrpb2KiIZIrG26U/H2iMIqzfbq2Fkdjt5j2df1p0=
-X-Received: by 2002:a17:90a:2c06:: with SMTP id
- m6mr433859pjd.129.1598558390619; 
- Thu, 27 Aug 2020 12:59:50 -0700 (PDT)
+ bh=J7FsTR8MREGabBVt8LZ1j+20Xw6tV3sc64t+TrTmz1s=;
+ b=kYb2JSFWBMDcP4aaa5gNwwrhc42a53FF6V2ukG4oTuxwomsCOfNhQ0Q/08yQ0c+/1s
+ ZaORf+7EZ7OKO8gPnuN4APS5JmshvvsMnfD0kzMYBCQhoqbr7/dI+Z3C+nosSm6f2a3b
+ OVRoFSUAHrDeCnsYT4VQp/cc46nPCNdFkJBEHNcPfii9v+Wqu2vM21T/IWr6bVgYtXeQ
+ dypKfXAq5LuWoAwoAb2C152WwvyQF1pMpkQuEzlla4zt5nwWRrJOvUnhRL0ccH79dTZN
+ oL0qwVstoyrtTKUZGXmSV/Xn2mcL/wjyL7F3FI5tCLENYCMMyB1Nr//pk2vSiQGPgh4u
+ dCcg==
+X-Gm-Message-State: AOAM533pAqSMKmC9XjVtSVZLU49q8CFuKa2nKnqHqQBrYjoZ8kxTlC6P
+ 3PuyopXn6WItM/S0jFO0jBGaEnK0oge8ZRBsE2U=
+X-Google-Smtp-Source: ABdhPJzMVgucetaUrBARc94LCHK9ltEz39VRjcWxPvDTspL6QeAi4Dc29DqGVOxpjkKfh4YtQxfRbS/CdGszBd3FklY=
+X-Received: by 2002:a63:f24a:: with SMTP id d10mr15673608pgk.4.1598558421035; 
+ Thu, 27 Aug 2020 13:00:21 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-13-krzk@kernel.org>
-In-Reply-To: <20200827192642.1725-13-krzk@kernel.org>
+ <20200827192642.1725-14-krzk@kernel.org>
+In-Reply-To: <20200827192642.1725-14-krzk@kernel.org>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 27 Aug 2020 22:59:34 +0300
-Message-ID: <CAHp75VfByooMDK0bMGG-EiYg=x5NtYaweAyeJ3CXH38j_xPw9A@mail.gmail.com>
-Subject: Re: [PATCH v2 13/18] iio: imu: inv_mpu6050: Simplify with
+Date: Thu, 27 Aug 2020 23:00:05 +0300
+Message-ID: <CAHp75VdQYzuiXBXYBrwaLKzZDZWtyT1_kLAWVU0G7fXTi8fAGQ@mail.gmail.com>
+Subject: Re: [PATCH v2 14/18] iio: light: isl29018: Simplify with
  dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_155952_812491_048D137A 
-X-CRM114-Status: GOOD (  19.45  )
+X-CRM114-CacheID: sfid-20200827_160023_291851_A77A9873 
+X-CRM114-Status: GOOD (  19.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,42 +120,29 @@ Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  drivers/iio/imu/inv_mpu6050/inv_mpu_core.c | 20 ++++++--------------
->  1 file changed, 6 insertions(+), 14 deletions(-)
+>  drivers/iio/light/isl29018.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-> index 3fee3947f772..18a1898e3e34 100644
-> --- a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-> +++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-> @@ -1475,22 +1475,14 @@ int inv_mpu_core_probe(struct regmap *regmap, int irq, const char *name,
->         }
+> diff --git a/drivers/iio/light/isl29018.c b/drivers/iio/light/isl29018.c
+> index ac8ad0f32689..2689867467a8 100644
+> --- a/drivers/iio/light/isl29018.c
+> +++ b/drivers/iio/light/isl29018.c
+> @@ -746,12 +746,9 @@ static int isl29018_probe(struct i2c_client *client,
+>         chip->suspended = false;
 >
->         st->vdd_supply = devm_regulator_get(dev, "vdd");
-> -       if (IS_ERR(st->vdd_supply)) {
-> -               if (PTR_ERR(st->vdd_supply) != -EPROBE_DEFER)
-> -                       dev_err(dev, "Failed to get vdd regulator %d\n",
-> -                               (int)PTR_ERR(st->vdd_supply));
-> -
-> -               return PTR_ERR(st->vdd_supply);
+>         chip->vcc_reg = devm_regulator_get(&client->dev, "vcc");
+> -       if (IS_ERR(chip->vcc_reg)) {
+> -               err = PTR_ERR(chip->vcc_reg);
+> -               if (err != -EPROBE_DEFER)
+> -                       dev_err(&client->dev, "failed to get VCC regulator!\n");
+> -               return err;
 > -       }
-> +       if (IS_ERR(st->vdd_supply))
-> +               return dev_err_probe(dev, PTR_ERR(st->vdd_supply),
-> +                                    "Failed to get vdd regulator\n");
+> +       if (IS_ERR(chip->vcc_reg))
+> +               return dev_err_probe(&client->dev, PTR_ERR(chip->vcc_reg),
+> +                                    "failed to get VCC regulator!\n");
 >
->         st->vddio_supply = devm_regulator_get(dev, "vddio");
-> -       if (IS_ERR(st->vddio_supply)) {
-> -               if (PTR_ERR(st->vddio_supply) != -EPROBE_DEFER)
-> -                       dev_err(dev, "Failed to get vddio regulator %d\n",
-> -                               (int)PTR_ERR(st->vddio_supply));
-> -
-> -               return PTR_ERR(st->vddio_supply);
-> -       }
-> +       if (IS_ERR(st->vddio_supply))
-> +               return dev_err_probe(dev, PTR_ERR(st->vddio_supply),
-> +                                    "Failed to get vddio regulator\n");
->
->         result = regulator_enable(st->vdd_supply);
->         if (result) {
+>         err = regulator_enable(chip->vcc_reg);
+>         if (err) {
 > --
 > 2.17.1
 >
