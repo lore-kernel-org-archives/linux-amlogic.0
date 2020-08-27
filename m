@@ -8,17 +8,18 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B362C433E1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:02:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C45BC433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:10:23 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C7DDF2071B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:02:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 01A7620737
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2020 20:10:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="2qv9B/od";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dTu6o2U3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7DDF2071B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oiVayILf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="SQC6zE+/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aHv8XBuv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 01A7620737
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,58 +28,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=7Hn0q/IwWtFUABh84BqXAQ22+LeeHh5gLqqr5vy0XqI=; b=2qv9B/odHp3M2exCYUmrFF5qr
-	P2ynE71cNw+3Xpk/SON25FaGLv2fTai071C/LCiStJhFtF66Y9bB3cG0Aq/4/TnKEobN8Th6a+1DA
-	SMmONTDHkJ7XiVoc7qjY3RUH7RimjprvU2AaDT4yjXydmXlaEUxIXCdyErlOHD0aBL9d31xeqh0pr
-	k+LUBwxJwWQ90OxiyHuFo/dNPVdbyRnmlW0EPnYcLtNu9MWSJwpJkUAFR8ICD3ULooDIpo3oI3MIp
-	BXiHdR5YGdDr4V0exGsA3p+QEABFfK59WvEH8eXBbYi4aGAJ+/O0neLY/cHYbSGcgSlstmSY+rCGT
-	uItHR3J3A==;
+	 bh=5eOjoeq17rEmcFNV1cK3W3iUCfTBphpuFJQZ0zPc20E=; b=oiVayILfkCaAE9gCR7bLvoGjm
+	1JsiwcPg58talcnZM4c652q1wc7wiOQ1bwrwGIsC3IL4oQ1g+0k8F3IAcqXH46ul5f4SOM1H1+v/y
+	52zE6rfO/tLW5Ra6jZK+vytEHmi48M44pM3v2tH9aDfXHs3m0AOiWMLwwdNogPZECDxnqfKaNhAj2
+	Z9lMBSfUAL4JrKS2x7r5xVl9IPsJ8FWxrIqmlafU1qzXemJYp/SXR5SG4JS/BLH8iYJYJd1Pq05C/
+	4hq9IAr/e+sDbWgoLt/+ODB2sFALFp9n368zoiLswxC+YhvxUJQzbdYE9chSZK2R+zDAsSXFFt6s0
+	K5I7UfNQg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBO6V-00039e-1z; Thu, 27 Aug 2020 20:02:35 +0000
-Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
+	id 1kBODu-00053L-JB; Thu, 27 Aug 2020 20:10:14 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBO6N-00035c-16; Thu, 27 Aug 2020 20:02:27 +0000
-Received: by mail-pg1-x541.google.com with SMTP id o13so4142220pgf.0;
- Thu, 27 Aug 2020 13:02:26 -0700 (PDT)
+ id 1kBODW-0004rj-4B; Thu, 27 Aug 2020 20:09:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Type:Cc:To:Subject:Message-ID:
+ Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=zKJLemoVLYYxLBYCuDxkTU6hysuqtvkOfMWKltUpHmg=; b=SQC6zE+/ZqcnN96n/cjpDrLqlS
+ todoPzIwnI98lgrMYxb9nxQkvQl4NpOZacXxq5LYJbzg8bC5b25uNgudTavr/Nbu23eu5n4Qd23O5
+ skEeErG6CY7jUazRJD5czk2CHhnOLiORmVnI9VapNfIB3zJjtYRKTcahW+/nxgIvqjYSmZ6F9I8jo
+ ogYycnDY4WFTJiVoHZ4SMwdxRnVnjh3It5l5lBwaJazgu8ePcwnRg3AM/i6KKXF2SVYZSHg3xDYbq
+ zAI8Qopvpp7d9hOUcJU2jP07tr64G5LySu7KWzDuGBasAyOcFxda0pRrgh4XNdjM77ZJjZf0p7sBl
+ u8DrwTNw==;
+Received: from mail-pj1-x1043.google.com ([2607:f8b0:4864:20::1043])
+ by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kBNzs-0007cN-JM; Thu, 27 Aug 2020 19:55:47 +0000
+Received: by mail-pj1-x1043.google.com with SMTP id n3so3096335pjq.1;
+ Thu, 27 Aug 2020 12:55:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=jZGo/LXMWA743P+olH7TRkE+L3lrjbqKbRZ3LxAQjPo=;
- b=dTu6o2U3wIn+j1v+r3MXNSN35FUN+T2Ga+C6IEZhOqyDDBfBE3A597INaQykc/zK5N
- e29lSW8oIy3von1EDSHzrXAVeRMAvW1ed+lYOELqagYL5sR2inJeqwfBbqXV4FK6sCMk
- Hfm42l4h/LTOWilsOGK7JOMAPAdmKuTI7ri15EU81fGomSsgujOEykmO3j5u3b8d00JT
- y6G7L3ZjYiblAjxovxtPZnHCI16Md4+vLhzEs1tK7lNien1ry4pAHrXAiN3tLj6C5xlc
- yK8rJWblvVYrsonzu63yJ/EgonbAcYBoDqsF2KrONQ8csAQTA+38zWBBwcTvD1DPUifV
- GLSg==
+ :cc; bh=zKJLemoVLYYxLBYCuDxkTU6hysuqtvkOfMWKltUpHmg=;
+ b=aHv8XBuvf3mu31R7gKeKtuhgl1EoOsKrQs5CzuB4CzH9W+US75wwPQkCadexNhNh8Y
+ 0aNGjmQg3w5t6xy7olIU3pLgnxAKjeBpK4hvGZeHopw6+XaKY3sCmgG8BERcRAN5hbty
+ o90oICnyLq0PNZgSAc9Vx68ynwtaBo929qt8T5KVuCBUcgZ8iN8NKp4zsjEHhXsubYNi
+ i20SB1o6xkpoYW5/YSmIBPyAI7ziv/N6WHGyTfxG80rFCPalXkVksf0FNDPmLSK41pL4
+ NumTs+7qpXLhoWktPnOAmSOHDxt0X0RQs0eC41ysk8HCQtMo5qeBU9DzR1qJh77FoN7c
+ QTYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=jZGo/LXMWA743P+olH7TRkE+L3lrjbqKbRZ3LxAQjPo=;
- b=eOO+FwzAs31dfUkn8T4B/tBd6zg+l4/0XW5mku+ZOmXIbfJ63415mel0wF94/uaoP3
- DeJAt/5lSlbzOe/x+TPT+0Tr9v1DfRp8tFysvq4qP1/Gm8jinrIavn1syO89IqRKr3tQ
- 6sW2RWa4AXZLnOVtzpD6foSMg30Q/jEkSpkl3RkQ9xdDetPlQ81CAWEnP3XFsXuEB6go
- 1ujdvIDYunA7zoui8BLX6ntTwTGiNLqZxXzJu63Dr+j1RvWPdZf2M5ctAjJEH0bBePeH
- npXxKNKbpRT58O6WM4g3SmtA7ZJsTtyTb9BoANngazXZ9BOqr+y6vlgsXZMEc1u4dzG7
- FrYA==
-X-Gm-Message-State: AOAM532s5xFmM07DE3LpSpZG13Dvu11R1DkwcvB40LWt1eiBFw0T2aN6
- 50/KPQHgSBoaVzA1IKRrNBGwr3Qcyz3SizCiZuk=
-X-Google-Smtp-Source: ABdhPJyrJVOQaAjVOgzTH9Ia08ZxKIpsXNc3Mfx5rESAlYI8qMYgqJ1+s8Yh5E+7TlXUKU+iWqHjdU0n6g2EX6jm0oE=
-X-Received: by 2002:aa7:95b8:: with SMTP id a24mr17478277pfk.219.1598558545190; 
- Thu, 27 Aug 2020 13:02:25 -0700 (PDT)
+ bh=zKJLemoVLYYxLBYCuDxkTU6hysuqtvkOfMWKltUpHmg=;
+ b=h6DPjkDiEfWipJfaXnW9vF+NMe3G0oV32yoi/N8R4QaBO094QHT54APDug+PQLZz8i
+ 3Hzn2h/14VMYB1OWQVsON1jz5s/xtRTZkc8Nb7gD+ut93aXYDxVpuYXUcbDLHoFSfh8Q
+ RiMAuBe3lqhhlheJexw9mjOpJtGTuaNORRn9eQvsSiOmWJzycrNHsegOBC7qdoDyPdty
+ 4nUx0kKwbHLkOfC0OYZ4b9WGB4F9IzsFQxqVgtlIkXSsRvum3n4wrAvZv6bMWNZZDSOH
+ YZ4eqmIfRt8KJwDSkv8LH1TncEGdK4qGWeRlj/JsS3oWRTm7tT+Fofel37qqWa1Ak+Nf
+ V+lg==
+X-Gm-Message-State: AOAM5322XYLaOd/O/S/nUEySGhMKYZJuwqKh2uvX6ujz2tExZ2VC1vqs
+ fYJa/kQkuggoNihfGTSY1oDbuBOF2cjCTvowKgE=
+X-Google-Smtp-Source: ABdhPJzWsp6WVsNzpr3PrSg5dBnXCuc4a+cBQMZrivfL7x35pwluAfdNM04pSMxxwhkDuruCwpYH6X8QYAVfVIkpaUg=
+X-Received: by 2002:a17:90a:e7cb:: with SMTP id
+ kb11mr384454pjb.181.1598558141774; 
+ Thu, 27 Aug 2020 12:55:41 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-18-krzk@kernel.org>
-In-Reply-To: <20200827192642.1725-18-krzk@kernel.org>
+ <20200827192642.1725-11-krzk@kernel.org>
+In-Reply-To: <20200827192642.1725-11-krzk@kernel.org>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 27 Aug 2020 23:02:08 +0300
-Message-ID: <CAHp75Vc4R_PkVSYFGNr0UO5yJ+dLGhVV-G7vznGnNu_aCVoTVQ@mail.gmail.com>
-Subject: Re: [PATCH v2 18/18] iio: magnetometer: iio-mux: Simplify with
+Date: Thu, 27 Aug 2020 22:55:25 +0300
+Message-ID: <CAHp75VcQHTeAtw7zKkie+9re_GRpgdDKrR+Fq-77+mVEYDcFkw@mail.gmail.com>
+Subject: Re: [PATCH v2 11/18] iio: chemical: scd30: Simplify with
  dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200827_160227_156028_E1E428BA 
-X-CRM114-Status: GOOD (  19.69  )
+X-CRM114-CacheID: sfid-20200827_205544_773491_FAE1D5A6 
+X-CRM114-Status: GOOD (  17.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,28 +105,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
+Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
  Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Tomasz Duszynski <tomasz.duszynski@octakon.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  linux-iio <linux-iio@vger.kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com, Marek Vasut <marek.vasut@gmail.com>,
- Alexandre Torgue <alexandre.torgue@st.com>, Kukjin Kim <kgene@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Kevin Hilman <khilman@baylibre.com>,
+ Marek Vasut <marek.vasut@gmail.com>, Kukjin Kim <kgene@kernel.org>,
+ Beniamin Bia <beniamin.bia@analog.com>,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>, linux-amlogic@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, Peter Rosin <peda@axentia.se>,
- Jonathan Cameron <jic23@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Hartmut Knaack <knaack.h@gmx.de>,
+ Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Aug 27, 2020 at 10:29 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Thu, Aug 27, 2020 at 10:28 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
 > Common pattern of handling deferred probe can be simplified with
 > dev_err_probe().  Less code and also it prints the error value.
@@ -119,28 +135,37 @@ On Thu, Aug 27, 2020 at 10:29 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Acked-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
+>
 > ---
->  drivers/iio/multiplexer/iio-mux.c | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/iio/multiplexer/iio-mux.c b/drivers/iio/multiplexer/iio-mux.c
-> index 6910218fdb00..d219d4a86657 100644
-> --- a/drivers/iio/multiplexer/iio-mux.c
-> +++ b/drivers/iio/multiplexer/iio-mux.c
-> @@ -354,11 +354,8 @@ static int mux_probe(struct platform_device *pdev)
->                 return -ENODEV;
+> Changes since v1:
+> 1. Wrap dev_err_probe() lines at 100 character
+> 2. Add Ack
+> ---
+>  drivers/iio/chemical/scd30_core.c | 9 ++-------
+>  1 file changed, 2 insertions(+), 7 deletions(-)
 >
->         parent = devm_iio_channel_get(dev, "parent");
-> -       if (IS_ERR(parent)) {
-> -               if (PTR_ERR(parent) != -EPROBE_DEFER)
-> -                       dev_err(dev, "failed to get parent channel\n");
-> -               return PTR_ERR(parent);
+> diff --git a/drivers/iio/chemical/scd30_core.c b/drivers/iio/chemical/scd30_core.c
+> index eac76972f83e..4d0d798c7cd3 100644
+> --- a/drivers/iio/chemical/scd30_core.c
+> +++ b/drivers/iio/chemical/scd30_core.c
+> @@ -705,13 +705,8 @@ int scd30_probe(struct device *dev, int irq, const char *name, void *priv,
+>         indio_dev->available_scan_masks = scd30_scan_masks;
+>
+>         state->vdd = devm_regulator_get(dev, "vdd");
+> -       if (IS_ERR(state->vdd)) {
+> -               if (PTR_ERR(state->vdd) == -EPROBE_DEFER)
+> -                       return -EPROBE_DEFER;
+> -
+> -               dev_err(dev, "failed to get regulator\n");
+> -               return PTR_ERR(state->vdd);
 > -       }
-> +       if (IS_ERR(parent))
-> +               return dev_err_probe(dev, PTR_ERR(parent), "failed to get parent channel\n");
+> +       if (IS_ERR(state->vdd))
+> +               return dev_err_probe(dev, PTR_ERR(state->vdd), "failed to get regulator\n");
 >
->         sizeof_ext_info = iio_get_channel_ext_info_count(parent);
->         if (sizeof_ext_info) {
+>         ret = regulator_enable(state->vdd);
+>         if (ret)
 > --
 > 2.17.1
 >
