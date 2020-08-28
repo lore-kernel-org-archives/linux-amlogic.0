@@ -2,78 +2,159 @@ Return-Path: <SRS0=gNbl=CG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46722C433E2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 06:25:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 838ADC433E2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 06:36:28 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0EFA320757
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 06:25:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3DBB2208CA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 06:36:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dsEvVafG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0EFA320757
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ddygW62T";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=invensense.com header.i=@invensense.com header.b="ag/+CjI3";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=invensense.onmicrosoft.com header.i=@invensense.onmicrosoft.com header.b="K0OybrXN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3DBB2208CA
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=invensense.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=dwerVvt9oTeuL2wRF5Zg+5J1A432Eq4sSaxWGf8YDEo=; b=dsEvVafGnNJScMwknMevCh9NJ
-	kwmLp9pH1dZvf5Z1Ax+mBMgBvhSuTILeF7tsPqH6nvaydHsoh6c722gJGQQm9SzA4h5DBOfvrTt/W
-	QbGrnkLozClkqaisE/wdovMB67hmp58TNlZ+Yrc1Q9fTjOkY6FbDUUKB9KTockhtTAVldWw7lbT7B
-	2p1tql3PZvYHq8C40fVRov+N8AKPRbAdwRKuFUs9xQ85aWIAc99rFXQ47MEX+U0uot8syE4sOEAWn
-	9Vx+hgV/obI1W6z39BZPz+fXGtvEgAJQu3QjHXm6bWyaacQXpFqQ8yDenKqCkLAiVRkJSXJS0MSuB
-	Xml5XUnWA==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:MIME-Version:In-Reply-To:References:Message-ID:Date:Subject:To:From:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=9EyojYIsf1gSPLysqQ7kd49owrWNq572vQEU5FPrHP0=; b=ddygW62T9eBT5T+cSXeDtPRQKY
+	pbdkOzhVw9L9Hvum+bf3HOHq/KJIUSnBWQcl/OHo8TSI0C/eCWIEBfwgPhbgw9XUHTBc8/nJTc2Jf
+	Lv9VQyxSYUzMV2tVtYzsBprFqnfxVXS6THXk11QZdfXupnRSBdy9oo1tzjCMjlauyt42vXRjAp8r7
+	WCk5pUSiXM4gLKVSi2NzTPx6BXhOgo6oEJVsi0/NnFkiaLohISbDkyH9pGrUZZNE2yxWIspJYZXZ4
+	54eP/ev39gYBntisFhFAIc4v0DiEAak2q8joh2mpOLFSbDuZjufEZk2z/YCB8PQ5xH6gdrI3LRIkp
+	sYtsBc0g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBXoi-0007D7-2J; Fri, 28 Aug 2020 06:24:52 +0000
-Received: from mail-ed1-f65.google.com ([209.85.208.65])
+	id 1kBXzm-0008OK-Nv; Fri, 28 Aug 2020 06:36:18 +0000
+Received: from mx0b-00328301.pphosted.com ([148.163.141.47])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBXoe-0007CK-2C; Fri, 28 Aug 2020 06:24:49 +0000
-Received: by mail-ed1-f65.google.com with SMTP id v8so139490edl.7;
- Thu, 27 Aug 2020 23:24:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=p5CxlDCkzVcslzoI2Y1jCiSF6kba4WwnH5Gi/cefvyw=;
- b=pPhQoMmWefH5F+48Q7sWQtW2IQkwshxX+IGxvh2umdiiBS3MpBtEILN3pxXuh4mBwD
- 7/CQavVzp3wxev20IFOr0CCEwPLj6bkkhbSxJUDeAlji+N54XvTTL6BsTnq89hKCqKnS
- 9EmSE/8BO1lmErt0Y0shy9AMm54ghGnjcnDXJzPJdp74Bm+b+TChJ3Y/tPG6bEb1F1Qt
- FzRMthAfNRSRQA9qWTUcNtTKan8lYUJG5uoXGnxP2U+ZpOZMNKBL62Xfces7KEmzgDX+
- F3oKhecwH9ekMugjLbFsBYQ7wGK0NMMh+1xjeMbR5p6TaJwWcq1NEJja7XxStNKt9FSJ
- fcjQ==
-X-Gm-Message-State: AOAM5319D/Zmbri6t6/bEHpRZen6ccSRBcFq0DOaGHxXc/SE3d7o9RUO
- OdzFl2Y0b4bzd38mAm7JU3U=
-X-Google-Smtp-Source: ABdhPJxeW0KD9hKV2DDa/EdMjU+5aNFXnsb+vG7w/NJJBOIDbbnxf68rltSFEJDK0Zq+nf99uGbtHw==
-X-Received: by 2002:a05:6402:2039:: with SMTP id
- ay25mr310806edb.87.1598595886637; 
- Thu, 27 Aug 2020 23:24:46 -0700 (PDT)
-Received: from pi3 ([194.230.155.216])
- by smtp.googlemail.com with ESMTPSA id w20sm3809310ejc.77.2020.08.27.23.24.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Aug 2020 23:24:46 -0700 (PDT)
-Date: Fri, 28 Aug 2020 08:24:43 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Peter Rosin <peda@axentia.se>
-Subject: Re: [PATCH v2 09/18] iio: afe: iio-rescale: Simplify with
+ id 1kBXzk-0008Na-B7; Fri, 28 Aug 2020 06:36:17 +0000
+Received: from pps.filterd (m0156136.ppops.net [127.0.0.1])
+ by mx0b-00328301.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 07S6STNB000878; Thu, 27 Aug 2020 23:36:04 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=invensense.com;
+ h=from : to :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pfpt1;
+ bh=s3oNc/aroHRT0LGnJ6MatEAtknT0o3rAkQWAPHki2hM=;
+ b=ag/+CjI3qGXmaV3HPJkJSZ1MgRj3K6OLzEu0bnelboHntV7rhcnpMf5sQRA5gVSZxJHt
+ Xs3C0MF33IxQ76/ZxMB3XOd26t87Ct29gFOG/z4Da8JGMgVTg2qITwsuU+chThF43V/t
+ pr9YU5jQE2U3+hZw2YBXy6h/9yYEciPnF2X6seaEQ4iyYK/pKXChgq0s8D93SquLjYcX
+ rn+/McX7PUA+cHvxfwUfcFph7n+C4wJTxdZezQ9yTCNBZ5Bewbf6RNXbupdZJ18kmzkf
+ ARTtsgxaWcklDgEFOmODjd0YckVNbIYajXwuARwnTcnX+WQdb769SbAubnnflExxvqLK pw== 
+Received: from nam10-bn7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10lp2108.outbound.protection.outlook.com [104.47.70.108])
+ by mx0b-00328301.pphosted.com with ESMTP id 33512u9c8w-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 27 Aug 2020 23:36:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jFQG+z3S0xOfyhe+7eMLPVKVu4M5rs4w6yzdvXImpp77Bdf4SwOg5BLBoMTLOSJwTTLAHzDy51G5O4B30Me8nmOIbqd7ClCMxldKWVWUx3CfNRstjwS4wdszrGYiabdPFsQm75xYRQP8uHIjw3bVxMPnTLsv2uEBAIWUXzxtSSwxPj25L1r4wQ89BAozvEEXe37qOABtDVir0J9mSOTSHZNtqa5tMhaB3P8HbDeS5xX1B+LMD3/u4NGK1E3/RwyKIMIV1PmDOHpDhue1Bz1pOjRJW/tbmCBczCmAcwsUwYH4tfqr7RmK1khdHExhctSna7sKcYNwLaMn8uDpBkYQzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s3oNc/aroHRT0LGnJ6MatEAtknT0o3rAkQWAPHki2hM=;
+ b=j0bAcb7akqGMd5WkMVKZwSzyIbYA6+Bnd3TEQlv0xn4TJc2CbB8ASeNdt7oxgfSJge6NVZjhcKIjmC0uzFa2ym+a/fpP5PawN/zlhXrSxpQRJqywNUvRELm3rl72jiAQYPopD+6k0jCZIZu8RsAIDNKWAViTmIwk6vwWKfT5InyABe/85PgziiAbsQ4IMpMawZbX2aol+DzJX57fRZt9O4iWtfFtQY2CBEZHwn1LDkosqhFE7QzF3jZ0CLH1goSSI4bUTJTrqlJX2pL+gjJCko/MWMNmPSamUTRD6ei3qfeiLPvwnY4QY2V554LPme9KyAP4TmkKoE59JAfhsfnHUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=invensense.com; dmarc=pass action=none
+ header.from=invensense.com; dkim=pass header.d=invensense.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=invensense.onmicrosoft.com; s=selector2-invensense-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s3oNc/aroHRT0LGnJ6MatEAtknT0o3rAkQWAPHki2hM=;
+ b=K0OybrXNcBWDbGUZCmA7ZEf9guopG6XijiJ5mRIPAAEMpXov9Bmj5xh+p9XsSUFlXqicoZrWR5S3Xj56EWHQ6TXmYDV0qZcUPoCaSU+3EpLIBi+2M93BbG6yzIcHG85eRxPiXkXwVKVMhIXdQkezBbDPaV7V3qH7U0V4QYSPi1k=
+Received: from MN2PR12MB4390.namprd12.prod.outlook.com (2603:10b6:208:26e::21)
+ by MN2PR12MB4205.namprd12.prod.outlook.com (2603:10b6:208:198::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24; Fri, 28 Aug
+ 2020 06:36:03 +0000
+Received: from MN2PR12MB4390.namprd12.prod.outlook.com
+ ([fe80::88ac:4a48:bb2a:51b7]) by MN2PR12MB4390.namprd12.prod.outlook.com
+ ([fe80::88ac:4a48:bb2a:51b7%9]) with mapi id 15.20.3326.021; Fri, 28 Aug 2020
+ 06:36:02 +0000
+From: Jean-Baptiste Maneyrol <JManeyrol@invensense.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Cameron
+ <jic23@kernel.org>, Hartmut Knaack <knaack.h@gmx.de>, Lars-Peter Clausen
+ <lars@metafoo.de>, Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Peter Rosin
+ <peda@axentia.se>, Kukjin Kim <kgene@kernel.org>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Kevin Hilman <khilman@baylibre.com>, Neil
+ Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Marek Vasut
+ <marek.vasut@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@st.com>, Beniamin Bia
+ <beniamin.bia@analog.com>, Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-samsung-soc@vger.kernel.org"
+ <linux-samsung-soc@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
+ <linux-amlogic@lists.infradead.org>,
+ "linux-stm32@st-md-mailman.stormreply.com"
+ <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [PATCH v2 13/18] iio: imu: inv_mpu6050: Simplify with
  dev_err_probe()
-Message-ID: <20200828062443.GA17343@pi3>
-References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-9-krzk@kernel.org>
- <f4a5777e-fe85-9f3f-4818-f7539f223adc@axentia.se>
+Thread-Topic: [PATCH v2 13/18] iio: imu: inv_mpu6050: Simplify with
+ dev_err_probe()
+Thread-Index: AQHWfKhP9EoLl2DH4kG3ErVWqrVkfKlNELaV
+Date: Fri, 28 Aug 2020 06:36:02 +0000
+Message-ID: <MN2PR12MB439074B42FE1114B62189130C4520@MN2PR12MB4390.namprd12.prod.outlook.com>
+References: <20200827192642.1725-1-krzk@kernel.org>,
+ <20200827192642.1725-13-krzk@kernel.org>
+In-Reply-To: <20200827192642.1725-13-krzk@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=invensense.com;
+x-originating-ip: [2a01:e0a:393:a700:8116:36f6:f0c8:916f]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2c529cfe-f087-4ab0-b116-08d84b1ca25a
+x-ms-traffictypediagnostic: MN2PR12MB4205:
+x-microsoft-antispam-prvs: <MN2PR12MB42054E7302A8B7C168CC4A0FC4520@MN2PR12MB4205.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: JMeFDUcupaFrahFRQmZRXxmZyi0g4ecjwzKuWhGUa33/c1Vrst6MTaXM8czHRSn8f3CeODfjGJt0FdtykYgdKUnT/jumjrYrU1WAtmE4BTQkWDGS9OIecasUjU1SYJke1CrmrFKo8cn32x6ljtlECB6xZerZJKNYaQjmyxEyy4gTATSznvB9SHCJNhX8t4vjHsqJC3OG3iF66yNg/Sk8zxlUW555wVWax5bHkS0y6hTKKBz8crC1n10nOYTYXRCorckGTWb1x98HkwEQOxChhg8834YSmGWFp7aqqHHKTwTvBMcZYJkDCs+vRA7j/U/cdsnuKb+qxEF7/Pdxp8HCAHQfAFbNG3IhLZfc9ElC2X5FxW/bCDTGr4hmn6x59dB6
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4390.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(346002)(376002)(39850400004)(366004)(136003)(396003)(7696005)(2906002)(33656002)(86362001)(71200400001)(52536014)(5660300002)(83380400001)(110136005)(7416002)(8936002)(64756008)(55016002)(9686003)(186003)(478600001)(8676002)(316002)(66446008)(76116006)(53546011)(66476007)(66556008)(66946007)(91956017)(6506007)(921003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: cCZkIEut8EQUM5+mzAVAIQObSeOPcb3mmweEqv5nymqe0UopRbW5x0g+HrSfM5L3SN9gZ+Nm1rqKKw/yRINRFbDpnDgBnoLJOj3dupI2kH1hMPwCv7pFlD5lyBQ0GcMAttfwWUX0gkeET6x0kz45ffGXBq7rWZDXPdTeSd5tezYcPKuVQ1UejqFCMjuAXrBvLJY0ZygbSyWnFtk1WeGiKVOkfKtmgKnthAOKUQXutltQsF2N3PC8izTHvhzj5j05bKZX4mlEAOtFPm10dtASjghqA8Z68LhE91moZBm9SKtPjwQIbDOUo/eP+U/gpfn61RMs6y44JVFuBWdpJkLqNQh8qlAbnw7qFzQBHzxqYIsS9K3tEDp0JzXa7pU5Vh89gRxDq3P4TZp+ji8Y79ZOLaUs32YkAWmCTqtghlE1YigoEdsbp8Zq9FdZ4s+QhrIuKgTyBkgVvNmnJtDCT1zf97+KPYPTOqakaaFOJqbeRQiPO/rgLbyu27ikjogpvtc2Mauiw5nT6dA41alM8PwjoVVKSHdzROCW6bkWqZI0IwI6sitTATkOu0pI+VJ2uhYbeGvzsg/RQzImacXCM5+iZC4i9W0pvFtDWvr1ybyKi7B3tsBs66lvozRa+7N+eK4gtOj/BCPYwA0PpOgYrpt8+osO6QCbVP/NJawcbcfkwA5Z6uUXxbdEyiGy9LzmeizX9YPgAabeJvP86sAMmN5/Tw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <f4a5777e-fe85-9f3f-4818-f7539f223adc@axentia.se>
+X-OriginatorOrg: invensense.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4390.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c529cfe-f087-4ab0-b116-08d84b1ca25a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2020 06:36:02.4390 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 462b3b3b-e42b-47ea-801a-f1581aac892d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hGmIj4EPrsJmTxyinPjmc6sYmo35TCcJ/ItiWZli9WxNiSmzr9gdnqUkhmLW20lGlWlSrcwU5o4+esuLKWPO9OzYfmGQ5KR68z+i94pgFb8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4205
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
+ definitions=2020-08-28_03:2020-08-27,
+ 2020-08-28 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0
+ mlxlogscore=999 spamscore=0 priorityscore=1501 mlxscore=0 clxscore=1011
+ suspectscore=0 phishscore=0 impostorscore=0 malwarescore=0 bulkscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2008280050
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200828_022448_151868_C8E58A7A 
-X-CRM114-Status: GOOD (  30.43  )
+X-CRM114-CacheID: sfid-20200828_023616_799975_A238C882 
+X-CRM114-Status: GOOD (  20.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,105 +166,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-iio@vger.kernel.org,
- Linus Walleij <linus.walleij@linaro.org>,
- Tomasz Duszynski <tomasz.duszynski@octakon.com>,
- linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Kevin Hilman <khilman@baylibre.com>,
- Marek Vasut <marek.vasut@gmail.com>,
- Andy Shevchenko <andy.shevchenko@gmail.com>, Kukjin Kim <kgene@kernel.org>,
- Beniamin Bia <beniamin.bia@analog.com>,
- Alexandre Torgue <alexandre.torgue@st.com>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Hartmut Knaack <knaack.h@gmx.de>,
- Jonathan Cameron <jic23@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Aug 27, 2020 at 11:46:40PM +0200, Peter Rosin wrote:
-> On 2020-08-27 21:26, Krzysztof Kozlowski wrote:
-> > Common pattern of handling deferred probe can be simplified with
-> > dev_err_probe().  Less code and also it prints the error value.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > 
-> > ---
-> > 
-> > Changes since v1:
-> > 1. Wrap dev_err_probe() lines at 100 character
-> > ---
-> >  drivers/iio/afe/iio-rescale.c | 7 ++-----
-> >  1 file changed, 2 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
-> > index 69c0f277ada0..8cd9645c50e8 100644
-> > --- a/drivers/iio/afe/iio-rescale.c
-> > +++ b/drivers/iio/afe/iio-rescale.c
-> > @@ -276,11 +276,8 @@ static int rescale_probe(struct platform_device *pdev)
-> >  	int ret;
-> >  
-> >  	source = devm_iio_channel_get(dev, NULL);
-> > -	if (IS_ERR(source)) {
-> > -		if (PTR_ERR(source) != -EPROBE_DEFER)
-> > -			dev_err(dev, "failed to get source channel\n");
-> > -		return PTR_ERR(source);
-> > -	}
-> > +	if (IS_ERR(source))
-> > +		return dev_err_probe(dev, PTR_ERR(source), "failed to get source channel\n");
-> 
-> Hi!
-> 
-> Sorry to be a pain...but...
-> 
-> I'm not a huge fan of adding *one* odd line breaking the 80 column
-> recommendation to any file. I like to be able to fit multiple
-> windows side by side in a meaningful way. Also, I don't like having
-> a shitload of emptiness on my screen, which is what happens when some
-> lines are longer and you want to see it all. I strongly believe that
-> the 80 column rule/recommendation is still as valid as it ever was.
-> It's just hard to read longish lines; there's a reason newspapers
-> columns are quite narrow...
-> 
-> Same comment for the envelope-detector (3/18).
-> 
-> You will probably never look at these files again, but *I* might have
-> to revisit them for one reason or another, and these long lines will
-> annoy me when that happens.
+Hello,
 
-Initially I posted it with 80-characters wrap. Then I received a comment
-- better to stick to the new 100, as checkpatch accepts it.
-
-Now you write, better to go back to 80.
-
-Maybe then someone else will write to me, better to go to 100.
-
-And another person will reply, no, coding style still mentions 80, so
-keep it at 80.
-
-Sure guys, please first decide which one you prefer, then I will wrap it
-accordingly. :)
-
-Otherwise I will just jump from one to another depending on one person's
-personal preference.
-
-If there is no consensus among discussing people, I find this 100 line
-more readable, already got review, checkpatch accepts it so if subsystem
-maintainer likes it, I prefer to leave it like this.
-
-> You did wrap the lines for dpot-dac (12/18) - which is excellent - but
-> that makes me curious as to what the difference is?
-
-Didn't fit into limit of 100.
+thanks for the patch.
 
 Best regards,
-Krzysztof
+JB
 
+Reviewed-by: Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
+
+________________________________________
+From: linux-iio-owner@vger.kernel.org <linux-iio-owner@vger.kernel.org> on behalf of Krzysztof Kozlowski <krzk@kernel.org>
+Sent: Thursday, August 27, 2020 21:26
+To: Jonathan Cameron; Hartmut Knaack; Lars-Peter Clausen; Peter Meerwald-Stadler; Peter Rosin; Kukjin Kim; Krzysztof Kozlowski; Michael Hennerich; Kevin Hilman; Neil Armstrong; Jerome Brunet; Martin Blumenstingl; Marek Vasut; Maxime Coquelin; Alexandre Torgue; Beniamin Bia; Tomasz Duszynski; Linus Walleij; Andy Shevchenko; linux-iio@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-amlogic@lists.infradead.org; linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v2 13/18] iio: imu: inv_mpu6050: Simplify with dev_err_probe()
+
+ CAUTION: This email originated from outside of the organization. Please make sure the sender is who they say they are and do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Common pattern of handling deferred probe can be simplified with
+dev_err_probe().  Less code and also it prints the error value.
+
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ drivers/iio/imu/inv_mpu6050/inv_mpu_core.c | 20 ++++++--------------
+ 1 file changed, 6 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
+index 3fee3947f772..18a1898e3e34 100644
+--- a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
++++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
+@@ -1475,22 +1475,14 @@ int inv_mpu_core_probe(struct regmap *regmap, int irq, const char *name,
+        }
+
+        st->vdd_supply = devm_regulator_get(dev, "vdd");
+-       if (IS_ERR(st->vdd_supply)) {
+-               if (PTR_ERR(st->vdd_supply) != -EPROBE_DEFER)
+-                       dev_err(dev, "Failed to get vdd regulator %d\n",
+-                               (int)PTR_ERR(st->vdd_supply));
+-
+-               return PTR_ERR(st->vdd_supply);
+-       }
++       if (IS_ERR(st->vdd_supply))
++               return dev_err_probe(dev, PTR_ERR(st->vdd_supply),
++                                    "Failed to get vdd regulator\n");
+
+        st->vddio_supply = devm_regulator_get(dev, "vddio");
+-       if (IS_ERR(st->vddio_supply)) {
+-               if (PTR_ERR(st->vddio_supply) != -EPROBE_DEFER)
+-                       dev_err(dev, "Failed to get vddio regulator %d\n",
+-                               (int)PTR_ERR(st->vddio_supply));
+-
+-               return PTR_ERR(st->vddio_supply);
+-       }
++       if (IS_ERR(st->vddio_supply))
++               return dev_err_probe(dev, PTR_ERR(st->vddio_supply),
++                                    "Failed to get vddio regulator\n");
+
+        result = regulator_enable(st->vdd_supply);
+        if (result) {
+--
+2.17.1
 
 
 _______________________________________________
