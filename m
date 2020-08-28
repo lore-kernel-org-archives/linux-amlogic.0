@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E3A0CC433E2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 15:45:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F86FC433E2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 15:47:49 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8B42120872
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 15:45:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CDC3D2075B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 15:47:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rm8AzVdv";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jZlxt7KT"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B42120872
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="3a3rg5FM";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gI9bAnr5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CDC3D2075B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=4WO+nBzjUiWLvUq2H7i+StSEGzcRQrYFNISWIe8JMuc=; b=rm8AzVdvQXXlMu3SyJkb/uZdMz
-	aVDDRvnLZtc1sH+5jD9M8aFmnGOPL8fbvw4V2X/vr9Vgi35RHXsikTcszT2zIunVUcKGdbEPRoJVf
-	afy3WELNEE2QIbLtKbFgqKKilLc8CKaIv4tpYHN5SE3Hmm/qHDTEkqYDM1s9HWsbJDJLebGGQbX0O
-	iBdl+Px5ocDzROuqICj6VrC3tdKwuRh1ojdxarrb+FmgRE2lZpmUXQNGY1qgln+ucC2zZx0EPGz85
-	uzxjW1KpjKlEU5EhWwD5rPUAv9MTB/kuKe4/flFNLwyFaaMvvx9ZH690uoj8e3njFG1saRHf3kuv7
-	2KuXzKVA==;
+	bh=Nh7r3WgGJRvhc9N9/UZKlSNJsRpuZ4OPwEfRjJ0Thds=; b=3a3rg5FMXUFuGS09ONEugyr16d
+	fiOu+wo9Q6ywt9jX4UwLpmiMIgK8CyyUrAjLBBa/dvwmuNyc150uO4HqtjGlQNt/FepYashsVcVbz
+	1I6zy8Q0UCOqyv40L0NhH8ZOQtbwW/51SU2c1BTtso5mMO7bmINy/uQOlMbizWmuBoeHiwTNuWwdL
+	qWRrBUQ+TU/iW+RgsOGlpQJ6U1I+KbuBYxoHepkKWYBEIOw6NzfKWmarm8xwveSiWdreTREL28e7K
+	zevsGE0GiZTGybKFfvY45vSn/pfvkt9vi2+LMl3tPgWGTwIiYLNNUqtFVG0GG3FKp5IFHtev62bM2
+	IbLyzfug==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBgYh-0004wp-BV; Fri, 28 Aug 2020 15:44:55 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1kBgbP-0005Wq-Mh; Fri, 28 Aug 2020 15:47:43 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBgYb-0004uy-4a
- for linux-amlogic@lists.infradead.org; Fri, 28 Aug 2020 15:44:50 +0000
-Received: by mail-wm1-x342.google.com with SMTP id y8so1075129wma.0
- for <linux-amlogic@lists.infradead.org>; Fri, 28 Aug 2020 08:44:48 -0700 (PDT)
+ id 1kBgbN-0005WL-7c
+ for linux-amlogic@lists.infradead.org; Fri, 28 Aug 2020 15:47:42 +0000
+Received: by mail-wm1-x344.google.com with SMTP id q9so1374371wmj.2
+ for <linux-amlogic@lists.infradead.org>; Fri, 28 Aug 2020 08:47:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=qhATtI2Zvpm0REij3LLNrIfTJ+M9IJenHThWHoBmGiI=;
- b=jZlxt7KTrCVhDvXreRYPXF1OaonK1xNxowFd4BZXZLk8gKF/Rn6OWLCASLtc3w2voo
- bLdKPEkFuWD15c1SxL8cDCyzdpPoBPwRkSch3AEsalSkHub1CJ8/XKGq/N1jVYsqhlAg
- vq4w5fX8sCDVW3OkN4y+5grd42JBAhd9jpaqtA/EJB/8eKFNW/cwAxF2TvavVSnohzu2
- S92LyqNN6sWps7hFT9ZaYLBANjOi0JzLZGJNwvy7+2tRMD1N8MJy+De6faPAtRCCcRfH
- GmHY8nv1EWmFSp9QnzVXfZSAbvlUQj5d5RCP0SfMXwSs/tuaJS5cXbqEQGtg1av+yg9g
- L/bg==
+ bh=xOjcUQAzjdKMUBQz9pCR37JmdK7LsMO1KAx1BuqAcUE=;
+ b=gI9bAnr5JSfBRzzwqqeFQeZ+TmOK38nNFBQuIZSuzWnTnYJXoBTgAVen2uftuz8FEv
+ ZjC0A7+hOfbC2b7mLHY1Qu/RAunI+aiI4BGFFlIQxrAZPfADnPQPAY7Zy4HScXQd//on
+ m5vQgTPdOMuJ37l/5TnqUF32EQXXkNXeg4q0odzYqtEPmPm8lyONoJ+rhVImCRFP2ID+
+ j/rFOjVBYWIEo15+8iYb0UYiUyIS69HOfYFBPrJmlOrZCvetbcBEl6ZwSSBtExKR+K+6
+ 99QIEWse2ti/ufQnkbYYRyi777IkFAWLnv+wCcLQH1yYcxBgObBqiXaHT11opun0faBO
+ LMVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=qhATtI2Zvpm0REij3LLNrIfTJ+M9IJenHThWHoBmGiI=;
- b=aIqCyibe0ov+pRsJrU7hSy1jvgfBPXUGDZXrseWjKo1NjAfmIzdmKQ9uS2KuAP2BE4
- ZDICdE3loGq6lko6WiCv5SPqS3xXp1NE2V6Oy/TK0SEPmrLGuKUsiA283WOW5vma77be
- p4ll09G8kN/CiAq8QKBZmzWlnkl+f3W1d5ji3YyVB76ZMMhhSlUtrdHSDTM+HHHCfRd6
- 5vZOP75YxrmXdBcFvYO+2RvtZbCSG0l6BsrZVBkB/olDnvBZhFBOGIBtdMNFnHE+Aq/7
- T14xBaDILzkjQs9QTcJOIA8o2mz1TlYtaJJdSk5FlBDJ1/zswC8G+6OBDkDe2raF/C+Z
- RuJw==
-X-Gm-Message-State: AOAM531XUuZG5LZNENqe9ntoChxeBr9S9NQAEv08FiAEy4p1TJ3ryUlV
- FDX1hwJmtIPtJgwxvWiOg+gAhw==
-X-Google-Smtp-Source: ABdhPJxy2BkyCiF+ZCqVarqOqzbgJgq5QLL1gC452i5Iiak7H6GWWdIiVdBq4rcxr6lqvt42K+4agg==
-X-Received: by 2002:a7b:c00d:: with SMTP id c13mr2167709wmb.24.1598629488091; 
- Fri, 28 Aug 2020 08:44:48 -0700 (PDT)
+ bh=xOjcUQAzjdKMUBQz9pCR37JmdK7LsMO1KAx1BuqAcUE=;
+ b=dxV7AJwV5gdR293XHLKn1JQwrpbAt4XxMjc1v8B+YPo+LmvMuBAKpE4IZ83qkiwh6o
+ OPJe/nrjFg1OFS6RIiRc2NdvfNLxX7+wkfxRkJcEqKLqqLJVYdb5Pdh7UzMII/+BD4RV
+ I5pAnijphm9zP3OTO8hyyJp8sKYNPZVrz7aceFtYt8AmlHR6ILKrn55FIu92bo/Iysdn
+ SiGONvmEuapoJihYO36n/IVcgARtcNQcytun2Yqq0RLX2jpWQJCRwJaYKPeEMVe/9Trx
+ AAbM8dmXKiakiQDxGB0n/z17yuXBqxWArQOXgWXrV/CiiP3KWdXoDC5v2x77hxGtMMfk
+ 5LiA==
+X-Gm-Message-State: AOAM53395rCT+Cn9mUGTxVLHx/afWGlWzkVgvjyvsGYqQRgVG1gN8til
+ 6b0XzK+jC1LQ6BsQzlmRSJALsg==
+X-Google-Smtp-Source: ABdhPJy5BerRgM4DpFWDQXDmijD30b0WFwUdB+Kqn2qC0AshshLhhAKK/GeM24eNPwjyGbElVhe2ew==
+X-Received: by 2002:a7b:c8cc:: with SMTP id f12mr2127732wml.169.1598629660269; 
+ Fri, 28 Aug 2020 08:47:40 -0700 (PDT)
 Received: from starbuck.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id 124sm3012467wmd.31.2020.08.28.08.44.47
+ by smtp.googlemail.com with ESMTPSA id l1sm2921646wrb.12.2020.08.28.08.47.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Aug 2020 08:44:47 -0700 (PDT)
+ Fri, 28 Aug 2020 08:47:39 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] arm64: dts: meson: vim3l: remove sound card definition
-Date: Fri, 28 Aug 2020 17:44:35 +0200
-Message-Id: <20200828154435.419561-1-jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+	linux-clk@vger.kernel.org
+Subject: [PATCH] clk: meson: make shipped controller configurable
+Date: Fri, 28 Aug 2020 17:47:35 +0200
+Message-Id: <20200828154735.435374-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200828_114449_254288_3E148098 
-X-CRM114-Status: GOOD (  10.52  )
+X-CRM114-CacheID: sfid-20200828_114741_283856_53AC6EE2 
+X-CRM114-Status: GOOD (  11.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,131 +96,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The sound card definition should have been removed when the common
-definition was added to the vim3 dtsi but this slips through.
-Remove it now.
+Add the necessary so bits so unnecessary amlogic clock controllers can be
+compiled out. This allows to save a few kB when necessary.
 
-Fixes: 7c9c06246cea ("arm64: dts: meson: vim3: make sound card common to all variants")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../dts/amlogic/meson-sm1-khadas-vim3l.dts    | 86 -------------------
- 1 file changed, 86 deletions(-)
+ drivers/clk/meson/Kconfig | 26 +++++++++++++++++---------
+ 1 file changed, 17 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-index 0da56c051a0e..4b517ca72059 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-@@ -32,69 +32,6 @@ vddcpu: regulator-vddcpu {
- 		regulator-boot-on;
- 		regulator-always-on;
- 	};
--
--	sound {
--		compatible = "amlogic,axg-sound-card";
--		model = "SM1-KHADAS-VIM3L";
--		audio-aux-devs = <&tdmout_a>;
--		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
--				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
--				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
--				"TDM_A Playback", "TDMOUT_A OUT";
--
--		assigned-clocks = <&clkc CLKID_MPLL2>,
--				  <&clkc CLKID_MPLL0>,
--				  <&clkc CLKID_MPLL1>;
--		assigned-clock-parents = <0>, <0>, <0>;
--		assigned-clock-rates = <294912000>,
--				       <270950400>,
--				       <393216000>;
--		status = "okay";
--
--		dai-link-0 {
--			sound-dai = <&frddr_a>;
--		};
--
--		dai-link-1 {
--			sound-dai = <&frddr_b>;
--		};
--
--		dai-link-2 {
--			sound-dai = <&frddr_c>;
--		};
--
--		/* 8ch hdmi interface */
--		dai-link-3 {
--			sound-dai = <&tdmif_a>;
--			dai-format = "i2s";
--			dai-tdm-slot-tx-mask-0 = <1 1>;
--			dai-tdm-slot-tx-mask-1 = <1 1>;
--			dai-tdm-slot-tx-mask-2 = <1 1>;
--			dai-tdm-slot-tx-mask-3 = <1 1>;
--			mclk-fs = <256>;
--
--			codec {
--				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
--			};
--		};
--
--		/* hdmi glue */
--		dai-link-4 {
--			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
--
--			codec {
--				sound-dai = <&hdmi_tx>;
--			};
--		};
--	};
--};
--
--&arb {
--	status = "okay";
--};
--
--&clkc_audio {
--	status = "okay";
- };
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index dabeb435d067..034da203e8e0 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -1,4 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
++menu "Clock support for Amlogic platforms"
++	depends on ARCH_MESON || COMPILE_TEST
++
+ config COMMON_CLK_MESON_REGMAP
+ 	tristate
+ 	select REGMAP
+@@ -41,8 +44,9 @@ config COMMON_CLK_MESON_CPU_DYNDIV
+ 	select COMMON_CLK_MESON_REGMAP
  
- &cpu0 {
-@@ -125,18 +62,6 @@ &cpu3 {
- 	clock-latency = <50000>;
- };
+ config COMMON_CLK_MESON8B
+-	bool
+-	depends on ARCH_MESON
++	bool "Meson8 SoC Clock controller support"
++	depends on ARM
++	default y
+ 	select COMMON_CLK_MESON_REGMAP
+ 	select COMMON_CLK_MESON_MPLL
+ 	select COMMON_CLK_MESON_PLL
+@@ -54,8 +58,9 @@ config COMMON_CLK_MESON8B
+ 	  want peripherals and CPU frequency scaling to work.
  
--&frddr_a {
--	status = "okay";
--};
--
--&frddr_b {
--	status = "okay";
--};
--
--&frddr_c {
--	status = "okay";
--};
--
- &pwm_AO_cd {
- 	pinctrl-0 = <&pwm_ao_d_e_pins>;
- 	pinctrl-names = "default";
-@@ -174,14 +99,3 @@ &usb {
- };
-  */
+ config COMMON_CLK_GXBB
+-	bool
+-	depends on ARCH_MESON
++	bool "GXBB and GXL SoC clock controllers support"
++	depends on ARM64
++	default y
+ 	select COMMON_CLK_MESON_REGMAP
+ 	select COMMON_CLK_MESON_DUALDIV
+ 	select COMMON_CLK_MESON_VID_PLL_DIV
+@@ -69,8 +74,9 @@ config COMMON_CLK_GXBB
+ 	  Say Y if you want peripherals and CPU frequency scaling to work.
  
--&tdmif_a {
--	status = "okay";
--};
--
--&tdmout_a {
--	status = "okay";
--};
--
--&tohdmitx {
--	status = "okay";
--};
+ config COMMON_CLK_AXG
+-	bool
+-	depends on ARCH_MESON
++	bool "AXG SoC clock controllers support"
++	depends on ARM64
++	default y
+ 	select COMMON_CLK_MESON_REGMAP
+ 	select COMMON_CLK_MESON_DUALDIV
+ 	select COMMON_CLK_MESON_MPLL
+@@ -84,7 +90,7 @@ config COMMON_CLK_AXG
+ 
+ config COMMON_CLK_AXG_AUDIO
+ 	tristate "Meson AXG Audio Clock Controller Driver"
+-	depends on ARCH_MESON
++	depends on ARM64
+ 	select COMMON_CLK_MESON_REGMAP
+ 	select COMMON_CLK_MESON_PHASE
+ 	select COMMON_CLK_MESON_SCLK_DIV
+@@ -94,8 +100,9 @@ config COMMON_CLK_AXG_AUDIO
+ 	  aka axg, Say Y if you want audio subsystem to work.
+ 
+ config COMMON_CLK_G12A
+-	bool
+-	depends on ARCH_MESON
++	bool "G12 and SM1 SoC clock controllers support"
++	depends on ARM64
++	default y
+ 	select COMMON_CLK_MESON_REGMAP
+ 	select COMMON_CLK_MESON_DUALDIV
+ 	select COMMON_CLK_MESON_MPLL
+@@ -107,3 +114,4 @@ config COMMON_CLK_G12A
+ 	help
+ 	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
+ 	  devices, aka g12a. Say Y if you want peripherals to work.
++endmenu
 -- 
 2.25.4
 
