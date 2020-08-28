@@ -2,121 +2,84 @@ Return-Path: <SRS0=gNbl=CG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MSGID_FROM_MTA_HEADER,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38916C433E6
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 09:40:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CF6BC433E6
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 13:04:20 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 02A7D208D5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 09:40:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CCEAD20825
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 13:04:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qSuuuEtd";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=axentia.se header.i=@axentia.se header.b="RohzMIHl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 02A7D208D5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=axentia.se
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="znklN92r";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hEEhM6bX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CCEAD20825
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=4nQ22yrzeGj16GeA7xRDexa0ImgZxdsUlZjxyz4keAI=; b=qSuuuEtddjncjNjXMYZPY/io0
-	sDlMbzRLTsg2pBhJVWr5Q+LK3r2MyTWbPMEKx84cXavWXT95LeDTm5t7rBkVnYaGVSf/z/K0CahMN
-	T/HvEh6Z5QLyz95lYK+QU2sC0j67C0VsQWqd3Zx+GGnDzt6aUBgj11UjvrvQFpAEwczllikj1G3m8
-	IV0UbCPU1x0p5QAUQXCQVOrp1IheQEZrxr0Wh30SAj0B2+m+hOGwlwtIhuGtVboCOCCh/pCYX4ciH
-	Vac/sEmPORkDNImmRLeYeBNIcjXWTP+OhdnoNOgei4q5RhwRtD9ZWAqBtX44ixzqgxIrpR8/GdlI6
-	sf2RSd8kQ==;
+	 bh=GVDl36OLGX0IzDEeYxxm2q3MXoxbUPyxrWiWedCmjc0=; b=znklN92rpBvgh3KdajMhDevRW
+	CBHAykiNAkfskkzoGqpoGmKjPnMVA065ivmW7TLLiBKX2GiBCe63iG/0cM3l6p7b+pcp2X1LObeR/
+	BAWtAOHze2/gVA/Jc3Xx7ypKEL9qFdWC4NAMyAS7PjT5MaluyMuY+nFj6IsLlfDJ0E4En+9peG0Oo
+	aT6wnRbawpS2101GYyT4kKXf4n2aMTeix8BzxUa1WvDVyuQlj/JNI17e1ETcRNUpbPn+7G6siu9Hc
+	+9TGNt1/LKqzpTaQG92NyBZtM5Yr4w7YN5uZdlZZcloUyqeadjkUhJ82/fGMGEonRFBbLKlm1rVwf
+	OevNod0jw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBarV-0006pP-S3; Fri, 28 Aug 2020 09:39:57 +0000
-Received: from mail-eopbgr10101.outbound.protection.outlook.com
- ([40.107.1.101] helo=EUR02-HE1-obe.outbound.protection.outlook.com)
+	id 1kBe38-0001Eg-UL; Fri, 28 Aug 2020 13:04:10 +0000
+Received: from mail-lj1-x242.google.com ([2a00:1450:4864:20::242])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBarQ-0006n8-E2; Fri, 28 Aug 2020 09:39:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MEaV92KHjN5yuKl4RjM/dswCWNPDZwuFL2W5X9HBh3Ms91yF2XnKO/GR5wwhkQtynDQV8iseqbMBRGteX+k9yOJedNrb5gW8G0K7yhDfF6wUccUQ8d6XhjaNHW/dZSz8AprgAAcDEbxNCDJqcL9sCqsrYwue+DuaB7aAsEIGbc7wsO+4HmCYu7igOdQpdSIEybvD2wKFZBrW1nGOcdaOanQVwEIVE60z0Gfzewvn/a3cEmiHDQUVvg9OkL1gB33QyOYmLRB7b61EvQlOAUwOGsoVuiStmw1cETjac0j5Wrq1YBW2vduOgOHs1sLjjxffmGi2LXGvS1MR4bYQ4r0lRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pNgeA2ygkB/NFwS1rD3/V4S7tcBDFLK9CZXQYPu4Eqo=;
- b=LOicFhA6dwnj+K2FPwnbYQV8K/N1vAZji9BFH6MIH6bYvyOrifYnOhQG5Gt7HRrIJW4Dc0ciMCAHxbv3dHjpxkkxRZdFgOQ4WxJVmm7iJtjBd4Y6UaXPE/nHFrGbAB9ynrb4zduc60v2JnnaRTpHRszN/uqkkLNX7sN3T/5UB2JiChLqhZ+hawLImAONTmkd+UDGwYUcZXQO8oq+Fp2QUtm3L5rGG1030ayc12nX6cJcUSmLPndI8JA1ibm0BJzAQcWK8+iqHQDf+TEhLikXrAMJeN0qXS7W1HaQVNRNpe4Fu3bj3SeZ9Imy6rDwgtqCyFPvS7L5OZP6zsXRHy2ULg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pNgeA2ygkB/NFwS1rD3/V4S7tcBDFLK9CZXQYPu4Eqo=;
- b=RohzMIHl6Ooq0yhxgnyZQFwS/r4BZJmkDRbJUqCB/dsnF7qPGdoeVdtiJ0OaT/UcjCsCx4Tl88stn/182nO6nZJaOC/W61HgVe2jf9asaVmzZnLMCe+hCir0+wuNRWdqtf/9K2/Hw3xFdK1m9NWYipgDkXkrOLm2sELJQdGWudw=
-Authentication-Results: st-md-mailman.stormreply.com; dkim=none (message not
- signed) header.d=none;st-md-mailman.stormreply.com; dmarc=none action=none
- header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DB8PR02MB5963.eurprd02.prod.outlook.com (2603:10a6:10:fa::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.21; Fri, 28 Aug
- 2020 09:39:45 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::3890:7b1:97a6:1e47]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::3890:7b1:97a6:1e47%7]) with mapi id 15.20.3326.021; Fri, 28 Aug 2020
- 09:39:45 +0000
-Subject: Re: [PATCH v2 09/18] iio: afe: iio-rescale: Simplify with
- dev_err_probe()
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-References: <20200827192642.1725-1-krzk@kernel.org>
- <20200827192642.1725-9-krzk@kernel.org>
- <f4a5777e-fe85-9f3f-4818-f7539f223adc@axentia.se>
- <CAHp75VdWDtoGxm3uxxeXveZQ3Y_ofShdYPSXHL0Vxsz5d0miuQ@mail.gmail.com>
-From: Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-Message-ID: <93b39762-aff0-32a6-a8a8-a60ebf1d284a@axentia.se>
-Date: Fri, 28 Aug 2020 11:39:38 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
-In-Reply-To: <CAHp75VdWDtoGxm3uxxeXveZQ3Y_ofShdYPSXHL0Vxsz5d0miuQ@mail.gmail.com>
-Content-Language: sv-SE
-X-ClientProxiedBy: HE1PR0402CA0005.eurprd04.prod.outlook.com
- (2603:10a6:3:d0::15) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
+ id 1kBe35-0001Ds-RT
+ for linux-amlogic@lists.infradead.org; Fri, 28 Aug 2020 13:04:08 +0000
+Received: by mail-lj1-x242.google.com with SMTP id y2so1236165ljc.1
+ for <linux-amlogic@lists.infradead.org>; Fri, 28 Aug 2020 06:04:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=kY6QohH0kHOg+QzN8imLnNqmKHUkcybm8RndPGRcKBY=;
+ b=hEEhM6bXCEN77L0tGNTDS6zmOH04mOyuhnqNM5uPZYN0gYXTGXcdFAqeulpAUvxcWh
+ DCCXZNQm2W0N8pG5Q4oIUMSHcG+kSdHUexRSjlZzGNpsRL+09rLkUl8e9Ty9YRfA8xg/
+ zsviZhnOWi6K/8Se0ecZs49+o1JpUI0ouq1tOYIBK9lk72V2kJL3oTdKTp7G9JLHHmCA
+ VJ/Py+m0DYy20mN5LcZ9yqol6X9R+XQ9ZjGCIZvBAxdw3UZj0mnfSalWOQd4EIPK36wE
+ c7pd+QX7k2WKJoKBmSKL/j1M50mHmPityogf7HshbDgyYj4WAlQiauK+oot7jpk5Wut7
+ R1dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kY6QohH0kHOg+QzN8imLnNqmKHUkcybm8RndPGRcKBY=;
+ b=AVwYwPJHPT2MFJVIXWhjnP1B2dKp59RPxem3zoa6gq31nvcK/oXRfzkyuiyIkxLP09
+ 8oAB3E2qzdPbXj94R6tecTKc+lmD7GW0UaVpEbEusr5UzRfxgJdnWdTp3psALULpImV0
+ QOenMjsdbpqm+tOUI23MlB4wFAsxSi/hQQdQR0U0uO/dUURhVX5BHMfoFOl9DU5EqSHu
+ spvpug46TjXNSaRBIl926jp15LIJmEbPJvLf0+FVktO4uURLGdTUZHiXTXTBoIw6jaVw
+ mlM9WTD7nibCpz4/yWRbMbSW0qGBV+km/61Sas0KJhIdi0RpU9UMQOE/kAxW7UITj0sO
+ CeQg==
+X-Gm-Message-State: AOAM531kJGY2vTLiEWiokQKDReXJzsUGnTc3N0UUPQLUZNK4Uxt9OnYz
+ Ot0AUgVGtM2kiPG6yYHinyMVMuKyHmQsXErZOehOKw==
+X-Google-Smtp-Source: ABdhPJwsd1zLLYUQfLBwKIUDzPngm5BPAn1Oi62bpRLI87FQeo/xi46FUBxuYdvnnmkfHALpRVoAob1SKb1fomVrKmQ=
+X-Received: by 2002:a2e:6a17:: with SMTP id f23mr772794ljc.338.1598619846247; 
+ Fri, 28 Aug 2020 06:04:06 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.13.3] (85.226.217.78) by
- HE1PR0402CA0005.eurprd04.prod.outlook.com (2603:10a6:3:d0::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3326.19 via Frontend Transport; Fri, 28 Aug 2020 09:39:40 +0000
-X-Originating-IP: [85.226.217.78]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 248a8e5a-17b4-4d90-784c-08d84b364c3b
-X-MS-TrafficTypeDiagnostic: DB8PR02MB5963:
-X-Microsoft-Antispam-PRVS: <DB8PR02MB59636197135E2BD387152F00BC520@DB8PR02MB5963.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CuCjycBQFDwqXbTnRem5udbTjZ9HzQsdkzsvgBmY0s2DRNCq9hG9AJjTci3Qe8zmwxtpOOHncZlR8h2Lk6WzYNd7rml8Cc6iL3ZORoL2sXolR6th1iv/Mn2ElD/7r3IiKcdPel9rPeBqFcbo3piH3nDSO4TJvcfUtcbmijj084sf6o2L5tYHddaW67Fxu9QSu4Twde5MiTyS0IV40yw2y3MNw/Zl2BPmnndo7Si09ezjNY91EGM0j9YQc0O5ULQCTStNhi0lem3p7CyJT/rI0+UmK293rvV4NfjhAe1WS84XHjVb+ZHW6VZr6aZuUHOJSB2QA4YmBb7tWZGg4Ug2GBcbmIjXcZ1qrD3VZqUp84Xwsda3LGPGTd10FW8KKKke
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DB8PR02MB5482.eurprd02.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(346002)(39840400004)(136003)(396003)(376002)(366004)(186003)(53546011)(26005)(86362001)(66946007)(36756003)(16526019)(36916002)(66476007)(52116002)(54906003)(8936002)(31686004)(6486002)(2906002)(7416002)(316002)(66556008)(5660300002)(8676002)(956004)(478600001)(31696002)(2616005)(6916009)(16576012)(4326008)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: XB3aVgaRAss/NUpdGyrOcPwuFMj4Tff47dq4Yu4Txh++r2/wiDrvr3vhe8+8IdjT+uyd5yuAIhdsFLkU4VXfj3jVpi9Nk8pKLdxPCWWsSD1HN2WyQ/O570T91ee9EKrtw8UIYIyhfpKZq1nx7aCq+34DEW+dUlD5fTZXgzTncU/plcb8ZEtBvLoPZaDDac+awg3MeXJFDDf3P+UO84ONpp0qT7peVZWGDsDdpHlHEJWFQDSe8GgJP60IcbbpwYgDuSGbg8DV6dp2cxDMG9Ex5X7H2m3SuheS5DLVnLB8lbml4djM0jf5vVybilUiQxMZQkF7APF0HwPEy0zUB88OxmGo55UbnXyt6s7gkQEHuC/NKhKBzj5L+NBqITL5Nfe7bWDvO3KD3e6+FCn2CmHU7sZSABiPX01PgOqEZPcqeUbL0oVY+FaPhen5R9qbEsLxiNZrQ4BNOkgkGii4a8PLt610MQlFHxoUyEt/pPOFMMzVWtzad60wAD1CgWbBU68sN/7zKcP/OAVLNarWLtqDU6abMEpTiJmnvbyhvY4ClnZxfc9fS9A8heQW6NDxiDnzDolztUnl1NI4B/LnsklPBvf86V0M46cTCUV0G7gM/IJ1F1akM/6DkYoI4vVP2ftYO7cYvbSrQ3VjQjdur3p3WQ==
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 248a8e5a-17b4-4d90-784c-08d84b364c3b
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2020 09:39:45.4856 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BgSG85hfiiKr6IkaWXTbNvT4HVPIDLBYzDbFCIte5QzFJBixVAHaaO5vpLbEmHt5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR02MB5963
+References: <20200826145153.10444-1-krzk@kernel.org>
+ <20200826145153.10444-16-krzk@kernel.org>
+In-Reply-To: <20200826145153.10444-16-krzk@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 28 Aug 2020 15:03:55 +0200
+Message-ID: <CACRpkdarHXwpNfVqODTn3ZZ02W5GTfynQDL3=Y+Mg8ytY8SOvA@mail.gmail.com>
+Subject: Re: [PATCH 16/16] iio: magnetometer: ak8974: Simplify with
+ dev_err_probe()
+To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200828_053952_490514_88629E20 
-X-CRM114-Status: GOOD (  18.04  )
+X-CRM114-CacheID: sfid-20200828_090407_891392_C534AA12 
+X-CRM114-Status: UNSURE (   9.28  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,55 +92,39 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
- Neil Armstrong <narmstrong@baylibre.com>,
- linux-iio <linux-iio@vger.kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Jonathan Bakker <xc-racer2@live.ca>,
  Tomasz Duszynski <tomasz.duszynski@octakon.com>,
  linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Kevin Hilman <khilman@baylibre.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Marek Vasut <marek.vasut@gmail.com>,
- Kukjin Kim <kgene@kernel.org>, Beniamin Bia <beniamin.bia@analog.com>,
+ linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Marek Vasut <marek.vasut@gmail.com>,
+ Kukjin Kim <kgene@kernel.org>,
+ Alexandru Ardelean <alexandru.ardelean@analog.com>,
+ Beniamin Bia <beniamin.bia@analog.com>,
  Alexandre Torgue <alexandre.torgue@st.com>,
  Michael Hennerich <Michael.Hennerich@analog.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>, Hartmut Knaack <knaack.h@gmx.de>,
- Jonathan Cameron <jic23@kernel.org>
+ Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2020-08-28 10:25, Andy Shevchenko wrote:
-> On Fri, Aug 28, 2020 at 12:46 AM Peter Rosin <peda@axentia.se> wrote:
->> On 2020-08-27 21:26, Krzysztof Kozlowski wrote:
-> 
-> ...
-> 
->> I'm not a huge fan of adding *one* odd line breaking the 80 column
->> recommendation to any file. I like to be able to fit multiple
->> windows side by side in a meaningful way. Also, I don't like having
->> a shitload of emptiness on my screen, which is what happens when some
->> lines are longer and you want to see it all. I strongly believe that
->> the 80 column rule/recommendation is still as valid as it ever was.
->> It's just hard to read longish lines; there's a reason newspapers
->> columns are quite narrow...
-> 
-> Why not to introduce 66 (or so, like TeX recommends)? Or even less?
+On Wed, Aug 26, 2020 at 4:53 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Because 80 is what happens to what is recommended in coding style?
+> Common pattern of handling deferred probe can be simplified with
+> dev_err_probe().  Less code and also it prints the error value.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-> I consider any comparison to news or natural language text is silly.
-> Programming language is different in many aspects, including helpful
-> scripts and utilities to browse the source code.
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-So, by all means, scratch that part. You still have a problem getting
-around the coding style recommendation.
-
-Cheers,
-Peter
+Yours,
+Linus Walleij
 
 _______________________________________________
 linux-amlogic mailing list
