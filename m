@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DB408C433E2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:50:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5249AC433E6
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:50:35 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A709E20658
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:50:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2054B20658
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:50:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oRDIZsTT";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="CYy1Zk1i"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A709E20658
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VNIm39TS";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="H0flPPFN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2054B20658
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=lPxnRtuPB4jr5gU3PRkT+bjdCRfWxzzlcIFDgD+Po6I=; b=oRDIZsTTofrYcb6j7fMYvFb7Tm
-	bcbQIMjBDqeJwewXCcTONtGPeKxOCmtlTC841ezIqhB8tLOOZ45omWxaI5Wuer2Jtf8/Yv252e9fC
-	oRli4xyIPD84Djcy8DndGzor3VjOfXtK6/FLqCLzROAqO0BA0OCockGNbA/boRWGZqH6012YBxnws
-	2zpjOJOk2y+rCSK1J2zu1awKEwKFt6sAO9Y1UeREp7Ap2TjP44WqO5D0bFtow45RjbQDBBc+YuDp1
-	5HYyVNWIQMiqXSiQJ3fev7C4Eve8HjSgmnrgAhHqPH/sxLry4/DE1Qqn1kxW3nEW6C/ZgT8PqoqxO
-	AHH89chg==;
+	bh=Y5mInJf257FHJXKdefwVHBofJxcPo+hiWfBcCw1WJqE=; b=VNIm39TSiq5Eu06SpTJ7g7H8aW
+	wAPGqGGHyXzfblwBEdWK1sSQQaNua+OFbNL+spFvDdBZGGhTwn1TvYA7YOzYpy3n3JeeasUtpzChg
+	ZIXXcE4YJTLPaaRAR30yR03sSuFVYe6n+chVdGiAzxU4cmNtEtDDKz9Si/Ep/y4jo0wyZJH7hdD1n
+	es//XUY9D0kVIx2u66IyatefQ+/zKgo92nO5gr698bySkj2lbyQUk/7aks1QOXS2M8fBlvbHId7Nq
+	MENj0ww3/ETvLHwuWqIliVi1ckRseEYkc3Zs9STLs+GBXYMjSqYaR3S5mtyI4LLMROGTO9tYnS1aL
+	AX+NKudA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBugv-0003ki-Lz; Sat, 29 Aug 2020 06:50:21 +0000
+	id 1kBuh3-0003pj-P3; Sat, 29 Aug 2020 06:50:29 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBufJ-0002vw-Cu; Sat, 29 Aug 2020 06:48:42 +0000
+ id 1kBufM-0002xT-K7; Sat, 29 Aug 2020 06:48:45 +0000
 Received: from localhost.localdomain (unknown [194.230.155.216])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6DBCF214D8;
- Sat, 29 Aug 2020 06:48:37 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id EC00321548;
+ Sat, 29 Aug 2020 06:48:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598683720;
- bh=ZelpFQ0282/QvKyDJRVrg0JcM6UJUGrhhAA87ejo8k8=;
+ s=default; t=1598683724;
+ bh=SNQEDWZSEyuEV44lUPa7TZAgyAUN1wW018JYD+wKFHE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=CYy1Zk1iYCDKzFrBSi2C3ND3V1n6vGPXAg7QK3taHdYEchQmiQU+vbsGs1kVqphQE
- zEEEyvQBpdQB9NdoY20HEaHc6MvVk7FNVQcANMxwDHSJbMsZpDtwOgifakZJuv/Ctj
- 6ohXnR3ClgeEw0PjuYD3JQp/PlB5HF2AvPaXEUGg=
+ b=H0flPPFNaEIomrsd1SRrqn4dBuFpTvrWIKJVqoyaufENRJH25akJyOI3O8AxE1eMG
+ dPx37vRWagc1jIxtsAoiOHiwK2Mn9EFDLWkkmr8MGdaCIpSa2NJsQ8ElCTxyKZ0ye/
+ WDVFpiTqyJ/11Y914cvy/Q78MEuHLKNQorJPCVPE=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Peter Rosin <peda@axentia.se>,
@@ -59,15 +59,15 @@ To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v3 11/18] iio: chemical: scd30: Simplify with dev_err_probe()
-Date: Sat, 29 Aug 2020 08:47:19 +0200
-Message-Id: <20200829064726.26268-11-krzk@kernel.org>
+Subject: [PATCH v3 12/18] iio: dac: dpot-dac: Simplify with dev_err_probe()
+Date: Sat, 29 Aug 2020 08:47:20 +0200
+Message-Id: <20200829064726.26268-12-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200829064726.26268-1-krzk@kernel.org>
 References: <20200829064726.26268-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200829_024841_594950_0DA978B5 
-X-CRM114-Status: GOOD (  15.44  )
+X-CRM114-CacheID: sfid-20200829_024844_844059_8F8FD8AC 
+X-CRM114-Status: GOOD (  14.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,38 +91,40 @@ Common pattern of handling deferred probe can be simplified with
 dev_err_probe().  Less code and also it prints the error value.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Acked-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
 Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-
 ---
+ drivers/iio/dac/dpot-dac.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
 
-Changes since v1:
-1. Wrap dev_err_probe() lines at 100 character
-2. Add Ack
----
- drivers/iio/chemical/scd30_core.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/iio/chemical/scd30_core.c b/drivers/iio/chemical/scd30_core.c
-index eac76972f83e..4d0d798c7cd3 100644
---- a/drivers/iio/chemical/scd30_core.c
-+++ b/drivers/iio/chemical/scd30_core.c
-@@ -705,13 +705,8 @@ int scd30_probe(struct device *dev, int irq, const char *name, void *priv,
- 	indio_dev->available_scan_masks = scd30_scan_masks;
+diff --git a/drivers/iio/dac/dpot-dac.c b/drivers/iio/dac/dpot-dac.c
+index be61c3b01e8b..2258535b8a42 100644
+--- a/drivers/iio/dac/dpot-dac.c
++++ b/drivers/iio/dac/dpot-dac.c
+@@ -183,18 +183,14 @@ static int dpot_dac_probe(struct platform_device *pdev)
+ 	indio_dev->num_channels = 1;
  
- 	state->vdd = devm_regulator_get(dev, "vdd");
--	if (IS_ERR(state->vdd)) {
--		if (PTR_ERR(state->vdd) == -EPROBE_DEFER)
--			return -EPROBE_DEFER;
--
--		dev_err(dev, "failed to get regulator\n");
--		return PTR_ERR(state->vdd);
+ 	dac->vref = devm_regulator_get(dev, "vref");
+-	if (IS_ERR(dac->vref)) {
+-		if (PTR_ERR(dac->vref) != -EPROBE_DEFER)
+-			dev_err(&pdev->dev, "failed to get vref regulator\n");
+-		return PTR_ERR(dac->vref);
 -	}
-+	if (IS_ERR(state->vdd))
-+		return dev_err_probe(dev, PTR_ERR(state->vdd), "failed to get regulator\n");
++	if (IS_ERR(dac->vref))
++		return dev_err_probe(&pdev->dev, PTR_ERR(dac->vref),
++				     "failed to get vref regulator\n");
  
- 	ret = regulator_enable(state->vdd);
- 	if (ret)
+ 	dac->dpot = devm_iio_channel_get(dev, "dpot");
+-	if (IS_ERR(dac->dpot)) {
+-		if (PTR_ERR(dac->dpot) != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get dpot input channel\n");
+-		return PTR_ERR(dac->dpot);
+-	}
++	if (IS_ERR(dac->dpot))
++		return dev_err_probe(&pdev->dev, PTR_ERR(dac->dpot),
++				     "failed to get dpot input channel\n");
+ 
+ 	ret = iio_get_channel_type(dac->dpot, &type);
+ 	if (ret < 0)
 -- 
 2.17.1
 
