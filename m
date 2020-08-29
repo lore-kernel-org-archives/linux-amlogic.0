@@ -2,22 +2,22 @@ Return-Path: <SRS0=Pllw=CH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4379BC433E2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 14:48:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C0D8C433E2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 15:26:20 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0BC5920791
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 14:48:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0A36A20707
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 15:26:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="yL4FiGqr";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="hHbur1rs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0BC5920791
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eAuLpQ6I";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="m4XsMpk2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A36A20707
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=qe0S21iT0fsvaN1950VHZTmOS4CZaKZ8aSgAq4argUQ=; b=yL4FiGqrKs1YthsDbUTZC/v71
-	Y5lRJOmB6Taq+C7EzTdFZvToIGanuvG6AI8IEGamZmEEIqa59kZCBG38SLkdUPSrxjo+r8fkHBT5G
-	BBN5QHqpmBd+mL7tbc5y0tOdu+wUSkPxdjVoAq0DBOMAGgx1UCZzaoJeq1y5TS1WEpPdE7uZfWrk7
-	Og8XZ1okxVXNmOv05whvQXdSOSIrrH3GsYd5FOjdGcoZsMIIFokPbT7E67U3c2vRpkP2WAcJA2YI3
-	/+CgH2ZV1k67ZsvD4qGKCPUyyI9peEzwYfWIrO4XUy6I37OM7vSBAn6n/Y3Xtf6Omh8NepzdWgqhb
-	Y+YOK0gNw==;
+	 bh=viJxMPixiSXO4UJj3gwFGCutxDByxRuh6zTvtiKDCWk=; b=eAuLpQ6Ihn4GI4BXrrB7L2vEU
+	u8l9LB8XIN7QV9H6QLwAljil+ditahNKgEoYGpcR+o0H5lUf7d5O0dH8JpeTFy4ZkntWBTPjvqwWZ
+	aQc3wmi4eeb44LjEZyiRKns4DYp44JD2y3P/esYHKjyeYZGp4LDCSP2V0UzXJ3VVPI88MnNYEh/27
+	ztky99SQDo93WoYMsitzFG8SAZYG93Ja9XJAnXX5HUo7GeUabCRBxdqGKMxXfNGHYsZMdn8+DG2LS
+	2oJmFPxhsY+GgHhZViPHcIHqmnC7aTMVROGvWyc78mT51H65KmHLSWFHahhdArV7bHakE8R23XF7D
+	twNfJwAQg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kC29y-0007VS-Fd; Sat, 29 Aug 2020 14:48:50 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1kC2jv-0001eE-K1; Sat, 29 Aug 2020 15:25:59 +0000
+Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kC29u-0007Uq-Vw; Sat, 29 Aug 2020 14:48:48 +0000
-Received: by mail-ed1-x541.google.com with SMTP id q21so1683047edv.1;
- Sat, 29 Aug 2020 07:48:45 -0700 (PDT)
+ id 1kC2jt-0001dn-3j; Sat, 29 Aug 2020 15:25:57 +0000
+Received: by mail-ed1-x542.google.com with SMTP id b2so1707087edw.5;
+ Sat, 29 Aug 2020 08:25:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=b/qCN7j8tb2VUbSrI7tBTv/xuxn0AqjD1uWSjfTSjT4=;
- b=hHbur1rsCmRq/5XRl3unzdV1tt10cWSYSErINzv3YotSrO4cpzSxPBIZJ2F8a/p32y
- EbtjHtBuQMT/xnw1bnaezOZ1tZ1Y9WFE9e6+e3Gf8QQSqDHzcBWhyDMXhaBBzEOtJCJU
- dqIIYRY1M1LPLrByw0nz0/WJmEAEMMTHuU3scdguAfue9jBMtfmdRg+szVvVqmjfcc/T
- dtYopwsHvM5tIAyofaF/KHVMrxQEyw8Vw3BB3mONHh1jgQSMvvFUzz3zh8ZAwQk88kVq
- BlIgeLZ5FoZJGig/TL19ACCrjD9laRdwz9auEmT5qN2ItBU+IlMD/NOdsLSTkEu/AAJN
- VIbQ==
+ :cc; bh=VlZBchCAyWhuNUD37n2dPDCJAJclNP7/k78UQz5aH6Y=;
+ b=m4XsMpk25tlrcGVQqQpM+7r2/Bjvrr/qPL8d+LgyuzzcqusO+srnJUfIvx3rpfniRn
+ WQVU9S+3ZgzFOp07by3VNOMcFIiUV5a3pAqviuOe6MziClK7/p4YVJFTB2k9q570znSy
+ R5dVw0/r66Jsq0tpkawxKhFVA2gVyaN0toXYqFfpOIB0Gio1LwJc3XH8iq1qR4+tHhLV
+ MQTdl5TFkqMyYi0VO34MhMI+OrZ1eivXF8wMEhu0Jitn9S4+qNOgrKmKfTfew1Jj9G6x
+ z5V0KfyGayhpShYxFXvSL3ui35InB8tShz5RUI+qjPSoQx6gh8/tPf3I/t22u0W42euW
+ YwGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=b/qCN7j8tb2VUbSrI7tBTv/xuxn0AqjD1uWSjfTSjT4=;
- b=si0a2VfkC5tfKPPjQ1n/9LpURc2zlBIyd2LKnq5UCMFTQdvZ7WYa7ZVHjn+FynW7qo
- Megs6Z2YZ1DnwyeQ2Q0jDsX3/do+9fFK9O2I3+Sx9eHTC/BxSUn5ydxiNF8TkZBzI9uH
- 4CTi8MToh7QToSl3fdrXKHqXbmsexgYe1OrYGd28CniVtiKX/u6ia2k4CI2ok+gdcqyw
- oWCl2K9soiOzL6TkFIZEZGedpc0veTdiWUI/virI2zr8g7+I2J6pSt/+cd30aPtk1TJh
- zpdwno53E4gHQLzlJRMTBoaOcM09lJeSzwCRBTPqp9w9+kc1s0c7GDe/2zR79wVPimOn
- tWZw==
-X-Gm-Message-State: AOAM5324lrqgqEapEZvaNmoZO9ju3OAPFYKrvpQA02PCOh9ohNSd4nVi
- 3ryizk8PeMEAOMZ93/oixDA8SsCUJy+x9N/FobM=
-X-Google-Smtp-Source: ABdhPJxMlnl1Lp/VRHMrdqqkFtqSaK4C9u1G2u7BpHPiLA9TpJhoMPjyU5seldtykzBb1BcV6pduKOwjgdRUKlBblPA=
-X-Received: by 2002:a50:fb98:: with SMTP id e24mr3048905edq.130.1598712524689; 
- Sat, 29 Aug 2020 07:48:44 -0700 (PDT)
+ bh=VlZBchCAyWhuNUD37n2dPDCJAJclNP7/k78UQz5aH6Y=;
+ b=newTyG+pBYp3adcVlB+Z0HSRMA4XCJ1Abn40Coyu7zU2zdUcIu/K3/ZhAIcTcz6+pd
+ 86QkEIt4jLdFEA9xaJ/KTvwgLb0XHmtu4CF+JI1BoxnhWTh+z3VYt5BG1DEFkRBd2VOd
+ tdyIqj8esliCyTKAEqs3+CVeQiKHrZrxK5CsFAHofqoH76l5kBlPXxAAzL5aAiQH249T
+ AYWy7zm/gyWG7h9az4nX0Umkj9m3bJaMRCWGVZr0qp71xOFQQPWFX0RrLcGCMQfBwcc9
+ nfZ2qhZgj7JX/NRN1/cFppTeg9w3hsEsUCxlixO1JzBx5B8LldV5BeLgt/2UJU+xsST4
+ hLFQ==
+X-Gm-Message-State: AOAM532JUIdtq6cDOxj2bg5mTlYPiA5uqveACWoY7IPEh7A1+uSYivzW
+ AetDPYK4qI6KTXAoE1toWb+M3FaiW6W4I1jepJmcttBd
+X-Google-Smtp-Source: ABdhPJz5XzPTbZ7BAUYzHuDxgUeYvsO0Qg+A3sH8USWhY8loqiIGsVFvzhKelnueGLLZLJeSRSprgA9A9IRvPluCnNU=
+X-Received: by 2002:a05:6402:1443:: with SMTP id
+ d3mr3975828edx.40.1598714755843; 
+ Sat, 29 Aug 2020 08:25:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200829064726.26268-1-krzk@kernel.org>
- <20200829064726.26268-6-krzk@kernel.org>
-In-Reply-To: <20200829064726.26268-6-krzk@kernel.org>
+References: <20200713160522.19345-1-dan@dlrobertson.com>
+ <20200713160522.19345-2-dan@dlrobertson.com>
+ <1jy2maekzf.fsf@starbuckisacylon.baylibre.com>
+ <ff07b04450080fd14d8da4470aeb6e1c28e4215f.camel@pengutronix.de>
+ <1j8se43yrw.fsf@starbuckisacylon.baylibre.com>
+ <18105405541cbc32cecaff181e1427f5434fafc3.camel@pengutronix.de>
+In-Reply-To: <18105405541cbc32cecaff181e1427f5434fafc3.camel@pengutronix.de>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 29 Aug 2020 16:48:33 +0200
-Message-ID: <CAFBinCCDvnT2HUuAF3J4FCWXKGpo-Wp-VxBuVFZSAovjeV04=g@mail.gmail.com>
-Subject: Re: [PATCH v3 06/18] iio: adc: meson_saradc: Simplify with
- dev_err_probe()
-To: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Sat, 29 Aug 2020 17:25:45 +0200
+Message-ID: <CAFBinCC60WzSRitVGBPon9zZVJ_eUjdcEoP7NBHiHR24mLBgig@mail.gmail.com>
+Subject: Re: [PATCH 1/1] usb: dwc3: meson-g12a: fix shared reset control use
+To: Philipp Zabel <p.zabel@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200829_104847_138074_3594B404 
-X-CRM114-Status: GOOD (  10.17  )
+X-CRM114-CacheID: sfid-20200829_112557_185097_253A6AD7 
+X-CRM114-Status: GOOD (  22.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,28 +94,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Tomasz Duszynski <tomasz.duszynski@octakon.com>,
- Michael Hennerich <Michael.Hennerich@analog.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- Marek Vasut <marek.vasut@gmail.com>,
- Andy Shevchenko <andy.shevchenko@gmail.com>, linux-samsung-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>, linux-amlogic@lists.infradead.org,
- Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>
+Cc: Dan Robertson <dan@dlrobertson.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-usb@vger.kernel.org, aouledameur@baylibre.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Aug 29, 2020 at 8:49 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+Hi Philipp,
+
+On Tue, Aug 25, 2020 at 12:20 PM Philipp Zabel <p.zabel@pengutronix.de> wrote:
+[...]
+> > reset_control_clear()
+> > would be the way to state that the ressource is no longer used and, that
+> > from the caller perspective, the reset can fired again if necessary.
+> >
+> > If we take the probe / suspend / resume example:
+> > * 1st device using the shared will actually trigger it (as it is now)
+> > * following device just increase triggered_count
+> >
+> > If all devices go to suspend (calling reset_control_clear()) then
+> > triggered_count will reach zero, allowing the first device resuming to
+> > trigger the reset again ... this is important since it might not be the
+> > one which would have got the exclusive control
+> >
+> > If any device don't go to suspend, meaning the ressource under reset
+> > keep on being used, no reset will performed. With exlusive control,
+> > there is a risk that the resuming device resets something already in use.
+> >
+> > Regarding the condition, on shared resets, call reset_control_reset()
+> > should be balanced reset_control_clear() - no clear before reset.
 >
-> Common pattern of handling deferred probe can be simplified with
-> dev_err_probe().  Less code and also it prints the error value.
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Martin, is this something that would be useful for the current users of
+> the shared reset trigger functionality (phy-meson-gxl-usb2 and phy-
+> meson8b-usb2 with reset-meson)?
+for the specific use-case (system suspend) this would currently not be
+useful for the two drivers you have named. This is because the
+platforms on which they are used currently don't support system
+suspend.
+if other drivers are going to benefit from this change then please go
+ahead and add the necessary API. Then I can also use it in these
+drivers. however, (as far as I understand) I won't be able to verify
+the new "fixed" behavior
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
