@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MSGID_FROM_MTA_HEADER,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
 	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47234C433E2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 21:29:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3E47C433E2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 21:29:36 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0E158208CA
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 21:29:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A03C920776
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 21:29:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="1VmGvwJz";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=axentia.se header.i=@axentia.se header.b="P70HSCw4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E158208CA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TXmbQCeU";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=axentia.se header.i=@axentia.se header.b="bTRSmGdT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A03C920776
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=axentia.se
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,47 +26,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=CbeXCAGyN6R5twzpl8Qh8luAgR+7VhnmmNrdXc6cmOI=; b=1VmGvwJz2e+q3/tzu/34JRTGl
-	IbxVEkCfZgHZSLPBVkLoGYrid+nyvRr1PnH+y2hdYX4ScvzZM42uOPhUv9j/Xymas7D6qK8wCRScq
-	1XE/4YW/kdMsceUeqvoudXXhRsxFxrJ4uUjJuglqo/cl+jH+K24QPpUREYQkGa/qQNrpRndZzed4j
-	76l1AkAcxmJXewVCaBEtIElxqd8rxlnfGVg177m0twjLL26nfWjANsIZfS5l2xARfPdWGeo+Ebe+8
-	zqI2tYjpuzKC3V8PNa0Cx6pUNUZXwFkQ06QaTQ7G6zjok28ETBkbvVEmqQWtV6vn/eHatmp/Tdrgf
-	Sxz+/cqLA==;
+	 bh=xt+61Xfrl0+nM+jxUtLaPMr4DlrgImllw1krkbXkz9s=; b=TXmbQCeUF9Dj4eVJ0OADjHjYZ
+	qSXYvDpLzz7DIqTJkGtbdmjyFwXowTPmw8g55VyXp0Kpwmo/06zianlSAYWlWlNnbwjCcGSG3JbJR
+	otvrBVQpAM0+2nhFU6BicCAEsvOk8adJuUUDkhyGpXMcYuLZzK1VD05o0NS0N5ideAVg3g3jSf0s5
+	sTLwgkKJ4xVYf0y74UMiSA4MsbS0fn8azyCTlDeju0yXAmiPvp3kM5PShDjw6Af+aa7+NyUR8aCPv
+	WDJqRbiDRN6Xq/zT0eYTX9ztO3CzB5LbhTAqRaoxSyAVzl+bOK+47DVLMXgtQT3Jyvh4BOUCh1ySo
+	Uq6tXCKvA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kC8PM-0008Kk-Pf; Sat, 29 Aug 2020 21:29:08 +0000
-Received: from mail-am6eur05on2105.outbound.protection.outlook.com
- ([40.107.22.105] helo=EUR05-AM6-obe.outbound.protection.outlook.com)
+	id 1kC8Pk-0008Qm-AA; Sat, 29 Aug 2020 21:29:32 +0000
+Received: from mail-eopbgr50138.outbound.protection.outlook.com
+ ([40.107.5.138] helo=EUR03-VE1-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kC8PJ-0008JT-F9; Sat, 29 Aug 2020 21:29:06 +0000
+ id 1kC8Pi-0008Pq-7F; Sat, 29 Aug 2020 21:29:30 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hn0aXS6p5/sv8XYWO4SK+vWqCuFU4f9n6XTsnU6J7J12KgNJy2B0Dm3RbYsjngp19t7LDyPKz/yCdC3NqTDPNnJaSGQOzq/iu7bN2IHe297ZgPKIRXq/N9kMBVIc2Mwg0IztjXj1qj3CpRVIKOTvRdTD5cv8Ht8Bfcld8EEUcSZLf1Vd1OBjFMCatmjD7OotJ6udkFb+6KIw4J9w9WHNokK+wBfZbro62aE/KBVfNYlcbaYArl+fqF7okC/uhj7cnv7WLqkOL1J6FWwyXaJiME8xT1AkgAdJ5DsAXNSTlbr7/9BUssgTPOACLh8Fho/Zv5J5bdHJW8m8h+qJ8am6eQ==
+ b=QAj5DXdg/DrYZLMP0D6Ru1jV5pAVJWLv3+BbC3P5tEuHHiGlsUH6XzsH9Z6I0iRQLrcUuuVAjO88joJXDgU2tl6lgaIFKiztx4QO1GXoBlYKvJBW5wny1wPi2zJvrmsMC39/Qq8pPj3eYnfwf64RrEbrYPSXkvlkmzVlbMnkIeMb7DaJbUm7J4C4LcnmtFVqnnPO/HJqBO09Syvc4/iTscAK6vu4cUPGBGIV/G1e6HiPVq9JzxJ4An7POrN1tvmpTF8PXjkSc+GrDT9AHe2iNtXJosQmp89yXtaa40fPdbcsXizYKXxEjXuTY9nV/J3roL8Q3nn2dBHwtl3k3xynRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7RZoAzDQdquTdeHeVMma+3cJQO8C4HEFMBoQIPKYFgI=;
- b=cQ1y3P42ED4bDPbztj2AH/w7CnJH4iEeZgZr3fJx3D+3BPoVz5izbmwh/kD6MmOD7k//i9ugOC74zKkrTOi2j/w67olngN29WN8qaKLIEVwDv4uy2lMZ7aNMVW7RaUatYpeYtZsnlrmJtKtx94oyrlrwIr/ZryDDG3UycGDeu4VT4esjMP96zEaGh0DB6JZvSwXjGLeZB1QgYhfR1uUGH4AyKOkZsQAzhoXWYEbbsijek5WvC/SMO3LOv353SoCxHTUHC1W7q8Tm/UMVyi0f8uA7PMK3a+PBANYnO9y4TbeTk4U1tpqN1dA3nlN5d5fX8TQkX3avzAn5DdosyuvJKQ==
+ bh=3Oi1J4wd3y5TlCF6TlMOYxE9LsQWiMmri7Rg7agcDIQ=;
+ b=iBVbvD7OovgfjF6vUWGUrbktH5EYA97Lp3+Cj9387ORbhBRzjBVs9y59+ZiTt5Yyao+iv3BoHsYeWPtAjIMkUrjpkDyZpT38skEjl9PJU96nPFA0CEgjGIDZCbOPmmvirVVgLn/X1DOXOU5fRwmeONIqEAhm+gX496Tr+I3qstlCHJbV5KQ6gh3LR9vh+biE62zEYAj/0CkDlP+7uzzn7uE+5rlwufVy2cuguJ5OiFNdyDCHid+zmQ+aVCbGx6idYLwZRojdP94K+kUucJ/0Lnwd1++JmPNk+xM8f3Gb8VOvNtmRLzURMov0Jm4xxURgBs5/izGkkk1Mo0A0TvjnaQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
  dkim=pass header.d=axentia.se; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7RZoAzDQdquTdeHeVMma+3cJQO8C4HEFMBoQIPKYFgI=;
- b=P70HSCw4ui+GsqTkVaoTqVClwaII2tvuRt6eb22U4LlVnQTqUlst8qce9dH8bynUq/G5MOqGRGOBgDOB3GXMLWVEy2kVDrgSQSfz73Qog21Ml4jV0e9qV0mHSVplWWtULERL3sNqywkyAIHZLf3qfpoCUW9c42BUp+BPz1DNcxM=
+ bh=3Oi1J4wd3y5TlCF6TlMOYxE9LsQWiMmri7Rg7agcDIQ=;
+ b=bTRSmGdTjjNG7Zg9NLGRBGJ5JcBzu26YG7hmD5h8/Q/upR52T7L633GPF8vCmQP7OUSUQGbbookZ7v4L7eLyzN24dSc7b64/+e8Rv4EW2XJchBxejZJu+2jAJKE7kPw+5/8IE0Iq8p6b60eismvBcw9Hug+Xq6PPhwsQSqk0HeM=
 Authentication-Results: gmail.com; dkim=none (message not signed)
  header.d=none;gmail.com; dmarc=none action=none header.from=axentia.se;
 Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
  by DBAPR02MB6294.eurprd02.prod.outlook.com (2603:10a6:10:197::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.21; Sat, 29 Aug
- 2020 21:28:59 +0000
+ 2020 21:29:28 +0000
 Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
  ([fe80::3890:7b1:97a6:1e47]) by DB8PR02MB5482.eurprd02.prod.outlook.com
  ([fe80::3890:7b1:97a6:1e47%7]) with mapi id 15.20.3326.023; Sat, 29 Aug 2020
- 21:28:59 +0000
-Subject: Re: [PATCH v3 09/18] iio: afe: iio-rescale: Simplify with
- dev_err_probe()
+ 21:29:28 +0000
+Subject: Re: [PATCH v3 12/18] iio: dac: dpot-dac: Simplify with dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Cameron
  <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
@@ -77,50 +76,50 @@ To: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Cameron
  linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
 References: <20200829064726.26268-1-krzk@kernel.org>
- <20200829064726.26268-9-krzk@kernel.org>
+ <20200829064726.26268-12-krzk@kernel.org>
 From: Peter Rosin <peda@axentia.se>
 Organization: Axentia Technologies AB
-Message-ID: <3b9214d2-1c06-3d9c-b4da-893dbc85cd56@axentia.se>
-Date: Sat, 29 Aug 2020 23:28:55 +0200
+Message-ID: <38dcea8f-87d8-d949-4cc2-356eecf93ffa@axentia.se>
+Date: Sat, 29 Aug 2020 23:29:24 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.11.0
-In-Reply-To: <20200829064726.26268-9-krzk@kernel.org>
+In-Reply-To: <20200829064726.26268-12-krzk@kernel.org>
 Content-Language: sv-SE
-X-ClientProxiedBy: HE1PR07CA0001.eurprd07.prod.outlook.com
- (2603:10a6:7:67::11) To DB8PR02MB5482.eurprd02.prod.outlook.com
+X-ClientProxiedBy: HE1PR07CA0044.eurprd07.prod.outlook.com
+ (2603:10a6:7:66::30) To DB8PR02MB5482.eurprd02.prod.outlook.com
  (2603:10a6:10:eb::29)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from [192.168.13.3] (85.226.217.78) by
- HE1PR07CA0001.eurprd07.prod.outlook.com (2603:10a6:7:67::11) with Microsoft
+ HE1PR07CA0044.eurprd07.prod.outlook.com (2603:10a6:7:66::30) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3348.6 via Frontend Transport; Sat, 29 Aug 2020 21:28:57 +0000
+ 15.20.3348.5 via Frontend Transport; Sat, 29 Aug 2020 21:29:26 +0000
 X-Originating-IP: [85.226.217.78]
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dd37290d-4a9f-44bb-84d5-08d84c628aa3
+X-MS-Office365-Filtering-Correlation-Id: 06ffa3ac-13aa-4ac1-9c0b-08d84c629bea
 X-MS-TrafficTypeDiagnostic: DBAPR02MB6294:
-X-Microsoft-Antispam-PRVS: <DBAPR02MB629401AF5E54FB8CE7C9D896BC530@DBAPR02MB6294.eurprd02.prod.outlook.com>
+X-Microsoft-Antispam-PRVS: <DBAPR02MB629406D74D62FB01F3E4060DBC530@DBAPR02MB6294.eurprd02.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:1148;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: J3Ht6JkO7zUDOMv2+5TfFLhIatkKfCdIDjsR9rfL+2nHE4eFD4A21cPyS8t8UjqC6w6k9k2PUsKOT/rSLJhTPNI1TEsibe2V797tVikiDLeklb0sMYhmss3oh22cTM8QTK0Gg841kd5TgkCUGEkLEcw+5EBSA/njbOhrJMLZOIPg/gG3ELPSx7xBlhfO5dNeV5CHR23JafBLqlTixZNO2F7chwJeOhxFZMzO4e+vDv9I6K6k2UjpCynrhZ0MH6sdyEt+5uP52b55mgc5JCzhm8TvpcqW+rkHoTGed2XXuNz4yhAtkuheMRoJPB6LBzs9FrJH5T6tm1neqyZBvuM3ahFiR1fVjHDQtBH1cO2DC23QEDr3YflOwjgZJ1XHs9Elggw+pwHwRh8XActBiZDzgg==
+X-Microsoft-Antispam-Message-Info: pTEknyWSc8FFg7fjVHjgHtXaTZqPAeyrSDc6dCp+bJtvzqJyCHltGLXl+3XH3joCxIOKQG4ETWhAfAXjBfzabwihC1fT4GDhiCQ+3FlzVJOnCzdqTHnHSwiYFrfyCgWmzpXZlV8K1yoO4d04MdpV/nNVCd7EZQdQbteIprQ09iFS5YicewALNlqGLocaNzVyF5bbZdenh5cr8LHdoqic5GFZRAYB9ftnntdchSgH3LdzTVuxrsm/N0TIodPYdMnmq9v5ctjQyc5zDsumgl0I84zicNEOrY30XPUlOTdse1tnkiMMqpx/zt0RgARwrixGSgJC2Z/4m04t2EcRp6lG2lL5aiCo2h3+wZlJcoiooYOwf5OJZKQDNx463pfTGFBlg+Il3UUB3jlk4IpIgkKiMg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DB8PR02MB5482.eurprd02.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(366004)(376002)(396003)(346002)(136003)(39830400003)(7416002)(83380400001)(86362001)(16576012)(316002)(110136005)(6486002)(956004)(36756003)(478600001)(31696002)(2616005)(4744005)(4326008)(16526019)(186003)(8676002)(26005)(66946007)(8936002)(36916002)(5660300002)(52116002)(53546011)(2906002)(31686004)(66556008)(66476007)(921003)(43740500002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: XNS3crkVOA8muSpk2IbRG8qINiOQCEL0DyJaO4+gMKnaaYhzCxXeBMfbW7KhVw/Lhk3wJdbnFcxNsPsB+zNHrpAdppK07UBkZoalvR8CKejsYJQPwsrgCGIvlZtjEJWDVyyNEtlAwOhI2ixSszGJol1ypPnun9sNbwFURzWeeu53djNTXNkHjY6igBRUs1VX18md0s/AXHJkpOHKFsQlRAtNi4IeyJYdyCqIo2QOVP73VAPOdkldhEMKi3Cu/3HGv+TbV7zPWGOouUj9WtbfRhfA9fFCZ5JbZ1/GwRPHvLrz3w6w1vdLmBKSVsgsbNRoz2KFxD73A7Ia1TmlNGbGab8V7C+aA05BQiZAerl2kDp2ObEzZ6qbm6ZbW7VT7utUkK2AAo7vKQCMV6g7xz3bg5lfWdgDk2moEZfUglmdj+ehwDPqpF4c+Qf7qxWxWC4E3FSouciHcqY9ENDQM8AIiQVPbq9az5uusdfDM6wqLGH+xhkCGClyCvtJYucNbuz01EfcIpWwPGMLzm1allKaqJ7CZtDzIuquoK8oEYSfuY4TUeRhMvsS/P4x+DimmbVDJ+Y1ZD1AObzfYmZF7VJiFQ0PLs2diCYh2wi4rylj7AwHEuaZClx/5tBgqABo0CuRGjVycsWXR5GzxHaYjlsz+w==
+X-MS-Exchange-AntiSpam-MessageData: TigebiPTHFZDYiL8/SCUrsCKZ/QknnprkffdsQOwF6d1U60OamKEJOHduCktKrpbCojkhzGiTsLIHz4DEAv6a3Z9d8OPFMW9zrDYIiGwSXddLezWEm1ySkMhcxT/0zOJUXyeXvWyqmnUo/83PUZe2eINwK3mwh2Xu4x0euaLH3I04MhIFsgiq4K6YGTQ9hoQWF2DJjnhAL2BWCQsif7vLRy49gnqw/j+X2MOUYyq9fgyhj7++PmjNqco3rlvGK+xSkMWO+qz/Jw0KEi96OG/YfggSxvOXFze41ndMuDu9py9aBmafzROscPhzcKTAbf1wVnJ2s1uRzLh89oUTx4t0NN3iA6/GphVRMiE5Bc9xgANvkWV2TNOSK8TJlAocoVTWdd9M622dHWj1tGPvwKO6MkDCLqMlZeFrCRu5wXm8YUfnuK3ulAjF0dD03bSnSIx98JE9WpX2gpYmA0LcbLyNY+fEFGIgw894A/T6GVcLiKq1KHWQCgNdr5/20rRE8BDVEKfIqRLc8EwuUchtqma2b9KNLGJ2joteTFBKXTf1hbwZUn92We0FrGgtxttk6yyiL15AZ/74sh9hv4BKgOKA3Wt6K58bIl3wAM8ZxEzCAzRq6i24V98DCWDmYPcCsEad+vKdXfQq6YvrQhvtfENVQ==
 X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd37290d-4a9f-44bb-84d5-08d84c628aa3
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06ffa3ac-13aa-4ac1-9c0b-08d84c629bea
 X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2020 21:28:59.1881 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2020 21:29:28.1453 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZE+sjYQ5XOWf02K5+EXHX+vBJ2YZ4CMzAYI4AKeCW7ypjkzrUkPQ7SMuzvxptfzZ
+X-MS-Exchange-CrossTenant-UserPrincipalName: fsuwepUVnpSDZVGEHwXjkppZOlb0/qVW2sms6ZFZQBO4iSqrB+JqEhZ39XXhQitN
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR02MB6294
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200829_172905_536631_5B3CB236 
+X-CRM114-CacheID: sfid-20200829_172930_269211_CD95EA87 
 X-CRM114-Status: UNSURE (   9.40  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -139,8 +138,6 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
-
-
 
 On 2020-08-29 08:47, Krzysztof Kozlowski wrote:
 > Common pattern of handling deferred probe can be simplified with
