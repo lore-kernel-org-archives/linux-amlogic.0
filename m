@@ -7,49 +7,49 @@ X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4808C43461
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0A29C433E7
 	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:48:21 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8D0BB2137B
+	by mail.kernel.org (Postfix) with ESMTPS id 8D1C821527
 	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:48:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="2sEWsCKM";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="zTVALHup"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D0BB2137B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="f1eKUzZD";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="v1itUy8P"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D1C821527
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ITDVkaotA82Mr/k10LiVj0Y4HZXXZZqy0JuBZPwH+qI=; b=2sEWsCKMuPknHD1oumMQcE1l8d
-	2NJnXN0ZLudO2mjyxj0CUDSVmIUBfB3QbhgV98z7LRGaXuJ6tRq0PZPubWS62H/EiLsU0Necaosh7
-	cujctHS/BDMYyqdHV7HHgH4b66w/yt8OYP6Eu7VYBjjJcdC/pewDOxPSQdH44wEoWUb77ibbtb162
-	irI6ryHX05rDWtNft9hZknU61i9V5zPdHVXH+emxSV00DCfbAzU9KqzHkc8JDt/PeWRMmM+L5DSH5
-	1ovKuGLXQIAasLniKip+VNXieJkvYNtdByON6bQBvUsbY/dPAZvabOckAXJA7QPdMWfnB7uKRru1W
-	Ft/LHOpg==;
+	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=HYfWGd3PIaVjjNVsl+4/GqYbbbL+CkDNaypp4RLyJCo=; b=f1eKUzZDTKSiDDQ37qggc/O5Ao
+	1wePwCU2Dua5UvK/C6ejx1SjPGaSgC2VhQ1IdoWWksff6dbm/7pZ1GziRPpbVVtc84MZAhNidXiq3
+	xI0uN6Tj0449ls9PaQX47Io+WdUHShiK8M+lDk2uDMQgoqaW+UNmu5tnhUGw0VG2dxUiGxJChsJPv
+	xYBDNyxy1XgVNQaWWkJShv32YRQgBNUnAKjsWUJA9ghGYOgg+TWBEAxIIYk4PiPE/gic64oD7mpk+
+	XladQjPVcDRBNvEITbIl1XsKg7namRnXOUeJ8Sb+3cCpooyx+UXsl7sO42jwmoLvCtBnqdaCAInU3
+	EylYepZA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBueq-0002jS-2B; Sat, 29 Aug 2020 06:48:12 +0000
+	id 1kBuem-0002iV-Vn; Sat, 29 Aug 2020 06:48:09 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBuen-0002ia-LJ; Sat, 29 Aug 2020 06:48:10 +0000
+ id 1kBuel-0002i0-4S; Sat, 29 Aug 2020 06:48:07 +0000
 Received: from localhost.localdomain (unknown [194.230.155.216])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 1B5D92137B;
- Sat, 29 Aug 2020 06:48:05 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8734B20838;
+ Sat, 29 Aug 2020 06:48:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598683689;
- bh=K83T+JXtESA0TpwgWdU6Z3Vl8lzC3/2+GqaR3PlsHoM=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=zTVALHupfoniHQUm20051KrWI84bHOmJyP/hwatzCG0rANIzfPOmJmaqR/DuaU+Wm
- tS4bqbiP8NA8TnXPOl7PzZCRf+Wa4eN8qkd9N3p91VtViDeCGp411Qr2EAHqVhuJbF
- wbxeZaRfF2FHkTRRyevIzHU3ERkdVU8P5FZhMG3w=
+ s=default; t=1598683685;
+ bh=yjKI4zUzuXR+IVjk7uHyPqKHxj0RHDSmODneNvcyT0g=;
+ h=From:To:Cc:Subject:Date:From;
+ b=v1itUy8PJxMJU90/s/P4twMjMOdkFOc+jJ43EZmEUWpZ1BwoaDCntjPop5LrTaebQ
+ l+VF63Yd2eaCVhuqI5BNiG5LmTZ2abboHxbQkBOJnNZ0KUc0o+rm19ThGyKxS+1H3W
+ aExY/a1lCtxl0Fg/Geuvk5zMc54z1F3BuXftNjvg=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Peter Rosin <peda@axentia.se>,
@@ -59,15 +59,13 @@ To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v3 02/18] iio: accel: mma8452: Simplify with dev_err_probe()
-Date: Sat, 29 Aug 2020 08:47:10 +0200
-Message-Id: <20200829064726.26268-2-krzk@kernel.org>
+Subject: [PATCH v3 01/18] iio: accel: bma180: Simplify with dev_err_probe()
+Date: Sat, 29 Aug 2020 08:47:09 +0200
+Message-Id: <20200829064726.26268-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200829064726.26268-1-krzk@kernel.org>
-References: <20200829064726.26268-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200829_024809_800595_4776B5A8 
-X-CRM114-Status: GOOD (  14.51  )
+X-CRM114-CacheID: sfid-20200829_024807_264443_3B935B9B 
+X-CRM114-Status: GOOD (  13.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,42 +91,41 @@ dev_err_probe().  Less code and also it prints the error value.
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 ---
- drivers/iio/accel/mma8452.c | 20 ++++++--------------
- 1 file changed, 6 insertions(+), 14 deletions(-)
+ drivers/iio/accel/bma180.c | 20 ++++++++------------
+ 1 file changed, 8 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/iio/accel/mma8452.c b/drivers/iio/accel/mma8452.c
-index 4e6e70250048..104b87b98455 100644
---- a/drivers/iio/accel/mma8452.c
-+++ b/drivers/iio/accel/mma8452.c
-@@ -1538,22 +1538,14 @@ static int mma8452_probe(struct i2c_client *client,
- 	data->chip_info = match->data;
+diff --git a/drivers/iio/accel/bma180.c b/drivers/iio/accel/bma180.c
+index 5b7a467c7b27..448faed001fd 100644
+--- a/drivers/iio/accel/bma180.c
++++ b/drivers/iio/accel/bma180.c
+@@ -1000,19 +1000,15 @@ static int bma180_probe(struct i2c_client *client,
+ 		return ret;
  
- 	data->vdd_reg = devm_regulator_get(&client->dev, "vdd");
--	if (IS_ERR(data->vdd_reg)) {
--		if (PTR_ERR(data->vdd_reg) == -EPROBE_DEFER)
--			return -EPROBE_DEFER;
--
--		dev_err(&client->dev, "failed to get VDD regulator!\n");
--		return PTR_ERR(data->vdd_reg);
+ 	data->vdd_supply = devm_regulator_get(dev, "vdd");
+-	if (IS_ERR(data->vdd_supply)) {
+-		if (PTR_ERR(data->vdd_supply) != -EPROBE_DEFER)
+-			dev_err(dev, "Failed to get vdd regulator %d\n",
+-				(int)PTR_ERR(data->vdd_supply));
+-		return PTR_ERR(data->vdd_supply);
 -	}
-+	if (IS_ERR(data->vdd_reg))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_reg),
-+				     "failed to get VDD regulator!\n");
- 
- 	data->vddio_reg = devm_regulator_get(&client->dev, "vddio");
--	if (IS_ERR(data->vddio_reg)) {
--		if (PTR_ERR(data->vddio_reg) == -EPROBE_DEFER)
--			return -EPROBE_DEFER;
--
--		dev_err(&client->dev, "failed to get VDDIO regulator!\n");
--		return PTR_ERR(data->vddio_reg);
++	if (IS_ERR(data->vdd_supply))
++		return dev_err_probe(dev, PTR_ERR(data->vdd_supply),
++				     "Failed to get vdd regulator\n");
++
+ 	data->vddio_supply = devm_regulator_get(dev, "vddio");
+-	if (IS_ERR(data->vddio_supply)) {
+-		if (PTR_ERR(data->vddio_supply) != -EPROBE_DEFER)
+-			dev_err(dev, "Failed to get vddio regulator %d\n",
+-				(int)PTR_ERR(data->vddio_supply));
+-		return PTR_ERR(data->vddio_supply);
 -	}
-+	if (IS_ERR(data->vddio_reg))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->vddio_reg),
-+				     "failed to get VDDIO regulator!\n");
- 
- 	ret = regulator_enable(data->vdd_reg);
- 	if (ret) {
++	if (IS_ERR(data->vddio_supply))
++		return dev_err_probe(dev, PTR_ERR(data->vddio_supply),
++				     "Failed to get vddio regulator\n");
++
+ 	/* Typical voltage 2.4V these are min and max */
+ 	ret = regulator_set_voltage(data->vdd_supply, 1620000, 3600000);
+ 	if (ret)
 -- 
 2.17.1
 
