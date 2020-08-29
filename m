@@ -2,90 +2,67 @@ Return-Path: <SRS0=Pllw=CH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2 autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5ABBFC433E2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 14:18:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63B37C433E6
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 14:34:43 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 22654207BB
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 14:18:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2EFDA2065F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 14:34:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AZ/ypRFN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NO0oFEsN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 22654207BB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZOdA9iUv";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="wFpkbrgQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2EFDA2065F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8SNo0sBsMVd/OpWGto/nlq7piHkmtmr0x/ADX5BU3w0=; b=AZ/ypRFNzX1Qv3iXA3T9eb3tk
-	BPOmRJd1AUkj36PgsGVU+BEh7B3I02IhkvbeNDkToP9ELXfJzhdq6mA9opMQlRv0+sJugI0SQKAIl
-	8N00ShGP6atPnQBS0qnYSWknuviTRJioO7UN1wWDcRj15o1/+xMtgfFNcUhp6Sc/vTHj0/2E7PiPl
-	ahS0YHoewDbzIadImL7rFKPHmttx4LiPP0VkEG3Ddxy3HD3tQWgVTC7SwOFQhNEQ0I8JFLrd4S0Sk
-	cUZteHWF4LNaYuGOk0RPTRstvqMX2yzrmK9OTbieBoTVhCB0Vz/ncZMC6FsyZ9zFpBwsGznozXLV9
-	yyCZjaMJA==;
+	 bh=DY2OJDbK5kp0mDqpGD9lpW+MC107htCg1az3ji6z04g=; b=ZOdA9iUvlv+J0eO6eBhrTJhWk
+	Hafcem+GVI+MPE2gLd54Hk0YmK8x93Li1utJiIMp7Al5oayUGQwiKtuCbetmKK+PFRAksGRqCDWnN
+	nmvA0t4f9zH1rUhz8S1GYA0zLHe8IbRhV5/r/GdmiLFE8/ZWlBQNYKtoBa7H5atYCxsL58xE516eG
+	57yiT5NQJxUv1jqRCKBg3zIKLuHAXFzvlHzXNfWV5+hE3zLCC0P93ur1ogaqjaR0Mo+yP8RGu31Dx
+	xH6VH08+kJzZJIda4zGxksmUqDmBTkgxFiTXtc41uI0NTTL6tqxsWtkHzUweme4/9Su2vPc3f74dL
+	dvk2qFt1w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kC1fy-0002nN-Gf; Sat, 29 Aug 2020 14:17:50 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1kC1wC-0006Tw-IH; Sat, 29 Aug 2020 14:34:36 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kC1ft-0002m8-Ul
- for linux-amlogic@lists.infradead.org; Sat, 29 Aug 2020 14:17:47 +0000
-Received: by mail-ed1-x541.google.com with SMTP id w14so1643997eds.0
- for <linux-amlogic@lists.infradead.org>; Sat, 29 Aug 2020 07:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=amOnBJfi9C9nYboXm63qVHBbqoT3lf+3WJlMeeBljmc=;
- b=NO0oFEsNUOIozTzwin7bx10m1QgCrWmLDZCKWZh1Cao9Dg85oDsUq0oQErzGJrnctP
- ai6BUNALGJT3YsdlA+k/yBOFury6vWvHFM9h3OSzVXOGsDn75MQamhTOtU95+LWtKV+/
- NC1o6PUIWzuuZMa2P/WPJ8ifSicQMOzLf9z71T6Yd8NAE3UDSHYpWlNvmvSAeANIMH3h
- cT+FVc3CobbAWvhChigjqtFx7ydvLT9vEll6kA5P7Coxuudv93Q3cpGFjekgO40M9Z6S
- 62QI2qZlLfju8YsJx6JBeILkUX/vcJL3sLja7GGON4L/8n++buABK1xf3vNRl+3FmcEh
- 64rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=amOnBJfi9C9nYboXm63qVHBbqoT3lf+3WJlMeeBljmc=;
- b=RBeSfNmj1xizjtlSpmXumGgD5DhAUoBBtfVi0DwXWhC5wKSjHvv7kYBS1erXGUsAab
- XbmPVpBM1Ayhp56tufLzgSDygxw0ruADJ0lkc213RI+TpcB4agw/LDGGRGHKJtYJhXKV
- sQvRdAJVi5ufpM73XfKv9dNBwyiQPUEswxN4bhObGAwm96eOrmXvmKF8t5iFZDg6ofVR
- ghE1EGAh8GiiwTtwfs2OKcgC+XW5Fod2D/Ji4sNlBLD7untLQjMDwrG0ZBSW7K1tiN4M
- AjRvjajgfd4yDwR8O63MNIHGu7pd+n+7Cawvwcxz5r7icrzyUgD1vS7N0EF91cIjpM34
- 4U2w==
-X-Gm-Message-State: AOAM533Yt3BJk3doZ9GKnLyrph3JNbjGiYXqgLt5ru5LyvafWzblrCyK
- /6VSTA+tJi4jB8OdG6K3Uvl5wA==
-X-Google-Smtp-Source: ABdhPJwUV7R9h5h3EzhI3+fJWwMDtkF/1M7RjuXWJIl/zWcdObJ3QWm9KpNnDHl+yqcFic4ZVAhXgg==
-X-Received: by 2002:a05:6402:6c1:: with SMTP id
- n1mr3661175edy.215.1598710660247; 
- Sat, 29 Aug 2020 07:17:40 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id s11sm2217128edh.17.2020.08.29.07.17.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 29 Aug 2020 07:17:39 -0700 (PDT)
-References: <577e0129e8ee93972d92f13187ff4e4286182f67.1598629915.git.stefan@agner.ch>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stefan Agner <stefan@agner.ch>, narmstrong@baylibre.com
-Subject: Re: [PATCH v2] clk: meson: g12a: mark fclk_div2 as critical
-In-reply-to: <577e0129e8ee93972d92f13187ff4e4286182f67.1598629915.git.stefan@agner.ch>
-Date: Sat, 29 Aug 2020 16:17:35 +0200
-Message-ID: <1ja6yd7czk.fsf@starbuckisacylon.baylibre.com>
+ id 1kC1w9-0006T6-Uv; Sat, 29 Aug 2020 14:34:34 +0000
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net
+ [82.4.196.95])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 49EF92065F;
+ Sat, 29 Aug 2020 14:34:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1598711672;
+ bh=Bt2LcvmRA8aueOn9MiH2KddIvcJ9ARbLl4fgBrMMH28=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=wFpkbrgQQGSDHhMuRaTI5o3Q0C950XgQuaRIAhBM2rJVMsZnepCaD0CwIu0xjxS6I
+ NkHjakIMpm68h3NjuQT1PFOxzrNnF/Ae4Y/XEfVdcM62EQV1sWjQvLqO3saoLy3LmP
+ /aA2XwUc/M9D+lR7f8pKp0RiwWLhQSTsw4dR++9w=
+Date: Sat, 29 Aug 2020 15:34:26 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 01/18] iio: accel: bma180: Simplify with dev_err_probe()
+Message-ID: <20200829153426.5430ad8b@archlinux>
+In-Reply-To: <20200829064726.26268-1-krzk@kernel.org>
+References: <20200829064726.26268-1-krzk@kernel.org>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200829_101746_159170_31F45824 
-X-CRM114-Status: GOOD (  21.58  )
+X-CRM114-CacheID: sfid-20200829_103434_100827_528C1C96 
+X-CRM114-Status: GOOD (  19.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,61 +74,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: sboyd@kernel.org, khilman@baylibre.com, mturquette@baylibre.com,
- linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+ Michael Hennerich <Michael.Hennerich@analog.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ Marek Vasut <marek.vasut@gmail.com>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, linux-samsung-soc@vger.kernel.org,
+ Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+ linux-amlogic@lists.infradead.org, Peter Rosin <peda@axentia.se>,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Sat, 29 Aug 2020 08:47:09 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-On Fri 28 Aug 2020 at 17:52, Stefan Agner <stefan@agner.ch> wrote:
+> Common pattern of handling deferred probe can be simplified with
+> dev_err_probe().  Less code and also it prints the error value.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-> On Amlogic Meson G12b platform, similar to fclk_div3, the fclk_div2
-> seems to be necessary for the system to operate correctly as well.
->
-> Typically, the clock also gets chosen by the eMMC peripheral. This
-> probably masked the problem so far. However, when booting from a SD
-> card the clock seems to get disabled which leads to a system freeze.
->
-> Let's mark this clock as critical, fixing boot from SD card on G12b
-> platforms.
->
-> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
-> Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-> Signed-off-by: Stefan Agner <stefan@agner.ch>
-> Tested-by: Anand Moon <linux.amoon@gmail.com>
+Series applied to the togreg branch of iio.git. I'll push that out
+as testing for the autobuilders to play with it sometime later
+today.
 
-Applied Thx.
+Thanks,
+
+Jonathan
 
 > ---
->  drivers/clk/meson/g12a.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> index fad616cac01e..6d44cadc06af 100644
-> --- a/drivers/clk/meson/g12a.c
-> +++ b/drivers/clk/meson/g12a.c
-> @@ -298,6 +298,17 @@ static struct clk_regmap g12a_fclk_div2 = {
->  			&g12a_fclk_div2_div.hw
->  		},
->  		.num_parents = 1,
-> +		/*
-> +		 * Similar to fclk_div3, it seems that this clock is used by
-> +		 * the resident firmware and is required by the platform to
-> +		 * operate correctly.
-> +		 * Until the following condition are met, we need this clock to
-> +		 * be marked as critical:
-> +		 * a) Mark the clock used by a firmware resource, if possible
-> +		 * b) CCF has a clock hand-off mechanism to make the sure the
-> +		 *    clock stays on until the proper driver comes along
-> +		 */
-> +		.flags = CLK_IS_CRITICAL,
->  	},
->  };
+>  drivers/iio/accel/bma180.c | 20 ++++++++------------
+>  1 file changed, 8 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/iio/accel/bma180.c b/drivers/iio/accel/bma180.c
+> index 5b7a467c7b27..448faed001fd 100644
+> --- a/drivers/iio/accel/bma180.c
+> +++ b/drivers/iio/accel/bma180.c
+> @@ -1000,19 +1000,15 @@ static int bma180_probe(struct i2c_client *client,
+>  		return ret;
+>  
+>  	data->vdd_supply = devm_regulator_get(dev, "vdd");
+> -	if (IS_ERR(data->vdd_supply)) {
+> -		if (PTR_ERR(data->vdd_supply) != -EPROBE_DEFER)
+> -			dev_err(dev, "Failed to get vdd regulator %d\n",
+> -				(int)PTR_ERR(data->vdd_supply));
+> -		return PTR_ERR(data->vdd_supply);
+> -	}
+> +	if (IS_ERR(data->vdd_supply))
+> +		return dev_err_probe(dev, PTR_ERR(data->vdd_supply),
+> +				     "Failed to get vdd regulator\n");
+> +
+>  	data->vddio_supply = devm_regulator_get(dev, "vddio");
+> -	if (IS_ERR(data->vddio_supply)) {
+> -		if (PTR_ERR(data->vddio_supply) != -EPROBE_DEFER)
+> -			dev_err(dev, "Failed to get vddio regulator %d\n",
+> -				(int)PTR_ERR(data->vddio_supply));
+> -		return PTR_ERR(data->vddio_supply);
+> -	}
+> +	if (IS_ERR(data->vddio_supply))
+> +		return dev_err_probe(dev, PTR_ERR(data->vddio_supply),
+> +				     "Failed to get vddio regulator\n");
+> +
+>  	/* Typical voltage 2.4V these are min and max */
+>  	ret = regulator_set_voltage(data->vdd_supply, 1620000, 3600000);
+>  	if (ret)
 
 
 _______________________________________________
