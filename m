@@ -2,92 +2,127 @@ Return-Path: <SRS0=Pllw=CH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MSGID_FROM_MTA_HEADER,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 885F2C433E6
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 19:56:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3363C433E2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 21:28:57 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3F5FF20776
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 19:56:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A17A020776
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 21:28:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JCgUjeKA";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="t5ZCDcA1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3F5FF20776
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Re6DRim3";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=axentia.se header.i=@axentia.se header.b="GXtMcPYy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A17A020776
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=axentia.se
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=DhSiVypB4qa3Wc0ce98CF0dyVQALAmpNsIWlU8RF53c=; b=JCgUjeKAn33z1zgWtg5ZPljyt
-	UtWdhgVIbOHxf3eBvq6e5Kb1nZxuQQlOqjMXouRChw/N0U+BEQZIMgWeEBvA6K8UN/22Pv4ZIN/6L
-	mRituIgit5y4oyg1rMVaI+I0ZQZA780UcDGUkXGTteIfu4aa0JDdQiZ1plGbMNJufDEwmwIq6MO1p
-	6A710nYFQXjlBtLHxv2spUC1TdCFQz8VYBBKexAODex1e+e9LqS3vF+xicM0c7N8zOgWYBs4zYGVm
-	sqPIB6crrk7R29721Qba8pfrnkkJw+qfIjbphzvRn51XHUI+K/+f0JSiOeEZ6Ej0LpDGTCQ0/+QZa
-	weOTfKl4A==;
+	 bh=39kaWNGJ4GwTE0Wu8AXGUJbuLex+x4MNNAiBWCezI7U=; b=Re6DRim3RLPiYk29OdCnrunwc
+	NSEFYpGfPbRTm7ztNXW70KuUdDfaR7recJDBckj60jOrtfjvkRjVy9rQSzwtH/iMUimlcEqNrS+Q7
+	3GePZfHczzqe/u/LmyuvkOdPY1e8wfJ1E9TocVHtVyGrGovw/GnoPOul+ULd0RPjH3xua7immuYll
+	TWSniWah/6F7fZfDLVagGUsJXm6z8sdG+CRrJGCp7AtIVp3yqnC3DaRsrQkfAFHUbpyYO5Yo3bteT
+	QsetSB0uTQUAVd4l165FqkOOClTxEcSng1g+AILQiUQA3JDjPj11rYJpUB6NMuzi8OesnItbMAqX3
+	SJoWbQaFA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kC6xv-0003Y2-Ib; Sat, 29 Aug 2020 19:56:43 +0000
-Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
+	id 1kC8Oz-0008HI-OD; Sat, 29 Aug 2020 21:28:45 +0000
+Received: from mail-eopbgr50114.outbound.protection.outlook.com
+ ([40.107.5.114] helo=EUR03-VE1-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kC6xr-0003U3-5k; Sat, 29 Aug 2020 19:56:40 +0000
-Received: by mail-ed1-x543.google.com with SMTP id ba12so2086598edb.2;
- Sat, 29 Aug 2020 12:56:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=hS82gtSU74N51St4WJZJCm2YeYvE2fwgxXoJTtDqHK0=;
- b=t5ZCDcA1+op0bSc6ISVEnhiucQl+pLFcfA1CKUb1cw41VbjOvpuQzmPhYSHs6XYSrA
- kaKjUY1XlqMqoaqzXFfirCnKk5HgJ/GfxWOyrKy1LWr9b7s2/zynqcJ7iMsVhxfkTh/J
- blBnGZ8nBj9UKeDW9r+qxiX1bHMa7RoQ91INIuFjxjxYBMr3tWYBX6OsUsYaI1+xFkKC
- BSPxgPEjecZYV4DsJJSWEetCKVpVBv5BG86Sqag4Xk2bdXvRQnTT/UeZTvCZjQk+4Mlk
- sIA4B1Hs1P6fe0znv9CyB9aI51zmkWV6+sr2UTIS2wMdRV/HV6oQnZwmS5xU9EthA5hj
- kdBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=hS82gtSU74N51St4WJZJCm2YeYvE2fwgxXoJTtDqHK0=;
- b=gkrf8Td6N8Sc6gIAFebgogQ7vL1y8bGuOMhkhMCmMR32rsPxQVGgGrS6tciMLX6xcf
- JlcMc3AfDdv0l9tDb0vmFhxe1iG5XSCdReRH87xHLIeyHi/rMPid5Lt5vEEXf7EyI1B8
- BQ928MOp7nOKKV+aVBIYMEqTjLfmkXFhxfhpzLstG9ygj8WJr5+CayIPBxva/xwNEbzL
- qWsI8CKKQRM9HStgCmy8iHseZUn74iVO05DR2erTJLIkKG5W5U0I2Kmyf/fhYtZJ9GuN
- E4eF9ArQZ9SOy6PVfu9jjcWsxsJsdD2M7fxrrNrRftwYFNmSmnMtS7ZD3v9kopRkNv5g
- mbqQ==
-X-Gm-Message-State: AOAM5303fBUGOIZE4bl7fkIVIKfGUPwtMXDTSczH562tzXBF0s5srrln
- VF+BV+iL4d/FJX8MSZL10mzVMQcpI0pSDUvRuCk=
-X-Google-Smtp-Source: ABdhPJykbW3aRLfm36R75esNYyv4HCTY6wsWHSwILu8lvVGZ/d7SktNUWbCljnAFCgBro8I9Z5/Okj7tNME68q85bmI=
-X-Received: by 2002:aa7:cf08:: with SMTP id a8mr4583047edy.98.1598730997785;
- Sat, 29 Aug 2020 12:56:37 -0700 (PDT)
+ id 1kC8Ow-0008GN-Eo; Sat, 29 Aug 2020 21:28:43 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qkp8yiRbau2QGMvLwYHikux46HblOa+eXnGoWcO/3PE5PEAcXrxTO5igNhxvvGKG/Wke9imI+YPznLn/Zfnfbz8LpE0MkODBjNnlJcLYTnb9Q1HPVjLHWzRZReCUjV2oRhrfDlWd7K1tCNC+ubn6PQs19oE+n95X+W9+AOvRDbksNOtpJ75pphzrRCItbEOx1qL58c9FOU/6Hs5T8f4XcL+LAU23A7B4MFHpBOHL7BlMD0YDLDsz6jf+f2jyyiWpgy9kSd5nCUvIEAN74HQ4yJEw5lXObf9uVXmpR9XLXnt2f5B514tfi+3Z+FMqS7/8J3ggN+T7g/Nutef8P4aXWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eqpl+nABph0YIq0iXwPG8VDSjKnqOV3xxQs53IHO0r8=;
+ b=L49/Yxzt3bUPgR3dkp/+SAIpICeKcwpFcOQ6MMxbUHruQkcn9ZiWV8QpLnKl0gRowRyzSm6GDNs1KpccxOcxQNcE93605wV4LWraIjo7/jkIdTfDM7yR1h8/D+DQZkXG46xMTfYsb1/FE/BeeqVzcLRQJpKwSpGThr8f+hBbvVbS0d1ffk/fe4OpPMiIfYjHFAU4UIcDNpwQnDYKKUJcSv7C7+e71UwqqxZ4BCq8SOopkBSuS9Hab/rPgD/V5wD4sw1s4COW7sDuqRHO8IZ4eOYgt3KCPQftOAPC3+AX5Ln7iZBdWGwv+zFSFKQ0apS5boXZSWFc63Y2k/Gz305SPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eqpl+nABph0YIq0iXwPG8VDSjKnqOV3xxQs53IHO0r8=;
+ b=GXtMcPYyE3CKC8M/CoV9QjnF+x5nUWe8wIPHY3wIfLEHEte7Li4Sk4aCfcAqW5rJaiTNJpWENDQkR04nrzrbD4am6Hdf7skGWvjhjnCKmjzS6fsJe+TxOe07hfrMaSC8dJR/R3klbAjo/ef9Y5A/nhl877wL7yHwuI5GEhkTpg8=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=axentia.se;
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
+ by DBAPR02MB6294.eurprd02.prod.outlook.com (2603:10a6:10:197::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.21; Sat, 29 Aug
+ 2020 21:28:33 +0000
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::3890:7b1:97a6:1e47]) by DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::3890:7b1:97a6:1e47%7]) with mapi id 15.20.3326.023; Sat, 29 Aug 2020
+ 21:28:33 +0000
+Subject: Re: [PATCH v3 03/18] iio: adc: envelope-detector: Simplify with
+ dev_err_probe()
+To: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Cameron
+ <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Marek Vasut <marek.vasut@gmail.com>,
+ Tomasz Duszynski <tomasz.duszynski@octakon.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20200829064726.26268-1-krzk@kernel.org>
+ <20200829064726.26268-3-krzk@kernel.org>
+From: Peter Rosin <peda@axentia.se>
+Organization: Axentia Technologies AB
+Message-ID: <4a64c3a5-57d5-dc01-5620-e28dbe544ac4@axentia.se>
+Date: Sat, 29 Aug 2020 23:28:28 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+In-Reply-To: <20200829064726.26268-3-krzk@kernel.org>
+Content-Language: sv-SE
+X-ClientProxiedBy: HE1PR07CA0013.eurprd07.prod.outlook.com
+ (2603:10a6:7:67::23) To DB8PR02MB5482.eurprd02.prod.outlook.com
+ (2603:10a6:10:eb::29)
 MIME-Version: 1.0
-References: <20200820121323.564-1-linux.amoon@gmail.com>
- <20200820121323.564-2-linux.amoon@gmail.com>
- <7hlfi9xgch.fsf@baylibre.com>
- <CANAwSgTZ23jFPAO46vRg1Dx_Bzi=4Bg6KHE0ozLQGky4p_fgKQ@mail.gmail.com>
- <CANAwSgQLnqDnuQvLv4cvaeTPeBW=H_g5F2aaNue_hb4nKLdovg@mail.gmail.com>
- <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com>
- <1j7dto3ylq.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgQ1Miu73hfdK+cgL3howpekn2xj_5qwGasQZwtQpSGj5Q@mail.gmail.com>
- <1j4koq4x38.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgTWnHXRFRUrbdCph+eBxL2PNXe6Q4aTXxEU32i7dGS=dw@mail.gmail.com>
- <CANAwSgQV7_4VdGRMgJDMjPFvOS3Nabkqbf2ucE5vqo6zrhxPDw@mail.gmail.com>
-In-Reply-To: <CANAwSgQV7_4VdGRMgJDMjPFvOS3Nabkqbf2ucE5vqo6zrhxPDw@mail.gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 29 Aug 2020 21:56:26 +0200
-Message-ID: <CAFBinCCEJJT_kfJ4qfTEz0R7Mo3ciCGDSw_MJYi_5PyNJA6x5w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-To: Anand Moon <linux.amoon@gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.13.3] (85.226.217.78) by
+ HE1PR07CA0013.eurprd07.prod.outlook.com (2603:10a6:7:67::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3348.5 via Frontend Transport; Sat, 29 Aug 2020 21:28:32 +0000
+X-Originating-IP: [85.226.217.78]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 91a9dbac-2b4e-4149-a795-08d84c627b67
+X-MS-TrafficTypeDiagnostic: DBAPR02MB6294:
+X-Microsoft-Antispam-PRVS: <DBAPR02MB6294CF615C876AA8DA98AAA6BC530@DBAPR02MB6294.eurprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ctPCi8hbj0s0qrX/9yUbMiG2yLcYvgLLBn/xEhN15wFCNJT9XJ/6S4UnTnFUlCaJWCrVlRtOVtbaogrJk1/n59zKNgEudvjBKhvfBRcKb3KV+ItOSEkL8QEkc0yOOw6air7mVoAmc9iM6MHJLRAx+pTpwCXOqWJjiQEdufleJbu7M0sAM6UzX97whs6uimfgvW4jXHA3KKAYgvmSyj+Ik2+NnAwLBWgrRpR8AaypJ1MTR6nw205WVe1dJ2eo/v8FdfPZbKiUM7sKSSdagtnq/Scd8DDs65f5fW4PWkaSRwUtRRsPXLhiBs0LnY/eEF+ZUJoQFUkbjoiPUL9SK3DHf499nzwph6oQ/Jw8Jre6RgOUVAZ54djTW/AA84VRG29Bm6XV4gh+DAL1Hv0RnyQyiA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DB8PR02MB5482.eurprd02.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(376002)(396003)(346002)(136003)(39830400003)(6666004)(7416002)(83380400001)(86362001)(16576012)(316002)(110136005)(6486002)(956004)(36756003)(478600001)(31696002)(2616005)(4744005)(4326008)(16526019)(186003)(8676002)(26005)(66946007)(8936002)(36916002)(5660300002)(52116002)(53546011)(2906002)(31686004)(66556008)(66476007)(921003)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData: HWLVjc+VlHW1PgkzSK78Rrij58HIXCbdPmeWUmRd0UNAvaLpOGNf51Jrh2QuB2dMyq3pdS/QrBRo0JG790l+bJ7HUxMvAUp678K/Ureg6Vd5pNyVYeOl/p/WxybGTMhEfhxTbE6NJiWWGisjEiIo0a8twviuWqIma9HeiAHCNvbFD2sYUWaGZNV9gEp3kZ8jG0o9dwVR5mfN8MR4Y2L7+EcaWTvTg7QFFEaI1igycGJDjOBYzw0FQXVR9q9CboBbSl8o8Q4TDgjYzPvn8NWjfsrnbXL9rjXK6zJlHYg+MlWy/AseG0k4VrkmdQWmXiAlP1UAkC/flNxg0gcDKwn3w/nR8Bn0EWZJTw3VIV1lNWRM0rSYpainYKkh9q+7uE2Ysjgt+mjCxTH7ekwAv3vpE1LkBnJmHMoIVSD+NnRj/4V9BBLzIvBwolGavLukAx3Ea+H1vGQ5Y7h+SR/kPFZw+EnDTV1auLhej5KqbcNW70Mom+Sd5ACr19iN5Nom7FjrmSBCNMFH2e9JZ+C/AZvAo25qooOQnmNVlPi+1ZdR/1AlQIJo/fpog7fC0IwqCrg1d4X7GMFeTR3gfHPZjyD7Iz0r2fkf62ctU3mqIC4KfM7waGfTXv+4CXQq+JYd+m8EQryG8im6/ieHnUXqfs+umw==
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91a9dbac-2b4e-4149-a795-08d84c627b67
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2020 21:28:33.6740 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c28KSX2dX7vJnaeO2hM8RE/sSx8Vi5TU8zTQuuFaAe/ZgJ1DDWSxT5kIdiGIeIBl
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR02MB6294
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200829_155639_300216_4F4B213F 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20200829_172842_717692_10284C2A 
+X-CRM114-Status: UNSURE (   9.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,47 +134,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Anand
+On 2020-08-29 08:47, Krzysztof Kozlowski wrote:
+> Common pattern of handling deferred probe can be simplified with
+> dev_err_probe().  Less code and also it prints the error value.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-(I haven't re-read all of this discussion, so apologies if something
-in my reply doesn't make sense)
+Thanks for the re-spin.
 
-On Sat, Aug 29, 2020 at 6:31 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> Just want to clear my confusion on RTC INT gpio setting is not needed.
-> I did not find any other example to support this changes.
-> So I have enable the debug logs on rtc-pcf8563.c with this current
-> patch at my end.
-my understanding is that your testing procedure is to simply use your
-original patch and see if rtc wake-up is working.
-since GPIOAO_7 is not explicitly mentioned in your testing procedure
-I'm assuming that you're not configuring it anywhere.
-Kevin's concern is what happens when that GPIO is configured
-incorrectly (for example by some u-boot bug, firmware issue, ...). for
-example: have you tried to configure GPIOAO_7 in u-boot as output low
-pin and see if rtc wake-up is still working?
+Acked-by: Peter Rosin <peda@axentia.se>
 
-In your previous replies you mentioned various pin mux settings
-related to TSIN_A_DIN0 //  TDMB_FS // TDMB_SLV_FS
-I don't know how those are related to the RTC
-My suggestion is to look at
-arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi - it has a
-eth_phy_irq_pins definition and apply something similar on Odroid-N2
-
-
-Best regards,
-Martin
+Cheers,
+Peter
 
 _______________________________________________
 linux-amlogic mailing list
