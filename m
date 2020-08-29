@@ -1,65 +1,73 @@
-Return-Path: <SRS0=gNbl=CG=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Pllw=CH=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 582B6C433E2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 18:04:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4808C43461
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:48:21 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2307C20936
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2020 18:04:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8D0BB2137B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:48:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rbdtwUZA";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="nVnAVtK6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2307C20936
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="2sEWsCKM";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="zTVALHup"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D0BB2137B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Subject:References:In-Reply-To:To:From:
-	Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=d7nBnbEFYZMgJVz4JFVafPUwJx4cMlWnHL9ZQal85Ng=; b=rbdtwUZANPBsaTwf/iD7Vs/6Wq
-	Xew/OY/lS4dTWlVk1DYdqfcSeUaRG+qTHNmSnUpuHyS78djxYz7IaXU1NPMypeI17qdXuc1SZ6xjV
-	b2dn/VUnSkxMPGES8KiZ5o/POvGEoeCBUpFgtycc4bSnRB4cH3AYfTbwilTBOOuI5Vc26oKnso0Mm
-	klhGh0/md6kfNs7+TvYeWkZqDPF8Ehz4brwWoDljbcsQGYDBb2GSidox1hdDciKf4rF/4tiFoYFAW
-	oPXPBqIvfEcEeTVm2v8ATXr7rUy7UgHhoXkKiwpDctt+ISkYEIb3S9lc3UAI/e57ywvCAfg4BOlO8
-	HSf6i7cQ==;
+	bh=ITDVkaotA82Mr/k10LiVj0Y4HZXXZZqy0JuBZPwH+qI=; b=2sEWsCKMuPknHD1oumMQcE1l8d
+	2NJnXN0ZLudO2mjyxj0CUDSVmIUBfB3QbhgV98z7LRGaXuJ6tRq0PZPubWS62H/EiLsU0Necaosh7
+	cujctHS/BDMYyqdHV7HHgH4b66w/yt8OYP6Eu7VYBjjJcdC/pewDOxPSQdH44wEoWUb77ibbtb162
+	irI6ryHX05rDWtNft9hZknU61i9V5zPdHVXH+emxSV00DCfbAzU9KqzHkc8JDt/PeWRMmM+L5DSH5
+	1ovKuGLXQIAasLniKip+VNXieJkvYNtdByON6bQBvUsbY/dPAZvabOckAXJA7QPdMWfnB7uKRru1W
+	Ft/LHOpg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBik3-0003tF-95; Fri, 28 Aug 2020 18:04:47 +0000
+	id 1kBueq-0002jS-2B; Sat, 29 Aug 2020 06:48:12 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBik0-0003sU-3m
- for linux-amlogic@lists.infradead.org; Fri, 28 Aug 2020 18:04:45 +0000
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ id 1kBuen-0002ia-LJ; Sat, 29 Aug 2020 06:48:10 +0000
+Received: from localhost.localdomain (unknown [194.230.155.216])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 0B06E20936;
- Fri, 28 Aug 2020 18:04:41 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1B5D92137B;
+ Sat, 29 Aug 2020 06:48:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598637882;
- bh=frjSPFJ+75o4QdoDtU1nI4HxnaQxhFcRXTKiq6ZSpg8=;
- h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
- b=nVnAVtK6fs7r+1K5wDFx9R1apyIw853o9edYRooJ1u6l/v7NEn6wMK50EbnHrsF90
- twOiHIeb288j343Rjyd/YK9IKCRJoPmgkoQPPPLhaIvyHKFsNXcoR6GeF2jfowH93T
- CjCbHWbMgnKONJ4XFnQcBZsGAvKgyF1ckLcDR40Q=
-Date: Fri, 28 Aug 2020 19:04:04 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>
-In-Reply-To: <20200828151438.350974-1-jbrunet@baylibre.com>
-References: <20200828151438.350974-1-jbrunet@baylibre.com>
-Subject: Re: [PATCH] ASoC: meson: axg-toddr: fix channel order on g12 platforms
-Message-Id: <159863784461.17371.15318009139642856704.b4-ty@kernel.org>
+ s=default; t=1598683689;
+ bh=K83T+JXtESA0TpwgWdU6Z3Vl8lzC3/2+GqaR3PlsHoM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=zTVALHupfoniHQUm20051KrWI84bHOmJyP/hwatzCG0rANIzfPOmJmaqR/DuaU+Wm
+ tS4bqbiP8NA8TnXPOl7PzZCRf+Wa4eN8qkd9N3p91VtViDeCGp411Qr2EAHqVhuJbF
+ wbxeZaRfF2FHkTRRyevIzHU3ERkdVU8P5FZhMG3w=
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Peter Rosin <peda@axentia.se>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Marek Vasut <marek.vasut@gmail.com>,
+ Tomasz Duszynski <tomasz.duszynski@octakon.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v3 02/18] iio: accel: mma8452: Simplify with dev_err_probe()
+Date: Sat, 29 Aug 2020 08:47:10 +0200
+Message-Id: <20200829064726.26268-2-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200829064726.26268-1-krzk@kernel.org>
+References: <20200829064726.26268-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200828_140444_340835_51C923A8 
-X-CRM114-Status: GOOD (  14.66  )
+X-CRM114-CacheID: sfid-20200829_024809_800595_4776B5A8 
+X-CRM114-Status: GOOD (  14.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,53 +79,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, alsa-devel@alsa-project.org,
- linux-kernel@vger.kernel.org, Nicolas Belin <nbelin@baylibre.com>,
- linux-amlogic@lists.infradead.org
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 28 Aug 2020 17:14:38 +0200, Jerome Brunet wrote:
-> On g12 and following platforms, The first channel of record with more than
-> 2 channels ends being placed randomly on an even channel of the output.
-> 
-> On these SoCs, a bit was added to force the first channel to be placed at
-> the beginning of the output. Apparently the behavior if the bit is not set
-> is not easily predictable. According to the documentation, this bit is not
-> present on the axg series.
-> 
-> [...]
+Common pattern of handling deferred probe can be simplified with
+dev_err_probe().  Less code and also it prints the error value.
 
-Applied to
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+---
+ drivers/iio/accel/mma8452.c | 20 ++++++--------------
+ 1 file changed, 6 insertions(+), 14 deletions(-)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+diff --git a/drivers/iio/accel/mma8452.c b/drivers/iio/accel/mma8452.c
+index 4e6e70250048..104b87b98455 100644
+--- a/drivers/iio/accel/mma8452.c
++++ b/drivers/iio/accel/mma8452.c
+@@ -1538,22 +1538,14 @@ static int mma8452_probe(struct i2c_client *client,
+ 	data->chip_info = match->data;
+ 
+ 	data->vdd_reg = devm_regulator_get(&client->dev, "vdd");
+-	if (IS_ERR(data->vdd_reg)) {
+-		if (PTR_ERR(data->vdd_reg) == -EPROBE_DEFER)
+-			return -EPROBE_DEFER;
+-
+-		dev_err(&client->dev, "failed to get VDD regulator!\n");
+-		return PTR_ERR(data->vdd_reg);
+-	}
++	if (IS_ERR(data->vdd_reg))
++		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_reg),
++				     "failed to get VDD regulator!\n");
+ 
+ 	data->vddio_reg = devm_regulator_get(&client->dev, "vddio");
+-	if (IS_ERR(data->vddio_reg)) {
+-		if (PTR_ERR(data->vddio_reg) == -EPROBE_DEFER)
+-			return -EPROBE_DEFER;
+-
+-		dev_err(&client->dev, "failed to get VDDIO regulator!\n");
+-		return PTR_ERR(data->vddio_reg);
+-	}
++	if (IS_ERR(data->vddio_reg))
++		return dev_err_probe(&client->dev, PTR_ERR(data->vddio_reg),
++				     "failed to get VDDIO regulator!\n");
+ 
+ 	ret = regulator_enable(data->vdd_reg);
+ 	if (ret) {
+-- 
+2.17.1
 
-Thanks!
-
-[1/1] ASoC: meson: axg-toddr: fix channel order on g12 platforms
-      commit: 9c4b205a20f483d8a5d1208cfec33e339347d4bd
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 _______________________________________________
 linux-amlogic mailing list
