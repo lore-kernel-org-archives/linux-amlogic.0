@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AC0D5C433E6
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:51:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96812C433E6
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:51:49 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 49F8520838
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:51:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 63C3920838
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:51:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iN46LK64";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="lVcKCXOJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 49F8520838
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k1XjBiYG";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="2q5UJCJT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63C3920838
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=bpjIvoLoA2AzP3gW/qhJwy/kTfctPn63GPHCUCpGjGw=; b=iN46LK64e2fEd+y0B+7Hhqgrm5
-	DW70xlm4bDiT906S6n/aZ9D6bA+HEETpORxwNU6SlDKgHhJdXeia50fK/0+8OZCu2bkbFeFB/MMio
-	A6+4WDSVmsuAXwmtLnIaWbxf3GsVnlb3gFt60Laadz8utooCoF0Asns6kv58uUG43/Log1zGxYqBl
-	yLE65kayYGQ+btMlUC1jdHr0CZO8ho94MMTqZCn569M3oGKZvyb64R8VJvqUEEfwFkskYN8S6Mfxo
-	6VfGUDajY5TK2O6fGQyEf52qsWcJGplPQyQ/oJH/wff+wNsMTzIT8eigA/f9Buk/ZXv9l9rFlQeRr
-	d3x+0jvg==;
+	bh=GX/pHQWhtbeJg4OroL+twOPFYXSq/SRHw8M3IjMLVrU=; b=k1XjBiYGPdk2xw9eXXNk0MM/0c
+	8MR8YOGCPC3jrHBPV1PI26zPXutDsh+iAOsBsDXS1NUP9445UvdnuerGyg7XZZ17nt/rFid4P4sJg
+	TBJNDYnLwEkSA0HawvhGyemPvwGzfB/metlCJd7Lo157/N9um6s7N0DC0OYfLM3VbeT/siJCmEDbb
+	TZw5ZZD2b1iF+/PoDmYntznQ98QXa1b5OHahtSqm3rre2WZxTFfuN4Ls5O3hDj82GhJBNusvdwX+C
+	k9PCAYiXYIOz5/3t2LGIMtnJ3iJ77wNRq5AsRfTguHLnhhLrEbY8voALqbc0TcBWrNF5qeq9fqc/N
+	GBsDry/Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBui8-0004aP-S8; Sat, 29 Aug 2020 06:51:36 +0000
+	id 1kBuiC-0004cX-9H; Sat, 29 Aug 2020 06:51:40 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBufe-00035H-9r; Sat, 29 Aug 2020 06:49:03 +0000
+ id 1kBufi-00037E-TD; Sat, 29 Aug 2020 06:49:09 +0000
 Received: from localhost.localdomain (unknown [194.230.155.216])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 633DA214D8;
- Sat, 29 Aug 2020 06:48:58 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id D3B3820E65;
+ Sat, 29 Aug 2020 06:49:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598683741;
- bh=0L7TdaH8V331RKVNnYrP1jdM/0ZGtHpGBRBPwHv0ptA=;
+ s=default; t=1598683744;
+ bh=4Lu3EJuJBkPkkhNm8cEkffiFcH6Q42bc9rp03XpBrfM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=lVcKCXOJzzvmliW/HS9/MdP0ppW4M+F3UE9kV68XUT2MgZj3L6w1cvasMmTk2sp9t
- sud7bG5T7zNRaqfo/jdsxT1jLAqoqF9prNz5AoT8Yxyw9IsTSq91DnSFKg7EaMQVB0
- mOGo3Zbby1agE3Rzo5oyfDuJy1BG6cBnOU9ZD5l0=
+ b=2q5UJCJTz4MbOA8HJ/KI2YbH8ixBYNWTU5cscPWHOwBazmyqOMEXvAJA/TxjhKgCc
+ dcJSIcEFEFv2wOtJLH1DrUOpfmGGfdCCzR7rTAP/4bqEVf4iq8xpZCegelD2iVSsM7
+ wejsuCcOP7LOR8iIyXVxYXrH/DNE/16YWdxioG8c=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Peter Rosin <peda@axentia.se>,
@@ -59,16 +59,16 @@ To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v3 17/18] iio: magnetometer: mag3110: Simplify with
+Subject: [PATCH v3 18/18] iio: multiplexer: iio-mux: Simplify with
  dev_err_probe()
-Date: Sat, 29 Aug 2020 08:47:25 +0200
-Message-Id: <20200829064726.26268-17-krzk@kernel.org>
+Date: Sat, 29 Aug 2020 08:47:26 +0200
+Message-Id: <20200829064726.26268-18-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200829064726.26268-1-krzk@kernel.org>
 References: <20200829064726.26268-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200829_024902_495414_7B65F239 
-X-CRM114-Status: GOOD (  14.54  )
+X-CRM114-CacheID: sfid-20200829_024907_259510_3C64BF13 
+X-CRM114-Status: GOOD (  14.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,43 +93,34 @@ dev_err_probe().  Less code and also it prints the error value.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
- drivers/iio/magnetometer/mag3110.c | 20 ++++++--------------
- 1 file changed, 6 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/iio/magnetometer/mag3110.c b/drivers/iio/magnetometer/mag3110.c
-index 4d305a21c379..838b13c8bb3d 100644
---- a/drivers/iio/magnetometer/mag3110.c
-+++ b/drivers/iio/magnetometer/mag3110.c
-@@ -476,22 +476,14 @@ static int mag3110_probe(struct i2c_client *client,
- 	data = iio_priv(indio_dev);
+---
+
+Changes since v2:
+1. Wrap dev_err_probe() lines at 80 character
+---
+ drivers/iio/multiplexer/iio-mux.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/iio/multiplexer/iio-mux.c b/drivers/iio/multiplexer/iio-mux.c
+index 6910218fdb00..d54ae5cbe51b 100644
+--- a/drivers/iio/multiplexer/iio-mux.c
++++ b/drivers/iio/multiplexer/iio-mux.c
+@@ -354,11 +354,9 @@ static int mux_probe(struct platform_device *pdev)
+ 		return -ENODEV;
  
- 	data->vdd_reg = devm_regulator_get(&client->dev, "vdd");
--	if (IS_ERR(data->vdd_reg)) {
--		if (PTR_ERR(data->vdd_reg) == -EPROBE_DEFER)
--			return -EPROBE_DEFER;
--
--		dev_err(&client->dev, "failed to get VDD regulator!\n");
--		return PTR_ERR(data->vdd_reg);
+ 	parent = devm_iio_channel_get(dev, "parent");
+-	if (IS_ERR(parent)) {
+-		if (PTR_ERR(parent) != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get parent channel\n");
+-		return PTR_ERR(parent);
 -	}
-+	if (IS_ERR(data->vdd_reg))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_reg),
-+				     "failed to get VDD regulator!\n");
++	if (IS_ERR(parent))
++		return dev_err_probe(dev, PTR_ERR(parent),
++				     "failed to get parent channel\n");
  
- 	data->vddio_reg = devm_regulator_get(&client->dev, "vddio");
--	if (IS_ERR(data->vddio_reg)) {
--		if (PTR_ERR(data->vddio_reg) == -EPROBE_DEFER)
--			return -EPROBE_DEFER;
--
--		dev_err(&client->dev, "failed to get VDDIO regulator!\n");
--		return PTR_ERR(data->vddio_reg);
--	}
-+	if (IS_ERR(data->vddio_reg))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->vddio_reg),
-+				     "failed to get VDDIO regulator!\n");
- 
- 	ret = regulator_enable(data->vdd_reg);
- 	if (ret) {
+ 	sizeof_ext_info = iio_get_channel_ext_info_count(parent);
+ 	if (sizeof_ext_info) {
 -- 
 2.17.1
 
