@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC1B1C433E6
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:50:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 745E4C433E2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:51:16 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 87F4C20E65
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:50:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4546220E65
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2020 06:51:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rPbHs39p";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQ+mYcty"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 87F4C20E65
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fd/idVTB";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="fmM8YX57"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4546220E65
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uB/3nQzAgz2vsIRZMoN//MEp6hw4bKKvAFRlvp63kPg=; b=rPbHs39pgczOTibVy7ZzJy89RI
-	Nsjep3rPXhzcSgXkR+kW8df8zzaa5ftBRwxy5wtWwfVxVFn4mun3pY9CQ08GsMOu71405JKHWmmZ1
-	jI6Ij96TGxsyLduB02jcf1P7Hm2igqePVJjim1erjKXKFG8sQo6mNMfQOXbxCG9fSzSznSG9qaegQ
-	sV0s5XbvOmCRYxeIKpSLiJJqqBQQEzNB2ahgQfPq5y6LMbEeocprVIYkAkB8A53zboDun5qAcFwkP
-	AEWPmO3XMGNZ+8XsWm8fbHYK8xOjTMOt5H/XKWM3Ovi+bSgo1nTviJFpzSQgZgpewJexyu8Gds7X6
-	K3Eu8tow==;
+	bh=8795E0DFyYuJjZ7n5nG1+JCup2iv7XMoEopiVq9JzEk=; b=fd/idVTBZFoHHOTO9SSS43fTJT
+	CJMm5yMOAjoGmstE3W4gZya6cVomSQUazHU08836i7dFBlJxpLdJtLmPiKqvsiEjlkxZGVmpFycK3
+	HEXn9iSG5pQampfQN80ogOJKOQ7vbcmj0kQsKVIPTGUgyd84aGKcaUx8/wCBEoy1Ii3EbXsjGl2IZ
+	npMqJ/dojxxC3mRli/NOhGZvWEePKnieTzOIIz0vjRHSo6tobmFC6PU0QkLD7Or2JPvWtRvCfghUQ
+	jbp5RZr5wxx0AJ2E0AHSRDRRnhWAET25ZEPIQyOaIh7y0wAeqIyYxT6xVlImnDZn55I+dhC6EhRTL
+	GvZM0TPw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kBuhO-00043f-8i; Sat, 29 Aug 2020 06:50:50 +0000
+	id 1kBuhh-0004GG-Tb; Sat, 29 Aug 2020 06:51:09 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBufT-00030V-PQ; Sat, 29 Aug 2020 06:48:54 +0000
+ id 1kBufX-00031w-Eq; Sat, 29 Aug 2020 06:48:57 +0000
 Received: from localhost.localdomain (unknown [194.230.155.216])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id E72942151B;
- Sat, 29 Aug 2020 06:48:47 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 6D0CE212CC;
+ Sat, 29 Aug 2020 06:48:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598683731;
- bh=NdE0qL8/9TQ4ofdmnRN532/vnFt98MJgcnCVFwewxjA=;
+ s=default; t=1598683734;
+ bh=Ym0N3VTA2R8uEoTy0S3kC6MZCE3aShX6Tex766l0+mk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=tQ+mYctyziyAIhdjRXZ+tpWU2GXq+jUCvq0rJfQp54a53yr+/3v+RdW1Z3JKk3gdZ
- UCfdsW9sbzvEEBFR4MFSsFLmph2+zWy+BxEiOwy8OXCLDrgR/4hCRR/Z5/XjKPGcQN
- Fy8GFEaunbF23avS3ip9Bbwc+3WKu5b31DnDCpE8=
+ b=fmM8YX57p3s8ZfNbfV6nCkznu7Oni1aE4jqlFp/H6b7a1auwvuqk32QlRTG16kMUQ
+ ijJyI8RGhAxMkVqcuO6jnZ1TH1cngDD6DTqh2ixkR6apiLIzv78FcjmjsdzsBMheSV
+ Dd7txRnlpZusLR3xv5DLG4Ln13BFVxGpE/BBrGS0=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Peter Rosin <peda@axentia.se>,
@@ -59,15 +59,15 @@ To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v3 14/18] iio: light: isl29018: Simplify with dev_err_probe()
-Date: Sat, 29 Aug 2020 08:47:22 +0200
-Message-Id: <20200829064726.26268-14-krzk@kernel.org>
+Subject: [PATCH v3 15/18] iio: light: tsl2772: Simplify with dev_err_probe()
+Date: Sat, 29 Aug 2020 08:47:23 +0200
+Message-Id: <20200829064726.26268-15-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200829064726.26268-1-krzk@kernel.org>
 References: <20200829064726.26268-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200829_024852_945433_903C8B6A 
-X-CRM114-Status: GOOD (  14.27  )
+X-CRM114-CacheID: sfid-20200829_024855_656192_D1F3F6A0 
+X-CRM114-Status: GOOD (  14.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,30 +92,36 @@ dev_err_probe().  Less code and also it prints the error value.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
- drivers/iio/light/isl29018.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/iio/light/isl29018.c b/drivers/iio/light/isl29018.c
-index ac8ad0f32689..2689867467a8 100644
---- a/drivers/iio/light/isl29018.c
-+++ b/drivers/iio/light/isl29018.c
-@@ -746,12 +746,9 @@ static int isl29018_probe(struct i2c_client *client,
- 	chip->suspended = false;
- 
- 	chip->vcc_reg = devm_regulator_get(&client->dev, "vcc");
--	if (IS_ERR(chip->vcc_reg)) {
--		err = PTR_ERR(chip->vcc_reg);
--		if (err != -EPROBE_DEFER)
--			dev_err(&client->dev, "failed to get VCC regulator!\n");
--		return err;
+---
+
+Changes since v1:
+1. Wrap dev_err_probe() lines at 100 character
+---
+ drivers/iio/light/tsl2772.c | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/iio/light/tsl2772.c b/drivers/iio/light/tsl2772.c
+index 735399405417..d79205361dfa 100644
+--- a/drivers/iio/light/tsl2772.c
++++ b/drivers/iio/light/tsl2772.c
+@@ -1776,14 +1776,8 @@ static int tsl2772_probe(struct i2c_client *clientp,
+ 	ret = devm_regulator_bulk_get(&clientp->dev,
+ 				      ARRAY_SIZE(chip->supplies),
+ 				      chip->supplies);
+-	if (ret < 0) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(&clientp->dev,
+-				"Failed to get regulators: %d\n",
+-				ret);
+-
+-		return ret;
 -	}
-+	if (IS_ERR(chip->vcc_reg))
-+		return dev_err_probe(&client->dev, PTR_ERR(chip->vcc_reg),
-+				     "failed to get VCC regulator!\n");
++	if (ret < 0)
++		return dev_err_probe(&clientp->dev, ret, "Failed to get regulators\n");
  
- 	err = regulator_enable(chip->vcc_reg);
- 	if (err) {
+ 	ret = regulator_bulk_enable(ARRAY_SIZE(chip->supplies), chip->supplies);
+ 	if (ret < 0) {
 -- 
 2.17.1
 
