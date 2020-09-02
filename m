@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 54DAEC43461
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:38:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A07E9C433E2
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:38:18 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 251B7214F1
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:38:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 522522137B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:38:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Dp5s6gZG";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="qmFkZ/kk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 251B7214F1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TOHihmyx";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="vpFu8350"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 522522137B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=vrVsLBoBI06A9m3L7Qq3P2evfaknVbDpKscAQNWrYNU=; b=Dp5s6gZGGqNt3IDW5UDSqr9nmu
-	NkAJABEzTwPtfdQWJNqDLNtciv9DQdILx85g5YPJmXvvjE1fCVAIXWaHwWT8NRzLKnvXVA/kNrXxm
-	MpaSDEH3b3ZVOb4Ig/Ri+R+OIgCEPwOzu4I+ziLq1rQHK6VsVDBZN4OFQl5g3lR9gOaFXefW2xjXI
-	wm2HljClesnHwnQdJgdTbCOsi2xtIFCZjDxDc9BLW6RXYXRDlhvHkX7xxg5FCEatTxsMSeylUHXB1
-	KRbDWf7ZG15ZnMQb+UegVX3i+uzs5OW2WHta3Xf0t4okCIwlgP6M9s3OUVlHnwbtcuF7VZnqW4sNj
-	vaYi24xA==;
+	bh=M6ipgck30bG3MKCcc6wCbEcqlFsLADV3u0KNeXHvr6Q=; b=TOHihmyxiCPH/mezixn5xNGLZP
+	izGgbh/8Bzv2No1+wE+3wtvP09VzqQr7kj6Syr9bFqnE11a+fBwQk4I5tdsn71sqBuOlx9ncUvn4S
+	hI+u6SN9iBKYJxk92GVoynuWytE4cCV7FlpMZCWdE20W4/foMNVBMGxlpMiAHRCzEe1CEOM582v4C
+	AQVJsWprpIojTpxELXvLXp8U2+Bwe8qpp1uNYlWdfakU1Gp20puA4+cJEYICfjY6Ecmb9y/7dqBsc
+	HoJi6tVFtUQK/aWxcTaG1unZPnGTzGtbO35xgbSO2iwlfwsR1TKMt02tUp0K5Az+gOtdmAkdElNwQ
+	FHq7cjpQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDYZy-0008Cs-QC; Wed, 02 Sep 2020 19:37:58 +0000
+	id 1kDYa7-0008IM-TB; Wed, 02 Sep 2020 19:38:07 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDYZt-0008A8-Qy; Wed, 02 Sep 2020 19:37:54 +0000
+ id 1kDYa1-0008Ev-FT; Wed, 02 Sep 2020 19:38:02 +0000
 Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 24A8C20DD4;
- Wed,  2 Sep 2020 19:37:44 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id AAFBC20E65;
+ Wed,  2 Sep 2020 19:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599075473;
- bh=+v0Gvo3NEuIgVnTGsMBHhqS8LDWaVSLs4O1rtCOSwpQ=;
+ s=default; t=1599075480;
+ bh=ysxU/OkPk0mx2jmOsOpW9mYF9nZJUrqNoDbkIh/24jA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=qmFkZ/kkB4WxgIEw8otKZYIuPvlX/EZQ8cGAMveQSNYjAkyBOCW75NK/Sx/61+kgw
- oqzDBwnVLGJVpfqsBudQ9kKBz5GwYGbGmeAR7ntYjzpzVzksZRsfxAcVDQrI63d+ji
- t7Q1KG7yC0Y3C+kYXOaBipkZhyU0eLOUrSp1OlTo=
+ b=vpFu8350AnZO/VZulHS3cosgdptpwzKBP54kcGKYYm+c84d7OK0hpajGsgvwtOFKS
+ kmJCuXW8VdBTDiKusxw3hbdgYxmp3Agznd240GsJTGXakAFEVej8jF2rXA0RVL33Bn
+ QWutahXiiNH/ft4IpIIAIUlTNFX4B8Oe+FxhtXwM=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Ulf Hansson <ulf.hansson@linaro.org>,
  Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>,
@@ -72,15 +72,16 @@ To: Ulf Hansson <ulf.hansson@linaro.org>,
  linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-tegra@vger.kernel.org
-Subject: [PATCH 05/11] mmc: meson: Simplify with dev_err_probe()
-Date: Wed,  2 Sep 2020 21:36:52 +0200
-Message-Id: <20200902193658.20539-6-krzk@kernel.org>
+Subject: [RFT 06/11] mmc: sdhci-brcmstb: Simplify with optional clock and
+ dev_err_probe()
+Date: Wed,  2 Sep 2020 21:36:53 +0200
+Message-Id: <20200902193658.20539-7-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200902193658.20539-1-krzk@kernel.org>
 References: <20200902193658.20539-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_153753_978329_9BBDF9B2 
-X-CRM114-Status: GOOD (  15.08  )
+X-CRM114-CacheID: sfid-20200902_153801_632275_CFB5754A 
+X-CRM114-Status: GOOD (  16.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,48 +100,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Common pattern of handling deferred probe can be simplified with
-dev_err_probe().  Less code and the error value gets printed.
+Only -ENOENT from devm_clk_get() means that clock is not present in
+device tree.  Other errors have their own meaning and should not be
+ignored.
+
+Simplify getting the clock which is in fact optional and also use
+dev_err_probe() for handling deferred.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- drivers/mmc/host/meson-gx-mmc.c | 16 +++++-----------
- 1 file changed, 5 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 08a3b1c05acb..2802e4520783 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -426,11 +426,9 @@ static int meson_mmc_clk_init(struct meson_host *host)
+---
+
+Not tested on HW.
+---
+ drivers/mmc/host/sdhci-brcmstb.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
+index ad01f6451a95..876668827580 100644
+--- a/drivers/mmc/host/sdhci-brcmstb.c
++++ b/drivers/mmc/host/sdhci-brcmstb.c
+@@ -235,13 +235,11 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
  
- 		snprintf(name, sizeof(name), "clkin%d", i);
- 		clk = devm_clk_get(host->dev, name);
--		if (IS_ERR(clk)) {
--			if (clk != ERR_PTR(-EPROBE_DEFER))
--				dev_err(host->dev, "Missing clock %s\n", name);
--			return PTR_ERR(clk);
--		}
-+		if (IS_ERR(clk))
-+			return dev_err_probe(host->dev, PTR_ERR(clk),
-+					     "Missing clock %s\n", name);
+ 	dev_dbg(&pdev->dev, "Probe found match for %s\n",  match->compatible);
  
- 		mux_parent_names[i] = __clk_get_name(clk);
- 	}
-@@ -1077,12 +1075,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	}
- 
- 	ret = device_reset_optional(&pdev->dev);
--	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev, "device reset failed: %d\n", ret);
--
--		return ret;
+-	clk = devm_clk_get(&pdev->dev, NULL);
+-	if (IS_ERR(clk)) {
+-		if (PTR_ERR(clk) == -EPROBE_DEFER)
+-			return -EPROBE_DEFER;
+-		dev_err(&pdev->dev, "Clock not found in Device Tree\n");
+-		clk = NULL;
 -	}
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "device reset failed\n");
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	host->regs = devm_ioremap_resource(&pdev->dev, res);
++	clk = devm_clk_get_optional(&pdev->dev, NULL);
++	if (IS_ERR(clk))
++		return dev_err_probe(&pdev->dev, PTR_ERR(clk),
++				     "Failed to get clock from Device Tree\n");
++
+ 	res = clk_prepare_enable(clk);
+ 	if (res)
+ 		return res;
 -- 
 2.17.1
 
