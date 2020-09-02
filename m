@@ -2,100 +2,58 @@ Return-Path: <SRS0=TE1J=CL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34FEFC43461
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:38:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D84DC433E7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 16:36:17 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 046E120678
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:38:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2A155206E7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 16:36:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jl9Y2mIl";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lechnology.com header.i=@lechnology.com header.b="MD6fWbGW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 046E120678
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lechnology.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eWBEOvYg"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2A155206E7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=OKgRjWTQtCB0gxcXe9KS979uVlyxepBvztyA8dFCZjU=; b=jl9Y2mIlri21Q4J3EGa77wiUF
-	7f2yiRWJHd6Lgk3eNVWzV4RfSKaq02ePGMGfzLQtfS3fKJ9BHJm1gWusl4zwurNSpMmU7K5SrQvGi
-	zf324OudzoX6Ar/+TtsS7uOHbaOmBEQzbCKr/D8tFt11hfxPn7rfujxfVmA2D8Mn+35ruTguPQvQh
-	s7DnIDP3R0eUhfJ2HGAVMOWdf5uJ8wE4fxiMnQ+CN94S+0bsWcEFWzJqldrYUAkqxZ8Rko2EZx36z
-	DtNjbh0av5y49oGqEdXJVzPJ3sKxOJhiXfc/X5eL74L+kO/rTyHnglr4hO0y/BTqsqDBSonSbb9hD
-	hJCOkhqaw==;
+	 bh=7ysX4FUDTaZH3eU4ytgEGx3bMnYMuEIisxi0KRNJ6C8=; b=eWBEOvYg/KQvcbfDCruO+B6lQ
+	CNKX6pFcrd0LloLhsnob42EhYC5krUoJGt83KfeMvQ2sxjBlyXPo8dYk6tCvfYbauXwEC/+S1cRUC
+	tcs4Q51GZYQsNITiEtgKWHmo+gFfHR8acLqrfQ5sfnlt/SwQquVfFT3vwZt6325ykruwcAz2xFdZ3
+	57FNs4Tk11shoPjMVnP23uV1kLeQOzgWVtfNYQrRPYzv/yNoNV9eRBu3Gyxf0KY3aQPmFtUgFpG0O
+	brNakTE4FOQrjRTkpE8baNJdLrEspFimmbj+bnDRpnrj3p0IhRoyd1l39K0mkQcWaG+ESRJ1LfhPA
+	n0sIm1egg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDUqT-0005co-HF; Wed, 02 Sep 2020 15:38:45 +0000
-Received: from vern.gendns.com ([98.142.107.122])
+	id 1kDVk2-0007au-4G; Wed, 02 Sep 2020 16:36:10 +0000
+Received: from relay6-d.mail.gandi.net ([217.70.183.198])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDUqR-0005RL-5W; Wed, 02 Sep 2020 15:38:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
- Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1WJCvpUbONxE9kBc4YJDae1soRkUcyCvXmPAxzsFTIo=; b=MD6fWbGWOUaGaH59wnHnjDcs4W
- aNh3yHFBfOfrIqu1O+qlhQA8tqt7eolRdc5vC2HLpj5AnEYz11vh3TVCBddqu0O3IduFmhrvmS/Uc
- 61yc1cpEOG32hCV4zRBkkZu2DR6ulxgS5rOojmvtgenVcZ5JbdHSrD5usPYUVVpS5JnX29an3dNkO
- oacsIpSs/3FrVxRkahDLiVsNAfwrQHRWcmfi5Ai7dNRi/2wpzyietRSHLRUhcZNG9XwxmxMR7kfb1
- OE8tG2aC+1DuCrVNf4RvWjNFNd8c1iy+dxmgYDRFAIal0+Ka06utj44gp6ThyQVggk9pjKqxHMsvM
- ThLNeGBg==;
-Received: from [2600:1700:4830:165f::19e] (port=47972)
- by vern.gendns.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <david@lechnology.com>)
- id 1kDUpj-0002Sa-Sx; Wed, 02 Sep 2020 11:38:00 -0400
-Subject: Re: [PATCH 10/10] clk: davinci: Simplify with dev_err_probe()
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- Sekhar Nori <nsekhar@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson
- <bjorn.andersson@linaro.org>, Maxime Ripard <mripard@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org
+ id 1kDVjy-0007a4-6x; Wed, 02 Sep 2020 16:36:08 +0000
+X-Originating-IP: 90.66.108.79
+Received: from localhost (lfbn-lyo-1-1932-79.w90-66.abo.wanadoo.fr
+ [90.66.108.79]) (Authenticated sender: alexandre.belloni@bootlin.com)
+ by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id C04D9C0003;
+ Wed,  2 Sep 2020 16:35:58 +0000 (UTC)
+Date: Wed, 2 Sep 2020 18:35:58 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 01/10] clk: at91: Drop unused at91sam9g45_pcr_layout
+Message-ID: <20200902163558.GA4137028@piout.net>
 References: <20200902150348.14465-1-krzk@kernel.org>
- <20200902150348.14465-10-krzk@kernel.org>
-From: David Lechner <david@lechnology.com>
-Message-ID: <c4ebd618-be71-c898-7adb-f88cf81195ac@lechnology.com>
-Date: Wed, 2 Sep 2020 10:37:57 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200902150348.14465-10-krzk@kernel.org>
-Content-Language: en-US
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id:
- davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Disposition: inline
+In-Reply-To: <20200902150348.14465-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_113843_265956_5D123B2F 
-X-CRM114-Status: UNSURE (   8.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200902_123606_339672_97F3732B 
+X-CRM114-Status: GOOD (  16.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,20 +65,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ David Lechner <david@lechnology.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Sekhar Nori <nsekhar@ti.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Andy Gross <agross@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+ linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 9/2/20 10:03 AM, Krzysztof Kozlowski wrote:
-> Common pattern of handling deferred probe can be simplified with
-> dev_err_probe().  Less code and the error value gets printed.
+On 02/09/2020 17:03:39+0200, Krzysztof Kozlowski wrote:
+> The at91sam9g45_pcr_layout is not used so drop it to fix build warning:
+> 
+>   drivers/clk/at91/at91sam9g45.c:49:36: warning:
+>     'at91sam9g45_pcr_layout' defined but not used [-Wunused-const-variable=]
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+
 > ---
+>  drivers/clk/at91/at91sam9g45.c | 7 -------
+>  1 file changed, 7 deletions(-)
+> 
+> diff --git a/drivers/clk/at91/at91sam9g45.c b/drivers/clk/at91/at91sam9g45.c
+> index c88ee20bee31..cb4a406ed15d 100644
+> --- a/drivers/clk/at91/at91sam9g45.c
+> +++ b/drivers/clk/at91/at91sam9g45.c
+> @@ -46,13 +46,6 @@ static const struct {
+>  	{ .n = "pck1",  .p = "prog1",    .id = 9 },
+>  };
+>  
+> -static const struct clk_pcr_layout at91sam9g45_pcr_layout = {
+> -	.offset = 0x10c,
+> -	.cmd = BIT(12),
+> -	.pid_mask = GENMASK(5, 0),
+> -	.div_mask = GENMASK(17, 16),
+> -};
+> -
+>  struct pck {
+>  	char *n;
+>  	u8 id;
+> -- 
+> 2.17.1
+> 
 
-Reviewed-by: David Lechner <david@lechnology.com>
-
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
