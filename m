@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C478C433E2
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:57:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E0EB0C433E7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:58:42 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1A11820767
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:57:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AEFB520767
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:58:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h0uEm4vh";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oryep4f/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A11820767
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pcMfAex9";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YzlC8dEC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AEFB520767
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,53 +27,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=J1fbyTNHO07DOguvIguie2LSTvQBHM9aYYrzi5zHKTw=; b=h0uEm4vh2GM0fdTkHvcyPOeQK
-	CggzXbKBMEw7dgJUaXQwKBS1e4Z5NQOMfdQBP/IhYoZSFFmX6M2jUmYbGE/a/TH0IYL9lWeuq+jMu
-	CoYvzjY5sjY7R6RJI6v/xKQ7lNTvjfRxWt8JFsKFOzMdQaO+NZ71E2g8TMM3cEwQTUG0Q9XIdEQbk
-	SJv/i3ZP1TXYq8KGZ5dTk/E/ga3+qS5VwDjH2qYdxTrx4+2AyDo0JO8AH9qTxcHJN1i1KTJnkBpWJ
-	Ij+UBYHQcvw/W7iQ/9fJzy4+969Zdo+MuFKZLbBnbQM5LI2OYIgaVVlrKvuv9eS+LZosbyR203cKY
-	BQaSeqyDw==;
+	 bh=whI4MkRfuNtQrqIk+vM/TxJkYP2d/gR1qN1odjkqzmQ=; b=pcMfAex9G9V1Ix8gA+RwLa27y
+	GwMi7CdS+oZMv81y39e5NK3zhAy3JU+HlIJVRpBXaYH1RjZ8vkSqJa7w2lyaqpiBLmSawS2uO6Bnd
+	NR1O9fhgRG3ioCux/d+InYdWebuSZiv19jU30tDyIFbtbAGBeUCo/uhSb6QljxlrLwMykrh4z+ksG
+	HMCcV32Xzw2A1vYIo7Oa3r++/y1pt4yjgCXk2UUKRm0SLAOh8SJ39cLAcXbV/X7ERXMugQoDqhmFf
+	S42Rrjryiwj758LCAWdA8zwFBTbVMRkwLXu1UuAdnU4oEwS2tRO07/Ej2RsB/6igTWgqy/LTX+KGf
+	bllpojb/w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDYsH-0004Cf-3G; Wed, 02 Sep 2020 19:56:53 +0000
-Received: from mail-pj1-x1041.google.com ([2607:f8b0:4864:20::1041])
+	id 1kDYtx-0004Px-IB; Wed, 02 Sep 2020 19:58:37 +0000
+Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDYsE-0004CA-ML; Wed, 02 Sep 2020 19:56:51 +0000
-Received: by mail-pj1-x1041.google.com with SMTP id np15so2608217pjb.0;
- Wed, 02 Sep 2020 12:56:48 -0700 (PDT)
+ id 1kDYtu-0004P9-Sp; Wed, 02 Sep 2020 19:58:35 +0000
+Received: by mail-pg1-x543.google.com with SMTP id e33so226232pgm.0;
+ Wed, 02 Sep 2020 12:58:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=subject:to:references:from:message-id:date:user-agent:mime-version
  :in-reply-to:content-language:content-transfer-encoding;
- bh=kuKGy0nMzCedIxYfbaeRSNCf0OjAifTH7DorC8oMLIc=;
- b=Oryep4f/il09PEeRvkAzCa5yEamHX3IfI4haHnZFqft2sDVyMzWOa2oW6q5r7iV5cP
- 4WT9+KMNL0+EhJccY9W2L8b8ZRNf5/yo2w1W4WhJ8XUROyxfdUB59D07znI18+pINr/N
- BcNZBzI0Gy8lVLdV6hEaC0yuvFtHvvTjC55K9Sa9xT2q7JBJXf2m3p90Sa3cB7/q91y0
- ceFFSnakSGrgS6Uk+aqsVKfyHoIJd+8xJXzN2S5xseiX/Z3zDW4R94HHyVGEN+V6jqOz
- ByLYj8x/gERQejNbUXCouYpjDKb2Tvtc67e8dxDbrAFFi+bTIhE6bVbxm/6YTah8KX7G
- xOWA==
+ bh=d+WdgVBE+L/woTERvR0p8b6tQx5/pd39kVl8oSrdHVs=;
+ b=YzlC8dECJqJOjLLs2YKQmuohtpWmQk+W/RgohjefJ4o7Aum+uzfTLLoq87rr0RfFzv
+ hagR5zptSSAwqVNl9ljQrexXAhAtNNF2a6xLEW2LvNF+ZZp7EylrMYCvb18IT8rEctE+
+ wSYEtQ2D8AhKNC+aFBi9bS5yqBJ3DiQRLb1YdVxckFNTDylaqFy7zqk+FFvpmtMJufK+
+ ScBJw2tfa27ngWimOxV0/umWO1Xr/UW1PtU8f7y5El6xmPtSnOsvyu7tjgbPNyGh02jV
+ Ek02Bz9L9SLWH9rxyMfdX9PXr5LrW9LoxI+4GqJWH2fQV0CfhMQc2jO3JOFkk2ZVksqk
+ ZPWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=kuKGy0nMzCedIxYfbaeRSNCf0OjAifTH7DorC8oMLIc=;
- b=rI0bu58BhJUAbw/1IjGO4VEzpwbz/HIBS9kGaVyOey5mv9cV3P1HwgO90o4XTbZtbC
- EVy+W9oARDlKo7d1FYuvkXhbkztmyKf5WQdsDlu5MS0sQf0fKfKwksAjr1UsoPU/Fwcl
- Y2nWnb4A17KRFSOUeiS77NQoC2u4akGqCooL5CnqTp1VVjh4C9RfPoYNrSip1bCvkwI9
- nGqh7QwAvbbxFKxl/IKOaKfJejXSCQDhrsrwn6xoReBRRa0jUMzg71WS89v4mZv/I5f9
- /+XG3+SDyc6RtbguCDep9HyfaZYPW4Mkml0/CUhVAYzqIojPuXv+MIK4S/V88ZcRsfB/
- D1xQ==
-X-Gm-Message-State: AOAM5333agnkSFZ7WgzfqOKGEV6rf4+lwndYsUqsks/ZwpT96bVHV1Jh
- sa4TUWyc/JL2lrFL0t/cnDE=
-X-Google-Smtp-Source: ABdhPJyEGSaG8BPaN9z2skZyEo+FUnajjLrY5nUupDll1Zmgpd/sTj0J5IIHRSDG1t8oto5PtF2n8Q==
-X-Received: by 2002:a17:902:d213:: with SMTP id
- t19mr111855ply.46.1599076606592; 
- Wed, 02 Sep 2020 12:56:46 -0700 (PDT)
+ bh=d+WdgVBE+L/woTERvR0p8b6tQx5/pd39kVl8oSrdHVs=;
+ b=Y4XSZNVVliugW0QUod7OXtVZhjpfxFzT1DiW312Tv06Jnffl2t05vzhn3lXQNARTK1
+ zaD1ujWO8+zIGlCF1qQNeRpd1yaM+2/tHmo/bv9rJr3cBZjucZgRwbtLbFr1Eipn2wYJ
+ PRw53KxgPEy0m3wJurnJED1zuh3VUyQ5mNm7mcQsvgdIdXxPjqUsZEl7cvp1BKv9XgpW
+ Jd+bGRSeEkEvGTqOMNljE38Q5QwiQhjc7qW52ullnODmgk3NoPmblwPu81PEoo0YTFHi
+ 9NSI1YV33KBvZYbY4rRewSTZAYxjqQKxxMTT0ZxRc5No/v3vj1cBMjCHiEwohqFZM9ej
+ 8gJQ==
+X-Gm-Message-State: AOAM5316RZfh9Sc5gmLmlumKHnPLS2eNDWprSoZ6s7AeOuhovArRUAre
+ gZbEqyKufQJkXdCiPX4enAU=
+X-Google-Smtp-Source: ABdhPJz3ZUmZlx9FkrlG3QEblvQfbKk0RI98pTqO+CIB7JBEZc5AFqQkvFssp7Rw0LROy2Nln0RVXw==
+X-Received: by 2002:a63:4b63:: with SMTP id k35mr3244798pgl.235.1599076712745; 
+ Wed, 02 Sep 2020 12:58:32 -0700 (PDT)
 Received: from [10.230.30.107] ([192.19.223.252])
- by smtp.gmail.com with ESMTPSA id t20sm225492pjg.21.2020.09.02.12.56.42
+ by smtp.gmail.com with ESMTPSA id q2sm163845pgs.90.2020.09.02.12.58.29
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Sep 2020 12:56:45 -0700 (PDT)
-Subject: Re: [PATCH 01/11] mmc: bcm2835: Simplify with dev_err_probe()
+ Wed, 02 Sep 2020 12:58:31 -0700 (PDT)
+Subject: Re: [RFT 06/11] mmc: sdhci-brcmstb: Simplify with optional clock and
+ dev_err_probe()
 To: Krzysztof Kozlowski <krzk@kernel.org>,
  Ulf Hansson <ulf.hansson@linaro.org>, Florian Fainelli
  <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>,
@@ -96,18 +96,18 @@ To: Krzysztof Kozlowski <krzk@kernel.org>,
  linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-tegra@vger.kernel.org
 References: <20200902193658.20539-1-krzk@kernel.org>
- <20200902193658.20539-2-krzk@kernel.org>
+ <20200902193658.20539-7-krzk@kernel.org>
 From: Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <03ecf673-908c-823e-484b-7c442ad16621@gmail.com>
-Date: Wed, 2 Sep 2020 12:56:41 -0700
+Message-ID: <d98f6b67-c0d0-f701-af24-b01f61c4580d@gmail.com>
+Date: Wed, 2 Sep 2020 12:58:28 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-In-Reply-To: <20200902193658.20539-2-krzk@kernel.org>
+In-Reply-To: <20200902193658.20539-7-krzk@kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_155650_755158_6D7D460F 
-X-CRM114-Status: GOOD (  12.35  )
+X-CRM114-CacheID: sfid-20200902_155834_940064_FBC447B6 
+X-CRM114-Status: GOOD (  14.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,10 +127,17 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 On 9/2/2020 12:36 PM, Krzysztof Kozlowski wrote:
-> Common pattern of handling deferred probe can be simplified with
-> dev_err_probe().  Less code and the error value gets printed.
+> Only -ENOENT from devm_clk_get() means that clock is not present in
+> device tree.  Other errors have their own meaning and should not be
+> ignored.
+> 
+> Simplify getting the clock which is in fact optional and also use
+> dev_err_probe() for handling deferred.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+This is actually an open coded version of devm_clk_get_optional(), so 
+this is fine:
 
 Acked-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
