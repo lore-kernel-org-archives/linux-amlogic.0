@@ -2,88 +2,134 @@ Return-Path: <SRS0=TE1J=CL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49091C433E2
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 12:39:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19924C433E7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 12:47:46 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0452820767
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 12:39:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CC601206F0
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 12:47:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TNKYGdAT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MtRYkKVH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0452820767
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Qes7RmQ0";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="NeCpYi58"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CC601206F0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:Date:Message-ID:
+	From:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=4SkNYCglSv9J8cje1XU9eygAcBnBzQsopfiulO90AeI=; b=TNKYGdATkPLfKTH2+cwbmpNW2
-	crRFc2zcIU0Nl5HPVF1QCp4qAiTbhwTvupkIID9anYqtibn3sWINRHCviIiOi0DSu0NJZo11QOpEY
-	tDWTsXnsrW431hPgUo7pE4Oxqq7BDv/SgOJOQzy7v3Zmc3CZQTbJSLEs8yIHZwszvWm5UEojeKd4X
-	4vfrkFXj96pTJI1dhK8WpiC6u7BxQLuNiq16XR3OvW0WAmncQ/NNOIZabVeGkbdCi40oc2n+0jN69
-	TzuHWQw8dnla6IlytfI3AW1FuJoABFwtTveyq75oOXLwg8TLaFTVHomoR6TARKoGNNo5wFHoTSbFG
-	6YwlonsCQ==;
+	 bh=nfHR8i30MNq0T5ZYvmnb/MY3qD0WrfMYpa0fYmwtIjg=; b=Qes7RmQ0LfFIPDRucFqGAmt9u
+	4H1aUhmolNuDuGRZpuUBxWZRykl54zGzQDKFoMkzN/VCRvb25kRYXrBGi5L6xYailen5eoGQ+YVLP
+	K8jar5XM9HPCyCXTLru7wRpYF94UqqVf/WdaqhTQFg7UxifBLUG6o9tAJmzKy+qIwdtdMAlEKF6c5
+	1j3pZC5K0kP0jMbP09TVhYAIV+IV5I4OvOSbUQlCCfh1pg4rRYgO1aCR9CobFHzTQvg0bIkjMdd2d
+	F6D+qk5uPvnrkdlkgTJsSt7meTtyXAZyu0vrFaLPjSwcJAK/g2w1JJnL5ScdSZipKpkZUrSCclMM4
+	964sQklVg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDS2e-0002xH-E0; Wed, 02 Sep 2020 12:39:08 +0000
-Received: from mail-il1-x144.google.com ([2607:f8b0:4864:20::144])
+	id 1kDSAr-0003rP-Ut; Wed, 02 Sep 2020 12:47:37 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDS2Z-0002wN-SK; Wed, 02 Sep 2020 12:39:04 +0000
-Received: by mail-il1-x144.google.com with SMTP id p13so4812481ils.3;
- Wed, 02 Sep 2020 05:39:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=zRLk/FVIgnkiAFw6VnkIOm9Nv1tk0FDj+F7At4enkEg=;
- b=MtRYkKVHqC+VWYXYYLmZjSimMPm3gqryGZqZFIRF+5HVd/jnVuPNULKoaPpEtFFIyd
- KpH5fdcOLe9Tsv6YCzel6W2kFhp82VT0Q27i6WrBm97quuXHKftwRqXd9Ns9g0jWgvwF
- IznXdMRs/Ge8sWsOJu0BuDJpqOCYc5jaWvayEXVbKgbli6kAvCk3EGdbheKIjLBbHcCo
- afG17q/J6t4nWIw2D8ohqMGijNhPoolHaaY4nGPE5FGi5rOlGRs4VsZiLzUfO5kigKTE
- n4+gbC5DAhyXuZRxJolelPg8GYKDvzGvhTaStzcIx/WjjBW4/HBd9QbnZkd7tRPaZjLw
- 10sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=zRLk/FVIgnkiAFw6VnkIOm9Nv1tk0FDj+F7At4enkEg=;
- b=g+O+IKC8iDfaAS06bm3FHbmBosuwaBsFQG9blHVInTu1a9WJR0ZdHNstT0VpUAhUHO
- TJaJKFXJx/xOP/vkh54LmxP9of06xNSbiTVfvgnAOVHA0wt5xwBtNwbf4S6Q9W814Mhv
- FNnVy56VRlbVwAOx7+NX9OOZ/o7hLOXzE0dkTLEbG05z0zdJ/tFfGvnE4DeP+v8Ce4k+
- mg+9Bf4Ex2W/xAxACmuRqSks/8e3vWW45zFz5SW5bI7DT4iFUy3npw3c0f4A5WAuL2ae
- PsDONY5tTQz5Kfte3lGOXSRijf4Q1ilSrJ+eRoOPCsMg5rSPiIilB8vR0CG4rGtv8T//
- OmIQ==
-X-Gm-Message-State: AOAM530wb7WWjU3NuE8of3n1yr8X49Kqg74ekBBo5uh3nyBY2QJqN3Aw
- IqduNm6SqkhqMKeDmDpR1qwdO22ehmQo1/buPps=
-X-Google-Smtp-Source: ABdhPJwASUwfRhdBE0t0pdzOgOsbUkqg8oaupuBR22h6Rpw3I60+ZiGo0m/hRqXgp+cZzxKBDiUBnrf4CQdniBWqx44=
-X-Received: by 2002:a92:4184:: with SMTP id o126mr3764559ila.6.1599050340215; 
- Wed, 02 Sep 2020 05:39:00 -0700 (PDT)
+ id 1kDSAo-0003qu-Ht
+ for linux-amlogic@lists.infradead.org; Wed, 02 Sep 2020 12:47:35 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20200902124732euoutp0287d04c5dde4d52e1229d62952d52693f~w_Ecv_GY_0634106341euoutp02B
+ for <linux-amlogic@lists.infradead.org>; Wed,  2 Sep 2020 12:47:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20200902124732euoutp0287d04c5dde4d52e1229d62952d52693f~w_Ecv_GY_0634106341euoutp02B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1599050852;
+ bh=gjFiZoQjmNlgYKVBiHZ92aAN6y9PsbZAiFIHRgkZjJ8=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+ b=NeCpYi58f93nN9rUREBP4UhYWfFGLLLohpqvvF+Ogd4dprRnA5dDRbS3szpSAOpw9
+ CgfyQ+Nly9AE8YM7J+vlrbcidSguR2ult9L78X85GfVXWtxJ38qL3JQxYW4JB9DJqO
+ CEx/sxElGV6ag3CAagiKo5s9p8Zj+UhWZu129oHw=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+ 20200902124732eucas1p240a947627945fbf2c56579606daffcd5~w_EcinzUJ1052810528eucas1p2j;
+ Wed,  2 Sep 2020 12:47:32 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+ eusmges2new.samsung.com (EUCPMTA) with SMTP id C8.4C.05997.4649F4F5; Wed,  2
+ Sep 2020 13:47:32 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+ 20200902124731eucas1p13716070977dbef39d09147bb71e050f6~w_EcQNPeI0524305243eucas1p1G;
+ Wed,  2 Sep 2020 12:47:31 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+ eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+ 20200902124731eusmtrp12646df06a8a23fc3f2c4f181b1a5bb56~w_EcPT9Vg1487214872eusmtrp16;
+ Wed,  2 Sep 2020 12:47:31 +0000 (GMT)
+X-AuditID: cbfec7f4-65dff7000000176d-38-5f4f94646cfe
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id 2E.F5.06314.3649F4F5; Wed,  2
+ Sep 2020 13:47:31 +0100 (BST)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+ eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20200902124730eusmtip1f4f6f2bc3ae53e74490063a903236483~w_EbSw_Y81979819798eusmtip1E;
+ Wed,  2 Sep 2020 12:47:30 +0000 (GMT)
+Subject: Re: [PATCH v2 2/6] regmap: Use flexible sleep
+To: Dmitry Osipenko <digetx@gmail.com>, Lee Jones <lee.jones@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Pavel Machek <pavel@ucw.cz>, Dan
+ Murphy <dmurphy@ti.com>, Sebastian Reichel <sre@kernel.org>, Lubomir Rintel
+ <lkundrak@v3.sk>, Mark Brown <broonie@kernel.org>
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <d936a2fc-8890-eec1-015c-d919e10d1dc5@samsung.com>
+Date: Wed, 2 Sep 2020 14:47:31 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20200831075911.434-1-linux.amoon@gmail.com>
- <20200831075911.434-2-linux.amoon@gmail.com>
- <7hpn767f6x.fsf@baylibre.com>
- <CANAwSgSjSU3wrgSkg+vE1u7JZKr3-8KHXHbMarvhSGKHXR0Khw@mail.gmail.com>
- <d944e388-8112-4490-bc6d-d7bfc5ee0762@baylibre.com>
- <CANAwSgRyV_Sz3GbLZ__-Ed8nhw5WCbChULVX8hhFLmgSs1tb-A@mail.gmail.com>
- <0845cbc4-cf95-5c00-4294-1b98b159727d@baylibre.com>
-In-Reply-To: <0845cbc4-cf95-5c00-4294-1b98b159727d@baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 2 Sep 2020 18:08:48 +0530
-Message-ID: <CANAwSgR6air7XtJqzNxtj+ucpt-VTsSgjtRNmc7fnfwUyn6xSg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-To: Neil Armstrong <narmstrong@baylibre.com>
+In-Reply-To: <20200830185356.5365-3-digetx@gmail.com>
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRjm2zk7O1tNjtPwJStxVtjNtEw+rCQj4SSh/epHkrb0oNG2bEcz
+ gyi8t9RWKuosHbLwRiamlaaUZlqOzDLCrqZZNvGSaMUsu2zHyn/P877v877P8/HRhOK7eCl9
+ WJvA6bQqtZKSkTc6bT0bYvLDo3x79WJcMDhM4bKOHjGumXqP8DlLgxiPDXUQOM1YTmJbZoMI
+ D3y5j7CpZBHua75E4caxWoSnczoQPjtjpPBbawmJ23Mj8Jvu+xROb+2QYMvtBGxrLiV3uLCT
+ /ekStsn4RsLWV5+l2NfPWyj2uvk0m5M6QbFd/TdFbGXNNwlrbqtA7HT9ir2y/bJtMZz68HFO
+ tzHooCzOcGGOijcFnJi7HHgGffHRI5oGxh+s93R6JKMVTCUCc1qTRCAzCAznikUCmUbwrOwr
+ 0iOpQ1H9IYUUGhUIcuuuzksmEWSP2CT2KRcmAGoGPzoarswHEdTl33QQgrkmgpG7mY5dFOMH
+ +nE9ZcdyJgheTT4R2THJrIQrE+cdM0uYSOjsHiKFGWd4WDxM2p1LmS1wqy7EXiYYD0htLCEE
+ 7AYvh8scvoGpoqHU+pkSfO+C4cq2eewCo10NEgEvA0teNikIUhEM9gh5gMlG0JdSNJ96K7zu
+ maXslwlmDVxr3ig8XzAMffIWoBP0jzsLHpzg4o1CQijLIStDIexYDcau2n9X23qfEgakNC4I
+ ZlyQxrggjfH/WRMiq5Ebl8hrYjl+k5ZL8uFVGj5RG+sTfVRTj/58ScvPrplbqPnHoXbE0Ei5
+ WF4UFRalEKuO88madgQ0oXSV73xkiVTIY1TJJznd0Shdoprj25E7TSrd5JvLrQcUTKwqgTvC
+ cfGc7m9XREuXnkGico8TpbvHM6xhXq3aX9LqrKmyuAN5BUGBahToOauwjtjem45FF0au7f4c
+ csrf68VA2klp97oKc8Ti6H1D4erHLVcX7em8M+Pb5Oa+JEWTbZpIXn763YChxBCak8UTVQ96
+ 07+NToWOxaGJJNa1ybvPbOj3W13wdtX29T6eHl9jg5UkH6fyW0voeNVveSaWbo4DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuplleLIzCtJLcpLzFFi42I5/e/4Xd3kKf7xBsfX6FlMffiEzWL+kXOs
+ Fqs/Pma06D69hdXizaMjzBYtsxaxWPxs38Jkcf/rUUaLBbO5LS7vmsNmsfXNOkaLz71HGC06
+ v8xis7j3cjaLxaG+aIu7p46yWbTuPcJucXp3icXPXfNYHIQ93t9oZffYOesuu8emVZ1sHneu
+ 7WHz2Lyk3qO3+R2bx/Eb25k8Vqz+zu6x5OByRo/Pm+QCuKL0bIryS0tSFTLyi0tslaINLYz0
+ DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLLUov07RL0MiZM/MtWsMCs4u9cqwbGr3pdjJwcEgIm
+ EqueNrF0MXJxCAksZZR4+3EXO0RCRuLktAZWCFtY4s+1LjYQW0jgLaPEic5SEFtYwExi9cNn
+ 7CDNIgJPmSRuPvsE5jALrGeS+H92NyNER7zEu3/3wLrZBAwlut5CTOIVsJO4/f4iE4jNIqAi
+ sfRdP1i9qECcxJmeF1A1ghInZz4BOo+Dg1PAVGLHBleQMDPQ4nmbHzJD2PISzVtnQ9niEree
+ zGeawCg0C0n3LCQts5C0zELSsoCRZRWjSGppcW56brGhXnFibnFpXrpecn7uJkZgUth27Ofm
+ HYyXNgYfYhTgYFTi4Z0R7xcvxJpYVlyZe4hRgoNZSYTX6ezpOCHelMTKqtSi/Pii0pzU4kOM
+ pkC/TWSWEk3OByasvJJ4Q1NDcwtLQ3Njc2MzCyVx3g6BgzFCAumJJanZqakFqUUwfUwcnFIN
+ jC1R6lOWXupiKIv8veWFq+1ZntVNVnulXyQwn7I13SnRt+nLlDclHdNzHi57mPDlS5b3B/4H
+ vQvrr7vUF3z0nsy7Z9bUKalm5sV/jWq3FitaTo8UYm8MdbbIe9kl2fBkfkS3sMCCxdzbLy9J
+ fn+JQ2z/Eu+v76e7L5krVs/23m/7Hcnzs49NWaDEUpyRaKjFXFScCABbxlkYIAMAAA==
+X-CMS-MailID: 20200902124731eucas1p13716070977dbef39d09147bb71e050f6
+X-Msg-Generator: CA
+X-RootMTR: 20200902124731eucas1p13716070977dbef39d09147bb71e050f6
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200902124731eucas1p13716070977dbef39d09147bb71e050f6
+References: <20200830185356.5365-1-digetx@gmail.com>
+ <20200830185356.5365-3-digetx@gmail.com>
+ <CGME20200902124731eucas1p13716070977dbef39d09147bb71e050f6@eucas1p1.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_083903_925783_DEF550A5 
-X-CRM114-Status: GOOD (  35.19  )
+X-CRM114-CacheID: sfid-20200902_084734_768770_21ADDA11 
+X-CRM114-Status: GOOD (  21.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,346 +141,135 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-leds@vger.kernel.org,
  Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-hi Neil,
-
-On Wed, 2 Sep 2020 at 12:48, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> On 01/09/2020 17:29, Anand Moon wrote:
-> > Hi Neil,
-> >
-> > On Tue, 1 Sep 2020 at 18:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >>
-> >> On 01/09/2020 12:14, Anand Moon wrote:
-> >>> Hi Kevin,
-> >>>
-> >>> Thanks for your review comments and testing.
-> >>>
-> >>> On Tue, 1 Sep 2020 at 01:36, Kevin Hilman <khilman@baylibre.com> wrote:
-> >>>>
-> >>>> Anand Moon <linux.amoon@gmail.com> writes:
-> >>>>
-> >>>>> Enable RTC PCF8563 node on Odroid-N2 SBC, In order to
-> >>>>> support the RTC wakealarm feature for suspend and resume.
-> >>>>> Also assign an alias to the pcf8563 to rtc0 and meson-vrtc to rtc1
-> >>>>> timer device to prevent it being assigned to /dev/rtc0
-> >>>>> which disto userspace tools assume is a clock device.
-> >>>>>
-> >>>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> >>>>> Cc: Kevin Hilman <khilman@baylibre.com>
-> >>>>> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
-> >>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> >>>>> ---
-> >>>>> Changes v4
-> >>>>> --Add gpio interrupt for GPIOAO.BIT7 as suggested by Neil.
-> >>>>> Changes v3
-> >>>>> --Drop the INI GPIOAO.BIT7 pinctrl.
-> >>>>> --Added missing RTC alias so that rtc get assigned correcly,
-> >>>>>   as suggested by Chris Hewitt.
-> >>>>> changes v2
-> >>>>> --Fix the missing INT (GPIOAO.BIT7) pinctrl.
-> >>>>> --Fix the missing rtcwakeup.
-> >>>>> --Drop the clock not required clock property by the PCF8563 driver.
-> >>>>> ---
-> >>>>>  .../boot/dts/amlogic/meson-g12b-odroid-n2.dts   | 17 +++++++++++++++++
-> >>>>>  1 file changed, 17 insertions(+)
-> >>>>>
-> >>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> >>>>> index 34fffa6d859d..3e2aaa6f48e5 100644
-> >>>>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> >>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> >>>>> @@ -19,6 +19,8 @@ / {
-> >>>>>       aliases {
-> >>>>>               serial0 = &uart_AO;
-> >>>>>               ethernet0 = &ethmac;
-> >>>>> +             rtc0 = &rtc0;
-> >>>>> +             rtc1 = &vrtc;
-> >>>>>       };
-> >>>>>
-> >>>>>       dioo2133: audio-amplifier-0 {
-> >>>>> @@ -477,6 +479,21 @@ hdmi_tx_tmds_out: endpoint {
-> >>>>>       };
-> >>>>>  };
-> >>>>>
-> >>>>> +&i2c3 {
-> >>>>> +     pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> >>>>> +     pinctrl-names = "default";
-> >>>>> +     status = "okay";
-> >>>>> +
-> >>>>> +     rtc0: rtc@51 {
-> >>>>> +             reg = <0x51>;
-> >>>>> +             compatible = "nxp,pcf8563";
-> >>>>> +             /* RTC INT */
-> >>>>> +             interrupts = <GPIOAO_7 IRQ_TYPE_LEVEL_LOW>;
-> >>>>> +             interrupt-parent = <&gpio_intc>;
-> >>>>> +             wakeup-source;
-> >>>>> +     };
-> >>>>> +};
-> >>>>
-> >>>> There's still no pinctrl definition for the GPIO pin being used as the
-> >>>> IRQ.  It looks like you discussed this with Martin and he pointed you in
-> >>>> the right direction in your v3 series, but I don't see it in this
-> >>>> patch.
-> >>>>
-> >>> Yes I had followed the approach suggested by Martin on previous email and IRC.
-> >>> but it really did not work out for me in the testing.
-> >>>
-> >>> rtc-pcf8563 driver does not handle such gpio configuration.
-> >>> so the rtc probe will fail if we add gpio pinctl to *pinctrl-0*.
-> >>
-> >> No need for multiple pinctrl-*, simple add a new pinctrl to the rtc node like:
-> >>
-> >>
-> >> @@ -18,6 +18,8 @@
-> >>         aliases {
-> >>                 serial0 = &uart_AO;
-> >>                 ethernet0 = &ethmac;
-> >> +               rtc0 = &rtc0;
-> >> +               rtc1 = &vrtc;
-> >>         };
-> >>
-> >>         chosen {
-> >> @@ -266,6 +268,17 @@
-> >>         status = "okay";
-> >>  };
-> >>
-> >> +&ao_pinctrl {
-> >> +       rtc_int_pins: rtc-int {
-> >> +               mux {
-> >> +                       groups = "GPIOAO_7";
-> >> +                       function = "gpio_aobus";
-> >> +                       bias-disable;
-> >> +                       output-disable;
-> >> +               };
-> >> +       };
-> >> +};
-> >> +
-> >>  &cec_AO {
-> >>         pinctrl-0 = <&cec_ao_a_h_pins>;
-> >>         pinctrl-names = "default";
-> >> @@ -391,6 +404,23 @@
-> >>         };
-> >>  };
-> >>
-> >> +&i2c3 {
-> >> +       pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> >> +       pinctrl-names = "default";
-> >> +       status = "okay";
-> >> +
-> >> +       rtc0: rtc@51 {
-> >> +             pinctrl-0 = <&rtc_int_pins>;
-> >> +             pinctrl-names = "default";
-> >> +             reg = <0x51>;
-> >> +             compatible = "nxp,pcf8563";
-> >> +             /* RTC INT */
-> >> +             interrupts = <GPIOAO_7 IRQ_TYPE_LEVEL_LOW>;
-> >> +             interrupt-parent = <&gpio_intc>;
-> >> +             wakeup-source;
-> >> +       };
-> >> +};
-> >> +
-> >>  &ir {
-> >>         status = "okay";
-> >>         pinctrl-0 = <&remote_input_ao_pins>;
-> >>
-> >> DISCALIMER: not built or run tested
-> >>
-> >> Neil
-> >>
-> >
-> > I have built this and tested, but still this gpio pin
->
-> Can you remove the "bias-disable" in rtc_int_pins and retry ?
->
-> The default bias is pull-up, removing it may cause this.
->
-> If it works, can you try "bias-pull-up" ? if it works, keep it and resend with my ack.
->
-> Neil
->
-
-Thanks, I was trying on the same lines, but I wanted to tested
-some stable kernel where suspend / resume was working,
-so I picked 5.7.x stable branch I observed the following opps (warning)
-when the device resumes after suspend, after that the device hangs [1]
-
-I am trying to make this work on 5.7.x tree so that we can test on 5.9.x
-      /* RTC INT */
-      interrupts = <GPIOAO_7 IRQ_TYPE_LEVEL_LOW>;
-After this small change the device comes back to command prompt.
-despite the WARNING.
-
-Problem is on u-boot (Harkernel) is work it breaks on u-boot (mainline).
-I observe after suspend /resume the IRQ count is increasing.
-
-# cat /proc/interrupts | grep rtc
- 28:          3          0          0          0          0          0
- meson-gpio-irqchip   7 Level     rtc-pcf8563
-
-Best Regards
--Anand
-
-[1] --------------
-[root@archl-on2e ~]# rtcwake -d rtc0 -m mem -s 30
-rtcwake: wakeup from "mem" using rtc0 at Wed Sep  2 11:30:09 2020
-[  285.299119] PM: suspend entry (deep)
-[  285.299318] Filesystems sync: 0.000 seconds
-[  285.503588] Freezing user space processes ... (elapsed 0.001 seconds) done.
-[  285.506269] OOM killer disabled.
-[  285.509474] Freezing remaining freezable tasks ... (elapsed 0.001
-seconds) done.
-[  285.518362] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
-[  285.532810] sd 0:0:0:0: [sda] Synchronizing SCSI cache
-[  285.660882] Disabling non-boot CPUs ...
-[  285.661343] CPU1: shutdown
-[  285.661762] psci: CPU1 killed (polled 0 ms)
-[  285.667843] CPU2: shutdown
-[  285.668575] psci: CPU2 killed (polled 0 ms)
-[  285.674892] CPU3: shutdown
-[  285.675389] psci: CPU3 killed (polled 0 ms)
-[  285.681862] CPU4: shutdown
-[  285.682202] psci: CPU4 killed (polled 0 ms)
-[  285.688581] CPU5: shutdown
-[  285.689035] psci: CPU5 killed (polled 0 ms)
-bl30 get wakeup sources!
-process command 00000006
-bl30 enter suspend!
-Little core clk suspend rate 1896000000
-Big core clk suspend rate 24000000
-store restore gp0 pll
-suspend_counter: 1
-Enter ddr suspend
-ddr suspend time: 17us
-alarm=0S
-process command 00000001
-GPIOA_11/13 off
-cec ver:2018/04/19
-CEC cfg:0x0000
-WAKEUP GPIO cfg:0x00000000
-use vddee new table!
-kern log_addr:0x00
-cec T: 00
-err: tx not finish flag
-cec reset
-Set cec pinmux:0x11
-Set cec log_addr:0x10,ADDR0:10
-use vddee new table!
-exit_reason:0x03
-Enter ddr resume
-ddr resume time: 125us
-store restore gp0 pll
-cfg15 3b00000
-cfg15 33b00000
-Li[  285.695732] Enabling non-boot CPUs ...
-[  285.696098] Detected VIPT I-cache on CPU1
-[  285.696139] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
-[  285.696523] CPU1 is up
-[  285.707551] Detected VIPT I-cache on CPU2
-[  285.707592] arch_timer: CPU2: Trapping CNTVCT access
-[  285.707605] CPU2: Booted secondary processor 0x0000000100 [0x410fd092]
-[  285.708481] cpufreq: cpufreq_online: CPU2: Running at unlisted
-freq: 999999 KHz
-[  285.729456] cpufreq: cpufreq_online: CPU2: Unlisted initial
-frequency changed to: 1000000 KHz
-[  285.738099] CPU2 is up
-[  285.740422] Detected VIPT I-cache on CPU3
-[  285.740444] arch_timer: CPU3: Trapping CNTVCT access
-[  285.740452] CPU3: Booted secondary processor 0x0000000101 [0x410fd092]
-[  285.740762] CPU3 is up
-[  285.758076] Detected VIPT I-cache on CPU4
-[  285.758098] arch_timer: CPU4: Trapping CNTVCT access
-[  285.758106] CPU4: Booted secondary processor 0x0000000102 [0x410fd092]
-[  285.758443] CPU4 is up
-[  285.775753] Detected VIPT I-cache on CPU5
-[  285.775775] arch_timer: CPU5: Trapping CNTVCT access
-[  285.775783] CPU5: Booted secondary processor 0x0000000103 [0x410fd092]
-[  285.776120] CPU5 is up
-[  285.793825] ------------[ cut here ]------------
-[  285.797760] Unbalanced IRQ 28 wake disable
-[  285.801830] WARNING: CPU: 3 PID: 420 at kernel/irq/manage.c:800
-irq_set_irq_wake+0x154/0x19c
-[  285.810180] Modules linked in: rfkill snd_soc_hdmi_codec
-dw_hdmi_i2s_audio dw_hdmi_cec meson_gxl meson_dw_hdmi meson_drm
-dw_hdmi axg_audio snd_soc_meson_axg_tdmout realtek cec dwmac_generic
-sclk_div clk_phase meson_canvas rtc_pcf8563 crct10dif_ce
-snd_soc_meson_axg_sound_card snd_soc_meson_g12a_tohdmitx
-snd_soc_meson_axg_frddr snd_soc_meson_codec_glue reset_meson_audio_arb
-snd_soc_meson_axg_fifo snd_soc_meson_card_utils meson_rng
-drm_kms_helper rc_odroid rng_core dwmac_meson8b mdio_mux_meson_g12a
-pwm_meson stmmac_platform meson_ir rc_core stmmac rtc_meson_vrtc
-mdio_xpcs snd_soc_meson_axg_tdm_interface
-snd_soc_meson_axg_tdm_formatter display_connector nvmem_meson_efuse
-drm ip_tables x_tables ipv6 nf_defrag_ipv6
-[  285.872542] CPU: 3 PID: 420 Comm: rtcwake Not tainted
-5.7.19-00001-g28f8adf17e0e-dirty #1
-[  285.880646] Hardware name: Hardkernel ODROID-N2 (DT)
-[  285.885564] pstate: 80000085 (Nzcv daIf -PAN -UAO)
-[  285.890308] pc : irq_set_irq_wake+0x154/0x19c
-[  285.894620] lr : irq_set_irq_wake+0x154/0x19c
-[  285.898931] sp : ffff80001310bba0
-[  285.902209] x29: ffff80001310bba0 x28: ffff0000c84a0e00
-[  285.907469] x27: 0000000000000000 x26: 0000000000000000
-[  285.912731] x25: 0000000000000003 x24: 0000000000000000
-[  285.917992] x23: 0000000000000000 x22: ffff0000c84a0e00
-[  285.923253] x21: 00000000ffffffea x20: 000000000000001c
-[  285.928514] x19: ffff0000f2771600 x18: 0000000000000030
-[  285.933775] x17: 0000000000000001 x16: 0000000000000003
-[  285.939037] x15: ffff0000c84a1270 x14: ffffffffffffffff
-[  285.944298] x13: ffff80009310b8c7 x12: ffff80001310b8cf
-[  285.949559] x11: ffff800011a91000 x10: ffff800011c8a6c8
-[  285.954820] x9 : 0000000000000000 x8 : 3220515249206465
-[  285.960082] x7 : 636e616c61626e55 x6 : 00000000000001c9
-[  285.965343] x5 : 0000000000000001 x4 : 0000000000000000
-[  285.970604] x3 : 0000000000000000 x2 : 0000000000000007
-[  285.975866] x1 : efc3665be56abd00 x0 : 0000000000000000
-[  285.981127] Call trace:
-[  285.983545]  irq_set_irq_wake+0x154/0x19c
-[  285.987515]  dev_pm_disarm_wake_irq+0x38/0x70
-[  285.991824]  device_wakeup_disarm_wake_irqs+0x44/0xa0
-[  285.996826]  dpm_resume_noirq+0x18/0x30
-[  286.000622]  suspend_devices_and_enter+0x2bc/0x4ac
-[  286.005365]  pm_suspend+0x22c/0x2a0
-[  286.008815]  state_store+0x8c/0x110
-[  286.012266]  kobj_attr_store+0x18/0x30
-[  286.015974]  sysfs_kf_write+0x44/0x54
-[  286.019595]  kernfs_fop_write+0xfc/0x220
-[  286.023478]  __vfs_write+0x1c/0x50
-[  286.026841]  vfs_write+0xe4/0x1cc
-[  286.030119]  ksys_write+0x6c/0x100
-[  286.033482]  __arm64_sys_write+0x1c/0x30
-[  286.037366]  el0_svc_common.constprop.0+0x6c/0x170
-[  286.042108]  do_el0_svc+0x24/0x90
-[  286.045386]  el0_sync_handler+0x114/0x180
-[  286.049352]  el0_sync+0x158/0x180
-[  286.052629] ---[ end trace cb15e81a7b13bf49 ]---
-[  286.058128] meson8b-dwmac ff3f0000.ethernet eth0: No Safety
-Features support found
-[  286.064731] meson8b-dwmac ff3f0000.ethernet eth0: configuring for
-phy/rgmii link mode
-ttle core clk resume rate 1896000000
-Big core clk resume rate 5000[  286.083729] usb usb1: root hub lost
-power or was reset
-[  286.083982] usb usb2: root hub lost power or was reset
-0000
-[  286.338419] dwc3-meson-g12a ffe09000.usb: switching to Device Mode
-[  286.442707] usb 2-1: reset SuperSpeed Gen 1 USB device number 2
-using xhci-hcd
-[  286.594290] usb 1-1: reset high-speed USB device number 2 using xhci-hcd
-[  286.820893] usb 2-1.1: reset SuperSpeed Gen 1 USB device number 3
-using xhci-hcd
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgRG1pdHJ5LAoKT24gMzAuMDguMjAyMCAyMDo1MywgRG1pdHJ5IE9zaXBlbmtvIHdyb3RlOgo+
+IFRoZSBtdWx0aS1yZWcgd3JpdGUgZnVuY3Rpb24gdXNlcyB1ZGVsYXkoKSwgd2hpY2ggaXMgYSBi
+dXN5LWxvb3AgYmFzZWQKPiBkZWxheWluZyBmdW5jdGlvbiB0aGF0IGlzIG5vdCBzdWl0YWJsZSBm
+b3IgYSBsb25nIGRlbGF5cy4gSGVuY2UgbGV0J3MKPiByZXBsYWNlIHRoZSB1ZGVsYXkoKSB3aXRo
+IGZzbGVlcCgpLCB3aGljaCBpcyBmbGV4aWJsZSBzbGVlcCBmdW5jdGlvbiB0aGF0Cj4gc2VsZWN0
+cyBiZXN0IGRlbGF5IGZ1bmN0aW9uIGJhc2VkIG9uIHRoZSBkZWxheS10aW1lLgo+Cj4gU2lnbmVk
+LW9mZi1ieTogRG1pdHJ5IE9zaXBlbmtvIDxkaWdldHhAZ21haWwuY29tPgoKVGhpcyBwYXRjaCBs
+YW5kZWQgaW4gdG9kYXkncyBsaW51eC1uZXh0ICgyMDIwMDkwMikgYXMgY29tbWl0IAoyYjMyZDJm
+N2NlMGEuIFNhZGx5IGl0IGJyZWFrcyBib290aW5nIG9mIEFSTSA2NGJpdCBBbWxvZ2ljIFM5MjJY
+IGJhc2VkIApPZHJvaWQgTjIgYm9hcmQuIEhlcmUgaXMgdGhlIGxvZzoKCkJVRzogc2NoZWR1bGlu
+ZyB3aGlsZSBhdG9taWM6IGt3b3JrZXIvNDoxLzQ2LzB4MDAwMDAwMDMKNSBsb2NrcyBoZWxkIGJ5
+IGt3b3JrZXIvNDoxLzQ2OgogwqAjMDogZmZmZjAwMDBkZmMwNjczOCAoKHdxX2NvbXBsZXRpb24p
+ZXZlbnRzKXsrLisufS17MDowfSwgYXQ6IApwcm9jZXNzX29uZV93b3JrKzB4MjAwLzB4NzE4CiDC
+oCMxOiBmZmZmODAwMDEzMjBiZGQwIChkZWZlcnJlZF9wcm9iZV93b3JrKXsrLisufS17MDowfSwg
+YXQ6IApwcm9jZXNzX29uZV93b3JrKzB4MjAwLzB4NzE4CiDCoCMyOiBmZmZmMDAwMGRmNGI2MTg4
+ICgmZGV2LT5tdXRleCl7Li4uLn0tezM6M30sIGF0OiAKX19kZXZpY2VfYXR0YWNoKzB4M2MvMHgx
+NTAKIMKgIzM6IGZmZmY4MDAwMTIzMDZlNzAgKGVuYWJsZV9sb2NrKXsrLisufS17MjoyfSwgYXQ6
+IApjbGtfZW5hYmxlX2xvY2srMHg0OC8weDEyOAogwqAjNDogZmZmZjAwMDBkZTAxYzQxOCAoc3lz
+Y29uOjExMDooJnN5c2Nvbl9jb25maWcpLT5sb2NrKXsrLisufS17MjoyfSwgCmF0OiByZWdtYXBf
+bG9ja19zcGlubG9jaysweDE0LzB4MjgKTW9kdWxlcyBsaW5rZWQgaW46CkNQVTogNCBQSUQ6IDQ2
+IENvbW06IGt3b3JrZXIvNDoxIE5vdCB0YWludGVkIDUuOS4wLXJjMisgIzE1NzAKSGFyZHdhcmUg
+bmFtZTogSGFyZGtlcm5lbCBPRFJPSUQtTjIgKERUKQpXb3JrcXVldWU6IGV2ZW50cyBkZWZlcnJl
+ZF9wcm9iZV93b3JrX2Z1bmMKQ2FsbCB0cmFjZToKIMKgZHVtcF9iYWNrdHJhY2UrMHgwLzB4MWQw
+CiDCoHNob3dfc3RhY2srMHgxNC8weDIwCiDCoGR1bXBfc3RhY2srMHhlYy8weDE2YwogwqBfX3Nj
+aGVkdWxlX2J1ZysweDY0LzB4OTgKIMKgX19zY2hlZHVsZSsweDdlMC8weDhhMAogwqBzY2hlZHVs
+ZSsweDc4LzB4MTE4CiDCoHNjaGVkdWxlX2hydGltZW91dF9yYW5nZV9jbG9jaysweDg0LzB4MTA4
+CiDCoHNjaGVkdWxlX2hydGltZW91dF9yYW5nZSsweDEwLzB4MTgKIMKgdXNsZWVwX3JhbmdlKzB4
+ODgvMHhiOAogwqBfcmVnbWFwX211bHRpX3JlZ193cml0ZSsweDE4OC8weDRlMAogwqByZWdtYXBf
+bXVsdGlfcmVnX3dyaXRlKzB4MzgvMHg1OAogwqBtZXNvbl9jbGtfcGxsX2luaXQrMHg4MC8weGQ4
+CiDCoG1lc29uX2Nsa19wY2llX3BsbF9lbmFibGUrMHg0OC8weGQ4CiDCoGNsa19jb3JlX2VuYWJs
+ZSsweGM4LzB4MmIwCiDCoGNsa19jb3JlX2VuYWJsZSsweGE4LzB4MmIwCiDCoGNsa19jb3JlX2Vu
+YWJsZSsweGE4LzB4MmIwCiDCoGNsa19jb3JlX2VuYWJsZSsweGE4LzB4MmIwCiDCoGNsa19jb3Jl
+X2VuYWJsZV9sb2NrKzB4MjAvMHg0MAogwqBjbGtfZW5hYmxlKzB4MTQvMHgyOAogwqBwaHlfZzEy
+YV91c2IzX3BjaWVfcHJvYmUrMHgxMzAvMHgyMTAKIMKgcGxhdGZvcm1fZHJ2X3Byb2JlKzB4NTAv
+MHhhOAogwqByZWFsbHlfcHJvYmUrMHgxMTAvMHg0MDAKIMKgZHJpdmVyX3Byb2JlX2RldmljZSsw
+eDU0LzB4YjgKIMKgX19kZXZpY2VfYXR0YWNoX2RyaXZlcisweDkwLzB4YzAKIMKgYnVzX2Zvcl9l
+YWNoX2RydisweDcwLzB4YzgKIMKgX19kZXZpY2VfYXR0YWNoKzB4ZWMvMHgxNTAKIMKgZGV2aWNl
+X2luaXRpYWxfcHJvYmUrMHgxMC8weDE4CiDCoGJ1c19wcm9iZV9kZXZpY2UrMHg5NC8weGEwCiDC
+oGRlZmVycmVkX3Byb2JlX3dvcmtfZnVuYysweDcwLzB4YTgKIMKgcHJvY2Vzc19vbmVfd29yaysw
+eDJhOC8weDcxOAogwqB3b3JrZXJfdGhyZWFkKzB4NDgvMHg0NjAKIMKga3RocmVhZCsweDEzNC8w
+eDE2MAogwqByZXRfZnJvbV9mb3JrKzB4MTAvMHgxYwpCVUc6IHNsZWVwaW5nIGZ1bmN0aW9uIGNh
+bGxlZCBmcm9tIGludmFsaWQgY29udGV4dCBhdCBtbS9zbGFiLmg6NDk4CmluX2F0b21pYygpOiAx
+LCBpcnFzX2Rpc2FibGVkKCk6IDAsIG5vbl9ibG9jazogMCwgcGlkOiA0NiwgbmFtZToga3dvcmtl
+ci80OjEKMyBsb2NrcyBoZWxkIGJ5IGt3b3JrZXIvNDoxLzQ2OgogwqAjMDogZmZmZjAwMDBkZmMw
+NjczOCAoKHdxX2NvbXBsZXRpb24pZXZlbnRzKXsrLisufS17MDowfSwgYXQ6IApwcm9jZXNzX29u
+ZV93b3JrKzB4MjAwLzB4NzE4CiDCoCMxOiBmZmZmODAwMDEzMjBiZGQwIChkZWZlcnJlZF9wcm9i
+ZV93b3JrKXsrLisufS17MDowfSwgYXQ6IApwcm9jZXNzX29uZV93b3JrKzB4MjAwLzB4NzE4CiDC
+oCMyOiBmZmZmMDAwMGRmNGI2MTg4ICgmZGV2LT5tdXRleCl7Li4uLn0tezM6M30sIGF0OiAKX19k
+ZXZpY2VfYXR0YWNoKzB4M2MvMHgxNTAKQ1BVOiA0IFBJRDogNDYgQ29tbToga3dvcmtlci80OjEg
+VGFpbnRlZDogR8KgwqDCoMKgwqDCoMKgIFcgNS45LjAtcmMyKyAjMTU3MApIYXJkd2FyZSBuYW1l
+OiBIYXJka2VybmVsIE9EUk9JRC1OMiAoRFQpCldvcmtxdWV1ZTogZXZlbnRzIGRlZmVycmVkX3By
+b2JlX3dvcmtfZnVuYwpDYWxsIHRyYWNlOgogwqBkdW1wX2JhY2t0cmFjZSsweDAvMHgxZDAKIMKg
+c2hvd19zdGFjaysweDE0LzB4MjAKIMKgZHVtcF9zdGFjaysweGVjLzB4MTZjCiDCoF9fX21pZ2h0
+X3NsZWVwKzB4MWQ0LzB4MWY4CiDCoF9fbWlnaHRfc2xlZXArMHg0Yy8weDg4CiDCoHNsYWJfcHJl
+X2FsbG9jX2hvb2suY29uc3Rwcm9wLjk2KzB4ZjQvMHgxMzgKIMKgX19rbWFsbG9jX25vZGVfdHJh
+Y2tfY2FsbGVyKzB4NmMvMHgyODgKIMKgZGV2cmVzX2FsbG9jX25vZGUrMHg1NC8weGMwCiDCoGRl
+dm1fcmVzZXRfY29udHJvbF9hcnJheV9nZXQrMHgzNC8weGMwCiDCoHBoeV9nMTJhX3VzYjNfcGNp
+ZV9wcm9iZSsweDE0OC8weDIxMAogwqBwbGF0Zm9ybV9kcnZfcHJvYmUrMHg1MC8weGE4CiDCoHJl
+YWxseV9wcm9iZSsweDExMC8weDQwMAogwqBkcml2ZXJfcHJvYmVfZGV2aWNlKzB4NTQvMHhiOAog
+wqBfX2RldmljZV9hdHRhY2hfZHJpdmVyKzB4OTAvMHhjMAogwqBidXNfZm9yX2VhY2hfZHJ2KzB4
+NzAvMHhjOAogwqBfX2RldmljZV9hdHRhY2grMHhlYy8weDE1MAogwqBkZXZpY2VfaW5pdGlhbF9w
+cm9iZSsweDEwLzB4MTgKIMKgYnVzX3Byb2JlX2RldmljZSsweDk0LzB4YTAKIMKgZGVmZXJyZWRf
+cHJvYmVfd29ya19mdW5jKzB4NzAvMHhhOAogwqBwcm9jZXNzX29uZV93b3JrKzB4MmE4LzB4NzE4
+CiDCoHdvcmtlcl90aHJlYWQrMHg0OC8weDQ2MAogwqBrdGhyZWFkKzB4MTM0LzB4MTYwCiDCoHJl
+dF9mcm9tX2ZvcmsrMHgxMC8weDFjCi0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0t
+LQprZXJuZWwgQlVHIGF0IG1tL3ZtYWxsb2MuYzoyMDY2IQpJbnRlcm5hbCBlcnJvcjogT29wcyAt
+IEJVRzogMCBbIzFdIFBSRUVNUFQgU01QCk1vZHVsZXMgbGlua2VkIGluOgpDUFU6IDQgUElEOiA0
+NiBDb21tOiBrd29ya2VyLzQ6MSBUYWludGVkOiBHwqDCoMKgwqDCoMKgwqAgVyA1LjkuMC1yYzIr
+ICMxNTcwCkhhcmR3YXJlIG5hbWU6IEhhcmRrZXJuZWwgT0RST0lELU4yIChEVCkKV29ya3F1ZXVl
+OiBldmVudHMgZGVmZXJyZWRfcHJvYmVfd29ya19mdW5jCnBzdGF0ZTogMDAwMDAwMDUgKG56Y3Yg
+ZGFpZiAtUEFOIC1VQU8gQlRZUEU9LS0pCnBjIDogX19nZXRfdm1fYXJlYV9ub2RlKzB4MTkwLzB4
+MTk4CmxyIDogZ2V0X3ZtX2FyZWFfY2FsbGVyKzB4MzQvMHg0MApzcCA6IGZmZmY4MDAwMTMyMGI5
+ZjAKeDI5OiBmZmZmODAwMDEzMjBiOWYwIHgyODogZmZmZjgwMDAxMjRiZjY4ZAp4Mjc6IGZmZmYw
+MDAwZTQ3Y2UwMDUgeDI2OiBmZmZmMDAwMGU0ODRhNmE4CngyNTogMDAwMDAwMDAwMDAwMDAwOSB4
+MjQ6IGZmZmY4MDAwMTIyMGYwMDAKeDIzOiAwMDY4MDAwMDAwMDAwNzA3IHgyMjogZmZmZjgwMDAx
+MDUzMTU0NAp4MjE6IDAwMDAwMDAwMDAwMDAwMDAgeDIwOiAwMDAwMDAwMGZmZTA5MDAwCngxOTog
+MDAwMDAwMDAwMDAwMTAwMCB4MTg6IGZmZmZmZmZmZmZmZmZmZmYKeDE3OiAwMDAwMDAwMDg5ZjY2
+YzYxIHgxNjogMDAwMDAwMDBiNTAyZDdkMQp4MTU6IGZmZmY4MDAwMTIyMGZhNDggeDE0OiBmZmZm
+MDAwMGRlNmRmMThhCngxMzogZmZmZjAwMDBkZTZkZjE4OSB4MTI6IDAwMDAwMDAwMDAwMDAwMzAK
+eDExOiAwMDAwMDAwMDAwMDAwMDAzIHgxMDogZmZmZjgwMDAxMjRmOGM1OAp4OSA6IDAwMDAwMDAw
+MDAwMDAwMDAgeDggOiAwMDAwMDAwMGZmZmZmZmZlCng3IDogZmZmZjgwMDAxMDUzMTU0NCB4NiA6
+IDAwMDAwMDAwMDAwMDBjYzAKeDUgOiAwMDAwMDAwMGZmZmZmZmZmIHg0IDogZmZmZmZkZmZiZmZm
+MDAwMAp4MyA6IGZmZmY4MDAwMTAwMDAwMDAgeDIgOiAwMDAwMDAwMDAwMDAwMDAxCngxIDogMDAw
+MDAwMDAwMDAwMDAwMSB4MCA6IDAwMDAwMDAwMDAwMDEwMDAKQ2FsbCB0cmFjZToKIMKgX19nZXRf
+dm1fYXJlYV9ub2RlKzB4MTkwLzB4MTk4CiDCoF9faW9yZW1hcF9jYWxsZXIrMHg2OC8weGUwCiDC
+oF9faW9yZW1hcCsweDM4LzB4NDAKIMKgX19kZXZtX2lvcmVtYXArMHg3Yy8weGY4CiDCoF9fZGV2
+bV9pb3JlbWFwX3Jlc291cmNlKzB4YTgvMHgxNjAKIMKgZGV2bV9pb3JlbWFwX3Jlc291cmNlKzB4
+MTAvMHgxOAogwqBkZXZtX3BsYXRmb3JtX2dldF9hbmRfaW9yZW1hcF9yZXNvdXJjZSsweDcwLzB4
+NzgKIMKgZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlKzB4MTAvMHgxOAogwqBkd2MzX21l
+c29uX2cxMmFfcHJvYmUrMHg2MC8weDUxOAogwqBwbGF0Zm9ybV9kcnZfcHJvYmUrMHg1MC8weGE4
+CiDCoHJlYWxseV9wcm9iZSsweDExMC8weDQwMAogwqBkcml2ZXJfcHJvYmVfZGV2aWNlKzB4NTQv
+MHhiOAogwqBfX2RldmljZV9hdHRhY2hfZHJpdmVyKzB4OTAvMHhjMAogwqBidXNfZm9yX2VhY2hf
+ZHJ2KzB4NzAvMHhjOAogwqBfX2RldmljZV9hdHRhY2grMHhlYy8weDE1MAogwqBkZXZpY2VfaW5p
+dGlhbF9wcm9iZSsweDEwLzB4MTgKIMKgYnVzX3Byb2JlX2RldmljZSsweDk0LzB4YTAKIMKgZGVm
+ZXJyZWRfcHJvYmVfd29ya19mdW5jKzB4NzAvMHhhOAogwqBwcm9jZXNzX29uZV93b3JrKzB4MmE4
+LzB4NzE4CiDCoHdvcmtlcl90aHJlYWQrMHg0OC8weDQ2MAogwqBrdGhyZWFkKzB4MTM0LzB4MTYw
+CiDCoHJldF9mcm9tX2ZvcmsrMHgxMC8weDFjCkNvZGU6IGNiMDEwMDAwIDExMDAwNDAwIDE3ZmZm
+ZmU4IGQ1MDMyMDFmIChkNDIxMDAwMCkKLS0tWyBlbmQgdHJhY2UgYjYyMTMyMGFlN2JjZTZiNyBd
+LS0tCktlcm5lbCBwYW5pYyAtIG5vdCBzeW5jaW5nOiBBaWVlLCBraWxsaW5nIGludGVycnVwdCBo
+YW5kbGVyIQpTTVA6IHN0b3BwaW5nIHNlY29uZGFyeSBDUFVzCktlcm5lbCBPZmZzZXQ6IGRpc2Fi
+bGVkCkNQVSBmZWF0dXJlczogMHgwMjQwMDAyLDIwMDgyMDA0Ck1lbW9yeSBMaW1pdDogbm9uZQot
+LS1bIGVuZCBLZXJuZWwgcGFuaWMgLSBub3Qgc3luY2luZzogQWllZSwga2lsbGluZyBpbnRlcnJ1
+cHQgaGFuZGxlciEgXS0tLQoKUmV2ZXJ0aW5nIHRoaXMgY29tbWl0IG9uIHRvcCBvZiBjdXJyZW50
+IGxpbnV4LW5leHQgZml4ZXMgYm9hcmQgYm9vdGluZy4KCj4gLS0tCj4gICBkcml2ZXJzL2Jhc2Uv
+cmVnbWFwL3JlZ21hcC5jIHwgNCArKy0tCj4gICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25z
+KCspLCAyIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvYmFzZS9yZWdtYXAv
+cmVnbWFwLmMgYi9kcml2ZXJzL2Jhc2UvcmVnbWFwL3JlZ21hcC5jCj4gaW5kZXggZTkzNzAwYWY3
+ZTZlLi5hNDE3Y2IxYTExZGMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9iYXNlL3JlZ21hcC9yZWdt
+YXAuYwo+ICsrKyBiL2RyaXZlcnMvYmFzZS9yZWdtYXAvcmVnbWFwLmMKPiBAQCAtMjIzMSw3ICsy
+MjMxLDcgQEAgc3RhdGljIGludCBfcmVnbWFwX3JhbmdlX211bHRpX3BhZ2VkX3JlZ193cml0ZShz
+dHJ1Y3QgcmVnbWFwICptYXAsCj4gICAJCQkJCXJldHVybiByZXQ7Cj4gICAKPiAgIAkJCQlpZiAo
+cmVnc1tpXS5kZWxheV91cykKPiAtCQkJCQl1ZGVsYXkocmVnc1tpXS5kZWxheV91cyk7Cj4gKwkJ
+CQkJZnNsZWVwKHJlZ3NbaV0uZGVsYXlfdXMpOwo+ICAgCj4gICAJCQkJYmFzZSArPSBuOwo+ICAg
+CQkJCW4gPSAwOwo+IEBAIC0yMjY4LDcgKzIyNjgsNyBAQCBzdGF0aWMgaW50IF9yZWdtYXBfbXVs
+dGlfcmVnX3dyaXRlKHN0cnVjdCByZWdtYXAgKm1hcCwKPiAgIAkJCQlyZXR1cm4gcmV0Owo+ICAg
+Cj4gICAJCQlpZiAocmVnc1tpXS5kZWxheV91cykKPiAtCQkJCXVkZWxheShyZWdzW2ldLmRlbGF5
+X3VzKTsKPiArCQkJCWZzbGVlcChyZWdzW2ldLmRlbGF5X3VzKTsKPiAgIAkJfQo+ICAgCQlyZXR1
+cm4gMDsKPiAgIAl9CgpCZXN0IHJlZ2FyZHMKLS0gCk1hcmVrIFN6eXByb3dza2ksIFBoRApTYW1z
+dW5nIFImRCBJbnN0aXR1dGUgUG9sYW5kCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
