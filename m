@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1469EC43461
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:05:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 12A1CC433E2
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:05:06 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D054D2137B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:05:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A418D20773
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:05:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="19RRQtyR";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="pFq+pQYc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D054D2137B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UlPLnm+A";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="nQQX60L2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A418D20773
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=63GmoHlq6TvLTjnBD9tyDitT5ZBfVrPiFu4BqDOuwkY=; b=19RRQtyRAfgdHxEaOhFBKCX5AN
-	eW58jJES1zgWfGhMRcjj9MRLBd5tQj/7i7NNbZZi+bdV3t9ZExmLB3IDnZBuGm33MJf8i6QK8jiWZ
-	RFoJqcy5FXrkqTlNcEUizDCF806YQR5LntMV6QJu0QPE0ME/XTGIFMU+bwHyvMKFhVvCEu2C002sS
-	emt3b6OojLhCnSNCqVKj6Kd69Y7iMxeh34I+JNrfO1nJJsG7J404AyaEX/JbiIj3AponifxLFLqkY
-	LrWSEjgh+hzIlX2JOeDc0v1JlbCddkUELCpb7e151XTE48IW0SXGLLepW8QMJ74E7VE0fOjdRyLm8
-	+WKR8N8A==;
+	bh=mvieEG/Kp4Q6ErtCx9D+eAfBvuvGJDLcvQa4d7tzBxw=; b=UlPLnm+AzVIrBw48xTUbRirczU
+	COz5mGnCyqWEtyQuc6H+K/OiwtWMTBbpg2MdWzQ66Uda6tk9VTIgHB/GUI0AZi/cVC7E/h7hPtbSj
+	hOSa6L/ci0DDSiHZH8PIaX4He2ZbPx+wTzaEmlSKvtCqYF2sx0MRaJ5imp9/biXzH+1wW4HamYvDe
+	sznXDQ7/VH9b2hRkveklxZMSLNyGCz25qQdiTiNkt7gg8gQaqI/Es/g0vcwyZh+jQAFfZuNn9gyq9
+	RH0NjIXeoCpoZ7B74yX+syJ/dF/33MA4rNOxUOAa2bmKKx+1d4WvjINLpp1s8ehmbdsINpySiV0bP
+	kLjnecHg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDUJi-00041U-7W; Wed, 02 Sep 2020 15:04:54 +0000
+	id 1kDUJk-00043I-DJ; Wed, 02 Sep 2020 15:04:56 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDUJG-0003kg-3F; Wed, 02 Sep 2020 15:04:27 +0000
+ id 1kDUJK-0003nk-Qr; Wed, 02 Sep 2020 15:04:31 +0000
 Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 9506721527;
- Wed,  2 Sep 2020 15:04:20 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9C637214F1;
+ Wed,  2 Sep 2020 15:04:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599059065;
- bh=UZsEqgnFpRCIfv/X8lhKedsjXG7tPysKFsM4O+5c1og=;
+ s=default; t=1599059069;
+ bh=FNfm1tmiP1SHAfynJEL7ATFOXsx4dnDu44NKhojfEPA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=pFq+pQYc6BCe2NtK7+Ig4Fdw+9S38KkYFXn8TIkEETbiabdtq0tgVHZ/k9Pw74Cqx
- PCf4+yC0vOzAjjqQrsEfJLtXDD9AgYzuRNQPSlXc2O+fJyET6GDcxzxobEXRbpeY3Y
- 5jVIIsyW/+qgVU+p/Ns2ZuirTc5iI7Zhou59OcVo=
+ b=nQQX60L2h/dw5HVupUkQlD1zgBiZVmY6Sewdlbk4yzSvBYGknX6upVlBsPtmbqrRZ
+ jYdpNiDqbblahHoEMcAbKX1i+FaDn89u0TwxJUpqxr9gmf0BrxEqDntza3h6uxJtpX
+ xImEZhMVLadjoDGFhceFvcH+ssVbmoKBO7PFUxuU=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Michael Turquette <mturquette@baylibre.com>,
  Stephen Boyd <sboyd@kernel.org>,
@@ -67,15 +67,15 @@ To: Michael Turquette <mturquette@baylibre.com>,
  linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-msm@vger.kernel.org
-Subject: [PATCH 06/10] clk: keystone: Simplify with dev_err_probe()
-Date: Wed,  2 Sep 2020 17:03:44 +0200
-Message-Id: <20200902150348.14465-6-krzk@kernel.org>
+Subject: [PATCH 07/10] clk: meson: Simplify with dev_err_probe()
+Date: Wed,  2 Sep 2020 17:03:45 +0200
+Message-Id: <20200902150348.14465-7-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200902150348.14465-1-krzk@kernel.org>
 References: <20200902150348.14465-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_110426_331058_65C81233 
-X-CRM114-Status: GOOD (  14.10  )
+X-CRM114-CacheID: sfid-20200902_110430_991028_C78C0A46 
+X-CRM114-Status: GOOD (  15.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,29 +99,28 @@ dev_err_probe().  Less code and the error value gets printed.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- drivers/clk/keystone/syscon-clk.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/clk/meson/axg-audio.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/clk/keystone/syscon-clk.c b/drivers/clk/keystone/syscon-clk.c
-index 5b3d36462174..12ddcbed00e4 100644
---- a/drivers/clk/keystone/syscon-clk.c
-+++ b/drivers/clk/keystone/syscon-clk.c
-@@ -102,12 +102,9 @@ static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
- 		return -EINVAL;
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index 53715e36326c..dc22b0c45743 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -1509,12 +1509,8 @@ static int devm_clk_get_enable(struct device *dev, char *id)
+ 	int ret;
  
- 	regmap = syscon_node_to_regmap(dev->of_node);
--	if (IS_ERR(regmap)) {
--		if (PTR_ERR(regmap) == -EPROBE_DEFER)
--			return -EPROBE_DEFER;
--		dev_err(dev, "failed to find parent regmap\n");
--		return PTR_ERR(regmap);
+ 	clk = devm_clk_get(dev, id);
+-	if (IS_ERR(clk)) {
+-		ret = PTR_ERR(clk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get %s", id);
+-		return ret;
 -	}
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap),
-+				     "failed to find parent regmap\n");
++	if (IS_ERR(clk))
++		return dev_err_probe(dev, PTR_ERR(clk), "failed to get %s", id);
  
- 	num_clks = 0;
- 	for (p = data; p->name; p++)
+ 	ret = clk_prepare_enable(clk);
+ 	if (ret) {
 -- 
 2.17.1
 
