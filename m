@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C787CC433E7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:37:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54DAEC43461
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:38:03 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9B08420C56
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:37:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 251B7214F1
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 19:38:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XwXUuaew";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="KwI41zpN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B08420C56
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Dp5s6gZG";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="qmFkZ/kk"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 251B7214F1
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1XUbeHpV/hO9HSfqtJOYrlv/1x/wMcNuRMZ43gFncfE=; b=XwXUuaewveQbTjdDOt6AGDqqey
-	SpnCjAsjtzdBPy/LjUm+MEX4ajp+WHl8nOod3s+uU+nGz6nkghYXmSAIh/lShfQ8IF+/f/Mo+AmZ2
-	G/jkZo4SQ4JRgC1QXeoc0m/mxHQ47wKXXciQsg34v1CAFJGq0Wlf+XXAcRxyDP+DeYapdWBVgs2aY
-	qwT0d8LRBwTFygcvOjJdZcVqEZXpLOAXRTo0B8kiqtb6IgQDh8pTUPkGcCWizNDNsZ75pJzuE8Xct
-	L8g+cS6cVVNJOEJhXSytGMKW3metr3PzOEtr5DTNPp9pfLX42QedO3/x5ZkNJlg5LztuK0NhxGtkH
-	r0O699bw==;
+	bh=vrVsLBoBI06A9m3L7Qq3P2evfaknVbDpKscAQNWrYNU=; b=Dp5s6gZGGqNt3IDW5UDSqr9nmu
+	NkAJABEzTwPtfdQWJNqDLNtciv9DQdILx85g5YPJmXvvjE1fCVAIXWaHwWT8NRzLKnvXVA/kNrXxm
+	MpaSDEH3b3ZVOb4Ig/Ri+R+OIgCEPwOzu4I+ziLq1rQHK6VsVDBZN4OFQl5g3lR9gOaFXefW2xjXI
+	wm2HljClesnHwnQdJgdTbCOsi2xtIFCZjDxDc9BLW6RXYXRDlhvHkX7xxg5FCEatTxsMSeylUHXB1
+	KRbDWf7ZG15ZnMQb+UegVX3i+uzs5OW2WHta3Xf0t4okCIwlgP6M9s3OUVlHnwbtcuF7VZnqW4sNj
+	vaYi24xA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDYZn-000871-Gb; Wed, 02 Sep 2020 19:37:47 +0000
+	id 1kDYZy-0008Cs-QC; Wed, 02 Sep 2020 19:37:58 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDYZl-00085L-CZ; Wed, 02 Sep 2020 19:37:46 +0000
+ id 1kDYZt-0008A8-Qy; Wed, 02 Sep 2020 19:37:54 +0000
 Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 2233D20C56;
- Wed,  2 Sep 2020 19:37:36 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 24A8C20DD4;
+ Wed,  2 Sep 2020 19:37:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599075464;
- bh=3jmDh8QNl4AkOfJkIVlRj8d+A0jP4cB3a3M/pXBDmoE=;
+ s=default; t=1599075473;
+ bh=+v0Gvo3NEuIgVnTGsMBHhqS8LDWaVSLs4O1rtCOSwpQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KwI41zpNVr5ixYFE24NkZpN8aKVGOkORUon3rQ/ZiykJ4JGyJ15oaoymUBYWmp9dN
- lv4NteL/7hKvndYjbYBMG62Sswv7J3vaFZLvr08v+ml+G18oXFQo7Qx+Z9qwoWzjfc
- ci/X7gis38Zo3T3uF1b/GjesZLiFe/Oug4b9W1SE=
+ b=qmFkZ/kkB4WxgIEw8otKZYIuPvlX/EZQ8cGAMveQSNYjAkyBOCW75NK/Sx/61+kgw
+ oqzDBwnVLGJVpfqsBudQ9kKBz5GwYGbGmeAR7ntYjzpzVzksZRsfxAcVDQrI63d+ji
+ t7Q1KG7yC0Y3C+kYXOaBipkZhyU0eLOUrSp1OlTo=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Ulf Hansson <ulf.hansson@linaro.org>,
  Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>,
@@ -72,15 +72,15 @@ To: Ulf Hansson <ulf.hansson@linaro.org>,
  linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-tegra@vger.kernel.org
-Subject: [PATCH 04/11] mmc: jz4740: Simplify with dev_err_probe()
-Date: Wed,  2 Sep 2020 21:36:51 +0200
-Message-Id: <20200902193658.20539-5-krzk@kernel.org>
+Subject: [PATCH 05/11] mmc: meson: Simplify with dev_err_probe()
+Date: Wed,  2 Sep 2020 21:36:52 +0200
+Message-Id: <20200902193658.20539-6-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200902193658.20539-1-krzk@kernel.org>
 References: <20200902193658.20539-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_153745_533422_B47177A9 
-X-CRM114-Status: GOOD (  14.16  )
+X-CRM114-CacheID: sfid-20200902_153753_978329_9BBDF9B2 
+X-CRM114-Status: GOOD (  15.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,25 +104,43 @@ dev_err_probe().  Less code and the error value gets printed.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- drivers/mmc/host/jz4740_mmc.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 16 +++++-----------
+ 1 file changed, 5 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/mmc/host/jz4740_mmc.c b/drivers/mmc/host/jz4740_mmc.c
-index 81d71010b474..0c5b52b53303 100644
---- a/drivers/mmc/host/jz4740_mmc.c
-+++ b/drivers/mmc/host/jz4740_mmc.c
-@@ -991,9 +991,8 @@ static int jz4740_mmc_probe(struct platform_device* pdev)
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 08a3b1c05acb..2802e4520783 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -426,11 +426,9 @@ static int meson_mmc_clk_init(struct meson_host *host)
  
- 	ret = mmc_of_parse(mmc);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev,
--				"could not parse device properties: %d\n", ret);
-+		dev_err_probe(&pdev->dev, ret,
-+			      "could not parse device properties\n");
- 		goto err_free_host;
+ 		snprintf(name, sizeof(name), "clkin%d", i);
+ 		clk = devm_clk_get(host->dev, name);
+-		if (IS_ERR(clk)) {
+-			if (clk != ERR_PTR(-EPROBE_DEFER))
+-				dev_err(host->dev, "Missing clock %s\n", name);
+-			return PTR_ERR(clk);
+-		}
++		if (IS_ERR(clk))
++			return dev_err_probe(host->dev, PTR_ERR(clk),
++					     "Missing clock %s\n", name);
+ 
+ 		mux_parent_names[i] = __clk_get_name(clk);
+ 	}
+@@ -1077,12 +1075,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
  	}
  
+ 	ret = device_reset_optional(&pdev->dev);
+-	if (ret) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(&pdev->dev, "device reset failed: %d\n", ret);
+-
+-		return ret;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "device reset failed\n");
+ 
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 	host->regs = devm_ioremap_resource(&pdev->dev, res);
 -- 
 2.17.1
 
