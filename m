@@ -2,83 +2,88 @@ Return-Path: <SRS0=TE1J=CL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19B64C433E7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 07:13:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D8616C433E7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 07:18:33 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BA00A2087D
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 07:13:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 929032072A
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 07:18:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nz9NEi3y";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1XxwebAu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA00A2087D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uCSLmrl7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mPr6yxy9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 929032072A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
-	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=q7lYwxvYnx8iwXZD3B+0lRE9XzppCQpAJCiz1w6ojKk=; b=nz9NEi3yIFCjTcmt7v+I6SfzjF
-	i6pu34ScGTmIdDHhEGUW69e0l7h2/siWRz8NhgXHx31UW9NJLYnRGZKeVo+MsX2TTzSmazrTRB76v
-	c/9D2CS2dIVlMimnizE9F9WHCqoTkX/d+ueYBfnCR+D13J0CaYG0Gcn968amWLMwK6StpnGYsb/Eu
-	ivCniQ1RweK1PZYr9nLso5UJScMy/rr2jDV+5f0xyQG2NtS6r2u26B+PlNLZ9YMcSar6hWekHNELT
-	Oe04SOUaJTK1fXFgOo5guH/v16njkDnkVUFIs89PPLXb942TJfXhwifJdcZDrxuy3W4OUbDgVp6br
-	e5rsEUYw==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=Vbo3oW7yRv5FnUWMSC9WsmSlhnDAiRqwugGb1Wg9CGU=; b=uCSLmrl7iN8PZPwMbFe2UD4Ca
+	dP4Gg2YhXu9+T2UopmkwnPQ4HN29b+byiNKqrI7SumUK5J2L+LE+3mX0StWL9k1urEXwxLDuWXJ95
+	oD8mRv4W3ksYbtS912ssSPpIj/HoVYt1b10GwBM2qA8gvR4CGAEMxShkiNAEuAVN1BRgKIse7VHfr
+	OyrEHVmgwWhcoM3lWzpjr3rSzDWRSzXs5y2fAxjSZzCArWA4tCKa+F9rJx8NGlkcTp9SnlC75VAmP
+	PNG9nUJgIZ6DEwGvWABn+H7EVRj7gHI+viioSG6dzF7HdrzBGx0/OvYoUKazTyAPi6whqmt/RLOQe
+	MrbkVdxqg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDMwx-0006Za-Pq; Wed, 02 Sep 2020 07:12:55 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1kDN2I-0008RA-HB; Wed, 02 Sep 2020 07:18:26 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDMwu-0006Xo-0E
- for linux-amlogic@lists.infradead.org; Wed, 02 Sep 2020 07:12:53 +0000
-Received: by mail-wr1-x434.google.com with SMTP id e16so4045727wrm.2
- for <linux-amlogic@lists.infradead.org>; Wed, 02 Sep 2020 00:12:51 -0700 (PDT)
+ id 1kDN2D-0008PC-OJ
+ for linux-amlogic@lists.infradead.org; Wed, 02 Sep 2020 07:18:23 +0000
+Received: by mail-wr1-x444.google.com with SMTP id j2so4044255wrx.7
+ for <linux-amlogic@lists.infradead.org>; Wed, 02 Sep 2020 00:18:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:autocrypt:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=XHGcTeHaFyh2ILvyC8a40HF4zAuQXNj2hXZTLLU/tUk=;
- b=1XxwebAuu9cmQvTDCiSQc2xUkZiji8NbnagVB4YpZpOtM6f73hZojGV7I7PTf1hIvS
- AWRyJ032SywHeUOtvHuUFKsglN9laS69dJxvwP0mEIpy28PR/mmnXgsmCSzHnPO8l9a7
- cgts3BmzsGeFYmo32mQCyoNSWb7qauir16ySGj9vtAOgJd2NF4F16bmQPS9jS3hszzTZ
- WMR/r2iPGTZbq4psc1aSbjztmSIeU18ZLXF+ZwGE+NYIgd0W0dwmpvT2z9HUVnmDvEtt
- qwwx6J0Tbxxpcx5tkOp9BkTLvOHrQ3XsKF0yhhu/YQ9zSZYxa+mqdmM1bXXr9iXm8Xiq
- prZw==
+ bh=jCxVTvr46zhxurEP0PTNQgTL7TeLe1a+cQHiWBteVUA=;
+ b=mPr6yxy9o2KyZ+N8uhQttbFmiRbR7Y8+dRI1R4lkplEMABCcPy7JbiGPvS1sgowPjx
+ RXNdGnBVTlNDw6xAX6qI1NMRRgPm/qVRW+vJfAWKezGhTxOCjalPBmw1hdvLpM+1B+2I
+ dvA2ZxIQZr7jLzmDy7yydhRt1r6f6HznxsDPgWbPD6oJ0MfUzyEw5ZtkZUxsLtp8PAi9
+ MnIMf6+zadAPSFboPp8ds94F95PsAfFtPh0w1YD0WPeT+wmlTd36IMRh2CcXiXKnvLUH
+ uTb8mYCT75IS+DgjVeLSMKZy7LCVYLUnJtsuokCVD1tnouUT5r9dt5QM20oFHGsshwVN
+ 1ZXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:autocrypt
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=XHGcTeHaFyh2ILvyC8a40HF4zAuQXNj2hXZTLLU/tUk=;
- b=s6rx76AY8vQ27sfzSz/HGROCPsFf/vAjdt7VxVRKk+viYw9wlcmoU6dtcylpOECMGx
- dxNI3Emn2DiYumkr+DQLQ5QFErzZKvhyf/Fpdersq+s7Cmp7fQx9p6EvyQ5NhJSgtdLQ
- EJmNsrxumf2f2cv0Tgex0QCCuF1er5Fx0LuwcaZOLIK1VbmcpMT4rH2x6ODKVSrNb+Ff
- ZfJs6q6RJQmENLS6sRwH/FlCquR33V69OjGGO2MHiQqBYjYFtg/i3xPHgZnCrlXGpoRS
- AiOAnv4x8NA9jBkx9SXoZhafKfqs87C0m8yGROo6SF2G8s0fy8ofannRafEZYA7fBgho
- B/yA==
-X-Gm-Message-State: AOAM5308csk0nZNCOci2zcZCWtXiG1kYHzwwcTZu/N4gvWMmRisevKe5
- mf/W621G9QsdefhfAdczxGV4ivwo5IMd39Tw
-X-Google-Smtp-Source: ABdhPJxCnjA7/ZJjLyuXCqSZrlAx7laCpr5FzBIfjDrs2YoPkbvU+pYidIVtAZhoHk8ZP/Eedc8y+Q==
-X-Received: by 2002:adf:fa0c:: with SMTP id m12mr5511428wrr.406.1599030770235; 
- Wed, 02 Sep 2020 00:12:50 -0700 (PDT)
+ bh=jCxVTvr46zhxurEP0PTNQgTL7TeLe1a+cQHiWBteVUA=;
+ b=NpWkXPWyk3yH1aDMiuTCUngP2S3PgZ84wgN2bZGw36uG+SlvQA+u25y213K09yV31F
+ MQ5J1gcqD+0HA4yOqHnZ9EfVRL8+lC3ZjNHNcGmyV0DcosuIaMCSpFjm9Mculw8tIKxD
+ Tt1v/8dHOBLYw4k3MByhsbjqen77xnTftPvzXioUlubcnpS+hddTWElJN6TatWYCkbwD
+ xlnk0/0oDSnpD1INumZD9Iifsg8gyDf//dP3CJJnjCfSOlKOL9catHBTHHu6P+Q3NNCt
+ T3gWH/+0yTShgGjNX9OiJdavw+u0Ijno/rigRkPXLdgFXf45vwkCoc5CV5H3aZa5c3KB
+ 5NBA==
+X-Gm-Message-State: AOAM530d1duHXVHP0pDwhvumIrHMZZ7EnKVWm/lNG9JmiUBf5kjYQtnz
+ 8wDLWl7J3RjBvkbnwPu5PLVNLA==
+X-Google-Smtp-Source: ABdhPJzYtxWQMybOuyGgfTrOa3sPWsql7R7LCI1W5DQvhZwS8/nvGFQTvElOvwL/Mccro+7EPfW1pw==
+X-Received: by 2002:adf:df05:: with SMTP id y5mr6141268wrl.39.1599031100571;
+ Wed, 02 Sep 2020 00:18:20 -0700 (PDT)
 Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id q12sm5348794wrs.48.2020.09.02.00.12.49
+ by smtp.gmail.com with ESMTPSA id t16sm5783049wrm.57.2020.09.02.00.18.19
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Sep 2020 00:12:49 -0700 (PDT)
-Subject: Re: [QUESTION] do Amlogic SOCs support CPU idle?
-To: =?UTF-8?B?5bygIOWugQ==?= <zhangn1985@outlook.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
-References: <DM6PR16MB31634565D792745E3755C6D6CD2F0@DM6PR16MB3163.namprd16.prod.outlook.com>
+ Wed, 02 Sep 2020 00:18:19 -0700 (PDT)
+Subject: Re: [PATCH v4 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
+ controller node
+To: Anand Moon <linux.amoon@gmail.com>
+References: <20200831075911.434-1-linux.amoon@gmail.com>
+ <20200831075911.434-2-linux.amoon@gmail.com> <7hpn767f6x.fsf@baylibre.com>
+ <CANAwSgSjSU3wrgSkg+vE1u7JZKr3-8KHXHbMarvhSGKHXR0Khw@mail.gmail.com>
+ <d944e388-8112-4490-bc6d-d7bfc5ee0762@baylibre.com>
+ <CANAwSgRyV_Sz3GbLZ__-Ed8nhw5WCbChULVX8hhFLmgSs1tb-A@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -130,16 +135,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <f910ef02-c552-49cb-ab81-0330a16e4b3b@baylibre.com>
-Date: Wed, 2 Sep 2020 09:12:48 +0200
+Message-ID: <0845cbc4-cf95-5c00-4294-1b98b159727d@baylibre.com>
+Date: Wed, 2 Sep 2020 09:18:19 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <DM6PR16MB31634565D792745E3755C6D6CD2F0@DM6PR16MB3163.namprd16.prod.outlook.com>
+In-Reply-To: <CANAwSgRyV_Sz3GbLZ__-Ed8nhw5WCbChULVX8hhFLmgSs1tb-A@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_031252_144585_4E84BD47 
-X-CRM114-Status: GOOD (  13.28  )
+X-CRM114-CacheID: sfid-20200902_031821_816558_D8CE64A2 
+X-CRM114-Status: GOOD (  29.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,19 +156,243 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiAwMi8wOS8yMDIwIDAzOjM2LCDlvKAg5a6BIHdyb3RlOgo+IEhpLAo+IAo+IGp1c3Qg
-ZmluZCB0aGVyZSBubyBjcHUtaWRsZS1zdGF0ZXMgZGVmaW5lZCBpbiBhbWxvZ2ljIGR0cywgaXMg
-aXQgbm90IHN1cHBvcnRlZCwgb3Igbm90IGltcGxlbWVudGVkPwoKSXQncyBub3Qgc3VwcG9ydGVk
-IG9uIEdYQkIvR1hML0dYTS9BWEcsIGJ1dCBpdCBpcyBvbiBHMTJBL0cxMkIvU00xIGJ1dCBub3Qg
-aW1wbGVtZW50ZWQuCgpOZWlsCgo+IAo+IEJSLgo+IE5pbmcuCj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dAo+IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IGh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo+IAoKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
-ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 01/09/2020 17:29, Anand Moon wrote:
+> Hi Neil,
+> 
+> On Tue, 1 Sep 2020 at 18:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> On 01/09/2020 12:14, Anand Moon wrote:
+>>> Hi Kevin,
+>>>
+>>> Thanks for your review comments and testing.
+>>>
+>>> On Tue, 1 Sep 2020 at 01:36, Kevin Hilman <khilman@baylibre.com> wrote:
+>>>>
+>>>> Anand Moon <linux.amoon@gmail.com> writes:
+>>>>
+>>>>> Enable RTC PCF8563 node on Odroid-N2 SBC, In order to
+>>>>> support the RTC wakealarm feature for suspend and resume.
+>>>>> Also assign an alias to the pcf8563 to rtc0 and meson-vrtc to rtc1
+>>>>> timer device to prevent it being assigned to /dev/rtc0
+>>>>> which disto userspace tools assume is a clock device.
+>>>>>
+>>>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
+>>>>> Cc: Kevin Hilman <khilman@baylibre.com>
+>>>>> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
+>>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>>>>> ---
+>>>>> Changes v4
+>>>>> --Add gpio interrupt for GPIOAO.BIT7 as suggested by Neil.
+>>>>> Changes v3
+>>>>> --Drop the INI GPIOAO.BIT7 pinctrl.
+>>>>> --Added missing RTC alias so that rtc get assigned correcly,
+>>>>>   as suggested by Chris Hewitt.
+>>>>> changes v2
+>>>>> --Fix the missing INT (GPIOAO.BIT7) pinctrl.
+>>>>> --Fix the missing rtcwakeup.
+>>>>> --Drop the clock not required clock property by the PCF8563 driver.
+>>>>> ---
+>>>>>  .../boot/dts/amlogic/meson-g12b-odroid-n2.dts   | 17 +++++++++++++++++
+>>>>>  1 file changed, 17 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+>>>>> index 34fffa6d859d..3e2aaa6f48e5 100644
+>>>>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+>>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+>>>>> @@ -19,6 +19,8 @@ / {
+>>>>>       aliases {
+>>>>>               serial0 = &uart_AO;
+>>>>>               ethernet0 = &ethmac;
+>>>>> +             rtc0 = &rtc0;
+>>>>> +             rtc1 = &vrtc;
+>>>>>       };
+>>>>>
+>>>>>       dioo2133: audio-amplifier-0 {
+>>>>> @@ -477,6 +479,21 @@ hdmi_tx_tmds_out: endpoint {
+>>>>>       };
+>>>>>  };
+>>>>>
+>>>>> +&i2c3 {
+>>>>> +     pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
+>>>>> +     pinctrl-names = "default";
+>>>>> +     status = "okay";
+>>>>> +
+>>>>> +     rtc0: rtc@51 {
+>>>>> +             reg = <0x51>;
+>>>>> +             compatible = "nxp,pcf8563";
+>>>>> +             /* RTC INT */
+>>>>> +             interrupts = <GPIOAO_7 IRQ_TYPE_LEVEL_LOW>;
+>>>>> +             interrupt-parent = <&gpio_intc>;
+>>>>> +             wakeup-source;
+>>>>> +     };
+>>>>> +};
+>>>>
+>>>> There's still no pinctrl definition for the GPIO pin being used as the
+>>>> IRQ.  It looks like you discussed this with Martin and he pointed you in
+>>>> the right direction in your v3 series, but I don't see it in this
+>>>> patch.
+>>>>
+>>> Yes I had followed the approach suggested by Martin on previous email and IRC.
+>>> but it really did not work out for me in the testing.
+>>>
+>>> rtc-pcf8563 driver does not handle such gpio configuration.
+>>> so the rtc probe will fail if we add gpio pinctl to *pinctrl-0*.
+>>
+>> No need for multiple pinctrl-*, simple add a new pinctrl to the rtc node like:
+>>
+>>
+>> @@ -18,6 +18,8 @@
+>>         aliases {
+>>                 serial0 = &uart_AO;
+>>                 ethernet0 = &ethmac;
+>> +               rtc0 = &rtc0;
+>> +               rtc1 = &vrtc;
+>>         };
+>>
+>>         chosen {
+>> @@ -266,6 +268,17 @@
+>>         status = "okay";
+>>  };
+>>
+>> +&ao_pinctrl {
+>> +       rtc_int_pins: rtc-int {
+>> +               mux {
+>> +                       groups = "GPIOAO_7";
+>> +                       function = "gpio_aobus";
+>> +                       bias-disable;
+>> +                       output-disable;
+>> +               };
+>> +       };
+>> +};
+>> +
+>>  &cec_AO {
+>>         pinctrl-0 = <&cec_ao_a_h_pins>;
+>>         pinctrl-names = "default";
+>> @@ -391,6 +404,23 @@
+>>         };
+>>  };
+>>
+>> +&i2c3 {
+>> +       pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
+>> +       pinctrl-names = "default";
+>> +       status = "okay";
+>> +
+>> +       rtc0: rtc@51 {
+>> +             pinctrl-0 = <&rtc_int_pins>;
+>> +             pinctrl-names = "default";
+>> +             reg = <0x51>;
+>> +             compatible = "nxp,pcf8563";
+>> +             /* RTC INT */
+>> +             interrupts = <GPIOAO_7 IRQ_TYPE_LEVEL_LOW>;
+>> +             interrupt-parent = <&gpio_intc>;
+>> +             wakeup-source;
+>> +       };
+>> +};
+>> +
+>>  &ir {
+>>         status = "okay";
+>>         pinctrl-0 = <&remote_input_ao_pins>;
+>>
+>> DISCALIMER: not built or run tested
+>>
+>> Neil
+>>
+> 
+> I have built this and tested, but still this gpio pin
+
+Can you remove the "bias-disable" in rtc_int_pins and retry ?
+
+The default bias is pull-up, removing it may cause this.
+
+If it works, can you try "bias-pull-up" ? if it works, keep it and resend with my ack.
+
+Neil
+
+> 
+> # cat /sys/kernel/debug/gpio
+> gpiochip1: GPIOs 412-426, parent:
+> platform/ff800000.sys-ctrl:pinctrl@14, aobus-banks:
+>  gpio-414 (                    |enable              ) out lo
+>  gpio-420 (                    |regulator-tflash_vdd) out hi
+>  gpio-421 (                    |TF_IO               ) out lo
+>  gpio-423 (                    |n2:blue             ) out lo
+> 
+> gpiochip0: GPIOs 427-511, parent: platform/ff634400.bus:pinctrl@40,
+> periphs-banks:
+>  gpio-442 (                    |PHY reset           ) out hi ACTIVE LOW
+>  gpio-447 (                    |usb-hub-reset       ) out hi
+>  gpio-448 (                    |regulator-hub_5v    ) out hi
+>  gpio-449 (                    |regulator-usb_pwr_en) out lo
+>  gpio-464 (                    |reset               ) out hi ACTIVE LOW
+>  gpio-474 (                    |cd                  ) in  lo ACTIVE LOW
+> 
+> This change fails on *u-boot Hardkernel*
+> There is some timing issue, some time it wakes up and
+> some time it gets stuck.
+> 
+> # rtcwake -d /dev/rtc0 -s 10
+> rtcwake: wakeup from "mem" using /dev/rtc0 at Tue Sep  1 14:05:47 2020
+> [   35.565415] PM: suspend entry (deep)
+> [   35.565589] Filesystems sync: 0.000 seconds
+> [   72.670162] cfg80211: failed to load regulatory.db
+> [   72.670164] Freezing user space processes ... (elapsed 0.001 seconds) done.
+> [   72.676235] OOM killer disabled.
+> [   72.679418] Freezing remaining freezable tasks ... (elapsed 0.001
+> seconds) done.
+> [   72.688636] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
+> [   72.709953] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+> [   72.830228] Disabling non-boot CPUs ...
+> [   72.831157] CPU1: shutdown
+> [   72.832204] psci: CPU1 killed (polled 0 ms)
+> [   72.837376] CPU2: shutdown
+> [   72.837974] psci: CPU2 killed (polled 0 ms)
+> [   72.843880] CPU3: shutdown
+> [   72.844742] psci: CPU3 killed (polled 0 ms)
+> [   72.850925] CPU4: shutdown
+> [   72.851557] psci: CPU4 killed (polled 0 ms)
+> [   72.858185] CPU5: shutdown
+> [   72.858372] psci: CPU5 killed (polled 0 ms)
+> bl30 get wakeup sources!
+> process command 00000006
+> bl30 enter suspend!
+> Little core clk suspend rate 66700000
+> Big core clk suspend rate 24000000
+> store restore gp0 pll
+> suspend_counter: 1
+> Enter ddr suspend
+> ddr suspend time: 17us
+> alarm=0S
+> process command 00000001
+> cec ver:2018/04/19
+> CEC cfg:0x0000
+> WAKEUP GPIO cfg:0x00000000
+> use vddee new table!
+> kern log_addr:0x00
+> cec T: 00
+> err: tx not finish flag
+> cec reset
+> Set cec pinmux:0x11
+> Set cec log_addr:0x10,ADDR0:10
+> customer pwrkeys for IR is NULL, use defaults!
+> 
+> Best Regards
+> -Anand
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
