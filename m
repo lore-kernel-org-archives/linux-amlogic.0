@@ -2,86 +2,83 @@ Return-Path: <SRS0=TE1J=CL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DBA59C433E2
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 06:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19B64C433E7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 07:13:02 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A5FB42075D
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 06:58:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BA00A2087D
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 07:13:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="A0INqTAn";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NWvCEb+z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5FB42075D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nz9NEi3y";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1XxwebAu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA00A2087D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=AVMPa1PpH56Py+ovq7qXdpLreoV9rZPh4F8sstQH63E=; b=A0INqTAnfqjAE96fjtFqG3WHq
-	RZJ7qVYUpe9GxD8QOqluzf/y41NvJrVMpQ3naukAx4Q288ek9a6F9FRHkCBdXCCUcmilTGcj2t7iv
-	a8EHU0mFXtIpANqRyUOSQ+w2xgT5nt4LyTxW+NE4AZ/N5elMDNsa3KnR12UMuxthtCC3FjynT8LAq
-	7kNF1mIzybqZGj5rhfaI77qK4gGdORccSQye3AVImCiKVCmoyjP1xou6nd1JEUWECA2Aeb61MrWfq
-	EfoQ/6nFqjSGR/52EQKUeR+r+UbWyNx3tJvSivCZnfXCyNGRj4HOmUvQetitIYnQ3XXLWv5uLZmZD
-	PrCDx230Q==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=q7lYwxvYnx8iwXZD3B+0lRE9XzppCQpAJCiz1w6ojKk=; b=nz9NEi3yIFCjTcmt7v+I6SfzjF
+	i6pu34ScGTmIdDHhEGUW69e0l7h2/siWRz8NhgXHx31UW9NJLYnRGZKeVo+MsX2TTzSmazrTRB76v
+	c/9D2CS2dIVlMimnizE9F9WHCqoTkX/d+ueYBfnCR+D13J0CaYG0Gcn968amWLMwK6StpnGYsb/Eu
+	ivCniQ1RweK1PZYr9nLso5UJScMy/rr2jDV+5f0xyQG2NtS6r2u26B+PlNLZ9YMcSar6hWekHNELT
+	Oe04SOUaJTK1fXFgOo5guH/v16njkDnkVUFIs89PPLXb942TJfXhwifJdcZDrxuy3W4OUbDgVp6br
+	e5rsEUYw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDMiO-0004ob-5L; Wed, 02 Sep 2020 06:57:52 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1kDMwx-0006Za-Pq; Wed, 02 Sep 2020 07:12:55 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDMiJ-0004nI-5w
- for linux-amlogic@lists.infradead.org; Wed, 02 Sep 2020 06:57:48 +0000
-Received: by mail-wm1-x342.google.com with SMTP id z9so3347003wmk.1
- for <linux-amlogic@lists.infradead.org>; Tue, 01 Sep 2020 23:57:45 -0700 (PDT)
+ id 1kDMwu-0006Xo-0E
+ for linux-amlogic@lists.infradead.org; Wed, 02 Sep 2020 07:12:53 +0000
+Received: by mail-wr1-x434.google.com with SMTP id e16so4045727wrm.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 02 Sep 2020 00:12:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
+ h=subject:to:references:from:autocrypt:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=GrzbmRuj72YZ3pli3rvyAq1e20yZwoLmmyUmuPtijtA=;
- b=NWvCEb+zfjY47tPLxhm20C8AfNWrZ4AwUS7O506Fj3AjRzeMZgv85mtHhKzLCkirg+
- 0N7OX+Z6ZJvyV9iaRuokLFJECgSzeXpQnoe2bHfIcFpsbH3W29f9/7/ZzvIuLTSW+gUJ
- MbDmTJuEZV1ClxnpOETmy4m9ZxbL9a8WZZ52+26OyNq1S8PDv6GvrTVXzSeKzJNRrhiz
- vYBFE0RG4/pEQosiIzohvKNXTWNFx8Sy8+iHrEVVoXAeN1bGwEXG+QgIa1sVjOixtAMW
- UjomBKZ8g8723Oe/jX/XIYhR5BNcbMIBduUVjd4O/FeVR6VcrHjvtvgShHMeLR4c0NA7
- zvKA==
+ bh=XHGcTeHaFyh2ILvyC8a40HF4zAuQXNj2hXZTLLU/tUk=;
+ b=1XxwebAuu9cmQvTDCiSQc2xUkZiji8NbnagVB4YpZpOtM6f73hZojGV7I7PTf1hIvS
+ AWRyJ032SywHeUOtvHuUFKsglN9laS69dJxvwP0mEIpy28PR/mmnXgsmCSzHnPO8l9a7
+ cgts3BmzsGeFYmo32mQCyoNSWb7qauir16ySGj9vtAOgJd2NF4F16bmQPS9jS3hszzTZ
+ WMR/r2iPGTZbq4psc1aSbjztmSIeU18ZLXF+ZwGE+NYIgd0W0dwmpvT2z9HUVnmDvEtt
+ qwwx6J0Tbxxpcx5tkOp9BkTLvOHrQ3XsKF0yhhu/YQ9zSZYxa+mqdmM1bXXr9iXm8Xiq
+ prZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=GrzbmRuj72YZ3pli3rvyAq1e20yZwoLmmyUmuPtijtA=;
- b=jbu/yGkxcyFr0CRvJrzinx8v1SsHiySprT86m7dGPehKsx7kkf3UwtZuujyA8gvoWN
- NRorC6LnfSiA05hUv0/8ipSdd9qBK9STdaZScEInWkG6C3KUKR2+IqWDKPAlqBOL465G
- hWDXSar6FeFTXiE9waktzimp2dATi9Cppx9b/XHpgYCz/l7KMHsP33FOgGQofYjp3noE
- 5/7lKspZQmBZhtaLcTob/CU/XmMo29YrlGOnI00T+rpiLm/kdEFqAqSgcVYUoeW5Z01Z
- VrtM2to7s2qE7d0/DKUEmeAqAT+G1IHihbbsOj1z2I96j/gkpTU/O3Et2dMDz60xAxF0
- balA==
-X-Gm-Message-State: AOAM531hfLpx6z5hvVp+57b9zxh4FqniiCN/1TTa3HykXBjSEvvI5UNl
- lmuWl09UkfWgjxClLUMUsiRmow==
-X-Google-Smtp-Source: ABdhPJywo9I+yPyBED9hZ0Xjx19xwNmG3spDAmDqWtKbgYwoWZXYbaSca2kyMeafOO4ms2yXxh7FXw==
-X-Received: by 2002:a05:600c:2512:: with SMTP id
- d18mr5215277wma.171.1599029864140; 
- Tue, 01 Sep 2020 23:57:44 -0700 (PDT)
+ bh=XHGcTeHaFyh2ILvyC8a40HF4zAuQXNj2hXZTLLU/tUk=;
+ b=s6rx76AY8vQ27sfzSz/HGROCPsFf/vAjdt7VxVRKk+viYw9wlcmoU6dtcylpOECMGx
+ dxNI3Emn2DiYumkr+DQLQ5QFErzZKvhyf/Fpdersq+s7Cmp7fQx9p6EvyQ5NhJSgtdLQ
+ EJmNsrxumf2f2cv0Tgex0QCCuF1er5Fx0LuwcaZOLIK1VbmcpMT4rH2x6ODKVSrNb+Ff
+ ZfJs6q6RJQmENLS6sRwH/FlCquR33V69OjGGO2MHiQqBYjYFtg/i3xPHgZnCrlXGpoRS
+ AiOAnv4x8NA9jBkx9SXoZhafKfqs87C0m8yGROo6SF2G8s0fy8ofannRafEZYA7fBgho
+ B/yA==
+X-Gm-Message-State: AOAM5308csk0nZNCOci2zcZCWtXiG1kYHzwwcTZu/N4gvWMmRisevKe5
+ mf/W621G9QsdefhfAdczxGV4ivwo5IMd39Tw
+X-Google-Smtp-Source: ABdhPJxCnjA7/ZJjLyuXCqSZrlAx7laCpr5FzBIfjDrs2YoPkbvU+pYidIVtAZhoHk8ZP/Eedc8y+Q==
+X-Received: by 2002:adf:fa0c:: with SMTP id m12mr5511428wrr.406.1599030770235; 
+ Wed, 02 Sep 2020 00:12:50 -0700 (PDT)
 Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y1sm5692087wru.87.2020.09.01.23.57.42
+ by smtp.gmail.com with ESMTPSA id q12sm5348794wrs.48.2020.09.02.00.12.49
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 01 Sep 2020 23:57:43 -0700 (PDT)
-Subject: Re: [PATCH] Revert "usb: dwc3: meson-g12a: fix shared reset control
- use"
-To: Felipe Balbi <balbi@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20200827144810.26657-1-aouledameur@baylibre.com>
+ Wed, 02 Sep 2020 00:12:49 -0700 (PDT)
+Subject: Re: [QUESTION] do Amlogic SOCs support CPU idle?
+To: =?UTF-8?B?5bygIOWugQ==?= <zhangn1985@outlook.com>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+References: <DM6PR16MB31634565D792745E3755C6D6CD2F0@DM6PR16MB3163.namprd16.prod.outlook.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -133,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <4e7c19de-f276-7b2a-695a-ef83c1477d19@baylibre.com>
-Date: Wed, 2 Sep 2020 08:57:42 +0200
+Message-ID: <f910ef02-c552-49cb-ab81-0330a16e4b3b@baylibre.com>
+Date: Wed, 2 Sep 2020 09:12:48 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200827144810.26657-1-aouledameur@baylibre.com>
+In-Reply-To: <DM6PR16MB31634565D792745E3755C6D6CD2F0@DM6PR16MB3163.namprd16.prod.outlook.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_025747_347323_3A59352C 
-X-CRM114-Status: GOOD (  22.23  )
+X-CRM114-CacheID: sfid-20200902_031252_144585_4E84BD47 
+X-CRM114-Status: GOOD (  13.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,108 +151,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Dan Robertson <dan@dlrobertson.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Amjad Ouled-Ameur <aouledameur@baylibre.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Felipe, Greg,
-
-Is it possible to apply this ? USB is broken on 5.8 stable and 5.9-rc on multiple GXL/GXM boards.
-
-Thanks,
-Neil
-
-On 27/08/2020 16:48, Amjad Ouled-Ameur wrote:
-> This reverts commit 7a410953d1fb4dbe91ffcfdee9cbbf889d19b0d7.
-> 
-> This commit breaks USB on meson-gxl-s905x-libretech-cc. Reverting
-> the change solves the issue.
-> 
-> In fact, according to the reset framework code, consumers must not use
-> reset_control_(de)assert() on shared reset lines when reset_control_reset
-> has been used, and vice-versa.
-> 
-> Moreover, with this commit, usb is not guaranted to be reset since the
-> reset is likely to be initially deasserted.
-> 
-> Reverting the commit will bring back the suspend warning mentioned in the
-> commit description. Nevertheless, a warning is much less critical than
-> breaking dwc3-meson-g12a USB completely. We will address the warning
-> issue in another way as a 2nd step.
-> 
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/usb/dwc3/dwc3-meson-g12a.c | 15 ++++++---------
->  1 file changed, 6 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> index 88b75b5a039c..1f7f4d88ed9d 100644
-> --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
-> +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> @@ -737,13 +737,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->  		goto err_disable_clks;
->  	}
->  
-> -	ret = reset_control_deassert(priv->reset);
-> +	ret = reset_control_reset(priv->reset);
->  	if (ret)
-> -		goto err_assert_reset;
-> +		goto err_disable_clks;
->  
->  	ret = dwc3_meson_g12a_get_phys(priv);
->  	if (ret)
-> -		goto err_assert_reset;
-> +		goto err_disable_clks;
->  
->  	ret = priv->drvdata->setup_regmaps(priv, base);
->  	if (ret)
-> @@ -752,7 +752,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->  	if (priv->vbus) {
->  		ret = regulator_enable(priv->vbus);
->  		if (ret)
-> -			goto err_assert_reset;
-> +			goto err_disable_clks;
->  	}
->  
->  	/* Get dr_mode */
-> @@ -765,13 +765,13 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->  
->  	ret = priv->drvdata->usb_init(priv);
->  	if (ret)
-> -		goto err_assert_reset;
-> +		goto err_disable_clks;
->  
->  	/* Init PHYs */
->  	for (i = 0 ; i < PHY_COUNT ; ++i) {
->  		ret = phy_init(priv->phys[i]);
->  		if (ret)
-> -			goto err_assert_reset;
-> +			goto err_disable_clks;
->  	}
->  
->  	/* Set PHY Power */
-> @@ -809,9 +809,6 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
->  	for (i = 0 ; i < PHY_COUNT ; ++i)
->  		phy_exit(priv->phys[i]);
->  
-> -err_assert_reset:
-> -	reset_control_assert(priv->reset);
-> -
->  err_disable_clks:
->  	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
->  				   priv->drvdata->clks);
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgpPbiAwMi8wOS8yMDIwIDAzOjM2LCDlvKAg5a6BIHdyb3RlOgo+IEhpLAo+IAo+IGp1c3Qg
+ZmluZCB0aGVyZSBubyBjcHUtaWRsZS1zdGF0ZXMgZGVmaW5lZCBpbiBhbWxvZ2ljIGR0cywgaXMg
+aXQgbm90IHN1cHBvcnRlZCwgb3Igbm90IGltcGxlbWVudGVkPwoKSXQncyBub3Qgc3VwcG9ydGVk
+IG9uIEdYQkIvR1hML0dYTS9BWEcsIGJ1dCBpdCBpcyBvbiBHMTJBL0cxMkIvU00xIGJ1dCBub3Qg
+aW1wbGVtZW50ZWQuCgpOZWlsCgo+IAo+IEJSLgo+IE5pbmcuCj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
+dAo+IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IGh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo+IAoKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
+cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
