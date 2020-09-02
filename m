@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1F80C433E2
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:04:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1469EC43461
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:05:02 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9023320BED
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:04:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D054D2137B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2020 15:05:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YSYUdWiY";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="eNX+dwL7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9023320BED
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="19RRQtyR";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="pFq+pQYc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D054D2137B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,30 +26,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=CZOJy6ghz7Qzy8xDWTof0rRoMqjVMWnv+D+IQsetku8=; b=YSYUdWiYokpRfCD+UFRE9cs5Am
-	wn+a4H57igMdXRl7nHKgz0/rvXG6GN8OyOVRyiskYcnuDW6BQyn8z/x+Mk0CkH7AedBesQ+zVXWaJ
-	LyVgDkWSHXHZI6PazSnPf4kGCg6l/BPj2nwEXd0M4rsAW93SPXMycYjF/2a/esX0RsuFbBdmmwbVa
-	esyK2wVPgv/aE0D3hpxEXdWf6/55fgB6JrjWulhexvQE09AvXt9+lH8bSrcLK1dZhM6VX8NIDrU6n
-	gTL7OsK1bjS2OWJyQFndwtKJwjfsuboR6jae0UUz+B/e+jFF4RAyQjZL18UvRG+GNfUppdHCFeqNz
-	guh9yryg==;
+	bh=63GmoHlq6TvLTjnBD9tyDitT5ZBfVrPiFu4BqDOuwkY=; b=19RRQtyRAfgdHxEaOhFBKCX5AN
+	eW58jJES1zgWfGhMRcjj9MRLBd5tQj/7i7NNbZZi+bdV3t9ZExmLB3IDnZBuGm33MJf8i6QK8jiWZ
+	RFoJqcy5FXrkqTlNcEUizDCF806YQR5LntMV6QJu0QPE0ME/XTGIFMU+bwHyvMKFhVvCEu2C002sS
+	emt3b6OojLhCnSNCqVKj6Kd69Y7iMxeh34I+JNrfO1nJJsG7J404AyaEX/JbiIj3AponifxLFLqkY
+	LrWSEjgh+hzIlX2JOeDc0v1JlbCddkUELCpb7e151XTE48IW0SXGLLepW8QMJ74E7VE0fOjdRyLm8
+	+WKR8N8A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDUJT-0003tF-EB; Wed, 02 Sep 2020 15:04:39 +0000
+	id 1kDUJi-00041U-7W; Wed, 02 Sep 2020 15:04:54 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDUJA-0003ho-UK; Wed, 02 Sep 2020 15:04:22 +0000
+ id 1kDUJG-0003kg-3F; Wed, 02 Sep 2020 15:04:27 +0000
 Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id A2363214D8;
- Wed,  2 Sep 2020 15:04:15 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9506721527;
+ Wed,  2 Sep 2020 15:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599059060;
- bh=qZbRz7vHhRuDtj+mxfFu/caG8U7KILHwDenzvK1SHbY=;
+ s=default; t=1599059065;
+ bh=UZsEqgnFpRCIfv/X8lhKedsjXG7tPysKFsM4O+5c1og=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=eNX+dwL77fegbOMgYPi65jD3MevMqzWzD66pOUe/teuPLLkkOp08Y+AaJ6dIaUNbb
- A6BjfJR8rh/kbmfihtaKPRZD7lSCBlCAv5SE4qDDhGMafSCk4QaprlcY1G26otG/FM
- nPeBT9UTfjguJrQ6TNr1TE92NHwXQJFlXazVBBUA=
+ b=pFq+pQYc6BCe2NtK7+Ig4Fdw+9S38KkYFXn8TIkEETbiabdtq0tgVHZ/k9Pw74Cqx
+ PCf4+yC0vOzAjjqQrsEfJLtXDD9AgYzuRNQPSlXc2O+fJyET6GDcxzxobEXRbpeY3Y
+ 5jVIIsyW/+qgVU+p/Ns2ZuirTc5iI7Zhou59OcVo=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Michael Turquette <mturquette@baylibre.com>,
  Stephen Boyd <sboyd@kernel.org>,
@@ -67,15 +67,15 @@ To: Michael Turquette <mturquette@baylibre.com>,
  linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-msm@vger.kernel.org
-Subject: [PATCH 05/10] clk: sunxi-ng: Simplify with dev_err_probe()
-Date: Wed,  2 Sep 2020 17:03:43 +0200
-Message-Id: <20200902150348.14465-5-krzk@kernel.org>
+Subject: [PATCH 06/10] clk: keystone: Simplify with dev_err_probe()
+Date: Wed,  2 Sep 2020 17:03:44 +0200
+Message-Id: <20200902150348.14465-6-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200902150348.14465-1-krzk@kernel.org>
 References: <20200902150348.14465-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200902_110421_275355_F37417C8 
-X-CRM114-Status: GOOD (  14.35  )
+X-CRM114-CacheID: sfid-20200902_110426_331058_65C81233 
+X-CRM114-Status: GOOD (  14.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,106 +99,29 @@ dev_err_probe().  Less code and the error value gets printed.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- drivers/clk/sunxi-ng/ccu-sun8i-de2.c     | 28 ++++++++----------------
- drivers/clk/sunxi-ng/ccu-sun9i-a80-de.c  | 19 +++++-----------
- drivers/clk/sunxi-ng/ccu-sun9i-a80-usb.c |  9 +++-----
- 3 files changed, 18 insertions(+), 38 deletions(-)
+ drivers/clk/keystone/syscon-clk.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/clk/sunxi-ng/ccu-sun8i-de2.c b/drivers/clk/sunxi-ng/ccu-sun8i-de2.c
-index 524f33275bc7..0de024d3e466 100644
---- a/drivers/clk/sunxi-ng/ccu-sun8i-de2.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun8i-de2.c
-@@ -297,29 +297,19 @@ static int sunxi_de2_clk_probe(struct platform_device *pdev)
- 		return PTR_ERR(reg);
+diff --git a/drivers/clk/keystone/syscon-clk.c b/drivers/clk/keystone/syscon-clk.c
+index 5b3d36462174..12ddcbed00e4 100644
+--- a/drivers/clk/keystone/syscon-clk.c
++++ b/drivers/clk/keystone/syscon-clk.c
+@@ -102,12 +102,9 @@ static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
+ 		return -EINVAL;
  
- 	bus_clk = devm_clk_get(&pdev->dev, "bus");
--	if (IS_ERR(bus_clk)) {
--		ret = PTR_ERR(bus_clk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev, "Couldn't get bus clk: %d\n", ret);
--		return ret;
+ 	regmap = syscon_node_to_regmap(dev->of_node);
+-	if (IS_ERR(regmap)) {
+-		if (PTR_ERR(regmap) == -EPROBE_DEFER)
+-			return -EPROBE_DEFER;
+-		dev_err(dev, "failed to find parent regmap\n");
+-		return PTR_ERR(regmap);
 -	}
-+	if (IS_ERR(bus_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(bus_clk),
-+				     "Couldn't get bus clk\n");
++	if (IS_ERR(regmap))
++		return dev_err_probe(dev, PTR_ERR(regmap),
++				     "failed to find parent regmap\n");
  
- 	mod_clk = devm_clk_get(&pdev->dev, "mod");
--	if (IS_ERR(mod_clk)) {
--		ret = PTR_ERR(mod_clk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev, "Couldn't get mod clk: %d\n", ret);
--		return ret;
--	}
-+	if (IS_ERR(mod_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(mod_clk),
-+				     "Couldn't get mod clk\n");
- 
- 	rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
--	if (IS_ERR(rstc)) {
--		ret = PTR_ERR(rstc);
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev,
--				"Couldn't get reset control: %d\n", ret);
--		return ret;
--	}
-+	if (IS_ERR(rstc))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rstc),
-+				     "Couldn't get reset control\n");
- 
- 	/* The clocks need to be enabled for us to access the registers */
- 	ret = clk_prepare_enable(bus_clk);
-diff --git a/drivers/clk/sunxi-ng/ccu-sun9i-a80-de.c b/drivers/clk/sunxi-ng/ccu-sun9i-a80-de.c
-index 6616e8114f62..541c3d32b93e 100644
---- a/drivers/clk/sunxi-ng/ccu-sun9i-a80-de.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun9i-a80-de.c
-@@ -215,21 +215,14 @@ static int sun9i_a80_de_clk_probe(struct platform_device *pdev)
- 		return PTR_ERR(reg);
- 
- 	bus_clk = devm_clk_get(&pdev->dev, "bus");
--	if (IS_ERR(bus_clk)) {
--		ret = PTR_ERR(bus_clk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev, "Couldn't get bus clk: %d\n", ret);
--		return ret;
--	}
-+	if (IS_ERR(bus_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(bus_clk),
-+				     "Couldn't get bus clk\n");
- 
- 	rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
--	if (IS_ERR(rstc)) {
--		ret = PTR_ERR(rstc);
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev,
--				"Couldn't get reset control: %d\n", ret);
--		return ret;
--	}
-+	if (IS_ERR(rstc))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rstc),
-+				     "Couldn't get reset control\n");
- 
- 	/* The bus clock needs to be enabled for us to access the registers */
- 	ret = clk_prepare_enable(bus_clk);
-diff --git a/drivers/clk/sunxi-ng/ccu-sun9i-a80-usb.c b/drivers/clk/sunxi-ng/ccu-sun9i-a80-usb.c
-index 4b4a507d04ed..f6a3989fea36 100644
---- a/drivers/clk/sunxi-ng/ccu-sun9i-a80-usb.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun9i-a80-usb.c
-@@ -103,12 +103,9 @@ static int sun9i_a80_usb_clk_probe(struct platform_device *pdev)
- 		return PTR_ERR(reg);
- 
- 	bus_clk = devm_clk_get(&pdev->dev, "bus");
--	if (IS_ERR(bus_clk)) {
--		ret = PTR_ERR(bus_clk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(&pdev->dev, "Couldn't get bus clk: %d\n", ret);
--		return ret;
--	}
-+	if (IS_ERR(bus_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(bus_clk),
-+				     "Couldn't get bus clk\n");
- 
- 	/* The bus clock needs to be enabled for us to access the registers */
- 	ret = clk_prepare_enable(bus_clk);
+ 	num_clks = 0;
+ 	for (p = data; p->name; p++)
 -- 
 2.17.1
 
