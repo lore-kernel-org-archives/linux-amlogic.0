@@ -1,87 +1,68 @@
-Return-Path: <SRS0=B1XO=CM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=gMfs=CN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86397C43461
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Sep 2020 23:25:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 94207C433E2
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 06:35:35 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4A0BC20797
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Sep 2020 23:25:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 576B920748
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 06:35:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="1Ld9SGXK";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VhBq0Pd1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A0BC20797
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Lrlq6Lxn";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="wD+h8Nmw"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 576B920748
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=UhbTao4lUxY/piIvkeV8+9DRubS/vuQYprSdM62g5kg=; b=1Ld9SGXK834TmFusO6kV/FoQg
-	eAoJCoup2+oWPn3kbCYVOexXmb3PykEJjHsbwD5zhO1k/kKWrOBminIXOzP/qSmuJcX1/pC+CNqQP
-	kCWWq2LKXXE3KBMgXe7EYrjzCVDb5XPq36de4n7xRt6/AtXIPrV1TNd0dn+WC02R9WQ1BDKDHBQki
-	fhW8vaedGPmedLEKnDvXn7n8h3wadREfHf/FXXBoITy5BGDKwgnpuJvajMxeGu3lqU/Hf2LCcP83n
-	QBmjAPE6JQtfDaTN+HU6oKQM6ojJncZSaS189jb0h2z53podoSZRyxUveXIUCO/PHxxmEPrBL2uj3
-	602hrqPGw==;
+	 bh=r2b5+RT5N1DxfnVV4jAqSrZaZgDAtwodaldWQjXD7yA=; b=Lrlq6LxnEbZLjeNrRc6HYy1jd
+	2dX7Y2tzn2FAqjrfrWMyyUxYjCK/se9pLXYjxL9ng9ny0OxunrBK90d672891ekaPm9u79Gin3i8K
+	yxRtRpkc2x+OH0NFACARNngL7MXQNAQXBxWJnwHrbdeZwgHSfqzMy9mAI1fobut80FMU17dQ9o/+L
+	rtuz0AfEKrHBhYv8cRb6EN62iCixZ0q+abjAmnsEoTDW71czfriBN26Cp5JnMYd88fGad6tL368je
+	vgMP9mOM4xUDrcq/oDmFkuxFahJGg+zfJFm5b3Y7O2p+bAjN2ureKMTRhdWXB/TBG3NPv33jCZRYT
+	T3b4ubotg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kDybv-0007Gn-9b; Thu, 03 Sep 2020 23:25:43 +0000
-Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
+	id 1kE5Jm-00022D-Uz; Fri, 04 Sep 2020 06:35:26 +0000
+Received: from www.zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDybQ-00073i-Hc
- for linux-amlogic@lists.infradead.org; Thu, 03 Sep 2020 23:25:17 +0000
-Received: by mail-pg1-x541.google.com with SMTP id v15so3338257pgh.6
- for <linux-amlogic@lists.infradead.org>; Thu, 03 Sep 2020 16:25:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ak7sgXD1yUS+b4yneXUgmseigL5T/tHURONnrfZ0LI4=;
- b=VhBq0Pd1fQUl41cTBulPJPpdxGflwL0G7Gqg1UwnWwh7hC3EHSfa7oPF3xPReYY4jn
- BAWM7qrieI6Kba9y15jYXktkL7ZlLYJjFqbAHH+2+qgP7TtD6dXZkTSM/dM7KV4y/BQ2
- YfsUkkK/A9E3N0HUpkt7fYZBAsf2ixttwmFIU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ak7sgXD1yUS+b4yneXUgmseigL5T/tHURONnrfZ0LI4=;
- b=GkNhJJh0cKIu+f4PJPs61BedEM/LC8Om0IMuD/kUJ/K+AXGfgdk+uleab4Y/9Ry7Bd
- Z0XakGK/1ngywi0J+TTHxLfSSoo4DVcATRIQAcwGgXVxC4yDanlIahAUv+xWlPp2j+nl
- 5DpFT71qGag07FWU2yCuduV0b+Lkwj/Cz8g38m2mqxjeZVT5n5r8jsHxNgT138cztlWH
- t4HblSvdxZPvoNNzYHoPQ2HfzO/aBeylsHDJ8x5paFzliHgUcnZiE20IEQ/qFujO25zh
- Zvg77faIkEycf5DfZF18QRhfJKMC0TrcaAJ+ImprgoOT/aMEzMxEY75ZrONj8vtolQJ7
- 6v6g==
-X-Gm-Message-State: AOAM532fJImUcDp9swq5QJgZKdfRiPI7wNc5M/BQfIySz/BaQfkeXRo2
- uUfOQE/D6XEeiHDaYXJ9V7qPhA==
-X-Google-Smtp-Source: ABdhPJzWCp1ofM9pNblsz3oLmRdRBFRUQauHQjSC92yoCjre8k5Y3NiZEW1Bbb485EaunCczoEjv5Q==
-X-Received: by 2002:a62:ea01:: with SMTP id t1mr6001343pfh.125.1599175510807; 
- Thu, 03 Sep 2020 16:25:10 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com
- ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
- by smtp.gmail.com with ESMTPSA id q7sm3614459pgg.10.2020.09.03.16.25.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Sep 2020 16:25:10 -0700 (PDT)
-From: Douglas Anderson <dianders@chromium.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Subject: [PATCH 6/6] mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that are
- newer than 5.4
-Date: Thu,  3 Sep 2020 16:24:41 -0700
-Message-Id: <20200903162412.6.Ib121debfb18e5f923a3cd38fe9c36aa086c650c5@changeid>
-X-Mailer: git-send-email 2.28.0.526.ge36021eeef-goog
-In-Reply-To: <20200903232441.2694866-1-dianders@chromium.org>
+ id 1kE5Jh-0001ys-W6
+ for linux-amlogic@lists.infradead.org; Fri, 04 Sep 2020 06:35:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=k1; bh=PEKAdGICSpG+StaimtD2YxLUKeqb
+ Rz1HTpHr/NM8LWg=; b=wD+h8Nmwe2DlaHl4ZY9ljquKBmzVTAjJx9KGimQRYUxR
+ wYZBPTs3mCywOYZzIcxu6hTN9Lz65eAP7L1ynZeG3nsJ7nM/j3TbMGTUGbgzPR+n
+ 2wb8m2rKBabCi1Qxnc6p5MtLaj3UqYvyp6tjbhy44mF6Kvu3DdbLAvZ6+lWvrL4=
+Received: (qmail 3473265 invoked from network); 4 Sep 2020 08:35:14 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted,
+ authenticated); 4 Sep 2020 08:35:14 +0200
+X-UD-Smtp-Session: l3s3148p1@KxpNEneuIKEgAwDPXwlxANIWpbLKE1Uh
+Date: Fri, 4 Sep 2020 08:35:14 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH 3/6] mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that
+ existed in v4.14
+Message-ID: <20200904063514.GB1506@ninjato>
 References: <20200903232441.2694866-1-dianders@chromium.org>
+ <20200903162412.3.Id1ff21470f08f427aedd0a6535dcd83ccc56b278@changeid>
 MIME-Version: 1.0
+In-Reply-To: <20200903162412.3.Id1ff21470f08f427aedd0a6535dcd83ccc56b278@changeid>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200903_192512_639676_3235F651 
-X-CRM114-Status: GOOD (  14.09  )
+X-CRM114-CacheID: sfid-20200904_023522_274081_A5AE4E95 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,104 +74,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ Peter Ujfalusi <peter.ujfalusi@ti.com>, Hu Ziji <huziji@marvell.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Jaehoon Chung <jh80.chung@samsung.com>, bcm-kernel-feedback-list@broadcom.com,
+ Saiyam Doshi <saiyamdoshi.in@gmail.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Ray Jui <rjui@broadcom.com>, swboyd@chromium.org,
+ linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Scott Branden <sbranden@broadcom.com>,
  linux-mmc@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>,
- Douglas Anderson <dianders@chromium.org>,
- Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
- linux-arm-kernel@lists.infradead.org,
- =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
- linux-amlogic@lists.infradead.org, swboyd@chromium.org,
- Angelo Dureghello <angelo.dureghello@timesys.com>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Robert Richter <rrichter@marvell.com>, Stefan Wahren <wahrenst@gmx.net>,
+ Jun Nie <jun.nie@linaro.org>, Shawn Guo <shawnguo@kernel.org>,
+ Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Content-Type: multipart/mixed; boundary="===============9049679767257084478=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is like commit 3d3451124f3d ("mmc: sdhci-msm: Prefer asynchronous
-probe") but applied to a whole pile of drivers.  This batch converts
-the drivers that appeared to have been added after kernel 5.4.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+--===============9049679767257084478==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="l76fUT7nc3MelDdI"
+Content-Disposition: inline
 
- drivers/mmc/host/meson-mx-sdhc-mmc.c | 1 +
- drivers/mmc/host/owl-mmc.c           | 1 +
- drivers/mmc/host/sdhci-esdhc-mcf.c   | 1 +
- drivers/mmc/host/sdhci-milbeaut.c    | 1 +
- drivers/mmc/host/sdhci-of-sparx5.c   | 1 +
- 5 files changed, 5 insertions(+)
 
-diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-index 53e3f6a4245a..7cd9c0ec2fcf 100644
---- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
-+++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-@@ -903,6 +903,7 @@ static struct platform_driver meson_mx_sdhc_driver = {
- 	.remove  = meson_mx_sdhc_remove,
- 	.driver  = {
- 		.name = "meson-mx-sdhc",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
- 		.of_match_table = of_match_ptr(meson_mx_sdhc_of_match),
- 	},
- };
-diff --git a/drivers/mmc/host/owl-mmc.c b/drivers/mmc/host/owl-mmc.c
-index df43f42855e2..ccf214a89eda 100644
---- a/drivers/mmc/host/owl-mmc.c
-+++ b/drivers/mmc/host/owl-mmc.c
-@@ -689,6 +689,7 @@ MODULE_DEVICE_TABLE(of, owl_mmc_of_match);
- static struct platform_driver owl_mmc_driver = {
- 	.driver = {
- 		.name	= "owl_mmc",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
- 		.of_match_table = owl_mmc_of_match,
- 	},
- 	.probe		= owl_mmc_probe,
-diff --git a/drivers/mmc/host/sdhci-esdhc-mcf.c b/drivers/mmc/host/sdhci-esdhc-mcf.c
-index 71bf086a9812..ca7a1690b2a8 100644
---- a/drivers/mmc/host/sdhci-esdhc-mcf.c
-+++ b/drivers/mmc/host/sdhci-esdhc-mcf.c
-@@ -509,6 +509,7 @@ static int sdhci_esdhc_mcf_remove(struct platform_device *pdev)
- static struct platform_driver sdhci_esdhc_mcf_driver = {
- 	.driver	= {
- 		.name = "sdhci-esdhc-mcf",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
- 	},
- 	.probe = sdhci_esdhc_mcf_probe,
- 	.remove = sdhci_esdhc_mcf_remove,
-diff --git a/drivers/mmc/host/sdhci-milbeaut.c b/drivers/mmc/host/sdhci-milbeaut.c
-index 4e7cc0680f94..148b37ac6564 100644
---- a/drivers/mmc/host/sdhci-milbeaut.c
-+++ b/drivers/mmc/host/sdhci-milbeaut.c
-@@ -333,6 +333,7 @@ static int sdhci_milbeaut_remove(struct platform_device *pdev)
- static struct platform_driver sdhci_milbeaut_driver = {
- 	.driver = {
- 		.name = "sdhci-milbeaut",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
- 		.of_match_table = of_match_ptr(mlb_dt_ids),
- 	},
- 	.probe	= sdhci_milbeaut_probe,
-diff --git a/drivers/mmc/host/sdhci-of-sparx5.c b/drivers/mmc/host/sdhci-of-sparx5.c
-index 747f108a0ace..28e4ee69e100 100644
---- a/drivers/mmc/host/sdhci-of-sparx5.c
-+++ b/drivers/mmc/host/sdhci-of-sparx5.c
-@@ -255,6 +255,7 @@ MODULE_DEVICE_TABLE(of, sdhci_sparx5_of_match);
- static struct platform_driver sdhci_sparx5_driver = {
- 	.driver = {
- 		.name = "sdhci-sparx5",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
- 		.of_match_table = sdhci_sparx5_of_match,
- 		.pm = &sdhci_pltfm_pmops,
- 	},
--- 
-2.28.0.526.ge36021eeef-goog
+--l76fUT7nc3MelDdI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Sep 03, 2020 at 04:24:38PM -0700, Douglas Anderson wrote:
+> This is like commit 3d3451124f3d ("mmc: sdhci-msm: Prefer asynchronous
+> probe") but applied to a whole pile of drivers.  This batch converts
+> the drivers that appeared to be around in the v4.14 timeframe.
+
+The LTS granularity of patches is a nice idea! I will keep it in mind.
+
+>=20
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+
+In general, I like more coverage of async probing. It makes sense for
+SD/MMC, I think.
+
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+>  drivers/mmc/host/renesas_sdhi_internal_dmac.c | 1 +
+>  drivers/mmc/host/renesas_sdhi_sys_dmac.c      | 1 +
+
+For these two also:
+
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com> # SDHI drivers
+
+The speedups somewhat match the expected values and no regressions when
+checksumming a large file.
+
+
+--l76fUT7nc3MelDdI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9R4B4ACgkQFA3kzBSg
+KbZ+dRAAtEZ/QivEThvaA26nN4oN+/Pl5wfutbbddoY6FBwhRfVLeGOUmIaQyCzO
+WxUZXCY6DhTTk6fBdM4DBdt9gZESHaWmmfimgOYszW7pN+ZjdmC/74/yx9jQtDd9
+zPGcMtbBdzc++3QBJhS+yrCmCVK8k/h9uk4IcBeXYCOxGkt2ZTIs+K+2U//wRTdn
+GIJv7NBXmUVkzRE6eumCfgJNM9haAzmm/QGgshIXdupqQ6VCpAE6Me+nFNPk5yPB
+HC9wwsinQjlx3ntGCrQm+Nj0eRYBjiBVLALKneCSr3r0+j2iEcBOED5O5Zayu6Fo
+J6M4qEkn+snojb7MHNqyylcjKwqA2x1masuuOPe8P2LxXrVjQ5myPtcgYjr6YIK7
+/MhB6xX7G0C0YXlbMOLrJkXpU9UMUkcm+6nMeaw1e7HOFnzrx6gpYuK7qn+rkeh+
+rsN0TTY8jrb/Ad9+Kt1VDiAAUAH60NVqRhCq/z04/6vmpXzfJ3Pu6Tpl+eif7C6k
+HRm/rG+Xh3uuwAN0FdsJwi3cwV/vgVd1Fl9XoFWvZZQJ7bZI9B+J6AF8wpOmqDjw
+VIq0DacTmlEXJ8oOPr9UjHvHT8RTUGDSyrbI8F5K5+QY4qjnuruzT7tHkwmNxYgX
+MXiTodCMQ/oRfdVt0jKHNWxh/oOyoUyeHlUS/IAbefp8BH6bBS0=
+=RWIN
+-----END PGP SIGNATURE-----
+
+--l76fUT7nc3MelDdI--
+
+
+--===============9049679767257084478==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============9049679767257084478==--
+
