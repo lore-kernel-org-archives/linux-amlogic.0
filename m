@@ -2,22 +2,23 @@ Return-Path: <SRS0=gMfs=CN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C94C1C433E2
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 16:17:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11A97C2BB84
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 16:17:25 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 76FBB20795
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 16:17:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B7BD620796
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 16:17:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tRzgjwmw";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="duGjMiYD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 76FBB20795
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HalgOknn";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dyI5ZGsy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B7BD620796
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +27,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=CsiZAUqnwhXWlLJIUAzmGBRMXpPsF+D2xdbHeU0+19M=; b=tRzgjwmwGCWPF9qU6GDTl7aOU
-	3CwDRBgDcAVpAREiMtnja01fhUAeS2RokskIx+DN7FC2jU/60hQ52nB71HKt4OfpG1bG82BG1QQUH
-	1WnRBFz+j94LOm1Lm/N63Fu5zV9ZZrAJwE2ZmkDmptKCaTO4pYBAgJJwYuzC2CzMbvwdgVnKk4nMp
-	xicdll6QvXu2qIwo9w2SdH4zh/2PYlJBfs2BTij7Ivuj2n2dwSuK/MHbZz7kSUmAacvwam3Sy5J26
-	6GDP0LfbU1CeqzIrh+VPd0DVwlWPJ2YW4k1gB4asl3MSEN7df5GutlaHM0lG52GwSaaYti3QsADAC
-	96OLsWlsA==;
+	 bh=aI+fWrRRH0Zqe2wSsafULOgKhj84CV6KHLgMblFCW2Q=; b=HalgOknnyJyulMpaXm8WK/ITy
+	5+V66How9YOwwSV/ebfpPm/GMiYnix6C+ujCtUzx2GBaqgpMc+2TWoaB7OZ5a6Mqma3KFa7oiWs/Z
+	nVB1rI9BV3Bz+1KuPk0rkyJe/vB6nu2oWJMvtm0drSiAQ6XH25fC9XbcL8cz0Aj3lRIFNW9C0xT3F
+	p+g0r5TJzOdXX0adaHbUgLL/K3woblHxmlLj7IxBgTGYlPLC9sZ6J2kjDp9urbCr+iWTFq63xJZCW
+	SGm5lEdHzlmgR1qUnDCtQXViYFqbCT2m9cw+4jq4MTwW4YJ93VYELVSz8+bL81nM3iPy144qSDAj9
+	IfERbh/9g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kEEOg-0007yk-Ts; Fri, 04 Sep 2020 16:17:06 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1kEEOo-00081U-24; Fri, 04 Sep 2020 16:17:14 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kEEOb-0007vh-31
- for linux-amlogic@lists.infradead.org; Fri, 04 Sep 2020 16:17:02 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id u18so6572084wmc.3
- for <linux-amlogic@lists.infradead.org>; Fri, 04 Sep 2020 09:17:00 -0700 (PDT)
+ id 1kEEOc-0007wN-6e
+ for linux-amlogic@lists.infradead.org; Fri, 04 Sep 2020 16:17:04 +0000
+Received: by mail-wr1-x442.google.com with SMTP id k15so7272157wrn.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 04 Sep 2020 09:17:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=FWk3qVSr7VGifs60LnXL8P2UIqTUMmu89eotjh18HA8=;
- b=duGjMiYDurbAFlsmF2zT3FDS+RxxrgtsawWMtijuXHwZK+Fo1alN7hoZhK4btSdefi
- yvoKS6N4sdY/6xk5ExFmo0Vbijv6Mjv6LzTGDOmxl+RqLLK/A4Es/1fbDI33lDN3myG/
- wufHWYj+8Ts08o6j3WmVcYNI6t2S7MOQfE0lVISwQHlDwS04j1BDHdWu70jx6sokndeL
- 1MF2uZTguxpxMy4JHYyosywABiW6fFeTbBuZPz+fJqNOwSLNdTSfrbV5OQTkwGdmPOCp
- b/jmkP5wrSkomwdY8fJcYp+bxLv9xAXj0A9GX0CeWaQI5w2ZRyvshN1qQLsknyQ4pUWg
- NX+g==
+ bh=yTXlpKamjwyTHjWdGVSl8o9My/8vSac7U2q74lShFws=;
+ b=dyI5ZGsytzcdcWRj0unQ73fTavpB2h9/E3QDcENNqPWGUPeIAgVuCVYf5E9CXYIheb
+ tdrwRlNV2gi4ZFaFoj27J+LAUVtuvqJMjt/Ey7g8lE+l+NyLWKOTZDKLbMgdNzhOf+a5
+ 51BXTgcSZZdENaAWwyIy/hPBOEf7IKKfMDB4XQvXSFWjv3C64g9kRU/JjzgIPG/dj8uG
+ +rETnQkX2RD3nTmQOWP8A8lwqlgKTtJ2FbcUIUP4Cudp3xRp1ypTDp3oF4mSpLkexC6x
+ QY8E7UzVvia6ipK255FQ+HH4lvwzi4JvF7CbkncZ56rzE650O2+tH1zIL3bqBidFsanl
+ Q0lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=FWk3qVSr7VGifs60LnXL8P2UIqTUMmu89eotjh18HA8=;
- b=d6kDhJF5b/nTlQlY1i70Yz9fQprrJuAp+R/EhJheHZ5fCTtzboELskcb/84o+1YAHf
- pnB1eF1XcmzncsG4NUayZPsAxWQZjKlwIUOJ5HMoISRUKMDBm8AwehrmeovkN0QqbrD1
- QPoT4SofxD/LybeK3/fD/mKn2xoEp9HneHw/ZUHGfR/yf1Ab5KmJWhuYUrmUbXxkj/Gs
- 5D0PPuW5sbowKGOxyV06Q8YkTEktNRbIx6W7S/H7A8YeiLGTHXbHcQse8vXWNtgBs0yf
- apeNvePthnOvY63gG7uWXl/lLfHMSDmO04u4GP4evVEbcaDDOpwVtrEKl61YbW3humiN
- kUNQ==
-X-Gm-Message-State: AOAM532um+7czJjmPmk0IQCSqo1c+3LUo+Wi7aja46POmNGG4sI+S1Ws
- QDx7H+E4OeoQ1422z08bFFxU7A==
-X-Google-Smtp-Source: ABdhPJzUqXDH+qk0EuubbmJKx2M6DzZGUVc61Fkr0PNo8RNjgbB4iQwbqWcR7WrQTW70j4gqOjXsuA==
-X-Received: by 2002:a05:600c:245:: with SMTP id 5mr8525601wmj.33.1599236219600; 
- Fri, 04 Sep 2020 09:16:59 -0700 (PDT)
+ bh=yTXlpKamjwyTHjWdGVSl8o9My/8vSac7U2q74lShFws=;
+ b=hAf4rVoyHxYHEvc8e8nOG/k1zPUQ+hoS73+NetgKNSULDPb35dA6EyeDdSehBPT0dY
+ qgjU0nO9m/xKP29UBy0oionDd3pQTRzs9ggfRbqMI8OBA/vXj8purS3r69gOfXMlWD5q
+ +xCqydQ8X2nJ9MWXsc7/qD1Y+i3vr3GhOrRe7eGWtqQZfRdkyvT2HBtNKyC/t5GLzDCf
+ UmsAud1839jOWv8eQ2fiKvGLtRknZ82P0Q8Ppg0W8Yu7aG/s44v59WDR6QCWn8BpMLtL
+ e20h7Vf6pFwB0r3zrwHv7QQROcFP9V/hnLYwqufnMiGNxE5nveFt+s9+3z13QB9x0QOY
+ rF4w==
+X-Gm-Message-State: AOAM5317Z4ZhpsLcRGG1L12aFUZyKzls8MAuUUmOZUeDF0EHALZoZ3df
+ mepCB1WMRvSGinW03Utjroev3A==
+X-Google-Smtp-Source: ABdhPJyRjO0OWBmYvMWGSHUubFYExb4aVzT9XI4mHpo8wx252+E6vRKsGW4U1F73C/qh3l4HOGGW3g==
+X-Received: by 2002:adf:eb4c:: with SMTP id u12mr8234922wrn.161.1599236221084; 
+ Fri, 04 Sep 2020 09:17:01 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
- by smtp.gmail.com with ESMTPSA id d3sm5129543wrr.84.2020.09.04.09.16.58
+ by smtp.gmail.com with ESMTPSA id d3sm5129543wrr.84.2020.09.04.09.16.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Sep 2020 09:16:58 -0700 (PDT)
+ Fri, 04 Sep 2020 09:17:00 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: khilman@baylibre.com,
-	devicetree@vger.kernel.org
-Subject: [PATCH RESEND 1/2] dt-bindings: power: amlogic,
- meson-ee-pwrc: add Amlogic AXG power controller bindings
-Date: Fri,  4 Sep 2020 18:16:53 +0200
-Message-Id: <20200904161654.24141-2-narmstrong@baylibre.com>
+To: khilman@baylibre.com
+Subject: [PATCH RESEND 2/2] soc: amlogic: meson-ee-pwrc: add support for the
+ Meson AXG SoCs
+Date: Fri,  4 Sep 2020 18:16:54 +0200
+Message-Id: <20200904161654.24141-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200904161654.24141-1-narmstrong@baylibre.com>
 References: <20200904161654.24141-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200904_121701_178156_F72FC4BE 
-X-CRM114-Status: GOOD (  14.33  )
+X-CRM114-CacheID: sfid-20200904_121702_290662_7323845C 
+X-CRM114-Status: GOOD (  14.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,86 +104,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds the bindings of the Power Controller found in the Amlogic AXG SoCs.
+The Power Controller in the Amlogic AXG SoCs is similar to the GXL one
+but with less VPU memory domains to enable and a supplementary Audio
+memory power domain.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../bindings/power/amlogic,meson-ee-pwrc.yaml | 23 +++++++++++++++++--
- include/dt-bindings/power/meson-axg-power.h   | 14 +++++++++++
- 2 files changed, 35 insertions(+), 2 deletions(-)
- create mode 100644 include/dt-bindings/power/meson-axg-power.h
+ drivers/soc/amlogic/meson-ee-pwrc.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-index 4f524f822e84..d30f85cc395e 100644
---- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-+++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-@@ -27,6 +27,7 @@ properties:
-       - amlogic,meson8b-pwrc
-       - amlogic,meson8m2-pwrc
-       - amlogic,meson-gxbb-pwrc
-+      - amlogic,meson-axg-pwrc
-       - amlogic,meson-g12a-pwrc
-       - amlogic,meson-sm1-pwrc
+diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
+index 43665b77aa9e..81834eb166d0 100644
+--- a/drivers/soc/amlogic/meson-ee-pwrc.c
++++ b/drivers/soc/amlogic/meson-ee-pwrc.c
+@@ -15,6 +15,7 @@
+ #include <linux/reset.h>
+ #include <linux/clk.h>
+ #include <dt-bindings/power/meson8-power.h>
++#include <dt-bindings/power/meson-axg-power.h>
+ #include <dt-bindings/power/meson-g12a-power.h>
+ #include <dt-bindings/power/meson-gxbb-power.h>
+ #include <dt-bindings/power/meson-sm1-power.h>
+@@ -141,6 +142,11 @@ static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_vpu[] = {
+ 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
+ };
  
-@@ -42,11 +43,11 @@ properties:
-       - const: vapb
- 
-   resets:
--    minItems: 11
-+    minItems: 5
-     maxItems: 12
- 
-   reset-names:
--    minItems: 11
-+    minItems: 5
-     maxItems: 12
- 
-   "#power-domain-cells":
-@@ -107,6 +108,24 @@ allOf:
-         - resets
-         - reset-names
- 
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-axg-pwrc
-+    then:
-+      properties:
-+        reset-names:
-+          items:
-+            - const: viu
-+            - const: venc
-+            - const: vcbus
-+            - const: vencl
-+            - const: vid_lock
-+      required:
-+        - resets
-+        - reset-names
++static struct meson_ee_pwrc_mem_domain axg_pwrc_mem_vpu[] = {
++	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
++	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
++};
 +
-   - if:
-       properties:
-         compatible:
-diff --git a/include/dt-bindings/power/meson-axg-power.h b/include/dt-bindings/power/meson-axg-power.h
-new file mode 100644
-index 000000000000..e5243884b249
---- /dev/null
-+++ b/include/dt-bindings/power/meson-axg-power.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/*
-+ * Copyright (c) 2020 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
+ static struct meson_ee_pwrc_mem_domain gxbb_pwrc_mem_vpu[] = {
+ 	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
+ 	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
+@@ -190,6 +196,10 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_ge2d[] = {
+ 	{ HHI_MEM_PD_REG0, GENMASK(25, 18) },
+ };
+ 
++static struct meson_ee_pwrc_mem_domain axg_pwrc_mem_audio[] = {
++	{ HHI_MEM_PD_REG0, GENMASK(5, 4) },
++};
 +
-+#ifndef _DT_BINDINGS_MESON_AXG_POWER_H
-+#define _DT_BINDINGS_MESON_AXG_POWER_H
+ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
+ 	{ HHI_MEM_PD_REG0, GENMASK(5, 4) },
+ 	{ HHI_AUDIO_MEM_PD_REG0, GENMASK(1, 0) },
+@@ -237,6 +247,13 @@ static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
+ 	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
+ };
+ 
++static struct meson_ee_pwrc_domain_desc axg_pwrc_domains[] = {
++	[PWRC_AXG_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, axg_pwrc_mem_vpu,
++				     pwrc_ee_get_power, 5, 2),
++	[PWRC_AXG_ETHERNET_MEM_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
++	[PWRC_AXG_AUDIO_ID] = MEM_PD("AUDIO", axg_pwrc_mem_audio),
++};
 +
-+#define PWRC_AXG_VPU_ID			0
-+#define PWRC_AXG_ETHERNET_MEM_ID	1
-+#define PWRC_AXG_AUDIO_ID		2
+ static struct meson_ee_pwrc_domain_desc gxbb_pwrc_domains[] = {
+ 	[PWRC_GXBB_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, gxbb_pwrc_mem_vpu,
+ 				     pwrc_ee_get_power, 12, 2),
+@@ -529,6 +546,11 @@ static struct meson_ee_pwrc_domain_data meson_ee_g12a_pwrc_data = {
+ 	.domains = g12a_pwrc_domains,
+ };
+ 
++static struct meson_ee_pwrc_domain_data meson_ee_axg_pwrc_data = {
++	.count = ARRAY_SIZE(axg_pwrc_domains),
++	.domains = axg_pwrc_domains,
++};
 +
-+#endif
+ static struct meson_ee_pwrc_domain_data meson_ee_gxbb_pwrc_data = {
+ 	.count = ARRAY_SIZE(gxbb_pwrc_domains),
+ 	.domains = gxbb_pwrc_domains,
+@@ -566,6 +588,10 @@ static const struct of_device_id meson_ee_pwrc_match_table[] = {
+ 		.compatible = "amlogic,meson-gxbb-pwrc",
+ 		.data = &meson_ee_gxbb_pwrc_data,
+ 	},
++	{
++		.compatible = "amlogic,meson-axg-pwrc",
++		.data = &meson_ee_axg_pwrc_data,
++	},
+ 	{
+ 		.compatible = "amlogic,meson-g12a-pwrc",
+ 		.data = &meson_ee_g12a_pwrc_data,
 -- 
 2.22.0
 
