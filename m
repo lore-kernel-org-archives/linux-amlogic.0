@@ -2,79 +2,83 @@ Return-Path: <SRS0=gMfs=CN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F5C7C2BB84
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 16:43:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BC70C43461
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 21:54:07 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 56B6E2074D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 16:43:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9E20D2087C
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 21:54:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hc8a2DUj";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="YNhuRd9b"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 56B6E2074D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YEb66LE5";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="HLrVQ6tZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9E20D2087C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FKoPHoh5qsnIqP8EaVNMRXB+SslOO5nstRRtm8B0c28=; b=hc8a2DUjHu6AeY/zLd2YrfUQpD
-	mPD0nV0qnYX+MnijWIQT2Ten78qh4GDF7US/h2zQxAzgbx9U2GaQvrHR/s2Cma0nE6WNKF+IL8mA7
-	AbNxKKs9Y2DyJ5rBi8+JJ3NGfC8xnpQNxp8vO+vpNEhOAv9x8GHzkquTRCX7x/WyglICNuaGCCQJm
-	VKi//vEASCVl/8038GRDmERQm24e3o1deRZYssaXldyywS/vICntxxPxsSSfMRLDLs0uwKoupyRaX
-	aZ6nd/ofb+7i2QfMEzOon2ZoUBAlfoqiTnTGCkE1cTUP7Esh8Pl8U4A4hE+jyD2S+aJnG7sAPvgcd
-	MOHgMqWQ==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=vRRAZUVTDjOTa4Vn5+WRLI4MZgJM1fxau2o6qKoSFNs=; b=YEb66LE5343RqAput09iYPwEu
+	zloJBD5BJwMxc89KzkjhVYrbiJt+W5Vc1fRJnwmE3ifKZKSKjf0E3fwKiEbwDj8aADlQf2zyRD8Ds
+	z94W7z8dpRrZeAGDmCC3PYLSY+cjrpv9vM/A+YeCTz6EBR5pFkTepn9GOsv4C+EshT01z2JhKQ9Nf
+	tSF4WGfQOLBYW4wpQz2+qW4ODuMa42BI04WyV9zFi34SUGak/LSxqB3MarDP3HE58gBtGB3jLtDV1
+	+GWDgd7QBXStk31vJQ8hoLtVMb9auooksfol1VkQt506v9G77E5CVJ55m6WEvmx5Kjxrny7P7hHXY
+	iac9zpntg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kEEoa-0003J9-MA; Fri, 04 Sep 2020 16:43:52 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1kEJeZ-00013D-Ee; Fri, 04 Sep 2020 21:53:51 +0000
+Received: from mail-ej1-x643.google.com ([2a00:1450:4864:20::643])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kEEoX-0003HR-1G; Fri, 04 Sep 2020 16:43:50 +0000
-Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 808062074D;
- Fri,  4 Sep 2020 16:43:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599237828;
- bh=M0F0NujsJbA6VRAoiFk6VohTncRpdlqvI+V+EXO6eTI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YNhuRd9bPGkZy4dXcqM4wKBiNUbzE9fZg+ZWuG0rftUJ+tr0tNSNpYkBZTA38LTUr
- C2BCBXN88B/3wM5OaP8T8RT99NAHiaGDVfp8omRAWmcls7cWRlAVAhuHexZ1jV1ODZ
- D3tvHvz+KgvITSlGuGrAtkaCNFw9z57g2bkJBSCk=
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
- Krzysztof Kozlowski <krzk@kernel.org>, linux-mmc@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Manuel Lauss <manuel.lauss@gmail.com>,
- Kishon Vijay Abraham I <kishon@ti.com>,
- Prabu Thangamuthu <prabu.t@synopsys.com>,
- Manjunath M B <manjumb@synopsys.com>, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-mediatek@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-aspeed@lists.ozlabs.org, linux-tegra@vger.kernel.org,
- linux-arm-kernel@axis.com
-Subject: [PATCH v2 2/2] mmc: host: Enable compile testing of multiple drivers
-Date: Fri,  4 Sep 2020 18:43:15 +0200
-Message-Id: <20200904164315.24618-2-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200904164315.24618-1-krzk@kernel.org>
-References: <20200904164315.24618-1-krzk@kernel.org>
+ id 1kEJeU-00012J-IC; Fri, 04 Sep 2020 21:53:47 +0000
+Received: by mail-ej1-x643.google.com with SMTP id lo4so10460156ejb.8;
+ Fri, 04 Sep 2020 14:53:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=kOwVSLuqcLcRrAi0V+2JGPo0oopvFB+z94xUxkMesDk=;
+ b=HLrVQ6tZkH1co3Lk465rPx2SlpB/uLObbOIcPvHSfCBwts/RQPF5CgGMNVmaj4MK7Z
+ hM8rOxprckSExPV5UPi7iGwtTkKCeM9VcF0yHBShpNJCY60GZi/vbqRtRSXqV1ACMDT8
+ DAJBNlz6YQZ9CbDc/ZsqOsrIxoHl0OZTb6+iUz1GGtXvXNWF+7yt1hyGvxryzDo4yD9P
+ VogwbEuV/nXAY5Ty008NE1BhuUF/CXyxYxw+Q1Lk38iuluHt+aaRVah6X/m3nqGbew/E
+ imoF2TxEmXdyebzAbdOysU/Nm4D4BZ88c4km1sm+ZxUh5los1kSJlEWtNVdMaSmrcoa3
+ Iqdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kOwVSLuqcLcRrAi0V+2JGPo0oopvFB+z94xUxkMesDk=;
+ b=dmW1gQNyp4gW/kCvFS5UDnSRojzW4NN+PMksmLUfD5OGklz42XwQLZV8zdBgMjf/Fb
+ SR/NXJ+MuRun+Nb6sEklLxefFRnqiv3XbZOnup8cKxFLj5DXwy/eAFMKNnsBDkRXdq20
+ WqIj8vJKK5w+lSaq+f5wnbO31lUMGqcuhcHi0mKM7J0+KLoTsvlitwfE5DzOuU7m8l6F
+ dzAiUu8h5AYcGhAcmNnkf3REoD61/ipsvILoakZYtKPZhR+tFWPhbIFzdI53n6dLQoMK
+ 3ZcDHbBtzNf/jlRet4OcKhN/gxfbvDro1Z9hkhfKOcydg6/KmI3rIBJMlju0fzyLdV6D
+ uQ7Q==
+X-Gm-Message-State: AOAM530gdrP7ZuLDGjdFCPASYmexmkbHzg1EqZ3CxBiLe1gbsvykcS2Y
+ zaNtMev3wEnn1XxI7sU37cy4eEUvTN3UNbUHamU=
+X-Google-Smtp-Source: ABdhPJzvZdR4PefRtIkw7lE/tNoQ9kzV/q7D1Napwk+pHgOuj3FJd4E/vlUR+sMicupDfupaIit4ahWr1LQB95n65bo=
+X-Received: by 2002:a17:906:8690:: with SMTP id
+ g16mr9400161ejx.187.1599256423525; 
+ Fri, 04 Sep 2020 14:53:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200903232441.2694866-1-dianders@chromium.org>
+In-Reply-To: <20200903232441.2694866-1-dianders@chromium.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 4 Sep 2020 23:53:32 +0200
+Message-ID: <CAFBinCBcbEpHX7eUbznuDo6oKO_9JrOK2w+Bx1=e-bwuS609bw@mail.gmail.com>
+Subject: Re: [PATCH 0/6] mmc: Set PROBE_PREFER_ASYNCHRONOUS for all host
+ drivers
+To: Douglas Anderson <dianders@chromium.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200904_124349_249500_282A72AA 
-X-CRM114-Status: GOOD (  16.48  )
+X-CRM114-CacheID: sfid-20200904_175346_655706_FA47772D 
+X-CRM114-Status: GOOD (  16.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,208 +90,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
-MIME-Version: 1.0
+Cc: Heiko Stuebner <heiko@sntech.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Peter Ujfalusi <peter.ujfalusi@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-samsung-soc@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Kevin Hilman <khilman@baylibre.com>, Michal Simek <michal.simek@xilinx.com>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ NXP Linux Team <linux-imx@nxp.com>, linux-tegra@vger.kernel.org,
+ Sascha Hauer <s.hauer@pengutronix.de>, swboyd@chromium.org,
+ Lars Persson <lars.persson@axis.com>, linux-omap@vger.kernel.org,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Scott Branden <sbranden@broadcom.com>, Andrew Jeffery <andrew@aj.id.au>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Eugen Hristev <eugen.hristev@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-aspeed@lists.ozlabs.org, Yangtao Li <tiny.windzz@gmail.com>,
+ Hu Ziji <huziji@marvell.com>, Thierry Reding <thierry.reding@gmail.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Jesper Nilsson <jesper.nilsson@axis.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ linux-arm-kernel@axis.com, Jonathan Hunter <jonathanh@nvidia.com>,
+ linux-rockchip@lists.infradead.org, Kukjin Kim <kgene@kernel.org>,
+ Pierre Ossman <pierre@ossman.eu>, Saiyam Doshi <saiyamdoshi.in@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, linux-rpi-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Barry Song <baohua@kernel.org>, Nicolas Pitre <nico@fluxnic.net>,
+ Patrice Chotard <patrice.chotard@st.com>,
+ Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+ Stefan Wahren <wahrenst@gmx.net>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Ricky Wu <ricky_wu@realtek.com>,
+ Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Al Cooper <alcooperx@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Fabio Estevam <festevam@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Chen-Yu Tsai <wens@csie.org>, bcm-kernel-feedback-list@broadcom.com,
+ Joel Stanley <joel@jms.id.au>, Orson Zhai <orsonzhai@gmail.com>,
+ Ray Jui <rjui@broadcom.com>, Ben Dooks <ben-linux@fluff.org>,
+ Masahiro Yamada <yamada.masahiro@socionext.com>, linux-mmc@vger.kernel.org,
+ Baolin Wang <baolin.wang7@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+ =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+ "H. Nikolaus Schaller" <hns@goldelico.com>,
+ Adrian Hunter <adrian.hunter@intel.com>, Paul Cercueil <paul@crapouillou.net>,
+ Lee Jones <lee.jones@linaro.org>, Marek Vasut <marex@denx.de>,
+ Anson Huang <Anson.Huang@nxp.com>, Jaehoon Chung <jh80.chung@samsung.com>,
+ Rui Miguel Silva <rmfrfs@gmail.com>, linux-mediatek@lists.infradead.org,
+ Manuel Lauss <manuel.lauss@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ Angelo Dureghello <angelo.dureghello@timesys.com>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Tony Prisk <linux@prisktech.co.nz>, Vinod Koul <vkoul@kernel.org>,
+ Robert Richter <rrichter@marvell.com>, Viresh Kumar <vireshk@kernel.org>,
+ Jun Nie <jun.nie@linaro.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Multiple MMC host controller driver can be compile tested as they do not
-depend on architecture specific headers.
+Hi Douglas,
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+On Fri, Sep 4, 2020 at 1:25 AM Douglas Anderson <dianders@chromium.org> wrote:
+>
+> As per discussion [1], it seems like it should be quite safe to turn
+> on PROBE_PREFER_ASYNCHRONOUS for all sd/mmc host controllers.  Let's
+> give it a shot.  For some discussion about this flag, see the commit
+> message for commit 3d3451124f3d ("mmc: sdhci-msm: Prefer asynchronous
+> probe").
+can this somehow change the order in which the MMC drivers end up loading?
+on Amlogic SoCs we have up to three MMC controllers, some SoCs even
+use two different MMC controller IPs (and therefore two different
+drivers).
+so far the MMC controller naming (/dev/mmcblk* etc.) was consistent -
+can that change with this patch?
 
----
+apologies if this has been discussed and answered anywhere
 
-Changes since v1:
-1. Add COMMON_CLK dependency to MESON_GX to fix errors like:
-   ERROR: modpost: "devm_clk_register" [drivers/mmc/host/meson-gx-mmc.ko] undefined!
----
- drivers/mmc/host/Kconfig | 41 +++++++++++++++++++++-------------------
- 1 file changed, 22 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index eea01fde0591..93db789cf8ec 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -178,7 +178,7 @@ config MMC_SDHCI_OF_AT91
- config MMC_SDHCI_OF_ESDHC
- 	tristate "SDHCI OF support for the Freescale eSDHC controller"
- 	depends on MMC_SDHCI_PLTFM
--	depends on PPC || ARCH_MXC || ARCH_LAYERSCAPE
-+	depends on PPC || ARCH_MXC || ARCH_LAYERSCAPE || COMPILE_TEST
- 	select MMC_SDHCI_IO_ACCESSORS
- 	select FSL_GUTS
- 	help
-@@ -216,7 +216,7 @@ config MMC_SDHCI_OF_DWCMSHC
- config MMC_SDHCI_OF_SPARX5
- 	tristate "SDHCI OF support for the MCHP Sparx5 SoC"
- 	depends on MMC_SDHCI_PLTFM
--	depends on ARCH_SPARX5
-+	depends on ARCH_SPARX5 || COMPILE_TEST
- 	help
- 	  This selects the Secure Digital Host Controller Interface (SDHCI)
- 	  found in the MCHP Sparx5 SoC.
-@@ -238,7 +238,7 @@ config MMC_SDHCI_CADENCE
- 
- config MMC_SDHCI_CNS3XXX
- 	tristate "SDHCI support on the Cavium Networks CNS3xxx SoC"
--	depends on ARCH_CNS3XXX
-+	depends on ARCH_CNS3XXX || COMPILE_TEST
- 	depends on MMC_SDHCI_PLTFM
- 	help
- 	  This selects the SDHCI support for CNS3xxx System-on-Chip devices.
-@@ -262,7 +262,7 @@ config MMC_SDHCI_ESDHC_MCF
- 
- config MMC_SDHCI_ESDHC_IMX
- 	tristate "SDHCI support for the Freescale eSDHC/uSDHC i.MX controller"
--	depends on ARCH_MXC
-+	depends on ARCH_MXC || COMPILE_TEST
- 	depends on MMC_SDHCI_PLTFM
- 	select MMC_SDHCI_IO_ACCESSORS
- 	select MMC_CQHCI
-@@ -276,7 +276,7 @@ config MMC_SDHCI_ESDHC_IMX
- 
- config MMC_SDHCI_DOVE
- 	tristate "SDHCI support on Marvell's Dove SoC"
--	depends on ARCH_DOVE || MACH_DOVE
-+	depends on ARCH_DOVE || MACH_DOVE || COMPILE_TEST
- 	depends on MMC_SDHCI_PLTFM
- 	select MMC_SDHCI_IO_ACCESSORS
- 	help
-@@ -289,7 +289,7 @@ config MMC_SDHCI_DOVE
- 
- config MMC_SDHCI_TEGRA
- 	tristate "SDHCI platform support for the Tegra SD/MMC Controller"
--	depends on ARCH_TEGRA
-+	depends on ARCH_TEGRA || COMPILE_TEST
- 	depends on MMC_SDHCI_PLTFM
- 	select MMC_SDHCI_IO_ACCESSORS
- 	select MMC_CQHCI
-@@ -301,7 +301,8 @@ config MMC_SDHCI_TEGRA
- 
- config MMC_SDHCI_S3C
- 	tristate "SDHCI support on Samsung S3C SoC"
--	depends on MMC_SDHCI && (PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS)
-+	depends on MMC_SDHCI
-+	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
- 	help
- 	  This selects the Secure Digital Host Controller Interface (SDHCI)
- 	  often referrered to as the HSMMC block in some of the Samsung S3C
-@@ -313,7 +314,7 @@ config MMC_SDHCI_S3C
- 
- config MMC_SDHCI_SIRF
- 	tristate "SDHCI support on CSR SiRFprimaII and SiRFmarco SoCs"
--	depends on ARCH_SIRF
-+	depends on ARCH_SIRF || COMPILE_TEST
- 	depends on MMC_SDHCI_PLTFM
- 	select MMC_SDHCI_IO_ACCESSORS
- 	help
-@@ -351,7 +352,8 @@ config MMC_SDHCI_PXAV2
- 
- config MMC_SDHCI_SPEAR
- 	tristate "SDHCI support on ST SPEAr platform"
--	depends on MMC_SDHCI && PLAT_SPEAR
-+	depends on MMC_SDHCI
-+	depends on PLAT_SPEAR || COMPILE_TEST
- 	depends on OF
- 	help
- 	  This selects the Secure Digital Host Controller Interface (SDHCI)
-@@ -374,7 +376,7 @@ config MMC_SDHCI_S3C_DMA
- 
- config MMC_SDHCI_BCM_KONA
- 	tristate "SDHCI support on Broadcom KONA platform"
--	depends on ARCH_BCM_MOBILE
-+	depends on ARCH_BCM_MOBILE || COMPILE_TEST
- 	depends on MMC_SDHCI_PLTFM
- 	help
- 	  This selects the Broadcom Kona Secure Digital Host Controller
-@@ -422,7 +424,8 @@ config MMC_SDHCI_IPROC
- 
- config MMC_MESON_GX
- 	tristate "Amlogic S905/GX*/AXG SD/MMC Host Controller support"
--	depends on ARCH_MESON
-+	depends on ARCH_MESON || COMPILE_TEST
-+	depends on COMMON_CLK
- 	help
- 	  This selects support for the Amlogic SD/MMC Host Controller
- 	  found on the S905/GX*/AXG family of SoCs.  This controller is
-@@ -458,7 +461,7 @@ config MMC_MESON_MX_SDIO
- 
- config MMC_MOXART
- 	tristate "MOXART SD/MMC Host Controller support"
--	depends on ARCH_MOXART
-+	depends on ARCH_MOXART || COMPILE_TEST
- 	help
- 	  This selects support for the MOXART SD/MMC Host Controller.
- 	  MOXA provides one multi-functional card reader which can
-@@ -467,7 +470,7 @@ config MMC_MOXART
- 
- config MMC_SDHCI_ST
- 	tristate "SDHCI support on STMicroelectronics SoC"
--	depends on ARCH_STI || FSP2
-+	depends on ARCH_STI || FSP2 || COMPILE_TEST
- 	depends on MMC_SDHCI_PLTFM
- 	select MMC_SDHCI_IO_ACCESSORS
- 	help
-@@ -587,7 +590,7 @@ config MMC_TIFM_SD
- 
- config MMC_MVSDIO
- 	tristate "Marvell MMC/SD/SDIO host driver"
--	depends on PLAT_ORION
-+	depends on PLAT_ORION || (COMPILE_TEST && ARM)
- 	depends on OF
- 	help
- 	  This selects the Marvell SDIO host driver.
-@@ -599,7 +602,7 @@ config MMC_MVSDIO
- 
- config MMC_DAVINCI
- 	tristate "TI DAVINCI Multimedia Card Interface support"
--	depends on ARCH_DAVINCI
-+	depends on ARCH_DAVINCI || COMPILE_TEST
- 	help
- 	  This selects the TI DAVINCI Multimedia card Interface.
- 	  If you have an DAVINCI board with a Multimedia Card slot,
-@@ -628,7 +631,7 @@ config MMC_SPI
- 
- config MMC_S3C
- 	tristate "Samsung S3C SD/MMC Card Interface support"
--	depends on ARCH_S3C24XX
-+	depends on ARCH_S3C24XX || COMPILE_TEST
- 	depends on S3C24XX_DMAC
- 	help
- 	  This selects a driver for the MCI interface found in
-@@ -681,7 +684,7 @@ config MMC_SDRICOH_CS
- 
- config MMC_SDHCI_SPRD
- 	tristate "Spreadtrum SDIO host Controller"
--	depends on ARCH_SPRD
-+	depends on ARCH_SPRD || COMPILE_TEST
- 	depends on MMC_SDHCI_PLTFM
- 	select MMC_SDHCI_IO_ACCESSORS
- 	select MMC_HSQ
-@@ -698,7 +701,7 @@ config MMC_TMIO_CORE
- 
- config MMC_TMIO
- 	tristate "Toshiba Mobile IO Controller (TMIO) MMC/SD function support"
--	depends on MFD_TMIO || MFD_ASIC3
-+	depends on MFD_TMIO || MFD_ASIC3 || COMPILE_TEST
- 	select MMC_TMIO_CORE
- 	help
- 	  This provides support for the SD/MMC cell found in TC6393XB,
-@@ -971,7 +974,7 @@ config MMC_REALTEK_USB
- 
- config MMC_SUNXI
- 	tristate "Allwinner sunxi SD/MMC Host Controller support"
--	depends on ARCH_SUNXI
-+	depends on ARCH_SUNXI || COMPILE_TEST
- 	help
- 	  This selects support for the SD/MMC Host Controller on
- 	  Allwinner sunxi SoCs.
--- 
-2.17.1
-
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
