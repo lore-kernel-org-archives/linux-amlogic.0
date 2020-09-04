@@ -2,68 +2,88 @@ Return-Path: <SRS0=gMfs=CN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C326AC2BB84
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 14:33:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35D77C43461
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 16:02:39 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 847022074D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 14:33:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CD5A12074D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 16:02:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JrjJ0T3k";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="0Q59EDyr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 847022074D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linuxfoundation.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fmqE1vxK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OkpOrPJZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CD5A12074D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ciwnvY1ZhxUXhvKkdVs+VQ8NZCqSxgzBjS9DjV7/4Uc=; b=JrjJ0T3kwjZSJ+hCSfR7Hdd83
-	yPzkCRrKA1N5L/7mxq0Wmc6tvOgsfSRCAvP1A6h/SUkff9Lg9oZgURvtCDw6ir3kBEIi8dE3RWOOS
-	/izPsyUPWjOY6vVE2L9Uk5txlP0YL+GJnNZpRy3i8T85XVuXwcuFTPZl3xQvXjrhu8wvu3ukHo9C3
-	zgcCtjTvIl5yKJol096aSyCvl4lgYeWoIXEoeVQQRLGlHc2rytAG03WcIrHpkxheQTreqY8zWRQnI
-	X3uclP7Q06gy83D40s0Swv2qhq0duJ6BOGV0On2b6NR09BTdCrhI3/HieXabyCQaEcV2LFvYhYTWA
-	Zqi3K3gbw==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=WQ+nf6SfZLkeIiC0tBglC3F047LYAWIrNGSHW5hKmsk=; b=fmqE1vxKxJ5UGqmip5xUxzHhxa
+	FDyYzkcuuhuekZ6MgMqQaXpQs6fsYsKcSiWZVeeV1/xHjt5Zy9vMjtfr3O8rpnbeKVs9QU8/JVtU4
+	zSGFuTZmCqzMzKG3r086pdJJ4DLhFA0dT6mpPMI0qpeAMc9+hxkDBWbV+nb45rCwJ5vj1h9QgLOVP
+	N9/UMHtCCFY+VZa7JouXFViwKf8xq5BbawyPUeMb8KxOqKusZIoIUDGhLfUQfMtddCLrX/dhilvcw
+	bUhSomaCLFZEAIx8J9kpQodwUDYJGV+0FwXXStEMv2pjRROecudrcn/YH7SgeAj/2Y+NL8CRA07mk
+	rxpFkCew==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kECmW-0003ze-Pl; Fri, 04 Sep 2020 14:33:36 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1kEEAX-0004Mq-EO; Fri, 04 Sep 2020 16:02:29 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kECmU-0003xw-4b; Fri, 04 Sep 2020 14:33:35 +0000
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
- bits)) (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 97ED8206D4;
- Fri,  4 Sep 2020 14:33:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599230013;
- bh=FHJqC3D/q48MLQ3HRGqKHGyvwW/vPxlNJ/p/il47Hxg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=0Q59EDyrlwOKP/Lv7shUiKD3DG0Z/aX2eG11LlyzzBWvfl3wskepUl3gDXlW+CKcf
- naPYGdny3vU6acYu1CSVDPje+/FvGy+bTlv+NldEkyY0qsA5SNEyLcmDPqmT3G0v93
- 3436aiX8puywmmMC9g07vEKb38uZBClN4V0YeyFY=
-Date: Fri, 4 Sep 2020 16:33:54 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH] Revert "usb: dwc3: meson-g12a: fix shared reset control
- use"
-Message-ID: <20200904143354.GA3197700@kroah.com>
-References: <20200827144810.26657-1-aouledameur@baylibre.com>
- <4e7c19de-f276-7b2a-695a-ef83c1477d19@baylibre.com>
+ id 1kEEAE-0004Cr-Fe
+ for linux-amlogic@lists.infradead.org; Fri, 04 Sep 2020 16:02:21 +0000
+Received: by mail-wm1-x343.google.com with SMTP id e11so7815336wme.0
+ for <linux-amlogic@lists.infradead.org>; Fri, 04 Sep 2020 09:02:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=WPWs6+bNAsvF0rvAc3yDkiD79Fr0V6X4UpT2H9wqL9w=;
+ b=OkpOrPJZjs2Y0PihfJ7PKAOhPKi+QXL4WLgx95wnrgwebxFXuZPO471OqXLrfRoYPw
+ W88jgdiC3dytG8y7rSPSpp+QNgisq043YZXmCVQ9dBEcxIN9ABSt5YaSUwE/K0puhnZ4
+ CjEXXPkmqV9ZhBsRr/uZvM9BAmbPYn54nsjTtrqnRA0v9oBqkuCyGS8+D3cz5nub6xIo
+ gURl08C/czURvIgKQ9TOxjZbmJ/xgAyJ/75NW3bXcO9xX6el1jKLTxNRAaH8F4XFcPlS
+ l+Z8a+Hy7DpKDllQBV4TVm4MXt4XfwcwCSmg7/jR7/k+LHRQ/52KMId1KfaVH9M5MHWl
+ qkEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=WPWs6+bNAsvF0rvAc3yDkiD79Fr0V6X4UpT2H9wqL9w=;
+ b=FFwAsum/kYTtsNtugjMP/5KwwQktoSGjJYY9sW8vsmHgfsPTOsAepMuVQMeLadi1LS
+ Eci8FKN3GWKf1QLs1++5wYr5y2lE+Y3IEeBl07J9yNH156phjnW+B8j0awNqYQDrO6Fz
+ YghkHx3wvGVj7UaB6/1ZMJOolS2QABUdpmTuAwTGTkBeYDF+WQIOXztocfypdLpQyz8N
+ ZW3QX2KprcV4Siifv799H/Do7YSe2et5+14f60iWAD5mr9QHaxT/K1t81/2cLh3QN+Pe
+ CAVTR/bdef6Ws99UhXJMNt3AS2/4PAyqKBR+T9srtvPkUPJXlUF9w8sE4C69ayep2A3Z
+ Af1Q==
+X-Gm-Message-State: AOAM531cHNsScUKBEUyGePhKk+Axq0AenA0bIO5pGnICedbkflTismrr
+ IPjKeV7Wnxw/FBLmyiLPn+MAtA==
+X-Google-Smtp-Source: ABdhPJxqrPj4FqwNvFmd29r1spI/ZIQGafj/o4jzYrlvzXdLjkT+3k5breq2rCLBzbh5/WkV2rdDrQ==
+X-Received: by 2002:a1c:ab55:: with SMTP id u82mr8388426wme.139.1599235328834; 
+ Fri, 04 Sep 2020 09:02:08 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+ by smtp.gmail.com with ESMTPSA id i3sm11938627wrs.4.2020.09.04.09.02.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 04 Sep 2020 09:02:08 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: khilman@baylibre.com
+Subject: [PATCH 0/2] soc: amlogic: add support for the Meson AXG Power
+ Controller
+Date: Fri,  4 Sep 2020 18:02:04 +0200
+Message-Id: <20200904160206.22570-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <4e7c19de-f276-7b2a-695a-ef83c1477d19@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200904_103334_302501_B834A9D3 
-X-CRM114-Status: GOOD (  11.27  )
+X-CRM114-CacheID: sfid-20200904_120210_695824_57FEABC4 
+X-CRM114-Status: UNSURE (   9.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,25 +95,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Felipe Balbi <balbi@kernel.org>, Dan Robertson <dan@dlrobertson.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Amjad Ouled-Ameur <aouledameur@baylibre.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Sep 02, 2020 at 08:57:42AM +0200, Neil Armstrong wrote:
-> Hi Felipe, Greg,
-> 
-> Is it possible to apply this ? USB is broken on 5.8 stable and 5.9-rc on multiple GXL/GXM boards.
+This adds the bindings and support for the Power Controller found in the
+Amlogic AXG SoCs.
 
-Yes, will queue it up now, thanks.
+The Power Controller in the Amlogic AXG SoCs is similar to the GXL one
+but with less VPU memory domains to enable and a supplementary Audio
+memory power domain.
 
-greg k-h
+Neil Armstrong (2):
+  dt-bindings: power: amlogic,meson-ee-pwrc: add Amlogic AXG power
+    controller bindings
+  soc: amlogic: meson-ee-pwrc: add support for the Meson AXG SoCs
+
+ .../bindings/power/amlogic,meson-ee-pwrc.yaml | 23 ++++++++++++++--
+ drivers/soc/amlogic/meson-ee-pwrc.c           | 26 +++++++++++++++++++
+ include/dt-bindings/power/meson-axg-power.h   | 14 ++++++++++
+ 3 files changed, 61 insertions(+), 2 deletions(-)
+ create mode 100644 include/dt-bindings/power/meson-axg-power.h
+
+-- 
+2.22.0
+
 
 _______________________________________________
 linux-amlogic mailing list
