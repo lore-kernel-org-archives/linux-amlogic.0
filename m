@@ -7,80 +7,79 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1639EC43461
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 08:14:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6CB95C43461
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 09:35:21 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D0BD8206A5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 08:14:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7B305205CB
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 09:35:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FtVwwnUD";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="PNdjsRTL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D0BD8206A5
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=microchip.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Nst7QTa6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=timesys-com.20150623.gappssmtp.com header.i=@timesys-com.20150623.gappssmtp.com header.b="SwjWcxsb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7B305205CB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Date:In-Reply-To:Message-ID:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Fl0HpemweVETk5JN6xJZx+aDe5fX/ksNjt1+PI19YEI=; b=FtVwwnUD3HyO5Pu2kBw5xkVbj
-	PJYbIFCQ2n7F9Y/tx+YuKq0zI6DCEPU0pid6BI9+AeELzl52k3JSAzrAzdSqX2yDHw16wSL+oc37p
-	9BCeSWERo/sEdkfirp1JuvXccOKaTfFNBh3YjBSvr6bczAXwTnoFlCeTsBJsGudl2OQ5zzmx8Nj4C
-	xk42mOjsC/vSG8SHumXaldGAR3ug2WOTSdxQ/3c+4LiW7SdpvDKXfGurum3jQAbLO4dWn0hcG3be5
-	5xQI9mZKRTUfpe0mRkoi5qv6iv9iSJU/KLUckArGF8WnHF8oQgrAo+aCHctqB7858XPCm0JwKtMTX
-	JQAqAZLtQ==;
+	 bh=3E2PB9Juf3GEoXMjm/uPWPa0rnRRIcdVls1ZBYD7xOw=; b=Nst7QTa6dREBpv2SeM26SnOtr
+	yccgxK1jSp4q6uaA4Cyakzz4yGhMghMiREB2wq1h5/+84+qQNuDVYfQcWxIUmjuwx7OkqcDOsOXOX
+	xzCECP1UxKrVSb01U7pAh1rpA5Fk/xiO39rOc4458WDJjoOfeAholIL6ngYAjV05K9rpMNr8yIHa9
+	U0YfxoNkgcS9QlBtviISW2qCshN14gSBS1tDFPHP9eIpb/re8iu5xwpH2MES1CF2CHMWIzFuAonE/
+	ZegpWvil4NMxUsfnoVA9xa4quTE/ELPrbfF1hG73MiOFDuDCqMCUivqCjpChoL/c/XtyPBB8kY5c4
+	nH6htrR/Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kE6rr-00060I-RT; Fri, 04 Sep 2020 08:14:43 +0000
-Received: from esa6.microchip.iphmx.com ([216.71.154.253])
+	id 1kE87g-0002dB-V8; Fri, 04 Sep 2020 09:35:08 +0000
+Received: from mail-vs1-xe41.google.com ([2607:f8b0:4864:20::e41])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kE6rn-0005zH-TT; Fri, 04 Sep 2020 08:14:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1599207279; x=1630743279;
- h=references:from:to:cc:subject:message-id:in-reply-to:
- date:mime-version;
- bh=C+bBXo0rf5HHX2D82rfzwmnGYsZpnmPVAqTS90P4am0=;
- b=PNdjsRTLIk48M+Gj+8nEMUCOb1LK/oHC+HmRQlKoMN07STom1nKbM3Dg
- fuZloFWtyzVSTl/vTkj79zBb4u/9HcHstKf6FERS+MKyOyMWQ5ppBWvxh
- SI3AhY7L3gbeVTyJayx0gkCNzojynP4ILYSFds+98rbeL3rNFnasA8RbH
- dtwpNvYyxCMNlTVxXL/P4lYXiMa/q4KKLvmoscZhzV6WbzFakxJllEJQP
- 1FPoGgKN+Tkum1LPG86dE2hknqW632pyoVXHAhkXo4THV8NEpnk9b2T4G
- avpcZsJjJcWA7s2nEI9Dxvrt1IBYcPWbDZNEF3Wy/i3WZK4+cjAWzDUBm Q==;
-IronPort-SDR: 8nv+Um/Ajp+8yrHw100jjMRAOk4Jxm6ZdpjZuFbSFSqzSHVNfarzUTxB4U/zHleMXwKqeSV43E
- nPBHsUvfd8GH4ukaL7bmc21hsu8jj78TFnNccjxmDAJggvvVjdKuxZTG8Z1mZPuOjbMJ9sEhts
- AGUYa4FtxwdKyya67QIctsoP6Sy9a6tLX6b96xzX/ULE3qrv5lpEP10xP5SCsNCbwZy/31TiMl
- lKOqpWkVpu+zgj1+DCdXM8Huxgb0GC19DjdqLZn6dkM/iDU+Dr6VMlGJdc8JpNvqQUdoiZwVpQ
- 28w=
-X-IronPort-AV: E=Sophos;i="5.76,389,1592895600"; d="scan'208";a="25333146"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 04 Sep 2020 01:14:35 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Fri, 4 Sep 2020 01:14:33 -0700
-Received: from soft-dev15.microsemi.net.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
- via Frontend Transport; Fri, 4 Sep 2020 01:13:42 -0700
+ id 1kE87W-0002WL-66
+ for linux-amlogic@lists.infradead.org; Fri, 04 Sep 2020 09:35:03 +0000
+Received: by mail-vs1-xe41.google.com with SMTP id s62so3284485vsc.7
+ for <linux-amlogic@lists.infradead.org>; Fri, 04 Sep 2020 02:34:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=timesys-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2SfYrlt1pTThedsoIZe2QLRXAwAaeRlWqrDY4GdWYjI=;
+ b=SwjWcxsbWuDyttEtxSIAeypJyyg99LX/GpJxpD6wWiLprg4jddcEGkpL+oOmOHa9GP
+ g5Z56yBB14f2sPNqUf5Rdw59GdOiHghSkGP9/OjWkc3Qyqe7mr7koH1gX9RRJiWoQ7Hy
+ 2GaTzbeQbMo/WssCBp+jfrlTU8qQpy9cliZ4FwQ3IPAzqZuV0Udeh99BVTkxxrXN2On5
+ nBojWBFq84ba5bNdXoW8v14edMdR77JM+dML2fBKrsByg17JAxhsojAG0fsz7cBFXj+I
+ 0Y797VjYIFPbTXciWlSHyASRHG5oZXxHfCNgkCTB8Vj5EIuPuqkH/ehC0lmhfU6/qxGP
+ +Fcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2SfYrlt1pTThedsoIZe2QLRXAwAaeRlWqrDY4GdWYjI=;
+ b=Cp1vz1RCoc0Xc/iAQVyPbccOLo2X8SfUvr4472z3qx3Y1d+cCTR3Wv85Ra0w3LD40q
+ vGLg8+6Mr3CLVt8fNcF6L+4sc3liCqpJ90H4CoDbrT8WhixfVpg90izxcUgbQAYi+XbZ
+ VAucz/aDgX1FJ7iRSC3gcNZus/2We6/cIWpFbGE8CAN3xX0McvheKThZHX1dvC1LsSQc
+ 6dZrj0y72TheA+ZmsffUjEBltqDMtLE1PPRgeH0x0rWoY/jBcNuM5g9rwgppTjJf6GsF
+ AtfSKV7ee7sXwqlYgArNX1OyqgS04KxPIouXOpD+jhhbyA48OXokTjCIwjniT3aPhyC4
+ fjyw==
+X-Gm-Message-State: AOAM533Ox6N50V51xyI8w4o9BYiChxNhhYlTU5cLzx9baWOX3uUSi8hL
+ tWLbriqzLUcj88gZHEmcTolQXtuoUimqXJR/BuaPnQ==
+X-Google-Smtp-Source: ABdhPJxacwu3pL1dM+zWIp7Ijxi6mSRw1vnot6j0sDxK1j9djr5kKljWunjtcdBgDV9jaFt9vJGeXmbRsSvwHTuJsBc=
+X-Received: by 2002:a67:b90c:: with SMTP id q12mr4898758vsn.171.1599212094639; 
+ Fri, 04 Sep 2020 02:34:54 -0700 (PDT)
+MIME-Version: 1.0
 References: <20200903232441.2694866-1-dianders@chromium.org>
  <20200903162412.6.Ib121debfb18e5f923a3cd38fe9c36aa086c650c5@changeid>
-From: Lars Povlsen <lars.povlsen@microchip.com>
-To: Douglas Anderson <dianders@chromium.org>
+In-Reply-To: <20200903162412.6.Ib121debfb18e5f923a3cd38fe9c36aa086c650c5@changeid>
+From: Angelo Dureghello <angelo.dureghello@timesys.com>
+Date: Fri, 4 Sep 2020 11:33:58 +0200
+Message-ID: <CALJHbkBKQKzqB=m5h8FtRkYptH6pd8UDbfhg0i6QmjyjMi9yzw@mail.gmail.com>
 Subject: Re: [PATCH 6/6] mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that
  are newer than 5.4
-Message-ID: <87y2lqvu0m.fsf@soft-dev15.microsemi.net>
-In-Reply-To: <20200903162412.6.Ib121debfb18e5f923a3cd38fe9c36aa086c650c5@changeid>
-Date: Fri, 4 Sep 2020 10:14:29 +0200
-MIME-Version: 1.0
+To: Douglas Anderson <dianders@chromium.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200904_041440_081752_EDD70F8A 
-X-CRM114-Status: GOOD (  12.84  )
+X-CRM114-CacheID: sfid-20200904_053458_420099_1961BEF7 
+X-CRM114-Status: GOOD (  15.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,13 +96,12 @@ Cc: Ulf Hansson <ulf.hansson@linaro.org>, linux-kernel@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>,
  Steen Hegelund <Steen.Hegelund@microchip.com>, linux-mmc@vger.kernel.org,
- Adrian Hunter <adrian.hunter@intel.com>,
- Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
- Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+ Adrian Hunter <adrian.hunter@intel.com>, swboyd@chromium.org,
  linux-arm-kernel@lists.infradead.org,
  Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-amlogic@lists.infradead.org, swboyd@chromium.org,
- Angelo Dureghello <angelo.dureghello@timesys.com>,
+ linux-amlogic@lists.infradead.org,
+ Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+ =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
  Lars Povlsen <lars.povlsen@microchip.com>,
  Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
@@ -111,8 +109,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-Douglas Anderson writes:
+On Fri, Sep 4, 2020 at 1:25 AM Douglas Anderson <dianders@chromium.org> wrote:
 
 > This is like commit 3d3451124f3d ("mmc: sdhci-msm: Prefer asynchronous
 > probe") but applied to a whole pile of drivers.  This batch converts
@@ -127,28 +124,27 @@ Douglas Anderson writes:
 >  drivers/mmc/host/sdhci-milbeaut.c    | 1 +
 >  drivers/mmc/host/sdhci-of-sparx5.c   | 1 +
 >  5 files changed, 5 insertions(+)
->
+
 
 [snip]
 
-> diff --git a/drivers/mmc/host/sdhci-of-sparx5.c b/drivers/mmc/host/sdhci-of-sparx5.c
-> index 747f108a0ace..28e4ee69e100 100644
-> --- a/drivers/mmc/host/sdhci-of-sparx5.c
-> +++ b/drivers/mmc/host/sdhci-of-sparx5.c
-> @@ -255,6 +255,7 @@ MODULE_DEVICE_TABLE(of, sdhci_sparx5_of_match);
->  static struct platform_driver sdhci_sparx5_driver = {
+>
+>
+> diff --git a/drivers/mmc/host/sdhci-esdhc-mcf.c b/drivers/mmc/host/sdhci-esdhc-mcf.c
+> index 71bf086a9812..ca7a1690b2a8 100644
+> --- a/drivers/mmc/host/sdhci-esdhc-mcf.c
+> +++ b/drivers/mmc/host/sdhci-esdhc-mcf.c
+> @@ -509,6 +509,7 @@ static int sdhci_esdhc_mcf_remove(struct platform_device *pdev)
+>  static struct platform_driver sdhci_esdhc_mcf_driver = {
 >         .driver = {
->                 .name = "sdhci-sparx5",
+>                 .name = "sdhci-esdhc-mcf",
 > +               .probe_type = PROBE_PREFER_ASYNCHRONOUS,
->                 .of_match_table = sdhci_sparx5_of_match,
->                 .pm = &sdhci_pltfm_pmops,
 >         },
+>         .probe = sdhci_esdhc_mcf_probe,
+>         .remove = sdhci_esdhc_mcf_remove,
+>
 
-Acked-by: Lars Povlsen <lars.povlsen@microchip.com>
-
--- 
-Lars Povlsen,
-Microchip
+Acked-by: Angelo Dureghello <angelo.dureghello@timesys.com>
 
 _______________________________________________
 linux-amlogic mailing list
