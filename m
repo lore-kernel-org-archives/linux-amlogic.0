@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F30FC43461
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 08:33:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FEE8C43461
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 08:33:33 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E444C208C7
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 08:33:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3A68E208C7
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 08:33:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DL6FEA89";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JxENpTaS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E444C208C7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U8Xa8oro";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JPOB01GQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A68E208C7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=qDMKa2TvfT/WV3BLLKUcCCovM81xsyMq5hTpnt6vklI=; b=DL6FEA89nbiMsQ0WEij4ksMIg
-	epnruqgv6NYuHECowdjA5cl59VbGvxJvQc9gxzPfpVSzf2orSbYN4BvD5I/wNRcr1hxmDRNAoz159
-	IzGevPkMt/U4pMe0FPTTMWWKoUR3KZ1i14C4uTPAhlNyWWz4S8nUKGQMXkdfXD/WNeEhJweCo4u1j
-	EefCadXIgXehbr175+n/peT81HBYmZMdznK+keyWzwhqrHE5Dn6eSdEhYZIzIYYOsnav21gz0MeH7
-	mIclVoCvR0oCajjN1YDgJcWsH5y5xFcccmGaxYlWrjST2Mw/L+Z1k+NpHgpV3UriKpj03qPQuZh6W
-	Bpqk9EWZQ==;
+	 bh=LJYDZGuPS2HjQJ76mYXhawzmQD8uUgkX2cwKYzE9lCc=; b=U8Xa8oroxJ9fkI15iCSKFvC3O
+	MQ1y4+56KyRAzpEwVkk01OlSflUU4I46x0XVtciyLcu3f6a9lNvHP8qZiYspQfESDczTJPCSD5hGd
+	av6w0wHgCdJLraDgsKjfo6sqXzT08/ha9xxwedjlsQBJaBTuPIvkRHdyL/pbIrLmAWj3rz2lTF1xf
+	OQETEtz5s5gK9u8V/FpQz+OkvNcf82o15Mvkga29UCZC9ce2ymFpzpNupjHJEurMv17HOeUYGOJK+
+	x48Hbf4LXtP7JhFJl0Bvup+yYHuUrfLEGnhKb4ee8RhMlXXkrRIhMKOI+M8gDIvk7rb+3LOz2Uz9+
+	pQTqYo/nw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kFCaZ-0003ea-41; Mon, 07 Sep 2020 08:33:23 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1kFCad-0003gz-J8; Mon, 07 Sep 2020 08:33:27 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFCaL-0003YT-1I
- for linux-amlogic@lists.infradead.org; Mon, 07 Sep 2020 08:33:11 +0000
-Received: by mail-wr1-x444.google.com with SMTP id z4so14855750wrr.4
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Sep 2020 01:33:08 -0700 (PDT)
+ id 1kFCaM-0003ZS-GZ
+ for linux-amlogic@lists.infradead.org; Mon, 07 Sep 2020 08:33:12 +0000
+Received: by mail-wm1-x344.google.com with SMTP id b79so13318390wmb.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Sep 2020 01:33:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=O6qLbu0TtBTfYgth1hWlAemiGy5RB2khWzOLpHhAyBI=;
- b=JxENpTaSzdENzNRSzGCLWUGLeF/XmOTECCoSk1vC7uO9L8B2ykKPDu6K64peit6pOx
- 0NZvd7zEhkh1fXOsvxqTJKFnXnbgSD7qe6VT0SFEn531G+cEYazGPu5V4ViroD7XgF3p
- zU7y4SaS8J8ulJhY+h1hnwANDAcAxWHmR0lFgh83Crj3bdd/xNPFtG7aujyKaERRvuSp
- D0PrVnkrL/4KB9Luno+bGiWUcjTE6jSYNFx34Pz5B0MgMfCeR5nSSTL65snHqc+qTtk6
- mP/QJMlkNIIZ1by97c1xVA68Be+jZk11dvGB/Vvmv7xKg74HgrSY0+Ux5uZHcJbTrXym
- THFg==
+ bh=Tf/pPuP/quD6UX7EbsHW6QHRSABL9O5KfoCfXcuWE28=;
+ b=JPOB01GQC1EyMKgIY9XWJHIybEP5Kk0Mpazg12h1ld+lYOavG/ORNCQ5E+DVx8sZkV
+ yeSp/Iza0lKp0ly4OCn1zK5IbdKv75HP7DeNlJCa8yDUt4Ylwgl+7ekFHntm05cdt2iB
+ NUorJTBx29g9kSLL3BY6M3iRw9AjeoA0xpaTMVG64YqKLc9yT7srFA0fjlBgvqa0KeMa
+ 9+14TezNRNDJoZ8/56DGplnxQ0InDL3adAX/vCps1gwkD21czgLgyRev9+CqMQl2KkV1
+ jC2pwhNvoQ4zAVN2g2rOZxx2xbdAKiwK62uIzX34TvxfaJl/VCk2q7BeXg69nOaATQU+
+ x4oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=O6qLbu0TtBTfYgth1hWlAemiGy5RB2khWzOLpHhAyBI=;
- b=OnM42A+HevGDG2ZJhKXipsr+8MuldKwvU4RumLQJd0Xe5RZXP3kB8PSSW5AHE8jXu3
- NndqerxFWu16BJj4qMFQrOaLL+9BplceR3Qddq8p0vcAVKysYytDAsLUUsKKQPLXh0Pc
- 5F2uPMZnD0mHj93IhABblL553dcC6ZEQ8wX/PTPZxigbrcWJQGrcjueoPgcotxhFwuDe
- cTYjWYu/e3ShNxNb+jZyxvRiZv48j79C+aLHBzDSrdJZYPmYAoKeDl80jZkbMZQJWlr5
- Y/Yf8qIagQkQ8D1tWw0hYJV4f82SzMrmKrfCaJgp+WlFgLeSplOVGTuRFzYXN5tkkti3
- uS2w==
-X-Gm-Message-State: AOAM531oG1WiDC511qvx56VkcfmXZOKGuJKLxnCf4KBhjmhJOX2t8Zy3
- 48/wlywPel/aAzqOOUKNlg+kcK2hpXnRuN1K
-X-Google-Smtp-Source: ABdhPJyLgypVdwA1Lo6t3FhgX081NBLm9msKduMOXHwEixOYFiNCnVa+gMazKFjvp9LbLHgOFoeoWQ==
-X-Received: by 2002:adf:f3c4:: with SMTP id g4mr20609544wrp.168.1599467587962; 
- Mon, 07 Sep 2020 01:33:07 -0700 (PDT)
+ bh=Tf/pPuP/quD6UX7EbsHW6QHRSABL9O5KfoCfXcuWE28=;
+ b=tvaX6P0YQJ3fAG0iTMDTOdE/QW1DcnjxxNJBbNhv4Rct/gzKS6E88bQo3StkCU40Jh
+ AqpXOFt53lM1yJcZKNAHG1GPQOLhv3noid13mQKQeo/mLM926LP44AwRE6e/t/TOcgic
+ 222u5WASGtyWBBESvW3ib3cj6QzrFyMlz9nfwRYfWqhKHn03muc5jgxeoUUOdCs2qw0k
+ 3zYM3d/B11+QAZBpLXnlN4g8yQknk5CCjzcK+wUVLRAyJmQbHgWhfTv3Cz4NymtJWCem
+ 4DM2HYlyI5V2C2KQPnk2OA2epzBaj1MNdGViINctnzfrkAPQr0K4OtBsOal+FoOThmGF
+ f8Kw==
+X-Gm-Message-State: AOAM533i/yoBRQjdD3CSVuUDlKvHwEhHipBlOZ2XbC7VK33gVcUqcarz
+ VnKBLLRjZdn7zQdyGzhaMmdOnw==
+X-Google-Smtp-Source: ABdhPJzlXWWJxUL+NR0WVb8iGxSGFRhnUwwKhX4IAQt9btsq140rrTUEi09a9mEZEaHQVqchSMIfZQ==
+X-Received: by 2002:a1c:62d4:: with SMTP id
+ w203mr18358593wmb.146.1599467589332; 
+ Mon, 07 Sep 2020 01:33:09 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
- by smtp.gmail.com with ESMTPSA id o5sm25205111wmc.33.2020.09.07.01.33.06
+ by smtp.gmail.com with ESMTPSA id o5sm25205111wmc.33.2020.09.07.01.33.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Sep 2020 01:33:07 -0700 (PDT)
+ Mon, 07 Sep 2020 01:33:08 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH 2/3] arm64: dts: meson-axg: add MIPI DSI Nodes
-Date: Mon,  7 Sep 2020 10:32:59 +0200
-Message-Id: <20200907083300.14412-3-narmstrong@baylibre.com>
+Subject: [PATCH 3/3] arm64: dts: meson-axg-s400: add MIPI DSI panel nodes
+Date: Mon,  7 Sep 2020 10:33:00 +0200
+Message-Id: <20200907083300.14412-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200907083300.14412-1-narmstrong@baylibre.com>
 References: <20200907083300.14412-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200907_043309_160852_AFA99046 
-X-CRM114-Status: GOOD (  13.28  )
+X-CRM114-CacheID: sfid-20200907_043310_676503_AF870369 
+X-CRM114-Status: GOOD (  13.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,121 +104,96 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 This adds the nodes for :
-- MIPI DSI+PCIe analog phy
-- MIPI D-PHY
-- Synopsys MIPI-DSI Transceiver
+- Backlight of the tl070wsh30 panel
+- MIPI-DSI attributes
+- TDO TL070WSH30 TFT-LCD panel
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 60 ++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ .../arm64/boot/dts/amlogic/meson-axg-s400.dts | 49 ++++++++++++++++++-
+ 1 file changed, 48 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 4a93e3fecd90..f1501b19f617 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -13,6 +13,7 @@
- #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
- #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
- #include <dt-bindings/power/meson-axg-power.h>
-+#include <dt-bindings/phy/phy.h>
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index cb1360ae1211..abfad67ca06b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -7,6 +7,7 @@
+ 
+ #include "meson-axg.dtsi"
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/pwm/pwm.h>
  
  / {
- 	compatible = "amlogic,meson-axg";
-@@ -1111,6 +1112,8 @@
- 			sysctrl: system-controller@0 {
- 				compatible = "amlogic,meson-axg-hhi-sysctrl",
- 					     "simple-mfd", "syscon";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
- 				reg = <0 0 0 0x400>;
+ 	compatible = "amlogic,s400", "amlogic,a113d", "amlogic,meson-axg";
+@@ -116,6 +117,16 @@
+ 		reg = <0x0 0x0 0x0 0x40000000>;
+ 	};
  
- 				clkc: clock-controller {
-@@ -1159,6 +1162,12 @@
- 							       <250000000>,
- 							       <0>; /* Do Nothing */
- 				};
++	panel_backlight: backlight {
++		compatible = "pwm-backlight";
++		pwms = <&pwm_ab 1 78125 PWM_POLARITY_INVERTED>;
++		enable-gpios = <&gpio GPIOZ_5 GPIO_ACTIVE_HIGH>;
++		power-supply = <&vcc_5v>;
++		brightness-levels = <0 255>;
++		num-interpolated-steps = <255>;
++		default-brightness-level = <250>;
++	};
 +
-+				mipi_pcie_analog_dphy: phy {
-+					compatible = "amlogic,axg-mipi-pcie-analog-phy";
-+					#phy-cells = <0>;
-+					status = "disabled";
-+				};
- 			};
- 		};
+ 	main_12v: regulator-main_12v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "12V";
+@@ -434,6 +445,42 @@
+ 	};
+ };
  
-@@ -1171,6 +1180,19 @@
- 			#mbox-cells = <1>;
- 		};
- 
-+		mipi_dphy: phy@ff640000 {
-+			compatible = "amlogic,axg-mipi-dphy";
-+			reg = <0x0 0xff640000 0x0 0x100>;
-+			clocks = <&clkc CLKID_MIPI_DSI_PHY>;
-+			clock-names = "pclk";
-+			resets = <&reset RESET_MIPI_PHY>;
-+			reset-names = "phy";
-+			phys = <&mipi_pcie_analog_dphy>;
-+			phy-names = "analog";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
 +
- 		audio: bus@ff642000 {
- 			compatible = "simple-bus";
- 			reg = <0x0 0xff642000 0x0 0x2000>;
-@@ -1618,6 +1640,10 @@
- 			/* DPI output port */
- 			dpi_port: port@2 {
- 				reg = <2>;
++&mipi_dsi {
++	status = "okay";
 +
-+				dpi_out: endpoint {
-+					remote-endpoint = <&mipi_dsi_in>;
-+				};
- 			};
- 		};
- 
-@@ -1647,6 +1673,40 @@
- 				#reset-cells = <1>;
- 			};
- 
-+			mipi_dsi: dsi@7000 {
-+				compatible = "amlogic,meson-axg-dw-mipi-dsi";
-+				reg = <0x0 0x6000 0x0 0x400>;
-+				resets = <&reset RESET_MIPI_HOST>;
-+				reset-names = "top";
-+				clocks = <&clkc CLKID_MIPI_DSI_HOST>,
-+					 <&clkc CLKID_GP0_PLL>;
-+				clock-names = "pclk", "px_clk";
-+				phys = <&mipi_dphy>;
-+				phy-names = "dphy";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
++	assigned-clocks = <&clkc CLKID_GP0_PLL>;
++	assigned-clock-rates = <283500000>;
 +
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
++	panel@0 {
++		compatible = "tdo,tl070wsh30";
++		reset-gpios = <&gpio GPIOZ_6 GPIO_ACTIVE_LOW>;
++		power-supply = <&vcc_3v3>;
++		backlight = <&panel_backlight>;
++		reg = <0>;
 +
-+					/* VPU VENC Input */
-+					mipi_dsi_venc_port: port@0 {
-+						reg = <0>;
-+
-+						mipi_dsi_in: endpoint {
-+							remote-endpoint = <&dpi_out>;
-+						};
-+					};
-+
-+					/* DSI Output */
-+					mipi_dsi_panel_port: port@1 {
-+						reg = <1>;
-+					};
-+				};
++		port {
++			mipi_in_panel: endpoint {
++				remote-endpoint = <&mipi_out_panel>;
 +			};
++		};
++	};
++};
 +
- 			gpio_intc: interrupt-controller@f080 {
- 				compatible = "amlogic,meson-axg-gpio-intc",
- 					     "amlogic,meson-gpio-intc";
++&mipi_pcie_analog_dphy {
++	status = "okay";
++};
++
++&mipi_dphy {
++	status = "okay";
++};
++
++&mipi_dsi_panel_port {
++	mipi_out_panel: endpoint {
++		remote-endpoint = <&mipi_in_panel>;
++	};
++};
++
+ &pdm {
+ 	pinctrl-0 = <&pdm_dclk_a14_pins>, <&pdm_din0_pins>,
+ 		    <&pdm_din1_pins>, <&pdm_din2_pins>, <&pdm_din3_pins>;
+@@ -443,7 +490,7 @@
+ 
+ &pwm_ab {
+ 	status = "okay";
+-	pinctrl-0 = <&pwm_a_x20_pins>;
++	pinctrl-0 = <&pwm_a_x20_pins>, <&pwm_b_z_pins>;
+ 	pinctrl-names = "default";
+ };
+ 
 -- 
 2.22.0
 
