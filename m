@@ -2,86 +2,144 @@ Return-Path: <SRS0=IdmP=CQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7EF83C43461
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 10:26:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B3858C43461
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 10:33:56 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 17708205CB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 10:26:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 69EE62067C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 10:33:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IFW139YP";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kEHPy/5o"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17708205CB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s8L04VhD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PFBDX2Qn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 69EE62067C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=w8dwpyHy4xwSWe03wrIShKT4984qOGYq9AXf4RIS3y4=; b=IFW139YP0BGh7CI4tM97towmO
-	MP+Bi//3xY6fv86TYjWliV13QAxDXZXK7S+vR/xCXq3RuGBBNYfEGjKzLbhlshIR6BLzgtsdRbH9d
-	bikO3KsVa2Nl8800QvUm56I+U0xuB4GiMywp77S8mlqJnK1FnLj4s7VYkaX+U+GFtUo41OuEFbivX
-	Wma89MJiEL7HfsxaAn9+7X6OUlOnAbTOIxEBYtFUICLpU9SoQbTxvqQuGcbxCoKIHKFyuCZpymCNq
-	gRoSvNlHGtJJFAbcxgSL5kZaMcTnjKJqXjlbUI1G5aDdsiaT0I/qQUZsMA/YXuvf7SVlCuy/MLCVt
-	QBHPmbPng==;
+	 bh=Hx3xOtj32yLgaTE3yfsF/0qnBGe1ZNGdBWXF7ayEM5g=; b=s8L04VhDVOdWnzlpOdH3d/pag
+	p6s7B3ns50rvXk8Q1eQWRzXQ3e8MdjwKd8PHazrWWRm8p+ozPg0wiKHdeoD2kDStRe9baIgxNaptW
+	usE2IST7k0CbdjUyJ9ADdt6NLgZV/UWRBG5uDXZI5QSDNeZcdmBePxWVWnG40vvsAxvi5xpooWKMz
+	ydQ9EEehBIljgh+HicZ8eoucRzTOoDvV9Mvqd5byiSIpYXMMrekD/WxeKQX00DY9aQtI/UdreKBc+
+	zp/1sNyw7jqlKFjDJH4oEnOdHJDLpL+qCDGT2K/hrUUF7esqwi1RjtX7n+30yeDKQQp1AiGGnXYBZ
+	Wy1GPN0Gw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kFELl-00042g-B0; Mon, 07 Sep 2020 10:26:13 +0000
-Received: from mail-ua1-x943.google.com ([2607:f8b0:4864:20::943])
+	id 1kFET6-0006SS-Ux; Mon, 07 Sep 2020 10:33:49 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFELh-00040a-KM
- for linux-amlogic@lists.infradead.org; Mon, 07 Sep 2020 10:26:11 +0000
-Received: by mail-ua1-x943.google.com with SMTP id i22so3446880uat.8
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Sep 2020 03:26:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=AozzJXZUL22h+sKQZ059ls1ZeGArDktRdLkmygb6j+U=;
- b=kEHPy/5oC15OKB88KwjomCTjGDXuVbdoHHp/KjnfUHNjixAmkPO5iain7J/VCcsTKn
- x1BOYRDI2axsEtQT5hcb5Jw6PkthrUgHM0SY5DvRThY2DcsYpMRaQQk0ds9lja9NkzRY
- PH2XMfkdc4Bhwxg0iKrwXGI0b5PhLtPOvScQsPfeIbMW1EyxAkv8H/XglABmMObHphcH
- n7AlFcUa0ax6PkigvFLs3sPUtqdElHOR06iruiCM6S+cVuAtm283ysqv3MRZsEWp/6SN
- S8c5letuiGaNQOeCt+Ave+K6jWIy6JHorfDkw8YacPDr+MXogIUIhwWXZ0BjD9nTTSsp
- zB2g==
+ id 1kFET2-0006QY-BS
+ for linux-amlogic@lists.infradead.org; Mon, 07 Sep 2020 10:33:46 +0000
+Received: by mail-wm1-x343.google.com with SMTP id l9so13703079wme.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Sep 2020 03:33:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=dIB9drnk+63RQtsyAIplq/mv+KlE9BKKo/XmkOjk4g0=;
+ b=PFBDX2Qnav8ff2C4wQssiZzMB4M9DCVZBFLrzaii6nGXOsd/DNL9243R0j08j6wzUJ
+ +lMutk6809Lm5o/ydKEGBIkT7lXc4Bog6TkM609moxbvWL7IyPHtKh/fIEcL86TDjBw/
+ V+71GzvUOM/iXM8AYzQlSDgGw84nG4EhMRC9EURTD9ju2XZ/O0rMHQjI8SM/lcKDWyfa
+ v8SEPlnwAvRsRm2Enr/X4VCaP9R4yLIxCe9jDOA/Of2sEzlbhOQPd8Uu2T/0yH4sTl3z
+ wt//Yo9C8OYuYUgxpPiIFeellnIQdD+70b3jm3Nx3vsDzMDXSyrtrnm2JucoUgc9vR8g
+ fSSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=AozzJXZUL22h+sKQZ059ls1ZeGArDktRdLkmygb6j+U=;
- b=t6YTVO0bUhQyZaeDOq3gBwnPFdb8oiLVa/kI1qmPRqXGREPvV4rmRQiw3GxvcIomLR
- z1XWiRRCuEYPxRH/y7RAwHLJVcKAbqi3Zp+pDvAteJz4oMZhLq464h2Aui9yxZLJLW33
- uvVoj/KRUNUrs6S67QOnkC46+3RUB1izqbCv/OpRMFZuVtRexpvSzLaRv0ESTnetZhmZ
- o98uXmaVM0wlc13KGUQVy6UGpMskBvsnjiYtoSB3zNT8ZZ6lxE8yGfSeGEnY4NYZkcdl
- cAoqKi5Q7IbDQ205pOplwOyhtsUd+6yVKnh5YOqj45dEOmuebnrPwwKiZvfcRRSNvUsS
- UKrw==
-X-Gm-Message-State: AOAM5316DT7Ef7XH7j+4c2rHpV5ZJbiwTy+aMYyPFRvCt5mWdB87zJWY
- u+GDT4L0C6riIj9AKgkdumLZ3t9KZC7FE/obNn95Yw==
-X-Google-Smtp-Source: ABdhPJy1eBqbsXfbOgOTKaIKV9d6z9pG4PRO7SQC+FwnjmOkT4mzyQi7YatfsHO8E9fzkaZ+4lehXIpuaB9Y6rBFcIo=
-X-Received: by 2002:ab0:6f91:: with SMTP id f17mr10608318uav.129.1599474367924; 
- Mon, 07 Sep 2020 03:26:07 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=dIB9drnk+63RQtsyAIplq/mv+KlE9BKKo/XmkOjk4g0=;
+ b=p0zeE1+dwmd4HUM0zebggayOyxMWbrGTCpjS9A9K+KMLzYyRUCK9DAoQ2Czg6PWs49
+ FkmTszcODUWEOqutAdTcBc2xVCAZhMrHzY5Vh54AuzDSWAfcpNFyGIqrmAJH4s4E8bEp
+ 8+Lxbk9rOhG9uFCymEIEMFpg/FE7xKZW+M3w0yJSZebhN0rPR8+fEYYvlyQVMRctEXhr
+ A7lxInXyp8U2PNj1KWER/XRjOBwxx9wK++bVijGn5WYUwDsrsePI852k1CqtMIpmd9cn
+ yAVbVdkwSyvQLxAPxmt0qdQLxcHhVpYXoKu4Oph4fcE1hMrkIU99/f0WSeZa4RDFyrWm
+ vXeA==
+X-Gm-Message-State: AOAM533WecPgSrkmgbD4GdFQUIB5CPWA9dQsxEVEY1PBlDKt8iQyO2Rv
+ dJypiL8NRyP7xqjbd4c69yoRCQ==
+X-Google-Smtp-Source: ABdhPJxR1rKDcT/H7YbACgBs00drzH6YN0Hl6+FZAoKoAwPQcNN6ejFcCzcgfWgjowqvMkJF9BSU1w==
+X-Received: by 2002:a05:600c:230f:: with SMTP id
+ 15mr20086427wmo.186.1599474823185; 
+ Mon, 07 Sep 2020 03:33:43 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac?
+ ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+ by smtp.gmail.com with ESMTPSA id 59sm7465602wro.82.2020.09.07.03.33.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 07 Sep 2020 03:33:42 -0700 (PDT)
+Subject: Re: [PATCH 0/2] drm: panel: add support for TDO tl070wsh30 panel
+To: thierry.reding@gmail.com, sam@ravnborg.org
+References: <20200904161504.23915-1-narmstrong@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT7CwHsEEwEKACUC
+ GyMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJXDO2CAhkBAAoJEBaat7Gkz/iubGIH/iyk
+ RqvgB62oKOFlgOTYCMkYpm2aAOZZLf6VKHKc7DoVwuUkjHfIRXdslbrxi4pk5VKU6ZP9AKsN
+ NtMZntB8WrBTtkAZfZbTF7850uwd3eU5cN/7N1Q6g0JQihE7w4GlIkEpQ8vwSg5W7hkx3yQ6
+ 2YzrUZh/b7QThXbNZ7xOeSEms014QXazx8+txR7jrGF3dYxBsCkotO/8DNtZ1R+aUvRfpKg5
+ ZgABTC0LmAQnuUUf2PHcKFAHZo5KrdO+tyfL+LgTUXIXkK+tenkLsAJ0cagz1EZ5gntuheLD
+ YJuzS4zN+1Asmb9kVKxhjSQOcIh6g2tw7vaYJgL/OzJtZi6JlIXOwU0EVid/pAEQAND7AFhr
+ 5faf/EhDP9FSgYd/zgmb7JOpFPje3uw7jz9wFb28Cf0Y3CcncdElYoBNbRlesKvjQRL8mozV
+ 9RN+IUMHdUx1akR/A4BPXNdL7StfzKWOCxZHVS+rIQ/fE3Qz/jRmT6t2ZkpplLxVBpdu95qJ
+ YwSZjuwFXdC+A7MHtQXYi3UfCgKiflj4+/ITcKC6EF32KrmIRqamQwiRsDcUUKlAUjkCLcHL
+ CQvNsDdm2cxdHxC32AVm3Je8VCsH7/qEPMQ+cEZk47HOR3+Ihfn1LEG5LfwsyWE8/JxsU2a1
+ q44LQM2lcK/0AKAL20XDd7ERH/FCBKkNVzi+svYJpyvCZCnWT0TRb72mT+XxLWNwfHTeGALE
+ +1As4jIS72IglvbtONxc2OIid3tR5rX3k2V0iud0P7Hnz/JTdfvSpVj55ZurOl2XAXUpGbq5
+ XRk5CESFuLQV8oqCxgWAEgFyEapI4GwJsvfl/2Er8kLoucYO1Id4mz6N33+omPhaoXfHyLSy
+ dxD+CzNJqN2GdavGtobdvv/2V0wukqj86iKF8toLG2/Fia3DxMaGUxqI7GMOuiGZjXPt/et/
+ qeOySghdQ7Sdpu6fWc8CJXV2mOV6DrSzc6ZVB4SmvdoruBHWWOR6YnMz01ShFE49pPucyU1h
+ Av4jC62El3pdCrDOnWNFMYbbon3vABEBAAHCwn4EGAECAAkFAlYnf6QCGwICKQkQFpq3saTP
+ +K7BXSAEGQECAAYFAlYnf6QACgkQd9zb2sjISdGToxAAkOjSfGxp0ulgHboUAtmxaU3viucV
+ e2Hl1BVDtKSKmbIVZmEUvx9D06IijFaEzqtKD34LXD6fjl4HIyDZvwfeaZCbJbO10j3k7FJE
+ QrBtpdVqkJxme/nYlGOVzcOiKIepNkwvnHVnuVDVPcXyj2wqtsU7VZDDX41z3X4xTQwY3SO1
+ 9nRO+f+i4RmtJcITgregMa2PcB0LvrjJlWroI+KAKCzoTHzSTpCXMJ1U/dEqyc87bFBdc+DI
+ k8mWkPxsccdbs4t+hH0NoE3Kal9xtAl56RCtO/KgBLAQ5M8oToJVatxAjO1SnRYVN1EaAwrR
+ xkHdd97qw6nbg9BMcAoa2NMc0/9MeiaQfbgW6b0reIz/haHhXZ6oYSCl15Knkr4t1o3I2Bqr
+ Mw623gdiTzotgtId8VfLB2Vsatj35OqIn5lVbi2ua6I0gkI6S7xJhqeyrfhDNgzTHdQVHB9/
+ 7jnM0ERXNy1Ket6aDWZWCvM59dTyu37g3VvYzGis8XzrX1oLBU/tTXqo1IFqqIAmvh7lI0Se
+ gCrXz7UanxCwUbQBFjzGn6pooEHJYRLuVGLdBuoApl/I4dLqCZij2AGa4CFzrn9W0cwm3HCO
+ lR43gFyz0dSkMwNUd195FrvfAz7Bjmmi19DnORKnQmlvGe/9xEEfr5zjey1N9+mt3//geDP6
+ clwKBkq0JggA+RTEAELzkgPYKJ3NutoStUAKZGiLOFMpHY6KpItbbHjF2ZKIU1whaRYkHpB2
+ uLQXOzZ0d7x60PUdhqG3VmFnzXSztA4vsnDKk7x2xw0pMSTKhMafpxaPQJf494/jGnwBHyi3
+ h3QGG1RjfhQ/OMTX/HKtAUB2ct3Q8/jBfF0hS5GzT6dYtj0Ci7+8LUsB2VoayhNXMnaBfh+Q
+ pAhaFfRZWTjUFIV4MpDdFDame7PB50s73gF/pfQbjw5Wxtes/0FnqydfId95s+eej+17ldGp
+ lMv1ok7K0H/WJSdr7UwDAHEYU++p4RRTJP6DHWXcByVlpNQ4SSAiivmWiwOt490+Ac7ATQRN
+ WQbPAQgAvIoM384ZRFocFXPCOBir5m2J+96R2tI2XxMgMfyDXGJwFilBNs+fpttJlt2995A8
+ 0JwPj8SFdm6FBcxygmxBBCc7i/BVQuY8aC0Z/w9Vzt3Eo561r6pSHr5JGHe8hwBQUcNPd/9l
+ 2ynP57YTSE9XaGJK8gIuTXWo7pzIkTXfN40Wh5jeCCspj4jNsWiYhljjIbrEj300g8RUT2U0
+ FcEoiV7AjJWWQ5pi8lZJX6nmB0lc69Jw03V6mblgeZ/1oTZmOepkagwy2zLDXxihf0GowUif
+ GphBDeP8elWBNK+ajl5rmpAMNRoKxpN/xR4NzBg62AjyIvigdywa1RehSTfccQARAQABwsBf
+ BBgBAgAJBQJNWQbPAhsMAAoJEBaat7Gkz/iuteIH+wZuRDqK0ysAh+czshtG6JJlLW6eXJJR
+ Vi7dIPpgFic2LcbkSlvB8E25Pcfz/+tW+04Urg4PxxFiTFdFCZO+prfd4Mge7/OvUcwoSub7
+ ZIPo8726ZF5/xXzajahoIu9/hZ4iywWPAHRvprXaim5E/vKjcTeBMJIqZtS4u/UK3EpAX59R
+ XVxVpM8zJPbk535ELUr6I5HQXnihQm8l6rt9TNuf8p2WEDxc8bPAZHLjNyw9a/CdeB97m2Tr
+ zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <7e63abb2-89d1-3047-29c2-d312ba5ce16d@baylibre.com>
+Date: Mon, 7 Sep 2020 12:33:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20200903232441.2694866-1-dianders@chromium.org>
- <CAFBinCBcbEpHX7eUbznuDo6oKO_9JrOK2w+Bx1=e-bwuS609bw@mail.gmail.com>
- <CANAwSgTv2ZAvPKG2aChs8NwZL32TF+MtcaFbehQWWSf_TFXF6A@mail.gmail.com>
- <CAGb2v67dPaV9tP4piV9MHe9QeJAq0RyvOO3ypJ3ZBW1-ffpjKA@mail.gmail.com>
-In-Reply-To: <CAGb2v67dPaV9tP4piV9MHe9QeJAq0RyvOO3ypJ3ZBW1-ffpjKA@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 7 Sep 2020 12:25:31 +0200
-Message-ID: <CAPDyKFoNFEa4ssv3TXbj4KM0UGjJgcp3dtypwicxJ-bExBL28A@mail.gmail.com>
-Subject: Re: [PATCH 0/6] mmc: Set PROBE_PREFER_ASYNCHRONOUS for all host
- drivers
-To: Chen-Yu Tsai <wens@kernel.org>, Anand Moon <linux.amoon@gmail.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+In-Reply-To: <20200904161504.23915-1-narmstrong@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200907_062609_733404_0A1EAAC9 
-X-CRM114-Status: GOOD (  25.09  )
+X-CRM114-CacheID: sfid-20200907_063344_445721_77AED17F 
+X-CRM114-Status: GOOD (  15.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,137 +151,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Heiko Stuebner <heiko@sntech.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linus.walleij@linaro.org>,
- Peter Ujfalusi <peter.ujfalusi@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
- "moderated list:ARM/SAMSUNG EXYNO..." <linux-samsung-soc@vger.kernel.org>,
- Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>,
- Michal Simek <michal.simek@xilinx.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- NXP Linux Team <linux-imx@nxp.com>, linux-tegra <linux-tegra@vger.kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
- Lars Persson <lars.persson@axis.com>,
- "open list:OMAP2+ SUPPORT" <linux-omap@vger.kernel.org>,
- Chaotian Jing <chaotian.jing@mediatek.com>,
- Scott Branden <sbranden@broadcom.com>, Andrew Jeffery <andrew@aj.id.au>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Eugen Hristev <eugen.hristev@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed <linux-aspeed@lists.ozlabs.org>,
- Yangtao Li <tiny.windzz@gmail.com>, Hu Ziji <huziji@marvell.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Jesper Nilsson <jesper.nilsson@axis.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- linux-arm-kernel@axis.com, Jonathan Hunter <jonathanh@nvidia.com>,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- Kukjin Kim <kgene@kernel.org>, Pierre Ossman <pierre@ossman.eu>,
- Saiyam Doshi <saiyamdoshi.in@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- "moderated list:BROADCOM BCM2835..." <linux-rpi-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Barry Song <baohua@kernel.org>, Nicolas Pitre <nico@fluxnic.net>,
- Douglas Anderson <dianders@chromium.org>,
- Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
- Stefan Wahren <wahrenst@gmx.net>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Ricky Wu <ricky_wu@realtek.com>,
- Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
- Neil Armstrong <narmstrong@baylibre.com>, Al Cooper <alcooperx@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Fabio Estevam <festevam@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Kishon Vijay Abraham I <kishon@ti.com>,
- "open list:BROADCOM BCM281XX..." <bcm-kernel-feedback-list@broadcom.com>,
- Joel Stanley <joel@jms.id.au>, Orson Zhai <orsonzhai@gmail.com>,
- Ray Jui <rjui@broadcom.com>, Ben Dooks <ben-linux@fluff.org>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- linux-mmc <linux-mmc@vger.kernel.org>, Baolin Wang <baolin.wang7@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- "H. Nikolaus Schaller" <hns@goldelico.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Paul Cercueil <paul@crapouillou.net>, Lee Jones <lee.jones@linaro.org>,
- Marek Vasut <marex@denx.de>, Anson Huang <Anson.Huang@nxp.com>,
- Jaehoon Chung <jh80.chung@samsung.com>, Robert Richter <rrichter@marvell.com>,
- Rui Miguel Silva <rmfrfs@gmail.com>,
- "moderated list:ARM/Mediatek SoC..." <linux-mediatek@lists.infradead.org>,
- Manuel Lauss <manuel.lauss@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Stephen Boyd <swboyd@chromium.org>,
- Angelo Dureghello <angelo.dureghello@timesys.com>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Tony Prisk <linux@prisktech.co.nz>,
- Vinod Koul <vkoul@kernel.org>, Patrice Chotard <patrice.chotard@st.com>,
- Viresh Kumar <vireshk@kernel.org>, Jun Nie <jun.nie@linaro.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 7 Sep 2020 at 06:08, Chen-Yu Tsai <wens@kernel.org> wrote:
->
-> (Resent from kernel.org)
->
-> On Mon, Sep 7, 2020 at 11:57 AM Anand Moon <linux.amoon@gmail.com> wrote:
-> >
-> > Hi Martin.
-> >
-> > On Sat, 5 Sep 2020 at 03:24, Martin Blumenstingl
-> > <martin.blumenstingl@googlemail.com> wrote:
-> > >
-> > > Hi Douglas,
-> > >
-> > > On Fri, Sep 4, 2020 at 1:25 AM Douglas Anderson <dianders@chromium.org> wrote:
-> > > >
-> > > > As per discussion [1], it seems like it should be quite safe to turn
-> > > > on PROBE_PREFER_ASYNCHRONOUS for all sd/mmc host controllers.  Let's
-> > > > give it a shot.  For some discussion about this flag, see the commit
-> > > > message for commit 3d3451124f3d ("mmc: sdhci-msm: Prefer asynchronous
-> > > > probe").
-> > > can this somehow change the order in which the MMC drivers end up loading?
-> > > on Amlogic SoCs we have up to three MMC controllers, some SoCs even
-> > > use two different MMC controller IPs (and therefore two different
-> > > drivers).
-> > > so far the MMC controller naming (/dev/mmcblk* etc.) was consistent -
-> > > can that change with this patch?
-> > >
-
-Consistency has never been guaranteed. Just imagine one of the mmc
-host drivers ending up lacking some of its resources during ->probe()
-and returning -EPROBE_DEFER.
-
-UUID/PARTID has been the only way.
-
-> >
-> > We could resolve this by setting up aliases for mmc nodes in the dts.
-
-Yes, this is now possible due to the recently [1] applied patches for
-supporting mmc aliases.
-
->
-> Right now, only the dw_mmc driver family supports aliases for mmc nodes.
-
-That's "mshc" specific (related to the old multiple slot support I
-think), but not affecting the mmc aliases, which the mmc core now is
-supporting.
-
-So the mmc aliases are common for all mmc hosts. Please have a look at
-the new OF parsing in mmc_alloc_host().
-
-[...]
-
-Kind regards
-Uffe
-
-[1]
-https://patchwork.kernel.org/patch/11747669/
-https://patchwork.kernel.org/patch/11747671/
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgpQbGVhc2UgaWdub3JlIHRoaXMgc2VyaWUsIHRoZSB2ZW5kb3JzIHBhdGNoIGlzIG1pc3Np
+bmcgYW5kIHRoZSBwYW5lbCBkcml2ZXIKc3RpbGwgaGFzIHRoZSB2cmVmcmVzaC4uLgoKV2lsbCBy
+ZXBvc3QuCgpOZWlsCgpPbiAwNC8wOS8yMDIwIDE4OjE1LCBOZWlsIEFybXN0cm9uZyB3cm90ZToK
+PiBUaGlzIGFkZHMgc3VwcG9ydCBiaW5kaW5ncyBhbmQgc3VwcG9ydCBmb3IgdGhlIFRETyBUTDA3
+MFdTSDMwIFRGVC1MQ0QgcGFuZWwKPiBtb2R1bGUgc2hpcHBlZCB3aXRoIHRoZSBBbWxvZ2ljIFM0
+MDAgRGV2ZWxvcG1lbnQgS2l0Lgo+IFRoZSBwYW5lbCBoYXMgYSAxMDI0w5c2MDAgcmVzb2x1dGlv
+biBhbmQgdXNlcyAyNCBiaXQgUkdCIHBlciBwaXhlbC4KPiBJdCBwcm92aWRlcyBhIE1JUEkgRFNJ
+IGludGVyZmFjZSB0byB0aGUgaG9zdCwgYSBidWlsdC1pbiBMRUQgYmFja2xpZ2h0Cj4gYW5kIHRv
+dWNoIGNvbnRyb2xsZXIuCj4gCj4gTmVpbCBBcm1zdHJvbmcgKDIpOgo+ICAgZHQtYmluZGluZ3M6
+IGRpc3BsYXk6IHBhbmVsOiBhZGQgVERPIHRsMDcwd3NoMzAgRFNJIHBhbmVsIGJpbmRpbmdzCj4g
+ICBkcm06IHBhbmVsOiBhZGQgVERPIHRsMDcwd3NoMzAgcGFuZWwgZHJpdmVyCj4gCj4gIC4uLi9k
+aXNwbGF5L3BhbmVsL3Rkbyx0bDA3MHdzaDMwLnlhbWwgICAgICAgICB8ICA1OCArKysrCj4gIGRy
+aXZlcnMvZ3B1L2RybS9wYW5lbC9LY29uZmlnICAgICAgICAgICAgICAgICB8ICAxMSArCj4gIGRy
+aXZlcnMvZ3B1L2RybS9wYW5lbC9NYWtlZmlsZSAgICAgICAgICAgICAgICB8ICAgMSArCj4gIGRy
+aXZlcnMvZ3B1L2RybS9wYW5lbC9wYW5lbC10ZG8tdGwwNzB3c2gzMC5jICB8IDI2MyArKysrKysr
+KysrKysrKysrKysKPiAgNCBmaWxlcyBjaGFuZ2VkLCAzMzMgaW5zZXJ0aW9ucygrKQo+ICBjcmVh
+dGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkv
+cGFuZWwvdGRvLHRsMDcwd3NoMzAueWFtbAo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9n
+cHUvZHJtL3BhbmVsL3BhbmVsLXRkby10bDA3MHdzaDMwLmMKPiAKCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
+dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
+ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
