@@ -1,24 +1,24 @@
-Return-Path: <SRS0=gMfs=CN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=IdmP=CQ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BC70C43461
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 21:54:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 21CF6C43461
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 03:58:21 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9E20D2087C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2020 21:54:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9F2CC20838
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 03:58:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YEb66LE5";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="HLrVQ6tZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9E20D2087C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="i1DNDUs5";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iaW7gHqW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F2CC20838
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
@@ -26,59 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=vRRAZUVTDjOTa4Vn5+WRLI4MZgJM1fxau2o6qKoSFNs=; b=YEb66LE5343RqAput09iYPwEu
-	zloJBD5BJwMxc89KzkjhVYrbiJt+W5Vc1fRJnwmE3ifKZKSKjf0E3fwKiEbwDj8aADlQf2zyRD8Ds
-	z94W7z8dpRrZeAGDmCC3PYLSY+cjrpv9vM/A+YeCTz6EBR5pFkTepn9GOsv4C+EshT01z2JhKQ9Nf
-	tSF4WGfQOLBYW4wpQz2+qW4ODuMa42BI04WyV9zFi34SUGak/LSxqB3MarDP3HE58gBtGB3jLtDV1
-	+GWDgd7QBXStk31vJQ8hoLtVMb9auooksfol1VkQt506v9G77E5CVJ55m6WEvmx5Kjxrny7P7hHXY
-	iac9zpntg==;
+	 bh=kNFb59pTMPdxGzRWjl3PbgUuhV7QL3NK+sNkACSpwfs=; b=i1DNDUs5sRvc8dG6BVkjXM0Xp
+	wo/FOIU/jxaABV2udDVBZRKQeTDXHReQore4blxuJvaLj3WgemDI8s4m1kcDXGZ4YScN69Nw+RCzi
+	bq4BnwpqKu7Fqtx29OKhJ3TUr053mr0/hhIFx0FyHf05GEssik//nthiHKnBwGT2aWfH+vIXVoIvG
+	XV3+V7lO3dvripUDt7/HKw5XJvEGfK06bDkTPswu1EQCgtuIJVVZPtkWrd9j4o3pcw2RJwX9r/hVB
+	69JhyPRIx8gxZUs8N+WlgrB4krp8Sdgt51N+DLeRRDfSZIIZWru75U1GNe76kNnUI+x+kj4OxWca2
+	lB2bLatew==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kEJeZ-00013D-Ee; Fri, 04 Sep 2020 21:53:51 +0000
-Received: from mail-ej1-x643.google.com ([2a00:1450:4864:20::643])
+	id 1kF8Hy-0007F1-Pz; Mon, 07 Sep 2020 03:57:54 +0000
+Received: from mail-il1-x144.google.com ([2607:f8b0:4864:20::144])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kEJeU-00012J-IC; Fri, 04 Sep 2020 21:53:47 +0000
-Received: by mail-ej1-x643.google.com with SMTP id lo4so10460156ejb.8;
- Fri, 04 Sep 2020 14:53:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
+ id 1kF8Hv-0007EF-GO; Mon, 07 Sep 2020 03:57:52 +0000
+Received: by mail-il1-x144.google.com with SMTP id b17so11351112ilh.4;
+ Sun, 06 Sep 2020 20:57:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=kOwVSLuqcLcRrAi0V+2JGPo0oopvFB+z94xUxkMesDk=;
- b=HLrVQ6tZkH1co3Lk465rPx2SlpB/uLObbOIcPvHSfCBwts/RQPF5CgGMNVmaj4MK7Z
- hM8rOxprckSExPV5UPi7iGwtTkKCeM9VcF0yHBShpNJCY60GZi/vbqRtRSXqV1ACMDT8
- DAJBNlz6YQZ9CbDc/ZsqOsrIxoHl0OZTb6+iUz1GGtXvXNWF+7yt1hyGvxryzDo4yD9P
- VogwbEuV/nXAY5Ty008NE1BhuUF/CXyxYxw+Q1Lk38iuluHt+aaRVah6X/m3nqGbew/E
- imoF2TxEmXdyebzAbdOysU/Nm4D4BZ88c4km1sm+ZxUh5los1kSJlEWtNVdMaSmrcoa3
- Iqdg==
+ :cc; bh=XryGHQO6eD+7cC1Y9cwOygjqKqm4eiixaACN/ogwZBw=;
+ b=iaW7gHqWz2WpvCChxCdF73ymFxpKnYsvhLso+G/K+Xzvat4tBWmRqHvy4H+XRq+xcC
+ GzNXQNHpL8asaEQpdBokN+92R+dXlDCsH2F1LF/7yoKSXdL0nkrW5+A+2VDPzO74hnfA
+ jNtVhWXZsJoQ6VCqMUVSnL4OPdBMou/wsUmogf4xyaGOmq6+JpUf5j6Z5rsEksDTo2eG
+ z83CaAElLwGG7BIvenlmDYM2ID/CUvi7QsXxm8L9JQ4cmBhBPtV+TNo6INMymTC1Ffpl
+ JBeDHB7g5mZxkPFr6XtyqbpzrttmTbI0jo5rWXPDAqjCA27rzu6n3yeoCkW/Eff5K4Xx
+ ut5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=kOwVSLuqcLcRrAi0V+2JGPo0oopvFB+z94xUxkMesDk=;
- b=dmW1gQNyp4gW/kCvFS5UDnSRojzW4NN+PMksmLUfD5OGklz42XwQLZV8zdBgMjf/Fb
- SR/NXJ+MuRun+Nb6sEklLxefFRnqiv3XbZOnup8cKxFLj5DXwy/eAFMKNnsBDkRXdq20
- WqIj8vJKK5w+lSaq+f5wnbO31lUMGqcuhcHi0mKM7J0+KLoTsvlitwfE5DzOuU7m8l6F
- dzAiUu8h5AYcGhAcmNnkf3REoD61/ipsvILoakZYtKPZhR+tFWPhbIFzdI53n6dLQoMK
- 3ZcDHbBtzNf/jlRet4OcKhN/gxfbvDro1Z9hkhfKOcydg6/KmI3rIBJMlju0fzyLdV6D
- uQ7Q==
-X-Gm-Message-State: AOAM530gdrP7ZuLDGjdFCPASYmexmkbHzg1EqZ3CxBiLe1gbsvykcS2Y
- zaNtMev3wEnn1XxI7sU37cy4eEUvTN3UNbUHamU=
-X-Google-Smtp-Source: ABdhPJzvZdR4PefRtIkw7lE/tNoQ9kzV/q7D1Napwk+pHgOuj3FJd4E/vlUR+sMicupDfupaIit4ahWr1LQB95n65bo=
-X-Received: by 2002:a17:906:8690:: with SMTP id
- g16mr9400161ejx.187.1599256423525; 
- Fri, 04 Sep 2020 14:53:43 -0700 (PDT)
+ bh=XryGHQO6eD+7cC1Y9cwOygjqKqm4eiixaACN/ogwZBw=;
+ b=FF2mVq4ykF/zfTHZrl7Zl8E8DIDcbheVhImN7s5EsUrDnJrfszzVXAMN10k6pnrBY9
+ 1dS5HTzkIDiVuR7wrFNTdWOll1dxdEsUp6XLbI9V86+uYxIHxDlfUdADv84JZDNhrxJK
+ JhV0l6o5tSflmbmt/Fxu+bSbb/wCrDKR7chWAPtSiyvFVP+H2XdG+owpH27H/52J+njG
+ doWOVMgKH4d/lokvprwlV8qhuikt9UaGqchGLj+RIN/pvnJXmKnMT/Bo1wrNdMlK5LPS
+ dQdx5ZTVmFc0+AtjncV+S/s21+GzcShDjvAlBPgJzn0c+8CqiphW1ol98eBhL/4Iuln6
+ YL1g==
+X-Gm-Message-State: AOAM530F0SQdSNID40J9pSFc42Yc0nGsNsCkMUsRsu3hqFFIB8itx2jY
+ 4oAGFjNBVGFZ6j8MgmWgZBjPju2tRvtosB1xW8U=
+X-Google-Smtp-Source: ABdhPJz1j6fgFvZpCoqcXn+9m88ozc3Ql8RWA8t8El+lYPuH47iO0JlrV3Be9/8IIqCI+qgjymaiLIvmnlR3DB+JLUQ=
+X-Received: by 2002:a92:4184:: with SMTP id o126mr18480584ila.6.1599451067513; 
+ Sun, 06 Sep 2020 20:57:47 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200903232441.2694866-1-dianders@chromium.org>
-In-Reply-To: <20200903232441.2694866-1-dianders@chromium.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 4 Sep 2020 23:53:32 +0200
-Message-ID: <CAFBinCBcbEpHX7eUbznuDo6oKO_9JrOK2w+Bx1=e-bwuS609bw@mail.gmail.com>
+ <CAFBinCBcbEpHX7eUbznuDo6oKO_9JrOK2w+Bx1=e-bwuS609bw@mail.gmail.com>
+In-Reply-To: <CAFBinCBcbEpHX7eUbznuDo6oKO_9JrOK2w+Bx1=e-bwuS609bw@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Mon, 7 Sep 2020 09:27:36 +0530
+Message-ID: <CANAwSgTv2ZAvPKG2aChs8NwZL32TF+MtcaFbehQWWSf_TFXF6A@mail.gmail.com>
 Subject: Re: [PATCH 0/6] mmc: Set PROBE_PREFER_ASYNCHRONOUS for all host
  drivers
-To: Douglas Anderson <dianders@chromium.org>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200904_175346_655706_FA47772D 
-X-CRM114-Status: GOOD (  16.18  )
+X-CRM114-CacheID: sfid-20200906_235751_570625_978A9392 
+X-CRM114-Status: GOOD (  22.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,13 +97,15 @@ Cc: Heiko Stuebner <heiko@sntech.de>,
  Kevin Hilman <khilman@baylibre.com>, Michal Simek <michal.simek@xilinx.com>,
  Ludovic Desroches <ludovic.desroches@microchip.com>,
  NXP Linux Team <linux-imx@nxp.com>, linux-tegra@vger.kernel.org,
- Sascha Hauer <s.hauer@pengutronix.de>, swboyd@chromium.org,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
  Lars Persson <lars.persson@axis.com>, linux-omap@vger.kernel.org,
  Chaotian Jing <chaotian.jing@mediatek.com>,
  Scott Branden <sbranden@broadcom.com>, Andrew Jeffery <andrew@aj.id.au>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Linux Kernel <linux-kernel@vger.kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
  Eugen Hristev <eugen.hristev@microchip.com>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  linux-aspeed@lists.ozlabs.org, Yangtao Li <tiny.windzz@gmail.com>,
@@ -115,9 +116,10 @@ Cc: Heiko Stuebner <heiko@sntech.de>,
  linux-rockchip@lists.infradead.org, Kukjin Kim <kgene@kernel.org>,
  Pierre Ossman <pierre@ossman.eu>, Saiyam Doshi <saiyamdoshi.in@gmail.com>,
  Maxime Ripard <mripard@kernel.org>, linux-rpi-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
  Barry Song <baohua@kernel.org>, Nicolas Pitre <nico@fluxnic.net>,
- Patrice Chotard <patrice.chotard@st.com>,
+ Douglas Anderson <dianders@chromium.org>,
  Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
  Stefan Wahren <wahrenst@gmx.net>,
  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
@@ -136,45 +138,55 @@ Cc: Heiko Stuebner <heiko@sntech.de>,
  Baolin Wang <baolin.wang7@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
  =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
  "H. Nikolaus Schaller" <hns@goldelico.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Paul Cercueil <paul@crapouillou.net>,
- Lee Jones <lee.jones@linaro.org>, Marek Vasut <marex@denx.de>,
- Anson Huang <Anson.Huang@nxp.com>, Jaehoon Chung <jh80.chung@samsung.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Paul Cercueil <paul@crapouillou.net>, Lee Jones <lee.jones@linaro.org>,
+ Marek Vasut <marex@denx.de>, Anson Huang <Anson.Huang@nxp.com>,
+ Jaehoon Chung <jh80.chung@samsung.com>, Robert Richter <rrichter@marvell.com>,
  Rui Miguel Silva <rmfrfs@gmail.com>, linux-mediatek@lists.infradead.org,
  Manuel Lauss <manuel.lauss@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ Matthias Brugger <matthias.bgg@gmail.com>, swboyd@chromium.org,
  Angelo Dureghello <angelo.dureghello@timesys.com>,
  Lars Povlsen <lars.povlsen@microchip.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Tony Prisk <linux@prisktech.co.nz>, Vinod Koul <vkoul@kernel.org>,
- Robert Richter <rrichter@marvell.com>, Viresh Kumar <vireshk@kernel.org>,
- Jun Nie <jun.nie@linaro.org>
+ Adrian Hunter <adrian.hunter@intel.com>, Tony Prisk <linux@prisktech.co.nz>,
+ Vinod Koul <vkoul@kernel.org>, Patrice Chotard <patrice.chotard@st.com>,
+ Viresh Kumar <vireshk@kernel.org>, Jun Nie <jun.nie@linaro.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Douglas,
+Hi Martin.
 
-On Fri, Sep 4, 2020 at 1:25 AM Douglas Anderson <dianders@chromium.org> wrote:
+On Sat, 5 Sep 2020 at 03:24, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
-> As per discussion [1], it seems like it should be quite safe to turn
-> on PROBE_PREFER_ASYNCHRONOUS for all sd/mmc host controllers.  Let's
-> give it a shot.  For some discussion about this flag, see the commit
-> message for commit 3d3451124f3d ("mmc: sdhci-msm: Prefer asynchronous
-> probe").
-can this somehow change the order in which the MMC drivers end up loading?
-on Amlogic SoCs we have up to three MMC controllers, some SoCs even
-use two different MMC controller IPs (and therefore two different
-drivers).
-so far the MMC controller naming (/dev/mmcblk* etc.) was consistent -
-can that change with this patch?
+> Hi Douglas,
+>
+> On Fri, Sep 4, 2020 at 1:25 AM Douglas Anderson <dianders@chromium.org> wrote:
+> >
+> > As per discussion [1], it seems like it should be quite safe to turn
+> > on PROBE_PREFER_ASYNCHRONOUS for all sd/mmc host controllers.  Let's
+> > give it a shot.  For some discussion about this flag, see the commit
+> > message for commit 3d3451124f3d ("mmc: sdhci-msm: Prefer asynchronous
+> > probe").
+> can this somehow change the order in which the MMC drivers end up loading?
+> on Amlogic SoCs we have up to three MMC controllers, some SoCs even
+> use two different MMC controller IPs (and therefore two different
+> drivers).
+> so far the MMC controller naming (/dev/mmcblk* etc.) was consistent -
+> can that change with this patch?
+>
 
-apologies if this has been discussed and answered anywhere
+We could resolve this by setting up aliases for mmc nodes in the dts.
 
+> apologies if this has been discussed and answered anywhere
+>
+>
+> Best regards,
+> Martin
 
-Best regards,
-Martin
+Best regards
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
