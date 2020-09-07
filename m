@@ -2,82 +2,147 @@ Return-Path: <SRS0=IdmP=CQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-13.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38DFFC43461
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 12:29:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BBF30C43461
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 13:25:03 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CB4A1206E6
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 12:29:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ED2E9207C3
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 13:25:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="0jhkuTwW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uQQtOtMz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CB4A1206E6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eiygiR3T";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TXb+aYYh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED2E9207C3
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=li4SvazlmDZHue3StQ21yjFTlFUDvfH5G+lQF+l6zrY=; b=0jhkuTwWhLkcjbI3RZR6VXIE7
-	WCx/B1LaC98N3UoAL8AtpD3ERgcVfT6SaMwM1An+X3/NQzamSOk7Tjpj0YOMC+opVrIo/g5dFSKOk
-	Ldes/ZQOr+J1YPDJs7MfybhZovDcvAbXvspPMUZF75Fpmsrz2n7o0fFVWsT3QyZ36KiIxl/3O+w8D
-	7rWpES9RMXIq+n+VHZGCwMGZcXvr5MApVO1UqqWP8UcGEQOHHd2NkcecxpMjYAriyb3rtPRZf0fTw
-	M62niT8ACV8881UroS4wAlcJ1uWWM5QZr9Upvc9q0Ybwyp9RJRht5kKdk/vg8rn7v718BdKVGFZ4O
-	EXk7gSHJg==;
+	 bh=e/nAl2EX793NhevWXNXY+I+6/G2O3RabUNE+bGDpZmg=; b=eiygiR3TfVXw8BbRibQ0BwwoT
+	zLxDKpo43Gk4jqsPmmiuRhLLor39iAs703XSCSfDHHBoZZTru3jr6+NuRJVEJjRIGHsyrq814VhIV
+	rj7XsVy9gsFbMNHL1mXSo4fUw/2D0IvyoVMHwxp4W5bA1+5G5xhOYxQdzFZwOwwH5zbhhFePigymE
+	X/QFEuvB5bN7fTNm5PYLsfxnJBZuePJ3vWWJsyIkgP+wAWjoVTQtqLLf5oxuA34TtUNdeJA58cg2n
+	8Kv/drkxog5Y2NFA2fVukeqG2ykkXtktAXoQUIwKveiI8rGyG3HdrCAKfsG2UlMpxHi1oV5A6k0Fi
+	RdreAqPkg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kFGGY-0002mg-2Q; Mon, 07 Sep 2020 12:28:58 +0000
-Received: from mail-ua1-x944.google.com ([2607:f8b0:4864:20::944])
+	id 1kFH8f-0000wf-BP; Mon, 07 Sep 2020 13:24:53 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFGGR-0002kC-Cx
- for linux-amlogic@lists.infradead.org; Mon, 07 Sep 2020 12:28:54 +0000
-Received: by mail-ua1-x944.google.com with SMTP id v24so4107149uaj.7
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Sep 2020 05:28:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8iVJ2Y8DEp3E0XkrRL3vpRQ7yO+SYLZGU2xwg3pZn7w=;
- b=uQQtOtMz9h++aYiUpsU46MiJXh7DHCcguAo/zJU+YS89m53bIsw6fdvtT/tTOunUyR
- JJBiFLggFSuqeEl8r29jqfLHoAxfIBpkSm4q4BV1wLUnhcEg5BhKtw4yN9E3KWnlQi5Q
- rCpJseHbu1nV0RKPbba4IW2CSH1ZbVbSELCGxUJCzfawo7q5fo02iJXwGc7JPE8tkB4q
- RNrmFl7UapRVJ4X+zZHU2t2qQDe2KMqFrTt1qU1mQ/xsI6rXnxItRXjcEJnYkUO0DNyF
- eGUgMMDfflC6QbVhVustSwl2/RbNWfSaweZxAisnFopk4/vjCZaqjr03ExUXBskH+JSu
- 107Q==
+ id 1kFH8c-0000vL-D2
+ for linux-amlogic@lists.infradead.org; Mon, 07 Sep 2020 13:24:51 +0000
+Received: by mail-wm1-x341.google.com with SMTP id q9so14390396wmj.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Sep 2020 06:24:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=IKRTwDbVsmXTAzdxN3hyZaGfI9/6c9DFQDx7XjqaewI=;
+ b=TXb+aYYh59B/Qapt3XC50g3Rw9De+LPI+noQ/CYGXFkrilfLCXITqKddUtJRMJAmVt
+ ct+uLViTc7SFC65mGLgKLwIkGsZhplGtAXDJbx2RdfwW/3HM6KcF1limKu+qUQqxRSMJ
+ fPHUJ+q3X3Gmz6z6Ha00QwIExgpffTYLBJQLehC0ggmymMUsXbGpCxNdGFrwiZfn1jjc
+ rvAHXxfw6Z1nhOZP1a08NRKXJKQfr/nEUsYd9Y8fuvRbEHm+rahjaHDcRDBonQNGL0GY
+ xPEFiDWcDJ6QrVj7eoxL/XOA7UXnSp4fYIxD1EhWVjpdJphk7sK+Z36zCessZ0WHvO6g
+ awpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8iVJ2Y8DEp3E0XkrRL3vpRQ7yO+SYLZGU2xwg3pZn7w=;
- b=uSfpYRJEw//0q5J1J7Abo19wiSgtDR/mN2FchuscNAdD82Pg1asRD5TYYsJmY9dSKf
- TtpE4pMejobAJgXVPpnEMmrNK/bCVdUtVnMoxhyzCUIClR426bkIft6p235JdklqtbsG
- kSIHdnZ1KI+mxn2jE+7olX3gYHL4iYh96+iC8Uxe1kqGkthaAtEBw4Mpl33i8WeeJvtV
- 79pnFIVZauKS9suwaI4pR8fZ/pjETgEG7P++D7vB7VdAclahlp2E9ZBl0E+IqlKO0W4m
- iib/GeNfFGnr0M+2llVnYl5Q8uNKdBwNDbov2abfIg2g2MuNC/qkWiHUh2cqUDPgiAKY
- Xw/w==
-X-Gm-Message-State: AOAM532te4Qhml8NViOga7hi88pEycRgolnfKkCji7Ir+TMgLNcANEu7
- 33x7Z5ueSP5J0UK4FbEuROs54qMMZHG+kYCYWBQmog==
-X-Google-Smtp-Source: ABdhPJy6I2uvtSFaZhO3P4JEWmrE8eH+U+1Xn5WxmNVFnMTl2QPXi6bmEQ1vz+4fPNN/0nIdBxJ7hVghl+1FhXG+hRM=
-X-Received: by 2002:ab0:4041:: with SMTP id h59mr8011331uad.19.1599481728409; 
- Mon, 07 Sep 2020 05:28:48 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=IKRTwDbVsmXTAzdxN3hyZaGfI9/6c9DFQDx7XjqaewI=;
+ b=TKrVpplI1EItwGxkXoacKe2Ei2wl8UVut03uqfJ3cjs3wD1I6jNAjcjqrj1jaNaM3V
+ dVEn7IUlXgmY1TUUfGiyxEfYbURmSKaK3nBYebReFWIAgLzEF3ZoiVlBWHSOiaf3w5dI
+ /iZWp+4cL4X4f5pAZIPV/SrAow3qcObcZEp/HdPlmk692mtgxC//AoaZFeb5tbvd5YFa
+ gVxABpoUoR0gwn+ie/nN08FX+f+4Lcq7GOuXlZfaFjbJMTtQahOGS9qNQuS4SDPnnIx9
+ z1IQAR5g5gsdHA6RHqfFY16rvD2U6Vu1glvbMyQFsJ2Kx+/owlLp79r3cXhPEgs2ObOW
+ bTSQ==
+X-Gm-Message-State: AOAM532qg6dR9EaD+13ebrXb9j5Q4Rs35Aj/Y1udlv4n1ouC/YJXIZoA
+ aNZOXOd14I58C3fqtzpXvzNHvA==
+X-Google-Smtp-Source: ABdhPJxIvLhOQcVP0q0sW58n8NnEBJVdj/3cTCoVYv0gNJtoR3vlsfB8mDNHwWBx7PirCrvIPTbFow==
+X-Received: by 2002:a7b:cf30:: with SMTP id m16mr20675293wmg.0.1599485089059; 
+ Mon, 07 Sep 2020 06:24:49 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac?
+ ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+ by smtp.gmail.com with ESMTPSA id v3sm26967328wmh.6.2020.09.07.06.24.47
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 07 Sep 2020 06:24:48 -0700 (PDT)
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: panel: add TDO tl070wsh30
+ DSI panel bindings
+To: Sam Ravnborg <sam@ravnborg.org>
+References: <20200907111027.21933-1-narmstrong@baylibre.com>
+ <20200907111027.21933-3-narmstrong@baylibre.com>
+ <20200907114552.GA526406@ravnborg.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <358ee0c3-fe1c-b9b6-9ed8-086f9d14afd9@baylibre.com>
+Date: Mon, 7 Sep 2020 15:24:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20200903232441.2694866-1-dianders@chromium.org>
-In-Reply-To: <20200903232441.2694866-1-dianders@chromium.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 7 Sep 2020 14:28:12 +0200
-Message-ID: <CAPDyKFqTjFUaqx6phBGdPuv6hz8dsevsO_UhoOhFT+oOFrhFjA@mail.gmail.com>
-Subject: Re: [PATCH 0/6] mmc: Set PROBE_PREFER_ASYNCHRONOUS for all host
- drivers
-To: Douglas Anderson <dianders@chromium.org>
+In-Reply-To: <20200907114552.GA526406@ravnborg.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200907_082851_643404_46D71543 
-X-CRM114-Status: GOOD (  30.14  )
+X-CRM114-CacheID: sfid-20200907_092450_570176_2D07931F 
+X-CRM114-Status: GOOD (  20.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,240 +154,111 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Heiko Stuebner <heiko@sntech.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linus.walleij@linaro.org>,
- Peter Ujfalusi <peter.ujfalusi@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
- linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
- Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>,
- Michal Simek <michal.simek@xilinx.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- NXP Linux Team <linux-imx@nxp.com>, linux-tegra <linux-tegra@vger.kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Stephen Boyd <swboyd@chromium.org>,
- Lars Persson <lars.persson@axis.com>, linux-omap <linux-omap@vger.kernel.org>,
- Chaotian Jing <chaotian.jing@mediatek.com>,
- Scott Branden <sbranden@broadcom.com>, Andrew Jeffery <andrew@aj.id.au>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Eugen Hristev <eugen.hristev@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed <linux-aspeed@lists.ozlabs.org>,
- Yangtao Li <tiny.windzz@gmail.com>, Hu Ziji <huziji@marvell.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Jesper Nilsson <jesper.nilsson@axis.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- linux-arm-kernel@axis.com, Jonathan Hunter <jonathanh@nvidia.com>,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- Kukjin Kim <kgene@kernel.org>, Pierre Ossman <pierre@ossman.eu>,
- Saiyam Doshi <saiyamdoshi.in@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Maxime Ripard <mripard@kernel.org>,
- "moderated list:BROADCOM BCM2835..." <linux-rpi-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Barry Song <baohua@kernel.org>, Nicolas Pitre <nico@fluxnic.net>,
- Patrice Chotard <patrice.chotard@st.com>,
- Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
- Stefan Wahren <wahrenst@gmx.net>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Ricky Wu <ricky_wu@realtek.com>,
- Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
- Neil Armstrong <narmstrong@baylibre.com>, Al Cooper <alcooperx@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Fabio Estevam <festevam@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Kishon Vijay Abraham I <kishon@ti.com>,
- Chen-Yu Tsai <wens@csie.org>,
- BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
- Joel Stanley <joel@jms.id.au>, Orson Zhai <orsonzhai@gmail.com>,
- Ray Jui <rjui@broadcom.com>, Ben Dooks <ben-linux@fluff.org>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Baolin Wang <baolin.wang7@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- "H. Nikolaus Schaller" <hns@goldelico.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Paul Cercueil <paul@crapouillou.net>,
- Lee Jones <lee.jones@linaro.org>, Marek Vasut <marex@denx.de>,
- Anson Huang <Anson.Huang@nxp.com>, Jaehoon Chung <jh80.chung@samsung.com>,
- Rui Miguel Silva <rmfrfs@gmail.com>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- Manuel Lauss <manuel.lauss@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
- Angelo Dureghello <angelo.dureghello@timesys.com>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Tony Prisk <linux@prisktech.co.nz>, Vinod Koul <vkoul@kernel.org>,
- Robert Richter <rrichter@marvell.com>, Viresh Kumar <vireshk@kernel.org>,
- Jun Nie <jun.nie@linaro.org>
+Cc: devicetree@vger.kernel.org, thierry.reding@gmail.com,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 4 Sep 2020 at 01:25, Douglas Anderson <dianders@chromium.org> wrote:
->
-> As per discussion [1], it seems like it should be quite safe to turn
-> on PROBE_PREFER_ASYNCHRONOUS for all sd/mmc host controllers.  Let's
-> give it a shot.  For some discussion about this flag, see the commit
-> message for commit 3d3451124f3d ("mmc: sdhci-msm: Prefer asynchronous
-> probe").
->
-> I've broken this series into chunks based on LTS kernel releases to
-> attempt to make it easier if someone wanted to cherry-pick it to an
-> older kernel.  While these cherry-picks won't be conflict free, there
-> should only be trivial context conflicts and no problems with drivers
-> that are totally missing.  This is a bit of a compromise between a
-> 1-big patch and a many-part patch series.
->
-> I have only tested this on a rk3399-kevin (sdhci-of-arasan) and a
-> rk3288-veyron (dw_mmc-rockchip) device and only lightly.  If this
-> patch causes anyone problems those drivers should be marked with
-> PROBE_FORCE_SYNCHRONOUS, debugged, and then go back to prefer
-> asynchronous.  Any problems are likely just a hidden bug that has been
-> exposed by this change.
->
-> NOTE: in theory, it'd be nice if there was a KConfig option that we
-> could flip that would turn on async probe everywhere (except for those
-> that opt out by adding PROBE_FORCE_SYNCHRONOUS).  My hope is that by
-> adding this flag in more places it will become clear that this flag is
-> working reliably and easier to move over when we're ready.
->
-> While coccinelle is too difficult for my feeble brain, I managed to
-> whip up a pretty terrible python script to help with this.  For your
-> edification:
->
-> import os
-> import sys
-> import re
->
-> for filename in os.listdir("."):
->     found_plat = False
->     found_driver = False
->     output = []
->     for line in open(filename, "r").readlines():
->         output.append(line)
->
->         if "struct platform_driver" in line:
->             found_plat = True
->         if found_plat and re.search(r"\t\.driver\s*=\s*{", line):
->             found_driver = True
->             found_plat = False
->         mo = re.search(r"(\s*)\.name(\s*)=", line)
->         if found_driver and mo:
->             if mo.group(2) == " ":
->                 space = " "
->             elif mo.group(2) == "\t":
->                 # Best we can do
->                 space = " "
->             elif mo.group(2).startswith("\t"):
->                 # Guess that removing one tab is right
->                 space = mo.group(2)[1:]
->             else:
->                 # Guess it's all spaces
->                 space = mo.group(2)[7:] + " "
->
->             output.append("%s.probe_type%s= PROBE_PREFER_ASYNCHRONOUS,\n" % (mo.group(1), space))
->             found_driver = False
->
->     open(filename, "w").write("".join(output))
->
-> [1] https://lore.kernel.org/r/CAPDyKFq31bucJhP9hp1HSqh-qM2uNGHgDoyQpmbJf00nEf_T4Q@mail.gmail.com/
->
->
-> Douglas Anderson (6):
->   mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that existed in v4.4
->   mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that existed in v4.9
->   mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that existed in v4.14
->   mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that existed in v4.19
->   mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that existed in v5.4
->   mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that are newer than 5.4
->
->  drivers/mmc/host/alcor.c                      | 1 +
->  drivers/mmc/host/android-goldfish.c           | 1 +
->  drivers/mmc/host/atmel-mci.c                  | 1 +
->  drivers/mmc/host/au1xmmc.c                    | 1 +
->  drivers/mmc/host/bcm2835.c                    | 1 +
->  drivers/mmc/host/cavium-octeon.c              | 1 +
->  drivers/mmc/host/davinci_mmc.c                | 1 +
->  drivers/mmc/host/dw_mmc-bluefield.c           | 1 +
->  drivers/mmc/host/dw_mmc-exynos.c              | 1 +
->  drivers/mmc/host/dw_mmc-hi3798cv200.c         | 1 +
->  drivers/mmc/host/dw_mmc-k3.c                  | 1 +
->  drivers/mmc/host/dw_mmc-pltfm.c               | 1 +
->  drivers/mmc/host/dw_mmc-rockchip.c            | 1 +
->  drivers/mmc/host/dw_mmc-zx.c                  | 1 +
->  drivers/mmc/host/jz4740_mmc.c                 | 1 +
->  drivers/mmc/host/meson-gx-mmc.c               | 1 +
->  drivers/mmc/host/meson-mx-sdhc-mmc.c          | 1 +
->  drivers/mmc/host/meson-mx-sdio.c              | 1 +
->  drivers/mmc/host/moxart-mmc.c                 | 1 +
->  drivers/mmc/host/mtk-sd.c                     | 1 +
->  drivers/mmc/host/mvsdio.c                     | 1 +
->  drivers/mmc/host/mxcmmc.c                     | 1 +
->  drivers/mmc/host/mxs-mmc.c                    | 1 +
->  drivers/mmc/host/omap.c                       | 1 +
->  drivers/mmc/host/omap_hsmmc.c                 | 1 +
->  drivers/mmc/host/owl-mmc.c                    | 1 +
->  drivers/mmc/host/pxamci.c                     | 1 +
->  drivers/mmc/host/renesas_sdhi_internal_dmac.c | 1 +
->  drivers/mmc/host/renesas_sdhi_sys_dmac.c      | 1 +
->  drivers/mmc/host/rtsx_pci_sdmmc.c             | 1 +
->  drivers/mmc/host/rtsx_usb_sdmmc.c             | 1 +
->  drivers/mmc/host/s3cmci.c                     | 1 +
->  drivers/mmc/host/sdhci-acpi.c                 | 1 +
->  drivers/mmc/host/sdhci-bcm-kona.c             | 1 +
->  drivers/mmc/host/sdhci-brcmstb.c              | 1 +
->  drivers/mmc/host/sdhci-cadence.c              | 1 +
->  drivers/mmc/host/sdhci-cns3xxx.c              | 1 +
->  drivers/mmc/host/sdhci-dove.c                 | 1 +
->  drivers/mmc/host/sdhci-esdhc-imx.c            | 1 +
->  drivers/mmc/host/sdhci-esdhc-mcf.c            | 1 +
->  drivers/mmc/host/sdhci-iproc.c                | 1 +
->  drivers/mmc/host/sdhci-milbeaut.c             | 1 +
->  drivers/mmc/host/sdhci-of-arasan.c            | 1 +
->  drivers/mmc/host/sdhci-of-aspeed.c            | 2 ++
->  drivers/mmc/host/sdhci-of-at91.c              | 1 +
->  drivers/mmc/host/sdhci-of-dwcmshc.c           | 1 +
->  drivers/mmc/host/sdhci-of-esdhc.c             | 1 +
->  drivers/mmc/host/sdhci-of-hlwd.c              | 1 +
->  drivers/mmc/host/sdhci-of-sparx5.c            | 1 +
->  drivers/mmc/host/sdhci-omap.c                 | 1 +
->  drivers/mmc/host/sdhci-pic32.c                | 1 +
->  drivers/mmc/host/sdhci-pxav2.c                | 1 +
->  drivers/mmc/host/sdhci-pxav3.c                | 1 +
->  drivers/mmc/host/sdhci-s3c.c                  | 1 +
->  drivers/mmc/host/sdhci-sirf.c                 | 1 +
->  drivers/mmc/host/sdhci-spear.c                | 1 +
->  drivers/mmc/host/sdhci-sprd.c                 | 1 +
->  drivers/mmc/host/sdhci-st.c                   | 1 +
->  drivers/mmc/host/sdhci-tegra.c                | 1 +
->  drivers/mmc/host/sdhci-xenon.c                | 1 +
->  drivers/mmc/host/sdhci_am654.c                | 1 +
->  drivers/mmc/host/sdhci_f_sdh30.c              | 1 +
->  drivers/mmc/host/sh_mmcif.c                   | 1 +
->  drivers/mmc/host/sunxi-mmc.c                  | 1 +
->  drivers/mmc/host/tmio_mmc.c                   | 1 +
->  drivers/mmc/host/uniphier-sd.c                | 1 +
->  drivers/mmc/host/usdhi6rol0.c                 | 1 +
->  drivers/mmc/host/wbsd.c                       | 1 +
->  drivers/mmc/host/wmt-sdmmc.c                  | 1 +
->  69 files changed, 70 insertions(+)
->
-> --
-> 2.28.0.526.ge36021eeef-goog
->
+Hi,
 
-An interesting idea about a patch per LTS release. I think it makes
-perfect sense in this type of case.
+On 07/09/2020 13:45, Sam Ravnborg wrote:
+> Hi Neil.
+> 
+> On Mon, Sep 07, 2020 at 01:10:26PM +0200, Neil Armstrong wrote:
+>> This add the bindings for the 1024*600 tl070wsh30 DSI panel.
+> 
+> The binding looks like a panel-simple-dsi.yaml candidate.
+> Only differen is enable-gpios versus reset-gpios
 
-Let's give this a shot in next and see how it goes. So, applied for
-next, thanks!
+This is the only difference, the panel only has a reset signal and no
+enable signal.
 
-Kind regards
-Uffe
+But I can add a reset-gpios to panel-simple-dsi.yaml, would it be ok ?
+
+Neil
+
+> 
+> Could you check if we can use panel-simple-dsi-yaml.
+> 
+> 	Sam
+> 
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  .../display/panel/tdo,tl070wsh30.yaml         | 58 +++++++++++++++++++
+>>  1 file changed, 58 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/display/panel/tdo,tl070wsh30.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/tdo,tl070wsh30.yaml b/Documentation/devicetree/bindings/display/panel/tdo,tl070wsh30.yaml
+>> new file mode 100644
+>> index 000000000000..20f4fdedfcb0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/panel/tdo,tl070wsh30.yaml
+>> @@ -0,0 +1,58 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>> +# Copyright 2020 BayLibre, SAS
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/panel/tdo,tl070wsh30.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TDO TL070WSH30 DSI panel
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <narmstrong@baylibre.com>
+>> +
+>> +allOf:
+>> +  - $ref: panel-common.yaml#
+>> +
+>> +properties:
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - tdo,tl070wsh30
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: DSI virtual channel
+>> +
+>> +  backlight: true
+>> +  reset-gpios: true
+>> +  port: true
+>> +  power-supply: true
+>> +
+>> +additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - power-supply
+>> +  - reset-gpios
+>> +  - port
+>> +  - reg
+>> +
+>> +examples:
+>> +  - |
+>> +    dsi {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +      panel@0 {
+>> +        compatible = "tdo,tl070wsh30";
+>> +        reg = <0>;
+>> +        power-supply = <&vcc_lcd_reg>;
+>> +        backlight = <&panel_backlight>;
+>> +        reset-gpios = <&gpio_reset>;
+>> +
+>> +        port {
+>> +          panel: endpoint {
+>> +            remote-endpoint = <&mipi_dsi_out>;
+>> +          };
+>> +        };
+>> +      };
+>> +    };
+>> -- 
+>> 2.22.0
+
 
 _______________________________________________
 linux-amlogic mailing list
