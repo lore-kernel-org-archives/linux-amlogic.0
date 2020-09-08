@@ -2,22 +2,23 @@ Return-Path: <SRS0=WuYP=CR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E908FC2BBD0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 07:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11F7BC433E2
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 07:54:40 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 975F420C09
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 07:54:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B569E20C09
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 07:54:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BPESFhrW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yj9Ik1nd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 975F420C09
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GmcXjJV+";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="MxNjfFU5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B569E20C09
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +27,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=y/MyG6jPg5F3RG0bgIdp0dnWjpm1zI9P3Z0Xsf/5p9I=; b=BPESFhrWt57mFvecfGCTyZbaf
-	6OdEpVA/amoVRHd2qHHsxLdnfSUkfyK/vxjojpv2HC61vMgHEyENgua1ZfEeAyLLbv0c6VdF5MSJH
-	tT2rHr2TM9t9s47JZ+mqZAexGqVP3gGRbtbxJCGwrMZLwmFIC7AQgdnuTBfp5Hy2e6nbYRwoNXesz
-	kMNkuc8Tysxi7le1OJiDlK2QzsMjaMGubijJzK8Dj/Z0O13pc5Ap9oUfNO/qk4Gm4bd+/44IS/rim
-	uVkibaymOIVAmj1H+Z79lH+cKybjSvpNO6v9YxxjZZfd4mTkxUH2zdE8ZpWXMQe5+9Qip5BuQDzPX
-	2Ne3BWvcg==;
+	 bh=/WM1fX57xrfJjX0f1V6dGoJ/ek0k6VclXKv8gkf9I7A=; b=GmcXjJV+dDroERHinf04Mwh6G
+	58Z97WbxnKbHDBiqqmoiDdPGOW9uK9DFXKz8KRWV0qtcXw8nhl+YBvbV67tcUw2vIVPO6UPr4MobM
+	vSZaa8P0WB1dgfpuIuIDC7uO1lzE0wzLDVFC7zQoOMxUaN+TxJr2a1tSllqUWFx+wPrxBuYuMF7b7
+	T1vMbouwKy68wAg+mlDNhHnchWZMsHiS9uElwfnraY7X/AtLosswoJG4F16OIqNQVKl1qvP6AOivc
+	4Xq/hsNtkFbPnBDhfyH4tEXzQyaQhkiHFdcpsUA2ImBEwC8lDZmNEvPxVIxTUZsjw+aTxjr5haG0J
+	MQWzmrJgQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kFYSX-0007MB-3M; Tue, 08 Sep 2020 07:54:33 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1kFYSY-0007N2-7l; Tue, 08 Sep 2020 07:54:34 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFYST-0007KY-Hd
- for linux-amlogic@lists.infradead.org; Tue, 08 Sep 2020 07:54:31 +0000
-Received: by mail-wm1-x343.google.com with SMTP id l9so16152335wme.3
- for <linux-amlogic@lists.infradead.org>; Tue, 08 Sep 2020 00:54:29 -0700 (PDT)
+ id 1kFYSV-0007L4-7j
+ for linux-amlogic@lists.infradead.org; Tue, 08 Sep 2020 07:54:32 +0000
+Received: by mail-wm1-x331.google.com with SMTP id c19so13748126wmd.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 08 Sep 2020 00:54:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=AaJv1mu5ukB/CIcMyJjiUkroua19/SVkAvuVAHfagew=;
- b=yj9Ik1ndq3jW04GwKrFOI8D/lPSZVkGcU3uzyMVspnynRbQKdFBJN4BFNiIapGRwnR
- vZYjfZ0jXsdmJWS2xNWLvFAWOvA/GkMFUOAaaTEjv4YuNA7igfTuaSL5w/Sx2MUcPs1w
- 9pykHkjdFNrAQGds+Fr60lNduf7ESa5KsiloGG7zLHXEXWpDE2FP7wi44xCKbV+GuJhI
- Haax/tWmOAxnKiL294A24g/1CrLCj+/h9S9lPochIfNWS6onPfaA+hmH/Ua5nIQz7BG3
- mCQZSq/T9x96bj+Wrq7sDzE8UmwxlOhooZ9aKAii8BJ36d4YcmdyiDE/E869lL1S5Vt7
- txiQ==
+ bh=/f+R+j91elfFPYf4zfHO7Bzdv43BgZ5CODvbZ0Vzlb0=;
+ b=MxNjfFU5x28KJlZdrPqrtuP/t/v6fpMsOEGKTByYw9wYcIW0u58tAcThwi5E3fhxqB
+ h21f/DHXzKl4OvbTBs3aSplhH2HVm6KfAHFRK5SZUmHpJR1dta3Aj0gP5K5CbBkPqK9z
+ 0x2pd1lMp81JR0y7njeN0eyfuVcHKkSKMFviptB0N2mLXjOWQ4tpYGJGg9BgWrEGv740
+ Q1lfR/LQhdaE7+f41hH2B4x8Zm9GU2tWmojTn1qlBm3qzwcRnyR9ySDG+xvRyZ6DtsDw
+ vxtKdPOFunXKV4iEh70MZOt8aCBPi89cWCv7xWN6VH0CoLMosxpvCCF4nyG2bA2GK5iM
+ vAPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=AaJv1mu5ukB/CIcMyJjiUkroua19/SVkAvuVAHfagew=;
- b=pAwHUCNc1OdnYxfKpwlYURZRYkLgWUpNqSrvJfNFZfTJN4PyxTiKDrWglm038PwOfv
- TPjtOR7gHMsO81ITGCxAoIK+I+eN266oeTpaD0EWzo/3henQmvKCpLnoLuUwXOpMLeVp
- pNFRtGqg46ZlczZ3Am8WUDZboojGXeptTNXy7hQ+iQjF9Gg1+AjLbac0GtsIuAnKvcKl
- gebPPmvdwo6dB+fLyEEoA7PAJrrOJhMvTCnzkyoelMfKAsFcAljymnc5JpHtrqNa5wBP
- rKPlSMRXRMSwL/qTkKSIWQW1WsdwRcA+V9jfFB4ab96AOQQwxfpLYYsY9qy0pg/X5h1n
- 8ndw==
-X-Gm-Message-State: AOAM5337iGNiw6OlhafGH21NPCpRto7Z7f+9eaR/743cf1oyQlRI8sX2
- uQABqqPWgZXKaRAyFZDsbhyv5Q==
-X-Google-Smtp-Source: ABdhPJzELndZXOBjcc+iB86Na+d7gpW0eUl7Xb0Mcmpwvh1mxirZqv7irrBgH24N13Nm09Gk9voTNQ==
-X-Received: by 2002:a1c:7215:: with SMTP id n21mr3241141wmc.154.1599551668340; 
- Tue, 08 Sep 2020 00:54:28 -0700 (PDT)
+ bh=/f+R+j91elfFPYf4zfHO7Bzdv43BgZ5CODvbZ0Vzlb0=;
+ b=AM8iqJv7b1lkt1AlWJzvX+AVknqXfoxcKDQx9QmdrclgFmGSDgmB7X2rYKVYrrqZB9
+ 8Vc+yEcCZ0k9ZaLa0U9f24a+kjPuLkyXuBuiUWTWmWXd7A+bXfxWLFepQ12jlIdXUYAJ
+ z/FasNPGwK2b0ijp2Ho1OG09Y4YjBWd61pPPfu274QUMYKSw6zhFwlilQyZMPHy1E4Ti
+ MQ/jtIwSsFqamX5gdbT1z7820a0tgtZn6CowNJuPGYYfGHbS27qIEr05MeoNXdVff19s
+ xupLEemkOFcc5gtYVOsFyva6kFcV+J5mCfY71imDFkquRpsS2dvsoErV8ma4RMnDGXoL
+ whug==
+X-Gm-Message-State: AOAM53201qYvETl5f/QwY2bSmG7z0rAVI5l1rVWwV3FsI51aK/XE+4Pl
+ YHddMZNovjUavldbc93V9RcCQcBxtNowlNj5
+X-Google-Smtp-Source: ABdhPJw2+vRPCVSoCJ8uTyZkM4qdXjUF9o+idDfbH3aRRZ1MhJ6/KLpRbqP0cqmVYb5dpgJwHdOuUg==
+X-Received: by 2002:a1c:4303:: with SMTP id q3mr3013678wma.158.1599551669694; 
+ Tue, 08 Sep 2020 00:54:29 -0700 (PDT)
 Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
- by smtp.gmail.com with ESMTPSA id f14sm33788291wrv.72.2020.09.08.00.54.27
+ by smtp.gmail.com with ESMTPSA id f14sm33788291wrv.72.2020.09.08.00.54.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Sep 2020 00:54:27 -0700 (PDT)
+ Tue, 08 Sep 2020 00:54:29 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: thierry.reding@gmail.com,
 	sam@ravnborg.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v3 1/4] dt-bindings: vendor-prefixes: Add Shanghai Top Display
- Optolelectronics vendor prefix
-Date: Tue,  8 Sep 2020 09:54:18 +0200
-Message-Id: <20200908075421.17344-2-narmstrong@baylibre.com>
+Subject: [PATCH v3 2/4] dt-bindings: display: panel-simple-dsi: add optional
+ reset gpio
+Date: Tue,  8 Sep 2020 09:54:19 +0200
+Message-Id: <20200908075421.17344-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200908075421.17344-1-narmstrong@baylibre.com>
 References: <20200908075421.17344-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200908_035429_627774_EFF09A6A 
-X-CRM114-Status: GOOD (  10.24  )
+X-CRM114-CacheID: sfid-20200908_035431_317258_7C6B28CD 
+X-CRM114-Status: GOOD (  10.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,28 +106,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Shanghai Top Display Optolelectronics Co., Ltd  is a display manufacturer
-from Shanghai.
-Web site of the company: http://www.shtdo.com/
+Simple DSI panels can also have a reset GPIO signal in addition/instead of an
+enable GPIO signal.
+
+This adds an optional reset-gpios property.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/display/panel/panel-simple-dsi.yaml      | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index a1e4356cf522..4e9dfb352c68 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1078,6 +1078,8 @@ patternProperties:
-     description: TPK U.S.A. LLC
-   "^tplink,.*":
-     description: TP-LINK Technologies Co., Ltd.
-+  "^tdo,.*":
-+    description: Shangai Top Display Optoelectronics Co., Ltd
-   "^tpo,.*":
-     description: TPO
-   "^tq,.*":
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+index c0dd9fa29f1d..4d08e746cb21 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+@@ -54,6 +54,7 @@ properties:
+ 
+   backlight: true
+   enable-gpios: true
++  reset-gpios: true
+   port: true
+   power-supply: true
+ 
 -- 
 2.22.0
 
