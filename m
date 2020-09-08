@@ -1,67 +1,147 @@
-Return-Path: <SRS0=IdmP=CQ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=WuYP=CR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D9FDC433E2
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 19:52:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E937C43461
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 07:41:28 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DB5352145D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Sep 2020 19:52:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D3246207DE
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 07:41:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DId/YZ34"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DB5352145D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="wY8lRu9M";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fN6k5um7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D3246207DE
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=J42jo3j+KcVWglIpgb4XffxQf6TyvrxIug7IrokPMB8=; b=DId/YZ34fvCSmw9zGE/cPn9FX
-	Kg/xU/8ibACnDCMZI3lBBEeNq1B0bcadW/E70h+OZGDfvmWalSpcv59ncJqnc/6MWAeLrDrr3upeV
-	Z++SnAjtNxWTMX2lvxV2k6CPNDZNZ6/S9nTty5g1pTmjl+HexRte9kTKMMfMxy3w+6rCdEpT41+aE
-	G6+c6+01yyyFBByMVDLEKxPtpO7sbG7VpSqKuWu/wxakxcdxiRkrwF62d3C31uiLp4+RfC9IoW76w
-	wt7obMhzsLfzZ1npTwORaATV7p8RKDTBtQuYUeLDJF3I8MJSKUHAuG4nWfnpi5T9BmSMbgUOoaL2h
-	NjYWmrnJQ==;
+	 bh=9U6fLOuTYsj4p2zK8wRYSVohr/I+8EIkLPL+S3tLL5A=; b=wY8lRu9M9q86hTtfqdR5gRR1x
+	ei6hjfRz4vnrMCgp/6zZXtpXk/FjhNgloLoiRgELVHHAe/EQyjiiwY3HdTk9UMcUcaKcUFqIiRAvK
+	oUViEaor1De4SqlNiZeg0+1PJ8TmTpdkpmUfn6OGVRsp/YaAyJOa6hyYbRo2p2RrWEeMYWWCVLNwB
+	1ATnOAJ3tjbWX/cmawSA5IGtnrTNCl1A/bn7JrFqpA+fYTF7mZNiXo67DurdYbrsCYabv9KyPTWCo
+	bxpLgX4PnrJkSMuRLad5JArSRoi1bNwb708TpXZs2hmYmHIBoFUcAp0g/P6C6j9lu68Tl/XKhRd8F
+	5Z/EID/SQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kFNC6-00040D-9L; Mon, 07 Sep 2020 19:52:50 +0000
-Received: from asavdk3.altibox.net ([109.247.116.14])
+	id 1kFYFZ-0004bh-RV; Tue, 08 Sep 2020 07:41:09 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFNC3-0003yn-Fe
- for linux-amlogic@lists.infradead.org; Mon, 07 Sep 2020 19:52:49 +0000
-Received: from ravnborg.org (unknown [188.228.123.71])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 8EEEF20033;
- Mon,  7 Sep 2020 21:52:45 +0200 (CEST)
-Date: Mon, 7 Sep 2020 21:52:44 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
+ id 1kFYFW-0004a9-2H
+ for linux-amlogic@lists.infradead.org; Tue, 08 Sep 2020 07:41:07 +0000
+Received: by mail-wm1-x343.google.com with SMTP id s13so16227654wmh.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 08 Sep 2020 00:41:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=t8agpATIloVmTgcFNd5TB4FQfNWGSCtWVYOfLN6qNNE=;
+ b=fN6k5um7C7AEOqXC683HOyRmG3Vqp2EeqIFQe5kAmHijhbLW/SDbRfcq56VxgodvVx
+ ViDmHtHVu5eBPMxo34zE1elJFeak+N6V+8EYCujXtnhtt5o31TNoi36TRtAuGh8iDqVg
+ mSgTXX1v+wNvjeeKe3aMqohVkEwr3PZK7CRxNVT6bMmm3mrqmD23z6HEkTYMOAohTPcb
+ 1MHr+No1n+Elm+9XzgT/JHObD1fosNNtgLNVgtVbakhw+qrSUDxUK9Wn1UZs56LwFbsY
+ T+eQXUpmDQ0QInM7yy0EdzMEAgUN90JbEUHmzN9ylehU+vd4qmzLGtGz3wuDItJVOuQC
+ jyQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=t8agpATIloVmTgcFNd5TB4FQfNWGSCtWVYOfLN6qNNE=;
+ b=MsqXH6cAMEXod6UJGVPtfJf83ZFejwcI7Og6mkKmZ8RNUdMGgl0I80mLjwrh/DtlM9
+ YaLNg3F+mFX97u/RvGw0PT8NQAZBfCjvyx1rwiI4/ymju8Ca7dNOS0j3hMvBq+bQMCgp
+ l1F4exkcMnc/YHr94QmoFa3OAzd9wEeqXtFqABp4bcIqR1ALgLgapdCbBzq3jGIjJiL5
+ ip6sX1+9Ar5RQiUwCYeixZ4mjM6PrOitqRC7hfMgrAEg0tFUZu/aRQ9zvmSL14ouJ3CP
+ 6ecoH1VaWhUXdgsrih94HppH1jWfoPPiuaarnjUpZfPshuWl1rSdNvGpNQqoqfi7P2+A
+ SrPg==
+X-Gm-Message-State: AOAM532AOo8PY+KB/S2o/w8kfiuxz/0OP6SkzIoSbhujAuX4RZZzGg4t
+ EQQHi33LJXKfBcvbpfrho9K1SQ==
+X-Google-Smtp-Source: ABdhPJy3zFZ43EifkQzD/C9vQhMtA+ZxauM+mN4GfwLHTtT5JHInKHBRrZK4DDZuRbFekWP8P1zEDw==
+X-Received: by 2002:a1c:4e08:: with SMTP id g8mr2928795wmh.53.1599550863030;
+ Tue, 08 Sep 2020 00:41:03 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac?
+ ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+ by smtp.gmail.com with ESMTPSA id d18sm32714069wrm.10.2020.09.08.00.41.01
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 08 Sep 2020 00:41:02 -0700 (PDT)
 Subject: Re: [PATCH v2 3/3] drm: panel: add TDO tl070wsh30 panel driver
-Message-ID: <20200907195244.GB558348@ravnborg.org>
+To: Sam Ravnborg <sam@ravnborg.org>
 References: <20200907111027.21933-1-narmstrong@baylibre.com>
  <20200907111027.21933-4-narmstrong@baylibre.com>
+ <20200907195244.GB558348@ravnborg.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <479e1299-740a-8a9e-1747-53a626f28d8e@baylibre.com>
+Date: Tue, 8 Sep 2020 09:41:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200907111027.21933-4-narmstrong@baylibre.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=CaYmGojl c=1 sm=1 tr=0
- a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
- a=8nJEP1OIZ-IA:10 a=IpJZQVW2AAAA:8 a=e5mUnYsNAAAA:8
- a=OZb2ejd9N8hvyYciKFoA:9 a=wPNLvfGTeEIA:10 a=IawgGOuG5U0WyFbmm1f5:22
- a=Vxmtnl_E_bksehYqCbjh:22
+In-Reply-To: <20200907195244.GB558348@ravnborg.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200907_155247_864910_8E8C6A3E 
-X-CRM114-Status: GOOD (  36.09  )
+X-CRM114-CacheID: sfid-20200908_034106_120153_58914887 
+X-CRM114-Status: GOOD (  34.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,395 +155,218 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, thierry.reding@gmail.com,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil.
-
-On Mon, Sep 07, 2020 at 01:10:27PM +0200, Neil Armstrong wrote:
-> This adds support for the TDO TL070WSH30 TFT-LCD panel module.
-> The panel has a 1024=D7600 resolution and uses 24 bit RGB per pixel.
-> It provides a MIPI DSI interface to the host, a built-in LED backlight
-> and touch controller.
-
-Despite a nicely written driver I noticed a few things that needs to be
-addressed.
-
-	Sam
-> =
-
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/gpu/drm/panel/Kconfig                |  11 +
->  drivers/gpu/drm/panel/Makefile               |   1 +
->  drivers/gpu/drm/panel/panel-tdo-tl070wsh30.c | 256 +++++++++++++++++++
->  3 files changed, 268 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-tdo-tl070wsh30.c
-> =
-
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index 8d97d07c5871..2d488a875b99 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -433,6 +433,17 @@ config DRM_PANEL_SONY_ACX565AKM
->  	  Say Y here if you want to enable support for the Sony ACX565AKM
->  	  800x600 3.5" panel (found on the Nokia N900).
->  =
-
-> +config DRM_PANEL_TDO_TL070WSH30
-> +	tristate "TDO TL070WSH30 DSI panel"
-> +	depends on OF
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	help
-> +	  Say Y here if you want to enable support for TDO TL070WSH30 TFT-LCD
-> +	  panel module. The panel has a 1024=D7600 resolution and uses
-> +	  24 bit RGB per pixel. It provides a MIPI DSI interface to
-> +	  the host, a built-in LED backlight and touch controller.
-> +
->  config DRM_PANEL_TPO_TD028TTEC1
->  	tristate "Toppoly (TPO) TD028TTEC1 panel driver"
->  	depends on OF && SPI
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makef=
-ile
-> index 15a4e7752951..35ee06a1b5c2 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -45,6 +45,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) +=3D panel-sitr=
-onix-st7703.o
->  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) +=3D panel-sitronix-st7789v.o
->  obj-$(CONFIG_DRM_PANEL_SONY_ACX424AKP) +=3D panel-sony-acx424akp.o
->  obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) +=3D panel-sony-acx565akm.o
-> +obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) +=3D panel-tdo-tl070wsh30.o
->  obj-$(CONFIG_DRM_PANEL_TPO_TD028TTEC1) +=3D panel-tpo-td028ttec1.o
->  obj-$(CONFIG_DRM_PANEL_TPO_TD043MTEA1) +=3D panel-tpo-td043mtea1.o
->  obj-$(CONFIG_DRM_PANEL_TPO_TPG110) +=3D panel-tpo-tpg110.o
-> diff --git a/drivers/gpu/drm/panel/panel-tdo-tl070wsh30.c b/drivers/gpu/d=
-rm/panel/panel-tdo-tl070wsh30.c
-> new file mode 100644
-> index 000000000000..c7a6c2c42c52
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-tdo-tl070wsh30.c
-> @@ -0,0 +1,256 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <video/mipi_display.h>
-> +
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_device.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_modes.h>
-> +#include <drm/drm_panel.h>
-> +
-> +struct tdo_tl070wsh30_panel {
-> +	struct drm_panel base;
-> +	struct mipi_dsi_device *link;
-> +
-> +	struct regulator *supply;
-> +	struct gpio_desc *reset_gpio;
-> +
-> +	bool prepared;
-> +};
-> +
-> +static inline
-> +struct tdo_tl070wsh30_panel *to_tdo_tl070wsh30_panel(struct drm_panel *p=
-anel)
-> +{
-> +	return container_of(panel, struct tdo_tl070wsh30_panel, base);
-> +}
-
-bikeshedding - but my preference is to order the functions:
-
-prepare
-enable
-disable
-unprepare
-
-As this is the natural order they are used.
-Feel free to ignore!
-
-> +
-> +static int tdo_tl070wsh30_panel_unprepare(struct drm_panel *panel)
-> +{
-> +	struct tdo_tl070wsh30_panel *tdo_tl070wsh30 =3D to_tdo_tl070wsh30_panel=
-(panel);
-> +	int err;
-> +
-> +	if (!tdo_tl070wsh30->prepared)
-> +		return 0;
-> +
-> +	err =3D mipi_dsi_dcs_set_display_off(tdo_tl070wsh30->link);
-> +	if (err < 0)
-> +		dev_err(panel->dev, "failed to set display off: %d\n", err);
-> +
-> +	usleep_range(10000, 11000);
-> +
-> +	err =3D mipi_dsi_dcs_enter_sleep_mode(tdo_tl070wsh30->link);
-> +	if (err < 0) {
-> +		dev_err(panel->dev, "failed to enter sleep mode: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	usleep_range(10000, 11000);
-> +
-> +	tdo_tl070wsh30->prepared =3D false;
-> +
-> +	return 0;
-> +}
-> +
-> +static int tdo_tl070wsh30_panel_prepare(struct drm_panel *panel)
-> +{
-> +	struct tdo_tl070wsh30_panel *tdo_tl070wsh30 =3D to_tdo_tl070wsh30_panel=
-(panel);
-> +	int err;
-> +
-> +	if (tdo_tl070wsh30->prepared)
-> +		return 0;
-> +
-> +	err =3D mipi_dsi_dcs_exit_sleep_mode(tdo_tl070wsh30->link);
-> +	if (err < 0) {
-> +		dev_err(panel->dev, "failed to exit sleep mode: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	msleep(200);
-> +
-> +	err =3D mipi_dsi_dcs_set_display_on(tdo_tl070wsh30->link);
-> +	if (err < 0) {
-> +		dev_err(panel->dev, "failed to set display on: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	msleep(20);
-> +
-> +	tdo_tl070wsh30->prepared =3D true;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_display_mode default_mode =3D {
-> +	.clock =3D 47250,
-> +	.hdisplay =3D 1024,
-> +	.hsync_start =3D 1024 + 46,
-> +	.hsync_end =3D 1024 + 46 + 80,
-> +	.htotal =3D 1024 + 46 + 80 + 100,
-> +	.vdisplay =3D 600,
-> +	.vsync_start =3D 600 + 5,
-> +	.vsync_end =3D 600 + 5 + 5,
-> +	.vtotal =3D 600 + 5 + 5 + 20,
-> +	.flags =3D DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
-> +};
-> +
-> +static int tdo_tl070wsh30_panel_get_modes(struct drm_panel *panel,
-> +				       struct drm_connector *connector)
-> +{
-> +	struct drm_display_mode *mode;
-> +
-> +	mode =3D drm_mode_duplicate(connector->dev, &default_mode);
-> +	if (!mode) {
-> +		dev_err(panel->dev, "failed to add mode %ux%ux\n", default_mode.hdispl=
-ay,
-> +			default_mode.vdisplay);
-Here we often print the refresh rate too.
-If there is no need for the refresh rate than at least drop the extra
-'x' at the end of the line.
-
-> +		return -ENOMEM;
-> +	}
-> +
-> +	drm_mode_set_name(mode);
-> +
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	connector->display_info.width_mm =3D 154;
-> +	connector->display_info.height_mm =3D 85;
-> +	connector->display_info.bpc =3D 8;
-> +
-> +	return 1;
-> +}
-> +
-> +static const struct drm_panel_funcs tdo_tl070wsh30_panel_funcs =3D {
-> +	.unprepare =3D tdo_tl070wsh30_panel_unprepare,
-> +	.prepare =3D tdo_tl070wsh30_panel_prepare,
-> +	.get_modes =3D tdo_tl070wsh30_panel_get_modes,
-> +};
-> +
-> +static const struct of_device_id tdo_tl070wsh30_of_match[] =3D {
-> +	{ .compatible =3D "tdo,tl070wsh30", },
-> +	{ }
-I often recommends
-	{ /* sentinel },
-
-but thats just to be consistent with what I see in other drivers.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, tdo_tl070wsh30_of_match);
-> +
-> +static int tdo_tl070wsh30_panel_add(struct tdo_tl070wsh30_panel *tdo_tl0=
-70wsh30)
-> +{
-> +	struct device *dev =3D &tdo_tl070wsh30->link->dev;
-> +	int err;
-> +
-> +	tdo_tl070wsh30->supply =3D devm_regulator_get(dev, "power");
-> +	if (IS_ERR(tdo_tl070wsh30->supply))
-> +		return PTR_ERR(tdo_tl070wsh30->supply);
-> +
-> +	tdo_tl070wsh30->reset_gpio =3D devm_gpiod_get(dev, "reset",
-> +						  GPIOD_OUT_LOW);
-> +	if (IS_ERR(tdo_tl070wsh30->reset_gpio)) {
-> +		err =3D PTR_ERR(tdo_tl070wsh30->reset_gpio);
-> +		dev_dbg(dev, "failed to get reset gpio: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	drm_panel_init(&tdo_tl070wsh30->base, &tdo_tl070wsh30->link->dev,
-> +		       &tdo_tl070wsh30_panel_funcs, DRM_MODE_CONNECTOR_DSI);
-> +
-> +	err =3D drm_panel_of_backlight(&tdo_tl070wsh30->base);
-> +	if (err)
-> +		return err;
-
-
-
-> +
-> +	err =3D regulator_enable(tdo_tl070wsh30->supply);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	usleep_range(10000, 11000);
-> +
-> +	gpiod_set_value_cansleep(tdo_tl070wsh30->reset_gpio, 1);
-> +
-> +	usleep_range(10000, 11000);
-> +
-> +	gpiod_set_value_cansleep(tdo_tl070wsh30->reset_gpio, 0);
-> +
-> +	msleep(200);
-> +
-
-It is the job of the prepare function to turn on the panel,
-and likewise the unprepare to turn off the panel.
-Please move the code above to the prepare function.
-
-
-> +	drm_panel_add(&tdo_tl070wsh30->base);
-> +
-> +	return 0;
-> +}
-> +
-> +static void tdo_tl070wsh30_panel_del(struct tdo_tl070wsh30_panel *tdo_tl=
-070wsh30)
-> +{
-> +	drm_panel_remove(&tdo_tl070wsh30->base);
-> +}
-This helper does not gain anything - call drm_panel_remove() direct.
-
-> +
-> +static int tdo_tl070wsh30_panel_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct tdo_tl070wsh30_panel *tdo_tl070wsh30;
-> +	int err;
-> +
-> +	dsi->lanes =3D 4;
-> +	dsi->format =3D MIPI_DSI_FMT_RGB888;
-> +	dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST | M=
-IPI_DSI_MODE_LPM;
-> +
-> +	tdo_tl070wsh30 =3D devm_kzalloc(&dsi->dev, sizeof(*tdo_tl070wsh30),
-> +				    GFP_KERNEL);
-> +	if (!tdo_tl070wsh30)
-> +		return -ENOMEM;
-> +
-> +	mipi_dsi_set_drvdata(dsi, tdo_tl070wsh30);
-> +	tdo_tl070wsh30->link =3D dsi;
-> +
-> +	err =3D tdo_tl070wsh30_panel_add(tdo_tl070wsh30);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	return mipi_dsi_attach(dsi);
-> +}
-> +
-> +static int tdo_tl070wsh30_panel_remove(struct mipi_dsi_device *dsi)
-> +{
-> +	struct tdo_tl070wsh30_panel *tdo_tl070wsh30 =3D mipi_dsi_get_drvdata(ds=
-i);
-> +	int err;
-> +
-> +	err =3D drm_panel_unprepare(&tdo_tl070wsh30->base);
-> +	if (err < 0)
-> +		dev_err(&dsi->dev, "failed to unprepare panel: %d\n", err);
-> +
-> +	err =3D drm_panel_disable(&tdo_tl070wsh30->base);
-> +	if (err < 0)
-> +		dev_err(&dsi->dev, "failed to disable panel: %d\n", err);
-> +
-In most panel drivers we just ignore the return results here.
-
-> +	err =3D mipi_dsi_detach(dsi);
-> +	if (err < 0)
-> +		dev_err(&dsi->dev, "failed to detach from DSI host: %d\n", err);
-> +
-> +	tdo_tl070wsh30_panel_del(tdo_tl070wsh30);
-> +
-> +	return 0;
-> +}
-> +
-> +static void tdo_tl070wsh30_panel_shutdown(struct mipi_dsi_device *dsi)
-> +{
-> +	struct tdo_tl070wsh30_panel *tdo_tl070wsh30 =3D mipi_dsi_get_drvdata(ds=
-i);
-> +
-> +	drm_panel_unprepare(&tdo_tl070wsh30->base);
-> +	drm_panel_disable(&tdo_tl070wsh30->base);
-This is the wrong order. disable before unpreapre.
-
-
-I am not sure what is right here - but I see some drivers that only have
-the disable() + unprepare() in their shutdown() method and then the
-remocal in their remove() function.
-That makes sense with this split but I have not looked too deep into it.
-
-> +}
-> +
-> +static struct mipi_dsi_driver tdo_tl070wsh30_panel_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "panel-tdo-tl070wsh30",
-> +		.of_match_table =3D tdo_tl070wsh30_of_match,
-> +	},
-> +	.probe =3D tdo_tl070wsh30_panel_probe,
-> +	.remove =3D tdo_tl070wsh30_panel_remove,
-> +	.shutdown =3D tdo_tl070wsh30_panel_shutdown,
-> +};
-> +module_mipi_dsi_driver(tdo_tl070wsh30_panel_driver);
-> +
-> +MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
-> +MODULE_DESCRIPTION("TDO TL070WSH30 panel driver");
-> +MODULE_LICENSE("GPL v2");
-> -- =
-
-> 2.22.0
-> =
-
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgpPbiAwNy8wOS8yMDIwIDIxOjUyLCBTYW0gUmF2bmJvcmcgd3JvdGU6Cj4gSGkgTmVpbC4K
+PiAKPiBPbiBNb24sIFNlcCAwNywgMjAyMCBhdCAwMToxMDoyN1BNICswMjAwLCBOZWlsIEFybXN0
+cm9uZyB3cm90ZToKPj4gVGhpcyBhZGRzIHN1cHBvcnQgZm9yIHRoZSBURE8gVEwwNzBXU0gzMCBU
+RlQtTENEIHBhbmVsIG1vZHVsZS4KPj4gVGhlIHBhbmVsIGhhcyBhIDEwMjTDlzYwMCByZXNvbHV0
+aW9uIGFuZCB1c2VzIDI0IGJpdCBSR0IgcGVyIHBpeGVsLgo+PiBJdCBwcm92aWRlcyBhIE1JUEkg
+RFNJIGludGVyZmFjZSB0byB0aGUgaG9zdCwgYSBidWlsdC1pbiBMRUQgYmFja2xpZ2h0Cj4+IGFu
+ZCB0b3VjaCBjb250cm9sbGVyLgo+IAo+IERlc3BpdGUgYSBuaWNlbHkgd3JpdHRlbiBkcml2ZXIg
+SSBub3RpY2VkIGEgZmV3IHRoaW5ncyB0aGF0IG5lZWRzIHRvIGJlCj4gYWRkcmVzc2VkLgoKVGhh
+bmtzIGZvciB0aGUgcmV2aWV3LCBpbmRlZWQgdGhlIHJlbW92ZS9zaHV0ZG93biB3YXMgd3Jvbmcs
+IGFuZCBJIGFsaWduZWQKd2l0aCBwYW5lbC1zaW1wbGUsIHdoaWNoIHNlZW1zIG1vcmUgbG9naWNh
+bC4KCj4gCj4gCVNhbQo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0
+cm9uZ0BiYXlsaWJyZS5jb20+Cj4+IC0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL3BhbmVsL0tjb25m
+aWcgICAgICAgICAgICAgICAgfCAgMTEgKwo+PiAgZHJpdmVycy9ncHUvZHJtL3BhbmVsL01ha2Vm
+aWxlICAgICAgICAgICAgICAgfCAgIDEgKwo+PiAgZHJpdmVycy9ncHUvZHJtL3BhbmVsL3BhbmVs
+LXRkby10bDA3MHdzaDMwLmMgfCAyNTYgKysrKysrKysrKysrKysrKysrKwo+PiAgMyBmaWxlcyBj
+aGFuZ2VkLCAyNjggaW5zZXJ0aW9ucygrKQo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMv
+Z3B1L2RybS9wYW5lbC9wYW5lbC10ZG8tdGwwNzB3c2gzMC5jCj4+Cj4+IGRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vcGFuZWwvS2NvbmZpZyBiL2RyaXZlcnMvZ3B1L2RybS9wYW5lbC9LY29u
+ZmlnCj4+IGluZGV4IDhkOTdkMDdjNTg3MS4uMmQ0ODhhODc1Yjk5IDEwMDY0NAo+PiAtLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vcGFuZWwvS2NvbmZpZwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcGFu
+ZWwvS2NvbmZpZwo+PiBAQCAtNDMzLDYgKzQzMywxNyBAQCBjb25maWcgRFJNX1BBTkVMX1NPTllf
+QUNYNTY1QUtNCj4+ICAJICBTYXkgWSBoZXJlIGlmIHlvdSB3YW50IHRvIGVuYWJsZSBzdXBwb3J0
+IGZvciB0aGUgU29ueSBBQ1g1NjVBS00KPj4gIAkgIDgwMHg2MDAgMy41IiBwYW5lbCAoZm91bmQg
+b24gdGhlIE5va2lhIE45MDApLgo+PiAgCj4+ICtjb25maWcgRFJNX1BBTkVMX1RET19UTDA3MFdT
+SDMwCj4+ICsJdHJpc3RhdGUgIlRETyBUTDA3MFdTSDMwIERTSSBwYW5lbCIKPj4gKwlkZXBlbmRz
+IG9uIE9GCj4+ICsJZGVwZW5kcyBvbiBEUk1fTUlQSV9EU0kKPj4gKwlkZXBlbmRzIG9uIEJBQ0tM
+SUdIVF9DTEFTU19ERVZJQ0UKPj4gKwloZWxwCj4+ICsJICBTYXkgWSBoZXJlIGlmIHlvdSB3YW50
+IHRvIGVuYWJsZSBzdXBwb3J0IGZvciBURE8gVEwwNzBXU0gzMCBURlQtTENECj4+ICsJICBwYW5l
+bCBtb2R1bGUuIFRoZSBwYW5lbCBoYXMgYSAxMDI0w5c2MDAgcmVzb2x1dGlvbiBhbmQgdXNlcwo+
+PiArCSAgMjQgYml0IFJHQiBwZXIgcGl4ZWwuIEl0IHByb3ZpZGVzIGEgTUlQSSBEU0kgaW50ZXJm
+YWNlIHRvCj4+ICsJICB0aGUgaG9zdCwgYSBidWlsdC1pbiBMRUQgYmFja2xpZ2h0IGFuZCB0b3Vj
+aCBjb250cm9sbGVyLgo+PiArCj4+ICBjb25maWcgRFJNX1BBTkVMX1RQT19URDAyOFRURUMxCj4+
+ICAJdHJpc3RhdGUgIlRvcHBvbHkgKFRQTykgVEQwMjhUVEVDMSBwYW5lbCBkcml2ZXIiCj4+ICAJ
+ZGVwZW5kcyBvbiBPRiAmJiBTUEkKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9wYW5l
+bC9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9wYW5lbC9NYWtlZmlsZQo+PiBpbmRleCAxNWE0
+ZTc3NTI5NTEuLjM1ZWUwNmExYjVjMiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3Bh
+bmVsL01ha2VmaWxlCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9wYW5lbC9NYWtlZmlsZQo+PiBA
+QCAtNDUsNiArNDUsNyBAQCBvYmotJChDT05GSUdfRFJNX1BBTkVMX1NJVFJPTklYX1NUNzcwMykg
+Kz0gcGFuZWwtc2l0cm9uaXgtc3Q3NzAzLm8KPj4gIG9iai0kKENPTkZJR19EUk1fUEFORUxfU0lU
+Uk9OSVhfU1Q3Nzg5VikgKz0gcGFuZWwtc2l0cm9uaXgtc3Q3Nzg5di5vCj4+ICBvYmotJChDT05G
+SUdfRFJNX1BBTkVMX1NPTllfQUNYNDI0QUtQKSArPSBwYW5lbC1zb255LWFjeDQyNGFrcC5vCj4+
+ICBvYmotJChDT05GSUdfRFJNX1BBTkVMX1NPTllfQUNYNTY1QUtNKSArPSBwYW5lbC1zb255LWFj
+eDU2NWFrbS5vCj4+ICtvYmotJChDT05GSUdfRFJNX1BBTkVMX1RET19UTDA3MFdTSDMwKSArPSBw
+YW5lbC10ZG8tdGwwNzB3c2gzMC5vCj4+ICBvYmotJChDT05GSUdfRFJNX1BBTkVMX1RQT19URDAy
+OFRURUMxKSArPSBwYW5lbC10cG8tdGQwMjh0dGVjMS5vCj4+ICBvYmotJChDT05GSUdfRFJNX1BB
+TkVMX1RQT19URDA0M01URUExKSArPSBwYW5lbC10cG8tdGQwNDNtdGVhMS5vCj4+ICBvYmotJChD
+T05GSUdfRFJNX1BBTkVMX1RQT19UUEcxMTApICs9IHBhbmVsLXRwby10cGcxMTAubwo+PiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3BhbmVsL3BhbmVsLXRkby10bDA3MHdzaDMwLmMgYi9k
+cml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtdGRvLXRsMDcwd3NoMzAuYwo+PiBuZXcgZmlsZSBt
+b2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLmM3YTZjMmM0MmM1Mgo+PiAtLS0gL2Rl
+di9udWxsCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9wYW5lbC9wYW5lbC10ZG8tdGwwNzB3c2gz
+MC5jCj4+IEBAIC0wLDAgKzEsMjU2IEBACj4+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+R1BMLTIuMAo+PiArLyoKPj4gKyAqIENvcHlyaWdodCAoQykgMjAyMCBCYXlMaWJyZSwgU0FTCj4+
+ICsgKiBBdXRob3I6IE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPj4g
+KyAqLwo+PiArCj4+ICsjaW5jbHVkZSA8bGludXgvZGVsYXkuaD4KPj4gKyNpbmNsdWRlIDxsaW51
+eC9ncGlvL2NvbnN1bWVyLmg+Cj4+ICsjaW5jbHVkZSA8bGludXgvbW9kdWxlLmg+Cj4+ICsjaW5j
+bHVkZSA8bGludXgvb2YuaD4KPj4gKyNpbmNsdWRlIDxsaW51eC9yZWd1bGF0b3IvY29uc3VtZXIu
+aD4KPj4gKwo+PiArI2luY2x1ZGUgPHZpZGVvL21pcGlfZGlzcGxheS5oPgo+PiArCj4+ICsjaW5j
+bHVkZSA8ZHJtL2RybV9jcnRjLmg+Cj4+ICsjaW5jbHVkZSA8ZHJtL2RybV9kZXZpY2UuaD4KPj4g
+KyNpbmNsdWRlIDxkcm0vZHJtX21pcGlfZHNpLmg+Cj4+ICsjaW5jbHVkZSA8ZHJtL2RybV9tb2Rl
+cy5oPgo+PiArI2luY2x1ZGUgPGRybS9kcm1fcGFuZWwuaD4KPj4gKwo+PiArc3RydWN0IHRkb190
+bDA3MHdzaDMwX3BhbmVsIHsKPj4gKwlzdHJ1Y3QgZHJtX3BhbmVsIGJhc2U7Cj4+ICsJc3RydWN0
+IG1pcGlfZHNpX2RldmljZSAqbGluazsKPj4gKwo+PiArCXN0cnVjdCByZWd1bGF0b3IgKnN1cHBs
+eTsKPj4gKwlzdHJ1Y3QgZ3Bpb19kZXNjICpyZXNldF9ncGlvOwo+PiArCj4+ICsJYm9vbCBwcmVw
+YXJlZDsKPj4gK307Cj4+ICsKPj4gK3N0YXRpYyBpbmxpbmUKPj4gK3N0cnVjdCB0ZG9fdGwwNzB3
+c2gzMF9wYW5lbCAqdG9fdGRvX3RsMDcwd3NoMzBfcGFuZWwoc3RydWN0IGRybV9wYW5lbCAqcGFu
+ZWwpCj4+ICt7Cj4+ICsJcmV0dXJuIGNvbnRhaW5lcl9vZihwYW5lbCwgc3RydWN0IHRkb190bDA3
+MHdzaDMwX3BhbmVsLCBiYXNlKTsKPj4gK30KPiAKPiBiaWtlc2hlZGRpbmcgLSBidXQgbXkgcHJl
+ZmVyZW5jZSBpcyB0byBvcmRlciB0aGUgZnVuY3Rpb25zOgo+IAo+IHByZXBhcmUKPiBlbmFibGUK
+PiBkaXNhYmxlCj4gdW5wcmVwYXJlCj4gCj4gQXMgdGhpcyBpcyB0aGUgbmF0dXJhbCBvcmRlciB0
+aGV5IGFyZSB1c2VkLgo+IEZlZWwgZnJlZSB0byBpZ25vcmUhCgpBY2ssIHByZXBhcmUgYmVmb3Jl
+IHVucHJlcGFyZSBsb29rcyBiZXR0ZXIgIQoKPiAKPj4gKwo+PiArc3RhdGljIGludCB0ZG9fdGww
+NzB3c2gzMF9wYW5lbF91bnByZXBhcmUoc3RydWN0IGRybV9wYW5lbCAqcGFuZWwpCj4+ICt7Cj4+
+ICsJc3RydWN0IHRkb190bDA3MHdzaDMwX3BhbmVsICp0ZG9fdGwwNzB3c2gzMCA9IHRvX3Rkb190
+bDA3MHdzaDMwX3BhbmVsKHBhbmVsKTsKPj4gKwlpbnQgZXJyOwo+PiArCj4+ICsJaWYgKCF0ZG9f
+dGwwNzB3c2gzMC0+cHJlcGFyZWQpCj4+ICsJCXJldHVybiAwOwo+PiArCj4+ICsJZXJyID0gbWlw
+aV9kc2lfZGNzX3NldF9kaXNwbGF5X29mZih0ZG9fdGwwNzB3c2gzMC0+bGluayk7Cj4+ICsJaWYg
+KGVyciA8IDApCj4+ICsJCWRldl9lcnIocGFuZWwtPmRldiwgImZhaWxlZCB0byBzZXQgZGlzcGxh
+eSBvZmY6ICVkXG4iLCBlcnIpOwo+PiArCj4+ICsJdXNsZWVwX3JhbmdlKDEwMDAwLCAxMTAwMCk7
+Cj4+ICsKPj4gKwllcnIgPSBtaXBpX2RzaV9kY3NfZW50ZXJfc2xlZXBfbW9kZSh0ZG9fdGwwNzB3
+c2gzMC0+bGluayk7Cj4+ICsJaWYgKGVyciA8IDApIHsKPj4gKwkJZGV2X2VycihwYW5lbC0+ZGV2
+LCAiZmFpbGVkIHRvIGVudGVyIHNsZWVwIG1vZGU6ICVkXG4iLCBlcnIpOwo+PiArCQlyZXR1cm4g
+ZXJyOwo+PiArCX0KPj4gKwo+PiArCXVzbGVlcF9yYW5nZSgxMDAwMCwgMTEwMDApOwo+PiArCj4+
+ICsJdGRvX3RsMDcwd3NoMzAtPnByZXBhcmVkID0gZmFsc2U7Cj4+ICsKPj4gKwlyZXR1cm4gMDsK
+Pj4gK30KPj4gKwo+PiArc3RhdGljIGludCB0ZG9fdGwwNzB3c2gzMF9wYW5lbF9wcmVwYXJlKHN0
+cnVjdCBkcm1fcGFuZWwgKnBhbmVsKQo+PiArewo+PiArCXN0cnVjdCB0ZG9fdGwwNzB3c2gzMF9w
+YW5lbCAqdGRvX3RsMDcwd3NoMzAgPSB0b190ZG9fdGwwNzB3c2gzMF9wYW5lbChwYW5lbCk7Cj4+
+ICsJaW50IGVycjsKPj4gKwo+PiArCWlmICh0ZG9fdGwwNzB3c2gzMC0+cHJlcGFyZWQpCj4+ICsJ
+CXJldHVybiAwOwo+PiArCj4+ICsJZXJyID0gbWlwaV9kc2lfZGNzX2V4aXRfc2xlZXBfbW9kZSh0
+ZG9fdGwwNzB3c2gzMC0+bGluayk7Cj4+ICsJaWYgKGVyciA8IDApIHsKPj4gKwkJZGV2X2Vycihw
+YW5lbC0+ZGV2LCAiZmFpbGVkIHRvIGV4aXQgc2xlZXAgbW9kZTogJWRcbiIsIGVycik7Cj4+ICsJ
+CXJldHVybiBlcnI7Cj4+ICsJfQo+PiArCj4+ICsJbXNsZWVwKDIwMCk7Cj4+ICsKPj4gKwllcnIg
+PSBtaXBpX2RzaV9kY3Nfc2V0X2Rpc3BsYXlfb24odGRvX3RsMDcwd3NoMzAtPmxpbmspOwo+PiAr
+CWlmIChlcnIgPCAwKSB7Cj4+ICsJCWRldl9lcnIocGFuZWwtPmRldiwgImZhaWxlZCB0byBzZXQg
+ZGlzcGxheSBvbjogJWRcbiIsIGVycik7Cj4+ICsJCXJldHVybiBlcnI7Cj4+ICsJfQo+PiArCj4+
+ICsJbXNsZWVwKDIwKTsKPj4gKwo+PiArCXRkb190bDA3MHdzaDMwLT5wcmVwYXJlZCA9IHRydWU7
+Cj4+ICsKPj4gKwlyZXR1cm4gMDsKPj4gK30KPj4gKwo+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBk
+cm1fZGlzcGxheV9tb2RlIGRlZmF1bHRfbW9kZSA9IHsKPj4gKwkuY2xvY2sgPSA0NzI1MCwKPj4g
+KwkuaGRpc3BsYXkgPSAxMDI0LAo+PiArCS5oc3luY19zdGFydCA9IDEwMjQgKyA0NiwKPj4gKwku
+aHN5bmNfZW5kID0gMTAyNCArIDQ2ICsgODAsCj4+ICsJLmh0b3RhbCA9IDEwMjQgKyA0NiArIDgw
+ICsgMTAwLAo+PiArCS52ZGlzcGxheSA9IDYwMCwKPj4gKwkudnN5bmNfc3RhcnQgPSA2MDAgKyA1
+LAo+PiArCS52c3luY19lbmQgPSA2MDAgKyA1ICsgNSwKPj4gKwkudnRvdGFsID0gNjAwICsgNSAr
+IDUgKyAyMCwKPj4gKwkuZmxhZ3MgPSBEUk1fTU9ERV9GTEFHX1BIU1lOQyB8IERSTV9NT0RFX0ZM
+QUdfUFZTWU5DLAo+PiArfTsKPj4gKwo+PiArc3RhdGljIGludCB0ZG9fdGwwNzB3c2gzMF9wYW5l
+bF9nZXRfbW9kZXMoc3RydWN0IGRybV9wYW5lbCAqcGFuZWwsCj4+ICsJCQkJICAgICAgIHN0cnVj
+dCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCj4+ICt7Cj4+ICsJc3RydWN0IGRybV9kaXNwbGF5
+X21vZGUgKm1vZGU7Cj4+ICsKPj4gKwltb2RlID0gZHJtX21vZGVfZHVwbGljYXRlKGNvbm5lY3Rv
+ci0+ZGV2LCAmZGVmYXVsdF9tb2RlKTsKPj4gKwlpZiAoIW1vZGUpIHsKPj4gKwkJZGV2X2Vycihw
+YW5lbC0+ZGV2LCAiZmFpbGVkIHRvIGFkZCBtb2RlICV1eCV1eFxuIiwgZGVmYXVsdF9tb2RlLmhk
+aXNwbGF5LAo+PiArCQkJZGVmYXVsdF9tb2RlLnZkaXNwbGF5KTsKPiBIZXJlIHdlIG9mdGVuIHBy
+aW50IHRoZSByZWZyZXNoIHJhdGUgdG9vLgo+IElmIHRoZXJlIGlzIG5vIG5lZWQgZm9yIHRoZSBy
+ZWZyZXNoIHJhdGUgdGhhbiBhdCBsZWFzdCBkcm9wIHRoZSBleHRyYQo+ICd4JyBhdCB0aGUgZW5k
+IG9mIHRoZSBsaW5lLgoKSSBmb3Jnb3QgdG8gcmVtb3ZlIGl0IGFmdGVyIHZyZWZyZXNoIHJlbW92
+YWwsIGJ1dCBJJ2xsIHByZWZlciBhZGRpbmcgYmFjawpkcm1fbW9kZV92cmVmcmVzaCgpIGFuZCB0
+aGUgcmVmcmVzaC4KCj4gCj4+ICsJCXJldHVybiAtRU5PTUVNOwo+PiArCX0KPj4gKwo+PiArCWRy
+bV9tb2RlX3NldF9uYW1lKG1vZGUpOwo+PiArCj4+ICsJZHJtX21vZGVfcHJvYmVkX2FkZChjb25u
+ZWN0b3IsIG1vZGUpOwo+PiArCj4+ICsJY29ubmVjdG9yLT5kaXNwbGF5X2luZm8ud2lkdGhfbW0g
+PSAxNTQ7Cj4+ICsJY29ubmVjdG9yLT5kaXNwbGF5X2luZm8uaGVpZ2h0X21tID0gODU7Cj4+ICsJ
+Y29ubmVjdG9yLT5kaXNwbGF5X2luZm8uYnBjID0gODsKPj4gKwo+PiArCXJldHVybiAxOwo+PiAr
+fQo+PiArCj4+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9wYW5lbF9mdW5jcyB0ZG9fdGwwNzB3
+c2gzMF9wYW5lbF9mdW5jcyA9IHsKPj4gKwkudW5wcmVwYXJlID0gdGRvX3RsMDcwd3NoMzBfcGFu
+ZWxfdW5wcmVwYXJlLAo+PiArCS5wcmVwYXJlID0gdGRvX3RsMDcwd3NoMzBfcGFuZWxfcHJlcGFy
+ZSwKPj4gKwkuZ2V0X21vZGVzID0gdGRvX3RsMDcwd3NoMzBfcGFuZWxfZ2V0X21vZGVzLAo+PiAr
+fTsKPj4gKwo+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgdGRvX3RsMDcwd3No
+MzBfb2ZfbWF0Y2hbXSA9IHsKPj4gKwl7IC5jb21wYXRpYmxlID0gInRkbyx0bDA3MHdzaDMwIiwg
+fSwKPj4gKwl7IH0KPiBJIG9mdGVuIHJlY29tbWVuZHMKPiAJeyAvKiBzZW50aW5lbCB9LAo+IAo+
+IGJ1dCB0aGF0cyBqdXN0IHRvIGJlIGNvbnNpc3RlbnQgd2l0aCB3aGF0IEkgc2VlIGluIG90aGVy
+IGRyaXZlcnMuCgpMZXQgaXQgYmUgY29uc2lzdGVudC4KCj4gCj4+ICt9Owo+PiArTU9EVUxFX0RF
+VklDRV9UQUJMRShvZiwgdGRvX3RsMDcwd3NoMzBfb2ZfbWF0Y2gpOwo+PiArCj4+ICtzdGF0aWMg
+aW50IHRkb190bDA3MHdzaDMwX3BhbmVsX2FkZChzdHJ1Y3QgdGRvX3RsMDcwd3NoMzBfcGFuZWwg
+KnRkb190bDA3MHdzaDMwKQo+PiArewo+PiArCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZ0ZG9fdGww
+NzB3c2gzMC0+bGluay0+ZGV2Owo+PiArCWludCBlcnI7Cj4+ICsKPj4gKwl0ZG9fdGwwNzB3c2gz
+MC0+c3VwcGx5ID0gZGV2bV9yZWd1bGF0b3JfZ2V0KGRldiwgInBvd2VyIik7Cj4+ICsJaWYgKElT
+X0VSUih0ZG9fdGwwNzB3c2gzMC0+c3VwcGx5KSkKPj4gKwkJcmV0dXJuIFBUUl9FUlIodGRvX3Rs
+MDcwd3NoMzAtPnN1cHBseSk7Cj4+ICsKPj4gKwl0ZG9fdGwwNzB3c2gzMC0+cmVzZXRfZ3BpbyA9
+IGRldm1fZ3Bpb2RfZ2V0KGRldiwgInJlc2V0IiwKPj4gKwkJCQkJCSAgR1BJT0RfT1VUX0xPVyk7
+Cj4+ICsJaWYgKElTX0VSUih0ZG9fdGwwNzB3c2gzMC0+cmVzZXRfZ3BpbykpIHsKPj4gKwkJZXJy
+ID0gUFRSX0VSUih0ZG9fdGwwNzB3c2gzMC0+cmVzZXRfZ3Bpbyk7Cj4+ICsJCWRldl9kYmcoZGV2
+LCAiZmFpbGVkIHRvIGdldCByZXNldCBncGlvOiAlZFxuIiwgZXJyKTsKPj4gKwkJcmV0dXJuIGVy
+cjsKPj4gKwl9Cj4+ICsKPj4gKwlkcm1fcGFuZWxfaW5pdCgmdGRvX3RsMDcwd3NoMzAtPmJhc2Us
+ICZ0ZG9fdGwwNzB3c2gzMC0+bGluay0+ZGV2LAo+PiArCQkgICAgICAgJnRkb190bDA3MHdzaDMw
+X3BhbmVsX2Z1bmNzLCBEUk1fTU9ERV9DT05ORUNUT1JfRFNJKTsKPj4gKwo+PiArCWVyciA9IGRy
+bV9wYW5lbF9vZl9iYWNrbGlnaHQoJnRkb190bDA3MHdzaDMwLT5iYXNlKTsKPj4gKwlpZiAoZXJy
+KQo+PiArCQlyZXR1cm4gZXJyOwo+IAo+IAo+IAo+PiArCj4+ICsJZXJyID0gcmVndWxhdG9yX2Vu
+YWJsZSh0ZG9fdGwwNzB3c2gzMC0+c3VwcGx5KTsKPj4gKwlpZiAoZXJyIDwgMCkKPj4gKwkJcmV0
+dXJuIGVycjsKPj4gKwo+PiArCXVzbGVlcF9yYW5nZSgxMDAwMCwgMTEwMDApOwo+PiArCj4+ICsJ
+Z3Bpb2Rfc2V0X3ZhbHVlX2NhbnNsZWVwKHRkb190bDA3MHdzaDMwLT5yZXNldF9ncGlvLCAxKTsK
+Pj4gKwo+PiArCXVzbGVlcF9yYW5nZSgxMDAwMCwgMTEwMDApOwo+PiArCj4+ICsJZ3Bpb2Rfc2V0
+X3ZhbHVlX2NhbnNsZWVwKHRkb190bDA3MHdzaDMwLT5yZXNldF9ncGlvLCAwKTsKPj4gKwo+PiAr
+CW1zbGVlcCgyMDApOwo+PiArCj4gCj4gSXQgaXMgdGhlIGpvYiBvZiB0aGUgcHJlcGFyZSBmdW5j
+dGlvbiB0byB0dXJuIG9uIHRoZSBwYW5lbCwKPiBhbmQgbGlrZXdpc2UgdGhlIHVucHJlcGFyZSB0
+byB0dXJuIG9mZiB0aGUgcGFuZWwuCj4gUGxlYXNlIG1vdmUgdGhlIGNvZGUgYWJvdmUgdG8gdGhl
+IHByZXBhcmUgZnVuY3Rpb24uCgpNb3ZlZAoKPiAKPiAKPj4gKwlkcm1fcGFuZWxfYWRkKCZ0ZG9f
+dGwwNzB3c2gzMC0+YmFzZSk7Cj4+ICsKPj4gKwlyZXR1cm4gMDsKPj4gK30KPj4gKwo+PiArc3Rh
+dGljIHZvaWQgdGRvX3RsMDcwd3NoMzBfcGFuZWxfZGVsKHN0cnVjdCB0ZG9fdGwwNzB3c2gzMF9w
+YW5lbCAqdGRvX3RsMDcwd3NoMzApCj4+ICt7Cj4+ICsJZHJtX3BhbmVsX3JlbW92ZSgmdGRvX3Rs
+MDcwd3NoMzAtPmJhc2UpOwo+PiArfQo+IFRoaXMgaGVscGVyIGRvZXMgbm90IGdhaW4gYW55dGhp
+bmcgLSBjYWxsIGRybV9wYW5lbF9yZW1vdmUoKSBkaXJlY3QuCgpSZW1vdmVkCgo+IAo+PiArCj4+
+ICtzdGF0aWMgaW50IHRkb190bDA3MHdzaDMwX3BhbmVsX3Byb2JlKHN0cnVjdCBtaXBpX2RzaV9k
+ZXZpY2UgKmRzaSkKPj4gK3sKPj4gKwlzdHJ1Y3QgdGRvX3RsMDcwd3NoMzBfcGFuZWwgKnRkb190
+bDA3MHdzaDMwOwo+PiArCWludCBlcnI7Cj4+ICsKPj4gKwlkc2ktPmxhbmVzID0gNDsKPj4gKwlk
+c2ktPmZvcm1hdCA9IE1JUElfRFNJX0ZNVF9SR0I4ODg7Cj4+ICsJZHNpLT5tb2RlX2ZsYWdzID0g
+TUlQSV9EU0lfTU9ERV9WSURFTyB8IE1JUElfRFNJX01PREVfVklERU9fQlVSU1QgfCBNSVBJX0RT
+SV9NT0RFX0xQTTsKPj4gKwo+PiArCXRkb190bDA3MHdzaDMwID0gZGV2bV9remFsbG9jKCZkc2kt
+PmRldiwgc2l6ZW9mKCp0ZG9fdGwwNzB3c2gzMCksCj4+ICsJCQkJICAgIEdGUF9LRVJORUwpOwo+
+PiArCWlmICghdGRvX3RsMDcwd3NoMzApCj4+ICsJCXJldHVybiAtRU5PTUVNOwo+PiArCj4+ICsJ
+bWlwaV9kc2lfc2V0X2RydmRhdGEoZHNpLCB0ZG9fdGwwNzB3c2gzMCk7Cj4+ICsJdGRvX3RsMDcw
+d3NoMzAtPmxpbmsgPSBkc2k7Cj4+ICsKPj4gKwllcnIgPSB0ZG9fdGwwNzB3c2gzMF9wYW5lbF9h
+ZGQodGRvX3RsMDcwd3NoMzApOwo+PiArCWlmIChlcnIgPCAwKQo+PiArCQlyZXR1cm4gZXJyOwo+
+PiArCj4+ICsJcmV0dXJuIG1pcGlfZHNpX2F0dGFjaChkc2kpOwo+PiArfQo+PiArCj4+ICtzdGF0
+aWMgaW50IHRkb190bDA3MHdzaDMwX3BhbmVsX3JlbW92ZShzdHJ1Y3QgbWlwaV9kc2lfZGV2aWNl
+ICpkc2kpCj4+ICt7Cj4+ICsJc3RydWN0IHRkb190bDA3MHdzaDMwX3BhbmVsICp0ZG9fdGwwNzB3
+c2gzMCA9IG1pcGlfZHNpX2dldF9kcnZkYXRhKGRzaSk7Cj4+ICsJaW50IGVycjsKPj4gKwo+PiAr
+CWVyciA9IGRybV9wYW5lbF91bnByZXBhcmUoJnRkb190bDA3MHdzaDMwLT5iYXNlKTsKPj4gKwlp
+ZiAoZXJyIDwgMCkKPj4gKwkJZGV2X2VycigmZHNpLT5kZXYsICJmYWlsZWQgdG8gdW5wcmVwYXJl
+IHBhbmVsOiAlZFxuIiwgZXJyKTsKPj4gKwo+PiArCWVyciA9IGRybV9wYW5lbF9kaXNhYmxlKCZ0
+ZG9fdGwwNzB3c2gzMC0+YmFzZSk7Cj4+ICsJaWYgKGVyciA8IDApCj4+ICsJCWRldl9lcnIoJmRz
+aS0+ZGV2LCAiZmFpbGVkIHRvIGRpc2FibGUgcGFuZWw6ICVkXG4iLCBlcnIpOwo+PiArCj4gSW4g
+bW9zdCBwYW5lbCBkcml2ZXJzIHdlIGp1c3QgaWdub3JlIHRoZSByZXR1cm4gcmVzdWx0cyBoZXJl
+LgoKT2sKCj4gCj4+ICsJZXJyID0gbWlwaV9kc2lfZGV0YWNoKGRzaSk7Cj4+ICsJaWYgKGVyciA8
+IDApCj4+ICsJCWRldl9lcnIoJmRzaS0+ZGV2LCAiZmFpbGVkIHRvIGRldGFjaCBmcm9tIERTSSBo
+b3N0OiAlZFxuIiwgZXJyKTsKPj4gKwo+PiArCXRkb190bDA3MHdzaDMwX3BhbmVsX2RlbCh0ZG9f
+dGwwNzB3c2gzMCk7Cj4+ICsKPj4gKwlyZXR1cm4gMDsKPj4gK30KPj4gKwo+PiArc3RhdGljIHZv
+aWQgdGRvX3RsMDcwd3NoMzBfcGFuZWxfc2h1dGRvd24oc3RydWN0IG1pcGlfZHNpX2RldmljZSAq
+ZHNpKQo+PiArewo+PiArCXN0cnVjdCB0ZG9fdGwwNzB3c2gzMF9wYW5lbCAqdGRvX3RsMDcwd3No
+MzAgPSBtaXBpX2RzaV9nZXRfZHJ2ZGF0YShkc2kpOwo+PiArCj4+ICsJZHJtX3BhbmVsX3VucHJl
+cGFyZSgmdGRvX3RsMDcwd3NoMzAtPmJhc2UpOwo+PiArCWRybV9wYW5lbF9kaXNhYmxlKCZ0ZG9f
+dGwwNzB3c2gzMC0+YmFzZSk7Cj4gVGhpcyBpcyB0aGUgd3Jvbmcgb3JkZXIuIGRpc2FibGUgYmVm
+b3JlIHVucHJlYXByZS4KPiAKPiAKPiBJIGFtIG5vdCBzdXJlIHdoYXQgaXMgcmlnaHQgaGVyZSAt
+IGJ1dCBJIHNlZSBzb21lIGRyaXZlcnMgdGhhdCBvbmx5IGhhdmUKPiB0aGUgZGlzYWJsZSgpICsg
+dW5wcmVwYXJlKCkgaW4gdGhlaXIgc2h1dGRvd24oKSBtZXRob2QgYW5kIHRoZW4gdGhlCj4gcmVt
+b2NhbCBpbiB0aGVpciByZW1vdmUoKSBmdW5jdGlvbi4KPiBUaGF0IG1ha2VzIHNlbnNlIHdpdGgg
+dGhpcyBzcGxpdCBidXQgSSBoYXZlIG5vdCBsb29rZWQgdG9vIGRlZXAgaW50byBpdC4KCk5vIHBy
+b2IsIEkgYWxpZ25lZCB3aXRoIHBhbmVsLXNpbXBsZSBoZXJlLgoKPiAKPj4gK30KPj4gKwo+PiAr
+c3RhdGljIHN0cnVjdCBtaXBpX2RzaV9kcml2ZXIgdGRvX3RsMDcwd3NoMzBfcGFuZWxfZHJpdmVy
+ID0gewo+PiArCS5kcml2ZXIgPSB7Cj4+ICsJCS5uYW1lID0gInBhbmVsLXRkby10bDA3MHdzaDMw
+IiwKPj4gKwkJLm9mX21hdGNoX3RhYmxlID0gdGRvX3RsMDcwd3NoMzBfb2ZfbWF0Y2gsCj4+ICsJ
+fSwKPj4gKwkucHJvYmUgPSB0ZG9fdGwwNzB3c2gzMF9wYW5lbF9wcm9iZSwKPj4gKwkucmVtb3Zl
+ID0gdGRvX3RsMDcwd3NoMzBfcGFuZWxfcmVtb3ZlLAo+PiArCS5zaHV0ZG93biA9IHRkb190bDA3
+MHdzaDMwX3BhbmVsX3NodXRkb3duLAo+PiArfTsKPj4gK21vZHVsZV9taXBpX2RzaV9kcml2ZXIo
+dGRvX3RsMDcwd3NoMzBfcGFuZWxfZHJpdmVyKTsKPj4gKwo+PiArTU9EVUxFX0FVVEhPUigiTmVp
+bCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPiIpOwo+PiArTU9EVUxFX0RFU0NS
+SVBUSU9OKCJURE8gVEwwNzBXU0gzMCBwYW5lbCBkcml2ZXIiKTsKPj4gK01PRFVMRV9MSUNFTlNF
+KCJHUEwgdjIiKTsKPj4gLS0gCj4+IDIuMjIuMAo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4+IGRy
+aS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKClRoYW5rcywKTmVpbAoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWls
+aW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5p
+bmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
