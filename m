@@ -2,58 +2,80 @@ Return-Path: <SRS0=WuYP=CR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF470C2BC11
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 19:11:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D867EC433E2
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 19:48:34 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 625A32137B
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 19:11:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7FC6C20768
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2020 19:48:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nEJvRSyN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 625A32137B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=collabora.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gWvhJYFa"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7FC6C20768
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=oB5e9BXTl+MINx9Shk73Mb4bryMXlWTmL1o/Wk/bCXU=; b=nEJvRSyN8NeqnHoNihfd3+X/e
-	6mX+489qUYqF6uTw7mEThiJjy57SzqIqfI45p03wgcr3fx72Wc9cb40hXyZkWDnHWiPjrk5WZo5Sd
-	CYN3gncjfSusDtL3oMyKUvWzDaogR2h9YfMrUFdRC3C6g+gTvRj5Sj2dZkqPnUUmZxRi7Mjvv4n07
-	Tfdq8Cf24jDPlmp8t8w9RB5RdLtSeh/kb56gdPFHK2CQCv1A8C/tlibHW/h3hIt2/Kvfyl8tKHIkD
-	RMvPaq60yEeb+XhfcUHKEr71O+IN93Qxv1B5xpc5PgGQHD1CmqValxuDpglMw5e5qDJI3fbMQW83Y
-	wCcxe1YrA==;
+	 bh=pJ4ItNxt24cLPOS7lzJ/LXYtUKjmqp8yrhsFwqy8ces=; b=gWvhJYFa06TMrBnGjOuem6ir3
+	KYoqkdM3etsa9YYv6E5P3KHCPMO+liMS7oLIqiojK1+OdcpnKEwTwxf+dv2PF3/Sfnn+hIUqkVGRH
+	DO2t62kFzHV+aeu21+7XoR4P6qG2KBBOHNiNU0veE7xXqw6v+my01bLsSI89p8AAw1QTg7/y1dvhE
+	Kha0d0sfmSzowk6kU/PuZoKT6VPwHsiFGJo9Hq/4OicDqFBQW/MNWmUUavuVSzRhNd1H0BsgCB1lG
+	eClkw7NZQgq2ayUR0mXVoHAebKXH73m41P1/2MHoL1o4Q95cans4lSDOOdRFZnDANPLJD2iATDnrx
+	GIskMUTfw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kFj1f-0002Gp-G3; Tue, 08 Sep 2020 19:11:31 +0000
-Received: from bhuna.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e3e3])
+	id 1kFjbQ-0005Tj-MV; Tue, 08 Sep 2020 19:48:28 +0000
+Received: from mail-il1-f194.google.com ([209.85.166.194])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFj1d-0002G0-3K; Tue, 08 Sep 2020 19:11:29 +0000
-Received: from kevin (unknown [IPv6:2607:fea8:55f:a950::68f4])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: alyssa)
- by bhuna.collabora.co.uk (Postfix) with ESMTPSA id AD43F295E47;
- Tue,  8 Sep 2020 20:11:26 +0100 (BST)
-Date: Tue, 8 Sep 2020 15:11:19 -0400
-From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+ id 1kFjbN-0005TG-NH; Tue, 08 Sep 2020 19:48:26 +0000
+Received: by mail-il1-f194.google.com with SMTP id t16so41219ilf.13;
+ Tue, 08 Sep 2020 12:48:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=PlBmgS/sjuCEIQu1u5ZYl8mMPlH7KVu/qGuOumfaosA=;
+ b=kKsiNjKNkhPz63hsip0RDLG8hEAg+Sd4Wi7T020l3uOAXukQXYKhITf/FO0wrltN6f
+ Kd0ZZd6dmgwcC1/ajXCoHyAP9XTPac727s3rCXBeqvSZ5uXUVDlzMPeAn086R59a4cLi
+ zw5rle/cpjB54pEYKMgyAiPGJ/boX5Ci1BJRW2zbwrgWmP6KzR/Z3ybFk7rJklX+teZ8
+ a+6c2s3EB2i0BTRlT2qxDOXPVNbkVamMt2ODVC6JT5O0YqldAHzmm8EhdKHy3wKW2eul
+ 6C4TdNdqASFKeFxHy/54Ptqemb8b3tp8zAOQso12Fq6K/bInIS82kJgf1N5118Q1Sz7g
+ popQ==
+X-Gm-Message-State: AOAM531R8kn7a1wBAezjEY5h+r2w/6EKoXu8k4pGgKhIrH8QLKtbdusn
+ gy57nJ4AYgfftOQdiuB7ZQ==
+X-Google-Smtp-Source: ABdhPJwN1OwrU3sDw8effHgraPgDprUoh6q/VhYkCUX+OIayZE87xKJpLW8f/hji5fWBS4UIu+vurg==
+X-Received: by 2002:a05:6e02:13aa:: with SMTP id
+ h10mr370198ilo.212.1599594505051; 
+ Tue, 08 Sep 2020 12:48:25 -0700 (PDT)
+Received: from xps15 ([64.188.179.251])
+ by smtp.gmail.com with ESMTPSA id l2sm102112ilk.19.2020.09.08.12.48.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Sep 2020 12:48:24 -0700 (PDT)
+Received: (nullmailer pid 791744 invoked by uid 1000);
+ Tue, 08 Sep 2020 19:48:21 -0000
+Date: Tue, 8 Sep 2020 13:48:21 -0600
+From: Rob Herring <robh@kernel.org>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 5/5] drm/panfrost: add Amlogic GPU integration quirks
-Message-ID: <20200908191119.GC10568@kevin>
-References: <20200908151853.4837-1-narmstrong@baylibre.com>
- <20200908151853.4837-6-narmstrong@baylibre.com>
+Subject: Re: [PATCH 1/3] dt-bindings: phy: amlogic,
+ meson-axg-mipi-pcie-analog: remove reg attribute
+Message-ID: <20200908194821.GA790974@bogus>
+References: <20200907073402.26674-1-narmstrong@baylibre.com>
+ <20200907073402.26674-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20200908151853.4837-6-narmstrong@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <20200907073402.26674-2-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200908_151129_268632_0A3E21E5 
-X-CRM114-Status: GOOD (  16.86  )
+X-CRM114-CacheID: sfid-20200908_154825_773449_C94EA01E 
+X-CRM114-Status: GOOD (  12.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,105 +87,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: robh@kernel.org, tomeu.vizoso@collabora.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, steven.price@arm.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============8194952763425707345=="
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kishon@ti.com,
+ repk@triplefau.lt, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============8194952763425707345==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="b5gNqxB1S1yM7hjW"
-Content-Disposition: inline
-
-
---b5gNqxB1S1yM7hjW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Reviewed-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-> This adds the required GPU quirks, including the quirk in the PWR registe=
-rs at the GPU
-> reset time and the IOMMU quirk for shareability issues observed on G52 in=
- Amlogic G12B SoCs.
->=20
+On Mon, 07 Sep 2020 09:34:00 +0200, Neil Armstrong wrote:
+> The Amlogic AXG MIPI + PCIe Analog PHY should be a subnode of the hhi mfd
+> node like the axg-clkc node.
+> 
+> Thus the reg attribute is not needed.
+> 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  drivers/gpu/drm/panfrost/panfrost_drv.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/pa=
-nfrost/panfrost_drv.c
-> index 36463c89e966..efde5e2acc35 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> @@ -656,7 +656,25 @@ static const struct panfrost_compatible default_data=
- =3D {
->  	.pm_domain_names =3D NULL,
->  };
-> =20
-> +static const struct panfrost_compatible amlogic_gxm_data =3D {
-> +	.num_supplies =3D ARRAY_SIZE(default_supplies),
-> +	.supply_names =3D default_supplies,
-> +	.vendor_reset_quirk =3D panfrost_gpu_amlogic_reset_quirk,
-> +};
-> +
-> +static const struct panfrost_compatible amlogic_g12a_data =3D {
-> +	.num_supplies =3D ARRAY_SIZE(default_supplies),
-> +	.supply_names =3D default_supplies,
-> +	.vendor_reset_quirk =3D panfrost_gpu_amlogic_reset_quirk,
-> +	.pgtbl_quirks =3D IO_PGTABLE_QUIRK_ARM_BROKEN_SH,
-> +};
-> +
->  static const struct of_device_id dt_match[] =3D {
-> +	/* Set first to probe before the generic compatibles */
-> +	{ .compatible =3D "amlogic,meson-gxm-mali",
-> +	  .data =3D &amlogic_gxm_data, },
-> +	{ .compatible =3D "amlogic,meson-g12a-mali",
-> +	  .data =3D &amlogic_g12a_data, },
->  	{ .compatible =3D "arm,mali-t604", .data =3D &default_data, },
->  	{ .compatible =3D "arm,mali-t624", .data =3D &default_data, },
->  	{ .compatible =3D "arm,mali-t628", .data =3D &default_data, },
-> --=20
-> 2.22.0
->=20
-
---b5gNqxB1S1yM7hjW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEQ17gm7CvANAdqvY4/v5QWgr1WA0FAl9X11YACgkQ/v5QWgr1
-WA1SyhAAgVduu4bMRXVDtE5vLGTa6kOSM3YzDXPkd5eadv5cvcsZCPjzItTlpbV0
-TdS7/SVgZZyDkGGCI2YzL5j7cNkso6ffe6y6LrUPkttYFfmsib3VuEUxLZG+evUD
-rgq3BlmPI/4++/hmzaBRE8lD3TjhcY7cki3cpoz696GxstugGb2XkXuUpnUwS5f0
-J4ZHmc5foIP3BtUUo2WVE2J4Ey0ljCM4pBjFtT72h1PMZDiTPo0nnNzZWbmu7ScM
-eNQvFReKPVK9WTLYjpDzB1Da5jDB7ULPCLdQ2Dihb/QdPhjN7Ik47H+p82CxZ+2/
-tMvJaPDEH8IzwkJTQojv148r+uWuUQV2Lqllkn4WTLvNwdWeIb8r/rr0ygiDqg9y
-/poPMKnL+OIyvL4nBQMc+W1BWB4CPPjBYHEfKA95c2bb1djdsAYyF+uVhsbMbTPQ
-q3YlWlJLadtYpSiHIVtVE9ISzE8+c9XnfruhZfniTTGHAI5bsagvYTh3ONdhI/I2
-W2zNBiF0mqNBxoyAc14KURy0PMCNfgsvFiS/n+E4uB72NDdHhu7S7CbG96tsUQPX
-zf2PrPHCarpFSK1mCr9OCdHWeJ1iWR7gNqrMYgZAzXNKtrqrFjle7KHnxIVU09l3
-BxpldnOaHPD32usBXkAmlOWlSGv2qs3AEt5kpOCs8AM6LBZOCLk=
-=14Ih
------END PGP SIGNATURE-----
-
---b5gNqxB1S1yM7hjW--
+>  .../bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml      | 4 ----
+>  1 file changed, 4 deletions(-)
+> 
 
 
---===============8194952763425707345==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+My bot found errors running 'make dt_binding_check' on your patch:
+
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.example.dt.yaml: phy@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+
+
+See https://patchwork.ozlabs.org/patch/1358643
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8194952763425707345==--
-
