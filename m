@@ -2,76 +2,104 @@ Return-Path: <SRS0=cGvQ=CU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A9FAC433E2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2020 06:01:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E12FC433E2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2020 08:29:55 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 90D6F20735
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2020 06:01:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 30D70206F4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2020 08:29:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PRFXAVZY";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="LC7DGZ8r"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 90D6F20735
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="il4TGHJE";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=st.com header.i=@st.com header.b="CNlsHBhS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 30D70206F4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=st.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:References:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Enr3xCRNnpcJMPEfJ6fTyPUrdESrTuMCQgYzV5r0lNE=; b=PRFXAVZYFZYrJtokanOU0v4VL
-	nNab5I2Y5PbGCfH+C6ti7XNAcTihbyweQm20a3f97dgGvMiZmBLDJE8Sj92O6plQ282gTpf+aJ761
-	AjxB+LhWqGqlMLpvWi+3/53T3gc06rwaNf04LZxUCNGpWXNAZGc2RitnxAdIOZSV/qaQ/k49FwHND
-	ZNYmZTez4Tp897ISalgB2BvL+OJVmSkdrpLyXebswKA7WWH8xMq+kuZgw7FfZkCmnONNDvNlKX9ZC
-	hAog1SrH/iQc3SCn5FlhrIaGasfZPVaG9Y4adGiPCV2cNw6ort9Hi8OeMHM7rIx+WqHQMzq2BzUDG
-	EgtZ2C54g==;
+	 bh=0XunWgaENR810HPYtwU/rKeY4Ggdcr3u8gzX+XanPPk=; b=il4TGHJEkBny7GwZk4tjnqFw1
+	/LbBiUKIEpyfthp/0XyDjIKmblQgwIydFhgNaVg8Wtp1qtH5NVHjuvbvGph4j8kiWj8g1kK+fPw1n
+	HJzoHvA3Wc/YedhcUcdy5LDIHKJ7ELIbsAmLYheoQB5xDgyoy3h9z1I0yVSuUMLr1QkWiVNUNnXDP
+	D6WZACsrTzDuspWtJ8pHz8ZTXV79epzvnldJzpAf99PcozPBwQ1B2tVL/UDtKLZAsHyGXSmztxq4F
+	xKlx1lcUumLcRUZb/+2injmDicu5phrL/GO1ZlQ4Tvumv1nBLO4nuNwsF6osLQSh0Wo97F0DxbNgN
+	DYe7NXZsg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kGc77-0002Tm-Fh; Fri, 11 Sep 2020 06:00:49 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1kGeRC-00082f-A6; Fri, 11 Sep 2020 08:29:42 +0000
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]
+ helo=mx07-00178001.pphosted.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kGc75-0002TJ-8d; Fri, 11 Sep 2020 06:00:47 +0000
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
- [209.85.208.41])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 063D722205;
- Fri, 11 Sep 2020 06:00:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599804046;
- bh=WESK6UKUjRSkP/TKSKzcEG4kxiuhjNV3m+bUJP3+ZXk=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=LC7DGZ8rQekxgJUgL7zxJ0LSh8Y/78j+NhruI5QfUcNvg1Qnnm5Qz3wO0/okaaFUA
- WVguyWmjY1UBQ9GxUMisqY9kXRKh70rJ39UFlNetdPSqcs6RJ0mLNogVJ4Op3PRi+h
- kmmKZWyIKgr1QkKcWDHBRWULkVuo4+FNDgWkBwkM=
-Received: by mail-ed1-f41.google.com with SMTP id n13so8682324edo.10;
- Thu, 10 Sep 2020 23:00:45 -0700 (PDT)
-X-Gm-Message-State: AOAM531SX7uGEzYq47VMRzq3mQCiAs9kxuQxOjmMig5SOKzhyYTQkuOW
- dkWRLyZntzwvHYtuzSvW887PgTkAiQf95wNBXOE=
-X-Google-Smtp-Source: ABdhPJymE4+rHgjSFNYuvs+iwJGMjk8bYNxuRzgTr6WbXwAWTZAX5N+hRh1+ebmhCBeiPPYGzNLG50rUvrXYcNeA9YU=
-X-Received: by 2002:a05:6402:515:: with SMTP id
- m21mr346459edv.348.1599804044455; 
- Thu, 10 Sep 2020 23:00:44 -0700 (PDT)
+ id 1kGeRA-00081B-3M
+ for linux-amlogic@lists.infradead.org; Fri, 11 Sep 2020 08:29:41 +0000
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+ by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 08B8S3D7001767; Fri, 11 Sep 2020 10:29:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com;
+ h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=NPQB3mzG+KC4r8q2wcOs8xMlMzwaex4jb/8qkinpIxc=;
+ b=CNlsHBhSyGwnpGkj2SWWaXCRpwaUROtYzB2TT9dBHLqDdA+JZFHivlYm0ThANbnpaEMT
+ 74Dy7lamZNKG42XyNUEYz9PRy3qmU1tQZyXTnEhe1+9bWvndHfrbO5SD+01lBy1RSFG4
+ 6YAMCz65sqM4uExpu2EivULV+jvgb4OhLQKTSecSDeMLn3GQT0BSJPlCf4FRSwTZPopO
+ Dv4zwUKvS88IhUuOc7UNmVvS+LmkcY0OLm2HZ5ev13N66+V9vvRRQHc/cYVz7TjifNSK
+ IwjoQluegbaufQzOyZYvIvBG3qOwM5BcIDXzLsprZn3ssMDVT359J++omDTbhk1UFtuL XA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+ by mx07-00178001.pphosted.com with ESMTP id 33byt88mek-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 11 Sep 2020 10:29:30 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+ by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CF67310002A;
+ Fri, 11 Sep 2020 10:29:27 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
+ by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BA60321E26A;
+ Fri, 11 Sep 2020 10:29:27 +0200 (CEST)
+Received: from SFHDAG6NODE3.st.com (10.75.127.18) by SFHDAG6NODE1.st.com
+ (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 11 Sep
+ 2020 10:29:27 +0200
+Received: from SFHDAG6NODE3.st.com ([fe80::d04:5337:ab17:b6f6]) by
+ SFHDAG6NODE3.st.com ([fe80::d04:5337:ab17:b6f6%20]) with mapi id
+ 15.00.1473.003; Fri, 11 Sep 2020 10:29:27 +0200
+From: Philippe CORNU <philippe.cornu@st.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, "a.hajda@samsung.com"
+ <a.hajda@samsung.com>, "Laurent.pinchart@ideasonboard.com"
+ <Laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>,
+ "jernej.skrabec@siol.net" <jernej.skrabec@siol.net>
+Subject: Re: [PATCH] drm/bridge: dw-mipi-dsi: permit configuring the escape
+ clock rate
+Thread-Topic: [PATCH] drm/bridge: dw-mipi-dsi: permit configuring the escape
+ clock rate
+Thread-Index: AQHWgrq0GnmfCHcy9EO3+U4LDjE6p6ljBFQA
+Date: Fri, 11 Sep 2020 08:29:27 +0000
+Message-ID: <078aae69-936f-cb78-623f-6bdcb1c2630d@st.com>
+References: <20200904125531.15248-1-narmstrong@baylibre.com>
+In-Reply-To: <20200904125531.15248-1-narmstrong@baylibre.com>
+Accept-Language: fr-FR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.47]
+Content-ID: <C82391012D30F14E973A5E5130F2B86A@st.com>
 MIME-Version: 1.0
-References: <20200902193658.20539-1-krzk@kernel.org>
- <CAPDyKFqBS-ws6fkirDQL8EEqh9At88K2vrG5fc8K5_JiXsmfyg@mail.gmail.com>
- <CAL_Jsq+ajm5aiAJfQdS2+2DO1ynBDHWha_7TsA4u-2qwd87y6g@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+ajm5aiAJfQdS2+2DO1ynBDHWha_7TsA4u-2qwd87y6g@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Fri, 11 Sep 2020 08:00:32 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPf8cNDGaXGkYpgc-LEEPSoF2JxwzQp7fwVQB3kLJWNKXw@mail.gmail.com>
-Message-ID: <CAJKOXPf8cNDGaXGkYpgc-LEEPSoF2JxwzQp7fwVQB3kLJWNKXw@mail.gmail.com>
-Subject: Re: [PATCH 00/11] mmc: Minor cleanups and compile test
-To: Rob Herring <robh@kernel.org>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
+ definitions=2020-09-11_02:2020-09-10,
+ 2020-09-11 signatures=0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200911_020047_435513_8BDC0018 
-X-CRM114-Status: GOOD (  25.77  )
+X-CRM114-CacheID: sfid-20200911_042940_329797_45BCB512 
+X-CRM114-Status: GOOD (  28.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,97 +111,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Al Cooper <alcooperx@gmail.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Paul Cercueil <paul@crapouillou.net>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Florian Fainelli <f.fainelli@gmail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Michal Simek <michal.simek@xilinx.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Jaehoon Chung <jh80.chung@samsung.com>,
- BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Arnd Bergmann <arnd@arndb.de>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Ray Jui <rjui@broadcom.com>,
- "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- linux-tegra <linux-tegra@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Scott Branden <sbranden@broadcom.com>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
- Jun Nie <jun.nie@linaro.org>, Shawn Guo <shawnguo@kernel.org>,
- Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc: Yannick FERTRE <yannick.fertre@st.com>,
+ "heiko.stuebner@theobroma-systems.com"
+ <heiko.stuebner@theobroma-systems.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 11 Sep 2020 at 00:55, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Sep 3, 2020 at 2:40 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> >
-> > On Wed, 2 Sep 2020 at 21:37, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > Set of minor cleanups.  Patches requiring more attention:
-> > >  - 6/11: Testing and review would be appreciated,
-> > >  - 11/11: I build tested multiple architectures but not all and
-> > >    definitely no all possible configs. This one could sit on the lists
-> > >    for few days so 0-day would try it.
-> > >
-> > > Best regards,
-> > > Krzysztof
-> > >
-> > > Krzysztof Kozlowski (11):
-> > >   mmc: bcm2835: Simplify with dev_err_probe()
-> > >   mmc: davinci: Simplify with dev_err_probe()
-> > >   mmc: dw_mmc-zx: Simplify with dev_err_probe()
-> > >   mmc: jz4740: Simplify with dev_err_probe()
-> > >   mmc: meson: Simplify with dev_err_probe()
-> > >   mmc: sdhci-brcmstb: Simplify with optional clock and dev_err_probe()
-> > >   mmc: sdhci-of-arasan: Simplify with dev_err_probe()
-> > >   mmc: sdhci-tegra: Simplify with dev_err_probe()
-> > >   mmc: dw_mmc: Simplify with dev_err_probe()
-> > >   mmc: sdhci-of-sparx5: Use proper printk format for dma_addr_t
-> > >   mmc: host: Enable compile testing of multiple drivers
-> > >
-> > >  drivers/mmc/host/Kconfig           | 42 ++++++++++++++++--------------
-> > >  drivers/mmc/host/bcm2835.c         |  4 +--
-> > >  drivers/mmc/host/davinci_mmc.c     |  5 ++--
-> > >  drivers/mmc/host/dw_mmc-zx.c       | 11 +++-----
-> > >  drivers/mmc/host/dw_mmc.c          |  9 +++----
-> > >  drivers/mmc/host/jz4740_mmc.c      |  5 ++--
-> > >  drivers/mmc/host/meson-gx-mmc.c    | 16 ++++--------
-> > >  drivers/mmc/host/sdhci-brcmstb.c   | 12 ++++-----
-> > >  drivers/mmc/host/sdhci-of-arasan.c |  7 +++--
-> > >  drivers/mmc/host/sdhci-of-sparx5.c |  4 +--
-> > >  drivers/mmc/host/sdhci-tegra.c     |  7 ++---
-> > >  11 files changed, 51 insertions(+), 71 deletions(-)
-> > >
-> > > --
-> > > 2.17.1
-> > >
-> >
-> > Series applied for next, except 11, thanks!
->
-> I see there's a bunch of these already, but I think we can do better
-> here than dev_err_probe. We have _optional variants for the case not
-> getting a resource is not an error. So the called functions like
-> devm_clk_get can print an error. We already have this for
-> platform_get_irq along with a coccinelle script to fix cases. I have a
-> WIP branch[1] doing this.
 
-That's quite good idea.
 
-Best regards,
-Krzysztof
+On 9/4/20 2:55 PM, Neil Armstrong wrote:
+> The Amlogic D-PHY in the Amlogic AXG SoC Family does support a frequency
+> higher than 10MHz for the TX Escape Clock, thus make the target rate
+> configurable.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 25 +++++++++++++++----
+>   include/drm/bridge/dw_mipi_dsi.h              |  1 +
+>   2 files changed, 21 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> index d580b2aa4ce9..31fc965c66fd 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> @@ -562,15 +562,30 @@ static void dw_mipi_dsi_disable(struct dw_mipi_dsi *dsi)
+>   
+>   static void dw_mipi_dsi_init(struct dw_mipi_dsi *dsi)
+>   {
+> +	const struct dw_mipi_dsi_phy_ops *phy_ops = dsi->plat_data->phy_ops;
+> +	unsigned int esc_rate; /* in MHz */
+> +	u32 esc_clk_division;
+> +	int ret;
+> +
+>   	/*
+>   	 * The maximum permitted escape clock is 20MHz and it is derived from
+> -	 * lanebyteclk, which is running at "lane_mbps / 8".  Thus we want:
+> -	 *
+> -	 *     (lane_mbps >> 3) / esc_clk_division < 20
+> +	 * lanebyteclk, which is running at "lane_mbps / 8".
+> +	 */
+> +	if (phy_ops->get_esc_clk_rate) {
+> +		ret = phy_ops->get_esc_clk_rate(dsi->plat_data->priv_data,
+> +						&esc_rate);
+> +		if (ret)
+> +			DRM_DEBUG_DRIVER("Phy get_esc_clk_rate() failed\n");
+> +	} else
+> +		esc_rate = 20; /* Default to 20MHz */
+> +
+> +	/*
+> +	 * We want :
+> +	 *     (lane_mbps >> 3) / esc_clk_division < X
+>   	 * which is:
+> -	 *     (lane_mbps >> 3) / 20 > esc_clk_division
+> +	 *     (lane_mbps >> 3) / X > esc_clk_division
+>   	 */
+> -	u32 esc_clk_division = (dsi->lane_mbps >> 3) / 20 + 1;
+> +	esc_clk_division = (dsi->lane_mbps >> 3) / esc_rate + 1;
+>   
+>   	dsi_write(dsi, DSI_PWR_UP, RESET);
+>   
+> diff --git a/include/drm/bridge/dw_mipi_dsi.h b/include/drm/bridge/dw_mipi_dsi.h
+> index b0e390b3288e..bda8aa7c2280 100644
+> --- a/include/drm/bridge/dw_mipi_dsi.h
+> +++ b/include/drm/bridge/dw_mipi_dsi.h
+> @@ -36,6 +36,7 @@ struct dw_mipi_dsi_phy_ops {
+>   			     unsigned int *lane_mbps);
+>   	int (*get_timing)(void *priv_data, unsigned int lane_mbps,
+>   			  struct dw_mipi_dsi_dphy_timing *timing);
+> +	int (*get_esc_clk_rate)(void *priv_data, unsigned int *esc_clk_rate);
+>   };
+>   
+>   struct dw_mipi_dsi_host_ops {
+> 
 
+Hi Neil,
+Thank you for the patch
+
+Reviewed-by: Philippe Cornu <philippe.cornu@st.com>
+
+Philippe :-)
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
