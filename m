@@ -2,147 +2,93 @@ Return-Path: <SRS0=PGU9=CY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 814BFC433E2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 16:28:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A57CC433E2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 16:47:12 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F132E206DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 16:28:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B785E20809
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 16:47:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VVVuttvs";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FVbvVtDC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F132E206DC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O2zu6XUz";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eGdK2SZE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B785E20809
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=4v+D1mGMNAMMhlym9pqSgNJJESk1zIACsJ/FlWX/E3Y=; b=VVVuttvsSdPX0fYWjd7ktrxDA
-	lW/7mSk1XBBPa00uljgKIsceqwxPewA+50yC8jCPtjmh/+FZZ9Cl+zscEUDnxE+QJ4AV7f+sEC13/
-	NvLgZaJvcv1bjf3aGOwbP22TE5LvjQCRHsZUsDelB/asTlq0XNng1vuvZjLaBohushChcAU0Hic79
-	wmnSJuCocAa42U5pHzKH44RcR2QhLZxlLZt92jCYf2S3BO2hbxq6ne+zR9oKNkdufGjPMipqx1t8B
-	4EUHu4fyxQjNRHnoxihprQLqwuCxtOfLe2yK5sjL737AUVwV1JtkKd7Hy3Uw7oLsH3vSpoecdYkyI
-	APrwq0Dcg==;
+	 bh=5Zt/2yWG4qtFL15usKPuVpPcicNqFxQOyCpe7RJiOk8=; b=O2zu6XUzOWrnjvnhMyoLuMXDU
+	GevzwlxYol5tmFtiiwrv3XXxX9EUeOQ7pt04SmPU1fUuZtS7p9e3ZSTKqH/SVAfxiY0q+9EVYJaWn
+	01olizYFpCzg846uoC3ubVxnxIm04uNxn26AcTqbCMvESG6rB7vueKx080zRqgCYt+DcYgZAlMcsM
+	kmhuTEr6PPrI0NZU0FtO9ZTWFQ5CRx3qfOShdV9rzzSt/uUWMfUqKBbiHmRyJcsHvvlkgk8ikpKJr
+	q5E4W2N7eFlQF3PJlA58abnYMKMUfOQKPV+RFs8qypKxrQpt6TCH8nJh8XV2vDp7yc9OxIDKVETlj
+	nA6sWhY5g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIDoW-00037d-RO; Tue, 15 Sep 2020 16:28:16 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1kIE6i-0006Qi-KP; Tue, 15 Sep 2020 16:47:04 +0000
+Received: from mail-ej1-x644.google.com ([2a00:1450:4864:20::644])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIDoR-00036q-DG
- for linux-amlogic@lists.infradead.org; Tue, 15 Sep 2020 16:28:12 +0000
-Received: by mail-wr1-x443.google.com with SMTP id a17so4004394wrn.6
- for <linux-amlogic@lists.infradead.org>; Tue, 15 Sep 2020 09:28:11 -0700 (PDT)
+ id 1kIE6f-0006Q6-QD
+ for linux-amlogic@lists.infradead.org; Tue, 15 Sep 2020 16:47:03 +0000
+Received: by mail-ej1-x644.google.com with SMTP id e23so6059696eja.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 15 Sep 2020 09:47:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=d8d2IYH9CqvPPznwu6X5Y/hj/8U0caseE3XMH7pxcs0=;
- b=FVbvVtDC2Rj6TSvG8BruGF1q6aGGulZFRHybVlCPCTPISPF9nFrgp30KUpgTnoO+qs
- LCQto2MwApned4rAVGOoJflprTCB8NF4y1sa55CyCnMfx24wreIGRDwpzInnx1PUG8/n
- g2nmkDV8Bxrci6XhBcU7imxmzL2odleHGF4LRuUEqpyFm8gTkcx7vwGEGUdC4uNFslGB
- V9KvIZSHijqQdrNCz8w3FOsN0oN+dFPRZKAvrv5zNy6XapKdrPblgTfBUg5W7x2Bs5cP
- qwE3gPdu+izVm9ohV6tArtOQm2IOq5OarN3CkrvoEcL/fxgeFMACFSpSTNSrfthnJjQ7
- 58XA==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=2eJ8lWRTrfB3Zw5Bk60TqvII5ysIe8z02iSViAYeC+8=;
+ b=eGdK2SZEzPQbHVv2tWHIkDKKBmxZVjHiQYJkicWhidIEkYrbijrJM0gHhcbUPnc3lH
+ ujxeLIM0T50m9R3VytIncl7TQBuHRVqwrJuidlNXW2l8jjCe690ZRVc+57BbHFYvSnbM
+ VS9DnZ1fzFGAVX0Z5eNKvBXO0wtrU96JT65SOf5ox3bRzj0i3nEQ2ZlxxWJmqwZ9s4H/
+ pB9N969NaRc0KSa2XcMtA6RsZpUyz0BGFGsW4gs1Ox2kCK3N04m/Di9QG7yG2PtzjwjA
+ 9wOqjDcgYO3Gyjm6cz/qLtqQ20DpIiiZS7S7Poq3xwy4ghpO8ZLznjrVKcUXjCXh+aNS
+ aiRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=d8d2IYH9CqvPPznwu6X5Y/hj/8U0caseE3XMH7pxcs0=;
- b=Dv54fouHVaipF3i02YABjyV8ZkEsdtLOZkvy16g6gccO5bLgVKmhHBb7ug/JjUBhaA
- VgHJVVybhL74s+/onRoa4Y7/ZwBlbZ/22liH0oC9s2LF2olh+6rNjku142TAtIccE4d6
- VwM7Kyh7G/2DXFxpc6lI6HeOGstQ1LHjl9JaILZfnnfjoxberGtek56pvpIcn05aggb0
- 2YZE5QHF0uY/7c3Xh5qCOUnxoHAS/SsJ6Tfhzvm3EmwJFmgO0PnLsckKVQuIm37lQp71
- Mxf5fUEVaHLz9WwEnU7pSSTL9m4teyh+YrtwoHL0XLg8ZvFvGjO5VmPGmTGZUzm3Z3mt
- GEhA==
-X-Gm-Message-State: AOAM531gxp+G3CSin2tKWyu9u+Gq/hWgorseHYo64RbZ1ik88blj5YU3
- OJCi3yFu2xWqT2wAIJePWkErXA==
-X-Google-Smtp-Source: ABdhPJwaw5nIrOwqUALglrydIq/WdVmeh5e6rd1OYIptXlWAC4+/C4Ed7EE/MEcOsWALUyjMsyTgvQ==
-X-Received: by 2002:adf:dd51:: with SMTP id u17mr22117352wrm.355.1600187290168; 
- Tue, 15 Sep 2020 09:28:10 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac?
- ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
- by smtp.gmail.com with ESMTPSA id d124sm122769wmd.47.2020.09.15.09.28.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 15 Sep 2020 09:28:09 -0700 (PDT)
-Subject: Re: [PATCH 2/6] dt-bindings: display: add Amlogic MIPI DSI Host
- Controller bindings
-To: Rob Herring <robh@kernel.org>
-References: <20200907081825.1654-1-narmstrong@baylibre.com>
- <20200907081825.1654-3-narmstrong@baylibre.com>
- <20200915154118.GA1988840@bogus>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <de9ffeb8-eef0-f757-428f-376e80517e34@baylibre.com>
-Date: Tue, 15 Sep 2020 18:28:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=2eJ8lWRTrfB3Zw5Bk60TqvII5ysIe8z02iSViAYeC+8=;
+ b=np1Ki6fG7JstwgzzY6mNtJ5A3WJR/SMIPNhf7tEjott9NPT/Khw2FpxFIkOQaX0ojh
+ 1SfhjS+pqQcQDEk5b/j/Er0dPsZ/S//+Fs45exIUfoLN8l4vs09ih/3rrGzR4Vv8Hygl
+ SjhX50jVlWMSNZj2b9XpFg4LXaijVWK4pubfJIU9au3uWYCjJEZRg5QgsNoVtrvx0EPS
+ 3BE5n4va5UZ1dThpCjjKfMmIac8LaB2VfCcVOPGCwSkBL51/nmej3bS6jkbU2r6qtXuS
+ sI9NKKpEoUWRsSF10gCU6Z8trck7LgdVQFl2p/0qiThzuyUlACbo6CAo3KriwAKZxxoq
+ FaWA==
+X-Gm-Message-State: AOAM5323EL5W7F+8H48RhFvXuL0VL1tTpMqMAlD6EVWu0uTiIvb1hYdi
+ o0bDZ8vopQZC2CDooQMlt9SZ9w==
+X-Google-Smtp-Source: ABdhPJywB5UNVhz4v66VP3MRgtHNkfWSote+so73xe4tP6IBiaX1z3MFBwx6Y+cTVq1OGzBi+N2EpQ==
+X-Received: by 2002:a17:906:2659:: with SMTP id
+ i25mr20479860ejc.16.1600188420277; 
+ Tue, 15 Sep 2020 09:47:00 -0700 (PDT)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id r8sm11965094edy.87.2020.09.15.09.46.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 15 Sep 2020 09:46:59 -0700 (PDT)
+References: <20200915141921.57258-1-jbrunet@baylibre.com>
+ <20200915141921.57258-3-jbrunet@baylibre.com>
+ <4f67512c-51c7-77ae-af63-4bdd8867c313@baylibre.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH 2/2] arm64: dts: meson: initial support for aml-s905x-cc v2
+In-reply-to: <4f67512c-51c7-77ae-af63-4bdd8867c313@baylibre.com>
+Date: Tue, 15 Sep 2020 18:46:55 +0200
+Message-ID: <1jy2lbt2bk.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20200915154118.GA1988840@bogus>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200915_122811_572236_FED8A605 
-X-CRM114-Status: GOOD (  17.38  )
+X-CRM114-CacheID: sfid-20200915_124701_914323_5F1F9692 
+X-CRM114-Status: GOOD (  17.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,125 +100,381 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/09/2020 17:41, Rob Herring wrote:
-> On Mon, Sep 07, 2020 at 10:18:21AM +0200, Neil Armstrong wrote:
->> The Amlogic AXg SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a), with a custom
->> glue managing the IP resets, clock and data input similar to the DW-HDMI Glue on other
->> Amlogic SoCs.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+
+On Tue 15 Sep 2020 at 16:30, Neil Armstrong <narmstrong@baylibre.com> wrote:
+
+> Hi,
+>
+> On 15/09/2020 16:19, Jerome Brunet wrote:
+>> Add initial support for the libretech aml-s905x-cc (Le Potato) v2
+>> 
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 >> ---
->>  .../display/amlogic,meson-dw-mipi-dsi.yaml    | 115 ++++++++++++++++++
->>  1 file changed, 115 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
+>>  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>>  .../meson-gxl-s905x-libretech-cc-v2.dts       | 318 ++++++++++++++++++
+>>  2 files changed, 319 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
+>> 
+>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>> index 4e2239ffcaa5..be5277b7fbf4 100644
+>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>> @@ -24,6 +24,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-libretech-ac.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-hwacom-amazetv.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-khadas-vim.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
+>> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
 >> new file mode 100644
->> index 000000000000..6177f45ea1a6
+>> index 000000000000..675eaa87963e
 >> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
->> @@ -0,0 +1,115 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright 2020 BayLibre, SAS
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/display/amlogic,meson-dw-mipi-dsi.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
+>> @@ -0,0 +1,318 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (c) 2020 BayLibre, SAS.
+>> + * Author: Jerome Brunet <jbrunet@baylibre.com>
+>> + */
 >> +
->> +title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
+>> +/dts-v1/;
 >> +
->> +maintainers:
->> +  - Neil Armstrong <narmstrong@baylibre.com>
+>> +#include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/leds/common.h>
+>> +#include <dt-bindings/sound/meson-aiu.h>
 >> +
->> +description: |
->> +  The Amlogic Meson Synopsys Designware Integration is composed of
->> +  - A Synopsys DesignWare MIPI DSI Host Controller IP
->> +  - A TOP control block controlling the Clocks & Resets of the IP
+>> +#include "meson-gxl-s905x.dtsi"
 >> +
->> +allOf:
->> +  - $ref: dsi-controller.yaml#
+>> +/ {
+>> +	compatible = "libretech,aml-s905x-cc-v2", "amlogic,s905x",
+>> +		     "amlogic,meson-gxl";
+>> +	model = "Libre Computer AML-S905X-CC V2";
 >> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - amlogic,meson-axg-dw-mipi-dsi
+>> +	aliases {
+>> +		serial0 = &uart_AO;
+>> +		ethernet0 = &ethmac;
+>> +		spi0 = &spifc;
+>> +	};
 >> +
->> +  reg:
->> +    maxItems: 1
+>> +	chosen {
+>> +		stdout-path = "serial0:115200n8";
+>> +	};
 >> +
->> +  clocks:
->> +    minItems: 2
+>> +	emmc_pwrseq: emmc-pwrseq {
+>> +		compatible = "mmc-pwrseq-emmc";
+>> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+>> +	};
 >> +
->> +  clock-names:
->> +    minItems: 2
->> +    items:
->> +      - const: pclk
->> +      - const: px_clk
->> +      - const: meas_clk
+>> +	hdmi-connector {
+>> +		compatible = "hdmi-connector";
+>> +		type = "a";
 >> +
->> +  resets:
->> +    minItems: 1
+>> +		port {
+>> +			hdmi_connector_in: endpoint {
+>> +				remote-endpoint = <&hdmi_tx_tmds_out>;
+>> +			};
+>> +		};
+>> +	};
 >> +
->> +  reset-names:
->> +    items:
->> +      - const: top
+>> +	leds {
+>> +		compatible = "gpio-leds";
 >> +
->> +  phys:
->> +    minItems: 1
+>> +		led-blue {
+>> +			color = <LED_COLOR_ID_BLUE>;
+>> +			function = LED_FUNCTION_STATUS;
+>> +			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
+>> +			linux,default-trigger = "heartbeat";
+>> +			panic-indicator;
+>> +		};
 >> +
->> +  phy-names:
->> +    items:
->> +      - const: dphy
+>> +		led-green {
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +			function = LED_FUNCTION_DISK_ACTIVITY;
+>> +			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
+>> +			linux,default-trigger = "disk-activity";
+>> +		};
+>> +	};
 >> +
->> +  ports:
->> +    type: object
+>> +	memory@0 {
+>> +		device_type = "memory";
+>> +		reg = <0x0 0x0 0x0 0x80000000>;
+>> +	};
 >> +
->> +    properties:
->> +      port@0:
->> +        type: object
->> +        description: Input node to receive pixel data.
->> +      port@1:
->> +        type: object
->> +        description: DSI output node to panel.
+>> +	ao_5v: regulator-ao_5v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "AO_5V";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		vin-supply = <&dc_in>;
+>> +		regulator-always-on;
+>> +	};
 >> +
->> +    required:
->> +      - port@0
->> +      - port@1
+>> +	dc_in: regulator-dc_in {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "DC_IN";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		regulator-always-on;
+>> +	};
 >> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - phys
->> +  - phy-names
->> +  - ports
 >> +
->> +additionalProperties: false
-> 
-> Presumably you may have panel/bridge child nodes, so this needs to be 
-> 'unevaluatedProperties: false'.
+>> +	vcck: regulator-vcck {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "VCCK";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		vin-supply = <&ao_5v>;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	vcc_card: regulator-vcc_card {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "VCC_CARD";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		vin-supply = <&vddio_ao3v3>;
+>> +
+>> +		gpio = <&gpio GPIOCLK_1 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +	};
+>> +
+>> +	vcc5v: regulator-vcc5v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "VCC5V";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		vin-supply = <&ao_5v>;
+>> +
+>> +		gpio = <&gpio GPIOH_3 GPIO_OPEN_DRAIN>;
+>> +	};
+>> +
+>> +	vddio_ao3v3: regulator-vddio_ao3v3 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "VDDIO_AO3V3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		vin-supply = <&ao_5v>;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +
+>> +	vddio_card: regulator-vddio-card {
+>> +		compatible = "regulator-gpio";
+>> +		regulator-name = "VDDIO_CARD";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +
+>> +		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
+>> +		gpios-states = <0>;
+>> +
+>> +		states = <3300000 0>,
+>> +			 <1800000 1>;
+>> +
+>> +		regulator-settling-time-up-us = <200>;
+>> +		regulator-settling-time-down-us = <50000>;
+>> +	};
+>> +
+>> +	vddio_ao18: regulator-vddio_ao18 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "VDDIO_AO18";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +		vin-supply = <&vddio_ao3v3>;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	vcc_1v8: regulator-vcc_1v8 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "VCC 1V8";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +		vin-supply = <&vddio_ao3v3>;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	sound {
+>> +		compatible = "amlogic,gx-sound-card";
+>> +		model = "GXL-LIBRETECH-S905X-CC-V2";
+>> +		assigned-clocks = <&clkc CLKID_MPLL0>,
+>> +				  <&clkc CLKID_MPLL1>,
+>> +				  <&clkc CLKID_MPLL2>;
+>> +		assigned-clock-parents = <0>, <0>, <0>;
+>> +		assigned-clock-rates = <294912000>,
+>> +				       <270950400>,
+>> +				       <393216000>;
+>> +		status = "okay";
+>> +
+>> +		dai-link-0 {
+>> +			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
+>> +		};
+>> +
+>> +		dai-link-1 {
+>> +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
+>> +			dai-format = "i2s";
+>> +			mclk-fs = <256>;
+>> +
+>> +			codec-0 {
+>> +				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
+>> +			};
+>> +		};
+>> +
+>> +		dai-link-2 {
+>> +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
+>> +
+>> +			codec-0 {
+>> +				sound-dai = <&hdmi_tx>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +
+>> +&aiu {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&cec_AO {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&ao_cec_pins>;
+>> +	pinctrl-names = "default";
+>> +	hdmi-phandle = <&hdmi_tx>;
+>> +};
+>> +
+>> +
+>> +&ethmac {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&internal_phy {
+>> +	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
+>> +	pinctrl-names = "default";
+>> +};
+>> +
+>> +&ir {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&remote_input_ao_pins>;
+>> +	pinctrl-names = "default";
+>> +};
+>> +
+>> +&hdmi_tx {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
+>> +	hdmi-supply = <&vcc5v>;
+>> +	pinctrl-names = "default";
+>> +};
+>> +
+>> +&hdmi_tx_tmds_port {
+>> +	hdmi_tx_tmds_out: endpoint {
+>> +		remote-endpoint = <&hdmi_connector_in>;
+>> +	};
+>> +};
+>> +
+>> +&saradc {
+>> +	status = "okay";
+>> +	vref-supply = <&vddio_ao18>;
+>> +};
+>> +
+>> +/* SD card */
+>> +&sd_emmc_b {
+>> +	pinctrl-0 = <&sdcard_pins>;
+>> +	pinctrl-1 = <&sdcard_clk_gate_pins>;
+>> +	pinctrl-names = "default", "clk-gate";
+>> +
+>> +	bus-width = <4>;
+>> +	cap-sd-highspeed;
+>> +	sd-uhs-sdr12;
+>> +	sd-uhs-sdr25;
+>> +	sd-uhs-sdr50;
+>> +	sd-uhs-ddr50;
+>> +	max-frequency = <100000000>;
+>> +	disable-wp;
+>> +
+>> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>> +
+>> +	vmmc-supply = <&vcc_card>;
+>> +	vqmmc-supply = <&vddio_card>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +/* eMMC */
+>> +&sd_emmc_c {
+>> +	pinctrl-0 = <&emmc_pins>;
+>> +	pinctrl-1 = <&emmc_clk_gate_pins>;
+>> +	pinctrl-names = "default", "clk-gate";
+>> +
+>> +	bus-width = <8>;
+>> +	cap-mmc-highspeed;
+>> +	mmc-hs200-1_8v;
+>> +	max-frequency = <200000000>;
+>> +	disable-wp;
+>> +
+>> +	mmc-pwrseq = <&emmc_pwrseq>;
+>> +	vmmc-supply = <&vddio_ao3v3>;
+>> +	vqmmc-supply = <&vcc_1v8>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&spifc {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&nor_pins>;
+>> +	pinctrl-names = "default";
+>> +
+>> +	nor_4u1: spi-flash@0 {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		compatible = "jedec,spi-nor";
+>> +		reg = <0>;
+>> +		spi-max-frequency = <3000000>;
+>> +	};
+>> +};
+>> +
+>> +&uart_AO {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&uart_ao_a_pins>;
+>> +	pinctrl-names = "default";
+>> +};
+>> +
+>> +&usb {
+>> +	status = "okay";
+>> +	dr_mode = "host";
+>> +};
+>> +
+>> +&usb2_phy0 {
+>> +	pinctrl-names = "default";
+>> +	phy-supply = <&vcc5v>;
+>> +};
+>> +
+>> +&usb2_phy1 {
+>> +	phy-supply = <&vcc5v>;
+>> +};
+>> 
+>
+> I'm pretty sure most of this can be shared with the v1 via a common dtsi,
+> with only the differences this v2 dts (spifc, and ?).
 
-OK,
+... Sound card, CVBS, several headers ...
+The PCB is actually closer to "la frite" than the v1.
 
-Thanks.
+I'm considering a common dtsi, possibly including the v1 and la frite.
+I'm not yet entirely convinced it is such a good idea, especially
+considering all the headers which don't show up (yet) in DT and are
+vastly different between v1 and v2. In any case, doing so will require
+some clean up in the existing DTs.
 
-Neil
+This does not need to be done for the start and can considered later on.
 
-
-> 
-> Rob
-> 
+> Neil
 
 
 _______________________________________________
