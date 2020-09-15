@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C076C43461
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 19:43:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58611C43461
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 19:46:17 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 02025206DB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 19:43:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 09F542078D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 19:46:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FfwEVpcc";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="J2hKvjCg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 02025206DB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nBBe5ldb";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="dbghCkE3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 09F542078D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=L90sDV4xtYwgd2fKNXfW+vlcsDoyP9Y7UxQQhgmw5pw=; b=FfwEVpccUD00ejjbBXS8iQHPI
-	XXynJ8vrowsm3JjiM7Stj2Hpwi0zPhyOD/+nyXPnQiAmKILWdvmJ1dN/eTxtomZ54/egFRGUtUh4f
-	MP3+swRhnxzO8YWg6knGDe3IhoMjllXKqDmRzu0+3HSeKLaUi2XgpZvkziQL8zdG1QjFhW+rIvzO1
-	SKvGEjbHVqMrvVMNXM133AID79h1O167hzIpj6v+epAk5PBo0oNSqdvmUjo4pHELkVpcJ56wH3hJd
-	Vm3fnCvD6njyxhjrcZoT1jeSWJdmNRT7dSO4mbNmowRpbibLFl5M8t6tn+n3bLooH2BwjpciLtQMP
-	u3c4Ty/2Q==;
+	 bh=T7GBlS1EN6HV8sufHohi96kIOp2r2bUN3wnYQUIAp0Y=; b=nBBe5ldbLjxfy2AL70nsaCSE5
+	/TClSBHfDsjvukmoxoO2tF7dBpjVfBxBuVCfnrZv7AKIekladRG0qO8ow+HmMZdqKGKq6/NWlHIRJ
+	fM49i5AhTIiv9TteGL/z5qYGmE5EJ6geCHZYMuowPREKm58VsKi5Y1Kib8bKk2Bbas69VkOGzPUP/
+	3aB6tmbNA7ZglWYutyZsf6WeRBpERkc+BPu1JyeOteS7wUOhI6XtggdRbzEEnCJVlMvoq+ZEXgZiH
+	lnmTD9DYyD2gfc1D6Y7A6BB4zFCcsRcn546St65QDVD4z0Xb4D8QwmxbVzkCP4lSIb3kldF8mGT1s
+	p5OzqKlHA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIGrW-000316-JY; Tue, 15 Sep 2020 19:43:34 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1kIGu1-0003mT-TP; Tue, 15 Sep 2020 19:46:10 +0000
+Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIGrS-0002zU-E8; Tue, 15 Sep 2020 19:43:32 +0000
-Received: by mail-ed1-x541.google.com with SMTP id w1so4247284edr.3;
- Tue, 15 Sep 2020 12:43:30 -0700 (PDT)
+ id 1kIGtz-0003la-Ai; Tue, 15 Sep 2020 19:46:08 +0000
+Received: by mail-ej1-x641.google.com with SMTP id i26so6724326ejb.12;
+ Tue, 15 Sep 2020 12:46:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=wcSO66tZ1+449n/ove9k/zl/ZApYu1cOtIa7l/SoDz4=;
- b=J2hKvjCgngd5ccVeeKAhzqduSNgyZjcUl4Z9d+mXzTCN4siCjHc6qQgQFmuhJiZE1B
- LbICe2Bc8o7RJNMKKwBmcNLjTMbFz2XTyK+ZRmeOz2Rt1rMA6Hw6iMqFbXqbhn6RCmig
- 6gi8M1Y2n0PQ9kE9WgCXl3Ohq6ai1dXRupaw33L07F2D+BNA9thfaK1RNU+7GVSZDW/U
- qf8P60DBli6UxYR53+O7EjEuEdY+ubNAXoUlok7uQWEK5ALOiU1OchBpG6pmunsEKzzw
- 7cF4VXegLKExCx1yYGk+wzAslxFuGxT8uX6e+3lvRqxohdWYJqPgEfDJDo6acs0e0ch9
- tjTQ==
+ :cc; bh=p5sSzZShC8ORfwakA39ohe9fpx/z+QIq6SJKz70/TTM=;
+ b=dbghCkE3Hztc+UqWBaVJ5vK3WzRel4RlQnWexaWlRD1F19KQk+fmGvushQq5ZZHhru
+ hJxuM67sWo4kXfUzRYoU0Vxy5nlcYXIQkRW3hwOTG3QsmGnLhR3cYY9LLWC+Wuajfbjt
+ vbc2wmJQMO88nW/e5iX3bwe7kAfREFFuj4dSRxWEdv47EOzamDfAZUhqwpPVOsykOnLH
+ G/pWuseRHRm0In86mQrDE/Tr7Xzy4ZvHWsmHP9opxWLAA+XRCi/zMAWNKg0xppBNUbJa
+ cYSF96dfpjGBTBlm6AMkHrMgv4W370asMd4bShZiydmcRKychtYpWIBsUqiNiCQVwTWs
+ Nmhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=wcSO66tZ1+449n/ove9k/zl/ZApYu1cOtIa7l/SoDz4=;
- b=BnQUEvwZa1z53nYk59GY36aVD1xEO1++ikjQw9B+rBlq9PDTY6grScvI8diRfImTM3
- RyOMxBGxvRXqRbgrmIdXVXbnYQBhzejX5D8wGPChn1/UZAsec2q6Vow6TKR97LWOV4zm
- 7jtaBn4QyyOQo0xnpX2n3WbIu7awpTMd+VvJlxpLVzKMlkRD9DOl0UXgsZGKwQN3sI+l
- +X1V1JzEYmvOjVePuLVjIdtQE9teKFG+dvtWPX88/k60TXCImWdsVBx7OwNZ0zgqAdzZ
- iAsxQUP5PiFfxEY8GqO+4Ohq4Gb+2MYOOCeN3TgHxX87VqU3zX8azmS052v/Ryklgs8F
- 1vBQ==
-X-Gm-Message-State: AOAM532XY6CneCDX4us1JwPBK0/BPc4UmcfUi8KlmixkvdpfyoY5p8cZ
- 9JfF3Qlrm786oWwlMHh37PRgM14nR4tX0T6yzNM=
-X-Google-Smtp-Source: ABdhPJxrRIfLMWTyAPVPBm1cJsmzAyW4ujVnPid9dKUNUoxBOMKBx1oz+uRocPLFv5HVc3Ukz/w/DdLDfKDIfquMcEw=
-X-Received: by 2002:a05:6402:ca7:: with SMTP id
- cn7mr23632046edb.143.1600199009281; 
- Tue, 15 Sep 2020 12:43:29 -0700 (PDT)
+ bh=p5sSzZShC8ORfwakA39ohe9fpx/z+QIq6SJKz70/TTM=;
+ b=CAHuNdw8Lw0g6MKOqg1FvrxkkQCn0l6RIep/88PizV7EbjDMhS1jCvgc4cV6MJfW7S
+ PUecMa68r3YkFLzpcxfGZKkmey6ncqghxgTLLcKskVGiAYB5Tbr6DAizafK2YVn1Ge6F
+ XV7Vmw/G5owEpjAK6wDbakNLhBoM2chobU6Ct9PsWuvqJVIdjxabO0cpN738yT2b/H1D
+ kEDy81YK+5GT9zO4xwaSYuUClWgip8vuYmXQUFl0GKqXC4/JFO9rZlWyYb/+7hZybx7g
+ NkjmF499ltgHjAMNbwAp9ymaUAOR9LCKIhF9CzQrVPxgjVHzir7gqHv9/b4Co6EIBfWT
+ +YnA==
+X-Gm-Message-State: AOAM533KfzqYa9BMhKBxDdyGQeM0oxpx681UN/Z4UgTCaSj5mVThjjex
+ XdPeh3QUgvYDYIUAT6jO2gkXoCC7BU5NZWnBXxI=
+X-Google-Smtp-Source: ABdhPJy2LEJ8BwYCymGuaU1iN1I1+zohKpeh+4Eu1QEO9Ok9estRenU6CYefzM0h0DDp5c0zJ4H6XVdhuQFsCHIICqk=
+X-Received: by 2002:a17:906:874f:: with SMTP id
+ hj15mr22844624ejb.539.1600199165966; 
+ Tue, 15 Sep 2020 12:46:05 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200904161654.24141-1-narmstrong@baylibre.com>
- <20200904161654.24141-2-narmstrong@baylibre.com>
-In-Reply-To: <20200904161654.24141-2-narmstrong@baylibre.com>
+ <20200904161654.24141-3-narmstrong@baylibre.com>
+In-Reply-To: <20200904161654.24141-3-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 15 Sep 2020 21:43:18 +0200
-Message-ID: <CAFBinCC4gy5zksKPrs4t0yu3U+4rFGy90BHRduQ4wyUOv2x_Nw@mail.gmail.com>
-Subject: Re: [PATCH RESEND 1/2] dt-bindings: power: amlogic, meson-ee-pwrc:
- add Amlogic AXG power controller bindings
+Date: Tue, 15 Sep 2020 21:45:55 +0200
+Message-ID: <CAFBinCBDKuFkdR_mTyS=cYPAwCzs+TYSh1koR29uTnLmAtugPQ@mail.gmail.com>
+Subject: Re: [PATCH RESEND 2/2] soc: amlogic: meson-ee-pwrc: add support for
+ the Meson AXG SoCs
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200915_154330_546543_0EABCACE 
-X-CRM114-Status: UNSURE (   8.23  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200915_154607_406574_FB72F553 
+X-CRM114-Status: GOOD (  13.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,20 +91,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Neil,
+
 On Fri, Sep 4, 2020 at 6:17 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> This adds the bindings of the Power Controller found in the Amlogic AXG SoCs.
+> The Power Controller in the Amlogic AXG SoCs is similar to the GXL one
+> but with less VPU memory domains to enable and a supplementary Audio
+> memory power domain.
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+I have three small comments below - no show-stoppers though:
 Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+[...]
+> +static struct meson_ee_pwrc_mem_domain axg_pwrc_mem_vpu[] = {
+> +       VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
+> +       VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
+> +};
+> +
+I would put this above the g12a one
+
+[...]
+> +static struct meson_ee_pwrc_domain_desc axg_pwrc_domains[] = {
+> +       [PWRC_AXG_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, axg_pwrc_mem_vpu,
+> +                                    pwrc_ee_get_power, 5, 2),
+> +       [PWRC_AXG_ETHERNET_MEM_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
+> +       [PWRC_AXG_AUDIO_ID] = MEM_PD("AUDIO", axg_pwrc_mem_audio),
+> +};
+> +
+same here
+
+[...]
+>  static struct meson_ee_pwrc_domain_data meson_ee_gxbb_pwrc_data = {
+>         .count = ARRAY_SIZE(gxbb_pwrc_domains),
+>         .domains = gxbb_pwrc_domains,
+> @@ -566,6 +588,10 @@ static const struct of_device_id meson_ee_pwrc_match_table[] = {
+>                 .compatible = "amlogic,meson-gxbb-pwrc",
+>                 .data = &meson_ee_gxbb_pwrc_data,
+>         },
+> +       {
+> +               .compatible = "amlogic,meson-axg-pwrc",
+> +               .data = &meson_ee_axg_pwrc_data,
+> +       },
+this one I would put above the GXBB one
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
