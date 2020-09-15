@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6493C43461
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 12:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ACCB4C2D0F6
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 13:04:06 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4CD64206A5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 12:47:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CE63C20829
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 13:04:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QumXFPO3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LSMKV9E1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4CD64206A5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XGT5mTrF";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OPNLQs9b"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CE63C20829
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=4cpKhi4i6EalxUV9CzW3MqwSWdrQkVttJPSG7/8TwD4=; b=QumXFPO3tb37be9Z9lqgxIAgB
-	vBwzqQbaCrwrI+xjkEXathJAy4nzYx019NzcN0zJm91aNPMI2b/Ide+1y+Cq7f5jNyvuQUcdN3Qnc
-	EyidUhcm6KCD4VI36Ej1y07yQXk/kHQNExVHLn8M5xXCwk8WoiGtHyO+cHZTKkbil+0ES3JfuYnp1
-	AZaXFqQq6nTNHULbT6pgg+VmR9J3uj3VyLeFLEWdDUyWLgCvRx8sEL3sxGWmPbC8BQbjC59vkoNbi
-	znkMhJ5uOpoE6MYb2MWHRgyohKF0LBX0YPIxjJHyfCBaSeV3SvhPMaeeJaF92m62bY+5f6fVLHAtH
-	aeqnkx2yA==;
+	 bh=ZsWD99P3CE0p+o2vVv7sGk5pftQCwTye/IOPC5Ie8SY=; b=XGT5mTrFpjvc5PQN86RfV2vXs
+	1g4I3fwiYF6+9vlUuC1Le4dVQbn+wMezTlIaIkXEw9KMdqqWDyzrIaLznRy1Jutb54XT662E3s2AK
+	WdOBFeXr1OMzMKulkWDNToE1f5kwvbIAHo6TScvTAdsMwiX3ctR+0sLIj21hn7QoyhtC4Z1O7d9Fl
+	pyNgfUtGxmmLuz2KD8UlVj8uH+3lDn4KnX4YHzjEel8mGF1xi3PaTVnw06t5tCsv/oFt7XX8JCKHh
+	Xe88lCGCCVG+Gw1X608N2oQHi5WkIj3xwPobHZEDGDkQBxeo18otPw/U3QTtryF00tOwIgMKVS/JS
+	Ovray8Ztg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIAMO-0003Gr-IV; Tue, 15 Sep 2020 12:47:00 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1kIAck-0006eG-MF; Tue, 15 Sep 2020 13:03:54 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIALW-0002ts-8j
- for linux-amlogic@lists.infradead.org; Tue, 15 Sep 2020 12:46:09 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id a9so3337650wmm.2
- for <linux-amlogic@lists.infradead.org>; Tue, 15 Sep 2020 05:46:03 -0700 (PDT)
+ id 1kIAcc-0006ag-M8
+ for linux-amlogic@lists.infradead.org; Tue, 15 Sep 2020 13:03:48 +0000
+Received: by mail-wm1-x341.google.com with SMTP id b79so3369599wmb.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 15 Sep 2020 06:03:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=LHSM2iu4K745x/v3ZOpzSJ39ii9pvOm29QBeCUqbXig=;
- b=LSMKV9E1RHvzyFXuIfZParKjQcDPzMHd+HNuG37MfAhMeuciO6NZQUeZ7RvfnR2o8I
- tBolL7KrYEQOphZRKiQTAIcWGU4SgWclzi6VE7bbcnu/R9jxwRfgBwjqtJwnUumgTHFB
- DzX7NkyCfMmzrlumnfUV/7em/7/vUQi15L5SLJ912p2vxY9u4bR6d/SmNfejlb3WiT57
- 08CoSBUacR84AMPDP52ukk/2zHu/QX+tuRRl7zX2GrlnykDRz/bPHNfyRJmSIfVRhxXT
- ieHIfJvOhB5Lxo7UNxPzhNBKIXYLHD4HSkSjHxEpzFN6WGmGUPDh+wwykTSSPz401PPw
- x3xg==
+ bh=hTMmw7cDb/Q8xHmIbpSzi8XliWIPH8G939s4NmbDgjs=;
+ b=OPNLQs9bObumhLvVLyYmqL5evLWsMZSh3I09yJYb6WV+4xFmDXcR74QfOG3wAtcdDM
+ cV60Bp2v8vzOch8MOLB0HWE2oY1q4i02nHWirILnLII1tGJYr+23zqZkeeLb07fLBklZ
+ y3yB4tckZ/axNi+Tupn/DteDRvKRPQ/ajpHYyNzL0LFK1YJLV97V7dyjbVsOGDUeipT7
+ ngpWbrvDx/p7OEbdn+6+X1n2Q3CBQYhI3Mv37/JyhrYacSBSE/lKP/1hqoeeAosahcJm
+ BsuOjDUk6p4QM/EOOYpnwSISyyJa1Ow17lx88F40J4orXVbBnuM3ERBORmaLU+C3M1tO
+ xkOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=LHSM2iu4K745x/v3ZOpzSJ39ii9pvOm29QBeCUqbXig=;
- b=f6H09rKJKW0A+VAbN9ZxnOrMOBzaoJ93ieikBacTS/zBwoa3KRVXQGh9g+vDzgoLhw
- tGZ1/HixI3onHzYpJO/4T34yVeSYQwGXcToyX1yWiVcP8Y5H/4N/6BEMM30lbn6XetN3
- xtHTDnXz4APH0G/uNSKkeOtcyoWJP/7EQMRhkwxp2uoumLL4OPlwQwHITJAza2BK4stx
- 0gnxWNFt4uIk3EjGjudQBv1eJmR+BN892/dRqyP4IVYimWlnvocQw6DZ1HjHAcVOL9wB
- FyyJQKLLZiRLIFO+iIpT8Zxp9PJmQDDNlisv/VNIWW1LtveihhMEDOw0WJf4ISE2ytjV
- eadA==
-X-Gm-Message-State: AOAM533RMBN9gpcKXiZFTsp722j5kyMFrEg/4HRuAKF6ue4F+IiD+tfm
- xrWnCbLX2Ev4xyN6lPwXnGmMEQ==
-X-Google-Smtp-Source: ABdhPJx7awCJQT1ZbKP8GwvwkIGpiaGrgV9tODdJfba635Qj3aWUUkYLeL9InIbQo6ZmEyQ3rtobOA==
-X-Received: by 2002:a7b:c090:: with SMTP id r16mr4677613wmh.56.1600173962213; 
- Tue, 15 Sep 2020 05:46:02 -0700 (PDT)
+ bh=hTMmw7cDb/Q8xHmIbpSzi8XliWIPH8G939s4NmbDgjs=;
+ b=TQgJmzyA71i49FVY6/kh7SUZplIedXpjMiXDFyZjkJ1Lii7Tgdx8yl8GgXCjsDYHHx
+ eM4XRZCX58XjscWhXHpZfeEViKjqL4s9CxsCyISQUdHIzeE4fTYLwkUPIsH5wV+YghXO
+ AK9/7Y7WOm2KKxjYiBmilXq0BxyrR4XXUZa8G3Ew8WA7s47XBZHvCXDfzU7/rZayRswB
+ 2tHhwP7UJIOFKWU/61yHXHsH1pT+T0au+bDJCMPcWoG6LhTv89uq/k0wUwbvpuTSR0U+
+ 1uYbDEKF0X7YJ3vmTjipoarXYk19nLaHVHKfe+vTrgbNL0wNNhG0gcGRcqFK+H3pt4+N
+ ekRQ==
+X-Gm-Message-State: AOAM531v7cSEfKGLOUZ7uWgXgnMVaLYdqh8Jakk7BMMpWUs0GZPcGC9u
+ J+1x3iazgyNkzzp59PTkOSK60Q==
+X-Google-Smtp-Source: ABdhPJyr+qSNFVd6jRIg7M8zkUejJULi6GDU8qVcdpcAcd9/G9WIiLkoNZXXOe2hBywHmuAKX3EdOg==
+X-Received: by 2002:a1c:3bd7:: with SMTP id i206mr4714210wma.162.1600175025305; 
+ Tue, 15 Sep 2020 06:03:45 -0700 (PDT)
 Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
  by smtp.gmail.com with ESMTPSA id
- q8sm26548589wrx.79.2020.09.15.05.46.01
+ t16sm27098671wrm.57.2020.09.15.06.03.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 15 Sep 2020 05:46:01 -0700 (PDT)
+ Tue, 15 Sep 2020 06:03:44 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: jbrunet@baylibre.com
-Subject: [PATCH v2 4/4] clk: meson: axg: add MIPI DSI Host clock
-Date: Tue, 15 Sep 2020 14:45:53 +0200
-Message-Id: <20200915124553.8056-5-narmstrong@baylibre.com>
+To: kishon@ti.com,
+	repk@triplefau.lt,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: phy: amlogic,
+ meson-axg-mipi-pcie-analog: remove reg attribute
+Date: Tue, 15 Sep 2020 15:03:37 +0200
+Message-Id: <20200915130339.11079-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200915124553.8056-1-narmstrong@baylibre.com>
-References: <20200915124553.8056-1-narmstrong@baylibre.com>
+In-Reply-To: <20200915130339.11079-1-narmstrong@baylibre.com>
+References: <20200915130339.11079-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200915_084607_067448_69B7C1AD 
-X-CRM114-Status: GOOD (  16.08  )
+X-CRM114-CacheID: sfid-20200915_090346_866848_D6AFE7B6 
+X-CRM114-Status: GOOD (  13.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,130 +99,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds the MIPI DSI Host clock, used to measure the signal timings (ENC VSYNC or
-DW-MIPI-DSI eDPI timings).
+The PHY registers happens to be at the beginning of a large zone containing
+interleaved system registers (mainly clocks, power management, PHY control..),
+found in all Amlogic SoC so far.
+
+The goal is to model it the same way as the other "features" of this zone,
+like Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+and Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+and have a coherent bindings scheme over the Amlogic SoCs.
+
+This update the description, removed the reg attribute then updates the example
+accordingly.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/clk/meson/axg.c | 66 +++++++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/axg.h |  4 ++-
- 2 files changed, 69 insertions(+), 1 deletion(-)
+ .../phy/amlogic,meson-axg-mipi-pcie-analog.yaml | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index a4e8949297cf..089a81ce2385 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -1703,6 +1703,66 @@ static struct clk_regmap axg_cts_encl = {
- 	},
- };
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+index 18c1ec5e19ad..702763a84dac 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+@@ -9,27 +9,32 @@ title: Amlogic AXG shared MIPI/PCIE analog PHY
+ maintainers:
+   - Remi Pommarel <repk@triplefau.lt>
  
-+/* MIPI DSI Host Clock */
++description: |+
++  The Everything-Else Power Domains node should be the child of a syscon
++  node with the required property:
 +
-+static u32 mux_table_axg_vdin_meas[]    = { 0, 1, 2, 3, 6, 7 };
-+static const struct clk_parent_data axg_vdin_meas_parent_data[] = {
-+	{ .fw_name = "xtal", },
-+	{ .hw = &axg_fclk_div4.hw },
-+	{ .hw = &axg_fclk_div3.hw },
-+	{ .hw = &axg_fclk_div5.hw },
-+	{ .hw = &axg_fclk_div2.hw },
-+	{ .hw = &axg_fclk_div7.hw },
-+};
++  - compatible: Should be the following:
++                "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
 +
-+static struct clk_regmap axg_vdin_meas_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDIN_MEAS_CLK_CNTL,
-+		.mask = 0x7,
-+		.shift = 21,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+		.table = mux_table_axg_vdin_meas,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdin_meas_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = axg_vdin_meas_parent_data,
-+		.num_parents = ARRAY_SIZE(axg_vdin_meas_parent_data),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
++  Refer to the the bindings described in
++  Documentation/devicetree/bindings/mfd/syscon.yaml
 +
-+static struct clk_regmap axg_vdin_meas_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDIN_MEAS_CLK_CNTL,
-+		.shift = 12,
-+		.width = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdin_meas_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&axg_vdin_meas_sel.hw },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap axg_vdin_meas = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDIN_MEAS_CLK_CNTL,
-+		.bit_idx = 20,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdin_meas",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&axg_vdin_meas_div.hw },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- static u32 mux_table_gen_clk[]	= { 0, 4, 5, 6, 7, 8,
- 				    9, 10, 11, 13, 14, };
- static const struct clk_parent_data gen_clk_parent_data[] = {
-@@ -1966,6 +2026,9 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
- 		[CLKID_VCLK2_DIV12]		= &axg_vclk2_div12.hw,
- 		[CLKID_CTS_ENCL_SEL]		= &axg_cts_encl_sel.hw,
- 		[CLKID_CTS_ENCL]		= &axg_cts_encl.hw,
-+		[CLKID_VDIN_MEAS_SEL]		= &axg_vdin_meas_sel.hw,
-+		[CLKID_VDIN_MEAS_DIV]		= &axg_vdin_meas_div.hw,
-+		[CLKID_VDIN_MEAS]		= &axg_vdin_meas.hw,
- 		[NR_CLKS]			= NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -2094,6 +2157,9 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
- 	&axg_vclk2_div12_en,
- 	&axg_cts_encl_sel,
- 	&axg_cts_encl,
-+	&axg_vdin_meas_sel,
-+	&axg_vdin_meas_div,
-+	&axg_vdin_meas,
- };
+ properties:
+   compatible:
+     const: amlogic,axg-mipi-pcie-analog-phy
  
- static const struct meson_eeclkc_data axg_clkc_data = {
-diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
-index a8787b394a47..481b307ea3cb 100644
---- a/drivers/clk/meson/axg.h
-+++ b/drivers/clk/meson/axg.h
-@@ -158,8 +158,10 @@
- #define CLKID_VCLK2_DIV6_EN			120
- #define CLKID_VCLK2_DIV12_EN			121
- #define CLKID_CTS_ENCL_SEL			132
-+#define CLKID_VDIN_MEAS_SEL			134
-+#define CLKID_VDIN_MEAS_DIV			135
+-  reg:
+-    maxItems: 1
+-
+   "#phy-cells":
+     const: 1
  
--#define NR_CLKS					134
-+#define NR_CLKS					137
+ required:
+   - compatible
+-  - reg
+   - "#phy-cells"
  
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/axg-clkc.h>
+ additionalProperties: false
+ 
+ examples:
+   - |
+-    mpphy: phy@0 {
++    mpphy: phy {
+           compatible = "amlogic,axg-mipi-pcie-analog-phy";
+-          reg = <0x0 0xc>;
+           #phy-cells = <1>;
+     };
 -- 
 2.22.0
 
