@@ -1,4 +1,4 @@
-Return-Path: <SRS0=KQOD=CX=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=PGU9=CY=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
@@ -6,75 +6,62 @@ X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99F8FC43461
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Sep 2020 22:58:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 399CEC433E2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 00:02:14 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 27B85206BE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Sep 2020 22:58:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 887A8208DB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2020 00:02:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KQYnPR/l"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 27B85206BE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GyGUZmqC";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="jxw/TupX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 887A8208DB
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Message-ID:Date:To:From:Subject:References:
+	In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=yFRN07FeBvb8r0qsqF/Uj1Yd8hSa9LxJGhNS+gvCoiY=; b=KQYnPR/l/YxiXyvwrWH1KEAAo
-	x4vWsPIMIWmAvGqHJY7hNaAIDvK4apKYKduv4oq6usLOOMwk8ucFwsSAPv+GALlI/xLzNccvRZvkx
-	VMxbg/Zwa4dzyiqDx/RrtRCg8hnLY2r90y+YtoANN+GCi6QOkqeQEOjqdswpIFgoqy+TSC/Kqd+i3
-	tT/or70Ebm/ORtjTd0mK1UuT8w9pzYuyVOmQYXZjuviktn5DQvy9rYgkqEhu37MGt8aNjNUKsNuPX
-	yaNHrs59UIJhBv3/eWoEfW/P6/twpdm0xyzxDykA3vcxhPeinFtXOeEjhp3n0bsAouMuRk3Eoko6k
-	TahfsfPnQ==;
+	 bh=qyR46V58e/bJ/vUemO7B5n+/u0/qTyyxaVdlxcj2+G4=; b=GyGUZmqCprw3oSobGW1/yT01f
+	cr6QCrcpZXYTHwGJQTAjNsuaGGPXt9hXXf3+wWmI/pBeNLY9T0cfF91JWQIdfCSZu8eRrW4ZZusig
+	1+M8SGh1IoTFowe1e2TuxEttF1IlSB19lT1XrG4E2iEYnNVa/gDgAdoJcwk5wbv4O99Fndym4zCfz
+	75bda9gnsvekfhA98lllHLPsZiIgo+ExgQ2hF2vFE0uK0pJVshp+rogtpQPBmJnvEHvm/GLs6vAtM
+	cS1DoBAdmoIdHHKvk3VjeCWwHN/v064TABcIGbaq2pnyMeL3CmgzJpCr+kyojZBBDoXhAZZuUUFtn
+	1hmO9x7ag==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kHxQK-0006kP-1T; Mon, 14 Sep 2020 22:58:12 +0000
-Received: from mail-il1-f195.google.com ([209.85.166.195])
+	id 1kHyQ5-00056a-Pl; Tue, 15 Sep 2020 00:02:01 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kHxQG-0006jC-RK; Mon, 14 Sep 2020 22:58:09 +0000
-Received: by mail-il1-f195.google.com with SMTP id s88so1199368ilb.6;
- Mon, 14 Sep 2020 15:58:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=kq6qlG5VJYZXUU2sGGyka4Jem/75zC6Wn5AvRmVlrlc=;
- b=JUju3WywwzisMi2ZyBVDY81LqdDijhjfHQ1pJNt05kdQNQD3HxHEzT2hjj2tA3J1JF
- MeZyQ8Nk169rm8viRE9RJmc647rPHuz/Qe8sU1E9107BzW0kVbFTYREucSWylsLfAJGo
- TZmE5DUfGWF4kKZ/udF360XhlFHtN9JWvVRAP34PuE1Gzv/IzRIwedLVV07NUUuehC6/
- OTHPuW4qcE8lVaIiuxw2SG7ZZt/VK3g64aWbZlXCDh3ADS8RoMEkKIVM27ZNo4CEyKUn
- 1pwAYj6kxnROM0qb/ieeGk5oLeFLs01y/FP5iT8v1sl/ehEYDoziiSQBvU6RkDfVm5GM
- 1UXw==
-X-Gm-Message-State: AOAM533IWLR9GfjFOuSrU2/Fe3xotCgsOSUQQ5ULX6WIWmhBYRUY0JKW
- Gkg2AUkhGIF8hIr0WWTNDA==
-X-Google-Smtp-Source: ABdhPJzjV3LJ6Z9bth40387EREf7eFPmbglblttVdwLb5FiWraVR0VU+a+NG+uwN+G/NZGfVF0l6zQ==
-X-Received: by 2002:a05:6e02:be6:: with SMTP id
- d6mr13897302ilu.76.1600124288223; 
- Mon, 14 Sep 2020 15:58:08 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
- by smtp.gmail.com with ESMTPSA id u14sm7196498ilj.7.2020.09.14.15.58.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 14 Sep 2020 15:58:07 -0700 (PDT)
-Received: (nullmailer pid 427460 invoked by uid 1000);
- Mon, 14 Sep 2020 22:58:06 -0000
-Date: Mon, 14 Sep 2020 16:58:06 -0600
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH RESEND 1/2] dt-bindings: power: amlogic, meson-ee-pwrc:
- add Amlogic AXG power controller bindings
-Message-ID: <20200914225806.GA427430@bogus>
-References: <20200904161654.24141-1-narmstrong@baylibre.com>
- <20200904161654.24141-2-narmstrong@baylibre.com>
+ id 1kHyQ3-00056A-7U; Tue, 15 Sep 2020 00:01:59 +0000
+Received: from kernel.org (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id E5A9720829;
+ Tue, 15 Sep 2020 00:01:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1600128118;
+ bh=aDtVpbNbbuicIiX3Coqdnk0nSk8LgHP0iQgY2aJiAKg=;
+ h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+ b=jxw/TupX0o/bxM+BFImHj3AYgjkwRrhgfN4QNxrlO0/2vP3Y2+qTlBqKSsT/mGNt+
+ Nn2TvfgA1BdnQGrLZiqOBBH2ULH7qVuChk6hhqYaTkE0meClo06iCZOLwzTp0H0C1r
+ 8Ko8S1tUiav57sb8GyidbjFjEt0WJXhohKvcYwCA=
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200904161654.24141-2-narmstrong@baylibre.com>
+In-Reply-To: <20200911153441.GA18190@kozik-lap>
+References: <20200902150348.14465-1-krzk@kernel.org>
+ <20200902163558.GA4137028@piout.net> <20200911153441.GA18190@kozik-lap>
+Subject: Re: [PATCH 01/10] clk: at91: Drop unused at91sam9g45_pcr_layout
+From: Stephen Boyd <sboyd@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Mon, 14 Sep 2020 17:01:56 -0700
+Message-ID: <160012811662.4188128.10109140799333292326@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200914_185808_984895_9A4F9EAB 
-X-CRM114-Status: GOOD (  11.42  )
+X-CRM114-CacheID: sfid-20200914_200159_353919_E308CF29 
+X-CRM114-Status: GOOD (  15.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,26 +73,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- khilman@baylibre.com
+Cc: linux-arm-msm@vger.kernel.org,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-kernel@vger.kernel.org, David Lechner <david@lechnology.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Sekhar Nori <nsekhar@ti.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Andy Gross <agross@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+ linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 04 Sep 2020 18:16:53 +0200, Neil Armstrong wrote:
-> This adds the bindings of the Power Controller found in the Amlogic AXG SoCs.
+Quoting Krzysztof Kozlowski (2020-09-11 08:34:41)
+> On Wed, Sep 02, 2020 at 06:35:58PM +0200, Alexandre Belloni wrote:
+> > On 02/09/2020 17:03:39+0200, Krzysztof Kozlowski wrote:
+> > > The at91sam9g45_pcr_layout is not used so drop it to fix build warning:
+> > > 
+> > >   drivers/clk/at91/at91sam9g45.c:49:36: warning:
+> > >     'at91sam9g45_pcr_layout' defined but not used [-Wunused-const-variable=]
+> > > 
+> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > 
+> > > ---
+> > >  drivers/clk/at91/at91sam9g45.c | 7 -------
+> > >  1 file changed, 7 deletions(-)
+> > > 
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../bindings/power/amlogic,meson-ee-pwrc.yaml | 23 +++++++++++++++++--
->  include/dt-bindings/power/meson-axg-power.h   | 14 +++++++++++
->  2 files changed, 35 insertions(+), 2 deletions(-)
->  create mode 100644 include/dt-bindings/power/meson-axg-power.h
+> Hi Stephen,
 > 
+> If the dev_err_probe() waits/skips/goes to /dev/null, then how about the
+> fixes in the series? This patch and few other?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Yes if dev_err_probe() is superseded by Rob's work then the fixes should
+be fine to pick up. Can you resend the fixes?
 
 _______________________________________________
 linux-amlogic mailing list
