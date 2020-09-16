@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C01CC433E2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 15:02:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0BE3C43461
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 15:02:17 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B7FC721941
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 15:02:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 24A0722403
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 15:02:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rQWhHF3+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zn+OYs3Y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B7FC721941
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P1cunRaS";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="oIn4JOuC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 24A0722403
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=JrUR/XJ+JlGL7gLfRDMxeYDnqWW33y/oQiFaaobWvYw=; b=rQWhHF3+WadFS5KT8tbOscGjc
-	P2n8ZvyOWPMNCi02w8foZuTELWZP0nd7J79nZjqy//jnU2d/U38RtjcVbC4t6/7Kupt5tbrYKPIhe
-	p7CZfo4rtZwEsjQcZF6nYj+Tjy+mceEEuggjtYSSs5ygDkNtOy9o0jIZ+C1sdMPuuTzXOHqxPPlRS
-	iPiBljLJP/xsqhlug7JGVLIZQFM5g/4iIW/J4kSeb2U+7ckltfyQiNP303pQoeKA0X8xZHckGRZSY
-	auneOXJ2irZpTySUZZYsdSnHViMYu7Yh6Iafdx9pRHpJv3XwKZz650hQ0q7MQfRzHzDUE842GVrMr
-	Oqjy7mKGA==;
+	 bh=y1czPUdvBrBanTkaVpdvY/Zg3C+yOGMoRSNOzkK3llQ=; b=P1cunRaSJFWusRIdE5khEu1P2
+	k6gnYSPsX2BCIeJWrhgpHh6ijCSJnIgY5AMpIzEIoKcH4LsIafCAa/npbphaocEkKVV4s8OQW5921
+	i5D0lmrrR2TLTywekwEh2XcrlsCqCA2eAD0FLGmOFqkHqxE0gSlbKqVSTR2LcdcpHAlQATTYsiWDD
+	flq1n+MEY0SsFYz7cUUWxQnALRp8Zng7VxT/eC40jbc6YVhPqt8hlDmIjSdJFyaXA0/9nYdkoInUA
+	r1VaVxhzF8qFBLfykpPguLjak72w7PwsMsV8zsWGFPkU/HJWpbpjmWPG11iTMtnbvkR9buS3/GBwk
+	fzjCgKbaQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIYwe-0002vC-Cp; Wed, 16 Sep 2020 15:02:04 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1kIYwl-0002y9-8c; Wed, 16 Sep 2020 15:02:11 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIYwV-0002qx-89
- for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 15:01:56 +0000
-Received: by mail-wr1-x443.google.com with SMTP id k15so7265251wrn.10
- for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 08:01:55 -0700 (PDT)
+ id 1kIYwW-0002rf-Qv
+ for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 15:01:57 +0000
+Received: by mail-wr1-x441.google.com with SMTP id s12so7237238wrw.11
+ for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 08:01:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=hImJ77lnVX3Gt8BtSBrQ9L58KJd7sxpK5SqbvVqBDT4=;
- b=zn+OYs3Yc6TjDeDMLiJWpLLWggFqYNeLgm6J18K4sU21Tf8A707dIRS/zJPSWEBT2o
- mOrJtvn+/XGRVorYTU1AR22L+QJt+mapeRzWYs+8v78LOCpeuWjvFgy3Ve1kCJjDlKzk
- vc6ow+f7V56/J3+1AB12ZA0MTx3oPMNEuiXq1S2mNaVT9aJrcGow+Nd2Z+dB2ii9rkkf
- aX5fRJNsu46XIPQpdADaIQEhHFm6Ix91chLutkMAfxAGo9b/yfulX/dAIMbMAliOiff1
- c9EY0xmyHleE6D1Iq2v8+pccK4susTBg181AxyOhknWw2l3AfwxxqxgLUtujtfkihSdi
- O3EQ==
+ bh=gidsKX2Zswr/VwhkhQMTK3wAIhUubsrLCvk0z38r4n4=;
+ b=oIn4JOuCOy7CHb5ZQdtF3SJH5FKQ9V2Z7+N3zKF9SyHuINlifIlQheLnsDTuJweddb
+ RIgMxn2Nr3rwOljGIi2sVO5CNwhrMCZZsTGqAvA1IKT3Lc2nLi7W2OhbZE8moxDZt4Ho
+ gkldh03HHGorLu6oZnd++T6Up6ED/0pWJ/ur+k9AJ/zu13w+veYC95XwTrGyI0Opu742
+ 98fJ5+Yo2BTZTXWqeEmf7AZ33nOSIM7nmZ0me8nG67MIVt9tP1vRYmhfjm0rbV1eKTzf
+ Za7Q8WCnYAR7OIq4H/fdU5pY3CoX11T41lH+hSWhMlUr1Ll++wjeka7Ui00Jd1KitB/O
+ RkNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=hImJ77lnVX3Gt8BtSBrQ9L58KJd7sxpK5SqbvVqBDT4=;
- b=akT/gTMWCbD8oxlGijtSoscTqTIh0WSOVnU+7BV1NAjUkVTMQ29PkZTBNRS59h+GOQ
- 0OZFVJT5Bg/b5D1y4fgMF/CLPlfB+sMiRXlw3Ny4NbVi+CfEQshcvj84yxlTiU21qz8X
- zsE6NDQGrKbBIaBFlVd8ZD9peBK4UsZnaaUhIUyO3dSockXlJ6l13cZssJrLmCZNB9Rk
- A2BNXt5FsiAEUbv6mbmffCFC8E4pC0BdN5AFbrAtwEPZkHcsyAEqKPbGhux0b/PNz0x3
- OrlogRNUSA2qN8uIqRxHJ2kF89300cKUIilOTjeMFe4TYajJ3KfWomI87hZzRMEgfjxo
- XaTQ==
-X-Gm-Message-State: AOAM530QSOEh/wWljLky9jD2+slCdffAi0juhnYPabSQ3YaI9ojECmc+
- 35kzkS5Dwo4/MBE3LTRswKV0pQ==
-X-Google-Smtp-Source: ABdhPJxoLA/tx2P1IXNi1/eKRjFXPh02N6giEvfMg6DRt8JMc/aIkC7UH8raS68XGZ2uahjcBpp/TA==
-X-Received: by 2002:adf:eecb:: with SMTP id a11mr27578093wrp.356.1600268514278; 
- Wed, 16 Sep 2020 08:01:54 -0700 (PDT)
+ bh=gidsKX2Zswr/VwhkhQMTK3wAIhUubsrLCvk0z38r4n4=;
+ b=tKdTVkGP2UpcImqGk0nhjYxr2yE6oX2QF5Hk1IHWFi5aeaVVVPBLbDS436AFhke2/F
+ KUFhu0gmYjwPDKUDEK3rp8KWModj2j9pRyeXU31vXbX6Fi5r6QHw0dMbY5EaQXecfZug
+ 1KGNzsjsGqjW2DZczpQmbsTrusNo7p6k6guZ4IpQx1ENOcBr3reD9mlSMdC6bLAQbSZr
+ 5Hi01wPzZU+JVyK/g9c7InK/g9BLwC9zAuSz3PPH9BDe5GocmC52+AkEsW8Zuz15v/y/
+ ySQiQNTAm0fRSyjKaaV8vsTC9bBsZK8RWjZEnAbXtjnevaAQcwsOAhdbmkwtYrXyM5RR
+ OttA==
+X-Gm-Message-State: AOAM533XAR+bR68hk5usLgjhUOwhRUBGgI6FAnlUI5sbZYI6RBK3xFrK
+ m9FMnI/EYqalZ44D+ULEeoPShw==
+X-Google-Smtp-Source: ABdhPJzi4a/WO+NRp20+3sYyly2vAAt3B+yfSFNlTW4Qddgxuygr8mJVM7RDXG3HBkLI4jtZ9O/c0Q==
+X-Received: by 2002:adf:f7ca:: with SMTP id a10mr26806103wrq.321.1600268515849; 
+ Wed, 16 Sep 2020 08:01:55 -0700 (PDT)
 Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
  by smtp.gmail.com with ESMTPSA id
- m3sm33275243wrs.83.2020.09.16.08.01.52
+ m3sm33275243wrs.83.2020.09.16.08.01.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Sep 2020 08:01:53 -0700 (PDT)
+ Wed, 16 Sep 2020 08:01:55 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: robh@kernel.org, tomeu.vizoso@collabora.com, steven.price@arm.com,
  alyssa.rosenzweig@collabora.com
-Subject: [PATCH v2 1/3] drm/panfrost: add support for vendor quirk
-Date: Wed, 16 Sep 2020 17:01:45 +0200
-Message-Id: <20200916150147.25753-2-narmstrong@baylibre.com>
+Subject: [PATCH v2 2/3] drm/panfrost: add amlogic reset quirk callback
+Date: Wed, 16 Sep 2020 17:01:46 +0200
+Message-Id: <20200916150147.25753-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200916150147.25753-1-narmstrong@baylibre.com>
 References: <20200916150147.25753-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200916_110155_312533_EEBBEFE9 
-X-CRM114-Status: GOOD (  13.92  )
+X-CRM114-CacheID: sfid-20200916_110156_887907_230500A2 
+X-CRM114-Status: GOOD (  13.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,45 +106,67 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 The T820, G31 & G52 GPUs integratewd by Amlogic in the respective GXM, G12A/SM1 & G12B
-SoCs needs a quirk in the PWR registers after each reset.
+SoCs needs a quirk in the PWR registers at the GPU reset time.
 
-This adds a callback in the device compatible struct of permit this.
+Since the Amlogic's integration of the GPU cores with the SoC is not
+publicly documented we do not know what does these
+values, but they permit having a fully functional GPU running with Panfrost.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/panfrost/panfrost_device.h | 3 +++
- drivers/gpu/drm/panfrost/panfrost_gpu.c    | 4 ++++
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/panfrost/panfrost_gpu.c  | 11 +++++++++++
+ drivers/gpu/drm/panfrost/panfrost_gpu.h  |  2 ++
+ drivers/gpu/drm/panfrost/panfrost_regs.h |  4 ++++
+ 3 files changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/panfrost/panfrost_device.h
-index abfc78db193a..140e004a3790 100644
---- a/drivers/gpu/drm/panfrost/panfrost_device.h
-+++ b/drivers/gpu/drm/panfrost/panfrost_device.h
-@@ -70,6 +70,9 @@ struct panfrost_compatible {
- 	int num_pm_domains;
- 	/* Only required if num_pm_domains > 1. */
- 	const char * const *pm_domain_names;
-+
-+	/* Vendor implementation quirks callback */
-+	void (*vendor_quirk)(struct panfrost_device *pfdev);
- };
- 
- struct panfrost_device {
 diff --git a/drivers/gpu/drm/panfrost/panfrost_gpu.c b/drivers/gpu/drm/panfrost/panfrost_gpu.c
-index c7c5da5a31d4..a6de78bc1fa8 100644
+index a6de78bc1fa8..e1b2a3376624 100644
 --- a/drivers/gpu/drm/panfrost/panfrost_gpu.c
 +++ b/drivers/gpu/drm/panfrost/panfrost_gpu.c
-@@ -136,6 +136,10 @@ static void panfrost_gpu_init_quirks(struct panfrost_device *pfdev)
- 
- 	if (quirks)
- 		gpu_write(pfdev, GPU_JM_CONFIG, quirks);
-+
-+	/* Here goes platform specific quirks */
-+	if (pfdev->comp->vendor_quirk)
-+		pfdev->comp->vendor_quirk(pfdev);
+@@ -76,6 +76,17 @@ int panfrost_gpu_soft_reset(struct panfrost_device *pfdev)
+ 	return 0;
  }
  
- #define MAX_HW_REVS 6
++void panfrost_gpu_amlogic_quirk(struct panfrost_device *pfdev)
++{
++	/*
++	 * The Amlogic integrated Mali-T820, Mali-G31 & Mali-G52 needs
++	 * these undocumented bits in GPU_PWR_OVERRIDE1 to be set in order
++	 * to operate correctly.
++	 */
++	gpu_write(pfdev, GPU_PWR_KEY, GPU_PWR_KEY_UNLOCK);
++	gpu_write(pfdev, GPU_PWR_OVERRIDE1, 0xfff | (0x20 << 16));
++}
++
+ static void panfrost_gpu_init_quirks(struct panfrost_device *pfdev)
+ {
+ 	u32 quirks = 0;
+diff --git a/drivers/gpu/drm/panfrost/panfrost_gpu.h b/drivers/gpu/drm/panfrost/panfrost_gpu.h
+index 4112412087b2..468c51e7e46d 100644
+--- a/drivers/gpu/drm/panfrost/panfrost_gpu.h
++++ b/drivers/gpu/drm/panfrost/panfrost_gpu.h
+@@ -16,4 +16,6 @@ int panfrost_gpu_soft_reset(struct panfrost_device *pfdev);
+ void panfrost_gpu_power_on(struct panfrost_device *pfdev);
+ void panfrost_gpu_power_off(struct panfrost_device *pfdev);
+ 
++void panfrost_gpu_amlogic_quirk(struct panfrost_device *pfdev);
++
+ #endif
+diff --git a/drivers/gpu/drm/panfrost/panfrost_regs.h b/drivers/gpu/drm/panfrost/panfrost_regs.h
+index ea38ac60581c..eddaa62ad8b0 100644
+--- a/drivers/gpu/drm/panfrost/panfrost_regs.h
++++ b/drivers/gpu/drm/panfrost/panfrost_regs.h
+@@ -51,6 +51,10 @@
+ #define GPU_STATUS			0x34
+ #define   GPU_STATUS_PRFCNT_ACTIVE	BIT(2)
+ #define GPU_LATEST_FLUSH_ID		0x38
++#define GPU_PWR_KEY			0x50	/* (WO) Power manager key register */
++#define  GPU_PWR_KEY_UNLOCK		0x2968A819
++#define GPU_PWR_OVERRIDE0		0x54	/* (RW) Power manager override settings */
++#define GPU_PWR_OVERRIDE1		0x58	/* (RW) Power manager override settings */
+ #define GPU_FAULT_STATUS		0x3C
+ #define GPU_FAULT_ADDRESS_LO		0x40
+ #define GPU_FAULT_ADDRESS_HI		0x44
 -- 
 2.22.0
 
