@@ -2,22 +2,22 @@ Return-Path: <SRS0=Xszf=CZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E31FC433E2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 14:55:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49F68C433E2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 14:55:11 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1AA4B221E3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 14:55:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E828B221E3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 14:55:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WUSXAabd";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qiskC9AH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1AA4B221E3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R+qttSGo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="j1SnL90r"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E828B221E3
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=B227/lA0VLc1EOaOqFh4ykwVqKey7RuwIbN5bzBSw5U=; b=WUSXAabdQ0EH+wcDx8kvRMbec
-	HrPQeDcWuMSCx2h9oSbhn6Q4CNVsNqje4gnQ0Vk7Pi5GBcVemBLDEF8ztoPqWMJb0hU3hNnCWacPS
-	blUnJ3qAMYXkBjqOI6YMlOMB+7rStcGm/hC7GElOiqALotUjeMLN/zXyOaATcyx67JypoSLzfQv+O
-	LnvpVM2JMW904Awyo8cnM2jDMuI2ZSpuU1h3Gd4yMyq6OlQ6cOseBN1viwezkrnTmF7Z40b/OrZ40
-	4Z11aXPDu+F/IUtPphhTwNf3ruODHaxvAEm2QQ59R1Pb4Eighd+QL6F88AqmefacHn73YIp4PG5Y7
-	8AjyCK/1A==;
+	 bh=UM+pziCisVCwGYSik4oRIh5mzYvy8xDBOKgc5LWw1iA=; b=R+qttSGohINKCGKqj688EqC5Q
+	Ur1422jMtdYcLZyH1rTTuEWUR1fmuh3aNJZPLP6fG6h/SsX/6aeWQ+roIoyyDIwRA8YaZqmCZMr1W
+	XZbPEWM1b5nfnA5YjVu/qjGp6AO3Rz6Zep88aCElFbBYq6NzQnLecBO8gKi9E5P0Q+JA7RfKARI5o
+	ktB/FtR0POP4JAYSyITNEeOcQeZdD1rYsZZ2NQ/L0coWyI5DqKiYCZcDYKX6yayiIdrMbL52jef31
+	Cx8l5KlreMV7ASWvQaFL+b1CaVNWsDpZPsdMKTbnsSb4z8+rtShyGG1D2apRsDOV/kYRTD/1swhZp
+	HWPgTMKyA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIYpk-0001Zs-Ll; Wed, 16 Sep 2020 14:54:56 +0000
+	id 1kIYpu-0001d9-27; Wed, 16 Sep 2020 14:55:06 +0000
 Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIYpb-0001W6-9p
- for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 14:54:51 +0000
-Received: by mail-wr1-x444.google.com with SMTP id t10so7289349wrv.1
- for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 07:54:45 -0700 (PDT)
+ id 1kIYpj-0001ZB-QO
+ for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 14:54:57 +0000
+Received: by mail-wr1-x444.google.com with SMTP id x14so7204552wrl.12
+ for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 07:54:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=YZU9QUGLKYmVQE4Jarmg25884dOZMPraKSRpqpbHmZw=;
- b=qiskC9AHQnvHNw5aUBpNpG1Kjkz0URHoQKnjUuUvpBRdzVBFxZ9Z08uQfBCBOb79o8
- QVmrXN/4aC1o0xfp1K7oT4MNbwHBOfCzezeEJLIYEUqjdzfr0YTaJN3BPsRQpfnjI/jk
- Qi5a02Z0ereqESbev+LdTKQnsdtADu4qtmklp/+lzoJQrH4MMZa09nyT28OqB+3i3VHo
- Um+en+jYcnLb5CHslyoVCGsXzCEoCl+Hi3oEsbAiN7Hy8N1AwobeG4vStxcIvJpRG9uD
- jf7TeX/WulTLUqQ6qqD37POsLqo3MdFiNZIKzpQCn/EBvqNlyAiNsnTEX23GYaEXbFe9
- 5Znw==
+ bh=Q0A/yJiCI5DT/zHabWnCuwDPt2gCNMScgZOB7zhux6k=;
+ b=j1SnL90rYBR/woZcd8ZfTaCU+jto8gcjsMG5d9HvenyGCcQXyNc3/bBxMuGhHaC6qo
+ 9mEvOboqMIaFeWgsXBvWl18taFYL29wnUN4lyPGwkanoJqXTHJg/v9xribltrTReYBXX
+ /seQYtgxYXyv1HNtukUknbcr0bM/j6CpZUfyS8XMR7mtwM9wWTM9eyeGuL1hGPjx8uIN
+ yWkkXUj3V2NxrV4+SjWohwUIo6nvCgqob4SVuR0Os3qAegxs2XnMPi8vjugGW2vk/Pqi
+ JR20Wsat+7s+IA5kn8W5bxKc1tB0qvaJfhRSQhgWnILszz1lmbu6kRMPtaqwHvjyethM
+ 9w5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=YZU9QUGLKYmVQE4Jarmg25884dOZMPraKSRpqpbHmZw=;
- b=bXBsxosC8j9sYd5FIRfEUHDr4P9RVdylYmeWSc4lrvIsk4nFgqt+a8FTYV8mg45l+v
- 1igXl9DY1yyyUkCh+Xu4iOYnf3rhueVr4lMkGF0s+RJ14g4FZ969Tl0AWUO8b7mcBaSG
- efR3LXIjuXdP0W6NqCVZbq0FnP83lIZ5nHREoNAyciG0JvazTPSZLNKjC3LTWP6dn19U
- 48WJUYd+fpNQKVaxzJ9XMpNKkMndAK1Myrs5O+MPb3rDE23yfpmrAgkXt4G1f5o27QAE
- WUg+6SGa+7eC3HjEGwUKd8MItO6Cab/pUVWIYVJqN8JYq+48zmC6SME9Wxsw40+Qivcm
- otwQ==
-X-Gm-Message-State: AOAM533BKKPhM4HiS6T69A9EvMu3JYr+fQ3hHjoZS+UgB45YOFX9wTAk
- pOTTKfpCJZdJKoD2VSUiH/LBAyi29pzjRD6S
-X-Google-Smtp-Source: ABdhPJwJMjp1sRuJHiMcw2GRuHuAIFRtg0P4pZd34bf2zw6iHoQCZkWZ4luW9h2PxV0Ck1zAWL5olg==
-X-Received: by 2002:adf:f011:: with SMTP id j17mr3440342wro.276.1600268083957; 
- Wed, 16 Sep 2020 07:54:43 -0700 (PDT)
+ bh=Q0A/yJiCI5DT/zHabWnCuwDPt2gCNMScgZOB7zhux6k=;
+ b=c71V7MFq3nkgerLvXodnOpeDGZvyO6XwDHYhmOzZGHoZHu+2cjCYGHg3uXVPQJ0ZIB
+ QqV11U8N41Vhy/LGZGRnhosP4fznjiigjyBhpvtS4XiNJxHHZvq0lSkEHgJ1T8Fmj259
+ D00m0eHGaffHzDrtckYOlwsRcMlpsij56IO/tkalRQr70eeIw+qUy7THBAWaDqVNtcNp
+ VK0+OOFv9QwhjsRI+zzyOVB911/4FwC9gOG/Y20ky5su6tSDGhAG8l1CKVHiBT5JvcKp
+ S7Kin1DVzqM5nIwlWVe2Rghfz9qrR+8yc7uYPdzn3bo4flbvdIqWhhkmKbBbr4B05XUQ
+ glOA==
+X-Gm-Message-State: AOAM530we0G9d+rAYDmjqAuKforOBCPhrT++gxK+gM7pPtAvx3cEChDG
+ QdwoQ3e2hRlLpLNXvgnIt5C+ngzhNjN8uSKg
+X-Google-Smtp-Source: ABdhPJzg6PYcdSFHjgUYe/5fduDZ/fCA7rAP0G03QLat9pjnIsiTkk72B0rDJo4aV80Chd2OgAdnBQ==
+X-Received: by 2002:adf:e407:: with SMTP id g7mr27082181wrm.349.1600268094405; 
+ Wed, 16 Sep 2020 07:54:54 -0700 (PDT)
 Received: from [192.168.1.23] (home.beaume.starnux.net. [82.236.8.43])
- by smtp.gmail.com with ESMTPSA id b84sm6165379wmd.0.2020.09.16.07.54.42
+ by smtp.gmail.com with ESMTPSA id l5sm4680452wmf.10.2020.09.16.07.54.52
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Sep 2020 07:54:43 -0700 (PDT)
-Subject: Re: [PATCH 0/3] drm: panfrost: Coherency support
+ Wed, 16 Sep 2020 07:54:53 -0700 (PDT)
+Subject: Re: [PATCH 3/3] arm64: dts: meson: Describe G12b GPU as coherent
 To: Robin Murphy <robin.murphy@arm.com>, will@kernel.org, robh@kernel.org,
  tomeu.vizoso@collabora.com, steven.price@arm.com,
  alyssa.rosenzweig@collabora.com, khilman@baylibre.com, jbrunet@baylibre.com
 References: <cover.1600213517.git.robin.murphy@arm.com>
+ <ba61c76654349d3dfcd14c1e24c5aed39ebe3cf7.1600213517.git.robin.murphy@arm.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -130,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <d109e9da-feb3-c09f-2b7f-98c92ce39593@baylibre.com>
-Date: Wed, 16 Sep 2020 16:54:41 +0200
+Message-ID: <1c0ded24-d748-88d9-66f1-5e2eec221cdc@baylibre.com>
+Date: Wed, 16 Sep 2020 16:54:52 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <cover.1600213517.git.robin.murphy@arm.com>
+In-Reply-To: <ba61c76654349d3dfcd14c1e24c5aed39ebe3cf7.1600213517.git.robin.murphy@arm.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200916_105447_375211_57A8049D 
-X-CRM114-Status: GOOD (  16.66  )
+X-CRM114-CacheID: sfid-20200916_105455_944614_ECFB0485 
+X-CRM114-Status: GOOD (  17.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,62 +159,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Robin,
-
 On 16/09/2020 01:51, Robin Murphy wrote:
-> Hi all,
+> According to a downstream commit I found in the Khadas vendor kernel,
+> the GPU on G12b is wired up for ACE-lite, so (now that Panfrost knows
+> how to handle this properly) we should describe it as such. Otherwise
+> the mismatch leads to all manner of fun with mismatched attributes and
+> inadvertently snooping stale data from caches, which would account for
+> at least some of the brokenness observed on this platform.
 > 
-> I polished up my original proof-of-concept a little while back, but now
-> that I've got my hands on my Juno again I've been able to actually test
-> it to my satisfaction, so here are proper patches!
-
-I tested on the Kkadas VIM3, and yes it fixes the random FAULTS I have *without*:
-[  152.417127] panfrost ffe40000.gpu: gpu sched timeout, js=0, config=0x7300, status=0x58, head=0x3091400, tail=0x3091400, sched_job=000000004d83c2d7
-[  152.530928] panfrost ffe40000.gpu: js fault, js=1, status=INSTR_INVALID_ENC, head=0x30913c0, tail=0x30913c0
-[  152.539797] panfrost ffe40000.gpu: gpu sched timeout, js=1, config=0x7300, status=0x51, head=0x30913c0, tail=0x30913c0, sched_job=0000000038cecaf6
-[  156.943505] panfrost ffe40000.gpu: js fault, js=0, status=TILE_RANGE_FAULT, head=0x3091400, tail=0x3091400
-
-but, with this patchset, I get the following fps with kmscube:
-Rendered 97 frames in 2.016291 sec (48.108145 fps)
-Rendered 206 frames in 4.016723 sec (51.285584 fps)
-Rendered 316 frames in 6.017208 sec (52.516052 fps)
-Rendered 430 frames in 8.017456 sec (53.632975 fps)
-
-but when I resurrect my BROKEN_NS patchset (simply disabling shareability), I get:
-Rendered 120 frames in 2.000143 sec (59.995724 fps)
-Rendered 241 frames in 4.016760 sec (59.998605 fps)
-Rendered 362 frames in 6.033443 sec (59.998911 fps)
-Rendered 482 frames in 8.033531 sec (59.998522 fps)
-
-So I get a performance regression with the dma-coherent approach, even if it's
-clearly the cleaner.
-
-So:
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Neil
-
-> 
-> It probably makes sense for patches #1 and #2 to stay together and both
-> go via drm-misc, provided Will's OK with that.
-> 
-> Robin.
-> 
-> 
-> Robin Murphy (3):
->   iommu/io-pgtable-arm: Support coherency for Mali LPAE
->   drm/panfrost: Support cache-coherent integrations
->   arm64: dts: meson: Describe G12b GPU as coherent
-> 
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
 >  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 4 ++++
->  drivers/gpu/drm/panfrost/panfrost_device.h  | 1 +
->  drivers/gpu/drm/panfrost/panfrost_drv.c     | 2 ++
->  drivers/gpu/drm/panfrost/panfrost_gem.c     | 2 ++
->  drivers/gpu/drm/panfrost/panfrost_mmu.c     | 1 +
->  drivers/iommu/io-pgtable-arm.c              | 5 ++++-
->  6 files changed, 14 insertions(+), 1 deletion(-)
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> index 9b8548e5f6e5..ee8fcae9f9f0 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> @@ -135,3 +135,7 @@ map1 {
+>  		};
+>  	};
+>  };
+> +
+> +&mali {
+> +	dma-coherent;
+> +};
 > 
 
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
