@@ -2,90 +2,77 @@ Return-Path: <SRS0=Xszf=CZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60B14C43461
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 15:02:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1E29C43461
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 16:16:10 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F1FCB22403
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 15:02:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 25991224B2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 16:16:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="coKzdtWM";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="aIi8RU3G"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F1FCB22403
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X9j5QgWC";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="xragdtJe"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25991224B2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=UhyRAx5LEArakQpPIzmo9OM4uSUwdjME5pbQMITghqU=; b=coKzdtWMdsI8QPrRJQSVShMLZ
-	WsgGeOweKEndEdLDjfolNGuTdPLWourgHxEs1YVFKkgB5Qh6ozNqwkYAGPnHj1Q9XTzOnwTlALW1f
-	wdkqqbU2H3/Brpvs0kfo6zv34IUd5JR0EE5ceQtDvrr2Ole6UyxkGJIV8Miofx0isHaCQlUh6VsQE
-	GHlDZEjDh+8zsY3XNLhbxxNGdyf0KrjEcfwUX9lC2LFe7RR5gUqoBO38I65pezLEkgG3PE7v7hOD1
-	QRMW+IDtW9zYC1Vulw0+BLQJQZSFa64YS01LeaK+f33EnpZltv5DGo9moz+XDXUBFge+FG169IlxW
-	RQKgDWyPg==;
+	 bh=50SlNn+zKRHuVIUZfNYYKj5WjsXM25z0HbuxiVCmNJ4=; b=X9j5QgWCWMRtAFHzMg8o1Zn7S
+	y96Y2dR61ktqFiZFNyFcf5N922WX08XOfLTDav3jMoBUvbvVQexo9jdfzHugxgz/3w/kmCfHybrN0
+	C1lveJo6RtIeuJZtnGLtCd/MG3r1ZTxosGAaGLMqKwNOcIY/VeIdWVaVAyycaOUSS1pYx6+FtW6v4
+	Ps3JtFj2jkEi12K7NoP2K7wiKgq1I87P5X0k1Oq5mpjEgs8cb6D5lUC2XtKmVfbwj5amNgSxYz3/T
+	X8ywk42IGgnh17+ivP5iZngC7F4aZx33ImV0Irc12wnITs3Hit7g/1dt+1wZxlwVmGUgv3fNizKJ5
+	MCwWCPwWA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIYwy-00032m-CO; Wed, 16 Sep 2020 15:02:24 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1kIa68-0001xB-9b; Wed, 16 Sep 2020 16:15:56 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIYwY-0002sc-Ew
- for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 15:02:00 +0000
-Received: by mail-wr1-x442.google.com with SMTP id s12so7237341wrw.11
- for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 08:01:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=yvushcHgW5x8Ci13qV/eVljqWihhBxbnLqYrlJGnnQM=;
- b=aIi8RU3GfifGkaYbMW1MYLTxAkS9nN6U2v50gcwQKZKksSLDZajirW7gQTn2LLnktm
- CyI0tpHPNTv19Qc5/cJj43pTaueffg0aGDYRumwLvKkRtOHUAMiREXV/heRedSuF6bWi
- NKtLgvbCgtSXb0fVCOqvyo4yoEHswt6g3uH95KDxuMtJ43vxcihOQoHgi+oi7fMYQmsp
- PORvN1HxIp9wQj9v8KwaJh/G4mvc4xhXRlymBrmVNwN6Dc1nER9V2ceAKr/nKyre1STa
- LxAQLCy9ECvJfm8GVhR8ZEAjgdg1Z7VDe2nYFT3HOojjlMjRmblgctWj9erSX2AImZ/6
- y98Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=yvushcHgW5x8Ci13qV/eVljqWihhBxbnLqYrlJGnnQM=;
- b=AVuCj84UgH7G0emkZ/ShkfaqDAnW4H0kmru29dDIXI5h5XsAluU0pHlr7fUpp0gpSN
- BvHvKQ9xihKMnM/zka0WKSawLiP+GQLr+TflBC9XrwwAhL0zvlBPJUy+tJoVKEoh85+I
- maRLR9hH/AwXmvcqDVYyCsaLt00VDYg+815aUcU2MlOVvbvPNw9OLdJ/E64QAc3RaoQ7
- UIQp6SLrVfydfyvplDkzN0eIU11xfUm4Mqx3SvPSCbV7MB+lwH/4i0x/mFP0B1DnrG/w
- DaKVNurnJS6RfDdj6PROaj6BiH2ttCDlB2438d8YxipYZks/8Rj7FgqN0ZNfAY3gO4pw
- MGUA==
-X-Gm-Message-State: AOAM532aXZuEhB67FuDf+reovowFZTFKi6yzjXjhEyI4aIgv3VU5qA0h
- 446wnEAjDMMUcUm8w147qfGSyg==
-X-Google-Smtp-Source: ABdhPJxoKhG14BSFQVVyTSDxEWd6rrCYlRRTJeLtOKT+FsHY/62gPCBcNexsNdCeXVc2WChrJeebzQ==
-X-Received: by 2002:adf:e292:: with SMTP id v18mr26961296wri.256.1600268517315; 
- Wed, 16 Sep 2020 08:01:57 -0700 (PDT)
-Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
- by smtp.gmail.com with ESMTPSA id
- m3sm33275243wrs.83.2020.09.16.08.01.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Sep 2020 08:01:56 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: robh@kernel.org, tomeu.vizoso@collabora.com, steven.price@arm.com,
- alyssa.rosenzweig@collabora.com
-Subject: [PATCH v2 3/3] drm/panfrost: add Amlogic GPU integration quirks
-Date: Wed, 16 Sep 2020 17:01:47 +0200
-Message-Id: <20200916150147.25753-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200916150147.25753-1-narmstrong@baylibre.com>
-References: <20200916150147.25753-1-narmstrong@baylibre.com>
+ id 1kIa65-0001wj-N8; Wed, 16 Sep 2020 16:15:54 +0000
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id A377622583;
+ Wed, 16 Sep 2020 16:15:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1600272953;
+ bh=27sYm41mDiVDnZrWbm0QPVBaPRpD52EfmzkcCrZV80c=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=xragdtJe8YHzIw3Wo91ge6OnAiWFbdQWekGq7uQ55A3plRldzhLOZJek6GAqw16Qo
+ f7/dvmr/hBN8SU0D5PkG68Wr5bTSnABYPkvHzR4/DeejXEltV8XqP+LYy8HViJ8b93
+ Y4fewmHrG+9xMeZoauWCTBqJe0oLDpXVEeME55t8=
+Received: by mail-ej1-f43.google.com with SMTP id z22so11157423ejl.7;
+ Wed, 16 Sep 2020 09:15:52 -0700 (PDT)
+X-Gm-Message-State: AOAM531Pqe9xynCCm0o0e0/XKPk7Poeq3scuVmkeP4A9vk8VZtO41W9j
+ hjT8f9pXhve6doAq0ajN/rheyOUD/SYLRRUlcAw=
+X-Google-Smtp-Source: ABdhPJxEK6ZjXsdxLcZySzuz0z9lSyaAmd9P0gRxYMJTfHrR5KxRYZH+Asvudz0vhNq7zAjPO6GX+HHY/5crRL//S3M=
+X-Received: by 2002:a17:906:8401:: with SMTP id
+ n1mr25499511ejx.215.1600272951032; 
+ Wed, 16 Sep 2020 09:15:51 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200902150348.14465-1-krzk@kernel.org>
+ <20200902163558.GA4137028@piout.net>
+ <20200911153441.GA18190@kozik-lap>
+ <160012811662.4188128.10109140799333292326@swboyd.mtv.corp.google.com>
+In-Reply-To: <160012811662.4188128.10109140799333292326@swboyd.mtv.corp.google.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Wed, 16 Sep 2020 18:15:39 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdjyETBwDqC+C75giz2bD0Gie-G4Yd_svpc-vYccywy_Q@mail.gmail.com>
+Message-ID: <CAJKOXPdjyETBwDqC+C75giz2bD0Gie-G4Yd_svpc-vYccywy_Q@mail.gmail.com>
+Subject: Re: [PATCH 01/10] clk: at91: Drop unused at91sam9g45_pcr_layout
+To: Stephen Boyd <sboyd@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200916_110158_561389_809A6334 
-X-CRM114-Status: GOOD (  12.75  )
+X-CRM114-CacheID: sfid-20200916_121553_839931_07E69FED 
+X-CRM114-Status: GOOD (  19.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,48 +84,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ David Lechner <david@lechnology.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Sekhar Nori <nsekhar@ti.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Andy Gross <agross@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+ linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds the required GPU quirks, including the quirk in the PWR registers at the GPU
-reset time and the IOMMU quirk for shareability issues observed on G52 in Amlogic G12B SoCs.
+On Tue, 15 Sep 2020 at 02:01, Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Krzysztof Kozlowski (2020-09-11 08:34:41)
+> > On Wed, Sep 02, 2020 at 06:35:58PM +0200, Alexandre Belloni wrote:
+> > > On 02/09/2020 17:03:39+0200, Krzysztof Kozlowski wrote:
+> > > > The at91sam9g45_pcr_layout is not used so drop it to fix build warning:
+> > > >
+> > > >   drivers/clk/at91/at91sam9g45.c:49:36: warning:
+> > > >     'at91sam9g45_pcr_layout' defined but not used [-Wunused-const-variable=]
+> > > >
+> > > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > >
+> > > > ---
+> > > >  drivers/clk/at91/at91sam9g45.c | 7 -------
+> > > >  1 file changed, 7 deletions(-)
+> > > >
+> >
+> > Hi Stephen,
+> >
+> > If the dev_err_probe() waits/skips/goes to /dev/null, then how about the
+> > fixes in the series? This patch and few other?
+>
+> Yes if dev_err_probe() is superseded by Rob's work then the fixes should
+> be fine to pick up. Can you resend the fixes?
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/panfrost/panfrost_drv.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Sure, I will send the fixes only.
 
-diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-index 7c8a87d164c3..6e5dedacb777 100644
---- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-@@ -658,7 +658,18 @@ static const struct panfrost_compatible default_data = {
- 	.pm_domain_names = NULL,
- };
- 
-+static const struct panfrost_compatible amlogic_data = {
-+	.num_supplies = ARRAY_SIZE(default_supplies),
-+	.supply_names = default_supplies,
-+	.vendor_quirk = panfrost_gpu_amlogic_quirk,
-+};
-+
- static const struct of_device_id dt_match[] = {
-+	/* Set first to probe before the generic compatibles */
-+	{ .compatible = "amlogic,meson-gxm-mali",
-+	  .data = &amlogic_data, },
-+	{ .compatible = "amlogic,meson-g12a-mali",
-+	  .data = &amlogic_data, },
- 	{ .compatible = "arm,mali-t604", .data = &default_data, },
- 	{ .compatible = "arm,mali-t624", .data = &default_data, },
- 	{ .compatible = "arm,mali-t628", .data = &default_data, },
--- 
-2.22.0
-
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
