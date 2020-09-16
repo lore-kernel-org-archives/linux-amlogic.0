@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DF6F5C433E2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 07:12:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0369C433E2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 07:17:25 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 84D74206C9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 07:12:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0FDA32076C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 07:17:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nkSE/62H";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="kjiSSBJX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 84D74206C9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="yllVApm+";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="DWBvlQic"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0FDA32076C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Xy8JbHbrdBQycAzyeZgDFU3MQssNlHUZ7TAUv3nw3Nw=; b=nkSE/62Hq1+nTx6865+1tKOvS
-	+Zu0TLbvtpZoM0L8/rWKxH6Mn6+FkiHg40pwvZIOptNkNxLjH1BwtTupI6lr6HokjAA3Jqni6hloW
-	EB84idV6MIDy9Q/VzHYAOhpN4eDWdJ8ZK8sB4LymXPswi3MwoJkX7GjdOvaus9Wxq0TqpIHXJIsY3
-	rqhwVyIAKTsW+Tdjm6au99pRc7kRxna5RiIhX3xLHfR1zXw/IoOcCjmg4tBcswXja2YG/1jSZno7C
-	CVAPNDLPKuUkBq7yO86LNF3+JnsismIOcmc9wkOC8fhAr4EFtOmE5ELBnlyHk8GHmcnJPYL9UGffK
-	bNOOW75LQ==;
+	 bh=xeR2/EEixYgzifoEI4XfthwNJq4D6wHLhYdGBaiBXeM=; b=yllVApm+Vh2x95/38gFrex83k
+	V4PkhucoUJ4GKnioclPMo6a+kFtm7chHiQJ9EldqEmLtG3G6keyuH6MRKLvi5qRWW9fECXoOVpZd+
+	5FKygKlztjvbGQKgUvhzv/ymcSwk6+zCGQYf5ubkqT6qpLmXEkZv9atr+S6R9YPF4QQKHpo+gOP/o
+	ZuxjhN8aakZHFI5pQ0d2RCr88Oyr/XxJuzMgXOe6l/wyveseBV2uPIg8Y8h2gfDtbOwmM9DG92Eli
+	kiSFfyiMFeV5wAKg6NMjmMM3B3W+MVlovBoRrVYEd1pEMctI6rOivURinLZyhspm4XZU3DAqOdkBO
+	3f4eUyCQw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIRcY-0005Zy-Pd; Wed, 16 Sep 2020 07:12:50 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1kIRgq-0006e9-IC; Wed, 16 Sep 2020 07:17:16 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIRcV-0005YE-Hj
- for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 07:12:48 +0000
-Received: by mail-wm1-x341.google.com with SMTP id s13so1677435wmh.4
- for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 00:12:47 -0700 (PDT)
+ id 1kIRgn-0006cy-Ac
+ for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 07:17:14 +0000
+Received: by mail-wm1-x344.google.com with SMTP id a9so1797704wmm.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 00:17:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=GPcuqANEUfAIfT0wbzklLhKbhpamK+WP5U6OYimajhs=;
- b=kjiSSBJXSi6QTjoiODH/L9eHTyL78Dim5OtA/fF2NmE/8svf8KB948lVhbUyJR9yLm
- U75D5+98lgiC7hltCNOwkDdcZciVS0TD5toXRPlrMa3qmLdhpDSVIkSPXhy3IlsybL5M
- ZCtQtpVnivbwq5VU+ZjO6bgTUjhPmqVXH7Vw++dDo3YjvmDEboQpA03nLS222dTg1bAz
- exQmSE+JailofhrHqC0e/TyAGo17hdH8GhRRZHM1rdNblNXuF6Wq3JrZaQx0W5kBeOtq
- 90LDlxdy2k/hcTNMVzeVwBdKU4LIydoKTEDtzu60dPtMZDUEKNIwBOQehnc8ywnGqnZg
- 5DYw==
+ bh=QRBI10mF4N+0+Kra08TFwTNNSJeLSrUKwPwXHKEl7Js=;
+ b=DWBvlQicn2YrBwcRxfxb8i+7y8uKMiTZQESQLrOqMDQ+822l5gc2vXVjFd7BhyuKIQ
+ HQ3pA3Teaknz6izx32nSR0C8HE8QPUPpFFo1bRldNbEbE47tnze4Q30xr9l/BfnSvP28
+ vuLjQQMmiQqcDejL/R9Lh4kzI5cuDUg7kzVrU9dDo9bi5rASGXAbd/VSzxvlBPd6Y761
+ 44oy5X5yH0mGyWSEdlIOdVhBmzlE/NPI+XUCIZ2o4jt0pat2x+S9uYJcz/pn09KT0yAF
+ 1ollNtR00798AlTNFPUWTMUxie/j17mCSIM56rbyfeV8jgnE+XVUvOkTlSo0RYdNppow
+ xKFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=GPcuqANEUfAIfT0wbzklLhKbhpamK+WP5U6OYimajhs=;
- b=VD6QWqfgtdkGE+xZDUFY+uUoMjfmz+KDCcG84UF50QvbxaTkcWTEfBpomdDYZGWmUR
- dt1q/cc27XX3o2Ycdd1Lyj8YkWbcuSkTjU2ICX3TXUxFClyoOLefJNBKAf0lzsr/3qRs
- 2lgLYniJYNzllCfUkg8AhtvmHdLxHLijJw3669zGYDc87d9X1tD11jLldFj/ImYR8Izu
- 5a1WtmErkKOZe5denQrkHDwON7k3g/lVh6b0pQ7Okeb0ZkexEmANbEedDpQfNZ+yYSC/
- QmPq3NymwKnCc1pFfrnh3ODR2RJhZd3gM3N8OKdJErK90+SbKZgu1dKHbbca2VJ7u8Qk
- 2AjQ==
-X-Gm-Message-State: AOAM531SC5E/zhX039VkFLzz6yfegynMlaNtrNF3AtA4Zpd4QsWBe4Uu
- F5FAyiLm141BV0LDyNhZCX7a7CF7HcSHwuw3
-X-Google-Smtp-Source: ABdhPJzUVAM1AIhIwFC88hJo8ThiMS8uCAjHY/xIOtPFVk6mHg1czxKkbG01L+G5uasbN7uk2tHITQ==
-X-Received: by 2002:a1c:f719:: with SMTP id v25mr3269905wmh.159.1600240366183; 
- Wed, 16 Sep 2020 00:12:46 -0700 (PDT)
+ bh=QRBI10mF4N+0+Kra08TFwTNNSJeLSrUKwPwXHKEl7Js=;
+ b=Rpdn6T0YYZkDxZ6B4UUx9cRZPE4uccxTNRMvm/CT8cq3R6HFivcDO78DmCXoXRsyDm
+ 3sQrk4KULw7V5CzbiIoxHqYKdRpJwaMuRUHfV6kP7UMK0OVvteaEJvn7anYU+qkH6+0f
+ co4F9NbSB2yamarmuKMCmecONaJStdlfKSSrCYves/qPMgc5G4T51zVz5772UpUcQcZ7
+ 8CZTWB3TVqPkUTdbaPJmP38Ac3QuXKNTS07Z72gO9jpStW32wSSmRcWW8E2uzeHpEvBi
+ jQogA+WN+My74ZNXR9YnddGT60/ZqwT7PKqjsrOtNJuG/WL5Nfv+0w/u3KPZWKWa43I1
+ oXLQ==
+X-Gm-Message-State: AOAM532Fs1MXFg2U7CWqLGRnepYUwDIrjLapZl+ZrBT1PCFZfq8eRXd4
+ Iph/f+vaQXBX5bT5hQghGqjO2A==
+X-Google-Smtp-Source: ABdhPJwZ9b9QxHlE5Pd4LWa0J0DyU8OiZQJc/nI4/GGYss1953s52F16/ZDbbvWSiTyKV5uBd4GB5w==
+X-Received: by 2002:a7b:c753:: with SMTP id w19mr3029816wmk.157.1600240631896; 
+ Wed, 16 Sep 2020 00:17:11 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac?
  ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
- by smtp.gmail.com with ESMTPSA id m4sm32685887wro.18.2020.09.16.00.12.45
+ by smtp.gmail.com with ESMTPSA id v204sm3640070wmg.20.2020.09.16.00.17.10
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Sep 2020 00:12:45 -0700 (PDT)
-Subject: Re: [PATCH 1/3] arm64: dts: meson-axg: add VPU and PWRC nodes
+ Wed, 16 Sep 2020 00:17:10 -0700 (PDT)
+Subject: Re: [PATCH RESEND 2/2] soc: amlogic: meson-ee-pwrc: add support for
+ the Meson AXG SoCs
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20200907083300.14412-1-narmstrong@baylibre.com>
- <20200907083300.14412-2-narmstrong@baylibre.com>
- <CAFBinCBz_wR7_PcNN7LYxz-Vw+p2HZWBPqQg6z_w5nN+v+tU=Q@mail.gmail.com>
+References: <20200904161654.24141-1-narmstrong@baylibre.com>
+ <20200904161654.24141-3-narmstrong@baylibre.com>
+ <CAFBinCBDKuFkdR_mTyS=cYPAwCzs+TYSh1koR29uTnLmAtugPQ@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <a8f2bde7-b284-7fe9-19e6-df93835e883a@baylibre.com>
-Date: Wed, 16 Sep 2020 09:12:44 +0200
+Message-ID: <ee188741-e759-62aa-da41-3859ff2f9cb9@baylibre.com>
+Date: Wed, 16 Sep 2020 09:17:10 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBz_wR7_PcNN7LYxz-Vw+p2HZWBPqQg6z_w5nN+v+tU=Q@mail.gmail.com>
+In-Reply-To: <CAFBinCBDKuFkdR_mTyS=cYPAwCzs+TYSh1koR29uTnLmAtugPQ@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200916_031247_627163_88D8747B 
-X-CRM114-Status: GOOD (  21.21  )
+X-CRM114-CacheID: sfid-20200916_031713_401283_05DBD0DA 
+X-CRM114-Status: GOOD (  18.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,37 +160,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/09/2020 21:50, Martin Blumenstingl wrote:
+On 15/09/2020 21:45, Martin Blumenstingl wrote:
 > Hi Neil,
 > 
-> On Mon, Sep 7, 2020 at 10:33 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> On Fri, Sep 4, 2020 at 6:17 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
->> This add the display VPU node and the power controller PWRC node.
-> s/add/adds/
-> 
+>> The Power Controller in the Amlogic AXG SoCs is similar to the GXL one
+>> but with less VPU memory domains to enable and a supplementary Audio
+>> memory power domain.
+>>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> I have three small comments below - no show-stoppers though:
 > Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
 > [...]
->> +               vpu: vpu@ff900000 {
->> +                       compatible = "amlogic,meson-axg-vpu";
->> +                       reg = <0x0 0xff900000 0x0 0x100000>,
->> +                             <0x0 0xff63c000 0x0 0x1000>;
-> my plan is to replace the "hhi" binding with a reference to the HHI
-> syscon - but at the same time I'm not sure if it's a good idea (or
-> whether for example CVBS support should be split off into a sub-driver
-> which is then part of the HHI MFD syscon).
+>> +static struct meson_ee_pwrc_mem_domain axg_pwrc_mem_vpu[] = {
+>> +       VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
+>> +       VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
+>> +};
+>> +
+> I would put this above the g12a one
 
-It's also my plan, yes until we get 100% rid of HHI access from DRM driver,
-we still need it.
+Sure, I'll change for v2
 
-It you want to push it, please do it !
+> 
+> [...]
+>> +static struct meson_ee_pwrc_domain_desc axg_pwrc_domains[] = {
+>> +       [PWRC_AXG_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, axg_pwrc_mem_vpu,
+>> +                                    pwrc_ee_get_power, 5, 2),
+>> +       [PWRC_AXG_ETHERNET_MEM_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
+>> +       [PWRC_AXG_AUDIO_ID] = MEM_PD("AUDIO", axg_pwrc_mem_audio),
+>> +};
+>> +
+> same here
 
+Sure, I'll change for v2
+
+
+> 
+> [...]
+>>  static struct meson_ee_pwrc_domain_data meson_ee_gxbb_pwrc_data = {
+>>         .count = ARRAY_SIZE(gxbb_pwrc_domains),
+>>         .domains = gxbb_pwrc_domains,
+>> @@ -566,6 +588,10 @@ static const struct of_device_id meson_ee_pwrc_match_table[] = {
+>>                 .compatible = "amlogic,meson-gxbb-pwrc",
+>>                 .data = &meson_ee_gxbb_pwrc_data,
+>>         },
+>> +       {
+>> +               .compatible = "amlogic,meson-axg-pwrc",
+>> +               .data = &meson_ee_axg_pwrc_data,
+>> +       },
+> this one I would put above the GXBB one
+
+Sure, I'll change for v2
+
+Thanks for the review,
 Neil
-
-> maybe we can align at some point about the next steps with the the DRM
-> driver (as I want to add support for the older gen SoCs still)
-> that's nothing for this patch though
 > 
 > 
 > Best regards,
