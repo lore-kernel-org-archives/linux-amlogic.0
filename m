@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-6.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCCC9C43461
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 17:04:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B64A5C433E2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 17:05:30 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6694D221F0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 17:04:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 37A41206BE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 17:05:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MQCdD2vA"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6694D221F0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ManU1KKS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37A41206BE
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=collabora.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,33 +25,31 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=HeLJRR3JbMnl/vFFafvURpQaGh3rQU03lfqec6Upb5Y=; b=MQCdD2vAn+rFr7NJX0IEVp/Qe
-	f9e6ok8s8w8NL1bLT5j1wdjIL5uURKPBEM7dpf6xeaEhseJVQ+TVr0d+DMEkPRuuPUJUvyh5LIUEW
-	kdXvXNEreAWXGkIki4Hv8Ybk97Mbo+fYEQJCk3+k8iXpAmq3sxQWpw7wH4jd4p7fzWbphty/QvhKx
-	u1F7ICUsFrxu1X47n2zRLxyQ8DSinixc6QoURK5+Q8ByUpXkPked2a9s+PPWX2jdGOD9fYOPll2Ht
-	IqLECDnHFwmV//uIX2INZV5dWzpgYSnc5rjMCPy9//Q4VXRDLPmyJ1CaPmjm8g5WYr0b7YrZNHxJG
-	TAumCUVYw==;
+	 bh=jyL9rRc3N7qWgPcgFqzyUU/qadC8duc8i4R/oWrNB6w=; b=ManU1KKSXNAtUem8UprbPJ1E8
+	reZFZdO8QD+iijYIjjZlpf8fobgQzRg/N7suOGRyi+NG3D1VezwEBAY0v32jMGRT3WJXz5nQ6iC1Q
+	h2lNYoaBc1wKTbPtZ7w0Hnp00T1C4GAI0Yq5QzXHgpBh4dYoHMp00Qw09O3fNtVBISn7G5++pQTZl
+	HB58AxMteh8LtI0kjK404jeqaWtyqZLqE/5VyiqATgkfTD+X/GobRy0BFJIeyfnthEKrfO2Jpnjjk
+	lIyCJ0hzpn2PyAL7FzPHBlddWYLNXqZYsQ+TUNDcuDA8t1pf37MoLVV5N/UOs0sDXgkU8bUO553iq
+	l/3PZdhuQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIaqx-0004Rh-Hv; Wed, 16 Sep 2020 17:04:19 +0000
-Received: from bhuna.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e3e3])
+	id 1kIas1-0004hP-2P; Wed, 16 Sep 2020 17:05:25 +0000
+Received: from bhuna.collabora.co.uk ([46.235.227.227])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIaqu-0004Qb-EA; Wed, 16 Sep 2020 17:04:17 +0000
+ id 1kIary-0004gQ-Jx; Wed, 16 Sep 2020 17:05:23 +0000
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: alyssa) with ESMTPSA id 981522711D2
-Date: Wed, 16 Sep 2020 13:04:09 -0400
+ (Authenticated sender: alyssa) with ESMTPSA id 9357629166C
+Date: Wed, 16 Sep 2020 13:05:16 -0400
 From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 0/3] drm: panfrost: Coherency support
-Message-ID: <20200916170409.GA2543@kevin>
-References: <cover.1600213517.git.robin.murphy@arm.com>
- <d109e9da-feb3-c09f-2b7f-98c92ce39593@baylibre.com>
+Subject: Re: [PATCH v2 0/3] drm/panfrost: add Amlogic integration quirks
+Message-ID: <20200916170516.GB2543@kevin>
+References: <20200916150147.25753-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <d109e9da-feb3-c09f-2b7f-98c92ce39593@baylibre.com>
+In-Reply-To: <20200916150147.25753-1-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200916_130416_569496_3E98202F 
-X-CRM114-Status: UNSURE (   8.55  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200916_130522_738264_B8A374BD 
+X-CRM114-Status: GOOD (  14.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,55 +61,84 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: robh@kernel.org, tomeu.vizoso@collabora.com,
- Robin Murphy <robin.murphy@arm.com>, dri-devel@lists.freedesktop.org,
- steven.price@arm.com, iommu@lists.linux-foundation.org, khilman@baylibre.com,
- linux-amlogic@lists.infradead.org, will@kernel.org,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
-Content-Type: multipart/mixed; boundary="===============5101372965976559090=="
+Cc: robh@kernel.org, tomeu.vizoso@collabora.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, steven.price@arm.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: multipart/mixed; boundary="===============3318413631434225001=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============5101372965976559090==
+--===============3318413631434225001==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="EVF5PPMfhYS0aIcm"
+	protocol="application/pgp-signature"; boundary="61jdw2sOBCFtR2d/"
 Content-Disposition: inline
 
 
---EVF5PPMfhYS0aIcm
+--61jdw2sOBCFtR2d/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> So I get a performance regression with the dma-coherent approach, even if it's
-> clearly the cleaner.
+series r-b, nice!
+On Wed, Sep 16, 2020 at 05:01:44PM +0200, Neil Armstrong wrote:
+> The T820, G31 & G52 GPUs integrated by Amlogic in the respective GXM, G12=
+A/SM1 & G12B
+> SoCs needs a quirk in the PWR registers at the GPU reset time.
+>=20
+> This serie adds the necessary quirks for the Amlogic integrated GPUs only.
+>=20
+> Changes since v1 at [1]:
+> - removed the BROKEN_SH quirk after [2] was sent by robin
+> - rebased on top of [3] by steven and moved the vendor quirk in the prope=
+r quirk function
+> - added PWR_KEY unlock definition, and cleaned definition
+>=20
+> [1] https://lkml.kernel.org/r/20200908151853.4837-1-narmstrong@baylibre.c=
+om
+> [2] https://lkml.kernel.org/r/cover.1600213517.git.robin.murphy@arm.com
+> [3] https://lkml.kernel.org/r/20200909122957.51667-1-steven.price@arm.com
+>=20
+> Neil Armstrong (3):
+>   drm/panfrost: add support for vendor quirk
+>   drm/panfrost: add amlogic reset quirk callback
+>   drm/panfrost: add Amlogic GPU integration quirks
+>=20
+>  drivers/gpu/drm/panfrost/panfrost_device.h |  3 +++
+>  drivers/gpu/drm/panfrost/panfrost_drv.c    | 11 +++++++++++
+>  drivers/gpu/drm/panfrost/panfrost_gpu.c    | 15 +++++++++++++++
+>  drivers/gpu/drm/panfrost/panfrost_gpu.h    |  2 ++
+>  drivers/gpu/drm/panfrost/panfrost_regs.h   |  4 ++++
+>  5 files changed, 35 insertions(+)
+>=20
+> --=20
+> 2.22.0
+>=20
 
-That's bizarre -- this should really be the faster of the two.
-
---EVF5PPMfhYS0aIcm
+--61jdw2sOBCFtR2d/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEQ17gm7CvANAdqvY4/v5QWgr1WA0FAl9iRX8ACgkQ/v5QWgr1
-WA0Fsg//Qy1ZMY68LHnG0Sv9WWMIPx28MJoZmed9VIQ5jMu951cNntKyVqqUVGJf
-GAHSFPbAEPpbocf35MhRwm12dLx4SyomgpwavHF0Lkx9e/XkgCJz5n2yZBNvHikV
-UP/R31ETfND5V4oRfLdHodJrNNyVabFk5PsWBVbgefRCxysLK+Pq1uXvsWeY5cUW
-Nond4DUoQ48S+AMXUCaLFCjfNcqq3Jt1Juh1x2fW61pGdvCWoPHV9u2niQ3ylTiz
-l6v105u/j4SvHALH2eW+mxfxNSBwS2kIkMTZdPzD8bTnh8N3DBokcwRpPw2LSR/O
-UNPLxSfiTQVrvj5TX/VXBvK2B8eFph0lCMvtoUSt88WZ5xo+RZBkMZdXkOaXgMdt
-eyhPLCXOWkLcyA/qPeElvCmRsJ3vrT1XSrfqZkq3Hx3XAedaFYEw2mXGVWRo8XAI
-27zYwkyzvWweUR+QkC8HK4fpiXs8/x+rF/cGT3zfDU0VPpCOPLw8ZII/lGGKNazi
-/0pocVSw+1IPg4OCdC26zjP9a1Drc5b5YIeLnnxwtb5+KcowkWG0sa4H5+CZ7zls
-E4P2exzZCOeRAeqYZMzUWawGzkUCWKVnoxwYrWyyvbO/0eoreJ3kv50S+754JUOw
-tAyaRpfGYLblm2cmC2xpckAtg1HekYaFIIphP1SZIm+iZTYv9+0=
-=ZO+i
+iQIzBAABCgAdFiEEQ17gm7CvANAdqvY4/v5QWgr1WA0FAl9iRcwACgkQ/v5QWgr1
+WA16Ww//cCG6HDblemm8T2W/m5FqeFuVtTwp2eNVCNN2pyJPT9FzLLtGMWPeAozs
+6c4+3NCIJJX9ysEz9L1q5g7a5DbaN+4C7Z6FRJ3Ss1sNi/PmAlh0donBt5oiHAyJ
+hptyz1bSM7ZyUDYuH564so9MpQRaBcR7Iz1gexVyhDO8Yi/rG133BgPOQ30EokTy
+Kj42cVrmGxQg8rb64NTlDLf3nOYmSSWQN5z87v1mFMEzeZCWmm7gtbOicSQ8xV8a
+xqCrm6he8ZHE6/3Ddmkw/IBeRrpD20d7TTcnzsvYtJeIGhTwzmlF8i/3ULYNsVvn
+lCP7TMXxv50LUZM96wgSXetEOmZVDAWQG11Dxr7pTBx/DqYHOiGrqjqN87+g6wK7
+TFsb4HbJRYguALvLaxLFhLUlMExYuiXJFkAYULJ/YudmVhBRwl/ZZfYNjeAyjzPd
+TZ+aWkMrLaf3tXwV2h73EiqGrMb/48AJzOxntUCz9dFmEqPZLmjcX3uHb1HbYsdK
+RdcIGA6Lr4M8ImKmBzJPnJ5G0QWFM2JzZAFWoiZvAEk2vSIHx2Tcou1zGXzJF6oH
+O/jXUB8CL3D+lCF8z4eDv77dTiZ/W1qlTJmpQ2aFx4Kf3Q/sS4R+MG0e168cOGK4
+yfGXfv1CWz9wPd4GSgcSed+SYWMqKzGGL0LCDgtdoEiez2X+KLA=
+=7+0X
 -----END PGP SIGNATURE-----
 
---EVF5PPMfhYS0aIcm--
+--61jdw2sOBCFtR2d/--
 
 
---===============5101372965976559090==
+--===============3318413631434225001==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,5 +149,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============5101372965976559090==--
+--===============3318413631434225001==--
 
