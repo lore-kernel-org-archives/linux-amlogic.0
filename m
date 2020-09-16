@@ -2,22 +2,22 @@ Return-Path: <SRS0=Xszf=CZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A459C433E2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 07:10:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2E41C35256
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 07:11:26 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A99122076B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 07:10:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6C2FB206C9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2020 07:11:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HQ3WJL5x";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Yxb+IBOT"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A99122076B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k9orXkx4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="MkbRUK8v"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C2FB206C9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=yUi4y2uFgFIT5id3DkIx7vSlSAI22DqwPO/66ahTF1M=; b=HQ3WJL5xE7BSlg76iiwNDptuL
-	7pd/BW5RVnCK34OUyD4K4QBg33wIBm3ZKM3WiQakPSN9Duvc2QTb8c0ROBedr0cX6VIbUIFljyqzh
-	3Vp2MEOQ7Omf/NCksg427yREABS6Nb5Pw8zeWcVskDKRWGrOHet+S2Lf+m33rCmuzNRWZa6B+X/Tm
-	g0lLxpr+urUBoVJC2Tu1JPP8JiyId0WHTPBH9dHC5pB0SONg9J0itrbCBOwDSletpIsHPTvJK9+IF
-	6M13uNb3Shii2XTm96xtJv5yt7TD9dmaJ6X1g5LOuELY8edS4KGrZxpnX6+Cd46R0/99SKkntDbkp
-	Iua1CuE1A==;
+	 bh=7w0VRAr5yh6+A1BIQZksAll9VjC12XVJAVlHql7xcSw=; b=k9orXkx4b/inawaeVb1IyRVNh
+	RALA5U/elXXPzdPjYgheaGUdzjNApPLEfnKXX1z7v5ItChZ6oK1ChxBhSYtbovV/p6whPFcu5CpP5
+	krepVjZaktANc8/NJyfizGrDUrzfGm9cMLUFkTYYywFwLBg+nwCtZJPVg/zhnnc5eEL2eoylcputM
+	c88Eo6ppGyr7Tfb9cb+fX15A9rmx/7awo+Q14Ub//V4ZLKtwn7GPtT0S+vQnK8VA8bmulty0EInYk
+	LN85XkbyXQT1s5MRNyNSfWewgLFBA3s9HsLyFTa0zZx+oAO+BOf+zeF8rG3YR3MktdIU0E2s3PDY1
+	t2E5WMM6Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIRaV-000511-En; Wed, 16 Sep 2020 07:10:43 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1kIRb2-00058n-Lp; Wed, 16 Sep 2020 07:11:16 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIRaT-000507-EZ
- for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 07:10:42 +0000
-Received: by mail-wm1-x341.google.com with SMTP id e17so1695643wme.0
- for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 00:10:41 -0700 (PDT)
+ id 1kIRb0-00057m-7h
+ for linux-amlogic@lists.infradead.org; Wed, 16 Sep 2020 07:11:15 +0000
+Received: by mail-wm1-x343.google.com with SMTP id y15so1792805wmi.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 16 Sep 2020 00:11:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=uMlGpmGSfaq5wBmML5W0xMmyh1HvBEGoGDtUF7FM+/0=;
- b=Yxb+IBOTbpRqRMzXGs6MRociILkXzzo3Bxa3zq7KHz6B77f9DXmoVmcg+PLD7odYPA
- iPTj+RbgUPfyE2Og7YQES9VbyVgCKa9POh5E/fiy+zn2JieBeHTo32PHb3xpyNKj+8jU
- tSd+CsTKG0LvffHm/XwR6HCrni8iWLR3xXZZeuQ222hbpCHpJcOdGshfk6A79n196wue
- 2NYU4E61djU03bvEdDWJgzbpwtsrvnR95Mbv80Bfg4HwlaZ4ZcQb2mbD4ALShnvts4s3
- /KVJt2h2X9ygbXldS9s1y5EtETTJIe8Dhh1YMuhMN88o5uaisyR+RvjbVvfF9vcWNGHZ
- Womw==
+ bh=SmBSMDnB6VXixjNUpgdO9s8i5OvfO/7G1wBPUBiaKjg=;
+ b=MkbRUK8v9uQhn/23wAQ3zqYTZgiqGsXPjQRa3xQTi2Er3EadBcUvmE9EVvaH+mgVmw
+ 1LqdcBF18wpa4aIjbZMbgBC/EM/X9+d155EVPp0KOJUB7UQPbCuICNSzpvO4icnuLx2K
+ Vi1T7iIDcS7sPMDQntU7it97K8wtBZ4R25bFKjTylDws8G853ZysjY2UmZ9qpY+MkPQK
+ n5Y5FgQPtQrHRI2cMYAlqz2u/u20WISAOLNnaghMjp+T9sfvCJBsGawF/SSkiDsmFwrT
+ FpYh6KsNayMwiA2FQlC0NYccaPCsSy3xB3RlIy2y6tM3Tr/IdhZBKyYHgkvTVGv4Jac7
+ op/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=uMlGpmGSfaq5wBmML5W0xMmyh1HvBEGoGDtUF7FM+/0=;
- b=IGGIBE6YoAhixTKl0IOa7rbZAmrvIIpiJgtQcdiadG7BRpigfz+uOc79svfUa5sKB+
- 3JaOX/Q2+1IYOcjXGVvSDH1GNg4rI8zuWHLDGSN+c7JitleBJIUxs9iB/jmEiq/Rvowg
- iRXUdRvJxJ+jbO8zB6DbL8XBq3Jkwm6libOCmb0FJKmSXTX3za0xj6/qyrUJAFq9QtVl
- ztBRFUFVm/vXROnwx5D/K8DfjDAbGvvQtL6v0lJuxmxErLGir/mBRnsMSgK+57zbiPzK
- 7HLoFhQPoXiNVx0eKvW6kcDNgjbC0ZpTI0r+Wn9JSViKbEi/GG+eJe/ZU/X2FD9fezL2
- WlVw==
-X-Gm-Message-State: AOAM530NM3ywThG62QIKSiNlfsvYvPAhQ0k/PdZn8KBHkkckbn09FnHI
- mbBtmvkJhkxkySnTNL/EsfBSYw==
-X-Google-Smtp-Source: ABdhPJzInXT/SgWyPwtI96gRJ7HmBiKzE+X3u0l5DA2Uri9AB8xYLbzsLEYEc9SnsIh+YokNLqP/wQ==
-X-Received: by 2002:a1c:750d:: with SMTP id o13mr3289784wmc.54.1600240240378; 
- Wed, 16 Sep 2020 00:10:40 -0700 (PDT)
+ bh=SmBSMDnB6VXixjNUpgdO9s8i5OvfO/7G1wBPUBiaKjg=;
+ b=k0eZtQ21zCxUolxsRavDcIMhC8fgHICJNkvfWye6ZYEB1wG+tN9u2R9QQxDTski8VR
+ lnhSWHXv9R/cWaZodw6jpTw+yvHxRHUUl7Un83diHT03mAC4gyBCJzlfDl2uanezcpvz
+ iwL+E9SVCwdTGq+sUcFAFuFAapTlaZJ8acqfr4vdGCs2/I4BOgFYv5jL7EWM92cFbQvF
+ A0RZVSkkNstoRmkX9H0iQe8Oy7BFkdFN7SYJjFqHOXjZZoc7BgONh/dg8jyB9dB7w8nz
+ folbetR7/uV+tY2dQZ5CMTPyrB6g3FkJucyWOyE63cTiJ5xTjis7eFAZy+8OTJxAFH4N
+ xwGw==
+X-Gm-Message-State: AOAM53173fubFVOdkuqfNJquAA0K2i4ubTKcGsrDI090meqGwc5wIxCM
+ dIfz0g8f5J1TI/j79WycYzwQUg==
+X-Google-Smtp-Source: ABdhPJy+5vMI7Ec2VyLnMJ0fH7Ae2qSgfXmDjicDFdvndhkcEyype2M98sYYOORJeY9/7yLqp9YA0w==
+X-Received: by 2002:a1c:1d08:: with SMTP id d8mr3251252wmd.78.1600240273042;
+ Wed, 16 Sep 2020 00:11:13 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac?
  ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
- by smtp.gmail.com with ESMTPSA id a83sm3603554wmh.48.2020.09.16.00.10.39
+ by smtp.gmail.com with ESMTPSA id z14sm30120914wrh.14.2020.09.16.00.11.11
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Sep 2020 00:10:39 -0700 (PDT)
-Subject: Re: [PATCH 4/5] arm64: dts: meson-axg: add USB nodes
+ Wed, 16 Sep 2020 00:11:12 -0700 (PDT)
+Subject: Re: [PATCH 3/5] usb: dwc-meson-g12a: Add support for USB on AXG SoCs
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20200909160409.8678-1-narmstrong@baylibre.com>
- <20200909160409.8678-5-narmstrong@baylibre.com>
- <CAFBinCDgqu-fz9xhwC0-jEbQ3eY9RfZEb61-BR6Mwjbo3BOedg@mail.gmail.com>
+ <20200909160409.8678-4-narmstrong@baylibre.com>
+ <CAFBinCCFmb7S9iR7_z7w5=_sOQZ6sMjo7YWdsETObyNa7MP6XA@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <df488b5d-8e09-37dd-f90a-f6a0232084bf@baylibre.com>
-Date: Wed, 16 Sep 2020 09:10:38 +0200
+Message-ID: <ff371bf2-f030-f28e-f467-c3bcca5b33df@baylibre.com>
+Date: Wed, 16 Sep 2020 09:11:11 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDgqu-fz9xhwC0-jEbQ3eY9RfZEb61-BR6Mwjbo3BOedg@mail.gmail.com>
+In-Reply-To: <CAFBinCCFmb7S9iR7_z7w5=_sOQZ6sMjo7YWdsETObyNa7MP6XA@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200916_031041_496933_BA0B4502 
-X-CRM114-Status: GOOD (  16.02  )
+X-CRM114-CacheID: sfid-20200916_031114_336211_A0969099 
+X-CRM114-Status: GOOD (  16.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,41 +152,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Cc: balbi@kernel.org, khilman@baylibre.com, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/09/2020 22:04, Martin Blumenstingl wrote:
+On 15/09/2020 21:59, Martin Blumenstingl wrote:
 > Hi Neil,
 > 
-> On Wed, Sep 9, 2020 at 6:05 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> On Wed, Sep 9, 2020 at 6:04 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
->> This adds the USB Glue node, with the USB2 & USB3 controllers along the single
->> USB2 PHY node.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> The Amlogic AXG is close from the GXL Glue but with a single OTG PHY.
+> s/close from/close to/
 > 
 > [...]
->> +                       usb2_phy1: phy@9020 {
->> +                               compatible = "amlogic,meson-gxl-usb2-phy";
->> +                               #phy-cells = <0>;
->> +                               reg = <0x0 0x9020 0x0 0x20>;
->> +                               clocks = <&clkc CLKID_USB>;
->> +                               clock-names = "phy";
->> +                               resets = <&reset RESET_USB_OTG>;
->> +                               reset-names = "phy";
->> +                               status = "okay";
-> if you have to re-send this for some reason: status = "okay" is the
-> default and so I think we can omit this
-> 
-Ok, will removed in v2
+>> +static struct dwc3_meson_g12a_drvdata axg_drvdata = {
+>> +       .otg_switch_supported = true,
+>> +       .clks = meson_gxl_clocks,
+>> +       .num_clks = ARRAY_SIZE(meson_gxl_clocks),
+>> +       .phy_names = meson_a1_phy_names,
+>> +       .num_phys = ARRAY_SIZE(meson_a1_phy_names),
+> I wonder if we should also update the comment for meson_a1_phy_names
+> to understand that part I had to go back to the dt-bindings patch
+Sure,
 
 Thanks,
 Neil
+
+> 
+> 
+> Best regards,
+> Martin
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
