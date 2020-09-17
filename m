@@ -5,18 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-14.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 092FAC433E2
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 10:29:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FB5BC43461
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 10:29:32 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8F0FD2087D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 10:29:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CA8292083B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 10:29:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VCWCwm6u"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8F0FD2087D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="2ro4qWBk"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA8292083B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,40 +26,40 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=MWeGu6dOoLUPYHJJYqWVPSidzRnR1B2JJvS2rUrTfhY=; b=VCWCwm6u6od44ocjr4wjknLDF
-	BoJdIECcwQYqRg0t/+BKaXKMwt3PNJxqKMus8jIX7kGa4e+Uzzg27OuIs40kfMkR1W+0eATHvJhU7
-	N4mCpwqDy4/CzKkcDzb2fMRqRH7BouRew1Qdr/0KOWkAF+2o9eer4VFuc2ZIr2yfZP0VoGNem4XFk
-	ydhc+F5+RhQmK+v40RLklFKiUGTJ/Kt3AQWE+mSojFNZzoSpHAI8wKfLJkMiVG2jsXZ4weMgHQx9/
-	KRsHaBucosFw6JHZy2RoxhuCbf7jDbZGyaIDJL2eH2rcBzuuawdgQPv24bCflv2SjrLh09Z7drXJK
-	VJdvKBSzA==;
+	 bh=2qXtBAZ+1uROyioZuevs8ZU8mp0g9jVFYf6hRahNvMM=; b=2ro4qWBkh+3XGhGdRbDDmjR5R
+	sOQxaum7mYYKR+FPeXf29fZrMUuRYscV6DZb7MZGtj+mkflTKhEdi0dNW/NhjpCmW2e1rAZ/3G+eX
+	FvdgrMb4ILqdl6M00Qjs9WzekhjPO0NPBfkNG3UFULi360gJNruRisSCCFXwjIeyIbeuT30T63VFY
+	6pZ6pZ/AFaEVkmAF3/ZJqqYbYMYElCnL7airKZOLVS5BNGTMJx9adPPjfpzBsCaVYmfTIOkTRtJZ+
+	AVISYOsJTrqJ13Oe5lYdIClFuwX0QddtNlx3wOAdXmTSWy61SjjFoDpo+X9CWaeMzA4mQTeoeTgVU
+	N39g8hF0A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIrA9-0006T5-Mj; Thu, 17 Sep 2020 10:29:13 +0000
+	id 1kIrAJ-0006XE-PV; Thu, 17 Sep 2020 10:29:24 +0000
 Received: from foss.arm.com ([217.140.110.172])
  by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIrA6-0006Qr-Ke; Thu, 17 Sep 2020 10:29:11 +0000
+ id 1kIrA7-0006R4-Mg; Thu, 17 Sep 2020 10:29:12 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2886012FC;
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DAF6013D5;
  Thu, 17 Sep 2020 03:29:08 -0700 (PDT)
 Received: from [192.168.1.79] (unknown [172.31.20.19])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A97B13F68F;
- Thu, 17 Sep 2020 03:29:06 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] drm/panfrost: add support for vendor quirk
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 666F73F8C6;
+ Thu, 17 Sep 2020 03:29:07 -0700 (PDT)
+Subject: Re: [PATCH v2 2/3] drm/panfrost: add amlogic reset quirk callback
 To: Neil Armstrong <narmstrong@baylibre.com>, robh@kernel.org,
  tomeu.vizoso@collabora.com, alyssa.rosenzweig@collabora.com
 References: <20200916150147.25753-1-narmstrong@baylibre.com>
- <20200916150147.25753-2-narmstrong@baylibre.com>
+ <20200916150147.25753-3-narmstrong@baylibre.com>
 From: Steven Price <steven.price@arm.com>
-Message-ID: <370802ea-5f21-7a62-cf84-0dc5f5020667@arm.com>
+Message-ID: <65d87f20-6dce-adeb-4d32-7a73462dd575@arm.com>
 Date: Thu, 17 Sep 2020 11:29:05 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200916150147.25753-2-narmstrong@baylibre.com>
+In-Reply-To: <20200916150147.25753-3-narmstrong@baylibre.com>
 Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200917_062910_762474_016E1F80 
-X-CRM114-Status: GOOD (  20.89  )
+X-CRM114-CacheID: sfid-20200917_062911_873484_3947CB54 
+X-CRM114-Status: GOOD (  21.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,48 +83,70 @@ On 16/09/2020 16:01, Neil Armstrong wrote:
 
 NIT: s/integratewd/integrated/
 
-> SoCs needs a quirk in the PWR registers after each reset.
+> SoCs needs a quirk in the PWR registers at the GPU reset time.
 > 
-> This adds a callback in the device compatible struct of permit this.
+> Since the Amlogic's integration of the GPU cores with the SoC is not
+> publicly documented we do not know what does these
+> values, but they permit having a fully functional GPU running with Panfrost.
 > 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
 Reviewed-by: Steven Price <steven.price@arm.com>
 
 > ---
->   drivers/gpu/drm/panfrost/panfrost_device.h | 3 +++
->   drivers/gpu/drm/panfrost/panfrost_gpu.c    | 4 ++++
->   2 files changed, 7 insertions(+)
+>   drivers/gpu/drm/panfrost/panfrost_gpu.c  | 11 +++++++++++
+>   drivers/gpu/drm/panfrost/panfrost_gpu.h  |  2 ++
+>   drivers/gpu/drm/panfrost/panfrost_regs.h |  4 ++++
+>   3 files changed, 17 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/panfrost/panfrost_device.h
-> index abfc78db193a..140e004a3790 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_device.h
-> +++ b/drivers/gpu/drm/panfrost/panfrost_device.h
-> @@ -70,6 +70,9 @@ struct panfrost_compatible {
->   	int num_pm_domains;
->   	/* Only required if num_pm_domains > 1. */
->   	const char * const *pm_domain_names;
-> +
-> +	/* Vendor implementation quirks callback */
-> +	void (*vendor_quirk)(struct panfrost_device *pfdev);
->   };
->   
->   struct panfrost_device {
 > diff --git a/drivers/gpu/drm/panfrost/panfrost_gpu.c b/drivers/gpu/drm/panfrost/panfrost_gpu.c
-> index c7c5da5a31d4..a6de78bc1fa8 100644
+> index a6de78bc1fa8..e1b2a3376624 100644
 > --- a/drivers/gpu/drm/panfrost/panfrost_gpu.c
 > +++ b/drivers/gpu/drm/panfrost/panfrost_gpu.c
-> @@ -136,6 +136,10 @@ static void panfrost_gpu_init_quirks(struct panfrost_device *pfdev)
->   
->   	if (quirks)
->   		gpu_write(pfdev, GPU_JM_CONFIG, quirks);
-> +
-> +	/* Here goes platform specific quirks */
-> +	if (pfdev->comp->vendor_quirk)
-> +		pfdev->comp->vendor_quirk(pfdev);
+> @@ -76,6 +76,17 @@ int panfrost_gpu_soft_reset(struct panfrost_device *pfdev)
+>   	return 0;
 >   }
 >   
->   #define MAX_HW_REVS 6
+> +void panfrost_gpu_amlogic_quirk(struct panfrost_device *pfdev)
+> +{
+> +	/*
+> +	 * The Amlogic integrated Mali-T820, Mali-G31 & Mali-G52 needs
+> +	 * these undocumented bits in GPU_PWR_OVERRIDE1 to be set in order
+> +	 * to operate correctly.
+> +	 */
+> +	gpu_write(pfdev, GPU_PWR_KEY, GPU_PWR_KEY_UNLOCK);
+> +	gpu_write(pfdev, GPU_PWR_OVERRIDE1, 0xfff | (0x20 << 16));
+> +}
+> +
+>   static void panfrost_gpu_init_quirks(struct panfrost_device *pfdev)
+>   {
+>   	u32 quirks = 0;
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_gpu.h b/drivers/gpu/drm/panfrost/panfrost_gpu.h
+> index 4112412087b2..468c51e7e46d 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_gpu.h
+> +++ b/drivers/gpu/drm/panfrost/panfrost_gpu.h
+> @@ -16,4 +16,6 @@ int panfrost_gpu_soft_reset(struct panfrost_device *pfdev);
+>   void panfrost_gpu_power_on(struct panfrost_device *pfdev);
+>   void panfrost_gpu_power_off(struct panfrost_device *pfdev);
+>   
+> +void panfrost_gpu_amlogic_quirk(struct panfrost_device *pfdev);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_regs.h b/drivers/gpu/drm/panfrost/panfrost_regs.h
+> index ea38ac60581c..eddaa62ad8b0 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_regs.h
+> +++ b/drivers/gpu/drm/panfrost/panfrost_regs.h
+> @@ -51,6 +51,10 @@
+>   #define GPU_STATUS			0x34
+>   #define   GPU_STATUS_PRFCNT_ACTIVE	BIT(2)
+>   #define GPU_LATEST_FLUSH_ID		0x38
+> +#define GPU_PWR_KEY			0x50	/* (WO) Power manager key register */
+> +#define  GPU_PWR_KEY_UNLOCK		0x2968A819
+> +#define GPU_PWR_OVERRIDE0		0x54	/* (RW) Power manager override settings */
+> +#define GPU_PWR_OVERRIDE1		0x58	/* (RW) Power manager override settings */
+>   #define GPU_FAULT_STATUS		0x3C
+>   #define GPU_FAULT_ADDRESS_LO		0x40
+>   #define GPU_FAULT_ADDRESS_HI		0x44
 > 
 
 
