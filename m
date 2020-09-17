@@ -2,61 +2,65 @@ Return-Path: <SRS0=nwdc=C2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C829CC43461
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 12:04:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D551BC43461
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 12:38:43 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 64A162087D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 12:04:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 76595208E4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 12:38:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VPiSncUZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 64A162087D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=collabora.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PoWWbAuV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 76595208E4
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=hpOgi5vpvyPFw5LyYqaNtasUQxb/2/fFutKHaobFSTw=; b=VPiSncUZAoNVKqCTSnPHodoFb
-	TA2j+I4C31fON4LvM+ljg/bzSqZyYfg/S6yFIWZc/G+Pko+q95lDlnyRE4WLxgaTdT8oqN/Uj44li
-	124MuJ0/yxPGrbkpvv6cja6+71df9gkRTxCQ76xmXYsEHAl6H0KOBx4vDlua/xTx/3rVHPFpy+ygl
-	vmslgL2pIJkyLk05069Oev0R3tIvYcQlpebMeR8/NaIOXIXUeNrGUWTey2WBl7Grp3lvWyOZn6G6N
-	+cjiAXtljKaGnlI5OCp3I9D0RVD9jrFibvUeg9BXqsBDl4i5jeQ14bgOgI5KWID0oCZPFUM8a5w8k
-	1S2uqp3Ng==;
+	 bh=s54AG4ShUU7l0dJCkf0A4zDNbbV7F/2QZhcydZiQ1aY=; b=PoWWbAuVtdIunRjaoLnF5yUUL
+	uavjOwq920u5P8g8u6XGSHyTwrb/sZ4f1bOoDyeE3fIjqQmwAvcsEzgfCOAhznSTN3lJpn2rR9Y57
+	hU4lvLSwHWlAY3Zv5CG84KlNEhMXwzbi4TQ/TPSYSrG7DnYTkoqw9FOULxSb6A7P4P0BbvVQNKWHj
+	5ssfZkAZ54mf9X0ylKUjI5vhRqGcVPGVM2lBfwUhSziuuvvi1mLFasmPA+ckPzqeU1oDvi4HNMZ/q
+	gmkBFoDI0HWRAnqAQOdzD+goEFQ+mgzIqV5g8bATGuvIsd01iT8jGo7CFpVNib9pNQtRX3sj5L4P7
+	Q00FXM8tg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIsdx-0008Ba-6q; Thu, 17 Sep 2020 12:04:05 +0000
-Received: from bhuna.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e3e3])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIsdu-0008B0-GZ; Thu, 17 Sep 2020 12:04:03 +0000
-Received: from kevin (unknown [IPv6:2607:fea8:55f:a950::68f4])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: alyssa)
- by bhuna.collabora.co.uk (Postfix) with ESMTPSA id C9FB029AEF5;
- Thu, 17 Sep 2020 13:03:47 +0100 (BST)
-Date: Thu, 17 Sep 2020 08:03:37 -0400
-From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-To: Steven Price <steven.price@arm.com>
+	id 1kItBJ-0005A6-Dp; Thu, 17 Sep 2020 12:38:33 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kItBG-00057h-Lt; Thu, 17 Sep 2020 12:38:31 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D639B30E;
+ Thu, 17 Sep 2020 05:38:27 -0700 (PDT)
+Received: from [10.57.47.84] (unknown [10.57.47.84])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 388B63F68F;
+ Thu, 17 Sep 2020 05:38:25 -0700 (PDT)
 Subject: Re: [PATCH 0/3] drm: panfrost: Coherency support
-Message-ID: <20200917120337.GA1684@kevin>
+To: Rob Herring <robh@kernel.org>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
 References: <cover.1600213517.git.robin.murphy@arm.com>
  <d109e9da-feb3-c09f-2b7f-98c92ce39593@baylibre.com>
  <20200916170409.GA2543@kevin>
  <CAL_JsqLGO4YYPjQsjnzZCW5iT6n+keZw9G9mFALJip0nDo42Hw@mail.gmail.com>
- <d135f546-41aa-a6e2-52fe-7707d379c793@arm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Message-ID: <88bc6b29-9206-477f-4c45-a1e55efb66af@arm.com>
+Date: Thu, 17 Sep 2020 13:38:16 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
-In-Reply-To: <d135f546-41aa-a6e2-52fe-7707d379c793@arm.com>
+In-Reply-To: <CAL_JsqLGO4YYPjQsjnzZCW5iT6n+keZw9G9mFALJip0nDo42Hw@mail.gmail.com>
+Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200917_080402_640781_CE02719B 
-X-CRM114-Status: GOOD (  10.89  )
+X-CRM114-CacheID: sfid-20200917_083830_771739_40DAA5F1 
+X-CRM114-Status: GOOD (  20.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,78 +72,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+Cc: Tomeu Vizoso <tomeu.vizoso@collabora.com>,
  Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Steven Price <steven.price@arm.com>,
  Linux IOMMU <iommu@lists.linux-foundation.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, Will Deacon <will@kernel.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Robin Murphy <robin.murphy@arm.com>,
+ Will Deacon <will@kernel.org>,
  linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
  Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: multipart/mixed; boundary="===============8451867174972718077=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 2020-09-16 18:46, Rob Herring wrote:
+> On Wed, Sep 16, 2020 at 11:04 AM Alyssa Rosenzweig
+> <alyssa.rosenzweig@collabora.com> wrote:
+>>
+>>> So I get a performance regression with the dma-coherent approach, even if it's
+>>> clearly the cleaner.
+>>
+>> That's bizarre -- this should really be the faster of the two.
+> 
+> Coherency may not be free. CortexA9 had something like 4x slower
+> memcpy if SMP was enabled as an example. I don't know if there's
+> anything going on like that specifically here. If there's never any
+> CPU accesses mixed in with kmscube, then there would be no benefit to
+> coherency.
 
---===============8451867174972718077==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6TrnltStXW4iwmi0"
-Content-Disposition: inline
+There will still be CPU benefits in terms of not having to spend time 
+cache-cleaning every BO upon allocation, and less overhead on writing 
+out descriptors in the first place (due to cacheable vs. non-cacheable).
 
+I haven't tried the NSh hack on Juno, but I don't see any notable 
+performance issue as-is - kmscube hits a solid 60FPS from the off (now 
+that it works without spewing faults). Given that the hardware on Juno 
+can be generously described as "less good", it would certainly be 
+interesting to figure out what difference is at play here...
 
---6TrnltStXW4iwmi0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The usual argument against I/O coherency is that it adds latency to 
+every access, but if you already have a coherent interconnect anyway 
+then the sensible answer to that is implementing decent snoop filters, 
+rather than making software more complicated.
 
-> The DDK blob has the ability to mark only certain areas of memory as
-> coherent for performance reasons. For simple things like kmscube I would
-> expect that it's basically write-only from the CPU and almost all memory the
-> GPU touches isn't touched by the CPU. I.e. coherency isn't helping and the
-> coherency traffic is probably expensive. Whether the complexity is worth it
-> for "real" content I don't know - it may just be silly benchmarks that
-> benefit.
-
-Right, Panfrost userspace specifically assumes GPU reads to be expensive
-and treats GPU memory as write-only *except* for a few special cases
-(compute-like workloads, glReadPixels, some blits, etc).
-
-The vast majority of the GPU memory - everything used in kmscube - will be
-write-only to the CPU and fed directly into the display zero-copy (or
-read by the GPU later as a dmabuf).
-
---6TrnltStXW4iwmi0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEQ17gm7CvANAdqvY4/v5QWgr1WA0FAl9jUJAACgkQ/v5QWgr1
-WA2dWg/+OmkKrIz3I3zxUDFk1aW47mEA/JzLjdkrFq+J1K67FPajUIaqzgLjYq1b
-wB3a51QSJoN70Aw9O9jrV/GkEbpSf8QWObN4NtZqYcD58fECprh5oXmEfgD0u5gZ
-6Gkoijp15utLoOirt2LkEJpYAxrOjfA9n5+WQLn8qQY1QPwO2AjtNxXWlWNhYqvh
-CQwDQGoO9FiWNSRPZpx1yHEYP/aDMTW8MqwQ8JsQu2G42TS6ErQUC9OMMZjJ/TYS
-GLKA4ybkdSnlNwQH0h+7g6LX0Y3WGUUn1xxbd4P7OPFZapV+87+cQS8sottqH7tS
-Rrja9cH4d7/DjKmn1xjT5ftnagxGkzoJ9eYf13DTedymUAQxMGV5TdZhCeUT0HFz
-5es9SnkTjOFAQyKZbjiM5t5Sia0eUHLIKUwX6FFKnWxMTtLF4z8XGhizHQrZ8M5I
-tQW8f7BzInUEGN5H3FV6spp+P5tL7AkdTEGJ4p87EnoyJfTq2mxWAfTxxN9R01FQ
-3yDMyx9bUXif0CNnJjAyTN0WJt17twGKuqAnGu5+oLtK6BXuC5wv9yPyQZ5Zvwgv
-HnXnb+s10WYXgdOHRNebUvFnDYsIZTp8/qFXiAdKaHT/r7aL/UKm2XQqwz48O40W
-doi8CBItWk7+SxVkj3w5nxnyl9vhu0Md9HkBvGZEH3wfnPGu4/w=
-=k8jL
------END PGP SIGNATURE-----
-
---6TrnltStXW4iwmi0--
-
-
---===============8451867174972718077==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Robin.
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8451867174972718077==--
-
