@@ -1,94 +1,63 @@
-Return-Path: <SRS0=nwdc=C2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=O93K=C3=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF97FC433E2
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 15:30:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BE48CC43463
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2020 01:31:09 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3C0F2222C4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2020 15:30:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6A52520659
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2020 01:31:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="t6IDa+gB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hi14w0Bp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C0F2222C4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="z4fgCtMK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6A52520659
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:Date:References:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=4Sd4dy5gH4SPk9YRSooWybiAPFI9+aC5IkXlfWtpaus=; b=t6IDa+gBcfygWYfwfqbI/acOw
-	xAxUNEWbO/SPez3zmoXyGEnL5ulygpulXb37gc9rswMCKVvCzEZSecQieetzh84wBIDoFuOOKdEaG
-	m0FWKZKk4x8eleuzGUNsrW9FIsPivaWVmaRGbCxUZSoYQTfNEIGQzCrxSnbUft9PF+vWov/aj9FF+
-	jU1CrvzVeQlJ5bAcdxZhNcB3QVXHGTKvhTBPLGGVdxPGBqXh4HcCy0cYMfIE/44IvEspp63DmSklM
-	AkVGz/9eZho0qJA3YnoCqpqecSDrVTu5a5i3z6nMbhBkX3M4YwK6KJ0iHYyfUcIyNKva9dhW7bGj3
-	DNkI5qekg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=tAKVzfsO16orul3GzMIVj9niApxSGCGtSOI4LSXx2Ho=; b=z4fgCtMK/xi+UG6Ul2XnA1EX1D
+	YuZ6b93HgnTlAFqLNk/jHE2bZVmx7Lylkr7/amPBNSRscJbzCfrq+D+a/DjgpkWzJsJFAH5qaCO1K
+	Q9lir4htT0ze++UfcFAmZOPPxl2rXToz8+BFux9+Hihl7M0ROKnbvqlyhiL8130e9yr2aCYQEuZbd
+	Gn1pQUZux8Q7eWHylakqDXK187zLR+AEhuDiwIOLmHzJCzeDzRC1IVqGFBS3ScZ4dDpqjzTbZF+Ng
+	GHzcGNgiQUCczDqSrr6GEJaYwa/sZWO58kd22uQrrr0xmi0qAwTEGn7YR1kUem8xgxFNb63stwh8P
+	t3NUaR2w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kIvrL-0005Rs-GT; Thu, 17 Sep 2020 15:30:07 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1kJ5Ej-0008N2-NE; Fri, 18 Sep 2020 01:30:53 +0000
+Received: from szxga06-in.huawei.com ([45.249.212.32] helo=huawei.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIvrI-0005QP-KJ
- for linux-amlogic@lists.infradead.org; Thu, 17 Sep 2020 15:30:05 +0000
-Received: by mail-ed1-x536.google.com with SMTP id ay8so2912955edb.8
- for <linux-amlogic@lists.infradead.org>; Thu, 17 Sep 2020 08:30:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
- :user-agent:mime-version;
- bh=07SZS8LKTaYb2ZodeUWOPxE0kfHN7BLiKaXydMlMh+g=;
- b=Hi14w0BpHhy9m5Rl4kH5Im6BcDSVD8iusJ9GLb+2+XE+f5pm12bIEwf/HVvQgEzHPY
- /aH/qXJlC/nvaKVugmpAd/Qbk9yLJifWVc+gWKVA0DkzuTo3blwPThnZL74eRi+WPfM3
- LX0rmxuRu8Qg1mOj9tJISqsD1O3DJuWplNAUmimUav74PHfT+8d9JcH8is+NulJkDiI4
- eEZAbj/bN1VcEHyuAhNhQrUrjlmwuN6RfiLL6v4R5/j76FgY3T+8sOogfS65tPaMfX5p
- 3hx6sZGI9IgyRD56nrH4LlXVifo+yCeCaDDxqQQ4wykwA7DP4xUfHLRsZ5TsqiQjRUEt
- th+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:from:to:cc:subject:references:date
- :in-reply-to:message-id:user-agent:mime-version;
- bh=07SZS8LKTaYb2ZodeUWOPxE0kfHN7BLiKaXydMlMh+g=;
- b=TFaGirBzTuM3IUxTXsy85WvYzx+82vOcxRbw9Uw0oLABljGE2jPNilsRdJ7Xb8mJVg
- LSngNi67iLhSOp7/MGF3G0BI1bigqTbiQU1bKDNhY8+6K9Y56x312UM2VyrQ/Iv1qw9l
- ipXl6JmY8Vp2JSK/pn1j8tMiJEfbmChwtOLCKJxIwU7v6DHVFRJY2dePxRcJ20eCZ7TL
- u35B146x6b4g2Na7WLCf2ULSy6HHavDz7gRWyVR86h+HvulSG7D6pECxLdP4MuEtxcT+
- Q5WQzCrGtdj3ELSJfdPtxmddgZYOlrxp1KGPJcspS1m8TYEkn9DCS3EJbGDtI1fCaSDm
- Izpg==
-X-Gm-Message-State: AOAM530iiplOmnPh7+BMZF/HiBmBdzMhaCAnq8oFUkXEIDsPQ9/hA+XQ
- a0uRbWfq1/d1t2jrR1Ha2OM=
-X-Google-Smtp-Source: ABdhPJyq3s602CE7sjZ2otpCLH7IGcuhF1xumNeZlGyZbGxltkJ1MET8Vlz0c0Acyz1re2O3j3ZHEQ==
-X-Received: by 2002:aa7:d40f:: with SMTP id z15mr34151576edq.247.1600356602591; 
- Thu, 17 Sep 2020 08:30:02 -0700 (PDT)
-Received: from dell.be.48ers.dk (d51A5BC31.access.telenet.be. [81.165.188.49])
- by smtp.gmail.com with ESMTPSA id
- ce14sm25474edb.25.2020.09.17.08.30.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Sep 2020 08:30:01 -0700 (PDT)
-Received: from peko by dell.be.48ers.dk with local (Exim 4.92)
- (envelope-from <peter@korsgaard.com>)
- id 1kIvrE-0006cs-LO; Thu, 17 Sep 2020 17:30:00 +0200
-From: Peter Korsgaard <peter@korsgaard.com>
-To: Anand Moon <linux.amoon@gmail.com>
-Subject: Re: s805x USB broken in 5.8?
-References: <87y2l8plev.fsf@dell.be.48ers.dk>
- <CANAwSgTx9FHnueO0-K5M6kFhhWLJ0MEdcDKDnxbrwDnkM+AK3Q@mail.gmail.com>
-Date: Thu, 17 Sep 2020 17:30:00 +0200
-In-Reply-To: <CANAwSgTx9FHnueO0-K5M6kFhhWLJ0MEdcDKDnxbrwDnkM+AK3Q@mail.gmail.com>
- (Anand Moon's message of "Thu, 17 Sep 2020 20:41:09 +0530")
-Message-ID: <87tuvwpgjr.fsf@dell.be.48ers.dk>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ id 1kJ5Eh-0008Lq-CR
+ for linux-amlogic@lists.infradead.org; Fri, 18 Sep 2020 01:30:52 +0000
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id DC7AC86507DEF281E73B;
+ Fri, 18 Sep 2020 09:30:42 +0800 (CST)
+Received: from localhost.localdomain.localdomain (10.175.113.25) by
+ DGGEMS412-HUB.china.huawei.com (10.3.19.212) with Microsoft SMTP Server id
+ 14.3.487.0; Fri, 18 Sep 2020 09:30:35 +0800
+From: Qinglang Miao <miaoqinglang@huawei.com>
+To: Corentin Labbe <clabbe@baylibre.com>, Herbert Xu
+ <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>
+Subject: [PATCH -next v2] crypto: amlogic: Convert to DEFINE_SHOW_ATTRIBUTE
+Date: Fri, 18 Sep 2020 09:31:10 +0800
+Message-ID: <20200918013110.82604-1-miaoqinglang@huawei.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
+X-Originating-IP: [10.175.113.25]
+X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200917_113004_704805_91FA5376 
-X-CRM114-Status: GOOD (  10.63  )
+X-CRM114-CacheID: sfid-20200917_213051_687701_40B1B276 
+X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,27 +69,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-crypto@vger.kernel.org,
+ Qinglang Miao <miaoqinglang@huawei.com>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
->>>>> "Anand" == Anand Moon <linux.amoon@gmail.com> writes:
+Use DEFINE_SHOW_ATTRIBUTE macro to simplify the code.
 
- > Hi Peter,
+Signed-off-by: Qinglang Miao <miaoqinglang@huawei.com>
+---
+v2: based on linux-next(20200917), and can be applied to
+    mainline cleanly now.
 
- >> Before I dig deeper, am I missing something? Is this a known issue?
+ drivers/crypto/amlogic/amlogic-gxl-core.c | 16 ++--------------
+ 1 file changed, 2 insertions(+), 14 deletions(-)
 
- > Yes, please try this patch.
-
- > https://patchwork.kernel.org/patch/11740801/
-
-Ahh, thanks - And I see that this is now in 5.8.10, good.
-
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 466552acb..5bbeff433 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -98,7 +98,7 @@ static struct meson_alg_template mc_algs[] = {
+ };
+ 
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+-static int meson_dbgfs_read(struct seq_file *seq, void *v)
++static int meson_debugfs_show(struct seq_file *seq, void *v)
+ {
+ 	struct meson_dev *mc = seq->private;
+ 	int i;
+@@ -118,19 +118,7 @@ static int meson_dbgfs_read(struct seq_file *seq, void *v)
+ 	}
+ 	return 0;
+ }
+-
+-static int meson_dbgfs_open(struct inode *inode, struct file *file)
+-{
+-	return single_open(file, meson_dbgfs_read, inode->i_private);
+-}
+-
+-static const struct file_operations meson_debugfs_fops = {
+-	.owner = THIS_MODULE,
+-	.open = meson_dbgfs_open,
+-	.read = seq_read,
+-	.llseek = seq_lseek,
+-	.release = single_release,
+-};
++DEFINE_SHOW_ATTRIBUTE(meson_debugfs);
+ #endif
+ 
+ static void meson_free_chanlist(struct meson_dev *mc, int i)
 -- 
-Bye, Peter Korsgaard
+2.23.0
+
 
 _______________________________________________
 linux-amlogic mailing list
