@@ -2,85 +2,98 @@ Return-Path: <SRS0=f3vK=C4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A764C43463
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Sep 2020 09:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 39AE6C43464
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Sep 2020 10:01:21 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2D3D721582
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Sep 2020 09:47:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B4B2420795
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Sep 2020 10:01:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NOEfjjkT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G3Z0VC+0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2D3D721582
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Pesvo0Bn";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="rQ2pc1gi"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B4B2420795
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:Date:References:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8djouDBntHTrgOebxSZUjk9++8vS6AGwSgRWKnDXyGU=; b=NOEfjjkTFDHX/2/HuiyFeRR0G
-	t0H4EGsTqASwoXuHNclmp2chJE/BdHubIOfOCiaSvsVlzaUFoP9mPNQADolTMs7v/631WnCAT5M0C
-	YG7+3eZRb8OahgPEibpNVk1NBp2Ntn6T5ZolVgkvELLvppPUsjFxInTCclpq5ygEcAsgGwEcrqAqp
-	N9eUusaLaUu/lxd6NE2kzuohWTebVtQivFedakEFDNdAw8AC4LffF8+lJUMHQMVI79rfiIFWC2Z7T
-	C1A9uU7ROfV3r7y85Dj/4Gbus0DUxoBerjfSkt9qTWgXIIJf+id71UVKHZISRHgSPrIt1DncVX4hv
-	Yjb0HqpEQ==;
+	 bh=fPRSMlMU4yQx9fOx8Wu8Jf6uFNWBdggE5+0GbklQyNw=; b=Pesvo0BnmgirQ+f0PuKuw2AOF
+	QupvJTk85O96ItDzIeaOe77GLGX8MNtnva/7zfNdSeENlITQCyyzozL6Qi05/MOfHl5GELI97yjAm
+	6PSidmcdAJvKJwnj7mpE1FAkev6oZEXNIM1nINdkmAoqIebWoX+7brLfTz2yMoI0+XNfn3Il35eKS
+	v7XMx0NeSPxrYpsHOxmm5ULEVkMW1rtoPSDbNBieIhKkhxJTwAmTp6uAHaa5rTPXYi18tg9nMiIrd
+	Uq4EajFbRwZQcYRb5m3EChsvIQjAFSOh6XCt2Xfb4gPZQtIYR4ecpsvS3PNqvTruJKNM2HNnlq9fr
+	Plo9yGlDw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kJZSy-0002v0-54; Sat, 19 Sep 2020 09:47:36 +0000
-Received: from mail-il1-x135.google.com ([2607:f8b0:4864:20::135])
+	id 1kJZg7-000689-98; Sat, 19 Sep 2020 10:01:11 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kJZSv-0002u7-Ld
- for linux-amlogic@lists.infradead.org; Sat, 19 Sep 2020 09:47:34 +0000
-Received: by mail-il1-x135.google.com with SMTP id q4so8715866ils.4
- for <linux-amlogic@lists.infradead.org>; Sat, 19 Sep 2020 02:47:30 -0700 (PDT)
+ id 1kJZg4-00067n-6F
+ for linux-amlogic@lists.infradead.org; Sat, 19 Sep 2020 10:01:09 +0000
+Received: by mail-ej1-x632.google.com with SMTP id o8so11271957ejb.10
+ for <linux-amlogic@lists.infradead.org>; Sat, 19 Sep 2020 03:01:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SlRABcjq9Za0vlL0KUB7eVTAqiAA/ra6/huW2cnUEN8=;
- b=G3Z0VC+0LkD25sl6uTd9s5DFbzY9l3OC+z95u81BWCQ8rN0XPuqZom9lTO0gxqnf1T
- OnQTs58CKKvdJ544BL1Ply30UoW+RDA/4INtUUPMEVppVUlj2fBZCQ38oLqLPcDtrMmF
- Gfz2o1esjDnPG61t0ZZ3szLSdxxSH6W7kuQ5DbpYXP3fIidMIFAQYu48enLZr6DNel2K
- J+OzFdU0Y8wxqK5nIxsGpBgcdFlDj3/BRKc7+sr6v5jnLTtBw9OegbKin+xR1S4LzwR1
- 7DeHN4h34CS8hKUFtO8p2Y8Y1+Qe6AsbAUhTlbFk/YhLfOtye42K+5XN1Wq3XxZZ3CdG
- EnQQ==
+ h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
+ :user-agent:mime-version;
+ bh=5ifeSL7VSSDnDPvWLqMMU6tz14+N9Kv8fIN4LgLtMKA=;
+ b=rQ2pc1gihqmfnFDhml+MD/kgksUmPu7SK+8D9Cr7KDzunglyzeowl4qrjjOFiVa6pn
+ OZeyM8dHfGLvs9+K4vqrm5QHW3eMX5EGhsddIjLmF891aI0BJ7aOpkuQQHmK8BPs+zV5
+ gkmxBt/ePNv4PWbaFL39l89acDJe7CG1bSsl7eJc1vqz0UCpYRMp1Jz+CcvWiZvhZrQw
+ zDmIso7c7PPizceTSysOMl6A9GjqGCRQQ3s/pehInqaqsNAyyhtvOvPB4gbGqrG+FptQ
+ pVKWi+nYyhuHCTlJX38YkvRYT/PuryBfd6A/J/NEuGULSn+oy4gaxX19f1j+uvrqcRwm
+ yCGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=SlRABcjq9Za0vlL0KUB7eVTAqiAA/ra6/huW2cnUEN8=;
- b=iLTJthU/5Ek8YuHg6EIGfxA7dmsD2JB42bWqL2sGji8in+Z+LTgCAkr6Cl7pobcEQh
- xj6U1USgj5akOYNHTYfGk6BcwZuiAF8MiOHG0MHFUfsIjBAtjOK6AeWzfkV+csoKjLhm
- nYEYUqkjinXVDFI0w8JGftiBVSZ4o8lWgsx2PjPNx9QLL8ZevdA/sB5lm4pCDoKBpC0i
- fvdO7x/cGL12R7rxH/WYkYBPxrqkvz6zyxksM93JYfM2tFjUWIb/xY126MxNfDncMGmJ
- /UCXrr5lniV1CfvDiVU+8BD+ZLMq074fOnY0deyGn4WrihqgCXF4eKfAq8Y+XeJ5E7nl
- 7pSQ==
-X-Gm-Message-State: AOAM532t0bpH9N8Pq4TCr9MVOjC36U5V/Q+HKUDfEWoe8pTNJQHmM5lS
- i5U/fT1wMA4OFBZtnOtOsRsdMbM+u/Du2CEYHh0=
-X-Google-Smtp-Source: ABdhPJyvfwO+ICbVhmPvOnjH2Af57Hb83fBxmyLCfFc9S521dvuzuPYJ1giuY1koM2BdmKoJybKc8DTZ7m/goqdXLeQ=
-X-Received: by 2002:a92:c084:: with SMTP id h4mr11593543ile.6.1600508849274;
- Sat, 19 Sep 2020 02:47:29 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:sender:from:to:cc:subject:references:date
+ :in-reply-to:message-id:user-agent:mime-version;
+ bh=5ifeSL7VSSDnDPvWLqMMU6tz14+N9Kv8fIN4LgLtMKA=;
+ b=AzdLGkMhxWj6Gmb/5NuB45uDvAfLKDocVjtyAeL3OZdHVym6aPqVdhXiQddmPoVIvc
+ diJRw7q+F5n+VutZwqxl5pjcKMl7HKX8acrxLgmzP32Io6osrd3EElbcIqXYYuOkykn8
+ znBdU4TW/vE0draMnnPQSv9nZT7cur9uryVYZ2j/gzrYvomNneXGTC4WA9wlJgK0Gpzn
+ 2mjwUCv9kfdqdzXIT2syghPZQDlLNK0vrrA2oyTVbQF1tsCaCe1sf476+YAnUYfSU5ck
+ rJ+gRj9QWxtYxqQU+btOB3664GRAUuJLDSWAZNAN2pRHLjBrZYsOckhELagajhBPJ275
+ xAdw==
+X-Gm-Message-State: AOAM5336Or3VC0hvxXMSIgmFNGKi7aq9XTudsCVk9iDcuzjl3ufqf4xG
+ BlQ+9DKNZ5mlZUeSHrW7+Ns=
+X-Google-Smtp-Source: ABdhPJwG3nzZWliPJH/we+sP/UYgbwnNC33qnGDJbmldIOkOm46nuXwcFvUGa8d8AcuItsHhyw9nbQ==
+X-Received: by 2002:a17:906:2985:: with SMTP id
+ x5mr39598659eje.136.1600509666504; 
+ Sat, 19 Sep 2020 03:01:06 -0700 (PDT)
+Received: from dell.be.48ers.dk (d51A5BC31.access.telenet.be. [81.165.188.49])
+ by smtp.gmail.com with ESMTPSA id
+ o23sm4197183eju.17.2020.09.19.03.01.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 19 Sep 2020 03:01:05 -0700 (PDT)
+Received: from peko by dell.be.48ers.dk with local (Exim 4.92)
+ (envelope-from <peter@korsgaard.com>)
+ id 1kJZg0-0006gs-TX; Sat, 19 Sep 2020 12:01:04 +0200
+From: Peter Korsgaard <peter@korsgaard.com>
+To: Anand Moon <linux.amoon@gmail.com>
+Subject: Re: s805x USB broken in 5.8?
 References: <87y2l8plev.fsf@dell.be.48ers.dk>
  <CANAwSgTx9FHnueO0-K5M6kFhhWLJ0MEdcDKDnxbrwDnkM+AK3Q@mail.gmail.com>
  <87tuvwpgjr.fsf@dell.be.48ers.dk>
  <CANAwSgQnnkVdYNWTdTez8wdDHMW50vk+1Vcb7mBFkObnS1tAnw@mail.gmail.com>
  <875z8ap0xe.fsf@dell.be.48ers.dk>
-In-Reply-To: <875z8ap0xe.fsf@dell.be.48ers.dk>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sat, 19 Sep 2020 15:17:19 +0530
-Message-ID: <CANAwSgR4Nq0rsg3yi-AF1HfAAvNquB2=EJj4n0_J2uHbSgVJCA@mail.gmail.com>
-Subject: Re: s805x USB broken in 5.8?
-To: Peter Korsgaard <peter@korsgaard.com>
+ <CANAwSgR4Nq0rsg3yi-AF1HfAAvNquB2=EJj4n0_J2uHbSgVJCA@mail.gmail.com>
+Date: Sat, 19 Sep 2020 12:01:04 +0200
+In-Reply-To: <CANAwSgR4Nq0rsg3yi-AF1HfAAvNquB2=EJj4n0_J2uHbSgVJCA@mail.gmail.com>
+ (Anand Moon's message of "Sat, 19 Sep 2020 15:17:19 +0530")
+Message-ID: <871riyozkv.fsf@dell.be.48ers.dk>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200919_054733_751832_B7D2D331 
-X-CRM114-Status: GOOD (  13.42  )
+X-CRM114-CacheID: sfid-20200919_060108_394844_31D069CA 
+X-CRM114-Status: GOOD (  10.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,33 +112,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Peter,
+>>>>> "Anand" == Anand Moon <linux.amoon@gmail.com> writes:
 
-On Sat, 19 Sep 2020 at 15:02, Peter Korsgaard <peter@korsgaard.com> wrote:
->
-> >>>>> "Anand" == Anand Moon <linux.amoon@gmail.com> writes:
->
-> Hi,
->
->  > Can you share the instructions on how to build an image using buildroot?.
->  > I need to do some testing of some features in the future.
->
-> Sure. Have a look at the lafrite defconfig and readme we have:
->
-> https://git.buildroot.net/buildroot/tree/board/librecomputer/lafrite/readme.txt
-> https://git.buildroot.net/buildroot/tree/configs/lafrite_defconfig
->
-> You may want to change to a prebuilt toolchain to speed up the build
-> (make menuconfig -> toolchain -> toolchain type -> external toolchain).
->
-> --
-> Bye, Peter Korsgaard
+ >> Sure. Have a look at the lafrite defconfig and readme we have:
+ >> 
+ >> https://git.buildroot.net/buildroot/tree/board/librecomputer/lafrite/readme.txt
+ >> https://git.buildroot.net/buildroot/tree/configs/lafrite_defconfig
+ >> 
+ >> You may want to change to a prebuilt toolchain to speed up the build
+ >> (make menuconfig -> toolchain -> toolchain type -> external toolchain).
 
-Thanks for the quick response.
-I will give this a try on my SBC.
+ > Thanks for the quick response.
+ > I will give this a try on my SBC.
 
-Best Regards
--Anand
+Out of interest, what SBC are you using? A lafrite?
+
+-- 
+Bye, Peter Korsgaard
 
 _______________________________________________
 linux-amlogic mailing list
