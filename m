@@ -1,88 +1,90 @@
-Return-Path: <SRS0=f3vK=C4=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=01f4=C6=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 638E0C43463
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Sep 2020 10:12:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8EB3BC43463
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2020 07:50:29 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 176C021D42
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Sep 2020 10:12:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3FC6C20809
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2020 07:50:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gz7/Z0ez";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M5uq/J4W"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 176C021D42
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="re3GIqRZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zluKvCTL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3FC6C20809
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=O4pCZtSUWADo70dufS46GYu9R782axwH2rFJTk+iF2Y=; b=gz7/Z0ezv/oAcZ0Kr+3z6lix7
-	o/iBWltOAuMYy2roITQQAMTLoTuswTxVa8GgAJTftRZxwLz3kFG0IzbMdFcEHEAgj7lneyYE1RvDE
-	p331wdqRKI3g4fs39hYIzaHBJgnru8GUPI0G2TwB3QiuEthEWEJIkIzO7p5LJzqjc+mO/oeTARSU0
-	dJ2gfHlYwKe+1iVBbp+fJr1l43j3DGwS3KA3JggeYnjYr62toJxznVBI850tPqUjfnV1ZMScNAYRI
-	fe+dHQHIZ48PAKb7RkvYqh7Wj2a91VGcBwCMPs/IxKyrk5kNUoykLZxj1MLyxVTaAdlU2o2fajG07
-	8/bwKX6hw==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=amZYKqG6sO5AH4RjSMGkzhV2hPdWGuQTWXjUSdGpC9E=; b=re3GIqRZvhtzgUNK4shOeydrOn
+	dREZ+IfK/ZYTJK6WApsT9RuteXotQa6solKUXJt1rfSeTp6xCqIODI58SDYoLo5Cc+bVYtItju/Fu
+	Q7ncK56xTc5bjVDhcyNrJX9bRcu25in3yXYj4Y+6/mfQBitIa5XRkQcr8rUkdFlS8L0926HSJqHi2
+	3S5ppHus24z9XtoDR+uVXM1SMinQYPz3lmzdSQuoACvg3r4Pky6jIs7wWY6eNT/FT+6RcOhUAp7eE
+	epYuX0EqOsHraRACWbNVoRox8T0oGZE6Dxxxu6feTA3+9E/X2mI6/WgJXK3LJI6X+AfSqB7i7c0Ki
+	+cJVHKLg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kJZrN-00075B-9A; Sat, 19 Sep 2020 10:12:49 +0000
-Received: from mail-il1-x130.google.com ([2607:f8b0:4864:20::130])
+	id 1kKGaK-0000MJ-P1; Mon, 21 Sep 2020 07:50:04 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kJZrE-0006zm-Es
- for linux-amlogic@lists.infradead.org; Sat, 19 Sep 2020 10:12:44 +0000
-Received: by mail-il1-x130.google.com with SMTP id h2so8746134ilo.12
- for <linux-amlogic@lists.infradead.org>; Sat, 19 Sep 2020 03:12:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=h6y3otbe++i4/q+EqicnIIpOahEcuXb8VWWLuzNIw6E=;
- b=M5uq/J4WZuGT4xGqMZCcyg07/phrK8O6CAPm7V8MoVhNeCaW277TbidRnZtWMOGP0t
- c9arzNkQduVxb3JznV62D2a7zyKBG1BbrhCCWcDpkEe6QYTS2h6tkZdjBz1UMnPaOER8
- b5rvB6kzAAF5aJvqC3tLuiMdjSBYgYBCVyzNFBrrePM2rbH6esW+Ch2kCD+DCoDC233E
- dKF2W4LzltNP8NTHt228Z/+wWaUGIoj8CuY1PD8idaGFZOi9BeHFTbjEbUWD4iyBiuoi
- DBAn3VyDnv3bv4oIhWYWp3Op7wDJRfctVdtLv4HsUGMCSmJMeo3IWtyd4fpxmqHB3G1D
- yiwQ==
+ id 1kKGaH-0000L1-NJ
+ for linux-amlogic@lists.infradead.org; Mon, 21 Sep 2020 07:50:02 +0000
+Received: by mail-wm1-x344.google.com with SMTP id w2so11122553wmi.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Sep 2020 00:49:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eQeugMSbNm4MoGJLzLTQ1K90HqMCkQsDeLBTGL4VkMo=;
+ b=zluKvCTLGO4Q1xNTMRSk0CyQwXbjLielLIiaHrs4aJ5B23YEK6UYXhfPZMmf68MMOU
+ iXyvqIhrO/BHAKZf7qyHRQtoTetEsfzpsvASAnylyINqR4S2WdmLE/h6s8/Jnuk2wjJR
+ fEPUhakN0RlOs2+ggSV6P5Xy7mjIdLSYAC+40Ghdh0WnDP2O+E85ah/3weYMe56st1sT
+ L961A5Y/17Ncdz8TwYz8QJjIUHfR+8nMcSlRIUnr7CmhLHXpVPuFzY4xoXgLn7GGbr5t
+ qicW/hvk80C9FR5o0cel+FJDhEML91OlwWYTx8HyuHfkGeB9u5qbtP5S/5szRwLCzVl4
+ TjiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=h6y3otbe++i4/q+EqicnIIpOahEcuXb8VWWLuzNIw6E=;
- b=YzULvf7rTKLZ2gLJlWZQWoB2+BQnIAottH+FQ1r2zFhxdvjeyzE1UjXcH8b+w4tXWr
- IcTShX4yBLbH/sX1hpeGP3WIkthVwL/FK+JQVYv849okoHKUT8KYKKyn5PFHw0HQzJ0p
- czumjZjtntqWAQpH4CWvwD2QFkXVr9HYAQus6RiiR2ILBJrxK3HGj45/+7jo5r/gof8j
- C09PfziMeCoug9P0H426QyqqAMl/J5B/a2KXNx6v2muMXu8fdIzTZ86SubD0LlD4oh3o
- tS91FsguM2UrGrOn3VEpQERRepGHXbxqQbT0UMAq7ER5veidn8LdFNxIzbhL5NDufkUC
- nMTw==
-X-Gm-Message-State: AOAM531BuPtQrhUqP2gnnMaa8oAiawlwxrnnj8TE8yx+WyZB4VCGhEML
- t8WMGKcG5oMK/AYzDyk05Xe2dGnpver2XmlTUOjc5pr60FAAtQ==
-X-Google-Smtp-Source: ABdhPJzWD9TH4uBY+tRUMkWlDI9TDZCji7rZCjWATXrOVjwiJmkH6P4lgsHA3wqzyajXbn5IGfaP+bbSBCX2eZcsoFs=
-X-Received: by 2002:a92:c084:: with SMTP id h4mr11661195ile.6.1600510358522;
- Sat, 19 Sep 2020 03:12:38 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eQeugMSbNm4MoGJLzLTQ1K90HqMCkQsDeLBTGL4VkMo=;
+ b=DJwjderP4G64IlOG81K+FHTdcY8RGp+18/jw2ZpSOaHUethhkvhDrTMINEbT0tzkzS
+ yE7cMEP9HwEMZRnsu+QNybr1HftgQddc5Ldd5a3uTIGWJpUiWg77W73oSvdW/3YcTx3G
+ NmHJTHJbXn67ZAVef4Mm97oE/3MbtEQTa/EViaLBtfNlHFMd45hsJCz0a2GfHzm3kAGT
+ HXbR9wuNJN4pvyNXu55/bYd4bF562rWm36Okj7Yoa9LnLp/cQt4rg6/1EC/TZMW1TEvt
+ xNa49Rfz+lAV5iqfmbavCLwJfqbmK4T2Cx2wPfXBqyNnqmD++8Bc9RE0Jy1L6A5Y6TGT
+ cKiQ==
+X-Gm-Message-State: AOAM532cH+hnyvaZSofehhUl7lovjctYTGu9FxsrFt02p1wqF0nL6gVk
+ c1MDqcSiGT1ofdjc1mFdJuIwWg==
+X-Google-Smtp-Source: ABdhPJwM5F5CftRbSvYRv3kUr5yxBYf5c+QTnBmrJtpThRGN8qtcsxzNDcx41GF7jYUmHq+NVA49eA==
+X-Received: by 2002:a7b:ca4a:: with SMTP id m10mr22398950wml.11.1600674598674; 
+ Mon, 21 Sep 2020 00:49:58 -0700 (PDT)
+Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
+ by smtp.gmail.com with ESMTPSA id
+ o16sm17854778wrp.52.2020.09.21.00.49.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Sep 2020 00:49:58 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: lorenzo.pieralisi@arm.com,
+	yue.wang@Amlogic.com,
+	robh@kernel.org
+Subject: [PATCH] PCI: dwc/meson: do not fail on wait linkup timeout
+Date: Mon, 21 Sep 2020 09:49:53 +0200
+Message-Id: <20200921074953.25289-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <87y2l8plev.fsf@dell.be.48ers.dk>
- <CANAwSgTx9FHnueO0-K5M6kFhhWLJ0MEdcDKDnxbrwDnkM+AK3Q@mail.gmail.com>
- <87tuvwpgjr.fsf@dell.be.48ers.dk>
- <CANAwSgQnnkVdYNWTdTez8wdDHMW50vk+1Vcb7mBFkObnS1tAnw@mail.gmail.com>
- <875z8ap0xe.fsf@dell.be.48ers.dk>
- <CANAwSgR4Nq0rsg3yi-AF1HfAAvNquB2=EJj4n0_J2uHbSgVJCA@mail.gmail.com>
- <871riyozkv.fsf@dell.be.48ers.dk>
-In-Reply-To: <871riyozkv.fsf@dell.be.48ers.dk>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sat, 19 Sep 2020 15:42:29 +0530
-Message-ID: <CANAwSgTxt+haenzOL35fO_OfWRHaLT2GyoLDjqG7r2OKqMX4eg@mail.gmail.com>
-Subject: Re: s805x USB broken in 5.8?
-To: Peter Korsgaard <peter@korsgaard.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200919_061240_522293_46898ECC 
-X-CRM114-Status: GOOD (  13.15  )
+X-CRM114-CacheID: sfid-20200921_035001_794314_D6FB7439 
+X-CRM114-Status: GOOD (  11.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,40 +96,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-pci@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Perter,
+When establish link timeouts, probe fails but the error is unrelated since
+the PCIe controller has been probed succesfully.
 
-On Sat, 19 Sep 2020 at 15:31, Peter Korsgaard <peter@korsgaard.com> wrote:
->
-> >>>>> "Anand" == Anand Moon <linux.amoon@gmail.com> writes:
->
->  >> Sure. Have a look at the lafrite defconfig and readme we have:
->  >>
->  >> https://git.buildroot.net/buildroot/tree/board/librecomputer/lafrite/readme.txt
->  >> https://git.buildroot.net/buildroot/tree/configs/lafrite_defconfig
->  >>
->  >> You may want to change to a prebuilt toolchain to speed up the build
->  >> (make menuconfig -> toolchain -> toolchain type -> external toolchain).
->
->  > Thanks for the quick response.
->  > I will give this a try on my SBC.
->
-> Out of interest, what SBC are you using? A lafrite?
->
+Align with most of the other dw-pcie drivers and ignore return of
+dw_pcie_wait_for_link() in the host_init callback.
 
-I have an odroid C2 / C4 / N2/  Le Potato.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/pci/controller/dwc/pci-meson.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-> --
-> Bye, Peter Korsgaard
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 33deb290c4e7..846275e68fbc 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -383,10 +383,7 @@ static int meson_pcie_host_init(struct pcie_port *pp)
+ 
+ 	pp->bridge->ops = &meson_pci_ops;
+ 
+-	ret = meson_pcie_establish_link(mp);
+-	if (ret)
+-		return ret;
+-
++	meson_pcie_establish_link(mp);
+ 	dw_pcie_msi_init(pp);
+ 
+ 	return 0;
+-- 
+2.22.0
 
-Best Regards
--Anand
 
 _______________________________________________
 linux-amlogic mailing list
