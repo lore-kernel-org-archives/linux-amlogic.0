@@ -2,63 +2,87 @@ Return-Path: <SRS0=01f4=C6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10CECC4727D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2020 21:53:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93539C4727D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2020 22:22:05 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3668C23A60
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2020 21:53:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 95D5823A62
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2020 22:22:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iTCje3Q0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3668C23A60
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rql4dCvY";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ijGeb349"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 95D5823A62
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=hvYRCycpzGyvU/FTo7wn00fLFEheM9PMUqFiIj4xyb4=; b=iTCje3Q0fEeT9kfaZ3iPR9WV1
-	wNAOOAWHZZJa6pYjyNDlDaP5sRp/RP53gJldQj8nCq4IB9StVrloeH+P4k0wC1J8U5wUuvlqiEq9i
-	LFQ+hHvnav4ujKAMJXC2C0GhrsIsDNQvL6KGP7oW7zeqYQltgGvUsOj98XfqJs3h8471Zk/Hv4fpO
-	lXeagl2Rv8RU0EhrDJOQZqV+IhR9u2m1RoSRw4sDdKlwq8ZKHcWQ7Pt8MiDn17NqIvGBGZrB0OZSD
-	5UetaROkgLdN5S+Y/4dZ+0N0M9vgy8ByPEFJCJcIwn29Tka3p6IJfjqjGho18VYXFQMKU81FbMskC
-	qKlOieceQ==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=EhjuEzattwu/EN80vSot8xk462Z+XKF4sMFr2BxFPR4=; b=rql4dCvYjhx/Oz+MF0GRG/U4V0
+	vB12pM4l1NXhqs8c2fCLT3pI/vFfq2PpF6lExYaJA5W87OAu7W+PKtlLwVSQFzhHJAq8HNR3HnTT2
+	LetBTTejfJhRMsyHAR02SET7LChcNyWxuDxeq6eQgsIC9liRz+WnfrKS308ZYcCQn6TFAJ36O4NWV
+	tUlx8aKdw2JVNHIBjpzBt5l75nVw/EgSjpUsiiSERQ+8dVMY1tpcyEF21GyrgDaqnJ9QrvNQRXwSI
+	MgE2DS4utxbLfr6k+92oRKOvEnQLJw/Ge23YAao6G07PnpjVVJ0iwGctu9ElzJ/jCvA+AKT0+pXZz
+	sBQ0W/rA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kKTkd-0005Z6-Sx; Mon, 21 Sep 2020 21:53:35 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kKTkb-0005Y7-M2; Mon, 21 Sep 2020 21:53:34 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 99CAC147A;
- Mon, 21 Sep 2020 14:53:25 -0700 (PDT)
-Received: from [10.57.50.108] (unknown [10.57.50.108])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CBDDA3F73B;
- Mon, 21 Sep 2020 14:53:23 -0700 (PDT)
-Subject: Re: [PATCH 1/3] iommu/io-pgtable-arm: Support coherency for Mali LPAE
-To: Will Deacon <will@kernel.org>
-References: <cover.1600213517.git.robin.murphy@arm.com>
- <d2a3ddb17b3270e268e2f1adf7682ea938823941.1600213517.git.robin.murphy@arm.com>
- <20200921175717.GF3141@willie-the-truck>
-From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <71cc6c53-7bd1-da1a-05fa-8172510b33d8@arm.com>
-Date: Mon, 21 Sep 2020 22:53:23 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
+	id 1kKUBv-0000Bn-P1; Mon, 21 Sep 2020 22:21:47 +0000
+Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kKUBm-00009G-Kr
+ for linux-amlogic@lists.infradead.org; Mon, 21 Sep 2020 22:21:40 +0000
+Received: by mail-pg1-x542.google.com with SMTP id g29so10269598pgl.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Sep 2020 15:21:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ykwjXB6WdjqJ2Er4PKprTUmmzZunM3e7B0bH3KcPPYs=;
+ b=ijGeb349Qylq0i1CgeSHKT0hJkZZZS4KfX+SHA9IbLTBpxC4tuvuLiBnQyINbOYbJb
+ mqewvppe7FDvprL48bpBq1vGPfNsHLCpxfM3uDKvA5ztJu/S4Z5PjJS+vvw5ZkZkAiNz
+ 4VutBFDVPUNzmOpuWtWYRLBiEQa7P6hQVqKUOtxpipGXFKPkWu/ht11hhznG7MzFRQk9
+ qHkr7JMtFdg3AD9ggcDvwecWVCKAmv17WjsaqXGxKjnYIgl20Y5lOYlTzLCwZw3AADux
+ YBvS5oWMd1rBakS144aLK2tIu7FXHOyKsL97TNRo2dr/Fy/u1rSKJkhQqdRq8BRd5asZ
+ cNNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ykwjXB6WdjqJ2Er4PKprTUmmzZunM3e7B0bH3KcPPYs=;
+ b=LgDVey0v6HtAYsLRDmseP1nV5n5M8U4wuwUx9BKHwMxCVi2HfH1PMZidBsA+FVZKp3
+ dIZZh7jetmU7Alh8YXLZ0ysJ4pktOW8AoDcrNvAu4sB0IX7A2DGo+doXHlyyqoLaFeGy
+ YYeVv87mnjpendS/LwsRJYYBf0Kv1k5zykg3TpU5nLURjfPbTxwlWHTn4zIf7ofsq72I
+ eKZf2JponwsAfeUJk36TLtEvpwJKRGtmMCQTxlFMftfxmfyyVxuPG+HvL5XxjSu1RGHX
+ zK1H5m5DxGOWpRiMcjiIVLh+SNlatsEx78GmXWKXwUnsz5rP1o2gguHddXCGA+us+uuk
+ e0Ew==
+X-Gm-Message-State: AOAM531uPMtlNDFb60/+ULBTVy3AkltY2gv1WMdbkRe2wkgfnR+k6TXR
+ C7jW1OsFD+VnYF9g7Wn04ukG1RjgVtvydg==
+X-Google-Smtp-Source: ABdhPJwDM3/meWjbdyVZyiUxFW3WwB1EdEPWDYHuApqSJlshXSM5afAB66ItHRM/P+f3aHb4b4ETbg==
+X-Received: by 2002:a63:778d:: with SMTP id s135mr1300542pgc.219.1600726896256; 
+ Mon, 21 Sep 2020 15:21:36 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id x5sm11834198pgf.65.2020.09.21.15.21.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Sep 2020 15:21:35 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: linux-amlogic@lists.infradead.org
+Subject: [PATCH] soc: amlogic: pm-domains: use always-on flag
+Date: Mon, 21 Sep 2020 15:21:35 -0700
+Message-Id: <20200921222135.7145-1-khilman@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20200921175717.GF3141@willie-the-truck>
-Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200921_175334_114410_1CBE0B98 
-X-CRM114-Status: GOOD (  19.06  )
+X-CRM114-CacheID: sfid-20200921_182138_719561_60C51DEA 
+X-CRM114-Status: GOOD (  12.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,48 +94,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: robh@kernel.org, tomeu.vizoso@collabora.com, narmstrong@baylibre.com,
- khilman@baylibre.com, dri-devel@lists.freedesktop.org, steven.price@arm.com,
- iommu@lists.linux-foundation.org, alyssa.rosenzweig@collabora.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2020-09-21 18:57, Will Deacon wrote:
-> On Wed, Sep 16, 2020 at 12:51:05AM +0100, Robin Murphy wrote:
->> Midgard GPUs have ACE-Lite master interfaces which allows systems to
->> integrate them in an I/O-coherent manner. It seems that from the GPU's
->> viewpoint, the rest of the system is its outer shareable domain, and so
->> even when snoop signals are wired up, they are only emitted for outer
->> shareable accesses. As such, setting the TTBR_SHARE_OUTER bit does
->> indeed get coherent pagetable walks working nicely for the coherent
->> T620 in the Arm Juno SoC.
-> 
-> I can't help but think some of this commentary deserves to be in the code
-> as well.
+Rather than use a governor to keep these domains always-on, instead
+use the flag GENPD_FLAG_ALWAYS_ON.  This has the same effect, but with
+much lower overhead since the governor path is not used at all.
 
-Sure, if you want.
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+---
+ drivers/soc/amlogic/meson-ee-pwrc.c     | 4 ++--
+ drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-> Do you know if this sort of thing is done for other SoCs too, or is this
-> just a Juno quirk?
+diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
+index 43665b77aa9e..a8f18bb17491 100644
+--- a/drivers/soc/amlogic/meson-ee-pwrc.c
++++ b/drivers/soc/amlogic/meson-ee-pwrc.c
+@@ -433,8 +433,8 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
+ 		if (ret)
+ 			return ret;
+ 
+-		ret = pm_genpd_init(&dom->base, &pm_domain_always_on_gov,
+-				    false);
++		dom->base.flags = GENPD_FLAG_ALWAYS_ON;
++		ret = pm_genpd_init(&dom->base, NULL, false);
+ 		if (ret)
+ 			return ret;
+ 	} else {
+diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+index 511b6856225d..21b4bc811c00 100644
+--- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
++++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+@@ -339,8 +339,8 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+ 			return ret;
+ 	}
+ 
+-	pm_genpd_init(&vpu_pd->genpd, &pm_domain_always_on_gov,
+-		      powered_off);
++	vpu_pd->genpd.flags = GENPD_FLAG_ALWAYS_ON;
++	pm_genpd_init(&vpu_pd->genpd, NULL, powered_off);
+ 
+ 	return of_genpd_add_provider_simple(pdev->dev.of_node,
+ 					    &vpu_pd->genpd);
+-- 
+2.28.0
 
-Yup, this is a "Midgard working as designed" thing. Juno is the coherent 
-example I have to hand, but off the top of my head I believe some of the 
-Exynos SoCs can also use their GPUs coherently if a switch is flipped in 
-the interconnect to change routing between the CCI and a direct-to-RAM 
-path; I expect there are probably further Midgard examples that I'm not 
-aware of. Then there are definitely coherent Bifrost GPUs like the 
-Amlogic S922/A311 that prompted me to revive this patch, which we 
-currently drive in "Legacy" mode and thus behave the same way as Midgard 
-(Bifrost's "AArch64" mode realigns Ish and Osh with the rest of the 
-system, and instead invents a new "Internal Shareable" value in between 
-Nsh and Ish to represent the shareability between cores within the GPU 
-for which Midgard hijacked Ish).
-
-Robin.
 
 _______________________________________________
 linux-amlogic mailing list
