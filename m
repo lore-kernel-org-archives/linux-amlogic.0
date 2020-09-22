@@ -2,55 +2,73 @@ Return-Path: <SRS0=j4YL=C7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2AA65C4363D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 16:26:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F0E9C2D0E2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 17:31:01 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B175023A1B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 16:26:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1C46C22206
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 17:30:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="0kf+TkQa"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B175023A1B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=collabora.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B/u7TC3F";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="hA8Xdhw2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C46C22206
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=kC+tWPFRm0Cv3nThLi3/up68PHlqPXHZd77skIYKKF0=; b=0kf+TkQa34hp9Jb2I24vK1FWP
-	ZRzDH1Ao6lKFSTREBe1qgFUbUBrpBgBdYUNwtRfoyz/hmZj7NSb41kLP0cduWYrJ9vSYUTRkbIQml
-	5kSXfcsxgl3+HzCMtRAzs9q+7fl/4wPkJmuzlJG1dmpjBNTVEN6xIxTGnncUpcTogy+DldOW3RKjq
-	uDZj08fPtWoEPJDvt8UMwtrC8vzLFGixljaTcytDOduP8Sdf6Y1BvKyYn4L+B5CT0vO8J+PWiOiQA
-	xI72usJJsPIu8YTIH3JKFVOr0cnD6FA11RnNjD9n6JyUjm2pY30/idWX4K0wIWOGvTGUpuDc6dD2q
-	kOFBY55yQ==;
+	 bh=IDjsYR52GCiey/b4Aojd9chzQjiBrr3PbIgA5MI8+ZI=; b=B/u7TC3F1lbi3xgLxamDJMXYj
+	IntriOFKfmffWT3qugWlEEHlq1NgiOFnDKJW55EzwunmHA/t1+J9aeF71MVEFRUzop1GdbkcIyCUp
+	h+HueszPD7law/TslRx6N/jLyiJNX8FrLkMjQyuBHzX4gTp4WbmgaKGdITv/J1K3As32dbKaiwAMe
+	NJ8txNjKitYfGWRuQbk9sJmeI9ohAodZxCB7Uz/4L1w1xh+2GaigHWzXGeCesCSZeG0VEtyXqqZOS
+	2ySqF4yksFkobVCcOiJtmemlrYvMJBwWcFI5SYsRvlsaXld54vk7w9fKE2UihMTsIkvGqSsJMioVH
+	/lN8JqT2A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kKl7H-0003FB-QK; Tue, 22 Sep 2020 16:26:07 +0000
-Received: from bhuna.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e3e3])
+	id 1kKm7q-0001fy-AT; Tue, 22 Sep 2020 17:30:46 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kKl7E-0003EP-3d; Tue, 22 Sep 2020 16:26:06 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: alyssa) with ESMTPSA id 88251299052
-Date: Tue, 22 Sep 2020 12:25:57 -0400
-From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-To: Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH v2 0/3] drm: panfrost: Coherency support
-Message-ID: <20200922162557.GA2406@kevin>
-References: <cover.1600780574.git.robin.murphy@arm.com>
+ id 1kKm7n-0001f1-Pv; Tue, 22 Sep 2020 17:30:44 +0000
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com
+ [209.85.167.170])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 4DB9B2311C;
+ Tue, 22 Sep 2020 17:30:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1600795842;
+ bh=h/Ld3B+y9ti44HaX9WBK4umuicsG2Hw4yBOtkCQsXm0=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=hA8Xdhw2USh4kEEPqjKDIT0mhCkpZpCochvP0DjCFvzxc+vAhm+YpgHLL9mZu5HeU
+ GakRDxsjIPzPj53y2Za7Fwa3UN8BOj34bJ5v+X1TB8hzlE1YanZlO80Qyx0G018TVo
+ vmRBRRVaboUuhyQvTKIIuBkvUDsfzT07l4CyQb6Y=
+Received: by mail-oi1-f170.google.com with SMTP id a3so21936452oib.4;
+ Tue, 22 Sep 2020 10:30:42 -0700 (PDT)
+X-Gm-Message-State: AOAM531tIA6pNNBZaa4jP7N7NPLeiqIqdG7PsX/9RwByG4/OUOl+8Vkl
+ Ll9RsOBJho4SFCPXRkN2l4tQj7tB58OPcInLpA==
+X-Google-Smtp-Source: ABdhPJyR6TOz5P3635ttyIAV8HOhgZ+lkgMa2lt2O2qCFj7x8E0qhcXa056jzEwtzQMukGxjEo9dw8CwafWjv0lsZfM=
+X-Received: by 2002:aca:1711:: with SMTP id j17mr3427994oii.152.1600795841602; 
+ Tue, 22 Sep 2020 10:30:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <cover.1600780574.git.robin.murphy@arm.com>
+References: <20200921074953.25289-1-narmstrong@baylibre.com>
+In-Reply-To: <20200921074953.25289-1-narmstrong@baylibre.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 22 Sep 2020 11:30:30 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLZzxXcvoqd29NM45UjL-mbSiHphTO_zOwbCwPKd+jWEw@mail.gmail.com>
+Message-ID: <CAL_JsqLZzxXcvoqd29NM45UjL-mbSiHphTO_zOwbCwPKd+jWEw@mail.gmail.com>
+Subject: Re: [PATCH] PCI: dwc/meson: do not fail on wait linkup timeout
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200922_122604_261514_2E88ED38 
-X-CRM114-Status: GOOD (  12.07  )
+X-CRM114-CacheID: sfid-20200922_133043_903889_DD03780D 
+X-CRM114-Status: GOOD (  14.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,44 +80,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: robh@kernel.org, tomeu.vizoso@collabora.com, narmstrong@baylibre.com,
- khilman@baylibre.com, dri-devel@lists.freedesktop.org, steven.price@arm.com,
- iommu@lists.linux-foundation.org, linux-amlogic@lists.infradead.org,
- will@kernel.org, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ PCI <linux-pci@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Yue Wang <yue.wang@amlogic.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Series is:
+On Mon, Sep 21, 2020 at 1:50 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> When establish link timeouts, probe fails but the error is unrelated since
+> the PCIe controller has been probed succesfully.
+>
+> Align with most of the other dw-pcie drivers and ignore return of
+> dw_pcie_wait_for_link() in the host_init callback.
 
-	Acked-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+I think all, not most DWC drivers should be aligned. Plus the code
+here is pretty much the same, so I'm working on moving all this to the
+common DWC code. Drivers that need to bring up the link will need to
+implement .start_link() (currently only used for EP mode). Most of the
+time that is just setting the LTSSM bit which Synopsys thought letting
+every vendor do their own register for was a good idea. Sigh.
 
-On Tue, Sep 22, 2020 at 03:16:47PM +0100, Robin Murphy wrote:
-> Hi all,
-> 
-> Here's a quick v2 with the tags so far picked up and some inline
-> commentary about the shareability domains for the pagetable code.
-> 
-> Robin.
-> 
-> 
-> Robin Murphy (3):
->   iommu/io-pgtable-arm: Support coherency for Mali LPAE
->   drm/panfrost: Support cache-coherent integrations
->   arm64: dts: meson: Describe G12b GPU as coherent
-> 
->  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi |  4 ++++
->  drivers/gpu/drm/panfrost/panfrost_device.h  |  1 +
->  drivers/gpu/drm/panfrost/panfrost_drv.c     |  2 ++
->  drivers/gpu/drm/panfrost/panfrost_gem.c     |  2 ++
->  drivers/gpu/drm/panfrost/panfrost_mmu.c     |  1 +
->  drivers/iommu/io-pgtable-arm.c              | 11 ++++++++++-
->  6 files changed, 20 insertions(+), 1 deletion(-)
-> 
-> -- 
-> 2.28.0.dirty
-> 
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
