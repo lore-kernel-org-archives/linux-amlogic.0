@@ -2,73 +2,78 @@ Return-Path: <SRS0=j4YL=C7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F0E9C2D0E2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 17:31:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABE3AC2D0E2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 19:35:57 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1C46C22206
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 17:30:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 610272085B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 19:35:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B/u7TC3F";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="hA8Xdhw2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C46C22206
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IX3aky4j"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 610272085B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=IDjsYR52GCiey/b4Aojd9chzQjiBrr3PbIgA5MI8+ZI=; b=B/u7TC3F1lbi3xgLxamDJMXYj
-	IntriOFKfmffWT3qugWlEEHlq1NgiOFnDKJW55EzwunmHA/t1+J9aeF71MVEFRUzop1GdbkcIyCUp
-	h+HueszPD7law/TslRx6N/jLyiJNX8FrLkMjQyuBHzX4gTp4WbmgaKGdITv/J1K3As32dbKaiwAMe
-	NJ8txNjKitYfGWRuQbk9sJmeI9ohAodZxCB7Uz/4L1w1xh+2GaigHWzXGeCesCSZeG0VEtyXqqZOS
-	2ySqF4yksFkobVCcOiJtmemlrYvMJBwWcFI5SYsRvlsaXld54vk7w9fKE2UihMTsIkvGqSsJMioVH
-	/lN8JqT2A==;
+	 bh=mKEP/rXa36RDCuVoic2/5Hj1SAblx0MpOHDbq0/SRKo=; b=IX3aky4jW4qZiYNuvDCZD5n6v
+	GGJdBaDmpggFwgmWS61lKYu6hi/ZzuFhU5zoaRrtzrDNN+PIdWceHUCJJ94QnZCxnwAY/wNTTonhE
+	IYgRn2ga+O3vQmq3wMiM1G59bVRYKwkpzvEXmHWkAjTJwoeNdPfXk6epEkUXtKNfNSmDnhThWaX3I
+	zLDwX3fgf76weobPEaEV0cp+vrlt1y6H8RDa1iUL3QTTMFM0Gxw5uVaVhJEi1H2dHa3h2NmPHr6j5
+	QXe3ow8CuDsZl7S5kk+dHgmRR0NTQ6W0OKg6gQJl2ZqsCiPPApaLgnEBrar7esspdch6wiPXZBS6V
+	0AMh118ug==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kKm7q-0001fy-AT; Tue, 22 Sep 2020 17:30:46 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1kKo4l-0004LX-1z; Tue, 22 Sep 2020 19:35:43 +0000
+Received: from mail-il1-f193.google.com ([209.85.166.193])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kKm7n-0001f1-Pv; Tue, 22 Sep 2020 17:30:44 +0000
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com
- [209.85.167.170])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 4DB9B2311C;
- Tue, 22 Sep 2020 17:30:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1600795842;
- bh=h/Ld3B+y9ti44HaX9WBK4umuicsG2Hw4yBOtkCQsXm0=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=hA8Xdhw2USh4kEEPqjKDIT0mhCkpZpCochvP0DjCFvzxc+vAhm+YpgHLL9mZu5HeU
- GakRDxsjIPzPj53y2Za7Fwa3UN8BOj34bJ5v+X1TB8hzlE1YanZlO80Qyx0G018TVo
- vmRBRRVaboUuhyQvTKIIuBkvUDsfzT07l4CyQb6Y=
-Received: by mail-oi1-f170.google.com with SMTP id a3so21936452oib.4;
- Tue, 22 Sep 2020 10:30:42 -0700 (PDT)
-X-Gm-Message-State: AOAM531tIA6pNNBZaa4jP7N7NPLeiqIqdG7PsX/9RwByG4/OUOl+8Vkl
- Ll9RsOBJho4SFCPXRkN2l4tQj7tB58OPcInLpA==
-X-Google-Smtp-Source: ABdhPJyR6TOz5P3635ttyIAV8HOhgZ+lkgMa2lt2O2qCFj7x8E0qhcXa056jzEwtzQMukGxjEo9dw8CwafWjv0lsZfM=
-X-Received: by 2002:aca:1711:: with SMTP id j17mr3427994oii.152.1600795841602; 
- Tue, 22 Sep 2020 10:30:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200921074953.25289-1-narmstrong@baylibre.com>
-In-Reply-To: <20200921074953.25289-1-narmstrong@baylibre.com>
+ id 1kKo4g-0004KU-20; Tue, 22 Sep 2020 19:35:39 +0000
+Received: by mail-il1-f193.google.com with SMTP id f82so18439893ilh.8;
+ Tue, 22 Sep 2020 12:35:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=jPBD0XmzIV/W0iZGo3u7QE8dbhQcu1GYPOKQ4Uj0YkA=;
+ b=KqjhCkTUNUFfKcXTwROr2Nf3ZfsuIOB1h3srfMksg5PpuE4YkTqph1mMdhoD1kaxCo
+ W9RTH3v4ay+cewPVDkHKIvs9H44T55hxm9UgHZU752NQUUFauu9gHY6Y2hkwkwYWTIwI
+ N2icrMKNR3CRERPH/v+VD1R0U3TdZCoXgcqNMPmoIDSlKo2nYlCSfGgni+IcCHllSYVH
+ DbyEFnKSlAAsZ0ngIoTFi/TqjKSFUDkwlLeWPS2mWNqyqvCQ6g6IogpAZ4WNc3G27OaC
+ v2b/KrGdlmYJ5AOOMRoExJCV6jx+qey/NCxBTULpyZCutp3wagUHo566Q4h2hiXzWNuL
+ jXWw==
+X-Gm-Message-State: AOAM530T5PbkMvFvp+W/U0Z0UQ5BNDqVqkfrsmbdEsOqorYQ5b9yP9UL
+ V41Ni+xjdEKQHJWE0VUcoA==
+X-Google-Smtp-Source: ABdhPJzNqdROL+jdJ3dVRE9aodQED8gpbXyKrtUeG8JK3C/kXVBgCpAfcjl4U3P55eEquDFbPiY9lw==
+X-Received: by 2002:a92:d34f:: with SMTP id a15mr5920759ilh.226.1600803337012; 
+ Tue, 22 Sep 2020 12:35:37 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+ by smtp.gmail.com with ESMTPSA id q2sm6502219ils.81.2020.09.22.12.35.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Sep 2020 12:35:36 -0700 (PDT)
+Received: (nullmailer pid 3100940 invoked by uid 1000);
+ Tue, 22 Sep 2020 19:35:34 -0000
+Date: Tue, 22 Sep 2020 13:35:34 -0600
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 22 Sep 2020 11:30:30 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLZzxXcvoqd29NM45UjL-mbSiHphTO_zOwbCwPKd+jWEw@mail.gmail.com>
-Message-ID: <CAL_JsqLZzxXcvoqd29NM45UjL-mbSiHphTO_zOwbCwPKd+jWEw@mail.gmail.com>
-Subject: Re: [PATCH] PCI: dwc/meson: do not fail on wait linkup timeout
 To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: phy: amlogic,
+ meson-axg-mipi-pcie-analog: remove phy cell parameter
+Message-ID: <20200922193534.GA3100774@bogus>
+References: <20200915130339.11079-1-narmstrong@baylibre.com>
+ <20200915130339.11079-3-narmstrong@baylibre.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200915130339.11079-3-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200922_133043_903889_DD03780D 
-X-CRM114-Status: GOOD (  14.13  )
+X-CRM114-CacheID: sfid-20200922_153538_159053_CFBFED95 
+X-CRM114-Status: GOOD (  11.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,33 +85,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- PCI <linux-pci@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Yue Wang <yue.wang@amlogic.com>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kishon@ti.com,
+ repk@triplefau.lt, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Sep 21, 2020 at 1:50 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> When establish link timeouts, probe fails but the error is unrelated since
-> the PCIe controller has been probed succesfully.
->
-> Align with most of the other dw-pcie drivers and ignore return of
-> dw_pcie_wait_for_link() in the host_init callback.
+On Tue, 15 Sep 2020 15:03:38 +0200, Neil Armstrong wrote:
+> The Amlogic AXG MIPI + PCIe Analog PHY provides function for both PCIe and
+> MIPI DSI at the same time, and is not exclusive.
+> 
+> Thus remove the invalid phy cell parameter.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml      | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-I think all, not most DWC drivers should be aligned. Plus the code
-here is pretty much the same, so I'm working on moving all this to the
-common DWC code. Drivers that need to bring up the link will need to
-implement .start_link() (currently only used for EP mode). Most of the
-time that is just setting the LTSSM bit which Synopsys thought letting
-every vendor do their own register for was a good idea. Sigh.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
