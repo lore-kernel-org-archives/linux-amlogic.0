@@ -1,70 +1,61 @@
-Return-Path: <SRS0=01f4=C6=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=j4YL=C7=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F8FBC4727C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2020 22:24:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B576C4363D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 14:17:21 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B690223A63
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2020 22:24:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BB4932395B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2020 14:17:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dYwnAIe7";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="x1+tx4t5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B690223A63
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n3tRVAtn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BB4932395B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=BAkYi62k+l0EugOXczIGUx6HNX9Q7KFMZhibhLIQYks=; b=dYwnAIe7nqgLWo6s31b8GVwct
-	QX7H+vMm9nWayWdtE6qQjeIAiuYwlaVahG9D/fqKHse7BQ/tNXU2ioI9IBpczmHoIW78qK1JUOHuh
-	Y/CNCGfDyfs2Q13Al/Gv/XZPFmjEqpExBUnLF6ynh/Z4MA90PLYfiiL1E8STwGaVrMG+N9Uigiphl
-	juloW9g2I/ebkCIJ845kZyaQ8FyFVXLcPKPtrDK/+XvF1mDX5f7+RrjG+ULBo027KYskZuJ5dmfYo
-	puIMXqEGHFUkgIoFtoTmLvs8Wpw4JjRFEFHh5pUqsuJ38XIPmL5bDrrJ4OjFoOiTHLxTxkQoav0Eb
-	6XVddtUFQ==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=QBEeq1AE6z+qtEXDg3tXSHQGzst4Pw6T5Us0ixeN2w0=; b=n3tRVAtnaZA6M4GW7FDT7EMjXX
+	0FuuM8wFD7GjPsHqpWY3Hk78Ln/qG4fVgYeZ1kD/9l4Yf639V6nfRCY2zRMD+ahZiAYpAUEPyMjMq
+	TD22Es49vFT/rN8uIN2NBZzkQb6RFfAlObivRniJjeN3icrgxD4NQGJ108tTEwK7y3BCWFZ87H+Vf
+	vzoQOOI9SF32nm4NoC5gc/bnDLJ9Bg1/GHI5QE87GcYHRzMMhSaCG5VCNvRK/qhF1fq39qvts/Qck
+	LQKrh+N9pBeBHQGLxd4NESm9aR0xhYBLfQfQpU444dVz/L4gDvxTjnkU0aOl6ZihzaVvXutgdsFzC
+	003P+ltg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kKUEl-0000ng-0P; Mon, 21 Sep 2020 22:24:43 +0000
-Received: from mail.kernel.org ([198.145.29.99])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kKUEi-0000mV-Oj; Mon, 21 Sep 2020 22:24:41 +0000
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
- bits)) (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 2157523A63;
- Mon, 21 Sep 2020 22:24:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1600727080;
- bh=1PUJ5hNzZTNJHRrWsG3qH9Ptt+duX4WCMYgHNreOFF4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=x1+tx4t5xnc8rNe7UWv5d0zvDRXkj6XToXs0Pyf/+5XHpb3DF5wqgSaHpgyzmVx3V
- 7ZoJ+jLyb8mOgdPTOYNlXScX9cHDSUghI946B+JsMOUk0PvUp1YpH3s62uCof9b8Jf
- XGpyPrxLFD8nYYIX4fWIYYzjfp/D1vv/F9ThLdAA=
-Date: Mon, 21 Sep 2020 23:24:34 +0100
-From: Will Deacon <will@kernel.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH 1/3] iommu/io-pgtable-arm: Support coherency for Mali LPAE
-Message-ID: <20200921222434.GB4409@willie-the-truck>
-References: <cover.1600213517.git.robin.murphy@arm.com>
- <d2a3ddb17b3270e268e2f1adf7682ea938823941.1600213517.git.robin.murphy@arm.com>
- <20200921175717.GF3141@willie-the-truck>
- <71cc6c53-7bd1-da1a-05fa-8172510b33d8@arm.com>
+	id 1kKj6L-0004H4-6O; Tue, 22 Sep 2020 14:17:01 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kKj6I-0004FU-42; Tue, 22 Sep 2020 14:16:59 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C7377101E;
+ Tue, 22 Sep 2020 07:16:55 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com
+ [10.1.196.37])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 2F8BC3F718;
+ Tue, 22 Sep 2020 07:16:54 -0700 (PDT)
+From: Robin Murphy <robin.murphy@arm.com>
+To: will@kernel.org, robh@kernel.org, tomeu.vizoso@collabora.com,
+ steven.price@arm.com, alyssa.rosenzweig@collabora.com,
+ khilman@baylibre.com, narmstrong@baylibre.com, jbrunet@baylibre.com
+Subject: [PATCH v2 0/3] drm: panfrost: Coherency support
+Date: Tue, 22 Sep 2020 15:16:47 +0100
+Message-Id: <cover.1600780574.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.28.0.dirty
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <71cc6c53-7bd1-da1a-05fa-8172510b33d8@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200921_182440_860801_AC0B42CF 
-X-CRM114-Status: GOOD (  23.36  )
+X-CRM114-CacheID: sfid-20200922_101658_214765_BCCF37FD 
+X-CRM114-Status: GOOD (  11.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,54 +67,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: robh@kernel.org, tomeu.vizoso@collabora.com, narmstrong@baylibre.com,
- khilman@baylibre.com, dri-devel@lists.freedesktop.org, steven.price@arm.com,
- iommu@lists.linux-foundation.org, alyssa.rosenzweig@collabora.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: linux-amlogic@lists.infradead.org, iommu@lists.linux-foundation.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Sep 21, 2020 at 10:53:23PM +0100, Robin Murphy wrote:
-> On 2020-09-21 18:57, Will Deacon wrote:
-> > On Wed, Sep 16, 2020 at 12:51:05AM +0100, Robin Murphy wrote:
-> > > Midgard GPUs have ACE-Lite master interfaces which allows systems to
-> > > integrate them in an I/O-coherent manner. It seems that from the GPU's
-> > > viewpoint, the rest of the system is its outer shareable domain, and so
-> > > even when snoop signals are wired up, they are only emitted for outer
-> > > shareable accesses. As such, setting the TTBR_SHARE_OUTER bit does
-> > > indeed get coherent pagetable walks working nicely for the coherent
-> > > T620 in the Arm Juno SoC.
-> > 
-> > I can't help but think some of this commentary deserves to be in the code
-> > as well.
-> 
-> Sure, if you want.
+Hi all,
 
-Yes, please.
+Here's a quick v2 with the tags so far picked up and some inline
+commentary about the shareability domains for the pagetable code.
 
-> > Do you know if this sort of thing is done for other SoCs too, or is this
-> > just a Juno quirk?
-> 
-> Yup, this is a "Midgard working as designed" thing. Juno is the coherent
-> example I have to hand, but off the top of my head I believe some of the
-> Exynos SoCs can also use their GPUs coherently if a switch is flipped in the
-> interconnect to change routing between the CCI and a direct-to-RAM path; I
-> expect there are probably further Midgard examples that I'm not aware of.
-> Then there are definitely coherent Bifrost GPUs like the Amlogic S922/A311
-> that prompted me to revive this patch, which we currently drive in "Legacy"
-> mode and thus behave the same way as Midgard (Bifrost's "AArch64" mode
-> realigns Ish and Osh with the rest of the system, and instead invents a new
-> "Internal Shareable" value in between Nsh and Ish to represent the
-> shareability between cores within the GPU for which Midgard hijacked Ish).
+Robin.
 
-That is more than I wanted to know :) "Internal Shareable", jeez...
 
-Thanks,
+Robin Murphy (3):
+  iommu/io-pgtable-arm: Support coherency for Mali LPAE
+  drm/panfrost: Support cache-coherent integrations
+  arm64: dts: meson: Describe G12b GPU as coherent
 
-Will
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi |  4 ++++
+ drivers/gpu/drm/panfrost/panfrost_device.h  |  1 +
+ drivers/gpu/drm/panfrost/panfrost_drv.c     |  2 ++
+ drivers/gpu/drm/panfrost/panfrost_gem.c     |  2 ++
+ drivers/gpu/drm/panfrost/panfrost_mmu.c     |  1 +
+ drivers/iommu/io-pgtable-arm.c              | 11 ++++++++++-
+ 6 files changed, 20 insertions(+), 1 deletion(-)
+
+-- 
+2.28.0.dirty
+
 
 _______________________________________________
 linux-amlogic mailing list
