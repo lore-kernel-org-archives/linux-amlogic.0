@@ -6,16 +6,16 @@ X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E422C4727E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2020 01:28:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67B1EC4727D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2020 01:28:35 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E136B239D2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2020 01:28:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1596E2395C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2020 01:28:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="b88z+sqO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E136B239D2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oC2ts2WV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1596E2395C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,58 +24,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=YCJZ88ubZaia7aspTcQWnWYRsCvuDuRu222KTqUSlrM=; b=b88z+sqOUUlbTcK1I5rQXEuV1
-	6ifZUOZ+UyhU9n/1wE+JA1tQ4PY7rzMcQQZryUMcXQQxXDH98Y5KeklE3cQmpumNub6A/qi7Knnuu
-	W9brDaKb8IGD6d344QrEF/mtXMFaJqINfzNS75D5GMJzm8xXaHGUjds6snxrluQtViHmToBg1Qc84
-	N7/v5mK5TMgkunTY/2hXbQCgSaA31F5WvkDKOb9NlJ3Egc6SK3dQvdOS2yzpv/uYWMX7vUJfnb5bb
-	xC0MOH25X9AoZj+x5R3npujhsNX5xDuja7usTZOHm+5PPTfyq4IWbZzKVn1YDqfqg7GpTShOlvFhi
-	ekoRO72EA==;
+	 bh=xli6eH4B/lYKLaEoUR8teYKrOQbYhCjr5t4vdIa52Ck=; b=oC2ts2WV/5Gai4cp7FrqPE4db
+	nQ3oigpUvTJSxuqK6DLbTBTZElzhXsKkDgygR/n5qwXqnl+nxapPS3GhHZXf/bZIH7Yd+D6MXZI1Z
+	NHVvzNXuAuuSaO/Fi72oEi69GD2iSHwRpav3QoIc3oL81PkO0vPuXZ/mV5Lo/3g1BjTvxcYYuPr8x
+	iz4jMiRWYs5e1Cz6wklhwJnwYwuWMgW0F7Hgdxz+/CcGtNrfzWqI/RwLS+0e7ac3dYiTBi0K4Keox
+	Rl3ACTd5flwhr9jzyJEfcSyVrNAJCfufhgRVvNPX4fizpKUDMSXg2TJzK4Po1lefUMYxZhQC/PaY/
+	YvpEwh2sw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kKtZt-0004Ev-Am; Wed, 23 Sep 2020 01:28:13 +0000
-Received: from mail-il1-f193.google.com ([209.85.166.193])
+	id 1kKta6-0004Ia-Se; Wed, 23 Sep 2020 01:28:26 +0000
+Received: from mail-il1-f194.google.com ([209.85.166.194])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kKtZn-0004Dn-V5
- for linux-amlogic@lists.infradead.org; Wed, 23 Sep 2020 01:28:09 +0000
-Received: by mail-il1-f193.google.com with SMTP id f82so19210025ilh.8
- for <linux-amlogic@lists.infradead.org>; Tue, 22 Sep 2020 18:28:06 -0700 (PDT)
+ id 1kKta4-0004Hd-LQ
+ for linux-amlogic@lists.infradead.org; Wed, 23 Sep 2020 01:28:25 +0000
+Received: by mail-il1-f194.google.com with SMTP id q5so12711472ilj.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 22 Sep 2020 18:28:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=QS25WlOeUPQHrCUw0cdos8+dV1aU1kXgtHvYAn4oQeE=;
- b=ET8flIKmpmRkUCidJvzXOC7eLsa+8W+qWhygbi4iS6FHZjHMcfQtF95sYBpoCOd3x0
- 1tcPFbvr38BUq6d2w2k3P+O7V9zl76KyGtuq3ESp44uxJwYQ8w3p4DQW/UHAiT7HSvno
- tInbnz9UPhv+NqQ84T5wFbduyQPX6qysUuXawj2dNg50GV1gaav94MALJmaL25Gtavvp
- M9BBhM/Lqiui8MJr4JGbewfSA71KdTGCkPwAPAuNyxnnA/pBvPFVh+gJ1CKaV6vMgYxh
- jnkOSqAdjVW6P63zT2EayQMsAExra8elXtDJnXfyFJiKUpj+ck0u8TeEFWOYfRaZnLFe
- 94ag==
-X-Gm-Message-State: AOAM532g5CUMmXeqMrNzvN4N8cGSSHcs8U8mdsG8bZRPoWTqiLvjEClj
- EWVjexRt5QsaZwylCDpDCg==
-X-Google-Smtp-Source: ABdhPJyDq6KsxVdqb84529uluzCnDBXafHIUSIQRG2lkorieEL37IUfKunEyKovQlRGvCFWv3dY7UA==
-X-Received: by 2002:a92:dd8a:: with SMTP id g10mr4971211iln.125.1600824486322; 
- Tue, 22 Sep 2020 18:28:06 -0700 (PDT)
+ bh=wOFsOWTjSL4FRYR4bymj2SkxEWR6B/1aPP2FtvhSKOI=;
+ b=BTpdsb18Bx0K0f2hOk8J5lHkyGHAXe9k/NaqZkF0ytlxVAHhaolcsudu751moa7QdP
+ X8ugLUNyX1SbeQeRSALZxZS9yZETmziLO5giAa17D9VClM3ppJWXdUTNBxE7irDf6NeR
+ 4EN3b/9YPMnnxWlR/Tb4dYOQtotxOCifrwUezgX5OMdCP+TnWgFmk7AdYOtAQ7hIrKWi
+ gvDA908q+VC95j7Uh7lXmsZrfoneanx0sfcMUV2CrngEg/64eRkILba4HT44ye33uzzB
+ K5xLQ4NjjYqu8lngENCV8AlUI1t5+Jez7Hon25r2c15148jmhk8J26X/u9uXDyj3bIQI
+ muyw==
+X-Gm-Message-State: AOAM5328Dvm7qzQXgoyajwYglq7YL82wvt7FbwBXe8R2Z+Uu2DaFu7Lq
+ 7o4QgARAQ1gAG2dJCeVuvQ==
+X-Google-Smtp-Source: ABdhPJyH2nFFin5pTlEaPxsP4fOtHfm6oOn+qr9bRGNajCNvS0DOljj+PsMwGVw/ytYsc0e+Uq3tYQ==
+X-Received: by 2002:a92:c7ac:: with SMTP id f12mr6724566ilk.2.1600824503966;
+ Tue, 22 Sep 2020 18:28:23 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
- by smtp.gmail.com with ESMTPSA id 64sm8414847iob.36.2020.09.22.18.28.05
+ by smtp.gmail.com with ESMTPSA id u14sm9873738ilj.7.2020.09.22.18.28.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Sep 2020 18:28:05 -0700 (PDT)
-Received: (nullmailer pid 3655638 invoked by uid 1000);
- Wed, 23 Sep 2020 01:28:04 -0000
-Date: Tue, 22 Sep 2020 19:28:04 -0600
+ Tue, 22 Sep 2020 18:28:23 -0700 (PDT)
+Received: (nullmailer pid 3656192 invoked by uid 1000);
+ Wed, 23 Sep 2020 01:28:22 -0000
+Date: Tue, 22 Sep 2020 19:28:22 -0600
 From: Rob Herring <robh@kernel.org>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: vendor-prefixes: Add Shanghai Top
- Display Optolelectronics vendor prefix
-Message-ID: <20200923012804.GA3655566@bogus>
+Subject: Re: [PATCH v4 2/4] dt-bindings: display: panel-simple-dsi: add
+ optional reset gpio
+Message-ID: <20200923012822.GA3656163@bogus>
 References: <20200915121912.4347-1-narmstrong@baylibre.com>
- <20200915121912.4347-2-narmstrong@baylibre.com>
+ <20200915121912.4347-3-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200915121912.4347-2-narmstrong@baylibre.com>
+In-Reply-To: <20200915121912.4347-3-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200922_212808_005026_E08086C9 
-X-CRM114-Status: UNSURE (   9.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200922_212824_723788_17D19C1B 
+X-CRM114-Status: GOOD (  10.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,15 +94,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 15 Sep 2020 14:19:09 +0200, Neil Armstrong wrote:
-> Shanghai Top Display Optolelectronics Co., Ltd  is a display manufacturer
-> from Shanghai.
-> Web site of the company: http://www.shtdo.com/
+On Tue, 15 Sep 2020 14:19:10 +0200, Neil Armstrong wrote:
+> Simple DSI panels can also have a reset GPIO signal in addition/instead of an
+> enable GPIO signal.
+> 
+> This adds an optional reset-gpios property.
 > 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/display/panel/panel-simple-dsi.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
