@@ -2,142 +2,89 @@ Return-Path: <SRS0=7V7W=DA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5175C4363D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2020 07:50:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72788C2D0A8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2020 12:39:44 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BAE5C206F7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2020 07:50:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C83E6206FC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2020 12:39:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P8tWdFlC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qdvUWl6I"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BAE5C206F7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mH6LE5T8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="oIDf+FbM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C83E6206FC
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=pu7FpfV3LQn+bQ20VMS20Msg2o6RQIRrir7iBRNpy2o=; b=P8tWdFlCZm+AHwy+E4LqAGExB
-	kg1rH5Q/mgwlkXqzM6rZUxUWD2MP1I1ljzLhO+KOzJVASC+an7CVhNaX2u5FGhR9uS0l+YxTH9QJy
-	sWHUq736r1yP3Uus0brEnjQJ2IvkTUos6VHnhy7qptLIxf5StEEjUC7mnrEouPTV7UskAsQnnlH6M
-	GkpxJFrjwaQJLtdT3ry6S+SzEq20nw4R2bdJZTaCKrTjh27vsCLCADERCa5+jIMRr2TqfJTsYBr09
-	QM7n9fSx+oxzQsvF4dhZOXKmwuzbpktY/wL8AQ83yBx/SFXuAKRoYdyr9L3KfpqWGR5QTOrggDZgm
-	b+jQcho+Q==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=bYFq+C9chOCUmJZIccQDaxamjQKL4RMNZOaZC2Vq6Uk=; b=mH6LE5T8gtMah2blMtOTOMrqBZ
+	I5T+T9e8BWTNwyqzIyWGusKGRolPChpFyOst5rrxy2IzrdPeLs27itrMJ2vCIax+Zju8M0EQOSHIb
+	1NRD07Ktk4CC9ZvGa65FHylqqXRLZorVhqrWNExxBcqkxj2rHFxmVjcL99FSxLTteNEkBYFeeRKne
+	73zHTrPRDZaz6564lBmOHYC6UD3CEwRQdg0btPMqTT0vxLZ5lLxiNY0q5rqtTrPMQ63i79fSdM5Fx
+	2+F5D9bCIEWQO60s6k9M7EGO1yV0XaDOsKNZByn84yAKfHN+eIPZIQdNbKrFJzslHlkNM7cot1Bo8
+	LL7adNQA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kKzXk-0008JE-E3; Wed, 23 Sep 2020 07:50:24 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1kL43X-00053g-JH; Wed, 23 Sep 2020 12:39:31 +0000
+Received: from mail-ej1-x642.google.com ([2a00:1450:4864:20::642])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kKzXg-0008IT-PD
- for linux-amlogic@lists.infradead.org; Wed, 23 Sep 2020 07:50:22 +0000
-Received: by mail-wr1-x442.google.com with SMTP id w5so19885580wrp.8
- for <linux-amlogic@lists.infradead.org>; Wed, 23 Sep 2020 00:50:18 -0700 (PDT)
+ id 1kL43U-000531-Jo
+ for linux-amlogic@lists.infradead.org; Wed, 23 Sep 2020 12:39:29 +0000
+Received: by mail-ej1-x642.google.com with SMTP id gx22so18465247ejb.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 23 Sep 2020 05:39:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
+ h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=80w2UTNNqRR+GPRzF+WqbwlU0doBM7XF4sFQaDebJ7s=;
- b=qdvUWl6IPBw1KdLuDAWtuzBPmr3Avgsjim38yWJ+i6olqIbfJhe/CEk8l7MinM16rW
- qWpAFbZRM9rGckQ33g2WD05ykWgkVrQ1Fab3ferfbHqt+9cw8Ms7623KM4EST4Ljuwua
- LX3laNuDeQxibJQ2BjmLpjs2iDli3luIzBYz72owuX12i0g3U5hhWlupEYFK0wTwS3iG
- 30ZFbwVQDNThKVDo8WjaZPaWWHtK8WRj+yVfmPLR2pVvZpGyxwBLQ8oL6MiSba9bzAHu
- zC0I8Gi34+zTeC536BrXAOFsZDwQyMxC4oVtfQfRYEl5jNB+bLx4Uv8OUlQ0PngvE/rC
- 4wSg==
+ bh=ca8MpxtYSTi9fxnkIDOgsCaEJvwuUcIlAKj0sgOzoGg=;
+ b=oIDf+FbMIJg0nkmo9OaMEYe7LWTRMMKcnV5j/JRJZt7wh1t59i2pDpCbU8a/Vf8ST0
+ uOVDsSWIaTpDjCA9Btosu1kikktm98gaWopExkcmr18eERz0R2wh/D5STOUKttv4TypR
+ vvfVmj0bgJxCBIM3ChmRqLzp0fL2CJqayF8FZKcry1J1B2iKskZQ9KwPFSpb6odoJSt4
+ diGq0Q9An1oRKPVMe9/xngPIpPa1EkR58273X5zEATTYIDr2zhd+QoIAlokvNZ2NWUf7
+ m/HAJ5cNXtyQFst1zorjJH66KzKr7B9+wyNrUh7eyAocpf9WqLxn8IFRgRSRjPC99zt+
+ FEPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=80w2UTNNqRR+GPRzF+WqbwlU0doBM7XF4sFQaDebJ7s=;
- b=ctBSJZ6t8r4vOX/lDt0iQopnXIUU4TeR0RXTYWEUSoj26Uq7+H/wXjPSOYT84QHlMn
- 1eHt8SlgSEK5++c8emznHQ8mglSfMqWUQtgMjUGOFRTnmyjDfSleD1As0zmsHA16VQlm
- /feWfNn+ZBuu1WbWzYawb2wybGTUPsgvipE/Do/315pfw8tqEMORS944Jjx7XHRxRL9z
- PswItn2ZbRfnM2sWGLQAEgu0Zovp+BwnvrzHlC64aZbSk781/UR0oajDDpslDG+zNlXY
- DOyo3fqOu6SM3CbDHpLxoOpxymRHxQYrY3jbHIgpHJJtxuE2rGUYVPJhphtRfeLPpZ+t
- 5N9w==
-X-Gm-Message-State: AOAM531PyB7jhOx7X6VpyF5+SMwXjyoc9eX5h8L4a9HAJoPByzU6wKMF
- G5eJiZTSOcnI3CfQGOJkRIv2/g==
-X-Google-Smtp-Source: ABdhPJyBXpyYzZRw2NJT7Dcg27vVhwQ1cEp7zure8NjLvL8xr4rUbLCp8jmKvcQ358HR1aIM6zHefw==
-X-Received: by 2002:a5d:4247:: with SMTP id s7mr9481684wrr.167.1600847417684; 
- Wed, 23 Sep 2020 00:50:17 -0700 (PDT)
-Received: from [192.168.1.23] (home.beaume.starnux.net. [82.236.8.43])
- by smtp.gmail.com with ESMTPSA id c14sm28272792wrv.12.2020.09.23.00.50.16
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Sep 2020 00:50:16 -0700 (PDT)
-Subject: Re: [PATCH] soc: amlogic: pm-domains: use always-on flag
-To: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org
-References: <20200921222135.7145-1-khilman@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <13037590-21c7-5db2-a4c9-e9804c6930ba@baylibre.com>
-Date: Wed, 23 Sep 2020 09:50:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ca8MpxtYSTi9fxnkIDOgsCaEJvwuUcIlAKj0sgOzoGg=;
+ b=m2Xfv3FXjcKQP+/SNmoeG+1ybQcp6Bss93ZpwGA0iW38dYBBdVmOnci5YI+4VnvTCz
+ +G9HEb6tlYjxOZQOjrI0c5LFxxtfuPn8yQqh+oLg2oOk8aKtQSE0HhI3ZlohsK5VXgac
+ LRwJELD+32YEccxlVUsmShexYKL92IB9wLmm/+JkBQtP9fprNyGOl5sTSAx6pvnqkLNs
+ VSEz7wfHnnUrpbf4rKZJOHG0hlDtPr3Nj+oda6zu9he0D3PnIyLYlZetK/e1Tt6l2pgo
+ Jl7PDHDbd34nJMBN8rvNig8/LCbESpblHRoZY2lvYd88g9+YLQqpmn7x8+7j/P3uICPM
+ bokw==
+X-Gm-Message-State: AOAM532D4rUM9E5HW3z/Ydp9sdUxHW/xN2jrCpF0PjE4XqajA3hxNPUb
+ IUWf2kkG16MsustcoNIOLpargQ==
+X-Google-Smtp-Source: ABdhPJx5Cvk/hYChiUl93W6xD/qDLkGJ7fQ7DDElz9ONKimcxGUuCe2Al0cDNTEtuG8CuqOq6pw0nQ==
+X-Received: by 2002:a17:906:2712:: with SMTP id
+ z18mr10331457ejc.380.1600864765418; 
+ Wed, 23 Sep 2020 05:39:25 -0700 (PDT)
+Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.googlemail.com with ESMTPSA id k21sm7015003edv.31.2020.09.23.05.39.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 23 Sep 2020 05:39:24 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>
+Subject: [PATCH] mailbox: cancel timer before starting it
+Date: Wed, 23 Sep 2020 14:39:16 +0200
+Message-Id: <20200923123916.1115962-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-In-Reply-To: <20200921222135.7145-1-khilman@baylibre.com>
-Content-Language: en-US
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200923_035020_912436_00498FBA 
-X-CRM114-Status: GOOD (  17.84  )
+X-CRM114-CacheID: sfid-20200923_083928_661542_4FD5780D 
+X-CRM114-Status: GOOD (  13.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,56 +96,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ Da Xue <da@libre.computer>, linux-kernel@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22/09/2020 00:21, Kevin Hilman wrote:
-> Rather than use a governor to keep these domains always-on, instead
-> use the flag GENPD_FLAG_ALWAYS_ON.  This has the same effect, but with
-> much lower overhead since the governor path is not used at all.
-> 
-> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-> ---
->  drivers/soc/amlogic/meson-ee-pwrc.c     | 4 ++--
->  drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-> index 43665b77aa9e..a8f18bb17491 100644
-> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-> @@ -433,8 +433,8 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
->  		if (ret)
->  			return ret;
->  
-> -		ret = pm_genpd_init(&dom->base, &pm_domain_always_on_gov,
-> -				    false);
-> +		dom->base.flags = GENPD_FLAG_ALWAYS_ON;
-> +		ret = pm_genpd_init(&dom->base, NULL, false);
->  		if (ret)
->  			return ret;
->  	} else {
-> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> index 511b6856225d..21b4bc811c00 100644
-> --- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> +++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> @@ -339,8 +339,8 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
->  			return ret;
->  	}
->  
-> -	pm_genpd_init(&vpu_pd->genpd, &pm_domain_always_on_gov,
-> -		      powered_off);
-> +	vpu_pd->genpd.flags = GENPD_FLAG_ALWAYS_ON;
-> +	pm_genpd_init(&vpu_pd->genpd, NULL, powered_off);
->  
->  	return of_genpd_add_provider_simple(pdev->dev.of_node,
->  					    &vpu_pd->genpd);
-> 
+If the txdone is done by polling, it is possible for msg_submit() to start
+the timer while txdone_hrtimer() callback is running. If the timer needs
+recheduling, it could already be enqueued by the time hrtimer_forward_now()
+is called, leading hrtimer to loudly complain.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+WARNING: CPU: 3 PID: 74 at kernel/time/hrtimer.c:932 hrtimer_forward+0xc4/0x110
+CPU: 3 PID: 74 Comm: kworker/u8:1 Not tainted 5.9.0-rc2-00236-gd3520067d01c-dirty #5
+Hardware name: Libre Computer AML-S805X-AC (DT)
+Workqueue: events_freezable_power_ thermal_zone_device_check
+pstate: 20000085 (nzCv daIf -PAN -UAO BTYPE=--)
+pc : hrtimer_forward+0xc4/0x110
+lr : txdone_hrtimer+0xf8/0x118
+[...]
+
+Canceling the timer before starting it ensure that the timer callback is
+not running when the timer is started, solving this race condition.
+
+Fixes: 0cc67945ea59 ("mailbox: switch to hrtimer for tx_complete polling")
+Reported-by: Da Xue <da@libre.computer>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/mailbox/mailbox.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/mailbox/mailbox.c b/drivers/mailbox/mailbox.c
+index 0b821a5b2db8..34f9ab01caef 100644
+--- a/drivers/mailbox/mailbox.c
++++ b/drivers/mailbox/mailbox.c
+@@ -82,9 +82,13 @@ static void msg_submit(struct mbox_chan *chan)
+ exit:
+ 	spin_unlock_irqrestore(&chan->lock, flags);
+ 
+-	if (!err && (chan->txdone_method & TXDONE_BY_POLL))
+-		/* kick start the timer immediately to avoid delays */
++	if (!err && (chan->txdone_method & TXDONE_BY_POLL)) {
++		/* Disable the timer if already active ... */
++		hrtimer_cancel(&chan->mbox->poll_hrt);
++
++		/* ... and kick start it immediately to avoid delays */
+ 		hrtimer_start(&chan->mbox->poll_hrt, 0, HRTIMER_MODE_REL);
++	}
+ }
+ 
+ static void tx_tick(struct mbox_chan *chan, int r)
+-- 
+2.25.4
+
 
 _______________________________________________
 linux-amlogic mailing list
