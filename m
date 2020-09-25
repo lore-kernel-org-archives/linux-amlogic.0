@@ -2,90 +2,65 @@ Return-Path: <SRS0=7OpP=DC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4C77C4727E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 21:18:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E245CC4727E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 21:42:49 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0F0E9208B6
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 21:18:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 889C120659
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 21:42:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="zGEkVnh8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="TuI+K5EV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0F0E9208B6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d6rwjfmP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 889C120659
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cottsay.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=WK+HwbFe88ZfPLIMYEQFay9kkJEGVWLu9sC2ISEkD5s=; b=zGEkVnh8ky4jORzDdHUJyKrNd4
-	jgkmT/i9d9pRXuAHqkl5XUlMIxRo5izUr9gOzd9WTKYxrRPxNGtlu5zrRdZHavP05NqPSo1qq14cM
-	zYPOQUPt50e5n136kIDNysiTACX83cuBlY9rdYEXJYQ//zJPy/7vFufYt7UfonYssT6QzLKrsRnp9
-	sXIttdjzUcHqtEIiz1VqH0/I9nkoZJ/xDlFsXIAEAC+TfSx+bNPOA1WoRYM+2HDpMj1QWGq78Zrd6
-	gDm1UnudPrlJYHcryaOZhQoPtN+np7G41nr7Mq0Cq4binw3JMrLxZLLzud6DJ8h2IZtNlpCXE3DsB
-	yXKqLOWw==;
+	List-Unsubscribe:List-Id:Resent-Date:Resent-To:Resent-From:Resent-Cc:
+	MIME-Version:Date:To:From:Subject:Message-ID:Reply-To:Content-ID:
+	Content-Description:Resent-Sender:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=iJPpMFtkjUa8W2HJGzeKlrrLRGOqcecO+BuVWL7+bNA=; b=d6rwjfmPwVIGAz
+	1nZofOEGsMAkjTQhIlNRdSS4vseD+cO++EWAP4Z4O2u6He6+GOKw77G1S5GjePUqgJfiCo9+l3J6O
+	aFRq5S5S6RscylfYTR8zgAgKq0x48rUiGdcNmnT5gLPBupoLkM8ItqG7DXKvU6RpttiktnD0ibmm8
+	gw03sP3nGYYw2RGAY8+6icGLFiq0O+7RELbP2oxH87cjZnB5VkTiPWGmw5ozOLfXE+3WmfkMxnMZO
+	ZPGGyOKHCMFo5bRcEee9MIai227fZtzDmjgQaoT/Fnw8ex53S2P6OFjSEn5AIbJXtEbUmrAfn906k
+	QbfvWaNc/ktMTWZGrw4A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLv6S-0002ui-Jl; Fri, 25 Sep 2020 21:18:04 +0000
-Received: from mail-ej1-x642.google.com ([2a00:1450:4864:20::642])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLv6P-0002tx-W9; Fri, 25 Sep 2020 21:18:02 +0000
-Received: by mail-ej1-x642.google.com with SMTP id o8so502467ejb.10;
- Fri, 25 Sep 2020 14:17:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=2PAQL73JxnyO64OF/vV552MTwfHMx4yBDlPAMR5RmT4=;
- b=TuI+K5EVjlYAKZzjy64Udjow3kM9Y76TpG769gzwOWYXYEnYdWeuo9J56l8DASw367
- ZqOY4MsYSqzrUnwb3W72LXTY/eRde/WezRymRajG/sidYLVnmN3NLOtE98JTv9HafGDa
- Ivzw3daQW/9OQURpJFVm4E70ln87m6BjB2lIjzlZeBgp3Ph2ER22CmYknxBV6zi8r6wI
- t3t/DF7E/VsmKBxPL2J6FLbpGsMMqNf7NMK+Wxv/ahVB2a1SDQBPhaJMXQma+6t1K/l+
- n6aJ8ADAnXKtGmuL8QhWMobfOjk7DqhJQnJ1+K6XxMR7v+gYxfGWENjZD2pD2BkV7TgE
- lBfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=2PAQL73JxnyO64OF/vV552MTwfHMx4yBDlPAMR5RmT4=;
- b=P0Pt+UteaIMiC14C6FqmrmzSQK4ky0fqPF0W++coacQ948/QnZLcrx4XWXaMSQWZTE
- SxcOpNUmHuu+bSZrFoQgWo5NTpYP90V1HoMWGAnjA7XUNf5U/ODZqlFD/zffNiM5INWH
- 2Y6e2lQymsxwzcaxE0k5kwwUe0uJmiy5C8H9ckUCPmvjrqUMdL83UlEBcJRmDTjSVP8c
- uB2yYk+wTKYG1FGY29ioMcazj8YcjI2it6d/0hS/b6NnTebNhe5Z77//quNLqqhF7VM2
- +bXdGnR8xpaK8SEVZ+uTIVKRlQqtvi15lf0NpxeJ3mjsit9Q272xamboZFXRc1Ane53A
- jcGA==
-X-Gm-Message-State: AOAM533IW3ggX6he2MoXtz23sWxTsrZMRS3hWB6K0vCgNeT72KHkDLAH
- K0d7tKDaSvY5nkdj4aKoxLtHfOzi8VI=
-X-Google-Smtp-Source: ABdhPJx/Sl4V+qETIIIaZG/LmfKXs+Oe/amH7m1chwyu5aoMo+BXwwx8BulxQJyrKwM8Y7lEAd9RYg==
-X-Received: by 2002:a17:906:d11a:: with SMTP id
- b26mr4568914ejz.191.1601068678647; 
- Fri, 25 Sep 2020 14:17:58 -0700 (PDT)
-Received: from localhost.localdomain (p4fd5dca7.dip0.t-ipconnect.de.
- [79.213.220.167])
- by smtp.googlemail.com with ESMTPSA id c8sm2710057ejp.30.2020.09.25.14.17.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 14:17:58 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org,
-	khilman@baylibre.com
-Subject: [PATCH] arm64: dts: amlogic: meson-g12: use the G12A specific dwmac
- compatible
-Date: Fri, 25 Sep 2020 23:17:43 +0200
-Message-Id: <20200925211743.537496-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.28.0
+	id 1kLvUI-0006Fj-4g; Fri, 25 Sep 2020 21:42:42 +0000
+Received: from azure2.cottsay.net ([104.41.151.152])
+ by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kLvUG-0005pN-75
+ for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 21:42:40 +0000
+Received: from cottsay-server.delphi.cottsay.net
+ (c-24-17-110-2.hsd1.wa.comcast.net [24.17.110.2])
+ by azure2.cottsay.net (Postfix) with ESMTPS id 7AAD119F836
+ for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 21:40:34 +0000 (UTC)
+Received: from cottsay-lenovo.delphi.cottsay.net
+ (cottsay-lenovo.delphi.cottsay.net [172.16.1.31])
+ by cottsay-server.delphi.cottsay.net (Postfix) with ESMTPSA id 7FF193C0095;
+ Fri, 25 Sep 2020 14:40:33 -0700 (PDT)
+Message-ID: <520a1a8ec7a958b3d918d89563ec7e93a4100a45.camel@cottsay.net>
+Subject: [PATCH] arm64: dts: meson: add missing g12 rng clock
+From: Scott K Logan <logans@cottsay.net>
+To: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org
+Date: Fri, 25 Sep 2020 01:43:53 -0700
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
 MIME-Version: 1.0
+Resent-Cc: Neil Armstrong <narmstrong@baylibre.com>
+Resent-From: Scott K Logan <logans@cottsay.net>
+Resent-To: linux-amlogic@lists.infradead.org
+Resent-Date: Fri, 25 Sep 2020 14:40:32 -0700
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_171802_034289_7A781601 
-X-CRM114-Status: GOOD (  13.90  )
+X-CRM114-CacheID: sfid-20200925_174240_288398_581D759B 
+X-CRM114-Status: UNSURE (   9.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,42 +72,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- narmstrong@baylibre.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
+Resent-Message-Id: <20200925214249.889C120659@mail.kernel.org>
 
-We have a dedicated "amlogic,meson-g12a-dwmac" compatible string for the
-Ethernet controller since commit 3efdb92426bf4 ("dt-bindings: net:
-dwmac-meson: Add a compatible string for G12A onwards").
-Using the AXG compatible string worked fine so far because the
-dwmac-meson8b driver doesn't handle the newly introduced register bits
-for G12A. However, once that changes the driver must be probed with the
-correct compatible string to manage these new register bits.
+This adds the missing perpheral clock for the RNG for Amlogic G12. As
+stated in amlogic,meson-rng.yaml, this isn't always necessary for the
+RNG to function, but is better to have in case the clock is disabled for
+some reason prior to loading.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Scott K Logan <logans@cottsay.net>
+Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 1e83ec5b8c91..d4e7cd68170a 100644
+index 593a006f4b7b..6ec40af658ba 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -209,7 +209,7 @@ map {
- 		};
+@@ -247,6 +247,8 @@ apb_efuse: bus@30000 {
+ 				hwrng: rng@218 {
+ 					compatible = "amlogic,meson-rng";
+ 					reg = <0x0 0x218 0x0 0x4>;
++					clocks = <&clkc CLKID_RNG0>;
++					clock-names = "core";
+ 				};
+ 			};
  
- 		ethmac: ethernet@ff3f0000 {
--			compatible = "amlogic,meson-axg-dwmac",
-+			compatible = "amlogic,meson-g12a-dwmac",
- 				     "snps,dwmac-3.70a",
- 				     "snps,dwmac";
- 			reg = <0x0 0xff3f0000 0x0 0x10000>,
 -- 
-2.28.0
+2.26.2
 
 
 _______________________________________________
