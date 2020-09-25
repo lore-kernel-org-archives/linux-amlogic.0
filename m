@@ -2,116 +2,88 @@ Return-Path: <SRS0=7OpP=DC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_2 autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 496EBC4727E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 09:28:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BCDBC4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 11:27:07 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD7BC20756
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 09:28:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B7C6F20715
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 11:27:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QNl+Cpq3";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=Synaptics.onmicrosoft.com header.i=@Synaptics.onmicrosoft.com header.b="BfGXtqJR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD7BC20756
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=synaptics.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S1jugEmD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="G+4Kg6/g"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B7C6F20715
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=qf1jUr9zM4decYwT7wp28WlNnHcdh0mH+j+hS6p/eaw=; b=QNl+Cpq3TtOpBarD1PddKNN1S
-	dzFg7m1GQYEMxL5IsQ4D7cWOjlUK8B241NLOS0eNSYyfyGtvsEnQXE+sRD3nQvSvMHshK4J8Xpgkr
-	e26blCmB1Kz9pKgE4tNlLCX2i0yvaHqN6aS40FJF/pqtMXc96DzCACazm4Phhvx73CCaPa/fWk8/A
-	fHpLXpJ4HtHjz7DMHdSyIauqabBAG6udZx1aKhkyKLPxd9+f1IRx+Cab3ib+Ix6dPH9e+PFq4mFpZ
-	BFRJDCJtY7B8iY9uU1j6g+XL/rV6raZAMZ6pthcdDX1ajaS3hEulmSkOshmYBPxEnd+kxR+g86IF8
-	s1oX4DoIg==;
+	 bh=bfce81WkhOxrJE5Cbgd7lBcKdQxeR+WFz5Ty0QGHl+Y=; b=S1jugEmDNQq9H9fPrtzloNHu+
+	wIintL5SZODTSz8aZxAjqAiDnXhdNon3ndZbVfoXgrBCEzkJN5cOmLkql5wYmOQkdt764tSsXqXrd
+	eAyGSbi5A4J7Gp3NfyPnJhFU4/B5WZYZuemH6HQ/gKM9LUfFR7Iu8R4hIc5lT37kUP5xgRQD3Kbxe
+	ozkYN4xBxs0XmQdVFZkH0TDhGn3gQbizaDj/q9Ewo5UC8S5pYyIS2YmAAlISWTHQ/l5SYL9w6aEyc
+	nSTVKpcDhm7Tdp7n7NJVYxPYXrHpoZkHZVvPFGxCV73ejt+p+4Qd97ZNWbBbClLllQNbbcY3oIrF3
+	KuMtTL1AA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLk1G-0003rH-Rj; Fri, 25 Sep 2020 09:27:58 +0000
-Received: from mail-dm6nam10on2089.outbound.protection.outlook.com
- ([40.107.93.89] helo=NAM10-DM6-obe.outbound.protection.outlook.com)
+	id 1kLlsO-0003PT-TT; Fri, 25 Sep 2020 11:26:56 +0000
+Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLk1D-0003oV-Ky; Fri, 25 Sep 2020 09:27:56 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MCCMn01NgRqC607Qf60XtpUA5S7vZTBeS7ymYdf0G6jC1f+Lo47jBNZm+iXed44RtpTwi21J5ASy4CdHMwu2laNOq3POWrStXJR7c3jcOU1C2Ds675ON7RCk08yVA2iVpM3lAxWeSEz6zHOSjr2/o3IfPKaf6APFAYT3WllIgAIyOO+6IsV+PDbY1x8XAoEjyzMYJOu73ewIi813bK/QkVNaGFI5PmG9qC4Hb4E+Jdtcp2QuT0kn5Wz8+qo77/UE8ZGp3RtfhWZPVLRsGjRTNJQffK0S6Y99VjkCyFH9nIC9wSEpCk6KvGo9NxiR60X2FFDuML8H3oXXkQ6FgorF6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DQtmM6YxLmySA1Vuq7uzCm/RSj0khAM/y0uXrFWDct0=;
- b=Tg25HEkPTj7dMvxcAgyiaHD1qchNveDi+IhyLmJ8IPKM1BylB/tcQ5VFgCP/v4QcCYg/wgvyeJm0ii+WanKAERQpRmyavnLNfo4vqFMkKmcv84xAzj0cOj6Xtd6JCP+wRA6zdyk76jXDeI+aGS/Y3PFtdaU3FB4EwVWcSXsBa7IRVKJ443CEURdI4JFd1Ertftlb6+Q3utwVJJAligQZ5alLuvxH1qlkmLNxk9ziJzuexXI1A1sTfuAwPcTuazKiJpRwZMIC5gQZSFe/xF+vKQW5ZaxtJpMNiF7zF5gt3FFiocobm4kcsANCRDEeRzPpcaf85WupF/MK5imdcio/ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synaptics.com; dmarc=pass action=none
- header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+ id 1kLlsJ-0003N3-FY; Fri, 25 Sep 2020 11:26:52 +0000
+Received: by mail-ed1-x542.google.com with SMTP id g4so2147845edk.0;
+ Fri, 25 Sep 2020 04:26:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DQtmM6YxLmySA1Vuq7uzCm/RSj0khAM/y0uXrFWDct0=;
- b=BfGXtqJRS5Yx/Hy/5408fDdyXwUlt6kIpERB3tz68hSnmu+3zHQhaYbr5M6FHRcjLrYBWMYaKX2x6tqU1uXJUhLYKCSqtGSrxhwnsq0HT9Km2s9QmqdJul7WSPp1ZSbdAUFM3QuJl318afeUxr/Ac0COuQVLj98j5DAMO9J8HFI=
-Authentication-Results: nvidia.com; dkim=none (message not signed)
- header.d=none;nvidia.com; dmarc=none action=none header.from=synaptics.com;
-Received: from DM6PR03MB4555.namprd03.prod.outlook.com (2603:10b6:5:102::17)
- by DM6PR03MB4442.namprd03.prod.outlook.com (2603:10b6:5:10a::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.15; Fri, 25 Sep
- 2020 09:27:53 +0000
-Received: from DM6PR03MB4555.namprd03.prod.outlook.com
- ([fe80::e494:740f:155:4a38]) by DM6PR03MB4555.namprd03.prod.outlook.com
- ([fe80::e494:740f:155:4a38%7]) with mapi id 15.20.3391.028; Fri, 25 Sep 2020
- 09:27:53 +0000
-Date: Fri, 25 Sep 2020 17:27:24 +0800
-From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To: Jon Hunter <jonathanh@nvidia.com>
-Subject: Re: [PATCH v2 0/5] PCI: dwc: improve msi handling
-Message-ID: <20200925172724.5bdf6aab@xhacker.debian>
-In-Reply-To: <20200925171712.254a018d@xhacker.debian>
-References: <20200924190421.549cb8fc@xhacker.debian>
- <de4d9294-4f6d-c7d1-efc7-c8ef6570bd64@nvidia.com>
- <20200925171712.254a018d@xhacker.debian>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-X-ClientProxiedBy: TY2PR06CA0023.apcprd06.prod.outlook.com
- (2603:1096:404:42::35) To DM6PR03MB4555.namprd03.prod.outlook.com
- (2603:10b6:5:102::17)
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DaEiyCpA/iAmijBp9fbgLwzE+O9eX5S4Ozv2YkoK2I4=;
+ b=G+4Kg6/gocoXGUoLsO/VRT8s6sDQArZ8eA/JQlK9y13t5BZUOX5WdfGGWRd+6Awqmt
+ 3rYqIhwANZV12yPloBy/JhPicz8+YIOBYYfVsyJdSwaguXQfP4hOi8MVKHTxNNeucCwe
+ 5hcIq3PyomzIM8INzRFlEuxhBoQ0b81daRNnhSbZeJGiJXVIpBtN3tp56z94lbfv0il3
+ 0EO9xrwNZz1hN7JmKMUXpNICCmLHJJbi40DEyLUY1V9/Gi07S4igN7PaQeKejwZ+acLh
+ Xm2lmgZ0iSi29+H8GfAm8bmvP8usmJPU6od8JVk/5szVyqrpqOIIM6C6D40UXoCRvuwH
+ kA6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DaEiyCpA/iAmijBp9fbgLwzE+O9eX5S4Ozv2YkoK2I4=;
+ b=fzdRCVot+kVfMbSCA3LZIwMAkKP/XrN9rn1fNkiROJKzFsz9B4KYIm3YhRNav8qQi7
+ aqdLHafeQWkO3YTw8isqMvCU0viK5CBx1OTcF24GzmOI4oYUtp6vtYek33eHzJ4znvH8
+ XeIPNeHliOZWKeVRAWQlnnxD/DXcVZjqpOj57Uag/OLT8w6klG4EqWS/rNC6d9sD5mm9
+ ODkjKDkkb5Axp4gpjASNFwDFeNXf6Ino3yhWDK05ksEHiCE8XIjGHIa70J/ZVHhkURtv
+ Gn3aVnLGjV6uvBMdDD5W1UoEhlY5wiF7SeZ2vTR36gaeXmDFuLOdhJte0kQOOwEByb6M
+ wb6g==
+X-Gm-Message-State: AOAM531Wc0OoQde22WXaQrW6A2rKEd+ptC8gtQ7pUBMfpikdKhFhbD8f
+ KD2P6eofX6c73JTckHpbgQikYi5Z30f+HuJDjp0=
+X-Google-Smtp-Source: ABdhPJxeAVbNfrPCu7zrhHMzDI4gm/MF1+4roWc++ikceWwHZjgE64uviY991arvc/Qz0YE266hXHEIqTqEb1kajqLI=
+X-Received: by 2002:a05:6402:1495:: with SMTP id
+ e21mr767338edv.146.1601033210101; 
+ Fri, 25 Sep 2020 04:26:50 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from xhacker.debian (124.74.246.114) by
- TY2PR06CA0023.apcprd06.prod.outlook.com (2603:1096:404:42::35) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3412.22 via Frontend Transport; Fri, 25 Sep 2020 09:27:42 +0000
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-X-Originating-IP: [124.74.246.114]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 08b5c9c0-366c-4ceb-680c-08d8613546fb
-X-MS-TrafficTypeDiagnostic: DM6PR03MB4442:
-X-Microsoft-Antispam-PRVS: <DM6PR03MB4442C9D838716EA6EA073FABED360@DM6PR03MB4442.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iJSGkfRAHDXDHjqUDFfaQ4pnN7SpUhEkOYEiP8cPOHJO1V3WxXkRm7gxobdsF/Pc5WS7b0vdGyl0J9niToq7p9cKLXI4XHs2SqEcTWSZ5PJKLA0HB/665ZGRc0oYW7Ydzaj4/MpOPfCCFXFrJjQyBy8Q++3JCh/q1k2ABbNONyaum0u79GCHtIMKyn3JarFkWuX6RT4T2XOJb6LDSJtunIx5z2C8pbg3+Qtlbicg1bz04WAeM4Y0dIQhHA6zR0Xc2TdEy/DMEZKjNi5rfAcdg08pKqdWUNPhfWdyoop6OFYemhJddDSJZudXGpMIoow5cmvoGqFJflv4PstV6YhqXbj+ERg+9Ihd06OyrwWRFEwtYSGSHbzw69zdRuPZ7pDU
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR03MB4555.namprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(376002)(39860400002)(136003)(346002)(366004)(396003)(316002)(9686003)(8936002)(55016002)(4326008)(83380400001)(6916009)(54906003)(66556008)(66476007)(66946007)(5660300002)(7406005)(6506007)(8676002)(1076003)(2906002)(956004)(16526019)(26005)(52116002)(6666004)(186003)(7696005)(53546011)(7416002)(478600001)(86362001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: GiG8+SfVuXOIaBCnAUuUBwmzRd4zisLOF7dcvTvyp5tJk1CmsQdVVw2nXL7WfO3o/jE4lWyLcfNSyINmEcNjRWgo3jvfwLNapKTVCoakd/xJ4XMKD/DBNmViHjtIxljHnEPFMO6M4hUb+7hxHuwzWE/DVWJXlnmdYuJew5m1eShcxqYMV7rCJ1RNKpYpZTX09i+hLJcc4O+wLUOU0ryN5psXVAidVXyYJ7lDcCyMA2H5AxnIzS2L3WOmqh81XmD2dFb1lH4MyzweSqEU6UBsJSkS6yp20jJIwgvw3bbt/s9UrDD1PKgjWyoQRufaOVmn8p9oI4CEGwBZFhCxZ0tH4rsoNPOJwf+VbcXEWDn02/2sU1y6JxtUbbnXibj1Mw285Ah0eJhzFqQ6YZKSgG6TMw4gmvzgbfMI+NRbmZPdIE/sAn5CSWRSKr9tiNKBVXsnO5s01m2rRU0qBnnxkTN+ABntem7CheF6rKWLLBFIfi6RuY3kMsPhR0raRkj0N93cG82pbb3fJXqJMQl0mYkp2uoSRgqBoMqd6hi6O1czdj0Caa6GYgkTA7/eODveC4gEuN/2V54NXS4QYxLdbNc5YaukSJrDLqeM1sYl/KMtN+tJ6kndsSrEZ6LyBLHzzowKKy8pxeQAwknGW4V6NpkbwQ==
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08b5c9c0-366c-4ceb-680c-08d8613546fb
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR03MB4555.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2020 09:27:53.2243 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rofo6AOMlWuSpQFgUURNt+ONytHUCHAdLDZZq3JgCZcsUePwfWT1xvPp1a6pzS8+8xDKQYSS4KOh3B06ksq4EA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB4442
+References: <20200925033017.1790973-1-art@khadas.com>
+ <20200925033017.1790973-6-art@khadas.com>
+ <CAFBinCAJ6svwiv9OM6EHz7468D9h+jW_ULiGrorgLetcODsAKQ@mail.gmail.com>
+ <CAKaHn9+CWLJYN1Tt46VxBGNBEbVVJZWeL6ZJSf9w-5DmoxrvgQ@mail.gmail.com>
+ <CAFBinCD0_QgKKcH+Kb2QbMWnx_csoXMEhSFYzmDscdTVB2TUJw@mail.gmail.com>
+ <CAKaHn9K6O8u6Br84S63V0PDFBhiRbMdd4-bvC5FxFe6izj_Dvg@mail.gmail.com>
+In-Reply-To: <CAKaHn9K6O8u6Br84S63V0PDFBhiRbMdd4-bvC5FxFe6izj_Dvg@mail.gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 25 Sep 2020 13:26:39 +0200
+Message-ID: <CAFBinCAb91M5Zyn8yM1Ww4KKPANM2uqvJB11=QGjMJ2fdU836w@mail.gmail.com>
+Subject: Re: [PATCH 5/8] arm64: dts: meson: remove reset-gpios from ethernet
+ node for VIM2 meson-gxm-khadas-vim2
+To: Art Nikpal <email2tema@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_052755_707717_8B3A7213 
-X-CRM114-Status: GOOD (  25.21  )
+X-CRM114-CacheID: sfid-20200925_072651_562490_5D574C8B 
+X-CRM114-Status: GOOD (  18.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,124 +95,84 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
- Binghui Wang <wangbinghui@hisilicon.com>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
- Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- Jesper Nilsson <jesper.nilsson@axis.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, Pratyush Anand <pratyush.anand@gmail.com>,
- linux-arm-kernel@axis.com, Kishon Vijay Abraham I <kishon@ti.com>,
- Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- Xiaowei Song <songxiaowei@hisilicon.com>, Richard Zhu <hongxing.zhu@nxp.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Yue Wang <yue.wang@Amlogic.com>, linux-samsung-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Jingoo Han <jingoohan1@gmail.com>, Andy Gross <agross@kernel.org>,
- Vidya Sagar <vidyas@nvidia.com>, Stanimir Varbanov <svarbanov@mm-sol.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Lucas Stach <l.stach@pengutronix.de>
+Cc: devicetree@vger.kernel.org, gouwa@khadas.com,
+ Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org, nick@khadas.com,
+ linux-amlogic@lists.infradead.org, art@khadas.com,
+ linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 25 Sep 2020 17:17:12 +0800
-Jisheng Zhang <Jisheng.Zhang@synaptics.com> wrote:
+Hi Artem,
 
-> CAUTION: Email originated externally, do not click links or open attachments unless you recognize the sender and know the content is safe.
-> 
-> 
-> Hi Jon,
-> 
-> On Fri, 25 Sep 2020 09:53:45 +0100 Jon Hunter wrote:
-> 
-> 
-> >
-> > On 24/09/2020 12:05, Jisheng Zhang wrote:  
-> > > Improve the msi code:
-> > > 1. Add proper error handling.
-> > > 2. Move dw_pcie_msi_init() from each users to designware host to solve
-> > > msi page leakage in resume path.  
-> >
-> > Apologies if this is slightly off topic, but I have been meaning to ask
-> > about MSIs and PCI. On Tegra194 which uses the DWC PCI driver, whenever we
-> > hotplug CPUs we see the following warnings ...
-> >
-> >  [      79.068351] WARNING KERN IRQ70: set affinity failed(-22).
-> >  [      79.068362] WARNING KERN IRQ71: set affinity failed(-22).
-> >
-> > These interrupts are the MSIs ...
-> >
-> > 70:          0          0          0          0          0          0          0          0   PCI-MSI 134217728 Edge      PCIe PME, aerdrv
-> > 71:          0          0          0          0          0          0          0          0   PCI-MSI 134742016 Edge      ahci[0001:01:00.0]
-> >
-> > This caused because ...
-> >
-> >  static int dw_pci_msi_set_affinity(struct irq_data *d,
-> >                                     const struct cpumask *mask, bool force)
-> >  {
-> >          return -EINVAL;
-> >  }
-> >
-> > Now the above is not unique to the DWC PCI host driver, it appears that
-> > most PCIe drivers also do the same. However, I am curious if there is
-> > any way to avoid the above warnings given that setting the affinity does
-> > not appear to be supported in anyway AFAICT.
-> >  
-> 
-> 
-> Could you please try below patch?
-> 
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index bf25d783b5c5..7e5dc54d060e 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -197,7 +197,6 @@ static struct irq_chip dw_pci_msi_bottom_irq_chip = {
->         .name = "DWPCI-MSI",
->         .irq_ack = dw_pci_bottom_ack,
->         .irq_compose_msi_msg = dw_pci_setup_msi_msg,
-> -       .irq_set_affinity = dw_pci_msi_set_affinity,
->         .irq_mask = dw_pci_bottom_mask,
->         .irq_unmask = dw_pci_bottom_unmask,
->  };
+(adding back all Cc recipients - please use "reply all" so they don't get lost)
 
-A complete patch w/o compiler warning:
+On Fri, Sep 25, 2020 at 10:18 AM Art Nikpal <email2tema@gmail.com> wrote:
+>
+> this means that "something" is either set up incorrectly in the Linux
+> kernel or that u-boot does some magic (and the same magic is then
+> missing in the Linux kernel)
+>
+> maybe ;-)
+>
+> > I'll dig out my Khadas VIM2 to test this. what should I look out for
+> (are there any error messages, dhcp not getting an IP address anymore,
+> etc.)?
+>
+> just start your VIM2 board with ethernet
+>
+> 1) check connection its must works fine for example try ping your default gw
+> 2) do `ifconfig eth0 down`
+> 3) do `ifconfig eth0 up`
+> 4) check your connection again it will be broken and u cant restore it im sure ;-) only reboot
+# ping -4 -c2 google.com && ifconfig eth0 down && ifconfig eth0 up &&
+sleep 5s && ping -4 -c2 google.com
+PING google.com (172.217.22.78) 56(84) bytes of data.
+64 bytes from fra15s17-in-f14.1e100.net (172.217.22.78): icmp_seq=1
+ttl=114 time=22.4 ms
+64 bytes from fra15s17-in-f78.1e100.net (172.217.22.78): icmp_seq=2
+ttl=114 time=22.5 ms
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index bf25d783b5c5..18f719cfed0b 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -137,12 +137,6 @@ static void dw_pci_setup_msi_msg(struct irq_data *d, struct msi_msg *msg)
- 		(int)d->hwirq, msg->address_hi, msg->address_lo);
- }
- 
--static int dw_pci_msi_set_affinity(struct irq_data *d,
--				   const struct cpumask *mask, bool force)
--{
--	return -EINVAL;
--}
--
- static void dw_pci_bottom_mask(struct irq_data *d)
- {
- 	struct pcie_port *pp = irq_data_get_irq_chip_data(d);
-@@ -197,7 +191,6 @@ static struct irq_chip dw_pci_msi_bottom_irq_chip = {
- 	.name = "DWPCI-MSI",
- 	.irq_ack = dw_pci_bottom_ack,
- 	.irq_compose_msi_msg = dw_pci_setup_msi_msg,
--	.irq_set_affinity = dw_pci_msi_set_affinity,
- 	.irq_mask = dw_pci_bottom_mask,
- 	.irq_unmask = dw_pci_bottom_unmask,
- };
+--- google.com ping statistics ---
+2 [  127.097495] meson8b-dwmac c9410000.ethernet eth0: Link is Down
+packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 22.375/22.415/22.455/0.040 ms
+[  127.170167] meson8b-dwmac c9410000.ethernet eth0: PHY
+[0.2009087f:00] driver [RTL8211F Gigabit Ethernet] (irq=38)
+[  127.276459] meson8b-dwmac c9410000.ethernet eth0: No Safety
+Features support found
+[  127.278508] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+[  127.285230] meson8b-dwmac c9410000.ethernet eth0: configuring for
+phy/rgmii link mode
+[  130.425311] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+1Gbps/Full - flow control rx/tx
+PING google.com (172.217.22.78) 56(84) bytes of data.
+64 bytes from fra15s17-in-f14.1e100.net (172.217.22.78): icmp_seq=1
+ttl=114 time=22.4 ms
+64 bytes from fra15s17-in-f78.1e100.net (172.217.22.78): icmp_seq=2
+ttl=114 time=22.6 ms
+
+--- google.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 22.439/22.512/22.585/0.073 ms
+
+note: the sleep 5s is needed to allow the link to come back up and to
+get an IP address via DHCP
+also if the output is not easy to read in your email client then I
+have also uploaded it here: [0]
+
+can you please show me the output of the debug logs in
+rtl8211f_config_init() from drivers/net/phy/realtek.c (for example by
+replacing dev_dbg with dev_err)?
+
+
+Best regards,
+Martin
+
+
+[0] https://curlpaste.com/web/eaqun7
 
 _______________________________________________
 linux-amlogic mailing list
