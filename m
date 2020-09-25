@@ -2,90 +2,62 @@ Return-Path: <SRS0=7OpP=DC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FD14C4727F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 22:46:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A42DDC4727C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 23:26:40 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B9F5321775
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 22:46:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4E9E720838
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 23:26:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="znwNkKYZ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aNXJTlRN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9F5321775
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BFVzThcF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4E9E720838
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=davemloft.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:From:Subject:To:
+	Message-Id:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=b+Ydzjb0eH428CF8Umt7XFmFMP3iwQGke9dCcyMfjxM=; b=znwNkKYZCzmha6RQyoGiuxZ9p
-	NAygKDOk6oVGBjWj8SOyJTFJnPNqSOMVXEW0R4oZ1YPk4WXRtRaPRUB4CTuibUoK5XGazUjQ/3F/m
-	CUimrNkAqqa0v44h7qGBotgq9GWYSDiTEQ6XsBjJqL2SjW7t3QvI6nUeI5rPFZvpbRk3KJeujcQ21
-	eDrCBuUPqO7t/3DDQGVtE8aKL3RORPPty92JrjwAgnTM9uw2ybiOB6Rs63q9dTyg3ONheKpBECwLM
-	j4Z3Td3k4IAlz50te8DciET+9SVLHXCqVL4dFGD7DsLlvywiLWlWWc8CHuRsH0/VjGP9BUtt7eTCk
-	FSgcjf/9Q==;
+	 bh=s6AIZmwkYT6XwsvcsWdkDXexC7d+voPBav65EdxnZIo=; b=BFVzThcF2iWEWgsRXKcgYwCFH
+	ySsOn2Yd6SUJxwW9wZASnAW/aIxkYiQw8LV2pdr3MUvVa6XurB6IP5aBaDlPMcVuhQGfGssYLE54Q
+	TqZiMTW2RekbWln6iK9RqT/7LObH5oiI5mkP67f/NVTYyf/Ker6eo2P4PwCYFTudKUh/Gg8CGHMlh
+	gdn4645BcenwTjbaw2EKLNiCKLdY2zpFuT/gBGDym94lKGnEKocdVb6WXntAcpRf1ZqYGJT/QsFCh
+	QPXL29MO67kqX8hlfEFCdGbLSoffSqsGcWm5mzBYvBb8AjKqPpmNovXE92RJuI+E3Z1vQ4xh2r6rK
+	pNHzbBLqQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLwTv-00042w-Ez; Fri, 25 Sep 2020 22:46:23 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1kLx6g-0005gt-JB; Fri, 25 Sep 2020 23:26:26 +0000
+Received: from shards.monkeyblade.net ([2620:137:e000::1:9])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLwTs-000427-7C; Fri, 25 Sep 2020 22:46:21 +0000
-Received: by mail-ej1-x633.google.com with SMTP id q13so724606ejo.9;
- Fri, 25 Sep 2020 15:46:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=lrVKWzlDcGFhCrWgMifQZRLCGQ0NtpunSOEi48viSH8=;
- b=aNXJTlRNvZq5vFI7352QqBShKwE+D0YCXNgufsf0zU5cxvnSadfe/RttWPBqBdSjlp
- w7VrhUPHAKSQmmFMTjSWmwUmsg9ZqoB1kdhzk3b5mIrhaLtdXNKyH+U20iyfTpYtSmim
- wcI/e7JPqPPaVYOTaiNfGgNSb9ff2rts5FTpbkhH5h+V72M6z4A3mhDT2HjGBdvAlY3g
- 6y09YGie1G8Irk6wf5/Rzf3QCU5vwdQPzLDi/GWWgurYpYPUGMATQGC+C+09GUtcEglQ
- VhRnwgl8GCw1VPbqasMr0TjfEsA+6ajnzoeF3SDlwZJVQj+VdVAFvwQFzK1XXdAJlO5B
- k+Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=lrVKWzlDcGFhCrWgMifQZRLCGQ0NtpunSOEi48viSH8=;
- b=XOKETk0GHNyfZY7KgcNuzYJeTcOADZJGcM0Cy+2du/SHZCCfyPpqB7XDsh/FJxoaX3
- Ik3nEVLUh99QinoqhPpe9AGQA+MJg+1iZN5Z3ZyA7b137VsPFyRFX0rh64zvzzqqmL0D
- aBt4Z+YqI8KS0jY1k/MbgA8mdS6dlCoUGzhBPKFf2VwFh6EuNgS9AbLUB6c+MqzmXT8Y
- 3dsSJ3Z30kGjl+cYPDyau8b1LMmbNAmsrbvqT2JcwJiSZp1oKp2I4LZDA7MZ32RIA0RJ
- sz62/lZ9aSEn0mc4kq9dRe0PBD+QijmlexORBYY1XjW8CMNZYjceWaU1QUGOGCw4H0na
- /KCQ==
-X-Gm-Message-State: AOAM530j2DfRaPrDBlWdPdqTemcX8LRrisX4GUP5zbdehU/6rYBehz6a
- RRrSFAN93V/SLRdl067RHiI=
-X-Google-Smtp-Source: ABdhPJwVwZ0jezDaQdRB6TwC5/deAJ5D6Lv5vjVPupgSdS91PARaHHgvQ06C6wY5XEH+1quAeU52Ug==
-X-Received: by 2002:a17:906:1f42:: with SMTP id
- d2mr4816511ejk.407.1601073979139; 
- Fri, 25 Sep 2020 15:46:19 -0700 (PDT)
-Received: from skbuf ([188.25.217.212])
- by smtp.gmail.com with ESMTPSA id s7sm2744100ejd.103.2020.09.25.15.46.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 15:46:18 -0700 (PDT)
-Date: Sat, 26 Sep 2020 01:46:16 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: RGMII timing calibration (on 12nm Amlogic SoCs) - integration
- into dwmac-meson8b
-Message-ID: <20200925224616.fetyq4aiiwpspe7g@skbuf>
-References: <CAFBinCATt4Hi9rigj52nMf3oygyFbnopZcsakGL=KyWnsjY3JA@mail.gmail.com>
- <20200925220329.wdnrqeauto55vdao@skbuf>
- <CAFBinCB4woR1sZfT3tvCkHiR2eRgQfXg3jsD+KO0iMzyQRAGDQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAFBinCB4woR1sZfT3tvCkHiR2eRgQfXg3jsD+KO0iMzyQRAGDQ@mail.gmail.com>
+ id 1kLx6e-0005g6-Au; Fri, 25 Sep 2020 23:26:25 +0000
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id E7B0413B9D46A;
+ Fri, 25 Sep 2020 16:09:25 -0700 (PDT)
+Date: Fri, 25 Sep 2020 16:26:12 -0700 (PDT)
+Message-Id: <20200925.162612.1706734858463106489.davem@davemloft.net>
+To: martin.blumenstingl@googlemail.com
+Subject: Re: [PATCH] net: stmmac: dwmac-meson8b: add calibration registers
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <20200925215629.545233-1-martin.blumenstingl@googlemail.com>
+References: <20200925215629.545233-1-martin.blumenstingl@googlemail.com>
+X-Mailer: Mew version 6.8 on Emacs 27.1
+Mime-Version: 1.0
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [2620:137:e000::1:9]);
+ Fri, 25 Sep 2020 16:09:26 -0700 (PDT)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_184620_509459_84AF309B 
-X-CRM114-Status: GOOD (  13.05  )
+X-CRM114-CacheID: sfid-20200925_192624_592897_1124AA32 
+X-CRM114-Status: GOOD (  14.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,39 +69,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: f.fainelli@gmail.com, alexandre.torgue@st.com, netdev@vger.kernel.org,
- linux@armlinux.org.uk, linux-kernel@vger.kernel.org, kuba@kernel.org,
- joabreu@synopsys.com, peppe.cavallaro@st.com,
- linux-amlogic@lists.infradead.org, davem@davemloft.net,
+Cc: alexandre.torgue@st.com, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, joabreu@synopsys.com,
+ linux-amlogic@lists.infradead.org, peppe.cavallaro@st.com,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Sep 26, 2020 at 12:15:59AM +0200, Martin Blumenstingl wrote:
-> I do not need the auto-detection of the phy-mode nor any RX/TX delay
-> (these are fixed values)
-> however, from that patch-set I would need most of
-> phy_rgmii_probe_interface() (and all of the helpers it's using)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 25 Sep 2020 23:56:29 +0200
 
-So if it's not clock skews and it probably isn't equalization either,
-since to my knowledge RGMII MACs won't have because they are parallel
-and relatively low-speed interfaces, then we need to know what exactly
-it is that you calibrate.
+> The Amlogic dwmac Ethernet IP glue has two registers:
+> - PRG_ETH0 with various configuration bits
+> - PRG_ETH1 with various calibration and information related bits
+> 
+> Add the register definitions with comments from different drivers in
+> Amlogic's vendor u-boot and Linux.
+> 
+> The most important part is PRG_ETH1_AUTO_CALI_IDX_VAL which is needed on
+> G12A (and later: G12B, SM1) with RGMII PHYs. Ethernet is only working up
+> to 100Mbit/s speeds if u-boot does not initialize these bits correctly.
+> On 1Gbit/s links no traffic is flowing (similar to when the RGMII delays
+> are set incorrectly). The logic to write this register will be added
+> later.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-As you know, in a serial interface you are likely to find a BIST
-function implemented in the SERDES, this would basically offload to
-hardware the task of sending and decoding test patterns such as PRBS-11.
-With RGMII, you are less likely to see a BIST in hardware, hence the
-manual injection of packets that you need to do from software. Whatever
-solution you end up choosing, it would be nice if it created a nicely
-structured UAPI that could be extended in the future for other types of
-electrical interface selftests.
+Please add these definitions alongside actual uses of them.
 
-> also I'm wondering if the "protocol" 0x0808 is recommended over ETH_P_EDSA
-
-It probably doesn't make any difference.
+Thank you.
 
 _______________________________________________
 linux-amlogic mailing list
