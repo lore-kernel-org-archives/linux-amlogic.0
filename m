@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0EF7C4363D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 14:29:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 666BDC4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 14:30:15 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D603E208A9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 14:29:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D1ED7208A9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 14:30:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mh/I6Cbq";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tKRJzo1D"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D603E208A9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rjxxhCf0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rP8nrwen"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D1ED7208A9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=HBBbm5ZiaGr4AovX78QzAAlMXwKHZgrZDOoYNZfo9Oo=; b=mh/I6CbqG24lUrb5yYhQvxrsqB
-	GBelIy/CIR8+Qn2ShmIxTE7/uQuy0mRWlTnZHyfsKfBYktAfLbpdjbgYLNvdjNaqYiPG3TaO1UNnT
-	rSJIa9wKGdED0KBawFKalhiqdgDJ83kudMTr7PFEEFcAe1kB5ct/T3GX/lUeioxopUqigylZQ7S59
-	L4Bl03+r7Q7HR7TB6T2FFUAe0rVO6dvfB8PAMriPxw0jKW4V7pkq4jvufLSav/i7Bb26Kz577BliZ
-	HohUScsOBZKJ4EkiivCZKkMkoxxqQz27Hq/4IyCWbjlbMvoqL6tbXF0XcHI1XRpImu6am4XbVEE8d
-	6Jz7wX1A==;
+	bh=OwgH5ShrELvavsSjpHKWgJlIrFUMKEQbBS3+CYfxfQQ=; b=rjxxhCf0cuwDbE3RJ/5rKZfifS
+	8Q8WuU9FvkvIVfKNmel1Wpn2bsKVeflJZ0IcITXRkX2lsXSwHa3TFMGG5rSU1C7gRJQLmGv4P73qx
+	88liFUhzOBWgxMvoeZ2Soea/ep5nxtNWXxcL6j+tP24dn43SkhAsjsTe7Tst7LaIPx1veicncXVHL
+	f8mCtcnfnpqJB2CfL9PYLItm7Mme4gUOQuV/c7u1EQSK13Dr+XPqe/m8DFzpP+Frjk+bXlzJI0rh1
+	pF4TrZzP5JRnFjRsIfCv9By1+b0+5qcnndGP0MdEY5vN5le4dTJysodlbVZ5pBoH2xeG15ulqgm2n
+	0Nj4oULA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLoj3-0004ho-QL; Fri, 25 Sep 2020 14:29:29 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1kLoji-0004rU-5E; Fri, 25 Sep 2020 14:30:10 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLoj0-0004gw-PF
- for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 14:29:27 +0000
-Received: by mail-wr1-x444.google.com with SMTP id c18so3810377wrm.9
- for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 07:29:26 -0700 (PDT)
+ id 1kLojf-0004qZ-5g
+ for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 14:30:08 +0000
+Received: by mail-wm1-x344.google.com with SMTP id d4so3226211wmd.5
+ for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 07:30:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version;
- bh=AKLSvGlfQHuDFjha5/xWUU75A7IObeSEIgoQcsat7tQ=;
- b=tKRJzo1D2RqbJ+1RNAXlZqZ0uZwvxHE2I0a3XKx5/XFrZcIJ6pcYUVrZhR0oiaVfYf
- hxDPsfmY3RGZjcT56UHXlmjN65YFMfS5AW6lXsBw3dhofTUg+eqLSLjMzlpLtYz11rfv
- udHvbxw9J7/sQMt0dxptPPDGls4WBsH4INTAIgLiPryLTcR7PS37a+gcA4dI53l8/tqA
- rJezpZKfW8OX7TbszbWDE5L/CUY3WWjzRY48KWL0JXq68mg2SvyWLRNfo4OEDxIW1Dae
- 78KmtAcpub4jYLbxQAgwn70Lq3BExuXH/xslCrYCUqPyUuXm97LtGOM231D3qJ3JW65j
- YK0w==
+ bh=rm1AfqsGccu2J+rmTHRUHzmxx9NRlcAECDkFtk/4MDM=;
+ b=rP8nrwenoYqgMPW2Q/YDwuKVuZ5Grbh+GJw+NK5U2U3NnKk2h2JIMD4jMN5D8zMzyk
+ IA3cDJ3Nw82fz706WPGOgmQdbKQg8XGfRyDW5py+e/lh8B1eT7BRhSQ+GUMa7ktDpg0s
+ eAcEu7Y8qg6sRF0BXO8JrD3ZavEto3LKHFXvJoUU8kGM7/s7BN5G9Zrd49P9JGsyNtQh
+ Sw+R7NsZC6JqnCHCFgWgJ6q16w1lgfdSlx+foxv75579OoLsYD6IRRmvhQiUIw+YjIYo
+ 31Uq8Xzf1rZoDFT1+5vmPey7RqMxsZkE4RNgHlaSWNqaaWb5GtIThnhgL+Jm7cQGgO2K
+ hLlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=AKLSvGlfQHuDFjha5/xWUU75A7IObeSEIgoQcsat7tQ=;
- b=aX3kDMR5vW+NMN/LLA3m/K762fmBpRDuXH8UVzWlaGwNVESCeoJ9FALjVik7DDtT9J
- t4BXDkTPHx+kri6UeqVCIQXUlyAqCg7yqWtCmp2rXUeaCIhhndAwSSxce9S5Myra6JVa
- MHBmP0XbH337ZjtGZM9nlXXWVUpaxd6gyDuEOyNxIJYrm0Gc0lqOydMzZCJgozA+dMbZ
- 2yYfjYe+pAqpi7mLiQGUXMWsrTb+A9xkaTiHzO7YTLzrN/Pz30W3zR5sG+MNbzXOFc7A
- 3hd8GibV12LlaPP2Pbj0G8ZB60LoGjb1gXzo5bmaD3/uNpLvWol4p1OrGPNuZqREZO7c
- j02Q==
-X-Gm-Message-State: AOAM533zu/vlFyLA609mAkmjNDxBFw1EwPHk5ZUKcZEgd+Yydb8Hp+pj
- nlnnHxvQXtlCjlib8n/YmtfGcQ==
-X-Google-Smtp-Source: ABdhPJzSPTjCGIB0Kzxh/Uc9Tz3g9rvr0/gD0KGzc/AgmX4d2axvQr3PsvA3gAro2xfl5IfAJFvhjQ==
-X-Received: by 2002:a05:6000:1c8:: with SMTP id t8mr4747720wrx.3.1601044165294; 
- Fri, 25 Sep 2020 07:29:25 -0700 (PDT)
+ bh=rm1AfqsGccu2J+rmTHRUHzmxx9NRlcAECDkFtk/4MDM=;
+ b=jqngDb7/B91vfn08bn7Grb5PK00wB7ndtiZLPy6E5/r2gw83KLHUilQewTBua7ynO9
+ MvfUim77Y9Y0o/70FCSCuC4y4zT1QyFT+YV2ddeFaUbtlYCvszVho0UI/alZlvUC5Cld
+ CoxDxw+UD90utXdbF34a/B4wPVzsZOnp1uu1ydbtJj83IRPNOCVqr8NpJLAWwOrzHObn
+ dWYBMikk47500kFU8NmHKu55bwi7+gWZYGFE3zYfcNFUKgggHQRyRg4d7ykCXOkCPcbv
+ 80dIWM95uHE65OFM32Nyizh6jGj4rS3laKQ2DPgjN46Aw/7uMq0HgRvbnWfEv/2418zw
+ dRiw==
+X-Gm-Message-State: AOAM533m4vn2JZtvLspm9KXF79Bk5sQOvHxIfqvRAqOEa9tHt1y+wH4M
+ iqaZLyIFGeQUl1vYgTxqH5KwuONtKFftcA==
+X-Google-Smtp-Source: ABdhPJzz4D1Hh8prQZy1FzzJHMH2E9Em1fWA0Tmln0lEqsPsAws3U82rvPsmihLLfjwBlWL5Ub90Iw==
+X-Received: by 2002:a05:600c:2312:: with SMTP id
+ 18mr3402691wmo.141.1601044205652; 
+ Fri, 25 Sep 2020 07:30:05 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id d18sm2990321wrm.10.2020.09.25.07.29.24
+ by smtp.gmail.com with ESMTPSA id u12sm3178295wrt.81.2020.09.25.07.30.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 07:29:24 -0700 (PDT)
+ Fri, 25 Sep 2020 07:30:05 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
 List-Id: <soc.lore.kernel.org>
 To: soc@kernel.org
-Subject: [GIT PULL] soc: amlogic: driver updates for v5.10
-Date: Fri, 25 Sep 2020 07:29:22 -0700
-Message-ID: <7hblhukjzx.fsf@baylibre.com>
+Subject: [GIT PULL] ARM: dts: amlogic updates for v5.10
+Date: Fri, 25 Sep 2020 07:30:02 -0700
+Message-ID: <7h7dsikjyt.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_102926_820170_228848C3 
-X-CRM114-Status: UNSURE (   8.47  )
+X-CRM114-CacheID: sfid-20200925_103007_276340_AD5761BC 
+X-CRM114-Status: UNSURE (   6.50  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -106,30 +107,22 @@ The following changes since commit 9123e3a74ec7b934a4a099e98af6a61c2f80bbf5:
 
 are available in the Git repository at:
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt
 
-for you to fetch changes up to 5aabf1180fa9a8d876debd39a8cfb60b022019bc:
+for you to fetch changes up to 8bcbcdb7293cc24eb7b24b67ef2b29b3a45a49e0:
 
-  soc: amlogic: pm-domains: use always-on flag (2020-09-24 09:50:01 -0700)
-
-----------------------------------------------------------------
-soc: amlogic: driver updates for v5.10
-- misc. pm-domain updates
+  ARM: dts: meson: move the L2 cache-controller inside the SoC node (2020-08-24 14:15:36 -0700)
 
 ----------------------------------------------------------------
-Kevin Hilman (1):
-      soc: amlogic: pm-domains: use always-on flag
+ARM: dts: amlogic updates for v5.10
+- minor cleanup
 
-Neil Armstrong (2):
-      dt-bindings: power: amlogic, meson-ee-pwrc: add Amlogic AXG power controller bindings
-      soc: amlogic: meson-ee-pwrc: add support for the Meson AXG SoCs
+----------------------------------------------------------------
+Martin Blumenstingl (1):
+      ARM: dts: meson: move the L2 cache-controller inside the SoC node
 
- Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml | 23 +++++++++++++++++++++--
- drivers/soc/amlogic/meson-ee-pwrc.c                                | 30 ++++++++++++++++++++++++++++--
- drivers/soc/amlogic/meson-gx-pwrc-vpu.c                            |  4 ++--
- include/dt-bindings/power/meson-axg-power.h                        | 14 ++++++++++++++
- 4 files changed, 65 insertions(+), 6 deletions(-)
- create mode 100644 include/dt-bindings/power/meson-axg-power.h
+ arch/arm/boot/dts/meson.dtsi | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
