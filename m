@@ -2,86 +2,79 @@ Return-Path: <SRS0=7OpP=DC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B7A6EC4363D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 14:31:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B968C4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 15:05:34 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4DC34208A9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 14:31:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0A7FA206C1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 15:05:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KILy3wt7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="S3VQn0gr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DC34208A9
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RLwSLYNk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="MJOGbF86";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Yeohw/JX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A7FA206C1
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=F4a2naYhYl6IFfPMqK3XXIU+D/8EUoyMMpNvep8PUUQ=; b=KILy3wt7FhME8ip1BikeQVr7Ik
-	IhxyopAtE73igt/QrKR6hruKZWa7bvooe2rA9M+vAAlLbF0c+VFof39qGe1vfDbCApm2CQF6OQWnK
-	20Ur+oQtdquyojbQi24PmNr36Fbw/E3IPy4eJYeOuNcgTtAX2mbBIy7cTec4ykBfPhd9Ql396970z
-	QqfJYX4IMSAhmaZmKw0UDI3OAbVuUj6jD3SnkL6JZLgcApBrIZvzp/8yP5MrHMqBUVwJws77IEUNc
-	Gnav9Ucj52LVH9tAQNfk9cA2KJYg+z35Jxwy7lZ8mUV8UWvldXBg8+56++eOpinx/zsCUlNJ9DWof
-	x9P2igSg==;
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=SG8B1oUFQtEdR0Xcmc8TtMkkpOLD8dmhF9Xj2pKntD4=; b=RLwSLYNkkUAaiYCXErT9N2rv7
+	I4CBjSHr9Eu0KrDssbMKZc8oCoCfoktTQtpsipjKjRmEkGeI7weLfuRfPzGjZLBRmKzu2lk/nQ4ps
+	xfOHXLAsmk5OFpLv3KRUY+PVOytg5xmINeeaxWn14rQekZgvWmRalTkdBx2S0fjev7qycO7rLoZNO
+	DX+hn3JJgK4mx4ag5f3lWWaOh+pRrvL9teETLnvjcgPn9K+2V4hh7oh7RiIGGntEGheyyhVlYFNJb
+	mNI2943y6Ck4kMX2eU7g4yWMyyDJkafR5jDfj4b7t3LcMNJ0DIOXIYMj0o1mB5rW1L/f6itREmshP
+	Nfh1RM7zg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLokY-0005Gl-E7; Fri, 25 Sep 2020 14:31:02 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1kLpHp-0003GV-6x; Fri, 25 Sep 2020 15:05:25 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLokU-0005Eo-N2
- for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 14:31:00 +0000
-Received: by mail-wr1-x441.google.com with SMTP id t10so3878521wrv.1
- for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 07:30:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=arq6hBqKcw4xpRgA4LyIIax3DkHTeRanbUeXwfcpX84=;
- b=S3VQn0grifi9xYru7o5R6mX6oIPlQKEiYWl9uw6XTxHTExJHyq8GTxc3VjOSndjlv5
- dlwS8WRhEwzMYrMo7tI6YbnS65gMKTgtigADC0yHC5l2AzGWpRkNpQ3qrPiegAnfY6tY
- FXDpzMpBaTc7E+jywvaaUQITmMsJdsdN9TVBpk4T39mXgp4BwMbp/BimAz4aHVDr9nW3
- DlCsp1oBOZKRBtmDu6zuHgNH4hTYqxEcRIvMlA1CcE3A4Xp+zPP8p+DRr35zMTxzerQE
- Iip5nayi3KRq2CwtGBmPVua5oNCCXEthrogaqRjywJocRW4BTGPy9hUbLcq362N43uaR
- 2eoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=arq6hBqKcw4xpRgA4LyIIax3DkHTeRanbUeXwfcpX84=;
- b=HWLhBdys5v1UeTogVnte3jd1TqGzBfym2Yb0uXhDzptihcfbw4nHrM8IaqmxHj/WZF
- UK8yak4c6nTeV9D5lIyR0EFsFkULzuIRKnNfwaA/kA8PtCPp5JQss6PQRc3qN9zDzrRk
- aCXOelK86RMUrZWhOUSCwZ6H5YGI4Ftw83rymVtLDl+pGuDa83Ghxc7Bf0/L57SU2VCq
- GQkDQukoAXyQ9tDqn1zGhMSDSAnuXcQIAohUPt3tb/3FPV88Un6ITBJ2Ah2MEBe0H7pM
- ouGm1YCqQjfC5bT9PiUyTaxgbHNv0cIZy+gzHwc7BaYaVyygEz+V+sg9sj3HzFPdlvUW
- E/iw==
-X-Gm-Message-State: AOAM530ht/Ma77RcndHdBiwSym7cpqzcTVMCucqHiBi4qZ30QamY9HpS
- a4jfYtXVTS0gpsnlewfBdHO9hw==
-X-Google-Smtp-Source: ABdhPJwmhtc51Rrtzom4ng21ESoGLAWUQoFH+4tXWhCys0e+s0LRoV38gAF4QOxHwGSAgQyRvwF4kA==
-X-Received: by 2002:adf:93e5:: with SMTP id 92mr4719786wrp.31.1601044257528;
- Fri, 25 Sep 2020 07:30:57 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id p11sm2922941wma.11.2020.09.25.07.30.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 07:30:56 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-List-Id: <soc.lore.kernel.org>
-To: soc@kernel.org
-Subject: [GIT PULL] arm64: dts: amlogic updates for v5.10
-Date: Fri, 25 Sep 2020 07:30:54 -0700
-Message-ID: <7h3636kjxd.fsf@baylibre.com>
+ id 1kLpHm-0003FG-Md; Fri, 25 Sep 2020 15:05:23 +0000
+Date: Fri, 25 Sep 2020 17:05:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1601046320;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=W7es1yDj9/zjzMxs06+Vww2hrDHmTr8lqczgB9WnfFc=;
+ b=MJOGbF86s4ulg2dwLhyiFpUwrUbKsXPpOgobXLou3xqdRJeQXF7Q5OF6REbbYec3Vqu7nG
+ L4riyBPLz5XB1Ozl7X5ifiwO+7PCNFDaRPoXdXhrWEZIPM1QR2O7oB2AV93Dyv4rY8X8WC
+ UoPw1uv74YznaDnkKwaMc2NdHO58KjnpX+VlC6Frp34l8Z1DYxMj36zhLz0624go36UEcc
+ KXlNrxkFJhNhBAVAd9BaYatyUJakQdhnr8gObRGNN75Amz+I1EQ9tNZM+Uye1drKCANkgj
+ LJ8/BpTX4Tod1gIMvXsCaPQku0HUM0YfkPYr8Ez5y/7n9Oo2xtQkuRvtGNcQeA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1601046320;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=W7es1yDj9/zjzMxs06+Vww2hrDHmTr8lqczgB9WnfFc=;
+ b=Yeohw/JXSR/26e4gGcNvnZlx7fiU8zt28HJO4pvel3a9b/BmscppNEfuRvko8R4VPwr27D
+ GqUr3aC7ybFLnQBw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH] mmc: host: meson-gx-mmc: fix possible deadlock condition
+ for preempt_rt
+Message-ID: <20200925150519.sbzq57qphvzrdro3@linutronix.de>
+References: <24a844c3-c2e0-c735-ccb7-83736218b548@gmail.com>
+ <7hk0wj9ki2.fsf@baylibre.com>
+ <1jzh5e8bld.fsf@starbuckisacylon.baylibre.com>
+ <20200925134445.rk366jip5ne4x7em@linutronix.de>
+ <1jh7rmj64u.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1jh7rmj64u.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_103058_805290_E6B01489 
-X-CRM114-Status: UNSURE (   9.61  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200925_110522_872283_42DD2F8C 
+X-CRM114-Status: GOOD (  16.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,56 +86,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, arm@kernel.org,
+Cc: linux-rt-users@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+ linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Brad Harper <bjharper@gmail.com>,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The following changes since commit 67d141c1f8e604a9c02d6a60f7827443d7f44762:
+On 2020-09-25 16:14:09 [+0200], Jerome Brunet wrote:
+> Looks like we need to do manually what IRQF_ONESHOT was doing for us :(
 
-  arm64: dts: meson: odroid-n2: add jack audio output support (2020-07-29 12:18:32 -0700)
+IRQF_ONESHOT disables the IRQ at the irqchip level. You must ensure that
+the device keeps quite. Usually you mast the interrupt source at the
+device lee.
 
-are available in the Git repository at:
+> This brings a few questions:
+> 
+> * The consideration you described is not mentioned near the description
+>   of IRQF_ONESHOT. Maybe it should so other drivers with same intent
+>   don't end up in the same pitfall ?
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64
+From request_threaded_irq() ->
+|  *      If you want to set up a threaded irq handler for your device
+|  *      then you need to supply @handler and @thread_fn. @handler is
+|  *      still called in hard interrupt context and has to check
+|  *      whether the interrupt originates from the device. If yes it
+|  *      needs to disable the interrupt on the device and return
+|  *      IRQ_WAKE_THREAD which will wake up the handler thread and run
+|  *      @thread_fn. This split handler design is necessary to support
+|  *      shared interrupts.
 
-for you to fetch changes up to 63fafc5a046b1e21756de691b48f0c70c25e1426:
+Just the line that saying what needs to be done before returning
+IRQ_WAKE_THREAD.
 
-  arm64: dts: meson: initial support for aml-s905x-cc v2 (2020-09-18 13:35:27 -0700)
+> * Why doesn't RT move the IRQ with this flag ? Seems completly unrelated
+>   to RT (maybe it is the same documentation problem) 
 
-----------------------------------------------------------------
-arm64: dtc: amlogic updates for v5.10
-- new boards: libretch s905x cc v2, Hardkernel ODROID-N2+
-- vim3: sound updates
+It is unrelated to RT. Mostly. You end up with the same problem booting
+with `threadirqs'. RT has the additional restrictions that you may not
+acquire any sleeping locks in hardirq context. This you can see with
+addinional lockdep magic.
 
-----------------------------------------------------------------
-Christian Hewitt (3):
-      arm64: dts: meson: convert ODROID-N2 to dtsi
-      dt-bindings: arm: amlogic: add support for the ODROID-N2+
-      arm64: dts: meson: add support for the ODROID-N2+
+> * Can't we have flag doing the irq disable in the same way while still
+>   allowing to RT to do its magic ? seems better than open coding it in
+>   the driver ?
 
-Jerome Brunet (5):
-      arm64: dts: meson: vim3: correct led polarity
-      arm64: dts: meson: vim3: make sound card common to all variants
-      arm64: dts: meson: vim3l: remove sound card definition
-      dt-bindings: arm: amlogic: add support for libretch s905x cc v2
-      arm64: dts: meson: initial support for aml-s905x-cc v2
+Puh. That should be forwarded the IRQ department.
+So we have IRQF_NO_THREAD to avoid force threading. This is documented
+as such. Then we have IRQF_TIMER and IRQF_PERCPU which are also not
+force threaded and it is not documented as such. However it is used for
+the timer-IRQ, IPI, perf and such - things you obviously don't want to
+thread and need to run in hard-IRQ context.
 
- Documentation/devicetree/bindings/arm/amlogic.yaml              |   2 +
- arch/arm64/boot/dts/amlogic/Makefile                            |   2 +
- arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi         |  88 ------------
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts       |  31 +++++
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts            | 618 +--------------------------------------------------------------------------------
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi           | 625 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts | 318 ++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi              |  94 ++++++++++++-
- arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts          |  86 ------------
- 9 files changed, 1071 insertions(+), 793 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
+What you have ist a primary and secondary and IRQF_ONESHOT and don't
+want the primary handler to be force-threaded. I can't answer why we
+don't.
+However, drivers usually disable the source themself if they providing
+both handler.
+
+Sebastian
 
 _______________________________________________
 linux-amlogic mailing list
