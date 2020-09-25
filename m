@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 674F0C4363D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:42:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 65C8CC4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:44:56 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DCADB20717
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:42:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E695220717
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:44:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EgK17AsC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qaMCCLym"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DCADB20717
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CFuA8aSA";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="vNiQc0HF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E695220717
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ZYhQMIzl4Lx1248YZrRFLx8e1RRUaiZPE2BbTyzVxi4=; b=EgK17AsC0GXhAZNv6mupEeynL
-	AyzuYxwZBnHNuyqgUrQn51menjWois2XVi9KrG4VL01dtGXU51zwWfB0ZZnAZPIweK0DLyhYaQU3Z
-	+aVoXoDOUPn+axtkpohK6PK54Tsah0z8vsD15DPgQyc8VKjCwDDnXB+EUky+rqbgkYCXs+HnNEA8i
-	DPsZloY8RrEXXyhwioBCDRgprmR7T0/Az2+HyPMQeg+AENW5MCVPgwLZniXwXCMMnQRKfvSMwHg0N
-	c/CtvwGRbhvoewwCHhE2CwXpWMAr6VUJpfMDjxbYDGpKIJ9brM4gbVz4U8Hly89lCOqqOfQCj7t9f
-	UMv9OchFw==;
+	 bh=4lud6uQvTTvgRG9PnCuXou4MPZB3YvN0t42IDOj7zD4=; b=CFuA8aSASPw5pzacl78/w/x10
+	QGqrXSEfTms/5DxMzw6a4BrpEPEuuj1pp/3wUKePb3LA/Lwxh5uPihWFYIQAHl0n+iOhbumTgZdIC
+	KnZ4YJLWuTJYdARLR8qq/NyxR5fzHJ1pcKr80yBuE+4hXbLl/xXnyt76csUOrUHmCtWUApFyUdSHN
+	extL8MmsS9Q/22WqnQlDXz47N2X7iVrmb+Cv/aI/mV+CBIZoMLMZ5nNiqYRK1SxmJQZPU0CV78vbR
+	1csJs3sOu8Kf8Oh3zUFjdcPE/k8JXyBLQI8QMO148uZXBJZSAnc1cPPy+NBVSQ1cNa5ojG2xQtOru
+	cG2+zwT6g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLiMq-0003sb-LK; Fri, 25 Sep 2020 07:42:09 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1kLiPR-0004mP-3t; Fri, 25 Sep 2020 07:44:49 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLiMe-0003mq-R5
- for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 07:41:57 +0000
-Received: by mail-wr1-x443.google.com with SMTP id a17so2448790wrn.6
- for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 00:41:56 -0700 (PDT)
+ id 1kLiPD-0004hd-Qk
+ for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 07:44:38 +0000
+Received: by mail-wr1-x441.google.com with SMTP id m6so2503271wrn.0
+ for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 00:44:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=rimPntz8oB3SjlOMpnpdpF3yGIO70tR8q+q8TkfvmQo=;
- b=qaMCCLymdoRHYeAUTDPbA5BIT2eD0M3/ShvE24ftjMpqyLXrBawGU/F8fv+HaqLtFI
- F8EKbObzFQZCOmxLsT3lM4NRywiKZbVDeXaE3Yku9J+s2+aH1sOBScbplq7g5AvTSOq0
- MGMRfzw+naSbZJ3ro2dHmJ5sZiXyeJFxCwk5Ov/Vaq0pL05piBzaVHQ36OqW8xeFDiVl
- 2nCcQeEBYQDCywkbZZ4rEx4S1fSuyT5nE4iAmmNc0LCdRujG8b1iDv+PktzjeHp0+qk5
- NDje/0hftg4pWhcTBR1zAhixrWW2Fi1n1ioz7zckv1ddt/osuWLuOL9PQZ/Zr6I04HLs
- 7Mxw==
+ bh=im96TIL9C+k95zzwEvhBlq40VuO2T9igkzJ1/Rl1pDc=;
+ b=vNiQc0HFgCjV+BaoS3nk4rHdq2gSipLNzro2j3L8yzJ4G6O+EspYep0wQh5oUqTzFk
+ vQuqzmZyBKG0a4hA6IRwd0gRLX20k4mcWPe61vnbeAPvo/9gnXw2HhmV6uwarMaPSCqt
+ gC+N2d57vMHdehcuSh8yGEfuDPKvVTPxLKN+atXVs9DUiyEUtlicJV7BmsbSpXGJ0gH0
+ dE0rX481dFEpFg7rPXbRNq23h1Qhsl1nKVkHqZwtC/dqgDemVpQEd9VKpitgr1TZotfw
+ hljNLgMEjv4alSJC22Ae2nCEJ4DrBnaQ1FdwdEIDeL4VhvyGwsHghT3IIOqdooKL0jJL
+ NTCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=rimPntz8oB3SjlOMpnpdpF3yGIO70tR8q+q8TkfvmQo=;
- b=J7DvOTdSxBQl/1aU9Fdr6GJJzaQzSWiSHTUH1cgyOvmHQB4q6KKZgc/Bi/lwnEv/C2
- ujvBTRBF+3i9RwsGCtucgYjj0DEQvaOBDE8pfG92qTPikspncjOEP8dM9aMnOmSJSNSh
- RYIDoL9SMmcs/D+MT0KzfiPLuE8a3gFq66Y1IPUjiZn+O49llj+D+u98WSxRSaHq+YyA
- 5CFo1misU1yNuYt6VN6vQSTAjZ/C/nNdLlwKUoa8HpyahN6stvHJqENSlHJ96AR55HWI
- olSxR6AXmBOkwhONIy1qxq4bD4sOSg4T2pVRuMKlOone6LHL4j6dvWlVs5naCMONoNqE
- oS0Q==
-X-Gm-Message-State: AOAM532XlPoFZIgDvuuT5E/1Ze6Qwk/uHDqBYO66BoLLpBHWjWuUum1z
- 0uCjpR3ep/wLU+PuNhdw9VuZdw==
-X-Google-Smtp-Source: ABdhPJzmIoGZd4yVbeS6/8R4H4CU5hvvSV2xRjiSsUmiXIJgLVOxaIe42bgqy6iy1UiDk68waUMk5w==
-X-Received: by 2002:a5d:4811:: with SMTP id l17mr3101303wrq.252.1601019715298; 
- Fri, 25 Sep 2020 00:41:55 -0700 (PDT)
+ bh=im96TIL9C+k95zzwEvhBlq40VuO2T9igkzJ1/Rl1pDc=;
+ b=bUTTcTvnbYDQMVL/gugnK65iLoUQwQbybYPc7d7iygzgpOBZsSOq7ujFd7CNjpWMIh
+ FWwVC07mO8s5j9AmlmAUd6a7t9OA/8Hg+Sk9Wu3xmquhVbYyT2nGIN3Se4CNfpcYByFl
+ YA7mXfYlM6UkEvmHOs25BcuJeRzY0wrlqKglFZJjNPSUuWKZvyF4P0xrXdV+wgYfWgz5
+ XEM8+jTQJy/8S5pR/Jkawcp/QbJmpnvWX4v3u8LUdvK6c2t1pIh+/iQzKe3CR3HazUUX
+ xQli8iw2R5BRaBx8hdXKM2BGAn1nrClP6DLOzKYEMmi5N7rHVaKKaAEfPFlu4ak1bCMc
+ dNxA==
+X-Gm-Message-State: AOAM532JuuJJS/MNPAZ2EmQkUcy0p6U0pQ9bNNpGMge/vGMX9AQHhJTa
+ 0VEM2wb8C38EeXRkEuNPvWiFwq8P1Ia8ziSu
+X-Google-Smtp-Source: ABdhPJy5lPRLpI/FqRBQkmGGyRIGqZmpmxsK+kybvhTZi87l6KV72lpVte2Wv7u06Vf9MaIGQvZ0yw==
+X-Received: by 2002:adf:9405:: with SMTP id 5mr2918720wrq.51.1601019874636;
+ Fri, 25 Sep 2020 00:44:34 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:28ac:1772:9398:891a?
  ([2a01:e35:2ec0:82b0:28ac:1772:9398:891a])
- by smtp.gmail.com with ESMTPSA id c4sm2001009wme.27.2020.09.25.00.41.53
+ by smtp.gmail.com with ESMTPSA id p11sm1796785wma.11.2020.09.25.00.44.33
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Sep 2020 00:41:54 -0700 (PDT)
-Subject: Re: [PATCH 1/8] arm64: dts: meson: update spifc node on Khadas VIM2
- meson-gxm-khadas-vim2
+ Fri, 25 Sep 2020 00:44:33 -0700 (PDT)
+Subject: Re: [PATCH 6/8] arm64: dts: meson: disable vrtc for VIM3L boards
+ meson-khadas-vim3
 To: Artem Lapkin <email2tema@gmail.com>
 References: <20200925033017.1790973-1-art@khadas.com>
- <20200925033017.1790973-2-art@khadas.com>
+ <20200925033017.1790973-7-art@khadas.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <f2863d99-84eb-8a47-7d97-9c9cd417ec29@baylibre.com>
-Date: Fri, 25 Sep 2020 09:41:53 +0200
+Message-ID: <0b81b4e6-57e7-3191-b7e5-3ec5e69b20ac@baylibre.com>
+Date: Fri, 25 Sep 2020 09:44:32 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200925033017.1790973-2-art@khadas.com>
+In-Reply-To: <20200925033017.1790973-7-art@khadas.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_034156_893283_8F7EA2EA 
-X-CRM114-Status: GOOD (  16.85  )
+X-CRM114-CacheID: sfid-20200925_034435_913982_085BC1D4 
+X-CRM114-Status: GOOD (  17.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,48 +157,29 @@ Cc: devicetree@vger.kernel.org, gouwa@khadas.com,
  linux-kernel@vger.kernel.org, robh+dt@kernel.org, nick@khadas.com,
  linux-amlogic@lists.infradead.org, art@khadas.com,
  linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/09/2020 05:30, Artem Lapkin wrote:
-> 1) The VIM2 Boards use w25q128 spi chip only not w25q32 or w25q16
->    it's not really seriously becouse have 'jedec,spi-nor' which
->    have auto chips identifications
-> 
-> 2) max-frequency is 104Mhz
-> 
-> Signed-off-by: Artem Lapkin <art@khadas.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index bff8ec2c1c7..a6baf865aa2 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -336,12 +336,12 @@ &spifc {
->  	pinctrl-0 = <&nor_pins>;
->  	pinctrl-names = "default";
->  
-> -	w25q32: spi-flash@0 {
-> +	w25q128: spi-flash@0 {
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> -		compatible = "winbond,w25q16", "jedec,spi-nor";
-> +		compatible = "winbond,w25q128fw", "jedec,spi-nor";
->  		reg = <0>;
-> -		spi-max-frequency = <3000000>;
-> +		spi-max-frequency = <104000000>;
->  	};
->  };
->  
-> 
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgpPbiAyNS8wOS8yMDIwIDA1OjMwLCBBcnRlbSBMYXBraW4gd3JvdGU6Cj4gdnJ0YyBub3Qg
+dXNlZCBmb3IgbWVzb24ta2hhZGFzLXZpbTMKPiAKPiBTaWduZWQtb2ZmLWJ5OiBBcnRlbSBMYXBr
+aW4gPGFydEBraGFkYXMuY29tPgo+IC0tLQo+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMv
+bWVzb24ta2hhZGFzLXZpbTMuZHRzaSB8IDQgKysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNl
+cnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9t
+ZXNvbi1raGFkYXMtdmltMy5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29u
+LWtoYWRhcy12aW0zLmR0c2kKPiBpbmRleCAzMTExYmYzNWMwZi4uODFiYjg4YTc2ZDUgMTAwNjQ0
+Cj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWtoYWRhcy12aW0zLmR0
+c2kKPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24ta2hhZGFzLXZpbTMu
+ZHRzaQo+IEBAIC0yODQsNiArMjg0LDEwIEBAICZwd21fZWYgewo+ICAgICAgICAgIHBpbmN0cmwt
+bmFtZXMgPSAiZGVmYXVsdCI7Cj4gIH07Cj4gIAo+ICsmdnJ0YyB7Cj4gKwlzdGF0dXMgPSAiZGlz
+YWJsZWQiOwo+ICt9Owo+ICsKPiAgJnNhcmFkYyB7Cj4gIAlzdGF0dXMgPSAib2theSI7Cj4gIAl2
+cmVmLXN1cHBseSA9IDwmdmRkYW9fMXY4PjsKPiAKClRoZSBWUlRDIGlzIG9uZSBvZiB0aGUgZGVm
+YXVsdCBzdXNwZW5kIHdha2UtdXAgc291cmNlcywgc28gd2h5IHdvdWxkIHlvdSBkaXNhYmxlIGl0
+ID8KCklmIGl0IGNvbGxpZGVzIHdpdGggdGhlIHJlYWwgUlRDLCBhZGQgYWxpYXNlcyB0byBtb3Zl
+IHRoZSB2cnRjIGluIHJ0YzEgYW5kIHNldCB0aGUgcmVhbCBSVEMgYXMgcnRjMC4KCiDCuyAgICAg
+ICBhbGlhc2Vzwrd7CivCuyAgICAgICDCuyAgICAgICBydGMwwrc9wrcmcnRjMDsKK8K7ICAgICAg
+IMK7ICAgICAgIHJ0YzHCtz3CtyZ2cnRjOwogwrsgICAgICAgfTsKCk5laWwKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
+cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
