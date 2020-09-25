@@ -2,89 +2,89 @@ Return-Path: <SRS0=7OpP=DC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30263C4727F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 21:56:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CF63C4727E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 22:03:44 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9F212206FC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 21:56:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 20D7920717
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 22:03:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bopK+kiX";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="BMzkdWIw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F212206FC
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R/6MSXak";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jYd4vVau"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 20D7920717
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=SezMvoI8sNgSWRPXSsJ6+bhtqIlQ5gCJsxrCHmSjESk=; b=bopK+kiXuNqCRs4t3fW8iN08ic
-	xvUP+8x53sseyzU9F3pklGrPsCN3gZzJx66hQtLC4gwUyqRNflzZ4tHFFPKY69sbv5VgO5iyOyp3i
-	A9NJtcIuu1DTw+Len45NaqjfJMON3kbiVgexCt7jWBXuezGRd4DGpWD+5gj+asnqnoYnx+A3Q7xw7
-	qF9puLHAtejur1bBvFWCLoMriGhe/QDywjrKvPlSbKqsCXl/sPNQbAqahpRC7Rer2/fWgCrvICCz5
-	rs2SV/giIQYXxqnBczF3UpPP03oOGH8O9X3W0VfRVESD4FJiPCCJIBlAsES+JpZbzyro3VYYpHzqA
-	QdCXOQpQ==;
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=LNqFZ9GxmHVeI+oO1Rfog7kg7Zs1IDzwf9UBRIhOSyU=; b=R/6MSXakTYfSLJLFi6AQvbN+q
+	dQF5mbSf0jPKksmzxPTxmdPFvVl0CM7lCPfu04n0gvoilka1Lbv7Y6zq8Fv8Y/zk2GfkrepLB5kVr
+	T1+9ohgOEUIVccvnTtVmUUgaMxy/LLDh3vFJAWG7xeRcLezltqR6cJWmMuQr3tLEmTCUJSWjFDbAR
+	zi+3zTx2fgWD2TN6n61cgXSezQbER1sl56DaHy/ILg5/mCMYPJlbCKGWPc5YIR7PwuPVkMgqK/E7L
+	TtOs2bnOWwwsEg7pMDwrCpQjRuB42mbrDwKCG4pgP655UvNNSpmGDgKuV+khVEJgVJQzWsCM10Nxz
+	fv9n3HZ5g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLvhv-0007Yz-Hh; Fri, 25 Sep 2020 21:56:47 +0000
-Received: from mail-ej1-x643.google.com ([2a00:1450:4864:20::643])
+	id 1kLvoY-0008RZ-NN; Fri, 25 Sep 2020 22:03:38 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLvhs-0007XU-Nb; Fri, 25 Sep 2020 21:56:45 +0000
-Received: by mail-ej1-x643.google.com with SMTP id q13so610726ejo.9;
- Fri, 25 Sep 2020 14:56:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Uylx3fTiHwj2S0tEs2f1wEToSjCcCbEFHt+iv9BVjpA=;
- b=BMzkdWIwR4HBFB+pSPFXtjIxIvI8PcdzQQ+S/1EETWFoxIulTyS0Vnw+C5p0T3REE7
- ziLTSiGSYTtaS8XcNDzqoWZu6fvGLeiJAZHDx/swLAWokw7H8VZyufoT6/+zCcQdJbrZ
- V7iLhIZwPTM7ux4mzuENdDlXW1ixSjgF7XVYPRgdckmxun8Fd+DnThl7YkFmEKyEfIrR
- okZT0QoPbYn6hSduf8CUQMRg8iqicEios0sQK/MS+5q9DnpQO3SJWzNpm8LMkakWCY+M
- vrtxKDDO0MN4JRak83afS9ftG9teebZGXgONR6mHFFF3QZyzLcmePr1FWgK9gTYjBJC8
- 9lUA==
+ id 1kLvoW-0008Qm-5o; Fri, 25 Sep 2020 22:03:37 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id l17so4031150edq.12;
+ Fri, 25 Sep 2020 15:03:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=PfB5GrheyIxnuAWoT4Dsjo6Mha9ADMRuQTrX6xNqieM=;
+ b=jYd4vVauL82htavV5DVWBFt35LGUeihssisY05RbiHtTLMH1W2WclaKNei4NEaX1xF
+ mjJN1hc11c8Vb7ATOQUoX8r7X2oJIlwZiXmuE9YtGGuejIuEsU6HKZKHlO/kFpnUWiSw
+ etcfK56weRaTSIM/YZ0kW1we6+hVqRwq7w3C9QNPWSwrN+Qpbv79oZVJB0iXntdgbD8u
+ KAl9vf7vyOhJ5S0dHAlKfoVmBHSklOR7hMVongLBZl29la+Wy5NjQVI++8mW5qL2acHd
+ jWgbR0KXJGcbQhH89ciba6kB6lxciOwnSS//IZynAhPVElj6Tc2e3V764l9hfFc3WsZY
+ qeVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Uylx3fTiHwj2S0tEs2f1wEToSjCcCbEFHt+iv9BVjpA=;
- b=tPDHmWeolGQZrHeTfPBkpXsxgGgG7esdo40Wdka4VKNxXzXMHSaZ2xzZzPKwaU7Fmh
- uo2i0js/Q1QXEFh3QcdwRYDyuiT8N6nl/oVi0zcHogVEJosGzll0mhXnqYz6+4eVP2fH
- 0mahxJmt2wKxvxXU7vcCOHL+9ujTMV1vJyggpYYjQOCcltfVx/DwDrsXUsHErdoaM4du
- rsuKsKljy+9vRg4TcWoHjScUs2tJl7JL8XENvBoXVFWDr+I1zdGMUT9yCtYNwTUMcsHh
- tunClA/guvyXeMEnRmXzW4JpkTQYByQ5dkJDn3CrfpEssUrOc+3r13OCz09odd2fyVBu
- xayA==
-X-Gm-Message-State: AOAM5308ZOVc4WCsRj3nKZT6lC7QN/2eoyWQ3N7hCmY9Bxv2/ESXSdzr
- AcrDe0g0QO8ggNAz0ZnmlL8=
-X-Google-Smtp-Source: ABdhPJz01tYZsi1CiKNBkRckUolw1dikYY0VFjNKStNMvKWHD3YPAMYdgX2FG81UQexE3WtC4o3wbA==
-X-Received: by 2002:a17:906:e24d:: with SMTP id
- gq13mr4652709ejb.152.1601071003509; 
- Fri, 25 Sep 2020 14:56:43 -0700 (PDT)
-Received: from localhost.localdomain (p4fd5dca7.dip0.t-ipconnect.de.
- [79.213.220.167])
- by smtp.googlemail.com with ESMTPSA id g10sm2683062ejp.34.2020.09.25.14.56.42
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=PfB5GrheyIxnuAWoT4Dsjo6Mha9ADMRuQTrX6xNqieM=;
+ b=t/Al9+AIUYibNaZkHe+ZYf7aI+61vpiptfsONEKa2GoOXiXSyBmeSYuI7cWiyFeE+Z
+ xGPbaYZmAwFn2hOMl0RN2tOWHfcojDeW/gZE2W2RfaEE4VONURdqWAMAt7A0Lz8B7slu
+ Xc/PiVmN6uzkIy4B+2jAB1tZe9ZCKbPHVVOZnCwa/+angCs67FqfVoc//Zh2KSfV4Mp2
+ sftvi+omzYKBg91oEGuM/Z7OSsYr42lBO+UR/UK/N1En4NsaVQcyQcdhmym2JX6mZQ9q
+ LRhsLvBDqWGhSxLw+wuuEqw9kAmlad3Sum7D4pPUgiBKLH+v5puM6Q4x1OJ3OddGfujq
+ B7Lg==
+X-Gm-Message-State: AOAM5310ff1DUMFL3i/LFEPy/pYw18txEBIjLV1UI60JMXJTdhIeSfR4
+ IWZXs0vwwvVAGzH2djZ9W0k=
+X-Google-Smtp-Source: ABdhPJyGUVsG+yL+Rkb1/RH2dwFszvvzId3+1LmhXmXvj3lb8f6D/iaxC1P/kNs7PvAxUn8g3w/wcw==
+X-Received: by 2002:a50:8c24:: with SMTP id p33mr3715365edp.330.1601071413119; 
+ Fri, 25 Sep 2020 15:03:33 -0700 (PDT)
+Received: from skbuf ([188.25.217.212])
+ by smtp.gmail.com with ESMTPSA id bo8sm2769846edb.39.2020.09.25.15.03.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 14:56:42 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: davem@davemloft.net, netdev@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-Subject: [PATCH] net: stmmac: dwmac-meson8b: add calibration registers
-Date: Fri, 25 Sep 2020 23:56:29 +0200
-Message-Id: <20200925215629.545233-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.28.0
+ Fri, 25 Sep 2020 15:03:31 -0700 (PDT)
+Date: Sat, 26 Sep 2020 01:03:29 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ f.fainelli@gmail.com
+Subject: Re: RGMII timing calibration (on 12nm Amlogic SoCs) - integration
+ into dwmac-meson8b
+Message-ID: <20200925220329.wdnrqeauto55vdao@skbuf>
+References: <CAFBinCATt4Hi9rigj52nMf3oygyFbnopZcsakGL=KyWnsjY3JA@mail.gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAFBinCATt4Hi9rigj52nMf3oygyFbnopZcsakGL=KyWnsjY3JA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_175644_815142_A2C6062E 
-X-CRM114-Status: GOOD (  11.57  )
+X-CRM114-CacheID: sfid-20200925_180336_324395_A7445602 
+X-CRM114-Status: GOOD (  21.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,76 +96,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alexandre.torgue@st.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, joabreu@synopsys.com, peppe.cavallaro@st.com,
+Cc: alexandre.torgue@st.com, netdev@vger.kernel.org, linux@armlinux.org.uk,
+ linux-kernel@vger.kernel.org, kuba@kernel.org, joabreu@synopsys.com,
+ linux-amlogic@lists.infradead.org, peppe.cavallaro@st.com, davem@davemloft.net,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic dwmac Ethernet IP glue has two registers:
-- PRG_ETH0 with various configuration bits
-- PRG_ETH1 with various calibration and information related bits
+Hi Martin,
 
-Add the register definitions with comments from different drivers in
-Amlogic's vendor u-boot and Linux.
+On Fri, Sep 25, 2020 at 11:47:18PM +0200, Martin Blumenstingl wrote:
+> Hello,
+>
+> Amlogic's 12nm SoC generation requires some RGMII timing calibration
+> within the Ethernet controller glue registers.
+> This calibration is only needed for the RGMII modes, not for the
+> (internal) RMII PHY.
+> With "incorrect" calibration settings Ethernet speeds up to 100Mbit/s
+> will still work fine, but no data is flowing on 1Gbit/s connections
+> (similar to when RX or TX delay settings are incorrect).
+>
+> A high-level description of this calibration (the full code can be
+> seen in [0] and [1]):
+> - there are sixteen possible calibration values: [0..15]
+> - switch the Ethernet PHY to loopback mode
+> - for each of the sixteen possible calibration values repeat the
+> following steps five times:
+> -- write the value to the calibration register
+> -- construct an Ethernet loopback test frame with protocol 0x0808
+> ("Frame Relay ARP")
+> -- add 256 bytes of arbitrary data
+> -- use the MAC address of the controller as source and destination
+> -- send out this data packet
+> -- receive this data packet
+> -- compare the contents and remember if the data is valid or corrupted
+> - disable loopback mode on the Ethernet PHY
+> - find the best calibration value by getting the center point of the
+> "longest streak"
+> - write this value to the calibration register
+>
+> My question is: how do I integrate this into the dwmac-meson8b (stmmac
+> based) driver?
+> I already found some interesting and relevant bits:
+> - stmmac_selftests.c uses phy_loopback() and also constructs data
+> which is sent-out in loopback mode
+> - there's a serdes_powerup callback in struct plat_stmmacenet_data
+> which is called after register_netdev()
+> - I'm not sure if there's any other Ethernet driver doing some similar
+> calibration (and therefore a way to avoid some code-duplication)
+>
+>
+> Any recommendations/suggestions/ideas/hints are welcome!
+> Thank you and best regards,
+> Martin
+>
+>
+> [0] https://github.com/khadas/u-boot/blob/4752efbb90b7d048a81760c67f8c826f14baf41c/drivers/net/designware.c#L707
+> [1] https://github.com/khadas/linux/blob/khadas-vims-4.9.y/drivers/net/ethernet/stmicro/stmmac/dwmac-meson.c#L466
 
-The most important part is PRG_ETH1_AUTO_CALI_IDX_VAL which is needed on
-G12A (and later: G12B, SM1) with RGMII PHYs. Ethernet is only working up
-to 100Mbit/s speeds if u-boot does not initialize these bits correctly.
-On 1Gbit/s links no traffic is flowing (similar to when the RGMII delays
-are set incorrectly). The logic to write this register will be added
-later.
+Florian attempted something like this before, for the PHY side of things:
+https://patchwork.ozlabs.org/project/netdev/patch/20191015224953.24199-3-f.fainelli@gmail.com/
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+There are quite some assumptions to be made if the code is to be made
+generic, such as the fact that the controller should not drop frames
+with bad FCS in hardware. Or if it does, the code should be aware of
+that and check that counter.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 5afcf05bbf9c..9a898d2a1e08 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -69,6 +69,34 @@
-  */
- #define PRG_ETH0_ADJ_SKEW		GENMASK(24, 20)
- 
-+#define PRG_ETH0_START_CALIBRATION	BIT(25)
-+
-+/* 0: falling edge, 1: rising edge */
-+#define PRG_ETH0_TEST_EDGE		BIT(26)
-+
-+/* Select one signal from {RXDV, RXD[3:0]} to calibrate */
-+#define PRG_ETH0_SIGNAL_TO_CALIBRATE	GENMASK(29, 27)
-+
-+#define PRG_ETH1			0x4
-+
-+/* Signal switch position in 1ns resolution */
-+#define PRG_ETH1_SIGNAL_SWITCH_POSITION	GENMASK(4, 0)
-+
-+/* RXC (RX clock) length in 1ns resolution */
-+#define PRG_ETH1_RX_CLK_LENGTH		GENMASK(9, 5)
-+
-+#define PRG_ETH1_CALI_WAITING_FOR_EVENT	BIT(10)
-+
-+#define PRG_ETH1_SIGNAL_UNDER_TEST	GENMASK(13, 11)
-+
-+/* 0: falling edge, 1: rising edge */
-+#define PRG_ETH1_RESULT_EDGE		BIT(14)
-+
-+#define PRG_ETH1_RESULT_IS_VALID	BIT(15)
-+
-+/* undocumented - only valid on G12A and later */
-+#define PRG_ETH1_AUTO_CALI_IDX_VAL	GENMASK(19, 16)
-+
- struct meson8b_dwmac;
- 
- struct meson8b_dwmac_data {
--- 
-2.28.0
-
+Thanks,
+-Vladimir
 
 _______________________________________________
 linux-amlogic mailing list
