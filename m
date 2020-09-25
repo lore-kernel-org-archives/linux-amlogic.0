@@ -2,93 +2,115 @@ Return-Path: <SRS0=7OpP=DC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-9.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_2 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED961C4363D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 09:11:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CAB80C4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 09:17:56 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 882D6206B5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 09:11:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 780F3206E5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 09:17:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ocPkbY/A";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="DvuhcIhN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 882D6206B5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fZHzI2A3";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=Synaptics.onmicrosoft.com header.i=@Synaptics.onmicrosoft.com header.b="oCBt2t7Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 780F3206E5
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=synaptics.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=AfcmojA1eXmKwCFx9C3GPEKdri3KsSuFKUZaxYYxaWU=; b=ocPkbY/AhOUNuRwbt2GrLdvJW
-	AkYoIMt/jmWf5hX2Y+9OVkQz1Y1gaGqK3UNRzIAbDzFLJUSmW/YeViyo3ribttfWDa2LMiy4l+BWl
-	trLdm6jNR0/twPA6Lm6WT7Wf3bNMAQQkBjVhGpkDOfCK1mRow/RM/xMEu/mrX5GyZ3aZzXmUWO2N8
-	7gEELWRVcv/WnGLw9EqDolOzGGJP7c0v67zQcmjl2HXUF33BYUaTEqRNmYg0tipa6RURUPmjY1q62
-	mneWHS6sMPp1rtwhbi+7/ZSuyCxzhoejUrhxb/Chl1mkGquFjcR1LevEybY7A4cgp28f2cLhS1XtU
-	mvOOkh2WA==;
+	 bh=pEPxXX0DNdHcb6IIlZN7+vw68xsMIXZt6/RH9tIgbwA=; b=fZHzI2A3jr37vMH9PSjKFuN/D
+	H/eNxiu1ld483eNrK/+tKpoOIHwchDtVElTnmRjb53p1W/USQYWJTaL8ACMFdnmXqnSbQK+RuD/ae
+	bpCkjRD7WEUrmR18Q0au0JmDM17fGLtucW5+RZwXBtsqsUL1MUdpVRYOSLKF1/C759RIlqv1EhA49
+	OURoZyIFwN3PGx5UMMa5T+nRpNrrZyKGT8AeVznk+zN8KRXKkkUW9ui7S/hZXJYnK8OzpH6c/O+60
+	j9Nixt1FWFDRnIWg0GusyxyTw4obHIvb3X0MWaLHk6c5EtFJA4p9BYz0qjKKprUhbbhxPAyWCVKUJ
+	uvqMmPgSQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLjld-00013O-9j; Fri, 25 Sep 2020 09:11:49 +0000
-Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
+	id 1kLjrS-0002Oy-2r; Fri, 25 Sep 2020 09:17:50 +0000
+Received: from mail-bn8nam11on2064.outbound.protection.outlook.com
+ ([40.107.236.64] helo=NAM11-BN8-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLjlZ-00011j-Ku
- for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 09:11:47 +0000
-Received: by mail-ej1-x641.google.com with SMTP id z23so2586770ejr.13
- for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 02:11:45 -0700 (PDT)
+ id 1kLjrN-0002O4-IV; Fri, 25 Sep 2020 09:17:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ct8WpGb/kr9byxd2bCY9GxlRIUM19XEJRXS6npJbpQ50f2IHkUAYYsAE3D3UnVYlg+lyPED2RO/ZQ5dWR4uEnkknJV/x8QVQvqju70vFCA/JK9xlASyFCF8Tm7ruE3CYKK4OUikcnwiNS0op5Mxl+bpe5FWF1NtmvQCvaVpku9buRCzCwR0HaxqLy8UMXAYwRAbuVelJfqHnjosD/u3+y+ZbLn2rt1+lHPzxlOThXRzDfBTEv2+0SQEgX5GIeA/3S+6ZQ3MCT8Vq+//2VbTSFjLI5KGIQrJ8oqkQK9eS0QDd7d4EFv+FJXO16Pc4/NY7Y9XUdD+S8VW+YGCcXYb6rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0MJjtIL2AEpcEzM17DEANEGzkN/9eam0aF96BBJJE3w=;
+ b=Cmvpw7gIAWBt/s6FEXRKcuMeWhASW6+mmL92V4Pd6+av+5pdn+Tb7PR9qCdG9mHrwBMRs2Z8LgNPYyLHtf3F9z1YzSIDQJxRFe+Z7BAUNQdmv4GRO2IsGq1UV4CjQHRY+ruTP6E/Xrpu/JFkgGmG7N7h4aNlG22hTITcpDY7GZ4oyQ/AhP3+drsADyU/ydDz8EQZaoB4hI4GFNMvxm1Ayn2gYgAAS4h/eJGy2Tp/FkA3KodFsoxx9BLEskgoGn5xfJVoOCs7VtNRENp66CpOTbCFISSpd18vsB3k6nUPziMg8YO3jAckri1+UFvuG02BhPgklKVvrjm4WpMExAA1eA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synaptics.com; dmarc=pass action=none
+ header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=EINwdvc62tASjwpRJVndiLCvvVKWaOgZRLx0lxHJGdk=;
- b=DvuhcIhNXBHXC334WLX00vfEFn96hpowAqa9NMof2QJfUe1SjYf+qgDyay7PihvEfa
- +Ne60c2JdxHEx5vqRl3r8SXZ9SOvXQzSVKMMhih9rabjBs26Sb4XOLQW6bt8H80rGIhD
- wN/oNtgtQmBbkOOca7lNc11ukpfbBjB7uImCLFIL5GZGNdx3aUQyTR02VsquFHzkWEJG
- Zbwl8jE8WNVSRBSWFDs6ZBmW/VfGORc5dEdx00GxT5CwrsUQEgZEn4Bhcxeg16tAX5oQ
- V3FmKPR8u6FAHm8DlAZCPQNXFw9xcQUOagHEgiOmEEp2ijY/riZUv3lFs9Z8KzHydV86
- CcWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=EINwdvc62tASjwpRJVndiLCvvVKWaOgZRLx0lxHJGdk=;
- b=qvTEanw5eXYCkDA6kr4FHOt9xIrQV3/zj06ThZWxRdxrgtPqTM6moylEnAxvZ9n934
- 5XEzOPSFar+WeCXGxwgHcXPn5ibH/U8FOWs1fjSZ3xObt2Fs6w7sGrkdVYHbqKTqZi3D
- eFIfqjn5g4y19q2T2IlbDBThfFFHQUCc2bn8QlQ0ewbsrfbw5x35x3zyEBQaNv08Z7Z7
- jw2J6T30Q5f6WH8VjZ/+8U2bmSS8VC2NTOrTfgn4sCWTujLVT3lZQ1l87AnRKqk9DkIJ
- JY1s6Y/8EzgT3bxwCScj8TGDDhSWwPkQNL1fI0azBmD6KLF6oLwW10acoXNGaCYK0fJ9
- cilw==
-X-Gm-Message-State: AOAM533xAVVA+MewO1DtOHsyj2IzbKWxi+5ztjLwQqOQSRyrh9ZLV0LI
- Wao2qug0c61ERRs+MAb1iNHzWg==
-X-Google-Smtp-Source: ABdhPJx+uUP+3B9UO5TLURje87PEsrajL8+BhL6bIsWz0W4R6TpnWfp0fNyJq9eces+bJbQ4EicB1w==
-X-Received: by 2002:a17:906:abc5:: with SMTP id
- kq5mr1707113ejb.284.1601025104165; 
- Fri, 25 Sep 2020 02:11:44 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id i26sm1371709edq.47.2020.09.25.02.11.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 02:11:43 -0700 (PDT)
-References: <24a844c3-c2e0-c735-ccb7-83736218b548@gmail.com>
- <7hk0wj9ki2.fsf@baylibre.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>, Brad Harper <bjharper@gmail.com>,
- linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH] mmc: host: meson-gx-mmc: fix possible deadlock condition
- for preempt_rt
-In-reply-to: <7hk0wj9ki2.fsf@baylibre.com>
-Date: Fri, 25 Sep 2020 11:11:42 +0200
-Message-ID: <1jzh5e8bld.fsf@starbuckisacylon.baylibre.com>
+ d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0MJjtIL2AEpcEzM17DEANEGzkN/9eam0aF96BBJJE3w=;
+ b=oCBt2t7Y9g5q5wQ0DE6JLJR38NMhJZEzuCxsv4FhwpiHMM4sSPwNier0flicChNqrFJXaTcbP8sqhEg70S6mag6Mi2MUOkMDPIsELLWz2Nxhd2fqqqikBPe855k42ojh8aXF+ktzCzkKNttb19hgS2FA4MP6CHSOhWcDbPClkVg=
+Authentication-Results: nvidia.com; dkim=none (message not signed)
+ header.d=none;nvidia.com; dmarc=none action=none header.from=synaptics.com;
+Received: from DM6PR03MB4555.namprd03.prod.outlook.com (2603:10b6:5:102::17)
+ by DM5PR03MB3259.namprd03.prod.outlook.com (2603:10b6:4:3c::37) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.26; Fri, 25 Sep
+ 2020 09:17:43 +0000
+Received: from DM6PR03MB4555.namprd03.prod.outlook.com
+ ([fe80::e494:740f:155:4a38]) by DM6PR03MB4555.namprd03.prod.outlook.com
+ ([fe80::e494:740f:155:4a38%7]) with mapi id 15.20.3391.028; Fri, 25 Sep 2020
+ 09:17:43 +0000
+Date: Fri, 25 Sep 2020 17:17:12 +0800
+From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+To: Jon Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH v2 0/5] PCI: dwc: improve msi handling
+Message-ID: <20200925171712.254a018d@xhacker.debian>
+In-Reply-To: <de4d9294-4f6d-c7d1-efc7-c8ef6570bd64@nvidia.com>
+References: <20200924190421.549cb8fc@xhacker.debian>
+ <de4d9294-4f6d-c7d1-efc7-c8ef6570bd64@nvidia.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+X-ClientProxiedBy: TYCPR01CA0031.jpnprd01.prod.outlook.com
+ (2603:1096:405:1::19) To DM6PR03MB4555.namprd03.prod.outlook.com
+ (2603:10b6:5:102::17)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from xhacker.debian (124.74.246.114) by
+ TYCPR01CA0031.jpnprd01.prod.outlook.com (2603:1096:405:1::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3412.20 via Frontend Transport; Fri, 25 Sep 2020 09:17:32 +0000
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+X-Originating-IP: [124.74.246.114]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d93dd60c-b84d-4de7-047d-08d86133db61
+X-MS-TrafficTypeDiagnostic: DM5PR03MB3259:
+X-Microsoft-Antispam-PRVS: <DM5PR03MB325958C515BF9A4F282614F5ED360@DM5PR03MB3259.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zfkwaHOTLAKAYnUoWYo/Fk8yhxtcjvMzFJz17VVvh4fbPZJQXXFy+Oz2YjQvMcipNy0EIXplsTMKwdC2HWBkmyLzSjn7dMj++PAa56RnoN5TNaNMXNd+6omSQ7v0C48mRxBdrlHoPls1B5JVHJ0PaEPpwyg4WcZ06RL3KmZ9GmuWmaUehNe9Yovu4fkR1iXhCtWJnsrbbalup9DCqB0wp1MdEXtg27xTM0oJ6RyqUJaeufu3S2wLeZlNPrYeIg1CD+SNqX69/AjU1IDwRH3B7YI9yRUcgkRqHpaBXri7jqdob3dxN9bF2q05VrLpFPfn
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR03MB4555.namprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(136003)(366004)(396003)(376002)(39860400002)(346002)(8936002)(2906002)(83380400001)(66556008)(956004)(66476007)(66946007)(6916009)(7406005)(5660300002)(86362001)(54906003)(9686003)(8676002)(26005)(7696005)(52116002)(316002)(4326008)(186003)(6506007)(55016002)(6666004)(1076003)(7416002)(53546011)(16526019)(478600001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: 5vJ8B2kYtheC9shaepwaK5RLUXRuAfL3qjOISqdwkdsaT7vC1ISZkopHoq5r57fR6ZRXAY8J1OccaVeFmaCU/y6yetW0qVqUi3eR3Dr8BdjeslVwe2CHgSoNtX3EywSHVuZ/juODg7k0uysbvfem7U9rF1DdaJaniV3gp2UVUaT1dWgYif6CIk3IwSHJ7NIRVRfxoJXiHkCdacD9gJoQ+6qQ82qdTTj0+b6Lx6iAH1BptGnr8BMdcVOwPexHmswOSlh33bdggIH3paJ9GWGCy/j0hQOWA/Wxo2XBRMsjnZegTGAlWJ3n0HAmP+DL6cet3gBMJ8yWxPjGw8PRu1ws9q/Wu+Q4g9LH3l2Ej64laHP7OF9hA2Lr4GLBhrEy/xGe9TI+FDFfzU1ZFLZOmFiMU8YXeMENaDYm8soJwfo9nsyCZrwYM3qCokI15jXL+bUWhHO/yrZx6V3/mGYRn3r7DRPGRmcrBT4YtGh72pUprHGm9rV+6/Cyb2cCYzduf4svAYzJ6M11oULICYsFKZQPtPoCALLj7gaGUHG5CSfka+7iz4x05K9V4SVs08HfTu5DfPYlgrCk/e5m9+EESEU5yGhjtjKCYMYNol5GW/JxsioCpwenoawUmX7fMABlNOrvExNn8wAhi7qMUE+lehLkog==
+X-OriginatorOrg: synaptics.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d93dd60c-b84d-4de7-047d-08d86133db61
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR03MB4555.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2020 09:17:43.3925 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: obAQt4C5pM6hC+a7zBUzKZIIeqhNcifGDoGMu+xJfE7V3rrlkZmiLl7PNiakvjpsXJ3ymBQ2jQRdZLQ2v2Vumg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR03MB3259
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_051145_728516_0C214E73 
-X-CRM114-Status: GOOD (  27.63  )
+X-CRM114-CacheID: sfid-20200925_051745_619796_7611CF92 
+X-CRM114-Status: GOOD (  19.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,115 +122,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-rt-users@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
+Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
+ Binghui Wang <wangbinghui@hisilicon.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Thierry Reding <thierry.reding@gmail.com>, linux-arm-kernel@axis.com,
+ Vidya Sagar <vidyas@nvidia.com>, Fabio Estevam <festevam@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, Pratyush Anand <pratyush.anand@gmail.com>,
+ linux-tegra@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Kukjin Kim <kgene@kernel.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Xiaowei Song <songxiaowei@hisilicon.com>,
+ Richard Zhu <hongxing.zhu@nxp.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+ Yue Wang <yue.wang@Amlogic.com>, linux-samsung-soc@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jingoo Han <jingoohan1@gmail.com>, Andy Gross <agross@kernel.org>,
+ linux-kernel@vger.kernel.org, Stanimir Varbanov <svarbanov@mm-sol.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Jon,
 
-On Thu 24 Sep 2020 at 19:01, Kevin Hilman <khilman@baylibre.com> wrote:
-
-> Hi Brad,
->
-> Brad Harper <bjharper@gmail.com> writes:
->
->> Force threaded interrupts for meson_mmc_irq to prevent possible deadlock 
->> condition
->> during mmc operations when using preempt_rt with 5.9.0-rc3-rt3 patches 
->> on arm64.
->>
->> Using meson-gx-mmc with an emmc device on Hardkernel Odroid N2+ 
->> configured with
->> preempt_rt resulted in the soc becoming unresponsive.  With lock 
->> checking enabled
->> the below inconsistent lock state was observed during boot.
->>
->> After some discussions with tglx in IRC #linux-rt the attached patch was 
->> suggested
->> to remove IRQF_ONESHOT from request_threaded_irq.
->> This has been tested and confirmed by me to resolve both the 
->> unresponsive soc and
->> the inconsistent lock state warning when using 5.9.0-rc3-rt3 on arm64 
->> Odroid N2+.
->>
->> Further review and testing is required to ensure there are no adverse 
->> impacts or
->> concerns and that is the correct method to resolve the problem.  I will 
->> continue
->> to test on various amlogic devices with both standard mainline low 
->> latency kernel
->> and preempt_rt kernel with -rt patches.
->
-> This looks right to me, thanks for sending a fix.
->
-> For broader testing, I can add this to my testing branch so it gets
-> booted on a bunch more platform in KernelCI also.
->
-> However...
->
-> [...]
->
->> Signed-off-by: Brad Harper <bjharper@gmail.com>
->> ---
->>   drivers/mmc/host/meson-gx-mmc.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/mmc/host/meson-gx-mmc.c 
->> b/drivers/mmc/host/meson-gx-mmc.c
->> index 08a3b1c05..130ac134d 100644
->> --- a/drivers/mmc/host/meson-gx-mmc.c
->> +++ b/drivers/mmc/host/meson-gx-mmc.c
->> @@ -1139,7 +1139,7 @@ static int meson_mmc_probe(struct platform_device 
->> *pdev)
->>                 host->regs + SD_EMMC_IRQ_EN);
->>
->>          ret = request_threaded_irq(host->irq, meson_mmc_irq,
->> -                                  meson_mmc_irq_thread, IRQF_ONESHOT,
->> +                                  meson_mmc_irq_thread, 0,
->>                                     dev_name(&pdev->dev), host);
-
-I'm not sure about this.
-As you have explained on IRC, I understand that IRQF_ONESHOT is causing
-trouble with RT as the hard IRQ part of the thread will not be migrated
-to a thread. That was certainly not the intent when putting this flag.
-
-As described in include/linux/interrupt.h:
- * IRQF_ONESHOT - Interrupt is not reenabled after the hardirq handler finished.
- *                Used by threaded interrupts which need to keep the
- *                irq line disabled until the threaded handler has been run.
-
-The intent was only that, making sure the irq is not re-enabled until
-the threaded part is done. AFAIU, removing this flag would allow the
-hard irq handler to fire again while we are not done handling the
-previous IRQ in threaded part.
-
-This seems pretty unsafe to me. Maybe we could improve the driver so it
-copes with this case gracefully. ATM, I don't think it would.
-
-Maybe I missed something and I am happy to be enlightened if that is the
-case :)
+On Fri, 25 Sep 2020 09:53:45 +0100 Jon Hunter wrote:
 
 
->>          if (ret)
->>                  goto err_init_clk;
->
-> This patch has been mangled by your mailer, so it doesn't apply cleanly.
-> If you're using the gmail web UI, this is a common problem.
->
-> I strongly recommend using git-send-email to send directly via gmail
-> SMTP.  The git-send-email docs[1] give some examples on how to set this
-> up.
->
-> Kevin
->
-> [1] https://git-scm.com/docs/git-send-email#_examples
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
+> On 24/09/2020 12:05, Jisheng Zhang wrote:
+> > Improve the msi code:
+> > 1. Add proper error handling.
+> > 2. Move dw_pcie_msi_init() from each users to designware host to solve
+> > msi page leakage in resume path.  
+> 
+> Apologies if this is slightly off topic, but I have been meaning to ask
+> about MSIs and PCI. On Tegra194 which uses the DWC PCI driver, whenever we
+> hotplug CPUs we see the following warnings ...
+> 
+>  [      79.068351] WARNING KERN IRQ70: set affinity failed(-22).
+>  [      79.068362] WARNING KERN IRQ71: set affinity failed(-22).
+> 
+> These interrupts are the MSIs ...
+> 
+> 70:          0          0          0          0          0          0          0          0   PCI-MSI 134217728 Edge      PCIe PME, aerdrv
+> 71:          0          0          0          0          0          0          0          0   PCI-MSI 134742016 Edge      ahci[0001:01:00.0]
+> 
+> This caused because ...
+> 
+>  static int dw_pci_msi_set_affinity(struct irq_data *d,
+>                                     const struct cpumask *mask, bool force)
+>  {
+>          return -EINVAL;
+>  }
+> 
+> Now the above is not unique to the DWC PCI host driver, it appears that
+> most PCIe drivers also do the same. However, I am curious if there is
+> any way to avoid the above warnings given that setting the affinity does
+> not appear to be supported in anyway AFAICT.
+> 
+
+
+Could you please try below patch?
+
+
+diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+index bf25d783b5c5..7e5dc54d060e 100644
+--- a/drivers/pci/controller/dwc/pcie-designware-host.c
++++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+@@ -197,7 +197,6 @@ static struct irq_chip dw_pci_msi_bottom_irq_chip = {
+        .name = "DWPCI-MSI",
+        .irq_ack = dw_pci_bottom_ack,
+        .irq_compose_msi_msg = dw_pci_setup_msi_msg,
+-       .irq_set_affinity = dw_pci_msi_set_affinity,
+        .irq_mask = dw_pci_bottom_mask,
+        .irq_unmask = dw_pci_bottom_unmask,
+ };
 
 
 _______________________________________________
