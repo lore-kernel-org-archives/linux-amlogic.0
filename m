@@ -2,22 +2,22 @@ Return-Path: <SRS0=7OpP=DC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89E19C4363D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:39:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D7ABC4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:40:41 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0D63B235FA
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:39:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B839320717
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:40:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="az6igH2v";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qASRip7d"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0D63B235FA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tB27swna";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jzbjCI1P"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B839320717
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Ix7e496fRh7oV9ASKNtO+gQQbtm4IgNsRUqbVIN3NsI=; b=az6igH2vRNtM0VBiywRVeu37y
-	FZfO2U9YdF0+oRo9fS0s8ZmH6O+xO7Ow2Z6O0bNPzQJSYRlVV84wY35NvgwiGBd9gPQDKh4eMCzsI
-	FoCgJSZiylDrbKVpxUCH54AO3RwoFWws/S2C8Hf5QzYu8NOi36ug3v4i+SLzkZtgImsiEOAbpbB2p
-	CK3p3ywa41BibPJ/uMY6TIF2jsksP16o6mPUnespI2OvzpD8VNuFztlxqrxedmlqDDO+DWVTYaitG
-	A0I4J8D2u+1PxlzXKk8r8N7RNRTyzNDt0HZZ6CUkFntd0c4r6vGjMjmilmBpBcMVe1oyQro7xXr0p
-	jFpPzbAZw==;
+	 bh=eSm7iw/y1UyaKdmCHKrA8mKHC9ZZ8enakoHZOp948Yc=; b=tB27swnapWDifyq7v9TksoY8Y
+	BPZ4noHMdBqPhciLGHfCMLoyh7/71Oo8q27y55VMahw6YznuE8H4E+74OnNfEc3oNwXcm1hZkqTQh
+	uLQ+EOLSd7+oHoVXR3JL/zteFGk22GMy2CKhKvdUGSka1caNuqGERfWrH49agauBYVE+F3vJ3Im1x
+	Fgex0yUN9M4aiHd+CSp5KNySv0eS8u8aJE4TVGQC6D53wJXhAau/1BUDarlcU8fqXzmGMt4uaKsv1
+	WdTeYra/3u/hTNorMrVTCUx6UDirm84qlTmyynXMs/5scKdcKcbWrs1wDaWWjIXyhHcSzJL1Hvnfh
+	Fa3ts6Gwg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLiKJ-0002zu-9P; Fri, 25 Sep 2020 07:39:31 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1kLiLK-0003Kz-90; Fri, 25 Sep 2020 07:40:34 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLiKC-0002vB-EY
- for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 07:39:26 +0000
-Received: by mail-wr1-x442.google.com with SMTP id x14so2398295wrl.12
- for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 00:39:24 -0700 (PDT)
+ id 1kLiLG-0003J3-TA
+ for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 07:40:31 +0000
+Received: by mail-wr1-x441.google.com with SMTP id k15so2405196wrn.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 00:40:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=YQr95Np1uzy0DGbQpIK9dPDSJg4vtBHqeTzHdKdJizM=;
- b=qASRip7d/lMzgt6xJbw5o1Cwke2eYquvHpgeA8VP9iyLFZj8TvAzKCES5YJlGEMbBK
- GCF28FCaNv1oy1pfzwY/CSokrvXeWw/RQgmm/yfhRG8OF8yUhWMc1aSLYoScpVwNT08J
- j/cMrITlpsf6UwmV+UtRneEjt+7FxY2kqQUkCDAmG5y8rHVzZXUFE3H93mpvXG8briQd
- SfFg1cODxsBhxAp+is0g5LAv0tpvSymNOfcMyMfqeBmj2MeyXtEK7l9CLtvygjgMnxHf
- pp66bpGkfk6zFGQ2jfu53VcXK51KxWShQdkekAjk5RvL7JqS1s5tfmxVJPqptyeBOMpy
- llXQ==
+ bh=6lPeOd/Ub1nG1i/cR1TdJmMYcRgIgs526aqjuBgL0fs=;
+ b=jzbjCI1PKanXRjM4YXO2U+lcqZBZWuA+V0nnM+omyYv1GPGi9zqv688+XfX3IUxiWO
+ 9MucJ323nmpgs47hvkFBsF+QqYyoIhr9Y9PbJcTFqHpt7JouK0wIFd6+xTARoNaeKMEv
+ 5IUaJgXi+7RJj8CF5tLAwUuyUSYBOeYfXkFGCmHcKwbO1cdGKs3MdqKaDSZoCFTBovt5
+ 0NWe/3t+kdokKi+K+CAYA5eZ6FPlJ4W1d+Jh6yDfHzxU3ySixnL1ag9VkGXmET7Yw5uF
+ ynvZT6qxFlM62cH1huRe0onOMnN3chkSt97GuPGgq2yKzZhsRHihIZCVx/loq/exunZ8
+ Jcjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=YQr95Np1uzy0DGbQpIK9dPDSJg4vtBHqeTzHdKdJizM=;
- b=EeTYF4F35cRboJl7iYcwdNkMw0nw2CtDxaX+q7nhgqEsSIYrvQJF5LE2MBTV6RRg/Z
- Z9qYRNKmJDcJpaj+/1Rk1J2cW4MAHrE54d/YPjkQgh0ZqDbu2hpg+kTkOWDK5WabKAh6
- wiNdCgLLiNPz3i8cv9lfdjOcUKujorpDWNnayJ7HjZB3rlCzIBASF2MFaEyFxDGoMGrb
- s0BEzacE2WagZKxhIZ5L+Mvn4TsFUD4cDRHDfl661t/uVgWua3sYyWooOX0sQLrDgiQz
- AtOLIfDV6slmSgHkJc6JPh7bEelSJi1VAMnxVDrT1d/vAiRNiD6CVrW4kIloDiZ+1hzP
- HklA==
-X-Gm-Message-State: AOAM530AzTNgGUNiznZcubUSRq7GriVJqltFRHlzfhkAHnyM8Fsv60Jb
- 2u9tPgpahvaSwuCEicQtjOw9XQ==
-X-Google-Smtp-Source: ABdhPJzqvvbNeKT6MV2UmoitDPjX6y8AjBZXjnmDQGzD1rEGTZEGck5ICP2lHhAjlqqhaDU6Z0LJyw==
-X-Received: by 2002:adf:f190:: with SMTP id h16mr3011195wro.202.1601019563268; 
- Fri, 25 Sep 2020 00:39:23 -0700 (PDT)
+ bh=6lPeOd/Ub1nG1i/cR1TdJmMYcRgIgs526aqjuBgL0fs=;
+ b=sJJCmO4qUKwnIC7a/b75p5EC09WiEQStn1O3I69efNiWexBBaLp+ul7MMkjTRnEoBF
+ Il1iHr6G5zaEN9NfXJfiZSybAbrxpR5awHD9db6K/EaY1ognW5ZG0FM6hzDEAhO8qth8
+ Q3NsLJqgOGA15B6bWAwSKtpKphyb4fausgKw7xKTzWphEFpXsKHEOtnK0nDRDOQdP+VT
+ VgXfA8HFL+w6bO2ymJ07T4KpREh7r0Ii7dayq5ccLC36ey1IPRmaRqh6nalak2XeyE2p
+ d+SWD0YcCkCuUU3G4a5gt99dyU/j1t37D4iXKHe4/R3QmvSETjGC0gOW+t/tSAqRUNc8
+ Pj0Q==
+X-Gm-Message-State: AOAM5336FJXwdIdua5rIuPTUj4858QwhjEqd0Q/Rl0XkMJmnKHsg5IEi
+ 1A+pnCCumt01mHRleWBbRxYZjQ==
+X-Google-Smtp-Source: ABdhPJyRo+9HG3GB9orSVmv1XpiTErhNcdHt9eiu9XSe4JbAYg1KR+rFdTZXP7MMPqkRPxSOexXI8Q==
+X-Received: by 2002:a5d:4744:: with SMTP id o4mr2964358wrs.130.1601019629764; 
+ Fri, 25 Sep 2020 00:40:29 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:28ac:1772:9398:891a?
  ([2a01:e35:2ec0:82b0:28ac:1772:9398:891a])
- by smtp.gmail.com with ESMTPSA id u2sm2064209wre.7.2020.09.25.00.39.21
+ by smtp.gmail.com with ESMTPSA id d6sm1886974wrq.67.2020.09.25.00.40.28
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Sep 2020 00:39:22 -0700 (PDT)
-Subject: Re: [PATCH 3/8] arm64: dts: meson: update leds node on Khadas
- VIM3/VIM3L board meson-khadas-vim3
-To: Artem Lapkin <email2tema@gmail.com>
+ Fri, 25 Sep 2020 00:40:29 -0700 (PDT)
+Subject: Re: [PATCH 4/8] arm64: dts: meson: remove fixed memory size for
+ Khadas VIM3/VIM3L meson-khadas-vim3
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Artem Lapkin <email2tema@gmail.com>, robh+dt@kernel.org
 References: <20200925033017.1790973-1-art@khadas.com>
- <20200925033017.1790973-4-art@khadas.com>
+ <20200925033017.1790973-5-art@khadas.com>
+ <CAFBinCBtGqDgPH0VhW2awPzYSVFN++HNCA5=L6VVMRW64=AY9A@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <0467e912-b19e-5389-388b-99b6316d24d8@baylibre.com>
-Date: Fri, 25 Sep 2020 09:39:21 +0200
+Message-ID: <3aa15c85-5dec-52df-c97f-67d45572d5be@baylibre.com>
+Date: Fri, 25 Sep 2020 09:40:28 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200925033017.1790973-4-art@khadas.com>
+In-Reply-To: <CAFBinCBtGqDgPH0VhW2awPzYSVFN++HNCA5=L6VVMRW64=AY9A@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_033924_518584_B441684E 
-X-CRM114-Status: GOOD (  17.49  )
+X-CRM114-CacheID: sfid-20200925_034030_980068_F68FB904 
+X-CRM114-Status: GOOD (  18.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,9 +154,8 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, gouwa@khadas.com,
- martin.blumenstingl@googlemail.com, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org, nick@khadas.com,
+Cc: devicetree@vger.kernel.org, gouwa@khadas.com, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, nick@khadas.com,
  linux-amlogic@lists.infradead.org, art@khadas.com,
  linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
@@ -162,62 +163,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 25/09/2020 05:30, Artem Lapkin wrote:
-> add aliases names led_white and led_red for white and red leds
-
-Sorry, can you explain why you need these ? They should not be used by the led framework.
-
+On 25/09/2020 09:37, Martin Blumenstingl wrote:
+> Hi Artem,
 > 
-> Signed-off-by: Artem Lapkin <art@khadas.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> On Fri, Sep 25, 2020 at 5:31 AM Artem Lapkin <email2tema@gmail.com> wrote:
+>>
+>> no need force setup memory size!
+>> VIM3 boards have 2Gb and 4Gb variants
+>> memory size will be automatically defined
+>>
+>> mainline uboot works properly in any case
+>> but old vendor uboot works not properly for 4Gb variants
+> can you be more specific with what "does not work properly"? is Linux
+> then only able to use 2GB or is there any other problem?
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 73783692e30..7e137399257 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -12,6 +12,8 @@ / {
->  	aliases {
->  		serial0 = &uart_AO;
->  		ethernet0 = &ethmac;
-> +		led_red = &led_red;
-> +		led_white = &led_white;
+> overall this sounds like a bug in the vendor u-boot to me
+> I don't see that we have any other Amlogic .dts which needs this hack,
+> so I'd like to hear the feedback from the device-tree maintainers (for
+> example Rob) as well
 
-These aliases are not standard aliases.
-
->  	};
->  
->  	chosen {
-> @@ -39,13 +41,13 @@ button-function {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		led-white {
-> +		led_white: led-white {
->  			label = "vim3:white:sys";
->  			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		led-red {
-> +		led_red: led-red {
->  			label = "vim3:red";
->  			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
->  		};
-> 
-
-Instead you should convert these to the new function/color attributes are described in:
-Documentation/devicetree/bindings/leds/common.yaml
-
-{
-	function = LED_FUNCTION_STATUS;
-	color = <LED_COLOR_ID_WHITE>;
-}
+AFAIK the vendor u-boot updates the memory correctly, what it doesn't is adding
+the reserved memory zones.
 
 Neil
+
+> 
+> 
+> Best regards,
+> Martin
+> 
 
 
 _______________________________________________
