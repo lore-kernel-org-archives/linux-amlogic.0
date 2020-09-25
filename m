@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A3C1C4363D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:51:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48098C4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 08:04:52 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1E04B2084C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 07:51:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 908EA208A9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 08:04:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GfuD2MA/";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="AJrBx3og"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1E04B2084C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="szaoWaMj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="k4bh6DUj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 908EA208A9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=gM7eUP0agA7dEwuG7MZq73eTeViTh1FlhuhIAVNG06E=; b=GfuD2MA/ruUvV4/vjp8aLF+Py
-	jgocG32Mwsv+YKuUzxsr8TZXdiPTg/8z2RPT/+hcvKBhcYgo1qg8rHMyIz8F3f8HlBfTyG8uDFZZc
-	qDJsRad+cLB5xJpQ25Lsz7UswgFShYx0ES3t74E95omy0Lf+R7yuWv3KsH9/QOLJL8/xCweeWI/Vq
-	oMRW/QbWvcGVZujQLb8A+XdyLoLIIxmjrDFsqS29GGWaIdN3Y+W7s7zzW4xlFIDcVN70KltYuLB45
-	6xKozqf0QOHR1SEwrf+llsQZ2CP4O4TsYG4z3C34spLYHoeoMKBemV7hhujCGjAL0GfpCiVWCq4g1
-	nEOK03KpQ==;
+	 bh=EVMXS48gcW12goQVpSM7TdUjmrBk6F9lD5kN5XdTQQE=; b=szaoWaMjngeQMoNEfnmwXxdu0
+	aOlODnjxgMcYQuBui/xHV77CbSujK6ZEGI0BXy2XUee2VSE4JgzPlkTyfnR4uO0vJ7Vs1R2+FCf4z
+	Mm9ugX6u8Extm4/2BKdtMEc2zvEHa6tv1YOFP0y5yANQRGNHe0BUwtLUrLCVbPJ0XZeSJ4HaDsAhe
+	ajslH2aXrgAks999/elU2OyeLkRaCQ8A5YiZe8VtHI0L9yvIU2t+kao2pPUtEUaGHyvfQra/U0W+L
+	ZSmGyYbQyvMaa4S1Si8XGgT9V4I2GWx6UWD+MKI4e/LwOow2yQ7Wr8C4HtZWjZ5OiLiRn1X8bVIJ1
+	jiXuSqd1g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLiVv-0006Xr-Df; Fri, 25 Sep 2020 07:51:31 +0000
-Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
+	id 1kLiif-0007sI-D5; Fri, 25 Sep 2020 08:04:41 +0000
+Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLiVr-0006WV-1d; Fri, 25 Sep 2020 07:51:27 +0000
-Received: by mail-ej1-x641.google.com with SMTP id p15so1772510ejm.7;
- Fri, 25 Sep 2020 00:51:26 -0700 (PDT)
+ id 1kLiib-0007rH-RY; Fri, 25 Sep 2020 08:04:38 +0000
+Received: by mail-ed1-x543.google.com with SMTP id w1so1578009edr.3;
+ Fri, 25 Sep 2020 01:04:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=C3MDToKFnc8Ld4NhDNLDgxEU3GH0UiPaPFBJOq/aOu4=;
- b=AJrBx3ogTrvrwTHp8UAK7s96cQayIHUcNQjkM+3RUjLDeIO1LXL2B4vu+07JnYMYaO
- O7ox4sSIYIYxY/ML1lbDnMsonYado3Ku9rxKvfc3soBYOa/A/N6cm1XkI0dqZIYToY6T
- v6ajjHspnIX9OOjal2Og2Q7B9LnxdxboXDtY1LoZWqKJNHTv+u+cNW4qG8Yroi2bIYr4
- JpkJDN2zDN7Z97NiOZCQzgtBpGzqkqXX58wb/k6cq4d9DWb95lg3Pqyctt4uQzCedpOP
- vtB0JSlc/LnYuwFVidQPnUVz9Koi1UWBG2Jsp0zh/qcTLrh12KOf68/Z4HLkOu36ILpD
- aWrQ==
+ :cc; bh=9nCoifbkeuSkm32g7FfRMjrrGtoOLRMD6Zxww8rwgSY=;
+ b=k4bh6DUjkzSke+B7L/UMoe1ivoznzvxi0ad4wPwtsZGoWWxk3Udc+bdz7nyo6ZmxfS
+ qkPJshm7a2kWgy6KAEhURguLEO4FJflS+R/I1mdeCCmfiU0BhzyucFSgjoSIiknjqS/3
+ 5LDc1Qz9DCmxM2zeZzyCXs/M58SfCe0gx94TBzDZfRMHZIqRM3vulgl2BldpdenUS4DZ
+ kpg0EXJManOmZwY0vT1SeOP6Eelac7dtp/TS1xaLt96PfJmjz0QCDPIep9SaoEuM/8kK
+ 01FVFLu6nuBWpYrWDrn1QrmQ4azWiIXsyAjZ5Qn35TwO0+DxfgkqlpufcovPi7zAnE2S
+ xJgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=C3MDToKFnc8Ld4NhDNLDgxEU3GH0UiPaPFBJOq/aOu4=;
- b=h9YzYawDoabmMmiaxcQXm2R161GWGFl+BmWLEPgzdHSQERGb34OmMtdtfJvNAp4UOd
- CVrhtQHSg6WkpM4xE67oe0Dpu/8bmawzuyAs6gMWmS7xGLGYgySNL6LLp2o30DJssenA
- TD6NAm0rjThrVSGRZbjmCA6o21vtl8NcEQN2ZbuaUhHMNxElxNKxhqhDd0cnRc7II1on
- dySVTvHIKq+hEEeB/dkVgDIHW4BHHTZqCBVfKHvMvoT2lGvEusKuOYczH/KAE79MZLQX
- Nv5W0n7FOr9cOsj6fhUVxy1dYeFsHfucJMFAJdUcZ86mWqfOXbB6KWS2xLLSCv4Cobd/
- eTSg==
-X-Gm-Message-State: AOAM532fBV/xV110Gm+OsRLNXgl8VVEc5VpzVjt2rt+kEOohDZtaSUJs
- 4CAZrrkhIOxAJJgwD72Wzht2KvMSVrhpushBIXA=
-X-Google-Smtp-Source: ABdhPJz8LTTXIBSbijfWq+tPT8oZ+iOkpd7xsUuTf6dC+qoeeI/DTkVqkf5sikzIkMmvbBTf6C131zlVJFtLGVM8puo=
-X-Received: by 2002:a17:906:16da:: with SMTP id
- t26mr1463323ejd.172.1601020285551; 
- Fri, 25 Sep 2020 00:51:25 -0700 (PDT)
+ bh=9nCoifbkeuSkm32g7FfRMjrrGtoOLRMD6Zxww8rwgSY=;
+ b=nF8fE+NMRjLJboopdAwm9o2d931SNmYbeSv0Nssz6uTCfMzjN9gvRe2bjhbpVy377Y
+ tA6AUGx6KI+B2HIXlnWcAC7XumnsVg/hEGkoMd/FVqQpWlwPHJg5CT4uIsN48PHgArua
+ 5sH3cVIjsUJaoxqM8YM+FtAnPFAYESA7hu/Ze4Co2i+PI9D+oqsUGa/YSsf/LJqyY5HH
+ 1fiHd0f6neKSII3ge/Vex8pN+KZ3h949IcPgy1oWoYlZvclc299Vhs0jB5O+wPT7JD1a
+ 8ajczfrJ1ZOMLe6+6QTqOLqB2zFHfnugvtlZBELMP+Kr6JgLHJMcSHnamAm8HonwANt5
+ 6xpA==
+X-Gm-Message-State: AOAM532v+ESjcpqs2W8Bvq/DwbXRqy4NYppbrJALU1Y2DHpTtgXzDege
+ vPXnMghH+y923ifvddLyIVSjpkihk6Vcy16ZiaY=
+X-Google-Smtp-Source: ABdhPJxeDIGT9fA+GFpnV/N6d8qqejXu7XMaJ3dwMmOkk5HsY/gbxhunvPYF46+CM+RrsH5NNhmumepRvh+9msyzJwg=
+X-Received: by 2002:aa7:d6c6:: with SMTP id x6mr14862edr.338.1601021072020;
+ Fri, 25 Sep 2020 01:04:32 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200925033017.1790973-1-art@khadas.com>
- <20200925033017.1790973-2-art@khadas.com>
-In-Reply-To: <20200925033017.1790973-2-art@khadas.com>
+ <20200925033017.1790973-6-art@khadas.com>
+ <CAFBinCAJ6svwiv9OM6EHz7468D9h+jW_ULiGrorgLetcODsAKQ@mail.gmail.com>
+ <CAKaHn9+CWLJYN1Tt46VxBGNBEbVVJZWeL6ZJSf9w-5DmoxrvgQ@mail.gmail.com>
+In-Reply-To: <CAKaHn9+CWLJYN1Tt46VxBGNBEbVVJZWeL6ZJSf9w-5DmoxrvgQ@mail.gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 25 Sep 2020 09:51:14 +0200
-Message-ID: <CAFBinCDcwHUJzK4HsvKxs1n4_jH9K47bNZcZobocLxKVj7+iNw@mail.gmail.com>
-Subject: Re: [PATCH 1/8] arm64: dts: meson: update spifc node on Khadas VIM2
- meson-gxm-khadas-vim2
-To: Artem Lapkin <email2tema@gmail.com>
+Date: Fri, 25 Sep 2020 10:04:21 +0200
+Message-ID: <CAFBinCD0_QgKKcH+Kb2QbMWnx_csoXMEhSFYzmDscdTVB2TUJw@mail.gmail.com>
+Subject: Re: [PATCH 5/8] arm64: dts: meson: remove reset-gpios from ethernet
+ node for VIM2 meson-gxm-khadas-vim2
+To: Art Nikpal <email2tema@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_035127_110045_61471321 
-X-CRM114-Status: UNSURE (   9.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200925_040437_904164_EA4CCC24 
+X-CRM114-Status: GOOD (  15.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,20 +102,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Artem,
+Hello Artem,
 
-On Fri, Sep 25, 2020 at 5:30 AM Artem Lapkin <email2tema@gmail.com> wrote:
+(adding back the mailing-list recipients)
+
+On Fri, Sep 25, 2020 at 9:50 AM Art Nikpal <email2tema@gmail.com> wrote:
 >
-> 1) The VIM2 Boards use w25q128 spi chip only not w25q32 or w25q16
->    it's not really seriously becouse have 'jedec,spi-nor' which
->    have auto chips identifications
-according to the "VIM2 - Transitioning From v1.2 to v1.4" document [0]
-(page 7) both board revisions are using different SPI flash sizes
-for which board revision are your changes?
+> hello
+>
+> > what is the problem that you observe here?
+> > did you investigate further why resetting the PHY changes this?
+>
+> just try next commands
+> ifconfig eth0 down && ifconfig eth0 up
+> and ethernet never up again - need full reboot only
+this means that "something" is either set up incorrectly in the Linux
+kernel or that u-boot does some magic (and the same magic is then
+missing in the Linux kernel)
+I'll dig out my Khadas VIM2 to test this. what should I look out for
+(are there any error messages, dhcp not getting an IP address anymore,
+etc.)?
 
-> 2) max-frequency is 104Mhz
-(note to self: according to the w25q16 datasheet it supports a maximum
-clock frequency of 104MHz, so this is fine)
+> but if reset-gpios will be remove it works fine already - i have checked it many times
+>
+> for example VIM3 same didnt use reset-gpios
+that's interesting - I'm surprised to see this
+I did a quick check and for 15 out of 18 .dts(i) files with RGMII
+phy-mode we use the reset-gpios:
+$ grep -R 'phy-mode = "rgmii' arch/arm64/boot/dts/amlogic/ | wc -l
+18
+$ grep -R 'ethernet-phy@0' -A10 arch/arm64/boot/dts/amlogic/ | grep
+reset-gpios | wc -l
+15
+
+so really I would like to add the reset-gpios to the VIM3 .dtsi as
+well once we figured out what's wrong on the VIM2
 
 
 Best regards,
