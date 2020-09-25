@@ -2,21 +2,21 @@ Return-Path: <SRS0=7OpP=DC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-11.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DC5BEC4727E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 17:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C5D8C4727E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 21:13:54 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 819F1208B6
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 17:05:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A689F21D42
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2020 21:13:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oXqS8k3V"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 819F1208B6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vxDRnqLD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A689F21D42
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,53 +25,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=P2Q2skadpMMfoJv/jUQuAoL5QnHDVEzexTKUEKZ7S6Q=; b=oXqS8k3VI2QI1OiCBDhU2gdLn
-	qwV+oI+cLVHO3DuxpY0Uw/ZlaXc+0f6EJ+q4yP4G4j7KDJBf6b6chkP+JSZWb3EZGcfJaGKOt4FMv
-	O+faEQEoOjsOcylxVVmUAi6pa+rgIOMb3GDvWkb6i+50PG4WVOwsmXZfEvIFA43ek3dMANWQkG0O9
-	ctbEQR+PSv8rcr2hcfu2aKSCrBz9GNI1Tw+jEZYrR5arDCnatqm5tmvV3qXxARBaHV4h8XvXxvZaD
-	QcTgk+jQgf6aMHifyKvkgyCXfnyfCSuKDeSdIqrDersfvA7sAXuoGszB34gdvV76gSsIkHP4KwYRN
-	p8ENotWXw==;
+	 bh=dMoZ60PsfN8tlFu0HySrBdbdeTaxl0swBbgRu3qPezI=; b=vxDRnqLD2XVBrOYmTHGgUw1GE
+	kMVmd6aTE+dB7OXcIu3Z2xnKu6DWp4vnrSkYIVJsYrNaDNMGoZeTT+nr2v/5QDbVwChHQEw9rXG7T
+	u1I9QhDpmjGZvqugixLV2eF4lEoxonG0SPB0uk7Xx83RQsYIC7oyif7m3du3p73nqyT8wczTkAtQ/
+	r5yhKLe8xuzOoyHGHfLT2voF6/l5pa816axVJ6LYbxxCm792appvDz8YvoGPDgTjplLvhDH46eFMu
+	Tr6temkzC/QP3DFp4FoHj7q4Px/o4xhJhb58K1v+1js/SbwKsXNbJlrXO2jRQKwcZ4zQz2JprJx9w
+	Zvjj4IGrw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kLr9W-00071l-Rd; Fri, 25 Sep 2020 17:04:58 +0000
-Received: from mail-ed1-f65.google.com ([209.85.208.65])
+	id 1kLv2F-0002SL-5B; Fri, 25 Sep 2020 21:13:43 +0000
+Received: from mail-io1-f68.google.com ([209.85.166.68])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLr9T-00070m-9r; Fri, 25 Sep 2020 17:04:57 +0000
-Received: by mail-ed1-f65.google.com with SMTP id i1so3240645edv.2;
- Fri, 25 Sep 2020 10:04:53 -0700 (PDT)
+ id 1kLv2C-0002RL-7Q
+ for linux-amlogic@lists.infradead.org; Fri, 25 Sep 2020 21:13:41 +0000
+Received: by mail-io1-f68.google.com with SMTP id v8so4497248iom.6
+ for <linux-amlogic@lists.infradead.org>; Fri, 25 Sep 2020 14:13:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=7H2Bk9gpg/w+wUoObaKvu/mtCEHvMrdXma3hhs6oCPA=;
- b=GU5GDl7YXqNvcricdEk/yT+lh0YLXMyVLvPV/nUMplP0PPnf9HoHv6w07QQQ8bfvra
- wnnASr8BZOYvYeeWiG65JgZzz8BeUy+wUwdPM4fw43RW5EzYq8Ud4Wql6zpZsTOiS7V7
- DYLJDdei8yqAS5ny1UvfrxEJeRtlBnUv++m1H232NGzwjliiish9bXZCWsqDyCZ0iSPQ
- PTFoxSEHmuLkxgdoGZEbhQeSsmJcXjArL5KjG6b8htubT03vVsUT6M62yZRRmzJlXnlx
- pNQynDIhVSSBFxV/N2rL+DQIryt7lN8fH+KuWLukCeX4FdeEqQbVnFv0bkq2yKGpWK4t
- P9wA==
-X-Gm-Message-State: AOAM531VpjcQvDsq4PUd8whxMCoczBy1S6MhvacDzJQM9dLqLD6Doq5r
- kxhSUOjMzKc2XeAj7MyOgwo=
-X-Google-Smtp-Source: ABdhPJzshXZU4mumXpaaqCcRqza8EX1pZ67x1HLojNLckvWgfrfQH6BmnBoLuzW1ylscuLUKq7fF/A==
-X-Received: by 2002:a50:c8cd:: with SMTP id k13mr2333610edh.387.1601053492597; 
- Fri, 25 Sep 2020 10:04:52 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.132])
- by smtp.googlemail.com with ESMTPSA id 40sm2174254edr.67.2020.09.25.10.04.50
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Fri, 25 Sep 2020 10:04:51 -0700 (PDT)
-Date: Fri, 25 Sep 2020 19:04:49 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH] mmc: host: fix depends for MMC_MESON_GX w/ COMPILE_TEST
-Message-ID: <20200925170449.GA18717@kozik-lap>
-References: <20200925164323.29843-1-rdunlap@infradead.org>
+ :mime-version:content-disposition:in-reply-to;
+ bh=8kwDPxGWO4Zarxs+976VhrgRShKS6L8rrmLcdeo03XU=;
+ b=JkUB9ZsKzwVgtsfmlCa1eF9MXYaaTpeTSt8xQYJsC0/CxgvMRU2AGGu2wO+ynvY/6H
+ X4OMYcO8C0ERhdqK07JV2dQexrO7UAnbwCWQ1s7mgWYFvuKyh3wSenTTzx2Cw6R9+wvu
+ wnnHtG7BjJNZyjlMoNhgHQRubfyXItnDmBhewuuVtd8v5nPJqTJdMHV0uVxKH5jjx1tV
+ W8tYol8BEbbt+ucETcxv6S6V65wiROK/alWM1+zqXyFt0dzAhb8uhkhDfKdINDFX2v9Y
+ r/BK3EN1KtZtoYq5b7Yz6cdylpklkn3klgwZx9U/JKaAzSBpc8r93OynEJxbolhGvl+e
+ LGew==
+X-Gm-Message-State: AOAM53329tvPEnDmSkwC8M8QS5SOheeNsApD2vRf9bYnd35VUPgb+UB+
+ FXhDpbMU3+Brc0U8N8vF+A==
+X-Google-Smtp-Source: ABdhPJzcS6KJxgxXK5xNBZe2qTu3yKbC+yVLPJn/UV/Er3LVgOvC7c2afoKP/sKN6F+XgON+lf0dUQ==
+X-Received: by 2002:a5d:97cd:: with SMTP id k13mr367521ios.164.1601068416055; 
+ Fri, 25 Sep 2020 14:13:36 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+ by smtp.gmail.com with ESMTPSA id o13sm2302386ilk.40.2020.09.25.14.13.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 25 Sep 2020 14:13:35 -0700 (PDT)
+Received: (nullmailer pid 980712 invoked by uid 1000);
+ Fri, 25 Sep 2020 21:13:34 -0000
+Date: Fri, 25 Sep 2020 15:13:34 -0600
+From: Rob Herring <robh@kernel.org>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH] pci: meson: build as module by default
+Message-ID: <20200925211334.GA972187@bogus>
+References: <20200918181251.32423-1-khilman@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200925164323.29843-1-rdunlap@infradead.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200918181251.32423-1-khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200925_130455_350501_FA267171 
-X-CRM114-Status: GOOD (  18.98  )
+X-CRM114-CacheID: sfid-20200925_171340_268790_2B917721 
+X-CRM114-Status: GOOD (  19.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,59 +85,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Sep 25, 2020 at 09:43:23AM -0700, Randy Dunlap wrote:
-> Fix build errors for meson-gx-mmc.c when CONFIG_COMMON_CLK is not
-> set/enabled. This can happen when COMPILE_TEST is set/enabled.
+On Fri, Sep 18, 2020 at 11:12:51AM -0700, Kevin Hilman wrote:
+> Enable pci-meson to build as a module whenever ARCH_MESON is enabled.
 > 
-> ERROR: modpost: "clk_divider_ops" [drivers/mmc/host/meson-gx-mmc.ko] undefined!
-> ERROR: modpost: "devm_clk_register" [drivers/mmc/host/meson-gx-mmc.ko] undefined!
-> ERROR: modpost: "clk_mux_ops" [drivers/mmc/host/meson-gx-mmc.ko] undefined!
-> ERROR: modpost: "__clk_get_name" [drivers/mmc/host/meson-gx-mmc.ko] undefined!
-> 
-> Fixes: 54d8454436a2 ("mmc: host: Enable compile testing of multiple drivers")
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: linux-amlogic@lists.infradead.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: linux-mmc@vger.kernel.org
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Yue Wang <yue.wang@amlogic.com>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 > ---
->  drivers/mmc/host/Kconfig |    1 +
->  1 file changed, 1 insertion(+)
+> Tested on Khadas VIM3 and Khadas VIM3 using NVMe SSD devices.
 > 
-> --- linux-next-20200925.orig/drivers/mmc/host/Kconfig
-> +++ linux-next-20200925/drivers/mmc/host/Kconfig
-> @@ -425,6 +425,7 @@ config MMC_SDHCI_IPROC
->  config MMC_MESON_GX
->  	tristate "Amlogic S905/GX*/AXG SD/MMC Host Controller support"
->  	depends on ARCH_MESON|| COMPILE_TEST
-> +	depends on COMMON_CLK
-
-I received a report from kbuild about this when I posted the patchset
-but somehow I was not able to reproduce it... or I skipped this for
-reason I do not remember now, my bad.
-
-Anyway, thanks for fixing, looks ok:
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Also please for the credits (as Kbuild did report it to me):
-Reported-by: kernel test robot <lkp@intel.com>
-
-Best regards,
-Krzysztof
-
+>  drivers/pci/controller/dwc/Kconfig     | 3 ++-
+>  drivers/pci/controller/dwc/pci-meson.c | 8 +++++++-
+>  2 files changed, 9 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index 044a3761c44f..bc049865f8e0 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -237,8 +237,9 @@ config PCIE_HISI_STB
+>  	  Say Y here if you want PCIe controller support on HiSilicon STB SoCs
+>  
+>  config PCI_MESON
+> -	bool "MESON PCIe controller"
+> +	tristate "MESON PCIe controller"
+>  	depends on PCI_MSI_IRQ_DOMAIN
+> +	default m if ARCH_MESON
+>  	select PCIE_DW_HOST
 >  	help
->  	  This selects support for the Amlogic SD/MMC Host Controller
->  	  found on the S905/GX*/AXG family of SoCs.  This controller is
+>  	  Say Y here if you want to enable PCI controller support on Amlogic
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index 4f183b96afbb..7a1fb55ee44a 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/resource.h>
+>  #include <linux/types.h>
+>  #include <linux/phy/phy.h>
+> +#include <linux/module.h>
+>  
+>  #include "pcie-designware.h"
+>  
+> @@ -589,6 +590,7 @@ static const struct of_device_id meson_pcie_of_match[] = {
+>  	},
+>  	{},
+>  };
+> +MODULE_DEVICE_TABLE(of, meson_pcie_of_match);
+>  
+>  static struct platform_driver meson_pcie_driver = {
+>  	.probe = meson_pcie_probe,
+
+You need a remove hook to tear down the PCI bus at least. 
+
+Really I'd like to add a devres hook in pci_host_probe to do that for 
+all the drivers.
+
+> @@ -598,4 +600,8 @@ static struct platform_driver meson_pcie_driver = {
+>  	},
+>  };
+>  
+> -builtin_platform_driver(meson_pcie_driver);
+> +module_platform_driver(meson_pcie_driver);
+> +
+> +MODULE_AUTHOR("Yue Wang <yue.wang@amlogic.com>");
+> +MODULE_DESCRIPTION("Amlogic PCIe Controller driver");
+> +MODULE_LICENSE("Dual BSD/GPL");
+
+First line is: SPDX-License-Identifier: GPL-2.0
+
+> -- 
+> 2.28.0
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
