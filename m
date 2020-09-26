@@ -5,83 +5,84 @@ X-Spam-Level:
 X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 61EE3C2D0A8
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Sep 2020 07:56:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98E78C2D0A8
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Sep 2020 08:30:48 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A5E622080C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Sep 2020 07:56:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 38DC72177B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Sep 2020 08:30:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nk6Een6m";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M2qZB5X/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5E622080C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bXnOs2lE";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="vJgVOXcn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 38DC72177B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Date:Message-Id:Subject:Mime-Version:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=O0kaTDQ6TOVqlwy9biwoCapkJCVKZ8EegA+ECJ2DmeM=; b=nk6Een6mPLi1PfqQh2qjPbTsqB
-	3lJIo8+a43O1lTWJADDY4eksFgvTWAr2MmC6+kAHHoiKKe3vy8zhRa7fgbE/PHYoDglaZ222ZBH4L
-	R+0NrKPABxIvFB09L7/b8j9h9wq5Zsaea4AloGzC/Nplfj4lh/fPLrafsiNSHUZcCqEe7vJ45Vg/H
-	4nzTTaClLeq4yDneWV2KmxgTuvRL5qwoh0+TWLG89FjpCILuzN5+fPuLo49xeDPKRVKfHQPUnUP7J
-	iDbqsCwj4RNlPDhGGjbOJ2T4+WeqD+NJrKhssmiN/ISwtV/VZk4fFTDIpvveEm/dkjyjJ3f08/XNV
-	+pstFYNg==;
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=qHLYSGR6E2ca6zZfFsBYpiKN8TJ0/QYBgZtlofVwsXk=; b=bXnOs2lEzU9mhNUYqgZqllbwD
+	89wdQWAZzBlU4T9Mxg0eGY0FAnRuSf/nDKludmKKXvg2LmTJ7MHNr63u/7OMfPBcSZz76npUr/N5b
+	yLz+OwUd5msSPN0Wl13Vil0vqm2dwlGRnUzKLDxvkKmeEjok9y77ADccg11Qga5s2pxfMNOmlUMQ9
+	fqaoRXTF1T3YY00vl85t491SMe9p1c1DefKiZCsUw7XQ9Tyo3LuZ9/uUD5e6cF4TyOQEvvP33Ef0A
+	oLiGWAbA+tiqjvrnqezzQk2IggttX9rBIiPC/jMAaiKnHeh/vvrVkAer16ldTplrtBfpY+yS4AieV
+	4RehY5NtQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kM53c-0000MN-Nc; Sat, 26 Sep 2020 07:55:48 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1kM5bI-00029t-Tz; Sat, 26 Sep 2020 08:30:36 +0000
+Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kM53Z-0000Lp-C7
- for linux-amlogic@lists.infradead.org; Sat, 26 Sep 2020 07:55:46 +0000
-Received: by mail-wm1-x344.google.com with SMTP id d4so1482131wmd.5
- for <linux-amlogic@lists.infradead.org>; Sat, 26 Sep 2020 00:55:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:content-transfer-encoding:mime-version:subject:message-id:date
- :cc:to; bh=pTA0hmsHcNqtI2fDLdRBHiVrah9nomJTQoK+wEwr798=;
- b=M2qZB5X/m3H5K3GEzXLTtYtmeCpkv+I2oOf9AfMMhw2L9ostZgECSYCShrtjuYCzIZ
- tlmSRnhVu6LS1IgqHXUvxO8GpNH3K5fhLNufRbT7TaLfL+ZzhDdpl0ZowGuzdiZ5KcIJ
- DMbjGNXpgT4Ltq8aeuPlijaf8B/J8njbPYCBga1UcGM1MsRsF828mrY46juXbG54J/5K
- 9AwRIqswp+Cfj5u6jAWuZyK+NR+9REsWvUwXQQ3K9b2v0MxZHY/A7y6mgOk8dviU6vT+
- p+nP92EHVn90ZVo3F/eg7TVPJXwU2cUJMT7c/0to1OSysbh6p1yhR6VbsGeXqwgnjcOU
- Lh5w==
+ id 1kM5bG-00028b-IM; Sat, 26 Sep 2020 08:30:35 +0000
+Received: by mail-ej1-x641.google.com with SMTP id p15so1732106ejm.7;
+ Sat, 26 Sep 2020 01:30:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=geRPT82jJQC5Dnh8QLGuxC3SCHWc2B1rPydy51X3y1Y=;
+ b=vJgVOXcnyREOuagh28h8Q0hP3/36E2V95YTMGWyefkvTqTzDsU/nh6s/sw4djktg3j
+ HbkKAVtMTuwM5NugaibhxmZgkmRRJWoRqqLTZ/5ntZQHR6uy3YUb4P/uysiZCAaSvbA/
+ msjSbkjTd12PbiMT3mhH2UCLjfm7tQehqgwXLMpNLY2P+CvIspAi96cQ8qLYROGdyk3D
+ N7KWsJRDacxkzT98nQyZ9cwRf+IDqnS/+I6iT26Knfn4TbMHXiVzVdEe6z5JI0v7ap5M
+ bOdUV8ACbNvb3vg+pMNphJUzHaYRHQ5TLQC8JBDgGhRqav5Wb7RAhSqjkDGlmrodmtFe
+ uPqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:content-transfer-encoding:mime-version
- :subject:message-id:date:cc:to;
- bh=pTA0hmsHcNqtI2fDLdRBHiVrah9nomJTQoK+wEwr798=;
- b=e095RHlvCdGMo5xoMJOmpnNc79QYpfYxrRjhQO77LCWQ6Uu7FAVrFuNZNbHBd/EO+y
- r63s1YLnl9WswTEQ4mCj6KeMDMCeRz7uUlIZS0vwa/+W+26dkUlB0UwTyL4L6f9mmadW
- 6RTF1JSVrU5a/OK0HQSetuV4FjaPNWgxa1v28EdYNm6OILHbmeGTEJ/LhyDd0WDYiW5v
- qU4y0gv+Q4pEaF2iLy82p0tCLgXlNJItX3WfBwU5uyzwYE/gcCxHqiLOQXlV4QFJMIFo
- IT3N/bhwT7lwB0qTuoKIJ4Yrk8uDuDE62gaGyFL0ZPDXzW1TY6D/hbIA0LbpobpdLQZg
- tZ3g==
-X-Gm-Message-State: AOAM53031gBbf0vxS9lIYtfohbTdFUEPdwgoYU4yJ5lZfEkiR+dU32Zw
- opYCAj9WVohYuOZUq6rpp1Y=
-X-Google-Smtp-Source: ABdhPJxN2sf8T0c2574PbIWh7ZWRVLX9R78jkbwc5JkiNrZ7OZvOcpuA3qjy4kdEL2QUwiCZ+bimbA==
-X-Received: by 2002:a7b:c387:: with SMTP id s7mr1464744wmj.171.1601106942638; 
- Sat, 26 Sep 2020 00:55:42 -0700 (PDT)
-Received: from [172.16.20.20] ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id r206sm1735863wma.47.2020.09.26.00.55.40
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 26 Sep 2020 00:55:42 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.15\))
-Subject: Deadlock under load with Linux 5.9 and other recent kernels
-Message-Id: <5878AC01-8A1B-4F39-B4BD-BDDEFAECFAA2@gmail.com>
-Date: Sat, 26 Sep 2020 11:55:39 +0400
-To: linux-block@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-X-Mailer: Apple Mail (2.3445.104.15)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=geRPT82jJQC5Dnh8QLGuxC3SCHWc2B1rPydy51X3y1Y=;
+ b=pqCzM5TgElpRLgQA/5nft5mGyD+94CYrvuh/F5Xdj/RaUQPaNrt7n1OjUsWn5D4BYn
+ M80tgfMp7BbNmfXSu9I9viGAOJAqxm/wdsrjxhtGceYBDSVQx5tCDoCg7BYAJ0Y3rTfv
+ 0HGuuusTWGn6iNlab5wGqGeKBwoxJAjTEX+/+8SDZkPZ7SSBhWmocju9P1vHZL1PFmhi
+ uOVkWgy/US0X/9vYdT90OQgcz5aWupuAlVIPsrmNfrO0ZC8OQm072NX1j176z8w/wdpV
+ ByD6h1FPk7i7YYRL3i2Mn/O0vvlmsRQ4hj0ZAa23+SrQUaVLgfgpElSmbsuotD9FkPnn
+ Uyiw==
+X-Gm-Message-State: AOAM531gZ2C7GeJ6ze7otf4tWyvxVD4GOv8Vm9h3lCyMa91AeEbjgY18
+ qTnuE34cEstura8NtmfF6mj/6zzVEEarmaBnq5w=
+X-Google-Smtp-Source: ABdhPJx0csOOAv2vhhfuNQzBodoKVpINTDv/Y6G8FMXBH5RtOuMbitW1hL9frNPcQ2pHadXidMm67gt6b4kDUQ954Cg=
+X-Received: by 2002:a17:906:3791:: with SMTP id
+ n17mr6423102ejc.216.1601109031457; 
+ Sat, 26 Sep 2020 01:30:31 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFBinCATt4Hi9rigj52nMf3oygyFbnopZcsakGL=KyWnsjY3JA@mail.gmail.com>
+ <20200925221403.GE3856392@lunn.ch>
+ <CAFBinCC4VuLJDLqQb+m+h+qnh6fAK2aBLVtQaE15Tc-zQq=KSg@mail.gmail.com>
+ <20200926004129.GC3850848@lunn.ch>
+In-Reply-To: <20200926004129.GC3850848@lunn.ch>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 26 Sep 2020 10:30:20 +0200
+Message-ID: <CAFBinCAc2-QV3E8P4gk+7Lq0ushH08UoZ0tQ8ACEoda-D8oaWg@mail.gmail.com>
+Subject: Re: RGMII timing calibration (on 12nm Amlogic SoCs) - integration
+ into dwmac-meson8b
+To: Andrew Lunn <andrew@lunn.ch>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200926_035545_433096_23B8FF41 
-X-CRM114-Status: GOOD (  13.66  )
+X-CRM114-CacheID: sfid-20200926_043034_645497_822807F1 
+X-CRM114-Status: GOOD (  38.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,47 +94,143 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: furkan@fkardame.com, Brad Harper <bjharper@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: alexandre.torgue@st.com, netdev@vger.kernel.org, peppe.cavallaro@st.com,
+ linux@armlinux.org.uk, linux-kernel@vger.kernel.org, joabreu@synopsys.com,
+ kuba@kernel.org, linux-amlogic@lists.infradead.org, davem@davemloft.net,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SSBhbSB1c2luZyBhbiBBUk0gU0JDIGRldmljZSB3aXRoIEFtbG9naWMgUzkyMlggY2hpcCAoQmVl
-bGluayBHUy1LaW5nLVgsIGFuIEFuZHJvaWQgU1RCKSB0byBib290IHRoZSBLb2RpIG1lZGlhY2Vu
-dHJlIGRpc3RybyBMaWJyZUVMRUMgKHdoaWNoIEkgd29yayBvbikgYWx0aG91Z2ggdGhlIGlzc3Vl
-IGlzIGFsc28gcmVwcm9kdWNpYmxlIHdpdGggTWFuamFybyBhbmQgQXJtYmlhbiBvbiB0aGUgc2Ft
-ZSBoYXJkd2FyZSwgYW5kIHdpdGggdGhlIEdULUtpbmcgYW5kIEdULUtpbmcgUHJvIGRldmljZXMg
-ZnJvbSB0aGUgc2FtZSB2ZW5kb3IgLSBhbGwgdGhyZWUgZGV2aWNlcyBhcmUgdXNpbmcgYSBjb21t
-b24gZHRzaToKCmh0dHBzOi8vZ2l0aHViLmNvbS9jaGV3aXR0L2xpbnV4L2Jsb2IvYW1sb2dpYy01
-LjktaW50ZWcvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItZ3NraW5nLXgu
-ZHRzCmh0dHBzOi8vZ2l0aHViLmNvbS9jaGV3aXR0L2xpbnV4L2Jsb2IvYW1sb2dpYy01LjktaW50
-ZWcvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItZ3RraW5nLXByby5kdHMK
-aHR0cHM6Ly9naXRodWIuY29tL2NoZXdpdHQvbGludXgvYmxvYi9hbWxvZ2ljLTUuOS1pbnRlZy9h
-cmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi1ndGtpbmcuZHRzCmh0dHBzOi8v
-Z2l0aHViLmNvbS9jaGV3aXR0L2xpbnV4L2Jsb2IvYW1sb2dpYy01LjktaW50ZWcvYXJjaC9hcm02
-NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItdzQwMC5kdHNpCgpJIGhhdmUgc2NoZW1hdGlj
-cyBmb3IgdGhlIGRldmljZXMsIGJ1dCBjYW4gb25seSBzaGFyZSB0aG9zZSBwcml2YXRlbHkgb24g
-cmVxdWVzdC4KCkZvciB0ZXN0aW5nIEkgYW0gYm9vdGluZyBMaWJyZUVMRUMgZnJvbSBTRCBjYXJk
-LiBUaGUgYm94IGhhcyBhIDRUQiBTQVRBIGRyaXZlIGludGVybmFsbHkgY29ubmVjdGVkIHdpdGgg
-YSBVU0IgPiBTQVRBIGJyaWRnZSwgc2VlIGRtZXNnOiBodHRwOi8vaXguaW8vMnlMaCBhbmQgSSBj
-b25uZWN0IGEgVVNCIHN0aWNrIHdpdGggYSA0R0IgSVNPIGZpbGUgdGhhdCBJIGNvcHkgdG8gdGhl
-IGludGVybmFsIFNBVEEgZHJpdmUuIFdpdGhpbiAxMC0yMCBzZWNvbmRzIG9mIHN0YXJ0aW5nIHRo
-ZSBjb3B5IHRoZSBib3ggZGVhZGxvY2tzIG5lZWRpbmcgYSBoYXJkIHBvd2VyIGN5Y2xlIHRvIHJl
-Y292ZXIuIFRoZSB0aW1pbmcgb2YgdGhlIGRlYWRsb2NrIGlzIHZhcmlhYmxlIGJ1dCB0aGUgZGV2
-aWNlIF9hbHdheXNfIGRlYWRsb2Nrcy4gQWx0aG91Z2ggSSBhbSB1c2luZyBhIHNpbXBsZSBjb3B5
-IHVzZS1jYXNlLCB0aGVyZSBhcmUgc2ltaWxhciByZXBvcnRzIGluIEFybWJpYW4gZm9ydW1zIHBl
-cmZvcm1pbmcgdGFza3MgbGlrZSBpbnN0YWxscy91cGRhdGVzIHRoYXQgaW52b2x2ZSBJL08gbG9h
-ZHMuCgpGb2xsb3dpbmcgYWR2aWNlIGluIHRoZSAjbGludXgtYW1sb2dpYyBJUkMgY2hhbm5lbCBJ
-IGFkZGVkIENPTkZJR19TT0ZUTE9DS1VQX0RFVEVDVE9SIGFuZCBDT05GSUdfREVURUNUX0hVTkdf
-VEFTSyBhbmQgd2FzIGFibGUgdG8gZ2V0IG91dHB1dCBvbiB0aGUgSERNSSBzY3JlZW4gKGl0IGlz
-IG5vdCBwb3NzaWJsZSB0byBjb25uZWN0IHRvIFVBUlQgcGlucyB3aXRob3V0IGRlc3Ryb3lpbmcg
-dGhlIGJveCBjYXNlKS4gSWYgeW91IGFkdmFuY2UgdGhlIGZvbGxvd2luZyB2aWRlbyBmcmFtZSBi
-eSBmcmFtZSBpbiBWTEMgeW91IGNhbiBzZWUgdGhlIG91dHB1dDoKCmh0dHBzOi8vd3d3LmRyb3Bi
-b3guY29tL3Mva2x2Y2l6aW04Y3M1bHplL2xvY2t1cF9jbGlwLm1vdj9kbD0wCgpJIGFtIG5vdCBh
-IGNvZGluZyBkZXZlbG9wZXIgc28gdGhlIG91dHB1dCBkb2VzbuKAmXQgbWVhbiBtdWNoIHRvIG1l
-LCBidXQgSSBhbSBoYXBweSB0byBmb2xsb3cgZ3VpZGFuY2Ugb3IgaW5zdGFsbCBwYXRjaGVzIHRv
-IGdldCBtb3JlIG91dHB1dCBvciB0ZXN0IHRoaW5ncy4KCkNocmlzdGlhbgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
-bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
-ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Hi Andrew,
+
+On Sat, Sep 26, 2020 at 2:41 AM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > The reference code I linked tries to detect the RGMII interface mode.
+> > However, for each board we know the phy-mode as well as the RX and TX
+> > delay - so I'm not trying to port the RGMII interface detection part
+> > to the mainline driver.
+> >
+> > on X96 Air (which I'm using for testing) Amlogic configures phy-mode
+> > "rgmii" with a 2ns TX delay provided by the MAC and 0ns RX delay
+> > anywhere (so I'm assuming that the board adds the 2ns RX delay)
+>
+> Hi Martin
+>
+> It would be unusual to have an asymmetric design in the PCB. So i
+> would try to prove that assumption. It could be the PHY driver is
+> broken, and although it is configured to use RGMII, it is actually
+> inserting a delay on RX. Also check if the PHY has any strapping.
+I checked this again for the vendor u-boot (where Ethernet is NOT
+working) as well as the Android kernel which this board was shipped
+with (where Ethernet is working)
+- in u-boot the MAC side adds a 2ns TX delay and the PHY side adds a
+2ns RX delay
+- in Linux the MAC side adds a 2ns TX delay and the RX delay is turned
+off (for both, MAC and PHY)
+
+> > I am aware that the recommendation is to let the PHY generate the delay.
+> > For now I'm trying to get the same configuration working which is used
+> > by Amlogic's vendor kernel and u-boot.
+> >
+> > > Is there any documentation as to what the calibration values mean?  I
+> > > would just hard code it to whatever means 0uS delay, and be done. The
+> > > only time the MAC needs to add delays is when the PHY is not capable
+> > > of doing it, and generally, they all are.
+>
+> > This calibration is not the RGMII RX or TX delay - we have other
+> > registers for that and already know how to program these.
+>
+> O.K. so maybe this is just fine tuning. Some PHYs also allow this.
+>
+> > What I can say is that u-boot programs calibration value 0xf (the
+> > maximum value) on my X96 Air board. With this I cannot get Ethernet
+> > working - regardless of how I change the RX or TX delays.
+> > If I leave everything as-is (2ns TX delay generated by the MAC, 0ns RX
+> > delay, ...) and change the calibration value to 0x0 or 0x3 (the latter
+> > is set by the vendor kernel) then Ethernet starts working.
+>
+> So there is just one calibration value? So it assumes the calibration
+> is symmetric for both RX and TX.
+yes, there's only one calibration value
+the reference code is calculating the calibration setting for four
+configuration variants:
+- 2ns TX delay on the MAC side, no RX or TX delay on the PHY side,
+RGMII RX_CLK not inverted
+- 2ns TX delay on the MAC side, no RX or TX delay on the PHY side,
+RGMII RX_CLK inverted
+- 2ns TX delay on the MAC side, 2ns RX delay on the PHY side, RGMII
+RX_CLK not inverted
+- 2ns TX delay on the MAC side, 2ns RX delay on the PHY side, RGMII
+RX_CLK inverted
+
+now that I'm writing this, could it be a calibration of the RX_CLK
+signal? The TX delay is fixed in all cases but the RX delay and RX_CLK
+signal inversion are variable.
+
+> What PHY is it using?
+>
+> https://dpaste.com/2WJF9EN suggests it is a RTL8211F.
+indeed, it's a RTL8211F
+
+> This device does have stripping to set the default delay. Can you
+> check if there are pull ups on pins 24 and 25?
+I checked it in software (see above)
+to let you sanity-check this:
+in vendor u-boot I read: reg 0x11=0x9 and reg 0x15=0x19
+in the Android kernel shipped with the board I have: reg 0x11=0x9 and
+reg 0x15=0x11
+
+note: I haven't found a way to "fix" Ethernet in u-boot so far. I
+cannot get the exact u-boot copy that's used on my board (since
+there's no vendor to contact).
+so I'm careful with interpreting what I'm seeing in u-boot
+
+if you really want me to I can check the pull-ups but I prefer not to
+since I managed to short and break tiny solder joints in the past -
+and I only have one of these boards for testing
+
+> What i find interesting is in the driver is:
+>
+>         ret = phy_modify_paged_changed(phydev, 0xd08, 0x11, RTL8211F_TX_DELAY,
+>                                        val_txdly);
+>
+>         ret = phy_modify_paged_changed(phydev, 0xd08, 0x15, RTL8211F_RX_DELAY,
+>                                        val_rxdly);
+>
+> Different registers, 0x11 vs 0x15. In the datasheets i found with
+> google, none describe any of these bits, but at least register 0x15 is
+> mentioned, where as register 0x11 is not.
+>
+> Git blame shows you added this! Are you sure about this? It seems odd
+> they are in different registers.
+I asked Realtek about it back then and they were kind enough to reply
+- so I got this information from Realtek
+double-checking with my old mails (I have to type what's shown in the
+screenshot as I'm allowed to share the info but not the screenshot
+that I received):
+Function Name: Manually Enable TXDLY
+Function Description: Enable TXDLY by registers (default by hardware
+pin configuration)
+RTL8211F series: Page: 0xd08, Reg 17, bit[8] = 1
+
+Function Name: Manually Enable RXDLY
+Function Description: Enable RXDLY by registers (default by hardware
+pin configuration)
+RTL8211F series: Page: 0xd08, Reg 21, bit[3] = 1
+
+In the meantime Amlogic's "hacked" PHY driver is also using these registers: [0]
+So I assume that I'm doing the right thing in the Realtek PHY driver
+
+
+Best regards,
+Martin
+
+
+[0] https://github.com/khadas/linux/blob/d140398907da5a3f4f7dba2acd336e2ef469bac2/drivers/net/phy/realtek.c#L174
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
