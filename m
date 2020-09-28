@@ -2,22 +2,22 @@ Return-Path: <SRS0=0gED=DF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 56CDDC2D0A8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2020 07:54:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E95DC2D0A8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2020 07:55:24 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8631221775
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2020 07:54:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EC51F21775
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2020 07:55:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UhAo10up";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XYqjoAGl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8631221775
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jR7hYsRc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OLzfioPn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EC51F21775
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=xLfHktCnzaFrNXZj7a40CiZiPzQ3+elosz/Mha1cIvg=; b=UhAo10up4fj+icBNHADXb5mhi
-	uO+f/mQaesrTM9HZkMCMvvZcHqXlzluCfxy8S5Zs4rxrk8/zCoXUq+lDHMvcDx3d2e9jgEGnrGhqG
-	KJQ7yHCSEWkiBmvCsB/1UwzJEV30/GpX1Yrx8+aT722OPYRjoHs369O0y8DRbplWBUIddP0KokPVq
-	AJQ2Dd35jLjrgXEmrqSrWehcGG/8yQp0GSWTh2WIg68MJ+wID2/HPMTkfJE5jlZA+r2ktx8EQbItQ
-	3KPRWTiyGptejzUN6Z7Tom6K7RWhPiBYW0pRkYQ32UOsFbqCqyQBesc0Mjn/HoY9xBd+N8zinbWzz
-	qnwwwq0UQ==;
+	 bh=rXweZq7UG+fqssKiOKeM1V0ymSLQPMyDQwgF6G4096A=; b=jR7hYsRcNdI9DQhKkZobbPLrM
+	j7WePCw81nsiq8s6wjcXa/Ny5hsmZ3wKzsdZ1Ngs4W5hfhmkhSNUr30QD39HNPvzmZfyOnJHLg8O/
+	B31ZsgDUf9ZbbLzgiWpioSiL4Uu23EUKP/AG8kUOuBer+spniaenM0cTig8vzbmzPQplQP0qEvCX6
+	LIUb8Dp4yL8r+obyW/tUK7h7YIFh/XA2R6XAoCMj24Eiqs6MiuhHNPPmKLEzFHY3i0KmVsML+ZWh3
+	Yf0TCxykkOc8e3P3QP/gTUR+2Wa0Lb8Jo6WywC2oJQ1mOa/M9sLisekLDhkgIO9b9OoP2tPw2Ijjg
+	7WT0Phgtg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kMnzM-0000kx-UV; Mon, 28 Sep 2020 07:54:25 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1kMo0F-0000xa-JD; Mon, 28 Sep 2020 07:55:19 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kMnzG-0000j4-9d
- for linux-amlogic@lists.infradead.org; Mon, 28 Sep 2020 07:54:19 +0000
-Received: by mail-wr1-x444.google.com with SMTP id c18so80508wrm.9
- for <linux-amlogic@lists.infradead.org>; Mon, 28 Sep 2020 00:54:16 -0700 (PDT)
+ id 1kMo0C-0000w8-JR
+ for linux-amlogic@lists.infradead.org; Mon, 28 Sep 2020 07:55:17 +0000
+Received: by mail-wm1-x344.google.com with SMTP id y15so77054wmi.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Sep 2020 00:55:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=In2sIrZUOdT6d9l0rp8/qe3T9EAaqtHwy60CydIPILU=;
- b=XYqjoAGltZfPV9JzXD12eK5iPoanLNCCBxBeyJblwQN8AzOPM01z8m05KQQRQ5VZoN
- eQXJV18DTxAPBaMCxFQ/wIXwgu7Xj7MIhMHnEkDQBystr7wC2CpguGAeImPXYoUjCaFP
- 9g8QAi3f89QLVU0218s25U394ModL+nN/vm4cpVPjxIID/I3GDAv9odnzSjXjq/7C9su
- +5FzvMMR9rQtUKhZ27JlsZJlKSH/LMCfM0o6/eR8uYNEy5CJ21beggh6lEGq0GNs8YVV
- FLinj1f32JnCj6T2x3C/0jbF60w2K4nJJ3ASw6szUdeV8SyfAadiB8FIelc0xo1ffHzw
- Wvag==
+ bh=IWMp1ziybkV/Y7kFON1ezTaial5VR/3MFd4DFIfkgFg=;
+ b=OLzfioPnCTS7uh43jpO7a24rGz4LRGf8aeV6IBp3E6r1r/X5YK5/vUOuprxMIEKCNn
+ SReEs2Bzg3eKDQGqDjCRs0M7rbRbgWe2Pfql4spk0JgPCfd46ctgGO1y4//qJ94MLgJ/
+ zCtHyvjJJdr3yMb5nwIu/Q2zlAdD4Y3qTVPYAcFRGuiQCvFZ0iuHh11zTgUoaYcoZmeJ
+ c8cux4+rs1wF/Vkpbg8sAocYzUOtLcwEYQA4nr33jNlkU58gM6/wGCreen/2xnc0cEc9
+ TVXfBCrweeWcuSDrdXkyJFxerQ0FNUsu/RHFI/NJAaTHDCg3GDFakFPGVHfzz7ltE05p
+ Luaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=In2sIrZUOdT6d9l0rp8/qe3T9EAaqtHwy60CydIPILU=;
- b=pLdTW1g9psWKqRbEoTfA38TVyOAbY+GIBpxVLopE7S122V29u0AP0ocQwqjoABvBEU
- 9EfWkdZlhKzYoHj1MGCgnCNZ3GunILyeo7U3TZOkZ+CmDddLWZf/xPGXbWdQBLJ8pvLf
- nG8qHxvTRoNG3ViErb2Cu1HyT2Ce0p7ye3DBNXVOG2k/CghttIECdaKPdpiMDfzjo0Sw
- uPneRpXgqljARgSRwcbkUSlfM+dHz4W62Apf32o3uvY103KRx3JWzBV+IFdPBVIuPbH6
- AsfVYgSStDKg7WG9HSRlU9qh2W9v8tj3KflfD0J9EGvgiuv93Pa4TQ/kQfCDc58YmSd4
- Rorg==
-X-Gm-Message-State: AOAM533FgefxBpMRxjG22tSRJ1fc1nUNAw5XgCn0qb8Giw36gZT5X8tB
- I/pmasMv4gxqOYkd4vup5UkIjA==
-X-Google-Smtp-Source: ABdhPJwdXX8oDTNaPKfmbRWZInxFYYCQxNiO7EoXj0JrI4vIJdgwsgTGIiNkqtXkExbAoQzdqAqNFw==
-X-Received: by 2002:a05:6000:104c:: with SMTP id
- c12mr166119wrx.133.1601279655332; 
- Mon, 28 Sep 2020 00:54:15 -0700 (PDT)
+ bh=IWMp1ziybkV/Y7kFON1ezTaial5VR/3MFd4DFIfkgFg=;
+ b=MQaYE5IWG5bY7URliKd4Y+mugu5vPfnUjwCnFyxdyrAU6PczfddLRt4f7B8II9vBWw
+ xNuYtRAO9vOL3RCC80wz4tbR9QY4WMOwl+cNwYOjwifvhgkyuN0h5jGVBBqzkYcXbicz
+ Ss8SzrJmANBkRt0EgujrpNLaaqfAJc6ULOZaXLLiwJhqnTMSoMJFmRtJFJWLpHjQsO6f
+ l52tsytH7kFSxJsda+R3aOvsDWYohe9NbYO4JW1O7kwNaU+olqR1pDGx304tZTjUd86M
+ Hx3OxCsas2gbTvk3/5491LrQ18aDYX5MfJSHq6bCRyY2O9Ht6iOXdvy0MDay+JVOdiwK
+ SgaQ==
+X-Gm-Message-State: AOAM533DXZrpKn6Lm1O5PN0hG4ngqkwtHAreZHTXUgM9c3gOvv5XaQPK
+ fxP2Q+vZTgrFP/aUqoQP25qTKw==
+X-Google-Smtp-Source: ABdhPJxIhWqhkazgNSUJINZP0//57nOfIM6QbytkXqybe8SpXWgp3qpwocmgW8NzaBIdNmzE9ih2xw==
+X-Received: by 2002:a1c:8187:: with SMTP id c129mr300799wmd.82.1601279715555; 
+ Mon, 28 Sep 2020 00:55:15 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:e0eb:3ca3:e2d3:fa75?
  ([2a01:e35:2ec0:82b0:e0eb:3ca3:e2d3:fa75])
- by smtp.gmail.com with ESMTPSA id d9sm125368wmb.30.2020.09.28.00.54.13
+ by smtp.gmail.com with ESMTPSA id t10sm172956wmi.1.2020.09.28.00.55.14
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Sep 2020 00:54:14 -0700 (PDT)
-Subject: Re: [PATCH 1/8] arm64: dts: meson: update spifc node on Khadas VIM2
- meson-gxm-khadas-vim2
+ Mon, 28 Sep 2020 00:55:14 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-g12: use the G12A specific
+ dwmac compatible
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Artem Lapkin <email2tema@gmail.com>
-References: <20200925033017.1790973-1-art@khadas.com>
- <20200925033017.1790973-2-art@khadas.com>
- <CAFBinCDcwHUJzK4HsvKxs1n4_jH9K47bNZcZobocLxKVj7+iNw@mail.gmail.com>
+ linux-amlogic@lists.infradead.org, khilman@baylibre.com
+References: <20200925211743.537496-1-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -134,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <10f7b5fd-a86c-c705-fb3e-5bc6c998ab2c@baylibre.com>
-Date: Mon, 28 Sep 2020 09:54:12 +0200
+Message-ID: <ad3505a3-b409-48b9-c077-09ef4fdc7bbf@baylibre.com>
+Date: Mon, 28 Sep 2020 09:55:14 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDcwHUJzK4HsvKxs1n4_jH9K47bNZcZobocLxKVj7+iNw@mail.gmail.com>
+In-Reply-To: <20200925211743.537496-1-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200928_035418_390659_7955172A 
-X-CRM114-Status: GOOD (  18.14  )
+X-CRM114-CacheID: sfid-20200928_035516_645696_C3C1E1D7 
+X-CRM114-Status: GOOD (  20.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,46 +152,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, gouwa@khadas.com, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org, nick@khadas.com,
- linux-amlogic@lists.infradead.org, art@khadas.com,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/09/2020 09:51, Martin Blumenstingl wrote:
-> Hi Artem,
+On 25/09/2020 23:17, Martin Blumenstingl wrote:
+> We have a dedicated "amlogic,meson-g12a-dwmac" compatible string for the
+> Ethernet controller since commit 3efdb92426bf4 ("dt-bindings: net:
+> dwmac-meson: Add a compatible string for G12A onwards").
+> Using the AXG compatible string worked fine so far because the
+> dwmac-meson8b driver doesn't handle the newly introduced register bits
+> for G12A. However, once that changes the driver must be probed with the
+> correct compatible string to manage these new register bits.
 > 
-> On Fri, Sep 25, 2020 at 5:30 AM Artem Lapkin <email2tema@gmail.com> wrote:
->>
->> 1) The VIM2 Boards use w25q128 spi chip only not w25q32 or w25q16
->>    it's not really seriously becouse have 'jedec,spi-nor' which
->>    have auto chips identifications
-> according to the "VIM2 - Transitioning From v1.2 to v1.4" document [0]
-> (page 7) both board revisions are using different SPI flash sizes
-> for which board revision are your changes?
-
-Indeed, if you changed the flash for the v14 VIM2 board, please:
-- move arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts into meson-gxm-khadas-vim2.dtsi leaving only the
-root compatible, model and the v12 spi flash model&size into the meson-gxm-khadas-vim2.dts file
-- add "khadas,vim2-v14" to amlogic board bindings
-- introduce a arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2-v14.dts file adding the
-changes (spi flash change, MCU) with a different root compatible & model
-
-Neil
-
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->> 2) max-frequency is 104Mhz
-> (note to self: according to the w25q16 datasheet it supports a maximum
-> clock frequency of 104MHz, so this is fine)
-> 
-> 
-> Best regards,
-> Martin
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 1e83ec5b8c91..d4e7cd68170a 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -209,7 +209,7 @@ map {
+>  		};
+>  
+>  		ethmac: ethernet@ff3f0000 {
+> -			compatible = "amlogic,meson-axg-dwmac",
+> +			compatible = "amlogic,meson-g12a-dwmac",
+>  				     "snps,dwmac-3.70a",
+>  				     "snps,dwmac";
+>  			reg = <0x0 0xff3f0000 0x0 0x10000>,
 > 
 
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
