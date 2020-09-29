@@ -2,86 +2,89 @@ Return-Path: <SRS0=+WvW=DG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 317ABC4346E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 09:32:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A695C4346E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 09:32:59 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A01C22068D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 09:32:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8E54020848
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 09:32:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oJxftbKE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qdEWVmRh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A01C22068D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="es5XdMZG";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="myLb+Hr6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8E54020848
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=oKQeDmtO2oHcFgbkCFYCHRKZ2NtznEPvWDDcti/Zy7E=; b=oJxftbKEXVCzFRU3imiMYREuQL
-	dWjRUmkGH82h8h0gs3lQ5aZpFzfDji0aKpDLLIBmpBeUtDYVeRVlYGu8dDPSo2cHZpN/MZhnBiwWx
-	dXeLNYxaSF0yWbpFNeopWq1MT6l5hIElf4bsltNsDpmA25oKwwM0oUa93AiNPITSG4fyixly08Inm
-	G17MeaSJL5W0aXn84TRnFu9gQXtHErYziT80FAvInNRBryKKeirmo0Wi495r62CUBGvephsRcLXJC
-	t5dz4eDKVKvX0IyS0OkiatxCVWOIgq7HyzATGGmEm1ZcmujPGK1UqimTv3EFMltAfQFYIVOoa2wRz
-	MqNY3OZw==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=jK/gxXalV3ci2HE5w7qxQy31ehVwpVIn8Ru48tBADs4=; b=es5XdMZGs207i89jRSU9xm1Ky
+	fyhGuuhTqC/WTqX9eD4IbRDoVu9Pp8xLZeoQzh65du1GIVT46ZtISUMA8jZZTM1NK7TiqAMkvjhJf
+	2jP9Tb4ZY921CneBkxzEWFuRMLE4hNBySXqn5V4C98SQ+IWT+oTCC1GmyJAEIZ2t4mv/gPEeVf9Uo
+	6VLR8dpEG+Ae6aiytFbighDwp9jjVaLdPakOFRyk62yGbmtT2OjcSQl9h09aSRWH06uJ5Y2OMuDuZ
+	87R/UXNhZNqNNgERGbsqI1XbOrbjfj6AdcWzwyBDHSCOrZb92+3i2pFOtlCABYkVkk4PaKppTXMqg
+	1N3n2/VYQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kNBzn-0007Sv-BF; Tue, 29 Sep 2020 09:32:27 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1kNC0A-0007bp-Pi; Tue, 29 Sep 2020 09:32:50 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNBzW-0007Mx-9f
- for linux-amlogic@lists.infradead.org; Tue, 29 Sep 2020 09:32:11 +0000
-Received: by mail-wr1-x444.google.com with SMTP id k15so4534644wrn.10
- for <linux-amlogic@lists.infradead.org>; Tue, 29 Sep 2020 02:32:10 -0700 (PDT)
+ id 1kNBzY-0007Nj-Hs
+ for linux-amlogic@lists.infradead.org; Tue, 29 Sep 2020 09:32:15 +0000
+Received: by mail-wr1-x432.google.com with SMTP id k10so4563842wru.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 29 Sep 2020 02:32:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=7UsmEqNE1VLY277zZdW+TO4ZYR2Vb/rb860kfWSma0Y=;
- b=qdEWVmRhaVAyb7vwdl+3da/tgoTRODR/6lOh1nQVQPjlCYTC8GyzRdjKuu8MYpd8Kx
- E79oNInkWSFOUhLygTLKrvsDjb7K8Sfwqnnf1RHOKN/40sRG8lpdwWj1z1KSuBi4Qo4R
- KrM6bI37mn3LgwjFzxuzYEcNnCgtIEmzFnZQoHViPJ6ZV351q2tp3eWPBVa5GsWJEZp4
- xHAi1y2yoD+z3hDdD5dkV4fagJdCLsF4AWOODKVH0EW93U+cv7m2FB6wuQ5xLTUb03XR
- qZ3zLJA38G3xgn8Fok6TNX2+VllDvV9Sw7ttK/rYCpj88+LpPNt/a+FWgBIdQ6hF3Jt1
- uptw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=X+jktKSyt59M1RlyoUXQDUiIneqQcY7EbqJCiazlG1Y=;
+ b=myLb+Hr6JRovq+G7HcalEjWrE9xtAR8ykHBBv4s3xwlJeTdJdrmjx5VFHI1pfytwo0
+ mUhQu3iL2Ournn0t/Lt6tDQ3/R9CILOjnCnviUv35KudZ+7Z0Cyqa6UqD51Ty3Y5saOH
+ DPgDtkvBjlZFIF0UWJbr2hnHzKdCQ3B6ZnhmoQ22CZQxn7r+xVYRMH+e15Ix7p/1x4sQ
+ ZBViLZCSHqniJskizbyN1oVpwM0zko+0kfPvaMnTFXoJekFnX5H/LifKQR0CxpegdAbz
+ Exzywj3HVGjLH7WUraTq7YMKLUmk8jmUNTCzDRkWrTGwX8OyTIGx56u7uitDsmr4TIDV
+ HwuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=7UsmEqNE1VLY277zZdW+TO4ZYR2Vb/rb860kfWSma0Y=;
- b=M79Wqpe8t6oJfcrhrPbVLmXZMp8KvsrfhaW8/xF3ZRdc/ioI5YZo+sM1+nQSw39Y42
- XZmdTQdtfkvTrBkYOn6oGAFa0HG0d66o7t22Tl4LiBpjbxaZPxN54ye0y3OT5AtBZlhd
- B/II8yuA8gx+wqVkqRrZ/JFRW1ygRQvDkOinb4/TwNr1p3f1i+M6OkeJnBskT3VZPr0S
- AJJx5MoB/9HYKDsHPMjGx9PxcMQTOHgRov/M138/n5i8SPjXGuV38GXeL8tAH3ayDOSN
- hiJHSdH4AtwIDj5Knk8svTHPn7H+ilWczBQCDikM8BawDeipLW7dXM758r+qDGcw3M3V
- n5Ug==
-X-Gm-Message-State: AOAM530/SPpS/9+FFNicUOSVEfUOcdverhlDkqLPsxe/Xljlvrr9+LIE
- KyZmvs0O6+HDKpLHCFY4aZirnw==
-X-Google-Smtp-Source: ABdhPJxHfjuOh6YrAZAFjomsAPXwlEm8lAWRogXJCncMNd1JG5rXr53P1OH4o/P/cuUUY1TBYwnv0Q==
-X-Received: by 2002:a5d:6ac9:: with SMTP id u9mr3082466wrw.46.1601371929215;
- Tue, 29 Sep 2020 02:32:09 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=X+jktKSyt59M1RlyoUXQDUiIneqQcY7EbqJCiazlG1Y=;
+ b=XlCUmqU8TiK/VaUFWFkctoeu/9MfhDYtTy3ZyFLiN4NnyaO9vAnnggQeBz+KoCdtoq
+ frXeJ0bN8qGm1dTa53Zg5ggm7S2K+qI1+tOJvC0XDG+yV2fB1fs4zLw7McB22hxMvspX
+ x9zJMCMJDPL9UiUKM1TwyrcTPJ+1/xPc/3RR1FX64nX6RPr/IChWK7IT3WVTZ1KzSkqE
+ byH3PhGEycJD/I6RnMRR7GR7bceQriT3ZhT/OJ3A8FmdWFEapj0GqxFcfqlBMtximw7z
+ bUZ2hwQ/XxJkLMvyJeEeKseOtlrc9TVx+axJV0KGISocMoesOfFPmjRyBhgX3hAOhYyr
+ P1YQ==
+X-Gm-Message-State: AOAM531+UGBlXmduQKdYT7R/7/++iuD32O2kS4pSvhc/aSPD8cHyycSj
+ 8GFz1UKS9QTOReSdkyZh+0GpXw==
+X-Google-Smtp-Source: ABdhPJzXi4MqKZk/mmRCSffYTu1+LpmIZUNXQbMDjC5qAe67PTCaW4S2MNtIm7Lxjh1GKuVCkefxSA==
+X-Received: by 2002:adf:81c6:: with SMTP id 64mr3103257wra.176.1601371930925; 
+ Tue, 29 Sep 2020 02:32:10 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:d50c:1ee4:fec5:ad12])
- by smtp.gmail.com with ESMTPSA id a10sm4596107wmj.38.2020.09.29.02.32.08
+ by smtp.gmail.com with ESMTPSA id a10sm4596107wmj.38.2020.09.29.02.32.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Sep 2020 02:32:08 -0700 (PDT)
+ Tue, 29 Sep 2020 02:32:10 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: kishon@ti.com
-Subject: [PATCH v2 0/2] phy: amlogic: Add support for AXG MIPI D-PHY
-Date: Tue, 29 Sep 2020 11:32:01 +0200
-Message-Id: <20200929093203.337954-1-narmstrong@baylibre.com>
+To: kishon@ti.com,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: phy: add Amlogic AXG MIPI D-PHY bindings
+Date: Tue, 29 Sep 2020 11:32:02 +0200
+Message-Id: <20200929093203.337954-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200929093203.337954-1-narmstrong@baylibre.com>
+References: <20200929093203.337954-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200929_053210_364315_932C5535 
-X-CRM114-Status: GOOD (  11.41  )
+X-CRM114-CacheID: sfid-20200929_053212_662354_B6AB066A 
+X-CRM114-Status: GOOD (  14.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,8 +96,9 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -105,23 +109,89 @@ panels, this adds the bindings.
 
 This D-PHY depends on a separate analog PHY.
 
-Changes since v1 at [1]:
-- Fix bindings and add review tag
-
-[1] https://lkml.kernel.org/r/20200907072708.26043-1-narmstrong@baylibre.com
-
-Neil Armstrong (2):
-  dt-bindings: phy: add Amlogic AXG MIPI D-PHY bindings
-  phy: amlogic: Add AXG MIPI D-PHY driver
-
- .../bindings/phy/amlogic,axg-mipi-dphy.yaml   |  70 +++
- drivers/phy/amlogic/Kconfig                   |  12 +
- drivers/phy/amlogic/Makefile                  |   1 +
- drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c | 413 ++++++++++++++++++
- 4 files changed, 496 insertions(+)
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/phy/amlogic,axg-mipi-dphy.yaml   | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
- create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
 
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+new file mode 100644
+index 000000000000..be485f500887
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/amlogic,axg-mipi-dphy.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic AXG MIPI D-PHY
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,axg-mipi-dphy
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: pclk
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: phy
++
++  "#phy-cells":
++    const: 0
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    items:
++      - const: analog
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - phys
++  - phy-names
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@ff640000 {
++            compatible = "amlogic,axg-mipi-dphy";
++            reg = <0xff640000 0x100>;
++            clocks = <&clk_mipi_dsi_phy>;
++            clock-names = "pclk";
++            resets = <&reset_phy>;
++            reset-names = "phy";
++            phys = <&mipi_pcie_analog_dphy>;
++            phy-names = "analog";
++            #phy-cells = <0>;
++    };
 -- 
 2.25.1
 
