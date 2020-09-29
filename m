@@ -2,60 +2,71 @@ Return-Path: <SRS0=+WvW=DG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 313C2C47425
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 12:37:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6441C4727C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 12:38:40 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8CEE620789
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 12:37:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3CEE92076A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 12:38:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lgoU13EL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8CEE620789
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=inria.fr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="xyC6Bu4e";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWmjA8UF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3CEE92076A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:Message-ID:In-Reply-To:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=46YlPcj/MOQQEVWXpwuIk5i0YMDs7pQqN1HxnH3YsV0=; b=lgoU13ELMSMfAtSgB2sTjG9CG
-	kF1aqY1hbRg7gLKrnSDADlwXm/wns5aGeYpURDro4ykpRHM4UBWhZ442LhbxQ184zIZ5HuDERFBu5
-	wJH5LoPe9VehAizPNRzXOIPLBmVKeG0tmqCX+MKip1JRZC1SjZNkYYHDp/AEfq7F8w/itEOni90iY
-	dAtUXrjeL3LoxOM3isi/cP7+cl5or89WIZBx6s7FDDhviZzW41HTnEuO/um0JIOmyqPjuMkEG8dPC
-	BJXXGEdY/i6nOZ+txBuOZKlnzWss6/+oNzh8hLVcNzQmb1xgsRmJrfugZARMiNu3RRb0DUeqrjA1C
-	yPU6IxDIA==;
+	 bh=92rz6QaP6FlSX1ciCCAGhIwc2B4Uv4z8rLiL1aFcybI=; b=xyC6Bu4evA5whRNLEGiTKrFgx
+	1E9IV/XDU5DtUgc8HatBE6lulV4r/CoCaAsnCKPSfxnQnIhzlG4EqvxpeCTORcE9e7oUMaP6EQD17
+	fa1GNyehzAJGaB1Vwyk4+xzCLpUk25NfV+QwRzMGZJOpLwzd8fdO+qaOSl1SxikPL4ehRajtM8zoQ
+	hM6OcwQx160BgbVb5SDS2qOS9BbuP5e5Xaih4SV6QOSWsAFnVecwEvpJERexT2TwXJkqYaeii/sHb
+	+jJ/GhFBMrqx4qRhBRHBJz9r3mc2h0n91DCFhuzz3LipB5CCxlaOr0kBlIVkVXwa9tEWRrpwXWqPq
+	kVItyga1Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kNEsS-0005hI-B3; Tue, 29 Sep 2020 12:37:04 +0000
-Received: from mail3-relais-sop.national.inria.fr ([192.134.164.104])
+	id 1kNEtv-0005ym-RT; Tue, 29 Sep 2020 12:38:35 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNEsP-0005gd-Ni; Tue, 29 Sep 2020 12:37:03 +0000
-X-IronPort-AV: E=Sophos;i="5.77,318,1596492000"; d="scan'208";a="360346486"
-Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2020 14:36:52 +0200
-Date: Tue, 29 Sep 2020 14:36:52 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Ard Biesheuvel <ardb@kernel.org>
+ id 1kNEtt-0005xs-QQ; Tue, 29 Sep 2020 12:38:34 +0000
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 74C452075F;
+ Tue, 29 Sep 2020 12:38:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1601383113;
+ bh=1agHRxXJKhB2RD26+gZ4x8RWV4EKhITxeEYpiuBbO3Y=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=DWmjA8UFdsFWnaqLQDJfMWuIbOP31zKYrwaHNjRkhgkkbyol6UJQNOL2g65mEmM7z
+ r3wh0aEAIXzhRSusZ2U0MLVqmtsLu8t/8GK56UP3hceV/6s4ECE+CCU/O8tZzN6Rvf
+ K42OX9LCLHmQUHnGEYx+BhHjmTGzPz+rvHs8rKnU=
+Date: Tue, 29 Sep 2020 13:37:34 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Julia Lawall <julia.lawall@inria.fr>
 Subject: Re: [PATCH 00/18] use semicolons rather than commas to separate
  statements
-In-Reply-To: <CAMj1kXGh+CzuXkAnqsoMO2A3T1p=D6uFOV347Ym5+VFn5U1gWg@mail.gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2009291428020.2808@hadrien>
+Message-ID: <20200929123734.GC4799@sirena.org.uk>
 References: <1601233948-11629-1-git-send-email-Julia.Lawall@inria.fr>
- <CAMj1kXGh+CzuXkAnqsoMO2A3T1p=D6uFOV347Ym5+VFn5U1gWg@mail.gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ <160132172369.55460.9237357219623604216.b4-ty@kernel.org>
+ <b1174f9be2ce65f6b5ebefcba0b48e792926abbc.camel@perches.com>
+ <20200929113745.GB4799@sirena.org.uk>
+ <alpine.DEB.2.22.394.2009291344590.2808@hadrien>
 MIME-Version: 1.0
+In-Reply-To: <alpine.DEB.2.22.394.2009291344590.2808@hadrien>
+X-Cookie: I left my WALLET in the BATHROOM!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200929_083701_969899_35F75FFB 
-X-CRM114-Status: GOOD (  23.80  )
+X-CRM114-CacheID: sfid-20200929_083833_944071_7FA1ED22 
+X-CRM114-Status: GOOD (  19.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,217 +78,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-iio@vger.kernel.org,
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-iio@vger.kernel.org,
  kernel-janitors@vger.kernel.org, linux-ide@vger.kernel.org,
- linux-clk@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com,
- ACPI Devel Maling List <linux-acpi@vger.kernel.org>, drbd-dev@lists.linbit.com,
- David Lechner <david@lechnology.com>,
+ linux-clk@vger.kernel.org, drbd-dev@lists.linbit.com,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ linux-stm32@st-md-mailman.stormreply.com, linux-acpi@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>, David Lechner <david@lechnology.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-block@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Thomas Gleixner <tglx@linutronix.de>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?Q?Valdis_Kl=C4=93tnieks?= <valdis.kletnieks@vt.edu>,
- linux-wireless@vger.kernel.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- Joe Perches <joe@perches.com>, openipmi-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
+ Valdis =?utf-8?Q?Kl=C4=93tnieks?= <valdis.kletnieks@vt.edu>,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, Joe Perches <joe@perches.com>,
+ openipmi-developer@lists.sourceforge.net
+Content-Type: multipart/mixed; boundary="===============0528571307293899714=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-
-On Tue, 29 Sep 2020, Ard Biesheuvel wrote:
-
-> On Sun, 27 Sep 2020 at 21:56, Julia Lawall <Julia.Lawall@inria.fr> wrote:
-> >
-> > These patches replace commas by semicolons.
->
->
-> Why?
-
-Among the complete 5000 lines of changes there is one probable bug where
-an if branch ends with a comma and thus pulls the subsequent statement
-under the if branch, in contradiction to what is indicated by the
-indentation.
-
-The use of comma often appears to be random, with a sequence of similar
-statements where some have commas and some don't.
-
-From a self-interested point of view, commas are not good for Coccinelle,
-because multiple statements are put into one.  Any problems involving them
-are thus likely to be overlooked unless one thinks of looking for them
-explicitly.  As an example, Christophe Jaillet noticed that one sequence
-of comma assignments would be better written using swap.  If one looked
-for opportunities for using swap in the most obvious way, one wouldn't
-find it.
-
-julia
+--===============0528571307293899714==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="MnLPg7ZWsaic7Fhd"
+Content-Disposition: inline
 
 
->
->
-> > This was done using the
-> > Coccinelle semantic patch (http://coccinelle.lip6.fr/) shown below.
-> >
-> > This semantic patch ensures that commas inside for loop headers will not be
-> > transformed.  It also doesn't touch macro definitions.
-> >
-> > Coccinelle ensures that braces are added as needed when a single-statement
-> > branch turns into a multi-statement one.
-> >
-> > This semantic patch has a few false positives, for variable delcarations
-> > such as:
-> >
-> > LIST_HEAD(x), *y;
-> >
-> > The semantic patch could be improved to avoid these, but for the moment
-> > they have been removed manually (2 occurrences).
-> >
-> > // <smpl>
-> > @initialize:ocaml@
-> > @@
-> >
-> > let infunction p =
-> >   (* avoid macros *)
-> >   (List.hd p).current_element <> "something_else"
-> >
-> > let combined p1 p2 =
-> >   (List.hd p1).line_end = (List.hd p2).line ||
-> >   (((List.hd p1).line_end < (List.hd p2).line) &&
-> >    ((List.hd p1).col < (List.hd p2).col))
-> >
-> > @bad@
-> > statement S;
-> > declaration d;
-> > position p;
-> > @@
-> >
-> > S@p
-> > d
-> >
-> > // special cases where newlines are needed (hope for no more than 5)
-> > @@
-> > expression e1,e2;
-> > statement S;
-> > position p != bad.p;
-> > position p1;
-> > position p2 :
-> >     script:ocaml(p1) { infunction p1 && combined p1 p2 };
-> > @@
-> >
-> > - e1@p1,@S@p e2@p2;
-> > + e1; e2;
-> >
-> > @@
-> > expression e1,e2;
-> > statement S;
-> > position p != bad.p;
-> > position p1;
-> > position p2 :
-> >     script:ocaml(p1) { infunction p1 && combined p1 p2 };
-> > @@
-> >
-> > - e1@p1,@S@p e2@p2;
-> > + e1; e2;
-> >
-> > @@
-> > expression e1,e2;
-> > statement S;
-> > position p != bad.p;
-> > position p1;
-> > position p2 :
-> >     script:ocaml(p1) { infunction p1 && combined p1 p2 };
-> > @@
-> >
-> > - e1@p1,@S@p e2@p2;
-> > + e1; e2;
-> >
-> > @@
-> > expression e1,e2;
-> > statement S;
-> > position p != bad.p;
-> > position p1;
-> > position p2 :
-> >     script:ocaml(p1) { infunction p1 && combined p1 p2 };
-> > @@
-> >
-> > - e1@p1,@S@p e2@p2;
-> > + e1; e2;
-> >
-> > @@
-> > expression e1,e2;
-> > statement S;
-> > position p != bad.p;
-> > position p1;
-> > position p2 :
-> >     script:ocaml(p1) { infunction p1 && combined p1 p2 };
-> > @@
-> >
-> > - e1@p1,@S@p e2@p2;
-> > + e1; e2;
-> >
-> > @r@
-> > expression e1,e2;
-> > statement S;
-> > position p != bad.p;
-> > @@
-> >
-> > e1 ,@S@p e2;
-> >
-> > @@
-> > expression e1,e2;
-> > position p1;
-> > position p2 :
-> >     script:ocaml(p1) { infunction p1 && not(combined p1 p2) };
-> > statement S;
-> > position r.p;
-> > @@
-> >
-> > e1@p1
-> > -,@S@p
-> > +;
-> > e2@p2
-> > ... when any
-> > // </smpl>
-> >
-> > ---
-> >
-> >  drivers/acpi/processor_idle.c               |    4 +++-
-> >  drivers/ata/pata_icside.c                   |   21 +++++++++++++--------
-> >  drivers/base/regmap/regmap-debugfs.c        |    2 +-
-> >  drivers/bcma/driver_pci_host.c              |    4 ++--
-> >  drivers/block/drbd/drbd_receiver.c          |    6 ++++--
-> >  drivers/char/agp/amd-k7-agp.c               |    2 +-
-> >  drivers/char/agp/nvidia-agp.c               |    2 +-
-> >  drivers/char/agp/sworks-agp.c               |    2 +-
-> >  drivers/char/hw_random/iproc-rng200.c       |    8 ++++----
-> >  drivers/char/hw_random/mxc-rnga.c           |    6 +++---
-> >  drivers/char/hw_random/stm32-rng.c          |    8 ++++----
-> >  drivers/char/ipmi/bt-bmc.c                  |    6 +++---
-> >  drivers/clk/meson/meson-aoclk.c             |    2 +-
-> >  drivers/clk/mvebu/ap-cpu-clk.c              |    2 +-
-> >  drivers/clk/uniphier/clk-uniphier-cpugear.c |    2 +-
-> >  drivers/clk/uniphier/clk-uniphier-mux.c     |    2 +-
-> >  drivers/clocksource/mps2-timer.c            |    6 +++---
-> >  drivers/clocksource/timer-armada-370-xp.c   |    8 ++++----
-> >  drivers/counter/ti-eqep.c                   |    2 +-
-> >  drivers/crypto/amcc/crypto4xx_alg.c         |    2 +-
-> >  drivers/crypto/atmel-tdes.c                 |    2 +-
-> >  drivers/crypto/hifn_795x.c                  |    4 ++--
-> >  drivers/crypto/talitos.c                    |    8 ++++----
-> >  23 files changed, 60 insertions(+), 51 deletions(-)
-> >
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
->
+--MnLPg7ZWsaic7Fhd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, Sep 29, 2020 at 01:46:19PM +0200, Julia Lawall wrote:
+> On Tue, 29 Sep 2020, Mark Brown wrote:
+
+> > Feel free to submit patches to b4.  Ideally things like this wouldn't be
+> > being sent as serieses in the first place, there's no dependencies or
+> > interactions between the patches.
+
+> It was suggested (a long time ago, not with respect to this patch in
+> particular) that sending such patches in a series is useful because it
+> allows people who are not interested in the 18 patches to skip over them
+> more easily.  So there are two conflicting needs...
+
+I'm not convinced that there are huge numbers of people reading LKML as
+a list TBH, and if you are sending things as a series then the way
+you're doing it at the minute where you don't CC the cover letter to
+people makes things confusing as it's unclear if there are dependencies
+to worry about.
+
+--MnLPg7ZWsaic7Fhd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEyBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9zKo0ACgkQJNaLcl1U
+h9BJ9wf4mEIT3UglAONn9EPv4I6DolXuWfJHGs52mxyy1JeuXGyjVMYRuKfw8ZE5
+TbgRR0pAg1aZUsqI/T/PWSVDmUCNzL6QM4RbG8ZUSFw47v509iCABBidbK+PLnwo
+y5A+IrAPTDVviLFNJm2SfFN3XEgpsGmOqhyuhKiGNeLOryaPNvOmiRF6cwND7Vbq
+97kDmafX0KgHVsmK/br50D/XJpOJSR9T2hB5hjQRoVl44a6aV0eZWwDDZyH57kat
+KO59OyGGHDyWrsF9oHWajymCB1kMZZ4YLiwCyjx98g74uRLSiSaGwrsr4IeXGn66
+Mmpn90mfVDnP/Es10vbKsC+JZShG
+=qH7V
+-----END PGP SIGNATURE-----
+
+--MnLPg7ZWsaic7Fhd--
+
+
+--===============0528571307293899714==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0528571307293899714==--
+
