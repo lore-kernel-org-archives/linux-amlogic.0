@@ -2,91 +2,68 @@ Return-Path: <SRS0=+WvW=DG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 394A3C2D0A8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 00:36:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 18EC7C2D0A8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 00:45:40 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 887D82193E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 00:36:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8F2AB20738
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 00:45:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BSDEjmAo";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="v69NAAku"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 887D82193E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M0oBPfb8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8F2AB20738
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:To:From:
+	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=VhBx1NpzBelQbscD9U+MDLDqnUNocDFXvqT1QgfIqek=; b=BSDEjmAoOnjdZ5EHQg9b16eFi
-	yCB7lgYLKBZ6IyYWHShaj/rsbzxiJhozgqIT4KMqA4qMOQ3mpORw2JBOyHiaecT9gPt7nY7pjVSZt
-	6VKa3OxmTtuUWmAUoCuL6IqDrFifpRUuCG6xSjob+S+PEy3udKoCcgkyWpbf/CiS+Ol5mHle4Jrg4
-	ycHQGr8NPGs7ueTHyrOZNyC5GMCLv7ZxEM7Ge2Z8H3GKArw9Ww24dvzBgO3OHA/Dhpo3/W3KdKZvb
-	4CK7fEBsxv96ftugC7Emv6ZtQQoHpI8GHq2FkDOup7esV5gVF5KtSRIgSNiYDUDEks6RXtcZERzu6
-	B/jeoR+7Q==;
+	 bh=UnMPmnjxvoSadCPJzpXvboFHi4nyZUKP/IiQxnbUXBI=; b=M0oBPfb87eO1vZXVHyL7rybFi
+	XdJwb7RzZGNalN+dxanRRqnUcdKalnKHuBYQPEG955XMVnd9k3pgDYPbXOrs/NPTn05r5H9pOmaBe
+	Not8A6AtAKaLbOApm4BUY24qPm2Gf+xN3ClAhspxqzzYvtnYGSpXVcPmY1Tthra4lees32eKHLeLF
+	94kidd74cv5uuA1Yyze1o3PeYQYu8jjnss74NQSYCblRo5BEEwxRh4a5OpSew6MrT61oenPEADN0c
+	UvOWjyBxD8mQpy+5+BNCpXz0AXEKD+RhiLe88arzeEScbq/SqJ9GjcLw45MlT8U9uv7rzaaOyx828
+	kx12gt+2Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kN3ch-0003tu-K5; Tue, 29 Sep 2020 00:36:03 +0000
-Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
+	id 1kN3lt-0004mu-A6; Tue, 29 Sep 2020 00:45:33 +0000
+Received: from smtprelay0254.hostedemail.com ([216.40.44.254]
+ helo=smtprelay.hostedemail.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kN3cc-0003sF-Aq
- for linux-amlogic@lists.infradead.org; Tue, 29 Sep 2020 00:35:59 +0000
-Received: by mail-pl1-x643.google.com with SMTP id o8so50216pll.4
- for <linux-amlogic@lists.infradead.org>; Mon, 28 Sep 2020 17:35:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=uaAgCWaphNg4XUpNx4joWU1xUSe7LvQcJOGZWvIHnHc=;
- b=v69NAAkuCTEr7hg3phUdSwS/jRxtb9RhagIGnDoxmqRXRs2S6C/CmnrYbXfDPrKmM7
- QKjikJoR6KEdqOFIQ0BMA2SDVoq2ov6NBMoBRH42AjSEXXz+zca8AQjnpe+FciLxsMNS
- mTm0/iSB/gGJ4zkbRi+9IGT69J067NB76CdJmDnGwpZ/eZqCO8nZ6G77J0x6C6sZn2Tf
- sarRvQVDFOV4eSjr1zdVf9CA+EwfAUiXpEjL+jpMGujhWiuo7JMxdHoy6SCk+CbR09Q3
- u8QlDxiw3bRifR3UEMb1QX9f82B+GzxbIkCVeaMBS+mMYhLjSMIZFQFQCl6DcBSG+mhW
- HwHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=uaAgCWaphNg4XUpNx4joWU1xUSe7LvQcJOGZWvIHnHc=;
- b=TSMacreiGMet5EU1cekTVWWGNcX+EWtSY5M7/jCHbByhDtXjI+VmL8XQ/1gGOc6tq7
- 3F+GpTM6OATEEI9HlGqpPt0UYqRBgWHnfp175YFQkmuQLhLknkdPWD1FqONnTA116ddo
- RtcCoXWxibWuPgtHlULH+k2JP1Ax2p6z743x2UugOYs9W5iqRxkXms+CQI7iHKR83eId
- JJRC1vhRJJVgd5E0SnM9gmBAIFIWBtw5nncfKyD/wp3TXoJiVhA5hANy4YIw0iUq9rxw
- ZRXGZkRlbyJ+WHe31YjRc49npCcdPERsDAxuB9fCzWvNpuPI2Ffb5qIIfoClbwtEWSoK
- PwJw==
-X-Gm-Message-State: AOAM5325O96Bv+i7inBkTQ7opo+4m1BenDkxOd/GldCv8sn7suv/HFCP
- vn3P9RRGIoj7TR5jMEVyqkwo3w==
-X-Google-Smtp-Source: ABdhPJw4qd17QzT6F2MmDcBshvhH/7FLRINF+lgsSnB4r4uMssLfw33w1g4TzP14kOgM0kQATT3GoA==
-X-Received: by 2002:a17:90a:fc1:: with SMTP id
- 59mr1653722pjz.156.1601339753340; 
- Mon, 28 Sep 2020 17:35:53 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id q16sm3127759pfj.117.2020.09.28.17.35.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 28 Sep 2020 17:35:52 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Brad Harper <bjharper@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] mmc: host: meson-gx-mmc: fix possible deadlock
- condition for preempt_rt
-In-Reply-To: <20200927025418.12382-2-bjharper@gmail.com>
-References: <20200927025418.12382-1-bjharper@gmail.com>
- <20200927025418.12382-2-bjharper@gmail.com>
-Date: Mon, 28 Sep 2020 17:35:50 -0700
-Message-ID: <7hwo0dmnbt.fsf@baylibre.com>
+ id 1kN3lq-0004mN-Un; Tue, 29 Sep 2020 00:45:31 +0000
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay01.hostedemail.com (Postfix) with ESMTP id 780A9100E7B40;
+ Tue, 29 Sep 2020 00:45:28 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-HE-Tag: self77_011759527186
+X-Filterd-Recvd-Size: 2723
+Received: from XPS-9350.home (unknown [47.151.133.149])
+ (Authenticated sender: joe@perches.com)
+ by omf03.hostedemail.com (Postfix) with ESMTPA;
+ Tue, 29 Sep 2020 00:45:25 +0000 (UTC)
+Message-ID: <b1174f9be2ce65f6b5ebefcba0b48e792926abbc.camel@perches.com>
+Subject: Re: [PATCH 00/18] use semicolons rather than commas to separate
+ statements
+From: Joe Perches <joe@perches.com>
+To: Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, Julia Lawall
+ <Julia.Lawall@inria.fr>
+Date: Mon, 28 Sep 2020 17:45:24 -0700
+In-Reply-To: <160132172369.55460.9237357219623604216.b4-ty@kernel.org>
+References: <1601233948-11629-1-git-send-email-Julia.Lawall@inria.fr>
+ <160132172369.55460.9237357219623604216.b4-ty@kernel.org>
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200928_203558_383687_89D12C2F 
-X-CRM114-Status: GOOD (  16.35  )
+X-CRM114-CacheID: sfid-20200928_204531_042254_FDC74823 
+X-CRM114-Status: GOOD (  13.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,63 +75,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Brad Harper <bjharper@gmail.com>, linux-rt-users@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: linux-ide@vger.kernel.org,
+ Valdis =?UTF-8?Q?Kl=C4=93tnieks?= <valdis.kletnieks@vt.edu>,
+ David Lechner <david@lechnology.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-wireless@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-acpi@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+ linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ openipmi-developer@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Brad Harper <bjharper@gmail.com> writes:
+On Mon, 2020-09-28 at 20:35 +0100, Mark Brown wrote:
+> On Sun, 27 Sep 2020 21:12:10 +0200, Julia Lawall wrote:
+> > These patches replace commas by semicolons.  This was done using the
+> > Coccinelle semantic patch (http://coccinelle.lip6.fr/) shown below.
+> > 
+> > This semantic patch ensures that commas inside for loop headers will not be
+> > transformed.  It also doesn't touch macro definitions.
+> > 
+> > Coccinelle ensures that braces are added as needed when a single-statement
+> > branch turns into a multi-statement one.
+> > 
+> > [...]
+> 
+> Applied to
+> 
+>    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap.git for-next
+> 
+> Thanks!
+> 
+> [1/1] regmap: debugfs: use semicolons rather than commas to separate statements
+>       commit: 7f4a122d0b50b40c64d24a5cf7aafe26dd9487ee
 
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+Hi Mark.
 
+Rather than replying to the 0/n cover letter to a patch
+series, can you reply to each of the specific patches in
+the patch series you are applying?
 
-This patch still needs changelog summarizing the problem and what is
-being fixed by the patch.  Most of what's in the cover letter belongs
-here.
+Otherwise, it's a bit difficult to figure out which patches
+you are applying.
 
-The cover letter can be used to describe the history/background that you
-don't want in the patch itself.  Alternatviely, you could include that
-information in the a single patch email also because everything after
-the "---" line does not end up in git history.
+thanks
 
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 08a3b1c05..3ba8f988d 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -146,6 +146,7 @@ struct sd_emmc_desc {
->  };
->  
->  struct meson_host {
-> +	spinlock_t		lock;
->  	struct	device		*dev;
->  	struct	meson_mmc_data *data;
->  	struct	mmc_host	*mmc;
-> @@ -1051,6 +1052,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
->  	host->mmc = mmc;
->  	host->dev = &pdev->dev;
->  	dev_set_drvdata(&pdev->dev, host);
-> +	spin_lock_init(&host->lock);
-
-I'm confused about what this lock is intended to do.  You init it here,
-but it's never used anywhere.  
-
->  	/* The G12A SDIO Controller needs an SRAM bounce buffer */
->  	host->dram_access_quirk = device_property_read_bool(&pdev->dev,
-> @@ -1139,7 +1141,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
->  	       host->regs + SD_EMMC_IRQ_EN);
->  
->  	ret = request_threaded_irq(host->irq, meson_mmc_irq,
-> -				   meson_mmc_irq_thread, IRQF_ONESHOT,
-> +				   meson_mmc_irq_thread, 0,
->  				   dev_name(&pdev->dev), host);
->  	if (ret)
->  		goto err_init_clk;
-
-Kevin
 
 _______________________________________________
 linux-amlogic mailing list
