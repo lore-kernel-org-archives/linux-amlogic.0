@@ -4,59 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no
-	autolearn_force=no version=3.4.0
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E87E8C4727F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 12:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 27CF3C4727C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 13:23:34 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 801BB208B8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 12:47:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7894821531
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 13:23:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DB0mqg5R"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 801BB208B8
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=inria.fr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YcssJfw2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nvidia.com header.i=@nvidia.com header.b="PEUGx/Ot"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7894821531
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:Message-ID:In-Reply-To:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=oBybPCFqt/3qZhrOHhD5F4SX/6gC8i48xDY7W5lP13g=; b=DB0mqg5RMSQiWF4WKVwCgLNQh
-	eUZByNdUIbeXEZbDp5T1Hs4CpnmcLCqpCnS8oOLLGnKtwxP9TP7pXnu78gKvMP2GUu2PB5Yu/GQXs
-	vtGwWyw3H1RNIr/CltyZ8zUNsHwRVj+5SLoU5C4lU7yR70ctx/7usgNIGtt/asfnecQVVkt1lcGVA
-	QaW3uWVnmerHLUPhVkMpKnWiQhYufOB7GIy8lhGRP2jS56LvGuOxVixpWCpz3jLnA3iChNkXMEH6j
-	Tn0lV2zHN+J9Jy/WoRUdxBlIZGwM+MZMehgDH/BAE7Y7nDcOjKI6KF5+777CKpTBfM7uUug3kwmH3
-	sma6Zdu2A==;
+	 bh=VkiHvhK4fhDOelNa5Hf8ixOT9VojeAldFOOvYfV3154=; b=YcssJfw2gfgE/680F+nQf26Ap
+	hQ5lqs2KYGVhR3j5GdhEXFxp3ADzznETW/33dOCuyJLL5KHbqGSAZ/Fu7c6DrH9CY6YXRNz9AjWbt
+	QdVt+9hELsOA2ly7Sk5g9A9TFkTecNbKtvnNxP5Y9/iHMDKDVGmWFYIYfv+0FfnrwCq+B8tXF/Fk+
+	jUaWnrFHvaqR1ptgIJCkUcChnBPbVVZHzLUt4grxfPdSlcx757j5DVqiuCMivbWFl5Tvzm4dayTAo
+	gku9pNsCSLLHILLl3vBcI9+DtZB0fUM03ktN1+mERf2FEWQkLg8iwUS4XnDfD1DkwfBzkCdpKUt4m
+	HIrGswGfQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kNF2d-0000NC-Cl; Tue, 29 Sep 2020 12:47:35 +0000
-Received: from mail2-relais-roc.national.inria.fr ([192.134.164.83])
+	id 1kNFbK-0007qx-QG; Tue, 29 Sep 2020 13:23:26 +0000
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNF2a-0000Lj-7c; Tue, 29 Sep 2020 12:47:33 +0000
-X-IronPort-AV: E=Sophos;i="5.77,318,1596492000"; d="scan'208";a="470060117"
-Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2020 14:47:29 +0200
-Date: Tue, 29 Sep 2020 14:47:29 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Subject: Re: [PATCH 00/18] use semicolons rather than commas to separate
- statements
-In-Reply-To: <20200929124108.GY4282@kadam>
-Message-ID: <alpine.DEB.2.22.394.2009291445050.2808@hadrien>
-References: <1601233948-11629-1-git-send-email-Julia.Lawall@inria.fr>
- <CAMj1kXGh+CzuXkAnqsoMO2A3T1p=D6uFOV347Ym5+VFn5U1gWg@mail.gmail.com>
- <20200929124108.GY4282@kadam>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ id 1kNFbF-0007pG-E3; Tue, 29 Sep 2020 13:23:23 +0000
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B5f7335390005>; Tue, 29 Sep 2020 06:23:05 -0700
+Received: from [10.26.75.44] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 29 Sep
+ 2020 13:22:59 +0000
+Subject: Re: [PATCH v2 0/5] PCI: dwc: improve msi handling
+To: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+References: <20200924190421.549cb8fc@xhacker.debian>
+ <de4d9294-4f6d-c7d1-efc7-c8ef6570bd64@nvidia.com>
+ <20200929184851.22682ff1@xhacker.debian>
+From: Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <8e06a370-a37a-5f33-b43b-2830adb31b3e@nvidia.com>
+Date: Tue, 29 Sep 2020 14:22:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20200929184851.22682ff1@xhacker.debian>
+Content-Language: en-US
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1601385785; bh=O1AmZKE8e7EeFMJXiJzyuvgvP7i5Nhyk8/759La3vkU=;
+ h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+ MIME-Version:In-Reply-To:Content-Type:Content-Language:
+ Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+ b=PEUGx/Oto2o82hJdlAk6/ts4WMeu88gqStSAIbht98Z/IG5S7VWh+vP98HENpPGWz
+ dvi4P4CwF9nHeRHsl9AzVkrvmXIBrwVTKKBrg57TUdTtX6rbg2iu/yl/npKamfzDfN
+ bde3+rbXPUm4osMwTFyxLBEvxx/+GgYRccoic8JmGxsvmJpOdJQ499JIrzTlkZbfGy
+ uatLuKB6XhZi8NLNwtLMbP08tRGBLxw/s1yS6UBfhIRviBPwMOohoewPUOkIiYkNbc
+ kQHmRyOIchEWyKHIRxQV7sPqqZB+NDjrJDEXtUGp+aaP6iFoCKud6BERbUL3KiIhZi
+ LjHupkiehvUcg==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200929_084732_462087_21BE33D1 
-X-CRM114-Status: GOOD (  15.00  )
+X-CRM114-CacheID: sfid-20200929_092321_596130_B3C2EE0A 
+X-CRM114-Status: GOOD (  18.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,66 +85,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-iio@vger.kernel.org,
- kernel-janitors@vger.kernel.org, linux-ide@vger.kernel.org,
- linux-clk@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com,
- ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>, David Lechner <david@lechnology.com>,
+Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
+ Binghui Wang <wangbinghui@hisilicon.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Thierry Reding <thierry.reding@gmail.com>, linux-arm-kernel@axis.com,
+ Vidya Sagar <vidyas@nvidia.com>, Fabio Estevam <festevam@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Kevin
+ Hilman <khilman@baylibre.com>, Pratyush Anand <pratyush.anand@gmail.com>,
+ linux-tegra@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Kukjin Kim <kgene@kernel.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Xiaowei Song <songxiaowei@hisilicon.com>,
+ Richard Zhu <hongxing.zhu@nxp.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-block@vger.kernel.org, drbd-dev@tron.linbit.com,
- linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?Q?Valdis_Kl=C4=93tnieks?= <valdis.kletnieks@vt.edu>,
- linux-wireless@vger.kernel.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Julia Lawall <Julia.Lawall@inria.fr>,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- Joe Perches <joe@perches.com>, openipmi-developer@lists.sourceforge.net
+ linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+ Yue Wang <yue.wang@Amlogic.com>, linux-samsung-soc@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jingoo Han <jingoohan1@gmail.com>, Andy Gross <agross@kernel.org>,
+ linux-kernel@vger.kernel.org, Stanimir Varbanov <svarbanov@mm-sol.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Jisheng,
 
+On 29/09/2020 11:48, Jisheng Zhang wrote:
+> Hi Jon,
+> 
+> On Fri, 25 Sep 2020 09:53:45 +0100 Jon Hunter wrote:
+> 
+>>
+>> On 24/09/2020 12:05, Jisheng Zhang wrote:
+>>> Improve the msi code:
+>>> 1. Add proper error handling.
+>>> 2. Move dw_pcie_msi_init() from each users to designware host to solve
+>>> msi page leakage in resume path.  
+>>
+>> Apologies if this is slightly off topic, but I have been meaning to ask
+>> about MSIs and PCI. On Tegra194 which uses the DWC PCI driver, whenever we
+>> hotplug CPUs we see the following warnings ...
+>>
+>>  [      79.068351] WARNING KERN IRQ70: set affinity failed(-22).
+>>  [      79.068362] WARNING KERN IRQ71: set affinity failed(-22).
+>>
+> 
+> I tried to reproduce this issue on Synaptics SoC, but can't reproduce it.
+> Per my understanding of the code in kernel/irq/cpuhotplug.c, this warning
+> happened when we migrate irqs away from the offline cpu, this implicitly
+> implies that before this point the irq has bind to the offline cpu, but how
+> could this happen given current dw_pci_msi_set_affinity() implementation
+> always return -EINVAL
 
-On Tue, 29 Sep 2020, Dan Carpenter wrote:
+By default the smp_affinity should be set so that all CPUs can be
+interrupted ...
 
-> On Tue, Sep 29, 2020 at 02:20:00PM +0200, Ard Biesheuvel wrote:
-> > On Sun, 27 Sep 2020 at 21:56, Julia Lawall <Julia.Lawall@inria.fr> wrote:
-> > >
-> > > These patches replace commas by semicolons.
-> >
-> >
-> > Why?
-> >
->
-> In the best case, these commas are just uninitentional mess, like typing
-> an extra space character or something.  I've looked at them before and
-> one case I see where they are introduced is when people convert a
-> struct initializer to code.
->
-> -	struct foo {
-> -		.a = 1,
-> -		.b = 2,
->  		...
-> +	foo.a = 1,
-> +	foo.b = 2,
->
-> The times where commas are used deliberately to replace curly braces are
-> just evil.  Either way the code is cleaner with semi-colons.
+$ cat /proc/irq/70/smp_affinity
+0xff
 
-I also found exaamples like the following to be particularly unforunate:
+In my case there are 8 CPUs and so 0xff implies that the interrupt can
+be triggered on any of the 8 CPUs.
 
-                                fprintf(stderr,
-                                        "page_nr %lu wrong count %Lu %Lu\n",
-                                       page_nr, count,
-                                       count_verify[page_nr]), exit(1);
+Do you see the set_affinity callback being called for the DWC irqchip in
+migrate_one_irq()?
 
-The exit is very hard to see, unless you know to look for it.
+Cheers
+Jon
 
-julia
+-- 
+nvpublic
 
 _______________________________________________
 linux-amlogic mailing list
