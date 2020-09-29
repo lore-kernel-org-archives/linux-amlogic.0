@@ -4,112 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_2
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 021C7C4346E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 10:49:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85FCCC4346E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 10:51:58 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 975E0208FE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 10:49:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1246B207C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 10:51:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="j4UIOQAf";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=Synaptics.onmicrosoft.com header.i=@Synaptics.onmicrosoft.com header.b="fzGWL+Dt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 975E0208FE
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=synaptics.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PoTGsDDN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UXbYZkLF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1246B207C4
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=AYye1cwfiDB4HRYMDBuwwkOlzX4Gbp4qdi5e4a6IkRg=; b=j4UIOQAf/EpTA8zYnVYb4TBm1
-	iIRLoLzShIp/HL7EHzKHWZOVZb5lGP0ZvG0+G/tp78i7V35e3WoFhnXPv/6tmm/6VObWOX2p26Jax
-	SvCQC6Qmg3a1E5ctMqSUpxs4TpkihyKZ7Tmta211znVHrkAjTrxy+uX6U9RkWU1Feo8vTjh4a4PGr
-	31DyKM9DdHdhuXLEn0gyxQspS4Mu0mgpACt20zaoMsRYBkLuvl49DvmvdTQCRHYE24c+zW6sASHUH
-	w+YyLmFBWpMxxq/4IxHwqIYfblzjJ8lVi/+jB9Y2gWT9pLfsu7f3ZsoKeeg+5TwR8zhtku1VM6waB
-	ujIyTQ3Vw==;
+	 bh=5VZfjlH0OTQSPcp7lJuU4gGJgDd53V+9bc4dhoBMW+c=; b=PoTGsDDNscFLsB9t/GjHNkND2
+	Kc22Jh8PaHRktgRIGIo/buDru9cRN7agXil0B6h8zS6UpwO0NA3bi9az1Ig3ct4dTeHDghLZySuse
+	hS96EcHeT0uI0pxCsLkPKo4uEjvFzY7ZkXtzfdm+V5yzlUxlfInTP5IqYnldZ28NPLqZjSbi1gep5
+	6VSmt7tIi5rTbLzDpHHKLLb8hRXU0CaZl3dEe+sE/VZWxuQHnhByUYZHk60JzeBrI+8CheYibpC3A
+	csFWTWaQFMwedUvvhFlUnuQscskuE/yMaKT1oKcr8iLZf3fokc0vqfwwpvzE2MlM6U65Amt1RFiDM
+	48pAjZZTQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kNDCR-0002gv-G3; Tue, 29 Sep 2020 10:49:35 +0000
-Received: from mail-bn8nam11on2056.outbound.protection.outlook.com
- ([40.107.236.56] helo=NAM11-BN8-obe.outbound.protection.outlook.com)
+	id 1kNDEb-00038V-SK; Tue, 29 Sep 2020 10:51:49 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNDCN-0002gC-12; Tue, 29 Sep 2020 10:49:31 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EgK4TbOnr0fczpx5TAK6RA2ni7US/7NnDQ+LvZW8WoKUpwIPuLYiLtUsw1hfq05CLJDyTf/LaK488Qq33vHlh+Yxf9DsSMzvu5i5lmFbhjDNn3m+itfDeDIBGz2xHYecjRSxLpa9MGlANfT8qd9vN6iQz/FYD1jthiVQUJm0wIGuQG0VxKu9dWnOcKmb8GL85xCjesKevcxiSYZG2xum/5ptx045qcw7snH6BIAGjtUx93X30OnjzHdWreE9UpGlXb1RMiPCqqfv0DR3HHQET3Lx4J5N3qkdvW70XXwJ2XdqSA6NKkaXkMtGZR6Z4CrvxUIJZbDpxu9A6/wLFMFBFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RrEqLeOG0e+YEU9Ew3Jbjzgylpn3z6Ewcxvzj7PRsog=;
- b=iwGWAcbqwq5ivUMM3n8DQNgsckZFsme7VLkdsyWxRFDVYywsvYSEhf4zL2WDvfL9fySw6VhuKrTPnxw8TJmLYAjy+MZNjdR+qdpEhlMs/9ksg0r7sv4lk6QMgxbxvIU39A5OXQC7XAJ7sqrg6ODL8wvIEIdwGg6Z/0wPFLEo8SPO9x0G6d2CtjE9F/JKVhHhgCF3KkHW2r1xMGyCF3Da6q35WTpEedEyO9YHePl/IhSI0ZXKO8Qs4UrwNrumveAicLuBWFkAJC/tflH89Tx4Ppc9Ku5coWsCsBi5gNWYUoP1UL8mfe4xFUHcBJVOiksCPhSyUikAPUlewJ3PO+iwnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synaptics.com; dmarc=pass action=none
- header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+ id 1kNDEZ-00037C-Kl
+ for linux-amlogic@lists.infradead.org; Tue, 29 Sep 2020 10:51:49 +0000
+Received: by mail-wr1-x444.google.com with SMTP id z4so4861408wrr.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 29 Sep 2020 03:51:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RrEqLeOG0e+YEU9Ew3Jbjzgylpn3z6Ewcxvzj7PRsog=;
- b=fzGWL+Dtmv1fbrzf/1UqoiwBl4DNVP8RYtDYz8YuHO6crpagZ1TAA0Fj5DVPqzC6PE/7L9J/Jep9nES1qMUNSKsWyfziinUmfbT6uRs4sziCKH4vpY4KRthBrm0R2Im5jNpKbqoX66pG4dr9kdx+SPih/r2nKZlYZucEA8snNNA=
-Authentication-Results: nvidia.com; dkim=none (message not signed)
- header.d=none;nvidia.com; dmarc=none action=none header.from=synaptics.com;
-Received: from DM6PR03MB4555.namprd03.prod.outlook.com (2603:10b6:5:102::17)
- by DM6PR03MB4442.namprd03.prod.outlook.com (2603:10b6:5:10a::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.26; Tue, 29 Sep
- 2020 10:49:28 +0000
-Received: from DM6PR03MB4555.namprd03.prod.outlook.com
- ([fe80::e494:740f:155:4a38]) by DM6PR03MB4555.namprd03.prod.outlook.com
- ([fe80::e494:740f:155:4a38%7]) with mapi id 15.20.3433.032; Tue, 29 Sep 2020
- 10:49:28 +0000
-Date: Tue, 29 Sep 2020 18:48:51 +0800
-From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To: Jon Hunter <jonathanh@nvidia.com>
-Subject: Re: [PATCH v2 0/5] PCI: dwc: improve msi handling
-Message-ID: <20200929184851.22682ff1@xhacker.debian>
-In-Reply-To: <de4d9294-4f6d-c7d1-efc7-c8ef6570bd64@nvidia.com>
-References: <20200924190421.549cb8fc@xhacker.debian>
- <de4d9294-4f6d-c7d1-efc7-c8ef6570bd64@nvidia.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-X-Originating-IP: [124.74.246.114]
-X-ClientProxiedBy: TYAPR01CA0054.jpnprd01.prod.outlook.com
- (2603:1096:404:2b::18) To DM6PR03MB4555.namprd03.prod.outlook.com
- (2603:10b6:5:102::17)
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to;
+ bh=EVOj+H3sj7j1GQpbI5z8JTaPdr2HpJAxxmWpb9BQZo8=;
+ b=UXbYZkLFTV0ctDsbt8HnAwm0or3A7XfFvrdqs3/ntS0QI1YxgzlilbiV2ym5Bt8ybC
+ g1pkzV6dnnJe8lcnmF1wI/DNDK5DcRfao1t3cW6aOZRGNj6jdUIs9OdJLLyeIBg9gpTj
+ 99fgAM5w4RosRsnR7v22uNAftYMgYUHuGBppWlFcAbZ2FNIjeNKvDO01ZQSu6zk2K1Gd
+ JnCYB6duS11NM+DjJ19xIOtjlRO2HxVW6ELcVXYPlxQI98YTZD3V9y+6mQA2iUYrW4tb
+ fCm/smUTT657UHd1jDOzZ4i8nwoU6bqNrZO8OnfbryKHIMVJGbbM3vjNUz9fjdF2Pz3k
+ 82jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to;
+ bh=EVOj+H3sj7j1GQpbI5z8JTaPdr2HpJAxxmWpb9BQZo8=;
+ b=Lv9nyBNgEstCP8UNH5c+RX/X893vHsMWGpDeXOt/xEU8+mfJKpKDmjnYa3L7nU7+O3
+ 20HSMbY6QcwUDvJY2p+ys6Exax5Q1rUTKKod9eldCOUMpAhBmqT8s0g6yrPKDzCnMu1o
+ 12+Wu5v5m7NkhzQx622pleuMwslLCztbHmBKJG3rg9UKgiPd7JWJzdod7GmTv/yCW42N
+ nKy5rlXoPtlOHhBpfa6WHfqdI+dw4VHIocqonM4IVOAhPXtsxlVf5t3vGZNwOCHZh7Em
+ qVtyf/1Cjz92cuivobrZgkzC7bFTcBXOU7mGInlL+/cYm3A97Y6++mYCCt8aXw8IcIwJ
+ hORA==
+X-Gm-Message-State: AOAM531J6wPCIwSx4EP1bl29xjCR3Zfko8HV+mnTQUBIilaZjIn8imxX
+ K3LZTrEgvMjyDgVHgTE1aaI+Vg==
+X-Google-Smtp-Source: ABdhPJwRNO5KjW+wzVW0RM/c+QWZABavjWqGX9OCL/0b3m3SLK1HjnQH/CiTGtomlrewoCSfsiQjKA==
+X-Received: by 2002:adf:f24d:: with SMTP id b13mr3542409wrp.316.1601376706335; 
+ Tue, 29 Sep 2020 03:51:46 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:d50c:1ee4:fec5:ad12?
+ ([2a01:e35:2ec0:82b0:d50c:1ee4:fec5:ad12])
+ by smtp.gmail.com with ESMTPSA id h2sm5568722wrp.69.2020.09.29.03.51.44
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 29 Sep 2020 03:51:45 -0700 (PDT)
+Subject: Re: [PATCH v2 0/5] usb: dwc-meson-g12a: Add support for USB on S400
+ board
+To: Felipe Balbi <balbi@kernel.org>, khilman@baylibre.com, kishon@ti.com,
+ martin.blumenstingl@googlemail.com
+References: <20200917065949.3476-1-narmstrong@baylibre.com>
+ <5e69947c-8a91-af7f-ed86-996920109e79@baylibre.com>
+ <87eemkan4b.fsf@kernel.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <19298358-8e10-3efe-b246-2ab6662ca715@baylibre.com>
+Date: Tue, 29 Sep 2020 12:51:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from xhacker.debian (124.74.246.114) by
- TYAPR01CA0054.jpnprd01.prod.outlook.com (2603:1096:404:2b::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3433.32 via Frontend Transport; Tue, 29 Sep 2020 10:49:16 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a7998fb7-2a5a-4760-9244-08d864655641
-X-MS-TrafficTypeDiagnostic: DM6PR03MB4442:
-X-Microsoft-Antispam-PRVS: <DM6PR03MB4442DDA95D15D07A19C05B42ED320@DM6PR03MB4442.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bdv1cSzH0wAYG1qqqX9oVTw7xry1CEJvAkVhoAYoETIovnkvhyU9bR2l8SJsKl/2HDwWFtggQHCE02U5rq7nmuvzIlBk+Q05L+5vvP0AOf32sg3STsncAFYVV5mPvGUmte6Bl1L2RR6Z4aCq4wla9AkyAYf2fqEgv+xXdkxurNvxjoOvcy+aFXPh0NyE+uLGOJDmAiXmIETWWQ556OXr5g3yvYTsaTM0H8rgbyfsYTw6yCSt8gPHpHtv628GpNVvcFmiW83uRD1m0OLV8y7RhEzkpPANRTg41ICHSRdEzlTJnVcm26IyCIPiXYfq+X0Kw+bk85hh4oMbCnua/Xahush3rUUFt3YK6vBN9Gzswd+WrIP3fLkDpr+kiGnDEU8D
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR03MB4555.namprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(39860400002)(136003)(346002)(376002)(366004)(396003)(66946007)(956004)(6666004)(8676002)(86362001)(478600001)(8936002)(1076003)(6916009)(4326008)(5660300002)(7696005)(52116002)(7416002)(7406005)(53546011)(2906002)(16526019)(6506007)(26005)(186003)(66556008)(316002)(66476007)(9686003)(83380400001)(55016002)(54906003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: mXCAddAnPLSkQjPzsCwpnlw31nefGW/Yx2Iy7B5gG4NvIlsPMeoj+EycO5dJ+1dVLM4SMg1eYvdh0/J4xRdUKxV7hyi8HkEmu5s3ikYHSViqYO+qdYIwse6fRJahYUy2WRPvTJLxZAeyOHpYnfzRQiQ8S5uNddpGtkt24/VGOn8TDwAN3LpOj4a6cSiCHvUwkAarEoOFdAMkVBbu+1TpATEBRxv2qLS08noWBQLcfiBD2FZOXiHB5KkhEA5t7QrCRi2nvDwHio/JzxjDOFQNhmXez8HKEDGT9g1FNVQyXSvYvZjhDmnOAx3jgOyDH9c01jjz6r9UpcXNArgsdAy60sEETGRsKusk9/bkIfpGMJpl/QNQ9DQ1T7CN+uShmyBjGFRmUeQrXxLiNUpiaNtHf1Fu5JPXQJXHfHUg7932UXTwzsQpiJv9YMZrBYJJjIpbh7RXIG1P+BB+m7ntLyMTbz9m1jbnFtk/0Px1Zrgxv2DhjmwJxNTS5Uba/lKCgu2XsPF1aZpWGt1wQF4eIvxz+E6fyhNHagR3OniEkeJ3TUx27m+3hFEhI0pV5GrXLuOekQPRcTiYrWrtAF6y4DVaJQeCzPhwnB8MGZfS5+CT18dTXYefIZ6ZQInu4H9tICnzeMht4P2QLbwsNfNzCvng/A==
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7998fb7-2a5a-4760-9244-08d864655641
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR03MB4555.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2020 10:49:27.6996 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lL2OHFP21JIEiE6gpUPB0JP6ixr9g7VrYwQhCn1EXTXxDmQDeFIIIviGQOFYASIUIctBsQ9kmm1z1Za8IFSsjg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB4442
+In-Reply-To: <87eemkan4b.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200929_064931_073648_C6E13386 
-X-CRM114-Status: GOOD (  13.33  )
+X-CRM114-CacheID: sfid-20200929_065147_742280_48767009 
+X-CRM114-Status: GOOD (  15.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,65 +151,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
- Binghui Wang <wangbinghui@hisilicon.com>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Thierry Reding <thierry.reding@gmail.com>, linux-arm-kernel@axis.com,
- Vidya Sagar <vidyas@nvidia.com>, Fabio Estevam <festevam@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- Jesper Nilsson <jesper.nilsson@axis.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, Pratyush Anand <pratyush.anand@gmail.com>,
- linux-tegra@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
- Kishon Vijay Abraham I <kishon@ti.com>, Kukjin Kim <kgene@kernel.org>,
- NXP Linux Team <linux-imx@nxp.com>, Xiaowei Song <songxiaowei@hisilicon.com>,
- Richard Zhu <hongxing.zhu@nxp.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Yue Wang <yue.wang@Amlogic.com>, linux-samsung-soc@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
- linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Jingoo Han <jingoohan1@gmail.com>, Andy Gross <agross@kernel.org>,
- linux-kernel@vger.kernel.org, Stanimir Varbanov <svarbanov@mm-sol.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
- Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: multipart/mixed; boundary="===============7757873328837717649=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jon,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============7757873328837717649==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="PvDOpjJ0j7br7XXNxREgp4JIFBMJrauD2"
 
-On Fri, 25 Sep 2020 09:53:45 +0100 Jon Hunter wrote:
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--PvDOpjJ0j7br7XXNxREgp4JIFBMJrauD2
+Content-Type: multipart/mixed; boundary="yDwgYfujpTqYes3nBEImurklNoJRPjlwF";
+ protected-headers="v1"
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: Felipe Balbi <balbi@kernel.org>, khilman@baylibre.com, kishon@ti.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Message-ID: <19298358-8e10-3efe-b246-2ab6662ca715@baylibre.com>
+Subject: Re: [PATCH v2 0/5] usb: dwc-meson-g12a: Add support for USB on S400
+ board
+References: <20200917065949.3476-1-narmstrong@baylibre.com>
+ <5e69947c-8a91-af7f-ed86-996920109e79@baylibre.com>
+ <87eemkan4b.fsf@kernel.org>
+In-Reply-To: <87eemkan4b.fsf@kernel.org>
 
-> 
-> On 24/09/2020 12:05, Jisheng Zhang wrote:
-> > Improve the msi code:
-> > 1. Add proper error handling.
-> > 2. Move dw_pcie_msi_init() from each users to designware host to solve
-> > msi page leakage in resume path.  
-> 
-> Apologies if this is slightly off topic, but I have been meaning to ask
-> about MSIs and PCI. On Tegra194 which uses the DWC PCI driver, whenever we
-> hotplug CPUs we see the following warnings ...
-> 
->  [      79.068351] WARNING KERN IRQ70: set affinity failed(-22).
->  [      79.068362] WARNING KERN IRQ71: set affinity failed(-22).
-> 
+--yDwgYfujpTqYes3nBEImurklNoJRPjlwF
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-I tried to reproduce this issue on Synaptics SoC, but can't reproduce it.
-Per my understanding of the code in kernel/irq/cpuhotplug.c, this warning
-happened when we migrate irqs away from the offline cpu, this implicitly
-implies that before this point the irq has bind to the offline cpu, but how
-could this happen given current dw_pci_msi_set_affinity() implementation
-always return -EINVAL
+On 29/09/2020 12:33, Felipe Balbi wrote:
+> Neil Armstrong <narmstrong@baylibre.com> writes:
+>=20
+>> Hi Felipe,
+>>
+>> Is there anything to change in this serie ?
+>=20
+> I've been waiting for Kishon's review of drivers/phy parts. I can take
+> the rest, but without Kishon's ack, drivers/phy will be left out.
+>=20
 
-thanks
+No problem, please go ahead and take the rest, I'll re-submit the phy cha=
+nge
+again if Kishon wants some changes.
+
+Thanks,
+Neil
+
+
+
+--yDwgYfujpTqYes3nBEImurklNoJRPjlwF--
+
+--PvDOpjJ0j7br7XXNxREgp4JIFBMJrauD2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEPVPGJshWBf4d9CyLd9zb2sjISdEFAl9zEcAACgkQd9zb2sjI
+SdFBeRAArJuXdx4qIN8mEblC11uiP1KeUSBfHYt5iwk4MsbYaLyrBmFGXWdyDLcB
+3H7Skedxe7v2UuwPilIqC7oCLlturhy6im0LnJmfhiErx26iKZpybotGGbo1lbKU
+NdcajiYY2eOkEj+ddi+Rwh5+LE5O3m4D4IqVAr5goCG42usaoE95tMTmjc0pgHP6
+WXZX3JnzEG0wkjXcugttX6+8srjn19Cey2n2UF9DDi+Kcl2OXAbIV6q9sCx55Q9t
+FCezOnhuk5YSVX2hvBKu4lCjOKGlC3DFNSYddZXa6PC7ggXPjVt+kIOK+uKWIDYL
+P5Bc8EOwHoPUu8YmpZm1vf9ru68SR71EovUA5hFvSVJugblxVQZhHZ3kEf1otdQ0
+HM7XiN3TBfBh5AX80zY+pGXz/Rya0yL3WPWXC2BcN/UYy1AUy+NeXMQkBACvtxsq
+avVjgog0uePZ6lJ5U9972OezpDVs7iikpkYicgkTU2z6Hc18Ryx/E/4mcRbxQmKa
+iNSO/tS1VP2JnBdSDpl9GtcmmEo+AgIQVCiFbREt/qKpDGMj/F1LDFRCbBcCv5fR
+z+WUzYkhJUH8b+3vAcRjxTOva9Ep6D2TcdmJVsgJdInZX6j1R5v7xX5kl/hQ53aZ
+8KIf7u6Syr7DsrKfRqICnCxkV/cgH1Yn2zUs2lXP7V57Cv8R5j8=
+=H8F4
+-----END PGP SIGNATURE-----
+
+--PvDOpjJ0j7br7XXNxREgp4JIFBMJrauD2--
+
+
+--===============7757873328837717649==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7757873328837717649==--
+
