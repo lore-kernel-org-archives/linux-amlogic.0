@@ -2,22 +2,23 @@ Return-Path: <SRS0=+WvW=DG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81A1FC4346E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 09:25:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6B44C4346E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 09:26:00 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 027832075F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 09:25:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2C06E2075F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2020 09:26:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="x8JcLRTM";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="09LRUYPf"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 027832075F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="C+Hq9UBM";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="15gqtpmA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2C06E2075F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +27,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=egUX/K2B04bX3frINnPd3WUjgzthA7F2Yy0wDd7KbnA=; b=x8JcLRTMC61e9bKajUiFL/Uip
-	EI5mPhC5J1RwzEPvUTR4i9Mh/21fe813hFYJtrWRI/Va8txi7uqrO8am/0QIrUBJTrStlWNLtyrxY
-	ZvpFi2Xo+DrgU62H0abP7hfD84VnN0xjbW5yG2zrllQc5iTp5xPLJH/5ztoLubL65HB9rBCtv9mVu
-	fiCzEZSbTjh+1VAcsqP1JlxIcBifFlCAdccB5Bd7cunZdu8GduIrx498vOvRLaZds6QmmWR/dRel/
-	Rf4zsMgdTHeJHsCblWmXUJLheXVpJqPfHzP+2Mg3OvUD2i5E3VJY38j+enE25WEHkzTdHV9l9Mngp
-	DFYOTw6dw==;
+	 bh=G/AWQTaFtu2f+IIzznErALsXftI3rum6uM/25lOzMIs=; b=C+Hq9UBMZEh/T4C2MF95VMpMz
+	I+dijx6fD6GoGE/sdUs6+xhlTBD/FD4dPTrTDuKTSYn3Kd80DlHpObza2S2eTaHPQaXzBmgTsXEnQ
+	rz/+VBh+fl40/33X5H6h1ypwBncH8hV8/0Icm2r3g5Hr4TlrkqXEiR+2Mgp+cCbTADbihXANRCtEE
+	IGwT3qxh8g4Lc2RTMiJ+fQb093fg3XUTqI7B/+tMBfP5hOzyHRAzoDPjA3TzBgGACmyhz/3gAum7l
+	RLpOEX7vquQiXdwmtPfoVhq0YywfKs7ICttJHSTvECaK1fdVhYra5v1QPgWIWjeK7QYVaCZ7hTQc+
+	0TS6F9GFQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kNBt1-0005s2-K3; Tue, 29 Sep 2020 09:25:27 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1kNBtT-0005wR-47; Tue, 29 Sep 2020 09:25:55 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNBsw-0005pT-L7
- for linux-amlogic@lists.infradead.org; Tue, 29 Sep 2020 09:25:25 +0000
-Received: by mail-wr1-x441.google.com with SMTP id z4so4556514wrr.4
- for <linux-amlogic@lists.infradead.org>; Tue, 29 Sep 2020 02:25:20 -0700 (PDT)
+ id 1kNBtQ-0005vb-Na
+ for linux-amlogic@lists.infradead.org; Tue, 29 Sep 2020 09:25:54 +0000
+Received: by mail-wm1-x342.google.com with SMTP id v12so4024158wmh.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 29 Sep 2020 02:25:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=y3xolV07ydwiw9pUIR05O0Dg9ONWaFEj7NSliXEkK4k=;
- b=09LRUYPf5E3HT1ePfqHdRNpFuhMBuHfzWoqQUrGt72jvG43leqeYwggHXQjbzZE2A0
- I5lzoUN3tsKq3YrPdhOFdpIisJ0Z9FWuqEyHKn4A7uJDRW8z9eC3wR7coTScxPghduL0
- J8XqR3zHsafTLvoQR0tjEbzBGstCy8r2am45QBrCuij8PdOqqo13E5bsxEn5Ymzb8hYO
- oXbWRPuYJSFl7SB3NU5Y6gu2rLq0rP9byYVMqVtaESS39smsCzOmaPYHjdK3L3R3Bl5B
- Vy+3FFX5t4BEYfzLOW52oZ1u7sH4MIAqN/wBzkxBH4NR3hjL5sw9N11b54X5t9qBsb4y
- A/oQ==
+ bh=v9c1L7bUzqt1ZGy8xPf6IsuN+4ufXucqMXMZTtjee18=;
+ b=15gqtpmAD0OaMKuUPYlal5hDi+UNrQBkvSUYSJZRg7VAPrBpqq4zycCzc3FJJnWAk/
+ oMbSNNKgpC8UUw8ojTm4M53K5KSDBmHAitJS0eXKFqHK17RNzvxUsR3SS+BxicnekA+f
+ Jnthrtl1ovaIft9tFqT2qHH7u8jCMxrPRtbunGxblDA6uZHPfOtiLdn2+1a+GS7MtQcI
+ bGJ4edLfB0hYJx+F+FvLvTvUMxk/jdon7tnPsNOpdHZSnap5YotNeygp1aeZb0xmOO+E
+ KTtx76DJqVE7TeuqhToVrWF6o7WsZQaDW+U6Ww2b4mSCbN+mbG6dqZHA6EE6ClibKMK+
+ qiJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=y3xolV07ydwiw9pUIR05O0Dg9ONWaFEj7NSliXEkK4k=;
- b=gzEUrc93hgYug+sbt6B+c0bItKpDhmjCTxZQuferb/2jYF3O1OHdHOoF+JZVEICB7w
- ueM1HTMRIcKKD+hnAajBeMrXOE7IQaA2FQEQKcJi9xwioOACJPRgw0MR7QeBr+khzijT
- YnDn9YNnz2JD5+5QRUlucDtldmaRYOiXTLWVb+Kl+f5HuMR/Sg7UM+I+j5nDU/9XCkDb
- etNejIeFMmjlOHZweYItQK+wEPh9qwMbOV95ifBG3kZ4EFpc89EUriucauzE3JaEJCDu
- 0gxc19d0XsRWziGwtj0ID8ZAXbH75xQ5FNVq9W7Yh0f2oJ0E+rDSKdg2cGHOROCpg+VD
- w3pQ==
-X-Gm-Message-State: AOAM530oFSf9pxCips+OEF0OpIPo/yaJvv3b/pW8W2Awj9lmPtoINw31
- xFixO2SFSkAqjtdbcDQIONwccw==
-X-Google-Smtp-Source: ABdhPJywsO6BQatT62evnpEoaM/A8pOnCNGKmgU7+YSJiK4b0Bfq8OxEhegzFOq1ZHMLDX/5zZSB8A==
-X-Received: by 2002:adf:e802:: with SMTP id o2mr3097872wrm.309.1601371519895; 
- Tue, 29 Sep 2020 02:25:19 -0700 (PDT)
+ bh=v9c1L7bUzqt1ZGy8xPf6IsuN+4ufXucqMXMZTtjee18=;
+ b=UJ42ANpwZ+DOUBW4TBcztPixL5j5/UEEs1G/fbVpfF92CajLtgyqXqirisF6x/YjQr
+ 5Bkqxa1P1MeEsbaFGZfD/C6Bfbz5vHE4DqnxgPiCcAciLDhJQq1/TWOu/+hnzayMhyLj
+ pGTlc1w/OgplLPxEZwd3JJEpXcm/d1BQi6OEmgJN8iE5OpNcDikAd3ZHU5ufKN3y4CZA
+ lukgYIWb24ax9cbAtreoGMVQbi/Q+35TycbdywT7FKbj1HBfFLcIWn2yHJjbTkZce7LP
+ n6iOkk80MnXjkprKozYecstlKBa6gwfNwRe29hLppQmfk2diUTmHSC1V7NyY3gPBd6oY
+ AMNw==
+X-Gm-Message-State: AOAM531i1mWHRTTiMO+COrtPy35r3vbTmLAFc3QeTvGbaJlj1LkaiPOc
+ aW9whgVPXtN4iIrMpKa/kimOQg==
+X-Google-Smtp-Source: ABdhPJzDxUzxjsNRbjoNYDUCPZDL7AiNK138Zwox9ijD51mws2kOEv6wosJOL8a2oRC3h3TuE3dD4w==
+X-Received: by 2002:a1c:7918:: with SMTP id l24mr3629696wme.46.1601371551527; 
+ Tue, 29 Sep 2020 02:25:51 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:d50c:1ee4:fec5:ad12?
  ([2a01:e35:2ec0:82b0:d50c:1ee4:fec5:ad12])
- by smtp.gmail.com with ESMTPSA id y68sm4800251wmd.39.2020.09.29.02.25.18
+ by smtp.gmail.com with ESMTPSA id n66sm4715316wmb.35.2020.09.29.02.25.49
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 29 Sep 2020 02:25:18 -0700 (PDT)
-Subject: Re: [PATCH v4 0/4] drm: panel: add support for TDO tl070wsh30 panel
-To: thierry.reding@gmail.com, sam@ravnborg.org
-References: <20200915121912.4347-1-narmstrong@baylibre.com>
+ Tue, 29 Sep 2020 02:25:50 -0700 (PDT)
+Subject: Re: [PATCH v2 3/3] phy: amlogic: phy-meson-axg-mipi-pcie-analog: add
+ support for MIPI DSI analog
+To: kishon@ti.com, repk@triplefau.lt
+References: <20200915130339.11079-1-narmstrong@baylibre.com>
+ <20200915130339.11079-4-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <9f720791-2718-205f-d101-0811a679f54e@baylibre.com>
-Date: Tue, 29 Sep 2020 11:25:17 +0200
+Message-ID: <6f87aa99-e044-f7f6-802f-ea2fe8b9de6d@baylibre.com>
+Date: Tue, 29 Sep 2020 11:25:49 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200915121912.4347-1-narmstrong@baylibre.com>
+In-Reply-To: <20200915130339.11079-4-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200929_052522_871392_0CA38E50 
-X-CRM114-Status: GOOD (  17.31  )
+X-CRM114-CacheID: sfid-20200929_052552_808488_E4678A5D 
+X-CRM114-Status: GOOD (  28.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,45 +154,348 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgU2FtLAoKSXMgdGhlcmUgYW55dGhpbmcgbW9yZSB0byBjaGFuZ2UgPwoKVGhhbmtzLApOZWls
-CgpPbiAxNS8wOS8yMDIwIDE0OjE5LCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPiBUaGlzIGFkZHMg
-c3VwcG9ydCBiaW5kaW5ncyBhbmQgc3VwcG9ydCBmb3IgdGhlIFRETyBUTDA3MFdTSDMwIFRGVC1M
-Q0QgcGFuZWwKPiBtb2R1bGUgc2hpcHBlZCB3aXRoIHRoZSBBbWxvZ2ljIFM0MDAgRGV2ZWxvcG1l
-bnQgS2l0Lgo+IFRoZSBwYW5lbCBoYXMgYSAxMDI0w5c2MDAgcmVzb2x1dGlvbiBhbmQgdXNlcyAy
-NCBiaXQgUkdCIHBlciBwaXhlbC4KPiBJdCBwcm92aWRlcyBhIE1JUEkgRFNJIGludGVyZmFjZSB0
-byB0aGUgaG9zdCwgYSBidWlsdC1pbiBMRUQgYmFja2xpZ2h0Cj4gYW5kIHRvdWNoIGNvbnRyb2xs
-ZXIuCj4gCj4gQ2hhbmdlcyBzaW5jZSB2MyBhdCBbM106Cj4gLSByZW9yZGVyZWQgdGRvIHZlbmRv
-ciBwcmVmaXgKPiAKPiBDaGFuZ2VzIHNpbmNlIHYyIGF0IFsyXToKPiAtIGFkZGVkIHJlc2V0IGdw
-aW8gdG8gcGFuZWwtc2ltcGxlLWRzaSBiaW5kaW5ncwo+IC0gbW92ZWQgYmluZGluZ3MgdG8gcGFu
-ZWwtc2ltcGxlCj4gLSByZS1vcmRlcmVkIHByZXBhcmUvdW5wcmVwYXJlCj4gLSBhZGRlZCBiYWNr
-IHJlZnJlc2ggcHJpbnQKPiAtIG1vdmVkIHJlZ3VsYXRvci9yZXNldCBoYW5kbGluZyBpbiBwcmVw
-YXJlL3VucHJlcGFyZQo+IC0gYWxpZ25lZCByZW1vdmUvc2h1dGRvd24gd2l0aCBwYW5lbC1zaW1w
-bGUKPiAtIGFkZGVkIHNlbnRpbmVsIGNvbW1lbnQgaW50byBkdCBtYXRjaCB0YWJsZQo+IAo+IENo
-YW5nZXMgc2luY2UgdjEgYXQgWzFdOgo+IC0gYWRkZWQgbWlzc2luZyB2ZW5kb3ItcHJlZml4ZXMg
-cGF0Y2gKPiAtIHJlbW92ZWQgdnJlZnJlc2gKPiAtIGZpeGVkIHdhcm5pbmcgb24gYWRkX3BhbmVs
-IHJldHVybgo+IC0gcmVtb3ZlZCBEUk0gbG9nZ2luZwo+IAo+IFsxXSBodHRwczovL3BhdGNod29y
-ay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzgxMzc2LyNyZXYxCj4gWzJdIGh0dHBzOi8vcGF0Y2h3
-b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODEzNzYvI3JldjIKPiBbM10gaHR0cHM6Ly9wYXRj
-aHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy84MTM3Ni8jcmV2Mwo+IAo+IE5laWwgQXJtc3Ry
-b25nICg0KToKPiAgIGR0LWJpbmRpbmdzOiB2ZW5kb3ItcHJlZml4ZXM6IEFkZCBTaGFuZ2hhaSBU
-b3AgRGlzcGxheQo+ICAgICBPcHRvbGVsZWN0cm9uaWNzIHZlbmRvciBwcmVmaXgKPiAgIGR0LWJp
-bmRpbmdzOiBkaXNwbGF5OiBwYW5lbC1zaW1wbGUtZHNpOiBhZGQgb3B0aW9uYWwgcmVzZXQgZ3Bp
-bwo+ICAgZHQtYmluZGluZ3M6IGRpc3BsYXk6IHBhbmVsLXNpbXBsZS1kc2k6IGFkZCBURE8gVEww
-NzBXU0gzMCBEU0kgcGFuZWwKPiAgICAgYmluZGluZ3MKPiAgIGRybTogcGFuZWw6IGFkZCBURE8g
-dGwwNzB3c2gzMCBwYW5lbCBkcml2ZXIKPiAKPiAgLi4uL2Rpc3BsYXkvcGFuZWwvcGFuZWwtc2lt
-cGxlLWRzaS55YW1sICAgICAgIHwgICAzICsKPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvdmVu
-ZG9yLXByZWZpeGVzLnlhbWwgIHwgICAyICsKPiAgZHJpdmVycy9ncHUvZHJtL3BhbmVsL0tjb25m
-aWcgICAgICAgICAgICAgICAgIHwgIDExICsKPiAgZHJpdmVycy9ncHUvZHJtL3BhbmVsL01ha2Vm
-aWxlICAgICAgICAgICAgICAgIHwgICAxICsKPiAgZHJpdmVycy9ncHUvZHJtL3BhbmVsL3BhbmVs
-LXRkby10bDA3MHdzaDMwLmMgIHwgMjUwICsrKysrKysrKysrKysrKysrKwo+ICA1IGZpbGVzIGNo
-YW5nZWQsIDI2NyBpbnNlcnRpb25zKCspCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dw
-dS9kcm0vcGFuZWwvcGFuZWwtdGRvLXRsMDcwd3NoMzAuYwo+IAoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hi Kishon,
+
+Gentle ping.
+
+Thanks,
+Neil
+
+On 15/09/2020 15:03, Neil Armstrong wrote:
+> The AXG Analog MIPI-DSI PHY also provides functions to the PCIe PHY,
+> thus we need to have inclusive support for both interfaces at runtime.
+> 
+> This fixes the regmap get from parent node, removes cell param
+> to select a mode and implement runtime configuration & power on/off
+> for both functions since they are not exclusive.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  drivers/phy/amlogic/Kconfig                   |   1 +
+>  .../amlogic/phy-meson-axg-mipi-pcie-analog.c  | 204 ++++++++++++------
+>  2 files changed, 136 insertions(+), 69 deletions(-)
+> 
+> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
+> index 99e8a4c7f1f3..db5d0cd757e3 100644
+> --- a/drivers/phy/amlogic/Kconfig
+> +++ b/drivers/phy/amlogic/Kconfig
+> @@ -66,6 +66,7 @@ config PHY_MESON_AXG_MIPI_PCIE_ANALOG
+>  	depends on OF && (ARCH_MESON || COMPILE_TEST)
+>  	select GENERIC_PHY
+>  	select REGMAP_MMIO
+> +	select GENERIC_PHY_MIPI_DPHY
+>  	help
+>  	  Enable this to support the Meson MIPI + PCIE analog PHY
+>  	  found in Meson AXG SoCs.
+> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> index 1431cbf885e1..6eb21551bdd9 100644
+> --- a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> @@ -4,9 +4,13 @@
+>   *
+>   * Copyright (C) 2019 Remi Pommarel <repk@triplefau.lt>
+>   */
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+>  #include <linux/module.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/regmap.h>
+> +#include <linux/delay.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/platform_device.h>
+>  #include <dt-bindings/phy/phy.h>
+>  
+> @@ -14,10 +18,10 @@
+>  #define		HHI_MIPI_CNTL0_COMMON_BLOCK	GENMASK(31, 28)
+>  #define		HHI_MIPI_CNTL0_ENABLE		BIT(29)
+>  #define		HHI_MIPI_CNTL0_BANDGAP		BIT(26)
+> -#define		HHI_MIPI_CNTL0_DECODE_TO_RTERM	GENMASK(15, 12)
+> -#define		HHI_MIPI_CNTL0_OUTPUT_EN	BIT(3)
+> +#define		HHI_MIPI_CNTL0_DIF_REF_CTL1	GENMASK(25, 16)
+> +#define		HHI_MIPI_CNTL0_DIF_REF_CTL0	GENMASK(15, 0)
+>  
+> -#define HHI_MIPI_CNTL1 0x01
+> +#define HHI_MIPI_CNTL1 0x04
+>  #define		HHI_MIPI_CNTL1_CH0_CML_PDR_EN	BIT(12)
+>  #define		HHI_MIPI_CNTL1_LP_ABILITY	GENMASK(5, 4)
+>  #define		HHI_MIPI_CNTL1_LP_RESISTER	BIT(3)
+> @@ -25,100 +29,170 @@
+>  #define		HHI_MIPI_CNTL1_INPUT_SEL	BIT(1)
+>  #define		HHI_MIPI_CNTL1_PRBS7_EN		BIT(0)
+>  
+> -#define HHI_MIPI_CNTL2 0x02
+> +#define HHI_MIPI_CNTL2 0x08
+>  #define		HHI_MIPI_CNTL2_CH_PU		GENMASK(31, 25)
+>  #define		HHI_MIPI_CNTL2_CH_CTL		GENMASK(24, 19)
+>  #define		HHI_MIPI_CNTL2_CH0_DIGDR_EN	BIT(18)
+>  #define		HHI_MIPI_CNTL2_CH_DIGDR_EN	BIT(17)
+>  #define		HHI_MIPI_CNTL2_LPULPS_EN	BIT(16)
+> -#define		HHI_MIPI_CNTL2_CH_EN(n)		BIT(15 - (n))
+> +#define		HHI_MIPI_CNTL2_CH_EN		GENMASK(15, 11)
+>  #define		HHI_MIPI_CNTL2_CH0_LP_CTL	GENMASK(10, 1)
+>  
+> +#define DSI_LANE_0              (1 << 4)
+> +#define DSI_LANE_1              (1 << 3)
+> +#define DSI_LANE_CLK            (1 << 2)
+> +#define DSI_LANE_2              (1 << 1)
+> +#define DSI_LANE_3              (1 << 0)
+> +#define DSI_LANE_MASK		(0x1F)
+> +
+>  struct phy_axg_mipi_pcie_analog_priv {
+>  	struct phy *phy;
+> -	unsigned int mode;
+>  	struct regmap *regmap;
+> +	bool dsi_configured;
+> +	bool dsi_enabled;
+> +	bool powered;
+> +	struct phy_configure_opts_mipi_dphy config;
+>  };
+>  
+> -static const struct regmap_config phy_axg_mipi_pcie_analog_regmap_conf = {
+> -	.reg_bits = 8,
+> -	.val_bits = 32,
+> -	.reg_stride = 4,
+> -	.max_register = HHI_MIPI_CNTL2,
+> -};
+> +static void phy_bandgap_enable(struct phy_axg_mipi_pcie_analog_priv *priv)
+> +{
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			HHI_MIPI_CNTL0_BANDGAP, HHI_MIPI_CNTL0_BANDGAP);
+>  
+> -static int phy_axg_mipi_pcie_analog_power_on(struct phy *phy)
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			HHI_MIPI_CNTL0_ENABLE, HHI_MIPI_CNTL0_ENABLE);
+> +}
+> +
+> +static void phy_bandgap_disable(struct phy_axg_mipi_pcie_analog_priv *priv)
+>  {
+> -	struct phy_axg_mipi_pcie_analog_priv *priv = phy_get_drvdata(phy);
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			HHI_MIPI_CNTL0_BANDGAP, 0);
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			HHI_MIPI_CNTL0_ENABLE, 0);
+> +}
+>  
+> -	/* MIPI not supported yet */
+> -	if (priv->mode != PHY_TYPE_PCIE)
+> -		return -EINVAL;
+> +static void phy_dsi_analog_enable(struct phy_axg_mipi_pcie_analog_priv *priv)
+> +{
+> +	u32 reg;
+>  
+>  	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> -			   HHI_MIPI_CNTL0_BANDGAP, HHI_MIPI_CNTL0_BANDGAP);
+> +			   HHI_MIPI_CNTL0_DIF_REF_CTL1,
+> +			   FIELD_PREP(HHI_MIPI_CNTL0_DIF_REF_CTL1, 0x1b8));
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   BIT(31), BIT(31));
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_DIF_REF_CTL0,
+> +			   FIELD_PREP(HHI_MIPI_CNTL0_DIF_REF_CTL0, 0x8));
+> +
+> +	regmap_write(priv->regmap, HHI_MIPI_CNTL1, 0x001e);
+> +
+> +	regmap_write(priv->regmap, HHI_MIPI_CNTL2,
+> +		     (0x26e0 << 16) | (0x459 << 0));
+> +
+> +	reg = DSI_LANE_CLK;
+> +	switch (priv->config.lanes) {
+> +	case 4:
+> +		reg |= DSI_LANE_3;
+> +		fallthrough;
+> +	case 3:
+> +		reg |= DSI_LANE_2;
+> +		fallthrough;
+> +	case 2:
+> +		reg |= DSI_LANE_1;
+> +		fallthrough;
+> +	case 1:
+> +		reg |= DSI_LANE_0;
+> +		break;
+> +	default:
+> +		reg = 0;
+> +	}
+> +
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL2,
+> +			   HHI_MIPI_CNTL2_CH_EN,
+> +			   FIELD_PREP(HHI_MIPI_CNTL2_CH_EN, reg));
+> +
+> +	priv->dsi_enabled = true;
+> +}
+>  
+> +static void phy_dsi_analog_disable(struct phy_axg_mipi_pcie_analog_priv *priv)
+> +{
+>  	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> -			   HHI_MIPI_CNTL0_ENABLE, HHI_MIPI_CNTL0_ENABLE);
+> -	return 0;
+> +			HHI_MIPI_CNTL0_DIF_REF_CTL1,
+> +			FIELD_PREP(HHI_MIPI_CNTL0_DIF_REF_CTL1, 0));
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0, BIT(31), 0);
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			HHI_MIPI_CNTL0_DIF_REF_CTL1, 0);
+> +
+> +	regmap_write(priv->regmap, HHI_MIPI_CNTL1, 0x6);
+> +
+> +	regmap_write(priv->regmap, HHI_MIPI_CNTL2, 0x00200000);
+> +
+> +	priv->dsi_enabled = false;
+>  }
+>  
+> -static int phy_axg_mipi_pcie_analog_power_off(struct phy *phy)
+> +static int phy_axg_mipi_pcie_analog_configure(struct phy *phy,
+> +					      union phy_configure_opts *opts)
+>  {
+>  	struct phy_axg_mipi_pcie_analog_priv *priv = phy_get_drvdata(phy);
+> +	int ret;
+>  
+> -	/* MIPI not supported yet */
+> -	if (priv->mode != PHY_TYPE_PCIE)
+> -		return -EINVAL;
+> +	ret = phy_mipi_dphy_config_validate(&opts->mipi_dphy);
+> +	if (ret)
+> +		return ret;
+> +
+> +	memcpy(&priv->config, opts, sizeof(priv->config));
+> +
+> +	priv->dsi_configured = true;
+> +
+> +	/* If PHY was already powered on, setup the DSI analog part */
+> +	if (priv->powered) {
+> +		/* If reconfiguring, disable & reconfigure */
+> +		if (priv->dsi_enabled)
+> +			phy_dsi_analog_disable(priv);
+> +
+> +		usleep_range(100, 200);
+> +
+> +		phy_dsi_analog_enable(priv);
+> +	}
+>  
+> -	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> -			   HHI_MIPI_CNTL0_BANDGAP, 0);
+> -	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> -			   HHI_MIPI_CNTL0_ENABLE, 0);
+>  	return 0;
+>  }
+>  
+> -static int phy_axg_mipi_pcie_analog_init(struct phy *phy)
+> +static int phy_axg_mipi_pcie_analog_power_on(struct phy *phy)
+>  {
+> +	struct phy_axg_mipi_pcie_analog_priv *priv = phy_get_drvdata(phy);
+> +
+> +	phy_bandgap_enable(priv);
+> +
+> +	if (priv->dsi_configured)
+> +		phy_dsi_analog_enable(priv);
+> +
+> +	priv->powered = true;
+> +
+>  	return 0;
+>  }
+>  
+> -static int phy_axg_mipi_pcie_analog_exit(struct phy *phy)
+> +static int phy_axg_mipi_pcie_analog_power_off(struct phy *phy)
+>  {
+> +	struct phy_axg_mipi_pcie_analog_priv *priv = phy_get_drvdata(phy);
+> +
+> +	phy_bandgap_disable(priv);
+> +
+> +	if (priv->dsi_enabled)
+> +		phy_dsi_analog_disable(priv);
+> +
+> +	priv->powered = false;
+> +
+>  	return 0;
+>  }
+>  
+>  static const struct phy_ops phy_axg_mipi_pcie_analog_ops = {
+> -	.init = phy_axg_mipi_pcie_analog_init,
+> -	.exit = phy_axg_mipi_pcie_analog_exit,
+> +	.configure = phy_axg_mipi_pcie_analog_configure,
+>  	.power_on = phy_axg_mipi_pcie_analog_power_on,
+>  	.power_off = phy_axg_mipi_pcie_analog_power_off,
+>  	.owner = THIS_MODULE,
+>  };
+>  
+> -static struct phy *phy_axg_mipi_pcie_analog_xlate(struct device *dev,
+> -						  struct of_phandle_args *args)
+> -{
+> -	struct phy_axg_mipi_pcie_analog_priv *priv = dev_get_drvdata(dev);
+> -	unsigned int mode;
+> -
+> -	if (args->args_count != 1) {
+> -		dev_err(dev, "invalid number of arguments\n");
+> -		return ERR_PTR(-EINVAL);
+> -	}
+> -
+> -	mode = args->args[0];
+> -
+> -	/* MIPI mode is not supported yet */
+> -	if (mode != PHY_TYPE_PCIE) {
+> -		dev_err(dev, "invalid phy mode select argument\n");
+> -		return ERR_PTR(-EINVAL);
+> -	}
+> -
+> -	priv->mode = mode;
+> -	return priv->phy;
+> -}
+> -
+>  static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
+>  {
+>  	struct phy_provider *phy;
+> @@ -126,27 +200,20 @@ static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
+>  	struct phy_axg_mipi_pcie_analog_priv *priv;
+>  	struct device_node *np = dev->of_node;
+>  	struct regmap *map;
+> -	struct resource *res;
+> -	void __iomem *base;
+>  	int ret;
+>  
+>  	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -	base = devm_ioremap_resource(dev, res);
+> -	if (IS_ERR(base)) {
+> -		dev_err(dev, "failed to get regmap base\n");
+> -		return PTR_ERR(base);
+> -	}
+> -
+> -	map = devm_regmap_init_mmio(dev, base,
+> -				    &phy_axg_mipi_pcie_analog_regmap_conf);
+> +	/* Get the hhi system controller node */
+> +	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
+>  	if (IS_ERR(map)) {
+> -		dev_err(dev, "failed to get HHI regmap\n");
+> +		dev_err(dev,
+> +			"failed to get HHI regmap\n");
+>  		return PTR_ERR(map);
+>  	}
+> +
+>  	priv->regmap = map;
+>  
+>  	priv->phy = devm_phy_create(dev, np, &phy_axg_mipi_pcie_analog_ops);
+> @@ -160,8 +227,7 @@ static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
+>  	phy_set_drvdata(priv->phy, priv);
+>  	dev_set_drvdata(dev, priv);
+>  
+> -	phy = devm_of_phy_provider_register(dev,
+> -					    phy_axg_mipi_pcie_analog_xlate);
+> +	phy = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+>  
+>  	return PTR_ERR_OR_ZERO(phy);
+>  }
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
