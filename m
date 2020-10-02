@@ -2,99 +2,89 @@ Return-Path: <SRS0=twEQ=DJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1F9BC4363C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 16:47:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0EB49C4363C
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 16:49:48 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A2B3E20719
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 16:47:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 630A520719
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 16:49:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="2SXeP4Gr";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="a1gXL5to"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A2B3E20719
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linuxfoundation.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KCIpwfH4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EdjwouQl"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 630A520719
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=InrHtS6HQlKzPhL8vQmOcxxcXyMHcww4Rj+5NW/Oooc=; b=2SXeP4Gr6zMQrTj0yzLNIULhi
-	z4dM9Uk3jEGTzokThtiN3NajbLb1dY4MVKK9CnFpY+9lsEr0+oH3Aue7v3B3S2jE57WfZjmqPNMoQ
-	xI1ejeqA81GV0fzGQVdZdSQtWJW7wsFulitIKl7lL3vQoeshX3YChDcFp4o9uZwGv0OfPHvIM+Q6/
-	JpoND6gQIlhQD+OwoobiiHCaUGlTYBicrjYShH5aqIMZY4Nd9b2ytbveXZoo3P1PHnYn4cATlEv7V
-	gBFHieKKAA05NYpn584Ntt1dZ3g7jZ9qFpajLPsb9Cf2PZkNx2ybs3IxZ4cayfDGJEcTCZZkHc5lE
-	YFnU2/bcw==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=sBIXt18ipxtgZ52X/N5y/K7Zxzll0IRxow7Ov7OA5lc=; b=KCIpwfH4j4wfjxACZEpIXE7oS1
+	WWgjQr13qefffnEIqAl4pIptTG5CesZOrJ1ZhhLUvjMns/qIbvlIjVMCfDIw6dBSqi9UJ8Of9zBZC
+	BwWpttjqIXYrA1/+oDgsgzsB6CR6KaztreSY4lBzTZxUE73G22XyIb/iJSbpj/Gj+yJzbj6VbrKzD
+	651+U30aCVq3HtVqE91dUkrYgph1x5EkgVSvl8FW5ypFBMuQaGkKqHJydErC9Ln+kn6oWSKtAbt30
+	+HT2FTtq5EXfwa/vzZSFAdMPg5CV4pw2E9xK/XSSCTZvDRY+UnCAOZJhWWpY2zAEDKVyBq3V/SnhG
+	bAehBBOQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kOODM-0000mY-KI; Fri, 02 Oct 2020 16:47:24 +0000
-Received: from mail-io1-xd44.google.com ([2607:f8b0:4864:20::d44])
+	id 1kOOFa-0001DA-IY; Fri, 02 Oct 2020 16:49:42 +0000
+Received: from mail-ej1-x643.google.com ([2a00:1450:4864:20::643])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kOODH-0000jf-3r
- for linux-amlogic@lists.infradead.org; Fri, 02 Oct 2020 16:47:20 +0000
-Received: by mail-io1-xd44.google.com with SMTP id g7so2203269iov.13
- for <linux-amlogic@lists.infradead.org>; Fri, 02 Oct 2020 09:47:17 -0700 (PDT)
+ id 1kOOFW-0001CE-Cp
+ for linux-amlogic@lists.infradead.org; Fri, 02 Oct 2020 16:49:40 +0000
+Received: by mail-ej1-x643.google.com with SMTP id qp15so2905621ejb.3
+ for <linux-amlogic@lists.infradead.org>; Fri, 02 Oct 2020 09:49:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linuxfoundation.org; s=google;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=Li4M3GK5y6x0SzTfqjxLLA9AT+ROiUGVRcFqRzm5Djg=;
- b=a1gXL5toNpXLmacnL7yhtJtYu+HmO+zq2HSfVRcyZ9z5aGYPOUMcOsxSjRxLjTiwhj
- zJBgESeE1qI3ToOAsK8MZWwKmHt51a3nMoD6FLDGupRKEjHEktpPC4yX8sNz7w/nKYtr
- hL0t3LhSNNDXOlNOrlInWA796iaMFGVw4FjQQ=
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jt0mTKD7biJvR9C/s8GFzCkzqMneNgtMalWKvcqcZ30=;
+ b=EdjwouQlpw+idcJObMj1jPU1XGKGGQ0BEVqaE7YHdOSPuhnSOUbNgFMamRCgjLp/0q
+ H44qtdpsxizB7fJjt3tx7nr24WboyDOF5FTSPnmlMU4kH8JDOKH2gw+i8sEJ+zPKb0gM
+ JgN+3UndIwmk96JBb3avGZ2zk+iGphGgWbERjPJWWjpSkl45bq5Jb3ZJiuqv2Czx3Wz6
+ WWcfOHD/W0plTO7SW3ZxLg8T8lkwzC3FXlG6h7MhCcZfpjzNUUGBgnR6I/2TjdDVHEBO
+ Zqp6rV7udmQnZ0BuoYxqW2q8sZdb0EEE3MvLXx4qLjLtNfcl8fiOGW17JgrKroxGeWb7
+ jnwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=Li4M3GK5y6x0SzTfqjxLLA9AT+ROiUGVRcFqRzm5Djg=;
- b=JCfmGJ39w1zNbTurZLHBpH5zxdHmHGDtZkNiJnAythqeoA/NiaQ2H61PHcXfsGN33a
- ALJJXvmYRlqs6XaxX5K2S9AnNvMXOJkry1ZQ7qJxTVasFGCXaHpA9DCDYqfCSM0i1P9q
- D1Drf5l2hzlf0gWhdZ9EOyfDZxSj7QVg+8ktxiUPh2QRpUS6qxml1P5qW24R6kyNRhSW
- K+B97Suwp5zYaSf8IWgEA4EY2VSlSO5Svg7krSYWMhsOYB3y7LEm3FazUsbvcjTiKR9D
- sZIyRtgm3Bh4Cm4035veHlw4BZyjriL/tmEQW751E7dz+d6bDN1m3BscZ9wiPvo0ydqj
- yREA==
-X-Gm-Message-State: AOAM533HpAPehBGxq+uRBig0y+5+h8yMb/ILeMEJ21S8EIH3CXkytdpL
- adN3/Aymvxe15Co2NlX+jXy8vw==
-X-Google-Smtp-Source: ABdhPJzrfRpNIYzV2uFrhJdCHt/QTSYBKDnpK2pS6zKI5Da6BP91uaqOQt3S2LEYZ+yKmaDKjo66AQ==
-X-Received: by 2002:a05:6638:10e9:: with SMTP id
- g9mr2960820jae.139.1601657236070; 
- Fri, 02 Oct 2020 09:47:16 -0700 (PDT)
-Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net.
- [24.9.64.241])
- by smtp.gmail.com with ESMTPSA id h2sm932771ioj.5.2020.10.02.09.47.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 02 Oct 2020 09:47:15 -0700 (PDT)
-Subject: Re: [PATCH 00/18] use semicolons rather than commas to separate
- statements
-To: Joe Perches <joe@perches.com>, Julia Lawall <julia.lawall@inria.fr>,
- Dan Carpenter <dan.carpenter@oracle.com>, Shuah Khan <shuah@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>
-References: <1601233948-11629-1-git-send-email-Julia.Lawall@inria.fr>
- <CAMj1kXGh+CzuXkAnqsoMO2A3T1p=D6uFOV347Ym5+VFn5U1gWg@mail.gmail.com>
- <20200929124108.GY4282@kadam>
- <alpine.DEB.2.22.394.2009291445050.2808@hadrien>
- <5f0d2b20f5088281363bb4a35c5652a2c087f159.camel@perches.com>
- <cd75e2d1-9923-b725-78cd-fd5611431584@linuxfoundation.org>
-From: Shuah Khan <skhan@linuxfoundation.org>
-Message-ID: <81b94c3a-43d6-c9f5-0bc0-43bf65b3d5fc@linuxfoundation.org>
-Date: Fri, 2 Oct 2020 10:47:13 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ bh=jt0mTKD7biJvR9C/s8GFzCkzqMneNgtMalWKvcqcZ30=;
+ b=RzGAMBqcI/qhTNhHS/rwUpSaVu/rtbgKpm8Or9S4DVcEMVgUXg6lCxt5nyk3aQ5B7y
+ EgfjcM5F6VzndsQc82iMbQYZFLAemN3hjCxmEkKjD0WNb43aBNr4QaQ2cHlOb8DcmrPM
+ D4AX6BJXc6mOJ7KszBd/7qKDiuGANGa1z7dN9n9FyUEcpuTNU1webBiyIvV11XhpH/NV
+ kU/w6xtruXs2n1YNSoCUb95DvM+CqFng22ImNP0IuJHxNlfwt9Ct+VPgoxhUZYC5cVih
+ NBr0mUBgvPJX9uwZU0eLAPRavfzrY/W1iShrEdq4QHk+YfSs0jgN0mFDYOmkKArhDrrz
+ SyTA==
+X-Gm-Message-State: AOAM533SW7eG/cyNwT94qH3H8b5Hi742hQGXUhSqPaFk/tVmrG16kjdh
+ qvQIPq1KrPTcdZwdHECIaDfsUA==
+X-Google-Smtp-Source: ABdhPJzYKdYeTdWqSU8vWwnYGHuNNzK8lAmxh4xAjC4EFgh1Og8vu0MicZjCYnSgGajWJjpOHDvogA==
+X-Received: by 2002:a17:906:1dd0:: with SMTP id
+ v16mr3135410ejh.309.1601657376897; 
+ Fri, 02 Oct 2020 09:49:36 -0700 (PDT)
+Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.googlemail.com with ESMTPSA id r27sm1586429edx.33.2020.10.02.09.49.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 02 Oct 2020 09:49:36 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Subject: [PATCH] mmc: meson-gx: remove IRQF_ONESHOT
+Date: Fri,  2 Oct 2020 18:49:15 +0200
+Message-Id: <20201002164915.938217-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-In-Reply-To: <cd75e2d1-9923-b725-78cd-fd5611431584@linuxfoundation.org>
-Content-Language: en-US
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201002_124719_216647_3731A346 
-X-CRM114-Status: GOOD (  18.87  )
+X-CRM114-CacheID: sfid-20201002_124938_540133_129B20E4 
+X-CRM114-Status: GOOD (  21.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,59 +96,168 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-ide@vger.kernel.org, linux-clk@vger.kernel.org,
- =?UTF-8?Q?Valdis_Kl=c4=93tnieks?= <valdis.kletnieks@vt.edu>,
- David Lechner <david@lechnology.com>, Neil Armstrong <narmstrong@baylibre.com>,
- linux-iio@vger.kernel.org, kernel-janitors@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, linux-wireless@vger.kernel.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com, linux-block@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- drbd-dev@tron.linbit.com, linux-amlogic@lists.infradead.org,
- Thomas Gleixner <tglx@linutronix.de>,
- ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Kevin Hilman <khilman@baylibre.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, linux-mmc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Brad Harper <bjharper@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gOS8yOS8yMCA3OjQyIEFNLCBTaHVhaCBLaGFuIHdyb3RlOgo+IE9uIDkvMjkvMjAgNzozNCBB
-TSwgSm9lIFBlcmNoZXMgd3JvdGU6Cj4+IE9uIFR1ZSwgMjAyMC0wOS0yOSBhdCAxNDo0NyArMDIw
-MCwgSnVsaWEgTGF3YWxsIHdyb3RlOgo+Pj4gT24gVHVlLCAyOSBTZXAgMjAyMCwgRGFuIENhcnBl
-bnRlciB3cm90ZToKPj4+PiBUaGUgdGltZXMgd2hlcmUgY29tbWFzIGFyZSB1c2VkIGRlbGliZXJh
-dGVseSB0byByZXBsYWNlIGN1cmx5IGJyYWNlcyAKPj4+PiBhcmUKPj4+PiBqdXN0IGV2aWwuwqAg
-RWl0aGVyIHdheSB0aGUgY29kZSBpcyBjbGVhbmVyIHdpdGggc2VtaS1jb2xvbnMuCj4+Pgo+Pj4g
-SSBhbHNvIGZvdW5kIGV4YWFtcGxlcyBsaWtlIHRoZSBmb2xsb3dpbmcgdG8gYmUgcGFydGljdWxh
-cmx5IHVuZm9ydW5hdGU6Cj4+Pgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBmcHJpbnRmKHN0ZGVyciwKPj4+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgICJwYWdlX25yICVsdSB3cm9uZyBjb3VudCAlTHUgCj4+PiAlTHVc
-biIsCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGFnZV9uciwgY291bnQsCj4+PiDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgY291bnRfdmVyaWZ5W3BhZ2VfbnJdKSwgZXhpdCgxKTsKPj4+Cj4+PiBU
-aGUgZXhpdCBpcyB2ZXJ5IGhhcmQgdG8gc2VlLCB1bmxlc3MgeW91IGtub3cgdG8gbG9vayBmb3Ig
-aXQuCj4+Cj4+IEkgc2VudCB0aGF0IHBhdGNoIGxhc3QgbW9udGguCj4+IGh0dHBzOi8vcGF0Y2h3
-b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTE3MzQ4NzcvCj4+Cj4gCj4gSSBzZWUgd2hhdCBoYXBwZW5l
-ZC4gVGhpcyBwYXRjaCB0b3VjaGVzIGxpYiwgY3B1cG93ZXIsIGFuZCBzZWxmdGVzdHMuCj4gR3Vl
-c3MgbG9zdCBpbiB0aGUgbGltYm8gb2Ygd2hvIHRha2VzIGl0Lgo+IAo+ICDCoHRvb2xzL2xpYi9z
-dWJjbWQvaGVscC5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDEw
-ICstCj4gIMKgdG9vbHMvcG93ZXIvY3B1cG93ZXIvdXRpbHMvY3B1ZnJlcS1zZXQuY8KgwqAgfMKg
-IDE0ICstCj4gIMKgdG9vbHMvdGVzdGluZy9zZWxmdGVzdHMvdm0vZ3VwX2JlbmNobWFyay5jIHzC
-oCAxOCArLQo+ICDCoHRvb2xzL3Rlc3Rpbmcvc2VsZnRlc3RzL3ZtL3VzZXJmYXVsdGZkLmPCoMKg
-IHwgMjk2ICsrKysrKysrKysrKystLS0tLS0tLQo+ICDCoDQgZmlsZXMgY2hhbmdlZCwgMjEwIGlu
-c2VydGlvbnMoKyksIDEyOCBkZWxldGlvbnMoLSkKPiAKPiBJIGNhbiB0YWtlIGl0IHRocm91Z2gg
-b25lIG9mIG15IHRyZWVzLgo+IAoKUmFmYWVsLCBBbmRyZXcsCgpUaGlzIHBhdGNoIGlzIG5vdyBh
-cHBsaWVkIHRvCmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0
-L3NodWFoL2xpbnV4LWtzZWxmdGVzdC5naXQgCmZpeGVzIGJyYW5jaC4KClRoaXMgc3BhbnMgcG0s
-IGtzZWxmdGVzdC1tbSB0ZXN0cyBhbmQgdG9vbHMvbGliIGFuZCBoYXMgYmVlbgppbiBsaW1ibyBm
-b3IgYSBmZXcgd2Vla3MgZm9yIHRoYXQgcmVhc29uLgoKSSBkZWNpZGVkIHRvIHRha2UgdGhpcyB0
-aHJvdWdoIGtzZWxmdGVzdCB0cmVlIHRvIGF2b2lkIGhhdmluZwpKb2Ugc3BsaXQgdGhlIHBhdGNo
-ZXMuCgp0aGFua3MsCi0tIFNodWFoCgoKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
-Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
-bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+IRQF_ONESHOT was added to this driver to make sure the irq was not enabled
+again until the thread part of the irq had finished doing its job.
+
+Doing so upsets RT because, under RT, the hardirq part of the irq handler
+is not migrated to a thread if the irq is claimed with IRQF_ONESHOT.
+In this case, it has been reported to eventually trigger a deadlock with
+the led subsystem.
+
+Preventing RT from doing this migration was certainly not the intent, the
+description of IRQF_ONESHOT does not really reflect this constraint:
+
+ > IRQF_ONESHOT - Interrupt is not reenabled after the hardirq handler finished.
+ >              Used by threaded interrupts which need to keep the
+ >              irq line disabled until the threaded handler has been run.
+
+This is exactly what this driver was trying to acheive so I'm still a bit
+confused whether this is a driver or an RT issue.
+
+Anyway, this can be solved driver side by manually disabling the IRQs
+instead of the relying on the IRQF_ONESHOT. IRQF_ONESHOT may then be removed
+while still making sure the irq won't trigger until the threaded part of
+the handler is done.
+
+Fixes: eb4d81127746 ("mmc: meson-gx: correct irq flag")
+Reported-by: Brad Harper <bjharper@gmail.com>
+Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 47 ++++++++++++++++++++-------------
+ 1 file changed, 29 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 08a3b1c05acb..effc356db904 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -101,8 +101,7 @@
+ #define   IRQ_RESP_STATUS BIT(14)
+ #define   IRQ_SDIO BIT(15)
+ #define   IRQ_EN_MASK \
+-	(IRQ_CRC_ERR | IRQ_TIMEOUTS | IRQ_END_OF_CHAIN | IRQ_RESP_STATUS |\
+-	 IRQ_SDIO)
++	(IRQ_CRC_ERR | IRQ_TIMEOUTS | IRQ_END_OF_CHAIN)
+ 
+ #define SD_EMMC_CMD_CFG 0x50
+ #define SD_EMMC_CMD_ARG 0x54
+@@ -170,6 +169,7 @@ struct meson_host {
+ 	dma_addr_t descs_dma_addr;
+ 
+ 	int irq;
++	u32 irq_en;
+ 
+ 	bool vqmmc_enabled;
+ };
+@@ -842,22 +842,24 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	struct meson_host *host = dev_id;
+ 	struct mmc_command *cmd;
+ 	struct mmc_data *data;
+-	u32 irq_en, status, raw_status;
++	u32  status, raw_status;
+ 	irqreturn_t ret = IRQ_NONE;
+ 
+-	irq_en = readl(host->regs + SD_EMMC_IRQ_EN);
++	/* Disable irqs */
++	writel(0, host->regs + SD_EMMC_IRQ_EN);
++
+ 	raw_status = readl(host->regs + SD_EMMC_STATUS);
+-	status = raw_status & irq_en;
++	status = raw_status & host->irq_en;
+ 
+ 	if (!status) {
+ 		dev_dbg(host->dev,
+ 			"Unexpected IRQ! irq_en 0x%08x - status 0x%08x\n",
+-			 irq_en, raw_status);
+-		return IRQ_NONE;
++			 host->irq_en, raw_status);
++		goto none;
+ 	}
+ 
+ 	if (WARN_ON(!host) || WARN_ON(!host->cmd))
+-		return IRQ_NONE;
++		goto none;
+ 
+ 	/* ack all raised interrupts */
+ 	writel(status, host->regs + SD_EMMC_STATUS);
+@@ -908,6 +910,11 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (ret == IRQ_HANDLED)
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
+ 
++none:
++	/* Enable the irq again if the thread will not run */
++	if (ret != IRQ_WAKE_THREAD)
++		writel(host->irq_en, host->regs + SD_EMMC_IRQ_EN);
++
+ 	return ret;
+ }
+ 
+@@ -934,15 +941,17 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+ 	struct mmc_command *next_cmd, *cmd = host->cmd;
+ 	struct mmc_data *data;
+ 	unsigned int xfer_bytes;
++	int ret = IRQ_HANDLED;
+ 
+-	if (WARN_ON(!cmd))
+-		return IRQ_NONE;
++	if (WARN_ON(!cmd)) {
++		ret = IRQ_NONE;
++		goto out;
++	}
+ 
+ 	if (cmd->error) {
+ 		meson_mmc_wait_desc_stop(host);
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
+-
+-		return IRQ_HANDLED;
++		goto out;
+ 	}
+ 
+ 	data = cmd->data;
+@@ -959,7 +968,10 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+ 	else
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
+ 
+-	return IRQ_HANDLED;
++out:
++	/* Re-enable the irqs */
++	writel(host->irq_en, host->regs + SD_EMMC_IRQ_EN);
++	return ret;
+ }
+ 
+ /*
+@@ -1133,13 +1145,12 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 
+ 	/* clear, ack and enable interrupts */
+ 	writel(0, host->regs + SD_EMMC_IRQ_EN);
+-	writel(IRQ_CRC_ERR | IRQ_TIMEOUTS | IRQ_END_OF_CHAIN,
+-	       host->regs + SD_EMMC_STATUS);
+-	writel(IRQ_CRC_ERR | IRQ_TIMEOUTS | IRQ_END_OF_CHAIN,
+-	       host->regs + SD_EMMC_IRQ_EN);
++	host->irq_en = IRQ_EN_MASK;
++	writel(host->irq_en, host->regs + SD_EMMC_STATUS);
++	writel(host->irq_en, host->regs + SD_EMMC_IRQ_EN);
+ 
+ 	ret = request_threaded_irq(host->irq, meson_mmc_irq,
+-				   meson_mmc_irq_thread, IRQF_ONESHOT,
++				   meson_mmc_irq_thread, 0,
+ 				   dev_name(&pdev->dev), host);
+ 	if (ret)
+ 		goto err_init_clk;
+-- 
+2.25.4
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
