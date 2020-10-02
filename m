@@ -6,19 +6,19 @@ X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FA80C47423
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 14:32:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2969FC4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 14:32:54 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C2952206B2
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 14:32:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 877FA206A5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 14:32:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AoAg5SUt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MT/dm23d"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C2952206B2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cgdObibH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hA7YHt1V"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 877FA206A5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,63 +27,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Y17kKEVlBSrZBxTR0WFjnwVod5LtYPPsA2ZKDMxR+Ps=; b=AoAg5SUtgZYc2vFVhKNZ3MOwxa
-	uBL3smvuSbkYvMQ1aDB70FHaUP3f8jVNiRXeYrUhqfQiG2gwg+KXadx1iQrdU8hJ2lqAMZ2LXmbDW
-	j43GJVykzwMXLD6ePu16eqXdAH0hbgAHhf+GKcYWXIKWmu6WTsqdBkEUe7b4pn1LZy/rO46rhRyvK
-	c3pSSkfUiAK3fUelfpH+2xxPtOO609v9HLvbixnlMkAxCa1bIDIlueUToaV957dLtctlps/T2/cl1
-	m7lndeiGGtuItS3uJg6+jo5nEo0MJC28ps4CKixET3m0fFtVz53Y1RQXUAwdpWEz9IccPiaDrQkYw
-	CwDXx4ZQ==;
+	bh=066PBO4up08RESHKbJddZF7DnqHfW2H2es6x7reyC3Q=; b=cgdObibH5bhg3yRsEt3Aa8+NFt
+	ZgXG2S1XGe2YxSnPSBeUwDTY9jy0F00SnjVH8XZ9elcbJSml3iACmU8XKbd5nFeFZ1Ia6/qtAUDyT
+	69OqaCbdJrxxtHmdgnpzCkkBbC2cqxWK4fqIy0RXXQR4kvBHlL0Y98aJQcT00nPt8+dFkiOgkTNW/
+	JNnP+WOW1UqOgol5CoUrzsq6GKFjBzqFeO9zd7ouFvoDmBOkEBjOOzdzCBNlSqD4g1MTSa6nDRNe6
+	KycDZdJKfoHzT1f3hPt/n1P9jpArLgeqcl0vaN5IK/YgK4ddUSqF6CeMmiAaCFrYNjHhxhdH2ah3z
+	/zSQQjug==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kOM6v-0001kL-Az; Fri, 02 Oct 2020 14:32:37 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1kOM75-0001qE-HY; Fri, 02 Oct 2020 14:32:47 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kOM6K-0001O9-OO; Fri, 02 Oct 2020 14:32:01 +0000
-Received: by mail-wm1-x343.google.com with SMTP id v12so1985163wmh.3;
- Fri, 02 Oct 2020 07:32:00 -0700 (PDT)
+ id 1kOM6M-0001PL-Ur; Fri, 02 Oct 2020 14:32:03 +0000
+Received: by mail-wr1-x441.google.com with SMTP id c18so2057864wrm.9;
+ Fri, 02 Oct 2020 07:32:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=3IIVS7MhfURH0UVnp76zcUfKlv8hfdezuu29h1qTO9Q=;
- b=MT/dm23dknknl82NUiKS5toDjY8Dspqh3oVRx6cYbQvsHxdLfjJWVbNgZzypwLeabf
- oOuITmGGf4OYIRwKH6bwjLX8GVWNVI82hCm3QfoWk9V4xqg/umNEFtMAwgIfoHjRsSbo
- tTYa7XrKRAjYEErslFHmdRDeEw5vBtJFQtM1/isIpN96Qg0SIag8z/uucfCQF7nTP8tO
- jYjyxZKUsi0xe4qBduKgRIvHY1iPEFZZXEMvetBySN28M/VkCUIILbVJlimPoyRvtSTE
- uZBvvpBqRIlNDcziMG4eYGHW36sDNIp1fkgPvWRQeBIRbSvKtS42ReFg0AyURmVFLr7I
- gVBg==
+ bh=DR+MN9yI45B0CbPas30C2sDxsoxmrDbz6ZTE82Yi1YU=;
+ b=hA7YHt1VQf+I7mQTtL0IMemPkyrBpn14q39F9bkrXqgKjm6GF39cFze3zg/0sFyNRn
+ SI1nL8BwioMNZhxPA9RBuIqWwLOXwpO8qjhw0fb7QkRu1b5TwOdyArOnZS51FvHKreOd
+ qM7ylsMUE6Y8NJGjpPoMv5vS9BVdvLrm6FazfxWlJDZRJwTCRDQzAdfX11hFfb8KZVBe
+ zs9G+uT4vqlBU2gRXljx63OZrYq0DIpqfhEcLYipci73WKwzovV9soeHOoujpjnqBR2C
+ 4ghq/CTJJCvN/pTD4YQHJzGYhjssztqvtu00CexQQcdWWzxIgdUJW4I1IXR91H0ekfAL
+ Vb/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=3IIVS7MhfURH0UVnp76zcUfKlv8hfdezuu29h1qTO9Q=;
- b=N6BivS5q1BouOQzO+p0FmVr+dN40/TVVMlWPr549ZMdE2eV0HZD0bVpYYZUx/jD1Ia
- TnOEs1gMfc4bNe7tFlEt5UliQyH6GaryQkg2Nokrqzi4CDLdl4PhBcEU7IZZIqiwi/kK
- OKXX6ujPxH3ATAjo64vi28Da3gvyo231EEGIt6sBcPIgBLWHNw14eP7gRzHcuPOq9+we
- nbGSsQtlyWGAjkKHK7lxcmA8aFi7Ibsnp7ZKdmQCJnJDWU0WfKkvC4/SIskjEMP3L9Aa
- WttGXr8AKOlIyqVDsBQj1iBmWmYLcqmveZMijuU1nCfx43AggCnJVRzPghPWk1Ikrada
- kxtg==
-X-Gm-Message-State: AOAM532Ks1tx7dMTIoLBXirPuO+T9tcQgpNEqtW/AqYuuq2wPPYD4yYF
- 9slPrVSqm7kOYx4E3DiwOYQ=
-X-Google-Smtp-Source: ABdhPJxv1FFukIDOsjMvcoPqLpB+sbG6b0+XAnD0u2gDzADjf1Rjnv7//yRTGH7MKvpfzkEGMlv0NQ==
-X-Received: by 2002:a7b:cc02:: with SMTP id f2mr3137007wmh.1.1601649119669;
- Fri, 02 Oct 2020 07:31:59 -0700 (PDT)
+ bh=DR+MN9yI45B0CbPas30C2sDxsoxmrDbz6ZTE82Yi1YU=;
+ b=Pcj/BNkfaEDWNt8kT98XmbQ6XTVOQuQbLJNReMgqskPOphra+Iko5pZ+hoCisYLfzi
+ dZzRbqrXorgmxo8wO288gDyIzBhToBP+N79a7DvqIkH9EBSP9xo6srrnbyWfxrDPCFmW
+ KLtS8IVW11C11774H3GIdUdxe8pBwh6i0azcXvnUNx5PGWcZwcsF1iBvJcUoqM2AO84L
+ cG9p/eVOLqYNGQOCy/UprDYcC4fI1ihK8aUDQOZ/t3qy7QMTIZ4CBMzMpC9w6ZkkEyep
+ hi0IuFGWMEGM2T1pU8fo3Wqw4+hWnL6cm9wy2F4+/AJU6TxoMOqm8Nao7Zq3aFSkO6PY
+ bQvg==
+X-Gm-Message-State: AOAM530u3UZTRedpgH/P6Uny/OnZkv/Vwa59QmXwZJiK4k+ocbMTEo4d
+ Dej7dmV5qJADABkoizTKB9nu92GrQIQ=
+X-Google-Smtp-Source: ABdhPJzDRzc53W8EhYqCtpUVtGfSgBpzhIfazEvaTgRcMzr6Q/f+pHsYad3LwQes9oZBszHy/BCs3A==
+X-Received: by 2002:a5d:4388:: with SMTP id i8mr3398904wrq.365.1601649121861; 
+ Fri, 02 Oct 2020 07:32:01 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id w7sm1907392wrm.92.2020.10.02.07.31.57
+ by smtp.gmail.com with ESMTPSA id w7sm1907392wrm.92.2020.10.02.07.31.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 02 Oct 2020 07:31:59 -0700 (PDT)
+ Fri, 02 Oct 2020 07:32:01 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v2 06/10] arm64: dts: meson: add audio playback to p200
-Date: Fri,  2 Oct 2020 14:31:37 +0000
-Message-Id: <20201002143141.14870-7-christianshewitt@gmail.com>
+Subject: [PATCH v2 07/10] arm64: dts: meson: add audio playback to p212-s905x
+ dtsi
+Date: Fri,  2 Oct 2020 14:31:38 +0000
+Message-Id: <20201002143141.14870-8-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201002143141.14870-1-christianshewitt@gmail.com>
 References: <20201002143141.14870-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201002_103200_845573_B646D028 
-X-CRM114-Status: GOOD (  14.40  )
+X-CRM114-CacheID: sfid-20201002_103203_089391_5719AED3 
+X-CRM114-Status: GOOD (  14.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,45 +103,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add initial support limited to HDMI i2s and SPDIF (LPCM).
+Add initial audio support limited to HDMI i2s.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../boot/dts/amlogic/meson-gxbb-p200.dts      | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
+ .../dts/amlogic/meson-gxl-s905x-p212.dtsi     | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-index 3c93d1898b40..a16dac72600d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-@@ -9,11 +9,19 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+index 05cb2f5e5c36..40776d42bf8e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+@@ -11,6 +11,7 @@
+ /* Common DTSI for devices which are based on the P212 reference board. */
  
- #include "meson-gxbb-p20x.dtsi"
- #include <dt-bindings/input/input.h>
+ #include "meson-gxl-s905x.dtsi"
 +#include <dt-bindings/sound/meson-aiu.h>
  
  / {
- 	compatible = "amlogic,p200", "amlogic,meson-gxbb";
- 	model = "Amlogic Meson GXBB P200 Development Board";
- 
-+	spdif_dit: audio-codec-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
- 	avdd18_usb_adc: regulator-avdd18_usb_adc {
- 		compatible = "regulator-fixed";
- 		regulator-name = "AVDD18_USB_ADC";
-@@ -57,6 +65,59 @@
- 			press-threshold-microvolt = <0>; /* 0% */
- 		};
+ 	aliases {
+@@ -85,6 +86,45 @@
+ 		clocks = <&wifi32k>;
+ 		clock-names = "ext_clock";
  	};
 +
 +	sound {
 +		compatible = "amlogic,gx-sound-card";
-+		model = "GXBB-P200";
++		model = "GXL-S905X-P212";
 +		assigned-clocks = <&clkc CLKID_MPLL0>,
 +				  <&clkc CLKID_MPLL1>,
 +				  <&clkc CLKID_MPLL2>;
@@ -155,10 +144,6 @@ index 3c93d1898b40..a16dac72600d 100644
 +		};
 +
 +		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
-+		};
-+
-+		dai-link-2 {
 +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
 +			dai-format = "i2s";
 +			mclk-fs = <256>;
@@ -168,15 +153,7 @@ index 3c93d1898b40..a16dac72600d 100644
 +			};
 +		};
 +
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
-+
-+		dai-link-4 {
++		dai-link-2 {
 +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
 +
 +			codec-0 {
@@ -188,8 +165,6 @@ index 3c93d1898b40..a16dac72600d 100644
 +
 +&aiu {
 +	status = "okay";
-+	pinctrl-0 = <&spdif_out_y_pins>;
-+	pinctrl-names = "default";
  };
  
  &ethmac {
