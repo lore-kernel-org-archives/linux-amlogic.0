@@ -2,149 +2,74 @@ Return-Path: <SRS0=twEQ=DJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 26A47C4363D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 09:23:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5552DC4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 09:31:33 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 50EB920758
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 09:23:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EC77E20678
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 09:31:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YrBxroLB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nLJQOT0s"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 50EB920758
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Gt1GuLO5";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="jXh6dz5s"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EC77E20678
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=/ZV7lkPl4peZUt70xzE/G70WoA5ZOapvVaW5YiJ3+pY=; b=YrBxroLBYIKCWIZlKbYtDUTxz
-	Fj4TlXzUDZYxMUdShEV57oLpXrXPq0xr2o5Z38pkoLWyd05NnYny44ZxEp1sv1XjaJPQzL2iqxM5P
-	6EPIUWUnH3K0GhA/LAFkw1A2NFQiaRpCM8H5cOKsD1Hf/dHzHXNbijo8o2pVRs6WlFgolbjqszY0O
-	9q6wZQYpyq9umUcCX4axrIO4ole1hY4B9PKgGGN1oTPjpLRMk4kp6XF6nsPIlsQjHy1yQWk6KdbHY
-	8o36iZC7Z7xc24mL5YYT29kPBRD6U5D0IHTEkKnm9UB+i4aXvnmpntGi5Boo6XPvsgOp0qePIFOTX
-	rQEC9rPXQ==;
+	 bh=FxsDujQHridYcf0+Nxsi7vbhTFnpOIvOrZ95ZnMbaZM=; b=Gt1GuLO5OyLPIbGe8e32xVNcD
+	V9+3YzgtaThE/M6OqbSH53izjMNhOEcSjEQaq85oALy31xAjVPFWn6UcdUNnEWphqa0SszBJa/mXe
+	EARBzfNZFvjU71TlO1tLW20NOG/dmMtY+zR7XCnoCq0Qv58I3XW7ZQaefNVlASCzYPu2iNLcFI8BM
+	O+PvT0U+WYaH60d+SCpGLCGgaiC6RD5tHea9GI9uI4bm+U+aQrTWK6hsWEfrZyBkcTNhbcd3YLmWG
+	BoZ2DYQrq6dk9JV/tpKlHImu5zQNORAiAWvZnKe52fwyWWZOnUZHgBglnhYGYP2sepXVUW24Ue7OZ
+	VSs39TEaw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kOHHc-0005NY-GP; Fri, 02 Oct 2020 09:23:20 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1kOHPT-0006X0-1n; Fri, 02 Oct 2020 09:31:27 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kOHHY-0005MD-EW
- for linux-amlogic@lists.infradead.org; Fri, 02 Oct 2020 09:23:17 +0000
-Received: by mail-wm1-x341.google.com with SMTP id k18so965778wmj.5
- for <linux-amlogic@lists.infradead.org>; Fri, 02 Oct 2020 02:23:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=9lCxJW5UBNomH/ZeD11i2hm6oE3Ye1vNUzwzY3QbEjk=;
- b=nLJQOT0smshAiSzuYtZH6SNe7PnyBhotWxNzH8fzjLmh9om1aKqrAIECD0VwEzepMX
- 0/MtQJz92aujcX8SxDlM3ml65MF4FMecyqycwuL/L/P6qZYLJ99Mu4Yh51O3Lja6b/Au
- MJl8C3JiWjS+dRbP5inkIHD+uCpcXePMbCx/cT68c7eZmP4TmqNpc/P2phcL2OUfHCrg
- +tU8gV830k7BmPZ4CquT69rSKy7QdQXnVhWReHhSS7GGO6Jnrwst+ox/olm4dKhQ3WU4
- 010ccbiXH/dN1FHjkjfEzcSzdUtDc5bhYLM0XNxc2sR9IeBBg8m6FRyI0MiyWGSSYlYK
- 7b2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=9lCxJW5UBNomH/ZeD11i2hm6oE3Ye1vNUzwzY3QbEjk=;
- b=iQGG2hT7HuGKUdy3gBvFBqvHnNhj2Dp+o9BF8iHifXGFeVTTYoFcjLZ/3CrS1YKUss
- t5l4x+pc2vL+jjrZlgwUI5u2xqzoEkBBsYLWzbOJ5UUSVpgW6+0Nv6GzzeX30Ix+n++i
- lvGxWLyP8gM1sotcZpLfUo9VhdzsDaOdqOQISL22yDZPvzwzfOk6mHIU493gWFEb4wu8
- 9NkcFOfEwqr/QhWwqswMxX+dR5Gv1RkmDrQpyuW4LcI1ZlIlnckYvaiLaqszZPkO7OTO
- 0O7wuUzBMkrwQtJnbb/hIAWup0jkbxfCQwBGQLfxP034j4lZQULcT9A3yEVfOCDQMncQ
- cBmQ==
-X-Gm-Message-State: AOAM530lbDqrMf6ClkXCuoZrNLtYJo/Eh8zOtp6AbjqNi/F6wct+EJzb
- 6UCCHiq84r4IRalmlgN9bl3vxQ==
-X-Google-Smtp-Source: ABdhPJxgAtDLDvY4qRrI08xfVf7kKQSxi/T9YVEvuHfVbujZbMN/ojpZCVcAHPmDw+K+TbFiFYZuZQ==
-X-Received: by 2002:a1c:f716:: with SMTP id v22mr1703478wmh.183.1601630594050; 
- Fri, 02 Oct 2020 02:23:14 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:19c6:62a7:d765:db15?
- ([2a01:e35:2ec0:82b0:19c6:62a7:d765:db15])
- by smtp.gmail.com with ESMTPSA id z15sm1020053wrv.94.2020.10.02.02.23.12
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 02 Oct 2020 02:23:13 -0700 (PDT)
-Subject: Re: [PATCH v6 6/7] arm64: dts: meson: Fix schema warnings for pwm-leds
-To: Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-omap@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org
-References: <20200930234637.7573-1-post@lespocky.de>
- <20200930234637.7573-7-post@lespocky.de>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <b70232af-11f6-2724-d5e9-1eea44871b5c@baylibre.com>
-Date: Fri, 2 Oct 2020 11:23:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ id 1kOHPQ-0006Vg-Ov; Fri, 02 Oct 2020 09:31:25 +0000
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
+ [209.85.208.50])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 43A7320678;
+ Fri,  2 Oct 2020 09:31:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1601631082;
+ bh=Op9qQOvRCmtTi/qrFC6hcZ02Bsccu0GIK+GbgVOdmMs=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=jXh6dz5s7lSBsGhcBoH/Nc5LUh9VJtwNaauWo9Ob9Qu2czr336t8xQZ9ddQYJgwPQ
+ RaOSwo52NMRRYNY1yUymOVxtN2YDch2fUv9SI2FlVH45kP8nUj4EOB35WkwVW6kIZv
+ fAeICjNWdsNesqlwYmwXvieguXIxvQdd9MdxoK7A=
+Received: by mail-ed1-f50.google.com with SMTP id b12so955261edz.11;
+ Fri, 02 Oct 2020 02:31:22 -0700 (PDT)
+X-Gm-Message-State: AOAM532PYGQTQaJmrOCxIqRO6+dfqS8QGMVktSJPAdAyxUGWP9FQ4a1x
+ UmEpPFwwt4/onEdQyOXe12SRWTuG4NfNAY72xpU=
+X-Google-Smtp-Source: ABdhPJwSknSWj02zDQZ7UIOFFH5LS9ug09W2SVgWJOywobkymy1Z3ojVUQEOY7JssA67iKKNGFW+qhSE5EESCA8tfes=
+X-Received: by 2002:a50:a452:: with SMTP id v18mr225060edb.143.1601631080807; 
+ Fri, 02 Oct 2020 02:31:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200930234637.7573-7-post@lespocky.de>
-Content-Language: en-US
+References: <20200930234637.7573-1-post@lespocky.de>
+ <20200930234637.7573-3-post@lespocky.de>
+In-Reply-To: <20200930234637.7573-3-post@lespocky.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Fri, 2 Oct 2020 11:31:09 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPe7Tg+5ESsdPGks_Aqj+zQH4-asC839FseWp0OCJbT4Mw@mail.gmail.com>
+Message-ID: <CAJKOXPe7Tg+5ESsdPGks_Aqj+zQH4-asC839FseWp0OCJbT4Mw@mail.gmail.com>
+Subject: Re: [PATCH v6 2/7] dt-bindings: leds: Convert pwm to yaml
+To: Alexander Dahl <post@lespocky.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201002_052316_509793_4F95456B 
-X-CRM114-Status: GOOD (  18.57  )
+X-CRM114-CacheID: sfid-20201002_053124_869492_04721A86 
+X-CRM114-Status: GOOD (  12.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,96 +81,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Alexander Dahl <ada@thorsis.com>, Peter Ujfalusi <peter.ujfalusi@ti.com>,
- Rob Herring <robh+dt@kernel.org>, Dan Murphy <dmurphy@ti.com>,
- Pavel Machek <pavel@ucw.cz>, Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: devicetree@vger.kernel.org,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ Alexander Dahl <ada@thorsis.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ linux-mips@vger.kernel.org, Peter Ujfalusi <peter.ujfalusi@ti.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+ Pavel Machek <pavel@ucw.cz>, linux-amlogic@lists.infradead.org,
+ linux-omap@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, Dan Murphy <dmurphy@ti.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/10/2020 01:46, Alexander Dahl wrote:
-> The node names for devices using the pwm-leds driver follow a certain
-> naming scheme (now).
-> 
-> Signed-off-by: Alexander Dahl <post@lespocky.de>
-> ---
-> 
-> Notes:
->     v6:
->       * added this patch to series
-> 
->  .../arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 4 ++--
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts     | 4 ++--
->  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts          | 8 ++++----
->  3 files changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> index 8bcdffdf55d0..adfc72500e66 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> @@ -42,10 +42,10 @@
->  		};
->  	};
->  
-> -	pwmleds {
-> +	led-controller {
->  		compatible = "pwm-leds";
->  
-> -		power {
-> +		led-1 {
->  			label = "vim:red:power";
->  			pwms = <&pwm_AO_ab 1 7812500 0>;
->  			max-brightness = <255>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index bff8ec2c1c70..dcb435af4e0b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -81,10 +81,10 @@
->  		};
->  	};
->  
-> -	pwmleds {
-> +	led-controller {
->  		compatible = "pwm-leds";
->  
-> -		power {
-> +		led-1 {
->  			label = "vim:red:power";
->  			pwms = <&pwm_AO_ab 1 7812500 0>;
->  			max-brightness = <255>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> index 5ab139a34c01..039a8d0d1e9b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> @@ -101,20 +101,20 @@
->  		};
->  	};
->  
-> -	leds {
-> +	led-controller-1 {
->  		compatible = "gpio-leds";
->  
-> -		led-bluetooth {
-> +		led-1 {
->  			label = "sei610:blue:bt";
->  			gpios = <&gpio GPIOC_7 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
->  			default-state = "off";
->  		};
->  	};
->  
-> -	pwmleds {
-> +	led-controller-2 {
->  		compatible = "pwm-leds";
->  
-> -		power {
-> +		led-2 {
->  			label = "sei610:red:power";
->  			pwms = <&pwm_AO_ab 0 30518 0>;
->  			max-brightness = <255>;
-> 
+On Thu, 1 Oct 2020 at 01:52, Alexander Dahl <post@lespocky.de> wrote:
+>
+> The example was adapted in the following ways:
+>
+> - make use of the now supported 'function' and 'color' properties
+> - remove pwm nodes, those are documented elsewhere
+> - tweake node names to be matched by new dtschema rules
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+tweak? or align?
+
+>
+> License was discussed with the original author.
+
+Since you relicense their work, you need an ack or signed off from
+every author. You cannot just say "I discussed" and post it. That way
+I could pretend (lie) I talked to Linus and try to relicense Linux to
+BSD...
+
+You need acks/SoB from Peter and Russel.
+
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
