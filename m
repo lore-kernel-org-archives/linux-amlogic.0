@@ -2,145 +2,85 @@ Return-Path: <SRS0=twEQ=DJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B310C4363D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 12:45:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B347C4363D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 14:16:35 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DCDCF20672
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 12:45:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 11593206A5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2020 14:16:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="zBYOwfv+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="H4ytomLg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DCDCF20672
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Fy/miz52";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AUSpHf8P"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 11593206A5
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=29CmacrIJxylWQ6oPpabK108lqk4nKfGQQ/s9+2StTM=; b=zBYOwfv+LuRIxzwjNoEKdwstI
-	hykL/OErqv4LyxOqxnUc1dzVhN0vdqVSTl3GILooBHue6z0AuMsEG9OFQEbipkn1LkmguLl/kDSK2
-	kAW5EqpbeCUFQ6vVNjFafV7ovQ0/L5gHdTGqIZ6TZCpnZQfGlfORz5BEWfkTpIVRg25h1k/Ri7zDa
-	C6RqrsPQ2sxS5dGX9H/vl1BEY1fsuxiFtwDOvmrKg9/M48sDno99ksaLwcd7m+1/Ss6spsvaFz31g
-	e4Ekvq1HdQ+IzzFypxepBjJdUVLWDrBzMEzfQIQTEocwLhW2D1eoqcjf9CloqR+tRBbajDHVnorkh
-	+Uqh6A5Jw==;
+	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=+Z74HrXlvKvXVj8vj52EOn3Vtoc3VwTKjpNu8dcyu9g=; b=Fy/miz52PKKGuRHsa+vyfWUw/g
+	NIDaWaHtYi+fOgUcbrSu5KvLXQugJmqk7YfvENdcS6h4I3qupr7Afd7F7Yh2o/0aKDnW2Shc5Dv4n
+	8iC9MLpEJRYYbhgSHq5e4nO88rM0/TfOS4SfQA1TRts4tyqJ+3CPh0LYD6jkqaCcEmB07Yh7dMSec
+	ebBPNEoNt5scoLLp9HTJ2s2V0XjOV6BQsFaJaITDkeF/1EcIVwKfLzAKL2sJsRDaHhEvudTv3TTs2
+	lSK8X/6mbdaHPwgzzFnVpylPpTCXsNcbFL/9rXsKfUSUZEVXUFgJRJB7/k8jG2WX/5cGt96by74KC
+	AWlSX7tA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kOKQu-0006Ul-IG; Fri, 02 Oct 2020 12:45:08 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1kOLrJ-0007Sr-6T; Fri, 02 Oct 2020 14:16:29 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kOKQq-0006TL-80
- for linux-amlogic@lists.infradead.org; Fri, 02 Oct 2020 12:45:05 +0000
-Received: by mail-wr1-x442.google.com with SMTP id t10so1704230wrv.1
- for <linux-amlogic@lists.infradead.org>; Fri, 02 Oct 2020 05:45:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=c6R6+UYLsC4MhI+7voYB5InvhVZft8rBsgiiQ/I2ryY=;
- b=H4ytomLgx5SdkvOS0Xx9YeMFR9BWHkOAbgE7YxA3V2XqpaWlAUGQTqMNYGo/pyPGKJ
- 5BvfFt418X77SFkAjgUPcUczbStcirfS1E/4D5argQfLbq6ml+Q9hhoMcF/xYuTqHotu
- ohwe8SPkwEgiBW8OdXtgcVYdS0qvPOwmJ1EFEeA8mLoaUVHHv0Y2/cLzvCapkS2cxowG
- RP+bLwfNXq1aYqQVZbkS/AwYkf/csd8mIndfq98vrDtwnjDA0T+E0XG+wobHxHMTz6IV
- yjxyb+Fiy4ZDZ3By1FkBbHGguXpa400SaNjQJ//Q3yrJu/RQ70wknn00umuBCGxVgFdO
- IOJg==
+ id 1kOLrF-0007Ro-Hi; Fri, 02 Oct 2020 14:16:26 +0000
+Received: by mail-wm1-x344.google.com with SMTP id e2so1935155wme.1;
+ Fri, 02 Oct 2020 07:16:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=Y59AvHknuZ7JPu5M+VZVtPAwMMTkQJ0YRDyu3cqZUqo=;
+ b=AUSpHf8PfXj7qpN1VSy7IQFUfcXcQ4bnW+llmPBaBPVSwZe8klVXC4dS7JcR2++scQ
+ 0QL/9SLK8kts8mzJC0Hg+/5JL1K8jbHDa8GvHfst66H2MpGFVQAvHcbQHHbhv5JyYADg
+ DRXq6oorUadJDHdG6TYnR3xFleF27f1+QhgxYNf7MP9OA/mQsu1gUjCU2lMBgaPnk0UA
+ aL/jaBIzzqRXTKAE8T2ezUzKnHEigWzN5SOP1FPWZY1vlQfP1O+i/NAmeRq+YtqkguIW
+ a5YhP66+59PDXiaGvzDFRcVwtoF32YL82H7qm8PgkYKE6w/Uk9I61lQL9AVqQfoRunbQ
+ 5YVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=c6R6+UYLsC4MhI+7voYB5InvhVZft8rBsgiiQ/I2ryY=;
- b=kzM1djCn+5xyu5X3Mhq65moWxYuDwDP2ix7rwFLUmoyxfWUa3QvXtHP9hq/mU7M6Jd
- weoiAquTiFR6tH+HZuelelOwpjqR+lspWDnD9nzTRExILdxSRU4LUBTtzYGcbMV7rW5g
- kJJPo8/4FiSBUQEGqBl557lhhM0x2Vm1V1eU6bgLBWb+3NfbG+/l04po5ysIgSMN6v3A
- p/Awu6xoiF/v0mz6KpozpNTqxS5rhfsDj/h9v1DP/S5GqB3tDExMRgldn5ER5GMur1PU
- Fb1rs2yn8kX5nkOnbpZCKZpmqcjrSimlVzhEMQJJb4bQl9ibauxE/R1hzsadxHbFJZp4
- 7WWg==
-X-Gm-Message-State: AOAM533tQfGfWjTBvzuUZOQ4VFCoqnXIpkSKRuoaGtBIJGxd2AK0NFjY
- fBDfJp/sEucPG4Bf1iPy8FW6rw==
-X-Google-Smtp-Source: ABdhPJxynHGpL50TlMJarSGSU0oetuAif7v913v+GiHpw4Ekx+kmnL53Mg39QKlVREM1rjgoRlvkZQ==
-X-Received: by 2002:adf:a28a:: with SMTP id s10mr2889312wra.300.1601642702947; 
- Fri, 02 Oct 2020 05:45:02 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:19c6:62a7:d765:db15?
- ([2a01:e35:2ec0:82b0:19c6:62a7:d765:db15])
- by smtp.gmail.com with ESMTPSA id b126sm1839091wmd.16.2020.10.02.05.45.01
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 02 Oct 2020 05:45:02 -0700 (PDT)
-Subject: Re: [PATCH v2 0/5] usb: dwc-meson-g12a: Add support for USB on S400
- board
-To: khilman@baylibre.com, kishon@ti.com, balbi@kernel.org,
- martin.blumenstingl@googlemail.com
-References: <20200917065949.3476-1-narmstrong@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <30e2c174-c94b-f42a-1dd4-ae05c317d618@baylibre.com>
-Date: Fri, 2 Oct 2020 14:45:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200917065949.3476-1-narmstrong@baylibre.com>
-Content-Language: en-US
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=Y59AvHknuZ7JPu5M+VZVtPAwMMTkQJ0YRDyu3cqZUqo=;
+ b=oI3tNlS8qkSAwYvDLP3+JJUsbKxCfY3ZiF2uBgQXoIkV4QHsqMzL2ivMyH15fFCKgR
+ h10hv7CoVDhejmLQwJtxozQ36nUwFHSxVUikVKyQ8Y6Xmk8Xv1m7IWH+MTEGyLxpI4DG
+ Y67+GZngh1y6GTgZt4aWMvqGQpsYVuIviKAkUgvMXi1jvun3IDjLxdmx4wQWn0n9lfOp
+ T5zxqBg7ubWg2bdX01MDWPIO307LHBexEdW4+NP8amEEQC1RUwzHVPbNXQABKe4J6mt1
+ seWYVhHgADFNVoihBPtFc0aWSFka9TGJ3IjYmIsegYoveGkUeRJ8HW9RoX133I/ca4jN
+ l2IA==
+X-Gm-Message-State: AOAM530m9SYec8DGFYQV4hmMAcrtPlWBmNMhnah/g0ZqqHMtaEyHO/Y2
+ Zg/0i1TOGFaiSNWSHHjWYeQ=
+X-Google-Smtp-Source: ABdhPJz1OABUr8GbX4Yxk3rwgQihoo4Blr4FsZ/1vOIH+3RtopswaIYecRlbTnanlx/u4SV1WdpAJA==
+X-Received: by 2002:a1c:c28a:: with SMTP id s132mr3338419wmf.13.1601648183304; 
+ Fri, 02 Oct 2020 07:16:23 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id j14sm2045755wrr.66.2020.10.02.07.16.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 02 Oct 2020 07:16:22 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson: add SM1 soundcard name to VIM3L
+Date: Fri,  2 Oct 2020 14:16:19 +0000
+Message-Id: <20201002141619.14387-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201002_084504_461352_0DF812DB 
-X-CRM114-Status: GOOD (  19.84  )
+X-CRM114-CacheID: sfid-20201002_101625_590498_C60580CE 
+X-CRM114-Status: GOOD (  12.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,55 +92,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Kevin,
+VIM3L now inherits the sound node from the VIM3 common dtsi but is
+an SM1 device, so label it as such, and stop users blaming future
+support issues on the distro/app "wrongly detecting" their device.
 
-On 17/09/2020 08:59, Neil Armstrong wrote:
-> The Amlogic AXG is close to the GXL Glue but with a single OTG PHY.
-> 
-> It needs the same init sequence as GXL & GXM, but it seems it doesn't need
-> the host disconnect bit.
-> 
-> The Glue driver reuses the already implemented GXL & GXM work.
-> 
-> The USB2 PHY driver needs a slight tweak to keep the OTG detection working.
-> 
-> Changes since v1 at [1]:
-> - s/close from/close to/g
-> - collected review tags
-> - added small comment about phy management in patch 3
-> - removed status = "okay" in patch 4
-> - removed invalid phy-supply of phy1 in patch 5
-> 
-> [1] http://lore.kernel.org/r/20200909160409.8678-1-narmstrong@baylibre.com
-> 
-> Neil Armstrong (5):
->   phy: amlogic: phy-meson-gxl-usb2: keep ID pull-up even in Host mode
->   dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add the Amlogic AXG
->     Families USB Glue Bindings
->   usb: dwc-meson-g12a: Add support for USB on AXG SoCs
->   arm64: dts: meson-axg: add USB nodes
->   arm64: dts: meson-axg-s400: enable USB OTG
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Can you pick the DT patches ?
-
-Thanks,
-Neil
-
-> 
->  .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 22 +++++++-
->  .../arm64/boot/dts/amlogic/meson-axg-s400.dts |  6 +++
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 50 +++++++++++++++++++
->  drivers/phy/amlogic/phy-meson-gxl-usb2.c      |  3 +-
->  drivers/usb/dwc3/dwc3-meson-g12a.c            | 18 +++++++
->  5 files changed, 97 insertions(+), 2 deletions(-)
-> 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+index 4b517ca72059..f46f0ecc37ec 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+@@ -32,6 +32,10 @@
+ 		regulator-boot-on;
+ 		regulator-always-on;
+ 	};
++
++	sound {
++		model = "SM1-KHADAS-VIM3L";
++	};
+ };
+ 
+ &cpu0 {
+-- 
+2.17.1
 
 
 _______________________________________________
