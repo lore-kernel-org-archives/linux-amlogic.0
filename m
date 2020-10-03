@@ -2,23 +2,23 @@ Return-Path: <SRS0=e5Du=DL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 465D0C4363D
-	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Oct 2020 04:23:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 842BCC4363C
+	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Oct 2020 04:30:04 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D30DF206DD
-	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Oct 2020 04:23:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E59C2206DD
+	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Oct 2020 04:30:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="wnF03dJX";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lixom-net.20150623.gappssmtp.com header.i=@lixom-net.20150623.gappssmtp.com header.b="uUS873vk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D30DF206DD
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lixom.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="wruLKXNF";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="BSsJMiNo"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E59C2206DD
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linuxfoundation.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
@@ -26,65 +26,87 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=dN83f4rMBZgR0Xc8dy7h2u7dSnYyittxisOFuDVqvQ8=; b=wnF03dJXiI9kkFSZqaSjBKxGm
-	TlU1tUTobiIMVy/cAEknn/GvZgbkWfj1BevGxI92cKI2AV6f48AQE6y7PyMpAfOxqrdjCzjmx+XEZ
-	i+/eCwPYAnsd56GrqYGqxnptf37OEwQ3eAUSqKGrW4rHPbnukEKHObOMS/ThV7gPNNV2NZJ9NFqZI
-	VPz7+UzfnFkEOf+F3JhOYflzFiGYwXRHG3YaTDOkQa68myDumMcfuHKegGyCVZEmjrvtj2WC8jE3O
-	G2CnXoMNyR3xPKJ0NwWTlVPsacdCcBlq6sP4NLO04PGQMsSKAPWYLVEFQThF3iDK9uOzGgpkML+YZ
-	QJd0nSv+Q==;
+	 bh=rNs7rvVAQb9cER2Ji2bDKwRqOt3vap3zY8HywpsE2tc=; b=wruLKXNFEUGCnktIX7GT3DQb5
+	EFX3ExEfF8aDXtH4jbrgTXNao/6HDBQigYta1uSUxhk9slPAsCQGoZJUofpxE3lz6+193CyelTCF7
+	hSg6m+hzQHex15kd+a4XHGttUNLr2WWC30ys/GRyYBmxubboyUWaGvjMX7xLeFRS4ITZVr8ZcltAd
+	Ng6J1Sos2pmxqQ7xgV3l6U6+ELAIQUPQsi0GRbMzegXmofuHDUzwi4YXD7HuNMQz7jXh8UceR16/V
+	O0+tkGq0T257pX9EUXCgYe8KXWMNU0xe5Na2F0MybVRO6VmdM/avZMqmaGP/e6aO8oRhlEZtcuNC9
+	3E033HvQA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kOvYP-000177-20; Sun, 04 Oct 2020 04:23:21 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1kOveo-00020O-KS; Sun, 04 Oct 2020 04:29:58 +0000
+Received: from mail-qk1-x741.google.com ([2607:f8b0:4864:20::741])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kOvYM-00016I-DL
- for linux-amlogic@lists.infradead.org; Sun, 04 Oct 2020 04:23:19 +0000
-Received: by mail-ed1-x541.google.com with SMTP id g4so5996561edk.0
- for <linux-amlogic@lists.infradead.org>; Sat, 03 Oct 2020 21:23:18 -0700 (PDT)
+ id 1kOvel-000200-VS
+ for linux-amlogic@lists.infradead.org; Sun, 04 Oct 2020 04:29:56 +0000
+Received: by mail-qk1-x741.google.com with SMTP id y198so1610523qka.0
+ for <linux-amlogic@lists.infradead.org>; Sat, 03 Oct 2020 21:29:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lixom-net.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=fQ/Zq6PQEGB9ILeYfh+YuOCgWVPmB5UHN8jyKpIvP2g=;
- b=uUS873vkB8wb2OHno3xl9s6pGWVGqZZQuXAfzohWo7HROHkubda5SrZfxKDh0yTNpy
- WE+cCOjOl4XmymYzP3dBSZg2e55rOFHSSGKvVoYZlmjYJmeWGY1UWhE28iKLA06jP5qy
- Lt8BX/r3v9I23yIwRtn6RFDNEq60nwbexPp7N1+L3cUcgvFTLs2Wb7kXD9clIz6KjQ9I
- aV3nFNxKdtLZcf0jVqxEGwUokhPdrReDeqaKn0z4/deghJ6XntxyzMol7wGz1/HalHhX
- CI6BY9n3vZqW2ONpag85W4luf9w+UzvisOzs98KbrOf2j3LORS3dVOOCd169svBE05tb
- vf7A==
+ d=linuxfoundation.org; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=XDd6ahIT6gLYMAruH7ju3Kkp37FW6zZiiBzXKCROhVM=;
+ b=BSsJMiNovC7ylJtGVK8Pu6lbRNONMCIf6IKbC00u5s1boHBtCnTHfJa/Q5VQbBE7QD
+ V4bS1NjUh5BbbOIsGpNZvopY7M6czs5rDiFGIqVWOTcL/cuAcI2C4+QBDfXFlYfMA/pD
+ daW0tThIPF0WuvSn4othGKNjDJ5j6h9bkvbes=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=fQ/Zq6PQEGB9ILeYfh+YuOCgWVPmB5UHN8jyKpIvP2g=;
- b=rGVdUtzY7QPWg0M8RljPnxdO/F4TZBwBDY5Bhwo7ecufCPR8jZaytULZO7Hd/29sst
- m3JZNEFssXY7BPP241rEeePH2qwNyqgsJjl79iMjbeTQHHkgU6KUvCR87+A70H60wbxV
- sjrUHCJ9/k6MQ+6/cALw+hvaWnyyEurzQS055+y3zPATGepzjmT3LKgA3WJLKCV685gY
- o9ghyPzuaSXyYB0kkNodZAchUbHfR7Aq5L4icJ4bGl3EKnLGx1QnSRV0c+E6YPJloAFX
- oXmtf/xBb6yMJr1sUItcrsHrD8Pp1PINaXJqBRGPQKlJOrgWhSli8Aoy4rNvFQqes6w/
- RQJg==
-X-Gm-Message-State: AOAM5332bQCVNGuYfTMRa2NFSZKZ180FlM8yHwUU+zmfHlEILfS6U6Fl
- iV3d+xs06lgBuFUBj36gmHRT1g90++ZpLl44
-X-Google-Smtp-Source: ABdhPJyZaXAKGnrQbPlNPGk3BOFBSDbqdpr7YwTi2O4FDkjuoW5MFFKZWVOFNi3eD3F/F8VwmpBHRQ==
-X-Received: by 2002:ac2:4d05:: with SMTP id r5mr2621484lfi.267.1601753364553; 
- Sat, 03 Oct 2020 12:29:24 -0700 (PDT)
-Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
- by smtp.gmail.com with ESMTPSA id z27sm1848117lfg.14.2020.10.03.12.29.23
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=XDd6ahIT6gLYMAruH7ju3Kkp37FW6zZiiBzXKCROhVM=;
+ b=KFcL/bbN+74kwJFjC8o2dRYL5SEC8WJ+Bit5bWOggZ7ohwiCx2RCIIjAV1ZUTf1yEl
+ dqgkCmoDBI0icZL62sPGfI+cpo1zoX/udwSLCJUlDTci3k5zfvkd/241ic7XMJmPTKWy
+ MM+F1HVPG+UTMeGkxRcUz+Ff2pRX+wk2sz9LOeqFxgrw2qN2SP1mGSL2ezAhZRSty4bg
+ 5x68tE3s2tgSg7M+Ta6DxpWTZv44mbiO5zVWfIoAzwpjugJ5VJghNu1DnYAmPTxhj+/4
+ Kzil6FUbr0gYVBJX0Ws4Geq/3PQQJ6qk+leAC1y9wu/ovgHjP6SptuaprmR/nf3Womp6
+ lLeQ==
+X-Gm-Message-State: AOAM531APYq1ctEk1aw3ZfkHg/j7PHurJToNa2awP+O8YZE65lhlVC86
+ GH3r8wH0O2+FvQZBNBtT7qpbopt28uKcbThtQDE=
+X-Google-Smtp-Source: ABdhPJyMY8qIL4KEm7vcRUWiReW42vytsh13A1Usl//XvmLKcZ1mWKVKCTveyFrYEAH8SB+YYGag4g==
+X-Received: by 2002:a37:7844:: with SMTP id t65mr7450404qkc.136.1601752505009; 
+ Sat, 03 Oct 2020 12:15:05 -0700 (PDT)
+Received: from chatter.i7.local ([89.36.78.230])
+ by smtp.gmail.com with ESMTPSA id k22sm3882799qkk.13.2020.10.03.12.15.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 03 Oct 2020 12:29:23 -0700 (PDT)
-Date: Sat, 3 Oct 2020 12:29:06 -0700
-From: Olof Johansson <olof@lixom.net>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [GIT PULL] arm64: dts: amlogic: updates for v5.10 (round 2)
-Message-ID: <20201003192906.GB8203@lx2k>
-References: <7ho8lkl9fw.fsf@baylibre.com>
+ Sat, 03 Oct 2020 12:15:04 -0700 (PDT)
+Date: Sat, 3 Oct 2020 15:15:01 -0400
+From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To: Joe Perches <joe@perches.com>
+Subject: Re: [PATCH 00/18] use semicolons rather than commas to separate
+ statements
+Message-ID: <20201003191501.o56tqq63d2buq5ox@chatter.i7.local>
+Mail-Followup-To: Joe Perches <joe@perches.com>,
+ Mark Brown <broonie@kernel.org>, tools@linux.kernel.org,
+ linux-iio@vger.kernel.org, Julia Lawall <Julia.Lawall@inria.fr>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-crypto@vger.kernel.org,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ linux-block@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-acpi@vger.kernel.org,
+ David Lechner <david@lechnology.com>,
+ Valdis =?utf-8?Q?Kl=C4=93tnieks?= <valdis.kletnieks@vt.edu>,
+ kernel-janitors@vger.kernel.org, drbd-dev@lists.linbit.com,
+ openipmi-developer@lists.sourceforge.net,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-ide@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Thomas Gleixner <tglx@linutronix.de>,
+ linux-wireless@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+References: <1601233948-11629-1-git-send-email-Julia.Lawall@inria.fr>
+ <160132172369.55460.9237357219623604216.b4-ty@kernel.org>
+ <b1174f9be2ce65f6b5ebefcba0b48e792926abbc.camel@perches.com>
+ <20200929113745.GB4799@sirena.org.uk>
+ <db26d49401dc0bd6b9013a603a155f9827f404a4.camel@perches.com>
+ <20201001110150.GA6715@sirena.org.uk>
+ <f44d19ad596f261c0287c9ab18c45161003efb43.camel@perches.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <7ho8lkl9fw.fsf@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <f44d19ad596f261c0287c9ab18c45161003efb43.camel@perches.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201004_002318_459864_24588BB7 
-X-CRM114-Status: GOOD (  13.28  )
+X-CRM114-CacheID: sfid-20201004_002956_126681_333C7F85 
+X-CRM114-Status: GOOD (  14.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,55 +118,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-List-Id: <soc.lore.kernel.org>
-Cc: linux-amlogic@lists.infradead.org, soc@kernel.org, arm@kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-iio@vger.kernel.org,
+ kernel-janitors@vger.kernel.org, linux-ide@vger.kernel.org,
+ linux-clk@vger.kernel.org, drbd-dev@lists.linbit.com,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ linux-stm32@st-md-mailman.stormreply.com, linux-acpi@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>, David Lechner <david@lechnology.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-block@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+ linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
+ linux-arm-kernel@lists.infradead.org,
+ Valdis =?utf-8?Q?Kl=C4=93tnieks?= <valdis.kletnieks@vt.edu>,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Julia Lawall <Julia.Lawall@inria.fr>, linux-crypto@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net, tools@linux.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Kevin,
-
-On Fri, Oct 02, 2020 at 12:22:27PM -0700, Kevin Hilman wrote:
-> The following changes since commit 63fafc5a046b1e21756de691b48f0c70c25e1426:
+On Sat, Oct 03, 2020 at 11:40:48AM -0700, Joe Perches wrote:
+> (Adding tools and Konstantin Ryabitsev)
 > 
->   arm64: dts: meson: initial support for aml-s905x-cc v2 (2020-09-18 13:35:27 -0700)
+> There seems to be some mismatch between b4's use of the
+> cover letter to a patch series and what maintainers that
+> apply a subset of the patches in the patch series.
 > 
-> are available in the Git repository at:
+> The merge description shows the entire patch series as
+> applied, but the actual merge is only a subset of the
+> series.
 > 
->   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
-> 
-> for you to fetch changes up to c0c6f8e527a652d4785cb38ac82be0c95913349d:
-> 
->   arm64: dts: amlogic: meson-g12: use the G12A specific dwmac compatible (2020-10-02 11:32:17 -0700)
-> 
-> ----------------------------------------------------------------
-> arm64: dts: amlogic: updates for v5.10 (round 2)
-> - add/enable USB on AXG SoCs
-> - misc cleanups
-> 
-> ----------------------------------------------------------------
-> Martin Blumenstingl (1):
->       arm64: dts: amlogic: meson-g12: use the G12A specific dwmac compatible
-> 
-> Neil Armstrong (2):
->       arm64: dts: meson-axg: add USB nodes
->       arm64: dts: meson-axg-s400: enable USB OTG
+> Can this be improved in b4?
 
-Scripts found a snag:
+So, the following logic should be applied:
 
-  b3cf5ff01d47 ("arm64: dts: meson-axg-s400: enable USB OTG")
-  628c9c809f84 ("arm64: dts: meson-axg: add USB nodes")
+- if the entire series was applied, reply to 0/n
+- if a subset only is applied, reply to each n/n of the patch that was 
+  cherry-picked out of the series
 
-are missing a Signed-off-by from their committers.
+Is that an accurate summary?
 
-Looks like you added a Reviewed-by, but not a signed-off when you appled them.
-Mind respinning? Thanks!
-
-
-
--Olof
+-K
 
 _______________________________________________
 linux-amlogic mailing list
