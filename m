@@ -2,92 +2,113 @@ Return-Path: <SRS0=hoO3=DM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B496C4363A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 12:31:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C946CC4363A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 12:43:04 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AD5C32078D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 12:31:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4EC552078D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 12:43:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rPmWE1f+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jeCAFGdV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD5C32078D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="POoPz77N";
+	dkim=temperror (0-bit key) header.d=outlook.com header.i=@outlook.com header.b="hHytH1mb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4EC552078D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=outlook.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=uwiFxUGC9xVFrpoqDL0/d7bEormhiXoVmPcPOgca7N0=; b=rPmWE1f+VGWUTQUWRJcdpAFx1
-	pospVGc1DZ7znenpRaA6vyMOBQcTMQ+sZBGSlkG/v+LspmemYdz+RXOukLO+hbMZcgeei0jS0+qDe
-	l08ybFW1J3+7hb2uBy92V2vaVNGXKe/ZtpkxklrwNRBiagC82eRGptytHouvtui8gc+wTrMv65G/P
-	2OiqefV+oRM/DxqqOc0UtaAK4LVisHM3DKiwTDOaxw0G0ru42K6AUL+gM0tpY2/ePvUrfKeybnodb
-	YdacLtCKo60MZqAU6MuV4SPgDwWUre9DURV/v+eg4xYqV8bXCP3MWPn1yG49h+VnbsNZDrTXqjgXu
-	lGONQEf3A==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=/xr15UvU5dQWA7vp3O15KnkFItwZ4OILj0bDO1aCsPU=; b=POoPz77NKr0yS6YhwNyJRJJK8t
+	At2bW7pfgQmtvnUQqm5K1p4CpTdMYu+VQW5i1E5gL68roBUes/hEybIdzasfXb0iHlCcYbVQHcfDM
+	wzrrdL8YM2Jc7JakB4Q+EVHLxK/LRMivL6g+shsmULFownrbJo+xE6CU+0FOdJ3z5ayzTbubd9FMw
+	IZjlCmgwBsDtmlt5NX7I5bkhzQiWBQalOusb1RDynFpYWcas77WZIqmVxM8Y6cE8shdAVaaNkVKtD
+	MVKHA8/3+jSqjDNOPmZ2vPqwp6Nx2+cy8lN/EEabV+WwRHhwOgfOEjVq1ln19vO2Koo58WGlmdMtm
+	fkonSktQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kPPe6-0002QE-HA; Mon, 05 Oct 2020 12:31:14 +0000
-Received: from mail-ej1-x642.google.com ([2a00:1450:4864:20::642])
+	id 1kPPpT-0003IF-Sb; Mon, 05 Oct 2020 12:42:59 +0000
+Received: from mail-oln040092253080.outbound.protection.outlook.com
+ ([40.92.253.80] helo=APC01-SG2-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kPPe3-0002PE-Ll
- for linux-amlogic@lists.infradead.org; Mon, 05 Oct 2020 12:31:13 +0000
-Received: by mail-ej1-x642.google.com with SMTP id qp15so11647347ejb.3
- for <linux-amlogic@lists.infradead.org>; Mon, 05 Oct 2020 05:31:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=fiCrvDEC+N91sV5tSYfiRUfHF9WZ4cEQDOciG9CIIEo=;
- b=jeCAFGdVVyZTTJVSAYgmCTbMhs2z/jLPfL6bbH5ezEq64dztUXuA3/Nq27U3WKMgFG
- Lemw0JeuJdSf2TIvfuTw4vbryHp7U8pI38jM8Po5eehY/qRSRsqpc19Ku6NhF+OM10yN
- TCzAII1A1p4ibrR/zRIWRgrMSDTX2P+9vmLeh+RRNjGxwaxJj/vu/smwC7lHIcE8F2Ao
- eoQxO7MHjUY4RO644XNJcFYAOgMEQMt+UBJlJGUJKdCUOPgXlSEQNN0FFImFlQb2Udi6
- ZJS5GICnohvXBu0nqUY13Nnz0jYxaLe7FNc5h8MMm6QKbFIDewptfKzRElGQ119pgj8Q
- 1VtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=fiCrvDEC+N91sV5tSYfiRUfHF9WZ4cEQDOciG9CIIEo=;
- b=o5IET5HiMZxJWr3oTcTyjyx8TfeKX3T0l6ggugThLPY2YyORt1FWgxsu135dZ98MuJ
- 158D/p9/ZrY02s0RpjRsTZoY75mqxrlVL35YJ66XuXqv5vMzf3/Qvf5EwzVVUeNFuFOZ
- ImSBMl/SooLQYuj1rMIu4K22LuxJELGu3RrgbwA/u+rA+jzOe1eWLl2i9aV9y0CWU43g
- oljzkFKhZj7hwWXeyQMCKVfrD/Oac/yXYiW9882dqmEhHpC9Qz/2vhax88QsABR9pqr2
- mA8MTseJf1PhVLo9Gf/nJxkeBoxzPJKtCS5vnxtLsng1OyTrwPQYftzc6iM9qLgt7pqC
- 3rFw==
-X-Gm-Message-State: AOAM53262ut+guXAt+6c6eT3W00UHcx15tvdlTZqzP73+a5xQed5FYxg
- rwFycMadDFACExqCkDROE/B5iQ==
-X-Google-Smtp-Source: ABdhPJy02NnD+4aHKxW6Hc8US3lVSSNA3BxcKCnClvJhFQf261x5iusEFWzdEVvbeZjYWA02noZaqA==
-X-Received: by 2002:a17:906:2dd:: with SMTP id
- 29mr15898934ejk.31.1601901068443; 
- Mon, 05 Oct 2020 05:31:08 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id i14sm8004849ejp.2.2020.10.05.05.31.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 05 Oct 2020 05:31:07 -0700 (PDT)
-References: <20201002164915.938217-1-jbrunet@baylibre.com>
- <CAPDyKFo6T_P+TQQZSzFgHwLeE08f146KxKBpAutv209MXq0mjA@mail.gmail.com>
- <87wo052grp.fsf@nanos.tec.linutronix.de>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH] mmc: meson-gx: remove IRQF_ONESHOT
-In-reply-to: <87wo052grp.fsf@nanos.tec.linutronix.de>
-Date: Mon, 05 Oct 2020 14:31:06 +0200
-Message-ID: <1jlfgkrh11.fsf@starbuckisacylon.baylibre.com>
+ id 1kPPpS-0003Hb-4v
+ for linux-amlogic@lists.infradead.org; Mon, 05 Oct 2020 12:42:59 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jetqqU0tT/K4k3+KxTcBKdXDqkCqviUMOZiV4pgACWeY0A0UtarK/YQCn8Ll2+LcFp/7mkEDyrWLjyzxTzY8jaWEgAllajslOsJ0U48xY2goDWqyknGx1Jpf4Fk/RFB66iXEpK3pdMtG754FX3Jgu/nSUtwF5E/RH3w3aUrCCDDVkDmHL4M5K3nYFTZdpas1NK/IJ4rackg494cyiRSHw7OnttY9K255Led7MmFG10cq/Bw018JC9XxIIg0U6FMVClos8Fe78Kjb51mjVegEnDP+tDNujm8tVrwj+pQuenb0a88Y8kwBYSusk9XkO0VJOe650BRcxvUY0ERo/qpTKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QT+HtWQ3QDsjbMiAoGORGFAgCwj7xLD46Sy4t0xYG2g=;
+ b=EK/QJfzIFDZoacMdsm3GqoAyv6dGzqWNtAHcMrNfmEqnvj7dapreRYO0ZOz0kRZWlHJsTNxurcxNxlThk7x9rVx4+sWVdblALytyra01xtZcejOj0L/bYsAaGfcfupRhXBdO8X2fdOFTqcWfuGP60nyTptNjh30IkNrl4toTqOhOdaXMvSS3cdzCIp5cFgafPmcVrDEQ1E6R6jIavgDlZ3to9xt9MDRuttUk+GHyOXonAbBBqfxDH5FKGlHQfEdw2e7tnCUYL/mhP0G5Qwuynf1VP5j3UkMe8yaF2gE0g6YLGM1BszbsFvSvEZFLXsLzYHorvBVR1B4AcnAsNSoKIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QT+HtWQ3QDsjbMiAoGORGFAgCwj7xLD46Sy4t0xYG2g=;
+ b=hHytH1mbmK/o2MffGdBuH8mRFtmwEWFU/M6upjc/rUh72HqbwDLJDVhx0BMWpFxEr+ttKwpGGDw8Bxm1HKZleO+SxbrQVhJyDbsuMw/99ydc5vXZ2ubVCVwuc3oLw7NsSes9Ip+imG7NA4gaHYBc/0nOCWyXLMAKcCyY+13My9ZcsIV1GfeKHS1ScSap0NGDzLiyXYpkYBCyB539wjMjWFnSujfUsg1fByEb3FX4tHqHbKPUeCBxb6AGAt9GNzMyDT0oB3aplicH8AB/53+cHpVMc/x47nYWRdbGTEtOFx3x8C/HGwYAbJHkTStfbQUT3KluaXEkoRuSZGyh9BQIiQ==
+Received: from PU1APC01FT007.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebe::40) by
+ PU1APC01HT183.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::454)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.34; Mon, 5 Oct
+ 2020 12:42:52 +0000
+Received: from SYCPR01MB3776.ausprd01.prod.outlook.com (10.152.252.53) by
+ PU1APC01FT007.mail.protection.outlook.com (10.152.252.99) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3433.34 via Frontend Transport; Mon, 5 Oct 2020 12:42:52 +0000
+Received: from SYCPR01MB3776.ausprd01.prod.outlook.com
+ ([fe80::861:b63c:843d:56c6]) by SYCPR01MB3776.ausprd01.prod.outlook.com
+ ([fe80::861:b63c:843d:56c6%7]) with mapi id 15.20.3433.044; Mon, 5 Oct 2020
+ 12:42:49 +0000
+From: "zhangn1985@outlook.com" <zhangn1985@outlook.com>
+To: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+Subject: S905x (VIM) ramdon crashes, maybe due to display driver.
+Thread-Topic: S905x (VIM) ramdon crashes, maybe due to display driver.
+Thread-Index: AQHWmxIV9VG3nVaQekid8xf2L+tWvg==
+Date: Mon, 5 Oct 2020 12:42:49 +0000
+Message-ID: <SYCPR01MB37764A52D0614522A279AC76CD0C0@SYCPR01MB3776.ausprd01.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:90FB676BF1DA68E1D17BC01A4F03B832417680A0664688A241E575D790BC7BC0;
+ UpperCasedChecksum:F5ABDDD4D310BBCAF84A1CF37A48592CA4780CC9F00FD9A5FA30B1791A0EA3F7;
+ SizeAsReceived:6750; Count:42
+x-tmn: [doy8o05Pu2fT3+nUpAaYLpnWTs68uDHd]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 950c094a-8220-4642-4aad-08d8692c2b37
+x-ms-exchange-slblob-mailprops: S/btQ8cKWiSlXezRm4qQ0dWN9c22HAIWn0Pasxrhgyqen6NXC+S2im5KLAwmAbABgnvzeyhVyUFUx9QMlOTqFBBfO3LOmTaMGPp+JW8dQn10OGpkyv+nw4/dLmNRwz3KYz+voicEvxs8ZVn3S2t4iKm4eNBO5hj9RvYGlPRiiqbiCKGyLd9cqXePTrwfIdHtToYOqs4dLkq67XtHlzUwo35JvE7zeN7g7so3epP42G89nHvhya9hGATJhfeNvRMBMJdLJ69ZLz49DyqUTqqbl5AsmCx7b9Q0NT7H5QqvzHaeVrHLy1e0K0vrVd8UOiNnleC0MyU8wK3WmJ0qtQxmdhDqhFxPYsnQdJTDjaVgxOPTuUP+RDGFD7/NiCssEIoJx26rTjNZoJJxY8ZXigWpxhu6ERZs+z63YMwAbbmGBlHxxkYIfxNWatw3GV06XPDU4gY6Cjf2cse3kyyaQL19305JEMPSGBJGneJSKK6MAKDNIvqJZUDDGSqdDID2IVY2RWqpz3Ou2zLdm+hy+pnthOndhRv4O5NdHQylmdKAPhg59FjBJeGDdu6VuaSureJ5ZClwI2i9l+4ACLqR+4n0u6iqGj3Rq7volfkANlbFHAjO3rGTLKalVJcC0Kbn0h58fRFi1HSy30cvr558l78UL5Xh0/wvAVRgd7Q0nWjVc+sYGtcWTlRwG4HgrjOSz6zl734mxBem+SXCf2q1QIYloWptKs3AuqSst7RWhN5GP8Eyu6zt93jHTCxdwr3hzPoGg2JUIMf4ljs=
+x-ms-traffictypediagnostic: PU1APC01HT183:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: SEX3/foeLQj2JPFkadiaBKnpRHfS3boORKG8n52WlTiARRbjB83UGEVZEAzuGDLXkZkg/VzHrxAh51OZTw5RVNMTocD38S92gQg6abAxH2MEWw+fPvTlSI7g7MTnEl/jDknvx4a53pcUhxqRNCGWor9KqoL53gqdsO2HsTjw36MOefiBiJ9x3yO3Uh+GGgWj4Ho0kJ/Wa2+mOWQBt7ATgEw98usso35jK6Qr2Rrzy7OeT+KTXS6J8tZZLIDurMg5
+x-ms-exchange-antispam-messagedata: x5tGJUtL2rxScUTJWeQ+DGBi4rRcrNk2O9fOsqOBW/rmKdCA6pFDjern1x2OQf1aR9y26in5++EHWci5GW0g7rrjUb4jtbW1trU0LEz9+xLrwnnO6/PMafKYMjN88Mh9oday4C6lE5bHzoBRc/w5xg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT007.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 950c094a-8220-4642-4aad-08d8692c2b37
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2020 12:42:49.4438 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT183
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201005_083111_723874_01AB97C1 
-X-CRM114-Status: GOOD (  15.66  )
+X-CRM114-CacheID: sfid-20201005_084258_266701_4F58713F 
+X-CRM114-Status: UNSURE (   7.44  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,58 +120,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Brad Harper <bjharper@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "zhangn1985@outlook.com" <zhangn1985@outlook.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+hi,
 
-On Mon 05 Oct 2020 at 10:55, Thomas Gleixner <tglx@linutronix.de> wrote:
+I observed VIM ramdon crashes from 5.7 kernel with WIP patches[1] from this=
+ mail list. =
 
-> On Mon, Oct 05 2020 at 10:22, Ulf Hansson wrote:
->> On Fri, 2 Oct 2020 at 18:49, Jerome Brunet <jbrunet@baylibre.com> wrote:
->>>
->>> IRQF_ONESHOT was added to this driver to make sure the irq was not enabled
->>> again until the thread part of the irq had finished doing its job.
->>>
->>> Doing so upsets RT because, under RT, the hardirq part of the irq handler
->>> is not migrated to a thread if the irq is claimed with IRQF_ONESHOT.
->>> In this case, it has been reported to eventually trigger a deadlock with
->>> the led subsystem.
->>>
->>> Preventing RT from doing this migration was certainly not the intent, the
->>> description of IRQF_ONESHOT does not really reflect this constraint:
->>>
->>>  > IRQF_ONESHOT - Interrupt is not reenabled after the hardirq handler finished.
->>>  >              Used by threaded interrupts which need to keep the
->>>  >              irq line disabled until the threaded handler has been run.
->>>
->>> This is exactly what this driver was trying to acheive so I'm still a bit
->>> confused whether this is a driver or an RT issue.
->>>
->>> Anyway, this can be solved driver side by manually disabling the IRQs
->>> instead of the relying on the IRQF_ONESHOT. IRQF_ONESHOT may then be removed
->>> while still making sure the irq won't trigger until the threaded part of
->>> the handler is done.
->>
->> Thomas, may I have your opinion on this one.
->>
->> I have no problem to apply $subject patch, but as Jerome also
->> highlights above - this kind of makes me wonder if this is an RT
->> issue, that perhaps deserves to be solved in a generic way.
->>
->> What do you think?
->
-> Let me stare at the core code. Something smells fishy.
 
-FYI: initial discussion can be found here
-https://lore.kernel.org/linux-amlogic/24a844c3-c2e0-c735-ccb7-83736218b548@gmail.com/
+I have tried to find better power supply,=A0 remove case, =A0 install cooli=
+ng fun, disable Xserver. VIM still ramdon crashes.
+
+Thus I think this maybe VIM is broken, maybe due to thermal.
+
+I don't have a chance to get the log, even no log print to console, when cr=
+ash happens.
+
+these days, I made it an arm64 build server, without connect a HDMI display=
+. it runs very well, build kernel 3 days without any crash.
+
+from the=A0phenomenon I think some hidden issues may in display driver.
+
+
+[1]: https://github.com/zhangn1985/linux/commits/master/debian/patches/khad=
+as
+
+BR.
 
 _______________________________________________
 linux-amlogic mailing list
