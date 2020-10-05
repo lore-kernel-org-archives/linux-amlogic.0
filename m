@@ -2,67 +2,64 @@ Return-Path: <SRS0=hoO3=DM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1C1CC4363A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 10:05:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F22E7C4363A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 12:03:41 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 55E8F20776
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 10:05:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 91BEF20774
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 12:03:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D35XwNR7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 55E8F20776
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="msJn8xct"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 91BEF20774
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:References:
-	To:Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=G5ZViw+oxQMVrPiWrJe0Z+skD/Q950dOT1q84k6+LqA=; b=D35XwNR7QWErAUZtpqcNOD0/B
-	I/jw1Aq2F82SIO8s7I9cveYRMiW2ouPGIutkdpK5k3t30jmVTxCRH/XL6ALG5EqSluF5LpxbVF84h
-	dcsOUcEMIPczHtADAirOylbJ2pc6Ow3xBtLEXs1Y26zmnSBJxFrSHTZaF8Subuyha94ikcl5YPFHy
-	n9jAtl665JEq8jud9BK139IRqDhXmFHvyqsMLPHekFVx2PJW2CfoZNTDJ327U9Iqgc4nrSJVQ7dkV
-	8pNjYyUdBq/0D+NkiMjlLQ+jb/yoFMf1KVUOzy0Vc4/uDvJKahiRfyHx0yquvjqh58fY7PJk09Tub
-	cDpu7HY5w==;
+	 bh=ht7T6sDWhDHIXKngDCMUIhntEq44XF2gXyH2qBNHzF8=; b=msJn8xct4pl5tDyv1tP05mR4O
+	+VfCEVjrBaPbgh2+jHr4pGooJMI7q3lG1q0eG/Os+ctQ8kKuw840f/lvCxJP4Dudcx9AIKk9FvV3n
+	EIABEBz7bLDsYPhKh4TW8ex2lCbdXJB8mouZE76QqKSJIWJqubRt9m6TIq2NO9H02zriGlOmuzpHy
+	LGGiBW95CzHJVMGuN7SZ1vkrDbixY9BkfhR9YArClr7f5R1mAyfVaoFk1mrjPr/fhi71ooAbLa9AX
+	ubvfNXe7rrYghstWji3DsYaj2RdbtuuEiuUr72nlZcenlr3BGgTgmHZykK6nUiDfr0fF69sTnEZCi
+	QMw9lu/oA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kPNMu-0008WU-Ed; Mon, 05 Oct 2020 10:05:20 +0000
+	id 1kPPDL-0005da-1W; Mon, 05 Oct 2020 12:03:35 +0000
 Received: from foss.arm.com ([217.140.110.172])
  by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kPNMr-0008VI-4T; Mon, 05 Oct 2020 10:05:18 +0000
+ id 1kPPDH-0005br-76
+ for linux-amlogic@lists.infradead.org; Mon, 05 Oct 2020 12:03:32 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7EB6F113E;
- Mon,  5 Oct 2020 03:05:15 -0700 (PDT)
-Received: from [192.168.1.179] (unknown [172.31.20.19])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E23D73F66B;
- Mon,  5 Oct 2020 03:05:13 -0700 (PDT)
-From: Steven Price <steven.price@arm.com>
-Subject: Re: [PATCH 3/3] arm64: dts: meson: Describe G12b GPU as coherent
-To: Boris Brezillon <boris.brezillon@collabora.com>
-References: <cover.1600213517.git.robin.murphy@arm.com>
- <ba61c76654349d3dfcd14c1e24c5aed39ebe3cf7.1600213517.git.robin.murphy@arm.com>
- <e218b95e-39bc-e773-00fb-bcb5f1f835ea@baylibre.com>
- <20201005101517.020c411a@collabora.com>
- <21de320b-0c32-b15b-a97b-d9799cd5ca44@arm.com>
- <20201005103939.667b3f42@collabora.com>
-Message-ID: <83bcecd6-f405-dae1-6bf9-fd1f44d74a00@arm.com>
-Date: Mon, 5 Oct 2020 11:05:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 70D7D106F;
+ Mon,  5 Oct 2020 05:03:28 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com
+ [10.1.196.255])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8B9D53F70D;
+ Mon,  5 Oct 2020 05:03:27 -0700 (PDT)
+Date: Mon, 5 Oct 2020 13:03:22 +0100
+From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH] pci: meson: build as module by default
+Message-ID: <20201005120322.GA13539@e121166-lin.cambridge.arm.com>
+References: <20200918181251.32423-1-khilman@baylibre.com>
+ <20200928163440.GA16986@e121166-lin.cambridge.arm.com>
+ <7h362wmpco.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20201005103939.667b3f42@collabora.com>
-Content-Language: en-GB
+Content-Disposition: inline
+In-Reply-To: <7h362wmpco.fsf@baylibre.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201005_060517_285554_E2CAA932 
-X-CRM114-Status: GOOD (  23.97  )
+X-CRM114-CacheID: sfid-20201005_080331_339556_7362748A 
+X-CRM114-Status: GOOD (  14.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,154 +71,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: robh@kernel.org, tomeu.vizoso@collabora.com,
- Neil Armstrong <narmstrong@baylibre.com>, Robin Murphy <robin.murphy@arm.com>,
- dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
- alyssa.rosenzweig@collabora.com, linux-amlogic@lists.infradead.org,
- will@kernel.org, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Yue Wang <yue.wang@amlogic.com>, linux-kernel@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 05/10/2020 09:39, Boris Brezillon wrote:
-> On Mon, 5 Oct 2020 09:34:06 +0100
-> Steven Price <steven.price@arm.com> wrote:
+On Fri, Oct 02, 2020 at 11:53:27AM -0700, Kevin Hilman wrote:
+> Hi Lorenzo,
 > 
->> On 05/10/2020 09:15, Boris Brezillon wrote:
->>> Hi Robin, Neil,
->>>
->>> On Wed, 16 Sep 2020 10:26:43 +0200
->>> Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>    
->>>> Hi Robin,
->>>>
->>>> On 16/09/2020 01:51, Robin Murphy wrote:
->>>>> According to a downstream commit I found in the Khadas vendor kernel,
->>>>> the GPU on G12b is wired up for ACE-lite, so (now that Panfrost knows
->>>>> how to handle this properly) we should describe it as such. Otherwise
->>>>> the mismatch leads to all manner of fun with mismatched attributes and
->>>>> inadvertently snooping stale data from caches, which would account for
->>>>> at least some of the brokenness observed on this platform.
->>>>>
->>>>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->>>>> ---
->>>>>    arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 4 ++++
->>>>>    1 file changed, 4 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
->>>>> index 9b8548e5f6e5..ee8fcae9f9f0 100644
->>>>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
->>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
->>>>> @@ -135,3 +135,7 @@ map1 {
->>>>>    		};
->>>>>    	};
->>>>>    };
->>>>> +
->>>>> +&mali {
->>>>> +	dma-coherent;
->>>>> +};
->>>>>       
->>>>
->>>> Thanks a lot for digging, I'll run a test to confirm it fixes the issue !
->>>
->>> Sorry for the late reply. I triggered a dEQP run with this patch applied
->>> and I see a bunch of "panfrost ffe40000.gpu: matching BO is not heap type"
->>> errors (see below for a full backtrace). That doesn't seem to happen when
->>> we drop this dma-coherent property.
->>>
->>> [  690.945731] ------------[ cut here ]------------
->>> [  690.950003] panfrost ffe40000.gpu: matching BO is not heap type (GPU VA = 319a000)
->>> [  690.950051] WARNING: CPU: 0 PID: 120 at drivers/gpu/drm/panfrost/panfrost_mmu.c:465 panfrost_mmu_irq_handler_thread+0x47c/0x650
->>> [  690.968854] Modules linked in:
->>> [  690.971878] CPU: 0 PID: 120 Comm: irq/27-panfrost Tainted: G        W         5.9.0-rc5-02434-g7d8109ec5a42 #784
->>> [  690.981964] Hardware name: Khadas VIM3 (DT)
->>> [  690.986107] pstate: 60000005 (nZCv daif -PAN -UAO BTYPE=--)
->>> [  690.991627] pc : panfrost_mmu_irq_handler_thread+0x47c/0x650
->>> [  690.997232] lr : panfrost_mmu_irq_handler_thread+0x47c/0x650
->>> [  691.002836] sp : ffff800011bcbcd0
->>> [  691.006114] x29: ffff800011bcbcf0 x28: ffff0000f3fe3800
->>> [  691.011375] x27: ffff0000ceaf5350 x26: ffff0000ca5fc500
->>> [  691.016636] x25: ffff0000f32409c0 x24: 0000000000000001
->>> [  691.021897] x23: ffff0000f3240880 x22: ffff0000f3e3a800
->>> [  691.027159] x21: 0000000000000000 x20: 0000000000000000
->>> [  691.032420] x19: 0000000000010001 x18: 0000000000000020
->>> [  691.037681] x17: 0000000000000000 x16: 0000000000000000
->>> [  691.042942] x15: ffff0000f3fe3c70 x14: ffffffffffffffff
->>> [  691.048204] x13: ffff8000116c2428 x12: ffff8000116c2086
->>> [  691.053466] x11: ffff800011bcbcd0 x10: ffff800011bcbcd0
->>> [  691.058727] x9 : 00000000fffffffe x8 : 0000000000000000
->>> [  691.063988] x7 : 7420706165682074 x6 : ffff8000116c1816
->>> [  691.069249] x5 : 0000000000000000 x4 : 0000000000000000
->>> [  691.074510] x3 : 00000000ffffffff x2 : ffff8000e348c000
->>> [  691.079771] x1 : f1b91ff9af2df000 x0 : 0000000000000000
->>> [  691.085033] Call trace:
->>> [  691.087452]  panfrost_mmu_irq_handler_thread+0x47c/0x650
->>> [  691.092712]  irq_thread_fn+0x2c/0xa0
->>> [  691.096246]  irq_thread+0x184/0x208
->>> [  691.099699]  kthread+0x140/0x160
->>> [  691.102890]  ret_from_fork+0x10/0x34
->>> [  691.106424] ---[ end trace b5dd8c2dfada8236 ]---
->>>    
->>
->> It's quite possible this is caused by the GPU seeing a stale page table
->> entry, so perhaps coherency isn't working as well as it should...
->>
->> Do you get an "Unhandled Page fault" message after this?
+> Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> writes:
 > 
-> Yep (see below).
+> > On Fri, Sep 18, 2020 at 11:12:51AM -0700, Kevin Hilman wrote:
+> >> Enable pci-meson to build as a module whenever ARCH_MESON is enabled.
+> >> 
+> >> Cc: Yue Wang <yue.wang@amlogic.com>
+> >> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> >> ---
+> >> Tested on Khadas VIM3 and Khadas VIM3 using NVMe SSD devices.
+> >> 
+> >>  drivers/pci/controller/dwc/Kconfig     | 3 ++-
+> >>  drivers/pci/controller/dwc/pci-meson.c | 8 +++++++-
+> >>  2 files changed, 9 insertions(+), 2 deletions(-)
+> >
+> > Applied to pci/meson, thanks.
 > 
-> --->8---
-> 
-[...]
-> [  689.805864] panfrost ffe40000.gpu: Unhandled Page fault in AS0 at VA 0x0000000003146080
-> [  689.805864] Reason: TODO
-> [  689.805864] raw fault status: 0x10003C3
-> [  689.805864] decoded fault status: SLAVE FAULT
-> [  689.805864] exception type 0xC3: TRANSLATION_FAULT_LEVEL3
-> [  689.805864] access type 0x3: WRITE
-> [  689.805864] source id 0x100
-> [  690.170419] panfrost ffe40000.gpu: gpu sched timeout, js=1, config=0x7300, status=0x8, head=0x3101100, tail=0x3101100, sched_job=000000004b442768
-> [  690.770373] panfrost ffe40000.gpu: error powering up gpu shader
-> [  690.945123] panfrost ffe40000.gpu: error powering up gpu shader
-> [  690.945731] ------------[ cut here ]------------
-> 
+> Rob pointed out that the MODULE_LICENCE wasn't the same as the SPDX
+> header.  Could you squash the update below before submitting?
 
-That's a write fault from level 3 of the page table triggered by shader
-core 0 in a fragment job. So could be writing out the frame buffer.
+Hi Kevin,
 
-It would be interesting to see if a patch like below would work round
-it:
+done thanks.
 
-----8<----
-diff --git a/drivers/gpu/drm/panfrost/panfrost_mmu.c b/drivers/gpu/drm/panfrost/panfrost_mmu.c
-index e8f7b11352d2..5144860afdea 100644
---- a/drivers/gpu/drm/panfrost/panfrost_mmu.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_mmu.c
-@@ -460,9 +460,12 @@ static int panfrost_mmu_map_fault_addr(struct panfrost_device *pfdev, int as,
-  
-  	bo = bomapping->obj;
-  	if (!bo->is_heap) {
--		dev_WARN(pfdev->dev, "matching BO is not heap type (GPU VA = %llx)",
-+		dev_err(pfdev->dev, "matching BO is not heap type (GPU VA = %llx)",
-  			 bomapping->mmnode.start << PAGE_SHIFT);
--		ret = -EINVAL;
-+		/* Force a flush of the MMU to restart the transaction */
-+		mmu_hw_do_operation(pfdev, bomapping->mmu, addr, 0,
-+				    AS_COMMAND_FLUSH_MEM);
-+		ret = 0;
-  		goto err_bo;
-  	}
-  	WARN_ON(bomapping->mmu->as != as);
----8<---
-
-That's obviously not the correct solution (the fault shouldn't occur),
-but if flushing the GPU's caches and retrying works then we know it's
-a coherency issue. You can also try backing off from the big hammer of
-AS_COMMAND_FLUSH_MEM and trying AS_COMMAND_FLUSH_PT or
-AS_COMMAND_UNLOCK.
-
-Steve
+Lorenzo
 
 _______________________________________________
 linux-amlogic mailing list
