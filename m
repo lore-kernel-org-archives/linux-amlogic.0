@@ -2,81 +2,83 @@ Return-Path: <SRS0=hoO3=DM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5B80C4363A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 20:36:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 90270C4727E
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 20:36:42 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 84674204EA
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 20:36:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 38BCA21534
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2020 20:36:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BbnqTPR1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 84674204EA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dB7C0pti"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 38BCA21534
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lespocky.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=gFhSkBbD5ZcvtR5Ek6eKck/gyCROlmzS58EEIgeR1J8=; b=BbnqTPR1TLGPfjC+xAexzAnFVp
-	YXKC/f82NRMjrNWaI2CoynZL31vvmQuaLAVNVqiRI/Mp3wUvOPDYLo4VZUDH5ew9RMAchRigbaGM3
-	dV3dWYAZ0wyJn0ve6a5vMMljBC7HiY3+rK7ZbJedzqAhFBEpIqmbZ2yZYxu5hvEDjHpNw+ZvqeRpG
-	GoPO8SLPuLYTV7QkFZ5g0MLq32WLPgCkuNwRd15/q5QUMKF9B4IwuJSDXVSUwRkpBnhrRPey4UU56
-	wVYo0hulJjYTWPDAFegMtAiukEk0KmPMRcfbvTv27PfoDYnUj+BJ4XuWoKOYZfmEQvaiQmLO7Qurm
-	WUCRkznw==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=V17NRIQFofxBzfR45Y3hHMRdeAxzNlz5R2FIiXravMQ=; b=dB7C0ptibMA5Mn2Qm98LPgAy/
+	qrr3Ft4LFYtuqTfSgdO32sJfdyG2ljyCM953yFfoCBiEOuHmaLbKZzrR2U8+IM3pLS9HANLPEFTiq
+	PQU0179nbbF0UjM7o+xAJlQMGiVPZDQy56zLe+xZyTKTzwy79ZjDTYOP6E9En1bxZ2xPSVBxBrkjX
+	WFuvyFBcRmm+6uFEveWhlfwLc0V6dxM7Dq3gnV9crmVkaJ3W+/yg1YU396k7bd8o9Zkn2614hmKRS
+	sHmW/lgoQWBpxFTAXz4WUyGJSi4z/+m+Y9k8jCJVaZVn4WxPnVkuCTdNoMJ6qBOGdgnVtRO3qVI6U
+	60QLxca9Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kPXDf-0006bc-CR; Mon, 05 Oct 2020 20:36:27 +0000
-Received: from mout.kundenserver.de ([212.227.17.24])
+	id 1kPXDp-0006gb-P4; Mon, 05 Oct 2020 20:36:37 +0000
+Received: from mout.kundenserver.de ([212.227.17.10])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kPXDM-0006T5-Pk; Mon, 05 Oct 2020 20:36:10 +0000
+ id 1kPXDM-0006TU-Vr; Mon, 05 Oct 2020 20:36:11 +0000
 Received: from methusalix.internal.home.lespocky.de ([92.117.55.152]) by
- mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MuDPf-1kfhXm22Jx-00uZ5G; Mon, 05 Oct 2020 22:35:43 +0200
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MQdMG-1k4AsY0Q3q-00Nkup; Mon, 05 Oct 2020 22:35:52 +0200
 Received: from lemmy.internal.home.lespocky.de ([192.168.243.176]
  helo=lemmy.home.lespocky.de)
  by methusalix.internal.home.lespocky.de with esmtpsa (TLS1.3) tls
  TLS_AES_256_GCM_SHA384 (Exim 4.94)
  (envelope-from <alex@home.lespocky.de>)
- id 1kPXCp-0004VD-EM; Mon, 05 Oct 2020 22:35:39 +0200
-Received: (nullmailer pid 10292 invoked by uid 2001);
- Mon, 05 Oct 2020 20:35:35 -0000
+ id 1kPXD3-0004WI-Ea; Mon, 05 Oct 2020 22:35:50 +0200
+Received: (nullmailer pid 10358 invoked by uid 2001);
+ Mon, 05 Oct 2020 20:35:39 -0000
 From: Alexander Dahl <post@lespocky.de>
 To: Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
  Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v7 00/12] leds: pwm: Make automatic labels work
-Date: Mon,  5 Oct 2020 22:34:39 +0200
-Message-Id: <20201005203451.9985-1-post@lespocky.de>
+Subject: [PATCH v7 07/12] ARM: dts: exynos: Fix schema warnings for pwm-leds
+Date: Mon,  5 Oct 2020 22:34:46 +0200
+Message-Id: <20201005203451.9985-8-post@lespocky.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201005203451.9985-1-post@lespocky.de>
+References: <20201005203451.9985-1-post@lespocky.de>
 MIME-Version: 1.0
-X-Scan-Signature: 6f2c0cc924172ae0d63df639c2daa6ee
-X-Provags-ID: V03:K1:a5ux3XXYZajhGPOMpe5UlfXuFD6MtM8x1SXx7hRmMI2VaktPYLL
- bpOXntySTtH+Ag/ngkdXTAXTFtj/AydJNiMmujznhs04XsefLrYEM0Hq7SgdjRpFEVvurTO
- RXLWs0ib8iJCApjU+vdotQ1A9uLwBzN3w6Nihr9LfAKMMbsI/Nbh/+0ZDNESTfsCZ86T6zN
- 0MMM0Xp2efP1KIMW3MpFw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dDqMxTJ8D7M=:Rp8hRovn0iKwlz5TKLVy9k
- M3Yp0ahNKEJLy8xKp5zLtOssELWI0wmPV885fphX9f6nfEML3n6VJAFLPUQ6sNRZclA0c27A+
- JUMvVYROEX9PfxzJPaVyPsEhHvB8ysopfTvnOraak8dA2VPCkir5k71VLrcBtQJgBoxX4qqPp
- AuMgnvObgC1JBKW3d5MGI0COmotuKFHemsXWM7NY2zMPeWamshVdh/+INSiDi/2ewhV0F8cFA
- l2X8fhe05oCm5Wy4CFbZzxbwpdlDN/MhqIijKGMtWXjVbT1EQrYZ2Yybj90M78NTIVSswB31D
- kKAndesjQPA7/NTGGaFiGw8t7FU7pkAtKk9KVyQ4A/N05YNE94nSYGnjb8JlWavTodSFTzCnk
- mf3vTECMd1fLr0EGNZzTkQf4lQy+/8nbRGz7eZfJBHr2B35RlgFOxka1SrgCdr3btDdDu+VTe
- k2wlB9yJCW9F6zCzF7/AEm8v+B3BVj7sGItnB6feEfVWt/iijbZO20nGmWrqM/Wk+Qz0NybwE
- iELpxNkXnbSevyryNTMwYs319ut74MeinmJcCJhLYq9V5gJ/oYVw7dG8B52uJYuo8O/bWb3vT
- zIfbvx5odI5FPswZeKOTCaJu0IbofcIzE+/sf0YOdcpRS+fmwHKfZNDmbRmUQTNuKHu7In/qX
- 5JKpNBQa0h4ooda5cujKLG0AhJuLnpbpLkR/c4bGe4TcaxDinFTm9L/HtEZB8Igp9+RtCzw+p
- U9pc5v8itsKIIyRgkKjOlXOtYe6Qa4Vn+7w93dmMchSYjqcNCFifqNjbXwBAmv1SW7g+N3Xkg
- i6y8UcQOBkCFounHKzYL1eOBMEEqk0tq6WQ8FZ1G5SHv/z8OM4ZaQzPPwm9V1YnPqDKzOTj
+X-Scan-Signature: 5e9d40fdb1e6868c9688ce2d7506cedd
+X-Provags-ID: V03:K1:qAOppKaFOEEFvMLS4UbgIKeSIya5V0XEJXxPiPeBJFhM6VitkAL
+ Eps8BCWJUd1k/6O4szURKXFCNlVRs0I9wUfXCBvAlvaBwur5GSNFsV0K43loo2VLgCJ8MSn
+ t6Onhy0Gbzy8FeG1r0mkdmRB7fKoqHRENqlJgq5KG3E+s9endHkfqgrPHijVpOf0tB0pAnu
+ Z7B7fA86EnKFPQa55ILIg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:wa0B2A2jN5g=:FLebsajf/2pJOWMDJLdAc1
+ 8BZY7HyVsCG1NWzQS6u1dqAAi3C6/FN4YICYo36Tcr32bMmleopKPo+FvNG5TRh6Ypqx/ipvJ
+ RgFpFi+BB5Q7c6SqNI3SIfiOHJJYSV+GEANKKx76Zu/J1J70Gc6Ws4qzsglD7ENMJsYqViohR
+ VuuzWkZxxr+tzdV8x5kHDDxythG8L6CAnVJpA3X6/rGrKr+A6r0unJKLL9HUCasr3uABugj+c
+ /aq/O+lq89l90HwYCNXvUZDvqweNBE75LbRD5EDgHbfqm38ZPunu9GcNZl9saD9AV86Wzeawv
+ 6ksKAau02RPpJcmLd09cwdW6CiVnV594gAif9Q4Ccgsqi15tPLhH+c0KX6ZjxzGIsBMzfdwXB
+ NOhAI36tsuAuQcbBgGogUbKeJ5bbzZE1aRFz05goOW8Psllz/PbzNNIFIs4Ht/XgY7jHH8TYF
+ wqV3X2Iv5p8n5O5+9Nlc8zYqAhxIhLBuQ2O+0p+plb8VNShp26OlTrkw1e1kIoZYzluH1JuqR
+ aWyDQZi04vXdIHz+QO0WSFdFLHftY/sEKGGkwhViZXT6ggudbCM/CAhX08fdA3AO4JjfJIUnN
+ QfyWrwlcjyUyBD4QPlPdHrMvbP+1azbh0lADvP0sRbz0bITkOuLRILQI/uxZQI+jLtMga2465
+ yugeYi/ye89nl9ivzf5jjndmTmIo+6kFCgbRg3saHIZ8LV+Xzy4uSEWKxO8qn5iWBR6s6Ztrq
+ LzFugwz2OWfb/LSfVtZQrAgTMWI6X8sYl4uIL0GjaECDzkZlcJx9R8jm8cHdsRzoljNgYKTLl
+ C3IBokDLWMC+UuREltN+yMrHTaMVCrhipJe87I834KOvJFkzNSuy6eWYFSJcHUjzlQo6TNe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201005_163609_061381_C8865840 
-X-CRM114-Status: GOOD (  19.14  )
+X-CRM114-CacheID: sfid-20201005_163609_747109_DC6D5D2E 
+X-CRM114-Status: GOOD (  13.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,110 +91,134 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, Alexander Dahl <ada@thorsis.com>,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
+ Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org,
  Alexander Dahl <post@lespocky.de>,
  Jacek Anaszewski <jacek.anaszewski@gmail.com>,
  linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVpIGhlaSwKCmZvciBsZWRzLWdwaW8geW91IGNhbiB1c2UgdGhlIHByb3BlcnRpZXMgJ2Z1bmN0
-aW9uJyBhbmQgJ2NvbG9yJyBpbiB0aGUKZGV2aWNldHJlZSBub2RlIGFuZCBvbWl0ICdsYWJlbCcs
-IHRoZSBsYWJlbCBpcyBjb25zdHJ1Y3RlZAphdXRvbWF0aWNhbGx5LiAgVGhpcyBpcyBhIGNvbW1v
-biBmZWF0dXJlIHN1cHBvc2VkIHRvIGJlIHdvcmtpbmcgZm9yIGFsbApMRUQgZHJpdmVycy4gIEhv
-d2V2ZXIgaXQgZGlkIG5vdCB3b3JrIHVudGlsIHJlY2VudGx5IGZvciB0aGUgJ2xlZHMtcHdtJwpk
-cml2ZXIuCgpUaGlzIHNlcmllcyByZW1vdmVzIHRoZSBubyBtb3JlIG5lZWRlZCBwbGF0Zm9ybV9k
-YXRhIHN1cHBvcnQgZnJvbSB0aGUKbGVkcy1wd20gZHJpdmVyLCB3aGljaCB3YXMgYSBwcmVjb25k
-aXRpb24gZm9yIHRoZSBhbHJlYWR5IGFwcGxpZWQgcGF0Y2gKYWN0dWFsbHkgbWFraW5nIGF1dG9t
-YXRpYyBuYW1pbmcgd29yay4KClRoZSBsZWRzLXB3bSBkdC1iaW5kaW5ncyBhcmUgY29udmVydGVk
-IGFuZCB1cGRhdGVkIHRvIHJlZmxlY3QgdGhlCnBvc3NpYmlsaXR5IHRvIHVzZSBsZWQgZnVuY3Rp
-b24gYW5kIGNvbG9yIGZvciBuYW1pbmcgbm93LgoKdjcgb2YgdGhpcyBzZXJpZXMgaXMgYmFzaWNh
-bGx5IGNvbGxlY3RpbmcgcmV2aWV3ZWQtYnkgdGFncywgc3BsaXQgb2xkCnBhdGNoIDUvNyBpbnRv
-IHBlciBhcm0gc3ViLWFyY2ggY2hhbmdlcyBmb3IgZWFzaWVyIG1haW50YWluZXIgcmV2aWV3LAph
-bmQgcmV3b3JkaW5nIGNvbW1pdCBtZXNzYWdlcy4gIFNlZSBlYWNoIHBhdGNoIGZvciBhIGRldGFp
-bGVkIGNoYW5nZWxvZy4KCkZvciB0aGUgYmluZGluZ3MgY29udmVyc2lvbiBpdCdzIG5vdyByZXF1
-aXJlZCB0byBleHBsaWNpdGx5IHNldCBhCmxpY2Vuc2UuICBQZXRlciwgUnVzc2VsLCBjb3VsZCB5
-b3UgcGxlYXNlIGFja25vd2xlZGdlIHRoYXQgcGF0Y2g/CgpTZXJpZXMgY2hhbmdlbG9nIGJlbG93
-IOKApgoKR3JlZXRzCkFsZXgKCnY3OgotIHJlYmFzZWQgc2VyaWVzIG9uIHJlY2VudCBwYXZlbC9m
-b3ItbmV4dAotIHNwbGl0IHVwIGFybSBkdHMgcGF0Y2ggYnkgYXJtIHN1YiBhcmNoIChzdWdnZXN0
-ZWQgYnkgS3J6eXN6dG9mIEtvemxvd3NraSkKLSBhZGRlZCBtdWx0aXBsZSBSZXZpZXdlZC1ieSB0
-YWdzCi0gc2xpZ2h0bHkgcmV3b3JkZWQgY29tbWl0IG1lc3NhZ2VzIChzdWdnZXN0ZWQgYnkgS3J6
-eXN6dG9mIEtvemxvd3NraSkKLSBhZGRlZCBhY3R1YWwgZHRic19jaGVjayB3YXJuaW5ncyB0byBj
-b21taXQgbWVzc2FnZXMKLSBhZGRlZCBSdXNzZWxsIEtpbmcgdG8gQ2MgZm9yIGJpbmRpbmcgY29u
-dmVyc2lvbiBwYXRjaCAoYmVjYXVzZSBsaWNlbnNlKQoKdjY6Ci0gcmViYXNlZCBzZXJpZXMgb24g
-cmVjZW50IHBhdmVsL2Zvci1uZXh0Ci0gYWRkZWQgUmV2aWV3ZWQtYnkgZnJvbSBNYXJlayB0byBw
-YXRjaCAxCi0gcGF0Y2ggMiBmcm9tIHY1IHdhcyBwaWNrZWQgYnkgUGF2ZWwgYW5kIGlzIGFscmVh
-ZHkgaW4gaGlzIGZvci1uZXh0CiAgYnJhbmNoCi0gcHJldmlvdXMgcGF0Y2ggMy8zIChub3cgMi83
-KSB3YXMgcmV3b3JrZWQgYmFzZWQgb24gZmVlZGJhY2sgYnkgUm9iCi0gYWRkZWQgbW9yZSBkdCBw
-YXRjaGVzIGZpeGluZyB3YXJuaW5ncyBhZnRlciBiaW5kaW5nIGNvbnZlcnNpb24gdG8geWFtbAoK
-djU6Ci0gcmVwbGFjZWQgcGF0Y2ggMS8zIGJ5IGEgbmV3IHBhdGNoIHJlbW92aW5nIHBsYXRmb3Jt
-X2RhdGEgc3VwcG9ydCBmb3IKICB0aGUgbGVkcy1wd20gZHJpdmVyCi0gbGl0dGxlIHJld29yZGlu
-ZyBvZiBjb21taXQgbWVzc2FnZSBpbiBwYXRjaCAyLzMKLSB1cGRhdGVkIHBhdGNoIDMvMyBiYXNl
-ZCBvbiBmZWVkYmFjayBieSBSb2IgSGVycmluZwotIGFkZGVkIE1hcmVrIEJlaMO6biB0byBDYywg
-YmVjYXVzZSBoZSBhbHNvIHdvcmtzIG9uIHJlbW92aW5nCiAgcGxhdGZvcm1fZGF0YSBzdXBwb3J0
-Ci0gcmViYXNlZCBzZXJpZXMgb24gcGF2ZWwvZm9yLW5leHQKCnY0OgotIGFkZGVkIGxlZC1jbGFz
-cyBwYXRjaCBoYW5kbGluZyBmd25vZGUgcGFzc2luZyBkaWZmZXJlbnRseSAocGF0Y2ggMS8zKQot
-IGFkYXB0ZWQgbGVkcy1wd20gcGF0Y2ggdG8gbmV3IGxlZC1jbGFzcyAocGF0Y2ggMi8zKQotIGNv
-bnRhY3RlZCBvcmlnaW5hbCBhdXRob3Igb2YgbGVkcy1wd20gZHQgYmluZGluZyBvbiBsaWNlbnNl
-IGlzc3VlCiAgKHBhdGNoIDMvMykKCnYzOgotIHNlcmllcyByZWJhc2VkIG9uIHY1LjktcmM0Ci0g
-Y2hhbmdlZCBsaWNlbnNlIG9mIC55YW1sIGZpbGUgdG8gcmVjb21tZW5kZWQgb25lIChwYXRjaCAy
-LzIpCi0gYWRkZWQgQWNrZWQtYnkgdG8gYm90aCBwYXRjaGVzCgp2MjoKLSBzZXJpZXMgcmViYXNl
-ZCBvbiB2NS45LXJjMwotIGFkZGVkIHRoZSBkdC1iaW5kaW5ncyB1cGRhdGUgcGF0Y2ggKDIvMikK
-CnYxOgotIGJhc2VkIG9uIHY1LjktcmMyCi0gYmFja3BvcnQgb24gdjUuNC41OSB0ZXN0ZWQgYW5k
-IHdvcmtpbmcKCkNjOiBsaW51eC1sZWRzQHZnZXIua2VybmVsLm9yZwpDYzogZGV2aWNldHJlZUB2
-Z2VyLmtlcm5lbC5vcmcKQ2M6IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcKQ2M6IGxpbnV4
-LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZwpDYzogbGludXgtc2Ftc3VuZy1zb2NAdmdl
-ci5rZXJuZWwub3JnCkNjOiBsaW51eC1vbWFwQHZnZXIua2VybmVsLm9yZwpDYzogbGludXgtc3Rt
-MzJAc3QtbWQtbWFpbG1hbi5zdG9ybXJlcGx5LmNvbQpDYzogbGludXgtYW1sb2dpY0BsaXN0cy5p
-bmZyYWRlYWQub3JnCkNjOiBsaW51eC1taXBzQHZnZXIua2VybmVsLm9yZwoKQWxleGFuZGVyIERh
-aGwgKDEyKToKICBsZWRzOiBwd206IFJlbW92ZSBwbGF0Zm9ybV9kYXRhIHN1cHBvcnQKICBkdC1i
-aW5kaW5nczogbGVkczogQ29udmVydCBwd20gdG8geWFtbAogIGR0LWJpbmRpbmdzOiBtZmQ6IEZp
-eCBzY2hlbWEgd2FybmluZ3MgZm9yIHB3bS1sZWRzCiAgQVJNOiBkdHM6IGF0OTE6IHNtYXJ0a2l6
-OiBSZWZlcmVuY2UgbGVkIG5vZGUgZGlyZWN0bHkKICBBUk06IGR0czogYXQ5MTogRml4IHNjaGVt
-YSB3YXJuaW5ncyBmb3IgcHdtLWxlZHMKICBBUk06IGR0czogYmVybGluOiBGaXggc2NoZW1hIHdh
-cm5pbmdzIGZvciBwd20tbGVkcwogIEFSTTogZHRzOiBleHlub3M6IEZpeCBzY2hlbWEgd2Fybmlu
-Z3MgZm9yIHB3bS1sZWRzCiAgQVJNOiBkdHM6IGlteDogRml4IHNjaGVtYSB3YXJuaW5ncyBmb3Ig
-cHdtLWxlZHMKICBBUk06IGR0czogb21hcDogRml4IHNjaGVtYSB3YXJuaW5ncyBmb3IgcHdtLWxl
-ZHMKICBBUk06IGR0czogc3RtMzI6IEZpeCBzY2hlbWEgd2FybmluZ3MgZm9yIHB3bS1sZWRzCiAg
-YXJtNjQ6IGR0czogbWVzb246IEZpeCBzY2hlbWEgd2FybmluZ3MgZm9yIHB3bS1sZWRzCiAgTUlQ
-UzogRFRTOiBpbWc6IEZpeCBzY2hlbWEgd2FybmluZ3MgZm9yIHB3bS1sZWRzCgogLi4uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvbGVkcy9sZWRzLXB3bS50eHQgICAgIHwgNTAgLS0tLS0tLS0tLS0tLQog
-Li4uL2RldmljZXRyZWUvYmluZGluZ3MvbGVkcy9sZWRzLXB3bS55YW1sICAgIHwgNzAgKysrKysr
-KysrKysrKysrKysrKwogLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL2lxczYyeC55YW1sICAg
-ICAgIHwgIDUgKy0KIGFyY2gvYXJtL2Jvb3QvZHRzL2F0OTEta2l6Ym94LmR0cyAgICAgICAgICAg
-ICB8IDEwICstLQogYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1raXpib3gyLWNvbW1vbi5kdHNpICAg
-IHwgIDggKy0tCiBhcmNoL2FybS9ib290L2R0cy9hdDkxLWtpemJveDMtaHMuZHRzICAgICAgICAg
-fCAxNiArKy0tLQogYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1raXpib3gzX2NvbW1vbi5kdHNpICAg
-IHwgMTAgKy0tCiBhcmNoL2FybS9ib290L2R0cy9hdDkxLWtpemJveG1pbmktY29tbW9uLmR0c2kg
-fCAgOCArLS0KIGFyY2gvYXJtL2Jvb3QvZHRzL2F0OTEtc21hcnRraXouZHRzICAgICAgICAgICB8
-ICA2ICstCiBhcmNoL2FybS9ib290L2R0cy9hdDkxc2FtOW0xMGc0NWVrLmR0cyAgICAgICAgfCAx
-MCArLS0KIGFyY2gvYXJtL2Jvb3QvZHRzL2F0OTFzYW05cmxlay5kdHMgICAgICAgICAgICB8IDEw
-ICstLQogLi4uL2Jvb3QvZHRzL2JlcmxpbjJjZC1nb29nbGUtY2hyb21lY2FzdC5kdHMgIHwgIDYg
-Ky0KIGFyY2gvYXJtL2Jvb3QvZHRzL2V4eW5vczU0MjItb2Ryb2lkaGMxLmR0cyAgICB8ICA0ICst
-CiBhcmNoL2FybS9ib290L2R0cy9leHlub3M1NDIyLW9kcm9pZHh1NC5kdHMgICAgfCAgNCArLQog
-Li4uL2Jvb3QvZHRzL2V4eW5vczU0eHgtb2Ryb2lkeHUtbGVkcy5kdHNpICAgIHwgMTEgKy0tCiBh
-cmNoL2FybS9ib290L2R0cy9pbXg1My1wcGQuZHRzICAgICAgICAgICAgICAgfCAxNSArKy0tCiBh
-cmNoL2FybS9ib290L2R0cy9pbXg2cWRsLWN1Ym94LWkuZHRzaSAgICAgICAgfCAgNCArLQogLi4u
-L2Jvb3QvZHRzL2lteDZzeC1zb2Z0aW5nLXZpbmluZy0yMDAwLmR0cyAgIHwgIDggKy0tCiBhcmNo
-L2FybS9ib290L2R0cy9vbWFwMy1iZWFnbGUteG0uZHRzICAgICAgICAgfCAxMCArLS0KIGFyY2gv
-YXJtL2Jvb3QvZHRzL29tYXAzLW92ZXJvLWJhc2UuZHRzaSAgICAgICB8ICA0ICstCiBhcmNoL2Fy
-bS9ib290L2R0cy9vbWFwNC1rYzEuZHRzICAgICAgICAgICAgICAgfCAgNiArLQogYXJjaC9hcm0v
-Ym9vdC9kdHMvb21hcDQtc2RwLmR0cyAgICAgICAgICAgICAgIHwgMjYgKysrLS0tLQogYXJjaC9h
-cm0vYm9vdC9kdHMvc3RtMzJtcDE1N2MtbHhhLW1jMS5kdHMgICAgIHwgMTIgKystLQogLi4uL2Ft
-bG9naWMvbWVzb24tZ3hsLXM5MDV4LWtoYWRhcy12aW0uZHRzICAgIHwgIDQgKy0KIC4uLi9kdHMv
-YW1sb2dpYy9tZXNvbi1neG0ta2hhZGFzLXZpbTIuZHRzICAgICB8ICA0ICstCiAuLi4vYm9vdC9k
-dHMvYW1sb2dpYy9tZXNvbi1zbTEtc2VpNjEwLmR0cyAgICAgfCAgOCArLS0KIGFyY2gvbWlwcy9i
-b290L2R0cy9pbWcvcGlzdGFjaGlvX21hcmR1ay5kdHMgICB8ICA1ICstCiBkcml2ZXJzL2xlZHMv
-bGVkcy1wd20uYyAgICAgICAgICAgICAgICAgICAgICAgfCAzMCArKy0tLS0tLQogMjggZmlsZXMg
-Y2hhbmdlZCwgMTg0IGluc2VydGlvbnMoKyksIDE4MCBkZWxldGlvbnMoLSkKIGRlbGV0ZSBtb2Rl
-IDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbGVkcy9sZWRzLXB3bS50
-eHQKIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-bGVkcy9sZWRzLXB3bS55YW1sCgoKYmFzZS1jb21taXQ6IDRmNjllMTdjODdlOTBmOTUwOGY0OThm
-YTQ3NzFhOWI3N2RiMTE3NGIKLS0gCjIuMjAuMQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
-bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+The node names for devices using the pwm-leds driver follow a certain
+naming scheme (now).  Parent node name is not enforced, but recommended
+by DT project.
+
+  DTC     arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml
+  CHECK   arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml
+/home/alex/build/linux/arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml: pwmleds: 'blueled', 'greenled' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+        From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+  DTC     arch/arm/boot/dts/exynos5422-odroidhc1.dt.yaml
+  CHECK   arch/arm/boot/dts/exynos5422-odroidhc1.dt.yaml
+/home/alex/build/linux/arch/arm/boot/dts/exynos5422-odroidhc1.dt.yaml: pwmleds: 'blueled' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+        From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+  DTC     arch/arm/boot/dts/exynos5422-odroidxu3.dt.yaml
+  CHECK   arch/arm/boot/dts/exynos5422-odroidxu3.dt.yaml
+/home/alex/build/linux/arch/arm/boot/dts/exynos5422-odroidxu3.dt.yaml: pwmleds: 'blueled', 'greenled' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+        From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+  DTC     arch/arm/boot/dts/exynos5422-odroidxu3-lite.dt.yaml
+  CHECK   arch/arm/boot/dts/exynos5422-odroidxu3-lite.dt.yaml
+/home/alex/build/linux/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dt.yaml: pwmleds: 'blueled', 'greenled' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+        From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+  DTC     arch/arm/boot/dts/exynos5422-odroidxu4.dt.yaml
+  CHECK   arch/arm/boot/dts/exynos5422-odroidxu4.dt.yaml
+/home/alex/build/linux/arch/arm/boot/dts/exynos5422-odroidxu4.dt.yaml: pwmleds: 'blueled' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+        From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+
+Signed-off-by: Alexander Dahl <post@lespocky.de>
+---
+
+Notes:
+    v6 -> v7:
+      * split up patch (one per sub arch)
+      * added actual warnings to commit message
+
+ arch/arm/boot/dts/exynos5422-odroidhc1.dts      |  4 ++--
+ arch/arm/boot/dts/exynos5422-odroidxu4.dts      |  4 ++--
+ arch/arm/boot/dts/exynos54xx-odroidxu-leds.dtsi | 11 ++++++-----
+ 3 files changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/arch/arm/boot/dts/exynos5422-odroidhc1.dts b/arch/arm/boot/dts/exynos5422-odroidhc1.dts
+index 812659260278..20c222b33f98 100644
+--- a/arch/arm/boot/dts/exynos5422-odroidhc1.dts
++++ b/arch/arm/boot/dts/exynos5422-odroidhc1.dts
+@@ -15,10 +15,10 @@
+ 	compatible = "hardkernel,odroid-hc1", "samsung,exynos5800", \
+ 		     "samsung,exynos5";
+ 
+-	pwmleds {
++	led-controller {
+ 		compatible = "pwm-leds";
+ 
+-		blueled {
++		led-1 {
+ 			label = "blue:heartbeat";
+ 			pwms = <&pwm 2 2000000 0>;
+ 			pwm-names = "pwm2";
+diff --git a/arch/arm/boot/dts/exynos5422-odroidxu4.dts b/arch/arm/boot/dts/exynos5422-odroidxu4.dts
+index 892d389d6d09..955065ee57a0 100644
+--- a/arch/arm/boot/dts/exynos5422-odroidxu4.dts
++++ b/arch/arm/boot/dts/exynos5422-odroidxu4.dts
+@@ -17,10 +17,10 @@
+ 	compatible = "hardkernel,odroid-xu4", "samsung,exynos5800", \
+ 		     "samsung,exynos5";
+ 
+-	pwmleds {
++	led-controller {
+ 		compatible = "pwm-leds";
+ 
+-		blueled {
++		led-1 {
+ 			label = "blue:heartbeat";
+ 			pwms = <&pwm 2 2000000 0>;
+ 			pwm-names = "pwm2";
+diff --git a/arch/arm/boot/dts/exynos54xx-odroidxu-leds.dtsi b/arch/arm/boot/dts/exynos54xx-odroidxu-leds.dtsi
+index 56acd832f0b3..2fc3e86dc5f7 100644
+--- a/arch/arm/boot/dts/exynos54xx-odroidxu-leds.dtsi
++++ b/arch/arm/boot/dts/exynos54xx-odroidxu-leds.dtsi
+@@ -11,10 +11,10 @@
+ #include <dt-bindings/gpio/gpio.h>
+ 
+ / {
+-	pwmleds {
++	led-controller-1 {
+ 		compatible = "pwm-leds";
+ 
+-		greenled {
++		led-1 {
+ 			label = "green:mmc0";
+ 			pwms = <&pwm 1 2000000 0>;
+ 			pwm-names = "pwm1";
+@@ -26,7 +26,7 @@
+ 			linux,default-trigger = "mmc0";
+ 		};
+ 
+-		blueled {
++		led-2 {
+ 			label = "blue:heartbeat";
+ 			pwms = <&pwm 2 2000000 0>;
+ 			pwm-names = "pwm2";
+@@ -35,9 +35,10 @@
+ 		};
+ 	};
+ 
+-	gpioleds {
++	led-controller-2 {
+ 		compatible = "gpio-leds";
+-		redled {
++
++		led-3 {
+ 			label = "red:microSD";
+ 			gpios = <&gpx2 3 GPIO_ACTIVE_HIGH>;
+ 			default-state = "off";
+-- 
+2.20.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
