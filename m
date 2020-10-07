@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EB769C4727F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 08:08:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C90EC47420
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 08:08:25 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6BEE120872
+	by mail.kernel.org (Postfix) with ESMTPS id 6859D20870
 	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 08:08:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X853TnTS";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="j1ZHC/Pl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6BEE120872
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eKpWxXO6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ox4PxNK9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6859D20870
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=A7zadDKr8iAV0QpjNX6Labn2C5++L0y1UtcNAk5FIoM=; b=X853TnTSZpbMb7MHxrB/b1Mss
-	XQGjDyYtQWdks0I75Z26QG6qDmlycBgvHJ/MUWQCaDQga/ONEttmNDF/ISlgwAa9HZob+fxtIVd3o
-	7DN3V8gZf7f8srJ0uoQCbs/F9NfjAC7oJ3ryfnJxgDUZnIdqpHOhsjzO9lYTAF/e7NznW4B6vECac
-	3blBZiGlqkncP4Ht62ryO7Jl5CkgjuFSvvy7EufdnpxwxEmzF/kLpEPKrdkRTbUsuD4BJ0q5r7pRN
-	LljapLI2y8StP9D+HJR8eHkfw5TWe98wpFbFl22PndsSnq2mVDhHlPM0vBT9t534Mr8l8HAVAc3Wh
-	qd/1/gcJw==;
+	 bh=WdH7X8lstRTwPsZj8rAt9jW2/INDjGJCT/wZw4PUK+g=; b=eKpWxXO6khPmp7G1YGu+S8QkD
+	3v4pHJfXwQjnikyAAF5SwCkhmUzO998Ot6t4bX31V6LZUuQL6FWO4m0bi83tL+WSvqSfnFTdLQ8Bf
+	4PlWDk1nqlvtzYAk+hl8QAH/uGo8aqTQpCaLT2y2WcWeHTW3IpY8oA7VPw2zkQFZJTK0jTvXTEMQ+
+	5sjz0QbRUXZeNeYfnF1cFSCbYzv0U72wgOQ43Mt7Fp7+SpC3BpslPCStRrkGRsWMDC1EhNYRLcW7N
+	bLrpDCWOc+21dM09Rlrdc8JvGiS2gZ83xX2Xf125GGHklYOdTqiOf05bHWqyWWwTx4hHI67viTjpY
+	dVW+7NWkQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kQ4Uk-0000Jc-RT; Wed, 07 Oct 2020 08:08:18 +0000
-Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
+	id 1kQ4Ul-0000K3-Os; Wed, 07 Oct 2020 08:08:19 +0000
+Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kQ4Ue-0000FN-KA
- for linux-amlogic@lists.infradead.org; Wed, 07 Oct 2020 08:08:15 +0000
-Received: by mail-ed1-x544.google.com with SMTP id 33so1161231edq.13
- for <linux-amlogic@lists.infradead.org>; Wed, 07 Oct 2020 01:08:10 -0700 (PDT)
+ id 1kQ4Ue-0000Fz-9Q
+ for linux-amlogic@lists.infradead.org; Wed, 07 Oct 2020 08:08:14 +0000
+Received: by mail-ej1-x641.google.com with SMTP id c22so1691294ejx.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 07 Oct 2020 01:08:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ZhbU6JmaVfKgD1s4cybkcHTBk+tY6By/eFQji3AClKY=;
- b=j1ZHC/Plvx7SgnRFbucisI2F2GM2pxPOw0vRjiREHyMPuFtNMjkipgmBzOHJa/VcAi
- FJqJ7PJrOdaLjZnGcPG8L2qFMIp16S/A+06M+a5G+WQtwkIKheWGILG89/UVb7V298tf
- Nzj4aDM7+puXmcfD2kVkm90kdtH8z3HuE34USZLscGcU5WH+wzCfrnSiy5Z7CO9aTqgU
- NLca3DEDaNIqyGlboBbdI6tOT31AbHnwtuA1Ub+mYRtY3sLUMub7XvCfmvX0yXHeP4s0
- QmE6pVN0y2nDyVSAKQy8sLD6Q6giiQy9lu8IbqlrTRql76vwYnvcfQSJ1McPiTlEJnLX
- amPw==
+ bh=oCF8SynXrWVRYxNQ22uW6uSFDL0I44L0Irm6uzCuBCc=;
+ b=ox4PxNK9iCxu2B18rdmRCaoEGcbD4CgFLBa5LFXCSNsT2y/kBWF/XUpeD8yZyzwaRS
+ LC4z+VOvuwPT6de7nY0uKs9PYwbpdH+Ec1qyaAeIpTLPi5s9dJ6iKJI/goNuO00wF6z6
+ ISDrcgjCSz6JlM7b4Hg2Tqpoxg0G5d7tDWBckRvdA1vsYDQFtPuJM85BVxJtocTScbLU
+ Tp579wt2OvniUuqGoPCDps3DiKK8u6lR7oNZrM4vJWpY5JD5h5SomMZZgtap+99G/2Oz
+ vA7al3NHRSZRLTtfd+c5v7F9SnxbLYlGhrmLOJjuqr/DHXEGOveOvtVY5+FNMeb4YAwK
+ s/mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ZhbU6JmaVfKgD1s4cybkcHTBk+tY6By/eFQji3AClKY=;
- b=eSayLy4PRZJVk2M1dr4SHJQgTpqpxaCvGIB78Ni0h/9ldjtq/Gi/9kP2uegXx7RpJ0
- 61I1XjbEusqDNqzJMkRuupa0tuONp5/OcOxcym1EKZSnooRkLRS2JhthwrIDvyuJ/WYB
- YUUtyNSvoJ+7LlqhvPbxR2Kv+KqPp+ePxJkfVen0Ehho3EZEK+vQXk5t951s35OMGaXu
- tyq94YtNSZCD+mbJ8gGlPtxcYxcEGfWKgtkwbkG3wiQVABVhKISKaprpc+U7VwwgVRjr
- 0Z/HbJZKVnPRogu1uMvl7+J4sbEjNi7CwjNR6/pExL63iKgn/+M5HaD6I9cKo2Kllg1T
- GstA==
-X-Gm-Message-State: AOAM530PRy2gsbwYxb68wmK3fjIyJITyd9bFu9ykcSLcu+iZF11t+aQu
- VuU1l1L/2GGkb2dBJe2ASTb7Ww==
-X-Google-Smtp-Source: ABdhPJx0XWEkI4HBlS99pxTK0t4QJZzkpystYXF06tW6acHL9Sam6bWwntQ8rUxJW+MCVvIhEPpYlA==
-X-Received: by 2002:a50:c309:: with SMTP id a9mr2285070edb.199.1602058089334; 
- Wed, 07 Oct 2020 01:08:09 -0700 (PDT)
+ bh=oCF8SynXrWVRYxNQ22uW6uSFDL0I44L0Irm6uzCuBCc=;
+ b=Uvm8eGr5gZrsukPP6bdSSujpHzp2JlMCQqfXxblF5EULiAniJxF/3NsGcdLyyFRYV8
+ r6ObOA2CG9mhESDbyCBI0FDfutamXR0LFf4Mm9Gn6wtIojFflY13kSm52HoyW3IB1Xxb
+ 1pHL/nDe2QPSOJYA89eYcfuoXpOfppa37WfCqBtPFvKUdEt0OVzBXkVQjemALEfSZtuQ
+ W1MrSxExRLZib9jvapF/9JXqEjCZTm+9uFUO0tlh+wGKcvkpPr/Eh99+LLF/7usxif6n
+ ZPbZLH079WhliM4F2Norh9pnWZkEOgNAkeq86aPoWfMWuDTl4+ARBRXgofu8/dEDXK6r
+ EOOQ==
+X-Gm-Message-State: AOAM530HPujNJeY4KlWOriN98UzY/YZOXXEor+LPivjSDemjuArz5cA9
+ E4UrFGbTFJ7k5z0uhn+AvXyAOw==
+X-Google-Smtp-Source: ABdhPJybptPbF4/1Q7e1paiatpmUVApwJAseaJOEaCM+dgpba+3RlGvV8tZ4QucnKe3c0/wuHvfsdw==
+X-Received: by 2002:a17:906:564d:: with SMTP id
+ v13mr2231056ejr.217.1602058090835; 
+ Wed, 07 Oct 2020 01:08:10 -0700 (PDT)
 Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net.
  [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id p11sm888645edu.93.2020.10.07.01.08.08
+ by smtp.googlemail.com with ESMTPSA id p11sm888645edu.93.2020.10.07.01.08.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Oct 2020 01:08:08 -0700 (PDT)
+ Wed, 07 Oct 2020 01:08:10 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Wolfram Sang <wsa@kernel.org>,
 	Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 1/3] i2c: meson: fix clock setting overwrite
-Date: Wed,  7 Oct 2020 10:07:49 +0200
-Message-Id: <20201007080751.1259442-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/3] i2c: meson: keep peripheral clock enabled
+Date: Wed,  7 Oct 2020 10:07:50 +0200
+Message-Id: <20201007080751.1259442-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20201007080751.1259442-1-jbrunet@baylibre.com>
 References: <20201007080751.1259442-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201007_040812_707122_26C1D1B4 
-X-CRM114-Status: GOOD (  14.10  )
+X-CRM114-CacheID: sfid-20201007_040812_386725_DCBDBC9D 
+X-CRM114-Status: GOOD (  15.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,78 +107,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When the slave address is written in do_start(), SLAVE_ADDR is written
-completely. This may overwrite some setting related to the clock rate
-or signal filtering.
+SCL rate appears to be different than what is expected. For example,
+We get 164kHz on i2c3 of the vim3 when 400kHz is expected. This is
+partially due to the peripheral clock being disabled when the clock is
+set.
 
-Fix this by writing only the bits related to slave address. To avoid
-causing unexpected changed, explicitly disable filtering or high/low
-clock mode which may have been left over by the bootloader.
+Let's keep the peripheral clock on after probe to fix the problem. This
+does not affect the SCL output which is still gated when i2c is idle.
 
-Fixes: 30021e3707a7 ("i2c: add support for Amlogic Meson I2C controller")
+Fixes: 09af1c2fa490 ("i2c: meson: set clock divider in probe instead of setting it for each transfer")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/i2c/busses/i2c-meson.c | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+ drivers/i2c/busses/i2c-meson.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index c5dec572fc48..dac0d2a00cec 100644
+index dac0d2a00cec..e7ec2ab2a220 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -5,6 +5,7 @@
-  * Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
-  */
+@@ -370,16 +370,12 @@ static int meson_i2c_xfer_messages(struct i2c_adapter *adap,
+ 	struct meson_i2c *i2c = adap->algo_data;
+ 	int i, ret = 0;
  
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/completion.h>
- #include <linux/i2c.h>
-@@ -38,6 +39,12 @@
- #define REG_CTRL_CLKDIVEXT_SHIFT 28
- #define REG_CTRL_CLKDIVEXT_MASK	GENMASK(29, 28)
+-	clk_enable(i2c->clk);
+-
+ 	for (i = 0; i < num; i++) {
+ 		ret = meson_i2c_xfer_msg(i2c, msgs + i, i == num - 1, atomic);
+ 		if (ret)
+ 			break;
+ 	}
  
-+#define REG_SLV_ADDR		GENMASK(7, 0)
-+#define REG_SLV_SDA_FILTER	GENMASK(10, 8)
-+#define REG_SLV_SCL_FILTER	GENMASK(13, 11)
-+#define REG_SLV_SCL_LOW		GENMASK(27, 16)
-+#define REG_SLV_SCL_LOW_EN	BIT(28)
-+
- #define I2C_TIMEOUT_MS		500
- 
- enum {
-@@ -147,6 +154,9 @@ static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
- 	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIVEXT_MASK,
- 			   (div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
- 
-+	/* Disable HIGH/LOW mode */
-+	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR, REG_SLV_SCL_LOW_EN, 0);
-+
- 	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, div %u\n", __func__,
- 		clk_rate, freq, div);
+-	clk_disable(i2c->clk);
+-
+ 	return ret ?: i;
  }
-@@ -280,7 +290,10 @@ static void meson_i2c_do_start(struct meson_i2c *i2c, struct i2c_msg *msg)
- 	token = (msg->flags & I2C_M_RD) ? TOKEN_SLAVE_ADDR_READ :
- 		TOKEN_SLAVE_ADDR_WRITE;
  
--	writel(msg->addr << 1, i2c->regs + REG_SLAVE_ADDR);
-+
-+	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR, REG_SLV_ADDR,
-+			   FIELD_PREP(REG_SLV_ADDR, msg->addr << 1));
-+
- 	meson_i2c_add_token(i2c, TOKEN_START);
- 	meson_i2c_add_token(i2c, token);
- }
-@@ -461,6 +474,10 @@ static int meson_i2c_probe(struct platform_device *pdev)
+@@ -448,7 +444,7 @@ static int meson_i2c_probe(struct platform_device *pdev)
  		return ret;
  	}
  
-+	/* Disable filtering */
-+	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR,
-+			   REG_SLV_SDA_FILTER | REG_SLV_SCL_FILTER, 0);
-+
- 	meson_i2c_set_clk_div(i2c, timings.bus_freq_hz);
+-	ret = clk_prepare(i2c->clk);
++	ret = clk_prepare_enable(i2c->clk);
+ 	if (ret < 0) {
+ 		dev_err(&pdev->dev, "can't prepare clock\n");
+ 		return ret;
+@@ -470,7 +466,7 @@ static int meson_i2c_probe(struct platform_device *pdev)
+ 
+ 	ret = i2c_add_adapter(&i2c->adap);
+ 	if (ret < 0) {
+-		clk_unprepare(i2c->clk);
++		clk_disable_unprepare(i2c->clk);
+ 		return ret;
+ 	}
+ 
+@@ -488,7 +484,7 @@ static int meson_i2c_remove(struct platform_device *pdev)
+ 	struct meson_i2c *i2c = platform_get_drvdata(pdev);
+ 
+ 	i2c_del_adapter(&i2c->adap);
+-	clk_unprepare(i2c->clk);
++	clk_disable_unprepare(i2c->clk);
  
  	return 0;
+ }
 -- 
 2.25.4
 
