@@ -2,92 +2,56 @@ Return-Path: <SRS0=JUPl=DO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D77DC4741F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 08:08:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 724C3C4363C
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 10:02:29 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E6FF72076C
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 08:08:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EB6AE20870
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 10:02:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LhSGm3ea";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QE5wCYvx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E6FF72076C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="I2kfiXNT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EB6AE20870
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ucw.cz
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=dEWY278crX9NHYTaica/76wq1OevnBg8k57PtNfvYSg=; b=LhSGm3eaoH8Mopoo3cjM6ufZp
-	ZKPAbXN7PY4de8IMUazYXnsZw6UAj5Z5STDbvDxvSgdz2URiwwEqMZW2dvQUophurwB5YcqqRNNXd
-	osh7i/x85o3HyP+R+Wu4mt65iADTlTUImu7bm+M0R5dpiyt7BF1shqL4Mv4ZxC9tFQPkP8QhImZGW
-	UHXRaDl0zRhDn5oaNht+1oYUVkUluLMVIAmnjYhtEpymP5T9OgJMXvWc3/IjHUoVcVJoWmE79Dx+t
-	vwiXmJnRE6gOvg/GFBQOO4XV/uzwtTM7vcndoQylHyEJ8t49kYtIop6twFgDQjhXg3KiVLggWM1Da
-	0ujaxCMWA==;
+	 bh=lPe6JwkmjcYxl4NNUtBAIJ4BEcLSaVp1twtOQJnLfxQ=; b=I2kfiXNThddUdHJT+BErqhcbJ
+	+O3zbMxV0pEpSAyS2dk8YDkhVvK0yYtaWEcwI+gSQp9b6vf4+h5deTzp8j4uQNJyUCoOwR4m8uFH5
+	cH5v3ejIKpUfripwz4BJW7FTq9vzve7O0H1cu2lsUUPHk6cP+TK8S5JkpHI6U9ORLNcl/rEySbpKR
+	cdXpnuLYCxjZdPvQ7mYn/5Pc3pXUuudK1jRoC0pG8ZDLKRzJoiYoO5MBajYO+GiKj8LPYsGi/UbBk
+	xG/ca1MK/7FiqvaVyhmkJ53U+rJHKlLk5eFUBEkZ1BFR0CqzCET105cuRaOadsXJoNGq0K6p+7sq8
+	YKhpkBr/g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kQ4Uo-0000Lf-83; Wed, 07 Oct 2020 08:08:22 +0000
-Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
+	id 1kQ6H7-0007Au-3W; Wed, 07 Oct 2020 10:02:21 +0000
+Received: from jabberwock.ucw.cz ([46.255.230.98])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kQ4Uf-0000Gz-3z
- for linux-amlogic@lists.infradead.org; Wed, 07 Oct 2020 08:08:16 +0000
-Received: by mail-ed1-x542.google.com with SMTP id 33so1161369edq.13
- for <linux-amlogic@lists.infradead.org>; Wed, 07 Oct 2020 01:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=N9BB7E4iGMc/0xci5wMPtXbQzs5kI/9VbBMLqTlLSE8=;
- b=QE5wCYvx8kvJMvIBqPW3Xjj5S68geqga477qq7uif1HkyevhmAtFMOt/buaJVFfpEH
- jiijKBMvzIka7KNi7BK8/tuFS6+UEIjCz9fz7+Ypbka0repb8XQcAI5hXq6nDoDXhU2z
- tx0IDqrog0nbwdZ2tKtSI05lEYppygDek+j8xKBsG1lX7hEhXlVAb8G6A7QzqDayzsj+
- G+LFf+r8Qsiy1PGjAifRuvdNj8l2eVQW5lgd+i+bfJAc5aq8whixyfoXHtzRKvz8gy3T
- o8eefN8FkN6922LvF5PWy+Xu+VDfrvq0YyNM9t210jFSd2lH0yciRdcWJAmjuGH/q3hm
- QdEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=N9BB7E4iGMc/0xci5wMPtXbQzs5kI/9VbBMLqTlLSE8=;
- b=QkRshUvArM2S+bXmgddph0TexYDhL4ZjK1tYw1ozMVg1vvkGzs6DUN6CN+sH0tZB/n
- 08qZqkyN057rX+gOEanv0PQcdtzKU3iwqpFCTYZJvNWikygRR6GZLYrtg8IKX8jTjz7t
- KJY+2gfQmy/u7FZk2RcUfv55uXOUzP7UIDHT3NoZ5q3whxjGrXIN6kYiAVPPbIKBUPVh
- Bk7PSBHVVeIrcC/OsZF3rhE0KggiZ1r8ljqRHkMAFrc/J6cFlV9MZpS7X1fpI/dzcf0R
- KW7mffJVrgb+ca5NhjTv5nFAyxRCQcCvTYJVX2DMbcPwhRb2UKyVttwdjUOhiiQLrTLt
- FrqA==
-X-Gm-Message-State: AOAM530F7yjyvFIQb1pDUYbOlZfkRK+OVZQ/yc8FT2hHcljSpPX9HwcD
- HXRfKybGux4ADIWkT8EzVVqcQA==
-X-Google-Smtp-Source: ABdhPJypq5afOnV5h1ZSBHO4fnEsWDyM831RAyRh/f+UBTgfm4W7zKgvvkr6dtv2ORMIalObWbBJLQ==
-X-Received: by 2002:a05:6402:1612:: with SMTP id
- f18mr2253541edv.166.1602058092223; 
- Wed, 07 Oct 2020 01:08:12 -0700 (PDT)
-Received: from starbuck.lan (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id p11sm888645edu.93.2020.10.07.01.08.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Oct 2020 01:08:11 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Wolfram Sang <wsa@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 3/3] i2c: meson: fixup rate calculation with filter delay
-Date: Wed,  7 Oct 2020 10:07:51 +0200
-Message-Id: <20201007080751.1259442-4-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20201007080751.1259442-1-jbrunet@baylibre.com>
-References: <20201007080751.1259442-1-jbrunet@baylibre.com>
+ id 1kQ6H4-00079r-K9; Wed, 07 Oct 2020 10:02:19 +0000
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+ id A47C41C0B7A; Wed,  7 Oct 2020 12:02:13 +0200 (CEST)
+Date: Wed, 7 Oct 2020 12:02:13 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Alexander Dahl <post@lespocky.de>
+Subject: Re: [PATCH v7 02/12] dt-bindings: leds: Convert pwm to yaml
+Message-ID: <20201007100213.GA12224@duo.ucw.cz>
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-3-post@lespocky.de>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+In-Reply-To: <20201005203451.9985-3-post@lespocky.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201007_040813_264537_D5D02C4F 
-X-CRM114-Status: GOOD (  14.34  )
+X-CRM114-CacheID: sfid-20201007_060218_771309_BCE5BF82 
+X-CRM114-Status: GOOD (  14.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,88 +63,93 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
- linux-i2c@vger.kernel.org, Nicolas Belin <nbelin@baylibre.com>,
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org,
+ Peter Ujfalusi <peter.ujfalusi@ti.com>, Russell King <linux@armlinux.org.uk>,
+ Rob Herring <robh+dt@kernel.org>, Dan Murphy <dmurphy@ti.com>,
+ linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2873649107461151198=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Nicolas Belin <nbelin@baylibre.com>
 
-Apparently, 15 cycles of the peripheral clock are used by the controller
-for sampling and filtering. Because this was not known before, the rate
-calculation is slightly off.
+--===============2873649107461151198==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="y0ulUmNC+osPPQO6"
+Content-Disposition: inline
 
-Clean up and fix the calculation taking this filtering delay into account.
 
-Fixes: 30021e3707a7 ("i2c: add support for Amlogic Meson I2C controller")
-Signed-off-by: Nicolas Belin <nbelin@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/i2c/busses/i2c-meson.c | 23 ++++++++++++-----------
- 1 file changed, 12 insertions(+), 11 deletions(-)
+--y0ulUmNC+osPPQO6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index e7ec2ab2a220..ef73a42577cc 100644
---- a/drivers/i2c/busses/i2c-meson.c
-+++ b/drivers/i2c/busses/i2c-meson.c
-@@ -34,10 +34,8 @@
- #define REG_CTRL_ACK_IGNORE	BIT(1)
- #define REG_CTRL_STATUS		BIT(2)
- #define REG_CTRL_ERROR		BIT(3)
--#define REG_CTRL_CLKDIV_SHIFT	12
--#define REG_CTRL_CLKDIV_MASK	GENMASK(21, 12)
--#define REG_CTRL_CLKDIVEXT_SHIFT 28
--#define REG_CTRL_CLKDIVEXT_MASK	GENMASK(29, 28)
-+#define REG_CTRL_CLKDIV		GENMASK(21, 12)
-+#define REG_CTRL_CLKDIVEXT	GENMASK(29, 28)
- 
- #define REG_SLV_ADDR		GENMASK(7, 0)
- #define REG_SLV_SDA_FILTER	GENMASK(10, 8)
-@@ -46,6 +44,7 @@
- #define REG_SLV_SCL_LOW_EN	BIT(28)
- 
- #define I2C_TIMEOUT_MS		500
-+#define FILTER_DELAY		15
- 
- enum {
- 	TOKEN_END = 0,
-@@ -140,19 +139,21 @@ static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
- 	unsigned long clk_rate = clk_get_rate(i2c->clk);
- 	unsigned int div;
- 
--	div = DIV_ROUND_UP(clk_rate, freq * i2c->data->div_factor);
-+	div = DIV_ROUND_UP(clk_rate, freq);
-+	div -= FILTER_DELAY;
-+	div = DIV_ROUND_UP(div, i2c->data->div_factor);
- 
- 	/* clock divider has 12 bits */
--	if (div >= (1 << 12)) {
-+	if (div > GENMASK(11, 0)) {
- 		dev_err(i2c->dev, "requested bus frequency too low\n");
--		div = (1 << 12) - 1;
-+		div = GENMASK(11, 0);
- 	}
- 
--	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV_MASK,
--			   (div & GENMASK(9, 0)) << REG_CTRL_CLKDIV_SHIFT);
-+	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV,
-+			   FIELD_PREP(REG_CTRL_CLKDIV, div & GENMASK(9, 0)));
- 
--	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIVEXT_MASK,
--			   (div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
-+	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIVEXT,
-+			   FIELD_PREP(REG_CTRL_CLKDIVEXT, div >> 10));
- 
- 	/* Disable HIGH/LOW mode */
- 	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR, REG_SLV_SCL_LOW_EN, 0);
--- 
-2.25.4
+On Mon 2020-10-05 22:34:41, Alexander Dahl wrote:
+> The example was adapted in the following ways:
+>=20
+> - make use of the now supported 'function' and 'color' properties
+> - remove pwm nodes, those are documented elsewhere
+> - align node names to new dt schema rules and dt recommendations
+>=20
+> License was not explicitly set before.  The license set now is
+> recommended by DT project.
+>=20
+> Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Signed-off-by: Alexander Dahl <post@lespocky.de>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Cc: Russell King <linux@armlinux.org.uk>
+> ---
+>=20
+> Notes:
+>     NOTE: Due to license set/change this needs Acked-by or Signed-off-by =
+=66rom:
+>       * Peter Ujfalusi
+>       * Russell King
 
+Russell King authored two lines of the documentation. He can state
+objections now, but I'll not wait for his Acked-by.
+
+>     That was discussed already with Peter (original author), still waiting
+>     for Acked-by though =E2=80=A6
+
+If Peter was okay with license change, I guess we can continue here.
+
+Best regards,
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--y0ulUmNC+osPPQO6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX32SJQAKCRAw5/Bqldv6
+8ih1AKC89CUSap/s2xV4Q89wc/i22r49KACcDa86v1lffE+ltjBCel8iiRX1DGs=
+=H5CR
+-----END PGP SIGNATURE-----
+
+--y0ulUmNC+osPPQO6--
+
+
+--===============2873649107461151198==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2873649107461151198==--
+
