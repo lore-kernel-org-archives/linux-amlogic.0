@@ -2,62 +2,92 @@ Return-Path: <SRS0=JUPl=DO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-	autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E3CCC4363C
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 10:09:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93ABCC4363C
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 11:33:00 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 17C412076C
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 10:09:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9D8B420782
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2020 11:32:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="0DYu9coB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17C412076C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=thorsis.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RCxkLjC6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="risRhOIo"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9D8B420782
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-ID:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=B7TgqaUsrX1rGILSkDkEGVRkeSkNQqKmHaf+FmMZULM=; b=0DYu9coB3r4yas9BFvJ72jv2nQ
-	g17N2wo92oSnLJ/OoP0Ry4Mp0gEBMcWcLKxgGVOGZi0qtLbWloXzuHD7tJB8grxXkjshcva4bggZ9
-	GxpbWqIjbHPQonIGyAfJF5HGIyNx7ss9gbIf89ekiyNk66dYBvFKAlwFvm/Wtt9wcmnwb9JIVsTtn
-	HjVK7t2VybhZB/cyphG4lDexnUjcEAu5BEfyqNibiZixcQWH1YU/Aw1/Q8FTGa6YUEryCqMEQxsYC
-	ukBSvsxgTWc+Jvm25gD6pd+sRx7r4AbBTzbTjIb2m7oJLAh5MgzYQdHckZZcV3x/Q2Jpepa2ExPpB
-	e73WRihQ==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=JO8NvlisgYpnXHNCqSJvAGO0f+zlu0wqn3c7MkUdL2M=; b=RCxkLjC6DOtu6aP30+QdMC3Fu
+	o+vYZoWCvQRWiLtXyQgNzspW8HHlVusUqErWco8+mc0OW84h4tSzGySLlOxog0fIylV4iCwrh/HZz
+	7p8MRCJumEOJoXdvW5ZRI9raKEpvNEek8PV3Pcz7n++SVqXdp+3Y7L783PnSsIqMZwqNkvrXllw/w
+	Z8C/6vwRB8IpL33v51tWw869NBW4475ZC09XXvJXmv3yARYf6QkBcC07ND7wpf5TMkbP5F8kNs7Wh
+	ShErv1imbJ1kE3h1sjAIb09c180hSbAIB8HHIZLiJHjGQF+32VpbYGQxSzqaNmauPwS4HjxLwpxY3
+	iLjj1V7pA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kQ6Nf-0000qV-9v; Wed, 07 Oct 2020 10:09:07 +0000
-Received: from mail.thorsis.com ([92.198.35.195])
+	id 1kQ7gk-00040R-6B; Wed, 07 Oct 2020 11:32:54 +0000
+Received: from mail-ej1-x642.google.com ([2a00:1450:4864:20::642])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kQ6NU-0000k3-L3; Wed, 07 Oct 2020 10:08:57 +0000
-Received: from localhost (localhost [127.0.0.1])
- by mail.thorsis.com (Postfix) with ESMTP id A50A84F;
- Wed,  7 Oct 2020 12:08:52 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
- by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id YaZ7Bhmafok0; Wed,  7 Oct 2020 12:08:52 +0200 (CEST)
-Received: by mail.thorsis.com (Postfix, from userid 109)
- id 866A63579; Wed,  7 Oct 2020 12:08:52 +0200 (CEST)
-From: Alexander Dahl <ada@thorsis.com>
-To: Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH v7 03/12] dt-bindings: mfd: Fix schema warnings for
- pwm-leds
-Date: Wed, 07 Oct 2020 12:08:46 +0200
-Message-ID: <2640582.VKub60Wb7X@ada>
-In-Reply-To: <20201007100359.GC12224@duo.ucw.cz>
-References: <20201005203451.9985-1-post@lespocky.de>
- <20201005203451.9985-4-post@lespocky.de> <20201007100359.GC12224@duo.ucw.cz>
+ id 1kQ7gh-0003zf-JJ
+ for linux-amlogic@lists.infradead.org; Wed, 07 Oct 2020 11:32:52 +0000
+Received: by mail-ej1-x642.google.com with SMTP id h24so2422973ejg.9
+ for <linux-amlogic@lists.infradead.org>; Wed, 07 Oct 2020 04:32:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=UUAtMhUEk/jz98adLLh/kvHWU+87rtZfg/cfL1Bdfv4=;
+ b=risRhOIo118pkONLYVu23luhqGeB5jDgqxnxSf8q8nSEGVRzYNHLnpk2xI4o3/akUU
+ 9iJ6UYN7xRVB6xO1iGDKwIVdnFC9+YmYxobpCvE1XSqJ+cvYrf+pTLuXxhKmXlWLlprA
+ TTdRdlIfq520FIItzRxnEZWOQCMPmdw3K35VxMPxnCsDuXYDb9YGLQZhanD4WxwvJdHi
+ mA7xkitMJo0Y4VP220+O5aYm7egOe1ATbMWxcjquK+uIBEYsd1S/wc51/Svfj0MgD2Ha
+ fsebz/VLQU6nBgdx+OaKjCQScS41zAuJ2om5xUSZAOts9h6bfEIXRCCN+qU9UifNURbj
+ aI5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=UUAtMhUEk/jz98adLLh/kvHWU+87rtZfg/cfL1Bdfv4=;
+ b=D7vEhkPOWtVDba2GeDsWI+w2zEwxVYrOPl9XJ6aoKeqlcWR7IhCjEP5WQ8iKeI48VY
+ kxx1Xg5BVIyemsj8Ce1dipTmb8LBPAyaefwb3dw2hKb9WnmJCDNFH62LtATpruYIcCwv
+ jQJ3lYYErfW9MEABnzBWRLuUMxgNaoShszNmUkiX+XtGYimQnHOJxqlWWWsFdmum+Juc
+ q/S6EEYZ4elgyUfZTDifg+tBkdYBwIbUhUq3OFxJhg6M6SfQSNE8OhaBkRZpiRzPCOj+
+ V0U6AawgJQOuvr9nTxexkFMl4fzVKThTiXaz96V8K5tbZ0m7F6VjQJcgu8RnUyYaFCa5
+ 8l4Q==
+X-Gm-Message-State: AOAM530pOQUqg/8378g3hLUFG80PAcWBv3ZR+H44ZiSg7gHrhtLm4DDV
+ 9l3AlV10dlkFACIjymI5CEjHxQ==
+X-Google-Smtp-Source: ABdhPJwevDhhFb3fbE81queKzB5zgztjuRr7Aq9efuwPUXqmp2hDPvc+PUbX3Xnkw0p65sb/EPunjQ==
+X-Received: by 2002:a17:906:c1d4:: with SMTP id
+ bw20mr2859064ejb.91.1602070370261; 
+ Wed, 07 Oct 2020 04:32:50 -0700 (PDT)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id d59sm1247111edd.74.2020.10.07.04.32.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 07 Oct 2020 04:32:49 -0700 (PDT)
+References: <e4e6cc45-bc18-40ec-035e-fdb45b9a8f46@gmail.com>
+ <87o8lf74j5.fsf@nanos.tec.linutronix.de>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Brad Harper <bjharper@gmail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH] mmc: meson-gx: remove IRQF_ONESHOT
+In-reply-to: <87o8lf74j5.fsf@nanos.tec.linutronix.de>
+Date: Wed, 07 Oct 2020 13:32:47 +0200
+Message-ID: <1jy2ki1db4.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201007_060856_845831_DA1611F7 
-X-CRM114-Status: GOOD (  12.76  )
+X-CRM114-CacheID: sfid-20201007_073251_770001_3EBCE8F4 
+X-CRM114-Status: GOOD (  17.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,55 +99,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-mips@vger.kernel.org, Alexander Dahl <post@lespocky.de>,
- Dan Murphy <dmurphy@ti.com>, linux-amlogic@lists.infradead.org,
- linux-omap@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
- linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>
-MIME-Version: 1.0
+Cc: Kevin Hilman <khilman@baylibre.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Marc Zyngier <maz@kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hei Pavel,
 
-Am Mittwoch, 7. Oktober 2020, 12:03:59 CEST schrieb Pavel Machek:
-> > The node names for devices using the pwm-leds driver follow a certain
-> > naming scheme (now).  Parent node name is not enforced, but recommended
-> > by DT project.
-> > 
-> >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
-> >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
-> > 
-> > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.exampl
-> > e.dt.yaml: pwmleds: 'panel' does not match any of the regexes:
-> > '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'> 
-> >         From schema:
-> >         /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/
-> >         leds-pwm.yaml> 
-> > Signed-off-by: Alexander Dahl <post@lespocky.de>
-> 
-> Okay, so I need Rob's ack here, I guess... and rest of the series is
-> not really for my tree.
+On Tue 06 Oct 2020 at 17:33, Thomas Gleixner <tglx@linutronix.de> wrote:
 
-I think so, too.
+> Brad,
+>
+> On Wed, Oct 07 2020 at 00:45, Brad Harper wrote:
+>> I'm happy to test anything on a range of amlogic hardware with standard 
+>> / rt and  multiple mmc devices.  Ill test Jerome's patch in next 24 
+>> hours to report the results.
+>
+> please do not top-post and trim your replies.
+>
+>> On 6/10/2020 11:43 pm, Thomas Gleixner wrote:
+>>>       We rather should make interrupts which need to have their primary
+>>>       handler in hard interrupt context to set IRQF_NO_THREAD. That
+>>>       should at the same time confirm that the primary handler is RT
+>>>       safe.
+>>>
+>>>       Let me stare at the core code and the actual usage sites some more.
+>
+> So there are a few nasties in there and I faintly remember that there
+> was an assumption that interrupts which are requested with both a
+> primary and a secondary handler should quiesce the device interrupt in
+> the primary handler if needed. OTOH, this also enforces that the primary
+> handler is RT safe, which is after a quick scan of all the usage sites
+> not a given and quite some of the users rely on IRQF_ONESHOT.
+>
+> The below untested patch should cure the problem and keep the interrupt
+> line masked if requested with IRQF_ONESHOT.
+>
 
-I saw you applied patch number 1, all the other patches are DT and from my 
-side those can wait for the Acks required and maybe I change the indexes again 
-and I'm fine resending all that after the 5.10 merge window.
+With arm64 defconfig on Khadas vim3, no obvious regression. Looks good.
 
-Thanks for applying the non-DT patches for leds subsystem, the rest will be 
-sorted out without hurry.
+Tested-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Greets
-Alex
-
-
-
+I did not test with RT. Brad, Could you let us know is Thomas's patch
+works for you ? Thx
 
 _______________________________________________
 linux-amlogic mailing list
