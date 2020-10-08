@@ -2,24 +2,23 @@ Return-Path: <SRS0=4PA2=DP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.5 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9F72C4363C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 05:11:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A98CBC433E7
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 05:33:45 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D01942083B
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 05:11:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 046712173E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 05:33:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="xq/LIWV6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OfFdEtFh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D01942083B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="v9RJCtPD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nvidia.com header.i=@nvidia.com header.b="gGiVTnDK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 046712173E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
@@ -27,71 +26,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=qP+ErWb8EVIcE78on57XvCDFM6wQIV6Ju4kAFTxCijE=; b=xq/LIWV6tlH0+vOde5bM5whPd
-	2XQcvkOe/K0zi0FAn0ZualemoKwwG2acsR0JyhkX699hdhV4NVJuxZvSXNevDVE+4fkUgWckIfLi8
-	ByIx2xh9HxXFNLUp58opSxjeXqJc/n4kyS+SGLf+UNb/SgbIF8wuRs5NnJCTSqGHRe1zstmommbPg
-	rmvlgFtNKlDRGsHrHXMrx3/vJd+pBiK3i90P/SEgTGxxtuZSXItgyc30v1Uo1JMPz2EpfHCMqbWRH
-	FBn5r5rt00dqlLfSwS1HHcjEFJxHIzWY8Y4cpIgnyaBtljKFTPuU6KBb0A20PWWg/yMp31N4d0Wzm
-	zFCZzOH5g==;
+	 bh=RUlmsGiMaU4nONe4+ao5eU2s5pbKwPA0ULerSLTivdw=; b=v9RJCtPDBJx5hbUZi8SzUJZna
+	3ETNSBZKC6R30LzeUQUXqSMzq7zcjSwJrNfUo7fLvMP/4pIauIP2/pEG/0NvVhkElJmdB/ktouXhP
+	uMFT/fUi5YFHDOpRrNkX2ZwGMdPuNnjlQKiYhSpz5pCFei1n4URpy3brNBR/XARzfNkuTrO50JuZJ
+	1EGwM2dx5tHU0Aygo3Ub6o8LLWQRg/F0Vk+nw7k8f+RlTdPOmQABXQG6mnk2S4daEVNbKnL79SyZ7
+	NdlynKLpc8SLtFiwyZrTZF4O/9nnbinYcUhneLSm6/P3ogDyMge+l54zurD3o8szg3IN1CY5PM9oN
+	BFgAlSnQw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kQOD6-000865-4w; Thu, 08 Oct 2020 05:11:24 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1kQOYZ-0000Xs-L7; Thu, 08 Oct 2020 05:33:35 +0000
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kQOD3-00085O-Me
- for linux-amlogic@lists.infradead.org; Thu, 08 Oct 2020 05:11:22 +0000
-Received: by mail-pg1-x543.google.com with SMTP id 34so3225183pgo.13
- for <linux-amlogic@lists.infradead.org>; Wed, 07 Oct 2020 22:11:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=DGXqI+4Sh6rs8urwhC133dx8DNmlAjYdeCRk7jyHfZg=;
- b=OfFdEtFhTKkRCe5RhlJFEaguPGSub55q1j5ONalcOHYwpD35DWTogG8xfJy0GBysMo
- dxcYGiB8uyMdFWDnNUp7Hd1hPovvpAuxunu94srqIv0CH5Y6e48+RSphHQi8uqeyh8Da
- NR10jkXD0hVtDZjJIaqnPL+rlortGJ3JWWQUy4OcFaQj5dFCWB2MYVBCzgqh7XThOKLO
- XNUDKQBQ+/NmCUKSNM2WiorrxI9tZk3qOoqZxaHMhl/tTEx6ihRc1b8ABChignNYILSS
- RTfW+NoPm8MxlQ7BdzJigZFnU1+GryvjXu3yPndZip5zzdffGbaSC8zKCCstTDPilIbm
- viIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=DGXqI+4Sh6rs8urwhC133dx8DNmlAjYdeCRk7jyHfZg=;
- b=H12to9cDZdtsG6LRjwufGf6ka+cRBXwHSo7ZkWvSlWOGcGZ3L8bh5NcrWCtBL2FA4J
- GR7n/sitOR0U9P+YYGdUcopXeaFgRuERKME0pLUCDVdLoQHpKDF6Vy9EOOMTcejyMMA+
- xreh2vvUeZIWRl/j50/5UXZMPFxJpgHPqGZFMweap/jy153Fz1yNXsflUv7HbylqHj89
- jCsGTknjnXz8q3wbEX4cK56jtTwuNvHTyBf1BrBo+faNBpV3e4Ws4zNKqoWLjkjSmJsr
- 8RE6+D7JzN4gEpCp/c8Dfd+kDAIh49eN1m4LkMQmVRRRCelQ8ugXPlhem3GaLuylFUcY
- yB/Q==
-X-Gm-Message-State: AOAM533OBhWbCkltpFfEz8YqUeC0+YUlPPZU3nbMrBP0QM0sUeh8IVmc
- QEzpS3QaTONonQufdkY6fgU=
-X-Google-Smtp-Source: ABdhPJycc1QbXjDu44U3IZ20piKXkYt9w5+DehGFEbkwhNjBd2/NDvFAV6yf0lZsSAksNGlo65uF5g==
-X-Received: by 2002:a17:90a:73c9:: with SMTP id
- n9mr6194715pjk.90.1602133877705; 
- Wed, 07 Oct 2020 22:11:17 -0700 (PDT)
-Received: from ?IPv6:2402:b801:2840:8200:64bb:b626:4f99:bb54?
- ([2402:b801:2840:8200:64bb:b626:4f99:bb54])
- by smtp.gmail.com with ESMTPSA id k7sm4643537pjs.9.2020.10.07.22.11.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 07 Oct 2020 22:11:17 -0700 (PDT)
-Subject: Re: [PATCH] mmc: meson-gx: remove IRQF_ONESHOT
-To: Jerome Brunet <jbrunet@baylibre.com>, Thomas Gleixner
- <tglx@linutronix.de>, Ulf Hansson <ulf.hansson@linaro.org>
-References: <e4e6cc45-bc18-40ec-035e-fdb45b9a8f46@gmail.com>
- <87o8lf74j5.fsf@nanos.tec.linutronix.de>
- <1jy2ki1db4.fsf@starbuckisacylon.baylibre.com>
-From: Brad Harper <bjharper@gmail.com>
-Message-ID: <c8a8797e-a8ef-6d22-be76-97c27cea6819@gmail.com>
-Date: Thu, 8 Oct 2020 16:11:10 +1100
+ id 1kQOYU-0000X7-Qu; Thu, 08 Oct 2020 05:33:32 +0000
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B5f7ea4670000>; Wed, 07 Oct 2020 22:32:23 -0700
+Received: from [10.25.74.27] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 8 Oct
+ 2020 05:32:58 +0000
+Subject: Re: [PATCH v2 0/5] PCI: dwc: improve msi handling
+To: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+References: <20200924190421.549cb8fc@xhacker.debian>
+ <b977d9b4-cc98-e817-0d51-8f2c6ba1445d@nvidia.com>
+ <20201006143647.3f989340@xhacker.debian>
+From: Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <435c8cf8-8f4a-c491-4aca-3ec5b7abe49a@nvidia.com>
+Date: Thu, 8 Oct 2020 11:02:54 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+ Thunderbird/78.2.1
 MIME-Version: 1.0
-In-Reply-To: <1jy2ki1db4.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <20201006143647.3f989340@xhacker.debian>
 Content-Language: en-US
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1602135143; bh=J4CEG7z41t4fftMpaxkaa5Era9zth5z8jjZg7k+ZCts=;
+ h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+ MIME-Version:In-Reply-To:Content-Type:Content-Language:
+ Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+ b=gGiVTnDKnvH3IW3q8erfoIHhPlDmnbH2thdoY4rptWoPCwmwQxfo0RIcd6vK7za+a
+ qgXLjiuv+uk3BJx5tDpmSQbDqUWKoQT3pRifw4gmZgEkA3RCj+BkqAEyGD6U4bOMRW
+ 7YyxCLCtjO6qbXeESHYlP9z93kG3O82AA69UQ3ntIr7k056NtyNn++sDetOOUG9on9
+ TLtrQofmOFFUqspaxJYSK34woIeLsROw+yztJ5/3W8Z0lg/zdHFQ7f3LuLDNI6K7bW
+ 8eHbfb3P1ff5T55KfN3H8s00wH7Fd2T5ZOlcWCQii/0bU80nfxDTNlQkTNzGgPp5vF
+ Rmin14uLeUy0A==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201008_011121_748673_397B6FE0 
-X-CRM114-Status: GOOD (  15.55  )
+X-CRM114-CacheID: sfid-20201008_013330_976510_A20C2100 
+X-CRM114-Status: GOOD (  22.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,74 +85,126 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Marc Zyngier <maz@kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ Binghui Wang <wangbinghui@hisilicon.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Fabio Estevam <festevam@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Kevin
+ Hilman <khilman@baylibre.com>, Pratyush Anand <pratyush.anand@gmail.com>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+ Xiaowei Song <songxiaowei@hisilicon.com>, Richard Zhu <hongxing.zhu@nxp.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Yue Wang <yue.wang@Amlogic.com>,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Andy Gross <agross@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Stanimir Varbanov <svarbanov@mm-sol.com>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gNy8xMC8yMDIwIDEwOjMyIHBtLCBKZXJvbWUgQnJ1bmV0IHdyb3RlOgo+IFdpdGggYXJtNjQg
-ZGVmY29uZmlnIG9uIEtoYWRhcyB2aW0zLCBubyBvYnZpb3VzIHJlZ3Jlc3Npb24uIExvb2tzIGdv
-b2QuCj4KPiBUZXN0ZWQtYnk6IEplcm9tZSBCcnVuZXQgPGpicnVuZXRAYmF5bGlicmUuY29tPgo+
-Cj4gSSBkaWQgbm90IHRlc3Qgd2l0aCBSVC4gQnJhZCwgQ291bGQgeW91IGxldCB1cyBrbm93IGlz
-IFRob21hcydzIHBhdGNoCj4gd29ya3MgZm9yIHlvdSA/IFRoeApUaGVyZSB3YXMgYSBtZXJnZSBj
-b25mbGljdCBpbiBhcHBseWluZyBhZ2FpbnN0IHY1LjktcmM4LXJ0MTIgd2l0aApwYXJ0aWN1bGFy
-IHRoaXMgcGF0Y2g6Cmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwv
-Z2l0L3J0L2xpbnV4LXJ0LWRldmVsLmdpdC9jb21taXQva2VybmVsL2lycS9tYW5hZ2UuYz9oPWxp
-bnV4LTUuOS55LXJ0JmlkPTE4ZGYwMGVmMGIyYjE1MTNkYzhmMWE5ZWQyNmIxMWZmZjIyNjFjMzAK
-CkkgZGlkIG1hbmFnZSB0byBhZGQgdGhlIHBhdGNoIGFmdGVyIGF0dGVtcHRpbmcgdG8gcmVzb2x2
-ZSB0aGUgY29uZmxpY3QKd2hpY2ggc29sdmVzIHRoZSBkZWFkbG9jayBpc3N1ZSBJIGFtIHNlZWlu
-ZyB3aXRoIG1tYyBhbmQgd29ya3MgZmluZSBkdXJpbmcKdGVzdGluZyAoYSBrZXJuZWwgY29tcGls
-YXRpb24gb24gcHJlZW1wdF9ydCBjb25maWd1cmVkIGtlcm5lbCkuCgppcnFfdGhyZWFkIGluIC9r
-ZXJuZWwvaXJxL21hbmFnZS5jIExvb2tzIGxpa2UgdGhpcyAobm90IDEwMCUgc3VyZSBJCnNob3Vs
-ZCBoYXZlIHBsYWNlZCB0aGUgaXJxX2ZpbmFsaXplX29uZXNob3QgYmVmb3JlCmFkZF9pbnRlcnJ1
-cHRfcmFuZG9tbmVzcykuCgpCYXNlZCBvbiB0aGlzIEkgY2FuIHByb3ZpZGUKClRlc3RlZC1ieTog
-QnJhZCBIYXJwZXIgPGJqaGFycGVyQGdtYWlsLmNvbT4KCi0tLQpzdGF0aWMgaW50IGlycV90aHJl
-YWQodm9pZCAqZGF0YSkKewogwqDCoMKgwqDCoMKgwqAgc3RydWN0IGNhbGxiYWNrX2hlYWQgb25f
-ZXhpdF93b3JrOwogwqDCoMKgwqDCoMKgwqAgc3RydWN0IGlycWFjdGlvbiAqYWN0aW9uID0gZGF0
-YTsKIMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBpcnFfZGVzYyAqZGVzYyA9IGlycV90b19kZXNjKGFj
-dGlvbi0+aXJxKTsKIMKgwqDCoMKgwqDCoMKgIGlycXJldHVybl90ICgqaGFuZGxlcl9mbikoc3Ry
-dWN0IGlycV9kZXNjICpkZXNjLAogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBzdHJ1Y3QgaXJxYWN0aW9uICphY3Rpb24pOwoKIMKgwqDCoMKgwqDCoMKgIGlm
-IChmb3JjZV9pcnF0aHJlYWRzICYmIHRlc3RfYml0KElSUVRGX0ZPUkNFRF9USFJFQUQsCiZhY3Rp
-b24tPnRocmVhZF9mbGFncykpCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaGFuZGxl
-cl9mbiA9IGlycV9mb3JjZWRfdGhyZWFkX2ZuOwogwqDCoMKgwqDCoMKgwqAgZWxzZQogwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGhhbmRsZXJfZm4gPSBpcnFfdGhyZWFkX2ZuOwoKIMKg
-wqDCoMKgwqDCoMKgIGluaXRfdGFza193b3JrKCZvbl9leGl0X3dvcmssIGlycV90aHJlYWRfZHRv
-cik7CiDCoMKgwqDCoMKgwqDCoCB0YXNrX3dvcmtfYWRkKGN1cnJlbnQsICZvbl9leGl0X3dvcmss
-IGZhbHNlKTsKCiDCoMKgwqDCoMKgwqDCoCBpcnFfdGhyZWFkX2NoZWNrX2FmZmluaXR5KGRlc2Ms
-IGFjdGlvbik7CgogwqDCoMKgwqDCoMKgwqAgd2hpbGUgKCFpcnFfd2FpdF9mb3JfaW50ZXJydXB0
-KGFjdGlvbikpIHsKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpcnFyZXR1cm5fdCBh
-Y3Rpb25fcmV0OwoKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpcnFfdGhyZWFkX2No
-ZWNrX2FmZmluaXR5KGRlc2MsIGFjdGlvbik7CgogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIGFjdGlvbl9yZXQgPSBoYW5kbGVyX2ZuKGRlc2MsIGFjdGlvbik7CiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgaWYgKGFjdGlvbl9yZXQgPT0gSVJRX0hBTkRMRUQpCiDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGF0b21pY19pbmMoJmRlc2Mt
-PnRocmVhZHNfaGFuZGxlZCk7CgogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlmIChh
-Y3Rpb25fcmV0ID09IElSUV9XQUtFX1RIUkVBRCkKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgaXJxX3dha2Vfc2Vjb25kYXJ5KGRlc2MsIGFjdGlvbik7Cgog
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlycV9maW5hbGl6ZV9vbmVzaG90KGRlc2Ms
-IGFjdGlvbik7CgogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlmIChJU19FTkFCTEVE
-KENPTkZJR19QUkVFTVBUX1JUKSkgewogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgbWlncmF0ZV9kaXNhYmxlKCk7CiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBhZGRfaW50ZXJydXB0X3JhbmRvbW5lc3MoYWN0aW9uLT5pcnEs
-IDAsCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBkZXNjLT5yYW5kb21faXAgXiAodW5zaWduZWQgbG9uZykgYWN0aW9uKTsKIMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG1pZ3JhdGVfZW5hYmxl
-KCk7CiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfQogwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHdha2VfdGhyZWFkc193YWl0cShkZXNjKTsKIMKgwqDCoMKgwqDCoMKgIH0K
-CiDCoMKgwqDCoMKgwqDCoCAvKgogwqDCoMKgwqDCoMKgwqDCoCAqIFRoaXMgaXMgdGhlIHJlZ3Vs
-YXIgZXhpdCBwYXRoLiBfX2ZyZWVfaXJxKCkgaXMgc3RvcHBpbmcgdGhlCiDCoMKgwqDCoMKgwqDC
-oMKgICogdGhyZWFkIHZpYSBrdGhyZWFkX3N0b3AoKSBhZnRlciBjYWxsaW5nCiDCoMKgwqDCoMKg
-wqDCoMKgICogc3luY2hyb25pemVfaGFyZGlycSgpLiBTbyBuZWl0aGVyIElSUVRGX1JVTlRIUkVB
-RCBub3IgdGhlCiDCoMKgwqDCoMKgwqDCoMKgICogb25lc2hvdCBtYXNrIGJpdCBjYW4gYmUgc2V0
-LgogwqDCoMKgwqDCoMKgwqDCoCAqLwogwqDCoMKgwqDCoMKgwqAgdGFza193b3JrX2NhbmNlbChj
-dXJyZW50LCBpcnFfdGhyZWFkX2R0b3IpOwogwqDCoMKgwqDCoMKgwqAgcmV0dXJuIDA7Cn0KCi0t
-LQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
-LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+
+On 10/6/2020 12:06 PM, Jisheng Zhang wrote:
+> External email: Use caution opening links or attachments
+> 
+> 
+> On Tue, 6 Oct 2020 11:56:34 +0530 Vidya Sagar wrote:
+> 
+>>
+>>
+>> Hi,
+> 
+> Hi,
+> 
+>> I would like to verify this series along with the other series "PCI:
+>> dwc: fix two MSI issues" on Tegra194. I tried to apply these series on
+>> both linux-next and Lorenzo's pci/dwc branches but there seem to be non
+>> trivial conflicts. Could you please tell me which branch I can use and
+>> apply these series cleanly?
+> 
+> This is a fix, so I thought the series would be picked up in v5.9, so the
+> series is patched against v5.9-rcN
+> 
+> could you please try v5 https://lkml.org/lkml/2020/9/29/2511 on v5.9-rc7?
+I tried this series on top of v5.9-rc7 and it worked as expected on 
+Tegra194 platform. Also, I couldn't cleanly apply the other series 'PCI: 
+dwc: fix two MSI issues' on top. Could you please rebase them?
+
+Thanks,
+Vidya Sagar
+> 
+> 
+> Thanks
+> 
+>> FWIW, I acknowledge that the existing code does leak MSI target page
+>> every time system goes through suspend-resume sequence on Tegra194.
+>>
+>> Thanks,
+>> Vidya Sagar
+>>
+>> On 9/24/2020 4:35 PM, Jisheng Zhang wrote:
+>>> External email: Use caution opening links or attachments
+>>>
+>>>
+>>> Improve the msi code:
+>>> 1. Add proper error handling.
+>>> 2. Move dw_pcie_msi_init() from each users to designware host to solve
+>>> msi page leakage in resume path.
+>>>
+>>> Since v1:
+>>>     - add proper error handling patches.
+>>>     - solve the msi page leakage by moving dw_pcie_msi_init() from each
+>>>       users to designware host
+>>>
+>>>
+>>> Jisheng Zhang (5):
+>>>     PCI: dwc: Call dma_unmap_page() before freeing the msi page
+>>>     PCI: dwc: Check alloc_page() return value
+>>>     PCI: dwc: Rename dw_pcie_free_msi to dw_pcie_msi_deinit
+>>>     PCI: dwc: Skip PCIE_MSI_INTR0* programming if MSI is disabled
+>>>     PCI: dwc: Move dw_pcie_msi_init() from each users to designware host
+>>>
+>>>    drivers/pci/controller/dwc/pci-dra7xx.c       |  1 +
+>>>    drivers/pci/controller/dwc/pci-exynos.c       |  2 -
+>>>    drivers/pci/controller/dwc/pci-imx6.c         |  3 --
+>>>    drivers/pci/controller/dwc/pci-meson.c        |  8 ----
+>>>    drivers/pci/controller/dwc/pcie-artpec6.c     | 10 -----
+>>>    .../pci/controller/dwc/pcie-designware-host.c | 43 +++++++++++++------
+>>>    .../pci/controller/dwc/pcie-designware-plat.c |  3 --
+>>>    drivers/pci/controller/dwc/pcie-designware.h  |  9 +++-
+>>>    drivers/pci/controller/dwc/pcie-histb.c       |  3 --
+>>>    drivers/pci/controller/dwc/pcie-kirin.c       |  3 --
+>>>    drivers/pci/controller/dwc/pcie-qcom.c        |  3 --
+>>>    drivers/pci/controller/dwc/pcie-spear13xx.c   |  1 -
+>>>    drivers/pci/controller/dwc/pcie-tegra194.c    |  2 -
+>>>    drivers/pci/controller/dwc/pcie-uniphier.c    |  9 +---
+>>>    14 files changed, 38 insertions(+), 62 deletions(-)
+>>>
+>>> --
+>>> 2.28.0
+>>>
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
