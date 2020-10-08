@@ -2,82 +2,66 @@ Return-Path: <SRS0=4PA2=DP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DAE9C43467
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 09:09:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C07B6C43467
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 10:00:03 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E68AB21775
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 09:09:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1D9FC2083B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 10:00:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eHKWnTJ1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="efoHu7dr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E68AB21775
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="3hNYki4Q";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNGAL6j8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1D9FC2083B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=/+lMprwq8Krq4JZiGSzkN5tTt6GZF4/GFadjoJcnKks=; b=eHKWnTJ1lf/OGqQkTgPwN8MtJ
-	BOBFpY8AH4BbG0Dmns3ezfxYN15ySZj0LaVd1iE0s/s+l/p5fzJR8x6ZZfrZkTov20YnRRaH6dwpD
-	IXtu2or66ghsgL3PBW6CW7qGein5rjW1fgqAxqA+ovQGHeNxHSBNS2v+7r7WAcIxafsiv7FtiXGn4
-	7h+lstqTIZ5Z8/P/pJIFtBzzDCT/38jHy8Tp32hl5MEc2wEDpY8oeuAxHDjVZWRsnEXFYmdon4Jwz
-	KsRXM+JRrGFI+YSvzQER+FjVZx/C+5fxpRm5CkXMzinPGyQGchISq6fQO/Jl+tLNcqrhWPH7eq2K/
-	EOph0QoPQ==;
+	 bh=Ei1QpD/8zU7yWfRzae2wZ1qO7ayEsrwmDUUrb0opXGE=; b=3hNYki4QIS7Vg86KzAOr7ZIOn
+	msoXCsTKNBFh8qNy2PtBy8/jx/81Wi2ojuJs6Hbe0P3MuhQ18WjT9xetZpf33GbuGJiGXP7NdO0cQ
+	Oa1nZcv/gwHqUFYgT1zcaTXqvTTsESUHk4yvrWPS6xwWeQmx1dLoKJcfqpgpuBg+4jySplvIzAkY5
+	Tx3DIFlsQxElVncK7NtlMpeQ6FN/cXaIfMdsWIpOO/2TTIWSxD3K3zfUuECiK7wYyHW6SMQUXUMCJ
+	dKRY/2pWTYdIbY8Vf8wTdJX/GzvkAfUBWsEsFVdt5a4ufqcou52Oaz+8S2OFroqjO6+9Kaqggli4F
+	iAXycd/uA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kQRvB-0007zq-8x; Thu, 08 Oct 2020 09:09:09 +0000
-Received: from mail-ua1-x942.google.com ([2607:f8b0:4864:20::942])
+	id 1kQSiJ-0005fq-H3; Thu, 08 Oct 2020 09:59:55 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kQRv8-0007zI-4b
- for linux-amlogic@lists.infradead.org; Thu, 08 Oct 2020 09:09:07 +0000
-Received: by mail-ua1-x942.google.com with SMTP id j21so1660946uak.5
- for <linux-amlogic@lists.infradead.org>; Thu, 08 Oct 2020 02:09:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Ys8YNvOHIAk8VrNZZJl76QEza47nB/FfFC5qHScGSYQ=;
- b=efoHu7drs789U4yzKMxSHSkvPlcbQTJJztg6jbUC2OJTpcDvlFhLVNXI0vsrU7gzDg
- KDVxR3SGi52hOLOdWqLl4/vp4nBcdg1pR5tPP2mtDqiZzQ19OlfaWvsBhzln23tOR6rR
- ylAzMsXHFjO9QrCgb2YzpvDtjkwpNGeaDbCK8tkNlWd7OPW2bMoLUiUW0ZhKGoR++v27
- 7+ydyHi85t0pMx5SKQr3yS5I1MhJ0D4+LRJvQeM+V0NDDZoGbCibv4fgnulJIwG0ppB7
- 0FzPXBJpgQ7ifoP/vdQYLsShBhs6kZ/ZV6XF4mOXN8rlL2DLQ11GGHv8/M9DeG/ROvm4
- dAfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Ys8YNvOHIAk8VrNZZJl76QEza47nB/FfFC5qHScGSYQ=;
- b=OsTw9klvS01E+J4Dhi+W7Sk7yUVNkMsWw6qvqT+EP+/NmhXIbMfM2F006+p+W2UaLv
- 7p6Kw9udtJ86Pfe/t1XLQYh5QbT1FnkFvm9gPPzVqeau+zK8qZJWgsV/3xsMzu6e/xzx
- AEG59D/5F+YZnR0DKkWtiOceT/CJLeqonP8eqAJzoicp8/BleT1V7mRIOAq3FHCXVtqM
- FfySXmqJ9iavAycFoFh89lOqQ4/0LhWnmNE3pIysaiPIMS0/YXGwixiG0dLUsZYS/ADK
- hCbod7zErmyhDETj/HApQs33wXk//VWOF4x7PSC835i7KYZ4C1cs2TOF6/XqUiisSbwo
- 38kg==
-X-Gm-Message-State: AOAM531bAt3AZ9YCQ9MTBpd49Yp9i4HYXCAbuvAwKUXnc11yAb0ft3IR
- xvBmjuwttXjOs86HuI8721Ij+zUZwUh8qWFI6h3M/A==
-X-Google-Smtp-Source: ABdhPJzfkDaEWr1LMBcvQaebaaMeol2WcIbuZU5mEchl2MyTqCh+XzsTJc8hJB+agiGLkdCC9RTzYjm4sg3ir2YBpMc=
-X-Received: by 2002:ab0:130a:: with SMTP id g10mr4149927uae.100.1602148143769; 
- Thu, 08 Oct 2020 02:09:03 -0700 (PDT)
+ id 1kQSiG-0005f2-It
+ for linux-amlogic@lists.infradead.org; Thu, 08 Oct 2020 09:59:53 +0000
+Received: from localhost (p54b33b8c.dip0.t-ipconnect.de [84.179.59.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7304D2083B;
+ Thu,  8 Oct 2020 09:59:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1602151191;
+ bh=jfNXs9KbJzkZ3fc9g3oTXmIXRmuu5c92dx3Jl/2RpgY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=CNGAL6j8igMV89bdX5ykmhi6PnoJUrd72/SzoGs7aNAvn8tp89a3Kg1BL0usGmVG4
+ j/bCCqctjOT4t1cHVpUH4f2b+n5fqqAXVCN995Sh+ez9TJlzV7DNmWtiUdtAc/DjAQ
+ jiFCmwDbUHlejccXiqJDVi8NBw3e7hHFZcTVzvXY=
+Date: Thu, 8 Oct 2020 11:59:47 +0200
+From: Wolfram Sang <wsa@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH 1/3] i2c: meson: fix clock setting overwrite
+Message-ID: <20201008095947.GC76290@ninjato>
+References: <20201007080751.1259442-1-jbrunet@baylibre.com>
+ <20201007080751.1259442-2-jbrunet@baylibre.com>
 MIME-Version: 1.0
-References: <e4e6cc45-bc18-40ec-035e-fdb45b9a8f46@gmail.com>
- <87o8lf74j5.fsf@nanos.tec.linutronix.de>
-In-Reply-To: <87o8lf74j5.fsf@nanos.tec.linutronix.de>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 8 Oct 2020 11:08:27 +0200
-Message-ID: <CAPDyKFosR2wd=jqADBF_dNd3kCMbM4oDAHyxiYC-5RF=SZ_E5A@mail.gmail.com>
-Subject: Re: [PATCH] mmc: meson-gx: remove IRQF_ONESHOT
-To: Thomas Gleixner <tglx@linutronix.de>
+In-Reply-To: <20201007080751.1259442-2-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201008_050906_449502_1564BF9D 
-X-CRM114-Status: GOOD (  38.34  )
+X-CRM114-CacheID: sfid-20201008_055952_698101_BBF2E3DA 
+X-CRM114-Status: GOOD (  12.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,235 +73,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Marc Zyngier <maz@kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Brad Harper <bjharper@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, Nicolas Belin <nbelin@baylibre.com>,
+ linux-amlogic@lists.infradead.org
+Content-Type: multipart/mixed; boundary="===============4265745787626393994=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 6 Oct 2020 at 17:33, Thomas Gleixner <tglx@linutronix.de> wrote:
->
-> Brad,
->
-> On Wed, Oct 07 2020 at 00:45, Brad Harper wrote:
-> > I'm happy to test anything on a range of amlogic hardware with standard
-> > / rt and  multiple mmc devices.  Ill test Jerome's patch in next 24
-> > hours to report the results.
->
-> please do not top-post and trim your replies.
->
-> > On 6/10/2020 11:43 pm, Thomas Gleixner wrote:
-> >>       We rather should make interrupts which need to have their primary
-> >>       handler in hard interrupt context to set IRQF_NO_THREAD. That
-> >>       should at the same time confirm that the primary handler is RT
-> >>       safe.
-> >>
-> >>       Let me stare at the core code and the actual usage sites some more.
->
-> So there are a few nasties in there and I faintly remember that there
-> was an assumption that interrupts which are requested with both a
-> primary and a secondary handler should quiesce the device interrupt in
-> the primary handler if needed. OTOH, this also enforces that the primary
-> handler is RT safe, which is after a quick scan of all the usage sites
-> not a given and quite some of the users rely on IRQF_ONESHOT.
->
-> The below untested patch should cure the problem and keep the interrupt
-> line masked if requested with IRQF_ONESHOT.
->
-> Thanks,
->
->         tglx
 
-Thomas, thanks a lot for helping out and looking at this!
+--===============4265745787626393994==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="R+My9LyyhiUvIEro"
+Content-Disposition: inline
 
-It looks like the testing of the patch below went well. Are you
-intending to queue up the patch via your tip tree?
 
-If you need any help, just tell us!
+--R+My9LyyhiUvIEro
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Kind regards
-Uffe
+On Wed, Oct 07, 2020 at 10:07:49AM +0200, Jerome Brunet wrote:
+> When the slave address is written in do_start(), SLAVE_ADDR is written
+> completely. This may overwrite some setting related to the clock rate
+> or signal filtering.
+>=20
+> Fix this by writing only the bits related to slave address. To avoid
+> causing unexpected changed, explicitly disable filtering or high/low
+> clock mode which may have been left over by the bootloader.
+>=20
+> Fixes: 30021e3707a7 ("i2c: add support for Amlogic Meson I2C controller")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-> ---
-> --- a/kernel/irq/manage.c
-> +++ b/kernel/irq/manage.c
-> @@ -967,8 +967,7 @@ static int irq_wait_for_interrupt(struct
->  static void irq_finalize_oneshot(struct irq_desc *desc,
->                                  struct irqaction *action)
->  {
-> -       if (!(desc->istate & IRQS_ONESHOT) ||
-> -           action->handler == irq_forced_secondary_handler)
-> +       if (!(action->flags & IRQF_ONESHOT))
->                 return;
->  again:
->         chip_bus_lock(desc);
-> @@ -1073,10 +1072,6 @@ irq_forced_thread_fn(struct irq_desc *de
->
->         local_bh_disable();
->         ret = action->thread_fn(action->irq, action->dev_id);
-> -       if (ret == IRQ_HANDLED)
-> -               atomic_inc(&desc->threads_handled);
-> -
-> -       irq_finalize_oneshot(desc, action);
->         local_bh_enable();
->         return ret;
->  }
-> @@ -1089,14 +1084,7 @@ irq_forced_thread_fn(struct irq_desc *de
->  static irqreturn_t irq_thread_fn(struct irq_desc *desc,
->                 struct irqaction *action)
->  {
-> -       irqreturn_t ret;
-> -
-> -       ret = action->thread_fn(action->irq, action->dev_id);
-> -       if (ret == IRQ_HANDLED)
-> -               atomic_inc(&desc->threads_handled);
-> -
-> -       irq_finalize_oneshot(desc, action);
-> -       return ret;
-> +       return action->thread_fn(action->irq, action->dev_id);
->  }
->
->  static void wake_threads_waitq(struct irq_desc *desc)
-> @@ -1172,9 +1160,14 @@ static int irq_thread(void *data)
->                 irq_thread_check_affinity(desc, action);
->
->                 action_ret = handler_fn(desc, action);
-> +               if (action_ret == IRQ_HANDLED)
-> +                       atomic_inc(&desc->threads_handled);
-> +
->                 if (action_ret == IRQ_WAKE_THREAD)
->                         irq_wake_secondary(desc, action);
->
-> +               irq_finalize_oneshot(desc, action);
-> +
->                 wake_threads_waitq(desc);
->         }
->
-> @@ -1219,7 +1212,7 @@ static int irq_setup_forced_threading(st
->  {
->         if (!force_irqthreads)
->                 return 0;
-> -       if (new->flags & (IRQF_NO_THREAD | IRQF_PERCPU | IRQF_ONESHOT))
-> +       if (new->flags & (IRQF_NO_THREAD | IRQF_PERCPU))
->                 return 0;
->
->         /*
-> @@ -1229,8 +1222,6 @@ static int irq_setup_forced_threading(st
->         if (new->handler == irq_default_primary_handler)
->                 return 0;
->
-> -       new->flags |= IRQF_ONESHOT;
-> -
->         /*
->          * Handle the case where we have a real primary handler and a
->          * thread handler. We force thread them as well by creating a
-> @@ -1246,8 +1237,11 @@ static int irq_setup_forced_threading(st
->                 new->secondary->dev_id = new->dev_id;
->                 new->secondary->irq = new->irq;
->                 new->secondary->name = new->name;
-> +               /* Preserve the requested IRQF_ONESHOT */
-> +               new->secondary->flags = new->flags & IRQF_ONESHOT;
->         }
->         /* Deal with the primary handler */
-> +       new->flags |= IRQF_ONESHOT;
->         set_bit(IRQTF_FORCED_THREAD, &new->thread_flags);
->         new->thread_fn = new->handler;
->         new->handler = irq_default_primary_handler;
-> @@ -1341,6 +1335,38 @@ setup_irq_thread(struct irqaction *new,
->         return 0;
->  }
->
-> +static unsigned long thread_mask_alloc(unsigned long thread_mask)
-> +{
-> +       /*
-> +        * Unlikely to have 32 resp 64 irqs sharing one line,
-> +        * but who knows.
-> +        */
-> +       if (thread_mask == ~0UL)
-> +               return 0;
-> +
-> +       /*
-> +        * The thread_mask for the action is or'ed to
-> +        * desc->thread_active to indicate that the
-> +        * IRQF_ONESHOT thread handler has been woken, but not
-> +        * yet finished. The bit is cleared when a thread
-> +        * completes. When all threads of a shared interrupt
-> +        * line have completed desc->threads_active becomes
-> +        * zero and the interrupt line is unmasked. See
-> +        * handle.c:irq_wake_thread() for further information.
-> +        *
-> +        * If no thread is woken by primary (hard irq context)
-> +        * interrupt handlers, then desc->threads_active is
-> +        * also checked for zero to unmask the irq line in the
-> +        * affected hard irq flow handlers
-> +        * (handle_[fasteoi|level]_irq).
-> +        *
-> +        * The new action gets the first zero bit of
-> +        * thread_mask assigned. See the loop above which or's
-> +        * all existing action->thread_mask bits.
-> +        */
-> +       return 1UL << ffz(thread_mask);
-> +}
-> +
->  /*
->   * Internal function to register an irqaction - typically used to
->   * allocate special interrupts that are part of the architecture.
-> @@ -1525,35 +1551,18 @@ static int
->          * conditional in irq_wake_thread().
->          */
->         if (new->flags & IRQF_ONESHOT) {
-> -               /*
-> -                * Unlikely to have 32 resp 64 irqs sharing one line,
-> -                * but who knows.
-> -                */
-> -               if (thread_mask == ~0UL) {
-> -                       ret = -EBUSY;
-> +               ret = -EBUSY;
-> +               new->thread_mask = thread_mask_alloc(thread_mask);
-> +               if (!new->thread_mask)
->                         goto out_unlock;
-> +
-> +               if (new->secondary && (new->secondary->flags & IRQF_ONESHOT)) {
-> +                       thread_mask |= new->thread_mask;
-> +                       new->secondary->thread_mask =
-> +                               thread_mask_alloc(thread_mask);
-> +                       if (!new->secondary->thread_mask)
-> +                               goto out_unlock;
->                 }
-> -               /*
-> -                * The thread_mask for the action is or'ed to
-> -                * desc->thread_active to indicate that the
-> -                * IRQF_ONESHOT thread handler has been woken, but not
-> -                * yet finished. The bit is cleared when a thread
-> -                * completes. When all threads of a shared interrupt
-> -                * line have completed desc->threads_active becomes
-> -                * zero and the interrupt line is unmasked. See
-> -                * handle.c:irq_wake_thread() for further information.
-> -                *
-> -                * If no thread is woken by primary (hard irq context)
-> -                * interrupt handlers, then desc->threads_active is
-> -                * also checked for zero to unmask the irq line in the
-> -                * affected hard irq flow handlers
-> -                * (handle_[fasteoi|level]_irq).
-> -                *
-> -                * The new action gets the first zero bit of
-> -                * thread_mask assigned. See the loop above which or's
-> -                * all existing action->thread_mask bits.
-> -                */
-> -               new->thread_mask = 1UL << ffz(thread_mask);
->
->         } else if (new->handler == irq_default_primary_handler &&
->                    !(desc->irq_data.chip->flags & IRQCHIP_ONESHOT_SAFE)) {
->
->
+Applied to for-current, thanks!
+
+
+--R+My9LyyhiUvIEro
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9+4xMACgkQFA3kzBSg
+KbaPtBAAkuHWLMNn0jybEmjAKZBIbOlz+CXWeIoCShoBnN4pte2ywTTjm5sgkF3u
+Uxkuo8wH1v6eirOOEO3lXuxO8pXuLNZOqKZCzX+7ReRqA4SaXQQioPKhd8drY+Ia
+Om8OvYsH236YSV1njL2L4CiQ/WWZlbKo2WiQKeR21qyWrUvAiv3xDf99KkOKzGx+
+Lg1KPZdyIHOwi7jZSr2oq84Rch9pm0YAH0kfVYV+v2WhoyQvZyQ7vd9w5lpdTzVM
+L3Rdr6ssn2Jf84t91tz0uA1TiSD70G9PYN2skl9zDdJIPNUy9xhC/DbeU4JUGnox
+SI09i14u3f5wSEFnQBQs23mMB+oMlQ8dhc+gnNUyq5RUlfNy5ScdwHYkOv+BWSel
+Pr30tSS8kosB+JGc1Sz7J367UoTLaHjcKJuCZW9c0Bs5SR9FamtO4N3iEve7JPBN
+HHqPx3qJanf12ekXN0DZmt0gg9kwxf5G2hmZq7V2dV537/nAGQIh9e6CJTcsBdiu
+V30cL3q764QUjg61J1IbLW1+9L/gCQ6PuA5ND4tcpl/3rjtqJxWqhgKrDQL2+Q+K
+WSTyND9YyLFk1cd/QU7AVtOlpNoE0xPVxlRaRE+Yr1TBaS57hsTJX+tum9tzvTEc
+pmjsfWCQREYH3Rl7aJ8qoMJmP4MQLcxAmcn7Qn7Tb+BxTGK18Ho=
+=dWyY
+-----END PGP SIGNATURE-----
+
+--R+My9LyyhiUvIEro--
+
+
+--===============4265745787626393994==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4265745787626393994==--
+
