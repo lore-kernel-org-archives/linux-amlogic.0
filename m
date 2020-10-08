@@ -2,97 +2,91 @@ Return-Path: <SRS0=4PA2=DP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6DA54C433E7
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 05:44:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46250C433E7
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 07:33:51 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A63FC20725
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 05:44:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C8EDA2184D
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2020 07:33:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="0+QbKaK4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nvidia.com header.i=@nvidia.com header.b="ofe9x4DP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A63FC20725
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kcaqLoEc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZsFHLmxE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C8EDA2184D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=hMnHU8m/lHKTfI7FNiYtM8+qjJPD1x3fi+HcmSxA6ys=; b=0+QbKaK4CuH/lehYcVlDk6+oH
-	+Wvf6wpsGFePkvmQo9IXO1a/91M1zqpzy3bNjrAUuBQLZkSYDWk532G7GOxXUGbGui0tfEyILsNoZ
-	XvqrBf18YVpAWU5qmrrToOa6lyPc29jjxp+mz/2Y0B4WHMqx51br3wXhA1iHD/E+s+8kmOEBthsp/
-	NMLr9kV/wGKq9Eg1bTFUd+m+M9Vpc47TZiHP10YryEA0cgHvdX8dvsMRGZPMY7JPndxHOmL8sr38W
-	ccFGKlQh8Hnn07tyKo2yXDuld4jNdFEpzshPV8SWLgFv+Vk8mcB2D9Z1RCOIi+TCxL0C19epLm8RJ
-	GwR2ey3xg==;
+	 bh=TtYio96TN0V9RsRlscPdju7NQDul8eeuyI3YgVcEGZ4=; b=kcaqLoEco3CD5Osl0YOAy3qCX
+	mKjTWpF1QXL5/A8dyDWmwKDrO+oG8487T3VuN8pCNLB0cLms/9LIB7+VhReGf9yUWJI/NFsLo1iV/
+	ruWIluY42R//YVT8COQ489Q9hPruMgjtnOAybRnizAuAFE8+viDf+4WJniiv39VYKLYyHLoa5XcVo
+	atR5lRXB3w7KRPFNWdcy/36usr7fcjkYhNeC66jBq+0Ag+j7+LSUcp5TdWN1+FCGD6U3dvmI2RsoK
+	Lg3BmwUZO3JfeVnE0FTzARM9r6RRNzxt1TZ96qAksW8JlWi6apb0DBILsWUEbm5P3WV02bPxPw5c9
+	rok0cz6fg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kQOiv-00013b-Hb; Thu, 08 Oct 2020 05:44:17 +0000
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64])
+	id 1kQQQp-0007Be-BY; Thu, 08 Oct 2020 07:33:43 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kQOiq-00012n-J0; Thu, 08 Oct 2020 05:44:13 +0000
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5f7ea6f10002>; Wed, 07 Oct 2020 22:43:13 -0700
-Received: from [10.25.74.27] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 8 Oct
- 2020 05:43:50 +0000
-Subject: Re: [PATCH v2 5/5] PCI: dwc: Move dw_pcie_msi_init() from each users
- to designware host
-To: Jisheng Zhang <Jisheng.Zhang@synaptics.com>, Kishon Vijay Abraham I
- <kishon@ti.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Rob Herring
- <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han
- <jingoohan1@gmail.com>, Kukjin Kim <kgene@kernel.org>, Krzysztof Kozlowski
- <krzk@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach
- <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, "Yue
- Wang" <yue.wang@Amlogic.com>, Kevin Hilman <khilman@baylibre.com>, "Neil
- Armstrong" <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jesper Nilsson
- <jesper.nilsson@axis.com>, Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
- Xiaowei Song <songxiaowei@hisilicon.com>, Binghui Wang
- <wangbinghui@hisilicon.com>, Andy Gross <agross@kernel.org>, Bjorn Andersson
- <bjorn.andersson@linaro.org>, Stanimir Varbanov <svarbanov@mm-sol.com>,
- Pratyush Anand <pratyush.anand@gmail.com>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, "Kunihiko
- Hayashi" <hayashi.kunihiko@socionext.com>, Masahiro Yamada
- <yamada.masahiro@socionext.com>
-References: <20200924190421.549cb8fc@xhacker.debian>
- <20200924190742.76939458@xhacker.debian>
-From: Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <2972e253-1d4f-1475-594b-024103959415@nvidia.com>
-Date: Thu, 8 Oct 2020 11:13:47 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.1
+ id 1kQQQn-0007Ao-25
+ for linux-amlogic@lists.infradead.org; Thu, 08 Oct 2020 07:33:41 +0000
+Received: by mail-wr1-x442.google.com with SMTP id n15so5404817wrq.2
+ for <linux-amlogic@lists.infradead.org>; Thu, 08 Oct 2020 00:33:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=tgWoS1DNrNMjeMErRF1VLwt6P/QpByafehH2pDshfP0=;
+ b=ZsFHLmxE7BINX3sLNhZmok4EUe+DHyNsoKFxHXdX3XoSP/qHZ6sO4YdEVZnTldhdY7
+ 26iJvDlQBO5kneSJgq8Ui40Fv99Qfopg22haKLGa7CTGRmxvfG5orLelU4lG2qZiGElE
+ dkoMO11L1XEeGCXndx2NoKnjCR9PDvPpU+7dELIvNgPtdPpnwhuLZKm4h4zdb6JXoeU2
+ xxWCenu7xveYXeRW/fFuM7i4SAdQdP8Q2EPua1MW2787y1cWhN8CJkWCyic9+GFesKWz
+ w+b0z7cnlPzn6cPtmqVDDXtZPtjWeZ8S+kbZJoZdAm8Cdr4W17C7OiYCPMJiNDQuM6GZ
+ Y2Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=tgWoS1DNrNMjeMErRF1VLwt6P/QpByafehH2pDshfP0=;
+ b=WLabRJN+UvY2XUFFIHEcVEFsLI/P5TIJkEYbvzoFuuDXbKKE0+EROd0sa47q+EkMus
+ llOsmC/4B4UwoFS7NwHajRLZOryIIc1PdOI0fZ0Ksr6GLtADnanCpVRXuQDYqJOx8VRZ
+ /zCSW+lHEOROzhpmRzWQgbOvtkp3zSflml3p9WZWG+Nm5i5CV80P+lDNzdSAcg+/rFia
+ r0un989DKaxNRvLnsy70d7TtwTdipEN7BXYRQ3Epn+TjZ8nyefH8ruQelpc3xXAoL8xt
+ zfHx0JXU5VtPEyWK12wXuMbdWXrvzcIrra11KZXJj7KyD3TC6ejO5efeawholHDOULId
+ 3UQg==
+X-Gm-Message-State: AOAM533jK5gJKxE4PtOa0e6wO2omF0J/3AcZIfUcwd5T5TnxbwsCnUiS
+ oERYjD/35DWmf9Kz+SNMQtdvOg==
+X-Google-Smtp-Source: ABdhPJzabvtfwLmhnEYubgjfeo2bB0aroK/nU1F0zOHh2mrKpbUH4p2gKhjVT7qNDholk5mCIJP9Ag==
+X-Received: by 2002:a5d:40c3:: with SMTP id b3mr8460241wrq.157.1602142419967; 
+ Thu, 08 Oct 2020 00:33:39 -0700 (PDT)
+Received: from dell ([91.110.221.232])
+ by smtp.gmail.com with ESMTPSA id s11sm1385391wrm.56.2020.10.08.00.33.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 08 Oct 2020 00:33:39 -0700 (PDT)
+Date: Thu, 8 Oct 2020 08:33:37 +0100
+From: Lee Jones <lee.jones@linaro.org>
+To: Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH v7 03/12] dt-bindings: mfd: Fix schema warnings for
+ pwm-leds
+Message-ID: <20201008073337.GG1763265@dell>
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-4-post@lespocky.de>
+ <20201007100359.GC12224@duo.ucw.cz>
 MIME-Version: 1.0
-In-Reply-To: <20200924190742.76939458@xhacker.debian>
-Content-Language: en-US
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1602135793; bh=iZvy76pdbc5FJCBH+eg53TT5F3QDakC6nEIqBGQ5ke8=;
- h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
- MIME-Version:In-Reply-To:Content-Type:Content-Language:
- Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
- b=ofe9x4DPu8JLtZyOBkrJptBE1YLWfDKJp/FT2TrySrEETKgd0we+ph0bHRQvhl1iJ
- QjbQmuCCngb/xcuFOPjnj2HXcQWNwHasWeKb+89PYHo/Kb0h/F8Xb+c2snOORSS8el
- M6zZhwJjr2PreNU8bEJo0EhOLIqtGVw0godmsv/gQu4rhg8CuHj3NmpUvUM0oIMpgP
- mLqjHeotbcZ184hurTiRD3t6z7Br8JEBJ9RuXc8xfMA5WyYUjUJx+zEBNobM7+QT/w
- atquyuI7LiuX19EJ6iWr+71VjsIVMJDNuPAcGIbuh7lo33vo1spfgWKBSFuBV3sKaE
- K/wVQXs9EmBbw==
+Content-Disposition: inline
+In-Reply-To: <20201007100359.GC12224@duo.ucw.cz>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201008_014412_761729_E93E812D 
-X-CRM114-Status: GOOD (  28.63  )
+X-CRM114-CacheID: sfid-20201008_033341_139216_13AC81BA 
+X-CRM114-Status: GOOD (  13.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,346 +98,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, Alexander Dahl <ada@thorsis.com>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ linux-mips@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>,
+ Alexander Dahl <post@lespocky.de>, Dan Murphy <dmurphy@ti.com>,
+ linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 9/24/2020 4:37 PM, Jisheng Zhang wrote:
-> External email: Use caution opening links or attachments
-> 
-> 
-> Currently, dw_pcie_msi_init() allocates and maps page for msi, then
-> program the PCIE_MSI_ADDR_LO and PCIE_MSI_ADDR_HI. The Root Complex
-> may lose power during suspend-to-RAM, so when we resume, we want to
-> redo the latter but not the former. If designware based driver (for
-> example, pcie-tegra194.c) calls dw_pcie_msi_init() in resume path, the
-> previous msi page will be leaked. From another side, except
-> pci-dra7xx.c we can move the dw_pcie_msi_init() from each users to
-> designware host, I.E move the msi page allocation and mapping to
-> dw_pcie_host_init() and move the PCIE_MSI_ADDR_* programming to
-> dw_pcie_setup_rc(). After this moving, we solve the msi page leakage
-> as well.
-> 
-> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-> ---
->   drivers/pci/controller/dwc/pci-dra7xx.c       |  1 +
->   drivers/pci/controller/dwc/pci-exynos.c       |  2 --
->   drivers/pci/controller/dwc/pci-imx6.c         |  3 ---
->   drivers/pci/controller/dwc/pci-meson.c        |  8 -------
->   drivers/pci/controller/dwc/pcie-artpec6.c     | 10 --------
->   .../pci/controller/dwc/pcie-designware-host.c | 24 ++++++++++++-------
->   .../pci/controller/dwc/pcie-designware-plat.c |  3 ---
->   drivers/pci/controller/dwc/pcie-designware.h  |  5 ++++
->   drivers/pci/controller/dwc/pcie-histb.c       |  3 ---
->   drivers/pci/controller/dwc/pcie-kirin.c       |  3 ---
->   drivers/pci/controller/dwc/pcie-qcom.c        |  3 ---
->   drivers/pci/controller/dwc/pcie-spear13xx.c   |  1 -
->   drivers/pci/controller/dwc/pcie-tegra194.c    |  2 --
->   drivers/pci/controller/dwc/pcie-uniphier.c    |  9 +------
->   14 files changed, 22 insertions(+), 55 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-dra7xx.c b/drivers/pci/controller/dwc/pci-dra7xx.c
-> index dc387724cf08..d8b74389e353 100644
-> --- a/drivers/pci/controller/dwc/pci-dra7xx.c
-> +++ b/drivers/pci/controller/dwc/pci-dra7xx.c
-> @@ -210,6 +210,7 @@ static int dra7xx_pcie_host_init(struct pcie_port *pp)
->          dra7xx_pcie_establish_link(pci);
->          dw_pcie_wait_for_link(pci);
->          dw_pcie_msi_init(pp);
-> +       dw_pcie_msi_config(pp);
->          dra7xx_pcie_enable_interrupts(dra7xx);
-> 
->          return 0;
-> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
-> index 8d82c43ae299..9cca0ce79777 100644
-> --- a/drivers/pci/controller/dwc/pci-exynos.c
-> +++ b/drivers/pci/controller/dwc/pci-exynos.c
-> @@ -298,8 +298,6 @@ static void exynos_pcie_msi_init(struct exynos_pcie *ep)
->          struct pcie_port *pp = &pci->pp;
->          u32 val;
-> 
-> -       dw_pcie_msi_init(pp);
-> -
->          /* enable MSI interrupt */
->          val = exynos_pcie_readl(ep->mem_res->elbi_base, PCIE_IRQ_EN_LEVEL);
->          val |= IRQ_MSI_ENABLE;
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 5fef2613b223..dba6e351e3df 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -848,9 +848,6 @@ static int imx6_pcie_host_init(struct pcie_port *pp)
->          dw_pcie_setup_rc(pp);
->          imx6_pcie_establish_link(imx6_pcie);
-> 
-> -       if (IS_ENABLED(CONFIG_PCI_MSI))
-> -               dw_pcie_msi_init(pp);
-> -
->          return 0;
->   }
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> index 4f183b96afbb..cd0d9dd8dd61 100644
-> --- a/drivers/pci/controller/dwc/pci-meson.c
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -377,12 +377,6 @@ static int meson_pcie_establish_link(struct meson_pcie *mp)
->          return dw_pcie_wait_for_link(pci);
->   }
-> 
-> -static void meson_pcie_enable_interrupts(struct meson_pcie *mp)
-> -{
-> -       if (IS_ENABLED(CONFIG_PCI_MSI))
-> -               dw_pcie_msi_init(&mp->pci.pp);
-> -}
-> -
->   static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
->                                    u32 *val)
->   {
-> @@ -467,8 +461,6 @@ static int meson_pcie_host_init(struct pcie_port *pp)
->          if (ret)
->                  return ret;
-> 
-> -       meson_pcie_enable_interrupts(mp);
-> -
->          return 0;
->   }
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-artpec6.c b/drivers/pci/controller/dwc/pcie-artpec6.c
-> index 97d50bb50f06..af1e6bb28e7a 100644
-> --- a/drivers/pci/controller/dwc/pcie-artpec6.c
-> +++ b/drivers/pci/controller/dwc/pcie-artpec6.c
-> @@ -346,15 +346,6 @@ static void artpec6_pcie_deassert_core_reset(struct artpec6_pcie *artpec6_pcie)
->          usleep_range(100, 200);
->   }
-> 
-> -static void artpec6_pcie_enable_interrupts(struct artpec6_pcie *artpec6_pcie)
-> -{
-> -       struct dw_pcie *pci = artpec6_pcie->pci;
-> -       struct pcie_port *pp = &pci->pp;
-> -
-> -       if (IS_ENABLED(CONFIG_PCI_MSI))
-> -               dw_pcie_msi_init(pp);
-> -}
-> -
->   static int artpec6_pcie_host_init(struct pcie_port *pp)
->   {
->          struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -368,7 +359,6 @@ static int artpec6_pcie_host_init(struct pcie_port *pp)
->          dw_pcie_setup_rc(pp);
->          artpec6_pcie_establish_link(pci);
->          dw_pcie_wait_for_link(pci);
-> -       artpec6_pcie_enable_interrupts(artpec6_pcie);
-> 
->          return 0;
->   }
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 7a8adf597803..6603d7c36f2e 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -296,11 +296,23 @@ void dw_pcie_msi_deinit(struct pcie_port *pp)
->          }
->   }
-> 
-> +void dw_pcie_msi_config(struct pcie_port *pp)
-> +{
-> +       if (pp->msi_page) {
-> +               u64 msi_target = (u64)pp->msi_data;
-> +
-> +               /* Program the msi_data */
-> +               dw_pcie_wr_own_conf(pp, PCIE_MSI_ADDR_LO, 4,
-> +                                   lower_32_bits(msi_target));
-> +               dw_pcie_wr_own_conf(pp, PCIE_MSI_ADDR_HI, 4,
-> +                                   upper_32_bits(msi_target));
-> +       }
-> +}
-> +
->   void dw_pcie_msi_init(struct pcie_port *pp)
->   {
->          struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->          struct device *dev = pci->dev;
-> -       u64 msi_target;
-> 
->          pp->msi_page = alloc_page(GFP_KERNEL);
-I'm not sure if it can be addressed in the same patch, but I think it is 
-required to call dma_set_coherent_mask() with 32-bit mask before calling 
-dma_map_single() as there are endpoint devices which are only 32-bit MSI 
-capable and it is required to restrict the MSI target address to always 
-be in 32-bit domain so that both kinds of endpoints (only 32-bit capable 
-and 64-bit capable) can work with this 32-bit MSI target.
-
->          if (!pp->msi_page) {
-> @@ -314,15 +326,7 @@ void dw_pcie_msi_init(struct pcie_port *pp)
->                  dev_err(dev, "Failed to map MSI data\n");
->                  __free_page(pp->msi_page);
->                  pp->msi_page = NULL;
-> -               return;
->          }
-> -       msi_target = (u64)pp->msi_data;
-> -
-> -       /* Program the msi_data */
-> -       dw_pcie_wr_own_conf(pp, PCIE_MSI_ADDR_LO, 4,
-> -                           lower_32_bits(msi_target));
-> -       dw_pcie_wr_own_conf(pp, PCIE_MSI_ADDR_HI, 4,
-> -                           upper_32_bits(msi_target));
->   }
->   EXPORT_SYMBOL_GPL(dw_pcie_msi_init);
-> 
-> @@ -449,6 +453,7 @@ int dw_pcie_host_init(struct pcie_port *pp)
->                                  irq_set_chained_handler_and_data(pp->msi_irq,
->                                                              dw_chained_msi_isr,
->                                                              pp);
-> +                       dw_pcie_msi_init(pp);
->                  } else {
->                          ret = pp->ops->msi_host_init(pp);
->                          if (ret < 0)
-> @@ -654,6 +659,7 @@ void dw_pcie_setup_rc(struct pcie_port *pp)
->                                              (ctrl * MSI_REG_CTRL_BLOCK_SIZE),
->                                              4, ~0);
->                  }
-> +               dw_pcie_msi_config(pp);
->          }
-> 
->          /* Setup RC BARs */
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-plat.c b/drivers/pci/controller/dwc/pcie-designware-plat.c
-> index 712456f6ce36..9ccf69a3dcf4 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-plat.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-plat.c
-> @@ -40,9 +40,6 @@ static int dw_plat_pcie_host_init(struct pcie_port *pp)
->          dw_pcie_setup_rc(pp);
->          dw_pcie_wait_for_link(pci);
-> 
-> -       if (IS_ENABLED(CONFIG_PCI_MSI))
-> -               dw_pcie_msi_init(pp);
-> -
->          return 0;
->   }
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 43b8061e1bec..40d22fe33afe 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -372,6 +372,7 @@ static inline void dw_pcie_dbi_ro_wr_dis(struct dw_pcie *pci)
->   irqreturn_t dw_handle_msi_irq(struct pcie_port *pp);
->   void dw_pcie_msi_init(struct pcie_port *pp);
->   void dw_pcie_msi_deinit(struct pcie_port *pp);
-> +void dw_pcie_msi_config(struct pcie_port *pp);
->   void dw_pcie_setup_rc(struct pcie_port *pp);
->   int dw_pcie_host_init(struct pcie_port *pp);
->   void dw_pcie_host_deinit(struct pcie_port *pp);
-> @@ -390,6 +391,10 @@ static inline void dw_pcie_msi_deinit(struct pcie_port *pp)
->   {
->   }
-> 
-> +static inline void dw_pcie_msi_config(struct pcie_port *pp)
-> +{
-> +}
-> +
->   static inline void dw_pcie_setup_rc(struct pcie_port *pp)
->   {
->   }
-> diff --git a/drivers/pci/controller/dwc/pcie-histb.c b/drivers/pci/controller/dwc/pcie-histb.c
-> index 2a2835746077..fbf53e897ca7 100644
-> --- a/drivers/pci/controller/dwc/pcie-histb.c
-> +++ b/drivers/pci/controller/dwc/pcie-histb.c
-> @@ -196,9 +196,6 @@ static int histb_pcie_host_init(struct pcie_port *pp)
->   {
->          histb_pcie_establish_link(pp);
-> 
-> -       if (IS_ENABLED(CONFIG_PCI_MSI))
-> -               dw_pcie_msi_init(pp);
-> -
->          return 0;
->   }
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/controller/dwc/pcie-kirin.c
-> index e496f51e0152..d7246995daf0 100644
-> --- a/drivers/pci/controller/dwc/pcie-kirin.c
-> +++ b/drivers/pci/controller/dwc/pcie-kirin.c
-> @@ -425,9 +425,6 @@ static int kirin_pcie_host_init(struct pcie_port *pp)
->   {
->          kirin_pcie_establish_link(pp);
-> 
-> -       if (IS_ENABLED(CONFIG_PCI_MSI))
-> -               dw_pcie_msi_init(pp);
-> -
->          return 0;
->   }
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 3aac77a295ba..2abbb850fb56 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -1281,9 +1281,6 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
-> 
->          dw_pcie_setup_rc(pp);
-> 
-> -       if (IS_ENABLED(CONFIG_PCI_MSI))
-> -               dw_pcie_msi_init(pp);
-> -
->          qcom_ep_reset_deassert(pcie);
-> 
->          ret = qcom_pcie_establish_link(pcie);
-> diff --git a/drivers/pci/controller/dwc/pcie-spear13xx.c b/drivers/pci/controller/dwc/pcie-spear13xx.c
-> index 62846562da0b..760e27de0082 100644
-> --- a/drivers/pci/controller/dwc/pcie-spear13xx.c
-> +++ b/drivers/pci/controller/dwc/pcie-spear13xx.c
-> @@ -157,7 +157,6 @@ static void spear13xx_pcie_enable_interrupts(struct spear13xx_pcie *spear13xx_pc
-> 
->          /* Enable MSI interrupt */
->          if (IS_ENABLED(CONFIG_PCI_MSI)) {
-> -               dw_pcie_msi_init(pp);
->                  writel(readl(&app_reg->int_mask) |
->                                  MSI_CTRL_INT, &app_reg->int_mask);
->          }
-> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-> index 70498689d0c0..b51fe136d345 100644
-> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
-> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-> @@ -783,8 +783,6 @@ static void tegra_pcie_enable_msi_interrupts(struct pcie_port *pp)
->          struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
->          u32 val;
-> 
-> -       dw_pcie_msi_init(pp);
-> -
->          /* Enable MSI interrupt generation */
->          val = appl_readl(pcie, APPL_INTR_EN_L0_0);
->          val |= APPL_INTR_EN_L0_0_SYS_MSI_INTR_EN;
-> diff --git a/drivers/pci/controller/dwc/pcie-uniphier.c b/drivers/pci/controller/dwc/pcie-uniphier.c
-> index 3a7f403b57b8..d7b465b669f4 100644
-> --- a/drivers/pci/controller/dwc/pcie-uniphier.c
-> +++ b/drivers/pci/controller/dwc/pcie-uniphier.c
-> @@ -318,14 +318,7 @@ static int uniphier_pcie_host_init(struct pcie_port *pp)
->          uniphier_pcie_irq_enable(priv);
-> 
->          dw_pcie_setup_rc(pp);
-> -       ret = uniphier_pcie_establish_link(pci);
-> -       if (ret)
-> -               return ret;
-> -
-> -       if (IS_ENABLED(CONFIG_PCI_MSI))
-> -               dw_pcie_msi_init(pp);
-> -
-> -       return 0;
-> +       return uniphier_pcie_establish_link(pci);
->   }
-> 
->   static const struct dw_pcie_host_ops uniphier_pcie_host_ops = {
-> --
-> 2.28.0
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gV2VkLCAwNyBPY3QgMjAyMCwgUGF2ZWwgTWFjaGVrIHdyb3RlOgoKPiBIaSEKPiAKPiA+IFRo
+ZSBub2RlIG5hbWVzIGZvciBkZXZpY2VzIHVzaW5nIHRoZSBwd20tbGVkcyBkcml2ZXIgZm9sbG93
+IGEgY2VydGFpbgo+ID4gbmFtaW5nIHNjaGVtZSAobm93KS4gIFBhcmVudCBub2RlIG5hbWUgaXMg
+bm90IGVuZm9yY2VkLCBidXQgcmVjb21tZW5kZWQKPiA+IGJ5IERUIHByb2plY3QuCj4gPiAKPiA+
+ICAgRFRDICAgICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL2lxczYyeC5l
+eGFtcGxlLmR0LnlhbWwKPiA+ICAgQ0hFQ0sgICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvbWZkL2lxczYyeC5leGFtcGxlLmR0LnlhbWwKPiA+IC9ob21lL2FsZXgvYnVpbGQvbGlu
+dXgvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9pcXM2MnguZXhhbXBsZS5k
+dC55YW1sOiBwd21sZWRzOiAncGFuZWwnIGRvZXMgbm90IG1hdGNoIGFueSBvZiB0aGUgcmVnZXhl
+czogJ15sZWQoLVswLTlhLWZdKyk/JCcsICdwaW5jdHJsLVswLTldKycKPiA+ICAgICAgICAgRnJv
+bSBzY2hlbWE6IC9ob21lL2FsZXgvc3JjL2xpbnV4L2xlZHMvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2xlZHMvbGVkcy1wd20ueWFtbAo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBB
+bGV4YW5kZXIgRGFobCA8cG9zdEBsZXNwb2NreS5kZT4KPiAKPiBPa2F5LCBzbyBJIG5lZWQgUm9i
+J3MgYWNrIGhlcmUsIEkgZ3Vlc3MuLi4gYW5kIHJlc3Qgb2YgdGhlIHNlcmllcyBpcwo+IG5vdCBy
+ZWFsbHkgZm9yIG15IHRyZWUuCgpUaGlzIHBhdGNoIGlzIG5vdCBmb3IgeW91ciB0cmVlIGVpdGhl
+ci4gOykKCi0tIApMZWUgSm9uZXMgW+adjueQvOaWr10KU2VuaW9yIFRlY2huaWNhbCBMZWFkIC0g
+RGV2ZWxvcGVyIFNlcnZpY2VzCkxpbmFyby5vcmcg4pSCIE9wZW4gc291cmNlIHNvZnR3YXJlIGZv
+ciBBcm0gU29DcwpGb2xsb3cgTGluYXJvOiBGYWNlYm9vayB8IFR3aXR0ZXIgfCBCbG9nCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
+IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
+c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
