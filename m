@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89066C433E7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2020 07:38:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 974D8C433E7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2020 07:54:36 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F13D52080D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2020 07:38:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 17AF5208B6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2020 07:54:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="02BKan5z";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wbNHMHbg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F13D52080D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UHW1tK4c";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ksbgMa1f"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17AF5208B6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,57 +26,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8VdByMvgo5LiaCZlbkvZ+Pov22bumPrZhlr/V3TgBrc=; b=02BKan5zg3AX+MroEbNVGv28B
-	eosaTBJv2+QY9nbgGgijxTVwncoPi3DAcHSOVsNy0GzGFiFFBhrfAZxJ6lonbtDOd593AZzq7EwmY
-	6e/bdgv3Pae1ZU1i/SNPpy0E8ycP3DHT6NnJe7QOdT0QCED8QJhIsq2+j182sGF9Ko3jD1twrSYGK
-	jzps9fNhsYHcIAmBi7qHufiPmcW+BNZSlvGbJQyMcP4lxhPKPkGPhHSVdBZN/Nm60kmpaP1vqPQQe
-	SA7UKZ6csjYTXYmxMBTNF3LxUZZ1tV3DSLidr3mWYy3oZgqZKbr8LnDj3xZu4zADptYtt02t7/RoL
-	ZZdU52fuw==;
+	 bh=fS1WXtqeqp9d+Zl1bdjCo9/GT7wL/WGSMm+8k5Zq4O4=; b=UHW1tK4cEzfpoXfGt2WLe/q3f
+	FivDWxRQ1Jn0q+UpZ0P+KLdxar6PqIPWI9MqX7r08VgrJyUvknyUqUH3TByQqL07UYAstoonbaDj/
+	DplNZ6JhpMfvjwpRrXfQYZXX8WOSFSvATIC+Efd1IbfD5KhS/5bg5vZ9LmjhyNm8XNBbTusAb2/ZI
+	O90CDoaVjQc+QDojhswLXM2aP5m1Z+r0bFJLM0qYO8WGrWU3hc6Zlb1Iwx595qwStdYZh6gYrNgUc
+	Iyu50SrdEvElwTH01cJ+l9R2mLW42UAskVaP6ajbTDl1ojiDJtX3sKrdeS+UUrEXT7Ua68qOfgMsS
+	0lq17H79w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kRsPM-0007Ph-IW; Mon, 12 Oct 2020 07:38:12 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1kRsf9-0000OI-4r; Mon, 12 Oct 2020 07:54:31 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kRsPH-0007OI-Cp
- for linux-amlogic@lists.infradead.org; Mon, 12 Oct 2020 07:38:08 +0000
-Received: by mail-wr1-x444.google.com with SMTP id x7so9336663wrl.3
- for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2020 00:38:05 -0700 (PDT)
+ id 1kRsf7-0000NZ-9p
+ for linux-amlogic@lists.infradead.org; Mon, 12 Oct 2020 07:54:30 +0000
+Received: by mail-wm1-x343.google.com with SMTP id q5so16567923wmq.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2020 00:54:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=QIcL7JMERC4ZLU9Dg9Ld8Wb3V3NyNSCRf0bIDwM+jiQ=;
- b=wbNHMHbgX1EvB5VADLK8RNScj/3J3y2ETQ9zbuRwxuhcJZ5+snsKGorCFX2T3hUPvX
- JqXNyrFrBpkBicycs3XgfMkTcZSm10V/52RT4hMgzhW+C3X/CeACAcb4YWDkk6qVKdQ1
- WcO0FfC2+fR3BFpEdeNFFfPtYxE6gyGmaNAU68FWNBnF7LfR6I5b0PgQHWa3Y5rQ1cs+
- 9LhLoZsN2Ckopaj487S6lS/iM1pvYcAvd7ui1IicmkylUFF1gbQJcuVTqLVYY/Swvo/m
- lsRT2UEpvoCrrekQ39TvvJloBpria3gqZHj3fPFL7+MshPd1BZWnl+zm9kDxsHPuRVJl
- 0sZQ==
+ bh=gfelOd4Sv4YbUFPNQ+VjVQQLCAZTIvB7sNLGxjZ/tks=;
+ b=ksbgMa1fE1zUgaurFC+k100/c2MUbger7D3vgupmQ9fykmpUls5C+Mfrocng5ryjiC
+ H3VeEjBudW2PWMBA9w5i2IecHKgkcs4/Iq4ujs61MTHBjM95N27BS10rdIz64vJ+pgB7
+ IivUTA3iARtdfTu0805vrt8zNin5okN8eA8CP0cfa7K5Bt+b5EfQxNxDgQe605Ws0Tp4
+ oXYbH2sPwmkucq3oq/9aqDJQj3ahzuIazwfwXBI2um/U0tA7IM+k1/0t79lMMIscy3VA
+ SLi74rZtgJZNiSd/OtT6EHbliN/vYLJouULYuJhyCmhT4EtQSfISaXSOQgDf2xsyLxJY
+ BGcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=QIcL7JMERC4ZLU9Dg9Ld8Wb3V3NyNSCRf0bIDwM+jiQ=;
- b=GCglXraV6rQjkVRGAQdl3uLIuVWqoNPqBiUxYYK6vJrc7yd7/D345pCOvQgCeur8IF
- 7guj+yhOGbwKxCj5szmEAofq9LeOuaU9Kr4EdWuEjxq3Sc29WWD4L7Jzdg81ch2c43VW
- bYnTL29BEGZYM8HyRMo0N22WUg0cvY3ih1E60tYG7GGoP8N1iUilmYqz0EGmoUcQJIps
- h2eVxxSSvuHvu85pTG4RevWiM2ItJQzfPq4oPFQzS7xAlmOFLfVNa0ieG5p08AYaU9Nb
- BADNr3OHRcu5GHvrbkoT4daH9xd1GfGHrNLzIbccXjE+f8pR+yIBFXswJ2G785UKXakB
- 1VJg==
-X-Gm-Message-State: AOAM532r52JExI/PXylaawvwveX5gRYz8jfcmgPCZomuWwOpwWg9110q
- hm1L3hDCV7G1Qq0wHRTZZPou2lLFH7WQjarV
-X-Google-Smtp-Source: ABdhPJzpZ5CWmzwz6pYHAQqV0MnGJWqhpu0x0pFo9wfHHSJHll5RflV4KHFc8XyipDre+yXtvUh9NQ==
-X-Received: by 2002:adf:e412:: with SMTP id g18mr5525502wrm.211.1602488284193; 
- Mon, 12 Oct 2020 00:38:04 -0700 (PDT)
+ bh=gfelOd4Sv4YbUFPNQ+VjVQQLCAZTIvB7sNLGxjZ/tks=;
+ b=Iapgi+sYkfuIJ0266bDgkJDhLK9ycNlzIgJJMNbnU4Oh256Nq0Qw8qwuO17us7H77Q
+ ZJy2WiQY1fWshdFX/8MD1YTi0N7hIOti07uENBErFFYjsE7K+vm6g1SR6tFYNajaSF3F
+ szguCqNc4vDi6w45ch5C6VLysT4O7E9O1OxtvfYQob/BMaHvLXh60IH8eloHnhB+HKvn
+ MLI3AkevIpnGaKhFSPtCTNKgkPUg4EAYtOh6fYZiOJeXVFdRqezLP/fPHtl//7Mgv5oK
+ WUIDNDB+vRUE02+ssKa2Qn/QcHIpIsYqIJSzqfgiH20y84r8ylXrGOXHgWJvp7zJVd+R
+ Q1pg==
+X-Gm-Message-State: AOAM531aq0Th4Ev8p6097Zrpb/3bRLTv4pd3lGhVFARHMVH4Q8Hi850y
+ ckuFbQmbd77FCpKxLN6uQ+5xtjCoaEvb7YVG
+X-Google-Smtp-Source: ABdhPJwoMOVAl87/UerHDNtOMwcRGgYqtTOCNeDHI3ff2VeztZMK1WS6p9jzGPj/U1IPp4ufAvSyLQ==
+X-Received: by 2002:a7b:ca50:: with SMTP id m16mr9692183wml.106.1602489267758; 
+ Mon, 12 Oct 2020 00:54:27 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:4c04:e3e3:70da:b5c6?
  ([2a01:e35:2ec0:82b0:4c04:e3e3:70da:b5c6])
- by smtp.gmail.com with ESMTPSA id f8sm11083483wrw.85.2020.10.12.00.38.02
+ by smtp.gmail.com with ESMTPSA id b5sm1577547wrs.97.2020.10.12.00.54.25
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 12 Oct 2020 00:38:03 -0700 (PDT)
-Subject: Re: [PATCH 16/18] dt-bindings: usb: meson-g12a-usb: Validate
- DWC2/DWC3 sub-nodes
+ Mon, 12 Oct 2020 00:54:26 -0700 (PDT)
+Subject: Re: [PATCH 15/18] dt-bindings: usb: meson-g12a-usb: Discard FL-adj
+ property
 To: Serge Semin <Sergey.Semin@baikalelectronics.ru>,
  Mathias Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -84,7 +84,7 @@ To: Serge Semin <Sergey.Semin@baikalelectronics.ru>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
- <20201010224121.12672-17-Sergey.Semin@baikalelectronics.ru>
+ <20201010224121.12672-16-Sergey.Semin@baikalelectronics.ru>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -136,16 +136,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <444d81ce-12e3-a5a1-15fb-dc87c5600e93@baylibre.com>
-Date: Mon, 12 Oct 2020 09:38:01 +0200
+Message-ID: <329129ac-ff44-4928-bca4-805297a8c456@baylibre.com>
+Date: Mon, 12 Oct 2020 09:54:25 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201010224121.12672-17-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201010224121.12672-16-Sergey.Semin@baikalelectronics.ru>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201012_033807_440437_9C3A7B8D 
-X-CRM114-Status: GOOD (  17.55  )
+X-CRM114-CacheID: sfid-20201012_035429_368523_595D36CD 
+X-CRM114-Status: GOOD (  19.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,46 +173,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
+
 On 11/10/2020 00:41, Serge Semin wrote:
-> Amlogic G12A USB DT sub-nodes are supposed to be compatible with the
-> generic DWC USB2 and USB3 devices. Since now we've got DT schemas for
-> both of the later IP cores let's make sure that the Amlogic G12A USB
-> DT nodes are fully evaluated including the DWC sub-nodes.
+> An empty snps,quirk-frame-length-adjustment won't cause any change
+> performed by the driver. Moreover the DT schema validation will fail,
+> since it expects the property being assigned with some value. So just
+> discard the property declaration then from the example.
 > 
 > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
 > ---
->  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> Note the same problem is in the DT source file
+> arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi .
+> ---
+>  .../devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml     | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> index 88184d7e26cc..3e8ac0ff90de 100644
+> index 5b04a7dfa018..88184d7e26cc 100644
 > --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
 > +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> @@ -78,7 +78,20 @@ properties:
->  
->  patternProperties:
->    "^usb@[0-9a-f]+$":
-> -    type: object
-> +    allOf:
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                const: snps,dwc2
-> +        then:
-> +          $ref: dwc2.yaml#
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              const: snps,dwc3
-> +        then:
-> +          $ref: snps,dwc3.yaml#
->  
->  additionalProperties: false
->  
+> @@ -209,6 +209,5 @@ examples:
+>                interrupts = <30>;
+>                dr_mode = "host";
+>                snps,dis_u2_susphy_quirk;
+> -              snps,quirk-frame-length-adjustment;
+>            };
+>      };
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Thanks for reporting this, actually the fladj must be 0x20 on this hw,
+but we do set this on the PHY side, so we can let the dwc3 side 0 here.
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
