@@ -2,80 +2,86 @@ Return-Path: <SRS0=MZ2k=DU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FFC1C433DF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Oct 2020 12:42:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D21EFC433E7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Oct 2020 13:39:59 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0EBA722464
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Oct 2020 12:42:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 223FF2473A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Oct 2020 13:39:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Rfs1LwRv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0EBA722464
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FRuyEFeN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="C6o1y4t+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 223FF2473A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=eGO8oBeMdazwl0nUjPwdLGe2UXGs/xwE5nenHVH4bE8=; b=Rfs1LwRvV/RwYgNZFuMM9APMX
-	Wz/04w0sRe4HSt5/OoyJjwR1d7DBn09o3TWkMsPcTBDE7FPncO+CKoDELVIrt8WMGjYsblCv3PUeu
-	VUWP7saQ9lkBvxOpjD3EUEEjCWNxfOd3T4Y+kRt0KKJMnoqo+gc8C5LSB7cHxF1zNSMBqjGRU76fF
-	SSgfqToNoBJme2QZj73v9DNYyuLCWfsWGNuifkmwPaCjSChqK9cT6Y6UGKFjyTtv8oQWjpSSbryzV
-	DMthqnpLQ92HVCktugc8WzgWhfhTT7jqoN3NCdQ5S2iaeyUduPnYv4Pm+Crb7zKPOy3pHIkgtJZw4
-	NwaWGFe5A==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=rRLMzIQsJPGXL1n7IIdXmESo+851+NePshZTEXQxlhY=; b=FRuyEFeNcOa9sg7RMk3rGnhO1/
+	oNgft5Ql5w3o2tm9MzIwPrqvdcRNUoOQia+1TFy7red3K4wJYqY5LnK7TpTnUGdEDvB01khXQfi1M
+	wk2K8R5Qpn3jvwfYs6K4G+tlgwAP7FWt7RJd3YAB42Z5IUHm0z79joq6qQy5870q0cgkc1PahbjRd
+	IvRYRUUuhcXrkUHe1YpalbCW5/ZCSRX2FriibtHMTuw7UXTjPcwMLv82K/ymdjobcWiNbnS5d3NCX
+	GHdpVOh3CrrX26V94+vEHMGrWdA9G5T6l3plri4bo7pB/wqAZmNAp16MX9iv6ucMC3uE77TwF3eSv
+	mj94hn7Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kSJd5-00072Q-HL; Tue, 13 Oct 2020 12:42:11 +0000
-Received: from mail-oi1-f194.google.com ([209.85.167.194])
+	id 1kSKWv-0007et-Ov; Tue, 13 Oct 2020 13:39:53 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kSJd1-00070z-CP; Tue, 13 Oct 2020 12:42:08 +0000
-Received: by mail-oi1-f194.google.com with SMTP id 16so22282612oix.9;
- Tue, 13 Oct 2020 05:42:06 -0700 (PDT)
+ id 1kSKWs-0007c5-GT
+ for linux-amlogic@lists.infradead.org; Tue, 13 Oct 2020 13:39:52 +0000
+Received: by mail-wr1-x441.google.com with SMTP id s9so12001330wro.8
+ for <linux-amlogic@lists.infradead.org>; Tue, 13 Oct 2020 06:39:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jXRjLc7/VTEbu9Wec7fe96yx2W0L+RJ0lJ0eWgO4l8k=;
+ b=C6o1y4t+MuEjWBFxxfMHkiKE9hKTunN1ZAxXs7BX+1bkNrdkVoE+4zaHPwDHmtRsPx
+ +3QNThqorMTFNot7GJWTBjH5hVUAZlGmrHliHv4dLeMpWYjwojz+jrKWHMjymc4tDbQG
+ txNGcm1PDd/CShcBMp5w2bA72yMKwJ3gJjQFUZrO1FHXdmiKr1GliE2gPe7ttv47iImF
+ qivhlzeHhFNa2y+cfh5f87l2euYkJrZQGeVPmZshj7P1jLWR+7SojEzsegtVV7fyEySq
+ 3WaooC4Ly0yJN6FNT1ZDnUO+PRyThM6IEtSSpg1vApUKDGVIVffSQgxnaNoG6aRV9krN
+ wJGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=9a9S8jqFI1z/da5IKYstSGsQ5P0heyKtA+nDpAbWxis=;
- b=gXa3GpSlutM79z3wFDpr7PVWq9npXDlpERgtatk5dq7CpIyhAB5Sq2B0ONnLlGJXFa
- AFv9+KTf4eBvNIMWBcxF2hw3mqez0IogX7WNWZWyNfal19CzFfygSJt067W/Y7hp1iX3
- Mk8iaAp1AxCD+KEBlDYa1cvGpo5x1skhvSVPavllnwX9zYexkZpBtoIYdGofE1UejN8T
- xnAZgFAbJMvUKYtRhxpUaj5YZDk7GOAKA6r3ZTydET/z6ZOSJpecEnh4LnozloPJ1iZQ
- mayQwa++0VAOzXwIHUiY6+ik3QQP3blEVr1GfeKqjQmG/o7/Wc4V7K+i7N8J+S507Bnx
- 7DvQ==
-X-Gm-Message-State: AOAM5307W4P4QIFk7OdlAEEWmXFZdeUEfOWS5qsm9adYqa7tFHhUzcB8
- vduhWY3fOoIKvsZjpmC/4g==
-X-Google-Smtp-Source: ABdhPJzik5HzirfRUO8Rt3aNEPIrxservslx8BbKUyJWQUJ9c+zphQ1dJb0v+CV4goeTVMBvVtFbNg==
-X-Received: by 2002:aca:fc85:: with SMTP id
- a127mr14056058oii.125.1602592925132; 
- Tue, 13 Oct 2020 05:42:05 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id o15sm10002746otj.3.2020.10.13.05.42.03
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jXRjLc7/VTEbu9Wec7fe96yx2W0L+RJ0lJ0eWgO4l8k=;
+ b=h8dZT2AaIqTLtf/a6dtpiF0dihgFalDwFPSk3zQ2MfAP5PW8dA9kvV7Fx8oJiOq9vs
+ Vn1WPXo5Y1MKx052JufZzehrP7bdex9IwXIMH6KF9M/VHwmDAqwIG+qIl3vvJEqgdhkg
+ T8I3Cak/hrrkviGO4YftoeupBOzTUtzYULrvEIfKTU+uuOvMbFk0+O/tlBdkeCK+xi+C
+ xP3DiQab15/8GguvLSWT6WGAJmpgIK9/7UH8gFKXYVbvaZunAM3gieiZnHYQC/Uc/Vjq
+ st7WDsnPWeTbCKOP945OEci0+BWgOETky+PxwDjc2gzZp1fHaGNCgrjcCdp/gxNsHt7F
+ N0+g==
+X-Gm-Message-State: AOAM532stLo3kf5NBnSq9MP2xJBCUO5or9rmuGA09QANEXBkP0ek2rpc
+ bpLxNHoDlBZe5J3CNiRLpOKH8w==
+X-Google-Smtp-Source: ABdhPJzy4dVRESkN3Bx5r5311HsleVWTAcXGJiqtKKLkhwTtL3zXyGUYK0ZRUJYDJImBG2gvXk1GlA==
+X-Received: by 2002:adf:9793:: with SMTP id s19mr14206935wrb.139.1602596387316; 
+ Tue, 13 Oct 2020 06:39:47 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:f4da:39ea:5653:71fc])
+ by smtp.gmail.com with ESMTPSA id t7sm6803949wrx.42.2020.10.13.06.39.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 Oct 2020 05:42:04 -0700 (PDT)
-Received: (nullmailer pid 3312154 invoked by uid 1000);
- Tue, 13 Oct 2020 12:42:03 -0000
-Date: Tue, 13 Oct 2020 07:42:03 -0500
-From: Rob Herring <robh@kernel.org>
-To: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH 16/18] dt-bindings: usb: meson-g12a-usb: Validate
- DWC2/DWC3 sub-nodes
-Message-ID: <20201013124203.GE3269269@bogus>
-References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
- <20201010224121.12672-17-Sergey.Semin@baikalelectronics.ru>
+ Tue, 13 Oct 2020 06:39:46 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: p.zabel@pengutronix.de
+Subject: [PATCH] reset: meson: make it possible to build as a module
+Date: Tue, 13 Oct 2020 15:39:43 +0200
+Message-Id: <20201013133943.412119-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201010224121.12672-17-Sergey.Semin@baikalelectronics.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201013_084207_433328_1426FB2D 
-X-CRM114-Status: GOOD (  15.70  )
+X-CRM114-CacheID: sfid-20201013_093950_871650_79FF1CE5 
+X-CRM114-Status: GOOD (  15.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,68 +93,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, Felipe Balbi <balbi@kernel.org>,
- Roger Quadros <rogerq@ti.com>, Mathias Nyman <mathias.nyman@intel.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- linux-usb@vger.kernel.org,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Serge Semin <fancer.lancer@gmail.com>,
- Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
- Manu Gautam <mgautam@codeaurora.org>, devicetree@vger.kernel.org,
- Andy Gross <agross@kernel.org>,
- Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-amlogic@lists.infradead.org,
- Bjorn Andersson <bjorn.andersson@linaro.org>, linux-kernel@vger.kernel.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Oct 11, 2020 at 01:41:19AM +0300, Serge Semin wrote:
-> Amlogic G12A USB DT sub-nodes are supposed to be compatible with the
-> generic DWC USB2 and USB3 devices. Since now we've got DT schemas for
-> both of the later IP cores let's make sure that the Amlogic G12A USB
-> DT nodes are fully evaluated including the DWC sub-nodes.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
->  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> index 88184d7e26cc..3e8ac0ff90de 100644
-> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> @@ -78,7 +78,20 @@ properties:
->  
->  patternProperties:
->    "^usb@[0-9a-f]+$":
-> -    type: object
-> +    allOf:
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                const: snps,dwc2
-> +        then:
-> +          $ref: dwc2.yaml#
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              const: snps,dwc3
-> +        then:
-> +          $ref: snps,dwc3.yaml#
+In order to reduce the kernel Image size on multi-platform distributions,
+make it possible to build the reset controller driver as a module.
 
-It should be enough to do just:
+This partially reverts 8290924e ("reset: meson: make it explicitly non-modular")
 
-oneOf:
-  - $ref: dwc2.yaml#
-  - $ref: snps,dwc3.yaml#
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/reset/Kconfig       | 4 ++--
+ drivers/reset/reset-meson.c | 7 ++++++-
+ 2 files changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index d9efbfd29646..ab315617565f 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -94,8 +94,8 @@ config RESET_LPC18XX
+ 	  This enables the reset controller driver for NXP LPC18xx/43xx SoCs.
+ 
+ config RESET_MESON
+-	bool "Meson Reset Driver" if COMPILE_TEST
+-	default ARCH_MESON
++	tristate "Meson Reset Driver"
++	default ARCH_MESON || COMPILE_TEST
+ 	help
+ 	  This enables the reset driver for Amlogic Meson SoCs.
+ 
+diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
+index 94d7ba88d7d2..434d5c0f877e 100644
+--- a/drivers/reset/reset-meson.c
++++ b/drivers/reset/reset-meson.c
+@@ -9,6 +9,7 @@
+ #include <linux/init.h>
+ #include <linux/io.h>
+ #include <linux/of.h>
++#include <linux/module.h>
+ #include <linux/platform_device.h>
+ #include <linux/reset-controller.h>
+ #include <linux/slab.h>
+@@ -142,4 +143,8 @@ static struct platform_driver meson_reset_driver = {
+ 		.of_match_table	= meson_reset_dt_ids,
+ 	},
+ };
+-builtin_platform_driver(meson_reset_driver);
++module_platform_driver(meson_reset_driver);
++
++MODULE_DESCRIPTION("Amlogic Meson Reset Controller driver");
++MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
++MODULE_LICENSE("Dual BSD/GPL");
+-- 
+2.25.1
+
 
 _______________________________________________
 linux-amlogic mailing list
