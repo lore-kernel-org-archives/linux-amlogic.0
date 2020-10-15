@@ -1,68 +1,62 @@
-Return-Path: <SRS0=UBLa=DV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=WFBQ=DW=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF30EC433DF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Oct 2020 10:16:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8CBE4C433DF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Oct 2020 13:46:46 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B56E20848
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Oct 2020 10:16:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1DC102078A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Oct 2020 13:46:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qlQuggOi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B56E20848
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baikalelectronics.ru
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kdvQX2Uz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1DC102078A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=e9wrook4Lye1Dq5nfcD0aQau2gra9pT7LjKZFwAEHF8=; b=qlQuggOiWYKL78eI0xFndLdZj
-	g1r8gbOX4depM5cVnSX+bCz7nJWcgs0dElZyg3Nboz68UzEcCbxkHmcnC/GH6NiwfrZ2EI91feN/D
-	KpQIs+3fDdysd8cOi+V9jHtCu/jwdFQn6wFQ6K+5v2FF+lPHtBSuZO3J+3j7o9iYO/PpMWDpWiG6Q
-	p7rURwt0UhVOZgyL4tXM+urtneCmba10DXzCuulJv/8VKpmSWCyzSepsVlRQxvrxEdAqvd9a8Eere
-	UemADquU8QOKwc81cPDFGWkqFvufvuEFznJKbQOlpNa4F3aas7t3xXBtMtO0LKDC/TjUZJH/kRjX5
-	gUgJPWEHQ==;
+	 bh=VnNVEnMw89QoZmOZhASoxz8EHBurjrtZ1W7c6NMPJu4=; b=kdvQX2Uzky+/M4RyAAwhjkyql
+	6okiAnuL1w/IgrbKTSsyd/kgL/zSA0tCdS271M2NnX6Yi+bQ1QwyyNfvzWVTswtk4+6mXhhySKxcS
+	NaXTmkS7L3aLqql331YFRJi9hHGCZpAENDC2D7lR3RYKH+FM8ot8phsAMu20Jt/NJQUo7veT3nB+H
+	F9KS5+gus9ApVzMsjSPo5QnQmY1N1nNUhxkdayQXq5qHOrPLk1xroiqzEDZP5azh3nA3cp6s3rEV6
+	8wXN0TWxphj9xK29w0s8uywbuE1pPfzkirGrzWhwU2xHgrKhnJF5fzbV38u+kScHeInt3HURWF7O2
+	hKLQFuHnQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kSdpj-0004dq-Em; Wed, 14 Oct 2020 10:16:35 +0000
-Received: from mail.baikalelectronics.com ([87.245.175.226]
- helo=mail.baikalelectronics.ru)
+	id 1kT3aV-0007Ww-I6; Thu, 15 Oct 2020 13:46:35 +0000
+Received: from foss.arm.com ([217.140.110.172])
  by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kSdnU-0003df-NZ; Wed, 14 Oct 2020 10:14:20 +0000
-Received: from localhost (unknown [127.0.0.1])
- by mail.baikalelectronics.ru (Postfix) with ESMTP id 0692B803202E;
- Wed, 14 Oct 2020 10:14:16 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
- by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id e4ldnC_N-Ltw; Wed, 14 Oct 2020 13:14:15 +0300 (MSK)
-From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To: Mathias Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
- <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 15/20] dt-bindings: usb: meson-g12a-usb: Validate DWC2/DWC3
- sub-nodes
-Date: Wed, 14 Oct 2020 13:13:57 +0300
-Message-ID: <20201014101402.18271-16-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
+ id 1kT3aT-0007Vk-9P
+ for linux-amlogic@lists.infradead.org; Thu, 15 Oct 2020 13:46:34 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 85CE613D5;
+ Thu, 15 Oct 2020 06:46:30 -0700 (PDT)
+Received: from localhost (e108754-lin.cambridge.arm.com [10.1.199.49])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2582E3F719;
+ Thu, 15 Oct 2020 06:46:30 -0700 (PDT)
+Date: Thu, 15 Oct 2020 14:46:28 +0100
+From: Ionela Voinescu <ionela.voinescu@arm.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH] mailbox: cancel timer before starting it
+Message-ID: <20201015134628.GA11989@arm.com>
+References: <20200923123916.1115962-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Disposition: inline
+In-Reply-To: <20200923123916.1115962-1-jbrunet@baylibre.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201014_061416_931423_AA27019E 
-X-CRM114-Status: UNSURE (   7.63  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201015_094633_415370_C7E0022E 
+X-CRM114-Status: GOOD (  24.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,60 +68,146 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- linux-usb@vger.kernel.org,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Serge Semin <fancer.lancer@gmail.com>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- Serge Semin <Sergey.Semin@baikalelectronics.ru>,
- Manu Gautam <mgautam@codeaurora.org>, Andy Gross <agross@kernel.org>,
- Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
- linux-amlogic@lists.infradead.org,
- Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
- linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- Roger Quadros <rogerq@ti.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Da Xue <da@libre.computer>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic G12A USB DT sub-nodes are supposed to be compatible with the
-generic DWC USB2 and USB3 devices. Since now we've got DT schemas for
-both of the later IP cores let's make sure that the Amlogic G12A USB
-DT nodes are fully evaluated including the DWC sub-nodes.
+Hi guys,
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+On Wednesday 23 Sep 2020 at 14:39:16 (+0200), Jerome Brunet wrote:
+> If the txdone is done by polling, it is possible for msg_submit() to start
+> the timer while txdone_hrtimer() callback is running. If the timer needs
+> recheduling, it could already be enqueued by the time hrtimer_forward_now()
+> is called, leading hrtimer to loudly complain.
+> 
+> WARNING: CPU: 3 PID: 74 at kernel/time/hrtimer.c:932 hrtimer_forward+0xc4/0x110
+> CPU: 3 PID: 74 Comm: kworker/u8:1 Not tainted 5.9.0-rc2-00236-gd3520067d01c-dirty #5
+> Hardware name: Libre Computer AML-S805X-AC (DT)
+> Workqueue: events_freezable_power_ thermal_zone_device_check
+> pstate: 20000085 (nzCv daIf -PAN -UAO BTYPE=--)
+> pc : hrtimer_forward+0xc4/0x110
+> lr : txdone_hrtimer+0xf8/0x118
+> [...]
+> 
+> Canceling the timer before starting it ensure that the timer callback is
+> not running when the timer is started, solving this race condition.
+> 
+> Fixes: 0cc67945ea59 ("mailbox: switch to hrtimer for tx_complete polling")
+> Reported-by: Da Xue <da@libre.computer>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/mailbox/mailbox.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/mailbox/mailbox.c b/drivers/mailbox/mailbox.c
+> index 0b821a5b2db8..34f9ab01caef 100644
+> --- a/drivers/mailbox/mailbox.c
+> +++ b/drivers/mailbox/mailbox.c
+> @@ -82,9 +82,13 @@ static void msg_submit(struct mbox_chan *chan)
+>  exit:
+>  	spin_unlock_irqrestore(&chan->lock, flags);
+>  
+> -	if (!err && (chan->txdone_method & TXDONE_BY_POLL))
+> -		/* kick start the timer immediately to avoid delays */
+> +	if (!err && (chan->txdone_method & TXDONE_BY_POLL)) {
+> +		/* Disable the timer if already active ... */
+> +		hrtimer_cancel(&chan->mbox->poll_hrt);
+> +
+> +		/* ... and kick start it immediately to avoid delays */
+>  		hrtimer_start(&chan->mbox->poll_hrt, 0, HRTIMER_MODE_REL);
+> +	}
+>  }
+>  
+>  static void tx_tick(struct mbox_chan *chan, int r)
 
----
+I've tracked a regression back to this commit. Details to reproduce:
 
-Changelog v2:
-- Use "oneOf: [dwc2.yaml#, snps,dwc3.yaml#]" instead of the bulky "if:
-  properties: compatibe: ..." statement.
----
- .../devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-index a4b44a16aaef..7b2dc905c8ce 100644
---- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-@@ -78,7 +78,9 @@ properties:
- 
- patternProperties:
-   "^usb@[0-9a-f]+$":
--    type: object
-+    oneOf:
-+      - $ref: dwc2.yaml#
-+      - $ref: snps,dwc3.yaml#
- 
- additionalProperties: false
- 
--- 
-2.27.0
+ - HEAD: (linux-next)
+   * 62c04453381e  Jerome Brunet   3 weeks ago mailbox: cancel timer before starting it
 
+ - Platform: arm64 Juno R0 and Juno R2 [1]
+
+ - Partial log:
+	[    0.000000] Booting Linux on physical CPU 0x0000000100 [0x410fd030]
+	[    0.000000] Linux version 5.9.0-rc8-01722-g62c04453381e () (aarch64-none-linux-gnu-gcc (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10)) 9.2.1 20191025, GNU ld (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10)) 2.33.1.20191209) #175 SMP PREEMPT Thu Oct 15 14:17:41 BST 2020
+	[    0.000000] Machine model: ARM Juno development board (r0)
+	[..]
+	[    1.714340] mhu 2b1f0000.mhu: ARM MHU Mailbox registered
+	[    1.722768] NET: Registered protocol family 17
+	[    1.727364] 9pnet: Installing 9P2000 support
+	[    1.731689] Key type dns_resolver registered
+	[    1.735474] usb 1-1: new high-speed USB device number 2 using ehci-platform
+	[    1.736407] registered taskstats version 1
+	[    1.747061] Loading compiled-in X.509 certificates
+	[    1.755885] scpi_protocol scpi: SCP Protocol 1.2 Firmware 1.21.0 version
+	[    1.770484] cpu cpu0: EM: created perf domain
+	[    1.778505] cpu cpu1: EM: created perf domain
+	[    1.807449] scpi_clocks scpi:clocks: failed to register clock 'pxlclk'
+	[    1.897593] hub 1-1:1.0: USB hub found
+	[    1.901656] hub 1-1:1.0: 4 ports detected
+	[    2.559453] atkbd serio0: keyboard reset failed on 1c060000.kmi
+	[   22.787431] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+	[   22.793536] rcu:     1-...0: (1 ticks this GP) idle=222/1/0x4000000000000002 softirq=63/64 fqs=2626
+	[   22.802421]  (detected by 2, t=5255 jiffies, g=-991, q=9)
+	[   22.807823] Task dump for CPU 1:
+	[   22.811049] task:swapper/1       state:R  running task     stack:    0 pid:    0 ppid:     1 flags:0x0000002a
+	[   22.820980] Call trace:
+	[   22.823429]  __switch_to+0x138/0x198
+	[   23.583444] rcu: INFO: rcu_preempt detected expedited stalls on CPUs/tasks: { 1-... } 5443 jiffies s: 49 root: 0x2/.
+	[   23.593995] rcu: blocking rcu_node structures:
+	[   23.598449] Task dump for CPU 1:
+	[   23.601680] task:swapper/1       state:R  running task     stack:    0 pid:    0 ppid:     1 flags:0x0000002a
+	[   23.611619] Call trace:
+	[   23.614064]  __switch_to+0x138/0x198
+	[   85.807430] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+	[   85.813534] rcu:     1-...0: (1 ticks this GP) idle=222/1/0x4000000000000002 softirq=63/64 fqs=10502
+	[   85.822506]  (detected by 2, t=21009 jiffies, g=-991, q=9)
+	[   85.827994] Task dump for CPU 1:
+	[   85.831220] task:swapper/1       state:R  running task     stack:    0 pid:    0 ppid:     1 flags:0x0000002a
+	[   85.841150] Call trace:
+	[   85.843596]  __switch_to+0x138/0x198
+	[   87.071446] rcu: INFO: rcu_preempt detected expedited stalls on CPUs/tasks: { 1-... } 21315 jiffies s: 49 root: 0x2/.
+	[   87.082088] rcu: blocking rcu_node structures:
+	[   87.086540] Task dump for CPU 1:
+	[   87.089773] task:swapper/1       state:R  running task     stack:    0 pid:    0 ppid:     1 flags:0x0000002a
+	[   87.099708] Call trace:
+	[   87.102155]  __switch_to+0x138/0x198
+	[  148.827442] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+	[  148.833565] rcu:     1-...0: (1 ticks this GP) idle=222/1/0x4000000000000002 softirq=63/64 fqs=18377
+	[  148.842543]  (detected by 4, t=36762 jiffies, g=-991, q=9)
+	[  148.848037] Task dump for CPU 1:
+	[  148.851268] task:swapper/1       state:R  running task     stack:    0 pid:    0 ppid:     1 flags:0x0000002a
+	[  148.861207] Call trace:
+	[  148.863663]  __switch_to+0x138/0x198
+	[  150.559443] rcu: INFO: rcu_preempt detected expedited stalls on CPUs/tasks: { 1-... } 37187 jiffies s: 49 root: 0x2/.
+	[  150.570082] rcu: blocking rcu_node structures:
+	[  150.574535] Task dump for CPU 1:
+	[  150.577767] task:swapper/1       state:R  running task     stack:    0 pid:    0 ppid:     1 flags:0x0000002a
+	[  150.587705] Call trace:
+	[  150.590151]  __switch_to+0x138/0x198
+
+ - Commit working as expected:
+   * 558e4c36ec9f  Krzysztof Kozlowski     7 weeks ago     maiblox: mediatek: Fix handling of platform_get_irq() error
+
+
+[1] https://developer.arm.com/tools-and-software/development-boards/juno-development-board
+
+Thank you,
+Ionela.
+
+> -- 
+> 2.25.4
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
