@@ -2,21 +2,21 @@ Return-Path: <SRS0=oK7S=DX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A6BBC433E7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Oct 2020 08:44:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2AC8C433DF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Oct 2020 08:52:29 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 87CCE20848
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Oct 2020 08:44:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1F59620663
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Oct 2020 08:52:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UEteMh1S"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 87CCE20848
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vQOKJ7aV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1F59620663
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,41 +25,41 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=tBdnQ17XvX/kQqEYLEyHIDQ5KQNo4GErsYH7RhaTHSQ=; b=UEteMh1SdsMYryGoPWf9U9M8b
-	7DjDtK+/kLyNP8xw1mePt7lMjpBa4pg39P4z419SZ5yT76xI/B9tMxj66by1fsqgj/qPDqp5EMZsv
-	D9tueL0KMetsOY/nigI++pm83+JlEL3oVtFG0QAXD+ggASNL98zJ1pS3lJzYkUlhKrXmUAd1zyLgp
-	ce5O4ivUsnSEtX8/n7tdeVRdN30Qxk1IV4bC0MPH454U3wkvF0o6bXiQeSORnWwarq2MBqbS22lz5
-	HIKb/rOreLoabeVtJn4tIwgvId0rMdNO90UXLgnnmMj08/HatpJkRV2drPOFflfwizo+rgW+Oh6Do
-	HJtHCQumw==;
+	 bh=HulGwBKZdoatCg+pUXSzXOvwnsEQ66HRboEwaXATrzs=; b=vQOKJ7aVBH6bizMn7lBkXhqvE
+	zeNPS31wKwxiPS1tWXAqGes1kezMPcJ2A4vDGIMx0eG4SCeK5aY6nqwumlKVVuvKPhOSuf6RlLxpA
+	uUvjnl5q515+PRa1U6UQ80UUXzdNrNvR3W3XytBOMdnGAAo/ZqZbszcGKR0aCMx+WA9jXQdYXDvrd
+	6cRB1grLhXYy7LDZLqenneLaKudzw2ZT/bRGdyrNlTBpT9rZj6uxQboyHjkPFNSE0Tv2FnPSepiiE
+	kKcRUJs4tgeRwfxY9OspKI8U81VUllqAzrquIpwjZc3t/LMh1Sd5/iHdusVSQhYG3tOTMY3z4lWHh
+	YxPHoAdjQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kTLLs-0004mE-S8; Fri, 16 Oct 2020 08:44:40 +0000
+	id 1kTLTM-0005Vp-Rt; Fri, 16 Oct 2020 08:52:24 +0000
 Received: from foss.arm.com ([217.140.110.172])
  by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kTLLr-0004li-5c
- for linux-amlogic@lists.infradead.org; Fri, 16 Oct 2020 08:44:40 +0000
+ id 1kTLTJ-0005UC-Js
+ for linux-amlogic@lists.infradead.org; Fri, 16 Oct 2020 08:52:22 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3982330E;
- Fri, 16 Oct 2020 01:44:36 -0700 (PDT)
-Received: from bogus (unknown [10.57.17.164])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0FA0F3F66B;
- Fri, 16 Oct 2020 01:44:34 -0700 (PDT)
-Date: Fri, 16 Oct 2020 09:44:28 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Ionela Voinescu <ionela.voinescu@arm.com>
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E59ED30E;
+ Fri, 16 Oct 2020 01:52:18 -0700 (PDT)
+Received: from localhost (unknown [10.1.199.49])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 866173F719;
+ Fri, 16 Oct 2020 01:52:18 -0700 (PDT)
+Date: Fri, 16 Oct 2020 09:52:17 +0100
+From: Ionela Voinescu <ionela.voinescu@arm.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>
 Subject: Re: [PATCH] mailbox: cancel timer before starting it
-Message-ID: <20201016084428.gthqj25wrvnqjsvz@bogus>
+Message-ID: <20201016085217.GA12323@arm.com>
 References: <20200923123916.1115962-1-jbrunet@baylibre.com>
  <20201015134628.GA11989@arm.com>
  <1jlfg7k2ux.fsf@starbuckisacylon.baylibre.com>
- <20201015142935.GA12516@arm.com>
+ <CABb+yY1-MBac0e6xQwWkHRo3bqJNMWb4xQzdaGdrYT=n5zRvtw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201015142935.GA12516@arm.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <CABb+yY1-MBac0e6xQwWkHRo3bqJNMWb4xQzdaGdrYT=n5zRvtw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201016_044439_312350_F15DF249 
-X-CRM114-Status: GOOD (  31.14  )
+X-CRM114-CacheID: sfid-20201016_045221_701255_9059A53F 
+X-CRM114-Status: GOOD (  22.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,96 +71,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jassi Brar <jassisinghbrar@gmail.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Da Xue <da@libre.computer>, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Da Xue <da@libre.computer>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Oct 15, 2020 at 03:29:35PM +0100, Ionela Voinescu wrote:
-> Hi Jerome,
-> 
-> On Thursday 15 Oct 2020 at 15:58:30 (+0200), Jerome Brunet wrote:
-> > 
-> > On Thu 15 Oct 2020 at 15:46, Ionela Voinescu <ionela.voinescu@arm.com> wrote:
-> > 
-> > > Hi guys,
-> > >
-> > > On Wednesday 23 Sep 2020 at 14:39:16 (+0200), Jerome Brunet wrote:
-> > >> If the txdone is done by polling, it is possible for msg_submit() to start
-> > >> the timer while txdone_hrtimer() callback is running. If the timer needs
-> > >> recheduling, it could already be enqueued by the time hrtimer_forward_now()
-> > >> is called, leading hrtimer to loudly complain.
-> > >> 
-> > >> WARNING: CPU: 3 PID: 74 at kernel/time/hrtimer.c:932 hrtimer_forward+0xc4/0x110
-> > >> CPU: 3 PID: 74 Comm: kworker/u8:1 Not tainted 5.9.0-rc2-00236-gd3520067d01c-dirty #5
-> > >> Hardware name: Libre Computer AML-S805X-AC (DT)
-> > >> Workqueue: events_freezable_power_ thermal_zone_device_check
-> > >> pstate: 20000085 (nzCv daIf -PAN -UAO BTYPE=--)
-> > >> pc : hrtimer_forward+0xc4/0x110
-> > >> lr : txdone_hrtimer+0xf8/0x118
-> > >> [...]
-> > >> 
-> > >> Canceling the timer before starting it ensure that the timer callback is
-> > >> not running when the timer is started, solving this race condition.
-> > >> 
-> > >> Fixes: 0cc67945ea59 ("mailbox: switch to hrtimer for tx_complete polling")
-> > >> Reported-by: Da Xue <da@libre.computer>
-> > >> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > >> ---
-> > >>  drivers/mailbox/mailbox.c | 8 ++++++--
-> > >>  1 file changed, 6 insertions(+), 2 deletions(-)
-> > >> 
-> > >> diff --git a/drivers/mailbox/mailbox.c b/drivers/mailbox/mailbox.c
-> > >> index 0b821a5b2db8..34f9ab01caef 100644
+On Thursday 15 Oct 2020 at 13:45:54 (-0500), Jassi Brar wrote:
+[..]
 > > >> --- a/drivers/mailbox/mailbox.c
 > > >> +++ b/drivers/mailbox/mailbox.c
 > > >> @@ -82,9 +82,13 @@ static void msg_submit(struct mbox_chan *chan)
 > > >>  exit:
-> > >>  	spin_unlock_irqrestore(&chan->lock, flags);
-> > >>  
-> > >> -	if (!err && (chan->txdone_method & TXDONE_BY_POLL))
-> > >> -		/* kick start the timer immediately to avoid delays */
-> > >> +	if (!err && (chan->txdone_method & TXDONE_BY_POLL)) {
-> > >> +		/* Disable the timer if already active ... */
-> > >> +		hrtimer_cancel(&chan->mbox->poll_hrt);
+> > >>      spin_unlock_irqrestore(&chan->lock, flags);
+> > >>
+> > >> -    if (!err && (chan->txdone_method & TXDONE_BY_POLL))
+> > >> -            /* kick start the timer immediately to avoid delays */
+> > >> +    if (!err && (chan->txdone_method & TXDONE_BY_POLL)) {
+> > >> +            /* Disable the timer if already active ... */
+> > >> +            hrtimer_cancel(&chan->mbox->poll_hrt);
 > > >> +
-> > >> +		/* ... and kick start it immediately to avoid delays */
-> > >>  		hrtimer_start(&chan->mbox->poll_hrt, 0, HRTIMER_MODE_REL);
-> > >> +	}
+> > >> +            /* ... and kick start it immediately to avoid delays */
+> > >>              hrtimer_start(&chan->mbox->poll_hrt, 0, HRTIMER_MODE_REL);
+> > >> +    }
 > > >>  }
-> > >>  
+> > >>
 > > >>  static void tx_tick(struct mbox_chan *chan, int r)
 > > >
 > > > I've tracked a regression back to this commit. Details to reproduce:
-> > 
+> >
 > > Hi Ionela,
-> > 
+> >
 > > I don't have access to your platform and I don't get what is going on
 > > from the log below.
-> > 
+> >
 > > Could you please give us a bit more details about what is going on ?
-> > 
+> >
+> > All this patch does is add hrtimer_cancel().
+> > * It is needed if the timer had already been started, which is
+> >   appropriate AFAIU
+> > * It is a NO-OP is the timer is not active.
+> >
+> Can you please try using hrtimer_try_to_cancel() instead ?
 > 
-> I'm not familiar with the mailbox subsystem, so the best I can do right
-> now is to add Sudeep to Cc, in case this conflicts in some way with the
-> ARM MHU patches [1].
->
 
-Not it can't be doorbell driver as we use SCPI(old firmware) with upstream
-MHU driver as is limiting the number of channels to be used.
+Yes, using hrtimer_try_to_cancel() instead works for me. But doesn't
+this limit how effective this change is? AFAIU, this will possibly only
+reduce the chances for the race condition, but not solve it.
 
-> In the meantime I'll get some traces and get more familiar with the
-> code.
->
+Thanks,
+Ionela.
 
-I will try that too.
-
--- 
-Regards,
-Sudeep
+> thanks
 
 _______________________________________________
 linux-amlogic mailing list
