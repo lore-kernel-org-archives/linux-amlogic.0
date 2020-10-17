@@ -7,62 +7,78 @@ X-Spam-Status: No, score=-6.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E697C388F2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Oct 2020 19:00:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C709C433DF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Oct 2020 21:02:09 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5C47D2073A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Oct 2020 19:00:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C7000207BB
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Oct 2020 21:02:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="efydRCxM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C47D2073A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dWDs1cXS";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel-com.20150623.gappssmtp.com header.i=@intel-com.20150623.gappssmtp.com header.b="ntIAxdfj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7000207BB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:To:From:
-	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=K807shDKgiAGqKhESwTFPpT+84D2ALoCWsHPmWAO14c=; b=efydRCxMgp1jW3wudGsfhvRLf
-	VtrZ3mOgR1n+1NRy7dpuoY5mKo532zFYfkcbtiIaO+SRv63ZR1qDF9vzY7QYalcuNz975daezqdPt
-	6s0HrZ2SyzcKtz1YoNHhXJRsO9nll5DYgEeoAG8h49LlpDjD4CFt/mq+CXf+jR1ecYECmVfMhxwJJ
-	t3LC4gSbF7lBrsohRBuHcxDV+4pruRXNIi23QHEJ+otiP3bcoH8SYFkThkamtUkdnUrunJAWdQAnq
-	YUmPPjA44qr2mRnhMKVrR+oJ14wVvFebso2UIqcOsl/Q9pqvJp62daeLcw6j49hhFnX9qSCr0qGFG
-	3vqAb+wrQ==;
+	 bh=hVXAIPJRPj4RDZB1kcNtsDupGvDxprqKbUxbm8IGGyE=; b=dWDs1cXSSz6sK2JuBarsSD24C
+	bLwx7f36IcFr1MNUXYnEQuSDIIV+uvqEZ0tdfXvY5ZipPcyo5VpNUVzUNGHiwOf6IIC4r+RXY0YPq
+	u4e7zHfyvvI9iOwKD2lvrS5Vqozh6nsFp8KENabO8wiDW4aEtlB5HVZ5GUd8Cpa7ZT1sUNYP/klBa
+	5ji9V99Do/CN4/U982njOLBMy09MLBmieje2Xciu8h57zH4QM6qT3DwQSJzRrvN7W3Yr8A0pEudHm
+	JTzehmaeh8vkfW/fXtLI6Mz9HNufxtDNotM3UR+OHszjlVFUGaokzpeW+sHoSS3hCwt2ASdKPhQGu
+	zcEY4kdOA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kTrRC-0004pN-NF; Sat, 17 Oct 2020 19:00:18 +0000
-Received: from smtprelay0125.hostedemail.com ([216.40.44.125]
- helo=smtprelay.hostedemail.com)
+	id 1kTtKx-0002II-6q; Sat, 17 Oct 2020 21:01:59 +0000
+Received: from mail-ej1-x644.google.com ([2a00:1450:4864:20::644])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kTrR7-0004nh-57; Sat, 17 Oct 2020 19:00:14 +0000
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay08.hostedemail.com (Postfix) with ESMTP id 15895182CED2A;
- Sat, 17 Oct 2020 19:00:10 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-HE-Tag: jewel08_4005cbe27228
-X-Filterd-Recvd-Size: 5179
-Received: from XPS-9350.home (unknown [47.151.133.149])
- (Authenticated sender: joe@perches.com)
- by omf01.hostedemail.com (Postfix) with ESMTPA;
- Sat, 17 Oct 2020 19:00:02 +0000 (UTC)
-Message-ID: <503af4a57ca6daeb3e42a9be136dcd21e6d6e23d.camel@perches.com>
-Subject: Re: [Cocci] [RFC] treewide: cleanup unreachable breaks
-From: Joe Perches <joe@perches.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Date: Sat, 17 Oct 2020 12:00:01 -0700
-In-Reply-To: <alpine.DEB.2.22.394.2010172016370.9440@hadrien>
-References: <20201017160928.12698-1-trix@redhat.com>
- <f530b7aeecbbf9654b4540cfa20023a4c2a11889.camel@perches.com>
- <alpine.DEB.2.22.394.2010172016370.9440@hadrien>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+ id 1kTtKb-0002C1-Gz
+ for linux-amlogic@lists.infradead.org; Sat, 17 Oct 2020 21:01:40 +0000
+Received: by mail-ej1-x644.google.com with SMTP id lw21so8462907ejb.6
+ for <linux-amlogic@lists.infradead.org>; Sat, 17 Oct 2020 14:01:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=intel-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QU5tUnKrk3cCgEOM6DUuSpHohPcIoidzngrqxPrVqlg=;
+ b=ntIAxdfj5B3UZZJPAO3W3zqpuYJdxZe6wmMN+Cg5+tfh5QjsxLbXR5o2amfdJQ2J48
+ +r9G2vZiMs4S/e6t6kNU+/1RisTXP2Yspklt8lksB4PhSQjsUISEYusYJeN2p0XCHoqr
+ 5tX/QI+fZe3GQZJaviemAIYQlGxoIFC7s6aX8R5MJQLi2SOYJ/keQbrc62HNUeJ8pCOI
+ 7WYztP0OE4axPIRoGDfVK4aq4k9dPY6fZ69Y4fL3/a70qb0GrKtNhloBSbp9yIhwtpgg
+ UECkhdkcAFyI2jUc3qFZfU7NKoc+E1dZJHZxhONiRQFFV//aVnbaYjp+hfJUaNjfh3TU
+ ik3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QU5tUnKrk3cCgEOM6DUuSpHohPcIoidzngrqxPrVqlg=;
+ b=rnk8r2OvscptJViMA4bMvTwkbPeLXX+2talBVWprn0rG27/UIwvXmIBDvvfNc+QAe9
+ Jh1AYUtPlyES27/KmSyakS9F3/Jw0LXB1X4c3P+rUBessNbjoC0iJBVlee5+e+uxsi1T
+ U5AXjVnev3j+ICqNomI1cC4NSLwXjQprqe/133C3+Y1okDTLSxwvG954MuWm1ojmQE3y
+ qZty2MW/UZZ86Q3rfhqU1sUY0WEtk+O3y72byK0X0bOw7PwEPPBpFuwHEwBOqE1s3Utk
+ 0y80uoVW9gaNkMhVDuOnRpYE9goIumMW3mdMn86pwpu7nx1ah+63U6ZROFmbFQFktSD5
+ ZjLw==
+X-Gm-Message-State: AOAM530CUFhnaLskg340G2wBpdA5/OB/oEaarDS6FdlpkficvuvogBxg
+ YgZbnL+7C59dAj0UBZOtBg6FfR8efVGv3NoPWhHSIA==
+X-Google-Smtp-Source: ABdhPJzde2s6j/g/ekBLPPrgSH2EJqfd3KSDRuhe3Mnzr9w98lVRa6HniOngGCyhNuV4q/eDk1HFvyy/v8IqyEanGTA=
+X-Received: by 2002:a17:906:1a19:: with SMTP id
+ i25mr9957370ejf.323.1602968492144; 
+ Sat, 17 Oct 2020 14:01:32 -0700 (PDT)
 MIME-Version: 1.0
+References: <20201017160928.12698-1-trix@redhat.com>
+In-Reply-To: <20201017160928.12698-1-trix@redhat.com>
+From: Dan Williams <dan.j.williams@intel.com>
+Date: Sat, 17 Oct 2020 14:01:22 -0700
+Message-ID: <CAPcyv4jkSFxMXgMABX7sDbwmq8zJO=rLX2ww3Y9Tc0VAANY8xQ@mail.gmail.com>
+Subject: Re: [RFC] treewide: cleanup unreachable breaks
+To: trix@redhat.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201017_150013_327425_7A9DB316 
-X-CRM114-Status: GOOD (  22.40  )
+X-CRM114-CacheID: sfid-20201017_170137_820949_DC3356FD 
+X-CRM114-Status: GOOD (  21.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,106 +90,117 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-iio@vger.kernel.org, trix@redhat.com,
- linux-pci@vger.kernel.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, keyrings@vger.kernel.org,
- linux-mtd@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- usb-storage@lists.one-eyed-alien.net, devel@driverdev.osuosl.org,
- linux-samsung-soc@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-nvdimm@lists.01.org,
- linux-pm@vger.kernel.org, ath10k@lists.infradead.org,
- cocci <cocci@systeme.lip6.fr>, clang-built-linux@googlegroups.com,
- intel-wired-lan@lists.osuosl.org, industrypack-devel@lists.sourceforge.net,
- nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
- MPT-FusionLinux.pdl@broadcom.com, linux-media@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-nfc@lists.01.org,
- linux-serial@vger.kernel.org, linux-can@vger.kernel.org,
+Cc: alsa-devel@alsa-project.org,
+ clang-built-linux <clang-built-linux@googlegroups.com>,
+ linux-iio@vger.kernel.org, nouveau@lists.freedesktop.org,
+ storagedev@microchip.com,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org,
+ "open list:KEYS-TRUSTED" <keyrings@vger.kernel.org>,
+ linux-mtd@lists.infradead.org, ath10k@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, usb-storage@lists.one-eyed-alien.net,
+ linux-watchdog@vger.kernel.org, devel@driverdev.osuosl.org,
+ linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+ linux-scsi <linux-scsi@vger.kernel.org>,
+ linux-nvdimm <linux-nvdimm@lists.01.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Linux ACPI <linux-acpi@vger.kernel.org>, intel-wired-lan@lists.osuosl.org,
+ industrypack-devel@lists.sourceforge.net,
+ Linux PCI <linux-pci@vger.kernel.org>, spice-devel@lists.freedesktop.org,
+ MPT-FusionLinux.pdl@broadcom.com,
+ "Linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ linux-serial@vger.kernel.org, linux-nfc@lists.01.org,
+ Linux-pm mailing list <linux-pm@vger.kernel.org>, linux-can@vger.kernel.org,
  linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- storagedev@microchip.com, xen-devel@lists.xenproject.org,
+ xen-devel <xen-devel@lists.xenproject.org>, linux-amlogic@lists.infradead.org,
  openipmi-developer@lists.sourceforge.net, platform-driver-x86@vger.kernel.org,
- bpf@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-edac@vger.kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-security-module@vger.kernel.org, linux-crypto@vger.kernel.org,
- patches@opensource.cirrus.com, linux-integrity@vger.kernel.org,
- ocfs2-devel@oss.oracle.com, linux-power@fi.rohmeurope.com
+ linux-integrity@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-edac@vger.kernel.org,
+ Netdev <netdev@vger.kernel.org>, USB list <linux-usb@vger.kernel.org>,
+ Linux Wireless List <linux-wireless@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linux-security-module@vger.kernel.org,
+ linux-crypto <linux-crypto@vger.kernel.org>, patches@opensource.cirrus.com,
+ bpf@vger.kernel.org, ocfs2-devel@oss.oracle.com, linux-power@fi.rohmeurope.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 2020-10-17 at 20:21 +0200, Julia Lawall wrote:
-> On Sat, 17 Oct 2020, Joe Perches wrote:
-> > On Sat, 2020-10-17 at 09:09 -0700, trix@redhat.com wrote:
-> > > From: Tom Rix <trix@redhat.com>
-> > > 
-> > > This is a upcoming change to clean up a new warning treewide.
-> > > I am wondering if the change could be one mega patch (see below) or
-> > > normal patch per file about 100 patches or somewhere half way by collecting
-> > > early acks.
-> > > 
-> > > clang has a number of useful, new warnings see
-> > > https://clang.llvm.org/docs/DiagnosticsReference.html
-> > > 
-> > > This change cleans up -Wunreachable-code-break
-> > > https://clang.llvm.org/docs/DiagnosticsReference.html#wunreachable-code-break
-> > > for 266 of 485 warnings in this week's linux-next, allyesconfig on x86_64.
-> > 
-> > Early acks/individual patches by subsystem would be good.
-> > Better still would be an automated cocci script.
-> 
-> Coccinelle is not especially good at this, because it is based on control
-> flow, and a return or goto diverts the control flow away from the break.
-> A hack to solve the problem is to put an if around the return or goto, but
-> that gives the break a meaningless file name and line number.  I collected
-> the following list, but it only has 439 results, so fewer than clang.  But
-> maybe there are some files that are not considered by clang in the x86
-> allyesconfig configuration.
-> 
-> Probably checkpatch is the best solution here, since it is not
-> configuration sensitive and doesn't care about control flow.
+On Sat, Oct 17, 2020 at 9:10 AM <trix@redhat.com> wrote:
+>
+> From: Tom Rix <trix@redhat.com>
+>
+> This is a upcoming change to clean up a new warning treewide.
+> I am wondering if the change could be one mega patch (see below) or
+> normal patch per file about 100 patches or somewhere half way by collecting
+> early acks.
+>
+> clang has a number of useful, new warnings see
+> https://clang.llvm.org/docs/DiagnosticsReference.html
+>
+> This change cleans up -Wunreachable-code-break
+> https://clang.llvm.org/docs/DiagnosticsReference.html#wunreachable-code-break
+> for 266 of 485 warnings in this week's linux-next, allyesconfig on x86_64.
+>
+> The method of fixing was to look for warnings where the preceding statement
+> was a simple statement and by inspection made the subsequent break unneeded.
+> In order of frequency these look like
+>
+> return and break
+>
+>         switch (c->x86_vendor) {
+>         case X86_VENDOR_INTEL:
+>                 intel_p5_mcheck_init(c);
+>                 return 1;
+> -               break;
+>
+> goto and break
+>
+>         default:
+>                 operation = 0; /* make gcc happy */
+>                 goto fail_response;
+> -               break;
+>
+> break and break
+>                 case COLOR_SPACE_SRGB:
+>                         /* by pass */
+>                         REG_SET(OUTPUT_CSC_CONTROL, 0,
+>                                 OUTPUT_CSC_GRPH_MODE, 0);
+>                         break;
+> -                       break;
+>
+> The exception to the simple statement, is a switch case with a block
+> and the end of block is a return
+>
+>                         struct obj_buffer *buff = r->ptr;
+>                         return scnprintf(str, PRIV_STR_SIZE,
+>                                         "size=%u\naddr=0x%X\n", buff->size,
+>                                         buff->addr);
+>                 }
+> -               break;
+>
+> Not considered obvious and excluded, breaks after
+> multi level switches
+> complicated if-else if-else blocks
+> panic() or similar calls
+>
+> And there is an odd addition of a 'fallthrough' in drivers/tty/nozomi.c
+[..]
+> diff --git a/drivers/nvdimm/claim.c b/drivers/nvdimm/claim.c
+> index 5a7c80053c62..2f250874b1a4 100644
+> --- a/drivers/nvdimm/claim.c
+> +++ b/drivers/nvdimm/claim.c
+> @@ -200,11 +200,10 @@ ssize_t nd_namespace_store(struct device *dev,
+>                 }
+>                 break;
+>         default:
+>                 len = -EBUSY;
+>                 goto out_attach;
+> -               break;
+>         }
 
-Likely the clang compiler is the best option here.
-
-It might be useful to add -Wunreachable-code-break to W=1
-or just always enable it if it isn't already enabled.
-
-diff --git a/scripts/Makefile.extrawarn b/scripts/Makefile.extrawarn
-index 95e4cdb94fe9..3819787579d5 100644
---- a/scripts/Makefile.extrawarn
-+++ b/scripts/Makefile.extrawarn
-@@ -32,6 +32,7 @@ KBUILD_CFLAGS += $(call cc-option, -Wunused-but-set-variable)
- KBUILD_CFLAGS += $(call cc-option, -Wunused-const-variable)
- KBUILD_CFLAGS += $(call cc-option, -Wpacked-not-aligned)
- KBUILD_CFLAGS += $(call cc-option, -Wstringop-truncation)
-+KBUILD_CFLAGS += $(call cc-option, -Wunreachable-code-break)
- # The following turn off the warnings enabled by -Wextra
- KBUILD_CFLAGS += -Wno-missing-field-initializers
- KBUILD_CFLAGS += -Wno-sign-compare
-
-(and thank you Tom for pushing this forward)
-
-checkpatch can't find instances like:
-
-	case FOO:
-		if (foo)
-			return 1;
-		else
-			return 2;
-		break;
-
-As it doesn't track flow and relies on the number
-of tabs to be the same for any goto/return and break;
-
-checkpatch will warn on:
-
-	case FOO:
-		...
-		goto bar;
-		break;
-
-
+Acked-by: Dan Williams <dan.j.williams@intel.com>
 
 _______________________________________________
 linux-amlogic mailing list
