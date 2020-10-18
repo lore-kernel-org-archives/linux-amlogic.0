@@ -7,58 +7,61 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B976C433DF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Oct 2020 19:00:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6259C433DF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Oct 2020 19:07:04 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E5CE522264
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Oct 2020 19:00:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6CA6422267
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Oct 2020 19:07:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="huqiXOjJ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="qhWiWAYm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E5CE522264
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FHF1q/jM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6CA6422267
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:To:From:
+	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=DvqdkgBxYUqmhQK2qXF1E8sY4RJzLN9w3/I1FT+J0lI=; b=huqiXOjJ2V2SU1KWEnAikLSdL
-	3bD9r9Fe/tLKqzjs/f0bedCKEJuMuBjCNG7bc4l988UozxB7I8zT709ZnAQsdm69WXJt7iCKsmbCz
-	HZnHFHGq+RJ3ox6waDz6bCvCVSg5u1UWZLT4p23wvGHWpli4xzPXNhRsLi9Qk0OmNqd9d2agTi3qy
-	aueENQOD00yDbBV6HPKrmkewXbBnYs7I9nt41yr+vd1T+31PhB9UXfBWHI84Y4x9kD7Nuvrdqjurn
-	BKw0mQuH0/8FCm/AHPbSTaYEm/50f1kiCxNZ6sWcfuenx8eYGeLr6/WT9uFnCjTYx4g+C2gKjbrNU
-	KaicVuqGA==;
+	 bh=mCnNJvqK5ulgSyAMxRELLWnKXYtT9+7uRVKeZ2IjhMY=; b=FHF1q/jMCFYytsyL2MhPvz9m3
+	yqR5yJLSkHQ7YZ4+3LJneKoYxhF+0afy8o7OGijSXJn+1qZGi8qZ9+FNDit3K9t3vwbvp1ne2H7ZI
+	KiFSNfGvxV/7yu6/XRevDnyQk3Lp6l3Pn+6hJKMliyAkALE+FSCPYt1NFLx9Q+LW7LPV9RFgf9Ghb
+	1pTfngcCUV6zMcFVWRsyPP/3WRRQ7F7tRlC5z9wINq3gD8uLLi8D9iQhTjWt6XEuJi7OIuWcrnF4n
+	MN/ISyx8ULEQFR0eiOl6osU5DOiYjsKtcBgtAyxR72pMdw7TOXvlmdkpOyKMQJ/1lpt3jgHqZ+Cqz
+	5YOjY0c4A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kUDuN-0002xs-Vw; Sun, 18 Oct 2020 18:59:56 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1kUE1D-0003y1-Eb; Sun, 18 Oct 2020 19:06:59 +0000
+Received: from smtprelay0234.hostedemail.com ([216.40.44.234]
+ helo=smtprelay.hostedemail.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUDuI-0002ws-Vn; Sun, 18 Oct 2020 18:59:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=q0BhqrN3gbd6Z80uxUuHxnuOGNa3MQpvn/ujKpbjoKc=; b=qhWiWAYm9fZ2KNDR/Yk3WeXFl4
- HF2RciAjYHBQMCf3sjKhvFkXSfibnOaNYa7rSxO4GAjMdOb5lKFie8w5W48ySlrw8CCYSSnOZO0Xg
- 5v+vzHZ7K/VxCxY2aBAso6UvZLXpaapi00aBgR18RXogoXyWfK3p9m9265NrgW55bmABmFf/ljB+D
- 9Af5uL1UZOzL5n8T3eza+cGiO5HDs2I27gnorvuwnA1XSsP05jdLks+n6C8PrE6p/2IOOkRu9s0Qf
- 2gQIITEDGF8BYWCD3hQsOGqb9beW/Q62vFU/IQef0kDvAQTCEweywjgtWsVjiKxR3wbF0iuVRtPwK
- m1h79KbA==;
-Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kUDuB-0007Wk-NT; Sun, 18 Oct 2020 18:59:43 +0000
-Date: Sun, 18 Oct 2020 19:59:43 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: trix@redhat.com
+ id 1kUE15-0003tm-J7; Sun, 18 Oct 2020 19:06:53 +0000
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay01.hostedemail.com (Postfix) with ESMTP id 70CB3100E7B40;
+ Sun, 18 Oct 2020 19:06:49 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-HE-Tag: year67_630d5f827230
+X-Filterd-Recvd-Size: 3209
+Received: from XPS-9350.home (unknown [47.151.133.149])
+ (Authenticated sender: joe@perches.com)
+ by omf09.hostedemail.com (Postfix) with ESMTPA;
+ Sun, 18 Oct 2020 19:06:42 +0000 (UTC)
+Message-ID: <18981cad4ac27b4a22b2e38d40bd112432d4a4e7.camel@perches.com>
 Subject: Re: [Ocfs2-devel] [RFC] treewide: cleanup unreachable breaks
-Message-ID: <20201018185943.GM20115@casper.infradead.org>
+From: Joe Perches <joe@perches.com>
+To: Matthew Wilcox <willy@infradead.org>, trix@redhat.com
+Date: Sun, 18 Oct 2020 12:06:40 -0700
+In-Reply-To: <20201018185943.GM20115@casper.infradead.org>
 References: <20201017160928.12698-1-trix@redhat.com>
+ <20201018185943.GM20115@casper.infradead.org>
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201017160928.12698-1-trix@redhat.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20201018_150651_729361_8264398E 
+X-CRM114-Status: GOOD (  11.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,26 +102,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Oct 17, 2020 at 09:09:28AM -0700, trix@redhat.com wrote:
-> clang has a number of useful, new warnings see
-> https://urldefense.com/v3/__https://clang.llvm.org/docs/DiagnosticsReference.html__;!!GqivPVa7Brio!Krxz78O3RKcB9JBMVo_F98FupVhj_jxX60ddN6tKGEbv_cnooXc1nnBmchm-e_O9ieGnyQ$ 
-
-Please get your IT department to remove that stupidity.  If you can't,
-please send email from a non-Red Hat email address.
-
-I don't understand why this is a useful warning to fix.  What actual
-problem is caused by the code below?
-
-> return and break
+On Sun, 2020-10-18 at 19:59 +0100, Matthew Wilcox wrote:
+> On Sat, Oct 17, 2020 at 09:09:28AM -0700, trix@redhat.com wrote:
+> > clang has a number of useful, new warnings see
+> > https://urldefense.com/v3/__https://clang.llvm.org/docs/DiagnosticsReference.html__;!!GqivPVa7Brio!Krxz78O3RKcB9JBMVo_F98FupVhj_jxX60ddN6tKGEbv_cnooXc1nnBmchm-e_O9ieGnyQ$ 
 > 
->  	switch (c->x86_vendor) {
->  	case X86_VENDOR_INTEL:
->  		intel_p5_mcheck_init(c);
->  		return 1;
-> -		break;
+> Please get your IT department to remove that stupidity.  If you can't,
+> please send email from a non-Red Hat email address.
 
-Sure, it's unnecessary, but it's not masking a bug.  It's not unclear.
-Why do we want to enable this warning?
+I didn't get it this way, neither did lore.
+It's on your end.
+
+https://lore.kernel.org/lkml/20201017160928.12698-1-trix@redhat.com/
+
+> I don't understand why this is a useful warning to fix.
+
+Precision in coding style intent and code minimization
+would be the biggest factors IMO.
+
+> What actual problem is caused by the code below?
+
+Obviously none.
+
 
 
 _______________________________________________
