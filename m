@@ -7,17 +7,19 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6259C433DF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Oct 2020 19:07:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 06DB6C433E7
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Oct 2020 19:13:58 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6CA6422267
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Oct 2020 19:07:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A7FA922274
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Oct 2020 19:13:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FHF1q/jM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6CA6422267
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mvz2CESN";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=hansenpartnership.com header.i=@hansenpartnership.com header.b="QOZMzgTQ";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=hansenpartnership.com header.i=@hansenpartnership.com header.b="QOZMzgTQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7FA922274
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=HansenPartnership.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
@@ -25,43 +27,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:To:From:
 	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=mCnNJvqK5ulgSyAMxRELLWnKXYtT9+7uRVKeZ2IjhMY=; b=FHF1q/jMCFYytsyL2MhPvz9m3
-	yqR5yJLSkHQ7YZ4+3LJneKoYxhF+0afy8o7OGijSXJn+1qZGi8qZ9+FNDit3K9t3vwbvp1ne2H7ZI
-	KiFSNfGvxV/7yu6/XRevDnyQk3Lp6l3Pn+6hJKMliyAkALE+FSCPYt1NFLx9Q+LW7LPV9RFgf9Ghb
-	1pTfngcCUV6zMcFVWRsyPP/3WRRQ7F7tRlC5z9wINq3gD8uLLi8D9iQhTjWt6XEuJi7OIuWcrnF4n
-	MN/ISyx8ULEQFR0eiOl6osU5DOiYjsKtcBgtAyxR72pMdw7TOXvlmdkpOyKMQJ/1lpt3jgHqZ+Cqz
-	5YOjY0c4A==;
+	 bh=BD7r0Wr3wFVzL2ozSUK6ynzzPEfiUpIXerkYAN+PvcA=; b=mvz2CESNEQXxa7uhPTN7o2bGX
+	SDqZPuWk0uHnQ/3wBKBoxkniEyi7kkR0ar4xQbhZJhfblUAobtKWkphXFGXoitrchOtt50FzZBi9b
+	v2Yz5Xgm9HOAXg4Y+KV+1cE6iqzKaNWYbLzdv/vAn1SRQXnencAwG2x4bdzLUBZcrew0bb7EVvkY+
+	GeX4tTPU4EvV5c9fmageHzCvj1Ffad3VW19n0q8hJdb7o0bmVYbVlNPlLN6xgHHkgfGk2Q5R8VYMw
+	GFQ5M2wREW3tfMzt4MrLnKuuZP5BCp1HZlXeqBK/r1+yICyA/zl9w452DM25JgOP0m7EXL2pxVoM5
+	9UIHmn+hw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kUE1D-0003y1-Eb; Sun, 18 Oct 2020 19:06:59 +0000
-Received: from smtprelay0234.hostedemail.com ([216.40.44.234]
- helo=smtprelay.hostedemail.com)
+	id 1kUE7r-0004uO-RB; Sun, 18 Oct 2020 19:13:51 +0000
+Received: from bedivere.hansenpartnership.com ([2607:fcd0:100:8a00::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUE15-0003tm-J7; Sun, 18 Oct 2020 19:06:53 +0000
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay01.hostedemail.com (Postfix) with ESMTP id 70CB3100E7B40;
- Sun, 18 Oct 2020 19:06:49 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-HE-Tag: year67_630d5f827230
-X-Filterd-Recvd-Size: 3209
-Received: from XPS-9350.home (unknown [47.151.133.149])
- (Authenticated sender: joe@perches.com)
- by omf09.hostedemail.com (Postfix) with ESMTPA;
- Sun, 18 Oct 2020 19:06:42 +0000 (UTC)
-Message-ID: <18981cad4ac27b4a22b2e38d40bd112432d4a4e7.camel@perches.com>
+ id 1kUE7n-0004s4-B8; Sun, 18 Oct 2020 19:13:48 +0000
+Received: from localhost (localhost [127.0.0.1])
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id 6E9191280300;
+ Sun, 18 Oct 2020 12:13:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=hansenpartnership.com;
+ s=20151216; t=1603048418;
+ bh=z260bBy56dgN8y3lDRHRQeuKrIr1eALRZNoNPoXlSSo=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=QOZMzgTQH16i5avnDNVW0Ktw3okhOk0UWDzTWl7121p+F93A1Quw31cCRVLQH+SGW
+ zn7QBaZkwCTKpROUCnm6j2wnXTspVYtdUU68F1++PaWc9wHgdj5YeqG30CVReBaxSQ
+ 7zgTTXbB0BvsKBkgxIK2UI/Iu/DopS5PndAYThf8=
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+ by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
+ port 10024)
+ with ESMTP id JsjuUxZpqgrR; Sun, 18 Oct 2020 12:13:38 -0700 (PDT)
+Received: from jarvis.int.hansenpartnership.com (unknown
+ [IPv6:2601:600:8280:66d1::c447])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 1ED2912802BA;
+ Sun, 18 Oct 2020 12:13:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=hansenpartnership.com;
+ s=20151216; t=1603048418;
+ bh=z260bBy56dgN8y3lDRHRQeuKrIr1eALRZNoNPoXlSSo=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=QOZMzgTQH16i5avnDNVW0Ktw3okhOk0UWDzTWl7121p+F93A1Quw31cCRVLQH+SGW
+ zn7QBaZkwCTKpROUCnm6j2wnXTspVYtdUU68F1++PaWc9wHgdj5YeqG30CVReBaxSQ
+ 7zgTTXbB0BvsKBkgxIK2UI/Iu/DopS5PndAYThf8=
+Message-ID: <45efa7780c79972eae9ca9bdeb9f7edbab4f3643.camel@HansenPartnership.com>
 Subject: Re: [Ocfs2-devel] [RFC] treewide: cleanup unreachable breaks
-From: Joe Perches <joe@perches.com>
+From: James Bottomley <James.Bottomley@HansenPartnership.com>
 To: Matthew Wilcox <willy@infradead.org>, trix@redhat.com
-Date: Sun, 18 Oct 2020 12:06:40 -0700
+Date: Sun, 18 Oct 2020 12:13:35 -0700
 In-Reply-To: <20201018185943.GM20115@casper.infradead.org>
 References: <20201017160928.12698-1-trix@redhat.com>
  <20201018185943.GM20115@casper.infradead.org>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201018_150651_729361_8264398E 
-X-CRM114-Status: GOOD (  11.39  )
+X-CRM114-CacheID: sfid-20201018_151347_632172_D25B3026 
+X-CRM114-Status: GOOD (  14.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,22 +124,23 @@ On Sun, 2020-10-18 at 19:59 +0100, Matthew Wilcox wrote:
 > > clang has a number of useful, new warnings see
 > > https://urldefense.com/v3/__https://clang.llvm.org/docs/DiagnosticsReference.html__;!!GqivPVa7Brio!Krxz78O3RKcB9JBMVo_F98FupVhj_jxX60ddN6tKGEbv_cnooXc1nnBmchm-e_O9ieGnyQ$ 
 > 
-> Please get your IT department to remove that stupidity.  If you can't,
-> please send email from a non-Red Hat email address.
+> Please get your IT department to remove that stupidity.  If you
+> can't, please send email from a non-Red Hat email address.
 
-I didn't get it this way, neither did lore.
-It's on your end.
+Actually, the problem is at Oracle's end somewhere in the ocfs2 list
+... if you could fix it, that would be great.  The usual real mailing
+lists didn't get this transformation
 
-https://lore.kernel.org/lkml/20201017160928.12698-1-trix@redhat.com/
+https://lore.kernel.org/bpf/20201017160928.12698-1-trix@redhat.com/
 
-> I don't understand why this is a useful warning to fix.
+but the ocfs2 list archive did:
 
-Precision in coding style intent and code minimization
-would be the biggest factors IMO.
+https://oss.oracle.com/pipermail/ocfs2-devel/2020-October/015330.html
 
-> What actual problem is caused by the code below?
+I bet Oracle IT has put some spam filter on the list that mangles URLs
+this way.
 
-Obviously none.
+James
 
 
 
