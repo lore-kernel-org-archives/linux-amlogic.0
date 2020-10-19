@@ -2,97 +2,82 @@ Return-Path: <SRS0=NVL0=D2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CAD0C433E7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2020 17:28:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2D3FC433E7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2020 19:42:44 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CEE362224D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2020 17:28:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 52410222EA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2020 19:42:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Y/OPGNXm";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Vk4zj/RW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CEE362224D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="28XOH2at";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=google.com header.i=@google.com header.b="vqIoQqfP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 52410222EA
+Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=google.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=NXwg2unDwKT+c0YObaXX1ckwvzALZSF/7jmNQTr2WfE=; b=Y/OPGNXml1JWubsMBKNiJ78+XE
-	LBxqwYv+fdjygxO0OQbT22PKTIL7MqVTNvlMPxP0ZvdUv+TfkqV7y3KZdOi7n8Wgk2sIxWWkzbhEM
-	ZPZN+yT1gBdnTZxu/jXsjH70GBD3Gs21zFptvyL0Y3jRMnhQaXEg0oFZ+uoSkp3LAO6uWegmZ07QY
-	WEMSyvMAeFTIHNBe5itNn5W8XCEOtLjmH67FoS8Rpo1V+EkqVz6aIADuZ0aWb0mhLmI1VWcLHXPVU
-	79Kr+tN/SfXu47dexU0dPqtmFT1smZTXoxM9Z3jG/qdOjcfn4BVlXDWFoMAtENPHh9LQoCaMUMezl
-	oG4u2zow==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=DLJbZZs/VSmsa9ElTVedumGMsS5zdQ5fsd96a9BUJGY=; b=28XOH2atTCKGE+RgcJ/yUt2Zr
+	F3Nne7gZn1rSoem2LHrn+p/JRFwwZz3xlYxZ5e6NLtgHJHwuOYNWKuq20UbgUr0vPwDozWQjKcPYp
+	uC2FgmYM8ZIxidC+RCeycRZ/qUgJvy+D1Qz2aJlAjIXPIGLIqWXR2dbmy/l9zMv4qocom8SWDqtnG
+	u/XnG29g5Isa0c4cvquN2lHBSITrwrTX8ShVYYremHmdx5/tpGW6Y83wdtALllFMlj5eWIbxUgQrC
+	9pPP9/u4ioVdHZPGom+XLfbo6v0h/LEX7JnJznabvZSswm7FO9NIuqRMjmKmAe2wJSOBDK1QgKv/9
+	CFfH0dBwQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kUYxc-0002DD-JH; Mon, 19 Oct 2020 17:28:40 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+	id 1kUb3B-00086k-Qe; Mon, 19 Oct 2020 19:42:33 +0000
+Received: from mail-pl1-x644.google.com ([2607:f8b0:4864:20::644])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUYxV-0002AR-9q
- for linux-amlogic@lists.infradead.org; Mon, 19 Oct 2020 17:28:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1603128512;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:content-type:content-type;
- bh=HW3zBaCtD1eYq0aK8PlR42sK9/UGx1+e0AwNTosIs2M=;
- b=Vk4zj/RW7JQWN/8dglqh6TQITzU7b2oddxHeXgqeXVCLhU50Bpgp6aGALemzAbIb1PjjRF
- NKYv3Gjw6+5+6P5uXtu3E6knSRG6gGh+btbdnnve1w2NanFd0HQAicOi61im6psPDh/bip
- pXL4To+xs1ltIPjT2+gy3vUIAQUU0d0=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-210-IhQLmRdyMIyZWKvP8gql8Q-1; Mon, 19 Oct 2020 13:28:30 -0400
-X-MC-Unique: IhQLmRdyMIyZWKvP8gql8Q-1
-Received: by mail-qt1-f199.google.com with SMTP id c4so385558qtx.20
- for <linux-amlogic@lists.infradead.org>; Mon, 19 Oct 2020 10:28:30 -0700 (PDT)
+ id 1kUb37-00085P-4C
+ for linux-amlogic@lists.infradead.org; Mon, 19 Oct 2020 19:42:30 +0000
+Received: by mail-pl1-x644.google.com with SMTP id t22so316041plr.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 19 Oct 2020 12:42:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=no6WOfZDuAXhTDfVia9Vunkz4L7BthY0F8m0jo4//vs=;
+ b=vqIoQqfPtCUD7ceHGEmbvFqqUZd/9dE0IpLQQ4p4nyONBXQMSFxBG5OzgCaJfT8eu8
+ Ez0DMwUntzcU9c2WJzs/WqMvxG3bzlj0mstlcz+E4fW0gt02sZNjrL1HdU6SHVwmCE5R
+ WFeHYzJRJuPZspqj8YJ2wlUmUN4Mc8MNrI6kLekCJ8yejCepkvkgEUeb7TbpDze1NnEh
+ TP2SjhqdakZDUedR00qYjd62k5W2m7FgfHIpcuS/rhjqMGxVL3Apppn+UDRO/ftdIfoh
+ duvoKavmXDacw9mysFV+xdp1Tg4QxCPiDxNSeCeZyO+34Y2S1kYSdX61NJzSKhmGsX5T
+ HLpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=HW3zBaCtD1eYq0aK8PlR42sK9/UGx1+e0AwNTosIs2M=;
- b=pkRLJdlEDhZL7v0gRM0mg8kcOmbMI66wvnSHRaZj+fLPxRD03Cu2dkoHJeRsTC44g5
- rJSYLeQIEfJE0db4Hr76g8TfBTpNxhLXRf478rvyV1kOZcoy4AxlC/yDfDWQ/tDerfvl
- kkt8X6g9N6xLufpfmK6z14MO9V+tnB13RNv2MyxY855l4FQzx+Bg6CeAERb/Qhhhvaha
- 57JbHhrDbaCMAucbLaTzQdOo11PeD8qiQh7RucpFLDRe6fw7jI+91RmKt7nW34xrpqg4
- qHJAqY/XJ5kvsEbHphJZ3N5cdEU8gpIYc2p03MWfoC80+BvvEBIRVSwpmeW+RZWepvkh
- oDAg==
-X-Gm-Message-State: AOAM533H5hybjEn6S1+KC4+GNDNHf56UMTDv/FUnYIiMDD1HN8EPsWEM
- s/S2Weoy8zmglwdXTPfl5/aBfkam8pvguFsXu7GLqwrlFQWQ0FyEOdoS9bK4tkC24N8FgI8dy9S
- 3UBcGKeVfjvotu/VZ90LCMV2uSU/bQqY=
-X-Received: by 2002:ac8:5bc5:: with SMTP id b5mr508610qtb.174.1603128510492;
- Mon, 19 Oct 2020 10:28:30 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyEOFD1teIPDOYCpl3vtGGQdIkQYBiIWt3gTZg1nPEQPWalrkE5Eig1h7A3XXVSaJPOocNZTQ==
-X-Received: by 2002:ac8:5bc5:: with SMTP id b5mr508593qtb.174.1603128510296;
- Mon, 19 Oct 2020 10:28:30 -0700 (PDT)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com.
- [75.142.250.213])
- by smtp.gmail.com with ESMTPSA id f189sm275697qkd.20.2020.10.19.10.28.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Oct 2020 10:28:29 -0700 (PDT)
-From: trix@redhat.com
-To: jic23@kernel.org, lars@metafoo.de, pmeerw@pmeerw.net, khilman@baylibre.com,
- narmstrong@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, andy.shevchenko@gmail.com,
- krzk@kernel.org, alexandru.ardelean@analog.com, jonathan.albrieux@gmail.com
-Subject: [PATCH] iio: remove unneeded break
-Date: Mon, 19 Oct 2020 10:28:24 -0700
-Message-Id: <20201019172824.32166-1-trix@redhat.com>
-X-Mailer: git-send-email 2.18.1
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=no6WOfZDuAXhTDfVia9Vunkz4L7BthY0F8m0jo4//vs=;
+ b=SSec5mkDhumnFvHunjGl9CDQBW1ohUyg1czD9e33yxfZu/rrXR1bXm4RhqBVDWzTXC
+ akFI6D7/IsavY/OUqgaoAsPcaRIR4n6k8dKTr56FJPucicKh4N+XyjRCeUVukn0tbkqD
+ gvT+Elt2EhUqlck7O7r+gPwyacJk7AGYjH9nGX6i/CXHrIDQXi9TqUSTx6EQKwvCrsdu
+ BPW4upd8CHa92XtqUq3s7qcBR8Iut0d3HtjVVisyKCYDW855GNxK0Gxg1iyQH9B3NJnU
+ UnPvPO+h1Uv5V2ncTR3lr6BUm6buWBTdE6GfKBv4nx+os6iKyPEjcu+z8lWRHMMYWyIB
+ T5mw==
+X-Gm-Message-State: AOAM530BhUqHZ8SBt05wVLxPDFdQTJZHeX4t2k2SmtqZNv/lG0KL5daC
+ QzEe6iMzxKIU/uTLlAjuTHxeuU4DharOpvuILnN7OA==
+X-Google-Smtp-Source: ABdhPJxy4K+2uRaBuhFTeTSlHPetqrP1uAAP7dKvm6UBZz10SCa23PJUxb54E5JJmlle9J/y892Qp+TTrKvO4GeNXIk=
+X-Received: by 2002:a17:90a:ee87:: with SMTP id i7mr921476pjz.25.1603136546933; 
+ Mon, 19 Oct 2020 12:42:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20201017160928.12698-1-trix@redhat.com>
+ <20201018054332.GB593954@kroah.com>
+In-Reply-To: <20201018054332.GB593954@kroah.com>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Mon, 19 Oct 2020 12:42:15 -0700
+Message-ID: <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
+Subject: Re: [RFC] treewide: cleanup unreachable breaks
+To: Tom Rix <trix@redhat.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201019_132833_379511_DFE3936B 
-X-CRM114-Status: UNSURE (   9.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201019_154229_246815_7CC814A1 
+X-CRM114-Status: GOOD (  15.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,58 +89,86 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-iio@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Tom Rix <trix@redhat.com>
-MIME-Version: 1.0
+Cc: alsa-devel@alsa-project.org,
+ clang-built-linux <clang-built-linux@googlegroups.com>,
+ Greg KH <gregkh@linuxfoundation.org>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, storagedev@microchip.com,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org, keyrings@vger.kernel.org,
+ linux-mtd@lists.infradead.org, ath10k@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, usb-storage@lists.one-eyed-alien.net,
+ linux-watchdog@vger.kernel.org, devel@driverdev.osuosl.org,
+ linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-nvdimm <linux-nvdimm@lists.01.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, linux-acpi@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, industrypack-devel@lists.sourceforge.net,
+ linux-pci@vger.kernel.org, spice-devel@lists.freedesktop.org,
+ MPT-FusionLinux.pdl@broadcom.com, linux-media@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-nfc@lists.01.org, linux-pm@vger.kernel.org,
+ linux-can@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-gpio@vger.kernel.org, xen-devel@lists.xenproject.org,
+ linux-amlogic@lists.infradead.org, openipmi-developer@lists.sourceforge.net,
+ platform-driver-x86@vger.kernel.org, linux-integrity@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-edac@vger.kernel.org,
+ George Burgess <gbiv@google.com>, Network Development <netdev@vger.kernel.org>,
+ linux-usb@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>, linux-security-module@vger.kernel.org,
+ "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
+ <linux-crypto@vger.kernel.org>, patches@opensource.cirrus.com,
+ bpf <bpf@vger.kernel.org>, ocfs2-devel@oss.oracle.com,
+ linux-power@fi.rohmeurope.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Tom Rix <trix@redhat.com>
+On Sat, Oct 17, 2020 at 10:43 PM Greg KH <gregkh@linuxfoundation.org> wrote:
+>
+> On Sat, Oct 17, 2020 at 09:09:28AM -0700, trix@redhat.com wrote:
+> > From: Tom Rix <trix@redhat.com>
+> >
+> > This is a upcoming change to clean up a new warning treewide.
+> > I am wondering if the change could be one mega patch (see below) or
+> > normal patch per file about 100 patches or somewhere half way by collecting
+> > early acks.
+>
+> Please break it up into one-patch-per-subsystem, like normal, and get it
+> merged that way.
+>
+> Sending us a patch, without even a diffstat to review, isn't going to
+> get you very far...
 
-A break is not needed if it is preceded by a return
+Tom,
+If you're able to automate this cleanup, I suggest checking in a
+script that can be run on a directory.  Then for each subsystem you
+can say in your commit "I ran scripts/fix_whatever.py on this subdir."
+ Then others can help you drive the tree wide cleanup.  Then we can
+enable -Wunreachable-code-break either by default, or W=2 right now
+might be a good idea.
 
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- drivers/iio/adc/meson_saradc.c       | 2 --
- drivers/iio/imu/bmi160/bmi160_core.c | 1 -
- 2 files changed, 3 deletions(-)
+Ah, George (gbiv@, cc'ed), did an analysis recently of
+`-Wunreachable-code-loop-increment`, `-Wunreachable-code-break`, and
+`-Wunreachable-code-return` for Android userspace.  From the review:
+```
+Spoilers: of these, it seems useful to turn on
+-Wunreachable-code-loop-increment and -Wunreachable-code-return by
+default for Android
+...
+While these conventions about always having break arguably became
+obsolete when we enabled -Wfallthrough, my sample turned up zero
+potential bugs caught by this warning, and we'd need to put a lot of
+effort into getting a clean tree. So this warning doesn't seem to be
+worth it.
+```
+Looks like there's an order of magnitude of `-Wunreachable-code-break`
+than the other two.
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index e03988698755..66dc452d643a 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -593,13 +593,11 @@ static int meson_sar_adc_iio_info_read_raw(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_RAW:
- 		return meson_sar_adc_get_sample(indio_dev, chan, NO_AVERAGING,
- 						ONE_SAMPLE, val);
--		break;
- 
- 	case IIO_CHAN_INFO_AVERAGE_RAW:
- 		return meson_sar_adc_get_sample(indio_dev, chan,
- 						MEAN_AVERAGING, EIGHT_SAMPLES,
- 						val);
--		break;
- 
- 	case IIO_CHAN_INFO_SCALE:
- 		if (chan->type == IIO_VOLTAGE) {
-diff --git a/drivers/iio/imu/bmi160/bmi160_core.c b/drivers/iio/imu/bmi160/bmi160_core.c
-index 222ebb26f013..431076dc0d2c 100644
---- a/drivers/iio/imu/bmi160/bmi160_core.c
-+++ b/drivers/iio/imu/bmi160/bmi160_core.c
-@@ -486,7 +486,6 @@ static int bmi160_write_raw(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_SCALE:
- 		return bmi160_set_scale(data,
- 					bmi160_to_sensor(chan->type), val2);
--		break;
- 	case IIO_CHAN_INFO_SAMP_FREQ:
- 		return bmi160_set_odr(data, bmi160_to_sensor(chan->type),
- 				      val, val2);
+We probably should add all 3 to W=2 builds (wrapped in cc-option).
+I've filed https://github.com/ClangBuiltLinux/linux/issues/1180 to
+follow up on.
 -- 
-2.18.1
-
+Thanks,
+~Nick Desaulniers
 
 _______________________________________________
 linux-amlogic mailing list
