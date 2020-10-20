@@ -2,87 +2,76 @@ Return-Path: <SRS0=scox=D3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F22AC433E7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 12:09:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BD5BBC43457
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 12:34:19 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AB44820BED
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 12:09:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 29ECF22265
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 12:34:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="N/yofLSF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="MgBruow4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AB44820BED
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jFyJA6vq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 29ECF22265
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=eVMNr+Xx/dYiDcMnTqeQQOvHC8RiUVgLjkHDL1JPMds=; b=N/yofLSFji8LTksC8aS1T60WOK
-	b5BzMheI4NuPJBX1TqZhH0ZvAnRiV/jACCxdCn+k2GFExITOV5m4GeEbOPEvYszUpLY97xYNrL1O8
-	srFF7H7aAV+iw3PuUjqbPap2jUVcVEUzVuHaF2vVZjRklgFyfvzJVAkxZ5gbPAw/CGUE09mz7302/
-	5aS55BxK9b7tImZciui0Lz0/LBO+oqoy9A2dUOqFOMvpcmMQ2Hy7a3/UlZJKhYkkC/gN1Lmz4EYqy
-	vq2u/VAoB8spq1gSTwdv+ZBtsUO3DUoFUp2nGcmHxO+3WsrMTetvuL1Yak0HBaowLlCR9qM2ana/0
-	J7iIaiBg==;
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=A1TCLuP/IBQZXQC+uXXsCL3TSqNfeHF1ZTHK2ysSma0=; b=jFyJA6vqQZMjS7uHXsSS6qslq
+	NKE25xdzQlYiNBL492tGsy/qoLC3EdWoyhjOEzriquv7ZYg2S16/YImfyEY9JIZ4tDHgap1paaHc0
+	9+OjHLwIyRJnESKp/GWZOoJZMeKqKIXjOQjrwapfJsFgvmrRwy4tpNlbi+Asscl5FSrqXdvYy/1sv
+	XEf3DQ45np+AABfZDee92HHtV++FkNv6kZfUuBOYw/f0lmC8PWb+UQhD+GViTaxSSby1aOej1/xHv
+	zYdvV+cKVJSP0A4up3GQvf5pkWtJLJW3k/dWN7BjeSrMBDnkv21Ed9kIsIAAXAEn63HK9zU3GBo2d
+	db3ifSY+w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kUqS0-0000jq-H1; Tue, 20 Oct 2020 12:09:12 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1kUqqE-00076n-7B; Tue, 20 Oct 2020 12:34:14 +0000
+Received: from mail-wm1-f68.google.com ([209.85.128.68])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUqKv-0004pw-KA
- for linux-amlogic@lists.infradead.org; Tue, 20 Oct 2020 12:01:56 +0000
-Received: by mail-wr1-x443.google.com with SMTP id s9so1797726wro.8
- for <linux-amlogic@lists.infradead.org>; Tue, 20 Oct 2020 05:01:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=2gfqE4Zbkh5Lcg19ZhxoF1Xl/vo9JD6QrpOKZu//If4=;
- b=MgBruow4GBjUkLxhyLeZpDEx3hDjFQMfJNV+Kheh5hUPpbnOEzaXY0lrCio3y+HmyL
- 4dC2SJz0yeHTGPHWIWOWwGyHtKnk3P/UM8FaEtYj2qzjmx4FVT+spQGPbOhuCg0E6BLz
- 7GvNoVgB5Uzib/jjHaa821cXnXU+wY/UnYIK9+K6DdHbpl92yJ2BRzgAmwXkzZUBUnN0
- YbcmdQpyU3R3UaRTmard/coRidSvMrt3x112Rg2+CP5yAHIZh1g4HExK8cEiok7YB13b
- Hyf2oqS2MyqIgpUuHqiVOIDfH15jnYPU7sOPTmowO1DVKw9jsB3aXWzDxl9+szbKFm6p
- BpSg==
+ id 1kUqq9-000757-JM; Tue, 20 Oct 2020 12:34:10 +0000
+Received: by mail-wm1-f68.google.com with SMTP id c16so1681831wmd.2;
+ Tue, 20 Oct 2020 05:34:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=2gfqE4Zbkh5Lcg19ZhxoF1Xl/vo9JD6QrpOKZu//If4=;
- b=uU4qvwJUx6VsJc4lMbafDqFTX6ByPClqBEoASv6u9f/G0FDOnPwviDcyCrg02UODbQ
- baTAhJBpGZz9a7uWW5kQ8cMbxrtH0Iuj12kyoXw+tTO2St2OyiLpIPepsISBbaTkK4Dy
- KVjm6P4Jmh5ufcSwG8wG/d7Q52mF8e2AiphI0uoVFk7MLUkxrw7sxwAGSp/Ujf+FBRTv
- /RvchllAe5DPp1cn/vWd92eotGY8pJtm5rvkktMAmlhfGLLhuV/4RFTH+Zh1ypsoFe2k
- lWc4w9lfd3/qWkdleC+4bwapKuUCUyRgX12iVdHkmxBH1k144fxFW+/rb9avdIn6taLY
- cyLA==
-X-Gm-Message-State: AOAM531gFucoQfhSOb8u6cL214cAI22sk5hWmZ4HSRtV2znfSI2/0Htw
- itVyLVbfJbnV2V3etlMIR3Bz3QykGMv71Q==
-X-Google-Smtp-Source: ABdhPJwYsAEY697v1x5cu0ayp0Ec2C/YVhqqChvB7hmBccgNvdxMoWINpe055G0INBwpz53FMea+8w==
-X-Received: by 2002:adf:ce8a:: with SMTP id r10mr3315537wrn.188.1603195311447; 
- Tue, 20 Oct 2020 05:01:51 -0700 (PDT)
-Received: from starbuck.lan (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.googlemail.com with ESMTPSA id 67sm2402264wmb.31.2020.10.20.05.01.50
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=o05XnIP+Bg3BaL7qnMAypA1wj6djC3Q9AjunxR2fiXE=;
+ b=btjC6zU3z8es6a7+PNqMngrRD4IsTFOmLGUVGwknEEZuw5CQHelbWAYz48xAqL/thy
+ Fh51r3gFqQqraoFPtG8FTJDi0M/d/qxq/TeaTuOTtifhOOYLytHUrMxBRiltdUCIC3Nm
+ V5NYOmA0Bx7ohGyV+JDKkCwwmYD0nlwMB4LZ99eOpUKJmOkCkAY4mz+j14uCF4fCqf4K
+ RMa322GAjJ0C6NmkBHwfz7S4AgRjvR2B/h8dfRqJqQD2Os7AXH4KAZ6fb0f27CE5ru9v
+ 6pal0nWzFAJSZCUgOPJvr5ZK/jhmoAVX2O0OfvbLzI62oMrl7aM2bgBcUzluafur5PIK
+ aIHg==
+X-Gm-Message-State: AOAM531PU0KizbFEd/W9bfbQf0tNMDna0pQILJuvg2WBYDGJddfA93rL
+ uyP/ykNN3A85a1PYMAv5D7w=
+X-Google-Smtp-Source: ABdhPJwBRAsCi93ZLg6efPLo+MWBmBwBPiFAgJGSZxHN3kxdrnWuhiAWc+LcQZlxoXTxlsITeFwVpw==
+X-Received: by 2002:a1c:9949:: with SMTP id b70mr2762243wme.116.1603197248325; 
+ Tue, 20 Oct 2020 05:34:08 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.171])
+ by smtp.googlemail.com with ESMTPSA id n9sm2774115wrq.72.2020.10.20.05.34.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Oct 2020 05:01:50 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] arm64: dts: amlogic: add missing ethernet reset ID
-Date: Tue, 20 Oct 2020 14:01:41 +0200
-Message-Id: <20201020120141.298240-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.25.4
+ Tue, 20 Oct 2020 05:34:07 -0700 (PDT)
+Date: Tue, 20 Oct 2020 14:34:04 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Subject: Re: [PATCH 05/29] arm64: dts: amlogic: meson-g12: Set FL-adj
+ property value
+Message-ID: <20201020123404.GC127386@kozik-lap>
+References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
+ <20201020115959.2658-6-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Disposition: inline
+In-Reply-To: <20201020115959.2658-6-Sergey.Semin@baikalelectronics.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201020_080153_945429_6BEDDDA4 
-X-CRM114-Status: GOOD (  12.46  )
+X-CRM114-CacheID: sfid-20201020_083409_637446_56346F8A 
+X-CRM114-Status: GOOD (  11.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,76 +83,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Anand Moon <linux.amoon@gmail.com>, linux-amlogic@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
+Cc: Felipe Balbi <balbi@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Anand Moon <linux.amoon@gmail.com>
+On Tue, Oct 20, 2020 at 02:59:35PM +0300, Serge Semin wrote:
+> In accordance with the DWC USB3 bindings the property is supposed to have
+> uint32 type. It's erroneous from the DT schema and driver points of view
+> to declare it as boolean.
 
-Add reset external reset of the ethernet mac controller
+I think the driver uses it as u32, so what do you mean by "declare" in
+context of a driver?
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 2 ++
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 3 +++
- 3 files changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index fae48efae83e..724ee179b316 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -227,6 +227,8 @@ ethmac: ethernet@ff3f0000 {
- 				      "timing-adjustment";
- 			rx-fifo-depth = <4096>;
- 			tx-fifo-depth = <2048>;
-+			resets = <&reset RESET_ETHERNET>;
-+			reset-names = "stmmaceth";
- 			status = "disabled";
- 		};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index c95ebe615176..8514fe6a275a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -224,6 +224,8 @@ ethmac: ethernet@ff3f0000 {
- 				      "timing-adjustment";
- 			rx-fifo-depth = <4096>;
- 			tx-fifo-depth = <2048>;
-+			resets = <&reset RESET_ETHERNET>;
-+			reset-names = "stmmaceth";
- 			status = "disabled";
- 
- 			mdio0: mdio {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 0edd137151f8..726b91d3a905 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -13,6 +13,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/meson-gxbb-power.h>
-+#include <dt-bindings/reset/amlogic,meson-gxbb-reset.h>
- #include <dt-bindings/thermal/thermal.h>
- 
- / {
-@@ -575,6 +576,8 @@ ethmac: ethernet@c9410000 {
- 			interrupt-names = "macirq";
- 			rx-fifo-depth = <4096>;
- 			tx-fifo-depth = <2048>;
-+			resets = <&reset RESET_ETHERNET>;
-+			reset-names = "stmmaceth";
- 			power-domains = <&pwrc PWRC_GXBB_ETHERNET_MEM_ID>;
- 			status = "disabled";
- 		};
--- 
-2.25.4
-
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
