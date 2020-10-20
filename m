@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4DF36C43457
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 11:24:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4531BC433DF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 12:01:06 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D843B22240
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 11:24:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C32F522244
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 12:01:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cIRDyuHL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D843B22240
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Bto5Sr4v"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C32F522244
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baikalelectronics.ru
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,44 +25,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=LYNN+3pSkOu4krR10F3mekkra1E0uiuBbyzIT05l5s0=; b=cIRDyuHLJLFNFKJdN1f+YmGBN
-	YPRsNqS+xH8To5yW8y5y/n+noCYNuM8cKJj0fkLgMlxyVH/DueqUfy6ISiSiRbEbMqNkuy05sppBI
-	6U5815XIa8raujEVNGwypJjYjuUfUg6ZvrxrnDciSrT1UAh6O4vQVsIwQamtkskAJaLhmuxnWncj3
-	4wq5QBIP19sjDYl/deJh079oeC4vdVmsMpQBIeF8GeD+F3jWoxfVj6zvxv0Wdkz4WfCIJektkodYn
-	e3jSBRzooL/M1W/Hl5qz4ihf1LnlrY0bQzQa2IQQBUgk53WuUuefe8or7wb+nt77+Orv+nbG/kljV
-	uknbMw8gQ==;
+	 bh=n1jOS8ybITWnf8jiHX5vSqdFc6803IPak0vBYkS1x5Q=; b=Bto5Sr4vtz/dAzdubYW1pQm4z
+	RLbeM010xhTWQ+DNylmYPN6laeX8hE81EafGI4cB6C10Xxtwbzfn7SlONl7Yx3rn4kfncTLaW74g7
+	QklbBHOxjQRNOVOrVCoZho8Fmjbp/3RIv1CVlVApmUlsT4BqOpz26A0oNhazsTq2NK3RPb0D26wIo
+	hroUHfBUhIU78MojOrtD2frsMEco0Yo8E4si2YNrgjR8dyqopGVqGt4lYM4Ves4jY2R6u3tCrO4f6
+	JSz5TWjy5vOvH6aPHn7B9zRNvZPBh2V9SL5M/oMAoh9pZSIk7r4BizMTzKxfJRkgBQYG9iiUP7Iuz
+	jl307ezBw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kUpkG-0006kh-OX; Tue, 20 Oct 2020 11:24:00 +0000
+	id 1kUqK4-0004Uw-6G; Tue, 20 Oct 2020 12:01:00 +0000
 Received: from mail.baikalelectronics.com ([87.245.175.226]
  helo=mail.baikalelectronics.ru)
  by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUpho-0005dD-Qu; Tue, 20 Oct 2020 11:21:34 +0000
+ id 1kUqJO-0004E8-O0; Tue, 20 Oct 2020 12:00:20 +0000
 Received: from localhost (unknown [127.0.0.1])
- by mail.baikalelectronics.ru (Postfix) with ESMTP id 27700803017F;
- Tue, 20 Oct 2020 11:21:28 +0000 (UTC)
+ by mail.baikalelectronics.ru (Postfix) with ESMTP id 3DD68803071B;
+ Tue, 20 Oct 2020 12:00:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at baikalelectronics.ru
 Received: from mail.baikalelectronics.ru ([127.0.0.1])
  by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5rLm4zjumONz; Tue, 20 Oct 2020 14:21:26 +0300 (MSK)
+ with ESMTP id ZlYmcs19ubni; Tue, 20 Oct 2020 15:00:17 +0300 (MSK)
 From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To: Mathias Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Kevin Hilman
+To: Felipe Balbi <balbi@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Florian Fainelli <f.fainelli@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Kevin Hilman
  <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Jerome
  Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v3 13/16] dt-bindings: usb: meson-g12a-usb: Fix FL-adj
- property value
-Date: Tue, 20 Oct 2020 14:20:58 +0300
-Message-ID: <20201020112101.19077-14-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201020112101.19077-1-Sergey.Semin@baikalelectronics.ru>
-References: <20201020112101.19077-1-Sergey.Semin@baikalelectronics.ru>
+Subject: [PATCH 05/29] arm64: dts: amlogic: meson-g12: Set FL-adj property
+ value
+Date: Tue, 20 Oct 2020 14:59:35 +0300
+Message-ID: <20201020115959.2658-6-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
+References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201020_072129_076235_33323B6E 
-X-CRM114-Status: GOOD (  10.81  )
+X-CRM114-CacheID: sfid-20201020_080018_970285_1437C4FC 
+X-CRM114-Status: UNSURE (   9.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,58 +75,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- linux-mips@vger.kernel.org,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- linux-usb@vger.kernel.org,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Serge Semin <fancer.lancer@gmail.com>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
+Cc: devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
  Serge Semin <Sergey.Semin@baikalelectronics.ru>,
- Manu Gautam <mgautam@codeaurora.org>, Andy Gross <agross@kernel.org>,
- Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
- linux-amlogic@lists.infradead.org,
- Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
- linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- Roger Quadros <rogerq@ti.com>
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-An empty snps,quirk-frame-length-adjustment won't cause any change
-performed by the driver. Moreover the DT schema validation will fail,
-since it expects the property being assigned with some value. So set
-fix the example by setting a valid FL-adj value in accordance with
-Neil Armstrong comment.
+In accordance with the DWC USB3 bindings the property is supposed to have
+uint32 type. It's erroneous from the DT schema and driver points of view
+to declare it as boolean. As Neil suggested set it to 0x20 so not break
+the platform and to make the dtbs checker happy.
 
 Link: https://lore.kernel.org/linux-usb/20201010224121.12672-16-Sergey.Semin@baikalelectronics.ru/
 Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
 ---
-
-Note the same problem is in the DT source file
-arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi .
----
- .../devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml    | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-index 5b04a7dfa018..a4b44a16aaef 100644
---- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-@@ -209,6 +209,6 @@ examples:
-               interrupts = <30>;
-               dr_mode = "host";
-               snps,dis_u2_susphy_quirk;
--              snps,quirk-frame-length-adjustment;
-+              snps,quirk-frame-length-adjustment = <0x20>;
-           };
-     };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 1e83ec5b8c91..3033ab2be1ff 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2380,7 +2380,7 @@ dwc3: usb@ff500000 {
+ 				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+ 				dr_mode = "host";
+ 				snps,dis_u2_susphy_quirk;
+-				snps,quirk-frame-length-adjustment;
++				snps,quirk-frame-length-adjustment = <0x20>;
+ 				snps,parkmode-disable-ss-quirk;
+ 			};
+ 		};
 -- 
 2.27.0
 
