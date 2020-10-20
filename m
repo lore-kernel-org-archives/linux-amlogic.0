@@ -2,67 +2,82 @@ Return-Path: <SRS0=scox=D3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AEC51C5517F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 18:43:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8DA5C388F2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 19:39:00 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1E05122200
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 18:43:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 545762225D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 19:39:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZvK98bUG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1E05122200
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RqQ8Byq3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="RAVu96uC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 545762225D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:To:From:
-	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=UFHiD4IPSC0XwLjLX4vHm/uR7T4RUIidISy4+2jxm2k=; b=ZvK98bUGFc4aIKOEuv18ix0Ju
-	X8VS8bLyy9Uz+cdIeWg6OTnPk/rYqXig70ir78htHQeRvS0BvaKYGj2GA58LdEfZFKuULEcEfaf6J
-	BCp6cco0esWz8wUARqqyKyr9dzzJhW6zd3V4rMblS18NjBz5oLghd1ZgE+RuRj1LBqWmGfeZ4o9D2
-	TIPJUpJJZ55+9Jqdme1PSPv1Vs3y+4EGWhoYL6YEEGxyyjC5eB1ZPSPhaRE6qCKg7IRL3s6SFSdZN
-	/fPjy3fDoPU7AnDF16fN2tLkiJ8Ilurz/DnAAUZE+fubdAVVsseXSL4n4SdUVFN+PZaB4j9Jo9t4W
-	OfinnmflA==;
+	 bh=8Q7gYCyNrB75zHgFaTKNGAb6WBZA8GuZ+Z3cvD04Yas=; b=RqQ8Byq3H40in3AHzL/fSj/cS
+	+pDLkhGlRn84TtIp1kzcLoPfKiXUGsAFGTqHmrloI5Co3JD5sVerZEAqUmmYVeQQRWOUQcPnOevJE
+	0c7Qn2fXW5Cv3INGT+L9MplzqUzR2wNDXT63ncmOebSkH0a5vSfbkdM+VRz8kYKp9p4MZrfj+7obM
+	65g6pcxgxnjupWHOycbFyJSycx6YNIXsRht/emu4rBm0yOlflubYofyFuohaCwjnxgep2j+vPRi91
+	aCPXOlBlycrrw2yC0dZlFwESL/eUASfnmwjqAS8gdAJPvuAt8/NzUmD2QZKKIx8/DVc+kls4Xc0gK
+	wx1lWwUvw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kUwb6-0004Zc-Jw; Tue, 20 Oct 2020 18:43:00 +0000
-Received: from smtprelay0243.hostedemail.com ([216.40.44.243]
- helo=smtprelay.hostedemail.com)
+	id 1kUxT6-0000uK-R5; Tue, 20 Oct 2020 19:38:48 +0000
+Received: from mail-ej1-x641.google.com ([2a00:1450:4864:20::641])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUwb2-0004Xk-Or; Tue, 20 Oct 2020 18:42:57 +0000
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay02.hostedemail.com (Postfix) with ESMTP id 43FA51260;
- Tue, 20 Oct 2020 18:42:51 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-HE-Tag: humor84_3a06a8527241
-X-Filterd-Recvd-Size: 4943
-Received: from XPS-9350.home (unknown [47.151.133.149])
- (Authenticated sender: joe@perches.com)
- by omf17.hostedemail.com (Postfix) with ESMTPA;
- Tue, 20 Oct 2020 18:42:43 +0000 (UTC)
-Message-ID: <3bc5c2e3b3edc22a4d167ec807ecdaaf8dcda76d.camel@perches.com>
-Subject: Re: [RFC] treewide: cleanup unreachable breaks
-From: Joe Perches <joe@perches.com>
-To: Nick Desaulniers <ndesaulniers@google.com>, Tom Rix <trix@redhat.com>
-Date: Tue, 20 Oct 2020 11:42:42 -0700
-In-Reply-To: <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
-References: <20201017160928.12698-1-trix@redhat.com>
- <20201018054332.GB593954@kroah.com>
- <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+ id 1kUxT4-0000tj-IL; Tue, 20 Oct 2020 19:38:47 +0000
+Received: by mail-ej1-x641.google.com with SMTP id u8so4498495ejg.1;
+ Tue, 20 Oct 2020 12:38:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=0t/6lxdfJB1VtvUS8CRTLcR9vrrpuLwBQkRpQbczdss=;
+ b=RAVu96uCHOLD8Tm3mF3Ij513xTplm/3WaVxFJRsxQvH6/Ma53nSbEdwB37DX7YGqA3
+ L3NU6hwBoZ0ZNWrfwDp7TB9I0udOnhp88Et20D3oz4Vo7eSjhLdPDOYr7aIqKoBB0zTP
+ lRm3G89BwGWyNuY1CXYr3BtGY19YCKwdpuJpkArD6L0V7qCeezDGRsaexYzEYI11NEnz
+ PlscX/yOkz6nEeddfgo/lQKlOgUxOL0ouEsOTLlf0RMlgVmAozJmPNpRP0lOazvlm4ah
+ 0pVh4ICDQ8GAbks9xr39sZwYwasCGt1rhzMcF7LO5MgtOGdM/AtO8Fm8ShPNWMDFoE0/
+ Q/4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=0t/6lxdfJB1VtvUS8CRTLcR9vrrpuLwBQkRpQbczdss=;
+ b=IRam89pzQQxx4SMBQrN74kcIJi/UC+9lNLEOqNL0ba07efh8BXHgA6x4+D1Jn//ebU
+ CNYdkOhuruPBefUut/zuID4g9EQ3Hn0ghx8rGS804ccWW8DNoutjfIodeZTXBkI0Gp8P
+ gRLvAAESw+3zwzHNWWMzXtRyyKb95uk4QVY2VYlE/d9fnUMR/ckS12qoIV3YLn3HBjZ8
+ ItVTqAm1Yyd4LCpOkX22DYtReX9SgnWHA+rz4pyHeLq5x2CB6MPvpaQlAJLpUxW8wktt
+ JE4c9iq7FQHIAexYsBUEZoYx/Jf2aojalhNPi6iuwSNz3GjEY45+oH69A23OSXBgducp
+ 328Q==
+X-Gm-Message-State: AOAM531afF8r2RylqdRy2Zepa/7y4rrRoJELJ7/6wTVi93VgPrmiEGIA
+ MIW2ITZGyaXQi69nFDp1/LXGyiFg2TLNdbn+fSs=
+X-Google-Smtp-Source: ABdhPJzm0r+f90HVNAeb0yNZulVGpiqUvDFPFj8PANlV6Dz9Cf6ehgYOH7h2wBTMI8K/6QlolIQY2DPRGjQiWXWFH6s=
+X-Received: by 2002:a17:906:cc0d:: with SMTP id
+ ml13mr4826136ejb.2.1603222725387; 
+ Tue, 20 Oct 2020 12:38:45 -0700 (PDT)
 MIME-Version: 1.0
+References: <20201019144809.943608-1-narmstrong@baylibre.com>
+In-Reply-To: <20201019144809.943608-1-narmstrong@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 20 Oct 2020 21:38:34 +0200
+Message-ID: <CAFBinCBxSdhutZQz2LFkoZwQT35gW-T2W3KX6-M5mp-XfZy2vg@mail.gmail.com>
+Subject: Re: [PATCH v2] reset: meson: make it possible to build as a module
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201020_144256_858127_21F04752 
-X-CRM114-Status: GOOD (  23.81  )
+X-CRM114-CacheID: sfid-20201020_153846_621844_546249DE 
+X-CRM114-Status: GOOD (  11.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,91 +89,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- Greg KH <gregkh@linuxfoundation.org>, linux-iio@vger.kernel.org,
- nouveau@lists.freedesktop.org, storagedev@microchip.com,
- dri-devel <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org, keyrings@vger.kernel.org,
- linux-mtd@lists.infradead.org, ath10k@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, usb-storage@lists.one-eyed-alien.net,
- linux-watchdog@vger.kernel.org, devel@driverdev.osuosl.org,
- linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-nvdimm <linux-nvdimm@lists.01.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, linux-acpi@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, industrypack-devel@lists.sourceforge.net,
- linux-pci@vger.kernel.org, spice-devel@lists.freedesktop.org,
- MPT-FusionLinux.pdl@broadcom.com, linux-media@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-nfc@lists.01.org, linux-pm@vger.kernel.org,
- linux-can@vger.kernel.org, linux-block@vger.kernel.org,
- linux-gpio@vger.kernel.org, xen-devel@lists.xenproject.org,
- linux-amlogic@lists.infradead.org, openipmi-developer@lists.sourceforge.net,
- platform-driver-x86@vger.kernel.org, linux-integrity@vger.kernel.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-edac@vger.kernel.org,
- George Burgess <gbiv@google.com>, Network Development <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>, linux-security-module@vger.kernel.org,
- "open list:HARDWARE RANDOM NUMBER
- GENERATOR CORE" <linux-crypto@vger.kernel.org>, patches@opensource.cirrus.com,
- bpf <bpf@vger.kernel.org>, ocfs2-devel@oss.oracle.com,
- linux-power@fi.rohmeurope.com
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+ Kevin Hilman <khilman@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2020-10-19 at 12:42 -0700, Nick Desaulniers wrote:
-> On Sat, Oct 17, 2020 at 10:43 PM Greg KH <gregkh@linuxfoundation.org> wrote:
-> > On Sat, Oct 17, 2020 at 09:09:28AM -0700, trix@redhat.com wrote:
-> > > From: Tom Rix <trix@redhat.com>
-> > > 
-> > > This is a upcoming change to clean up a new warning treewide.
-> > > I am wondering if the change could be one mega patch (see below) or
-> > > normal patch per file about 100 patches or somewhere half way by collecting
-> > > early acks.
-> > 
-> > Please break it up into one-patch-per-subsystem, like normal, and get it
-> > merged that way.
-> > 
-> > Sending us a patch, without even a diffstat to review, isn't going to
-> > get you very far...
-> 
-> Tom,
-> If you're able to automate this cleanup, I suggest checking in a
-> script that can be run on a directory.  Then for each subsystem you
-> can say in your commit "I ran scripts/fix_whatever.py on this subdir."
->  Then others can help you drive the tree wide cleanup.  Then we can
-> enable -Wunreachable-code-break either by default, or W=2 right now
-> might be a good idea.
-> 
-> Ah, George (gbiv@, cc'ed), did an analysis recently of
-> `-Wunreachable-code-loop-increment`, `-Wunreachable-code-break`, and
-> `-Wunreachable-code-return` for Android userspace.  From the review:
-> ```
-> Spoilers: of these, it seems useful to turn on
-> -Wunreachable-code-loop-increment and -Wunreachable-code-return by
-> default for Android
-> ...
-> While these conventions about always having break arguably became
-> obsolete when we enabled -Wfallthrough, my sample turned up zero
-> potential bugs caught by this warning, and we'd need to put a lot of
-> effort into getting a clean tree. So this warning doesn't seem to be
-> worth it.
-> ```
-> Looks like there's an order of magnitude of `-Wunreachable-code-break`
-> than the other two.
-> 
-> We probably should add all 3 to W=2 builds (wrapped in cc-option).
-> I've filed https://github.com/ClangBuiltLinux/linux/issues/1180 to
-> follow up on.
-
-I suggest using W=1 as people that are doing cleanups
-generally use that and not W=123 or any other style.
-
-Every other use of W= is still quite noisy and these
-code warnings are relatively trivially to fix up.
-
-
+On Mon, Oct 19, 2020 at 4:49 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> In order to reduce the kernel Image size on multi-platform distributions,
+> make it possible to build the reset controller driver as a module.
+>
+> This partially reverts 8290924e ("reset: meson: make it explicitly non-modular")
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
