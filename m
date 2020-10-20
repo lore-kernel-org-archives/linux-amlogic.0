@@ -2,22 +2,22 @@ Return-Path: <SRS0=scox=D3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 26EE9C4363A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 14:47:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A437C4363A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 14:50:04 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0E0B621534
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 14:47:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 003F721534
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 14:50:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HVR1G7rZ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fGTc8ndg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E0B621534
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KGjG7N4Q";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="s5HEKF5Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 003F721534
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8RhWjB2tULrAR6IXjNBs0wAn6nOZii7SV8p7hYUF14A=; b=HVR1G7rZjHgjtEanXweAXuYm5
-	Qcy5SFPiB9A7uLY3aSBkDg674mxk5EQQ9+qDDE5xhMu2PgrrJ6+AqEQdGHcgZA8uuC6436HWoFP62
-	jyejp1vRsBd/g4jNh2dvatuFOnjpzO1GSVk72CVVpndFQhnsIauD+pupqdk8TJbIqUYkB8MnPUvjT
-	/zC7gcrTwm9aTtfFmj9euEL7Hs0DKb5GVThD2pPGfs/3Kt1XhrGbflDsmngz3X9kaOsXcmSMGqXGR
-	elxPUTm74Dx56ioBB0a2fAbwN6Puge42IqF5P5TTWAOAj2boUFwmhsuOwDjMiv1WJeU4VhE/3P4fG
-	0Tpk3fuXQ==;
+	 bh=p+fHmirHOjwHntXcDDK90OugNtoTXePqL0bdB0Au2As=; b=KGjG7N4QoPplzHgHh7seh8xpk
+	/eg29JsSMYWd0T1V/QLAmvtjO90LpW0+BJn0fHTC5moIayTpZigkV6NcY79sr56yIA+Ax2D+ZvcuI
+	CQEB0JtpYD55Q2nE4UH61WMjLR/lGi512Bvc9xidnMDpQZEkYH9lc8N+ZtKac8K2c4eYdVj7O9dWU
+	aMLoau/qzq+jbADEOfbWdFTC/XQboMaoNZBlCBZnbMvuwDk6zlBjZ2gBNtw/rO1gNGnqynqDvnAGE
+	5F1lSIDRW5NtpTiTV74oZAClTkMTem1tZzrOlQ1vySueEOjtIu3sWmQvMYHt7Vb+2ohsNkadhiqNb
+	YLHrMYOHA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kUsvB-00014y-Ba; Tue, 20 Oct 2020 14:47:29 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1kUsxb-0001L5-Hb; Tue, 20 Oct 2020 14:49:59 +0000
+Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUsv5-000141-M2
- for linux-amlogic@lists.infradead.org; Tue, 20 Oct 2020 14:47:25 +0000
-Received: by mail-pg1-x543.google.com with SMTP id r10so1201835pgb.10
- for <linux-amlogic@lists.infradead.org>; Tue, 20 Oct 2020 07:47:22 -0700 (PDT)
+ id 1kUsxZ-0001KM-Eb
+ for linux-amlogic@lists.infradead.org; Tue, 20 Oct 2020 14:49:58 +0000
+Received: by mail-pl1-x642.google.com with SMTP id y1so1143841plp.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 20 Oct 2020 07:49:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=KxlSgIEsMIZ1sTboSg+Gy6kj2Zs6LpYYmnKZURbpJ5w=;
- b=fGTc8ndgQ6TnfZLwNYQLflQO1IwerXMv+W2/gOEpzVP33KJLWIk7KLqqRtLONeZi0X
- myNYZv65BgAvXiABdGcxIq3sTqaW6CknRqAxDusOzb9eXcEN6D34wJ7puseVVCOjqcxA
- /3FiFy19/fmljWUicSNe0HCnE41y5NfyhRgceUUYNOCTfIs1MGb7XClJrRPSYuB9zK9y
- aA4mtZ+RmrSrpakMXz+iDnbnwH934sqVtwmg2+OgRVnq+jkeSRe7RO+ej+YHiy25+PNU
- qMwW4oDiO5YX6Z1+DH+YdyPk9LXPJttHI3b5EVpv9x1Ufu8clrQYHxcHGHBFisLnVS1A
- 7l0g==
+ :mime-version; bh=Fg6pNbj6ALE21jJQou7VGOk/llHej9K+3C1jIB5kjaI=;
+ b=s5HEKF5YDQgHaPTun57X+Qrt1B3vtLMKSsqq+t3SWWhZ18Xiq1hyvXrUGb6YkModH2
+ bLg9eQViAONwRN/GttLbHK3reudUxphCoxnSjBdLJ0nSkNbfzeISraprjopY+7fgVld6
+ X6X7AdX7Y0ZdG3ECdBCboFnAA/XOXtvBMkSWtdNIK4EEQ+988LUer+A/dNQzB33Qbpzr
+ U06DX9SrMSi8jPGBZuQf9QYP0i65I1qUW+AL88fGzqwmvdByofbtEOp+QxL/eg+EUyM6
+ uGFag4kQTmY0N0v2j/6Ik0YfonjPH3gmkejGLie8L0B6mYhDm0G8ub10g5S8KyJN4yyL
+ WnhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=KxlSgIEsMIZ1sTboSg+Gy6kj2Zs6LpYYmnKZURbpJ5w=;
- b=GW3bJHcF54ZghqS3nF+MEi9p6QeVMCm/GM+Mrff+8yUxcTF2zRXATL4SgP8+BZ8Qyj
- wJkSRYzw9qFuwZkHBsAYUyLxMlbmD5vjxiyjBolyHazA6CuwNFIsvOvVkMbPKgsSa5io
- 7EGgPW3+8DAs8OeDF/gy5HbVpCynGnuqVovO+I2IFjN2lG0hDonZxKyr4BDLvVq1KmB9
- ZoZ1bWdwwND/0L69yC4XAO3QU6Hxx3S62WUxEi8Ci4ZgVvUMSa/QnqkXRDUQODyK5Whs
- aMu05ZHLNjXZOyp3eHjqvUskBla+Rd+EJqlpcpLDpW3BJA3cp7GoxyDeue7am79iPCou
- Q0ag==
-X-Gm-Message-State: AOAM530+p7i9lzkcfByDDYv98xJk2LGDpJ8KfZzjYBXBeJaZZHZk5Euc
- rT/VqSutloBqjUCbpWylRRCv/A==
-X-Google-Smtp-Source: ABdhPJy7bJk3IfaL0gi1EbNbOte3OdieKN4e/LccF3JEQ4oBqwwMcIEUocuyTBPUvXWQ+F7u4yORRg==
-X-Received: by 2002:a63:4c55:: with SMTP id m21mr2998994pgl.305.1603205241008; 
- Tue, 20 Oct 2020 07:47:21 -0700 (PDT)
+ bh=Fg6pNbj6ALE21jJQou7VGOk/llHej9K+3C1jIB5kjaI=;
+ b=pSIl/PlmaFXvntcN1nzhbijIosbjmFJWxsCnb8Tzvbx2tj5YgRbxzF4uw4G1mYybh+
+ lHiZZJxm3hybI/WgQA/aMP9FqlaDEhnwbcLvqkG2CiktfZwPXNe/A5dQLMaW3eNQiaJ/
+ 0cUsQA9jMWbFRbCkG3FymYLDFlVlvHJlpwFZbfwOBR8qnGztxM1a01GXWNBppmEEJLHK
+ nKcOxcNEsF+RiQEe2AKsq77Jhgxi44qNsGbDP/yATXiytwDS4/UBJOmaOzwSWNO20dqB
+ D9WRzdRoraevpcNDoXctEMyJAoNH+Hhn+7T5/wkJqUMoadXsv2YtJkurrlccHIXdasLX
+ OPVw==
+X-Gm-Message-State: AOAM532AFVspDIfc6KcviXXxjDtFliTa6XzAoM/XL6sbBXgTBkznDJww
+ xLY+Zfo9Rfy/Rwn+9nYEUSmIhQ==
+X-Google-Smtp-Source: ABdhPJzxJ1bssrjG06M7ZqnzU+aSs+/Cyuw10gkAHVZv9CuVKhvM3uNw+Zbvn2KmqaYehwh3HQQRMg==
+X-Received: by 2002:a17:90a:e697:: with SMTP id
+ s23mr2996501pjy.16.1603205393066; 
+ Tue, 20 Oct 2020 07:49:53 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id x22sm2719808pfp.181.2020.10.20.07.47.19
+ by smtp.gmail.com with ESMTPSA id y22sm2706794pfr.62.2020.10.20.07.49.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Oct 2020 07:47:20 -0700 (PDT)
+ Tue, 20 Oct 2020 07:49:52 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/2] soc: mx-socinfo: only build for arm
-In-Reply-To: <1jk0vlmiqb.fsf@starbuckisacylon.baylibre.com>
-References: <20201019224649.14302-1-khilman@baylibre.com>
- <1jk0vlmiqb.fsf@starbuckisacylon.baylibre.com>
-Date: Tue, 20 Oct 2020 07:47:19 -0700
-Message-ID: <7himb5kl8o.fsf@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: add missing ethernet reset ID
+In-Reply-To: <68ee4022-df9b-c36e-b828-bc93d6507473@baylibre.com>
+References: <20201020120141.298240-1-jbrunet@baylibre.com>
+ <68ee4022-df9b-c36e-b828-bc93d6507473@baylibre.com>
+Date: Tue, 20 Oct 2020 07:49:52 -0700
+Message-ID: <7hft69kl4f.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201020_104723_931808_9C0D13ED 
-X-CRM114-Status: GOOD (  13.55  )
+X-CRM114-CacheID: sfid-20201020_104957_508276_6A4B9611 
+X-CRM114-Status: UNSURE (   7.96  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,48 +98,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org
+Cc: Anand Moon <linux.amoon@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> On Tue 20 Oct 2020 at 00:46, Kevin Hilman <khilman@baylibre.com> wrote:
->
->> This driver only supports 32-bit ARM SoCs.  Only build it for those.
->>
->> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
->> ---
->>  drivers/soc/amlogic/Kconfig | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
->> index 321c5e26a268..2d7ee1397d59 100644
->> --- a/drivers/soc/amlogic/Kconfig
->> +++ b/drivers/soc/amlogic/Kconfig
->> @@ -63,7 +63,7 @@ config MESON_SECURE_PM_DOMAINS
->>  
->>  config MESON_MX_SOCINFO
->>  	bool "Amlogic Meson MX SoC Information driver"
->> -	depends on ARCH_MESON || COMPILE_TEST
->> +	depends on (ARM && ARCH_MESON) || COMPILE_TEST
->
-> Would to it make sense to apply the same to the GX soc info ? depends on
-> ARM64 ?
+> On 20/10/2020 14:01, Jerome Brunet wrote:
+>> From: Anand Moon <linux.amoon@gmail.com>
+>> 
+>> Add reset external reset of the ethernet mac controller
+>> 
+>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Yes, good point.  I'll update that.
+[...]
 
->>  	default ARCH_MESON
->>  	select SOC_BUS
->>  	help
->
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Thanks for the review,
+Neil, do we need this in u-boot also?  I seem to have network issues in
+u-boot on board with external PHY running mainline u-boot.
 
 Kevin
+
 
 _______________________________________________
 linux-amlogic mailing list
