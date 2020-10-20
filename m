@@ -2,107 +2,88 @@ Return-Path: <SRS0=scox=D3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28E97C56202
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 14:09:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26EE9C4363A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 14:47:35 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B676C208C3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 14:09:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0E0B621534
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2020 14:47:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NUdpPT63";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="cuyIW1vX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B676C208C3
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HVR1G7rZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fGTc8ndg"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E0B621534
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=1fk1y7SdWrM7KO+ygcMdBAUx+Z17Dw/EsxR/wxiB/2I=; b=NUdpPT63D1+tDqEJ0ffvNBCps
-	pC8ti9J62Kz8Eg82IpRBlvBX+JCIq6Xlm4Uc0aMbP8Q30fL/u+m5FZaRxlhenPDVHzx38k6WZqT86
-	0HXchhlaCIRVFcYJMtwutu1qG1s8U3whV5ArvX0/dZ7jGMpmj6b/t5mFCNFAKsN3Hrg3hCNr3vSTJ
-	452qMEmvxsRnFfL82/CR/GlqiaKGUugEzlkzNsSS72pD9ndLTC7JMC06pRBrayjfkmOlvyQIFAITU
-	50i0Xmn3hEw5O8LDjWr53z+cPB7jeBeTHY6cYd94EPu6ygTifN7Qdo1f4VhtZDtt/Mo/ts4ZybabW
-	y4yhPPSxA==;
+	 bh=8RhWjB2tULrAR6IXjNBs0wAn6nOZii7SV8p7hYUF14A=; b=HVR1G7rZjHgjtEanXweAXuYm5
+	Qcy5SFPiB9A7uLY3aSBkDg674mxk5EQQ9+qDDE5xhMu2PgrrJ6+AqEQdGHcgZA8uuC6436HWoFP62
+	jyejp1vRsBd/g4jNh2dvatuFOnjpzO1GSVk72CVVpndFQhnsIauD+pupqdk8TJbIqUYkB8MnPUvjT
+	/zC7gcrTwm9aTtfFmj9euEL7Hs0DKb5GVThD2pPGfs/3Kt1XhrGbflDsmngz3X9kaOsXcmSMGqXGR
+	elxPUTm74Dx56ioBB0a2fAbwN6Puge42IqF5P5TTWAOAj2boUFwmhsuOwDjMiv1WJeU4VhE/3P4fG
+	0Tpk3fuXQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kUsKa-0005hV-4b; Tue, 20 Oct 2020 14:09:40 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+	id 1kUsvB-00014y-Ba; Tue, 20 Oct 2020 14:47:29 +0000
+Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUsKT-0005e1-HC
- for linux-amlogic@lists.infradead.org; Tue, 20 Oct 2020 14:09:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1603202971;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=rOdQp2iOSkahNa0CfH1+VDlgH/zqWEjNOjN0qUXEes0=;
- b=cuyIW1vX98ejDJgGwWUrx5HXCyaRZHAdK8jbsDHi6bt2cJE/GyXTfgYKvfyCxzlkRvK5cq
- U/9NpE0AZnBJ12NKKZWjwB4FYjRIXi2QUCsk8EviSsGgpl7YwKTYtrluIutBzuCRV7heFV
- J9KA6VI/uMpQZYuy/0zKz5S53TGjgz0=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-502-AKJxwQ8DM4KImx9RkA2QRw-1; Tue, 20 Oct 2020 10:09:30 -0400
-X-MC-Unique: AKJxwQ8DM4KImx9RkA2QRw-1
-Received: by mail-qt1-f200.google.com with SMTP id t40so1685369qtc.19
- for <linux-amlogic@lists.infradead.org>; Tue, 20 Oct 2020 07:09:30 -0700 (PDT)
+ id 1kUsv5-000141-M2
+ for linux-amlogic@lists.infradead.org; Tue, 20 Oct 2020 14:47:25 +0000
+Received: by mail-pg1-x543.google.com with SMTP id r10so1201835pgb.10
+ for <linux-amlogic@lists.infradead.org>; Tue, 20 Oct 2020 07:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=KxlSgIEsMIZ1sTboSg+Gy6kj2Zs6LpYYmnKZURbpJ5w=;
+ b=fGTc8ndgQ6TnfZLwNYQLflQO1IwerXMv+W2/gOEpzVP33KJLWIk7KLqqRtLONeZi0X
+ myNYZv65BgAvXiABdGcxIq3sTqaW6CknRqAxDusOzb9eXcEN6D34wJ7puseVVCOjqcxA
+ /3FiFy19/fmljWUicSNe0HCnE41y5NfyhRgceUUYNOCTfIs1MGb7XClJrRPSYuB9zK9y
+ aA4mtZ+RmrSrpakMXz+iDnbnwH934sqVtwmg2+OgRVnq+jkeSRe7RO+ej+YHiy25+PNU
+ qMwW4oDiO5YX6Z1+DH+YdyPk9LXPJttHI3b5EVpv9x1Ufu8clrQYHxcHGHBFisLnVS1A
+ 7l0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=rOdQp2iOSkahNa0CfH1+VDlgH/zqWEjNOjN0qUXEes0=;
- b=SkAuzKZsi8GIXq7bwQ10Lkv5rwzwuyyv2W7wPTx6cCqcJv0Bu+3XQQDhRQiixt16r0
- A5KvDrmfQJ0Qq/f+fJyk2znFGMbU/vYaRli3rDwiqeC5ZMHsXjBWKzpjqRCiEZU7z2SF
- MCTnSg2GHfWtESSV/JkeuVZv3e10OHLK5kVja6x0JjtTHNSTx51e2091GkNSiwt/ILOf
- Xji4P1Qibs4+1G6jEUJGdA3q9i+inY3zvmvbkPrJjzvX1dbPRByUwKFo4ycOWgtZAXl3
- ZSsxSrSxUTKzwifM73j8jH+5pXa168iX4S89n6BYfoBWVPe0e4mvnVOZyhwNgddp1vCC
- Ig9w==
-X-Gm-Message-State: AOAM533NPpPPS7LUuqdoUnh6DuwYi1HWObQbt9zbteh92atBqji8j+QR
- zdoykYFOp5F17UqiB9U/9RJHd1JfXpFeeIbfqLr2p9AbLtRTnNCH6TpAnEGNt+Z9kIU6kZzndAl
- wvQsBnhI8gBB4+ApJbprzycxhxB+RkIc=
-X-Received: by 2002:a05:620a:2195:: with SMTP id
- g21mr2990095qka.358.1603202969745; 
- Tue, 20 Oct 2020 07:09:29 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwKUy8N8weGLwzCzHDZ8oTBMtQsWbHEBLlPfZD5zpEfJ13ExA6QvxSe7FmqqHnm4D1jNxINeQ==
-X-Received: by 2002:a05:620a:2195:: with SMTP id
- g21mr2990039qka.358.1603202969497; 
- Tue, 20 Oct 2020 07:09:29 -0700 (PDT)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com.
- [75.142.250.213])
- by smtp.gmail.com with ESMTPSA id o14sm785284qto.16.2020.10.20.07.09.23
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 20 Oct 2020 07:09:28 -0700 (PDT)
-Subject: Re: [RFC] treewide: cleanup unreachable breaks
-To: Jason Gunthorpe <jgg@ziepe.ca>, Nick Desaulniers <ndesaulniers@google.com>
-References: <20201017160928.12698-1-trix@redhat.com>
- <20201018054332.GB593954@kroah.com>
- <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
- <20201019230546.GH36674@ziepe.ca>
-From: Tom Rix <trix@redhat.com>
-Message-ID: <859ff6ff-3e10-195c-6961-7b2902b151d4@redhat.com>
-Date: Tue, 20 Oct 2020 07:09:23 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=KxlSgIEsMIZ1sTboSg+Gy6kj2Zs6LpYYmnKZURbpJ5w=;
+ b=GW3bJHcF54ZghqS3nF+MEi9p6QeVMCm/GM+Mrff+8yUxcTF2zRXATL4SgP8+BZ8Qyj
+ wJkSRYzw9qFuwZkHBsAYUyLxMlbmD5vjxiyjBolyHazA6CuwNFIsvOvVkMbPKgsSa5io
+ 7EGgPW3+8DAs8OeDF/gy5HbVpCynGnuqVovO+I2IFjN2lG0hDonZxKyr4BDLvVq1KmB9
+ ZoZ1bWdwwND/0L69yC4XAO3QU6Hxx3S62WUxEi8Ci4ZgVvUMSa/QnqkXRDUQODyK5Whs
+ aMu05ZHLNjXZOyp3eHjqvUskBla+Rd+EJqlpcpLDpW3BJA3cp7GoxyDeue7am79iPCou
+ Q0ag==
+X-Gm-Message-State: AOAM530+p7i9lzkcfByDDYv98xJk2LGDpJ8KfZzjYBXBeJaZZHZk5Euc
+ rT/VqSutloBqjUCbpWylRRCv/A==
+X-Google-Smtp-Source: ABdhPJy7bJk3IfaL0gi1EbNbOte3OdieKN4e/LccF3JEQ4oBqwwMcIEUocuyTBPUvXWQ+F7u4yORRg==
+X-Received: by 2002:a63:4c55:: with SMTP id m21mr2998994pgl.305.1603205241008; 
+ Tue, 20 Oct 2020 07:47:21 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id x22sm2719808pfp.181.2020.10.20.07.47.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 20 Oct 2020 07:47:20 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/2] soc: mx-socinfo: only build for arm
+In-Reply-To: <1jk0vlmiqb.fsf@starbuckisacylon.baylibre.com>
+References: <20201019224649.14302-1-khilman@baylibre.com>
+ <1jk0vlmiqb.fsf@starbuckisacylon.baylibre.com>
+Date: Tue, 20 Oct 2020 07:47:19 -0700
+Message-ID: <7himb5kl8o.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20201019230546.GH36674@ziepe.ca>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201020_100933_673732_8F84EB63 
-X-CRM114-Status: GOOD (  14.87  )
+X-CRM114-CacheID: sfid-20201020_104723_931808_9C0D13ED 
+X-CRM114-Status: GOOD (  13.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,86 +95,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- Greg KH <gregkh@linuxfoundation.org>, linux-iio@vger.kernel.org,
- nouveau@lists.freedesktop.org, storagedev@microchip.com,
- dri-devel <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org, keyrings@vger.kernel.org,
- linux-mtd@lists.infradead.org, ath10k@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, usb-storage@lists.one-eyed-alien.net,
- linux-watchdog@vger.kernel.org, devel@driverdev.osuosl.org,
- linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-nvdimm <linux-nvdimm@lists.01.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, linux-acpi@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, industrypack-devel@lists.sourceforge.net,
- linux-pci@vger.kernel.org, spice-devel@lists.freedesktop.org,
- MPT-FusionLinux.pdl@broadcom.com, linux-media@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-nfc@lists.01.org, linux-pm@vger.kernel.org,
- linux-can@vger.kernel.org, linux-block@vger.kernel.org,
- linux-gpio@vger.kernel.org, xen-devel@lists.xenproject.org,
- linux-amlogic@lists.infradead.org, openipmi-developer@lists.sourceforge.net,
- platform-driver-x86@vger.kernel.org, linux-integrity@vger.kernel.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-edac@vger.kernel.org,
- George Burgess <gbiv@google.com>, Network Development <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>, linux-security-module@vger.kernel.org,
- "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
- <linux-crypto@vger.kernel.org>, patches@opensource.cirrus.com,
- bpf <bpf@vger.kernel.org>, ocfs2-devel@oss.oracle.com,
- linux-power@fi.rohmeurope.com
+Cc: linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-On 10/19/20 4:05 PM, Jason Gunthorpe wrote:
-> On Mon, Oct 19, 2020 at 12:42:15PM -0700, Nick Desaulniers wrote:
->> On Sat, Oct 17, 2020 at 10:43 PM Greg KH <gregkh@linuxfoundation.org> wrote:
->>> On Sat, Oct 17, 2020 at 09:09:28AM -0700, trix@redhat.com wrote:
->>>> From: Tom Rix <trix@redhat.com>
->>>>
->>>> This is a upcoming change to clean up a new warning treewide.
->>>> I am wondering if the change could be one mega patch (see below) or
->>>> normal patch per file about 100 patches or somewhere half way by collecting
->>>> early acks.
->>> Please break it up into one-patch-per-subsystem, like normal, and get it
->>> merged that way.
->>>
->>> Sending us a patch, without even a diffstat to review, isn't going to
->>> get you very far...
->> Tom,
->> If you're able to automate this cleanup, I suggest checking in a
->> script that can be run on a directory.  Then for each subsystem you
->> can say in your commit "I ran scripts/fix_whatever.py on this subdir."
->>  Then others can help you drive the tree wide cleanup.  Then we can
->> enable -Wunreachable-code-break either by default, or W=2 right now
->> might be a good idea.
-> I remember using clang-modernize in the past to fix issues very
-> similar to this, if clang machinery can generate the warning, can't
-> something like clang-tidy directly generate the patch?
-
-Yes clang-tidy and similar are good tools.
-
-Sometimes they change too much and your time shifts
-
-from editing to analyzing and dropping changes.
-
-
-I am looking at them for auto changing api.
-
-When i have something greater than half baked i will post.
-
-Tom
-
+> On Tue 20 Oct 2020 at 00:46, Kevin Hilman <khilman@baylibre.com> wrote:
 >
-> You can send me a patch for drivers/infiniband/* as well
+>> This driver only supports 32-bit ARM SoCs.  Only build it for those.
+>>
+>> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+>> ---
+>>  drivers/soc/amlogic/Kconfig | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
+>> index 321c5e26a268..2d7ee1397d59 100644
+>> --- a/drivers/soc/amlogic/Kconfig
+>> +++ b/drivers/soc/amlogic/Kconfig
+>> @@ -63,7 +63,7 @@ config MESON_SECURE_PM_DOMAINS
+>>  
+>>  config MESON_MX_SOCINFO
+>>  	bool "Amlogic Meson MX SoC Information driver"
+>> -	depends on ARCH_MESON || COMPILE_TEST
+>> +	depends on (ARM && ARCH_MESON) || COMPILE_TEST
 >
-> Thanks,
-> Jason
->
+> Would to it make sense to apply the same to the GX soc info ? depends on
+> ARM64 ?
 
+Yes, good point.  I'll update that.
+
+>>  	default ARCH_MESON
+>>  	select SOC_BUS
+>>  	help
+>
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+
+Thanks for the review,
+
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
