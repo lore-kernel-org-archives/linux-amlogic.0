@@ -1,90 +1,82 @@
-Return-Path: <SRS0=1A+6=D6=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Tjtp=EA=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2519FC388F9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Oct 2020 22:22:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D69DC388F7
+	for <linux-amlogic@archiver.kernel.org>; Sun, 25 Oct 2020 11:51:51 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5C82F20BED
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Oct 2020 22:22:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6D4DA21D41
+	for <linux-amlogic@archiver.kernel.org>; Sun, 25 Oct 2020 11:51:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ql3QDlNK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="j+Quc/So"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C82F20BED
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YS7H6G74";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCotHgYN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6D4DA21D41
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Subject:To:From:
+	Message-ID:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8N0f2rlt25F6P/Qnb+0xrjoOdQEjQRI7bSmnKA2ZuEo=; b=Ql3QDlNKp62QdqeUL9wD+CYRL
-	+6T9xaqFnIUb9yd90k8ThlbM/WKXMHMoHjp+rg0NDcPwdIs9Ja3eyFPVvgPNMHrcGj+fZoNN6erQA
-	3YhuNXfBhr5RHbK3m9DfoAHaudADqxV5hPQp1u1suCVuToIgxb7ANuSkGmw4GY4Ot82f27O7n9uEU
-	KRbLpuq3yNNt5uYyS2VrQ3AXxyESnfx6P+rpHtRyZLOb7Up/11ZC5RNtaxx/gwmJY2XKhDw1eadT8
-	4NT9ZSnezCejou4W5qemonu4s3qkkjosvdKuYKTrW7SXW+2DpWBMvnyt8x0AOogf8/xSBVK+09jft
-	WkmTmGQ2Q==;
+	 bh=dL9PGNKplytFgM6/NgNaVp9RrILX2X+1Jq7EPaY1eSE=; b=YS7H6G74T7pymfMkSeM/bJ7Rs
+	yTF9qaqrMAP1sw7P9OPII5Q8LsXH7gyXJZAtNKfaKNVMZvtkvdbLua9S6WMgXFEOn3X0ULZSWEEd1
+	60UtQpkCVNsOzENHVSRuec3gdBu/e8i8dtXiGJakwEfVk0s+R3gIuGnWyQ/Nn1M/jkgAG5bkVJ0KM
+	hEMxnHa3QE8RTjN7mPnM4QcLe1W8MoI9yLK7spImWtTnKuBHkhOXJNtFspNnkH42YGDnmk9XLxe0u
+	+8mKIvysWjm9tXb4NRVppKHbljkbZe03/7ZdCnHq3lpZtkni6+l1tUYA3sxQ6rAVDJW+HNlra+igY
+	iLf9VOSLQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kW5SO-000667-SK; Fri, 23 Oct 2020 22:22:44 +0000
-Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
+	id 1kWeYi-0002yR-K4; Sun, 25 Oct 2020 11:51:36 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kW5SM-00065e-RF
- for linux-amlogic@lists.infradead.org; Fri, 23 Oct 2020 22:22:44 +0000
-Received: by mail-pg1-x541.google.com with SMTP id t14so2457366pgg.1
- for <linux-amlogic@lists.infradead.org>; Fri, 23 Oct 2020 15:22:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=C1Ip8+osESeLsCFu90lfDedJ11QjKePQOjL1SbRil8Q=;
- b=j+Quc/So19JFyWFMmmyuYKqEQ6P+WbC4hfNC1Z/QcKB4zKS9jqmHa+ICJha6q5Di0j
- zGfFeNhd55GNNFsa3xuHpufBVaBzFDBy1bjRA46V4JBAwQZ5Jaovo4Rd/T9DVhSk+tPb
- UNKALP7pTXolLPGc2WX6lUZCyRb3g5++5a75p5/ZjaoSqDkIeLv0et7p0l8sXBIP+GEa
- 7AgT+JcvgFrL2J5FHGEUKRBnSnLYBOTTcC41whPZcLQRxhBIB3vHzSYlta8U7xHrOlqe
- tt3tP5jZN8fuaFszMDjqVXUk+UrG8kNprpyLPkbeu4b9YtfunRMEsOkY1Q9gPCbYmDXM
- twdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=C1Ip8+osESeLsCFu90lfDedJ11QjKePQOjL1SbRil8Q=;
- b=Ri50ATLyuJBZX0h4e1cXgsG+RPJpPjjmGD1ywMRkr1FsklG+MJjIy0tiSmCtRgPZ0H
- ttR7+4NxX+72Vkiw9q7P5lvThyPFMhP1hcID/G3xMVCG3sMxUAnaOIQhf1023l7ynWlF
- qqQq83iV9DOSW8KE87p2BMmDP1Kq4ChrqTLN//4eW/eRtzcsPWU2pIQFc3chx2fvwE+p
- KFQOtRWryA792tR4aw6wLtjWrSNVRN88uRPRK06aeWHNHRc8OPDRJmAot2ygabdbZVK7
- MKgwOS55hdXyA/fNSBwNg5nI6sD5x7F3s8SMCRktbEj0P92MaoY1po5ONkOax/60DXX2
- LxGw==
-X-Gm-Message-State: AOAM532RGkwRn07tT5rr6Pw/Uv3BBnqgdcYiJsvMLrgB8SwFfK6IqBDx
- vc2ed38boVu2mupkzjPltw31aA==
-X-Google-Smtp-Source: ABdhPJxFJMZBEAO+yw5bAYSfWaAzwg+iomn89fo5s/GO4gTGSrQMkxnZh6co61LpC956+SMRRVMVXw==
-X-Received: by 2002:a65:5606:: with SMTP id l6mr3881479pgs.49.1603491758132;
- Fri, 23 Oct 2020 15:22:38 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id o78sm3068383pfd.105.2020.10.23.15.22.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Oct 2020 15:22:37 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: meson: odroid-n2 plus: fix vddcpu_a pwm
-Date: Fri, 23 Oct 2020 15:22:36 -0700
-Message-Id: <160349175086.30235.13810218277836413722.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201023094139.809379-1-jbrunet@baylibre.com>
-References: <20201023094139.809379-1-jbrunet@baylibre.com>
-MIME-Version: 1.0
+ id 1kWeYf-0002y1-8V; Sun, 25 Oct 2020 11:51:34 +0000
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org
+ [51.254.78.96])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 543A921D41;
+ Sun, 25 Oct 2020 11:51:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1603626690;
+ bh=Y628XiExNaybMG+0qV8apMIusz2ZNiURDLMRnRSO5+c=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=LCotHgYNOGdwEW7O1OTxPplr9j4so/P+W4GnAHt5S9Yc4dYp1Kfr255/nx49/AUr6
+ wtpESBjytvFvLBXkeQ/ru/e82+wqXlaenGwOx/0k9l9TVDbTLYJYknYe3LFG0UWDw4
+ lKsnw+QlhjJMSXoSZjaxrC8OYnm3A1ZLzCcfZogg=
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78]
+ helo=wait-a-minute.misterjones.org)
+ by disco-boy.misterjones.org with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <maz@kernel.org>)
+ id 1kWeYa-0043Dq-GQ; Sun, 25 Oct 2020 11:51:28 +0000
+Date: Sun, 25 Oct 2020 11:51:27 +0000
+Message-ID: <87v9eyo75s.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 0/2] irq-meson-gpio: make it possible to build as a module
+In-Reply-To: <20201020072532.949137-1-narmstrong@baylibre.com>
+References: <20201020072532.949137-1-narmstrong@baylibre.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26.3
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: narmstrong@baylibre.com, jbrunet@baylibre.com,
+ linux-amlogic@lists.infradead.org, khilman@baylibre.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
+ SAEximRunCond expanded to false
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201023_182242_904179_F0DDF1FE 
-X-CRM114-Status: GOOD (  11.88  )
+X-CRM114-CacheID: sfid-20201025_075133_510261_34AB668B 
+X-CRM114-Status: GOOD (  21.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,30 +89,46 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
+ khilman@baylibre.com, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 23 Oct 2020 11:41:39 +0200, Jerome Brunet wrote:
-> On the odroid N2 plus, cpufreq is not available due to an error on the cpu
-> regulators. vddcpu a and b get the same PWM. The one provided to vddcpu A
-> is incorrect. Because vddcpu B PWM is busy the regulator cannot register:
+On Tue, 20 Oct 2020 08:25:30 +0100,
+Neil Armstrong <narmstrong@baylibre.com> wrote:
 > 
-> > pwm-regulator regulator-vddcpu-b: Failed to get PWM: -16
+> In order to reduce the kernel Image size on multi-platform distributions,
+> make it possible to build the Amlogic GPIO IRQ controller as a module
+> by switching it to a platform driver.
 > 
-> Like on the odroid n2, use PWM A out of GPIOE_2 for vddcpu A to fix the
-> problem
+> The second patch removes MESON_IRQ_GPIO selection from ARCH_MESON to allow
+> building the driver as module.
+> 
+> Neil Armstrong (2):
+>   irqchip: irq-meson-gpio: make it possible to build as a module
+>   arm64: meson: remove MESON_IRQ_GPIO selection
+> 
+>  arch/arm64/Kconfig.platforms     |  1 -
+>  drivers/irqchip/Kconfig          |  5 +-
+>  drivers/irqchip/irq-meson-gpio.c | 89 ++++++++++++++++++++------------
+>  3 files changed, 59 insertions(+), 36 deletions(-)
 
-Applied, thanks!
+I've tried this series on my vim3l with the this driver compiled as a
+module, and lost the Ethernet interface in the process, as the phy
+wasn't able to resolve its interrupt and things fail later on:
 
-[1/1] arm64: dts: meson: odroid-n2 plus: fix vddcpu_a pwm
-      (no commit info)
+[   72.238291] meson8b-dwmac ff3f0000.ethernet eth1: no phy at addr -1
+[   72.238917] meson8b-dwmac ff3f0000.ethernet eth1: stmmac_open: Cannot attach to PHY (error: -19)
 
-Best regards,
+This is a generic problem with making DT-based interrupt controllers
+modular when not *all* the drivers can deal with probing deferral.
+
+	M.
+
 -- 
-Kevin Hilman <khilman@baylibre.com>
+Without deviation from the norm, progress is not possible.
 
 _______________________________________________
 linux-amlogic mailing list
