@@ -2,77 +2,88 @@ Return-Path: <SRS0=Jp6n=EB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C96CC388F9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 18:45:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BFD61C4363A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 18:48:04 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B673A20732
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 18:45:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 105A42085B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 18:48:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uYMo5KnE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B673A20732
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="w2JViJm5";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wfyVNimS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 105A42085B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=vMpapKkArL8sedGGWRXgBng3Y2vzsERtF48ReRkYmr4=; b=uYMo5KnEcn3Yc1hmUaPbU70oV
-	uQrInpyCwdZyKMKEGdI65vU4GsjHbGOOYPmIq2F5bxkV2Bu+vxlDMbDlIDHBYewGshzdmYYxFrf8G
-	yFL5uAjYBLt4HO+BQT91eZYnKB//Yk4xxcmqD/B1yRDAW9wLOqhVrotkO8ugM6XNwriSDJgD1fJ9Y
-	zCSoPbkyblqrLaciZ4EUR1sDqfc5gWmnwo014aqQTgqCSn10sj5Fu7ThaZLyqsw1pHOvVeweFa5no
-	KrPjNIwWGxA74H4cyLYxGk7lKolR3/i/B6nNa4a7fw+gwDCIYD9UlDQoHy+e8/dqYujRd9b1Fzwzb
-	LUOJvks/w==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Y8f+ngKucZZ4fA5VyDBGts6VMB5Yzq8x43r/h1azzFQ=; b=w2JViJm5elqqy7nvW1ZIQ7xv0i
+	4kwB/lnheEFZ6PAO6etAx4c38QeLzwIQgnzJWYJ4N4P/VNblEh6PSwDIttV1ZDSFVKYJXpsQD9dBl
+	ayXDln57Fd+9veImHaylUYeTR50fIqz/TN4LSTJOrbP6kSiEcWIJyy166R5IbkzaPSSBH0VC782OU
+	haxvEPTWaNpW8gTXMS8JKvlwlMiLpLIQKGsdBBM1/xl9x4CGAF5XdSwNOdQc1ahxQd0FFEk21NRK2
+	JtbDY3L7jeVRE/z9fC5J+L0bUQ2xRYk9w4kseSk6xYlyymCK4gwMeMmdqTvOER6q2A+kz+RuW72h4
+	MUQV/siA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kX7Uu-0005X0-NU; Mon, 26 Oct 2020 18:45:36 +0000
-Received: from mail-ej1-f66.google.com ([209.85.218.66])
+	id 1kX7XE-0005qk-9m; Mon, 26 Oct 2020 18:48:00 +0000
+Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kX7Uq-0005Vt-P5; Mon, 26 Oct 2020 18:45:33 +0000
-Received: by mail-ej1-f66.google.com with SMTP id c15so15197797ejs.0;
- Mon, 26 Oct 2020 11:45:32 -0700 (PDT)
+ id 1kX7XA-0005pO-Ko
+ for linux-amlogic@lists.infradead.org; Mon, 26 Oct 2020 18:47:57 +0000
+Received: by mail-pl1-x641.google.com with SMTP id f21so813854plr.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 26 Oct 2020 11:47:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cmXFDnNMVMPDv4pMNaOk4nwtehUNz0/Q2zFukXCE+cI=;
+ b=wfyVNimSxLMH8y8y3Vv7iB8gxowuoHuQDki16Cmbtrp2AJONCa8yGPtiKjj4cSAV2U
+ YdcKi89XNEM2RD/L/9C8czYcgfiTQAnKKVaqjD4dgxQvY2ezdeUgj9esquVAFqd7090X
+ 4eQvjWkMWy/S67Ktf3aPwYdPjBHHgcheknEbX6w+PsDbHHfI2aNQxdchvuUGh8X8KOUq
+ 4eM+Z1cB7k0FPBnkeobv65ueMoY3SlV9blVGn4vbDPngI67E5QyfDvh1dgxW+WEIV+Vh
+ lvhA5oRnWRjR9LLk1IT4wMedNy8Kj6vv1p/+i0uVsdKxLj/2Fa/kHYIaB48/pJhVy30Y
+ nYDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=gz0y0Kg1cNPHrgAtv63xzsEjT/xY3FlDGvII1tKwfUQ=;
- b=BqlQWAIY5JIhEaM0mB+PW+/xN0mQ19R7DW7gDXi3K4YWOunMJEWaS2dm1e/DKFh2qn
- huFAAywj7A40iSOhwq0+AOuP7EjhWuxDIkgma0jGvOPc4YP5S5evGa+qRQwnzBXY+oh7
- 5H8gUGaEatn5+d5cicJnpiIAd14apouHECVIp8/ahn4eeN3J44DqPEBlSP0Oth19PS56
- cY3xjoGpPpFfkHoQ7wfE/En+sNWRJd/N41mykcy3U8604tRg2veEPLTMTt8rI4ZYLLJ9
- dO1TXEP9rVXOz90F92Yu2Wc8JRxhpdEYSSi8ORq8Guy84tBYbI4M8bBCeYV9dlEhuNSa
- O8mQ==
-X-Gm-Message-State: AOAM531uYOROTvsSHtmmkbGRAn9DS6L1N/n7261oNi6453ag5bKtXBO2
- WEneSgOtnQDa9410NtcHjps=
-X-Google-Smtp-Source: ABdhPJwbHdC4xSeWIGeRgEm2uDYFTmmY8iCHzyomd4336nfeex1zjqBAeuLflDpHoOwgQbTXL2PdDQ==
-X-Received: by 2002:a17:906:4803:: with SMTP id
- w3mr11735021ejq.406.1603737931324; 
- Mon, 26 Oct 2020 11:45:31 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.184])
- by smtp.googlemail.com with ESMTPSA id p14sm5615176eds.35.2020.10.26.11.45.28
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cmXFDnNMVMPDv4pMNaOk4nwtehUNz0/Q2zFukXCE+cI=;
+ b=mHzfSM/zpv8faUx4Zo7BfATY/VfCWDSN2rCRpq8ihYyE6Iv8haFCMDpgpho8fsD6kf
+ LobSwkRQXFXE8zQ03gFvoy55EEuqk239ulj8/AhptQspADn/LjAeNAp0tAOFIbrPMZ3A
+ YpMMqR+YHa2Y5nMn7kItQJsFZMfv8xoQrD+yOEP5VJuCf4YWsbjzhzwAKintx+WrQ58Z
+ EasBxbMMs5DsWs6gq4K3K8x3P3C8u3+pB5GVQvtrvjqCbZxB3sAJmKhj8z4l0VNs50D7
+ HAfilX5oCEtnwUcJeVQAwEK+LB5GRRP2Sqw3n0/7T6XiqHVAmRqX8HjIsvB2Hh5E8DBa
+ CxcQ==
+X-Gm-Message-State: AOAM532A4Z2aZ++avM+q2N6ZA56L7VZpSkZd1ZofzaQ/DeM5tmmw7FiJ
+ XlOzd4q+UqEmQB83Bq9XP8mnk1sH8K2zUlRM
+X-Google-Smtp-Source: ABdhPJy49YPHd2wf9JvJIvrRBJDHszBaxzXQBvy+ZLOMD5ef+NGHWSCov1WGmAUVBR+uyQltx+DDiA==
+X-Received: by 2002:a17:90b:b97:: with SMTP id
+ bd23mr17249604pjb.12.1603738070155; 
+ Mon, 26 Oct 2020 11:47:50 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id e2sm13360161pjw.13.2020.10.26.11.47.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Oct 2020 11:45:29 -0700 (PDT)
-Date: Mon, 26 Oct 2020 19:45:27 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexander Dahl <post@lespocky.de>
-Subject: Re: [PATCH v7 07/12] ARM: dts: exynos: Fix schema warnings for
- pwm-leds
-Message-ID: <20201026184527.GA165725@kozik-lap>
-References: <20201005203451.9985-1-post@lespocky.de>
- <20201005203451.9985-8-post@lespocky.de>
+ Mon, 26 Oct 2020 11:47:49 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: linux-amlogic@lists.infradead.org
+Subject: [PATCH v2] firmware: meson-sm: enable build as module
+Date: Mon, 26 Oct 2020 11:47:48 -0700
+Message-Id: <20201026184748.37028-1-khilman@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201005203451.9985-8-post@lespocky.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201026_144532_848287_FB0BB120 
-X-CRM114-Status: GOOD (  13.29  )
+X-CRM114-CacheID: sfid-20201026_144756_693447_8A933815 
+X-CRM114-Status: GOOD (  12.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,37 +95,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
- Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Dan Murphy <dmurphy@ti.com>, Pavel Machek <pavel@ucw.cz>,
- linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, ccaione@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Oct 05, 2020 at 10:34:46PM +0200, Alexander Dahl wrote:
-> The node names for devices using the pwm-leds driver follow a certain
-> naming scheme (now).  Parent node name is not enforced, but recommended
-> by DT project.
-> 
->   DTC     arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml
->   CHECK   arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml: pwmleds: 'blueled', 'greenled' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+Enable secure module driver as module.
+Default remains built-in.
 
-Please trim the error logs in the future. No need to paste all warnings,
-just one or two from the same type of error.  Also your local path
-leading to Linux repo should be removed.
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+---
+v2: keep built-in as the default.
 
-Thanks, applied.
+ drivers/firmware/meson/Kconfig    | 5 +++--
+ drivers/firmware/meson/meson_sm.c | 1 +
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/drivers/firmware/meson/Kconfig b/drivers/firmware/meson/Kconfig
+index 2671dcd0ad92..f6f9d831ff8a 100644
+--- a/drivers/firmware/meson/Kconfig
++++ b/drivers/firmware/meson/Kconfig
+@@ -3,8 +3,9 @@
+ # Amlogic Secure Monitor driver
+ #
+ config MESON_SM
+-	bool
+-	default ARCH_MESON
++	tristate
++	depends on ARCH_MESON || COMPILE_TEST
++	default y
+ 	depends on ARM64_4K_PAGES
+ 	help
+ 	  Say y here to enable the Amlogic secure monitor driver
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index 2854b56f6e0b..77aa5c6398aa 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -331,3 +331,4 @@ static struct platform_driver meson_sm_driver = {
+ 	},
+ };
+ module_platform_driver_probe(meson_sm_driver, meson_sm_probe);
++MODULE_LICENSE("GPL v2");
+-- 
+2.28.0
 
 
 _______________________________________________
