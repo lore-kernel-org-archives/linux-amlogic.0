@@ -2,87 +2,89 @@ Return-Path: <SRS0=Jp6n=EB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10CEBC4363A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 20:50:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F15EC55178
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 23:46:10 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 87B7B20829
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 20:50:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 02BAD20B1F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 23:46:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LHfuM2ls";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ybLWn3q4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 87B7B20829
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Qmt5NA7+";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0SMOf1DB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 02BAD20B1F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=IXhGpfLC8jvfiI1oJ+hhI5J4eb92iNAa5UEZl7yh0Zo=; b=LHfuM2lsNy6PpaUuwLNRoxsAmg
-	FWBkWQQKe6NbULlVQ17KYoa5N3vslgJ+4tWkgBvmlgymL9thOs37tmDNfCBpeseiDrYVbOwTGGtXr
-	kK1ANTYeK6D3gteyoqArti369302clJbayMDSXQ4LbAH0whtcsSejwNqnbm/gIk63XVg82d7vw5R1
-	NF6vcO3iBsxwWGQH6oJ5CWchcJTrecSKN0EVWYUDuycPJ3KGUolg92gjr+xjooHGv9CAYkNb7Q97v
-	dOk1RORIHz2QzXbcyqOwY5/Um+RGdtvPlh4OBzKh/fXLIIjfwjfmnRMzzz0QA3Rg0irKPFODYccAz
-	j4+GYLiA==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=ibj/VqbaLOYCoLVhybtDHElq2MmHFBeNT66APK1O+4Y=; b=Qmt5NA7+1Y0BIavRNmnqEq75+
+	/8W8bW7ggxzTMWPHbDn5U1Jy7fUrQsgsumBYn5+deeVz/RM+jQNZmbO8bj8izIf6Z1GXj4SIShX3m
+	QMi7uHxEtSbXyJX7uvVyqRvZstEAcRhLtpMrw53CXWDwa/kJ5+l5xyeY9S/zyQJ7BtgFLVMFqNpux
+	hnRqUVVwP/0qeb2P1I8gH4vd3VoKXTFtAMldr7IfFY2aLmR7boSns8avolYDdGv5feFKLvSjmfWHm
+	yfojo/octLtqmVn+YBpPc1Dk7I5am85Z/xVLy0ZHxvktfI03g+WC9E++m4lqkek9ErEYbuHOOd56O
+	PPQW/Xtbw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kX9Rt-00059X-3S; Mon, 26 Oct 2020 20:50:37 +0000
-Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
+	id 1kXCBe-0007fU-Qm; Mon, 26 Oct 2020 23:46:02 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kX9Rp-00056t-JY
- for linux-amlogic@lists.infradead.org; Mon, 26 Oct 2020 20:50:34 +0000
-Received: by mail-pf1-x442.google.com with SMTP id y14so6845095pfp.13
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Oct 2020 13:50:31 -0700 (PDT)
+ id 1kXCBY-0007d8-Md
+ for linux-amlogic@lists.infradead.org; Mon, 26 Oct 2020 23:45:58 +0000
+Received: by mail-pf1-x444.google.com with SMTP id j18so7116345pfa.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 26 Oct 2020 16:45:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=PFDpUwXn+6ftLoJZOkjcFHWPJESrMsSZ67/zuNPPhfw=;
- b=ybLWn3q4ZWdVTv7xE7YD9Mb/vBWEFaffbmDF+uhGhP6yxuWW5dxd5M0GKhIJpTllbC
- IFKccX8Dtr24+o4EpmNBtfk2mDvpnnma2HF5/btgJksY6WvwBtZYSY5sm2PbE20IhnXb
- 0c9y6zrzmIrhnbv9XY5EMUn7OpL4Wxj8nbo0wep/DiyUnCpVVUV+3w9moVIWZQBV4xVe
- 3DXxKYYzoAGl4/IoUP9CWzuT0pPplgOjN+TSmbj/m9gFjkoIQ7t1oCxWr5lpHo3dttaX
- /SpW/yIZ6OvaFIjpduMjMGNk92lZeBA1rxBB/cgDOb1RKh0/d6W2L2O3zHb8Zx11PrFi
- DeDA==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=CEpRSfPNTBvlxfYwUVnXYQlXTvWMOmV50TdlaJw1/KM=;
+ b=0SMOf1DBVnGfkBYKzhH2a0tJ+REpXkXynH4K1FkevO4XwOsdbUkx67P1TdxjmRFFi4
+ LRYeADD/+TG5cvbQ8AQVgAEJjxqRsOuyvQ0OJbeK5+P+e6MQqzqUIKNdjMZYSzgMDCZD
+ 8edAwLsdoDn763JJSKRFFFjhStAohpC+RGJUEl7GScZzII7FCVA36BUrGlNfJaypKh76
+ E9B0j2acaeKPCe/r18hK6ezi+PEG7U0Xy34wvBgFxhs2Ubh2b/HmoPSctVSKwVKf4g+v
+ xrxQy9/nrV7XkafX1N87z4jsZ+G3W3pp75b5wvgZCMEOWFq0h6CiAPHQBFECayg6YImW
+ Mdzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=PFDpUwXn+6ftLoJZOkjcFHWPJESrMsSZ67/zuNPPhfw=;
- b=dwBhynWeUvRUXQBJ7dXgkwTbOa/co+Gg9enWhmbxbNaKL3Kok3CMEmTFlyYpyusbju
- RJejQ49RKl4/wJTrvttEv31iGzJq5lKre80sL7D8rTer9GVQyiV/AXYLgM/ou84S1O0W
- 42usauYU4U5DU41dBI0OYIkGXgNSAPdQzo1FJpRGuQ6XArf2zHnYHb0/ucl2o3tHoVzi
- Vmae4odMa8RJrBWbGNsANGjiPLYvWPtxzlgUhsdIyFZdynUFUAjHwVJnRRh2CMQF0ssf
- yCPUsU2+Q9ZsUADoCIMdWhYKGFqBwjh4bBQq2I6tzSmq3b7PZ9nh7ShrlsWZsQc5uEGy
- uRZw==
-X-Gm-Message-State: AOAM532d2ckJ4ONo8zo70+/9yS68aQyz2gnUHU+segswLFG4MQcJAEn0
- eA4U/7Pn74uWeUDRnlQKmdLl/A==
-X-Google-Smtp-Source: ABdhPJwsFRDHNR6v5o7jIsYFO5R/VtwrtYhZ4yUjUZH3MEmO0h/4e7kXoFqswwc/8L4e4j9sVeIx5A==
-X-Received: by 2002:aa7:8287:0:b029:142:2501:39ec with SMTP id
- s7-20020aa782870000b0290142250139ecmr11358081pfm.59.1603745429899; 
- Mon, 26 Oct 2020 13:50:29 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=CEpRSfPNTBvlxfYwUVnXYQlXTvWMOmV50TdlaJw1/KM=;
+ b=Rne9eqvjICSQoR/E0cm+iKzi6IPHLsjCXLFSGOEJqeaChyMo7XaMnXgT+O92RbqsUj
+ wBN7D5Lfvy+9KQgFwZiKAVB35tal9yq3nU2P+Qd7t0apNgvNGAqHQRTAeOWwAQAG/i/+
+ uYSBOHH/BT9/tnuDgm9daP4e1+b3Z3TdvTuhkNs5JgR99nqF609mb3DlPjzDfCojF+MR
+ h8ZiQGSwquGqOj/E/ciIg9R8c4or//0IaNi/Ytqmq5qlaItyKXK25gaRkNrFWx1Xl8Wi
+ Pr1GT2g0nMkaiyNKsoJmW/AjWdEwR6cvqamvEMihLPraxvjfsm58v9+vPkp4hBhJdLWd
+ Cv8w==
+X-Gm-Message-State: AOAM53218bK1JHsgSD8E9mjOf+tdnuIL2raIvKv+Cc31mfGvS+heiOJv
+ djIN2DpyBMgE2uHXGpVbZdhh4A==
+X-Google-Smtp-Source: ABdhPJzOSOKqn3r6Vv7s50wlTif70FjRaXnKyAMdNoynVTsKPMFy/tAzUXWNhP3B1BlCZCSsjArYSw==
+X-Received: by 2002:a63:609:: with SMTP id 9mr6412492pgg.381.1603755954650;
+ Mon, 26 Oct 2020 16:45:54 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id 186sm12388556pff.95.2020.10.26.13.50.28
+ by smtp.gmail.com with ESMTPSA id w10sm13228085pjy.13.2020.10.26.16.45.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Oct 2020 13:50:28 -0700 (PDT)
+ Mon, 26 Oct 2020 16:45:53 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-List-Id: <soc.lore.kernel.org>
-To: soc@kernel.org, arm@kernel.org
-Subject: [GIT PULL] Amlogic fixes for v5.10-rc
-Date: Mon, 26 Oct 2020 13:50:28 -0700
-Message-ID: <7hlffshfu3.fsf@baylibre.com>
+To: Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH 0/2] irq-meson-gpio: make it possible to build as a module
+In-Reply-To: <b0780e423d5fa527835ba55c64dba473@kernel.org>
+References: <20201020072532.949137-1-narmstrong@baylibre.com>
+ <87v9eyo75s.wl-maz@kernel.org> <7ha6w9hsfm.fsf@baylibre.com>
+ <b0780e423d5fa527835ba55c64dba473@kernel.org>
+Date: Mon, 26 Oct 2020 16:45:53 -0700
+Message-ID: <7hblgoft5a.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201026_165033_648672_CC4978EA 
-X-CRM114-Status: UNSURE (   9.07  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201026_194557_019029_E6429825 
+X-CRM114-Status: GOOD (  27.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,66 +96,115 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Arnd, Olof,
+Marc Zyngier <maz@kernel.org> writes:
 
-Here's a few fixes for v5.10-rc.
+> On 2020-10-26 16:18, Kevin Hilman wrote:
+>> Marc Zyngier <maz@kernel.org> writes:
+>> 
+>>> On Tue, 20 Oct 2020 08:25:30 +0100,
+>>> Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>>> 
+>>>> In order to reduce the kernel Image size on multi-platform 
+>>>> distributions,
+>>>> make it possible to build the Amlogic GPIO IRQ controller as a module
+>>>> by switching it to a platform driver.
+>>>> 
+>>>> The second patch removes MESON_IRQ_GPIO selection from ARCH_MESON to 
+>>>> allow
+>>>> building the driver as module.
+>>>> 
+>>>> Neil Armstrong (2):
+>>>>   irqchip: irq-meson-gpio: make it possible to build as a module
+>>>>   arm64: meson: remove MESON_IRQ_GPIO selection
+>>>> 
+>>>>  arch/arm64/Kconfig.platforms     |  1 -
+>>>>  drivers/irqchip/Kconfig          |  5 +-
+>>>>  drivers/irqchip/irq-meson-gpio.c | 89 
+>>>> ++++++++++++++++++++------------
+>>>>  3 files changed, 59 insertions(+), 36 deletions(-)
+>>> 
+>>> I've tried this series on my vim3l with the this driver compiled as a
+>>> module, and lost the Ethernet interface in the process, as the phy
+>>> wasn't able to resolve its interrupt and things fail later on:
+>>> 
+>>> [   72.238291] meson8b-dwmac ff3f0000.ethernet eth1: no phy at addr -1
+>>> [   72.238917] meson8b-dwmac ff3f0000.ethernet eth1: stmmac_open: 
+>>> Cannot attach to PHY (error: -19)
+>>> 
+>>> This is a generic problem with making DT-based interrupt controllers
+>>> modular when not *all* the drivers can deal with probing deferral.
+>> 
+>> Yes, but this series still keeps the default as built-in.
+>> 
+>> If you build as a module, and you add `fw_devlink=on` to the kernel
+>> command-line, device-links will be created based on DT dependencies
+>> which will ensure the right module load order.
+>
+> It doesn't work here. I get the exact same error (well, with eth0 
+> instead
+> of eth1). In my experience, fw_devlink isn't reliable yet. Config on 
+> request.
+>
+>> I've tested this series with `fw_devlink=on` on several Amlogic
+>> platforms and it works just fine, but since it requires the extra
+>> cmdline option, I think the default should remain built-in.
+>> 
+>> So, I'd still like to see this series merged so that at least it's an
+>> option to enable this as a module.
+>
+> I have taken similar patches in 5.9 for other SoC families (qcomm, mtk),
+> and ended up reverting them in -rc2, because there is simply too much
+> breakage. Even keeping it as built in changes the init order, which
+> tons of drivers depend on. I proposed a middle-of-the-road approach
+> (modules can break, built-in stays the same) which Rob pushed back on.
+>
+> So either we fix fw_devlink to work for everything and be on by default,
+> or we keep the current setup.
+>
+>> Also, another reason to make it optional is that not all platforms need
+>> this feature at all, but right now we select it for all Amlogic SoCs.
+>
+> I understand that, but I don't want another episode of widespread
+> breakages, and this series definitely breaks things.
 
-This also includes the 2nd round of 64-bit DT changes submitted for the
-v5.10 merge window as discussed here:
-https://lore.kernel.org/linux-amlogic/7ho8lkl9fw.fsf@baylibre.com/
+Yeah, I understand there's potential breakage things if you enable build
+as a module, but that's not the default with this series so one would
+have to do that on purpose.
 
-Please pull,
+If you don't manually enable as a module and leave the default as
+built-in (e.g. CONFIG_MESON_IRQ_GPIO=y) does it work for you?  Using
+your .config, I used the default to built-in and this series booted fine
+for me on top of v5.10-rc1 on my VIM3L.
+
+Using your .config, I do see issues with this driver when explicity
+enabling as a module, and I'll debug those, but again, leaving it as
+built-in, it's working fine for me with your .config.
+
+I understand that even building as a built-in might change link order,
+but I'd be pretty surprised if just changing from OF_DECLARE to a
+built-in module made things break.
+
+If so, I can commit to helping find/fix any issues there.
+
+For that matter, I'm actively working on making all amlogic drivers
+modular (including clocks, pinctrl, reset, etc.) and I have it all
+working locally several SoCs, so I will also commit to actively help
+find/fix any issues this uncovers with ordering.
+
+My goal is to enable the *option* of building everything as modules (but
+leave them as built-in by default) so I can help debug any remaining
+fw_devlink issues.
 
 Kevin
 
-
-The following changes since commit 63fafc5a046b1e21756de691b48f0c70c25e1426:
-
-  arm64: dts: meson: initial support for aml-s905x-cc v2 (2020-09-18 13:35:27 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
-
-for you to fetch changes up to f7d933388f11f66e5af9e5663a17f26523fddd07:
-
-  arm64: dts: meson: odroid-n2 plus: fix vddcpu_a pwm (2020-10-23 11:12:54 -0700)
-
-----------------------------------------------------------------
-Amlogic fixes for v5.10-rc1
-- misc DT only fixes
-
-----------------------------------------------------------------
-Anand Moon (1):
-      arm64: dts: amlogic: add missing ethernet reset ID
-
-Jerome Brunet (1):
-      arm64: dts: meson: odroid-n2 plus: fix vddcpu_a pwm
-
-Martin Blumenstingl (2):
-      arm64: dts: amlogic: meson-g12: use the G12A specific dwmac compatible
-      ARM: dts: meson8: remove two invalid interrupt lines from the GPU node
-
-Neil Armstrong (2):
-      arm64: dts: meson-axg: add USB nodes
-      arm64: dts: meson-axg-s400: enable USB OTG
-
-Scott K Logan (1):
-      arm64: dts: meson: add missing g12 rng clock
-
- arch/arm/boot/dts/meson8.dtsi                             |  2 --
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts            |  6 ++++++
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi                | 52 ++++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi         |  6 +++++-
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                 |  3 +++
- 6 files changed, 67 insertions(+), 4 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
