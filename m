@@ -2,92 +2,80 @@ Return-Path: <SRS0=Jp6n=EB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 44862C4363A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 16:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DC227C4363A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 17:00:36 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DC650205ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 16:33:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 52EFD223B0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 17:00:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qlOL8paT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="e/I0HscW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DC650205ED
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZQ4Zt5Wv";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="gdSIPYRy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 52EFD223B0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:To:From:
+	Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=9x5nP0uCueD26civ2HSykN1/6hDpvm8lf/iBAT6GRio=; b=qlOL8paTt/3NCodOr5/nIA6qi
-	qTid3xoYG/4sjDuCI6U2cqlvlWmJZvrjQ/aMLPjFSyH24YseeL4DauW4FiJmdnp/Gnl3ju/54LTMy
-	6fmkcXNjGQnVe6fduhPnrMbZoNBvlT3pKLWa4WbjMfIuX64a5JjP47Ztw8ylWHYBYcDyoSN1M4HVb
-	Ac/Cgeq2bj2sV/MzV9ZRt5BPW/NBt265iID+0oQe17bW055LLyXbPx4Zl9SpnnHdK6V67VIJV4ALv
-	9GPLWI+1ElSm61Bo8NbBkXUa04elzUVMozkDGwmGvf1N0vCZn4MrZx3CRdhHIryR04sRFtwX4DJV0
-	pVfrnVyHQ==;
+	 bh=ha65/9gDvPRzbNfsRPPOgCQQLup4oBE10FVsHugObZ8=; b=ZQ4Zt5WvnXy+mAIKsbVUOso6q
+	idZo07dvWut/ac9Ngh3g/QYDNVqvgMfHSZz5DmzWfIfSfEkGZWpWoAM6WIez0k1dIUCTmqE0SrUMs
+	1eLtyoRDU+wUOy4JHEH0tEJmWTPJ2QcxcD8/j0Fx+dYZDooQx2p4oTvx+whWrvM3pLJZlHs4w3LMc
+	J9HljJC7ZUhxtBvsr8RXU0ITjn1Ilt0K1ooHbAXmWeSmwpmczxMcweEg+3Iw7oOvlwsql1ziIn6zk
+	5lKldZCxpkgX/LuDvNWmkiZF56E6JUpp6iW1n4NNQITfwXzJtmBFe9QU9tU7NTb2BPcQ7yML6rpLA
+	/YlM5ddfA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kX5R4-0000nj-N6; Mon, 26 Oct 2020 16:33:30 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1kX5rC-0006Wo-66; Mon, 26 Oct 2020 17:00:30 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kX5Qx-0000l4-LZ
- for linux-amlogic@lists.infradead.org; Mon, 26 Oct 2020 16:33:24 +0000
-Received: by mail-wm1-x342.google.com with SMTP id e2so13160263wme.1
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Oct 2020 09:33:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=/lQRM2+EAb+jKRJafntJPMlzMeoOKfJANas/j8SJLN4=;
- b=e/I0HscW2QgWc5e2sSX9P9394/GMnjHxQzVKqbxpXS0yQNJgP5oMXIXyZELYT2JzT7
- /zH6+cn3Uvi6aBylxRweBESwO5QSHZDpYlx2Ba20Uha95pmp22BxEcmArfwiAiWCcabV
- 9V63eoEtrRPg6WukH0OlQNvqmKxD5FVWjuB9oJhdkWo+z9pOv3XccJVVyEBiho+mFJDA
- 94BY7C7W04ufQ39cbsIv+c/0H59wnNDwX4cXXetaFT/MbylnPG3ndSAwN8kXQr08QrIH
- P2BdAAu7NWWSYjex5WlaMWNrtgPEC4GbeMYI0GpWiyIpxEn5ZlrK9zIz7V+L7lJgnWIW
- N/fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=/lQRM2+EAb+jKRJafntJPMlzMeoOKfJANas/j8SJLN4=;
- b=aD/LGaqkXoIhY1E9WrU5490+YH4OoIfFxZg+yFWOB21XI1EjaZhjaDPhbsBPn7G7FD
- iuQ3o6yuqP59xF5djYdwzRmmesL05q8UeeGgu1ono6DXI5LPQF8OHObMad/k5VBWe8gM
- Pq+R91eD1VOL7pzrP45qF1l8PsBGxsAbjOrwxEgAhWx/sVsK9T7K8NR6AiqOD7d3aLMB
- Mg4O+ftPhwOeafDyLTSYLKsSRMv96aVKsF/wa9onmWJK01PBeEzNz4+t/0m6WAf3GyPP
- 3+cRBFWjOKjtkd/5KVvG79fOUl5e6vuY/9505NhyLtdufmOipyPyxvE36hFUeZIpbapS
- Lwuw==
-X-Gm-Message-State: AOAM532Tv9RLtIBIXweMaUD0tLswAi7qY61j0wKDufBz0DKb5B2977aU
- kSNQ1/F+t1MEDfOJzf1nNkrtXQ==
-X-Google-Smtp-Source: ABdhPJyreI18jIz7IrPx9Nt27h0Xuo9pf/2DbqlqowWOvewXDYrAULqhjkoLwyDCkT1sfcHYa7Oc4Q==
-X-Received: by 2002:a1c:e354:: with SMTP id a81mr16520015wmh.101.1603730002576; 
- Mon, 26 Oct 2020 09:33:22 -0700 (PDT)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.gmail.com with ESMTPSA id m8sm22620877wrw.17.2020.10.26.09.33.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Oct 2020 09:33:22 -0700 (PDT)
-References: <20201026161411.3708639-1-arnd@kernel.org>
-User-agent: mu4e 1.3.3; emacs 26.3
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Arnd Bergmann <arnd@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- Mike Turquette <mturquette@linaro.org>
-Subject: Re: [PATCH] clk: define to_clk_regmap() as inline function
-In-reply-to: <20201026161411.3708639-1-arnd@kernel.org>
-Date: Mon, 26 Oct 2020 17:33:21 +0100
-Message-ID: <1ja6w9j6b2.fsf@starbuckisacylon.baylibre.com>
+ id 1kX5r9-0006Vp-EW; Mon, 26 Oct 2020 17:00:28 +0000
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org
+ [51.254.78.96])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7ADDF223B0;
+ Mon, 26 Oct 2020 17:00:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1603731626;
+ bh=Wk5C6AUNf5Rr1fEwHl+3seiMfHFBEAh2bYObiBXLLX8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=gdSIPYRyIpe/ZiMe9+II8R3w/Q5DiXCBun6pAQDRIAwQw8M+JPaVNaxoVmwuXDu6F
+ ZGxBvlO2AiSwjUnczyLL8j/XuVhZWATASl4r1ZZQKUsQDStM9ly9RnTTPNe6B/8CuU
+ LtmytiLl0WgVhtcG6POJPHmyUoecnSNtC2CKceyY=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+ by disco-boy.misterjones.org with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.94)
+ (envelope-from <maz@kernel.org>)
+ id 1kX5r6-004OVS-Jc; Mon, 26 Oct 2020 17:00:24 +0000
 MIME-Version: 1.0
+Date: Mon, 26 Oct 2020 17:00:24 +0000
+From: Marc Zyngier <maz@kernel.org>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH 0/2] irq-meson-gpio: make it possible to build as a module
+In-Reply-To: <7ha6w9hsfm.fsf@baylibre.com>
+References: <20201020072532.949137-1-narmstrong@baylibre.com>
+ <87v9eyo75s.wl-maz@kernel.org> <7ha6w9hsfm.fsf@baylibre.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <b0780e423d5fa527835ba55c64dba473@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: khilman@baylibre.com, narmstrong@baylibre.com,
+ jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
+ SAEximRunCond expanded to false
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201026_123323_793578_17B652EB 
-X-CRM114-Status: GOOD (  17.15  )
+X-CRM114-CacheID: sfid-20201026_130027_647829_07D6923C 
+X-CRM114-Status: GOOD (  24.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,94 +87,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@codeaurora.org>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 2020-10-26 16:18, Kevin Hilman wrote:
+> Marc Zyngier <maz@kernel.org> writes:
+> 
+>> On Tue, 20 Oct 2020 08:25:30 +0100,
+>> Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>> 
+>>> In order to reduce the kernel Image size on multi-platform 
+>>> distributions,
+>>> make it possible to build the Amlogic GPIO IRQ controller as a module
+>>> by switching it to a platform driver.
+>>> 
+>>> The second patch removes MESON_IRQ_GPIO selection from ARCH_MESON to 
+>>> allow
+>>> building the driver as module.
+>>> 
+>>> Neil Armstrong (2):
+>>>   irqchip: irq-meson-gpio: make it possible to build as a module
+>>>   arm64: meson: remove MESON_IRQ_GPIO selection
+>>> 
+>>>  arch/arm64/Kconfig.platforms     |  1 -
+>>>  drivers/irqchip/Kconfig          |  5 +-
+>>>  drivers/irqchip/irq-meson-gpio.c | 89 
+>>> ++++++++++++++++++++------------
+>>>  3 files changed, 59 insertions(+), 36 deletions(-)
+>> 
+>> I've tried this series on my vim3l with the this driver compiled as a
+>> module, and lost the Ethernet interface in the process, as the phy
+>> wasn't able to resolve its interrupt and things fail later on:
+>> 
+>> [   72.238291] meson8b-dwmac ff3f0000.ethernet eth1: no phy at addr -1
+>> [   72.238917] meson8b-dwmac ff3f0000.ethernet eth1: stmmac_open: 
+>> Cannot attach to PHY (error: -19)
+>> 
+>> This is a generic problem with making DT-based interrupt controllers
+>> modular when not *all* the drivers can deal with probing deferral.
+> 
+> Yes, but this series still keeps the default as built-in.
+> 
+> If you build as a module, and you add `fw_devlink=on` to the kernel
+> command-line, device-links will be created based on DT dependencies
+> which will ensure the right module load order.
 
-On Mon 26 Oct 2020 at 17:13, Arnd Bergmann <arnd@kernel.org> wrote:
+It doesn't work here. I get the exact same error (well, with eth0 
+instead
+of eth1). In my experience, fw_devlink isn't reliable yet. Config on 
+request.
 
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> Nesting container_of() causes warnings with W=2, which is
-> annoying if it happens in headers and fills the build log
-> like:
->
-> In file included from drivers/clk/qcom/clk-alpha-pll.c:6:
-> drivers/clk/qcom/clk-alpha-pll.c: In function 'clk_alpha_pll_hwfsm_enable':
-> include/linux/kernel.h:852:8: warning: declaration of '__mptr' shadows a previous local [-Wshadow]
->   852 |  void *__mptr = (void *)(ptr);     \
->       |        ^~~~~~
-> drivers/clk/qcom/clk-alpha-pll.c:155:31: note: in expansion of macro 'container_of'
->   155 | #define to_clk_alpha_pll(_hw) container_of(to_clk_regmap(_hw), \
->       |                               ^~~~~~~~~~~~
-> drivers/clk/qcom/clk-regmap.h:27:28: note: in expansion of macro 'container_of'
->    27 | #define to_clk_regmap(_hw) container_of(_hw, struct clk_regmap, hw)
->       |                            ^~~~~~~~~~~~
-> drivers/clk/qcom/clk-alpha-pll.c:155:44: note: in expansion of macro 'to_clk_regmap'
->   155 | #define to_clk_alpha_pll(_hw) container_of(to_clk_regmap(_hw), \
->       |                                            ^~~~~~~~~~~~~
-> drivers/clk/qcom/clk-alpha-pll.c:254:30: note: in expansion of macro 'to_clk_alpha_pll'
->   254 |  struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
->       |                              ^~~~~~~~~~~~~~~~
-> include/linux/kernel.h:852:8: note: shadowed declaration is here
->   852 |  void *__mptr = (void *)(ptr);     \
->       |        ^~~~~~
->
-> Redefine two copies of the to_clk_regmap() macro as inline functions
-> to avoid a lot of these.
->
-> Fixes: ea11dda9e091 ("clk: meson: add regmap clocks")
-> Fixes: 085d7a455444 ("clk: qcom: Add a regmap type clock struct")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> I've tested this series with `fw_devlink=on` on several Amlogic
+> platforms and it works just fine, but since it requires the extra
+> cmdline option, I think the default should remain built-in.
+> 
+> So, I'd still like to see this series merged so that at least it's an
+> option to enable this as a module.
 
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+I have taken similar patches in 5.9 for other SoC families (qcomm, mtk),
+and ended up reverting them in -rc2, because there is simply too much
+breakage. Even keeping it as built in changes the init order, which
+tons of drivers depend on. I proposed a middle-of-the-road approach
+(modules can break, built-in stays the same) which Rob pushed back on.
 
-> ---
->  drivers/clk/meson/clk-regmap.h | 5 ++++-
->  drivers/clk/qcom/clk-regmap.h  | 6 +++++-
->  2 files changed, 9 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/clk/meson/clk-regmap.h b/drivers/clk/meson/clk-regmap.h
-> index c4a39604cffd..e365312da54e 100644
-> --- a/drivers/clk/meson/clk-regmap.h
-> +++ b/drivers/clk/meson/clk-regmap.h
-> @@ -26,7 +26,10 @@ struct clk_regmap {
->  	void		*data;
->  };
->  
-> -#define to_clk_regmap(_hw) container_of(_hw, struct clk_regmap, hw)
-> +static inline struct clk_regmap *to_clk_regmap(struct clk_hw *hw)
-> +{
-> +	return container_of(hw, struct clk_regmap, hw);
-> +}
->  
->  /**
->   * struct clk_regmap_gate_data - regmap backed gate specific data
-> diff --git a/drivers/clk/qcom/clk-regmap.h b/drivers/clk/qcom/clk-regmap.h
-> index 6cfc1bccb255..14ec659a3a77 100644
-> --- a/drivers/clk/qcom/clk-regmap.h
-> +++ b/drivers/clk/qcom/clk-regmap.h
-> @@ -24,7 +24,11 @@ struct clk_regmap {
->  	unsigned int enable_mask;
->  	bool enable_is_inverted;
->  };
-> -#define to_clk_regmap(_hw) container_of(_hw, struct clk_regmap, hw)
-> +
-> +static inline struct clk_regmap *to_clk_regmap(struct clk_hw *hw)
-> +{
-> +	return container_of(hw, struct clk_regmap, hw);
-> +}
->  
->  int clk_is_enabled_regmap(struct clk_hw *hw);
->  int clk_enable_regmap(struct clk_hw *hw);
+So either we fix fw_devlink to work for everything and be on by default,
+or we keep the current setup.
 
+> Also, another reason to make it optional is that not all platforms need
+> this feature at all, but right now we select it for all Amlogic SoCs.
+
+I understand that, but I don't want another episode of widespread
+breakages, and this series definitely breaks things.
+
+Thanks,
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
 
 _______________________________________________
 linux-amlogic mailing list
