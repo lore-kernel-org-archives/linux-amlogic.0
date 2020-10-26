@@ -2,90 +2,81 @@ Return-Path: <SRS0=Jp6n=EB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,URI_HEX autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E686CC4363A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 17:33:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BB7EC388F9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 18:30:30 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5568621D42
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 17:33:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BEA622076A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2020 18:30:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sYIi42z8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rwSlxB5y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5568621D42
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="zWoLC8ox";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="fN07zSdL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BEA622076A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:To:From:
+	Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=oNAjAYxjJbQAo1gJ6je0ZP8Z9AgGp3UX2W9YAOGdM4s=; b=sYIi42z8t9AhEwDJBUL+34O4H
-	B6WtTrDGzhOP8IJNJm1L/G2aRuz3yCwDBcnMLwmXPHhz0zaq44+Yjw/Y5TbNKgNSMVkesb9BY/y3n
-	eNl/OrguplehekqrZQEc0xyHnQsZYVXGWzhfNPzzxiD+yCSxynJcq0savXj23c03tBt26c9O8BB/O
-	3dJM+UxOzICmhuOvFnG8TrSMyyu6+uxV71mpXdROfQD6GNtkPR5pTvNmjAle+i97SN4ILru7sjOUe
-	+o0q/EelKBrjbae+3FVlsm8a9ynYbmFkMZe1I6sxG1tejglfc6BuYlOOl2zwySujJzqE31am7Lyfy
-	6BQibwqjg==;
+	 bh=q5CfsQksbxOauFa2es1jfyS4TEEdvwtUbbAKM7iGsDg=; b=zWoLC8oxSee0m+y8eI5slS2ts
+	OeHQ2c+nPaE8h4xn/OtwsZr1nlU8Hho5n5kXq9KNWIWagmTBEk3Q3rdJBFUl9Qq5kh0+lsBdkBSjf
+	656F3beHeAUM2b7BnnxD8hoOtc5sUf6hLwNSj2BKm9Zh6IMXaJt9OoMJn+QKhRjhNOKh8jgJyhZuG
+	7XVxt840q55ljHG5/cWKKjF2FR1GvwKUnfmklfJrDAr0JACuzr3hznqtSJuhlOYueUgR/A5OttN8L
+	7q+trjVXgA/T4dz4VHafW+XSVlrMxZsFzF3eOa/aQGJNMo2PEro6kxXLlkvc4e24B1HQA8zK+Cp1p
+	bvAQYd5Ow==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kX6Mw-0003n5-9C; Mon, 26 Oct 2020 17:33:18 +0000
-Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
+	id 1kX7G9-0002le-90; Mon, 26 Oct 2020 18:30:21 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kX6Mr-0003lb-Ui
- for linux-amlogic@lists.infradead.org; Mon, 26 Oct 2020 17:33:17 +0000
-Received: by mail-pl1-x643.google.com with SMTP id y1so5063499plp.6
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Oct 2020 10:33:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=QsmUOkeY3+ES5z+hZb07Kh6nlwFFRCGw9RftCsYnODQ=;
- b=rwSlxB5yB1XX/5/vNw4ubDKx0X3z3NwLNQ7fx/D70KqC1TUmve5nPoa6ewr2GuqO6q
- BhbFa/ZUd9Xe6hptpjIlwwWcG6cAobOVIq8Hv0Tl7ziTnjlGN6DqxUxfNgw06gkYGuSv
- BkdBZm2Dn/i05IR8+aooDtb72UZJ3ODy124mSYz0M/uEAq15nwhOG0fpImZaqAvRPm/+
- hn5wU1+LLW12T1R6YsmqL4GhAJSOVo0SXzqPvggtOZ/ugrik6e/B/VL1RiDqk0J3ZC+J
- jWttz/eEh/M3pdhmhhmMS8vJQ3wS1RErPc9InYxAU7o0WCNlyTNlNjT7IchXJg4EJPC3
- GVVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=QsmUOkeY3+ES5z+hZb07Kh6nlwFFRCGw9RftCsYnODQ=;
- b=OWvWr+8Sc0UVWCpKiZTAPo6Rd5CWLR0aPA6O8/fIKGqfSX9EMBvZwtiEY4zYURaCbd
- l1oKn1mr9sKKREkcF2YrYe1EI9nzvUugtdX2cEwvsDHHD+hLBb4nYlgapIeqhMkwbDxY
- lBpAf/pUlQL6sNHVZgv+ujkKW2mr5vDCK8T1UTP2BdpEtljgy+DWcRvTzgqOtAtFSCg0
- m1LM3zEkUxKBdHnaVTDxc4t3tLtuc9dAh9k8814X4EHBiwFfy5Obmn0TsQ6r7lh6BMTW
- Yni17u/yxbD3AGaWIX1xpvVREGkALMFapG32qcduJUJAogc5ahEjYsK4PWB6uyq7qS+9
- fkQw==
-X-Gm-Message-State: AOAM530yQ+YRU1iopb17cE1AKk/Sk9SxjV6YkWslm/mhBciYhLwwYF75
- p9nQtDp3VOfoA6m/XSkIird/jA==
-X-Google-Smtp-Source: ABdhPJwbbdgGM8oCeSoqR9wfqRtQBOIijTzVsSX02zSp/aQ1OwT8/ayOEG92i1veOcvIGuN9YcFe1g==
-X-Received: by 2002:a17:902:934b:b029:d4:e4c7:26f5 with SMTP id
- g11-20020a170902934bb02900d4e4c726f5mr13089836plp.60.1603733591051; 
- Mon, 26 Oct 2020 10:33:11 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id e11sm12380662pfl.58.2020.10.26.10.33.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Oct 2020 10:33:10 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Marc Zyngier <maz@kernel.org>
+ id 1kX7G7-0002l8-Gp; Mon, 26 Oct 2020 18:30:20 +0000
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org
+ [51.254.78.96])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7D0B72076A;
+ Mon, 26 Oct 2020 18:30:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1603737018;
+ bh=PG78Z3DmAgRcAWB1YiwWZZoFBQwRpXRhQZu1WFxx++s=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=fN07zSdL08lN7cDpPZ0NgjgF70Jy7XXPyZSOIfgaBKnt8lFmdIB4wcOQ+kNyaL8hq
+ WIoT9ddzDME5IQjLObR6s0p4ECPsYh0DShcnsdxJtHnR345cJYpiThA0Gq0wR1F9wE
+ JCxrTbFHNdvk3omq7oc4A9yaCnlHuvepF48VideU=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+ by disco-boy.misterjones.org with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.94)
+ (envelope-from <maz@kernel.org>)
+ id 1kX7G4-004Q0T-A8; Mon, 26 Oct 2020 18:30:16 +0000
+MIME-Version: 1.0
+Date: Mon, 26 Oct 2020 18:30:16 +0000
+From: Marc Zyngier <maz@kernel.org>
+To: Kevin Hilman <khilman@baylibre.com>
 Subject: Re: [PATCH 0/2] irq-meson-gpio: make it possible to build as a module
 In-Reply-To: <7hy2jshp6w.fsf@baylibre.com>
 References: <20201020072532.949137-1-narmstrong@baylibre.com>
  <87v9eyo75s.wl-maz@kernel.org> <7ha6w9hsfm.fsf@baylibre.com>
  <b0780e423d5fa527835ba55c64dba473@kernel.org> <7hy2jshp6w.fsf@baylibre.com>
-Date: Mon, 26 Oct 2020 10:33:09 -0700
-Message-ID: <7hv9ewhoyy.fsf@baylibre.com>
-MIME-Version: 1.0
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <d98ba5ad9d32d3a6368fae78ca9b911c@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: khilman@baylibre.com, narmstrong@baylibre.com,
+ jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
+ SAEximRunCond expanded to false
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201026_133314_175439_924D3D38 
-X-CRM114-Status: GOOD (  19.87  )
+X-CRM114-CacheID: sfid-20201026_143019_760000_1856EC57 
+X-CRM114-Status: GOOD (  20.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,27 +91,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Cc: linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Kevin Hilman <khilman@baylibre.com> writes:
-
+On 2020-10-26 17:28, Kevin Hilman wrote:
 > Marc Zyngier <maz@kernel.org> writes:
->
+> 
 >> On 2020-10-26 16:18, Kevin Hilman wrote:
 >>> Marc Zyngier <maz@kernel.org> writes:
 >>> 
 >>>> On Tue, 20 Oct 2020 08:25:30 +0100,
 >>>> Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>>>> 
->>>>> In order to reduce the kernel Image size on multi-platform 
+>>>>> In order to reduce the kernel Image size on multi-platform
 >>>>> distributions,
->>>>> make it possible to build the Amlogic GPIO IRQ controller as a module
+>>>>> make it possible to build the Amlogic GPIO IRQ controller as a 
+>>>>> module
 >>>>> by switching it to a platform driver.
 >>>>> 
->>>>> The second patch removes MESON_IRQ_GPIO selection from ARCH_MESON to 
+>>>>> The second patch removes MESON_IRQ_GPIO selection from ARCH_MESON 
+>>>>> to
 >>>>> allow
 >>>>> building the driver as module.
 >>>>> 
@@ -130,16 +122,18 @@ Kevin Hilman <khilman@baylibre.com> writes:
 >>>>> 
 >>>>>  arch/arm64/Kconfig.platforms     |  1 -
 >>>>>  drivers/irqchip/Kconfig          |  5 +-
->>>>>  drivers/irqchip/irq-meson-gpio.c | 89 
+>>>>>  drivers/irqchip/irq-meson-gpio.c | 89
 >>>>> ++++++++++++++++++++------------
 >>>>>  3 files changed, 59 insertions(+), 36 deletions(-)
 >>>> 
->>>> I've tried this series on my vim3l with the this driver compiled as a
+>>>> I've tried this series on my vim3l with the this driver compiled as 
+>>>> a
 >>>> module, and lost the Ethernet interface in the process, as the phy
 >>>> wasn't able to resolve its interrupt and things fail later on:
 >>>> 
->>>> [   72.238291] meson8b-dwmac ff3f0000.ethernet eth1: no phy at addr -1
->>>> [   72.238917] meson8b-dwmac ff3f0000.ethernet eth1: stmmac_open: 
+>>>> [   72.238291] meson8b-dwmac ff3f0000.ethernet eth1: no phy at addr 
+>>>> -1
+>>>> [   72.238917] meson8b-dwmac ff3f0000.ethernet eth1: stmmac_open:
 >>>> Cannot attach to PHY (error: -19)
 >>>> 
 >>>> This is a generic problem with making DT-based interrupt controllers
@@ -150,615 +144,173 @@ Kevin Hilman <khilman@baylibre.com> writes:
 >>> If you build as a module, and you add `fw_devlink=on` to the kernel
 >>> command-line, device-links will be created based on DT dependencies
 >>> which will ensure the right module load order.
->>
->> It doesn't work here. I get the exact same error (well, with eth0 
+>> 
+>> It doesn't work here. I get the exact same error (well, with eth0
 >> instead
->> of eth1). In my experience, fw_devlink isn't reliable yet. Config on 
+>> of eth1). In my experience, fw_devlink isn't reliable yet. Config on
 >> request.
->
+> 
 > Other than CONFIG_MESON_IRQ_GPIO=m, are you using default upstream
 > defconfig?
->
+
+I use something that is much closer to a Debian configuration, given 
+that
+the same kernel as to run on *all* the systems I have access to.
+
 > I just double-checked with this series on top of v5.10-rc1, and I have
 > eth0 working with interrupts without needing fw_devlink=on.
->
-> With the default upstream defconfig all the networking for these devices
+> 
+> With the default upstream defconfig all the networking for these 
+> devices
 > is already configured as modules.
 
-Forgot to include a full boot log:
+dmesg: http://www.loen.fr/tmp/dmesg
+config: http://www.loen.fr/tmp/Config.full-arm64
 
-
-U-Boot 2020.07-00031-gb35ed474d2b4 (Sep 14 2020 - 11:11:52 -0700) khadas-vim3l
-
-Model: Khadas VIM3L
-SoC:   Amlogic Meson SM1 (Unknown) Revision 2b:c (4:2)
-DRAM:  2 GiB
-MMC:   sd@ffe03000: 0, sd@ffe05000: 1, mmc@ffe07000: 2
-Loading Environment from MMC... *** Warning - bad CRC, using default environment
-
-In:    serial@3000
-Out:   serial@3000
-Err:   serial@3000
-Net:   eth0: ethernet@ff3f0000
-Verify GPT: success!
-switch to partitions #0, OK
-mmc2(part 0) is current device
-
-MMC read: dev # 2, block # 1024, count 4096 ... 4096 blocks read: OK
-Hit any key to stop autoboot:  2 
-# PYBOOT: u-boot: taking control.
- 0 
-=> 
-=> version
-version
-U-Boot 2020.07-00031-gb35ed474d2b4 (Sep 14 2020 - 11:11:52 -0700) khadas-vim3l
-
-aarch64-linux-gnu-gcc (Debian 8.3.0-2) 8.3.0
-GNU ld (GNU Binutils for Debian) 2.31.1
-=> setenv preboot 
-setenv preboot 
-=> setenv bootargs console=ttyAML0,115200
-setenv bootargs console=ttyAML0,115200
-=> if test -n ${initenv}; then run initenv; fi
-if test -n ${initenv}; then run initenv; fi
-=> if test -n ${preboot}; then run preboot; fi
-if test -n ${preboot}; then run preboot; fi
-=> setenv autoload no
-setenv autoload no
-=> setenv autoboot no
-setenv autoboot no
-=> dhcp
-dhcp
-ethernet@ff3f0000 Waiting for PHY auto negotiation to complete.... done
-Speed: 100, full duplex
-BOOTP broadcast 1
-DHCP client bound to address 192.168.0.143 (2 ms)
-=> setenv serverip 192.168.1.2
-setenv serverip 192.168.1.2
-=> if test -n ${netargs}; then run netargs; fi
-if test -n ${netargs}; then run netargs; fi
-=> tftp 0x03000000 192.168.1.2:tmp/meson-sm1-khadas-vim3l-_Mngjr/Image.gz
-tftp 0x03000000 192.168.1.2:tmp/meson-sm1-khadas-vim3l-_Mngjr/Image.gz
-Speed: 100, full duplex
-Using ethernet@ff3f0000 device
-TFTP from server 192.168.1.2; our IP address is 192.168.0.143; sending through gateway 192.168.0.254
-Filename 'tmp/meson-sm1-khadas-vim3l-_Mngjr/Image.gz'.
-Load address: 0x3000000
-Loading: *#################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #####################################################T ############
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- ###############################
- 736.3 KiB/s
-done
-Bytes transferred = 10945439 (a7039f hex)
-=> tftp 0x08000000 192.168.1.2:tmp/meson-sm1-khadas-vim3l-_Mngjr/initrd-SAzbRc.cpio.gz
-tftp 0x08000000 192.168.1.2:tmp/meson-sm1-khadas-vim3l-_Mngjr/initrd-SAzbRc.cpio.gz
-Speed: 100, full duplex
-Using ethernet@ff3f0000 device
-TFTP from server 192.168.1.2; our IP address is 192.168.0.143; sending through gateway 192.168.0.254
-Filename 'tmp/meson-sm1-khadas-vim3l-_Mngjr/initrd-SAzbRc.cpio.gz'.
-Load address: 0x8000000
-Loading: *#################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- #################################################################
- ######################
- 1.3 MiB/s
-done
-Bytes transferred = 15588406 (eddc36 hex)
-=> tftp 0x01000000 192.168.1.2:tmp/meson-sm1-khadas-vim3l-_Mngjr/tmpLRsLgg.dtb
-tftp 0x01000000 192.168.1.2:tmp/meson-sm1-khadas-vim3l-_Mngjr/tmpLRsLgg.dtb
-Speed: 100, full duplex
-Using ethernet@ff3f0000 device
-TFTP from server 192.168.1.2; our IP address is 192.168.0.143; sending through gateway 192.168.0.254
-Filename 'tmp/meson-sm1-khadas-vim3l-_Mngjr/tmpLRsLgg.dtb'.
-Load address: 0x1000000
-Loading: *####
- 937.5 KiB/s
-done
-Bytes transferred = 48988 (bf5c hex)
-=> printenv bootargs
-printenv bootargs
-bootargs=console=ttyAML0,115200
-=> unzip 0x03000000 0x01080000
-booti 0x01080000 - 0x01000000
-
-# PYBOOT: u-boot: jumping to kernel image
-unzip 0x03000000 0x01080000
-Uncompressed size: 31179264 = 0x1DBC200
-=> booti 0x01080000 - 0x01000000
-## Flattened Device Tree blob at 01000000
-   Booting using the fdt blob at 0x1000000
-   Loading Device Tree to 0000000075f12000, end 0000000075f20f5b ... OK
-
-Starting kernel ...
-
-[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd050]
-[    0.000000] Linux version 5.10.0-rc1-00002-g4b28e5bd6b6a (KernelCI@paris) (aarch64-linux-gnu-gcc (Debian 8.3.0-2) 8.3.0, GNU ld (GNU Binutils for Debian) 2.31.1) #232 SMP PREEMPT Mon Oct 26 10:18:47 PDT 2020
-[    0.000000] Machine model: Khadas VIM3L
-[    0.000000] efi: UEFI not found.
-[    0.000000] Reserved memory: created CMA memory pool at 0x0000000065c00000, size 256 MiB
-[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
-[    0.000000] NUMA: No NUMA configuration found
-[    0.000000] NUMA: Faking a node at [mem 0x0000000000000000-0x000000007f806fff]
-[    0.000000] NUMA: NODE_DATA [mem 0x7f3bd100-0x7f3befff]
-[    0.000000] Zone ranges:
-[    0.000000]   DMA      [mem 0x0000000000000000-0x000000003fffffff]
-[    0.000000]   DMA32    [mem 0x0000000040000000-0x000000007f806fff]
-[    0.000000]   Normal   empty
-[    0.000000] Movable zone start for each node
-[    0.000000] Early memory node ranges
-[    0.000000]   node   0: [mem 0x0000000000000000-0x0000000004ffffff]
-[    0.000000]   node   0: [mem 0x0000000005300000-0x000000007f806fff]
-[    0.000000] Zeroed struct page in unavailable ranges: 505 pages
-[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000007f806fff]
-[    0.000000] psci: probing for conduit method from DT.
-[    0.000000] psci: PSCIv1.0 detected in firmware.
-[    0.000000] psci: Using standard PSCI v0.2 function IDs
-[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
-[    0.000000] psci: SMC Calling Convention v1.1
-[    0.000000] percpu: Embedded 23 pages/cpu s56152 r8192 d29864 u94208
-[    0.000000] Detected VIPT I-cache on CPU0
-[    0.000000] CPU features: detected: Virtualization Host Extensions
-[    0.000000] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
-[    0.000000] alternatives: patching kernel code
-[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 513318
-[    0.000000] Policy zone: DMA32
-[    0.000000] Kernel command line: console=ttyAML0,115200
-[    0.000000] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
-[    0.000000] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
-[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
-[    0.000000] software IO TLB: mapped [mem 0x000000003bfff000-0x000000003ffff000] (64MB)
-[    0.000000] Memory: 1670932K/2085916K available (14076K kernel code, 2800K rwdata, 7572K rodata, 5952K init, 515K bss, 152840K reserved, 262144K cma-reserved)
-[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
-[    0.000000] rcu: Preemptible hierarchical RCU implementation.
-[    0.000000] rcu: RCU event tracing is enabled.
-[    0.000000] rcu: RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=4.
-[    0.000000] Trampoline variant of Tasks RCU enabled.
-[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
-[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
-[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
-[    0.000000] GIC: Using split EOI/Deactivate mode
-[    0.000000] random: get_random_bytes called from start_kernel+0x314/0x4d4 with crng_init=0
-[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (phys).
-[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
-[    0.000004] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
-[    0.000250] Console: colour dummy device 80x25
-[    0.000332] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=96000)
-[    0.000346] pid_max: default: 32768 minimum: 301
-[    0.000420] LSM: Security Framework initializing
-[    0.000477] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
-[    0.000492] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
-[    0.001786] rcu: Hierarchical SRCU implementation.
-[    0.005342] EFI services will not be available.
-[    0.005582] smp: Bringing up secondary CPUs ...
-[    0.006335] Detected VIPT I-cache on CPU1
-[    0.006396] CPU1: Booted secondary processor 0x0000000100 [0x411fd050]
-[    0.007183] Detected VIPT I-cache on CPU2
-[    0.007225] CPU2: Booted secondary processor 0x0000000200 [0x411fd050]
-[    0.007992] Detected VIPT I-cache on CPU3
-[    0.008031] CPU3: Booted secondary processor 0x0000000300 [0x411fd050]
-[    0.008103] smp: Brought up 1 node, 4 CPUs
-[    0.008125] SMP: Total of 4 processors activated.
-[    0.008132] CPU features: detected: Privileged Access Never
-[    0.008137] CPU features: detected: LSE atomic instructions
-[    0.008142] CPU features: detected: User Access Override
-[    0.008147] CPU features: detected: 32-bit EL0 Support
-[    0.008153] CPU features: detected: Common not Private translations
-[    0.008158] CPU features: detected: RAS Extension Support
-[    0.008163] CPU features: detected: Data cache clean to the PoU not required for I/D coherence
-[    0.008168] CPU features: detected: CRC32 instructions
-[    0.008175] CPU features: detected: 32-bit EL1 Support
-[    0.023411] CPU: All CPU(s) started at EL2
-[    0.025215] devtmpfs: initialized
-[    0.033707] KASLR disabled due to lack of seed
-[    0.034072] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
-[    0.034090] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
-[    0.039946] pinctrl core: initialized pinctrl subsystem
-[    0.041395] DMI not present or invalid.
-[    0.041886] NET: Registered protocol family 16
-[    0.043203] DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
-[    0.043250] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
-[    0.043361] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
-[    0.043438] audit: initializing netlink subsys (disabled)
-[    0.043590] audit: type=2000 audit(0.040:1): state=initialized audit_enabled=0 res=1
-[    0.044851] thermal_sys: Registered thermal governor 'step_wise'
-[    0.044857] thermal_sys: Registered thermal governor 'power_allocator'
-[    0.045189] cpuidle: using governor menu
-[    0.045345] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
-[    0.045450] ASID allocator initialised with 65536 entries
-[    0.047163] Serial: AMBA PL011 UART driver
-[    0.094129] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
-[    0.094144] HugeTLB registered 32.0 MiB page size, pre-allocated 0 pages
-[    0.094151] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
-[    0.094158] HugeTLB registered 64.0 KiB page size, pre-allocated 0 pages
-[    0.095243] cryptd: max_cpu_qlen set to 1000
-[    0.097462] ACPI: Interpreter disabled.
-[    0.100245] VSYS_3V3: supplied by DC_IN
-[    0.101006] iommu: Default domain type: Translated 
-[    0.101264] vgaarb: loaded
-[    0.101533] SCSI subsystem initialized
-[    0.101910] usbcore: registered new interface driver usbfs
-[    0.101950] usbcore: registered new interface driver hub
-[    0.102009] usbcore: registered new device driver usb
-[    0.102845] pps_core: LinuxPPS API ver. 1 registered
-[    0.102852] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
-[    0.102868] PTP clock support registered
-[    0.103019] EDAC MC: Ver: 3.0.0
-[    0.104725] FPGA manager framework
-[    0.104818] Advanced Linux Sound Architecture Driver Initialized.
-[    0.105515] clocksource: Switched to clocksource arch_sys_counter
-[    0.105695] VFS: Disk quotas dquot_6.6.0
-[    0.105748] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
-[    0.105920] pnp: PnP ACPI: disabled
-[    0.111989] NET: Registered protocol family 2
-[    0.112333] tcp_listen_portaddr_hash hash table entries: 1024 (order: 2, 16384 bytes, linear)
-[    0.112363] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
-[    0.112459] TCP bind hash table entries: 16384 (order: 6, 262144 bytes, linear)
-[    0.112624] TCP: Hash tables configured (established 16384 bind 16384)
-[    0.112718] UDP hash table entries: 1024 (order: 3, 32768 bytes, linear)
-[    0.112754] UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes, linear)
-[    0.112888] NET: Registered protocol family 1
-[    0.113295] RPC: Registered named UNIX socket transport module.
-[    0.113303] RPC: Registered udp transport module.
-[    0.113308] RPC: Registered tcp transport module.
-[    0.113313] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    0.113323] PCI: CLS 0 bytes, default 64
-[    0.113494] Unpacking initramfs...
-[    0.757051] Freeing initrd memory: 15220K
-[    0.757975] kvm [1]: IPA Size Limit: 40 bits
-[    0.758106] kvm [1]: vgic interrupt IRQ9
-[    0.758239] kvm [1]: VHE mode initialized successfully
-[    0.761737] Initialise system trusted keyrings
-[    0.761875] workingset: timestamp_bits=44 max_order=19 bucket_order=0
-[    0.767592] squashfs: version 4.0 (2009/01/31) Phillip Lougher
-[    0.768240] NFS: Registering the id_resolver key type
-[    0.768264] Key type id_resolver registered
-[    0.768270] Key type id_legacy registered
-[    0.768351] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
-[    0.768499] 9p: Installing v9fs 9p2000 file system support
-[    0.804991] Key type asymmetric registered
-[    0.805000] Asymmetric key parser 'x509' registered
-[    0.805034] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 245)
-[    0.805042] io scheduler mq-deadline registered
-[    0.805048] io scheduler kyber registered
-[    0.820372] EINJ: ACPI disabled.
-[    0.834593] soc soc0: Amlogic Meson SM1 (S905D3) Revision 2b:c (4:2) Detected
-[    0.843406] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
-[    0.846185] SuperH (H)SCI(F) driver initialized
-[    0.846878] ff803000.serial: ttyAML0 at MMIO 0xff803000 (irq = 22, base_baud = 1500000) is a meson_uart
-[    1.715908] printk: console [ttyAML0] enabled
-[    1.720868] ffd24000.serial: ttyAML6 at MMIO 0xffd24000 (irq = 29, base_baud = 1500000) is a meson_uart
-[    1.729659] serial serial0: tty port ttyAML6 registered
-[    1.735155] msm_serial: driver initialized
-[    1.747269] loop: module loaded
-[    1.748427] megasas: 07.714.04.00-rc1
-[    1.753838] libphy: Fixed MDIO Bus: probed
-[    1.755098] tun: Universal TUN/TAP device driver, 1.6
-[    1.758461] thunder_xcv, ver 1.0
-[    1.760686] thunder_bgx, ver 1.0
-[    1.763896] nicpf, ver 1.0
-[    1.767908] hclge is initializing
-[    1.769859] hns3: Hisilicon Ethernet Network Driver for Hip08 Family - version
-[    1.776973] hns3: Copyright (c) 2017 Huawei Corporation.
-[    1.782295] e1000: Intel(R) PRO/1000 Network Driver
-[    1.787059] e1000: Copyright (c) 1999-2006 Intel Corporation.
-[    1.792790] e1000e: Intel(R) PRO/1000 Network Driver
-[    1.797667] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
-[    1.803570] igb: Intel(R) Gigabit Ethernet Network Driver
-[    1.808882] igb: Copyright (c) 2007-2014 Intel Corporation.
-[    1.814431] igbvf: Intel(R) Gigabit Virtual Function Network Driver
-[    1.820609] igbvf: Copyright (c) 2009 - 2012 Intel Corporation.
-[    1.826947] sky2: driver version 1.30
-[    1.831453] VFIO - User Level meta-driver version: 0.3
-[    1.837540] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
-[    1.841657] ehci-pci: EHCI PCI platform driver
-[    1.846091] ehci-platform: EHCI generic platform driver
-[    1.851411] ehci-orion: EHCI orion driver
-[    1.855331] ehci-exynos: EHCI Exynos driver
-[    1.859453] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
-[    1.865480] ohci-pci: OHCI PCI platform driver
-[    1.869894] ohci-platform: OHCI generic platform driver
-[    1.875179] ohci-exynos: OHCI Exynos driver
-[    1.879820] usbcore: registered new interface driver usb-storage
-[    1.888415] i2c /dev entries driver
-[    1.889925] VCC_3V3: supplied by VSYS_3V3
-[    1.892652] pca953x 0-0020: using no AI
-[    1.905395] sdhci: Secure Digital Host Controller Interface driver
-[    1.906001] sdhci: Copyright(c) Pierre Ossman
-[    1.911018] Synopsys Designware Multimedia Card Interface Driver
-[    1.917648] VDDIO_AO1V8: supplied by VSYS_3V3
-[    1.917794] sdhci-pltfm: SDHCI platform and OF driver helper
-[    1.917891] meson-gx-mmc ffe05000.sd: Got CD GPIO
-[    1.918956] EMMC_AO1V8: supplied by VCC_3V3
-[    1.919128] meson-gx-mmc ffe07000.mmc: allocated mmc-pwrseq
-[    1.944551] ledtrig-cpu: registered to indicate activity on CPUs
-[    1.947066] meson-sm: secure-monitor enabled
-[    1.951732] usbcore: registered new interface driver usbhid
-[    1.956145] usbhid: USB HID core driver
-[    1.969608] NET: Registered protocol family 17
-[    1.969774] 9pnet: Installing 9P2000 support
-[    1.972695] Key type dns_resolver registered
-[    1.977201] registered taskstats version 1
-[    1.980947] Loading compiled-in X.509 certificates
-[    2.000216] VCC_1V8: supplied by VCC_3V3
-[    2.000292] VCC_5V: supplied by DC_IN
-[    2.002727] USB_PWR: supplied by VCC_5V
-[    2.012712] dwc3-meson-g12a ffe09000.usb: USB2 ports: 2
-[    2.012746] dwc3-meson-g12a ffe09000.usb: USB3 ports: 1
-[    2.021504] dwc2 ff400000.usb: supply vusb_d not found, using dummy regulator
-[    2.024644] dwc2 ff400000.usb: supply vusb_a not found, using dummy regulator
-[    2.031863] dwc2 ff400000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
-[    2.040745] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-[    2.044095] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
-[    2.051767] xhci-hcd xhci-hcd.0.auto: hcc params 0x0228fe6c hci version 0x110 quirks 0x0000000000010010
-[    2.061004] xhci-hcd xhci-hcd.0.auto: irq 38, io mem 0xff500000
-[    2.067504] hub 1-0:1.0: USB hub found
-[    2.070555] hub 1-0:1.0: 2 ports detected
-[    2.074792] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-[    2.079939] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
-[    2.087528] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
-[    2.094033] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
-[    2.102426] hub 2-0:1.0: USB hub found
-[    2.105742] hub 2-0:1.0: 1 port detected
-[    2.108013] mmc2: new HS200 MMC card at address 0001
-[    2.115194] mmcblk2: mmc2:0001 AJTD4R 14.6 GiB 
-[    2.119317] mmcblk2boot0: mmc2:0001 AJTD4R partition 1 4.00 MiB
-[    2.123008] ALSA device list:
-[    2.125139] mmcblk2boot1: mmc2:0001 AJTD4R partition 2 4.00 MiB
-[    2.127825]   No soundcards found.
-[    2.133841] mmcblk2rpmb: mmc2:0001 AJTD4R partition 3 4.00 MiB, chardev (234:0)
-[    2.139106] Freeing unused kernel memory: 5952K
-[    2.147508]  mmcblk2: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10
-[    2.161599] Run /init as init process
-
-# PYBOOT: kernel: finished booting, starting userspace.
-[    2.216689] udevd[147]: starting version 3.2.9
-[    2.217441] random: udevd: uninitialized urandom read (16 bytes read)
-[    2.222071] random: udevd: uninitialized urandom read (16 bytes read)
-[    2.228339] random: udevd: uninitialized urandom read (16 bytes read)
-[    2.239835] udevd[148]: starting eudev-3.2.9
-[    2.409604] usb 1-1: new high-speed USB device number 2 using xhci-hcd
-[    2.413745] input: adc-keys as /devices/platform/adc-keys/input/input0
-[    2.581472] meson-drm ff900000.vpu: Queued 2 outputs on vpu
-[    2.598429] panfrost ffe40000.gpu: clock rate = 24000000
-[    2.598539] panfrost ffe40000.gpu: dev_pm_opp_set_regulators: no regulator (mali) found: -19
-[    2.606298] hub 1-1:1.0: USB hub found
-[    2.610299] hub 1-1:1.0: 4 ports detected
-[    2.625166] meson-gpio-intc ffd0f080.interrupt-controller: 100 to 8 gpio interrupt mux initialized
-[    2.630500] panfrost ffe40000.gpu: [drm:panfrost_devfreq_init [panfrost]] Failed to register cooling device
-[    2.666788] meson-vrtc ff8000a8.rtc: registered as rtc0
-[    2.666861] meson-vrtc ff8000a8.rtc: setting system clock to 1970-01-01T00:00:02 UTC (2)
-[    2.675628] panfrost ffe40000.gpu: mali-g31 id 0x7093 major 0x0 minor 0x0 status 0x0
-[    2.683070] panfrost ffe40000.gpu: features: 00000000,3fde77ff, issues: 00000000,00000400
-[    2.690275] panfrost ffe40000.gpu: Features: L2:0x07100206 Shader:0x00000000 Tiler:0x00000209 Mem:0x1 MMU:0x00002821 AS:0xff JS:0x7
-[    2.701558] Registered IR keymap rc-khadas
-[    2.703102] panfrost ffe40000.gpu: shader_present=0x1 l2_present=0x1
-[    2.711210] VDDCPU: supplied by regulator-dummy
-[    2.719518] meson8b-dwmac ff3f0000.ethernet: IRQ eth_wake_irq not found
-[    2.723383] meson8b-dwmac ff3f0000.ethernet: IRQ eth_lpi not found
-[    2.729680] meson8b-dwmac ff3f0000.ethernet: PTP uses main clock
-[    2.736803] meson8b-dwmac ff3f0000.ethernet: no reset control found
-[    2.745604] rc_core: Loaded IR protocol module ir-nec-decoder, but protocol nec still not available
-[    2.745634] meson8b-dwmac ff3f0000.ethernet: User ID: 0x11, Synopsys ID: 0x37
-[    2.749990] [drm] Initialized panfrost 1.1.0 20180908 for ffe40000.gpu on minor 0
-[    2.750670] rc rc0: meson-ir as /devices/platform/soc/ff800000.bus/ff808000.ir/rc/rc0
-[    2.757652] meson8b-dwmac ff3f0000.ethernet: DWMAC1000
-[    2.757665] meson8b-dwmac ff3f0000.ethernet: DMA HW capability register supported
-[    2.761805] meson-gx-mmc ffe03000.sd: allocated mmc-pwrseq
-[    2.766764] input: meson-ir as /devices/platform/soc/ff800000.bus/ff808000.ir/rc/rc0/input1
-[    2.772832] meson8b-dwmac ff3f0000.ethernet: RX Checksum Offload Engine supported
-[    2.772837] meson8b-dwmac ff3f0000.ethernet: COE Type 2
-[    2.772839] meson8b-dwmac ff3f0000.ethernet: TX Checksum insertion supported
-[    2.772841] meson8b-dwmac ff3f0000.ethernet: Wake-Up On Lan supported
-[    2.772919] meson8b-dwmac ff3f0000.ethernet: Normal descriptors
-[    2.778444] meson-ir ff808000.ir: receiver initialized
-[    2.785580] meson8b-dwmac ff3f0000.ethernet: Ring mode enabled
-[    2.812678] meson-drm ff900000.vpu: CVBS Output connector not available
-[    2.818802] meson8b-dwmac ff3f0000.ethernet: Enable RX Mitigation via HW Watchdog Timer
-[    2.855700] meson-dw-hdmi ff600000.hdmi-tx: Detected HDMI TX controller v2.01a with HDCP (meson_dw_hdmi_phy)
-[    2.856686] libphy: stmmac: probed
-[    2.869708] meson-dw-hdmi ff600000.hdmi-tx: registered DesignWare HDMI I2C bus driver
-[    2.874474] libphy: mdio_mux: probed
-[    2.880010] mmc0: queuing unknown CIS tuple 0x80 (2 bytes)
-[    2.888353] mmc0: queuing unknown CIS tuple 0x80 (3 bytes)
-[    2.893796] mmc0: queuing unknown CIS tuple 0x80 (3 bytes)
-[    2.895356] meson-drm ff900000.vpu: bound ff600000.hdmi-tx (ops meson_dw_hdmi_ops [meson_dw_hdmi])
-[    2.900810] mmc0: queuing unknown CIS tuple 0x80 (7 bytes)
-[    2.906819] random: fast init done
-[    2.907668] [drm] Initialized meson 1.0.0 20161109 for ff900000.vpu on minor 1
-[    2.924169] libphy: mdio_mux: probed
-[    2.927005] mmc0: queuing unknown CIS tuple 0x81 (9 bytes)
-[    2.929560] usb 1-1.1: new full-speed USB device number 3 using xhci-hcd
-[    2.979412] Bluetooth: Core ver 2.22
-[    2.979529] NET: Registered protocol family 31
-[    2.983502] Bluetooth: HCI device and connection manager initialized
-[    2.988240] Bluetooth: HCI socket layer initialized
-[    2.993054] Bluetooth: L2CAP socket layer initialized
-[    2.998047] Bluetooth: SCO socket layer initialized
-[    3.008102] Bluetooth: HCI UART driver ver 2.3
-[    3.008132] Bluetooth: HCI UART protocol H4 registered
-[    3.012496] Bluetooth: HCI UART protocol LL registered
-[    3.018922] hci_uart_bcm serial0-0: supply vbat not found, using dummy regulator
-[    3.025093] hci_uart_bcm serial0-0: supply vddio not found, using dummy regulator
-[    3.032499] Bluetooth: HCI UART protocol Broadcom registered
-[    3.037844] Bluetooth: HCI UART protocol QCA registered
-[    3.056314] mmc0: new high speed SDIO card at address 0001
-[    3.066154] cfg80211: Loading compiled-in X.509 certificates for regulatory database
-[    3.084925] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
-[    3.085036] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
-[    3.085040] platform regulatory.0: Falling back to sysfs fallback for: regulatory.db
-[    3.095498] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4359-sdio for chip BCM4359/9
-[    3.095673] brcmfmac mmc0:0001:1: Direct firmware load for brcm/brcmfmac4359-sdio.bin failed with error -2
-[    3.095678] brcmfmac mmc0:0001:1: Falling back to sysfs fallback for: brcm/brcmfmac4359-sdio.bin
-[    3.152665] input: Logitech USB Receiver as /devices/platform/soc/ffe09000.usb/ff500000.usb/xhci-hcd.0.auto/usb1/1-1/1-1.1/1-1.1:1.0/0003:046D:C534.0001/input/input2
-[    3.210334] hid-generic 0003:046D:C534.0001: input: USB HID v1.11 Keyboard [Logitech USB Receiver] on usb-xhci-hcd.0.auto-1.1/input0
-[    3.210422] Console: switching to colour frame buffer device 480x135
-[    3.217382] input: Logitech USB Receiver Mouse as /devices/platform/soc/ffe09000.usb/ff500000.usb/xhci-hcd.0.auto/usb1/1-1/1-1.1/1-1.1:1.1/0003:046D:C534.0002/input/input3
-[    3.218050] input: Logitech USB Receiver Consumer Control as /devices/platform/soc/ffe09000.usb/ff500000.usb/xhci-hcd.0.auto/usb1/1-1/1-1.1/1-1.1:1.1/0003:046D:C534.0002/input/input4
-[    3.278033] input: Logitech USB Receiver System Control as /devices/platform/soc/ffe09000.usb/ff500000.usb/xhci-hcd.0.auto/usb1/1-1/1-1.1/1-1.1:1.1/0003:046D:C534.0002/input/input5
-[    3.279153] hid-generic 0003:046D:C534.0002: input: USB HID v1.11 Mouse [Logitech USB Receiver] on usb-xhci-hcd.0.auto-1.1/input1
-[    3.394143] Bluetooth: hci0: BCM: chip id 121
-[    3.404246] meson-drm ff900000.vpu: [drm] fb0: mesondrmfb frame buffer device
-[    3.416359] Bluetooth: hci0: BCM: features 0x0e
-[    3.499719] Bluetooth: hci0: BCM4359C0
-[    3.500759] Bluetooth: hci0: BCM4359C0 (003.001.006) build 0000
-[    3.520060] axg-sound-card sound: ASoC: no DMI vendor name!
-[    3.534874] urandom_read: 3 callbacks suppressed
-[    3.534881] random: dd: uninitialized urandom read (512 bytes read)
-[    3.577752] random: dropbear: uninitialized urandom read (32 bytes read)
-[    3.596038] NET: Registered protocol family 10
-[    3.596774] Segment Routing with IPv6
-/bin/sh: can't access tty; job control turned off
-/ # 
-# PYBOOT: userspace: at root shell
-cat /proc/cmdline
-cat /proc/cmdline
-console=ttyAML0,115200
-/ # uname -r
-uname -r
-5.10.0-rc1-00002-g4b28e5bd6b6a
-/ # cat /proc/cpuinfo
-cat /proc/cpuinfo
-processor: 0
-BogoMIPS: 48.00
-Features: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer: 0x41
-CPU architecture: 8
-CPU variant: 0x1
-CPU part: 0xd05
-CPU revision: 0
-
-processor: 1
-BogoMIPS: 48.00
-Features: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer: 0x41
-CPU architecture: 8
-CPU variant: 0x1
-CPU part: 0xd05
-CPU revision: 0
-
-processor: 2
-BogoMIPS: 48.00
-Features: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer: 0x41
-CPU architecture: 8
-CPU variant: 0x1
-CPU part: 0xd05
-CPU revision: 0
-
-processor: 3
-BogoMIPS: 48.00
-Features: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer: 0x41
-CPU architecture: 8
-CPU variant: 0x1
-CPU part: 0xd05
-CPU revision: 0
-
-/ # lsmod
-lsmod
-Module                  Size  Used by    Not tainted
-ipv6                  438272 18 [permanent]
-snd_soc_hdmi_codec     16384  1 
-dw_hdmi_i2s_audio      16384  0 
-dw_hdmi_cec            16384  0 
-brcmfmac              245760  1 
-brcmutil               20480  1 brcmfmac
-cfg80211              364544  2 brcmfmac
-hci_uart               77824  0 
-btqca                  16384  1 hci_uart
-btbcm                  24576  1 hci_uart
-bluetooth             397312  4 hci_uart,btqca,btbcm
-ecdh_generic           16384  1 bluetooth
-snd_soc_meson_axg_frddr    36864  3 
-ecc                    32768  1 ecdh_generic
-rfkill                 36864  2 cfg80211,bluetooth
-meson_gxl              16384  0 
-snd_soc_meson_g12a_tohdmitx    20480  1 
-realtek                20480  0 
-snd_soc_meson_codec_glue    16384  1 snd_soc_meson_g12a_tohdmitx
-meson_rng              16384  0 
-axg_audio              77824 13 
-dwmac_generic          16384  0 
-reset_meson_audio_arb    16384  3 
-snd_soc_meson_axg_fifo    16384  1 snd_soc_meson_axg_frddr
-snd_soc_meson_axg_tdmout    24576  1 
-rng_core               24576  1 meson_rng
-meson_dw_hdmi          20480  0 
-dw_hdmi                45056  2 dw_hdmi_i2s_audio,meson_dw_hdmi
-sclk_div               16384  1 axg_audio
-clk_phase              16384  1 axg_audio
-mdio_mux_meson_g12a    16384  0 
-cec                    57344  2 dw_hdmi_cec,dw_hdmi
-dwmac_meson8b          16384  0 
-stmmac_platform        20480  2 dwmac_generic,dwmac_meson8b
-pwm_meson              16384  2 
-stmmac                184320  3 dwmac_generic,dwmac_meson8b,stmmac_platform
-rc_khadas              16384  0 
-meson_ir               16384  0 
-rc_core                40960  3 rc_khadas,meson_ir
-rtc_meson_vrtc         16384  1 
-irq_meson_gpio         20480  0 
-pcs_xpcs               20480  1 stmmac
-panfrost               61440  0 
+root@tiger-roach:~# lsmod
+Module                  Size  Used by
+macvtap                16384  0
+macvlan                32768  1 macvtap
+tap                    32768  1 macvtap
+nls_ascii              16384  1
+nls_cp437              20480  1
+vfat                   28672  1
+fat                    81920  1 vfat
+aes_ce_blk             36864  0
+crypto_simd            24576  1 aes_ce_blk
+cryptd                 28672  1 crypto_simd
+aes_ce_cipher          20480  1 aes_ce_blk
+ghash_ce               24576  0
+gf128mul               16384  1 ghash_ce
+sha2_ce                20480  0
+sha256_arm64           28672  1 sha2_ce
+sha1_ce                20480  0
+panfrost               69632  0
+gpu_sched              45056  1 panfrost
+meson_saradc           24576  0
+industrialio           90112  1 meson_saradc
+irq_meson_gpio         20480  0
+pwm_meson              20480  1
+meson_dw_hdmi          24576  0
 meson_drm              61440  1 meson_dw_hdmi
-gpu_sched              32768  1 panfrost
 meson_canvas           16384  1 meson_drm
-drm_kms_helper        241664  5 meson_dw_hdmi,dw_hdmi,meson_drm
-snd_soc_meson_axg_sound_card    16384  0 
-snd_soc_meson_card_utils    16384  1 snd_soc_meson_axg_sound_card
-crct10dif_ce           20480  1 
-display_connector      16384  0 
-snd_soc_meson_axg_tdm_interface    16384  2 snd_soc_meson_axg_sound_card
-drm                   565248  8 meson_dw_hdmi,dw_hdmi,panfrost,meson_drm,gpu_sched,drm_kms_helper,display_connector
-snd_soc_meson_axg_tdm_formatter    16384  2 snd_soc_meson_axg_tdmout,snd_soc_meson_axg_tdm_interface
-nvmem_meson_efuse      16384  0 
-adc_keys               16384  0 
-/ # ip addr
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
-2: eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000
-    link/ether 3a:62:88:b7:d1:2c brd ff:ff:ff:ff:ff:ff
-/ # udhcpc
-udhcpc: started, v1.31.1
-[    8.576234] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=39)
-[    8.589563] meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
-[    8.591492] meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
-[    8.598574] meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rgmii link mode
-udhcpc: sending discover
-[   11.200356] meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
-[   11.203516] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
-udhcpc: sending discover
-udhcpc: sending select for 192.168.0.143
-udhcpc: lease of 192.168.0.143 obtained, lease time 86400
-deleting routers
-adding dns 192.168.0.254
-adding dns 192.168.0.254
+dw_hdmi                53248  1 meson_dw_hdmi
+cec                    57344  1 dw_hdmi
+drm_kms_helper        258048  4 meson_dw_hdmi,meson_drm,dw_hdmi
+meson_rng              16384  0
+rng_core               24576  1 meson_rng
+cpufreq_dt             20480  0
+leds_gpio              16384  0
+drm                   606208  7 
+gpu_sched,meson_dw_hdmi,meson_drm,drm_kms_helper,dw_hdmi,panfrost
+ip_tables              32768  0
+x_tables               45056  1 ip_tables
+autofs4                49152  2
+xhci_plat_hcd          20480  0
+dwc2                  249856  0
+dwc3                  151552  0
+ulpi                   20480  1 dwc3
+udc_core               69632  2 dwc2,dwc3
+rtc_hym8563            20480  0
+meson_gxl              20480  0
+realtek                24576  0
+dwmac_generic          16384  0
+dwc3_meson_g12a        24576  0
+meson_gx_mmc           24576  0
+xhci_pci               24576  0
+igb                   237568  0
+xhci_hcd              290816  2 xhci_pci,xhci_plat_hcd
+i2c_meson              20480  0
+mdio_mux_meson_g12a    16384  0
+mdio_mux               16384  1 mdio_mux_meson_g12a
+nvme                   45056  2
+nvme_core             110592  4 nvme
+i2c_algo_bit           16384  1 igb
+t10_pi                 16384  1 nvme_core
+usbcore               311296  4 xhci_hcd,dwc2,xhci_pci,xhci_plat_hcd
+dwmac_meson8b          16384  0
+stmmac_platform        24576  2 dwmac_meson8b,dwmac_generic
+stmmac                204800  3 
+dwmac_meson8b,stmmac_platform,dwmac_generic
+pcs_xpcs               20480  1 stmmac
+phylink                45056  1 stmmac
+of_mdio                20480  4 stmmac_platform,mdio_mux,stmmac,phylink
+fixed_phy              16384  1 of_mdio
+pwm_regulator          20480  1
+libphy                151552  8 
+of_mdio,realtek,mdio_mux,stmmac,fixed_phy,meson_gxl,phylink,pcs_xpcs
+
+root@tiger-roach:~# cat /proc/interrupts
+            CPU0       CPU1       CPU2       CPU3
+   9:          0          0          0          0     GICv2  25 Level     
+vgic
+  11:          0          0          0          0     GICv2  30 Level     
+kvm guest ptimer
+  12:          0          0          0          0     GICv2  27 Level     
+kvm guest vtimer
+  13:       4151       2344       3022       4003     GICv2  26 Level     
+arch_timer
+  16:          0          0          0          0     GICv2  89 Edge      
+dw_hdmi_top_irq, ff600000.hdmi-tx
+  20:       1994          0          0          0     GICv2 225 Edge      
+ttyAML0
+  21:         28          0          0          0     GICv2 227 Edge      
+ff805000.i2c
+  23:          2          0          0          0     GICv2 232 Edge      
+ff809000.adc
+  26:          0          0          0          0     GICv2  35 Edge      
+meson
+  29:       1317          0          0          0     GICv2 222 Edge      
+ffe05000.sd
+  30:        762          0          0          0     GICv2 223 Edge      
+ffe07000.mmc
+  32:          0          0          0          0     GICv2 194 Level     
+panfrost-job
+  33:          0          0          0          0     GICv2 193 Level     
+panfrost-mmu
+  34:          3          0          0          0     GICv2 192 Level     
+panfrost-gpu
+  35:          0          0          0          0     GICv2  31 Level     
+arm-pmu
+  37:          0          0          0          0     GICv2 255 Level     
+PCIe PME, aerdrv
+  43:         15          0          0          0   PCI-MSI 2621440 Edge  
+     nvme0q0
+  44:        951          0          0          0   PCI-MSI 2621441 Edge  
+     nvme0q1
+  45:        809          0          0          0   PCI-MSI 2621442 Edge  
+     nvme0q2
+  46:        605          0          0          0   PCI-MSI 2621443 Edge  
+     nvme0q3
+  47:        544          0          0          0   PCI-MSI 2621444 Edge  
+     nvme0q4
+  48:         38          0          0          0   PCI-MSI 1572864 Edge  
+     xhci_hcd
+  58:          0          0          0          0     GICv2  63 Level     
+ff400000.usb, ff400000.usb
+  59:         32          0          0          0     GICv2  62 Level     
+xhci-hcd:usb3
+IPI0:      1253       1491       2091       2098       Rescheduling 
+interrupts
+IPI1:       297        306        756        385       Function call 
+interrupts
+IPI2:         0          0          0          0       CPU stop 
+interrupts
+IPI3:         0          0          0          0       CPU stop (for 
+crash dump) interrupts
+IPI4:         0          0          0          0       Timer broadcast 
+interrupts
+IPI5:         0          0          0          0       IRQ work 
+interrupts
+IPI6:         0          0          0          0       CPU wake-up 
+interrupts
+Err:          0
+
+and eth0 is dead.
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
 
 _______________________________________________
 linux-amlogic mailing list
