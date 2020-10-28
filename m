@@ -2,77 +2,70 @@ Return-Path: <SRS0=bq/Q=ED=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5479BC4363A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 20:48:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A37C6C4363A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 23:35:05 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D11C024823
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 20:48:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 16FFE207CD
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 23:35:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VT++pt2W"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D11C024823
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ieUk/TKw";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rvy2470g"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 16FFE207CD
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Message-ID:Date:To:From:Subject:References:
+	In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=jq4PaFjnrUiHP67tBQZ9H4AA9c4huFVl/dCpnANvS+0=; b=VT++pt2WpLU8e6JKqMGOJ04K7
-	/THPRsBGARNO7PzARJ2LFq/43lmR8wzlzNpd9wmlXobe38YIXis3FK2reunJGBLB+EUJLjCuiOqkp
-	OjSwsFRy8Uw8lxym4YB83pUUy7vAtnrEwqpItJi0K6P3Tq01UvW9jri0gWni8kBID9gLm3OaRPJh4
-	Tf3NJ3wZWs9gcjorbl06T/986e5tLT2iiqCHFXkWdwG2JIrzd2XnL2eRzXHcxAM1BmvxdLhvftZoH
-	9gYpmpWd9MbmL0hiJGyvIfvD6epZzJir30DsV17VDuqTntZUdx54k7glyF6UMmiEwnkKxwvMkUYKc
-	Zqi0XQXVw==;
+	 bh=06zNNciwJ6FodHEX5VwsTD0qwW9J9Z7zd6eWC9SN+Zs=; b=ieUk/TKwLu9ePjCnFmZQArsO3
+	V3o+kPf3wI/GyWMd9AL0g6nRfj7PRGNHKtWSYUfoDQsqowCyxNMLRSzcYxgyNuVMDDPS5EktvmHIr
+	FifaUO9arGylQiuJtesvcSNWWfhdeUjM+ld1/C8aQVVs1PA70OrHx08rTQi6Rz7dKwVEa24Bczc4T
+	nefpzndJVsauDgUnPDdFvSCDuE3ZIkwJmUuAIfiZ87+gHMu++mXkYaI3leyXYJza/kZgM+zn4KGYl
+	P3NDIghWeI0sIg8zCEMPE0O0yp+/yurXZ+QSojUcjQIeDfRz9hSx4TlFivjsy9+xYkANE9NgLOwjr
+	Hq/pc9uOQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kXsMW-00012Y-KD; Wed, 28 Oct 2020 20:48:04 +0000
-Received: from mail-ot1-f66.google.com ([209.85.210.66])
+	id 1kXuy1-0003Ij-De; Wed, 28 Oct 2020 23:34:57 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXsLl-0000hu-BV
- for linux-amlogic@lists.infradead.org; Wed, 28 Oct 2020 20:47:36 +0000
-Received: by mail-ot1-f66.google.com with SMTP id j21so364623ota.13
- for <linux-amlogic@lists.infradead.org>; Wed, 28 Oct 2020 13:47:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=FkONxrubBeV0K9NDgqUuTrfLU2bjv1Hi6p5HuEPDagA=;
- b=U4HHz4XNq0kSEN3BLi3XQWRCLM3JgbEdpoCmMivM6ZgDo2oUh3SG9/dbpZvHSvvKn8
- h9Ok1psiaxVkZPQcgPjGGhRVZopQqBS2eQG7+grGseNtIRcZZtF1TjSJLtDaXvuaZ378
- xHhPfxV/DnQq7jBs2RjrSCpTSXN9rZ8ZbjVzUFxm+Bby6w0w2i3Xap3nqfrr/Zr5rBxF
- 1SpqTTOWTCZKdRnOHJwsEV/S0hKgz+vTIihBTrTHsjpkiP2fg5SBUAF7q24sP61EsZcc
- 4zziuUpwf/BdoUeGvEH0na/pWLSTenujm1FPXLNnLwfyZaZjinKyp7J9/Ex280SFf36E
- R7uw==
-X-Gm-Message-State: AOAM531GMf3mOpsB9dHA7mCS9QCBtNOcgZbgaZNKhpRcwRu6q/s565Hq
- r5XPusIRYeYr4mYjDp2KBw==
-X-Google-Smtp-Source: ABdhPJzRldLmMpkMOaPGlc4NZrFT2+VzfztCngKSNqWCal9FQuy3FOd7GppyAX27y/AJQUXeK7pwGg==
-X-Received: by 2002:a9d:7119:: with SMTP id n25mr885379otj.9.1603918035446;
- Wed, 28 Oct 2020 13:47:15 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.googlemail.com with ESMTPSA id t17sm116123oor.3.2020.10.28.13.47.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Oct 2020 13:47:14 -0700 (PDT)
-From: Rob Herring <robh@kernel.org>
-To: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH 10/13] PCI: dwc: Move link handling into common code
-Date: Wed, 28 Oct 2020 15:46:43 -0500
-Message-Id: <20201028204646.356535-11-robh@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201028204646.356535-1-robh@kernel.org>
-References: <20201028204646.356535-1-robh@kernel.org>
+ id 1kXuxz-0003IB-1v; Wed, 28 Oct 2020 23:34:55 +0000
+Received: from kernel.org (unknown [104.132.1.79])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id DB478207CD;
+ Wed, 28 Oct 2020 23:34:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1603928092;
+ bh=SkQS+kWFiHlNP9A0NCZXUnj0zgMwNgitxpz4kbLJEAU=;
+ h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+ b=Rvy2470gXdjhUuqsTnms1+9zn/3ltbcoGLut4tp8macFajRCZ/q11mXsb5MRbetJp
+ x474Lxd6mDACqBiPmcl6Pl2Z9pr+557S2YUM1eKDOW49Qd2isIpjJEW+1NiCny6JNr
+ AsHQgnPP4ZzPTqOL4kaUc4Y5a2EChaeY9L0PdUzg=
 MIME-Version: 1.0
+In-Reply-To: <20201026161411.3708639-1-arnd@kernel.org>
+References: <20201026161411.3708639-1-arnd@kernel.org>
+Subject: Re: [PATCH] clk: define to_clk_regmap() as inline function
+From: Stephen Boyd <sboyd@kernel.org>
+To: Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Mike Turquette <mturquette@linaro.org>,
+ Neil Armstrong <narmstrong@baylibre.com>
+Date: Wed, 28 Oct 2020 16:34:50 -0700
+Message-ID: <160392809056.884498.15602398724017724347@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201028_164717_721113_2740DE8A 
-X-CRM114-Status: GOOD (  26.46  )
+X-CRM114-CacheID: sfid-20201028_193455_199075_F7AC9D12 
+X-CRM114-Status: GOOD (  12.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,745 +77,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
- Binghui Wang <wangbinghui@hisilicon.com>,
- Bjorn Andersson <bjorn.andersson@linaro.org>, linux-tegra@vger.kernel.org,
- Thierry Reding <thierry.reding@gmail.com>, linux-arm-kernel@axis.com,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Jonathan Chocron <jonnyc@amazon.com>, Shawn Guo <shawnguo@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Fabio Estevam <festevam@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Jesper Nilsson <jesper.nilsson@axis.com>,
- linux-samsung-soc@vger.kernel.org, Minghuan Lian <minghuan.Lian@nxp.com>,
- Kevin Hilman <khilman@baylibre.com>, Pratyush Anand <pratyush.anand@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Kishon Vijay Abraham I <kishon@ti.com>,
- Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- Xiaowei Song <songxiaowei@hisilicon.com>, Richard Zhu <hongxing.zhu@nxp.com>,
+Cc: Arnd Bergmann <arnd@arndb.de>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Yue Wang <yue.wang@Amlogic.com>, Murali Karicheri <m-karicheri2@ti.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
- linux-omap@vger.kernel.org, Mingkai Hu <mingkai.hu@nxp.com>,
- Roy Zang <roy.zang@nxp.com>, Masahiro Yamada <yamada.masahiro@socionext.com>,
- Jingoo Han <jingoohan1@gmail.com>, Andy Gross <agross@kernel.org>,
- Stanimir Varbanov <svarbanov@mm-sol.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
- linuxppc-dev@lists.ozlabs.org, Lucas Stach <l.stach@pengutronix.de>
+ linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@codeaurora.org>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-All the DWC drivers do link setup and checks at roughly the same time.
-Let's use the existing .start_link() hook (currently only used in EP
-mode) and move the link handling to the core code.
+Quoting Arnd Bergmann (2020-10-26 09:13:57)
+> From: Arnd Bergmann <arnd@arndb.de>
+> 
+> Nesting container_of() causes warnings with W=2, which is
+> annoying if it happens in headers and fills the build log
+> like:
+> 
+> In file included from drivers/clk/qcom/clk-alpha-pll.c:6:
+> drivers/clk/qcom/clk-alpha-pll.c: In function 'clk_alpha_pll_hwfsm_enable':
+> include/linux/kernel.h:852:8: warning: declaration of '__mptr' shadows a previous local [-Wshadow]
+>   852 |  void *__mptr = (void *)(ptr);     \
+>       |        ^~~~~~
+> drivers/clk/qcom/clk-alpha-pll.c:155:31: note: in expansion of macro 'container_of'
+>   155 | #define to_clk_alpha_pll(_hw) container_of(to_clk_regmap(_hw), \
+>       |                               ^~~~~~~~~~~~
+> drivers/clk/qcom/clk-regmap.h:27:28: note: in expansion of macro 'container_of'
+>    27 | #define to_clk_regmap(_hw) container_of(_hw, struct clk_regmap, hw)
+>       |                            ^~~~~~~~~~~~
+> drivers/clk/qcom/clk-alpha-pll.c:155:44: note: in expansion of macro 'to_clk_regmap'
+>   155 | #define to_clk_alpha_pll(_hw) container_of(to_clk_regmap(_hw), \
+>       |                                            ^~~~~~~~~~~~~
+> drivers/clk/qcom/clk-alpha-pll.c:254:30: note: in expansion of macro 'to_clk_alpha_pll'
+>   254 |  struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+>       |                              ^~~~~~~~~~~~~~~~
+> include/linux/kernel.h:852:8: note: shadowed declaration is here
+>   852 |  void *__mptr = (void *)(ptr);     \
+>       |        ^~~~~~
+> 
+> Redefine two copies of the to_clk_regmap() macro as inline functions
+> to avoid a lot of these.
+> 
+> Fixes: ea11dda9e091 ("clk: meson: add regmap clocks")
+> Fixes: 085d7a455444 ("clk: qcom: Add a regmap type clock struct")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
 
-The behavior for a link down was inconsistent as some drivers would fail
-probe in that case while others succeed. Let's standardize this to
-succeed as there are usecases where devices (and the link) appear later
-even without hotplug. For example, a reconfigured FPGA device.
-
-Cc: Kishon Vijay Abraham I <kishon@ti.com>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Jingoo Han <jingoohan1@gmail.com>
-Cc: Kukjin Kim <kgene@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Murali Karicheri <m-karicheri2@ti.com>
-Cc: Yue Wang <yue.wang@Amlogic.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Cc: Jesper Nilsson <jesper.nilsson@axis.com>
-Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-Cc: Xiaowei Song <songxiaowei@hisilicon.com>
-Cc: Binghui Wang <wangbinghui@hisilicon.com>
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Stanimir Varbanov <svarbanov@mm-sol.com>
-Cc: Pratyush Anand <pratyush.anand@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc: linux-omap@vger.kernel.org
-Cc: linux-samsung-soc@vger.kernel.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@axis.com
-Cc: linux-arm-msm@vger.kernel.org
-Cc: linux-tegra@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/pci/controller/dwc/pci-dra7xx.c       |  2 -
- drivers/pci/controller/dwc/pci-exynos.c       | 41 +++++++----------
- drivers/pci/controller/dwc/pci-imx6.c         |  9 ++--
- drivers/pci/controller/dwc/pci-keystone.c     |  9 ----
- drivers/pci/controller/dwc/pci-meson.c        | 24 ++++------
- drivers/pci/controller/dwc/pcie-armada8k.c    | 39 +++++++---------
- drivers/pci/controller/dwc/pcie-artpec6.c     |  2 -
- .../pci/controller/dwc/pcie-designware-host.c |  9 ++++
- .../pci/controller/dwc/pcie-designware-plat.c |  3 --
- drivers/pci/controller/dwc/pcie-histb.c       | 34 +++++++-------
- drivers/pci/controller/dwc/pcie-kirin.c       | 23 ++--------
- drivers/pci/controller/dwc/pcie-qcom.c        | 19 ++------
- drivers/pci/controller/dwc/pcie-spear13xx.c   | 46 ++++++++-----------
- drivers/pci/controller/dwc/pcie-tegra194.c    |  1 -
- drivers/pci/controller/dwc/pcie-uniphier.c    | 13 ++----
- 15 files changed, 103 insertions(+), 171 deletions(-)
-
-diff --git a/drivers/pci/controller/dwc/pci-dra7xx.c b/drivers/pci/controller/dwc/pci-dra7xx.c
-index 6b75c68dddb5..054423d9646d 100644
---- a/drivers/pci/controller/dwc/pci-dra7xx.c
-+++ b/drivers/pci/controller/dwc/pci-dra7xx.c
-@@ -183,8 +183,6 @@ static int dra7xx_pcie_host_init(struct pcie_port *pp)
- 
- 	dw_pcie_setup_rc(pp);
- 
--	dra7xx_pcie_establish_link(pci);
--	dw_pcie_wait_for_link(pci);
- 	dw_pcie_msi_init(pp);
- 	dra7xx_pcie_enable_interrupts(dra7xx);
- 
-diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
-index 7734394953e5..6498b615c834 100644
---- a/drivers/pci/controller/dwc/pci-exynos.c
-+++ b/drivers/pci/controller/dwc/pci-exynos.c
-@@ -229,30 +229,9 @@ static void exynos_pcie_assert_reset(struct exynos_pcie *ep)
- 				GPIOF_OUT_INIT_HIGH, "RESET");
- }
- 
--static int exynos_pcie_establish_link(struct exynos_pcie *ep)
-+static int exynos_pcie_start_link(struct dw_pcie *pci)
- {
--	struct dw_pcie *pci = ep->pci;
--	struct pcie_port *pp = &pci->pp;
--	struct device *dev = pci->dev;
--
--	if (dw_pcie_link_up(pci)) {
--		dev_err(dev, "Link already up\n");
--		return 0;
--	}
--
--	exynos_pcie_assert_core_reset(ep);
--
--	phy_reset(ep->phy);
--
--	exynos_pcie_writel(ep->mem_res->elbi_base, 1,
--			PCIE_PWR_RESET);
--
--	phy_power_on(ep->phy);
--	phy_init(ep->phy);
--
--	exynos_pcie_deassert_core_reset(ep);
--	dw_pcie_setup_rc(pp);
--	exynos_pcie_assert_reset(ep);
-+	struct exynos_pcie *ep = to_exynos_pcie(pci);
- 
- 	/* assert LTSSM enable */
- 	exynos_pcie_writel(ep->mem_res->elbi_base, PCIE_ELBI_LTSSM_ENABLE,
-@@ -386,7 +365,20 @@ static int exynos_pcie_host_init(struct pcie_port *pp)
- 
- 	pp->bridge->ops = &exynos_pci_ops;
- 
--	exynos_pcie_establish_link(ep);
-+	exynos_pcie_assert_core_reset(ep);
-+
-+	phy_reset(ep->phy);
-+
-+	exynos_pcie_writel(ep->mem_res->elbi_base, 1,
-+			PCIE_PWR_RESET);
-+
-+	phy_power_on(ep->phy);
-+	phy_init(ep->phy);
-+
-+	exynos_pcie_deassert_core_reset(ep);
-+	dw_pcie_setup_rc(pp);
-+	exynos_pcie_assert_reset(ep);
-+
- 	exynos_pcie_enable_interrupts(ep);
- 
- 	return 0;
-@@ -430,6 +422,7 @@ static const struct dw_pcie_ops dw_pcie_ops = {
- 	.read_dbi = exynos_pcie_read_dbi,
- 	.write_dbi = exynos_pcie_write_dbi,
- 	.link_up = exynos_pcie_link_up,
-+	.start_link = exynos_pcie_start_link,
- };
- 
- static int __init exynos_pcie_probe(struct platform_device *pdev)
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 1b979c956fcd..20e249efb02c 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -745,9 +745,9 @@ static void imx6_pcie_ltssm_enable(struct device *dev)
- 	}
- }
- 
--static int imx6_pcie_establish_link(struct imx6_pcie *imx6_pcie)
-+static int imx6_pcie_start_link(struct dw_pcie *pci)
- {
--	struct dw_pcie *pci = imx6_pcie->pci;
-+	struct imx6_pcie *imx6_pcie = to_imx6_pcie(pci);
- 	struct device *dev = pci->dev;
- 	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	u32 tmp;
-@@ -835,7 +835,6 @@ static int imx6_pcie_host_init(struct pcie_port *pp)
- 	imx6_pcie_deassert_core_reset(imx6_pcie);
- 	imx6_setup_phy_mpll(imx6_pcie);
- 	dw_pcie_setup_rc(pp);
--	imx6_pcie_establish_link(imx6_pcie);
- 	dw_pcie_msi_init(pp);
- 
- 	return 0;
-@@ -865,7 +864,7 @@ static int imx6_add_pcie_port(struct imx6_pcie *imx6_pcie,
- }
- 
- static const struct dw_pcie_ops dw_pcie_ops = {
--	/* No special ops needed, but pcie-designware still expects this struct */
-+	.start_link = imx6_pcie_start_link,
- };
- 
- #ifdef CONFIG_PM_SLEEP
-@@ -974,7 +973,7 @@ static int imx6_pcie_resume_noirq(struct device *dev)
- 	imx6_pcie_deassert_core_reset(imx6_pcie);
- 	dw_pcie_setup_rc(pp);
- 
--	ret = imx6_pcie_establish_link(imx6_pcie);
-+	ret = imx6_pcie_start_link(imx6_pcie->pci);
- 	if (ret < 0)
- 		dev_info(dev, "pcie link is down after resume.\n");
- 
-diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-index 784385ae6074..90b222b020a3 100644
---- a/drivers/pci/controller/dwc/pci-keystone.c
-+++ b/drivers/pci/controller/dwc/pci-keystone.c
-@@ -511,14 +511,8 @@ static void ks_pcie_stop_link(struct dw_pcie *pci)
- static int ks_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct keystone_pcie *ks_pcie = to_keystone_pcie(pci);
--	struct device *dev = pci->dev;
- 	u32 val;
- 
--	if (dw_pcie_link_up(pci)) {
--		dev_dbg(dev, "link is already up\n");
--		return 0;
--	}
--
- 	/* Initiate Link Training */
- 	val = ks_pcie_app_readl(ks_pcie, CMD_STATUS);
- 	ks_pcie_app_writel(ks_pcie, CMD_STATUS, LTSSM_EN_VAL | val);
-@@ -833,9 +827,6 @@ static int __init ks_pcie_host_init(struct pcie_port *pp)
- 			"Asynchronous external abort");
- #endif
- 
--	ks_pcie_start_link(pci);
--	dw_pcie_wait_for_link(pci);
--
- 	return 0;
- }
- 
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 10d65b3093e4..41a3351b100b 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -231,7 +231,7 @@ static void meson_pcie_assert_reset(struct meson_pcie *mp)
- 	gpiod_set_value_cansleep(mp->reset_gpio, 0);
- }
- 
--static void meson_pcie_init_dw(struct meson_pcie *mp)
-+static void meson_pcie_ltssm_enable(struct meson_pcie *mp)
- {
- 	u32 val;
- 
-@@ -289,20 +289,14 @@ static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
- 	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
- }
- 
--static int meson_pcie_establish_link(struct meson_pcie *mp)
-+static int meson_pcie_start_link(struct dw_pcie *pci)
- {
--	struct dw_pcie *pci = &mp->pci;
--	struct pcie_port *pp = &pci->pp;
--
--	meson_pcie_init_dw(mp);
--	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
--	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
--
--	dw_pcie_setup_rc(pp);
-+	struct meson_pcie *mp = to_meson_pcie(pci);
- 
-+	meson_pcie_ltssm_enable(mp);
- 	meson_pcie_assert_reset(mp);
- 
--	return dw_pcie_wait_for_link(pci);
-+	return 0;
- }
- 
- static int meson_pcie_rd_own_conf(struct pci_bus *bus, u32 devfn,
-@@ -380,14 +374,13 @@ static int meson_pcie_host_init(struct pcie_port *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct meson_pcie *mp = to_meson_pcie(pci);
--	int ret;
- 
- 	pp->bridge->ops = &meson_pci_ops;
- 
--	ret = meson_pcie_establish_link(mp);
--	if (ret)
--		return ret;
-+	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
-+	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
- 
-+	dw_pcie_setup_rc(pp);
- 	dw_pcie_msi_init(pp);
- 
- 	return 0;
-@@ -418,6 +411,7 @@ static int meson_add_pcie_port(struct meson_pcie *mp,
- 
- static const struct dw_pcie_ops dw_pcie_ops = {
- 	.link_up = meson_pcie_link_up,
-+	.start_link = meson_pcie_start_link,
- };
- 
- static int meson_pcie_probe(struct platform_device *pdev)
-diff --git a/drivers/pci/controller/dwc/pcie-armada8k.c b/drivers/pci/controller/dwc/pcie-armada8k.c
-index 13901f359a41..dd2926bbb901 100644
---- a/drivers/pci/controller/dwc/pcie-armada8k.c
-+++ b/drivers/pci/controller/dwc/pcie-armada8k.c
-@@ -154,10 +154,24 @@ static int armada8k_pcie_link_up(struct dw_pcie *pci)
- 	return 0;
- }
- 
--static void armada8k_pcie_establish_link(struct armada8k_pcie *pcie)
-+static int armada8k_pcie_start_link(struct dw_pcie *pci)
-+{
-+	u32 reg;
-+
-+	/* Start LTSSM */
-+	reg = dw_pcie_readl_dbi(pci, PCIE_GLOBAL_CONTROL_REG);
-+	reg |= PCIE_APP_LTSSM_EN;
-+	dw_pcie_writel_dbi(pci, PCIE_GLOBAL_CONTROL_REG, reg);
-+
-+	return 0;
-+}
-+
-+static int armada8k_pcie_host_init(struct pcie_port *pp)
- {
--	struct dw_pcie *pci = pcie->pci;
- 	u32 reg;
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+
-+	dw_pcie_setup_rc(pp);
- 
- 	if (!dw_pcie_link_up(pci)) {
- 		/* Disable LTSSM state machine to enable configuration */
-@@ -193,26 +207,6 @@ static void armada8k_pcie_establish_link(struct armada8k_pcie *pcie)
- 	       PCIE_INT_C_ASSERT_MASK | PCIE_INT_D_ASSERT_MASK;
- 	dw_pcie_writel_dbi(pci, PCIE_GLOBAL_INT_MASK1_REG, reg);
- 
--	if (!dw_pcie_link_up(pci)) {
--		/* Configuration done. Start LTSSM */
--		reg = dw_pcie_readl_dbi(pci, PCIE_GLOBAL_CONTROL_REG);
--		reg |= PCIE_APP_LTSSM_EN;
--		dw_pcie_writel_dbi(pci, PCIE_GLOBAL_CONTROL_REG, reg);
--	}
--
--	/* Wait until the link becomes active again */
--	if (dw_pcie_wait_for_link(pci))
--		dev_err(pci->dev, "Link not up after reconfiguration\n");
--}
--
--static int armada8k_pcie_host_init(struct pcie_port *pp)
--{
--	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
--	struct armada8k_pcie *pcie = to_armada8k_pcie(pci);
--
--	dw_pcie_setup_rc(pp);
--	armada8k_pcie_establish_link(pcie);
--
- 	return 0;
- }
- 
-@@ -269,6 +263,7 @@ static int armada8k_add_pcie_port(struct armada8k_pcie *pcie,
- 
- static const struct dw_pcie_ops dw_pcie_ops = {
- 	.link_up = armada8k_pcie_link_up,
-+	.start_link = armada8k_pcie_start_link,
- };
- 
- static int armada8k_pcie_probe(struct platform_device *pdev)
-diff --git a/drivers/pci/controller/dwc/pcie-artpec6.c b/drivers/pci/controller/dwc/pcie-artpec6.c
-index a5239a58cee0..8b3da3038ac3 100644
---- a/drivers/pci/controller/dwc/pcie-artpec6.c
-+++ b/drivers/pci/controller/dwc/pcie-artpec6.c
-@@ -329,8 +329,6 @@ static int artpec6_pcie_host_init(struct pcie_port *pp)
- 	artpec6_pcie_deassert_core_reset(artpec6_pcie);
- 	artpec6_pcie_wait_for_phy(artpec6_pcie);
- 	dw_pcie_setup_rc(pp);
--	artpec6_pcie_establish_link(pci);
--	dw_pcie_wait_for_link(pci);
- 	dw_pcie_msi_init(pp);
- 
- 	return 0;
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index 6cebdd9bbd2e..f5f9d4e58aa3 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -423,6 +423,15 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 			goto err_free_msi;
- 	}
- 
-+	if (!dw_pcie_link_up(pci) && pci->ops->start_link) {
-+		ret = pci->ops->start_link(pci);
-+		if (ret)
-+			goto err_free_msi;
-+	}
-+
-+	/* Ignore errors, the link may come up later */
-+	dw_pcie_wait_for_link(pci);
-+
- 	bridge->sysdata = pp;
- 
- 	ret = pci_host_probe(bridge);
-diff --git a/drivers/pci/controller/dwc/pcie-designware-plat.c b/drivers/pci/controller/dwc/pcie-designware-plat.c
-index 3da38ac6a87a..adebcaeb1a6c 100644
---- a/drivers/pci/controller/dwc/pcie-designware-plat.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-plat.c
-@@ -35,10 +35,7 @@ static const struct of_device_id dw_plat_pcie_of_match[];
- 
- static int dw_plat_pcie_host_init(struct pcie_port *pp)
- {
--	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
--
- 	dw_pcie_setup_rc(pp);
--	dw_pcie_wait_for_link(pci);
- 	dw_pcie_msi_init(pp);
- 
- 	return 0;
-diff --git a/drivers/pci/controller/dwc/pcie-histb.c b/drivers/pci/controller/dwc/pcie-histb.c
-index 777e24902afb..ece544165059 100644
---- a/drivers/pci/controller/dwc/pcie-histb.c
-+++ b/drivers/pci/controller/dwc/pcie-histb.c
-@@ -169,39 +169,36 @@ static int histb_pcie_link_up(struct dw_pcie *pci)
- 	return 0;
- }
- 
--static int histb_pcie_establish_link(struct pcie_port *pp)
-+static int histb_pcie_start_link(struct dw_pcie *pci)
- {
--	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct histb_pcie *hipcie = to_histb_pcie(pci);
- 	u32 regval;
- 
--	if (dw_pcie_link_up(pci)) {
--		dev_info(pci->dev, "Link already up\n");
--		return 0;
--	}
--
--	/* PCIe RC work mode */
--	regval = histb_pcie_readl(hipcie, PCIE_SYS_CTRL0);
--	regval &= ~PCIE_DEVICE_TYPE_MASK;
--	regval |= PCIE_WM_RC;
--	histb_pcie_writel(hipcie, PCIE_SYS_CTRL0, regval);
--
--	/* setup root complex */
--	dw_pcie_setup_rc(pp);
--
- 	/* assert LTSSM enable */
- 	regval = histb_pcie_readl(hipcie, PCIE_SYS_CTRL7);
- 	regval |= PCIE_APP_LTSSM_ENABLE;
- 	histb_pcie_writel(hipcie, PCIE_SYS_CTRL7, regval);
- 
--	return dw_pcie_wait_for_link(pci);
-+	return 0;
- }
- 
- static int histb_pcie_host_init(struct pcie_port *pp)
- {
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct histb_pcie *hipcie = to_histb_pcie(pci);
-+	u32 regval;
-+
- 	pp->bridge->ops = &histb_pci_ops;
- 
--	histb_pcie_establish_link(pp);
-+	/* PCIe RC work mode */
-+	regval = histb_pcie_readl(hipcie, PCIE_SYS_CTRL0);
-+	regval &= ~PCIE_DEVICE_TYPE_MASK;
-+	regval |= PCIE_WM_RC;
-+	histb_pcie_writel(hipcie, PCIE_SYS_CTRL0, regval);
-+
-+	/* setup root complex */
-+	dw_pcie_setup_rc(pp);
-+
- 	dw_pcie_msi_init(pp);
- 
- 	return 0;
-@@ -300,6 +297,7 @@ static const struct dw_pcie_ops dw_pcie_ops = {
- 	.read_dbi = histb_pcie_read_dbi,
- 	.write_dbi = histb_pcie_write_dbi,
- 	.link_up = histb_pcie_link_up,
-+	.start_link = histb_pcie_start_link,
- };
- 
- static int histb_pcie_probe(struct platform_device *pdev)
-diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/controller/dwc/pcie-kirin.c
-index ba03dbca7885..675b4d8392d3 100644
---- a/drivers/pci/controller/dwc/pcie-kirin.c
-+++ b/drivers/pci/controller/dwc/pcie-kirin.c
-@@ -390,32 +390,14 @@ static int kirin_pcie_link_up(struct dw_pcie *pci)
- 	return 0;
- }
- 
--static int kirin_pcie_establish_link(struct pcie_port *pp)
-+static int kirin_pcie_start_link(struct dw_pcie *pci)
- {
--	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct kirin_pcie *kirin_pcie = to_kirin_pcie(pci);
--	struct device *dev = kirin_pcie->pci->dev;
--	int count = 0;
--
--	if (kirin_pcie_link_up(pci))
--		return 0;
--
--	dw_pcie_setup_rc(pp);
- 
- 	/* assert LTSSM enable */
- 	kirin_apb_ctrl_writel(kirin_pcie, PCIE_LTSSM_ENABLE_BIT,
- 			      PCIE_APP_LTSSM_ENABLE);
- 
--	/* check if the link is up or not */
--	while (!kirin_pcie_link_up(pci)) {
--		usleep_range(LINK_WAIT_MIN, LINK_WAIT_MAX);
--		count++;
--		if (count == 1000) {
--			dev_err(dev, "Link Fail\n");
--			return -EINVAL;
--		}
--	}
--
- 	return 0;
- }
- 
-@@ -423,7 +405,7 @@ static int kirin_pcie_host_init(struct pcie_port *pp)
- {
- 	pp->bridge->ops = &kirin_pci_ops;
- 
--	kirin_pcie_establish_link(pp);
-+	dw_pcie_setup_rc(pp);
- 	dw_pcie_msi_init(pp);
- 
- 	return 0;
-@@ -433,6 +415,7 @@ static const struct dw_pcie_ops kirin_dw_pcie_ops = {
- 	.read_dbi = kirin_pcie_read_dbi,
- 	.write_dbi = kirin_pcie_write_dbi,
- 	.link_up = kirin_pcie_link_up,
-+	.start_link = kirin_pcie_start_link,
- };
- 
- static const struct dw_pcie_host_ops kirin_pcie_host_ops = {
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 7ac08f0cae17..8eb8ac2fb270 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -207,18 +207,15 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
- 	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
- }
- 
--static int qcom_pcie_establish_link(struct qcom_pcie *pcie)
-+static int qcom_pcie_start_link(struct dw_pcie *pci)
- {
--	struct dw_pcie *pci = pcie->pci;
--
--	if (dw_pcie_link_up(pci))
--		return 0;
-+	struct qcom_pcie *pcie = to_qcom_pcie(pci);
- 
- 	/* Enable Link Training state machine */
- 	if (pcie->ops->ltssm_enable)
- 		pcie->ops->ltssm_enable(pcie);
- 
--	return dw_pcie_wait_for_link(pci);
-+	return 0;
- }
- 
- static void qcom_pcie_2_1_0_ltssm_enable(struct qcom_pcie *pcie)
-@@ -1288,15 +1285,8 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
- 
- 	qcom_ep_reset_deassert(pcie);
- 
--	ret = qcom_pcie_establish_link(pcie);
--	if (ret)
--		goto err;
--
- 	return 0;
--err:
--	qcom_ep_reset_assert(pcie);
--	if (pcie->ops->post_deinit)
--		pcie->ops->post_deinit(pcie);
-+
- err_disable_phy:
- 	phy_power_off(pcie->phy);
- err_deinit:
-@@ -1363,6 +1353,7 @@ static const struct qcom_pcie_ops ops_2_7_0 = {
- 
- static const struct dw_pcie_ops dw_pcie_ops = {
- 	.link_up = qcom_pcie_link_up,
-+	.start_link = qcom_pcie_start_link,
- };
- 
- static int qcom_pcie_probe(struct platform_device *pdev)
-diff --git a/drivers/pci/controller/dwc/pcie-spear13xx.c b/drivers/pci/controller/dwc/pcie-spear13xx.c
-index 800c34a60a33..ebbaa06fc8ab 100644
---- a/drivers/pci/controller/dwc/pcie-spear13xx.c
-+++ b/drivers/pci/controller/dwc/pcie-spear13xx.c
-@@ -66,32 +66,10 @@ struct pcie_app_reg {
- 
- #define to_spear13xx_pcie(x)	dev_get_drvdata((x)->dev)
- 
--static int spear13xx_pcie_establish_link(struct spear13xx_pcie *spear13xx_pcie)
-+static int spear13xx_pcie_start_link(struct dw_pcie *pci)
- {
--	struct dw_pcie *pci = spear13xx_pcie->pci;
--	struct pcie_port *pp = &pci->pp;
-+	struct spear13xx_pcie *spear13xx_pcie = to_spear13xx_pcie(pci);
- 	struct pcie_app_reg *app_reg = spear13xx_pcie->app_base;
--	u32 val;
--	u32 exp_cap_off = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
--
--	if (dw_pcie_link_up(pci)) {
--		dev_err(pci->dev, "link already up\n");
--		return 0;
--	}
--
--	dw_pcie_setup_rc(pp);
--
--	/*
--	 * this controller support only 128 bytes read size, however its
--	 * default value in capability register is 512 bytes. So force
--	 * it to 128 here.
--	 */
--	val = dw_pcie_readw_dbi(pci, exp_cap_off + PCI_EXP_DEVCTL);
--	val &= ~PCI_EXP_DEVCTL_READRQ;
--	dw_pcie_writew_dbi(pci, exp_cap_off + PCI_EXP_DEVCTL, val);
--
--	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, 0x104A);
--	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, 0xCD80);
- 
- 	/* enable ltssm */
- 	writel(DEVICE_TYPE_RC | (1 << MISCTRL_EN_ID)
-@@ -99,7 +77,7 @@ static int spear13xx_pcie_establish_link(struct spear13xx_pcie *spear13xx_pcie)
- 			| ((u32)1 << REG_TRANSLATION_ENABLE),
- 			&app_reg->app_ctrl_0);
- 
--	return dw_pcie_wait_for_link(pci);
-+	return 0;
- }
- 
- static irqreturn_t spear13xx_pcie_irq_handler(int irq, void *arg)
-@@ -151,10 +129,25 @@ static int spear13xx_pcie_host_init(struct pcie_port *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct spear13xx_pcie *spear13xx_pcie = to_spear13xx_pcie(pci);
-+	u32 exp_cap_off = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u32 val;
- 
- 	spear13xx_pcie->app_base = pci->dbi_base + 0x2000;
- 
--	spear13xx_pcie_establish_link(spear13xx_pcie);
-+	dw_pcie_setup_rc(pp);
-+
-+	/*
-+	 * this controller support only 128 bytes read size, however its
-+	 * default value in capability register is 512 bytes. So force
-+	 * it to 128 here.
-+	 */
-+	val = dw_pcie_readw_dbi(pci, exp_cap_off + PCI_EXP_DEVCTL);
-+	val &= ~PCI_EXP_DEVCTL_READRQ;
-+	dw_pcie_writew_dbi(pci, exp_cap_off + PCI_EXP_DEVCTL, val);
-+
-+	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, 0x104A);
-+	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, 0xCD80);
-+
- 	spear13xx_pcie_enable_interrupts(spear13xx_pcie);
- 
- 	return 0;
-@@ -198,6 +191,7 @@ static int spear13xx_add_pcie_port(struct spear13xx_pcie *spear13xx_pcie,
- 
- static const struct dw_pcie_ops dw_pcie_ops = {
- 	.link_up = spear13xx_pcie_link_up,
-+	.start_link = spear13xx_pcie_start_link,
- };
- 
- static int spear13xx_pcie_probe(struct platform_device *pdev)
-diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-index 77fc3ba3dec1..f7d7b002a06d 100644
---- a/drivers/pci/controller/dwc/pcie-tegra194.c
-+++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-@@ -1549,7 +1549,6 @@ static int tegra_pcie_deinit_controller(struct tegra_pcie_dw *pcie)
- 
- static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
- {
--	struct pcie_port *pp = &pcie->pci.pp;
- 	struct device *dev = pcie->dev;
- 	char *name;
- 	int ret;
-diff --git a/drivers/pci/controller/dwc/pcie-uniphier.c b/drivers/pci/controller/dwc/pcie-uniphier.c
-index 6198bd106b8a..f4b776e231d6 100644
---- a/drivers/pci/controller/dwc/pcie-uniphier.c
-+++ b/drivers/pci/controller/dwc/pcie-uniphier.c
-@@ -146,16 +146,13 @@ static int uniphier_pcie_link_up(struct dw_pcie *pci)
- 	return (val & mask) == mask;
- }
- 
--static int uniphier_pcie_establish_link(struct dw_pcie *pci)
-+static int uniphier_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct uniphier_pcie_priv *priv = to_uniphier_pcie(pci);
- 
--	if (dw_pcie_link_up(pci))
--		return 0;
--
- 	uniphier_pcie_ltssm_enable(priv, true);
- 
--	return dw_pcie_wait_for_link(pci);
-+	return 0;
- }
- 
- static void uniphier_pcie_stop_link(struct dw_pcie *pci)
-@@ -318,10 +315,6 @@ static int uniphier_pcie_host_init(struct pcie_port *pp)
- 	uniphier_pcie_irq_enable(priv);
- 
- 	dw_pcie_setup_rc(pp);
--	ret = uniphier_pcie_establish_link(pci);
--	if (ret)
--		return ret;
--
- 	dw_pcie_msi_init(pp);
- 
- 	return 0;
-@@ -385,7 +378,7 @@ static int uniphier_pcie_host_enable(struct uniphier_pcie_priv *priv)
- }
- 
- static const struct dw_pcie_ops dw_pcie_ops = {
--	.start_link = uniphier_pcie_establish_link,
-+	.start_link = uniphier_pcie_start_link,
- 	.stop_link = uniphier_pcie_stop_link,
- 	.link_up = uniphier_pcie_link_up,
- };
--- 
-2.25.1
-
+Applied to clk-fixes
 
 _______________________________________________
 linux-amlogic mailing list
