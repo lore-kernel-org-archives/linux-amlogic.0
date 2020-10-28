@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35DA6C388F7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 20:47:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 800E1C4363A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 20:47:49 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ABBBA24821
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 20:47:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B703024822
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 20:47:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bsAY2aYu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ABBBA24821
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="goMnQf8H"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B703024822
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,55 +25,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=RWB3tvCSomRkl/18strnB3Px5YFoEFcN4rkFwPhW1O0=; b=bsAY2aYuEK5Erlj4S1iMm2Fkg
-	hYoyVTXLqvO+1KyBhJscu95N1h9lL+cPckyxdqbFlbLx2RhZG2qfz5MNwSzaMSd9FAz3oUfrxdZoD
-	NOkVvrNl3WwuDepMhw+D29YX07UxErem/iCVsO/szLIkYVbcJF+/gP5p8yuLf6Jcw/4MCCktySI5M
-	40wRjytlEtZLK92tIkcLC6H73FgUiTpwGQjlXuxwuK3mmPMMj7ckYJ2VwzDndgdoX+QvMQ9n0of+X
-	DPCyRU71B6T343x7X5k6us/BVNAsyLxGSifMmF7JL32Ko0FrevPE9gHI1jwGucm6NCbqgdPOcqyvu
-	ePHrplISw==;
+	 bh=K7ym1LBS/LnBpqWpfKLg5uSxl5u8+FGD7XTViqQEudE=; b=goMnQf8Hlz5yF5GAPFvbASBoE
+	Xw9adv/FJxLOL6bL3yvuCLMg+J5xVv/71Sybvjy5KWk34UoLqa3UWtecbTYnrY8DQF9I1AB7+6u6Q
+	LyTum2JQY4S4yoMpCcL9SAU7OMWLv1TVXBgGKD24fjwb8rly1GMvf00xXRH4ttNOsGtHrEmzXbtFu
+	+uvRBHcLr2rU9LE0kWydsslOacLxLIPwzJ0gtEf8s8LG9/bL+GtN/8mDqiD2FbhXDAEobVQH7PjZ6
+	5TQDOAfryTfzwAOnG9FgqODU3qQprsfq7rE+Ogo+rp3g8GvR/O/7r6cG37uxBdUVitC9TOhuUdtpA
+	/gv9uRxkw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kXsLV-0000cW-Ff; Wed, 28 Oct 2020 20:47:01 +0000
-Received: from mail-ot1-f67.google.com ([209.85.210.67])
+	id 1kXsMC-0000qD-OP; Wed, 28 Oct 2020 20:47:44 +0000
+Received: from mail-oi1-f194.google.com ([209.85.167.194])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXsLP-0000Zi-AQ
- for linux-amlogic@lists.infradead.org; Wed, 28 Oct 2020 20:46:56 +0000
-Received: by mail-ot1-f67.google.com with SMTP id k3so427602otp.1
- for <linux-amlogic@lists.infradead.org>; Wed, 28 Oct 2020 13:46:55 -0700 (PDT)
+ id 1kXsLV-0000c3-Og
+ for linux-amlogic@lists.infradead.org; Wed, 28 Oct 2020 20:47:04 +0000
+Received: by mail-oi1-f194.google.com with SMTP id k65so954932oih.8
+ for <linux-amlogic@lists.infradead.org>; Wed, 28 Oct 2020 13:47:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ZQyia8yFxJFo/T6o8CYQ5VyHneaAbbvX2dVIUGSCMQQ=;
- b=WVByk23QGqCjldqYtgf9+QDRFBWe+h7TEouEBIWLeWFdXGxOQbJ6K3tsObRL76yIi3
- CZBWL5Fo1uc2O8FJOSc1TZ6/jtnn1bAhN+09WcNd9S/sEZ/wzO1Bg0y4ak04wDOFgkwS
- BDPeFFPzUEbJkaysPDYpO6tLw6oqwE2yk6GNhWFh+nlyaFMQtwccV8NCOakb+B+3TuBs
- bZtrBTJk8pTN6SPurjW49PQwOut0S7x68I0XL5szIdoOTDNGOOFOqJi2MB+3/U5F3bP+
- Q28nnLIJWtABAKnFAkI/I6NihXfWmQNuR9MBMO7ex7f1omzn9LoXYm4wWEke2dfTrZd5
- Bz9A==
-X-Gm-Message-State: AOAM5305+d9YfpPsWDCeMkba08gS+/QcgPGP4NxfbDeYInGOfl0r0Wns
- eQ1TzX/NjLz2rUoTxqqD3w==
-X-Google-Smtp-Source: ABdhPJw2Fi0abZoXS4t0yH9eCkAEgtoxTCLjdD+B6EjQnzh8DitGWJBXxEHGCCo7AWLp1zCE4fxuXQ==
-X-Received: by 2002:a9d:685a:: with SMTP id c26mr883050oto.40.1603918014866;
- Wed, 28 Oct 2020 13:46:54 -0700 (PDT)
+ bh=IzJpgC50B1aEr5UEqZkrsDaDZthdlXtSVmgpDKQvfR0=;
+ b=ebbrcmcwtZnQ9kc9f/ZkgN0bwpCCiG1iY3A1xNaQAr0tzUstSq635df7lTAdpQHjDa
+ k9lJ4b9fUbnfpSP2tuq8ry+yxX7TqOgUJGxXxA3fiSregqxMCiszCMSEp9nfHUjizwRQ
+ /b6oYVmXrqm9uP5NTl86UgD6GSnC9HhTvctf2BppmlPPrduyrAuuvBQCrNHYLLcsCnHu
+ OriYSEIX93O5nPzLoeAs38tTf9HjVHEy9gDPhAQ7cCj0RO/trqPTqEhIVe01J6kTDByt
+ G1ERDwLrTKKWyQXbEK7+WRPmloSxX9LBcDBF0HWSGglov6oiutyHio/UzxXJGHbftUNu
+ UTrA==
+X-Gm-Message-State: AOAM532PLn9YLoG6JuDFNx3yMnJawHxnXJgJvyX+P8m819XcGvqSF2O0
+ R1ieykPWbmvk4wt6O9EjJg==
+X-Google-Smtp-Source: ABdhPJwkVdug/4qdZCJhvQsjCEVeaO4AKUvKQygW6QFcLOHfAO/BojTtu59syxrkhQvjVSXU4OEQTQ==
+X-Received: by 2002:aca:b145:: with SMTP id a66mr658786oif.92.1603918019964;
+ Wed, 28 Oct 2020 13:46:59 -0700 (PDT)
 Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net.
  [24.155.109.49])
- by smtp.googlemail.com with ESMTPSA id t17sm116123oor.3.2020.10.28.13.46.52
+ by smtp.googlemail.com with ESMTPSA id t17sm116123oor.3.2020.10.28.13.46.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Oct 2020 13:46:54 -0700 (PDT)
+ Wed, 28 Oct 2020 13:46:59 -0700 (PDT)
 From: Rob Herring <robh@kernel.org>
 To: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH 02/13] PCI: dwc/intel-gw: Move ATU offset out of driver match
- data
-Date: Wed, 28 Oct 2020 15:46:35 -0500
-Message-Id: <20201028204646.356535-3-robh@kernel.org>
+Subject: [PATCH 04/13] PCI: dwc/intel-gw: Remove some unneeded function
+ wrappers
+Date: Wed, 28 Oct 2020 15:46:37 -0500
+Message-Id: <20201028204646.356535-5-robh@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201028204646.356535-1-robh@kernel.org>
 References: <20201028204646.356535-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201028_164655_422695_2AC69875 
-X-CRM114-Status: GOOD (  15.58  )
+X-CRM114-CacheID: sfid-20201028_164701_969407_9EDC1D75 
+X-CRM114-Status: GOOD (  14.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,67 +115,123 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The ATU offset should be a register range in DT called 'atu', not driver
-match data. Any future platforms with a different ATU offset should add
-it to their DT.
-
-This is also in preparation to do DBI resource setup in the core DWC
-code, so let's move setting atu_base later in intel_pcie_rc_setup().
+Remove some of the pointless levels of functions that just wrap or group
+a series of other functions.
 
 Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/pci/controller/dwc/pcie-intel-gw.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/pci/controller/dwc/pcie-intel-gw.c | 47 ++++++++--------------
+ 1 file changed, 16 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
-index 5650cb78acba..77ef88333115 100644
+index 88782653ed21..c562eb7454b1 100644
 --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
 +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
-@@ -58,7 +58,6 @@
+@@ -152,19 +152,6 @@ static void intel_pcie_init_n_fts(struct dw_pcie *pci)
+ 	pci->n_fts[0] = PORT_AFR_N_FTS_GEN12_DFT;
+ }
  
- struct intel_pcie_soc {
- 	unsigned int	pcie_ver;
--	unsigned int	pcie_atu_offset;
- 	u32		num_viewport;
- };
- 
-@@ -155,11 +154,15 @@ static void intel_pcie_init_n_fts(struct dw_pcie *pci)
- 
- static void intel_pcie_rc_setup(struct intel_pcie_port *lpp)
+-static void intel_pcie_rc_setup(struct intel_pcie_port *lpp)
+-{
+-	struct dw_pcie *pci = &lpp->pci;
+-
+-	pci->atu_base = pci->dbi_base + 0xC0000;
+-
+-	intel_pcie_ltssm_disable(lpp);
+-	intel_pcie_link_setup(lpp);
+-	intel_pcie_init_n_fts(pci);
+-	dw_pcie_setup_rc(&pci->pp);
+-	dw_pcie_upconfig_setup(pci);
+-}
+-
+ static int intel_pcie_ep_rst_init(struct intel_pcie_port *lpp)
  {
+ 	struct device *dev = lpp->pci.dev;
+@@ -216,14 +203,6 @@ static void intel_pcie_device_rst_deassert(struct intel_pcie_port *lpp)
+ 	gpiod_set_value_cansleep(lpp->reset_gpio, 0);
+ }
+ 
+-static int intel_pcie_app_logic_setup(struct intel_pcie_port *lpp)
+-{
+-	intel_pcie_device_rst_deassert(lpp);
+-	intel_pcie_ltssm_enable(lpp);
+-
+-	return dw_pcie_wait_for_link(&lpp->pci);
+-}
+-
+ static void intel_pcie_core_irq_disable(struct intel_pcie_port *lpp)
+ {
+ 	pcie_app_wr(lpp, PCIE_APP_IRNEN, 0);
+@@ -273,11 +252,6 @@ static int intel_pcie_get_resources(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
+-static void intel_pcie_deinit_phy(struct intel_pcie_port *lpp)
+-{
+-	phy_exit(lpp->phy);
+-}
+-
+ static int intel_pcie_wait_l2(struct intel_pcie_port *lpp)
+ {
+ 	u32 value;
+@@ -314,6 +288,7 @@ static void intel_pcie_turn_off(struct intel_pcie_port *lpp)
+ static int intel_pcie_host_setup(struct intel_pcie_port *lpp)
+ {
+ 	int ret;
 +	struct dw_pcie *pci = &lpp->pci;
-+
+ 
+ 	intel_pcie_core_rst_assert(lpp);
+ 	intel_pcie_device_rst_assert(lpp);
+@@ -330,8 +305,18 @@ static int intel_pcie_host_setup(struct intel_pcie_port *lpp)
+ 		goto clk_err;
+ 	}
+ 
+-	intel_pcie_rc_setup(lpp);
+-	ret = intel_pcie_app_logic_setup(lpp);
 +	pci->atu_base = pci->dbi_base + 0xC0000;
 +
- 	intel_pcie_ltssm_disable(lpp);
- 	intel_pcie_link_setup(lpp);
--	intel_pcie_init_n_fts(&lpp->pci);
--	dw_pcie_setup_rc(&lpp->pci.pp);
--	dw_pcie_upconfig_setup(&lpp->pci);
++	intel_pcie_ltssm_disable(lpp);
++	intel_pcie_link_setup(lpp);
 +	intel_pcie_init_n_fts(pci);
 +	dw_pcie_setup_rc(&pci->pp);
 +	dw_pcie_upconfig_setup(pci);
++
++	intel_pcie_device_rst_deassert(lpp);
++	intel_pcie_ltssm_enable(lpp);
++
++	ret = dw_pcie_wait_for_link(pci);
+ 	if (ret)
+ 		goto app_init_err;
+ 
+@@ -345,7 +330,7 @@ static int intel_pcie_host_setup(struct intel_pcie_port *lpp)
+ 	clk_disable_unprepare(lpp->core_clk);
+ clk_err:
+ 	intel_pcie_core_rst_assert(lpp);
+-	intel_pcie_deinit_phy(lpp);
++	phy_exit(lpp->phy);
+ 
+ 	return ret;
+ }
+@@ -356,7 +341,7 @@ static void __intel_pcie_remove(struct intel_pcie_port *lpp)
+ 	intel_pcie_turn_off(lpp);
+ 	clk_disable_unprepare(lpp->core_clk);
+ 	intel_pcie_core_rst_assert(lpp);
+-	intel_pcie_deinit_phy(lpp);
++	phy_exit(lpp->phy);
  }
  
- static int intel_pcie_ep_rst_init(struct intel_pcie_port *lpp)
-@@ -425,7 +428,6 @@ static const struct dw_pcie_host_ops intel_pcie_dw_ops = {
+ static int intel_pcie_remove(struct platform_device *pdev)
+@@ -380,7 +365,7 @@ static int __maybe_unused intel_pcie_suspend_noirq(struct device *dev)
+ 	if (ret)
+ 		return ret;
  
- static const struct intel_pcie_soc pcie_data = {
- 	.pcie_ver =		0x520A,
--	.pcie_atu_offset =	0xC0000,
- 	.num_viewport =		3,
- };
- 
-@@ -461,7 +463,6 @@ static int intel_pcie_probe(struct platform_device *pdev)
- 
- 	pci->ops = &intel_pcie_ops;
- 	pci->version = data->pcie_ver;
--	pci->atu_base = pci->dbi_base + data->pcie_atu_offset;
- 	pp->ops = &intel_pcie_dw_ops;
- 
- 	ret = dw_pcie_host_init(pp);
+-	intel_pcie_deinit_phy(lpp);
++	phy_exit(lpp->phy);
+ 	clk_disable_unprepare(lpp->core_clk);
+ 	return ret;
+ }
 -- 
 2.25.1
 
