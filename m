@@ -2,63 +2,65 @@ Return-Path: <SRS0=bq/Q=ED=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71157C4363A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 07:35:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23A22C4363A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 12:07:11 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ED07922400
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 07:35:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7E93A246EE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2020 12:07:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s7k6zx9K"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED07922400
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=thorsis.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K9el7a/P";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Untss5VP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E93A246EE
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-ID:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OlX8RcWwnrJ51Z4ZCLn9by1q5ox6xVVqwONfeAAzCwE=; b=s7k6zx9KE8IDTowALgl2mAs/KH
-	A9OsljT3U/6ayn172y0arN4PAmF2eeR5kYui/PNYKshuPb5XmvDadsPy4jryVwCmraBpHP4ybwgl7
-	Yd4MDLG5ZOmBxdsEIF6bCHJO93EJz79+38S87PdUrdoKC6oxP6Tk7IqM96q/58joDDzZPf+Z6gVVd
-	USCDkpBFx71AlRL6OllsRAZcJD/e/IYixz6Ds/S9BOBLThMfJJECsp4U18twf/gpG8lac2bSwy0Rm
-	gDM6N5spEuXJC5gw/W96NHxJ5+kaJrFYl0wibEg5Jz5VvwU9zs2UQMDm5F09hCDKv1Lh87RIHve4o
-	vNqwalIg==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:Subject:To:From:
+	Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:List-Owner;
+	 bh=sj8F6wy31n+ASoFR8TxziDRN+NHVYiYYSAsbbifLWEY=; b=K9el7a/P8TpoHD0AplNtEXaIQ
+	9UthQYb6MInrts01UWZ+lIjD7RpqDoJK02W1jiK30Ue/2myrT8iz0DeeLx37PaVI4IgUoh5kSvu4z
+	u6+USgxsLH6GilJIieMr44RHPpWAbdXOTNem+lT2UipbwtLwVsays9MkiOQFv0JcIXnAR6b5f3Et5
+	yawfyyc6zrGlT+YMuSa5GQ2AcWLtFyInvrBWZczJBZF3Lmox+wKYMzOmE7f/m3uh5gKHJEiVhv5z9
+	WN1sdDT/XvY+AH0gJptYB1GO/VdwUTSxcMqEfQD4nM47XiBpyf/Ype7Hzi0z7ArJpEeydNBqB9jxn
+	3RxFnFqZA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kXfyw-00031Y-MG; Wed, 28 Oct 2020 07:34:54 +0000
-Received: from mail.thorsis.com ([92.198.35.195])
+	id 1kXkEG-0005XV-Ev; Wed, 28 Oct 2020 12:07:00 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXfys-00030v-OY; Wed, 28 Oct 2020 07:34:52 +0000
-Received: from localhost (localhost [127.0.0.1])
- by mail.thorsis.com (Postfix) with ESMTP id A804E3D41;
- Wed, 28 Oct 2020 08:34:47 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
- by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SkAFxjigLFVL; Wed, 28 Oct 2020 08:34:47 +0100 (CET)
-Received: by mail.thorsis.com (Postfix, from userid 109)
- id 6867938F5; Wed, 28 Oct 2020 08:34:46 +0100 (CET)
-From: Alexander Dahl <ada@thorsis.com>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [Linux-stm32] [PATCH v7 10/12] ARM: dts: stm32: Fix schema
- warnings for pwm-leds
-Date: Wed, 28 Oct 2020 08:34:38 +0100
-Message-ID: <5231529.NqohY00Rok@ada>
-In-Reply-To: <f6ed201d-51b6-f278-7a95-3e3e49dc19ee@pengutronix.de>
-References: <20201005203451.9985-1-post@lespocky.de>
- <20201027100536.cpfizc67gwrolp2z@falbala.internal.home.lespocky.de>
- <f6ed201d-51b6-f278-7a95-3e3e49dc19ee@pengutronix.de>
+ id 1kXkED-0005Wh-N2
+ for linux-amlogic@lists.infradead.org; Wed, 28 Oct 2020 12:06:58 +0000
+Received: from localhost (170.sub-72-107-125.myvzw.com [72.107.125.170])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7F977246E8;
+ Wed, 28 Oct 2020 12:06:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1603886816;
+ bh=c3/rdvftJ6JnKD8VUBIW4eoNR5VA7ESNHgN0Zlp4hJs=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=Untss5VPA7L1b4nTbLJJ9hEObyi+ldMQjQ+NARyLMYKn4NiGyFOPYFi/M8trh1iHI
+ n3hrChqGa9Gn63erK+GKqTPqX2Uh7401xdku3fJjEzww0qMhVcjTOby8evFYbY9mRz
+ zAbJ5BXJ9ZjqBG2Xid4JjZoQ7RD74txrYQfIYfTY=
+Date: Wed, 28 Oct 2020 07:06:55 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: "yue.wang@amlogic.com" <yue.wang@amlogic.com>
+Subject: Re: pci-meson covery issue #1442509
+Message-ID: <20201028120655.GA306101@bjorn-Precision-5520>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <2020102810175892085918@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201028_033451_037440_CCD2CCDD 
-X-CRM114-Status: GOOD (  21.48  )
+X-CRM114-CacheID: sfid-20201028_080658_014428_74966711 
+X-CRM114-Status: GOOD (  19.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,167 +72,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Dan Murphy <dmurphy@ti.com>, Pavel Machek <pavel@ucw.cz>,
- linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-pci <linux-pci@vger.kernel.org>,
+ linux-amlogic <linux-amlogic@lists.infradead.org>,
+ Kevin Hilman <khilman@baylibre.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Ahmad,
-
-Am Dienstag, 27. Oktober 2020, 11:58:10 CET schrieb Ahmad Fatoum:
-> Hello,
-> =
-
-> On 10/27/20 11:05 AM, Alexander Dahl wrote:
-> > Hello Ahmad,
-> > =
-
-> > thanks for your feedback, comments below.
-> > =
-
-> >>> -	led-rgb {
-> >>> +	led-controller-2 {
-> >> =
-
-> >> Is a single RGB LED really a controller?
-> > =
-
-> > I just followed the recommendations by Rob here.
-> =
-
-> Do you happen to know if the new multicolor LED support could be used her=
-e?
-
-AFAIK not yet. The multicolor class should be ready and it is used by some =
-
-drivers for I=B2C connected LED controllers, but if I understood Pavel =
-
-correctly, additional work has to be done for a gpio and/or pwm multicolor =
-
-driver. See this thread from August for example:
-
-https://lore.kernel.org/linux-leds/2530787.iFCFyWWcSu@g550jk/
-
-> =
-
-> I find it unfortunate that the device tree loses information relevant to
-> humans to adhere to a fixed nomenclature. Apparently led-controller isn't
-> even codified in the YAML binding (It's just in the examples). If you
-> respin, please add a comment that this is a single RGB led. I'd prefer to
-> keep the information in the DTB as well though.
-
-The "new" attributes 'function' and 'color' attributes should cover this =
-
-information. IIRC those were introduced sometime before v5.4 and documentat=
-ion =
-
-is in the leds/common.yaml binding. I don't see it in the scope of this pat=
-ch =
-
-series, but if we would merge this warning fix first, the information is lo=
-st, =
-
-so maybe those attributes should be added before? =
-
-
-My heuristics on that would be looking at the label and if there's a distin=
-ct =
-
-color in it, add the color property. I could do that for all pwm LEDs known=
- to =
-
-the tree currently. That would be a bigger task for GPIO leds though. ;-)
-
-> =
-
-> >>>  		compatible =3D "pwm-leds";
-> >>> =
-
-> >>> -		led-red {
-> >>> +		led-2 {
-> >> =
-
-> >> Shouldn't this have been led-1 as well or is the numbering "global" ?
-> > =
-
-> > Also good question. This numbering is for dts only, it usually does
-> > not correspond with LEDs on the board, so it could be numbered per
-> > led-controller as well?
-> =
-
-> I'd prefer that it starts by 1. That way it's aligned with PWM channel
-> ID.
-
-Ack.
-
-> =
-
-> Thanks for fixing the dtschema warnings by the way!
-
-Well, I "introduced" them by converting the leds-pwm binding to yaml (not =
-
-merged yet), so I could as well fix the warnings then? ;-)
-
-Greets
-Alex
-
-> =
-
-> Cheers,
-> Ahmad
-> =
-
-> > Greets
-> > Alex
-> > =
-
-> >>>  			label =3D "mc1:red:rgb";
-> >>>  			pwms =3D <&leds_pwm 1 1000000 0>;
-> >>>  			max-brightness =3D <255>;
-> >>>  			active-low;
-> >>>  		=
-
-> >>>  		};
-> >>> =
-
-> >>> -		led-green {
-> >>> +		led-3 {
-> >>> =
-
-> >>>  			label =3D "mc1:green:rgb";
-> >>>  			pwms =3D <&leds_pwm 2 1000000 0>;
-> >>>  			max-brightness =3D <255>;
-> >>>  			active-low;
-> >>>  		=
-
-> >>>  		};
-> >>> =
-
-> >>> -		led-blue {
-> >>> +		led-4 {
-> >>> =
-
-> >>>  			label =3D "mc1:blue:rgb";
-> >>>  			pwms =3D <&leds_pwm 3 1000000 0>;
-> >>>  			max-brightness =3D <255>;
-
-
--- =
-
-
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SXQncyBiZXN0IGlmIHlvdSBjYW4gcmVwbHkgd2l0aCBwbGFpbi10ZXh0IGVtYWlsLCBiZWNhdXNl
+IEkgZG9uJ3QKdGhpbmsgbXVsdGktcGFydCBNSU1FIG1lc3NhZ2VzIGFyZSBhY2NlcHRlZCBieSB0
+aGUgbWFpbGluZyBsaXN0czoKaHR0cDovL3ZnZXIua2VybmVsLm9yZy9tYWpvcmRvbW8taW5mby5o
+dG1sCgpPbiBXZWQsIE9jdCAyOCwgMjAyMCBhdCAxMDoxNzo1OUFNICswODAwLCB5dWUud2FuZ0Bh
+bWxvZ2ljLmNvbSB3cm90ZToKPiBISSBCam9ybiwKPiAKPiBhbWxvZ2ljIFBDSUVfQ0ZHX1NUQVRV
+UzE3IHJlZ2lzdGVyOgo+IAo+IGFuZCBiaXQ3IG1hY19waHlfcmF0ZSA6Cj4gCj4gQW1sb2dpYyBw
+Y2llIHdvcmtpbmcgbW9kZSBpcyBvbmx5IEdFTjEgJiBHRU4y77yMc28gbWFjX3BoeV9yYXRlIGlz
+IDAgb3IgMe+8mwo+IAo+IFBNX0NVUlJFTlRfU1RBVEUoc3RhdGUxNykgIGlzIHJlbGF0ZWQgdG8g
+QW1sb2dpYyBwY2llIHdvcmtpbmcgbW9kZe+8jGFuZCAgbm90ICByZWxhdGVkIHRvIHBvd2VyIG1h
+bmFnZW1lbnQuCj4gCj4gIlBNX0NVUlJFTlRfU1RBVEUoc3RhdGUxNykgPCBQQ0lFX0dFTjMiICBp
+cyBhbHdheXMgdHJ1ZS4gCgpUaGVyZSdzIG5vIHBvaW50IGluIG1ha2luZyBhIGNvbXBhcmlzaW9u
+IHRoYXQncyBhbHdheXMgdHJ1ZS4gIEl0IGp1c3QKY2x1dHRlcnMgdGhlIGNvZGUgd2l0aG91dCBh
+ZGRpbmcgdmFsdWUuICBJTU8geW91IHNob3VsZCBkbyBzb21ldGhpbmcKbGlrZSB0aGUgZm9sbG93
+aW5nLiAgSWYgYW5kIHdoZW4geW91IGFjdHVhbGx5ICpuZWVkKiB0byBjaGVjayB0aGUKbWFjX3Bo
+eV9yYXRlIGFuZCB0aGVyZSdzIGEgcG9zc2liaWxpdHkgdGhhdCBpdCBtaWdodCBub3QgYmUgT0ss
+IHlvdQpjYW4gYWRkIGl0IGJhY2suCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxl
+ci9kd2MvcGNpLW1lc29uLmMgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbWVzb24u
+YwppbmRleCAxOTEzZGMyYzhmYTAuLmJiN2EzNWM3YzU3ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9w
+Y2kvY29udHJvbGxlci9kd2MvcGNpLW1lc29uLmMKKysrIGIvZHJpdmVycy9wY2kvY29udHJvbGxl
+ci9kd2MvcGNpLW1lc29uLmMKQEAgLTM1LDkgKzM1LDYgQEAKICNkZWZpbmUgSVNfUkRMSF9MSU5L
+X1VQKHgpCQkoKHgpICYgKDEgPDwgMTYpKQogI2RlZmluZSBJU19MVFNTTV9VUCh4KQkJCSgoKCh4
+KSA+PiAxMCkgJiAweDFmKSA9PSAweDExKQogCi0jZGVmaW5lIFBDSUVfQ0ZHX1NUQVRVUzE3CQkw
+eDQ0Ci0jZGVmaW5lIFBNX0NVUlJFTlRfU1RBVEUoeCkJCSgoKHgpID4+IDcpICYgMHgxKQotCiAj
+ZGVmaW5lIFdBSVRfTElOS1VQX1RJTUVPVVQJCTQwMDAKICNkZWZpbmUgUE9SVF9DTEtfUkFURQkJ
+CTEwMDAwMDAwMFVMCiAjZGVmaW5lIE1BWF9QQVlMT0FEX1NJWkUJCTI1NgpAQCAtMzQxLDMwICsz
+MzgsMjMgQEAgc3RhdGljIGludCBtZXNvbl9wY2llX2xpbmtfdXAoc3RydWN0IGR3X3BjaWUgKnBj
+aSkKIHsKIAlzdHJ1Y3QgbWVzb25fcGNpZSAqbXAgPSB0b19tZXNvbl9wY2llKHBjaSk7CiAJc3Ry
+dWN0IGRldmljZSAqZGV2ID0gcGNpLT5kZXY7Ci0JdTMyIHNwZWVkX29rYXkgPSAwOwogCXUzMiBj
+bnQgPSAwOwotCXUzMiBzdGF0ZTEyLCBzdGF0ZTE3LCBzbWxoX3VwLCBsdHNzbV91cCwgcmRsaF91
+cDsKKwl1MzIgc3RhdGUxMiwgc21saF91cCwgbHRzc21fdXAsIHJkbGhfdXA7CiAKIAlkbyB7CiAJ
+CXN0YXRlMTIgPSBtZXNvbl9jZmdfcmVhZGwobXAsIFBDSUVfQ0ZHX1NUQVRVUzEyKTsKLQkJc3Rh
+dGUxNyA9IG1lc29uX2NmZ19yZWFkbChtcCwgUENJRV9DRkdfU1RBVFVTMTcpOwogCQlzbWxoX3Vw
+ID0gSVNfU01MSF9MSU5LX1VQKHN0YXRlMTIpOwogCQlyZGxoX3VwID0gSVNfUkRMSF9MSU5LX1VQ
+KHN0YXRlMTIpOwogCQlsdHNzbV91cCA9IElTX0xUU1NNX1VQKHN0YXRlMTIpOwogCi0JCWlmIChQ
+TV9DVVJSRU5UX1NUQVRFKHN0YXRlMTcpIDwgUENJRV9HRU4zKQotCQkJc3BlZWRfb2theSA9IDE7
+Ci0KIAkJaWYgKHNtbGhfdXApCiAJCQlkZXZfZGJnKGRldiwgInNtbGhfbGlua191cCBpcyBvblxu
+Iik7CiAJCWlmIChyZGxoX3VwKQogCQkJZGV2X2RiZyhkZXYsICJyZGxoX2xpbmtfdXAgaXMgb25c
+biIpOwogCQlpZiAobHRzc21fdXApCiAJCQlkZXZfZGJnKGRldiwgImx0c3NtX3VwIGlzIG9uXG4i
+KTsKLQkJaWYgKHNwZWVkX29rYXkpCi0JCQlkZXZfZGJnKGRldiwgInNwZWVkX29rYXlcbiIpOwog
+Ci0JCWlmIChzbWxoX3VwICYmIHJkbGhfdXAgJiYgbHRzc21fdXAgJiYgc3BlZWRfb2theSkKKwkJ
+aWYgKHNtbGhfdXAgJiYgcmRsaF91cCAmJiBsdHNzbV91cCkKIAkJCXJldHVybiAxOwogCiAJCWNu
+dCsrOwoKPiB5dWUud2FuZ0BhbWxvZ2ljLmNvbQo+ICAKPiBGcm9tOiBCam9ybiBIZWxnYWFzCj4g
+RGF0ZTogMjAyMC0xMC0yOCAwMDo0MAo+IFRvOiBZdWUgV2FuZwo+IENDOiBsaW51eC1wY2k7IEtl
+dmluIEhpbG1hbjsgbGludXgtYW1sb2dpYwo+IFN1YmplY3Q6IHBjaS1tZXNvbiBjb3ZlcnkgaXNz
+dWUgIzE0NDI1MDkKPiBIaSBZdWUsCj4gIAo+IFBsZWFzZSB0YWtlIGEgbG9vayBhdCB0aGlzIGlz
+c3VlIHJlcG9ydGVkIGJ5IENvdmVyaXR5Ogo+ICAKPiAzNDAgc3RhdGljIGludCBtZXNvbl9wY2ll
+X2xpbmtfdXAoc3RydWN0IGR3X3BjaWUgKnBjaSkKPiAzNDEgewo+IDM0MiAgICAgICAgc3RydWN0
+IG1lc29uX3BjaWUgKm1wID0gdG9fbWVzb25fcGNpZShwY2kpOwo+IDM0MyAgICAgICAgc3RydWN0
+IGRldmljZSAqZGV2ID0gcGNpLT5kZXY7Cj4gMzQ0ICAgICAgICB1MzIgc3BlZWRfb2theSA9IDA7
+Cj4gMzQ1ICAgICAgICB1MzIgY250ID0gMDsKPiAzNDYgICAgICAgIHUzMiBzdGF0ZTEyLCBzdGF0
+ZTE3LCBzbWxoX3VwLCBsdHNzbV91cCwgcmRsaF91cDsKPiAzNDcKPiAzNDggICAgICAgIGRvIHsK
+PiAzNDkgICAgICAgICAgICAgICAgc3RhdGUxMiA9IG1lc29uX2NmZ19yZWFkbChtcCwgUENJRV9D
+RkdfU1RBVFVTMTIpOwo+IDM1MCAgICAgICAgICAgICAgICBzdGF0ZTE3ID0gbWVzb25fY2ZnX3Jl
+YWRsKG1wLCBQQ0lFX0NGR19TVEFUVVMxNyk7Cj4gMzUxICAgICAgICAgICAgICAgIHNtbGhfdXAg
+PSBJU19TTUxIX0xJTktfVVAoc3RhdGUxMik7Cj4gMzUyICAgICAgICAgICAgICAgIHJkbGhfdXAg
+PSBJU19SRExIX0xJTktfVVAoc3RhdGUxMik7Cj4gMzUzICAgICAgICAgICAgICAgIGx0c3NtX3Vw
+ID0gSVNfTFRTU01fVVAoc3RhdGUxMik7Cj4gMzU0Cj4gIAo+IENJRCAxNDQyNTA5ICgjMSBvZiAx
+KTogT3BlcmFuZHMgZG9uJ3QgYWZmZWN0IHJlc3VsdAo+IChDT05TVEFOVF9FWFBSRVNTSU9OX1JF
+U1VMVCkgcmVzdWx0X2luZGVwZW5kZW50X29mX29wZXJhbmRzOiAoKHN0YXRlMTcKPiA+PiA3KSAm
+IDEpIDwgUENJRV9HRU4zIGlzIGFsd2F5cyB0cnVlIHJlZ2FyZGxlc3Mgb2YgdGhlIHZhbHVlcyBv
+ZiBpdHMKPiBvcGVyYW5kcy4gVGhpcyBvY2N1cnMgYXMgdGhlIGxvZ2ljYWwgb3BlcmFuZCBvZiBp
+Zi4KPiAgCj4gMzU1ICAgICAgICAgICAgICAgIGlmIChQTV9DVVJSRU5UX1NUQVRFKHN0YXRlMTcp
+IDwgUENJRV9HRU4zKQo+IDM1NiAgICAgICAgICAgICAgICAgICAgICAgIHNwZWVkX29rYXkgPSAx
+Owo+ICAKPiAgCj4gIlBNIiBzZWVtcyBsaWtlIGEgZnVubnkgbmFtZSBmb3IgYSBsaW5rIHNwZWVk
+LiAgSXQgc291bmRzIG1vcmUgbGlrZQo+IHNvbWV0aGluZyByZWxhdGVkIHRvIHBvd2VyIG1hbmFn
+ZW1lbnQsIGUuZy4sIEQwLCBEMy4KPiAgCgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxv
+Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
