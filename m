@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
 	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 529CBC4363A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 02:56:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5984C4363A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 02:59:23 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CAFF72076C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 02:56:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 29A75206B6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 02:59:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bIAAHVf9";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Re8BvPRY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CAFF72076C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RLSKZW5N";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="khg622DL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 29A75206B6
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=mediatek.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,52 +26,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=0pGiB1eZdZK+r92K7r3m+O2xSvs+grW5+o6zpJfuVVo=; b=bIAAHVf9nv/niXUprXpe7aHgp
-	BBvDggGkjVLVcVGjJNNenPJrNWO65CukTVZVJA0EPi7BRGmDnO8tsiLZ/6BUa/4eW4VLWLV6qRXfj
-	ck7iokvkJAY7PO3dt1xIneqtB3ziv3pLoSpT8bMkmXs2viwiYColVr62M039Ni4DHwcNsFlNnPJZn
-	CvDNyQo3OnXitqffpnZWj3rOgZOgHm8y746rxpSChYFfQDc5SZ9twMmiPFSd4SNazp8a7GfQZwHOX
-	VkS6Y/WvDmd130YVd0FhUXJuAXodnMPKn6It9AEVamjg1eE9NOY4yhI0Y0v7GUpvfZ3hN7UPduqCw
-	w8L7R2moA==;
+	 bh=OonC2We2OHom5V/oXGXctb+4s17QInxTTNOF59sSRb0=; b=RLSKZW5NCTGv3ZSJKxCvZ1/zi
+	D4x7Spw9YrBC88HVvjHCKw3AfLPMvEszeCjLfWHjXO3FxiyWPguHv5wyXNEPIuCdE1pzAiHQWElXZ
+	Nth9EkG0UHwazYXbjFFNzzD5MvcUnW0Nst8H00V8FuXHrtWYIJZOGLf2zwdgA+W4sV+bzdKNrzleJ
+	h0jsnnnTpcSSgZpiXvw9c0GC9Q5FwZe4iQA3EmyQZyizCUYriunanV0pH7L0WsFsjc7FV3W1mkyGD
+	rN5q7Sq42jf13QsaJ0p29U3stHi3lt0O04JRJTtDOzlH+BwnXqeMIMhNBLh/IeZkkb5zYalRejq/L
+	yLD1WM95w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kXy6e-0001lw-Dn; Thu, 29 Oct 2020 02:56:04 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1kXy9m-0002Tk-8e; Thu, 29 Oct 2020 02:59:18 +0000
+Received: from mailgw02.mediatek.com ([216.200.240.185])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXy6R-0001hR-Ld; Thu, 29 Oct 2020 02:55:53 +0000
-X-UUID: 08ac90a41c894fd781539fef68cfd887-20201028
+ id 1kXy9a-0002Ob-8C; Thu, 29 Oct 2020 02:59:07 +0000
+X-UUID: a721b07e7f644fa3a193b13dbe260408-20201028
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
  s=dk; 
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From;
- bh=RKuDKEmKgeDl31OX/zx0Hpz0rVP1Wo3Qq95F1KYNP4c=; 
- b=Re8BvPRYrWrC3aP0SqHSsJR1ADbkuCcqX0PIrItyGkStSH++iFidRVYEwaUpXiWP7M+L8J1e0KdZi7D2uDiItu/LT44MG1uP4A81ONynmD4vIpbQq1cNfuVNhWDq+4mJZVk0m/YYRqCKqdv3MNVicqpRnM8CI5DAPwlQoQ3jyO4=;
-X-UUID: 08ac90a41c894fd781539fef68cfd887-20201028
-Received: from mtkcas68.mediatek.inc [(172.29.94.19)] by mailgw01.mediatek.com
+ bh=QY2jHI900F+g3iEa8I5Mh3xo6vMoLoYCdQN6EhrvxoA=; 
+ b=khg622DLXwSYbG66POBvZXZGGjSBxIXmNnzh8CC0V+sRwSbWXmaayOesjkkZv32QFD9bdwswucVT8xohLcBuTXV/A3KSSKIzIoJlX/7LX624nLsuIlJuBzhpJvn5qpSkNgRfOeri9OgSRdkyU4gkN/5pj0xQabrBmkkEzPMTK64=;
+X-UUID: a721b07e7f644fa3a193b13dbe260408-20201028
+Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw02.mediatek.com
  (envelope-from <chunfeng.yun@mediatek.com>)
  (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
- with ESMTP id 99060184; Wed, 28 Oct 2020 18:55:47 -0800
-Received: from MTKMBS31N1.mediatek.inc (172.27.4.69) by
- MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 28 Oct 2020 19:55:44 -0700
+ with ESMTP id 527612213; Wed, 28 Oct 2020 18:59:04 -0800
+Received: from MTKMBS31DR.mediatek.inc (172.27.6.102) by
+ MTKMBS62N1.mediatek.inc (172.29.193.41) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 28 Oct 2020 19:56:05 -0700
 Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 29 Oct 2020 10:55:39 +0800
+ MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 29 Oct 2020 10:55:57 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 29 Oct 2020 10:55:38 +0800
+ Transport; Thu, 29 Oct 2020 10:55:55 +0800
 From: Chunfeng Yun <chunfeng.yun@mediatek.com>
 To: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH 07/17] phy: marvell: convert to devm_platform_ioremap_resource
-Date: Thu, 29 Oct 2020 10:54:29 +0800
-Message-ID: <1603940079-8131-7-git-send-email-chunfeng.yun@mediatek.com>
+Subject: [PATCH 11/17] phy: phy-ralink-usb: convert to
+ devm_platform_ioremap_resource
+Date: Thu, 29 Oct 2020 10:54:33 +0800
+Message-ID: <1603940079-8131-11-git-send-email-chunfeng.yun@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1603940079-8131-1-git-send-email-chunfeng.yun@mediatek.com>
 References: <1603940079-8131-1-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: FD329C3298B07CEC0B12C3C41CA78FABF43BB42433630AA9BB6FDA2651E700632000:8
+X-TM-SNTS-SMTP: 8D80DE2D4E7C4A622E290E7D8C2A887C8A8912E9D4E1553D094223C2247E28DE2000:8
 X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201028_225551_895274_531882D0 
-X-CRM114-Status: GOOD (  13.29  )
+X-CRM114-CacheID: sfid-20201028_225906_454439_BA103CE1 
+X-CRM114-Status: GOOD (  12.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,168 +120,31 @@ Use devm_platform_ioremap_resource to simplify code
 
 Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
- drivers/phy/marvell/phy-armada375-usb2.c | 4 +---
- drivers/phy/marvell/phy-berlin-usb.c     | 4 +---
- drivers/phy/marvell/phy-mmp3-usb.c       | 4 +---
- drivers/phy/marvell/phy-mvebu-sata.c     | 4 +---
- drivers/phy/marvell/phy-pxa-28nm-hsic.c  | 4 +---
- drivers/phy/marvell/phy-pxa-28nm-usb2.c  | 4 +---
- drivers/phy/marvell/phy-pxa-usb.c        | 4 +---
- 7 files changed, 7 insertions(+), 21 deletions(-)
+ drivers/phy/ralink/phy-ralink-usb.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/phy/marvell/phy-armada375-usb2.c b/drivers/phy/marvell/phy-armada375-usb2.c
-index fa5dc9462d09..b141e3cd8a94 100644
---- a/drivers/phy/marvell/phy-armada375-usb2.c
-+++ b/drivers/phy/marvell/phy-armada375-usb2.c
-@@ -105,15 +105,13 @@ static int armada375_usb_phy_probe(struct platform_device *pdev)
- 	struct phy *phy;
- 	struct phy_provider *phy_provider;
- 	void __iomem *usb_cluster_base;
--	struct resource *res;
- 	struct armada375_cluster_phy *cluster_phy;
- 
- 	cluster_phy = devm_kzalloc(dev, sizeof(*cluster_phy), GFP_KERNEL);
- 	if (!cluster_phy)
- 		return  -ENOMEM;
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	usb_cluster_base = devm_ioremap_resource(&pdev->dev, res);
-+	usb_cluster_base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(usb_cluster_base))
- 		return PTR_ERR(usb_cluster_base);
- 
-diff --git a/drivers/phy/marvell/phy-berlin-usb.c b/drivers/phy/marvell/phy-berlin-usb.c
-index a43df63007c5..78ef6ae72a9a 100644
---- a/drivers/phy/marvell/phy-berlin-usb.c
-+++ b/drivers/phy/marvell/phy-berlin-usb.c
-@@ -165,7 +165,6 @@ static int phy_berlin_usb_probe(struct platform_device *pdev)
- 	const struct of_device_id *match =
- 		of_match_device(phy_berlin_usb_of_match, &pdev->dev);
- 	struct phy_berlin_usb_priv *priv;
--	struct resource *res;
- 	struct phy *phy;
- 	struct phy_provider *phy_provider;
- 
-@@ -173,8 +172,7 @@ static int phy_berlin_usb_probe(struct platform_device *pdev)
- 	if (!priv)
- 		return -ENOMEM;
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	priv->base = devm_ioremap_resource(&pdev->dev, res);
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(priv->base))
- 		return PTR_ERR(priv->base);
- 
-diff --git a/drivers/phy/marvell/phy-mmp3-usb.c b/drivers/phy/marvell/phy-mmp3-usb.c
-index 499869595a58..04c0bada3519 100644
---- a/drivers/phy/marvell/phy-mmp3-usb.c
-+++ b/drivers/phy/marvell/phy-mmp3-usb.c
-@@ -246,7 +246,6 @@ MODULE_DEVICE_TABLE(of, mmp3_usb_phy_of_match);
- static int mmp3_usb_phy_probe(struct platform_device *pdev)
+diff --git a/drivers/phy/ralink/phy-ralink-usb.c b/drivers/phy/ralink/phy-ralink-usb.c
+index 95dfa9fd284d..2bd8ad2e76ed 100644
+--- a/drivers/phy/ralink/phy-ralink-usb.c
++++ b/drivers/phy/ralink/phy-ralink-usb.c
+@@ -170,7 +170,6 @@ MODULE_DEVICE_TABLE(of, ralink_usb_phy_of_match);
+ static int ralink_usb_phy_probe(struct platform_device *pdev)
  {
  	struct device *dev = &pdev->dev;
--	struct resource *resource;
- 	struct mmp3_usb_phy *mmp3_usb_phy;
- 	struct phy_provider *provider;
- 
-@@ -254,8 +253,7 @@ static int mmp3_usb_phy_probe(struct platform_device *pdev)
- 	if (!mmp3_usb_phy)
- 		return -ENOMEM;
- 
--	resource = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	mmp3_usb_phy->base = devm_ioremap_resource(dev, resource);
-+	mmp3_usb_phy->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(mmp3_usb_phy->base)) {
- 		dev_err(dev, "failed to remap PHY regs\n");
- 		return PTR_ERR(mmp3_usb_phy->base);
-diff --git a/drivers/phy/marvell/phy-mvebu-sata.c b/drivers/phy/marvell/phy-mvebu-sata.c
-index 3c01b5dceaae..51a4646e2933 100644
---- a/drivers/phy/marvell/phy-mvebu-sata.c
-+++ b/drivers/phy/marvell/phy-mvebu-sata.c
-@@ -80,7 +80,6 @@ static const struct phy_ops phy_mvebu_sata_ops = {
- static int phy_mvebu_sata_probe(struct platform_device *pdev)
- {
- 	struct phy_provider *phy_provider;
 -	struct resource *res;
- 	struct priv *priv;
- 	struct phy *phy;
- 
-@@ -88,8 +87,7 @@ static int phy_mvebu_sata_probe(struct platform_device *pdev)
- 	if (!priv)
- 		return -ENOMEM;
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	priv->base = devm_ioremap_resource(&pdev->dev, res);
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(priv->base))
- 		return PTR_ERR(priv->base);
- 
-diff --git a/drivers/phy/marvell/phy-pxa-28nm-hsic.c b/drivers/phy/marvell/phy-pxa-28nm-hsic.c
-index 31b43d2ee39a..c5c100563f55 100644
---- a/drivers/phy/marvell/phy-pxa-28nm-hsic.c
-+++ b/drivers/phy/marvell/phy-pxa-28nm-hsic.c
-@@ -162,7 +162,6 @@ static int mv_hsic_phy_probe(struct platform_device *pdev)
- {
  	struct phy_provider *phy_provider;
- 	struct mv_hsic_phy *mv_phy;
--	struct resource *r;
+ 	const struct of_device_id *match;
+ 	struct ralink_usb_phy *phy;
+@@ -194,8 +193,7 @@ static int ralink_usb_phy_probe(struct platform_device *pdev)
  
- 	mv_phy = devm_kzalloc(&pdev->dev, sizeof(*mv_phy), GFP_KERNEL);
- 	if (!mv_phy)
-@@ -176,8 +175,7 @@ static int mv_hsic_phy_probe(struct platform_device *pdev)
- 		return PTR_ERR(mv_phy->clk);
- 	}
- 
--	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	mv_phy->base = devm_ioremap_resource(&pdev->dev, r);
-+	mv_phy->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(mv_phy->base))
- 		return PTR_ERR(mv_phy->base);
- 
-diff --git a/drivers/phy/marvell/phy-pxa-28nm-usb2.c b/drivers/phy/marvell/phy-pxa-28nm-usb2.c
-index a175ae915f02..0b390b9d2ae1 100644
---- a/drivers/phy/marvell/phy-pxa-28nm-usb2.c
-+++ b/drivers/phy/marvell/phy-pxa-28nm-usb2.c
-@@ -294,7 +294,6 @@ static int mv_usb2_phy_probe(struct platform_device *pdev)
- {
- 	struct phy_provider *phy_provider;
- 	struct mv_usb2_phy *mv_phy;
--	struct resource *r;
- 
- 	mv_phy = devm_kzalloc(&pdev->dev, sizeof(*mv_phy), GFP_KERNEL);
- 	if (!mv_phy)
-@@ -308,8 +307,7 @@ static int mv_usb2_phy_probe(struct platform_device *pdev)
- 		return PTR_ERR(mv_phy->clk);
- 	}
- 
--	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	mv_phy->base = devm_ioremap_resource(&pdev->dev, r);
-+	mv_phy->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(mv_phy->base))
- 		return PTR_ERR(mv_phy->base);
- 
-diff --git a/drivers/phy/marvell/phy-pxa-usb.c b/drivers/phy/marvell/phy-pxa-usb.c
-index 87ff7550b912..ffe889893ff4 100644
---- a/drivers/phy/marvell/phy-pxa-usb.c
-+++ b/drivers/phy/marvell/phy-pxa-usb.c
-@@ -286,7 +286,6 @@ MODULE_DEVICE_TABLE(of, pxa_usb_phy_of_match);
- static int pxa_usb_phy_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
--	struct resource *resource;
- 	struct pxa_usb_phy *pxa_usb_phy;
- 	struct phy_provider *provider;
- 	const struct of_device_id *of_id;
-@@ -301,8 +300,7 @@ static int pxa_usb_phy_probe(struct platform_device *pdev)
- 	else
- 		pxa_usb_phy->version = PXA_USB_PHY_MMP2;
- 
--	resource = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	pxa_usb_phy->base = devm_ioremap_resource(dev, resource);
-+	pxa_usb_phy->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(pxa_usb_phy->base)) {
- 		dev_err(dev, "failed to remap PHY regs\n");
- 		return PTR_ERR(pxa_usb_phy->base);
+ 	/* The MT7628 and MT7688 require extra setup of PHY registers. */
+ 	if (of_device_is_compatible(dev->of_node, "mediatek,mt7628-usbphy")) {
+-		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-		phy->base = devm_ioremap_resource(&pdev->dev, res);
++		phy->base = devm_platform_ioremap_resource(pdev, 0);
+ 		if (IS_ERR(phy->base)) {
+ 			dev_err(dev, "failed to remap register memory\n");
+ 			return PTR_ERR(phy->base);
 -- 
 2.18.0
 _______________________________________________
