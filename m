@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
 	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DBAC1C388F7
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 03:04:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73E67C4363A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 03:06:55 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 40D9A20780
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 03:04:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CB57A20780
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 03:06:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VdxCoHI0";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="uzmaIRqv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 40D9A20780
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Uth8klRl";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="sJ7A/yin"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CB57A20780
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=mediatek.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,53 +26,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=SmKg24YKI13z/ObBMl/H64rZbhpjakY0BQVRw1TH1Tg=; b=VdxCoHI0/N1Vwo/KMKhj0590c
-	Q1zCZP2r3GWuiTCAtTB7mn0R1KYkWZbKHVO+nkBse0SVjsBM4veQ7K4jZY65mOzpuXMi9S/JpkbDv
-	rHfF1/Rbnnod0f1k/rbNKJvttnz2Xj0DzA7+hbgvlSCJXhK+busf6QDSHvgT0p8YXaEDlk9pPCpho
-	Yd8Cu2kzzXn3bXZYz5OpGGlGpiFWl1SdtrCxeAI0PGpzprjXMGspfCayXCSmTk1pt0r22Ff0oTLBY
-	AVrlhshMir2Qa2YgdYpTs4YWY4pBJqWHlVNN4kXvWK/rrxtCKXvAAFFhzo68NYfZapVKTqC6zFi+F
-	usFKo7pZw==;
+	 bh=jaXfLV8i607jESSNrAgXOKpjVRsOkI3TQGNu6HmW8Us=; b=Uth8klRl2APAZyrIH3OnSOBAM
+	vZeGKgVl6ha0PK0gdykjMUgJIosycIQCIUb34KGLU8/FbghyFzmXv8Ys1uq69oDs16pHrL8llvUuL
+	jZb/uUxRGMjflcVbvoLDGpGmu+tpXKxPFQfQ0cySlTxDECHAbZW6g2aoE48SxRfB/Q+NQUTg4T3KC
+	XKF0yzQH9E+eSIzJxv6SbY9ss8pVxpkwtSW5eOqoHiesLJH3UOje67wkiUWOgG8zK2vX+Ibn+hzRJ
+	pWrLXnRWGZg6mSqvtO+vmPsgdWF0aCmd2hbNfIngXsyxQCkWGO548N8AxVyvHu2hDQyA0cc/42BCx
+	Vtryb5c6w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kXyF4-0004q8-AC; Thu, 29 Oct 2020 03:04:46 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1kXyH2-0005gl-9E; Thu, 29 Oct 2020 03:06:48 +0000
+Received: from mailgw02.mediatek.com ([216.200.240.185])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXyD4-0003sg-MP; Thu, 29 Oct 2020 03:02:45 +0000
-X-UUID: e4164f6d4a0649b18ef55b51b1e47c98-20201028
+ id 1kXyGl-0005aC-BT; Thu, 29 Oct 2020 03:06:34 +0000
+X-UUID: 437cf386bdc84b87a4301c897becca75-20201028
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
  s=dk; 
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From;
- bh=no5yMdNeeQTfIt1QmWZMhYF/WxHLMF5DcwRgW6ymKVA=; 
- b=uzmaIRqv5A70yRYWG8b90n3c4kLyQe38rwXhfDaZ5KWSgWRyHsJc4PnnpixsZZ8r1nDXwr5PVQnw+QPcqe3ut9DVw7dgGAtmuPjEB2Kv6BXokBjrIHxmxFxKzEprJv2UWDqxgUp5W3xMi5EDU7MPlUv9U9qpnXX5bbSrYEtFUkI=;
-X-UUID: e4164f6d4a0649b18ef55b51b1e47c98-20201028
-Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw01.mediatek.com
+ bh=VI1lLSM2L5tfGc8w+CZ2fxMh0tMCoyW/ltMd10m6b3s=; 
+ b=sJ7A/yinPmPgyd78oGLa2LurCYrmyx6T4WXNxE5d40k1b53TaQOlOw+Ri3sihQPzR1LLBw1cTLtXWMyryHjqyukz2dhGt9/M0CL0jk85EB8hdDv53f32IOPKtJMKUu5SD0b0OqkC0oyLK91M6RnLjHi2d//kXFWvnYAu4LPzXH0=;
+X-UUID: 437cf386bdc84b87a4301c897becca75-20201028
+Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw02.mediatek.com
  (envelope-from <chunfeng.yun@mediatek.com>)
  (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
- with ESMTP id 216762149; Wed, 28 Oct 2020 19:02:29 -0800
-Received: from MTKMBS31DR.mediatek.inc (172.27.6.102) by
- MTKMBS62N2.mediatek.inc (172.29.193.42) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 28 Oct 2020 19:55:51 -0700
+ with ESMTP id 283058860; Wed, 28 Oct 2020 19:06:25 -0800
+Received: from MTKMBS31N2.mediatek.inc (172.27.4.87) by
+ MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 28 Oct 2020 19:56:26 -0700
 Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 29 Oct 2020 10:55:42 +0800
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 29 Oct 2020 10:56:22 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 29 Oct 2020 10:55:40 +0800
+ Transport; Thu, 29 Oct 2020 10:56:21 +0800
 From: Chunfeng Yun <chunfeng.yun@mediatek.com>
 To: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH 08/17] phy: phy-xgene: convert to
- devm_platform_ioremap_resource
-Date: Thu, 29 Oct 2020 10:54:30 +0800
-Message-ID: <1603940079-8131-8-git-send-email-chunfeng.yun@mediatek.com>
+Subject: [PATCH 14/17] phy: samsung: convert to devm_platform_ioremap_resource
+Date: Thu, 29 Oct 2020 10:54:36 +0800
+Message-ID: <1603940079-8131-14-git-send-email-chunfeng.yun@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1603940079-8131-1-git-send-email-chunfeng.yun@mediatek.com>
 References: <1603940079-8131-1-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 5BA3BC5315E345130640907B15C4BD6A95DF88DDECA38EAE188CEA4E8451916E2000:8
+X-TM-SNTS-SMTP: 1ED7C3E6902A63E6C52A97CF181246FB80AEBC859282DDD95AF4A7038F4DB2A42000:8
 X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201028_230242_920544_38ED611E 
-X-CRM114-Status: GOOD (  10.86  )
+X-CRM114-CacheID: sfid-20201028_230631_583009_A4D11880 
+X-CRM114-Status: GOOD (  12.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,31 +119,107 @@ Use devm_platform_ioremap_resource to simplify code
 
 Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
- drivers/phy/phy-xgene.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/phy/samsung/phy-exynos-pcie.c     | 7 ++-----
+ drivers/phy/samsung/phy-exynos5-usbdrd.c  | 4 +---
+ drivers/phy/samsung/phy-exynos5250-sata.c | 5 +----
+ drivers/phy/samsung/phy-samsung-usb2.c    | 4 +---
+ 4 files changed, 5 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/phy/phy-xgene.c b/drivers/phy/phy-xgene.c
-index b88922e7de1d..f4cd590fbde7 100644
---- a/drivers/phy/phy-xgene.c
-+++ b/drivers/phy/phy-xgene.c
-@@ -1644,7 +1644,6 @@ static int xgene_phy_probe(struct platform_device *pdev)
- {
+diff --git a/drivers/phy/samsung/phy-exynos-pcie.c b/drivers/phy/samsung/phy-exynos-pcie.c
+index 7e28b1aea0d1..c98fff5c1ac8 100644
+--- a/drivers/phy/samsung/phy-exynos-pcie.c
++++ b/drivers/phy/samsung/phy-exynos-pcie.c
+@@ -232,7 +232,6 @@ static int exynos_pcie_phy_probe(struct platform_device *pdev)
+ 	struct exynos_pcie_phy *exynos_phy;
+ 	struct phy *generic_phy;
  	struct phy_provider *phy_provider;
- 	struct xgene_phy_ctx *ctx;
 -	struct resource *res;
- 	u32 default_spd[] = DEFAULT_SATA_SPD_SEL;
- 	u32 default_txboost_gain[] = DEFAULT_SATA_TXBOOST_GAIN;
- 	u32 default_txeye_direction[] = DEFAULT_SATA_TXEYEDIRECTION;
-@@ -1661,8 +1660,7 @@ static int xgene_phy_probe(struct platform_device *pdev)
+ 	const struct exynos_pcie_phy_data *drv_data;
  
- 	ctx->dev = &pdev->dev;
+ 	drv_data = of_device_get_match_data(dev);
+@@ -243,13 +242,11 @@ static int exynos_pcie_phy_probe(struct platform_device *pdev)
+ 	if (!exynos_phy)
+ 		return -ENOMEM;
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	ctx->sds_base = devm_ioremap_resource(&pdev->dev, res);
-+	ctx->sds_base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(ctx->sds_base))
- 		return PTR_ERR(ctx->sds_base);
+-	exynos_phy->phy_base = devm_ioremap_resource(dev, res);
++	exynos_phy->phy_base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(exynos_phy->phy_base))
+ 		return PTR_ERR(exynos_phy->phy_base);
  
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+-	exynos_phy->blk_base = devm_ioremap_resource(dev, res);
++	exynos_phy->blk_base = devm_platform_ioremap_resource(pdev, 1);
+ 	if (IS_ERR(exynos_phy->blk_base))
+ 		return PTR_ERR(exynos_phy->blk_base);
+ 
+diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+index cfa9b8b7e5ac..ee0848fe8432 100644
+--- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
++++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+@@ -829,7 +829,6 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
+ 	struct device_node *node = dev->of_node;
+ 	struct exynos5_usbdrd_phy *phy_drd;
+ 	struct phy_provider *phy_provider;
+-	struct resource *res;
+ 	const struct exynos5_usbdrd_phy_drvdata *drv_data;
+ 	struct regmap *reg_pmu;
+ 	u32 pmu_offset;
+@@ -843,8 +842,7 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
+ 	dev_set_drvdata(dev, phy_drd);
+ 	phy_drd->dev = dev;
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	phy_drd->reg_phy = devm_ioremap_resource(dev, res);
++	phy_drd->reg_phy = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(phy_drd->reg_phy))
+ 		return PTR_ERR(phy_drd->reg_phy);
+ 
+diff --git a/drivers/phy/samsung/phy-exynos5250-sata.c b/drivers/phy/samsung/phy-exynos5250-sata.c
+index 4dd7324d91b2..9ec234243f7c 100644
+--- a/drivers/phy/samsung/phy-exynos5250-sata.c
++++ b/drivers/phy/samsung/phy-exynos5250-sata.c
+@@ -162,7 +162,6 @@ static int exynos_sata_phy_probe(struct platform_device *pdev)
+ {
+ 	struct exynos_sata_phy *sata_phy;
+ 	struct device *dev = &pdev->dev;
+-	struct resource *res;
+ 	struct phy_provider *phy_provider;
+ 	struct device_node *node;
+ 	int ret = 0;
+@@ -171,9 +170,7 @@ static int exynos_sata_phy_probe(struct platform_device *pdev)
+ 	if (!sata_phy)
+ 		return -ENOMEM;
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-
+-	sata_phy->regs = devm_ioremap_resource(dev, res);
++	sata_phy->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(sata_phy->regs))
+ 		return PTR_ERR(sata_phy->regs);
+ 
+diff --git a/drivers/phy/samsung/phy-samsung-usb2.c b/drivers/phy/samsung/phy-samsung-usb2.c
+index a3ed3ff04690..f79f605cff79 100644
+--- a/drivers/phy/samsung/phy-samsung-usb2.c
++++ b/drivers/phy/samsung/phy-samsung-usb2.c
+@@ -143,7 +143,6 @@ static int samsung_usb2_phy_probe(struct platform_device *pdev)
+ 	const struct samsung_usb2_phy_config *cfg;
+ 	struct device *dev = &pdev->dev;
+ 	struct phy_provider *phy_provider;
+-	struct resource *mem;
+ 	struct samsung_usb2_phy_driver *drv;
+ 	int i, ret;
+ 
+@@ -167,8 +166,7 @@ static int samsung_usb2_phy_probe(struct platform_device *pdev)
+ 	drv->cfg = cfg;
+ 	drv->dev = dev;
+ 
+-	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	drv->reg_phy = devm_ioremap_resource(dev, mem);
++	drv->reg_phy = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(drv->reg_phy)) {
+ 		dev_err(dev, "Failed to map register memory (phy)\n");
+ 		return PTR_ERR(drv->reg_phy);
 -- 
 2.18.0
 _______________________________________________
