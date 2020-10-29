@@ -8,71 +8,70 @@ X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DB9FC4363A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 03:04:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DE088C388F7
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 03:04:49 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7140720780
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 03:04:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 30AA320780
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 03:04:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RYBUlAGS";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="IWTRf2WH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7140720780
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hgd/FVim";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="TWCTJihb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 30AA320780
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=mediatek.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=MJEC8Lb8rDw86B+V8gkK4M9ZyWe8QOC2G9jCQQqsBb0=; b=RYBUlAGSl1XTx22BrMx7rZ/lL
-	6YCzF+urQYATac0atyD4lefKcJysv2l4e/GvOGgf7TDmjChkGCnW7bWXwbV/1TWamDdcA2DeL/Nhz
-	9JLdzgaoF830wA5yrOoPTx1q0FQ7urvfx8CYcLY7VV37nOiajnNZQTuduJliy2BrGGM2fS835ICwp
-	valOG/kV7kFqP7qTIotO0nIpLYnXzFfuJ5mAYswU3J+PNooalcZ4dSOVvxxPbTBJ8/s7COJJ062uD
-	7NUDNFoEZbL//pU+FCA8B9PX6V5QZJaQ0AazwUYUwb+4qxNiN/vOE8hu/GQJqIY3FR+ix/Z8hZRwU
-	2GyScO5OQ==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=nWgQgk4mzYmmLgcACIGAD+z6j1L8I8XxDQx321pmnAY=; b=hgd/FVimL1yfVS3fx0exWnlAcK
+	dlNqKIIZjRVoSXJmQgIVDJ9KJaOiPYLw+dL0MAPyJvrDAR1sW4x8ZrcvDUmwElMIPHFtmgV+OJ78r
+	opzJE+EHf6bJGgJ8RILIW3yDW6qqFrLNSK0UabqKt/zlOm68I6tdVnKVuhVp9vkpfSU525hcOabOj
+	DqgjdCwTSfXDgV3GVj6U46EpqvSCV9soa+ocEKxF098RYq4QwvcL12MJBxJwuOj/Mt7fKeXS7pOo/
+	gGFjY6/FwSrLjfVLQuWZReXcGo0ZiI98KsG3oXP0mIX5CWU/wbaYjL1B8SAjzR/lHMD0TxDyQckYp
+	f5vMtJWQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kXyEa-0004ac-EB; Thu, 29 Oct 2020 03:04:16 +0000
+	id 1kXyF1-0004ny-OQ; Thu, 29 Oct 2020 03:04:43 +0000
 Received: from mailgw01.mediatek.com ([216.200.240.184])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXyD0-0003sg-2o; Thu, 29 Oct 2020 03:02:42 +0000
-X-UUID: e83a8c7e8a7849c89115ffe255b1865b-20201028
+ id 1kXyD5-0003t4-RW; Thu, 29 Oct 2020 03:02:46 +0000
+X-UUID: 97e439c4d1d3417abbd8bc83a5bdf587-20201028
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
  s=dk; 
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From;
- bh=4y9u76WZ+K2hCcTwDQC6NP3szNJlB5RuE8t5+ZzRPRQ=; 
- b=IWTRf2WHcbO373YaFsMsTirNQI9iTCNUpTgx3mwbXJhPfyPebqUF35JbunVKWVObOZbQAsql6SzUTeFgFfEiCBei2+Wu9AgXnisURzn3ioz1UoB9+I+y3dzFTCoyA/FCIuVwxcZn1emCfduJoBfpAV0aJi62VjWQ4JJ6JWq6DPg=;
-X-UUID: e83a8c7e8a7849c89115ffe255b1865b-20201028
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From;
+ bh=YwnaWlP9ZQHoUb7ngFnTh4rZmTv+6JYNiGBIPULpw8k=; 
+ b=TWCTJihbknn3V5NLW6LLJzV/AjbnTI27w56akzsjujhEy3Y6beIKQ72JRUwZSZMCLtDf/YG8KkjVcHoK9WPymxANYH6/i817LnMbOkXdjdQkqTGabnCgAIyTX8orJp4LnJLCdqe7QyHclo0PONd00z5YRhx0qrif1uVlf/mJd3I=;
+X-UUID: 97e439c4d1d3417abbd8bc83a5bdf587-20201028
 Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw01.mediatek.com
  (envelope-from <chunfeng.yun@mediatek.com>)
  (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
- with ESMTP id 847699354; Wed, 28 Oct 2020 19:02:29 -0800
-Received: from MTKMBS31N2.mediatek.inc (172.27.4.87) by
+ with ESMTP id 318325795; Wed, 28 Oct 2020 19:02:29 -0800
+Received: from MTKMBS31N1.mediatek.inc (172.27.4.69) by
  MTKMBS62N2.mediatek.inc (172.29.193.42) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 28 Oct 2020 19:55:35 -0700
+ 15.0.1497.2; Wed, 28 Oct 2020 19:55:23 -0700
 Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 29 Oct 2020 10:55:27 +0800
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 29 Oct 2020 10:55:16 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 29 Oct 2020 10:55:25 +0800
+ Transport; Thu, 29 Oct 2020 10:55:15 +0800
 From: Chunfeng Yun <chunfeng.yun@mediatek.com>
 To: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH 04/17] phy: cadence: convert to devm_platform_ioremap_resource
-Date: Thu, 29 Oct 2020 10:54:26 +0800
-Message-ID: <1603940079-8131-4-git-send-email-chunfeng.yun@mediatek.com>
+Subject: [PATCH 01/17] phy: allwinner: convert to
+ devm_platform_ioremap_resource(_byname)
+Date: Thu, 29 Oct 2020 10:54:23 +0800
+Message-ID: <1603940079-8131-1-git-send-email-chunfeng.yun@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1603940079-8131-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1603940079-8131-1-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: CC4BC70B8DDF7A4E63D11A628D469DE6059B1CF05A7EDB2ECBC14449A479BFB62000:8
+X-TM-SNTS-SMTP: ABD9262E7090C852F3090186B651931645AAB2216D9B4C6A679D99FD2336D4932000:8
 X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201028_230238_430362_651587B9 
-X-CRM114-Status: GOOD (  11.72  )
+X-CRM114-CacheID: sfid-20201028_230244_068766_5CCC2C95 
+X-CRM114-Status: GOOD (  13.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,81 +115,114 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use devm_platform_ioremap_resource to simplify code
+Use devm_platform_ioremap_resource(_byname) to simplify code
 
 Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
- drivers/phy/cadence/cdns-dphy.c          | 4 +---
- drivers/phy/cadence/phy-cadence-salvo.c  | 4 +---
- drivers/phy/cadence/phy-cadence-sierra.c | 4 +---
- 3 files changed, 3 insertions(+), 9 deletions(-)
+ drivers/phy/allwinner/phy-sun4i-usb.c       | 8 ++------
+ drivers/phy/allwinner/phy-sun50i-usb3.c     | 4 +---
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c | 4 +---
+ drivers/phy/allwinner/phy-sun9i-usb.c       | 4 +---
+ 4 files changed, 5 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/phy/cadence/cdns-dphy.c b/drivers/phy/cadence/cdns-dphy.c
-index 90c4e9b5aac8..ba042e39cfaf 100644
---- a/drivers/phy/cadence/cdns-dphy.c
-+++ b/drivers/phy/cadence/cdns-dphy.c
-@@ -314,7 +314,6 @@ static int cdns_dphy_probe(struct platform_device *pdev)
- {
+diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c b/drivers/phy/allwinner/phy-sun4i-usb.c
+index 651d5e2a25ce..406d5943f8a8 100644
+--- a/drivers/phy/allwinner/phy-sun4i-usb.c
++++ b/drivers/phy/allwinner/phy-sun4i-usb.c
+@@ -686,7 +686,6 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *np = dev->of_node;
  	struct phy_provider *phy_provider;
- 	struct cdns_dphy *dphy;
 -	struct resource *res;
- 	int ret;
+ 	int i, ret;
  
- 	dphy = devm_kzalloc(&pdev->dev, sizeof(*dphy), GFP_KERNEL);
-@@ -326,8 +325,7 @@ static int cdns_dphy_probe(struct platform_device *pdev)
- 	if (!dphy->ops)
+ 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+@@ -700,8 +699,7 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
+ 	if (!data->cfg)
  		return -EINVAL;
  
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	dphy->regs = devm_ioremap_resource(&pdev->dev, res);
-+	dphy->regs = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(dphy->regs))
- 		return PTR_ERR(dphy->regs);
+-	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "phy_ctrl");
+-	data->base = devm_ioremap_resource(dev, res);
++	data->base = devm_platform_ioremap_resource_byname(pdev, "phy_ctrl");
+ 	if (IS_ERR(data->base))
+ 		return PTR_ERR(data->base);
  
-diff --git a/drivers/phy/cadence/phy-cadence-salvo.c b/drivers/phy/cadence/phy-cadence-salvo.c
-index 88e239adc3b8..51c0b98f5fd7 100644
---- a/drivers/phy/cadence/phy-cadence-salvo.c
-+++ b/drivers/phy/cadence/phy-cadence-salvo.c
-@@ -263,7 +263,6 @@ static int cdns_salvo_phy_probe(struct platform_device *pdev)
- 	struct phy_provider *phy_provider;
+@@ -796,9 +794,7 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
+ 
+ 		if (i || data->cfg->phy0_dual_route) { /* No pmu for musb */
+ 			snprintf(name, sizeof(name), "pmu%d", i);
+-			res = platform_get_resource_byname(pdev,
+-							IORESOURCE_MEM, name);
+-			phy->pmu = devm_ioremap_resource(dev, res);
++			phy->pmu = devm_platform_ioremap_resource_byname(pdev, name);
+ 			if (IS_ERR(phy->pmu))
+ 				return PTR_ERR(phy->pmu);
+ 		}
+diff --git a/drivers/phy/allwinner/phy-sun50i-usb3.c b/drivers/phy/allwinner/phy-sun50i-usb3.c
+index b1c04f71a31d..84055b720016 100644
+--- a/drivers/phy/allwinner/phy-sun50i-usb3.c
++++ b/drivers/phy/allwinner/phy-sun50i-usb3.c
+@@ -134,7 +134,6 @@ static int sun50i_usb3_phy_probe(struct platform_device *pdev)
+ 	struct sun50i_usb3_phy *phy;
  	struct device *dev = &pdev->dev;
- 	struct cdns_salvo_phy *salvo_phy;
+ 	struct phy_provider *phy_provider;
 -	struct resource *res;
- 	const struct of_device_id *match;
- 	struct cdns_salvo_data *data;
  
-@@ -281,8 +280,7 @@ static int cdns_salvo_phy_probe(struct platform_device *pdev)
- 	if (IS_ERR(salvo_phy->clk))
- 		return PTR_ERR(salvo_phy->clk);
+ 	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+ 	if (!phy)
+@@ -153,8 +152,7 @@ static int sun50i_usb3_phy_probe(struct platform_device *pdev)
+ 		return PTR_ERR(phy->reset);
+ 	}
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	salvo_phy->base = devm_ioremap_resource(dev, res);
-+	salvo_phy->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(salvo_phy->base))
- 		return PTR_ERR(salvo_phy->base);
+-	phy->regs = devm_ioremap_resource(dev, res);
++	phy->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(phy->regs))
+ 		return PTR_ERR(phy->regs);
  
-diff --git a/drivers/phy/cadence/phy-cadence-sierra.c b/drivers/phy/cadence/phy-cadence-sierra.c
-index 453ef26fa1c7..26a0badabe38 100644
---- a/drivers/phy/cadence/phy-cadence-sierra.c
-+++ b/drivers/phy/cadence/phy-cadence-sierra.c
-@@ -479,7 +479,6 @@ static int cdns_sierra_phy_probe(struct platform_device *pdev)
- 	const struct of_device_id *match;
- 	struct cdns_sierra_data *data;
- 	unsigned int id_value;
+diff --git a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+index 1fa761ba6cbb..f0bc87d654d4 100644
+--- a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
++++ b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+@@ -253,15 +253,13 @@ static int sun6i_dphy_probe(struct platform_device *pdev)
+ {
+ 	struct phy_provider *phy_provider;
+ 	struct sun6i_dphy *dphy;
 -	struct resource *res;
- 	int i, ret, node = 0;
- 	void __iomem *base;
- 	struct clk *clk;
-@@ -502,8 +501,7 @@ static int cdns_sierra_phy_probe(struct platform_device *pdev)
- 	sp->dev = dev;
- 	sp->init_data = data;
+ 	void __iomem *regs;
+ 
+ 	dphy = devm_kzalloc(&pdev->dev, sizeof(*dphy), GFP_KERNEL);
+ 	if (!dphy)
+ 		return -ENOMEM;
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(dev, res);
-+	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base)) {
- 		dev_err(dev, "missing \"reg\"\n");
- 		return PTR_ERR(base);
+-	regs = devm_ioremap_resource(&pdev->dev, res);
++	regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(regs)) {
+ 		dev_err(&pdev->dev, "Couldn't map the DPHY encoder registers\n");
+ 		return PTR_ERR(regs);
+diff --git a/drivers/phy/allwinner/phy-sun9i-usb.c b/drivers/phy/allwinner/phy-sun9i-usb.c
+index fc6784dd7fa0..2f9e60c188b8 100644
+--- a/drivers/phy/allwinner/phy-sun9i-usb.c
++++ b/drivers/phy/allwinner/phy-sun9i-usb.c
+@@ -117,7 +117,6 @@ static int sun9i_usb_phy_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *np = dev->of_node;
+ 	struct phy_provider *phy_provider;
+-	struct resource *res;
+ 
+ 	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+ 	if (!phy)
+@@ -156,8 +155,7 @@ static int sun9i_usb_phy_probe(struct platform_device *pdev)
+ 		}
+ 	}
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	phy->pmu = devm_ioremap_resource(dev, res);
++	phy->pmu = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(phy->pmu))
+ 		return PTR_ERR(phy->pmu);
+ 
 -- 
 2.18.0
 _______________________________________________
