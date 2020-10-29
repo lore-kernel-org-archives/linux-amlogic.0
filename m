@@ -2,60 +2,91 @@ Return-Path: <SRS0=5ZAx=EE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED7D2C2D0A3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 08:18:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC4F9C5517A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 10:21:38 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 156E720732
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 08:18:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0A13C20719
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2020 10:21:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="06LFg2rY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 156E720732
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AkACDY95";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=st.com header.i=@st.com header.b="zGCfAuRF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A13C20719
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=st.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=eLidKPrA2hfErhgAVChd8WAAn0wdFDfFRQLKFbiOwNk=; b=06LFg2rY62PJjbYP+OOw9mRzK
-	G+NJW07wU17XhavEUD7AUg5LLZwBv54jNubtBXopyOBUJBSSguzbHghHPfXx4FMEDar6ZCLs2pO/a
-	UEC2LPxWMMx5Kvf9EQAQNQuPWIjbdr2FItDuMYYQJljXZSL7w6ytZjYDAQHlz4xOvJi46oGAd84ZZ
-	NVu1E7oPHlcekC/wWnBGdsiNQCRwBaslAcF8BwkXLtC3X64aVP+YS47UQ0MIfVsps+CjEkEvoeolh
-	o5YEshBHYT1iWVj3YIJuaLZOQfffMHMOgD5yaZ0QS/h2uiwVWh2erJ+11uTgQb9qBdtllMEWF11lC
-	HbNdYsxNQ==;
+	 bh=4uKaV9W/yoL1oZWsE607OLL0THfEU4jk87MJNukXuRI=; b=AkACDY9553UfqZ7G+hobHmjS3
+	APHZ4Fu5vdlilUq3bUY9XGsjCkC0FHz28F60EKarhmWxyoBMUZE26mNehDUKRUyRVbcucbPlwbq/U
+	XPi8qfAuBACrLK/sfUzu7re0Ne958GMdY7TfvrtdzD+UpXnYcDMJxHD1L4a2SqhHDBiKE0Wx1D9JF
+	uwND+1UovNord/gg3766TvMs23NTx982qGsw0rmM1jjHS3Gqs4GEWsHW15auaZ60eoMr63KFW3yq7
+	krguImYsHxY+sx0x2qZwjVxfqjlLMf1S7YsVnGgPtztOnt60ZCx+yqWt7HFBRJ9ZSljUWTt6zAoUh
+	iChf2/kCA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kY38T-0006w3-P0; Thu, 29 Oct 2020 08:18:17 +0000
-Received: from relay9-d.mail.gandi.net ([217.70.183.199])
+	id 1kY53h-0000SR-5Q; Thu, 29 Oct 2020 10:21:29 +0000
+Received: from mx07-00178001.pphosted.com ([185.132.182.106])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kY38P-0006uO-Po; Thu, 29 Oct 2020 08:18:15 +0000
-X-Originating-IP: 82.66.179.123
-Received: from localhost (unknown [82.66.179.123])
- (Authenticated sender: repk@triplefau.lt)
- by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 3D55FFF817;
- Thu, 29 Oct 2020 08:17:56 +0000 (UTC)
-Date: Thu, 29 Oct 2020 09:24:15 +0100
-From: Remi Pommarel <repk@triplefau.lt>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Subject: Re: [PATCH 02/17] phy: amlogic: convert to
+ id 1kY53a-0000Pw-W1; Thu, 29 Oct 2020 10:21:23 +0000
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+ by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 09TAHDMM004599; Thu, 29 Oct 2020 11:20:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com;
+ h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=qld9yon9YboDN8H9lMAvI0/c1iFxnx7SJQj59lzAMVg=;
+ b=zGCfAuRFsjl3iJlYvPrc8g5lv2YzZMxgRpTawt1867zj1AC+pTE0UYtvxKwrpTvzPDD3
+ nswiy8lFodnYptO6s9UrSWALmQrKnvtWwXSFN7OfP0koXAqLsAHOA8KGUwV3hB7WnJ0l
+ a9A+3p3azduvwH0rZnyPSlu7uWOhwKuXPzXZTMhtWeow2HwrY8TT+ZNhGd1kweUEX4Ag
+ yXgEwKQJpC9fY9N0g2o19Efuh3QO3RyBJhpw5GqEArAJz+LoAY9mP/uG5LhBwSkynr4M
+ ZWTX0xDcuPDaazenQgSYyA+5biK3Y6y/+80wukGo3PmKvB5Q+ohSxu9iEjnncAsVjHAc qQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+ by mx07-00178001.pphosted.com with ESMTP id 34ccf3yg7w-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 29 Oct 2020 11:20:46 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+ by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 477E5100034;
+ Thu, 29 Oct 2020 11:20:37 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+ by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F200025D241;
+ Thu, 29 Oct 2020 11:20:36 +0100 (CET)
+Received: from lmecxl0995.lme.st.com (10.75.127.49) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 29 Oct
+ 2020 11:20:33 +0100
+Subject: Re: [PATCH 15/17] phy: phy-stm32-usbphyc: convert to
  devm_platform_ioremap_resource
-Message-ID: <20201029082415.GB15700@pilgrim>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Kishon Vijay Abraham I
+ <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>
 References: <1603940079-8131-1-git-send-email-chunfeng.yun@mediatek.com>
- <1603940079-8131-2-git-send-email-chunfeng.yun@mediatek.com>
+ <1603940079-8131-15-git-send-email-chunfeng.yun@mediatek.com>
+From: Amelie DELAUNAY <amelie.delaunay@st.com>
+Message-ID: <64bc5ff6-5495-30de-108f-80a4a8c54e91@st.com>
+Date: Thu, 29 Oct 2020 11:20:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1603940079-8131-2-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <1603940079-8131-15-git-send-email-chunfeng.yun@mediatek.com>
+Content-Language: en-US
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312, 18.0.737
+ definitions=2020-10-29_03:2020-10-29,
+ 2020-10-29 signatures=0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201029_041814_022265_3719CAC1 
-X-CRM114-Status: GOOD (  18.42  )
+X-CRM114-CacheID: sfid-20201029_062123_243319_9EFA53C2 
+X-CRM114-Status: GOOD (  20.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,17 +101,17 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Cc: Ondrej Jirman <megous@megous.com>, Peter Chen <peter.chen@nxp.com>,
  Neil Armstrong <narmstrong@baylibre.com>, Anil Varughese <aniljoy@cadence.com>,
  Wei Yongjun <weiyongjun1@huawei.com>, Fabio Estevam <festevam@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- Kishon Vijay Abraham I <kishon@ti.com>,
- Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
- Chen-Yu Tsai <wens@csie.org>, bcm-kernel-feedback-list@broadcom.com,
- NXP Linux Team <linux-imx@nxp.com>, Icenowy Zheng <icenowy@aosc.io>,
- Bharat Gooty <bharat.gooty@broadcom.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chen-Yu Tsai <wens@csie.org>, Sanket Parmar <sparmar@cadence.com>,
+ bcm-kernel-feedback-list@broadcom.com, NXP Linux Team <linux-imx@nxp.com>,
+ Icenowy Zheng <icenowy@aosc.io>, Bharat Gooty <bharat.gooty@broadcom.com>,
+ Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
  Ray Jui <rjui@broadcom.com>, Sascha Hauer <s.hauer@pengutronix.de>,
  Maxime Ripard <mripard@kernel.org>, Yue Wang <yue.wang@amlogic.com>,
- Lubomir Rintel <lkundrak@v3.sk>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Lubomir Rintel <lkundrak@v3.sk>, Florian Fainelli <f.fainelli@gmail.com>,
  linux-mediatek@lists.infradead.org,
  Rikard Falkeborn <rikard.falkeborn@gmail.com>,
  Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
@@ -88,157 +119,51 @@ Cc: Ondrej Jirman <megous@megous.com>, Peter Chen <peter.chen@nxp.com>,
  Hanjie Lin <hanjie.lin@amlogic.com>, Ma Feng <mafeng.ma@huawei.com>,
  Scott Branden <sbranden@broadcom.com>, Randy Dunlap <rdunlap@infradead.org>,
  Jyri Sarha <jsarha@ti.com>, linux-kernel@vger.kernel.org,
- Vinod Koul <vkoul@kernel.org>, Sanket Parmar <sparmar@cadence.com>,
+ Remi Pommarel <repk@triplefau.lt>,
  Pengutronix Kernel Team <kernel@pengutronix.de>, Joe Perches <joe@perches.com>,
  Colin Ian King <colin.king@canonical.com>, Shawn Guo <shawnguo@kernel.org>,
  Li Jun <jun.li@nxp.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On Thu, Oct 29, 2020 at 10:54:24AM +0800, Chunfeng Yun wrote:
+
+On 10/29/20 3:54 AM, Chunfeng Yun wrote:
 > Use devm_platform_ioremap_resource to simplify code
 > 
 > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+
+Reviewed-by: Amelie Delaunay <amelie.delaunay@st.com>
+
 > ---
->  drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c | 4 +---
->  drivers/phy/amlogic/phy-meson-axg-pcie.c             | 4 +---
->  drivers/phy/amlogic/phy-meson-g12a-usb2.c            | 4 +---
->  drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c       | 4 +---
->  drivers/phy/amlogic/phy-meson-gxl-usb2.c             | 4 +---
->  5 files changed, 5 insertions(+), 15 deletions(-)
+>   drivers/phy/st/phy-stm32-usbphyc.c | 4 +---
+>   1 file changed, 1 insertion(+), 3 deletions(-)
 > 
-> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-> index 1431cbf885e1..7d06cda329fb 100644
-> --- a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-> @@ -126,7 +126,6 @@ static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
->  	struct phy_axg_mipi_pcie_analog_priv *priv;
->  	struct device_node *np = dev->of_node;
->  	struct regmap *map;
+> diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
+> index 2b3639cba51a..0ab18f2078db 100644
+> --- a/drivers/phy/st/phy-stm32-usbphyc.c
+> +++ b/drivers/phy/st/phy-stm32-usbphyc.c
+> @@ -311,7 +311,6 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
+>   	struct stm32_usbphyc *usbphyc;
+>   	struct device *dev = &pdev->dev;
+>   	struct device_node *child, *np = dev->of_node;
 > -	struct resource *res;
->  	void __iomem *base;
->  	int ret;
->  
-> @@ -134,8 +133,7 @@ static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
->  	if (!priv)
->  		return -ENOMEM;
->  
+>   	struct phy_provider *phy_provider;
+>   	u32 version;
+>   	int ret, port = 0;
+> @@ -322,8 +321,7 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
+>   	usbphyc->dev = dev;
+>   	dev_set_drvdata(dev, usbphyc);
+>   
 > -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	base = devm_ioremap_resource(dev, res);
-> +	base = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(base)) {
->  		dev_err(dev, "failed to get regmap base\n");
->  		return PTR_ERR(base);
-
-This patch will conflict with [0] that uses syscon to map those shared
-resources instead and that is hopefully going to be merged soon.
-
-So I think you can skip this file.
-
-> diff --git a/drivers/phy/amlogic/phy-meson-axg-pcie.c b/drivers/phy/amlogic/phy-meson-axg-pcie.c
-> index 377ed0dcd0d9..58a7507a8422 100644
-> --- a/drivers/phy/amlogic/phy-meson-axg-pcie.c
-> +++ b/drivers/phy/amlogic/phy-meson-axg-pcie.c
-> @@ -129,7 +129,6 @@ static int phy_axg_pcie_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct phy_axg_pcie_priv *priv;
->  	struct device_node *np = dev->of_node;
-> -	struct resource *res;
->  	void __iomem *base;
->  	int ret;
->  
-> @@ -145,8 +144,7 @@ static int phy_axg_pcie_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	base = devm_ioremap_resource(dev, res);
-> +	base = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(base))
->  		return PTR_ERR(base);
->  
-> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> index b26e30e1afaf..9d1efa0d9394 100644
-> --- a/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> @@ -292,7 +292,6 @@ static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct phy_provider *phy_provider;
-> -	struct resource *res;
->  	struct phy_meson_g12a_usb2_priv *priv;
->  	struct phy *phy;
->  	void __iomem *base;
-> @@ -305,8 +304,7 @@ static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
->  	priv->dev = dev;
->  	platform_set_drvdata(pdev, priv);
->  
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	base = devm_ioremap_resource(dev, res);
-> +	base = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(base))
->  		return PTR_ERR(base);
->  
-> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-> index 08e322789e59..ebe3d0ddd304 100644
-> --- a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-> @@ -386,7 +386,6 @@ static int phy_g12a_usb3_pcie_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct device_node *np = dev->of_node;
->  	struct phy_g12a_usb3_pcie_priv *priv;
-> -	struct resource *res;
->  	struct phy_provider *phy_provider;
->  	void __iomem *base;
->  	int ret;
-> @@ -395,8 +394,7 @@ static int phy_g12a_usb3_pcie_probe(struct platform_device *pdev)
->  	if (!priv)
->  		return -ENOMEM;
->  
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	base = devm_ioremap_resource(dev, res);
-> +	base = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(base))
->  		return PTR_ERR(base);
->  
-> diff --git a/drivers/phy/amlogic/phy-meson-gxl-usb2.c b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-> index 43ec9bf24abf..875afb2672c7 100644
-> --- a/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-> +++ b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-> @@ -230,7 +230,6 @@ static int phy_meson_gxl_usb2_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct phy_provider *phy_provider;
-> -	struct resource *res;
->  	struct phy_meson_gxl_usb2_priv *priv;
->  	struct phy *phy;
->  	void __iomem *base;
-> @@ -242,8 +241,7 @@ static int phy_meson_gxl_usb2_probe(struct platform_device *pdev)
->  
->  	platform_set_drvdata(pdev, priv);
->  
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	base = devm_ioremap_resource(dev, res);
-> +	base = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(base))
->  		return PTR_ERR(base);
->  
-
-So without the modification on phy-meson-axg-mipi-pcie-analog.c and
-FWIW,
-
-Reviewed-by: Remi Pommarel <repk@triplefau.lt>
-
-Thanks,
-
-[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200915130339.11079-4-narmstrong@baylibre.com/
-
--- 
-Remi
+> -	usbphyc->base = devm_ioremap_resource(dev, res);
+> +	usbphyc->base = devm_platform_ioremap_resource(pdev, 0);
+>   	if (IS_ERR(usbphyc->base))
+>   		return PTR_ERR(usbphyc->base);
+>   
+> 
 
 _______________________________________________
 linux-amlogic mailing list
