@@ -5,20 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5856C388F7
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2020 08:56:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E20B9C2D0A3
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2020 08:56:40 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 68DEA2071A
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2020 08:56:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7C99A22400
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2020 08:56:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ad2e24af";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="pSecCe0X"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 68DEA2071A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HO4PAjaD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YJNLTifp"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C99A22400
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,60 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=G7EaFs4fXOIgPY6WV8+39MlgWMl9Qvc3jOx2zmRwdWE=; b=Ad2e24afqvgdSNxRSaGteoPe7
-	xfa9GPUJTBv/iX1CTj3b8faktbmT/qIRvfS+UzxLshU5cLm6YS3sUgzzVp9/axZTR9KhyzVgTRI0A
-	+amD1H6RO8ueBIMNFDJOut2QR9Am6rmNIlrdfV9TdY4i0+aXggNjxJThpfIS8YkchIHrCgM56bO+n
-	Y1J9WPBW0l3vvzbOZB1pZ171knt55ev9oUzuiPGOGNV13zWKGw1BfndaieuZUsxJWacvTcIfFflV7
-	Vmd+TbZUD9AST4vSSOeJUZYkp71fcOVCuwxqRSZItywAf/ADdos/7NDy/xA/X1x8xIFy8kQPSaPa2
-	328wkXq/Q==;
+	 bh=QQK7WV3SBmIvaB3BAVxoac5ktj3szqk9yZ0N7h6JiRM=; b=HO4PAjaDe3iONaZiWTMTPgWnU
+	87XucWOjGOHbsDKI6Mkq1Ovx8GOatuQyW4vYoGkJB/1S7opS5rDhx2t4wONCxj95VeZAeY/KpXvt5
+	ac2GUrYhQUHpc5NCnBISXhvhhH1ydEXOMpgXX0R+JPSoPwFezgOzgY5ho+OY9THzqGdzB9zUdx0AX
+	wECaLV4cX09FazLkt6Okfic3fyK1I4d81d6ZFKb+mlFZM05s82q++yz1SQ8paaLOA6HBfdd+0B8h6
+	amB0jigJlXigDeJ8WhyGH9Ctf795Q31aQaCs80eKDz+z5LWlSM6QlJQ6RqWULLeS+BDdraBT2+pJB
+	QxJxHB6qg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kZs72-0007O4-US; Tue, 03 Nov 2020 08:56:22 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1kZs7D-0007Tn-UK; Tue, 03 Nov 2020 08:56:32 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kZs6W-0007BR-U9
- for linux-amlogic@lists.infradead.org; Tue, 03 Nov 2020 08:55:51 +0000
-Received: by mail-wm1-x341.google.com with SMTP id k18so11949753wmj.5
- for <linux-amlogic@lists.infradead.org>; Tue, 03 Nov 2020 00:55:48 -0800 (PST)
+ id 1kZs6c-0007E0-Bt
+ for linux-amlogic@lists.infradead.org; Tue, 03 Nov 2020 08:55:57 +0000
+Received: by mail-wm1-x343.google.com with SMTP id k18so11950018wmj.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 03 Nov 2020 00:55:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=xY34MN3iAkb+yO1dRrfDsV7FnfSbSim8FfV1oURLqNc=;
- b=pSecCe0XbNaG91QuJf7MfoesoIflmUXAxrQrP3oOuM3CEvlonIAzazXh+Bze9+Svno
- uCLWyTSHz5CkgxJrA/2rJzHzF8RalElJtsmZ4Y1cwmWwa5/fkjzXrvM0P6zBgR/vuztr
- 1Ut46OauRe1pdBV0wlS/PeqfW+c8it1jZCEpHoqjIrDeDA/jjxFNCGsZH0T6L6qtLpqb
- i0NrwPEls393CFEl7K5D1Ea77Z1n7dE2bGXLtAxuzlJkOu/hxfntcqrH3MTkEcXAeaLH
- rP4idOgI1X4mNt+EzDy/xg1ewFDRAPpxjusTHfiUZBghmjmKapIFHced5F7jotSGk1rv
- YPOA==
+ bh=6lqBBkPwvPdjhS325xmkVMT6UQvS84szDa/rFpUEWQY=;
+ b=YJNLTifp9g3qgSnbN0ffAJuC7bbQzkVfzFu4hOy7ivFG8L3QmA5cOvLLsxxT38wQhU
+ JEF/RUoxRroiv2Em55cITh3YpOl7NiyF1hxtq9bJEBWJWOuFe9xTzjqKGGRvJGHzAbT1
+ sH1TWGgTiPBNKM8nDtbWg0D+3tV0gKUxT8yki3FuCcXsuT7A8LrmVz0mW1X21B3q7oRT
+ cslIOzaQIu4tYP6AbVOgW7UU1kHOzPOlMPbImrjdH3VtVZ3iWlnx8LOqMMYMcZC527iS
+ 2Qc/YhXiLMspKTdoigoFaHGSxeac8IuoCFsiR8GDGM1Wf4sujl/uUCrUMFXYMCtlVPUd
+ w10g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=xY34MN3iAkb+yO1dRrfDsV7FnfSbSim8FfV1oURLqNc=;
- b=TdRBj2FQQxM9HkbQQZihDOlO4bx9lDC3aJl3EfPJN9O0iRS+n3kHyzJPqdKpBylcU0
- qLPKckHYK8kgo7PVr3UzXxEMKGwXeBQ52xV0l+vNjKKc9/S5mpy05aoRosXxgfBcukEC
- FzvnPmLOpj3HZs4Pf3cYpoBzWRLtkFIpxJPg9FHNcVYH22OOvMXvVX65vh6C0fR/oUgu
- FJOTu7Q7ywiPzv2XJvt+thk7thInPa8nnCTfBJzesLq49+vkuCGk6b3tQXFa+oTqJjAo
- nJC3noFz19ff9ZsOVuPy1s3MNQjoK0h5aXxT1yPXWygvbZhF+5s+RY/Lc4epAO4Fr1GY
- j4DQ==
-X-Gm-Message-State: AOAM5338ga6xHbn5Ei4KXx8Y+ICCqaINcL8tJ0RW45knajCBBVQU3hqF
- UXw65nrOkSkEfv58j2IL3i58/qL7Uww/izWi
-X-Google-Smtp-Source: ABdhPJzbcOoCtbYJTMm5ol+SOaiOHbSRFTPbXSUsF5wq26uFSKr/+k4ny0M8YqaDxsRS3CgKCZGf5Q==
-X-Received: by 2002:a1c:3502:: with SMTP id c2mr2457466wma.79.1604393747079;
- Tue, 03 Nov 2020 00:55:47 -0800 (PST)
+ bh=6lqBBkPwvPdjhS325xmkVMT6UQvS84szDa/rFpUEWQY=;
+ b=riphbesYqad6jPVX5XdsHBfbw4loy62gUxMlMCsRZlGvoWiEPIES+vXa2MCrx/JBWZ
+ S3YlVbpqHmQfWazAzTSZQ/f3fzl+uKVh/vgmqF9jHI7VV2XclfLoHDNks5yYb5Jgt+9c
+ sDoo3cAHFOWy4NIYHETRUhl8Ma/PEyLy2JSa4Ykk4UFaxHi6zNZ7nwEHRbrTOu59XIwt
+ eF+NDe8tTinkBXbWSUgYg3+R17JnSLXYaipeWhuZl8nCTxoLgiNYGXt8MB0SdBXXnyK3
+ HDY4aqRnRGLGUsEwub5xH6BdomtVOYYpf8Vl7mgyRaVaEjqIsguiywojIy90COXbDpiL
+ dzBg==
+X-Gm-Message-State: AOAM532TFSkMfqYhoBTTnHPTEticQ9040tU4FUfFiV7PpUzmUi5ltB1h
+ Z/N0PJlU+gXRx/dzTZG/WfWNz4eircyyd7CO
+X-Google-Smtp-Source: ABdhPJyt6VMGggbVCFrJnwRpkjIfrJTQtVh/DrIKQJ5Ll7LdVosBU2/Z45q1grwKsJHgh7AgnvLKSg==
+X-Received: by 2002:a1c:c286:: with SMTP id s128mr2416672wmf.88.1604393752996; 
+ Tue, 03 Nov 2020 00:55:52 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:3d8d:fb08:21c9:faa3?
  ([2a01:e35:2ec0:82b0:3d8d:fb08:21c9:faa3])
- by smtp.gmail.com with ESMTPSA id u3sm2532324wme.0.2020.11.03.00.55.45
+ by smtp.gmail.com with ESMTPSA id b7sm24466891wrp.16.2020.11.03.00.55.51
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 03 Nov 2020 00:55:46 -0800 (PST)
-Subject: Re: [PATCH AUTOSEL 5.9 02/35] arm64: dts: meson-axg: add USB nodes
+ Tue, 03 Nov 2020 00:55:52 -0800 (PST)
+Subject: Re: [PATCH AUTOSEL 5.9 03/35] arm64: dts: meson-axg-s400: enable USB
+ OTG
 To: Sasha Levin <sashal@kernel.org>, linux-kernel@vger.kernel.org,
  stable@vger.kernel.org
 References: <20201103011840.182814-1-sashal@kernel.org>
- <20201103011840.182814-2-sashal@kernel.org>
+ <20201103011840.182814-3-sashal@kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <d3ef0d93-a95b-2109-ef6b-3d70ce3b9cc3@baylibre.com>
-Date: Tue, 3 Nov 2020 09:55:45 +0100
+Message-ID: <c8951cc9-1a3f-2eb2-52fe-654d49591c7a@baylibre.com>
+Date: Tue, 3 Nov 2020 09:55:51 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201103011840.182814-2-sashal@kernel.org>
+In-Reply-To: <20201103011840.182814-3-sashal@kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201103_035549_109445_6E317BF9 
-X-CRM114-Status: GOOD (  17.16  )
+X-CRM114-CacheID: sfid-20201103_035554_526707_60F2A723 
+X-CRM114-Status: GOOD (  16.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,8 +153,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -164,88 +163,32 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 03/11/2020 02:18, Sasha Levin wrote:
 > From: Neil Armstrong <narmstrong@baylibre.com>
 > 
-> [ Upstream commit 1b208bab34dc3f4ef8f408105017d4a7b72b2a2f ]
+> [ Upstream commit f450d2c219f6a6b79880c97bf910c3c72725eb70 ]
 > 
-> This adds the USB Glue node, with the USB2 & USB3 controllers along the single
-> USB2 PHY node.
+> This enables USB OTG on the S400 board.
 > 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 > Signed-off-by: Sasha Levin <sashal@kernel.org>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 50 ++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
+>  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index b9efc8469265d..fae48efae83e9 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -171,6 +171,46 @@ soc {
->  		#size-cells = <2>;
->  		ranges;
->  
-> +		usb: usb@ffe09080 {
-> +			compatible = "amlogic,meson-axg-usb-ctrl";
-> +			reg = <0x0 0xffe09080 0x0 0x20>;
-> +			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> index cb1360ae1211e..7740f97c240f0 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> @@ -584,3 +584,9 @@ &uart_AO {
+>  	pinctrl-0 = <&uart_ao_a_pins>;
+>  	pinctrl-names = "default";
+>  };
 > +
-> +			clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB1_DDR_BRIDGE>;
-> +			clock-names = "usb_ctrl", "ddr";
-> +			resets = <&reset RESET_USB_OTG>;
-> +
-> +			dr_mode = "otg";
-> +
-> +			phys = <&usb2_phy1>;
-> +			phy-names = "usb2-phy1";
-> +
-> +			dwc2: usb@ff400000 {
-> +				compatible = "amlogic,meson-g12a-usb", "snps,dwc2";
-> +				reg = <0x0 0xff400000 0x0 0x40000>;
-> +				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clkc CLKID_USB1>;
-> +				clock-names = "otg";
-> +				phys = <&usb2_phy1>;
-> +				dr_mode = "peripheral";
-> +				g-rx-fifo-size = <192>;
-> +				g-np-tx-fifo-size = <128>;
-> +				g-tx-fifo-size = <128 128 16 16 16>;
-> +			};
-> +
-> +			dwc3: usb@ff500000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x0 0xff500000 0x0 0x100000>;
-> +				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-> +				dr_mode = "host";
-> +				maximum-speed = "high-speed";
-> +				snps,dis_u2_susphy_quirk;
-> +			};
-> +		};
-> +
->  		ethmac: ethernet@ff3f0000 {
->  			compatible = "amlogic,meson-axg-dwmac",
->  				     "snps,dwmac-3.70a",
-> @@ -1734,6 +1774,16 @@ sd_emmc_c: mmc@7000 {
->  				clock-names = "core", "clkin0", "clkin1";
->  				resets = <&reset RESET_SD_EMMC_C>;
->  			};
-> +
-> +			usb2_phy1: phy@9020 {
-> +				compatible = "amlogic,meson-gxl-usb2-phy";
-> +				#phy-cells = <0>;
-> +				reg = <0x0 0x9020 0x0 0x20>;
-> +				clocks = <&clkc CLKID_USB>;
-> +				clock-names = "phy";
-> +				resets = <&reset RESET_USB_OTG>;
-> +				reset-names = "phy";
-> +			};
->  		};
->  
->  		sram: sram@fffc0000 {
+> +&usb {
+> +	status = "okay";
+> +	dr_mode = "otg";
+> +	vbus-supply = <&usb_pwr>;
+> +};
 > 
 
 Hi Sasha,
