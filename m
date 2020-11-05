@@ -2,69 +2,144 @@ Return-Path: <SRS0=vaug=EL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 14523C00A89
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 08:31:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A31BC00A89
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 08:48:51 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 87EEC20729
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 08:31:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 389DF2080D
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 08:48:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ENL6wMUc";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=fullbizgoal.com header.i=@fullbizgoal.com header.b="eHuS5hbh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 87EEC20729
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=fullbizgoal.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Vzxhub0G";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WT0FzCo+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 389DF2080D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
-	:List-Id:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=auTN1z7hkOhr5hmB1ufNLvH5xN/pH4AYGBHlD8Duwjo=; b=ENL6wMUcdY9MJ3ICuDMAYHETJi
-	pKjuL3JZdKkvDuE6h2NholsyVtYP+TdmuRHxcAjKCBoHqPfJp/SCAx+TSULm8s6ZozEOvzsdDwVYt
-	FCyDMGSLrXKoQ669ZM+I6Fib820N0J0F5zZChcvLPgWWNgRbmhhyIAIG+pn9h8IOOIOmS7FAGkus6
-	aEzTsW9kFje6PAMgTLypJLThKiZyt6ar0QJoNe1LBUW7t00Naxfmbbc1y3QXZ/0Rk9tlqft0qutBT
-	mWvIJGfg9l0TacyUSvjZjUXn7BacxUFf//n1UU6c22l6EXJJLAP0hqdqc/jX+zWMZ+MHnO8wEOibe
-	6MV5ulEQ==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=gLmrQexvIndN4YPqM85weMGBpubw/arVdGABkLkzQGo=; b=Vzxhub0GLgC90A2v8ZhX9beCU
+	q3dY03PX2Bo3BOCqpsUBZl5rn5Ol+S/zbDs5htBtCu9uy/8F5xtYw84PbwS+jn5nlD0DxtU3LUgzl
+	RiUoYKrTfdxszBZHSSi504Frms5YqZHmP7Zc2Zo3mK8h2O5rYFh6daa4pnZ7xbtKR3K9pmw5iur9G
+	ifrej7hxx7AZND8EjmB0ySfD+kqwYk5OZn4phdAW8hU3ZGAuPZv2/GYaKnoNvWEeqCm9MijW/lykM
+	4L0IWYJ9TISFY5Hwb0QFXf2ndBE44Hecp2TNzD+HvmAD/iB7jbxwFFgo0ixSlrtHSgEezHQQNm3CC
+	fRt/5Z/cw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kaafe-0003FJ-V6; Thu, 05 Nov 2020 08:31:03 +0000
-Received: from mail.fullbizgoal.com ([80.211.27.207]
- helo=server1.mail.fullbizgoal.com)
+	id 1kaawl-0004kE-Tb; Thu, 05 Nov 2020 08:48:43 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaafd-0003Ep-Ai
- for linux-amlogic@lists.infradead.org; Thu, 05 Nov 2020 08:31:02 +0000
-Received: by server1.mail.fullbizgoal.com (Postfix, from userid 1001)
- id F3299A52FD; Thu,  5 Nov 2020 08:30:33 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fullbizgoal.com;
- s=mail; t=1604565059;
- bh=1A+RQztZunBjkjQlXgr2uQY18vlGaIq8j7jGOmWqiI0=;
- h=Date:From:To:Subject:From;
- b=eHuS5hbhJ6wKaYygn7Iizco0uXvrB0DElCvE+zdfsc1sOvksrQ3yryxUj5xXNhc+J
- yqIqluw8Aj6/lzI3870+w/mB4PhRmpw56FHy7D/NyH4Wv+hcfvBp+1bjKP2Yr0Pw7H
- sVQeE9hmhZyUjKWIaW1GQW+O3w5RJAA2S3biKb6A93ciYU4Q0E8zKItVVP7vNd+3VF
- CH5w7PPsXR3gri7o7PO9GTdWu+rnP0AgGbjYyoEpC9jzMeCqNdprtQbktIy40C+Mbc
- Jl9NviqTadQ7fJzsoMuitt2sdU8suTJzWL1MSzoHlvYwJnniYkbCpEXpxeri86Xb6z
- CidgpkCf3+yqw==
-Received: by mail.fullbizgoal.com for <linux-amlogic@lists.infradead.org>;
- Thu,  5 Nov 2020 08:30:14 GMT
-Message-ID: <20201105074501-0.1.2o.ez97.0.im1i59e1o3@fullbizgoal.com>
-Date: Thu,  5 Nov 2020 08:30:14 GMT
-From: "Ethan Smith" <ethan.smith@fullbizgoal.com>
-To: <linux-amlogic@lists.infradead.org>
-Subject: Disinfectant
-X-Mailer: mail.fullbizgoal.com
+ id 1kaawh-0004ht-Q9
+ for linux-amlogic@lists.infradead.org; Thu, 05 Nov 2020 08:48:41 +0000
+Received: by mail-wm1-x344.google.com with SMTP id c18so732933wme.2
+ for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2020 00:48:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=O5ctiIecOJMj5eydurD3p6Qv3uyEbdZ4aY7Y/2rpsMY=;
+ b=WT0FzCo+BNbA8JWMIpfGgfK7dbc5XyCEqEUvaTcZAjw8FC+egAZ1eLbD7z7HaVbEz4
+ SO+/Ms0CqzUYHKEZ+WZUCVU7NADftXs1PzSoR9n4DfjJDhcYWtRQ5bFe3kgQ3xO/+JDl
+ 3f4JJOC2eWXem7N3muXa5F+9nMo+QXTxYHsFnl3b3Xhb74I76Y2OZvZdhO2IoG9dyf9d
+ 6N47yxIXeEFJwLOXcLFhCto5GAKej4836DePpJ0KhFIdx0rnoKJsr7X2pzKCpteJv+L2
+ O1xZH/P0O1KVEacLcO1DiyMcMKBPjHhXzkUQIdminTPPXMfto+/NgnNIQelHpwn0VdJi
+ dAnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=O5ctiIecOJMj5eydurD3p6Qv3uyEbdZ4aY7Y/2rpsMY=;
+ b=PGjxoMqPP9tQjAWgy7vKimuJUulWoWK14Isf0p64WGktFrAl5ytdpDmwVkeSoi62rF
+ KsUWFDunwT+m509oXXoYIl8hhvBaq3vORrtPIpuCI32PegRlnQ6i83lBjHOlT1WNjbyn
+ EvZNh9A8BKbWX4SI29PhSdCvT7RNsaatxvjLLzHFVypUK42D13rZFKsGQsMti9La96z3
+ m6bwBvszxTblLcj7DD3W4nOvyhnlcbzq9WUckG4LIAqmIZidFEWjq1sRHlOCTqJI5FpH
+ wU965SaMgSBiNY1vF88F7aHxb9ajl49r3zQOMwqANKtrRY1W8Uo3z9qjMnA1o5zZBVZD
+ 00Gg==
+X-Gm-Message-State: AOAM530BDKS2b0WBB5FHSMXQ0eTP1BD+I1e4HK93oJ2dtbabtE82ywn8
+ aPV58Ku41qdVSIJ771eATsE3lw==
+X-Google-Smtp-Source: ABdhPJxR2MQzc0ZU6rTFw6KfIuUQz6VyBpLGVhqsuUKIQyoeReigUQZtyw2H7rWk9P1FJua3X/S1VQ==
+X-Received: by 2002:a1c:3846:: with SMTP id f67mr1513384wma.33.1604566112817; 
+ Thu, 05 Nov 2020 00:48:32 -0800 (PST)
+Received: from [192.168.1.47] (home.beaume.starnux.net. [82.236.8.43])
+ by smtp.gmail.com with ESMTPSA id m14sm1466053wro.43.2020.11.05.00.48.31
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 05 Nov 2020 00:48:32 -0800 (PST)
+Subject: Re: [PATCH v2 0/4] media: meson: Add support for the Amlogic GE2D
+ Accelerator Unit
+To: Linus Walleij <linus.walleij@linaro.org>, Todd Kjos <tkjos@google.com>
+References: <20201030143715.577641-1-narmstrong@baylibre.com>
+ <CACRpkdZnpjas-WYuXhJ_mwCTqTP5DpWHcnNmGpdCQjrr3xGnYg@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <e265e64b-d1b0-ed31-e82c-c339dd2bffe6@baylibre.com>
+Date: Thu, 5 Nov 2020 09:46:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <CACRpkdZnpjas-WYuXhJ_mwCTqTP5DpWHcnNmGpdCQjrr3xGnYg@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201105_033101_569940_73424C55 
-X-CRM114-Status: UNSURE (   0.93  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201105_034839_929930_52188D91 
+X-CRM114-Status: GOOD (  29.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,24 +151,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Hans Verkuil <hverkuil@xs4all.nl>, John Stultz <john.stultz@linaro.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Roman Stratiienko <r.stratiienko@gmail.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Good morning,
+Hi Linus,
 
-looking for companies interested in raising additional capital by diversifying their offer in soaps, liquids and gels for hand disinfection and cosmetics for body and hair care.
+On 05/11/2020 08:53, Linus Walleij wrote:
+> Hi Neil,
+> 
+> this is just a drive-by question and I'm looping in Todd in the hopes for
+> a discussion or clarification.
+> 
+> On Fri, Oct 30, 2020 at 3:37 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> 
+>> The GE2D is a 2D accelerator with various features like configurable blitter
+>> with alpha blending, frame rotation, scaling, format conversion and colorspace
+>> conversion.
+>>
+>> The driver implements a Memory2Memory VB2 V4L2 streaming device permitting:
+>> - 0, 90, 180, 270deg rotation
+>> - horizontal/vertical flipping
+>> - source cropping
+>> - destination compositing
+>> - 32bit/24bit/16bit format conversion
+>>
+>> This adds the support for the GE2D version found in the AXG SoCs Family.
+> 
+> We are starting to see a bunch of these really nicely abstracted blitters
+> and other 2D-accelerators now.
 
-The distribution of innovative products corresponding to the current preferences of customers in the field of hygiene and preventive healthcare allows our partners to gain new markets and achieve better economic results.
+The actual blitting functionality is limited to non-alpha blitting since
+no standard CID are available for this, but we could totally try to find
+common CIDs to describe the possible Alpha Blending properties for these
+2D accelerators.
 
-In addition to products with bactericidal action, our range includes shower gels, shampoos and hair conditioners, as well as efficient, concentrated detergents.
+> 
+> Is stuff like Android going to pick up and use this to blit and blend
+> generic buffers?
 
-The versatility (suitable for all skin types) combined with an affordable price means that customers make an informed choice of a product among others available on the market.
+I'm not sure this is Google's plan right now, but maybe it should be doable.
 
-Are you interested in cooperation?
+> 
+> Or is this in essence a camera and/or video out accelerator thing?
 
-Ethan Smith
+No it's really a blitter & scaler, rotate & format converter, like
+the samsung and rockhip drivers, and somehow the allwinner rotate driver.
+Amlogic mainly uses it to copy frames beeing displayed for encoding,
+or to convert frames from the HDMI RX on their TV SoCs.
+
+> 
+> The placement of this driver in drivers/media makes me think that
+> it is for cameras or video output, but the functionality is actually
+> quite generic.
+
+It's really a memory-2-memory driver, like the video codecs, it's a separate
+class than the camera & video output drivers.
+
+> 
+> I've been half-guessing that userspace like Android actually mostly
+> use GPUs to composit their graphics, but IIUC this can sometimes be
+> used for 2D compositing, and when used will often be quicker and/or
+> more energy efficient than using a GPU for the same task.
+
+Well drm-hwcomposer can already use the DRM universal planes and the virtual
+writeback connector when available for compositing.
+But this kind of driver can be really useful for display rotation for example
+when the DRM driver doesn't support it.
+
+Honestly I don't understand the Android graphics stack enough to formally answer
+this question, but if it can be used, this kind of driver is much faster and much
+simpler than a GPU for simple blitting and rotation.
+And since they support DMA-BUF, they can totally be used in a modern graphics pipeline.
+
+Maybe someone could answer ? Maybe drm-hwcomposer could be extended for that ?
+
+I know there is an issue opened in GloDroid for that:
+https://github.com/GloDroid/glodroid_manifest/issues/66
+
+For the record, I use this driver to accelerate the LVGL flush to display on the
+AXG SoCs lacking a GPU, this by using DMA-BUF and DRM atomic modesetting with the DRM
+LVGL display driver I submitted (and tweaked for V4L2 M2M):
+https://github.com/lvgl/lv_drivers/blob/master/display/drm.c
+
+Neil
+
+> 
+> Yours,
+> Linus Walleij
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
