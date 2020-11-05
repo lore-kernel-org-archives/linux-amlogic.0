@@ -2,144 +2,111 @@ Return-Path: <SRS0=vaug=EL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.6 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,FORGED_HOTMAIL_RCVD2,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A31BC00A89
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 08:48:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30C4BC00A89
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 08:51:28 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 389DF2080D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 08:48:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 984DE2083B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 08:51:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Vzxhub0G";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WT0FzCo+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 389DF2080D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="G/o+XxGl";
+	dkim=temperror (0-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="Qw0fE1jN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 984DE2083B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=hotmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=gLmrQexvIndN4YPqM85weMGBpubw/arVdGABkLkzQGo=; b=Vzxhub0GLgC90A2v8ZhX9beCU
-	q3dY03PX2Bo3BOCqpsUBZl5rn5Ol+S/zbDs5htBtCu9uy/8F5xtYw84PbwS+jn5nlD0DxtU3LUgzl
-	RiUoYKrTfdxszBZHSSi504Frms5YqZHmP7Zc2Zo3mK8h2O5rYFh6daa4pnZ7xbtKR3K9pmw5iur9G
-	ifrej7hxx7AZND8EjmB0ySfD+kqwYk5OZn4phdAW8hU3ZGAuPZv2/GYaKnoNvWEeqCm9MijW/lykM
-	4L0IWYJ9TISFY5Hwb0QFXf2ndBE44Hecp2TNzD+HvmAD/iB7jbxwFFgo0ixSlrtHSgEezHQQNm3CC
-	fRt/5Z/cw==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=B9TgQNt8QgexzjLn2oOJhZOqIJBA8EO4v2tzenYT4NE=; b=G/o+XxGlo3zuY71dhc7GalzUW0
+	lczvkdYtahodhGUMdyBrozzfPMxwA5iDaWdu3VMQ1I4Nn9SrmkDr5gwni2bvpEwfKcsUvoF/c+9LF
+	t3F+VbUQ6VQsdi0PzBgqesUgMJY367sCXM9FFxV+SEJGdnMRDJXCs6duLX3JVUEOSn2kXYiTNoXeU
+	xdf0GD9/lgA1Ts/Lat2HXK2pk7EYrX1SdFek9zoLKKMZ5ii7r9aXdXzcq4a+cX/Zt4R5oN+YFaEB/
+	vFfbzYnNhCKkjphz9kk84avaiIQeMnbY1RxDGGjCo6Eo8kt65+S/ia6b+QaU/pZOcaYbr3tokldUW
+	HurSxlGw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kaawl-0004kE-Tb; Thu, 05 Nov 2020 08:48:43 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1kaazL-0005DV-5z; Thu, 05 Nov 2020 08:51:23 +0000
+Received: from mail-oln040092253048.outbound.protection.outlook.com
+ ([40.92.253.48] helo=APC01-SG2-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaawh-0004ht-Q9
- for linux-amlogic@lists.infradead.org; Thu, 05 Nov 2020 08:48:41 +0000
-Received: by mail-wm1-x344.google.com with SMTP id c18so732933wme.2
- for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2020 00:48:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=O5ctiIecOJMj5eydurD3p6Qv3uyEbdZ4aY7Y/2rpsMY=;
- b=WT0FzCo+BNbA8JWMIpfGgfK7dbc5XyCEqEUvaTcZAjw8FC+egAZ1eLbD7z7HaVbEz4
- SO+/Ms0CqzUYHKEZ+WZUCVU7NADftXs1PzSoR9n4DfjJDhcYWtRQ5bFe3kgQ3xO/+JDl
- 3f4JJOC2eWXem7N3muXa5F+9nMo+QXTxYHsFnl3b3Xhb74I76Y2OZvZdhO2IoG9dyf9d
- 6N47yxIXeEFJwLOXcLFhCto5GAKej4836DePpJ0KhFIdx0rnoKJsr7X2pzKCpteJv+L2
- O1xZH/P0O1KVEacLcO1DiyMcMKBPjHhXzkUQIdminTPPXMfto+/NgnNIQelHpwn0VdJi
- dAnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=O5ctiIecOJMj5eydurD3p6Qv3uyEbdZ4aY7Y/2rpsMY=;
- b=PGjxoMqPP9tQjAWgy7vKimuJUulWoWK14Isf0p64WGktFrAl5ytdpDmwVkeSoi62rF
- KsUWFDunwT+m509oXXoYIl8hhvBaq3vORrtPIpuCI32PegRlnQ6i83lBjHOlT1WNjbyn
- EvZNh9A8BKbWX4SI29PhSdCvT7RNsaatxvjLLzHFVypUK42D13rZFKsGQsMti9La96z3
- m6bwBvszxTblLcj7DD3W4nOvyhnlcbzq9WUckG4LIAqmIZidFEWjq1sRHlOCTqJI5FpH
- wU965SaMgSBiNY1vF88F7aHxb9ajl49r3zQOMwqANKtrRY1W8Uo3z9qjMnA1o5zZBVZD
- 00Gg==
-X-Gm-Message-State: AOAM530BDKS2b0WBB5FHSMXQ0eTP1BD+I1e4HK93oJ2dtbabtE82ywn8
- aPV58Ku41qdVSIJ771eATsE3lw==
-X-Google-Smtp-Source: ABdhPJxR2MQzc0ZU6rTFw6KfIuUQz6VyBpLGVhqsuUKIQyoeReigUQZtyw2H7rWk9P1FJua3X/S1VQ==
-X-Received: by 2002:a1c:3846:: with SMTP id f67mr1513384wma.33.1604566112817; 
- Thu, 05 Nov 2020 00:48:32 -0800 (PST)
-Received: from [192.168.1.47] (home.beaume.starnux.net. [82.236.8.43])
- by smtp.gmail.com with ESMTPSA id m14sm1466053wro.43.2020.11.05.00.48.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 05 Nov 2020 00:48:32 -0800 (PST)
-Subject: Re: [PATCH v2 0/4] media: meson: Add support for the Amlogic GE2D
- Accelerator Unit
-To: Linus Walleij <linus.walleij@linaro.org>, Todd Kjos <tkjos@google.com>
-References: <20201030143715.577641-1-narmstrong@baylibre.com>
- <CACRpkdZnpjas-WYuXhJ_mwCTqTP5DpWHcnNmGpdCQjrr3xGnYg@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <e265e64b-d1b0-ed31-e82c-c339dd2bffe6@baylibre.com>
-Date: Thu, 5 Nov 2020 09:46:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <CACRpkdZnpjas-WYuXhJ_mwCTqTP5DpWHcnNmGpdCQjrr3xGnYg@mail.gmail.com>
+ id 1kaazH-0005Bu-T8
+ for linux-amlogic@lists.infradead.org; Thu, 05 Nov 2020 08:51:21 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GxDbkMkP8n6i57Txsh4VgoJxfvieDDdiYljTijYnVwNQ/6jpvm6ifcVbF9OUizMhFkqSmAE8t08YbFOOcnnMbhFm6EsHjLSI1L74XV6KrvglX1baHMMIQtKCOTNnADq3frwvqjlFhXPnIWac2jt944jj1/XWoP05MoM2RaG58YKUuIhzTmBYc3J6zJmbH0LKk1/a+yLqWpGbhlQ4+CnA4PcJQPh27EJUk/Chlq9rWZr99ts9Fent+mi1zPl40zZbRNOCLWySREhUEdnElYuy8P6z5j9iaQkAHkOys/4irj321htYmf5Ik9nS4Aa4joxfW/f2f5OErwANXWftgt4+bg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iy7K8ER6alHJfJ18SRzCW/QnlOhmCHGGNIw5YtF63bA=;
+ b=ayVGyTUXqjk3GkNa2ETa8iUgsIF1cDcsGNu+jIXrCaqFxPCRTBWXSW7QBgwIBLNKP8qakjhMO8ynEkm7r2bEME4T0LHgwrtIhqmXAUslMHFfPR/zVtRiKIuwSxnV4tnMxpi9zzHpAckJgAwiGiFo+1yBME/OYSD9xjIG44c7PneLVRmoSsveyp84UHze+OhHnPGnkAsBgj+ugYzAREQL16Yo9fbRMIrIqhUZmSrqGSKvxMHkD3if39E5A0q0ZiYXm6pbTqMX+oIRXGuQoMg+RDG9w6On6mjc9jPHgVWOhDzQ5LHdsXRio90RIGJIa5Au/mhMMOm5v6VCIDvmdJmLLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iy7K8ER6alHJfJ18SRzCW/QnlOhmCHGGNIw5YtF63bA=;
+ b=Qw0fE1jNAJLyc3Atu3ZBpL2R3knAWZVhdq1YuFEk7N2Jansv41eNoPKmTp4uVI6663aONSAnK7fBZkj0P7SNsvF+NL8bIifJ+Nww/5xzY89vnsUL3g1B45gsCAvMFDj/THZ/vZAETyiD/GfW00n/nTk2JJxH4AZlNYFMj5vJobwaEH1ooD3rR685/TqUOcXPIokdfCeCUnbLptf1UGT3vhaStvjS4ZeyvPUF3p871xZuKb7D3eD8mKHga79Mr7asO+x6qULZ9QXEOu8ruA4QhZ6QhcmoHt381OQnPDjbLPYszr27oOBDOIH/x3fOM9/kVNhf3q4jW0HlR5oU09ZlRA==
+Received: from HK2APC01FT027.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebc::53) by
+ HK2APC01HT056.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebc::368)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3520.15; Thu, 5 Nov
+ 2020 08:51:12 +0000
+Received: from SG2PR03MB4502.apcprd03.prod.outlook.com
+ (2a01:111:e400:7ebc::41) by HK2APC01FT027.mail.protection.outlook.com
+ (2a01:111:e400:7ebc::179) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3520.15 via Frontend
+ Transport; Thu, 5 Nov 2020 08:51:11 +0000
+Received: from SG2PR03MB4502.apcprd03.prod.outlook.com
+ ([fe80::d849:8be0:f585:49fa]) by SG2PR03MB4502.apcprd03.prod.outlook.com
+ ([fe80::d849:8be0:f585:49fa%3]) with mapi id 15.20.3541.021; Thu, 5 Nov 2020
+ 08:51:04 +0000
+From: HK SH <shareahack@hotmail.com>
+To: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+Subject: Amlogic Text Offset regression
+Thread-Topic: Amlogic Text Offset regression
+Thread-Index: AQHWs02uileffqx55k+uO2r1b7dfIQ==
+Date: Thu, 5 Nov 2020 08:51:04 +0000
+Message-ID: <SG2PR03MB450210BE2ED8609110E2D085C2EE0@SG2PR03MB4502.apcprd03.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:4EEB34D093F2B6B3C0A89F94EEED9CD5A482AD2D710102B79B57B3B7A43C28F8;
+ UpperCasedChecksum:3C3FDEE93C18F6612956AF8874A875F13A834ABC9914176CFB41A481F6D1B733;
+ SizeAsReceived:6610; Count:41
+x-tmn: [gfOQvkHs8O2ABby9w/vZPO21VxFcb8j7]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 41
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 11d4731e-7b68-4d5b-2085-08d88167ee25
+x-ms-traffictypediagnostic: HK2APC01HT056:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: IS0M1BMN6YiALJ67B00R6Y/gVIuTjhaAKGEYJ33LBYJc97t1NXVJKrxwY3dwdvkObgRdIYrnN8fVtJ7iK6pmkMB1PjXj5P0hsD4TGRbijq1d5PESBXzGi+bkPQmhSjRHJc9wPWM23EnC7Q6ZyrEBOS/z/7/YVGK5mI7+CpHKzABRFcOYxRLvL7tOQdBDg+oWhUXOVx0RRrqx0F/oaiTiFg==
+x-ms-exchange-antispam-messagedata: hqfph7BRhkssSQkZAR/o6PTKJYty2TmTRle9bRzoGHXdsrkm2iJRgOrT9ZTonrSuV4mEjJg/g4QXYrLQI3Y1gd/GSCTwtspyw0xpGj5XdnQxTmN+n/oLPw/F5PKb5K5AzGSXOe3rs1jITA3GEgxDVw==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: HK2APC01FT027.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11d4731e-7b68-4d5b-2085-08d88167ee25
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Nov 2020 08:51:04.8840 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT056
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201105_034839_929930_52188D91 
-X-CRM114-Status: GOOD (  29.71  )
+X-CRM114-CacheID: sfid-20201105_035120_331733_2F82A902 
+X-CRM114-Status: GOOD (  13.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,102 +118,264 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Hans Verkuil <hverkuil@xs4all.nl>, John Stultz <john.stultz@linaro.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Roman Stratiienko <r.stratiienko@gmail.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Linus,
+Hello,
 
-On 05/11/2020 08:53, Linus Walleij wrote:
-> Hi Neil,
-> 
-> this is just a drive-by question and I'm looping in Todd in the hopes for
-> a discussion or clarification.
-> 
-> On Fri, Oct 30, 2020 at 3:37 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> 
->> The GE2D is a 2D accelerator with various features like configurable blitter
->> with alpha blending, frame rotation, scaling, format conversion and colorspace
->> conversion.
->>
->> The driver implements a Memory2Memory VB2 V4L2 streaming device permitting:
->> - 0, 90, 180, 270deg rotation
->> - horizontal/vertical flipping
->> - source cropping
->> - destination compositing
->> - 32bit/24bit/16bit format conversion
->>
->> This adds the support for the GE2D version found in the AXG SoCs Family.
-> 
-> We are starting to see a bunch of these really nicely abstracted blitters
-> and other 2D-accelerators now.
+Since the text offset patch is removed from the kernel, no amlogic board is able to boot with 5.10-rc. While I can get it to boot only when I have mainline uboot and not all amlogic boards have mainline uboot support.
+I have tested Kernel 5.10-rc1 and 5.10.rc2 on Khadas VIm3 with mainline uboot and it works fine but when I try it on Odroid N2 or Odroid C4 then it gets stuck at starting kernel which seems that the kernel load address is not correct or something.
+Odroid C4 Log below:
+SM1:BL:511f6b:81ca2f;FEAT:A0F83180:20282000;POC:F;RCY:0;EMMC:0;READ:0;0.0;CHK:0;                                                  
+bl2_stage_init 0x01                                                                                                                        
+bl2_stage_init 0x81                                                                                                                        
+hw id: 0x0000 - pwm id 0x01                                                                                                                
+bl2_stage_init 0xc1                                                                                                                        
+bl2_stage_init 0x02                        
+                                           
+L0:00000000                                
+L1:00000703                                
+L2:00008067                                
+L3:15000020                                
+S1:00000000
+B2:20282000
+B1:a0f83180
 
-The actual blitting functionality is limited to non-alpha blitting since
-no standard CID are available for this, but we could totally try to find
-common CIDs to describe the possible Alpha Blending properties for these
-2D accelerators.
+TE: 119887
 
-> 
-> Is stuff like Android going to pick up and use this to blit and blend
-> generic buffers?
+BL2 Built : 20:29:41, Jun 18 2019. g12a ga659aac - luan.yuan@droid15-sz
 
-I'm not sure this is Google's plan right now, but maybe it should be doable.
+Board ID = 1
+Set cpu clk to 24M
+Set clk81 to 24M
+Use GP1_pll as DSU clk.
+DSU clk: 1200 Mhz
+CPU clk: 1200 MHz
+Set clk81 to 166.6M
+eMMC boot @ 0
+sw8 s
+DDR driver_vesion: LPDDR4_PHY_V_0_1_15 build time: Jun 18 2019 20:29:37
+board id: 1
+Load FIP HDR from eMMC, src: 0x00010200, des: 0xfffd0000, size: 0x00004000, part: 0
+fw parse done
+Load ddrfw from eMMC, src: 0x00030200, des: 0xfffd0000, size: 0x0000c000, part: 0
+Load ddrfw from eMMC, src: 0x0002c200, des: 0xfffd0000, size: 0x00004000, part: 0
+PIEI prepare done
+fastboot data load
+00000000
+emmc switch 1 ok
+00000000
+emmc switch 2 ok
+fastboot data verify
+verify result: 255
+Cfg max: 2, cur: 1. Board id: 255. Force loop cfg
+DDR4 probe
+ddr clk to 1320MHz
+Load ddrfw from eMMC, src: 0x00014200, des: 0xfffd0000, size: 0x0000c000, part: 0
+00000000
+emmc switch 0 ok
 
-> 
-> Or is this in essence a camera and/or video out accelerator thing?
+dmc_version 0001
+Check phy result
+INFO : End of initialization
+INFO : End of read enable training
+INFO : End of fine write leveling
+INFO : End of read dq deskew training
+INFO : End of MPR read delay center optimization
+INFO : End of Write leveling coarse delay
+INFO : End of write delay center optimization
+INFO : End of read delay center optimization
+INFO : End of max read latency training
+INFO : Training has run successfully!
+1D training succeed
+Load ddrfw from eMMC, src: 0x00020200, des: 0xfffd0000, size: 0x0000c000, part: 0
+Check phy result
+INFO : End of initialization
+INFO : End of 2D read delay Voltage center optimization
+INFO : End of 2D write delay Voltage center optimization
+INFO : Training has run successfully!
 
-No it's really a blitter & scaler, rotate & format converter, like
-the samsung and rockhip drivers, and somehow the allwinner rotate driver.
-Amlogic mainly uses it to copy frames beeing displayed for encoding,
-or to convert frames from the HDMI RX on their TV SoCs.
+R0_RxClkDly_Margin==106 ps 9
+R0_TxDqDly_Margi==118 ps 10
 
-> 
-> The placement of this driver in drivers/media makes me think that
-> it is for cameras or video output, but the functionality is actually
-> quite generic.
 
-It's really a memory-2-memory driver, like the video codecs, it's a separate
-class than the camera & video output drivers.
+R1_RxClkDly_Margin==0 ps 0
+R1_TxDqDly_Margi==0 ps 0
 
-> 
-> I've been half-guessing that userspace like Android actually mostly
-> use GPUs to composit their graphics, but IIUC this can sometimes be
-> used for 2D compositing, and when used will often be quicker and/or
-> more energy efficient than using a GPU for the same task.
+ dwc_ddrphy_apb_wr((0<<20)|(2<<16)|(0<<12)|(0xb0):0001 
 
-Well drm-hwcomposer can already use the DRM universal planes and the virtual
-writeback connector when available for compositing.
-But this kind of driver can be really useful for display rotation for example
-when the DRM driver doesn't support it.
+soc_vref_reg_value 0x 0000004f 00000051 0000004f 0000004e 00000050 0000004e 0000004e 0000004d 0000004e 0000004f 0000004e 00000050 0000004f 0000004c 0000004e 0000004e 0000004e 0000004d 00000050 0000004f 0000004f 0000004d 0000004d 000001
+2D training succeed
+aml_ddr_fw_vesion: LPDDR4_PHY_V_0_1_15 build time: Jun 18 2019 20:29:43
+auto size-- 65535DDR cs0 size: 2048MB
+DDR cs1 size: 2048MB
+DMC_DDR_CTRL: 00700024DDR size: 3928MB
+cs0 DataBus test pass
+cs1 DataBus test pass
+cs0 AddrBus test pass
+cs1 AddrBus test pass
 
-Honestly I don't understand the Android graphics stack enough to formally answer
-this question, but if it can be used, this kind of driver is much faster and much
-simpler than a GPU for simple blitting and rotation.
-And since they support DMA-BUF, they can totally be used in a modern graphics pipeline.
+non-sec scramble use zero key
+ddr scramble enabled
 
-Maybe someone could answer ? Maybe drm-hwcomposer could be extended for that ?
+100bdlr_step_size ps== 450
+result report
+boot times 0Enable ddr reg access
+00000000
+emmc switch 3 ok
+Authentication key not yet programmed
+get rpmb counter error 0x00000007
+00000000
+emmc switch 0 ok
+Load FIP HDR from eMMC, src: 0x00010200, des: 0x01700000, size: 0x00004000, part: 0
+Load BL3X from eMMC, src: 0x0003c200, des: 0x0172c000, size: 0x0009c000, part: 0
+bl2z: ptr: 05129330, size: 00001e40
+0.0;M3 CHK:0;cm4_sp_mode 0
+MVN_1=0x00000000
+MVN_2=0x00000000
+[Image: g12a_v1.1.3386-3b31431 2019-05-21 10:41:54 luan.yuan@droid15-sz]
+OPS=0x10
+ring efuse init
+2b 0c 10 00 01 31 15 00 00 09 36 30 43 57 50 50 
+[0.017354 Inits done]
+secure task start!
+high task start!
+low task start!
+run into bl31
+NOTICE:  BL31: v1.3(release):4fc40b1
+NOTICE:  BL31: Built : 15:57:33, May 22 2019
+NOTICE:  BL31: G12A normal boot!
+NOTICE:  BL31: BL33 decompress pass
+ERROR:   Error initializing runtime service opteed_fast
 
-I know there is an issue opened in GloDroid for that:
-https://github.com/GloDroid/glodroid_manifest/issues/66
 
-For the record, I use this driver to accelerate the LVGL flush to display on the
-AXG SoCs lacking a GPU, this by using DMA-BUF and DRM atomic modesetting with the DRM
-LVGL display driver I submitted (and tweaked for V4L2 M2M):
-https://github.com/lvgl/lv_drivers/blob/master/display/drm.c
+U-Boot 2015.01 (Apr 14 2020 - 01:55:53)
 
-Neil
+DRAM:  3.5 GiB
+Relocation Offset is: d6eef000
+spi_post_bind(spifc): req_seq = 0
+register usb cfg[0][1] = 00000000d7f83b88
+MMC:   aml_priv->desc_buf = 0x00000000d3edf7c0
+aml_priv->desc_buf = 0x00000000d3ee1b00
+SDIO Port C: 0, SDIO Port B: 1
+co-phase 0x2, tx-dly 0, clock 400000
+co-phase 0x2, tx-dly 0, clock 400000
+co-phase 0x2, tx-dly 0, clock 400000
+emmc/sd response timeout, cmd8, status=0x1ff2800
+emmc/sd response timeout, cmd55, status=0x1ff2800
+co-phase 0x2, tx-dly 0, clock 400000
+co-phase 0x2, tx-dly 0, clock 40000000
+aml_sd_retry_refix[983]:delay = 0x0,gadjust =0x142000
+[mmc_startup] mmc refix success
+[mmc_init] mmc init success
+In:    serial
+Out:   serial
+Err:   serial
+vpu: error: vpu: check dts: FDT_ERR_BADMAGIC, load default parameters
+vpu: driver version: v20190313
+vpu: detect chip type: 12
+vpu: clk_level default: 7(666667000Hz), max: 7(666667000Hz)
+vpu: clk_level = 7
+vpu: vpu_power_on
+vpu: set_vpu_clk
+vpu: set clk: 666667000Hz, readback: 666666667Hz(0x100)
+vpu: set_vpu_clk finish
+vpu: vpu_module_init_config
+vpp: vpp_init
+vpp: g12a/b osd1 matrix rgb2yuv ..............
+vpp: g12a/b osd2 matrix rgb2yuv..............
+vpp: g12a/b osd3 matrix rgb2yuv..............
+cvbs: cpuid:0x2b
+cvbs_config_hdmipll_g12a
+cvbs_set_vid2_clk
+reading boot-logo.bmp.gz
+** Unable to read file boot-logo.bmp.gz **
+reading boot-logo.bmp
+** Unable to read file boot-logo.bmp **
+movi: not registered partition name, logo
+movi - Read/write command from/to SD/MMC for ODROID board
 
-> 
-> Yours,
-> Linus Walleij
-> 
+Usage:
+movi <read|write> <partition|sector> <offset> <address> [<length>]
+    - <read|write>  the command to access the storage
+    - <offset>  the offset from the start of given partiton in lba
+    - <address>  the memory address to load/store from/to the storage device
+    - [<length>]  the size of the block to read/write in bytes
+    - all parameters must be hexa-decimal only
+
+[OSD]check dts: FDT_ERR_BADMAGIC, load default fb_addr parameters
+[OSD]set initrd_high: 0x3d800000
+[OSD]fb_addr for logo: 0x3d800000
+[OSD]check dts: FDT_ERR_BADMAGIC, load default fb_addr parameters
+[OSD]fb_addr for logo: 0x3d800000
+[OSD]VPP_OFIFO_SIZE:0xfff01fff
+[CANVAS]canvas init
+[CANVAS]addr=0x3d800000 width=5760, height=2160
+cvbs: outputmode[1080p60hz] is invalid
+vpp: vpp_matrix_update: 2
+set hdmitx VIC = 16
+config HPLL = 5940000 frac_rate = 1
+HPLL: 0x3b3a04f7
+HPLL: 0x1b3a04f7
+HPLLv1: 0xdb3a04f7
+config HPLL done
+j = 6  vid_clk_div = 1
+hdmitx phy setting done
+hdmitx: set enc for VIC: 16
+enc_vpu_bridge_reset[1319]
+rx version is 1.4 or below  div=10
+USB3.0 XHCI init start
+Net:   dwmac.ff3f0000
+Hit Enter or space or Ctrl+C key to stop autoboot -- :  0 
+## Attempting fetch boot.ini in mmc:0...
+reading boot.ini
+729 bytes read in 3 ms (237.3 KiB/s)
+## Executing script at 04000000
+reading /Image
+33964544 bytes read in 1112 ms (29.1 MiB/s)
+reading /dtbs/amlogic/meson-sm1-odroid-c4.dtb
+71789 bytes read in 19 ms (3.6 MiB/s)
+reading /initramfs-linux.uimg
+8448788 bytes read in 277 ms (29.1 MiB/s)
+[rsvmem] get fdtaddr NULL!
+rsvmem - reserve memory
+
+Usage:
+rsvmem check                   - check reserved memory
+rsvmem dump                    - dump reserved memory
+
+rsvmem check failed
+## Loading init Ramdisk from Legacy Image at 03080000 ...
+   Image Name:   Ramdisk Image
+   Image Type:   AArch64 Linux RAMDisk Image (uncompressed)
+   Data Size:    8448724 Bytes = 8.1 MiB
+   Load Address: 00000000
+   Entry Point:  00000000
+   Verifying Checksum ... OK
+active_slot is <NULL>
+Unknown command 'store' - try 'help'
+No dtbo patitions found
+load dtb from 0x1000000 ......
+## Flattened Device Tree blob at 20000000
+   Booting using the fdt blob at 0x20000000
+libfdt fdt_path_offset() returned FDT_ERR_NOTFOUND
+No valid dtbo image found
+libfdt fdt_path_offset() returned FDT_ERR_NOTFOUND
+[rsvmem] fdt get prop fail.
+   Loading Ramdisk to 3cff1000, end 3d7ffad4 ... OK
+   Loading Device Tree to 000000001ffeb000, end 000000001ffff86c ... OK
+
+Starting kernel ...
+
+uboot time: 5251814 us
+
+
+Kindly advice what is the plan forward in regards to run mainline kernel on amlogic boards which does not have mainline uboot 
+
+Furkan Kardame,
+Manjaro ARM Team.
 
 
 _______________________________________________
