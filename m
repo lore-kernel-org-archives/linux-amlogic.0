@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 36B47C00A89
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 13:00:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB376C00A89
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 13:00:44 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A7BFF206D4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 13:00:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5E5E6206D4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 13:00:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nxCP7oOW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XQxXbboD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7BFF206D4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NMSilXu9";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a2qltg2Z"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E5E6206D4
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=3o8+BW4SmZR+KRExyWnhxk3jq7qjEh+tej/3XsHl0lQ=; b=nxCP7oOWJm5GJTsonGFUJdLVF
-	ZvoA/s7jfFS1DOnweUv0s6fZeF5ZZyig2f5Ujc0LCHypbxIbvBrKKSORuGciffvtd93Iv+xPEspAy
-	pk9gDv6QjswGVuEl1DUiYL3xAPyLjw0BWkDbfSCqnyzpGOTmcl0an1ivbPYvdJZ6UXQ7AODTAZNZf
-	WbRSa3cF0/ZhpbI1yCssQafHa0uNcH+2ryjAs0QPV+VegBX1V6hl0c2yYbDoN/+OIHdyg5JEuiNM1
-	kMwfzUys6p6Kvh+K805ev8/FQautlMS0dkBtVSLFHHW9soa+4yy9Df3wVJBuKBCqlgVgSCZog2wxp
-	UJOlbk0xA==;
+	 bh=yS25zTIom/S/NSjXwQEp0gq58TbfjW8yS8jzikjEe54=; b=NMSilXu9Y/vErdrtqE9hV+1Si
+	v6J9Sebo2EIQCpSriGKUmc/y2ICtdqLt3X4AfdoAiEv3hZCg4LBMcPB3wXyu6vRxv5TveAVCiD17c
+	OU22PkjbnnDvjlb6dQcfeHjr58KluNHNk7QM5FbRJnrn6Pd1EIav51E/Xe5MpgdjQCZJgVXuvQj2g
+	XpkG3dtDv/N7/irIHU+xABNcit1RN8GUsWfC/VtIQs3Ifcx4sFqX0PSYntAutUfa0EnqodbsQN9dm
+	FJBMt/4AQJX+OMSurmwjoILZEbh12WVDthLZ2r4PERqE7nRHO5Q9CDgSdNZ+JkxRP5Uh39nahNsAl
+	EJ2wZ1Onw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kaerv-0005sO-Rn; Thu, 05 Nov 2020 13:00:00 +0000
-Received: from mail-vs1-xe43.google.com ([2607:f8b0:4864:20::e43])
+	id 1kaesY-00068v-6V; Thu, 05 Nov 2020 13:00:38 +0000
+Received: from mail-ua1-x943.google.com ([2607:f8b0:4864:20::943])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaern-0005mz-F3
- for linux-amlogic@lists.infradead.org; Thu, 05 Nov 2020 12:59:52 +0000
-Received: by mail-vs1-xe43.google.com with SMTP id m16so701621vsl.8
- for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2020 04:59:47 -0800 (PST)
+ id 1kaery-0005sn-Jr
+ for linux-amlogic@lists.infradead.org; Thu, 05 Nov 2020 13:00:05 +0000
+Received: by mail-ua1-x943.google.com with SMTP id t15so480195ual.6
+ for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2020 05:00:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DQxEJYTnrFPdkb+SIqKXmZODsTPacZYJuDmLfP+J2k4=;
- b=XQxXbboDDYrNgWb5CeYdrF3FGkC+5Q6+wRSBmI+FXAaIwdtq+UdzWdpcVK4KKPTotX
- lE7KRoRGBMfJzRZ4iEfwFrNjq3PAjuXTq0Q2ZDiGkONZJx2AUtZac89l3kd7pT+oNtjc
- Im3lb7ynBI+i5nHFnIgI4ppc8jKGJQ0VFmhPvRfTeoIkKqYEvc2Bpe9hfzb7aLPtluDJ
- 9q6LJkblDFdkgAyjDZp55LZczfikI2/vTSc6Et88yzN9TJWwhMbV/wEjdiG+JFVqeGeF
- BWSOLvGc+hKOskSC56Cit1Iq3rkj8x1+JgMsOtrftLz8VbeWFGteAO0Kpx0A+NDUr8IA
- w3MQ==
+ :cc:content-transfer-encoding;
+ bh=7NcZx/oSdkYK9nn1pweWIk2stuxNmZW+6aZ8xIAheSA=;
+ b=a2qltg2ZO2ve892U8tNPLNFReFupQUvEd+42PcGc3wyyE0rdCVDXLJo9Xy/NM2UgdR
+ ybjgg1ik4ekokumzQ72UxxZe7zFZ4w0oT+4UE1zbNjuHtlu5VCsMqr/pHtBiKwV5RH8G
+ C5cSPkBF9YdLpJEHAwja99I/V12g38cHvCqrt7KQ9js9BB++8nvgMHfbKm3I9tGEngtG
+ HIKMBU2X+K+yG6NNTbA0XGSVNJT7pGwCGp+ActTQQRLCHOI9GufpGbI7Z2mNbQbDOBgU
+ WWpC8cdMqHtMUDN7Z60ELLJAWumg8aMcA+Ql6y3HhlkLih3K+iGVPalHjboalGGbNRxy
+ 45fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=DQxEJYTnrFPdkb+SIqKXmZODsTPacZYJuDmLfP+J2k4=;
- b=C8L4eesTZ4OM9SMUUyaRcQeVBBVVEv72FfVZzy+X8kBqI1QtMJ7N9V5NX7e+de6JQN
- taDslU2Zu+Ko6S6suXyFuAEHPSTezL11gcq6n4MlR8id6Ah6XuJemL/pPaMrGfmoUZ+j
- OiWo2k28Y8cVXsKTSzBm+ACyknNS6XUX52qBzTxmNOk7UXxsxnfKH2PUg/7RgBiDNtBR
- WNNve2ZmnDBlPyI81Bc/izL9RB14DdJPnWYcHSFSgWKhve+C2Vvnpnv5qZGC82R6BkmV
- RdpYXxn2Ya8OYPQBeywexyUnYvJzBmquRfb+vkxsnft5JmykuIJfrUZFSn5YISMEQNKJ
- WIVg==
-X-Gm-Message-State: AOAM530ngnvIn5fXV2eeJN612AeUE+hz1JqEYS9LAzqjeHyvEI57QM/0
- kANOMJg+Xi9tQGSqk1NYHQhwPiB9bNeK7K4mmNby5w==
-X-Google-Smtp-Source: ABdhPJw9TiQhWBq5dN8EcB5mPqGr915+EBTr3nV6C4ziDQvzTbuZsaADvlcFFOVWGJ5j7vJZsK29Ln/YI1RA9wP46j4=
-X-Received: by 2002:a67:3256:: with SMTP id y83mr1116773vsy.48.1604581185547; 
- Thu, 05 Nov 2020 04:59:45 -0800 (PST)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=7NcZx/oSdkYK9nn1pweWIk2stuxNmZW+6aZ8xIAheSA=;
+ b=mR0bcEUmOtAocowQF+60BxzQKGaa0BS5uKIJTIXPwGgMExIKGP9HtwyroxJgsHBWwv
+ O0rtQDF9ce57L5dihyHiTL0tFAmrLw+UZeHiS1WBcBTbQc1X8oR/3iJcCiyJPox3n8BG
+ kvyJQL87S3vCJQvTcMe82NQ74ii9w7YTRMKl7QBFAiV73Rmd/UAB53VlYxrlhQ5LZ9gl
+ MFhd/heXPPgB2wQaxwD9WX3eYm8VUR2t4JePjunlVDeRmX7beyY78/7zLOFmXzzOSuR5
+ XoaNzupeuNQqGz7O3GnD+Ge23Oek3/fqNoebZU/ZhXUfLC+Bkpu0GoUp5sJ2TLqgVmG4
+ 7IqQ==
+X-Gm-Message-State: AOAM533p0sZcl4UeziAbd1NTxUrI4SOaHh5hwXAbJg67dsBEGSPTLZvI
+ maA6YTaSfDesAxHdxcHIxZSNq8fgknADA6DAcyhv+Q==
+X-Google-Smtp-Source: ABdhPJyKvAtWA3o6fvZdEP1FXq5fTD1wQx5C/9iCOEtWf1JxjYK3WnwXGODCRXocBQ36+Iib8od5AOXX7f8O8Jguzrw=
+X-Received: by 2002:ab0:140e:: with SMTP id b14mr886025uae.100.1604581199978; 
+ Thu, 05 Nov 2020 04:59:59 -0800 (PST)
 MIME-Version: 1.0
-References: <1604375323-33556-1-git-send-email-tiantao6@hisilicon.com>
-In-Reply-To: <1604375323-33556-1-git-send-email-tiantao6@hisilicon.com>
+References: <20201103163046.14336-1-krzk@kernel.org>
+In-Reply-To: <20201103163046.14336-1-krzk@kernel.org>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 5 Nov 2020 13:59:09 +0100
-Message-ID: <CAPDyKFqT9OtZorNmi8OVNAFsbV14UgqZoDNCdkvZUvcHOEnG0w@mail.gmail.com>
-Subject: Re: [PATCH] mmc: meson-mx-sdio: replace spin_lock_irqsave by
- spin_lock in hard IRQ
-To: Tian Tao <tiantao6@hisilicon.com>
+Date: Thu, 5 Nov 2020 13:59:21 +0100
+Message-ID: <CAPDyKFoKt9pwu=GC0hE7ogVJv=h6NPUjSvk7uNVmnf=FDPWh5A@mail.gmail.com>
+Subject: Re: [PATCH] mmc: meson-gx: drop of_match_ptr from of_device_id table
+To: Krzysztof Kozlowski <krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201105_075951_553869_F924309F 
-X-CRM114-Status: GOOD (  17.26  )
+X-CRM114-CacheID: sfid-20201105_080002_819174_D9527235 
+X-CRM114-Status: GOOD (  18.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,7 +89,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
+Cc: kernel test robot <lkp@intel.com>, Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>,
  "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
@@ -97,58 +97,34 @@ Cc: Neil Armstrong <narmstrong@baylibre.com>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
  Linux ARM <linux-arm-kernel@lists.infradead.org>,
  Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 3 Nov 2020 at 04:48, Tian Tao <tiantao6@hisilicon.com> wrote:
->
-> The code has been in a irq-disabled context since it is hard IRQ. There
-> is no necessity to do it again.
->
-> Signed-off-by: Tian Tao <tiantao6@hisilicon.com>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
-> ---
->  drivers/mmc/host/meson-mx-sdio.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-> index 1c5299c..d4a4891 100644
-> --- a/drivers/mmc/host/meson-mx-sdio.c
-> +++ b/drivers/mmc/host/meson-mx-sdio.c
-> @@ -418,10 +418,9 @@ static irqreturn_t meson_mx_mmc_irq(int irq, void *data)
->  {
->         struct meson_mx_mmc_host *host = (void *) data;
->         u32 irqs, send;
-> -       unsigned long irqflags;
->         irqreturn_t ret;
->
-> -       spin_lock_irqsave(&host->irq_lock, irqflags);
-> +       spin_lock(&host->irq_lock);
->
->         irqs = readl(host->base + MESON_MX_SDIO_IRQS);
->         send = readl(host->base + MESON_MX_SDIO_SEND);
-> @@ -434,7 +433,7 @@ static irqreturn_t meson_mx_mmc_irq(int irq, void *data)
->         /* finally ACK all pending interrupts */
->         writel(irqs, host->base + MESON_MX_SDIO_IRQS);
->
-> -       spin_unlock_irqrestore(&host->irq_lock, irqflags);
-> +       spin_unlock(&host->irq_lock);
->
->         return ret;
->  }
-> --
-> 2.7.4
->
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCAzIE5vdiAyMDIwIGF0IDE3OjMwLCBLcnp5c3p0b2YgS296bG93c2tpIDxrcnprQGtl
+cm5lbC5vcmc+IHdyb3RlOgo+Cj4gVGhlIGRyaXZlciBjYW4gbWF0Y2ggb25seSB2aWEgdGhlIERU
+IHRhYmxlIHNvIHRoZSB0YWJsZSBzaG91bGQgYmUgYWx3YXlzCj4gdXNlZCBhbmQgdGhlIG9mX21h
+dGNoX3B0ciBkb2VzIG5vdCBoYXZlIGFueSBzZW5zZSAodGhpcyBhbHNvIGFsbG93cyBBQ1BJCj4g
+bWF0Y2hpbmcgdmlhIFBSUDAwMDEsIGV2ZW4gdGhvdWdoIGl0IGlzIG5vdCByZWxldmFudCBoZXJl
+KS4gIFRoaXMgZml4ZXMKPiBjb21waWxlIHdhcm5pbmcgKCFDT05GSUdfT0YgJiYgIUNPTkZJR19N
+T0RVTEVTKToKPgo+ICAgICBkcml2ZXJzL21tYy9ob3N0L21lc29uLWd4LW1tYy5jOjEyNTI6MzQ6
+IHdhcm5pbmc6Cj4gICAgICAgICDigJhtZXNvbl9tbWNfb2ZfbWF0Y2jigJkgZGVmaW5lZCBidXQg
+bm90IHVzZWQgWy1XdW51c2VkLWNvbnN0LXZhcmlhYmxlPV0KPgo+IFJlcG9ydGVkLWJ5OiBrZXJu
+ZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2Yg
+S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+CgpBcHBsaWVkIGZvciBuZXh0LCB0aGFua3MhCgpL
+aW5kIHJlZ2FyZHMKVWZmZQoKCj4gLS0tCj4gIGRyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1j
+LmMgfCAyICstCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigt
+KQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMgYi9kcml2
+ZXJzL21tYy9ob3N0L21lc29uLWd4LW1tYy5jCj4gaW5kZXggNGVjNDE1Nzk5NDBhLi4xM2Y2YTJj
+MGVkMDQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+ICsr
+KyBiL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiBAQCAtMTI2NSw3ICsxMjY1LDcg
+QEAgc3RhdGljIHN0cnVjdCBwbGF0Zm9ybV9kcml2ZXIgbWVzb25fbW1jX2RyaXZlciA9IHsKPiAg
+ICAgICAgIC5kcml2ZXIgICAgICAgICA9IHsKPiAgICAgICAgICAgICAgICAgLm5hbWUgPSBEUklW
+RVJfTkFNRSwKPiAgICAgICAgICAgICAgICAgLnByb2JlX3R5cGUgPSBQUk9CRV9QUkVGRVJfQVNZ
+TkNIUk9OT1VTLAo+IC0gICAgICAgICAgICAgICAub2ZfbWF0Y2hfdGFibGUgPSBvZl9tYXRjaF9w
+dHIobWVzb25fbW1jX29mX21hdGNoKSwKPiArICAgICAgICAgICAgICAgLm9mX21hdGNoX3RhYmxl
+ID0gbWVzb25fbW1jX29mX21hdGNoLAo+ICAgICAgICAgfSwKPiAgfTsKPgo+IC0tCj4gMi4yNS4x
+Cj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
+LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
+dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
