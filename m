@@ -5,20 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B0CA2C2D0A3
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:21:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E98CEC388F2
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:21:16 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 366D520B80
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:21:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7131A20B80
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:21:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="2mN0+ykz";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ezQhxO2g"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 366D520B80
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fQ5MdSMz";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="qTc/MdRs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7131A20B80
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=mediatek.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,53 +26,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=f2kiwO1JqvTre4BOtRqKjQZ3+osFj6XWYLrxWVh905g=; b=2mN0+ykznsCujKfC4oeNsnVto
-	O6c3PZhc0fup3qUnegfpngYeEkjVUVDVVJg284pEVNhfXtB55jIDTCFQGyx/pkoTzXrJM5J/FXjVm
-	+ogoH52/2TMMqz4Sy3/5zslZTNP8FpIVhjg4XZhtZV2mo65kjXydWGo+DNAXE+9lr63By8rhBwE+t
-	0RNCgp1gbYdKeGRkTEevPUueT37G9fwD7Etv2L9dcWSvOBfnkcOeC4Oe1jm6wp8E5ysstztHYfBnr
-	ndotmH76BGQ3TUbgW57efn+RJeUIZH+zKUsfrRJc133DqY9lGBPpDBQGqNtl2XKk37xAYnnV3UP2S
-	EP97sV5ug==;
+	 bh=6VQvzmKdvYO3hQgm4lxrsyV/tbMOjsP/V5J6Zt5Cj6M=; b=fQ5MdSMzBHpI3nmiQjV8ygL+O
+	Yo2fEUCkFXUobwmGSSHlkskwTiMxKxXEv+6qv8bE4u5vElrmAeb0nuUuzPSvArerS96Pv86lRSdUu
+	JZALk5Zrj1QOsQSKFYtcGVWOBC0SpvLLwOmGASLzHGUsf5Er/y0JLp+LVwdX9y6lystPOUXEbTV/l
+	0CulqCI/8MqgpjtGSHlUE32MFTzfOFlG6K7Gd2xONpwsew0yavcGaUleU9Mp6783xj2fSqhi0bs2l
+	qWJ6vT5X0aPzIVDvuG0CPCzE0iG69tcwORodVfPj4+F/jiA+RB843H96ReFLQFEnNf1PYFoO9w5Us
+	SDpJWuPpA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kav7R-0003tn-HG; Fri, 06 Nov 2020 06:21:05 +0000
+	id 1kav7X-0003yU-Im; Fri, 06 Nov 2020 06:21:11 +0000
 Received: from mailgw01.mediatek.com ([216.200.240.184])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kav6E-0003FW-1a; Fri, 06 Nov 2020 06:19:54 +0000
-X-UUID: 6efd980687de4b81ab62ae629894bca0-20201105
+ id 1kav6G-0003FQ-C9; Fri, 06 Nov 2020 06:19:56 +0000
+X-UUID: 9fc50d99813c4df5aa287ea8d68e82ec-20201105
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
  s=dk; 
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From;
- bh=RAGgnDBBxlUMea+BLDILWdxtJ1+gnngFehm4heLDSX0=; 
- b=ezQhxO2gzsq2DUWSG/ZreFsDMZ2Q77WvRufkGzgS5/32kc4tdqd7uX0Umd0hJ8Y6Xt0pUIXPbmpTNwJtoQlMmX7yXS9kE3wzOsTeo34jRuMif/c9+pTOzFIVBVKDdr3Pq+QnCubKVBJVHS9i+dpXRlTvfVd+nJc8vgQdzQb7QKw=;
-X-UUID: 6efd980687de4b81ab62ae629894bca0-20201105
+ bh=14pEItytI3ou2XYTXAr0mt+usGhY5nCU0v1aINsIjZk=; 
+ b=qTc/MdRstDpZc9lANYhOAXxcdgrIbdrX2U7D3cHDFc6SO2xQXbRiqdAdHnfOTgJx6jOdwiEvvijFkozW0/R4Ldn2UThozmnxUB7SLkph+YhPkqmW4jnOzriS8TEvZWB4FmW3NhTSR8MzuSvhEHtDYI5QzyH06EP/xoCWi6iV4jM=;
+X-UUID: 9fc50d99813c4df5aa287ea8d68e82ec-20201105
 Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw01.mediatek.com
  (envelope-from <chunfeng.yun@mediatek.com>)
  (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
- with ESMTP id 448399212; Thu, 05 Nov 2020 22:19:39 -0800
-Received: from MTKMBS31N2.mediatek.inc (172.27.4.87) by
- MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 5 Nov 2020 22:10:06 -0800
+ with ESMTP id 833777261; Thu, 05 Nov 2020 22:19:50 -0800
+Received: from MTKMBS31N1.mediatek.inc (172.27.4.69) by
+ MTKMBS62N2.mediatek.inc (172.29.193.42) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 5 Nov 2020 22:09:48 -0800
 Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 6 Nov 2020 14:10:02 +0800
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 6 Nov 2020 14:09:44 +0800
 Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 6 Nov 2020 14:09:54 +0800
+ Transport; Fri, 6 Nov 2020 14:09:42 +0800
 From: Chunfeng Yun <chunfeng.yun@mediatek.com>
 To: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH v2 12/17] phy: renesas: convert to
+Subject: [PATCH v2 08/17] phy: phy-xgene: convert to
  devm_platform_ioremap_resource
-Date: Fri, 6 Nov 2020 14:08:45 +0800
-Message-ID: <1604642930-29019-12-git-send-email-chunfeng.yun@mediatek.com>
+Date: Fri, 6 Nov 2020 14:08:41 +0800
+Message-ID: <1604642930-29019-8-git-send-email-chunfeng.yun@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
 References: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 32FD6B92CE71D460B2062F12CC7764D56DBEC637CAE1AB0F201200AE9749D5DE2000:8
+X-TM-SNTS-SMTP: 40B54A23EA6D8C92BE8AEA978EF9ED140FE8132AD0B2E7A25CED412601DE87FB2000:8
 X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201106_011950_264909_9068DF25 
-X-CRM114-Status: GOOD (  11.99  )
+X-CRM114-CacheID: sfid-20201106_011952_735242_8E9096D0 
+X-CRM114-Status: GOOD (  11.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,99 +122,30 @@ Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
 v2: no changes
 ---
- drivers/phy/renesas/phy-rcar-gen2.c      | 4 +---
- drivers/phy/renesas/phy-rcar-gen3-pcie.c | 4 +---
- drivers/phy/renesas/phy-rcar-gen3-usb2.c | 4 +---
- drivers/phy/renesas/phy-rcar-gen3-usb3.c | 4 +---
- 4 files changed, 4 insertions(+), 12 deletions(-)
+ drivers/phy/phy-xgene.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/phy/renesas/phy-rcar-gen2.c b/drivers/phy/renesas/phy-rcar-gen2.c
-index 2e279ac0fa4d..c375a4676a3d 100644
---- a/drivers/phy/renesas/phy-rcar-gen2.c
-+++ b/drivers/phy/renesas/phy-rcar-gen2.c
-@@ -339,7 +339,6 @@ static int rcar_gen2_phy_probe(struct platform_device *pdev)
- 	struct rcar_gen2_phy_driver *drv;
- 	struct phy_provider *provider;
- 	struct device_node *np;
+diff --git a/drivers/phy/phy-xgene.c b/drivers/phy/phy-xgene.c
+index b88922e7de1d..f4cd590fbde7 100644
+--- a/drivers/phy/phy-xgene.c
++++ b/drivers/phy/phy-xgene.c
+@@ -1644,7 +1644,6 @@ static int xgene_phy_probe(struct platform_device *pdev)
+ {
+ 	struct phy_provider *phy_provider;
+ 	struct xgene_phy_ctx *ctx;
 -	struct resource *res;
- 	void __iomem *base;
- 	struct clk *clk;
- 	const struct rcar_gen2_phy_data *data;
-@@ -357,8 +356,7 @@ static int rcar_gen2_phy_probe(struct platform_device *pdev)
- 		return PTR_ERR(clk);
- 	}
+ 	u32 default_spd[] = DEFAULT_SATA_SPD_SEL;
+ 	u32 default_txboost_gain[] = DEFAULT_SATA_TXBOOST_GAIN;
+ 	u32 default_txeye_direction[] = DEFAULT_SATA_TXEYEDIRECTION;
+@@ -1661,8 +1660,7 @@ static int xgene_phy_probe(struct platform_device *pdev)
+ 
+ 	ctx->dev = &pdev->dev;
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(dev, res);
-+	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
- 
-diff --git a/drivers/phy/renesas/phy-rcar-gen3-pcie.c b/drivers/phy/renesas/phy-rcar-gen3-pcie.c
-index c4e4aa216936..4dc721eb9577 100644
---- a/drivers/phy/renesas/phy-rcar-gen3-pcie.c
-+++ b/drivers/phy/renesas/phy-rcar-gen3-pcie.c
-@@ -76,7 +76,6 @@ static int rcar_gen3_phy_pcie_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct phy_provider *provider;
- 	struct rcar_gen3_phy *phy;
--	struct resource *res;
- 	void __iomem *base;
- 	int error;
- 
-@@ -86,8 +85,7 @@ static int rcar_gen3_phy_pcie_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(dev, res);
-+	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
- 
-diff --git a/drivers/phy/renesas/phy-rcar-gen3-usb2.c b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-index e34e4475027c..1898bbe7c8e5 100644
---- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-+++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-@@ -611,7 +611,6 @@ static int rcar_gen3_phy_usb2_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct rcar_gen3_chan *channel;
- 	struct phy_provider *provider;
--	struct resource *res;
- 	const struct phy_ops *phy_usb2_ops;
- 	int ret = 0, i;
- 
-@@ -624,8 +623,7 @@ static int rcar_gen3_phy_usb2_probe(struct platform_device *pdev)
- 	if (!channel)
- 		return -ENOMEM;
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	channel->base = devm_ioremap_resource(dev, res);
-+	channel->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(channel->base))
- 		return PTR_ERR(channel->base);
- 
-diff --git a/drivers/phy/renesas/phy-rcar-gen3-usb3.c b/drivers/phy/renesas/phy-rcar-gen3-usb3.c
-index 566b4cf4ff38..f27d6f471629 100644
---- a/drivers/phy/renesas/phy-rcar-gen3-usb3.c
-+++ b/drivers/phy/renesas/phy-rcar-gen3-usb3.c
-@@ -133,7 +133,6 @@ static int rcar_gen3_phy_usb3_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct rcar_gen3_usb3 *r;
- 	struct phy_provider *provider;
--	struct resource *res;
- 	int ret = 0;
- 	struct clk *clk;
- 
-@@ -146,8 +145,7 @@ static int rcar_gen3_phy_usb3_probe(struct platform_device *pdev)
- 	if (!r)
- 		return -ENOMEM;
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	r->base = devm_ioremap_resource(dev, res);
-+	r->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(r->base))
- 		return PTR_ERR(r->base);
+-	ctx->sds_base = devm_ioremap_resource(&pdev->dev, res);
++	ctx->sds_base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(ctx->sds_base))
+ 		return PTR_ERR(ctx->sds_base);
  
 -- 
 2.18.0
