@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
 	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F08FFC2D0A3
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:20:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D495C2D0A3
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:20:35 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6849E20936
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:20:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 26F7F206F9
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:20:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s3jgnMoa";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="QgHEIqzj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6849E20936
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pfzpQIgC";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="GLz1BKbG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 26F7F206F9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=mediatek.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,53 +26,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Sh/GzgtNTH3Gqfgj0n6eGJaoOW+YBqO9t3EJQ8pkNQM=; b=s3jgnMoaoBebuN89MOzVkrfSB
-	xI87pLChWSx7XvnyrJToZvUUIfzz+X+mHVEFrX4F2bg3i8Lluj9mFOXxPYGyquYGAdUzClSMNg149
-	3IDfSG/3UdeA5Eyqq0aW7SFB5r8Hqtq6wqUAxICT8gM1+6cEvlRHip8hG+8UA+hjtp/gKjRKN/Lqi
-	yzerCd1+tTBHRnb9oxL5gzaD7fXHDcVc0i7Uzf9VwL9hycHiAsdjhly4EzOA/pHuY1BJTWdDcXtFx
-	BdT+P1QP7JblsVZox0vKh4Qw4Oc5ntD76/sS9kqldoPLL44xeelKDC+YtUiuWOWlKpvzgeCd6zwBX
-	H7k2R99xw==;
+	 bh=7H6+YXNGr01dQtR/S/3WOU4MkJ6jC28RAazhHOv+6yA=; b=pfzpQIgCq8etpvZnypN/kp4XC
+	Uy2fe2ncelY8yMOIx5ipr9qgLhFc9FH5mKsS5Les6dSFmQsxbHvjdEj/K+O0V7+7KpmuAxM55MORQ
+	jlCHaHtHmeBQPb+d4j39HwTVBKP4IhkyTJbZEXDLeuJ1S426R0bCRclbo9mcEllaJizsDd5f8SBxN
+	SL+1T3Qm2pseaUr8lFQAovKqBxrB4xu9UKky14fxFZflmCaJoVq6KYc+/CK7qftohtjIcx0tyL72z
+	hViDJXkffhwBiwiEotIR8riuDeWWQhmsjzjWJebhlNOX+iSBPn+h1Rc3AszlghICa4bmlp1NEb7iH
+	T9Xl7SyqQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kav6M-0003Mx-Lg; Fri, 06 Nov 2020 06:19:58 +0000
+	id 1kav6s-0003Zg-Ux; Fri, 06 Nov 2020 06:20:30 +0000
 Received: from mailgw01.mediatek.com ([216.200.240.184])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kav69-0003FQ-Iz; Fri, 06 Nov 2020 06:19:46 +0000
-X-UUID: 787b8b6b71a247c180b597af8ea45a86-20201105
+ id 1kav6B-0003FQ-7y; Fri, 06 Nov 2020 06:19:48 +0000
+X-UUID: 600e3e6f8ede41e48d7fb34001e4534b-20201105
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
  s=dk; 
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From;
- bh=xbJ4Jgj0E8NLElCm+7ybm+itcY8qXH1MqBxXBrR6TlE=; 
- b=QgHEIqzjpBoSMiP/1//pzaF6cs5nw0WYxJqhNuRBdpJiMuuj64Uo4EfNQBTd3uEDGGG9l0paSFNW7ba2DG1xhiiz3zGiAjfaBPAvlHa7yq0OZ946ANMu9XUWucY9Mm+ZAw70hAxd3PSWv05ApgSloax1AL4QE7UN+h0PXJStqUg=;
-X-UUID: 787b8b6b71a247c180b597af8ea45a86-20201105
+ bh=+jQTv6Qdqq2eI24/km4wG6QU5N33+5xqcoowHO6chiA=; 
+ b=GLz1BKbGhdXBn2PxryeW1dvxlaBuP/qJ1J2u8zN0qmrRZkwX6rTA+VcR0zPGPKNqQQVyOa6XbWaC8KMoi76b5YRRVpxjlPA180RblRTSpZ3GQQKZwxqDZWx8Py+tkcfEBzDknZebhkkzBlpk0qOI55LiDL1HIeIl+PmWOXrc4tc=;
+X-UUID: 600e3e6f8ede41e48d7fb34001e4534b-20201105
 Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw01.mediatek.com
  (envelope-from <chunfeng.yun@mediatek.com>)
  (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
- with ESMTP id 2080327295; Thu, 05 Nov 2020 22:19:39 -0800
-Received: from MTKMBS31DR.mediatek.inc (172.27.6.102) by
+ with ESMTP id 1786228701; Thu, 05 Nov 2020 22:19:39 -0800
+Received: from MTKMBS31N1.mediatek.inc (172.27.4.69) by
  MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 5 Nov 2020 22:10:11 -0800
+ 15.0.1497.2; Thu, 5 Nov 2020 22:10:26 -0800
 Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 6 Nov 2020 14:10:05 +0800
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 6 Nov 2020 14:10:22 +0800
 Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 6 Nov 2020 14:10:03 +0800
+ Transport; Fri, 6 Nov 2020 14:10:20 +0800
 From: Chunfeng Yun <chunfeng.yun@mediatek.com>
 To: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH v2 13/17] phy: rockchip: convert to
- devm_platform_ioremap_resource
-Date: Fri, 6 Nov 2020 14:08:46 +0800
-Message-ID: <1604642930-29019-13-git-send-email-chunfeng.yun@mediatek.com>
+Subject: [PATCH v2 16/17] phy: tegra: convert to
+ devm_platform_ioremap_resource(_byname)
+Date: Fri, 6 Nov 2020 14:08:49 +0800
+Message-ID: <1604642930-29019-16-git-send-email-chunfeng.yun@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
 References: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 86C70527313290A44E6B1C6CF834D4339D864A835E8927062864AEE502B44A472000:8
+X-TM-SNTS-SMTP: 52AC62223D6A58C1141D2B11B17D5F423BD0D094CBA3439EF0BF2F6F9F23FAA42000:8
 X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201106_011945_794507_C9F75B35 
-X-CRM114-Status: GOOD (  11.52  )
+X-CRM114-CacheID: sfid-20201106_011947_458008_D6C266E1 
+X-CRM114-Status: GOOD (  13.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,9 +105,9 @@ Cc: Ondrej Jirman <megous@megous.com>, Peter Chen <peter.chen@nxp.com>,
  linux-arm-kernel@lists.infradead.org, Roger
  Quadros <rogerq@ti.com>, Hanjie Lin <hanjie.lin@amlogic.com>,
  Ma Feng <mafeng.ma@huawei.com>, Scott
- Branden <sbranden@broadcom.com>, Randy Dunlap <rdunlap@infradead.org>,
- Jyri Sarha <jsarha@ti.com>, linux-kernel@vger.kernel.org,
- Sanket Parmar <sparmar@cadence.com>,
+ Branden <sbranden@broadcom.com>, JC Kuo <jckuo@nvidia.com>,
+ Randy Dunlap <rdunlap@infradead.org>, Jyri Sarha <jsarha@ti.com>,
+ linux-kernel@vger.kernel.org, Sanket Parmar <sparmar@cadence.com>,
  Pengutronix Kernel Team <kernel@pengutronix.de>, Joe Perches <joe@perches.com>,
  Colin Ian King <colin.king@canonical.com>, Shawn Guo <shawnguo@kernel.org>,
  Li Jun <jun.li@nxp.com>
@@ -116,37 +116,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use devm_platform_ioremap_resource to simplify code
+Use devm_platform_ioremap_resource(_byname) to simplify code
 
+Cc: JC Kuo <jckuo@nvidia.com>
 Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
 v2: no changes
 ---
- drivers/phy/rockchip/phy-rockchip-inno-hdmi.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/phy/tegra/phy-tegra194-p2u.c | 4 +---
+ drivers/phy/tegra/xusb.c             | 4 +---
+ 2 files changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-hdmi.c b/drivers/phy/rockchip/phy-rockchip-inno-hdmi.c
-index 9ca20c947283..a37f3f342642 100644
---- a/drivers/phy/rockchip/phy-rockchip-inno-hdmi.c
-+++ b/drivers/phy/rockchip/phy-rockchip-inno-hdmi.c
-@@ -1144,7 +1144,6 @@ static int inno_hdmi_phy_probe(struct platform_device *pdev)
- {
- 	struct inno_hdmi_phy *inno;
- 	struct phy_provider *phy_provider;
+diff --git a/drivers/phy/tegra/phy-tegra194-p2u.c b/drivers/phy/tegra/phy-tegra194-p2u.c
+index 7042bed9feaa..3ee02b9eb04f 100644
+--- a/drivers/phy/tegra/phy-tegra194-p2u.c
++++ b/drivers/phy/tegra/phy-tegra194-p2u.c
+@@ -72,14 +72,12 @@ static int tegra_p2u_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct phy *generic_phy;
+ 	struct tegra_p2u *phy;
 -	struct resource *res;
- 	void __iomem *regs;
- 	int ret;
  
-@@ -1158,8 +1157,7 @@ static int inno_hdmi_phy_probe(struct platform_device *pdev)
- 	if (!inno->plat_data || !inno->plat_data->ops)
- 		return -EINVAL;
+ 	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+ 	if (!phy)
+ 		return -ENOMEM;
+ 
+-	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ctl");
+-	phy->base = devm_ioremap_resource(dev, res);
++	phy->base = devm_platform_ioremap_resource_byname(pdev, "ctl");
+ 	if (IS_ERR(phy->base))
+ 		return PTR_ERR(phy->base);
+ 
+diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
+index de4a46fe1763..067e71326826 100644
+--- a/drivers/phy/tegra/xusb.c
++++ b/drivers/phy/tegra/xusb.c
+@@ -1148,7 +1148,6 @@ static int tegra_xusb_padctl_probe(struct platform_device *pdev)
+ 	const struct tegra_xusb_padctl_soc *soc;
+ 	struct tegra_xusb_padctl *padctl;
+ 	const struct of_device_id *match;
+-	struct resource *res;
+ 	int err;
+ 
+ 	/* for backwards compatibility with old device trees */
+@@ -1173,8 +1172,7 @@ static int tegra_xusb_padctl_probe(struct platform_device *pdev)
+ 	INIT_LIST_HEAD(&padctl->pads);
+ 	mutex_init(&padctl->lock);
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	regs = devm_ioremap_resource(inno->dev, res);
-+	regs = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(regs))
- 		return PTR_ERR(regs);
- 
+-	padctl->regs = devm_ioremap_resource(&pdev->dev, res);
++	padctl->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(padctl->regs)) {
+ 		err = PTR_ERR(padctl->regs);
+ 		goto remove;
 -- 
 2.18.0
 _______________________________________________
