@@ -1,78 +1,76 @@
-Return-Path: <SRS0=vaug=EL=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=MpPN=EM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CD94C388F7
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 21:15:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA668C4741F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:09:53 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A7D7B20724
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2020 21:15:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2CF6320867
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2020 06:09:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="1ad9S3+r"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7D7B20724
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FkEXZ7/y";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="PJhNgMNC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2CF6320867
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=mediatek.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=B8SYqTFemMpjvSwiY+XKeMRHXhU6Fn/kxdYhL9JRaOk=; b=1ad9S3+rlahCmqkqrgBYsaIu/
-	uGoeaywzSdeq5YRXVKkZ4uOZ8R4rKrCt0oljnvHnkQu8WABzkMIbZHSQXTDcECxJjml/hnQKQdSet
-	D5bPnTz/LNQiKdRXlitI4KDdZMLuMQtIlPBS9q6lUhs5dz4MN9A4U2OiD9yAee1l9jP14mZSlHe5A
-	oK09c2C6NxU7yBymL9WZNdXeSMn35dc7YvgmkNQ87ZB5/v1dpR0P3ueG4DNibzENrQyM3d8UcwP58
-	vg5Sls/MprZGPS2dv9eYW/LFCvILnkmhdNA6AqwtuuJ+K1K2upjmjB/TaEP/mQRve9ppPBKMv/gO3
-	Zdo9GU9vA==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=wvrOf4byAjrj71/4q29mg35jMXGxGTGIqsfZvLYk75I=; b=FkEXZ7/y3tonasXl3nhIa2ZH+9
+	PRn+fBQS0DdfqQdnoRcoYdeWpgGeBxFWc33vIlBuT6yF04XtdfwUqwzN4h5KdvzoAusTP17/kOZto
+	71kASHyl2M33nD58prBGXUyL/5GWEKKkgGzRGUH+dUXXVbVe23Xp7B7U3fI53rm1kZosdExGqDdVs
+	m1dpbLPPm8kAaZVdQBBnprvO/HMecMxvw4ms4HY6BRRg1SrIBuBaxqf/AxYaDjRdSiojhzBt0Jl8o
+	DTtv1467HMiLW0rY2eO6LbWO1rC9SrtMgul26kZo1HbEP1VgGl+1XHq2eYwbCf9UwH4c8Mt8VdQR8
+	YFh1Ex1Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kambI-00015R-O9; Thu, 05 Nov 2020 21:15:20 +0000
-Received: from mail-oi1-f196.google.com ([209.85.167.196])
+	id 1kauwS-0000qw-Rq; Fri, 06 Nov 2020 06:09:44 +0000
+Received: from mailgw01.mediatek.com ([216.200.240.184])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kamYT-0007kV-4a; Thu, 05 Nov 2020 21:12:27 +0000
-Received: by mail-oi1-f196.google.com with SMTP id t143so3162281oif.10;
- Thu, 05 Nov 2020 13:12:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=gRKO88zPAl/nEZ0UieqZZj1+ZG6DthxtSlw24aEyq9g=;
- b=NbpXLdC6E1tguhvL3x7m8hcW2hdd29DqO6qgwvvXv9qxD7jMiCHVT+fdK18k106qYO
- zRQ4G92OpTQvVut3kofB+9GETcjPForIvuPWiT5XuCTL7thTREKzYVYHa8h2345Pzdcm
- VsaIn5OMdIHWoJM/2ce6sXVNcjs0qKBwPgACJN5YatJnj/ihFJkMMNQwWM0K3PDbyqBr
- grhXMmdKtgaf0Juww+1sYUlXyhLIOaplcN7CzWqN0+vTQFOh/WYjWCuak1E8DHwPlpzE
- wZzLPCo6NQJQzSEfL2be6s5YzcrYT6/jsZTxfMqlQrabKl3yFvUvslgR2ANPeVZ8x++s
- +duQ==
-X-Gm-Message-State: AOAM532eec8qV86baufpxCLCZ3nE3HUh/VakQheW8wkDX9vaSgR0pxN3
- dPaoEMOA4h4zAMtuEaxqCMs7BZgcvrfF
-X-Google-Smtp-Source: ABdhPJzjQ/zm4+RE5zJ6A53soxxHvqt5isi1HUhLasWIWoYwJM5DPMCieS2ii0xI7W/Jww17aKqH+Q==
-X-Received: by 2002:aca:388:: with SMTP id 130mr845834oid.145.1604610744415;
- Thu, 05 Nov 2020 13:12:24 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.googlemail.com with ESMTPSA id z19sm622549ooi.32.2020.11.05.13.12.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Nov 2020 13:12:23 -0800 (PST)
-From: Rob Herring <robh@kernel.org>
-To: 
-Subject: [PATCH v2 13/16] PCI: dwc: Remove unnecessary wrappers around
- dw_pcie_host_init()
-Date: Thu,  5 Nov 2020 15:11:56 -0600
-Message-Id: <20201105211159.1814485-14-robh@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201105211159.1814485-1-robh@kernel.org>
-References: <20201105211159.1814485-1-robh@kernel.org>
+ id 1kauwL-0000ns-Mv; Fri, 06 Nov 2020 06:09:39 +0000
+X-UUID: 33c28090eb7f43c89b7f88a563788a86-20201105
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
+ s=dk; 
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From;
+ bh=nEoLX1/+6duNwH8WrVAfgyNUeWNqni/qD+IGm5v49yw=; 
+ b=PJhNgMNC1nfgsQAp55EojwMP0HPpaeZ86wKP7nByg50MvJQ486WJRWnSd/xskEY1UMwVxxGb8TUvqO9BM8il545euKrcY6VlfFD3H7TIBkAECw0Kb4ki+wGbR2SMXSugtTLa8hOtFJTuXez8UtOBturzu//czOeMhrTXpa1/QwA=;
+X-UUID: 33c28090eb7f43c89b7f88a563788a86-20201105
+Received: from mtkcas67.mediatek.inc [(172.29.193.45)] by mailgw01.mediatek.com
+ (envelope-from <chunfeng.yun@mediatek.com>)
+ (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+ with ESMTP id 633491757; Thu, 05 Nov 2020 22:09:31 -0800
+Received: from MTKMBS31N1.mediatek.inc (172.27.4.69) by
+ MTKMBS62N1.mediatek.inc (172.29.193.41) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 5 Nov 2020 22:09:29 -0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 6 Nov 2020 14:09:25 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 6 Nov 2020 14:09:24 +0800
+From: Chunfeng Yun <chunfeng.yun@mediatek.com>
+To: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH v2 01/17] phy: allwinner: convert to
+ devm_platform_ioremap_resource(_byname)
+Date: Fri, 6 Nov 2020 14:08:34 +0800
+Message-ID: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
+X-TM-SNTS-SMTP: 3C3951C449F6D73153743392941B122F987841F75BC64504B988C2BC4C288B302000:8
+X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201105_161225_271196_07F1CA74 
-X-CRM114-Status: GOOD (  19.63  )
+X-CRM114-CacheID: sfid-20201106_010937_941610_576BE8B5 
+X-CRM114-Status: GOOD (  13.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,425 +82,150 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
- Binghui Wang <wangbinghui@hisilicon.com>,
- Minghuan Lian <minghuan.Lian@nxp.com>, Jonathan Chocron <jonnyc@amazon.com>,
- Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Jesper Nilsson <jesper.nilsson@axis.com>,
+Cc: Ondrej Jirman <megous@megous.com>, Peter Chen <peter.chen@nxp.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Anil Varughese <aniljoy@cadence.com>,
+ Wei Yongjun <weiyongjun1@huawei.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-arm-kernel@axis.com,
- Murali Karicheri <m-karicheri2@ti.com>, NXP Linux Team <linux-imx@nxp.com>,
- Xiaowei Song <songxiaowei@hisilicon.com>, Richard Zhu <hongxing.zhu@nxp.com>,
+ Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Kevin
+ Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
+ Chen-Yu Tsai <wens@csie.org>, bcm-kernel-feedback-list@broadcom.com,
+ NXP Linux Team <linux-imx@nxp.com>, Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Icenowy Zheng <icenowy@aosc.io>, Bharat Gooty <bharat.gooty@broadcom.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Yue Wang <yue.wang@Amlogic.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
- Mingkai Hu <mingkai.hu@nxp.com>, linux-arm-kernel@lists.infradead.org,
- Roy Zang <roy.zang@nxp.com>, Masahiro Yamada <yamada.masahiro@socionext.com>,
- linuxppc-dev@lists.ozlabs.org, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
+ Ray Jui <rjui@broadcom.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Maxime Ripard <mripard@kernel.org>, Yue Wang <yue.wang@amlogic.com>,
+ Lubomir Rintel <lkundrak@v3.sk>, Remi Pommarel <repk@triplefau.lt>,
+ linux-mediatek@lists.infradead.org,
+ Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Roger
+ Quadros <rogerq@ti.com>, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Ma Feng <mafeng.ma@huawei.com>, Scott
+ Branden <sbranden@broadcom.com>, Randy Dunlap <rdunlap@infradead.org>,
+ Jyri Sarha <jsarha@ti.com>, linux-kernel@vger.kernel.org,
+ Sanket Parmar <sparmar@cadence.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Joe Perches <joe@perches.com>,
+ Colin Ian King <colin.king@canonical.com>, Shawn Guo <shawnguo@kernel.org>,
+ Li Jun <jun.li@nxp.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Many calls to dw_pcie_host_init() are in a wrapper function with
-nothing else now. Let's remove the pointless extra layer.
+Use devm_platform_ioremap_resource(_byname) to simplify code
 
-Cc: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Murali Karicheri <m-karicheri2@ti.com>
-Cc: Minghuan Lian <minghuan.Lian@nxp.com>
-Cc: Mingkai Hu <mingkai.hu@nxp.com>
-Cc: Roy Zang <roy.zang@nxp.com>
-Cc: Yue Wang <yue.wang@Amlogic.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jonathan Chocron <jonnyc@amazon.com>
-Cc: Jesper Nilsson <jesper.nilsson@axis.com>
-Cc: Xiaowei Song <songxiaowei@hisilicon.com>
-Cc: Binghui Wang <wangbinghui@hisilicon.com>
-Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc: linuxppc-dev@lists.ozlabs.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@axis.com
-Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
- drivers/pci/controller/dwc/pci-imx6.c       | 22 ++---------------
- drivers/pci/controller/dwc/pci-keystone.c   | 19 +--------------
- drivers/pci/controller/dwc/pci-layerscape.c | 26 ++-------------------
- drivers/pci/controller/dwc/pci-meson.c      | 22 ++---------------
- drivers/pci/controller/dwc/pcie-al.c        | 20 ++--------------
- drivers/pci/controller/dwc/pcie-artpec6.c   | 23 +++---------------
- drivers/pci/controller/dwc/pcie-kirin.c     | 11 ++-------
- drivers/pci/controller/dwc/pcie-uniphier.c  | 23 +++---------------
- 8 files changed, 17 insertions(+), 149 deletions(-)
+v2: no changes
+---
+ drivers/phy/allwinner/phy-sun4i-usb.c       | 8 ++------
+ drivers/phy/allwinner/phy-sun50i-usb3.c     | 4 +---
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c | 4 +---
+ drivers/phy/allwinner/phy-sun9i-usb.c       | 4 +---
+ 4 files changed, 5 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index f9547bb2cf1b..0cf1333c0440 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -842,25 +842,6 @@ static const struct dw_pcie_host_ops imx6_pcie_host_ops = {
- 	.host_init = imx6_pcie_host_init,
- };
+diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c b/drivers/phy/allwinner/phy-sun4i-usb.c
+index 651d5e2a25ce..406d5943f8a8 100644
+--- a/drivers/phy/allwinner/phy-sun4i-usb.c
++++ b/drivers/phy/allwinner/phy-sun4i-usb.c
+@@ -686,7 +686,6 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *np = dev->of_node;
+ 	struct phy_provider *phy_provider;
+-	struct resource *res;
+ 	int i, ret;
  
--static int imx6_add_pcie_port(struct imx6_pcie *imx6_pcie,
--			      struct platform_device *pdev)
--{
--	struct dw_pcie *pci = imx6_pcie->pci;
--	struct pcie_port *pp = &pci->pp;
--	struct device *dev = &pdev->dev;
--	int ret;
--
--	pp->ops = &imx6_pcie_host_ops;
--
--	ret = dw_pcie_host_init(pp);
--	if (ret) {
--		dev_err(dev, "failed to initialize host\n");
--		return ret;
--	}
--
--	return 0;
--}
--
- static const struct dw_pcie_ops dw_pcie_ops = {
- 	.start_link = imx6_pcie_start_link,
- };
-@@ -1005,6 +986,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+ 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+@@ -700,8 +699,7 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
+ 	if (!data->cfg)
+ 		return -EINVAL;
  
- 	pci->dev = dev;
- 	pci->ops = &dw_pcie_ops;
-+	pci->pp.ops = &imx6_pcie_host_ops;
+-	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "phy_ctrl");
+-	data->base = devm_ioremap_resource(dev, res);
++	data->base = devm_platform_ioremap_resource_byname(pdev, "phy_ctrl");
+ 	if (IS_ERR(data->base))
+ 		return PTR_ERR(data->base);
  
- 	imx6_pcie->pci = pci;
- 	imx6_pcie->drvdata = of_device_get_match_data(dev);
-@@ -1154,7 +1136,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
+@@ -796,9 +794,7 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
  
--	ret = imx6_add_pcie_port(imx6_pcie, pdev);
-+	ret = dw_pcie_host_init(&pci->pp);
- 	if (ret < 0)
- 		return ret;
- 
-diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-index 5a4bcc2b1ddb..719756160821 100644
---- a/drivers/pci/controller/dwc/pci-keystone.c
-+++ b/drivers/pci/controller/dwc/pci-keystone.c
-@@ -844,23 +844,6 @@ static irqreturn_t ks_pcie_err_irq_handler(int irq, void *priv)
- 	return ks_pcie_handle_error_irq(ks_pcie);
- }
- 
--static int __init ks_pcie_add_pcie_port(struct keystone_pcie *ks_pcie,
--					struct platform_device *pdev)
--{
--	struct dw_pcie *pci = ks_pcie->pci;
--	struct pcie_port *pp = &pci->pp;
--	struct device *dev = &pdev->dev;
--	int ret;
--
--	ret = dw_pcie_host_init(pp);
--	if (ret) {
--		dev_err(dev, "failed to initialize host\n");
--		return ret;
--	}
--
--	return 0;
--}
--
- static void ks_pcie_am654_write_dbi2(struct dw_pcie *pci, void __iomem *base,
- 				     u32 reg, size_t size, u32 val)
- {
-@@ -1255,7 +1238,7 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
+ 		if (i || data->cfg->phy0_dual_route) { /* No pmu for musb */
+ 			snprintf(name, sizeof(name), "pmu%d", i);
+-			res = platform_get_resource_byname(pdev,
+-							IORESOURCE_MEM, name);
+-			phy->pmu = devm_ioremap_resource(dev, res);
++			phy->pmu = devm_platform_ioremap_resource_byname(pdev, name);
+ 			if (IS_ERR(phy->pmu))
+ 				return PTR_ERR(phy->pmu);
  		}
- 
- 		pci->pp.ops = host_ops;
--		ret = ks_pcie_add_pcie_port(ks_pcie, pdev);
-+		ret = dw_pcie_host_init(&pci->pp);
- 		if (ret < 0)
- 			goto err_get_sync;
- 		break;
-diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
-index 400ebbebd00f..44ad34cdc3bc 100644
---- a/drivers/pci/controller/dwc/pci-layerscape.c
-+++ b/drivers/pci/controller/dwc/pci-layerscape.c
-@@ -232,31 +232,12 @@ static const struct of_device_id ls_pcie_of_match[] = {
- 	{ },
- };
- 
--static int __init ls_add_pcie_port(struct ls_pcie *pcie)
--{
--	struct dw_pcie *pci = pcie->pci;
--	struct pcie_port *pp = &pci->pp;
--	struct device *dev = pci->dev;
--	int ret;
--
--	pp->ops = pcie->drvdata->ops;
--
--	ret = dw_pcie_host_init(pp);
--	if (ret) {
--		dev_err(dev, "failed to initialize host\n");
--		return ret;
--	}
--
--	return 0;
--}
--
- static int __init ls_pcie_probe(struct platform_device *pdev)
- {
+diff --git a/drivers/phy/allwinner/phy-sun50i-usb3.c b/drivers/phy/allwinner/phy-sun50i-usb3.c
+index b1c04f71a31d..84055b720016 100644
+--- a/drivers/phy/allwinner/phy-sun50i-usb3.c
++++ b/drivers/phy/allwinner/phy-sun50i-usb3.c
+@@ -134,7 +134,6 @@ static int sun50i_usb3_phy_probe(struct platform_device *pdev)
+ 	struct sun50i_usb3_phy *phy;
  	struct device *dev = &pdev->dev;
- 	struct dw_pcie *pci;
- 	struct ls_pcie *pcie;
- 	struct resource *dbi_base;
--	int ret;
+ 	struct phy_provider *phy_provider;
+-	struct resource *res;
  
- 	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
- 	if (!pcie)
-@@ -270,6 +251,7 @@ static int __init ls_pcie_probe(struct platform_device *pdev)
+ 	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+ 	if (!phy)
+@@ -153,8 +152,7 @@ static int sun50i_usb3_phy_probe(struct platform_device *pdev)
+ 		return PTR_ERR(phy->reset);
+ 	}
  
- 	pci->dev = dev;
- 	pci->ops = pcie->drvdata->dw_pcie_ops;
-+	pci->pp.ops = pcie->drvdata->ops;
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	phy->regs = devm_ioremap_resource(dev, res);
++	phy->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(phy->regs))
+ 		return PTR_ERR(phy->regs);
  
- 	pcie->pci = pci;
- 
-@@ -285,11 +267,7 @@ static int __init ls_pcie_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, pcie);
- 
--	ret = ls_add_pcie_port(pcie);
--	if (ret < 0)
--		return ret;
--
--	return 0;
-+	return dw_pcie_host_init(&pci->pp);
- }
- 
- static struct platform_driver ls_pcie_driver = {
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 04589f0decb2..686ded034f22 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -387,25 +387,6 @@ static const struct dw_pcie_host_ops meson_pcie_host_ops = {
- 	.host_init = meson_pcie_host_init,
- };
- 
--static int meson_add_pcie_port(struct meson_pcie *mp,
--			       struct platform_device *pdev)
--{
--	struct dw_pcie *pci = &mp->pci;
--	struct pcie_port *pp = &pci->pp;
--	struct device *dev = &pdev->dev;
--	int ret;
--
--	pp->ops = &meson_pcie_host_ops;
--
--	ret = dw_pcie_host_init(pp);
--	if (ret) {
--		dev_err(dev, "failed to initialize host\n");
--		return ret;
--	}
--
--	return 0;
--}
--
- static const struct dw_pcie_ops dw_pcie_ops = {
- 	.link_up = meson_pcie_link_up,
- 	.start_link = meson_pcie_start_link,
-@@ -425,6 +406,7 @@ static int meson_pcie_probe(struct platform_device *pdev)
- 	pci = &mp->pci;
- 	pci->dev = dev;
- 	pci->ops = &dw_pcie_ops;
-+	pci->pp.ops = &meson_pcie_host_ops;
- 	pci->num_lanes = 1;
- 
- 	mp->phy = devm_phy_get(dev, "pcie");
-@@ -471,7 +453,7 @@ static int meson_pcie_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, mp);
- 
--	ret = meson_add_pcie_port(mp, pdev);
-+	ret = dw_pcie_host_init(&pci->pp);
- 	if (ret < 0) {
- 		dev_err(dev, "Add PCIe port failed, %d\n", ret);
- 		goto err_phy;
-diff --git a/drivers/pci/controller/dwc/pcie-al.c b/drivers/pci/controller/dwc/pcie-al.c
-index d06866921187..7ac8a37d9ce0 100644
---- a/drivers/pci/controller/dwc/pcie-al.c
-+++ b/drivers/pci/controller/dwc/pcie-al.c
-@@ -322,23 +322,6 @@ static const struct dw_pcie_host_ops al_pcie_host_ops = {
- 	.host_init = al_pcie_host_init,
- };
- 
--static int al_add_pcie_port(struct pcie_port *pp,
--			    struct platform_device *pdev)
--{
--	struct device *dev = &pdev->dev;
--	int ret;
--
--	pp->ops = &al_pcie_host_ops;
--
--	ret = dw_pcie_host_init(pp);
--	if (ret) {
--		dev_err(dev, "failed to initialize host\n");
--		return ret;
--	}
--
--	return 0;
--}
--
- static const struct dw_pcie_ops dw_pcie_ops = {
- };
- 
-@@ -360,6 +343,7 @@ static int al_pcie_probe(struct platform_device *pdev)
- 
- 	pci->dev = dev;
- 	pci->ops = &dw_pcie_ops;
-+	pci->pp.ops = &al_pcie_host_ops;
- 
- 	al_pcie->pci = pci;
- 	al_pcie->dev = dev;
-@@ -384,7 +368,7 @@ static int al_pcie_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, al_pcie);
- 
--	return al_add_pcie_port(&pci->pp, pdev);
-+	return dw_pcie_host_init(&pci->pp);
- }
- 
- static const struct of_device_id al_pcie_of_match[] = {
-diff --git a/drivers/pci/controller/dwc/pcie-artpec6.c b/drivers/pci/controller/dwc/pcie-artpec6.c
-index fcba9915a606..597c282f586c 100644
---- a/drivers/pci/controller/dwc/pcie-artpec6.c
-+++ b/drivers/pci/controller/dwc/pcie-artpec6.c
-@@ -336,25 +336,6 @@ static const struct dw_pcie_host_ops artpec6_pcie_host_ops = {
- 	.host_init = artpec6_pcie_host_init,
- };
- 
--static int artpec6_add_pcie_port(struct artpec6_pcie *artpec6_pcie,
--				 struct platform_device *pdev)
--{
--	struct dw_pcie *pci = artpec6_pcie->pci;
--	struct pcie_port *pp = &pci->pp;
--	struct device *dev = pci->dev;
--	int ret;
--
--	pp->ops = &artpec6_pcie_host_ops;
--
--	ret = dw_pcie_host_init(pp);
--	if (ret) {
--		dev_err(dev, "failed to initialize host\n");
--		return ret;
--	}
--
--	return 0;
--}
--
- static void artpec6_pcie_ep_init(struct dw_pcie_ep *ep)
+diff --git a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+index 1fa761ba6cbb..f0bc87d654d4 100644
+--- a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
++++ b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+@@ -253,15 +253,13 @@ static int sun6i_dphy_probe(struct platform_device *pdev)
  {
- 	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-@@ -445,7 +426,9 @@ static int artpec6_pcie_probe(struct platform_device *pdev)
- 		if (!IS_ENABLED(CONFIG_PCIE_ARTPEC6_HOST))
- 			return -ENODEV;
+ 	struct phy_provider *phy_provider;
+ 	struct sun6i_dphy *dphy;
+-	struct resource *res;
+ 	void __iomem *regs;
  
--		ret = artpec6_add_pcie_port(artpec6_pcie, pdev);
-+		pci->pp.ops = &artpec6_pcie_host_ops;
-+
-+		ret = dw_pcie_host_init(&pci->pp);
- 		if (ret < 0)
- 			return ret;
- 		break;
-diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/controller/dwc/pcie-kirin.c
-index ac4bbdaf5324..026fd1e42a55 100644
---- a/drivers/pci/controller/dwc/pcie-kirin.c
-+++ b/drivers/pci/controller/dwc/pcie-kirin.c
-@@ -419,14 +419,6 @@ static const struct dw_pcie_host_ops kirin_pcie_host_ops = {
- 	.host_init = kirin_pcie_host_init,
- };
+ 	dphy = devm_kzalloc(&pdev->dev, sizeof(*dphy), GFP_KERNEL);
+ 	if (!dphy)
+ 		return -ENOMEM;
  
--static int kirin_add_pcie_port(struct dw_pcie *pci,
--			       struct platform_device *pdev)
--{
--	pci->pp.ops = &kirin_pcie_host_ops;
--
--	return dw_pcie_host_init(&pci->pp);
--}
--
- static int kirin_pcie_probe(struct platform_device *pdev)
- {
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	regs = devm_ioremap_resource(&pdev->dev, res);
++	regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(regs)) {
+ 		dev_err(&pdev->dev, "Couldn't map the DPHY encoder registers\n");
+ 		return PTR_ERR(regs);
+diff --git a/drivers/phy/allwinner/phy-sun9i-usb.c b/drivers/phy/allwinner/phy-sun9i-usb.c
+index fc6784dd7fa0..2f9e60c188b8 100644
+--- a/drivers/phy/allwinner/phy-sun9i-usb.c
++++ b/drivers/phy/allwinner/phy-sun9i-usb.c
+@@ -117,7 +117,6 @@ static int sun9i_usb_phy_probe(struct platform_device *pdev)
  	struct device *dev = &pdev->dev;
-@@ -449,6 +441,7 @@ static int kirin_pcie_probe(struct platform_device *pdev)
+ 	struct device_node *np = dev->of_node;
+ 	struct phy_provider *phy_provider;
+-	struct resource *res;
  
- 	pci->dev = dev;
- 	pci->ops = &kirin_dw_pcie_ops;
-+	pci->pp.ops = &kirin_pcie_host_ops;
- 	kirin_pcie->pci = pci;
+ 	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+ 	if (!phy)
+@@ -156,8 +155,7 @@ static int sun9i_usb_phy_probe(struct platform_device *pdev)
+ 		}
+ 	}
  
- 	ret = kirin_pcie_get_clk(kirin_pcie, pdev);
-@@ -474,7 +467,7 @@ static int kirin_pcie_probe(struct platform_device *pdev)
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	phy->pmu = devm_ioremap_resource(dev, res);
++	phy->pmu = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(phy->pmu))
+ 		return PTR_ERR(phy->pmu);
  
- 	platform_set_drvdata(pdev, kirin_pcie);
- 
--	return kirin_add_pcie_port(pci, pdev);
-+	return dw_pcie_host_init(&pci->pp);
- }
- 
- static const struct of_device_id kirin_pcie_match[] = {
-diff --git a/drivers/pci/controller/dwc/pcie-uniphier.c b/drivers/pci/controller/dwc/pcie-uniphier.c
-index 2457e9dd098d..7e8bad326770 100644
---- a/drivers/pci/controller/dwc/pcie-uniphier.c
-+++ b/drivers/pci/controller/dwc/pcie-uniphier.c
-@@ -321,25 +321,6 @@ static const struct dw_pcie_host_ops uniphier_pcie_host_ops = {
- 	.host_init = uniphier_pcie_host_init,
- };
- 
--static int uniphier_add_pcie_port(struct uniphier_pcie_priv *priv,
--				  struct platform_device *pdev)
--{
--	struct dw_pcie *pci = &priv->pci;
--	struct pcie_port *pp = &pci->pp;
--	struct device *dev = &pdev->dev;
--	int ret;
--
--	pp->ops = &uniphier_pcie_host_ops;
--
--	ret = dw_pcie_host_init(pp);
--	if (ret) {
--		dev_err(dev, "Failed to initialize host (%d)\n", ret);
--		return ret;
--	}
--
--	return 0;
--}
--
- static int uniphier_pcie_host_enable(struct uniphier_pcie_priv *priv)
- {
- 	int ret;
-@@ -415,7 +396,9 @@ static int uniphier_pcie_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	return uniphier_add_pcie_port(priv, pdev);
-+	priv->pci.pp.ops = &uniphier_pcie_host_ops;
-+
-+	return dw_pcie_host_init(&priv->pci.pp);
- }
- 
- static const struct of_device_id uniphier_pcie_match[] = {
 -- 
-2.25.1
-
-
+2.18.0
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
