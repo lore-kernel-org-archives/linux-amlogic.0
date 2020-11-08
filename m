@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 41111C388F9
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2020 22:11:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD402C388F9
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2020 22:13:53 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 93FE6206A5
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2020 22:11:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4B28D206A5
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2020 22:13:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tyWRwN5V";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Ose11JQZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 93FE6206A5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XGgkpx4V";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ZS3/RrmU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4B28D206A5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=lCWyp0PYuaAwB0nB0GmtLfZ6me8k2bSJB1D3sLvncRw=; b=tyWRwN5VUFFs6OSnhU5KxE76p
-	j2b4uXBREQ0xelU1Vcr4RdFOuJhctJ613u0BrPot/DfrxMnbBO8ldaHgbvt7k+KWPfnRG+w5+B+05
-	tXJYM5gEgpy7uvBHdKA6yp7juKLkbpCJni6OTTdvC2WabGUVVglYtUnK9AFTdmBEqi9TWX8kER02q
-	UQGm/5akoJjFksO7BPCY6MnLSly5AMrERExce8shaDRP1Y+1lWDw5qqIUxCUXJr9RsoR2zEO8slwF
-	Zo0noJaQx7HpF06r+1IEtuv5oLAb2UxyWPt0Ue4/xqxrcca1KU6c19s5P9BVr9DC4dPH59wpcoqNg
-	7AYK34HLw==;
+	 bh=2wQDwybH5TXGmvmppe0pnpGBfeKIAwzyO91RqUHe5uw=; b=XGgkpx4Vp54LjWtKynOdyrpKF
+	KsuYBaVGp/kF9+Jc+5X0LlhZBBAO1xDjqlTXQ7788QDwyXeDwgZFQ+QXjmJh3SzJo2NdmgBKVLexs
+	tfIUCXiw+nPGgHlVsBccS3d5Zrfg/pU5rZ5gBKUmhZaP97pnFX7ynJKI2zH25krM4uzEXPPvTcF0U
+	UbeQe4Ti6wpc4flUbHukFb934A9/dMzTGyKznQ0bK7Zcg9LfIiZJTRiCXwyRxuDgcyg1QU5SWoQr3
+	aIH4DZvLQBzAuD1s2L1tFM2pGbGY8Gp0FcUh+znKnEdinXIygZ0ALS8y4aeJqcO+m6S2H/W8D9nGG
+	38eVxmCng==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kbsuC-0008DY-Vp; Sun, 08 Nov 2020 22:11:25 +0000
-Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
+	id 1kbswW-0008UW-LO; Sun, 08 Nov 2020 22:13:48 +0000
+Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kbsu8-0008Ca-56; Sun, 08 Nov 2020 22:11:20 +0000
-Received: by mail-ed1-x543.google.com with SMTP id o20so6746568eds.3;
- Sun, 08 Nov 2020 14:11:18 -0800 (PST)
+ id 1kbswS-0008Tl-U1; Sun, 08 Nov 2020 22:13:45 +0000
+Received: by mail-ed1-x542.google.com with SMTP id cq7so6537385edb.4;
+ Sun, 08 Nov 2020 14:13:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=eQW9OKeiUXYbQry4sNj3otrATF5lu7Sb8UVFYJSJ04Y=;
- b=Ose11JQZQKZ44jTrTvreBQxy4dKe9ULvwGFigLaVW6YJKWfeP/lc5w3J+xTeuos7Jg
- g3dnOtMpDmfNvj+aZ35fMCUZInJpoSwXhAzWjPM7ghKcwUGC3ONa/OLdVKUlh/NC7j9i
- tLcWnUpliAt8lfDjzdQwIAGiuxrnwbeNOKnzVduabNJ3HrKq8Zf3GqiMp/sQvwteb0M+
- 4T1AFjad3THIPfh2TCidVSt+5baTMIUZxEhQ91k26MZvvfYV11QowKumDCS99rqOZA3O
- p157YXNhqyHGj8546duSm/OY74Ekq3t+MNLb6PC0P0N4KbP1rt9E0NfiQNbkeT81rGQS
- +sFA==
+ :cc; bh=Zadr8S1exGYvbFBWcZYnrHIH74MhDue7HE7SBukcCYU=;
+ b=ZS3/RrmUsyd26siknMWP9hBPyVlLToCszbcuKFgMMGb025nOIQgZWIQ6ZwJ147RqaH
+ EKVpCGvfVXt9vXH/lM3kDv0NtYdy1S6MI12zDiuRr0rVSNKGgf7cA1IFP9WPqA3/WHhx
+ Dq+e+OjQNM/qG1dGk4wPK9vKSG1IzXd3qhMRJ81vTVOvM9pFMeX6R7RtUKJlV7uONu7p
+ xkW5CszwYqBngjyOQYp9KF1GlmFQuRrMu/lMpSDz7COpme/4Iw55FU4vLI98hvShL9CG
+ /MqttJcFkHzxYOyF3d0ZSScmtMENwrknzgD/6v/7Vh48w332cTfu8sGP67VKtNTMqF2S
+ P1lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=eQW9OKeiUXYbQry4sNj3otrATF5lu7Sb8UVFYJSJ04Y=;
- b=p3RvHhZwnO8CpWA3AVfb77m7FBNDdFhbWXYSaqNBNli6FHST6I3pkdn65LfTmS5yu3
- w1Qg9sz1MOYXx2O+St+zk8+L9qDdWeVNNuYoAFAFOg4aDMXKZHTgcC8Ed8EQo+Tkfl78
- IfgKJMV9EtocYUFXbj0B+wePJJeJ6qbacOP4UKgJOSItw+BEAcoVX4E148x/H6+xLlC5
- byHcFvEysBuvRCno53VvY2oTLaUVXubZokW7fa4xWeIow+gSZqGWxMmJOpcTAayUC+qS
- PmtDnB1uriL0BkqrOm/vBJXNL6eeQy4hif13B0x8bZWPI58zbiPzEc6fmK7IAUoQxMf6
- cOQw==
-X-Gm-Message-State: AOAM532EU/wSZQo9Z171teN5XzoWCOaUyaRTYr9jPSIf/SoCZRsupTwQ
- i/roZN1EJolJ11TozwNTGhs6XilZu7m5Pjf2T3U=
-X-Google-Smtp-Source: ABdhPJxn/TUQyzh6+DX45a3IbFyU0IhAwdKmAtLx6F6Atgx8uZkRWU9ry1zkd7IKk/r7RxoEvUq6DLrR41bkR8B6XTw=
-X-Received: by 2002:a05:6402:3d9:: with SMTP id
- t25mr12720413edw.338.1604873477430; 
- Sun, 08 Nov 2020 14:11:17 -0800 (PST)
+ bh=Zadr8S1exGYvbFBWcZYnrHIH74MhDue7HE7SBukcCYU=;
+ b=fW4KHu0hbwCQoySe5ZDO/1bNnpX8BKbMBRwRK/U3PKzhld+1qafPVfrjNwiFLK2Bke
+ X+t6ewLw/cQBdWh8z0z2zPio7sJN5kcJJ1VIEYVCuLBuQfuP6GUgLDxfpvfjFpfgXIfJ
+ i2yUVZP4nm9Zs8a37ythwpto6MxQa+MdYyuC/dN/oNZkbQdXJJnMo70d/+5Q3GB+AuvM
+ 19m2xfn8J81TXP9Li1/+AxzBhgRXgwOpABvJ1hF+gnWcbYK8DXKngRgvjkdrqbFdLjkH
+ rN4wpgYuSKiTZ3M98DaRJHCBIffVpnJ7ShfsXQxuttgQR7LwctHUBK1+ZDRqNgNwn1yH
+ 0HMQ==
+X-Gm-Message-State: AOAM530lVevm0kWpclcy9CTgb2vHTAK0wm0C5tozsdu19jW8PFRf53BP
+ tVgHV44X6rQthHn+947Yl+2VX4IhtGnsRzBAmTZ2NTA3ueo=
+X-Google-Smtp-Source: ABdhPJx7xBHJqmrYHCq3KgX31T0CG77X4kaGHcuM6zY+ZJ7+918xPieTS3Ydr8/NkwE08ivM14/Nv10OkaOKTkqFQAU=
+X-Received: by 2002:aa7:c889:: with SMTP id p9mr12160883eds.110.1604873623378; 
+ Sun, 08 Nov 2020 14:13:43 -0800 (PST)
 MIME-Version: 1.0
-References: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
- <1604642930-29019-2-git-send-email-chunfeng.yun@mediatek.com>
-In-Reply-To: <1604642930-29019-2-git-send-email-chunfeng.yun@mediatek.com>
+References: <1604378274-6860-1-git-send-email-yejune.deng@gmail.com>
+In-Reply-To: <1604378274-6860-1-git-send-email-yejune.deng@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 8 Nov 2020 23:11:06 +0100
-Message-ID: <CAFBinCCdYB0YhbT-sDe3-g+CT_Lj+7jRY1dXcwDHucVBTaL7CA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/17] phy: amlogic: convert to
- devm_platform_ioremap_resource
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Date: Sun, 8 Nov 2020 23:13:32 +0100
+Message-ID: <CAFBinCDjzt7jjEgTcxc+dMLojmnhMzm=1FX3bEcyDC7RGu0MTA@mail.gmail.com>
+Subject: Re: [PATCH] phy: amlogic: Replace devm_reset_control_array_get()
+To: Yejune Deng <yejune.deng@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201108_171120_205986_5721FA78 
-X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-CacheID: sfid-20201108_171344_989544_ADC4B7BD 
+X-CRM114-Status: UNSURE (   7.99  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -92,22 +89,21 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>,
+Cc: lorenzo.pieralisi@arm.com, Neil Armstrong <narmstrong@baylibre.com>,
+ khilman@baylibre.com, linux-kernel@vger.kernel.org, kishon@ti.com,
+ vkoul@kernel.org, repk@triplefau.lt, p.zabel@pengutronix.de,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+ jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Nov 6, 2020 at 7:09 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+On Tue, Nov 3, 2020 at 5:38 AM Yejune Deng <yejune.deng@gmail.com> wrote:
 >
-> Use devm_platform_ioremap_resource to simplify code
+> devm_reset_control_array_get_exclusive() looks more readable
 >
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> Reviewed-by: Remi Pommarel <repk@triplefau.lt>
+> Signed-off-by: Yejune Deng <yejune.deng@gmail.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
