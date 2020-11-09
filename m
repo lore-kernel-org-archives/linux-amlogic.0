@@ -1,83 +1,119 @@
-Return-Path: <SRS0=B07/=EO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=y4a2=EP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MSGID_FROM_MTA_HEADER,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_2 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD402C388F9
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2020 22:13:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4CC2C388F9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2020 02:00:27 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4B28D206A5
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2020 22:13:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2D79E206C1
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2020 02:00:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XGgkpx4V";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ZS3/RrmU"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4B28D206A5
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bzh59iGR";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=Synaptics.onmicrosoft.com header.i=@Synaptics.onmicrosoft.com header.b="FbrmHzP0"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2D79E206C1
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=synaptics.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=2wQDwybH5TXGmvmppe0pnpGBfeKIAwzyO91RqUHe5uw=; b=XGgkpx4Vp54LjWtKynOdyrpKF
-	KsuYBaVGp/kF9+Jc+5X0LlhZBBAO1xDjqlTXQ7788QDwyXeDwgZFQ+QXjmJh3SzJo2NdmgBKVLexs
-	tfIUCXiw+nPGgHlVsBccS3d5Zrfg/pU5rZ5gBKUmhZaP97pnFX7ynJKI2zH25krM4uzEXPPvTcF0U
-	UbeQe4Ti6wpc4flUbHukFb934A9/dMzTGyKznQ0bK7Zcg9LfIiZJTRiCXwyRxuDgcyg1QU5SWoQr3
-	aIH4DZvLQBzAuD1s2L1tFM2pGbGY8Gp0FcUh+znKnEdinXIygZ0ALS8y4aeJqcO+m6S2H/W8D9nGG
-	38eVxmCng==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From:Date:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=kcJy1eOXE8ywrSSvwKIzUCy9ugj64paNVatXUKpwpBw=; b=bzh59iGRCyn5onbzv0nV38kgKS
+	VuySk2v53Ea85MHAgF4Yi1nDQMQFDy5KXzbcRWuDZbO1KyptVsTQyhNOktgKdHjx6ZcaT6XFx9hVg
+	4ZlWRX4lP9p3jMy5blzi/nu/VTGerrFIzswYgpEgFLULWA581RqntyjxZjnW9soNX2ZQOPGIXPIkC
+	rpHfRc08fNVVkxLIAxLdOrT/Pyou6fIxnhIEokBtC+oDKQ9KCeblNOo9YxwplvbWxDgmKduAyC+q1
+	ZoXqIFaJ7SnCZB+HGcO6k/ZrmTREtUcOX8zH6YPY2oDuhTDzSwgZth95wcOo9kDsOmMe1Pu7tN8JH
+	Avbwmtzw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kbswW-0008UW-LO; Sun, 08 Nov 2020 22:13:48 +0000
-Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
+	id 1kbwTf-0001uO-3B; Mon, 09 Nov 2020 02:00:15 +0000
+Received: from mail-eopbgr680075.outbound.protection.outlook.com
+ ([40.107.68.75] helo=NAM04-BN3-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kbswS-0008Tl-U1; Sun, 08 Nov 2020 22:13:45 +0000
-Received: by mail-ed1-x542.google.com with SMTP id cq7so6537385edb.4;
- Sun, 08 Nov 2020 14:13:44 -0800 (PST)
+ id 1kbwTc-0001ts-IR; Mon, 09 Nov 2020 02:00:13 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b+m1Jg4qdOuqv5ChNGF/muB/aS5p6nyfY737yYDdfgp7Dtgw/xOhNXSmDB7v/Wa+w5555ARO2yEVzGopAYvTm7bSnsOAy2tEQLxWcOGbPQG+OZsalaFaqkSiMv3UIu9QAT3vm+6PMWAKlZPPaN7SrLJgQ9kTiAHPNu/2Go5JGfshiHg2EXnetVKLeIHmEVbo4xgpnOvpkSNYcX5b7gI9TXIeSumdStEC0+8FW+MOKjawUFNfnSO6n4+o1LlX1Qs2ezycWU0/7GBmoAsr83oeKpr4Ek6lX3Y11DLRQIbPSbtjz8jiN65L4RHl3A+SosS2VB76o55RybCZykEMtKONeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x/6qidCU8HCYN8iCrmdgB9fVq4wAkDYE6DXfnJSTwlI=;
+ b=L6eT8ZG+lpsvTrcRcEAupyXRIutp8GDGX//ulUyUveM2wKBP8JkmzgUPjR3KUS3Lbqc+gkaD4FFnNp57DG4GNoU8Dzv814y7Br5CS/FuE8G7GR3xB4RFeRc7sQhdbeevjS92/53OGGJsq9k8mS+vPxl54e42h/vxY6aiE5U8dTLP3ETO+nK8Oi3dZOa5k4RaqJgH2ZfdtsyKlbrqRR9IIDE8Iaf9aCAe+OEaYYWST+jVO4vCAzmk5ttOMqD9AIKiVCPJ51owhpjpdjdSNvlcUx0uMcoQ7/CqkzbmXQx1Pn/Ak1yU4Hs10f3dK1BYVFHcvMpaPcGFQncI60hA/ziHBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synaptics.com; dmarc=pass action=none
+ header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Zadr8S1exGYvbFBWcZYnrHIH74MhDue7HE7SBukcCYU=;
- b=ZS3/RrmUsyd26siknMWP9hBPyVlLToCszbcuKFgMMGb025nOIQgZWIQ6ZwJ147RqaH
- EKVpCGvfVXt9vXH/lM3kDv0NtYdy1S6MI12zDiuRr0rVSNKGgf7cA1IFP9WPqA3/WHhx
- Dq+e+OjQNM/qG1dGk4wPK9vKSG1IzXd3qhMRJ81vTVOvM9pFMeX6R7RtUKJlV7uONu7p
- xkW5CszwYqBngjyOQYp9KF1GlmFQuRrMu/lMpSDz7COpme/4Iw55FU4vLI98hvShL9CG
- /MqttJcFkHzxYOyF3d0ZSScmtMENwrknzgD/6v/7Vh48w332cTfu8sGP67VKtNTMqF2S
- P1lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Zadr8S1exGYvbFBWcZYnrHIH74MhDue7HE7SBukcCYU=;
- b=fW4KHu0hbwCQoySe5ZDO/1bNnpX8BKbMBRwRK/U3PKzhld+1qafPVfrjNwiFLK2Bke
- X+t6ewLw/cQBdWh8z0z2zPio7sJN5kcJJ1VIEYVCuLBuQfuP6GUgLDxfpvfjFpfgXIfJ
- i2yUVZP4nm9Zs8a37ythwpto6MxQa+MdYyuC/dN/oNZkbQdXJJnMo70d/+5Q3GB+AuvM
- 19m2xfn8J81TXP9Li1/+AxzBhgRXgwOpABvJ1hF+gnWcbYK8DXKngRgvjkdrqbFdLjkH
- rN4wpgYuSKiTZ3M98DaRJHCBIffVpnJ7ShfsXQxuttgQR7LwctHUBK1+ZDRqNgNwn1yH
- 0HMQ==
-X-Gm-Message-State: AOAM530lVevm0kWpclcy9CTgb2vHTAK0wm0C5tozsdu19jW8PFRf53BP
- tVgHV44X6rQthHn+947Yl+2VX4IhtGnsRzBAmTZ2NTA3ueo=
-X-Google-Smtp-Source: ABdhPJx7xBHJqmrYHCq3KgX31T0CG77X4kaGHcuM6zY+ZJ7+918xPieTS3Ydr8/NkwE08ivM14/Nv10OkaOKTkqFQAU=
-X-Received: by 2002:aa7:c889:: with SMTP id p9mr12160883eds.110.1604873623378; 
- Sun, 08 Nov 2020 14:13:43 -0800 (PST)
+ d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x/6qidCU8HCYN8iCrmdgB9fVq4wAkDYE6DXfnJSTwlI=;
+ b=FbrmHzP0cldX9vrS6b9vSdOPVcrer9reAo37NsK/m9bJgazC93iEFAvOzeZ1j5/CJtptewTUUnAXq23Yw69Wj1C1v+5MZlAT3SfBh2YoRP31FPcQ1Z9t2pzv//KeGKrGOFtwYNbx5XN1LVWt2WAH6OTWLY7V4ESVBzMd62Y1HGE=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=synaptics.com;
+Received: from SN2PR03MB2383.namprd03.prod.outlook.com (2603:10b6:804:d::23)
+ by SN6PR03MB3488.namprd03.prod.outlook.com (2603:10b6:805:40::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Mon, 9 Nov
+ 2020 02:00:06 +0000
+Received: from SN2PR03MB2383.namprd03.prod.outlook.com
+ ([fe80::49be:5ea3:8961:a22]) by SN2PR03MB2383.namprd03.prod.outlook.com
+ ([fe80::49be:5ea3:8961:a22%6]) with mapi id 15.20.3541.024; Mon, 9 Nov 2020
+ 02:00:06 +0000
+Date: Mon, 9 Nov 2020 09:59:53 +0800
+From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+To: Felipe Balbi <balbi@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Kukjin Kim <kgene@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Neil
+ Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <bjorn.andersson@linaro.org>, Patrice
+ Chotard <patrice.chotard@st.com>
+Subject: [PATCH usb-next] usb: dwc3: Use devm_of_platform_populate
+Message-ID: <20201109095953.7f810239@xhacker.debian>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+X-Originating-IP: [192.147.44.204]
+X-ClientProxiedBy: BYAPR07CA0016.namprd07.prod.outlook.com
+ (2603:10b6:a02:bc::29) To SN2PR03MB2383.namprd03.prod.outlook.com
+ (2603:10b6:804:d::23)
 MIME-Version: 1.0
-References: <1604378274-6860-1-git-send-email-yejune.deng@gmail.com>
-In-Reply-To: <1604378274-6860-1-git-send-email-yejune.deng@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 8 Nov 2020 23:13:32 +0100
-Message-ID: <CAFBinCDjzt7jjEgTcxc+dMLojmnhMzm=1FX3bEcyDC7RGu0MTA@mail.gmail.com>
-Subject: Re: [PATCH] phy: amlogic: Replace devm_reset_control_array_get()
-To: Yejune Deng <yejune.deng@gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from xhacker.debian (192.147.44.204) by
+ BYAPR07CA0016.namprd07.prod.outlook.com (2603:10b6:a02:bc::29) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3499.18 via Frontend Transport; Mon, 9 Nov 2020 02:00:00 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 44c8004b-f22a-48b6-1f46-08d884532e0c
+X-MS-TrafficTypeDiagnostic: SN6PR03MB3488:
+X-Microsoft-Antispam-PRVS: <SN6PR03MB348822E48A9331DC6CE6734FEDEA0@SN6PR03MB3488.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:256;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pz6q4Scy7kSOEoPJoTKTEN1QyJ8wuhasmLYYr0FK9X1nWwR5sRanT8ZbHUvCr34KKQs/LfZLlpkspG5v5Jdu8oEfKInxpoJMACcL7JpfXHqZQKfRKsBbXUTP7wv4P0pAHwAJLqYy3k5EL1Dc7yJZXvLbxN+fp1djjrkMcbfjUxNMHdzo2Oc0dk2kprFXkdsIUN+4aZnBnZWFGPTHA6TVMOrVX5u4XeUF1CHJ/GuEXP7AI/vWIbVcNd2jk6KdkAkNuliZYhJWQM3Q+YqJXA4ODG9SrV+KHMMi2rHDKLy83lNejzhLBsXUy3XscrA7PjkOfsACiWwagJ1lFj5jAsk3GOfERzZcfCqOLKlfPM8JtjXZoA6TcuFKyF6eIyct3K5D
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN2PR03MB2383.namprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39850400004)(366004)(136003)(376002)(396003)(346002)(6506007)(110136005)(186003)(86362001)(26005)(16526019)(316002)(956004)(7696005)(52116002)(8676002)(8936002)(4326008)(7416002)(478600001)(2906002)(9686003)(55016002)(5660300002)(66946007)(83380400001)(1076003)(66476007)(66556008)(6666004)(921003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: 1Q1xHlRU8kpfURj/DX4KGduQplaxw1CYM5qqyLgNOqoYhOp+9sc1ei4yRKNL3C3LUayE6yIG7feHiGRsnXpygYCvU7KTOlA/nZsjmBxYVvLu2fImxTqdhvWfYJeAH20OIgCOH3vJb1ju/+hQAmf4vPj/JfaoScWpPnsWkVcmIyLzFcayZF8BisjCkv28yiIFa9cmjqox9R2Z1hf+EWHhlyseu7m5/vcDCZyiWctYx1OpACj4AXPhk61asIF5rGSZzkaDP8ZeC5cW9BnaWMtNdCUX88VwKfEirZO0UZkw4tN0IyYtkxItrENrzYZ2F0M0eEn3XDSLlhz59EqsIbf8atXMZKtNF0cwhiXXPAlFeL93oxlNZUWGscOCsRbe5LUoVakBRg+JeMQTFcexV5dvdb+fA4sxwwZ3ywaW27MwcNxOoHA7Cz62RCxPv/VEOVMVUEan85TAO707FFRqdbBN/LzH5PH0YWDVW4rFlWkJSCfqODJFUtG04RVBuiM8vTrLADMg5oI/0uFvG0QnHa69HDwYhciBgX+FY3VUfu+VC6TipFBe0TN3zN3Br8hVq7vWh3SR8DsgoC3JPiYBivyijOYAPl7Ei6cUqznLGKl2aqTa9cX994TvQEhV9zYNHrAmFv4B4QwIu6RDzrl7qtWrRA==
+X-OriginatorOrg: synaptics.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44c8004b-f22a-48b6-1f46-08d884532e0c
+X-MS-Exchange-CrossTenant-AuthSource: SN2PR03MB2383.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2020 02:00:06.4372 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dMYB2hv/U8iOC13y/GxxLjLyMCNSASkO6zaSXf9hu2t+uwe0g4rD8FUuDBvbwdfHj6/gNuUjIVG2ZUPJQNRz/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR03MB3488
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201108_171344_989544_ADC4B7BD 
-X-CRM114-Status: UNSURE (   7.99  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201108_210012_636925_0AF69241 
+X-CRM114-Status: GOOD (  14.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,22 +125,186 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: lorenzo.pieralisi@arm.com, Neil Armstrong <narmstrong@baylibre.com>,
- khilman@baylibre.com, linux-kernel@vger.kernel.org, kishon@ti.com,
- vkoul@kernel.org, repk@triplefau.lt, p.zabel@pengutronix.de,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Nov 3, 2020 at 5:38 AM Yejune Deng <yejune.deng@gmail.com> wrote:
->
-> devm_reset_control_array_get_exclusive() looks more readable
->
-> Signed-off-by: Yejune Deng <yejune.deng@gmail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Use managed API devm_of_platform_populate() to simplify error and exit
+code path.
+
+Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+---
+ drivers/usb/dwc3/dwc3-exynos.c     | 2 +-
+ drivers/usb/dwc3/dwc3-keystone.c   | 2 +-
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 5 +----
+ drivers/usb/dwc3/dwc3-of-simple.c  | 4 +---
+ drivers/usb/dwc3/dwc3-omap.c       | 3 +--
+ drivers/usb/dwc3/dwc3-qcom.c       | 8 ++------
+ drivers/usb/dwc3/dwc3-st.c         | 4 +---
+ 7 files changed, 8 insertions(+), 20 deletions(-)
+
+diff --git a/drivers/usb/dwc3/dwc3-exynos.c b/drivers/usb/dwc3/dwc3-exynos.c
+index 90bb022737da..f567d1e63c05 100644
+--- a/drivers/usb/dwc3/dwc3-exynos.c
++++ b/drivers/usb/dwc3/dwc3-exynos.c
+@@ -110,7 +110,7 @@ static int dwc3_exynos_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	if (node) {
+-		ret = of_platform_populate(node, NULL, NULL, dev);
++		ret = devm_of_platform_populate(dev);
+ 		if (ret) {
+ 			dev_err(dev, "failed to add dwc3 core\n");
+ 			goto populate_err;
+diff --git a/drivers/usb/dwc3/dwc3-keystone.c b/drivers/usb/dwc3/dwc3-keystone.c
+index 9a99253d5ba3..626b16c46688 100644
+--- a/drivers/usb/dwc3/dwc3-keystone.c
++++ b/drivers/usb/dwc3/dwc3-keystone.c
+@@ -157,7 +157,7 @@ static int kdwc3_probe(struct platform_device *pdev)
+ 	kdwc3_enable_irqs(kdwc);
+ 
+ skip_irq:
+-	error = of_platform_populate(node, NULL, NULL, dev);
++	error = devm_of_platform_populate(dev);
+ 	if (error) {
+ 		dev_err(&pdev->dev, "failed to create dwc3 core\n");
+ 		goto err_core;
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index 417e05381b5d..83015bb7b926 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -702,7 +702,6 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ {
+ 	struct dwc3_meson_g12a	*priv;
+ 	struct device		*dev = &pdev->dev;
+-	struct device_node	*np = dev->of_node;
+ 	void __iomem *base;
+ 	int ret, i;
+ 
+@@ -794,7 +793,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 			goto err_phys_power;
+ 	}
+ 
+-	ret = of_platform_populate(np, NULL, NULL, dev);
++	ret = devm_of_platform_populate(dev);
+ 	if (ret)
+ 		goto err_phys_power;
+ 
+@@ -832,8 +831,6 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
+ 	if (priv->drvdata->otg_switch_supported)
+ 		usb_role_switch_unregister(priv->role_switch);
+ 
+-	of_platform_depopulate(dev);
+-
+ 	for (i = 0 ; i < PHY_COUNT ; ++i) {
+ 		phy_power_off(priv->phys[i]);
+ 		phy_exit(priv->phys[i]);
+diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
+index e62ecd22b3ed..f1c267e39d62 100644
+--- a/drivers/usb/dwc3/dwc3-of-simple.c
++++ b/drivers/usb/dwc3/dwc3-of-simple.c
+@@ -73,7 +73,7 @@ static int dwc3_of_simple_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_resetc_assert;
+ 
+-	ret = of_platform_populate(np, NULL, NULL, dev);
++	ret = devm_of_platform_populate(dev);
+ 	if (ret)
+ 		goto err_clk_put;
+ 
+@@ -97,8 +97,6 @@ static int dwc3_of_simple_probe(struct platform_device *pdev)
+ 
+ static void __dwc3_of_simple_teardown(struct dwc3_of_simple *simple)
+ {
+-	of_platform_depopulate(simple->dev);
+-
+ 	clk_bulk_disable_unprepare(simple->num_clocks, simple->clks);
+ 	clk_bulk_put_all(simple->num_clocks, simple->clks);
+ 	simple->num_clocks = 0;
+diff --git a/drivers/usb/dwc3/dwc3-omap.c b/drivers/usb/dwc3/dwc3-omap.c
+index 3db17806e92e..46e7a1dd7c50 100644
+--- a/drivers/usb/dwc3/dwc3-omap.c
++++ b/drivers/usb/dwc3/dwc3-omap.c
+@@ -505,7 +505,7 @@ static int dwc3_omap_probe(struct platform_device *pdev)
+ 	if (ret < 0)
+ 		goto err1;
+ 
+-	ret = of_platform_populate(node, NULL, NULL, dev);
++	ret = devm_of_platform_populate(dev);
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "failed to create dwc3 core\n");
+ 		goto err1;
+@@ -535,7 +535,6 @@ static int dwc3_omap_remove(struct platform_device *pdev)
+ 
+ 	dwc3_omap_disable_irqs(omap);
+ 	disable_irq(omap->irq);
+-	of_platform_depopulate(omap->dev);
+ 	pm_runtime_put_sync(&pdev->dev);
+ 	pm_runtime_disable(&pdev->dev);
+ 
+diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+index c703d552bbcf..8f5714c3d379 100644
+--- a/drivers/usb/dwc3/dwc3-qcom.c
++++ b/drivers/usb/dwc3/dwc3-qcom.c
+@@ -636,7 +636,7 @@ static int dwc3_qcom_of_register_core(struct platform_device *pdev)
+ 		return -ENODEV;
+ 	}
+ 
+-	ret = of_platform_populate(np, NULL, NULL, dev);
++	ret = devm_of_platform_populate(dev);
+ 	if (ret) {
+ 		dev_err(dev, "failed to register dwc3 core - %d\n", ret);
+ 		return ret;
+@@ -775,9 +775,7 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+ interconnect_exit:
+ 	dwc3_qcom_interconnect_exit(qcom);
+ depopulate:
+-	if (np)
+-		of_platform_depopulate(&pdev->dev);
+-	else
++	if (!np)
+ 		platform_device_put(pdev);
+ clk_disable:
+ 	for (i = qcom->num_clocks - 1; i >= 0; i--) {
+@@ -796,8 +794,6 @@ static int dwc3_qcom_remove(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	int i;
+ 
+-	of_platform_depopulate(dev);
+-
+ 	for (i = qcom->num_clocks - 1; i >= 0; i--) {
+ 		clk_disable_unprepare(qcom->clks[i]);
+ 		clk_put(qcom->clks[i]);
+diff --git a/drivers/usb/dwc3/dwc3-st.c b/drivers/usb/dwc3/dwc3-st.c
+index e733be840545..9ec2ecf8d81f 100644
+--- a/drivers/usb/dwc3/dwc3-st.c
++++ b/drivers/usb/dwc3/dwc3-st.c
+@@ -259,7 +259,7 @@ static int st_dwc3_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	/* Allocate and initialize the core */
+-	ret = of_platform_populate(node, NULL, NULL, dev);
++	ret = devm_of_platform_populate(dev);
+ 	if (ret) {
+ 		dev_err(dev, "failed to add dwc3 core\n");
+ 		goto err_node_put;
+@@ -309,8 +309,6 @@ static int st_dwc3_remove(struct platform_device *pdev)
+ {
+ 	struct st_dwc3 *dwc3_data = platform_get_drvdata(pdev);
+ 
+-	of_platform_depopulate(&pdev->dev);
+-
+ 	reset_control_assert(dwc3_data->rstc_pwrdn);
+ 	reset_control_assert(dwc3_data->rstc_rst);
+ 
+-- 
+2.29.2
+
 
 _______________________________________________
 linux-amlogic mailing list
