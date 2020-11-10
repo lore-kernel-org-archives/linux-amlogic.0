@@ -1,88 +1,68 @@
-Return-Path: <SRS0=y4a2=EP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=ol0a=EQ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C2D5C2D0A3
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2020 23:54:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56BDDC2D0A3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Nov 2020 02:52:29 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 90ED7206ED
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2020 23:54:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AA9BE206ED
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Nov 2020 02:52:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xcks/7L7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LBnQhWk2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 90ED7206ED
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H/waKqN6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AA9BE206ED
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:To:From:
+	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=QQyUPaN8B6oduea/fr4um0QQ6OyvjmgXgXlaJaTz3kE=; b=Xcks/7L7BKZB+DzyLkZIMG3c2
-	VIHBv9k1UH/JRi4N6S4LBLOqp0kP/4c8V1mK6jY/nBbMdLIa10XtchFxDWsNZszldFoTWC8Ryg5l+
-	gXKBfjG3Un5RT9HBUihG1luuKbm+9MX4T5pNV7GBu7mawz5HRiAIfqB1V+oC+6m/jiJqZKRgK5wj1
-	fHZ42cS6kw3C+oAPQzjIMWoC8U31th0jajuaUpQrQvntaHiRsw/5JnCmXOwQoFdxjoWFCejI+Tggf
-	nExckAiElfxvwOsNJiBiVEsIi5slyKrlYS5gEYFcYYzuTOtx7OGNenBZFmh1y+duodsaJ99/xjTA/
-	dYL5iH1ww==;
+	 bh=rUmaDqZzYkWJuDfQUnPb76qt9C8p6hgkyuEPEN8ULns=; b=H/waKqN6hmMJihModLDfo+aek
+	dNf8CoTyWgdhS3OYwUzsbHYkqEO43ZDK8DyJvBqB1/IxyE9BLZSRbBgYK1dw3BLyLDmSs41T5utu8
+	XcLbKJ1h/HwXT+E4WwxON2VFkGo9PKPQRu6vSZEqO0QgT5WSXLPH17xlNDX8vnroafBzVWlqXjWQ7
+	A6wNuKpTMKwAyvGFoO1DMBZg0376ovMbKxQ7ScuVTU8hlar7tyblCUdtPItMXUaQDT72aT4OZhHoE
+	htMCfhaxk1Ewi91jh24KqIWTYoTWpcSEOQmrTmglYN5lOIf888dGoMd90zO9oxezP5KSsRAVfxkQy
+	Jws9ayEYg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kcGzT-0000Bu-Jd; Mon, 09 Nov 2020 23:54:27 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1kcJld-0002ef-BC; Tue, 10 Nov 2020 02:52:21 +0000
+Received: from smtprelay0101.hostedemail.com ([216.40.44.101]
+ helo=smtprelay.hostedemail.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kcGzR-0000BR-FB
- for linux-amlogic@lists.infradead.org; Mon, 09 Nov 2020 23:54:26 +0000
-Received: by mail-wm1-x330.google.com with SMTP id d142so1279944wmd.4
- for <linux-amlogic@lists.infradead.org>; Mon, 09 Nov 2020 15:54:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=CzaTgs0ZCR7YhHypdkhQqgQtrmivItzWonv5EyUQ5Oc=;
- b=LBnQhWk2PIp26EaOoBQE1SC9Bibtn/1uMSMP349l4bjMbQ3zYNk0/rUIHHaFMhdUFL
- UJhHhGHghE9ejI6HL8mmFtKyeznIXHcQkepCmoGxwE0c2Gff1ArduN6cnIyWUTbXmAWp
- CdFkfCem7OzkUrH5rRPohvsocFsS2TJcqSbSadFojGkQ+qKIGcWD9zCU9PrUlxPXDU8Y
- Rj+kVwMYVT0CzMBhDQG3li6MuZN8nXFrAyzHZrSEXqaW09L0E7EUOrCsr/EgqJVsOh1s
- osntovUuiZdjVVzMLGRdIzrKw8u9uU6i2+XkylV+6JR5dIETH7FMVxJNqK1oVMQpFhbe
- t0JA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=CzaTgs0ZCR7YhHypdkhQqgQtrmivItzWonv5EyUQ5Oc=;
- b=Zl/nB38ieyTpha0jg5e6L7hcAgeqeQQqV4slMZOePZsX8JsxRMcugw4vKjV7pkxLxE
- wp9jHAJMXUq3G7lzo6O4HP5JnTZAY2CBLX2PIe8+TPaEArZfBOy8gcmDdyBbP6j4o8cZ
- Edr5hY/nh5mwUElPprrxMTBErk113eqXvctJCIruV3J9Ii6bnHiBBklu+bc2Ck50A50N
- 5yFD96sHPweZACtO0jySN/6MghV4VcGFn+FF7CYdIqlBBGl9OywmIGzT9H74Evyo61y4
- hl2eAVwqzjjUojPuZeqWXjJP0nZocXGiE1eGTtWmdgVRV/wHSiYT5XzrjMptMwASE2Gt
- dw4Q==
-X-Gm-Message-State: AOAM532H/f6mBHPp54s3gy2H/SDfZlmVIkhGrTgv0Kbojqt+N8j7vuyJ
- oIrliO8ssLORYfT3mxYQJu6AOyCmUait1OiFvxQ=
-X-Google-Smtp-Source: ABdhPJxoE6MHorfn0+TD9hfOVTlTZ6AsX52ps0ROo7cFOIcd2S839nHa0a/7fal9YQQ+QsgThQQuug==
-X-Received: by 2002:a1c:5545:: with SMTP id j66mr1696097wmb.31.1604966064031; 
- Mon, 09 Nov 2020 15:54:24 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id i11sm8025874wrm.1.2020.11.09.15.54.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Nov 2020 15:54:23 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Michal Lazo <michal.lazo@mdragon.org>, linux-amlogic@lists.infradead.org
-Subject: Re: How to fix pcie ranges for nvidia GFX card
-In-Reply-To: <CAFW1BFwi9nXW3ZZjK2pH2JUPh9Xj0PdM61+4sOY-YjA=i-AwEQ@mail.gmail.com>
-References: <CAFW1BFwi9nXW3ZZjK2pH2JUPh9Xj0PdM61+4sOY-YjA=i-AwEQ@mail.gmail.com>
-Date: Mon, 09 Nov 2020 15:54:20 -0800
-Message-ID: <7ho8k6ulw3.fsf@baylibre.com>
+ id 1kcJla-0002du-VE; Tue, 10 Nov 2020 02:52:19 +0000
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay02.hostedemail.com (Postfix) with ESMTP id F008012CB;
+ Tue, 10 Nov 2020 02:52:13 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-HE-Tag: ink22_1714ef1272f1
+X-Filterd-Recvd-Size: 2439
+Received: from [192.168.0.160] (cpe-72-134-80-165.natsow.res.rr.com
+ [72.134.80.165]) (Authenticated sender: joe@perches.com)
+ by omf07.hostedemail.com (Postfix) with ESMTPA;
+ Tue, 10 Nov 2020 02:52:09 +0000 (UTC)
+Message-ID: <3c39c363690d0b46069afddc3ad09213011e5cd4.camel@perches.com>
+Subject: Re: Subject: [RFC] clang tooling cleanups
+From: Joe Perches <joe@perches.com>
+To: trix@redhat.com, linux-kernel@vger.kernel.org, 
+ clang-built-linux@googlegroups.com, cocci <cocci@systeme.lip6.fr>
+Date: Mon, 09 Nov 2020 18:52:08 -0800
+In-Reply-To: <20201027164255.1573301-1-trix@redhat.com>
+References: <20201027164255.1573301-1-trix@redhat.com>
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201109_185425_542381_3844DEFC 
-X-CRM114-Status: GOOD (  13.90  )
+X-CRM114-CacheID: sfid-20201109_215219_066706_069BB8BC 
+X-CRM114-Status: UNSURE (   9.85  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,88 +74,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
+ linux-iio@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-rtc@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-rdma@vger.kernel.org, qat-linux@intel.com, amd-gfx@lists.freedesktop.org,
+ linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-nfs@vger.kernel.org,
+ netdev@vger.kernel.org, linux-mmc@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ linux-btrfs@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Michal Lazo <michal.lazo@mdragon.org> writes:
+On Tue, 2020-10-27 at 09:42 -0700, trix@redhat.com wrote:
+> This rfc will describe
+> An upcoming treewide cleanup.
+> How clang tooling was used to programatically do the clean up.
+> Solicit opinions on how to generally use clang tooling.
+> =
 
-> Hello
-> I have khadas vim3 with nvidia PCIe card
-> Anybody has an idea how to fix pcie ranges so we can have nvidia gpu working?
+> The clang warning -Wextra-semi-stmt produces about 10k warnings.
+> Reviewing these, a subset of semicolon after a switch looks safe to
+> fix all the time.  An example problem
+> =
 
-Can you try this patch[1]?  Neil found this issue and we were testing
-locally, but hadn't yet submitted a fix.  If this works, we'll get a
-formal patch upstream.
+> void foo(int a) {
+> =A0=A0=A0=A0=A0switch(a) {
+> =A0=A0=A0=A0=A0	       case 1:
+> 	       ...
+> =A0=A0=A0=A0=A0}; <--- extra semicolon
+> }
+> =
 
-Hope that helps,
+> Treewide, there are about 100 problems in 50 files for x86_64 allyesconfi=
+g.
+> These fixes will be the upcoming cleanup.
 
-Kevin
+coccinelle already does some of these.
 
-[1]
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 1e83ec5b8c91..0a220fb10841 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -134,8 +134,8 @@ pcie: pcie@fc000000 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			device_type = "pci";
--			ranges = <0x81000000 0 0 0x0 0xfc600000 0 0x00100000
--				  0x82000000 0 0xfc700000 0x0 0xfc700000 0 0x1900000>;
-+			ranges = <0x81000000 0 0 0x0 0xfc600000 0 0x00400000
-+				  0x82000000 0 0xfca00000 0x0 0xfca00000 0 0x1600000>;
- 
- 			clocks = <&clkc CLKID_PCIE_PHY
- 				  &clkc CLKID_PCIE_COMB
+For instance: scripts/coccinelle/misc/semicolon.cocci
 
-> This is what I get in dmesg
->
-> [    1.548188] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth,
-> limited by 5.0 GT/s PCIe x1 link at 0000:00:00.0 (capable of 63.008
-> Gb/s with 8.0 GT/s PCIe x8 link)
-> [    1.562742] pci 0000:01:00.0: vgaarb: VGA device added:
-> decodes=io+mem,owns=none,locks=none
-> [    1.571028] pci 0000:01:00.1: [10de:0e0f] type 00 class 0x040300
-> [    1.576944] pci 0000:01:00.1: reg 0x10: [mem 0x00000000-0x00003fff]
-> [    1.583263] pci 0000:01:00.1: Max Payload Size set to 256 (was 128, max 256)
-> [    1.622407] pci 0000:00:00.0: BAR 9: no space for [mem size 0x0c000000 pref]
-> [    1.623803] pci 0000:00:00.0: BAR 9: failed to assign [mem size
-> 0x0c000000 pref]
-> [    1.631136] pci 0000:00:00.0: BAR 8: assigned [mem 0xfc800000-0xfdffffff]
-> [    1.637861] pci 0000:00:00.0: BAR 6: assigned [mem
-> 0xfc700000-0xfc70ffff pref]
-> [    1.645033] pci 0000:00:00.0: BAR 7: assigned [io  0x1000-0x1fff]
-> [    1.651070] pci 0000:01:00.0: BAR 1: no space for [mem size
-> 0x08000000 64bit pref]
-> [    1.658576] pci 0000:01:00.0: BAR 1: failed to assign [mem size
-> 0x08000000 64bit pref]
-> [    1.666410] pci 0000:01:00.0: BAR 3: no space for [mem size
-> 0x02000000 64bit pref]
-> [    1.673913] pci 0000:01:00.0: BAR 3: failed to assign [mem size
-> 0x02000000 64bit pref]
-> [    1.681763] pci 0000:01:00.0: BAR 0: assigned [mem 0xfd000000-0xfdffffff]
-> [    1.688500] pci 0000:01:00.0: BAR 6: assigned [mem
-> 0xfc800000-0xfc87ffff pref]
-> [    1.695648] pci 0000:01:00.1: BAR 0: assigned [mem 0xfc880000-0xfc883fff]
-> [    1.702385] pci 0000:01:00.0: BAR 5: assigned [io  0x1000-0x107f]
-> [    1.708426] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
-> [    1.713592] pci 0000:00:00.0:   bridge window [io  0x1000-0x1fff]
-> [    1.719626] pci 0000:00:00.0:   bridge window [mem 0xfc800000-0xfdffffff]
->
->
-> And this is what we use right now to setup ranges
-> https://github.com/chewitt/linux/blob/master/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi#L137
->
->
-> Any idea how to properly set up ranges ?
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Perhaps some tool coordination can be done here as
+coccinelle/checkpatch/clang/Lindent call all be used
+to do some facet or another of these cleanup issues.
+
+
+
 
 _______________________________________________
 linux-amlogic mailing list
