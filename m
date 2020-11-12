@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 33733C2D0E4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Nov 2020 21:29:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08AE5C388F7
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Nov 2020 21:30:13 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B000521D91
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Nov 2020 21:29:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7E5C4216C4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Nov 2020 21:30:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s21mnxI1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B000521D91
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="F9Y5w5F9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E5C4216C4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,22 +25,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=2sw945UmzTQIV2CBIwJa/Y+6pnJ5y/mHNKlXgAuorC0=; b=s21mnxI1J0ROL8Di1O3BQyyCG
-	IQ3ZlOsTSxESmhYuoF2wcqXbbIcrucm+/SDu0OGhXNDeCDhUOyppCOSdjIxTRI2NrMdUF7TbWI+a4
-	HZurHLsQUfvK2b0pNzm5IWNH1I9cpzVzd0NqOo5ZAM6WfQmvKNGLfh45X5f8LIHzQ+375HLQPMf6b
-	VaGVjLPZq71NPanbwgTmSg9YoCdSW6Z1k+0znVTDilD41owaWjPQf97U+io16DzSstWwonSHoTyKw
-	qGT8FgUP7NJMZ7+Z/cqeXXFtaKJ9hRBtaS0fcYCrpbr2szDetKnLEVr6gvxcCcmvMasjgzVALFerc
-	/38+MWa/Q==;
+	 bh=WuHkUSHQg/edjcfcWnqasrdktSGBsGNhuLHD2ynFctg=; b=F9Y5w5F9pjbp77bzehQ2k7grK
+	0ef7kxz2hMb3XdgfC8bkl8ozLAV2pL5SSPVAM3O1N+LokBsO0MDcSXVXD6o2l4DO4paoE1EsYG+zs
+	wQut4hjQ9EA3JmBXz52+lVg0OCPIgOO/2Gs8oikmdo9trzU+jJgJ/2nmpq/DyADXMjMSrefPGBip8
+	aJUfexWiQkHJbzuIR+k7XT3VPlCMI/qUNZumV0czYWjxxx0R+99Rh/z34wLft+A8J5+tcn4kt77Wv
+	HbvUtx48Bc7rTcO3h0E+14/+1yUsGIFGy83c4Ifdrf9JbtGqZ1LUDNGvGVgJZeIQH6u9H70w7WoYv
+	ZiEJffe4g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kdK9o-0004J9-Si; Thu, 12 Nov 2020 21:29:28 +0000
+	id 1kdKAS-0004SP-6h; Thu, 12 Nov 2020 21:30:08 +0000
 Received: from mleia.com ([178.79.152.223] helo=mail.mleia.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kdK9n-0004Ih-9j; Thu, 12 Nov 2020 21:29:28 +0000
+ id 1kdKAO-0004RU-Lq; Thu, 12 Nov 2020 21:30:07 +0000
 Received: from mail.mleia.com (localhost [127.0.0.1])
- by mail.mleia.com (Postfix) with ESMTP id D4714419B9E;
- Thu, 12 Nov 2020 21:29:23 +0000 (UTC)
-Subject: Re: [PATCH 29/32] pwm: lpc18xx-sct: convert to
+ by mail.mleia.com (Postfix) with ESMTP id 801C5419BA4;
+ Thu, 12 Nov 2020 21:30:01 +0000 (UTC)
+Subject: Re: [PATCH 13/32] pwm: lpc32xx: convert to
  devm_platform_ioremap_resource
 To: Yangtao Li <tiny.windzz@gmail.com>, claudiu.beznea@microchip.com,
  thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
@@ -59,21 +59,21 @@ To: Yangtao Li <tiny.windzz@gmail.com>, claudiu.beznea@microchip.com,
  linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
  linux-tegra@vger.kernel.org
 References: <20191229080610.7597-1-tiny.windzz@gmail.com>
- <20191229080610.7597-29-tiny.windzz@gmail.com>
+ <20191229080610.7597-13-tiny.windzz@gmail.com>
 From: Vladimir Zapolskiy <vz@mleia.com>
-Message-ID: <a9e353d2-3d08-adfe-de1c-3efdcd2e5f71@mleia.com>
-Date: Thu, 12 Nov 2020 23:29:21 +0200
+Message-ID: <7232ec21-8361-af57-87d6-7521b66ca281@mleia.com>
+Date: Thu, 12 Nov 2020 23:29:59 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <20191229080610.7597-29-tiny.windzz@gmail.com>
+In-Reply-To: <20191229080610.7597-13-tiny.windzz@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20201112_212923_912288_DA2B1D97 
+X-CRM114-CacheID: sfid-20201112_213002_252963_8DC7C979 
 X-CRM114-Status: UNSURE (   4.84  )
 X-CRM114-Notice: Please train this message. 
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201112_212923_912288_DA2B1D97 
+X-CRM114-CacheID: sfid-20201112_213002_252963_8DC7C979 
 X-CRM114-Status: UNSURE (   9.14  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -92,7 +92,7 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/29/19 10:06 AM, Yangtao Li wrote:
+On 12/29/19 10:05 AM, Yangtao Li wrote:
 > Use devm_platform_ioremap_resource() to simplify code.
 > 
 > Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
