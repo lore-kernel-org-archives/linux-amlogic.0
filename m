@@ -2,93 +2,91 @@ Return-Path: <SRS0=eCnW=ET=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.0 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 693F0C61DD8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Nov 2020 15:28:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E647C55ABD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Nov 2020 16:12:20 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0891022275
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Nov 2020 15:28:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2FA052076E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Nov 2020 16:12:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MAnCp5Bi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fosSqcUS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0891022275
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Sr454ZsI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KLSMDgSs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2FA052076E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=YbPS8bInnA0s6wdv72710ePc4rKL+omfgItovAvUFh4=; b=MAnCp5BiafOOY++rhV25vh3iC
-	KW2RpCtA7nlC9cz+YdNandDSQoyUY4eTx1+a2Wj8jg8z+YP/JzrJl0cNUCdmQxxi0cqstVh56d+aN
-	aCgLhR51Ek1s0GwniEJkpgkvtAqJ0Yj2v8vriTppulOqduya53SjE5exHz4P40+lkLWfWMQc3BLim
-	rQ470m/HZsCs74iTJsFRDnGwNCJJpYOAzcSpglWh078dwzNrQjQTqGkXLaawevRaZ8tHT4afkEz2t
-	OOmeP59XE5DQC0W9nVsU9jDggSbVTMJeQJ1bfxZN+iPZc44Wq1rxmslRZ8eZkV7/QXMwGJSZGUfgd
-	fI5Rarn3A==;
+	 bh=EplwijEKLdEDwh+mEv/gXpAUwNfBg2UnHz7XqfLQ8jM=; b=Sr454ZsIXCJHAsMRfhx2PXe8X
+	qbS9yPVoflNS3r13uDSDRXGD/FB5wWqpaNx1orq9cw3p3covxcoymQcP1ZKvIplJ4eiIkF2hWfW18
+	tlPElSXBRTUBl2/wumwP1ROvPrspmugDhWPrn5hNiTvz/xgWYm2SxaLJYwKcGxNezCQqHu3zkPmZ2
+	BzAw9GM3WE7YN+X+cdGFXFCa1o74cjYqINU5oR58sg+KPlkWQROnl6hZRqFh0VkZ/ysjG/aVYrXeL
+	Z7CmhwxE8jTS5ePc7uSmHkLu7xml6YeASceUhEewRvtgqu2dlMbDxgzxdLo/WgcA2kbZ323US0WVy
+	CKeutduZQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kdazo-0003lP-QY; Fri, 13 Nov 2020 15:28:16 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1kdbgK-0002dM-0I; Fri, 13 Nov 2020 16:12:12 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kdazm-0003k9-Eo
- for linux-amlogic@lists.infradead.org; Fri, 13 Nov 2020 15:28:15 +0000
-Received: by mail-wm1-x342.google.com with SMTP id c9so8457109wml.5
- for <linux-amlogic@lists.infradead.org>; Fri, 13 Nov 2020 07:28:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=KLkUtI/SVQeUp7VwceuSHv8X/fMKWIt+TsBfNKporJc=;
- b=fosSqcUSzdsOp2joMf8sEToZTn4UmIkStglUd9ikWBDpIg5QUhei8a/eYaEYiFdEVV
- MAU4SqW2iUjEtVpbD3QiPxnWs+IrHWB4Ll7TlHCUJNZNU/l1VO7PrBCwRsGxusqJoGLT
- 16S7eUJZuB3/OIYH1LoY6kpWME3HxxVeBl/KC2iLh2TDrqmB1VcJNnRQbUUQVQfZcWpe
- WZDke0mQLIaSTHc085ZsZ/KHIj5+KE4ywGZqNtaQGVikH8ujYOYh3R4q3QHEv5dEesFe
- ZLyJpYAr+TxVjW2qrd3cqipFjCCEMSwyWDpDADlH/T1SCTjzQhjy/Fp8g3Or87lOMvBz
- /92Q==
+ id 1kdbgA-0002Zz-UB; Fri, 13 Nov 2020 16:12:04 +0000
+Received: by mail-wr1-x442.google.com with SMTP id j7so10502034wrp.3;
+ Fri, 13 Nov 2020 08:12:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=3FLVqg7Zj+etllIuTUwpk3wN8gzR1GG1JAXGgCW62YM=;
+ b=KLSMDgSs24tLWq2oBa9lxL4UOPCQfi8IzwqLz9wCCdATjc/+7YqTriWIaPJq6vKQy3
+ Ue+p/6X97goyDINuu41tnxndnBzZ9WoudzODChhyRcLXDtk/VukX5fbVPHNHa1Bsn9me
+ ooKZLy9b47OkiiMRf6s4ZUuPL+Y+OfbN6HqZJC+LQ/lVMtoLjX+h+XbGE4N9QNpTisbd
+ Xjik04MsHH7rpUbDKkaHF2boQ5k8rmJV0pjzhSk7Ql3IqxtHwW5gHzaMU6+5qrOBCmIu
+ UEe1VJQ874Q7/HiejGSEP5rfjaWQRx2SXqq0ELlj9ONZizAnAU7ho3rNqYW0oPwSZf8K
+ 8mwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=KLkUtI/SVQeUp7VwceuSHv8X/fMKWIt+TsBfNKporJc=;
- b=mRh+HUkyKW7bYlC4OWK/PibLa6PE7slQ00/ZJIRUw2iXusAk97PEymEzlj/r6yeY6R
- zZrrfuggmo2Wk+qP4aCBAbbHxrmIrMEvjqg6TjEnx/zb/5k9cuhQlA27mOA2Oj/9bsp9
- H2n0UqgQUs9ezgmXQ43MY5e7N9zFLweIXuPA9OgTeePU2Sio7GJnxh2gpVyhbVNtowyN
- 9rS1sHawY7B4cnOBOcxjIkdJZ/jZ/v73oTJA5UYPCr3Ck2wlKFPR0eZPB6unygrTXKBW
- iFj3fUfuYrqbDh5BOHwV59hs+4Pn775E3LbHJhYbEgEnnrIQTdFP6y8atMGlKnReRLD3
- 73UQ==
-X-Gm-Message-State: AOAM532VF688p8uFn0/EGMrektOnGGtUPfBx1UH3BWrLquYwgEQO1fEv
- eGsYxs10AUOy9xRKNBz2Z4JCLA==
-X-Google-Smtp-Source: ABdhPJz0NHXxKJ21M7mNWtBHglyXWW1yTkIPTpBbQc7ttvRnOC32dCp4adBlI41JNQkQYvGVmnKlrw==
-X-Received: by 2002:a1c:790b:: with SMTP id l11mr3186906wme.53.1605281287062; 
- Fri, 13 Nov 2020 07:28:07 -0800 (PST)
-Received: from ?IPv6:2001:861:3a84:7260:b0c9:356b:b197:e786?
- ([2001:861:3a84:7260:b0c9:356b:b197:e786])
- by smtp.gmail.com with ESMTPSA id s13sm11913471wrv.43.2020.11.13.07.28.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 13 Nov 2020 07:28:06 -0800 (PST)
-Subject: Re: [PATCH v2] reset: make shared pulsed reset controls re-triggerable
-To: Philipp Zabel <p.zabel@pengutronix.de>
-References: <20201112230043.28987-1-aouledameur@baylibre.com>
- <0f679c62aa48603ea43a8fa4819d688baa802d73.camel@pengutronix.de>
-From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Message-ID: <95a40dd0-8762-5f80-f692-a2c1f22cad52@baylibre.com>
-Date: Fri, 13 Nov 2020 16:28:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=3FLVqg7Zj+etllIuTUwpk3wN8gzR1GG1JAXGgCW62YM=;
+ b=I7uWduFfTtahNNXRwZvJ2a5WBlJUjYaFZsnPhpyXQpfMsuZIqOVigPJpdJbgmg7VOq
+ sVcIvDupb3xpvpxmew7zLe2msRyA0+vQ/2q+6qoqmg36ro398aGe/GSJcexb3Z4TXUDJ
+ wwp+tWIFeiALZvCp/N+ZZ10S96IIprF1K4tz/y9RwiOjGuuqJ9C4IN+xeKZ9wvmsy79g
+ TVo22A6Py/1vzJZ+fTK1BEonFk+yxMSrYssahDTAq+hRG3ikKgKL4xQReGuGjh3aaBQ7
+ P6rUZZKv+6MjjhVYyaAATXWjSmu3d2q++gSmyZlATu0QxWdhZ+btgiRC+XJF+3H+xp30
+ bNug==
+X-Gm-Message-State: AOAM53195Ankmpml1RU/jYxK/+V97AcRLyY5D05V4hErqDmu+9XNFHkS
+ oSsuutlQDccbCtTDhj0Jd9s=
+X-Google-Smtp-Source: ABdhPJzwUfRGIpbGH13q8UhwZV3215Ve37PGtZ30CipsukJkmAmiutpAQfbiGlD7j+D+EQ9xKao9tw==
+X-Received: by 2002:adf:e350:: with SMTP id n16mr4550061wrj.419.1605283916855; 
+ Fri, 13 Nov 2020 08:11:56 -0800 (PST)
+Received: from localhost ([217.111.27.204])
+ by smtp.gmail.com with ESMTPSA id t7sm11297890wrx.42.2020.11.13.08.11.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Nov 2020 08:11:55 -0800 (PST)
+Date: Fri, 13 Nov 2020 17:11:53 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Subject: Re: About devm_platform_ioremap_resource [Was: Re: [PATCH 01/32]
+ pwm: sun4i: convert to devm_platform_ioremap_resource]
+Message-ID: <20201113161153.GB1408970@ulmo>
+References: <20191229080610.7597-1-tiny.windzz@gmail.com>
+ <20201112161346.gp5nenuagx5wmwl2@pengutronix.de>
+ <20201112190649.GA908613@ulmo>
+ <20201112211429.kfyqzkmmchjo6pll@pengutronix.de>
+ <20201113070343.lhcsbyvi5baxn3lq@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <0f679c62aa48603ea43a8fa4819d688baa802d73.camel@pengutronix.de>
-Content-Language: en-US
+In-Reply-To: <20201113070343.lhcsbyvi5baxn3lq@pengutronix.de>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201113_102814_539564_5098A73E 
-X-CRM114-Status: GOOD (  18.09  )
+X-CRM114-CacheID: sfid-20201113_111203_040906_D18FA9DB 
+X-CRM114-Status: GOOD (  27.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,59 +98,160 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jim Quinlan <james.quinlan@broadcom.com>,
- linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: alexandre.belloni@bootlin.com, heiko@sntech.de,
+ Yangtao Li <tiny.windzz@gmail.com>, Linus Walleij <linus.walleij@linaro.org>,
+ linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-riscv@lists.infradead.org, festevam@gmail.com, f.fainelli@gmail.com,
+ shc_work@mail.ru, Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+ khilman@baylibre.com, wens@csie.org, jonathanh@nvidia.com,
+ linux-rockchip@lists.infradead.org, ludovic.desroches@microchip.com,
+ bcm-kernel-feedback-list@broadcom.com, linux-imx@nxp.com,
+ slemieux.tyco@gmail.com, linux-pwm@vger.kernel.org, rjui@broadcom.com,
+ s.hauer@pengutronix.de, mripard@kernel.org, vz@mleia.com,
+ linux-mediatek@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ paul.walmsley@sifive.com, matthias.bgg@gmail.com,
+ linux-amlogic@lists.infradead.org, Lee Jones <lee.jones@linaro.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, sbranden@broadcom.com,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, nicolas.ferre@microchip.com,
+ palmer@dabbelt.com, kernel@pengutronix.de, shawnguo@kernel.org,
+ claudiu.beznea@microchip.com, nsaenzjulienne@suse.de
+Content-Type: multipart/mixed; boundary="===============4772463093153219550=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/11/2020 16:04, Philipp Zabel wrote:
 
-> On Fri, 2020-11-13 at 00:00 +0100, Amjad Ouled-Ameur wrote:
->> The current reset framework API does not allow to release what is done by
->> reset_control_reset(), IOW decrement triggered_count. Add the new
->> reset_control_rearm() call to do so.
->>
->> When reset_control_reset() has been called once, the counter
->> triggered_count, in the reset framework, is incremented i.e the resource
->> under the reset is in-use and the reset should not be done again.
->> reset_control_rearm() would be the way to state that the resource is
->> no longer used and, that from the caller's perspective, the reset can be
->> fired again if necessary.
->>
->> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
->> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->> Change since v1: [0]
->> * Renamed the new call from reset_control_(array_)resettable to
->> reset_control_(array_)rearm
->> * Open-coded reset_control_array_rearm to check for errors before
->> decrementing triggered_count because we cannot roll back in case an
->> error occurs while decrementing one of the rstc.
->> * Reworded the new call's description.
-> Thank you, applied to reset/next.
->
-> regards
-> Philipp
+--===============4772463093153219550==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="DBIVS5p969aUjpLe"
+Content-Disposition: inline
 
-Thank you for reviewing and approving my patch !
 
-Furthermore, I think your idea of open coding reset_control_array_rearm
-was accurate, and should be also applied to reset_control_array_reset()
-and reset_control_array_(de)assert()
+--DBIVS5p969aUjpLe
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-What do you think ?
+On Fri, Nov 13, 2020 at 08:03:43AM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> Hello,
+>=20
+> [Added lkml and the people involved in commit 7945f929f1a7
+> ("drivers: provide devm_platform_ioremap_resource()") to Cc:. For the
+> new readers: This is about patches making use of
+> devm_platform_ioremap_resource() instead of open coding it. Full context
+> at https://lore.kernel.org/r/20201112190649.GA908613@ulmo]
+>=20
+> On Thu, Nov 12, 2020 at 10:14:29PM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > On Thu, Nov 12, 2020 at 08:06:49PM +0100, Thierry Reding wrote:
+> > > I also think that it's overly narrow is scope, so you can't actually
+> > > "blindly" use this helper and I've seen quite a few cases where this =
+was
+> > > unknowingly used for cases where it shouldn't have been used and then
+> > > broke things (because some drivers must not do the request_mem_region=
+()
+> > > for example).
+> >=20
+> > You have a link to such an accident?
+>=20
+> I got a hint in private here: https://lore.kernel.org/r/1555670144-24220-=
+1-git-send-email-aisheng.dong@nxp.com
+>=20
+> devm_platform_ioremap_resource() is platform_get_resource() +
+> devm_ioremap_resource() and here it was used to replace
+> platform_get_resource() + devm_ioremap().
+>=20
+> IMHO the unlucky thing in this situation is that devm_ioremap_resource()
+> and devm_ioremap() are different by more than just how they get the area
+> to remap. (i.e. devm_ioremap_resource() also does
+> devm_request_mem_region().)
+>=20
+> So the problem is not the added wrapper, but unclear semantics in the
+> functions it uses.
 
-In case you agree it is necessary to do so, I can work out an upcoming
-patchset to fix this matter.
+The semantics aren't unclear. It's just that the symbol name doesn't
+spell out every detail that the function implements, which, frankly, no
+function name ever does, at least not for anything beyond simple
+instructional examples. That's what we have documentation for and why
+people should read the documentation before they use a function and make
+(potentially wrong) assumption about what it does.
 
-Best,
-Amjad
+>                    In my eyes devm_ioremap() and
+> devm_platform_ioremap_resource() should better be named
+> devm_request_ioremap() and devm_platform_request_ioremap_resource()
+> respectively. Is it worth to rename these for clearity?
 
+I think function names are always a compromise between giving you the
+gist of what the implementation does and being short enough so it
+doesn't become difficult to read or use.
+
+One of the reasons why I dislike the addition of helpers for every
+common special case (like devm_platform_ioremap_resource()) is because
+it doesn't (always) actually make things easier for developers and/or
+maintainers. Replacing three lines of code with one is a minor
+improvement, even though there may be many callsites and therefore in
+the sum this being a fairly sizeable reduction. The flip side is that
+now we've got an extra symbol with an unwieldy name that people need
+to become familiar with, and then, like the link above shows, it doesn't
+work in all cases, so you either need to fall back to the open-coded
+version or you keep adding helpers until you've covered all cases. And
+then we end up with a bunch of helpers that you actually have to go and
+read the documentation for in order to find out which one exactly fits
+your use-case.
+
+Without the helpers it's pretty simple to write, even if a little
+repetitive:
+
+  1) get the resource you want to map
+  2) request the resource
+  3) map the resource
+
+2) & 3) are very commonly done together, so it makes sense to have a
+generic helper for them. If you look at the implementation, the
+devm_ioremap_request() implementation does quite a bit of things in
+addition to just requesting and remapping, and that's the reason why
+that helper makes sense.
+
+For me personally, devm_platform_ioremap_resource() is just not adding
+enough value to justify its existence. And then we get all these other
+variants that operate on the resource name (_byname) and those which
+remap write-combined (_wc). But don't we also need a _byname_wc()
+variant for the combination? Where does it stop?
+
+Thierry
+
+--DBIVS5p969aUjpLe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+usEcACgkQ3SOs138+
+s6Fx2A//aBWRQVzPwSHDhbF/lNl90e5vvJJvXbrcYeiJEuYYaiFkgBrnXzYQgULo
+LI8hLEtAl9F5Ghps7wMBsngqqm8+gaPBOPhYDUkS6VxdK78mByEjyyz136HJkjKr
+Hw2q7063Urljk3V25DAwrGzqhv8ngWNY1fIGmB3Khjvm8TnsTWgEh3fkCao2qjpS
+hGTaRPAmBcA/riB67DykA1Zgce/KkEA5oe/II7sokZ35jVgZLcMtw2xACMxCJ/rJ
+WKX98AL5jAI6wVtgWwbetccy+YWHvrj2Xns1T5mzkas2HUnCYeWFeiL6VJBEYnQL
+DnNylpoUbUV6h/DDiIeQ+yW4j4bzYrtanTzXPJ+VNHopW5sePwR/jL8yH+rQVHRT
+pGLB0EPfy3aqi7BXzhJwJY4s8HvC1uMRiNk5V3Zk2mJPsRaFud3gkCGWGtgX46Ma
+QknbKULKt+bYrXDXvcm4qRb4Kvt223Pdqlxp9eppHAdZFWnD3EUymSpNN8Rej0gY
+6ulcjvxwBvYwWUZp8IN7gnq4fbpy8uT3GxkitmvIgznwRmk3bse/2V8FfhSob/XC
+Yb+KLXKpP5s09mSindpzh+c4iw+Duy5PBzPTbtu56RTAbfNWJmKNmq54fNTswD/j
+vHFSImUb4jcngBJzaTZGVtV1PA2tagKtkkIp82uLtCIfvvjrPbQ=
+=E6ps
+-----END PGP SIGNATURE-----
+
+--DBIVS5p969aUjpLe--
+
+
+--===============4772463093153219550==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4772463093153219550==--
+
