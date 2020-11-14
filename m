@@ -1,69 +1,86 @@
-Return-Path: <SRS0=eCnW=ET=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=BTcE=EU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13BB3C55ABD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Nov 2020 17:41:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FF76C5519F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 19:12:29 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A4E7620791
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Nov 2020 17:41:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E54A62225E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 19:12:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KUQe+6B/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A4E7620791
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fnInD6CD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="FSu31JSK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E54A62225E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8L3qf5gj9fW4XhNVRneR3SQp1V1EgTdxLwnWqygXRAM=; b=KUQe+6B/OgHW8zwBs306QXfyX
-	kn7nrztMmfnvtwMig9aOBy0m+k5Ai7R6owZHygMx20D0yVcavRg/sGm0fv6HJtrJvuizelubqEZvO
-	1PMX6KCQIlvwjXVy+vtxfcEP4hU+J+58hFFz9sAa20LQ3nJ9tACE8dMP5KwwWKQXU3q6/XyIanho/
-	/apnC7w81yDc/KH+7+A9MB7DbpdQEI+oiF+A7QYMTx+AvoIgDAPsPUijXnB+LM8PEXUr87uU+ziPU
-	KfNZhNWzUcterdrZ/Mt7lT/TE5HFfoKzp5XeOTJub4xEt36n1Sv0Nqge84umqlB9sCRrp0FrEiaFt
-	+H5Z0JSbg==;
+	 bh=nv8Zw5piUyVdQUWbStPrPut7FWfLoUBuWuDLJl4DgMo=; b=fnInD6CDzy75b/NvKDJuKQ0Sk
+	XWbso/Wq09PD77K3pq1xSc5ODLO+m+l9FR2lLJMqo2f/Q4C508Vq7KoMHkK8uwdpKhpDbD43sFPIQ
+	H36+Pm8j2ZCh69sL5h84+f/rIGNCt8UO0x6AXsnxmi4EHfOET0Gtc3H3Pv9eISh3HYg/qJLa5XMX7
+	8hLhUf1feJHX/j1eR79YF7ap6wdZhUcvI1785THv5BOyv7Me9DXdb9hSdWgw7DhLc2Mvlho1j09gr
+	W5Srb6VdfON6cidr0/f5KIfZYraXdmQCSlYN3fnoar8JQFr1yoAx5eGGJWXAcVt0rOWzeTjoKzY0h
+	P1RBb+XeA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kdd4D-0006cQ-3i; Fri, 13 Nov 2020 17:40:57 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kdd4A-0006bX-IW; Fri, 13 Nov 2020 17:40:55 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6D6711042;
- Fri, 13 Nov 2020 09:40:51 -0800 (PST)
-Received: from [10.57.53.43] (unknown [10.57.53.43])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C6B8C3F718;
- Fri, 13 Nov 2020 09:40:42 -0800 (PST)
-Subject: Re: About devm_platform_ioremap_resource [Was: Re: [PATCH 01/32] pwm:
- sun4i: convert to devm_platform_ioremap_resource]
-To: Thierry Reding <thierry.reding@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20191229080610.7597-1-tiny.windzz@gmail.com>
- <20201112161346.gp5nenuagx5wmwl2@pengutronix.de>
- <20201112190649.GA908613@ulmo>
- <20201112211429.kfyqzkmmchjo6pll@pengutronix.de>
- <20201113070343.lhcsbyvi5baxn3lq@pengutronix.de>
- <20201113161153.GB1408970@ulmo>
-From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <6cddd32c-50eb-4399-02bc-d4377237134c@arm.com>
-Date: Fri, 13 Nov 2020 17:40:41 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.4.3
+	id 1ke0yA-0001l9-Vk; Sat, 14 Nov 2020 19:12:19 +0000
+Received: from mail-ej1-x643.google.com ([2a00:1450:4864:20::643])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1ke0y6-0001jh-Py
+ for linux-amlogic@lists.infradead.org; Sat, 14 Nov 2020 19:12:17 +0000
+Received: by mail-ej1-x643.google.com with SMTP id cw8so18627524ejb.8
+ for <linux-amlogic@lists.infradead.org>; Sat, 14 Nov 2020 11:12:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=u5WJiirRKNDUV5O3yKO2RQW3GzVNyUWzALcJgmi9qD8=;
+ b=FSu31JSKLbwJZm8SKdIl9tHJVYSdoso0nbNX1WyZSqU7bJ+f3/mhAJKWP98OxztFvq
+ GpqqwY1QxIJK9hRA4qjpD6KncuahjDOHrbayfw9KPlE/heg7r1R0rfDAJTbIAQJNuDr9
+ IkJpuOQ2tuj/r96z41WusH70BMbCVlaD5vYOlEq3JiUbLmXUbNaOk2uJ8Xyka56OpZz3
+ TEcOnoZkXQGGRi1idfvtDrP0MeDZR1wA40ED1SpzLXak4V5sPvxsBG7RJ5PDXD4JcD00
+ dhRUSf3jZI7yX4WlK1PEEq6k83ONo5c19SPdweZAaQFGS8s0k7AW9ApQg34JKmOigg5w
+ 7NWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=u5WJiirRKNDUV5O3yKO2RQW3GzVNyUWzALcJgmi9qD8=;
+ b=s89vOPm71XVNQcxLu8jtPPqTflyCJB9/xdGasn43jIRbhfVD++IqzUL38RXP8yzSCS
+ ZAlVCXgdO1A63FszSbWWqfuTja9OsqcA6KmoeWmL9PybvtjkioJ+k6q58Csb4hkJFOmB
+ hAeIHLKXYoY7a8bWdE18a6PO3A0Pn62yLuKPqAHFyrJWN+GhVm1WWwJICpSVwKRwB6gt
+ dwd2c2j7xp7K+/DcIn7BFeCPM8Ggq12PIK18GVvaTm3441bE3ODl8jpO8U9FtBeNw5yh
+ U9Eutwnlb7BGcnNyQT9YCPMhJ6vs+BXjz4/K/Q7a36HXonYCvA9NtbMH8gzNn7/uu2E/
+ f0ow==
+X-Gm-Message-State: AOAM533r3JepSTcjfFT/mBwfxzt0Wax3Cci5KtF9acOLKX5B0cU5NTP2
+ R62ZrsX6+i6rNTq4x3uOEgriySkZeobptrARu3A=
+X-Google-Smtp-Source: ABdhPJzdMCUsv64szJ8LAp46qliACxg7P6fS8+B9EpwGZnNi0pnsgtbqLjudhNZQ7G9Q6urZlSQdUGypFLEZRpTpiTA=
+X-Received: by 2002:a17:906:fa1b:: with SMTP id
+ lo27mr7560682ejb.216.1605381129975; 
+ Sat, 14 Nov 2020 11:12:09 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201113161153.GB1408970@ulmo>
-Content-Language: en-GB
+References: <20201113000508.14702-1-aouledameur@baylibre.com>
+ <20201113000508.14702-4-aouledameur@baylibre.com>
+In-Reply-To: <20201113000508.14702-4-aouledameur@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 14 Nov 2020 20:11:59 +0100
+Message-ID: <CAFBinCA6_Cei5QdiVRTX14S5QFoyDgAOhFUXtnx5uiAxuTRs9A@mail.gmail.com>
+Subject: Re: [PATCH 3/3] phy: amlogic: meson8b-usb2: fix shared reset control
+ use
+To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201113_124054_715687_67EC4228 
-X-CRM114-Status: GOOD (  30.25  )
+X-CRM114-CacheID: sfid-20201114_141214_871619_3ED4C787 
+X-CRM114-Status: GOOD (  11.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,131 +92,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alexandre.belloni@bootlin.com, heiko@sntech.de,
- Yangtao Li <tiny.windzz@gmail.com>, Linus Walleij <linus.walleij@linaro.org>,
- nicolas.ferre@microchip.com, matthias.bgg@gmail.com,
- linux-riscv@lists.infradead.org, festevam@gmail.com, f.fainelli@gmail.com,
- shc_work@mail.ru, Bartosz Golaszewski <bgolaszewski@baylibre.com>,
- khilman@baylibre.com, ludovic.desroches@microchip.com, jonathanh@nvidia.com,
- linux-rockchip@lists.infradead.org, wens@csie.org,
- bcm-kernel-feedback-list@broadcom.com, linux-imx@nxp.com,
- slemieux.tyco@gmail.com, linux-pwm@vger.kernel.org, rjui@broadcom.com,
- s.hauer@pengutronix.de, mripard@kernel.org, vz@mleia.com,
- linux-mediatek@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- paul.walmsley@sifive.com, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, Lee Jones <lee.jones@linaro.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-arm-kernel@lists.infradead.org, sbranden@broadcom.com,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- palmer@dabbelt.com, kernel@pengutronix.de, shawnguo@kernel.org,
- claudiu.beznea@microchip.com, nsaenzjulienne@suse.de
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Cc: Felipe Balbi <balbi@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-amlogic@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2020-11-13 16:11, Thierry Reding wrote:
-> On Fri, Nov 13, 2020 at 08:03:43AM +0100, Uwe Kleine-K=F6nig wrote:
->> Hello,
->>
->> [Added lkml and the people involved in commit 7945f929f1a7
->> ("drivers: provide devm_platform_ioremap_resource()") to Cc:. For the
->> new readers: This is about patches making use of
->> devm_platform_ioremap_resource() instead of open coding it. Full context
->> at https://lore.kernel.org/r/20201112190649.GA908613@ulmo]
->>
->> On Thu, Nov 12, 2020 at 10:14:29PM +0100, Uwe Kleine-K=F6nig wrote:
->>> On Thu, Nov 12, 2020 at 08:06:49PM +0100, Thierry Reding wrote:
->>>> I also think that it's overly narrow is scope, so you can't actually
->>>> "blindly" use this helper and I've seen quite a few cases where this w=
-as
->>>> unknowingly used for cases where it shouldn't have been used and then
->>>> broke things (because some drivers must not do the request_mem_region()
->>>> for example).
->>>
->>> You have a link to such an accident?
->>
->> I got a hint in private here: https://lore.kernel.org/r/1555670144-24220=
--1-git-send-email-aisheng.dong@nxp.com
->>
->> devm_platform_ioremap_resource() is platform_get_resource() +
->> devm_ioremap_resource() and here it was used to replace
->> platform_get_resource() + devm_ioremap().
->>
->> IMHO the unlucky thing in this situation is that devm_ioremap_resource()
->> and devm_ioremap() are different by more than just how they get the area
->> to remap. (i.e. devm_ioremap_resource() also does
->> devm_request_mem_region().)
->>
->> So the problem is not the added wrapper, but unclear semantics in the
->> functions it uses.
-> =
+Hi Amjad,
 
-> The semantics aren't unclear. It's just that the symbol name doesn't
-> spell out every detail that the function implements, which, frankly, no
-> function name ever does, at least not for anything beyond simple
-> instructional examples. That's what we have documentation for and why
-> people should read the documentation before they use a function and make
-> (potentially wrong) assumption about what it does.
-> =
+On Fri, Nov 13, 2020 at 1:07 AM Amjad Ouled-Ameur
+<aouledameur@baylibre.com> wrote:
+[...]
+>         ret = clk_prepare_enable(priv->clk_usb);
+>         if (ret) {
+>                 dev_err(&phy->dev, "Failed to enable USB DDR clock\n");
+> +               reset_control_rearm(priv->reset);
+this should come after reset_control_rearm so we're cleaning up in
+reverse order of initializing things
+(in this case it probably makes no difference since
+reset_control_rearm is not touching any registers, but I'd still have
+it in the correct order to not confuse future developers)
 
->>                     In my eyes devm_ioremap() and
->> devm_platform_ioremap_resource() should better be named
->> devm_request_ioremap() and devm_platform_request_ioremap_resource()
->> respectively. Is it worth to rename these for clearity?
-> =
+>                 clk_disable_unprepare(priv->clk_usb_general);
+>                 return ret;
+>         }
+> @@ -197,6 +199,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
+>                         regmap_read(priv->regmap, REG_ADP_BC, &reg);
+>                         if (reg & REG_ADP_BC_ACA_PIN_FLOAT) {
+>                                 dev_warn(&phy->dev, "USB ID detect failed!\n");
+> +                               reset_control_rearm(priv->reset);
+same here, reset_control_rearm should be after clk_disable_unprepare
 
-> I think function names are always a compromise between giving you the
-> gist of what the implementation does and being short enough so it
-> doesn't become difficult to read or use.
-> =
+>                                 clk_disable_unprepare(priv->clk_usb);
+>                                 clk_disable_unprepare(priv->clk_usb_general);
+>                                 return -EINVAL;
+> @@ -216,6 +219,7 @@ static int phy_meson8b_usb2_power_off(struct phy *phy)
+>                                    REG_DBG_UART_SET_IDDQ,
+>                                    REG_DBG_UART_SET_IDDQ);
+>
+> +       reset_control_rearm(priv->reset);
+same here, reset_control_rearm should be after clk_disable_unprepare
 
-> One of the reasons why I dislike the addition of helpers for every
-> common special case (like devm_platform_ioremap_resource()) is because
-> it doesn't (always) actually make things easier for developers and/or
-> maintainers. Replacing three lines of code with one is a minor
-> improvement, even though there may be many callsites and therefore in
-> the sum this being a fairly sizeable reduction. The flip side is that
-> now we've got an extra symbol with an unwieldy name that people need
-> to become familiar with, and then, like the link above shows, it doesn't
-> work in all cases, so you either need to fall back to the open-coded
-> version or you keep adding helpers until you've covered all cases. And
-> then we end up with a bunch of helpers that you actually have to go and
-> read the documentation for in order to find out which one exactly fits
-> your use-case.
-> =
+>         clk_disable_unprepare(priv->clk_usb);
+>         clk_disable_unprepare(priv->clk_usb_general);
 
-> Without the helpers it's pretty simple to write, even if a little
-> repetitive:
-> =
 
->    1) get the resource you want to map
->    2) request the resource
->    3) map the resource
-> =
-
-> 2) & 3) are very commonly done together, so it makes sense to have a
-> generic helper for them. If you look at the implementation, the
-> devm_ioremap_request() implementation does quite a bit of things in
-> addition to just requesting and remapping, and that's the reason why
-> that helper makes sense.
-> =
-
-> For me personally, devm_platform_ioremap_resource() is just not adding
-> enough value to justify its existence. And then we get all these other
-> variants that operate on the resource name (_byname) and those which
-> remap write-combined (_wc). But don't we also need a _byname_wc()
-> variant for the combination? Where does it stop?
-
-Arguably the worst thing about devm_platform_ioremap_resource() is that =
-
-it was apparently the gateway drug to a belief that =
-
-devm_platform_get_and_ioremap_resource() is anything other than a =
-
-hideous way to obfuscate an assignment...
-
-Robin.
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
