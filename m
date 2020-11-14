@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FF76C5519F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 19:12:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D4245C61DD8
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 19:13:38 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E54A62225E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 19:12:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 74F232225E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 19:13:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fnInD6CD";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="FSu31JSK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E54A62225E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QdUk8Im2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bkZXkOc1"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 74F232225E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=nv8Zw5piUyVdQUWbStPrPut7FWfLoUBuWuDLJl4DgMo=; b=fnInD6CDzy75b/NvKDJuKQ0Sk
-	XWbso/Wq09PD77K3pq1xSc5ODLO+m+l9FR2lLJMqo2f/Q4C508Vq7KoMHkK8uwdpKhpDbD43sFPIQ
-	H36+Pm8j2ZCh69sL5h84+f/rIGNCt8UO0x6AXsnxmi4EHfOET0Gtc3H3Pv9eISh3HYg/qJLa5XMX7
-	8hLhUf1feJHX/j1eR79YF7ap6wdZhUcvI1785THv5BOyv7Me9DXdb9hSdWgw7DhLc2Mvlho1j09gr
-	W5Srb6VdfON6cidr0/f5KIfZYraXdmQCSlYN3fnoar8JQFr1yoAx5eGGJWXAcVt0rOWzeTjoKzY0h
-	P1RBb+XeA==;
+	 bh=P4iq6XGCBEFVksayHSznPKf9nJRjjWoNQLrDWOujrTU=; b=QdUk8Im250hdX4suVPOl1DOj/
+	Vn5wNIGKB4IBZ7DvOEp15xr4xz1tIjakD33reHM2c6phH9nNXcrY4ZTQGPT/wjlmFh9s741e15yV7
+	GY6Ny8EImEHBiDcEJPEQKQDdaPkFCXt8ABmZ2HVXwFgu3YTR6QEEKab1vtYfjdoev+Xsvr3VrlLAs
+	ERmZNBBp7BZDudirh2BrDvs2PjCyznhPjrpLIGlHMo09nOUUZW6EtUGYFA0LmPRePDhgpBTuZTgV+
+	4iMKMXxtihkO7Qfn9V+OgV6GlHUWeHrjbhQivE3KDwRDwPUScIwfSnYPKFvg11mQezU4DNyZwNW8A
+	QropPfhqA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ke0yA-0001l9-Vk; Sat, 14 Nov 2020 19:12:19 +0000
-Received: from mail-ej1-x643.google.com ([2a00:1450:4864:20::643])
+	id 1ke0zM-0001pe-Sk; Sat, 14 Nov 2020 19:13:32 +0000
+Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ke0y6-0001jh-Py
- for linux-amlogic@lists.infradead.org; Sat, 14 Nov 2020 19:12:17 +0000
-Received: by mail-ej1-x643.google.com with SMTP id cw8so18627524ejb.8
- for <linux-amlogic@lists.infradead.org>; Sat, 14 Nov 2020 11:12:11 -0800 (PST)
+ id 1ke0zK-0001oy-C9
+ for linux-amlogic@lists.infradead.org; Sat, 14 Nov 2020 19:13:31 +0000
+Received: by mail-ed1-x543.google.com with SMTP id y4so8742937edy.5
+ for <linux-amlogic@lists.infradead.org>; Sat, 14 Nov 2020 11:13:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=u5WJiirRKNDUV5O3yKO2RQW3GzVNyUWzALcJgmi9qD8=;
- b=FSu31JSKLbwJZm8SKdIl9tHJVYSdoso0nbNX1WyZSqU7bJ+f3/mhAJKWP98OxztFvq
- GpqqwY1QxIJK9hRA4qjpD6KncuahjDOHrbayfw9KPlE/heg7r1R0rfDAJTbIAQJNuDr9
- IkJpuOQ2tuj/r96z41WusH70BMbCVlaD5vYOlEq3JiUbLmXUbNaOk2uJ8Xyka56OpZz3
- TEcOnoZkXQGGRi1idfvtDrP0MeDZR1wA40ED1SpzLXak4V5sPvxsBG7RJ5PDXD4JcD00
- dhRUSf3jZI7yX4WlK1PEEq6k83ONo5c19SPdweZAaQFGS8s0k7AW9ApQg34JKmOigg5w
- 7NWQ==
+ :cc; bh=fAmhgd7CFeJ/DRc9/3PIR4VNFnC868K9QnLj6x8FscU=;
+ b=bkZXkOc1xXB6QiRCHqLJ6ctJ108itiNUae1xk/gPYOCEvbaNB1CdBZCmo68ChVxtAh
+ rBQhwkzJE621CRoQZtGvHfGT/WmSkiq3NfYF3pzEs/jFlLvMkVArZmXN8Bjp0lNq8X9I
+ CpLaj8aYzc8fX4aiu4t0QKU+HwqSRZlxMHjATiQmu756NIp2s8KPs9nF90bmBVlET4fs
+ HpN/Ik5qj04UxZuqBWdSM90M1f63JJPXD76b7YuKvBclPnXH/+Zcy1layjGGC/q6QBxe
+ UTgu63+x8U7/AZK/4bvuDwVsEiPp04+BoVeAvT3xZdWp7kTJyBIbEkESAjK7LN5MWBKx
+ JBwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=u5WJiirRKNDUV5O3yKO2RQW3GzVNyUWzALcJgmi9qD8=;
- b=s89vOPm71XVNQcxLu8jtPPqTflyCJB9/xdGasn43jIRbhfVD++IqzUL38RXP8yzSCS
- ZAlVCXgdO1A63FszSbWWqfuTja9OsqcA6KmoeWmL9PybvtjkioJ+k6q58Csb4hkJFOmB
- hAeIHLKXYoY7a8bWdE18a6PO3A0Pn62yLuKPqAHFyrJWN+GhVm1WWwJICpSVwKRwB6gt
- dwd2c2j7xp7K+/DcIn7BFeCPM8Ggq12PIK18GVvaTm3441bE3ODl8jpO8U9FtBeNw5yh
- U9Eutwnlb7BGcnNyQT9YCPMhJ6vs+BXjz4/K/Q7a36HXonYCvA9NtbMH8gzNn7/uu2E/
- f0ow==
-X-Gm-Message-State: AOAM533r3JepSTcjfFT/mBwfxzt0Wax3Cci5KtF9acOLKX5B0cU5NTP2
- R62ZrsX6+i6rNTq4x3uOEgriySkZeobptrARu3A=
-X-Google-Smtp-Source: ABdhPJzdMCUsv64szJ8LAp46qliACxg7P6fS8+B9EpwGZnNi0pnsgtbqLjudhNZQ7G9Q6urZlSQdUGypFLEZRpTpiTA=
-X-Received: by 2002:a17:906:fa1b:: with SMTP id
- lo27mr7560682ejb.216.1605381129975; 
- Sat, 14 Nov 2020 11:12:09 -0800 (PST)
+ bh=fAmhgd7CFeJ/DRc9/3PIR4VNFnC868K9QnLj6x8FscU=;
+ b=bunNsswEcBzeeJos0UU6NXXACwbNf0ijMH+6mr/EIHTb7WpR8kHQYTAEec2uxAjADb
+ mOpGweWtFQ81XL4TZo8+2fEl00yagnyiaRtbBcrrbsxigqzLvoKslT3bnwZxz4HMM7Yl
+ rmgdkWVRYYHxmE4W0nUKvgyXvmi4IU6/FT2G+MXyme2gasuKzq13uVWgn6if3kQpaF4i
+ JNKbaZ7oa2CSaKSXBC9vLmX8jLZ5GnObnUO0s+ot6e4Zmk2ntbtU5ZtS3FxXvUPIgJ84
+ 4J2+LtM668R9v3RcbI+0ptWzor2oxv0xn5g+VjbKrUGr0aTA4BLGssUUW7XbhdrPhQ9f
+ BDEQ==
+X-Gm-Message-State: AOAM530DtWF3k0qlsXyjlBvaCRs/3O72leuiT2KagDLFoYTnZpr3rH5U
+ 2iFK6oSmxIOPXz8UZ11ZXdzhsPFNbdJL4xLcMjjJVnoYIQs=
+X-Google-Smtp-Source: ABdhPJzjTzrkJMfc06gBXgrdl6yrGT0kmA5LbSTfIvuqgeMBMblV/d8H35XpHEpDdj7dksdJwFOpTy78mWMyApBMsLc=
+X-Received: by 2002:a05:6402:30b5:: with SMTP id
+ df21mr8473297edb.146.1605381209138; 
+ Sat, 14 Nov 2020 11:13:29 -0800 (PST)
 MIME-Version: 1.0
 References: <20201113000508.14702-1-aouledameur@baylibre.com>
- <20201113000508.14702-4-aouledameur@baylibre.com>
-In-Reply-To: <20201113000508.14702-4-aouledameur@baylibre.com>
+ <20201113000508.14702-2-aouledameur@baylibre.com>
+In-Reply-To: <20201113000508.14702-2-aouledameur@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 14 Nov 2020 20:11:59 +0100
-Message-ID: <CAFBinCA6_Cei5QdiVRTX14S5QFoyDgAOhFUXtnx5uiAxuTRs9A@mail.gmail.com>
-Subject: Re: [PATCH 3/3] phy: amlogic: meson8b-usb2: fix shared reset control
- use
+Date: Sat, 14 Nov 2020 20:13:18 +0100
+Message-ID: <CAFBinCC92FfvFt1aAspkF_Mrrtu_QpS327TN2=9Yc3tWMTcu_w@mail.gmail.com>
+Subject: Re: [PATCH 1/3] phy: amlogic: phy-meson-gxl-usb2: fix shared reset
+ controller use
 To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201114_141214_871619_3ED4C787 
-X-CRM114-Status: GOOD (  11.51  )
+X-CRM114-CacheID: sfid-20201114_141330_433901_C3078B84 
+X-CRM114-Status: UNSURE (   9.53  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,44 +104,22 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Amjad,
 
-On Fri, Nov 13, 2020 at 1:07 AM Amjad Ouled-Ameur
+On Fri, Nov 13, 2020 at 1:06 AM Amjad Ouled-Ameur
 <aouledameur@baylibre.com> wrote:
 [...]
->         ret = clk_prepare_enable(priv->clk_usb);
->         if (ret) {
->                 dev_err(&phy->dev, "Failed to enable USB DDR clock\n");
-> +               reset_control_rearm(priv->reset);
-this should come after reset_control_rearm so we're cleaning up in
-reverse order of initializing things
-(in this case it probably makes no difference since
-reset_control_rearm is not touching any registers, but I'd still have
-it in the correct order to not confuse future developers)
-
->                 clk_disable_unprepare(priv->clk_usb_general);
->                 return ret;
->         }
-> @@ -197,6 +199,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
->                         regmap_read(priv->regmap, REG_ADP_BC, &reg);
->                         if (reg & REG_ADP_BC_ACA_PIN_FLOAT) {
->                                 dev_warn(&phy->dev, "USB ID detect failed!\n");
-> +                               reset_control_rearm(priv->reset);
-same here, reset_control_rearm should be after clk_disable_unprepare
-
->                                 clk_disable_unprepare(priv->clk_usb);
->                                 clk_disable_unprepare(priv->clk_usb_general);
->                                 return -EINVAL;
-> @@ -216,6 +219,7 @@ static int phy_meson8b_usb2_power_off(struct phy *phy)
->                                    REG_DBG_UART_SET_IDDQ,
->                                    REG_DBG_UART_SET_IDDQ);
+> @@ -124,6 +126,7 @@ static int phy_meson_gxl_usb2_exit(struct phy *phy)
+>  {
+>         struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
 >
 > +       reset_control_rearm(priv->reset);
-same here, reset_control_rearm should be after clk_disable_unprepare
+please move reset_control_rearm after clk_disable_unprepare as
+mentioned on the other patch to clean things up in reverse order of
+initialization
 
->         clk_disable_unprepare(priv->clk_usb);
->         clk_disable_unprepare(priv->clk_usb_general);
+>         clk_disable_unprepare(priv->clk);
 
 
-Best regards,
+Thank you
 Martin
 
 _______________________________________________
