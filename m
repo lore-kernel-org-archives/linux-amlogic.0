@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D6F53C5519F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 20:02:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C97F5C61DD8
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 20:02:11 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 455EB2231B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 20:02:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 280362231B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2020 20:02:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZoT3zUX5";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="hmVK45Xu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 455EB2231B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UlgsVEfu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="T3RFYqK9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 280362231B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,66 +27,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=yayz8h+gOJXHQ3HxKdulg4RbLtm8LrTY9gK/AWWyHr8=; b=ZoT3zUX5RBgBHB+ooFTxFgoXo
-	Ei+iVQEfKd67h4/fDi/+P9CzFjJDl0fIE4zNqznEEFTzqKtGf6l/tNc7MjPZ/xCHhSZ1JrHRo3Y6D
-	Qo36WQthJDk/dGL5dhQM4gmBPskb7LzK7eZ3DvRbjBsQTueDwCxeS11+f9ExAxUbezwh1dAu5mULG
-	lCWqeWgVjeJXXqh2qROo+pkMrSwizBMQaYDCit4oAEnmgEXc1BgO09C8bZbaWs0yGvHOx253LtQrn
-	iboz1FFi3h+ieyf7L+Q3FeI0NEHIMfEJlJqBSIeDPZqwh08+2Qb5W9pbHLsVoZ6HlWA2w4NbLJHp/
-	/vmqDn2JQ==;
+	 bh=5AjwPsl4FVVUVANnytXqOE/z0JLuGw81WNYVSqyqriE=; b=UlgsVEfuSAYRaCOSu+AFdibzK
+	FMgXiHOUKYPf7nEdPhlq9mQT606skY4x4DvC2vGuJmMt1eIGNgYjDh4o2ozC03/QpBFowhEOimi/d
+	M5iEqNptrIUzgZz6YAU6NOYHoIhC6eZUD0di11skbFEedzHW4wu3qgTaPrGqBUDlDn13IuoOvnrrn
+	PBZ9m+PfdLMAKfPhqTtrgsEcMqk7DM8dagYejiRX9u6i0tmwbB83VII1BkLow/AuBRUAkqCq3ylho
+	Xmg9LP2LJqNb/pixYNfGeOF+VJFETX/db2/+ij5KdpecVdH+abaMmeH5IwnAhmZb0kOwkJDTQ1QQU
+	6K8XpvL+g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ke1kI-0004AG-T2; Sat, 14 Nov 2020 20:02:02 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1ke1kN-0004Bf-4x; Sat, 14 Nov 2020 20:02:07 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ke1k6-00047Z-SB; Sat, 14 Nov 2020 20:01:51 +0000
-Received: by mail-wr1-x444.google.com with SMTP id l1so14076842wrb.9;
- Sat, 14 Nov 2020 12:01:50 -0800 (PST)
+ id 1ke1k7-00047y-W6; Sat, 14 Nov 2020 20:01:53 +0000
+Received: by mail-wr1-x443.google.com with SMTP id o15so14098945wru.6;
+ Sat, 14 Nov 2020 12:01:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=6AIoFNZ/yLqMb8IJ3uIxUoE5cACLn4dM8V8GVRWjKYI=;
- b=hmVK45Xu0/R8zNP4CFJ4Ftzi4wcJj3/cd20qg6nP3qEDEfzLJ96R+PlXYsOSrbKum2
- MFB3zkRU0cGvamQmMVKvo3ZGAFVS2mFDuW64XyW045tkuJDf+tvT23YZRpJ4tBAAqX2o
- hkKaM6ReHL9LH7FTtrA6Q6hFsqVVIblYbfAli5u09DLHQPcAdHoF0Q9CGeGFGWvQ0zoU
- dPq9uUwHmW/TgLcQXNjiCR20+7jrB7Ao621r7DMuI1d1taNrq0fgaGXmX/LcHhkwpmEd
- oUUKuninLoelAHlr9GGhuNKhJh26iv8PjsxXTXgbvopw78tN69q+Hn4STTpIc5SIqbG5
- s7Lw==
+ bh=fVMUgeyZKuWrvaXuwrPFfDV9ehe24R8AloJfk4H/7KE=;
+ b=T3RFYqK91Z9IiHxLhucv8O/w7eZKfuCJNvkpEmhrzlWUroBUdgQJ07Vo8dg2yDtTuB
+ mn1T8IE3KzgsfaH5p3LAjPNLMFPccmbj7uOtlj6w6pXq7ktcXjiKmiRO+e9V9s4z8Y+p
+ o4Scu4nPdkYdsN+gSOpcrZn7tc3B9JV+Ntr9cThyukXkbGM0cRhycBtYB0Z64VhY8QZT
+ igf/9QTpIWQBjEiwJksxbt8CpEcU3A09nczW2MsePb33jtaDDrWbYgMF26M87Zj7T7Ah
+ e76GaI2iMUqbXxDxqT2dVoCKBz1MfPDDyy8zZR6Wzc4CuRAv2irRB1JZ4fzVwJtgfxnS
+ vwFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=6AIoFNZ/yLqMb8IJ3uIxUoE5cACLn4dM8V8GVRWjKYI=;
- b=KeAVmByZPl31TmjlYVlO3y8oWOtAtVljNCDQaPW535LDNS434ckaQBzoI4IvL++uFM
- nzvCn4xPF/8I0hG9WzDeBIlLNGkfjVXpWf3IrNq6E+kWU0lgVy9N3nED5JUjhfRYs619
- e36ChyP4g3W+JthaGuKGrQSlsbhkG+/lGAd6r9UpvVhcj6MHsHucSR/IfEJegAV5jBbe
- mICDSq0RjcU3TO1aCiRc7IUrgt2uwoTlVHy3K1eMB+TeCaUaK7dBuqCv3qnmfRs+extl
- 64kmYnDSDjJ5xI7Tlg1Ez/aPPcAtm2SQcjSIdyWgkMuj9UiClM4UOv70sOqWbrBDMS1i
- yG/w==
-X-Gm-Message-State: AOAM530Hwqz4OX5EQlhDGPP6NS1FVUgYfcw3oPUHuBZ+zak1kPUUXZ3D
- KNmrTMEOhwmJirMYvQPKmWI=
-X-Google-Smtp-Source: ABdhPJydEBL73jFweyqT4tskHwRL1D3qKsJIU1phA9V/TJ+4GuwNhYYV/yNr2BFvAUO19LdSLTdetA==
-X-Received: by 2002:adf:fc41:: with SMTP id e1mr10914610wrs.406.1605384110061; 
- Sat, 14 Nov 2020 12:01:50 -0800 (PST)
+ bh=fVMUgeyZKuWrvaXuwrPFfDV9ehe24R8AloJfk4H/7KE=;
+ b=UfKqcneGLcgjdoW6PD8YQHuyCIavXLPbaE5GojnNJsJ+oZ29gqj2jXKrySPM0f+IJi
+ MYiWXRxTN4A10j5aM0kDLlU/XcU1hbce+Nxo5qYZQYNdCpt5N7o/5LwPh/Viz7tpK+WK
+ xpV1tsTp7HIg5SWS6WkV40KG3yXD8tQWF1A6zmu2pi6Q9AewlRRvBJLTdrJ652u8bRT1
+ 6YYHmvbMkLYe0wBZNQWbOc042pgydvzpvjtJoc04GdnY5D8Wzz2g3JSilmacD7Fsh3xW
+ PY88aZd9esAln1a7ULQLZkrmzP1flSk4T4kwDX+JbIlRM/1LNWTBJiWP17bbM4tWSvZM
+ 8qdQ==
+X-Gm-Message-State: AOAM531hIaNCsZ3KwAF9OhkXBPNOe3/jCX03LKg0b8oYZprdK0e+MBn8
+ BfkPfePogCabFbl+xD9ChUs=
+X-Google-Smtp-Source: ABdhPJyMtw9Jp1TkxZvWYEt21lqHXG31OvFS/02u+jppFkJOIZYIc26e4dd0MCeg/UYqHovxE/dlVw==
+X-Received: by 2002:a5d:448a:: with SMTP id j10mr10454761wrq.33.1605384111112; 
+ Sat, 14 Nov 2020 12:01:51 -0800 (PST)
 Received: from localhost.localdomain (p4fc3ea77.dip0.t-ipconnect.de.
  [79.195.234.119]) by smtp.googlemail.com with ESMTPSA id
- g138sm14342953wme.39.2020.11.14.12.01.49
+ g138sm14342953wme.39.2020.11.14.12.01.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 14 Nov 2020 12:01:49 -0800 (PST)
+ Sat, 14 Nov 2020 12:01:50 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: davem@davemloft.net, kuba@kernel.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH RFC v1 2/4] net: stmmac: dwmac-meson8b: use picoseconds for
- the RGMII RX delay
-Date: Sat, 14 Nov 2020 21:01:02 +0100
-Message-Id: <20201114200104.4148283-3-martin.blumenstingl@googlemail.com>
+Subject: [PATCH RFC v1 3/4] net: stmmac: dwmac-meson8b: move RGMII delays into
+ a separate function
+Date: Sat, 14 Nov 2020 21:01:03 +0100
+Message-Id: <20201114200104.4148283-4-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201114200104.4148283-1-martin.blumenstingl@googlemail.com>
 References: <20201114200104.4148283-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201114_150150_941483_A7840436 
-X-CRM114-Status: GOOD (  14.55  )
+X-CRM114-CacheID: sfid-20201114_150152_099026_807E0691 
+X-CRM114-Status: GOOD (  15.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,65 +107,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
-delay register which allows picoseconds precision. Parse the new
-"amlogic,rgmii-rx-delay-ps" property or fall back to the old
-"amlogic,rx-delay-ns".
+Newer SoCs starting with the Amlogic Meson G12A have more a precise
+RGMII RX delay configuration register. This means more complexity in the
+code. Extract the existing RGMII delay configuration code into a
+separate function to make it easier to read/understand even when adding
+more logic in the future.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 22 ++++++++++++-------
- 1 file changed, 14 insertions(+), 8 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index dc0b8b6d180d..465eaf000da1 100644
+index 465eaf000da1..a6e2077ed871 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -83,7 +83,7 @@ struct meson8b_dwmac {
- 	phy_interface_t			phy_mode;
- 	struct clk			*rgmii_tx_clk;
- 	u32				tx_delay_ns;
--	u32				rx_delay_ns;
-+	u32				rx_delay_ps;
- 	struct clk			*timing_adj_clk;
- };
+@@ -268,7 +268,7 @@ static int meson8b_devm_clk_prepare_enable(struct meson8b_dwmac *dwmac,
+ 	return 0;
+ }
  
-@@ -276,7 +276,7 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 	tx_dly_config = FIELD_PREP(PRG_ETH0_TXDLY_MASK,
- 				   dwmac->tx_delay_ns >> 1);
+-static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
++static int meson8b_init_rgmii_delays(struct meson8b_dwmac *dwmac)
+ {
+ 	u32 tx_dly_config, rx_dly_config, delay_config;
+ 	int ret;
+@@ -323,6 +323,13 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 				PRG_ETH0_ADJ_DELAY | PRG_ETH0_ADJ_SKEW,
+ 				delay_config);
  
--	if (dwmac->rx_delay_ns == 2)
-+	if (dwmac->rx_delay_ps == 2000)
- 		rx_dly_config = PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP;
- 	else
- 		rx_dly_config = 0;
-@@ -406,14 +406,20 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 				 &dwmac->tx_delay_ns))
- 		dwmac->tx_delay_ns = 2;
- 
--	/* use 0ns as fallback since this is what most boards actually use */
--	if (of_property_read_u32(pdev->dev.of_node, "amlogic,rx-delay-ns",
--				 &dwmac->rx_delay_ns))
--		dwmac->rx_delay_ns = 0;
-+	/* RX delay defaults to 0ps since this is what many boards use */
-+	if (of_property_read_u32(pdev->dev.of_node,
-+				 "amlogic,rgmii-rx-delay-ps",
-+				  &dwmac->rx_delay_ps)) {
-+		if (!of_property_read_u32(pdev->dev.of_node,
-+					  "amlogic,rx-delay-ns",
-+					  &dwmac->rx_delay_ps))
-+			/* convert ns to ps */
-+			dwmac->rx_delay_ps *= 1000;
-+	}
- 
--	if (dwmac->rx_delay_ns != 0 && dwmac->rx_delay_ns != 2) {
-+	if (dwmac->rx_delay_ps != 0 && dwmac->rx_delay_ps != 2000) {
- 		dev_err(&pdev->dev,
--			"The only allowed RX delays values are: 0ns, 2ns");
-+			"The only allowed RX delays values are: 0ps, 2000ps");
- 		ret = -EINVAL;
++	return 0;
++}
++
++static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
++{
++	int ret;
++
+ 	if (phy_interface_mode_is_rgmii(dwmac->phy_mode)) {
+ 		/* only relevant for RMII mode -> disable in RGMII mode */
+ 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+@@ -431,6 +438,10 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
  		goto err_remove_config_dt;
  	}
+ 
++	ret = meson8b_init_rgmii_delays(dwmac);
++	if (ret)
++		goto err_remove_config_dt;
++
+ 	ret = meson8b_init_rgmii_tx_clk(dwmac);
+ 	if (ret)
+ 		goto err_remove_config_dt;
 -- 
 2.29.2
 
