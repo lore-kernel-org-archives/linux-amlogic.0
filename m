@@ -2,22 +2,22 @@ Return-Path: <SRS0=sVtX=EW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-2.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 523C6C55ABD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:48:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46C4DC55ABD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:48:39 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CA5CD208C7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:48:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B9A04208C7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:48:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WPRGax5o";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="amyRH2k5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA5CD208C7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bbJN26t0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nMpIzymx"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9A04208C7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=IG2dbnnMjRwy6N2K2cZzc+AvBR2PlQBTSMxhX1kwPFk=; b=WPRGax5orI2fMrzOm9frOgWlW
-	PubLT7g+GbUIhssi4o7gUNnwuDlEYy0KRO0dWjxLTk+Hm32GnIPGUy21vJPepxcA6rvSHxYH7t4qf
-	9J9tLih6CANc1HsH4BqmF7xr8aFA3nY/ubOFUmeq+eRWa6QVi04JTZbqfrmKtWxmycN9Wn5uWirc9
-	5uKYGHWFZP7dMK7sncGAQ/5wtt2tkmYooTucsnkdx5qAdKDtyYEltfXB+4Scq95GEhF2mrIDoEFGY
-	9PkWmDlfBPzD8/NQQ64UcnUblTFTtKt+f4NQsfPK+QA0ptPLcxEYH7xk/dmR9pmLgH33NCOlpiZB0
-	A5jRnvjvw==;
+	 bh=yhgCb0ivBedpEfIJA7mEWE1r2cwXP0ada1x6PRS3AAU=; b=bbJN26t0wQuyvxTgS8I6LguHD
+	U8C4q//Ssh6iVay75ffelTHhP88ktAENglq7+aTELXbCuSHHsqFricEr6Nip8cRFf05nLSRSJMtl7
+	j2iIIsAoYTkMfiwWpKMlFKrA4g2kahgzH4Eii/aHHGmGEqg0QvCRYwZ0Fe6iyBcszLVwEcivTKMPs
+	TyD3hnCP8TQrCaGCe0YHxIqMeMf8816R9cbHZX3lw5rTM8ryP6Wb6zXW0E31Pdgeg1YTzFaKjYFD+
+	Mtk3vtCXDhq93MVJaqFGBtZTJEfmIkOHlD8pOrevzeMx/fwK+kqadh2cy3JrPKqfTphRMsyGaIuJq
+	3Bn7OReWw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1keaAx-0005SW-7S; Mon, 16 Nov 2020 08:47:51 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1keaBd-0005h7-Nw; Mon, 16 Nov 2020 08:48:33 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1keaAo-0005OS-PF
- for linux-amlogic@lists.infradead.org; Mon, 16 Nov 2020 08:47:45 +0000
-Received: by mail-wr1-x442.google.com with SMTP id s8so17718221wrw.10
- for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2020 00:47:42 -0800 (PST)
+ id 1keaAq-0005Pd-Um
+ for linux-amlogic@lists.infradead.org; Mon, 16 Nov 2020 08:47:51 +0000
+Received: by mail-wm1-x343.google.com with SMTP id a3so22814524wmb.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2020 00:47:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=OsnG4mJxixMmqoja2ZiERpS6WkJff4Kqd2+JTXgyJVw=;
- b=amyRH2k57LBNDiMfoEDf9cUK96XLI02mlUQ4CSpGcXEFCzDqXM4BZwkwuhCESSc3fu
- jTl4i8EZ0V0CXjMNSENMYP8eoXi78bNG2DaPImNGhu03HbJc07u8eXXJf/ZuCevH0Up3
- byLVs0MuYLevzsycJu7RjtF72DNT/s8/f97CBR5ejcWIvLjzArdLUy3CX1388XOHrbjd
- 5JArGzJES3mzncKLwGC9Qac/bi3v2hoCkl/0a654lsG8fLxExxZP7KSBONt4Q11Eh6wf
- s6aySg80+cRJbmDRFBZbIZ+DlZ4drmA+62IMTIjevQodRNrV53PBqk7wCbzneSXW3yOJ
- qu8Q==
+ bh=z9wSev6dt9lHOjMsNQ8fQrkOJXqeDoA7gcisWlG1pJM=;
+ b=nMpIzymxC8lwL3Y8VtU01ElwBPqbZ42M0hLmIrhUEOV6uTdPMQR+/dOo/Se9F9xxCO
+ gRNxgGzmv91Jg3iyDzhO9tYwFgE4X7k5ySR6NqCPzWuQV+DhZh6cIVif0g1R0lYz2JX7
+ Q+382I3HqNzX13ece1hlE8AZa2XtzIs6Vwdnu3Fy1fwl/PGvyf0iotv8xPud0KacR4wM
+ 0dBrcIG7o6KlPjrl4EQfG5YyO3/lvLU9ppGVyiVaY8LTb6E2TiKQyqaP+4RHhOpppQY9
+ dJrMFCt1zlxRFWa3lqkd6Xl5vyzfbSkv89gqw6m+mfoMtpjNxyOEYAfZF5i5m2XLrAWI
+ X9nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=OsnG4mJxixMmqoja2ZiERpS6WkJff4Kqd2+JTXgyJVw=;
- b=mgEwUtgSLkq6xUJBvVllctAepDes1bhpvy56qJAtNQnbTxLQpKLco6Gi+whDyRWjLk
- bnlkRtQy+q/THs725f+0EA9jBORR1ipRjlzEsQQxbLNig9NvgIwSEsLDVvz4e931U8h3
- ljWB3v/AO8lEUZqX9vVvnhrUCvhYB5qR5FX5It03HJRLj4Oxbt1Uy3gwarfdYSHxZq0N
- BBFU0iMKYB+hVoPhNgE8dQ3kkG9rCmBi1qTC0H0px6V93DWkZ6833PjLJA3mrBTtcZMY
- GeaBMsd/3EYFM59qYqntorxR+DF/yDcqOEVSXXkTF0CXEFlZBUyintr/OaTROBRLiEAt
- WrUA==
-X-Gm-Message-State: AOAM533poULMxzyGXKgCnC/fDWFrMfVqxTOuRPaXnaNaeHoerpPHEEQL
- 2SW46+kEsjdlA4L7sL4PKI96tQ==
-X-Google-Smtp-Source: ABdhPJzThPcQV9xvgpnfb6SgQv9vBr/EntqW7d563O+ypTTr4341Io//4QfySQQnBAuAOo1cDmP8CA==
-X-Received: by 2002:a05:6000:345:: with SMTP id
- e5mr17274337wre.333.1605516461527; 
- Mon, 16 Nov 2020 00:47:41 -0800 (PST)
+ bh=z9wSev6dt9lHOjMsNQ8fQrkOJXqeDoA7gcisWlG1pJM=;
+ b=T6YCW/RjQP3aGhOG9i9qqSrG5RT7N1Wz0KcDtcklmIjg7yoAi074uThPsWPEl8+tcE
+ /PfgPUV5ESj8qPD9Rh5mKPQ7N9+nNEFCSsmbEMnyLtK3aI1aY+S9K2v33uIagLfjaIEw
+ 27th9XWPGlHX1D1Xrn+iyI6/96kkHUAxtUHwQ5FzuAKG2pgtUEcwQXQvnYN6ab51Anwi
+ PQ83Uj8A8/POZZiYmJwKXuOJjDPExTChyvU4sU5zMKxBwWza6xXn2nlnYNUZnHPLEnFb
+ V3UqPv+6PcBQujyxnWGg45PyxQX2mannRzDQGQPWS0QhIXOonNLCP9yOtSoT8WeVbqCn
+ P+Ew==
+X-Gm-Message-State: AOAM533h2auPll+0TdSbNb5zvMV0k6BrDGi3znCBuP46Jq47igElcAqv
+ uiO9fcDrCXA3DXAGb8PWxOwnw2Z1Do3sF+/b
+X-Google-Smtp-Source: ABdhPJzE/1jxMubny6gGrT1L/LVyh98ordvrEblUP81v0cFO+lNsjxN6GwCkoSq5xwzL8IlVuPQ3XA==
+X-Received: by 2002:a1c:b70b:: with SMTP id h11mr15130836wmf.185.1605516463557; 
+ Mon, 16 Nov 2020 00:47:43 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:edb9:72a:9e35:6eb?
  ([2a01:e35:2ec0:82b0:edb9:72a:9e35:6eb])
- by smtp.gmail.com with ESMTPSA id u14sm18701424wrq.93.2020.11.16.00.47.40
+ by smtp.gmail.com with ESMTPSA id m18sm20142881wru.37.2020.11.16.00.47.41
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Nov 2020 00:47:40 -0800 (PST)
-Subject: Re: [PATCH v3 0/3] phy: amlogic: add MIPI DSI function to analog
- MIPI+PCIe PHY
-To: kishon@ti.com, repk@triplefau.lt, Vinod Koul <vkoul@kernel.org>
-References: <20201104135631.1550125-1-narmstrong@baylibre.com>
+ Mon, 16 Nov 2020 00:47:42 -0800 (PST)
+Subject: Re: [PATCH v3 0/2] phy: amlogic: Add support for AXG MIPI D-PHY
+To: kishon@ti.com, Vinod Koul <vkoul@kernel.org>
+References: <20201104134730.1545875-1-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +129,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <e42ce82e-7db1-a35b-c6f4-b8a8a184e43d@baylibre.com>
-Date: Mon, 16 Nov 2020 09:47:39 +0100
+Message-ID: <b2aa7b6c-b590-ff4a-d161-364e4e968b26@baylibre.com>
+Date: Mon, 16 Nov 2020 09:47:41 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201104135631.1550125-1-narmstrong@baylibre.com>
+In-Reply-To: <20201104134730.1545875-1-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201116_034742_902842_52EA356D 
-X-CRM114-Status: GOOD (  17.49  )
+X-CRM114-CacheID: sfid-20201116_034745_230046_655C695A 
+X-CRM114-Status: GOOD (  15.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,38 +159,33 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Vinod, Kishon,
 
-On 04/11/2020 14:56, Neil Armstrong wrote:
-> The AXG Analog MIPI-DSI PHY also provides functions to the PCIe PHY,
-> thus we need to have inclusive support for both interfaces at runtime.
+
+On 04/11/2020 14:47, Neil Armstrong wrote:
+> The Amlogic AXg SoCs embeds a MIPI D-PHY to communicate with DSI
+> panels, this adds the bindings.
 > 
-> This fixes the regmap get from parent node, removes cell param
-> to select a mode and implement runtime configuration & power on/off
-> for both functions since they are not exclusive.
+> This D-PHY depends on a separate analog PHY.
 > 
-> Changes since v2 at [2]:
-> - Add DT review tags
-> - Rebase on 5.10-rc1
+> Changes since v2 at [2];
+> - Rebase on v5.10-rc1
 > 
 > Changes since v1 at [1]:
-> - added description to binding as requested parent
-> - updated commit log of patch 1
-> - also update example of patch 1
+> - Fix bindings and add review tag
 > 
-> [1] https://lkml.kernel.org/r/20200907073402.26674-1-narmstrong@baylibre.com
-> [2] https://lkml.kernel.org/r/20200915130339.11079-1-narmstrong@baylibre.com
+> [1] https://lkml.kernel.org/r/20200907072708.26043-1-narmstrong@baylibre.com
+> [2] https://lkml.kernel.org/r/20200929093203.337954-1-narmstrong@baylibre.com
 > 
-> Neil Armstrong (3):
->   dt-bindings: phy: amlogic,meson-axg-mipi-pcie-analog: remove reg
->     attribute
->   dt-bindings: phy: amlogic,meson-axg-mipi-pcie-analog: remove phy cell
->     parameter
->   phy: amlogic: phy-meson-axg-mipi-pcie-analog: add support for MIPI DSI
->     analog
+> Neil Armstrong (2):
+>   dt-bindings: phy: add Amlogic AXG MIPI D-PHY bindings
+>   phy: amlogic: Add AXG MIPI D-PHY driver
 > 
->  .../amlogic,meson-axg-mipi-pcie-analog.yaml   |  21 +-
->  drivers/phy/amlogic/Kconfig                   |   1 +
->  .../amlogic/phy-meson-axg-mipi-pcie-analog.c  | 204 ++++++++++++------
->  3 files changed, 149 insertions(+), 77 deletions(-)
+>  .../bindings/phy/amlogic,axg-mipi-dphy.yaml   |  70 +++
+>  drivers/phy/amlogic/Kconfig                   |  12 +
+>  drivers/phy/amlogic/Makefile                  |   1 +
+>  drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c | 413 ++++++++++++++++++
+>  4 files changed, 496 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+>  create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
 > 
 
 Could you review this serie ?
