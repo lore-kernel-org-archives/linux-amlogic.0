@@ -5,81 +5,87 @@ X-Spam-Level:
 X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87526C4742C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:35:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7435FC55ABD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:35:41 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EF8EF2224B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:35:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 01FAA207BC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:35:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="zjBzVro8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ECuwEu2z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EF8EF2224B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UuhyAdQR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ctF2bR8t"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 01FAA207BC
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=XTizljNVvuoKommhyyqiQX9YFKv1ARUs3Aa7XlZuRQU=; b=zjBzVro8npxEWJOad1t6IpCt8
-	vTN+ecb42hbukvdHaafAFau9xHsmqLX9oUH8/sbOHTQbMbAEsx2qjV1w3NGto9X0DCBBGX6QzlTek
-	IvE9gODEGeA1KAk4hPWSLGojGuBz5Sva5LP3Guyn5laZVxdh7RO9gXl3MFfmq1gtHoRkXT/fut//v
-	guTYj4rNeISsLlya1wmKtcsfQyxL4kve3MXvFbc3fV7qQNwKOSIA+6QlqRUpG+4hWoTBJ6sepiwgv
-	UpqW83yPY5LVR7r3UWybGXsYA5zi57G27kGNQwA3B5Jf/BiKlU5xdq4kf8m0eiJux5krFwsit+YQH
-	ZmdzPFzmA==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=c0HrysMeEenNNMT3h4RIZKslYVe9YlRqvqdI68QwtGw=; b=UuhyAdQRA4zfDwmWkMSyAOGpVB
+	cvnyEX+TGGU8NEfCcwGaIfWYOg4tOXnyUB7swnld/DjRYzOW14nAUOOW7H5nfusMYoB5WBrdjUCMF
+	wzqkTYtYQPBEBNaFfh+6X3DiaSGx5FGjxH5ZfNM6fQYLtfr/o+a+qVyuwrWAmyYTTpwiI4KClmwS7
+	4LveG5cup3p4rh2v9qnb7CP4w/Lc9sR/iEJPNAzfN07jGxHb4R/ZfGvBY6rZwE0XKJbEvRl4pGXRK
+	4CgKqQMiuXg29y+v4DDxMveDyMAMQfT54W5URMOkELjK91o3q5c25wWm8p6OUFA2GwoOIKUAUJekr
+	+2LToQlA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1keZyo-00018R-1s; Mon, 16 Nov 2020 08:35:18 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1keZz4-0001GT-9X; Mon, 16 Nov 2020 08:35:34 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1keZyg-00014Y-S9
- for linux-amlogic@lists.infradead.org; Mon, 16 Nov 2020 08:35:12 +0000
-Received: by mail-wr1-x444.google.com with SMTP id s8so17678972wrw.10
- for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2020 00:35:10 -0800 (PST)
+ id 1keZyx-0001CV-34
+ for linux-amlogic@lists.infradead.org; Mon, 16 Nov 2020 08:35:29 +0000
+Received: by mail-wr1-x442.google.com with SMTP id j7so17695711wrp.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2020 00:35:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:autocrypt:organization:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
+ h=subject:to:references:from:autocrypt:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=A3pLQC/E5zB5lHnw308Bcg98VJGiT9RpVsUiOih9/i8=;
- b=ECuwEu2z5NQkl9XD/uIQNc7drJbCBnA9T6Jhd+8IuKy47G6yRS/B4Sp1n1IWo7isCd
- Ja88GvjqLYVcdE5vaykbBqQISw8Wj4Nqs41hh3epIoDRBcLtePYgUwzJZo8IL2+V1KJQ
- oLtAM6VXD+M0lSdDGsj4goty3V+9M4HW8s9qq87yHliXs6/sU9JZKDGoBpUA+P83JA2b
- fpv4x3K4FdVPVDIhpjzw6wnLjxnVSD8tPcdneZTwLJtddCOuDOjaP0YCvj2jc6RW1T/V
- RaF3Nyp164Y+0ukmFmNFFeSBmIXntx1erabf5Lm6pehCgC1pBNDnLorFuiXGemK9Ppk2
- 1REw==
+ bh=/IJqBaMYJ+hoVSYMTGaDaqMR3k30zomG5l27v6zlVwU=;
+ b=ctF2bR8twrALNSfxZV6vz4tuweciP/hBos+Ko9PTkCzwzlZR9AJop66gR0JWcg0JZT
+ Y9Sl8ypIl0zPYi7//jylfyPKGNNmJHW0aogRuBP3QSDJUeF4nPfw46erePAZqapgUK3r
+ 3Y85kBiqTddbZCHPEW9vF+Rm8Svg+4nz770ESIyCs6SbHuizqfvukKWEiZ8YpPe6nR3O
+ c3ICEXiNF7fDjIBQOXhYRhaakCHdlsstTwHfl4TFqWZYdfIQeYpvTW7vjdGztSpy9NRB
+ eGL5sDSuccRbZzNovJukaRXHVF11T/0DOZnXYbAIPIvZDn2sa8OrTWm95mIXauilL0Cu
+ hT9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=A3pLQC/E5zB5lHnw308Bcg98VJGiT9RpVsUiOih9/i8=;
- b=JeroyJijlWDpKc+gahL0VvnpO5BEyEDAzUEpsER3zVczfEuolzYUkw5gUW3NVsW1QH
- ZKtx3jQGzliHYu/xdTOsBxeQKQ8OmliWGnyqy7bl/5Cahdzv4VVb02Cd3OHnvhh/ejqz
- feRbI5obhU9kCb7s4nD5yl40NN6oiGX+SJAt71g8tspuz4+gt564GGB1wOsjQZyxpJCC
- S5ko7RMMGQCNHL7B0/kboYmDEfwE3HrYvgT2jPqjEJfYfCswEWFip3p0pNlMJ/Loye1E
- blseeYi+CBwYG465O1Vf/7qGqqKiaqbsa1EFDUAM6ia77TrinePMoZHm3fxf+2yFwie/
- tK8g==
-X-Gm-Message-State: AOAM533N6Bc3CPlLOt8pkI4CUXTFS+TD0Wi79KKtoCAQV8bzqGClDTlJ
- btzZ/7XaqsMCXhceAKNuBOzufg==
-X-Google-Smtp-Source: ABdhPJx1lgl6O2HAzxIH+t/WRfKoER3eQV93iwgUAIxHNkqTbWLjhz3SuYVVhlGh1jBKfoaRy8jS7g==
-X-Received: by 2002:adf:82ca:: with SMTP id 68mr17334331wrc.332.1605515709540; 
- Mon, 16 Nov 2020 00:35:09 -0800 (PST)
+ bh=/IJqBaMYJ+hoVSYMTGaDaqMR3k30zomG5l27v6zlVwU=;
+ b=DzuvVNiabnGmNjriQBL6Oqi1b4/eJFRz71uDKNYtQeKYq/RrXk971aLzAX7vdW35Gi
+ a+PG8/0SBmaf6B3HPvjzSpqjk8sg/tb/tJlsl/9poaGFvDVm6LjQQFDhj2RFQwWQm/67
+ z8ESWY+JnPxwbVLFNfdoA/YxVcj8RiSlDBHUdn0CqkkY9vhVka8SR9hMZbfjmhnao0rl
+ yYFtdBpBfXvJfkMNwqhVTbknYVkwKQ2QUZUmZenaQchpfFKjSJsxDAiKdbueHSlMpvsS
+ HQ7Cn1xfCEIQFT5uzsu9Zu2I45koCKOzphIcafiIcqZIXvfU2u1Q0GKLfzsmVeXXqCZC
+ eY3Q==
+X-Gm-Message-State: AOAM533BzQ//tJY1o4YfZ9S6vxukP7EjX6Lcq2/KtzGItoulq+ozR9RX
+ TqX3hENpF1gf3DEOOFR1CIqUcQ==
+X-Google-Smtp-Source: ABdhPJxglwCJdCUOSoAPZoA1Fv4MDJrKqSeCMK4FPDvpgWUtA8mDVqdcSD7PIG577koRdEOuqIvRpQ==
+X-Received: by 2002:a5d:6447:: with SMTP id d7mr18224215wrw.96.1605515725835; 
+ Mon, 16 Nov 2020 00:35:25 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:edb9:72a:9e35:6eb?
  ([2a01:e35:2ec0:82b0:edb9:72a:9e35:6eb])
- by smtp.gmail.com with ESMTPSA id b17sm21712152wru.12.2020.11.16.00.35.08
+ by smtp.gmail.com with ESMTPSA id c8sm20935777wrv.26.2020.11.16.00.35.24
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Nov 2020 00:35:08 -0800 (PST)
-Subject: Re: [PATCH] thermal: amlogic: Add hwmon support
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- glaroque@baylibre.com, linux-pm@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20201115190658.631578-1-martin.blumenstingl@googlemail.com>
+ Mon, 16 Nov 2020 00:35:25 -0800 (PST)
+Subject: Re: [PATCH] media: meson: vdec: add G12/SM1 to module description
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ devel@driverdev.osuosl.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20201116043055.23655-1-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +137,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <13c3b1c5-9c06-d663-47ae-5ccd8f87fe57@baylibre.com>
-Date: Mon, 16 Nov 2020 09:35:07 +0100
+Message-ID: <a2783176-1a5e-60ad-3130-d514ff152c83@baylibre.com>
+Date: Mon, 16 Nov 2020 09:35:23 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201115190658.631578-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20201116043055.23655-1-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201116_033511_042935_6C40BB2B 
-X-CRM114-Status: GOOD (  18.44  )
+X-CRM114-CacheID: sfid-20201116_033527_338775_2F214525 
+X-CRM114-Status: GOOD (  17.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,58 +158,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: rui.zhang@intel.com, amitk@kernel.org, daniel.lezcano@linaro.org,
- linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/11/2020 20:06, Martin Blumenstingl wrote:
-> Many monitoring tools read the CPU temperature using the hwmon
-> interface. Expose the thermal sensors on Amlogic boards as hwmon
-> devices.
+On 16/11/2020 05:30, Christian Hewitt wrote:
+> The meson vdec driver also supports Amlogic G12/SM1 hardware.
 > 
-> Without this lm_sensors' "sensors" tool does not find any temperature
-> sensors. Now it prints:
->   cpu_thermal-virtual-0
->   Adapter: Virtual device
->   temp1:        +44.7 C  (crit = +110.0 C)
-> 
->   ddr_thermal-virtual-0
->   Adapter: Virtual device
->   temp1:        +45.9 C  (crit = +110.0 C)
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  drivers/thermal/amlogic_thermal.c | 4 ++++
->  1 file changed, 4 insertions(+)
+>  drivers/staging/media/meson/vdec/vdec.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-> index ccb1fe18e993..dffe3ba8c7c4 100644
-> --- a/drivers/thermal/amlogic_thermal.c
-> +++ b/drivers/thermal/amlogic_thermal.c
-> @@ -29,6 +29,7 @@
->  #include <linux/thermal.h>
+> diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+> index 5ccb3846c879..5d4db7a5b4b5 100644
+> --- a/drivers/staging/media/meson/vdec/vdec.c
+> +++ b/drivers/staging/media/meson/vdec/vdec.c
+> @@ -1131,6 +1131,6 @@ static struct platform_driver meson_vdec_driver = {
+>  };
+>  module_platform_driver(meson_vdec_driver);
 >  
->  #include "thermal_core.h"
-> +#include "thermal_hwmon.h"
->  
->  #define TSENSOR_CFG_REG1			0x4
->  	#define TSENSOR_CFG_REG1_RSET_VBG	BIT(12)
-> @@ -287,6 +288,9 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
->  		return ret;
->  	}l
->  
-> +	if (devm_thermal_add_hwmon_sysfs(pdata->tzd))
-> +		dev_warn(&pdev->dev, "Failed to add hwmon sysfs attributes\n");
-> +
->  	ret = amlogic_thermal_initialize(pdata);
->  	if (ret)
->  		return ret;
+> -MODULE_DESCRIPTION("Meson video decoder driver for GXBB/GXL/GXM");
+> +MODULE_DESCRIPTION("Meson video decoder driver for GXBB/GXL/GXM/G12/SM1");
+>  MODULE_AUTHOR("Maxime Jourdan <mjourdan@baylibre.com>");
+>  MODULE_LICENSE("GPL");
 > 
-
-Thanks !!
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
