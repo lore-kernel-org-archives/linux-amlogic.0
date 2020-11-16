@@ -2,22 +2,23 @@ Return-Path: <SRS0=sVtX=EW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46C4DC55ABD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:48:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DF169C4742C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:49:08 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B9A04208C7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:48:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6DC22208C7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 08:49:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bbJN26t0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nMpIzymx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9A04208C7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O0oYa2Yt";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2RNqv42H"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6DC22208C7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +27,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=yhgCb0ivBedpEfIJA7mEWE1r2cwXP0ada1x6PRS3AAU=; b=bbJN26t0wQuyvxTgS8I6LguHD
-	U8C4q//Ssh6iVay75ffelTHhP88ktAENglq7+aTELXbCuSHHsqFricEr6Nip8cRFf05nLSRSJMtl7
-	j2iIIsAoYTkMfiwWpKMlFKrA4g2kahgzH4Eii/aHHGmGEqg0QvCRYwZ0Fe6iyBcszLVwEcivTKMPs
-	TyD3hnCP8TQrCaGCe0YHxIqMeMf8816R9cbHZX3lw5rTM8ryP6Wb6zXW0E31Pdgeg1YTzFaKjYFD+
-	Mtk3vtCXDhq93MVJaqFGBtZTJEfmIkOHlD8pOrevzeMx/fwK+kqadh2cy3JrPKqfTphRMsyGaIuJq
-	3Bn7OReWw==;
+	 bh=8FtfPe69ucX2Z/VtPMyYpRnLyd0EhXu8kc3ESLULzlI=; b=O0oYa2YtnrM9g18c6zq1TKOAQ
+	GFRi+PLfefn4W4+92OXmsJXLqY9fyUePE/G7c0YFixn0CrRBnK4WfB97Ih3HZsjhhGKSSpjVoN3H9
+	Uxk02UVYKdq6zfj9Ti3/1qPDaALRREVZ0hsY3EDhZmBiIWS2mcCaB8k9DHSV/Ff9SPzFmUQ9WgcSo
+	CM/+U9LHUDCFLXNF9ra4HfL7zTvvOg1nkApyQEoju65ULl+gGyir61zama3S/eryB0f705pS69QZv
+	NsNNriU6pOm3BbhZ7ibG5MkBZ3bG72GfZd9Y7xzT67TiNe32rky9vAOeHzJf3xvCyQ5fJK5Xr0+0B
+	xQT/N68Kg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1keaBd-0005h7-Nw; Mon, 16 Nov 2020 08:48:33 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1keaC5-0005zY-AU; Mon, 16 Nov 2020 08:49:01 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1keaAq-0005Pd-Um
- for linux-amlogic@lists.infradead.org; Mon, 16 Nov 2020 08:47:51 +0000
-Received: by mail-wm1-x343.google.com with SMTP id a3so22814524wmb.5
- for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2020 00:47:44 -0800 (PST)
+ id 1keaBz-0005wB-PF
+ for linux-amlogic@lists.infradead.org; Mon, 16 Nov 2020 08:48:57 +0000
+Received: by mail-wm1-x341.google.com with SMTP id m125so11568105wmm.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2020 00:48:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=z9wSev6dt9lHOjMsNQ8fQrkOJXqeDoA7gcisWlG1pJM=;
- b=nMpIzymxC8lwL3Y8VtU01ElwBPqbZ42M0hLmIrhUEOV6uTdPMQR+/dOo/Se9F9xxCO
- gRNxgGzmv91Jg3iyDzhO9tYwFgE4X7k5ySR6NqCPzWuQV+DhZh6cIVif0g1R0lYz2JX7
- Q+382I3HqNzX13ece1hlE8AZa2XtzIs6Vwdnu3Fy1fwl/PGvyf0iotv8xPud0KacR4wM
- 0dBrcIG7o6KlPjrl4EQfG5YyO3/lvLU9ppGVyiVaY8LTb6E2TiKQyqaP+4RHhOpppQY9
- dJrMFCt1zlxRFWa3lqkd6Xl5vyzfbSkv89gqw6m+mfoMtpjNxyOEYAfZF5i5m2XLrAWI
- X9nQ==
+ bh=bytOyaTdOaNPlL5Eeo/KhiZTN4i5aXJrm4o5Lrz7ER8=;
+ b=2RNqv42H/eGo/quWg2lndaDw7RHeYBpTfnlVf3NL0B6MtJutBTKBkARf0JuHnC++ZQ
+ k6+HYR9B4/VQFOmC0JsGByoNCqLDhF7Nc6jMF1G6YyDQbT/ODTk8boMFbvIEoLlp09tn
+ lF4dic3X48hOniW9hqlVA5jS8Rgq8/4EkIXqimVDsAMPbGA8J7znIbq8JZPZpvXAWYDm
+ dNwa5VchRcS5guKRH3Z+23PZrkPKFcx6Y1mL/BwpFrlV2s5zTjwTIR9PiXxuLMiPmeR+
+ qV1AStBx3V21I3FVobie7PMI5b701emozvn8F0KG35/FQhYCCvZrkw8atSelsdNtdIhc
+ T4Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=z9wSev6dt9lHOjMsNQ8fQrkOJXqeDoA7gcisWlG1pJM=;
- b=T6YCW/RjQP3aGhOG9i9qqSrG5RT7N1Wz0KcDtcklmIjg7yoAi074uThPsWPEl8+tcE
- /PfgPUV5ESj8qPD9Rh5mKPQ7N9+nNEFCSsmbEMnyLtK3aI1aY+S9K2v33uIagLfjaIEw
- 27th9XWPGlHX1D1Xrn+iyI6/96kkHUAxtUHwQ5FzuAKG2pgtUEcwQXQvnYN6ab51Anwi
- PQ83Uj8A8/POZZiYmJwKXuOJjDPExTChyvU4sU5zMKxBwWza6xXn2nlnYNUZnHPLEnFb
- V3UqPv+6PcBQujyxnWGg45PyxQX2mannRzDQGQPWS0QhIXOonNLCP9yOtSoT8WeVbqCn
- P+Ew==
-X-Gm-Message-State: AOAM533h2auPll+0TdSbNb5zvMV0k6BrDGi3znCBuP46Jq47igElcAqv
- uiO9fcDrCXA3DXAGb8PWxOwnw2Z1Do3sF+/b
-X-Google-Smtp-Source: ABdhPJzE/1jxMubny6gGrT1L/LVyh98ordvrEblUP81v0cFO+lNsjxN6GwCkoSq5xwzL8IlVuPQ3XA==
-X-Received: by 2002:a1c:b70b:: with SMTP id h11mr15130836wmf.185.1605516463557; 
- Mon, 16 Nov 2020 00:47:43 -0800 (PST)
+ bh=bytOyaTdOaNPlL5Eeo/KhiZTN4i5aXJrm4o5Lrz7ER8=;
+ b=VNcqsXJu3lM5jzMhW1W3uT+tMD7mVvfazW1jjJQerEzxaaatRNs8SI5d2TbDrt/Yoa
+ eRVMXWzsNHUNwEHlLr3DtEIH1Tkuy2OA32MtIb37HahPiOw2IqUx6po0bfGgx2tzOHy3
+ pE5cRg3YZi+uIawNip9OfBCiCZHUEmmSYPG6AKmK78tcHMqE4JAZGcaq038JN1fb7Stm
+ w3FdW+odx86klf7WPV0lFYWl8kPhfcphnBAo192w6T/PyDpCPPDTutBbsp8z6KOUM6qL
+ d32e34jRPP9aSb8TX6OV+DwxCNutfH8ebm6bzvj2V2aJkdB4GHh8KVhqVNJjfYC3U+ws
+ tUVw==
+X-Gm-Message-State: AOAM532Tam3M7ilxqjKOr1xQ5z0ws+gAr+XT5WfqnqvzKJhWDIlbxsAV
+ +uqTRL+SDoTunvleeQuSA0YWZQ==
+X-Google-Smtp-Source: ABdhPJyoPNoNZwRvVQk1Wah6zgtln7DoTbb8M4M/f0bmQrNiR53tBKdWzgyzrEfhRymXF+k/UCqJOg==
+X-Received: by 2002:a1c:a555:: with SMTP id o82mr14314602wme.188.1605516534118; 
+ Mon, 16 Nov 2020 00:48:54 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:edb9:72a:9e35:6eb?
  ([2a01:e35:2ec0:82b0:edb9:72a:9e35:6eb])
- by smtp.gmail.com with ESMTPSA id m18sm20142881wru.37.2020.11.16.00.47.41
+ by smtp.gmail.com with ESMTPSA id k20sm18632864wmi.15.2020.11.16.00.48.52
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Nov 2020 00:47:42 -0800 (PST)
-Subject: Re: [PATCH v3 0/2] phy: amlogic: Add support for AXG MIPI D-PHY
-To: kishon@ti.com, Vinod Koul <vkoul@kernel.org>
-References: <20201104134730.1545875-1-narmstrong@baylibre.com>
+ Mon, 16 Nov 2020 00:48:52 -0800 (PST)
+Subject: Re: [PATCH 14/40] drm/meson/meson_venc: Make local function
+ 'meson_venc_hdmi_get_dmt_vmode' static
+To: Lee Jones <lee.jones@linaro.org>
+References: <20201113134938.4004947-1-lee.jones@linaro.org>
+ <20201113134938.4004947-15-lee.jones@linaro.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <b2aa7b6c-b590-ff4a-d161-364e4e968b26@baylibre.com>
-Date: Mon, 16 Nov 2020 09:47:41 +0100
+Message-ID: <46c423b8-8c1b-a2b8-91d7-12cde980f5fc@baylibre.com>
+Date: Mon, 16 Nov 2020 09:48:51 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201104134730.1545875-1-narmstrong@baylibre.com>
+In-Reply-To: <20201113134938.4004947-15-lee.jones@linaro.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201116_034745_230046_655C695A 
-X-CRM114-Status: GOOD (  15.62  )
+X-CRM114-CacheID: sfid-20201116_034855_890913_FFB9AB62 
+X-CRM114-Status: GOOD (  17.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,49 +153,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, Kevin Hilman <khilman@baylibre.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Vinod, Kishon,
-
-
-On 04/11/2020 14:47, Neil Armstrong wrote:
-> The Amlogic AXg SoCs embeds a MIPI D-PHY to communicate with DSI
-> panels, this adds the bindings.
-> 
-> This D-PHY depends on a separate analog PHY.
-> 
-> Changes since v2 at [2];
-> - Rebase on v5.10-rc1
-> 
-> Changes since v1 at [1]:
-> - Fix bindings and add review tag
-> 
-> [1] https://lkml.kernel.org/r/20200907072708.26043-1-narmstrong@baylibre.com
-> [2] https://lkml.kernel.org/r/20200929093203.337954-1-narmstrong@baylibre.com
-> 
-> Neil Armstrong (2):
->   dt-bindings: phy: add Amlogic AXG MIPI D-PHY bindings
->   phy: amlogic: Add AXG MIPI D-PHY driver
-> 
->  .../bindings/phy/amlogic,axg-mipi-dphy.yaml   |  70 +++
->  drivers/phy/amlogic/Kconfig                   |  12 +
->  drivers/phy/amlogic/Makefile                  |   1 +
->  drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c | 413 ++++++++++++++++++
->  4 files changed, 496 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
->  create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-> 
-
-Could you review this serie ?
-
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTMvMTEvMjAyMCAxNDo0OSwgTGVlIEpvbmVzIHdyb3RlOgo+IEZpeGVzIHRoZSBmb2xsb3dp
+bmcgVz0xIGtlcm5lbCBidWlsZCB3YXJuaW5nKHMpOgo+IAo+ICBkcml2ZXJzL2dwdS9kcm0vbWVz
+b24vbWVzb25fdmVuYy5jOjg5Mzo2OiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9y
+IOKAmG1lc29uX3ZlbmNfaGRtaV9nZXRfZG10X3Ztb2Rl4oCZIFstV21pc3NpbmctcHJvdG90eXBl
+c10KPiAKPiBDYzogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgo+IENj
+OiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+Cj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRh
+bmllbEBmZndsbC5jaD4KPiBDYzogS2V2aW4gSGlsbWFuIDxraGlsbWFuQGJheWxpYnJlLmNvbT4K
+PiBDYzogSmVyb21lIEJydW5ldCA8amJydW5ldEBiYXlsaWJyZS5jb20+Cj4gQ2M6IE1hcnRpbiBC
+bHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+Cj4gQ2M6IGRy
+aS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogbGludXgtYW1sb2dpY0BsaXN0cy5p
+bmZyYWRlYWQub3JnCj4gQ2M6IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZwo+
+IFNpZ25lZC1vZmYtYnk6IExlZSBKb25lcyA8bGVlLmpvbmVzQGxpbmFyby5vcmc+Cj4gLS0tCj4g
+IGRyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl92ZW5jLmMgfCA0ICsrLS0KPiAgMSBmaWxlIGNo
+YW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX3ZlbmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNv
+bi9tZXNvbl92ZW5jLmMKPiBpbmRleCBmOTNjNzI1YjZmMDJkLi41ZTIyMzZlYzE4OWZhIDEwMDY0
+NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl92ZW5jLmMKPiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fdmVuYy5jCj4gQEAgLTg5MCw4ICs4OTAsOCBAQCBib29s
+IG1lc29uX3ZlbmNfaGRtaV9zdXBwb3J0ZWRfdmljKGludCB2aWMpCj4gIH0KPiAgRVhQT1JUX1NZ
+TUJPTF9HUEwobWVzb25fdmVuY19oZG1pX3N1cHBvcnRlZF92aWMpOwo+ICAKPiAtdm9pZCBtZXNv
+bl92ZW5jX2hkbWlfZ2V0X2RtdF92bW9kZShjb25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAq
+bW9kZSwKPiAtCQkJCSAgIHVuaW9uIG1lc29uX2hkbWlfdmVuY19tb2RlICpkbXRfbW9kZSkKPiAr
+c3RhdGljIHZvaWQgbWVzb25fdmVuY19oZG1pX2dldF9kbXRfdm1vZGUoY29uc3Qgc3RydWN0IGRy
+bV9kaXNwbGF5X21vZGUgKm1vZGUsCj4gKwkJCQkJICB1bmlvbiBtZXNvbl9oZG1pX3ZlbmNfbW9k
+ZSAqZG10X21vZGUpCj4gIHsKPiAgCW1lbXNldChkbXRfbW9kZSwgMCwgc2l6ZW9mKCpkbXRfbW9k
+ZSkpOwo+ICAKPiAKClJldmlld2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXls
+aWJyZS5jb20+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
+ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
+bWxvZ2ljCg==
