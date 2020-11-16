@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B687C4742C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 07:19:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3058FC4742C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 07:24:15 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BB3D22224F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 07:19:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B4AD722265
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 07:24:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s6uAXzuo";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="nkKq7KYV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BB3D22224F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rTKqJTHG";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="udI4quK0"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B4AD722265
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,43 +25,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ZmgebhC+b2ELWipCFinfYLeiaXvI6e972S195zsA6SU=; b=s6uAXzuou4cX7aDqk55Jh1Qpk
-	o/UuT+HIRo8fNLU+0EaPCZvXeGsgk03ghnoFwwOuz7I+12RWGduXdvp3B2Xp7iu5wWSj8SckgVKyR
-	ko+EtcCm4qWuta8szxJU+uVM2rAHDhct0JyLxH2I7SMtwZ2sSXjiWFdjDqHDcp+n5jBd4Wdv/nGlu
-	PJYas5lgClvZL6yxmJe43XFOlC7ovyPAYywkyjxk/KfxHFZglevhTl1bnYjc+Zc/5+l3Q8gO0o/Ws
-	E9kiYt1e25lRsliMx8vY+2dzb+Me+7cpUEQBPAONSMKJnnlYrjR/Mq2Y4csh88SxK/b/NHWoemakz
-	w5nThynOQ==;
+	 bh=9cE3n4AxzY3EHvEDAxoDh/GM6L3Ma2rbOgUS3wXBZWY=; b=rTKqJTHG+OaJ/7/aRqiKL8vws
+	hFjLQxkRdVq8JcrZ9+riMjP81AM4s76Lu9BuP6R3GLAJ+5kj2zyL/SOeuW0BZtTUXVLV3q+gBS1VA
+	Y63U8vnJ4FhQHw/8Lb0tWhrZ8JgjZ9MxbgA4njG3s6bbSGUsf0W5IyvArfd7HWF7ue1x+gUD/NIo2
+	9SgLbjMnHQFF1nJ+w9sKAs9QZ36fPtTSx/PWEtbq4oPsFWYdKv8EfFjc60ZFKt4Y/tCnQkuj53ce2
+	jdp94yusCG+T3oj8bL6WOH8D7ju7Y6aylxnDiOsOW/wN+cjrhXY7wFDvxu6aLze6KN2mY52LkcVCt
+	y7f1eUE0A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1keYng-0002FX-Bj; Mon, 16 Nov 2020 07:19:44 +0000
+	id 1keYry-0002nK-B8; Mon, 16 Nov 2020 07:24:10 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1keYne-0002EZ-3e; Mon, 16 Nov 2020 07:19:43 +0000
+ id 1keYrw-0002mm-4I; Mon, 16 Nov 2020 07:24:08 +0000
 Received: from localhost (unknown [122.171.203.152])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 2E43A22265;
- Mon, 16 Nov 2020 07:19:39 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 35A7B2224F;
+ Mon, 16 Nov 2020 07:24:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1605511180;
- bh=rytT6E17HX9IEiUhV5t496BhQCdrbGSDo55kSLDvdl8=;
+ s=default; t=1605511446;
+ bh=ByHT9+UJJp/kgiPNG9XUcHm8nJKa853R/14JRHtTB2A=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=nkKq7KYVb3CoBjpS6MSxTdmXraPwlKNz5jz3UCEK7SYitEBPEJch0zO06r4vpp/5n
- +e+fq8H12gm6BRGhPvQa3j2pCiU3qEgz12ryJLTmzDv0RqrsYm7GSSqSctDSw8zkom
- XFWXjrX3+zZEl+X9Y4sXIArRZFYkqkB1gQNia6kc=
-Date: Mon, 16 Nov 2020 12:49:35 +0530
+ b=udI4quK0a+CvExSFr/yBdF9HnI0RfdGMtbCQT9do8mPnzLjHUOJh8cCQzgeJjg0UQ
+ IQig2N/qYYOFADmvT+3G9Rj8FPvElc5peF8juD80l2qtYXVC9Tz0mB9xUQE0zISpie
+ DfpJBs2gtj7VZen1YFPY9h8Unh8GApEEH+JWb2Xg=
+Date: Mon, 16 Nov 2020 12:54:01 +0530
 From: Vinod Koul <vkoul@kernel.org>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Subject: Re: [PATCH v2 01/17] phy: allwinner: convert to
- devm_platform_ioremap_resource(_byname)
-Message-ID: <20201116071935.GE7499@vkoul-mobl>
-References: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
+To: Yejune Deng <yejune.deng@gmail.com>
+Subject: Re: [PATCH] phy: amlogic: Replace devm_reset_control_array_get()
+Message-ID: <20201116072401.GG7499@vkoul-mobl>
+References: <1604378274-6860-1-git-send-email-yejune.deng@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <1604378274-6860-1-git-send-email-yejune.deng@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201116_021942_242899_121F570C 
-X-CRM114-Status: UNSURE (   9.12  )
+X-CRM114-CacheID: sfid-20201116_022408_255508_843062E3 
+X-CRM114-Status: UNSURE (   7.59  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -74,41 +73,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Ondrej Jirman <megous@megous.com>, Peter Chen <peter.chen@nxp.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Anil Varughese <aniljoy@cadence.com>,
- Wei Yongjun <weiyongjun1@huawei.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Kishon Vijay Abraham I <kishon@ti.com>,
- Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
- Chen-Yu Tsai <wens@csie.org>, bcm-kernel-feedback-list@broadcom.com,
- NXP Linux Team <linux-imx@nxp.com>, Icenowy Zheng <icenowy@aosc.io>,
- Bharat Gooty <bharat.gooty@broadcom.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Ray Jui <rjui@broadcom.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Maxime Ripard <mripard@kernel.org>, Yue Wang <yue.wang@amlogic.com>,
- Lubomir Rintel <lkundrak@v3.sk>, Remi Pommarel <repk@triplefau.lt>,
- linux-mediatek@lists.infradead.org,
- Rikard Falkeborn <rikard.falkeborn@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Roger Quadros <rogerq@ti.com>,
- Hanjie Lin <hanjie.lin@amlogic.com>, Ma Feng <mafeng.ma@huawei.com>,
- Scott Branden <sbranden@broadcom.com>, Randy Dunlap <rdunlap@infradead.org>,
- Jyri Sarha <jsarha@ti.com>, linux-kernel@vger.kernel.org,
- Sanket Parmar <sparmar@cadence.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Joe Perches <joe@perches.com>,
- Colin Ian King <colin.king@canonical.com>, Shawn Guo <shawnguo@kernel.org>,
- Li Jun <jun.li@nxp.com>
+Cc: lorenzo.pieralisi@arm.com, narmstrong@baylibre.com,
+ martin.blumenstingl@googlemail.com, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, kishon@ti.com, repk@triplefau.lt,
+ p.zabel@pengutronix.de, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06-11-20, 14:08, Chunfeng Yun wrote:
-> Use devm_platform_ioremap_resource(_byname) to simplify code
+On 03-11-20, 12:37, Yejune Deng wrote:
+> devm_reset_control_array_get_exclusive() looks more readable
 
-Applied all, thanks
+Applied, thanks
 
 -- 
 ~Vinod
