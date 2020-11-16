@@ -2,92 +2,87 @@ Return-Path: <SRS0=sVtX=EW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 54B6FC2D0A3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 16:41:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5B32C2D0A3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 16:59:10 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3A14D2068D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 16:41:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E4AD020E65
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 16:59:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Aq+n03i9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="teNJyuyb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A14D2068D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CBqPWuej";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hNwjUvnN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E4AD020E65
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Rm6JcXBm4CgiCXcG5F5JRCZ4zHMbCg6UGOH5dWU9hIQ=; b=Aq+n03i9BzaosIzKPOZYA3Zmc
-	3R1gSYf/i5S/vXH5urKzS2znxPo9wVnI23FGvN+jqqLlFm9kLOznKZfhI9BPzyY3Yx8j6wo04jTNP
-	it+U4VHIM3QLGnuZVselvpOe050aUfR9oLDNTqC9rnOKy2Z0bD++qK/dQUJ/DlE15+4jHCa7iSxJO
-	01PljRIIqxE1lgiwSD9r5u0ExWhA6D0U2NOEcOZjyiHMP5gEx2MC0bEBAMrJMg8PO8ZcdZackeoOW
-	jADmevNA+V935jv8cqkb0Ij9om203DdlQvQYyeoF6xcfk98nd6G2cTEnW7tgHNJFG16pMoawKiOwe
-	CWdWm0HDg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=1EVnh3auuSKatGOkocGTnn1Iz4T1u9OMuWIsW2jW4Ek=; b=CBqPWuejmbsVRSoRCV0mzLaCrd
+	cRy0aGSBgkrQ4P/m0yRqZy/ndpFNm4Ak5ESHMTtqskQzWXgeo5mWM8QvCRi2XIPtdId0AhDy1CJJF
+	wic4RwhXsPfwWwcZbl5dzWMyLAcGT9L9IU7MoDYbETIIANrPcwmClP+Adee2/1lm6Jl3OT3Umtzh5
+	uB0uBeKjaGeBrUYNKbqsk1coJyJPwjw64usZds3XEtPjj4vR3JjvRbIxubmMJVtiVnODCq7douoFF
+	dg9P0X8/njGZ/dklITjVEBh2smpj6LjVCpMvSzz0cbxuD+vQsTjdEMvnthx0WhSoVvkJuuNFulhZq
+	MWZhBp9Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kehZC-0000mS-90; Mon, 16 Nov 2020 16:41:22 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1kehqL-0003nG-Bd; Mon, 16 Nov 2020 16:59:05 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kehZ8-0000lu-6I
- for linux-amlogic@lists.infradead.org; Mon, 16 Nov 2020 16:41:19 +0000
-Received: by mail-wr1-x444.google.com with SMTP id k2so19430197wrx.2
- for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2020 08:41:16 -0800 (PST)
+ id 1kehqI-0003mC-9B
+ for linux-amlogic@lists.infradead.org; Mon, 16 Nov 2020 16:59:03 +0000
+Received: by mail-wr1-x443.google.com with SMTP id m6so2272430wrg.7
+ for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2020 08:59:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
- :date:mime-version;
- bh=Rtf3WPy2v5/PbwArc8zsVNsYHP4yZqiUV6FRg+0fDSA=;
- b=teNJyuybcUBRu8Y/N3gpPv/LkkNYwAueeD6QaOUW4C0LP+SGZAkWUTyyfuxdp71ABj
- mwJazhnQ3ObYIxtFblXSVQyRtxkhhCkWVEsdYJHKkEa45fxyFsy8NkGaxQ264EhAFrah
- KE68YvuSveMPDdbqLjECCajE7wFZNJI3NnPI2Du5TADkSQfiSL5QcijOsW4jjUZbdASw
- 9aoSkR+JnlXDaGMV6tl8WBux4Bod70pl/GYVIAYgmoWVXGpsa2puo9GSkE631MpSr0ri
- gY3AByZqA8TLYUJhmV6X3+QWnhG25t2sgOaTkjhlEVkjS/BKkzt5W2+NTVUWZqofvv2U
- vSYg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=W4o16G5GsEBzaMz1BZ2zcZ9qXzaDUaxARAp7qkrnK8s=;
+ b=hNwjUvnNzsCBml6kwZR5iJ51i0E49/ZIjaKRBb1DOl8pzpI8wYtdpV0caP4OVb5U80
+ 0XpHY1GljQ7vMNY7oOd12FMDQ+6LqgibOD94hI4msC7PYt2OnDmSLDTcdY+ej4CX8ab2
+ 78PEbC3Bkm8WgVHwoJLEQO8Yhwarz9BgTPF25YYXGTxM7dFXIhImveocO541qB251SCW
+ UBXQODA2HyU+f0eB0zyn7A74k8ocGocUMj8AiZBKWR0g/JUPB16wRtVhuJ3RyfYiYxwY
+ CLD+lIXOFBdCdsIeEAXFDJjT73OCqZ0Dtp1CnuFsaDP89kh6mc2E52a7x+2u+7mO0a9K
+ iqmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:message-id:date:mime-version;
- bh=Rtf3WPy2v5/PbwArc8zsVNsYHP4yZqiUV6FRg+0fDSA=;
- b=kzRcYUqUQvQVUzpKoW8drT7j9eEGP8RiBWuBpDxP5N3CWN5O9yYR+PskGFsW8Ku3N8
- RFwN6w+R2CC5MLHWoUkV/H5l5sBwakI39rNRG+2QRbJgNMFsZb7Z0RBHdWzi0FKbrPUW
- GnREJhSRRY6YHGpydTitnBcq9lB/UZgXMl44zJibrZmCh7t9Ha1H8berWcC54MmWTZIj
- 0h3J4QFolVsW2JhvbWsu1QFLAAOjoRBwq6X9hdjFsO4J9AzoChhrsbyR0ZISzry9Wd8S
- 1VBH+omdJgDJicCir4ogkhxDw2Qr70dnkefx0UrB+JMv7f7sX5abmsw3GXpSnSlZZuee
- IqaQ==
-X-Gm-Message-State: AOAM531dZeKkow2yBR2h03f2Uz89320oIIkvo+gWFgy+DC8PjYs8rlXX
- MDbCTAMeY+lE5TqF17AsbdSbCQ==
-X-Google-Smtp-Source: ABdhPJzvBUGf8eI0OYt/qmbfQt+9LTf5uEZcDSPO6S6VGAe1+j7kmLoBgoNQyoNJtK+MHMe/ypdKGw==
-X-Received: by 2002:adf:f4c7:: with SMTP id h7mr19643713wrp.234.1605544875289; 
- Mon, 16 Nov 2020 08:41:15 -0800 (PST)
-Received: from localhost (253.35.17.109.rev.sfr.net. [109.17.35.253])
- by smtp.gmail.com with ESMTPSA id k1sm20071604wrp.23.2020.11.16.08.41.14
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=W4o16G5GsEBzaMz1BZ2zcZ9qXzaDUaxARAp7qkrnK8s=;
+ b=sBc91Zh415eJN20nCKNT+dYpVswXhnLEiyp1+6Yp/DHsN5Wuc7MzhpLyTUAFB0gPfC
+ JItr10mFJ6VecR8i6gfJLK5DKvm8P3CmVk+isuppYoTwnsvYMp+BxzRROdixWC74ixff
+ ezk8hPHRkG7zXpJvlqSk9MDM6+2ItbLyJLkLCQxqd3ExwDW1AlmTQ2jTc7HKuFzX8Syc
+ l3mACI+nTHYVE+Exk2cowZ+R+c7hiKJc0LMmigxxiKgJHwEQRkEcKoIOVXmrKU8qS7KW
+ U4/MPxURfpduA6CamWOG9zD5o2qFT9AAj0iSLTwemlQZT7jyxQ4iX7imJwa20QEnKKjl
+ z00A==
+X-Gm-Message-State: AOAM531GN4uR9pbWMB6zKm942G+gk6nlqIfShk11IX0G3Hu8hmYtTFQb
+ 7tc5VCSxFfsAz8GFFP5jcUMeSA==
+X-Google-Smtp-Source: ABdhPJxAVdffrUmZu/MYmWLDC1IA4nYoGvNkWJgPrDQlADP0wxYuEUxekdaZMa9gUe34hcpIdfhD5Q==
+X-Received: by 2002:a5d:6050:: with SMTP id j16mr21892549wrt.158.1605545941309; 
+ Mon, 16 Nov 2020 08:59:01 -0800 (PST)
+Received: from starbuck.lan (253.35.17.109.rev.sfr.net. [109.17.35.253])
+ by smtp.googlemail.com with ESMTPSA id a14sm3582188wmj.40.2020.11.16.08.58.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Nov 2020 08:41:14 -0800 (PST)
-References: <20201112230043.28987-1-aouledameur@baylibre.com>
- <0f679c62aa48603ea43a8fa4819d688baa802d73.camel@pengutronix.de>
- <1jima91e92.fsf@starbuckisacylon.baylibre.com>
- <48332a44241f3c06966420277060b6048c1f77d0.camel@pengutronix.de>
-User-agent: mu4e 1.4.10; emacs 27.1
+ Mon, 16 Nov 2020 08:59:00 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Amjad Ouled-Ameur
- <aouledameur@baylibre.com>, Jim Quinlan <james.quinlan@broadcom.com>
-Subject: Re: [PATCH v2] reset: make shared pulsed reset controls re-triggerable
-In-reply-to: <48332a44241f3c06966420277060b6048c1f77d0.camel@pengutronix.de>
-Message-ID: <1j4klp1cgm.fsf@starbuckisacylon.baylibre.com>
-Date: Mon, 16 Nov 2020 17:41:13 +0100
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH] arm64: meson: select COMMON_CLK
+Date: Mon, 16 Nov 2020 17:58:53 +0100
+Message-Id: <20201116165853.544263-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201116_114118_371295_B56B8AC2 
-X-CRM114-Status: GOOD (  23.52  )
+X-CRM114-CacheID: sfid-20201116_115902_415552_1344B539 
+X-CRM114-Status: GOOD (  11.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,77 +94,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This fix the recent removal of clock drivers selection.
+While it is not necessary to select the clock drivers themselves, we need
+to select a proper implementation of the clock API, which for the meson, is
+CCF
 
-On Mon 16 Nov 2020 at 17:36, Philipp Zabel <p.zabel@pengutronix.de> wrote:
+Fixes: ba66a25536dd ("arm64: meson: ship only the necessary clock controllers")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ 
+ This fix is a side effect of this 0day report:
+ https://lore.kernel.org/r/202011151309.DVCsUlLh-lkp@intel.com
+ It shows that we need to select an implementation of clk.h
 
-> On Fri, 2020-11-13 at 16:13 +0100, Jerome Brunet wrote:
->> On Fri 13 Nov 2020 at 16:04, Philipp Zabel <p.zabel@pengutronix.de> wrote:
->> 
->> > On Fri, 2020-11-13 at 00:00 +0100, Amjad Ouled-Ameur wrote:
->> > > The current reset framework API does not allow to release what is done by
->> > > reset_control_reset(), IOW decrement triggered_count. Add the new
->> > > reset_control_rearm() call to do so.
->> > > 
->> > > When reset_control_reset() has been called once, the counter
->> > > triggered_count, in the reset framework, is incremented i.e the resource
->> > > under the reset is in-use and the reset should not be done again.
->> > > reset_control_rearm() would be the way to state that the resource is
->> > > no longer used and, that from the caller's perspective, the reset can be
->> > > fired again if necessary.
->> > > 
->> > > Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
->> > > Reported-by: Jerome Brunet <jbrunet@baylibre.com>
->> > > ---
->> > > Change since v1: [0]
->> > > * Renamed the new call from reset_control_(array_)resettable to 
->> > > reset_control_(array_)rearm
->> > > * Open-coded reset_control_array_rearm to check for errors before
->> > > decrementing triggered_count because we cannot roll back in case an
->> > > error occurs while decrementing one of the rstc.
->> > > * Reworded the new call's description.
->> > 
->> > Thank you, applied to reset/next.
->> 
->> Hi Philipp,
->> 
->> Would it be possible to get an immutable branch/tag with this ?
->> It would allow to move forward on the USB side, without waiting for the
->> next rc1.
->
-> Here you go,
->
-> The following changes since commit 3650b228f83adda7e5ee532e2b90429c03f7b9ec:
->
->   Linux 5.10-rc1 (2020-10-25 15:14:11 -0700)
->
-> are available in the Git repository at:
->
->   git://git.pengutronix.de/git/pza/linux.git reset/shared-retrigger
->
-> for you to fetch changes up to 557acb3d2cd9c82de19f944f6cc967a347735385:
->
->   reset: make shared pulsed reset controls re-triggerable (2020-11-16 17:05:28 +0100)
->
-> ----------------------------------------------------------------
-> Amjad Ouled-Ameur (1):
->       reset: make shared pulsed reset controls re-triggerable
->
->  drivers/reset/core.c  | 73 +++++++++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/reset.h |  1 +
->  2 files changed, 74 insertions(+)
->
+ arch/arm64/Kconfig.platforms | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thx Philipp !
-
-> regards
-> Philipp
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index 329e22c09cad..484e81f39db7 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -151,6 +151,7 @@ config ARCH_MEDIATEK
+ 
+ config ARCH_MESON
+ 	bool "Amlogic Platforms"
++	select COMMON_CLK
+ 	select PINCTRL
+ 	select PINCTRL_MESON
+ 	select MESON_IRQ_GPIO
+-- 
+2.28.0
 
 
 _______________________________________________
