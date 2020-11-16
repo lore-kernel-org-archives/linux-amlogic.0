@@ -2,85 +2,67 @@ Return-Path: <SRS0=sVtX=EW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BA7EC4742C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 06:42:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B687C4742C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 07:19:51 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 82D9D206D8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 06:42:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BB3D22224F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2020 07:19:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XRuVqdrK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ms0KGcSE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 82D9D206D8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s6uAXzuo";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="nkKq7KYV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BB3D22224F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=MxIUYavBQxJFNM4oCuxTG0F3mIuU5WYvZlo8Co1Pg60=; b=XRuVqdrKYbcbV4sCad+7thrh0v
-	dJb/MDvAQBEDEE2tz3M02CjGBKTNo82LwXJVXyF8kUbEaTQIRGCnqYby/CtqcFFJ9vFSu9kGj6xvn
-	3ocJU6R8ooXdQ5+nCizMypb797spynD5jXy6M4BtNMT5qDkeiemyb4knjuPq5E9Wp7XHo/oFe/+rF
-	rWHlD7CO6pBAYnUMpXfQA/7W/aiYXPzrMKvoFEOSiNdaRMhD6z1BCukw2ExupshuUXhTgOstRhyFB
-	tjIY7KDXWIapq/sWC6+cXVpVVz/JRhwBgZtMLMSUSUE803EboSFoRTmFtXl3zBKIAHH4i1aEhiD0t
-	7MxMVKJQ==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=ZmgebhC+b2ELWipCFinfYLeiaXvI6e972S195zsA6SU=; b=s6uAXzuou4cX7aDqk55Jh1Qpk
+	o/UuT+HIRo8fNLU+0EaPCZvXeGsgk03ghnoFwwOuz7I+12RWGduXdvp3B2Xp7iu5wWSj8SckgVKyR
+	ko+EtcCm4qWuta8szxJU+uVM2rAHDhct0JyLxH2I7SMtwZ2sSXjiWFdjDqHDcp+n5jBd4Wdv/nGlu
+	PJYas5lgClvZL6yxmJe43XFOlC7ovyPAYywkyjxk/KfxHFZglevhTl1bnYjc+Zc/5+l3Q8gO0o/Ws
+	E9kiYt1e25lRsliMx8vY+2dzb+Me+7cpUEQBPAONSMKJnnlYrjR/Mq2Y4csh88SxK/b/NHWoemakz
+	w5nThynOQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1keYD7-0004cd-5o; Mon, 16 Nov 2020 06:41:57 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1keYng-0002FX-Bj; Mon, 16 Nov 2020 07:19:44 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1keYD3-0004bu-Jt; Mon, 16 Nov 2020 06:41:54 +0000
-Received: by mail-wr1-x441.google.com with SMTP id 23so17386135wrc.8;
- Sun, 15 Nov 2020 22:41:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=8abYbNHeOAKQO+ZnwqKzB6uY0HVsB9/O47UXrKWrphc=;
- b=ms0KGcSEoD6prNcUVV6jXCA5mwD5UL1h/dM/06oqjlm2pib1Qm4MGGYgmubv10K5rD
- OOTfTd5AW2vT/MJmB/ewnwIXD5jdKknpKHk05AYL4hx3G/Y6N94Lnc4qxRZG1+JG7M4n
- E/Rj7K2vPCw8ty0ag89sHgrtLQOkWDCRW/yulZpG+uGCrrljHsivpUMvj3SQsGQ0VgRU
- OEBrA2FOwUL0ETHeuydj4BadVgHk4pSE50kNiRaKvAjejzrYUUbZ+WgQjpjQOL15ogra
- 8Euo67DgEkw4xJpCIDwwE1AtwQfT+0xBJTVhThy+z5+i+0a7yyYyGb5HtV8Sx5cUZoye
- czow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=8abYbNHeOAKQO+ZnwqKzB6uY0HVsB9/O47UXrKWrphc=;
- b=ZDHGT4eeln/ES99We5VXrsPNFd9ZrOEYWXM47bmbiw0bRXXlATmhTB56lVSdm2LNsk
- HAKT6YtpMkmiczXmJfQsh+6FbMdVzJrEMPX8WB8Eq1NKYFWm5/4+wSZ93q/7tkshZ4BQ
- 8s6kcIgrMxJAsU5Y6HN2xDKoY3RJRT/2dhLRhylSkSgvfjv0h8U3rGUxoZP299Kyj+3j
- r72GR+Xv7+M4AZRYeGJgf4MM0IFIVIr1+8a7ft5RYIxINrxtBOI72NZz2RrRW7JARMW3
- 5mHUahB5bksq4HPVqLQWzk/Y9W+Otu7OLHkticLt6cw+62zYFyADh+TTNu1zOUHyRSsK
- KAFw==
-X-Gm-Message-State: AOAM533ELf1B5tswQlkP9pLNZZQmDiHDEhwxf+qCauz7N3td/piBohhR
- scijVhs17a7wVGLGE6DNVIs=
-X-Google-Smtp-Source: ABdhPJzN0JvWNHwbBHX8nxXHawQXm8cIFplFzvAQL5EiogeRN+gqI26t/xG8oPw4S+m57psA1CPsGA==
-X-Received: by 2002:a5d:4b8f:: with SMTP id b15mr18535487wrt.38.1605508912575; 
- Sun, 15 Nov 2020 22:41:52 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id r8sm21262631wrq.14.2020.11.15.22.41.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 15 Nov 2020 22:41:51 -0800 (PST)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: enable rtc node on Khadas VIM1/VIM2 boards
-Date: Mon, 16 Nov 2020 06:41:47 +0000
-Message-Id: <20201116064147.12062-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ id 1keYne-0002EZ-3e; Mon, 16 Nov 2020 07:19:43 +0000
+Received: from localhost (unknown [122.171.203.152])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 2E43A22265;
+ Mon, 16 Nov 2020 07:19:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1605511180;
+ bh=rytT6E17HX9IEiUhV5t496BhQCdrbGSDo55kSLDvdl8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=nkKq7KYVb3CoBjpS6MSxTdmXraPwlKNz5jz3UCEK7SYitEBPEJch0zO06r4vpp/5n
+ +e+fq8H12gm6BRGhPvQa3j2pCiU3qEgz12ryJLTmzDv0RqrsYm7GSSqSctDSw8zkom
+ XFWXjrX3+zZEl+X9Y4sXIArRZFYkqkB1gQNia6kc=
+Date: Mon, 16 Nov 2020 12:49:35 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Subject: Re: [PATCH v2 01/17] phy: allwinner: convert to
+ devm_platform_ioremap_resource(_byname)
+Message-ID: <20201116071935.GE7499@vkoul-mobl>
+References: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1604642930-29019-1-git-send-email-chunfeng.yun@mediatek.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201116_014153_748587_581CDE8F 
-X-CRM114-Status: GOOD (  16.70  )
+X-CRM114-CacheID: sfid-20201116_021942_242899_121F570C 
+X-CRM114-Status: UNSURE (   9.12  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,82 +74,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Artem Lapkin <art@khadas.com>,
- Christian Hewitt <christianshewitt@gmail.com>
-MIME-Version: 1.0
+Cc: Ondrej Jirman <megous@megous.com>, Peter Chen <peter.chen@nxp.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Anil Varughese <aniljoy@cadence.com>,
+ Wei Yongjun <weiyongjun1@huawei.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
+ Chen-Yu Tsai <wens@csie.org>, bcm-kernel-feedback-list@broadcom.com,
+ NXP Linux Team <linux-imx@nxp.com>, Icenowy Zheng <icenowy@aosc.io>,
+ Bharat Gooty <bharat.gooty@broadcom.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ray Jui <rjui@broadcom.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Maxime Ripard <mripard@kernel.org>, Yue Wang <yue.wang@amlogic.com>,
+ Lubomir Rintel <lkundrak@v3.sk>, Remi Pommarel <repk@triplefau.lt>,
+ linux-mediatek@lists.infradead.org,
+ Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Roger Quadros <rogerq@ti.com>,
+ Hanjie Lin <hanjie.lin@amlogic.com>, Ma Feng <mafeng.ma@huawei.com>,
+ Scott Branden <sbranden@broadcom.com>, Randy Dunlap <rdunlap@infradead.org>,
+ Jyri Sarha <jsarha@ti.com>, linux-kernel@vger.kernel.org,
+ Sanket Parmar <sparmar@cadence.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Joe Perches <joe@perches.com>,
+ Colin Ian King <colin.king@canonical.com>, Shawn Guo <shawnguo@kernel.org>,
+ Li Jun <jun.li@nxp.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable the rtc node on VIM1/VIM2 boards so users can simply attach a power
-cell and use the on-board RTC without modifying the device-tree.
+On 06-11-20, 14:08, Chunfeng Yun wrote:
+> Use devm_platform_ioremap_resource(_byname) to simplify code
 
-Cold boot with no cell attached is gracefully handled:
+Applied all, thanks
 
-VIM2:~ # dmesg | grep rtc
-[    7.716150] rtc-hym8563 1-0051: no valid clock/calendar values available
-[    7.716957] rtc-hym8563 1-0051: registered as rtc0
-[    7.729850] rtc-hym8563 1-0051: no valid clock/calendar values available
-[    7.729877] rtc-hym8563 1-0051: hctosys: unable to read the hardware clock
-[    8.126768] rtc-hym8563 1-0051: no valid clock/calendar values available
-
-Warm boot (and any boot with cell attached) recalls stored values resulting
-in consistently faster (re)boot times:
-
-VIM2:~ # dmesg | grep rtc
-[    7.441671] rtc-hym8563 1-0051: registered as rtc0
-[    7.442663] rtc-hym8563 1-0051: setting system clock to 2020-11-16T05:49:59 UTC (1605505799)
-
-Suggested-by: Artem Lapkin <art@khadas.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
-
-This supersedes other recent attempts by Art to make the same change [0]
-and [1] which were rejected for lack of justification for the change and
-leaving comments behind. I have been using the same changes in my own
-tree for a while.
-
-Christian
-
-[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200925033017.1790973-8-art@khadas.com/
-[1] https://patchwork.kernel.org/project/linux-amlogic/patch/20200925033017.1790973-9-art@khadas.com/
-
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 3 +--
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts      | 3 +--
- 2 files changed, 2 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index 8bcdffdf55d0..638a5992d760 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -97,8 +97,7 @@
- 	pinctrl-names = "default";
- 
- 	rtc: rtc@51 {
--		/* has to be enabled manually when a battery is connected: */
--		status = "disabled";
-+		status = "okay";
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
- 		#clock-cells = <0>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index bff8ec2c1c70..da000c10b945 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -228,8 +228,7 @@
- 	pinctrl-names = "default";
- 
- 	rtc: rtc@51 {
--		/* has to be enabled manually when a battery is connected: */
--		status = "disabled";
-+		status = "okay";
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
- 		#clock-cells = <0>;
 -- 
-2.17.1
-
+~Vinod
 
 _______________________________________________
 linux-amlogic mailing list
