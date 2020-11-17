@@ -5,20 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F2FFC2D0E4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:55:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16CC5C2D0E4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:56:54 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AC758223AB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:55:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9F79C2463B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:56:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H6mekPaN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bErZpINF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AC758223AB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RjS0IAqi";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UyfIEOSX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F79C2463B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Xn61YUKMIUbbFMFgi0/PzR8C9hKNEgbbNhTOb4COZ8c=; b=H6mekPaNkcMiVEN805h0yWz+E
-	rVeZIPOiRHChRg8iurE7PdeR/ZrymMXln9bGrPXoT4VwYYJ6utJmlqUjHBDTPGLmZ8XFKh/OhbnEw
-	K6fsukigxA+SYBKmZ80uWe8Yg2kVTpHRmjSU26Av3axFqr6REeP2vWYFcqXGaso2Eep55IRV4qcOl
-	dAW5Vyg8+xtdVmaeq/szbZcWzOXy5wqts1OHqIm8UOW82mNq5+gw8tL9n/o0mlC80PCdhsSnn3fHl
-	Ne99lQQ6qbAzWOHg3KWKJnMbmhadSWKKO3Mtrd9+vWS7Js/4AicV9XV2K9M4Rka5jOve+q1EalPQb
-	VYfi3AWrg==;
+	 bh=9WESnTctvVJL6X9Vy7evGNWhEmZnTu4hJdcZDF2yUK0=; b=RjS0IAqiCuPBkhbZbvEpbwH32
+	2UAiAlCkSMk6WdfZQ1xXxoku3C6EHUVFYgPKaumDydAFzCu+Am3svk0rsnkP4kiunTpQweJ3kfHBJ
+	8ILOTJAcPPnVp34YgnZd8v/ovk4DZaY5RQxVrwX1RY4ws16wkez8xTMVIkvoSLMqjkkspW2tEmvUj
+	a94vx2+8TDWUvMmHxWCwLuS7zjJT6V0uOg4BaVlYE0vWJ+5aQ1kGiiVXRd+ejSI4Ye7yi+2Go0sh7
+	1tr4MnoVwaepXWFlZXEYwJsd/mK+w74iy8Hwr9MyqSo+MQNmj0RKIEXnoiptKbzYrNp2O5X/qpr3b
+	cEOjwND7A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kewle-0005FJ-Ua; Tue, 17 Nov 2020 08:55:14 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1kewnA-0005eJ-Rw; Tue, 17 Nov 2020 08:56:48 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kewlY-0005C9-5h
- for linux-amlogic@lists.infradead.org; Tue, 17 Nov 2020 08:55:09 +0000
-Received: by mail-wr1-x441.google.com with SMTP id p8so22341703wrx.5
- for <linux-amlogic@lists.infradead.org>; Tue, 17 Nov 2020 00:55:07 -0800 (PST)
+ id 1kewn8-0005d5-9C
+ for linux-amlogic@lists.infradead.org; Tue, 17 Nov 2020 08:56:47 +0000
+Received: by mail-wm1-x342.google.com with SMTP id c9so2442803wml.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 17 Nov 2020 00:56:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=RtxIAxEZISmwL9Tvj9Gd08JgoH0+MMiWxX80iMCHZDc=;
- b=bErZpINFuyZnGZ8F8evjNC8fUls4APjWAmOWfFL/IPZVCCeNdOZlv+evABOB4FKGVR
- oFEyQ4GEioUoHmwnNPWIeeuxNuJG/Dgneaf8P1E/0nUX+IhaH8vTxFeeLgU3kDNC5iIP
- eWyUp0k2Aolkb9ZIOoYNu4M5zAtlas1A3ZYX5xkqL/GPn9IA0mWkVvgsjq8ABmu9p0wZ
- F5n3j3a/NzpE0gQwnvorRzqGvrO2aqO3vCz/CqKSgssK0f53t4/1VcOIkgckNo4TqQt4
- EWVIqQzdXqweKAaS+NxtWlSisozFu06duy5hO0zNEFKLOoquoHCUsm/RFvfw9WXf8frT
- eoEg==
+ bh=c5KSmRDGEl3hsllqycry6twggKRm77CSW4Bz3AtEeY8=;
+ b=UyfIEOSXvYzQ1LIRaFKRPYlrWX1ASBFgIjbVqn61zyzqbpvbnC7yzN5JMVwQ4opSQY
+ XIJRsaU8UqDVbM0VwMuiBkT7QxOfmilsC+EJJ98XiQIXXHO8fDcTXjCtGc4gtSyEAZEU
+ gUPddrSCjOzBs6T6RfiNnxrCjCVE38xgpaK0nZRVl+6RGAgGkUAgZt2UmsShJAAd5n5h
+ VDlmwmnfqg/mKerenD4ViFtwBIVnQXognkvzDodTGXDuZevbujWhJ9+y3PwDxwKtV7hn
+ zb2+7/BOztaXRFj/DNcwYEOjw36LSDqYzGs+I4J/fZjPQOgJOc8CVhJZxTWbXXMr5nx9
+ vMew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=RtxIAxEZISmwL9Tvj9Gd08JgoH0+MMiWxX80iMCHZDc=;
- b=EiwPIabqcsH5q561lbs+fBBxGPgg1L1fHNq57iNEj6MDl0g5uZVDq0sRl0Kq8hoVoC
- U2oAvI+aaLhPgPJ/j+z8poBW9FwqAfqy84QakXBkgp3v/3HfoO6HFyqa64kqyzBpZ7/9
- oYH7ZCejkxMU7SeTx8p7UgXaUTXE50LRyCqMK9N7DI7akZz0zyXPrR/CTuj2YTJBkd7v
- TO0r1xkQCG4UMDt8nEqwJUTzSjYQNNSNnfD4ZwKNXHLmg2ESoI1+4EbBuRzIREOGB0/q
- Ntom+kMYS0lpI2FvZ6Nr37sre4m37RpnVsy8NLdyGBu6b8Gfivs/j0nF9mwdbIEm8DRS
- ysEg==
-X-Gm-Message-State: AOAM530VJWZUQ+rgoxiHWMMKdLdD8F67zOwFSQj0lEgcboutBhqDky2C
- 8WfVyTNLmevT6zQ3R42i6AK/QA==
-X-Google-Smtp-Source: ABdhPJytrGcqZ3nwt9VI+MkVjJZck/vlmrILQNa6R7F0ckrifFniUjchV6BcDBI7c/hGJrwxcLqwSA==
-X-Received: by 2002:adf:cd8d:: with SMTP id q13mr24353280wrj.61.1605603306792; 
- Tue, 17 Nov 2020 00:55:06 -0800 (PST)
+ bh=c5KSmRDGEl3hsllqycry6twggKRm77CSW4Bz3AtEeY8=;
+ b=qIJ6RWYAVgBJ37K04mIJveXW1RVRWAZ7yIJA2XeIEFA5+Iu7yWoTVCccIrWe0qgDIe
+ a/FOxzMErYZ5IDBoSNNCSv6m/TA/F9N/1/N+o+FAnM5ibc1pNND2rRXz8Wwzylps5OYt
+ noso8C3zwTum8bEJlk/Ens7G/c4iETU3PHHzkHs95h0Oxolb7WoJd1oPshS0J/zf3gYS
+ RwZnURsxnl3EFABmMlg7HdnhpXIVVFRZzu8ceM5prt4vbtrNcsbCaMYtRbwE4Ka6Bdml
+ 8t/0frmBnC2jtZLYyw1p5OW83cn8ED56yFyNq8AQQ3HpTIOX/eJtyXstUVuAOIHZWN+3
+ rDiA==
+X-Gm-Message-State: AOAM531cKFaY6R9sTBVifq822LSxgTr8QeV9uAV4QO79gfdB2hcC7cEK
+ tlGvY5mJp/SCComoq929CjYGtw==
+X-Google-Smtp-Source: ABdhPJzLbjV0aH2YnB54kKKTAJPIxDX5cz6OI23wPHCs0KmOkmTHyZSbhOCqkzklX19/yAwu8Qc+/A==
+X-Received: by 2002:a7b:cd92:: with SMTP id y18mr3141555wmj.178.1605603405138; 
+ Tue, 17 Nov 2020 00:56:45 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:1561:9f4b:5829:8e26?
  ([2a01:e35:2ec0:82b0:1561:9f4b:5829:8e26])
- by smtp.gmail.com with ESMTPSA id a17sm28722073wra.61.2020.11.17.00.55.05
+ by smtp.gmail.com with ESMTPSA id q2sm25746294wru.76.2020.11.17.00.56.43
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 17 Nov 2020 00:55:06 -0800 (PST)
-Subject: Re: [PATCH 3/4] drm/meson: dw-hdmi: Register a callback to disable
- the regulator
+ Tue, 17 Nov 2020 00:56:44 -0800 (PST)
+Subject: Re: [PATCH 4/4] drm/meson: dw-hdmi: Ensure that clocks are enabled
+ before touching the TOP registers
 To: Marc Zyngier <maz@kernel.org>, Kevin Hilman <khilman@baylibre.com>
 References: <20201116200744.495826-1-maz@kernel.org>
- <20201116200744.495826-4-maz@kernel.org>
+ <20201116200744.495826-5-maz@kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <35fc622c-bebb-6111-9d08-e6b5433e75c5@baylibre.com>
-Date: Tue, 17 Nov 2020 09:55:04 +0100
+Message-ID: <1a76accb-d6ee-49b0-8268-1123ac8f246e@baylibre.com>
+Date: Tue, 17 Nov 2020 09:56:43 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201116200744.495826-4-maz@kernel.org>
+In-Reply-To: <20201116200744.495826-5-maz@kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201117_035508_305440_5643D7A4 
-X-CRM114-Status: GOOD (  22.57  )
+X-CRM114-CacheID: sfid-20201117_035646_367381_CDBAEB12 
+X-CRM114-Status: GOOD (  21.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,70 +162,45 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 16/11/2020 21:07, Marc Zyngier wrote:
-> Removing the meson-dw-hdmi module results in the following splat:
+> Removing the meson-dw-hdmi module and re-inserting it results in a hang
+> as the driver writes to HDMITX_TOP_SW_RESET. Similar effects can be seen
+> when booting with mainline u-boot and using the u-boot provided DT (which
+> is highly desirable).
 > 
-> i[   43.340509] WARNING: CPU: 0 PID: 572 at drivers/regulator/core.c:2125 _regulator_put.part.0+0x16c/0x174
-> [...]
-> [   43.454870] CPU: 0 PID: 572 Comm: modprobe Tainted: G        W   E     5.10.0-rc4-00049-gd274813a4de3-dirty #2147
-> [   43.465042] Hardware name:  , BIOS 2021.01-rc2-00012-gde865f7ee1 11/16/2020
-> [   43.471945] pstate: 80400009 (Nzcv daif +PAN -UAO -TCO BTYPE=--)
-> [   43.477896] pc : _regulator_put.part.0+0x16c/0x174
-> [   43.482638] lr : regulator_put+0x44/0x60
-> [...]
-> [   43.568715] Call trace:
-> [   43.571132]  _regulator_put.part.0+0x16c/0x174
-> [   43.575529]  regulator_put+0x44/0x60
-> [   43.579067]  devm_regulator_release+0x20/0x2c
-> [   43.583380]  release_nodes+0x1c8/0x2b4
-> [   43.587087]  devres_release_all+0x44/0x6c
-> [   43.591056]  __device_release_driver+0x1a0/0x23c
-> [   43.595626]  driver_detach+0xcc/0x160
-> [   43.599249]  bus_remove_driver+0x68/0xe0
-> [   43.603130]  driver_unregister+0x3c/0x6c
-> [   43.607011]  platform_driver_unregister+0x20/0x2c
-> [   43.611678]  meson_dw_hdmi_platform_driver_exit+0x18/0x4a8 [meson_dw_hdmi]
-> [   43.618485]  __arm64_sys_delete_module+0x1bc/0x294
-> 
-> as the HDMI regulator is still enabled on release.
-> 
-> In order to address this, register a callback that will deal with
-> the disabling when the driver is unbound, solving the problem.
+> The reason for the hang seem to be that the clocks are not always
+> enabled by the time we enter meson_dw_hdmi_init(). Moving this call
+> *after* dw_hdmi_probe() ensures that the clocks are enabled.
 > 
 > Signed-off-by: Marc Zyngier <maz@kernel.org>
 
-Fixes: 161a803fe32d ("drm/meson: dw_hdmi: Add support for an optional external 5V regulator")
+Fixes: 1374b8375c2e ("drm/meson: dw_hdmi: add resume/suspend hooks")
 
 > ---
->  drivers/gpu/drm/meson/meson_dw_hdmi.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 29a8ff41595d..68826cf9993f 100644
+> index 68826cf9993f..7f8eea494147 100644
 > --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
 > +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -941,6 +941,11 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
+> @@ -1073,8 +1073,6 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
 >  
->  }
+>  	DRM_DEBUG_DRIVER("encoder initialized\n");
 >  
-> +static void meson_disable_regulator(void *data)
-> +{
-> +	regulator_disable(data);
-> +}
+> -	meson_dw_hdmi_init(meson_dw_hdmi);
+> -
+>  	/* Bridge / Connector */
+>  
+>  	dw_plat_data->priv_data = meson_dw_hdmi;
+> @@ -1097,6 +1095,8 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>  	if (IS_ERR(meson_dw_hdmi->hdmi))
+>  		return PTR_ERR(meson_dw_hdmi->hdmi);
+>  
+> +	meson_dw_hdmi_init(meson_dw_hdmi);
 > +
->  static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
->  				void *data)
->  {
-> @@ -989,6 +994,10 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
->  		ret = regulator_enable(meson_dw_hdmi->hdmi_supply);
->  		if (ret)
->  			return ret;
-> +		ret = devm_add_action_or_reset(dev, meson_disable_regulator,
-> +					       meson_dw_hdmi->hdmi_supply);
-> +		if (ret)
-> +			return ret;
->  	}
->  
->  	meson_dw_hdmi->hdmitx_apb = devm_reset_control_get_exclusive(dev,
+>  	next_bridge = of_drm_find_bridge(pdev->dev.of_node);
+>  	if (next_bridge)
+>  		drm_bridge_attach(encoder, next_bridge,
 > 
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
