@@ -5,19 +5,20 @@ X-Spam-Level:
 X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 36FB3C5519F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:33:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFC26C2D0E4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:35:02 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D0B2124671
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:33:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3E7C824671
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:35:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eVGUaQEp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zPd5l4z9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D0B2124671
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kf94RbcZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iMaclrlJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3E7C824671
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +27,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=sQy7rKR7qkPOksJZNGjjoWoFoTcknjqfQljsn9lifcA=; b=eVGUaQEpbD+5/0J4cLyV/Ekr1
-	/a5PDCGxpRefyOwYnwJSfRtROr2+qrAwXQsF239EJR1ek863X6g1F9R4BEOoEGskz2qbXTXNsrlpN
-	JInIGMDPjSMcNDjgAts57oZZBNgRcgnAiUL4RNhQOD87kmOdXgLhsxn7xSp2m6f6Du+/ylOSusuQR
-	siX/oHGa1lnJ0Mb5xiT0G9FNPjSvN233VUrwKR3uAxtp3gCT7HIX+O6dbXyjUd40L1oib1u+XoA+8
-	ylDqfKHJpuutOy+WvzbFQ/XH6Gwc5bIe+8Zlw2VWs22aHxiSql+vJ+1Cs+mjp1YMfAQi+6nH29r3Y
-	IZnlB/gtw==;
+	 bh=x+S0RpAe31dp+IS802JcqvVG9ohobYhBdECKRsZlMl4=; b=kf94RbcZdcqFZaWajnCiZDYFD
+	0Q160eT5J2Nyno4McdlRcrQdH0vHaFLTaBevmQ4nCmgB9TA07Kuq2K5j5U+5rymUr+zjX76XN0DW6
+	x9Ac6zTryCOI3QoEWMxBJyz0ghwL0H27izqG0NX4caTIBUIrhnw7y0s7RaLc2le7rvauPIuEA5NhK
+	pMK1tI3UK8py2w9k0EpSyTipa22CRoOeSVuDvwRv9Xk5acu0CvPEhxBWekWdDPhvrNhQJUSeZBOPE
+	yUGZhnuB5t1FZmqXfmNep68zu2CQCPhdxj5x89Zbtkvx9/20lsTgULP15e3g79lzPnBOUsnYeLR5W
+	0riNwraVA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kewQx-0000sV-30; Tue, 17 Nov 2020 08:33:51 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1kewS1-00014t-80; Tue, 17 Nov 2020 08:34:57 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kewQu-0000rc-Hi
- for linux-amlogic@lists.infradead.org; Tue, 17 Nov 2020 08:33:49 +0000
-Received: by mail-wm1-x342.google.com with SMTP id s13so2394416wmh.4
- for <linux-amlogic@lists.infradead.org>; Tue, 17 Nov 2020 00:33:46 -0800 (PST)
+ id 1kewRz-00014O-8I
+ for linux-amlogic@lists.infradead.org; Tue, 17 Nov 2020 08:34:56 +0000
+Received: by mail-wm1-x343.google.com with SMTP id 23so1510016wmg.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 17 Nov 2020 00:34:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=5Xx1bbaV9WY8YuvJTFw/lB1Mvb2Cd4/4KjUR7W7pbAA=;
- b=zPd5l4z9ICe7zDcsR8y5GZw1kk3NEb8ttGEmvMcYf/yydX07XV60y3vGG3WYOsamKN
- VsmhGiVt6F63PIAUga+SIg+Z01cUO8M9RPBNymmcBXE/+ep5a6Qdht6Fh9yzVbANC4GF
- WY/keYzYG48xwMvk4k4Q2xDIdy3Vysp51YGlWJZXKNL58CDEpMqMmtRf3GJkwMWqx+Zk
- 8w4RWm2r0j5SddbSG1O40x8Z2N2nWv9ZNFYkkX9T9WlO3R4gUZBihit18eGNg+//Zvpk
- zmIEsHaWT5VoK00EwDBniZY+hCG2PjP9p0f/d2lFjFPXx65ROMU7olpDwQ5TEk39sDd/
- BqAA==
+ bh=roGP5mtDqxI55hJ9MkwC62bf62HGkGdNDSySlnX36OM=;
+ b=iMaclrlJcxiJUoYxefxENfVZ/ZNa4XC9/VKom3TB9qm9jUi8YbdgDEwDgOpDVUgwJp
+ fMrpl0ekb6HuHzPeqcT2ZgTnh21ufegEUYoU0pvIheDgyZNxus7oHz3emomHkgxM1KH5
+ 068KKMZithkH/BwyXD1N2vp4oLLZ0+OtIAaC4jZpon3ERk8pvDmLsiBvqrmh5k0sxXlf
+ Tq4UcXPFWTsveNVukx7ze77ONjF/FBdhCrsNmm/QL8z36YYl70gbjPQoXQ473LH9Uwyb
+ vXC+4Syi1rl6V/vctwX5H8wcJcXtGKPHDAHkK9JTFoRKJjuCU/xe+dX0MVAZD52bQU8v
+ ImFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=5Xx1bbaV9WY8YuvJTFw/lB1Mvb2Cd4/4KjUR7W7pbAA=;
- b=dp1Fx9viZmt5Z48fDq9l/0gqlV6Ty8qiMdaCo3ujR5FvSgAeXne/V06b+uhW/gIZJg
- ZbpQRCjLlj3dgaWQQmvlnRRamPURwCmj0qeb+yclypbuqysReppqRSC4K0no3eUxOUzE
- 1qf9SMNT/Hy9sesBwZ/BuYEakshedOXFmRmWzciaZMT5v1ig+vVdTjDpynupOLR/hHLT
- NoCGQnu1bx2/cdP8csFqFf0LPz5KsRch8ubokbhxV1KHzgnlSsWo4W7TiwFE/PvStUwY
- 9ld0Rh4YJFESI7en18PMk+tek/ySh38Ytcf7/0uaBh06eswiGszzisddL6zEWRyjG1mo
- JOZA==
-X-Gm-Message-State: AOAM530SINmcYZfJ+e940KIZyPvmpqvrL/FOpEJ33cVrtbbIGbdPvL+L
- Fcp0dZb8cr8qYzCAlpokZjk82g==
-X-Google-Smtp-Source: ABdhPJzF+ARW4y0D2FdPtxzTQvHdAYwWOvqNYv3Iwi8FLXNgm4z58P6+0PseFBJmvfcxA/NUNeEFNg==
-X-Received: by 2002:a1c:c909:: with SMTP id f9mr2945964wmb.87.1605602025666;
- Tue, 17 Nov 2020 00:33:45 -0800 (PST)
+ bh=roGP5mtDqxI55hJ9MkwC62bf62HGkGdNDSySlnX36OM=;
+ b=Px+HQ9OKSooXnyalUgmQjavWqQko2lW+qxhDQ315dMzZf7bKQRfB/wD2i2RL/G4lDc
+ 8Tadjur0SpZKpdE5lyuZiHpHDTXAwDPg3Nb8yEx3po4Cr0FtQzK5oENBKohaWSk/sI5b
+ 6fvoi3xdTWpGMl8skiZKtntZt7v6U8R3Vi65uHVIoKjK9AwcvCquP0/wqK13EA7N7GGC
+ 5AQSSubQV7PUqZIxzwqDh6afjY1axkQWAvvqhXlcTRJwlI44FE5ISaY9SszwsptDK6M4
+ j5S8HWM0r4t+u0AwYOimoPJWodYyFV02d/xf/MhVq+UEm6ZLiPFIDyroHhD3VQWW7Fgd
+ Kj/Q==
+X-Gm-Message-State: AOAM531QTJcWhAiSnMnl8awrxPpZ/SkB0mt/59T+7IwWyXzj+KI1f0Pe
+ qJmTIT7erP9NzfqKGJxC3UVoTD7m0JT2Vdh8
+X-Google-Smtp-Source: ABdhPJy7wgCr9fJBl9sBT9uuF8jk6+GdWeRPbqKU2uE6PcJjKDmdGg0eRYPjIVU8Uaw9VILjObldOQ==
+X-Received: by 2002:a7b:cb13:: with SMTP id u19mr3054777wmj.89.1605602093397; 
+ Tue, 17 Nov 2020 00:34:53 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:1561:9f4b:5829:8e26?
  ([2a01:e35:2ec0:82b0:1561:9f4b:5829:8e26])
- by smtp.gmail.com with ESMTPSA id a18sm2357315wmm.22.2020.11.17.00.33.44
+ by smtp.gmail.com with ESMTPSA id s188sm2462816wmf.45.2020.11.17.00.34.51
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 17 Nov 2020 00:33:45 -0800 (PST)
-Subject: Re: [PATCH] arm64: meson: select COMMON_CLK
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-References: <20201116165853.544263-1-jbrunet@baylibre.com>
+ Tue, 17 Nov 2020 00:34:52 -0800 (PST)
+Subject: Re: [PATCH] phy: amlogic: Replace devm_reset_control_array_get()
+To: Yejune Deng <yejune.deng@gmail.com>, kishon@ti.com, vkoul@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, p.zabel@pengutronix.de
+References: <1605592689-10108-1-git-send-email-yejune.deng@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <96386e0a-b3dd-1247-cf61-b2009915ab2d@baylibre.com>
-Date: Tue, 17 Nov 2020 09:33:43 +0100
+Message-ID: <9be419cc-ffbf-c260-e804-bc29887781ed@baylibre.com>
+Date: Tue, 17 Nov 2020 09:34:51 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201116165853.544263-1-jbrunet@baylibre.com>
+In-Reply-To: <1605592689-10108-1-git-send-email-yejune.deng@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201117_033348_655239_5BD90DD6 
-X-CRM114-Status: GOOD (  19.96  )
+X-CRM114-CacheID: sfid-20201117_033455_392088_C73670F1 
+X-CRM114-Status: GOOD (  17.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,42 +153,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, repk@triplefau.lt,
+ lorenzo.pieralisi@arm.com, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 16/11/2020 17:58, Jerome Brunet wrote:
-> This fix the recent removal of clock drivers selection.
-> While it is not necessary to select the clock drivers themselves, we need
-> to select a proper implementation of the clock API, which for the meson, is
-> CCF
+On 17/11/2020 06:58, Yejune Deng wrote:
+> devm_reset_control_array_get_exclusive() looks more readable
 > 
-> Fixes: ba66a25536dd ("arm64: meson: ship only the necessary clock controllers")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Yejune Deng <yejune.deng@gmail.com>
 > ---
->  
->  This fix is a side effect of this 0day report:
->  https://lore.kernel.org/r/202011151309.DVCsUlLh-lkp@intel.com
->  It shows that we need to select an implementation of clk.h
+>  drivers/phy/amlogic/phy-meson-axg-pcie.c       | 2 +-
+>  drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c | 2 +-
+>  drivers/soc/amlogic/meson-ee-pwrc.c            | 3 +--
+>  drivers/soc/amlogic/meson-gx-pwrc-vpu.c        | 2 +-
+>  4 files changed, 4 insertions(+), 5 deletions(-)
 > 
->  arch/arm64/Kconfig.platforms | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> index 329e22c09cad..484e81f39db7 100644
-> --- a/arch/arm64/Kconfig.platforms
-> +++ b/arch/arm64/Kconfig.platforms
-> @@ -151,6 +151,7 @@ config ARCH_MEDIATEK
+> diff --git a/drivers/phy/amlogic/phy-meson-axg-pcie.c b/drivers/phy/amlogic/phy-meson-axg-pcie.c
+> index 377ed0d..3204f02 100644
+> --- a/drivers/phy/amlogic/phy-meson-axg-pcie.c
+> +++ b/drivers/phy/amlogic/phy-meson-axg-pcie.c
+> @@ -155,7 +155,7 @@ static int phy_axg_pcie_probe(struct platform_device *pdev)
+>  	if (IS_ERR(priv->regmap))
+>  		return PTR_ERR(priv->regmap);
 >  
->  config ARCH_MESON
->  	bool "Amlogic Platforms"
-> +	select COMMON_CLK
->  	select PINCTRL
->  	select PINCTRL_MESON
->  	select MESON_IRQ_GPIO
+> -	priv->reset = devm_reset_control_array_get(dev, false, false);
+> +	priv->reset = devm_reset_control_array_get_exclusive(dev);
+>  	if (IS_ERR(priv->reset))
+>  		return PTR_ERR(priv->reset);
+>  
+> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+> index 08e3227..bab6345 100644
+> --- a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+> @@ -418,7 +418,7 @@ static int phy_g12a_usb3_pcie_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto err_disable_clk_ref;
+>  
+> -	priv->reset = devm_reset_control_array_get(dev, false, false);
+> +	priv->reset = devm_reset_control_array_get_exclusive(dev);
+>  	if (IS_ERR(priv->reset))
+>  		return PTR_ERR(priv->reset);
+>  
+> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
+> index ed7d2fb..3a879a4 100644
+> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
+> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
+> @@ -413,8 +413,7 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
+>  			dev_warn(&pdev->dev, "Invalid resets count %d for domain %s\n",
+>  				 count, dom->desc.name);
+>  
+> -		dom->rstc = devm_reset_control_array_get(&pdev->dev, false,
+> -							 false);
+> +		dom->rstc = devm_reset_control_array_get_exclusive(&pdev->dev);
+>  		if (IS_ERR(dom->rstc))
+>  			return PTR_ERR(dom->rstc);
+>  	}
+> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+> index 8790627..b4615b2 100644
+> --- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+> +++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+> @@ -304,7 +304,7 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+>  		return PTR_ERR(regmap_hhi);
+>  	}
+>  
+> -	rstc = devm_reset_control_array_get(&pdev->dev, false, false);
+> +	rstc = devm_reset_control_array_get_exclusive(&pdev->dev);
+>  	if (IS_ERR(rstc)) {
+>  		if (PTR_ERR(rstc) != -EPROBE_DEFER)
+>  			dev_err(&pdev->dev, "failed to get reset lines\n");
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
