@@ -2,95 +2,82 @@ Return-Path: <SRS0=6jDt=EX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 01DACC2D0E4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 09:17:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 25364C63777
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 09:20:02 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 739E62417E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 09:17:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A5E972463C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 09:20:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gCDG4syA";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jCSg/LpM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 739E62417E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NcuaR56T";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="qmSlsSfT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5E972463C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:To:From:
+	Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=JL3Gid+WVWJoObZVHk9tAA65yhekuYLa8UAFtu8+Q9w=; b=gCDG4syAFYQxG/4p+cCyluAaw
-	6mLyeYkvlt3Pw5CcqLkMJmLOeUXSFB2Sigc/RMIM0uCNNV+3N4Qhbd/tMsej4F1+0keI3qVxJ9GE1
-	0YC7NB3yNxPwyezn5hUPJgEWwiW2mSnkYr1tyxuRJ/TrSBRz+BiE9VS2JJ/5ppM30OsIEnLiWwvDk
-	iOavBwtQMI+dS5EBh3tVPHfEDLlZCvhhmGTmRwOGtRSwNMpNxjezqMU7iNw5hfNlQJtK121lpplEv
-	YtTmBrRgq2zSByvY0AtdUaieBL3P0JXnxyDXR6JOnh863pGegDim/6YdkhlRF/j+UocDh0hsraC8Z
-	Ya09f5gDw==;
+	 bh=4c8VqCF+rJprIJmuhKpslS12mk9Wl87WrzWlOOAafLE=; b=NcuaR56TSM4bEr6YU3a2X7VLb
+	auvF7SNhodNIPvtDggslFiWhYmIAH4BImmDVgS61ICJjrpYUcjDrWWwc2lvk8IfYoy5AWjy/9B79p
+	b8UwIeGUgeWotvrHiYDjw4pitWbHEUJqBg73v4WednWPcjQX2crOkRJZBLYMwUrODS3VjfrM++L0v
+	LTxGW2//YfeDZBDxfnSTAvpNFZ/kjkf/KH/NVcvKiE2iWN+1Rjed/4p07bucRJNEvJ/Qv9K9k2abH
+	Ydh1NIFDUrhdYu71NcRHUF+CMwufetiu2CmlbWV6v5RiFvXEqMNp0//Be/Qhg9htIIrcs741e3lMx
+	gA/ms717Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kex6j-00077I-GP; Tue, 17 Nov 2020 09:17:01 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1kex9Y-0007N3-06; Tue, 17 Nov 2020 09:19:56 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kex6h-00076l-LM
- for linux-amlogic@lists.infradead.org; Tue, 17 Nov 2020 09:17:00 +0000
-Received: by mail-wr1-x443.google.com with SMTP id r17so22424758wrw.1
- for <linux-amlogic@lists.infradead.org>; Tue, 17 Nov 2020 01:16:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=MDtk7CaVA2R3o2gPQYkO2PpHsr3cKxkUX8lkMgx4vWk=;
- b=jCSg/LpM9T3TasQK0pOYLU2PdOBSCJ7rhx2ywbCucbK35JyfPpw4TsIeTKgrQ5K5A4
- adeg0g/wSdtS/8A/fTMKmCFoIGMweGqpVivYLpnzjYNuKOV9Kagign9KKHaN2nnyLryK
- tkbrbWKxXyHq8FevU+rMII3OLsKsFo6FguEHDfhm+bmT0oixa22i29HG5MB4mb+wU0bx
- OxdN33czTGYhfmqTBm7hvtOUM/UBpVlJSfUzJfMoWZvI0w28g7PZ2K7AMR/B9G+2lH8X
- mdyKW8Sz/sAi5r9Y1kRfAHPnbR7qs+SurdOIAydwebkFyCl8MTRsEvVDKMcL3n1ztlKS
- YOeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=MDtk7CaVA2R3o2gPQYkO2PpHsr3cKxkUX8lkMgx4vWk=;
- b=RUk3RAhiIxJnSn7ArJ5TnmhNOGAgUqwJWDyKw+BrWyjPS8FUcX5hJ/pXKlmqpLBnIS
- m/WEmhIH2uKVevZfub9tk08pfzxjZuumTQ9dXIA1dbnHtiMLukeSzCIl786MjnfGcCmN
- iRXPwqA43Axe3RxZ92ue2ZBJcGZREUazY7IrUzqdj7lM9JlSbhQVM119t6qE5xLyqWdT
- X9ah8htTQum833weER4inkH+cJd3K2rVPKiXAGVb0CsTKNkHs1NT/En/M39+0s3LFAIP
- ANzcXYI8jrh11Ibpbwr9aympjk1WFSXHr1knAq3jRa00Vz7lV+HxQ4YX2K8q05F/o7tP
- 8ITw==
-X-Gm-Message-State: AOAM532RmqR/G8R5+AUsZd0qkLdSH415FM+amMGQRYJhUzE1Vcjyl54R
- GBZrUOu9+DgKSpfYm0bGkFn+ow==
-X-Google-Smtp-Source: ABdhPJycFFxJJ184g8hhJdy18ua9XwfcJ0b61PxrGHf3KdoaD1f5//kMGDhO47wCHXJ23ejf/LCtEA==
-X-Received: by 2002:adf:9066:: with SMTP id h93mr25171539wrh.166.1605604618486; 
- Tue, 17 Nov 2020 01:16:58 -0800 (PST)
-Received: from ?IPv6:2001:861:3a84:7260:b09f:f7de:c7af:258b?
- ([2001:861:3a84:7260:b09f:f7de:c7af:258b])
- by smtp.gmail.com with ESMTPSA id 15sm2589534wmg.1.2020.11.17.01.16.57
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 17 Nov 2020 01:16:57 -0800 (PST)
-Subject: Re: [PATCH 1/3] phy: amlogic: phy-meson-gxl-usb2: fix shared reset
- controller use
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20201113000508.14702-1-aouledameur@baylibre.com>
- <20201113000508.14702-2-aouledameur@baylibre.com>
- <CAFBinCC92FfvFt1aAspkF_Mrrtu_QpS327TN2=9Yc3tWMTcu_w@mail.gmail.com>
-From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Message-ID: <cdb9db35-6da3-259f-1c75-8d897f755571@baylibre.com>
-Date: Tue, 17 Nov 2020 10:16:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ id 1kex9U-0007Lx-E7; Tue, 17 Nov 2020 09:19:53 +0000
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org
+ [51.254.78.96])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 2B4E02417E;
+ Tue, 17 Nov 2020 09:19:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1605604791;
+ bh=W2obSm8Q5WV3J0n3YYVGmzEgDz3xGzgFoH4NhA880LY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=qmSlsSfThTdhsSFxqYJ8Ssxf74VZV4gCGKJP6Xzh0J0UaDYFvOAcer//u1GVrLJcR
+ yUOwRen2klvD5MHwIVJBsDzZic9MqzCy4Xjw7vOaDH8wg53nUmusjicPu4fcpJqpyd
+ Bv8+6izebH3AYsBoF21oTj670rpQE/fJI9fgsGsI=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+ by disco-boy.misterjones.org with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.94)
+ (envelope-from <maz@kernel.org>)
+ id 1kex9Q-00BHax-U0; Tue, 17 Nov 2020 09:19:49 +0000
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCC92FfvFt1aAspkF_Mrrtu_QpS327TN2=9Yc3tWMTcu_w@mail.gmail.com>
-Content-Language: en-US
+Date: Tue, 17 Nov 2020 09:19:48 +0000
+From: Marc Zyngier <maz@kernel.org>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 0/4] drm/meson: Module removal fixes
+In-Reply-To: <0b429c41-421a-2ae0-66a0-a142c56acadd@baylibre.com>
+References: <20201116200744.495826-1-maz@kernel.org>
+ <0b429c41-421a-2ae0-66a0-a142c56acadd@baylibre.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <09de6683eea499cfd83ab0c67e0cdca2@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: narmstrong@baylibre.com, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ kernel-team@android.com, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
+ SAEximRunCond expanded to false
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201117_041659_768048_12595292 
-X-CRM114-Status: GOOD (  16.11  )
+X-CRM114-CacheID: sfid-20201117_041952_725103_79EDD7F9 
+X-CRM114-Status: GOOD (  18.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,47 +89,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Felipe Balbi <balbi@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-amlogic@lists.infradead.org,
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
  Jerome Brunet <jbrunet@baylibre.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Hi Neil,
 
-On 14/11/2020 20:13, Martin Blumenstingl wrote:
+On 2020-11-17 08:49, Neil Armstrong wrote:
+> Hi Marc,
+> 
+> On 16/11/2020 21:07, Marc Zyngier wrote:
+>> Hi all,
+>> 
+>> Having recently moved over to a top-of-the-tree u-boot on one of my
+>> VIM3L systems in order to benefit from unrelated improvements
+>> (automatic PCIe detection, EFI...), I faced the issue that my kernel
+>> would hang like this:
+>> 
+>> [  OK  ] Finished Helper to synchronize boot up for ifupdown.
+>> [  OK  ] Started Rule-based Manager for Device Events and Files.
+>> [    7.114516] VDDCPU: supplied by regulator-dummy
+>> [  OK  ] Found device /dev/ttyAML0.
+>> [    7.146862] meson-drm ff900000.vpu: Queued 2 outputs on vpu
+>> [    7.169630] fb0: switching to meson-drm-fb from simple
+>> [    7.169944] Console: switching to colour dummy device 80x25
+>> [    7.179250] meson-drm ff900000.vpu: CVBS Output connector not 
+>> available
+>> 
+>> and that's it.
+>> 
+>> After some poking around, I figured out that it is in the
+>> meson-dw-hdmi module that the CPU was hanging...
+> 
+> I'll be interested in having your kernel config, I never had such 
+> report
+> since I enabled HDMI support in U-Boot a few years ago.
 
-> Hi Amjad,
->
-> On Fri, Nov 13, 2020 at 1:06 AM Amjad Ouled-Ameur
-> <aouledameur@baylibre.com> wrote:
-> [...]
->> @@ -124,6 +126,7 @@ static int phy_meson_gxl_usb2_exit(struct phy *phy)
->>   {
->>          struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
->>
->> +       reset_control_rearm(priv->reset);
-> please move reset_control_rearm after clk_disable_unprepare as
-> mentioned on the other patch to clean things up in reverse order of
-> initialization
+Yeah, I was pretty surprised too. I have a hunch that this is caused
+by u-boot DT exposing an extra MMIO region (dubbed "hhi") that gets
+picked up by the kernel driver. *Not* having the region in the DT
+(as in the kernel's version of the same DT) makes the driver work
+exactly once:
 
-Agreed, will fix it in next change !
+Decompiled u-boot DT:
 
->
->>          clk_disable_unprepare(priv->clk);
->
-> Thank you
-> Martin
->
-Thank you for the feedback !
+         hdmi-tx@0 {
+                 compatible = "amlogic,meson-g12a-dw-hdmi";
+                 reg = <0x00 0x00 0x00 0x10000 0x00 0x3c000 0x00 0x1000>;
+                 [...]
+                 reg-names = "hdmitx\0hhi";
 
-Best,
+Decompiled kernel DT:
 
-Amjad
+         hdmi-tx@0 {
+                 compatible = "amlogic,meson-g12a-dw-hdmi";
+                 reg = <0x00 0x00 0x00 0x10000>;
 
+There seem to be some complex interactions between the HDMI driver
+and the DRM driver, both using this MMIO region at any given time.
+But I admit not having tried very hard to follow the DRM maze of
+intricate callbacks. All I needed was this box to reliably boot with
+the firmware-provided DT.
+
+You can find a reasonably recent version of my config at [1].
+
+         M.
+
+[1] http://www.loen.fr/tmp/Config.full-arm64
+-- 
+Jazz is not dead. It just smells funny...
 
 _______________________________________________
 linux-amlogic mailing list
