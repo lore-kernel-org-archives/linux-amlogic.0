@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-6.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BD9AC388F9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 02:05:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FDDEC6369E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 02:05:29 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BBADA24698
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 02:05:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8828924698
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 02:05:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GfvqT0vl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BBADA24698
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mMmJq2dv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8828924698
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lunn.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,36 +25,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=cBAGFbqnGDxbZzBQBu06QiS+/IRT/2U41urOXbI4oJM=; b=GfvqT0vlBQaZeiHzxDWRpzYum
-	0PIW9LAeD9EVc74mcfUDWLQJbMdyI+s4rH6AxskRt6M5icCYxC2MTxCj7Tv09H+o7OyqlQJvclBUW
-	9n1+MHtRchhScED/b03EfZG8VHqRh7wdbEtkZIwZlPmc9q+3xBeYmt3oVobXy+ACCwjUjYBR0BfzC
-	TPA0lSLDCy6CViLrykZ+aMyt3fKARrhN9vHMn23LRYzYaDbxNyZ6WY+rAaWqHTUbRqRQaWphiXWrc
-	fpqdBAtas5xhuoPmlwJGxezKh+TnmDtbhKpQ621xtsagXYzYehgK+6QsxsgD9rYELJLSjMEpWKHz1
-	MAUrYqNKA==;
+	 bh=Ev121thazy6W8bbl6DMqeCoJPl45+H58413eNBBbTP4=; b=mMmJq2dv5vc1xhggcEoKVxyo3
+	TlTqCfEoR/bA3HYvcpH3OpOsjl6FFf7rESMyRA/mqzNJgR+QBmoumAF6AmYKYDzpOdCz9qVgu1PBi
+	+PSgZILwymkdZoKfjHIWathFgKvGeizqYcL7nT0eF7WI6/2iI0WCOmQSkYyFhUolAdV8qN2lCdcgH
+	ayZmezv0A4UmyaVdeFdL8pXbeHAb1ugRmRxTgGxwL5EVp23IfXzvtpAN6TrEKp/3m81pV/5UCMcRt
+	LFV3n6vpx8HRlJ1D5s+nkvCGcoffCgjBAnLtFGtYQ7Y3WXvfVe4fR/30RVsnLdJ/KONAdidoG2vFw
+	IRf6IO0pw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1keqMe-00085T-As; Tue, 17 Nov 2020 02:05:00 +0000
+	id 1keqN2-00089B-2l; Tue, 17 Nov 2020 02:05:24 +0000
 Received: from vps0.lunn.ch ([185.16.172.187])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1keqMc-00084v-7T; Tue, 17 Nov 2020 02:04:58 +0000
+ id 1keqMz-00088Z-MJ; Tue, 17 Nov 2020 02:05:22 +0000
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
  (envelope-from <andrew@lunn.ch>)
- id 1keqMV-007S7C-3S; Tue, 17 Nov 2020 03:04:51 +0100
-Date: Tue, 17 Nov 2020 03:04:51 +0100
+ id 1keqMs-007S7z-Jy; Tue, 17 Nov 2020 03:05:14 +0100
+Date: Tue, 17 Nov 2020 03:05:14 +0100
 From: Andrew Lunn <andrew@lunn.ch>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH RFC v2 3/5] net: stmmac: dwmac-meson8b: use picoseconds
- for the RGMII RX delay
-Message-ID: <20201117020451.GC1752213@lunn.ch>
+Subject: Re: [PATCH RFC v2 4/5] net: stmmac: dwmac-meson8b: move RGMII delays
+ into a separate function
+Message-ID: <20201117020514.GD1752213@lunn.ch>
 References: <20201115185210.573739-1-martin.blumenstingl@googlemail.com>
- <20201115185210.573739-4-martin.blumenstingl@googlemail.com>
+ <20201115185210.573739-5-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201115185210.573739-4-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20201115185210.573739-5-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201116_210458_300290_5EE40A8C 
-X-CRM114-Status: UNSURE (   7.85  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201116_210521_768180_A3592AE3 
+X-CRM114-Status: GOOD (  10.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,11 +75,12 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Nov 15, 2020 at 07:52:08PM +0100, Martin Blumenstingl wrote:
-> Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
-> delay register which allows picoseconds precision. Parse the new
-> "amlogic,rgmii-rx-delay-ps" property or fall back to the old
-> "amlogic,rx-delay-ns".
+On Sun, Nov 15, 2020 at 07:52:09PM +0100, Martin Blumenstingl wrote:
+> Newer SoCs starting with the Amlogic Meson G12A have more a precise
+> RGMII RX delay configuration register. This means more complexity in the
+> code. Extract the existing RGMII delay configuration code into a
+> separate function to make it easier to read/understand even when adding
+> more logic in the future.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
