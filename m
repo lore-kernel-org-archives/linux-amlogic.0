@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-7.2 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28872C63798
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 18:34:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 584C0C2D0E4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 18:36:22 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A6ACC223C7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 18:34:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BBEC8221FD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 18:36:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QX10Dqgj";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UZhDcnZ0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A6ACC223C7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IW3tz+G0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bYY0WzsO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BBEC8221FD
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,58 +27,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=oPQXkT93MZIZdJ47YW2WozZS1/pdzEH6gBQvOPECRCo=; b=QX10DqgjufjV/OMFPyP77G9pY
-	a1QZwOU5v68ZGnG9nViydhJKRA4/Yr0o7gtsc3/cKkM5sSaGPXOokeRq4Lxgq9lO+BL6OcWMXRp69
-	RcahnTzcI8P6KK/AlKYAYqoF6wlOCtLHo+lSeyC9sFGkjBykysUq8qeX3md2+SX9ZTuLO2YU6Xpfv
-	Os9dk4gAPKY8lNr0FzzAC7n5ElDk06UcwkDbcexzI/9ozXzAEfSF5lx7hMSQcq4E9R+rv7XJtZ/Ic
-	36Dlj6Av4OP6OvgN08/rHs1yt/efU/Efla2kc7/+uL4Wg/l7R86qbZS9OiIadCNIF496TLgVJzrIp
-	DNQ60TT7w==;
+	 bh=+XjDGq3Qk2x6CAiwILlCkN5U2wm5KHLmTfFWaXUCEYM=; b=IW3tz+G0QVP5IDKei3iIlHAre
+	fyV6vmOH7ELduowqjcX9DM3QKBUuybGIWScKT+tzc4gqe5zFIm3rZ4xJRk5s6CJ7QJoO/4dSJHkXD
+	pLrgpqCXp1Hm8laoUsb/wT1xMRPnFQuiWmOvVlbF3tq8c7d8k0YYbqcTLrZ0pKumsK6BQQsDvb+1T
+	YasXVJSlfEb2iFhcu4DaqkIJy6JEIOeYzZsHIMg6Kfp41+r732ZMRL4HuKaMWNNC6lBdMLgP6iH80
+	XuBvJrFmqPsM7MJAqoi5rzFbDtWZgE9dL4EfFxv8UcEWDtc/OnHmduHymyPcdUo/OVqaCFLFje64J
+	vLnKBbMKQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kf5oC-0001qZ-LY; Tue, 17 Nov 2020 18:34:28 +0000
-Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
+	id 1kf5pw-0002Jr-RG; Tue, 17 Nov 2020 18:36:16 +0000
+Received: from mail-pj1-x1043.google.com ([2607:f8b0:4864:20::1043])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kf5o3-0001nC-LQ; Tue, 17 Nov 2020 18:34:21 +0000
-Received: by mail-pf1-x443.google.com with SMTP id w14so17849818pfd.7;
- Tue, 17 Nov 2020 10:34:19 -0800 (PST)
+ id 1kf5pt-0002If-2Z; Tue, 17 Nov 2020 18:36:13 +0000
+Received: by mail-pj1-x1043.google.com with SMTP id g19so755276pji.0;
+ Tue, 17 Nov 2020 10:36:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=t8vEei8jCO3UT92pQAietBcd60srMB8CV6ts6QC+CFc=;
- b=UZhDcnZ0atUvDTSiaHG4fVVBpHxOuDDS3RrpNIfpUA4wpP0hV/NwwGX3SU7plPgOno
- VQI/c2A938X3JpOOc4MLGvU9Mrr1gKriHNb12+a5qR/B3H4jSUqsvRE7Bs3emf+h7iZi
- iuRBIoFKZqN5yro+Xc4qJ1ONJvBY1/beEZE0NDRzG5dvTG5LBz/0zcl5AUxMYRowLRPP
- Qbscl/a1rttsSS/YxgcX8PXPixOI4WtkFEiit1RfGFYDiEbRCAjleTh+I7zNo1B8qv4k
- 5FkY+flBOHNYd3j/ra9EcbfTuMOdMVbdrMPW7Jmu78MX6Mb11SsQI0hdLwBj8YQTDLdz
- MdMQ==
+ bh=WVQ30Yx+YvNOyWaEigqtiOAJGX0VFEmySL9gW02Js/A=;
+ b=bYY0WzsOpD/W+b7cawX7fuVnFvjpAfzalj8svibghtuSTggNioME8qD+RDs0iPi/vW
+ wtZ3pDDYJ4h4N2rmJJEdW+d6vy0mrSUXQkm3UrKvYjATFJV4LgG+0OJQgqUPyohWZS8B
+ 2+NTSFwADvWARtJEFmbmqfXjDEKGuge+QrLX/PEbHdRR6Sa/rr8mbu5iKjH9qRWfTIjh
+ Bweqq+Q7bdkMgKgpYKxGF4cBeMFjUVN/0IzQeL5+sM8ctg/E83gZAx1EWKpK/3LITGdg
+ O4MatckP4+uFXm8jZl83k1Sl5nAWJedPl9vPB5xqr+EChri+Q7JtNF4zSWJWx1H2rYxT
+ BOfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=t8vEei8jCO3UT92pQAietBcd60srMB8CV6ts6QC+CFc=;
- b=Ifq0AzUI+QtGd5dMxk5gXDnLlUpepu7r4IPLGV7c06hYUm8LNwfnMmZjTIkQkIAdhj
- IEqoOFQd0FcO/zw6nqO/BHsGQG3KJlTba2WPwPtFPkk6Kf/NkFKk/GneTBGziTwaa4Ms
- OJWBahJhGdSedcAxDSXp0kGamTLnHMjcbLmrjSY9LueIIKoIE3+vN19VSC6F4HGRFkJS
- 1da/qu/6yAYvSLwGBzgAWYQT4pejmGOT9xlyjian9wwV2PVZz/2VXbBcBpTepPq2vm6P
- G9LlpcKPIJb0H+Oc6ahwsQU3n9topi0CcV5xIv8+SbQiX/ou1a2B159udiReUOlgv8EF
- iOjA==
-X-Gm-Message-State: AOAM532yXERtQoEVdDE14PZL2KjD95QtANO44UXTbLShxsx2GZwjnVUy
- lPJm23RHbz+de6kzRd8jNuE=
-X-Google-Smtp-Source: ABdhPJwbStR9Ukr58qoYh0FKqIs9JfES9JRJaQI2vUOEY+YKnWT58dRVY51AXBGw6pXjmjlYKWOMHw==
-X-Received: by 2002:a63:e757:: with SMTP id j23mr4155605pgk.301.1605638057877; 
- Tue, 17 Nov 2020 10:34:17 -0800 (PST)
+ bh=WVQ30Yx+YvNOyWaEigqtiOAJGX0VFEmySL9gW02Js/A=;
+ b=nn+q/s+g58MZE/FRnKQLMTg8iIvtSELMCgnVepDidYhPuysD55ROS3V3Xbki/kKenO
+ x5qFjjbCj8xDCqocISGG2g4Y/u6D9P+Qjp2mCFAR2q4b754mLo1QlqONUO2SYYWkm+N4
+ hMfgsf38E5R7xYFQ8gpq/WKtVCwTXp6glbZoQD4uB5wbeXB8HfS6TxjzchQUCQvuri2N
+ f7jwSbKXOnMBFA+lpGYqU6GWkZf8JbaXgBfD//xcRS8nbyCShWo8kxRAd05iN6EvU1F1
+ JFNPStad/Tho9tnM53dEhKKa+oq9x4TW2sQ+Mqoxw1EW5sbjDJHnjrLYMc6Htb6NxZwb
+ ndvw==
+X-Gm-Message-State: AOAM531YLsz5M7bGahBdx39sqSZ7Vapb8Vn23fspgH1tmpDb1C2Opzji
+ YO3vpI6GyWyupYtXBiqMGds=
+X-Google-Smtp-Source: ABdhPJz3LC3EoTEhJ6mTh1BtZzmY8sKd0rqfKFDhbCkZ4H87gn59+UUE1kp+rTc3tCEK3BIEbKj/4g==
+X-Received: by 2002:a17:902:8d97:b029:d8:94dd:43ea with SMTP id
+ v23-20020a1709028d97b02900d894dd43eamr883296plo.43.1605638171352; 
+ Tue, 17 Nov 2020 10:36:11 -0800 (PST)
 Received: from [10.67.48.230] ([192.19.223.252])
- by smtp.googlemail.com with ESMTPSA id h13sm4208772pjj.30.2020.11.17.10.34.09
+ by smtp.googlemail.com with ESMTPSA id 92sm4165937pjv.32.2020.11.17.10.36.03
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 17 Nov 2020 10:34:17 -0800 (PST)
-Subject: Re: [PATCH RFC v2 2/5] net: stmmac: dwmac-meson8b: fix enabling the
- timing-adjustment clock
+ Tue, 17 Nov 2020 10:36:10 -0800 (PST)
+Subject: Re: [PATCH RFC v2 3/5] net: stmmac: dwmac-meson8b: use picoseconds
+ for the RGMII RX delay
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  davem@davemloft.net, kuba@kernel.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org
 References: <20201115185210.573739-1-martin.blumenstingl@googlemail.com>
- <20201115185210.573739-3-martin.blumenstingl@googlemail.com>
+ <20201115185210.573739-4-martin.blumenstingl@googlemail.com>
 From: Florian Fainelli <f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
@@ -134,16 +135,16 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <b9449baf-9b18-ddcc-bd1e-5507fa43b8ad@gmail.com>
-Date: Tue, 17 Nov 2020 10:34:04 -0800
+Message-ID: <88c043ba-e7a4-6b4d-f93f-efdf6c525e95@gmail.com>
+Date: Tue, 17 Nov 2020 10:36:00 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201115185210.573739-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20201115185210.573739-4-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201117_133419_819684_AE020DD0 
-X-CRM114-Status: GOOD (  15.35  )
+X-CRM114-CacheID: sfid-20201117_133613_182305_497B5912 
+X-CRM114-Status: GOOD (  12.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,19 +165,18 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 11/15/20 10:52 AM, Martin Blumenstingl wrote:
-> The timing-adjustment clock only has to be enabled when a) there is a
-> 2ns RX delay configured using device-tree and b) the phy-mode indicates
-> that the RX delay should be enabled.
+> Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
+> delay register which allows picoseconds precision. Parse the new
+> "amlogic,rgmii-rx-delay-ps" property or fall back to the old
+> "amlogic,rx-delay-ns".
 > 
-> Only enable the RX delay if both are true, instead of (by accident) also
-> enabling it when there's the 2ns RX delay configured but the phy-mode
-> incicates that the RX delay is not used.
-> 
-> Fixes: 9308c47640d515 ("net: stmmac: dwmac-meson8b: add support for the RX delay configuration")
-> Reported-by: Andrew Lunn <andrew@lunn.ch>
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+
+Maybe also issue a warning when the 'amlogic,rx-delay-ns' property is
+found in addition to the 'amlogic,rgmii-rx-delay-ps'? Up to you how to
+manage existing DTBs being deployed.
 -- 
 Florian
 
