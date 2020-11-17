@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-11.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 83FFDC5519F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:52:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8842FC2D0E4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:54:18 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E623A24671
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:52:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1F5E7222E8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2020 08:54:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VEg3F4Bw";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FfxQHpua"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E623A24671
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uM6jiPmo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0vmNgY5u"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1F5E7222E8
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,59 +27,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=GmB8vq3zKUvDplj6qGU6RwCZdRZ4pvft+Z+JCNpr8rs=; b=VEg3F4Bw4OYn+gvwKIGdD0h0f
-	/DEkHoy10/GAm/Jhaf0oFPxId/CFEhGHEKY2XmyPsBeeG+r2I7b3nxVMooZFJ91Z2a10dafcLpcd7
-	1E77/3krJZ/S8+pXxc9RCMWezPomM17Mvq0aAKtlNIoWOqHejyUpKjtlAcfVDVbxRalXi62o6AqrZ
-	NX+oOVp8d7y4Dpfq5puhzc9M4QGh1+to17biglR618RiNwuvSanfwXc6RCpSkYG8IO1D/FyAyVwf5
-	C4nD8/93/GHb9RZkB2xpTRyfklzEXh8QeEqcqLKicaqiHcMhb1wgmJdWZoUNZDk/hMc12ZJuWMf9w
-	XVbfZj+lw==;
+	 bh=a+JHb6Yi0M6OgxJowyeiicPhizW5szDfbp2eEVAq3F4=; b=uM6jiPmoBSFQWMxxxNrIu5GsU
+	wGdIJ+vfo+zfxFHCW+xmKiXSk5one6YkITxhg0VmsXpVgc5bzjoPOFlDuJrzXByyc+paczmvUUOjn
+	wAL/GX32i62VmeWwWWkAJERXBBSBYBhWjAxeVfrZbltZcKraFxnNSAfPlceMJCkBuP00QMelnFyvB
+	PO3hOURvAg9Z4opcWqXuNOIViltBTAbvXRDJusqhMM95isPSHwgjd1Wd81m2yjvErhPxgfWt7amoD
+	AYmm9D8hc4cj6m1E9/po5/N2L7yjpEWkW4hHsShNx/4wE5LFh9S90I4KYC6ZFk/L0w3DAlEN0YG8w
+	hC6J+ReMA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kewic-0004Bt-1i; Tue, 17 Nov 2020 08:52:06 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1kewkc-0004qM-IY; Tue, 17 Nov 2020 08:54:10 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kewiZ-0004B2-MG
- for linux-amlogic@lists.infradead.org; Tue, 17 Nov 2020 08:52:04 +0000
-Received: by mail-wr1-x444.google.com with SMTP id l1so22307206wrb.9
- for <linux-amlogic@lists.infradead.org>; Tue, 17 Nov 2020 00:52:03 -0800 (PST)
+ id 1kewkV-0004nA-9R
+ for linux-amlogic@lists.infradead.org; Tue, 17 Nov 2020 08:54:04 +0000
+Received: by mail-wr1-x441.google.com with SMTP id 23so22298264wrc.8
+ for <linux-amlogic@lists.infradead.org>; Tue, 17 Nov 2020 00:54:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=pGfq+HTj2b7jAvETFhtsrMFBaNIHXs1Y5DjrMJw6Tkg=;
- b=FfxQHpuaM5aAo6KrBFWUZi2mQNH+pfyZFss9j0JeOveWZ7+OG8cUJDwzfownPeiIAq
- IKvd+nEpR8IdMMknY5ldAYDDbNGW1CMggnf4t2QGpZ6Wzp94TDmRD1I9Dx+mG0n1hPv8
- ZG1tQm3LE6Dm3OuZZe7hGA/TulPS4AiHa93+0zmxZ6ceEV7zjU/wRuKavOKc0x5EzoSg
- lhQWT7nv0GnO+B2omlr88qeoK1wAXCx9oKYLTEAweakdhbojbG3KWc8O0QKTBEySN2Z0
- 5LYxYlc02IjM8DsEfN3Gog95Uf4hiN3jLFQmVfeAN0b3feOqPPtlK2/llQVvIu62ZwHm
- ne7w==
+ bh=SJNDblWPfJcMPax/ShMWRSk4LiBhCAShu7n9VV+CwDc=;
+ b=0vmNgY5u5213uHwl7B14l+StQ5XzMnrHfXxRrSq1r/p8/7tlxAzVinkznyomQDeJ45
+ C9nzOq4bWFT94lwK0SQWqW34+Lg8Rp+YSgaf9zIDnRkev9zjyMie8WT5Wl2h8caMv4k7
+ 7IA/t04+utCPHQPpHjSW8Qz5BVb9HQONYQBf+Zxro2cy9L2wTUp2o6XC3LTpvwvHHQq6
+ tj6tfWgoq88g4QRYh+xfJu2ZCp2y7/7qcILNFjzeaWgMAA7MyW+NaL8pa0vx/uhhI9CP
+ olMWe7HsJBgykSfczk3czTVPXh+v0F8MW7SmE+UJ0QBAjJoSsSP6zwzwNdrEEScGL3vd
+ 10wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=pGfq+HTj2b7jAvETFhtsrMFBaNIHXs1Y5DjrMJw6Tkg=;
- b=tCtijB2thjxVEpgT+V2FW25yUz6zkCXkuij091SORM7r5PLMims4ri6mGLnnWyXOf2
- rA9R4/o3XHugyNX3yEFFWaNmq7wrVXiQgZXjeJvVpDph/l9Y3UBvc0Anfn80+ZcPQpgy
- +SO72PiiUWMFfSiMNWP1b1jeW3xT37U0Fl9dEgeptkyAYk/VRjXJMX31C4z2Kz4AgXaX
- 5VPwF82YGgfC7qDbrYYl/dTTqXF+DHSsovhUchQVqCKD/hH5ReE2bNMH0jwP6PXr8EK8
- 4q//vzHq5c2QRzBndy5lgs28AD/1gHpLWOJOPq/LyjH1tGneMDxfXLNAMc+Y1Sk8Yngo
- 94gQ==
-X-Gm-Message-State: AOAM531r55z0rzXDQoTcz9wsraHD/N8Td3QttuqqAVHDqcSMsUMkR4ez
- aCKOzqC9amVwbmPbT9TvTqSh1g==
-X-Google-Smtp-Source: ABdhPJxCaSHbBBy3cZ1v4p2s2l1c5tPox6rdISBkCO7PmsVyZvmBo5G1y6F3FEIqeqeR1yrGUpDHqQ==
-X-Received: by 2002:a5d:4703:: with SMTP id y3mr24342048wrq.416.1605603122631; 
- Tue, 17 Nov 2020 00:52:02 -0800 (PST)
+ bh=SJNDblWPfJcMPax/ShMWRSk4LiBhCAShu7n9VV+CwDc=;
+ b=A/ehCxe6HIZ6Y+tEYeq/GQEz1FUZhT431M9yL4VmKJRd07S+1CTGsCJguRbp3PNdV2
+ 9D5UzrxMY6pC2+0Ixicutqr1q6EvoT8rb1ApDLCKGKm0spAIsVsRI815lwJ5tXclCgwo
+ O5JWxa3BUXjHUh1ltbLbNbfg04ZP71KSu63KcasoiybWAYdZY14cX8Oop5pzsdsp0gTU
+ UChNP2V9Wm8bErBPXndIIVKd7JZGGpBnlv6x14EacK933S7P/3aO5iiqsG3hjkJNbrgj
+ GTqK6NLRTuFYJ64JmTBiY3Pc3+sajhboWhTBdt4UmynRHRm0FvH67e8tqbvldaxt5Eyf
+ rYTg==
+X-Gm-Message-State: AOAM531qgbCibJeInOoSP6MyVDIPIZHF9O6gof8GpfM9lh0VLBVCQCf+
+ fAR0CKLatMQhnyR35q/4JwmeDQ==
+X-Google-Smtp-Source: ABdhPJyLqMtL4fV2UrcN1zMaWmEWQktfKi57GbleZ4Ka+DZs/x+qF2LiShGJsNaZGLEEx2wAcv6+2w==
+X-Received: by 2002:adf:e551:: with SMTP id z17mr24210995wrm.374.1605603242019; 
+ Tue, 17 Nov 2020 00:54:02 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:1561:9f4b:5829:8e26?
  ([2a01:e35:2ec0:82b0:1561:9f4b:5829:8e26])
- by smtp.gmail.com with ESMTPSA id 18sm2458646wmo.3.2020.11.17.00.51.54
+ by smtp.gmail.com with ESMTPSA id g23sm2561986wmh.21.2020.11.17.00.54.00
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 17 Nov 2020 00:52:01 -0800 (PST)
-Subject: Re: [PATCH 1/4] drm/meson: Free RDMA resources after tearing down DRM
+ Tue, 17 Nov 2020 00:54:01 -0800 (PST)
+Subject: Re: [PATCH 2/4] drm/meson: Unbind all connectors on module removal
 To: Marc Zyngier <maz@kernel.org>, Kevin Hilman <khilman@baylibre.com>
 References: <20201116200744.495826-1-maz@kernel.org>
- <20201116200744.495826-2-maz@kernel.org>
+ <20201116200744.495826-3-maz@kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <1cdb7832-f400-8a11-210a-0cf33be76039@baylibre.com>
-Date: Tue, 17 Nov 2020 09:51:52 +0100
+Message-ID: <56a8ea19-fb89-8430-032d-774c89a66ae7@baylibre.com>
+Date: Tue, 17 Nov 2020 09:53:59 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201116200744.495826-2-maz@kernel.org>
+In-Reply-To: <20201116200744.495826-3-maz@kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201117_035203_787318_D8CB9430 
-X-CRM114-Status: GOOD (  20.48  )
+X-CRM114-CacheID: sfid-20201117_035403_412905_CC5746BD 
+X-CRM114-Status: GOOD (  18.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,84 +162,97 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 16/11/2020 21:07, Marc Zyngier wrote:
-> Removing the meson DRM module results in the following splat:
+> Removing the meson DRM module results in the following splats:
 > 
-> [ 2179.451346] Hardware name:  , BIOS 2021.01-rc2-00012-gde865f7ee1 11/16/2020
-> [ 2179.458316] Workqueue: events drm_mode_rmfb_work_fn [drm]
-> [ 2179.463597] pstate: 80c00009 (Nzcv daif +PAN +UAO -TCO BTYPE=--)
-> [ 2179.469558] pc : meson_rdma_writel_sync+0x44/0xb0 [meson_drm]
-> [ 2179.475243] lr : meson_g12a_afbcd_reset+0x34/0x60 [meson_drm]
-> [ 2179.480930] sp : ffffffc01212bb70
-> [ 2179.484207] x29: ffffffc01212bb70 x28: ffffff8044f66f00
-> [ 2179.489469] x27: ffffff8045b13800 x26: 0000000000000001
-> [ 2179.494730] x25: 0000000000000000 x24: 0000000000000001
-> [ 2179.499991] x23: 0000000000000000 x22: 0000000000000000
-> [ 2179.505252] x21: 0000000000280000 x20: 0000000000001a01
-> [ 2179.510513] x19: ffffff8046029480 x18: 0000000000000000
-> [ 2179.515775] x17: 0000000000000000 x16: 0000000000000000
-> [ 2179.521036] x15: 0000000000000000 x14: 0000000000000000
-> [ 2179.526297] x13: 0040000000000326 x12: 0309030303260300
-> [ 2179.531558] x11: 03000000054004a0 x10: 0418054004000400
-> [ 2179.536820] x9 : ffffffc008fe4914 x8 : ffffff8040a1adc0
-> [ 2179.542081] x7 : 0000000000000000 x6 : ffffff8042aa0080
-> [ 2179.547342] x5 : ffffff8044f66f00 x4 : ffffffc008fe5bc8
-> [ 2179.552603] x3 : 0000000000010101 x2 : 0000000000000001
-> [ 2179.557865] x1 : 0000000000000000 x0 : 0000000000000000
-> [ 2179.563127] Call trace:
-> [ 2179.565548]  meson_rdma_writel_sync+0x44/0xb0 [meson_drm]
-> [ 2179.570894]  meson_g12a_afbcd_reset+0x34/0x60 [meson_drm]
-> [ 2179.576241]  meson_plane_atomic_disable+0x38/0xb0 [meson_drm]
-> [ 2179.581966]  drm_atomic_helper_commit_planes+0x1e0/0x21c [drm_kms_helper]
-> [ 2179.588684]  drm_atomic_helper_commit_tail_rpm+0x68/0xb0 [drm_kms_helper]
-> [ 2179.595410]  commit_tail+0xac/0x190 [drm_kms_helper]
-> [ 2179.600326]  drm_atomic_helper_commit+0x16c/0x390 [drm_kms_helper]
-> [ 2179.606484]  drm_atomic_commit+0x58/0x70 [drm]
-> [ 2179.610880]  drm_framebuffer_remove+0x398/0x434 [drm]
-> [ 2179.615881]  drm_mode_rmfb_work_fn+0x68/0x8c [drm]
-> [ 2179.620575]  process_one_work+0x1cc/0x49c
-> [ 2179.624538]  worker_thread+0x200/0x444
-> [ 2179.628246]  kthread+0x14c/0x160
-> [ 2179.631439]  ret_from_fork+0x10/0x38
+> [   42.689228] WARNING: CPU: 0 PID: 572 at drivers/gpu/drm/drm_irq.c:192 drm_irq_uninstall+0x130/0x160 [drm]
+> [...]
+> [   42.812820] Hardware name:  , BIOS 2021.01-rc2-00012-gde865f7ee1 11/16/2020
+> [   42.819723] pstate: 80400089 (Nzcv daIf +PAN -UAO -TCO BTYPE=--)
+> [   42.825737] pc : drm_irq_uninstall+0x130/0x160 [drm]
+> [   42.830647] lr : drm_irq_uninstall+0xc4/0x160 [drm]
+> [...]
+> [   42.917614] Call trace:
+> [   42.920086]  drm_irq_uninstall+0x130/0x160 [drm]
+> [   42.924612]  meson_drv_unbind+0x68/0xa4 [meson_drm]
+> [   42.929436]  component_del+0xc0/0x180
+> [   42.933058]  meson_dw_hdmi_remove+0x28/0x40 [meson_dw_hdmi]
+> [   42.938576]  platform_drv_remove+0x38/0x60
+> [   42.942628]  __device_release_driver+0x190/0x23c
+> [   42.947198]  driver_detach+0xcc/0x160
+> [   42.950822]  bus_remove_driver+0x68/0xe0
+> [   42.954702]  driver_unregister+0x3c/0x6c
+> [   42.958583]  platform_driver_unregister+0x20/0x2c
+> [   42.963243]  meson_dw_hdmi_platform_driver_exit+0x18/0x4a8 [meson_dw_hdmi]
+> [   42.970057]  __arm64_sys_delete_module+0x1bc/0x294
+> [   42.974801]  el0_svc_common.constprop.0+0x80/0x240
+> [   42.979542]  do_el0_svc+0x30/0xa0
+> [   42.982821]  el0_svc+0x18/0x50
+> [   42.985839]  el0_sync_handler+0x198/0x404
+> [   42.989806]  el0_sync+0x158/0x180
 > 
-> caused by the fact that the RDMA buffer has already been freed,
-> resulting in meson_rdma_writel_sync() getting a NULL pointer.
+> immediatelly followed by
 > 
-> Move the afbcd reset and meson_rdma_free calls after the DRM
-> unregistration is complete so that the teardown can safely complete.
+> [   43.002296] WARNING: CPU: 0 PID: 572 at drivers/gpu/drm/drm_mode_config.c:504 drm_mode_config_cleanup+0x2a8/0x304 [drm]
+> [...]
+> [   43.128150] Hardware name:  , BIOS 2021.01-rc2-00012-gde865f7ee1 11/16/2020
+> [   43.135052] pstate: 80400009 (Nzcv daif +PAN -UAO -TCO BTYPE=--)
+> [   43.141062] pc : drm_mode_config_cleanup+0x2a8/0x304 [drm]
+> [   43.146492] lr : drm_mode_config_cleanup+0xac/0x304 [drm]
+> [...]
+> [   43.233979] Call trace:
+> [   43.236451]  drm_mode_config_cleanup+0x2a8/0x304 [drm]
+> [   43.241538]  drm_mode_config_init_release+0x1c/0x2c [drm]
+> [   43.246886]  drm_managed_release+0xa8/0x120 [drm]
+> [   43.251543]  drm_dev_put+0x94/0xc0 [drm]
+> [   43.255380]  meson_drv_unbind+0x78/0xa4 [meson_drm]
+> [   43.260204]  component_del+0xc0/0x180
+> [   43.263829]  meson_dw_hdmi_remove+0x28/0x40 [meson_dw_hdmi]
+> [   43.269344]  platform_drv_remove+0x38/0x60
+> [   43.273398]  __device_release_driver+0x190/0x23c
+> [   43.277967]  driver_detach+0xcc/0x160
+> [   43.281590]  bus_remove_driver+0x68/0xe0
+> [   43.285471]  driver_unregister+0x3c/0x6c
+> [   43.289352]  platform_driver_unregister+0x20/0x2c
+> [   43.294011]  meson_dw_hdmi_platform_driver_exit+0x18/0x4a8 [meson_dw_hdmi]
+> [   43.300826]  __arm64_sys_delete_module+0x1bc/0x294
+> [   43.305570]  el0_svc_common.constprop.0+0x80/0x240
+> [   43.310312]  do_el0_svc+0x30/0xa0
+> [   43.313590]  el0_svc+0x18/0x50
+> [   43.316608]  el0_sync_handler+0x198/0x404
+> [   43.320574]  el0_sync+0x158/0x180
+> [   43.323852] ---[ end trace d796a3072dab01da ]---
+> [   43.328561] [drm:drm_mode_config_cleanup [drm]] *ERROR* connector HDMI-A-1 leaked!
+> 
+> both triggered by the fact that the HDMI subsystem is still active,
+> and the DRM removal doesn't result in the connectors being torn down.
+> 
+> Call drm_atomic_helper_shutdown() and component_unbind_all() to safely
+> tear the module down.
 > 
 > Signed-off-by: Marc Zyngier <maz@kernel.org>
 
-Fixes: d1b5e41e13a7 ("drm/meson: Add AFBCD module driver")
+Fixes: 2d8f92897ad8 ("drm/meson: Uninstall IRQ handler")
 
 > ---
->  drivers/gpu/drm/meson/meson_drv.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/meson/meson_drv.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index 8b9c8dd788c4..324fa489f1c4 100644
+> index 324fa489f1c4..3d1de9cbb1c8 100644
 > --- a/drivers/gpu/drm/meson/meson_drv.c
 > +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -389,15 +389,15 @@ static void meson_drv_unbind(struct device *dev)
->  		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_2);
+> @@ -390,8 +390,10 @@ static void meson_drv_unbind(struct device *dev)
 >  	}
 >  
-> -	if (priv->afbcd.ops) {
-> -		priv->afbcd.ops->reset(priv);
-> -		meson_rdma_free(priv);
-> -	}
-> -
 >  	drm_dev_unregister(drm);
->  	drm_irq_uninstall(drm);
+> -	drm_irq_uninstall(drm);
 >  	drm_kms_helper_poll_fini(drm);
+> +	drm_atomic_helper_shutdown(drm);
+> +	component_unbind_all(dev, drm);
+> +	drm_irq_uninstall(drm);
 >  	drm_dev_put(drm);
-> +
-> +	if (priv->afbcd.ops) {
-> +		priv->afbcd.ops->reset(priv);
-> +		meson_rdma_free(priv);
-> +	}
->  }
 >  
->  static const struct component_master_ops meson_drv_master_ops = {
+>  	if (priv->afbcd.ops) {
 > 
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
