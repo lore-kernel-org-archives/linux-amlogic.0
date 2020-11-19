@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 82416C6369E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2020 16:58:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E0ABC56201
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2020 16:59:32 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C50D9221FB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2020 16:58:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 46EF3221FB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2020 16:59:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oElrPTGE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="llhVzZqd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C50D9221FB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NwO6GEEw";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="g7/8AdqS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 46EF3221FB
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
 	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=KWjr4YrJRPn4B6l06uIxGUNoPUwuFNCtfSG7cN7styY=; b=oElrPTGEUCsdec7fRDDKz56qg
-	GwSV+vLv4KeRhbW0x+p23dPpwWGlWSK4/H4nlvTBvL/4UVUHGzuecpwfLkgMqXQj0VVJoGDJFpjA1
-	2WmUifb2y2N6PGOxDj1pbGhZmaBDVE1n4MVhUI6h7jRAqbxtTp/h1oJLqbQuTS8EIrmp5NYfMjqMe
-	fyBb9kcYBnOgW/muELD6nocakG/xjFgkqrwI524CtB0gA+AWGk7VjV73bY5vjukV61tpZcZyG/p+d
-	wV7LgXqmaP9ZubhAw2JafLlWhYto03BuYt2p5XpVtTTkiLXoYHcgZEIIZROk0Fo/WKtbxLJjCtQP+
-	kEJcRWN6g==;
+	 bh=8X3XaCjTg0RCrESeKIX9BbDr+ynOZ6+8o4lIu9fOuik=; b=NwO6GEEw1ka1NqAqu4gz1E9DV
+	U0Wr/mrrd7UCyjryYlnVMYCIifCYfri0sExhdxf2RoOA6D3+scchHEjfVze1gTIx0zy2veQZrgOam
+	UU3dUpnyhozEDErRMV+wUZHetpmDFOMMOqRKalP0kKdpsT08wWnQHdA/UFEQQxNse41XPiAqxwg9M
+	h/1kDQ2yYvzfQK6GbB8sdLQ903unhWBkahmSzAjEVU2cyznCeNHizoeCqHlzbvy+L9/RQziqo1ImM
+	CafdjvX3+jiVtGUcagJRgHIS6ock+EODjAzR4dcEVjH4BjEKqsYNGhV5dV++4g10uqEjgINROW2Ry
+	EhRbUSLLw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kfnG9-00061g-3G; Thu, 19 Nov 2020 16:58:13 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1kfnH7-0006OE-FK; Thu, 19 Nov 2020 16:59:13 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kfn9a-0002yN-Sy
- for linux-amlogic@lists.infradead.org; Thu, 19 Nov 2020 16:51:30 +0000
-Received: by mail-wr1-x444.google.com with SMTP id c17so7113382wrc.11
- for <linux-amlogic@lists.infradead.org>; Thu, 19 Nov 2020 08:51:26 -0800 (PST)
+ id 1kfnCX-0004Ku-JM
+ for linux-amlogic@lists.infradead.org; Thu, 19 Nov 2020 16:54:33 +0000
+Received: by mail-wm1-x343.google.com with SMTP id d142so7846451wmd.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 19 Nov 2020 08:54:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
  :date:mime-version;
- bh=IUxoppfqaSQfsgS7sOWn2afMXOkizKDwhUSj+oVrHcg=;
- b=llhVzZqdVGyYKolK2rraEMEYaT5uKZuLlzaCVTV7wB36pCE+nauvjqnkPbaluaKEev
- rs6/8MjTfbiEc01TqH8nOqxKK7+z2MB3uQeCdPaLstqYdkYSNhnW4eO/3YFpy9z0BoxT
- wGyjkYDjZANdzUoZ8nsy4j8/1tmhU2Xa/mII8VKwYZcXtbBll1KcsE+AD12sZ6BceRXJ
- ehavDdTG7CkvNGgHOgpTLoScRLGnRj1LgTd1d5d3OG9z4bAg0BIXcXePDIo18CKUteac
- Un0IwT6ElV5SGgaR8BmBzwqzv5zLTPT1YUHtnmzZV2LB/mmhTfGr2xx+O0/uFHqngrhT
- OBfw==
+ bh=Pre/mXleRxkWrV0zeNG0MiK2Np2Ars6+gluS8m2UbzM=;
+ b=g7/8AdqSbQsYEb9PUFTQ3a3KOsoPIGOnDcq14sdK6ToattoRbUIp4WXQKg/G+WTjcK
+ af7mAQoNFyw7U7o6oGkqeIGfewuaG99mpUJm2HVwDoprkbyhzYP8TenSkuhqpVU2qkAn
+ vAM4PNqL9rkct1SUe100jL4kqUBYLlJg2X67Naf7aGnKM9BqD2+u3TxwCumGD+OHHVmg
+ ZxdXk/p/bUL06npXmaDf6GV2OTfGK92XZnOFrENqag/3MbX7AeOQGrmntKp6W7Pir2+j
+ qPK5C9md2NgLS8HoDR/UH2r1sQgjQNeWyZuuEK/hgQHBmZd3/7Zaj00XwNDEIgtmMDJ2
+ OWBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:message-id:date:mime-version;
- bh=IUxoppfqaSQfsgS7sOWn2afMXOkizKDwhUSj+oVrHcg=;
- b=VLay1wrXR8J+oPCAj/u6bFKXfk+5Hr1rD8ESI0++YZLOVJl8ZGpS4zzmYYWT0Fgpnb
- 7viX01wK8nGAHodyFTjSlkYNa4SRuLOsHBUZOSHyb6lWxk9klRlx4q3/J0H139cLr5hj
- PB9EV6spFkwCkvOOETClAIMjICBxqkiGOCnTZgc4NnhA0SBxCn45VNsyeRm1JTWYAQZn
- OIplblKC4fiIG9afkAz90L2d7PA+f6qkzG37O30Df8eEDs+9cKfeIgIR8CRn9Cas9CAG
- 3TR1GIvmTgkCXRhvD0p9On3RmkeMXkkdf4WjrlH6DeIIGtcl+tHicffr5xpA+tyNwpVQ
- MDIQ==
-X-Gm-Message-State: AOAM533Xwqqz1nt52lzHCD0B7nu+73oqvz1yEyPl2IedFDd2iF6kB/Z7
- KInuDyZ4ENzDv6iM8fKwyULJXw==
-X-Google-Smtp-Source: ABdhPJwnkIXJoN3H0698Zt2fIJTEH3pRamAve0MklS/Z6BoCyJmmYSy6ATWf3ecrunxy7/KcKK7KHA==
-X-Received: by 2002:a5d:4f0f:: with SMTP id c15mr10950862wru.287.1605804684487; 
- Thu, 19 Nov 2020 08:51:24 -0800 (PST)
+ bh=Pre/mXleRxkWrV0zeNG0MiK2Np2Ars6+gluS8m2UbzM=;
+ b=kqYbMlXXy9ybXKsPZHH/jnoSRiycZfYB+839oVALfW2oiZI3D5UT1fowAca66banBN
+ IxHQDJO7TtCNgUZVDtjcIY4RRgd8lCzTSc9E+ECeDkjUI6fY9e/fZgWcUBKJ36VkHMMG
+ 1/j7/WRVF+MiRhBlXaT3nU9w3l65OA5OGAzGYXGH2WQXgIyUUrieqebGnEMz+crsFEaH
+ MzX/vQP6OuYzFvFvFllMM32R1/jghSamZ1C3aEyp5AmhY0KemlHrDwX2ennapnBsrcB+
+ zO5JPd7qaC20bsVIeDJhfp5xqzCoIl7jXmGGmAZ3RtZ7w9IY85OsA704caoT53UsjLWl
+ xi2Q==
+X-Gm-Message-State: AOAM532RSNPlnprvcv5LJkVoKF7/n2g9umH5XzIOME5qV7mAU3GFNe3y
+ QuhEEoTNjagFYbqW32PcRNo90A==
+X-Google-Smtp-Source: ABdhPJxxUNXKIBO762a9SwT38SgZCkHpkCUxcBFb9WWH4YVWzZb7Cns7uSo2RyvgGhLK7wjqYHzUwg==
+X-Received: by 2002:a7b:ce0e:: with SMTP id m14mr5399583wmc.111.1605804866804; 
+ Thu, 19 Nov 2020 08:54:26 -0800 (PST)
 Received: from localhost (253.35.17.109.rev.sfr.net. [109.17.35.253])
- by smtp.gmail.com with ESMTPSA id o10sm642195wma.47.2020.11.19.08.51.23
+ by smtp.gmail.com with ESMTPSA id k16sm534051wrl.65.2020.11.19.08.54.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Nov 2020 08:51:23 -0800 (PST)
-References: <20201118190930.34352-1-khilman@baylibre.com>
- <1jzh3d8fal.fsf@starbuckisacylon.baylibre.com>
+ Thu, 19 Nov 2020 08:54:26 -0800 (PST)
+References: <20201118191405.36798-1-khilman@baylibre.com>
 User-agent: mu4e 1.4.10; emacs 27.1
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>
-Subject: Re: [PATCH] clk: meson: Kconfig: fix dependency for G12A
-In-reply-to: <1jzh3d8fal.fsf@starbuckisacylon.baylibre.com>
-Message-ID: <1jwnyh8f3p.fsf@starbuckisacylon.baylibre.com>
-Date: Thu, 19 Nov 2020 17:51:23 +0100
+Subject: Re: [PATCH v2] clk: meson: enable building as modules
+In-reply-to: <20201118191405.36798-1-khilman@baylibre.com>
+Message-ID: <1jtutl8eym.fsf@starbuckisacylon.baylibre.com>
+Date: Thu, 19 Nov 2020 17:54:25 +0100
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201119_115127_454930_9EBB62C4 
-X-CRM114-Status: GOOD (  12.08  )
+X-CRM114-CacheID: sfid-20201119_115429_989650_2006A536 
+X-CRM114-Status: GOOD (  18.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,38 +103,262 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Thu 19 Nov 2020 at 17:47, Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Wed 18 Nov 2020 at 20:14, Kevin Hilman <khilman@baylibre.com> wrote:
 
-> On Wed 18 Nov 2020 at 20:09, Kevin Hilman <khilman@baylibre.com> wrote:
+> Make it possible to build all clk drivers as modules, but default
+> remains built-in.
 >
->> When building only G12A, ensure that VID_PLL_DIV clock driver is
->> selected, otherwise results in this build error:
->>
->> ERROR: modpost: "meson_vid_pll_div_ro_ops" [drivers/clk/meson/g12a.ko] undefined!
->>
->> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> No functional changes.
 >
-> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> Acked-by: Stephen Boyd <sboyd@kernel.org>
 
-And applied, Thx
+Applied
 
+> ---
+> v2: drop G12A Kconfig fix, separated out into separate patch
 >
->> ---
->>  drivers/clk/meson/Kconfig | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->> index 034da203e8e0..9a8a548d839d 100644
->> --- a/drivers/clk/meson/Kconfig
->> +++ b/drivers/clk/meson/Kconfig
->> @@ -110,6 +110,7 @@ config COMMON_CLK_G12A
->>  	select COMMON_CLK_MESON_AO_CLKC
->>  	select COMMON_CLK_MESON_EE_CLKC
->>  	select COMMON_CLK_MESON_CPU_DYNDIV
->> +	select COMMON_CLK_MESON_VID_PLL_DIV
->>  	select MFD_SYSCON
->>  	help
->>  	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
+>  drivers/clk/meson/Kconfig       | 6 +++---
+>  drivers/clk/meson/axg-aoclk.c   | 5 ++++-
+>  drivers/clk/meson/axg.c         | 5 ++++-
+>  drivers/clk/meson/g12a-aoclk.c  | 5 ++++-
+>  drivers/clk/meson/g12a.c        | 5 ++++-
+>  drivers/clk/meson/gxbb-aoclk.c  | 5 ++++-
+>  drivers/clk/meson/gxbb.c        | 5 ++++-
+>  drivers/clk/meson/meson-aoclk.c | 4 ++++
+>  drivers/clk/meson/meson-eeclk.c | 3 +++
+>  9 files changed, 34 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 034da203e8e0..a3417f82aa84 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -58,7 +58,7 @@ config COMMON_CLK_MESON8B
+>  	  want peripherals and CPU frequency scaling to work.
+>  
+>  config COMMON_CLK_GXBB
+> -	bool "GXBB and GXL SoC clock controllers support"
+> +	tristate "GXBB and GXL SoC clock controllers support"
+>  	depends on ARM64
+>  	default y
+>  	select COMMON_CLK_MESON_REGMAP
+> @@ -74,7 +74,7 @@ config COMMON_CLK_GXBB
+>  	  Say Y if you want peripherals and CPU frequency scaling to work.
+>  
+>  config COMMON_CLK_AXG
+> -	bool "AXG SoC clock controllers support"
+> +	tristate "AXG SoC clock controllers support"
+>  	depends on ARM64
+>  	default y
+>  	select COMMON_CLK_MESON_REGMAP
+> @@ -100,7 +100,7 @@ config COMMON_CLK_AXG_AUDIO
+>  	  aka axg, Say Y if you want audio subsystem to work.
+>  
+>  config COMMON_CLK_G12A
+> -	bool "G12 and SM1 SoC clock controllers support"
+> +	tristate "G12 and SM1 SoC clock controllers support"
+>  	depends on ARM64
+>  	default y
+>  	select COMMON_CLK_MESON_REGMAP
+> diff --git a/drivers/clk/meson/axg-aoclk.c b/drivers/clk/meson/axg-aoclk.c
+> index b488b40c9d0e..af6db437bcd8 100644
+> --- a/drivers/clk/meson/axg-aoclk.c
+> +++ b/drivers/clk/meson/axg-aoclk.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/reset-controller.h>
+>  #include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+>  #include "meson-aoclk.h"
+>  #include "axg-aoclk.h"
+>  
+> @@ -326,6 +327,7 @@ static const struct of_device_id axg_aoclkc_match_table[] = {
+>  	},
+>  	{ }
+>  };
+> +MODULE_DEVICE_TABLE(of, axg_aoclkc_match_table);
+>  
+>  static struct platform_driver axg_aoclkc_driver = {
+>  	.probe		= meson_aoclkc_probe,
+> @@ -335,4 +337,5 @@ static struct platform_driver axg_aoclkc_driver = {
+>  	},
+>  };
+>  
+> -builtin_platform_driver(axg_aoclkc_driver);
+> +module_platform_driver(axg_aoclkc_driver);
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+> index 13fc0006f63d..7ca7ea7345e5 100644
+> --- a/drivers/clk/meson/axg.c
+> +++ b/drivers/clk/meson/axg.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/init.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/module.h>
+>  
+>  #include "clk-regmap.h"
+>  #include "clk-pll.h"
+> @@ -1354,6 +1355,7 @@ static const struct of_device_id clkc_match_table[] = {
+>  	{ .compatible = "amlogic,axg-clkc", .data = &axg_clkc_data },
+>  	{}
+>  };
+> +MODULE_DEVICE_TABLE(of, clkc_match_table);
+>  
+>  static struct platform_driver axg_driver = {
+>  	.probe		= meson_eeclkc_probe,
+> @@ -1363,4 +1365,5 @@ static struct platform_driver axg_driver = {
+>  	},
+>  };
+>  
+> -builtin_platform_driver(axg_driver);
+> +module_platform_driver(axg_driver);
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/g12a-aoclk.c b/drivers/clk/meson/g12a-aoclk.c
+> index 62499563e4f5..b52990e574d2 100644
+> --- a/drivers/clk/meson/g12a-aoclk.c
+> +++ b/drivers/clk/meson/g12a-aoclk.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/reset-controller.h>
+>  #include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+>  #include "meson-aoclk.h"
+>  #include "g12a-aoclk.h"
+>  
+> @@ -461,6 +462,7 @@ static const struct of_device_id g12a_aoclkc_match_table[] = {
+>  	},
+>  	{ }
+>  };
+> +MODULE_DEVICE_TABLE(of, g12a_aoclkc_match_table);
+>  
+>  static struct platform_driver g12a_aoclkc_driver = {
+>  	.probe		= meson_aoclkc_probe,
+> @@ -470,4 +472,5 @@ static struct platform_driver g12a_aoclkc_driver = {
+>  	},
+>  };
+>  
+> -builtin_platform_driver(g12a_aoclkc_driver);
+> +module_platform_driver(g12a_aoclkc_driver);
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> index b814d44917a5..66094bfec2cc 100644
+> --- a/drivers/clk/meson/g12a.c
+> +++ b/drivers/clk/meson/g12a.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/clk.h>
+> +#include <linux/module.h>
+>  
+>  #include "clk-mpll.h"
+>  #include "clk-pll.h"
+> @@ -5370,6 +5371,7 @@ static const struct of_device_id clkc_match_table[] = {
+>  	},
+>  	{}
+>  };
+> +MODULE_DEVICE_TABLE(of, clkc_match_table);
+>  
+>  static struct platform_driver g12a_driver = {
+>  	.probe		= meson_g12a_probe,
+> @@ -5379,4 +5381,5 @@ static struct platform_driver g12a_driver = {
+>  	},
+>  };
+>  
+> -builtin_platform_driver(g12a_driver);
+> +module_platform_driver(g12a_driver);
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/gxbb-aoclk.c b/drivers/clk/meson/gxbb-aoclk.c
+> index e940861a396b..fce95cf89836 100644
+> --- a/drivers/clk/meson/gxbb-aoclk.c
+> +++ b/drivers/clk/meson/gxbb-aoclk.c
+> @@ -5,6 +5,7 @@
+>   */
+>  #include <linux/platform_device.h>
+>  #include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+>  #include "meson-aoclk.h"
+>  #include "gxbb-aoclk.h"
+>  
+> @@ -287,6 +288,7 @@ static const struct of_device_id gxbb_aoclkc_match_table[] = {
+>  	},
+>  	{ }
+>  };
+> +MODULE_DEVICE_TABLE(of, gxbb_aoclkc_match_table);
+>  
+>  static struct platform_driver gxbb_aoclkc_driver = {
+>  	.probe		= meson_aoclkc_probe,
+> @@ -295,4 +297,5 @@ static struct platform_driver gxbb_aoclkc_driver = {
+>  		.of_match_table = gxbb_aoclkc_match_table,
+>  	},
+>  };
+> -builtin_platform_driver(gxbb_aoclkc_driver);
+> +module_platform_driver(gxbb_aoclkc_driver);
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index 0a68af6eec3d..d6eed760327d 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/init.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/module.h>
+>  
+>  #include "gxbb.h"
+>  #include "clk-regmap.h"
+> @@ -3519,6 +3520,7 @@ static const struct of_device_id clkc_match_table[] = {
+>  	{ .compatible = "amlogic,gxl-clkc", .data = &gxl_clkc_data },
+>  	{},
+>  };
+> +MODULE_DEVICE_TABLE(of, clkc_match_table);
+>  
+>  static struct platform_driver gxbb_driver = {
+>  	.probe		= meson_eeclkc_probe,
+> @@ -3528,4 +3530,5 @@ static struct platform_driver gxbb_driver = {
+>  	},
+>  };
+>  
+> -builtin_platform_driver(gxbb_driver);
+> +module_platform_driver(gxbb_driver);
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
+> index bf8bea675d24..f0858fe789bc 100644
+> --- a/drivers/clk/meson/meson-aoclk.c
+> +++ b/drivers/clk/meson/meson-aoclk.c
+> @@ -14,6 +14,8 @@
+>  #include <linux/reset-controller.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/of_device.h>
+> +#include <linux/module.h>
+> +
+>  #include <linux/slab.h>
+>  #include "meson-aoclk.h"
+>  
+> @@ -84,3 +86,5 @@ int meson_aoclkc_probe(struct platform_device *pdev)
+>  	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>  		(void *) data->hw_data);
+>  }
+> +EXPORT_SYMBOL_GPL(meson_aoclkc_probe);
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/meson-eeclk.c b/drivers/clk/meson/meson-eeclk.c
+> index a7cb1e7aedc4..8d5a5dab955a 100644
+> --- a/drivers/clk/meson/meson-eeclk.c
+> +++ b/drivers/clk/meson/meson-eeclk.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/regmap.h>
+> +#include <linux/module.h>
+>  
+>  #include "clk-regmap.h"
+>  #include "meson-eeclk.h"
+> @@ -54,3 +55,5 @@ int meson_eeclkc_probe(struct platform_device *pdev)
+>  	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>  					   data->hw_onecell_data);
+>  }
+> +EXPORT_SYMBOL_GPL(meson_eeclkc_probe);
+> +MODULE_LICENSE("GPL v2");
 
 
 _______________________________________________
