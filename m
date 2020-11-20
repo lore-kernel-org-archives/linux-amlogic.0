@@ -2,22 +2,23 @@ Return-Path: <SRS0=y0rr=E2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE5CBC56202
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 12:18:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F7DFC5519F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 12:26:56 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 550D0221FB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 12:18:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EA518221FB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 12:26:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZTVzviG6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2EUm/7MO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 550D0221FB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d8S21Zy3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="DmFwUCk+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA518221FB
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,62 +27,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=EeN5iR8BRvctnVYv+xkDGJYof85Fs0fXKWtBtY1vix4=; b=ZTVzviG6ou5Z7Bpxxcu4nh+CS
-	B2X30h01RJAXHMKcPPsBjqMzHJbvZ9mr5Bve4/hkCxDacegK6riglyEND3Eg2V+srs1KBmZzvsrBu
-	5Wo6oxctgvhnZQ0T7XVTCPTSccjSqzHy8UAegTvB+SMAr4wpCp6shFabltyoX4cvnpB9RJQUL1uT6
-	KXR79tjInwXD6WnCpSMi5dSp89jBkfSv5MRfJY/0ILUPSyu0IwVB5YPcjy0dq54F0UgxkQHxhyZ6J
-	9PzhudTikyH+LqyMsIJFOM5cZa9fPEZ83SFQybLOGLpyY3ejp23AA3P/8qjBGGJ15+NEZGxk4RCCP
-	e80KacFuA==;
+	 bh=T44R9oitbQrskGFUfWAx4dJLCF9x89NzzGvs4vil23o=; b=d8S21Zy3qfgCmG5xgVMtBFMCN
+	XjSJJudbJUrwr/gZaR+84QLpA7C1bXJOAh9r/+139T8MYo7lojLg0uvE18FyZv2S/0kA9cPrM/PqO
+	xyPUjq8XQjiIU3iGizm4U8TkPpcVzOKr6iBSYsQsSPnCZ790qh6chcSE6sSsJXambz8Iv6ZfMFxdV
+	kCPNXUE64/zIurR4+w6Hckuzzcc9QhjZsq3lOQZcP7nszBJ1eMRIaigsLbdyaaFW2xmPRcNSlYrba
+	Ryjt3qHwSdCq0ax9rVffBPVdmwbOI3HHGRvVQ0Yzi+YBkLu8xt0syRFSJxPMWMAZKAYJECXXvKCeK
+	ZhOWipdWw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kg5NC-0005PX-C5; Fri, 20 Nov 2020 12:18:42 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1kg5V5-0006Rl-5G; Fri, 20 Nov 2020 12:26:51 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kg5N9-0005Og-Pe
- for linux-amlogic@lists.infradead.org; Fri, 20 Nov 2020 12:18:41 +0000
-Received: by mail-wm1-x343.google.com with SMTP id a65so9635163wme.1
- for <linux-amlogic@lists.infradead.org>; Fri, 20 Nov 2020 04:18:37 -0800 (PST)
+ id 1kg5V2-0006R0-Oe
+ for linux-amlogic@lists.infradead.org; Fri, 20 Nov 2020 12:26:49 +0000
+Received: by mail-wm1-x344.google.com with SMTP id h21so9645542wmb.2
+ for <linux-amlogic@lists.infradead.org>; Fri, 20 Nov 2020 04:26:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=kLpBJn1dhuchvltixhmWPHQw7xkYxRK/FRveUh5W9mQ=;
- b=2EUm/7MOuW0jCMsYxt/j+GuxCYw4h86NluEbXtbLOlqcIk5nnL5PYLT/wBMyr5fb0T
- /WZDTrgaZyrYVj+aXLnqEzzdSxwM0He6W6xKbCJ7cZ9n7596zJ/Kn58Qjza2Z63D6p2F
- xDYmtl2yBwD1e9Ju+PnLGPNCzy+v7YQwFknW2llfUaiWp0HXl2KrMyhkbtabPri015q0
- xUsRhEnrG4uWzfqF8Tmq+SNp94W8EZyMSLKMdDLEmwaUujjiCDF4kHOs9zONXkX3QHmX
- bSqJO9d4GZDG8ZHtgIHMpf0c35+lpF57IjgQ363zXl6iiRwTbmhwQI6+o/biSOuQXFpN
- hZ2A==
+ bh=BCroH1IlwX0oFlarcFmIylqCjoTr6e6ZNhFc17Y/ARc=;
+ b=DmFwUCk+pqfgKocWcRXr+a1f0kJXotLR6siNjYWrCME69il2P+AaoGnVGKBZvfHuG6
+ dgFxuak4ExFUsXLUMcyzC1eFAizAKADyw0I+EYGWl1Jo75nIHe9Z0+QFVi6LwWOZabmi
+ rtyLo/0OZoGTjop83jkuA3wzgfziQpbIIOKgCrhknbJWjHz1vBwaiVn1Ty5yyHcw+Prx
+ LoRPEvIKFLUVw+tlULtz431TpxrM+V2XirCJFmDtpnthZzMWrRBxwTSu/MzaLfxgFwMp
+ ydMyLPzbvTYPcQG0mCDYcXYVCOXxWyHVQ27rx8x7PCAy8l555dLhbOtMJ1Z0P3agu2ye
+ mHYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=kLpBJn1dhuchvltixhmWPHQw7xkYxRK/FRveUh5W9mQ=;
- b=qeCXwqzYpEc9qX3f2bto52qUsxBEgrWG8V0Z2GHj1AAhI/+ybJT6OkQ0LLfgUEOxZs
- P0frkr083HUVZiKNZE9dO2NMp82WmjcXC8dmkiVJ96zr6tgnJOT1iIsUr9XfBQR7f0Ps
- RYdgbocZP1T6GoxAWQRHkdQJA7zXwro8Ma8UqoNuDZPGapPQRAJNrolmP+Xwi6myIDG8
- 95LZLOBiFt6RGfs2s6zFrvr2xMrGaTrvhh5Nbdk6+fDrJaOTJxP6QPth5QEzIGAjRUt9
- nm4Ln++nxnEEsvz4DrCOEzvGiHNkI6YFer4+04Kv57Su03lyzHr1n1fe22INYjuAJ5M/
- jVEA==
-X-Gm-Message-State: AOAM530sqFpy7rATKGJur1ORVU8mVPcItYc8vjYDWgeQPvUihDuyHI1L
- UMvu7m287Fp/MUdnIaKh3CzaiA==
-X-Google-Smtp-Source: ABdhPJz/LEenHvG0UTtdnz2/9CZ4EybLK6BHgmG22+PWRnYdeLNzpsqCF+kNiVsFC7j2zzd6+ZFTuA==
-X-Received: by 2002:a1c:7e4f:: with SMTP id z76mr9637087wmc.149.1605874716838; 
- Fri, 20 Nov 2020 04:18:36 -0800 (PST)
+ bh=BCroH1IlwX0oFlarcFmIylqCjoTr6e6ZNhFc17Y/ARc=;
+ b=SCnjsO/loGjgYDD7IBtYHXpfLcgSZM5mKDmheBNPM3ZdFPSR6p/trCnbHhWCqCPvr5
+ 8L65RUgfynSc7Gsj1fB5EyIyk7ft94SXDPVoOsFhARrjejggNkQJqWxpH7yKFo4oRFvZ
+ WeTgr9BM9DrmUkzJVbfO6EGIgrexLe+TjcHCKvdHb0r97DlQlQB/8pDJpRwAG5pVpX4k
+ dND6X2mo3EIC7NTx2ZqK+ftfnPrJHFAGNegvZKXirQzIRjJnY2oCl32aDVFTnJCQwLBE
+ vW2EfGs0o/o6zc92Au6y7WKoBtz+3iIMt4oETBie7H4VhuaalrSv6h6d6vjy+bhrDKCP
+ Vl4A==
+X-Gm-Message-State: AOAM531YML4QtXFgqaKv1RPauNoj05BMGzjVt4wr9mvbun/xi1OVPSFt
+ 1/EQfofeW0agdvS54QOK/XXHlA==
+X-Google-Smtp-Source: ABdhPJxmm4M2RtWsoDWtTV/KPtJxXI5tl27Hh+GoNyUWlq2EOi6STJ8ESqCRl3HtXVIj8DiSOlZJ/w==
+X-Received: by 2002:a1c:abd7:: with SMTP id u206mr9791723wme.33.1605875207574; 
+ Fri, 20 Nov 2020 04:26:47 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:3daa:7c69:63d6:7d7d?
  ([2a01:e35:2ec0:82b0:3daa:7c69:63d6:7d7d])
- by smtp.gmail.com with ESMTPSA id o10sm4352281wma.47.2020.11.20.04.18.35
+ by smtp.gmail.com with ESMTPSA id p4sm4996388wrm.51.2020.11.20.04.26.44
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 20 Nov 2020 04:18:35 -0800 (PST)
-Subject: Re: [PATCH 2/2] drm/meson: dw-hdmi: Enable the iahb clock early enough
-To: Marc Zyngier <maz@kernel.org>,
- Guillaume Tucker <guillaume.tucker@collabora.com>
+ Fri, 20 Nov 2020 04:26:45 -0800 (PST)
+Subject: Re: [PATCH 1/2] drm/meson: dw-hdmi: Disable clocks on driver teardown
+To: Marc Zyngier <maz@kernel.org>, Kevin Hilman <khilman@baylibre.com>
 References: <20201120094205.525228-1-maz@kernel.org>
- <20201120094205.525228-3-maz@kernel.org>
- <966e90ba-5b38-9ba5-65b3-1a17dbd51871@collabora.com>
- <7e7ff26fdbc8540749522c23997549f6@kernel.org>
+ <20201120094205.525228-2-maz@kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -133,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <43acb24a-a526-1455-d058-76629c2dacb8@baylibre.com>
-Date: Fri, 20 Nov 2020 13:18:34 +0100
+Message-ID: <3c7a254a-cbcf-85ea-4567-d9533d042a51@baylibre.com>
+Date: Fri, 20 Nov 2020 13:26:43 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <7e7ff26fdbc8540749522c23997549f6@kernel.org>
+In-Reply-To: <20201120094205.525228-2-maz@kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201120_071839_948302_0A85C5A1 
-X-CRM114-Status: GOOD (  12.47  )
+X-CRM114-CacheID: sfid-20201120_072648_836977_2435CF07 
+X-CRM114-Status: GOOD (  24.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,34 +153,102 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Guillaume Tucker <guillaume.tucker@collabora.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, kernel-team@android.com,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjAvMTEvMjAyMCAxMjoxMCwgTWFyYyBaeW5naWVyIHdyb3RlOgo+IE9uIDIwMjAtMTEtMjAg
-MTA6NTQsIEd1aWxsYXVtZSBUdWNrZXIgd3JvdGU6Cj4+IE9uIDIwLzExLzIwMjAgMDk6NDIsIE1h
-cmMgWnluZ2llciB3cm90ZToKPj4+IEluc3RlYWQgb2YgbW92aW5nIG1lc29uX2R3X2hkbWlfaW5p
-dCgpIGFyb3VuZCB3aGljaCBicmVha3MgZXhpc3RpbmcKPj4+IHBsYXRmb3JtLCBsZXQncyBlbmFi
-bGUgdGhlIGNsb2NrIG1lc29uX2R3X2hkbWlfaW5pdCgpIGRlcGVuZHMgb24uCj4+PiBUaGlzIG1l
-YW5zIHdlIGRvbid0IGhhdmUgdG8gd29ycnkgYWJvdXQgdGhpcyBjbG9jayBiZWluZyBlbmFibGVk
-IG9yCj4+PiBub3QsIGRlcGVuZGluZyBvbiB0aGUgYm9vdC1sb2FkZXIgZmVhdHVyZXMuCj4+Pgo+
-Pj4gRml4ZXM6IGIzMzM0MGUzM2FjZCAoImRybS9tZXNvbjogZHctaGRtaTogRW5zdXJlIHRoYXQg
-Y2xvY2tzIGFyZSBlbmFibGVkIGJlZm9yZSB0b3VjaGluZyB0aGUgVE9QIHJlZ2lzdGVycyIpCj4+
-PiBSZXBvcnRlZC1ieTogR3VpbGxhdW1lIFR1Y2tlciA8Z3VpbGxhdW1lLnR1Y2tlckBjb2xsYWJv
-cmEuY29tPgo+Pgo+PiBBbHRob3VnaCBJIGFtIHRyaWFnaW5nIGtlcm5lbGNpIGJpc2VjdGlvbnMs
-IGl0IHdhcyBpbml0aWFsbHkKPj4gZm91bmQgdGhhbmtzIHRvIG91ciBmcmllbmRseSBib3QuwqAg
-U28gaWYgeW91J3JlIE9LIHdpdGggdGhpcywgaXQKPj4gd291bGQgbW9zdCBkZWZpbml0ZWx5IGFw
-cHJlY2lhdGUgYSBtZW50aW9uOgo+Pgo+PiDCoCBSZXBvcnRlZC1ieTogImtlcm5lbGNpLm9yZyBi
-b3QiIDxib3RAa2VybmVsY2kub3JnPgo+IAo+IFN1cmUuIE5laWwgY2FuIGFkZCB0aGlzIHdoZW4g
-KGFuZCBpZikgaGUgYXBwbGllcyB0aGVzZSBwYXRjaGVzLgoKWWVwIGFwcGx5aW5nIHRvIGRybS1t
-aXNjLW5leHQgYW5kIHN3aXRjaGluZyB0byBgUmVwb3J0ZWQtYnk6ICJrZXJuZWxjaS5vcmcgYm90
-IiA8Ym90QGtlcm5lbGNpLm9yZz5gCgpUaGFua3MKTmVpbAoKPiAKPiBUaGFua3MsCj4gCj4gwqDC
-oMKgwqDCoMKgwqAgTS4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+On 20/11/2020 10:42, Marc Zyngier wrote:
+> The HDMI driver request clocks early, but never disable them, leaving
+> the clocks on even when the driver is removed.
+> 
+> Fix it by slightly refactoring the clock code, and register a devm
+> action that will eventually disable/unprepare the enabled clocks.
+> 
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> ---
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c | 43 ++++++++++++++++++---------
+>  1 file changed, 29 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> index 7f8eea494147..29623b309cb1 100644
+> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> @@ -145,8 +145,6 @@ struct meson_dw_hdmi {
+>  	struct reset_control *hdmitx_apb;
+>  	struct reset_control *hdmitx_ctrl;
+>  	struct reset_control *hdmitx_phy;
+> -	struct clk *hdmi_pclk;
+> -	struct clk *venci_clk;
+>  	struct regulator *hdmi_supply;
+>  	u32 irq_stat;
+>  	struct dw_hdmi *hdmi;
+> @@ -946,6 +944,29 @@ static void meson_disable_regulator(void *data)
+>  	regulator_disable(data);
+>  }
+>  
+> +static void meson_disable_clk(void *data)
+> +{
+> +	clk_disable_unprepare(data);
+> +}
+> +
+> +static int meson_enable_clk(struct device *dev, char *name)
+> +{
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	clk = devm_clk_get(dev, name);
+> +	if (IS_ERR(clk)) {
+> +		dev_err(dev, "Unable to get %s pclk\n", name);
+> +		return PTR_ERR(clk);
+> +	}
+> +
+> +	ret = clk_prepare_enable(clk);
+> +	if (!ret)
+> +		ret = devm_add_action_or_reset(dev, meson_disable_clk, clk);
+> +
+> +	return ret;
+> +}
+> +
+>  static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>  				void *data)
+>  {
+> @@ -1026,19 +1047,13 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>  	if (IS_ERR(meson_dw_hdmi->hdmitx))
+>  		return PTR_ERR(meson_dw_hdmi->hdmitx);
+>  
+> -	meson_dw_hdmi->hdmi_pclk = devm_clk_get(dev, "isfr");
+> -	if (IS_ERR(meson_dw_hdmi->hdmi_pclk)) {
+> -		dev_err(dev, "Unable to get HDMI pclk\n");
+> -		return PTR_ERR(meson_dw_hdmi->hdmi_pclk);
+> -	}
+> -	clk_prepare_enable(meson_dw_hdmi->hdmi_pclk);
+> +	ret = meson_enable_clk(dev, "isfr");
+> +	if (ret)
+> +		return ret;
+>  
+> -	meson_dw_hdmi->venci_clk = devm_clk_get(dev, "venci");
+> -	if (IS_ERR(meson_dw_hdmi->venci_clk)) {
+> -		dev_err(dev, "Unable to get venci clk\n");
+> -		return PTR_ERR(meson_dw_hdmi->venci_clk);
+> -	}
+> -	clk_prepare_enable(meson_dw_hdmi->venci_clk);
+> +	ret = meson_enable_clk(dev, "venci");
+> +	if (ret)
+> +		return ret;
+>  
+>  	dw_plat_data->regm = devm_regmap_init(dev, NULL, meson_dw_hdmi,
+>  					      &meson_dw_hdmi_regmap_config);
+> 
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
