@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 920F2C56201
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 15:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 02C87C2D0E4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 15:34:52 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B1FD22D0A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 15:33:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 663F3238E6
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 15:34:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="yFgvFhm1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wv/jt9xd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B1FD22D0A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xui46mHD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gt4ACTFq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 663F3238E6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=zFB+QYpOorrY4d4+jttsTlRMtyvkovweq4e9d30GFSs=; b=yFgvFhm1GvkmX7TpjZEV6TfRR
-	dPEarSTQAO9075rBkje1s+ntZzVs0/VU2/0G8llJZ/0HTtMBtU1fvr+emt/37Ja5VaiKxnd0S04uS
-	eBUXXW64qqNCzZYoWQH1nvz44hKnD+3ZI6YXstMpPy9mAl03xo2xbvCExIZZ6qmbsI3iODQZ6v7Ur
-	P2UpiHa7DisJYFu/8674m4I46LMEI6r8CcadDFGFTk5FZo6+fXBTKly32z9Cs2RtE2HE2SheOEjgn
-	HwCG2UMWFlkdxXhdzusiC5o3QqFtqkHfsQTur7o5VrruakF0qSkoVsvCTR+zE74In/K/04dDEB1wT
-	tbVNUle+A==;
+	 bh=g+NLGOZTK7CJpDxkEx27pd2eA5dj4IWIjbMKvipofpQ=; b=Xui46mHDCcp3GS7flvhIMMiph
+	acpNsGQDz6WbqsZ98IZ4Cjz2x/ROMgsyV1AmtQptNQbTDRn5DPNZcL+RtGXa3nS0WUCBopfZv+txR
+	gE+36iuo9ONb4wo8opkSzn0H8tEM7yh04BlbArzYDXUFNvmqJMiGqSQGcroCbSW1F/itDnoRXtq/V
+	kVafrL3vQX2a+wEENyEDostm8WSdfTl1HStxSw0VBeUJmdKuXd4B9um2NSJYi6DNZkie5rXYT8eli
+	C2k9yOzpLF5of3VJf80/M6mxM4h3GR0Q0fEJRgqrNm4wMfH+ovLXjpsDtbSflPM3JIDEcvinLy6ZX
+	vS7f3YPrg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kg8Pk-00081d-M7; Fri, 20 Nov 2020 15:33:32 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1kg8Qv-0000EI-CY; Fri, 20 Nov 2020 15:34:45 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kg8PZ-0007vm-Jl
- for linux-amlogic@lists.infradead.org; Fri, 20 Nov 2020 15:33:22 +0000
-Received: by mail-wr1-x443.google.com with SMTP id k2so10495560wrx.2
- for <linux-amlogic@lists.infradead.org>; Fri, 20 Nov 2020 07:33:21 -0800 (PST)
+ id 1kg8Qf-00005D-CF
+ for linux-amlogic@lists.infradead.org; Fri, 20 Nov 2020 15:34:30 +0000
+Received: by mail-wm1-x341.google.com with SMTP id s13so10161725wmh.4
+ for <linux-amlogic@lists.infradead.org>; Fri, 20 Nov 2020 07:34:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=HGENVwdY/OrXqJIcwHQedcOOBp7b1J+6l8m9mXUvysE=;
- b=wv/jt9xdbPswN64nzmXsKHufEKsgaQxc+qDv2BhWqGF4KH5TNxHOkQD/GYg78yEaZi
- qJFRr1NDOCKEAxmPfkj+wojHAJjd7naU8Mj9ljVGJxo8dBC6LtEk43PtqHhTmFqIwcH2
- qqPxLeg5n4pOZN0F4xye+J5Tva5xyQ/vhKJmWT1qCf/i7Y7/ozI8ioFs6s12jPl7Q1+e
- AmPeS9+vGcz+G652KPtuo146C8UFicRAdBrIQ9tCX32VUEIfm+t2UxVXLFYf+PnwSZsz
- museT6wjsp2efmqdvfanD9Oe+hNxXYe4b+LRHBqsnnalyKPgD2w3ihJYOetHpwkztVib
- 3cww==
+ bh=/QSgfdo+6p8k0XM3lhzRbtDtWaSOahjXtbp9NJXBdHY=;
+ b=gt4ACTFqIYuzZm26XLJEr8FySXvxOmVK9Rc563g0bPBhpCrpeiVOyZE/xdpC6eKfKS
+ k8wh3XPraR+ZwoNCDWpFBeLdnrAlm7pcNb3ACkrjFeZ4GUA0Q/UwFEzsWkU3vcSvDvh+
+ Q+3pipBynYJVjJldGula/KJqWdDxf/WUgYioa4x8o/XZRAit2Kkc0EuLgqmYUC56mVpe
+ L94xucVXG1+Q/Drbx2QNc4TUHCNUcQ1Rqq7vbIZWcoQyqhURUtIabkQLwpAN3cTjfHhQ
+ kdB9QNOFKZTFR9qbOfO1Y3npspsz4hs/Ax9DH2nvUPbEAS4ZK1MkDTMn5Lc6UodD7Rsi
+ oTMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=HGENVwdY/OrXqJIcwHQedcOOBp7b1J+6l8m9mXUvysE=;
- b=uRtaOwLA7jgNicW6XzZlETgaHe7tbm7CInm1gzmsBkt/Ul8YOTeUqiJE87ktI1q3ep
- iLRmJsdRrbq7tYuxyGD4YD7I3qnQcUMYYS8c4dZ/2nsrl+a6GKG4JafmS8R4J2QfSHil
- ovl5WcM2hoPByNKTV9QwAoa94xJsgeC+3ifNqMQFvbVt4WQFMdapxwo7UBIf5Kxkb4G2
- AHhOeHILJz+FY1YdRqMP2pEOnyZemPcbQCx3Ua2Xvr3MCAVY2hex81FXax6mW16EW+He
- fJFpeyvb87ERrvM+j/z0mzgkCjv2TYo1QxSj0soYS37l5ycn4KrDSBGZKwo8DiV+38za
- vxzA==
-X-Gm-Message-State: AOAM530lcU2lVwif7NULqj8rK5MUrkEXJ3PQS540hb6OVT+sOye6nY0d
- 6URyWGIGsKQWHAXfFJjHMiTHaQBWJDypOeu6
-X-Google-Smtp-Source: ABdhPJxAo7wUucIX/E7u++cFjidzp+7vN/BOkSeRZLbIAaf5Jcng0wFBuFOFInZEIUCsYnpTvN5VxQ==
-X-Received: by 2002:a5d:6250:: with SMTP id m16mr16823563wrv.400.1605886400497; 
- Fri, 20 Nov 2020 07:33:20 -0800 (PST)
+ bh=/QSgfdo+6p8k0XM3lhzRbtDtWaSOahjXtbp9NJXBdHY=;
+ b=C/zL3eLlagPw73vV2FImUbhHxK9VyIsof1xqrc5G390g8ZtTtIEYQbgBoEXrhEfNjX
+ eQANrnXTNNOaP8dQZ6xNO4Ag3TK6yjiSO+Z7YocgWv6B+KvFQTEodLiHQmHR3s3sdobz
+ UnWgYTjczgo4ASceNWxYpaUzo3bXxeUV6pHypzew0rdRZ/0rs7cmn88FUHA985Wz7t53
+ YyPuoz3ngb78KkMz+H63M1ZTb3p8rX4mFpXnVRIgnBrJxmlFlhz6iyj1Wdqfdl6dfBcd
+ BOrkvMEx+XTJCSj9yZrwZ51XI2zX8XV0HNGXYX9wtqVbKQhWvvsrZ9aidt5vMVOxkxqL
+ EgNA==
+X-Gm-Message-State: AOAM533tmCDH34ms8EgVy8KO0uV94bdn+RtxMNrHzCq/3UKjU09u07y9
+ RhoHkePJ7JXMSedbqltw1TJeXCnI5bzIstxe
+X-Google-Smtp-Source: ABdhPJxui/Lv5ncdt5fQ0+mEthMxXxtVldFFma6D+RGkCjsOzGlFZVSspnloiJE8EFElkEa3sOBRPg==
+X-Received: by 2002:a1c:c2c6:: with SMTP id
+ s189mr10519330wmf.101.1605886468130; 
+ Fri, 20 Nov 2020 07:34:28 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:419f:dca4:d17a:66a7?
  ([2a01:e35:2ec0:82b0:419f:dca4:d17a:66a7])
- by smtp.gmail.com with ESMTPSA id w15sm5313417wrp.52.2020.11.20.07.33.19
+ by smtp.gmail.com with ESMTPSA id w17sm5264437wru.82.2020.11.20.07.34.26
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 20 Nov 2020 07:33:19 -0800 (PST)
-Subject: Re: [PATCH 0/2] arm64: dts: meson-axg-s400: enable PCIe
+ Fri, 20 Nov 2020 07:34:27 -0800 (PST)
+Subject: Re: [PATCH 0/3] arm64: dts: meson-axg-s400: add support for MIPI-DSI
+ Panel
 To: khilman@baylibre.com
-References: <20201007100631.192348-1-narmstrong@baylibre.com>
+References: <20200907083300.14412-1-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <0b5405d7-4df3-c82b-8d73-a591fd343ba1@baylibre.com>
-Date: Fri, 20 Nov 2020 16:33:18 +0100
+Message-ID: <da13a159-6009-831a-8686-b5220ec04507@baylibre.com>
+Date: Fri, 20 Nov 2020 16:34:26 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201007100631.192348-1-narmstrong@baylibre.com>
+In-Reply-To: <20200907083300.14412-1-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201120_103321_709303_1ABB57E1 
-X-CRM114-Status: GOOD (  13.97  )
+X-CRM114-CacheID: sfid-20201120_103429_499290_9AC38E33 
+X-CRM114-Status: GOOD (  14.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,31 +159,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/10/2020 12:06, Neil Armstrong wrote:
-> This adds the nodes for the :
-> - AXG PCIe PHY, using the shared analog PCIe/MIPI DSI PHY
-> - 2x AXG PCIe controllers
-> 
-> And enables the PCIe M.2 Key E slots on the S400 board.
+On 07/09/2020 10:32, Neil Armstrong wrote:
+> This adds the nodes to AXG and S400 board to enabled MIPI-DSI display support with
+> the 1024*600 tl070wsh30 DSI panel.
 > 
 > Dependencies:
-> - Patch 1: Analog PCIe/MIPI DSI PHY update [1] MIPI-DSI nodes [2]
-> - Patch 2: None
+> - Patch 1: [1] & [2]
+> - Patch 2: [1], [3] & [4]
+> - Patch 3: [5]
 > 
-> [1] https://lkml.kernel.org/r/20200915130339.11079-1-narmstrong@baylibre.com
-> [2] https://lkml.kernel.org/r/20200907083300.14412-3-narmstrong@baylibre.com
+> [1] https://lore.kernel.org/r/20200907081825.1654-1-narmstrong@baylibre.com
+> [2] https://lore.kernel.org/r/20200904161654.24141-1-narmstrong@baylibre.com
+> [3] https://lore.kernel.org/r/20200907072708.26043-1-narmstrong@baylibre.com
+> [4] https://lore.kernel.org/r/20200907073402.26674-1-narmstrong@baylibre.com
+> [5] https://lore.kernel.org/r/20200904161504.23915-1-narmstrong@baylibre.com
 > 
-> Neil Armstrong (2):
->   arm64: dts: meson-axg: add PCIe nodes
->   arm64: dts: meson-axg-s400: enable PCIe M.2 Key E slots
+> Neil Armstrong (3):
+>   arm64: dts: meson-axg: add VPU and PWRC nodes
+>   arm64: dts: meson-axg: add MIPI DSI Nodes
+>   arm64: dts: meson-axg-s400: add MIPI DSI panel nodes
 > 
->  .../arm64/boot/dts/amlogic/meson-axg-s400.dts | 10 +++
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 61 +++++++++++++++++++
->  2 files changed, 71 insertions(+)
+>  .../arm64/boot/dts/amlogic/meson-axg-s400.dts |  49 +++++++-
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 118 ++++++++++++++++++
+>  2 files changed, 166 insertions(+), 1 deletion(-)
 > 
 
-Was depending on USB DT patches, resent with USb DT patches in 20201120153229.3920123-1-narmstrong@baylibre.com
+I extracted the PWRC & DSI PHY nodes into 20201120152131.3918814-1-narmstrong@baylibre.com
 
+Will send the CPU & panel nodes when the DRM codes is merged.
 
 Neil
 
