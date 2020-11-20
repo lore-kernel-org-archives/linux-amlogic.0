@@ -5,20 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F7DFC5519F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 12:26:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 760C4C5519F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 12:27:21 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EA518221FB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 12:26:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ECEAC221FB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2020 12:27:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d8S21Zy3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="DmFwUCk+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA518221FB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="zr4inZF3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wFaVwZ17"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ECEAC221FB
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=T44R9oitbQrskGFUfWAx4dJLCF9x89NzzGvs4vil23o=; b=d8S21Zy3qfgCmG5xgVMtBFMCN
-	XjSJJudbJUrwr/gZaR+84QLpA7C1bXJOAh9r/+139T8MYo7lojLg0uvE18FyZv2S/0kA9cPrM/PqO
-	xyPUjq8XQjiIU3iGizm4U8TkPpcVzOKr6iBSYsQsSPnCZ790qh6chcSE6sSsJXambz8Iv6ZfMFxdV
-	kCPNXUE64/zIurR4+w6Hckuzzcc9QhjZsq3lOQZcP7nszBJ1eMRIaigsLbdyaaFW2xmPRcNSlYrba
-	Ryjt3qHwSdCq0ax9rVffBPVdmwbOI3HHGRvVQ0Yzi+YBkLu8xt0syRFSJxPMWMAZKAYJECXXvKCeK
-	ZhOWipdWw==;
+	 bh=DlnqxxEL15W9vwKJMN8SbpTE50UJRSAWYngOVSRFPX4=; b=zr4inZF3l6CK7RxccuOl9z5eP
+	/oJrTsjUfQaAon4bNGCcpMAO67Xv/S1AvNUbz5kgptihhYKD9JWLx2hKUoXtV8tuYfgDaw8fb6VA8
+	jgMeyvvnpjwMTiKjVVq+1uJLO0yv2jv+Icb2dABPnRFdpFL8Ef9fwKPgeWXAe/J6J9p7eGdt+qzwn
+	mABCbcQdh4+Wr+b0fvNV4YpuI6C1ZJq/u/OGIXA7EuxwoTD//ROAsgblt82TyUfQbZCfVHqEOSL3T
+	4v5nfy138XxR9KIiVQdYKeJE25OQuF5n4hUG8jbIqZHd+f2V37FJWmCOXOuv4qbjlcK9KG2QmgcZ2
+	yYJyD/XfQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kg5V5-0006Rl-5G; Fri, 20 Nov 2020 12:26:51 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1kg5VS-0006XF-G6; Fri, 20 Nov 2020 12:27:14 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kg5V2-0006R0-Oe
- for linux-amlogic@lists.infradead.org; Fri, 20 Nov 2020 12:26:49 +0000
-Received: by mail-wm1-x344.google.com with SMTP id h21so9645542wmb.2
- for <linux-amlogic@lists.infradead.org>; Fri, 20 Nov 2020 04:26:48 -0800 (PST)
+ id 1kg5VP-0006Vy-GV
+ for linux-amlogic@lists.infradead.org; Fri, 20 Nov 2020 12:27:12 +0000
+Received: by mail-wr1-x443.google.com with SMTP id d12so9778732wrr.13
+ for <linux-amlogic@lists.infradead.org>; Fri, 20 Nov 2020 04:27:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=BCroH1IlwX0oFlarcFmIylqCjoTr6e6ZNhFc17Y/ARc=;
- b=DmFwUCk+pqfgKocWcRXr+a1f0kJXotLR6siNjYWrCME69il2P+AaoGnVGKBZvfHuG6
- dgFxuak4ExFUsXLUMcyzC1eFAizAKADyw0I+EYGWl1Jo75nIHe9Z0+QFVi6LwWOZabmi
- rtyLo/0OZoGTjop83jkuA3wzgfziQpbIIOKgCrhknbJWjHz1vBwaiVn1Ty5yyHcw+Prx
- LoRPEvIKFLUVw+tlULtz431TpxrM+V2XirCJFmDtpnthZzMWrRBxwTSu/MzaLfxgFwMp
- ydMyLPzbvTYPcQG0mCDYcXYVCOXxWyHVQ27rx8x7PCAy8l555dLhbOtMJ1Z0P3agu2ye
- mHYA==
+ bh=2uCDXZNalh/u9Cw0PqPu7oNwAjDazUPklF3HwIhFrSY=;
+ b=wFaVwZ17hlCnb1ALIZ5ViKp6LlQqL6M6wO7Us5E+jwdjNQhEQ2g34TdHtVOiDUF5Jv
+ PI/xxItXlvcjD2XxTMx8+3dC3Sw2rX4QqCSHOfTfA4+30V9atvdLZA/bVLWIJ174xi++
+ oFtmXUrDUTyecAz22bV0xc5y0fJdk/+XFdWRNdE60VWOKYHOfz+A3zZZZtWh8V7jXIYf
+ o2E/4htZHzE3hJbk/WVBqCwLO7d6dHffn6V/sNOK4oQkf1CFhSYyW1ILG1eqmnNtL4ip
+ +g0UTdkh6s0oxyv/pXIUxGYECzk9WA1X6ZwbK47cXlaEH+4EziSbDZ9a8hw5FDsfcDSx
+ tTeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=BCroH1IlwX0oFlarcFmIylqCjoTr6e6ZNhFc17Y/ARc=;
- b=SCnjsO/loGjgYDD7IBtYHXpfLcgSZM5mKDmheBNPM3ZdFPSR6p/trCnbHhWCqCPvr5
- 8L65RUgfynSc7Gsj1fB5EyIyk7ft94SXDPVoOsFhARrjejggNkQJqWxpH7yKFo4oRFvZ
- WeTgr9BM9DrmUkzJVbfO6EGIgrexLe+TjcHCKvdHb0r97DlQlQB/8pDJpRwAG5pVpX4k
- dND6X2mo3EIC7NTx2ZqK+ftfnPrJHFAGNegvZKXirQzIRjJnY2oCl32aDVFTnJCQwLBE
- vW2EfGs0o/o6zc92Au6y7WKoBtz+3iIMt4oETBie7H4VhuaalrSv6h6d6vjy+bhrDKCP
- Vl4A==
-X-Gm-Message-State: AOAM531YML4QtXFgqaKv1RPauNoj05BMGzjVt4wr9mvbun/xi1OVPSFt
- 1/EQfofeW0agdvS54QOK/XXHlA==
-X-Google-Smtp-Source: ABdhPJxmm4M2RtWsoDWtTV/KPtJxXI5tl27Hh+GoNyUWlq2EOi6STJ8ESqCRl3HtXVIj8DiSOlZJ/w==
-X-Received: by 2002:a1c:abd7:: with SMTP id u206mr9791723wme.33.1605875207574; 
- Fri, 20 Nov 2020 04:26:47 -0800 (PST)
+ bh=2uCDXZNalh/u9Cw0PqPu7oNwAjDazUPklF3HwIhFrSY=;
+ b=MWf27dqQ/70e7FYwt3Q8SY8OK1Un/Gjww3IOPmsZ603Bq0fna64djHbbyuwWhVObOu
+ tg+Ch48kUwyXsS5KabDW6M5U8UL58ddW59Ip0xo6F9dfMkr3MO2p68ASwaFnf3rfFKJu
+ R5CWHw1EmNTdKcI8gQxLNkSmWa//nImhI9F9Q1X+Xsgnl5JK+5YFZnjWZl45PY9sM3YT
+ J7TNJNWcRdhNkg61HW4uayx2WqKv5l6Mh5oX3MD6lz130tVKJ1D0LK2TWb/5l8JhZ7yc
+ W2A0Uuqxijk+WY2LQefo9USqMaPpiHosr658oOxkBOXktP8fuxQi802EkCY4OYrfrLJt
+ r9ZQ==
+X-Gm-Message-State: AOAM5332J1ErL3r6NVgWggoYM29KpMHM3yywMfOSnIzVr19j5PG6aMtW
+ knlapT8/kR5pa2tKTJq1lw0I3w==
+X-Google-Smtp-Source: ABdhPJyxCjVLW6ccWphu88IJtbhlNxX/YBQI6vQfsjwzKvlo7sGH1+aTkvPOxTXmHS1IhaygP7m+PQ==
+X-Received: by 2002:a5d:448a:: with SMTP id j10mr14762464wrq.33.1605875230262; 
+ Fri, 20 Nov 2020 04:27:10 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:3daa:7c69:63d6:7d7d?
  ([2a01:e35:2ec0:82b0:3daa:7c69:63d6:7d7d])
- by smtp.gmail.com with ESMTPSA id p4sm4996388wrm.51.2020.11.20.04.26.44
+ by smtp.gmail.com with ESMTPSA id t9sm5009413wrr.49.2020.11.20.04.27.08
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 20 Nov 2020 04:26:45 -0800 (PST)
-Subject: Re: [PATCH 1/2] drm/meson: dw-hdmi: Disable clocks on driver teardown
+ Fri, 20 Nov 2020 04:27:09 -0800 (PST)
+Subject: Re: [PATCH 2/2] drm/meson: dw-hdmi: Enable the iahb clock early enough
 To: Marc Zyngier <maz@kernel.org>, Kevin Hilman <khilman@baylibre.com>
 References: <20201120094205.525228-1-maz@kernel.org>
- <20201120094205.525228-2-maz@kernel.org>
+ <20201120094205.525228-3-maz@kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <3c7a254a-cbcf-85ea-4567-d9533d042a51@baylibre.com>
-Date: Fri, 20 Nov 2020 13:26:43 +0100
+Message-ID: <efcccf79-9ec2-30c1-2df8-73f2cbfd0cd2@baylibre.com>
+Date: Fri, 20 Nov 2020 13:27:07 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201120094205.525228-2-maz@kernel.org>
+In-Reply-To: <20201120094205.525228-3-maz@kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201120_072648_836977_2435CF07 
-X-CRM114-Status: GOOD (  24.36  )
+X-CRM114-CacheID: sfid-20201120_072711_686273_2B29475D 
+X-CRM114-Status: GOOD (  20.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,90 +162,54 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 20/11/2020 10:42, Marc Zyngier wrote:
-> The HDMI driver request clocks early, but never disable them, leaving
-> the clocks on even when the driver is removed.
+> Instead of moving meson_dw_hdmi_init() around which breaks existing
+> platform, let's enable the clock meson_dw_hdmi_init() depends on.
+> This means we don't have to worry about this clock being enabled or
+> not, depending on the boot-loader features.
 > 
-> Fix it by slightly refactoring the clock code, and register a devm
-> action that will eventually disable/unprepare the enabled clocks.
-> 
+> Fixes: b33340e33acd ("drm/meson: dw-hdmi: Ensure that clocks are enabled before touching the TOP registers")
+> Reported-by: Guillaume Tucker <guillaume.tucker@collabora.com>
+> Tested-by: Guillaume Tucker <guillaume.tucker@collabora.com>
 > Signed-off-by: Marc Zyngier <maz@kernel.org>
 > ---
->  drivers/gpu/drm/meson/meson_dw_hdmi.c | 43 ++++++++++++++++++---------
->  1 file changed, 29 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 7f8eea494147..29623b309cb1 100644
+> index 29623b309cb1..aad75a22dc33 100644
 > --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
 > +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -145,8 +145,6 @@ struct meson_dw_hdmi {
->  	struct reset_control *hdmitx_apb;
->  	struct reset_control *hdmitx_ctrl;
->  	struct reset_control *hdmitx_phy;
-> -	struct clk *hdmi_pclk;
-> -	struct clk *venci_clk;
->  	struct regulator *hdmi_supply;
->  	u32 irq_stat;
->  	struct dw_hdmi *hdmi;
-> @@ -946,6 +944,29 @@ static void meson_disable_regulator(void *data)
->  	regulator_disable(data);
->  }
+> @@ -1051,6 +1051,10 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>  	if (ret)
+>  		return ret;
 >  
-> +static void meson_disable_clk(void *data)
-> +{
-> +	clk_disable_unprepare(data);
-> +}
-> +
-> +static int meson_enable_clk(struct device *dev, char *name)
-> +{
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	clk = devm_clk_get(dev, name);
-> +	if (IS_ERR(clk)) {
-> +		dev_err(dev, "Unable to get %s pclk\n", name);
-> +		return PTR_ERR(clk);
-> +	}
-> +
-> +	ret = clk_prepare_enable(clk);
-> +	if (!ret)
-> +		ret = devm_add_action_or_reset(dev, meson_disable_clk, clk);
-> +
-> +	return ret;
-> +}
-> +
->  static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
->  				void *data)
->  {
-> @@ -1026,19 +1047,13 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
->  	if (IS_ERR(meson_dw_hdmi->hdmitx))
->  		return PTR_ERR(meson_dw_hdmi->hdmitx);
->  
-> -	meson_dw_hdmi->hdmi_pclk = devm_clk_get(dev, "isfr");
-> -	if (IS_ERR(meson_dw_hdmi->hdmi_pclk)) {
-> -		dev_err(dev, "Unable to get HDMI pclk\n");
-> -		return PTR_ERR(meson_dw_hdmi->hdmi_pclk);
-> -	}
-> -	clk_prepare_enable(meson_dw_hdmi->hdmi_pclk);
-> +	ret = meson_enable_clk(dev, "isfr");
+> +	ret = meson_enable_clk(dev, "iahb");
 > +	if (ret)
 > +		return ret;
+> +
+>  	ret = meson_enable_clk(dev, "venci");
+>  	if (ret)
+>  		return ret;
+> @@ -1086,6 +1090,8 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
 >  
-> -	meson_dw_hdmi->venci_clk = devm_clk_get(dev, "venci");
-> -	if (IS_ERR(meson_dw_hdmi->venci_clk)) {
-> -		dev_err(dev, "Unable to get venci clk\n");
-> -		return PTR_ERR(meson_dw_hdmi->venci_clk);
-> -	}
-> -	clk_prepare_enable(meson_dw_hdmi->venci_clk);
-> +	ret = meson_enable_clk(dev, "venci");
-> +	if (ret)
-> +		return ret;
+>  	encoder->possible_crtcs = BIT(0);
 >  
->  	dw_plat_data->regm = devm_regmap_init(dev, NULL, meson_dw_hdmi,
->  					      &meson_dw_hdmi_regmap_config);
+> +	meson_dw_hdmi_init(meson_dw_hdmi);
+> +
+>  	DRM_DEBUG_DRIVER("encoder initialized\n");
+>  
+>  	/* Bridge / Connector */
+> @@ -1110,8 +1116,6 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>  	if (IS_ERR(meson_dw_hdmi->hdmi))
+>  		return PTR_ERR(meson_dw_hdmi->hdmi);
+>  
+> -	meson_dw_hdmi_init(meson_dw_hdmi);
+> -
+>  	next_bridge = of_drm_find_bridge(pdev->dev.of_node);
+>  	if (next_bridge)
+>  		drm_bridge_attach(encoder, next_bridge,
 > 
-
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
 
 _______________________________________________
 linux-amlogic mailing list
