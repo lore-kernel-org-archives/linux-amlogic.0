@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53643C63697
-	for <linux-amlogic@archiver.kernel.org>; Sun, 22 Nov 2020 21:56:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BC19C5519F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 22 Nov 2020 21:59:01 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F34012078B
-	for <linux-amlogic@archiver.kernel.org>; Sun, 22 Nov 2020 21:56:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CFBD020757
+	for <linux-amlogic@archiver.kernel.org>; Sun, 22 Nov 2020 21:59:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AdRBFPup";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="o5oORT9C"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F34012078B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MIBduSVO";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="qnOAFZ4z"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CFBD020757
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=DlY9aivldxcsNJnEedU8kmKyOHZsFsRYI/FiMEq3Waw=; b=AdRBFPup5H1XHJLthoY0yCV4G
-	D/8n3mE1lvF+kZovacjRZkwZR7MJBG2Eidz/E8QpzG+DYGKpkIIOWnT9+DKZ2WhRkJNzARMkWxAeE
-	/eggJfR1LXMZl61YiJ0hcR0TXKSpSsaockgC+INrMZEZLJbmjqJPlU7DneqpXrQiPd4S03ZfCMKnR
-	ln+qE00JDSyupVFsKu0h4tGyhzasarB6fRt5oiJYc1o1HfsrgMHxc6UBGAO7aUSjOio7bJcuRTZ9t
-	ZXVeaDjwQhGsF1dBPKk1BRYclC5UKdZnah8FodJLX+6sljCd8an7ugFACs2NDlioZN1VmouJ/yaMl
-	b/+nZc+mw==;
+	 bh=pAyJBvmKitVXSxNYrDEHatKAm9Ki7KSBUQZSB16WJ5c=; b=MIBduSVO5qOdjYRlu8r9qm/w/
+	0neKHKTyILu5k1j7bIbNpOBSfypws67Qc5UqoEQvN4YNBJpUaNQtZ8eVmjgjbqjF/KY7Xdr+pKV4K
+	1aEzzr//moBqkpWx8X38WmLezRoR9z4cj48ZTofwea0XUsBoqdRGL5odAe94UDRqH8G8UjLySOohY
+	QLWO7iyfXbOLC8HG5P+V5giIWUIj6SwMGo6TE7NsbwdoHX7PFCtqYbciPk/1/iadbHSX6gdGwmQZw
+	579LRayQT/qq3DBhOFwmY3N2AvE676qgA8z8JBu6YAt1qm5GNGN2UcsoefAzZCm4s7J7CgZNE1GDO
+	BxZbeCcHA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kgxKv-0007Bf-Rc; Sun, 22 Nov 2020 21:55:57 +0000
-Received: from mail-ej1-x642.google.com ([2a00:1450:4864:20::642])
+	id 1kgxNo-0007hu-4q; Sun, 22 Nov 2020 21:58:56 +0000
+Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kgxKm-00079t-Dh; Sun, 22 Nov 2020 21:55:49 +0000
-Received: by mail-ej1-x642.google.com with SMTP id 7so20640711ejm.0;
- Sun, 22 Nov 2020 13:55:48 -0800 (PST)
+ id 1kgxNl-0007hM-Di; Sun, 22 Nov 2020 21:58:54 +0000
+Received: by mail-ed1-x544.google.com with SMTP id cq7so15137235edb.4;
+ Sun, 22 Nov 2020 13:58:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=NglbjUg/AZr0OKAOaLT2UcZf0xk/vqD/qRJfSLaWvVE=;
- b=o5oORT9CjWoHe0l8ljN9fk2iM6wBRJ702OjZ5frGuSktu17e1p4/Krme2ijOP5UJpZ
- LK9kbaGXvqfwwhav2ILI9dwQZwt0UwvJ785EZ6dAJZU98xjmcJfj5uKisPy/xMg5HlTe
- 7+JIVZo3zIV+6S/sR1+1RePvwz+KXilG65pBrnmdkFeU9cYamw2mwlOcCQ47dyamcwvP
- S6t60bqk+m4huHpGoPS4JQH/j9wqyvTJQF3WBm5MGYPUwTxPCihnLIqKVdpe/3JDnX5N
- +YRhvKun1alXweBqckz8zOoM2Bd3noJzALJ0gSt1kaXcpoaxiG/sArVpKJ/JAI/bA4PM
- 22Tg==
+ :cc; bh=iETOeqXGmNqlviqJArheckaE1gU0xbXAL1OaafL93pE=;
+ b=qnOAFZ4zDJ7HmZT+alrVLLh6n+AGbEc+kRjpKaY0bZo+a4czr333jnx4AsXgqve74O
+ iV8MHAK1xo871+kwgZJEUt2Nt+uI5tXKGHwa9A3Biqt7dEvPKjOTa2Afjvk9phWeoAcb
+ u6G4BhwBVxpTHaX4xSYVN0oCMEO+M43OlE1pLkeUZ6OXNV7AcDeBdcHHSU1eNzDzZXAL
+ pbuzsrXlM4E8oRODhTRYDZo2y3s6kGLqMsL7RT1k5f3/QddiEjxvHLQXpvrttf83ILp3
+ y3JN1nZyDBwZrqzwxw1jN3AI7utDovnkV1bBZ3Kf8cu24opoTbjF2ZrtheqNGISArc7N
+ Cz6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=NglbjUg/AZr0OKAOaLT2UcZf0xk/vqD/qRJfSLaWvVE=;
- b=bXIP7JjrfM0BEA2Vplop6C5ZV0NWq8oVO2n2OLR0fclqydQcCcNpG0deSQzJhzvvpF
- JL8zQUobC7DxBJRP5MDFGiMCKasVpzSyLkbwLJWBnH8A2HeEGVPoH9L9VnnOWdQnf6VW
- 8cIwmEJdVacm087QkIUbF5XeihGENE5AZcBfZwNvqbBaIY3ybl5m+2pm8pHajfC6DtG4
- F0p4BCDCnW1b3S+LgFS9n2hEJQVjXDIPlrgMmjuPVkLTk4FspMAVdrevEoOYl7wd9lly
- FKTaEoFPsz6LV3VMAREsublvXg/LLNZrC0L0Q2J7WRm02sLPjjCqLDPsUPDWr4wLntcl
- Hd7A==
-X-Gm-Message-State: AOAM530fpt9rPiR14sGXd3QxZCcmlP7kiE9bM7rTzdxKx6TCCGObm4o8
- fNO4vw/C2StulO23mdL087nFYr4rDPiiC7KLKc8=
-X-Google-Smtp-Source: ABdhPJzqvbKWp6V/2RVgyExg8QSPIjfWuWLg8UIZPsai9ug5Gk7t77urciW9g1x8tFey+54aK4TStfYxNHjRniuVt/E=
-X-Received: by 2002:a17:906:c821:: with SMTP id
- dd1mr10384090ejb.216.1606082147377; 
- Sun, 22 Nov 2020 13:55:47 -0800 (PST)
+ bh=iETOeqXGmNqlviqJArheckaE1gU0xbXAL1OaafL93pE=;
+ b=niej5FiUbc8Kv0Q4mFK05RBgh8CMN1NUymfxWDSuuqegrIFBBDnOt5cqYeghhed2ng
+ gtshAroLx4/nhOf+UFba2weW1+Z98urCxRnl2p2XMLfP7+5IoQ9dWLU4kkP6Fo1uphZo
+ VeXt29+jHtDL1HE1svenLzQ1grbBSmUkLBCFROzbIN0VhRBIB/jwKy/ewXeDGis7YvLq
+ hqGp3/1sD/rd4e5utSsD8N9xWcDBG56Nsh4sIqYF0oKFBoC7TneMS+kt5BRw45vtnt9Z
+ 9vsjVa6SS8jhoAtTc5GbTJuXJilgQxEZmUqrh66Ehp49NxdStky90j48uzrFbORnPmRS
+ CRSw==
+X-Gm-Message-State: AOAM533IylKrWZvb2k7FqfNShaqivBnqCuijJ2kXwNhQmTbUAB22eM7K
+ kqDLAELIpyd5qWkQKRrtYHY4uOBdz97jpCkMVJXogPPVH/g=
+X-Google-Smtp-Source: ABdhPJx8AHTu+8lRjvvsDw1xPAePlr/xWSlw6xqBpALbAeJCssskj+x4w0zb+ZnzJzf2rh+Z8GUYTzUFpgIzLzCg1Ew=
+X-Received: by 2002:aa7:c889:: with SMTP id p9mr43326461eds.110.1606082332064; 
+ Sun, 22 Nov 2020 13:58:52 -0800 (PST)
 MIME-Version: 1.0
-References: <1605667700-16681-1-git-send-email-yejune.deng@gmail.com>
-In-Reply-To: <1605667700-16681-1-git-send-email-yejune.deng@gmail.com>
+References: <20201120152131.3918814-1-narmstrong@baylibre.com>
+ <20201120152131.3918814-2-narmstrong@baylibre.com>
+In-Reply-To: <20201120152131.3918814-2-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 22 Nov 2020 22:55:36 +0100
-Message-ID: <CAFBinCDYOutJ+kDuEP_9GkqjRo0=TLOHCdVnZwR5N=NZ4PmLyA@mail.gmail.com>
-Subject: Re: [PATCH] soc: amlogic: replace devm_reset_control_array_get()
-To: Yejune Deng <yejune.deng@gmail.com>
+Date: Sun, 22 Nov 2020 22:58:41 +0100
+Message-ID: <CAFBinCDSQdKqYBzBTH4GYeUCtChycvALK8X3XHf44qQp=Ed31A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add PWRC node
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201122_165548_715974_E68DAA90 
-X-CRM114-Status: UNSURE (   7.48  )
+X-CRM114-CacheID: sfid-20201122_165853_472002_847660A9 
+X-CRM114-Status: UNSURE (   7.59  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -90,20 +90,18 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Nov 18, 2020 at 3:48 AM Yejune Deng <yejune.deng@gmail.com> wrote:
+On Fri, Nov 20, 2020 at 4:22 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> devm_reset_control_array_get_exclusive() looks more readable
+> This adds the power controller PWRC node and the corresponding ethernet power domain.
 >
-> Signed-off-by: Yejune Deng <yejune.deng@gmail.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
