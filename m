@@ -2,88 +2,67 @@ Return-Path: <SRS0=nSpp=E5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7C10C56202
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2020 16:38:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9A07C388F9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2020 20:45:17 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 729122073C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2020 16:38:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8AFB820721
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2020 20:45:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RJPbMjFO";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bsiVR9Mm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 729122073C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="27xOE0vZ";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="dI6Y/FEB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8AFB820721
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=XBov2qqSwOgkqI1NFTp0qS74icP233YlvkNW9td5IIY=; b=RJPbMjFOGspojPDJzUHTCnnS1
-	DJTG4rUIjDAmR7zXde0au/7jMWdWq92XTbqT5Nr/54PmqKLP6DB0VyblOwicdA86a9tXHmwDMQtOs
-	Mec1AB3QF7ujd83rCsEqupNpwNKFoLSyBMHFuPcj+YoJcLgIKk3KV1rGPyyU0nI+CP630IU3SoPce
-	o1wS2T7834ievkDAUMIbqaJrUmjDM3cjuWIHW6aAt2P5UfvgTMrpwZlJealH/mlbpLCSj4HYzZ+hJ
-	NrL5I2pNePXFW1+Y620xcX5+UTHQUuGpUJl7yKDT/De9IUisaQ4rhLKrxCmkrl6vBB4RAVf2QveaD
-	3rjNaV9Rg==;
+	 bh=n9xSiRn6Tg8VyCy/tKF3uu0s+lzlxloSMFGlyvdRuZk=; b=27xOE0vZoGeX+UkZC8cl7XPdq
+	EgbjriCasc/djY/mCg5hSo+nBaAGuZfPHvfuXDJ/9sOXKkPEJhsCpY6bCYDsGz4ltuvYgnZiJ89D5
+	3T5rjgjC5LWgGZlVR1YHcS4jxat3hK6qC6Iy+B44PzuEaupM0TjYxWfXEQYz+ksaUz6rpjrhi7pcf
+	Z2gb9aMTalA1I9a1hF7SLMB9UU/T1HRqtZ6gHSZH7z8+ZpVCzrsqyBJJr4P2SUnjrHFjibQ47i/3K
+	E2AaW3eNQ5KRpT7I6o9zOx7D50cCX+Ix+xaIaNmct8Uv6zMg4N64EPv6048MM69iqF8OeZQaGzomH
+	67C6FpZKg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1khErM-0000A0-Kr; Mon, 23 Nov 2020 16:38:36 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1khIhu-000781-Tw; Mon, 23 Nov 2020 20:45:07 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1khEr6-0008Vt-53
- for linux-amlogic@lists.infradead.org; Mon, 23 Nov 2020 16:38:22 +0000
-Received: by mail-wr1-x441.google.com with SMTP id r3so928956wrt.2
- for <linux-amlogic@lists.infradead.org>; Mon, 23 Nov 2020 08:38:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Q5avTsDM6MbYbagqqzSLf9X5FFe4EbwFCqAUyBew2Gc=;
- b=bsiVR9MmCxdO/RJoXzPuNvTXPzqEQFYpuHUMbVD9MgKdaYyyTn/aPe67lcdCK8iI3k
- nvAWR8FhlV9qQohIRFS1h5Jv6FflHtusqkR/UemyvZrq0+H97d8J0QnJoxkvezT+GX4O
- 1tYnL7PFm4q2jCob+k5rWmq/u3ZPeh8bEwSrlu9mU56NlIihZF820CE0x72MAamiTPAa
- Nplcl2RRe99ds0zofPuReZuonza8ex3LwkY0rlSN8DZLBw9gVx48cy7tR41t0jURrBy/
- stzihb0S3D9uGqKGJp65KkT+IEvz3G/hGzO6oHsyT6Pn43kA2Fp/XLfx/zyJaAQRcmFh
- 0uSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Q5avTsDM6MbYbagqqzSLf9X5FFe4EbwFCqAUyBew2Gc=;
- b=T1gMSTKzk349KAaznk8+lKVm8C1eJYbaDBV019d9wjHdAzdYbqaIddOgO3cdFePrm8
- 7l7iGf+V9Q5oJ2FCJQRcIUZSNVYrouafoitF4INQdURl4Qp0i9p/WiP6GtKaJGtAIUSi
- dfF8TND3HKJ3x1ipAg7edwN1U2wTQkP2EfaTOR+6UtPKDi3KK/NPbeJcKvwV54IbTk5S
- p3G9GLQJAzyoIMxZE3PvGFNRi84RKiDOvXL39XGtDALl32NOfoOyfXaHakKnnUXgfRxf
- BUnwAFQGrrqHmPaDbQ71gnr5/hvVZlgDkgIpeTkCjrIK6iMXWNUXtVhJThCLxHHZ9du7
- rhBQ==
-X-Gm-Message-State: AOAM531OGuP1cO5yXHfd1kw4ENk7i7sZVpfE32hNrd4u4BdtClmLku5A
- sjVCwIIJdQt+rqVyIWsURD2sTg==
-X-Google-Smtp-Source: ABdhPJx6pAjMpdAe+9714Rlp3PkaN3t2kdqPdj4MSGVV16wLMsTmu04aZ4SPTNOhvLbSm6jE7O4Mcw==
-X-Received: by 2002:a5d:6050:: with SMTP id j16mr589970wrt.158.1606149499088; 
- Mon, 23 Nov 2020 08:38:19 -0800 (PST)
-Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:9541:d2fd:3a68:67ae])
- by smtp.gmail.com with ESMTPSA id l3sm19566386wmf.0.2020.11.23.08.38.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Nov 2020 08:38:18 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: jbrunet@baylibre.com
-Subject: [PATCH 2/2] clk: meson: g12a: add MIPI DSI Host Pixel Clock
-Date: Mon, 23 Nov 2020 17:38:11 +0100
-Message-Id: <20201123163811.353444-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201123163811.353444-1-narmstrong@baylibre.com>
-References: <20201123163811.353444-1-narmstrong@baylibre.com>
+ id 1khIdq-0005Il-Kd; Mon, 23 Nov 2020 20:41:32 +0000
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net
+ [92.233.91.117])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id BC74E204FD;
+ Mon, 23 Nov 2020 20:40:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1606164053;
+ bh=l4oI3EJf9twL417qKLDDDLHkuxNIhLOKXfN3lkF6Kxg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=dI6Y/FEBhMomP9yXJDZL18c5N1fJUnSufmLsfsEErCEx1I73uujBVn+VmR2nTBil2
+ 7st2qM1JoV+aEr2XQJCNbg/JTowpnkJOkAAUW5m9jaxq8C/w1ZUMTqrjWm7inA4kgh
+ US9uOR3tP2rC+WdSErFnKjZ9+DgugTP0ToQkJ/y8=
+Date: Mon, 23 Nov 2020 20:40:30 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/4] ASoC: meson: depend on COMMON_CLK to fix compile tests
+Message-ID: <20201123204030.GA21709@sirena.org.uk>
+References: <20201116175133.402553-1-krzk@kernel.org>
 MIME-Version: 1.0
+In-Reply-To: <20201116175133.402553-1-krzk@kernel.org>
+X-Cookie: Will stain.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201123_113820_437684_4673BBCB 
-X-CRM114-Status: GOOD (  15.31  )
+X-CRM114-CacheID: sfid-20201123_154054_854649_DB4ACA37 
+X-CRM114-Status: GOOD (  12.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,154 +74,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+ Olivier Moysan <olivier.moysan@st.com>,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Arnaud Pouliquen <arnaud.pouliquen@st.com>, Takashi Iwai <tiwai@suse.com>,
+ Jaroslav Kysela <perex@perex.cz>, Peter Ujfalusi <peter.ujfalusi@ti.com>,
+ kernel test robot <lkp@intel.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: multipart/mixed; boundary="===============2856316639986370325=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds the MIPI DSI Host Pixel Clock, unlike AXG, the pixel clock can be different
-from the VPU ENCL output clock to feed the DSI Host controller with a different clock rate.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/clk/meson/g12a.c | 72 ++++++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/g12a.h |  3 +-
- 2 files changed, 74 insertions(+), 1 deletion(-)
+--===============2856316639986370325==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="OXfL5xGRrasGEqWY"
+Content-Disposition: inline
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index 3cb8196c8e29..3dedf8408405 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -3658,6 +3658,66 @@ static struct clk_regmap g12a_hdmi_tx = {
- 	},
- };
- 
-+/* MIPI DSI Host Clocks */
-+
-+static const struct clk_hw *g12a_mipi_dsi_pxclk_parent_hws[] = {
-+	&g12a_vid_pll.hw,
-+	&g12a_gp0_pll.hw,
-+	&g12a_hifi_pll.hw,
-+	&g12a_mpll1.hw,
-+	&g12a_fclk_div2.hw,
-+	&g12a_fclk_div2p5.hw,
-+	&g12a_fclk_div3.hw,
-+	&g12a_fclk_div7.hw,
-+};
-+
-+static struct clk_regmap g12a_mipi_dsi_pxclk_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_MIPIDSI_PHY_CLK_CNTL,
-+		.mask = 0x7,
-+		.shift = 12,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mipi_dsi_pxclk_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = g12a_mipi_dsi_pxclk_parent_hws,
-+		.num_parents = ARRAY_SIZE(g12a_mipi_dsi_pxclk_parent_hws),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mipi_dsi_pxclk_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_MIPIDSI_PHY_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mipi_dsi_pxclk_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+					&g12a_mipi_dsi_pxclk_sel.hw },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mipi_dsi_pxclk = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MIPIDSI_PHY_CLK_CNTL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "mipi_dsi_pxclk",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+					&g12a_mipi_dsi_pxclk_div.hw },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- /* HDMI Clocks */
- 
- static const struct clk_parent_data g12a_hdmi_parent_data[] = {
-@@ -4403,6 +4463,9 @@ static struct clk_hw_onecell_data g12a_hw_onecell_data = {
- 		[CLKID_SPICC1_SCLK_SEL]		= &g12a_spicc1_sclk_sel.hw,
- 		[CLKID_SPICC1_SCLK_DIV]		= &g12a_spicc1_sclk_div.hw,
- 		[CLKID_SPICC1_SCLK]		= &g12a_spicc1_sclk.hw,
-+		[CLKID_MIPI_DSI_PXCLK_SEL]	= &g12a_mipi_dsi_pxclk_sel.hw,
-+		[CLKID_MIPI_DSI_PXCLK_DIV]	= &g12a_mipi_dsi_pxclk_div.hw,
-+		[CLKID_MIPI_DSI_PXCLK]		= &g12a_mipi_dsi_pxclk.hw,
- 		[NR_CLKS]			= NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -4658,6 +4721,9 @@ static struct clk_hw_onecell_data g12b_hw_onecell_data = {
- 		[CLKID_SPICC1_SCLK_SEL]		= &g12a_spicc1_sclk_sel.hw,
- 		[CLKID_SPICC1_SCLK_DIV]		= &g12a_spicc1_sclk_div.hw,
- 		[CLKID_SPICC1_SCLK]		= &g12a_spicc1_sclk.hw,
-+		[CLKID_MIPI_DSI_PXCLK_SEL]	= &g12a_mipi_dsi_pxclk_sel.hw,
-+		[CLKID_MIPI_DSI_PXCLK_DIV]	= &g12a_mipi_dsi_pxclk_div.hw,
-+		[CLKID_MIPI_DSI_PXCLK]		= &g12a_mipi_dsi_pxclk.hw,
- 		[NR_CLKS]			= NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -4904,6 +4970,9 @@ static struct clk_hw_onecell_data sm1_hw_onecell_data = {
- 		[CLKID_NNA_CORE_CLK_SEL]	= &sm1_nna_core_clk_sel.hw,
- 		[CLKID_NNA_CORE_CLK_DIV]	= &sm1_nna_core_clk_div.hw,
- 		[CLKID_NNA_CORE_CLK]		= &sm1_nna_core_clk.hw,
-+		[CLKID_MIPI_DSI_PXCLK_SEL]	= &g12a_mipi_dsi_pxclk_sel.hw,
-+		[CLKID_MIPI_DSI_PXCLK_DIV]	= &g12a_mipi_dsi_pxclk_div.hw,
-+		[CLKID_MIPI_DSI_PXCLK]		= &g12a_mipi_dsi_pxclk.hw,
- 		[NR_CLKS]			= NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -5151,6 +5220,9 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
- 	&sm1_nna_core_clk_sel,
- 	&sm1_nna_core_clk_div,
- 	&sm1_nna_core_clk,
-+	&g12a_mipi_dsi_pxclk_sel,
-+	&g12a_mipi_dsi_pxclk_div,
-+	&g12a_mipi_dsi_pxclk,
- };
- 
- static const struct reg_sequence g12a_init_regs[] = {
-diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
-index 69b6a69549c7..a97613df38b3 100644
---- a/drivers/clk/meson/g12a.h
-+++ b/drivers/clk/meson/g12a.h
-@@ -264,8 +264,9 @@
- #define CLKID_NNA_AXI_CLK_DIV			263
- #define CLKID_NNA_CORE_CLK_SEL			265
- #define CLKID_NNA_CORE_CLK_DIV			266
-+#define CLKID_MIPI_DSI_PXCLK_DIV		268
- 
--#define NR_CLKS					268
-+#define NR_CLKS					271
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/g12a-clkc.h>
--- 
-2.25.1
 
+--OXfL5xGRrasGEqWY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Mon, Nov 16, 2020 at 06:51:30PM +0100, Krzysztof Kozlowski wrote:
+> The Meson SoC sound drivers use Common Clock Framework thus they cannot
+> be built on platforms without it (e.g. compile test on MIPS with RALINK
+> and SOC_RT305X):
+
+This doesn't apply against current code, please check and resend.
+
+--OXfL5xGRrasGEqWY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+8Hj0ACgkQJNaLcl1U
+h9BQUQf/Zb+qnudCOxcpsy60ses8As7w+FYZS80ubduXvGWgILbXemT1oMzbNgmK
+OBkiqTnFNc6tff+PV8KL223IYl0NE87wbj+TZtPLS2kwcmLzGYN5Nk6tOJ/BqNaL
+NZGwQweuvCXNOZgVaqRuCp2am79NZzjniDlGELtbcdX1bnrbKQqrpfl+OQYOXBxs
+u/xwWXzpd63eM4B4tN8a4S3TsUzJvuypdWshYHELUV5vsxSCXp1NWiire0N1SPO7
+bnkqkZUg10ymAq75x5OE6laeMbsDfwWnS9tRnOJxnN4H8oTMcmzxTQiFD0922P0s
+w0Jrqx6xOb9ZoR7U22kR1FHwhkpH8Q==
+=Zs8x
+-----END PGP SIGNATURE-----
+
+--OXfL5xGRrasGEqWY--
+
+
+--===============2856316639986370325==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2856316639986370325==--
+
