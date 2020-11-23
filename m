@@ -2,92 +2,90 @@ Return-Path: <SRS0=nSpp=E5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7234DC2D0E4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2020 09:29:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C9DCC2D0E4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2020 14:03:54 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8DECA2078E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2020 09:29:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3BBA92075A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2020 14:03:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gSWH7CNT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tc2FSCMk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8DECA2078E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rD57A20R";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="lYFt4ET2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3BBA92075A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=TIUXen9Z+Cnta+dxpuJMf38rChz5zLbnsiP6gDi6PQs=; b=gSWH7CNTNKMeQN6gRegD/eWCr
-	E3cJqbNZPgUd4xIwd9H2itok83d/eOOwYTvhur8L8NzzoMPpgVjhM+wiTm28onX/UwgjFjOTaNrZe
-	+LoBx0KbV7eoWLQjywVH0TV+9Y4OpIF7aIoBIO2WlYe55rTN0AKcosebzYjCdzSmeyUUHVZLW1QW7
-	n5m8INCAa7nHW6QerWSBmp1QvKPGnD6NMtkOnHHyPlCvyQ+8PQOsG+SFfYv8g6zRUmn1UUMpcSq3d
-	cnX3kmaim9AoiaSjnRzqJ20TM56hySQf2rOuh54OOh8ClTCknhGvOw4BvH5nnY8pSDdOktHgWAcFn
-	054aUYKnQ==;
+	 bh=HVMW/nWgQqLXcrPg79tOeHuxgu8sZzjjZN24u/1CG+E=; b=rD57A20RJPE+GDNz7TThB1mtU
+	NIqQCyJtPSEsQmhdaRLlt0uCpPT6sdD//kzhIy1israQSkfUPn/KwEytZ4L8YLcZ0XnPOJBZoDVBP
+	eYbHjWxSiL69RbMVNh970IA2k4gyduNJUFum9aZag7lWlWAk4uAJemoI1/sZdbY3iJO/qzLI6MY+P
+	ygpYjNoqo89BR69iq7gVYQFlttxBvNDAAMMl7aGynsQr5U8yix9VlqRKkRtq1VC24S3jcxmN9Rc1F
+	qByeFD1rDrsYd4+5cKpeh4gkWuOJ/ixnCE4LJcRh9Yd54cRRk9f0SXy3S2RbpEwLzXwPbw/7vFXR1
+	0lKRwxm+w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kh89o-0004on-7o; Mon, 23 Nov 2020 09:29:12 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1khCRW-0002Xc-V8; Mon, 23 Nov 2020 14:03:47 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kh89l-0004o7-Nx
- for linux-amlogic@lists.infradead.org; Mon, 23 Nov 2020 09:29:11 +0000
-Received: by mail-wr1-x442.google.com with SMTP id p8so17876877wrx.5
- for <linux-amlogic@lists.infradead.org>; Mon, 23 Nov 2020 01:29:08 -0800 (PST)
+ id 1khCRR-0002VT-SQ
+ for linux-amlogic@lists.infradead.org; Mon, 23 Nov 2020 14:03:43 +0000
+Received: by mail-wm1-x343.google.com with SMTP id w24so17362711wmi.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 23 Nov 2020 06:03:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=oP064/YoSybWWI1ICcTHgnGH1OvAg15H5I+x0Ai9JRM=;
- b=tc2FSCMksV59M4EtjiNWL8jYvxSmVR5HwDIE2Tr71m7qnAClPF0WfZkK6l1j/v1pgg
- x3DTXnv21DuT7mxGXmNG95HWVVpIqYllKM/ceX8Fk8RbADMKqK3EGw2NAn20RT50uLx9
- vzqySDtlWJF3MoZCG8RGUDaaMsLff8t+PiO1O6H5/57hg3Vi6lG8UYMjV9YhVpj6JKhA
- Xue3Hp163rBm56BqB6SfMRrGA/D/n14zLO0EG3XGCEnzGT3vvfVEHtAYk+vH8n8i6VFR
- Zj6MDGOiEXGasq1wZNU2vR5zQxf9gHNLRMH3CaCTrxQ8shv8EmDqwRwN7OUX8Jc+XDCG
- 2/cQ==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
+ :date:mime-version;
+ bh=vXp3Sxctq9VkObljnq0YBLK27eqIoDcu7q1uLV6sriI=;
+ b=lYFt4ET27fdwgzZV6Gkc4ybnFVihvBTJaIa6rJ+vsitRg1hhECDLPMNrdpsgFQdmOV
+ 0PTTMUTD+GZaxQySyfd5XbbEFujkcJjieVRlxFDe2/cD7kUTHyl3x8+xjDTROhn/uE8j
+ 5szxCxVKimS4TgY7ddfjMuND/xhWdZtPeKnv22na0aqW4L7tpe3g64rtV9D4Mh6JmQGj
+ uH3GPwVwP9bDxDOFnpKADgK3RvvxajRKflO4Jh6QR0VkwDZIhAEhr/F6hNFeQX96NQYR
+ UFBgfSgnWtnabYKvAS52Dmla9BQ1+EtyRfZ5vPL1hctcZTHhwrfBLfz540p28PkzWkzz
+ 9DkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=oP064/YoSybWWI1ICcTHgnGH1OvAg15H5I+x0Ai9JRM=;
- b=sgUbXn5Wwpc0HAxIJsVa48OVm4qmSjaTnOx52Me1aZ0ec07M+iuNZFHK1adpiknWlt
- rE0UddDQSZ/rK8hLCiZgTkiGxLig0dlv4IbUK3RtENgNMWF8UamyDeF4TNrQlGWWyUSO
- D7veV399fYSAl25Je6hvQMohS6Z4tMntsY0QVAf9kNDrJDm1AezsjjIfQ/VGcOv5GlKl
- tiBygpOwbKL0LHwJUeMGZZNyCtK6nDLYkn+l5iGmNWh5hw3UnCA801D04jUEGWuKuvcU
- 83mbTAycEU3dF2pDCVOt3d8GD4rBTZ7Rh7KiFa8Bty7VyfkvxsNYzvH+XF+PQMHHXvLi
- DHaA==
-X-Gm-Message-State: AOAM533ygF66bb0Doe1dGGReuFC+KWf5I5kHosUh9ihl5tf88+Z9PB9I
- LeW9tLt/zqDBp4svkORNg4yXoA==
-X-Google-Smtp-Source: ABdhPJze2Z5hY7lJwWf2ixUnWns3PM39g8MYfbp1DWWbev6ip3HKIrUgxapU+GPCk1Cbcjffb3NKdA==
-X-Received: by 2002:a5d:6743:: with SMTP id l3mr29498818wrw.82.1606123747181; 
- Mon, 23 Nov 2020 01:29:07 -0800 (PST)
-Received: from ?IPv6:2001:861:3a84:7260:8466:ae5d:28e6:8c59?
- ([2001:861:3a84:7260:8466:ae5d:28e6:8c59])
- by smtp.gmail.com with ESMTPSA id a15sm18441848wrn.75.2020.11.23.01.29.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 23 Nov 2020 01:29:06 -0800 (PST)
-Subject: Re: [PATCH 0/3] usb: meson: fix shared reset control use
-To: Kevin Hilman <khilman@baylibre.com>, Felipe Balbi <balbi@kernel.org>
-References: <20201113000508.14702-1-aouledameur@baylibre.com>
-From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Message-ID: <093933fc-eac5-de56-d314-a1348de348af@baylibre.com>
-Date: Mon, 23 Nov 2020 10:29:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:message-id:date:mime-version;
+ bh=vXp3Sxctq9VkObljnq0YBLK27eqIoDcu7q1uLV6sriI=;
+ b=seYSLKzu7REU2Io7NMi2hiB2hot0UQP6BfcrLpMU3RMi6P1UkwAkEksX6cQvD7PKaj
+ N6itij5vtxhg4wZYEqMpapdJGxm4GUMqZWnknptqgtgK1Iw/KdPcOV+3roKmVU7ui9f2
+ m3z3Az3MIYWmJxMA/5uAxRRKQTc15cy6/FPbZ13GsnbOalQaBp2CUcxnQaYZgvMUJOTC
+ X//J1AHwf+l4yqYRMGd+ALbxTX7bAZopnNP2sjjrlWhaksLvR2p5pvc8Fj9gOAXPdCq0
+ dP8v3rGaNLd9vgfJY+xNkZybKHWzT9MFb+xQSuWBp2MSs1LOdoUhR29+iNGnRmzqcGdV
+ od+A==
+X-Gm-Message-State: AOAM533LfAtCaPHMcElRQl5og+u6Xlm9cUeuh2Vf7euhenVUNMBQUf3H
+ 0dCfddI3CeadCOMwSHlv2MRzWQ==
+X-Google-Smtp-Source: ABdhPJw3gonmwJioLtDDPdO6LRztyMyzSHRvtjQP+sbEh6Jcgi2gQk8QcqDyOUwDBlBkeT0oTnf5sQ==
+X-Received: by 2002:a1c:f219:: with SMTP id s25mr7258057wmc.67.1606140219296; 
+ Mon, 23 Nov 2020 06:03:39 -0800 (PST)
+Received: from localhost (253.35.17.109.rev.sfr.net. [109.17.35.253])
+ by smtp.gmail.com with ESMTPSA id x4sm4284619wrv.81.2020.11.23.06.03.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 23 Nov 2020 06:03:38 -0800 (PST)
+References: <20201120094205.525228-1-maz@kernel.org>
+ <20201120094205.525228-2-maz@kernel.org>
+User-agent: mu4e 1.4.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Marc Zyngier <maz@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH 1/2] drm/meson: dw-hdmi: Disable clocks on driver teardown
+In-reply-to: <20201120094205.525228-2-maz@kernel.org>
+Message-ID: <1jwnyc41c6.fsf@starbuckisacylon.baylibre.com>
+Date: Mon, 23 Nov 2020 15:03:37 +0100
 MIME-Version: 1.0
-In-Reply-To: <20201113000508.14702-1-aouledameur@baylibre.com>
-Content-Language: fr
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201123_042909_896482_9BF1BB72 
-X-CRM114-Status: GOOD (  17.98  )
+X-CRM114-CacheID: sfid-20201123_090342_020416_F27FB98A 
+X-CRM114-Status: GOOD (  21.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,58 +97,108 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Guillaume Tucker <guillaume.tucker@collabora.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, kernel-team@android.com,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Felipe and Kevin,
 
+On Fri 20 Nov 2020 at 10:42, Marc Zyngier <maz@kernel.org> wrote:
 
-Could you please review this patchset ?
+> The HDMI driver request clocks early, but never disable them, leaving
+> the clocks on even when the driver is removed.
+>
+> Fix it by slightly refactoring the clock code, and register a devm
+> action that will eventually disable/unprepare the enabled clocks.
+>
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> ---
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c | 43 ++++++++++++++++++---------
+>  1 file changed, 29 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> index 7f8eea494147..29623b309cb1 100644
+> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> @@ -145,8 +145,6 @@ struct meson_dw_hdmi {
+>  	struct reset_control *hdmitx_apb;
+>  	struct reset_control *hdmitx_ctrl;
+>  	struct reset_control *hdmitx_phy;
+> -	struct clk *hdmi_pclk;
+> -	struct clk *venci_clk;
+>  	struct regulator *hdmi_supply;
+>  	u32 irq_stat;
+>  	struct dw_hdmi *hdmi;
+> @@ -946,6 +944,29 @@ static void meson_disable_regulator(void *data)
+>  	regulator_disable(data);
+>  }
+>  
+> +static void meson_disable_clk(void *data)
+> +{
+> +	clk_disable_unprepare(data);
+> +}
+> +
+> +static int meson_enable_clk(struct device *dev, char *name)
+> +{
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	clk = devm_clk_get(dev, name);
+> +	if (IS_ERR(clk)) {
+> +		dev_err(dev, "Unable to get %s pclk\n", name);
+> +		return PTR_ERR(clk);
+> +	}
+> +
+> +	ret = clk_prepare_enable(clk);
+> +	if (!ret)
+> +		ret = devm_add_action_or_reset(dev, meson_disable_clk,
+> clk);
 
-Thank you in advance.
+Thanks for fixing this Marc.
 
-On 13/11/2020 01:05, Amjad Ouled-Ameur wrote:
+FYI, while it is fine to declare a function to disable the clocks, a quick
+cast may avoid it
 
-> This patchset fixes a usb suspend warning seen on the libretech-cc by
-> using reset_control_rearm() call of the reset framework API.
-> This call allows a reset consummer to release the reset line even when
-> just triggered so that it may be triggered again by other reset
-> consummers.
->
-> reset_control_(de)assert() calls are called, in some meson usb drivers,
-> on a shared reset line when reset_control_reset has been used. This is not
-> allowed by the reset framework.
->
-> Finally the meson usb drivers are updated to use this new call, which
-> solves the suspend issue addressed by the previous reverted
-> commit 7a410953d1fb ("usb: dwc3: meson-g12a: fix shared reset control
-> use").
->
-> Important:
-> Please DO NOT merge before this patch [0] is merged, it adds
-> reset_control_rearm() call to the reset framework API.
->
-> [0] https://lore.kernel.org/lkml/20201112230043.28987-1-aouledameur@baylib
-> re.com/
->
-> Amjad Ouled-Ameur (3):
->    phy: amlogic: phy-meson-gxl-usb2: fix shared reset controller use
->    usb: dwc3: meson-g12a: fix shared reset control use
->    phy: amlogic: meson8b-usb2: fix shared reset control use
->
->   drivers/phy/amlogic/phy-meson-gxl-usb2.c |  5 ++++-
->   drivers/phy/amlogic/phy-meson8b-usb2.c   |  4 ++++
->   drivers/usb/dwc3/dwc3-meson-g12a.c       | 19 +++++++++++++------
->   3 files changed, 21 insertions(+), 7 deletions(-)
->
->
-Sincerely,
-Amjad
+devm_add_action_or_reset(dev, (void(*)(void *))clk_disable_unprepare, clk);
+
+> +
+> +	return ret;
+> +}
+> +
+>  static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>  				void *data)
+>  {
+> @@ -1026,19 +1047,13 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>  	if (IS_ERR(meson_dw_hdmi->hdmitx))
+>  		return PTR_ERR(meson_dw_hdmi->hdmitx);
+>  
+> -	meson_dw_hdmi->hdmi_pclk = devm_clk_get(dev, "isfr");
+> -	if (IS_ERR(meson_dw_hdmi->hdmi_pclk)) {
+> -		dev_err(dev, "Unable to get HDMI pclk\n");
+> -		return PTR_ERR(meson_dw_hdmi->hdmi_pclk);
+> -	}
+> -	clk_prepare_enable(meson_dw_hdmi->hdmi_pclk);
+> +	ret = meson_enable_clk(dev, "isfr");
+> +	if (ret)
+> +		return ret;
+>  
+> -	meson_dw_hdmi->venci_clk = devm_clk_get(dev, "venci");
+> -	if (IS_ERR(meson_dw_hdmi->venci_clk)) {
+> -		dev_err(dev, "Unable to get venci clk\n");
+> -		return PTR_ERR(meson_dw_hdmi->venci_clk);
+> -	}
+> -	clk_prepare_enable(meson_dw_hdmi->venci_clk);
+> +	ret = meson_enable_clk(dev, "venci");
+> +	if (ret)
+> +		return ret;
+>  
+>  	dw_plat_data->regm = devm_regmap_init(dev, NULL, meson_dw_hdmi,
+>  					      &meson_dw_hdmi_regmap_config);
 
 
 _______________________________________________
