@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1100C56202
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 02:40:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E3E9BC63798
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 05:29:30 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 77EF420872
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 02:40:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4287B20B1F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 05:29:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DeoqrSv8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jrSzE+Tp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 77EF420872
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="yxIPtyVX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V6PyMx1Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4287B20B1F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,60 +27,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Rq4gcyV3Upa3kWQJYis7KzDil9msG3pPBMyxe5sY/Gg=; b=DeoqrSv8pBiNLzw4N0yFYDDKo6
-	0YjFQILil+lTm9swY3Qcm7PE1+sl3huHX+ZAkjL1dcEuKnph2eD4CGQHFKjjTSyjRKc2/P8+ZOAjw
-	CF2Vi8PTifOCxPPb0v8+PbkN7HhFwDGLB2F2iEe1TUHy6fFCfLvJ8tBsF1dnGQeNwd9iq5ZAcrO8a
-	ScUQI9+5nTIsNoReu0uL7LnT2DHwB28MdcjVfsOvYiLW8Bd70khpQ41SheQnvC/xL5YxzcecnTwa8
-	hvdTCzaSJ1gPGrWSZRPYS7f/jX795lCsdd7VLnhZvI1Unki6k4XOM8uW7fbH3c92t/ZR0aX45hnSO
-	Jo2NnskQ==;
+	bh=B2z/yvxfV5HsRhvmOpcCHOug6TcPNoKvT9U6G6fU2JA=; b=yxIPtyVXUS04kn/etNLBSctRk1
+	rDjS4XHmqWsSMs3pjXLp+YN+zRThk1zlJ5YIyciPwBqlG61niASGfmio99mBZ9lmccaZH/9dJVwmu
+	eBweXTLKF57eiOpJnEplSVA3b7fGqXChZxDfrr/Av+AUyRVVh3OJo5RDCkDy44VBgrcSIXtxMA7eM
+	AJacf9AeRvKfAkF/l70n8+OhWrzmLmxW+rjMO/aRxON5f0z5M64IHQDPx/arXjUC6slmcL5M3L/Hx
+	5sNjD3mkj5e/Zw75MUYF7ny3yH089m9KSbs4r70ik4u+6llILXi1SF1+G+XJ5r7JeuzCrE51i/8rI
+	lbpHXbJQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1khkj5-0004by-9e; Wed, 25 Nov 2020 02:40:11 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1khnMp-0006kn-L1; Wed, 25 Nov 2020 05:29:23 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1khkj1-0004b3-06; Wed, 25 Nov 2020 02:40:08 +0000
-Received: by mail-wr1-x443.google.com with SMTP id e7so393806wrv.6;
- Tue, 24 Nov 2020 18:40:06 -0800 (PST)
+ id 1khnMl-0006k4-Te; Wed, 25 Nov 2020 05:29:20 +0000
+Received: by mail-wm1-x341.google.com with SMTP id h21so965853wmb.2;
+ Tue, 24 Nov 2020 21:29:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id;
- bh=2DCnZPa11FhjnY6LNsxv2jfgvHUVsLu9/gulnrkgaWA=;
- b=jrSzE+TpJrRF+iIv5NMouE2PfzpLpkKELPrmJ7Ky0zuruNumq/G6t8W/nffoxWE1+L
- aEQddZebyF9ggEs1Dqlzm4mMXI3KFusflAvb1BGrLWZojjM5Q6VJvEeamFdsknBonTWz
- lsOwzmvWbmUoab8A7F0cI4FjCu/hDe4rgUzcUpmP1/ykbB+GzNDJJ7AY0DYIFQZnLXFp
- tw6JCz7gWLUmqolTa4avG88vDvlipVdpSeSWmrAOuyt1vzofrFwWgH2xDvlLAVQ+1sTL
- BRyLklC6NeyYMBKuWMVDOr0Wm0fVKpQZg5+I7GAkUIvVhYl07uxRIHSPoh0305XsYeWI
- sZ5Q==
+ bh=9/VyulasGLfNRZhFbuEx/v+zb6WhDEFLeGB6bc5kOlw=;
+ b=V6PyMx1YCB2d4scqQohV3x/vNdZFji6nnwTpeehpun0H0R9lj1a05oNcwWLxaOhn71
+ tJQYzPjCeZu/7s3tIWP8tEMaaM5MsZCroauf4358BJ1JfZqjxbMDPP20Ck8UyMmlsjb3
+ LRXyCZLlZXynxwim7MRT/+CuD8CiBAiedm1k7RxOyIYjwWcpXQRPn1vjJMMpTBeYtwRQ
+ vuTNl21ynhZjClO8LgJEraTHyWDgfQUnuHrNg0xwTlbi9kUD9yGYimSKxAwAZSmCRpuo
+ SXgzps5XgZZyrkb8MXks5bmWsnZ+/lIXYklb5YBwE/l/DcUe1zQQLvcMJoE8ucmBVHG0
+ uyjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=2DCnZPa11FhjnY6LNsxv2jfgvHUVsLu9/gulnrkgaWA=;
- b=pZDe0s0U+nahbCopWlsr+vUuemeWb5wdHnM1+aGD9OfOY1ixGHvDg4VHHVrPa4P+Fh
- 6cqmD/U/HnP86XDhRFIDfD3pqh/mKOuHLABiXYk5w87gE6jJF+V7VR6AHW5EGa7Syr5u
- jEn7GXddoLwsWPiQmBNWVdVmJy+2hXYqUd52AV9LVc+yTvLxcViLqpvvM33zuq/9blwB
- iZSrvrhI3uyCNDDVR8XoaedfwPZ10IJGfjIIbTx6sjex7KxLZwQMu+5hVBenpgh6b2zQ
- CTDOXg5XMbol5jRJqPLImejI+3Uy/qX4t7pPmMdy8i+Zq39SQiBFE5E1RW/km1vzS7BQ
- dlzg==
-X-Gm-Message-State: AOAM53215MTqpk0QYKWvtLBD5NAHQiDalg59NAok8jaQbYsmztAQ6QpW
- e3Kgr7h3f+M5qs4rAnCgUTU=
-X-Google-Smtp-Source: ABdhPJzdmzCm13OlX43VhOcew3MqUkCBjjePrJJij0TKd6+NPs2L2Lo1n24hFiH6A1TK66jNnn5P+w==
-X-Received: by 2002:adf:e481:: with SMTP id i1mr1447426wrm.282.1606272005815; 
- Tue, 24 Nov 2020 18:40:05 -0800 (PST)
+ bh=9/VyulasGLfNRZhFbuEx/v+zb6WhDEFLeGB6bc5kOlw=;
+ b=oPGnhzV1mwIIIZWsBST/dhJbUr73Q28Qlwem7KOQ2JL652atTSbhBhPWPJ/2pDzgOn
+ NCIyGK7sOhSQpGANdnWa01i2W2lxLnJ3qpScKMW+GMqLebkHuc4TlrJst4knZ5nahl4h
+ 36vQR2VxhDkT2+qgoDLnFVEJvd39etgKnOAFMxre4FXYg06//blIVKZghOoHsn9u/RJS
+ 30ESBm0EN4oGjrX1Snqd5DrhgqmcW5jB/zVr2Qse3UPKABlb0D83xG+C9bAdk8FSMv5J
+ n44/nljyD1AmlVVqfLxLO+39bQZescXr9gJSDJb2L7MJ0GR1jKllWH8V2YtaZzf3fuu2
+ gk4Q==
+X-Gm-Message-State: AOAM530VwfVxFihYwng6M7JjscffiQe1YTeSnb632nBQyHl4YgGdmSAA
+ Mz24ZEBOlwSCuUvMlQOejFk=
+X-Google-Smtp-Source: ABdhPJzzC91a7bxl4p9PJJ0B1x51PIcIGJdAXL14Xb8n+0yVk6tn7FR2vhinu4Fc//tJsTOPPYpZDQ==
+X-Received: by 2002:a7b:cf09:: with SMTP id l9mr1860237wmg.54.1606282158885;
+ Tue, 24 Nov 2020 21:29:18 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id q1sm1668653wrj.8.2020.11.24.18.40.03
+ by smtp.gmail.com with ESMTPSA id d128sm2430249wmc.7.2020.11.24.21.29.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Nov 2020 18:40:05 -0800 (PST)
+ Tue, 24 Nov 2020 21:29:18 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: fix spi-max-frequency on Khadas VIM2
-Date: Wed, 25 Nov 2020 02:40:01 +0000
-Message-Id: <20201125024001.19036-1-christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: update the Khadas VIM3/3L LED bindings
+Date: Wed, 25 Nov 2020 05:29:14 +0000
+Message-Id: <20201125052914.4092-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201124_214007_109832_069B1D3A 
-X-CRM114-Status: GOOD (  14.75  )
+X-CRM114-CacheID: sfid-20201125_002919_970376_86864D5B 
+X-CRM114-Status: GOOD (  13.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,36 +100,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Artem Lapkin <art@khadas.com>
+Update the VIM3/3L common dtsi to use the new function/color bindings.
 
-The max frequency for the w25q32 (VIM v1.2) and w25q128 (VIM v1.4) spifc
-chip should be 104Mhz not 30MHz.
-
-Fixes: b8b74dda3908 ("ARM64: dts: meson-gxm: Add support for Khadas VIM2")
-Signed-off-by: Artem Lapkin <art@khadas.com>
+Suggested-by: Artem Lapkin <art@khadas.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
-This change was previously submitted as [0] which has style issues and
-remains unmerged. It is also part of a two patch series where the other
-patch needs further work to convert to newer LED bindings.
+This supersedes a previous submission from Art [0] and uses the updated
+LED bindings suggested by Neil.
 
-[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200928092613.273998-3-art@khadas.com/
+[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200925033017.1790973-4-art@khadas.com/
 
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index 39e6047056b2..079500ed5066 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -391,7 +391,7 @@
- 		#size-cells = <1>;
- 		compatible = "winbond,w25q16", "jedec,spi-nor";
- 		reg = <0>;
--		spi-max-frequency = <3000000>;
-+		spi-max-frequency = <104000000>;
- 	};
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+index 87bd8c9516f2..8f8656262ae7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+@@ -6,6 +6,7 @@
+  */
  
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/gpio/meson-g12a-gpio.h>
+ #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+ 
+@@ -42,14 +43,16 @@
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		led-white {
+-			label = "vim3:white:sys";
++		white {
++			color = <LED_COLOR_ID_WHITE>;
++			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 
+-		led-red {
+-			label = "vim3:red";
++		red {
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
+ 		};
+ 	};
 -- 
 2.17.1
 
