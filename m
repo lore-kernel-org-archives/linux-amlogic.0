@@ -2,56 +2,90 @@ Return-Path: <SRS0=UCsf=E7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 05B0CC56202
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 11:09:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24113C56202
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 16:24:26 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 82BA8206E5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 11:09:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A84B9206F7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 16:24:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XFC1VEhB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 82BA8206E5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ucw.cz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nVEa8NbK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YavSxQY4"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A84B9206F7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=tThJI7kIwqWDKyAGLx/56vQJfwHeF6OQP4SdpNYEPDA=; b=XFC1VEhBKwOLJsK2SZc3idw/4
-	Qn5mkFjQZpf3zRHeFdNnTav47kc4gvKExVkbaTc+Eoa5YEZbRTHXIqGCE1EsmlNwX1228L9GlzMax
-	j6rXeXhott03E9iAIOXA0DMAyz7NDlKH97Yeb33djiSvbBmCnDCvL4y3qHxcPk59tYNqt8wIrvVxc
-	TBDHkrDL4ul1cP6IDCe7HgMX4bvS0LXnA+bXcchxtTZK8eRwheW8wcw9hu3Xd/IjPhzUcVX6iC7Vu
-	y2cpjCxigL4DDfvWTz39sp0VqtGJVg2b5kRue7SQG7jxNZfvG2BC5LMOUqiFpTA6ctL745nVPIVrU
-	RBWzlfkCA==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:MIME-Version:Message-ID:Subject:To:From:Date:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=39fbVXzGcRKL9i1d+XhgUEtN2uR7xXXlnvxDjFaVlmc=; b=nVEa8NbKXJPjA3ACHNGfaF5gLW
+	ICKDUBO3HEJ9otuzQeRFJ1DGMOdFUu8ABIwszvdfaSjUXiLhtXZLmEjb4NqBIvo7n4UXBiG6bFwsC
+	Gqzi5gMS1cuFl8TIOXu5+PcilOKkI7a0J4GNv0UGNT6/4qTtp8QK+4ZRairVVTYQwxzf/yx9NL0HY
+	ciAyx2kEAwkOijsqUO0iXcGwXrQ/bUbboZ/3L7r6Do5aMm6R48knrPjh7wnaQN8vepUFQybIECZTZ
+	zRIabJqUXuuxpIKXJvXNVMyHw3Sf/KOByr1dZbgBG2isBoXKR8VOHSarvv/9bRwcELv9r5Hk3E0Lm
+	falhSwmg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1khsfd-0006qy-8j; Wed, 25 Nov 2020 11:09:09 +0000
-Received: from jabberwock.ucw.cz ([46.255.230.98])
+	id 1khxac-0000yK-4X; Wed, 25 Nov 2020 16:24:18 +0000
+Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1khsfa-0006pP-4l; Wed, 25 Nov 2020 11:09:07 +0000
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id DE8411C0B81; Wed, 25 Nov 2020 12:08:58 +0100 (CET)
-Date: Wed, 25 Nov 2020 12:08:57 +0100
-From: Pavel Machek <pavel@ucw.cz>
-To: Alexander Dahl <post@lespocky.de>
-Subject: Re: [PATCH v7 02/12] dt-bindings: leds: Convert pwm to yaml
-Message-ID: <20201125110857.GB29328@amd>
-References: <20201005203451.9985-1-post@lespocky.de>
- <20201005203451.9985-3-post@lespocky.de>
+ id 1khxaZ-0000wJ-W4
+ for linux-amlogic@lists.infradead.org; Wed, 25 Nov 2020 16:24:16 +0000
+Received: by mail-pg1-x543.google.com with SMTP id k11so193867pgq.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 25 Nov 2020 08:24:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:subject:message-id:mime-version:content-disposition;
+ bh=3+3gfHD91/328qfooN+OsmJ9PHiYPgpjIR8tzOiYBHo=;
+ b=YavSxQY4iVhrdX0h9CXAQtfQY3M/lSfjiujDt3l6QkRWufd91bgIX9sSzVy/CJPQrq
+ O5CBFNRz30U5BB2MtV0PC7AlA7DIr1/WCYNY6O5N3bDGVQzIb2auyr/opkOZ/7bHa9CW
+ LQ4zKVgVpfc30Ou7esFAYnagn3CYfwnMQKlvKuJ+QFnmEaluVp/REQeVECsmrJnWeaYC
+ iKC4so2wF9PdUkTGZrRwc7unrzLxFU3jCjfaiaHM0J99PfhqD/vuk5pUuRTxtySIVsMI
+ cPUwyixg1xr3OpqZ8pW6FqcXtNq3aKrjc6ySOfwHdPX7pwyikvv8a7p1OwmraJD0fF0a
+ 8frQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+ :content-disposition;
+ bh=3+3gfHD91/328qfooN+OsmJ9PHiYPgpjIR8tzOiYBHo=;
+ b=sV0IAdBM9KFLXl0rdySa2SVOfhy+8QWc47ciOgKbxGgsqBZO2oWhHcdqG6DWGp+9Ux
+ 5IY5m4/8cZpbvKhuXpC4a3gDbb6A/17+0lj1sFSGfK2YuNOMk84yn44h7CTcTBA+bEgm
+ IhMTqUcFflB8gHM9DvEaDoLOvmxkuc1WVhRE56VB7ajxZ7P+B2S3A1NAR/Gd/WSR+TUK
+ VZBeGnQgw0OAlLTpVivyPNSBQT2TZQ0G3Y2sy1sWD7gRJAc4GMIwIe9PV7fxdSvvNWSk
+ k+ewoWZJn2bsKQy4bkMXvA2upOHFRlAMMlp5Kfu8p8ICqjjjntdORT/He84tt6m4AyfT
+ NvVA==
+X-Gm-Message-State: AOAM532euq5txxbU0PK/HX5tk4DaMusSsXE/21ZQ68/j/xuubZ4tTwKu
+ mwNYeCeV/lv+c6jMrv/Gt0Y=
+X-Google-Smtp-Source: ABdhPJxClJOLijc/qN4Y2TsUHFrwBBO/dNGfLQT1DiaRCkxu34lVJljgWO/JNiNtq4Nwes8TWw/gNw==
+X-Received: by 2002:a62:61c2:0:b029:197:f5ee:6ffa with SMTP id
+ v185-20020a6261c20000b0290197f5ee6ffamr3134826pfb.18.1606321451401; 
+ Wed, 25 Nov 2020 08:24:11 -0800 (PST)
+Received: from paju ([116.124.119.85])
+ by smtp.gmail.com with ESMTPSA id e4sm2613862pfh.90.2020.11.25.08.24.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 25 Nov 2020 08:24:10 -0800 (PST)
+Date: Thu, 26 Nov 2020 01:24:05 +0900
+From: Dongjin Kim <tobetter@gmail.com>
+To: Guillaume La Roque <glaroque@baylibre.com>,
+ Zhang Rui <rui.zhang@intel.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Amit Kucheria <amitk@kernel.org>, linux-pm@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] thermal: amlogic_thermal: Add hwmon support
+Message-ID: <20201125162405.GA1263100@paju>
 MIME-Version: 1.0
-In-Reply-To: <20201005203451.9985-3-post@lespocky.de>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201125_060906_299127_7A92827C 
-X-CRM114-Status: GOOD (  13.28  )
+X-CRM114-CacheID: sfid-20201125_112416_062650_F7E86CBB 
+X-CRM114-Status: GOOD (  11.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,71 +97,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org,
- Peter Ujfalusi <peter.ujfalusi@ti.com>, Russell King <linux@armlinux.org.uk>,
- Rob Herring <robh+dt@kernel.org>, Dan Murphy <dmurphy@ti.com>,
- linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3506254359841352131=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Expose Amlogic thermal as HWMON devices.
 
---===============3506254359841352131==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="1LKvkjL3sHcu1TtY"
-Content-Disposition: inline
+	$ sensors
+	cpu_thermal-virtual-0
+	Adapter: Virtual device
+	temp1:        +32.2 C  (crit = +110.0 C)
 
+	ddr_thermal-virtual-0
+	Adapter: Virtual device
+	temp1:        +33.4 C  (crit = +110.0 C)
 
---1LKvkjL3sHcu1TtY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Dongjin Kim <tobetter@gmail.com>
+---
+ drivers/thermal/amlogic_thermal.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On Mon 2020-10-05 22:34:41, Alexander Dahl wrote:
-> The example was adapted in the following ways:
->=20
-> - make use of the now supported 'function' and 'color' properties
-> - remove pwm nodes, those are documented elsewhere
-> - align node names to new dt schema rules and dt recommendations
->=20
-> License was not explicitly set before.  The license set now is
-> recommended by DT project.
+diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
+index ccb1fe18e993..2fce96c32586 100644
+--- a/drivers/thermal/amlogic_thermal.c
++++ b/drivers/thermal/amlogic_thermal.c
+@@ -29,6 +29,7 @@
+ #include <linux/thermal.h>
+ 
+ #include "thermal_core.h"
++#include "thermal_hwmon.h"
+ 
+ #define TSENSOR_CFG_REG1			0x4
+ 	#define TSENSOR_CFG_REG1_RSET_VBG	BIT(12)
+@@ -291,6 +292,9 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
++	if (devm_thermal_add_hwmon_sysfs(pdata->tzd))
++		dev_warn(&pdev->dev, "failed to add hwmon sysfs attributes\n");
++
+ 	ret = amlogic_thermal_enable(pdata);
+ 
+ 	return ret;
+-- 
+2.25.1
 
-Thanks, applied.
-
---=20
-http://www.livejournal.com/~pavelmachek
-
---1LKvkjL3sHcu1TtY
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAl++O0kACgkQMOfwapXb+vLvYQCfSrT2zUj7/3jKJFtBZiq7y/0y
-Y9sAoIwWjoquHqI4g3lZi2UtfAqMF2A3
-=YG1i
------END PGP SIGNATURE-----
-
---1LKvkjL3sHcu1TtY--
-
-
---===============3506254359841352131==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3506254359841352131==--
-
