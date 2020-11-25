@@ -2,90 +2,79 @@ Return-Path: <SRS0=UCsf=E7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24113C56202
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 16:24:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B29CC56202
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 16:45:19 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A84B9206F7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 16:24:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B6FA02083E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2020 16:45:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nVEa8NbK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YavSxQY4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A84B9206F7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tq+6cie6";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="YZS4E7BK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B6FA02083E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
-	:List-Id:MIME-Version:Message-ID:Subject:To:From:Date:Reply-To:Cc:Content-ID:
+	:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=39fbVXzGcRKL9i1d+XhgUEtN2uR7xXXlnvxDjFaVlmc=; b=nVEa8NbKXJPjA3ACHNGfaF5gLW
-	ICKDUBO3HEJ9otuzQeRFJ1DGMOdFUu8ABIwszvdfaSjUXiLhtXZLmEjb4NqBIvo7n4UXBiG6bFwsC
-	Gqzi5gMS1cuFl8TIOXu5+PcilOKkI7a0J4GNv0UGNT6/4qTtp8QK+4ZRairVVTYQwxzf/yx9NL0HY
-	ciAyx2kEAwkOijsqUO0iXcGwXrQ/bUbboZ/3L7r6Do5aMm6R48knrPjh7wnaQN8vepUFQybIECZTZ
-	zRIabJqUXuuxpIKXJvXNVMyHw3Sf/KOByr1dZbgBG2isBoXKR8VOHSarvv/9bRwcELv9r5Hk3E0Lm
-	falhSwmg==;
+	bh=9kwqSJiamflSO8aX/p9r3qxD8FLb5Yinm8Race6CXHg=; b=tq+6cie6u4kOT2WdkTVaRvtRHz
+	hR2wUc1uQUskAgmcImee0lDHZ5Cv2AWTrCxKE61+pzHs+PkJw36yD89JnG1H2MY6KxmeL5ZqOLub6
+	qWexIGweDmtIclGDfALfFlAlmNonUbiqrHBQkRXfZzONrEJXiHPLwcb06mM9GF44DzfX40jaQ6OBK
+	8VhL3euQ3d9jBM/YC0j7hsF11naGl2dYE3wRfckG23ozQvNnPVQCAUPpDzTLgV1AdD8kBAXkRgVmo
+	wuquzPzPMvGQ9okx3+6+5N4LqvkUfbOwsZ6ANs7PhqhFLjEIyFe3gIjQJ5yrsLnJAErvoxWDeaqn+
+	JQqMAt3A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1khxac-0000yK-4X; Wed, 25 Nov 2020 16:24:18 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1khxur-0005vB-O7; Wed, 25 Nov 2020 16:45:13 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1khxaZ-0000wJ-W4
- for linux-amlogic@lists.infradead.org; Wed, 25 Nov 2020 16:24:16 +0000
-Received: by mail-pg1-x543.google.com with SMTP id k11so193867pgq.2
- for <linux-amlogic@lists.infradead.org>; Wed, 25 Nov 2020 08:24:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:subject:message-id:mime-version:content-disposition;
- bh=3+3gfHD91/328qfooN+OsmJ9PHiYPgpjIR8tzOiYBHo=;
- b=YavSxQY4iVhrdX0h9CXAQtfQY3M/lSfjiujDt3l6QkRWufd91bgIX9sSzVy/CJPQrq
- O5CBFNRz30U5BB2MtV0PC7AlA7DIr1/WCYNY6O5N3bDGVQzIb2auyr/opkOZ/7bHa9CW
- LQ4zKVgVpfc30Ou7esFAYnagn3CYfwnMQKlvKuJ+QFnmEaluVp/REQeVECsmrJnWeaYC
- iKC4so2wF9PdUkTGZrRwc7unrzLxFU3jCjfaiaHM0J99PfhqD/vuk5pUuRTxtySIVsMI
- cPUwyixg1xr3OpqZ8pW6FqcXtNq3aKrjc6ySOfwHdPX7pwyikvv8a7p1OwmraJD0fF0a
- 8frQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:mime-version
- :content-disposition;
- bh=3+3gfHD91/328qfooN+OsmJ9PHiYPgpjIR8tzOiYBHo=;
- b=sV0IAdBM9KFLXl0rdySa2SVOfhy+8QWc47ciOgKbxGgsqBZO2oWhHcdqG6DWGp+9Ux
- 5IY5m4/8cZpbvKhuXpC4a3gDbb6A/17+0lj1sFSGfK2YuNOMk84yn44h7CTcTBA+bEgm
- IhMTqUcFflB8gHM9DvEaDoLOvmxkuc1WVhRE56VB7ajxZ7P+B2S3A1NAR/Gd/WSR+TUK
- VZBeGnQgw0OAlLTpVivyPNSBQT2TZQ0G3Y2sy1sWD7gRJAc4GMIwIe9PV7fxdSvvNWSk
- k+ewoWZJn2bsKQy4bkMXvA2upOHFRlAMMlp5Kfu8p8ICqjjjntdORT/He84tt6m4AyfT
- NvVA==
-X-Gm-Message-State: AOAM532euq5txxbU0PK/HX5tk4DaMusSsXE/21ZQ68/j/xuubZ4tTwKu
- mwNYeCeV/lv+c6jMrv/Gt0Y=
-X-Google-Smtp-Source: ABdhPJxClJOLijc/qN4Y2TsUHFrwBBO/dNGfLQT1DiaRCkxu34lVJljgWO/JNiNtq4Nwes8TWw/gNw==
-X-Received: by 2002:a62:61c2:0:b029:197:f5ee:6ffa with SMTP id
- v185-20020a6261c20000b0290197f5ee6ffamr3134826pfb.18.1606321451401; 
- Wed, 25 Nov 2020 08:24:11 -0800 (PST)
-Received: from paju ([116.124.119.85])
- by smtp.gmail.com with ESMTPSA id e4sm2613862pfh.90.2020.11.25.08.24.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Nov 2020 08:24:10 -0800 (PST)
-Date: Thu, 26 Nov 2020 01:24:05 +0900
-From: Dongjin Kim <tobetter@gmail.com>
-To: Guillaume La Roque <glaroque@baylibre.com>,
- Zhang Rui <rui.zhang@intel.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Amit Kucheria <amitk@kernel.org>, linux-pm@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] thermal: amlogic_thermal: Add hwmon support
-Message-ID: <20201125162405.GA1263100@paju>
+ id 1khxup-0005ud-7K; Wed, 25 Nov 2020 16:45:12 +0000
+Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch
+ [84.226.167.205])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 529FA20857;
+ Wed, 25 Nov 2020 16:45:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1606322710;
+ bh=8cjjclaA/vmhEiJGhNCIaK/0/JAKMBfJ3d0qzrpX5zs=;
+ h=From:To:Subject:Date:From;
+ b=YZS4E7BK3srGsuTh+q5EIDvKyRDccEGJGdUWte/QLVxbzLZakwqVxEgFQlOXWP+xG
+ fWDx1WLNQPpQdTRZHnuLiHmWsaCUebiy3xjULAaVOtb9bsPQU378aXYKo0cUdO2p4j
+ fgZQ+f0QU20kcGBdEosXCT+mUFjQiotrV2Td0MCo=
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Support Opensource <support.opensource@diasemi.com>,
+ Oder Chiou <oder_chiou@realtek.com>,
+ Kevin Cernekee <cernekee@chromium.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Patrick Lai <plai@codeaurora.org>,
+ Banajit Goswami <bgoswami@codeaurora.org>,
+ Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Peter Ujfalusi <peter.ujfalusi@ti.com>, alsa-devel@alsa-project.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: [PATCH v2 00/39] ASoC: fix !OF compile test warnings
+Date: Wed, 25 Nov 2020 17:44:13 +0100
+Message-Id: <20201125164452.89239-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201125_112416_062650_F7E86CBB 
-X-CRM114-Status: GOOD (  11.63  )
+X-CRM114-CacheID: sfid-20201125_114511_437137_CB442E5A 
+X-CRM114-Status: GOOD (  12.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,44 +91,104 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Expose Amlogic thermal as HWMON devices.
+Hi,
 
-	$ sensors
-	cpu_thermal-virtual-0
-	Adapter: Virtual device
-	temp1:        +32.2 C  (crit = +110.0 C)
+Changes since v1:
+1. New patch 2/39: ASoC: bd28623: mark OF related data as maybe unused,
+2. Patches 1-13: add maybe_unused after discussions with Mark,
+3. Add Sylwester's review to two patches (one changed so please review
+   one more time).
 
-	ddr_thermal-virtual-0
-	Adapter: Virtual device
-	temp1:        +33.4 C  (crit = +110.0 C)
+Best regards,
+Krzysztof
 
-Signed-off-by: Dongjin Kim <tobetter@gmail.com>
----
- drivers/thermal/amlogic_thermal.c | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-index ccb1fe18e993..2fce96c32586 100644
---- a/drivers/thermal/amlogic_thermal.c
-+++ b/drivers/thermal/amlogic_thermal.c
-@@ -29,6 +29,7 @@
- #include <linux/thermal.h>
- 
- #include "thermal_core.h"
-+#include "thermal_hwmon.h"
- 
- #define TSENSOR_CFG_REG1			0x4
- 	#define TSENSOR_CFG_REG1_RSET_VBG	BIT(12)
-@@ -291,6 +292,9 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	if (devm_thermal_add_hwmon_sysfs(pdata->tzd))
-+		dev_warn(&pdev->dev, "failed to add hwmon sysfs attributes\n");
-+
- 	ret = amlogic_thermal_enable(pdata);
- 
- 	return ret;
+Krzysztof Kozlowski (39):
+  ASoC: ak5558: mark OF related data as maybe unused
+  ASoC: bd28623: mark OF related data as maybe unused
+  ASoC: gtm601: mark OF related data as maybe unused
+  ASoC: inno_rk3036: mark OF related data as maybe unused
+  ASoC: rk3328: mark OF related data as maybe unused
+  ASoC: tas571x: mark OF related data as maybe unused
+  ASoC: kirkwood: armada-370-db: mark OF related data as maybe unused
+  ASoC: meson: t9015: mark OF related data as maybe unused
+  ASoC: qcom: mark OF related data as maybe unused
+  ASoC: samsung: smdk_wm8994: mark OF related data as maybe unused
+  ASoC: rockchip: mark OF related data as maybe unused
+  ASoC: ti: davinci: mark OF related data as maybe unused
+  ASoC: uniphier: mark OF related data as maybe unused
+  ASoC: ak4118: skip of_device_id table when !CONFIG_OF
+  ASoC: alc5623: skip of_device_id table when !CONFIG_OF
+  ASoC: alc5632: skip of_device_id table when !CONFIG_OF
+  ASoC: da7218: skip of_device_id table when !CONFIG_OF
+  ASoC: da7219: skip of_device_id table when !CONFIG_OF
+  ASoC: da9055: skip of_device_id table when !CONFIG_OF
+  ASoC: es8316: skip of_device_id table when !CONFIG_OF
+  ASoC: max98090: skip of_device_id table when !CONFIG_OF
+  ASoC: max98095: skip of_device_id table when !CONFIG_OF
+  ASoC: max98371: skip of_device_id table when !CONFIG_OF
+  ASoC: max9867: skip of_device_id table when !CONFIG_OF
+  ASoC: max98925: skip of_device_id table when !CONFIG_OF
+  ASoC: max98926: skip of_device_id table when !CONFIG_OF
+  ASoC: pcm1789: skip of_device_id table when !CONFIG_OF
+  ASoC: pcm179x: skip of_device_id table when !CONFIG_OF
+  ASoC: rt5660: skip of_device_id table when !CONFIG_OF
+  ASoC: tas2562: skip of_device_id table when !CONFIG_OF
+  ASoC: tlv320: skip of_device_id table when !CONFIG_OF
+  ASoC: ts3a227e: skip of_device_id table when !CONFIG_OF
+  ASoC: es7134: mark OF related data as maybe unused
+  ASoC: es7241: mark OF related data as maybe unused
+  ASoC: samsung: i2s: mark OF related data as maybe unused
+  ASoC: max98371: drop driver pm=NULL assignment
+  ASoC: max98925: drop driver pm=NULL assignment
+  ASoC: max98926: drop driver pm=NULL assignment
+  ASoC: samsung: smdk_wm8994: remove redundant of_match_ptr()
+
+ sound/soc/codecs/ak4118.c           | 2 ++
+ sound/soc/codecs/ak5558.c           | 2 +-
+ sound/soc/codecs/alc5623.c          | 2 ++
+ sound/soc/codecs/alc5632.c          | 2 ++
+ sound/soc/codecs/bd28623.c          | 2 +-
+ sound/soc/codecs/da7218.c           | 2 ++
+ sound/soc/codecs/da7219.c           | 2 ++
+ sound/soc/codecs/da9055.c           | 2 ++
+ sound/soc/codecs/es7134.c           | 4 ++--
+ sound/soc/codecs/es7241.c           | 2 +-
+ sound/soc/codecs/es8316.c           | 2 ++
+ sound/soc/codecs/gtm601.c           | 2 +-
+ sound/soc/codecs/inno_rk3036.c      | 2 +-
+ sound/soc/codecs/max98090.c         | 2 ++
+ sound/soc/codecs/max98095.c         | 2 ++
+ sound/soc/codecs/max98371.c         | 3 ++-
+ sound/soc/codecs/max9867.c          | 2 ++
+ sound/soc/codecs/max98925.c         | 3 ++-
+ sound/soc/codecs/max98926.c         | 3 ++-
+ sound/soc/codecs/pcm1789-i2c.c      | 2 ++
+ sound/soc/codecs/pcm179x-i2c.c      | 2 ++
+ sound/soc/codecs/rk3328_codec.c     | 2 +-
+ sound/soc/codecs/rt5660.c           | 2 ++
+ sound/soc/codecs/tas2562.c          | 2 ++
+ sound/soc/codecs/tas571x.c          | 4 ++--
+ sound/soc/codecs/tlv320adcx140.c    | 2 ++
+ sound/soc/codecs/tlv320aic23-i2c.c  | 2 ++
+ sound/soc/codecs/ts3a227e.c         | 2 ++
+ sound/soc/kirkwood/armada-370-db.c  | 2 +-
+ sound/soc/meson/t9015.c             | 2 +-
+ sound/soc/qcom/apq8016_sbc.c        | 2 +-
+ sound/soc/qcom/lpass-apq8016.c      | 2 +-
+ sound/soc/qcom/lpass-ipq806x.c      | 2 +-
+ sound/soc/qcom/lpass-sc7180.c       | 2 +-
+ sound/soc/rockchip/rockchip_i2s.c   | 2 +-
+ sound/soc/rockchip/rockchip_pdm.c   | 2 +-
+ sound/soc/rockchip/rockchip_spdif.c | 2 +-
+ sound/soc/samsung/i2s.c             | 8 ++++----
+ sound/soc/samsung/smdk_wm8994.c     | 4 ++--
+ sound/soc/ti/davinci-i2s.c          | 2 +-
+ sound/soc/uniphier/aio-ld11.c       | 2 +-
+ sound/soc/uniphier/aio-pxs2.c       | 2 +-
+ sound/soc/uniphier/evea.c           | 2 +-
+ 43 files changed, 69 insertions(+), 32 deletions(-)
+
 -- 
 2.25.1
 
