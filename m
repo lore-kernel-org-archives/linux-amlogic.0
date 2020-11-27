@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4AF94C2D0E4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2020 03:53:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 269E5C2D0E4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2020 03:54:48 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C4DB208CA
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2020 03:53:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BEB62208CA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2020 03:54:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Kd+H44B7";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=qq.com header.i=@qq.com header.b="uq5KGMPX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C4DB208CA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rlBh68Jk";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=qq.com header.i=@qq.com header.b="s/Za6tb9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BEB62208CA
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=qq.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,50 +27,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Date:Subject:To:From:Message-ID:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=+kkx+HcI00cJwMq7jjWhj8VL0lrJ6skCB8AXdOC1V7Y=; b=Kd+H44B7YUiXJHi3zjzOFhBqc6
-	PC/Sa2LLz2iAtD+Xl+gpe+HEvfPtgJzaz3ktrzh5kXaHezNF6XGF2f+78Z2N0JkVr+4DIYCXBS/zw
-	Q20Zq/QZ17mJLjRF34L0sROPp9LD/l539EJMTbF2oy6tHfXIgzJPfbrtKgVxC6LzlhIOevK9UqfBt
-	vKbBCPRc+MNueV1kADtiSOp/ZaPNLM43Ujib68dYOPFNk9sDlbpBjteiUiQ5IchtrMxO15SrGJRWu
-	Woh+ejwQRHBb5Y9UyBvPlv7d36C28soeI35oY36zERPEYwFnVZprsA4CwKfo+h4UCsCA8n08PgrZX
-	9n+x9clw==;
+	bh=+kkx+HcI00cJwMq7jjWhj8VL0lrJ6skCB8AXdOC1V7Y=; b=rlBh68JkonKwn6aOqzTkCn22uP
+	is6IshZrVXPWTgko1g5MPsifgpozlDuPACnsNZ+VofWhem7bLaxAQGlBeYR2UP5AeM6Qv/2Dkl8Xh
+	L2cbGroBMQ2e9K2zZ1ZLww0rVlfudWtUJLSvng/lJT6mS6FNry4rIflUDvNlUwQ6z7ko6Tie6L7Tb
+	im/LUszEVmhCIRopPTZt2H0vRnmlZbSZ5ZJwm9K+luChk5+Gj4dRBUiNZ4HjS3xjm1yrwgalAvx7d
+	R+FzbNCxFV4N9V1o0qY7E7F1MXAwbSZc5ddpS0dBdkBVPro0N4UzsJrwQTZbRrX06JOnyPkzTTZeO
+	f5nOODpA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kiUok-0000PV-6o; Fri, 27 Nov 2020 03:53:06 +0000
-Received: from out203-205-221-242.mail.qq.com ([203.205.221.242] helo=qq.com)
+	id 1kiUqF-0000lR-Se; Fri, 27 Nov 2020 03:54:40 +0000
+Received: from out203-205-221-209.mail.qq.com ([203.205.221.209] helo=qq.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kiUoW-0000FK-3S; Fri, 27 Nov 2020 03:52:56 +0000
+ id 1kiUpy-0000gB-FR; Fri, 27 Nov 2020 03:54:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1606449129; bh=cmUIRKiRCpniorIV6kOGuePdPfrh9Fgr6eJkwXgC6ko=;
+ t=1606449244; bh=cmUIRKiRCpniorIV6kOGuePdPfrh9Fgr6eJkwXgC6ko=;
  h=From:To:Cc:Subject:Date;
- b=uq5KGMPXWQd/k8ci5FP+SwVEWHjWH94c1+uUSezFhERNHyUfTXKY+FX0x+DfDBm81
- 10F55QPRm2KrVqiI0PhghTEg8U/Se/LkqUPmBeTCx6WX2p18Pn5NKlB6NuJaKOf/0c
- DqbandAevelYk3r0bI0pzA61kgX7hytDuBGWzlPw=
+ b=s/Za6tb9US0j53ukITydjn2yfSLovX+KJ8IJV+H+IUGD/ePfKUDif0CJ2wga88n/w
+ JGTzVC5WBHTnc3uppBieuwXxFK9xRSFBrz/Afd7T1RoyjV6GqXmyjA8lKEZXiVfS1v
+ cbxM21gYVhALgL8X2oKqNi2CSduVzokDBZokZXJc=
 Received: from localhost.localdomain ([115.238.52.186])
- by newxmesmtplogicsvrsza8.qq.com (NewEsmtp) with SMTP
- id D0780CEE; Fri, 27 Nov 2020 11:52:07 +0800
-X-QQ-mid: xmsmtpt1606449127td1mb3804
-Message-ID: <tencent_CF204C2A172AA4207DADEEB243A75474B10A@qq.com>
-X-QQ-XMAILINFO: OamAntdBv86i9y6BogR++tZeFtQ1sJF2L3ra99pqujESyblIeFzBTLWPuKcMpJ
- bEPdFueJG58Rtrq26ukqxrQh2nYcBL3fGCGeVf9oiSpa2Fjhc9bf+fRCfj4I084oeqSoRVU5S5QH
- bAf6hm3YAdSA7WspWeUBTGHuH2vCdakOg9SGjY16mCGQtv3AzjBR0dZaPNNAW09ztArgoMkf5G7g
- jz/NH7NJpXdPQ2j2j/gbzRy86/aWkrsNVfDIBW/3vH52XJPuVpsuY6Xw26G1t2gCl1eSTYdRszzQ
- t0HSexHuaIuZnkRn7JKLHHP/d9syPxmC6PW96paBu6n1ADAfwsRUDcDZtHquuY9orxktNaZoeDLa
- 2ycnPZIM0d6TFG/kufPpUXU5pb2EtYWFpfvYASGm5PDSQ8ZBn19+On7vsATBvTwCbzAHMmCgT/6N
- dKshIjytJVrtDDdkbAEVuv4EeHw7PY22luhOctHgvNnXKGP80/nMwKseSi4F1tnqmvPzQ2zV+rQ2
- PCfvvqY5rjTUkzERWiUqF+NhMZSU9uFHsEbg2rkC1oInPDoEnHSFx0UCrLqfFkoP2lFxE/EoROAy
- aq+xr1TCmHvkHPi7ogeHN/WxMwaLaYvwEzG8dntg94+5xKGb/TLSTkvTyotk/WgcqrmQQPXlpxHJ
- PpipaLxKNZKpEODvuvW9eyAX6gPeTtvpKKHFS/j6cxgvxffZwWv0iFnNABx/6ZxRh21+glFdoOjd
- LCiG+41FX/WJd7OZn6Q55BO2f3cONiC4E3bsVCcIY9v14=
+ by newxmesmtplogicsvrsza5.qq.com (NewEsmtp) with SMTP
+ id D81356EC; Fri, 27 Nov 2020 11:54:01 +0800
+X-QQ-mid: xmsmtpt1606449241tcjkkzfx6
+Message-ID: <tencent_26D5AA0FBB4C8A49970902A0B29582281206@qq.com>
+X-QQ-XMAILINFO: NvLWmUiDNnOAYYp+HAKicFIjUUdEdXNnTbfVmml1THFfXzxVVcxY76QkIZQlJF
+ BMYoQeYDIss1uxtqeOue5raPt3rvdg6nKDcPQiTJJq1mSDWEDpdJduPogNTl2GEpKyP6T3Hya0sE
+ 2Xl88yefzbqaazYKwg9tLtCATOmagyRfZGjO6O6WMhWuAqI1RQ449Qry0jRhw+NKwLbNNH9rZBzy
+ 8KZZ+JpP8RLbbAYrYel1/t4V38I+YLrH8huq3riV1GqzGYIOaRjfb22pulKHJiML/OH7hh0cplCU
+ QnX3Gz4dIMsXjbQ42WXPUuwYJJoV9La65SYDwbC4iTW1Axs+fGRARJsl2isGoJF8TZLjtsLQHB5v
+ LAWeJqu62FbNWAjYDFHGZfa8sm4+qWsrxMOzAe2n0GvdRcGjo3Un3lpHXF3wnj5sflOtCRNZzdRD
+ /Rkgmk0vYB6F1PQAiedDm/O4OZ7/70P4J6/eVb4eBc3tJkmNC8sUMG/z/BUq1kT1ru0FgaZGEuQH
+ XPlKkMhf3ZMVD3/49sLKUmoL1KRNZvBA+nzNV/s6KgAGmeNUu22Ces6ik80BMheMZ4AMZ+IlFOk7
+ fg1dAJU2I0CixPufZGVrE4aguPIiJUc5/gKdREEoBMkzR/ZYrj10QrLRFCxv2LJoLT+lrx5LmfEw
+ Vh5cRoQVvmOaDGiCNX10UIbgww5sMq6vnDWMaE8r0Df0q0V/a3fhldhefHaS06U6TuuN4KwKeu/Q
+ 7i0taA/ejWP6zi0/kagS40wNGBZkNtXx5L5cuY6ytzn811emQMBYHMFZ3YZJdTKrWZ7vbJG18nLf
+ bVM9GTVF7wJg==
 From: 410860423@qq.com
 To: linus.walleij@linaro.org, khilman@baylibre.com, narmstrong@baylibre.co,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ linshenghuan@hangtu-china.com
 Subject: [PATCH] add amlogic gpio to irq
-Date: Fri, 27 Nov 2020 11:52:05 +0800
-X-OQ-MSGID: <1606449125-26630-1-git-send-email-410860423@qq.com>
+Date: Fri, 27 Nov 2020 11:53:59 +0800
+X-OQ-MSGID: <1606449239-27057-1-git-send-email-410860423@qq.com>
 X-Mailer: git-send-email 2.7.4
 Signed-off-by: Lin shenghuan <linshenghuan@hangtu-china.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201126_225252_926549_89F1E86C 
+X-CRM114-CacheID: sfid-20201126_225423_260029_D5C2B5A1 
 X-CRM114-Status: GOOD (  14.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
