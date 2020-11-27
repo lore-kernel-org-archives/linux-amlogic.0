@@ -2,25 +2,23 @@ Return-Path: <SRS0=VV3M=FB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A9E79C2D0E4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2020 05:23:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F1B1C2D0E4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2020 05:37:43 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1BEFD21D7F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2020 05:23:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4C49A206D8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2020 05:37:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ELPZJJP7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="EXx2O1Zq";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="R8BM8/vl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1BEFD21D7F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=163.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fbdGgZWE";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="IzDDCJNu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4C49A206D8
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=hangtu-china.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
@@ -28,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Pk8VQAkkSVVqSfHzqXfjwW9Nso4Bfa3C7Wp5TisFwfw=; b=ELPZJJP7Na0gqkTEKcKpfWKZaM
-	vYhB+SOw0lYbDNNsIYr0XpX9pM2pxvJqKo9LMcuJoH0gWFGq5BqlEeJqgaAnhq3Cjg6ieSfTDWFRK
-	UBLyMxBDFOfWsL+0i24ogATelB9q6bHCgBTTbR0USyfGS/RthjjY5fwqsCi8LyAoFQa9wUn9ZSu84
-	68KTcK7uq6nxbnUSCstPUQv9xXujia3kMCH3jFZPBrQV7JX9jvKQbFPP73z0NDTRN9X3f/YtUfHK6
-	vZdZaKNxP0Luu+sUofoUk0cXoiXpanq1Da18xDh7rQkNT92FjkkTwtbFFNf8pS8bqkeRA5Hnyh3xt
-	OMWOT+5g==;
+	bh=0JtriqbZ2Xij89qOzQPL0DFesuRS2nAmEoA68fv5qIE=; b=fbdGgZWELdmcH/THMZathhTp+Q
+	CsMlARjsiB0LG07nmBcB1qMDGQ6E+SkJGS0Ll4huN3JZqW/ghsZcFQC5iuX5JtfO/iqzITeHLMao4
+	rP/62xsNCgiBgmoE1n+YTfPgQ1FiYPJQsVK/lp1QbpTg/67kr3C1Mao5BFeNvVhPuVft1oMcgisWI
+	sLuPuCMLJr8xTh6hEQS1Ge6t4XGFZeTlBFOaIyzn3X3O8h97opyesVGhFfZH3qrZAeGVWiXsRH9Nh
+	xZZwk9PPuHiC7249lWSBUMzren3Bjkjpqbr+M57j9kPUyavr1wRq/gjCxTltJ3Mu7FwOzaChyFiVP
+	9U3GfrDA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kiWDi-0000rZ-RE; Fri, 27 Nov 2020 05:22:58 +0000
+	id 1kiWRo-0003T0-Jg; Fri, 27 Nov 2020 05:37:32 +0000
 Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kiWDc-0000qY-JE; Fri, 27 Nov 2020 05:22:52 +0000
+ id 1kiWRl-0003SV-AC
+ for linux-amlogic@merlin.infradead.org; Fri, 27 Nov 2020 05:37:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Message-Id:Date:Subject:Cc:To:From:
  Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
  Content-ID:Content-Description:In-Reply-To:References;
- bh=lmgddvHtAi5SdHCfttKJz4DYN1iYMVB/xgJ/V1LKoCk=; b=EXx2O1ZqdQdjZUZBupCuQBCNsK
- ZOS4eJAmxYrL2ovz2NCGXqY9SIjiPjbZLutXdTGJ03mO7o6MIeWCAa2zWfHuWsxvyYZUgB4DzCkP0
- P9vUdQ3sdM3ufCCMxrrF07i5Ncpi/kmUsEagF94Xqv90+k7ws+BPow8MT7L2xiK6fQbHML5qEzUwn
- MWWPGsyql6iGpa/WtpLZkJk13pjhr3lEiR0e5fiNl87NlIrFJS3sU5Be9+Fo3WiEkfNGJ9SXJ54Vt
- hzXaTiwQfsyi0PjeU1GCcHLeeYg979Z7y23PVmaOrIRYcgCuE4T8Y+1fHkZLD/uonHl4KwnkloiQN
- sWQD/k6w==;
-Received: from m12-18.163.com ([220.181.12.18])
+ bh=lmgddvHtAi5SdHCfttKJz4DYN1iYMVB/xgJ/V1LKoCk=; b=IzDDCJNusTxAaHdnXbgN6EDVz1
+ z1NIyFTcJ1v3oBojx5h+tOnOtfQ8Ij2tlnv7Cw4AX8qKQgxiwr3bshvQYGNiYotAqfsaeSl//n6P6
+ fS5LldZDhXVkwDz0J1nZhcb1siGNGFKPi4mdP+epCsXquWu10+9NMHfg8aFZ4IVtBykB+P+GAMSqJ
+ owsXw3/RD10nWsp5PYpm+8pY3J9+ifdPxRzs/tB1WClTssRHM/7Saj9eGOVH56aMQVZNNaVmtiSM1
+ FgTxHax6WTJZCx26yHTKrEO2G9yyYEr7C23xZzcEFEB57K/Z2onCvBsfece+RPsWFTuHOc7WbNU8h
+ hzgsRJxg==;
+Received: from smtpbg704.qq.com ([203.205.195.105] helo=smtpproxy21.qq.com)
  by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kiWDX-0005B7-BS; Fri, 27 Nov 2020 05:22:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id; bh=lmgddvHtAi5SdHCftt
- KJz4DYN1iYMVB/xgJ/V1LKoCk=; b=R8BM8/vlkT+tsLpWQrvFzKdF3WjF4n60Kv
- pDgJ4rg4HksCHlmGz8fJ7C/bgSmTepjx3bwZj1nEG9u6gNF3Hy71w4dTVRkszhn6
- 0xo7UAdPGgqokb1yuOKk27LwSOdEzi5qu8A4LuHMlbBpfRozMPvF5EaNWACTnUyv
- myQwGWsTA=
+ id 1kiWRh-0005gl-RD
+ for linux-amlogic@lists.infradead.org; Fri, 27 Nov 2020 05:37:28 +0000
+X-QQ-mid: bizesmtp17t1606455382tq2xz4a8
 Received: from localhost.localdomain (unknown [115.238.52.186])
- by smtp14 (Coremail) with SMTP id EsCowAB3t_6_jMBfeM8wGg--.52279S3;
- Fri, 27 Nov 2020 13:21:04 +0800 (CST)
-From: linsheng_111@163.com
+ by esmtp6.qq.com (ESMTP) with 
+ id ; Fri, 27 Nov 2020 13:36:21 +0800 (CST)
+X-QQ-SSF: 0120000000800070B000B00A0000000
+X-QQ-FEAT: zN8aTbUO6yNNgGYJ4vOtjrU8x/KUgr9Mba0IGxwhgvtjzXkKwduROXQmvU9iv
+ m0Cp1K+6ryqXRSJyJ9qCR7eJYNhsiyKyz9a/qY4rIwi3S2hOH1MAaREoKEKCvuBe6qnlulr
+ zRB1XWX95icSf2tqZo9J79f7tdELdhMpGE2txZR84Vd27MTw/hOEBzyTqRrKYtqJcvsJAmC
+ DvZljsttQF31S4mTOlph2cdMRTslCPN4r0BlYzoJWN1/zMDqZIfJmt4BffcTeROUmmqPigF
+ bXrZe1CSF9sNbey6fI4b2X0avor/68/XRrEzqwGVeSW3OE75i8ow0LXo0=
+X-QQ-GoodBg: 0
+From: linshenghuan@hangtu-china.com
 To: linus.walleij@linaro.org, khilman@baylibre.com, narmstrong@baylibre.com,
  jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
  linshenghuan@hangtu-china.com
 Subject: [PATCH] add amlogic gpio to irq
-Date: Fri, 27 Nov 2020 13:21:02 +0800
-Message-Id: <1606454462-3826-1-git-send-email-linsheng_111@163.com>
+Date: Fri, 27 Nov 2020 13:36:19 +0800
+Message-Id: <1606455379-7236-1-git-send-email-linshenghuan@hangtu-china.com>
 X-Mailer: git-send-email 2.7.4
 Signed-off-by: Lin shenghuan <linshenghuan@hangtu-china.com>
-X-CM-TRANSID: EsCowAB3t_6_jMBfeM8wGg--.52279S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJFy3Zr4xtw47Kr45Kr48WFg_yoW5WF45pF
- 43GFyYyr13JF47WryrAanrAFW3K3WxJFW2gay7Ka97uw13GFyDtFy29FW5Zrs8WrW5CF4r
- Jr4rGFWUWr45AFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UlPfLUUUUU=
-X-Originating-IP: [115.238.52.186]
-X-CM-SenderInfo: polq2x5hqjsiirr6il2tof0z/1tbipADpOlr7rnYvbQAAsM
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:hangtu-china.com:qybgforeign:qybgforeign5
+X-QQ-Bgrelay: 1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201127_052248_376285_1FE1C7EF 
-X-CRM114-Status: GOOD (  11.87  )
+X-CRM114-CacheID: sfid-20201127_053726_359564_885BEC88 
+X-CRM114-Status: GOOD (  10.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -190,6 +188,7 @@ index f8b0ff9..0f808bb 100644
  #define FUNCTION(fn)							\
 -- 
 2.7.4
+
 
 
 
