@@ -5,19 +5,20 @@ X-Spam-Level:
 X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 802E4C64E8A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:26:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 00EB2C64E90
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:26:19 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F1F1A206F9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:26:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7FFD120643
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:26:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YftelsGv";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1wEu7aRd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F1F1A206F9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p62tTk4+";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Xa33s5lL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7FFD120643
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,20 +27,20 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=eVwbEXE3pBLd4ojZqecXhtmftHsXL0NUQxgQkWs+rmQ=; b=YftelsGvUbyUkTKntEO+u1btd
-	QMHDKWJnIrDo6N5R7o7XPKECEpgVQPvMbOIEovUnFEyUBwVqC1mgTussuA0WxUbK6I99cPKgLXL8j
-	BLa4Fm+/RFAYrSZFfv9OHro7S4JGz5Jra560IBaUshlc/QWPatMqo8x4GY15Cetj/AnfBF0ecGQsE
-	gc/MgzgytIDG0b33XyJc4uxEk1RC7Y4LceNV82mzfpy6HcxJvwzo3gedmHuXjMq/pvYFbP69uhMMR
-	V2HGjeqGaydFecH9QGyfW69TPSqeyzC/QZ4+eygPbWTf1cZuBZ34iMu9jiMYjgt+fkGbZN/E3L5Yz
-	D/+l8qPFQ==;
+	 bh=eVwbEXE3pBLd4ojZqecXhtmftHsXL0NUQxgQkWs+rmQ=; b=p62tTk4+5xpKfFfSAfrDZVzrW
+	42OQnPIE5uogvoBbfhUUCnaZWrLF4+tQ44PKGaWccytok2qCnoTXod9XaDoEcl8kAfw3vMD//40+M
+	6HgYZRTFOHBbem7RFyiJqV9secot6nwBr9tE4MVIH1AB9sNWxuH8CUAszrcft5Cpx95eGj7SFu2qO
+	MuKvKnfgP3m/K1WngKnCVcsCJR7vc/3D+/XZjUKZ8SHy1bYi4Du5N+xE7/tW98H8XVp8yCiAUQuih
+	7sQ0Z3tUDO8axi3AaOZzvkjmnrFPHxq0akCoV7cKV4v2eHQ5DHJPzNvaaGT692XTa7BbZB2e/7irA
+	GYdyMdhmg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kjjBx-0001vr-2g; Mon, 30 Nov 2020 13:26:09 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1kjjBz-0001wg-9c; Mon, 30 Nov 2020 13:26:11 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kjjBd-0001p4-4p
- for linux-amlogic@lists.infradead.org; Mon, 30 Nov 2020 13:25:53 +0000
-Received: by mail-wm1-x342.google.com with SMTP id a3so25156355wmb.5
+ id 1kjjBd-0001oy-4i
+ for linux-amlogic@lists.infradead.org; Mon, 30 Nov 2020 13:25:54 +0000
+Received: by mail-wr1-x444.google.com with SMTP id s8so16180383wrw.10
  for <linux-amlogic@lists.infradead.org>; Mon, 30 Nov 2020 05:25:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
@@ -47,33 +48,32 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
  bh=imDbNzTq1REIzdtg+PEjyslOlxjZtkiSfNa3OIYZ7pM=;
- b=1wEu7aRdvwZHsvs4VpuwCp9xb8k72JcS+nk70AfqItlZBg4uONw6Miv/1sFJqtDw3m
- Ic0uFdLIsxs98G+erAxJAYkh22wO0TpAJniog6VVbTLmQYsIqXTOd9FVFrSq23Fl/utk
- gzj4m491evJSeEQ5J/jw2pE42D+Y8yts2Kk0HTtQD1VLZTzy2nebrqiM6j4alzQfGVp9
- WZBl9J3LgUntXNoY4RKmy3ksbwyQ7LjYD6E8NLuYTw50w5qHNXTgMz/P26MutWRuePGh
- ZYCeum3yYNTl223GeqW6vMiDd1pPReuCX92DFps98m+tWoBS+nZJ17tDpStjpXrLx5b0
- MoPg==
+ b=Xa33s5lLp/F+1bfugEA+Cl6VbiBZwyCZZ4jrzK5johvmC4dEMV3ItCsKGx9zhJ0vFm
+ 33YSvJB1iNxFeoQGO8ih3W7FdbumPg1l45JSWj+RMdVIVUlcuftA4SSs/0iblL8Hgg1G
+ UZh0vJcLpLyXdoOQPKx4Rq4FW49hKZ003LpmWqR9Ua24+uu541VtTtOUU4yJOhVAzqP6
+ jrvc7/DCBx3AOimFcNnIpaVMWc8AFnVabXAfoThWHmxfPewhjdCo1hH39OJEYBwVBZlC
+ At2DcmDUSuZIuC3SS7ydREC0TboubOfiNqZWS2kRsnZ/uHN2Z+kml0B1/m0t65iEH/7o
+ RvRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
  bh=imDbNzTq1REIzdtg+PEjyslOlxjZtkiSfNa3OIYZ7pM=;
- b=bEC4Q9bfhzHjkYq9j8eTGoEq36/FOjyEdaHdX9WHgeXCWMSSU2JtuH3bGRqAudNIV4
- +HMypW+7DlaQ9S1YLJp64LOpGx1/H38eY33JdqQyy8WOMwH/fCcPbba/1kYuiHBqIpjc
- O3jhi3tKLIYETBeM9a7rO1pnoMUTJuv+MJuVVbruWOn6EosP/iFgaD0F7QLXmW7S9RmV
- Jg2deKseG8Gp/KrTk9aWXxaj4vzFeYnae50bdn8mbyZGkAkXXTswaurZTnaTJREPKzwd
- ECMSjo6g5w4IINVODoA5Wnfb49Nf021e0LjjMBf6NNSYF2+1fPR+J/8eIGmXTbHB6xsP
- C/jg==
-X-Gm-Message-State: AOAM5318EQP6Jc6jCQSWwD//D+BKpbsctOGmtqbv+YsYdgJ1x6ldM+Aw
- TwLjr1bPqO+7qDm8kriwXa+S/g==
-X-Google-Smtp-Source: ABdhPJwb+9GKM/I70i10A05hcMaIvZXaNUZtIV8B7onXCfk5xAy087QjeGMrztv7jtxj7R71HzRsaQ==
-X-Received: by 2002:a05:600c:255:: with SMTP id
- 21mr23833237wmj.69.1606742748023; 
- Mon, 30 Nov 2020 05:25:48 -0800 (PST)
+ b=riUrwo4gn7oJVTK33VZOmTAquCQyH2CH0NytSrZ/a/7yOxN5EEfb0rS4NuvQdvzOVB
+ xYl8ttVnSuGqNXZVaCg1BdxBVh1Xuh2tTgzeNlt4MsysLYBwAXCAjUEXpHsTtNUyo3iS
+ un5GCBKGd+1Bm3X15sv0L/Bj+TZbQkw8TzLSnD85PxdMwqWTpjpb6uisuSDOf6QXkLta
+ CuB+5U/pEEvO9V2Udw/yfY5MlBq0qH+9XakaM0yODaW4Xow5vjhen1vTWyFk2VuphdrU
+ wF6KBj6Pgb2ylpxCbxKH3567uORAUsa2oycbqNki/RCalZ47yO3qEeQluq36dKzpM9Ut
+ MSmA==
+X-Gm-Message-State: AOAM532gmv14jI2h4UE5BQVwSMbPKJ6Ujt2drXppdUwB7e5ZYwpw86Ls
+ Mgjob3KCCO6LDsBJ9QQ60COp2w==
+X-Google-Smtp-Source: ABdhPJxDuK0a5JGsWpyiLEVaETQkn3niXI89PAF+elQN38ps10GnYqcUFRMRQ31rVqh/75xBqKfASQ==
+X-Received: by 2002:adf:e447:: with SMTP id t7mr28719164wrm.218.1606742747511; 
+ Mon, 30 Nov 2020 05:25:47 -0800 (PST)
 Received: from [10.1.3.24] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o74sm1509474wme.36.2020.11.30.05.25.46
+ by smtp.gmail.com with ESMTPSA id a15sm28835299wrn.75.2020.11.30.05.25.46
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
  Mon, 30 Nov 2020 05:25:46 -0800 (PST)
 Subject: Re: [PATCH] arm64: dts: meson: fix spi-max-frequency on Khadas VIM2
@@ -134,7 +134,7 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <0d4e54a3-9eb1-db9e-7d17-985262ed251f@baylibre.com>
+Message-ID: <0a6efe60-ef5e-a71b-7b27-2a3562ca6d75@baylibre.com>
 Date: Mon, 30 Nov 2020 14:25:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
@@ -142,7 +142,7 @@ MIME-Version: 1.0
 In-Reply-To: <20201125024001.19036-1-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201130_082549_312280_AD0EC889 
+X-CRM114-CacheID: sfid-20201130_082549_342465_C7B9A410 
 X-CRM114-Status: GOOD (  21.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
