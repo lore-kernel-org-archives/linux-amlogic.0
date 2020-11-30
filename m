@@ -2,66 +2,146 @@ Return-Path: <SRS0=GnnG=FE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E9C92C64E7B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 11:03:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C799C64E7B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:24:05 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 68BDB2084C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 11:03:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 65F6B20727
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:24:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k9pqDq2r";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmCxKGIw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 68BDB2084C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k9nZoVKB";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jhLQqBzL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 65F6B20727
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=CcZCh/6H7mtq1/3YYpbXvOdjTMU7QsltoHUCFJw22LQ=; b=k9pqDq2rejoZL137C5aBNBjI8
-	FCVdsGLYe06WX4uKekg0nRnHjxDkFBRJ0asP4kW+lVynYkjbWDYbv3ycGsJZ8pbMy1jwQd8maOyQo
-	kO9jA8+Zm40Sf+WPRoHAwd+oqUZaJbiAkc4NEohzesW8gGDmcfAg9aM4K5TBsDmco/f/2CUT+Tegb
-	4JuCbrtmDG4SAo5sEWs+ttHYxIlrHe8ELmANZmGB7hQ/DGqCD5QeJOciDWNKbCLCBygF8RoPfnkc3
-	BQGawmkyPnhCXqeUJq5leB3yaoUfPc8ul6TtdodekzerS2xO1xzhTvHtrxDQI0GVsSozazhg1BiKs
-	HVd0SVNrw==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Vr1RScKTLqe0EhLohHCfIugfsAVhiugsNoVWeNj908I=; b=k9nZoVKBZnwGPsXJBKeRrMp/gS
+	9ufRB3AEPIcyHf7DP7FVS/nu/jIq/J2vDgHryh7i2N3EW9CeezAt22Kysizxh6jOj/c8IY2J9u1Yi
+	A48iNHckD8DHZ6qeHimGUntYOJQg8Ond8F7d2MVviDqV3sq98UlNBLjFiULbmghDXx/gManUETezN
+	ABTir5t44Tvmc955YkoAd59Hfd0wHRbsQhWGADvLBKqKlzrKqrXqnb8Ab60x4a6ALabD1tGYE6jaf
+	NLCFUcz1bbKoA6bZt7+G47PgkPO4h+Qxf8klDMayc039lFck9jJtNrLFcvJNnJ1EBK8hDMt0dclj/
+	CsLsM4rg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kjgxZ-0000Gw-8R; Mon, 30 Nov 2020 11:03:09 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1kjj9p-0001JJ-AU; Mon, 30 Nov 2020 13:23:57 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kjgxW-0000Fu-Nv; Mon, 30 Nov 2020 11:03:07 +0000
-Received: from localhost (unknown [122.171.214.243])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 84683207F7;
- Mon, 30 Nov 2020 11:03:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1606734185;
- bh=hjIcZHlqjoAO8SFOaLc53+G8xg4yeUu0vni/0Fqn0Bc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=kmCxKGIwQI+T2Mo2rkjWWy4eQRdp4boF9WE2CHq6fg3sGfLZBof9qpQFMJJ1YqMi+
- yYGfyTHmJT/Deiw0WdiTFmTCgpxH7s7H314Q1YT/7t0x8B2LSbEwe/Ix4ewBolpAbB
- vTmnjqsmU1QuaWoTpBOpi9gnD0ChEfwZogdISwWE=
-Date: Mon, 30 Nov 2020 16:32:51 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Yejune Deng <yejune.deng@gmail.com>
-Subject: Re: [PATCH] phy: amlogic: replace devm_reset_control_array_get()
-Message-ID: <20201130110251.GS8403@vkoul-mobl>
-References: <1605666995-16462-1-git-send-email-yejune.deng@gmail.com>
+ id 1kjj9m-0001HJ-E3
+ for linux-amlogic@lists.infradead.org; Mon, 30 Nov 2020 13:23:55 +0000
+Received: by mail-wr1-x443.google.com with SMTP id u12so16233609wrt.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 30 Nov 2020 05:23:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:autocrypt:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=1UzOgQJZ21QpvvYxGtqBU6A9dkhs5QGCec/90ZMZG7U=;
+ b=jhLQqBzLTZ+63wrjJjpRuK05OzGQBfgHNNZe4F9IN5lN08dsSiWdCLPOvXd5n93Iuu
+ SGbhOb9bsXMy7W+9HkYOL51Qw+Dv0GJbOCzaDOYp07v6JnnbDGfk0FX+aA2Y7dz4ksxg
+ CUnYWNLGL8m7FZ4W8mGMnpI8p1IZPatP+iKqOTygwulnqStF+HM/JwYWXA2+A/NF7Z4L
+ moAzG7VNwLmIcp0dUgrxuGKaNfq/7o9MyxQyJpRgLv3GJk0rWQa4eYbFP+wLgAbfJG/q
+ GEKkYkqGS8Wf0YibI+P185e53d7CKtYwJnBk3GFdqi47Kq8uu2mH0QBr2Hxs8Q0W28PM
+ CgDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=1UzOgQJZ21QpvvYxGtqBU6A9dkhs5QGCec/90ZMZG7U=;
+ b=GEy9aUSPhA5pUoiJBqcZWcTpazWyEN5khJ12Vk7W5LDBQCLOT4gGVzZuK16Sn9nGr0
+ DYMIGUQTlqYb4z0nFx3sLz8rCaS0eXvBj1SCQPq10+E+g0vlmAtxbIOHyRW/F2TVPWU0
+ i3AUFt1S0qNJSVhNljBH1SEQSZNo0lS0xegaLs70yj4OEdpQSP6QhwTXz5Vzjkf+uzXJ
+ DmgjTraRzXhaMu0PxOjfCjWYXWg81DTeFP/smoECDfakIg55PTJbQWlOG3yZ9exmm+QU
+ 9bdMqVYoFCBnEUdke+Z2tjuQVEwSPoqCaKHHOG7AIeDrBRsaImBbbpA/NWAegHa9eQhL
+ LNDw==
+X-Gm-Message-State: AOAM5338CxmlVQSY2Kpjbfmg9PmmJdh33L0pU63xsh7G5D6GazWSnrSB
+ j6LgDV5riPKgq27K+M7JXrQEng==
+X-Google-Smtp-Source: ABdhPJyNbxM4tIOtcSTacPrOaM7iBy4WCWLMhioMMLX3KB6UqH08UEiXuRYXiPlkBFgezSf0rS+FlA==
+X-Received: by 2002:adf:f14e:: with SMTP id y14mr28990860wro.19.1606742631435; 
+ Mon, 30 Nov 2020 05:23:51 -0800 (PST)
+Received: from [10.1.3.24] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id v6sm30862297wrb.53.2020.11.30.05.23.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 30 Nov 2020 05:23:50 -0800 (PST)
+Subject: Re: [PATCH v2] arm64: dts: meson-sm1: fix typo in opp table
+To: Dongjin Kim <tobetter@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20201130060320.GA30098@anyang-linuxfactory-or-kr>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <9d2735a7-0195-c7c0-74ce-483212d47858@baylibre.com>
+Date: Mon, 30 Nov 2020 14:23:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1605666995-16462-1-git-send-email-yejune.deng@gmail.com>
+In-Reply-To: <20201130060320.GA30098@anyang-linuxfactory-or-kr>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201130_060306_906526_E46737AA 
-X-CRM114-Status: UNSURE (   8.03  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201130_082354_629080_4C9CEC2B 
+X-CRM114-Status: GOOD (  18.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,23 +153,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: lorenzo.pieralisi@arm.com, narmstrong@baylibre.com,
- martin.blumenstingl@googlemail.com, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, kishon@ti.com, repk@triplefau.lt,
- p.zabel@pengutronix.de, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18-11-20, 10:36, Yejune Deng wrote:
-> devm_reset_control_array_get_exclusive() looks more readable
+On 30/11/2020 07:03, Dongjin Kim wrote:
+> The freqency 1512000000 should be 1500000000.
+> 
 
-Applied, thanks
+Fixes: 3d9e76483049 ("arm64: dts: meson-sm1-sei610: enable DVFS")
 
--- 
-~Vinod
+> Signed-off-by: Dongjin Kim <tobetter@gmail.com>
+> ---
+> 
+> Change in v2:
+>   - wrong fix in the previous patch.
+>     https://patchwork.kernel.org/project/linux-amlogic/patch/20201130054221.GA25448@anyang-linuxfactory-or-kr/ 
+> 
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> index 71317f5aada1..c309517abae3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> @@ -130,7 +130,7 @@
+>  			opp-microvolt = <790000>;
+>  		};
+>  
+> -		opp-1512000000 {
+> +		opp-1500000000 {
+>  			opp-hz = /bits/ 64 <1500000000>;
+>  			opp-microvolt = <800000>;
+>  		};
+> 
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
