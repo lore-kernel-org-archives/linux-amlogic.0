@@ -7,80 +7,81 @@ X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C799C64E7B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:24:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CB8D6C64E90
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:25:38 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 65F6B20727
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:24:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4DE8C20727
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:25:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k9nZoVKB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jhLQqBzL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 65F6B20727
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P6t8ugI0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GrNypqsZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DE8C20727
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
-	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Vr1RScKTLqe0EhLohHCfIugfsAVhiugsNoVWeNj908I=; b=k9nZoVKBZnwGPsXJBKeRrMp/gS
-	9ufRB3AEPIcyHf7DP7FVS/nu/jIq/J2vDgHryh7i2N3EW9CeezAt22Kysizxh6jOj/c8IY2J9u1Yi
-	A48iNHckD8DHZ6qeHimGUntYOJQg8Ond8F7d2MVviDqV3sq98UlNBLjFiULbmghDXx/gManUETezN
-	ABTir5t44Tvmc955YkoAd59Hfd0wHRbsQhWGADvLBKqKlzrKqrXqnb8Ab60x4a6ALabD1tGYE6jaf
-	NLCFUcz1bbKoA6bZt7+G47PgkPO4h+Qxf8klDMayc039lFck9jJtNrLFcvJNnJ1EBK8hDMt0dclj/
-	CsLsM4rg==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=rvQjSlQ8NhaVtHZiMnDYgSRZ/ChmKxUOVOhQ0Hxqx0Q=; b=P6t8ugI0Br59wJJr0aIfFU1mt
+	hqk+7WBR3XL8i4wM7+jU9JjrzXZVpqQP57zdlMMmALC4wNQvxxFUDPUexLZLkWVmCj/wej5dRxrw/
+	QN2A4TAH3kEmwpa03kegK/VDECTwi5fSRiRDJ/EvxA7PiHuqCcsNRtaOgxBPN0TJfuwSffMT5I90B
+	q7j29gTQxjeqxo0bugxelevDOLzegvSBVMWHDTT5xyHD6KcRqB2BhkLT5PG8v8E1IGiUkWulgKFQs
+	b2MAipRnLnzKTCSoAO38mh6KojLccxFHJMnPqqbWyWMUCpMoed0DnIgbB2K1rZLXAFjEW/9Cp7BdC
+	f74spws+g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kjj9p-0001JJ-AU; Mon, 30 Nov 2020 13:23:57 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1kjjBL-0001kB-T3; Mon, 30 Nov 2020 13:25:31 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kjj9m-0001HJ-E3
- for linux-amlogic@lists.infradead.org; Mon, 30 Nov 2020 13:23:55 +0000
-Received: by mail-wr1-x443.google.com with SMTP id u12so16233609wrt.0
- for <linux-amlogic@lists.infradead.org>; Mon, 30 Nov 2020 05:23:52 -0800 (PST)
+ id 1kjjBI-0001iS-1u
+ for linux-amlogic@lists.infradead.org; Mon, 30 Nov 2020 13:25:29 +0000
+Received: by mail-wm1-x344.google.com with SMTP id f190so22119961wme.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 30 Nov 2020 05:25:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:autocrypt:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=subject:to:cc:references:from:autocrypt:organization:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=1UzOgQJZ21QpvvYxGtqBU6A9dkhs5QGCec/90ZMZG7U=;
- b=jhLQqBzLTZ+63wrjJjpRuK05OzGQBfgHNNZe4F9IN5lN08dsSiWdCLPOvXd5n93Iuu
- SGbhOb9bsXMy7W+9HkYOL51Qw+Dv0GJbOCzaDOYp07v6JnnbDGfk0FX+aA2Y7dz4ksxg
- CUnYWNLGL8m7FZ4W8mGMnpI8p1IZPatP+iKqOTygwulnqStF+HM/JwYWXA2+A/NF7Z4L
- moAzG7VNwLmIcp0dUgrxuGKaNfq/7o9MyxQyJpRgLv3GJk0rWQa4eYbFP+wLgAbfJG/q
- GEKkYkqGS8Wf0YibI+P185e53d7CKtYwJnBk3GFdqi47Kq8uu2mH0QBr2Hxs8Q0W28PM
- CgDQ==
+ bh=l0shX+sCSeRMp58xcC0HzGwE/yEJsp/smhugW9tOkWE=;
+ b=GrNypqsZNHs6S+K/VGLpnBipUOS4+z9xAkrGsnGW3SEN0NiY2b9jwWucqK4GLK9QFE
+ LpY3RsnMLzZdz70wALryWDpC3/SdkiidudQZe8OxaUrzFeyDnc5T7IwP0FWdq5C+da+R
+ UhQn168bkRxzz7PyO3ByCdBqXf844hSrXB2inj5N4Hkz+6cip5LoOMHZT3s30cc2Q1JO
+ Mx/DExkWE6A3YmgMTLaH0TJx2a9qtmhPRvhcZtnBq3+8otlzDla4h9FiU+nWeISkmnV+
+ cuJFHkC64LLMltZ6LmXhYVrHieRQxzoWWt1UHK7YRrfpXogXhWS+iQvzUUwKJ7cK8Fo7
+ FNSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:autocrypt
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=1UzOgQJZ21QpvvYxGtqBU6A9dkhs5QGCec/90ZMZG7U=;
- b=GEy9aUSPhA5pUoiJBqcZWcTpazWyEN5khJ12Vk7W5LDBQCLOT4gGVzZuK16Sn9nGr0
- DYMIGUQTlqYb4z0nFx3sLz8rCaS0eXvBj1SCQPq10+E+g0vlmAtxbIOHyRW/F2TVPWU0
- i3AUFt1S0qNJSVhNljBH1SEQSZNo0lS0xegaLs70yj4OEdpQSP6QhwTXz5Vzjkf+uzXJ
- DmgjTraRzXhaMu0PxOjfCjWYXWg81DTeFP/smoECDfakIg55PTJbQWlOG3yZ9exmm+QU
- 9bdMqVYoFCBnEUdke+Z2tjuQVEwSPoqCaKHHOG7AIeDrBRsaImBbbpA/NWAegHa9eQhL
- LNDw==
-X-Gm-Message-State: AOAM5338CxmlVQSY2Kpjbfmg9PmmJdh33L0pU63xsh7G5D6GazWSnrSB
- j6LgDV5riPKgq27K+M7JXrQEng==
-X-Google-Smtp-Source: ABdhPJyNbxM4tIOtcSTacPrOaM7iBy4WCWLMhioMMLX3KB6UqH08UEiXuRYXiPlkBFgezSf0rS+FlA==
-X-Received: by 2002:adf:f14e:: with SMTP id y14mr28990860wro.19.1606742631435; 
- Mon, 30 Nov 2020 05:23:51 -0800 (PST)
+ bh=l0shX+sCSeRMp58xcC0HzGwE/yEJsp/smhugW9tOkWE=;
+ b=LjMflama+bnKg8/5af7EfHR+P+HWpXtKRphTaUgOHzSeITc80aLxsX8+og7ZO0/FEz
+ BwlNCocrcGMm/dxWBPZNCYS9x4BQ9KdvxG2RSidgF4u5L6S2ixWRoV8SLfGKxtRdACJH
+ Ef7U9/ALoGeWaV+c4I71sOBCUwvUlM9XZhTjifT3yVTutvWsVD+wepAiKjs8PGCNCAFd
+ C1bj598+CPRot/J+O3DO7iuraQSO2ABqE+7ak+hIWR6MU7dNYpPB+BdwYP84nix0ZrcI
+ hx+N4xDl1H5FxQEAqz9zZ53sYQZ2N1SVy54IjvwWpwUM4AhX9Mw4EbExkoIuE7DY0mHK
+ 1iOQ==
+X-Gm-Message-State: AOAM532ar+XKBfO23SweFQ15dFMCl4VgbNVEFfjgoY9+6B5La2GWTym/
+ ha4TPmW+1nSLjegT4kcyEk5bKQ==
+X-Google-Smtp-Source: ABdhPJwgDQaUobvgZCuGcqI//qWBkfw+ORVRmtt5yv6AuOdTGVJ0gNsOxyZNof+YUbkPwRyp44UODQ==
+X-Received: by 2002:a7b:c954:: with SMTP id i20mr23289319wml.56.1606742726690; 
+ Mon, 30 Nov 2020 05:25:26 -0800 (PST)
 Received: from [10.1.3.24] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id v6sm30862297wrb.53.2020.11.30.05.23.50
+ by smtp.gmail.com with ESMTPSA id q17sm32327983wro.36.2020.11.30.05.25.25
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 30 Nov 2020 05:23:50 -0800 (PST)
-Subject: Re: [PATCH v2] arm64: dts: meson-sm1: fix typo in opp table
-To: Dongjin Kim <tobetter@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Mon, 30 Nov 2020 05:25:25 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: meson: update the Khadas VIM3/3L LED bindings
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20201130060320.GA30098@anyang-linuxfactory-or-kr>
+References: <20201125052914.4092-1-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <9d2735a7-0195-c7c0-74ce-483212d47858@baylibre.com>
-Date: Mon, 30 Nov 2020 14:23:50 +0100
+Message-ID: <d481a9f0-1d9c-2989-edd3-83f7c549f228@baylibre.com>
+Date: Mon, 30 Nov 2020 14:25:25 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201130060320.GA30098@anyang-linuxfactory-or-kr>
+In-Reply-To: <20201125052914.4092-1-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201130_082354_629080_4C9CEC2B 
-X-CRM114-Status: GOOD (  18.50  )
+X-CRM114-CacheID: sfid-20201130_082528_227922_36099D0F 
+X-CRM114-Status: GOOD (  19.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,41 +154,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Artem Lapkin <art@khadas.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/11/2020 07:03, Dongjin Kim wrote:
-> The freqency 1512000000 should be 1500000000.
+On 25/11/2020 06:29, Christian Hewitt wrote:
+> Update the VIM3/3L common dtsi to use the new function/color bindings.
 > 
-
-Fixes: 3d9e76483049 ("arm64: dts: meson-sm1-sei610: enable DVFS")
-
-> Signed-off-by: Dongjin Kim <tobetter@gmail.com>
+> Suggested-by: Artem Lapkin <art@khadas.com>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
+> This supersedes a previous submission from Art [0] and uses the updated
+> LED bindings suggested by Neil.
 > 
-> Change in v2:
->   - wrong fix in the previous patch.
->     https://patchwork.kernel.org/project/linux-amlogic/patch/20201130054221.GA25448@anyang-linuxfactory-or-kr/ 
+> [0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200925033017.1790973-4-art@khadas.com/
 > 
-> ---
->  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> index 71317f5aada1..c309517abae3 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> @@ -130,7 +130,7 @@
->  			opp-microvolt = <790000>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> index 87bd8c9516f2..8f8656262ae7 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> @@ -6,6 +6,7 @@
+>   */
+>  
+>  #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+>  
+> @@ -42,14 +43,16 @@
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		led-white {
+> -			label = "vim3:white:sys";
+> +		white {
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			function = LED_FUNCTION_STATUS;
+>  			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
 >  		};
 >  
-> -		opp-1512000000 {
-> +		opp-1500000000 {
->  			opp-hz = /bits/ 64 <1500000000>;
->  			opp-microvolt = <800000>;
+> -		led-red {
+> -			label = "vim3:red";
+> +		red {
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_STATUS;
+>  			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
 >  		};
+>  	};
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
