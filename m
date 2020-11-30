@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB8D6C64E90
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:25:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 802E4C64E8A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:26:15 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4DE8C20727
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:25:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F1F1A206F9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Nov 2020 13:26:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P6t8ugI0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GrNypqsZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DE8C20727
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YftelsGv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1wEu7aRd"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F1F1A206F9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,62 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=rvQjSlQ8NhaVtHZiMnDYgSRZ/ChmKxUOVOhQ0Hxqx0Q=; b=P6t8ugI0Br59wJJr0aIfFU1mt
-	hqk+7WBR3XL8i4wM7+jU9JjrzXZVpqQP57zdlMMmALC4wNQvxxFUDPUexLZLkWVmCj/wej5dRxrw/
-	QN2A4TAH3kEmwpa03kegK/VDECTwi5fSRiRDJ/EvxA7PiHuqCcsNRtaOgxBPN0TJfuwSffMT5I90B
-	q7j29gTQxjeqxo0bugxelevDOLzegvSBVMWHDTT5xyHD6KcRqB2BhkLT5PG8v8E1IGiUkWulgKFQs
-	b2MAipRnLnzKTCSoAO38mh6KojLccxFHJMnPqqbWyWMUCpMoed0DnIgbB2K1rZLXAFjEW/9Cp7BdC
-	f74spws+g==;
+	 bh=eVwbEXE3pBLd4ojZqecXhtmftHsXL0NUQxgQkWs+rmQ=; b=YftelsGvUbyUkTKntEO+u1btd
+	QMHDKWJnIrDo6N5R7o7XPKECEpgVQPvMbOIEovUnFEyUBwVqC1mgTussuA0WxUbK6I99cPKgLXL8j
+	BLa4Fm+/RFAYrSZFfv9OHro7S4JGz5Jra560IBaUshlc/QWPatMqo8x4GY15Cetj/AnfBF0ecGQsE
+	gc/MgzgytIDG0b33XyJc4uxEk1RC7Y4LceNV82mzfpy6HcxJvwzo3gedmHuXjMq/pvYFbP69uhMMR
+	V2HGjeqGaydFecH9QGyfW69TPSqeyzC/QZ4+eygPbWTf1cZuBZ34iMu9jiMYjgt+fkGbZN/E3L5Yz
+	D/+l8qPFQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kjjBL-0001kB-T3; Mon, 30 Nov 2020 13:25:31 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1kjjBx-0001vr-2g; Mon, 30 Nov 2020 13:26:09 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kjjBI-0001iS-1u
- for linux-amlogic@lists.infradead.org; Mon, 30 Nov 2020 13:25:29 +0000
-Received: by mail-wm1-x344.google.com with SMTP id f190so22119961wme.1
- for <linux-amlogic@lists.infradead.org>; Mon, 30 Nov 2020 05:25:27 -0800 (PST)
+ id 1kjjBd-0001p4-4p
+ for linux-amlogic@lists.infradead.org; Mon, 30 Nov 2020 13:25:53 +0000
+Received: by mail-wm1-x342.google.com with SMTP id a3so25156355wmb.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 30 Nov 2020 05:25:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=l0shX+sCSeRMp58xcC0HzGwE/yEJsp/smhugW9tOkWE=;
- b=GrNypqsZNHs6S+K/VGLpnBipUOS4+z9xAkrGsnGW3SEN0NiY2b9jwWucqK4GLK9QFE
- LpY3RsnMLzZdz70wALryWDpC3/SdkiidudQZe8OxaUrzFeyDnc5T7IwP0FWdq5C+da+R
- UhQn168bkRxzz7PyO3ByCdBqXf844hSrXB2inj5N4Hkz+6cip5LoOMHZT3s30cc2Q1JO
- Mx/DExkWE6A3YmgMTLaH0TJx2a9qtmhPRvhcZtnBq3+8otlzDla4h9FiU+nWeISkmnV+
- cuJFHkC64LLMltZ6LmXhYVrHieRQxzoWWt1UHK7YRrfpXogXhWS+iQvzUUwKJ7cK8Fo7
- FNSw==
+ bh=imDbNzTq1REIzdtg+PEjyslOlxjZtkiSfNa3OIYZ7pM=;
+ b=1wEu7aRdvwZHsvs4VpuwCp9xb8k72JcS+nk70AfqItlZBg4uONw6Miv/1sFJqtDw3m
+ Ic0uFdLIsxs98G+erAxJAYkh22wO0TpAJniog6VVbTLmQYsIqXTOd9FVFrSq23Fl/utk
+ gzj4m491evJSeEQ5J/jw2pE42D+Y8yts2Kk0HTtQD1VLZTzy2nebrqiM6j4alzQfGVp9
+ WZBl9J3LgUntXNoY4RKmy3ksbwyQ7LjYD6E8NLuYTw50w5qHNXTgMz/P26MutWRuePGh
+ ZYCeum3yYNTl223GeqW6vMiDd1pPReuCX92DFps98m+tWoBS+nZJ17tDpStjpXrLx5b0
+ MoPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=l0shX+sCSeRMp58xcC0HzGwE/yEJsp/smhugW9tOkWE=;
- b=LjMflama+bnKg8/5af7EfHR+P+HWpXtKRphTaUgOHzSeITc80aLxsX8+og7ZO0/FEz
- BwlNCocrcGMm/dxWBPZNCYS9x4BQ9KdvxG2RSidgF4u5L6S2ixWRoV8SLfGKxtRdACJH
- Ef7U9/ALoGeWaV+c4I71sOBCUwvUlM9XZhTjifT3yVTutvWsVD+wepAiKjs8PGCNCAFd
- C1bj598+CPRot/J+O3DO7iuraQSO2ABqE+7ak+hIWR6MU7dNYpPB+BdwYP84nix0ZrcI
- hx+N4xDl1H5FxQEAqz9zZ53sYQZ2N1SVy54IjvwWpwUM4AhX9Mw4EbExkoIuE7DY0mHK
- 1iOQ==
-X-Gm-Message-State: AOAM532ar+XKBfO23SweFQ15dFMCl4VgbNVEFfjgoY9+6B5La2GWTym/
- ha4TPmW+1nSLjegT4kcyEk5bKQ==
-X-Google-Smtp-Source: ABdhPJwgDQaUobvgZCuGcqI//qWBkfw+ORVRmtt5yv6AuOdTGVJ0gNsOxyZNof+YUbkPwRyp44UODQ==
-X-Received: by 2002:a7b:c954:: with SMTP id i20mr23289319wml.56.1606742726690; 
- Mon, 30 Nov 2020 05:25:26 -0800 (PST)
+ bh=imDbNzTq1REIzdtg+PEjyslOlxjZtkiSfNa3OIYZ7pM=;
+ b=bEC4Q9bfhzHjkYq9j8eTGoEq36/FOjyEdaHdX9WHgeXCWMSSU2JtuH3bGRqAudNIV4
+ +HMypW+7DlaQ9S1YLJp64LOpGx1/H38eY33JdqQyy8WOMwH/fCcPbba/1kYuiHBqIpjc
+ O3jhi3tKLIYETBeM9a7rO1pnoMUTJuv+MJuVVbruWOn6EosP/iFgaD0F7QLXmW7S9RmV
+ Jg2deKseG8Gp/KrTk9aWXxaj4vzFeYnae50bdn8mbyZGkAkXXTswaurZTnaTJREPKzwd
+ ECMSjo6g5w4IINVODoA5Wnfb49Nf021e0LjjMBf6NNSYF2+1fPR+J/8eIGmXTbHB6xsP
+ C/jg==
+X-Gm-Message-State: AOAM5318EQP6Jc6jCQSWwD//D+BKpbsctOGmtqbv+YsYdgJ1x6ldM+Aw
+ TwLjr1bPqO+7qDm8kriwXa+S/g==
+X-Google-Smtp-Source: ABdhPJwb+9GKM/I70i10A05hcMaIvZXaNUZtIV8B7onXCfk5xAy087QjeGMrztv7jtxj7R71HzRsaQ==
+X-Received: by 2002:a05:600c:255:: with SMTP id
+ 21mr23833237wmj.69.1606742748023; 
+ Mon, 30 Nov 2020 05:25:48 -0800 (PST)
 Received: from [10.1.3.24] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id q17sm32327983wro.36.2020.11.30.05.25.25
+ by smtp.gmail.com with ESMTPSA id o74sm1509474wme.36.2020.11.30.05.25.46
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 30 Nov 2020 05:25:25 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: meson: update the Khadas VIM3/3L LED bindings
+ Mon, 30 Nov 2020 05:25:46 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: meson: fix spi-max-frequency on Khadas VIM2
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20201125052914.4092-1-christianshewitt@gmail.com>
+References: <20201125024001.19036-1-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -133,16 +134,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <d481a9f0-1d9c-2989-edd3-83f7c549f228@baylibre.com>
-Date: Mon, 30 Nov 2020 14:25:25 +0100
+Message-ID: <0d4e54a3-9eb1-db9e-7d17-985262ed251f@baylibre.com>
+Date: Mon, 30 Nov 2020 14:25:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201125052914.4092-1-christianshewitt@gmail.com>
+In-Reply-To: <20201125024001.19036-1-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201130_082528_227922_36099D0F 
-X-CRM114-Status: GOOD (  19.14  )
+X-CRM114-CacheID: sfid-20201130_082549_312280_AD0EC889 
+X-CRM114-Status: GOOD (  21.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,53 +161,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/11/2020 06:29, Christian Hewitt wrote:
-> Update the VIM3/3L common dtsi to use the new function/color bindings.
+On 25/11/2020 03:40, Christian Hewitt wrote:
+> From: Artem Lapkin <art@khadas.com>
 > 
-> Suggested-by: Artem Lapkin <art@khadas.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> The max frequency for the w25q32 (VIM v1.2) and w25q128 (VIM v1.4) spifc
+> chip should be 104Mhz not 30MHz.
+> 
+> Fixes: b8b74dda3908 ("ARM64: dts: meson-gxm: Add support for Khadas VIM2")
+> Signed-off-by: Artem Lapkin <art@khadas.com>
 > ---
-> This supersedes a previous submission from Art [0] and uses the updated
-> LED bindings suggested by Neil.
+> This change was previously submitted as [0] which has style issues and
+> remains unmerged. It is also part of a two patch series where the other
+> patch needs further work to convert to newer LED bindings.
 > 
-> [0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200925033017.1790973-4-art@khadas.com/
+> [0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200928092613.273998-3-art@khadas.com/
 > 
->  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 11 +++++++----
->  1 file changed, 7 insertions(+), 4 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 87bd8c9516f2..8f8656262ae7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -6,6 +6,7 @@
->   */
->  
->  #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
->  #include <dt-bindings/gpio/meson-g12a-gpio.h>
->  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->  
-> @@ -42,14 +43,16 @@
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		led-white {
-> -			label = "vim3:white:sys";
-> +		white {
-> +			color = <LED_COLOR_ID_WHITE>;
-> +			function = LED_FUNCTION_STATUS;
->  			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		led-red {
-> -			label = "vim3:red";
-> +		red {
-> +			color = <LED_COLOR_ID_RED>;
-> +			function = LED_FUNCTION_STATUS;
->  			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
->  		};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> index 39e6047056b2..079500ed5066 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> @@ -391,7 +391,7 @@
+>  		#size-cells = <1>;
+>  		compatible = "winbond,w25q16", "jedec,spi-nor";
+>  		reg = <0>;
+> -		spi-max-frequency = <3000000>;
+> +		spi-max-frequency = <104000000>;
 >  	};
+>  };
+>  
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
