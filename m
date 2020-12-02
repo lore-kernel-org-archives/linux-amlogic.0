@@ -2,19 +2,19 @@ Return-Path: <SRS0=7yak=FG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-18.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BC91C64E8A
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Dec 2020 17:45:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 00334C64E7B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Dec 2020 17:45:27 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 85EE02086A
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Dec 2020 17:45:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 85EE02086A
+	by mail.kernel.org (Postfix) with ESMTPS id 86BBC2086A
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Dec 2020 17:45:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 86BBC2086A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,65 +23,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=56U3goVSkLc2u3PqLa1RYR97cHeHukZU7JvnSf9I/qA=; b=kGFQd0FzPk8fPMidTw5KmaaEV
-	z/XZI10z+cwAFMRoyOSkrs1H6sMEvp+jWhURY9pGHVQ/jZ4hZxpP7U9Lpbj49cyGiDHLH/11QDPeI
-	uPP4NhnNO8WEv3wD83Y0YfyrHdget12iTqQCmW0uOD4/JldYcUVTyI57sivzzUbvFvn4mRMK+UXUz
-	HDZNZvKCU5+qB4jO+dvnorQPK4wM+inthB3RMlDIgtuiz9+TqZ9rMWLKLA3WK9Z7TBNoTxiaUiI/o
-	l4nHwiltJjwqI6oJp9ADJKEWLex6goAuzzHeB9ks/OeHWBjKZJyy5U0X7rQVaxa6lF3v9otOlIIBc
-	cgzKyCghQ==;
+	 bh=DIfgz2hMjPSrJTPcnzhCievO2SmeRM4alF+5uP6nkfc=; b=vbaKdetooDlR8aXJ+dtMqT0xz
+	DGeUkEWG5kKM4wb2/IDiSPK1hXzXfH6MCB6UgvhA64jdDBh/K1EyqKab38hraFTIDNOLelNRzWgq+
+	ST67N4Zp8VWJIlhD/aO9nx7gDFimYXegvbjiMdWJvxxz6wrSnmPvxqT3Wa6KdrxYC0qPm9gjBJq4S
+	jmr7Ygulg9LKTwvz6BtxUl6K6wp3pBppYIalIoDIVbjbhLS6prPHVwDyfPNtoM0hjhpuLuiu5hv7X
+	toUtHJ5R78AzevZxfMEB67520aLSJHZItsS9dEeoGnt+IV12wRY7POUgcwqL2VNeRL2Od3KkTvjy8
+	xq3ExdaQg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kkWBm-0007LA-M9; Wed, 02 Dec 2020 17:45:14 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1kkWBq-0007MS-Bi; Wed, 02 Dec 2020 17:45:18 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kkWB5-00070f-FU
- for linux-amlogic@lists.infradead.org; Wed, 02 Dec 2020 17:44:38 +0000
-Received: by mail-wr1-x443.google.com with SMTP id i2so4969315wrs.4
- for <linux-amlogic@lists.infradead.org>; Wed, 02 Dec 2020 09:44:31 -0800 (PST)
+ id 1kkWB4-0006zg-C4
+ for linux-amlogic@lists.infradead.org; Wed, 02 Dec 2020 17:44:39 +0000
+Received: by mail-wr1-x444.google.com with SMTP id t4so4900958wrr.12
+ for <linux-amlogic@lists.infradead.org>; Wed, 02 Dec 2020 09:44:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=s7fXTOo1aazw2JxwuGjclgMvOEDpr6fiuRKDzr3aTR8=;
- b=xv0VaZTRH0v0oboQ91QM5gtP0jffstmJtMQe2QVLsdKl9O6p7QEhxaKpXakYOev6Mm
- nQ6YIrZzJ4I45lWqvV8HCWbFvx8iu0WaThJ0WKkGZxZE9xm9/7pVZRtYHAL13ryKdcqQ
- 4VjTSZ80O0pyvYUiMtRH/YzLe/uST9FCkByGq3gfbkuspCo5FTMy4TRQS01uzsKqx3Jk
- +IwDoRw3EZgTopFda+ew1FDIP3uOAsjL4X+jOgeaIT4MeKhpAvdWP6sAf5YzLhUtgfYR
- 2VT/DOuf3+GN4R3fOBV6XF0EuPefMax+P9ZtGmD/JUuBUNOYG/4Dc9GogXdwNBedcIUF
- aVKA==
+ bh=gxPSG1/jKCExtEHHvCtcVieFeCsXRCYyFJFBc+BdEMg=;
+ b=EAkad4/IyQDVuOEVtUWGNRb6tU7jCcx2PbwpCDuo2+jDE33qVg9wNhjmDnuheQ0Iwr
+ ox851w381UOR9wh4QY6QKkC+I9XVkclZmkbL2q28pRlb13UwdGyPn3dZY61xJpW0Aa0+
+ fDhcVd2kOqMjrCljRjACBFftcWM11u0J3v+LuR5d1oZ0NDYob7bHkhDdh4vuTLKZbDHq
+ urNSKWFVVV1SSVbbDSWA306Q/5oQ2XI2M4hk3Eh71r0h2C2oYBkHoB9ljcGoei27iUml
+ e6Jsra9d8wbHrcSe0T4S36C4aYdFpWQ4fttgw2neHD3wzyyP5kdRwJ8tTcCR+t35U5QC
+ HQTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=s7fXTOo1aazw2JxwuGjclgMvOEDpr6fiuRKDzr3aTR8=;
- b=NiL8mgatopWzgDDcSnKBZ0yNXjgaPnCpONLurJLeH7R2z85i8RK2f5ZbxpqX8Nz10J
- OWi1C0bTdrdbfgKMERklpVEIpG9453pg6VFqcT4rCHnU+6ndSHZaU7RNPZOkGBes5bwk
- BPnE8VCTcsXkAw6W8Mrus9x0tgelD5exmt/ZkhFIBIHILThDu8oGiYQKZHUpSQvykvpw
- fSEbD2ki6Qi6/7uY0Z+k4K2iCRzOiWiWj+kOCCrrNem+MaFDH2PbH6z20HXuB09ncAOp
- bCeyQ/2k/dMZ2V4NvuH8dySZ38CLn9r64F2JhmPfKBPxmjHErV1cTSykC5WZdV0m9u9w
- U9Vw==
-X-Gm-Message-State: AOAM531lG5WvnTg1E8qr5mTnuky8YPfz6NWFs/3bhjhpCti6s3GF1YCE
- 52aUPU60QOyIkC2gRqQA/KgiHQ==
-X-Google-Smtp-Source: ABdhPJyp/pXoOl8woo+mTCPlCCyB3BR1ozyf9vbD4WED1vgNH+uYjDWaoa+RLNi1V2lRikNy9pKEug==
-X-Received: by 2002:a5d:4ccf:: with SMTP id c15mr4774675wrt.237.1606931070225; 
- Wed, 02 Dec 2020 09:44:30 -0800 (PST)
+ bh=gxPSG1/jKCExtEHHvCtcVieFeCsXRCYyFJFBc+BdEMg=;
+ b=Tl4CunNB2wPXTAZEjUxOi03m/3RPleQpROaiNbKUhDgbimUEjVgDLhzoXZn+WSQ/WL
+ TypHMi0kp4ly2h1o6A9Sz8BNPIOejKZAT/YPjzLIlET2tSNDj1ZczqvlKJpMsjngZEs8
+ ggLozThFqjUmoNtVT3UFHJbqDyQjrdp2QiFIayBVjeDEDzXfKHM4WLQstUiX3KB15D63
+ 2hHoG8qJZpb8WtAOJ73KQMSpx6j9k3ZJOJsNerl2qa9J86VjIU+ldMsW4wlUR5zMxh+N
+ SlxKFL8oTJlMTS+GotekykGegwPK7ll97mdaey091pLjxAOtExciDuNIZKphiPoMOIAn
+ iDAg==
+X-Gm-Message-State: AOAM531hgqRU07923UtrFjs92cBdTAB8Ons5Bd83MFV0m2AYaUPK3BXY
+ HxzBxrAxPtXS/6ntH++BfYEBeg==
+X-Google-Smtp-Source: ABdhPJyP6rFAQ8WXLvl4FjskdfY6uLmqQw/N7YlH5pLf+59FEarNuMiJryaEGmn/GzrmuGwyehgVhg==
+X-Received: by 2002:a5d:6046:: with SMTP id j6mr4721952wrt.317.1606931068691; 
+ Wed, 02 Dec 2020 09:44:28 -0800 (PST)
 Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:15b4:c668:8f06:1b99])
- by smtp.gmail.com with ESMTPSA id q12sm2842915wrx.86.2020.12.02.09.44.28
+ by smtp.gmail.com with ESMTPSA id q12sm2842915wrx.86.2020.12.02.09.44.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Dec 2020 09:44:29 -0800 (PST)
+ Wed, 02 Dec 2020 09:44:27 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: hverkuil@xs4all.nl,
-	khilman@baylibre.com
-Subject: [PATCH v4 4/4] arm64: dts: meson-axg: add GE2D node
-Date: Wed,  2 Dec 2020 18:44:17 +0100
-Message-Id: <20201202174417.3778306-5-narmstrong@baylibre.com>
+To: hverkuil@xs4all.nl
+Subject: [PATCH v4 3/4] MAINTAINERS: Add myself as maintainer of the Amlogic
+ GE2D driver
+Date: Wed,  2 Dec 2020 18:44:16 +0100
+Message-Id: <20201202174417.3778306-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201202174417.3778306-1-narmstrong@baylibre.com>
 References: <20201202174417.3778306-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201202_124431_718641_BA5974CA 
-X-CRM114-Status: GOOD (  11.64  )
+X-CRM114-CacheID: sfid-20201202_124430_555992_DCB1757A 
+X-CRM114-Status: UNSURE (   9.72  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,33 +102,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds the node for the GE2D accelerator unit.
-
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 9 +++++++++
+ MAINTAINERS | 9 +++++++++
  1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 724ee179b316..30efbceaa35d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1605,6 +1605,15 @@ saradc: adc@9000 {
- 			};
- 		};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 02437abc94c9..29b5ac0e7a74 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11381,6 +11381,15 @@ F:	Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
+ F:	drivers/media/cec/platform/meson/ao-cec-g12a.c
+ F:	drivers/media/cec/platform/meson/ao-cec.c
  
-+		ge2d: ge2d@ff940000 {
-+			compatible = "amlogic,axg-ge2d";
-+			reg = <0x0 0xff940000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc CLKID_VAPB>;
-+			resets = <&reset RESET_GE2D>;
-+			reset-names = "core";
-+		};
++MESON GE2D DRIVER FOR AMLOGIC SOCS
++M:	Neil Armstrong <narmstrong@baylibre.com>
++L:	linux-media@vger.kernel.org
++L:	linux-amlogic@lists.infradead.org
++S:	Supported
++T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
++F:	drivers/media/meson/ge2d/
 +
- 		gic: interrupt-controller@ffc01000 {
- 			compatible = "arm,gic-400";
- 			reg = <0x0 0xffc01000 0 0x1000>,
+ MESON NAND CONTROLLER DRIVER FOR AMLOGIC SOCS
+ M:	Liang Yang <liang.yang@amlogic.com>
+ L:	linux-mtd@lists.infradead.org
 -- 
 2.25.1
 
