@@ -2,93 +2,55 @@ Return-Path: <SRS0=ZFy2=FH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-18.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA548C63777
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Dec 2020 08:42:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A2EC6C4361A
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Dec 2020 22:27:27 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5995920C56
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Dec 2020 08:42:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5995920C56
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=oracle.com
+	by mail.kernel.org (Postfix) with ESMTPS id 01B7522287
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Dec 2020 22:27:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 01B7522287
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From:Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=24QzbWpw2szDUqSEQOm3iorFftinqzBEMHmtmoG4MnM=; b=hvR83i6laJqkL2p7gUNXtSOl5V
-	jhbkNaTvetbZ1yOPMbZpdKvihsrKOlElg+4zNmCd+9mTqys5YkrZ/bNpCE6aReJjgAj/Ax88+2GhK
-	gmaoJYx7ukh0wZbQXLHdTYE1iioHFDhixvYeL6v08yb0ISaL8FiFpYU9YhpnRs6mkd7xM1sH3QIqm
-	TqY9VGvJM9PQzaAsAj1YNFNKBx752yhrPz0dfU1wDbJ6+TuJvkFHqsURcq0Ftz6W9sFR9lKxcngTF
-	pWRCj5DSSYv/BIuvz7Joat6DBwRRge8lh5Q6SzoHqoai81FEbqU2YPLnI49jW8NtdTqUGvUCuD48t
-	Rq7NrDjA==;
+	bh=jxrxNuimMZ5XXtUYdQT5ogzhJuRYLSKpeXndLk9NNRE=; b=aZq5uYRQq9CEnP5NUyDLZKm/G8
+	nJhPZKkkhKkTG/usMWAxmyVhFXX56pO7gabSoPjMa5iNOlwivf8UB8LEa+smV+v7ybYdc/nU1frA7
+	t03jub7MXGGVKrIEo+TKWjWW6WYufMEmLZI2b1Tco2dTICEXTvnLKcjYQhuOD2cOiZjQCsOtV/D/s
+	jEXp4WoD3/ytVqB/iZB+h0aX239av3phyHPmdGD9y0huFdpENhURjD+8CiF9sOXeG1nNxFEX13RTY
+	52QWwCf4lM0ilagcyiOskLMwOj2M2HQktnU+tXNPk7ZSV7dcdNrndlYOdRImzMK9hqv7TWEV2KnlO
+	koGq+4vQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kkkBz-0005qa-3b; Thu, 03 Dec 2020 08:42:23 +0000
-Received: from aserp2130.oracle.com ([141.146.126.79])
+	id 1kkx4H-00041V-Ex; Thu, 03 Dec 2020 22:27:17 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kkkBq-0005nq-P4; Thu, 03 Dec 2020 08:42:15 +0000
-Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
- by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B38Z2Vg104308;
- Thu, 3 Dec 2020 08:42:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
- bh=zJcrQdKGeXSGDinnwfXZFzwW0YR5wODCt/2ON3lTHSo=;
- b=WuS24ufAwiHrCut+Kn8buwOcA/9DBBvZeBaUG3W8ohAYadWqU6gMP/wDP5rdzcORZI6N
- VlJ+KSc5hQxKU5GJIyMRrGSBs4dcByltWTJLF0MEiGF1cZuhxlu+wIHjmHoXnyDJbuCL
- kM1/h4GrMjgMvcmd4XhSThTJykoJ++7x0pkdfPbUgl6womJsGcqy87elpowlOjWF+xCx
- Cbi9HEqWaIELSf2nrmPsDky9Fc3iILrJXlX41T+fuyx5eA6X7EjBNgID111pIlz012s/
- YmoQ+DKQyuz1XXqECp87+Wfwm8pmGUye2mdz8K+BvX8sG4nxyX5hsyV1+aiLfBXyxk/g uw== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
- by aserp2130.oracle.com with ESMTP id 353c2b4npx-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Thu, 03 Dec 2020 08:42:04 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
- by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B38YTY3122579;
- Thu, 3 Dec 2020 08:40:04 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
- by aserp3030.oracle.com with ESMTP id 35404qg08k-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 03 Dec 2020 08:40:04 +0000
-Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
- by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 0B38dvmC029951;
- Thu, 3 Dec 2020 08:39:59 GMT
-Received: from mwanda (/102.36.221.92) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Thu, 03 Dec 2020 00:39:57 -0800
-Date: Thu, 3 Dec 2020 11:39:48 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Liang Yang <liang.yang@amlogic.com>
-Subject: [PATCH] mtd: rawnand: meson: Fix a resource leak in init
-Message-ID: <X8ikVCnUsfTpffFB@mwanda>
+ id 1kkx4E-000418-H3; Thu, 03 Dec 2020 22:27:15 +0000
+From: Arnd Bergmann <arnd@kernel.org>
+Authentication-Results: mail.kernel.org;
+ dkim=permerror (bad message/signature format)
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jian Hu <jian.hu@amlogic.com>
+Subject: [PATCH] clk: meson: g12a: select COMMON_CLK_MESON_VID_PLL_DIV
+Date: Thu,  3 Dec 2020 23:26:58 +0100
+Message-Id: <20201203222706.992440-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9823
- signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- bulkscore=0
- malwarescore=0 mlxscore=0 mlxlogscore=999 phishscore=0 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2012030052
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9823
- signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- lowpriorityscore=0
- clxscore=1011 bulkscore=0 mlxlogscore=999 phishscore=0 malwarescore=0
- spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2012030052
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201203_034214_996868_D3F8AFD4 
-X-CRM114-Status: GOOD (  18.55  )
+X-CRM114-CacheID: sfid-20201203_172714_653570_B36BFA63 
+X-CRM114-Status: GOOD (  10.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,48 +62,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
+Cc: Arnd Bergmann <arnd@arndb.de>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Richard Weinberger <richard@nod.at>, Miquel Raynal <miquel.raynal@bootlin.com>,
- Yixun Lan <yixun.lan@amlogic.com>, linux-mtd@lists.infradead.org,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Call clk_disable_unprepare(nfc->phase_rx) if the clk_set_rate() function
-fails to avoid a resource leak.
+From: Arnd Bergmann <arnd@arndb.de>
 
-Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+Without this, a g12a-only config produces a link error:
+
+aarch64-linux-ld: drivers/clk/meson/g12a.o:(.data+0xcb68): undefined reference to `meson_vid_pll_div_ro_ops'
+
+Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- drivers/mtd/nand/raw/meson_nand.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/clk/meson/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index a76afea6ea77..817bddccb775 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -1044,9 +1044,12 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
- 
- 	ret = clk_set_rate(nfc->device_clk, 24000000);
- 	if (ret)
--		goto err_phase_rx;
-+		goto err_disable_rx;
- 
- 	return 0;
-+
-+err_disable_rx:
-+	clk_disable_unprepare(nfc->phase_rx);
- err_phase_rx:
- 	clk_disable_unprepare(nfc->phase_tx);
- err_phase_tx:
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index 034da203e8e0..9a8a548d839d 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -110,6 +110,7 @@ config COMMON_CLK_G12A
+ 	select COMMON_CLK_MESON_AO_CLKC
+ 	select COMMON_CLK_MESON_EE_CLKC
+ 	select COMMON_CLK_MESON_CPU_DYNDIV
++	select COMMON_CLK_MESON_VID_PLL_DIV
+ 	select MFD_SYSCON
+ 	help
+ 	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
 -- 
-2.29.2
+2.27.0
 
 
 _______________________________________________
