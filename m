@@ -2,86 +2,82 @@ Return-Path: <SRS0=ZFy2=FH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F3A8C64E7A
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Dec 2020 06:00:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C47EAC63777
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Dec 2020 06:00:45 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C3B6C20665
+	by mail.kernel.org (Postfix) with ESMTPS id 5170220705
 	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Dec 2020 06:00:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C3B6C20665
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5170220705
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=THUFAmz4KvWEuAeAKnoWCuTzvx8CklF80ux4WRZem7A=; b=2ahlPumAe+WbKSZSIC3/Cd5nxy
-	ZEhyiypMgRlK26jm8ErLQXMS556VUFrNmfN19BtU0j6P5wbgLtNuORsC/oWVut82ha7L/6Vao+hLq
-	wm/drHXBsguj10tXki+8raRofel3/7v75nqDFn79LnhgJODthR1WJV1B/xEr5283jXXyKDzZA1Kmp
-	/C9iNnDrGCtupVcNmINwMDS3luLfqIB/ksMiXNGh6etd5arYAoKf/kKzcebjQb9NuOcG4O/7Jp3pm
-	NoP+I52dmEoQGzuv9UsTlkzG4SBwDo2uyZfUHTn9/IuUyRZGSkK7/drWI3xo4HKvMC5D/hsNzqUNY
-	tRX1WXmg==;
+	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Zhsolvv15nFvIV6zbOUHzlcuzDMVeT1xlI74f0Z04lU=; b=LUfqBoyUOYrFoM75QPAvmWNMJf
+	qASuA5jT9XiO+VmO3zknondbsyL+NzPmc82XgY9qsjDFQAMtwkDI9S6+G3gS7f+GHHZ5FO6/dAPUH
+	LB9xGfIMnIFUkqGDTsVSEJvYXbEnG4JSYLMnRa3hNjqeuSNEHbbkn7LN6su0kvPaWxygDgQgfTffX
+	m+KN43NuoQKjtWsErZrFMun5Le4ERXt6najY5Vpw9VRvJ19aTnX4m6Y+Gv6FDMOnTG7o9hh/druVt
+	8/P8h9u6cJ9RzwwlSUt2TQggUgMcrVXh5H65nKiPX+WukGCAsT6Y0VMI/+nMc1dZ7P34OnkWHXxJd
+	6DBmsn7g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kkhfS-0008M5-JJ; Thu, 03 Dec 2020 06:00:38 +0000
+	id 1kkhfR-0008Lg-Sy; Thu, 03 Dec 2020 06:00:37 +0000
 Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kkhfK-0008Jd-Tz; Thu, 03 Dec 2020 06:00:31 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id 64so590060wra.11;
- Wed, 02 Dec 2020 22:00:30 -0800 (PST)
+ id 1kkhfK-0008JY-OH; Thu, 03 Dec 2020 06:00:31 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id l1so601303wrb.9;
+ Wed, 02 Dec 2020 22:00:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=yQx2ZxmNKfhSKBL/RrXY6Av26UDGD56hcg2QvfdLjZ8=;
- b=Jd9yX4ZOB15VnyBC8HtYGGV+qWz0rzvNEOgyLezF/x//sq2cSjs08/RZlvSTb6vzzc
- IL7EFIonPtrRIdECE+AmNaYdalTg9LEAJi8HQ/flZO0t+6Onye8s6cJdQ1WzlIrPPau4
- sg6OXgcT/7n3hBvQUOHL2Dmu8I/WjxRY92c5/D690ttwWsNHRhyXFOcxBuGy4VW4YIJO
- PjiryC/WXVbcmLbtFDLe6FjDl8/zBM88VPsCMUuLRARRJ7uAeGyAkLvBf/fMJD9EbziK
- G9hM8TnEGw+s5EduYmP64M55RuFReEV0OBrWFdvuCOod8CyWfTOve3JM8UKt7VNY/Bsa
- 7NJQ==
+ h=from:to:cc:subject:date:message-id;
+ bh=FgP7aBE8aKGLuFedysVwA7KL29Dq1oiQSpDqT6u+4VI=;
+ b=h4Lb0tD7YcJ2v1bsPqUsKQ9RPQ2a1WMayCpc0Pt95GMhoEPUs5a4G7VOQpBnNkwWJE
+ Eo5ELadpnQjo2ML7qWxuKTuyVUTHLEztQBKT859ug+MGuGxBDSANnVQ3puvlVAMsBHjM
+ GDcqU9OCjAqGRUvw/MTpzzJ5D5NI9lv79yVGB6Ro00wPCKonxCxSGQJz2yqB0CCp4WCl
+ P4GnlZxVqNe4bjhPLZpv0JpySazPmdM6sm/m1iZn2kXy1cggTJAd70ChA2Effh1gQSKt
+ 9cre7qLUWL+PChhZSyL6k/PJ7tVIvK+FjVS0OssJNnTn5sGtR6413MU4NDYsTocPAFM6
+ IDOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=yQx2ZxmNKfhSKBL/RrXY6Av26UDGD56hcg2QvfdLjZ8=;
- b=bHufd6McnmLn07eSsqDxbw8KC7hM0xwFMjggq5JvH2ftnkjyscbOOpq8SvI5z66GI2
- Mlueblwd0iBa7h4jfTY4crTq0YPZjSsICfXUrIrVl3FEYmTV2wRVXiSnupHBNXXjpySk
- fmI7ROFva/JzasF86vcaQmmSvF6KoUDILG2bF/ffRQs2j2eSPNWMe7Rrt2rgwvy96mwn
- NaUkWU3Dhsprhm+NjInhV8I9V9I+RQhuYG2aV24UqBLGbCzPGEvqG/inE+4Gar4PDfJh
- kbSJ5hAhtzJZHfuZwXMxcW+lkBgPiiB4NfTRVMj6QnNINQX8StKs6Rvqe0JwlzNKoma2
- xQTg==
-X-Gm-Message-State: AOAM531FxZyfdGoS2DhOT4SPpsEHhuh+cDk4YO9oOjenvnss5sleal+1
- HbxnZ+hw0B4jWNiz0dJSK/M=
-X-Google-Smtp-Source: ABdhPJz5touPQ8gRAj5bAX0jBVDBM4EYThkiQpjW8op4pjO742vkaxdCX2O0sKSfLgLIRh3HPv/WRg==
-X-Received: by 2002:a05:6000:45:: with SMTP id
- k5mr1750499wrx.108.1606975230142; 
- Wed, 02 Dec 2020 22:00:30 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=FgP7aBE8aKGLuFedysVwA7KL29Dq1oiQSpDqT6u+4VI=;
+ b=e0xo65urGbk6NlfuWhYf60sNGXDqIDX5ZwjcU6+hZB+43CgQMy5EuOuj8vQLG7ssIK
+ pWKwZhukKcpEhfbXObL7puZw2DOgAxv/2dsSIuhi87sbordtvxcmsK1cbDxMS0CO+IQn
+ 9Z0yXGQoExwYrOemUHP77GIawMB8C7a6n22yquhNr/LL6UZvk6hWET+nwHKnW+E3+3v3
+ mWz5zUIxM4j5ycW10E6HBNO77vncNFOv1JHlf6V64Xnaqyt8n4CVGunXxL52mL9jeeRL
+ ewv8ne3x1IYVQaf0qCSb/Rzfmdb/bAZdtmNkk8f/ZdPHn2vrJaTLvR3gv20JceS4Yizk
+ GLQQ==
+X-Gm-Message-State: AOAM533iCUwYDN5I+qYqZ3uTGVmnU4bkCEpJh3/eDC94Px9XULIj5QRZ
+ R90nVvGwb6aTY+iszBpXjc2utkfGAp0=
+X-Google-Smtp-Source: ABdhPJzGCGuP5kscbpV5BX+E0FsFhFfbzFF/ey1HKAGsMH6YD4c+lt9NmwX6UPoMLk2rDqA6RcjbVg==
+X-Received: by 2002:adf:bc13:: with SMTP id s19mr1662859wrg.397.1606975227952; 
+ Wed, 02 Dec 2020 22:00:27 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id i11sm218439wro.85.2020.12.02.22.00.28
+ by smtp.gmail.com with ESMTPSA id i11sm218439wro.85.2020.12.02.22.00.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Dec 2020 22:00:29 -0800 (PST)
+ Wed, 02 Dec 2020 22:00:27 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/7] arm64: dts: meson: add audio playback to a95x
-Date: Thu,  3 Dec 2020 06:00:17 +0000
-Message-Id: <20201203060023.9454-2-christianshewitt@gmail.com>
+Subject: [PATCH v4 0/7] arm64: dts: meson: add more GX soundcards
+Date: Thu,  3 Dec 2020 06:00:16 +0000
+Message-Id: <20201203060023.9454-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201203060023.9454-1-christianshewitt@gmail.com>
-References: <20201203060023.9454-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201203_010031_003036_3359A600 
-X-CRM114-Status: GOOD (  13.37  )
+X-CRM114-CacheID: sfid-20201203_010030_831202_4E95C711 
+X-CRM114-Status: GOOD (  11.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,72 +96,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add initial audio support limited to HDMI i2s.
+This series adds basic support for LPCM audio over HDMI and S/PDIF
+to GXBB/GXL/GXM devices that I own and have tested with. Audio can
+be extended in the future (some devices have DACs and headphone
+hardware to connect) but this gets the basics working.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
+Changes from v3
+- Drop includes tidying in patches 2,3
+- Add Jerome's acks
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-index 67d901ed2fa3..b5b11cb9f393 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-@@ -10,6 +10,7 @@
- #include "meson-gxbb.dtsi"
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/sound/meson-aiu.h>
- 
- / {
- 	compatible = "nexbox,a95x", "amlogic,meson-gxbb";
-@@ -139,6 +140,45 @@
- 			};
- 		};
- 	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "GXBB-NEXBOX-A95X";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&aiu {
-+	status = "okay";
- };
- 
- &cvbs_vdac_port {
+Changes from v2
+- Drop p200/p201/p212-s905x/vega-s95 changes
+- Add khadas-vim(1)
+
+Changes from v1
+- Drop nexbox-a1 and rbox-pro 
+
+Christian Hewitt (7):
+  arm64: dts: meson: add audio playback to a95x
+  arm64: dts: meson: add audio playback to khadas-vim
+  arm64: dts: meson: add audio playback to khadas-vim2
+  arm64: dts: meson: add audio playback to nanopi-k2
+  arm64: dts: meson: add audio playback to odroid-c2
+  arm64: dts: meson: add audio playback to wetek-hub
+  arm64: dts: meson: add audio playback to wetek-play2
+
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 40 ++++++++++++
+ .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 40 ++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 40 ++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts | 40 ++++++++++++
+ .../dts/amlogic/meson-gxbb-wetek-play2.dts    | 61 +++++++++++++++++++
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    | 43 ++++++++++++-
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     | 44 ++++++++++++-
+ 7 files changed, 303 insertions(+), 5 deletions(-)
+
 -- 
 2.17.1
 
