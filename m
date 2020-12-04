@@ -2,19 +2,19 @@ Return-Path: <SRS0=hFP1=FI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E81CC4361A
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Dec 2020 14:24:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 82FCCC4361A
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Dec 2020 15:20:15 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3A6E422B2C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Dec 2020 14:24:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A6E422B2C
+	by mail.kernel.org (Postfix) with ESMTPS id 1FE2D22B3F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Dec 2020 15:20:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1FE2D22B3F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,67 +23,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
 	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=A2b46wV03UW/E//7ACZA1vV5LEDYvwl/IUbSx7g276U=; b=s4NlXkuX2Sjr6FZINxW6Dsz1p
-	7j+W0rSDdzqITlZqeo4JrjqPv8u8hoCwzVqWyk+rCIaRzv62XxRmy5YaA6LGgNSS7WhUB4d213jnT
-	XLdUYSpPLaRXEeRSVtqcWL/veOzKaHmQhDfKh8P31NERAAO4O8xzLDxIDiCOX61Thw/voVUN/Qw4q
-	IhmJnPG8TW15+Y7qsFcHQk2bH1hx152TQg+nAM7u7O8x+zgVcaJenXNGqZZgWybecMlFSCnC/vhDC
-	YPDHiTqrezqGQzDAJtbJRArEyr2jPtSyAOV8UICBj5J/Yr1IolmrTneuzGg655MWQEQvsi+WOJI3o
-	rOF3sPJvA==;
+	 bh=WvrYNzGfXJd/Ou287eONbxvpfV/nSh0DHfXTlNr6vas=; b=h2Gosw+n6BPJpjO6rfp+V3/M1
+	N19bU7A7Ytb42yP5ogiV53zi4/EGExdiEqD7Hr2OEXvhnrtaFJgVoX555HTbLcTdGoJSnyanMtvlk
+	wOn/d1GFFeCSy887C5tv3TCZyo3A6Y4T82oCcWeoXWg+D4LNsFET/Y/6YEdOG2zGZ0MSf6bAAN3SS
+	gteOVYz6llmbeLdfxee81XxF0bCyaQFO4x1ZVLsstpuZ2Vg/bWWPnllLU1znmV3VnXsIYxg6C1Wp8
+	C6PrrgR/jLi7LHwQ7FWKe5zayHuXDa//B8LAPgSNXGclNEyEI3Ut9C4k1kKkbW61YIdxNmUcSdlUA
+	VOBsO59qA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1klC0P-0004dI-Pp; Fri, 04 Dec 2020 14:24:17 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1klCsT-0005u2-DJ; Fri, 04 Dec 2020 15:20:09 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1klC0M-0004cR-Au
- for linux-amlogic@lists.infradead.org; Fri, 04 Dec 2020 14:24:15 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id i2so5497374wrs.4
- for <linux-amlogic@lists.infradead.org>; Fri, 04 Dec 2020 06:24:11 -0800 (PST)
+ id 1klCsO-0005t2-Jv
+ for linux-amlogic@lists.infradead.org; Fri, 04 Dec 2020 15:20:05 +0000
+Received: by mail-wr1-x441.google.com with SMTP id x6so1741170wro.11
+ for <linux-amlogic@lists.infradead.org>; Fri, 04 Dec 2020 07:20:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
  :date:mime-version;
- bh=jUrLTNYFEiHdTQnh4b2KYj9Mt2pIKbyV0FmvqdxpeB8=;
- b=Z6DkyOnE9k1kWZpvptHeGrpAXBwSapeSB8w1YdvYbnb3eftmlK2wjdSjdpN7qCOj2+
- nn+uYpuGAK4xmpf1bBewVR90Ik16AG7aoY0iQEv6cw7rLmLB8GXJK4KKVyk5XMUXcfk0
- EDMMpV3uJc4m6t/gnwI3sy2t4d250gGHLxpLlwGXbaZhswUraVRt94C2BMMcjp3HX10m
- zEQCPyhxIq0cXuBLHXrkZwPXLwpT4yin9SfAh1QeSDSJL9XPv//Px0NZy4CjDLc+UxI5
- FQ+q0ZObcEIkv6JwodNHpm4IsjoWTxyMo1vL+Sg/7A6qI2A95DQjYkyf/sWjUp3flODt
- PKEg==
+ bh=Ut70wCtSDVM0bqYgXmAgggZNWzyipgwqsdsGJjhBqoQ=;
+ b=j4C2JWHolEMbY0cQbERLHnxvJk+PT3gMBltNmTpp3rYpDIej3Bb6bDE4eSmsNb0zb7
+ cgUKN/Hnxcr9mgckn2z4BsjsVL8KpQWYJnxiekJACFwon2uwu+LdO9FfY76kxy1MUYiG
+ hUx+1cPmHCF9Cuf1TkbJsz11keCVoYMRNRUqFaGwnkjh8rUs9VvTzvYJQnn8BkHYB2JV
+ zDH38s8cPZfhvgOQvBJ1B5qwpejKesaIfXbHqSImXRoyCXwRXZSXGyg6uWP6LK1qkg5g
+ dURcOaHyPnXRrpZpW/AKMgE1c1BuIVI/3plmDWR+a5g/WTcoXA5RCNk1/yX2zNHqLCR1
+ WwFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:message-id:date:mime-version;
- bh=jUrLTNYFEiHdTQnh4b2KYj9Mt2pIKbyV0FmvqdxpeB8=;
- b=Cxd3hcksphvLA3GU4NnhSRrs72+Ot3/4xiWQiYg4WHUFYsieQF6qqWfTkbpIw+smro
- qh50ZaIzhoUXzUA7vuc09GC62Bo5hpKzg68t2i4wTp7IqOtKhNMy2ryGxE8MQofwH9po
- KKoMrdPIN7RBkRIOsEgoPhdBzqdx9VEMvPBZZp+nMqbc/Z5OSykXwBPJ8ZjdozDjgiNS
- /MtigBioc5Zo7LM55PpxEkduS6DG+wYWTgivkRvY2PFMuehpQryrLAXh6fPrZzUtQ5q/
- uLe7ZtTziW4P93HSIpxTaWYuodFQvBC09otKn8lmodcipIvl8+SffieL1aYD9cdzg6rA
- eDaA==
-X-Gm-Message-State: AOAM533ya7DPRPVscQhUweoT0tvrMF00wFigG7ua5Cgr1xY7Rm0pO1Yf
- Z2AfEAQzPwEEt8nrAgQXFbKB1YSC2CSr+2P8
-X-Google-Smtp-Source: ABdhPJwoBA9wqffJQYc31bYbuyvOWnHNUoeQXULAdRVuAJOkUsOmNY8LZXa33e0UvMqyOWL8CHF4zQ==
-X-Received: by 2002:a05:6000:89:: with SMTP id
- m9mr5285264wrx.412.1607091850901; 
- Fri, 04 Dec 2020 06:24:10 -0800 (PST)
+ bh=Ut70wCtSDVM0bqYgXmAgggZNWzyipgwqsdsGJjhBqoQ=;
+ b=Nz+l7HFly/a9ipH9rW5vXJXSO50TNtGz2rg1t9f6njlc7CBJua1dliMPwbPd3qhWux
+ X+2KGMGqfnY1OUUbCZGKUe3DAVjRN529/e5AuVsRKaNGR0O4QumWrJGB8iaiXwI4+A0R
+ KSvfi7zTcrdNWQxOywB0igPCgT8fAJN/QZj10B5rZkq2yj6AT8BYldziofvOyqQO6uoK
+ QUFZ9EKgMnqXb3NdjZ/7aEoq+0/uSi9u7LICssAOBMpQ0mwfvxOOwCk8EgbNeYl4g0Al
+ P8castpfxUKONle7li2DQ1JeXlXtzZxex4PL4d+z7jnPKlICQj72BF/NJeNy1Ony1erb
+ 6UWA==
+X-Gm-Message-State: AOAM531FUZQEeH4ZpGffBYiv3C5FVv/Hz023Vd2Ko8smOthc/52cU+su
+ a9B9jAgdzabw0xTADd01yCNqyA==
+X-Google-Smtp-Source: ABdhPJw0nUCfvQkmwhontRyFojOjTf3y9u3sd2tlbcu+vv1/3tZWslLF+HrOfUfmrNuKtCH1C0AZKA==
+X-Received: by 2002:adf:d84e:: with SMTP id k14mr5516583wrl.34.1607095203236; 
+ Fri, 04 Dec 2020 07:20:03 -0800 (PST)
 Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.gmail.com with ESMTPSA id j8sm3868701wrx.11.2020.12.04.06.24.09
+ by smtp.gmail.com with ESMTPSA id n123sm3685801wmn.7.2020.12.04.07.20.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Dec 2020 06:24:10 -0800 (PST)
-References: <tencent_220963AF059847E1171B4AB9@qq.com>
- <CACRpkdbvKWcD04SLLBOBuZWzN64xpVv1nfCXZGcSp9cs0MPivQ@mail.gmail.com>
+ Fri, 04 Dec 2020 07:20:02 -0800 (PST)
+References: <20201203222706.992440-1-arnd@kernel.org>
 User-agent: mu4e 1.4.10; emacs 27.1
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Linus Walleij <linus.walleij@linaro.org>, =?utf-8?B?5p6X5Zyj5qyi?=
- <linshenghuan@hangtu-china.com>
-Subject: Re: 0001-add-amlogic-gpio-to-irq
-In-reply-to: <CACRpkdbvKWcD04SLLBOBuZWzN64xpVv1nfCXZGcSp9cs0MPivQ@mail.gmail.com>
-Message-ID: <1jeek5ps3b.fsf@starbuckisacylon.baylibre.com>
-Date: Fri, 04 Dec 2020 15:24:09 +0100
+To: Arnd Bergmann <arnd@kernel.org>, Neil Armstrong
+ <narmstrong@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Jian
+ Hu <jian.hu@amlogic.com>
+Subject: Re: [PATCH] clk: meson: g12a: select COMMON_CLK_MESON_VID_PLL_DIV
+In-reply-to: <20201203222706.992440-1-arnd@kernel.org>
+Message-ID: <1ja6utppi6.fsf@starbuckisacylon.baylibre.com>
+Date: Fri, 04 Dec 2020 16:20:01 +0100
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201204_092414_486706_0F43CA7D 
-X-CRM114-Status: GOOD (  14.41  )
+X-CRM114-CacheID: sfid-20201204_102004_694963_9C5C2870 
+X-CRM114-Status: GOOD (  15.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,64 +95,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: narmstrong <narmstrong@baylibre.com>,
- "martin.blumenstingl" <martin.blumenstingl@googlemail.com>,
- khilman <khilman@baylibre.com>, linux-kernel <linux-kernel@vger.kernel.org>,
- linux-gpio <linux-gpio@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Fri 04 Dec 2020 at 10:13, Linus Walleij <linus.walleij@linaro.org> wrote:
+On Thu 03 Dec 2020 at 23:26, Arnd Bergmann <arnd@kernel.org> wrote:
 
-> Hi Lisheng,
+> From: Arnd Bergmann <arnd@arndb.de>
 >
-> this patch got a bit mangled but I get where you're going.
+> Without this, a g12a-only config produces a link error:
 >
-> I think Meson needs to be augmented to use hierarchical gpiolib irqchip
-> because this seems to be what the system is doing.
+> aarch64-linux-ld: drivers/clk/meson/g12a.o:(.data+0xcb68): undefined reference to `meson_vid_pll_div_ro_ops'
 >
-> So start with drivers/pinctrl/meson/Kconfig and add:
+> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+Hi Arnd,
+
+Thanks for sending this fix.
+
+Same change has already been applied:
+https://patchwork.kernel.org/project/linux-clk/patch/20201118190930.34352-1-khilman@baylibre.com/
+
+It was part of my last PR to Stephen
+
+Jerome
+
+> ---
+>  drivers/clk/meson/Kconfig | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> select GPIOLIB_IRQCHIP
-> select IRQ_DOMAIN_HIEARARCHY
->
-> Then use the generic hierarchical gpiolib irqchip as described
-> in Documentation/driver-api/gpio/driver.rst
-> Type
-> git grep child_to_parent_hwirq
-> for several examples of how to do this.
-
-One reason the irqchip has not been linked to the gpio controller so far
-is IRQ_EDGE_BOTH which the irqchip does not support (expect for the
-latest sm1 family)
-
-This is a problem we discussed a couple of years ago.
-
-This HW only has 8 irqs that can each be mapped to a pin. No direct
-translation can be made, we have to allocate an irq to monitor the line.
-So when gpio_to_irq() was called, we had to do that allocation dynamically
-to return a valid irq number. Since there was no counter part to
-gpio_to_irq(), those allocation cannot be freed during the lifetime of
-the device.
-
-When drivers relying IRQ_EDGE_BOTH first try the `gpio_to_irq()`,
-allocating the irq works but setting the type does not. We are then left
-with unused allocated irqs (and we don't have much)
-
-Frameworks using gpio_to_irq() are often capable() of parsing interrupt
-properties directly too. So far, it was enough to work around the problem.
-
-I admit, I have not been following gpiolib closely since then, maybe
-some progress have been made
-
->
-> Yours,
-> Linus Walleij
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 034da203e8e0..9a8a548d839d 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -110,6 +110,7 @@ config COMMON_CLK_G12A
+>  	select COMMON_CLK_MESON_AO_CLKC
+>  	select COMMON_CLK_MESON_EE_CLKC
+>  	select COMMON_CLK_MESON_CPU_DYNDIV
+> +	select COMMON_CLK_MESON_VID_PLL_DIV
+>  	select MFD_SYSCON
+>  	help
+>  	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
 
 
 _______________________________________________
