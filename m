@@ -2,83 +2,82 @@ Return-Path: <SRS0=t4U2=FJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 776AAC433FE
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 18:00:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70A36C433FE
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 19:56:10 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B399B23159
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 18:00:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B399B23159
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 05D0122DBF
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 19:56:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 05D0122DBF
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Sq3rT2wbEor4Sw7GGzgOSMXJoCbAXcL61HZvEEm8MX8=; b=QtLWvfv67n0nu6rSbLzHP3IPpx
-	C5tjTjMGgbAKZFu9EzbmQ7BfGaNj5G6qF+kQlJOcvfVeIRbLhYh5pHkEMceRxwg/cyxWpfg0z8+30
-	V10e4PHuwLfV9YuQVd0KUCBIBqiU8qZITdpz3OIZBFtc0btY1MMUKJc3U0EFM0AXR4e3418KcD3wh
-	krKCb6oNOtaSB3tRJjnsbPpfLXWElAJ5p0d/FvilPLmg5L8FmBzMl8KlWCE4cbJY7Euz9X4WJPIA/
-	Nwow/dT5BfhmkcQNsawR2knnwaUamUV5WFBaXGp3odBk36+02VnHE2JAFNsgKTPCkqi6EZAN19XGp
-	PWRTvQcg==;
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=naCpgfuzqpkRVGBQKfFce9NDOVyPY7buarmkRpFn6ms=; b=1sl6q3yaaA1EZAWN4KGUh0iw6
+	zZsQt+8a6FRUMjIGwxUr1fUvyW/GCa76sPe7aURv1YCFtO51mH7g4jaR5m7BywPUfVsld55EJcJw+
+	F+ZoXfrj71688xIy3+/siLUC+xrHg9Wkg7bwj+z224bQHKPpl3FOVxm0N62qQf9TsS+BeNX7MysYL
+	bo0+9FJdjfNCzL8sfNqSwdFNdeluVqll0HSdvWgW7rVKOG7pUcgBpIbCxqqlaHfRRqKdIULe6IH5Z
+	G7uxYq0TjB+G3Ad1bs0FBD+PyVAbHxohtotCiy/d4xe3Z/e/ih1ITCG9VzsQY2+mliZ/2mPTCnLYC
+	LMeHIABpA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1klbr5-0007dW-Rj; Sat, 05 Dec 2020 18:00:23 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1kldf0-0008JW-WD; Sat, 05 Dec 2020 19:56:03 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1klbr3-0007dC-Nu
- for linux-amlogic@lists.infradead.org; Sat, 05 Dec 2020 18:00:22 +0000
-Received: by mail-wr1-x431.google.com with SMTP id g14so8470591wrm.13
- for <linux-amlogic@lists.infradead.org>; Sat, 05 Dec 2020 10:00:20 -0800 (PST)
+ id 1kldey-0008J5-Bb
+ for linux-amlogic@lists.infradead.org; Sat, 05 Dec 2020 19:56:01 +0000
+Received: by mail-ej1-x631.google.com with SMTP id g20so13748361ejb.1
+ for <linux-amlogic@lists.infradead.org>; Sat, 05 Dec 2020 11:55:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=user-agent:from:to:cc:subject:message-id:date:mime-version;
- bh=PTXa6B/B0BNrbQJqk8SVfud/vMOBiyjb/emTUMto2ik=;
- b=MPFfiBDQZxoubDp47KqhOPCsl0Uu0ERfIVCSN+PkGlf6uNfh324TLdfASYbZ/It3aY
- UGAJtAI4+tkA8tViVrBNROjOxFZfeqB5FS34WHxbNS2r4Q1cDhVJu9rlzVPirDNZV/i8
- 60ARDDAW1ryo12WD+Xf+Im1RY5mIUczX72oXtDgjnBnAR2ov2Bnpvi7Ur9kayjpajUSi
- z9l0YMrx3FQjr4OgCjaM/+TOodE80LNdzwt6SFqvUZDIAFnnxqVmsLF2XKswJa3QNmJj
- kBykULaoWQcVioGIEXpTTc2n0Y8OjZU07jnfO4dtDPjOQQm+Ain57GxVWPlBoGC9stbg
- P22A==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ROWn+J4HOSplu4nLzjwMPIdkxpg/fGpt9/VfOHptWPk=;
+ b=uEDVc4D3cDu9qkXyID+22IFVb9VkQ5attaXJr5nvfNlAXM7spgAMN1CtgQ0z+m2Ldg
+ 5cnfOkfgq/M/gtQ/zLdEie1LZElCGXfCZCWfg6Bhjm0l0V1j3b5QwO2uvyHXXf/cB47z
+ /TJJIM4pzNsyL6OfW2nDq+1JcVCUD16e1UHrROJndsjyuexGeB0MCz4Ouao/JA+PHMXf
+ ZowhDa/FW0SmblWV6LqoxbP5Fm7/NONEFH7+6HOFPkA35bi4PspxxLZr4lxF+mbbEe/6
+ cvpy/GVhJMYXzgnV2T5AL9vXX5w2vXKoiMkw+se6bxzniqXLIVvceIK19upeG1GccwLx
+ tdTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:user-agent:from:to:cc:subject:message-id:date
- :mime-version;
- bh=PTXa6B/B0BNrbQJqk8SVfud/vMOBiyjb/emTUMto2ik=;
- b=J7hUZI64YsZTjoASvtICc0nxFQo8dTgIUxCnadCKdMGRSMTLNEYuk9TsxtpcAFVnen
- uhb7ivh9BrHGNek6vLt11V0v+y6jPz+NLG9tVcNh30Gh74NY2LoBJD4485xDVt0BTX0/
- keudYc9bUD9x34oMpMMFw7ol+fOO8ps4irPVpiolN3kDUo/pD60HnvwOQ8nY5ta4TLBd
- olX+7+seTpbDTBZnwhB+7XuWWTqMwDwGD0WwDcQ9SOlmcwYwxRgMexFW0DGHb3i+QCHK
- CW77emWFlPzn3tcEok+22CyeiPI1KMhqWgvzn7D1rpqwAgQC0K+3zvbSNv5laFrTWFYg
- 3vaQ==
-X-Gm-Message-State: AOAM532L8WhMTBcemB46fnpGxlfXzWWFngqEcrfE5Ii422k3BvwcNQTZ
- hofN6urtPzNnVE3Piml4bn7qLw==
-X-Google-Smtp-Source: ABdhPJxDuNhmmBblFW6fyO7wkhOXA8WUFQ0W09dGX+p5ryihjGiJrwlmb4k0cJJijfX1nHIWVMrHRQ==
-X-Received: by 2002:a5d:4892:: with SMTP id g18mr11067256wrq.365.1607191219674; 
- Sat, 05 Dec 2020 10:00:19 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.gmail.com with ESMTPSA id h3sm21635wmm.4.2020.12.05.10.00.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 05 Dec 2020 10:00:18 -0800 (PST)
-User-agent: mu4e 1.4.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>
-Subject: [GIT PULL RESEND] clk: meson: amlogic updates for v5.11 
-Message-ID: <1j360kp1zh.fsf@starbuckisacylon.baylibre.com>
-Date: Sat, 05 Dec 2020 19:00:18 +0100
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ROWn+J4HOSplu4nLzjwMPIdkxpg/fGpt9/VfOHptWPk=;
+ b=tkLXsu2IyoodukiFvDNn/WEvEEdwI24bH/mef5B3dcQUzadx1QVWN9rFzVyUZuSlBb
+ LzeZYdXOif3Z8Px9ncMS1IdtIIqcoNKpIho/hIYyQ29q4y1KFDtbtIhnci20bLp5yYvM
+ XZRuYIA+E0xyGmVw5IfJrRVyj/RGbkIRs6nvmBAfRMzm/KNTsfwJ8eateKutGmbxAGcL
+ BNLzyeQ4GLYZngObp+XYPwZBA0O3RIb29m2FF7yxmY5rEIN0hpfOIqtkyd5Bb2TzQJ7D
+ PsIhva5fWof8bihrdK/68IwCHl0nxTz/CX2EgKXwMme/Yft7XIdXvtUg8v1ElQHec+iB
+ rg3A==
+X-Gm-Message-State: AOAM530KE89U2QiW2uGpShIWax9rRWDNZXYGLjuP+jIpepNVTjSme+ZK
+ 3MXGnQjta6Koz8mr9vhM2hR7HAPffhVFly0BWEqI7nueAz8=
+X-Google-Smtp-Source: ABdhPJwFc6wy71DR4VukeWr5zqeRA2TeWbrib3ooUQEwVQUAHgl6cYe7ykW3WZyKciUeXCaZ75apBHt4tQHzt/J21bo=
+X-Received: by 2002:a17:906:4050:: with SMTP id
+ y16mr12190310ejj.537.1607198159023; 
+ Sat, 05 Dec 2020 11:55:59 -0800 (PST)
 MIME-Version: 1.0
+References: <c2dc3507-67a7-3c18-374f-050295bc1d59@gmx.net>
+ <CAFBinCDrMj4GP2cy4dBSt_isGXf4CuhmDz=uAs+gZwUGQc=o6A@mail.gmail.com>
+ <8afb2adb-4581-a847-e7e0-db1e915e9247@gmx.net>
+In-Reply-To: <8afb2adb-4581-a847-e7e0-db1e915e9247@gmx.net>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 5 Dec 2020 20:55:48 +0100
+Message-ID: <CAFBinCD6aqna6YYvXgO5iKWa9N3yvqehhB+SAirLaUu3xScy2Q@mail.gmail.com>
+Subject: Re: [BUG]odroid-c2 does not hotplug usb-devices
+To: Otto Meier <gf435@gmx.net>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201205_130021_798629_99691E84 
-X-CRM114-Status: UNSURE (   9.55  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201205_145600_478245_FD823538 
+X-CRM114-Status: GOOD (  11.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,77 +89,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
- linux-clk@vger.kernel.org, Kevin Hilman <khilman@kernel.org>
+Cc: linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Stephen,
+Hi Otto,
 
-Here are the updates for amlogic clocks for v5.11. This is based on your
-clk-hw branch, instead of the usual rc1, since it depends on clk_hw
-stuff you've already applied.
+On Sat, Dec 5, 2020 at 6:40 PM Otto Meier <gf435@gmx.net> wrote:
+>
+> Hi Martin,
+>
+> i have tried your second notice. but it does'nt solve the issue.
+> if at leased on device is pluged in new devices are detected. if
+> all devices have been removed, no new device will be detected anymore.
+thanks for trying this out and for reporting back.
+can you please also test if running "lsusb -vvv" (as root) makes the
+devices show up?
 
-Hopefully I got it right this time ...
+background info: the Amlogic Meson GXBB SoC on your Odroid-C2 board
+uses a "dwc2" USB 2.0 controller.
+I don't have any GXBB based board, but my Odroid-C1+ uses the same
+controller and overall setup. There I can reproduce the problem you
+are seeing.
 
-Please Pull.
-Thx.
+I am not sure which part of the "infrastructure" (on-board 4-port USB
+hub, dwc2 controller, ...) is causing this issue.
+My suggestion is to involve the linux-usb mailing list and dwc2 driver
+maintainer:
+- Minas Harutyunyan <hminas@synopsys.com> (dwc2 driver maintainer)
+- linux-usb@vger.kernel.org (usb mailing list)
 
-Cheers
-Jerome
+In the past they provided information and helped to debug issues.
+Please also keep me Cc'ed so I can help with any Amlogic specific
+questions, drivers, etc.
 
-The following changes since commit e6fb7aee486c7fbd4d94f4894feaa6f0424c1740:
 
-  clk: meson: g12: use devm variant to register notifiers (2020-11-14 12:58:31 -0800)
-
-are available in the Git repository at:
-
-  git://github.com/BayLibre/clk-meson.git tags/clk-meson-v5.11-1
-
-for you to fetch changes up to 88b9ae600138baff18c7f4c4870622584acc6111:
-
-  clk: meson: g12a: add MIPI DSI Host Pixel Clock (2020-11-26 15:25:20 +0100)
-
-----------------------------------------------------------------
-Amlogic clock changes for v5.11
-
-* Add MIPI DSI clocks for axg and g12
-* Make it possible to build controllers as modules
-* Fix Video PLL clock dependency
-
-----------------------------------------------------------------
-Jerome Brunet (2):
-      Merge branch 'v5.11/headers' into integ
-      Merge branch 'v5.11/headers' into v5.11/drivers
-
-Kevin Hilman (2):
-      clk: meson: Kconfig: fix dependency for G12A
-      clk: meson: enable building as modules
-
-Neil Armstrong (6):
-      dt-bindings: clk: axg-clkc: add Video Clocks
-      dt-bindings: clk: axg-clkc: add MIPI DSI Host clock binding
-      clk: meson: axg: add Video Clocks
-      clk: meson: axg: add MIPI DSI Host clock
-      dt-bindings: clk: g12a-clkc: add DSI Pixel clock bindings
-      clk: meson: g12a: add MIPI DSI Host Pixel Clock
-
- drivers/clk/meson/Kconfig             |   7 +-
- drivers/clk/meson/axg-aoclk.c         |   5 +-
- drivers/clk/meson/axg.c               | 824 +++++++++++++++++++++++++++++++++-
- drivers/clk/meson/axg.h               |  23 +-
- drivers/clk/meson/g12a-aoclk.c        |   5 +-
- drivers/clk/meson/g12a.c              |  79 +++-
- drivers/clk/meson/g12a.h              |   3 +-
- drivers/clk/meson/gxbb-aoclk.c        |   5 +-
- drivers/clk/meson/gxbb.c              |   5 +-
- drivers/clk/meson/meson-aoclk.c       |   4 +
- drivers/clk/meson/meson-eeclk.c       |   3 +
- include/dt-bindings/clock/axg-clkc.h  |  25 ++
- include/dt-bindings/clock/g12a-clkc.h |   2 +
- 13 files changed, 979 insertions(+), 11 deletions(-)
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
