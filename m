@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A330CC433FE
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 13:15:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 84B23C4361A
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 13:15:13 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2DDC623117
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 13:15:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2DDC623117
+	by mail.kernel.org (Postfix) with ESMTPS id 3F01D23119
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 13:15:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3F01D23119
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,59 +24,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=klez2xofbOF0WUkqKbqA8oL6qvLCB3PQgcWQpD3zVkE=; b=2pXS2H+Jf0DbGV9zLBEk2AHlq
-	TV776CJePsISNjOeLJfxKjo1dpoo935ObrWhX4DpNqzd31IbqEL2s39iHSHpLcEGS0igob/m9gAq3
-	LGsBJPsCGZjYrLU/M/vc9K5KfNIbzGaRIb9otTrFrIWZQQAGBslgAq561ys086KgyXz2Xs9Ar7d/L
-	iOCoCkbQ+tXk40N5V5eCX3/ZFSYaL1hJkENB9xwL9yAhJkTKMRhZtQCR9pR2TY+QEZr/0uaSTRDDr
-	aNpU50FRNZWH8bto042uCJP2OicGu2NFRbLJfOdPmNt/SidpGTHrL6+jpYlia5TQg1SIeFLa5B5Xt
-	Ri4otmRmw==;
+	 bh=YocU3PMCKTpEMvcKqQJVzeXznFkCTcVFM7ogKSu50ro=; b=WaJr1Z6WEHFtIYlp8xoX/Tuqa
+	U8pk5RMK89SgIGGMl18ANYU7lg+3QLxQGfKpw1+CJKhEfqx4wq6vzY+VNgXyT/L8lbpzH+dQQkMen
+	p0iHyB+H4nrfpBz+vbuDTivh3NfHESgYs8ROCQq/yTOSEEDPhbvT1WY+esmDGhlStdbqyDxfkk7FC
+	jZhDFEhsSQ6wjeNEgniizKKP9LdCvuFJW9cxSJZsu2ssDupe4pYfzYeqeMmgbnYsu3RbfK/4w+v3P
+	gnamv6NGS3I6VGdn1icdGqYlXwrueTc/w+kqwtDGdbHu75GNp3Iut+4ivsNGRTLaZKcLrnj7HhwIa
+	zh9WSDPig==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1klXOr-0005or-Uq; Sat, 05 Dec 2020 13:14:58 +0000
-Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
+	id 1klXP3-0005sf-8C; Sat, 05 Dec 2020 13:15:09 +0000
+Received: from mail-ej1-x642.google.com ([2a00:1450:4864:20::642])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1klXOl-0005mx-Bb; Sat, 05 Dec 2020 13:14:52 +0000
-Received: by mail-ed1-x543.google.com with SMTP id i24so921632edj.8;
- Sat, 05 Dec 2020 05:14:50 -0800 (PST)
+ id 1klXOy-0005qa-6U; Sat, 05 Dec 2020 13:15:05 +0000
+Received: by mail-ej1-x642.google.com with SMTP id b9so2429710ejy.0;
+ Sat, 05 Dec 2020 05:15:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=KanII/0c4hSypDA+mfldsnoEt0x4vv2WL2F1j4Ep7NM=;
- b=vdhGiWLxytc/tPUD3UFZ//syaVPUpl8uechirE2o1DO7LfwEW9WDQ8yHqrBXxkcPCZ
- vVuq0c2y3WWCrORe4epDzxjcZ8UHaNK2MkjsjIbNw0smBprgyAc0NqqBefKHYx8pLefl
- 2Ta3okMaH/vRCBMhu4NOfsd3CspDpm1V7gg0fZS6FQa8uT44EAOdqWYZsWBzuEW+DhQp
- yHAjnE3VawVmbTRao51Vey9WrQ7ZLDS1XSlzoYbXL2dUwstGyWu3j1O8P580hZqpNkg+
- LXb9iSsFR6aNO3Bik4aEGP3fY+z8a7huOuUXX/JakGgdfbAy9utbYaeSr+weXt9PLDf1
- kx8w==
+ :cc; bh=U8o7C47mB38s85XcvCijMc+zoOV85Gbl1fF1zykKK2A=;
+ b=ehA4WdgUGbq22fwAm3y4OBweeMpJTXerhxaWslqQ4Vl+DM3bh/rJyncIN8TGQCJp7v
+ +pONQHJ27Et8EsMYGgv05jPDXA/sFBnQreVlkiWiZbzhLPWSL2hYjIPXSbBXUYfwRpvt
+ oh0Fidbh4EAkjRO6m5ghdWsD60AHB0VxL6ZpKa+YfS8N6b8LjNZMmDj7TWCqYWsh0zuS
+ JxC6oIQnt3j5+jlldpVKD+obZ1z0iEsZ2vM0bPvWXZYyhcE0qlnkr5j/Crc4gqopVcTp
+ eVx18QeFuQ8VvFdjMyaOn38Ymm6kMMZO6WXh96MvGD+P1CnTwO3S1xh9bSylTRhvm5JN
+ 83jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=KanII/0c4hSypDA+mfldsnoEt0x4vv2WL2F1j4Ep7NM=;
- b=I6bgVaripiRv7FPOVqPMI69QWw2KMKtkkg+p5LoLa2mprmSUNUCfiNqYGhG/ALKNy1
- ZPkIe/7xbgYwmCuVzU+vx2aZBt1eMckuWY4FMUGMQ99IoBls6HpqiFTA5oHHjkGMFe6J
- B5nvK2a45dGZ2sEeOQPKWF4ku8BQmvgZIYoetJmWfT6ylhUCnBPPt7Sa+20AFgDErtNn
- 2H+RDKOIdQ24gtVBVr3pAJn1fGlyP6woMaJamEkMQrwyb41z1yMGDC1gowfOb0FPE6O5
- lyrZfPuSB3snsG6wfoC10/WQYhM6kIWW6vhmOx/lo4Skjx0LnWHdUILiAHvFBWzrIXh4
- 51OA==
-X-Gm-Message-State: AOAM532coBs0+GXnCslQ0agtrBeYf5stTjvRIUYlJ2vgrRA1Mot/mtYR
- bdPMxjCLgxXKI6YPh5gKK2aeNV5w4T73rTyftpUFRdk9DPE=
-X-Google-Smtp-Source: ABdhPJy6nnnEF5KZAZmesZ0lObpz1o2gF6l9j+Xie4EkvTKJLwx/M/Yvhmn1sLMhWT1ZI54reNRgZPc1fDjAv1tbguo=
-X-Received: by 2002:aa7:de0f:: with SMTP id h15mr299636edv.110.1607174089920; 
- Sat, 05 Dec 2020 05:14:49 -0800 (PST)
+ bh=U8o7C47mB38s85XcvCijMc+zoOV85Gbl1fF1zykKK2A=;
+ b=m4nPYNXPpAjnnwZR9dy4DTytZh+Yck3QfYm8AlzByAO1zX0yxjMe8BtGHaluucyByS
+ hlch4Hzb4ft7JNIyk1tpQ6frJ3IBX+KTGVoKiA7/gK6WbeAUMlOfqBldhDOtATbckgzx
+ HG2Ptw8/LvcKrKVRYSkSSWC66OSwQ31bwNfvsWnePfSajajEdo25vH4MvVT+zJXIJW1H
+ XUMFTStiFwo+ZRiyQxj2rNTH8xa1Y0+tG6VQd4TRuMFy7pBLcjRY4+gqLi9NWt5qGqNY
+ BieZX884f/0qufhBWiQwUv644dEspCdB1pTX2hUnUpJOgdQS+k+9lfJvEUGJvgleXKNI
+ BrVA==
+X-Gm-Message-State: AOAM532wlj1mgWqVYPRpm85jC0+fYCfqVBdNsr45YVXz8giS83MFZFMR
+ QsGqhZPvFfRYC6UQP/PhDKBNxbSF+9H9iXxpytg=
+X-Google-Smtp-Source: ABdhPJzme9AKXTJnSuYTOpepNetqcogw7CI3kypUAmJFl0nNPidR6OLesg0UxKun/7vC2Dx849caZKNINoRwmIzj+sw=
+X-Received: by 2002:a17:906:71d3:: with SMTP id
+ i19mr11302981ejk.187.1607174102676; 
+ Sat, 05 Dec 2020 05:15:02 -0800 (PST)
 MIME-Version: 1.0
 References: <14754fd95378b78eb9a0a3f8b6bab13f7263c7f1.1606828668.git.stefan@agner.ch>
- <83c1a57cb99c04dc31098166f0c26073de5e7709.1606828668.git.stefan@agner.ch>
-In-Reply-To: <83c1a57cb99c04dc31098166f0c26073de5e7709.1606828668.git.stefan@agner.ch>
+ <a899168379ce425b35eea4a369504fd75977bd71.1606828668.git.stefan@agner.ch>
+In-Reply-To: <a899168379ce425b35eea4a369504fd75977bd71.1606828668.git.stefan@agner.ch>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 5 Dec 2020 14:14:39 +0100
-Message-ID: <CAFBinCBnqHkpQ79PVfCqJPbC3qj6v6T-HsJehffYzfaDTPxUgw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] arm64: dts: meson: g12a: x96-max: fix PHY deassert
+Date: Sat, 5 Dec 2020 14:14:51 +0100
+Message-ID: <CAFBinCAdQ7PdJ8OpM9iu2fM_7C7KEbWoP9UaFya+uA-ktUs4eg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: meson: g12b: w400: fix PHY deassert
  timing requirements
 To: Stefan Agner <stefan@agner.ch>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201205_081451_408805_01F8E330 
-X-CRM114-Status: UNSURE (   9.68  )
+X-CRM114-CacheID: sfid-20201205_081504_322844_41DDDD6A 
+X-CRM114-Status: UNSURE (   9.51  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -105,7 +106,7 @@ On Tue, Dec 1, 2020 at 2:21 PM Stefan Agner <stefan@agner.ch> wrote:
 > egisters. On similar boards with the same PHY this fixes an issue where
 > Ethernet link would not come up when using ip link set down/up.
 >
-> Fixes: ed5e8f689154 ("arm64: dts: meson: g12a: x96-max: fix the Ethernet PHY reset line")
+> Fixes: 2cd2310fca4c ("arm64: dts: meson-g12b-ugoos-am6: add initial device-tree")
 > Signed-off-by: Stefan Agner <stefan@agner.ch>
 with the "registers" typo above fixed:
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
