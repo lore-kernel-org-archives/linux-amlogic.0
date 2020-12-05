@@ -2,19 +2,20 @@ Return-Path: <SRS0=t4U2=FJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24143C433FE
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 21:43:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D0161C4361B
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 21:53:55 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C8D33230FF
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 21:43:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C8D33230FF
+	by mail.kernel.org (Postfix) with ESMTPS id 6E7F423108
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 21:53:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6E7F423108
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,60 +24,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=85Essz3eshOg9mcKzlVtSzE497jXN/pXmeBFGz3Nph0=; b=O5uwnyXdbuw9ZpOe7dwbyJLyt
-	z5MA/JD/xw3ucArbJe2sI14I0VoTGOyF3nludaZG/8a/n+uSyG9EZUdenO+ArNoeZpcHiJYdd4ZDX
-	oDb1en+1eCwQsA3T8FRslSOLk4gTCUn/swU/G3Ec6gdOfLVkYb4Z1AmMR3ifPfMouxqS8Bb2/eyIZ
-	xT2GMCotmOA5/q4O3KYsf4I0ciV15gJd0raBvtvH/aZFUXdKMG+qOpSO9ox/V9aScfVfOtt8cvr8V
-	afzUyOUptxbeqRLm2k/UqrU+CmhfmCEXU90Qkjc+CP+kiN6bxC/eF2u8Nf//J8aG5LhuUFekSg7iX
-	sFGrKy0kQ==;
+	 bh=0u98pLcL6UPyp7dSIT047JPiTNVMEgxK+fBzGEYwNkM=; b=xSlSUW5Ly3/g/4wrm/Wg+UAhs
+	1M4WA6DLGMoi+jWrQAlKZwiwGbgxzp25bvRMGL7gIJ0ZWFSverSoSj9WLhc1IDc2QZxLqz8fohdig
+	RTP0Ull2lqM8IkEwUzQE4IC/ELVQLVcBGm13pkKtn/0Rlsm7iGmWifqdhaCUxZ3uFnmizSMXGlDFl
+	ZWFLHB+ot0OV2K+Bw5s/OLN7Vlnaje0Z0nRWu9kb5cwvt4lxpBygYJ1jQ0yRR0RdniR4h5eRApi7T
+	GllKp4g0xxQK/ubLQ7mddBdpI/PVZDaX8toBJ3KvMvFarrbiHWtoOaHDMI6ozQB5gnRZeTnFz7Dyo
+	ZRkIbEAOg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1klfKR-0006QM-8d; Sat, 05 Dec 2020 21:42:55 +0000
-Received: from mail-ej1-x642.google.com ([2a00:1450:4864:20::642])
+	id 1klfUy-000703-7A; Sat, 05 Dec 2020 21:53:48 +0000
+Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1klfKI-0006Pg-2F
- for linux-amlogic@lists.infradead.org; Sat, 05 Dec 2020 21:42:46 +0000
-Received: by mail-ej1-x642.google.com with SMTP id n26so13915304eju.6
- for <linux-amlogic@lists.infradead.org>; Sat, 05 Dec 2020 13:42:42 -0800 (PST)
+ id 1klfUr-0006zO-WF
+ for linux-amlogic@lists.infradead.org; Sat, 05 Dec 2020 21:53:45 +0000
+Received: by mail-ed1-x544.google.com with SMTP id i24so1782268edj.8
+ for <linux-amlogic@lists.infradead.org>; Sat, 05 Dec 2020 13:53:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BcFwvccBZsNRXg6tthMMYxCZiveruOlpyGXOybgngvQ=;
- b=jiOiKlaZJLpwxmeKjTWxcVGZCEkUHCWFjES5nFUbk1CJYTGVEBHGjg29kLi2I3rTP4
- m9uZo8fJZqILlx2qptuTXKjm8L3+xYj0ur8Il1W4lB787lPdbAJBSoBcbQDDNpwq8utp
- B9n8Qaa0mIJMAnY9riPCBaVcPSeTQc6u7VB8OWzVTPBk4QT9ecKg857smbCm4YoTwDJ1
- UkHuSfQPCQ1y4sKVFAnCgb9Ms/9dFyvn1N57jUS/WTHmsLxa6JCRlLCvd7YlKffUIsXl
- xPNVSYDHhQKZQJDOkaMPjS7RteEZNrFy7lY63xLz9S7MaWT8F9cXKDpLPWTQD5+SIa54
- FdDg==
+ :cc; bh=788XxievPXArbKhvDvDluT6oiya+GFzAh5wtfB7G8D4=;
+ b=uks2duSw/rgzSVa0Wy9QZMX4eX1UZD/ObNuA0OnGaaSL7ufLwU0SBIJw9OD0RYE+im
+ F9mq/Mev8cTvLquRvwj2voJAknZZ6Rizl+z88koWxj7QBTEUi/MHm70wV1uWqOSAOx71
+ S2MPnu0j1qpAzGpT5yXbQ54Ly8AJuHhl8s+dSiSgr/quGRfW9M3zOUV4rvxvn50hjjLw
+ iE7fZl22f3ozNklSzh2IdCUjqnZcL+Uu11Y2HA/xVzNYbiVerky32y2LM6TDiDYZ7v0p
+ ELAfQbMau+DYi8OYY/9vvbgGi4A7WMaHtJu+ghntJrNVc/sqTPTDuDpYrO9JlFyO/wAM
+ +ntA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=BcFwvccBZsNRXg6tthMMYxCZiveruOlpyGXOybgngvQ=;
- b=L9LPnAn+zoKh524Z1WtzOg/21uMoZTXtyRJiwPyiVlQmzoLoyXfW0y3IH8Np+KIdzK
- bWJDn+tbLjFIm6XWxqNLm6I71g0Q2gvaKlIOemT/EiO40Wc7TEwBSftinSBaCpLQZUrs
- 3Y1KVuwY5lshM+v0yKQw+OQnIBYHo9c1VrgnTWpojKsEAc8XUtl7NQ6eMwec/5UZBsWx
- A8k2Hci1P2rc/CrKDw2Qi62xOS5FWjcGCjM6qzhndxwM19P7peGGZhXkRwBnTpXas4fd
- 6+Zjwbt2Tl2lPUIzM+78fDk3Rc0UiOMQaxs18oWlXcbNqRojKH8XrnWi3K9XfRGa53sW
- BziQ==
-X-Gm-Message-State: AOAM533nOaBkpgMsEeE3SDqU/A1ufn6hvYN7FDWvlLiXEkj7CPyt2jiG
- blhLmZBGbM6mJ4USTahy1fkZV/zm4iQOF+sN8NU=
-X-Google-Smtp-Source: ABdhPJxdspMQ0M3QTYFFajPX5yAwsG+t5ziDkySCbO6inXMBWhcmZmm1k/Sy3ZAXbtQ06tz5Fln037XnGixiih6SJP8=
-X-Received: by 2002:a17:906:447:: with SMTP id
- e7mr5694784eja.172.1607204561424; 
- Sat, 05 Dec 2020 13:42:41 -0800 (PST)
+ bh=788XxievPXArbKhvDvDluT6oiya+GFzAh5wtfB7G8D4=;
+ b=jrLxNj4UUSiEur0AJOw7976vFoSqnS+XY7gtgjkEdFDMsUTHg+PNO7EZe3ZRuihNuL
+ +OORRclE9bI+ltEHDvv/DcX5KH2FzLFg6oi7FXgYM+Iv4h8XoYFSR1CPRgTFusvRYRIR
+ yJNztChx6NHImdKkWZ2yZFkq1E9BhEjSHqoE4/hfwXDaQXlSWeUNLYJslyGs9WXJDD4g
+ Lp3jLYQ6CmZnshuO3OxDvc33HtU+GX4eEyKeRs6+s6lfwRKmDf+UJnAxtdpxHLBeTW+D
+ Wz7v/BTARBQaaMq0McgvMbWEc1VRZbjHvin4+ruC8Qh3hOlgMw7ZbT2NEhS4s3mTlVhk
+ 0Ubg==
+X-Gm-Message-State: AOAM533Vz2p8Ro0ZtkgfOv2SVn+8lI2lyCoSjiniJPaQLoS9aWx3iEFL
+ Otk8XrRyDIqukXwFyGTlmH1vxIydYKS61Ut9xEA=
+X-Google-Smtp-Source: ABdhPJx0u0sr7vJSvKYatDZ6Kj4W2Nxil0cvX0AFnS4Eb9JTemyfn2No/PM91puUzN+wuT5YoYiZj832uifQmVuaNAc=
+X-Received: by 2002:a05:6402:3074:: with SMTP id
+ bs20mr13697948edb.365.1607205216408; 
+ Sat, 05 Dec 2020 13:53:36 -0800 (PST)
 MIME-Version: 1.0
 References: <20201201190100.17831-1-aouledameur@baylibre.com>
- <20201201190100.17831-3-aouledameur@baylibre.com>
-In-Reply-To: <20201201190100.17831-3-aouledameur@baylibre.com>
+ <20201201190100.17831-2-aouledameur@baylibre.com>
+In-Reply-To: <20201201190100.17831-2-aouledameur@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 5 Dec 2020 22:42:30 +0100
-Message-ID: <CAFBinCCovB9e1_AwXv0Jcn3p69LN5KAdzttfZcY+=_TEZTCn6Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] usb: dwc3: meson-g12a: fix shared reset control use
+Date: Sat, 5 Dec 2020 22:53:25 +0100
+Message-ID: <CAFBinCARfW9wtLTA=siqCH_bhF8D_CLHxU9maM+Y6p_6njGOaQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] phy: amlogic: phy-meson-gxl-usb2: fix shared reset
+ controller use
 To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201205_164246_160014_551DFC4A 
-X-CRM114-Status: GOOD (  12.35  )
+X-CRM114-CacheID: sfid-20201205_165344_778293_30D29D2A 
+X-CRM114-Status: GOOD (  10.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,32 +99,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Amjad,
-
 On Tue, Dec 1, 2020 at 8:01 PM Amjad Ouled-Ameur
 <aouledameur@baylibre.com> wrote:
 >
-> reset_control_(de)assert() calls are called on a shared reset line when
-> reset_control_reset has been used. This is not allowed by the reset
-> framework.
->
-> Use reset_control_rearm() call in suspend() and remove() as a way to state
-> that the resource is no longer used, hence the shared reset line
-> may be triggered again by other devices. Use reset_control_rearm() also in
-> case probe fails after reset() has been called.
+> Use reset_control_rearm() call if an error occurs in case
+> phy_meson_gxl_usb2_init() fails after reset() has been called ; or in case
+> phy_meson_gxl_usb2_exit() is called i.e the resource is no longer used
+> and the reset line may be triggered again by other devices.
 >
 > reset_control_rearm() keeps use of triggered_count sane in the reset
-> framework, use of reset_control_reset() on shared reset line should be
-> balanced with reset_control_rearm().
-I think this should be updated after [0] is applied
-The goto from that patch needs to use err_rearm from this patch.
-
-
-Best regards,
-Martin
-
-
-[0] https://patchwork.kernel.org/project/linux-usb/patch/20201111095256.10477-1-zhengzengkai@huawei.com/
+> framework. Therefore, use of reset_control_reset() on shared reset line
+> should be balanced with reset_control_rearm().
+>
+> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
