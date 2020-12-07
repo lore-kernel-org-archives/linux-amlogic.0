@@ -1,84 +1,89 @@
-Return-Path: <SRS0=t4U2=FJ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=a8bK=FL=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D0161C4361B
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 21:53:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 434F5C4361B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 09:32:06 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6E7F423108
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Dec 2020 21:53:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6E7F423108
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 5522B23122
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 09:32:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5522B23122
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=0u98pLcL6UPyp7dSIT047JPiTNVMEgxK+fBzGEYwNkM=; b=xSlSUW5Ly3/g/4wrm/Wg+UAhs
-	1M4WA6DLGMoi+jWrQAlKZwiwGbgxzp25bvRMGL7gIJ0ZWFSverSoSj9WLhc1IDc2QZxLqz8fohdig
-	RTP0Ull2lqM8IkEwUzQE4IC/ELVQLVcBGm13pkKtn/0Rlsm7iGmWifqdhaCUxZ3uFnmizSMXGlDFl
-	ZWFLHB+ot0OV2K+Bw5s/OLN7Vlnaje0Z0nRWu9kb5cwvt4lxpBygYJ1jQ0yRR0RdniR4h5eRApi7T
-	GllKp4g0xxQK/ubLQ7mddBdpI/PVZDaX8toBJ3KvMvFarrbiHWtoOaHDMI6ozQB5gnRZeTnFz7Dyo
-	ZRkIbEAOg==;
+	 bh=QAfISYsDLBlb09aQvmm9AKXCx8JOk190LAz2uZatY1k=; b=R17RjwgqRw+ndFscbVCJFI1tB
+	V3wfPLbjfNIHzqmJUzAFqUgUCFZy7aw1zi5Bk7XKoHlNqiN7H1cXjfxeHTUv4S797RQZ2DzAUYEr+
+	GQtF7USfpOECkbG8zbmyc1gNpkjC23qQLixE0OJlJGXHjYgPnqMz0Yx9UR7sUX9Xm8ieyrJEGOuRB
+	OH7QAzO9w9gwNHqppzkk1K4YU+24ap6Lukx7++Evyt/YURqw/YN2a9MumwfdODOcEbaNQIbr9K8q+
+	T56X/R4Rmiv/gcgmpjZzj3mGKTaI8zDUjBqjrFPpEMdmjJAwmNi8txNebiAOKaO0lXZhjWGF+Oqoq
+	IO/an+mSw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1klfUy-000703-7A; Sat, 05 Dec 2020 21:53:48 +0000
-Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
+	id 1kmCsA-0004b4-Bn; Mon, 07 Dec 2020 09:31:58 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1klfUr-0006zO-WF
- for linux-amlogic@lists.infradead.org; Sat, 05 Dec 2020 21:53:45 +0000
-Received: by mail-ed1-x544.google.com with SMTP id i24so1782268edj.8
- for <linux-amlogic@lists.infradead.org>; Sat, 05 Dec 2020 13:53:37 -0800 (PST)
+ id 1kmCs3-0004Xc-CZ
+ for linux-amlogic@lists.infradead.org; Mon, 07 Dec 2020 09:31:53 +0000
+Received: by mail-wm1-x344.google.com with SMTP id 3so12935844wmg.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Dec 2020 01:31:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=788XxievPXArbKhvDvDluT6oiya+GFzAh5wtfB7G8D4=;
- b=uks2duSw/rgzSVa0Wy9QZMX4eX1UZD/ObNuA0OnGaaSL7ufLwU0SBIJw9OD0RYE+im
- F9mq/Mev8cTvLquRvwj2voJAknZZ6Rizl+z88koWxj7QBTEUi/MHm70wV1uWqOSAOx71
- S2MPnu0j1qpAzGpT5yXbQ54Ly8AJuHhl8s+dSiSgr/quGRfW9M3zOUV4rvxvn50hjjLw
- iE7fZl22f3ozNklSzh2IdCUjqnZcL+Uu11Y2HA/xVzNYbiVerky32y2LM6TDiDYZ7v0p
- ELAfQbMau+DYi8OYY/9vvbgGi4A7WMaHtJu+ghntJrNVc/sqTPTDuDpYrO9JlFyO/wAM
- +ntA==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
+ :date:mime-version;
+ bh=GLuU4c9odSxFrnOuGet4+6CjpgyrMIWPZsUZq/PreGk=;
+ b=i0Yc5QA90bEFBhwG6hH1g28TISmrUpKKqy2tRuXZIKguMBG/kBKv49AJWqGmNlgWXK
+ uUk2WVKjmEgACcqYUvwAdPy7RY+jUaZeSbx5AeFS0JMNUwURxkbW+Kfi+olqbWTFqZnO
+ D2uPXUc2baCQ2KMw//MjQL/+BZ6osDZlgQzE03l/aCcTikXeX9BWQp786HvpJ3N9Vgww
+ S+ImKyqgUny8XZiooKdMpc9pk6opwrdQux/WAQiHKa3ZsvUjBz0bhHJxAkRgzQXZDORw
+ 4d8LduMwaP8LaT2vgNQGVSGIn7spsXDHE5r5YwmXJRhq1wCLQjTOjbKgabX3l7wXkeVi
+ ahkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=788XxievPXArbKhvDvDluT6oiya+GFzAh5wtfB7G8D4=;
- b=jrLxNj4UUSiEur0AJOw7976vFoSqnS+XY7gtgjkEdFDMsUTHg+PNO7EZe3ZRuihNuL
- +OORRclE9bI+ltEHDvv/DcX5KH2FzLFg6oi7FXgYM+Iv4h8XoYFSR1CPRgTFusvRYRIR
- yJNztChx6NHImdKkWZ2yZFkq1E9BhEjSHqoE4/hfwXDaQXlSWeUNLYJslyGs9WXJDD4g
- Lp3jLYQ6CmZnshuO3OxDvc33HtU+GX4eEyKeRs6+s6lfwRKmDf+UJnAxtdpxHLBeTW+D
- Wz7v/BTARBQaaMq0McgvMbWEc1VRZbjHvin4+ruC8Qh3hOlgMw7ZbT2NEhS4s3mTlVhk
- 0Ubg==
-X-Gm-Message-State: AOAM533Vz2p8Ro0ZtkgfOv2SVn+8lI2lyCoSjiniJPaQLoS9aWx3iEFL
- Otk8XrRyDIqukXwFyGTlmH1vxIydYKS61Ut9xEA=
-X-Google-Smtp-Source: ABdhPJx0u0sr7vJSvKYatDZ6Kj4W2Nxil0cvX0AFnS4Eb9JTemyfn2No/PM91puUzN+wuT5YoYiZj832uifQmVuaNAc=
-X-Received: by 2002:a05:6402:3074:: with SMTP id
- bs20mr13697948edb.365.1607205216408; 
- Sat, 05 Dec 2020 13:53:36 -0800 (PST)
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:message-id:date:mime-version;
+ bh=GLuU4c9odSxFrnOuGet4+6CjpgyrMIWPZsUZq/PreGk=;
+ b=eGibSYl73h76sFW5zNQ9PQHFrgoZe2F+bVXP2Nc1QF7fGpVULensgOrthD9Xwedqoj
+ H26FBWivqr8xWnnsiNwvNDxEgEGkWKcr7+zSkY4E5XvQEvgHvvqxLYl9GiWPjBvytT8n
+ 0JwvqM0lp/3qE9MAp2af9aF8YXlBrsggmf9yka50mO72swocN1ee+0xsWlr5rw+toSXs
+ 8htRQzZUi44xDDcbukvoCYQgIP78GeYzV+PqQS2CNaY1GrQBs2Zf6sJFyCCEQsN/IEjF
+ 6BLCOe5PopVkCcl2PUcR05SXd+ZkkYZ+hqZ/1MiF2BrMPwqETNdWo64aBUy9xXAXktpX
+ 40FA==
+X-Gm-Message-State: AOAM5331+XAsM+4aM/6dsgH9UTsfyQq5ZQBgAezG5MEHZiTwuUqK4Hhc
+ H45H6koSfw4bAzEEYBy3+m//nQ==
+X-Google-Smtp-Source: ABdhPJw4vyyf2WIkP9E5DrBKTOacvbXpy3jjxOnALxt8z3HsQ49xyCYXLUlrFZfzyjlszQINDzHQYg==
+X-Received: by 2002:a1c:9949:: with SMTP id b70mr17600666wme.85.1607333508343; 
+ Mon, 07 Dec 2020 01:31:48 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id k64sm12889681wmb.11.2020.12.07.01.31.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Dec 2020 01:31:47 -0800 (PST)
+References: <20201205213207.519341-1-martin.blumenstingl@googlemail.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH] net: stmmac: dwmac-meson8b: fix mask definition of the
+ m250_sel mux
+In-reply-to: <20201205213207.519341-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1jo8j62c8t.fsf@starbuckisacylon.baylibre.com>
+Date: Mon, 07 Dec 2020 10:31:46 +0100
 MIME-Version: 1.0
-References: <20201201190100.17831-1-aouledameur@baylibre.com>
- <20201201190100.17831-2-aouledameur@baylibre.com>
-In-Reply-To: <20201201190100.17831-2-aouledameur@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 5 Dec 2020 22:53:25 +0100
-Message-ID: <CAFBinCARfW9wtLTA=siqCH_bhF8D_CLHxU9maM+Y6p_6njGOaQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] phy: amlogic: phy-meson-gxl-usb2: fix shared reset
- controller use
-To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201205_165344_778293_30D29D2A 
-X-CRM114-Status: GOOD (  10.22  )
+X-CRM114-CacheID: sfid-20201207_043151_554012_E3D6E27F 
+X-CRM114-Status: GOOD (  17.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,30 +95,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Felipe Balbi <balbi@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-amlogic@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Dec 1, 2020 at 8:01 PM Amjad Ouled-Ameur
-<aouledameur@baylibre.com> wrote:
+
+On Sat 05 Dec 2020 at 22:32, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+
+> The m250_sel mux clock uses bit 4 in the PRG_ETH0 register. Fix this by
+> shifting the PRG_ETH0_CLK_M250_SEL_MASK accordingly as the "mask" in
+> struct clk_mux expects the mask relative to the "shift" field in the
+> same struct.
 >
-> Use reset_control_rearm() call if an error occurs in case
-> phy_meson_gxl_usb2_init() fails after reset() has been called ; or in case
-> phy_meson_gxl_usb2_exit() is called i.e the resource is no longer used
-> and the reset line may be triggered again by other devices.
+> While here, get rid of the PRG_ETH0_CLK_M250_SEL_SHIFT macro and use
+> __ffs() to determine it from the existing PRG_ETH0_CLK_M250_SEL_MASK
+> macro.
 >
-> reset_control_rearm() keeps use of triggered_count sane in the reset
-> framework. Therefore, use of reset_control_reset() on shared reset line
-> should be balanced with reset_control_rearm().
+> Fixes: 566e8251625304 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 >
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+> index dc0b8b6d180d..459ae715b33d 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+> @@ -30,7 +30,6 @@
+>  #define PRG_ETH0_EXT_RMII_MODE		4
+>  
+>  /* mux to choose between fclk_div2 (bit unset) and mpll2 (bit set) */
+> -#define PRG_ETH0_CLK_M250_SEL_SHIFT	4
+>  #define PRG_ETH0_CLK_M250_SEL_MASK	GENMASK(4, 4)
+>  
+>  /* TX clock delay in ns = "8ns / 4 * tx_dly_val" (where 8ns are exactly one
+> @@ -155,8 +154,9 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
+>  		return -ENOMEM;
+>  
+>  	clk_configs->m250_mux.reg = dwmac->regs + PRG_ETH0;
+> -	clk_configs->m250_mux.shift = PRG_ETH0_CLK_M250_SEL_SHIFT;
+> -	clk_configs->m250_mux.mask = PRG_ETH0_CLK_M250_SEL_MASK;
+> +	clk_configs->m250_mux.shift = __ffs(PRG_ETH0_CLK_M250_SEL_MASK);
+> +	clk_configs->m250_mux.mask = PRG_ETH0_CLK_M250_SEL_MASK >>
+> +				     clk_configs->m250_mux.shift;
+>  	clk = meson8b_dwmac_register_clk(dwmac, "m250_sel", mux_parents,
+>  					 ARRAY_SIZE(mux_parents), &clk_mux_ops,
+>  					 &clk_configs->m250_mux.hw);
+
 
 _______________________________________________
 linux-amlogic mailing list
