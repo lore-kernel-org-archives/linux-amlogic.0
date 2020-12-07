@@ -2,68 +2,66 @@ Return-Path: <SRS0=a8bK=FL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 29E25C433FE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 17:54:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5461C4361B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 17:58:25 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8FBC321D42
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 17:53:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8FBC321D42
+	by mail.kernel.org (Postfix) with ESMTPS id 85030235F8
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 17:58:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 85030235F8
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=agner.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:To:From:
-	Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=k/V7l7xzYCGaYlNbMfNDUkLF85vR48ssXtDgGIw2Aag=; b=dS31XGZ/E7AyUuzKaZKKYpw52
-	5xjvBu7R9F287DYwB5JMdz1YkMraTBTcl7U7K818xmc336TbbiCgRRp4ze/iPc4pifbx31RZFH6x9
-	yLFugiqkYk9ZPy0t1KOsPfwwfKi4oNF1NSo8SLjnAeFAivGmhobVoj7pBfB3deopyNkvUPaDFxl2i
-	G//HndsNrxdPeE0Isin5RLBE0gRIRFzJt5OudCA1qoR/FfLvTiw6FuSZNb9MsabR3Jzde9ZP6BG73
-	mqspiOaDmn+jclGCwH+hG+zEsr0nWv/dsuwybwrMZ0ZJRtghruCglmbn1gHWjijMGQpMfdOnqFcjv
-	mWM2ROgug==;
+	 bh=mg79PJFdc4P1ODyWVgs3QbO/97qrDXlmCwPgW+N5BUA=; b=smYDx5PJ1Dqea3zYKRpnVdYt3
+	bd/o9BktZNDRcTjqJVizlTq+apRAthtprJaAEqs0mzwJt3pAuCYOGiyVoqS1KwjTYs28qsESfz/qc
+	QOC8nSw+Q8akRVRTDSUuFdAPvUEbyxvpKaeHY1/cjD/zbU/+T2Gmqltc6pOx682PNZl6ssWOUN17O
+	9+PMYlZZIoBj6MZRkjo8bdadQiWh8XZD+3uy+WJU1G5N3efsL+m/hm9OGEMpMHI3VfGmvW+A7jTRd
+	WjXabpLmNk2Yg3KZo/PtZb6ScU+dBDFczaMYgMijLzxYHaiXVzrWvTSRXHY0LyXJwPTPSYr9SHmTw
+	XqgYk+j1w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kmKhr-0004n7-6b; Mon, 07 Dec 2020 17:53:51 +0000
+	id 1kmKmD-0005Km-0Z; Mon, 07 Dec 2020 17:58:21 +0000
 Received: from mail.kmu-office.ch ([2a02:418:6a02::a2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kmKhn-0004mc-95; Mon, 07 Dec 2020 17:53:49 +0000
-Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
- by mail.kmu-office.ch (Postfix) with ESMTPSA id 6CB545C0054;
- Mon,  7 Dec 2020 18:53:43 +0100 (CET)
+ id 1kmKm7-0005Hx-7V; Mon, 07 Dec 2020 17:58:17 +0000
+Received: from allenwind.lan (unknown
+ [IPv6:2a02:169:3df5:0:6d9:f5ff:fe22:28bf])
+ by mail.kmu-office.ch (Postfix) with ESMTPSA id 3CF635C2DC7;
+ Mon,  7 Dec 2020 18:58:14 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
- t=1607363623;
+ t=1607363894;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=MkGJj4xRtLjLHi9uk2lHu+eJLiMO4r8tHRe6lcpmSbI=;
- b=raPdImDDTIiegSJWjc9kp0oB2+0DxMTvr7V45zgBlwAyRvQvZJYeV65YXexfMT6YySjMio
- MGhyV6XVgfS3gjot5iY7Kan2RfqSx8D5JVuEZYvwkQiluiOdbExVol7zVEQkdAw6hGsPfm
- IP1eU/sZ3VORqVBeqt08uRn3tapwSQ0=
-MIME-Version: 1.0
-Date: Mon, 07 Dec 2020 18:53:43 +0100
+ bh=kP4cdz/3tSpxSicOOh12rcBPCsaNwvBjLo2OKb8ClH0=;
+ b=aa2T+qElCGh5fu0FnBZpQNW/PGr/S1cJwqVXh8BCKZOar4T5QlZSbxWqPC9W/4WRcy2ygg
+ fETBTotH5j3ZYBPi3QLJ7R/9Di7DV7soW9PMXjkve/YvxV7Ws3erTae2SoSFDoqxXC+lcR
+ sv/KABkokMnQg68MbIjhMn2FEd5sauM=
 From: Stefan Agner <stefan@agner.ch>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v2 3/5] ARM: dts: meson: fix PHY deassert timing
- requirements
-In-Reply-To: <CAFBinCA_eaJHv7e+8ZM=z=zUZ9uQY_JZ=618=LwJYM-Gi+OO+g@mail.gmail.com>
-References: <14754fd95378b78eb9a0a3f8b6bab13f7263c7f1.1606828668.git.stefan@agner.ch>
- <6bfe17d86ead62c20d236e2ebbc7b7fe3354829d.1606828668.git.stefan@agner.ch>
- <CAFBinCA_eaJHv7e+8ZM=z=zUZ9uQY_JZ=618=LwJYM-Gi+OO+g@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <1275fb519490b00a079ac832277585f1@agner.ch>
-X-Sender: stefan@agner.ch
+To: khilman@baylibre.com
+Subject: [PATCH v3 4/5] arm64: dts: meson: g12a: x96-max: fix PHY deassert
+ timing requirements
+Date: Mon,  7 Dec 2020 18:58:02 +0100
+Message-Id: <12506964ca5d5f936579a280ad0a7e7f9a0a2d4c.1607363522.git.stefan@agner.ch>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <df3f5c4fc6e43c55429fd3662a636036a21eed49.1607363522.git.stefan@agner.ch>
+References: <df3f5c4fc6e43c55429fd3662a636036a21eed49.1607363522.git.stefan@agner.ch>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201207_125347_445509_87D80B8A 
-X-CRM114-Status: GOOD (  17.83  )
+X-CRM114-CacheID: sfid-20201207_125815_467947_FE74F48F 
+X-CRM114-Status: GOOD (  15.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,56 +73,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- khilman@baylibre.com, christianshewitt@gmail.com, linux-kernel@vger.kernel.org,
- robh+dt@kernel.org, jian.hu@amlogic.com, linux-amlogic@lists.infradead.org,
+Cc: devicetree@vger.kernel.org, narmstrong@baylibre.com,
+ martin.blumenstingl@googlemail.com, christianshewitt@gmail.com,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org, jian.hu@amlogic.com,
+ Stefan Agner <stefan@agner.ch>, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2020-12-05 14:04, Martin Blumenstingl wrote:
-> Hi Stefan,
-> 
-> On Tue, Dec 1, 2020 at 2:21 PM Stefan Agner <stefan@agner.ch> wrote:
->>
->> According to the datasheet (Rev. 1.9) the RTL8211F requires at least
->> 72ms "for internal circuits settling time" before accessing the PHY
->> egisters. On similar boards with the same PHY this fixes an issue where
-> there's a typo here: it should be "registers"
-> this is the same for the other four patches also
+According to the datasheet (Rev. 1.9) the RTL8211F requires at least
+72ms "for internal circuits settling time" before accessing the PHY
+registers. On similar boards with the same PHY this fixes an issue where
+Ethernet link would not come up when using ip link set down/up.
 
-Whoops, will send v3 shortly.
+Fixes: ed5e8f689154 ("arm64: dts: meson: g12a: x96-max: fix the Ethernet PHY reset line")
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Stefan Agner <stefan@agner.ch>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
->> Ethernet link would not come up when using ip link set down/up.
-> I have never experienced that myself but gotten a few reports about this.
-> thank you very much for coming up with info from the datasheet!
-> 
-> the following stmmac patch [0] has been added recently which may - or
-> may not - have any impact also.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+index 1b07c8c06eac..463a72d6bb7c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+@@ -340,7 +340,7 @@ external_phy: ethernet-phy@0 {
+ 		eee-broken-1000t;
+ 
+ 		reset-assert-us = <10000>;
+-		reset-deassert-us = <30000>;
++		reset-deassert-us = <80000>;
+ 		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+ 
+ 		interrupt-parent = <&gpio_intc>;
+-- 
+2.29.2
 
-Thanks for the hint, wasn't aware of that.
-
---
-Stefan
-
-> 
->> Fixes: a2c6e82e5341 ("ARM: dts: meson: switch to the generic Ethernet PHY reset bindings")
->> Signed-off-by: Stefan Agner <stefan@agner.ch>
-> with above typo fixed:
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> and also:
-> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> #
-> on Odroid-C1+
-> 
-> 
-> Best regards,
-> Martin
-> 
-> 
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/net/ethernet/stmicro/stmmac?id=56311a315da7ebc668dbcc2f1c99689cc10796c4
 
 _______________________________________________
 linux-amlogic mailing list
