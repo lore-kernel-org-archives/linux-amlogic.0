@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87028C433FE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 22:44:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 01B0CC433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 22:47:47 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0A5042336D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 22:44:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A5042336D
+	by mail.kernel.org (Postfix) with ESMTPS id A6C03239E4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 22:47:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A6C03239E4
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,56 +23,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=FtsJoswIqV40iCtxzonVFC087LFubcAJy0UKkKJ9coE=; b=VOwJDzjCJrM+L4l+t+tangpYK
-	sEi7CFhBmsDR5/LWk2fmwfQzyVpDs1AfgIDOJWpI9yZSX+YSf3JcMcWAGn4YFeVIzQZEaaWwOyYfI
-	rkCeYAayuIjEgAZkJaE+wGRy7aGEev74wcePmS7u5RHoicZpyJlQIRh7qLFXr9M0cItSjxIpWoddr
-	pLrwdI80qY0V7wRmjmIsLzXnKWvv//LvpmOaMoaRwGsD0hsjP1ONSizbIAWIvWf9YlYetv9JBy1a1
-	nwbjHsz/PWS8GjOrvaLXzQlTa12UMZYiiv30kWpXN46O5LTRAP+7w68lwtCZp/aRA98j2C3uyBlQi
-	U/ZOOAO0A==;
+	 bh=7IfqzGIYwsLWLA8qmTOhYPyIOTr2cUxgyR4HswlzSjI=; b=vD+yFkWZG5OCweFWOdSfI5ozq
+	eaJJFSyX1AW+7iz+XH9Kr3vLU2dp5hZI5LPO/mkdYGLG7QodWROfyorDu44niSYmuwH/ZrZKwl658
+	JlFkEH5hDtlOsqL/LO4VKbgp1m7oYjZ+leKl13IxZARYdwfWTeR3m3HhqZuJoESUH0SSd/vkaONar
+	oS0OwKU4Zrsz4rT8LLUTZSCM61R/kXBp02Ox9vReG45u2XSbGteMukcsYXvl1lZM9qJl0KCFU83F6
+	JPvTHl98LiKByqbdrmQ4MT9rjyCfPoHvU3UzfCJUoPljlTJ3QRdtn3Sqm/kUkeIERA/YaGr4Hp4vS
+	HcF/ZqR9A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kmPFS-0005FC-JD; Mon, 07 Dec 2020 22:44:50 +0000
-Received: from mail-ot1-f65.google.com ([209.85.210.65])
+	id 1kmPID-0005jO-HP; Mon, 07 Dec 2020 22:47:41 +0000
+Received: from mail-oi1-f196.google.com ([209.85.167.196])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kmPFQ-0005Ea-Ji; Mon, 07 Dec 2020 22:44:49 +0000
-Received: by mail-ot1-f65.google.com with SMTP id o11so11452208ote.4;
- Mon, 07 Dec 2020 14:44:48 -0800 (PST)
+ id 1kmPIA-0005iA-Qy; Mon, 07 Dec 2020 22:47:40 +0000
+Received: by mail-oi1-f196.google.com with SMTP id o25so17346903oie.5;
+ Mon, 07 Dec 2020 14:47:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=MZJn2pgTt1kUD8to1t5Dt8cuRrsBFqiHtGixw10QU3M=;
- b=dlxM6IGMiuETARRTK9sEcbP3fCqzdPU7gQYRE7LLLqMXrjT37zub4xBKDdO5tstLr5
- srhHTAXzYhdTP5vo0mWU63ofvtyVjtlGFGSV0ZBJfFOb261hXET18JANBmc+VsU9qgx2
- eRHt5ZAqcAFxKCw/PXKQ3bmxP/7WUxib+bvSxBUT/l3O0iS2VnWEpG8YadFnzEnfFq1+
- GFAkKIvGRGCScfm8qJK7uWuQMKPq6WYqNVZBK1vfT1nsPAdOErgPwJ81VyUgZSJ9htME
- yfTmQcJDuDin7XUKPv7/0mJf8otuDUXgaAIoK5iUhLDlEcyTUjXXcJXg0NOZ5k5y4Gi5
- WY3Q==
-X-Gm-Message-State: AOAM531RMbwC6Au0cmv4cfFpR97xWmBZggZsmt2w8UbmIIpv2N7bBfB1
- sUb7hr8KxGHo6juzPd0+SA==
-X-Google-Smtp-Source: ABdhPJzRshPJNj+/0MGBhONump6skmEbNXhtOQcFjYdv8QT/xYUy2jDOLoIYu8rYALbDzGcCowO47g==
-X-Received: by 2002:a9d:1d64:: with SMTP id m91mr5592660otm.290.1607381088018; 
- Mon, 07 Dec 2020 14:44:48 -0800 (PST)
+ bh=0M8AV5f8oKzpVORQVLnD+CzneVSOa0nggX6FBEQvHak=;
+ b=rNyi5R5i09mEb3izASynZg30GdVGnZd3e2fs50q3Pka9SdkBmRo5t82sFRiTsG6V1T
+ c7zwvekNflDbbt7skm/UZwjvWWr63OWwiuD/g6VLeQ9cmwIc5SHBHKsgYqyQmFZw1yTX
+ DnWb6cLQy01eP1i14Hfjkm2pGG0l1mR77I6hE4v1dHkxc83l+eHGSyWhOoEAoeV0lywF
+ 2MKw+wREXOm2dEi7q/o6npQM3Qash0s62Tf0aI+Gsv2pD7U8w64Ikn6d8eUrsviC34Rx
+ WVAA0Fxv8LNkodHiQ0javqchtnmJrYCh18s60IxpHF4ftsQdXIxsFifMupD8RTiaN9WT
+ OrZQ==
+X-Gm-Message-State: AOAM533wY2i3vXZC0NAdkHvbzuoWKswelrkf4SK/8LNgxoCXpfMJwH0D
+ abg8SFaTlNzmulzvtZsxEJlD+K56DA==
+X-Google-Smtp-Source: ABdhPJzSi91QxN3R7XzrUK/0dXpeafD5EM57ynBOGctiHVV7avNW2TpfssDO34fTRuTPBN2KUDPnHQ==
+X-Received: by 2002:aca:de85:: with SMTP id v127mr799245oig.36.1607381258314; 
+ Mon, 07 Dec 2020 14:47:38 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id t19sm1041039otp.36.2020.12.07.14.44.46
+ by smtp.gmail.com with ESMTPSA id n3sm3243022oif.42.2020.12.07.14.47.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Dec 2020 14:44:47 -0800 (PST)
-Received: (nullmailer pid 981516 invoked by uid 1000);
- Mon, 07 Dec 2020 22:44:46 -0000
-Date: Mon, 7 Dec 2020 16:44:46 -0600
+ Mon, 07 Dec 2020 14:47:37 -0800 (PST)
+Received: (nullmailer pid 985883 invoked by uid 1000);
+ Mon, 07 Dec 2020 22:47:36 -0000
+Date: Mon, 7 Dec 2020 16:47:36 -0600
 From: Rob Herring <robh@kernel.org>
 To: Neil Armstrong <narmstrong@baylibre.com>
 Subject: Re: [PATCH 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY
  bindings
-Message-ID: <20201207224446.GA978231@robh.at.kernel.org>
+Message-ID: <20201207224736.GB978231@robh.at.kernel.org>
 References: <20201123145157.300456-1-narmstrong@baylibre.com>
  <20201123145157.300456-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <20201123145157.300456-2-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201207_174448_674680_9FDC8EC8 
-X-CRM114-Status: GOOD (  18.61  )
+X-CRM114-CacheID: sfid-20201207_174738_902061_EB9C82F3 
+X-CRM114-Status: GOOD (  20.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,9 +123,6 @@ On Mon, Nov 23, 2020 at 03:51:56PM +0100, Neil Armstrong wrote:
 > +
 > +description: |+
 > +  The Everything-Else Power Domains node should be the child of a syscon
-
-Everything-Else Power Domains node??
-
 > +  node with the required property:
 > +
 > +  - compatible: Should be the following:
@@ -133,6 +130,10 @@ Everything-Else Power Domains node??
 > +
 > +  Refer to the the bindings described in
 > +  Documentation/devicetree/bindings/mfd/syscon.yaml
+
+This schema should be referenced from the parent schema and if you have 
+child nodes, you shouldn't be using syscon.yaml.
+
 > +
 > +properties:
 > +  compatible:
@@ -152,6 +153,10 @@ Everything-Else Power Domains node??
 > +    mpphy: phy {
 > +          compatible = "amlogic,g12a-mipi-dphy-analog";
 > +          #phy-cells = <0>;
+
+Looks like a dedicated subset of registers, add 'reg' even if Linux 
+doesn't use it (currently).
+
 > +    };
 > -- 
 > 2.25.1
