@@ -2,61 +2,72 @@ Return-Path: <SRS0=a8bK=FL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.2 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2558C433FE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 11:09:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5DA2EC4361B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 12:20:20 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 747AC206CB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 11:09:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 747AC206CB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	by mail.kernel.org (Postfix) with ESMTPS id DAECC2339D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 12:20:19 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DAECC2339D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmx.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=lB+Sv4LtA+r3l0a3aYKXHK8cbWwrKvCNKnCA2DQYH6U=; b=xqdzXcPQNHLo6efYzjeQ6OgIW
-	ILhqqabUtOKw0TAoRVi/JbZPRlaMWqj2CZppT4bQ0QFP0myLYEIwM0oA0boTPmcf7gC5kobr9jC+8
-	EIJ1wa4YUNmSmpHfAixi0EE4t/UqmRIxQiCmXrNfyRNDVQXIpRsTKBW8BKakrXQjmmA+zQ4iyN3Ix
-	SwCTF6hiaam4C8amW2wTUiWKKJt9KIgP5XB3bOEw4vNkC6hrYh/K3cGz3SptFNW9XXZZQIRMkLRDP
-	M6Y3zSlzKRS2rEqKtKHO47Tr1AmPa3lEGEwq8KAvAVA8ONwgQGOhl2/6WWxWGsvPdt0lhHaN3Zdtf
-	K5mHZNP0g==;
+	 bh=iM5erZzsrxI4A1seb45qy3Ar06ufsf1JRQ34/mQ3gZQ=; b=pRJyATCkbfIKY3GdKSd4A/v76
+	8zDO8ZFOEYV3nBncavmvSsSrqogGpTCElU9nCoZ5IcX70j29jcv2ccdg1OE7OgdvdDdlarZExd98h
+	TIbFxe0ptB29+7SecBxLK+JDzvxFztEQnnD66InD+EWPWOLt55fhLuUY4dYFAzHw5kMcXwL14/XWe
+	Ue3LjwZq4jzc6Svy76tgMZPANSDEwkgKU/jivXxmJ+d1UQ6KYB2cyssZujdfXkdg4KiZ2RG88VGEr
+	ekTjfzPie4tBGoLFiFwg8hmLdS3UeKd75v9FZqaxVH3GhoveaHAEAqeYrpHJOPjc1j9D2fodwCzr0
+	BzeeRlD5A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kmEOf-0003Z2-Fh; Mon, 07 Dec 2020 11:09:37 +0000
-Received: from relay6-d.mail.gandi.net ([217.70.183.198])
+	id 1kmFUz-0000xT-CA; Mon, 07 Dec 2020 12:20:13 +0000
+Received: from dd10532.kasserver.com ([85.13.133.80])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kmEOa-0003Wr-4S; Mon, 07 Dec 2020 11:09:35 +0000
-X-Originating-IP: 109.220.208.103
-Received: from localhost.localdomain
- (lfbn-tou-1-1617-103.w109-220.abo.wanadoo.fr [109.220.208.103])
- (Authenticated sender: miquel.raynal@bootlin.com)
- by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 0B1EDC0007;
- Mon,  7 Dec 2020 11:09:26 +0000 (UTC)
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>,
- Liang Yang <liang.yang@amlogic.com>
-Subject: Re: [PATCH] mtd: rawnand: meson: Fix a resource leak in init
-Date: Mon,  7 Dec 2020 12:09:25 +0100
-Message-Id: <20201207110926.7951-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <X8ikVCnUsfTpffFB@mwanda>
-References: 
+ id 1kmFUw-0000wo-JF
+ for linux-amlogic@lists.infradead.org; Mon, 07 Dec 2020 12:20:12 +0000
+Received: from odsus.home.arpa
+ (dslb-002-205-253-229.002.205.pools.vodafone-ip.de [2.205.253.229])
+ by dd10532.kasserver.com (Postfix) with ESMTPSA id E65A61F40C7B;
+ Mon,  7 Dec 2020 13:20:04 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+ by odsus.home.arpa (Postfix) with ESMTP id 0ACBD3D671;
+ Mon,  7 Dec 2020 13:20:04 +0100 (CET)
+X-Virus-Scanned: amavisd-new at home.arpa
+Received: from odsus.home.arpa ([127.0.0.1])
+ by localhost (odsus.home.arpa [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id hpkAulshM0W2; Mon,  7 Dec 2020 13:20:00 +0100 (CET)
+Received: from [192.168.202.6] (unknown [192.168.202.6])
+ by odsus.home.arpa (Postfix) with ESMTP id EC3633D66F;
+ Mon,  7 Dec 2020 13:19:59 +0100 (CET)
+Subject: Re: [BUG]odroid-c2 does not hotplug usb-devices
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <c2dc3507-67a7-3c18-374f-050295bc1d59@gmx.net>
+ <CAFBinCDrMj4GP2cy4dBSt_isGXf4CuhmDz=uAs+gZwUGQc=o6A@mail.gmail.com>
+ <8afb2adb-4581-a847-e7e0-db1e915e9247@gmx.net>
+ <CAFBinCD6aqna6YYvXgO5iKWa9N3yvqehhB+SAirLaUu3xScy2Q@mail.gmail.com>
+From: Otto Meier <gf435@gmx.net>
+Message-ID: <bd9d96d2-8b66-db93-a855-5e179adca8c9@gmx.net>
+Date: Mon, 7 Dec 2020 13:19:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: 7d4a8c2a2852cb9d3f5754bb418995ef2bf0739e
+In-Reply-To: <CAFBinCD6aqna6YYvXgO5iKWa9N3yvqehhB+SAirLaUu3xScy2Q@mail.gmail.com>
+Content-Language: de-DE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201207_060932_306118_59ED229C 
-X-CRM114-Status: UNSURE (   7.60  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201207_072010_767287_4DBCCE6A 
+X-CRM114-Status: GOOD (  24.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,31 +79,99 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Yixun Lan <yixun.lan@amlogic.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Richard Weinberger <richard@nod.at>, kernel-janitors@vger.kernel.org,
- linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, linux-amlogic@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org,
+ U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 2020-12-03 at 08:39:48 UTC, Dan Carpenter wrote:
-> Call clk_disable_unprepare(nfc->phase_rx) if the clk_set_rate() function
-> fails to avoid a resource leak.
-> 
-> Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
-
-Miquel
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTWFydGluLAoKCkkgZGlkIGEgbG90IG9mIGdvb2dsaW5nIHRoaXMgd2Vla2VuZCBhbmQgZm91
+bmQgc29tZSBpbnRlcmVzdGluZyBwcm9ibGVtcyB3aXRoCm9kcm9pZC1jMi4KCjEuIGJvb3Rpbmcg
+ZnJvbSBlbW1jIHN0b3AgYWZ0ZXIgdS1ib290IDIwMjAuMDQgKHRoaXMgaGl0cyBtZSBhbHNvKQoy
+LiB1c2IgZGlkIG5vdCB3b3JrIHdpdGggbmV3ZXIga2VybmVscy4KClRoaXMgZ2F2ZXMgbWUgdGhl
+IGlkZWEgdGhhdCBzb21ldGhpbmcgaW4gdGhlIGNvbmZpZ3VyYXRpb24gb2YgdGhlIHM5MDUgc29j
+CmlzIG5vdCBvay4KCmhlcmU6IGh0dHBzOi8vZm9ydW0ubGlicmVlbGVjLnR2L3RocmVhZC8xMjMz
+MC1iYWxiZXMxNTAtbGUtaW1hZ2VzLXdpdGgta29kaS0xOS1mb3Itczl4eHgvP3Bvc3RJRD0xNDcy
+MTIjcG9zdDE0NzIxMgphbmQgaGVyZTogaHR0cHM6Ly9saXN0cy5kZW54LmRlL3BpcGVybWFpbC91
+LWJvb3QvMjAyMC1Ob3ZlbWJlci90aHJlYWQuaHRtbAoKaW4gaHR0cHM6Ly9ncm91cHMuaW8vZy91
+LWJvb3QtYW1sb2dpYy90b3BpYy83NzgxNjgwNSM2NjEgc29tZSBwcm9ibGVtcyBpbiBwaW5jdHJs
+IHJlbGF0ZWQgdG8gYm9vdGluZyBmcm9tIGVtbWMgaXMgZGlzY3Vzc2VkLgoKaSBmb3VuZCB0aGF0
+IGNvbW1pdCBkZDVmMjM1MWU5OWFhZDhmY2JlZGJjMTMwNWI4YjUxYjA5OTUyMzM2IG9mIHUtYm9v
+dApyZW5kZXJlZCB0aGUgc2l0dWF0aW9uIGZvciBvZHJvaWQtYzIgYmFkLgoKaSBnYXZlIHRoZSBm
+b2xsb3dpbmcgcGF0Y2ggb24gVG9wIG9mIGNvbW1pdCBlZTFlMDQ1NThmZjhjOGVkODEyYjk4Njkz
+OTQ0N2YxMjliYjBiMGJiIG9mIHUtYm9vdAphIHRyeSBhZCBpdCBmaXhlcyB0aGUgb2Ryb2lkLWMy
+IGJvb3QgaXNzdWUuCgotLS0gdS1ib290LmdpdC9hcmNoL2FybS9kdHMvbWVzb24tZ3hiYi5kdHNp
+Lm9yaWcgICAgICAgIDIwMjAtMTEtMjcgMTc6MjA6MDQuNjI0MTkzNTYxICswMTAwCisrKyB1LWJv
+b3QuZ2l0L2FyY2gvYXJtL2R0cy9tZXNvbi1neGJiLmR0c2kgICAgIDIwMjAtMTEtMjcgMTc6MjM6
+MTguNDcyMDg4OTM0ICswMTAwCkBAIC00MDMsMzYgKzQwMywzMyBAQAogICAgICAgICAgICAgICAg
+ICAgICAgICAgZ3Bpby1yYW5nZXMgPSA8JnBpbmN0cmxfcGVyaXBocyAwIDAgMTE5PjsKICAgICAg
+ICAgICAgICAgICB9OwogIAotICAgICAgICAgICAgICAgZW1tY19waW5zOiBlbW1jIHsKLSAgICAg
+ICAgICAgICAgICAgICAgICAgbXV4LTAgewotICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IGdyb3VwcyA9ICJlbW1jX25hbmRfZDA3IiwKLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgImVtbWNfY21kIjsKLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmdW5j
+dGlvbiA9ICJlbW1jIjsKLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBiaWFzLXB1bGwt
+dXA7Ci0gICAgICAgICAgICAgICAgICAgICAgIH07CiAgCi0gICAgICAgICAgICAgICAgICAgICAg
+IG11eC0xIHsKLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBncm91cHMgPSAiZW1tY19j
+bGsiOwotICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZ1bmN0aW9uID0gImVtbWMiOwot
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJpYXMtZGlzYWJsZTsKLSAgICAgICAgICAg
+ICAgICAgICAgICAgfTsKLSAgICAgICAgICAgICAgIH07CisgICAgICAgICAgICAgICAgZW1tY19w
+aW5zOiBlbW1jIHsKKyAgICAgICAgICAgICAgICAgICAgICAgIG11eCB7CisgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIGdyb3VwcyA9ICJlbW1jX25hbmRfZDA3IiwKKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICJlbW1jX2NtZCIsCisgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAiZW1tY19jbGsiOworICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBmdW5jdGlvbiA9ICJlbW1jIjsKKyAgICAgICAgICAgICAgICAgICAgICAgIH07
+CisgICAgICAgICAgICAgICAgfTsKICAKLSAgICAgICAgICAgICAgIGVtbWNfZHNfcGluczogZW1t
+Yy1kcyB7Ci0gICAgICAgICAgICAgICAgICAgICAgIG11eCB7Ci0gICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgZ3JvdXBzID0gImVtbWNfZHMiOwotICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIGZ1bmN0aW9uID0gImVtbWMiOwotICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IGJpYXMtcHVsbC1kb3duOwotICAgICAgICAgICAgICAgICAgICAgICB9OwotICAgICAgICAgICAg
+ICAgfTsKKyAgICAgICAgICAgICAgICBlbW1jX2RzX3BpbnM6IGVtbWMtZHMgeworICAgICAgICAg
+ICAgICAgICAgICAgICAgbXV4IHsKKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZ3Jv
+dXBzID0gImVtbWNfZHMiOworICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmdW5jdGlv
+biA9ICJlbW1jIjsKKyAgICAgICAgICAgICAgICAgICAgICAgIH07CisgICAgICAgICAgICAgICAg
+fTsKICAKLSAgICAgICAgICAgICAgIGVtbWNfY2xrX2dhdGVfcGluczogZW1tY19jbGtfZ2F0ZSB7
+Ci0gICAgICAgICAgICAgICAgICAgICAgIG11eCB7Ci0gICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgZ3JvdXBzID0gIkJPT1RfOCI7Ci0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ZnVuY3Rpb24gPSAiZ3Bpb19wZXJpcGhzIjsKLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBiaWFzLXB1bGwtZG93bjsKLSAgICAgICAgICAgICAgICAgICAgICAgfTsKLSAgICAgICAgICAg
+ICAgIH07CisgICAgICAgICAgICAgICAgZW1tY19jbGtfZ2F0ZV9waW5zOiBlbW1jX2Nsa19nYXRl
+IHsKKyAgICAgICAgICAgICAgICAgICAgICAgIG11eCB7CisgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIGdyb3VwcyA9ICJCT09UXzgiOworICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBmdW5jdGlvbiA9ICJncGlvX3BlcmlwaHMiOworICAgICAgICAgICAgICAgICAgICAgICAg
+fTsKKyAgICAgICAgICAgICAgICAgICAgICAgIGNmZy1wdWxsLWRvd24geworICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBwaW5zID0gIkJPT1RfOCI7CisgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIGJpYXMtcHVsbC1kb3duOworICAgICAgICAgICAgICAgICAgICAgICAgfTsK
+KyAgICAgICAgICAgICAgICB9OwogIAogICAgICAgICAgICAgICAgIG5vcl9waW5zOiBub3Igewog
+ICAgICAgICAgICAgICAgICAgICAgICAgbXV4IHsKCgoKU28gd2l0aCB0aGUgbGF0ZXN0IHUtYm9v
+dCBhbmQgdGhlIGtlcm5lbCBmcm9tIGh0dHBzOi8vZ2l0aHViLmNvbS9jaGV3aXR0L2xpbnV4L3Ry
+ZWUvYW1sb2dpYy01LjEwLnkKY29tbWl0IDcyNWZjOGRmNzg5ODEwMmY5MDMxYmEyMDc1Zjc2Mzg4
+NGZmYTNlZTggZXZlcnl0aGluZyBpcyB3b3JraW5nIGFnYWluLgpVU0IgZG9lcyBob3RwbHVnZ2lu
+ZyBhcyBleHBlY3RlZC4KCkZvciBtZSB0aGlzIG1ha2UgaXQgd29yayBhZ2Fpbi4gQnV0IGlgbSBz
+b3JyeSwgSSBkb27CtHQga25vdyB3aGF0IHdvdWxkIGJlIGEgcmVhbCBmaXguCgoKCgoKCkFtIDA1
+LjEyLjIwIHVtIDIwOjU1IHNjaHJpZWIgTWFydGluIEJsdW1lbnN0aW5nbDoKPiBIaSBPdHRvLAo+
+IAo+IE9uIFNhdCwgRGVjIDUsIDIwMjAgYXQgNjo0MCBQTSBPdHRvIE1laWVyIDxnZjQzNUBnbXgu
+bmV0PiB3cm90ZToKPj4KPj4gSGkgTWFydGluLAo+Pgo+PiBpIGhhdmUgdHJpZWQgeW91ciBzZWNv
+bmQgbm90aWNlLiBidXQgaXQgZG9lcydudCBzb2x2ZSB0aGUgaXNzdWUuCj4+IGlmIGF0IGxlYXNl
+ZCBvbiBkZXZpY2UgaXMgcGx1Z2VkIGluIG5ldyBkZXZpY2VzIGFyZSBkZXRlY3RlZC4gaWYKPj4g
+YWxsIGRldmljZXMgaGF2ZSBiZWVuIHJlbW92ZWQsIG5vIG5ldyBkZXZpY2Ugd2lsbCBiZSBkZXRl
+Y3RlZCBhbnltb3JlLgo+IHRoYW5rcyBmb3IgdHJ5aW5nIHRoaXMgb3V0IGFuZCBmb3IgcmVwb3J0
+aW5nIGJhY2suCj4gY2FuIHlvdSBwbGVhc2UgYWxzbyB0ZXN0IGlmIHJ1bm5pbmcgImxzdXNiIC12
+dnYiIChhcyByb290KSBtYWtlcyB0aGUKPiBkZXZpY2VzIHNob3cgdXA/Cj4gCj4gYmFja2dyb3Vu
+ZCBpbmZvOiB0aGUgQW1sb2dpYyBNZXNvbiBHWEJCIFNvQyBvbiB5b3VyIE9kcm9pZC1DMiBib2Fy
+ZAo+IHVzZXMgYSAiZHdjMiIgVVNCIDIuMCBjb250cm9sbGVyLgo+IEkgZG9uJ3QgaGF2ZSBhbnkg
+R1hCQiBiYXNlZCBib2FyZCwgYnV0IG15IE9kcm9pZC1DMSsgdXNlcyB0aGUgc2FtZQo+IGNvbnRy
+b2xsZXIgYW5kIG92ZXJhbGwgc2V0dXAuIFRoZXJlIEkgY2FuIHJlcHJvZHVjZSB0aGUgcHJvYmxl
+bSB5b3UKPiBhcmUgc2VlaW5nLgo+IAo+IEkgYW0gbm90IHN1cmUgd2hpY2ggcGFydCBvZiB0aGUg
+ImluZnJhc3RydWN0dXJlIiAob24tYm9hcmQgNC1wb3J0IFVTQgo+IGh1YiwgZHdjMiBjb250cm9s
+bGVyLCAuLi4pIGlzIGNhdXNpbmcgdGhpcyBpc3N1ZS4KPiBNeSBzdWdnZXN0aW9uIGlzIHRvIGlu
+dm9sdmUgdGhlIGxpbnV4LXVzYiBtYWlsaW5nIGxpc3QgYW5kIGR3YzIgZHJpdmVyCj4gbWFpbnRh
+aW5lcjoKPiAtIE1pbmFzIEhhcnV0eXVueWFuIDxobWluYXNAc3lub3BzeXMuY29tPiAoZHdjMiBk
+cml2ZXIgbWFpbnRhaW5lcikKPiAtIGxpbnV4LXVzYkB2Z2VyLmtlcm5lbC5vcmcgKHVzYiBtYWls
+aW5nIGxpc3QpCj4gCj4gSW4gdGhlIHBhc3QgdGhleSBwcm92aWRlZCBpbmZvcm1hdGlvbiBhbmQg
+aGVscGVkIHRvIGRlYnVnIGlzc3Vlcy4KPiBQbGVhc2UgYWxzbyBrZWVwIG1lIENjJ2VkIHNvIEkg
+Y2FuIGhlbHAgd2l0aCBhbnkgQW1sb2dpYyBzcGVjaWZpYwo+IHF1ZXN0aW9ucywgZHJpdmVycywg
+ZXRjLgo+IAo+IAo+IEJlc3QgcmVnYXJkcywKPiBNYXJ0aW4KPiAKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
+CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
