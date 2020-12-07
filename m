@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5461C4361B
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43F56C433FE
 	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 17:58:25 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 85030235F8
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 17:58:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 85030235F8
+	by mail.kernel.org (Postfix) with ESMTPS id E75A6235F8
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 17:58:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E75A6235F8
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=agner.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,21 +23,21 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=mg79PJFdc4P1ODyWVgs3QbO/97qrDXlmCwPgW+N5BUA=; b=smYDx5PJ1Dqea3zYKRpnVdYt3
-	bd/o9BktZNDRcTjqJVizlTq+apRAthtprJaAEqs0mzwJt3pAuCYOGiyVoqS1KwjTYs28qsESfz/qc
-	QOC8nSw+Q8akRVRTDSUuFdAPvUEbyxvpKaeHY1/cjD/zbU/+T2Gmqltc6pOx682PNZl6ssWOUN17O
-	9+PMYlZZIoBj6MZRkjo8bdadQiWh8XZD+3uy+WJU1G5N3efsL+m/hm9OGEMpMHI3VfGmvW+A7jTRd
-	WjXabpLmNk2Yg3KZo/PtZb6ScU+dBDFczaMYgMijLzxYHaiXVzrWvTSRXHY0LyXJwPTPSYr9SHmTw
-	XqgYk+j1w==;
+	 bh=/biqBgXzP/Y50bxD+ztAW/cgxlsAS/ypW3oC0x6grs8=; b=NU5die3lGwj1hokd4PeYem8xx
+	6I3wBcVBiMqHpdg72KQ7ucMoJnLOdzTatpgMXGm/ISG2DNoU1umGlLTmh5Yne9km+Kr3dSBtfL31W
+	DQkYuAVlz4CbipT51VMhgmwZGyqgvb/u/6DDVf61fWnM53AvvVIL1JCMtRvlxYcjMxVeT1EKa9nEz
+	S7bQytzLl8VVb7jlFMCpMRnFCp+7eF/26PCZHrklkFFdGqav5XQkazCt/UVUCHlXWxZhxyeMrNC62
+	qANZIi7sNychc4Pqt58kp4lXzVab7ps7NRQge/IYPKFXsrxx2XQDxpTC+PPRue9BDx5QJg2otZBxQ
+	hh7R7z4WQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kmKmD-0005Km-0Z; Mon, 07 Dec 2020 17:58:21 +0000
+	id 1kmKmA-0005KG-WD; Mon, 07 Dec 2020 17:58:19 +0000
 Received: from mail.kmu-office.ch ([2a02:418:6a02::a2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kmKm7-0005Hx-7V; Mon, 07 Dec 2020 17:58:17 +0000
+ id 1kmKm7-0005Hw-4F; Mon, 07 Dec 2020 17:58:16 +0000
 Received: from allenwind.lan (unknown
  [IPv6:2a02:169:3df5:0:6d9:f5ff:fe22:28bf])
- by mail.kmu-office.ch (Postfix) with ESMTPSA id 3CF635C2DC7;
+ by mail.kmu-office.ch (Postfix) with ESMTPSA id 2ADCF5C2BA0;
  Mon,  7 Dec 2020 18:58:14 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
  t=1607363894;
@@ -45,23 +45,22 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
  to:to:cc:cc:mime-version:mime-version:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=kP4cdz/3tSpxSicOOh12rcBPCsaNwvBjLo2OKb8ClH0=;
- b=aa2T+qElCGh5fu0FnBZpQNW/PGr/S1cJwqVXh8BCKZOar4T5QlZSbxWqPC9W/4WRcy2ygg
- fETBTotH5j3ZYBPi3QLJ7R/9Di7DV7soW9PMXjkve/YvxV7Ws3erTae2SoSFDoqxXC+lcR
- sv/KABkokMnQg68MbIjhMn2FEd5sauM=
+ bh=yonEw/CHHn6f+8TLYCRua/I7Nb0Xqw32aR/6o9P86v0=;
+ b=bEwvH/9fPXUyH5NvnW8iQKgot7gRLFx8s8AnemqDGz9ajBYnBMqx+vjBSVMzJDNU0/Tmme
+ Q2UQcCyINbE2BCH4rdIabin/CPnwlneR+z0iH828c3tWUXkzx2ovCTowByBIUFd6mgYkcL
+ 67FHP4dbIRzSfoPXBTrJOFwm6QYo1OU=
 From: Stefan Agner <stefan@agner.ch>
 To: khilman@baylibre.com
-Subject: [PATCH v3 4/5] arm64: dts: meson: g12a: x96-max: fix PHY deassert
- timing requirements
-Date: Mon,  7 Dec 2020 18:58:02 +0100
-Message-Id: <12506964ca5d5f936579a280ad0a7e7f9a0a2d4c.1607363522.git.stefan@agner.ch>
+Subject: [PATCH v3 3/5] ARM: dts: meson: fix PHY deassert timing requirements
+Date: Mon,  7 Dec 2020 18:58:01 +0100
+Message-Id: <ff78772b306411e145769c46d4090554344db41e.1607363522.git.stefan@agner.ch>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <df3f5c4fc6e43c55429fd3662a636036a21eed49.1607363522.git.stefan@agner.ch>
 References: <df3f5c4fc6e43c55429fd3662a636036a21eed49.1607363522.git.stefan@agner.ch>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201207_125815_467947_FE74F48F 
-X-CRM114-Status: GOOD (  15.48  )
+X-CRM114-CacheID: sfid-20201207_125815_386865_2C059E59 
+X-CRM114-Status: GOOD (  15.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,26 +87,41 @@ According to the datasheet (Rev. 1.9) the RTL8211F requires at least
 registers. On similar boards with the same PHY this fixes an issue where
 Ethernet link would not come up when using ip link set down/up.
 
-Fixes: ed5e8f689154 ("arm64: dts: meson: g12a: x96-max: fix the Ethernet PHY reset line")
+Fixes: a2c6e82e5341 ("ARM: dts: meson: switch to the generic Ethernet PHY reset bindings")
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> # on Odroid-C1+
 Signed-off-by: Stefan Agner <stefan@agner.ch>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/meson8b-odroidc1.dts    | 2 +-
+ arch/arm/boot/dts/meson8m2-mxiii-plus.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-index 1b07c8c06eac..463a72d6bb7c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-@@ -340,7 +340,7 @@ external_phy: ethernet-phy@0 {
- 		eee-broken-1000t;
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index 0c26467de4d0..5963566dbcc9 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -224,7 +224,7 @@ eth_phy: ethernet-phy@0 {
+ 			reg = <0>;
  
- 		reset-assert-us = <10000>;
--		reset-deassert-us = <30000>;
-+		reset-deassert-us = <80000>;
- 		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+ 			reset-assert-us = <10000>;
+-			reset-deassert-us = <30000>;
++			reset-deassert-us = <80000>;
+ 			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
  
- 		interrupt-parent = <&gpio_intc>;
+ 			interrupt-parent = <&gpio_intc>;
+diff --git a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
+index cc498191ddd1..8f4eb1ed4581 100644
+--- a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
++++ b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
+@@ -81,7 +81,7 @@ eth_phy0: ethernet-phy@0 {
+ 			reg = <0>;
+ 
+ 			reset-assert-us = <10000>;
+-			reset-deassert-us = <30000>;
++			reset-deassert-us = <80000>;
+ 			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+ 		};
+ 	};
 -- 
 2.29.2
 
