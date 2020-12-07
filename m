@@ -2,75 +2,91 @@ Return-Path: <SRS0=a8bK=FL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.2 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E3C74C433FE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 12:43:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EDA64C433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 13:25:34 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 873DE233EB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 12:43:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 873DE233EB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmx.net
+	by mail.kernel.org (Postfix) with ESMTPS id 7418923331
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 13:25:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7418923331
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=oY+/AdPdi42jwzg5AiEt+sMRXMuXMW5ahJJEp1Rk0gA=; b=hGDarOKdeJB53s1oWn5ybTKy5
-	qKuKpmUZ0f+KeHH049bQ35Uq1bhl/ssQxRlz5o02LVAv2p8u0P5fszIF+BfKK1C8wb1XRC+DD+axI
-	KrDnD7/zIa8gEXL7BSc/zfXat1/oBh3996qmJvmCfJKuPgtczLx4h9vWELiQi/errIH4iI9v7CHde
-	7Lu1pHxCiHyLbDnIh+iEavcDGzBNJNxitUuYWHsOQp531kiappSQwnjN2BHgZl6NIUGYKcNf3e4Cm
-	+lJlz5gdg6IWu8TkiLmRL4Cm3WoBak9BaeyO/thiF2BDC2/LF2Z0VygvMQU+dSD5cRVmaR2kEVBHN
-	lvBs5X5jw==;
+	 bh=F3bLwXBCBmHdYF+6CrXeUugCuUQvRvmZZ6d+S55bTuY=; b=KWhJYBfhxRgI/BPiUqYwteAKG
+	xS6DfjFJPDUH5OtDtF2oEQiV/5MJDQVgtE8u6vmCMJhKF5q9MvD/Ur68xjD5PR8Q77IfIRnoIkPli
+	c+KL/nD0ydLpQWu99pvse1GgwIGO3Ol9LKuAIzzwRZz76j8tpzP+8b7MXsq4eXiY0gez1nLhN69sV
+	Z/KwpWueGsbff3o5axMnshuLJbmN8lE5AGZHRza/t/rNf8E3Wn2knFhuepx1FL66zzXWXsn+vo1D7
+	jjRCK0DaaFn5UX2Yo7aQug4kiX/g15kcxzHKhkPyw6duU1WgIgqVG7GShrwzFcmrIsZ27Ovq6I+mG
+	+oj8H3cXg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kmFrr-0003cA-H5; Mon, 07 Dec 2020 12:43:51 +0000
-Received: from dd10532.kasserver.com ([85.13.133.80])
+	id 1kmGW8-0006oX-3v; Mon, 07 Dec 2020 13:25:28 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kmFro-0003bH-Qd
- for linux-amlogic@lists.infradead.org; Mon, 07 Dec 2020 12:43:50 +0000
-Received: from odsus.home.arpa
- (dslb-002-205-253-229.002.205.pools.vodafone-ip.de [2.205.253.229])
- by dd10532.kasserver.com (Postfix) with ESMTPSA id 96E551F4036E;
- Mon,  7 Dec 2020 13:43:47 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
- by odsus.home.arpa (Postfix) with ESMTP id 27B293D671;
- Mon,  7 Dec 2020 13:43:47 +0100 (CET)
-X-Virus-Scanned: amavisd-new at home.arpa
-Received: from odsus.home.arpa ([127.0.0.1])
- by localhost (odsus.home.arpa [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id l7Guhsd1GFhq; Mon,  7 Dec 2020 13:43:44 +0100 (CET)
-Received: from [192.168.202.6] (unknown [192.168.202.6])
- by odsus.home.arpa (Postfix) with ESMTP id 2B4063D66F;
- Mon,  7 Dec 2020 13:43:44 +0100 (CET)
-Subject: Re: [BUG]odroid-c2 does not hotplug usb-devices
-To: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <c2dc3507-67a7-3c18-374f-050295bc1d59@gmx.net>
- <CAFBinCDrMj4GP2cy4dBSt_isGXf4CuhmDz=uAs+gZwUGQc=o6A@mail.gmail.com>
- <8afb2adb-4581-a847-e7e0-db1e915e9247@gmx.net>
- <CAFBinCD6aqna6YYvXgO5iKWa9N3yvqehhB+SAirLaUu3xScy2Q@mail.gmail.com>
- <bd9d96d2-8b66-db93-a855-5e179adca8c9@gmx.net>
- <0d05671d-b5f4-55e4-f5bd-58410cc92d08@baylibre.com>
-From: Otto Meier <gf435@gmx.net>
-Message-ID: <dd160e55-55e9-1c41-afcb-22990a05a86b@gmx.net>
-Date: Mon, 7 Dec 2020 13:43:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+ id 1kmGW3-0006nJ-SC
+ for linux-amlogic@lists.infradead.org; Mon, 07 Dec 2020 13:25:25 +0000
+Received: by mail-wm1-x331.google.com with SMTP id w206so9559272wma.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Dec 2020 05:25:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
+ :date:mime-version;
+ bh=saexyCJf1GbqWUkiP2yMQP3x3pHqTsfM/ykC2r7v4yE=;
+ b=GnkapeRVF5Nkadd2mPkjPfgvA2XcIFLcl5ecBTO8innbDyqonlubd1adXncBQ4QqN1
+ 2/HhRJcHLErWRxS5DlCrDG8kU8BbPxh523SoUHdmuZH5Dt0tPOS96eYKvMuv3a5mFDOU
+ We2WuGHdxRRNDgvI6RBld6jYoWMMxNIJXvKjKEG4S8ARaQJR5q9P75IQPkSQoCbA39Pc
+ gDnmmvF+GPK4he2i6D9b5Z4nuJl9KnLpzHOkBQrmUJ2blQmvWgiT0Tj6XXiT1bwLdh1l
+ E7YfFD3GE74HTMu+g898b+FfPKjaFfB9lY8CW+ANp+0tdWNsw7zei/ueGfqcIYIjz0z1
+ KyyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:message-id:date:mime-version;
+ bh=saexyCJf1GbqWUkiP2yMQP3x3pHqTsfM/ykC2r7v4yE=;
+ b=FUlgznP5UR7xW1kljnMRGCOFsz0JBE4NHGJcGaPWPrXR9isk9JEkR1qFOKWz0JvQwt
+ IkkV1IxgbLilcATNCzmIk48Az2qUvdM1w0bNz9CUSIrcCDl0oljsQPqRkK/7IcxKH4zv
+ NfjMSIWYcUi1g/5cgn6079ujlF/U6Sb3N1zIxhWaVww1iklqJMwGkKdHtk+bUhf0zCNr
+ e6x9iaM3wlCGIVgqv7MaNIZnexnvpCJhtwhHgpjPX6V34AGbIGRtgtkFjqmUR/Vge8NM
+ h/chScq2fVwYspgQHagXsTeHnX7UTOzR5huBhjuDzfKst096HjaT6OYmjPVLimGdO0/h
+ dO5g==
+X-Gm-Message-State: AOAM531vp6HfES0MbkyWXin3Pn35xfhizK4pDQKjrB1Oi/a43Ers3gpL
+ wa4m2GOIir1FrWCIGyyVQjldUQ==
+X-Google-Smtp-Source: ABdhPJx33fRb/hFSGTHG5aiJYDcuF4kPeym+Gd8dMK8baE94WXb262rD9EDNnhmMAbLNcNHw7Ln0WA==
+X-Received: by 2002:a05:600c:208:: with SMTP id
+ 8mr3891023wmi.143.1607347521332; 
+ Mon, 07 Dec 2020 05:25:21 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id l11sm13497956wmh.46.2020.12.07.05.25.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Dec 2020 05:25:20 -0800 (PST)
+References: <tencent_220963AF059847E1171B4AB9@qq.com>
+ <CACRpkdbvKWcD04SLLBOBuZWzN64xpVv1nfCXZGcSp9cs0MPivQ@mail.gmail.com>
+ <1jeek5ps3b.fsf@starbuckisacylon.baylibre.com>
+ <CAHp75VeQGxnGO4o5a1vFzS9XAMjmvwoJ3=pWLvNQT6mXEKcqWQ@mail.gmail.com>
+ <1jtusxkh6v.fsf@starbuckisacylon.baylibre.com>
+ <CACRpkdZmM3GK6mebmm6nT-XXfdTB5KGwArAFk-1Gx6noZDxVAw@mail.gmail.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Marc Zyngier <maz@kernel.org>
+Subject: Re: 0001-add-amlogic-gpio-to-irq
+In-reply-to: <CACRpkdZmM3GK6mebmm6nT-XXfdTB5KGwArAFk-1Gx6noZDxVAw@mail.gmail.com>
+Message-ID: <1jr1o1katc.fsf@starbuckisacylon.baylibre.com>
+Date: Mon, 07 Dec 2020 14:25:19 +0100
 MIME-Version: 1.0
-In-Reply-To: <0d05671d-b5f4-55e4-f5bd-58410cc92d08@baylibre.com>
-Content-Language: de-DE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201207_074349_010277_CFDF315F 
-X-CRM114-Status: GOOD (  25.29  )
+X-CRM114-CacheID: sfid-20201207_082523_983144_FDC580F5 
+X-CRM114-Status: GOOD (  36.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,141 +98,173 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, u-boot-amlogic@groups.io,
- U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: narmstrong <narmstrong@baylibre.com>,
+ "martin.blumenstingl" <martin.blumenstingl@googlemail.com>,
+ khilman <khilman@baylibre.com>, linux-kernel <linux-kernel@vger.kernel.org>,
+ linux-gpio <linux-gpio@vger.kernel.org>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>,
+ linux-amlogic <linux-amlogic@lists.infradead.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ =?utf-8?B?5p6X5Zyj5qyi?= <linshenghuan@hangtu-china.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpBbSAwNy4xMi4yMCB1bSAxMzoyOSBzY2hyaWViIE5laWwgQXJtc3Ryb25nOgo+IEhpLAo+IAo+
-IChQbGVhc2UgQ0MgdS1ib290LWFtbG9naWNAZ3JvdXBzLmlvIHdoZW4gVS1Cb290IGlzIGNvbmNl
-cm5lZCkKPiAKPiBPbiAwNy8xMi8yMDIwIDEzOjE5LCBPdHRvIE1laWVyIHdyb3RlOgo+PiBIaSBN
-YXJ0aW4sCj4+Cj4+Cj4+IEkgZGlkIGEgbG90IG9mIGdvb2dsaW5nIHRoaXMgd2Vla2VuZCBhbmQg
-Zm91bmQgc29tZSBpbnRlcmVzdGluZyBwcm9ibGVtcyB3aXRoCj4+IG9kcm9pZC1jMi4KPj4KPj4g
-MS4gYm9vdGluZyBmcm9tIGVtbWMgc3RvcCBhZnRlciB1LWJvb3QgMjAyMC4wNCAodGhpcyBoaXRz
-IG1lIGFsc28pCj4gCj4gSW5kZWVkLCB0aGlzIGFscmVhZHkgaGFzIGJlZW4gcmVwb3J0ZWQsIGJ1
-dCB0aGUgcm9vdCBjYXVzZSBpcyB1bmtub3duCj4gCj4+IDIuIHVzYiBkaWQgbm90IHdvcmsgd2l0
-aCBuZXdlciBrZXJuZWxzLgo+Pgo+PiBUaGlzIGdhdmVzIG1lIHRoZSBpZGVhIHRoYXQgc29tZXRo
-aW5nIGluIHRoZSBjb25maWd1cmF0aW9uIG9mIHRoZSBzOTA1IHNvYwo+PiBpcyBub3Qgb2suCj4+
-Cj4+IGhlcmU6IGh0dHBzOi8vZm9ydW0ubGlicmVlbGVjLnR2L3RocmVhZC8xMjMzMC1iYWxiZXMx
-NTAtbGUtaW1hZ2VzLXdpdGgta29kaS0xOS1mb3Itczl4eHgvP3Bvc3RJRD0xNDcyMTIjcG9zdDE0
-NzIxMgo+PiBhbmQgaGVyZTogaHR0cHM6Ly9saXN0cy5kZW54LmRlL3BpcGVybWFpbC91LWJvb3Qv
-MjAyMC1Ob3ZlbWJlci90aHJlYWQuaHRtbAo+Pgo+PiBpbiBodHRwczovL2dyb3Vwcy5pby9nL3Ut
-Ym9vdC1hbWxvZ2ljL3RvcGljLzc3ODE2ODA1IzY2MSBzb21lIHByb2JsZW1zIGluIHBpbmN0cmwg
-cmVsYXRlZCB0byBib290aW5nIGZyb20gZW1tYyBpcyBkaXNjdXNzZWQuCj4+Cj4+IGkgZm91bmQg
-dGhhdCBjb21taXQgZGQ1ZjIzNTFlOTlhYWQ4ZmNiZWRiYzEzMDViOGI1MWIwOTk1MjMzNiBvZiB1
-LWJvb3QKPj4gcmVuZGVyZWQgdGhlIHNpdHVhdGlvbiBmb3Igb2Ryb2lkLWMyIGJhZC4KPj4KPj4g
-aSBnYXZlIHRoZSBmb2xsb3dpbmcgcGF0Y2ggb24gVG9wIG9mIGNvbW1pdCBlZTFlMDQ1NThmZjhj
-OGVkODEyYjk4NjkzOTQ0N2YxMjliYjBiMGJiIG9mIHUtYm9vdAo+PiBhIHRyeSBhZCBpdCBmaXhl
-cyB0aGUgb2Ryb2lkLWMyIGJvb3QgaXNzdWUuCj4+Cj4+IC0tLSB1LWJvb3QuZ2l0L2FyY2gvYXJt
-L2R0cy9tZXNvbi1neGJiLmR0c2kub3JpZ8KgwqDCoMKgwqDCoMKgIDIwMjAtMTEtMjcgMTc6MjA6
-MDQuNjI0MTkzNTYxICswMTAwCj4+ICsrKyB1LWJvb3QuZ2l0L2FyY2gvYXJtL2R0cy9tZXNvbi1n
-eGJiLmR0c2nCoMKgwqDCoCAyMDIwLTExLTI3IDE3OjIzOjE4LjQ3MjA4ODkzNCArMDEwMAo+PiBA
-QCAtNDAzLDM2ICs0MDMsMzMgQEAKPj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgZ3Bpby1yYW5nZXMgPSA8JnBpbmN0cmxfcGVyaXBocyAwIDAgMTE5PjsK
-Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+PiAgIAo+PiAtwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBlbW1jX3BpbnM6IGVtbWMgewo+PiAtwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbXV4LTAgewo+PiAtwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdyb3VwcyA9ICJl
-bW1jX25hbmRfZDA3IiwKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJlbW1jX2NtZCI7Cj4+IC3CoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-ZnVuY3Rpb24gPSAiZW1tYyI7Cj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYmlhcy1wdWxsLXVwOwo+PiAtwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPj4gICAKPj4gLcKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG11eC0xIHsKPj4gLcKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBncm91cHMg
-PSAiZW1tY19jbGsiOwo+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZ1bmN0aW9uID0gImVtbWMiOwo+PiAtwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJpYXMtZGlz
-YWJsZTsKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07
-Cj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgZW1tY19waW5zOiBlbW1jIHsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbXV4IHsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdyb3VwcyA9ICJlbW1j
-X25hbmRfZDA3IiwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImVtbWNfY21kIiwKPj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgImVtbWNfY2xrIjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZ1bmN0aW9uID0gImVtbWMiOwo+
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+PiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+ICAgCj4+IC3CoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGVtbWNfZHNfcGluczogZW1tYy1kcyB7Cj4+IC3CoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtdXggewo+PiAtwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdyb3VwcyA9ICJl
-bW1jX2RzIjsKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBmdW5jdGlvbiA9ICJlbW1jIjsKPj4gLcKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBiaWFzLXB1bGwtZG93
-bjsKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+
-IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgZW1tY19kc19waW5zOiBlbW1jLWRzIHsKPj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbXV4IHsKPj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdyb3VwcyA9ICJl
-bW1jX2RzIjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIGZ1bmN0aW9uID0gImVtbWMiOwo+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+PiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIH07Cj4+ICAgCj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVt
-bWNfY2xrX2dhdGVfcGluczogZW1tY19jbGtfZ2F0ZSB7Cj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtdXggewo+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdyb3VwcyA9ICJCT09UXzgi
-Owo+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGZ1bmN0aW9uID0gImdwaW9fcGVyaXBocyI7Cj4+IC3CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYmlhcy1wdWxsLWRv
-d247Cj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+
-PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+PiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGVtbWNfY2xrX2dhdGVfcGluczogZW1tY19jbGtfZ2F0ZSB7Cj4+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG11eCB7Cj4+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBncm91cHMgPSAiQk9PVF84IjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZ1bmN0aW9uID0gImdwaW9fcGVyaXBocyI7
-Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNmZy1wdWxs
-LWRvd24gewo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgcGlucyA9ICJCT09UXzgiOwo+PiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYmlhcy1wdWxsLWRv
-d247Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07
-Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPj4gICAKPj4gIMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBub3JfcGluczogbm9yIHsKPj4gIMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbXV4IHsKPj4KPj4KPj4KPj4gU28gd2l0
-aCB0aGUgbGF0ZXN0IHUtYm9vdCBhbmQgdGhlIGtlcm5lbCBmcm9tIGh0dHBzOi8vZ2l0aHViLmNv
-bS9jaGV3aXR0L2xpbnV4L3RyZWUvYW1sb2dpYy01LjEwLnkKPj4gY29tbWl0IDcyNWZjOGRmNzg5
-ODEwMmY5MDMxYmEyMDc1Zjc2Mzg4NGZmYTNlZTggZXZlcnl0aGluZyBpcyB3b3JraW5nIGFnYWlu
-Lgo+PiBVU0IgZG9lcyBob3RwbHVnZ2luZyBhcyBleHBlY3RlZC4KPiAKPiBTbywgdGhpcyBmaXhl
-cyBVU0IgdW5kZXIgTGludXggPz8gSXQncyBub3QgY2xlYXIKPiAKPiBOZWlsCgpUaGUgYWJvdmUg
-cGF0Y2ggZml4ZXMgYm9vdGluZyBmcm9tIGVtbWMgZm9yIG1lLgpVc2luZyBhIG5ld2VyIHVib290
-IHRoZW4gMjAyMC4wNCBpcyBtYW5kYXRvcnkgZm9yIHVzaW5nIHRoZSBhYm92ZSBtZW50aW9uZWQg
-a2VybmVsLgpUaGUgdXNiIGlzc3VlLCBpIGhhZCB3aXRoIGVhcmxpZXIga2VybmVscyBmcm9tIHRo
-ZSBhYm92ZSBtZW50aW9uZWQgdHJlZS4KCkhvcGUgdGhhdCBjbGVhcmlmaWVzIGl0LiBJIHdhbnRl
-ZCB0byBydW4gdGhlIG5ld2VzdCBrZXJuZWwgb24gbXkgc3lzdGVtIHdoaWNoIGJvb3RzIGZyb20g
-ZW1tYy4KSSB0aGluayB0aGVzZSBpc3N1ZXMgYXJlIHByb2JhbHkgaW5kZXBlbmRhbnQgYnV0IGlu
-IG15IHN5c3RlbSB0aGV5IGRpZCBpbnRlcmZlcmUuCgpCZXN0IHJlZ2FyZHMKT3R0bwoKPiAKPj4K
-Pj4gRm9yIG1lIHRoaXMgbWFrZSBpdCB3b3JrIGFnYWluLiBCdXQgaWBtIHNvcnJ5LCBJIGRvbsK0
-dCBrbm93IHdoYXQgd291bGQgYmUgYSByZWFsIGZpeC4KPj4KPj4KPj4KPj4KPj4KPj4KPj4gQW0g
-MDUuMTIuMjAgdW0gMjA6NTUgc2NocmllYiBNYXJ0aW4gQmx1bWVuc3RpbmdsOgo+Pj4gSGkgT3R0
-bywKPj4+Cj4+PiBPbiBTYXQsIERlYyA1LCAyMDIwIGF0IDY6NDAgUE0gT3R0byBNZWllciA8Z2Y0
-MzVAZ214Lm5ldD4gd3JvdGU6Cj4+Pj4KPj4+PiBIaSBNYXJ0aW4sCj4+Pj4KPj4+PiBpIGhhdmUg
-dHJpZWQgeW91ciBzZWNvbmQgbm90aWNlLiBidXQgaXQgZG9lcydudCBzb2x2ZSB0aGUgaXNzdWUu
-Cj4+Pj4gaWYgYXQgbGVhc2VkIG9uIGRldmljZSBpcyBwbHVnZWQgaW4gbmV3IGRldmljZXMgYXJl
-IGRldGVjdGVkLiBpZgo+Pj4+IGFsbCBkZXZpY2VzIGhhdmUgYmVlbiByZW1vdmVkLCBubyBuZXcg
-ZGV2aWNlIHdpbGwgYmUgZGV0ZWN0ZWQgYW55bW9yZS4KPj4+IHRoYW5rcyBmb3IgdHJ5aW5nIHRo
-aXMgb3V0IGFuZCBmb3IgcmVwb3J0aW5nIGJhY2suCj4+PiBjYW4geW91IHBsZWFzZSBhbHNvIHRl
-c3QgaWYgcnVubmluZyAibHN1c2IgLXZ2diIgKGFzIHJvb3QpIG1ha2VzIHRoZQo+Pj4gZGV2aWNl
-cyBzaG93IHVwPwo+Pj4KPj4+IGJhY2tncm91bmQgaW5mbzogdGhlIEFtbG9naWMgTWVzb24gR1hC
-QiBTb0Mgb24geW91ciBPZHJvaWQtQzIgYm9hcmQKPj4+IHVzZXMgYSAiZHdjMiIgVVNCIDIuMCBj
-b250cm9sbGVyLgo+Pj4gSSBkb24ndCBoYXZlIGFueSBHWEJCIGJhc2VkIGJvYXJkLCBidXQgbXkg
-T2Ryb2lkLUMxKyB1c2VzIHRoZSBzYW1lCj4+PiBjb250cm9sbGVyIGFuZCBvdmVyYWxsIHNldHVw
-LiBUaGVyZSBJIGNhbiByZXByb2R1Y2UgdGhlIHByb2JsZW0geW91Cj4+PiBhcmUgc2VlaW5nLgo+
-Pj4KPj4+IEkgYW0gbm90IHN1cmUgd2hpY2ggcGFydCBvZiB0aGUgImluZnJhc3RydWN0dXJlIiAo
-b24tYm9hcmQgNC1wb3J0IFVTQgo+Pj4gaHViLCBkd2MyIGNvbnRyb2xsZXIsIC4uLikgaXMgY2F1
-c2luZyB0aGlzIGlzc3VlLgo+Pj4gTXkgc3VnZ2VzdGlvbiBpcyB0byBpbnZvbHZlIHRoZSBsaW51
-eC11c2IgbWFpbGluZyBsaXN0IGFuZCBkd2MyIGRyaXZlcgo+Pj4gbWFpbnRhaW5lcjoKPj4+IC0g
-TWluYXMgSGFydXR5dW55YW4gPGhtaW5hc0BzeW5vcHN5cy5jb20+IChkd2MyIGRyaXZlciBtYWlu
-dGFpbmVyKQo+Pj4gLSBsaW51eC11c2JAdmdlci5rZXJuZWwub3JnICh1c2IgbWFpbGluZyBsaXN0
-KQo+Pj4KPj4+IEluIHRoZSBwYXN0IHRoZXkgcHJvdmlkZWQgaW5mb3JtYXRpb24gYW5kIGhlbHBl
-ZCB0byBkZWJ1ZyBpc3N1ZXMuCj4+PiBQbGVhc2UgYWxzbyBrZWVwIG1lIENjJ2VkIHNvIEkgY2Fu
-IGhlbHAgd2l0aCBhbnkgQW1sb2dpYyBzcGVjaWZpYwo+Pj4gcXVlc3Rpb25zLCBkcml2ZXJzLCBl
-dGMuCj4+Pgo+Pj4KPj4+IEJlc3QgcmVnYXJkcywKPj4+IE1hcnRpbgo+Pj4KPiAKPiAKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
-bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
-dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+On Mon 07 Dec 2020 at 13:34, Linus Walleij <linus.walleij@linaro.org> wrote:
+
+> On Mon, Dec 7, 2020 at 12:07 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>> On Mon 07 Dec 2020 at 11:18, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+>> > On Fri, Dec 4, 2020 at 4:25 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>> >> On Fri 04 Dec 2020 at 10:13, Linus Walleij <linus.walleij@linaro.org> wrote:
+>> >
+>> >> This HW only has 8 irqs that can each be mapped to a pin. No direct
+>> >> translation can be made, we have to allocate an irq to monitor the line.
+>> >> So when gpio_to_irq() was called, we had to do that allocation dynamically
+>> >> to return a valid irq number. Since there was no counter part to
+>> >> gpio_to_irq(), those allocation cannot be freed during the lifetime of
+>> >> the device.
+>
+> gpio_to_irq() is just a helper really and should not really be used to allocate
+> anything.
+
+Agreed
+
+>
+> In device tree systems, the GPIO provider should nominally present itsel
+> as a dual-mode gpio-controller and interrupt-controller for example:
+>
+>                 gpio1: gpio@4e000000 {
+>                         compatible = "cortina,gemini-gpio", "faraday,ftgpio010";
+>                         reg = <0x4e000000 0x100>;
+>                         interrupts = <23 IRQ_TYPE_LEVEL_HIGH>;
+>                         resets = <&syscon GEMINI_RESET_GPIO1>;
+>                         clocks = <&syscon GEMINI_CLK_APB>;
+>                         gpio-controller;
+>                         #gpio-cells = <2>;
+>                         interrupt-controller;
+>                         #interrupt-cells = <2>;
+>                 };
+>
+> The GPIOs are normally *not* translated to IRQs in this set-up. Rather the
+> interrupts are requested by consumers using request_[threaded_]irq()
+> which means you should be using the irqchip callbacks such as
+> .irq_request_resources() and .irq_release_resources() to allocate one
+> of the free irq lines to use. These will be called at the right points if a
+> properly written driver requests an IRQ and when the driver is removed.
+>
+> In some rare cases gpio_to_irq() is used because all the driver knows is
+> a GPIO number and it want to try to obtain an IRQ for it, and if a 1-to-1
+> mapping exists it returns this number. This is not the norm, but the
+> exception.
+
+Sure
+
+>
+> So maybe the problem is that you need to go back and think about
+> updating the DT bindings for this thing to include interrupt-controller
+> as well?
+
+We do
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/irqchip/irq-meson-gpio.c
+
+That's actually the only thing we provide, on purpose.
+
+>
+>>  * This HW has to create the mapping between GPIO and irq number
+>>    dynamically. The number of irqs available is very limited.
+>
+> This should be done using irq_chip callbacks.
+>
+
+Yes
+
+>>  * We only get to know a mapping is required when gpio_to_irq() is called
+>
+> No that callback should not be used for that.
+
+Agreed ... I was trying explain why we did *not* push a patch similar to what
+was proposed here, or use gpiolib irqchip.
+
+>
+>>  * There is no way to know when it is safe to dispose of the created
+>>    mapping
+>
+> The way that is done is when .irq_release_resources() is called.
+>
+>>  * Some drivers require a trigger type we don't support. These will create
+>>    mappings and not use it because of the failure when .set_type() is
+>>    called
+>
+> I don't quite understand this. Do you mean you are bombarded by pointless
+> requests for interrupts that will not work anyways?
+
+When we tried the approach suggested in this patch (again I agree it is
+bad, which is why I'm against it), some drivers out there (I don't
+remember which one TBH - that was 3 years ago) parsed the "gpio"
+property and tried gpio_to_irq() and if it did not work then go
+something else (like polling).
+
+However the allocation stayed behind. It does not take much
+"bombardment" when you only have 8.
+
+> Then do not assign
+> interrupts to these drivers in the device tree.
+
+We don't.
+
+> These requesting devices and their requests are under your control.
+
+We control the ressources of the devices through DT, not the necessarily
+drivers (which may be generic)
+
+Some device needs the gpio, even if we don't want the irq.
+We can't always prevent the driver to try gpio_to_irq().
+
+This why I don't want gpio_to_irq() to be enabled on this HW, because it
+would not be under our control anymore.
+
+
+> The drivers should be able to
+> back out and work without interrupt if request_irq() fails because it
+> can't provide the type on interrupt you want:
+>
+> int irq = request_irq(irq, my_isr, IRQF_TRIGGER_RISING |
+> IRQF_TRIGGER_FALLING, "My ISR", cookie);
+> // This results in .irq_request_resources() and .irq_set_type()
+> if (irq < 0) {
+>    // Oopps out of IRQs or couldn't support double edges, bail out or
+> use polling
+> }
+>
+> Just do it like this (you might have to augment your drivers) and you'll
+> be fine?
+>
+
+Again agreed. I'm really sorry if I have been that unclear about my
+motive here. We already had that discussion 3 years ago, I totally
+understand your point and agree. I was trying (and failing) to tell the
+author of the patch that this approach had already been discussed in
+past and that, unless gpiolib dramatically changed since then,
+gpio_to_irq() should be used in this way and he should use irqchip we
+already provide.
+
+>> To answer your question, there an API which lets us know a mapping is
+>> needed, but none to inform that it is not required anymore. The GPIO API
+>> was not meant to used like this. Not saying it is good or bad, this is
+>> just how it is.
+>
+> So don't use it?
+
+Exactly
+
+>
+> Yours,
+> Linus Walleij
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
