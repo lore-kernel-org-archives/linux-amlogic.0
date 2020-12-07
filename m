@@ -3,76 +3,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78283C433FE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 19:17:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 445C2C433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 21:26:32 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1E6BA2388E
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 19:17:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1E6BA2388E
+	by mail.kernel.org (Postfix) with ESMTPS id C739D22202
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Dec 2020 21:26:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C739D22202
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Message-ID:Date:To:From:Subject:References:
+	In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=amqN1JbLSAV0rWpVd2cgYdjPB/nIgPBryyoEUgQl+Kc=; b=nEhu7bbydM2Gq2DA+aE59p7Dx
-	chF87/shx6rUMAS9BVJmj//9rx0CtOGVR3vN3wUXMDGah9aYBge8sfEtydG7Wm/D28C6r7EFlYGHA
-	fNYLfYKfEAPWbqXXyCy+IR0g+0nElGPBcByexY9baU/9lHGlzHvuN0V5hNpvgadzrgMn+FeqS+P7m
-	OY/lg0wageLGlaMDm+46ez3lLBwVQOwOkFhkp5AdSyWWdCSm7UwzKM9qjpQ/AjGOU2kkQQ8ayJX15
-	O3dgkLS+kV1XZOhXiYO85HbPDvFWRvGfsnC4Wq8erh5Gj58zDczN/x68+1J524ktF820ftYsl7A2S
-	WzpZEn/Ow==;
+	 bh=u8JB2c6CyeU3dk4ZuVjTKFZP00nOT14QgUvRoOB24y8=; b=3XG8kvhO6EQyJKu7ATrRZqq+s
+	DLtHTS3h1ljJd7M/68jrA7h2Sf/LTs9GtEuD0ugqYf9SlQsjg+6N2NMbmgxLdNwSSN97Mh2P1BIK2
+	F0BVOgMsuEDEG/wsR1S6YG2FmM7kCQX6zej7ctk8tI5E5b/W+HBqK9b1wsvIFu8cQKCK0gGODxKyD
+	pqUBDKxZGhI1AtEAh8bfQ942zxUVC1YpWrp+CjOuC1z2WkW2yLj3p4HiAKws8NI+Z1yc4L6byVsBJ
+	A/AuwmKilf7+pHxYsfT68U+8M0TsmoVmse7im1fXHSSAiwmT4fIHldWyX4l3NbIP79U4qcAryg2At
+	EI/delmfQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kmM0f-00086x-P8; Mon, 07 Dec 2020 19:17:21 +0000
-Received: from mail-ot1-f68.google.com ([209.85.210.68])
+	id 1kmO1Y-0006Pl-Qd; Mon, 07 Dec 2020 21:26:24 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kmM0d-00085q-6m; Mon, 07 Dec 2020 19:17:19 +0000
-Received: by mail-ot1-f68.google.com with SMTP id f16so13530501otl.11;
- Mon, 07 Dec 2020 11:17:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=fCRZf27KCzHad5WZLnZkBV55sQARhbTu3t54+W99mFA=;
- b=j/NRFLRomfI2JRXS4eFbfLR1cizjNVZrmVunNx6ZBsq89TuaTCFJaPRYNhKxLNG2XV
- nOPhctLnaweGY/mREzUDIv6uCE5FXj898ubgPFQzK2KmXdJlNQURxsVDx/vL7NJm2nzp
- b71fguxwwlb2JjuqNXdvFOGxz8Xo39jDBip5mvXK4HUEayhtRqBJPYM2WwvtR6kLqZKu
- 4Cs0In+q4Qn64cCDGGywxmlKfol0GiHU+0VwpIopMXipQiFAYx/m+AXr5KINpJW8aOBp
- MuvVF6z7l81nmq/G+y09fzK5p5cVoXY3cZ1WK61TcjYytxhbNaqet4oNBap23M9pK11e
- 4THA==
-X-Gm-Message-State: AOAM533uQ0nU5fOIYrIEHtMDSGYHTkaoJUoYsSekgiZaV6qJ99YPHGTE
- 6nzQBkefvy91oO3afvsYEA==
-X-Google-Smtp-Source: ABdhPJxOcM2rTcPsyK/KYZTCJtx3mitXqFETRnqOhCLb+UY5aC/5c20oRk/sXbC1WHrbkoN5evIjFg==
-X-Received: by 2002:a9d:10d:: with SMTP id 13mr14224641otu.8.1607368638252;
- Mon, 07 Dec 2020 11:17:18 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id k10sm3019614otb.81.2020.12.07.11.17.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Dec 2020 11:17:17 -0800 (PST)
-Received: (nullmailer pid 650679 invoked by uid 1000);
- Mon, 07 Dec 2020 19:17:16 -0000
-Date: Mon, 7 Dec 2020 13:17:16 -0600
-From: Rob Herring <robh@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH RFC v2 1/5] dt-bindings: net: dwmac-meson: use
- picoseconds for the RGMII RX delay
-Message-ID: <20201207191716.GA647149@robh.at.kernel.org>
-References: <20201115185210.573739-1-martin.blumenstingl@googlemail.com>
- <20201115185210.573739-2-martin.blumenstingl@googlemail.com>
+ id 1kmO1X-0006PK-Av
+ for linux-amlogic@lists.infradead.org; Mon, 07 Dec 2020 21:26:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1607376382;
+ bh=UQLaibMgpyMvr32nuqQHPcu4qUSJSpj3TApSORzRpYM=;
+ h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+ b=sCKOZGQwawg3hHnN1AVHz3SbrWRy8TX0HURsSa/VyKUp7STCV4N3sHzb7F01I4QAU
+ Qk60siVJfyCj+cIIj4uAx/ikffa8ZUO2+yx31fosBbBeTqRy/qQtTL9mvXl6o6G2wo
+ a7qqW2cqvDxfB35Jihuc1rVa5XqaXXcvzOFVIX2llvuPkpro5CyThPXEsE6M62kkvw
+ Wr9Zaf2sBn+DIJ0oudWm0dGr1fTjNMXLHg2tsEQnegodGBHOi83iLFA5cE9pXk99BQ
+ RR9h147N+z3JOgR2KlRVLSw5jOEL3ZXu11tFOFvqzIgiKBX5wCgapZfZBAB74KIQiu
+ oUVLz4YtiT4CA==
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201115185210.573739-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <1j360kp1zh.fsf@starbuckisacylon.baylibre.com>
+References: <1j360kp1zh.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [GIT PULL RESEND] clk: meson: amlogic updates for v5.11
+From: Stephen Boyd <sboyd@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Mon, 07 Dec 2020 13:26:20 -0800
+Message-ID: <160737638080.1580929.6951606729739105639@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201207_141719_262666_D5E3FD21 
-X-CRM114-Status: GOOD (  24.24  )
+X-CRM114-CacheID: sfid-20201207_162623_466334_632214CB 
+X-CRM114-Status: UNSURE (   9.02  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,123 +70,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, f.fainelli@gmail.com, jianxin.pan@amlogic.com,
- narmstrong@baylibre.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- andrew@lunn.ch, khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- kuba@kernel.org, davem@davemloft.net, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-clk@vger.kernel.org, Kevin Hilman <khilman@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Nov 15, 2020 at 07:52:06PM +0100, Martin Blumenstingl wrote:
-> Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
-> delay register which allows picoseconds precision. Deprecate the old
-> "amlogic,rx-delay-ns" in favour of a new "amlogic,rgmii-rx-delay-ps"
-> property.
+Quoting Jerome Brunet (2020-12-05 10:00:18)
+> Hi Stephen,
 > 
-> For older SoCs the only known supported values were 0ns and 2ns. The new
-> SoCs have 200ps precision and support RGMII RX delays between 0ps and
-> 3000ps.
+> Here are the updates for amlogic clocks for v5.11. This is based on your
+> clk-hw branch, instead of the usual rc1, since it depends on clk_hw
+> stuff you've already applied.
 > 
-> While here, also update the description of the RX delay to indicate
-> that:
-> - with "rgmii" or "rgmii-id" the RX delay should be specified
-> - with "rgmii-id" or "rgmii-rxid" the RX delay is added by the PHY so
->   any configuration on the MAC side is ignored
-> - with "rmii" the RX delay is not applicable and any configuration is
->   ignored
+> Hopefully I got it right this time ...
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../bindings/net/amlogic,meson-dwmac.yaml     | 61 +++++++++++++++++--
->  1 file changed, 56 insertions(+), 5 deletions(-)
+> Please Pull.
+> Thx.
+> 
+> Cheers
+> Jerome
+> 
+> The following changes since commit e6fb7aee486c7fbd4d94f4894feaa6f0424c1740:
+> 
+>   clk: meson: g12: use devm variant to register notifiers (2020-11-14 12:58:31 -0800)
+> 
+> are available in the Git repository at:
+> 
+>   git://github.com/BayLibre/clk-meson.git tags/clk-meson-v5.11-1
+> 
+> for you to fetch changes up to 88b9ae600138baff18c7f4c4870622584acc6111:
+> 
+>   clk: meson: g12a: add MIPI DSI Host Pixel Clock (2020-11-26 15:25:20 +0100)
+> 
+> ----------------------------------------------------------------
 
-Don't we have common properties for this now?
-
-> 
-> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> index 6b057b117aa0..62a1e92a645c 100644
-> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> @@ -74,17 +74,68 @@ allOf:
->              Any configuration is ignored when the phy-mode is set to "rmii".
->  
->          amlogic,rx-delay-ns:
-> +          deprecated: true
->            enum:
->              - 0
->              - 2
->            default: 0
-> +          description:
-> +            The internal RGMII RX clock delay in nanoseconds. Deprecated, use
-> +            amlogic,rgmii-rx-delay-ps instead.
-> +
-> +        amlogic,rgmii-rx-delay-ps:
-> +          default: 0
->            description:
->              The internal RGMII RX clock delay (provided by this IP block) in
-> -            nanoseconds. When phy-mode is set to "rgmii" then the RX delay
-> -            should be explicitly configured. When the phy-mode is set to
-> -            either "rgmii-id" or "rgmii-rxid" the RX clock delay is already
-> -            provided by the PHY. Any configuration is ignored when the
-> -            phy-mode is set to "rmii".
-> +            picoseconds. When phy-mode is set to "rgmii" or "rgmii-id" then
-> +            the RX delay should be explicitly configured. When the phy-mode
-> +            is set to either "rgmii-id" or "rgmii-rxid" the RX clock delay
-> +            is already provided by the PHY so any configuration here is
-> +            ignored. Also any configuration is ignored when the phy-mode is
-> +            set to "rmii".
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,meson8b-dwmac
-> +              - amlogic,meson8m2-dwmac
-> +              - amlogic,meson-gxbb-dwmac
-> +              - amlogic,meson-axg-dwmac
-> +    then:
-> +      properties:
-> +        amlogic,rgmii-rx-delay-ps:
-> +          enum:
-> +            - 0
-> +            - 2000
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,meson-g12a-dwmac
-> +    then:
-> +      properties:
-> +        amlogic,rgmii-rx-delay-ps:
-> +          enum:
-> +            - 0
-> +            - 200
-> +            - 400
-> +            - 600
-> +            - 800
-> +            - 1000
-> +            - 1200
-> +            - 1400
-> +            - 1600
-> +            - 1800
-> +            - 2000
-> +            - 2200
-> +            - 2400
-> +            - 2600
-> +            - 2800
-> +            - 3000
->  
->  properties:
->    compatible:
-> -- 
-> 2.29.2
-> 
+Thanks. Pulled into clk-next
 
 _______________________________________________
 linux-amlogic mailing list
