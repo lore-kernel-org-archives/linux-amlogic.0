@@ -1,57 +1,59 @@
-Return-Path: <SRS0=MYre=FN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=VBOb=FO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4F11C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Dec 2020 16:42:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 414A5C1B0E3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Dec 2020 09:14:26 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7E19D23C2E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Dec 2020 16:42:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E19D23C2E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id D3AD022D0A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Dec 2020 09:14:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D3AD022D0A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baikalelectronics.ru
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=PXZxXx64W+5J/BIontNnCmQTdBr7LeXJhFVYjKGLF9U=; b=NwCyCquAHCvvOhhvV4BiQAuSr
-	jCSxH6+ckuSkn/Kn35QYDAuDTK8jHDRaWkwoQiY8adq1s13aTbuGU0ua/LbihzsEH/3gNJ+3KajyL
-	MHRm+enSElou0lgEp6l6MNAOy6ybDwtqvyDKuTg7L+Cx5bKu/LH2tZEkrp8CeifGPliKit27ryqrA
-	yGPfgtQc0uwybpBgqAVBFM0ykZ0JSxs5BeivLF4tz3D17sgYxatiszYaVTeU5Sg2o9hbCUR5CA3Wj
-	sVzbUg3YO5v6EkyrlHYecRYut9XgiX10ALaRbSyO8UjLW4dcAEPI8PCLzPHWVtQYii2wt0h9LEA+U
-	gEW3zj5yA==;
+	 bh=Qf6lI7EXcXS/tpvIQxv/YGM5NG67FBo7aAYwSMvhqMk=; b=mPGx0KdEXB6En2q5NpaJE/ld0
+	wEE+wFGPHHMUFQtMihKv0bgWCe6r6xUFkA+mVz0bZLTjlF8TDUIW/YXffLSobykYEo6ebIKSfqXJx
+	I2WsLPzYMDO3oJsaFF3uFl/5u7wUXoIknHc2j3X9VbVUvmAlAH1z1lwGaDfjkXkkTNqqyHpaNTjFr
+	guc1Glj4UvXBeTQHi1vh4c11clH+00CS85JN8UqxbmD5MqqUaK0SNakUasaBGO6POi61JyfqHP4BE
+	B7xlN4wgMJl9Y+C/7iHngsnLT8wgXvJJv+RyU28KuU0iSZRHkLj74rzNe33cK+wBWbdVbC/iALWZG
+	md13uzXXg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kn2XO-0001IZ-AR; Wed, 09 Dec 2020 16:41:58 +0000
-Received: from mail.kernel.org ([198.145.29.99])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kn2XF-0001EZ-Gk
- for linux-amlogic@lists.infradead.org; Wed, 09 Dec 2020 16:41:50 +0000
-From: Arnd Bergmann <arnd@kernel.org>
-Authentication-Results: mail.kernel.org;
- dkim=permerror (bad message/signature format)
-List-Id: <soc.lore.kernel.org>
-To: Kevin Hilman <khilman@baylibre.com>,
-	soc@kernel.org
-Subject: Re: [PATCH] arm64: Kconfig: meson: drop pinctrl
-Date: Wed,  9 Dec 2020 17:41:37 +0100
-Message-Id: <160753194753.3961338.16881051516363002534.b4-ty@arndb.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201207230156.10198-1-khilman@baylibre.com>
-References: <20201207230156.10198-1-khilman@baylibre.com>
+	id 1knI1c-00060s-NX; Thu, 10 Dec 2020 09:14:12 +0000
+Received: from mail.baikalelectronics.com ([87.245.175.226]
+ helo=mail.baikalelectronics.ru)
+ by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1knHyF-0004YZ-VK; Thu, 10 Dec 2020 09:10:55 +0000
+From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To: Mathias Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Chunfeng Yun
+ <chunfeng.yun@mediatek.com>, Kevin Hilman <khilman@baylibre.com>, Neil
+ Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v6 15/19] dt-bindings: usb: meson-g12a-usb: Fix FL-adj
+ property value
+Date: Thu, 10 Dec 2020 12:09:39 +0300
+Message-ID: <20201210090944.16283-16-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201210090944.16283-1-Sergey.Semin@baikalelectronics.ru>
+References: <20201210090944.16283-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201209_114149_685476_2324E0FE 
-X-CRM114-Status: UNSURE (   6.10  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20201210_041044_236376_B41DE8FF 
+X-CRM114-Status: GOOD (  10.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,27 +65,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Linus Walleij <linus.walleij@linaro.org>,
- Arnd Bergmann <arnd@arndb.de>
+Cc: devicetree@vger.kernel.org,
+ Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+ linux-mips@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ linux-snps-arc@lists.infradead.org,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Serge Semin <fancer.lancer@gmail.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+ Manu Gautam <mgautam@codeaurora.org>, Andy Gross <agross@kernel.org>,
+ Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+ linux-amlogic@lists.infradead.org,
+ Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ Roger Quadros <rogerq@ti.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Arnd Bergmann <arnd@arndb.de>
+An empty snps,quirk-frame-length-adjustment won't cause any change
+performed by the driver. Moreover the DT schema validation will fail,
+since it expects the property being assigned with some value. So set
+fix the example by setting a valid FL-adj value in accordance with
+Neil Armstrong comment.
 
-On Mon, 7 Dec 2020 15:01:56 -0800, Kevin Hilman wrote:
-> Don't automatically select pinctrl drivers, leave it up to defaults in
-> drivers/pinctrl/meson, which default to built-in, but are also now
-> optionally configurable as modules as of
-> commit 9c65441ec823 ("pinctrl/meson: enable building as modules")
+Link: https://lore.kernel.org/linux-usb/20201010224121.12672-16-Sergey.Semin@baikalelectronics.ru/
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Applied to arm/soc, thanks!
+---
 
-[1/1] arm64: Kconfig: meson: drop pinctrl
-      commit: dcb11100cd5d3f5a191b7fba75422e3df792f3ff
+Note the same problem is in the DT source file
+arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi .
+---
+ .../devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-       Arnd
+diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+index c0058332b967..1eda16dd4ee0 100644
+--- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
++++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+@@ -229,6 +229,6 @@ examples:
+               interrupts = <30>;
+               dr_mode = "host";
+               snps,dis_u2_susphy_quirk;
+-              snps,quirk-frame-length-adjustment;
++              snps,quirk-frame-length-adjustment = <0x20>;
+           };
+     };
+-- 
+2.29.2
+
 
 _______________________________________________
 linux-amlogic mailing list
