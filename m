@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 414A5C1B0E3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Dec 2020 09:14:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16432C4361B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Dec 2020 09:15:38 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D3AD022D0A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Dec 2020 09:14:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D3AD022D0A
+	by mail.kernel.org (Postfix) with ESMTPS id B70EE2343B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Dec 2020 09:15:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B70EE2343B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baikalelectronics.ru
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,19 +23,19 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Qf6lI7EXcXS/tpvIQxv/YGM5NG67FBo7aAYwSMvhqMk=; b=mPGx0KdEXB6En2q5NpaJE/ld0
-	wEE+wFGPHHMUFQtMihKv0bgWCe6r6xUFkA+mVz0bZLTjlF8TDUIW/YXffLSobykYEo6ebIKSfqXJx
-	I2WsLPzYMDO3oJsaFF3uFl/5u7wUXoIknHc2j3X9VbVUvmAlAH1z1lwGaDfjkXkkTNqqyHpaNTjFr
-	guc1Glj4UvXBeTQHi1vh4c11clH+00CS85JN8UqxbmD5MqqUaK0SNakUasaBGO6POi61JyfqHP4BE
-	B7xlN4wgMJl9Y+C/7iHngsnLT8wgXvJJv+RyU28KuU0iSZRHkLj74rzNe33cK+wBWbdVbC/iALWZG
-	md13uzXXg==;
+	 bh=9amfC79uZmnPPLNxcDJW0PFpOyNE8Znh+Dr50C/ES7Q=; b=1YQ9KNNy/ge9UmX0HgitqKDWv
+	9e6MeVHUAVEQOs2nvBbvuYQ5Hu5ykeoVSvMjy5nBeg34orSOH4mNgh1vp3wn6nAsJWtyUOxl9Si33
+	4dqJevHdhPROZtAJfb3uUYUAyzMrwVgQFrE9Xrit4g4QSuCwi5eIcJkNJCEDJKu1mj6VlCyf/rowp
+	Wuy8MdIlH9ZMQcmXCSpCaPD+1LEQjS+dLKT4x9jF+DdJVhkLJgsJIK9he68dZwh2vFcN4anmt4TQr
+	vZL/1MhKsbUtrliGz4AT1ES5iRlvpZSy95XL0rh0r4X9u2KOTubZJFHuqsUb2dJDl5+/HgqT6ChCJ
+	076XnvX3g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1knI1c-00060s-NX; Thu, 10 Dec 2020 09:14:12 +0000
+	id 1knI2s-0006dE-Lr; Thu, 10 Dec 2020 09:15:30 +0000
 Received: from mail.baikalelectronics.com ([87.245.175.226]
  helo=mail.baikalelectronics.ru)
  by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1knHyF-0004YZ-VK; Thu, 10 Dec 2020 09:10:55 +0000
+ id 1knHyH-0004cT-93; Thu, 10 Dec 2020 09:11:00 +0000
 From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 To: Mathias Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>, 
  Krzysztof Kozlowski <krzk@kernel.org>, Greg Kroah-Hartman
@@ -43,17 +43,18 @@ To: Mathias Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>,
  <chunfeng.yun@mediatek.com>, Kevin Hilman <khilman@baylibre.com>, Neil
  Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v6 15/19] dt-bindings: usb: meson-g12a-usb: Fix FL-adj
- property value
-Date: Thu, 10 Dec 2020 12:09:39 +0300
-Message-ID: <20201210090944.16283-16-Sergey.Semin@baikalelectronics.ru>
+Subject: [PATCH v6 16/19] dt-bindings: usb: meson-g12a-usb: Validate DWC2/DWC3
+ sub-nodes
+Date: Thu, 10 Dec 2020 12:09:40 +0300
+Message-ID: <20201210090944.16283-17-Sergey.Semin@baikalelectronics.ru>
 In-Reply-To: <20201210090944.16283-1-Sergey.Semin@baikalelectronics.ru>
 References: <20201210090944.16283-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201210_041044_236376_B41DE8FF 
-X-CRM114-Status: GOOD (  10.29  )
+X-CRM114-CacheID: sfid-20201210_041045_583216_03A6239C 
+X-CRM114-Status: UNSURE (   7.70  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,38 +87,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-An empty snps,quirk-frame-length-adjustment won't cause any change
-performed by the driver. Moreover the DT schema validation will fail,
-since it expects the property being assigned with some value. So set
-fix the example by setting a valid FL-adj value in accordance with
-Neil Armstrong comment.
+Amlogic G12A USB DT sub-nodes are supposed to be compatible with the
+generic DWC USB2 and USB3 devices. Since now we've got DT schemas for
+both of the later IP cores let's make sure that the Amlogic G12A USB
+DT nodes are fully evaluated including the DWC sub-nodes.
 
-Link: https://lore.kernel.org/linux-usb/20201010224121.12672-16-Sergey.Semin@baikalelectronics.ru/
 Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 ---
 
-Note the same problem is in the DT source file
-arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi .
+Changelog v2:
+- Use "oneOf: [dwc2.yaml#, snps,dwc3.yaml#]" instead of the bulky "if:
+  properties: compatibe: ..." statement.
 ---
- .../devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-index c0058332b967..1eda16dd4ee0 100644
+index 1eda16dd4ee0..e349fa5de606 100644
 --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
 +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-@@ -229,6 +229,6 @@ examples:
-               interrupts = <30>;
-               dr_mode = "host";
-               snps,dis_u2_susphy_quirk;
--              snps,quirk-frame-length-adjustment;
-+              snps,quirk-frame-length-adjustment = <0x20>;
-           };
-     };
+@@ -79,7 +79,9 @@ properties:
+ 
+ patternProperties:
+   "^usb@[0-9a-f]+$":
+-    type: object
++    oneOf:
++      - $ref: dwc2.yaml#
++      - $ref: snps,dwc3.yaml#
+ 
+ additionalProperties: false
+ 
 -- 
 2.29.2
 
