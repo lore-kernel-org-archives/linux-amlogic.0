@@ -2,20 +2,20 @@ Return-Path: <SRS0=hA9j=FW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
+	UPPERCASE_50_75,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C5C7C4361B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:42:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9771C4361B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:43:25 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1F60723A7D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:42:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1F60723A7D
+	by mail.kernel.org (Postfix) with ESMTPS id 44CBC23A7D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:43:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 44CBC23A7D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,61 +24,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
 	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Lkx9IiT0r/nip35tUzLJNzIW1v9dzYtu/5DJeyjb9xA=; b=Eu6kJ4Mu3yGonMxeU6nTnK2YZI
-	9qMFGZ6RUVKAxj9II1W6LxhuKbMzXblmmNOv6tyZMC5V0q6V3oMcQUyd/yXMB9BtqVc8AHD4MFC8x
-	e5k9zDo09aCz/2Ri9+PUZ2jtmMUlGqUa51xdv/f6emeY8XTb4fD6UlNOZD0c92I6WTNfXXDxoHgMN
-	muytK7w0BoPYfvUvdWGsTxDpaAYORanUB8KOH3KU6oSoVmV3bjEb/GPCNCy9SGKZpEfylTia0nyqR
-	uapF/ODTIAKh45WQQnXEbgNsRIwmqA6GO+zjlIP4USNji0Ca/rkvlhXr1GrFVn/toaurNFF9CnPEZ
-	oIlMWhNg==;
+	bh=cfyJAnMtqWT75eOXuzgjf1gYnhMJ5EHvL/aq0pify1Y=; b=HHFTLIwatx/qKh/ggYZG8wOrmz
+	WaZTjv/DSOROm23GzKoZARXdXZ0nDgx5RoGJjlBNknxBwV6Tnw4V93fq9Shf+/qN4CKfJm5Kq04Gs
+	2nQTadlqGR8g4iFuD+GrbKAuI0hqVIGK2PGzzUUILaWKzsNsI654MlfRoW+UwVYTIiU0zQfMa3mvK
+	Dl/kOzGh5wg06QTBXxbIQa0JWyMH7xcX4AmJiE5PkcMkvgIBtizYT3HTzkyfEn6nNiG54HogwVPlq
+	fdiDaEEPsJwA0epN2M0x98DTiecgyNavX+vwJ+grhAcOsug22GZBfS/KadDpSFasfKykQReJvZb+c
+	X12hasnA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kqCHh-0002ZH-NV; Fri, 18 Dec 2020 09:42:49 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1kqCID-0002dp-Cn; Fri, 18 Dec 2020 09:43:21 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kqCHf-0002Yo-AF
- for linux-amlogic@lists.infradead.org; Fri, 18 Dec 2020 09:42:48 +0000
-Received: by mail-wr1-x431.google.com with SMTP id y17so1408578wrr.10
- for <linux-amlogic@lists.infradead.org>; Fri, 18 Dec 2020 01:42:46 -0800 (PST)
+ id 1kqCIA-0002cd-DS
+ for linux-amlogic@lists.infradead.org; Fri, 18 Dec 2020 09:43:19 +0000
+Received: by mail-wr1-x433.google.com with SMTP id m5so1413210wrx.9
+ for <linux-amlogic@lists.infradead.org>; Fri, 18 Dec 2020 01:43:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:autocrypt:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=rWjAeEtOXDa5d8yW88uulTvw7F7U7U+z+Rg+Cla3MVo=;
- b=xcn0o9ykZ/E6vWcG+b3B2Eu+/1IRL6OLOVkAGkhpRB3EBrfmyWPol4t2HSAcy1ueOg
- rBuYswIp61jvcMc7qUGVxeDL7DE9ACO6uTFA+oa8sBTgFK8RztZs0WHoPS/0v5DBWVTO
- extC4XYQJSZ2x4MOhFnBMIHTi+ZvBkFfxsKR1whbC1PS2ykFMXVOEkEUc0vKzwWx5yl/
- YSL9ZlxStxdHw8u5mVpZ0pMtdSyOeTuHUz1WSrIdo1knv0j38xdtnWAViOhN7ckxKNMv
- 6jHXCZ+0dEUux0iQiLdXzzgVrIUaFlL+mSQyvVJ+rLR317uZdWtp9OwifAdIPRtjS/F7
- Fs2Q==
+ bh=d2V0uvA2Me6clbSCxZe+QhqsS8fgAVc2vdXn1jw+AS8=;
+ b=dSh0uen8QghZ1IiL5ExHRXNPS6wKeUw1L3kuP+z9s6nvlr2KJtM7Qjq4BJ1IIomO0p
+ xqfc32Z4AOW483UU821jYguFxFjxrRiGXCz2wzcZwzPk4EYp5fH7ttBtFxUXZ0BAN0UW
+ WUlJfc/6dU7dD4sUg0uga6rrqDhiCVRFgmcmKgvsfqvZBk2iKcelDejfirfDItEp1Fdw
+ t/lecS3xA4jiiHAN5052rAxdbrcaKD+R2fHvCl1e5NBNBJflkOMQADr8Pxu3bcmpxMJP
+ yntpNve6mrbp3l9PDOLT0UQKOpWqyq12r4Yxm89u5jHX8XXxv4Wk7fErnSVH8ZFXn3yC
+ rpww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=rWjAeEtOXDa5d8yW88uulTvw7F7U7U+z+Rg+Cla3MVo=;
- b=GsjLazenFeGDM9xhCtnSGT10ZOKufLPLyriehbpqbQVt9CvEstxSRDOLkUgGD6361j
- VnBF9jSEk0NbuUzIY9bLoXLe389bOCkuR/JMhpoDgyLgklDLXLleD6oVuU2GZUGsVb2H
- FV5tPGIyQ9FBgFpQXbnIV0bwEssNsmbW0uKt7ktvAhxsnokfy8GLWd1B8NqE1r5YmMNG
- N7HcuWfuVE6d5qn43PQWvrjmORRxlAuQGNCmMSKdfs1c/vph0y48rzqCU9Kbg6qOI9V7
- tVcpqI/kn7itdFR0f5AghLPrAxQpqxODuwTW0qUiTZKkH7vziOseP2ZsO23ZmL46FPh6
- OEig==
-X-Gm-Message-State: AOAM532WJchvnbg5zUGj75eYkXxnjtVTRWHrsfStF+qdLHZX/9zlbHsW
- JD+HOSXOtY5rbULZM4MMBRSfUGpdqWkDZONY
-X-Google-Smtp-Source: ABdhPJytl2T3ZE1fl/FHlL3bVDTEvCdCbLjx/lnhv46aIJDb5far+cWAIjicEqPaLuLa107eZsPasw==
-X-Received: by 2002:adf:f70c:: with SMTP id r12mr3395645wrp.234.1608284565549; 
- Fri, 18 Dec 2020 01:42:45 -0800 (PST)
+ bh=d2V0uvA2Me6clbSCxZe+QhqsS8fgAVc2vdXn1jw+AS8=;
+ b=FJ1Xxnbyf+dv8bJkeOxbIhiJRUwWU+j4e1sfwtla71iJAiVqwUp/3fc4aV7sPph5o+
+ ZLKAM0k9kSw0gp7L+X8gygkyaMU44wSpUhjgUnGzqOS+gVEog2DmSz3L/1f/Z0/wpRtT
+ /qfZcabhtIL2/8z2CaZlv3M7n9O4rcHVlxFvr7Xw12Lwzq2y1JKikqvw88RJZPK+cYAt
+ tcX1HkR9+MTK/1MpTW9IODac3tkmiiZah3B4CXn4mnkiMGHzWvZtKWweVloZl8z2viJX
+ l91p66tYYDmBnbSODlUZjYdLrOVplZ2uVkmJkpXSRcbasZJU9o+EFl5n1lTp2bdQo1Jj
+ iWpg==
+X-Gm-Message-State: AOAM532kvQIGwNJmSp+A4M4tZtwTYahmzXP9YmnKq0gt+IiDhWW2njAX
+ 4z8rVeQItJLad5VF+CgpUrOrYhhlkvM55TIs
+X-Google-Smtp-Source: ABdhPJzrBieruVb9rKNCyc0bLNrIH5FYRsVxOViT8s8/s8R7F/7sErHZVCtHq9rf8wFZD0aBg5lIbg==
+X-Received: by 2002:adf:fbd2:: with SMTP id d18mr3412553wrs.222.1608284596329; 
+ Fri, 18 Dec 2020 01:43:16 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:d897:20cf:5b8c:50ad?
  ([2a01:e35:2ec0:82b0:d897:20cf:5b8c:50ad])
- by smtp.gmail.com with ESMTPSA id s20sm10532964wmj.46.2020.12.18.01.42.44
+ by smtp.gmail.com with ESMTPSA id k10sm11996438wrq.38.2020.12.18.01.43.15
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Dec 2020 01:42:44 -0800 (PST)
-Subject: Re: [PATCH 2/5] boards: amlogic: add Beelink S922X board family
- support
+ Fri, 18 Dec 2020 01:43:15 -0800 (PST)
+Subject: Re: [PATCH 3/5] boards: amlogic: add Beelink GT-King defconfig
 To: Christian Hewitt <christianshewitt@gmail.com>, u-boot@lists.denx.de,
  u-boot-amlogic@groups.io, linux-amlogic@lists.infradead.org
 References: <20201218084545.29135-1-christianshewitt@gmail.com>
- <20201218084545.29135-3-christianshewitt@gmail.com>
+ <20201218084545.29135-4-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -130,16 +129,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <9cc2d431-9bc1-fef4-eb4b-a726e9c9b6fb@baylibre.com>
-Date: Fri, 18 Dec 2020 10:42:44 +0100
+Message-ID: <97d23c04-92d9-958a-167e-f90c76317617@baylibre.com>
+Date: Fri, 18 Dec 2020 10:43:14 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201218084545.29135-3-christianshewitt@gmail.com>
+In-Reply-To: <20201218084545.29135-4-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201218_044247_438360_FB682796 
-X-CRM114-Status: GOOD (  20.75  )
+X-CRM114-CacheID: sfid-20201218_044318_489400_9A0AEF84 
+X-CRM114-Status: GOOD (  15.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,105 +156,92 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 18/12/2020 09:45, Christian Hewitt wrote:
-> Copied from Odroid N2. Add myself as maintainer.
+> Add a defconfig for the Beelink GT-King Android STB, which is based
+> on the Amlogic W400 reference design.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  board/amlogic/beelink-s922x/MAINTAINERS     |  9 ++++
->  board/amlogic/beelink-s922x/Makefile        |  6 +++
->  board/amlogic/beelink-s922x/beelink-s922x.c | 54 +++++++++++++++++++++
->  3 files changed, 69 insertions(+)
->  create mode 100644 board/amlogic/beelink-s922x/MAINTAINERS
->  create mode 100644 board/amlogic/beelink-s922x/Makefile
->  create mode 100644 board/amlogic/beelink-s922x/beelink-s922x.c
+>  configs/beelink-gtking_defconfig | 71 ++++++++++++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 configs/beelink-gtking_defconfig
 > 
-> diff --git a/board/amlogic/beelink-s922x/MAINTAINERS b/board/amlogic/beelink-s922x/MAINTAINERS
+> diff --git a/configs/beelink-gtking_defconfig b/configs/beelink-gtking_defconfig
 > new file mode 100644
-> index 0000000000..7f223df4ae
+> index 0000000000..ea428874af
 > --- /dev/null
-> +++ b/board/amlogic/beelink-s922x/MAINTAINERS
-> @@ -0,0 +1,9 @@
-> +BEELINK-S922X
-> +M:	Christian Hewitt <christianshewitt@gmail.com>
-> +S:	Maintained
-> +L:	u-boot-amlogic@groups.io
-> +F:	board/amlogic/beelink-s922x/
-> +F:	configs/beelink-gtking_defconfig
-> +F:	configs/beelink-gtkingpro_defconfig
-> +F:	doc/board/amlogic/beelink-gtking.rst
-> +F:	doc/board/amlogic/beelink-gtkingpro.rst
-> diff --git a/board/amlogic/beelink-s922x/Makefile b/board/amlogic/beelink-s922x/Makefile
-> new file mode 100644
-> index 0000000000..27b1a74105
-> --- /dev/null
-> +++ b/board/amlogic/beelink-s922x/Makefile
-> @@ -0,0 +1,6 @@
-> +# SPDX-License-Identifier: GPL-2.0+
-> +#
-> +# (C) Copyright 2020 BayLibre, SAS
-> +# Author: Neil Armstrong <narmstrong@baylibre.com>
-> +
-> +obj-y	:= beelink-s922x.o
-> diff --git a/board/amlogic/beelink-s922x/beelink-s922x.c b/board/amlogic/beelink-s922x/beelink-s922x.c
-> new file mode 100644
-> index 0000000000..dc0d933a39
-> --- /dev/null
-> +++ b/board/amlogic/beelink-s922x/beelink-s922x.c
-> @@ -0,0 +1,54 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2020 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + */
-> +
-> +#include <common.h>
-> +#include <dm.h>
-> +#include <env.h>
-> +#include <init.h>
-> +#include <net.h>
-> +#include <asm/io.h>
-> +#include <asm/arch/sm.h>
-> +#include <asm/arch/eth.h>
-> +#include <asm/arch/boot.h>
-> +
-> +#define EFUSE_MAC_OFFSET	20
-> +#define EFUSE_MAC_SIZE		12
-> +#define MAC_ADDR_LEN		6
-> +
-> +int misc_init_r(void)
-> +{
-> +	u8 mac_addr[MAC_ADDR_LEN];
-> +	char efuse_mac_addr[EFUSE_MAC_SIZE], tmp[3];
-> +	ssize_t len;
-> +
-> +	if (IS_ENABLED(CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG) &&
-> +	    meson_get_soc_rev(tmp, sizeof(tmp)) > 0)
-> +		env_set("soc_rev", tmp);
-> +
-> +	meson_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
-> +
-> +	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
-> +		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
-> +					  efuse_mac_addr, EFUSE_MAC_SIZE);
-> +		if (len != EFUSE_MAC_SIZE)
-> +			return 0;
-> +
-> +		/* MAC is stored in ASCII format, 1bytes = 2characters */
-> +		for (int i = 0; i < 6; i++) {
-> +			tmp[0] = efuse_mac_addr[i * 2];
-> +			tmp[1] = efuse_mac_addr[i * 2 + 1];
-> +			tmp[2] = '\0';
-> +			mac_addr[i] = simple_strtoul(tmp, NULL, 16);
-> +		}
-> +
-> +		if (is_valid_ethaddr(mac_addr))
-> +			eth_env_set_enetaddr("ethaddr", mac_addr);
-> +		else
-> +			meson_generate_serial_ethaddr();
-> +	}
-> +
-> +	return 0;
-> +}
+> +++ b/configs/beelink-gtking_defconfig
+> @@ -0,0 +1,71 @@
+> +CONFIG_ARM=y
+> +CONFIG_SYS_BOARD="beelink-s922x"
+> +CONFIG_ARCH_MESON=y
+> +CONFIG_SYS_TEXT_BASE=0x01000000
+> +CONFIG_NR_DRAM_BANKS=1
+> +CONFIG_ENV_SIZE=0x2000
+> +CONFIG_DM_GPIO=y
+> +CONFIG_MESON_G12A=y
+> +CONFIG_DEBUG_UART_BASE=0xff803000
+> +CONFIG_DEBUG_UART_CLOCK=24000000
+> +CONFIG_IDENT_STRING=" beelink"
+> +CONFIG_DEFAULT_DEVICE_TREE="meson-g12b-gtking"
+> +CONFIG_DEBUG_UART=y
+> +CONFIG_OF_BOARD_SETUP=y
+> +CONFIG_MISC_INIT_R=y
+> +# CONFIG_DISPLAY_CPUINFO is not set
+> +# CONFIG_CMD_BDI is not set
+> +# CONFIG_CMD_IMI is not set
+> +CONFIG_CMD_GPIO=y
+> +# CONFIG_CMD_LOADS is not set
+> +CONFIG_CMD_MMC=y
+> +CONFIG_CMD_SF_TEST=y
+> +CONFIG_CMD_SPI=y
+> +CONFIG_CMD_USB=y
+> +CONFIG_CMD_USB_MASS_STORAGE=y
+> +# CONFIG_CMD_SETEXPR is not set
+> +CONFIG_CMD_REGULATOR=y
+> +CONFIG_OF_CONTROL=y
+> +CONFIG_SYS_RELOC_GD_ENV_ADDR=y
+> +CONFIG_NET_RANDOM_ETHADDR=y
+> +CONFIG_DM_MMC=y
+> +CONFIG_MMC_MESON_GX=y
+> +CONFIG_MTD=y
+> +CONFIG_DM_MTD=y
+> +CONFIG_PHY_REALTEK=y
+> +CONFIG_DM_ETH=y
+> +CONFIG_ETH_DESIGNWARE=y
+> +CONFIG_MESON_G12A_USB_PHY=y
+> +CONFIG_PINCTRL=y
+> +CONFIG_PINCTRL_MESON_G12A=y
+> +CONFIG_POWER_DOMAIN=y
+> +CONFIG_MESON_EE_POWER_DOMAIN=y
+> +CONFIG_DM_REGULATOR=y
+> +CONFIG_DM_REGULATOR_FIXED=y
+> +CONFIG_DM_RESET=y
+> +CONFIG_DEBUG_UART_ANNOUNCE=y
+> +CONFIG_DEBUG_UART_SKIP_INIT=y
+> +CONFIG_MESON_SERIAL=y
+> +CONFIG_USB=y
+> +CONFIG_DM_USB=y
+> +CONFIG_USB_XHCI_HCD=y
+> +CONFIG_USB_XHCI_DWC3=y
+> +CONFIG_USB_DWC3=y
+> +# CONFIG_USB_DWC3_GADGET is not set
+> +CONFIG_USB_DWC3_MESON_G12A=y
+> +CONFIG_USB_KEYBOARD=y
+> +CONFIG_USB_GADGET=y
+> +CONFIG_USB_GADGET_VENDOR_NUM=0x1b8e
+> +CONFIG_USB_GADGET_PRODUCT_NUM=0xfada
+> +CONFIG_USB_GADGET_DWC2_OTG=y
+> +CONFIG_USB_GADGET_DWC2_OTG_PHY_BUS_WIDTH_8=y
+> +CONFIG_USB_GADGET_DOWNLOAD=y
+> +CONFIG_DM_VIDEO=y
+> +# CONFIG_VIDEO_BPP8 is not set
+> +# CONFIG_VIDEO_BPP16 is not set
+> +CONFIG_SYS_WHITE_ON_BLACK=y
+> +CONFIG_VIDEO_MESON=y
+> +CONFIG_VIDEO_DT_SIMPLEFB=y
+> +CONFIG_SPLASH_SCREEN=y
+> +CONFIG_SPLASH_SCREEN_ALIGN=y
+> +CONFIG_OF_LIBFDT_OVERLAY=y
 > 
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
