@@ -2,20 +2,20 @@ Return-Path: <SRS0=hA9j=FW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-20.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	UPPERCASE_50_75,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,NICE_REPLY_A,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DE07C4361B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:43:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 178F1C4361B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:47:18 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5B9B623A63
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:43:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5B9B623A63
+	by mail.kernel.org (Postfix) with ESMTPS id BDB2923A82
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:47:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BDB2923A82
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,60 +24,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
 	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=XJCzpwy02U3WwcVkWxDU+g+A+u1bTVs8SFflXBoI/BA=; b=gs2gcFH934+/vszR6muJXSV32q
-	/iWRMRCbmOGjZAzEF1qgbEWQAc9U0sE3xc27BIxZvkRXj0PkR811anJIGl3FXV9Oy+S6pE+YcZ9Hs
-	WCk71XhUQCMn++m7Sb7ywj0j0zrryLHf+6V38egYAV3HnMQYHTgHr8SgBK9oRpDF6608yVNqphlG8
-	LZ4BqYBmTR08BDMi7mljAhUEU+zqT2EqarTQ5RLHWTAZWkfZslRmMC+HpWIRn9bFbt2wqKuLEzwMo
-	+aD93xrC6RU142aMLxHoEqmu4mqdWvtlU49pu/2hZ4TQVvLhWU0JUpntX8VajbR1WzbYwZwToWW0K
-	mOSpqbyA==;
+	bh=hwdQRZx+qmF2dT6TCaRBchIt+d6uMUlBcANyN9jak7g=; b=aRFBvMBMGr4KwLSR96r1NkKqyC
+	IHo9c+lw21vbw7aq5pqcq5wmODm6eFpTs6Z+LwL4FUreverBdu5AyAxnfYHRII9daSrJRPrrEmUuQ
+	o/vZ7s/fJsvRPnSww2aXkr8I4pI91WCnTVuuy/2lrscqpPaZJem+PW3j30oy/3zaXxIWK/HktOEDo
+	Vc1mDKBSVAQ1JqICV0j43m9bKguk2efAdWTrE+uysNoO3pZaX8wJLeDRU0rzloeGCIBzEtlnIjdWV
+	gobp/5UYycFCnW51RQFUFYpqTp5/DvGuty0IXp31yRoTM4LGTF5isrfnMvzlCFHsGO3FD+DYqI8RM
+	3dGzjUfg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kqCIc-0002jn-Mv; Fri, 18 Dec 2020 09:43:46 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1kqCLu-00031j-Iw; Fri, 18 Dec 2020 09:47:10 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kqCIY-0002iP-EQ
- for linux-amlogic@lists.infradead.org; Fri, 18 Dec 2020 09:43:44 +0000
-Received: by mail-wr1-x431.google.com with SMTP id t16so1439618wra.3
- for <linux-amlogic@lists.infradead.org>; Fri, 18 Dec 2020 01:43:42 -0800 (PST)
+ id 1kqCLs-00031B-CA
+ for linux-amlogic@lists.infradead.org; Fri, 18 Dec 2020 09:47:09 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id r4so1866718wmh.5
+ for <linux-amlogic@lists.infradead.org>; Fri, 18 Dec 2020 01:47:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:autocrypt:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=riXNhwu6QVUbvAIBHSYPEHu4XiopFfLuVH7acrDam/I=;
- b=RUvlccjfRgnIuajclJR08gYlt8t2m8T5iLeIcpf5HJ6asyk/RBHK6CVvkhfwxAJerz
- e+CPBe/N2iTsqZTP7P46xltksVlzfinS48UYsdB2XwoDlJzFszqwapawhb5+5R2EqhC5
- UuPkvx7tFtRbKFikouyJ/i/+n+XMmYmXiukRFukQCYl54zSTLGoouyFmY/Z+RQnbicRB
- Ks6XRi3B6MO15s7Sc10OT0hxeyajOj8NCBuIdICiTW5xdccZO/6boPXmMr6pgGJuKDBP
- Oq02jCvDL4UB4rBDyLnILbPDULRjaLZNo0TxBfoSH+JII+9+GnOc+J3e7pyTjHd9FgXV
- lzmw==
+ bh=RId7awZlqgb9sk0UY2DtZ1KmKgES23+o+b+b29J3nCY=;
+ b=CdCokqqm/Z6OAEUWOJN1KfsBiVHZpEkTZzmGK5XBNmfcW2pUh+Wlejf4iH8U/aSqIj
+ N4Xmy0ff/+lGKA5DQ9OrOm/fG643YlUGoXJ9WRKFFTq4yYLR4MV5wb+tz6+lWECVI+J8
+ WUe1jmIQjOH8RA6lfmpfjfKmf5g+BEvJTIh5qfwyljcFOO8ZTSQ3iK75WhThbf+VC929
+ 4fQbu18U+fK58I8Fw3WIbxS3NZGKv+76HNDqjFotM8JQnKEY6AMbLRCpML4TzHaw7Nqx
+ 1OyLl1vP9r5nvVzYdDjf5CiCTCX3+e4rY2qq8itSkrfDcitTdIy8gv5bqLa3kPW05fUQ
+ IKFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=riXNhwu6QVUbvAIBHSYPEHu4XiopFfLuVH7acrDam/I=;
- b=KCeFxttkXqx5+1Yxi0oMGJJ4JuKnJWZGI21yk9s0X+4VA6eGyMDrjmojg9iwjxcIkF
- 67vxJUQxj98yrQEtUVhEG9FKGQK6qmeSMNqQHXHnX7gh3Z/r3yXQ7KiihSyiEphxH7TP
- juYkqG7GXtFZjx0Fb4k3Hs63WtSCzOnbEeOPGPzyTlkW14YEUl1AP79rOvp7yFqgb9Nc
- DFiKmO8ZJ/BvrgV9ov2B6NPjIF5N1f+Pfwffg7k7JE5whDkuvQPfYwwrCcYUB5kLOOC5
- W0QXQhrM7QyWl4gYH2gCK4z8ebt4XrFdozTuzz1PA+D6SA+8CPYgeMxakU8hpARz0OIa
- tVAA==
-X-Gm-Message-State: AOAM531GtFMKLJMXpcFll8YW/hcLoD+sjuws4rLR0CiXq1Fjbf/I6hio
- wlooTfbU1SZl/5RTlUD7qsyo3l9nmS6yOx1w
-X-Google-Smtp-Source: ABdhPJyLzkuxzrWmKVVSle8E9O4ChnLPJLpLRgSyW/uIOWEEsrZZSLI2Ecrdk1NXtbrbECLA+IAOwg==
-X-Received: by 2002:a5d:42d0:: with SMTP id t16mr3419268wrr.230.1608284620728; 
- Fri, 18 Dec 2020 01:43:40 -0800 (PST)
+ bh=RId7awZlqgb9sk0UY2DtZ1KmKgES23+o+b+b29J3nCY=;
+ b=g07OsmoAkG2vnoV+xpfLBANMn2so77iIFBQd1M8t1N/9+H12cqSCRwcNUmhSShM2tr
+ Q8cPFLpuMTAkamu0l7XLuGAaFkfoNnSP5EeF1zl37502lLTu/jc1MnKBDHZSpBPhb8hf
+ X4FL5FY+98hJFvPAM2R4QlSA1/0aZrPiSQWBqnx5VTztH0FnUjIrEDimF//FJT9VplCK
+ iACGARHGwWe9KyXOt5Ul77b6ybkgdXgo1faSHfXCk/9eNTLrOqTf6efLCZ9CLen9gzx3
+ NTTVcbItJG3AqEJNNLuk1OeB0Tx1eq6FY2qLAayqbT4+ngRoA7ixHN5v5cUG1vXfuoLO
+ lfWQ==
+X-Gm-Message-State: AOAM5309lWhJF0Q0xWheJ1TXCZbeiswl+9mwBrtcWjuXlBAKzARMHm+e
+ Cx2BPLMP+Yn8H5bFRxMVFFWrr+1IHZi25gdS
+X-Google-Smtp-Source: ABdhPJymnIBrFfMbRbA5Twl4pgVWtK9NbWNmkwTqJcITI8l0Hun2e8KHJB2hU87cyexEGrB2UP4r6w==
+X-Received: by 2002:a1c:2c4:: with SMTP id 187mr3402742wmc.187.1608284823295; 
+ Fri, 18 Dec 2020 01:47:03 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:d897:20cf:5b8c:50ad?
  ([2a01:e35:2ec0:82b0:d897:20cf:5b8c:50ad])
- by smtp.gmail.com with ESMTPSA id i7sm13178047wrv.12.2020.12.18.01.43.39
+ by smtp.gmail.com with ESMTPSA id f9sm14101089wrw.81.2020.12.18.01.47.01
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Dec 2020 01:43:40 -0800 (PST)
-Subject: Re: [PATCH 4/5] boards: amlogic: add Beelink GT-King Pro defconfig
+ Fri, 18 Dec 2020 01:47:02 -0800 (PST)
+Subject: Re: [PATCH 5/5] boards: amlogic: update documentation for Beelink
+ GT-King/Pro
 To: Christian Hewitt <christianshewitt@gmail.com>, u-boot@lists.denx.de,
  u-boot-amlogic@groups.io, linux-amlogic@lists.infradead.org
 References: <20201218084545.29135-1-christianshewitt@gmail.com>
- <20201218084545.29135-5-christianshewitt@gmail.com>
+ <20201218084545.29135-6-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <732fdedf-269c-6574-4b80-49a2f432fb4c@baylibre.com>
-Date: Fri, 18 Dec 2020 10:43:39 +0100
+Message-ID: <46cf0790-a6bc-2aea-ecdb-e0df6f44644e@baylibre.com>
+Date: Fri, 18 Dec 2020 10:47:01 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201218084545.29135-5-christianshewitt@gmail.com>
+In-Reply-To: <20201218084545.29135-6-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201218_044343_320170_7A414B45 
-X-CRM114-Status: GOOD (  15.40  )
+X-CRM114-CacheID: sfid-20201218_044708_439618_408803C1 
+X-CRM114-Status: GOOD (  21.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,92 +157,282 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 18/12/2020 09:45, Christian Hewitt wrote:
-> Add a defconfig for the Beelink GT-King Pro Android STB, which is based
-> on the Amlogic W400 reference design.
+> Update the device matrix and add build instructions.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  configs/beelink-gtkingpro_defconfig | 71 +++++++++++++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 configs/beelink-gtkingpro_defconfig
+>  doc/board/amlogic/beelink-gtking.rst    | 115 +++++++++++++++++++++++
+>  doc/board/amlogic/beelink-gtkingpro.rst | 116 ++++++++++++++++++++++++
+>  doc/board/amlogic/index.rst             |   4 +-
+>  3 files changed, 234 insertions(+), 1 deletion(-)
+>  create mode 100644 doc/board/amlogic/beelink-gtking.rst
+>  create mode 100644 doc/board/amlogic/beelink-gtkingpro.rst
 > 
-> diff --git a/configs/beelink-gtkingpro_defconfig b/configs/beelink-gtkingpro_defconfig
+> diff --git a/doc/board/amlogic/beelink-gtking.rst b/doc/board/amlogic/beelink-gtking.rst
 > new file mode 100644
-> index 0000000000..569031600a
+> index 0000000000..56ce2cb273
 > --- /dev/null
-> +++ b/configs/beelink-gtkingpro_defconfig
-> @@ -0,0 +1,71 @@
-> +CONFIG_ARM=y
-> +CONFIG_SYS_BOARD="beelink-s922x"
-> +CONFIG_ARCH_MESON=y
-> +CONFIG_SYS_TEXT_BASE=0x01000000
-> +CONFIG_NR_DRAM_BANKS=1
-> +CONFIG_ENV_SIZE=0x2000
-> +CONFIG_DM_GPIO=y
-> +CONFIG_MESON_G12A=y
-> +CONFIG_DEBUG_UART_BASE=0xff803000
-> +CONFIG_DEBUG_UART_CLOCK=24000000
-> +CONFIG_IDENT_STRING=" beelink"
-> +CONFIG_DEFAULT_DEVICE_TREE="meson-g12b-gtking-pro"
-> +CONFIG_DEBUG_UART=y
-> +CONFIG_OF_BOARD_SETUP=y
-> +CONFIG_MISC_INIT_R=y
-> +# CONFIG_DISPLAY_CPUINFO is not set
-> +# CONFIG_CMD_BDI is not set
-> +# CONFIG_CMD_IMI is not set
-> +CONFIG_CMD_GPIO=y
-> +# CONFIG_CMD_LOADS is not set
-> +CONFIG_CMD_MMC=y
-> +CONFIG_CMD_SF_TEST=y
-> +CONFIG_CMD_SPI=y
-> +CONFIG_CMD_USB=y
-> +CONFIG_CMD_USB_MASS_STORAGE=y
-> +# CONFIG_CMD_SETEXPR is not set
-> +CONFIG_CMD_REGULATOR=y
-> +CONFIG_OF_CONTROL=y
-> +CONFIG_SYS_RELOC_GD_ENV_ADDR=y
-> +CONFIG_NET_RANDOM_ETHADDR=y
-> +CONFIG_DM_MMC=y
-> +CONFIG_MMC_MESON_GX=y
-> +CONFIG_MTD=y
-> +CONFIG_DM_MTD=y
-> +CONFIG_PHY_REALTEK=y
-> +CONFIG_DM_ETH=y
-> +CONFIG_ETH_DESIGNWARE=y
-> +CONFIG_MESON_G12A_USB_PHY=y
-> +CONFIG_PINCTRL=y
-> +CONFIG_PINCTRL_MESON_G12A=y
-> +CONFIG_POWER_DOMAIN=y
-> +CONFIG_MESON_EE_POWER_DOMAIN=y
-> +CONFIG_DM_REGULATOR=y
-> +CONFIG_DM_REGULATOR_FIXED=y
-> +CONFIG_DM_RESET=y
-> +CONFIG_DEBUG_UART_ANNOUNCE=y
-> +CONFIG_DEBUG_UART_SKIP_INIT=y
-> +CONFIG_MESON_SERIAL=y
-> +CONFIG_USB=y
-> +CONFIG_DM_USB=y
-> +CONFIG_USB_XHCI_HCD=y
-> +CONFIG_USB_XHCI_DWC3=y
-> +CONFIG_USB_DWC3=y
-> +# CONFIG_USB_DWC3_GADGET is not set
-> +CONFIG_USB_DWC3_MESON_G12A=y
-> +CONFIG_USB_KEYBOARD=y
-> +CONFIG_USB_GADGET=y
-> +CONFIG_USB_GADGET_VENDOR_NUM=0x1b8e
-> +CONFIG_USB_GADGET_PRODUCT_NUM=0xfada
-> +CONFIG_USB_GADGET_DWC2_OTG=y
-> +CONFIG_USB_GADGET_DWC2_OTG_PHY_BUS_WIDTH_8=y
-> +CONFIG_USB_GADGET_DOWNLOAD=y
-> +CONFIG_DM_VIDEO=y
-> +# CONFIG_VIDEO_BPP8 is not set
-> +# CONFIG_VIDEO_BPP16 is not set
-> +CONFIG_SYS_WHITE_ON_BLACK=y
-> +CONFIG_VIDEO_MESON=y
-> +CONFIG_VIDEO_DT_SIMPLEFB=y
-> +CONFIG_SPLASH_SCREEN=y
-> +CONFIG_SPLASH_SCREEN_ALIGN=y
-> +CONFIG_OF_LIBFDT_OVERLAY=y
+> +++ b/doc/board/amlogic/beelink-gtking.rst
+> @@ -0,0 +1,115 @@
+> +.. SPDX-License-Identifier: GPL-2.0+
+> +
+> +U-Boot for Beelink GT-King
+> +==========================
+> +
+> +The Shenzen AZW (Beelink) GT-King is based on the Amlogic W400 reference
+> +board with an S922X-H chip.
+> +
+> +- 4GB LPDDR4 RAM
+> +- 64GB eMMC storage
+> +- 10/100/1000 Base-T Ethernet
+> +- AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
+> +- HDMI 2.1 video
+> +- S/PDIF optical output
+> +- Analogue audio output
+> +- 1x USB 2.0 port
+> +- 2x USB 3.0 ports
+> +- IR receiver
+> +- 1x micro SD card slot
+> +
+> +Beelink do not provide public schematics, but have been willing
+> +to share them with known distro developers on request.
+> +
+> +U-Boot compilation
+> +------------------
+> +
+> +.. code-block:: bash
+> +
+> +    $ export CROSS_COMPILE=aarch64-none-elf-
+> +    $ make beelink-gtking_defconfig
+> +    $ make
+> +
+> +Image creation
+> +--------------
+> +
+> +Amlogic does not provide sources for the firmware and for tools needed
+> +to create the bootloader image. Beelink have provided the Amlogic "SDK"
+> +in their forums, but the u-boot sources included result in 2GB RAM being
+> +detected. The following FIPs were generated with newer private sources
+> +and give correct (4GB) RAM detection:
+> +
+> +https://github.com/LibreELEC/amlogic-boot-fip/tree/master/beelink-s922x
+> +
+> +NB: Beelink use a common board config for GT-King, GT-King Pro and the
+> +GS-King-X model, hence the "beelink-s922x" name.
+> +
+> +.. code-block:: bash
+> +
+> +    $ wget https://github.com/LibreELEC/amlogic-boot-fip/archive/master.zip
+> +    $ unzip master.zip
+> +    $ export FIPDIR=$PWD/amlogic-boot-fip/beelink-s922x
+> +
+> +Go back to the mainline U-Boot source tree then:
+> +
+> +.. code-block:: bash
+> +
+> +    $ mkdir fip
+> +    $ cp $FIPDIR/* fip/
+> +    $ cp u-boot.bin fip/bl33.bin
+> +
+> +    $ sh fip/blx_fix.sh \
+> +    	fip/bl30.bin \
+> +    	fip/zero_tmp \
+> +    	fip/bl30_zero.bin \
+> +    	fip/bl301.bin \
+> +    	fip/bl301_zero.bin \
+> +    	fip/bl30_new.bin \
+> +    	bl30
+> +
+> +    $ sh fip/blx_fix.sh \
+> +    	fip/bl2.bin \
+> +    	fip/zero_tmp \
+> +    	fip/bl2_zero.bin \
+> +    	fip/acs.bin \
+> +    	fip/bl21_zero.bin \
+> +    	fip/bl2_new.bin \
+> +    	bl2
+> +
+> +    $ fip/aml_encrypt_g12b --bl30sig --input fip/bl30_new.bin \
+> +    				--output fip/bl30_new.bin.g12a.enc \
+> +    				--level v3
+> +    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl30_new.bin.g12a.enc \
+> +    				--output fip/bl30_new.bin.enc \
+> +    				--level v3 --type bl30
+> +    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl31.img \
+> +    				--output fip/bl31.img.enc \
+> +    				--level v3 --type bl31
+> +    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl33.bin --compress lz4 \
+> +    				--output fip/bl33.bin.enc \
+> +    				--level v3 --type bl33
+> +    $ fip/aml_encrypt_g12b --bl2sig --input fip/bl2_new.bin \
+> +    				--output fip/bl2.n.bin.sig
+> +    $ fip/aml_encrypt_g12b --bootmk \
+> +    		--output fip/u-boot.bin \
+> +    		--bl2 fip/bl2.n.bin.sig \
+> +    		--bl30 fip/bl30_new.bin.enc \
+> +    		--bl31 fip/bl31.img.enc \
+> +    		--bl33 fip/bl33.bin.enc \
+> +    		--ddrfw1 fip/ddr4_1d.fw \
+> +    		--ddrfw2 fip/ddr4_2d.fw \
+> +    		--ddrfw3 fip/ddr3_1d.fw \
+> +    		--ddrfw4 fip/piei.fw \
+> +    		--ddrfw5 fip/lpddr4_1d.fw \
+> +    		--ddrfw6 fip/lpddr4_2d.fw \
+> +    		--ddrfw7 fip/diag_lpddr4.fw \
+> +    		--ddrfw8 fip/aml_ddr.fw \
+> +    		--level v3
+> +
+> +and then write the image to SD with:
+> +
+> +.. code-block:: bash
+> +
+> +    $ DEV=/dev/your_sd_device
+> +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+> +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+> diff --git a/doc/board/amlogic/beelink-gtkingpro.rst b/doc/board/amlogic/beelink-gtkingpro.rst
+> new file mode 100644
+> index 0000000000..d750351361
+> --- /dev/null
+> +++ b/doc/board/amlogic/beelink-gtkingpro.rst
+> @@ -0,0 +1,116 @@
+> +.. SPDX-License-Identifier: GPL-2.0+
+> +
+> +U-Boot for Beelink GT-King Pro
+> +==============================
+> +
+> +The Shenzen AZW (Beelink) GT-King Pro is based on the Amlogic W400 reference
+> +board with an S922X-H chip.
+> +
+> +- 4GB LPDDR4 RAM
+> +- 64GB eMMC storage
+> +- 10/100/1000 Base-T Ethernet
+> +- AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
+> +- HDMI 2.1 video
+> +- Analogue audio output
+> +- 1x RS232 port
+> +- 2x USB 2.0 port
+> +- 2x USB 3.0 ports
+> +- IR receiver
+> +- 1x SD card slot
+> +- 1x Power on/off button
+> +
+> +Beelink do not provide public schematics, but have been willing
+> +to share them with known distro developers on request.
+> +
+> +U-Boot compilation
+> +------------------
+> +
+> +.. code-block:: bash
+> +
+> +    $ export CROSS_COMPILE=aarch64-none-elf-
+> +    $ make beelink-gtkingpro_defconfig
+> +    $ make
+> +
+> +Image creation
+> +--------------
+> +
+> +Amlogic does not provide sources for the firmware and for tools needed
+> +to create the bootloader image. Beelink have provided the Amlogic "SDK"
+> +in their forums, but the u-boot sources included result in 2GB RAM being
+> +detected. The following FIPs were generated with newer private sources
+> +and give correct (4GB) RAM detection:
+> +
+> +https://github.com/LibreELEC/amlogic-boot-fip/tree/master/beelink-s922x
+> +
+> +NB: Beelink use a common board config for GT-King, GT-King Pro and the
+> +GS-King-X model, hence the "beelink-s922x" name.
+> +
+> +.. code-block:: bash
+> +
+> +    $ wget https://github.com/LibreELEC/amlogic-boot-fip/archive/master.zip
+> +    $ unzip master.zip
+> +    $ export FIPDIR=$PWD/amlogic-boot-fip/beelink-s922x
+> +
+> +Go back to the mainline U-Boot source tree then:
+> +
+> +.. code-block:: bash
+> +
+> +    $ mkdir fip
+> +    $ cp $FIPDIR/* fip/
+> +    $ cp u-boot.bin fip/bl33.bin
+> +
+> +    $ sh fip/blx_fix.sh \
+> +    	fip/bl30.bin \
+> +    	fip/zero_tmp \
+> +    	fip/bl30_zero.bin \
+> +    	fip/bl301.bin \
+> +    	fip/bl301_zero.bin \
+> +    	fip/bl30_new.bin \
+> +    	bl30
+> +
+> +    $ sh fip/blx_fix.sh \
+> +    	fip/bl2.bin \
+> +    	fip/zero_tmp \
+> +    	fip/bl2_zero.bin \
+> +    	fip/acs.bin \
+> +    	fip/bl21_zero.bin \
+> +    	fip/bl2_new.bin \
+> +    	bl2
+> +
+> +    $ fip/aml_encrypt_g12b --bl30sig --input fip/bl30_new.bin \
+> +    				--output fip/bl30_new.bin.g12a.enc \
+> +    				--level v3
+> +    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl30_new.bin.g12a.enc \
+> +    				--output fip/bl30_new.bin.enc \
+> +    				--level v3 --type bl30
+> +    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl31.img \
+> +    				--output fip/bl31.img.enc \
+> +    				--level v3 --type bl31
+> +    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl33.bin --compress lz4 \
+> +    				--output fip/bl33.bin.enc \
+> +    				--level v3 --type bl33
+> +    $ fip/aml_encrypt_g12b --bl2sig --input fip/bl2_new.bin \
+> +    				--output fip/bl2.n.bin.sig
+> +    $ fip/aml_encrypt_g12b --bootmk \
+> +    		--output fip/u-boot.bin \
+> +    		--bl2 fip/bl2.n.bin.sig \
+> +    		--bl30 fip/bl30_new.bin.enc \
+> +    		--bl31 fip/bl31.img.enc \
+> +    		--bl33 fip/bl33.bin.enc \
+> +    		--ddrfw1 fip/ddr4_1d.fw \
+> +    		--ddrfw2 fip/ddr4_2d.fw \
+> +    		--ddrfw3 fip/ddr3_1d.fw \
+> +    		--ddrfw4 fip/piei.fw \
+> +    		--ddrfw5 fip/lpddr4_1d.fw \
+> +    		--ddrfw6 fip/lpddr4_2d.fw \
+> +    		--ddrfw7 fip/diag_lpddr4.fw \
+> +    		--ddrfw8 fip/aml_ddr.fw \
+> +    		--level v3
+> +
+> +and then write the image to SD with:
+> +
+> +.. code-block:: bash
+> +
+> +    $ DEV=/dev/your_sd_device
+> +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+> +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+> diff --git a/doc/board/amlogic/index.rst b/doc/board/amlogic/index.rst
+> index a585d857df..275c3664b7 100644
+> --- a/doc/board/amlogic/index.rst
+> +++ b/doc/board/amlogic/index.rst
+> @@ -17,7 +17,7 @@ This matrix concerns the actual source code version.
+>  +===============================+===========+=================+==============+============+============+=============+==============+
+>  | Boards                       	| Odroid-C2 | P212            | Khadas VIM2  | S400       | U200       | Odroid-N2   | SEI610       |
+>  |        			| Nanopi-K2 | Khadas-VIM      | Libretech-PC |	          | SEI510     | Khadas-VIM3 | Khadas-VIM3L |
+> -|        			| P200	    | LibreTech-CC v1 |	WeTek Core2  |	          |            |	     | Odroid-C4    |
+> +|        			| P200	    | LibreTech-CC v1 |	WeTek Core2  |	          |            | GT-King/Pro | Odroid-C4    |
+>  |        			| P201	    | LibreTech-AC v2 |	             |	          |            |             |              |
+>  +-------------------------------+-----------+-----------------+--------------+------------+------------+-------------+--------------+
+>  | UART                       	| **Yes**   | **Yes**         | **Yes**      | **Yes**    | **Yes**    | **Yes**     | **Yes**      |
+> @@ -77,6 +77,8 @@ Board Documentation
+>  .. toctree::
+>     :maxdepth: 1
+>  
+> +   beelink-gtking
+> +   beelink-gtkingpro
+>     khadas-vim2
+>     khadas-vim3l
+>     khadas-vim3
 > 
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
