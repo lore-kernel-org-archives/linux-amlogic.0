@@ -2,19 +2,20 @@ Return-Path: <SRS0=hA9j=FW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67025C4361B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:42:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C5C7C4361B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:42:53 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 79A2823A84
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:42:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 79A2823A84
+	by mail.kernel.org (Postfix) with ESMTPS id 1F60723A7D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Dec 2020 09:42:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1F60723A7D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,61 +24,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:
 	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=z/9LNSVNbExJzRWV/h7atg0eB2yijIaikyRweDNPjHI=; b=YovSAdZTiaxau20XoQdO9kksmT
-	UJFPs8C2nEIbmAOk+j5r0fPMzYQen7eB1KM/A4+O/kkwsj1y6fTubFHsPUzxsZ9OCon0VmUhR/eL6
-	OjBXyHm3aWRn1pCbQqKORClhXKxrMIxdpyH5b66gTzmHuJiRdiwOCYLSH/nq2tY6XrkKAezHXa7uA
-	l0kRZSm3XrXUK4g2Z6474CBG3yAwL3TAuYBMMWgb9PMEoUSjVLMnUbLgmntG4NepnA3rI4F5AW9Ub
-	FhP7OrwpMDH1brZBZfl/YkRgbAKsewfrMPscwkVoxRcXnCYdybqudFdb4vXZCVMguNVBDXiSuqXoJ
-	wl7u2bEw==;
+	bh=Lkx9IiT0r/nip35tUzLJNzIW1v9dzYtu/5DJeyjb9xA=; b=Eu6kJ4Mu3yGonMxeU6nTnK2YZI
+	9qMFGZ6RUVKAxj9II1W6LxhuKbMzXblmmNOv6tyZMC5V0q6V3oMcQUyd/yXMB9BtqVc8AHD4MFC8x
+	e5k9zDo09aCz/2Ri9+PUZ2jtmMUlGqUa51xdv/f6emeY8XTb4fD6UlNOZD0c92I6WTNfXXDxoHgMN
+	muytK7w0BoPYfvUvdWGsTxDpaAYORanUB8KOH3KU6oSoVmV3bjEb/GPCNCy9SGKZpEfylTia0nyqR
+	uapF/ODTIAKh45WQQnXEbgNsRIwmqA6GO+zjlIP4USNji0Ca/rkvlhXr1GrFVn/toaurNFF9CnPEZ
+	oIlMWhNg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kqCHI-0002V8-7d; Fri, 18 Dec 2020 09:42:24 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1kqCHh-0002ZH-NV; Fri, 18 Dec 2020 09:42:49 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kqCHE-0002UR-Fb
- for linux-amlogic@lists.infradead.org; Fri, 18 Dec 2020 09:42:22 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id i9so1433387wrc.4
- for <linux-amlogic@lists.infradead.org>; Fri, 18 Dec 2020 01:42:18 -0800 (PST)
+ id 1kqCHf-0002Yo-AF
+ for linux-amlogic@lists.infradead.org; Fri, 18 Dec 2020 09:42:48 +0000
+Received: by mail-wr1-x431.google.com with SMTP id y17so1408578wrr.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 18 Dec 2020 01:42:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:autocrypt:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=IlgsUHUUSDN5kCPnZCQ9N8v6TrAVJPtrPXa9U8LpN1I=;
- b=d3qAc5gMaQ0NM8rvnVfY70zYE7rvxfeKUE2USQYq7R11QAV7OvNklCOZIbHlMWPuJn
- CcNh2HW2fY46OnglikOcizkRXi4eybi7u/k9FeFwLFDOXvezImsoddNwi79ch2ZYQx19
- 5M95Mk8NQMtrzVvxY0wGcvqiEYlIrXGabmhNBDct6CpmE9bJbvl8GjkgByk+20DG7xkT
- u2GI4hova+pRUSOSr/HvVg/rShOFGa0XY5Hut/nrz6anT4b6fptcGhcLavbzLNxuYcfU
- P0Qb4DW+ofx64ApZGjxDmryF7Gt5wA0ElRQMzF8EpB7+3lwaHMAH+CP/ehweQiT10N/Z
- VckA==
+ bh=rWjAeEtOXDa5d8yW88uulTvw7F7U7U+z+Rg+Cla3MVo=;
+ b=xcn0o9ykZ/E6vWcG+b3B2Eu+/1IRL6OLOVkAGkhpRB3EBrfmyWPol4t2HSAcy1ueOg
+ rBuYswIp61jvcMc7qUGVxeDL7DE9ACO6uTFA+oa8sBTgFK8RztZs0WHoPS/0v5DBWVTO
+ extC4XYQJSZ2x4MOhFnBMIHTi+ZvBkFfxsKR1whbC1PS2ykFMXVOEkEUc0vKzwWx5yl/
+ YSL9ZlxStxdHw8u5mVpZ0pMtdSyOeTuHUz1WSrIdo1knv0j38xdtnWAViOhN7ckxKNMv
+ 6jHXCZ+0dEUux0iQiLdXzzgVrIUaFlL+mSQyvVJ+rLR317uZdWtp9OwifAdIPRtjS/F7
+ Fs2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=IlgsUHUUSDN5kCPnZCQ9N8v6TrAVJPtrPXa9U8LpN1I=;
- b=PSeNIP7ldkEHUNvP7bWwAx5ZNG9SBEO6Dsc9XatSXje/3YKmNjMqrqRmrTf3RzewEg
- MVuUABCLEaOcha7P4CJktlzFUbI5erZ2TawO5xen+lHCji/bEbwGEt3xGQMyrO4uIE16
- 3Z/kqCSNr4UTK0M2ruIKI4Z/wW9xFuyK17EHmfIffakbHlDEtodiF+HSxcsxxhntl9jc
- 4Rzf9Bg1bPiTO07OwMjjkbG6LnYPLsrVdr5/DommeNT/JgME6RL1kmoUoyW4Gk5Ukib5
- KLBalh48oW5qKOMRd8K1S/6lyrst4Zfi0x4DPm5l4xoFu4u0CXjlzTPfGlXHcTpUH7j7
- t/TQ==
-X-Gm-Message-State: AOAM533uXgn6vF8+tWf44NUN/ryn5P4R714dsXzlGCK8pjp+rHKWXftD
- yrVu/umOqlGtP6r9//XY2CPDszS52QSJjYes
-X-Google-Smtp-Source: ABdhPJyEsGAxrxHzGpdZs1fLhcNFFczvL668c/8F8ogviwrKcE4Nnp2rSY4g4v9wyQzvRmpN1d77Ew==
-X-Received: by 2002:a5d:4101:: with SMTP id l1mr3450609wrp.196.1608284536783; 
- Fri, 18 Dec 2020 01:42:16 -0800 (PST)
+ bh=rWjAeEtOXDa5d8yW88uulTvw7F7U7U+z+Rg+Cla3MVo=;
+ b=GsjLazenFeGDM9xhCtnSGT10ZOKufLPLyriehbpqbQVt9CvEstxSRDOLkUgGD6361j
+ VnBF9jSEk0NbuUzIY9bLoXLe389bOCkuR/JMhpoDgyLgklDLXLleD6oVuU2GZUGsVb2H
+ FV5tPGIyQ9FBgFpQXbnIV0bwEssNsmbW0uKt7ktvAhxsnokfy8GLWd1B8NqE1r5YmMNG
+ N7HcuWfuVE6d5qn43PQWvrjmORRxlAuQGNCmMSKdfs1c/vph0y48rzqCU9Kbg6qOI9V7
+ tVcpqI/kn7itdFR0f5AghLPrAxQpqxODuwTW0qUiTZKkH7vziOseP2ZsO23ZmL46FPh6
+ OEig==
+X-Gm-Message-State: AOAM532WJchvnbg5zUGj75eYkXxnjtVTRWHrsfStF+qdLHZX/9zlbHsW
+ JD+HOSXOtY5rbULZM4MMBRSfUGpdqWkDZONY
+X-Google-Smtp-Source: ABdhPJytl2T3ZE1fl/FHlL3bVDTEvCdCbLjx/lnhv46aIJDb5far+cWAIjicEqPaLuLa107eZsPasw==
+X-Received: by 2002:adf:f70c:: with SMTP id r12mr3395645wrp.234.1608284565549; 
+ Fri, 18 Dec 2020 01:42:45 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:d897:20cf:5b8c:50ad?
  ([2a01:e35:2ec0:82b0:d897:20cf:5b8c:50ad])
- by smtp.gmail.com with ESMTPSA id s25sm14283750wrs.49.2020.12.18.01.42.15
+ by smtp.gmail.com with ESMTPSA id s20sm10532964wmj.46.2020.12.18.01.42.44
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Dec 2020 01:42:16 -0800 (PST)
-Subject: Re: [PATCH 1/5] ARM: dts: import Beelink GT-King/Pro DTs from Linux
- 5.10
+ Fri, 18 Dec 2020 01:42:44 -0800 (PST)
+Subject: Re: [PATCH 2/5] boards: amlogic: add Beelink S922X board family
+ support
 To: Christian Hewitt <christianshewitt@gmail.com>, u-boot@lists.denx.de,
  u-boot-amlogic@groups.io, linux-amlogic@lists.infradead.org
 References: <20201218084545.29135-1-christianshewitt@gmail.com>
- <20201218084545.29135-2-christianshewitt@gmail.com>
+ <20201218084545.29135-3-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <b19c8c6c-ed7f-6e25-cff1-9111dcf86356@baylibre.com>
-Date: Fri, 18 Dec 2020 10:42:14 +0100
+Message-ID: <9cc2d431-9bc1-fef4-eb4b-a726e9c9b6fb@baylibre.com>
+Date: Fri, 18 Dec 2020 10:42:44 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201218084545.29135-2-christianshewitt@gmail.com>
+In-Reply-To: <20201218084545.29135-3-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201218_044220_664926_48F4FE45 
-X-CRM114-Status: GOOD (  18.17  )
+X-CRM114-CacheID: sfid-20201218_044247_438360_FB682796 
+X-CRM114-Status: GOOD (  20.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,746 +157,105 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 18/12/2020 09:45, Christian Hewitt wrote:
-> Import the Beelink GT-King/Pro and supporting meson-g12b-w400.dtsi file
-> from Linux 5.10.
+> Copied from Odroid N2. Add myself as maintainer.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  arch/arm/dts/Makefile                  |   2 +
->  arch/arm/dts/meson-g12b-gtking-pro.dts | 125 ++++++++
->  arch/arm/dts/meson-g12b-gtking.dts     | 145 +++++++++
->  arch/arm/dts/meson-g12b-w400.dtsi      | 425 +++++++++++++++++++++++++
->  4 files changed, 697 insertions(+)
->  create mode 100644 arch/arm/dts/meson-g12b-gtking-pro.dts
->  create mode 100644 arch/arm/dts/meson-g12b-gtking.dts
->  create mode 100644 arch/arm/dts/meson-g12b-w400.dtsi
+>  board/amlogic/beelink-s922x/MAINTAINERS     |  9 ++++
+>  board/amlogic/beelink-s922x/Makefile        |  6 +++
+>  board/amlogic/beelink-s922x/beelink-s922x.c | 54 +++++++++++++++++++++
+>  3 files changed, 69 insertions(+)
+>  create mode 100644 board/amlogic/beelink-s922x/MAINTAINERS
+>  create mode 100644 board/amlogic/beelink-s922x/Makefile
+>  create mode 100644 board/amlogic/beelink-s922x/beelink-s922x.c
 > 
-> diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-> index 02dd6a832f..287ac63da4 100644
-> --- a/arch/arm/dts/Makefile
-> +++ b/arch/arm/dts/Makefile
-> @@ -170,6 +170,8 @@ dtb-$(CONFIG_ARCH_MESON) += \
->  	meson-axg-s400.dtb \
->  	meson-g12a-u200.dtb \
->  	meson-g12a-sei510.dtb \
-> +	meson-g12b-gtking.dtb \
-> +	meson-g12b-gtking-pro.dtb \
->  	meson-g12b-odroid-n2.dtb \
->  	meson-g12b-odroid-n2-plus.dtb \
->  	meson-g12b-a311d-khadas-vim3.dtb \
-> diff --git a/arch/arm/dts/meson-g12b-gtking-pro.dts b/arch/arm/dts/meson-g12b-gtking-pro.dts
+> diff --git a/board/amlogic/beelink-s922x/MAINTAINERS b/board/amlogic/beelink-s922x/MAINTAINERS
 > new file mode 100644
-> index 0000000000..f0c56a16af
+> index 0000000000..7f223df4ae
 > --- /dev/null
-> +++ b/arch/arm/dts/meson-g12b-gtking-pro.dts
-> @@ -0,0 +1,125 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +++ b/board/amlogic/beelink-s922x/MAINTAINERS
+> @@ -0,0 +1,9 @@
+> +BEELINK-S922X
+> +M:	Christian Hewitt <christianshewitt@gmail.com>
+> +S:	Maintained
+> +L:	u-boot-amlogic@groups.io
+> +F:	board/amlogic/beelink-s922x/
+> +F:	configs/beelink-gtking_defconfig
+> +F:	configs/beelink-gtkingpro_defconfig
+> +F:	doc/board/amlogic/beelink-gtking.rst
+> +F:	doc/board/amlogic/beelink-gtkingpro.rst
+> diff --git a/board/amlogic/beelink-s922x/Makefile b/board/amlogic/beelink-s922x/Makefile
+> new file mode 100644
+> index 0000000000..27b1a74105
+> --- /dev/null
+> +++ b/board/amlogic/beelink-s922x/Makefile
+> @@ -0,0 +1,6 @@
+> +# SPDX-License-Identifier: GPL-2.0+
+> +#
+> +# (C) Copyright 2020 BayLibre, SAS
+> +# Author: Neil Armstrong <narmstrong@baylibre.com>
+> +
+> +obj-y	:= beelink-s922x.o
+> diff --git a/board/amlogic/beelink-s922x/beelink-s922x.c b/board/amlogic/beelink-s922x/beelink-s922x.c
+> new file mode 100644
+> index 0000000000..dc0d933a39
+> --- /dev/null
+> +++ b/board/amlogic/beelink-s922x/beelink-s922x.c
+> @@ -0,0 +1,54 @@
+> +// SPDX-License-Identifier: GPL-2.0+
 > +/*
-> + * Copyright (c) 2019 BayLibre, SAS
+> + * Copyright (C) 2020 BayLibre, SAS
 > + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
 > + */
 > +
-> +/dts-v1/;
-> +
-> +#include "meson-g12b-w400.dtsi"
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-> +
-> +/ {
-> +	compatible = "azw,gtking", "amlogic,g12b";
-> +	model = "Beelink GT-King Pro";
-> +
-> +	gpio-keys-polled {
-> +		compatible = "gpio-keys-polled";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		poll-interval = <100>;
-> +
-> +		power-button {
-> +			label = "power";
-> +			linux,code = <KEY_POWER>;
-> +			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		white {
-> +			label = "power:white";
-> +			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "G12B-GTKING-PRO";
-> +		audio-aux-devs = <&tdmout_b>;
-> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> +				"TDM_B Playback", "TDMOUT_B OUT";
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL2>,
-> +				  <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +		status = "okay";
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-3 {
-> +			sound-dai = <&tdmif_b>;
-> +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
-> +			mclk-fs = <256>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> +			};
-> +		};
-> +
-> +		dai-link-4 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&arb {
-> +	status = "okay";
-> +};
-> +
-> +&clkc_audio {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&tdmif_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_b {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm/dts/meson-g12b-gtking.dts b/arch/arm/dts/meson-g12b-gtking.dts
-> new file mode 100644
-> index 0000000000..eeb7bc5539
-> --- /dev/null
-> +++ b/arch/arm/dts/meson-g12b-gtking.dts
-> @@ -0,0 +1,145 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-g12b-w400.dtsi"
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-> +
-> +/ {
-> +	compatible = "azw,gtking", "amlogic,g12b";
-> +	model = "Beelink GT-King";
-> +
-> +	spdif_dit: audio-codec-1 {
-> +		#sound-dai-cells = <0>;
-> +		compatible = "linux,spdif-dit";
-> +		status = "okay";
-> +		sound-name-prefix = "DIT";
-> +	};
-> +
-> +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "G12B-GTKING";
-> +		audio-aux-devs = <&tdmout_b>;
-> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> +				"TDM_B Playback", "TDMOUT_B OUT",
-> +				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
-> +				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
-> +				"SPDIFOUT IN 2", "FRDDR_C OUT 3";
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL2>,
-> +				  <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +		status = "okay";
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-3 {
-> +			sound-dai = <&tdmif_b>;
-> +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
-> +			mclk-fs = <256>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> +			};
-> +		};
-> +
-> +		/* spdif hdmi or toslink interface */
-> +		dai-link-4 {
-> +			sound-dai = <&spdifout>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&spdif_dit>;
-> +			};
-> +
-> +			codec-1 {
-> +				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_A>;
-> +			};
-> +		};
-> +
-> +		/* spdif hdmi interface */
-> +		dai-link-5 {
-> +			sound-dai = <&spdifout_b>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_B>;
-> +			};
-> +		};
-> +
-> +		/* hdmi glue */
-> +		dai-link-6 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&arb {
-> +	status = "okay";
-> +};
-> +
-> +&clkc_audio {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&spdifout {
-> +	pinctrl-0 = <&spdif_out_h_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&spdifout_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmif_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_b {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm/dts/meson-g12b-w400.dtsi b/arch/arm/dts/meson-g12b-w400.dtsi
-> new file mode 100644
-> index 0000000000..2802ddbb83
-> --- /dev/null
-> +++ b/arch/arm/dts/meson-g12b-w400.dtsi
-> @@ -0,0 +1,425 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-g12b.dtsi"
-> +#include "meson-g12b-s922x.dtsi"
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
-> +
-> +/ {
-> +	aliases {
-> +		serial0 = &uart_AO;
-> +		ethernet0 = &ethmac;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x40000000>;
-> +	};
-> +
-> +	emmc_pwrseq: emmc-pwrseq {
-> +		compatible = "mmc-pwrseq-emmc";
-> +		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "ext_clock";
-> +	};
-> +
-> +	flash_1v8: regulator-flash_1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "FLASH_1V8";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vcc_3v3>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	main_12v: regulator-main_12v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "12V";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vcc_5v: regulator-vcc_5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_5V";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&main_12v>;
-> +
-> +		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-> +		enable-active-high;
-> +	};
-> +
-> +	vcc_1v8: regulator-vcc_1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_1V8";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vcc_3v3>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vcc_3v3: regulator-vcc_3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vddao_3v3>;
-> +		regulator-always-on;
-> +		/* FIXME: actually controlled by VDDCPU_B_EN */
-> +	};
-> +
-> +	vddcpu_a: regulator-vddcpu-a {
-> +		/*
-> +		 * MP1653 Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +
-> +		regulator-name = "VDDCPU_A";
-> +		regulator-min-microvolt = <721000>;
-> +		regulator-max-microvolt = <1022000>;
-> +
-> +		vin-supply = <&main_12v>;
-> +
-> +		pwms = <&pwm_ab 0 1250 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddcpu_b: regulator-vddcpu-b {
-> +		/*
-> +		 * MP1652 Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +
-> +		regulator-name = "VDDCPU_B";
-> +		regulator-min-microvolt = <721000>;
-> +		regulator-max-microvolt = <1022000>;
-> +
-> +		vin-supply = <&main_12v>;
-> +
-> +		pwms = <&pwm_AO_cd 1 1250 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	usb1_pow: regulator-usb1-pow {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "USB1_POW";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc_5v>;
-> +
-> +		/* connected to SY6280A Power Switch */
-> +		gpio = <&gpio GPIOA_8 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	usb_pwr_en: regulator-usb-pwr-en {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "USB_PWR_EN";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc_5v>;
-> +
-> +		/* Connected to USB3 Type-A Port power enable */
-> +		gpio = <&gpio GPIOAO_7 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	vddao_1v8: regulator-vddao-1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDAO_1V8";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vddao_3v3>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddao_3v3: regulator-vddao-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDAO_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&main_12v>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	cvbs-connector {
-> +		compatible = "composite-video-connector";
-> +
-> +		port {
-> +			cvbs_connector_in: endpoint {
-> +				remote-endpoint = <&cvbs_vdac_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	hdmi-connector {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_connector_in: endpoint {
-> +				remote-endpoint = <&hdmi_tx_tmds_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	wifi32k: wifi32k {
-> +		compatible = "pwm-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-> +	};
-> +};
-> +
-> +&cec_AO {
-> +	pinctrl-0 = <&cec_ao_a_h_pins>;
-> +	pinctrl-names = "default";
-> +	status = "disabled";
-> +	hdmi-phandle = <&hdmi_tx>;
-> +};
-> +
-> +&cecb_AO {
-> +	pinctrl-0 = <&cec_ao_b_h_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +	hdmi-phandle = <&hdmi_tx>;
-> +};
-> +
-> +&cpu0 {
-> +	cpu-supply = <&vddcpu_b>;
-> +	operating-points-v2 = <&cpu_opp_table_0>;
-> +	clocks = <&clkc CLKID_CPU_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cpu1 {
-> +	cpu-supply = <&vddcpu_b>;
-> +	operating-points-v2 = <&cpu_opp_table_0>;
-> +	clocks = <&clkc CLKID_CPU_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cpu100 {
-> +	cpu-supply = <&vddcpu_a>;
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +	clocks = <&clkc CLKID_CPUB_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cpu101 {
-> +	cpu-supply = <&vddcpu_a>;
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +	clocks = <&clkc CLKID_CPUB_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cpu102 {
-> +	cpu-supply = <&vddcpu_a>;
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +	clocks = <&clkc CLKID_CPUB_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cpu103 {
-> +	cpu-supply = <&vddcpu_a>;
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +	clocks = <&clkc CLKID_CPUB_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cvbs_vdac_port {
-> +	cvbs_vdac_out: endpoint {
-> +		remote-endpoint = <&cvbs_connector_in>;
-> +	};
-> +};
-> +
-> +&ext_mdio {
-> +	external_phy: ethernet-phy@0 {
-> +		/* Realtek RTL8211F (0x001cc916) */
-> +		reg = <0>;
-> +		max-speed = <1000>;
-> +
-> +		reset-assert-us = <10000>;
-> +		reset-deassert-us = <30000>;
-> +		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-> +
-> +		interrupt-parent = <&gpio_intc>;
-> +		/* MAC_INTR on GPIOZ_14 */
-> +		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> +
-> +&ethmac {
-> +	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +	phy-mode = "rgmii";
-> +	phy-handle = <&external_phy>;
-> +	amlogic,tx-delay-ns = <2>;
-> +};
-> +
-> +&hdmi_tx {
-> +	status = "okay";
-> +	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-> +	pinctrl-names = "default";
-> +	hdmi-supply = <&vcc_5v>;
-> +};
-> +
-> +&hdmi_tx_tmds_port {
-> +	hdmi_tx_tmds_out: endpoint {
-> +		remote-endpoint = <&hdmi_connector_in>;
-> +	};
-> +};
-> +
-> +&ir {
-> +	status = "okay";
-> +	pinctrl-0 = <&remote_input_ao_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&pwm_ab {
-> +	pinctrl-0 = <&pwm_a_e_pins>;
-> +	pinctrl-names = "default";
-> +	clocks = <&xtal>;
-> +	clock-names = "clkin0";
-> +	status = "okay";
-> +};
-> +
-> +&pwm_AO_cd {
-> +	pinctrl-0 = <&pwm_ao_d_e_pins>;
-> +	pinctrl-names = "default";
-> +	clocks = <&xtal>;
-> +	clock-names = "clkin1";
-> +	status = "okay";
-> +};
-> +
-> +&pwm_ef {
-> +	pinctrl-0 = <&pwm_e_pins>;
-> +	pinctrl-names = "default";
-> +	clocks = <&xtal>;
-> +	clock-names = "clkin0";
-> +	status = "okay";
-> +};
-> +
-> +/* SDIO */
-> +&sd_emmc_a {
-> +	status = "okay";
-> +	pinctrl-0 = <&sdio_pins>;
-> +	pinctrl-1 = <&sdio_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	max-frequency = <100000000>;
-> +
-> +	/* WiFi firmware requires power to be kept while in suspend */
-> +	keep-power-in-suspend;
-> +
-> +	non-removable;
-> +	disable-wp;
-> +
-> +	mmc-pwrseq = <&sdio_pwrseq>;
-> +
-> +	vmmc-supply = <&vddao_3v3>;
-> +	vqmmc-supply = <&vddao_1v8>;
-> +
-> +	brcmf: wifi@1 {
-> +		reg = <1>;
-> +		compatible = "brcm,bcm4329-fmac";
-> +	};
-> +};
-> +
-> +/* SD card */
-> +&sd_emmc_b {
-> +	status = "okay";
-> +	pinctrl-0 = <&sdcard_c_pins>;
-> +	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	max-frequency = <50000000>;
-> +	disable-wp;
-> +
-> +	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply = <&vddao_3v3>;
-> +	vqmmc-supply = <&vddao_3v3>;
-> +};
-> +
-> +/* eMMC */
-> +&sd_emmc_c {
-> +	status = "okay";
-> +	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-> +	pinctrl-1 = <&emmc_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +
-> +	bus-width = <8>;
-> +	cap-mmc-highspeed;
-> +	max-frequency = <100000000>;
-> +	disable-wp;
-> +
-> +	mmc-pwrseq = <&emmc_pwrseq>;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&flash_1v8>;
-> +};
-> +
-> +&uart_A {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-> +	pinctrl-names = "default";
-> +	uart-has-rtscts;
-> +
-> +	bluetooth {
-> +		compatible = "brcm,bcm43438-bt";
-> +		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-> +		max-speed = <2000000>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "lpo";
-> +	};
-> +};
-> +
-> +&uart_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_ao_a_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&usb {
-> +	status = "okay";
-> +	dr_mode = "host";
-> +	vbus-supply = <&usb_pwr_en>;
-> +};
-> +
-> +&usb2_phy0 {
-> +	phy-supply = <&usb1_pow>;
-> +};
-> +
-> +&usb2_phy1 {
-> +	phy-supply = <&usb1_pow>;
-> +};
+> +#include <common.h>
+> +#include <dm.h>
+> +#include <env.h>
+> +#include <init.h>
+> +#include <net.h>
+> +#include <asm/io.h>
+> +#include <asm/arch/sm.h>
+> +#include <asm/arch/eth.h>
+> +#include <asm/arch/boot.h>
+> +
+> +#define EFUSE_MAC_OFFSET	20
+> +#define EFUSE_MAC_SIZE		12
+> +#define MAC_ADDR_LEN		6
+> +
+> +int misc_init_r(void)
+> +{
+> +	u8 mac_addr[MAC_ADDR_LEN];
+> +	char efuse_mac_addr[EFUSE_MAC_SIZE], tmp[3];
+> +	ssize_t len;
+> +
+> +	if (IS_ENABLED(CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG) &&
+> +	    meson_get_soc_rev(tmp, sizeof(tmp)) > 0)
+> +		env_set("soc_rev", tmp);
+> +
+> +	meson_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
+> +
+> +	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+> +		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+> +					  efuse_mac_addr, EFUSE_MAC_SIZE);
+> +		if (len != EFUSE_MAC_SIZE)
+> +			return 0;
+> +
+> +		/* MAC is stored in ASCII format, 1bytes = 2characters */
+> +		for (int i = 0; i < 6; i++) {
+> +			tmp[0] = efuse_mac_addr[i * 2];
+> +			tmp[1] = efuse_mac_addr[i * 2 + 1];
+> +			tmp[2] = '\0';
+> +			mac_addr[i] = simple_strtoul(tmp, NULL, 16);
+> +		}
+> +
+> +		if (is_valid_ethaddr(mac_addr))
+> +			eth_env_set_enetaddr("ethaddr", mac_addr);
+> +		else
+> +			meson_generate_serial_ethaddr();
+> +	}
+> +
+> +	return 0;
+> +}
 > 
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
