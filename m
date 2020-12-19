@@ -2,82 +2,79 @@ Return-Path: <SRS0=kh+7=FX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F2818C4361B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Dec 2020 14:27:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CDA7AC4361B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Dec 2020 18:41:51 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6D3EE21D95
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Dec 2020 14:27:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6D3EE21D95
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 3C53D2336F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Dec 2020 18:41:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C53D2336F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmx.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=tdzBkBzkgwuNG5QCvZ/qg7BXKh+dAgGomRJbIhRSqAc=; b=yDC9oR7mHaqFrzzV8Q8+LPUC4
-	T1abY9m3PB2xeOGIOwP9ct1ByQIvXJvEVFX94CNc/ebbsWr9Fj+Z0sVw5FFWRG06s8LwDzYtB+cGP
-	cTRo8X9kTw6dVBdXsi1mw6zNTAVuQeT4iWqPyWhlfqYEUQZQoBA6sFMBzAtkhSknYKyR1HazT4bG4
-	QR/v3YDAvDbFM7CfEHpTlg/2U32wzUstaQ0krZsnERlSSL0iGf9Vc/rslMfFOB/bIxJOz/4LoIG64
-	Vcl6oBLBkw3DR5Z6FvF64g3+R41iIRZkmj+K0fglR4DDKHZoMaAH+CuoSmw/NyvZDkz8TpVvQEezm
-	XYfN9Hw8Q==;
+	 bh=oYACGUIaAGUDnCFktIjzYIEztmBnDTRsKaxGQMHawuE=; b=cYsT76F6hp47NG8AjkJUau8i0
+	FYLXrhuvz5QU3+6dJiRwdDpZtPdChgmCkMSpPRpBVhghEzYxRVe+qNoMEg3y1HqRRrLkFiqDLYayn
+	FGPSPsfhVIU2LyddMPsJwWk+9+9EZmBcBWu5su15+N9TTFpz+J2wsdTpcKEbZWozupyYkKPpRSjki
+	8Pt0Yw/GdZemJCUjDr3uHXcSogYlzH8o1L0lIWYg7Xbwp4x3TfMQqf1i3I5ZiY0LoxwvrsuP2XK0S
+	SurJ4+65y4XRqbomyS+lv9Njq5IMNBMNBejpqX9t6USw4WFHqYAtepDbDEImoryUOhDbYbbWMkTHT
+	+fhf5esWA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kqdCL-0006zS-8B; Sat, 19 Dec 2020 14:27:05 +0000
-Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
+	id 1kqhAk-0001wY-2o; Sat, 19 Dec 2020 18:41:42 +0000
+Received: from dd10532.kasserver.com ([85.13.133.80])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kqdCI-0006yy-2e; Sat, 19 Dec 2020 14:27:03 +0000
-Received: by mail-ej1-x634.google.com with SMTP id d17so7335411ejy.9;
- Sat, 19 Dec 2020 06:27:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=PJMg4vY77FD72cLzResqMC8J22HpDhYfkvekbDOA8hw=;
- b=OGr9rPKYFmPOCIjFUUpZdaXqb0hPQHTqk2Ejk5SP6B62mJ7ILEn/gYZ9FLIAg/1Jhu
- QwMiLw3+afTFysuyYbXYcL8EsF40dldaYU4+5udTS2aXD5z9znJYAbS0/vKebvCNhVT9
- LQhtzgbPTfBVE8IrSxlHqtMO/HoGvBhYAOKeOJ+tzIxBG7ve0evmN8UNGYPkiuM2zxy9
- qyFSDfRCvvZYER3Xd9EjHtJmkdCw99iSUhE4CzVm02MOP/AWAddSPX0VfbU62XTwetDD
- fsKTFcOhqvqUYAfBkPPnC8fD8/pyGw9dKp9zd5Ov/in2Y1H8tGDN8wdGQO1VHY8MVrCx
- sGlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=PJMg4vY77FD72cLzResqMC8J22HpDhYfkvekbDOA8hw=;
- b=QrjI4ZfInARjRwNp3zzkinRgbEGTBJoZtuPAKe6FwA2YsAhLK8Fo0uEL7lsfs6S9Hy
- 6AgJGGN5QfCQrGKZM39dlvVtD/+bkGDDYLM8GCcVU5znGRHCpCQ77REtZ1wqyuK9iFWj
- N45qwjw3jBAhPI4b+4XvF+ASgtVcdsxzAtuJhwtHVYeks4CDfanXH2FwzoZ/XgVtYaLf
- mrYGp70Hxw6KZQDqDhwlqKGLII5ocxIoP78KcrHlH/gwzR7gMZiTjPkpYMhhouojz6YK
- JiidFwq3KDauKMbPiqqjUWnuBNo5F0KgxzTm9d0Sa0sdfamQG8AYjXp5sZ/WVGVBJMhU
- ZmtQ==
-X-Gm-Message-State: AOAM531afNzto0NZqSW/ey4YQgEklw+IRWBLwCr8oelTZirmVmykTnFQ
- aeSKrQpOKd+2wXqLcspsxrEqPreyoq93g+ngP2dP1TiMPhc=
-X-Google-Smtp-Source: ABdhPJzHCQAe/WZxH76JhNyP6u/9CtJ78yS9Hefnoixpz1+91CJWSuLXg7X7q3Dm2FNyAmW1/L+E9r9iFQjHUqJ89HA=
-X-Received: by 2002:a17:906:6c8b:: with SMTP id
- s11mr8566123ejr.187.1608388020423; 
- Sat, 19 Dec 2020 06:27:00 -0800 (PST)
+ id 1kqhAg-0001vy-An
+ for linux-amlogic@lists.infradead.org; Sat, 19 Dec 2020 18:41:39 +0000
+Received: from odsus.home.arpa
+ (dslb-002-204-168-073.002.204.pools.vodafone-ip.de [2.204.168.73])
+ by dd10532.kasserver.com (Postfix) with ESMTPSA id 2EC731F42B26;
+ Sat, 19 Dec 2020 19:41:32 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+ by odsus.home.arpa (Postfix) with ESMTP id 9CFA33D671;
+ Sat, 19 Dec 2020 19:41:31 +0100 (CET)
+X-Virus-Scanned: amavisd-new at home.arpa
+Received: from odsus.home.arpa ([127.0.0.1])
+ by localhost (odsus.home.arpa [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id q-BcfQOwSYD5; Sat, 19 Dec 2020 19:41:29 +0100 (CET)
+Received: from [192.168.20.240] (r64.home.arpa [192.168.20.240])
+ by odsus.home.arpa (Postfix) with ESMTP id A3E673D66F;
+ Sat, 19 Dec 2020 19:41:29 +0100 (CET)
+Subject: Re: [BUG]odroid-c2 does not hotplug usb-devices
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>
+References: <c2dc3507-67a7-3c18-374f-050295bc1d59@gmx.net>
+ <CAFBinCDrMj4GP2cy4dBSt_isGXf4CuhmDz=uAs+gZwUGQc=o6A@mail.gmail.com>
+ <8afb2adb-4581-a847-e7e0-db1e915e9247@gmx.net>
+ <CAFBinCD6aqna6YYvXgO5iKWa9N3yvqehhB+SAirLaUu3xScy2Q@mail.gmail.com>
+ <bd9d96d2-8b66-db93-a855-5e179adca8c9@gmx.net>
+ <0d05671d-b5f4-55e4-f5bd-58410cc92d08@baylibre.com>
+ <dd160e55-55e9-1c41-afcb-22990a05a86b@gmx.net>
+ <CAFBinCDv+TgEgf1g7xBTknr-aJMhC3K1wOW87-06YG4sQ9wUAg@mail.gmail.com>
+ <531138bc-d343-1081-d208-ab6c98c1ddd8@gmx.net>
+ <CAFBinCBoWGV02hF=0DK_geLpArDtm-qbAKCrXQitpb33UU_zYA@mail.gmail.com>
+From: Otto Meier <gf435@gmx.net>
+Message-ID: <0cef2d79-4f15-72c6-1308-d29eca9e49cc@gmx.net>
+Date: Sat, 19 Dec 2020 19:41:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-References: <CGME20201218102245eucas1p1c0e2cb401d9c5c8bb94b5fb740eaa3a4@eucas1p1.samsung.com>
- <20201218102228.16211-1-m.szyprowski@samsung.com>
-In-Reply-To: <20201218102228.16211-1-m.szyprowski@samsung.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 19 Dec 2020 15:26:49 +0100
-Message-ID: <CAFBinCAFh3yn1+wH0PhCYd9Thza=LG5-s=f7tXOf0RCkaXcE4g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: switch TFLASH_VDD_EN pin to open drain
- on Odroid-C4
-To: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <CAFBinCBoWGV02hF=0DK_geLpArDtm-qbAKCrXQitpb33UU_zYA@mail.gmail.com>
+Content-Language: de-DE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201219_092702_189935_A5B887D6 
-X-CRM114-Status: GOOD (  16.28  )
+X-CRM114-CacheID: sfid-20201219_134138_517748_8F4A94E8 
+X-CRM114-Status: GOOD (  29.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,47 +86,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Dongjin Kim <tobetter@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: linux-amlogic@lists.infradead.org, u-boot-amlogic@groups.io,
+ U-Boot Mailing List <u-boot@lists.denx.de>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Marek,
+Hi Martin,
 
-thank you for this patch!
-
-On Fri, Dec 18, 2020 at 11:23 AM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
+Am 19.12.20 um 14:58 schrieb Martin Blumenstingl:
+> Hi Otto,
 >
-> For the proper reboot Odroid-C4 board requires to switch TFLASH_VDD_EN
-> pin to the high impedance mode, otherwise the board is stuck in the
-> middle of loading early stages of the bootloader from SD card.
+> On Mon, Dec 14, 2020 at 8:34 PM Otto Meier <gf435@gmx.net> wrote:
+>> Hi Martin,
+>>
+>> Am 13.12.20 um 19:46 schrieb Martin Blumenstingl:
+>>> Hi Otto,
+>>>
+>>> On Mon, Dec 7, 2020 at 1:43 PM Otto Meier <gf435@gmx.net> wrote:
+>>> [...]
+>>>>>> So with the latest u-boot and the kernel from https://github.com/chewitt/linux/tree/amlogic-5.10.y
+>>>>>> commit 725fc8df7898102f9031ba2075f763884ffa3ee8 everything is working again.
+>>>>>> USB does hotplugging as expected.
+>>>>> So, this fixes USB under Linux ?? It's not clear
+>>> if you have time it would be great if you could figure out which of
+>>> the patches from Christian's tree fixes USB hotplugging for you.
+>>> Or is it fixed in Linux 5.10-rcX even without any patches?
+>>>
+>> The new mainline kernel 5.10.0 from Linus, without any other patches
+>> does detect USB hotpluging,
+>> when using u-boot DMI: Hardkernel Co., Ltd. ODROID-C2/ODROID-C2, BIOS
+>> 2021.01-rc3-00039-gec79f5ce22-dirty 12/08/2020
+>> and the following u-boot patch:
+> [...]
+>> When i use the last unpatched emmc bootable u-boot 2020.04 the kernel
+>> boots, but usb hotplugging
+>> does not work.
+> Thank you for testing this!
 >
-> This can be achieved by using the OPEN_DRAIN flag instead if the
-I think this should read "instead of ACTIVE_HIGH"
+>> Hope this describes my findings. If i can help further, please give me a
+>> note.
+> to be honest: I am a bit lost here. I don't understand how the BOOT_*
+> pins interfere with USB.
+> I also don't have any Odroid-C2 board myself so I cannot do any
+> experiments myself.
+> Neil, please let me know if you have any idea here.
+The latest Patch from Neil in U-boot also
+fixes all the problems:
 
-> ACTIVE_HIGH, what will leave the pin in input to achieve high state (pin
-> has the pull-up) and solve the issue.
+This fixes the wrong usage of clrsetbits_le32(), badly setting the set argument.
+
+Fixes: c4c726c26b ("pinctrl: meson: add pinconf support")
+Reported-by: Anton Arapov<arapov@gmail.com>
+Reported-by: Otto Meier<gf435@gmx.net>
+Signed-off-by: Neil Armstrong<narmstrong@baylibre.com>
+---
+Hi Anton, Otto,
+
+This should fix eMMC booting on Odroid-C2, could you have a quick try to confirm ?
+
+Thanks,
+Neil
+
+  drivers/pinctrl/meson/pinctrl-meson.c | 4 ++--
+  1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index d4539b02d8..5065b62436 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -216,13 +216,13 @@ static int meson_pinconf_bias_set(struct udevice *dev, unsigned int pin,
+         }
+
+         /* othewise, enable the bias and select level */
+-       clrsetbits_le32(priv->reg_pullen + reg, BIT(bit), 1);
++       clrsetbits_le32(priv->reg_pullen + reg, BIT(bit), BIT(bit));
+         ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_PULL, &reg, &bit);
+         if (ret)
+                 return ret;
+
+         clrsetbits_le32(priv->reg_pull + reg, BIT(bit),
+-                       param == PIN_CONFIG_BIAS_PULL_UP);
++                       (param == PIN_CONFIG_BIAS_PULL_UP ? BIT(bit) : 0));
+
+         return 0;
+  }
+--
+2.25.1
+
+perhaps this gives an idea of what was wrong.
+But anyhow for me the issues with U-boot and usb hotplug is solved so far.
+For me this is even more i understand.
+
+
 >
-> Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
-> Fixes: 326e57518b0d ("arm64: dts: meson-sm1: add support for Hardkernel ODROID-C4")
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Best regards,
+> Martin
+>
+Thanks for your help.
 
-> ---
-> Here is a discussion on u-boot's mailing list that inspired this patch:
-> https://lists.denx.de/pipermail/u-boot/2020-December/435295.html
-I'm used to datasheets not being up-to-date. but now also the
-schematics don't seem to match the actual HW? :-(
-
-
-Best regards,
-Martin
+Otto
 
 _______________________________________________
 linux-amlogic mailing list
