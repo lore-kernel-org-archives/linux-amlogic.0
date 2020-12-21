@@ -2,89 +2,87 @@ Return-Path: <SRS0=3nIP=FZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DC849C433E9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Dec 2020 18:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 237E9C4332B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Dec 2020 18:36:42 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9D4F422D08
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Dec 2020 18:14:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9D4F422D08
+	by mail.kernel.org (Postfix) with ESMTPS id D97AD23122
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Dec 2020 18:36:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D97AD23122
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=qrRcGsg26YKoVkZ5MnQxrYKDXQZlNCHG4MHr6+jv8g8=; b=uXXo0dVN6SOb8PTF0HjhNYQ0G
-	rbyO2w38P3xUZ2ud8zo1q8EQMT0T2uou9x0Kf6Tr1HtJ276BKmnW6LQwZ1zltFg21OJ/DpM2E9Y6c
-	Vxct3LDep5LBa37dHv+HEEGBgzks3M625lQdkcNSovtSC0xPZVUq9IsSu9YfDJrgO5cFbbH/Yv45s
-	qKx1ds+oComsbwNKEcc9JDJ70EuXMFK32m9ZkGyD64Mn9OqFygGN7Niw9SSgqCEtPwTH3jWBCoxVk
-	9ZRqXuAlmznBTz89KAhUiKZivUW8KofuLNTejIkxH6heSPf4JtP1+7ElwuaHXPZFIBelTyw0zODyt
-	QYTYITzCA==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=mvlM2wbyhAsyucSCuphHDg5QH94iB5CRr8o8fLqCWB4=; b=MZF5ry23euC1pkkBP7V9F0oaku
+	aSuPUHaa0CxDLCqqH1C4zFnekcxq2o+GelAmC/WgwmDorwp51iYZBqcU+G2HfsRXIUufiGqUlVDow
+	Kbmvt7/L2NWToLeAfmyEMM2rnhlGGBdyPGTk+NhhH/4X6G154B/aLiPKebwsBDY2KFPa31pVyLRQj
+	k//g0AgCoAAvuFpxTawS255dlHxMkIOVaUP9EdilR8iA91YYhzGiBGDcQnRU1R2kfWVY2DPg743i6
+	Ur0y3bIFhk/UacyyLYCowEWyKlq7/61Tp04xmCdNMOkEHlc8TFR/6RgmS0PGRuL7qybEk23/ITCbv
+	TF+PPEwA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1krPhD-00021S-CI; Mon, 21 Dec 2020 18:14:11 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1krQ2u-0005CQ-A6; Mon, 21 Dec 2020 18:36:36 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1krPgl-0001su-VG; Mon, 21 Dec 2020 18:13:45 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 190so10731332wmz.0;
- Mon, 21 Dec 2020 10:13:43 -0800 (PST)
+ id 1krQ2r-0005BD-O3; Mon, 21 Dec 2020 18:36:34 +0000
+Received: by mail-ej1-x635.google.com with SMTP id ga15so14833332ejb.4;
+ Mon, 21 Dec 2020 10:36:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=CYNvrmyBcR24qaTBP8yatBcY626HdS4K9apXn77mSNM=;
- b=lD267zahUVgA3DLau9u4L0oNjrXSi3d0rZHEzzA3ci0+hZfHJbDbQeSqa8dyZZgm8A
- Qiha3IP/O97P1NRVUm0/yueKbU9MfRiUZHURyi+oJEyoYaZM7wI6vFuICqR6Gc2kZRdw
- FwOC3bM/EiuB+KT3rgLfkgO+GNvW3GF6mmoRWejfhG1mIfGBt4ybgUSmynzTnDj25MP2
- JrWt0W1TCL+AK9vAssOHE5EH8fl7HjedxcbAkXmylnqJweqfKLeZK61Lywe7lAnDG9N+
- Lzlq+ssfe7dKMtc9646Gzs9+XgQ4WV6b5gJbQ7QGW1Mv/Az/unY+Zh2fkPyDh56cNYGW
- 9jXg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=fWkMbxsI1o+TKi40gvIKxOy8FUWY3wrnEaa8EBZzq+Y=;
+ b=YSnJ3X3KJ1HnAexXXg1QCJQQSdejcczuBUdYz9NqTnTkMwjP2n8x7yq5/4yvSgO/jD
+ iPcvjMPTevnDN1Dy6+O9vIM+gtaTcl8dbIz6wiGNlx/FqKLDGNWpXzlPc1t2xr8duVVe
+ wydaoV00COj0+X+mrHjieCOUZa4zYBp8cSq9/dceDzvn+adBoFZ8vgA/fYzHKIQL1PyS
+ xMbuPofmZiCl9T+PIYd9WWjh4Ow3TqYq1urW32enTAVV+l2vpB0I9mbM/qshXIYjP0z0
+ nkFwWhmBEPf/tLkUnXAjbLdn5BihMqkNUyjBsnL8DoCRI8WBJkb8qAIRektRryYljCyA
+ Yosg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=CYNvrmyBcR24qaTBP8yatBcY626HdS4K9apXn77mSNM=;
- b=gMDtrTEivDMyaG6pF7xgs41/Psym6IWnnqYmvSwxghhuZA+kfPH5+JV1CuuhdqBbFI
- L8urOWE5a4mA6SVsPZD9BJmphLK85d6rbPazwKlr10LKw6SuQOpoL+TrFgkrWJYPHOKG
- B63yIXruZ/pBS2oYz2nvPPGze7anwAsDbfPg8/1+4vrqMyLSlfklBO6ddaRqZZAn0X3Z
- s6aRTOUY2iM1aSgoy8PFFES4aw7ijiyZDIKsljwAg8Lm7xXZrf+WrVSzWbM4F8MJTBr8
- pgfMzxjrOMgpq7MK8Wb2dVx/NXjKnURc4+IUz0TXGt5TEW7S/Qi0DIptoeI4lxXyZu3J
- Chow==
-X-Gm-Message-State: AOAM5325t58ylBdjg3jtPvEDREzcjnywefly2JpkGJMVQ1pQOKz7XfaU
- +YtMW6APrbQaaNGXsL0esKJU0Yn7CI0=
-X-Google-Smtp-Source: ABdhPJxbLR3uHnt07Oa6Z3aVJYz+7qis1B/0BHuj/Kq0dNDM4BADbUR3yfKav7Fm5wX8dC42z5Lizg==
-X-Received: by 2002:a7b:c1c1:: with SMTP id a1mr17698718wmj.104.1608574422400; 
- Mon, 21 Dec 2020 10:13:42 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=fWkMbxsI1o+TKi40gvIKxOy8FUWY3wrnEaa8EBZzq+Y=;
+ b=qAPstJBl1h5osIszqnuaIJl1Ra/L8C3XK35k9/J912bwMVPjqKvnqUWN8Lv1NUHojo
+ dkexVjNWQU3D+pyITkbvIs5O838xP9CWGutfDwmcvjhuANwtLCRQzp6fsuzv/InQovgM
+ kkHiZBEZ29CHg4LN/f8bO5FXJ74zEkZ480EMHZCoa86b/HUPiFbR5TrkTlrtk9z0Vaqe
+ EzYf5mpGv1dWN+UYT9qa8NSkAbPcvg/lvKvN5gFCaD4ThYJ/9pI9/eR6KQ16v2zH2kys
+ 8FWVR7KKn8ydjVNSD8Gxo/IIZkV8W7MoEXmcjFZclGvdn1TLbqMvEG0ZRtMBJnf9tmzJ
+ hh9A==
+X-Gm-Message-State: AOAM533pbBs1O49bCnQLDredNSaPdT1Ry6Nsa6RKM29B/BVTazYZLBol
+ m80KMreiB8XW82IySHsnu4bUmRfwBI0=
+X-Google-Smtp-Source: ABdhPJzYTKKKK7YdSQG4z2k5CUmkaYUnguR49SQ7yzoPQZ6lp44/ihPAGPP2FhdQucQPXMQKgdVqBw==
+X-Received: by 2002:a17:906:eb49:: with SMTP id
+ mc9mr16073411ejb.487.1608575791177; 
+ Mon, 21 Dec 2020 10:36:31 -0800 (PST)
 Received: from localhost.localdomain
  (p200300f137019000428d5cfffeb99db8.dip0.t-ipconnect.de.
  [2003:f1:3701:9000:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id m11sm23434936wmi.16.2020.12.21.10.13.41
+ by smtp.googlemail.com with ESMTPSA id ld2sm9390408ejb.73.2020.12.21.10.36.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Dec 2020 10:13:41 -0800 (PST)
+ Mon, 21 Dec 2020 10:36:30 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
-	khilman@baylibre.com
-Subject: [PATCH 5/5] ARM: multi_v7_defconfig: Enable support for the ADC
- thermal sensor
-Date: Mon, 21 Dec 2020 19:13:06 +0100
-Message-Id: <20201221181306.904272-6-martin.blumenstingl@googlemail.com>
+	jbrunet@baylibre.com
+Subject: [PATCH 0/2] clk: meson8b: cleanup unused code
+Date: Mon, 21 Dec 2020 19:36:22 +0100
+Message-Id: <20201221183624.932649-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201221181306.904272-1-martin.blumenstingl@googlemail.com>
-References: <20201221181306.904272-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201221_131344_101113_800F5F56 
-X-CRM114-Status: GOOD (  12.87  )
+X-CRM114-CacheID: sfid-20201221_133633_813461_12A2BBFD 
+X-CRM114-Status: GOOD (  10.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,35 +95,28 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- narmstrong@baylibre.com
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-32-bit Amlogic Meson platforms are using a special ADC channel to read
-the SoC temperature. Enable the "generic ADC thermal" driver so this
-data can be used to cool the SoC for example by reduing the maximum CPU
-and GPU frequencies temporarily.
+Hi Jerome,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/configs/multi_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+these patches are two small cleanups for code we don't need anymore.
+The first patch removes support for old .dtbs. I am not sure if the
+"fallback" logic still works as I have not tried this in a long time.
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index c5f25710fedc..0a55240ce2fc 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -515,6 +515,7 @@ CONFIG_ARMADA_THERMAL=y
- CONFIG_BCM2711_THERMAL=m
- CONFIG_BCM2835_THERMAL=m
- CONFIG_BRCMSTB_THERMAL=m
-+CONFIG_GENERIC_ADC_THERMAL=m
- CONFIG_ST_THERMAL_MEMMAP=y
- CONFIG_UNIPHIER_THERMAL=y
- CONFIG_DA9063_WATCHDOG=m
+
+Martin Blumenstingl (2):
+  clk: meson: meson8b: remove compatibility code for old .dtbs
+  dt-bindings: clock: meson8b: remove non-existing clock macros
+
+ drivers/clk/meson/meson8b.c              | 45 +++---------------------
+ include/dt-bindings/clock/meson8b-clkc.h |  2 --
+ 2 files changed, 5 insertions(+), 42 deletions(-)
+
 -- 
 2.29.2
 
