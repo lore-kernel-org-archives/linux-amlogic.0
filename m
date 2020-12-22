@@ -2,77 +2,82 @@ Return-Path: <SRS0=MUs3=F2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 39505C433DB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Dec 2020 16:45:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30860C433DB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Dec 2020 17:25:14 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C8F6623103
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Dec 2020 16:45:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C8F6623103
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id EB05223133
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Dec 2020 17:25:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EB05223133
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linuxfoundation.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:MIME-Version:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Vm1OcE0l09hH3GVkcPabwp1dBywW0HaV4le3vqmvTMM=; b=cnFZTYUtCsjXeiyv8b9ht1EhCI
-	9XTXAaq8fB5UDgFy7LKa52fS8PHCCd32pYxa7p+CS8axnRjkls+50cIOGPcmIVhWAVYUugfbfilPf
-	7hwHeblg0A24vFKe0PnqKE2/dPIpFlfqxJOUejSy/at2EAs871tsW4xUD1HQe2Ac2ukhn8oWhRd/c
-	j0A4uLO+Fpe8WNLwVE+D6TPuPelnrlwSncJQfXtmQBQ7ZqrbbXmjCZpKRVcNpAuCPqowd8U67Zthg
-	ntjkF5RXZStA5x6EW93F/3xBJoPXIXd/1dUndyZc7EdAO/KXMU7/fQ7JImp48nPCn/6KIfcs9T8j9
-	SbL4p/8w==;
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=nziSYki8SCphhR7EllgAoTCaa2mY2jepcGY9EN/M3s8=; b=t2kE4zvP8GM595BrEkt9OGiox
+	o7/Mjyp2Vix2gnPE3l3zCMKcULfm5qJtilCUoHLFmd31ouiBY32Aa+PA28gAvDBMcg3iiSYisITRi
+	m+8QToSjsJgiiPoSrWG2hkAfsMbi7GBJbyyGQ4UWWzu0b8c1O68hkDsgTL9uDSr7UXiDCG5+CEnpV
+	dPtHUlrfeCI9jbx51VgLEOBe3A4tol0FOYRgrNccu+OwfV4KkU9WB61A1fr3+ruJGF9CANMBYYXsU
+	zzi/9FLjiGK33SXDiV54NZfwsYzIvbEav94O1Kp5tXeSbOWiVcRWaCHqjTSvbYFRxfDQheEXPLw49
+	AYnAq5vZA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1krkn1-0004kE-40; Tue, 22 Dec 2020 16:45:35 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1krlPH-0007GC-WD; Tue, 22 Dec 2020 17:25:08 +0000
+Received: from mail-qk1-x736.google.com ([2607:f8b0:4864:20::736])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1krkmy-0004jj-9b
- for linux-amlogic@lists.infradead.org; Tue, 22 Dec 2020 16:45:33 +0000
-Received: by mail-ej1-x629.google.com with SMTP id lt17so19102165ejb.3
- for <linux-amlogic@lists.infradead.org>; Tue, 22 Dec 2020 08:45:30 -0800 (PST)
+ id 1krlPF-0007FX-0h
+ for linux-amlogic@lists.infradead.org; Tue, 22 Dec 2020 17:25:06 +0000
+Received: by mail-qk1-x736.google.com with SMTP id c7so12566382qke.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 22 Dec 2020 09:25:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to:cc;
- bh=RqzStz4ozysucy26SJgzcqE6nfiNeIgXJaQ2kT0IuDs=;
- b=M8/N/g3xIjecbm0eUycIgxS8JcUJMYX+Nidv2RstiluhxMoWYe2lbMGhx0dxXVeekL
- B/W4wQisRLchwEsSQ0X/Bhwr2mqtcEszvIf5EzLDyqRFFTWlJEDyNiTjS2oKYLAOx0nd
- YwDKmusYNb6hi6R7/HiQivypRfYJYSSVJ7OLi6FpFU/lgZxOnyMAE+ISQeVPtOV1sFJk
- OI8C/B3NnhU+pNWnTSx3RTElgc18cocviaFsLrYv5fUJg4YnBfZn4X5dWzRjEu2bXo5x
- n/v/gq64x5MNY/ssuwU1Azy6bE8MWjnK2PvukEM+2d1y9FP27ahbwCcpunKuV7hijxLv
- zSzA==
+ d=linuxfoundation.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=+2uK0bNHYrwMpWuzQ41ZoaSBINguN6e6J9Bu8gfw5lY=;
+ b=aKy9tXFmq5dJ+NrLW9xAL+n/OzSWvcylLxpquiuP+pY5bD0E46S36vQD/TCXdtsqR2
+ AlvW1e+GUgNXmnFkwrAbXDNmN+lt1jaGl36kY1P74JTLOrGSNexw6Lgbl+6WLWpg88UW
+ xkPtDk3NgqKVpm4RhyDOluuG678C9BUDAb3CU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=RqzStz4ozysucy26SJgzcqE6nfiNeIgXJaQ2kT0IuDs=;
- b=VsD+lbOAs5A0exWGhGYN/FrkLkVRehY5J17CHTo8JyNowiv7MtO6OouTsxGdffrCwO
- 9syE293rLJrPPNPYC9sKTuSfqYNoGaIxOquQLlGxXdsGtb09KkM50+c/C3iV3iUUspR3
- ypMLsBs5uQUaSTi2uvoRBCDsRIwp4W9oD6eEei0YLKJ59bA/6FS4AVLfO7kLlqbbKFSA
- YHhRRmpvx7lLU3Dgw3o6sdY8FH0VTo184jGI/1qHrSS/wflY2oS776DQOzO2SqNMsO2k
- AhXe4sqES0tAOnJrB+gDZcx8oD0cWPCey3tShSbuZrZisPTw+86zZfId4hMT8CTscpdV
- 4Eqw==
-X-Gm-Message-State: AOAM532YJHeNeUj18qTxrLJf6G6wZSMeIidZV1Zg4Ncr2+VrNV8Z+GKe
- m/k5IyDWKj4BHta2/KaqXErfDoOyKpHNvnE5EB8=
-X-Google-Smtp-Source: ABdhPJzMihwnVQYmHan0tiOfldhXb7OTnV+gbhIrc2Z7XgqZrnkRMPeFCJNPC9Sm2AanE4aNdJNms+DTugbwnzOLeUc=
-X-Received: by 2002:a17:906:a415:: with SMTP id
- l21mr20407198ejz.2.1608655529686; 
- Tue, 22 Dec 2020 08:45:29 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=+2uK0bNHYrwMpWuzQ41ZoaSBINguN6e6J9Bu8gfw5lY=;
+ b=dbT0zT8CQWm4d6MFUR4M2/M7gTLYcEITmLcV1hLWqKMeMOto2raESvRpMcqcIafjeq
+ 0LbuUvLgUrV9N7kANHeKzLMaJlbMKevhuCB5NAdzzi4fAtyTzgTxNyNSmALMVy425rgj
+ mFmwKCt84A9Ee7TU9se+P7W8fOGMr3YDBZ1Y3JWRMnNj6u64Zbf5TYLM1SXb1egxjhq2
+ 5Ipj/d+od4vFoYwV1Y3UyPCpgvOWbz2rA9/145kfZykRX97yLDHbHaheGjLKbni8YsRf
+ yWYktQS5sV1Jqy2VxUSqY57cytnwIMOMDhoTAy82aQ2wwsbzhJjFXzPH/fmOnfoy82Jk
+ V4tQ==
+X-Gm-Message-State: AOAM533QioR4BT12EAYeqt2vgOGopyIYp4jLlUV03eZTNnmOmMw4hlmn
+ PTrf02TLkjzH09hA7hG7FWFHZA==
+X-Google-Smtp-Source: ABdhPJySxVXHrvHzRhRjuV9lreRVgmzfIEoOnaX375JPzPBvOJ7ILwYAYNiVoWiy9tHHqHuc7Hrp1g==
+X-Received: by 2002:a37:6c06:: with SMTP id h6mr13373371qkc.115.1608657901072; 
+ Tue, 22 Dec 2020 09:25:01 -0800 (PST)
+Received: from chatter.i7.local ([89.36.78.230])
+ by smtp.gmail.com with ESMTPSA id e38sm6708882qtb.30.2020.12.22.09.24.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Dec 2020 09:25:00 -0800 (PST)
+Date: Tue, 22 Dec 2020 12:24:58 -0500
+From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [sysadmin] linux-amlogic patchwork not showing new patches
+Message-ID: <20201222172458.dfuqmm7hwhjqs6th@chatter.i7.local>
+References: <CAFBinCAdq59k5wY_K+_NCxx-PLrp+eAsfOE1jkj4q5TFn7ruEg@mail.gmail.com>
 MIME-Version: 1.0
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 22 Dec 2020 17:45:19 +0100
-Message-ID: <CAFBinCAdq59k5wY_K+_NCxx-PLrp+eAsfOE1jkj4q5TFn7ruEg@mail.gmail.com>
-Subject: linux-amlogic patchwork not showing new patches
-To: webmaster@kernel.org, dwm2@infradead.org
+Content-Disposition: inline
+In-Reply-To: <CAFBinCAdq59k5wY_K+_NCxx-PLrp+eAsfOE1jkj4q5TFn7ruEg@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201222_114532_376879_A7D93B5D 
-X-CRM114-Status: UNSURE (   6.50  )
+X-CRM114-CacheID: sfid-20201222_122505_178210_B0721500 
+X-CRM114-Status: UNSURE (   8.39  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -85,33 +90,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, khilman@baylibre.com
+Cc: linux-amlogic@lists.infradead.org, dwm2@infradead.org, khilman@baylibre.com,
+ webmaster@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+On Tue, Dec 22, 2020 at 05:45:19PM +0100, 'Martin Blumenstingl' via Systems Administrators wrote:
+> Hello,
+> 
+> our linux-amlogic patchwork [0] is not showing newly sent patches.
+> The last patch showing up there is from December 3rd 2020.
 
-our linux-amlogic patchwork [0] is not showing newly sent patches.
-The last patch showing up there is from December 3rd 2020.
+Sorry about that -- this was missed during system migration done around that
+time.
 
-Mails are showing up in our mailing list archive though: [1]
+> Mails are showing up in our mailing list archive though: [1]
 
-One example for a patch which is missing is "net: stmmac:
-dwmac-meson8b: ignore the second clock input" [2] sent by me.
-The date header from the mail: Sat, 19 Dec 2020 14:50:36 +0100
+The upside of the new post-migration setup is that we feed patchwork from
+public-inbox archives, so nothing got lost. All messages received since
+December 3rd are now in patchwork.
 
-Who can look into this issue and help getting it fixed?
-
-
-Thank you in advance and best regards,
-Martin
-
-
-[0] https://patchwork.kernel.org/project/linux-amlogic/list/?state=%2A&archive=both
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2020-December/thread.html
-[2] http://lists.infradead.org/pipermail/linux-amlogic/2020-December/009360.html
+-K
 
 _______________________________________________
 linux-amlogic mailing list
