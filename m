@@ -2,73 +2,75 @@ Return-Path: <SRS0=E6Yr=GA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 74E0EC43217
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Dec 2020 16:33:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD57DC433DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Dec 2020 16:33:36 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 29F88207CC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Dec 2020 16:33:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 29F88207CC
+	by mail.kernel.org (Postfix) with ESMTPS id 88E61207B7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Dec 2020 16:33:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 88E61207B7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lespocky.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=AYVA7GHcJmKvs2fyKw13G1ovNZL19nbvDiVcZDIOMow=; b=XII3w4RZXBU+GwhJeqgtoKy4GF
-	REvpGtB5mC6SRX79KdOA4RXAfszdHRLGQgaUc0H6OJNcCBsTKD45eU3g9CgYPB3pfuZl0kTn4dEST
-	HhCj3Dpsa/loTFZk3afWLqdSERYf7gRtLPUHHxk5DLu7XDe5ARRHnVe6byZppD303TGovs3/9AKDO
-	7K9xbD8VH6Y02woKthfzAsav6T+TuKYWizTZfaj3PLNcb1tqU6bw6o7svTcOttIEPIIy/74r/I2QD
-	2YAFarQq/juaANEOiTHc+F46rxt9lONjrCO+oPwU2NUBvQUwZX2ND787gOAyowL0G903cM4uM46NR
-	R6dMhLrQ==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=fWq5hW+Axk4xK5AQ5gAr5WW4kqDZFIphEXDbciLAcms=; b=jaaioW24nbGaqFU0pfo4MRK9W
+	PBfh7A3iu5bUTJvD4d1jrkfCazObEAXBE4B+4TOfkj0qWJk+07jHQ7YMgwt4vwPJZ0h9z03ZcEUB2
+	1hhscpLbkL20bnCL66xQ945enGBdz2K24WeKxXi3I4ADDs83cCukWPLC+TjzW7eodGB+A+WigvAUv
+	9NFL5EsFvr6n2/EKZ8j3+KCBUEb/RrI6GOHOg2/CzC/dudDDmwdxt6U1f6W9gPxT3qJInG2zy3eh9
+	HRLxq30AgEpLZuXRbj5jKZyw3iP+Kllz1M80AK5iczucb5KS0z7+vY/eCoEyYLzChHBb0R8cJ7zIu
+	QK6slSIpw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ktvSR-0005aU-6F; Mon, 28 Dec 2020 16:33:19 +0000
-Received: from mout.kundenserver.de ([212.227.126.187])
+	id 1ktvSd-0005di-Uz; Mon, 28 Dec 2020 16:33:32 +0000
+Received: from mout.kundenserver.de ([212.227.126.131])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ktvSL-0005UL-Rl; Mon, 28 Dec 2020 16:33:14 +0000
+ id 1ktvSO-0005ZE-Pz; Mon, 28 Dec 2020 16:33:18 +0000
 Received: from methusalix.internal.home.lespocky.de ([92.117.54.172]) by
- mrelayeu.kundenserver.de (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1MhFpq-1kOjYv2tNq-00eJLS; Mon, 28 Dec 2020 17:32:59 +0100
+ mrelayeu.kundenserver.de (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1MK3BO-1kakAl18Pe-00LYy0; Mon, 28 Dec 2020 17:33:01 +0100
 Received: from lemmy.internal.home.lespocky.de ([192.168.243.175]
  helo=lemmy.home.lespocky.de)
  by methusalix.internal.home.lespocky.de with esmtpsa (TLS1.3) tls
  TLS_AES_256_GCM_SHA384 (Exim 4.94)
  (envelope-from <alex@home.lespocky.de>)
- id 1ktvS2-0002GJ-5N; Mon, 28 Dec 2020 17:32:55 +0100
-Received: (nullmailer pid 32604 invoked by uid 2001);
- Mon, 28 Dec 2020 16:32:53 -0000
+ id 1ktvS3-0002GQ-UH; Mon, 28 Dec 2020 17:32:56 +0100
+Received: (nullmailer pid 32623 invoked by uid 2001);
+ Mon, 28 Dec 2020 16:32:54 -0000
 From: Alexander Dahl <post@lespocky.de>
 To: Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v9 0/4] leds: pwm: Make automatic labels work
-Date: Mon, 28 Dec 2020 17:32:13 +0100
-Message-Id: <20201228163217.32520-1-post@lespocky.de>
+Subject: [PATCH v9 3/4] ARM: dts: stm32: Fix schema warnings for pwm-leds
+Date: Mon, 28 Dec 2020 17:32:16 +0100
+Message-Id: <20201228163217.32520-4-post@lespocky.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201228163217.32520-1-post@lespocky.de>
+References: <20201228163217.32520-1-post@lespocky.de>
 MIME-Version: 1.0
-X-Scan-Signature: e9056562e10c809dee3344e50e145a1f
-X-Provags-ID: V03:K1:ztIxjkZXmzA4zIV1xgFd+DY20dZqEQMIRVMHSPYRMW3VFcqIiZw
- n9f6GRjs+5QUaQjm5RvcphCke18ZeRqeibmGi/uiyzWXTS3qJGNYbEJTzYwZZyL2xi/5G5X
- pk07IfD1zPx2OQ/t6ey+RPliD/dYCy/vL/hJgUMbQpEKtWbAii+kSAMSx2pEizt+uTt6Qug
- 59hx5SzeZ4RSpArkPg95g==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:RQlq3c2RuHM=:OfzQvvbw4nmVmbV7Hct3WL
- kvLq1UK438l/NeFTcb9L1gMen7sj2Isbqok1YD9HEv6/3VMu5HBYcwLm0pVbKrjRIRdlUhnyz
- 0uccCuUAJiOJU0sNmXI7NxnJypmSoCuvWw7zIy7fMctiYakM/rROpU2DqN4JQtMwWg+kSJZQX
- rsnx+iIRuDLY0GClkUhhZS4Jk4dCzXlpCIMdOnRyjbGONzPjp5nm+IGGoOneMutjYUYDg0v+s
- NWby0pvE0EZl8f2z8JNZpAuep5fJ8oqHWmW59sCOTyCq354LoLuSLZu1NzUJYj+IRy4SIX0K4
- fP+1t/FNaHhAFSphWcp36/4dAO4JzsqEPZDgWXttXZCukJqfDQd8oavxpSLvY+Zssh8v1N3Rn
- D7GVGANRiNTlmphvMDw6PkO7wIVTr6/ihboppxpBQtUB1YZU6ol8ISg+m0Wrdd6yVkYN807cK
- s2wYjuyqUQ==
+X-Scan-Signature: 36fd1d55df1a518e40d0076c137e1855
+X-Provags-ID: V03:K1:LimgWNDLRRVaCNMFJ+i8uoeo7wemoEqSTqKIxlEjwEQ0TAFGuEF
+ giflE4niugQcsvUU03fAn7MZtYe0yiKtyYHhcinoIFrm0EL1hfhSgXxxogmZgjhDw0GJGAo
+ gnw4rIbBS3xmUwabYbz3VxjgpcnKvJTCVDmD596yvbM/yFNWAoL/r+ZqihH4loDs1yvLvS8
+ EZkd8Z5h/dhqRv2iqJfjw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:SRKurWlsH04=:ZZo6M80gCHdBDukFBDuNcl
+ cW3FHOCbtY1D1gzP68XLOr4owTJJYM0qqPUDoHdpTsB5c02qQZINbdknIQxUuKeHukJgVc6+S
+ Z4QBAJsTK3SQMi8gKHg9z1HhJNNy/uydY88DGi2MIy1yfrVRCc36kkV0fJ0rwju9MQXIHJf7Y
+ 59dS32EvXgACAHgVeawKAH9QtZct6FGgZe4SsTSRjD/Og4TnldOuV3juNPL1hRIKjbc48DNVF
+ EqTLOR0kYduP1wMva9WjTk/JiVdYTmnG9YkIAa9WZPXE7r1yFRtjtkeOn3BfUd16xLw0xCL2h
+ FvEvz+fjbNFp0h3McyFFeVnw+0+TGV+/iMPVrmkl3b0QlE6Mz6DNMB6/KTR+XWkyn2TM8JkW/
+ CagKjGdtuNNbw2O+7aX29X9bo2uvqyOI/PBGlt65tmsBlY7SLgxU9ppdlz2L9nXYMYd+Hjwpi
+ SfOMsK60AQ==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201228_113314_148644_43F2D3AB 
-X-CRM114-Status: GOOD (  15.56  )
+X-CRM114-CacheID: sfid-20201228_113317_143862_6C331033 
+X-CRM114-Status: GOOD (  10.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,70 +82,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Alexander Dahl <ada@thorsis.com>,
+Cc: devicetree@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>,
+ Alexandre Torgue <alexandre.torgue@st.com>, Alexander Dahl <ada@thorsis.com>,
  linux-kernel@vger.kernel.org, Alexander Dahl <post@lespocky.de>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVpIGhlaSwKCnRoZXNlIGFyZSB0aGUgbm90IHlldCB0YWtlbiBwYXRjaGVzIGZyb20gYSBzZXJp
-ZXMgd2hpY2ggb3JpZ2luYWxseSBmaXhlZAphIG1pbm9yIGlzc3VlIGluIHRoZSBsZWRzIHB3bSBk
-cml2ZXIsIHRoZW4gbWlncmF0ZWQgdGhlIGxlZHMgcHdtIGR0cwpkb2NzIHRvIHlhbWwgKGJ5IHJl
-cXVlc3QpLCBhbmQgdGhlbiBmaXhlZCBhbGwgdGhlIGR0cyBmaWxlcyB0cmlnZ2VyaW5nCndhcm5p
-bmdzIG9uIHRob3NlIG5ldyBiaW5kaW5ncy4gIFRoZSByZW1haW5pbmcgZm91ciBwYXRjaGVzIG5v
-dyBvbmx5IGZpeApkdHMgd2FybmluZ3MsIHRoZSBiYXNlIGZpeCBhbmQgdGhlIHlhbWwgY29udmVy
-c2lvbiBpcyBhbHJlYWR5IG1lcmdlZCB0bwptYXN0ZXIuCgpTZXJpZXMgY2hhbmdlbG9nIGJlbG93
-IOKApgoKR3JlZXRzCkFsZXgKCnY5OgotIHJlYmFzZWQgc2VyaWVzIG9uIHY1LjExLXJjMQotIHJl
-bW92ZWQgYWxyZWFkeSBhcHBsaWVkIHBhdGNoZXMKLSBhZGRlZCBzb21lIG1vcmUgQWNrZWQtYnkK
-CnY4OgotIHJlYmFzZWQgc2VyaWVzIG9uIHJlY2VudCBwYXZlbC9mb3ItbmV4dCAocG9zdCB2NS4x
-MC1yYzEpCi0gcmVtb3ZlZCBhbHJlYWR5IGFwcGxpZWQgcGF0Y2hlcwotIGFkZGVkIEFja2VkLWJ5
-IG9uIHBhdGNoIDEvNQotIHVwZGF0ZWQgcGF0Y2ggMy81IGJhc2VkIG9uIGNvbW1lbnRzIGJ5IEFo
-bWFkIEZhdG91bQoKdjc6Ci0gcmViYXNlZCBzZXJpZXMgb24gcmVjZW50IHBhdmVsL2Zvci1uZXh0
-Ci0gc3BsaXQgdXAgYXJtIGR0cyBwYXRjaCBieSBhcm0gc3ViIGFyY2ggKHN1Z2dlc3RlZCBieSBL
-cnp5c3p0b2YgS296bG93c2tpKQotIGFkZGVkIG11bHRpcGxlIFJldmlld2VkLWJ5IHRhZ3MKLSBz
-bGlnaHRseSByZXdvcmRlZCBjb21taXQgbWVzc2FnZXMgKHN1Z2dlc3RlZCBieSBLcnp5c3p0b2Yg
-S296bG93c2tpKQotIGFkZGVkIGFjdHVhbCBkdGJzX2NoZWNrIHdhcm5pbmdzIHRvIGNvbW1pdCBt
-ZXNzYWdlcwotIGFkZGVkIFJ1c3NlbGwgS2luZyB0byBDYyBmb3IgYmluZGluZyBjb252ZXJzaW9u
-IHBhdGNoIChiZWNhdXNlIGxpY2Vuc2UpCgp2NjoKLSByZWJhc2VkIHNlcmllcyBvbiByZWNlbnQg
-cGF2ZWwvZm9yLW5leHQKLSBhZGRlZCBSZXZpZXdlZC1ieSBmcm9tIE1hcmVrIHRvIHBhdGNoIDEK
-LSBwYXRjaCAyIGZyb20gdjUgd2FzIHBpY2tlZCBieSBQYXZlbCBhbmQgaXMgYWxyZWFkeSBpbiBo
-aXMgZm9yLW5leHQKICBicmFuY2gKLSBwcmV2aW91cyBwYXRjaCAzLzMgKG5vdyAyLzcpIHdhcyBy
-ZXdvcmtlZCBiYXNlZCBvbiBmZWVkYmFjayBieSBSb2IKLSBhZGRlZCBtb3JlIGR0IHBhdGNoZXMg
-Zml4aW5nIHdhcm5pbmdzIGFmdGVyIGJpbmRpbmcgY29udmVyc2lvbiB0byB5YW1sCgp2NToKLSBy
-ZXBsYWNlZCBwYXRjaCAxLzMgYnkgYSBuZXcgcGF0Y2ggcmVtb3ZpbmcgcGxhdGZvcm1fZGF0YSBz
-dXBwb3J0IGZvcgogIHRoZSBsZWRzLXB3bSBkcml2ZXIKLSBsaXR0bGUgcmV3b3JkaW5nIG9mIGNv
-bW1pdCBtZXNzYWdlIGluIHBhdGNoIDIvMwotIHVwZGF0ZWQgcGF0Y2ggMy8zIGJhc2VkIG9uIGZl
-ZWRiYWNrIGJ5IFJvYiBIZXJyaW5nCi0gYWRkZWQgTWFyZWsgQmVow7puIHRvIENjLCBiZWNhdXNl
-IGhlIGFsc28gd29ya3Mgb24gcmVtb3ZpbmcKICBwbGF0Zm9ybV9kYXRhIHN1cHBvcnQKLSByZWJh
-c2VkIHNlcmllcyBvbiBwYXZlbC9mb3ItbmV4dAoKdjQ6Ci0gYWRkZWQgbGVkLWNsYXNzIHBhdGNo
-IGhhbmRsaW5nIGZ3bm9kZSBwYXNzaW5nIGRpZmZlcmVudGx5IChwYXRjaCAxLzMpCi0gYWRhcHRl
-ZCBsZWRzLXB3bSBwYXRjaCB0byBuZXcgbGVkLWNsYXNzIChwYXRjaCAyLzMpCi0gY29udGFjdGVk
-IG9yaWdpbmFsIGF1dGhvciBvZiBsZWRzLXB3bSBkdCBiaW5kaW5nIG9uIGxpY2Vuc2UgaXNzdWUK
-ICAocGF0Y2ggMy8zKQoKdjM6Ci0gc2VyaWVzIHJlYmFzZWQgb24gdjUuOS1yYzQKLSBjaGFuZ2Vk
-IGxpY2Vuc2Ugb2YgLnlhbWwgZmlsZSB0byByZWNvbW1lbmRlZCBvbmUgKHBhdGNoIDIvMikKLSBh
-ZGRlZCBBY2tlZC1ieSB0byBib3RoIHBhdGNoZXMKCnYyOgotIHNlcmllcyByZWJhc2VkIG9uIHY1
-LjktcmMzCi0gYWRkZWQgdGhlIGR0LWJpbmRpbmdzIHVwZGF0ZSBwYXRjaCAoMi8yKQoKdjE6Ci0g
-YmFzZWQgb24gdjUuOS1yYzIKLSBiYWNrcG9ydCBvbiB2NS40LjU5IHRlc3RlZCBhbmQgd29ya2lu
-ZwoKQ2M6IGxpbnV4LWxlZHNAdmdlci5rZXJuZWwub3JnCkNjOiBkZXZpY2V0cmVlQHZnZXIua2Vy
-bmVsLm9yZwpDYzogbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZwpDYzogbGludXgtYXJtLWtl
-cm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnCkNjOiBsaW51eC1zdG0zMkBzdC1tZC1tYWlsbWFuLnN0
-b3JtcmVwbHkuY29tCkNjOiBsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKCgpBbGV4
-YW5kZXIgRGFobCAoNCk6CiAgZHQtYmluZGluZ3M6IG1mZDogRml4IHNjaGVtYSB3YXJuaW5ncyBm
-b3IgcHdtLWxlZHMKICBBUk06IGR0czogYmVybGluOiBGaXggc2NoZW1hIHdhcm5pbmdzIGZvciBw
-d20tbGVkcwogIEFSTTogZHRzOiBzdG0zMjogRml4IHNjaGVtYSB3YXJuaW5ncyBmb3IgcHdtLWxl
-ZHMKICBhcm02NDogZHRzOiBtZXNvbjogRml4IHNjaGVtYSB3YXJuaW5ncyBmb3IgcHdtLWxlZHMK
-CiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL2lxczYyeC55YW1sICAgfCAg
-NSArKystLQogYXJjaC9hcm0vYm9vdC9kdHMvYmVybGluMmNkLWdvb2dsZS1jaHJvbWVjYXN0LmR0
-cyAgIHwgIDYgKysrLS0tCiBhcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3Yy1seGEtbWMxLmR0
-cyAgICAgICAgICAgfCAxMyArKysrKysrLS0tLS0tCiAuLi4vYm9vdC9kdHMvYW1sb2dpYy9tZXNv
-bi1neGwtczkwNXgta2hhZGFzLXZpbS5kdHMgfCAgNCArKy0tCiAuLi4vYm9vdC9kdHMvYW1sb2dp
-Yy9tZXNvbi1neG0ta2hhZGFzLXZpbTIuZHRzICAgICAgfCAgNCArKy0tCiBhcmNoL2FybTY0L2Jv
-b3QvZHRzL2FtbG9naWMvbWVzb24tc20xLXNlaTYxMC5kdHMgICAgfCAgOCArKysrLS0tLQogNiBm
-aWxlcyBjaGFuZ2VkLCAyMSBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkKCgpiYXNlLWNv
-bW1pdDogNWM4ZmU1ODNjY2U1NDJhYTBiODRhZGM5MzljZTg1MjkzZGUzNmU1ZQotLSAKMi4yMC4x
-CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
-YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
-dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+The node names for devices using the pwm-leds driver follow a certain
+naming scheme (now).  Parent node name is not enforced, but recommended
+by DT project.
+
+  DTC     arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
+  CHECK   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
+/home/alex/build/linux/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml: led-rgb: 'led-blue', 'led-green', 'led-red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+        From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+
+Signed-off-by: Alexander Dahl <post@lespocky.de>
+Acked-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+---
+
+Notes:
+    v8 -> v9:
+      * added Acked-by (Ahmad Fatoum)
+      * rebased on v5.11-rc1
+    
+    v7 -> v8:
+      * rebased on recent pavel/for-next (post v5.10-rc1)
+      * updated indexes and added comment (Ahmad Fatoum)
+    
+    v6 -> v7:
+      * split up patch (one per sub arch)
+      * added actual warnings to commit message
+
+ arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+index cda8e871f999..1e9bf7eea0f1 100644
+--- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
++++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+@@ -36,34 +36,35 @@
+ 		stdout-path = &uart4;
+ 	};
+ 
+-	led-act {
++	led-controller-0 {
+ 		compatible = "gpio-leds";
+ 
+-		led-green {
++		led-0 {
+ 			label = "mc1:green:act";
+ 			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
+ 
+-	led-rgb {
++	led-controller-1 {
+ 		compatible = "pwm-leds";
+ 
+-		led-red {
++		/* led-1 to led-3 are part of a single RGB led */
++		led-1 {
+ 			label = "mc1:red:rgb";
+ 			pwms = <&leds_pwm 1 1000000 0>;
+ 			max-brightness = <255>;
+ 			active-low;
+ 		};
+ 
+-		led-green {
++		led-2 {
+ 			label = "mc1:green:rgb";
+ 			pwms = <&leds_pwm 2 1000000 0>;
+ 			max-brightness = <255>;
+ 			active-low;
+ 		};
+ 
+-		led-blue {
++		led-3 {
+ 			label = "mc1:blue:rgb";
+ 			pwms = <&leds_pwm 3 1000000 0>;
+ 			max-brightness = <255>;
+-- 
+2.20.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
