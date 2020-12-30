@@ -1,131 +1,82 @@
-Return-Path: <SRS0=Jk9b=GB=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=S7dH=GC=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_2 autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 513F7C433DB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Dec 2020 02:25:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EA4B6C433DB
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Dec 2020 00:12:10 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BC328207FB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Dec 2020 02:25:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BC328207FB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=synaptics.com
+	by mail.kernel.org (Postfix) with ESMTPS id 74BE021D94
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Dec 2020 00:12:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 74BE021D94
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=uhNDdJECk38g1ZpGedx3o5yiFewxB685nqekVNgRvqI=; b=2DgYa2p/DbHvIOdsVMlTj/Yak
-	ycBiyxzVquMoCRLZ6lK/Z0Qshyu+rjKs9f70inb2o3rpf39NJK+DQzoGCm5qG7kRmsjke3I51Xtm2
-	aiC8yBf+IGyh9GvcWsIq996OoXA8ES+Cm74HKpM2csjEZ5sB1tAw+TrSGOiO5Bxj0EuSAj0BMJIem
-	GyFsWI8EDSQUyZtKEksm6JFWfsa4+6dwFti2iB+yKdzk3dCm2R6f3hqUG08ZCCDBFk9xWr0Q7VmqZ
-	kocoidVZk+D0pBzKk46VbhkLkJDX1A/7gTIXSVfxi1kkEV02+Mc+YyhbwtbOiSLrQamXaW+ar81Lo
-	Z7o00xT8Q==;
+	 bh=IIFo+SoVi3Fo5a+yHLKDMe4wojrv2evMUwN/YJWXdB8=; b=pCpil9MN4CnTHMVizMSGOL9Ki
+	6THFHR5SVKbx3b0kFOxu9XuEXkjUzE6kg4VZ+YWZ5BEXEjIWriFKNb8j6dNSbVmxmn7KBjzTA9PFb
+	DT+5YP0KShF+3ZqYcHn91zy9Cwj6aEIrgHMPj9wn2amzNWyXlURfZCJY1T6ktLa990e28VQJJ94tl
+	b1GiJPSPIFz/F+45KFwtFQmBkIxNjXsTlsaDQL5B7v0zy7g9CjuIPZj9KXnbqDoM08EC2+PvhKtzn
+	L6Wdd0RYux9a0IqIqCtpklXY1GyocBOMZN0MqniFgSILMcv6TqSE6h7jzZeQxn/2FuBfBCajNZ80w
+	4fBVKPTAA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ku4hG-0007AQ-Np; Tue, 29 Dec 2020 02:25:14 +0000
-Received: from mail-mw2nam12on2057.outbound.protection.outlook.com
- ([40.107.244.57] helo=NAM12-MW2-obe.outbound.protection.outlook.com)
+	id 1kuP5q-0005r9-6p; Wed, 30 Dec 2020 00:11:58 +0000
+Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ku4hA-00077X-9N; Tue, 29 Dec 2020 02:25:10 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cByhOGRVlkbYPvTgeXkD5LGngtHZJAWnDv1pbImzv+ecksR/ZRtDl/ewXticN6jAooHhu9j7pXqOpvJHhjaVa9LLaJH2HejSPhkgf2wwi3FNqlMSw/fU6uPQ9YFnrAP0U8/N0KSqrk6jcTzs3PgqaddIG69m2lcaazyaC+Nqnz3aa+vgJfGQeJ39igvadvXwgYXa0lbmn9abAUaw2is4IEzRaaYjd8MxhgMi9DIm18jDXnamtOBylcE4p2UYMgBKcfp+QKVfGxsxCBEyxLDRX7LFYM0UURJzfOHvglsvfvgjGFDA0kgUmpyI2Ll+IkExD7QdMD1N8KnUici8eoSufQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0y0WnYN8pWLmzDNe4WKL2U8e6YfHjjqhTQTarMpLYYA=;
- b=ihvQvK8GIRzwkLfZFra9doTpT1TSLUI7f9O37GZOXfGyyiS5sWDnZN9tF8yppOSXfWJ9IzR1uqibEMFdIRmLgOfPahSLEQE4pfIR0ZXBUjYgXxZOME83pg9qKaCvRGgi+EZ5ivA0hJ5szA3kjI+8PRuGCbsxE8f0rt3PR/1QBXy6ZkHJk+4TVPjInfdoxCQYsKJMeVH9OEpNl7tCC6dR9pEbs5Y6twnvLQz+J8lXAL7ihFXpfEc8Qls1084WYjlM4rkTw1veT4O1SwSm0yI9rrX2qPY0R1UetcOZ/vKWwkI6iRogtXbjUAV8fRANzyWwZSFOI2imYK4q4KJq9Z/qxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synaptics.com; dmarc=pass action=none
- header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+ id 1kuP5n-0005qf-Lv; Wed, 30 Dec 2020 00:11:56 +0000
+Received: by mail-ej1-x636.google.com with SMTP id g20so20149656ejb.1;
+ Tue, 29 Dec 2020 16:11:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0y0WnYN8pWLmzDNe4WKL2U8e6YfHjjqhTQTarMpLYYA=;
- b=jE/SSp2PtZiVwOu7158L+j3ce5XYh4i1CsyS+u94B0p2BhHKOjq8cjdIM11TrfO8OiSUH/NkkOH/9xwcosVRyo3f4Xx5j8PjS4qyiCGMxdY/GhF+WauXmIVUrCFHNlEdPu4Ei4V2o2KDiBcq2C+PChyDLSkv1lX+tq1/EZz+Qs4=
-Authentication-Results: lespocky.de; dkim=none (message not signed)
- header.d=none;lespocky.de; dmarc=none action=none header.from=synaptics.com;
-Received: from BN8PR03MB4724.namprd03.prod.outlook.com (2603:10b6:408:96::21)
- by BN7PR03MB4417.namprd03.prod.outlook.com (2603:10b6:408:3d::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.29; Tue, 29 Dec
- 2020 02:24:59 +0000
-Received: from BN8PR03MB4724.namprd03.prod.outlook.com
- ([fe80::e192:4c65:5936:1fb4]) by BN8PR03MB4724.namprd03.prod.outlook.com
- ([fe80::e192:4c65:5936:1fb4%5]) with mapi id 15.20.3700.031; Tue, 29 Dec 2020
- 02:24:59 +0000
-Date: Tue, 29 Dec 2020 10:24:45 +0800
-From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To: Alexander Dahl <post@lespocky.de>
-Subject: Re: [PATCH v9 2/4] ARM: dts: berlin: Fix schema warnings for pwm-leds
-Message-ID: <20201229102445.22c8587f@xhacker.debian>
-In-Reply-To: <20201228163217.32520-3-post@lespocky.de>
-References: <20201228163217.32520-1-post@lespocky.de>
- <20201228163217.32520-3-post@lespocky.de>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-X-Originating-IP: [192.147.44.204]
-X-ClientProxiedBy: SJ0PR13CA0104.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::19) To BN8PR03MB4724.namprd03.prod.outlook.com
- (2603:10b6:408:96::21)
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BIC/2qIdJeGBQNWxLU5IRoKvRyuZw5pGh6L03h8axVM=;
+ b=ZXoYaTF9bdee6/o+D9RUWWvQtRtNTYdwAItnxc5kAGIMUCw7lNqKJ+rZ0UHgq6bCXs
+ 6dsBeUb2CoojB6ZeH+53yL0aKdp+OFLOFmxOj5bW0pWbToSoObLYfxG9AY9V5xGyJto3
+ CjMvYrIjsYGKXU+7zPfHelpCusMmEVYheXIDPQDHJg8chMZ0v81Sv+LUiR6aJV/4wgPA
+ IJ6kSZjV+HD+MTgEwCkcNQQwEOrcAXG1JtWGWsTahbpLHBkSHJrJukXd0O1ivxzXEjVk
+ fN66t7QhuzUtHFfFv2yOjXu/n9+usKyxVy0dYuewW1mrbRV3cFibpBIZ2HwnLaBKOOAE
+ POAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BIC/2qIdJeGBQNWxLU5IRoKvRyuZw5pGh6L03h8axVM=;
+ b=aH7KPgIqLeAuohnkv3xj+2UpU2+HTlP99SXr+mkl1bE3CWbY6Z6zSx77oKeF2KC3bM
+ 2i3y+yzrX5UKBtddewki5wSDnffYVRr80vb9k6G7oHvEhjvGuZ5/Ipf9BMhpqDGDqZw6
+ xu9Lck4iZ1UQCnZJvl6UtTK8LaL2T0vHbWnfRnOEKcu5mlHWC6OxH8Hae5AFSig/KCBJ
+ /uf4sUAqQX8Hm3yUIlItn+DMl2xntD2uBOrdP4A8Fmvf5OWb3Pu5MprwBlrm5ftvaWB0
+ 7+xV4xx17lwYSVKkqTmSSbOef65X1hbuAQQ4B2AuNvcq7KLWRA8xXVgwPZua0MNhiQNC
+ aAsA==
+X-Gm-Message-State: AOAM5306j2SF7na7gQMYqzpOGiaficsWgwRdlPEtzpm26ZRPDDp0kdTt
+ 0keyG/Od0JUeiC+HPcivdXhu+YZnKARRRbEm9O7Vzsdb
+X-Google-Smtp-Source: ABdhPJxAo/edRUUxpOPraaqjveLTeoRRb5rrdRwWHdyI1u852zzcnS6mVRrCRKC/Cls55s6FCcSBPu9Xu4SkdZwl2Wg=
+X-Received: by 2002:a17:906:447:: with SMTP id
+ e7mr46945242eja.172.1609287111922; 
+ Tue, 29 Dec 2020 16:11:51 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from xhacker.debian (192.147.44.204) by
- SJ0PR13CA0104.namprd13.prod.outlook.com (2603:10b6:a03:2c5::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.14 via Frontend
- Transport; Tue, 29 Dec 2020 02:24:55 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b86a5b7e-83fe-461a-cf56-08d8aba0f086
-X-MS-TrafficTypeDiagnostic: BN7PR03MB4417:
-X-Microsoft-Antispam-PRVS: <BN7PR03MB44176193D9AC4C273174F94CEDD80@BN7PR03MB4417.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9iaqRYhaZ+bcf2kaquIPJO1VmRM4jBroJTTKvEDX4L0HwWP7ynFfIHXLh+Pu9qfPYqS7ACBK98Di1796rBbacEwOJCpKFUs6PgZ+BIF0FREk/l6RSGz++szQ/B5B1t+C3o1GLyrdAkmMuJlgHFDzDT+B96CNeqUQ0JZgVuEH1Vgp45dSiYYnVcIXloJ7jApkXfM5cVxfrgTyfwgRl0Hde/KAmn0WMe5Gf5TbacPitr4MkfAw8LvQXqqIZAJsj86YpiHvWEHJrc1z6pr5n0p0cokr97YnLh7yTfpOjSILsONU4+E5yEPzpipFSgSanbnRYsoU1yY8ldC6duVC+G7RWCF4R62WYuukNxL3tyL1Qbi8j803z4p7aWsaeBvZVqf0/XxMQ/641zUGcG6k14vKBdeM4su3h1le2mXj9IZGJkxkH7kY/R34DFFdVXvIBmn98tQ2m6n7+kktuIiGzr7nqQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR03MB4724.namprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(346002)(39850400004)(366004)(376002)(396003)(55016002)(6506007)(83380400001)(86362001)(54906003)(16526019)(1076003)(966005)(316002)(4326008)(6916009)(956004)(2906002)(52116002)(7696005)(8676002)(478600001)(186003)(5660300002)(66476007)(7416002)(8936002)(6666004)(26005)(66946007)(66556008)(9686003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?QjLHKtag7H4tf/lYUXX9BZoH5e2Chah43BVTAd8Fd7NuYv40qME4xfbQ2MKV?=
- =?us-ascii?Q?Gi+odmzJaU0fpG2Mvpsmyk4rIH/hXMYMJ3bfH3/5jD/r8ce0t8YRNnrbZUPJ?=
- =?us-ascii?Q?FwMovwy66t7wauS3pTJyT5Nb/V0mxAUupEuFADkCPXRoyG6w+HGYNavCTRaN?=
- =?us-ascii?Q?XRBk1pIY7BfUOV1HjleGOZ/65GxTKaSRFGELS7z2kgMWAJspXNn0/2oUlIM4?=
- =?us-ascii?Q?sdw7zHfGomtDVbO/mnH4VdzManLIz47Z8OfKvvvAOgkHALOph4/1Te1GVQsp?=
- =?us-ascii?Q?2MbnXjmCDMnfRdLdKrWCAUxarNNNsEYlZdnGo0atWiUnB7RX/ywNU9R84Qgj?=
- =?us-ascii?Q?+Axs2cg9VOx3WUtp/khEKQNEiiqTU5BB0Syt5TRgiKHQxA9g29Mjo3A+zHml?=
- =?us-ascii?Q?80oYKXOe1jzLTt98V4pr0YmgIFMbbvMG6NswI2JWNhDZTn8BwoL5raRLsuWT?=
- =?us-ascii?Q?uVnm/XFkI55SXA6b0jcDyuVlqFdQ1lYD/hncFZ0bniHTEW2zEA1wvXIWVXeV?=
- =?us-ascii?Q?5mZeD9eu8Lz76w7yWIJsejwiyNLLN3vhfqq9no+7ZTl5iWUeMnPB3cYhAnAd?=
- =?us-ascii?Q?UuLZ+N88Aa98EoY4WbEfHS9iSqtMABPWenPhDmni2qxvASb8O3eRA1NV1kOr?=
- =?us-ascii?Q?cFtfzW19Iy+D90L/F/c5wqdqKXfUp0Da4Rvv1rw8g1/KIRodznrvL7P5iKab?=
- =?us-ascii?Q?Our7U+cei4roeEmoWHn+xMuRNloEAdO5dzUy+sALPk9pXKGojpzAS5TIdmWx?=
- =?us-ascii?Q?Upy5modeApWPeo39vc8pLfA/ODeSN+r8+iSuPLW0KHnRSRSzKeNfGa+vCTvO?=
- =?us-ascii?Q?ACib6ERK/pO3ob5Y8KjsZSX+rpAXBywKmUGagXxazChZFa7zzu6WRrRJWSh8?=
- =?us-ascii?Q?iEl+tc9YhuSzLUNUD0nuvZLdtF4b9KdPqT2MWSHRZrb1561W7EP5H1VEgBZc?=
- =?us-ascii?Q?2jDNnEkZaB4NSXY30iKu/uUnWNOUVxzn+XYzwJ59TJS4An/Bmdc8YVOQerWO?=
- =?us-ascii?Q?ESF8?=
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR03MB4724.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2020 02:24:58.9939 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
-X-MS-Exchange-CrossTenant-Network-Message-Id: b86a5b7e-83fe-461a-cf56-08d8aba0f086
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DKIMKD6XlDcgy0vdKJ2BKx1wYzZEw4K3cJV6lgdDihbPSoRINRLlsTg1F0cZUPL4HPjps13V19N+p1w4okiElA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR03MB4417
+References: <20201223232905.2958651-1-martin.blumenstingl@googlemail.com>
+ <20201228123744.551d1364@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20201228123744.551d1364@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 30 Dec 2020 01:11:41 +0100
+Message-ID: <CAFBinCDM+bPgwquZAG-H=iMZr4+0rW9CG=WafRys5_HdeBkzjA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/5] dwmac-meson8b: picosecond precision RX delay
+ support
+To: Jakub Kicinski <kuba@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201228_212508_641994_85A4C1EC 
-X-CRM114-Status: GOOD (  15.87  )
+X-CRM114-CacheID: sfid-20201229_191155_763777_7ED14E17 
+X-CRM114-Status: GOOD (  11.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,83 +88,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Alexander Dahl <ada@thorsis.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, jianxin.pan@amlogic.com,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ robh+dt@kernel.org, khilman@baylibre.com, linux-amlogic@lists.infradead.org,
+ davem@davemloft.net, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 28 Dec 2020 17:32:15 +0100
-Alexander Dahl <post@lespocky.de> wrote:
+Hi Jakub,
+
+On Mon, Dec 28, 2020 at 9:37 PM Jakub Kicinski <kuba@kernel.org> wrote:
+>
+> On Thu, 24 Dec 2020 00:29:00 +0100 Martin Blumenstingl wrote:
+> > Hello,
+> >
+> > with the help of Jianxin Pan (many thanks!) the meaning of the "new"
+> > PRG_ETH1[19:16] register bits on Amlogic Meson G12A, G12B and SM1 SoCs
+> > are finally known. These SoCs allow fine-tuning the RGMII RX delay in
+> > 200ps steps (contrary to what I have thought in the past [0] these are
+> > not some "calibration" values).
+>
+> Could you repost in a few days? Net-next is still closed:
+sure
+I also received a Reviewed-by from Florian on patch #1 so I'll also include that
 
 
-> 
-> The node names for devices using the pwm-leds driver follow a certain
-> naming scheme (now).  Parent node name is not enforced, but recommended
-> by DT project.
-> 
->   DTC     arch/arm/boot/dts/berlin2cd-google-chromecast.dt.yaml
->   CHECK   arch/arm/boot/dts/berlin2cd-google-chromecast.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/berlin2cd-google-chromecast.dt.yaml: leds: 'red', 'white' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
-> 
-> Signed-off-by: Alexander Dahl <post@lespocky.de>
-
-Thanks for the patch.
-I took this patch but sent out the PR late: https://www.spinics.net/lists/arm-kernel/msg862567.html
-I will send out PR earlier for 5.12
-
-> ---
-> 
-> Notes:
->     v8 -> v9:
->       * rebased on v5.11-rc1
-> 
->     v7 -> v8:
->       * rebased on recent pavel/for-next (post v5.10-rc1)
-> 
->     v6 -> v7:
->       * split up patch (one per sub arch)
->       * added actual warnings to commit message
-> 
->  arch/arm/boot/dts/berlin2cd-google-chromecast.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/berlin2cd-google-chromecast.dts b/arch/arm/boot/dts/berlin2cd-google-chromecast.dts
-> index 56fa951bc86f..c1d91424e658 100644
-> --- a/arch/arm/boot/dts/berlin2cd-google-chromecast.dts
-> +++ b/arch/arm/boot/dts/berlin2cd-google-chromecast.dts
-> @@ -34,19 +34,19 @@
->                 linux,usable-memory = <0x00000000 0x20000000>; /* 512 MB */
->         };
-> 
-> -       leds {
-> +       led-controller {
->                 compatible = "pwm-leds";
->                 pinctrl-0 = <&ledpwm_pmux>;
->                 pinctrl-names = "default";
-> 
-> -               white {
-> +               led-1 {
->                         label = "white";
->                         pwms = <&pwm 0 600000 0>;
->                         max-brightness = <255>;
->                         linux,default-trigger = "default-on";
->                 };
-> 
-> -               red {
-> +               led-2 {
->                         label = "red";
->                         pwms = <&pwm 1 600000 0>;
->                         max-brightness = <255>;
-> --
-> 2.20.1
-> 
-
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
