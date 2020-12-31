@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A33DC433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Dec 2020 15:35:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5DB0C433DB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Dec 2020 15:35:13 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8A46120798
-	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Dec 2020 15:35:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8A46120798
+	by mail.kernel.org (Postfix) with ESMTPS id 9734420798
+	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Dec 2020 15:35:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9734420798
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,54 +23,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Message-Id:Date:Subject:References:In-Reply-To:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8yONzhQuTem9b5CrDy2MrMvUufvPtoQw0E9eSgoiUvw=; b=CsPYZ36ps3Jr9N9t7zLIaZEoZM
-	pOraznboSEPrELK+f9MTQvo6czl7PrztYh3wnV6TxEmijAybgVQYAtZfjcgl87DX4PdNp/YsjEeB1
-	qTyXYBP+/mx/X6O3oeLqxMPvvLy80KrLM//4jT89655Bhz6nm5Cy78r1+RucsjK/1qHjFQk+q593E
-	cca4H4vvNHYoa1+fgog/BzgEiWPIDSSUmiyIUiLbXfQKHJ3Zn6ZGlN2nZibnt0rIqNT9mhUeeRaTo
-	C3tDpVDzEl+p04yIcuts58x4xEIVb0TNAz4kuPmwhnC9NcXlGt32u6k3R0vtcLINHgppHBwvcLrxV
-	he9r2BHg==;
+	bh=DwgLRudMsxnQjRdztR/6RfX0nXgsG7IOj3bRszdd1Ow=; b=unG628KTxi5EPwN5bXKsmWBtc8
+	Z3SHaPjCpuj7DpckEbTBv7YT4gv0eVEFTJ2UY3wjiizPtkBoW9tMUYtghIT6tmOKF1OxsxGx3r1VY
+	fA6fIEt9HWPmugKj7wIaEsbjw37QgeRxKMENDtr5yfpUYLAkX4SwizHosQhSknYaUTR57//4QSp+s
+	NZgHZuTOoRzl6x1jZypatJNxupMXCSgnIBgks4UnOHQl41/qliQfDxo6qHgcY+24mtJb3n6zWt2rY
+	OoYTAKdI1L+lMZvIpFW5Yx5CNzE5d4hJtNJMLXMS4x5iUp8YcYZGR3gFLdV2JzB+OX1l+7yP1yJij
+	YFCwMYeQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kuzyd-0000KS-W9; Thu, 31 Dec 2020 15:35:00 +0000
-Received: from mail-ot1-f43.google.com ([209.85.210.43])
+	id 1kuzym-0000La-WB; Thu, 31 Dec 2020 15:35:09 +0000
+Received: from mail-ot1-f53.google.com ([209.85.210.53])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kuzyY-0000JY-CN; Thu, 31 Dec 2020 15:34:55 +0000
-Received: by mail-ot1-f43.google.com with SMTP id a109so18261188otc.1;
- Thu, 31 Dec 2020 07:34:52 -0800 (PST)
+ id 1kuzyi-0000Ks-Le; Thu, 31 Dec 2020 15:35:05 +0000
+Received: by mail-ot1-f53.google.com with SMTP id x13so18244562oto.8;
+ Thu, 31 Dec 2020 07:35:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
  :message-id;
- bh=U5+TgRxBr8Fo4F24dxi/XK3rCsce2994tILTdIkxtms=;
- b=P6YfHFkMh+exTY7jsB9fAmrVWK8DhXIqNLHFTde40GZd7+/ahG5VU5zz8Syo9uH/Ps
- eVdN9g2DM2r6i7Bs/4B6/BQpB4Z2CawWDIh5CntrAoTuvquiWvjxiNau54JsAzgCpZGd
- 29/4LZvm4O5CxilbOStwQ4B8B8CI/wZiyunCxd6El/6dcyjcTcSfSrMKbrThYLL9uys1
- Fk+D7Q65mZX7741mIlGV60mpVwANHTKuP6FAMdogJOWHrrJe63GUeEE4lC0ZDq/yx2tT
- Ttmt/dhw1vLOCwmIRWqFhm0ROaAUizvvAqP3VdLWRZq/KyphOPFOv+y6pWFxfp7+JVqi
- 7D+A==
-X-Gm-Message-State: AOAM532ePBaAa5MH6Hn0VCeomvtNwnwPJbmDWC9QepgvIfJxinr9MIAu
- B/MUn+kJTbJSX1hpSexCeg==
-X-Google-Smtp-Source: ABdhPJwueo20TglGcEsIU4ebdW4CqO2h44on2UHrkgjVWDuMsGX+RxqetVDTW5S7wZkG+1Pb4x+4/w==
-X-Received: by 2002:a9d:5d02:: with SMTP id b2mr41960733oti.148.1609428892020; 
- Thu, 31 Dec 2020 07:34:52 -0800 (PST)
+ bh=MXM5wnzSSoRxNoAr4MlvHobyUhxKc2TuluVu9Oqp3J8=;
+ b=KC1v+oDgDhHsyH40lGjh68eX2IOYAVCz3+GAUEo+UcIQLZkQ99xzI0HFVeIy1hgWMn
+ KdZiBG4HSTUX/OTUsD7FfWQwpNYjJ5tagSz/Ok0myoG5bFJDYrLuwth+WJFvVLw+CcZV
+ iQll47lxAj+un37nNAdInFW0LB0VQI9XCTJZHKC+8uJYinHmT11u6Pa8/uoL+25HULdD
+ 7qLDSPRL/RBx/G3SS2IPqjnVoFc8rMj/NWuodLHpVnTqVzUig7pot4jsgeYKqFsr2AJ2
+ g7xHHuBHwIPRZ20ncxQG4o1XIR61xzNw3Ym4JN2qAB04bZUcDJftoAHG6FbTMCTYls4b
+ 1GTw==
+X-Gm-Message-State: AOAM530u6Pg02ho0yAJ4Yfy/HOy9Zb0G3JBSp2mIVRUhTQKaAZjKrwFP
+ Fo6V+d5jUK0cmppFAXLODg==
+X-Google-Smtp-Source: ABdhPJw9nMyGpYq1U6APb1OBYayfFcOMpbeJiuknRQSDU+f84jr6ltJvYGsCBL1BLVLandI7LxcYNg==
+X-Received: by 2002:a05:6830:1551:: with SMTP id
+ l17mr43541058otp.309.1609428903438; 
+ Thu, 31 Dec 2020 07:35:03 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
- by smtp.gmail.com with ESMTPSA id h30sm10449278ooi.12.2020.12.31.07.34.49
+ by smtp.gmail.com with ESMTPSA id e10sm11215889otl.38.2020.12.31.07.35.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 31 Dec 2020 07:34:50 -0800 (PST)
-Received: (nullmailer pid 1828652 invoked by uid 1000);
+ Thu, 31 Dec 2020 07:35:02 -0800 (PST)
+Received: (nullmailer pid 1828655 invoked by uid 1000);
  Thu, 31 Dec 2020 15:34:48 -0000
 From: Rob Herring <robh@kernel.org>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-In-Reply-To: <20201230012724.1326156-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20201230012724.1326156-4-martin.blumenstingl@googlemail.com>
 References: <20201230012724.1326156-1-martin.blumenstingl@googlemail.com>
- <20201230012724.1326156-3-martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: Amlogic: add the documentation for the
- SECBUS2 registers
+ <20201230012724.1326156-4-martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 3/5] dt-bindings: remoteproc: Add the documentation for
+ Meson AO ARC rproc
 Date: Thu, 31 Dec 2020 08:34:48 -0700
-Message-Id: <1609428888.809731.1828651.nullmailer@robh.at.kernel.org>
+Message-Id: <1609428888.822121.1828654.nullmailer@robh.at.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201231_103454_436222_251D2B18 
-X-CRM114-Status: GOOD (  14.04  )
+X-CRM114-CacheID: sfid-20201231_103505_006234_32F869C5 
+X-CRM114-Status: GOOD (  10.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,33 +93,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 30 Dec 2020 02:27:21 +0100, Martin Blumenstingl wrote:
-> The Meson8/Meson8b/Meson8m2 SoCs have a register bank called SECBUS2 which
-> contains registers for various IP blocks such as pin-controller bits for
-> the BSD_EN and TEST_N GPIOs as well as some AO ARC core control bits.
-> The registers can be accessed directly when not running in "secure mode".
-> When "secure mode" is enabled then these registers have to be accessed
-> through secure monitor calls.
-> 
-> So far these SoCs are always known to boot in "non-secure mode".
-> Add a binding documentation using syscon (as these registers are shared
-> across different IPs) for the SECBUS2 registers.
+On Wed, 30 Dec 2020 02:27:22 +0100, Martin Blumenstingl wrote:
+> Amlogic Meson6, Meson8, Meson8b and Meson8m2 SoCs embed an ARC EM4
+> controller for always-on operations, typically used for managing system
+> suspend.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  .../arm/amlogic/amlogic,meson-mx-secbus2.yaml | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml
+>  .../remoteproc/amlogic,meson-mx-ao-arc.yaml   | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml:35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml:23:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml:45:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
 
 dtschema/dtc warnings/errors:
 
-See https://patchwork.ozlabs.org/patch/1421302
+See https://patchwork.ozlabs.org/patch/1421301
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
