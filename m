@@ -2,19 +2,19 @@ Return-Path: <SRS0=8AZD=GH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DB6AC433E9
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:43:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E43EBC433DB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:43:38 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BA2CA21D79
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:43:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA2CA21D79
+	by mail.kernel.org (Postfix) with ESMTPS id A14F821D79
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:43:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A14F821D79
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,67 +23,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
 	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=LBsI1ihTbf+kdtIfQcQgcAsMa51kTfBktL2pyvjSW1k=; b=lqP6UkwkVFJygmRLLouKX9J9C
-	vLsLUW/qTbFpBxJPo8PVgA+edGab4Mz4T7V1D7X/e18IFO3aRafRH7FiDY75wZWACR1L2wrQx5egN
-	NO0MGQ3bqGeB7XXSfECN9JQX8zn4wy6rTnQKllwDA01QpfpL8u4S1uqpVBTPSJy/02pfmRbURNooT
-	wHGkvs4jZGi52QG5A5/TFyNTG5enAOa2zXgFc4v7C8FmkuBZ2ryD8zFjW5W2fUZ+3UxT+WwLAi7NW
-	2QFv11bXHtECG2N94KXbddXDDxumrB/nVz/j79dJdMSvOcaZisnNPvJC/cHPPtpfqlZJjj0KoJALe
-	mCBgHwIfA==;
+	 bh=wf7dclX12blfSS7pZAVunqFi0gH3HKq4+Ehh0Jur3+E=; b=UQBXAECzocANkS63cvJizS4vv
+	R+B7huc/HsGHdGASAsSEU3LWS9+8jbQaxOEkCxLyYujD+2TzAf3Ow/l/Lt6Opu7l2Ffta+TrfNBwq
+	ehc793exs0uODzYOxlRb0D4Tj2QFS71hU23uD4VTjWK8p4SeNg5AB70RMHf8QRaQ5/PISGwihR72k
+	3nKCnNx7RekFWC4tYoWYdnPve+7Bzl5507biq+pu013AZGvSuRHoyc7DCZbRjvYIg28qkrXOjYjRu
+	1k3WA0FAI4WGsSxVSqTA5BzxCKcLAM5XwsLja4bZxZckb5XlkeNahgSnbyx5csDRL1KbNy/8c78BN
+	2BFZ8TAMg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kwOGa-0004GS-5G; Mon, 04 Jan 2021 11:43:16 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1kwOGr-0004RH-6f; Mon, 04 Jan 2021 11:43:33 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kwOGX-0004FG-PD
- for linux-amlogic@lists.infradead.org; Mon, 04 Jan 2021 11:43:14 +0000
-Received: by mail-ed1-x536.google.com with SMTP id g24so26990795edw.9
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Jan 2021 03:43:13 -0800 (PST)
+ id 1kwOGn-0004OE-Qj
+ for linux-amlogic@lists.infradead.org; Mon, 04 Jan 2021 11:43:30 +0000
+Received: by mail-ed1-x529.google.com with SMTP id cm17so27015818edb.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Jan 2021 03:43:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
  :date:mime-version;
- bh=YJMXYPP+Zpc8fAzHM+tOsE5l9dX3cXSxu+6LXuQVQIY=;
- b=P5ZpcTTEIS6JO3tLdGP1J8WCi7VGcCDBePpY9T78KseCTeXZgQk/rHpdAWH3wCgIJ1
- InUe6Fo0SvE7hskI0Aeyuu3A7yo68PPKJ2EkIix99qXQAxdA5Kni1u5B5jHHBI6KMFxS
- fyIkG5/ctTqUZpjJ7r8HvuDuw441eqBot+kdH7D0dJQXL8jeOV9MmDFU38l0yUTHzloq
- F6vH0wbvSiYcuAYbrq/homLDEAC6D/0fgpv9WKqzlwDxaYPspnXaXbreaQgS8sfYHo/m
- g4Er8PyeQpoZ6t5YZW0VFHsgcUFaI/6r2VpZt1W5vBgA5YQgnd2dmD02s7Sn1Iknpkpq
- LnwA==
+ bh=jsQiv7cqKQrSj23j2G0kt6dWNWQkHHnDW/6TeXSTB6Q=;
+ b=vHbUmqWI85jcwU/YZBtf+CTTbe8UempEi5UCoJs0Ja1Q9sTILX4QZpqu0AdrImXUtL
+ MDppO3UN6vFDSeERlmX+dvoCNHHbLp+5T4OPwv81x5ogJU+/U4QdWP6AlygXtQ/ohseW
+ yCa+l5ewdXhkM4kVwz5N475I7feEFEVPfx5dbq3kfyh2SeAjkCQsWQuvfZ2bgZ3PNl4X
+ 7Ju/zcZSlVggCQItJEhW5GWud96kKs9fG0FfMpnVw5LK71p6X3Ny+Vf8Wz/J9QhQZG46
+ U05gejwRXZePz83QiF9FEw0AC/A3snns++n+9hWMbaDqW6ugm+lJPLwjJJ5nAl8EjHeC
+ 194w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:message-id:date:mime-version;
- bh=YJMXYPP+Zpc8fAzHM+tOsE5l9dX3cXSxu+6LXuQVQIY=;
- b=ZkxYkFaTFRZo/m4LaiqD75IXiU1XTQoacDTKfbW24XXu/NKFtToRfzqMrq178fhvhF
- M7TzIAfGeJgW/4KPc1BAJASxT/isUTpjzaM68PMlUsp6B0TOd+1sROrbYkn26AR0d3U9
- F04cayEZoMoWe/i9Q/DO6spHk0H+CMQWogZcz7wKLSzvEURDXk8mrrnKGMvzi6gwTfWH
- 3Pj3Z+0VCSYx46OJ+K7IJasrJgQzpZlq3dMxeshw/sR4Koeb30NtzCQS1//TqyCDX+gQ
- yMwu2FESyPg5I5g6SLy4qfzFrGdr/Gc7Qo4ALixPEomzbZ6QiCQ4R+gHu+7n6wEZP3Uw
- O3cg==
-X-Gm-Message-State: AOAM532K4hO0Cec8Mv77N8Awnx9tufwEjil/Gz33ETs2H3hzNjRrfvlI
- VMZ8ZnYUexICmxIWrjY+JINwKawocsqOAg==
-X-Google-Smtp-Source: ABdhPJzJZBo2eMXhVWesKa5PqRsTKXztqcgpvKwHFN+xiQ1Vt6luAU/jDR0cjkwoLG6zGogqOwHIQA==
-X-Received: by 2002:a50:cd9c:: with SMTP id p28mr68774887edi.83.1609760592341; 
- Mon, 04 Jan 2021 03:43:12 -0800 (PST)
+ bh=jsQiv7cqKQrSj23j2G0kt6dWNWQkHHnDW/6TeXSTB6Q=;
+ b=sHixJ1hE4pWoWrhYznrWv9RfNzR0RGS6EI8YJY1VMQtSoe2YDaWFkofE/9ZX/Jn9G1
+ HyUuUsYYDYL6ld2Vm74LSYHRFQ296CObLSnlxOj6kcFdTMdvRJZl/a3VdtJ5AlO1sOzc
+ 5IgSRjopmnuDlc+ji8MNSITpPIt683KTBXl5MgIzWMfHvG0yyNWXGHM0Sibwa5x8dj7Q
+ eKRDpYCIwH6rlvVKMXKrad4ald9nhfsMloUAcArBDWPvK0DawnWP1fgUXl+IwnyHwhAA
+ A21Nv4XXCL1GBs99549WH2/yikQoISkLkQ1Xlq1Sp8IAPwTvu3932MPXhxHEJaUknoxv
+ c4bQ==
+X-Gm-Message-State: AOAM530RN/j3Sb7xEQQpOe4GxKFscyns2lcVyUU0g5/rGl2vwyLt0gC+
+ QA8exqkL6L+PF1Ym0OSZNs52+w==
+X-Google-Smtp-Source: ABdhPJzYKRRnB7KPDJCGg14sKuBusAL0e/wFDhro0DqKxc4vzJIBbCO1KQ8x6pq9q47v9j2Cc12bmg==
+X-Received: by 2002:aa7:dc0d:: with SMTP id b13mr70450856edu.170.1609760608380; 
+ Mon, 04 Jan 2021 03:43:28 -0800 (PST)
 Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.gmail.com with ESMTPSA id s15sm15294357eja.36.2021.01.04.03.43.11
+ by smtp.gmail.com with ESMTPSA id f13sm23221758ejf.42.2021.01.04.03.43.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Jan 2021 03:43:11 -0800 (PST)
+ Mon, 04 Jan 2021 03:43:27 -0800 (PST)
 References: <20201226121556.975418-1-martin.blumenstingl@googlemail.com>
- <20201226121556.975418-2-martin.blumenstingl@googlemail.com>
 User-agent: mu4e 1.4.10; emacs 27.1
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/3] clk: meson: clk-pll: fix initializing the old rate
- (fallback) for a PLL
-In-reply-to: <20201226121556.975418-2-martin.blumenstingl@googlemail.com>
-Message-ID: <1j35zhx700.fsf@starbuckisacylon.baylibre.com>
-Date: Mon, 04 Jan 2021 12:43:11 +0100
+Subject: Re: [PATCH 0/3] clk: meson: three small clk-pll fixes
+In-reply-to: <20201226121556.975418-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1jzh1pvsf4.fsf@starbuckisacylon.baylibre.com>
+Date: Mon, 04 Jan 2021 12:43:27 +0100
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210104_064313_875225_D8274608 
-X-CRM114-Status: GOOD (  15.20  )
+X-CRM114-CacheID: sfid-20210104_064329_935856_0F35BEF5 
+X-CRM114-Status: GOOD (  16.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,34 +103,38 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Sat 26 Dec 2020 at 13:15, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-> The "rate" parameter in meson_clk_pll_set_rate() contains the new rate.
-> Retrieve the old rate with clk_hw_get_rate() so we don't inifinitely try
-> to switch from the new rate to the same ratte again.
-
-Small typo above fixed while applying
-
-
+> Hi Jerome,
 >
-> Fixes: 7a29a869434e8b ("clk: meson: Add support for Meson clock controller")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/clk/meson/clk-pll.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> while working on some changes for the 32-bit SoCs I hit a corner-case
+> in the HDMI PLL: there's some rate doubling going. The PLL only locks
+> in a specific rate range but the M/N table is not aware of that. This
+> means for now (I am planning to fix that) that we can end up in a 
+> ituation where the PLL doesn't lock and meson_clk_pll_set_rate() is
+> supposed to still behave in this case. So here's three small patches
+> for that.
 >
-> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-> index b17a13e9337c..9404609b5ebf 100644
-> --- a/drivers/clk/meson/clk-pll.c
-> +++ b/drivers/clk/meson/clk-pll.c
-> @@ -371,7 +371,7 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
->  	if (parent_rate == 0 || rate == 0)
->  		return -EINVAL;
->  
-> -	old_rate = rate;
-> +	old_rate = clk_hw_get_rate(hw);
->  
->  	ret = meson_clk_get_pll_settings(rate, parent_rate, &m, &n, pll);
->  	if (ret)
+> For me it's fine to queue these patches for -next. I am not aware of
+> any breakage upstream, only some of my pending patches prefer to have
+> these fixes.
+>
+> Slightly unrelated: if you know anything about that clock doubling then
+> please let me know!
+>
+>
+> Best regards,
+> Martin
+>
+>
+> Martin Blumenstingl (3):
+>   clk: meson: clk-pll: fix initializing the old rate (fallback) for a
+>     PLL
+>   clk: meson: clk-pll: make "ret" a signed integer
+>   clk: meson: clk-pll: propagate the error from meson_clk_pll_set_rate()
+>
+>  drivers/clk/meson/clk-pll.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
 
+Applied, Thx
 
 _______________________________________________
 linux-amlogic mailing list
