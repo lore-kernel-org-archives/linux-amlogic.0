@@ -2,19 +2,19 @@ Return-Path: <SRS0=8AZD=GH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F198CC433E0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:42:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DB6AC433E9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:43:22 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8DC3121D79
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:42:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8DC3121D79
+	by mail.kernel.org (Postfix) with ESMTPS id BA2CA21D79
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:43:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA2CA21D79
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,68 +23,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
 	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=UVaL4XJufu124F1o+vM2ggSlXhBy6bASlwqMtICRfCo=; b=2lsqmfgEpzXWsyho10AfLV5L/
-	JZLhTGwkv+a8uaWKoEnOey0whwPJIusR6IhRN4n/zhrUQ8rTlYZJrIsScriGLJDBszq2Mhie4tWDm
-	gB1EL33yq3wQPL+L/RhEdQmQu6K7c0iHgsF7o5cFNs3FEzphiQn0eDFKD/a4EDXxDub1pRrTa3BFW
-	QxetewerlBCpXagPm6GURj1+JP71DQaGlXef2p6RV781u0fJ1243H62szQiFedYdf4JdNf2ZFD676
-	Bmn1FUaGAOh6nWMaLqXAcOfAWgt1dA6Uwr5Fuz24Et/KRbLguA/Of3Nj5UL0wIHa7brb7lK5p6cqF
-	OSf+Nbxkw==;
+	 bh=LBsI1ihTbf+kdtIfQcQgcAsMa51kTfBktL2pyvjSW1k=; b=lqP6UkwkVFJygmRLLouKX9J9C
+	vLsLUW/qTbFpBxJPo8PVgA+edGab4Mz4T7V1D7X/e18IFO3aRafRH7FiDY75wZWACR1L2wrQx5egN
+	NO0MGQ3bqGeB7XXSfECN9JQX8zn4wy6rTnQKllwDA01QpfpL8u4S1uqpVBTPSJy/02pfmRbURNooT
+	wHGkvs4jZGi52QG5A5/TFyNTG5enAOa2zXgFc4v7C8FmkuBZ2ryD8zFjW5W2fUZ+3UxT+WwLAi7NW
+	2QFv11bXHtECG2N94KXbddXDDxumrB/nVz/j79dJdMSvOcaZisnNPvJC/cHPPtpfqlZJjj0KoJALe
+	mCBgHwIfA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kwOFj-0003hI-8r; Mon, 04 Jan 2021 11:42:23 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1kwOGa-0004GS-5G; Mon, 04 Jan 2021 11:43:16 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kwOFe-0003ZC-8k
- for linux-amlogic@lists.infradead.org; Mon, 04 Jan 2021 11:42:19 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id h16so26975103edt.7
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Jan 2021 03:42:17 -0800 (PST)
+ id 1kwOGX-0004FG-PD
+ for linux-amlogic@lists.infradead.org; Mon, 04 Jan 2021 11:43:14 +0000
+Received: by mail-ed1-x536.google.com with SMTP id g24so26990795edw.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Jan 2021 03:43:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
  :date:mime-version;
- bh=kUUHeak7By77zEE1nbDrZjZ6iDrz8DI2SEFaci/HNo8=;
- b=RU8r3tfIPDFn08B0mFOH3NcvWgiJIiwTZxDxiLZajdWdHmiw34jZv37C8KTZfE4ntn
- j6zuN49YJEomqTJJSq4gDNHVt5ZfZSJiySgMHQOWFyrm53BYdBGqgi/wKVY7G7DAuKBh
- itD2GT7XF2OikvaKIJQh2vacbMktfRPCRGfItlrfQ5LIrrBZPBkIidEZ82pT/78816KT
- Ww2dkEt/BpHvSXPMtC3TqWkeYasets083NQAErW7reAFme5T7imT9yHd9cXJd2+vbjkJ
- FEricqrtLRAP3klYRTB/KxDvPw8ePyt76gEwVUDmY42S6te1EpMJ25mHbqaSCQ7lz6X3
- e89Q==
+ bh=YJMXYPP+Zpc8fAzHM+tOsE5l9dX3cXSxu+6LXuQVQIY=;
+ b=P5ZpcTTEIS6JO3tLdGP1J8WCi7VGcCDBePpY9T78KseCTeXZgQk/rHpdAWH3wCgIJ1
+ InUe6Fo0SvE7hskI0Aeyuu3A7yo68PPKJ2EkIix99qXQAxdA5Kni1u5B5jHHBI6KMFxS
+ fyIkG5/ctTqUZpjJ7r8HvuDuw441eqBot+kdH7D0dJQXL8jeOV9MmDFU38l0yUTHzloq
+ F6vH0wbvSiYcuAYbrq/homLDEAC6D/0fgpv9WKqzlwDxaYPspnXaXbreaQgS8sfYHo/m
+ g4Er8PyeQpoZ6t5YZW0VFHsgcUFaI/6r2VpZt1W5vBgA5YQgnd2dmD02s7Sn1Iknpkpq
+ LnwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:message-id:date:mime-version;
- bh=kUUHeak7By77zEE1nbDrZjZ6iDrz8DI2SEFaci/HNo8=;
- b=YqpMDpyduiETRJ/Jx0SqT9OPZyD9QLKipU5Oww3R5ZaoMNtRQ9biUdTH5cIG1gmpdp
- XFDP25cpi7uD55efVNPP7QECMuzEn/rJ492FeNqr1er3dBSPrFj7M5rLswgF5SkD5D2t
- FRGpuhntprTw+87QjXmTVmLeYuezPZrG152B8TD+YB9YIP799uJI1mwUAJO4wiMJznlj
- 33wmSe/3gyPIU6DgYWGb6hZkLayvug4nxArY5qWeAyfjtBL4JjHuNF46XiCeO6ePyeLP
- 5rPg+9PB2KionOz0xH+kkzKDykGebcuUTJdzkNNS/sfe2WLwlsUzXs3KJ8gEe8ntv+g4
- KUkA==
-X-Gm-Message-State: AOAM5326A4MeqtT2UowZNNUpmf9YWHagiHSItzqho4RieR6bX96p7VA0
- h57INhEf86LKDclrhA6kHCuwSA==
-X-Google-Smtp-Source: ABdhPJyRwi+RW45/1B4cm4abK49cRjl9sbdLy0nc6xW8Uyqy6G/zun/bQgydWWnxMervmGfomwRPjA==
-X-Received: by 2002:a50:cdc8:: with SMTP id h8mr71619321edj.293.1609760536776; 
- Mon, 04 Jan 2021 03:42:16 -0800 (PST)
+ bh=YJMXYPP+Zpc8fAzHM+tOsE5l9dX3cXSxu+6LXuQVQIY=;
+ b=ZkxYkFaTFRZo/m4LaiqD75IXiU1XTQoacDTKfbW24XXu/NKFtToRfzqMrq178fhvhF
+ M7TzIAfGeJgW/4KPc1BAJASxT/isUTpjzaM68PMlUsp6B0TOd+1sROrbYkn26AR0d3U9
+ F04cayEZoMoWe/i9Q/DO6spHk0H+CMQWogZcz7wKLSzvEURDXk8mrrnKGMvzi6gwTfWH
+ 3Pj3Z+0VCSYx46OJ+K7IJasrJgQzpZlq3dMxeshw/sR4Koeb30NtzCQS1//TqyCDX+gQ
+ yMwu2FESyPg5I5g6SLy4qfzFrGdr/Gc7Qo4ALixPEomzbZ6QiCQ4R+gHu+7n6wEZP3Uw
+ O3cg==
+X-Gm-Message-State: AOAM532K4hO0Cec8Mv77N8Awnx9tufwEjil/Gz33ETs2H3hzNjRrfvlI
+ VMZ8ZnYUexICmxIWrjY+JINwKawocsqOAg==
+X-Google-Smtp-Source: ABdhPJzJZBo2eMXhVWesKa5PqRsTKXztqcgpvKwHFN+xiQ1Vt6luAU/jDR0cjkwoLG6zGogqOwHIQA==
+X-Received: by 2002:a50:cd9c:: with SMTP id p28mr68774887edi.83.1609760592341; 
+ Mon, 04 Jan 2021 03:43:12 -0800 (PST)
 Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.gmail.com with ESMTPSA id c25sm23332482ejx.39.2021.01.04.03.42.15
+ by smtp.gmail.com with ESMTPSA id s15sm15294357eja.36.2021.01.04.03.43.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Jan 2021 03:42:16 -0800 (PST)
-References: <20200309210157.29860-1-repk@triplefau.lt>
- <1jd09k4ot7.fsf@starbuckisacylon.baylibre.com>
+ Mon, 04 Jan 2021 03:43:11 -0800 (PST)
+References: <20201226121556.975418-1-martin.blumenstingl@googlemail.com>
+ <20201226121556.975418-2-martin.blumenstingl@googlemail.com>
 User-agent: mu4e 1.4.10; emacs 27.1
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Remi Pommarel <repk@triplefau.lt>, Neil Armstrong
- <narmstrong@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Rob
- Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH 0/2] clk: meson: axg: Remove MIPI enable clock gate
-In-reply-to: <1jd09k4ot7.fsf@starbuckisacylon.baylibre.com>
-Message-ID: <1j5z4dx71k.fsf@starbuckisacylon.baylibre.com>
-Date: Mon, 04 Jan 2021 12:42:15 +0100
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/3] clk: meson: clk-pll: fix initializing the old rate
+ (fallback) for a PLL
+In-reply-to: <20201226121556.975418-2-martin.blumenstingl@googlemail.com>
+Message-ID: <1j35zhx700.fsf@starbuckisacylon.baylibre.com>
+Date: Mon, 04 Jan 2021 12:43:11 +0100
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210104_064218_352568_E1A4EBF4 
-X-CRM114-Status: GOOD (  13.39  )
+X-CRM114-CacheID: sfid-20210104_064313_875225_D8274608 
+X-CRM114-Status: GOOD (  15.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,7 +95,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -104,40 +103,35 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Tue 10 Mar 2020 at 09:05, Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Sat 26 Dec 2020 at 13:15, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-> On Mon 09 Mar 2020 at 22:01, Remi Pommarel <repk@triplefau.lt> wrote:
->
->> As discussed here [0], HHI_MIPI_CNTL0 is part of the MIPI/PCIe analog
->> PHY region and is not related to clock one. Since MIPI/PCIe PHY driver
->> has been added with [1], this region can be removed from the clock
->> driver.
->>
->> Please not that this serie depends on [1] to be merged first.
->>
->> [0] https://lkml.org/lkml/2019/12/16/119
->> [1] https://lkml.org/lkml/2020/1/23/945
->
-> Series look good. Will apply after v5.7-rc1
->
+> The "rate" parameter in meson_clk_pll_set_rate() contains the new rate.
+> Retrieve the old rate with clk_hw_get_rate() so we don't inifinitely try
+> to switch from the new rate to the same ratte again.
 
-Finally applied ... sorry for the delay
+Small typo above fixed while applying
 
->>
->> Remi Pommarel (2):
->>   clk: meson: axg: Remove MIPI enable clock gate
->>   clk: meson-axg: remove CLKID_MIPI_ENABLE
->>
->>  drivers/clk/meson/axg.c              | 3 ---
->>  drivers/clk/meson/axg.h              | 1 -
->>  include/dt-bindings/clock/axg-clkc.h | 1 -
->>  3 files changed, 5 deletions(-)
+
 >
+> Fixes: 7a29a869434e8b ("clk: meson: Add support for Meson clock controller")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/clk/meson/clk-pll.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+> index b17a13e9337c..9404609b5ebf 100644
+> --- a/drivers/clk/meson/clk-pll.c
+> +++ b/drivers/clk/meson/clk-pll.c
+> @@ -371,7 +371,7 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>  	if (parent_rate == 0 || rate == 0)
+>  		return -EINVAL;
+>  
+> -	old_rate = rate;
+> +	old_rate = clk_hw_get_rate(hw);
+>  
+>  	ret = meson_clk_get_pll_settings(rate, parent_rate, &m, &n, pll);
+>  	if (ret)
 
 
 _______________________________________________
