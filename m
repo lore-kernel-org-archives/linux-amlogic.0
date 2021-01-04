@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BDB5C433DB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 16:05:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C52E6C433E0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 16:13:35 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4F0842072D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 16:05:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F0842072D
+	by mail.kernel.org (Postfix) with ESMTPS id EA4A4221F1
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 16:13:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA4A4221F1
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,64 +23,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Kj6nh6ir5KmyfCGYO15848LnC45jL7EwaPhqsDK93jU=; b=1yTyHzLaN+RW+kcCGWi9A+/2y
-	5CiR17LJmNwV9iyfrYh39vLgcmWpKmdch+68f4LI2h+zlmQ7iwxZ4go+KKewnxLk6T4svOahNJ+8M
-	2B3XJyEoerlISJtEU/nxk1eE0uJvpJOSAINmmq8FdH4NRGlzi5MbtvXppk/stkx2uK2+GJlJnIEgw
-	pbGrxrlfhu9YkBR27Yl9mizbvcPPd/O62doEvGFwpyFI/xru7GDIELZKn+PMA83u5FjUewE/yF9+F
-	qcrDzpNqaLzGENRCJRlgdnqgFY8FZqOMokLndv2n4yXyBvTKd9bUC8WP7rXrM9eQjzCYwvFt+krrs
-	CPel9+Njw==;
+	 bh=u3bcg84LfZOFg/ocp7yBtn5bnngDcwYbL+a43kCoiDQ=; b=CrcY2j3CJl2xAbSLZvQ080+U2
+	r4tLQrOpHbhDiMUV8j6CHdcOtIVxuSk0AeKHi7pFR2r5njR+czkzXvFsncZnfuu79oiclyd5jukzB
+	IerS36NZ4XPP/nUkjZsHkk0k817GeEyrvHq7jfHb3dFUXjhWqrzXfiVxpV4XIKvYuicDc6w3wo6XT
+	oVy5kHStrGatULfh7xpuK4ZZkN8MonmZZYoePuAASOX/JSWSrsadPXt+h6KVyiP9Ocs5Q716ihFPy
+	2zhHjewPWNZD7m6peg/tbfQY2Wo2mEfP9OhJ0s2R9KS+XnFNX9NjprsrnAnPGE+vDCuG21QZCd44v
+	hqCcssxIw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kwSLm-0004d6-86; Mon, 04 Jan 2021 16:04:54 +0000
-Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
+	id 1kwSU4-0006NG-RB; Mon, 04 Jan 2021 16:13:28 +0000
+Received: from mail-pf1-x435.google.com ([2607:f8b0:4864:20::435])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kwSLj-0004bX-Bj
- for linux-amlogic@lists.infradead.org; Mon, 04 Jan 2021 16:04:52 +0000
-Received: by mail-pg1-x52d.google.com with SMTP id n25so19340824pgb.0
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Jan 2021 08:04:48 -0800 (PST)
+ id 1kwSU0-0006LC-9U
+ for linux-amlogic@lists.infradead.org; Mon, 04 Jan 2021 16:13:25 +0000
+Received: by mail-pf1-x435.google.com with SMTP id t8so16701381pfg.8
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Jan 2021 08:13:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=9ySUyqHnb2Bu/EFFSYUbKAOb0257YZr5FhrjovHluhE=;
- b=kU9xnURePHBTQ0qBw8ozGrUHqPEPNFttdeAtwovYK4xhWiLpt4D8hM7rsrpTlAZIjJ
- 8nQkGcuj4GC9D8SLD3q4zMOwHBSbvmIufgzsiil8YqEB5nM7AbwvUt8Xe/7IidEV7oDS
- 30bCHIx3ZDmFXhAMnB98isUIpCAaFPn6ylbK7fQnWuXz73uHheMdqfi0U8bHloj0g53e
- sGRAuxynNWHJfFGnXnT5yO6OmSf/PiT8t+k5EZFT+GEJZFoIcV8FIJm5SU/CYMn+ZDcv
- SIrW8HwEoPE3jh0lgxHoOe5kjtikz0l7FL2JSqdSjxo1FL4lcAT96FFTnISp77QoYVYX
- urYA==
+ :mime-version; bh=XDfsTJvF8BHWT/MwLCJjoGuI8FbQRWjKjuVmDMQxU8M=;
+ b=mVSg0/91IdSUQNfDZ1CuvV95N73XydEpcMZEkS9cLA7xrpuWEiKRa2CwBZBPaqSQbf
+ ocOEQT2NMLlRGb0bYAlWV0tAEwWiBQT6oD0B3R2HBOzslWIJuKCKxOvRcA8YVg8RuZCJ
+ d+vXwIENA93kVBVD0o4HxoNca6TMZj6dR+MSqlqg3SsF3LCbMyiItxYf45L2Fx9mIXCT
+ EgYSdh8fowgKMvxdlF0b62BbRW/O/kTFqHWpWr2nu2pXEiS1+moU7WAnHxO4/Vxa9+fC
+ DCn11syJR9zxjIk3rNxjyZn4kIqPwvbR2yyRVqEYwC7dBZ1wEJnAMiB02GypqSDIEU8r
+ wvfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=9ySUyqHnb2Bu/EFFSYUbKAOb0257YZr5FhrjovHluhE=;
- b=tZcIt4ndYXnkRft8TQl8Mo5m9npqymnq1O+mhvMptGS3KgJ6QQtAJ73NEhorgxY8WJ
- q1qtaCoN51pzxHwESUN4257pnmGElG3OXCCeMHPXX3xm8EnTadh4eGqGIxChmh/+1o8q
- Z3BySyTcoQ2VHMNIZom0S6agyuzWoNsb8Q+EKp7j7d2a2gdG+YyJLPaybRjh4X8KQVQJ
- HH0mAbmfVjasjywoTkhos3GZ6jOc90H6a6e8wHtZXfYLeQzvUjb/TYX6Jnm2ST94WP3i
- QGNHk/Gni3jNwA8dHZLwJJ7Ch4fFLjg0uTTP8LRnNPi5zaN5BSK/D0OZ7zCnUSmJhmxk
- g+Mw==
-X-Gm-Message-State: AOAM532To9bdXxBQjX3pgt96GXIwK8EuL7Iw8QSNjkmffmmiLbhmwttU
- BFQ4qojw92keoxmKiM77MBhr3g==
-X-Google-Smtp-Source: ABdhPJyfm0XQK6gCh/zYHr7iLrA56OMUKYHCwQzIIk6uEgzKmzMiRH6PQOXJkaG3WVRmivsaUgoVSw==
-X-Received: by 2002:a63:445a:: with SMTP id t26mr71872848pgk.402.1609776286507; 
- Mon, 04 Jan 2021 08:04:46 -0800 (PST)
+ bh=XDfsTJvF8BHWT/MwLCJjoGuI8FbQRWjKjuVmDMQxU8M=;
+ b=rrhGsD9/pg+04p2Gn5BK62kaNT7Cd3FUceRjH2DlvgsNtvQmirR6ppI55Nrxq0w0OI
+ JmdKqKVpqWY7xhBkGVJhVkXYRQoU7nmTP+T3fzG48qtuXgWS/5r4U6wHCdFzgm1f4CUY
+ /9FP0ipA1Ncj3GxLJIeeG5JCQo4qAoRIyhzuk1cTFRLsxTC2UdfQwGfKE7S1l8zPpgUe
+ 839dakq8WXYKoNtMTQZv7P8OlQW6DEUobHqtc9xthPoBXX7timAcLD+bipS9raZbURN6
+ VaDuMAthc3Ly9SYQAKshNBQWpJ1AviscXKYzqEIlcrG59yQQeCUlCsxnst02ZmSqx7LT
+ v8ug==
+X-Gm-Message-State: AOAM531WCXmnYEoT+FAJm2vO5bJTo6HZd5RTPJGiIh1ElvjQI9CnKffC
+ ljFJlC08F3xr1GBib1656GPXxA==
+X-Google-Smtp-Source: ABdhPJxiSbquKtEEXiVFyDA3gyCmMk8WaU6Pzjy6k497zwZtHFZ3/TlUj90UnzII6zSWOz9L7Y+WYQ==
+X-Received: by 2002:a65:6659:: with SMTP id z25mr61934189pgv.427.1609776801878; 
+ Mon, 04 Jan 2021 08:13:21 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id ga12sm21696625pjb.48.2021.01.04.08.04.45
+ by smtp.gmail.com with ESMTPSA id q23sm57413879pfg.18.2021.01.04.08.13.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Jan 2021 08:04:45 -0800 (PST)
+ Mon, 04 Jan 2021 08:13:21 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH 1/2] arm64: dts: meson: vim3: whitespace fixups
-In-Reply-To: <20201207095346.26297-2-jbrunet@baylibre.com>
-References: <20201207095346.26297-1-jbrunet@baylibre.com>
- <20201207095346.26297-2-jbrunet@baylibre.com>
-Date: Mon, 04 Jan 2021 08:04:45 -0800
-Message-ID: <7hy2h8n0wy.fsf@baylibre.com>
+To: Alexander Dahl <post@lespocky.de>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v9 4/4] arm64: dts: meson: Fix schema warnings for pwm-leds
+In-Reply-To: <20201228163217.32520-5-post@lespocky.de>
+References: <20201228163217.32520-1-post@lespocky.de>
+ <20201228163217.32520-5-post@lespocky.de>
+Date: Mon, 04 Jan 2021 08:13:20 -0800
+Message-ID: <7hv9ccn0in.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210104_110451_532806_CD0269F7 
-X-CRM114-Status: UNSURE (   6.11  )
+X-CRM114-CacheID: sfid-20210104_111324_414917_73396725 
+X-CRM114-Status: UNSURE (   7.71  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -93,23 +93,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Alexander Dahl <post@lespocky.de>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-leds@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Alexander Dahl <post@lespocky.de> writes:
 
-> Spaces have been used to indent 2 nodes.
-> Replace those with tabs and remove one extra newline
+> The node names for devices using the pwm-leds driver follow a certain
+> naming scheme (now).  Parent node name is not enforced, but recommended
+> by DT project.
 >
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Alexander Dahl <post@lespocky.de>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Queued,
+Queued for 5.12,
 
-Thanks.
+Thanks,
 
 Kevin
 
