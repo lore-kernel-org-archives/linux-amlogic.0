@@ -2,87 +2,86 @@ Return-Path: <SRS0=8AZD=GH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50589C433E0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:43:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49371C433DB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 13:29:23 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1038621D79
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 11:43:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1038621D79
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 07FBA207AE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jan 2021 13:29:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 07FBA207AE
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=353o+FOjNJu3ATcj4l6wZDo1nqUsjCHutdTvn2Ps1R0=; b=HmBwKxbvGqSJ6i14Jfc94/W8m
-	Ty7eeQQ8u+eCZh7/uvX/b80+y5WED1NTpIAwUE5SDxZto936RrCjZy25hk4j21KeANKesR8W+fCVI
-	utpOjWLKHrYn0GbWgOvfJzNegBEy33iGCGQBlC4kOf8COhljpXjkBkSOJUvMMM+KPB4HSXCLtsjnH
-	8X8Q42qglFORTm5eFx7jvAK1fuuKMd8tXVgJVWW9HaVRK2jmJohorFUC1VmECxI7NQx+zPubEpGhl
-	fgOwMmqde+1+wM4VZGEW4HVpxpt6t6WQ9BXGIcG6d1/p6xOPubnlbN0rtQBPqsYdr6LX4wmUgVJPv
-	9vPI0Iegg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=ULlgVN2sIW/ZOADE41dL9Uq/P6ocXBYpjx6EFfaJGoA=; b=eryOhqmnN/0njovUZSn7/HgCnH
+	W5Ry5PcwqYbs1SwAaoAqGJZL+YK8wsu0QcabonoyV+mCvMkCJiD/4KWaMhDcx3kdVbncZVBvN9NYU
+	SJDgK6qcfnfNZO6rfJnfmk/CaF6RrC4bLHiXTETA41uF8m63zjX0RKYZy4BtVb9vED7Lf+J7oKnrg
+	8cyC6rOeorUpJ/Z/Uh2s4Ah/rsTxPj6zFTcwES/7ngkp1BI4JaIYv/kjAP5p+yli0aur8zCHxagPe
+	4ZS9/iObTA3OpWb6AaF79VlAJ897/yKognCPzvSqsaqkzkz1MI3siifXBVrOpnRhY087CqrRR3756
+	S4cGIUjQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kwOH6-0004gX-WF; Mon, 04 Jan 2021 11:43:49 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1kwPv9-00073H-CT; Mon, 04 Jan 2021 13:29:15 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kwOH4-0004dz-5n
- for linux-amlogic@lists.infradead.org; Mon, 04 Jan 2021 11:43:47 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id d17so36325400ejy.9
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Jan 2021 03:43:45 -0800 (PST)
+ id 1kwPv7-00071i-CO; Mon, 04 Jan 2021 13:29:14 +0000
+Received: by mail-wr1-x435.google.com with SMTP id d13so32136923wrc.13;
+ Mon, 04 Jan 2021 05:29:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
- :date:mime-version;
- bh=s9b3G+1wnt0fqvQLZfc718wWCxYrFOqLj99ZBc9EiHo=;
- b=N4K5zTpfvEf9GyU5JoMNLIDIR+zWfC22FxvyvteNXgVR4rh56MRqOLVSZtaMupaRQP
- gIo3JpiGBYilVXPLMr/DWadV17ubcrqiOsqdkylrBeGCBRjrx2p2l+rOTSfRctypDTyQ
- PSlGBmczgSBzk6oJ5c2BiMtozqaDqZUfUceiY0Gj48bEpdLY7MmiG1h20fRD7Tv7Y+8o
- 4jcb1kk53TO7c75op2kUmtSLN+wWfZPQRet16PevqVfSKjTMHPS189f0QAiPxRO3tA0N
- kRyqQB4tYaGQSjRmWpEAV/8RLIbA5TSBiFW/Ikae3HP5KC8dAZsEvktm+ZXLuznoNTi2
- av9g==
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=RDDJAO12mWdz81SfN4SE3sY3sSE4phZfV6IOzBfLb7o=;
+ b=AyaxGkK9oSW0SK9rGSfs/YkEz0nbaZL+5Dwqi481jU7zFdo7XjalMR6LACJzF0XoyX
+ oo1MnoovVrTOpSQZ7R8ZKfGgMh4LuWrBMerzLzMMsueH8JzpoRl86ngySyP9L2KGFYXK
+ ayOyuYQDqd5fik7dZ8rth5yW1Qxd4sU5utVUjK+5z5eJzI7zCFbHbUM+InVT6XAl/bvo
+ RuAnvBo06ICfWVinxhaNREti7PGMLSBpstoEB5r/xxGNHuHScBHC7QJtROeQIuV9kB76
+ 2WbadKjxcRFYqadH7JHItdR77FJDpv8J+m70xc/1WfuyfvyZAMnhoRgTQtiLChJeZfs1
+ oIyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:message-id:date:mime-version;
- bh=s9b3G+1wnt0fqvQLZfc718wWCxYrFOqLj99ZBc9EiHo=;
- b=AekF1oKMs/ZYoupPBhdxACVuFXqTj1SDo+cjOK70X7nQEG8aOptw3e0SOil9EOZ/+X
- XcixaQdZ66Q5GlFghZto9vaLYOQJrMTLyOw07nM5j47Trw9jx5d3ftZv2La1wHtbjIAu
- F59+88ICPoWTb9g+M47wFaD5tiRNR971hfIhCfEcHU6opp47d5trTu8oqid5nZSvMvkx
- M+CMAVJgUjnqzWxFlGK60RoIXpPz0rFkca0+GvTgCZwkUdPAylJ6nkgm5mZe88GVg96/
- 3x9uACLtQ6JRIA3UAI2p6+/2NafWeRVoZ+egwDm83b/xj/Ay0vbL8VsNHXMFSxOJpbH9
- kVJQ==
-X-Gm-Message-State: AOAM532i2JD2q0pghpPw8gT8Bnzo5xbtSu0eg5vvMVRPfmPXzgIqRg8e
- 3I7jNmAEeMV+MJXgZ79H+EdNajOtTDCwYA==
-X-Google-Smtp-Source: ABdhPJwGvjTksyTEsh8ZsoIujwHjf6GyWgK9chy76WycbY1TeT6KTvHXkYeyko77ghZGFlgSLXZg9w==
-X-Received: by 2002:a17:906:b793:: with SMTP id
- dt19mr65969463ejb.120.1609760624753; 
- Mon, 04 Jan 2021 03:43:44 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.gmail.com with ESMTPSA id e10sm23445564ejl.70.2021.01.04.03.43.44
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=RDDJAO12mWdz81SfN4SE3sY3sSE4phZfV6IOzBfLb7o=;
+ b=pisox7eMSDtnbbZepeE46t1248rtz+2s3e/ku+ZOaDtDu540mqYGA1s6NWufKb+X3f
+ eIXqWME3f5+Y4Fm4d+u3GrC4UNLQE92l553bzu7GFbzUxWOROSWLfsC23gaY6teGivio
+ eT2CUBO8wc8BdrU416+InjcDFBdM1v6OzuI4kZ2SNGTuK4wAMiMJ3VOoaGQklQ5eFmjD
+ kj2WsSLEGkO0AUn3YGIgWFEwNBKOnEZDlp8u/5Wp/oaYfliH+YS7qWFlaq9rOHQQW9qQ
+ KRqWqiKhrlHwEi99Fu4A8SR5XDnKx8bCgo8XIOLuLuAaUFYT1ffa5VC0ypa8Ym98f8G3
+ 7h/w==
+X-Gm-Message-State: AOAM532R0XuShaAmx07axvyWA7zKogA+zZYa3hqCeuV3Pqta5KzYOuoH
+ Nyi2ECChYwkFpxOS+9MqIdM=
+X-Google-Smtp-Source: ABdhPJz/siaI9EgHKtZAcRboER3/TG/xd8msE9THKkBWgr54MlNu7TX7+/jsGA0gUsDV15EpzqOcfA==
+X-Received: by 2002:a5d:674b:: with SMTP id l11mr83048697wrw.247.1609766951899; 
+ Mon, 04 Jan 2021 05:29:11 -0800 (PST)
+Received: from localhost.localdomain
+ (p200300f13724fd00428d5cfffeb99db8.dip0.t-ipconnect.de.
+ [2003:f1:3724:fd00:428d:5cff:feb9:9db8])
+ by smtp.googlemail.com with ESMTPSA id c4sm99916521wrw.72.2021.01.04.05.29.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Jan 2021 03:43:44 -0800 (PST)
-References: <20201221183624.932649-1-martin.blumenstingl@googlemail.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 0/2] clk: meson8b: cleanup unused code
-In-reply-to: <20201221183624.932649-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1jwnwtvseo.fsf@starbuckisacylon.baylibre.com>
-Date: Mon, 04 Jan 2021 12:43:43 +0100
+ Mon, 04 Jan 2021 05:29:11 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: jbrunet@baylibre.com,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH 0/5] clk: meson8b: video clock tree updates
+Date: Mon,  4 Jan 2021 14:28:01 +0100
+Message-Id: <20210104132806.720558-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210104_064346_305491_CB59038B 
-X-CRM114-Status: GOOD (  11.44  )
+X-CRM114-CacheID: sfid-20210104_082913_473337_839119D8 
+X-CRM114-Status: GOOD (  10.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,32 +93,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
+Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-kernel@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Jerome,
 
-On Mon 21 Dec 2020 at 19:36, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+this is a small set of updates for the video clocks. I have verified
+these patches to be able to generate the video clocks for 1080P, 720P
+and a few other video modes.
 
-> Hi Jerome,
->
-> these patches are two small cleanups for code we don't need anymore.
-> The first patch removes support for old .dtbs. I am not sure if the
-> "fallback" logic still works as I have not tried this in a long time.
->
->
-> Martin Blumenstingl (2):
->   clk: meson: meson8b: remove compatibility code for old .dtbs
->   dt-bindings: clock: meson8b: remove non-existing clock macros
->
->  drivers/clk/meson/meson8b.c              | 45 +++---------------------
->  include/dt-bindings/clock/meson8b-clkc.h |  2 --
->  2 files changed, 5 insertions(+), 42 deletions(-)
+The main "mystery" is still how the rate doubling happens. However,
+that doesn't affect these patches as with this rate doubling the
+"hdmi_pll_lvds_out" (which is a parent of this tree) is doubled as
+well. That's why I am sending these patches because even with this
+unknown part about rate doubling they will still be valid once that
+unknown part has been figured out.
 
-Applied, Thx
+
+
+Martin Blumenstingl (5):
+  clk: meson: meson8b: don't use MPLL1 as parent of vclk_in_sel
+  clk: meson: meson8b: define the rate range for the hdmi_pll_dco clock
+  clk: meson: meson8b: add the video clock divider tables
+  clk: meson: meson8b: add the HDMI PLL M/N parameters
+  clk: meson: meson8b: add the vid_pll_lvds_en gate clock
+
+ drivers/clk/meson/meson8b.c | 79 ++++++++++++++++++++++++++++++++++++-
+ drivers/clk/meson/meson8b.h |  3 +-
+ 2 files changed, 79 insertions(+), 3 deletions(-)
+
+-- 
+2.30.0
+
 
 _______________________________________________
 linux-amlogic mailing list
