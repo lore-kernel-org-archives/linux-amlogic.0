@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 054F6C433E6
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Jan 2021 13:44:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B2A3CC433DB
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Jan 2021 13:44:31 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B3D4322B40
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Jan 2021 13:44:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B3D4322B40
+	by mail.kernel.org (Postfix) with ESMTPS id 1577E22B40
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Jan 2021 13:44:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1577E22B40
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,67 +24,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=hmgqppbPgO4P0t0E5q3U2NTVlKurchz/cJudn0u4nXs=; b=dSF7vZvPVE4Rmf7D3uHXnqyVL
-	r38pt4LwwBY4tGJBXl+1645PvoNqBCpHiNfJdUhLeElo1b3AceTjzoEtm3zmgFnavauu6xa9Ur1H5
-	wiqiRRx+ubvszuS0q+qCxlX42B0mNSSueCUmc7r0iiCtCTqyiRdPd8sTyv0f7pr/SqG07DDRDNsXi
-	GLcK82UPA+YQ42kUgUVzac17r/B8wsSKDTh2PSjJjP3sIk+Gu3ZcwmSjlth5o6ERnbrqNF/v/AgRL
-	XkyQHzUuhMuuxZVzXefmyV/swr8IoEO+I320y4KIzdCsfWIPpJ1nPBIfcLpjPkvwmd2Wgg7wugntv
-	DrkfmQb8w==;
+	 bh=6LhjC2YBFrL2kjlO3rKpK6xWToU0rId6Z0paeG4S/1w=; b=hphaEIyhR58cYwGgACXYu7GuQ
+	Gem/DEQBPHk93S8JXEqZcwRVCjJkYI76FKEYphCya6I0PSvoB4NTtLNabQaOSdkraULOeF0wVCgTf
+	36PFfrCEROofPgHTpEAc3ozXBR290MJjnXz2qZSNEWhICvDruxxTaEUf2HUDQUbU3uF1XxHjpX1io
+	1vNNnv4K+0TriM4B5P3RYFG7hDtNGFYQh3ifHatU7lggq3ycmszQYVrQNv8V5H/LBfDlKWQ5l/rBA
+	Koi+1gNPRguFfqhPqr7G5OV3hBmQrFnjv3Lc7awIFRIuO2dAyuChpZCiL6BRXJjMQghDtnYSD4ofQ
+	IpDEoqRsg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kx96r-0008EP-2N; Wed, 06 Jan 2021 13:44:21 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1kx96x-0008GR-Bq; Wed, 06 Jan 2021 13:44:27 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kx96i-0008Aj-TY; Wed, 06 Jan 2021 13:44:13 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id r4so2659877wmh.5;
- Wed, 06 Jan 2021 05:44:12 -0800 (PST)
+ id 1kx96k-0008BK-Kr; Wed, 06 Jan 2021 13:44:15 +0000
+Received: by mail-wm1-x334.google.com with SMTP id n16so3167259wmc.0;
+ Wed, 06 Jan 2021 05:44:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=bxZLTc7rIJqLiJdfqS1xtEvX/QdxfbBjIy6J1+OLQNE=;
- b=IM3iZ4sPhKgYRgmLXkyxqO3lbGRcEzCB35idFQMDqIGzIkLMgyMe34WRg0uz6B0D0X
- RfDlRfrHmm5RSt/EfDpfapTTxq8qiqxmBbtT+kMGRk+2BIo2kMU6NxoEQ2znALmQRaCj
- ZnU+6Az6+diszOdSiS0SkWxBAiHPPMB5dlcKR2qlkRmhCsfhcvQa/tIhpWWOIMAF7bij
- KerJJ1KM1FUWtRyGa/W60M1CrZ48lMzhNkXOcIhLFkbFDqXlNkqIlWClykAECCtZ3hS4
- lau4tY66z5RXP8LIZ3WQ3Z3e0CpK0JivxJt5bpQbr3fJl5EYS6Rm4DnZ6pN6HBRP6Qrc
- AW0g==
+ bh=FTb+k2pRqhgJlqYGQ9koQKDY3V9IU7jTeMtH7IVE2Bk=;
+ b=n2TlifdC0IdbJLoIs4dTjj0jRQ4cbC30Lz+YEpD5BRktRZBozXm0LR77dT7ETmJKo3
+ qgrqFWVsLJwrt3JFkUX95BKbMMhhZpY8sopzP4ioWUN7FdQ/vhTHgyBeihI9Li2zVcZO
+ zeSojbY7pDoiMFsAN347TmT6jMwT74EaN4O2VZq9pmJjUOPfkShdmijvoh1F/YwbjNQE
+ LHggTy8bCIrOpaS+p7lBByPYcTRnNRkLdIE5vlJ+LEpq2WG+a2vBRvmofNrlVbS9B001
+ sXMRrJlKsFUqd84ZAjcEpyaGx+Tq/uTokFpZiGQ/5/QkcsvJeixcCFpG9x4Ny7xGkD9r
+ EPQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=bxZLTc7rIJqLiJdfqS1xtEvX/QdxfbBjIy6J1+OLQNE=;
- b=i19FOwoSin1QcKg4MtX2jyNqXlYgTxN/nUsK3a8TWAsdgJ6Xt2uTHg64x1yIDmNy2w
- nkCOEDG7NGpCtvKGdfpMDprOIAAjKB5AVM/P4ODxs3Me0r32zk2421JA1IgN0GFRzCzH
- 2G1qOUtnhaAt70r+G/yxxrLEuas5ZJhZYO3CquxFkeX5eaDyI8Wht0+cGT0HcHM+djb8
- YkibFSk3Vf3466R1L/qWXxXs2B9Dd+mdBdPtDKL4AkEhsK4qQ1VLuiowI48Tip+2ziJq
- IqFa5qXofaLmBqQxuIa34QcyZWhVmE6wP3aFA416usPEiogZI0rQJYbeB1t4YxLjQqTq
- RaCQ==
-X-Gm-Message-State: AOAM5304QUmHI69Ev3oAfYUkgA2sLUUonQlftIFmS0VtN//AwYPgQrg6
- V4nvAej051oIrjGW7pmJ/RSZKGrmc1w=
-X-Google-Smtp-Source: ABdhPJwfCUpDM2zedZ6Ij/scp6mHXprurYB1xW+w1ei+iiMBq/uFUOVnbjd+JJvVnjYc+FsdkE12eQ==
-X-Received: by 2002:a7b:c2e8:: with SMTP id e8mr3714963wmk.103.1609940651943; 
- Wed, 06 Jan 2021 05:44:11 -0800 (PST)
+ bh=FTb+k2pRqhgJlqYGQ9koQKDY3V9IU7jTeMtH7IVE2Bk=;
+ b=ugWTSCqk9KUNqpFqgS9lmtHIWALPOlLNi8gkPiyoGYVIQz0Jn4+85LvrXl4hzOzXq8
+ oOlRtCuZg7uxJRJhhaxZkZLZ9uPAx9tJLyxceVsbuzCazi2T9oTB0nwwDtw6LZJkFUqQ
+ IvttSvyPaRLd1l7I4t8ELW4H5gVKp2O2ZpxAK1LDvS+8W4V/oLvDNlyla+Uu25MFceQb
+ ++LwdcWi04fTEgH5S69rtQc2L84GIacSaxhWJJPhvDCsbuSgliJSaooolpkvHM+NIgv9
+ 0oF41FOFQfRU1UVMWwy8CoZ9R73olGAl2B3AeMxKa8K8bCJCTYQAb9Fpl4SYNJaa59P7
+ AL+g==
+X-Gm-Message-State: AOAM533vVvlGwQiPP9fRUn3eK6F0uK9OprYpc7KN59nPLJUKry/Fjhh9
+ bHfN7yVLraiq0LaoJcenkT4l+3yTMuY=
+X-Google-Smtp-Source: ABdhPJwsoNEaPfjZGRdpC54PCzOi6QGvWRIaR6aeXW2oARQpd1ka443VCGJkklLWft9gGAxSNQ9+1A==
+X-Received: by 2002:a1c:3d55:: with SMTP id k82mr3683525wma.57.1609940653005; 
+ Wed, 06 Jan 2021 05:44:13 -0800 (PST)
 Received: from localhost.localdomain
  (p200300f13711ec00428d5cfffeb99db8.dip0.t-ipconnect.de.
  [2003:f1:3711:ec00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id f14sm3085351wme.14.2021.01.06.05.44.10
+ by smtp.googlemail.com with ESMTPSA id f14sm3085351wme.14.2021.01.06.05.44.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 06 Jan 2021 05:44:11 -0800 (PST)
+ Wed, 06 Jan 2021 05:44:12 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  netdev@vger.kernel.org
-Subject: [PATCH v4 2/5] net: stmmac: dwmac-meson8b: fix enabling the
- timing-adjustment clock
-Date: Wed,  6 Jan 2021 14:42:48 +0100
-Message-Id: <20210106134251.45264-3-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v4 3/5] net: stmmac: dwmac-meson8b: use picoseconds for the
+ RGMII RX delay
+Date: Wed,  6 Jan 2021 14:42:49 +0100
+Message-Id: <20210106134251.45264-4-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
 References: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210106_084412_981353_9603D8EC 
-X-CRM114-Status: GOOD (  15.33  )
+X-CRM114-CacheID: sfid-20210106_084414_768983_B599BE88 
+X-CRM114-Status: GOOD (  14.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,36 +107,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The timing-adjustment clock only has to be enabled when a) there is a
-2ns RX delay configured using device-tree and b) the phy-mode indicates
-that the RX delay should be enabled.
+Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
+delay register which allows picoseconds precision. Parse the new
+"rx-internal-delay-ps" property or fall back to the value from the old
+"amlogic,rx-delay-ns" property.
 
-Only enable the RX delay if both are true, instead of (by accident) also
-enabling it when there's the 2ns RX delay configured but the phy-mode
-incicates that the RX delay is not used.
+No upstream DTB uses the old "amlogic,rx-delay-ns" property (yet).
+Only include minimalistic logic to fall back to the old property,
+without any special validation (for example if the old and new
+property are given at the same time).
 
-Fixes: 9308c47640d515 ("net: stmmac: dwmac-meson8b: add support for the RX delay configuration")
-Reported-by: Andrew Lunn <andrew@lunn.ch>
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 21 ++++++++++++-------
+ 1 file changed, 13 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index f184b00f5116..5f500141567d 100644
+index 5f500141567d..d2be3a7bd8fd 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -301,7 +301,7 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 		return -EINVAL;
- 	}
+@@ -82,7 +82,7 @@ struct meson8b_dwmac {
+ 	phy_interface_t			phy_mode;
+ 	struct clk			*rgmii_tx_clk;
+ 	u32				tx_delay_ns;
+-	u32				rx_delay_ns;
++	u32				rx_delay_ps;
+ 	struct clk			*timing_adj_clk;
+ };
  
--	if (rx_dly_config & PRG_ETH0_ADJ_ENABLE) {
-+	if (delay_config & PRG_ETH0_ADJ_ENABLE) {
- 		if (!dwmac->timing_adj_clk) {
- 			dev_err(dwmac->dev,
- 				"The timing-adjustment clock is mandatory for the RX delay re-timing\n");
+@@ -276,7 +276,7 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 	tx_dly_config = FIELD_PREP(PRG_ETH0_TXDLY_MASK,
+ 				   dwmac->tx_delay_ns >> 1);
+ 
+-	if (dwmac->rx_delay_ns == 2)
++	if (dwmac->rx_delay_ps == 2000)
+ 		rx_dly_config = PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP;
+ 	else
+ 		rx_dly_config = 0;
+@@ -406,14 +406,19 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 				 &dwmac->tx_delay_ns))
+ 		dwmac->tx_delay_ns = 2;
+ 
+-	/* use 0ns as fallback since this is what most boards actually use */
+-	if (of_property_read_u32(pdev->dev.of_node, "amlogic,rx-delay-ns",
+-				 &dwmac->rx_delay_ns))
+-		dwmac->rx_delay_ns = 0;
++	/* RX delay defaults to 0ps since this is what many boards use */
++	if (of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps",
++				 &dwmac->rx_delay_ps)) {
++		if (!of_property_read_u32(pdev->dev.of_node,
++					  "amlogic,rx-delay-ns",
++					  &dwmac->rx_delay_ps))
++			/* convert ns to ps */
++			dwmac->rx_delay_ps *= 1000;
++	}
+ 
+-	if (dwmac->rx_delay_ns != 0 && dwmac->rx_delay_ns != 2) {
++	if (dwmac->rx_delay_ps != 0 && dwmac->rx_delay_ps != 2000) {
+ 		dev_err(&pdev->dev,
+-			"The only allowed RX delays values are: 0ns, 2ns");
++			"The only allowed RX delays values are: 0ps, 2000ps");
+ 		ret = -EINVAL;
+ 		goto err_remove_config_dt;
+ 	}
 -- 
 2.30.0
 
