@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-15.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5563C433DB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 14:03:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E497C433E0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 14:04:33 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8B033223E8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 14:03:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B033223E8
+	by mail.kernel.org (Postfix) with ESMTPS id 034B32071C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 14:04:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 034B32071C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,61 +23,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=obOeAglrxqj5rxDnHa3mKie5qEuLhe64xsuLIf8Vsdc=; b=Y1ZtvyDwuS/KsrXv5X+/XYesa
-	1wFlW0KXZJonGnxp0OjcdJYubXUPd4NCrWp54W6Gb+OPZoSajoDKg98/0WmGSnD0/I6EEWvcLdeMO
-	JQ+X+ZM1PpjzwsQG2AEsEowInzTCbG7PFRaWB5OCB7jQ02s4n1zef3VyqE1lbAgrT9VD0oHa5HGS/
-	S5oqzQ3HVM1apGk/vVAXm7cbAl6K+d+SmZKmhnqGsTvxnY7sz4JnyWRp+JLjdA35AW6eW9bF20wWO
-	bua0E8CJv34NIxA/mmvIQz06e/SrtIqqcsWIanlq641GUQMPlmL+90pFYuJk24uFfA29RmL4uWFm1
-	hQGBShJxw==;
+	 bh=ZCGjbS/7wexuJRzx7YLEGerbNcjBFFUiKQbCYNIejJ4=; b=MPcWCrF4THw4VaSq6ams3jFpT
+	0DPf48+sxOk22ONTzP2vs6J+y2n1Q5gTxbmilW6ng2B2wnL476Mi5fL1iXW7l2WoQvkm8+YTgmax2
+	yeRiC6d7nbKsMAH2wuH0hPzjb3cd4qpvVnXZEvgnI49y699rgJNs1kU48/0zDOfj4atoqS5MbrYWl
+	6lpqKH2iVp6GnBdZ8O1r92gZfIfVp3hLA4FPbelS2IqGZ4ZXCUi0+Da2JSqOerKTanx8RogSviftv
+	7N6s60/pR3zNsCUjHuwlf1/dSgOJdu3m/QEIWMMXb3iXJZ2RVLKEAcha2KulSx7e5xujlkUSdHot6
+	FYF3dF4xw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kyxn5-0006nI-Da; Mon, 11 Jan 2021 14:03:27 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1kyxo1-00079I-MU; Mon, 11 Jan 2021 14:04:25 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kyxn2-0006m2-TS
- for linux-amlogic@lists.infradead.org; Mon, 11 Jan 2021 14:03:25 +0000
-Received: by mail-wr1-x429.google.com with SMTP id i9so16560395wrc.4
- for <linux-amlogic@lists.infradead.org>; Mon, 11 Jan 2021 06:03:24 -0800 (PST)
+ id 1kyxnt-00075f-DO
+ for linux-amlogic@lists.infradead.org; Mon, 11 Jan 2021 14:04:19 +0000
+Received: by mail-wm1-x335.google.com with SMTP id g25so10945919wmh.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 11 Jan 2021 06:04:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=4y8fAamwlEv/JpV/eRtEdv9Fu6Q7vcY9FOcUogAzd0k=;
- b=xPLtQhRd2al1U//SjdWoV5CltzS+OZNixOasgkbBgVmjeXz6CEIYxnH3SGH4ClzUUn
- 4DnpF7FQJ5dI6lyCV72Tdn4FcANzV2f0JasFz7JrBdWP6GIs1llR6oVolZeMPy0GfZey
- 6ooJsn2I6ABrJAFPscbvUwTlaK0WPhbYKUMGxSrkcT3jEz7bHB2fAEVB86EV3OEBNTX1
- to9lohjSl650fbh+Tg4wSRZ4JSgE2UIRunIMdE25vKZuhrIuoN5dpwRJc/5rwuxFtZu+
- Gh7vHM6jv54bJF1r4pdYLS0FmJn1Ohmzv1bPhT+vBQoewIRRlVmiebOqkUMgzB+iBUqI
- Zx7w==
+ bh=6DV9eaBGiT/1toR+Kiob+2xXWfsRd9Dm9opipygdNwg=;
+ b=jpxb5h9JmxaJiMs/aDOutUtoiMB98ZYrmCRkv0yDIj3yzkqhzBbSLQl6Kqgh2uXkl1
+ TxMfa3s6060dL3MSErw8vcQ7PoELvtc24ayUBaWNhk9gEmnDtl5g/6xpRd3AHcI2fD5z
+ CVES9ITwR3jAqyZ4vZimwtskV/0Y8sruSREEzPzMOMRxy2QQenT84W8bpiiHoP6HMmmQ
+ lDCziRgRd4iDOIbLnH5rvr92tilYj835g4KOrJ/2VquMVtA9/GNo/EikuwpYatXV1PbT
+ +/7ovIUy4e9+MTtFm9Tkzo5oTMHPcnCtwVlfUSusxAP/OGvePR6I/MJYiC3a/RU7Dd3d
+ Xz0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=4y8fAamwlEv/JpV/eRtEdv9Fu6Q7vcY9FOcUogAzd0k=;
- b=XdZLmKyy+3JoIDzTUk2v+6cz7EibnaJoJ95HmpDiV4hRHGNrHUXHcEth0kJiijhnc4
- OCtH8mbku5mT/19K9xRFCTiA2/tPk3yfV9BNXRryKv3528bPkugQ5NvGNsZ0bANZXZvQ
- d5nAC96eG4v8YYLRe2z/aWvBhEAqC4/PpEVxgckCKTaAN7vZN1Pk2pK9Im7GpR5D35ep
- v2WTB76cF1JESEQlR+4T6JTj3/dsWQ1Socyi+/F8i2hfEZeNHVEyDCmy+hE0gVFaEsEH
- ohVxOZ6KmFr35U/c+P/cVIvwvGB3z62oDYw2dxmtt7nEn4RwDVj4etsJU9XvKz1SgbWL
- ysfQ==
-X-Gm-Message-State: AOAM5323pIu7oyszJPcVQFdHgbUTJM/51GkWk11XuHqPZC6L/089g3p8
- phQ3ki+3114Byvx+yvNTTASWNQ==
-X-Google-Smtp-Source: ABdhPJxBN79WmrCae8XakIqTIdxK2dzqJzIDHE4OtnjOLxEPjLIh9Ihyn9ok4rhRBLA1P2K76bMMuQ==
-X-Received: by 2002:adf:9d82:: with SMTP id p2mr16335177wre.330.1610373803764; 
- Mon, 11 Jan 2021 06:03:23 -0800 (PST)
+ bh=6DV9eaBGiT/1toR+Kiob+2xXWfsRd9Dm9opipygdNwg=;
+ b=nZ3IO/HX2sdNJIBqAUttOIgFnVlKDW0sXzF7NxPTwsCZQ9JJnNDMqQxucyJm0CbjJe
+ rzG+TJxCpZupE4Xswy4i7fAhpp+CE6NbXIcVNZ1W4N0Nq+wBaXXjuh2YGQM1+bXhTuJi
+ 04izt9c0PHk5qbt+n9ijILiCWWOPh+qWtLPK5RvQhhnAIlChW42uF7VO/unk8xW79ulZ
+ Kdk9JBGdvE30eNiE1IOVrCqcQrCOs9CEQtKNLbWuWtlpBpDIHCgTPEMA17jym0M8teIc
+ Vu+hTARRt9hGje9N780YKb/hHUF6tIYqTvnT5fvHCDwlNGYH3bd2QUtxHZDyl5oeFVsV
+ WC2g==
+X-Gm-Message-State: AOAM530y4n7r2uKd0aVTcX0YCiYm/OQAMmA5gPR2FB+/TafHDzrdHCRi
+ oPrG87+bJS4q6K2gd/UxFzJwxQ==
+X-Google-Smtp-Source: ABdhPJyzrKQ4OZCxiaXI1a4DMxO8Ded0AtA1/WrPlvt8Ohw1YXA8eYVVVp1o/MpHR3j8v9QMYGFKCw==
+X-Received: by 2002:a1c:27c3:: with SMTP id n186mr14743909wmn.96.1610373855767; 
+ Mon, 11 Jan 2021 06:04:15 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:7474:6cdc:8087:ca98?
  ([2a01:e35:2ec0:82b0:7474:6cdc:8087:ca98])
- by smtp.gmail.com with ESMTPSA id h5sm25287941wrp.56.2021.01.11.06.03.22
+ by smtp.gmail.com with ESMTPSA id w18sm24507291wrn.2.2021.01.11.06.04.14
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Jan 2021 06:03:22 -0800 (PST)
-Subject: Re: [PATCH 2/5] ARM: dts: meson: add the ADC thermal sensor to
- meson.dtsi
+ Mon, 11 Jan 2021 06:04:15 -0800 (PST)
+Subject: Re: [PATCH 3/5] ARM: dts: meson8: add the thermal-zones with cooling
+ configuration
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org, khilman@baylibre.com
 References: <20201221181306.904272-1-martin.blumenstingl@googlemail.com>
- <20201221181306.904272-3-martin.blumenstingl@googlemail.com>
+ <20201221181306.904272-4-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,16 +129,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <e5bfa1ec-678d-0c60-bf0b-073c059ba843@baylibre.com>
-Date: Mon, 11 Jan 2021 15:03:22 +0100
+Message-ID: <93307a31-ea51-cc21-9470-859ffe0f1023@baylibre.com>
+Date: Mon, 11 Jan 2021 15:04:14 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201221181306.904272-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20201221181306.904272-4-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210111_090325_000210_52B496A6 
-X-CRM114-Status: GOOD (  18.34  )
+X-CRM114-CacheID: sfid-20210111_090417_561176_16A5E55E 
+X-CRM114-Status: GOOD (  22.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,47 +151,90 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/12/2020 19:13, Martin Blumenstingl wrote:
-> The SoC temperature can be retrieved from ADC channel 8 on all 32-bit
-> SoCs (Meson6, Meson8, Meson8b and Meson8m2). Add a "generic-adc-thermal"
-> instance to meson.dtsi so the thermal sensor is available for all SoCs.
-> If the temperature sensor calibration data is missing for a board then
-> the "generic-adc-thermal" will not probe and not register a thermal
-> sensor.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  arch/arm/boot/dts/meson.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-> index 5f074f7aa1a2..e0ca5f08d07d 100644
-> --- a/arch/arm/boot/dts/meson.dtsi
-> +++ b/arch/arm/boot/dts/meson.dtsi
-> @@ -298,6 +298,13 @@ efuse: nvmem@0 {
->  		};
->  	};
->  
-> +	thermal_sensor: thermal-sensor {
-> +		compatible = "generic-adc-thermal";
-> +		#thermal-sensor-cells = <0>;
-> +		io-channels = <&saradc 8>;
-> +		io-channel-names = "sensor-channel";
-> +	};
-> +
->  	xtal: xtal-clk {
->  		compatible = "fixed-clock";
->  		clock-frequency = <24000000>;
-> 
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjEvMTIvMjAyMCAxOToxMywgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBUaGUgdmVu
+ZG9yIGtlcm5lbCB1c2VzIHRoZSBmb2xsb3dpbmcgdGhlcm1hbC16b25lIHNldHRpbmdzOgo+IDw9
+IDcwwrBDOgo+IC0gQ1BVIGZyZXF1ZW5jeSBsaW1pdGVkIHRvIDEuNjA4R0h6Cj4gLSBHUFUgbGlt
+aXRlZCB0byA1MTFNSHogYW5kIDUgY29yZXMgKHBpeGVsIHByb2Nlc3NvcnMpCj4gCj4gPD0gODDC
+sEM6Cj4gLSBDUFUgZnJlcXVlbmN5IGxpbWl0ZWQgdG8gMS4yR0h6Cj4gLSBHUFUgbGltaXRlZCB0
+byA0MzVNSHogYW5kIDQgY29yZXMgKHBpeGVsIHByb2Nlc3NvcnMpCj4gCj4gPD0gOTDCsEM6Cj4g
+LSBDUFUgZnJlcXVlbmN5IGxpbWl0ZWQgdG8gMC44MDRHSHoKPiAtIEdQVSBsaW1pdGVkIHRvIDMy
+OE1IeiBhbmQgMyBjb3JlcyAocGl4ZWwgcHJvY2Vzc29ycykKPiAKPiBBZGQgc2ltcGxpZmllZCB0
+aGVybWFsIGNvbmZpZ3VyYXRpb24gd2hpY2ggaXMgdGFrZW4gZnJvbSB0aGUKPiBHWEJCL0dYTC9H
+WE0gU29DIGZhbWlseSAod2hpY2ggdXNlcyB0aGUgc2FtZSBtYW51ZmFjdHVyaW5nIHByb2Nlc3Mg
+YW5kCj4gaGFzIHRoZSBzYW1lIG1heGltdW0ganVuY3Rpb24gdGVtcGVyYXR1cmUgb2YgMTI1wrBD
+KS4gV2l0aCB0aGlzIHRoZQo+IHRoZXJtYWwgZnJhbWV3b3JrIHdpbGwgdHJ5IHRvIGtlZXAgdGhl
+IFNvQyB0ZW1wZXJhdHVyZSBhdCBvciBiZWxvdyA4MMKwQwo+IHdoaWNoIGlzIGlkZW50aWNhbCB0
+byB0aGUgdmVuZG9yIGtlcm5lbCAod2l0aCB0aGUgZXhjZXB0aW9uIG9mIG9uZSBHUFUKPiBwaXhl
+bCBwcm9jZXNzb3IpLgo+IAo+IFRoZSBudW1iZXIgb2YgR1BVIGNvcmVzIGFyZSBub3QgdGFrZW4g
+aW50byBhY2NvdW50IGFzIHRoaXMgaXMgbm90Cj4gc3VwcG9ydGVkLgo+IAo+IFNpZ25lZC1vZmYt
+Ynk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5j
+b20+Cj4gLS0tCj4gIGFyY2gvYXJtL2Jvb3QvZHRzL21lc29uOC5kdHNpIHwgNTQgKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDU0IGluc2VydGlv
+bnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvbWVzb244LmR0c2kgYi9h
+cmNoL2FybS9ib290L2R0cy9tZXNvbjguZHRzaQo+IGluZGV4IDA0Njg4ZThhYmNlMi4uNDIwMzI0
+ZWEyYWQ3IDEwMDY0NAo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL21lc29uOC5kdHNpCj4gKysr
+IGIvYXJjaC9hcm0vYm9vdC9kdHMvbWVzb244LmR0c2kKPiBAQCAtOSw2ICs5LDcgQEAKPiAgI2lu
+Y2x1ZGUgPGR0LWJpbmRpbmdzL3Bvd2VyL21lc29uOC1wb3dlci5oPgo+ICAjaW5jbHVkZSA8ZHQt
+YmluZGluZ3MvcmVzZXQvYW1sb2dpYyxtZXNvbjhiLWNsa2MtcmVzZXQuaD4KPiAgI2luY2x1ZGUg
+PGR0LWJpbmRpbmdzL3Jlc2V0L2FtbG9naWMsbWVzb244Yi1yZXNldC5oPgo+ICsjaW5jbHVkZSA8
+ZHQtYmluZGluZ3MvdGhlcm1hbC90aGVybWFsLmg+Cj4gICNpbmNsdWRlICJtZXNvbi5kdHNpIgo+
+ICAKPiAgLyB7Cj4gQEAgLTI4LDYgKzI5LDcgQEAgY3B1MDogY3B1QDIwMCB7Cj4gIAkJCXJlc2V0
+cyA9IDwmY2xrYyBDTEtDX1JFU0VUX0NQVTBfU09GVF9SRVNFVD47Cj4gIAkJCW9wZXJhdGluZy1w
+b2ludHMtdjIgPSA8JmNwdV9vcHBfdGFibGU+Owo+ICAJCQljbG9ja3MgPSA8JmNsa2MgQ0xLSURf
+Q1BVQ0xLPjsKPiArCQkJI2Nvb2xpbmctY2VsbHMgPSA8Mj47IC8qIG1pbiBmb2xsb3dlZCBieSBt
+YXggKi8KPiAgCQl9Owo+ICAKPiAgCQljcHUxOiBjcHVAMjAxIHsKPiBAQCAtMzksNiArNDEsNyBA
+QCBjcHUxOiBjcHVAMjAxIHsKPiAgCQkJcmVzZXRzID0gPCZjbGtjIENMS0NfUkVTRVRfQ1BVMV9T
+T0ZUX1JFU0VUPjsKPiAgCQkJb3BlcmF0aW5nLXBvaW50cy12MiA9IDwmY3B1X29wcF90YWJsZT47
+Cj4gIAkJCWNsb2NrcyA9IDwmY2xrYyBDTEtJRF9DUFVDTEs+Owo+ICsJCQkjY29vbGluZy1jZWxs
+cyA9IDwyPjsgLyogbWluIGZvbGxvd2VkIGJ5IG1heCAqLwo+ICAJCX07Cj4gIAo+ICAJCWNwdTI6
+IGNwdUAyMDIgewo+IEBAIC01MCw2ICs1Myw3IEBAIGNwdTI6IGNwdUAyMDIgewo+ICAJCQlyZXNl
+dHMgPSA8JmNsa2MgQ0xLQ19SRVNFVF9DUFUyX1NPRlRfUkVTRVQ+Owo+ICAJCQlvcGVyYXRpbmct
+cG9pbnRzLXYyID0gPCZjcHVfb3BwX3RhYmxlPjsKPiAgCQkJY2xvY2tzID0gPCZjbGtjIENMS0lE
+X0NQVUNMSz47Cj4gKwkJCSNjb29saW5nLWNlbGxzID0gPDI+OyAvKiBtaW4gZm9sbG93ZWQgYnkg
+bWF4ICovCj4gIAkJfTsKPiAgCj4gIAkJY3B1MzogY3B1QDIwMyB7Cj4gQEAgLTYxLDYgKzY1LDcg
+QEAgY3B1MzogY3B1QDIwMyB7Cj4gIAkJCXJlc2V0cyA9IDwmY2xrYyBDTEtDX1JFU0VUX0NQVTNf
+U09GVF9SRVNFVD47Cj4gIAkJCW9wZXJhdGluZy1wb2ludHMtdjIgPSA8JmNwdV9vcHBfdGFibGU+
+Owo+ICAJCQljbG9ja3MgPSA8JmNsa2MgQ0xLSURfQ1BVQ0xLPjsKPiArCQkJI2Nvb2xpbmctY2Vs
+bHMgPSA8Mj47IC8qIG1pbiBmb2xsb3dlZCBieSBtYXggKi8KPiAgCQl9Owo+ICAJfTsKPiAgCj4g
+QEAgLTE5MCw2ICsxOTUsNTQgQEAgcG93ZXItZmlybXdhcmVANGYwMDAwMCB7Cj4gIAkJfTsKPiAg
+CX07Cj4gIAo+ICsJdGhlcm1hbC16b25lcyB7Cj4gKwkJc29jIHsKPiArCQkJcG9sbGluZy1kZWxh
+eS1wYXNzaXZlID0gPDI1MD47IC8qIG1pbGxpc2Vjb25kcyAqLwo+ICsJCQlwb2xsaW5nLWRlbGF5
+ID0gPDEwMDA+OyAvKiBtaWxsaXNlY29uZHMgKi8KPiArCQkJdGhlcm1hbC1zZW5zb3JzID0gPCZ0
+aGVybWFsX3NlbnNvcj47Cj4gKwo+ICsJCQljb29saW5nLW1hcHMgewo+ICsJCQkJbWFwMCB7Cj4g
+KwkJCQkJdHJpcCA9IDwmc29jX3Bhc3NpdmU+Owo+ICsJCQkJCWNvb2xpbmctZGV2aWNlID0gPCZj
+cHUwIFRIRVJNQUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sCj4gKwkJCQkJCQkgPCZjcHUx
+IFRIRVJNQUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sCj4gKwkJCQkJCQkgPCZjcHUyIFRI
+RVJNQUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sCj4gKwkJCQkJCQkgPCZjcHUzIFRIRVJN
+QUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sCj4gKwkJCQkJCQkgPCZtYWxpIFRIRVJNQUxf
+Tk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD47Cj4gKwkJCQl9Owo+ICsKPiArCQkJCW1hcDEgewo+
+ICsJCQkJCXRyaXAgPSA8JnNvY19ob3Q+Owo+ICsJCQkJCWNvb2xpbmctZGV2aWNlID0gPCZjcHUw
+IFRIRVJNQUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sCj4gKwkJCQkJCQkgPCZjcHUxIFRI
+RVJNQUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sCj4gKwkJCQkJCQkgPCZjcHUyIFRIRVJN
+QUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sCj4gKwkJCQkJCQkgPCZjcHUzIFRIRVJNQUxf
+Tk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD4sCj4gKwkJCQkJCQkgPCZtYWxpIFRIRVJNQUxfTk9f
+TElNSVQgVEhFUk1BTF9OT19MSU1JVD47Cj4gKwkJCQl9Owo+ICsJCQl9Owo+ICsKPiArCQkJdHJp
+cHMgewo+ICsJCQkJc29jX3Bhc3NpdmU6IHNvYy1wYXNzaXZlIHsKPiArCQkJCQl0ZW1wZXJhdHVy
+ZSA9IDw4MDAwMD47IC8qIG1pbGxpY2Vsc2l1cyAqLwo+ICsJCQkJCWh5c3RlcmVzaXMgPSA8MjAw
+MD47IC8qIG1pbGxpY2Vsc2l1cyAqLwo+ICsJCQkJCXR5cGUgPSAicGFzc2l2ZSI7Cj4gKwkJCQl9
+Owo+ICsKPiArCQkJCXNvY19ob3Q6IHNvYy1ob3Qgewo+ICsJCQkJCXRlbXBlcmF0dXJlID0gPDkw
+MDAwPjsgLyogbWlsbGljZWxzaXVzICovCj4gKwkJCQkJaHlzdGVyZXNpcyA9IDwyMDAwPjsgLyog
+bWlsbGljZWxzaXVzICovCj4gKwkJCQkJdHlwZSA9ICJob3QiOwo+ICsJCQkJfTsKPiArCj4gKwkJ
+CQlzb2NfY3JpdGljYWw6IHNvYy1jcml0aWNhbCB7Cj4gKwkJCQkJdGVtcGVyYXR1cmUgPSA8MTEw
+MDAwPjsgLyogbWlsbGljZWxzaXVzICovCj4gKwkJCQkJaHlzdGVyZXNpcyA9IDwyMDAwPjsgLyog
+bWlsbGljZWxzaXVzICovCj4gKwkJCQkJdHlwZSA9ICJjcml0aWNhbCI7Cj4gKwkJCQl9Owo+ICsJ
+CQl9Owo+ICsJCX07Cj4gKwl9Owo+ICsKPiAgCW1tY2J1czogYnVzQGM4MDAwMDAwIHsKPiAgCQlj
+b21wYXRpYmxlID0gInNpbXBsZS1idXMiOwo+ICAJCXJlZyA9IDwweGM4MDAwMDAwIDB4ODAwMD47
+Cj4gQEAgLTI1NCw2ICszMDcsNyBAQCBtYWxpOiBncHVAYzAwMDAgewo+ICAJCQljbG9ja3MgPSA8
+JmNsa2MgQ0xLSURfQ0xLODE+LCA8JmNsa2MgQ0xLSURfTUFMST47Cj4gIAkJCWNsb2NrLW5hbWVz
+ID0gImJ1cyIsICJjb3JlIjsKPiAgCQkJb3BlcmF0aW5nLXBvaW50cy12MiA9IDwmZ3B1X29wcF90
+YWJsZT47Cj4gKwkJCSNjb29saW5nLWNlbGxzID0gPDI+OyAvKiBtaW4gZm9sbG93ZWQgYnkgbWF4
+ICovCj4gIAkJfTsKPiAgCX07Cj4gIH07IC8qIGVuZCBvZiAvICovCj4gCgpSZXZpZXdlZC1ieTog
+TmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxp
+c3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRl
+YWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
