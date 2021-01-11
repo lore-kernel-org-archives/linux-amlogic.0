@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-15.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B88FFC433E0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 14:03:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5563C433DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 14:03:33 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 74ACE223E8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 14:03:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 74ACE223E8
+	by mail.kernel.org (Postfix) with ESMTPS id 8B033223E8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 14:03:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B033223E8
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,61 +23,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=w8vYGdej5grPjDR56nlUi/IQoYHkXYnPRM/kqBYqScA=; b=qn/6v5zWbq/b1QRKcuOeF6H3t
-	TMLHskyZ3Owv+YJKx24intAu54ywjw+sigp+YviikcSu4K9N4sJxi4ARVl9H4mL+GfKKcE1km469z
-	nfJVEsX2NiIbAzFirJnYMLdA03Qpij+mgqDLsunl3+f2x8ZxJMaHqvOUy/M6aYWb0tuyUxSC1bTJh
-	eenS9Yx/XIJZDG29HRLntLJHY2R/3MaeVRxrm3QOeM2Qn4oDjdZr2w7oCx6z0LUelr26EfVyFPM+x
-	yojoRQIgF0zjBOWXkFi4BOOfm57iUhudIgYzf56Tp1EJE8eFxYvdvKtSNlvt4SBjrSWKkjv4dTYRa
-	vzWqtRBfg==;
+	 bh=obOeAglrxqj5rxDnHa3mKie5qEuLhe64xsuLIf8Vsdc=; b=Y1ZtvyDwuS/KsrXv5X+/XYesa
+	1wFlW0KXZJonGnxp0OjcdJYubXUPd4NCrWp54W6Gb+OPZoSajoDKg98/0WmGSnD0/I6EEWvcLdeMO
+	JQ+X+ZM1PpjzwsQG2AEsEowInzTCbG7PFRaWB5OCB7jQ02s4n1zef3VyqE1lbAgrT9VD0oHa5HGS/
+	S5oqzQ3HVM1apGk/vVAXm7cbAl6K+d+SmZKmhnqGsTvxnY7sz4JnyWRp+JLjdA35AW6eW9bF20wWO
+	bua0E8CJv34NIxA/mmvIQz06e/SrtIqqcsWIanlq641GUQMPlmL+90pFYuJk24uFfA29RmL4uWFm1
+	hQGBShJxw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kyxmo-0006gr-HJ; Mon, 11 Jan 2021 14:03:10 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1kyxn5-0006nI-Da; Mon, 11 Jan 2021 14:03:27 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kyxmi-0006eK-An
- for linux-amlogic@lists.infradead.org; Mon, 11 Jan 2021 14:03:06 +0000
-Received: by mail-wm1-x336.google.com with SMTP id v14so13919029wml.1
- for <linux-amlogic@lists.infradead.org>; Mon, 11 Jan 2021 06:03:03 -0800 (PST)
+ id 1kyxn2-0006m2-TS
+ for linux-amlogic@lists.infradead.org; Mon, 11 Jan 2021 14:03:25 +0000
+Received: by mail-wr1-x429.google.com with SMTP id i9so16560395wrc.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 11 Jan 2021 06:03:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=uUfUDdGFg+KzOzGTBmGUqmDy9inEby6Kce6phzRd4pU=;
- b=CnsoZzKpBW6PcNyRpvPAI4KDQCUaXXvBiXNE3cebMx6/NxWJAFclJ98GILA0Ny7G4d
- mdd5DK54R0tiPpfI0tIkxV+ua1NmZoJt96BrBOG5dJa9XtdVdoQezTc8s44B9/WfUWiN
- i1iTRIqjRHpzFnR3ENhv+iPqEKei1NmqXMJ415snGwD9iwJuVoJwOPDF98url45CDlPV
- jtGSMRIxy4683LmiGtDzjWU3JJlMpXLip7D4C+8U8GwtgYKMUaoZJth4zzQLnbn8ZZwU
- cBRxhLmkywEiOZ0IzFigKpNvr7eOgcUlMCnW0XGqrlO9Ft8tOuIupCJVK5mGjisBjND7
- IhEw==
+ bh=4y8fAamwlEv/JpV/eRtEdv9Fu6Q7vcY9FOcUogAzd0k=;
+ b=xPLtQhRd2al1U//SjdWoV5CltzS+OZNixOasgkbBgVmjeXz6CEIYxnH3SGH4ClzUUn
+ 4DnpF7FQJ5dI6lyCV72Tdn4FcANzV2f0JasFz7JrBdWP6GIs1llR6oVolZeMPy0GfZey
+ 6ooJsn2I6ABrJAFPscbvUwTlaK0WPhbYKUMGxSrkcT3jEz7bHB2fAEVB86EV3OEBNTX1
+ to9lohjSl650fbh+Tg4wSRZ4JSgE2UIRunIMdE25vKZuhrIuoN5dpwRJc/5rwuxFtZu+
+ Gh7vHM6jv54bJF1r4pdYLS0FmJn1Ohmzv1bPhT+vBQoewIRRlVmiebOqkUMgzB+iBUqI
+ Zx7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=uUfUDdGFg+KzOzGTBmGUqmDy9inEby6Kce6phzRd4pU=;
- b=a9cJe2IRlOd4riPUQywHvl6WLuegJXN7QUKfFncZcjtnuzBDo6D7yf7PAWe0Velgdv
- fnx6FRV4gyqcqf4L5A8D2tEyR0g2l8wI1romZAhsAZHCpsEjYmTqe2ei8m6Tg0zwPkFY
- 843jjjyOQJYgPgNSc4iGgpWSwZT8S3n7nQ0UFfNpniDvtOaIhtPArDKd+3Do+Emkg67g
- TRhg+bqht3PD4RYIzi16Y48CKEfXV65sJXHt9jjvuixWgfowPOtUqjnpv9H/Jnug9lxn
- Sr8v0NDVt/a/V4ljvN1om+wW5RDJ5CQKz0TAfdGZkoYltQzWSZP3yqV6lfxn2Mtnx1Gd
- rLng==
-X-Gm-Message-State: AOAM530DpWMjLRwUWJ/ic8WMwjbAaWKSvGLKEioY/2W57TL1P2upJI0w
- lfTtbeVQUffPSFxXE6jMC5PI5g==
-X-Google-Smtp-Source: ABdhPJyTYXJbpxvLDLeIqnQaRiT8bonr+ja91r5Ulm5wdpLzAVlCLWF6iWq3lhMbHidIte1FlyYt8w==
-X-Received: by 2002:a1c:a912:: with SMTP id s18mr14400927wme.26.1610373782808; 
- Mon, 11 Jan 2021 06:03:02 -0800 (PST)
+ bh=4y8fAamwlEv/JpV/eRtEdv9Fu6Q7vcY9FOcUogAzd0k=;
+ b=XdZLmKyy+3JoIDzTUk2v+6cz7EibnaJoJ95HmpDiV4hRHGNrHUXHcEth0kJiijhnc4
+ OCtH8mbku5mT/19K9xRFCTiA2/tPk3yfV9BNXRryKv3528bPkugQ5NvGNsZ0bANZXZvQ
+ d5nAC96eG4v8YYLRe2z/aWvBhEAqC4/PpEVxgckCKTaAN7vZN1Pk2pK9Im7GpR5D35ep
+ v2WTB76cF1JESEQlR+4T6JTj3/dsWQ1Socyi+/F8i2hfEZeNHVEyDCmy+hE0gVFaEsEH
+ ohVxOZ6KmFr35U/c+P/cVIvwvGB3z62oDYw2dxmtt7nEn4RwDVj4etsJU9XvKz1SgbWL
+ ysfQ==
+X-Gm-Message-State: AOAM5323pIu7oyszJPcVQFdHgbUTJM/51GkWk11XuHqPZC6L/089g3p8
+ phQ3ki+3114Byvx+yvNTTASWNQ==
+X-Google-Smtp-Source: ABdhPJxBN79WmrCae8XakIqTIdxK2dzqJzIDHE4OtnjOLxEPjLIh9Ihyn9ok4rhRBLA1P2K76bMMuQ==
+X-Received: by 2002:adf:9d82:: with SMTP id p2mr16335177wre.330.1610373803764; 
+ Mon, 11 Jan 2021 06:03:23 -0800 (PST)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:7474:6cdc:8087:ca98?
  ([2a01:e35:2ec0:82b0:7474:6cdc:8087:ca98])
- by smtp.gmail.com with ESMTPSA id z8sm21907871wmg.17.2021.01.11.06.03.01
+ by smtp.gmail.com with ESMTPSA id h5sm25287941wrp.56.2021.01.11.06.03.22
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Jan 2021 06:03:02 -0800 (PST)
-Subject: Re: [PATCH 1/5] ARM: dts: meson: move iio-hwmon for the SoC
- temperature to meson.dtsi
+ Mon, 11 Jan 2021 06:03:22 -0800 (PST)
+Subject: Re: [PATCH 2/5] ARM: dts: meson: add the ADC thermal sensor to
+ meson.dtsi
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org, khilman@baylibre.com
 References: <20201221181306.904272-1-martin.blumenstingl@googlemail.com>
- <20201221181306.904272-2-martin.blumenstingl@googlemail.com>
+ <20201221181306.904272-3-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,16 +129,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <5ff93086-d913-6465-7af3-9555c1cceba2@baylibre.com>
-Date: Mon, 11 Jan 2021 15:03:01 +0100
+Message-ID: <e5bfa1ec-678d-0c60-bf0b-073c059ba843@baylibre.com>
+Date: Mon, 11 Jan 2021 15:03:22 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201221181306.904272-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20201221181306.904272-3-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210111_090304_474836_5415138C 
-X-CRM114-Status: GOOD (  20.08  )
+X-CRM114-CacheID: sfid-20210111_090325_000210_52B496A6 
+X-CRM114-Status: GOOD (  18.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,100 +158,35 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On 21/12/2020 19:13, Martin Blumenstingl wrote:
 > The SoC temperature can be retrieved from ADC channel 8 on all 32-bit
-> SoCs (Meson6, Meson8, Meson8b and Meson8m2). Move the iio-hwmon instance
-> to meson.dtsi instead of duplicating it in all board.dts.
+> SoCs (Meson6, Meson8, Meson8b and Meson8m2). Add a "generic-adc-thermal"
+> instance to meson.dtsi so the thermal sensor is available for all SoCs.
 > If the temperature sensor calibration data is missing for a board then
-> iio-hwmon will simply not probe.
+> the "generic-adc-thermal" will not probe and not register a thermal
+> sensor.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  arch/arm/boot/dts/meson.dtsi              | 5 +++++
->  arch/arm/boot/dts/meson8b-ec100.dts       | 5 -----
->  arch/arm/boot/dts/meson8b-mxq.dts         | 5 -----
->  arch/arm/boot/dts/meson8b-odroidc1.dts    | 5 -----
->  arch/arm/boot/dts/meson8m2-mxiii-plus.dts | 5 -----
->  5 files changed, 5 insertions(+), 20 deletions(-)
+>  arch/arm/boot/dts/meson.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 > diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-> index 7649dd1e0b9e..5f074f7aa1a2 100644
+> index 5f074f7aa1a2..e0ca5f08d07d 100644
 > --- a/arch/arm/boot/dts/meson.dtsi
 > +++ b/arch/arm/boot/dts/meson.dtsi
-> @@ -11,6 +11,11 @@ / {
->  	#size-cells = <1>;
->  	interrupt-parent = <&gic>;
->  
-> +	iio-hwmon {
-> +		compatible = "iio-hwmon";
-> +		io-channels = <&saradc 8>;
-> +	};
-> +
->  	soc {
->  		compatible = "simple-bus";
->  		#address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/meson8b-ec100.dts b/arch/arm/boot/dts/meson8b-ec100.dts
-> index ed06102a4014..8e48ccc6b634 100644
-> --- a/arch/arm/boot/dts/meson8b-ec100.dts
-> +++ b/arch/arm/boot/dts/meson8b-ec100.dts
-> @@ -70,11 +70,6 @@ gpio-poweroff {
->  		timeout-ms = <20000>;
->  	};
->  
-> -	iio-hwmon {
-> -		compatible = "iio-hwmon";
-> -		io-channels = <&saradc 8>;
-> -	};
-> -
->  	leds {
->  		compatible = "gpio-leds";
->  
-> diff --git a/arch/arm/boot/dts/meson8b-mxq.dts b/arch/arm/boot/dts/meson8b-mxq.dts
-> index 33037ef62d0a..f3937d55472d 100644
-> --- a/arch/arm/boot/dts/meson8b-mxq.dts
-> +++ b/arch/arm/boot/dts/meson8b-mxq.dts
-> @@ -27,11 +27,6 @@ memory {
->  		reg = <0x40000000 0x40000000>;
->  	};
->  
-> -	iio-hwmon {
-> -		compatible = "iio-hwmon";
-> -		io-channels = <&saradc 8>;
-> -	};
-> -
->  	vcck: regulator-vcck {
->  		compatible = "pwm-regulator";
->  
-> diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-> index 5963566dbcc9..c440ef94e082 100644
-> --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-> +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-> @@ -85,11 +85,6 @@ tf_io: gpio-regulator-tf_io {
->  			  1800000 1>;
->  	};
->  
-> -	iio-hwmon {
-> -		compatible = "iio-hwmon";
-> -		io-channels = <&saradc 8>;
-> -	};
-> -
->  	rtc32k_xtal: rtc32k-xtal-clk {
->  		/* X3 in the schematics */
->  		compatible = "fixed-clock";
-> diff --git a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-> index 8f4eb1ed4581..fa6d55f1cfb9 100644
-> --- a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-> +++ b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-> @@ -45,11 +45,6 @@ button-function {
+> @@ -298,6 +298,13 @@ efuse: nvmem@0 {
 >  		};
 >  	};
 >  
-> -	iio-hwmon {
-> -		compatible = "iio-hwmon";
-> -		io-channels = <&saradc 8>;
-> -	};
-> -
->  	vcc_3v3: regulator-vcc3v3 {
->  		compatible = "regulator-fixed";
->  		regulator-name = "VCC3V3";
+> +	thermal_sensor: thermal-sensor {
+> +		compatible = "generic-adc-thermal";
+> +		#thermal-sensor-cells = <0>;
+> +		io-channels = <&saradc 8>;
+> +		io-channel-names = "sensor-channel";
+> +	};
+> +
+>  	xtal: xtal-clk {
+>  		compatible = "fixed-clock";
+>  		clock-frequency = <24000000>;
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
