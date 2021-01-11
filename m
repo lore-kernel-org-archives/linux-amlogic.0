@@ -1,64 +1,84 @@
-Return-Path: <SRS0=c83m=GL=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=5e44=GO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3151C433E0
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Jan 2021 00:10:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3861C433DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 13:58:53 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 71D06236F9
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Jan 2021 00:10:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 71D06236F9
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 8B39122472
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Jan 2021 13:58:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B39122472
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:Message-Id:From:
-	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=vFUhFEPYFoi8MqMQ5Xn3VMdNZiyPH40hS17pAk2U0JM=; b=KsUxfesanqudTAYVcpxW9edXw
-	Y/n3rrIxd6tmi0Zoa2wjvE7CKzjZ3Y3BiMs7cFSWZYv79lxpB3i2ReSFIZfDidSzZvjNkSi+K/cwV
-	AsHORMzEm6WNkxEotKEp+Gmsn6RtGuP59WuQiOTJqUS3NrOJLrwqsb9pPZmRFesociv0DBYBMqne5
-	5FoopnaEKsnq/jNMMWh4tL/o3SYz13rJEGYyw+7/mQmztQ+AFVOgY7sdubxYQG9vHAfjCZIssYJZC
-	pG5j4XCIAxoy+UxdETVJ3VVoMlNzQVEuahbKdk1Ztkyll2LJK3XuswiPVUz+ylLOS62127Sxn7Gan
-	+FxSrm9mg==;
+	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=fvfd/Ez190YuIjuokD+silowvgeaKLUjis48UHDcWbc=; b=AjmaRTcYMe3nucTU8JGZakh+V/
+	gjJ0Idsu5NzUDhS1aqNH+SkkJiasZK/kANR6GL1NPS76CF/CL+2ArIMQ3ZRYvSYmujYtTWhrmWtLT
+	BMlh2t0f3Ba3j3/ObsRFvdvjFuHO2qtdXwhwDHQbiSUsuu4zYburcfwNJSQtH+Wuxb55C7IE97CQj
+	mVAcoMX3pztm2Fk8UYxyfg8EPk032L/HTNQgC4+QLD7KqTvkTygiiGkjDiCTVfXYgLuNTbFa8KXl/
+	dRIbHEwPNcqO5H8yPN01Rugp8iB6LMywIC4sWKY5bAPNsfEq9a0GJxWJXPXcVJs6xumhjkJsIX6eq
+	S6V2cb+Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kxfM6-0002nl-Jp; Fri, 08 Jan 2021 00:10:14 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1kyxiW-0005Nz-9U; Mon, 11 Jan 2021 13:58:44 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kxfM3-0002ms-Bi; Fri, 08 Jan 2021 00:10:12 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPS id 489F02368A;
- Fri,  8 Jan 2021 00:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1610064609;
- bh=/bl+dbUQLW5CaBdvmpIzjWmsxh0p83ugF1Vo+dLtI4U=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=uWzA7PeycjLb4035QydEmCtOyAkyifDY/SsgqIUFsomS6J7UBqdsVuhT7C3Ddj5tR
- yY4gKO/61/At/fOU2qBQh5pD8nFZm4ERxwL54dFGACjsk2oRISOpXicVvVAPImBEvc
- H71k+VFK4S4nG8LnFBvf9yt1gV+byg5WD/iiCZfRjsRAY8aI5Ge4AAL007OIqsO05A
- ApUt982gsAZYSALR6kYs/ov7Etpc3uzON+g8PGbt+ZrDnTBKSYOfNIsqzoOJ9HGphp
- 0VH8jrPkOttw9p+a7+eLmRW8Xl0uEOpG7rsWMikL6yZeiLz2hZAidvMKwfoCIMm4BL
- 6vF0kUunGfpOg==
-MIME-Version: 1.0
-Subject: Re: [PATCH v4 0/5] dwmac-meson8b: picosecond precision RX delay
- support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161006460922.17100.14707302007622685350.git-patchwork-notify@kernel.org>
-Date: Fri, 08 Jan 2021 00:10:09 +0000
-References: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+ id 1kyxiR-0005MJ-K0; Mon, 11 Jan 2021 13:58:40 +0000
+Received: by mail-wr1-x433.google.com with SMTP id t30so16556417wrb.0;
+ Mon, 11 Jan 2021 05:58:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=Y+oG+xNm9xP+x0Bd2rZ9vn+P0+PwuwT6nvWBSD6Nz98=;
+ b=ej1ljIbtahWMaGXTQNV9pI+UlDz+JM+ZZrdSUlnKqTdv7A15XmfHu75mqT/bnbCBxm
+ mv3MSo78U0qjwGkbEqyVzv11PXj+p5h4fN6MCY0649LWbj8b0rjKf4lM+uWj5gJQPJPr
+ 6UsaWjAUNa5iz+yByAoCG3T8JKVu+C78QnGrjV2y/cjFx1AomkF9b/+P2g1DWbwlSbvR
+ LgLl7EuO5nXnhzL+bO/CAvFEUBz4yJ8ucl3q7r6+NrHiHsGfJxlXKhuVryc71Z1qY9Oh
+ 9tftHFp4sgdIzf3ePzxShqkcoJsQgautCst1j1EZaidgxOWhQNUhye9y4uhFVewf97dQ
+ dckg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=Y+oG+xNm9xP+x0Bd2rZ9vn+P0+PwuwT6nvWBSD6Nz98=;
+ b=JWxthJro8MNJBmIdyG7d4XtgFmh+nahoM/lxqOATAAMKIEhGNYuE8edQ34+QSoKocd
+ c3mkh+GFFkQUunlLd7nPCNgolstZGwwqx3Jyg+cG1pmia+4QLgc16dHTR3rxHLJg0j/j
+ OU5EY/sMNSLSy0lI9olqt1gVVDw3OAqOBjE+opWB5cQcoh8bt0oMrsAXtNTkW+IIgJY1
+ SOpiegMfynSvxVzdowHQ+ewKrkyRnX4p3ASJ3Y91IiBiRU03XR8JlRDij9RvGcPW6osK
+ LnbHat6xwPVWVutWVPNKxntCNj2hqO5LxjCDRQ6cp+U37ZHGgVmbBa2ovmrLo+ioM03a
+ orhQ==
+X-Gm-Message-State: AOAM532Ix/RZnhRkSfxh/+kJwvOOLJXwYR2Aa0Cd8ypGgUKCClY9os+V
+ fGOfR4gnEGE2UGCMHn6Kw9mOZfebCQaixA==
+X-Google-Smtp-Source: ABdhPJw4USDQqdK6oVUdyEsVMIb9mDKFEOAu1DET+S/0kX+94PlJZ/YAMZjwVEuDbBRCLbuiUUZR3A==
+X-Received: by 2002:a5d:43ce:: with SMTP id v14mr16366742wrr.342.1610373516733; 
+ Mon, 11 Jan 2021 05:58:36 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id u66sm22543950wmg.30.2021.01.11.05.58.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 Jan 2021 05:58:36 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson: add i2c3/rtc nodes and rtc aliases to
+ ODROID-N2 dtsi
+Date: Mon, 11 Jan 2021 13:58:31 +0000
+Message-Id: <20210111135831.2218-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210107_191011_492825_BFE2404C 
-X-CRM114-Status: UNSURE (   8.94  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210111_085839_738264_9F02B087 
+X-CRM114-Status: GOOD (  11.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,48 +90,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, f.fainelli@gmail.com, jianxin.pan@amlogic.com,
- andrew@lunn.ch, netdev@vger.kernel.org, narmstrong@baylibre.com,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org, khilman@baylibre.com,
- kuba@kernel.org, linux-amlogic@lists.infradead.org, davem@davemloft.net,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
+Enable the onboard pcf8563 rtc hardware on ODROID N2/N2+ boards via the
+common dtsi. Also add aliases to ensure vrtc does not claim /dev/rtc0.
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-On Wed,  6 Jan 2021 14:42:46 +0100 you wrote:
-> Hello,
-> 
-> with the help of Jianxin Pan (many thanks!) the meaning of the "new"
-> PRG_ETH1[19:16] register bits on Amlogic Meson G12A, G12B and SM1 SoCs
-> are finally known. These SoCs allow fine-tuning the RGMII RX delay in
-> 200ps steps (contrary to what I have thought in the past [0] these are
-> not some "calibration" values).
-> 
-> [...]
-
-Here is the summary with links:
-  - [v4,1/5] dt-bindings: net: dwmac-meson: use picoseconds for the RGMII RX delay
-    https://git.kernel.org/netdev/net-next/c/6b5903f58df4
-  - [v4,2/5] net: stmmac: dwmac-meson8b: fix enabling the timing-adjustment clock
-    https://git.kernel.org/netdev/net-next/c/025822884a4f
-  - [v4,3/5] net: stmmac: dwmac-meson8b: use picoseconds for the RGMII RX delay
-    https://git.kernel.org/netdev/net-next/c/140ddf0633df
-  - [v4,4/5] net: stmmac: dwmac-meson8b: move RGMII delays into a separate function
-    https://git.kernel.org/netdev/net-next/c/7985244d10ea
-  - [v4,5/5] net: stmmac: dwmac-meson8b: add support for the RGMII RX delay on G12A
-    https://git.kernel.org/netdev/net-next/c/de94fc104d58
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 39a09661c5f6..b78be3e6974d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -13,6 +13,8 @@
+ 	aliases {
+ 		serial0 = &uart_AO;
+ 		ethernet0 = &ethmac;
++		rtc0 = &rtc;
++		rtc1 = &vrtc;
+ 	};
+ 
+ 	dioo2133: audio-amplifier-0 {
+@@ -478,6 +480,18 @@
+ 	linux,rc-map-name = "rc-odroid";
+ };
+ 
++&i2c3 {
++	status = "okay";
++	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
++	pinctrl-names = "default";
++
++	rtc: rtc@51 {
++		compatible = "nxp,pcf8563";
++		reg = <0x51>;
++		wakeup-source;
++	};
++};
++
+ &pwm_ab {
+ 	pinctrl-0 = <&pwm_a_e_pins>;
+ 	pinctrl-names = "default";
+-- 
+2.17.1
 
 
 _______________________________________________
