@@ -2,86 +2,86 @@ Return-Path: <SRS0=+M4W=GR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38E4DC433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Jan 2021 10:03:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B9F0C433E0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Jan 2021 16:08:12 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C513623A22
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Jan 2021 10:03:35 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C513623A22
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id 9C88623B27
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Jan 2021 16:08:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9C88623B27
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=foss.st.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=5qs8wsYRmz1u7v0vd808XV2/gFxujXSU5nr3ihLyQvA=; b=h/g/jD4e9FvLq4mLwv2U3BPUL
-	oNSjEFHThtibJ79+WC3Djn3mVlD+g6LtLWnphbJfyUeCv7my5eWnK8KpWiCiJgwVvRrck+WZOYp6e
-	4LvPdvM1YcFVJy7whFzXIesvLMyjKYdrfte6oFGXUMMbrJZ4CtfyoGqTJ5o9RZMAl9SONkETZmZv9
-	6JwqNOPKTE9LtUfWqPrquoJrXBMQ3nWChiS44JQ5h7ArWWRqrjVhv3qHYAKlDDL0vqx5Edk74e5QA
-	nR75b8asc6ZM10LNys065WJWy7fwLgHGXG84CKJ8YydrqEAqv/ce7f1fAxARs3aU7oG7DYVBu9mPf
-	4BbmlGoDw==;
+	 bh=ELHrSxQ0Wgv8h0pQ+kYrh78jZ407R+d3eGp2mGOytLk=; b=k/2hywMOAiqB+nA1dC0A7CBd1
+	nJ9ioylQHidMy97zdMzuzllbwuD9By3n2QGqVoEBKqu+1b+r6KR+BiltWS/aLVDx4JdmXvWi1MrCL
+	Kt45B60/Inf7JXLm8naIEzSxr9U6LgxIWeIk5jL+JiHGe2uybaGVGcQYNZ1CLM15OomfHkM59IRwb
+	FJTksACr8ue8B6az6m2uQuQtqUHR5P9GvR8pGfhx12AhG0074uhTsS8JfgpBgOODz0QqUvjjdS6YK
+	K22P0I2EGj5E5v/3S9LwYLi3Oi2/gL8nHy3m+XqhHZ1yCGbix6g3zNGaT9bUgT1rpzVTRUrd6QA+x
+	q0mUfwfzg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kzzTN-0005Un-C9; Thu, 14 Jan 2021 10:03:21 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1l05AE-0007Hx-HY; Thu, 14 Jan 2021 16:07:58 +0000
+Received: from mx07-00178001.pphosted.com ([185.132.182.106])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kzzTI-0005Tr-Hs
- for linux-amlogic@lists.infradead.org; Thu, 14 Jan 2021 10:03:18 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id r9so1568452wra.2
- for <linux-amlogic@lists.infradead.org>; Thu, 14 Jan 2021 02:03:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=oVf5kDc7i4gGrzg222CFywiTCholDlEVEzBooRbeXN8=;
- b=lNr9TM2KRK50yFUSVqvQRC2+d8NR6/ezTC8nz87RztuEm0sg8oFVZ8y/GwJu5fmbuy
- fYHUI2RWogLsikN9SnHQipAiHDGDc1iscx3mN0jbaxwjTcDQ0ZVtTW8fUsLtiGBQW1Q1
- AKfeQ1ODq0/1MA3AOJBalS1gNW0n1axzkT2WZXyba4RRsLVzZn2saNJpv/dEYHRUicJF
- cy5rlCwzCpe0zLOzmTd1UhR5H8lUdW/NIPwujCtBAv7zdrfaCFXLG4Tew5MNdkvkGGm0
- 1fvVpBLtBl0dMLy8xB3oQ4gsFCDJ3uv0n491bAWkFkP/SVR3QtNXDcjHubOMox2quEnn
- hbJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=oVf5kDc7i4gGrzg222CFywiTCholDlEVEzBooRbeXN8=;
- b=HAV3Ykq0C2dN2poRWYQJ+l27IoZHK4QRQatC3JlxgiLSeL73R93E6z6Cn1A7pTq/Kv
- 59bYc0SLC3L5Wcoey29m5rJmm6/CAXL+1uAttKqIuYQzmAwD9PcPzpsyeeEI1OC0japu
- sJNb5Ug+AKoT3HfW10AotVuw3GVCmEcNrw9HuKCMON9OOHGyjEUY2jJPcATvl/wx9vGJ
- 8nGcZq5MOnXtfx1J1VJJSwh0xZ9hSJHXaWtcRwhh9fXuRdcCGtTDRl8tvEe68hY7UIqH
- rw9f6eQ+5PiktWZCd4mXaT2h8E4ZkZR4zOvP+UK8uydhqRcr9+FFf4Ept+dAK7VB7Eqp
- HWAg==
-X-Gm-Message-State: AOAM530GlpVjEfHCaJ37xyBIPRDpCm1kK7OY9susde7I0tFavLjn85Oc
- mIxzSa7qB22ecLGKNZJGTj2Wcg==
-X-Google-Smtp-Source: ABdhPJx/ZTFqNdbwMrPPQXGb4a5AARaWdvmncwYK2q1w7//JoVyn/n68+kesxeF+gvUR8rMoynCXCw==
-X-Received: by 2002:adf:ef06:: with SMTP id e6mr6917001wro.231.1610618595259; 
- Thu, 14 Jan 2021 02:03:15 -0800 (PST)
-Received: from dell ([91.110.221.178])
- by smtp.gmail.com with ESMTPSA id b3sm2474771wrn.70.2021.01.14.02.03.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Jan 2021 02:03:14 -0800 (PST)
-Date: Thu, 14 Jan 2021 10:03:12 +0000
-From: Lee Jones <lee.jones@linaro.org>
-To: Alexander Dahl <post@lespocky.de>
-Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Fix schema warnings for pwm-leds
-Message-ID: <20210114100312.GL3975472@dell>
+ id 1l05AA-0007HL-Tm; Thu, 14 Jan 2021 16:07:55 +0000
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+ by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 10EG2FYd022831; Thu, 14 Jan 2021 17:07:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=0JgJHsNz7hWotQHqsv9MMXYM5L07hf3AqCxxBPFoW4Q=;
+ b=h8mvkBIrZsVp552w8KbS9voQPbwMg9AQvXWDx5P+FlbZI9gzuga/OhxbY5RiAPunuUUy
+ eiO23uCDtWANMLrfBsmjDTEE3CcH4uguKFNpazXIIAKGBLUqxy8LoTtYOYmB/8XON+Yb
+ zES/86Fp6UrHKoluozSCQGAjKjt5cA2u8qhvP6EawJwcHSPlzMtnJL8oai+rBqTnNRmc
+ AeaLaFAApILwKkBHv1kUZWK3FrJFkPGKpneLTV5/NXwSVw+Pt+tQwUaMVxKrG6v3jhWO
+ F/QCF/QeC/RNy4pXKxbWFNuL4jWhBGGPRAr4FJWfEWTS86eIKT12kc7YjW6Vrx/h5ZOj bA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+ by mx07-00178001.pphosted.com with ESMTP id 35y5gxdyeh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 14 Jan 2021 17:07:44 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+ by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C1F3C10002A;
+ Thu, 14 Jan 2021 17:07:42 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+ by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A8FEF2ADA18;
+ Thu, 14 Jan 2021 17:07:42 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.49) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 14 Jan
+ 2021 17:07:41 +0100
+Subject: Re: [PATCH v9 3/4] ARM: dts: stm32: Fix schema warnings for pwm-leds
+To: Alexander Dahl <post@lespocky.de>, Rob Herring <robh+dt@kernel.org>
 References: <20201228163217.32520-1-post@lespocky.de>
- <20201228163217.32520-2-post@lespocky.de>
+ <20201228163217.32520-4-post@lespocky.de>
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <f9277cd5-9898-ab6f-20bd-a0476068ea12@foss.st.com>
+Date: Thu, 14 Jan 2021 17:07:41 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201228163217.32520-2-post@lespocky.de>
+In-Reply-To: <20201228163217.32520-4-post@lespocky.de>
+Content-Language: en-US
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343, 18.0.737
+ definitions=2021-01-14_05:2021-01-14,
+ 2021-01-14 signatures=0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210114_050317_301420_80CFF986 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20210114_110755_234687_3E7CEF96 
+X-CRM114-Status: GOOD (  21.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,55 +93,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, Jeff LaBundy <jeff@labundy.com>,
- linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: devicetree@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>,
+ Alexandre Torgue <alexandre.torgue@st.com>, Alexander Dahl <ada@thorsis.com>,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCAyOCBEZWMgMjAyMCwgQWxleGFuZGVyIERhaGwgd3JvdGU6Cgo+IFRoZSBub2RlIG5h
-bWVzIGZvciBkZXZpY2VzIHVzaW5nIHRoZSBwd20tbGVkcyBkcml2ZXIgZm9sbG93IGEgY2VydGFp
-bgo+IG5hbWluZyBzY2hlbWUgKG5vdykuICBQYXJlbnQgbm9kZSBuYW1lIGlzIG5vdCBlbmZvcmNl
-ZCwgYnV0IHJlY29tbWVuZGVkCj4gYnkgRFQgcHJvamVjdC4KPiAKPiAgIERUQyAgICAgRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9pcXM2MnguZXhhbXBsZS5kdC55YW1sCj4g
-ICBDSEVDSyAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvaXFzNjJ4LmV4
-YW1wbGUuZHQueWFtbAo+IC9ob21lL2FsZXgvYnVpbGQvbGludXgvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL21mZC9pcXM2MnguZXhhbXBsZS5kdC55YW1sOiBwd21sZWRzOiAncGFu
-ZWwnIGRvZXMgbm90IG1hdGNoIGFueSBvZiB0aGUgcmVnZXhlczogJ15sZWQoLVswLTlhLWZdKyk/
-JCcsICdwaW5jdHJsLVswLTldKycKPiAgICAgICAgIEZyb20gc2NoZW1hOiAvaG9tZS9hbGV4L3Ny
-Yy9saW51eC9sZWRzL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9sZWRzL2xlZHMt
-cHdtLnlhbWwKPiAKPiBTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kZXIgRGFobCA8cG9zdEBsZXNwb2Nr
-eS5kZT4KPiBBY2tlZC1ieTogSmVmZiBMYUJ1bmR5IDxqZWZmQGxhYnVuZHkuY29tPgo+IEFja2Vk
-LWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPgo+IC0tLQo+IAo+IE5vdGVzOgo+ICAg
-ICB2OCAtPiB2OToKPiAgICAgICAqIGFkZGVkIGZvcmdvdHRlbiBBY2tlZC1ieSAoSmVmZiBMYUJ1
-bmR5KQo+ICAgICAgICogcmViYXNlZCBvbiB2NS4xMS1yYzEKPiAgICAgCj4gICAgIHY3IC0+IHY4
-Ogo+ICAgICAgICogcmViYXNlZCBvbiByZWNlbnQgcGF2ZWwvZm9yLW5leHQgKHBvc3QgdjUuMTAt
-cmMxKQo+ICAgICAgICogYWRkZWQgQWNrZWQtYnkgKFJvYiBIZXJyaW5nKQo+ICAgICAKPiAgICAg
-djYgLT4gdjc6Cj4gICAgICAgKiBhZGRlZCB3YXJuaW5nIG1lc3NhZ2UgdG8gY29tbWl0IG1lc3Nh
-Z2UgKEtyenlzenRvZiBLb3psb3dza2kpCj4gICAgIAo+ICAgICB2NjoKPiAgICAgICAqIGFkZGVk
-IHRoaXMgcGF0Y2ggdG8gc2VyaWVzCj4gCj4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9tZmQvaXFzNjJ4LnlhbWwgfCA1ICsrKy0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2Vy
-dGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpGYWlsZWQgdG8gYXBwbHk6CgpBcHBseWluZzogZHQt
-YmluZGluZ3M6IG1mZDogRml4IHNjaGVtYSB3YXJuaW5ncyBmb3IgcHdtLWxlZHMKVXNpbmcgaW5k
-ZXggaW5mbyB0byByZWNvbnN0cnVjdCBhIGJhc2UgdHJlZS4uLgpNCURvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9tZmQvaXFzNjJ4LnlhbWwKL2hvbWUvbGVlL3Byb2plY3RzL2xpbnV4
-L2tlcm5lbC8uZ2l0L3dvcmt0cmVlcy9tZmQvcmViYXNlLWFwcGx5L3BhdGNoOjM0OiBpbmRlbnQg
-d2l0aCBzcGFjZXMuCiAgICAgICAgICAgIGxlZC0xIHsKL2hvbWUvbGVlL3Byb2plY3RzL2xpbnV4
-L2tlcm5lbC8uZ2l0L3dvcmt0cmVlcy9tZmQvcmViYXNlLWFwcGx5L3BhdGNoOjM1OiBpbmRlbnQg
-d2l0aCBzcGFjZXMuCiAgICAgICAgICAgICAgICAgICAgbGFiZWwgPSAicGFuZWwiOwp3YXJuaW5n
-OiAyIGxpbmVzIGFkZCB3aGl0ZXNwYWNlIGVycm9ycy4KRmFsbGluZyBiYWNrIHRvIHBhdGNoaW5n
-IGJhc2UgYW5kIDMtd2F5IG1lcmdlLi4uCkF1dG8tbWVyZ2luZyBEb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvbWZkL2lxczYyeC55YW1sCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2Ug
-Y29uZmxpY3QgaW4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9pcXM2Mngu
-eWFtbApSZWNvcmRlZCBwcmVpbWFnZSBmb3IgJ0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9tZmQvaXFzNjJ4LnlhbWwnCgotLSAKTGVlIEpvbmVzIFvmnY7nkLzmlq9dClNlbmlvciBU
-ZWNobmljYWwgTGVhZCAtIERldmVsb3BlciBTZXJ2aWNlcwpMaW5hcm8ub3JnIOKUgiBPcGVuIHNv
-dXJjZSBzb2Z0d2FyZSBmb3IgQXJtIFNvQ3MKRm9sbG93IExpbmFybzogRmFjZWJvb2sgfCBUd2l0
-dGVyIHwgQmxvZwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YW1sb2dpYwo=
+Hi Alexander
+
+On 12/28/20 5:32 PM, Alexander Dahl wrote:
+> The node names for devices using the pwm-leds driver follow a certain
+> naming scheme (now).  Parent node name is not enforced, but recommended
+> by DT project.
+> 
+>    DTC     arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
+>    CHECK   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
+> /home/alex/build/linux/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml: led-rgb: 'led-blue', 'led-green', 'led-red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+>          From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> 
+> Signed-off-by: Alexander Dahl <post@lespocky.de>
+> Acked-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+
+Applied on stm32-next.
+
+Thanks.
+Alex
+
+> ---
+> 
+> Notes:
+>      v8 -> v9:
+>        * added Acked-by (Ahmad Fatoum)
+>        * rebased on v5.11-rc1
+>      
+>      v7 -> v8:
+>        * rebased on recent pavel/for-next (post v5.10-rc1)
+>        * updated indexes and added comment (Ahmad Fatoum)
+>      
+>      v6 -> v7:
+>        * split up patch (one per sub arch)
+>        * added actual warnings to commit message
+> 
+>   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts | 13 +++++++------
+>   1 file changed, 7 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> index cda8e871f999..1e9bf7eea0f1 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> @@ -36,34 +36,35 @@
+>   		stdout-path = &uart4;
+>   	};
+>   
+> -	led-act {
+> +	led-controller-0 {
+>   		compatible = "gpio-leds";
+>   
+> -		led-green {
+> +		led-0 {
+>   			label = "mc1:green:act";
+>   			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
+>   			linux,default-trigger = "heartbeat";
+>   		};
+>   	};
+>   
+> -	led-rgb {
+> +	led-controller-1 {
+>   		compatible = "pwm-leds";
+>   
+> -		led-red {
+> +		/* led-1 to led-3 are part of a single RGB led */
+> +		led-1 {
+>   			label = "mc1:red:rgb";
+>   			pwms = <&leds_pwm 1 1000000 0>;
+>   			max-brightness = <255>;
+>   			active-low;
+>   		};
+>   
+> -		led-green {
+> +		led-2 {
+>   			label = "mc1:green:rgb";
+>   			pwms = <&leds_pwm 2 1000000 0>;
+>   			max-brightness = <255>;
+>   			active-low;
+>   		};
+>   
+> -		led-blue {
+> +		led-3 {
+>   			label = "mc1:blue:rgb";
+>   			pwms = <&leds_pwm 3 1000000 0>;
+>   			max-brightness = <255>;
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
