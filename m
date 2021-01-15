@@ -2,80 +2,64 @@ Return-Path: <SRS0=d+9B=GS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MALFORMED_FREEMAIL,
-	MISSING_HEADERS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84482C433E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jan 2021 15:28:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15D43C433E0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jan 2021 20:29:34 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0C83B22473
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jan 2021 15:28:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0C83B22473
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmx.de
+	by mail.kernel.org (Postfix) with ESMTPS id 711CA23A5A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jan 2021 20:29:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 711CA23A5A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:Subject:From:Reply-To:
-	To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=fz1doKRwObIovjpVCmOSdnleZBwW2NOh1O9p9PsU0uI=; b=1o/L7xtazHtqyp0gCzpyCC482S
-	LNnKRaY44RPpSJwoHOSD+EloNc2gyNXAEPV2tiOElO8VwpHRu+nBQMtEq/4H1eLDFYFOWU063UHHb
-	MmwENfx9tEZKcl1JpOKZxvNNGsvO6AbPz9MhBkvKoySa2uQm8f+dKom0s/lCVv5R+z9GI2JbOxg+v
-	HjxKMl10stMX7F0p6r7lrQYvNcC/e37TZGccQM7m3N5f2N7rgPlnVhW8h0xLFf4JPijh2RGM7s7rG
-	LtJaSeAc0x6emX60Npjt25m7E53+VDslPyizv7XjQxNjWVQLr8E+v8vy45A40tQgbuv2EsyXZN/C7
-	KyrENBjA==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=bjfK2gCpmx3aqCf/gUMyUhjiaiR9R1MlqTi4lq5GW8U=; b=isxfCMH6k68z7QrKNTOE+FFrA
+	n5ObgnSudgp+1kpdrk3GCfuvnyrxJath0dchC22e4A8tsYmMjt+NYp6sSSex4XbEgoZ27SIMua2BY
+	ypfOahV1nede/03/GRolFweOxPntLD1C2Qe8zEOteXzfJJpwHhnNd2KvndC4u7317Hg2wdbzSDn9r
+	6SpXSyCrmpJKpAd+INkyIFW6rWNpSTLH0PTndNZhQvG4kiYoBBWLjHMv08cXlc+x9VwqeUOIkVXLj
+	dH4hjeAwf8NPkgCYHa0G2ix2eBcTm/coGbECitZ21fXow82iq04cd0BKBzIVrl3t4dROtC1VsG9A+
+	uoNHCE4+g==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l0R0z-0003pT-P8; Fri, 15 Jan 2021 15:27:53 +0000
-Received: from mout.gmx.net ([212.227.15.15])
+	id 1l0Vik-0007iu-SR; Fri, 15 Jan 2021 20:29:22 +0000
+Received: from perceval.ideasonboard.com
+ ([2001:4b98:dc2:55:216:3eff:fef7:d647])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l0R0v-0003ow-AO; Fri, 15 Jan 2021 15:27:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1610724467;
- bh=/pVfX1fGWY011gKcI3ubh88MLdFtJSlJjAeijXAU+Q0=;
- h=X-UI-Sender-Class:Cc:From:Subject:Date;
- b=CzN92dYC1Gp/+b71wMxnbUx6yTSimpoyuGGJ7XuKoH0POAKe19nNL6aniaJ0+U2Ur
- 3tamsVsuGOPIvw0kqqtxtFbIpMgo4B1Qls/UTCM9hK+mjYSjPx+0sukq2JZG7prP3u
- 63SX5tXdXuuc3azV5ejiYd+oVqI/SSaby0AeBf4A=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.137.199] ([185.189.23.73]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MowKi-1lqV0X0J1q-00qVU9; Fri, 15
- Jan 2021 16:27:47 +0100
-From: thilo <thibau@gmx.de>
-Subject: Delay recognizing USB-Drive with Kernel 5.9.12
-Message-ID: <3b5d2496-9be6-fdef-5e12-27def85aeb5b@gmx.de>
-Date: Fri, 15 Jan 2021 15:27:40 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.2
+ id 1l0Vih-0007iQ-Gj; Fri, 15 Jan 2021 20:29:20 +0000
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi
+ [62.78.145.57])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0E61358B;
+ Fri, 15 Jan 2021 21:29:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1610742556;
+ bh=8R5qOZgwIXX9QIBlCIV/R54viYQ+tS8st/8kK+PspT4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=rXfe/Bd4sxDcopxrQyulKr6sWDtZgNWVEUmMmsnebMU4/0jVNn/8hLQVXHqwR4Iqy
+ dmLamgDdsuehH2QKJU5DVGWdiVNzsC5Rqtv2JHOZ59k4V2CtY3G/tqo9iglvRf5/6q
+ dndbBomFsfYf9WqlpJf3+ozL6ojiJBE1hiTgHRnI=
+Date: Fri, 15 Jan 2021 22:28:59 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Subject: Re: [PATCH 02/10] drm: Rename plane atomic_check state names
+Message-ID: <YAH7C0EOsisHhqvR@pendragon.ideasonboard.com>
+References: <20210115125703.1315064-1-maxime@cerno.tech>
+ <20210115125703.1315064-2-maxime@cerno.tech>
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:suqbCjLZ0TkunV+T0eKQI/KNLPSdquGGMG8ZgcIxJU04bxnwXrk
- B4+ddzC6rEKGamOdPKBigcIrHYCXez8E+fFMasTpYWjSVB2O5l9F1ub8gI/Q1UK/DWg4BGf
- xCLg1I9FWrX5Myzoyy5YnA3yG1i5y3mFG00fLliV4xUlhGV+ViUmttSrHSDCrFcDYA3TYKU
- G4vXmsu6kiC6Ki0DNnj4w==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:XzKfOYqsO0s=:mKpaEVxobP+fEDaPyhUr5Z
- CZXc9w4Bisz5Wqo7NrbRhpkxsq3WxB8mA3oD5uEu5XC55RICCSsVk61UXl57s/Wgjz8tqJIbr
- 2HjAYiyxX8/X80WHQAo+dy88uOl11kyLj7Se4uPMlSo+mHjZEHKnGvnWprOwxi2Zc710YA6nO
- nmqD3LBwcEfFM13RC7taROzhe5jbURjx6h43WmOga3t1ZCfF9prHer53beAUnZnKDdv4bBl3k
- pKlB6PGZSTDhnQACE2lBfLGfuaTE7n03Orkz09rwjjvG2mCqZWB046RjY3VeiAWMDx5unOPwI
- LOME9gXuZU35Gn8xzs+whvIGVhyb4EQZF+lxgtxJ9z8y8k6kI1i5NyazOEZTjjObogybolTKS
- VLIFS0Xdo3PlwRQ0w/fHhdkXFMvai4EZQ5SIWWKNlwJZ/SsdUU/4PaPSMp4D6hs+PLqDqlsqg
- HZ089GIkU8wwPpb9R+Yj8kexaVA/14zVpz3qgsyGoXhkJg0BrFH2yAWGKMi3aUa3/d10qvuE3
- Vo2S0a9WtL76F5WrqGjtTSMja/6hJjXhg6aaSQcWKwW9g5T/8JlQppPI052fwahiABsloFTNh
- 4KW6/c1tIJBE4sBKoM1RoRMUYU4ceFvjk9DEMki1NSYcYppEb6pPUF/B1hC0UgU8BWVue5qbk
- PYUcRbjoEE1yRHL3Iw7O77KrncRmcVDSfuWUbnOkGMYG6R94OoJTRqBd9vrbwOGDiRrMmxCUP
- fM22EOyCAqAz2B3AQhxRekAFLjLcxxgFrxq+/muiEeMQqE6i1MQB7hiFzOVOsyTZfXSVnz0fa
- RL1sEczOZg4LYi1Ej3ug1sS5stpdQOg1UAGOOzBKh+oCNHaWkONXFxA9p65pXNH5tDQ9RIaYs
- qR5s2f7HQbh1IEjbsEig==
+Content-Disposition: inline
+In-Reply-To: <20210115125703.1315064-2-maxime@cerno.tech>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210115_102749_573958_65F7C4DE 
-X-CRM114-Status: UNSURE (   8.53  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210115_152919_686978_986593BC 
+X-CRM114-Status: GOOD (  23.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,38 +71,233 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Xinliang Liu <xinliang.liu@linaro.org>, dri-devel@lists.freedesktop.org,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-samsung-soc@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+ Michal Simek <michal.simek@xilinx.com>, NXP Linux Team <linux-imx@nxp.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Leo Li <sunpeng.li@amd.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Roland Scheidegger <sroland@vmware.com>, Inki Dae <inki.dae@samsung.com>,
+ Sean Paul <sean@poorly.run>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-kernel@vger.kernel.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ Edmund Dea <edmund.j.dea@intel.com>, virtualization@lists.linux-foundation.org,
+ Eric Anholt <eric@anholt.net>, Thierry Reding <thierry.reding@gmail.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mihail Atanassov <mihail.atanassov@arm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ linux-rockchip@lists.infradead.org,
+ "James \(Qian\) Wang" <james.qian.wang@arm.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-arm-msm@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ John Stultz <john.stultz@linaro.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>, Yannick Fertre <yannick.fertre@st.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Brian Starkey <brian.starkey@arm.com>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Stefan Agner <stefan@agner.ch>,
+ Melissa Wen <melissa.srw@gmail.com>, linux-tegra@vger.kernel.org,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Fabio Estevam <festevam@gmail.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>, amd-gfx@lists.freedesktop.org,
+ Chen-Yu Tsai <wens@csie.org>, Harry Wentland <harry.wentland@amd.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Chen Feng <puck.chen@hisilicon.com>,
+ Alison Wang <alison.wang@nxp.com>, spice-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Tomi Valkeinen <tomba@kernel.org>,
+ Philippe Cornu <philippe.cornu@st.com>, Vincent Abriou <vincent.abriou@st.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Paul Cercueil <paul@crapouillou.net>,
+ linux-renesas-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
+ Russell King <linux@armlinux.org.uk>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ linux-mediatek@lists.infradead.org,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Rob Clark <robdclark@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8hCkkgYW0gbmV3IHRvIGxpbnV4LCBwbGVhc2UgZXhjdXNlIGZhbHNlIHN0YXRlbWVudHMg
-Oi0pKS4KSSB0aGluayB0aGVyZSBpcyBhIFVTQl9QV1JfRU4tcHJvYmxlbSBpbiB0aGUga2VybmVs
-IChVQVMtZHJpdmVyPz8/KQpOT8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGVsYXkgcmVjb2duaXpp
-bmcgVVNCLWRyaXZlIHdpdGgga2VybmVsIDQuOS4yNDcKID4yMCBzZWPCoMKgwqAgZGVsYXkgcmVj
-b2duaXppbmcgVVNCLWRyaXZlIHdpdGgga2VybmVsIDUuOS4xMgoKSW5zdGFsbGVkIEFybWJpYW4g
-b24gU0Qgb24gYW4gT2Ryb2lkIG4yKy4KV2FudGVkIHRvIG1vdmUgc3lzdGVtIHRvIFVTQi1TU0Qs
-IHVzZWQgbmFuZC1zYXRhLWluc3RhbGwuCkFmdGVyIHRoYXQsIGRpZG4ndCBib290LgpOZXcgaW5z
-dGFsbCBvbiBTRC4KUmVhbGl6ZWQgdGhhdCBtb3N0IG9mIHRoZSB0aW1lIGl0IHRvb2sgPjIwIHNl
-YyB0byByZWNvZ25pemUgVVNCLVNTRC4KSSBmZWx0LCBmYWlsaW5nIGJvb3Qgd2FzIGR1ZSB0byBz
-bG93IFVTQi1kcml2ZSByZWNvZ25pdGlvbiAoc3lzdGVtIGRyaXZlCm5vdCBhdmFpbGFibGUgYXQg
-Ym9vdCkuCgppbiBrZXJuLmxvZzoKLi4uIGxvY2FsaG9zdCBrZXJuZWw6IFvCoMKgIDMzLjc2MDAz
-OF0gVVNCX1BXUl9FTjogZGlzYWJsaW5nCi4uLgouLi4gbG9jYWxob3N0IGtlcm5lbDogW8KgIDU4
-Ny44MzYyNjhdIHVzYiAxLTEuMzogbmV3IGZ1bGwtc3BlZWQgVVNCCmRldmljZSBudW1iZXIgNiB1
-c2luZyB4aGNpLWhjZAoKRGlkIHNvbWUgcmVzZWFyY2gsIGZvdW5kOgpodHRwczovL2ZvcnVtLmFy
-bWJpYW4uY29tL3RvcGljLzEzNTgwLW9kcm9pZC1uMi1rZXJuZWw0OS1uby1ib290LW9uLXVzYi1z
-YXRhLXNzZC8Kd2l0aDoKJ0JUVyB3aGF0IGlzIFVTQl9QV1JfRU4sIGFyZSB3ZSBsb29raW5nIGF0
-IHNvbWV0aGluZyBpbnRlcmVzdGluZyBoZXJlPycKYW5kIGEgbGluayB0bzoKaHR0cHM6Ly9mb3J1
-bS5hcm1iaWFuLmNvbS90b3BpYy8xMTc0MS1ib290LWZyb20tc3NkLXdpdGgtbjIvcGFnZS8zLwp3
-aXRoOgonTm9uZSAuLi4gZGVsYXkgd2FzIG5lY2Vzc2FyeSB3aGVuIHVzaW5nIGtlcm5lbCA0Ljku
-eCBzbyAuLi4gc2VlbXMgLi4uCnByb2JsZW0gd2l0aCB0aGUgNS54IGtlcm5lbCBzZXJpZXMsIHBy
-ZXN1bWFibHkgYXJvdW5kIHRoZSBVQVMgZHJpdmVyIC4uLicKCldpdGggQXJtYmlhbi1jb25maWcs
-IGNoYW5nZWQKS2VybmVsIDUuOS4xMiB0byA0LjkuMjQ3IChnbGFkbHkgdmVyeSBlYXN5IHdpdGgg
-dGhhdCEpCkFmdGVyIHRoYXQgcmVjb2duaXRpb24gb2YgVVNCLVNTRCB3YXMgZmFzdC4KQW5vdGhl
-ciBuYW5kLXNhdGEtaW5zdGFsbC4KTmV3IGJvb3QsIHdvcmtlZDogcm9vdCBwYXJ0IGlzIG9uIFVT
-Qi1TU0QhISEKClNvOiBwcm9ibGVtIHdpdGggNS54IGtlcm5lbCwgc2VlIHRvcCBvZiBtYWlsLgoK
-V291bGQgYmUgZ2xhZCB0byBnZXQgZmVlZGJhY2suCgpUaGlsbwoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hi Maxime,
+
+Thank you for the patch.
+
+On Fri, Jan 15, 2021 at 01:56:54PM +0100, Maxime Ripard wrote:
+> Most drivers call the argument to the plane atomic_check hook simply
+> state, which is going to conflict with the global atomic state in a
+> later rework. Let's rename it to new_plane_state (or new_state depending
+> on the convention used in the driver).
+> 
+> This was done using the coccinelle script below, and built tested:
+> 
+> @ plane_atomic_func @
+> identifier helpers;
+> identifier func;
+> @@
+> 
+>  static const struct drm_plane_helper_funcs helpers = {
+>  	.atomic_check = func,
+>  };
+> 
+> @ has_old_state @
+> identifier plane_atomic_func.func;
+> identifier plane;
+> expression e;
+> symbol old_state;
+> symbol state;
+> @@
+> 
+>  func(struct drm_plane *plane, struct drm_plane_state *state)
+>  {
+>  	...
+>  	struct drm_plane_state *old_state = e;
+>  	...
+>  }
+> 
+> @ depends on has_old_state @
+> identifier plane_atomic_func.func;
+> identifier plane;
+> symbol old_state;
+> @@
+> 
+>  func(struct drm_plane *plane,
+> -	struct drm_plane_state *state
+> +	struct drm_plane_state *new_state
+>      )
+>  {
+>  	<+...
+> -	state
+> +	new_state
+> 	...+>
+>  }
+> 
+> @ has_state @
+> identifier plane_atomic_func.func;
+> identifier plane;
+> symbol state;
+> @@
+> 
+>  func(struct drm_plane *plane, struct drm_plane_state *state)
+>  {
+>  	...
+>  }
+> 
+> @ depends on has_state @
+> identifier plane_atomic_func.func;
+> identifier plane;
+> symbol old_state;
+> @@
+> 
+>  func(struct drm_plane *plane,
+> -	struct drm_plane_state *state
+> +	struct drm_plane_state *new_plane_state
+>      )
+>  {
+>  	<+...
+> -	state
+> +	new_plane_state
+> 	...+>
+>  }
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+
+[...]
+
+>  drivers/gpu/drm/omapdrm/omap_plane.c          | 19 +++++----
+>  drivers/gpu/drm/rcar-du/rcar_du_plane.c       |  7 ++--
+>  drivers/gpu/drm/rcar-du/rcar_du_vsp.c         |  7 ++--
+>  drivers/gpu/drm/xlnx/zynqmp_disp.c            | 10 +++--
+
+For these, with the comment below addressed,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+>  41 files changed, 402 insertions(+), 357 deletions(-)
+
+[snip]
+
+> diff --git a/drivers/gpu/drm/omapdrm/omap_plane.c b/drivers/gpu/drm/omapdrm/omap_plane.c
+> index 51dc24acea73..78d0eb1fd69d 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_plane.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_plane.c
+> @@ -99,18 +99,19 @@ static void omap_plane_atomic_disable(struct drm_plane *plane,
+>  }
+>  
+>  static int omap_plane_atomic_check(struct drm_plane *plane,
+> -				   struct drm_plane_state *state)
+> +				   struct drm_plane_state *new_plane_state)
+>  {
+>  	struct drm_crtc_state *crtc_state;
+>  
+> -	if (!state->fb)
+> +	if (!new_plane_state->fb)
+>  		return 0;
+>  
+>  	/* crtc should only be NULL when disabling (i.e., !state->fb) */
+
+s/state/new_plane_state/ here too ?
+
+> -	if (WARN_ON(!state->crtc))
+> +	if (WARN_ON(!new_plane_state->crtc))
+>  		return 0;
+>  
+> -	crtc_state = drm_atomic_get_existing_crtc_state(state->state, state->crtc);
+> +	crtc_state = drm_atomic_get_existing_crtc_state(new_plane_state->state,
+> +							new_plane_state->crtc);
+>  	/* we should have a crtc state if the plane is attached to a crtc */
+>  	if (WARN_ON(!crtc_state))
+>  		return 0;
+> @@ -118,17 +119,17 @@ static int omap_plane_atomic_check(struct drm_plane *plane,
+>  	if (!crtc_state->enable)
+>  		return 0;
+>  
+> -	if (state->crtc_x < 0 || state->crtc_y < 0)
+> +	if (new_plane_state->crtc_x < 0 || new_plane_state->crtc_y < 0)
+>  		return -EINVAL;
+>  
+> -	if (state->crtc_x + state->crtc_w > crtc_state->adjusted_mode.hdisplay)
+> +	if (new_plane_state->crtc_x + new_plane_state->crtc_w > crtc_state->adjusted_mode.hdisplay)
+
+I can't help thinking we're using too long variable names... :-(
+
+>  		return -EINVAL;
+>  
+> -	if (state->crtc_y + state->crtc_h > crtc_state->adjusted_mode.vdisplay)
+> +	if (new_plane_state->crtc_y + new_plane_state->crtc_h > crtc_state->adjusted_mode.vdisplay)
+>  		return -EINVAL;
+>  
+> -	if (state->rotation != DRM_MODE_ROTATE_0 &&
+> -	    !omap_framebuffer_supports_rotation(state->fb))
+> +	if (new_plane_state->rotation != DRM_MODE_ROTATE_0 &&
+> +	    !omap_framebuffer_supports_rotation(new_plane_state->fb))
+>  		return -EINVAL;
+>  
+>  	return 0;
+
+[...]
+
+-- 
+Regards,
+
+Laurent Pinchart
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
