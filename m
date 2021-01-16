@@ -1,66 +1,81 @@
-Return-Path: <SRS0=d+9B=GS=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=uniX=GT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E806EC433DB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jan 2021 21:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 296CCC433E0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Jan 2021 19:56:28 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5B5F2235F8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jan 2021 21:20:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5B5F2235F8
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+	by mail.kernel.org (Postfix) with ESMTPS id DCED022DBF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Jan 2021 19:56:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DCED022DBF
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:
+	Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=juW9mD7DZCfzoB5VO87YQkgxnmOFDde5NIvPids+zAs=; b=UFZIUYSEqdz+Yod+CDkVcpst9
-	5dsR5QuI3Lk+yp77HSbV3rn/W41TwVKaA+06C14otzqtJ5Tw79RKOSHuXjiggkVZPvQf1dIiTaNnj
-	6JkBAbPsmTLDKY4/W9iqyhU9T6r4ZE3oZeFlCjE9AbEPzkvFllF61JhY+GaMxcdcbYUE3bfH15luB
-	8cgIEHhLhm/6tqlDFH/ggwBxJXZIcoqXM+siJoOxX1dOSvbqgD3Ppb7N2qkOboAe5xkfsWWI1c6xg
-	sqgorsFdpXxz4tWMM5htunhUahK+pyijVIUv5cMMemJ8qC3j9gs4ZpxMXkkHmYc9PB+u2YoqL8uoh
-	FstthG5bw==;
+	 bh=ocBD6ofFjKj8ryg0tbk4byLs3llTNJgsTucXf/yzr3g=; b=oeA/9mivd6Li4gUIi7RsooIKI
+	1kLV4rRTaKWLTj7KSY7RT3/yDtXb+TEqYYGFtxD0iY71s4eNUsGunePphjvZAHSYZ8u6ScjTyRdwT
+	Gbm0LciE04FAUJgeDgACLHOOMJLcyyezCEpXK7XfKwFe5+M8nUETU3rbctBE333YRSxahzQEP4hOH
+	YJvmqZY+chEufeEJ3olL4SYAswZ8UL4dwH0oCcxALrokhElM6fwqQNIJOk4XakhtdaTbc5yOw0YcS
+	YM04ZdZCDeznH1dvO4Q8XS4N2ZDp0UfahDBOvoPuHzKx5ZbKxTS+qcbstg7b6jbVDr081no6/xcHt
+	CMvvoVuDQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l0WWQ-0004PD-OD; Fri, 15 Jan 2021 21:20:42 +0000
-Received: from perceval.ideasonboard.com
- ([2001:4b98:dc2:55:216:3eff:fef7:d647])
+	id 1l0rgJ-0000u0-D9; Sat, 16 Jan 2021 19:56:19 +0000
+Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l0WWO-0004Oc-Ax; Fri, 15 Jan 2021 21:20:41 +0000
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi
- [62.78.145.57])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6241F58B;
- Fri, 15 Jan 2021 22:20:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1610745638;
- bh=gBrtw5MNkdCbuPvi2cTqhl5za5Pqp/q6zVdWl/a94uc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=DpGlh+3zv26rFKiVKPMFcYE9SIJo78wTzt+f/qWBARm/BpkTmg6EAErEFPBPbbPhX
- fh5IdmlIWmtQSiBr7ktLcqDESDp5TwoTZAovDL33H8Kodwu6i7gIW5IBgS4KdC5rwv
- RKLhIq/ekLRDmOepJkHy4FhmHBsfknCCplWClCys=
-Date: Fri, 15 Jan 2021 23:20:21 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Subject: Re: [PATCH 10/10] drm: Use state helper instead of the plane state
- pointer
-Message-ID: <YAIHFTYiry6ebUsY@pendragon.ideasonboard.com>
-References: <20210115125703.1315064-1-maxime@cerno.tech>
- <20210115125703.1315064-10-maxime@cerno.tech>
+ id 1l0rgG-0000s2-LE; Sat, 16 Jan 2021 19:56:17 +0000
+Received: by mail-ej1-x634.google.com with SMTP id by1so11770600ejc.0;
+ Sat, 16 Jan 2021 11:56:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zY/UqYiOJTtqfP4SAklIRYFyL3PGcAPq/2TpsQet41c=;
+ b=ujqrxLMXcZQgISfIV0ZkcFTG30dvbam09aRWJ5mMUE9dgu7TwqA65qLfYgk+Edt6nL
+ nNNbzJfhsOu4KCR5RVZJkl9b+X2uhFU8Eo7Vwx2S/BBuSIaMWYtAS2JQf9Ue4G8l3YjR
+ Yy5RHW0wHQs1qWLsLzmZ6IelbsGsNLPpaZhPYsc6eETr+VvvyigPhd6oNK2s0QGLiLke
+ ZQEFbWqFHQGAFa7Lq56H6LxGVDl+guix7nrVjyBEefv/QF579jOPfuzf/RfH9MqGV2AX
+ VLt+3GO2TwDUbROBI0HyWTx3gQujORFaTnAdIzPRpbxx2yzRuLTLwhzuOucntOHpHyE0
+ 14vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zY/UqYiOJTtqfP4SAklIRYFyL3PGcAPq/2TpsQet41c=;
+ b=VIpFCDpx4xvKQHQq2xrfDk+qYQ5t06F44GxQ9k+kx/8UQtrxH6DPaFJzrCracRQlQ6
+ 2X+ZN1SGuFfiNILh0ugU3bodaR3TWXsB9ApLVO2cYhQbrpd8hhOjUvp8LCVWqfWhpdlE
+ PANxDLeJ55hLNwC63OKqVyJpDA2ndSr9dfnSYJSQt1k5iuZEKFQsHsvXXsfnA+jyLh+W
+ cwhLhggSfyEzG/iLyO59LECSK10RdJoLIEwSVhzfL4qx2Tvyws8UaswVLnu2C6Z8RJN/
+ WEnmFBXcfej9WW+zn2dYUahHs75hoF5akeYbRW7IbVNMyeb/QJdSen7m83p5f9x0efRp
+ ztAw==
+X-Gm-Message-State: AOAM5304fm4uiJpB53GdGBQUgz+pCOznmVvzvYCcK5rzyv1lbGTOPrJF
+ 3VeLF3oG0YSeTH+cOQih8GvMs0dmBLZCIowUgdqVYQyayl0=
+X-Google-Smtp-Source: ABdhPJwR+ln0N6g5lDyOzVbAhFnaMKLLOgStUS6Bp5XVxUFc2+az84vxO26pGkhc5pjLZM74dGIf4LUs1br/Z0FYbwA=
+X-Received: by 2002:a17:906:1b41:: with SMTP id
+ p1mr10080257ejg.162.1610826973382; 
+ Sat, 16 Jan 2021 11:56:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210115125703.1315064-10-maxime@cerno.tech>
+References: <3b5d2496-9be6-fdef-5e12-27def85aeb5b@gmx.de>
+In-Reply-To: <3b5d2496-9be6-fdef-5e12-27def85aeb5b@gmx.de>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 16 Jan 2021 20:56:02 +0100
+Message-ID: <CAFBinCBpn3q5EUvLps=uvvB4QeUP3mx9Hfi+LZvuh1_KdoEbNA@mail.gmail.com>
+Subject: Re: Delay recognizing USB-Drive with Kernel 5.9.12
+To: thilo <thibau@gmx.de>
+Content-Type: multipart/mixed; boundary="0000000000008cc91405b909e1a4"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210115_162040_504597_3A3EC409 
-X-CRM114-Status: GOOD (  22.82  )
+X-CRM114-CacheID: sfid-20210116_145616_803987_F8028446 
+X-CRM114-Status: GOOD (  19.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,184 +87,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Xinliang Liu <xinliang.liu@linaro.org>, dri-devel@lists.freedesktop.org,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
- linux-samsung-soc@vger.kernel.org, Vincent Abriou <vincent.abriou@st.com>,
- Michal Simek <michal.simek@xilinx.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- NXP Linux Team <linux-imx@nxp.com>, spice-devel@lists.freedesktop.org,
- Sascha Hauer <s.hauer@pengutronix.de>, Roland Scheidegger <sroland@vmware.com>,
- Inki Dae <inki.dae@samsung.com>, Sean Paul <sean@poorly.run>,
- Hyun Kwon <hyun.kwon@xilinx.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>,
- freedreno@lists.freedesktop.org,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- David Airlie <airlied@linux.ie>, Edmund Dea <edmund.j.dea@intel.com>,
- virtualization@lists.linux-foundation.org,
- Thierry Reding <thierry.reding@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Fabio Estevam <festevam@gmail.com>,
- Alexey Brodkin <abrodkin@synopsys.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-rockchip@lists.infradead.org,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Dave Airlie <airlied@redhat.com>, Alexandre Torgue <alexandre.torgue@st.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- John Stultz <john.stultz@linaro.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
- Boris Brezillon <bbrezillon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- Yannick Fertre <yannick.fertre@st.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Kevin Hilman <khilman@baylibre.com>, Brian Starkey <brian.starkey@arm.com>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Stefan Agner <stefan@agner.ch>,
- Melissa Wen <melissa.srw@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sam Ravnborg <sam@ravnborg.org>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Chen Feng <puck.chen@hisilicon.com>,
- Alison Wang <alison.wang@nxp.com>, Daniel Vetter <daniel@ffwll.ch>,
- Tomi Valkeinen <tomba@kernel.org>, Philippe Cornu <philippe.cornu@st.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>, Paul Cercueil <paul@crapouillou.net>,
- Marek Vasut <marex@denx.de>, linux-renesas-soc@vger.kernel.org,
- Joonyoung Shim <jy0922.shim@samsung.com>, Russell King <linux@armlinux.org.uk>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Hans de Goede <hdegoede@redhat.com>, linux-mediatek@lists.infradead.org,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-tegra@vger.kernel.org,
- Jernej Skrabec <jernej.skrabec@siol.net>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, Rob Clark <robdclark@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Jyri Sarha <jyri.sarha@iki.fi>,
- Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Maxime,
+--0000000000008cc91405b909e1a4
+Content-Type: text/plain; charset="UTF-8"
 
-Thank you for the patch.
+Hello Thilo,
 
-On Fri, Jan 15, 2021 at 01:57:02PM +0100, Maxime Ripard wrote:
-> Many drivers reference the plane->state pointer in order to get the
-> current plane state in their atomic_update or atomic_disable hooks,
+On Fri, Jan 15, 2021 at 4:28 PM thilo <thibau@gmx.de> wrote:
+>
+> Hello!
+> I am new to linux, please excuse false statements :-)).
+> I think there is a USB_PWR_EN-problem in the kernel (UAS-driver???)
+to verify if USB_PWR_EN is really the cause of this problem you can
+add the "regulator-always-on" property to
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi (and then
+re-build the kernel)
+see the attached patch (not tested as I don't have an Odroid-N2 myself)
 
-Please don't use the word "current", it's ambiguous. Do you mean old
-state or new state ?
+[...]
+> https://forum.armbian.com/topic/11741-boot-from-ssd-with-n2/page/3/
+> with:
+> 'None ... delay was necessary when using kernel 4.9.x so ... seems ...
+> problem with the 5.x kernel series, presumably around the UAS driver ...'
+that link mentions:
+> Edit /boot/boot.ini and add "usb_storage.quirks=0bc2:3321:" to the linux command line parameters.
+this could mean that we're not looking at a problem with the Odroid-N2
+but something specific to the USB controller on this Seagate device
+involving the people on the Linux USB mailing ist
+(linux-usb@vger.kernel.org) is probably a good thing to do
 
-> which would be the new plane state in the global atomic state since
-> _swap_state happened when those hooks are run.
+> With Armbian-config, changed
+> Kernel 5.9.12 to 4.9.247 (gladly very easy with that!)
+> After that recognition of USB-SSD was fast.
+The 4.9 kernel is probably using patches (and various hacks) from
+Amlogic which may or may not be part of the newer upstream Linux
+kernel versions (for example 5.9).
+Sometimes differences can be spotted by comparing the "dmesg" (kernel
+log) output of both kernels.
 
-Is this relevant ? drm_atomic_helper_swap_state() doesn't change the
-old_state and new_state pointers in drm_atomic_state as far as I can
-tell.
 
-> Use the drm_atomic_get_new_plane_state helper to get that state to make it
-> more obvious.
-> 
-> This was made using the coccinelle script below:
-> 
-> @ plane_atomic_func @
-> identifier helpers;
-> identifier func;
-> @@
-> 
-> (
->  static const struct drm_plane_helper_funcs helpers = {
->  	...,
->  	.atomic_disable = func,
-> 	...,
->  };
-> |
->  static const struct drm_plane_helper_funcs helpers = {
->  	...,
->  	.atomic_update = func,
-> 	...,
->  };
-> )
-> 
-> @ adds_new_state @
-> identifier plane_atomic_func.func;
-> identifier plane, state;
-> identifier new_state;
-> @@
-> 
->  func(struct drm_plane *plane, struct drm_atomic_state *state)
->  {
->  	...
-> -	struct drm_plane_state *new_state = plane->state;
-> +	struct drm_plane_state *new_state = drm_atomic_get_new_plane_state(state, plane);
-> 	...
->  }
-> 
-> @ include depends on adds_new_state @
-> @@
-> 
->  #include <drm/drm_atomic.h>
-> 
-> @ no_include depends on !include && adds_new_state @
-> @@
-> 
-> + #include <drm/drm_atomic.h>
->   #include <drm/...>
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
+Best regards,
+Martin
 
-[snip]
+--0000000000008cc91405b909e1a4
+Content-Type: text/x-patch; charset="US-ASCII"; 
+	name="meson-g12b-odroid-n2-usb-pwr-en-always-on.patch"
+Content-Disposition: attachment; 
+	filename="meson-g12b-odroid-n2-usb-pwr-en-always-on.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_kk04iytp0>
+X-Attachment-Id: f_kk04iytp0
 
->  drivers/gpu/drm/omapdrm/omap_plane.c            | 6 ++++--
->  drivers/gpu/drm/rcar-du/rcar_du_plane.c         | 3 ++-
->  drivers/gpu/drm/rcar-du/rcar_du_vsp.c           | 3 ++-
->  drivers/gpu/drm/xlnx/zynqmp_disp.c              | 3 ++-
-
-[snip]
-
-> diff --git a/drivers/gpu/drm/omapdrm/omap_plane.c b/drivers/gpu/drm/omapdrm/omap_plane.c
-> index cd8cf7c786b5..021a94de84a1 100644
-> --- a/drivers/gpu/drm/omapdrm/omap_plane.c
-> +++ b/drivers/gpu/drm/omapdrm/omap_plane.c
-> @@ -44,7 +44,8 @@ static void omap_plane_atomic_update(struct drm_plane *plane,
->  {
->  	struct omap_drm_private *priv = plane->dev->dev_private;
->  	struct omap_plane *omap_plane = to_omap_plane(plane);
-> -	struct drm_plane_state *new_state = plane->state;
-
-This seems to imply that you're interested in the new state.
-
-> +	struct drm_plane_state *new_state = drm_atomic_get_new_plane_state(state,
-> +									   plane);
-
-Does this really make things more obvious ?
-
->  	struct omap_overlay_info info;
->  	int ret;
->  
-> @@ -89,7 +90,8 @@ static void omap_plane_atomic_update(struct drm_plane *plane,
->  static void omap_plane_atomic_disable(struct drm_plane *plane,
->  				      struct drm_atomic_state *state)
->  {
-> -	struct drm_plane_state *new_state = plane->state;
-> +	struct drm_plane_state *new_state = drm_atomic_get_new_plane_state(state,
-> +									   plane);
->  	struct omap_drm_private *priv = plane->dev->dev_private;
->  	struct omap_plane *omap_plane = to_omap_plane(plane);
->  
-
-[snip]
-
--- 
-Regards,
-
-Laurent Pinchart
+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLW9kcm9p
+ZC1uMi5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItb2Ryb2lk
+LW4yLmR0c2kKaW5kZXggMzlhMDk2NjFjNWY2Li4xNjBjNzJjZDc2MmYgMTAwNjQ0Ci0tLSBhL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLW9kcm9pZC1uMi5kdHNpCisrKyBi
+L2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLW9kcm9pZC1uMi5kdHNpCkBA
+IC0xNzgsNiArMTc4LDcgQEAgdXNiX3B3cl9lbjogcmVndWxhdG9yLXVzYl9wd3JfZW4gewogCQkv
+KiBDb25uZWN0ZWQgdG8gdGhlIG1pY3JvVVNCIHBvcnQgcG93ZXIgZW5hYmxlICovCiAJCWdwaW8g
+PSA8JmdwaW8gR1BJT0hfNiBHUElPX0FDVElWRV9ISUdIPjsKIAkJZW5hYmxlLWFjdGl2ZS1oaWdo
+OworCQlyZWd1bGF0b3ItYWx3YXlzLW9uOwogCX07CiAKIAl2ZGRhb18xdjg6IHJlZ3VsYXRvci12
+ZGRhb18xdjggewo=
+--0000000000008cc91405b909e1a4
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--0000000000008cc91405b909e1a4--
+
