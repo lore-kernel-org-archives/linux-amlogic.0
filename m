@@ -1,83 +1,140 @@
-Return-Path: <SRS0=uniX=GT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=61z+=GV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-20.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,MSGID_FROM_MTA_HEADER,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA123C433DB
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Jan 2021 21:01:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C80DFC433E0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Jan 2021 04:03:28 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6B91C22D50
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Jan 2021 21:01:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B91C22D50
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 15B65224B8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Jan 2021 04:03:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 15B65224B8
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=labundy.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=e7C8vtXcNMUFO36InUNjKYfVgLKgKb0CZOSg6lnC12I=; b=wjKZeUelCoAXRt56Ts3tmpIgf
-	LYM7DiXI8hNyF4sUAAKPl+0Vxhg03Nd8a4AnzynQWUSgPUrKJn8sYYmbYDrVRqHNhxE5YATY6mdNj
-	U/E9Q75P72fn7Lzae3VGQTst9xJeWNqwq16oUufNGl0gcutoFHjrErgKzZeazIwsYRxbj9MWUEUwx
-	P1m2hCV72Tc2tDcumS7cQvt437Lq4B0a0Oi101inGyxvrvLWBUCajFQMgZbWLcJ9qIrLnK5AUPoSu
-	P8pM3fl7qfDHzfGCg8Eefq+5pyQjfuEbcc0Ou7RfWdvVQ+VK0TZbDzMimeCTHvODw/YzhrXl2v0XK
-	hVZET9G3Q==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:MIME-Version:In-Reply-To:References:Message-ID:Subject:To:From:Date:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=glYCYwjdK03mjtRrPST5TbPyqZpGovuovmMjNjTD4nI=; b=O6F24uSnUz48mQ8P05VRhh8Hoc
+	ICLY6uHKI6hMcljn9758xsw7/Lq0EswOFDX5+i0n6IzfysMV/PXRPYnjVfYBcq0vjQYK6fV/SXRbk
+	JD94iNPaV3MbZj0SHcVNyBMIWGJVkhbUZrtF+9EoATo1Xdx1MdF886J5imjjuYacM5fDjcvGi8ZAw
+	n3OwxWqoPNl/8II7jLlNoeNq9mxZhZ8DdNJ/NsNnratfXSX1/WnrK62mUI7yAneJ3i/bv0xEAShvc
+	avZnePoDKu+C/h9JipReEQ8f6HRZA8XDE1dRdispUTL6HWDqHLO655UaSfg0JvV2Kk64VOCtVaznm
+	0Qh2XrMQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l0shS-00069g-8m; Sat, 16 Jan 2021 21:01:34 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1l1Ll4-0005vU-Tb; Mon, 18 Jan 2021 04:03:14 +0000
+Received: from mail-mw2nam10on2077.outbound.protection.outlook.com
+ ([40.107.94.77] helo=NAM10-MW2-obe.outbound.protection.outlook.com)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l0shP-00069I-L4; Sat, 16 Jan 2021 21:01:32 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id hs11so15970820ejc.1;
- Sat, 16 Jan 2021 13:01:31 -0800 (PST)
+ id 1l1Ll0-0005ul-K3; Mon, 18 Jan 2021 04:03:11 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U/ac3EMd3Tw9mnKKpAyeMHCIAaTnUJcjqSAFcspA+9XgkWhnwx5k/73yelgEdazq04ukV8TgvroEFEAqal0skQtdmRdOJ2Dlvg0AkawqDwVcic9WJdST0V4cK2udI2OPEgavKMIIixBREoJFhAjM67jr9Ff/kd5rf0r6FKdDbfBBTrNGxpjGpZ9PtHA+bmTUxIgYmE0BwDGqW9G7haOUxT5hcX+XF5GsC0S4efWmj3BB4xt7PnQIqKcSpVjYFms1sDTl7WZedTx2jGahtR5ddSH7ri7NralevF+73h5Gya+VMeilTX8kHpqbduPS1rJOS9gvCUkx44G/z3Gqs2cCEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zqCVGT+KknCKFUz9rdwEIKPFHKlNLwxPpT8N62X5ueE=;
+ b=LokxkeheJlYtY3vqlOMhoSZr4g8/7Q7P8MAuvVlkGB1S932M8DLrG3F08U7pI2dkepg7372f3fbsLIPplSJS+NPsxlaHIMmJD7I2Jdv4H2rCvzwxKXbBO9GgkP3LABqPdrj7+4zElXYDqatNTXEiCfQJ2rsHk5j2R9+dfSWTnevyBexq03xfrLZJNF9q2I4NbNwTS+t/SH3pKzkPIqCjzG1OEOM2BVY4bDeskpYPqDbeZdM5X6Xqj5XlUCFmsc3FPEF+/3w6P5ZiCrFj/u36KXLU5rup7guqG9Eoj2GA0vsJF9YlWt+N1p3yQZ3KUyR5GokalP397ywyj/Xk1U37SA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=b6fot4S0o8FzBACw00nl0yHU0eEOQr6GTvAJmo+zENQ=;
- b=kEh8eR+7T5R8d2o7uD/lJHuY8dv8i1NNXBpsp2Kz30djqxD7PIinIv/GSxaERAsJpg
- Qr0hFfmaigLfAsv5JuvxCUBLYzpgQYycqh9F5C0XcuRdgYrvYzeG9jyILTswpMT/YdiH
- /dHlEryL8aAmxfVSM7wxBoXNF1RJpruY1SYHCUz/REnMjrP2fn84U5XQp2BWwKazYlUC
- jEOjzxN3MikFrF5Km1Pd99tN7xpYFveHz7rurvd1xnSkWsS0UNssSj9zd0w0x7W3Tz94
- I4hOFNF12VhfALTvQKJ6uJQfw7aQPFbYs2mTGN/nssOQXUFN9rOj18I2w8BO3gcdbD6q
- qqJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=b6fot4S0o8FzBACw00nl0yHU0eEOQr6GTvAJmo+zENQ=;
- b=dTSC7EqW6FA/sYZVAqXPf19dos5Y3EVTwkzc07Kz3rOuKBwDN7Qs0exQGYJB+/jsUo
- F5D47sRehppjoD0yqPmwPFYn3eonX+MlEHYUxUnPBw/iwhhAmrtZKDbWAq9/WtZZL+Xp
- 8QHwHu1a2rjeqoxWARDVaFnFGW3hvkNehiadCcnQei8Eu4442u3HB0R8v0UEN5ng7ZDV
- DPhOvESlyPqQ1rKeT3AvW21sITHZ6iJ/H+wEFUFaVBK/Piu6a2CseF3Tr9Ri68X1fOmU
- cb3R3V9ryegEg48cxtaK89t89sjWd1HCiYBoxhzxiWTy1rlkMEziZarmW2zqALW4PWMq
- oFEg==
-X-Gm-Message-State: AOAM530qfPHaAw+M2JaS7hZsk0oWdwHc5nVvV3hDZQ9upW8XYuwYXEw/
- +GnAYK2xhylnMnyjOz9FFyBJbGVKe6f54tpvlok=
-X-Google-Smtp-Source: ABdhPJwi6ie1Yk7L9E3ktUS9hNm/69jCzQMPLiaiVv9fUfCeBpf1UPMrxU+hF3OIde5B0EuEm426RXWdLPC1C9q7KzM=
-X-Received: by 2002:a17:907:3e27:: with SMTP id
- hp39mr8452064ejc.187.1610830890430; 
- Sat, 16 Jan 2021 13:01:30 -0800 (PST)
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zqCVGT+KknCKFUz9rdwEIKPFHKlNLwxPpT8N62X5ueE=;
+ b=E0EQLSxnrqS/jnqkj8FDWJrpjUs5vLWQhhH2Lb9veCtehppPl41as/K+20YqcU2IseEgwsKjLHWwUGj3fz29Pcpk6GLuX8mI2w2VWZmVOuEXfrZYMO3/SWWCvEzmUknAJRpbUYYm2iile2EZ4ImSC+r1EdqM8flEkSuuLa/WAQ4=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=labundy.com;
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com (2603:10b6:805:fb::32)
+ by SN6PR08MB4941.namprd08.prod.outlook.com (2603:10b6:805:78::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Mon, 18 Jan
+ 2021 04:03:01 +0000
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::972:c257:aa68:9be0]) by SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::972:c257:aa68:9be0%4]) with mapi id 15.20.3763.014; Mon, 18 Jan 2021
+ 04:03:00 +0000
+Date: Sun, 17 Jan 2021 22:02:54 -0600
+From: Jeff LaBundy <jeff@labundy.com>
+To: Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-amlogic@lists.infradead.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Fix schema warnings for pwm-leds
+Message-ID: <20210118040254.GA7479@labundy.com>
+References: <20201228163217.32520-1-post@lespocky.de>
+ <20201228163217.32520-2-post@lespocky.de>
+ <20210114100312.GL3975472@dell>
+ <20210115035050.GA27243@labundy.com>
+ <20210115094238.s36rrgmpq63a622p@falbala.internal.home.lespocky.de>
+Content-Disposition: inline
+In-Reply-To: <20210115094238.s36rrgmpq63a622p@falbala.internal.home.lespocky.de>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [136.49.173.128]
+X-ClientProxiedBy: SN7PR04CA0114.namprd04.prod.outlook.com
+ (2603:10b6:806:122::29) To SN6PR08MB5517.namprd08.prod.outlook.com
+ (2603:10b6:805:fb::32)
 MIME-Version: 1.0
-References: <20210102205904.2691120-1-martin.blumenstingl@googlemail.com>
- <20210102205904.2691120-5-martin.blumenstingl@googlemail.com>
- <20210112234330.GA192175@xps15>
-In-Reply-To: <20210112234330.GA192175@xps15>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 16 Jan 2021 22:01:19 +0100
-Message-ID: <CAFBinCCfiC9a6u2qAs8-pEUB299C=vHut5=1ZPVPoCs0w-+r-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] remoteproc: meson-mx-ao-arc: Add a driver for the
- AO ARC remote procesor
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from labundy.com (136.49.173.128) by
+ SN7PR04CA0114.namprd04.prod.outlook.com (2603:10b6:806:122::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.11 via Frontend
+ Transport; Mon, 18 Jan 2021 04:03:00 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d51fecd5-7dbe-4b7f-2b97-08d8bb65f273
+X-MS-TrafficTypeDiagnostic: SN6PR08MB4941:
+X-Microsoft-Antispam-PRVS: <SN6PR08MB49412F2066780C7FF31B56BCD3A40@SN6PR08MB4941.namprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1060;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ks/ZbQxfVEy07TO3gyMX56b07DWKM8BTtATmHy6Ugjhrf4QdBVpk5ORMwPajZIGksgzTlm1VWYOyWC0txSx+u98NAwIQojF87D5B4kRCGitNxW0je96YHMS++f5Z5PtWbg/m2xamCmOBECjR8IoVWAPbisXC9V7GSU75lfYpqe5Z9T0m6PZ8OBn06e4+RBc5WWamZZ3CFSWlHDZsMucYnHl/htJBSRPn7WyE0h2TCiO65MnfesG61emCd2VaxcvqbCcgCMcX01Kh5tQE5JI0vu9HItfuK8QZbIwKBG+0txh6mAJoEYMz17HJlyFZssCbTDcFUGfRxLAcb4O+QepvLRwj3MViHjzDWKFv9xlA9qkFdKIvkUqJYw7KpdilkkOhzy73AJjc/zdkud5F+yIdBN25OOkd+L1tWZVpuGX3CWwgTvIzH31C5N0DW3VSiUeufdGrG7l8Kwld87CNHgUBjGCXQQl9s+JNIry/UA3p5rrALV/2tNirfUzwOrGts156uELjMw/rQHZKIhgYrTOPKQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR08MB5517.namprd08.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(396003)(376002)(136003)(346002)(39830400003)(66556008)(66946007)(66476007)(83380400001)(1076003)(55016002)(8936002)(86362001)(7416002)(956004)(8676002)(26005)(16526019)(186003)(316002)(478600001)(966005)(2616005)(52116002)(7696005)(36756003)(110136005)(5660300002)(8886007)(6666004)(921005)(2906002)(33656002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?jN4kuMSwDXTU9dXMcY1oIeW//9ud7Dj28OMYWkonz8mIPCW6VcdjZiM3yD?=
+ =?iso-8859-1?Q?+3BHm2ARPlz38+KS/l27vuUHw2jLRLY+gGr7vDrX3tp/ea+Y1jtxCEax8n?=
+ =?iso-8859-1?Q?+O11hTEgLZ4vwOUpnOVy/f230sOu32aA4dyEdardYRFA2P3DHaIavpyiaz?=
+ =?iso-8859-1?Q?vePizTA5JYtnPkeRIZDDjrHcTkwo/g26GqedHMpMS3eV9fZZ1xo1dWCfho?=
+ =?iso-8859-1?Q?k70WQ2II7xQ69CwY7TToAJ7S9URqmmc3FVHgewRlaqoKhMQaA5ZnXdy1aP?=
+ =?iso-8859-1?Q?gZikRCe52Lsqlnhe8Sh8M+vhrMyauSLlMh0A7AsxHcnWdVSceLdkvXbeMt?=
+ =?iso-8859-1?Q?ELZZduK7TjlS0g7fcEF4JIo9OABixkY3IE9hoai25CGooNpCHeFqVrjOo2?=
+ =?iso-8859-1?Q?y+b7BXKni/3hvJW7j8DybfvY/J0HsiAMW9IcQkkgaWHov8NzSisXNartM4?=
+ =?iso-8859-1?Q?AOHpoF/oL6GJEJmG9+dk2d+77jVotUYmlYmyDxE/XX39av1GWrE/fwiemA?=
+ =?iso-8859-1?Q?TsHAv6YevCHBfc1BxLgEby2q3cOJP3mI0NhS1zfwwSIaas/U75/Lw9yJqJ?=
+ =?iso-8859-1?Q?d4F10xrptmn6YAh0Gb+WVDsPzRGsj5cdttqi2+KRzDF4oDALU/72w+R1e3?=
+ =?iso-8859-1?Q?vBfZXi2XGD20rJ2QflbVEQhDAvI9DKeeW+8vVpFVW83IeCLkRilK1sa6M7?=
+ =?iso-8859-1?Q?NGDQVPSvSmO8Ot5091hMIt5fk0lXmeHF4L6XeC5M6KlhJtT+9yitCp0x57?=
+ =?iso-8859-1?Q?c6rpxZpVoK3QlGFnHJtl2g225Ey+N4qfbFGrWsxpbuOjbDi156Uh7/VbeT?=
+ =?iso-8859-1?Q?x6KqRvasi55IoiOc+xUZbpYlMhSp8tq2aRf7jMmrUOFsUeRk0LYOSFsKys?=
+ =?iso-8859-1?Q?D9w93t5hUNarINIEjaeHWvgEvuh74u4OJ2diVKCnpGjm9JurcS4zkHxvzp?=
+ =?iso-8859-1?Q?bg7r17QkwFxI34r6tEYW+IRpEqMQ954hytj5wQlyQf8Tc2h7BTtlKCPUoB?=
+ =?iso-8859-1?Q?0ATgJ5Im+rh2hIPP3/S5TDnh0yi7NUJj3+aNM3?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d51fecd5-7dbe-4b7f-2b97-08d8bb65f273
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR08MB5517.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2021 04:03:00.8402 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ntCdKzEUtVWB1jzLkv8+Fs69FVLUT/qKTAQyu+JmFZAKO+6rQ9MeOVk+VjSlhx7krhVS0TnQt8FD1npAoRamVQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR08MB4941
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210116_160131_748180_465F5481 
-X-CRM114-Status: GOOD (  24.42  )
+X-CRM114-CacheID: sfid-20210117_230310_677266_61B22CAB 
+X-CRM114-Status: GOOD (  24.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,118 +146,133 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: ohad@wizery.com, devicetree@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
- bjorn.andersson@linaro.org, robh+dt@kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Mathieu,
+Hi Alexander,
 
-thank you for taking the time to go through my patch!
+Thanks again for your work on this.
 
-On Wed, Jan 13, 2021 at 12:43 AM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
-[...]
-> > +       If unusre say N.
->
-> s/unusre/unsure
-godo catch, noted.
+On Fri, Jan 15, 2021 at 10:42:39AM +0100, Alexander Dahl wrote:
+> Hello Jeff,
+> =
 
-[...]
-> > +#include <linux/property.h>
->
-> Is it possible for this to go after platform_device.h?
-I think so, not sure why this is not in alphabetical order
+> On Thu, Jan 14, 2021 at 09:50:50PM -0600, Jeff LaBundy wrote:
+> > On Thu, Jan 14, 2021 at 10:03:12AM +0000, Lee Jones wrote:
+> > > On Mon, 28 Dec 2020, Alexander Dahl wrote:
+> > > =
 
-[...]
-> > +#define AO_CPU_CNTL                                  0x0
-> > +     #define AO_CPU_CNTL_MEM_ADDR_UPPER              GENMASK(28, 16)
-> > +     #define AO_CPU_CNTL_HALT                        BIT(9)
-> > +     #define AO_CPU_CNTL_UNKNONWN                    BIT(8)
-> > +     #define AO_CPU_CNTL_RUN                         BIT(0)
->
-> Any reason for the extra tabulation at the beginning of the lines?
-not really, I think I did the same thing as in
-drivers/iio/adc/meson_saradc.c where the register itself starts at the
-beginning of the line and each bit(mask) starts indented
-I'll change this for the next version
+> > > > The node names for devices using the pwm-leds driver follow a certa=
+in
+> > > > naming scheme (now).  Parent node name is not enforced, but recomme=
+nded
+> > > > by DT project.
+> > > > =
 
-[...]
-> > +#define MESON_AO_RPROC_SRAM_USABLE_BITS                      GENMASK(31, 20)
->
-> As per your comments in the cover letter I assume we don't know more about this?
-unfortunately not, but I'll still try to get some more information
-from someone at Amlogic.
-That said, this is "legacy" hardware for them so I can't make any promises.
+> > > >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.y=
+aml
+> > > >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.y=
+aml
+> > > > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x=
+.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led=
+(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+> > > >         From schema: /home/alex/src/linux/leds/Documentation/device=
+tree/bindings/leds/leds-pwm.yaml
+> > > > =
 
-> > +#define MESON_AO_RPROC_MEMORY_OFFSET                 0x10000000
-> > +
-> > +struct meson_mx_ao_arc_rproc_priv {
-> > +     void __iomem            *remap_base;
-> > +     void __iomem            *cpu_base;
-> > +     unsigned long           sram_va;
-> > +     phys_addr_t             sram_pa;
-> > +     size_t                  sram_size;
-> > +     struct gen_pool         *sram_pool;
-> > +     struct reset_control    *arc_reset;
-> > +     struct clk              *arc_pclk;
-> > +     struct regmap           *secbus2_regmap;
-> > +};
-> > +
-> > +static int meson_mx_ao_arc_rproc_start(struct rproc *rproc)
-> > +{
-> > +     struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-> > +     phys_addr_t phys_addr;
-> > +     int ret;
-> > +
-> > +     ret = clk_prepare_enable(priv->arc_pclk);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     writel(0, priv->remap_base + AO_REMAP_REG0);
-> > +     usleep_range(10, 100);
->
-> That's wonderful - here too I assume there is no indication as to why this is
-> needed?
-looking at this again: the vendor driver only has a delay after
-pulsing the reset line
-I will double check and hopefully remove this usleep_range and only
-keep the one below (after pulsing the reset line)
+> > > > Signed-off-by: Alexander Dahl <post@lespocky.de>
+> > > > Acked-by: Jeff LaBundy <jeff@labundy.com>
+> > > > Acked-by: Rob Herring <robh@kernel.org>
+> > > > ---
+> > > > =
 
-[...]
-> > +static void *meson_mx_ao_arc_rproc_da_to_va(struct rproc *rproc, u64 da,
-> > +                                         size_t len)
-> > +{
-> > +     struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-> > +
-> > +     if ((da + len) >= priv->sram_size)
-> > +             return NULL;
->
-> This isn't an index so it should be '>' rather than '>='.  You should be able to
-> ask for the whole range and get it, which the above prevents you from doing.
->
-> Moreover are you sure 'da' always starts at 0? This seems to be at odds with
-> your comment in meson_mx_ao_arc_rproc_start() about converting from 0xd9000000
-> to 0xc9000000.
-thanks for both of these comments, I'll address this in the next version
+> > > > Notes:
+> > > >     v8 -> v9:
+> > > >       * added forgotten Acked-by (Jeff LaBundy)
+> > > >       * rebased on v5.11-rc1
+> > > >     =
 
-[...]
-> > +     priv->arc_reset = devm_reset_control_get_exclusive(dev, NULL);
-> > +     if (IS_ERR(priv->arc_reset)) {
->
-> Looking at __devm_reset_control_get(), this should probably be IS_ERR_OR_NULL().
-as far as I know only devm_reset_control_get_optional_exclusive (the
-important bit is "optional" - I am using the "mandatory/not optional"
-variant) can return NULL, all other variants return PTR_ERR or a valid
-reset_control.
+> > > >     v7 -> v8:
+> > > >       * rebased on recent pavel/for-next (post v5.10-rc1)
+> > > >       * added Acked-by (Rob Herring)
+> > > >     =
 
+> > > >     v6 -> v7:
+> > > >       * added warning message to commit message (Krzysztof Kozlowsk=
+i)
+> > > >     =
 
-Best regards,
-Martin
+> > > >     v6:
+> > > >       * added this patch to series
+> > > > =
+
+> > > >  Documentation/devicetree/bindings/mfd/iqs62x.yaml | 5 +++--
+> > > >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > > =
+
+> > > Failed to apply:
+> > > =
+
+> > > Applying: dt-bindings: mfd: Fix schema warnings for pwm-leds
+> > > Using index info to reconstruct a base tree...
+> > > M	Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> > > /home/lee/projects/linux/kernel/.git/worktrees/mfd/rebase-apply/patch=
+:34: indent with spaces.
+> > >             led-1 {
+> > > /home/lee/projects/linux/kernel/.git/worktrees/mfd/rebase-apply/patch=
+:35: indent with spaces.
+> > >                     label =3D "panel";
+> > > warning: 2 lines add whitespace errors.
+> > > Falling back to patching base and 3-way merge...
+> > > Auto-merging Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> > > CONFLICT (content): Merge conflict in Documentation/devicetree/bindin=
+gs/mfd/iqs62x.yaml
+> > > Recorded preimage for 'Documentation/devicetree/bindings/mfd/iqs62x.y=
+aml'
+> > =
+
+> > It looks like the following patch already beat this to the punch:
+> > =
+
+> > 8237e8382498 ("dt-bindings: mfd: Correct the node name of the panel LED=
+")
+> =
+
+> Which tree is that commit on? This one?
+> =
+
+> https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/
+
+That's correct.
+
+> =
+
+> > That patch does not retain the LED's label or rename the parent node to
+> > led-controller, however. The label hardly matters for this example, but
+> > perhaps we still want the parent node change to follow leds-pwm.yaml.
+> =
+
+> Should I rework the patch then to have that change only?
+
+That seems like a reasonable compromise.
+
+> =
+
+> Greets
+> Alex
+> =
+
+> -- =
+
+> /"\ ASCII RIBBON | =BBWith the first link, the chain is forged. The first
+> \ / CAMPAIGN     | speech censured, the first thought forbidden, the
+>  X  AGAINST      | first freedom denied, chains us all irrevocably.=AB
+> / \ HTML MAIL    | (Jean-Luc Picard, quoting Judge Aaron Satie)
+
+Kind regards,
+Jeff LaBundy
 
 _______________________________________________
 linux-amlogic mailing list
