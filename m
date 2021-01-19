@@ -2,85 +2,81 @@ Return-Path: <SRS0=ZD2b=GW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F369AC433DB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Jan 2021 01:37:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C3F0C433DB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Jan 2021 14:58:00 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 56CB8205CB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Jan 2021 01:37:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 56CB8205CB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=intel.com
+	by mail.kernel.org (Postfix) with ESMTPS id 0EC7820DD4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Jan 2021 14:57:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0EC7820DD4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:Message-ID:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=02WcB/VfagpVV1O9JDiTlSo6BCNm2Y2jjM9nHCjQ9eQ=; b=rGkp2GZzX/xZDAs6H75PEtvcT
-	N9OTvve0WBrSLSbBDr0hhtQM6w2DscCAPVf0WQ6iNEkW6uAvmlNfxp9eYCPvAFUaiTgzsGsVuLI4F
-	OHmTBHapvOiDdPzIk+pmTIIHCtvJCyVTvV5JZPh44MjXnBXGEF+0lAoGU047t2bfIhSVDvS04n2EX
-	K1Wuz7trwXFEB/I/6g2IN5k572JLWwEo2D54gsnbMnt48+2ioyR8bhdKojckQnnQj0Cg7T57QNLeM
-	F7UVfP1rSVwnXMxCiYS/zwcgkvsQXLhsPUunvKtlyUns/4cm62wtzY7oJETWhQlAmiOgjaTdpAnBV
-	ljV3do4eg==;
+	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=hPJKd9UhOPgCXkZkBF5Ia70enKVeAO25ou4OG6fjacc=; b=ukoSAP0Ios+fkDmWvJXcLN3mYl
+	i0RQTQlXFPZhvreCjZvjEdz2GSOfpzfb0YVG5ZchhamVGpd1GbxvIuFlK1aJjNdm+XISB/oDS+Kdk
+	xkTOhrnOArGze0yxWwQoOPC3PI24GQjHKeZKf2CejiUB1tNoYf88fW4I/sGcTAQRAIkSYQHVDofKE
+	/wy9sE26uG1Eo+DbBkSTJ4Xj3Mc1UdyL5bcs0yVZ1EOktabybCbvGVNzQnlUTeycMSC1Q1xS+P10r
+	0dPTx+KFR2TONQ5mhsrVIAZcB+eV+Xxh7tuaSz2D4Ch9HpqwlR77FaGi7M0BdEc0xf/70xdSfEr+4
+	EgiDEo6Q==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l1fxf-0001no-Kc; Tue, 19 Jan 2021 01:37:35 +0000
-Received: from mga02.intel.com ([134.134.136.20])
+	id 1l1sS4-0007Km-HC; Tue, 19 Jan 2021 14:57:48 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l1fxd-0001nH-DA
- for linux-amlogic@lists.infradead.org; Tue, 19 Jan 2021 01:37:34 +0000
-IronPort-SDR: 1S5nihbBmPkBHvRTQFpGg1ovzG5qxI05aRroKKvMKVwpCBoijFSV+mpKH2qjcQceCqa06FjMx4
- xJpOqWzziFTQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="165956077"
-X-IronPort-AV: E=Sophos;i="5.79,357,1602572400"; d="scan'208";a="165956077"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 17:37:29 -0800
-IronPort-SDR: IMpdu4T63VIM+bChb5MYAewAOXgHALm0u+c7vuT9WUL14I53PJrMyd3+He/PiceT1Gl45+nd4p
- fGu69FRltqRQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,357,1602572400"; d="scan'208";a="347022832"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by fmsmga007.fm.intel.com with ESMTP; 18 Jan 2021 17:37:29 -0800
-Received: from shsmsx605.ccr.corp.intel.com (10.109.6.215) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 18 Jan 2021 17:37:28 -0800
-Received: from shsmsx603.ccr.corp.intel.com (10.109.6.143) by
- SHSMSX605.ccr.corp.intel.com (10.109.6.215) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 19 Jan 2021 09:37:27 +0800
-Received: from shsmsx603.ccr.corp.intel.com ([10.109.6.143]) by
- SHSMSX603.ccr.corp.intel.com ([10.109.6.143]) with mapi id 15.01.1713.004;
- Tue, 19 Jan 2021 09:37:27 +0800
-From: "Zhang, Rui" <rui.zhang@intel.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: RE: [PATCH v2] thermal/core: Make cooling device state change private
-Thread-Topic: [PATCH v2] thermal/core: Make cooling device state change private
-Thread-Index: AQHW7cDP1uLeJF14xUSIfMisXKv/LaouK6iQ
-Date: Tue, 19 Jan 2021 01:37:27 +0000
-Message-ID: <2514d8a204c04b4695da7b73bd2ff848@intel.com>
-References: <20210118173824.9970-1-daniel.lezcano@linaro.org>
-In-Reply-To: <20210118173824.9970-1-daniel.lezcano@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.239.127.36]
-MIME-Version: 1.0
+ id 1l1sRy-0007Hd-0b; Tue, 19 Jan 2021 14:57:42 +0000
+Received: by mail-wr1-x431.google.com with SMTP id c12so1499311wrc.7;
+ Tue, 19 Jan 2021 06:57:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=S7s1aDdJzIQjumzCvBYrOOcnrCsH9+fQZVg5rQvhpjg=;
+ b=QpVvmAtyMBONqrk1J3o1A1o3YCgKKWEmtVeAn5I6zbQExRfwxCB1aP76iMm1tvaKV0
+ kSCGfOGdmTvQpm+gek0pJr4Qw54rnBUunT3i/CcxjVlS18BCcXNVt50Go3mImTXxAZjI
+ nwFyFLGb+tzkvxcuDWOff+yK5fWUNfEstqNh/8/shTcqEFpVKX62vnFzcZGvfX5+AWJW
+ MV7dM/j9Rle19cDTiuH6Wsq1ECFEa9CZqNRu4vKjctpQKhJjAGZ2EgVbskNSyPSKmeBm
+ nxKIbIroZJuCNMEdoMeMVKOim3bnEOkQRpqoo63+xNC9mR2WzvN37T0GZuyw9Bc12d/g
+ geTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=S7s1aDdJzIQjumzCvBYrOOcnrCsH9+fQZVg5rQvhpjg=;
+ b=Ji1E4viU9/0gicqWEC9jecsMddK87qTuXQYo+du9Sz2K0KAeEldAtI+CgAYB4biBOC
+ YKZN1FTihNwwHtoDoUULOCQf3GXbQoXndJ2vuPzyqS8ZsLFtJXKysQNKBKIrdoUfi/AI
+ YE2Y6Bn6i+CS3MhIqcqe413k4JerHuxgls2Pr4n359udgvPNAIHYDQ9bbs9iTn1sRM5h
+ pUUQXyFzmfgGWlfdquP3M8oYPuLfOAktDq6afTTBN+dzI/alFT/NQVEBnG9e3MhF5U53
+ zeAuQYHEbjjsPsUMjwXP84uGqXtR8ePXiSvUkxh48a1B+i7jSpOY5LqfyDz7+ZxJRa2k
+ k0ZA==
+X-Gm-Message-State: AOAM530pB7q2ieYNlB11WBksEpF/cGYPq/jy0hGgmKNK2OzgoAZ4JR6C
+ NEjnlq1ImhpXFpiq3rEPjg4wl472LtU=
+X-Google-Smtp-Source: ABdhPJwlVliSnGIRl5fq1VrlSGKf5EfYyoA/cUAaO255OlTrVwFyZS+pvw/KTSyiE5n2JE7dYIKmTQ==
+X-Received: by 2002:a5d:504d:: with SMTP id h13mr4875065wrt.246.1611068258821; 
+ Tue, 19 Jan 2021 06:57:38 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id s1sm36786893wrv.97.2021.01.19.06.57.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Jan 2021 06:57:38 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] arm64: dts: meson: add support for Beelink GS-King-X
+Date: Tue, 19 Jan 2021 14:57:32 +0000
+Message-Id: <20210119145734.12675-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210118_203733_657877_21BDE1B5 
-X-CRM114-Status: GOOD (  18.95  )
+X-CRM114-CacheID: sfid-20210119_095742_079683_E280ED91 
+X-CRM114-Status: GOOD (  12.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,120 +88,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:PWM FAN DRIVER" <linux-hwmon@vger.kernel.org>,
- Jean Delvare <jdelvare@suse.com>, Neil Armstrong <narmstrong@baylibre.com>,
- "open list:THERMAL" <linux-pm@vger.kernel.org>,
- Amit Kucheria <amitk@kernel.org>, Kamil Debski <kamil@wypas.org>,
- open list <linux-kernel@vger.kernel.org>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- "open list:KHADAS MCU MFD DRIVER" <linux-amlogic@lists.infradead.org>,
- Guenter Roeck <linux@roeck-us.net>
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This series adds bindings and device-tree for the Beelink (AZW) GS-King-X,
+which like GT-King and GT-King Pro is based on the W400 reference design.
 
+Changes since v2:
+- shorten audio card name to GSKING-X
+- add Neil's tested-by
+- add Martin's reviews
 
-> -----Original Message-----
-> From: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Sent: Tuesday, January 19, 2021 1:38 AM
-> To: daniel.lezcano@linaro.org; Zhang, Rui <rui.zhang@intel.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>; Kamil Debski <kamil@wypas.org>;
-> Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>; Jean Delvare
-> <jdelvare@suse.com>; Neil Armstrong <narmstrong@baylibre.com>; Amit
-> Kucheria <amitk@kernel.org>; open list:PWM FAN DRIVER <linux-
-> hwmon@vger.kernel.org>; open list <linux-kernel@vger.kernel.org>; open
-> list:KHADAS MCU MFD DRIVER <linux-amlogic@lists.infradead.org>; open
-> list:THERMAL <linux-pm@vger.kernel.org>
-> Subject: [PATCH v2] thermal/core: Make cooling device state change private
-> Importance: High
-> 
-> The change of the cooling device state should be used by the governor or at
-> least by the core code, not by the drivers themselves.
-> 
-> Remove the API usage and move the function declaration to the internal
-> headers.
-> 
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Acked-by: Guenter Roeck <linux@roeck-us.net>
+Changes since v1:
+- move audio from TDM_B to TDM_A
+- drop S/PDIF content
+- add Rob's bindings ack
 
-Acked-by: Zhang Rui <rui.zhang@intel.com>
+Christian Hewitt (2):
+  dt-bindings: arm: amlogic: add support for the Beelink GS-King-X
+  arm64: dts: meson: add initial Beelink GS-King-X device-tree
 
-Thanks,
-rui
-> ---
->  drivers/hwmon/pwm-fan.c          | 1 -
->  drivers/thermal/khadas_mcu_fan.c | 1 -
->  drivers/thermal/thermal_core.h   | 2 ++
->  include/linux/thermal.h          | 3 ---
->  4 files changed, 2 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c index
-> bdba2143021a..0b1159ceac9b 100644
-> --- a/drivers/hwmon/pwm-fan.c
-> +++ b/drivers/hwmon/pwm-fan.c
-> @@ -378,7 +378,6 @@ static int pwm_fan_probe(struct platform_device
-> *pdev)
->  			return ret;
->  		}
->  		ctx->cdev = cdev;
-> -		thermal_cdev_update(cdev);
->  	}
-> 
->  	return 0;
-> diff --git a/drivers/thermal/khadas_mcu_fan.c
-> b/drivers/thermal/khadas_mcu_fan.c
-> index 9eadd2d6413e..d35e5313bea4 100644
-> --- a/drivers/thermal/khadas_mcu_fan.c
-> +++ b/drivers/thermal/khadas_mcu_fan.c
-> @@ -100,7 +100,6 @@ static int khadas_mcu_fan_probe(struct
-> platform_device *pdev)
->  		return ret;
->  	}
->  	ctx->cdev = cdev;
-> -	thermal_cdev_update(cdev);
-> 
->  	return 0;
->  }
-> diff --git a/drivers/thermal/thermal_core.h
-> b/drivers/thermal/thermal_core.h index 90f9a80c8b23..86b8cef7310e 100644
-> --- a/drivers/thermal/thermal_core.h
-> +++ b/drivers/thermal/thermal_core.h
-> @@ -65,6 +65,8 @@ static inline bool cdev_is_power_actor(struct
-> thermal_cooling_device *cdev)
->  		cdev->ops->power2state;
->  }
-> 
-> +void thermal_cdev_update(struct thermal_cooling_device *);
-> +
->  /**
->   * struct thermal_trip - representation of a point in temperature domain
->   * @np: pointer to struct device_node that this trip point was created from
-> diff --git a/include/linux/thermal.h b/include/linux/thermal.h index
-> 1e686404951b..6ac7bb1d2b1f 100644
-> --- a/include/linux/thermal.h
-> +++ b/include/linux/thermal.h
-> @@ -390,7 +390,6 @@ int thermal_zone_get_temp(struct
-> thermal_zone_device *tz, int *temp);  int thermal_zone_get_slope(struct
-> thermal_zone_device *tz);  int thermal_zone_get_offset(struct
-> thermal_zone_device *tz);
-> 
-> -void thermal_cdev_update(struct thermal_cooling_device *);  void
-> thermal_notify_framework(struct thermal_zone_device *, int);  int
-> thermal_zone_device_enable(struct thermal_zone_device *tz);  int
-> thermal_zone_device_disable(struct thermal_zone_device *tz); @@ -437,8
-> +436,6 @@ static inline int thermal_zone_get_offset(
->  		struct thermal_zone_device *tz)
->  { return -ENODEV; }
-> 
-> -static inline void thermal_cdev_update(struct thermal_cooling_device
-> *cdev) -{ }  static inline void thermal_notify_framework(struct
-> thermal_zone_device *tz,
->  	int trip)
->  { }
-> --
-> 2.17.1
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../boot/dts/amlogic/meson-g12b-gsking-x.dts  | 133 ++++++++++++++++++
+ 3 files changed, 135 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+
+-- 
+2.17.1
 
 
 _______________________________________________
