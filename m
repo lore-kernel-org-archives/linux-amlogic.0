@@ -1,88 +1,112 @@
-Return-Path: <SRS0=ZD2b=GW=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=6I9u=GX=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7132AC433DB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Jan 2021 20:25:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B5EDC43332
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Jan 2021 13:51:44 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F0D0623133
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Jan 2021 20:25:10 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F0D0623133
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id C2AF62336E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Jan 2021 13:51:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C2AF62336E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cerno.tech
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Qk86QBV4SLXDNzyLRwNAL8aZ+VNliqF4IdPyaZ1XkKs=; b=a1KFj8o1KQAm/lMjHnuyyRD5Sk
-	0igsEbgYm7y+ghR7fpPOBL9IfqGtCbwp6YYxYqvrvcNjezYIvY2vh1ZBAIUI/kqug8VUzPbaWZNmP
-	6tlal97Rk7JmyLIvopWqHAgxbhldW2Ha18aUWBZdHA5GWpgk3pOEYzGsE0fXbwGrV0+bEYC2FjoEo
-	wkZx3V6Jh4A6WpVPnkyhwH3EecZf5TvoP14rG4jFSJKH6F9OSNP8QqqJqlcKG++XGSyXqvA985dtg
-	t3G+75WnEG8WQd6bOtvoxLNMKKfRBaAsmbq1l6b+6GQSK5xPDlWtSaRKeaFLeoAtwwUhQUgAOIvam
-	fvjYMYNg==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=nxYihF9++v+dfa2Yh1v/odwI3pp+/JMmxhbXNigqHKI=; b=IOxqjCL20+ruVeqFMVnxPS0LP
+	ZoFN0QT1IBMPhUYQWBeTii+VnCNcswIUNTHgXhHXlaqfAv7Pnoy75+b2L5oKMovgTGYHGqQ0xWn4/
+	h/6heZ3yWi73FjNtaGwe0lx3wZYiRdhaFYTrgWf9DL5PHqBjpvlaJLcV62XEUO5aUzscXv9mqloFi
+	pcIvgZabiCDoDUpTJ1i5dM7vnNbc1PhmJH8ufA2hrBnpMibkqOQB5erxck7apoV5wZEauV20EaE10
+	7Q3tAShZgJ0Z9EBuI9qB5ZVXeE/QjQZMhTHUSwzQYUm5juiuKtxnCPonxCsuJPI7Xhcty0Sw82Jpf
+	mmtVK2QSA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l1xYi-0007z1-1b; Tue, 19 Jan 2021 20:25:00 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1l2DtP-0004u6-AE; Wed, 20 Jan 2021 13:51:27 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l1xYe-0007xl-I3; Tue, 19 Jan 2021 20:24:57 +0000
-Received: by mail-ej1-x633.google.com with SMTP id a10so13745783ejg.10;
- Tue, 19 Jan 2021 12:24:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rFyr2V+Jzdi4YW1yffMaIUqKhZ3/Vi5CLcZD0g+G3W0=;
- b=o+4RLf0mOmonrScZu/JxFwoEr0HqSw4KJX7HorYpAUIAC3Z4pFXORzdwqXx0ELKJQv
- 8jtosQrDAVVlwbeObGSkKXhJjIC6QWTdF9cRpQ7Eefmxi+gTLqvmRANRFHV0LuNNClqU
- jgscy3xuF5QZVAPUnw/SS5ctnagl0/iKvOobiusKJA0uvujbONo7kMgpwXogk3a31d5A
- i/yfg7+FSeBGtKzh9NMRxiOOe5nkCPrVLReLB+FoM0Lx1QSbSfNFSiRvRSB+jcqrsF3Q
- kU+izgGu38oIpK+jBaKmDsng+8FLAp6oi88N10LwOacMLGiTnvtS7rhTYeABR3Ru3ZQB
- Pfyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rFyr2V+Jzdi4YW1yffMaIUqKhZ3/Vi5CLcZD0g+G3W0=;
- b=b0CMsurtUc31VzlsvMHW/+3rhQMzwi7klxr/Ya51bxOXriz9xoCGAnQ3OxiIvRtd6G
- XmO9hNERUaouhymj3sNAV48jizsPARazm9SaULY2YLbUr2mj6WFl0a0KY5i73rZZAqQq
- 8fW01rjo8NOGdu6ZvceozDWNIhzgP2CLxUXsYeotVKSuTm0ZqdwfRLt1K7kpj2xjtU96
- hBU4JnATP9gucSaOeCszVc0xzKuuuirWLuZQ1Vs/pgfkuaLhUy5hZqZONkLsqs/6NVxK
- yHRlXxTlT8v+4DLOippNdi6qbUrUCMFSfaj4qUYMSbzOLx0l7TcG2uH4TQffb96sZ0cB
- rlFA==
-X-Gm-Message-State: AOAM531vf+Eac++r7N6glraSUHJrKRZG4RwNlzg4xPmFWXLEKJpGnwO2
- wtpH18GkRPUIrkorJat1QX4JHfDQWRQ=
-X-Google-Smtp-Source: ABdhPJzgJWBS8Glb8O8e1TWNjzrEWbp0SXKsfSt9zOga9qYGgKUcy74g3uI6DG+n0NBnuIHe4x4Csw==
-X-Received: by 2002:a17:906:87c3:: with SMTP id
- zb3mr4123114ejb.244.1611087893049; 
- Tue, 19 Jan 2021 12:24:53 -0800 (PST)
-Received: from localhost.localdomain
- (p200300f1373d4700428d5cfffeb99db8.dip0.t-ipconnect.de.
- [2003:f1:373d:4700:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id g18sm12876367edt.2.2021.01.19.12.24.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 Jan 2021 12:24:52 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org,
-	netdev@vger.kernel.org
-Subject: [PATCH] net: stmmac: dwmac-meson8b: fix the RX delay validation
-Date: Tue, 19 Jan 2021 21:24:24 +0100
-Message-Id: <20210119202424.591349-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.30.0
+ id 1l2DtD-0004ot-BI; Wed, 20 Jan 2021 13:51:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=sDxhL51Vhfp7bMJtc05jY3INv15IU8xKUsLjHr0xiOU=; b=vJdEETATxp3YRtk6aondiv8sV7
+ l7PlfwUWlF5cknTj757w9bcr9dU0BkBYe+ItJv41Mq0tzjo+/2wsi4/uH1u1dUfQ9l7SX2h60vdTe
+ NHtYpoh0YiZvWDNwDgPgBjR5crl6laBst/cmQ98A03rmID2Z6V1KGGgMoqai+fQcxZZ+pla+ha0uC
+ IqOpB3rtJcXmlvaYaGDAje0s6EDGhR3q0Tx9IOaq3X9ePdJ1layAUDrtDu4pD7lxzofuANOCYDs7N
+ Nm+9zHIP6Vagwi2lUp8dBIs6fu5SRu3gW3FGM0O0DT7BXdG6ThPMid2k+Kc9z+2ppCIH+/cvF4B10
+ mzwNG2Pg==;
+Received: from new3-smtp.messagingengine.com ([66.111.4.229])
+ by casper.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
+ id 1l2Dsn-00FkNI-N1; Wed, 20 Jan 2021 13:51:02 +0000
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 544A5580616;
+ Wed, 20 Jan 2021 08:50:31 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Wed, 20 Jan 2021 08:50:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm1; bh=sDxhL51Vhfp7bMJtc05jY3INv15
+ IU8xKUsLjHr0xiOU=; b=e6RAvVNPXxx7n+xiZF1cUAYNfJs5LTR6PfLc0CImUdL
+ LlXQ2amT0WEqGAlHTdvKd/rcGDF9tSdtsirQSEbuQ3kwVZPiCkw1rM45GLgnvgPm
+ Z4AsvGXKTlP7JsOul0AAUpaxlPAIY0gsrLwL9MiYoYuMQ6L6TO3yzgXJyxnZRvp+
+ jtbY428Tzk+iEi5DuF8gexjpBHwznO/my3ickth/O3fCvFWfKEcF6MqEAd4+26aI
+ ltp/+9yq6CB5vfxYtjqmtlBszlAGV3LvzyYzkBIp/5m62bEJ7/gvtET2/W1vfPsg
+ vY4oRDFmYVdvqYxQCwBv7aNKZ4xfO67HgJeBjDQpS+Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=sDxhL5
+ 1Vhfp7bMJtc05jY3INv15IU8xKUsLjHr0xiOU=; b=LikqJHGPtkrNylI5xzansd
+ wjJ/KJ/R7Dq22hms9Md8biwwcNcdgUs/TtLHDiHdLWd/KIyZNBRPQyEEuZqOAVQH
+ Zq59rIAwtrVdT/8xqrz21GDUEkDYGNlS2+2VlDDnQMqXZW2egzoG0Z70QoZsOgpH
+ Cv+G0h3ZqaTJuyO4BYEoteVvzAOlKtK1B98G73tE5c5NwbRRkCgLWGFAWw/fAa69
+ zKxmdFUnM/ToyfHDRec9Q6ytEXmtIFW+kY42SZebw6yv+4kH64ts8JA31fa6TubI
+ bDGw4zZCK5hUm4lShfikDy9nGwJ5aG1okt63wGVtgRstD+gcvL8O6zoqeehmfcBA
+ ==
+X-ME-Sender: <xms:IzUIYJyjBDk2-Ewegnc7Hq9GTD5alDyksFm78hquneKLxSpMAnTx1Q>
+ <xme:IzUIYJTtvdXHIq0wdouB0Fd3H_6WXJmFuESX5TuHXHnInWmwdGIT1NvWqzSGAlwXW
+ 1oyxaEoJrSKjHXk9Us>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledruddvgdehkecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeejuddvhfekkefhtdegiefhledutdevtdfhkedtleefjefgleduhfetudevjeeh
+ hfenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkphepledtrdekle
+ drieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
+ ohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:IzUIYDV4IfnGFU_2lyw5XqL3TvmYbBA4AR__TrkA3iaokM7PmfRegg>
+ <xmx:IzUIYLg4_zBtXiAWqlVE93JYhTgicZgHFCMWYuPvMc-sOMKhU-l4IA>
+ <xmx:IzUIYLA6hD-5ZjG_K5igYUbzbL45QJq6qsO7iotuwoTsiB2nPVOYfQ>
+ <xmx:JzUIYFrYN58bP-OKW0NJDZug9puVlgOcLOhe106KSpR_QIyNqvm3rQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 4410A24005A;
+ Wed, 20 Jan 2021 08:50:27 -0500 (EST)
+Date: Wed, 20 Jan 2021 14:50:26 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH 10/10] drm: Use state helper instead of the plane state
+ pointer
+Message-ID: <20210120135026.np2ivojt5vnvyota@gilmour>
+References: <20210115125703.1315064-1-maxime@cerno.tech>
+ <20210115125703.1315064-10-maxime@cerno.tech>
+ <YAIHFTYiry6ebUsY@pendragon.ideasonboard.com>
 MIME-Version: 1.0
+In-Reply-To: <YAIHFTYiry6ebUsY@pendragon.ideasonboard.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210119_152456_627382_21DD1DAD 
-X-CRM114-Status: GOOD (  13.29  )
+X-CRM114-CacheID: sfid-20210120_135102_279540_1DB56C47 
+X-CRM114-Status: GOOD (  28.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,63 +118,230 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, kuba@kernel.org, davem@davemloft.net,
- linux-arm-kernel@lists.infradead.org,
- Martijn van Deventer <martijn@martijnvandeventer.nl>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ Liviu Dudau <liviu.dudau@arm.com>, Stefan Agner <stefan@agner.ch>,
+ Sandy Huang <hjc@rock-chips.com>, Paul Cercueil <paul@crapouillou.net>,
+ linux-tegra@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Michal Simek <michal.simek@xilinx.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Marek Vasut <marex@denx.de>, Yannick Fertre <yannick.fertre@st.com>,
+ linux-samsung-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
+ linux-rockchip@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, Russell King <linux@armlinux.org.uk>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Roland Scheidegger <sroland@vmware.com>,
+ Xinliang Liu <xinliang.liu@linaro.org>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ NXP Linux Team <linux-imx@nxp.com>, linux-arm-msm@vger.kernel.org,
+ Philippe Cornu <philippe.cornu@st.com>, Dave Airlie <airlied@redhat.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ virtualization@lists.linux-foundation.org, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chen Feng <puck.chen@hisilicon.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Alison Wang <alison.wang@nxp.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ linux-renesas-soc@vger.kernel.org, Inki Dae <inki.dae@samsung.com>,
+ Hans de Goede <hdegoede@redhat.com>, linux-mediatek@lists.infradead.org,
+ John Stultz <john.stultz@linaro.org>, dri-devel@lists.freedesktop.org,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ Edmund Dea <edmund.j.dea@intel.com>, Sean Paul <sean@poorly.run>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ linux-arm-kernel@lists.infradead.org, Melissa Wen <melissa.srw@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, freedreno@lists.freedesktop.org,
+ Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
+ Tomi Valkeinen <tomba@kernel.org>, Boris Brezillon <bbrezillon@kernel.org>,
+ Jyri Sarha <jyri.sarha@iki.fi>, linux-stm32@st-md-mailman.stormreply.com,
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>, linux-kernel@vger.kernel.org,
+ Vincent Abriou <vincent.abriou@st.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ spice-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Kevin Hilman <khilman@baylibre.com>, Tian Tao <tiantao6@hisilicon.com>,
+ Shawn Guo <shawnguo@kernel.org>, Brian Starkey <brian.starkey@arm.com>,
+ Lucas Stach <l.stach@pengutronix.de>
+Content-Type: multipart/mixed; boundary="===============7786778832494837848=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When has_prg_eth1_rgmii_rx_delay is true then we support RX delays
-between 0ps and 3000ps in 200ps steps. Swap the validation of the RX
-delay based on the has_prg_eth1_rgmii_rx_delay flag so the 200ps check
-is now applied correctly on G12A SoCs (instead of only allow 0ps or
-2000ps on G12A, but 0..3000ps in 200ps steps on older SoCs which don't
-support that).
 
-Fixes: de94fc104d58ea ("net: stmmac: dwmac-meson8b: add support for the RGMII RX delay on G12A")
-Reported-by: Martijn van Deventer <martijn@martijnvandeventer.nl>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
-Many thanks to Martijn for this excellent catch and for reporting this
-issue (off-list)!
+--===============7786778832494837848==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="j7svqftvzagigb3f"
+Content-Disposition: inline
 
 
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+--j7svqftvzagigb3f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 55152d7ba99a..848e5c37746b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -443,16 +443,16 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	}
- 
- 	if (dwmac->data->has_prg_eth1_rgmii_rx_delay) {
--		if (dwmac->rx_delay_ps != 0 && dwmac->rx_delay_ps != 2000) {
-+		if (dwmac->rx_delay_ps > 3000 || dwmac->rx_delay_ps % 200) {
- 			dev_err(dwmac->dev,
--				"The only allowed RGMII RX delays values are: 0ps, 2000ps");
-+				"The RGMII RX delay range is 0..3000ps in 200ps steps");
- 			ret = -EINVAL;
- 			goto err_remove_config_dt;
- 		}
- 	} else {
--		if (dwmac->rx_delay_ps > 3000 || dwmac->rx_delay_ps % 200) {
-+		if (dwmac->rx_delay_ps != 0 && dwmac->rx_delay_ps != 2000) {
- 			dev_err(dwmac->dev,
--				"The RGMII RX delay range is 0..3000ps in 200ps steps");
-+				"The only allowed RGMII RX delays values are: 0ps, 2000ps");
- 			ret = -EINVAL;
- 			goto err_remove_config_dt;
- 		}
--- 
-2.30.0
+Hi Laurent,
 
+On Fri, Jan 15, 2021 at 11:20:21PM +0200, Laurent Pinchart wrote:
+> Hi Maxime,
+>=20
+> Thank you for the patch.
+>=20
+> On Fri, Jan 15, 2021 at 01:57:02PM +0100, Maxime Ripard wrote:
+> > Many drivers reference the plane->state pointer in order to get the
+> > current plane state in their atomic_update or atomic_disable hooks,
+>=20
+> Please don't use the word "current", it's ambiguous. Do you mean old
+> state or new state ?
+
+It's kind of the point I was trying to make: plane->state is the current
+state of the plane, but it's definitely ambiguous and it's fairly easy
+to be confused when working over several hooks.
+
+> > which would be the new plane state in the global atomic state since
+> > _swap_state happened when those hooks are run.
+>=20
+> Is this relevant ? drm_atomic_helper_swap_state() doesn't change the
+> old_state and new_state pointers in drm_atomic_state as far as I can
+> tell.
+
+No, but it does change the plane->state pointer: before swap_state it's
+the old state, after swap_state it's the new state
+
+> > Use the drm_atomic_get_new_plane_state helper to get that state to make=
+ it
+> > more obvious.
+> >=20
+> > This was made using the coccinelle script below:
+> >=20
+> > @ plane_atomic_func @
+> > identifier helpers;
+> > identifier func;
+> > @@
+> >=20
+> > (
+> >  static const struct drm_plane_helper_funcs helpers =3D {
+> >  	...,
+> >  	.atomic_disable =3D func,
+> > 	...,
+> >  };
+> > |
+> >  static const struct drm_plane_helper_funcs helpers =3D {
+> >  	...,
+> >  	.atomic_update =3D func,
+> > 	...,
+> >  };
+> > )
+> >=20
+> > @ adds_new_state @
+> > identifier plane_atomic_func.func;
+> > identifier plane, state;
+> > identifier new_state;
+> > @@
+> >=20
+> >  func(struct drm_plane *plane, struct drm_atomic_state *state)
+> >  {
+> >  	...
+> > -	struct drm_plane_state *new_state =3D plane->state;
+> > +	struct drm_plane_state *new_state =3D drm_atomic_get_new_plane_state(=
+state, plane);
+> > 	...
+> >  }
+> >=20
+> > @ include depends on adds_new_state @
+> > @@
+> >=20
+> >  #include <drm/drm_atomic.h>
+> >=20
+> > @ no_include depends on !include && adds_new_state @
+> > @@
+> >=20
+> > + #include <drm/drm_atomic.h>
+> >   #include <drm/...>
+> >=20
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+>=20
+> [snip]
+>=20
+> >  drivers/gpu/drm/omapdrm/omap_plane.c            | 6 ++++--
+> >  drivers/gpu/drm/rcar-du/rcar_du_plane.c         | 3 ++-
+> >  drivers/gpu/drm/rcar-du/rcar_du_vsp.c           | 3 ++-
+> >  drivers/gpu/drm/xlnx/zynqmp_disp.c              | 3 ++-
+>=20
+> [snip]
+>=20
+> > diff --git a/drivers/gpu/drm/omapdrm/omap_plane.c b/drivers/gpu/drm/oma=
+pdrm/omap_plane.c
+> > index cd8cf7c786b5..021a94de84a1 100644
+> > --- a/drivers/gpu/drm/omapdrm/omap_plane.c
+> > +++ b/drivers/gpu/drm/omapdrm/omap_plane.c
+> > @@ -44,7 +44,8 @@ static void omap_plane_atomic_update(struct drm_plane=
+ *plane,
+> >  {
+> >  	struct omap_drm_private *priv =3D plane->dev->dev_private;
+> >  	struct omap_plane *omap_plane =3D to_omap_plane(plane);
+> > -	struct drm_plane_state *new_state =3D plane->state;
+>=20
+> This seems to imply that you're interested in the new state.
+
+Well, to be fair, the variable is only called "state" before this series
+and it's one of the previous patch that renames it to new_state and
+makes it a more obvious.
+
+Otherwise, state =3D plane->state is fairly confusing and error-prone.
+With that change you would make it really obvious
+
+> > +	struct drm_plane_state *new_state =3D drm_atomic_get_new_plane_state(=
+state,
+> > +									   plane);
+>=20
+> Does this really make things more obvious ?
+
+I guess you're better at remembering this than I am then :)
+
+The discussion on whether it's more obvious or not aside, accessing the
+->state pointer directly has some culprits, see:
+
+https://dri.freedesktop.org/docs/drm/gpu/todo.html#plumb-drm-atomic-state-a=
+ll-over
+
+Maxime
+
+--j7svqftvzagigb3f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAg1IgAKCRDj7w1vZxhR
+xW+rAQCaKXuyQvbRubp33hPCkdAY/LXaD+3TQwLv2j7AhTFUtAD/aLv/q1HqwcEO
+ZfMJ4deD5+JElSu70qt5AOEI/9JMPAg=
+=q+gU
+-----END PGP SIGNATURE-----
+
+--j7svqftvzagigb3f--
+
+
+--===============7786778832494837848==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7786778832494837848==--
+
