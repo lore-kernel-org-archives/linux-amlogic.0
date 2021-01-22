@@ -1,66 +1,124 @@
-Return-Path: <SRS0=5IjM=GY=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=2QGV=GZ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CD187C433DB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Jan 2021 23:04:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 981A4C433E0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Jan 2021 05:52:48 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4EAD723A3A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Jan 2021 23:04:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4EAD723A3A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+	by mail.kernel.org (Postfix) with ESMTPS id A563B239D4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Jan 2021 05:52:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A563B239D4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=c+W6B+1qia2CymhZ1ayEK4Qnxnu1GR13wvpqZk8t4Qs=; b=WQoXsVBMbbNP4QaLY4ScGYFX6
-	+czCRLYc7wj3tWw78SidYQA9wcLGl+Xgpl0LvL41Fc04XcdP4HQ1pGxqFg7f54h2LfGnzXPS1tvxe
-	UVL+SjW5ngvHTved3X59ixKYwoUiHjQieEn3EzU59Oo/fBzqZLhU0SmQHbx4cNZH2w+kaCw3GZw8W
-	2ikeZi8p5RsncLLrf3fn9RIpYlEpbS0o9foT7Wzk9N7qxY4dSwsbsAwgpvmUBYFXGi07cW9J1iSJt
-	+YHjKf50dj54av53h0heByJx0jaok5R1F0k8ldfp/akTdNwltzfd5oJN43/jtbktDVKLGce2KUGrP
-	Xh8KN9VJw==;
+	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:References:Message-Id:Date:Subject:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Owner;
+	bh=G0K0d6t/aKzGDSou36bgVaETL6hfrLm/Ct1+y606KVc=; b=jtqvdSomApA+mMtaMTfBlo81QC
+	d2Q4vumvnVgLqWwvqpzIA22L99Kb1AtXXIOGNTEc880hKC9xpLkWUIFp9rYsUb8nWnLibBzsnLgud
+	OtYZBIaLbPaqRfsKruCGLFXzIqfWBQR1sxJCZHm2KYJo7I0anNo/z1xOpn2JYNAetXDDpxmvheucQ
+	m7KypaHiseEne9wZ/S0vDtfNbNARyKD/MRpv4yDGbt9MaqXL8qWWGis9pYqWSM3V0QvhJIPIUrFPe
+	YdYVBEDBuJVCKzXsItak4yMf+huDvoqbGhSmn/oAuW9QUoljfP5VW8r8KFYQB2bp3pR0P5aF+mKBa
+	Xxk/XJ0A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l2izl-0001OP-PV; Thu, 21 Jan 2021 23:04:05 +0000
-Received: from perceval.ideasonboard.com
- ([2001:4b98:dc2:55:216:3eff:fef7:d647])
+	id 1l2pN5-0003pU-8d; Fri, 22 Jan 2021 05:52:35 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l2izj-0001Nh-GX; Thu, 21 Jan 2021 23:04:04 +0000
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi
- [62.78.145.57])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2451050E;
- Fri, 22 Jan 2021 00:04:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1611270241;
- bh=T5NVDr46xcwrXL27T8VCCkqqocibkcaVgjkVgGiO8ZY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Y8cyClLX8kCaKU5wMc7DQBaagAtpgNWmTZ3+p386BcnpRP0PMgaNeQ9iuSFglc0Sw
- yxD8mSPCVAnyIXOWj5xsNFm7Htaoj3caG3DKUBN0MGRlEjztlQ48iKJbFja/DHFBKL
- ztANltlmDf+im+ixzdUmFqsBKC+TOLRQSVr+juDg=
-Date: Fri, 22 Jan 2021 01:03:42 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Subject: Re: [PATCH v2 09/11] drm/atomic: Pass the full state to planes
- atomic disable and update
-Message-ID: <YAoITqHbG1UeiAHV@pendragon.ideasonboard.com>
-References: <20210121163537.1466118-1-maxime@cerno.tech>
- <20210121163537.1466118-9-maxime@cerno.tech>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210121163537.1466118-9-maxime@cerno.tech>
+ id 1l2pN1-0003ob-Gp
+ for linux-amlogic@lists.infradead.org; Fri, 22 Jan 2021 05:52:32 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20210122055228euoutp024b185c62d3e28e5de6931d42dc17812b~ceAlwKyd00466604666euoutp02Q
+ for <linux-amlogic@lists.infradead.org>; Fri, 22 Jan 2021 05:52:28 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20210122055228euoutp024b185c62d3e28e5de6931d42dc17812b~ceAlwKyd00466604666euoutp02Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1611294748;
+ bh=z8MpXKNoMZZ1oO3BXP4bh0KDG94N2UwukrTz0Tph21k=;
+ h=From:To:Cc:Subject:Date:References:From;
+ b=bBCVvOokFsZZNW1+0uVI752YoE2mpaGk9BtRs2sCNO18LvjYnKRKRR/KodxdpH+nN
+ nJzGJ4aZQVAzVQP36oHwe6NmfgiOdTev3VLFfKE4Vclsz35SArMYPVURop2tTL8E5C
+ JTotEAqJ+7aeql2bB2SBPff64yceuODaMIfMIg9I=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20210122055228eucas1p1cc93ae5c732b061d26b59e567e4db5b8~ceAldTM2k3232032320eucas1p1u;
+ Fri, 22 Jan 2021 05:52:28 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id 88.35.45488.C186A006; Fri, 22
+ Jan 2021 05:52:28 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+ 20210122055227eucas1p1a61e2ec3e562ed13a6b8decb5069c180~ceAkQ70Ia1133911339eucas1p1f;
+ Fri, 22 Jan 2021 05:52:27 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+ eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+ 20210122055227eusmtrp1faad2c7f59e3cee5cfb7bd3e9d3d13f6~ceAkQQmEe1579515795eusmtrp1p;
+ Fri, 22 Jan 2021 05:52:27 +0000 (GMT)
+X-AuditID: cbfec7f5-c77ff7000000b1b0-8a-600a681cd04c
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id 15.34.21957.A186A006; Fri, 22
+ Jan 2021 05:52:26 +0000 (GMT)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+ eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+ 20210122055226eusmtip23b1e524fa3e309d44f57e41d198cfaa8~ceAjwRmtQ0850608506eusmtip2U;
+ Fri, 22 Jan 2021 05:52:26 +0000 (GMT)
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+To: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] arm64: dts: meson: switch TFLASH_VDD_EN pin to open
+ drain on Odroid-C4
+Date: Fri, 22 Jan 2021 06:52:18 +0100
+Message-Id: <20210122055218.27241-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrGIsWRmVeSWpSXmKPExsWy7djPc7oyGVwJBg1LeCw2zljPavHm0RFm
+ i5/tW5gsFszmttj0+Bqrxdojd9ktji06yWJxqC/aYt/jNcwOnB7vb7Sye+ycdZfd4+mEyewe
+ m5fUe/RtWcUYwBrFZZOSmpNZllqkb5fAlXFw4xu2ghc8FdMX1zQw/uHqYuTkkBAwkVjS1cjW
+ xcjFISSwglFi/Ya5rBDOF0aJW09uMIFUCQl8ZpR4vCGki5EdrGNBAETJckaJlnn7meHqr2x8
+ wghSzyZgKNH1tosNxBYR8JbY3NYJVsQssI9J4s6812BDhQViJD5//MUMYrMIqErMXHUXqJmD
+ g1fAVuLYm2KI6+QlVm84ANYrITCRQ+LJxANsEAkXiQ9z77JD2MISr45vgbJlJE5P7mGBaGhm
+ lHh4bi07hNPDKHG5aQYjRJW1xJ1zv9hAtjELaEqs36UPEXaUWDjvDlhYQoBP4sZbQZAwM5A5
+ adt0Zogwr0RHmxBEtZrErOPr4NYevHAJqsRDYscpNUiwxUrsONHGNoFRbhbCqgWMjKsYxVNL
+ i3PTU4uN81LL9YoTc4tL89L1kvNzNzECk8Lpf8e/7mBc8eqj3iFGJg7GQ4wSHMxKIryPLDkS
+ hHhTEiurUovy44tKc1KLDzFKc7AoifPu2romXkggPbEkNTs1tSC1CCbLxMEp1cDUUOv4+6d6
+ +ptFv1+tcWTT2cAkpXeCa5WhZQPv7vzwZZ/yWI48fXxvZuOGxz/DzE02Om7dHF+jeipHb8O1
+ e1fXBrRf83/r/MOp8Fd1xIMZf6RfbNL7zpFkH8Kx5+Tx1XOToy9vevZbu3r2Ev0nEv6ny7a+
+ NxCckXvmUG3uOa1tUVMKgj8dMPO7Hb5kv8seyxmlS8OCPuZZHqv+LLCAM7/ozjZnMTYNB7Ov
+ quvO3/8s+Cp65h/PY3sO3q68yXN/1r8DF+5uuG/2sn3S2xCBmZvXxM3cIXy77wbbBu5yyfeb
+ 5lx3//K2XvDHlGcnPHwebP214l5kQUeW/92onCsO6aelJx7YvOGx5x/lx266HVNWqjxWYinO
+ SDTUYi4qTgQAXmswVXkDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLLMWRmVeSWpSXmKPExsVy+t/xe7pSGVwJBrP7zCw2zljPavHm0RFm
+ i5/tW5gsFszmttj0+Bqrxdojd9ktji06yWJxqC/aYt/jNcwOnB7vb7Sye+ycdZfd4+mEyewe
+ m5fUe/RtWcUYwBqlZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqlnaGwea2VkqqRvZ5OSmpNZ
+ llqkb5egl3Fw4xu2ghc8FdMX1zQw/uHqYmTnkBAwkVgQ0MXIxSEksJRRYtqZNuYuRk6gsIzE
+ yWkNrBC2sMSfa11sEEWfGCXmtt4HK2ITMJToeguS4OQQEfCVOPp3EStIEbPAISaJB2eesIAk
+ hAWiJD48XwfWwCKgKjFz1V3GLkYODl4BW4ljb4ohFshLrN5wgHkCI88CRoZVjCKppcW56bnF
+ hnrFibnFpXnpesn5uZsYgeG47djPzTsY5736qHeIkYmD8RCjBAezkgjvI0uOBCHelMTKqtSi
+ /Pii0pzU4kOMpkDrJjJLiSbnAyMiryTe0MzA1NDEzNLA1NLMWEmcd+vcNfFCAumJJanZqakF
+ qUUwfUwcnFINTBNbMj7/vS3o7venu2nXzDV5eypOehUkPDl7+cWsLct1Yiflzlz4WiDF1aqy
+ 5JBz/+mJ/z7O1qiYnPCCg/HH+VkNsxd+YuqYePbCKaEsp2VrXKdU1+x5F5IstnH1xei7fisV
+ O8tuOv05e9U2/O3Mcy5rjsftet21X5DVQ0o6cePPnX7C93iPePofCQr/82RHenTE+YQzp23n
+ H+hV1f7+NtJE4CDfp92qodNqvao/XXqhpeXn9PJQDT+n5A2HbmPRqo9Lo5Yevu56zmzl/0ne
+ 1fm3Eu5MKX3xl/N12H6GO2d+NygeVY3YLHAzgHe7zjSTO23B7wIW966d03Pf/m6ORZZztpCQ
+ r7H2j8kqWRcnBJxSYinOSDTUYi4qTgQASsqa7NACAAA=
+X-CMS-MailID: 20210122055227eucas1p1a61e2ec3e562ed13a6b8decb5069c180
+X-Msg-Generator: CA
+X-RootMTR: 20210122055227eucas1p1a61e2ec3e562ed13a6b8decb5069c180
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20210122055227eucas1p1a61e2ec3e562ed13a6b8decb5069c180
+References: <CGME20210122055227eucas1p1a61e2ec3e562ed13a6b8decb5069c180@eucas1p1.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210121_180403_670068_4D82D0F1 
-X-CRM114-Status: GOOD (  22.49  )
+X-CRM114-CacheID: sfid-20210122_005231_886623_2C799006 
+X-CRM114-Status: GOOD (  14.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,256 +130,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Xinliang Liu <xinliang.liu@linaro.org>, dri-devel@lists.freedesktop.org,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
- linux-samsung-soc@vger.kernel.org, Vincent Abriou <vincent.abriou@st.com>,
- Michal Simek <michal.simek@xilinx.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- NXP Linux Team <linux-imx@nxp.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Roland Scheidegger <sroland@vmware.com>,
- Inki Dae <inki.dae@samsung.com>, Sean Paul <sean@poorly.run>,
- Hyun Kwon <hyun.kwon@xilinx.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>,
- freedreno@lists.freedesktop.org, Zack Rusin <zackr@vmware.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- David Airlie <airlied@linux.ie>, Edmund Dea <edmund.j.dea@intel.com>,
- virtualization@lists.linux-foundation.org, Eric Anholt <eric@anholt.net>,
- Thierry Reding <thierry.reding@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>,
- Fabio Estevam <festevam@gmail.com>, Alexey Brodkin <abrodkin@synopsys.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, linux-rockchip@lists.infradead.org,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Dave Airlie <airlied@redhat.com>, Alexandre Torgue <alexandre.torgue@st.com>,
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- John Stultz <john.stultz@linaro.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
- Boris Brezillon <bbrezillon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- Yannick Fertre <yannick.fertre@st.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Kevin Hilman <khilman@baylibre.com>, Brian Starkey <brian.starkey@arm.com>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Stefan Agner <stefan@agner.ch>,
- Melissa Wen <melissa.srw@gmail.com>, linux-tegra@vger.kernel.org,
- Gerd Hoffmann <kraxel@redhat.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sam Ravnborg <sam@ravnborg.org>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Chen Feng <puck.chen@hisilicon.com>,
- Alison Wang <alison.wang@nxp.com>, spice-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Tomi Valkeinen <tomba@kernel.org>,
- Philippe Cornu <philippe.cornu@st.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Paul Cercueil <paul@crapouillou.net>, Marek Vasut <marex@denx.de>,
- linux-renesas-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
- Russell King <linux@armlinux.org.uk>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Hans de Goede <hdegoede@redhat.com>, linux-mediatek@lists.infradead.org,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Jernej Skrabec <jernej.skrabec@siol.net>, linux-mips@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jyri Sarha <jyri.sarha@iki.fi>, Lucas Stach <l.stach@pengutronix.de>
+ Kevin Hilman <khilman@baylibre.com>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ Dongjin Kim <tobetter@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Maxime,
+For the proper reboot Odroid-C4 board requires to switch TFLASH_VDD_EN
+pin to the high impedance mode, otherwise the board is stuck in the
+middle of loading early stages of the bootloader from SD card.
 
-Thank you for the patch.
+This can be achieved by using the OPEN_DRAIN flag instead of the
+ACTIVE_HIGH, what will leave the pin in input mode to achieve high state
+(pin has the pull-up) and solve the issue.
 
-On Thu, Jan 21, 2021 at 05:35:34PM +0100, Maxime Ripard wrote:
-> The current atomic helpers have either their object state being passed as
-> an argument or the full atomic state.
-> 
-> The former is the pattern that was done at first, before switching to the
-> latter for new hooks or when it was needed.
-> 
-> Let's convert the remaining helpers to provide a consistent interface,
-> this time with the planes atomic_update and atomic_disable.
-> 
-> The conversion was done using the coccinelle script below, built tested on
-> all the drivers.
-> 
-> @@
-> identifier plane, plane_state;
-> symbol state;
-> @@
-> 
->  struct drm_plane_helper_funcs {
->  	...
-> 	void (*atomic_update)(struct drm_plane *plane,
-> -			      struct drm_plane_state *plane_state);
-> +			      struct drm_atomic_state *state);
->  	...
->  }
-> 
-> @@
-> identifier plane, plane_state;
-> symbol state;
-> @@
-> 
->  struct drm_plane_helper_funcs {
-> 	...
-> 	void (*atomic_disable)(struct drm_plane *plane,
-> -			       struct drm_plane_state *plane_state);
-> +			       struct drm_atomic_state *state);
-> 	...
->  }
-> 
-> @ plane_atomic_func @
-> identifier helpers;
-> identifier func;
-> @@
-> 
-> (
->  static const struct drm_plane_helper_funcs helpers = {
->  	...,
->  	.atomic_update = func,
-> 	...,
->  };
-> |
->  static const struct drm_plane_helper_funcs helpers = {
->  	...,
->  	.atomic_disable = func,
-> 	...,
->  };
-> )
-> 
-> @@
-> struct drm_plane_helper_funcs *FUNCS;
-> identifier f;
-> identifier crtc_state;
-> identifier plane, plane_state, state;
-> expression e;
-> @@
-> 
->  f(struct drm_crtc_state *crtc_state)
->  {
->  	...
->  	struct drm_atomic_state *state = e;
->  	<+...
-> (
-> -	FUNCS->atomic_disable(plane, plane_state)
-> +	FUNCS->atomic_disable(plane, state)
-> |
-> -	FUNCS->atomic_update(plane, plane_state)
-> +	FUNCS->atomic_update(plane, state)
-> )
->  	...+>
->  }
-> 
-> @@
-> identifier plane_atomic_func.func;
-> identifier plane;
-> symbol state;
-> @@
-> 
->  func(struct drm_plane *plane,
-> -    struct drm_plane_state *state)
-> +    struct drm_plane_state *old_plane_state)
->  {
-> 	<...
-> -	state
-> +	old_plane_state
-> 	...>
->  }
-> 
-> @ ignores_old_state @
-> identifier plane_atomic_func.func;
-> identifier plane, old_state;
-> @@
-> 
->  func(struct drm_plane *plane, struct drm_plane_state *old_state)
->  {
-> 	... when != old_state
->  }
-> 
-> @ adds_old_state depends on plane_atomic_func && !ignores_old_state @
-> identifier plane_atomic_func.func;
-> identifier plane, plane_state;
-> @@
-> 
->  func(struct drm_plane *plane, struct drm_plane_state *plane_state)
->  {
-> +	struct drm_plane_state *plane_state = drm_atomic_get_old_plane_state(state, plane);
->  	...
->  }
-> 
-> @ depends on plane_atomic_func @
-> identifier plane_atomic_func.func;
-> identifier plane, plane_state;
-> @@
-> 
->  func(struct drm_plane *plane,
-> -     struct drm_plane_state *plane_state
-> +     struct drm_atomic_state *state
->      )
->  { ... }
-> 
-> @ include depends on adds_old_state @
-> @@
-> 
->  #include <drm/drm_atomic.h>
-> 
-> @ no_include depends on !include && adds_old_state @
-> @@
-> 
-> + #include <drm/drm_atomic.h>
->   #include <drm/...>
-> 
-> @@
-> identifier plane_atomic_func.func;
-> identifier plane, state;
-> identifier plane_state;
-> @@
-> 
->  func(struct drm_plane *plane, struct drm_atomic_state *state) {
->  	...
->  	struct drm_plane_state *plane_state = drm_atomic_get_old_plane_state(state, plane);
->  	<+...
-> -	plane_state->state
-> +	state
->  	...+>
->  }
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
-> 
-> Changes from v1:
->   - Reintroduce the old_plane_state check in zynqmp_disp_crtc_atomic_disable
-> ---
->  drivers/gpu/drm/drm_atomic_helper.c               |  8 ++++----
->  drivers/gpu/drm/drm_simple_kms_helper.c           |  4 +++-
->  drivers/gpu/drm/mxsfb/mxsfb_kms.c                 |  6 ++++--
->  drivers/gpu/drm/omapdrm/omap_plane.c              |  4 ++--
->  drivers/gpu/drm/rcar-du/rcar_du_plane.c           |  4 +++-
->  drivers/gpu/drm/rcar-du/rcar_du_vsp.c             |  4 +++-
->  drivers/gpu/drm/tidss/tidss_plane.c               |  4 ++--
->  drivers/gpu/drm/tilcdc/tilcdc_plane.c             |  2 +-
->  drivers/gpu/drm/xlnx/zynqmp_disp.c                | 15 ++++++++-------
->  include/drm/drm_modeset_helper_vtables.h          |  4 ++--
+Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+Fixes: 326e57518b0d ("arm64: dts: meson-sm1: add support for Hardkernel ODROID-C4")
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+Here is a discussion on u-boot's mailing list that inspired this patch:
+https://lists.denx.de/pipermail/u-boot/2020-December/435295.html
 
-For these,
+Changelog:
+v2:
+- fixed typo in the commit message
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+v1: https://lore.kernel.org/linux-amlogic/20201218102228.16211-1-m.szyprowski@samsung.com/
+- initial version
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->  58 files changed, 211 insertions(+), 123 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+index cf5a98f0e47c..a712273c905a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+@@ -52,7 +52,7 @@
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 
+-		gpio = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
++		gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
+ 		enable-active-high;
+ 		regulator-always-on;
+ 	};
 -- 
-Regards,
+2.17.1
 
-Laurent Pinchart
 
 _______________________________________________
 linux-amlogic mailing list
