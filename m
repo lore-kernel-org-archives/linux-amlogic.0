@@ -2,19 +2,19 @@ Return-Path: <SRS0=vGGV=G4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A40EC433DB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Jan 2021 18:43:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DAB6CC433DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Jan 2021 18:43:46 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5FD3A23101
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Jan 2021 18:43:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5FD3A23101
+	by mail.kernel.org (Postfix) with ESMTPS id 97FFA2063A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Jan 2021 18:43:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 97FFA2063A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,70 +23,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:To:From:
 	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9wjAbg8K3VAHNd0kpXHi75v/U9bqAmk+jZrmLsDj71c=; b=K1UPKKhAx7eWD/Anl08tRkdoRX
-	pcrwWVjTK9xe5NNkAuv0hkDTQg1Y+502xz42G8OmYgiDcqRshdbbAOgor1s32nmyIz4M4c+6wnaY/
-	1QEgRQRK0+cpJ2wEYEOK+2hruWNJiGcxan0bG6MJvqs29A7TXGsrhqH3zzJQmZrwnAufS4AjjqN+r
-	jCKlZBEdOgXtTW7gwpSHRh2yf0bJp/wVp9DBNnZlRDPvhtk00ujAFBGYdFdeA/lZkcUYJ3j7jfBTG
-	2d3Sg3ShGNMXYKWLf1+fqGYIJYJHPu7cBM0sgIFN0xPVV+nA22DOR4dWZtQHY+jf6hhrH8PN8/h/n
-	XLunzC6w==;
+	bh=qJaDC0iVHi24g10pndsHMuGDfSRvKse3QmVe9bKyFxA=; b=FtFvOr0T+A4JPYN6qgbDYE6jug
+	//sXhFqfzF55+J9SCxw/9EDNPiPAfy0LB33TBJsfshe5vUyUtQDrmZPpAY+/jncVWbXftg5fqtiEZ
+	+KobtRZ6Ppu4c+cSm3FYLKNk+LpiZo75d0fHB0RWINzYBB6tmVp1bLWNDMfqCe9UjboTlNPfRYFWi
+	p95Ou6CT+YJCzzXDE/KQngzA8Y+F7TC1aJnVKJsH3mM0qkcl6nZiqSYs3L4ztTIM6jn+Iq9j9E8DT
+	ybss9rwUiv+rAILO8e7UFRdxpFZ3CAgWSkSpQpxr2r8t7FK65tD+bdifPAkT+PxTtNx7oPX1/2mJa
+	BZV8W5Zw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l46pJ-0008NV-17; Mon, 25 Jan 2021 18:43:01 +0000
-Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
+	id 1l46pw-0000AP-11; Mon, 25 Jan 2021 18:43:40 +0000
+Received: from mail-pl1-x633.google.com ([2607:f8b0:4864:20::633])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l46ok-0008Ax-W1
- for linux-amlogic@lists.infradead.org; Mon, 25 Jan 2021 18:42:29 +0000
-Received: by mail-pj1-x1034.google.com with SMTP id my11so217730pjb.1
- for <linux-amlogic@lists.infradead.org>; Mon, 25 Jan 2021 10:42:26 -0800 (PST)
+ id 1l46om-0008Bp-J2
+ for linux-amlogic@lists.infradead.org; Mon, 25 Jan 2021 18:42:34 +0000
+Received: by mail-pl1-x633.google.com with SMTP id d13so2456002plg.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 25 Jan 2021 10:42:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:subject:date:message-id:in-reply-to:references:mime-version
  :content-transfer-encoding;
- bh=4onalLG5dOSDL+p5kQVrRWnpJSo+5uub7PjHtub2eVI=;
- b=TgtdO7gF+yWLGfZrm6l4+J45ey1ut/gRJ5xjfDQrfgnhZpmmPsDZ9agun9ptmnEiq2
- 6fQCmwKxwSYhygO0LQq3WW7YZkpZUmF5LZ46SfYFRZReYfjwG2bVxhjq4RCP07942E1i
- u3ET02yKGmNswpVAE5hF5QKgCMw1f20p+jeECC2QyMQ5DLObdk6O+W/kOIdQgM7TqVT/
- TnbLP2sYhvUlYmNpNLw1MSBy/qHehmNoYxUy0EDmH/ZH788Ix4EtBEM7yB/EGvWQez/g
- mazi3xrJgMDLUgNFqJnkdezISN5ydy4dn2/3b+PGIInc9h274Z1L7NlPr1i8R7hFByOl
- YsXw==
+ bh=Q1SeF2s/DOLhyrOyKgBakT7b/doGN2Q3Ae7/R3HebVk=;
+ b=o+tw8sjX0uJ14bRLrUXrIfbNecZ0kkQ+N/BxD4ZeO4jVV3Znvyq5q5Yl/uTUTTljS1
+ 478N/0lEuiof0nTnC0w37vPwmZgwIciGZkYgCLBhkW8frsQtI/4Sf/+iu4rOD99wsP4u
+ KdziPrhQgzsWwy8nryVzz2dsYQKt3hCMfjLE0BTybUhhoLlB17Q1/azYDIve2iEqqOp6
+ e+3qaUGBQuXiu0+cK5aqQgQ8cCdWH3KYIvUvKyd4db3nXMNayV8VSiQftrfG/Kj9MF8t
+ z3NYTtuSCuAItS4AoSZTsRf58wxnRMC1R61Uvb3Yc/JBwYOTv32h/O79X8m+HUdH8rmK
+ zQJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=4onalLG5dOSDL+p5kQVrRWnpJSo+5uub7PjHtub2eVI=;
- b=ULVuEq6iHjSmE/m1t+KHOJDnR5DTlWG/9z1nORuFr5ImocnT6C13hLB+RMBd6j4lqA
- KBV+5Q2Ol/4slU3qmVnd1ovkcVK8blTxEIq6/MbV4BB4tTa75OaOpLq9VoFsu4nTfZIQ
- nlD+u2xEG7GiLRgxQgHkk2VXPSIj5GnWv3/5gD3ATaX27ErxDTrBqCDfV86dX/DHFzh8
- FpdHMpo9f+rXw6cZWez7Kx9VH77yrSzPy2UiCgasSefkOl659zMBs4gce61uuUswQdqR
- bytKQ5HRjole8aZklsdi00uxe5HJlPUWMT0dxkiw9LGjj3r1AG41fI3hks4ov+IqARkT
- tNnw==
-X-Gm-Message-State: AOAM530Tcw2es6SfyJJpIRIG3ikmLElBI2QruH8vS0SwOr2l8JzNWuKG
- say8IC9mpaU4g+6QEhq1o60+KA==
-X-Google-Smtp-Source: ABdhPJzGc42I9MCeoVi4XGLbASjLAAVZt8aQijY8wbGw7XEv7s04GgAhkaBUSd45HnRv1Ivu+5QWlw==
-X-Received: by 2002:a17:902:8bcc:b029:dc:45d9:f8b2 with SMTP id
- r12-20020a1709028bccb02900dc45d9f8b2mr1885881plo.62.1611600144701; 
- Mon, 25 Jan 2021 10:42:24 -0800 (PST)
+ bh=Q1SeF2s/DOLhyrOyKgBakT7b/doGN2Q3Ae7/R3HebVk=;
+ b=qs5CoLvmMwSC30CJkwnsHNWu5aaDor44A15vRF78RP8Sn8PMsUlF0gdqG1aHfrCaRR
+ EqxxmZ6mUSFOPVIsQZ7KW8GYhulPRUZvsY7FkjpYmLA8QghUqJZN3gtgY6eHLA24+Req
+ TRlaeTPidcIujjs2CqjkD4k09vR07ynEXw1BHN8DtTC3fN9uZTDoYzboo1WABnUkB16r
+ CxTTgBoqb+8jD740nRFf5wpcU/a+R+Gd7Tu3hV49uruuhBZyNs03Go1Npy2gxRwEB/TP
+ kYNVyOtvXjAWgs0DxIo9NFO/R1mGJqkNrAvNMLFupzvLabAM1Uad9GJjGjmgfvNpp5PH
+ LP3g==
+X-Gm-Message-State: AOAM532KQjWbo/X48VdCTnvlyqd2s2fZ4folDoVpkUYwvlJV8UBfcqkJ
+ 7pSUBh7yiXoK7/XsN5FJw7Z4nA==
+X-Google-Smtp-Source: ABdhPJwjCcv4RRP9CigW3gQV1lycuRcJwmMDSLYrsymwEU6kAYy+01iyMr5Zb7AiKWIUwTUT9ji2gQ==
+X-Received: by 2002:a17:90a:7d08:: with SMTP id
+ g8mr1623836pjl.180.1611600146133; 
+ Mon, 25 Jan 2021 10:42:26 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id n1sm75584pjv.47.2021.01.25.10.42.23
+ by smtp.gmail.com with ESMTPSA id w20sm18981643pga.90.2021.01.25.10.42.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 25 Jan 2021 10:42:24 -0800 (PST)
+ Mon, 25 Jan 2021 10:42:25 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
 To: Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
  Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
  Christian Hewitt <christianshewitt@gmail.com>,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: meson: shorten audio card names for alsa
- compatibility
-Date: Mon, 25 Jan 2021 10:42:19 -0800
-Message-Id: <161160013614.17631.10125019287812409672.b4-ty@baylibre.com>
+Subject: Re: [PATCH v3 0/2] arm64: dts: meson: add support for Beelink
+ GS-King-X
+Date: Mon, 25 Jan 2021 10:42:20 -0800
+Message-Id: <161160013614.17631.15425630960344817638.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210101063737.26635-1-christianshewitt@gmail.com>
-References: <20210101063737.26635-1-christianshewitt@gmail.com>
+In-Reply-To: <20210119145734.12675-1-christianshewitt@gmail.com>
+References: <20210119145734.12675-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210125_134227_151009_AC9A95F0 
-X-CRM114-Status: UNSURE (   8.59  )
+X-CRM114-CacheID: sfid-20210125_134228_698113_0E08998D 
+X-CRM114-Status: UNSURE (   9.69  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -104,17 +104,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 1 Jan 2021 06:37:37 +0000, Christian Hewitt wrote:
-> This patch shortens all audio card model names by dropping the SoC prefix
-> (for conformity) and rewording those that are still longer than alsa's 15
-> character name limit [0] to avoid userspace config issues.
+On Tue, 19 Jan 2021 14:57:32 +0000, Christian Hewitt wrote:
+> This series adds bindings and device-tree for the Beelink (AZW) GS-King-X,
+> which like GT-King and GT-King Pro is based on the W400 reference design.
 > 
-> [0] https://github.com/torvalds/linux/blob/master/Documentation/sound/alsa-configuration.rst#common-parameters-for-top-sound-card-modules
+> Changes since v2:
+> - shorten audio card name to GSKING-X
+> - add Neil's tested-by
+> - add Martin's reviews
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: meson: shorten audio card names for alsa compatibility
-      commit: cf21697a8c5bf65eb4e05717ca5caee8215c3797
+[1/2] dt-bindings: arm: amlogic: add support for the Beelink GS-King-X
+      commit: 39f5e36d5d2b5cae17cfac1f2cd038f0f8bc834b
+[2/2] arm64: dts: meson: add initial Beelink GS-King-X device-tree
+      commit: f3d4ad4f106e21161d232c41a6676416e2498ae4
 
 Best regards,
 -- 
