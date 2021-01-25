@@ -1,70 +1,98 @@
-Return-Path: <SRS0=2QGV=GZ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=vGGV=G4=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AF38C433E9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Jan 2021 12:15:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4B85C433E6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Jan 2021 10:52:57 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E758323437
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Jan 2021 12:15:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E758323437
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
+	by mail.kernel.org (Postfix) with ESMTPS id 25C3922D04
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Jan 2021 10:52:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25C3922D04
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cerno.tech
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=UQeR+PomKAE0MG0JuFe3cUSFPZ+T0F02Vq4W7rf2xFo=; b=lTuMhON9JVW7E7bqSKGp7CglN
-	B7KSoeRxUXQnZD2Qq+IlTXN0rP2eJo06C6wmjzmyRwA7KJTU0NqMSJ0LT232lzYTZZbkb8xovH7Ri
-	idrRmQWI0gZFojoKxjqEg2+FX7FEfwhDZLqiSMIVi8qBrUZicR5Ozi452OFLpHuDwosMZLAYApXuT
-	XCh2G67XH+Snz7C9GhaaCkSAxrWiYmA3c2va1r2uUUEarQaYFZzwYrSOcNg7FMc/UBAXyBOLfdQfy
-	4e3C0mAn7LZ4dVzUMoG0rfJsAtLGSOqX5qrEtfeQNkRxfpUe2JH7FbBKfhAdhK2souV81z38SDHso
-	zVQUUox3A==;
+	 bh=MYZBojrG4rdhQrE56M5FuUgJV9tC+1aA9/ub9Oun0Pc=; b=nyYgEGaw41DJo0BTYTSoFFOZ5
+	CFYVNoP5tGxC0hg4ONJQMIAEmkBgEe/kg5I3d7cHR/4UtZUGerlPhvvHqHWtlnrF+tVTEau3i4748
+	T5SYGK8TxPiZPG3LAlSGbV2MwNt87ruf1efod1bRUWYYKUrIBwFD1u5DYYuDsaCE+NV1UyCsDJJ/1
+	9fpool1TK+8/N0YbvQELgi93ArTrP3c3OPDOt5DBgyI/OQmCVBLnAbSFaCBSpCt3tkGazZg7MEezR
+	9sbnP29q6Y4apRLjjGLemvSOXV4kyBLmXhzisp6+brHGdyoRDG/2Ufoy/bza2ccqorv0HSxzp/kQE
+	OZZe9iqhA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l2vLd-0008T7-Vb; Fri, 22 Jan 2021 12:15:30 +0000
-Received: from mga01.intel.com ([192.55.52.88])
+	id 1l3zUB-0001WC-8K; Mon, 25 Jan 2021 10:52:43 +0000
+Received: from new1-smtp.messagingengine.com ([66.111.4.221])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l2vLa-0008PI-BI; Fri, 22 Jan 2021 12:15:27 +0000
-IronPort-SDR: h0WCbHDDq4QmpmWPy/SMFfX82jk5fy6K2M9GOqwzF2BjKXvvlTuMXZFsbVRMsmyFP0BBFOId5I
- 3DfxuPpaar1Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="198192075"
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="198192075"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2021 04:15:19 -0800
-IronPort-SDR: vxhEFHoBM4hXws2Gfq3XVEXWbVHJjZt+mKNZqWwfpNFtZ+x/7C1X0hk8QBjs48BMnxsKHMbW17
- KXS9hV06ZNpw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="467909062"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 22 Jan 2021 04:15:08 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 22 Jan 2021 14:15:07 +0200
-Date: Fri, 22 Jan 2021 14:15:07 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <maxime@cerno.tech>
+ id 1l3zTu-0001KO-LJ; Mon, 25 Jan 2021 10:52:28 +0000
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 8C6885805B3;
+ Mon, 25 Jan 2021 05:52:23 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Mon, 25 Jan 2021 05:52:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm1; bh=7Q7Nv0bqu4rlGBtYQ+gbUns0wJu
+ h6GuAiFJdP+cGZnE=; b=SvMo/+4j2yNGhwp07OIeEeAwIPd3uLOkCRwQa21lHhP
+ uBTNRs15VHVc0Wnm9juBrZh1WRoUfbAjl6OGg+3BMqWfLxbqr0GfnnNKvhRLv6z8
+ Ht3Sogfq/tair/mlm5M0Ws4IhMxyYJJ5aB3ZMTsXfj7rPgB4UyKFB1tZPz0DRliK
+ BHwi/farpZU9725kMRANiZjHMFssH8S/rOxF64POXubAjGC5dTdmZE9SM5r6LpI6
+ 3qeQ+jTkTpu2F1mx8CbaWl09kJjYGCSK7wcAudZIvP/ea20jayJYzTRZs3bFHtVl
+ zCtbT3ZRCuxdI95cj5o9sQvZsw9/YnQhvwNRcBsm0nQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=7Q7Nv0
+ bqu4rlGBtYQ+gbUns0wJuh6GuAiFJdP+cGZnE=; b=YeHVXlHvXL396hBceHKuI1
+ 2nodfeUi1jgIMhqjbIrcZLxiFtsltIkSU/rRD+IJBCKaviaCLZGCkHZUipzKh8aI
+ YIp/m5NnLSU2gciUh/8Z1vTesObQnehVBhj4ngYN/Pf+cMEOkKiXjciatPw7K5uH
+ KudFDbebfOFPHJfhLJKCfaWkyxBtzj2zcRrPeBXnnOG5RFH0coWQFtNlbSwC8t7p
+ TYDH6qiIQ9QsegeQ3ZYr4Evcty2XIdgHyKS9BpK2qBedU/+5qgGyO94tCOGu/vcn
+ UzMGe0Zs8hFTbEAt0SgII0xE2YdNu782KoFPPFHrfDCKzEbkhEw4It5xt1I0TUJQ
+ ==
+X-ME-Sender: <xms:5KIOYDZkCzKlxmwF8Past7gGnV8Uu1VXOKwdgl0zmSdGh9xjQbNWAg>
+ <xme:5KIOYCZLoAjv-K3leKcmvRZVhKYdfz_zGHRxi7HJpYazyr5W-FBA4vqiKhw3PnUiN
+ dI4Zs7rTFLuMm2vbSs>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdefgddukecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+ veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+ grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:5KIOYF97LOISc2dVRzhdQbFgqL728_iJgSiKzU_LiMVXRb_tAllfVA>
+ <xmx:5KIOYJpNP6bhZmkQKa-vcXo4QiLVKipRoitsrZ-mefMbXdAgiZY_EQ>
+ <xmx:5KIOYOoq6PpxB4uFJVQhpgn3Wdr7RMwSOm8PVBhZdr68RJcXL3U17Q>
+ <xmx:56IOYKw_xK1eOvHH4mUywKNmdsPDFtUqeoCTBix2hFA5DpClw3NKwg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id E512724005A;
+ Mon, 25 Jan 2021 05:52:19 -0500 (EST)
+Date: Mon, 25 Jan 2021 11:52:18 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Subject: Re: [PATCH v2 08/11] drm: Rename plane->state variables in atomic
  update and disable
-Message-ID: <YArBy2DKdCct5cYW@intel.com>
+Message-ID: <20210125105218.kv63vjbxz5b35hdo@gilmour>
 References: <20210121163537.1466118-1-maxime@cerno.tech>
  <20210121163537.1466118-8-maxime@cerno.tech>
+ <YArBy2DKdCct5cYW@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210121163537.1466118-8-maxime@cerno.tech>
-X-Patchwork-Hint: comment
+In-Reply-To: <YArBy2DKdCct5cYW@intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210122_071526_625808_46FE96C4 
-X-CRM114-Status: GOOD (  18.43  )
+X-CRM114-CacheID: sfid-20210125_055226_980500_3816F9EC 
+X-CRM114-Status: GOOD (  22.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,7 +104,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: , Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+Cc: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
  Liviu Dudau <liviu.dudau@arm.com>, dri-devel@lists.freedesktop.org,
  linux-mips@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>,
  Matthias Brugger <matthias.bgg@gmail.com>,
@@ -108,95 +136,127 @@ Cc: , Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
  Kyungmin Park <kyungmin.park@samsung.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, Tian Tao <tiantao6@hisilicon.com>,
  freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============5730768927795529415=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 21, 2021 at 05:35:33PM +0100, Maxime Ripard wrote:
-> Some drivers are storing the plane->state pointer in atomic_update and
-> atomic_disable in a variable simply called state, while the state passed
-> as an argument is called old_state.
-> =
 
-> In order to ease subsequent reworks and to avoid confusing or
-> inconsistent names, let's rename those variables to new_state.
-> =
+--===============5730768927795529415==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aovqw5rvxy3ynmws"
+Content-Disposition: inline
 
-> This was done using the following coccinelle script, plus some manual
-> changes for mtk and tegra.
-> =
 
-> @ plane_atomic_func @
-> identifier helpers;
-> identifier func;
-> @@
-> =
+--aovqw5rvxy3ynmws
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> (
->  static const struct drm_plane_helper_funcs helpers =3D {
->  	...,
->  	.atomic_disable =3D func,
-> 	...,
->  };
-> |
->  static const struct drm_plane_helper_funcs helpers =3D {
->  	...,
->  	.atomic_update =3D func,
-> 	...,
->  };
-> )
-> =
+Hi Ville,
 
-> @ moves_new_state_old_state @
-> identifier plane_atomic_func.func;
-> identifier plane;
-> symbol old_state;
-> symbol state;
-> @@
-> =
+On Fri, Jan 22, 2021 at 02:15:07PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Thu, Jan 21, 2021 at 05:35:33PM +0100, Maxime Ripard wrote:
+> > Some drivers are storing the plane->state pointer in atomic_update and
+> > atomic_disable in a variable simply called state, while the state passed
+> > as an argument is called old_state.
+> >=20
+> > In order to ease subsequent reworks and to avoid confusing or
+> > inconsistent names, let's rename those variables to new_state.
+> >=20
+> > This was done using the following coccinelle script, plus some manual
+> > changes for mtk and tegra.
+> >=20
+> > @ plane_atomic_func @
+> > identifier helpers;
+> > identifier func;
+> > @@
+> >=20
+> > (
+> >  static const struct drm_plane_helper_funcs helpers =3D {
+> >  	...,
+> >  	.atomic_disable =3D func,
+> > 	...,
+> >  };
+> > |
+> >  static const struct drm_plane_helper_funcs helpers =3D {
+> >  	...,
+> >  	.atomic_update =3D func,
+> > 	...,
+> >  };
+> > )
+> >=20
+> > @ moves_new_state_old_state @
+> > identifier plane_atomic_func.func;
+> > identifier plane;
+> > symbol old_state;
+> > symbol state;
+> > @@
+> >=20
+> >  func(struct drm_plane *plane, struct drm_plane_state *old_state)
+> >  {
+> >  	...
+> > -	struct drm_plane_state *state =3D plane->state;
+> > +	struct drm_plane_state *new_state =3D plane->state;
+> > 	...
+> >  }
+> >=20
+> > @ depends on moves_new_state_old_state @
+> > identifier plane_atomic_func.func;
+> > identifier plane;
+> > identifier old_state;
+> > symbol state;
+> > @@
+> >=20
+> >  func(struct drm_plane *plane, struct drm_plane_state *old_state)
+> >  {
+> >  	<...
+> > -	state
+> > +	new_state
+> > 	...>
+>=20
+> Was going to say that this migh eat something else, but I guess
+> the dependency prevents that?
 
->  func(struct drm_plane *plane, struct drm_plane_state *old_state)
->  {
->  	...
-> -	struct drm_plane_state *state =3D plane->state;
-> +	struct drm_plane_state *new_state =3D plane->state;
-> 	...
->  }
-> =
+Yeah, the dependency takes care of this
 
-> @ depends on moves_new_state_old_state @
-> identifier plane_atomic_func.func;
-> identifier plane;
-> identifier old_state;
-> symbol state;
-> @@
-> =
+> Another way to avoid that I suppose would be to declare 'state'
+> as
+> symbol moves_new_state_old_state.state;
+>=20
+> That would probably make the intent a bit more obvious, even with
+> the dependency. Or does a dependency somehow automagically imply
+> that?
 
->  func(struct drm_plane *plane, struct drm_plane_state *old_state)
->  {
->  	<...
-> -	state
-> +	new_state
-> 	...>
+I'm not sure if it does, but it's a symbol here not an identifier or an
+expression, so here moves_new_state_old_state.state would always resolve
+to state (and only state) anyway
 
-Was going to say that this migh eat something else, but I guess
-the dependency prevents that?
+Maxime
 
-Another way to avoid that I suppose would be to declare 'state'
-as
-symbol moves_new_state_old_state.state;
+--aovqw5rvxy3ynmws
+Content-Type: application/pgp-signature; name="signature.asc"
 
-That would probably make the intent a bit more obvious, even with
-the dependency. Or does a dependency somehow automagically imply
-that?
+-----BEGIN PGP SIGNATURE-----
 
--- =
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYA6i4gAKCRDj7w1vZxhR
+xXQfAQCpHFLAgzbOGuPHlUIw6srwonDWlJwZ5pDLwhp1/pTOIgEAwAm6K8CkMgzh
+mwxW8RrOr5SMiQknGuS5OfDWZlYZBwo=
+=AjKT
+-----END PGP SIGNATURE-----
 
-Ville Syrj=E4l=E4
-Intel
+--aovqw5rvxy3ynmws--
+
+
+--===============5730768927795529415==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5730768927795529415==--
+
