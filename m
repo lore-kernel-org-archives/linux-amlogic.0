@@ -2,66 +2,83 @@ Return-Path: <SRS0=O9cP=G6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-20.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2A00C433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jan 2021 07:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72378C433E0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jan 2021 18:04:23 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 34F482074B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jan 2021 07:49:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 34F482074B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id C9FE464DA9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jan 2021 18:04:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C9FE464DA9
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=5YQVw8Ajk/nz/NdVOLnsXZMIbYM1T91+c42migxcUZ4=; b=oYUbZoEw4iuI/nPjvLYDAr+Yd
-	2gDlNXUYvSonHYY3vqtvLxjJ2D9g1qLjG5qSPAaCEyoF5PI95nm4HGDc5qURlYVnHhH/aju+Rm4qx
-	5XblhFKyE3c8GenSPF96qxHSZxKRxxi/uprFjfVsnP0Z6E+ga1bDDMkcLwm8g40uW97KwU0ATvSMb
-	oIXSf1eJuQsHSwGJrVnqGUQQJJ75E9mp1icHvFEb5/bNtHMtqUFw1GgUoYukrO4VJDRIzp5SeLS8R
-	i1OMOYg5+bt/wLDz5KNhiV8GbmiIkKNzzqIFHiXv5rxVPcwGnR0bDplbCEI0pP6haELmZFtaZphMU
-	0EVHJeuJg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=IY0/PuqN03/UILMXIYWg7i0rVjBTOCkNPQNMGmrKDLg=; b=Hmo9Walooeyw2EOw6xXQJ9i39c
+	KdrRmCe46horbRAEtmIpOZoxBMWKOP9pSpwriSTuNuSalZCWqdn1jG0NRYf+oM6s58MnJZkJTStyc
+	8sbEKI6ISM9eDW6J9Y5ViN/ue+aybjOLj5yJBz+JsnoeUA+VJhyDbjXBYooD1CcpXrmvKuwNKMDR3
+	HfDrj7LhHjXPpcexyiFFF7bbpjcNG/+pYsg+W+J+Eh32M4I5yyTRU1KUfIcwj0dQSKR73jeeqwbyk
+	Wd1lcGextUYNccU9rUVGfy8g3CFELcWnCamsgKmSZ6aWrdkYlCrzv6acvnNjaho0VKngT6YYqsebv
+	fx8pW0xQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l4fZP-0000R8-Q1; Wed, 27 Jan 2021 07:48:55 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1l4pAr-0007iU-Pm; Wed, 27 Jan 2021 18:04:13 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l4fZN-0000QM-6A; Wed, 27 Jan 2021 07:48:54 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BF76B2074A;
- Wed, 27 Jan 2021 07:48:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1611733728;
- bh=Nro3vfQTCFtmv98iajZ/Tld6vSBtHkyWqkV/zj14XFw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=SHMBfSfTtkKbBZei+R26dC4Lsa2N+suQiJ9H3LZMp1MaKa5JjGt+4QjAdFsyIyLUT
- tQmzXXgXxEdLQ2XzmFzAyIzEDH80xOrFrwsQDYWFBcKKnne9TgiIilSEhMFajPzLcb
- WKlppAIzlGh3Fdk7NfvaI8omlrDmEFva/CSsY1cFN2joSSKZRYRcFT7U90A+CfEknv
- NgBhXEjQyytURjwbuv1CbEWSI5z02gPfxp9eYDmJnFUBTAyEZEGvdNF+R6c9qOt6Gv
- k1vZRXX2j4SYiZQErTdX1uQdkl0rrqMB5kZzlCHOYRGKTz5ie1ZeE0UWWrrB+E8xPk
- 07s+G/JFyQ1kw==
-Date: Wed, 27 Jan 2021 08:48:37 +0100
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH RFC 1/2] dt: pci: designware-pcie.txt: convert it to yaml
-Message-ID: <20210127084837.39d68850@coco.lan>
-In-Reply-To: <b6ab7110-fc87-85d7-d591-dffad32985ec@samsung.com>
-References: <cover.1611645945.git.mchehab+huawei@kernel.org>
- <CGME20210126074127eucas1p1dd8f2d1704d708d64458922566b934f1@eucas1p1.samsung.com>
- <55f479324098b66d7dba89c8f9c3e455731df4f7.1611645945.git.mchehab+huawei@kernel.org>
- <b6ab7110-fc87-85d7-d591-dffad32985ec@samsung.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+ id 1l4pAl-0007hC-Tr
+ for linux-amlogic@lists.infradead.org; Wed, 27 Jan 2021 18:04:09 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id 7so2894708wrz.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 27 Jan 2021 10:04:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=KWqNh8H9jxNujMamWE5tQ90c+C/64uDI1+7zlC8RlOU=;
+ b=FvHguWbJZsfCtr97HAU4oObBcCxwx8i+tTMOp3CL+atazyIAjaiOB1RrudyWlAdY0P
+ 6YcbcYvX1RLD9UI35zd4tMLXT+pS0dpmnYQF2Hk5nFWYu5bcD9sfdPuAjmBaeR1ccC2w
+ yxMQjX4QGcULH4wzCX8ODJTC29fQYxXULmPQs9YbTcwK9tUx0pv0gMAHtffGavGsdraq
+ +cLjMwr0xEorOHm/zarnjJkmMlPtSnfBHNbTxD0h5gmBEO4iwNAJw0+Qqi2+yw+JbnHw
+ AS/qBAwDjenxh7UDo+vv4+NlmEtO/eAtK5UH2s6/v8ovnUEz9OQ5mi38/4NPI9Xj5cGT
+ 4HuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+ bh=KWqNh8H9jxNujMamWE5tQ90c+C/64uDI1+7zlC8RlOU=;
+ b=nt5GA3FlJRmIbrSnOn+MPOul90bvtVq3W2Yvda+gZvtO3Kf7r/6bjNC5ZMgrDS4v/X
+ W46pvKANE8XqSd5Nq7gWzWCRMnQE+2fa4SMl6G5CBcYpuIuKwuDKaJWrZVNYxgsAOPn7
+ /qQznqhSBM1v22O41z+rCHnfAYFv+0emZH1xbphxGnNW4i+lOuufHL8Lwb60YqbcP2ad
+ RCXWs9h5mYjTwm3r+ae0FCkclpQqsLM0gEtnFqi5Rq7O2tLgwKCKY0fRQAc9k9Ws0uir
+ DxPUG3/5+F0KkVT86tVCuKnOJgejt6IAgraqE4MzLLCQskYoxsYpSwFdpNlpR34yt/oq
+ HL9A==
+X-Gm-Message-State: AOAM531FhKE/Pc40yX58aeUc3C2+PTfMIiwGoYY7idQ8KcvzFHPZdepz
+ f0xxyUcjP/esd8RG3SSRE8AzJw==
+X-Google-Smtp-Source: ABdhPJzoVQF8wAyVtyXUunZs+vFdUnlobMjssvzSGi9p305OKTw5SJ11zXiYlUrdWtE/784foYAKWA==
+X-Received: by 2002:adf:dd0d:: with SMTP id a13mr12423872wrm.143.1611770644971; 
+ Wed, 27 Jan 2021 10:04:04 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id r13sm3457725wmh.9.2021.01.27.10.04.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 27 Jan 2021 10:04:04 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+List-Id: <soc.lore.kernel.org>
+To: soc@kernel.org, arm@kernel.org
+Subject: [GIT PULL] arm64: dts: amlogic fixes for v5.11-rc (round 2)
+Date: Wed, 27 Jan 2021 10:04:01 -0800
+Message-ID: <7ho8hai7e6.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210127_024853_368496_4D1B7FD0 
-X-CRM114-Status: GOOD (  12.92  )
+X-CRM114-CacheID: sfid-20210127_130408_132168_9D442E17 
+X-CRM114-Status: UNSURE (   7.09  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,74 +90,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
- Bjorn Andersson <bjorn.andersson@linaro.org>, linux-tegra@vger.kernel.org,
- Thierry Reding <thierry.reding@gmail.com>, linux-arm-kernel@axis.com,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Jonathan Chocron <jonnyc@amazon.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Jesper Nilsson <jesper.nilsson@axis.com>, linux-samsung-soc@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- Kishon Vijay Abraham I <kishon@ti.com>, Andy Gross <agross@kernel.org>,
- NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
- Richard Zhu <hongxing.zhu@nxp.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>, linux-kernel@vger.kernel.org,
- Zhou Wang <wangzhou1@hisilicon.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Jingoo Han <jingoohan1@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Marek,
+Arnd, Olof,
 
-Em Tue, 26 Jan 2021 11:13:20 +0100
-Marek Szyprowski <m.szyprowski@samsung.com> escreveu:
-
-> Hi Mauro,
-> 
-> On 26.01.2021 08:35, Mauro Carvalho Chehab wrote:
-> > Convert the file into a JSON description at the yaml format.
-> >
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > ---
-> >   .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
-> >   .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
-> >   .../bindings/pci/designware,pcie.yaml         | 194 ++++++++++++++++++
-> >   .../bindings/pci/designware-pcie.txt          |  77 -------
-> >   .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
-> >   .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
-> >   .../bindings/pci/hisilicon-pcie.txt           |   2 +-
-> >   .../devicetree/bindings/pci/kirin-pcie.txt    |   2 +-
-> >   .../bindings/pci/layerscape-pci.txt           |   2 +-
-> >   .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
-> >   .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
-> >   .../devicetree/bindings/pci/pci-keystone.txt  |  10 +-
-> >   .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
-> >   .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
-> >   .../bindings/pci/samsung,exynos5440-pcie.txt  |   4 +-  
-
-> You must have used an old tree for preparing this patchset. The above 
-> file is gone in v5.11-rc1 and there is 
-> Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml instead.
-
-Yeah, this series was generated against v5.10, as part of my efforts
-to have Hikey 970 properly supported upstream:
-
-	https://github.com/mchehab/linux/commits/devel/hikey970
-
-For the next version, I'll rebase on the top of linux-next. 
+We found one more regression in networking on amlogic SoCs needing a
+fix.  Please pull for v5.11.
 
 Thanks,
-Mauro
+
+Kevin
+
+
+The following changes since commit 7386a559caa6414e74578172c2bc4e636d6bd0a0:
+
+  arm64: dts: amlogic: meson-g12: Set FL-adj property value (2021-01-04 08:03:49 -0800)
+
+are available in the Git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes-2
+
+for you to fetch changes up to 19f6fe976a61f9afc289b062b7ef67f99b72e7b9:
+
+  Revert "arm64: dts: amlogic: add missing ethernet reset ID" (2021-01-26 08:02:35 -0800)
+
+----------------------------------------------------------------
+arm64: dts: amlogic fixes for v5.11-rc (round 2)
+- fix ethernet resets
+
+----------------------------------------------------------------
+Neil Armstrong (1):
+      Revert "arm64: dts: amlogic: add missing ethernet reset ID"
+
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 2 --
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 --
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 3 ---
+ 3 files changed, 7 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
