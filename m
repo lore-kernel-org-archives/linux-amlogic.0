@@ -2,83 +2,88 @@ Return-Path: <SRS0=O9cP=G6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 72378C433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jan 2021 18:04:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 613D7C433E6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jan 2021 18:04:51 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C9FE464DA9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jan 2021 18:04:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C9FE464DA9
+	by mail.kernel.org (Postfix) with ESMTPS id 0FF2E64DA0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jan 2021 18:04:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0FF2E64DA0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=IY0/PuqN03/UILMXIYWg7i0rVjBTOCkNPQNMGmrKDLg=; b=Hmo9Walooeyw2EOw6xXQJ9i39c
-	KdrRmCe46horbRAEtmIpOZoxBMWKOP9pSpwriSTuNuSalZCWqdn1jG0NRYf+oM6s58MnJZkJTStyc
-	8sbEKI6ISM9eDW6J9Y5ViN/ue+aybjOLj5yJBz+JsnoeUA+VJhyDbjXBYooD1CcpXrmvKuwNKMDR3
-	HfDrj7LhHjXPpcexyiFFF7bbpjcNG/+pYsg+W+J+Eh32M4I5yyTRU1KUfIcwj0dQSKR73jeeqwbyk
-	Wd1lcGextUYNccU9rUVGfy8g3CFELcWnCamsgKmSZ6aWrdkYlCrzv6acvnNjaho0VKngT6YYqsebv
-	fx8pW0xQ==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=D9kE9EWDo9xjPxWwQgjnoHDPtAEAHR/fBf1NAmGDCYM=; b=CraWz5dgy9+ZdZMG9nj/Oldi1
+	VJIm/Zs8/JqPFiG3fskoSt7K5ibLTtSSaahuKxh+Kz6FR6TQ4x7k7gKw3jp/SphW3RSZ107kdTJeM
+	g386p2wTcN4tfZRyVV2kc78RK2PlIElj44qE8SKx/c8w7I/tf8bIMWfakVC07XcCG+m3vNwdIJy+W
+	ivlZOv6FjQefnB6MRSJKhqLeDl5H/ocTmyMO4BLOwIy66xkr//Ow1rGf7SGjiVg1fDGPnTT8jhW7P
+	E8gRvXyMiwAHlncPvBQa31d6DhrArM+uFfju9kTw6idhpgtDFt/wFWrwEqbGU+fkF0eMLuY34avm2
+	cC2sIG1Nw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l4pAr-0007iU-Pm; Wed, 27 Jan 2021 18:04:13 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1l4pBN-0007or-Ki; Wed, 27 Jan 2021 18:04:45 +0000
+Received: from mail-pg1-x52c.google.com ([2607:f8b0:4864:20::52c])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l4pAl-0007hC-Tr
- for linux-amlogic@lists.infradead.org; Wed, 27 Jan 2021 18:04:09 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id 7so2894708wrz.0
- for <linux-amlogic@lists.infradead.org>; Wed, 27 Jan 2021 10:04:05 -0800 (PST)
+ id 1l4pBL-0007nf-OQ
+ for linux-amlogic@lists.infradead.org; Wed, 27 Jan 2021 18:04:44 +0000
+Received: by mail-pg1-x52c.google.com with SMTP id b21so2108658pgk.7
+ for <linux-amlogic@lists.infradead.org>; Wed, 27 Jan 2021 10:04:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=KWqNh8H9jxNujMamWE5tQ90c+C/64uDI1+7zlC8RlOU=;
- b=FvHguWbJZsfCtr97HAU4oObBcCxwx8i+tTMOp3CL+atazyIAjaiOB1RrudyWlAdY0P
- 6YcbcYvX1RLD9UI35zd4tMLXT+pS0dpmnYQF2Hk5nFWYu5bcD9sfdPuAjmBaeR1ccC2w
- yxMQjX4QGcULH4wzCX8ODJTC29fQYxXULmPQs9YbTcwK9tUx0pv0gMAHtffGavGsdraq
- +cLjMwr0xEorOHm/zarnjJkmMlPtSnfBHNbTxD0h5gmBEO4iwNAJw0+Qqi2+yw+JbnHw
- AS/qBAwDjenxh7UDo+vv4+NlmEtO/eAtK5UH2s6/v8ovnUEz9OQ5mi38/4NPI9Xj5cGT
- 4HuQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=QwsWwt6yAHjK9HfVabcgNu82UtKfBUdWpM4ef78ZV3I=;
+ b=wiO+ivWvSpUYWfyfpPlSXStix3+/FQAsTydsfiZm3SbqcNtYhazTuwG5Qt2a492wJn
+ yDIk5PUDdqhOe7D2C9EPIyhnH9B2WdZ5X5jDnNRul99E4zf7xq9YDFn5gF1xoY+IzlE7
+ OVoKFu64Y0XHXZelv7Hr/N6S91NBZwIgh0reZEE4/TmwgAJhEbXkqj3tWBVPkA2Kq/5G
+ //MkxqAoUtFRzPZO8cKe3/eeq3FaJhWNZN5aV07rLbtQsD1jD9EBqkm8BwfcWnI2EeM3
+ JM4HYC5+MkuBsBxxR9y8dl+UabTVtH5zP8SZTLdjUrlYrNJyPju2trfXyCB2RQM0U4gR
+ /36w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=KWqNh8H9jxNujMamWE5tQ90c+C/64uDI1+7zlC8RlOU=;
- b=nt5GA3FlJRmIbrSnOn+MPOul90bvtVq3W2Yvda+gZvtO3Kf7r/6bjNC5ZMgrDS4v/X
- W46pvKANE8XqSd5Nq7gWzWCRMnQE+2fa4SMl6G5CBcYpuIuKwuDKaJWrZVNYxgsAOPn7
- /qQznqhSBM1v22O41z+rCHnfAYFv+0emZH1xbphxGnNW4i+lOuufHL8Lwb60YqbcP2ad
- RCXWs9h5mYjTwm3r+ae0FCkclpQqsLM0gEtnFqi5Rq7O2tLgwKCKY0fRQAc9k9Ws0uir
- DxPUG3/5+F0KkVT86tVCuKnOJgejt6IAgraqE4MzLLCQskYoxsYpSwFdpNlpR34yt/oq
- HL9A==
-X-Gm-Message-State: AOAM531FhKE/Pc40yX58aeUc3C2+PTfMIiwGoYY7idQ8KcvzFHPZdepz
- f0xxyUcjP/esd8RG3SSRE8AzJw==
-X-Google-Smtp-Source: ABdhPJzoVQF8wAyVtyXUunZs+vFdUnlobMjssvzSGi9p305OKTw5SJ11zXiYlUrdWtE/784foYAKWA==
-X-Received: by 2002:adf:dd0d:: with SMTP id a13mr12423872wrm.143.1611770644971; 
- Wed, 27 Jan 2021 10:04:04 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=QwsWwt6yAHjK9HfVabcgNu82UtKfBUdWpM4ef78ZV3I=;
+ b=X+/QMPK16QmJZMIVvG6ir/+4K3OCeMOsCCFmrakzJdIaCgNyKuBjo3xTl0e6zp2Ui7
+ o+4KKjTf+AQF9qdv5U34GTepDwRn9OOXdBzcds5635xEJsA200aF3jtYqRsF9Jg5ggMR
+ 3DKNcr2VDW4cWtmoTyNEQ+OMnEnOJony3WULs+hC4ixeh4eSlerYLTKzrKLiYa5JZroY
+ 5lA680I3vbCWqAC5mlqlvUzuU3MIPE20UaDKICI5Kadw1IaanLZIWvUh5yfjG4vrkRyW
+ 8T+E3UVeLCba8DYi+D1XF6PqutOL2RRVwlRLDXZjk0O3ZOkzVzj91nrLYhPkLRLpJUdv
+ 27bQ==
+X-Gm-Message-State: AOAM5339thDgLVtsaX8bRXtz2FXaZ0rIl32eRUwMvyjJinIBb29tFF+D
+ HrhxhN59Bkz24dvw8TQBD+izDA==
+X-Google-Smtp-Source: ABdhPJzbBLxWLKPHKRPU1ciU8xZx1TLCFPLX6mwn7aVtDJ0xSlZbVVNDhmsBQJzTfKE+z3t0A+lrJA==
+X-Received: by 2002:a62:aa03:0:b029:1b9:7cb5:bbde with SMTP id
+ e3-20020a62aa030000b02901b97cb5bbdemr11756431pff.14.1611770681170; 
+ Wed, 27 Jan 2021 10:04:41 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id r13sm3457725wmh.9.2021.01.27.10.04.03
+ by smtp.gmail.com with ESMTPSA id kr9sm2693998pjb.0.2021.01.27.10.04.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Jan 2021 10:04:04 -0800 (PST)
+ Wed, 27 Jan 2021 10:04:40 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-List-Id: <soc.lore.kernel.org>
-To: soc@kernel.org, arm@kernel.org
-Subject: [GIT PULL] arm64: dts: amlogic fixes for v5.11-rc (round 2)
-Date: Wed, 27 Jan 2021 10:04:01 -0800
-Message-ID: <7ho8hai7e6.fsf@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] Revert "arm64: dts: amlogic: add missing ethernet reset
+ ID"
+Date: Wed, 27 Jan 2021 10:04:40 -0800
+Message-Id: <161177067430.24026.4667361379559642494.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210126080951.2383740-1-narmstrong@baylibre.com>
+References: <20210126080951.2383740-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210127_130408_132168_9D442E17 
-X-CRM114-Status: UNSURE (   7.09  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210127_130443_848711_AF11871D 
+X-CRM114-Status: GOOD (  11.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,46 +95,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Corentin Labbe <clabbe@baylibre.com>, linux-arm-kernel@lists.infradead.org,
+ =?UTF-8?q?J=C3=A9r=C3=B4me=20Brunet?= <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Arnd, Olof,
+On Tue, 26 Jan 2021 09:09:51 +0100, Neil Armstrong wrote:
+> It has been reported on IRC and in KernelCI boot tests, this change breaks
+> internal PHY support on the Amlogic G12A/SM1 Based boards.
+> 
+> We suspect the added signal to reset more than the Ethernet MAC but also
+> the MDIO/(RG)MII mux used to redirect the MAC signals to the internal PHY.
+> 
+> This reverts commit f3362f0c18174a1f334a419ab7d567a36bd1b3f3 while we find
+> and acceptable solution to cleanly reset the Ethernet MAC.
 
-We found one more regression in networking on amlogic SoCs needing a
-fix.  Please pull for v5.11.
+Applied, thanks!
 
-Thanks,
+[1/1] Revert "arm64: dts: amlogic: add missing ethernet reset ID"
+      commit: 19f6fe976a61f9afc289b062b7ef67f99b72e7b9
 
-Kevin
-
-
-The following changes since commit 7386a559caa6414e74578172c2bc4e636d6bd0a0:
-
-  arm64: dts: amlogic: meson-g12: Set FL-adj property value (2021-01-04 08:03:49 -0800)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes-2
-
-for you to fetch changes up to 19f6fe976a61f9afc289b062b7ef67f99b72e7b9:
-
-  Revert "arm64: dts: amlogic: add missing ethernet reset ID" (2021-01-26 08:02:35 -0800)
-
-----------------------------------------------------------------
-arm64: dts: amlogic fixes for v5.11-rc (round 2)
-- fix ethernet resets
-
-----------------------------------------------------------------
-Neil Armstrong (1):
-      Revert "arm64: dts: amlogic: add missing ethernet reset ID"
-
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 2 --
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 --
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 3 ---
- 3 files changed, 7 deletions(-)
+Best regards,
+-- 
+Kevin Hilman <khilman@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
