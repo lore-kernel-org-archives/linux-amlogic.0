@@ -4,80 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CFB02C433E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jan 2021 06:52:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B233CC433DB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jan 2021 06:52:11 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 75AD864DFD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jan 2021 06:52:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 75AD864DFD
+	by mail.kernel.org (Postfix) with ESMTPS id 66F4864DD9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jan 2021 06:52:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 66F4864DD9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=IR84egiOYpF7Ywg5pHU0mlmFZ0Xev/8uACXs+GbR18w=; b=FgUmmb/39ZZ+1xAFVib7Rz9Z+G
-	8KvEj1X68Cm/+aPcxS36tTdVu0U6dgS1tcSia2QzXDJ/Q1O7MK+of0VOPTvinqLMbvKkpUq6PxM+K
-	ONslYWGlmnReNAhaaBYY8WsCIcz/JoDT/5LazAxbCOVhosUAQSwm41Os62Yzi4MV7XDCWa0mQvTfX
-	3Wpia9bs+nhaNc/N5+KxDaw6pXJ7r9QrMs4xpmm/LcqNZ56xp4kr8Hcu9tCamHPxWT6x9t6dPeopi
-	yCT3zbdowMiMSv0eZriTldN9Dv07G1ip3KDnzr9FKJEupCohOuAU7bQXN/5cxilh9o3RhrB56mlgI
-	4zX8VmJA==;
+	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=zvuEJYxbAcU5ynqqPqoCwUWF+18UFyZl4FVrq2Rh4dM=; b=t8xRgqd7tb/kBUEkxT6ajfE7Vq
+	oWiCb6s2dJ2tXWco1xZW5w5VSBTI47W76rnuMlwWHZSuFGfTPrV2Qy2BMf36VxD8b7h2Ix5J4rO+X
+	1xR0BIrpOqtbzWLNrWxfmZy6RG0Zz/G+0WwPq3vAMm0kKmt7EqJW6rYFaU/CHmkxGvTPLCctxQ9Hz
+	Lj4Y4SM9Rk/3+UDgJB0CHqdQb11v8Svq7cw9dVnfPinGF3reWM2EvRK80OkxW8b+RmeavdqBAv4vI
+	cmCeva+iyGVPWv+SZiIGAJH5nh9saCmbpCtRPxi7nVKrA97CeTKRm+x1Tj9DUL9FIiuwQDppBryKA
+	xaXmxoRw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l5NdJ-0005fC-Ei; Fri, 29 Jan 2021 06:51:53 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1l5NdT-0005hs-7I; Fri, 29 Jan 2021 06:52:03 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l5NdC-0005cT-1G; Fri, 29 Jan 2021 06:51:47 +0000
-Received: by mail-wr1-x430.google.com with SMTP id 6so7728227wri.3;
- Thu, 28 Jan 2021 22:51:43 -0800 (PST)
+ id 1l5NdD-0005ci-KY; Fri, 29 Jan 2021 06:51:48 +0000
+Received: by mail-wr1-x431.google.com with SMTP id g10so7738925wrx.1;
+ Thu, 28 Jan 2021 22:51:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=/LBcU80K6cUJRkfMZX4P42tI8HDwdViTAGmLyJsVozY=;
- b=LIg1qOAd1DbXlN2H3kuO0mmCBSqiZ67+kff6yZiAK+Thlv7cpxxt+Y4w5riibMERUL
- ZZrcH5ntjPXlSiWEnr3XeZMR5fIrwprJlei1OANh/bTWk/ApoEuc7BTcmtzUCZzFc+9+
- z+Q+KMTjuCWSdtkRptS7VpOav1bYynFIZLBixK3x/0lrk4gEFzfjmA+1TmiUrxPfGily
- bqo7DzSAxIyifaj05CyuuiZ18oCchevFp32jthtYbtF06IjGo4CLpoYW4HCWt/edaVxw
- bR8jRGJohxgHyKtDxGzAXken+lWd3H2UgF/rYL8lIlFkHs1YZRCU/gyfeDI923qh2dPp
- CiHg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=slrEcS4a9ViM3/EhojYQnDYLHNridO9O3Av2lfzzgZk=;
+ b=MWqBJ4L8ME/baSgjmqjvV2y7ks1cjglqfwf3iP3eOEuCR+kBuOBSR3PthXYZD5Nrev
+ 34wvNGLlza4nocai6q26PNT1Tu759jrYdmuVprLow5Cjg/UFwuSc3SOmDDb3KZY1efS+
+ Ex9KOi4v62ZWkE6XFYEuWDDwnJHqxNwTUiNcbNEn+B/9Xn8sYSCbp12fREPsNu593FE0
+ z28Zyt/RJqHLFZJ0BZyrAYP0WPTe2T3mteE+5mUFalMh4wGBkNAsIkW0TNnWWJOWNccg
+ z1PS+wMTjzI7W9ygpAjK1xSOzXv7dy+vHd/wahduCm+Ke2TmJPbZtBCKnBT2zHi7mlHH
+ gM3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=/LBcU80K6cUJRkfMZX4P42tI8HDwdViTAGmLyJsVozY=;
- b=FTqOm+b+Lcdykfs3vEc2/95U2qqBHrWwWcNrI6QUULMIFgockmujiaJL1QsWQwF8km
- YKtGbISjRPAG8KNsCqXHHvGmG+yDO/G9TXw+Jywl+VTyNn8UQl3Q5hsGRJ7Z7aI8hbkw
- LkeDakfxh98UEFAPUEuq/VGKBNEwgLT4cFCWPwKVhe6gDxpM9Pk+8F8rFA0oZ47KiX2o
- sN5Q5z7cLPVqqe23u/EFxsnlhjPH+GAIu2yjvm2xZ97t6UmZ4YSwNkYKTDadVkvalXyy
- U9CXGnYtEKo1iUMZzfPG0bUO4WBP8uiSuoiqGV9CZYJblHRmUiSgSsWtGmdRAkBWpz+h
- gGSQ==
-X-Gm-Message-State: AOAM533ZWSn82olHn173LRBzFsjUJuJhIBca1f0MJyxK+LCfPbnBe3a2
- yHaSwhghkR7IEjOlRdZy/YY=
-X-Google-Smtp-Source: ABdhPJzQPQhHtxZspEQvTWw43z80nenAty8qZY0wOnoGwEdtkh52kqTk357K9cdhep6o8BQK/y4wzQ==
-X-Received: by 2002:adf:f2d1:: with SMTP id d17mr2546333wrp.110.1611903102351; 
- Thu, 28 Jan 2021 22:51:42 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=slrEcS4a9ViM3/EhojYQnDYLHNridO9O3Av2lfzzgZk=;
+ b=oSomRd7+pNX6ZYG8UTUKVcMQfrnPK0b+0K7Y7b1xWzLaVBDBTpkUH70XCzUswMV2i7
+ +mtvlFvM0kxnEeXGxkMdJ1A9mB+DarizGGsLwWPc+wI3AvEkHWEov6IzbqNNpaajkMnV
+ D0biSouUKg9qo9+M3RdJO5gCtcXRwSJs7j7Idv+CPKJM5wF0Ii5wbsTTkeGU2Yxlm0OD
+ FUHmqnn5pMOYNymL20GUmJ/8OMqoXUPPbXYaSCrvnBuLFJUrvMy4rV6/qCmzP/2/8wUk
+ ihAK3P7bLmAS8SQoTyCQerjkkK4u8zzsxmmPqI2LxskY963Z/YWwi6kTeCmPJSYtDYN5
+ oirQ==
+X-Gm-Message-State: AOAM530rxeVpD/yheGa2kFSLyTz9OHM49N9iIvX+DSYataMPWqBL9Okc
+ 6+Jp9MqkplBSaqYz1ISTYx3FJl8E89g=
+X-Google-Smtp-Source: ABdhPJwkqX6JTwQ/Vh7ywI/tR4QczyXk9/dyQD1TALk/eWfPvmSPu75LpDOtsf3f2QN0XetHz7z/jg==
+X-Received: by 2002:a5d:6691:: with SMTP id l17mr2783563wru.372.1611903104739; 
+ Thu, 28 Jan 2021 22:51:44 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id b7sm11501236wrs.50.2021.01.28.22.51.39
+ by smtp.gmail.com with ESMTPSA id b7sm11501236wrs.50.2021.01.28.22.51.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Jan 2021 22:51:41 -0800 (PST)
+ Thu, 28 Jan 2021 22:51:44 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH 0/5] arm64: dts: meson: add support for ODROID-HC4
-Date: Fri, 29 Jan 2021 06:51:32 +0000
-Message-Id: <20210129065137.5473-1-christianshewitt@gmail.com>
+Subject: [PATCH 1/5] dt-bindings: arm: amlogic: sort SM1 bindings
+Date: Fri, 29 Jan 2021 06:51:33 +0000
+Message-Id: <20210129065137.5473-2-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210129065137.5473-1-christianshewitt@gmail.com>
+References: <20210129065137.5473-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210129_015146_133166_CEB63897 
-X-CRM114-Status: GOOD (  14.98  )
+X-CRM114-CacheID: sfid-20210129_015147_724396_3D2D5F7F 
+X-CRM114-Status: GOOD (  12.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,41 +100,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series fixes minor sort-order issues in the Amlogic bindings yaml and
-dtb Makefile, then converts the existing ODROID-C2 dts into dtsi so we can
-support its new sister product the ODROID-HC4.
+Sort the bindings before adding new SM1 devices.
 
-I've also given the devices different audio card names. This is partly
-cosmetic, but also because HC4 is HDMI-only while C4 can be used with
-other i2c audio devices via an expansion connector so users may want to
-use different alsa configs.
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Patches to support the spifc chip are still being upstreamed [0] so this
-will be addressed in a follow up. A WIP patch for the dts change can be
-found in my amlogic-5.11.y dev branch [1].
-
-For reference, here's dmesg from LibreELEC on 5.11-rc5 [2].
-
-[0] https://patchwork.ozlabs.org/project/linux-mtd/patch/20201220224314.2659-1-andreas@rammhold.de/
-[1] https://github.com/chewitt/linux/commits/amlogic-5.11.y
-[2] http://ix.io/2NCi
-
-Christian Hewitt (5):
-  dt-bindings: arm: amlogic: sort SM1 bindings
-  arm64: dts: meson: sort Amlogic dtb Makefile
-  arm64: dts: meson: convert meson-sm1-odroid-c4 to dtsi
-  dt-bindings: arm: amlogic: add ODROID-HC4 bindings
-  arm64: dts: meson: add initial device-tree for ODROID-HC4
-
- .../devicetree/bindings/arm/amlogic.yaml      |   5 +-
- arch/arm64/boot/dts/amlogic/Makefile          |   3 +-
- .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  | 427 +----------------
- .../boot/dts/amlogic/meson-sm1-odroid-hc4.dts |  96 ++++
- .../boot/dts/amlogic/meson-sm1-odroid.dtsi    | 441 ++++++++++++++++++
- 5 files changed, 543 insertions(+), 429 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 6bef60ddda64..b21ba8ba23dd 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -164,9 +164,9 @@ properties:
+       - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+         items:
+           - enum:
+-              - seirobotics,sei610
+-              - khadas,vim3l
+               - hardkernel,odroid-c4
++              - khadas,vim3l
++              - seirobotics,sei610
+           - const: amlogic,sm1
+ 
+       - description: Boards with the Amlogic Meson A1 A113L SoC
 -- 
 2.17.1
 
