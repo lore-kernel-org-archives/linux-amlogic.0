@@ -1,94 +1,87 @@
-Return-Path: <SRS0=l5NU=HA=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Jpgy=HB=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95AA6C433E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jan 2021 20:51:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9AB7BC433DB
+	for <linux-amlogic@archiver.kernel.org>; Sat, 30 Jan 2021 05:40:55 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 00B8B64DE7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jan 2021 20:51:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 00B8B64DE7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=mailbox.org
+	by mail.kernel.org (Postfix) with ESMTPS id 17A8D64E06
+	for <linux-amlogic@archiver.kernel.org>; Sat, 30 Jan 2021 05:40:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17A8D64E06
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=vkOeZpldmS1Jyh2mGQ2loIPqqRL/k7A+Lz5e4Fxe26M=; b=hdQzGJ7lGptwO17Vvd0WYrnp3
-	Tq3DWtjpEXZf8QJURCKBjqUhvFTl0ec7KUtwPFL6gaYbMlFCWCYLnDFBOLKn+9fkRKJ+3YMZg85Uy
-	AX7I5WqxWjDPX3Bo6jTmvEHji2PsCuh3mkh4ybcD0Cz3z/qeDu26MxDsi5B+LP4YuXT4KXArVzgPQ
-	Xv1/EIJEVU63T0iqKnYS5BxuUPGC143boLW1rrIoehCsL+I1GQyya/ogl7nZqT6WyYy4c9xykFtmk
-	KiHQcrVkqY60J/AWVoS1One455+8Xm6MoCX+5mzE7PHvHUQEYS9ilZMHpuQBMMegYPyAege+bzSZb
-	N6vf9VkFg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=rni4yZZjRbsMc/XTC5AniygrczsH4f0n7bM17oGkt1c=; b=CfsnIOUDtf1iQ5BCsTr+QiyGpg
+	ZiBBVqfYLTHiFiARIdtbvSiWhOvfOrHCxkoaBDzqf1eDvkYaZ5FuESRTErTjUytBqF73/cMbB0ibm
+	WzJd606OSJ0mGbX5TBjSytEmuPzeu2qPiaCxxsiOIhZPz+ssNJKUlLWSaWxAlCmHnE+YsueOON2zU
+	KWg/jfbeS9IVHfISWlsBGrVrlSyNoHvAaKHRruE0fzaWUbRBjEzshofE5yQws70RxCdcE6DyrordQ
+	oraFykmcBkKxgdIOi0XlKP5BZmDIzpLaM+NqoBEb0csrH3PZZKkN2XjIYp+gi13WnWQVL1mnUitM8
+	yStumEQw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l5aja-0003gc-DJ; Fri, 29 Jan 2021 20:51:14 +0000
-Received: from mout-p-102.mailbox.org ([2001:67c:2050::465:102])
+	id 1l5izw-0007VG-NZ; Sat, 30 Jan 2021 05:40:40 +0000
+Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l5ajW-0003f1-7g; Fri, 29 Jan 2021 20:51:11 +0000
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:105:465:1:2:0])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4DS8d65Z0TzQl34;
- Fri, 29 Jan 2021 21:51:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
- content-type:content-type:content-transfer-encoding:mime-version
- :references:in-reply-to:message-id:date:date:subject:subject
- :from:from:received; s=mail20150812; t=1611953462; bh=xTUSlQGlJ4
- O/glSdfwt6VTU8Y2vdtR0/SkFekJvWbtU=; b=WDD5PJtGo6eQ9lZ/cNrVq/J0y0
- FjJbauQXj/YgLkyvLOp4LquDBER7c+EFyHZvdxITalRNgQwAfQiucQl9KDUcz+Yp
- W3MWn0XYDZLuXZetcjyaDUaathqAX81gvCrvXhQGUSEax8hfvs15ZUZjLSFS9ZLZ
- gd2ICj9xH+KJSLvccIVu+4gUoTeRG4XuHkbsIIh9ibWGDrzRePatAESckT9bgoWC
- MTKhfdkaTB+oQKs2pGUnHr2hQJrGOfgQ1qh8pbj2Z1ZtVru/XuZ+6yrRgTWhJblb
- hJx/M6GHSFU+cDm8q6Ujg5wgrcmBnTXLXQLF8iEpbUxIWDpWx1HSUuHehZ4Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1611953464;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JzwsCdfVSTOtS/bF/vm3HDlF8TCyOY29JFbirc/qunM=;
- b=e8uDT7orDdDNJHq8KvDOgDe5mQ0fOeN7Dvv9fmQnwgPesvFV5NVG4r1atXu2w8WU7+yKsZ
- 9MjhnR1Zq/cbY0ww/ovxGlm3yM+arY1ui4KXVClQ0Hmj6QgZIaknAU8XqO9cpfjRbQlGnk
- wBuBl16LQ3KKIC9YBzjQS5wHBhA4A8Ys2MENfTf7p3KYwrysEesQjbsIgIqI6WKZ9RHCE6
- daqTd/GDmgf5oZeP5ShMTGJsBVY0ZSWNLgR+LS7juZmVHi76wvGLkORKHnticZNDOPrvur
- pystS4OB5vnK08JgU77SGIx5rbUEMRwHJ9XrHnjR+4OjR5csGZuEMLqqWebGyg==
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp2.mailbox.org ([80.241.60.241])
- by gerste.heinlein-support.de (gerste.heinlein-support.de [91.198.250.173])
- (amavisd-new, port 10030)
- with ESMTP id bt0eZ20CUUjS; Fri, 29 Jan 2021 21:51:02 +0100 (CET)
-From: Alexander Stein <alexander.stein@mailbox.org>
-To: Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 1/1] arm64: dts: meson: g12b: odroid-n2: Assign a fixed
- index to mmc devices
-Date: Fri, 29 Jan 2021 21:51:01 +0100
-Message-ID: <1975982.ltkoRUPMKj@kongar>
-In-Reply-To: <8de4d82e-b9a5-f809-ea67-5527f9fdde5f@baylibre.com>
-References: <20210127230852.66686-1-alexander.stein@mailbox.org>
- <8de4d82e-b9a5-f809-ea67-5527f9fdde5f@baylibre.com>
+ id 1l5izt-0007UZ-Ck; Sat, 30 Jan 2021 05:40:38 +0000
+Received: by mail-pl1-x62f.google.com with SMTP id b17so6606232plz.6;
+ Fri, 29 Jan 2021 21:40:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=YO+dTyu0Ai+JgXkbLN4mpIgMxzzbIfn+Gkh1UirZ+w0=;
+ b=Ql+2kWyOoQtxwkc7Xh87pKZeIG5pnj5MbLPeUbWgtyVrkfmOGwl/+FpLlElmQdaxZi
+ kGp50s4fNPeACBJdAE2+925S4nPXN6N/MUg7MxL5m/Zh8+BwykJmpqZXt2qOULjtMAH4
+ A2J7rSvNmjxCXQQnEz7gMbVKvnXAEyOI+1Ql8RoC20O8VR2SZXafFusnzteAS3205ZIb
+ 7QWmbPnqKhaKO6zcIA1cnOWJogY6uqga+9DpoZX3d3YXEyCT8Q8hsmtRwjro4UkC1hTf
+ 4OY0EH0VtHvA5A28/EAIXezKfKToShwqd7TIyL37SpfejuWAn192PDHNqdPckCI1GqlP
+ A6fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=YO+dTyu0Ai+JgXkbLN4mpIgMxzzbIfn+Gkh1UirZ+w0=;
+ b=dP42Rcy/WNg7c2nIIr+yLba3Hh9xSfSddf+Ht0pv4F+b0udE29+TnJ8pJbQWJVXn3V
+ jSpS/ataeLqnmO6mjg6iMnBo+gHdJb4OXLA5wwCyJ/air3QnxE5kEVq3YtQE4VfooGRD
+ LoYoe/x6d1EQ1UescXkmLDQJIlGikhhXPrvMtFZrorKGE54qGA1112dRy1SrDVlNbeTn
+ txo5nIk9WRwwT80qRHEWBiqyXyr3HurWTgf3mw/agCnL1/YOA1d6PyhPzijI+02UmD5f
+ VUbrnTgQwBZg5CXw1TzjtaNAryZIXKIuX/1+94S3s40pyh+zCkjdJipSMqRGfINwxGKA
+ JaYQ==
+X-Gm-Message-State: AOAM530c1x3/8K+EWE0rxjac9XRVkIQLRa2j+DDUMe4eTBQ8mjXyllXa
+ BY52YNhcgCABmOiRA9Y3iYIEaxNv3jdGjQ==
+X-Google-Smtp-Source: ABdhPJxxaYBoKQANWDrm18IPWzKyIai6drc6hbwdL3dgAul+8/dCXjO9ajA6pYDTOhZLE1tjDDcNtA==
+X-Received: by 2002:a17:902:9005:b029:da:f580:c5f7 with SMTP id
+ a5-20020a1709029005b02900daf580c5f7mr8076247plp.85.1611985235315; 
+ Fri, 29 Jan 2021 21:40:35 -0800 (PST)
+Received: from localhost.localdomain (199.19.111.227.16clouds.com.
+ [199.19.111.227])
+ by smtp.gmail.com with ESMTPSA id k10sm10942376pfk.0.2021.01.29.21.40.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 29 Jan 2021 21:40:34 -0800 (PST)
+From: Artem Lapkin <email2tema@gmail.com>
+X-Google-Original-From: Artem Lapkin <art@khadas.com>
+To: narmstrong@baylibre.com
+Subject: [PATCH] arm64: dts: meson-gx: remove wrong reserved BL31 memory
+Date: Sat, 30 Jan 2021 13:40:22 +0800
+Message-Id: <20210130054022.2020338-1-art@khadas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MBO-SPAM-Probability: 
-X-Rspamd-Score: -3.75 / 15.00 / 15.00
-X-Rspamd-Queue-Id: 627F217CC
-X-Rspamd-UID: 19e790
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210129_155110_760373_129387CC 
-X-CRM114-Status: GOOD (  10.98  )
+X-CRM114-CacheID: sfid-20210130_004037_472137_65390ED4 
+X-CRM114-Status: UNSURE (   9.58  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,46 +93,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+Cc: devicetree@vger.kernel.org, gouwa@khadas.com,
+ martin.blumenstingl@googlemail.com, khilman@baylibre.com,
+ christianshewitt@gmail.com, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ nick@khadas.com, linux-amlogic@lists.infradead.org, art@khadas.com,
+ linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Kernel boot fail on Khadas VIM1 VIM2 (meson GX) boards
+SOLUTION: just remove wrong mem reservation for 0x10000000 0x200000
 
-Am Freitag, 29. Januar 2021, 09:07:45 CET schrieb Neil Armstrong:
-> On 28/01/2021 00:08, Alexander Stein wrote:
-> > Recently introduced async probe on mmc devices can shuffle block IDs.
-> > Pin them to fixed values to ease booting in environments where UUIDs
-> > are not practical. Use newly introduced aliases for mmcblk devices from 
-[1].
-> > [1]
-> > https://patchwork.kernel.org/patch/11747669/
-> 
-> I understand the goal, and this should be done for _all_ boards, not only 
-the Odroid-N2.
+ ## Booting kernel from Legacy Image at 08080000 ...
+   Image Name:   kernel
+   Image Type:   AArch64 Linux Kernel Image (lzma compressed)
+   Data Size:    4657736 Bytes = 4.4 MiB
+   Load Address: 0f080000
+   Entry Point:  0f080000
+   Verifying Checksum ... OK
+ ## Flattened Device Tree blob at 08008000
+   Booting using the fdt blob at 0x8008000
+   Uncompressing Kernel Image
+ ERROR: reserving fdt memory region failed (addr=10000000 size=200000)
+   Loading Device Tree to 000000007bf23000, end 000000007bf2d3ce ... OK
 
-I see. So there are 2 options:
-1.
-Set the mapping for all 3 sd_emmc_* in the top-most .dtsi
-Upside: very easy patch
-Downside: When sd_emmc_a is not enabled "mmc0" will never be available.
-Might be confusing.
+ Starting kernel ...
 
-2.
-Set mapping only for enabled sd_emmc_* in the .dts[i] where it is enabled
-Upside: Clean setup, only enabled sd_emmc_* have an alias
-Downside: Much verbose patch(set)
+ bl31 reboot reason: 0xd
+ bl31 reboot reason: 0x0
+ system cmd  1.
 
-Any preferences here? I honestly tend to 1. But this might break boards where
-sd_emmc_a is not enabled, because the root device _will_ change in that case.
+Signed-off-by: Artem Lapkin <art@khadas.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Best regards,
-Alexander
-
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 726b91d3a..71083b89d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -32,12 +32,6 @@ hwrom_reserved: hwrom@0 {
+ 			no-map;
+ 		};
+ 
+-		/* 2 MiB reserved for ARM Trusted Firmware (BL31) */
+-		secmon_reserved: secmon@10000000 {
+-			reg = <0x0 0x10000000 0x0 0x200000>;
+-			no-map;
+-		};
+-
+ 		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
+ 		secmon_reserved_alt: secmon@5000000 {
+ 			reg = <0x0 0x05000000 0x0 0x300000>;
+-- 
+2.25.1
 
 
 _______________________________________________
