@@ -1,71 +1,86 @@
-Return-Path: <SRS0=gULv=G5=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=NBQ5=HC=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62F08C433E0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jan 2021 15:24:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B1C8C433DB
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Jan 2021 05:54:26 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2440522D58
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jan 2021 15:24:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2440522D58
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
+	by mail.kernel.org (Postfix) with ESMTPS id 8F18664E24
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Jan 2021 05:54:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8F18664E24
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=XUzorgjnpYzUnSmJ0JigQ3Ub82BeJX6pQHKtiQnSWgA=; b=nygQ8EQMWx2Lijs9LU+weRweA
-	0Os/SjSkTvPekM7r6aSkjbZz9X/MzrUofb/Eht2IaM3agejj2JmSLqYWsGV5eUzCjeToJxf9uTIxZ
-	FNDM5m48+iD7NkMn+jl4XAosZYRNIwABMyU8luJWkaB8+LvqMsxiwVm0G1n7HAbc3HvlKn13vUeyc
-	r78PdvvZMLoEgNoopnJ1m/MDXikl7eVkor9eUSip/r85zotB1Tm2+qiXSwAFgOUNxmx1KTAhTZ+bc
-	wrO29lBoMVZnGxbnanWSwmV7LY4pKj5z2tlMC3iFY0UK3gaC+4sfVbQjP+pXD1Ti8LbZABWWr0w9j
-	bphXCMCKw==;
+	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=tCq7MmvGkWlgP80T2+1DhCrzALvUEiuvhQR+Q2Hr2mU=; b=kApArvSZM28Moy7Rs0PTIYdV5p
+	kcXAFq4yY6y1qPn4LR8fprAZ3ivT09WTwbuW5crTySdQGlGtQSdivGhbjDosXorEXb+3Z0z1Z9BKG
+	Xg3li/RTlqOqkXjz9T0or3sTonunwd3wwmFo5L30Jfo4hVQOAzd3rs0vH9LYYPXr+BZN9kqwU68Up
+	MZuxkDs5lFmhEyeeOUs3PdLqknyDaXRbv9nbAMDKjOQKh8OsJcFGeGEUPKdv1u1MvEP6C7hTsAldS
+	IhYAELW9RLLOS+d3ddi6Jtqm/NOTwg21pvfhYV5A95Rv7j8YHSsiRl3rO4lzQY0spnSTbA6uOm3SQ
+	I611NdwQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l4QCz-0002RS-6Z; Tue, 26 Jan 2021 15:24:45 +0000
-Received: from mga01.intel.com ([192.55.52.88])
+	id 1l65gd-0006BP-3E; Sun, 31 Jan 2021 05:54:15 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l4OL4-0007om-A2; Tue, 26 Jan 2021 13:24:59 +0000
-IronPort-SDR: XaU55DbI5Qo+hlSSIRltyDZkcArTX9POvwvs0bOX/cq/ChDOqLhm4R+evFI10/X9aiAHDTIgM2
- dq92SLkxzfsA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="198687066"
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="198687066"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 05:24:54 -0800
-IronPort-SDR: g4Zswe3qz4zMid/EyEG5xz4WWhFPriWd/t2t5KrG0ShP0j9WNEEJayXNCJQTEkRkM2/IHRNzgx
- zk+bb8SSGplQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="369103591"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 26 Jan 2021 05:24:36 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 26 Jan 2021 15:24:35 +0200
-Date: Tue, 26 Jan 2021 15:24:35 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Subject: Re: [PATCH v2 10/11] drm: Use state helper instead of the plane
- state pointer
-Message-ID: <YBAYE4YH4bgURmuf@intel.com>
-References: <20210121163537.1466118-1-maxime@cerno.tech>
- <20210121163537.1466118-10-maxime@cerno.tech>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210121163537.1466118-10-maxime@cerno.tech>
-X-Patchwork-Hint: comment
+ id 1l65gW-00069O-79; Sun, 31 Jan 2021 05:54:08 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id d16so12982093wro.11;
+ Sat, 30 Jan 2021 21:54:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=9xOUKO2XKFLeSm4wVIMXSdkTxiy8OHddK5mDTptdxKU=;
+ b=dxkzYiMp801McdHLu1MsonH5EYX8KzHXFk7auYDDT+ryDywmt3errJ9f5axkprzfTf
+ Z1uu03yij64OMAYtYqjAAiuKzxPdR3XuTrUi3f7kCJB1/XgM2LpyknsllkWx6i8P1nx1
+ 4OSqKDLTG2QFaT8KMQOAIU60cctFtqQij+N3SJ38BI47xcjqCSOBHrBKb5jSQBsTesdh
+ 5TrU/PfnbdhhfRQEDn+1w9fIa32mx6F0WBWCYwmcrCJn4PzGOZBaTuNk5sCqEThCqkgv
+ aeG7qMTuXfRe5N9H3m0wcCLF3NDbT4ubBbGCw8+QJII2PVuiR3RL5XXLmOAH1MSfNpei
+ K3oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=9xOUKO2XKFLeSm4wVIMXSdkTxiy8OHddK5mDTptdxKU=;
+ b=RT1KOzPUWINLFVGIT651+9aXxYudr9qejJ9yCOEly/U16V5FExWaEG+ItoF0F2twGa
+ Puo5vbYZTmndzS3j63Jgle9cvvWExpwB0/NfhO0MY8bCDMd7Zq0gDFa3NmAHQCZuOUi/
+ o4Ts+R/WB3CFu1LkJe7grGAMWWi9j82R0qWd8EttYmOtxwcT3SYaeT9b5wykGRqab6yM
+ fdOPPj3qapwcOV67XhnBp7BDXB5ZsGHBWf3lbZuYyMSnUNUZG6rM21AeUWth0prrdY0t
+ w/BgzxcpdrcC8BjA7ULrxhPK0h/YjjeG8RMEUi+fbuTV3iu4ywI17V7aqYMIMR6bwLGS
+ O/kQ==
+X-Gm-Message-State: AOAM530PriO/L7z+DCXXXc9NDIsHJv4n86kcMF+B+MgOob+HhiNGW4dk
+ +DXxFvKr+ieskWIEY3cp0OY=
+X-Google-Smtp-Source: ABdhPJxBWJvaAvprZz1rIkpOu+w3hZTIBWB0/Z5CmPM0I/Zm/D/fCvZV+rEBQsXq8eEd3Wo2nKcE+Q==
+X-Received: by 2002:a5d:52c5:: with SMTP id r5mr12023981wrv.208.1612072445883; 
+ Sat, 30 Jan 2021 21:54:05 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id c9sm20056589wrw.76.2021.01.30.21.54.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 30 Jan 2021 21:54:05 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/5] dt-bindings: arm: amlogic: sort SM1 bindings
+Date: Sun, 31 Jan 2021 05:53:54 +0000
+Message-Id: <20210131055358.21293-2-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210131055358.21293-1-christianshewitt@gmail.com>
+References: <20210131055358.21293-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210126_082458_491685_9F77754B 
-X-CRM114-Status: GOOD (  17.07  )
-X-Mailman-Approved-At: Tue, 26 Jan 2021 10:24:44 -0500
+X-CRM114-CacheID: sfid-20210131_005408_309670_E4138487 
+X-CRM114-Status: GOOD (  12.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,119 +92,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Haneen Mohammed <hamohammed.sa@gmail.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- Liviu Dudau <liviu.dudau@arm.com>, dri-devel@lists.freedesktop.org,
- Russell King <linux@armlinux.org.uk>, Paul Cercueil <paul@crapouillou.net>,
- Thierry Reding <thierry.reding@gmail.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Marek Vasut <marex@denx.de>,
- linux-renesas-soc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- Joonyoung Shim <jy0922.shim@samsung.com>, linux-rockchip@lists.infradead.org,
- Alexey Brodkin <abrodkin@synopsys.com>, Michal Simek <michal.simek@xilinx.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- Roland Scheidegger <sroland@vmware.com>,
- Xinliang Liu <xinliang.liu@linaro.org>, Chen-Yu Tsai <wens@csie.org>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- NXP Linux Team <linux-imx@nxp.com>, Chen Feng <puck.chen@hisilicon.com>,
- Dave Airlie <airlied@redhat.com>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Alexandre Torgue <alexandre.torgue@st.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Alison Wang <alison.wang@nxp.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- linux-mips@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
- linux-tegra@vger.kernel.org, virtualization@lists.linux-foundation.org,
- linux-mediatek@lists.infradead, Hyun Kwon <hyun.kwon@xilinx.com>,
- Philippe Cornu <philippe.cornu@st.com>, Sandy Huang <hjc@rock-chips.com>,
- Yannick Fertre <yannick.fertre@st.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Dongjin Kim <tobetter@gmail.com>,
+ Christian Hewitt <christianshewitt@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 21, 2021 at 05:35:35PM +0100, Maxime Ripard wrote:
-> Many drivers reference the plane->state pointer in order to get the
-> current plane state in their atomic_update or atomic_disable hooks,
-> which would be the new plane state in the global atomic state since
-> _swap_state happened when those hooks are run.
-> =
+Sort the bindings before adding new SM1 devices.
 
-> Use the drm_atomic_get_new_plane_state helper to get that state to make it
-> more obvious.
-> =
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> This was made using the coccinelle script below:
-> =
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 6bef60ddda64..b21ba8ba23dd 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -164,9 +164,9 @@ properties:
+       - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+         items:
+           - enum:
+-              - seirobotics,sei610
+-              - khadas,vim3l
+               - hardkernel,odroid-c4
++              - khadas,vim3l
++              - seirobotics,sei610
+           - const: amlogic,sm1
+ 
+       - description: Boards with the Amlogic Meson A1 A113L SoC
+-- 
+2.17.1
 
-> @ plane_atomic_func @
-> identifier helpers;
-> identifier func;
-> @@
-> =
-
-> (
->  static const struct drm_plane_helper_funcs helpers =3D {
->  	...,
->  	.atomic_disable =3D func,
-> 	...,
->  };
-> |
->  static const struct drm_plane_helper_funcs helpers =3D {
->  	...,
->  	.atomic_update =3D func,
-> 	...,
->  };
-> )
-> =
-
-> @ adds_new_state @
-> identifier plane_atomic_func.func;
-> identifier plane, state;
-> identifier new_state;
-> @@
-> =
-
->  func(struct drm_plane *plane, struct drm_atomic_state *state)
->  {
->  	...
-> -	struct drm_plane_state *new_state =3D plane->state;
-> +	struct drm_plane_state *new_state =3D drm_atomic_get_new_plane_state(st=
-ate, plane);
-> 	...
->  }
-> =
-
-> @ include depends on adds_new_state @
-> @@
-> =
-
->  #include <drm/drm_atomic.h>
-> =
-
-> @ no_include depends on !include && adds_new_state @
-> @@
-> =
-
-> + #include <drm/drm_atomic.h>
->   #include <drm/...>
-> =
-
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-
-Looks great.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 
 _______________________________________________
 linux-amlogic mailing list
