@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9D12C433E6
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D6615C433E9
 	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Feb 2021 02:10:42 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 419A164EDD
+	by mail.kernel.org (Postfix) with ESMTPS id 8C4D264EE1
 	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Feb 2021 02:10:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 419A164EDD
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8C4D264EE1
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,63 +24,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tCq7MmvGkWlgP80T2+1DhCrzALvUEiuvhQR+Q2Hr2mU=; b=l1ScUZzeRatqvvEOP3Y13b4MYA
-	nYM/Qgzm4UQT2K5nepYe4BZvj0rK04hNYydcBBTS1N78dNRXgPZfdrd0m29D2lFoqUYzp3vQQdf0d
-	IqLW7W2yImG+noG7LX5oD/Kbd70+IZIhYyBeT6DgwOOi9g/6vPpvJan/jdAgieFgrY8ArAPyL7gIt
-	FUK8A8ZMA3QzjvG1SPaRMDvxK4Xv2oBX2HE0TO1Owqt6SvDZT9R7UFZtSBq4WzP2hKPFSYp3dyBY9
-	nn2WTv22Wx5CyhEaSDZmmPqFu2DCsIDOp7qMijQu2L/TxQcGMR87TGgMnCM5TJoFBJ7pd4YITvXR6
-	SEHdIohw==;
+	bh=c044tbNyUqopH7ciAsIYOLbfKoXY78VNfoeppe872Hc=; b=hmOGZfk/vwNWFqyL9+PzgLKi/y
+	h0qjWeZPA3tnfh5zV6+d2w33J/oa4YfAA3vCFWw9vyVXHlxcWVjdH9kypYkV1UnJ2aiHbPbp0i+JO
+	RkjIxKaOyllw3n8s1wby/1V3ail7qNTQCroCGyBj6UCDPsQSG6kAFLC2q2BIhOCV4mdVN7qnp4cxj
+	/MDW4MyJkP6mHEefM+3cqT+2uiSuP/B3AqOMVZ6+2J50ApFYqCmptJcAf3TAPKzJu/3FEgdvfYJS4
+	F8/jSPuf8kt0dmX4bJuM7wlE5Kwzg1e3Q3QFLTDlMPV2j5aEXsqHL/192j0Jc8SG5di5j0Nf+ZrSe
+	DkN+1rcw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l6l9F-0004Kr-Qm; Tue, 02 Feb 2021 02:10:33 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1l6l9I-0004LU-Dm; Tue, 02 Feb 2021 02:10:36 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l6l9B-0004JW-91; Tue, 02 Feb 2021 02:10:30 +0000
-Received: by mail-wr1-x436.google.com with SMTP id c4so16028004wru.9;
- Mon, 01 Feb 2021 18:10:28 -0800 (PST)
+ id 1l6l9D-0004K5-DT; Tue, 02 Feb 2021 02:10:32 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id g10so18744500wrx.1;
+ Mon, 01 Feb 2021 18:10:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=9xOUKO2XKFLeSm4wVIMXSdkTxiy8OHddK5mDTptdxKU=;
- b=nTrwA/bfhrMSTUtiwyKvX84Zn86AcrWRQF0mXnJQ01zf4FHwi8wgGFr1cQscLzjyEa
- zvWVxICc17mU5fq18gcaQX2wpgIAfQskkKAs36tuvpnVeZhZMByx1jXByIBqZLjT5gzu
- 6WaUhH4Z6aC+TkpMMGw0pNNaoZqkZm4jziWgTA4Ow2H7uW5lpIjqgd0jaGxzEkeGi7P8
- dfD9A7Eth0U8V2kG7AckQpz/3xsjfG40aTbZJcRGCeX+Sj0UpppH9Y28blcldbsFBgdc
- 42WfJ2WXzR77w59Rsyl0R+Z6C36gjHm8aP6ckPG0CgjIq97VF2ZKbCL27rFf6HtoQ7C+
- cL1A==
+ bh=HtKg2mQ7AbqX2dbubhJvxGnJfUMSZejUtnrYl0NAkaM=;
+ b=S2RmV+iHo6KF/P4gwUPKuZ82XVQvbKK940YWK3r8RIH8Hqj/JNMwmJHeJn2F8r9GVm
+ i0jmCMTjE0AQxpPtVB6QnlEprXd/lEC2PfzS27qc2h5jsO3l6rRqO+6kNMumGd4E6UBU
+ H+dxPhaXyq4x3+MYY//1gfuOCpwqLAI9SwSLuieA0R7Ju6PNGn5sxBuPI3ywUrxQJ++d
+ Dqj5lwdcMSBiDo0CJDBtxeRQZXRNyBKwYwRPzvLSVNOBtFXLxDdHTTcVxX6+yBZ+gISI
+ d3mEDTQnZqJ280DQtGL+aW+oMoh9+QkSAb64dyn6ngrrU6xY5aRqgWgZaR7crs/fapL4
+ 6ELg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=9xOUKO2XKFLeSm4wVIMXSdkTxiy8OHddK5mDTptdxKU=;
- b=avNbPMDDnV67HFan3gFoLYc5tcYGj8gRIiGmg2Mb7CbVdurIq/1wZADJXXuf70IO5X
- rNlfU6udtB7g9w1YD2hMoffZXkmAkpfE0BqUB3QPzlYnydIxju1eI39AdkgxuYLbyn9e
- CEzo0jNn0dvj9OfC4y/+NyvATgeCrG+nGBuM6lhQr0vJJEkgQIS53ZLUSNK5pflXwyS4
- d0plkkESNwcEA4Ltt2EXUmITqQV1e/IMk77Wzp51E/UGDSUTDqRFcCGQbEL7oo43AMUm
- MEENY3n26GEewhoMBtYgCnvVBqrQ01s8qugPqQsVntCG2/6A5FMYfCJP/VlLvrCwdvVE
- eZBg==
-X-Gm-Message-State: AOAM5339J6T0nmFmT/Y35rs49Ey/wSmAVMphGh0gFE6xtVW+HVsIPlEa
- 14+ary5oXLNPQpuLpKGx6/4Xj1MlxtorRg==
-X-Google-Smtp-Source: ABdhPJx6ZWXpoOZVm6QgJHNsRJkiU0/hVUk2t1g4sekaaXJRU3bsQXMe2U/mxHab1BsEKP703HQpsw==
-X-Received: by 2002:a5d:4dcd:: with SMTP id f13mr21028655wru.10.1612231828014; 
- Mon, 01 Feb 2021 18:10:28 -0800 (PST)
+ bh=HtKg2mQ7AbqX2dbubhJvxGnJfUMSZejUtnrYl0NAkaM=;
+ b=t6c5/hpqTd/pKwhmaMnbJP86HfJZNjyvDQT/QpCkGP5UP+V5UZf7hEcRILMH9cbl+g
+ xb5WLHJFrA+a9WAT+Pl/76nSHTl+R9yGqvtW+QZ3Wcg9rJ+j1RBdSALC3lBIEXWEJbnP
+ J9zwghjGbQ+jzqGJsFnMFi3kmb49ui1gZb6MckCfPzBFvDNDtKTJac2iz3kx+EqjJhqV
+ +JT6FczG74qkkdiwFvkLBWyqJ0DsN1du2tywtT93BWKWnWcB/ZeBJCfJ1cTQBITby7nI
+ b5mM0lkoaO2mNuN6xLjpDOtV9TyVz4xtMNc5Z39qSGQgcBKUN9DbxfZ/At/NCT6pt067
+ w3bQ==
+X-Gm-Message-State: AOAM531Lhxa5zEipD/CtH+Ny2mQ1tpO7MWN0Rm3SgRb3RduNBpXkorkk
+ VWs/bpHaz9NqC0F3cH+SgU8=
+X-Google-Smtp-Source: ABdhPJwDOKB0Id5giF23/zSBauSGZO3ItHfy03V46n6Tq8lk7NMbSQm9x6d1GxNbCypfgGZofrIg3g==
+X-Received: by 2002:adf:e807:: with SMTP id o7mr21867281wrm.308.1612231830277; 
+ Mon, 01 Feb 2021 18:10:30 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id u14sm990570wmq.45.2021.02.01.18.10.25
+ by smtp.gmail.com with ESMTPSA id u14sm990570wmq.45.2021.02.01.18.10.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Feb 2021 18:10:27 -0800 (PST)
+ Mon, 01 Feb 2021 18:10:29 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/5] dt-bindings: arm: amlogic: sort SM1 bindings
-Date: Tue,  2 Feb 2021 02:10:17 +0000
-Message-Id: <20210202021021.11068-2-christianshewitt@gmail.com>
+Subject: [PATCH v3 2/5] arm64: dts: meson: sort Amlogic dtb Makefile
+Date: Tue,  2 Feb 2021 02:10:18 +0000
+Message-Id: <20210202021021.11068-3-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210202021021.11068-1-christianshewitt@gmail.com>
 References: <20210202021021.11068-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210201_211029_346988_103BD718 
-X-CRM114-Status: GOOD (  13.34  )
+X-CRM114-CacheID: sfid-20210201_211031_479263_31EAC81B 
+X-CRM114-Status: GOOD (  13.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,30 +100,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Sort the bindings before adding new SM1 devices.
+Sort the Makefile before adding new SM1 devices.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 6bef60ddda64..b21ba8ba23dd 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -164,9 +164,9 @@ properties:
-       - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
-         items:
-           - enum:
--              - seirobotics,sei610
--              - khadas,vim3l
-               - hardkernel,odroid-c4
-+              - khadas,vim3l
-+              - seirobotics,sei610
-           - const: amlogic,sm1
- 
-       - description: Boards with the Amlogic Meson A1 A113L SoC
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index dce41cd3f347..f3c8a85fe987 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -45,7 +45,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-libretech-pc.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
+-dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
 -- 
 2.17.1
 
