@@ -7,84 +7,90 @@ X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 073BDC433E0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Feb 2021 16:26:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8347C433E0
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Feb 2021 17:04:13 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6A15D64F74
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Feb 2021 16:26:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6A15D64F74
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 9804A64E9A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Feb 2021 17:04:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9804A64E9A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Z0FneDPPrfX/BOaAC1b3FItlhQ0Dzl+hKjUWkk2Q/ww=; b=2mvCDAQamBQ39dWAUSDZSmfMF
-	7fuST1PIb8HGW4ELStNCHI0OJD826DwepJH2rMhLDfcXDvltNuKUgRWAeO8UaCiNAteYKfb0Oh2AK
-	8kwfnzef9dYDgw9N5ZKJ5MBg0iasaMbD6A1ItMiLEQOLh5ILqpCvxwbR3vVpPiIFcPwwErshniKlH
-	ZOdeeAbUSfHUbtwjY+tF61j2ifxQ4Utfw3Fg+LVWsoNUBRKwrW8ON5p5TNdsRtiza61X2EscI55tR
-	9IGc5sIAEC+WG67CBBAmTpXIGlAsKGDDxZvUkc34xjcOb1n0Gn8Wg5ygXRSWzTGVvemjCV08Tc7ar
-	sz8mBr8Xg==;
+	 bh=Vi/YWn5XSyjFMajalBT2HmbumNDrM2psgzcSkZWZLnc=; b=woKE/OBPVKobwJCuMQaZSG/x1
+	3MqoLckpkR5Na6nvRN3eRsw36Y8JeH1bXEwRFHetAg412ZCdOIUqh99JeqI4cDcGG1k4Nxsa/9BQU
+	b+c/f/4TPR03018EYL4IGXoh9CHXnpPJlauu/BHnmXvg1+16wMJN7bsIWPnoUme+nXHP0g18su4R1
+	31Xpw+vFQGduxpBcCO/rARq5qfHDLZv084vf14WQrqix7cGjRi49t7bWFHNO0YhJaLkLvzAxp+h0K
+	0PnS1yDxa6M75uv4Y4rCga2jDZ8gKONWlo5hnw99Q+r9zce1EEb+W1U8Ff+IUy12VlERivRcO8yCb
+	K1hHBHmSA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l6yVp-0004Zv-8z; Tue, 02 Feb 2021 16:26:45 +0000
-Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
+	id 1l6z5x-0002Ag-Mw; Tue, 02 Feb 2021 17:04:05 +0000
+Received: from mout-p-102.mailbox.org ([80.241.56.152])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l6yVm-0004Yh-9y
- for linux-amlogic@lists.infradead.org; Tue, 02 Feb 2021 16:26:43 +0000
-Received: by mail-pf1-x42e.google.com with SMTP id q131so14650812pfq.10
- for <linux-amlogic@lists.infradead.org>; Tue, 02 Feb 2021 08:26:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=l4h6Ivu7DxeeLevJc1wQ+Ze6BVBDNOqfFBaVlOOvfD0=;
- b=Prj01pdPh3i/44KjbGbWaacJo35qLM4VarOzw/eGcQFhdfXnRipH1JT6n5AVVzqyBB
- ElkQT02SXpzSxXEy/04+RB50ZxAsJ7bfObZzNTc//m4oD5tL75/ltzjotxdcTRWkt2Kx
- rYR4RwqyrT6K3Hi2lJuJ4rzgoZhlwAbidDy3aOU8x7lhv0m/bd1mlqIDEGbKQ3nnZ7mK
- 711c/pTmQ5kjzjDkYniVLcjV4kVMa+Bv4pVgbwq1kZaHpxgvJcy2YM9G+B9WlYBIPTxU
- JmvVCPC2OFaQ8I74JdqNI34TMPp1+GkN9FIFr2PjkpgjFhAmSdFlo28ayqjcOKiOrpkc
- jrfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=l4h6Ivu7DxeeLevJc1wQ+Ze6BVBDNOqfFBaVlOOvfD0=;
- b=PxxZRrAs5QQaXWlATlqAGpngNnApQDKKtQTVGlp6dOpWMaR4fxsWgsHor60ofLlEAh
- fc2xf8MMlioIuijVOBimqbDT4nvycw74+Rab0jOVvN3ReQLcCwAUxUveg/+Ys5aJfClw
- u9RaATa9uH80YL9C1RkITFMqLpMdhjD3Kn24X4hGIRdx+pw3GPqdPFObzy7tX6ryxjT8
- 5Seo64sLaD0xc62h/5UhtRZt3Fiv55gHbjcimh/wTH7U5/xZbgWjH2P79OCDeMHH507/
- Mv1wBbPbf1IaZVgXt0LeriesRnO29ona6ul9g8fKn0VymYiE+ZP7E2/Y8y8j6rJf3Kf4
- vvBw==
-X-Gm-Message-State: AOAM532gBqn2Dq/kr1E03h+wyKrYFcLopoGXdnuWHKHD3MYWbmsjox5+
- 1ztgcUInxlQIYGE+NcWaA/yxkA==
-X-Google-Smtp-Source: ABdhPJz23hBGlWbblH5zl60/YjQ3RKwRUlZd50alKTD1+nw88ReAaT0M2kwABWE88CwZbsdwgcrgmw==
-X-Received: by 2002:a63:fe13:: with SMTP id p19mr22812940pgh.119.1612283196793; 
- Tue, 02 Feb 2021 08:26:36 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id o14sm24015155pgr.44.2021.02.02.08.26.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 02 Feb 2021 08:26:35 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 10/21] rtc: meson: quiet maybe-unused variable warning
-In-Reply-To: <20210202112219.3610853-11-alexandre.belloni@bootlin.com>
-References: <20210202112219.3610853-1-alexandre.belloni@bootlin.com>
- <20210202112219.3610853-11-alexandre.belloni@bootlin.com>
-Date: Tue, 02 Feb 2021 08:26:35 -0800
-Message-ID: <7hsg6eh1vo.fsf@baylibre.com>
+ id 1l6z5u-00029J-Uc; Tue, 02 Feb 2021 17:04:04 +0000
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:105:465:1:2:0])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4DVWP86jGZzQlYn;
+ Tue,  2 Feb 2021 18:03:56 +0100 (CET)
+Authentication-Results: gerste.heinlein-support.de (amavisd-new);
+ dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+ header.d=mailbox.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1612285434;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=6D5/NNgCOTVetoQPE6SDovy8rpNB2QtHZU3Hsq8VDHE=;
+ b=hh4BVGXRp1CQ4OFi425hR6Hxys4090Xi41kbyTUKAI86yI0c0bvdLCd+m681l5dRkRNjiQ
+ rI1Ddo+QuFnpgVQ8FFzblnEqE85Sztx1T1hjrVKWQgVzAwxGnIhwy2dkl5qcmc83a1Rn38
+ bIpnDHQ/6Eiqi35BzB5Kv0W2+0fIJ4mtGaClSJuPg14ly2jfjhriaMTF2UHardHlTRc6a4
+ wYuLsyB92fVHaHOImyObYhxxHGNtWjv9cQ3fo2yNsaJi/3894wRoMKch68+20V7HHcgM/h
+ GS1TwFdToAncYwSwI9wSbkFEE0zCqMZL5wZg9WnKC1FSm0bMXL009voeJne/OQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
+ content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:date:subject:subject:from:from:received; s=
+ mail20150812; t=1612285431; bh=e7qcr6OCcuyOQBdhBmyous0iSl1Vj0YCN
+ GzJUD20OpQ=; b=JjK9wtgg3aAdrgZAcqZCAE2pvOSENcYRPTDeJ3MpI+EXOvQHr
+ q5jCkRZRZphjbsv2lekf1zq+Opq/ojX2kaJvkL0IyDYNhM3Ql/9JH32YW74Ne8tv
+ 7/OKWoOTrG/Knn32+MWYDRXwu/rfj3BOe8qcmCEiuJE/1h4TOChSns4VA/BmT6T2
+ 2fa5eTxdUuhQ4uFM+Bu6oqMGWTBZmM32XYZU2xEXx/aSmRWzYrsLc0bpvdcxQ39R
+ hZvXcVsWZCz4DvvHfDtSZuQ2xU14rPBSmO3iOUucxLx6+srIbet8g0xNYN+kS47n
+ h1mUYDtNkK7dzvj3GMTzGJpIr0w0J4JqMnD7w==
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp2.mailbox.org ([80.241.60.241])
+ by gerste.heinlein-support.de (gerste.heinlein-support.de [91.198.250.173])
+ (amavisd-new, port 10030)
+ with ESMTP id 0Xk8E5yPk1RJ; Tue,  2 Feb 2021 18:03:51 +0100 (CET)
+From: Alexander Stein <alexander.stein@mailbox.org>
+To: Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 1/1] arm64: dts: amlogic: Assign a fixed index to mmc
+ devices
+Date: Tue,  2 Feb 2021 18:03:28 +0100
+Message-Id: <20210202170328.79929-1-alexander.stein@mailbox.org>
+In-Reply-To: <20210127230852.66686-1-alexander.stein@mailbox.org>
+References: <20210127230852.66686-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
+X-MBO-SPAM-Probability: ***
+X-Rspamd-Score: 3.19 / 15.00 / 15.00
+X-Rspamd-Queue-Id: 82D7C17B5
+X-Rspamd-UID: 94bdd6
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210202_112642_404635_EF48C057 
-X-CRM114-Status: GOOD (  15.20  )
+X-CRM114-CacheID: sfid-20210202_120403_392844_A551CF6C 
+X-CRM114-Status: GOOD (  11.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,40 +102,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Alexander Stein <alexander.stein@mailbox.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Alexandre Belloni <alexandre.belloni@bootlin.com> writes:
+Recently introduced async probe on mmc devices can shuffle block IDs.
+Pin them to fixed values to ease booting in environments where UUIDs
+are not practical. Use newly introduced aliases for mmcblk devices from [1].
+[1]
+https://patchwork.kernel.org/patch/11747669/
 
-> When CONFIG_OF is disabled then the matching table is not referenced.
->
-> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign a fixed index to mmc devices on rk3399 boards.")
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+The unconventional order (B, C, A) is due to the fact that sd_emmc_a is
+(according to the comments) only used for SDIO.
 
-> ---
->  drivers/rtc/rtc-meson.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/rtc/rtc-meson.c b/drivers/rtc/rtc-meson.c
-> index 8642c06565ea..44bdc8b4a90d 100644
-> --- a/drivers/rtc/rtc-meson.c
-> +++ b/drivers/rtc/rtc-meson.c
-> @@ -380,7 +380,7 @@ static int meson_rtc_probe(struct platform_device *pdev)
->  	return ret;
->  }
->  
-> -static const struct of_device_id meson_rtc_dt_match[] = {
-> +static const __maybe_unused struct of_device_id meson_rtc_dt_match[] = {
->  	{ .compatible = "amlogic,meson6-rtc", },
->  	{ .compatible = "amlogic,meson8-rtc", },
->  	{ .compatible = "amlogic,meson8b-rtc", },
-> -- 
-> 2.29.2
+AFAICS all boards either have both sd_emmc_b and sd_emmc_c or only one of
+them enabled. So the alias order should match the previous non-async order
+for all of them.
+
+Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+---
+Just for the records, I only tested this on my ODROID-N2 (G12 based) board.
+
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 6 ++++++
+ 2 files changed, 12 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 9c90d562ada1..15525f3aa4a6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -17,6 +17,12 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	aliases {
++		mmc0 = &sd_emmc_b;
++		mmc1 = &sd_emmc_c;
++		mmc2 = &sd_emmc_a;
++	};
++
+ 	chosen {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 726b91d3a905..769d7e8fda13 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -21,6 +21,12 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	aliases {
++		mmc0 = &sd_emmc_b;
++		mmc1 = &sd_emmc_c;
++		mmc2 = &sd_emmc_a;
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-- 
+2.30.0
+
 
 _______________________________________________
 linux-amlogic mailing list
