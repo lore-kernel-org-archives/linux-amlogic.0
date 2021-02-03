@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-19.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6B6CC433DB
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Feb 2021 19:23:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FEABC433E0
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Feb 2021 19:25:34 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3632464F72
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Feb 2021 19:23:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3632464F72
+	by mail.kernel.org (Postfix) with ESMTPS id 1142F64DF5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Feb 2021 19:25:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1142F64DF5
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,61 +23,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Lq/Ql5Odk3m+bYdSeZVwnCCNWG5N8bCQdOjLkJskavk=; b=2TQo2ZYgOwzG9IXGPkyxF9R2/+
-	1e7PXuoyVkplRbQinpNv/yEyzURysrFvaDMR93EOaNDE0bu2/cCP9toW6BrXre0EiP+fjOwr0D0Ff
-	YXJes4kxWL24yp4Gr1QJBYU3exb/3rOvF0WaJd7A0UsRMIFdi7npqKVb1Q3vGEH2eU4Qh1C5XE1pl
-	EODQFJV2HbaL9WgdqynSV7E14Dd6Ee6GxEX1TPEPgbbHt/KpykrM4L/hIioEecP9uaCmp2EC2Yfjx
-	pfYWrScQowKtmXcl6EhsfEUhxtAFx2dPJAyfs+fKqOGURyS6YKqjRDO1l6yDGNPm2dVGw9bu4H6LR
-	YlXhZxNw==;
+	bh=FxhliAWn59bXVaLRXvAzKzguLpfObvACfKmkjijx15A=; b=U78IBEyeplrw/ZPANlgJPxg+x7
+	9T6wyWrM+XiHGjHvdsjq3qySQX/DFcqVikE5QE2l/JTd3Imlp9ja7q9Yjo1IPIatRcO1COp+Z5Z5V
+	OVIU0qenYEXbt4S4tAgQIdhIJPSWvxwHAtXHmAxv1xAHkHL2yBbwmeOBm2Nhut1afMDaa12+ar7r6
+	vsXKppPl8EQFChcDDl73rqLlhtc6P5Yo/bsua1cogaWwRSEr9yBOmLysCaTGzZyMEXwpuTD8efqjH
+	SeBIFURCiwDPnOKPj0vh1B1sCdQMLOX8JsPrt9oxgYc/O3vVix6ejTuomxBMp8kRVDm9X9scFpFFo
+	cISuWbJw==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l7NkC-0000YP-9t; Wed, 03 Feb 2021 19:23:16 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1l7NmK-0000tK-RM; Wed, 03 Feb 2021 19:25:28 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l7Nk8-0000XJ-6p
- for linux-amlogic@lists.infradead.org; Wed, 03 Feb 2021 19:23:13 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id p15so532826wrq.8
- for <linux-amlogic@lists.infradead.org>; Wed, 03 Feb 2021 11:23:11 -0800 (PST)
+ id 1l7NmJ-0000sd-CJ
+ for linux-amlogic@lists.infradead.org; Wed, 03 Feb 2021 19:25:28 +0000
+Received: by mail-wm1-x330.google.com with SMTP id y187so754757wmd.3
+ for <linux-amlogic@lists.infradead.org>; Wed, 03 Feb 2021 11:25:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version;
- bh=onBVJg9xOta+3KOEfaOsQ3ooUKVCCIVzUkC7fGZngcQ=;
- b=HBGLNOUeNlzI8kk7BD92SpiFMSzTgzwAx42/MoLFrQ0PqymRq1xIrkPdR9g0mk4+Yk
- OZR8VGQVoHn5v/VaLzJGxuxCRV9Cxvwiz4luEQnaOyitVwNLYcqPSdz7Lp1xEge6+BKm
- 7/wO4Da6JM+xS203aqdr7HC/JyrqAcGQusyTnAJTJZEbRwiVKjKrznB48rjXcKQzzwRo
- CRpkbgXEMhfvZaeCcZ5OskXXF62HGGMQ0us3vmZ9SF8qFrviOhtcqTETbHVdNq1tEve7
- gfVoStGlzVIv/L/7e8SKGogy0mwNNQxTbGHZvQ7XDRdxuBZatEFMQpZvEF+lJPM+2teo
- bkEg==
+ bh=x3faUe3ENc8XDGqlqmMZYsoReEXRHgzJw6DbiwpAh60=;
+ b=HXZUIAq6jGAzzYxnud9rmONH+wjdL3aR33PloIVIw+UemVo1YX3gnK/XCv+hU/THrG
+ HvXVszkaWZsYE0hMCtrvO+Gfl2hewL6CdJVEZrK00BcKbb+OO7CTOVfp4/HJMscyksr6
+ Yup2BETZDgRVQtsN/CywUpFOenwLrGttAaUbRA2Y+JuZiOEBR8M55R7fr3wxXz47ISE6
+ XxRKI+R/OntPLyitJ1RPVEVdeP/TOGXzLc7nYDKeb15BF4zVF3jdak8pZF0xH/k8wNcF
+ n65v4daeTrrJpeFHCMjqXMzN22h0h0lSstqpcDkPaBk8E48AxxaeqolC7XFRb08a41GM
+ ZdHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=onBVJg9xOta+3KOEfaOsQ3ooUKVCCIVzUkC7fGZngcQ=;
- b=mfK1GqYpI0fDjpyJgHZXkXB2Vo3Rmy1vhDTyxkd1fBODHOl4R8KmR5sLuPTkcBW5pX
- eJ+FdL5LMv8/r45oozNf0IZaLYUBhXSWMsBn+vZkDLUr1h1rZOjq1Xb4lCNoELHRVioU
- NAAoyRSnCQpxYBELOi/YbiS4HPbFIEbkT4BBqDWgb8Y6RhjqmdJA6XOV6S1mhjKxrib5
- 1Uf7ekwunAMZG4NiqzKJ8tvtgGrprxj4dRZ8ABH9ZZo5I+pAqp3OY8v3P088+TRgLhu+
- rWOH7I/CgCIGKieNcIHXwIPmvu2k5s6xG0PgH/pAHV/PMjdkL7T5ZDA65o7uCzg1JLCi
- T9ZA==
-X-Gm-Message-State: AOAM530aafN22HOc4Kc5wraqQN0IXz37TmmXP5eb6K/Ir1zq8tSiDmQh
- RE5uTf232dOfsQSu8+Xb3JQX9A==
-X-Google-Smtp-Source: ABdhPJy8CGtZ16/mDr+58wE3ZKP2To71/ZtPrB1m22ndaDhNJ2TQOozN1O8erSAT3BcNYBrgA6eCyg==
-X-Received: by 2002:a5d:6884:: with SMTP id h4mr5421879wru.106.1612380190918; 
- Wed, 03 Feb 2021 11:23:10 -0800 (PST)
+ bh=x3faUe3ENc8XDGqlqmMZYsoReEXRHgzJw6DbiwpAh60=;
+ b=c132GU5o/01fdl1xVHAPeQlbTPQot/VRqBvVvt3Q7m3WzZMIpZWNvBssFKPkXx5EDM
+ YbGzrKRKFKab84UbYUtwAJDadVyYILlH61LYNcHFCSl/GTJzPdXcj+PpcRB2Hn5gqRMk
+ CtoXMj0d3UEm5AFmCYp7+X9s5qvcIrzg+IT2q+sKvBmic8Ok826DJYyesBQd5PnpYUCJ
+ X0nlA22rPAZ+JANz/0pdayI+tX4SeQsYGw76p9St5QI/sdBceYxHvYG/MBGIiUDEMQjD
+ OXomy+hBZZiiMG0KPpRRn2rd4p5tSNEyuooj9/ewIZy476pI3Foa+bV0fcvKsUsvQbI8
+ jKgg==
+X-Gm-Message-State: AOAM533oJ9QURRdFWQgtSEXbiZM/OXsiLwsV+wOhjD3ibYoht/uwjljq
+ D8GmHioxG8EkQP5peT0Lg5oZzQ==
+X-Google-Smtp-Source: ABdhPJyam34LSR7c8LzBz6n9HrSk70jFtD+yAN8T7ZOW/VSvTSfJRlobznT0vJO6YQMWHuXZrcHsVw==
+X-Received: by 2002:a05:600c:4f88:: with SMTP id
+ n8mr4282178wmq.34.1612380326252; 
+ Wed, 03 Feb 2021 11:25:26 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id o124sm3920806wmb.5.2021.02.03.11.23.09
+ by smtp.gmail.com with ESMTPSA id e11sm5000531wrt.35.2021.02.03.11.25.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Feb 2021 11:23:09 -0800 (PST)
+ Wed, 03 Feb 2021 11:25:25 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
 List-Id: <soc.lore.kernel.org>
 To: soc@kernel.org, arm@kernel.org
-Subject: [GIT PULL] ARM: multi_v7_defconfig: amlogic updtes for v5.12
-Date: Wed, 03 Feb 2021 11:23:07 -0800
-Message-ID: <7hsg6d2bxg.fsf@baylibre.com>
+Subject: [GIT PULL] ARM: dts: amlogic updates for v5.12
+Date: Wed, 03 Feb 2021 11:25:23 -0800
+Message-ID: <7ho8h12bto.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210203_142312_328727_E9335C4B 
-X-CRM114-Status: UNSURE (   7.24  )
+X-CRM114-CacheID: sfid-20210203_142527_432857_13D24C45 
+X-CRM114-Status: UNSURE (   6.61  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -102,22 +103,31 @@ The following changes since commit 5c8fe583cce542aa0b84adc939ce85293de36e5e:
 
 are available in the Git repository at:
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-soc
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt
 
-for you to fetch changes up to 726731566a862fa375de44313f601e49c4d40377:
+for you to fetch changes up to 9073f694efd8733b0e7c97d3396d81161bd05582:
 
-  ARM: multi_v7_defconfig: Enable support for the ADC thermal sensor (2021-01-25 09:45:45 -0800)
-
-----------------------------------------------------------------
-ARM: multi_v7_defconfig: amlogic updtes for v5.12
-- enable support for the ADC thermal sensor as module
+  ARM: dts: meson8b: add the thermal-zones with cooling configuration (2021-01-25 09:46:44 -0800)
 
 ----------------------------------------------------------------
-Martin Blumenstingl (1):
-      ARM: multi_v7_defconfig: Enable support for the ADC thermal sensor
+ARM: dts: amlogic updates for v5.12
+- add thermal zones with cooling configuration
 
- arch/arm/configs/multi_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+----------------------------------------------------------------
+Martin Blumenstingl (4):
+      ARM: dts: meson: move iio-hwmon for the SoC temperature to meson.dtsi
+      ARM: dts: meson: add the ADC thermal sensor to meson.dtsi
+      ARM: dts: meson8: add the thermal-zones with cooling configuration
+      ARM: dts: meson8b: add the thermal-zones with cooling configuration
+
+ arch/arm/boot/dts/meson.dtsi              | 12 ++++++++++++
+ arch/arm/boot/dts/meson8.dtsi             | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/meson8b-ec100.dts       |  5 -----
+ arch/arm/boot/dts/meson8b-mxq.dts         |  5 -----
+ arch/arm/boot/dts/meson8b-odroidc1.dts    |  5 -----
+ arch/arm/boot/dts/meson8b.dtsi            | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/meson8m2-mxiii-plus.dts |  5 -----
+ 7 files changed, 120 insertions(+), 20 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
