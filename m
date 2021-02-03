@@ -2,65 +2,64 @@ Return-Path: <SRS0=mi7Q=HF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_2 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-17.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2E0DC433E0
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Feb 2021 06:49:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD399C433DB
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Feb 2021 07:02:14 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 47EBA64E40
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Feb 2021 06:49:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 47EBA64E40
+	by mail.kernel.org (Postfix) with ESMTPS id 79A1A64F76
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Feb 2021 07:02:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 79A1A64F76
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=igN8g6rFZMnuEFKSycJ1ygU4TtqEjj0eAKPcZUfT5ng=; b=w8l94EkldsaJRc+yjzOVYkE5P
-	/DPWm47gZr+5k/oI4roKCSlbLzwVDd2nM8rQq6eOJRcKUDuBQL39Vk3ZrF9jP8BSEMn3w3I9jibXU
-	TzcHbcIzJbb88b9uVft1BRTu/vXmEFe9kz1HH6n1Aufn8AJgGQ11et4grgdvPIzgCeGGVJJx+xziB
-	ZlPW1WBVkjsi3qgM33EcuqQSz08HLbqJEIW/HwQeaLw5EXmv3BYnp7swInMXIOyy/L7V4Cb2LT/RW
-	SQsPh3XTisOnPgJLlmir6hkjGXtyS0XUL505Xov6mgQ8hhK+jP0qhsrWeuqEaTzl5K0/OdMO+MsNf
-	OGkUrg+tg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=AtNGc52xHZD+xnYY6icl1xu/BH/UgBQ7cPuzQRAsrXc=; b=plOLZRIiA3Ut1cC/CMoI3XmbBc
+	AQ2Y1KFEq8XCBw3fZcgRXctLSMwFMWv9ZpYWz8k2w+10WwSx+t4F/EqBSbZpixE6r/Q+xaiO9m2AP
+	9Z1d0sW3geoxlcZ923Tot0PbtzXS1nXd7WGPiKTNHqFT9B2jaNtt0TYQBAr5qw2yCWdjGPHZlZOGC
+	pjjIdp+sPEWyIzVNhGwSoKchsnTe1Qy2UMOWhZWv9flPrxHoDAzk13/hKWl4C/jQkVATbcoYfnUfK
+	CRBvVkkoIMRKUd9CAHaraI/DLo/h7G5kRnjZ6ntR5a6scpz/tvlTApQN7PpSkBsBFcZ3kU/xsonka
+	rW6QGdGg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l7ByY-00035M-DC; Wed, 03 Feb 2021 06:49:18 +0000
+	id 1l7CAv-0004O0-Nq; Wed, 03 Feb 2021 07:02:05 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l7ByV-00034k-80; Wed, 03 Feb 2021 06:49:16 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A9CFC64F5D;
- Wed,  3 Feb 2021 06:49:03 +0000 (UTC)
+ id 1l7CAs-0004Lg-Qq; Wed, 03 Feb 2021 07:02:04 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A6FAB64F69;
+ Wed,  3 Feb 2021 07:02:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1612334952;
- bh=TbVrfhRWcP0NLWkcKrc9dypvQJV2iCyeSCaii6eG9Ro=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=k4bNSi5Yrb/h0nIFSc5i07chfgyRveavNrYx6tXmNY4YUVo71kjXoj58WpoS26hCk
- uCrxhKvd/JINpBt6xI4aRXzjzz0q2z0b4Jpzn88TxH1VbIs3gYWdkh1niFtlVTB1kX
- 1CopGTwzJ5CvVY/GK5gLvjC7egUIna+Cj+SOrhEItOX6sdcbHz1w+Nh+oBPKLN80iR
- MAuh85U3/Rg8T1TN+INLzWRfCb3TxylBCkTR64tAC9G6v3tO+CoRnnf+ZhwJu7Jcg/
- G4h6hht8I6O6OBd5bMopuYFgBepcOY61dAfTEygpm5fHjmekUW6Se249HLVv84fyTP
- /oH1Bp1Y1nkKg==
-Date: Wed, 3 Feb 2021 07:49:00 +0100
+ s=k20201202; t=1612335720;
+ bh=H8e8UvRVRIeJRBMFLtr0H3UUm6rcx/88jqoabLKu+dk=;
+ h=From:To:Cc:Subject:Date:From;
+ b=aS9UcuGjtxyieyW+HARPPO1G4YNg5vmzsvSepSa3s2Cbv+6GEGc2iRzlg7UEhPdb1
+ 4LYDPyafbn/BEe/OhxzSqAZ7XfVWhQS9SwYyN2kDspIKm5Gryk/1k6maAfOhS5D4+2
+ B26dshHhKf+1VYMSqO3kU4Hf6U9aRXTE2BmGxB/nimAAYxb2uTlaE/1dW0DJ/MwnzY
+ yYJUckv8WIuBX0nYKvh81NRSvrDBD+w8fduDxVbuvhzVuHVORa+eVV1vHeqLuBf086
+ urFLbMPclo4U354gRiGNlLc7vaui3rVC74Offis3Bttg9MKIQ4lmHYNV9H0Ym44l+b
+ 2N0uIemGk5rEg==
+Received: by mail.kernel.org with local (Exim 4.94)
+ (envelope-from <mchehab@kernel.org>)
+ id 1l7CAn-001CAO-UU; Wed, 03 Feb 2021 08:01:57 +0100
 From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 01/13] doc: bindings: pci: designware-pcie.txt: convert
- it to yaml
-Message-ID: <20210203074900.6d581153@coco.lan>
-In-Reply-To: <1612287895.001149.3887347.nullmailer@robh.at.kernel.org>
-References: <cover.1612271903.git.mchehab+huawei@kernel.org>
- <706e684f571e142362d7be74eb1dcee2c8558052.1612271903.git.mchehab+huawei@kernel.org>
- <1612287895.001149.3887347.nullmailer@robh.at.kernel.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+To: 
+Subject: [PATCH v2 00/11] Add support for Hikey 970 PCIe
+Date: Wed,  3 Feb 2021 08:01:44 +0100
+Message-Id: <cover.1612335031.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210203_014915_449990_11075E84 
-X-CRM114-Status: GOOD (  15.53  )
+X-CRM114-CacheID: sfid-20210203_020203_076350_F9AE496A 
+X-CRM114-Status: GOOD (  16.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,25 +73,30 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
  Neil Armstrong <narmstrong@baylibre.com>, linux-pci@vger.kernel.org,
+ Binghui Wang <wangbinghui@hisilicon.com>,
  Bjorn Andersson <bjorn.andersson@linaro.org>, linux-tegra@vger.kernel.org,
- Thierry Reding <thierry.reding@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>, linux-arm-kernel@axis.com,
  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
  Jonathan Chocron <jonnyc@amazon.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Jesper Nilsson <jesper.nilsson@axis.com>, linux-samsung-soc@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, linux-arm-kernel@axis.com,
+ Fabio Estevam <festevam@gmail.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk@kernel.org>,
  Kishon Vijay Abraham I <kishon@ti.com>, Jaehoon Chung <jh80.chung@samsung.com>,
- Andy Gross <agross@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, devicetree@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, Andy Gross <agross@kernel.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Xiaowei Song <songxiaowei@hisilicon.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
  Richard Zhu <hongxing.zhu@nxp.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Mark Brown <broonie@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
  linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>, linux-kernel@vger.kernel.org,
- Zhou Wang <wangzhou1@hisilicon.com>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+ Zhou Wang <wangzhou1@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
  Jingoo Han <jingoohan1@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
  Lucas Stach <l.stach@pengutronix.de>
@@ -101,78 +105,86 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
+This series add PCIe support for Kirin 970 SoC.
 
-Em Tue, 02 Feb 2021 11:44:54 -0600
-Rob Herring <robh@kernel.org> escreveu:
+Patch 1 converts the Synopsys DesignWare PCIe binding documentation to
+the DT schema;
 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
-> 	'type' is a required property
-> 	Additional properties are not allowed ('$ref' was unexpected)
-> 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
-> 		'enum' is a required property
-> 		'const' is a required property
-> 	'/schemas/types.yaml#definitions/flag' does not match 'types.yaml#/definitions/'
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: ignoring, error in schema: properties: snps,enable-cdm-check
-> warning: no schema found in file: ./Documentation/devicetree/bindings/pci/snps,pcie.yaml
-> 
-> See https://patchwork.ozlabs.org/patch/1434686
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+Patch 2 converts the pcie-kirin DT binding to the DT schema;
 
-I've no idea why the bot is hitting those. My tree is based on
-staging-testing[1], as I need the regulator patches merged there.
-Such tree is based on v5.11-rc5.
+Patch 3 adds some extra configuration needed to support Kirin 970.
 
-There, dt_binding_check doesn't get any warnings on this schema:
+Patch 4 were imported from Manivannan's HiKey 970 96boards tree:
 
-$ pip3 install dtschema --upgrade --user
-Requirement already up-to-date: dtschema in /home/mchehab/.local/lib/python3.9/site-packages (2020.12)
-Requirement already satisfied, skipping upgrade: ruamel.yaml>0.15.69 in /usr/lib/python3.9/site-packages (from dtschema) (0.16.6)
-Requirement already satisfied, skipping upgrade: jsonschema>=3.0.1 in /usr/lib/python3.9/site-packages (from dtschema) (3.2.0)
-Requirement already satisfied, skipping upgrade: rfc3987 in /home/mchehab/.local/lib/python3.9/site-packages (from dtschema) (1.3.8)
-Requirement already satisfied, skipping upgrade: attrs>=17.4.0 in /usr/lib/python3.9/site-packages (from jsonschema>=3.0.1->dtschema) (19.3.0)
-Requirement already satisfied, skipping upgrade: pyrsistent>=0.14.0 in /usr/lib64/python3.9/site-packages (from jsonschema>=3.0.1->dtschema) (0.16.0)
-Requirement already satisfied, skipping upgrade: setuptools in /usr/lib/python3.9/site-packages (from jsonschema>=3.0.1->dtschema) (49.1.3)
-Requirement already satisfied, skipping upgrade: six>=1.11.0 in /usr/lib/python3.9/site-packages (from jsonschema>=3.0.1->dtschema) (1.15.0)
+   https://git.linaro.org/people/manivannan.sadhasivam/96b-common.git/commit/?h=hikey970_pcie&id=4917380ad023c62960aa0f876bd4f23cefc8729e
 
-$ make CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/snps,pcie.yaml dt_binding_check
-  LINT    Documentation/devicetree/bindings
-  DTEX    Documentation/devicetree/bindings/pci/snps,pcie.example.dts
-./Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
-./Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml:102:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
-  CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-  DTC     Documentation/devicetree/bindings/pci/snps,pcie.example.dt.yaml
-  CHECK   Documentation/devicetree/bindings/pci/snps,pcie.example.dt.yaml
+It contains the original port made by Linaro.
 
-$ git merge v5.11-rc6
-Merge made by the 'recursive' strategy.
-...
-$ make CROSS_COMPILE=aarch64-linux-gnu- dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/snps,pcie.yaml 
-  LINT    Documentation/devicetree/bindings
-./Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml:102:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
-  CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-  DTC     Documentation/devicetree/bindings/pci/snps,pcie.example.dt.yaml
-  CHECK   Documentation/devicetree/bindings/pci/snps,pcie.example.dt.yaml
+The remaining patches contain several cleanups applied on the top of
+Manivann's work.
 
-Thanks,
-Mauro
+They cleanup the code and change it to use the DT bindings defined on
+patch 3.
+
+---
+
+v2:
+- DTS bindings dropped, as they depend on other DTS changes that will be
+   happening at staging and ARM trees;
+- Use regulator_get() for Kirin 970, instead of regulator_get_optional();
+- The power supply was renamed to "pcie_vdd", in order to better match the
+  schematics;
+- The patch descriptions were renamed in order to match the terms used
+  by other PCI patches;
+- dts patches removed from this series, as they depend on other patches
+  being merged via other trees.
+
+Manivannan Sadhasivam (1):
+  PCI: dwc: pcie-kirin: add support for Kirin 970 PCIe controller
+
+Mauro Carvalho Chehab (10):
+  doc: bindings: PCI: designware-pcie.txt: convert it to YAML
+  doc: bindings: kirin-pcie.txt: convert it to YAML
+  doc: bindings: add new parameters used by Kirin 970
+  PCI: dwc: pcie-kirin: simplify error handling logic
+  PCI: dwc: pcie-kirin: simplify Kirin 970 get resource logic
+  PCI: dwc: pcie-kirin: place common init code altogether
+  PCI: dwc: pcie-kirin: add support for a regulator
+  PCI: dwc: pcie-kirin: allow using multiple reset GPIOs
+  PCI: dwc: pcie-kirin: add support for clkreq GPIOs
+  pci: dwc: pcie-kirin: cleanup kirin970_pcie_get_eyeparam()
+
+ .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
+ .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
+ .../bindings/pci/designware-pcie.txt          |  77 --
+ .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
+ .../bindings/pci/hisilicon,kirin-pcie.yaml    | 144 ++++
+ .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
+ .../bindings/pci/hisilicon-pcie.txt           |   2 +-
+ .../devicetree/bindings/pci/kirin-pcie.txt    |  50 --
+ .../bindings/pci/layerscape-pci.txt           |   2 +-
+ .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
+ .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
+ .../devicetree/bindings/pci/pci-keystone.txt  |  10 +-
+ .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
+ .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
+ .../bindings/pci/samsung,exynos-pcie.yaml     |   2 +-
+ .../devicetree/bindings/pci/snps,pcie.yaml    | 139 ++++
+ .../pci/socionext,uniphier-pcie-ep.yaml       |   2 +-
+ .../devicetree/bindings/pci/ti-pci.txt        |   4 +-
+ .../devicetree/bindings/pci/uniphier-pcie.txt |   2 +-
+ MAINTAINERS                                   |   4 +-
+ drivers/pci/controller/dwc/pcie-kirin.c       | 749 +++++++++++++++++-
+ 21 files changed, 1033 insertions(+), 186 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/kirin-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/snps,pcie.yaml
+
+-- 
+2.29.2
+
+
 
 _______________________________________________
 linux-amlogic mailing list
