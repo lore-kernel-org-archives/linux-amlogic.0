@@ -2,67 +2,78 @@ Return-Path: <SRS0=j33G=HL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B0EFC433DB
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Feb 2021 15:14:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 04ECCC433E6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Feb 2021 20:58:05 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 01E5764E88
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Feb 2021 15:14:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 01E5764E88
+	by mail.kernel.org (Postfix) with ESMTPS id 60E5164E5A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Feb 2021 20:58:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 60E5164E5A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ING/012k0eWVEQQfBZ6I1zEwLRZmo99e/e1Dgzt2UkI=; b=JODr0jNn+RtTDd98qHyRqK9z+
-	hv2+xWwUUF05AAXen3kXPtjyNPRzDgQGBD7FUjhGkxwAbk9f2m95X/Y+irUI+pFQILocyraAIZafc
-	RUL9i97mlQFSdKDwPktsI+9JRS9Hv2TWS6OVJ9BYqPpgrwLKNhk6gNwYZrImPARKE9scw2PgOzu5O
-	kMksst3fJqscGRDEeRZGdpls6i/HmRZDIlQsgxx4aIIRMtbAQmldQnFy+xe4v3EMUEZGOybLghKc+
-	jIudxzq0FRk8T6oFgtTtYalHsW+Zl2tl02rpFf2rbs7UYYZ138VN08C+vLExywFcfGUU5JMlmf2A5
-	7gItH+ACw==;
+	 bh=3qMxcbdNj0RTvIXm4owORIdQnWQ+mRnwcACDZujHnNg=; b=Y1BjXtjQU7bASoVdUyRcKefjj
+	+Y+34qr9798mK3F5SE4SPVf6wjKOD8ChfdT+2DNb1O/66+FlH0J1BrS2oLNfmCk/d10qENBjE4d4Q
+	WICmsFqYwT3Avw2Ghacoq7lJcT4NvE4v3eCAwPSnw5T5QcGu502/vu9RwCPAFth/hAHEhq0PuxWG/
+	zhPe6AzdFWR/gbyRnJHS85VEPWTuamgCJAaoZYJ+LCg4xu8ysBc/b901g1dD5WwuTYD4LTm7zFpT1
+	EV/2wcWqnrAwF2KKtEqCzoLy7GoL4gC2Tp8OLVJL1IxVuuusq5x5hbOUCntQ0ps/IYopkOM2Q7Bk6
+	XO5RS9I8w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l9Uie-0005H4-PI; Tue, 09 Feb 2021 15:14:24 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1l9a53-0007eh-Ms; Tue, 09 Feb 2021 20:57:53 +0000
+Received: from mail-ot1-f51.google.com ([209.85.210.51])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l9UiQ-0005DK-1B; Tue, 09 Feb 2021 15:14:11 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CC81064E88;
- Tue,  9 Feb 2021 15:14:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1612883649;
- bh=sISzvmFfKdR/yd4UNKJ8qSPNAWkQd3BSlSYsCkUMJhM=;
- h=From:List-Id:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XD2A6Li4r/dXO0whxcZnDmuu/P73XO2fL2ehEGTMwh4JNkJa2T5awiPlQNM/GqFyB
- HdkqyU+JZwljLIKEZyBCC6Orm2p9wji+7AZpvar74qpOyYVWrnbJ6kJXTpHhsKpwHC
- AZaaOawU8S/PMEcaqGW+EBY5fzDmWOeI3FOCR+tqrhEO4HTkG2lyR0SmLQcy9Q2Kbl
- q9Paeu97wj3U8n4m44SJaEhZ8KhingrFKdOoZv8b5lR+YxxMtcHgGxWsdZ3dbrF3kS
- PYkQ29m3KBPA0D8pk3/EJq0qXEUvjHaJarsrmz/nMMbJ7ityXqrWIzNGLcAaa0w/sa
- aYPJ9+ngYI9mw==
-From: Arnd Bergmann <arnd@kernel.org>
-List-Id: <soc.lore.kernel.org>
-To: arm@kernel.org,
-	soc@kernel.org,
-	Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [GIT PULL] ARM: multi_v7_defconfig: amlogic updtes for v5.12
-Date: Tue,  9 Feb 2021 16:13:54 +0100
-Message-Id: <161288360473.2910447.10678299620796355576.b4-ty@arndb.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <7hsg6d2bxg.fsf@baylibre.com>
-References: <7hsg6d2bxg.fsf@baylibre.com>
+ id 1l9a4y-0007e2-V0; Tue, 09 Feb 2021 20:57:49 +0000
+Received: by mail-ot1-f51.google.com with SMTP id i20so18803317otl.7;
+ Tue, 09 Feb 2021 12:57:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=rRfkDWuhdRzZoOribuVD2PezXOJHDbSyE2BVdAF+5Vw=;
+ b=NHXi6d9ufs7aWM0Tz08S2JEs9z3ACdJJT11B/Fh376D2f3HF7jXhZJlO0wlk3jbPUR
+ K6/vE0LmBM+s4Rxz5vyWJdPvWpjz3De6Dy/5hz07piuxow3t6JXX4URdRul9qzMmFvdp
+ UqebSysXBOz2ff2YmWM+ylHlq3bOXSLPWzRS1qwvykPvfGqcXMNMP+qsfmZa+2e6gDTo
+ 9PqzczHqEG/03KQ+qSNyYbB9Vv2kNvruC63o5RSn+VKVeA1/pQdjUdmNPpqeLAHZ4+GP
+ Z7ALbUi0k2eFxZ/h9tqeg2qqrYtAfHoXt9gGbWOmCGh3aTJuSg3fjsGaA6BTax7kjGv0
+ SyqQ==
+X-Gm-Message-State: AOAM531CO6ek1PiBpZILmS/Tsr9qdo3A36bmkbosUalCH3sKjYrRe6vt
+ 0Bg3Hwrye+QFa0DSpiosJg==
+X-Google-Smtp-Source: ABdhPJwYi62y19ckUjwSs1SUPVJAmhbSWiMZlMABR5E1y6iKKlzqdx86uZroADjTsQo3imS9ZrWaHg==
+X-Received: by 2002:a05:6830:1153:: with SMTP id
+ x19mr7173363otq.14.1612904268181; 
+ Tue, 09 Feb 2021 12:57:48 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id w134sm1513227oia.56.2021.02.09.12.57.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 09 Feb 2021 12:57:46 -0800 (PST)
+Received: (nullmailer pid 168561 invoked by uid 1000);
+ Tue, 09 Feb 2021 20:57:45 -0000
+Date: Tue, 9 Feb 2021 14:57:45 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for the Minix
+ NEO U9-H
+Message-ID: <20210209205745.GA168506@robh.at.kernel.org>
+References: <20210201210508.1528-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20210201210508.1528-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210209_101410_305952_25B0DF7E 
-X-CRM114-Status: UNSURE (   8.20  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210209_155749_021081_3D97F62A 
+X-CRM114-Status: GOOD (  11.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,31 +85,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Arnd Bergmann <arnd@arndb.de>
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Arnd Bergmann <arnd@arndb.de>
-
-On Wed, 03 Feb 2021 11:23:07 -0800, Kevin Hilman wrote:
-> The following changes since commit 5c8fe583cce542aa0b84adc939ce85293de36e5e:
+On Mon, 01 Feb 2021 21:05:07 +0000, Christian Hewitt wrote:
+> The Minix NEO U9-H is a small form-factor Android STB based on the
+> Amlogic Q200 reference board with an S912-H chip.
 > 
->   Linux 5.11-rc1 (2020-12-27 15:30:22 -0800)
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> are available in the Git repository at:
-> 
->   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-soc
-> 
-> [...]
 
-Merged into arm/defconfig, thanks!
-
-merge commit: f7d62396798cac36dc1ea530afc3e560f52ce327
-
-       Arnd
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
