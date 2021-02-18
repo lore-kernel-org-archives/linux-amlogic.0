@@ -2,95 +2,91 @@ Return-Path: <SRS0=0aRn=HU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA9AFC433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Feb 2021 16:35:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23048C433E6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Feb 2021 18:10:59 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 63A5B64EAD
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Feb 2021 16:35:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63A5B64EAD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cerno.tech
+	by mail.kernel.org (Postfix) with ESMTPS id 9813864ECD
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Feb 2021 18:10:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9813864ECD
+Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Jt42e2m+4itPGklY7QZYNtrcQAVbHWBVygcinvsd2lY=; b=ZQBzxww4Lx80TIhLu3As/kQfu
-	ryGc7ln0CpVAKLylp36G4Kito5T9jr78/HDnp/j3rMIS+ja4QUG5sS9au1eNOkV+Tb1djOydRXDPI
-	wjmhJyBPmFnBFzQ8D7qhblBV4lBFf68cOmnZR73f4oFjvmD4C9cTRq49sQCVKlp2Cu+MVBfzD+dBq
-	Z8PvzzU6hKttuLYVN4GhselkIJg2NYgUPgNgdGfeXEjN/PJ+Yujeuf6LXhWQXTw9PhFEIYBd4VS58
-	y2PHKXxPHnNUSQ5wP1/8zE1C0T2NknTNg+4EcuXWaWfIA35S1kjKmrzJz5sMlOh3uu/HucM2b7OQ7
-	Vaod3xCfA==;
+	 bh=wCfibVnhsoqe3ySkKAvXzqgQaSH+DUVd9XgDdh2aRKE=; b=aFYcH27YTTVZcXCL/0QohmiaT
+	3UyoM+dDkXe+hOmyXo+xt2EcjnAzIq5+mqGrKUm/gs26AXACjen0TzTfTpKt3+o6zpw0X8D0js6E/
+	2bUJuP+uRnvxEhrKuO5IkD8eKlTApJyNKMgr2J1YD0PoNbqzdGZBaTrnnOFpyf15j79vzlyuLez4Q
+	OSxltikKltBtRTjYKSUP45WhdaZdrgoWsZetx/UJLtNXA7lrjHxPQdwtlMJjoYPqbxSGA5fv2vbJU
+	xfhyB62RDjp2+Pb2GhWH0z10HErLwkpt4/olmSBe6Ka8KfxaVSR/qt0YOY53j8Ia+20cFW+ei6pQg
+	ckO2XMEpQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lCmH1-0001pS-RR; Thu, 18 Feb 2021 16:35:27 +0000
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27])
+	id 1lCnkI-0004jr-W0; Thu, 18 Feb 2021 18:09:47 +0000
+Received: from mout-p-102.mailbox.org ([2001:67c:2050::465:102])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lCmGz-0001ou-Ru; Thu, 18 Feb 2021 16:35:26 +0000
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id DF1EFE1F;
- Thu, 18 Feb 2021 11:35:18 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Thu, 18 Feb 2021 11:35:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm2; bh=9glu1NqYQ89GMrISno2hyWbjb5g
- /OTCuIq2T05YOits=; b=G6pm+BxV6Dh9oiD6SJUz1xXNJ7zPPCZpBW9AEchzgQY
- SsCnHwIhIZleE9PczJeaxSABPuNfyZNS1u3Zj2kDGJdZzYOuF3md0m5GftSNoeev
- ZavMKbuw+WSPSBcY4VpVTBkV/ddPDz1xHbCCETt+RAuJ3CD0g/aAsRM9ST0bJ2+t
- +6ifUhzBy+1w+NmK0Bu03Ar0ji4npJeGmU9jySby/2b7puTSkKn/YECDpUC+LyuL
- 6Guj5EkOzfnyrZ7fuCEdeNrI7VmN9ZSWN6LpeNmu5/FnzVAUNcjxOj673ayo+RK2
- 5fiMH3d3rCy4RcepJW9kS8GD2lNioOxaP+2WrEFLkFQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=9glu1N
- qYQ89GMrISno2hyWbjb5g/OTCuIq2T05YOits=; b=F8tizhTRDZ1QmkV4IX/nKz
- GFGeeljOv0nlv95ycFp0ze5k8JaZwhxcx+uGwtKUsVGuJaf3wBvlVHShQ6AEUuUa
- nYa/M+CR3Q7nQv96fSu/CfaeIwuzJxRKrhn2B8yNMcGRvghgtZ0Vp/RbSek1ItaO
- Huq8VE54K1HbMzSfgJ/qk4vTktg7KPqCaeXhHlIBqpyMVIsKqMHjMXcuPGS+ft/T
- 80Nr4qrm62gEv7vJ1wWgcbm6pcoegFAPfttgQ+bfSTEtA0b5vB4AgmFNGzLe9Jjp
- 2mDgst8VHznkjEYhvASc+FuMU+CJuXELKFptery4MIiY6qnvOy5wsWIYxYIQt8qA
- ==
-X-ME-Sender: <xms:Q5cuYNHGf4DP6s5Yrk94g87bEt9maVsvZUvIZ5_OSwOa3ygXsvSckA>
- <xme:Q5cuYCWJqVHxc0TBvW8RaM0wSdODYkxfn4yClOKahSKwcF7ZJMIFzdXO9brx_KJON
- wVOak8LO-iBIzeTj3U>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjeeggdekjecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
- udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
- grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:Q5cuYPL64pGtEXDOIjB2LytBtepgEjTDIlirUSWB4Z_2bk7CHwRyNw>
- <xmx:Q5cuYDGxFYNq90q1Kozd9_sE8xI5mkNSdlmaFJwB_t_-qpDhKS53yA>
- <xmx:Q5cuYDU83mA2iruvPx6pKrkqUS3fSvQrhe9kV_x71Rp0kdmagu5q-g>
- <xmx:RpcuYHmzfxpDFq6rYEjERoNkSWa7GUcR73y9VFLtc6uo7hgIIot_W0suCF8>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id DE99E24005C;
- Thu, 18 Feb 2021 11:35:14 -0500 (EST)
-Date: Thu, 18 Feb 2021 17:35:12 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v2] drm/gem: Move drm_gem_fb_prepare_fb() to GEM atomic
- helpers
-Message-ID: <20210218163512.arnmixdkygysxrqk@gilmour>
-References: <20210211081636.28311-1-tzimmermann@suse.de>
+ id 1lCnkD-0004if-FJ; Thu, 18 Feb 2021 18:09:45 +0000
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4DhN5Y3LpYzQk8g;
+ Thu, 18 Feb 2021 19:09:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
+ content-type:content-type:content-transfer-encoding:mime-version
+ :references:in-reply-to:message-id:date:date:subject:subject
+ :from:from:received; s=mail20150812; t=1613671773; bh=W/Dls4BBn0
+ cZBu0J1HB0GO9lXeKTSNrYr87sAw81zvc=; b=ENGz48t9l3y4/vBYGldpgWmr+y
+ nONQUabzsiW2uW3eRVexRkteGu46ZE1l4KefYDfbKI/pKNOiReaJ7C84PMQ9/hsU
+ ZA5TOCEJFxKGsFOwfDwtwW06AQZ440HiKBNdrvKR+FTpHYzT5oSHybaxkYxXVC+q
+ 9HzwYXtWX3xy2NL6sT2QbqX+pNL65gbBxLGYbJCkZDQaFB//78I4UTzc4U2glZ5e
+ PMgZ2WqOmFTnEMQYL9q+fya/vZGyNcTkf65OQ4VAhP6AmsLki/X9UTSL9/lQRCbv
+ NaG410FYx4yyjANiDY08Q6tMXrJOUMnoYMO/sPLsGGfDPwibHy4DXCwzF7xg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1613671775;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=9ZCc8BafT07k/uY7SVF+4P/8ZypzbJUznZWOpeKSXpQ=;
+ b=X2d5YBZmnZgIn6wfcC64zps2sccljYASZfY9eiXvoSZY8yMt/aBSYqCBuX2BUntMSEDX4O
+ tCB86ubvH2Yj7J+VUwjr4y09iVshlGpDMXaW+ikVLczFs1JYK0gfRjb8OGUH8O7zTYSQQr
+ vkkMWknB/c5rg7CuIyhzQ5qz4rzOZcRBi3lLYkiHHfT46/568JR/pS56Iro9yH2lj5fSF5
+ RY3/Q2qPjJq8kw4/Y6TR4g9tQ5qZd8AR2MqvT06o3GKs62tQU5eQa4RAmn5puGxm/HJy5q
+ PZt2OKAxZRrPk9m949c6M1lJFA8zc7BxU1517sqKVyHOlaB/AidH3U0TP6sykg==
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp2.mailbox.org ([80.241.60.241])
+ by spamfilter01.heinlein-hosting.de (spamfilter01.heinlein-hosting.de
+ [80.241.56.115]) (amavisd-new, port 10030)
+ with ESMTP id xu8EzBvS0Qa0; Thu, 18 Feb 2021 19:09:33 +0100 (CET)
+From: Alexander Stein <alexander.stein@mailbox.org>
+To: Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v3 1/1] arm64: dts: amlogic: Assign a fixed index to mmc
+ devices
+Date: Thu, 18 Feb 2021 19:09:30 +0100
+Message-ID: <2921197.CJbAp5Dgou@natsu>
+In-Reply-To: <20210203192824.854491-1-alexander.stein@mailbox.org>
+References: <20210127230852.66686-1-alexander.stein@mailbox.org>
+ <20210203192824.854491-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
-In-Reply-To: <20210211081636.28311-1-tzimmermann@suse.de>
+X-MBO-SPAM-Probability: 
+X-Rspamd-Score: -3.39 / 15.00 / 15.00
+X-Rspamd-Queue-Id: 1A87917D1
+X-Rspamd-UID: 48e893
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210218_113526_004508_CFC6C864 
-X-CRM114-Status: GOOD (  10.90  )
+X-CRM114-CacheID: sfid-20210218_130941_899637_1700D638 
+X-CRM114-Status: GOOD (  15.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,79 +98,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linaro-mm-sig@lists.linaro.org, linux-aspeed@lists.ozlabs.org,
- airlied@linux.ie, linux-arm-msm@vger.kernel.org,
- maarten.lankhorst@linux.intel.com, linux-mips@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- daniel@ffwll.ch, xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, freedreno@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
- linux-media@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============3983824664161857158=="
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Am Mittwoch, 3. Februar 2021, 20:28:24 CET schrieb Alexander Stein:
+> Recently introduced async probe on mmc devices can shuffle block IDs.
+> Pin them to fixed values to ease booting in environments where UUIDs
+> are not practical. Use newly introduced aliases for mmcblk devices from [1].
+> [1]
+> https://patchwork.kernel.org/patch/11747669/
+> 
+> Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign
+> a fixed index to mmc devices on rk3399 boards.")
+> 
+> The unconventional order (B, C, A) is due to the fact that sd_emmc_a is
+> (according to the comments) only used for SDIO.
+> 
+> AFAICS all boards either have both sd_emmc_b and sd_emmc_c or only one of
+> them enabled. So the alias order should match the previous non-async order
+> for all of them.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
 
---===============3983824664161857158==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qyrmapmaovukaths"
-Content-Disposition: inline
+Any feedback on this?
 
-
---qyrmapmaovukaths
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi,
-
-On Thu, Feb 11, 2021 at 09:16:36AM +0100, Thomas Zimmermann wrote:
-> diff --git a/include/drm/drm_gem_framebuffer_helper.h b/include/drm/drm_gem_framebuffer_helper.h
-> index 6b013154911d..495d174d9989 100644
-> --- a/include/drm/drm_gem_framebuffer_helper.h
-> +++ b/include/drm/drm_gem_framebuffer_helper.h
-> @@ -9,9 +9,11 @@ struct drm_framebuffer;
->  struct drm_framebuffer_funcs;
->  struct drm_gem_object;
->  struct drm_mode_fb_cmd2;
-> +#if 0
->  struct drm_plane;
->  struct drm_plane_state;
->  struct drm_simple_display_pipe;
-> +#endif
-
-That's probably not what you meant?
-
-With that fixed,
-Acked-by: Maxime Ripard <mripard@kernel.org>
-
-Thanks!
-Maxime
-
---qyrmapmaovukaths
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYC6XQAAKCRDj7w1vZxhR
-xeYjAQDBp12JMmHuiBCHQBmWyl9fGbmCMg6R9psxq9edd+0vigD+MjBWZAmh8A1d
-2S0DtBQtnfgH07vDxZs1Eb8jJZ+x/QQ=
-=WmxA
------END PGP SIGNATURE-----
-
---qyrmapmaovukaths--
+Best regards,
+Alexander
 
 
---===============3983824664161857158==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3983824664161857158==--
-
