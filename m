@@ -2,19 +2,20 @@ Return-Path: <SRS0=LTpV=IG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38BB8C433E0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Mar 2021 08:58:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57702C433DB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Mar 2021 09:03:28 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2A5366512B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Mar 2021 08:58:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2A5366512B
+	by mail.kernel.org (Postfix) with ESMTPS id E31946509D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Mar 2021 09:03:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E31946509D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,63 +24,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=dJP1cLRg23HCvCq3fwz9kJC/jot/2FjaXv6IkEYDLVg=; b=GgU8bfsoyCVvyMXv2o1aj7du5
-	itKZemD130GIZ2XQPhGr14KXOR7YCb1mWK++OfGHj67vJtBP996n3HUdbSAdspadoRWEHtmbHCwaY
-	XxJgEvMr3vk8LJT2mwyPcCjJU1PDhME8RnnrScjwD14tA58o5NAeCHrz0llILfdjf33ZLRGV6FrOj
-	le2+hiBopGzGI/MrFGMbzAqLmiMqulFr+EK4JRxvKPe0XKo1g1cSAFEltz2Qm+IzSrGSmMgLO3JE9
-	fMzNwi6upnnaMH9wtzV3mMa7XAVc815WyIWeMCUcECvx8mziZ2OOmdTNUVj8y8aLDFF0gt4Fjn5d1
-	yqyQbEapw==;
+	 bh=8+zS3GxNwdqS2lDTy4qWsjrZ0itFyOluwF5PY3phtVQ=; b=beeAoItOdyTHOIVTcMIvnvC41
+	bw6Than/+wU3oEyV/AJW1ECig7sNGKDiekrIvGt5uBtjXW/DMMm/456TDsY0NSdXdQEa+4BiuxigQ
+	iz/YC+sQyZP+MXzSOYM75de9LREien7Y7Xf174Ts+im9eGqDkicfYYEhXdF8p8nJMMievSqaEc9jX
+	wBY2NoF47YvsupNUd5BEjWmCGck8mNE0R0NiFFkxuKoDphHs3TXXAGKZHF4P3rMK919OcPp6N995W
+	q5zbF8YhnE+JS0/3AcT1nOwVvrlPMPozkBllee1EdYcr5sypiohfhMwSFXuDGrFA/Qs6MOYQtXws3
+	xq3J1DWZg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lJBiE-00G2uJ-Ma; Mon, 08 Mar 2021 08:58:02 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1lJBnM-00G4ND-7d; Mon, 08 Mar 2021 09:03:21 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lJBiA-00G2sa-Ql
- for linux-amlogic@lists.infradead.org; Mon, 08 Mar 2021 08:58:00 +0000
-Received: by mail-wm1-x331.google.com with SMTP id
- f22-20020a7bc8d60000b029010c024a1407so3298939wml.2
- for <linux-amlogic@lists.infradead.org>; Mon, 08 Mar 2021 00:57:57 -0800 (PST)
+ id 1lJBn3-00G4Ga-He
+ for linux-amlogic@lists.infradead.org; Mon, 08 Mar 2021 09:03:03 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id
+ y124-20020a1c32820000b029010c93864955so3306872wmy.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 08 Mar 2021 01:03:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=7b18Z0xDg5NJSVFZl2y3aJsTcouPtqE66ZgWzwVeUC0=;
- b=1zzqBwluC90E1032iw68u28dUMj3EbaxbNs3Acuq3BE1nb1oy3YrgcdR2izNuUAu2G
- G9OFVwyfv+5FeBgzTK+j4henuqUn4SdwU38xK5vbdhoTIcrfhAjkQn1m9ZCjViG0UeFn
- AhHzaKz8TooVZ8hD2v1gHp4R7EOrnpVSHe2rFH4rWBfHsnx9MNm5lKw8JYvcf+/4Cqh1
- NFpxqofosoedOBYosF2s4XR4Pkc5PlkwhNzu5YacO21ggpCDH8wTHrlCrU+K7j+g98Ws
- coJtIacjZmVp9V+AYrp8gQfQeqLz4F8qLTaQLhWfWb6ulOD50134l/DyWyFaicirfrdM
- NIfw==
+ bh=VduCoy9cY/POZZOiEWzngRwLsbws5z84iVhRIR40VNU=;
+ b=x2smg4jRl66r5msS9Ra8Bf5luC9Q4x3G6RAvuNOlXyTD3q3j34dQ5a3PbDZUa2fju7
+ oNgDc6xvV0BdxK33za3HYCXXCD8jIzgTCtH1HOFRGXMnEBXk/Ysh8wCSsz12OOD6Z/R7
+ JVfPefEYX1rYHDt4Tm9vzgz+nS7pQqxU7slmSukfGLTqmytPq/UZ5JPZ+TFSpovNCLQC
+ fvg0KsYnt15PF4DiWfEJzIXIOrHq0aqn4/wEXosQ8KeUzv82BYLr+uiU1S033OPH2ZgO
+ oYHQ1yIZ8Fe1WcUNa7N+hcs1Wtw2KLKogoaAZ5wHa6usk0GDk+m86y2UO+6vkdcQbXT0
+ wBdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=7b18Z0xDg5NJSVFZl2y3aJsTcouPtqE66ZgWzwVeUC0=;
- b=CcYnNbU9c3oqgeE/Nzq4LjL40s1htXt9Q7Hmo9wcTuU5tSwYGmaamu1+4l12hTCJ79
- FFivNRrFITAl1pU/b9EP8vuAF9MMNLPQlOBDKbMzvmB4qWaS5f1OG1oZ9OrZne11AC/t
- snvDzbzD0y1g0jz++vKTvWYlyr6CzsKF/VZSJQMHKRhGBSvBcVTcVKztASQItLBemLbA
- Pxqf0J9/9aBfrl40Mm2qGlxREQNvKSRSuKsnspKRkCnS7kylDBrJPiSJVkvlPSjgHodX
- K/LfcaBpkHoKwjF+qrvmwJgnj1s12t/j+Lj8HAyTk7OuLh3Fn9u95PiHXjvyoIrsAfMo
- yM8A==
-X-Gm-Message-State: AOAM531yAu3FmUdhkRPzJdLbRsOIuwbRTvw/fuO15uPlP1SECt5D8a8t
- r2QyPtxRXWcup97PpiWwnzgnXw==
-X-Google-Smtp-Source: ABdhPJzak9u3HLt1ZhJWtV52V8MYhzLBkGKW43c8X2nYI0w0/pFhmxDhFC1zMa++lNwRG3SWBS5sfQ==
-X-Received: by 2002:a1c:3c02:: with SMTP id j2mr21054461wma.92.1615193877604; 
- Mon, 08 Mar 2021 00:57:57 -0800 (PST)
+ bh=VduCoy9cY/POZZOiEWzngRwLsbws5z84iVhRIR40VNU=;
+ b=SSNlmXG46D/Z5L7yughg7re5t8y06bIHlzLh9L/qsveAVXRcJeBi/nddHOsUdpfCFb
+ hKwiI7lfky8vdf/vbbLYC6CInJNshQqqBE673g+Pr9alZmhrWQKdosof2aEVux5vsqWm
+ YgWJYPmyz0rPLshZ0QCfkQBckJNE+7JwtqKj2sWvuxPNBtAgFd1QTuSYjA9poytK2/jv
+ 6d6KT1CVGuHEtSEBO1gDXNBxNo0MEbsanGgl03qIdNJdyQirc4WrLmPf5L7gY2+HaLcT
+ 7X222jaQlXEReJ5k07+/dI9T8pd2yfSTdL7aEHK3GW3wtsSpu0ZSptH9epxmxlyazINY
+ dOFw==
+X-Gm-Message-State: AOAM532sX9G5QW6KpwoEkjvcWirJHCLEZXbsfpHA2Qs/zcmlYkcH47uj
+ geGvkt+VBNceR/FBL/NZTs8zsg==
+X-Google-Smtp-Source: ABdhPJw647ZQzOe1DVLylHSEYurbHed+mUA4hUQ1dLTxvO2puE2ijCTTxgq1I+MpUWWgSlIZkuJ7FQ==
+X-Received: by 2002:a7b:c842:: with SMTP id c2mr21301749wml.100.1615194180723; 
+ Mon, 08 Mar 2021 01:03:00 -0800 (PST)
 Received: from [192.168.1.10] ([88.164.51.138])
- by smtp.gmail.com with ESMTPSA id f14sm17375517wmf.7.2021.03.08.00.57.56
+ by smtp.gmail.com with ESMTPSA id y10sm17441439wrl.19.2021.03.08.01.02.59
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 08 Mar 2021 00:57:57 -0800 (PST)
-Subject: Re: [PATCH] Revert "arm64: dts: amlogic: add missing ethernet reset
- ID"
-To: Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
- =?UTF-8?B?SsOpcsO0bWUgQnJ1bmV0?= <jbrunet@baylibre.com>
-References: <20210126080951.2383740-1-narmstrong@baylibre.com>
- <7hczwh9luc.fsf@baylibre.com>
+ Mon, 08 Mar 2021 01:03:00 -0800 (PST)
+Subject: Re: [PATCH] drm: meson_drv add shutdown function
+To: Artem Lapkin <email2tema@gmail.com>
+Cc: khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, christianshewitt@gmail.com, art@khadas.com,
+ nick@khadas.com, gouwa@khadas.com
+References: <20210302042202.3728113-1-art@khadas.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <021e688c-4ef0-2b8c-f377-d59b768285c0@baylibre.com>
-Date: Mon, 8 Mar 2021 09:57:56 +0100
+Message-ID: <c8570873-d518-16c2-b66c-36d9dba07db5@baylibre.com>
+Date: Mon, 8 Mar 2021 10:00:48 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <7hczwh9luc.fsf@baylibre.com>
+In-Reply-To: <20210302042202.3728113-1-art@khadas.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210308_085759_002051_FB2F484B 
-X-CRM114-Status: GOOD (  16.26  )
+X-CRM114-CacheID: sfid-20210308_090301_845800_8405A8D2 
+X-CRM114-Status: GOOD (  20.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,32 +153,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMDMvMDMvMjAyMSAwMDoyOCwgS2V2aW4gSGlsbWFuIHdyb3RlOgo+IEhpIE5laWwsCj4gCj4g
-TmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPiB3cml0ZXM6Cj4gCj4+IEl0
-IGhhcyBiZWVuIHJlcG9ydGVkIG9uIElSQyBhbmQgaW4gS2VybmVsQ0kgYm9vdCB0ZXN0cywgdGhp
-cyBjaGFuZ2UgYnJlYWtzCj4+IGludGVybmFsIFBIWSBzdXBwb3J0IG9uIHRoZSBBbWxvZ2ljIEcx
-MkEvU00xIEJhc2VkIGJvYXJkcy4KPj4KPj4gV2Ugc3VzcGVjdCB0aGUgYWRkZWQgc2lnbmFsIHRv
-IHJlc2V0IG1vcmUgdGhhbiB0aGUgRXRoZXJuZXQgTUFDIGJ1dCBhbHNvCj4+IHRoZSBNRElPLyhS
-RylNSUkgbXV4IHVzZWQgdG8gcmVkaXJlY3QgdGhlIE1BQyBzaWduYWxzIHRvIHRoZSBpbnRlcm5h
-bCBQSFkuCj4+Cj4+IFRoaXMgcmV2ZXJ0cyBjb21taXQgZjMzNjJmMGMxODE3NGExZjMzNGE0MTlh
-YjdkNTY3YTM2YmQxYjNmMyB3aGlsZSB3ZSBmaW5kCj4+IGFuZCBhY2NlcHRhYmxlIHNvbHV0aW9u
-IHRvIGNsZWFubHkgcmVzZXQgdGhlIEV0aGVybmV0IE1BQy4KPj4KPj4gUmVwb3J0ZWQtYnk6IENv
-cmVudGluIExhYmJlIDxjbGFiYmVAYmF5bGlicmUuY29tPgo+PiBBY2tlZC1ieTogSsOpcsO0bWUg
-QnJ1bmV0IDxqYnJ1bmV0QGJheWxpYnJlLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogTmVpbCBBcm1z
-dHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgo+PiAtLS0KPj4gSGkgS2V2aW4sCj4+Cj4+
-IFRoaXMgaGFzIGJlZW4gcmVwb3J0ZWQgdG8gYWxzbyBicmVhayBvbiA1LjEwLCB3aGVuIHRoaXMg
-bGFuZHMgb24gNS4xMSwgSSdsbCBzZW5kIGFub3RoZXIKPj4gcGF0Y2ggZm9yIDUuMTAgYmVjYXVz
-ZSBtZXNvbi1heGcuZHRzaSBuZWVkcyBhIGNvbmZsaWN0IHJlc29sdXRpb24gb24gNS4xMS4KPiAK
-PiBMb29rcyBsaWtlIHRoaXMgbmV2ZXIgZ290IHN1Ym1pdHRlZCB0byB2NS4xMC4gIEkganVzdCBk
-aXNjb3ZlcmVkIGl0IHRoYXQKPiB2NS4xMCBpbiBTRUk2MTAgKGludGVybmFsIFBIWSkgaXMgYnJv
-a2VuLgo+IAo+IENvdWxkIHlvdSBzdWJtaXQgdGhpcyB0byB2NS4xMCBzdGFibGUgYWxzbyBwbGVh
-c2U/CgpTdXJlLCBJJ2xsIHByZXBhcmUgdGhpcy4KCk5laWwKCj4gCj4gVGhhbmtzLAo+IAo+IEtl
-dmluCj4gCj4gCj4gCj4gCj4gCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0
-cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbGludXgtYW1sb2dpYwo=
+On 02/03/2021 05:22, Artem Lapkin wrote:
+> Problem: random stucks on reboot stage about 1/20 stuck/reboots
+> // debug kernel log
+> [    4.496660] reboot: kernel restart prepare CMD:(null)
+> [    4.498114] meson_ee_pwrc c883c000.system-controller:power-controller: shutdown begin
+> [    4.503949] meson_ee_pwrc c883c000.system-controller:power-controller: shutdown domain 0:VPU...
+> ...STUCK...
+> 
+> Solution: add shutdown function to meson_drm driver 
+> // debug kernel log
+> [    5.231896] reboot: kernel restart prepare CMD:(null)
+> [    5.246135] [drm:meson_drv_shutdown]
+> ...
+> [    5.259271] meson_ee_pwrc c883c000.system-controller:power-controller: shutdown begin
+> [    5.274688] meson_ee_pwrc c883c000.system-controller:power-controller: shutdown domain 0:VPU...
+> [    5.338331] reboot: Restarting system
+> [    5.358293] psci: PSCI_0_2_FN_SYSTEM_RESET reboot_mode:0 cmd:(null)
+> bl31 reboot reason: 0xd
+> bl31 reboot reason: 0x0
+> system cmd  1.
+> ...REBOOT...
+> 
+> Tested: on VIM1 VIM2 VIM3 VIM3L khadas sbcs - 1000+ successful reboots
+> and Odroid boards, WeTek Play2 (GXBB)
+> 
+
+Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
+
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Signed-off-by: Artem Lapkin <art@khadas.com>
+> 
+> ---
+>  drivers/gpu/drm/meson/meson_drv.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 42c5d3246..693bb1293 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -482,6 +482,16 @@ static int meson_probe_remote(struct platform_device *pdev,
+>  	return count;
+>  }
+>  
+> +static void meson_drv_shutdown(struct platform_device *pdev)
+> +{
+> +	struct meson_drm *priv = dev_get_drvdata(&pdev->dev);
+> +	struct drm_device *drm = priv->drm;
+> +
+> +	DRM_DEBUG_DRIVER("\n");
+> +	drm_kms_helper_poll_fini(drm);
+> +	drm_atomic_helper_shutdown(drm);
+> +}
+> +
+>  static int meson_drv_probe(struct platform_device *pdev)
+>  {
+>  	struct component_match *match = NULL;
+> @@ -553,6 +563,7 @@ static const struct dev_pm_ops meson_drv_pm_ops = {
+>  
+>  static struct platform_driver meson_drm_platform_driver = {
+>  	.probe      = meson_drv_probe,
+> +	.shutdown   = meson_drv_shutdown,
+>  	.driver     = {
+>  		.name	= "meson-drm",
+>  		.of_match_table = dt_match,
+> 
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
