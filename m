@@ -2,94 +2,92 @@ Return-Path: <SRS0=LTpV=IG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21316C433DB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Mar 2021 17:39:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 541FFC433DB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Mar 2021 17:43:55 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C55E6652A6
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Mar 2021 17:39:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C55E6652A6
+	by mail.kernel.org (Postfix) with ESMTPS id E27806528D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Mar 2021 17:43:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E27806528D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
+	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=QPgx3MgmBS8R0iwjU/Tox6fF5gcllsQKtofbM/Uu/h8=; b=ZCmhIYgx5hbA+ei/Y2BxjYK0c
-	T9O8gaszUWSirMz6TeMs4PAqexIb+YA9RcEICi2ifEybTLsliArCINmmmfONPHnWZii0ayB2x15lf
-	XWw5VG+0zUbJNd/ez91MS2lcNMZbBs0uahlSrloI164PgrdVJMu3z1IfwlUwzxqHuN17ugrvSYR6L
-	YraRclPumQ1oCGhasooKf2dB8O5ROCz4/uksnasTmaH3uoYPO+0jzixE6LAecotYlxizZc1ZoSPvp
-	CtYtYdTWiE7oKfo82qFQRrv8c7CHH60HXVNWEVp4TMQ7PLgBQKf+mt8r3wktjqlx516hMm8Gyr9Bj
-	ujZD1ZT/w==;
+	 bh=WtWBuSWpwOzzJ8ksUBUuotST80tevieadGCS0eyasHc=; b=XdHmbPt2jVis5jDJW/D8SwLIF
+	hdGemgo4yk4zjdFfsNkRtsv+0aEv0VB0AAjWeIhlFWeemO3B3mIr3rAjF1C7JgV0OwZBzQMsAFDEb
+	GjHTJk0l2UchUYHwTqt8VV3mm3DGKgzpLU0IlvFW/HeWWK/8YUi7EGPi+hHk67KNRX5EJRZnSJYme
+	XHmUqa4J/kDVwAdPBKdKvVHgq8GI7AFtexcZUFbPW9ZTi4ci5d2UffdsNSxuM25xai880pftK0jUQ
+	6tkiFZh22wUmrUxCe0bhN+kYa3E2ji9GnT7cSHqwr/mp8WPJ9vgBwBPtEfgx+VgdgJoZirw6UqNKI
+	PzhdH03EQ==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lJJqi-001Syc-7Q; Mon, 08 Mar 2021 17:39:20 +0000
-Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
+	id 1lJJv4-001Upn-NL; Mon, 08 Mar 2021 17:43:50 +0000
+Received: from mail-pg1-x530.google.com ([2607:f8b0:4864:20::530])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lJJqU-001Srh-Vi
- for linux-amlogic@lists.infradead.org; Mon, 08 Mar 2021 17:39:08 +0000
-Received: by mail-pj1-x102e.google.com with SMTP id
- kk2-20020a17090b4a02b02900c777aa746fso3549783pjb.3
- for <linux-amlogic@lists.infradead.org>; Mon, 08 Mar 2021 09:39:06 -0800 (PST)
+ id 1lJJus-001UlM-CI
+ for linux-amlogic@lists.infradead.org; Mon, 08 Mar 2021 17:43:40 +0000
+Received: by mail-pg1-x530.google.com with SMTP id w34so5798483pga.8
+ for <linux-amlogic@lists.infradead.org>; Mon, 08 Mar 2021 09:43:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:subject:date:message-id:in-reply-to:references:mime-version
- :content-transfer-encoding;
- bh=hUCvK/I+zgUewNk8E2scyHBkcJ9RAyOMA/sKBoxnDw4=;
- b=fHXmGRBN1mCiws4dt5VljccU5Kx8Q2GwWwzjmlREjQv9f31rgqothtHBT2MZCaAGP8
- x+m4Ra8lvqyZIXh57Ku8/zGff/aucTCiELnx6RmIqQaEqUDeZ2eqd1mdOSbPxKtZUt7L
- hGgUS0n2KQ16nEwyVGaGuyx/FwFbla8rIHJX/SCMge2wntOR+40FI691JTb7MqdFC0XG
- 6PmH0sz1zzWZJ5tvnUT2vWsiYmKArqehM2VwzWnNXRxpRTSMeVLiJXZYYz6EqhwdcwQ5
- 5y86NSDN9kGCc8wMghxt2gGaD4vvK1sCAktXgmjHACGgARLMPKtvoosmSnA5Nqg86Vcs
- SHdw==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=uwWUWLoMsALxcHxQsbHJKpnMdlF22xA3TzeHsMYUXPQ=;
+ b=kCNWT0lXqOkM4RmLLhPl+m10hb8F4CTfgIHCjkBN7f4qzsJj4UM/mUv/ubbV6nDFdq
+ 29M+SVrALg9Le3ixTZySh1ZrGBUlOCRYz1P+Uy1YJEms06tMjsbanautiiH2sRv4C5wT
+ COCQpuyhUEnr/b+Qh0sT9oRhd0rIMYGmzgwljZR01ALVmFoJG8xTtBWqO2Tsylwa5/Za
+ uuKP/rtHaqIx6CPjz98lYY2NbG5D9PaKuQN7W3lFAuVk2YUBaSekeG8T5ZjNShVPzHJc
+ apZim89uS8F7ze+5DeNUvEj+UZCQRl9OWBbmLw6foIxcnXkhykazV1Px5fSInKpVkIMk
+ pgeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=hUCvK/I+zgUewNk8E2scyHBkcJ9RAyOMA/sKBoxnDw4=;
- b=Si3eNnZf1MK1whn5tBxT7sa63LAN4N6fWpTlhB7CO3RCxDPcSh6AxtgOMqKQSCuZRk
- PZt/2nM1He8+ONKhlKZAKMTw7rgg5au8AJ8T37FKE6Ao+5nv3jKXPxhJDTmuY82UFTpk
- nM0PH0wnpKJtRQo/pGmTGcaKjNSG02pk1msRTfmyhm2OWgITCxHyEEhg4HdOW10Y4wVh
- 4mi9Rzl4WgoYfvcdBS8IeM/2NtSuF6mvfwtrlpOWFpuLELQGaCb0+8WdFoudyIZGWKuD
- npEaFhvnmb78lF0uN94guJBgaNT6W8VdrD6ilngnK4fdoH1QRA2PoJZYw6btEc0pTZQa
- ZFTA==
-X-Gm-Message-State: AOAM530njwVKbPKUe5m3WOmg7uAbc1N8LBWUVcnSWp9H66iK9LUwWDlt
- kGuvaUFL3WnAuvDkvXltJNU5/A==
-X-Google-Smtp-Source: ABdhPJzC2/eu6E4CQbyADDmbk/3ijOnoW08IMivrr8a2H9j48dNkZ2wVa6e6b3tyZbILc7r8PR300w==
-X-Received: by 2002:a17:90a:658b:: with SMTP id
- k11mr16781689pjj.92.1615225145512; 
- Mon, 08 Mar 2021 09:39:05 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=uwWUWLoMsALxcHxQsbHJKpnMdlF22xA3TzeHsMYUXPQ=;
+ b=PYgKmzWLbAUh7GZJtFnYE/+HkHSckN6XY5nVmhmE/O+bkTXSOlR18XGrJ/QG1gX0SG
+ /fJ1ehlvGmjSWxeVDYu11RP/i/u2GN73osYL3w6TTkAIkSflwt0+EYorrpJ/6oc3tn+J
+ 6H/uq63AP/Gvi3rLmOT6kPKVlJz0BE1p33MklP8VujaCm/KbL4JpuESBNVLrrL2ruTe+
+ aH6GjKQpu6moljmRVNB5nuJbU/g2LEBlUE135Rk6LzGz+0wwGJ/6YTbzgQ1K5l6WBlbP
+ bLt3v0sjtsF8+L92zN3D4om2hIlEJ3xdxJh6FZVaNtX0kI2iCRsRX8XQPlvLshylAPqk
+ nJmw==
+X-Gm-Message-State: AOAM532a1UAlEAN80QiHrJhh8VDqHbcVL7w9DEndaq0vTo1kJsYtWz7/
+ tHQubTQtuH0S3Ls4HyMBfNkuvw==
+X-Google-Smtp-Source: ABdhPJzhf+mB9PVB+1XesHxjolF45VmgaClOL9Eyd/EXSG6MWSeKXpBNT17taop2vTwR/Jd+OT5lBg==
+X-Received: by 2002:a63:5044:: with SMTP id q4mr21095579pgl.178.1615225416788; 
+ Mon, 08 Mar 2021 09:43:36 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id t18sm5226942pfq.147.2021.03.08.09.39.04
+ by smtp.gmail.com with ESMTPSA id 184sm11855802pfc.176.2021.03.08.09.43.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Mar 2021 09:39:05 -0800 (PST)
+ Mon, 08 Mar 2021 09:43:36 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org,
- Christian Hewitt <christianshewitt@gmail.com>,
- Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for the Minix
- NEO U9-H
-Date: Mon,  8 Mar 2021 09:39:03 -0800
-Message-Id: <161522513396.14471.6052884995015954642.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210201210508.1528-1-christianshewitt@gmail.com>
-References: <20210201210508.1528-1-christianshewitt@gmail.com>
+To: Alexander Stein <alexander.stein@mailbox.org>, Rob Herring
+ <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/1] arm64: dts: amlogic: Assign a fixed index to mmc
+ devices
+In-Reply-To: <2921197.CJbAp5Dgou@natsu>
+References: <20210127230852.66686-1-alexander.stein@mailbox.org>
+ <20210203192824.854491-1-alexander.stein@mailbox.org>
+ <2921197.CJbAp5Dgou@natsu>
+Date: Mon, 08 Mar 2021 09:43:35 -0800
+Message-ID: <7him6135iw.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210308_173907_232814_82865B91 
-X-CRM114-Status: UNSURE (   7.97  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210308_174338_625023_7FA17908 
+X-CRM114-Status: GOOD (  12.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,20 +104,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 1 Feb 2021 21:05:07 +0000, Christian Hewitt wrote:
-> The Minix NEO U9-H is a small form-factor Android STB based on the
-> Amlogic Q200 reference board with an S912-H chip.
+Alexander Stein <alexander.stein@mailbox.org> writes:
 
-Applied, thanks!
+> Am Mittwoch, 3. Februar 2021, 20:28:24 CET schrieb Alexander Stein:
+>> Recently introduced async probe on mmc devices can shuffle block IDs.
+>> Pin them to fixed values to ease booting in environments where UUIDs
+>> are not practical. Use newly introduced aliases for mmcblk devices from [1].
+>> [1]
+>> https://patchwork.kernel.org/patch/11747669/
+>> 
+>> Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign
+>> a fixed index to mmc devices on rk3399 boards.")
+>> 
+>> The unconventional order (B, C, A) is due to the fact that sd_emmc_a is
+>> (according to the comments) only used for SDIO.
+>> 
+>> AFAICS all boards either have both sd_emmc_b and sd_emmc_c or only one of
+>> them enabled. So the alias order should match the previous non-async order
+>> for all of them.
+>> 
+>> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+>
+> Any feedback on this?
 
-[1/2] dt-bindings: arm: amlogic: add support for the Minix NEO U9-H
-      commit: 15c4dd131ce576f0150fadf7a3264c865b051eba
-[2/2] arm64: dts: meson: add initial device-tree for Minix NEO U9-H
-      commit: 0e9fed92c67cb886b3308df4890126d75db2ad67
+Sorry for the delay.
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+I somehow missed this v3 at the end of the v5.12 cycle, but I've queued
+it up for v5.13 now so it should get broader testing in linux-next now.
+
+Kevin
+
 
 _______________________________________________
 linux-amlogic mailing list
