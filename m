@@ -1,97 +1,85 @@
-Return-Path: <SRS0=D5lY=IR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=VcWo=IV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87ED5C433E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Mar 2021 09:41:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48C25C433C1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Mar 2021 21:34:00 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DBF1764DEF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Mar 2021 09:41:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DBF1764DEF
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id D82E961580
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Mar 2021 21:33:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D82E961580
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=dsdKd1DKImbCYUvUOSli2PnDU/Zzs4IF75sD/QdHr2A=; b=FkOpPX3ZebzMoaWJiXMLamihA
-	Zc53Jd8y9JA4m8764m4ajZ3aZnkn5lmIcNjrIbSlKuRHS5ruaRUgth4tPGF/lbSazoDkiXYGmtfJ2
-	gwBEGLlKuCgoD8/VvxR/mm/mFutZYGZm3pH0FHxaSfKpD+uWmbJ+Wh2JBhp0S8rJ9dJkH0QO/z4Ww
-	COXIeGkTHSfxvWpW1zR77zqW/Naz0wMCMoADwsQy3BF5LzMDhKlz+7ABjz2psRtbB1AsRaMBV+nwv
-	fokjJbEkvv0CkGW43I7m2V+sx0oiJfgbv+EaI1mk1NNmLOAgNkRkLbJXbKqmglngyYBuZgqY3hw8N
-	6zxNJl7zg==;
+	 bh=lQQpg3TWsaiO5Zxy5WpAVEwa2oaGL3Bu53LFr+RO8vU=; b=mpBuvEXJbP4Bjq1En+OJuMyW+
+	FK5zI2hODQPcS3TkU+M72DPwaHzq0FPtUzAfDVxpmMbvrngbVpksfvoBAzLdR/riPRy2bBYi4YSrr
+	0ofQi6w8Nz7O99Oi/v8dV+QQnM/7pzjBzGjLhSE0lrw9/Eauh0mSOo/dV8dRCsModQ7VPmkh4DODs
+	r6m72U38FXQ+1TtO496c6VLnCcvQkW0hvYcTZfdZFzeF5se9Vw2R0osPKI6zToPFrD6KUFmfrcTWr
+	uQOIYpio+FZekYDcGsmkAP6r8deUXt73J2yFyt0v5875S+/Y7lkiNOvzDhwfHGDndh2qEZfI84DWD
+	YrEp19QoA==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lNBdD-006xsj-NR; Fri, 19 Mar 2021 09:41:23 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1lOoem-00Fmuk-Aq; Tue, 23 Mar 2021 21:33:44 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lNBd9-006xr5-6U
- for linux-amlogic@lists.infradead.org; Fri, 19 Mar 2021 09:41:21 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 12so5091710wmf.5
- for <linux-amlogic@lists.infradead.org>; Fri, 19 Mar 2021 02:41:18 -0700 (PDT)
+ id 1lOoeV-00Fms1-NF; Tue, 23 Mar 2021 21:33:29 +0000
+Received: by mail-ed1-x533.google.com with SMTP id z1so25251538edb.8;
+ Tue, 23 Mar 2021 14:33:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=dE/FMXXwTOcZLfKWiTm5qvJwQlSCibf7/ZnsQ3VuA+I=;
- b=cUvirTqY+bHdROH4xdfpGMrp7CwT1frnVIdSmYUtaWWWWj954Z8j45z71527sO+KrZ
- 5WQkEOopheMKChAfrdE9h32SdNhfHFZO0zKs7NPsr2x5b5XK3DrR2cl0OZjZkpcwRPCD
- uyUg6tjYCdewlJ2318NC43fksCK75iQU6y4nAXvkOYfja309Ndyn/kcx+rSunDpADNqj
- 7xGGjSPrCOPoP26K9qEQsLNvHBw5r4DrHb1BWvR97GcN4NcnYd3Zs5FrtkbZG8d9W1Nn
- R6AJBNeFdMZFJle8Ob1eyXT4ONSp1qP/ZoB9f8urGPwzK+mHzxAUFh4idR4bZzsc2sq8
- 3sjQ==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=vNqTp+4J55pn8UtxCWhZI9WKQ5OJTgrthkxSNaaR9fk=;
+ b=Z1X62JgaNMMBhLZQ4QlhpGE30R7oq8YUDzrEMEzTRD0vNkPaAU0FqGpgvMQr3SNw4N
+ TQ2lURRF9XEcvjjsQtWoYsO7GtMMtlQB/pagSghOAntjFN+62FySADdKePG/SaNFdkTw
+ jjRiQNIFaAgrove9trejAd+bh2AI53ZwBbeUGI+rGNQUgiUDhrqm/52yIa8mSOHbRADc
+ /Hl8zXqJYmy5UllL/i5DfDsUENesGkIKUATnioFFGXBBjUtDvmeZiEaQGPAi+S8F39FF
+ 81WLl9okrNOK9J9KAS05Up2FL0aVT//x6QW9B21AIw6AHfDL9xjBkEvHP9LtW5QOQSL8
+ tjEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=dE/FMXXwTOcZLfKWiTm5qvJwQlSCibf7/ZnsQ3VuA+I=;
- b=SyHCV3RCGQ89N4+6liQyS2lECRLUG4eueIV09ZsGFpvKx+C+WvoMu1cKA0tdgI6Q6p
- nhfOQrdK5xTyt7KBXTa+2U0PXAHrG7sQCtUSV2Ujz90X8lR1GGehjv10rjmh6lg2ytOC
- EQVyKk0vT33yd3BqIr2LxD4gl9w9D34JWEMsziUSniZekInQzP/7WdP0wFHCJMktPJlc
- qAzDxXcp6mRDsKnmSSECYQW3liaWxbBDmLuTQapJ2ce7NMLwa4rgNwxTHzZ1wkmgB/NT
- pq5EZfTR0Wczn3dawpBJfXhdzul82AL81r+LRMnr485Fdp8lwXyd5h4YGBT/eDahuaEX
- iHIg==
-X-Gm-Message-State: AOAM533vDV2Sug2PXETA7GdDH5CGxlhuzBtufyBxL7bAiS5N+s4w5jn0
- KgSn6/TkNKf59EW3/mzHjkwBdOrea+qqNTOV
-X-Google-Smtp-Source: ABdhPJyhmKqPRcT1Q2L0MAxywvHaux8gt0MC/4MXTIbjMyfjntyMA+cOtPLJ+giH8rEkY7Tb8COX6Q==
-X-Received: by 2002:a1c:4e12:: with SMTP id g18mr2803941wmh.56.1616146877840; 
- Fri, 19 Mar 2021 02:41:17 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:62a:14da:7a4b:4aee?
- ([2a01:e0a:90c:e290:62a:14da:7a4b:4aee])
- by smtp.gmail.com with ESMTPSA id m17sm7082516wrx.92.2021.03.19.02.41.16
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 19 Mar 2021 02:41:17 -0700 (PDT)
-Subject: Re: [PATCH] drm/meson: Fix few typo
-To: Bhaskar Chowdhury <unixbhaskar@gmail.com>, airlied@linux.ie,
- daniel@ffwll.ch, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: rdunlap@infradead.org
-References: <20210318110046.14830-1-unixbhaskar@gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <fd1f66c1-b1ca-bfd2-8a04-64a9b7af4e3c@baylibre.com>
-Date: Fri, 19 Mar 2021 10:41:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vNqTp+4J55pn8UtxCWhZI9WKQ5OJTgrthkxSNaaR9fk=;
+ b=p+mdmZgqd7yuyu+pOic0dXczQBKU0dYqJKoNnznFbQW+YZxChJCbn/y9xbsDWf4rmg
+ 3fsA3S61e+dBmodKnvFNZ5Ta+T9+IbG8mnPrC3sa5r3ip6j8FN0f9j17rFas510MdLqM
+ 9gVlzwFXpdgSJDGKHPhomfum79HXCGTq6ZAuLPN64WJb5TKxDb35RNXvuR4aI5CqKWle
+ NZswfuJF56JbnQyHyr/pQsIaTyajanvi/LUDYSu+HEcsbhoh81zcFSlo06qfFN8xuvaU
+ zPN40P6aWCtsqTUYvbzAAIn8T+FwWg5ETrrPlgjNR/JVQ61s9SG1LaV0P2kYbvG7FOOq
+ kKqQ==
+X-Gm-Message-State: AOAM533T9b7G0ACNdUHPIjKEAGMnzmkJ/N3vXBTtATNbxklsyVaqZ/Xj
+ oGAua5P+fx2CJ/2JTx6i8jr7SMtRf9GrwskEkHo=
+X-Google-Smtp-Source: ABdhPJxogLUC0j2kqIXnvE9ADeLdHe/dekVrvsjIiVez5mN8mdmstjeRi/0IbcBN4Amm2vqsw9nN/TGoA02CccJ8wno=
+X-Received: by 2002:aa7:c957:: with SMTP id h23mr6431368edt.301.1616535206608; 
+ Tue, 23 Mar 2021 14:33:26 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210318110046.14830-1-unixbhaskar@gmail.com>
-Content-Language: en-US
+References: <20210315083459.359773-1-narmstrong@baylibre.com>
+ <20210315083459.359773-2-narmstrong@baylibre.com>
+In-Reply-To: <20210315083459.359773-2-narmstrong@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 23 Mar 2021 22:33:15 +0100
+Message-ID: <CAFBinCA1WhtWLEfJ-QyBbZpsY75r=su6uzyWamY6nHOQ+HYvAw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: serial: amlogic, meson-uart: add
+ amlogic, uart-fifosize property
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: gregkh@linuxfoundation.org, devicetree@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210319_094119_534075_25CB10C0 
-X-CRM114-Status: GOOD (  17.60  )
+X-CRM114-CacheID: sfid-20210323_213327_890718_975F154E 
+X-CRM114-Status: GOOD (  16.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,37 +96,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/03/2021 12:00, Bhaskar Chowdhury wrote:
-> 
-> s/initialy/initially/
-> s/desined/designed/
-> 
-> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+ Hi Neil,
+
+On Mon, Mar 15, 2021 at 9:37 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On most of the Amlogic SoCs, the first UART controller in the "Everything-Else"
+> power domain has 128bytes of RX & TX FIFO, so add an optional property to describe
+do we still need wrapping of long lines in commit messages?
+if so I think the line above is too long
+
+> a different FIFO size from the other ports (64bytes).
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+one additional note below
+
 > ---
->  drivers/gpu/drm/meson/meson_venc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-> index 5e2236ec189f..3c55ed003359 100644
-> --- a/drivers/gpu/drm/meson/meson_venc.c
-> +++ b/drivers/gpu/drm/meson/meson_venc.c
-> @@ -45,7 +45,7 @@
->   * The ENCI is designed for PAl or NTSC encoding and can go through the VDAC
->   * directly for CVBS encoding or through the ENCI_DVI encoder for HDMI.
->   * The ENCP is designed for Progressive encoding but can also generate
-> - * 1080i interlaced pixels, and was initialy desined to encode pixels for
-> + * 1080i interlaced pixels, and was initially designed to encode pixels for
->   * VDAC to output RGB ou YUV analog outputs.
->   * It's output is only used through the ENCP_DVI encoder for HDMI.
->   * The ENCL LVDS encoder is not implemented.
-> --
-> 2.26.2
-> 
+>  .../devicetree/bindings/serial/amlogic,meson-uart.yaml      | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> index 75ebc9952a99..e0a742112783 100644
+> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> @@ -55,6 +55,12 @@ properties:
+>        - const: pclk
+>        - const: baud
+>
+> +
+> +  amlogic,uart-fifosize:
+> +    description: The fifo size supported by the UART channel.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [64, 128]
+I personally think this is generic enough to be described as fifo-size
+(as it's done in Documentation/devicetree/bindings/serial/8250.yaml)
+let's wait and hear what Rob thinks
 
-Thanks,
-Applied to drm-misc-next
 
-Neil
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
