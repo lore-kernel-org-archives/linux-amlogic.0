@@ -2,88 +2,90 @@ Return-Path: <SRS0=Id+k=IX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-17.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2905DC433C1
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BC76C433E0
 	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 15:24:56 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CF26961A16
+	by mail.kernel.org (Postfix) with ESMTPS id 58D0361A1A
 	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 15:24:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CF26961A16
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 58D0361A1A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=e0ne5IvZZ4kUL111y2LUeAlFH3ggiiNySBEu3wOHjHg=; b=bA/BqOwyKCZLjslxLMvCxNxIh6
-	AUJ+8VilE9q8IfxwJX8q7+H6hV1t+rUfwypGUKjujaRwS5LsoouZR0XelG2xQKv62CqYjbT/F03iV
-	gItfYGk0WBzaXWNat6Yj4wneWpty8CxLWYjVR+GyfQchuJtuy8S2Kbb2t21fJxE+oxaryuGT/EGBW
-	La9HU/4eNl2fZL4IoGpO6jZFmW5mxGh4K9IBiJWEw+IViiwJ6LnoJ3Ydfeo3/St2wN1xtyHSUuKHv
-	aR2btoOS0CpiocxRaMxrGNcq/71yuM+iKG3W8kECrCYrsgh4eHUn4Ih/VcNeAwZDS0ddK4hb3snl/
-	PY9K9yeQ==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=Dg12u8SyowmrM6Bh5LezluDWdE3UEgYpHEqBJskRGlM=; b=XfpQGeJXVbf/+XKc4GmQgQeh1
+	GMS6E1nhKkDqo1v6d2Kul0WVdMT1asrDB32RFDonG3X4vTwu5Z84R0/1yDmqO+YfhDz1i8fPsZUR5
+	sLwd0kVUfygc6weNayiiDv8wfkUR8q0nsZw5DWgYyIWg54hyz272b7zaKIYc0Y3/z631m0TU5LWem
+	jcKjnHgeymei/NqN5ZiyB9JvTv7P51eX36VoRm15VCdHpOGb9Njy/0sU+bvMnZPGM+BUCSnZs7cRt
+	luLXn8WJvEZteaYbkt/L6WjdpmlxYf6uuXEMHf6mK5T0yo3VlpXrUYad3PzOA2CAXI2HyIG5v/aTj
+	BPisMGjig==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lPRqt-001iZd-SM; Thu, 25 Mar 2021 15:24:51 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1lPRqr-001iZC-Nh; Thu, 25 Mar 2021 15:24:49 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lPRqO-001iRj-JB
+ id 1lPRqO-001iSG-PV
  for linux-amlogic@lists.infradead.org; Thu, 25 Mar 2021 15:24:25 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id
- a132-20020a1c668a0000b029010f141fe7c2so3352919wmc.0
- for <linux-amlogic@lists.infradead.org>; Thu, 25 Mar 2021 08:24:17 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id j9so962040wrx.12
+ for <linux-amlogic@lists.infradead.org>; Thu, 25 Mar 2021 08:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=vjIiCTomysNBHigYUO2F29y2fu9n4K1mpORfU6aQthU=;
- b=rehPFnP/AkKl027/tuMZ0dZjy9QnfxgtQtJSVXmCLlNHgBtiKGpuIydvjUqstxJ+f1
- bpbA1vG8+/viUmDHV3RKst1+0+mDVIe/4jSWY4U4MYrK2Rfh5KO1q7ganxzw9cwv3KGz
- /jEFmNs3PQ5tZnWZ4TwCAH6pjdYFfuFwzaOoMZ2g9A81gu5i+OxYNjp5K/830ylhR7dj
- F+eGVi3tQ8yTCn1n4pSwJUb4j8lZz0KLWQWim6IEAi8g/gQe4oyA5OHVPOjQCV+vPZDL
- oFn260UmkLUx1YNj8VIagF9/JVKRYW3a7wzL9tnWV5DwSBuMLdAomP9REXKschZg3V3L
- nFgw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=sgzzDhp79bx35r5jKOLNYJfzzmoZjTRizxE5UOSMnpw=;
+ b=ZMGw7DOul3+SQoGvgOttwL1Iac5paKrRtV2ymragAJntKtRTzgfrruwJsrw+Ty0lk+
+ wNgqign0naVJIqRttat6mVH5MB14qMPBfiG/zSOvlLQlHMC5x9s/3bjNyLF8hP7lKj8k
+ Z3ibFMrbX0zZqw7BBDORGwixnLuRZxuE66wrJ/lH2w6N9gjO7O8fDcDuULfZEhEM7D9W
+ 5w2hILsvh9ZpNZWP+PmVtX6683aAJJ20mqWEP8BMaElFMedPPqsUns0zIk8TPmt+989B
+ AHphs+HFybvOfPqVyJs4BSgHYEHhAkeMYyJPxv7Zdq31hhLD5BIEEHTJs2mw/+FlAJBF
+ 7/5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=vjIiCTomysNBHigYUO2F29y2fu9n4K1mpORfU6aQthU=;
- b=fhdBgnMA37wOXWLug3GcRD23ztZDu7dae4rFa8N73xmw+ldkRIxxTLyCtAuoGHIuBf
- Sy6F9VwIToXrN7weEX+BkCwYn5cNk9u94V5MGIc7ajqBJFhCaW7IyvyWvGgvH1hiAd9o
- Rplz7r2NNemgrxHJ88yhzNI9njKxE1d3+Fliw06Bx2QZH6hyKTMW76e7ewsAjqLZp5ws
- Aq1O0yIRlPaUH6yY7OgMBQ1p3IvnEHC65qwXgDU/FmQDyaHiLuVA4dQDVEFpj8hRy3GN
- prTUy7wRH2r7DnTw8ByUAd32jBSNWhkmIBHi2Db9lLFidf7f8EowOunqcMA9HRQwxKIn
- yTFw==
-X-Gm-Message-State: AOAM533KWPp1bAe8UyN2Glb34lSIRCFC6YIqUXcQdZLwfSgASFhufAgA
- jWeX36ukzdMr1Gn6vYKbT5LnrA==
-X-Google-Smtp-Source: ABdhPJx+pqAdNhSx9GFKMbPAXZItlskPfQ2YKeW1riDj8QxU69vfbwXWlnBOaVLScMfrAyLE694NVQ==
-X-Received: by 2002:a7b:c92d:: with SMTP id h13mr8624075wml.147.1616685857177; 
- Thu, 25 Mar 2021 08:24:17 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=sgzzDhp79bx35r5jKOLNYJfzzmoZjTRizxE5UOSMnpw=;
+ b=BYItbJqfW6h5UQjVW0Ti/d4wItc/gglEXdjSyjmex0DDCLnpt0ZMCee/C8iWSwqb9g
+ TH4PUhmvylmweT7h88/1XqjAcvYkpW+1rBnyWYwfzIXiD7z+8/OVn3bHIfBRoRc9eodL
+ TUxyHX1tczbMWehYvAlzLngYGjIXeMnQRKy8edBYm/ThPeRh2T1lI9CQchz3ClADR5Hi
+ 0YQ0Z3EMnCr5UZIKz5cYqEgOqQQSDjaksp77evl0GYRdlE2tuOPcJOMjtz6NxzvHHegz
+ o/vZl79Uxbf2m/+nitYgmGmLnLjSXUkD6XJpz9GMjwvnVGojUPUe4nFX75kKqIO2p5Os
+ W4sw==
+X-Gm-Message-State: AOAM53055EBrgX5GA25IRrUsE0fvZDh8LTyw0pL6CPmEvKL4fz3z9i/2
+ vnXm9Hww42CkVYJp2L+QUEFhbw==
+X-Google-Smtp-Source: ABdhPJzwib9nqK77IORZQzCGahRNUu/JMVR4TWOE9ehuvIgER+dQxfV5hsZAf8zkflsy93kN7/d/kQ==
+X-Received: by 2002:a5d:638f:: with SMTP id p15mr9566480wru.220.1616685859525; 
+ Thu, 25 Mar 2021 08:24:19 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e0a:90c:e290:b105:9672:b0a:5820])
  by smtp.gmail.com with ESMTPSA id
- p18sm7395260wrs.68.2021.03.25.08.24.16
+ p18sm7395260wrs.68.2021.03.25.08.24.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Mar 2021 08:24:16 -0700 (PDT)
+ Thu, 25 Mar 2021 08:24:19 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: gregkh@linuxfoundation.org
 Cc: devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 0/3] tty: serial: meson: add amlogic, uart-fifosize property
-Date: Thu, 25 Mar 2021 16:24:07 +0100
-Message-Id: <20210325152410.1795557-1-narmstrong@baylibre.com>
+ linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH v2 2/3] tty: serial: meson: retrieve port FIFO size from DT
+Date: Thu, 25 Mar 2021 16:24:09 +0100
+Message-Id: <20210325152410.1795557-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210325152410.1795557-1-narmstrong@baylibre.com>
+References: <20210325152410.1795557-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210325_152420_910213_2FD21FBC 
-X-CRM114-Status: GOOD (  10.27  )
+X-CRM114-CacheID: sfid-20210325_152421_066470_121856E7 
+X-CRM114-Status: GOOD (  14.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,28 +102,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On most of the Amlogic SoCs, the first UART controller in the "Everything-Else"
-power domain has 128bytes of RX & TX FIFO, so add an optional property to describe
-a different FIFO size from the other ports (64bytes).
+Now the DT bindings has a property to get the FIFO size for a particular port,
+retrieve it and use to setup the FIFO interrupts threshold.
 
-This adds a property in the bindings, reads the property from the driver and updates
-the DT with the new property.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+---
+ drivers/tty/serial/meson_uart.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Changes since v1:
-- switched to a more generic "fifo-size"
-
-Neil Armstrong (3):
-  dt-bindings: serial: amlogic,meson-uart: add fifo-size property
-  tty: serial: meson: retrieve port FIFO size from DT
-  arm64: dts: meson: set 128bytes FIFO size on uart A
-
- .../devicetree/bindings/serial/amlogic,meson-uart.yaml      | 6 ++++++
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi                  | 1 +
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi           | 1 +
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                   | 1 +
- drivers/tty/serial/meson_uart.c                             | 5 ++++-
- 5 files changed, 13 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 69eeef9edfa5..ce4dbfb0bd24 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -717,6 +717,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+ {
+ 	struct resource *res_mem, *res_irq;
+ 	struct uart_port *port;
++	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
+ 	int ret = 0;
+ 	int id = -1;
+ 
+@@ -743,6 +744,8 @@ static int meson_uart_probe(struct platform_device *pdev)
+ 	if (!res_irq)
+ 		return -ENODEV;
+ 
++	of_property_read_u32(pdev->dev.of_node, "fifo-size", &fifosize);
++
+ 	if (meson_ports[pdev->id]) {
+ 		dev_err(&pdev->dev, "port %d already allocated\n", pdev->id);
+ 		return -EBUSY;
+@@ -772,7 +775,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+ 	port->type = PORT_MESON;
+ 	port->x_char = 0;
+ 	port->ops = &meson_uart_ops;
+-	port->fifosize = 64;
++	port->fifosize = fifosize;
+ 
+ 	meson_ports[pdev->id] = port;
+ 	platform_set_drvdata(pdev, port);
 -- 
 2.25.1
 
