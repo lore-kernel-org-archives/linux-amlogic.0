@@ -2,91 +2,101 @@ Return-Path: <SRS0=Id+k=IX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+X-Spam-Status: No, score=-12.2 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D768DC433E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 13:34:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B84EC433C1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 13:43:08 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7C68E619C2
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 13:34:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C68E619C2
+	by mail.kernel.org (Postfix) with ESMTPS id 1AF5461A1E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 13:43:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1AF5461A1E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=YYSJNRLOLVPpcqcSMKbCOfCo5sTrxIFL/4DtnIU1jwA=; b=MBt1w/K3p+y9rt60GwqIcrY/u
-	14Eg1OYmBJ260SpVPLMJbHEkELkdxnRSIsQWKGHj0xBjY3Lz2qWQponLXFlohqDw15ckN7fmanuNe
-	jg9fszP/aj9Ru6n78xDtbrnQ7ti2W4PX/DqHe2ZondNUV85uj1qTNBeUGzHPEkXgY6pUbWIx81SDR
-	Uz3Uth2TxFFy1N6Be8gHHw2XfN/oulw3E3QGt3zu9j2zJV1r00P+CSmH99iVVygWbHXSotHx+xdgW
-	3jwEviBlYpk8DhAYVArutHhc0Z7IbVSKr6NwcsfV3DFtuskMlGQdVh78uoQ1MPaP6woJ/yB67dcRR
-	7r94TSogQ==;
+	 bh=jtve1QOE/SSpgf1K3u+S7eLO0EfkQDTwpTUoy4LHq3c=; b=ouZPnppzwHeDX8oa96xfUUPF8
+	MIIn9uwpZ/gnVLokgJ0jEOhYp/1wdq6+6UIhGhHAjrjTMYXy+ck3+PH9bRaP7/jd/GKGzku39WcXt
+	5mpBb4Tf9Sxdo/l+294R+z8hmdyMCRC9oo1U1mewNaqGqPuHuePTN739vXuRHHg6AKvt1itWH1wZ7
+	+XUE5YzzTWSGSKvl0DlkzPUT7ysQ3qmXpsaymO3iE41dov9CorQlkJyVQCPJsAqa9bhIagql4IrgJ
+	enxFysg1OHEcFY9sGC8g3Xl/wa66jJRt5s9UYvgqJQOWYzXwaiG5K8g7+G3MVOZrWxUWyWsTlwt/I
+	o8pp+gP8g==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lPQ7U-001WwQ-Vn; Thu, 25 Mar 2021 13:33:53 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1lPQGL-001Y34-PE; Thu, 25 Mar 2021 13:43:01 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lPQ7H-001WvU-BR; Thu, 25 Mar 2021 13:33:42 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id h10so2389768edt.13;
- Thu, 25 Mar 2021 06:33:39 -0700 (PDT)
+ id 1lPQGF-001Y2I-Pz; Thu, 25 Mar 2021 13:42:57 +0000
+Received: by mail-wr1-x430.google.com with SMTP id v11so2324707wro.7;
+ Thu, 25 Mar 2021 06:42:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rTsRHpZndxgeS88GP9I79vuy4E3KHPhBU7D9Qw0WHCM=;
- b=g9CIjKlm8pC7lTaO6uioaZLuZC7fssojA8XJFkYo5/aLirEkOJVBCwx8YMv2zhwGB/
- Qa2M0sLrbOWVGBVSzz7xnqlK0m8q76T0WEJeVlIsUI4X6czuSc2crrOcL4v8HBeFuo/M
- bHRzYDJhTP9xpkrIVAwvHn13mtNG6XbgbgVTNWL6XCX8XbwMwY3MZQD6lqy03mjBzA4h
- 2B12c0rlZypC+/dH48k+ZfPYGxjhsHozVWcfkJJ2iaAeDWNCK5prMO8JJ73cQReZc1/g
- UT18/by426/eKF+CvLHsKL0Z3sf0DcMMSBQqowcpMPIK5LUlZo5hTAx4XFnma4mmXGFl
- NAwA==
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=r8VujCEl1M2jspW4zhAHvPpPLFXt2mPappg2/9V9Kdk=;
+ b=I1Wd/Nb3x6i2s9ghMxJ2C3bRIG9M4RYMKVpSP3HSeNxNnnZc4CkIwDaSD+RrCKclC4
+ ItWmB/SFnpmSOnDes8A+HUOjMHCdiPKmiK2orql4DeRXACaErSictst6XA4tRMDsDgCG
+ zLKqteNOktNVQM0JaTFKFrMxzN+wMG4Pe76U7d6siwl0b2YpPcnmmvLWidGzztqzpnAB
+ m4yHpg65N/0XFLx341byW9muUdNw+xmzdvZTXvVpyVTVlqNJL2MVCLHswz7FMFR/7fYr
+ o5aDQa9T5sJV/VBh11PD4itKyBmBre0f7kBTLaoDMWPthlxC63UG6qiaIalisnv0GgET
+ thiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rTsRHpZndxgeS88GP9I79vuy4E3KHPhBU7D9Qw0WHCM=;
- b=BjL4LcBKnCPNNvOLF071PKhNW+aOd9NzvYWw4hZFeUUmZLYsahM+qepOuz4VWua2D4
- MqdnGd2ohsZvtQYDaHeuWRW+v9AJNUcK2E0WrvW6I6z3/rDiK/FDZhZ8sXicWf5WSsBt
- ceFugX6ONh6g9u1NQc/aWpx9e2j7ub5tO22/T+jHPKUkiXiUEp4v2NwsaVizlAYcXbY8
- 4TWbxxsivA4YUKQyqY+roz5+r197vNTt220EGHswnkx2T/3eEkvUryNvLOmBNiCu/Pfj
- 12rcO1e8fLYWlCdmiGweyz+HolJEvP4GhP6l6zXKM8lx86JNrbAP8aWONOjaP1LJKeB6
- /vZA==
-X-Gm-Message-State: AOAM532SBpeY4R8OInvm0JOuatqkih8LIr71co8Og8HoNZAqmxcWPFxu
- xsr8oJp9uifWBRiKznJknfWt7Dqzhg+bQL/apnM=
-X-Google-Smtp-Source: ABdhPJxqmMPzuMrRzVuL37n6W7+MhKOw+Qkoq79g9Qi9zRISYcKyjKP6R1Xm2pEhuzO54fISTX6r5adSAeKLqF37+Kk=
-X-Received: by 2002:aa7:d0cb:: with SMTP id u11mr9144416edo.163.1616679218814; 
- Thu, 25 Mar 2021 06:33:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210325124225.2760-1-linux.amoon@gmail.com>
- <20210325124225.2760-2-linux.amoon@gmail.com>
- <YFyIvxOHwIs3R/IT@lunn.ch>
-In-Reply-To: <YFyIvxOHwIs3R/IT@lunn.ch>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 25 Mar 2021 19:03:28 +0530
-Message-ID: <CANAwSgRHHwOtWb87aeqF=kio53xCO0_c_ZkF+9hKohWoyji6dg@mail.gmail.com>
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=r8VujCEl1M2jspW4zhAHvPpPLFXt2mPappg2/9V9Kdk=;
+ b=l7++9Q44iG6N6UfjsIJ9LjxHgTuqbLILrR9xX5559TUpaD90VKPp4+AXPCT5lU5K0y
+ hhxCxwdKyLNH0DsCQDbI+L6BmQeCn4jA3LOgX2nJYUXphRvHPM1zvZlAIeG9sXNxHcLd
+ DOIpqM+/eL4lwh0l6NGAGAZqMKOBYgQxudSzDnS/QPmqdIKifqZ0dL09897xoWyu9CpL
+ Vvryk7/n7qqCPdA1M98Tip/kB3V0Eo/qP/E+KN2TXG4Kj39mPr63RIVV+Oz7A/x92Svj
+ b0BqwhFoJEOoWVOYojRmjCK1SH2tyD0EUOqt3J4hT+/OuIg2F0/BddJMuNzb86AfJuFu
+ GtzQ==
+X-Gm-Message-State: AOAM533wWD8jujFE647hq/XCnoCIGB91l4z+tTXNOlCfdxGNX4xl+zYv
+ MBmUYWUiHHEA+2pUCnMbWX8=
+X-Google-Smtp-Source: ABdhPJy7eF3+00qnRsn9jcb+jRT1qpgWOl4NqrO/iftOAJ30pEX0ydIf/4rSj9pMIR853F4NdGejfw==
+X-Received: by 2002:adf:fd48:: with SMTP id h8mr9218484wrs.229.1616679774308; 
+ Thu, 25 Mar 2021 06:42:54 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8f1f:bb00:88ed:8e49:4b12:e7de?
+ (p200300ea8f1fbb0088ed8e494b12e7de.dip0.t-ipconnect.de.
+ [2003:ea:8f1f:bb00:88ed:8e49:4b12:e7de])
+ by smtp.googlemail.com with ESMTPSA id r1sm8420757wrj.63.2021.03.25.06.42.51
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 25 Mar 2021 06:42:53 -0700 (PDT)
 Subject: Re: [PATCHv1 1/6] dt-bindings: net: ethernet-phy: Fix the parsing of
  ethernet-phy compatible string
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>, 
+To: Anand Moon <linux.amoon@gmail.com>, Andrew Lunn <andrew@lunn.ch>
+Cc: Russell King <linux@armlinux.org.uk>,
  "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, 
- Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
- Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Rob Herring <robh+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- netdev@vger.kernel.org, devicetree <devicetree@vger.kernel.org>, 
+ netdev@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
  linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
  linux-amlogic@lists.infradead.org, Rob Herring <robh@kernel.org>
+References: <20210325124225.2760-1-linux.amoon@gmail.com>
+ <20210325124225.2760-2-linux.amoon@gmail.com> <YFyIvxOHwIs3R/IT@lunn.ch>
+ <CANAwSgRHHwOtWb87aeqF=kio53xCO0_c_ZkF+9hKohWoyji6dg@mail.gmail.com>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Message-ID: <9c06a3f6-e2c4-e30a-977c-1f50a8aab328@gmail.com>
+Date: Thu, 25 Mar 2021 14:42:47 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+MIME-Version: 1.0
+In-Reply-To: <CANAwSgRHHwOtWb87aeqF=kio53xCO0_c_ZkF+9hKohWoyji6dg@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210325_133340_253875_DF18B96F 
-X-CRM114-Status: GOOD (  23.44  )
+X-CRM114-CacheID: sfid-20210325_134256_092459_C7B3E7A5 
+X-CRM114-Status: GOOD (  22.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,58 +113,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Andrew,
+On 25.03.2021 14:33, Anand Moon wrote:
+> Hi Andrew,
+> 
+> On Thu, 25 Mar 2021 at 18:27, Andrew Lunn <andrew@lunn.ch> wrote:
+>>
+>> On Thu, Mar 25, 2021 at 12:42:20PM +0000, Anand Moon wrote:
+>>> Fix the parsing of check of pattern ethernet-phy-ieee802.3 used
+>>> by the device tree to initialize the mdio phy.
+>>>
+>>> As per the of_mdio below 2 are valid compatible string
+>>>       "ethernet-phy-ieee802.3-c22"
+>>>       "ethernet-phy-ieee802.3-c45"
+>>
+>> Nope, this is not the full story. Yes, you can have these compatible
+>> strings. But you can also use the PHY ID,
+>> e.g. ethernet-phy-idAAAA.BBBB, where AAAA and BBBB are what you find in
+>> registers 2 and 3 of the PHY.
+>>
+> 
+> Oops I did not read the drivers/net/mdio/of_mdio.c completely.
+> Thanks for letting me know so in the next series,
+> I will try to add the below compatible string as per the description in the dts.
 
-On Thu, 25 Mar 2021 at 18:27, Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Thu, Mar 25, 2021 at 12:42:20PM +0000, Anand Moon wrote:
-> > Fix the parsing of check of pattern ethernet-phy-ieee802.3 used
-> > by the device tree to initialize the mdio phy.
-> >
-> > As per the of_mdio below 2 are valid compatible string
-> >       "ethernet-phy-ieee802.3-c22"
-> >       "ethernet-phy-ieee802.3-c45"
->
-> Nope, this is not the full story. Yes, you can have these compatible
-> strings. But you can also use the PHY ID,
-> e.g. ethernet-phy-idAAAA.BBBB, where AAAA and BBBB are what you find in
-> registers 2 and 3 of the PHY.
->
+That's not needed, typically the PHY ID is auto-detected.
+Before sending a new series, please describe in detail what
+your problem is. Simply there shouldn't be a need for such a
+series. As I said: e.g. Odroid-C2 worked fine for me with
+a mainline kernel.
 
-Oops I did not read the drivers/net/mdio/of_mdio.c completely.
-Thanks for letting me know so in the next series,
-I will try to add the below compatible string as per the description in the dts.
+> 
+>                compatible = "ethernet-phy-id001c.c916",
+>                             "ethernet-phy-ieee802.3-c22";
+> 
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 +++---
+>>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+>>> index 2766fe45bb98..cfc7909d3e56 100644
+>>> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+>>> @@ -33,7 +33,7 @@ properties:
+>>>          description: PHYs that implement IEEE802.3 clause 22
+>>>        - const: ethernet-phy-ieee802.3-c45
+>>>          description: PHYs that implement IEEE802.3 clause 45
+>>> -      - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
+>>> +      - pattern: "^ethernet-phy-ieee[0-9]{3}\\.[0-9][-][a-f0-9]{4}$"
+>>
+>> So here you need, in addition to, not instead of.
+>>
+>> Please test you change on for example imx6ul-14x14-evk.dtsi
+>>
+> 
+> Yes I have gone through the test case.
+> 
+>>    Andrew
+> 
+> - Anand
+> 
 
-               compatible = "ethernet-phy-id001c.c916",
-                            "ethernet-phy-ieee802.3-c22";
-
-> > Cc: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > index 2766fe45bb98..cfc7909d3e56 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > @@ -33,7 +33,7 @@ properties:
-> >          description: PHYs that implement IEEE802.3 clause 22
-> >        - const: ethernet-phy-ieee802.3-c45
-> >          description: PHYs that implement IEEE802.3 clause 45
-> > -      - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
-> > +      - pattern: "^ethernet-phy-ieee[0-9]{3}\\.[0-9][-][a-f0-9]{4}$"
->
-> So here you need, in addition to, not instead of.
->
-> Please test you change on for example imx6ul-14x14-evk.dtsi
->
-
-Yes I have gone through the test case.
-
->    Andrew
-
-- Anand
 
 _______________________________________________
 linux-amlogic mailing list
