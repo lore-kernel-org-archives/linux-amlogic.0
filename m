@@ -2,90 +2,88 @@ Return-Path: <SRS0=Id+k=IX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 306E5C433C1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 15:25:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2009AC433C1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 15:40:39 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C996E61A1A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 15:25:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C996E61A1A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 88FB061A1A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Mar 2021 15:40:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 88FB061A1A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=u2FGtZTVXg36bssSI5V8ww0Vj47Ok7pXGD9iD4eff6Q=; b=ja/FiqmUQtllaKUfuldrDflAv
-	e3RKnleK9v2yk3iIfyaCYcgUqLSCUX2DSDmLAc/2e7jOF9HFuJdWJH+yMXlPJiAPq+4FU144aAKdV
-	VED5upzH0P/1vRRbSZ+co78V4KuhdptF+/YrUNYtq4mRZjpDNcGA31+u2DWDf22WxPbt/tDEmvOia
-	i87aUZkQRiba/wHr7l826Jjpp6JbOQWkuISep5GUO9C/+ZNZ2/gD1e48pSSee1fRgaz7wX2ZQNESJ
-	slKn+LLAbNFUM0JBkZYEPZqd3h11Sva+V3J7MCF8G0euVeRGbTNYQOlbgXEOpJMJqBzkLMXn5a23J
-	aVdv2bm9w==;
+	 bh=tPeUXAdXPImonCBof8wCJOJNKJOI95eMFKyJ11y/Nu8=; b=WaC5ocdZ6KbcN3ykkZn8jVqJd
+	+k9KvAJDxo4L0oo+ryh4sBLpFQhrQOA8O0jXvdFFpQO70RoTgDbMC2NdVOqJRkzpv/peGS2c7Aqps
+	0pvQi2LllvoW0T8qjQDLabPIdspjGCxP47OOQaw2VUbQIfQZIs2CtSD2Eyfr6cb2lJ6R29vO9jySq
+	uDg8B3B8AoTLbA8kH9Z+mfmy+DiJl8HOaqCT0+VquteX5p5r+LBGFMBkwOTFxNvIbB3Nx3qJpFs/Q
+	9lNcmcRhun6Klpcv281Fc+HEAgSJxISkKMcBycJKTZkRXOCBfwCTHlL6kz+Wxbi5Mo4RBhmAqZX4K
+	U3zRYyV8Q==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lPRqv-001iaj-IO; Thu, 25 Mar 2021 15:24:53 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1lPS64-001kC4-GA; Thu, 25 Mar 2021 15:40:32 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lPRqP-001iSb-Pg
- for linux-amlogic@lists.infradead.org; Thu, 25 Mar 2021 15:24:26 +0000
-Received: by mail-wr1-x430.google.com with SMTP id o16so2750397wrn.0
- for <linux-amlogic@lists.infradead.org>; Thu, 25 Mar 2021 08:24:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=NsI7RWhSeaDJo4VSjykxLGXfOxolxJjq3ZnK3Jkyy1k=;
- b=wg48UBTKMFHtUsOUEBOoTrvtZYz6a3QXdnHmLSpUuHMydZTb3UBEpFcnTrMzTCb0bZ
- Cwu7hOdMFXIt+943OFA69HNpTugWpZ1cl+XH198G47qpAgPttKHALISWRAKLNGl5gr6h
- OmJx/BOsU4f+qB6o0MJwD1KvkFtRYgcuZG1MavtR2QMwf8XZaOpTNIkHFR2lcWMXawFl
- L2pnpn8j1yvUJuhRZmRvV4sGM+2gq3/snDOoTJPOL1VhBW6IFI8+SZgU/fSeA7AqALO3
- vE+nJmBAoqPtZ+vzmdl0kRkn1ZJcgL1lV+Y67Bry6lt209brXzVempIeHq1uzdk6Kmmp
- Y00Q==
+ id 1lPS5t-001kBQ-Iv; Thu, 25 Mar 2021 15:40:24 +0000
+Received: by mail-ed1-x529.google.com with SMTP id b16so2921641eds.7;
+ Thu, 25 Mar 2021 08:40:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BVovXqBbk0wGC2HDbPVyA2PvUhMQtNnpOLKoi6ckjaU=;
+ b=iFeLm+OF/avp81DNNgzalw+tsL7iEPbBLPRqw3QAv2eEf+f749073yoE76q/f4hx8P
+ Vw24m/ksowquw8kplSXYB+L0ibKnbnILK1cPUwO73Rmg7ivRPbbM2XvMzdwn5Gp7y/XT
+ xM6/pSXNvFwDpf8JI2yHsGLpuN4gJdQ3/ouesF9hmV4ZC6mZEjuNuFJuTHzqPjVoBN9X
+ Y9SlykxFTTSawYVTtXAUUtmTUsHM4uZ6RWTtp7PzmePktV9KPzBPzmvhSCPiJUTUp2Pb
+ Rs4Cz/vOU5uumF/DmWhE3FHqDX7ary5poTrZbTHlqXxfODwXPp1wgqZD266Mi++tcku2
+ vp1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=NsI7RWhSeaDJo4VSjykxLGXfOxolxJjq3ZnK3Jkyy1k=;
- b=RnXh2599f+6PxqDQmi1IXVxyOKPn6WEstRMedsHwuKaeu7RPE3vzHlAMLwV+iw9ovP
- uqndiIVcnNqTNADkzkDilb8tQe6qXUxvWBXtL6kBpP7ru0mEL0xEMkFYMLmbDPlw8XVt
- rWITJpvDbuKBFxH45ZnRhtyPM/05+/sEe6ko92Xo7bINCHy6gX4/wnhMe6Y1UWagus9Z
- rkHzd/kHLSddFrh9qFUb8VpOFdP1whGaNkd2cIw9YsWzfWX4xUzrC0jIXNjNm+pSvziu
- zTeTqPISsDEcpOS+d6A9eve1lzAvXr1Lx9az5xwJXCM0A8rcsTat+iuNfgix7f5Vzzny
- kZFg==
-X-Gm-Message-State: AOAM5314SgyyF/Ff0iV57pQbnGVYB9jxSZoUD8norF3KMQmmhuniAQiT
- uyQoMR0k/E7uti3f2216bOZvew==
-X-Google-Smtp-Source: ABdhPJwubghLvEPh98CkBt+hC8/x7JIyFel31g5ZYSlGAhAgzRMes6kB7jwOtfcBrtlFpS6NQjHi2w==
-X-Received: by 2002:a5d:538d:: with SMTP id d13mr9719471wrv.92.1616685860592; 
- Thu, 25 Mar 2021 08:24:20 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:90c:e290:b105:9672:b0a:5820])
- by smtp.gmail.com with ESMTPSA id
- p18sm7395260wrs.68.2021.03.25.08.24.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Mar 2021 08:24:20 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: gregkh@linuxfoundation.org
-Cc: devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 3/3] arm64: dts: meson: set 128bytes FIFO size on uart A
-Date: Thu, 25 Mar 2021 16:24:10 +0100
-Message-Id: <20210325152410.1795557-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210325152410.1795557-1-narmstrong@baylibre.com>
-References: <20210325152410.1795557-1-narmstrong@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BVovXqBbk0wGC2HDbPVyA2PvUhMQtNnpOLKoi6ckjaU=;
+ b=esFfUdI/0rR1mupHwnQD/IDjlULMVmS9DNpD2U6i1F3mub9vgdKB/8unt/Pg1DgO6p
+ RMNEupo5Ei5Fxbgl+WKMmZl0LXNkYNvRABsl5U7LbOs22Zz9yH0XsWmWdEFjc1GtaRwR
+ u/Ng9SkKEqDOio0PCtHcAufVraRSKEciiquCnfr0dCkAgyReMy31WLl78Lr9pefkJo99
+ ktmED0ITM+R7hzYaMOURLqf9OyagL+Ut8NCDwxDdQadiFEYEgqIYbDYs341ZWH4EBvNo
+ NBMFBpf0kSz/ab8bT5I3DfEuOQ7K2Ej2ieRVV++ApUItQVZ7EEsNXLNvyf/mTsczjWBc
+ 6jUQ==
+X-Gm-Message-State: AOAM530Oz1CIxePmvVlhTwqnMMC1bgCChuRDXtQPlMgyGnOvq3qdMF3l
+ apq5daNo9rBrtLoIyu54pK3QlZ5teoqH66rPilA=
+X-Google-Smtp-Source: ABdhPJxvxq8ahShyOo02COOTW4cd6bEFSU4bQBwGxzqlBBO4cZcfia1CXqKD5Wfaga/VcucZpJdv5Evt9QNBzFKwyo0=
+X-Received: by 2002:aa7:c6da:: with SMTP id b26mr9920197eds.254.1616686820913; 
+ Thu, 25 Mar 2021 08:40:20 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210325124225.2760-1-linux.amoon@gmail.com>
+ <4ce8997b-9f20-2c77-2d75-93e038eec6d8@gmail.com>
+In-Reply-To: <4ce8997b-9f20-2c77-2d75-93e038eec6d8@gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 25 Mar 2021 21:10:10 +0530
+Message-ID: <CANAwSgS4SLdYwY9n6uNci+rgE1Q4UAzCy29gX+CL4patDgH15A@mail.gmail.com>
+Subject: Re: [PATCHv1 0/6] Amlogic Soc - Add missing ethernet mdio compatible
+ string
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>, 
+ "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, 
+ Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ netdev@vger.kernel.org, devicetree <devicetree@vger.kernel.org>, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210325_152422_620223_5E21DFC5 
-X-CRM114-Status: UNSURE (   9.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210325_154022_966377_A39F8A90 
+X-CRM114-Status: GOOD (  25.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,55 +100,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The first UART controller in "Everything-Else" power domain, usually used
-for Bluetooth HCI has 128bytes FIFO depth.
+Hi Heiner
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 1 +
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 1 +
- 3 files changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index d945c84ab697..db3dae932a08 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1872,6 +1872,7 @@ uart_A: serial@24000 {
- 				status = "disabled";
- 				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
- 				clock-names = "xtal", "pclk", "baud";
-+				fifo-size = <128>;
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index b858c5e43cc8..4f5b85ad3120 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2311,6 +2311,7 @@ uart_A: serial@24000 {
- 				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
-+				fifo-size = <128>;
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 0edd137151f8..8eae0b7d1642 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -295,6 +295,7 @@ uart_A: serial@84c0 {
- 				reg = <0x0 0x84c0 0x0 0x18>;
- 				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
-+				fifo-size = <128>;
- 			};
- 
- 			uart_B: serial@84dc {
--- 
-2.25.1
+On Thu, 25 Mar 2021 at 18:49, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>
+> On 25.03.2021 13:42, Anand Moon wrote:
+> > On most of the Amlogic SoC I observed that Ethernet would not get
+> > initialize when try to deploy the mainline kernel, earlier I tried to
+> > fix this issue with by setting ethernet reset but it did not resolve
+> > the issue see below.
+> >       resets = <&reset RESET_ETHERNET>;
+> >       reset-names = "stmmaceth";
+> >
+> > After checking what was the missing with Rockchip SoC dts
+> > I tried to add this missing compatible string and then it
+> > started to working on my setup.
+> >
+> > Also I tried to fix the device tree binding to validate the changes.
+> >
+> > Tested this on my Odroid-N2 and Odroid-C2 (64 bit) setup.
+> > I do not have ready Odroid C1 (32 bit) setup so please somebody test.
+> >
+>
+> When working on the Odroid-C2 I did not have such a problem.
+> And if you look at of_mdiobus_child_is_phy() and
+> of_mdiobus_register_phy() you'll see that your change shouldn't be
+> needed.
+I will check this out, thanks for your inputs.
+>
+> Could you please elaborate on:
+> - What is the exact problem you're facing? Best add a dmesg log.
+   1> I am aware all the distro kernel I have tested ethernet will work file
+   2> My issue is when I compile the mainline kernel with the default setting,
+       Ethernet interface will not receive any DHCP IP address from the router
+       Although the Ethernet interface comes up properly.
+      This does not happen frequently but I observed this at my end.
+  3> I tried to collect logs but I did not observe any kernel issue
+like panic or warning.
 
+> - Which kernel version are you using?
+     I am using the mainline kernel with default settings.
+
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
