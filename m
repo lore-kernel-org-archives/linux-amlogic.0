@@ -6,16 +6,16 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D3D05C433DB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Mar 2021 23:11:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A4B5C433C1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Mar 2021 23:11:43 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6F6B56157F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Mar 2021 23:11:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6F6B56157F
+	by mail.kernel.org (Postfix) with ESMTPS id 23DF86198A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Mar 2021 23:11:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 23DF86198A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,50 +24,49 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:Cc:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tzWXJ/np5FEUcR/L2FdMOAofkFTc7t+1cbtLB8RQYgE=; b=DGkaBiuvPLimKM6gT+VbyWdC7K
-	ZEGY7L2AxJApDM3l+c+PTSBCpxDgNut3+f9zm61zlQkfe9aRQavd78gR9DYlAdkCUHPzE/nLniSNw
-	9+nv9J2mffiCfbxyVCMrTUECUEILQ62/958/IX/X5TMAsZ3VQH100CCIuLZdD7Mxvc+KQbn/SG2qH
-	LRc8cIN839VagAYdgSxnj/WYIEXXc20+vMyG4aXqgWMsCeAxicYjMKf1g7UlCt6npAj0C+oS5RD+X
-	a5bKLQoZVhLb5doiVqBtvBfIlT7Xeqf3B4E9i1p8ApNz8zN4QWWPq/T3dy5I5OMTdH+KgtqikK08V
-	KMJSj+LQ==;
+	bh=RBkyyFJoqLNs2HDDF11p1C4DB57Qm3HzLVuQXkfosng=; b=gs5uA8fGB2LgmYXqdILci+7ieu
+	l+XscDFkxR1mZ9GeN+o1gOyn+4j+t9AEAXTf6ZdfZr/0Y5wlZaNIV8sXOmhfS6AbHLzOEI8wTeBNa
+	qi+ODGcoK7SpEkIfShJx5T2aw32Rykm6tTNoiq/7w5POyLpG377jWtMv0xtEgSYCfYRhfA1j3DQfd
+	fwhPVeec7K9qGBwoVZGXynwYeag1vsRbpywLawmm0rOZ7fWmA/z9DRw9DaeGEyh8dfogfSBVWmtlv
+	tHJSL42N1k7KG+aboW/AcK3tqQVv8Psbd1A+9oEOoZo3IFy8mzLpmb9hoJDt1ITHMATUSqPPBWmbC
+	DBEsbMOQ==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lR12e-001r3p-KU; Mon, 29 Mar 2021 23:11:28 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1lR12i-001r5t-F6; Mon, 29 Mar 2021 23:11:32 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lQu7U-000kDj-SY; Mon, 29 Mar 2021 15:48:05 +0000
-Received: by mail-wm1-x330.google.com with SMTP id
- j20-20020a05600c1914b029010f31e15a7fso8775224wmq.1; 
- Mon, 29 Mar 2021 08:47:59 -0700 (PDT)
+ id 1lQu7X-000kDp-VI; Mon, 29 Mar 2021 15:48:09 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id e18so13355167wrt.6;
+ Mon, 29 Mar 2021 08:48:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=PUSTRl8mQTF4xVmOy5MvVS/tUAWi6N4QqKrYUsHXAcQ=;
- b=SwYNslT4lMw6mV5mSelCU6WjkKcYLUK2yVIAz2XyPDx7xqKwefVqlNBXbQbaWMz+RM
- 2+nCHRPQijlGzdzBz8GWpP/CtT3qkstHNFo3PHTqm92f6KR0n2FJ7QFPKqmqXVhtbyaI
- v5FCym8CaNgUEpUC1MF02zzCiBUZWbBcvnLsN2+TdUzOJ8lpd2k66zG/2za8Pet9xkCm
- xYyO3PFTUn1fllellqIsyvzJITFbUBd5qkf1TfZG6j4xBpR/6Ot+DytAGFgxBKUuI2R2
- Zn/VEbseS/gRMo956nlWJzk8OTmHKa98Ri8rGk9p0EQd1ESYKG4bVbZOEmuAM+CQxFlQ
- UNAA==
+ bh=f6jb3HpQvHBT9+AQJCHaKcgG4jn5W/0ADPaJiHCDtrc=;
+ b=Je+++jIk+IVT0VRtz2acicor2wJeRnaQGOVPo7T3dbwCVFCYqEoUAdxHM21s1vcYEa
+ bYUxxNAzHETRANXKZJkUgqQr2Jrv0f8AIzG+ucQRGgVUfLS5cMti+D1GtNVa8rpuCAk1
+ l3799f5jBHfX5eseXcPyf3OHusf7RflZS9Bq0V3VdsOizZiF57o3NMxqWUqJLd3VQM6c
+ aT/PE8SKbAc2fHjO4P2thAlAEoRlLGaUVf6JEhgs/8kmat+4tpRA4kgHyW/EwE3Ccx6N
+ KfK8w6ulBRwfAnub4hYBCgR/N4oz7f9x8NORtBoHzoUiAoMCN4Pl2GugLXiL9SSBeDGH
+ FoYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=PUSTRl8mQTF4xVmOy5MvVS/tUAWi6N4QqKrYUsHXAcQ=;
- b=cU/9pSIfvYaKMUqFGvH0OlQluDYvdJtEI0W0LiNBN4i1A+vHScfte5Cfjx68IbsfUB
- nY7EZvmcP+A5TTSCJLetHBlZmKpHiSmE5LtNnK+s3Zh+TxH4V2vnNJ5WlNYaDBdrYO/4
- DaVwrulAEK9q2QHoctvBxEhZJoglr2QgoFv+G6ql9QUEJ80OTpfGxRzv2/WlxYiXwRi0
- SQNCDyQJfUoOiomNx/XvbI5r0jKC4z/9rL3zOdAdOwp65MsR6YCQ0YWuFU2nqV7G5tlL
- Wkk1LVb8TrUr2d0ffceVOh3APOLek0RsNcQ1K5u5siXRFtcDHXX43QN42nIlLm6Ki15o
- bl7Q==
-X-Gm-Message-State: AOAM533TLF4E6BrCKWmZN9Np8/2RRyM7QbtKgLE15Dv6DveT0uhhq3E3
- fEbJ5o3w6LQPeiTF8FlzCgY=
-X-Google-Smtp-Source: ABdhPJylCNRMxIPd1v/0cuu0IT7zY7iPYYqsbP6tfLVsvlgWvSTUjOR45j04hdnISf2uAJbuyZdWnw==
-X-Received: by 2002:a1c:ac02:: with SMTP id v2mr25472774wme.111.1617032879404; 
- Mon, 29 Mar 2021 08:47:59 -0700 (PDT)
+ bh=f6jb3HpQvHBT9+AQJCHaKcgG4jn5W/0ADPaJiHCDtrc=;
+ b=KayfYGh+hQ2Jkkwok0667zsrqq2KzUYCY+au2SmxI1tOIZmfUrsOCjli6nWDJT4j8v
+ cS/YEv/JNelpJxdrfTQ5Pj8gPxqfB6v4xgkqCkAKteVP1wYStgfQZVwQ98HI7PAfDwPZ
+ UjhuH4khyAxAiz4xkbpIk3U7Q4yeIkWG5OUrZCI4wgo49kC6zBSbA/WQaV8kWue/xQSz
+ h2Zk+qNmNduR+6B/e0bgM01ZZqKXqHtPGx9Etiy5ewHtot2mniOtGHwIie13CUKZ12bF
+ SF1J043a82Ps5XaB5FPLP8ftV4pmuAdjQITsPoSqZ4gEPRGL8S0QIpLdsSFCr0QpKlLJ
+ WgEQ==
+X-Gm-Message-State: AOAM530dgiJtLq3zigpKXK0KwAHoUDjZd1bA4+THupjlPS5fCPv5ptGR
+ 91ncg+gRRtd/7f1usf5Ywp8=
+X-Google-Smtp-Source: ABdhPJxY18dR3uFMhn9ZZy2RWX586iqntUwgCdRnctmfKhusbZ0sdn1j+Aalj7f73TXaVo17BCSi0g==
+X-Received: by 2002:a5d:6446:: with SMTP id d6mr29094382wrw.328.1617032883378; 
+ Mon, 29 Mar 2021 08:48:03 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id b131sm24987323wmb.34.2021.03.29.08.47.57
+ by smtp.gmail.com with ESMTPSA id b131sm24987323wmb.34.2021.03.29.08.48.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Mar 2021 08:47:59 -0700 (PDT)
+ Mon, 29 Mar 2021 08:48:03 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
@@ -75,16 +74,16 @@ To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  linux-kernel@vger.kernel.org
 Cc: Christian Hewitt <christianshewitt@gmail.com>,
  Drazen Spio <drazsp@gmail.com>
-Subject: [PATCH 1/3] dt-bindings: arm: amlogic: add MeCool KII/KIII Pro
- bindings
-Date: Mon, 29 Mar 2021 15:47:51 +0000
-Message-Id: <20210329154753.30074-2-christianshewitt@gmail.com>
+Subject: [PATCH 3/3] arm64: dts: meson: add initial device-tree for MeCool
+ KIII Pro
+Date: Mon, 29 Mar 2021 15:47:53 +0000
+Message-Id: <20210329154753.30074-4-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210329154753.30074-1-christianshewitt@gmail.com>
 References: <20210329154753.30074-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210329_164804_009418_F6721154 
-X-CRM114-Status: GOOD (  10.91  )
+X-CRM114-CacheID: sfid-20210329_164807_817034_C0AE6CAA 
+X-CRM114-Status: GOOD (  16.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,34 +101,162 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the board bindings for the MeCool (Videostrong Technology Co., Ltd)
-KII-Pro (S905D) and KIII-Pro (S912) devices.
+MeCool (Videostrong) KIII Pro is based on the Amlogic Q200 reference
+board with an S912 chip and the following specs:
 
+- 3GB DDR3 RAM
+- 16GB eMMC
+- 10/100/1000 Base-T Ethernet
+- BCM4335 Wireless (802.11 b/g/n/ac, BT 4.0)
+- DVB-C/T/T2/S/S2 (AVL6862TA demod + R912 tuner)
+- HDMI 2.0a video
+- S/PDIF optical output
+- CVBS/Analogue output
+- 4x USB 2.0 ports
+- IR receiver
+- 1x Power button (with integrated blue LED)
+- 1x Update/Reset button (underside)
+- 1x micro SD card slot
+
+Tested-by: Drazen Spio <drazsp@gmail.com>
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../dts/amlogic/meson-gxm-mecool-kiii-pro.dts | 113 ++++++++++++++++++
+ 2 files changed, 114 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index d24334e1e166..97fb96266344 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -109,6 +109,7 @@ properties:
-               - libretech,aml-s905d-pc
-               - phicomm,n1
-               - smartlabs,sml5442tw
-+              - videostrong,gxl-kii-pro
-           - const: amlogic,s905d
-           - const: amlogic,meson-gxl
- 
-@@ -123,6 +124,7 @@ properties:
-               - minix,neo-u9h
-               - nexbox,a1
-               - tronsmart,vega-s96
-+              - videostrong,gxm-kiii-pro
-               - wetek,core2
-           - const: amlogic,s912
-           - const: amlogic,meson-gxm
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index f8f515c93055..a58ccecfcb55 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -39,6 +39,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-libretech-pc.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-minix-neo-u9h.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts
+new file mode 100644
+index 000000000000..0651756d7fb5
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts
+@@ -0,0 +1,113 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++/*
++ * Author: Christian Hewitt <christianshewitt@gmail.com>
++ */
++
++/dts-v1/;
++
++#include "meson-gxm.dtsi"
++#include "meson-gx-p23x-q20x.dtsi"
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
++
++/ {
++	compatible = "videostrong,gxm-kiii-pro", "amlogic,s912", "amlogic,meson-gxm";
++	model = "MeCool KIII Pro";
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0xC0000000>;
++	};
++
++	adc-keys {
++		compatible = "adc-keys";
++		io-channels = <&saradc 0>;
++		io-channel-names = "buttons";
++		keyup-threshold-microvolt = <1710000>;
++
++		button-function {
++			label = "Update";
++			linux,code = <KEY_VENDOR>;
++			press-threshold-microvolt = <10000>;
++		};
++	};
++
++	gpio-keys-polled {
++		compatible = "gpio-keys-polled";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		poll-interval = <100>;
++
++		button@0 {
++			label = "power";
++			linux,code = <KEY_POWER>;
++			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		blue {
++			color = <LED_COLOR_ID_BLUE>;
++			function = LED_FUNCTION_POWER;
++			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++			panic-indicator;
++		};
++	};
++};
++
++&ethmac {
++	pinctrl-0 = <&eth_pins>;
++	pinctrl-names = "default";
++
++	phy-handle = <&external_phy>;
++
++	amlogic,tx-delay-ns = <2>;
++
++	phy-mode = "rgmii";
++};
++
++&external_mdio {
++	external_phy: ethernet-phy@0 {
++		/* Realtek RTL8211F (0x001cc916) */
++		reg = <0>;
++		max-speed = <1000>;
++
++		reset-assert-us = <10000>;
++		reset-deassert-us = <80000>;
++		reset-gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;
++
++		interrupt-parent = <&gpio_intc>;
++		/* MAC_INTR on GPIOZ_15 */
++		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
++	};
++};
++
++&ir {
++	linux,rc-map-name = "rc-mecool-kiii-pro";
++};
++
++&sd_emmc_a {
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++	};
++};
++
++&uart_A {
++	status = "okay";
++	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
++	pinctrl-names = "default";
++	uart-has-rtscts;
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
++		max-speed = <2000000>;
++		clocks = <&wifi32k>;
++		clock-names = "lpo";
++	};
++};
 -- 
 2.17.1
 
