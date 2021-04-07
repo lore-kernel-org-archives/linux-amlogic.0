@@ -2,152 +2,87 @@ Return-Path: <SRS0=M/XH=JE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.2 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 357F5C433ED
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 01:46:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F093C433B4
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 04:27:19 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CFFD4610CE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 01:45:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CFFD4610CE
+	by mail.kernel.org (Postfix) with ESMTPS id 151FE611BE
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 04:27:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 151FE611BE
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
-	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8tW5tuy5j5Hd5ZN2DKmYwUQoaC64ia9UkSJzQIUFrmE=; b=PggnqrVPVlGBBY0MUV+zjCjj6
-	cfDVDhniKW2gHfxwC3vBsmQVljTUGo1396VLJVf6TuuAo8/UV+diyncv4SvmmNr8rEEU2Mm/nUFXh
-	8UesCNiI6WmuzQY9NO8kNsKx0o10CrM+IM6KW2HAyb88VfVOgxtl8tz9xe+8f1cQpOPJjIuJkz6E8
-	AsyVmqxB+jS3IVtiBVLY++OUXC10AJFhY15W+VrZdcGZbjnnK0orCuLctcodIUZp9FfCcpw5WSzcv
-	RieM+cbLnDgeoh3pJ2TWYw7jGoFDsMT8D/u92t6p7a1AIFYnp7AAEkJURizWXk9qQMtP2xAVI294f
-	tGXIQMXfQ==;
+	:Content-Type:MIME-Version:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=PMM3uJim0LF64iIbfITFhzJC4WGVnNsC19A265VqyuA=; b=aNgzFgyDwVpANjGPUQTLVwzj0M
+	gzv+ujnbFKSFCOJ/nKWt6Zm9x+ZZztWooNn7Z2HuBYanA039LPpc3JU9/LvFkekcXyjMOyuX7U9oa
+	znB7OAembXCy8chRHeZSxXMvJQirADHYDWBsN0P8SkrbkFClsENhPk5E/+ZDmataVwOjW/mZ0fnhb
+	tAijB1F2dXYeD91ANRRYu2iA+DH93F2aUVWob+5FUnWSf3Dx6olbnr8F0kebNu5JvQyKwqQP1I5Jt
+	yLnEI+UAzwaC/AY1s/BtSoSxvAvn5sLnEMRE597JXbFUa8usOJwNIhpdvLaGJGI+CYKemhhtkK6SS
+	IigkvvSQ==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lTxGQ-003mUw-Ex; Wed, 07 Apr 2021 01:45:50 +0000
-Received: from mail-pf1-x432.google.com ([2607:f8b0:4864:20::432])
+	id 1lTzmW-0041Cs-Iv; Wed, 07 Apr 2021 04:27:08 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lTxGG-003mUK-GD; Wed, 07 Apr 2021 01:45:43 +0000
-Received: by mail-pf1-x432.google.com with SMTP id l123so10244781pfl.8;
- Tue, 06 Apr 2021 18:45:36 -0700 (PDT)
+ id 1lTzlj-00417t-QZ; Wed, 07 Apr 2021 04:26:22 +0000
+Received: by mail-wr1-x432.google.com with SMTP id u11so3944872wrp.4;
+ Tue, 06 Apr 2021 21:26:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=w25lwMo3bZrfNfXLpALA+4I29YoJZak3FyajA6HeC94=;
- b=CIChkHRrI3lQGQaVgR3g6LW6mtE7yO24xnIbA3eBb2OBsSB2LpEOsEMe8qhA6ppB4/
- GFg8WBsRxrdBL+opf48EhryRN/JKtLSyUf8TtU4rVTRQa0D+2XsyLYjF95V4ZrkFFl1U
- 5mLtoliRkEQSihgjqgixl9vUQ0ZABFHT2oc60rmHwJ60bV8gTNkz1J4AlAZwO+5B+DuQ
- +5lul+5kAwz6HwmSJjNChHm4+EocR2sBxC3baPIbPs036zqFQh7Ew01atfiMB7d3C/Ow
- PUNTNMFbHGoK1bfa8ixotxlbsKJ3STRzqpF8jldPfQ8ke/3eiY6H4rtWu1h0K8XYB2Vv
- rgqQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=5KdDU7bWmStE3swA6bDIP4C2YreOYbP8fSjU6f5jMDY=;
+ b=ir6wejPtNEQn/ajXwLSx/OHNMCEV0BVm/bYoIJZ4d7dVXy17VYrlvyLE9dQ6+T5zrR
+ AE4wSsq0fb8oGb08676TOK3ljBgej5cMobKpqVdO6a67SL8A4M7cEsOPMm1QhBxyx+Jr
+ RV5TnxjTyrHTLuvoJay/fgtesLkX60RPrHwu1ByW5ywf44Mdht13yZTIJmorcQezsP3t
+ u3ucZZ74jKyO5aJPhLiy0/rVLimQEc8qk1W2rE/OG/5NWGmXj7LM38x2rcSufk+8ijXX
+ U2S3Z2YEtAZKJXSfkXEMWjFSib8YpHwZAQLhD+Hmqlevwy7W3ku2KXS05OT8IzfbFoNq
+ ya2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=w25lwMo3bZrfNfXLpALA+4I29YoJZak3FyajA6HeC94=;
- b=iwUFa7wEFsxRd9t1gv7ekSOpgiTszf2U7XtgIjAHxFj4CwlhFHUG57Nzh0MbyruVTD
- p6BoyaNfM6GGSObBBCtU/qEjMjMYQSilAI6hLsLKqwNOY0uovo5rs3in6/6BFOnrpNJr
- R++CmIEmkYFWGDN22Kg+7Jz67hPAJjumz9BP9BWgY5AOvkbz/64y30idSeX3JT8d3vfW
- G0EHgx7Xr01DrpBeCJqHeRcQhI1eaLNRuCq2LeWbbR+MPizLJ+ps2fRNAi1ptY9ExQEr
- iOoXTWpT6yb2AOEHnFTdd/HYIC276ZmUl1uTUgN/BlzVtqt8GOkqwTh3UcaeHCeRQluq
- CNew==
-X-Gm-Message-State: AOAM53393TtYrlbrT4dPqjypQAuUdtT4ro1uRHOQCRxVSsU5h9TitOUh
- AuxzKq0HEqlDzkph4uES7Hc=
-X-Google-Smtp-Source: ABdhPJyjkdVdAMZsiQs6PYIHXwhXVO+uLzcp0Xe8vbkVPgJP52Fozx3Xafo1rzDkv0TO669OyIEiUA==
-X-Received: by 2002:a63:fb12:: with SMTP id o18mr948658pgh.438.1617759935548; 
- Tue, 06 Apr 2021 18:45:35 -0700 (PDT)
-Received: from [10.230.29.202] ([192.19.223.252])
- by smtp.gmail.com with ESMTPSA id o13sm20193959pgv.40.2021.04.06.18.45.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 06 Apr 2021 18:45:34 -0700 (PDT)
-Subject: Re: [PATCH net-next v3 2/2] of: net: fix of_get_mac_addr_nvmem() for
- PCI and DSA nodes
-To: Michael Walle <michael@walle.cc>, ath9k-devel@qca.qualcomm.com,
- UNGLinuxDriver@microchip.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
- linux-omap@vger.kernel.org, linux-wireless@vger.kernel.org,
- devicetree@vger.kernel.org, linux-staging@lists.linux.dev
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Michael Ellerman <mpe@ellerman.id.au>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>, Andreas Larsson <andreas@gaisler.com>,
- "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@siol.net>, Joyce Ooi <joyce.ooi@intel.com>,
- Chris Snook <chris.snook@gmail.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, bcm-kernel-feedback-list@broadcom.com,
- Florian Fainelli <f.fainelli@gmail.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Sunil Goutham <sgoutham@marvell.com>, Fugang Duan <fugang.duan@nxp.com>,
- Madalin Bucur <madalin.bucur@nxp.com>,
- Pantelis Antoniou <pantelis.antoniou@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, Li Yang <leoyang.li@nxp.com>,
- Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
- <salil.mehta@huawei.com>, Hauke Mehrtens <hauke@hauke-m.de>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Vadym Kochan <vkochan@marvell.com>, Taras Chornyi <tchornyi@marvell.com>,
- Mirko Lindner <mlindner@marvell.com>,
- Stephen Hemminger <stephen@networkplumber.org>, Felix Fietkau
- <nbd@nbd.name>, John Crispin <john@phrozen.org>,
- Sean Wang <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Bryan Whitehead <bryan.whitehead@microchip.com>,
- Vladimir Zapolskiy <vz@mleia.com>,
- Sergei Shtylyov <sergei.shtylyov@gmail.com>, Byungho An
- <bh74.an@samsung.com>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Alexandre Torgue <alexandre.torgue@st.com>, Jose Abreu
- <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Vinod Koul <vkoul@kernel.org>,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
- Grygorii Strashko <grygorii.strashko@ti.com>, Wingman Kwok <w-kwok2@ti.com>,
- Murali Karicheri <m-karicheri2@ti.com>,
- Michal Simek <michal.simek@xilinx.com>,
- Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
- Kalle Valo <kvalo@codeaurora.org>,
- Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
- Ryder Lee <ryder.lee@mediatek.com>, Stanislaw Gruszka <stf_xl@wp.pl>,
- Helmut Schaa <helmut.schaa@googlemail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>,
- Vivien Didelot <vivien.didelot@gmail.com>,
- Vladimir Oltean <olteanv@gmail.com>
-References: <20210406220921.24313-1-michael@walle.cc>
- <20210406220921.24313-3-michael@walle.cc>
-From: Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <70b649a4-4b1f-3e95-a6b9-23a00bbaf122@gmail.com>
-Date: Tue, 6 Apr 2021 18:45:26 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.9.0
-MIME-Version: 1.0
-In-Reply-To: <20210406220921.24313-3-michael@walle.cc>
-Content-Language: en-US
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=5KdDU7bWmStE3swA6bDIP4C2YreOYbP8fSjU6f5jMDY=;
+ b=qLFo3vvbZy3tB7jkH3P3toPR6Y180/JM7/YZosTOBYcJvsvxSZue3xH/1/QYPceDIz
+ Cy9H9upjcBQngpYCfxyKVq6v2VvhkfowJt0QfXDx8emdY+JUVpuMZbYNZ62BdeD3/qF5
+ VAZIIAH3nbrWM1TipCF2AhTLeHIGVggx9MXqNirrtLz9HulUR7e5qSylIhIGFUwHwCem
+ 0E9gjYmaBk4ASCs4GJMulpieVa6zOrzwl9Az7WsV/SKRXblliWoADbANi04wNm0+hBnm
+ hsPLMrGWNs9srsyK55plo+OdUf3WCSpUz57LEI1wjQkf26T0T0AFgxwha6NMR5jTf5Ii
+ EdnQ==
+X-Gm-Message-State: AOAM5317avD8INnlVs7FSL13OqIWQoEUP5j3vlugwl/M2DyXhtR1a2oj
+ WoiksrVO4xex+Iu7ZVs+CU0=
+X-Google-Smtp-Source: ABdhPJxwt/QTf9jnkvwysMy8N0WkMbKvrDaZvwchBpmxsCQ8UBW84c55tpooQVZQgoHKey0EoFDdCQ==
+X-Received: by 2002:a5d:53cd:: with SMTP id a13mr1735800wrw.273.1617769577938; 
+ Tue, 06 Apr 2021 21:26:17 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id k3sm16487112wrc.67.2021.04.06.21.26.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 06 Apr 2021 21:26:17 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>,
+ Hyeonki Hong <hhk7734@gmail.com>
+Subject: [PATCH v2 2/3] arm64: dts: meson: add saradc node to ODROID N2/N2+
+Date: Wed,  7 Apr 2021 04:26:08 +0000
+Message-Id: <20210407042609.9736-3-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210407042609.9736-1-christianshewitt@gmail.com>
+References: <20210407042609.9736-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210407_024541_335496_8B04CE3E 
-X-CRM114-Status: GOOD (  19.01  )
+X-CRM114-CacheID: sfid-20210407_052620_197935_40939056 
+X-CRM114-Status: GOOD (  12.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -159,37 +94,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Hyeonki Hong <hhk7734@gmail.com>
 
+Add the meson saradc node to the ODROID N2/N2+ common dtsi.
 
-On 4/6/2021 3:09 PM, Michael Walle wrote:
-> of_get_mac_address() already supports fetching the MAC address by an
-> nvmem provider. But until now, it was just working for platform devices.
-> Esp. it was not working for DSA ports and PCI devices. It gets more
-> common that PCI devices have a device tree binding since SoCs contain
-> integrated root complexes.
-> 
-> Use the nvmem of_* binding to fetch the nvmem cells by a struct
-> device_node. We still have to try to read the cell by device first
-> because there might be a nvmem_cell_lookup associated with that device.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
-> Please note, that I've kept the nvmem_get_mac_address() which operates
-> on a device. The new of_get_mac_addr_nvmem() is almost identical and
-> there are no users of the former function right now, but it seems to be
-> the "newer" version to get the MAC address for a "struct device". Thus
-> I've kept it. Please advise, if I should kill it though.
+Signed-off-by: Hyeonki Hong <hhk7734@gmail.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Nit: if you need to resubmit you could rephrase the subject such that
-the limitation of of_get_mac_addr_nvmem() is lifted to include all kinds
-of devices, and no longer just platform_device instances as before.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 2f8d574c30c0..0a994668e707 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -508,6 +508,11 @@
+ 	status = "okay";
+ };
+ 
++&saradc {
++	status = "okay";
++	vref-supply = <&vddao_1v8>;
++};
++
+ /* SD card */
+ &sd_emmc_b {
+ 	status = "okay";
 -- 
-Florian
+2.17.1
+
 
 _______________________________________________
 linux-amlogic mailing list
