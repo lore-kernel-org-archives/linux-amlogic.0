@@ -2,90 +2,99 @@ Return-Path: <SRS0=M/XH=JE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5CDDC433ED
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 14:59:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E34BC433ED
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 15:48:46 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3C4446113D
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 14:59:38 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C4446113D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id A909E610C7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 15:48:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A909E610C7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Et4ROiYYKYMZyP72Qnp8q1ZL0pgu+zwViz9fq1Dh17k=; b=bpQafBCVAwColMCnDvwC3OHeiQ
-	/pkIYX0LTbe1Goihneappi1dAPJXU1xxi/uwBXqrjBB0/Hw+aW7lYPKgtGvHCPBHvR1Nj2RyOysxR
-	Hy/WwY23kdyBiiRpyxo+9nsG1PO+INk/nU6mlokWk/nahleVe5yNZdpvRi4cjXD/7c8Lr05dapNe0
-	CrXzdD6V8hnV8Xk/RQrJRGtcU4deQNt+rZK/vVQOLMIG+pooqx1LlrQACQa6X8ctKfGwhsYRT8CeQ
-	pWWAsQh+fb5dkGPGrBUPB4WzoLsqiJgxbWgrLlnc+oW9p0/h3Yoxe4Ay1OPPL5o3+5vFpCmHuwmSU
-	gEUB7vMQ==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:Cc:To:From:
+	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=BOmbGke84VKwLD4eBdbuGDTdvj5ZDmvXjR58Eevs+jE=; b=mUE5lIpTZuhNEglv5sVIxcKgB
+	c4iYdWHIEGVNmYSCDNenlKQP/CmgW4w1cVVD8MqOzO7hdh0PoK9CG/8ZL3GY7gId2K/YPIdt6Yfs+
+	mYIj7Ebke+8pBgMITu9PzBYeY+6HuHRWxeKHsqS4zF23fyREQHEMELidl2nGe6Cl55y2Ew/r0uJdh
+	2Fv7TPqYwmJltPr7oQCgU0MaRNe87qrLqvmElVEtyeczk32tDrrIWAOgqmNInJ3vuFUNlBRqKE/78
+	v4Y7fHw0Pu67F+Zm+CekRcM0C5uDoXEQxKQjuRIAou1ytgS+UrrhscKaLeodUE3wBPojRcPuN9k8Z
+	fY6CchQEw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lU9eU-005DuA-6b; Wed, 07 Apr 2021 14:59:30 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1lUAQ2-005Jup-BX; Wed, 07 Apr 2021 15:48:38 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lU9eO-005DtI-DE
- for linux-amlogic@lists.infradead.org; Wed, 07 Apr 2021 14:59:27 +0000
-Received: by mail-ed1-x534.google.com with SMTP id r22so8751672edq.9
- for <linux-amlogic@lists.infradead.org>; Wed, 07 Apr 2021 07:59:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=RhiVLxZ189Mfi2/3w2wk+mT3BSMHUmXI5aQWXNu5k2c=;
- b=zZoVhHro6L2LnmIIbWv4pad71Bvb0y4XyBmWu6P/hmrzntRYC0UoynxC+JhP2SKoXn
- UEzcesZpmt7p760jdD0RYi8NswCaIA3X+aKJW5tmY70iG49QyQW34o0HeYE/Iw7QuTxj
- a6GSlrLvuch1v7YuT1uXu0mApwSkZSjjeEO8Zf0820ze9vQ5dP1wqwTcGU5V0mtXEw8V
- cIziaxSKFvXB+k0Zi4h7WVHuTkIw23lFacZs7QDfM4n1zLia7x5pw+yD1CpWlDFQe3Hn
- QRkm2ORd+tRA4G1Zp3DrSUB7MkfwTPo2P+DOk7H3u9YsZZXwbIr0rIELnx3PdBGjYecq
- d5Eg==
+ id 1lUAPx-005JtP-37; Wed, 07 Apr 2021 15:48:35 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id
+ b133-20020a1c678b0000b02901231346381dso1431750wmc.0; 
+ Wed, 07 Apr 2021 08:48:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=VXyrtGnwTjNkgIA1jrziNG4eeLUP6i3fUCHQ1vhVTNk=;
+ b=AT3fDu5INkxhj3Ycskj+25gD7VvEaPZFZOqS+dhmjSsFiVZ01PPcXhLNUTnVfU6F9T
+ E0XhY4u1NBJm5jTKMs7AcK+gzPIAXkVqEgk+T49IfKZLkDo5mqKZKRVFf11vkcvr5LUA
+ jXeX/IYQl6oBAUQLk3c2+KmMoN8w+LME7R5+tp200su1i7v4ClMarRdCiNqfPZnLAqX1
+ k7FMPChv+9NMP1ym25RwMfvTL/6KVRO1Kh1ziGhSI4x7ijLJK86xHGHdwQJ+fVlh/7Be
+ Z1oGWwNYGPu9/pqRHVoHZRW8mBI6HXAVhCeK00BOayKoSU9s9USmOKT4eQRZ/kGHWoJ4
+ 5u1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=RhiVLxZ189Mfi2/3w2wk+mT3BSMHUmXI5aQWXNu5k2c=;
- b=bt9DtGXVDgSv+/TVS135YT/8mtct8w+HPVWhKriDsNlfJaSTIsCohH6gjFpbiv+vVZ
- A/669oW1O0uFkQGxC6jqOTzaQwnRcqnTJfdwXlYiXCV1U3WRKAQL5GqJ5rNg2XG72E4E
- CT9pZyhB8zqBnszag2kxMGDRzeLg9mPSpjl1+i+OumNDJOrBz8O4POsRmT14iceFUQyt
- 1Xef2s0L2kKiq1j0w/tVuIEBvG4BmSMQAooE4W96yqUhfQhmaakrM05K7k+VGqPOTl2t
- gORh6/Tc0YFk70K39qEPolOlekU9rQ/Hag5VXVLJv0KEze++MUUVX7S9xKl375vvFYbT
- HFCg==
-X-Gm-Message-State: AOAM5302HS5bWSTV6P025huly29ePHk+uu7xGQ8az90VjnDyMQIaXWdA
- /VNCy6LdzldExGjO8I2FD5oMxA==
-X-Google-Smtp-Source: ABdhPJxzmktfBJNJzlo7KcK7eCSOqr9CD9XKZcsYIEH7+/H04DXrYXnpi/VBjAARwmgiCznZjmuALA==
-X-Received: by 2002:a05:6402:1606:: with SMTP id
- f6mr4867670edv.216.1617807563889; 
- Wed, 07 Apr 2021 07:59:23 -0700 (PDT)
-Received: from starbuck.lan (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.googlemail.com with ESMTPSA id
- pj18sm6144647ejb.101.2021.04.07.07.59.23
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=VXyrtGnwTjNkgIA1jrziNG4eeLUP6i3fUCHQ1vhVTNk=;
+ b=T61SjKdwcEuhU9na0/0Z2BP3MnUr2LERtmIpJlAznqSywfC1r8toGVcZz5H57BRDyX
+ /VdNav6oZPL97S5P0KvJ2y08pvrNugoagafgivGDLtjl5tAhobc9sqKnsBOm3DYkIqCw
+ KWs3mL50DUrOpuLaXPeNnCXedrjnM8cmWwZmLz+bDl+Nv+MP5CsHFXpa+3bC6r+V9wZL
+ aGK5ay6rDglH0GlzkHAoe49tXKycRY+KgpKQ6joYv+F45tyV3531LPJwKz/SIolBrR6V
+ t5TKlJC4SblXljtbstvPJxBl40e8Fop80vnESXHZpet+DSxDY7tKCB2jVK2LQzot+WFI
+ zYjg==
+X-Gm-Message-State: AOAM5319WArocoDam3rMNVpSk6PonzW+Lo0V/KU4tAKDSdmo8PfNnAhA
+ b0dsnPjaaZghten2lnRM/Ds=
+X-Google-Smtp-Source: ABdhPJzD7dxKEjfVHj/Mt5EH5n5S/dlaxsmEkejN73MZv+TvkDOrEI5rgccyVlOqrKVUnws2nEHr5A==
+X-Received: by 2002:a05:600c:2946:: with SMTP id
+ n6mr3655449wmd.52.1617810511641; 
+ Wed, 07 Apr 2021 08:48:31 -0700 (PDT)
+Received: from 192.168.10.5 ([39.46.7.73])
+ by smtp.gmail.com with ESMTPSA id v185sm9224838wmb.25.2021.04.07.08.48.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Apr 2021 07:59:23 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] ASoC: meson: axg-fifo: add NO_PERIOD_WAKEUP support
-Date: Wed,  7 Apr 2021 16:59:14 +0200
-Message-Id: <20210407145914.311479-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.30.2
+ Wed, 07 Apr 2021 08:48:31 -0700 (PDT)
+Message-ID: <5daaeac37cfa5c07a1880ae49b712566a561ba1a.camel@gmail.com>
+Subject: Re: [PATCH] staging: axis-fifo: media/meson: remove redundant
+ dev_err call
+From: Muhammad Usama Anjum <musamaanjum@gmail.com>
+To: Hans Verkuil <hverkuil@xs4all.nl>
+Cc: musamaanjum@gmail.com, linqiheng@huawei.com, 
+ kernel-janitors@vger.kernel.org, dan.carpenter@oracle.com, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Neil Armstrong
+ <narmstrong@baylibre.com>,  Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,  "open
+ list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>, open list
+ <linux-kernel@vger.kernel.org>,  "open list:MESON VIDEO DECODER DRIVER FOR
+ AMLOGIC SOCS" <linux-media@vger.kernel.org>, "open list:MESON VIDEO DECODER
+ DRIVER FOR AMLOGIC SOCS" <linux-amlogic@lists.infradead.org>, "moderated
+ list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>
+Date: Wed, 07 Apr 2021 20:48:21 +0500
+In-Reply-To: <93218bc8-2cbb-bacc-f985-876a842261c4@xs4all.nl>
+References: <20210407101047.GA1491258@LEGION>
+ <93218bc8-2cbb-bacc-f985-876a842261c4@xs4all.nl>
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210407_155925_214590_CA70A2B7 
-X-CRM114-Status: GOOD (  12.83  )
+X-CRM114-CacheID: sfid-20210407_164833_333634_86C387B4 
+X-CRM114-Status: GOOD (  19.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,57 +111,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On the AXG family, the fifo irq is not necessary for the HW to operate.
-It is just used to notify that a period has elapsed. If userpace does not
-care for these wakeups (such as pipewire), we are just wasting CPU cycles.
+On Wed, 2021-04-07 at 16:05 +0200, Hans Verkuil wrote:
+> Hi Muhammad,
+> 
+> On 07/04/2021 12:10, Muhammad Usama Anjum wrote:
+> > devm_ioremap_resource() prints error message in itself. Remove the
+> > dev_err call to avoid redundant error message.
+> 
+> Please split this up into two separate patches! They are independent
+> changes and these two drivers are maintained by different people as well.
+> 
+> The patch itself looks OK, but it really has to be two separate patches.
+> 
+Okay. I'll send two separate patches. Thank you.
 
-Add support for NO_PERIOD_WAKEUP and disable irq when they are no needed.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- sound/soc/meson/axg-fifo.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
-
-diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
-index b2e867113226..b9af2d513e09 100644
---- a/sound/soc/meson/axg-fifo.c
-+++ b/sound/soc/meson/axg-fifo.c
-@@ -27,8 +27,8 @@ static struct snd_pcm_hardware axg_fifo_hw = {
- 		 SNDRV_PCM_INFO_MMAP |
- 		 SNDRV_PCM_INFO_MMAP_VALID |
- 		 SNDRV_PCM_INFO_BLOCK_TRANSFER |
--		 SNDRV_PCM_INFO_PAUSE),
--
-+		 SNDRV_PCM_INFO_PAUSE |
-+		 SNDRV_PCM_INFO_NO_PERIOD_WAKEUP),
- 	.formats = AXG_FIFO_FORMATS,
- 	.rate_min = 5512,
- 	.rate_max = 192000,
-@@ -113,7 +113,7 @@ int axg_fifo_pcm_hw_params(struct snd_soc_component *component,
- {
- 	struct snd_pcm_runtime *runtime = ss->runtime;
- 	struct axg_fifo *fifo = axg_fifo_data(ss);
--	unsigned int burst_num, period, threshold;
-+	unsigned int burst_num, period, threshold, irq_en;
- 	dma_addr_t end_ptr;
- 
- 	period = params_period_bytes(params);
-@@ -142,10 +142,11 @@ int axg_fifo_pcm_hw_params(struct snd_soc_component *component,
- 	regmap_field_write(fifo->field_threshold,
- 			   threshold ? threshold - 1 : 0);
- 
--	/* Enable block count irq */
-+	/* Enable irq if necessary  */
-+	irq_en = runtime->no_period_wakeup ? 0 : FIFO_INT_COUNT_REPEAT;
- 	regmap_update_bits(fifo->map, FIFO_CTRL0,
- 			   CTRL0_INT_EN(FIFO_INT_COUNT_REPEAT),
--			   CTRL0_INT_EN(FIFO_INT_COUNT_REPEAT));
-+			   CTRL0_INT_EN(irq_en));
- 
- 	return 0;
- }
--- 
-2.30.2
+Regards,
+Usama
+> Regards,
+> 
+> 	Hans
+> 
+> > Signed-off-by: Muhammad Usama Anjum <musamaanjum@gmail.com>
+> > ---
+> >  drivers/staging/axis-fifo/axis-fifo.c   | 1 -
+> >  drivers/staging/media/meson/vdec/vdec.c | 8 ++------
+> >  2 files changed, 2 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/staging/axis-fifo/axis-fifo.c b/drivers/staging/axis-fifo/axis-fifo.c
+> > index 2bb1c2e9cb57..ed9281089738 100644
+> > --- a/drivers/staging/axis-fifo/axis-fifo.c
+> > +++ b/drivers/staging/axis-fifo/axis-fifo.c
+> > @@ -853,7 +853,6 @@ static int axis_fifo_probe(struct platform_device *pdev)
+> >  	fifo->base_addr = devm_ioremap_resource(fifo->dt_device, r_mem);
+> >  	if (IS_ERR(fifo->base_addr)) {
+> >  		rc = PTR_ERR(fifo->base_addr);
+> > -		dev_err(fifo->dt_device, "can't remap IO resource (%d)\n", rc);
+> >  		goto err_initial;
+> >  	}
+> >  
+> > diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+> > index 5d4db7a5b4b5..e51d69c4729d 100644
+> > --- a/drivers/staging/media/meson/vdec/vdec.c
+> > +++ b/drivers/staging/media/meson/vdec/vdec.c
+> > @@ -1008,17 +1008,13 @@ static int vdec_probe(struct platform_device *pdev)
+> >  
+> >  	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dos");
+> >  	core->dos_base = devm_ioremap_resource(dev, r);
+> > -	if (IS_ERR(core->dos_base)) {
+> > -		dev_err(dev, "Couldn't remap DOS memory\n");
+> > +	if (IS_ERR(core->dos_base))
+> >  		return PTR_ERR(core->dos_base);
+> > -	}
+> >  
+> >  	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "esparser");
+> >  	core->esparser_base = devm_ioremap_resource(dev, r);
+> > -	if (IS_ERR(core->esparser_base)) {
+> > -		dev_err(dev, "Couldn't remap ESPARSER memory\n");
+> > +	if (IS_ERR(core->esparser_base))
+> >  		return PTR_ERR(core->esparser_base);
+> > -	}
+> >  
+> >  	core->regmap_ao =
+> >  		syscon_regmap_lookup_by_phandle(dev->of_node,
+> > 
 
 
 _______________________________________________
