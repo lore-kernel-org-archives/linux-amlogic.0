@@ -2,84 +2,88 @@ Return-Path: <SRS0=M/XH=JE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AD57C433ED
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 04:27:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E046CC433B4
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 04:27:26 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 15248613C6
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 04:27:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 15248613C6
+	by mail.kernel.org (Postfix) with ESMTPS id 78A6D613C2
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Apr 2021 04:27:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 78A6D613C2
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:MIME-Version:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=y0LxwptwbAbzvmj+ZyczvMfaYBc/Rp7mWXRstmdF+3I=; b=DrAQdtpGEGPFKa3UUvwxoMMx7a
-	nMh8FU3HRcBSnIsk3T3jDUXp2NmE5nQgGvu+WdJXSwdEtZ23P+PWfrCLL/dpmChGlkWxUlKtw3JG4
-	CiBfjf+MXZXYCMqU5BfuUAxvLqVh01G9v6/3Y5kzuAEIrZBarjME6DP6G+v9vLdMzwvN6AMrzjK4/
-	zD8Dl0ZL5Gz0ea2XVvG+CnU0EnjLEiq3MzfryZlUIFjedHXmB/r35Ye7yjzjSDJHTLZMB+HVb9kGD
-	zJqVbZSy4sbQj0GSZLf68cYdDMkVFMeUfJ1Sd4P+EWOmmTx9X5+8hUWauOaeI6skQZRDVvMhDvqxA
-	QosIjPYg==;
+	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=mdEr3y1ZD2XbcY+BV2NM8rAh8sZQFnXShVjCKpN+wnU=; b=DQ3rXO73TowtWWPhoGnSpCf+8Z
+	a+sOZI+aBWrlIZP+tN3fePEonHAtstZIgHmU74viM5f8O9acEdwnLIqFUR0fCzj+XKG1/5T/e/7i2
+	pV03/EfdPkChMTgJH2VN/jBtpq9uxmzX1U6JCBdGOsV1iMXm3cJO7kSA5Anw78JXEgHvlxx+XFf2k
+	b4ph+oGhoj9R77RXJ44S8UtFBC5lLa/Eo2gEl14d7HHD0a1cNxupL/UrJBSKizfPdp9kc0Y913zAR
+	gH7UGRUyv0V8mXA3z/JhYe0QpH09/eW5elp9RerKa0z4fTLWRbZnaZWl6t1GuzHnzVxdQ8toR0asu
+	6+T7UI/Q==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lTzma-0041DW-4v; Wed, 07 Apr 2021 04:27:12 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1lTzmi-0041Fa-12; Wed, 07 Apr 2021 04:27:20 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lTzlj-00417k-Qa; Wed, 07 Apr 2021 04:26:22 +0000
-Received: by mail-wr1-x431.google.com with SMTP id j18so16363653wra.2;
- Tue, 06 Apr 2021 21:26:14 -0700 (PDT)
+ id 1lTzlj-00417o-Qq; Wed, 07 Apr 2021 04:26:23 +0000
+Received: by mail-wr1-x430.google.com with SMTP id a6so10374473wrw.8;
+ Tue, 06 Apr 2021 21:26:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=/uxm+ddpxxmXnSDmYZVbCjsl1x5gAL/tQbugquJp2r8=;
- b=r4cKC4I/BAIowW7LmjU17k7Swy6+R3wroLgZK/Az1SSdVSjOB0NNm1UNey/goh3ia9
- WUHXq/qqKP/75X2+jpeVeZG0Or/XGCHy1SYyCtztn1F+ABdBhv743hGlYvhJoypNogGB
- Fy63zAyqK4fOZhcotcV1e4Ha9QVjeMJFv6ZCyufaZ2PLADbba7Tcc3YV+y280JMKIbuj
- V89cQMZhcMaGJVjdAguOpnhIQ9kRtfs6Whelg7zNy8nxMxHN7HLlgSeFcX5Qy7MOVwG1
- YrRUuWb9yTM11+upV4GMga89yxEuas1FWsS1UL7K+B43Dy0PgQ4AMYOIwQNy3UuR/IjV
- gbkg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=NAA73BHK2onrx2B6pnnkviQI+lx/FL5gWOos/API620=;
+ b=i4w+E45V86W8zeaTOHDEzZtxpR37iTqe3f0VnGnqJYeRUmBcuBP6rQdMTBbE6WBTq7
+ Ni1RBl9rDs8lIjFoFqto7MOb4NfE/MJdNuzVL9sxuQVbSDbLxLa1fJEUSFt9aKapuqCS
+ g1qoovyaCa5NSH/uffGucEDQ+vTyz5UKTepLQ84oxMvI524Fygpn1uJoB0PrWjclUQIZ
+ XT5jsEsHNzH48a7MqGpZjtYhUkoVVl+tz2dvA2iTazrYvkwjGpTeE9lxlRcaeGBm6zRv
+ YbiIg7wWsjk+ATUtRK0n2cMYX6H77FM79z57BakoSj78h+NqxJ1YXLZUXg2jIJ53k56u
+ zCOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=/uxm+ddpxxmXnSDmYZVbCjsl1x5gAL/tQbugquJp2r8=;
- b=cF+p0rS8xfzWEEaKsTQgfPt6yJDvnKVqO+lJy2AC0b5r3xu7xyx+ZLfZHlYDfKWeP0
- ELdUq9lrC9Dil+87mkoaoWIJlY8WWe7mbj6Og5dKCd3Gcr+9rfP9lmlXf21DGW4CX/OH
- Ktk4rXCYE+9hfLR7/rDjr+AbWkRoqfKyKaiwU6pg7/ELjUfSscml+RChXV2fEv124JD8
- eqtk6yN20+AyvtbQvDHwi4UU0mL2uaXm960ogzd7I9LHU6Ol/2kDCM/QO28Juy+k2/ps
- EghGKNwkybNVYE4RjBCpLwkmsR1EVppNAxTGOXWW9mRirbDCSPlMIB0Z9RN1P85RrHio
- segg==
-X-Gm-Message-State: AOAM5322+POLuUsgoW2EZLDpbKZl5OKcESV+crfhAE/OqEYejWshnKRL
- o/nxPKQvEiVD1et4HI/ysWM=
-X-Google-Smtp-Source: ABdhPJyROB8SHgsGrI+AyRhKK5dX/qKgDBb8UBGM45a5NvzXKqtanaRc3iLb/RFry6gbomXPk/ApDw==
-X-Received: by 2002:adf:c10a:: with SMTP id r10mr1895742wre.40.1617769573901; 
- Tue, 06 Apr 2021 21:26:13 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=NAA73BHK2onrx2B6pnnkviQI+lx/FL5gWOos/API620=;
+ b=YTu3FEF6exTB1yPzDUZ7jlTU2LYBgWFGZfiMy6WcqFvSnFdg0eDN+2gBtSoQQAO4pG
+ CPXEHS8e4cfcxAwt9BsM3uZDojZP3iOssrZstCphNXZUxO5/xRGRyJbpCnrVqpSM24k5
+ xa1RvWjB/HNKdAIjHmC4Pvk97+tJiT9S9evwyNNa1kAshQ9tuxPfWCh3zTmJgnsWSDgB
+ 4u448yV9OStUBKQSTpHQbyCNpc6XCDpGzX/dHsGLshC4Hlf1SiPyjQ1T7zR0LeN4gLpD
+ Kd/OXQnS5YgoLkchkCqi8xyawvwOqAdatE9Mj2GS3DApLIRoEm0liyst+tiMG3nblMEE
+ xk2w==
+X-Gm-Message-State: AOAM530lDe7SknBp2rSma2O2cU7dE2YnDmA122s3PP4taP5XDHxETZ25
+ BgvSREGjA1bmaQhxcX6/3PE=
+X-Google-Smtp-Source: ABdhPJzzl2KjectSUjyCvsMOLhRE8KMf6RwofThQ5+Ei7MP+RMlbSBh5Ey0LoKqTwcKtrNts3P1x9w==
+X-Received: by 2002:a05:6000:1147:: with SMTP id
+ d7mr1086850wrx.182.1617769575873; 
+ Tue, 06 Apr 2021 21:26:15 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id k3sm16487112wrc.67.2021.04.06.21.26.11
+ by smtp.gmail.com with ESMTPSA id k3sm16487112wrc.67.2021.04.06.21.26.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 06 Apr 2021 21:26:13 -0700 (PDT)
+ Tue, 06 Apr 2021 21:26:15 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH v2 0/3] arm64: dts: meson: misc ODROID-N2/N2+ changes
-Date: Wed,  7 Apr 2021 04:26:06 +0000
-Message-Id: <20210407042609.9736-1-christianshewitt@gmail.com>
+Subject: [PATCH v2 1/3] arm64: dts: meson: remove extra tab from ODROID N2/N2+
+ ext_mdio node
+Date: Wed,  7 Apr 2021 04:26:07 +0000
+Message-Id: <20210407042609.9736-2-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210407042609.9736-1-christianshewitt@gmail.com>
+References: <20210407042609.9736-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210407_052620_095713_97DD4D89 
-X-CRM114-Status: UNSURE (   9.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210407_052620_294328_AC75B5D1 
+X-CRM114-Status: GOOD (  13.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,26 +101,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series cleans-up and submits some minor patches used in HardKernel
-Linux 5.10 and 5.11 images for the ODROID N2/N2+, and fixes a stray tab.
+Remove an extra tab from the ext_mdio node in the ODROID N2/N2+ common
+dtsi file.
 
-Changes since v1:
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-- Added reviewed-by's on patches 1/3
-- Added my Signed-off-by to patches 2/3
-- Added missing vref to patch 2
-- Rebased on khilman/v5.13/dt64
-
-Christian Hewitt (1):
-  arm64: dts: meson: remove extra tab from ODROID N2/N2+ ext_mdio node
-
-Hyeonki Hong (2):
-  arm64: dts: meson: add saradc node to ODROID N2/N2+
-  arm64: dts: meson: add GPIO line names to ODROID N2/N2+
-
- .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 52 ++++++++++++++++++-
- 1 file changed, 51 insertions(+), 1 deletion(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 58ce569b2ace..2f8d574c30c0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -410,7 +410,7 @@
+ 
+ &ext_mdio {
+ 	external_phy: ethernet-phy@0 {
+-		/* Realtek RTL8211F (0x001cc916) */	
++		/* Realtek RTL8211F (0x001cc916) */
+ 		reg = <0>;
+ 		max-speed = <1000>;
+ 
 -- 
 2.17.1
 
