@@ -2,75 +2,104 @@ Return-Path: <SRS0=7wMw=JG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7394C433ED
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Apr 2021 11:03:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A91EBC433B4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Apr 2021 18:10:57 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4DE35610D0
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Apr 2021 11:03:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DE35610D0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
+	by mail.kernel.org (Postfix) with ESMTPS id 0C6C16115B
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Apr 2021 18:10:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0C6C16115B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=LGoRGC0v7s+ePu/p32/NTQzfxtgPUAAjSjMx23YjPEg=; b=jJ5+zjy/4zopxTx/rBO6T0ysA5
-	S4BENOmHv35I2MB2NfCawulwjgrt3EuLPWDkLmaFf30FX0g6pqdpxgYDhuT7nZF9Oe57NsG6HPol1
-	dCsCogw8ZgxiIkKo9NhVNAj8YYOVkxCNsr9EU2u5rGG1q8DsAd6WX3UnyFkcYuu4BHBcepH79H5An
-	a2XQCH3C3z6SoirFNolsPDMTkipFeAYThnF6vfbiQPXGr63y79n0U/KE6gW8e4bGlC4ppzDwJx9DD
-	l8I7C4y57jjzVLRTWIfrHPjGosMs1Q2S9812MOE9QU2swF8BskiUK11vRMCbxcLyXt2bC3I4SNi7+
-	oL1WZgkg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
+	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=GiqU8LJsJozUa7vblMG/RvMZt5vAOghG6QFWUMdrqPo=; b=B1sIThxaOKtEROg0ONbmy1Zx4
+	M9qTkrFv37juho9AanrZg7YAmpMHkF15uF4Iyw7GGapZi8NDuNyupu9nrzuqWAMt25F68KwRqt51i
+	2x1ISgU0lA2uB4DcSBuw0Errhs1dYUWbzcBH1TKkjPExvMhqnj4gBJkoeVrY6gRrD5AH0FDHmxgQA
+	NzPB9zJ31Lmci4RILZSn/cE3Z0RVjdHTQxpTYeuierHADv73RrsOmV73QJkU545FbQfEkKmNBGdCT
+	mDAO1wGjjc63HzakRHJghZ+dYKr/lWupyQ/jTwl7b3R7bIa55n9ru+TAguf+x19rBt5dYmJNhJOEm
+	KBZ0zMtyg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lUouz-000Wbk-5s; Fri, 09 Apr 2021 11:03:17 +0000
+	id 1lUvak-001HXH-2r; Fri, 09 Apr 2021 18:10:50 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lUoun-000WaV-Et; Fri, 09 Apr 2021 11:03:05 +0000
+ id 1lUvaV-001HTv-Vp
+ for linux-amlogic@desiato.infradead.org; Fri, 09 Apr 2021 18:10:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=mYo8Ua7Hbg1ntn2lA1y6Twc2iUGThxdBKkGu7ZrI+NU=; b=2jQbPE2ktA7dK5z5pzOnJgCPG9
- T0cQah/2YYWF+KOQYZm8VT9FiZsQp528LLLdWYzOamj2ke7NZaCLrGx2rjgZC2fxXbhX6UIGrk5oM
- TmY+VdMMva8sqh6i9tOdJz5AxzJFpFrzfqZeW/bq8snO3iljMi4qzBVeAM6v2R3tVgUUqYPC652M+
- t6+yvYegwhVoV+dywguZk223YOKTRrg+QfkwL9oEAQmhdt4/Nu12tkABP0i6cG25uLYclIbS4Q8BI
- VHrQnfb995cdeMrZui3JRId2tV6g9aXTE8wtHQn22y5yJV9P2hDhKAFtfrbMYDFT+1pXkDW1sBl2R
- zY6wK0RA==;
-Received: from szxga07-in.huawei.com ([45.249.212.35])
+ d=infradead.org; s=bombadil.20210309; h=Content-Type:MIME-Version:Message-ID:
+ Date:References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=NCZ0mYxm01Y6BQQ4DD36UoK5wirRF8QQOJoKGAXkKTk=; b=DF3ngj2FEy9SoZdjCdFHqiJeeJ
+ 5BroYTM5LFSdKzmesAENs844uTySC6SAefhpDJ5091uaRNTKSpkDT6zI2ZpEhmH/aS4h5Ux/n6Ym1
+ P1kiRjxgMhbueq4sAgavjoNoqglfodCT/6gRBK9JWUIp67WLJ44clmepU8qsmZ8PQPHEms8412ysx
+ 4f0IRyybaXogtt50fI5ORKhULB1+S/kqX4M77j029UwuIRquSZJ3Icf6TWeN0kuhZdmQdGtLKKd9U
+ rPVyAqh10jC3SE32Cm5WJ8lA+5ENo4QZN7ZzbuAiEttylL/yfQVUOsBRTliP4ON0/QgYADu2OScKg
+ MhCeTgRw==;
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lUouj-004NFq-S4; Fri, 09 Apr 2021 11:03:04 +0000
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.60])
- by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4FGwCV52WWz9xjG;
- Fri,  9 Apr 2021 19:00:38 +0800 (CST)
-Received: from DESKTOP-EFRLNPK.china.huawei.com (10.174.176.196) by
- DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
- 14.3.498.0; Fri, 9 Apr 2021 19:02:43 +0800
-From: Qiheng Lin <linqiheng@huawei.com>
-To: <linqiheng@huawei.com>, Kevin Hilman <khilman@baylibre.com>
-CC: <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <kernel-janitors@vger.kernel.org>, Hulk Robot <hulkci@huawei.com>
-Subject: [PATCH -next] soc: amlogic: meson-clk-measure: remove redundant
- dev_err call in meson_msr_probe()
-Date: Fri, 9 Apr 2021 19:02:43 +0800
-Message-ID: <20210409110243.41-1-linqiheng@huawei.com>
-X-Mailer: git-send-email 2.31.1
+ id 1lUvaS-004iRq-0p
+ for linux-amlogic@lists.infradead.org; Fri, 09 Apr 2021 18:10:34 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id
+ y20-20020a1c4b140000b029011f294095d3so5204486wma.3
+ for <linux-amlogic@lists.infradead.org>; Fri, 09 Apr 2021 11:10:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=NCZ0mYxm01Y6BQQ4DD36UoK5wirRF8QQOJoKGAXkKTk=;
+ b=ar1Zx3c1rW8q67/2QqTbpdVGKfniQ6hAquhWNWYX0UDyP9xjygQePIsPRL+SSoZXyA
+ 7/3YhAuLzi1JaA6ZfDnFMs1gtaSDAWFTLdW5n/QInLt1zVCcO/GHZLoYUEIVaa4ykIdA
+ ucJEr/xvByEmqRbS1vsmrQeXUCcxu3i672jzgIZnSTBZnp55F6XhQDkOR1dDZns+ZhdU
+ sfCrfaN1OuD4E1yepOBZlGnTQXobxN5W6c8/yrLMyQxwlLT7LMU29/xmEMcw6W0FDPQa
+ 29eA0o8iRGdInjpqivK03pvHN2rH73XDVHt+hpRZsu7IH/mxwIiJTyvCQcpGwfy8KQkI
+ RyuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=NCZ0mYxm01Y6BQQ4DD36UoK5wirRF8QQOJoKGAXkKTk=;
+ b=ujRSTWicDfpQl7htlwjZyrOQUfVWtFotFmIdQZaUHX/FDr2Ahh3sQDIwNjFPpvFxuN
+ ydhQGvAd0o4A/GNxlE+JiZPJO2yYa+92QzPg1qlJKFgcqRkTMgYxEKmpIHtS11rVonSX
+ Dai6IxLLDzL5mCMFYGzFImu8JbcqEIC2VooSJemUWKKwMlnoU4QyR2NGVWty5NWKFvs8
+ HYDrC1uRchQDmfG2MeBpTr61Xk4OkpYlhB4pG3EimkqTh1Fya0DTWur/XWuG8KRIFcG8
+ B+nmp6kViDv+c+5SwL87FaPmTFFZ2o27L2oxMxCzn9ionds5RqK9r1loIiUeGwrhWNVn
+ wSJg==
+X-Gm-Message-State: AOAM532PPlXuqWCm0+Lukob8guCguo1Dn/yFfxvt9S2XekJWfJn+jDQE
+ x0le2/y5kYxFWmqFDjpVBXTn2A==
+X-Google-Smtp-Source: ABdhPJwOHbbgqVNyb5kiH2aXj+nlYbV4MK6sHLNhY6ffGKTo4wfH+1xpR2QDE36PvmUypSyEmf3DSQ==
+X-Received: by 2002:a7b:c20c:: with SMTP id x12mr715878wmi.51.1617991829376;
+ Fri, 09 Apr 2021 11:10:29 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id w22sm4999135wmc.13.2021.04.09.11.10.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 09 Apr 2021 11:10:28 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+List-Id: <soc.lore.kernel.org>
+To: Arnd Bergmann <arnd@kernel.org>, soc@kernel.org, arm@kernel.org,
+ Christian Hewitt <chewitt@libreelec.tv>
+Cc: Arnd Bergmann <arnd@arndb.de>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [GIT PULL] arm64: dts: amlogic updates for v5.13
+In-Reply-To: <161789493793.1630479.15784072871445378505.b4-ty@arndb.de>
+References: <7h5z10mjpp.fsf@baylibre.com>
+ <161789493793.1630479.15784072871445378505.b4-ty@arndb.de>
+Date: Fri, 09 Apr 2021 11:10:26 -0700
+Message-ID: <7h1rbjib1p.fsf@baylibre.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.174.176.196]
-X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210409_040302_096727_9F58C877 
-X-CRM114-Status: UNSURE (   7.50  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210409_111032_135363_0ED77D9D 
+X-CRM114-Status: GOOD (  11.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,33 +116,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There is a error message within devm_ioremap_resource
-already, so remove the dev_err call to avoid redundant
-error message.
+[ + Christian ]
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Qiheng Lin <linqiheng@huawei.com>
----
- drivers/soc/amlogic/meson-clk-measure.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Arnd Bergmann <arnd@kernel.org> writes:
 
-diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
-index e1957476a006..6dd190270123 100644
---- a/drivers/soc/amlogic/meson-clk-measure.c
-+++ b/drivers/soc/amlogic/meson-clk-measure.c
-@@ -626,10 +626,8 @@ static int meson_msr_probe(struct platform_device *pdev)
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	base = devm_ioremap_resource(&pdev->dev, res);
--	if (IS_ERR(base)) {
--		dev_err(&pdev->dev, "io resource mapping failed\n");
-+	if (IS_ERR(base))
- 		return PTR_ERR(base);
--	}
- 
- 	priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
- 					     &meson_clk_msr_regmap_config);
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> On Mon, 05 Apr 2021 15:48:18 -0700, Kevin Hilman wrote:
+>> The following changes since commit fe07bfda2fb9cdef8a4d4008a409bb02f35f1bd8:
+>> 
+>>   Linux 5.12-rc1 (2021-02-28 16:05:19 -0800)
+>> 
+>> are available in the Git repository at:
+>> 
+>>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64
+>> 
+>> [...]
+>
+> Merged into arm/dt, thanks!
+>
+> Can you have a look at these added warnings from 'make dtbs_check W=1'?
 
+Yes, we'll have a look and send a follow-up set of fixes.
+
+Kevin
+
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dts:31.19-42.4: Warning (avoid_unnecessary_addr_size): /gpio-keys-polled: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dts:37.12-41.5: Warning (unit_address_vs_reg): /gpio-keys-polled/button@0: node has a unit name, but no reg or ranges property
+> amlogic/meson-gxm-mecool-kiii-pro.dts:36.19-47.4: Warning (avoid_unnecessary_addr_size): /gpio-keys-polled: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+> amlogic/meson-gxm-mecool-kiii-pro.dts:42.12-46.5: Warning (unit_address_vs_reg): /gpio-keys-polled/button@0: node has a unit name, but no reg or ranges property
+> amlogic/meson-gxm-minix-neo-u9h.dts:42.19-53.4: Warning (avoid_unnecessary_addr_size): /gpio-keys-polled: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+> amlogic/meson-gxm-minix-neo-u9h.dts:48.12-52.5: Warning (unit_address_vs_reg): /gpio-keys-polled/button@0: node has a unit name, but no reg or ranges property
+> amlogic/meson-gxl-s805x-p241.dt.yaml: serial@84c0: 'uart-has-rtscts' does not match any of the regexes: 'pinctrl-[0-9]+' amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: audio-controller@5400:
+> 'sound-name-prefix' does not match any of the regexes: 'pinctrl-[0-9]+' amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml:
+> audio-controller@c8832000: 'AVDD-supply', 'sound-name-prefix' do not match any f the regexes: 'pinctrl-[0-9]+'
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: bluetooth: clock-names: ['lpo'] is too short
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: bluetooth: clock-names:0: 'txco' was expected
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: bluetooth: clocks: [[23]] is too short
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: bus@c8834000: eth-phy-mux: {'type': 'object'} is not allowed for {'compatible': ['mdio-mux-mmioreg', 'mdio-mux'], '#address-cells': [[1]], '#size-cells': [[0]], 'reg': [[0, 1372, 0, 4]], 'mux-mask': [[4294967295]], 'mdio-parent-bus': [[35]], 'mdio@e40908ff': {'reg': [[3825797375]], '#address-cells': [[1]], '#size-cells': [[0]], 'ethernet-phy@8': {'compatible': ['ethernet-phy-id0181.4400'], 'interrupts': [[0, 9, 4]], 'reg': [[8]], 'max-speed': [[100]], 'phandle': [[36]]}}, 'mdio@2009087f': {'reg': [[537462911]], '#address-cells': [[1]], '#size-cells': [[0]]}}
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: bus@c8834000: rng: {'type': 'object'} is not allowed for {'compatible': ['amlogic,meson-rng'], 'reg': [[0, 0, 0, 4]], 'clocks': [[3, 25]], 'clock-names': ['core']}
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: hdmi-tx@c883a000: 'sound-name-prefix' does not match any of the regexes: pinctrl-[0-9]+'
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: ir@580: linux,rc-map-name:0: 'rc-mecool-kii-pro' is not one of ['rc-adstech-dvb-t-ci', 'rc-alink-dtu-m', 'rc-anysee', 'rc-apac-viewcomp',..., 'rc-zx-irdec']
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: serial@84c0: 'bluetooth', 'uart-has-rtscts' do not match any of the regexes:
+> 'pinctrl-0-9]+'
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: 'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' do not atch any of the regexes: '^dai-link-[0-9]+$', 'pinctrl-[0-9]+'
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: audio-routing: ['AU2 INL', 'ACODEC LOLP', 'AU2 INR', 'ACODEC LORP', AU2 INL', 'ACODEC LOLN', 'AU2 INR', 'ACODEC LORN', 'Lineout', 'AU2 OUTL', 'Lineout', 'AU2 OUTR'] is too long
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: dai-link-0:sound-dai:0: [63, 0, 0] is too long
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: dai-link-0:sound-dai:0:1: missing phandle tag in 0
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: dai-link-0:sound-dai:0:2: missing phandle tag in 0
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: dai-link-1:sound-dai:0: [63, 0, 1] is too long
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: dai-link-1:sound-dai:0:1: missing phandle tag in 0
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: sound: dai-link-1:sound-dai:0:2: missing phandle tag in 1
+> amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml: vpu@d0100000: 'amlogic,canvas' does not match any of the regexes: 'pinctrl-[0-9]+'
+>
+> merge commit: aa1e345ade42ba90ab868750acab27a360998af1
+>
+>        Arnd
 
 _______________________________________________
 linux-amlogic mailing list
