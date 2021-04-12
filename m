@@ -2,93 +2,109 @@ Return-Path: <SRS0=YxYw=JJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A7A3C4363C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 09:18:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D5A4C433B4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 12:46:09 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D5E7C6102A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 09:18:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D5E7C6102A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=xs4all.nl
+	by mail.kernel.org (Postfix) with ESMTPS id 4488F61246
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 12:46:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4488F61246
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=qayaDn3X9dwcVpBoBvDTlDcGnYov78fyrO7P0pIr1Qs=; b=p+GWjcRUwTs/vl4Ps7uRQ/RoD
-	cBqhCziDLq4MR2GjXm9bFhOopL3teqf00+FugStOjw6s5MLlSTWqFp+R3k6reGUpqI53xoXfXu200
-	kfLt9UAfjk8E/Z3Cg4d/okCvxMvjxTH36uinFf9wn4nwdwzpXnNeWMkrKUYxoI/Qwl0Ya63d/9ifS
-	i8yvE5BS8Xd4K4Sa5S3XpJ1GlmLH4s8q77k7a9pz4Rgw3xXkv9SfXjP+MkG54dlVC9uLBW6MHYWSN
-	r35aiMOpZeQsLmRtF7TxhEk0oepfWObShBsnG3JH4tKSw3jcHF6dKjL/LrrAEl8BpqpVW1cIn9ujF
-	pKyWZKD2w==;
+	 bh=9TL7AB5BN5mJ8pkW4EGsA5FwIzY8H6bFlV9iYNbYP+c=; b=CqaFtiz4J46U/amv/U1y0XDmm
+	BbeVTkzmGQo8FUzeS/4yCaTLE4Z04fVaqofJmbULLYQtUdvDKlUnFdoQ2KHHiNpFzWgNcneXv6bYk
+	+bCpy7TPmLaM4hKpK+FQh2nSYIJh0oK7Yppwuw4/xu8zEJ7Q2J+vPiUWaEJH7QVaiyIvcA4pbiksu
+	F/oRvi5cMetCzJEg5f8OBxu9y59+YfhYZQ0qU/Hqi7qKJ7KHxuCGJwtnlTpFFZ43Y+BGQJbGlLQ5a
+	RlEUeSVbGtCW7qISVTBbYp5hrMd3xFo7PDF1ILyksply+9XAY18pK+mmCGiyoI3xt7mL38nS+Cj6B
+	fNMLy0BaA==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lVshe-006FTc-PZ; Mon, 12 Apr 2021 09:17:55 +0000
+	id 1lVvx4-006jTZ-Pk; Mon, 12 Apr 2021 12:46:03 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lVshZ-006FRs-KY
- for linux-amlogic@desiato.infradead.org; Mon, 12 Apr 2021 09:17:50 +0000
+ id 1lVvwy-006jSo-R9
+ for linux-amlogic@desiato.infradead.org; Mon, 12 Apr 2021 12:45:57 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
- Subject:Sender:Reply-To:Content-ID:Content-Description;
- bh=Q1WZNfMjfd81Sw0tEZCD6aKfvpmjF/TsYGs4OFIOV90=; b=zo1ozG+2sHP5UHHk6k065UA9GY
- cv83W72htad83NGSDpLaPbAHXIPs1dhOv2Q2qIoUSOsMEgCK3aCvaxXvAOvvXFEKiMxres0DCPVZV
- VrLuLO1ZWOpj2e/TnTZXfrlcHUbyXjf5AO/ijC5LC/A0TA1dDLFHshkgWqmI+4JpVRb5ra2+nYM5A
- 6Be1XJpX5S4fM0GbjG0NNjYBu7s6A6sSKvU0Px3WEvzKwm8Y90YLSeWg4xO3Wty0IvC+Zp7oQS9j7
- f68nJPcVW7DJqYYPm0jIBLRKzQ1P7qYO4C9mezzg0YdJFQ/VS1iFn7R8s/4Hg5trOSnD7vyxMbH6A
- j20AtqRg==;
-Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28])
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=3NkHK9dlRLO9E11vKDI3by0BzQKmIoCdtqsiovYik5Y=; b=kknNGEOU9+aQ/W0cIzCpDW6y8F
+ dQn1XMJukv/W646RCIgSu/LEJKNDpIR0CxNJnL4SpWo7HfjEWfWUwNKIJsOOh6ov3MyHi2XX9KECM
+ 8UU8GcH5DCfFXxBus04AEhz/seo3qSxNLoMiHAxctVSmwxhghbWD8M21qc58RD7MgC+WX4ErpcuH9
+ DVm2Ao6Ql/a60CTj8JCksfAS0AtoNvhiM+fC8+T1dvvpnEsVT0bUTsDhHed9HAmIwXbYTc6io1zgy
+ FZIl+rxCGXrsrV116J9OjtRay56vXxjWZdMFlM68DqYpBMn8twwzPWgfGpF1naPjGw9atJr4TpMaY
+ BzP8z8Pg==;
+Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lVshW-0062fX-9L
- for linux-amlogic@lists.infradead.org; Mon, 12 Apr 2021 09:17:48 +0000
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
- by smtp-cloud7.xs4all.net with ESMTPA
- id Vsh9l4ds1MxedVshClcWf2; Mon, 12 Apr 2021 11:17:37 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
- t=1618219057; bh=Q1WZNfMjfd81Sw0tEZCD6aKfvpmjF/TsYGs4OFIOV90=;
- h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
- Subject;
- b=o+/G/vwvsxmiN6f9yPpXnexKz/biPXZQl/+q892dF7qwphl7qU7rMSNrkay5sYpmY
- EiBXWrQ4kCGqRas76lMzhtLD84rQmBkKsY6jzbxOP8D43FEKi634GKRzFDUpp3Rnv9
- v7l53TByppykUspP8DbzfNCTVzS+RSY70u2AKjW39vL4uqzY8b1nMYi13rfLAYGpFD
- /vrSaVeIVi1j525TMHSY5pwjlNVrkiQunNBXLcrALw0J8AbD80AeYRjCvEU6pUO7/g
- EnGxIn8SR6pfEWuI+k9aads8Cqqr5VgDgStsbvRBxNwfdiBcLyL0cGg7/Ep3UeMOup
- sLwdMicOoo1jQ==
-Subject: Re: [PATCH v2] staging: media: meson: vdec: declare u32 as const and
- static const
-To: Mitali Borkar <mitaliborkar810@gmail.com>, narmstrong@baylibre.com,
- mchehab@kernel.org, gregkh@linuxfoundation.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+ id 1lVvww-006EM8-25
+ for linux-amlogic@lists.infradead.org; Mon, 12 Apr 2021 12:45:55 +0000
+Received: by mail-pj1-x1033.google.com with SMTP id
+ b8-20020a17090a5508b029014d0fbe9b64so8748339pji.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 12 Apr 2021 05:45:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=3NkHK9dlRLO9E11vKDI3by0BzQKmIoCdtqsiovYik5Y=;
+ b=ipk8DwdYIM+Lp82DorQ0slg4Pzo/r2oPaPaTi5pIFNe1/ELqHN5WVqqpvKrp5agVi7
+ Gx1ksSa8tqNrGMYoNsPhPZhSaOD31ER84MBkAiY/652qpkOz8FUKaRflCcPolsuJqaQ6
+ rpOqq2YPaucNEYx0RI65wb2mHKvNL3vYqF3r+qsPlOeAkAyS0RI4sC5PlltLhW5BvjV5
+ 2YyEfVsbdSgTiO+zWf6Uqxse1uXsX26RbE/T3jMRoRW5y5Qecg7fKOkxb3dgCm5JrQay
+ DJlJtoybuhS1gJpZIz/YYAwCbb9okPIrZzrTJMpW3c2pTAjLeSgZ9UizoxTHQ57bJlxT
+ inrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=3NkHK9dlRLO9E11vKDI3by0BzQKmIoCdtqsiovYik5Y=;
+ b=hCAyZ3zm3M5YJB9lX57QnAqyB0/uKTQM2dSIiCQw8sVswqOTJK/if8T6CWgsM/Pf/7
+ wfC8lfycNZ+oCcB1TC6q2FYydygySm0wPw6N5SPlKxFERc0WjQlqQ7rs5IYG/EmGNxqm
+ OMph4KIbKx8F+7Pr/Gxvu2oZ3LJFxQJiLSgA4ZipP4A26R1sa70MRD1zawd87UAx9WiY
+ KDE457pZTSHMkTDbEaCpkmZjfTLtFQiawwpgJ9rmRp/oDrdufWixbRueQIf1r7WMACa2
+ AwtSlPp00mp3GVuwg7kuzSIMH0sjXnOOhI7kG5rfaZqQp1I4y6icpCCsvJKrRwu9oZe9
+ K2BQ==
+X-Gm-Message-State: AOAM532k8X/wl1Nc1t0OOXFfzCpExCC1S3YJ8Xxn9KIZHGmA12MRAMze
+ WWp3YWdfiD8QeXdLzXcKrTo=
+X-Google-Smtp-Source: ABdhPJxM44dz/V1i30xDBVDqbT6VanKYzhUL0fhLrUPPDqvvU5QpP5gH3Y+gZ2QcPWSxTrR/n+W9AA==
+X-Received: by 2002:a17:902:8344:b029:ea:fc89:fa72 with SMTP id
+ z4-20020a1709028344b02900eafc89fa72mr4649548pln.45.1618231552084; 
+ Mon, 12 Apr 2021 05:45:52 -0700 (PDT)
+Received: from kali ([103.141.87.253])
+ by smtp.gmail.com with ESMTPSA id i22sm11367148pgj.90.2021.04.12.05.45.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 12 Apr 2021 05:45:51 -0700 (PDT)
+Date: Mon, 12 Apr 2021 18:15:42 +0530
+From: Mitali Borkar <mitaliborkar810@gmail.com>
+To: Hans Verkuil <hverkuil@xs4all.nl>, narmstrong@baylibre.com,
+ mchehab@kernel.org, gregkh@linuxfoundation.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
 Cc: linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
  linux-kernel@vger.kernel.org, outreachy-kernel@googlegroups.com,
  mitali_s@me.iitr.ac.in, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v2] staging: media: meson: vdec: declare u32 as const and
+ static const
+Message-ID: <YHRA9i+BjveJOUvn@kali>
 References: <YHIDufKhTEeuxyl5@kali>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <88d04746-717d-5a7a-7ea7-67cf6c95aba9@xs4all.nl>
-Date: Mon, 12 Apr 2021 11:17:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.9.0
+ <88d04746-717d-5a7a-7ea7-67cf6c95aba9@xs4all.nl>
 MIME-Version: 1.0
-In-Reply-To: <YHIDufKhTEeuxyl5@kali>
-Content-Language: en-US
-X-CMAE-Envelope: MS4xfBXMnifIVjZ62y0VHvnBJNSP+hYxNbiNOZUfNetfEJgBcv5GMZ7getv0zN6yKyIx13mzQ7aTrYqwCmTTMLYyK7NQCiI56Mim4l4qN7U1OJEtPirTxTaG
- wAIJSK62f+3rEUKw6xbtNv93Z77fl7qctwlLxqDe/ABpVE3pcRpcNdMFZovtEeo+aq1rBpa/w26EwT0OhPBPZA4A8uyyVCN6U4t7nCy69kzZHrjV88ZyihYT
- nTWyeUBWznOsD99N+Dn/DWVtt+XGQ59EpzKaYyLvnG5kGOSdNGVCL4nZprNPI0dqkoZZQ+sVfCgFiaPDHfsipka8aV8WLWoP8V1WIlkZ8Ab62W7YsVYaQ3iO
- ansPPfKTP4dfu8bD+NIMZb6vWnjsNYwWo4faIFL1SSjvcpDCu/m82sq5S2aA0a2n/2G9W/t6z3cIkeyVMXyr/drugGue6ygTa3dtYumausj7yBx2EhGaj9LG
- EbX73dVXhEcsdkUwsESaJjcVx4quNChI25SjjPB3ol3wmWm6RbfO8xs6Zht/yWosh3ksT4xs9eE7f2tQ3uYfGa8XgXlY4iSeYdVzPpARdpFkuVXzsxTWaxX7
- hcsVUTO77rgfsjK0ekHUKUwzthrqK00iSKv2LEGjkA/6/YVG1NDn9tMCPbJVjKFqtgm5eKjBGTFcbJhOiVYIIUR2
+Content-Disposition: inline
+In-Reply-To: <88d04746-717d-5a7a-7ea7-67cf6c95aba9@xs4all.nl>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210412_021746_487837_32D2BCD4 
-X-CRM114-Status: GOOD (  17.43  )
+X-CRM114-CacheID: sfid-20210412_054554_112229_C9AAC360 
+X-CRM114-Status: GOOD (  21.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,83 +121,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/04/2021 21:59, Mitali Borkar wrote:
-> Declared 32 bit unsigned int as static constant inside a function and
-> replaced u32[] {x,y} as canvas1, canvas2 in codec_mpeg12.c
-> This indicates the value of canvas indexes will remain constant throughout execution.
-> Replaced u32 reg_base and u32 reg_name with const u32 reg_base and const
-> u32 reg_name as it will contain data/registry bases to write static
-> const indexes declared above and will keep track of of contiguos
-> registers after each reg_base.
-> This makes code look better, neater. It improves readability.
+On Mon, Apr 12, 2021 at 11:17:22AM +0200, Hans Verkuil wrote:
+> On 10/04/2021 21:59, Mitali Borkar wrote:
+> > Declared 32 bit unsigned int as static constant inside a function and
+> > replaced u32[] {x,y} as canvas1, canvas2 in codec_mpeg12.c
+> > This indicates the value of canvas indexes will remain constant throughout execution.
+> > Replaced u32 reg_base and u32 reg_name with const u32 reg_base and const
+> > u32 reg_name as it will contain data/registry bases to write static
+> > const indexes declared above and will keep track of of contiguos
+> > registers after each reg_base.
+> > This makes code look better, neater. It improves readability.
+> > 
+> > Signed-off-by: Mitali Borkar <mitaliborkar810@gmail.com>
+> > ---
+> >  drivers/staging/media/meson/vdec/codec_mpeg12.c | 5 +++--
 > 
-> Signed-off-by: Mitali Borkar <mitaliborkar810@gmail.com>
-> ---
->  drivers/staging/media/meson/vdec/codec_mpeg12.c | 5 +++--
-
-Also change drivers/staging/media/meson/vdec/codec_h264.c.
-
-It's a nice improvement, so let's do this for both callers of amvdec_set_canvases().
-
-Regards,
-
-	Hans
-
->  drivers/staging/media/meson/vdec/vdec_helpers.c | 2 +-
->  drivers/staging/media/meson/vdec/vdec_helpers.h | 2 +-
->  3 files changed, 5 insertions(+), 4 deletions(-)
+> Also change drivers/staging/media/meson/vdec/codec_h264.c.
 > 
-> diff --git a/drivers/staging/media/meson/vdec/codec_mpeg12.c b/drivers/staging/media/meson/vdec/codec_mpeg12.c
-> index 21e93a13356c..861d8584f22f 100644
-> --- a/drivers/staging/media/meson/vdec/codec_mpeg12.c
-> +++ b/drivers/staging/media/meson/vdec/codec_mpeg12.c
-> @@ -65,6 +65,8 @@ static int codec_mpeg12_start(struct amvdec_session *sess)
->  	struct amvdec_core *core = sess->core;
->  	struct codec_mpeg12 *mpeg12;
->  	int ret;
-> +	static const u32 canvas1[] = { AV_SCRATCH_0, 0 };
-> +	static const u32 canvas2[] = { 8, 0 }
->  
->  	mpeg12 = kzalloc(sizeof(*mpeg12), GFP_KERNEL);
->  	if (!mpeg12)
-> @@ -80,8 +82,7 @@ static int codec_mpeg12_start(struct amvdec_session *sess)
->  		goto free_mpeg12;
->  	}
->  
-> -	ret = amvdec_set_canvases(sess, (u32[]){ AV_SCRATCH_0, 0 },
-> -				  (u32[]){ 8, 0 });
-> +	ret = amvdec_set_canvases(sess, canvas1, canvas2);
->  	if (ret)
->  		goto free_workspace;
->  
-> diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
-> index 7f07a9175815..df5c27266c44 100644
-> --- a/drivers/staging/media/meson/vdec/vdec_helpers.c
-> +++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
-> @@ -177,7 +177,7 @@ static int set_canvas_nv12m(struct amvdec_session *sess,
->  }
->  
->  int amvdec_set_canvases(struct amvdec_session *sess,
-> -			u32 reg_base[], u32 reg_num[])
-> +			const u32 reg_base[], const u32 reg_num[])
->  {
->  	struct v4l2_m2m_buffer *buf;
->  	u32 pixfmt = sess->pixfmt_cap;
-> diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
-> index cfaed52ab526..ace8897c34fe 100644
-> --- a/drivers/staging/media/meson/vdec/vdec_helpers.h
-> +++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
-> @@ -17,7 +17,7 @@
->   * @reg_num: number of contiguous registers after each reg_base (including it)
->   */
->  int amvdec_set_canvases(struct amvdec_session *sess,
-> -			u32 reg_base[], u32 reg_num[]);
-> +			const u32 reg_base[], const u32 reg_num[]);
->  
->  /* Helpers to read/write to the various IPs (DOS, PARSER) */
->  u32 amvdec_read_dos(struct amvdec_core *core, u32 reg);
-> 
+> It's a nice improvement, so let's do this for both callers of amvdec_set_canvases().
+>
+I have done chnages in codec_h264.c Now, should I send that as new
+patch?
 
+> Regards,
+> 
+> 	Hans
+> 
+> >  drivers/staging/media/meson/vdec/vdec_helpers.c | 2 +-
+> >  drivers/staging/media/meson/vdec/vdec_helpers.h | 2 +-
+> >  3 files changed, 5 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/staging/media/meson/vdec/codec_mpeg12.c b/drivers/staging/media/meson/vdec/codec_mpeg12.c
+> > index 21e93a13356c..861d8584f22f 100644
+> > --- a/drivers/staging/media/meson/vdec/codec_mpeg12.c
+> > +++ b/drivers/staging/media/meson/vdec/codec_mpeg12.c
+> > @@ -65,6 +65,8 @@ static int codec_mpeg12_start(struct amvdec_session *sess)
+> >  	struct amvdec_core *core = sess->core;
+> >  	struct codec_mpeg12 *mpeg12;
+> >  	int ret;
+> > +	static const u32 canvas1[] = { AV_SCRATCH_0, 0 };
+> > +	static const u32 canvas2[] = { 8, 0 }
+> >  
+> >  	mpeg12 = kzalloc(sizeof(*mpeg12), GFP_KERNEL);
+> >  	if (!mpeg12)
+> > @@ -80,8 +82,7 @@ static int codec_mpeg12_start(struct amvdec_session *sess)
+> >  		goto free_mpeg12;
+> >  	}
+> >  
+> > -	ret = amvdec_set_canvases(sess, (u32[]){ AV_SCRATCH_0, 0 },
+> > -				  (u32[]){ 8, 0 });
+> > +	ret = amvdec_set_canvases(sess, canvas1, canvas2);
+> >  	if (ret)
+> >  		goto free_workspace;
+> >  
+> > diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+> > index 7f07a9175815..df5c27266c44 100644
+> > --- a/drivers/staging/media/meson/vdec/vdec_helpers.c
+> > +++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+> > @@ -177,7 +177,7 @@ static int set_canvas_nv12m(struct amvdec_session *sess,
+> >  }
+> >  
+> >  int amvdec_set_canvases(struct amvdec_session *sess,
+> > -			u32 reg_base[], u32 reg_num[])
+> > +			const u32 reg_base[], const u32 reg_num[])
+> >  {
+> >  	struct v4l2_m2m_buffer *buf;
+> >  	u32 pixfmt = sess->pixfmt_cap;
+> > diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
+> > index cfaed52ab526..ace8897c34fe 100644
+> > --- a/drivers/staging/media/meson/vdec/vdec_helpers.h
+> > +++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
+> > @@ -17,7 +17,7 @@
+> >   * @reg_num: number of contiguous registers after each reg_base (including it)
+> >   */
+> >  int amvdec_set_canvases(struct amvdec_session *sess,
+> > -			u32 reg_base[], u32 reg_num[]);
+> > +			const u32 reg_base[], const u32 reg_num[]);
+> >  
+> >  /* Helpers to read/write to the various IPs (DOS, PARSER) */
+> >  u32 amvdec_read_dos(struct amvdec_core *core, u32 reg);
+> > 
+> 
 
 _______________________________________________
 linux-amlogic mailing list
