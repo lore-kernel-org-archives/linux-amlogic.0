@@ -2,117 +2,104 @@ Return-Path: <SRS0=YxYw=JJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B91CC433ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 13:49:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30977C433ED
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 14:19:07 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 374B0611AD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 13:49:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 374B0611AD
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id AFF966134F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 14:19:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AFF966134F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=+3D64wy2VBbJdN10knGUgfjSOtNOe2+sebLcALd0h3A=; b=R0RkH63DUvoIcJju4dyf/m1a9V
-	MvDODpn5XxNoCrol6762skq7lW3QexbwfCnEFxd2uS6f6oOHf+vorsjhGZUIfSuQnfClXxhn2JyP4
-	PRK6+6suNY3uc9O0ID3MFAdq4FbKHxJ91IaBTvAu7px25ufE+4s1zBiLwQlR9I9kUw0MUICsHyP7X
-	KZksrvPAWSZG9KOkUImsZl9EPJ9NKqokOkaXEUtVYC728oBDhYXYyILO5G2d+Q9KWmV2CKZZxusuJ
-	UXBQJomCqTEmQ9V9YzN+9vqfwt13b3s1O8PFZyZASBIItir7IILn4g4Ci7amqP88d7upqaqm0TN+0
-	8/Vteofg==;
+	bh=rVxN9cGHcda2iycI+amQNRErcnSPzdwhYCFpdtuOK5M=; b=T8IIXGNLkUVFyH4EGXUb+RIc83
+	PxezehsuwbcT9IxZfH25vfgE8ZQpq/WX1Fsb0aM7QDcDIObN9jXzdnv74PpIkpClayoQLzWGiaD7G
+	3LbcmW07+8ca+6fxpuVKzo9bE/4ld3CC7BJqvZCJIf22pUJbpAQEz39PyttGa9FQk3TRJFFODfPkq
+	6Sr91roYvMp4bY8CW2UgZRItvJxBjjpKeIhJoW2v5poQHQyGOytgjjnu+PLvYTSGl4HDscOhoerX6
+	Xkw7lThOAarOJnt5+/nDnCU6x+R8uXQJfaL1efv4E1c4E73z/gJI/g49jeGZmVJRfHWe/0hCHBZTH
+	iTQBvx/A==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lVwvv-006t8h-60; Mon, 12 Apr 2021 13:48:55 +0000
+	id 1lVxP2-006wf1-Gs; Mon, 12 Apr 2021 14:19:00 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lVwvj-006t79-Et
- for linux-amlogic@desiato.infradead.org; Mon, 12 Apr 2021 13:48:43 +0000
+ id 1lVxOz-006wef-Nj
+ for linux-amlogic@desiato.infradead.org; Mon, 12 Apr 2021 14:18:57 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=gytAL/yvWV0C/C+QEAvYYaxpKrXZ+OUo1TE3J+Md6ys=; b=epkVFErtQeI6zcNsvsk0ZsESbB
- tJ78GDA40zN5kWzDrwaN8bAO6EHLjzRIIK3Yr95p/tEeuWzv8R1eDdbY+sirL0Piy2JiZodZT5O95
- ivcwg52CadOM1fRVtdq76UnvtP6NFIbTfuuH9HlDCjXg4eQ07PRC5an3Jjf4+S9LHGZ8gSikEHRZ7
- TJqtsEP/03Z82D3GjdqyjDbw0ecqpmTNQoemRirFnW1L1gc8ne+ySQlqKHQ8UsAbHJS/RzCVTW4Ca
- gwngkSAw1mg2l0Db80JPvnqRNyHbtZCUr1eVdzdCz9m34+uKi94W057Dj7KkQlRuJvxtw9vd0BJvw
- zcdUPQPg==;
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+ d=infradead.org; s=bombadil.20210309; h=Content-Type:MIME-Version:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:In-Reply-To:References;
+ bh=gE1tFWhSzbHqAI5X9ftQT0mEeaEBuCfbMLq9XJpCJgo=; b=VwSRt4U8uoVHtV1Alajiddk9S/
+ R/Dxym7d19TKp4QMQYUa1o/SG6mI5eWBsgx9Ak9Zp7W3EvXaVPGzdyX0AcGL8pT+WEVtW2kUyqZXK
+ URWanAS1F95XRxHtrPmfHnMH6b5vlf3yBgLl31VvWZ5Quk97vll5ybwWjDTrkgJfO+6gD6Y/52Pa2
+ tP2E7P6FJyYcYwEqI4eznxhg1UEHTecV+n6GhylvIZNHe24fEHez1UnuBi/l1bBAj2WgBxl1Qg+56
+ M7qFRM6JBFQe+R/JV5jm6TVZhDQ0FuQb5FlhAB9w2Jvr5iHFXw3FBw2B/Cr+pwU1VNEHl3N1dfF6/
+ f8oSdgJQ==;
+Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lVwvf-006HL8-JE
- for linux-amlogic@lists.infradead.org; Mon, 12 Apr 2021 13:48:42 +0000
-Received: by mail-wm1-x334.google.com with SMTP id
- 5-20020a05600c0245b029011a8273f85eso6931375wmj.1
- for <linux-amlogic@lists.infradead.org>; Mon, 12 Apr 2021 06:48:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=gytAL/yvWV0C/C+QEAvYYaxpKrXZ+OUo1TE3J+Md6ys=;
- b=D480wbwNLKlAyfVkcA1JsZYy/BJ1qJcaF1+jY+CkOsjJHpVeQgIGm5L3HiubXoP8np
- qJGDbnjgWUSL2ISmwd0pUK9fe45YRl9xlkHsUWjhnmX4Hd0Pbfj+QruFYy4rTiIOaILP
- +chfTiiw9AQFz07iI9oPx6sLocK1jrGfb96B3XJluj4PLSSI3v1xBXE4S+YHGhuLwqLm
- DQCyLZXlIu8fz+SfZAXs9WGaSRZAeJ+twZQ5HdfGYyI8uAzkllHhlM1nQgAzwbTsr2RX
- XhgR/B7hLRaJC60Dva83D3+9WoS9fwuWdXcINw6EAnGGVMBQVszVzbgaV8Yyegtm+QGW
- T8+w==
+ id 1lVxOx-006IaW-Aa
+ for linux-amlogic@lists.infradead.org; Mon, 12 Apr 2021 14:18:56 +0000
+Received: by mail-pl1-x631.google.com with SMTP id w8so4106351plg.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 12 Apr 2021 07:18:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+ bh=gE1tFWhSzbHqAI5X9ftQT0mEeaEBuCfbMLq9XJpCJgo=;
+ b=kAr42R2krMprDasFsl+izamVChxE+LZ8Vd0aPw47+CCHoupj1Qgnq68hh9kaimTv7F
+ 37gTXi1cEh+NQk9l6uzuQrdIhj/8ScTKyLBVwYcOjRw9TDXI0peJmFyFq4ikp5qLPnzX
+ fXZA72Vq8jWSg0VH0W7sfejshHq75rG60XhYxtyYvEwAThHqqIsFMZN6YEOUwTQWUuzh
+ IIDTwHv7zQfSZXfOsovIERUgBePRT/8dJFfoWIc0HkJ8n5vCTJyCVaBu8e9rntDVYWXZ
+ 7nu29nmtdJzotxfPnQeWQ4tMZ6IxdL9d3i/LmtAqO7DlXrbp5Pj3xdetRHlCrKt+lMP3
+ gANg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=gytAL/yvWV0C/C+QEAvYYaxpKrXZ+OUo1TE3J+Md6ys=;
- b=h9UGG5PQc9L/F/n+gjULrVVdJ5q0gAKwo9QEG64V4kqsheql8kKd6KHuRBhzXlzb/v
- yMbq/PD+SknqPiwqF2HGZX7Wqc8SfC+G52fYa5jFkDMbrWNSNkWHJNL6vnmXNjFnj607
- zyMOVKpPkLtuEdTXY8VzwCzYvh1xCLEbnvPQ6+WD0b3SUv1+I7TAAc9a56lsejHuiqbP
- 6BHjHLAwUhSYszik65zC4gEWbRarwXJXLzocfmbH4iQFXh6jkO4yB9YRFjxauG0tzGxL
- N7hp2WcfU/TFLUpqP8llNomDKup3xUNVqn6Ls7yNB8Y0dVJs5DMwUTmJjqHVy9SxPsq5
- 5QDg==
-X-Gm-Message-State: AOAM533vQrMb4clVsPYCDLFrdQaH1mJKpscjse4+s0SolG8KXLWCdPpk
- EJ/EieUVhWzdHUwwaZZAXHn2Pw==
-X-Google-Smtp-Source: ABdhPJxR3exKbfRYuJe7lOTxlwuy+IeGAtvwCGj0DHgKIfnlvq/AQ9U/WYiAArEc4CmHRDj65/ogmg==
-X-Received: by 2002:a7b:c7d3:: with SMTP id z19mr27332470wmk.139.1618235317683; 
- Mon, 12 Apr 2021 06:48:37 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:90c:e290:4c21:b00e:ff79:bf20])
- by smtp.gmail.com with ESMTPSA id
- m3sm17084423wme.40.2021.04.12.06.48.36
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition;
+ bh=gE1tFWhSzbHqAI5X9ftQT0mEeaEBuCfbMLq9XJpCJgo=;
+ b=rZ/LaJslp1EBkoyFgxG94QohSL00RWXulnXfQpuDk2/KDu4oUvn0N1N7q8v/jK5tnW
+ Ab7CAcrKMYjHcPlwMMyOayy6yKHA0CHNAFvfscKEbOqB68dm//Io+7dspWlsyNV3wZAA
+ zwSH4JFXE0AbUgUCXcQLQEXo57J2xGygi8LQyeiRViPN8wlfsbN24ONLJAGKazsK2YCv
+ VxMcEqJbUAu744n6AcIxxUP5etJAd/NwEq2y2ojjY8ZW1+5NBz5OiiVpsM7ekSYomY3G
+ gbX73UJRnh2/g4itQxQrqDDwm/0CeF8c0MKrX8ba0YH5Ddst5zJZz8aVMbyQ60FhvKnE
+ Fxmw==
+X-Gm-Message-State: AOAM532ZApwIpTE+vD58/lKcKx4gSbWixhf+mCjexTooHcK9srW8NY9J
+ 16H1rhvhR2nWoZk18O8UoKc=
+X-Google-Smtp-Source: ABdhPJy1IOQSh91XC3ctGh4jru7zmv9U5bKzAJBmvP804WFF9A+NhYzJx1RaM2WGdTkFa91OwV6kOg==
+X-Received: by 2002:a17:902:ac89:b029:e6:d199:29ac with SMTP id
+ h9-20020a170902ac89b02900e6d19929acmr26586468plr.46.1618237134354; 
+ Mon, 12 Apr 2021 07:18:54 -0700 (PDT)
+Received: from kali ([103.141.87.254])
+ by smtp.gmail.com with ESMTPSA id gb15sm11274248pjb.32.2021.04.12.07.18.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Apr 2021 06:48:37 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: hverkuil-cisco@xs4all.nl
-Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH] media: meson-ge2d: fix rotation parameters
-Date: Mon, 12 Apr 2021 15:48:33 +0200
-Message-Id: <20210412134833.3467694-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+ Mon, 12 Apr 2021 07:18:54 -0700 (PDT)
+Date: Mon, 12 Apr 2021 19:48:45 +0530
+From: Mitali Borkar <mitaliborkar810@gmail.com>
+To: narmstrong@baylibre.com, mchehab@kernel.org, gregkh@linuxfoundation.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-kernel@vger.kernel.org, outreachy-kernel@googlegroups.com,
+ mitali_s@me.iitr.ac.in, linux-amlogic@lists.infradead.org
+Subject: Subject: [PATCH] staging: media: meson: vdec: declare u32 as static
+ const
+Message-ID: <YHRWxeXA9m+Gt+e+@kali>
 MIME-Version: 1.0
-X-Patch-Hashes: v=1; h=sha256; i=MnWqbtgLNHEO28iGPrU+2fi2Vi4/zgsTM+Wk44sFw6M=;
- m=LSyi1GIrRi5+cTBT/6Pa7vdOC7D2by2eVWnO1StDcX8=;
- p=ddQBmT3ON6PerWL2JNhQ08pBoO1RzWVwzA9FpwbnVjk=;
- g=a5d89b1dd77083c5c89c5f661408958dbf25cbb4
-X-Patch-Sig: m=pgp; i=narmstrong@baylibre.com; s=0xA4CFF8AE;
- b=iQIzBAABCgAdFiEEPVPGJshWBf4d9CyLd9zb2sjISdEFAmB0T5MACgkQd9zb2sjISdH0yg/+KQL
- O6DzQoiEzq7fvnh5Cfi3Ivw46p6oSQO4az4sxBwfpC2O0aTprtUvFzwvrDLdhncJisN3lwXEEIjIx
- CyPheCQT9fR4OWvEtzAYkMf7V6fS0j0RHzYVpwSkk30gpmLby5DRlfAjm9MWX9LkV++Fehgd6bBBF
- JSmUc5Y9er2kdQOjqsnTJFxafDRJKqwidz0hb5RKd01SANxhGnnN14S6xV5VR3n0hyZaDG5h5rn8D
- U2Xa+VvSf5pIrRdCRF7WADadib4MIjVJrw5lf8na3bfN+42w4Chn50NoFMftmToxRRsR/eFaKbH2/
- 6xXqTyhvng4j2JZrwn6LZuEX30MJaFJRz4iGQEH80gxM8c9t9S+6G/4m10j9ZDxIYsYKxg6eCnHIa
- Yeidwea1rkpBloTzmN9R8fu/Wd9i8SxA9BdaPIDYjIieCdwy6JDl8SBHqG6rVHgk8ElqI6zlvObaa
- aNEt7f1l+1c3baq9JlV2EuTXFrcXtoFOwEMIOSM6GXLNke2yIGDgYLM3q2f8V3mg2SSUblG8KgBRt
- jkBsDFTdzksBPjq4rCC3eg9R+hi4k5Yzb/mql6gLvmOaA+Ixg7C5vW0ocPCRedgFECSAASz8cgSXh
- u62cWPv2Luv7oHEpYhwfH9M8ZtDtSmfyt9N+DHmvDQn809dT5HSxLSLuvdHSoNhQ=
+Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210412_064839_659149_4CD88A99 
-X-CRM114-Status: GOOD (  12.11  )
+X-CRM114-CacheID: sfid-20210412_071855_403659_0E01CF31 
+X-CRM114-Status: UNSURE (   9.96  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,39 +116,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-With these settings, 90deg and 270deg rotation leads to inverted
-vertical, fix them to have correct rotation.
+Declared 32 bit unsigned int as static constant inside a function and
+replaced u32[] {x,y} as canvas3, canvas4 in codec_h264.c
+This indicates the value of canvas indexes will remain constant throughout execution.
 
-Fixes: 59a635327ca7 ("media: meson: Add M2M driver for the Amlogic GE2D Accelerator Unit")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Mitali Borkar <mitaliborkar810@gmail.com>
 ---
- drivers/media/platform/meson/ge2d/ge2d.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/staging/media/meson/vdec/codec_h264.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/media/platform/meson/ge2d/ge2d.c b/drivers/media/platform/meson/ge2d/ge2d.c
-index 153612ca96fc..a1393fefa8ae 100644
---- a/drivers/media/platform/meson/ge2d/ge2d.c
-+++ b/drivers/media/platform/meson/ge2d/ge2d.c
-@@ -757,7 +757,7 @@ static int ge2d_s_ctrl(struct v4l2_ctrl *ctrl)
+diff --git a/drivers/staging/media/meson/vdec/codec_h264.c b/drivers/staging/media/meson/vdec/codec_h264.c
+index c61128fc4bb9..ea86e9e1c447 100644
+--- a/drivers/staging/media/meson/vdec/codec_h264.c
++++ b/drivers/staging/media/meson/vdec/codec_h264.c
+@@ -287,10 +287,10 @@ static void codec_h264_resume(struct amvdec_session *sess)
+ 	struct amvdec_core *core = sess->core;
+ 	struct codec_h264 *h264 = sess->priv;
+ 	u32 mb_width, mb_height, mb_total;
++	static const u32[] canvas3 = { ANCO_CANVAS_ADDR, 0 };
++	static const u32[] canvas4 = { 24, 0 };
  
- 		if (ctrl->val == 90) {
- 			ctx->hflip = 0;
--			ctx->vflip = 0;
-+			ctx->vflip = 1;
- 			ctx->xy_swap = 1;
- 		} else if (ctrl->val == 180) {
- 			ctx->hflip = 1;
-@@ -765,7 +765,7 @@ static int ge2d_s_ctrl(struct v4l2_ctrl *ctrl)
- 			ctx->xy_swap = 0;
- 		} else if (ctrl->val == 270) {
- 			ctx->hflip = 1;
--			ctx->vflip = 1;
-+			ctx->vflip = 0;
- 			ctx->xy_swap = 1;
- 		} else {
- 			ctx->hflip = 0;
+-	amvdec_set_canvases(sess,
+-			    (u32[]){ ANC0_CANVAS_ADDR, 0 },
+-			    (u32[]){ 24, 0 });
++	amvdec_set_canvases(sess, canvas3, canvas4);
+ 
+ 	dev_dbg(core->dev, "max_refs = %u; actual_dpb_size = %u\n",
+ 		h264->max_refs, sess->num_dst_bufs);
 -- 
-2.25.1
+2.30.2
 
 
 _______________________________________________
