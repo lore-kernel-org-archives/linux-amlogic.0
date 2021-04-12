@@ -2,104 +2,150 @@ Return-Path: <SRS0=YxYw=JJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30977C433ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 14:19:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 697FDC43461
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 17:48:06 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AFF966134F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 14:19:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AFF966134F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 128FC6102A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Apr 2021 17:48:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 128FC6102A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=walle.cc
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=rVxN9cGHcda2iycI+amQNRErcnSPzdwhYCFpdtuOK5M=; b=T8IIXGNLkUVFyH4EGXUb+RIc83
-	PxezehsuwbcT9IxZfH25vfgE8ZQpq/WX1Fsb0aM7QDcDIObN9jXzdnv74PpIkpClayoQLzWGiaD7G
-	3LbcmW07+8ca+6fxpuVKzo9bE/4ld3CC7BJqvZCJIf22pUJbpAQEz39PyttGa9FQk3TRJFFODfPkq
-	6Sr91roYvMp4bY8CW2UgZRItvJxBjjpKeIhJoW2v5poQHQyGOytgjjnu+PLvYTSGl4HDscOhoerX6
-	Xkw7lThOAarOJnt5+/nDnCU6x+R8uXQJfaL1efv4E1c4E73z/gJI/g49jeGZmVJRfHWe/0hCHBZTH
-	iTQBvx/A==;
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
+	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=c+B8snm9ftLVofx8o8/ifsaGGY3wYcd3VBh4sSX5eE8=; b=Qzg6hN2YqG+Tjalk4bk+kH0zJ
+	fxpbhRa25z++YUZVPgR+wIHZKKJ/SUpHFqqRl0o0cidlzaFk7+rhmJk13rqCP+iCThGMSKI0OVD1k
+	/dWKjl2Qaz+l9i1lNg8BQNh2CuRTM7h3AaoKCbcPMRC54bp6mkhYpfYX5rXAhUdvQOD6XT85FClSF
+	dkZs432s4GJ2deVmGTv2imqSJ4FzGzH/9Cg8JSuO63uiLRl/9ZFzNnkv7Cov0KSf6Cj5gj3DGp7KK
+	24LiQQj08k4nYhvnoVKAYdqzEMDhy1VKi68IFN0vsXP89fiOQMknME6cxB1ucRI47YEySTKz/H7wq
+	vtpftnuDA==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lVxP2-006wf1-Gs; Mon, 12 Apr 2021 14:19:00 +0000
+	id 1lW0fG-007NnE-DO; Mon, 12 Apr 2021 17:47:58 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lVxOz-006wef-Nj
- for linux-amlogic@desiato.infradead.org; Mon, 12 Apr 2021 14:18:57 +0000
+ id 1lW0fD-007Nmq-2B; Mon, 12 Apr 2021 17:47:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=gE1tFWhSzbHqAI5X9ftQT0mEeaEBuCfbMLq9XJpCJgo=; b=VwSRt4U8uoVHtV1Alajiddk9S/
- R/Dxym7d19TKp4QMQYUa1o/SG6mI5eWBsgx9Ak9Zp7W3EvXaVPGzdyX0AcGL8pT+WEVtW2kUyqZXK
- URWanAS1F95XRxHtrPmfHnMH6b5vlf3yBgLl31VvWZ5Quk97vll5ybwWjDTrkgJfO+6gD6Y/52Pa2
- tP2E7P6FJyYcYwEqI4eznxhg1UEHTecV+n6GhylvIZNHe24fEHez1UnuBi/l1bBAj2WgBxl1Qg+56
- M7qFRM6JBFQe+R/JV5jm6TVZhDQ0FuQb5FlhAB9w2Jvr5iHFXw3FBw2B/Cr+pwU1VNEHl3N1dfF6/
- f8oSdgJQ==;
-Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+ :Reply-To:Content-Type:Content-ID:Content-Description;
+ bh=c+yRIxX6YaLNAHOU45LRTNERm8zuPZ6Nr6ms7o1jHdY=; b=u7XBrhG/RfC4vZKrdztv9IOPNP
+ CmNvITrsZI3ecDjTSjNMYkhmgiPEztiYDxcXECVDYVJE9g3hQHy+8h78oYC+ymmn5ZAR6veEItgpJ
+ oBiM8ZKFOFQmsw/sLPEmNx6wXWquiMsPqlelHAggpLc6xiEnHJdRimCkIgis1engzNaq7UGw6Mm7D
+ OLRhcyHR7DqEvaPmIZW4aPMqG7n+fU9hEiaznZs1jN/bnNAMNbuyiYNstvCNL1nfdZ69ppa/j3eLD
+ U+EkXO53nxGm/i1KVih/Hy4f15x44pu/aaAi0EbGFvz0a2H4GGNK66M1hYqaAPyk0dflrYWychoql
+ Q+fBMi6g==;
+Received: from ssl.serverraum.org ([2a01:4f8:151:8464::1:2])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lVxOx-006IaW-Aa
- for linux-amlogic@lists.infradead.org; Mon, 12 Apr 2021 14:18:56 +0000
-Received: by mail-pl1-x631.google.com with SMTP id w8so4106351plg.9
- for <linux-amlogic@lists.infradead.org>; Mon, 12 Apr 2021 07:18:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
- bh=gE1tFWhSzbHqAI5X9ftQT0mEeaEBuCfbMLq9XJpCJgo=;
- b=kAr42R2krMprDasFsl+izamVChxE+LZ8Vd0aPw47+CCHoupj1Qgnq68hh9kaimTv7F
- 37gTXi1cEh+NQk9l6uzuQrdIhj/8ScTKyLBVwYcOjRw9TDXI0peJmFyFq4ikp5qLPnzX
- fXZA72Vq8jWSg0VH0W7sfejshHq75rG60XhYxtyYvEwAThHqqIsFMZN6YEOUwTQWUuzh
- IIDTwHv7zQfSZXfOsovIERUgBePRT/8dJFfoWIc0HkJ8n5vCTJyCVaBu8e9rntDVYWXZ
- 7nu29nmtdJzotxfPnQeWQ4tMZ6IxdL9d3i/LmtAqO7DlXrbp5Pj3xdetRHlCrKt+lMP3
- gANg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition;
- bh=gE1tFWhSzbHqAI5X9ftQT0mEeaEBuCfbMLq9XJpCJgo=;
- b=rZ/LaJslp1EBkoyFgxG94QohSL00RWXulnXfQpuDk2/KDu4oUvn0N1N7q8v/jK5tnW
- Ab7CAcrKMYjHcPlwMMyOayy6yKHA0CHNAFvfscKEbOqB68dm//Io+7dspWlsyNV3wZAA
- zwSH4JFXE0AbUgUCXcQLQEXo57J2xGygi8LQyeiRViPN8wlfsbN24ONLJAGKazsK2YCv
- VxMcEqJbUAu744n6AcIxxUP5etJAd/NwEq2y2ojjY8ZW1+5NBz5OiiVpsM7ekSYomY3G
- gbX73UJRnh2/g4itQxQrqDDwm/0CeF8c0MKrX8ba0YH5Ddst5zJZz8aVMbyQ60FhvKnE
- Fxmw==
-X-Gm-Message-State: AOAM532ZApwIpTE+vD58/lKcKx4gSbWixhf+mCjexTooHcK9srW8NY9J
- 16H1rhvhR2nWoZk18O8UoKc=
-X-Google-Smtp-Source: ABdhPJy1IOQSh91XC3ctGh4jru7zmv9U5bKzAJBmvP804WFF9A+NhYzJx1RaM2WGdTkFa91OwV6kOg==
-X-Received: by 2002:a17:902:ac89:b029:e6:d199:29ac with SMTP id
- h9-20020a170902ac89b02900e6d19929acmr26586468plr.46.1618237134354; 
- Mon, 12 Apr 2021 07:18:54 -0700 (PDT)
-Received: from kali ([103.141.87.254])
- by smtp.gmail.com with ESMTPSA id gb15sm11274248pjb.32.2021.04.12.07.18.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Apr 2021 07:18:54 -0700 (PDT)
-Date: Mon, 12 Apr 2021 19:48:45 +0530
-From: Mitali Borkar <mitaliborkar810@gmail.com>
-To: narmstrong@baylibre.com, mchehab@kernel.org, gregkh@linuxfoundation.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-kernel@vger.kernel.org, outreachy-kernel@googlegroups.com,
- mitali_s@me.iitr.ac.in, linux-amlogic@lists.infradead.org
-Subject: Subject: [PATCH] staging: media: meson: vdec: declare u32 as static
- const
-Message-ID: <YHRWxeXA9m+Gt+e+@kali>
+ id 1lW0f9-006SiO-Cy; Mon, 12 Apr 2021 17:47:53 +0000
+Received: from mwalle01.fritz.box (unknown
+ [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by ssl.serverraum.org (Postfix) with ESMTPSA id B82E42224F;
+ Mon, 12 Apr 2021 19:47:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc;
+ s=mail2016061301; t=1618249667;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=c+yRIxX6YaLNAHOU45LRTNERm8zuPZ6Nr6ms7o1jHdY=;
+ b=SzFeahlu14nK6lzpcdcdqIds+W3bdnvfv8MDl2HwNG72reKqItDuqKfd2OefWkj0+CCjLu
+ 2i6/lT9RccSxY32Z2fkRRrsYiFeNlYFm4RHTcR+Ber1W7+h4Vr2FjH+T2K9LZ+QYJnbzGg
+ fdP0WDJWD66X0dJG0cIeWKdSs2V/dPc=
+From: Michael Walle <michael@walle.cc>
+To: ath9k-devel@qca.qualcomm.com, UNGLinuxDriver@microchip.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
+ linux-omap@vger.kernel.org, linux-wireless@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-staging@lists.linux.dev
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Paul Mackerras <paulus@samba.org>, Andreas Larsson <andreas@gaisler.com>,
+ "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Joyce Ooi <joyce.ooi@intel.com>,
+ Chris Snook <chris.snook@gmail.com>,
+ =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+ bcm-kernel-feedback-list@broadcom.com,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Sunil Goutham <sgoutham@marvell.com>, Fugang Duan <fugang.duan@nxp.com>,
+ Madalin Bucur <madalin.bucur@nxp.com>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+ Yisen Zhuang <yisen.zhuang@huawei.com>,
+ Salil Mehta <salil.mehta@huawei.com>, Hauke Mehrtens <hauke@hauke-m.de>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Vadym Kochan <vkochan@marvell.com>, Taras Chornyi <tchornyi@marvell.com>,
+ Mirko Lindner <mlindner@marvell.com>,
+ Stephen Hemminger <stephen@networkplumber.org>,
+ Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+ Sean Wang <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Bryan Whitehead <bryan.whitehead@microchip.com>,
+ Vladimir Zapolskiy <vz@mleia.com>,
+ Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+ Byungho An <bh74.an@samsung.com>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Vinod Koul <vkoul@kernel.org>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+ Grygorii Strashko <grygorii.strashko@ti.com>,
+ Wingman Kwok <w-kwok2@ti.com>, Murali Karicheri <m-karicheri2@ti.com>,
+ Michal Simek <michal.simek@xilinx.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
+ Kalle Valo <kvalo@codeaurora.org>,
+ Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
+ Ryder Lee <ryder.lee@mediatek.com>, Stanislaw Gruszka <stf_xl@wp.pl>,
+ Helmut Schaa <helmut.schaa@googlemail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= <jerome.pouiller@silabs.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>, Michael Walle <michael@walle.cc>
+Subject: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem() for
+ non-platform devices
+Date: Mon, 12 Apr 2021 19:47:18 +0200
+Message-Id: <20210412174718.17382-3-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210412174718.17382-1-michael@walle.cc>
+References: <20210412174718.17382-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210412_071855_403659_0E01CF31 
-X-CRM114-Status: UNSURE (   9.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210412_104751_768072_D281063D 
+X-CRM114-Status: GOOD (  18.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,35 +162,80 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Declared 32 bit unsigned int as static constant inside a function and
-replaced u32[] {x,y} as canvas3, canvas4 in codec_h264.c
-This indicates the value of canvas indexes will remain constant throughout execution.
+of_get_mac_address() already supports fetching the MAC address by an
+nvmem provider. But until now, it was just working for platform devices.
+Esp. it was not working for DSA ports and PCI devices. It gets more
+common that PCI devices have a device tree binding since SoCs contain
+integrated root complexes.
 
-Signed-off-by: Mitali Borkar <mitaliborkar810@gmail.com>
+Use the nvmem of_* binding to fetch the nvmem cells by a struct
+device_node. We still have to try to read the cell by device first
+because there might be a nvmem_cell_lookup associated with that device.
+
+Signed-off-by: Michael Walle <michael@walle.cc>
 ---
- drivers/staging/media/meson/vdec/codec_h264.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/of/of_net.c | 35 ++++++++++++++++++++++++++++++-----
+ 1 file changed, 30 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/staging/media/meson/vdec/codec_h264.c b/drivers/staging/media/meson/vdec/codec_h264.c
-index c61128fc4bb9..ea86e9e1c447 100644
---- a/drivers/staging/media/meson/vdec/codec_h264.c
-+++ b/drivers/staging/media/meson/vdec/codec_h264.c
-@@ -287,10 +287,10 @@ static void codec_h264_resume(struct amvdec_session *sess)
- 	struct amvdec_core *core = sess->core;
- 	struct codec_h264 *h264 = sess->priv;
- 	u32 mb_width, mb_height, mb_total;
-+	static const u32[] canvas3 = { ANCO_CANVAS_ADDR, 0 };
-+	static const u32[] canvas4 = { 24, 0 };
+diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
+index cb77b774bf76..dbac3a172a11 100644
+--- a/drivers/of/of_net.c
++++ b/drivers/of/of_net.c
+@@ -11,6 +11,7 @@
+ #include <linux/phy.h>
+ #include <linux/export.h>
+ #include <linux/device.h>
++#include <linux/nvmem-consumer.h>
  
--	amvdec_set_canvases(sess,
--			    (u32[]){ ANC0_CANVAS_ADDR, 0 },
--			    (u32[]){ 24, 0 });
-+	amvdec_set_canvases(sess, canvas3, canvas4);
+ /**
+  * of_get_phy_mode - Get phy mode for given device_node
+@@ -59,15 +60,39 @@ static int of_get_mac_addr(struct device_node *np, const char *name, u8 *addr)
+ static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
+ {
+ 	struct platform_device *pdev = of_find_device_by_node(np);
++	struct nvmem_cell *cell;
++	const void *mac;
++	size_t len;
+ 	int ret;
  
- 	dev_dbg(core->dev, "max_refs = %u; actual_dpb_size = %u\n",
- 		h264->max_refs, sess->num_dst_bufs);
+-	if (!pdev)
+-		return -ENODEV;
++	/* Try lookup by device first, there might be a nvmem_cell_lookup
++	 * associated with a given device.
++	 */
++	if (pdev) {
++		ret = nvmem_get_mac_address(&pdev->dev, addr);
++		put_device(&pdev->dev);
++		return ret;
++	}
++
++	cell = of_nvmem_cell_get(np, "mac-address");
++	if (IS_ERR(cell))
++		return PTR_ERR(cell);
++
++	mac = nvmem_cell_read(cell, &len);
++	nvmem_cell_put(cell);
++
++	if (IS_ERR(mac))
++		return PTR_ERR(mac);
++
++	if (len != ETH_ALEN || !is_valid_ether_addr(mac)) {
++		kfree(mac);
++		return -EINVAL;
++	}
+ 
+-	ret = nvmem_get_mac_address(&pdev->dev, addr);
+-	put_device(&pdev->dev);
++	memcpy(addr, mac, ETH_ALEN);
++	kfree(mac);
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ /**
 -- 
-2.30.2
+2.20.1
 
 
 _______________________________________________
