@@ -1,88 +1,100 @@
-Return-Path: <SRS0=ovl2=JL=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Qsxt=JM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D82EC433ED
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Apr 2021 12:57:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BFE5BC433ED
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Apr 2021 09:08:07 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 64DFF600CD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Apr 2021 12:57:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 64DFF600CD
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=walle.cc
+	by mail.kernel.org (Postfix) with ESMTPS id 2FFCB61073
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Apr 2021 09:08:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2FFCB61073
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
+	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=243NKEsM/mhTO8BA3NdcyEmI6N+XvNUdzRD58YdQoKU=; b=Yyx3MO+shsu9AEiphcdxaQKEH
-	6AccQzEIRY+j6AZdE0W0nhMcvfkdbj4yfjnLHpfNMuNaLIkrdqv1l8wwpKSsc6VUwV2erl0LQls62
-	0lNbHJkBbqg4r72dptfmmpmgl0DiQfocSJWw/04SoPP1PaUQ4eM4Iwyqvf/DYCe/WLDGkCRjc6MHF
-	vWMY6oqBmQl/dpt5c1U8qCwPwCyhbYlYueSlFR1r6kUUj+88TV2uuYKJUYKp17HhYFO7XgVVMfPWT
-	KqvJSZrgKkg1F+4G/3yGCu0C4Z/ynQxldSy9TKVzvSshwb79emICmIZSzRj5/8/skEqeJ+mvm2nHB
-	XJM+8iarw==;
+	 bh=fZBb4VnznUNMeW54IX87bcOYnazNj+okqH/JUOzT40I=; b=LM5xFbosPdAiRU+FbxWe+QQ7N
+	DOdt8Esq4wSI+CSntIhmiBCGKk5QDbKYbs31EqryKXpoOvfHyx8FVW9AXu1RUVnKZzMKsSI/XeoE/
+	WzQ+ax5fScu2JENZd6CYzquyvPvksLu43STy/Mk43zES5W48AKhfrL92FvzLDxMaj3MKhPAdxrcae
+	5xDrXNGs2jHwL0DaqskmMCTHF+roP4B0rUu4jstfVtnwEfK7ovbxYNu/y+v1OOBtk64895m/p9nHv
+	OWzYpouz8vUKbhF5BpobP8+Wi30p9ClI48XQ4KLV6fxQHZ4q7nXfDI/9MYaLMABOZk832AwAUGsx/
+	pB52HpsXw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lWf4X-00CebQ-TJ; Wed, 14 Apr 2021 12:56:46 +0000
+	id 1lWxyh-00FSV4-RW; Thu, 15 Apr 2021 09:07:59 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lWf4R-00CeaX-Ai; Wed, 14 Apr 2021 12:56:39 +0000
+ id 1lWxyS-00FSS8-Fo
+ for linux-amlogic@desiato.infradead.org; Thu, 15 Apr 2021 09:07:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Message-ID:References:In-Reply-To:
- Subject:Cc:To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=nIqcTyZ0aGklq+mdSHotuPklBOhZa+ud8+bN5Q5+CPw=; b=lojQOCUCefpMRvGW/xx/VDdwQI
- NbXTjba3ub0vcoukuA9XIBjkWPikO+4iXtqZrVlNr0svArf8zaZMGVVl1MbCe/8RSDTFL6iXZoVwH
- wyEnSJNSG8lzkY8Bkzdz8A0/+JPo9VYHXcqFPVluO1R4JVk/ZoQKhdfevbfZk4SqSYq3V4fF87jpV
- LSjprDVXrba4ulTg3ghy2VDVSfly/SpiuFUd/tF+83pOhnXAOhmVIfqiRptB92v260kXnMWyFT4fa
- 7swqEF23FWzicDnj1JUp+knOHqAFgT/wrmnUJMggrVDSQoOP0uUfvI2X5DnSDZQZWUZKOJ3Lz9PR0
- /XxB67oA==;
-Received: from ssl.serverraum.org ([2a01:4f8:151:8464::1:2])
+ d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
+ :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=kjVJwjzWYr1/sR0XamTsvtpkvMNA+5snLIJZWYxDhFI=; b=WaL0b/29QweVR15REZML7eRmdv
+ ACDte4y5TOrLmaTAWeAn3qqOa9NDBQkLlsBCXZuST3pc9z1Hhc6MUUtIigRCKCxXSfrUPRwtnowxz
+ X5odqMi9qeMcgfNWL0lKE/MTaazH8fOR5n4OgvbPQZKEPv/A0SE+deb6LcKSpN5fNhkmgcE95UVum
+ ZX+On51TXOpLUqxuVBBIKY0vRIDodu4vBW29HlROeV1aCDDYqOSE+mDr3lih7tUhX3IYfwfeiX7I9
+ uTju+P5CnnCzK6K99CrFdKGvh4Gzecvvgsf+7JjXtD4L3o22tXhFZc5kGO5HupGru3vo+9NZKRdQe
+ Z75Uw0Zw==;
+Received: from mail-vk1-xa2d.google.com ([2607:f8b0:4864:20::a2d])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lWf4O-007lxx-Ei; Wed, 14 Apr 2021 12:56:37 +0000
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ssl.serverraum.org (Postfix) with ESMTPSA id E331F22236;
- Wed, 14 Apr 2021 14:56:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc;
- s=mail2016061301; t=1618404993;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=nIqcTyZ0aGklq+mdSHotuPklBOhZa+ud8+bN5Q5+CPw=;
- b=VZL40Qx/ZFqrvlYpNa+CpUnri3A5IcdLrj+2SxpxVHAI8fYpizPcSIOU0o4IGsNgU2L8zb
- buzdqfa91h/T+Kc3jCccsyXkXKwvO0deOpvm1xgmDARKkJkG9wKdcW8QSFZ/zWqZRgSGou
- k2tTqyTzN0TuoPWxydGMvbSU0aMYGjo=
+ id 1lWxyO-008PUI-WC
+ for linux-amlogic@lists.infradead.org; Thu, 15 Apr 2021 09:07:42 +0000
+Received: by mail-vk1-xa2d.google.com with SMTP id 25so1266522vkq.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 15 Apr 2021 02:07:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=kjVJwjzWYr1/sR0XamTsvtpkvMNA+5snLIJZWYxDhFI=;
+ b=UyrLPEOZuT1ziKU+PyL1rJHq7rNyJg+UeOgK0vbNVbHgo9TdDnHuc+z5wtHB5da8cA
+ G+eyDGuYo4jyss1OzbjpexQ1IRvennZUdBbRenPx4Yah7ic1Za0jpMLgARxClGCfccbQ
+ la+cauI00P0pXwi8nnpjnuobj6IVxaU5KLorR9GLgmrM87RNMG2TxXIjwxkorvE0BAmE
+ zH8TnvhSXF640s8pNdpUhEMJsqERIBzh+keXwLTULu70N1bYEdBNjeHg/tDr7EJnIIzm
+ a8VZIsXsEW+0idHwtn7r+QltlRl5lNlAGJB11tkdsNyIqC5UkivcIK1+5f3qWV9Lxje1
+ nUhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kjVJwjzWYr1/sR0XamTsvtpkvMNA+5snLIJZWYxDhFI=;
+ b=r4YXXFaK9FZFJbHvbcblX4HNZcXcL27oJe2rP68DvjDehxqEgc7mlVdVoOziBG12vg
+ 5vIbYgSabIbM2lLokYGmBGB0804+DxdHIi1RkIzBYjnQEGSFU2ndk9VrPhIeswD26KCt
+ RWpk2NBB2u0vB/FTU3Nk8WPWCpJcLqiPiivu4zNR097tBKxvnT3BhrmWnPJwb+hwssI1
+ uPXpzY8081q31EXLWZhOjmP8gF3SoUrBnLV0ZQaV0Pfcbxc33IFemfZ3Aehfn17JYAH0
+ 9JhbUymqx38ZKsPbkqiWPVFWOqg+Mu6aDIFCshakosOZcHEw1tuQmH4GVaC2UFZOOJB5
+ iWXg==
+X-Gm-Message-State: AOAM5300NzPzNi3rNF6j708/J5tZ5GiabmAz9ltccG+Sy1oR7fhgzZnz
+ 6hqf2HYsiYdGaDrrNvCEW37iTvSUfnV44yXm4j74CA==
+X-Google-Smtp-Source: ABdhPJy/tFAI7hIwRCSFL3zc12707ikZU7bG/40bLAl8ttRArxQYWSFbL/u1pKeyKIZ0A2iQgJwfGHELnGwKLccsYO8=
+X-Received: by 2002:a1f:2c58:: with SMTP id s85mr999684vks.15.1618477659418;
+ Thu, 15 Apr 2021 02:07:39 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 14 Apr 2021 14:56:30 +0200
-From: Michael Walle <michael@walle.cc>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: kbuild@lists.01.org, ath9k-devel@qca.qualcomm.com,
- UNGLinuxDriver@microchip.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-amlogic@lists.infradead.org, lkp@intel.com, kbuild-all@lists.01.org
-Subject: Re: [PATCH net-next v2 1/2] of: net: pass the dst buffer to
- of_get_mac_address()
-In-Reply-To: <20210414053336.GQ6021@kadam>
-References: <20210414053336.GQ6021@kadam>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <cf5c86dd6492b9c1907ea69e2d660eb2@walle.cc>
-X-Sender: michael@walle.cc
+References: <20210414100010.3877669-1-narmstrong@baylibre.com>
+In-Reply-To: <20210414100010.3877669-1-narmstrong@baylibre.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 15 Apr 2021 11:07:03 +0200
+Message-ID: <CAPDyKFpNLu3R+7ODZaC7yWMYbSOujswgLTkN97FQNg5zhwSxgw@mail.gmail.com>
+Subject: Re: [PATCH] mmc: meson-gx: remove useless warning about scatterlist
+ size alignment in block mode
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-mmc <linux-mmc@vger.kernel.org>, 
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Dmitry Lebed <lebed.dmitry@gmail.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210414_055636_683518_8AB572A5 
-X-CRM114-Status: GOOD (  10.66  )
+X-CRM114-CacheID: sfid-20210415_020741_045444_EA5A4E95 
+X-CRM114-Status: GOOD (  18.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,59 +106,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Dan,
+On Wed, 14 Apr 2021 at 12:00, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Since commit e085b51c74cc ("mmc: meson-gx: check for scatterlist size alignment in block mode"),
+> support for SDIO SD_IO_RW_EXTENDED transferts are properly filtered but some driver
+> like brcmfmac still gives a block sg buffer size not aligned with SDIO block,
+> triggerring a warning even if the transfer works in degraded mode.
+>
+> This should be ultimately fixed in brcmfmac, but since it's only a performance issue
+> the warning should be removed.
+>
+> Fixes: e085b51c74cc ("mmc: meson-gx: check for scatterlist size alignment in block mode")
+> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index eb6c02bc4a02..6bc151045843 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -246,11 +246,8 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
+>                  * size, otherwise chain mode could not be used.
+>                  */
+>                 for_each_sg(data->sg, sg, data->sg_len, i) {
+> -                       if (sg->length % data->blksz) {
+> -                               WARN_ONCE(1, "unaligned sg len %u blksize %u\n",
+> -                                         sg->length, data->blksz);
 
-Am 2021-04-14 07:33, schrieb Dan Carpenter:
-> url:
-> https://github.com/0day-ci/linux/commits/Michael-Walle/of-net-support-non-platform-devices-in-of_get_mac_address/20210406-234030
-> base:
-> https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git
-> cc0626c2aaed8e475efdd85fa374b497a7192e35
-> config: x86_64-randconfig-m001-20210406 (attached as .config)
-> compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> 
-> smatch warnings:
-> drivers/net/ethernet/xilinx/xilinx_axienet_main.c:2069 axienet_probe()
-> warn: passing a valid pointer to 'PTR_ERR'
-> 
-> vim +/PTR_ERR +2069 drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-> 
-> 522856cefaf09d Robert Hancock      2019-06-06  2060  	/* Check for
-> Ethernet core IRQ (optional) */
-> 522856cefaf09d Robert Hancock      2019-06-06  2061  	if (lp->eth_irq 
-> <= 0)
-> 522856cefaf09d Robert Hancock      2019-06-06  2062
-> 		dev_info(&pdev->dev, "Ethernet core IRQ not defined\n");
-> 522856cefaf09d Robert Hancock      2019-06-06  2063
-> 8a3b7a252dca9f Daniel Borkmann     2012-01-19  2064  	/* Retrieve the
-> MAC address */
-> 411b125c6ace1f Michael Walle       2021-04-06  2065  	ret =
-> of_get_mac_address(pdev->dev.of_node, mac_addr);
-> 411b125c6ace1f Michael Walle       2021-04-06  2066  	if (!ret) {
-> 411b125c6ace1f Michael Walle       2021-04-06  2067
-> 		axienet_set_mac_address(ndev, mac_addr);
-> 411b125c6ace1f Michael Walle       2021-04-06  2068  	} else {
-> d05a9ed5c3a773 Robert Hancock      2019-06-06 @2069
-> 		dev_warn(&pdev->dev, "could not find MAC address property: %ld\n",
-> d05a9ed5c3a773 Robert Hancock      2019-06-06  2070  			 
-> PTR_ERR(mac_addr));
-> 
->   ^^^^^^^^^^^^^^^^^
-> This should print "ret".
+Rather than removing this warning, perhaps an option could be to use
+dev_warn_once() instead?
 
-Thanks, this was fixed (in the now merged) v4. I forgot
-to add you to that huge CC list. Sorry for that.
+> +                       if (sg->length % data->blksz)
+>                                 return;
+> -                       }
+>                 }
+>         }
+>
 
--michael
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
