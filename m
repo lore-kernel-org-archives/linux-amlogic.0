@@ -2,135 +2,103 @@ Return-Path: <SRS0=6m2Z=JN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 64FB9C433ED
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Apr 2021 07:49:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 881F5C433B4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Apr 2021 09:42:25 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D36FD6113D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Apr 2021 07:49:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D36FD6113D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=walle.cc
+	by mail.kernel.org (Postfix) with ESMTPS id DD23A610C8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Apr 2021 09:42:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DD23A610C8
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=1YkH1gvcTMGxjypOKCxwh4hYJM1HakrrKm2TyPAXCeo=; b=X+s4FWypGhedzBeja3LDS/S+d
-	30w9ts/ljZCWyCAsxeiZ7ltv/jGpnB2iBPn4nQcdCH+4AQ0g2CtZiquUAemtEfZF3vHKlJZB5cg5K
-	KRdH/3stsSIWW54p4O0Z6FOfMwSjaMcqQv5+upfSPt+N+Lccq9Y6JmWCEIRsBgIiQzqgCYL2nkyIO
-	xnH/xbvDtrvlR+5uFSuzxtP9J07MuIN+wKdPtcO7X6j/5nbZrR1YeewzA70QKfAfCWjyR+ZHg+om8
-	9LKSXh9oZ3nNlc9vhkCYp0VVKqXS5F0UOFyK2hVWq5C9e3feThCyJkTvRnpkUslceflLLzLjjL/55
-	atGZPkxng==;
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
+	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=1/jJ1cu6Rv1fIcWuE0Dr+BN52ZUL6Q20XWQihTiwVlQ=; b=VT/ZHPe2ybmBQXhhGTMeO1IAN5
+	uyNDwcjvbXVlLxJJSyppBW3GjqvB0rVKZshChPAUJtG9yUoNrG28QEbkYoe7kXMQYJBG4rOUKpEm9
+	oi+Qx/g0OT+sfJtsNZa+5zZR1eenljdTI4QwuNK6FJ2TxKJVwuYsyM0tHJJpIHSbunOxb8wYDcOTO
+	dRclozVwdmW2G5gpbXUmWWz5eK3bY95ofAwk8aBrkga/e+fPOpnMfzuz5K80s/1C4I6KCoOmn/mqx
+	OXWygzBwm0nUd86MLRX3vDuLEZPIz3R+P21k2HT0QKCxXOx+4EcRf3xgSPMf0S3XgQQ2rXphjXSOG
+	Ems/eQmg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lXJDm-001ExB-9X; Fri, 16 Apr 2021 07:48:58 +0000
+	id 1lXKzT-001aOF-1C; Fri, 16 Apr 2021 09:42:19 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lXIvq-001CHr-0E; Fri, 16 Apr 2021 07:30:28 +0000
+ id 1lXKlO-001Y0O-C1
+ for linux-amlogic@desiato.infradead.org; Fri, 16 Apr 2021 09:27:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Message-ID:References:In-Reply-To:
- Subject:Cc:To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=PbMduC+y8U2TnYB1yFy6DIbM598uMx2+jq28dZXHweQ=; b=QcTvMgxq0L1BwAk/ouREIuC+2+
- 9VnI+oqWfwRlnZOEVThWO6wcwOzkwv26gy1sve647MJecVRoAzIF7P17Eq2V7mU7nqhxjcL5o5Jkl
- C845iFgZr3Seez7KnyvA/3wlJ4mBSS65Tirui4F1PXmREKavhWu5UqaXCB5FbaMsaShhYHfMIcEjO
- GIcGEX8XURhQ3ckhhUl6a1SvVBJiHc3PdABOyDyzbMm0He2toeHT05kis82KIBlVP7u02h+CNHLiI
- kwUUk8HBKSptqrT/VHgKOs49wYwfhGK1hcBadRWsUqwifnLoybySjgNvSa2qG8fSW7EgmRkaEZIzR
- wgK/hrVw==;
-Received: from ssl.serverraum.org ([2a01:4f8:151:8464::1:2])
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=2sUAYapV9tNRdpyx4eKitq/eIA5rKVYEe/d9xJHfMIo=; b=z521JUeXSrKRck9A5r7yd9ahEG
+ CAD74xbUwS4+9y/OqMuch/U7YGBUx16496JJTasdZvAjzNSmalD0dCdbev4EEPV6R1R5wywZzReSh
+ XBm6zS1eqCVxI0Q78lOl1p81KaW/1qPiYS6/UIpb5Jxd20NF0SGe557OKX1XiY989uxZOmugVgHxE
+ ts0XzCN46RrjbLlMlEwSqaVhHq2b+sPy9Hxfy4VaCxUnb9M6AlCkkFsHu2q3f8OdCxCR3s/BVddEa
+ I2zkB4+y9G3rtTId6DNwiXvT7xkTUJxMULdEfAukmyT2gsVcPCEVaZMNSYw+Y9QrSx5fAt7k4YrR6
+ 3DvdBTgA==;
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lXIvl-0099Sj-Ki; Fri, 16 Apr 2021 07:30:24 +0000
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ssl.serverraum.org (Postfix) with ESMTPSA id 49EE022172;
- Fri, 16 Apr 2021 09:29:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc;
- s=mail2016061301; t=1618558211;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=PbMduC+y8U2TnYB1yFy6DIbM598uMx2+jq28dZXHweQ=;
- b=EUtjzMP9GqVLqpUQjKAWkwn0o1sw8EWtxSv8YMRSVD0469vqt05Io1/SVJgobjz7HB/r6y
- Vjk/Jn7gR9cbQkm/qxqSnOY+yQWCWcha3iHS/TQBkEhMmvcdPKJxGg9UyvHCIIkZANcb/g
- 63rLgVagJ+mEmiydqQVNecyvEgF/m50=
-MIME-Version: 1.0
-Date: Fri, 16 Apr 2021 09:29:59 +0200
-From: Michael Walle <michael@walle.cc>
-To: Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Cc: ath9k-devel@qca.qualcomm.com, UNGLinuxDriver@microchip.com,
+ id 1lXKlL-009Ezm-B8
+ for linux-amlogic@lists.infradead.org; Fri, 16 Apr 2021 09:27:45 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id n127so2142955wmb.5
+ for <linux-amlogic@lists.infradead.org>; Fri, 16 Apr 2021 02:27:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=2sUAYapV9tNRdpyx4eKitq/eIA5rKVYEe/d9xJHfMIo=;
+ b=O2ZXiCFmleQhG+6wTRzwjgcjsqsqUwRMoVXJCVR3MP6HhYcABYi085jjBpr0eAm5iY
+ cyzN0S01yEtnSwdsDSI4UY0CumhvSWEsvjE/U2ZuqsLVS57yuY6+gRSHl5rGTb9t4JuG
+ sssbwhVwNEkmKUl0cR6/Ce5Tz75KWGdR2YLRkq+b2goWzDqdpQo7MUYG0onpazmpXh7P
+ EqGvTO9tt62tGrnXZqXLhQ9ZWkMayuoyc2oHnkMJ7ELOUpE2zKSC+7RcujR8MQ2/H1IU
+ y167+jLmKk9VWHTlxacjHCa8EkSc6RNsUEfIcjOjk1b1cl5ATdaKCkEOS3KfngBuojTH
+ jBgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=2sUAYapV9tNRdpyx4eKitq/eIA5rKVYEe/d9xJHfMIo=;
+ b=n2Cj3JSSLht96xo0MIyYFn8BAlO8+PILkKmy+uLB6nv0uiV6HGMEzDku0pfk8yTgcr
+ uLqCro7bd1xK3uzx6Jkh7L5qKkb489tURTKgdkfEO9S5IRuxQHaeeCVbueLL3MA059Ak
+ WXeKwiLAjbSS8ZHSUFK6fxr9zM4nPITfnjxgkRrTFkJoRqEDv3C0ZXTIOq4I9BgNdJo0
+ 8YrGbuT1U6AvjHwPx3GR9zOTuDV7AgF7EleH0DIg3k1p6YWQr8+Rlzi4VTJ+mws210m3
+ sLgns1iIj/iWz3UPZtp3rmyMsr+OR+b4JRzY4JwtRLgYvjRQd94y86aJTjy1gW8FA4oI
+ 6xkg==
+X-Gm-Message-State: AOAM532+nWz8ypCx7IVYel7lh94ZpAkeD1PvLkvFCiIBXb6cZMzlG9Nf
+ SNniYPJqtUKU0v2qN5wpAvt23g==
+X-Google-Smtp-Source: ABdhPJyie/neP71DZoVh0xkkR/lSSw/WmzGCmPnhCr1wnRoY5kDS4wX57Io+5eFW0xZoEepPi9JQvg==
+X-Received: by 2002:a7b:c7d6:: with SMTP id z22mr4774993wmk.25.1618565261256; 
+ Fri, 16 Apr 2021 02:27:41 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:90c:e290:6e70:fd4e:dfdb:68d7])
+ by smtp.gmail.com with ESMTPSA id
+ h8sm8805156wrt.94.2021.04.16.02.27.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 16 Apr 2021 02:27:40 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: jonas@kwiboo.se, jernej.skrabec@siol.net, robert.foss@linaro.org,
+ Laurent.pinchart@ideasonboard.com
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-amlogic@lists.infradead.org,
- linux-oxnas@groups.io, linux-omap@vger.kernel.org,
- linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- linux-staging@lists.linux.dev, Andrew Lunn <andrew@lunn.ch>, Gregory Clement
- <gregory.clement@bootlin.com>, Sebastian Hesselbarth
- <sebastian.hesselbarth@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>,
- Andreas Larsson <andreas@gaisler.com>, "David S . Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Maxime Ripard
- <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@siol.net>, Joyce Ooi <joyce.ooi@intel.com>, Chris Snook
- <chris.snook@gmail.com>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>, bcm-kernel-feedback-list@broadcom.com, Florian Fainelli
- <f.fainelli@gmail.com>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
- Beznea <claudiu.beznea@microchip.com>, Sunil Goutham <sgoutham@marvell.com>,
- Fugang Duan <fugang.duan@nxp.com>, Madalin Bucur <madalin.bucur@nxp.com>,
- Pantelis Antoniou <pantelis.antoniou@gmail.com>, Claudiu Manoil
- <claudiu.manoil@nxp.com>, Li Yang <leoyang.li@nxp.com>, Yisen Zhuang
- <yisen.zhuang@huawei.com>, Salil Mehta <salil.mehta@huawei.com>, Hauke
- Mehrtens <hauke@hauke-m.de>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Vadym Kochan <vkochan@marvell.com>, Taras
- Chornyi <tchornyi@marvell.com>, Mirko Lindner <mlindner@marvell.com>,
- Stephen Hemminger <stephen@networkplumber.org>, Felix Fietkau
- <nbd@nbd.name>, John Crispin <john@phrozen.org>, Sean Wang
- <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>, Matthias
- Brugger <matthias.bgg@gmail.com>, Bryan Whitehead
- <bryan.whitehead@microchip.com>, Vladimir Zapolskiy <vz@mleia.com>, Sergei
- Shtylyov <sergei.shtylyov@gmail.com>, Byungho An <bh74.an@samsung.com>,
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Giuseppe Cavallaro
- <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@st.com>, Jose
- Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Kevin Hilman
- <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Vinod Koul <vkoul@kernel.org>,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, Grygorii Strashko
- <grygorii.strashko@ti.com>, Wingman Kwok <w-kwok2@ti.com>, Murali Karicheri
- <m-karicheri2@ti.com>, Michal Simek <michal.simek@xilinx.com>, Radhey Shyam
- Pandey <radhey.shyam.pandey@xilinx.com>, Kalle Valo <kvalo@codeaurora.org>,
- Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>, Ryder Lee
- <ryder.lee@mediatek.com>, Stanislaw Gruszka <stf_xl@wp.pl>, Helmut Schaa
- <helmut.schaa@googlemail.com>, Heiner Kallweit <hkallweit1@gmail.com>, Rob
- Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, =?UTF-8?Q?J=C3=A9r=C3=B4me?=
- =?UTF-8?Q?_Pouiller?= <jerome.pouiller@silabs.com>, Vivien Didelot
- <vivien.didelot@gmail.com>, Vladimir Oltean <olteanv@gmail.com>
-Subject: Re: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem() for
- non-platform devices
-In-Reply-To: <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org>
-References: <20210412174718.17382-1-michael@walle.cc>
- <20210412174718.17382-3-michael@walle.cc>
- <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <8157eba9317609294da80472622deb28@walle.cc>
-X-Sender: michael@walle.cc
+ Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 0/2] drm/bridge: dw-hdmi: disable loading of DW-HDMI CEC
+ sub-driver
+Date: Fri, 16 Apr 2021 11:27:35 +0200
+Message-Id: <20210416092737.1971876-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210416_003022_032590_275B2B78 
-X-CRM114-Status: GOOD (  28.16  )
+X-CRM114-CacheID: sfid-20210416_022743_456948_D648BAD1 
+X-CRM114-Status: GOOD (  10.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,77 +110,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am 2021-04-16 05:24, schrieb Benjamin Herrenschmidt:
-> On Mon, 2021-04-12 at 19:47 +0200, Michael Walle wrote:
->> 
->>  /**
->>   * of_get_phy_mode - Get phy mode for given device_node
->> @@ -59,15 +60,39 @@ static int of_get_mac_addr(struct device_node *np, 
->> const char *name, u8 *addr)
->>  static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
->>  {
->>         struct platform_device *pdev = of_find_device_by_node(np);
->> +       struct nvmem_cell *cell;
->> +       const void *mac;
->> +       size_t len;
->>         int ret;
->> 
->> -       if (!pdev)
->> -               return -ENODEV;
->> +       /* Try lookup by device first, there might be a 
->> nvmem_cell_lookup
->> +        * associated with a given device.
->> +        */
->> +       if (pdev) {
->> +               ret = nvmem_get_mac_address(&pdev->dev, addr);
->> +               put_device(&pdev->dev);
->> +               return ret;
->> +       }
->> +
-> 
-> This smells like the wrong band aid :)
-> 
-> Any struct device can contain an OF node pointer these days.
+This adds DW-HDMI driver a glue option to disable loading of the CEC sub-driver.
 
-But not all nodes might have an associated device, see DSA for example.
-And as the name suggests of_get_mac_address() operates on a node. So
-if a driver calls of_get_mac_address() it should work on the node. What
-is wrong IMHO, is that the ethernet drivers where the corresponding 
-board
-has a nvmem_cell_lookup registered is calling of_get_mac_address(node).
-It should rather call eth_get_mac_address(dev) in the first place.
+On some SoCs, the CEC functionality is enabled in the IP config bits, but the
+CEC bus is non-functional like on Amlogic SoCs, where the CEC config bit is set
+but the DW-HDMI CEC signal is not connected to a physical pin, leading to some
+confusion when the DW-HDMI CEC controller can't communicate on the bus.
 
-One would need to figure out if there is an actual device (with an
-assiciated of_node), then call eth_get_mac_address(dev) and if there
-isn't a device call of_get_mac_address(node).
+Jernej Skrabec (1):
+  drm/bridge/synopsys: dw-hdmi: Add an option to suppress loading CEC
+    driver
 
-But I don't know if that is easy to figure out. Well, one could start
-with just the device where nvmem_cell_lookup is used. Then we could
-drop the workaround above.
+Neil Armstrong (1):
+  drm/meson: dw-hdmi: disable DW-HDMI CEC sub-driver
 
-> This seems all backwards. I think we are dealing with bad evolution.
-> 
-> We need to do a lookup for the device because we get passed an of_node.
-> We should just get passed a device here... or rather stop calling
-> of_get_mac_addr() from all those drivers and instead call
-> eth_platform_get_mac_address() which in turns calls of_get_mac_addr().
-> 
-> Then the nvmem stuff gets put in eth_platform_get_mac_address().
-> 
-> of_get_mac_addr() becomes a low-level thingy that most drivers don't
-> care about.
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 2 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c     | 1 +
+ include/drm/bridge/dw_hdmi.h              | 2 ++
+ 3 files changed, 4 insertions(+), 1 deletion(-)
 
-The NVMEM thing is just another (optional) way how the MAC address
-is fetched from the device tree. Thus, if the drivers have the
-of_get_mac_address() call they should automatically get the NVMEM
-method, too.
+-- 
+2.25.1
 
--michael
 
 _______________________________________________
 linux-amlogic mailing list
