@@ -1,156 +1,86 @@
-Return-Path: <SRS0=6m2Z=JN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=WhSF=JO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 07251C433B4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Apr 2021 15:20:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BBC66C433ED
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Apr 2021 06:32:06 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5FB056101E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Apr 2021 15:20:10 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5FB056101E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 0E8A0611AB
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Apr 2021 06:32:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E8A0611AB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=siol.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:
+	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=+3rn12mGBVcW+MLiOKjlCo7SnOmtkwAhg4Evzo6mqGc=; b=Q5KVo/fx+RE9qutFB6t6GdkfK
-	5RHK+/ys0I/usBgqDXZcLznv0W3z3OGfte2eEcgTZYDkw685pDUR5pUVoHXQ+ywMZ3NJxiDYW9MDS
-	UczMVYmmIAdXeEHEX8keHsM0/S3fq0zSgGot9W8X/SWPodHRRoWORlGY7HY6CH1zpt62XSeeRzgR1
-	8MKOOmdehmC2sZdNOA1v+TSjQigL1YQ/ir3U39CoKjzBwxCuXICMNWM/lOgTg/pB16xv6Ma6y6V5h
-	9ffIWe/VM0Bsilrh8DPtO4dvyHsetYKIKy9pkWZ9XfpzhY6vcu0a8Zbc9LVeRpSqpYOXlT8fOAz0x
-	aScr3c7JQ==;
+	 bh=BdQ6S2DX7mYW+Yg/GnAtJnV1KsoBNhZ0Pv9ljvkoy5o=; b=cz5lJMdaKxpeJkljFU1+igyRu
+	HM4V3cELYnbBPTy6l3HVawjnoIYEWjRPR9eRI00pQ7wp/OlAbpbPD4FkX9xFLATuu6xsF02JFIgPP
+	IYQSCJWDaXvhT5kjKrIMxweQO/cFAK1f4SJOih3jzX9p0em4sutmdbjhQNUHsFsItOMMA0OPprXjd
+	u4mNXa9QZ0gRMZ1RSWH6GdFGuEKkF5H8xfeeqOlasTJGjpXJ6Vy5IiL3go/zQVY7Zy1eGn+fyq4so
+	4Cg3Ku0ej9g8lfP07Jku7qnLP3tkLnOVho7r+BvZHz77godTSTUd9gdL27jckptVyDyuB3niHVCYV
+	8CvoIAwOw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lXQGG-002ayw-HA; Fri, 16 Apr 2021 15:20:00 +0000
+	id 1lXeUi-004XJ7-Pn; Sat, 17 Apr 2021 06:31:52 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lXQGD-002ayC-BV; Fri, 16 Apr 2021 15:19:57 +0000
+ id 1lXeUf-004XId-GO; Sat, 17 Apr 2021 06:31:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
- :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=QcUB8OcY0OFI2GZ9rPJTFfyzVo+EtDxHmjFIfF342jg=; b=vSjEIJGOvdTviFrrDRmS7g28wK
- IrazJxqQeukR2SLDd2PL8KjsfTg+g82BHyTmVR0Mn33b+T9PBdKtCGkMEaGBei8GGh4pFVf6Vf3t5
- BkWTUmW4j7GnT6q9LeP4P3dpDV4eaOAYvZ9/NF0JeQG4qDiRdM2XPguarRpbjsXKnzcPJ7+4jK0Bn
- HJ24J6Xep33OZlWC0I0sloQ4ZMLKAUYCyyMKz6cfrBKEZedSP6aNjpSnQ0OVeUKzIj3ku98owzlph
- 6k4U1SuefKcxVOTi04nVOGzq0fTRzFNDC22HsaIEaP2+4lrvgNCUAVcomKQ3U/Ipoj3aR65FnmMwA
- fbRRoK2g==;
-Received: from mail.kernel.org ([198.145.29.99])
+ d=infradead.org; s=bombadil.20210309; h=Content-Type:
+ Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+ :Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description;
+ bh=BZlhHa+7neoDecDw00XrHolb9duSifoov0OFUcCeFVI=; b=F6KX8wK/fFdkVWdwLjanwfqzqH
+ s3WTEi3SS/ypc4kQjRUgfTdSVur36X/0BWZa50l3brP5SAcRgFXMOJwNJNwBYYvuegZwuTnPnvR/y
+ X2DL8DlRnmLrdwBhQrXrlSLVZvIm65KcB0BH1McUqqPcBZjGxID1Vt6gdg0A6HA0IP+tbsH0Ab3NA
+ wVGOhsO2vrwzQhKlSFWl7uAVAay7hbBx3psYY9Pr4ghjhjfbkZJQb/kQDDNQ9VAXhJVNLvBPEkyFN
+ NlUIbJHoh4W/QEf8xLg2qPyb526zJcmwLNWa/Emz3Gb/WHfb2XYILFBP2RyhRJmshmZtPU9nLERNl
+ 5xetzzkQ==;
+Received: from mailoutvs14.siol.net ([185.57.226.205] helo=mail.siol.net)
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lXQGA-009UwK-DP; Fri, 16 Apr 2021 15:19:56 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 34CFB613C1;
- Fri, 16 Apr 2021 15:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1618586393;
- bh=pSsgz6SFE9awjWhpCd9doKdNFULnoUddJE0eDHwlPEw=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=UxAqG9OtRb+QQxIjEDiDCQjDyuQCAA2d4ZFOE0N0q01hfecceetNP30Wn2cpoOVE9
- WzIl3RlQROaX8eslzhr1HB02OC63p5qRAgAuwInnYgmiv5fbcBC9TWTmYo232GGxlq
- zl187zQg298hyuS7vBp9IbYu6DRnXQnCKamPIPA4bmh5K0mikLKCBT6to2dCP1x8ty
- zZx9ADxRCSv4iMzbDba1VKhTd/WRazgU+F/ual3PjLXwH8R3NcS540TNXA2d3csxLQ
- 52sEoFTMSZBaj5Io5xR7NND2H/FGQQX/xOraxhVAgnOADPCX7A2gJRiZJ6UQi8EIca
- qbHUW/1etaTZw==
-Received: by mail-qv1-f47.google.com with SMTP id x27so13617127qvd.2;
- Fri, 16 Apr 2021 08:19:53 -0700 (PDT)
-X-Gm-Message-State: AOAM530fxY5n1ro1NtIY5go0SVan95b91NChDbXG4PV4fiCUHElcs2Ia
- 6NQ8PphUKE3RFkU9Bi5FNU3P0swAF20kUr+5nQ==
-X-Google-Smtp-Source: ABdhPJwFV5j0PpR0OOvbKTHrtQGM0/UHlnjLPz7IjIHFauq3IAwfsuj1+lSbzphYfDXiggRtdMYLzMTYnQvOIyCHQj8=
-X-Received: by 2002:ad4:5a07:: with SMTP id ei7mr8951384qvb.50.1618586391992; 
- Fri, 16 Apr 2021 08:19:51 -0700 (PDT)
+ id 1lXeUZ-009tnX-JF; Sat, 17 Apr 2021 06:31:48 +0000
+Received: from localhost (localhost [127.0.0.1])
+ by mail.siol.net (Zimbra) with ESMTP id BF64B523653;
+ Sat, 17 Apr 2021 08:31:40 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+ by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new,
+ port 10032)
+ with ESMTP id n-saAgAigrm7; Sat, 17 Apr 2021 08:31:40 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+ by mail.siol.net (Zimbra) with ESMTPS id 749A95238C1;
+ Sat, 17 Apr 2021 08:31:40 +0200 (CEST)
+Received: from jernej-laptop.localnet (89-212-178-211.dynamic.t-2.net
+ [89.212.178.211]) (Authenticated sender: jernej.skrabec@siol.net)
+ by mail.siol.net (Zimbra) with ESMTPA id E0502523653;
+ Sat, 17 Apr 2021 08:31:39 +0200 (CEST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Neil Armstrong <narmstrong@baylibre.com>
+Cc: jonas@kwiboo.se, robert.foss@linaro.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, hverkuil-cisco@xs4all.nl
+Subject: Re: [PATCH 0/2] drm/bridge: dw-hdmi: disable loading of DW-HDMI CEC
+ sub-driver
+Date: Sat, 17 Apr 2021 08:31:39 +0200
+Message-ID: <9525152.Q8VVBrNj5Z@jernej-laptop>
+In-Reply-To: <96b9e144-0791-4c19-3e3c-b0e9efb86138@baylibre.com>
+References: <20210416092737.1971876-1-narmstrong@baylibre.com>
+ <YHlfqJIlUh7eytty@pendragon.ideasonboard.com>
+ <96b9e144-0791-4c19-3e3c-b0e9efb86138@baylibre.com>
 MIME-Version: 1.0
-References: <20210412174718.17382-1-michael@walle.cc>
- <20210412174718.17382-3-michael@walle.cc>
- <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org>
- <8157eba9317609294da80472622deb28@walle.cc>
-In-Reply-To: <8157eba9317609294da80472622deb28@walle.cc>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Fri, 16 Apr 2021 10:19:40 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLrx6nFZrKiEtm2a1vDvQGG+FkpGtJCG2osM8hhGo3P=Q@mail.gmail.com>
-Message-ID: <CAL_JsqLrx6nFZrKiEtm2a1vDvQGG+FkpGtJCG2osM8hhGo3P=Q@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem() for
- non-platform devices
-To: Michael Walle <michael@walle.cc>
-Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
- QCA ath9k Development <ath9k-devel@qca.qualcomm.com>, 
- Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>, 
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
- netdev <netdev@vger.kernel.org>, 
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- "open list:MEDIA DRIVERS FOR RENESAS - FCP"
- <linux-renesas-soc@vger.kernel.org>, 
- "moderated list:ARM/STM32 ARCHITECTURE"
- <linux-stm32@st-md-mailman.stormreply.com>, 
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-oxnas@groups.io, linux-omap <linux-omap@vger.kernel.org>, 
- linux-wireless <linux-wireless@vger.kernel.org>, devicetree@vger.kernel.org, 
- linux-staging@lists.linux.dev, Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Russell King <linux@armlinux.org.uk>, 
- Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>, 
- Andreas Larsson <andreas@gaisler.com>, "David S . Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@siol.net>, Joyce Ooi <joyce.ooi@intel.com>, 
- Chris Snook <chris.snook@gmail.com>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
- "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <bcm-kernel-feedback-list@broadcom.com>, 
- Florian Fainelli <f.fainelli@gmail.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Sunil Goutham <sgoutham@marvell.com>, 
- Fugang Duan <fugang.duan@nxp.com>, Madalin Bucur <madalin.bucur@nxp.com>, 
- Pantelis Antoniou <pantelis.antoniou@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, 
- Li Yang <leoyang.li@nxp.com>, Yisen Zhuang <yisen.zhuang@huawei.com>, 
- Salil Mehta <salil.mehta@huawei.com>, Hauke Mehrtens <hauke@hauke-m.de>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Vadym Kochan <vkochan@marvell.com>, 
- Taras Chornyi <tchornyi@marvell.com>, Mirko Lindner <mlindner@marvell.com>, 
- Stephen Hemminger <stephen@networkplumber.org>, Felix Fietkau <nbd@nbd.name>, 
- John Crispin <john@phrozen.org>, Sean Wang <sean.wang@mediatek.com>, 
- Mark Lee <Mark-MC.Lee@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- Bryan Whitehead <bryan.whitehead@microchip.com>,
- Vladimir Zapolskiy <vz@mleia.com>, 
- Sergei Shtylyov <sergei.shtylyov@gmail.com>, Byungho An <bh74.an@samsung.com>, 
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Alexandre Torgue <alexandre.torgue@st.com>, 
- Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, 
- NXP Linux Team <linux-imx@nxp.com>, Kevin Hilman <khilman@baylibre.com>, 
- Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Vinod Koul <vkoul@kernel.org>, 
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, 
- Grygorii Strashko <grygorii.strashko@ti.com>, Wingman Kwok <w-kwok2@ti.com>, 
- Murali Karicheri <m-karicheri2@ti.com>, Michal Simek <michal.simek@xilinx.com>,
- Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
- Kalle Valo <kvalo@codeaurora.org>, 
- Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
- Ryder Lee <ryder.lee@mediatek.com>, 
- Stanislaw Gruszka <stf_xl@wp.pl>, Helmut Schaa <helmut.schaa@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Frank Rowand <frowand.list@gmail.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>, 
- Vivien Didelot <vivien.didelot@gmail.com>, Vladimir Oltean <olteanv@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210416_081954_540722_53271589 
-X-CRM114-Status: GOOD (  31.74  )
+X-CRM114-CacheID: sfid-20210416_233143_826808_5771312A 
+X-CRM114-Status: GOOD (  25.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -167,112 +97,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Apr 16, 2021 at 2:30 AM Michael Walle <michael@walle.cc> wrote:
->
-> Am 2021-04-16 05:24, schrieb Benjamin Herrenschmidt:
-> > On Mon, 2021-04-12 at 19:47 +0200, Michael Walle wrote:
-> >>
-> >>  /**
-> >>   * of_get_phy_mode - Get phy mode for given device_node
-> >> @@ -59,15 +60,39 @@ static int of_get_mac_addr(struct device_node *np,
-> >> const char *name, u8 *addr)
-> >>  static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
-> >>  {
-> >>         struct platform_device *pdev = of_find_device_by_node(np);
-> >> +       struct nvmem_cell *cell;
-> >> +       const void *mac;
-> >> +       size_t len;
-> >>         int ret;
-> >>
-> >> -       if (!pdev)
-> >> -               return -ENODEV;
-> >> +       /* Try lookup by device first, there might be a
-> >> nvmem_cell_lookup
-> >> +        * associated with a given device.
-> >> +        */
-> >> +       if (pdev) {
-> >> +               ret = nvmem_get_mac_address(&pdev->dev, addr);
-> >> +               put_device(&pdev->dev);
-> >> +               return ret;
-> >> +       }
-> >> +
-> >
-> > This smells like the wrong band aid :)
-> >
-> > Any struct device can contain an OF node pointer these days.
->
-> But not all nodes might have an associated device, see DSA for example.
+CC Hans Verkuil
 
-I believe what Ben is saying and what I said earlier is going from dev
--> OF node is right and OF node -> dev is wrong. If you only have an
-OF node, then use an of_* function.
+Dne petek, 16. april 2021 ob 13:38:59 CEST je Neil Armstrong napisal(a):
+> On 16/04/2021 11:58, Laurent Pinchart wrote:
+> > Hi Neil,
+> > 
+> > On Fri, Apr 16, 2021 at 11:27:35AM +0200, Neil Armstrong wrote:
+> >> This adds DW-HDMI driver a glue option to disable loading of the CEC
+> >> sub-driver.
+> >> 
+> >> On some SoCs, the CEC functionality is enabled in the IP config bits, but
+> >> the CEC bus is non-functional like on Amlogic SoCs, where the CEC config
+> >> bit is set but the DW-HDMI CEC signal is not connected to a physical
+> >> pin, leading to some confusion when the DW-HDMI CEC controller can't
+> >> communicate on the bus.> 
+> > If we can't trust the CEC config bit, would it be better to not use it
+> > at all, and instead let each platform glue logic tell whether to enable
+> > CEC or not ?
+> 
+> Actually, the CEC config bit is right, the HW exists and should be
+> functional, but this bit doesn't tell if the CEC signal is connected to
+> something.
 
-> And as the name suggests of_get_mac_address() operates on a node. So
-> if a driver calls of_get_mac_address() it should work on the node. What
-> is wrong IMHO, is that the ethernet drivers where the corresponding
-> board
-> has a nvmem_cell_lookup registered is calling of_get_mac_address(node).
-> It should rather call eth_get_mac_address(dev) in the first place.
->
-> One would need to figure out if there is an actual device (with an
-> assiciated of_node), then call eth_get_mac_address(dev) and if there
-> isn't a device call of_get_mac_address(node).
+I'm in favour of Neil's solution. Currently we have only one exception.
 
-Yes, I think we're all in agreement.
+> 
+> This lies in the IP integration, like other bits under the
+> "amlogic,meson-*-dw-hdmi" umbrella.
+> 
+> The first attempt was by Hans using DT, but adding a property in DT for a
+> vendor specific compatible doesn't make sense. Another idea would be to
+> describe the CEC signal endpoint like we do for video signal, but I think
+> this is out of scope and this solution is much simpler and straightforward,
+> and it's more an exception than a general use case to solve.
 
-> But I don't know if that is easy to figure out. Well, one could start
-> with just the device where nvmem_cell_lookup is used. Then we could
-> drop the workaround above.
+Note that we still need DT property for disabling CEC. I have one Allwinner H3 
+board where board designer decided to use GPIO CEC implementation instead of 
+DW HDMI one (vendor Linux doesn't implement DW HDMI CEC driver). Other H3 
+boards happily use DW HDMI CEC.
 
-Start with the ones just passing dev.of_node directly:
+Best regards,
+Jernej
 
-$ git grep 'of_get_mac_address(.*of_node)'
-drivers/net/ethernet/aeroflex/greth.c:          addr =
-of_get_mac_address(ofdev->dev.of_node);
-drivers/net/ethernet/altera/altera_tse_main.c:  macaddr =
-of_get_mac_address(pdev->dev.of_node);
-drivers/net/ethernet/arc/emac_main.c:   mac_addr =
-of_get_mac_address(dev->of_node);
-drivers/net/ethernet/broadcom/bgmac-bcma.c:             mac =
-of_get_mac_address(bgmac->dev->of_node);
-drivers/net/ethernet/cavium/octeon/octeon_mgmt.c:       mac =
-of_get_mac_address(pdev->dev.of_node);
-drivers/net/ethernet/ethoc.c:           mac =
-of_get_mac_address(pdev->dev.of_node);
-drivers/net/ethernet/ezchip/nps_enet.c: mac_addr =
-of_get_mac_address(dev->of_node);
-drivers/net/ethernet/freescale/fs_enet/fs_enet-main.c:  mac_addr =
-of_get_mac_address(ofdev->dev.of_node);
-drivers/net/ethernet/marvell/pxa168_eth.c:              mac_addr =
-of_get_mac_address(pdev->dev.of_node);
-drivers/net/ethernet/marvell/sky2.c:    iap =
-of_get_mac_address(hw->pdev->dev.of_node);
-drivers/net/ethernet/mediatek/mtk_eth_soc.c:    mac_addr =
-of_get_mac_address(mac->of_node);
-drivers/net/ethernet/microchip/lan743x_main.c:  mac_addr =
-of_get_mac_address(pdev->dev.of_node);
-drivers/net/ethernet/qualcomm/qca_spi.c:        mac =
-of_get_mac_address(spi->dev.of_node);
-drivers/net/ethernet/qualcomm/qca_uart.c:       mac =
-of_get_mac_address(serdev->dev.of_node);
-drivers/net/ethernet/wiznet/w5100-spi.c:        const void *mac =
-of_get_mac_address(spi->dev.of_node);
-drivers/net/ethernet/xilinx/xilinx_axienet_main.c:      mac_addr =
-of_get_mac_address(pdev->dev.of_node);
-drivers/net/ethernet/xilinx/xilinx_emaclite.c:  mac_address =
-of_get_mac_address(ofdev->dev.of_node);
-drivers/net/wireless/ralink/rt2x00/rt2x00dev.c: mac_addr =
-of_get_mac_address(rt2x00dev->dev->of_node);
-drivers/staging/octeon/ethernet.c:              mac =
-of_get_mac_address(priv->of_node);
-drivers/staging/wfx/main.c:             macaddr =
-of_get_mac_address(wdev->dev->of_node);
-net/ethernet/eth.c:             addr = of_get_mac_address(dev->of_node);
+> 
+> Neil
+> 
+> >> Jernej Skrabec (1):
+> >>   drm/bridge/synopsys: dw-hdmi: Add an option to suppress loading CEC
+> >>   
+> >>     driver
+> >> 
+> >> Neil Armstrong (1):
+> >>   drm/meson: dw-hdmi: disable DW-HDMI CEC sub-driver
+> >>  
+> >>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 2 +-
+> >>  drivers/gpu/drm/meson/meson_dw_hdmi.c     | 1 +
+> >>  include/drm/bridge/dw_hdmi.h              | 2 ++
+> >>  3 files changed, 4 insertions(+), 1 deletion(-)
 
-Then this will find most of the rest:
-git grep -W 'of_get_mac_address([a-z]*)'| grep -E '(node|np)'
 
-Rob
+
+
 
 _______________________________________________
 linux-amlogic mailing list
