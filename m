@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 58D2CC433B4
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Apr 2021 20:16:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4C7FC433ED
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Apr 2021 20:17:00 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 19F28610E7
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Apr 2021 20:16:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 19F28610E7
+	by mail.kernel.org (Postfix) with ESMTPS id A31F161078
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Apr 2021 20:17:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A31F161078
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,76 +23,77 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=j0vhrdNXL212x+Nh+pSQ8UDemSQaRiRyOhy9gZGDKfg=; b=hek/bJbi5Dj5EJC5BhrLN3LUS
-	T9XKPvlwMuQQ6ljEeMndbm6OXzKfLjVU8aMIV6g0RXwJIc+GVSoHN8lZ6/pS4otuHZcSIZaZ9MUzh
-	xSv0V08NhwzdWQt+TxMHbXmJD9fOE1uUFNyhWT5bmRnlLEh03OiJ/CtSB0SexG2pkOnnm0qO20Ni4
-	7/59de7HsSmZ1cl80oOdkvNj+9oBOnW/qdeZ5jY8ld+nm0N9mOs8wJdnZiZTEMSUeVtcEWxxPbKHr
-	wQVq3ieabRuCRJo8yQLKeBOd1b97ZzfFB3cu1yQSyWL+YbSmM8KUQHetydfok5T7lWlyPNsgwmpzq
-	DOn1dL8Fg==;
+	 bh=VKyg99sjjgfG11D0WDemdUT7j6eyhmmk1qZ4wSDNxRo=; b=LRHa0nvvbjMF2wcwAFydz+xVs
+	bv0pTVgPMumukYHpnrEd4eKKt3BTr4o+Ze6lGLqcPGUPb09oxs0vsNeRoSqCS6F/O/UuzeavXbAZ1
+	mjbMbt621ohBbURJbn7TaHR4o1iV2qPbTrdwa6/hdhK/QcuGgAe0LWrjCvUlB9iMJkVSRdh3AMdVx
+	f8YcyEwdYrD7tLcDhpjOXKCciSdj1jUrHMfbUWFHGeP64gijUJnvEVPEBtulguK0XhO41bF9ro5qp
+	S+UkAdLE1CIq8rD+KmOoUh7NzWazadw+QdDXsM9FT8UP0o6paL2AAldmfZLBdbukAZ6iuEuTshKDK
+	0Sx0an6Xg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lYDq7-008W8m-1Z; Sun, 18 Apr 2021 20:16:19 +0000
+	id 1lYDqf-008WFf-At; Sun, 18 Apr 2021 20:16:53 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lYDpv-008W7s-7g; Sun, 18 Apr 2021 20:16:07 +0000
+ id 1lYDqR-008WCU-Cr; Sun, 18 Apr 2021 20:16:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
  :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=aNuUdltEGVx+LNO7Cjlx/rXKrfa7ugDPwassLJV+nSs=; b=dh9mITF0OTunsGtrBDmnFZHtQD
- qbC5fZf7bnI4p4EzF5Z5zf3RyLnGwS5rOGzV1Xfi+PRF+HmGj+qTGy02gFfj9jfPuHC77m9MIy1r/
- VP0DoXjKLW/2/2Ek5d9zhbwV6Sb/YPDUANYXHOaPkKmyVWDBLqRQOe0mTMeS3+6+wIpGK42c6h1bz
- 4HlOoaY2HQMPG7hN/DZJ0TrCci5MgM3gPULpuYfhWFfKDDCkHCYlNtaMP7y2gGeKHC8Qm/itYKsH4
- 7gH0tFezIMC2ZsX1dzQ03J2tC70bwZSXZs+HuRmXv4fngjdnB132TZtB/L8k4DGw+N4p72JsIEV90
- t7p41txg==;
-Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
+ bh=Vm1TuA39RV830rM/Py41JlCpY3m5T71EQqnbFk4N8Kc=; b=xXzxNX9lz0uy+vC5mQMgzHHPCh
+ UvN/BzHd4s/0LFCG8z4ANfrBmJ7iSK8kKNCFqAHcSt2im09klsQSByGamIa+0CSwF/Qk1y3xkFwLy
+ FvivNpqJToIOT5d73j+HwtpmyIr16e58/ELdVVOieRw28NdQeMqXtZGn56TSiIp6FRDEmmopGV5ZX
+ nLcnsoAtMpN9EFproK/FgXiWJOCMz38cSNk/MF2aBOoc/vewPQwzUDNnDPJP/5rbZ0L09EqbZ55pE
+ NEsTTtYr9kRJqWwmrjC/3GP/m3EjHU6y3ozGzunc00t9LnQfVpQk6RtImXsifeuqTEtnV87XYja8N
+ GX+K23dw==;
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lYDps-00AeWa-Es; Sun, 18 Apr 2021 20:16:05 +0000
-Received: by mail-ej1-x62e.google.com with SMTP id u21so49737162ejo.13;
- Sun, 18 Apr 2021 13:16:03 -0700 (PDT)
+ id 1lYDqM-00AeY9-AE; Sun, 18 Apr 2021 20:16:38 +0000
+Received: by mail-ed1-x530.google.com with SMTP id y3so1944822eds.5;
+ Sun, 18 Apr 2021 13:16:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=aNuUdltEGVx+LNO7Cjlx/rXKrfa7ugDPwassLJV+nSs=;
- b=mqPm+w7JmVVzXfnrSms0ASX1jFQJYUm3p1sJbaCl3/uMEbArElAa/R8U9HVvFxQ0hz
- pNliHaRGcBWhgHcNb4xSxzoLx5IHVf3ke0tTMUbYVp/pQN06syEUmeZPHaGAwanbPYz/
- 5hfKXtZhctLLIwv8WazMfyxG5k6P12959FpVJuFy98OX0dNx1vwp1E6rNPos3PicqmBm
- 9SEMFMjIAhNzyG8ReegFzJpbPEzrinE59CfhKV2IDdIj3ujfOPSyLUTsNVTQMT01GSd4
- T9tNmIdRTOMcB9DgbcbReGxNawcUc3bU5NotsUpebZ8zruG28KZF694GOt0eA1JFn/Zm
- oCyg==
+ :cc; bh=Vm1TuA39RV830rM/Py41JlCpY3m5T71EQqnbFk4N8Kc=;
+ b=mm+zEQCSZczOVNYBvQy6LA1axst8NY0jpOSV1OrfIKRimKZwHhbuXlYY5ePoBzxaof
+ sAPuWaCsA9sFaT8IhOz8WWDs3guTv2JGdbPpnzg+FRBZViwpcHxN0B7jLT1bGgO0aQDq
+ lLW4CyAVLgQqyCyQcjMPlyM73GbonMgMNE80XBq+OwroJC8Yt6wS9MJ42xc5NPGVhBI9
+ O9FSoCF2jcA0tpZwqlMjUF2e/jw+WxuI6ULGDpZ17PXJsCxVY6GOovVntEaVXQ+Fi+7q
+ dMl2LV4ad95BcwwOdXl3CSX+3IgxRRbKioKZWD9Pu+xLj3yD7415dQRFQeLLwgZ9tZ8j
+ eyXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=aNuUdltEGVx+LNO7Cjlx/rXKrfa7ugDPwassLJV+nSs=;
- b=A4yQnjZ6E+HBrfkqkt3vjFlXpz3X/ICVWEr6+JCG5fw4So06y95FvFUfGYU+OsSIuC
- Ln6JPi08TqQv4LpezPRJboDY/YxELrswI1wjz1be7a0sjIf9jB24btlQX+zzG+yCNmPW
- m5wzWbGM/uJwF7fOfRUKKLIa9yEA4cw/w/97Frk2HRGfc76luiq+vvZj9XGMKMlNzDw/
- 1Pa4JzkW2fqjplxi2kAKqx93NOuQ4rxIhGyuYYImwg1QHk3yXOZPSh6m2+0x+VfSJexi
- 4WP7pTEeTOuzRAHosBa/CFuwomWYXUt4Ca06JpUrUsMMRXWJ4MPYKkoWngoiuUnk5EKf
- 9thA==
-X-Gm-Message-State: AOAM531LEUW56dgLhq+7iwTlaNYVZhMuo8ZYyWDury7JXlw7JDmXX3r7
- 4JZlENIXCn/Y1PDDNTDeJflRm2++Gez9sk7LxLE=
-X-Google-Smtp-Source: ABdhPJyhQS7ewMgAuX/LkyOxZdJtKiVze0rTgdP222AQTI32WgZhH+58iLsPWoHbamLBE9hqYjmeo3DutxyH8F6btks=
-X-Received: by 2002:a17:906:3ce9:: with SMTP id
- d9mr18688147ejh.172.1618776962793; 
- Sun, 18 Apr 2021 13:16:02 -0700 (PDT)
+ bh=Vm1TuA39RV830rM/Py41JlCpY3m5T71EQqnbFk4N8Kc=;
+ b=OPiO9tq65aLqNAT0qdR1rDbmyaKblIof2+PBPDqHVPzv1f7iDZg7MA6NW/HOHcTBaq
+ 6MJEmUYPrErW9jRMuRX0NuxZjxfCxQTTE+q7Gylrc1yvvQqSHuw11uBMTNAhK3PbTOgQ
+ tgYVBmBcW1uZ0e5S0hXxhEbQMfbF0ElRgV1G/snRVSgqvhH7niKN63/6Y4DDK2jOiHYJ
+ hhUp2gZ6goqeMLmkpkmmMyNb/Fzu7LO8Xag3bmdWP+lKkKMI2Y6dd7Xflv0WcI8VMHLd
+ aq33YFF1s5fD1nxyhOC7jxb4RFt4eKAeBAOxNCnztFnBK0jA7tPk7BSroR1IGc7bhsa0
+ c2iA==
+X-Gm-Message-State: AOAM5333gDyBHRjohEsMjZnJo6uz8PCIVL7cHGivPVAbEPUiNVbJ3m4h
+ I1Rj3/V5FNyO8dujcS8H+1I9R+YxV9pCTGBR3bw=
+X-Google-Smtp-Source: ABdhPJw1Bm+UXiVL+hXhIU6zHK7TADZXYP/7LDL9pFxaS+1Fu3pQYfoCxhsMo2xU1RdocGGa3Q4rFMPYTiIk3DyHxbQ=
+X-Received: by 2002:a05:6402:54f:: with SMTP id
+ i15mr22041465edx.365.1618776992766; 
+ Sun, 18 Apr 2021 13:16:32 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210407042609.9736-1-christianshewitt@gmail.com>
- <20210407042609.9736-3-christianshewitt@gmail.com>
-In-Reply-To: <20210407042609.9736-3-christianshewitt@gmail.com>
+ <20210407042609.9736-4-christianshewitt@gmail.com>
+In-Reply-To: <20210407042609.9736-4-christianshewitt@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 18 Apr 2021 22:15:51 +0200
-Message-ID: <CAFBinCAL1zpcNm5VdbwpwZM1DPvfhnx0+npZvs8Hi5DOLz+7kA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: meson: add saradc node to ODROID N2/N2+
+Date: Sun, 18 Apr 2021 22:16:21 +0200
+Message-ID: <CAFBinCAhC6c-Q5Hhmb60TCeokJ805ep20WBCfzmctqxArS=eng@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: meson: add GPIO line names to ODROID
+ N2/N2+
 To: Christian Hewitt <christianshewitt@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Hyeonki Hong <hhk7734@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210418_131604_540075_856B6590 
-X-CRM114-Status: UNSURE (   8.62  )
+X-CRM114-CacheID: sfid-20210418_131634_371898_B5519A96 
+X-CRM114-Status: UNSURE (   8.71  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,11 +116,12 @@ On Wed, Apr 7, 2021 at 6:27 AM Christian Hewitt
 >
 > From: Hyeonki Hong <hhk7734@gmail.com>
 >
-> Add the meson saradc node to the ODROID N2/N2+ common dtsi.
+> Add GPIO line-name identifiers to the ODROID N2/N2+ common dtsi.
 >
 > Signed-off-by: Hyeonki Hong <hhk7734@gmail.com>
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
