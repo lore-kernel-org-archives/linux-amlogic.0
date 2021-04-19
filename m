@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99231C433B4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 08:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7ECC3C433B4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 09:03:56 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2659C61107
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 08:20:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2659C61107
+	by mail.kernel.org (Postfix) with ESMTPS id 09E8E61157
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 09:03:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 09E8E61157
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,86 +23,88 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=HTfJWSQMRHO1dy8yICrgdQDR3QOs+Rg1q09TRL3xlQg=; b=muwgawcyVNM7LPuDgjc4ZEia8
-	B/u6hTax3UMUQ72WJqpDe0alAJCxAnT65VdI/Fhlf96/HbrvvI2HKC5ijwC9+X+OV14jh+i5cMKoL
-	4gbaRZUrcRWJCPXI5/ip1gJSGCJLNYB3tSqpV2Uz1n/ZHbolQJvLa/y2yOO5xXziKXYbU6TQJy2Ii
-	wS55P1EOOpj1leKqLUsd4j4y2g1FiOvLGklZqNPXltkzTEezuBJO6DpFUOBnBYLPOZbcOiOnX2sf8
-	01a53JXbY2udJQPqcWQ05anHcBJbQEV3mVpvx2TTmyic6dzVlbSCX3ViviuS8w5lV9QBpezhIgMll
-	l/IPFecPQ==;
+	 bh=B3qNWxOfvMTjTt8Kgbh9qqh97oLWGvFpAJLqyG84yYU=; b=ZrgBxwZCSoDEqgQF3fLpobIm+
+	VqjCD5j609qLXelQuGkavyqQ7cJf+pg81lQF+KEeeeLGZ6p+Q3Ofs2uSP3Y3FiVZvcMd7hOoqWR79
+	w3Fq5QimBL3T6clP+KOGh6X8+knILhVJE2n46jUxIVC32B3uNHUbeJmGvOfARv0OMTAnUPwhWtJM2
+	d0Z60ICKk9tXdcQjckDfwy4TOf05CIxPn6PXAXiraQBRlwaWQMQv/OeQ6oMPK3dKJY3PGV2Mf5lJk
+	ELFjrbunxihBr4tnX97iy0VtI0Q5gl/yEjD7HaVEzka8gtmDMBdBlZvfNcysTupczRLLlgkUl82G4
+	XGwWf2n/Q==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lYP93-009Pye-Sw; Mon, 19 Apr 2021 08:20:37 +0000
+	id 1lYPor-009Vzc-61; Mon, 19 Apr 2021 09:03:49 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lYP91-009Pxt-MB; Mon, 19 Apr 2021 08:20:35 +0000
+ id 1lYPoo-009VzK-Sg; Mon, 19 Apr 2021 09:03:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
  :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=ltv54OOOgcKhPoH7oRaigoXMRi+Z2QqH7bQ4dTNkEvU=; b=XVY+t5xQ0TgVFtqpc9p43cW6PV
- KG0iDnunKbEnFgh3M4FMrpPEINQw8296UQ04BWEZfGWy0WO73wLt9W47iPSKkrJV+DI8Nbnomhv/u
- X8fzR1kF9fVJ4p1ZcyGQ8/P5/sj4Ny5n9Jcp4RJ97lfAsrSjY59diujRLLzrbK/hiRWTH+xKc0Rca
- d+oVjc5tiR7sxuk1+0Nrq0OoEP2BJAjgTdARf2SS42mvLSiyzkosS91+nCJ4QBzkjCONCGmAMfPfA
- mMdQHfKYMTOgMiUUrbCICiDCPUJ7NfY6pED2s1IL2A4jS44vWlegnHtwQvHa/opNLXaWqqzgXraQQ
- VXu3UOFQ==;
-Received: from mail-vs1-f41.google.com ([209.85.217.41])
+ bh=YToQwZXN38nw8LU8icFLB58IB4Z2bfPdJB1gmWWtNj8=; b=0JDWmvZG4NqAgLpIjlN08s5Hst
+ KBAZvnrLeKgQea59DdqdLfeKdWae/Ut60pP7B/+3HOA7Ni9YEWkn4/CAjaLy6to3Qy4mBg4jmzIJC
+ q5MOGMMkIebMEmFtp5h5m4YBDu3Y7enITH6lNdiN/48/ZFl0xKTwAznm84iUDSZiCA0nklQljgYul
+ HtrcKgY9jBnJoolgKvVzRnNVl6ccAUfFUJbbd45ZM2CBFme/PRhNo+XkTj9xQl4znjrIy0ceWf1NY
+ S4M9u2vE7jvyNi9f25SOeOajxqGb8pL1JbEWqJ0QN6o6QsTo1CIFCFUACKZCO2KL7s2P9+Pljml2s
+ 4NL1JVIg==;
+Received: from mail-vs1-f46.google.com ([209.85.217.46])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lYP8v-00BBFL-TH; Mon, 19 Apr 2021 08:20:34 +0000
-Received: by mail-vs1-f41.google.com with SMTP id u22so6173773vsu.6;
- Mon, 19 Apr 2021 01:20:25 -0700 (PDT)
+ id 1lYPoi-00BDOT-63; Mon, 19 Apr 2021 09:03:45 +0000
+Received: by mail-vs1-f46.google.com with SMTP id i9so2313184vsb.13;
+ Mon, 19 Apr 2021 02:03:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ltv54OOOgcKhPoH7oRaigoXMRi+Z2QqH7bQ4dTNkEvU=;
- b=GG2LBldalzQHEUYB1Ctr0NASLwFy2AKoIiR93glWlwDQmQZC5A0RkJpgmEPOhWYR4K
- Bv9Lw0Xb0sQy/dbCw5ffdv4IYfHoZd9xcSkY7lka2+nUx600m3H3ff+J7mPk/S15w+rN
- mJhmopU7iBaareSdEm3oPgm9X6MtvfuPw+DxBzD6ZCzD8/ng/rEXT4R0V0gg9P51ByJ3
- lJVB3jd4lPPxSyeSuuXTeI251NIqiml6NEDRNHFXxti6G/Fcpm4lfhx/n+1GvbSZLwQ2
- tvpTy5s2HU1kGqhhFgZxjzNz/0Qt5fsfjEFUn8zhHaIeigQYRho2yeHKckhPKoKoSlTG
- iLyg==
-X-Gm-Message-State: AOAM5333vZKsO55I/EDzDOHaIA67HA4GyA7JCIOeLYwfqb/b5nM/zpps
- sbVcu28OEnpYDt/eApagGJz3Hc3k8x3IFhuryDs=
-X-Google-Smtp-Source: ABdhPJw0QI7XOFx1TPnFrXWAlR/QW1v6zaWS/KnYbAtB/CEX2DsVVO2yNBv9r1VAA3kWmuOXuQwF2fQGH/J1go6B4oc=
-X-Received: by 2002:a67:f503:: with SMTP id u3mr12373252vsn.3.1618820424835;
- Mon, 19 Apr 2021 01:20:24 -0700 (PDT)
+ bh=YToQwZXN38nw8LU8icFLB58IB4Z2bfPdJB1gmWWtNj8=;
+ b=eL1ufYCDL0+9AZQR5sJMAKYTxr8mN/GSUWxDUBr7glPYXLrJMCbgtsWbeqH+U5yRVT
+ ScnHIuV8WDNs00ax+GrUnsSKVj5qJOCLfI1fKTVm/t02Z7KHrrbxQFe5FZ6wU1Vrl1QK
+ 1zqJOV6Qcym66RaKydw69d6x0Fe3a+B3qYpAzAPGOGsegrQwKYieHtFdvO+BW9voBQH+
+ vteMEnRIlCkLByHswifiNhg+hz/+33ehI1a50a7kJukoW0XtGI9EbTAWWknHmsrFzTsh
+ VsIyBYopzW/8idNXOkUg3JemByiBB01KKHhul/idHrUqOoiBqHKLkv1sNDPqrgUNW22R
+ Dprg==
+X-Gm-Message-State: AOAM531dsCuaGsTNw6jTM/Xhy4dKbmtrGDXVSjQ5nbQJyrmr3PEK11xD
+ Qc7R3iu8MPJ0SAGbJt9lwo7OHxqcGWew0gC5XOs=
+X-Google-Smtp-Source: ABdhPJxHtnj/DXie9H0wxpzVZlSTyniokdUb/gsNNsMkANVtAtzr2mFBhczBYEoBurfSWsjRkBkPBhRAOOMrjVGBWsw=
+X-Received: by 2002:a67:7c8c:: with SMTP id x134mr13821818vsc.40.1618823016409; 
+ Mon, 19 Apr 2021 02:03:36 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210419042722.27554-1-alice.guo@oss.nxp.com>
- <20210419042722.27554-2-alice.guo@oss.nxp.com>
-In-Reply-To: <20210419042722.27554-2-alice.guo@oss.nxp.com>
+ <20210419042722.27554-4-alice.guo@oss.nxp.com>
+ <YH0O907dfGY9jQRZ@atmark-techno.com>
+In-Reply-To: <YH0O907dfGY9jQRZ@atmark-techno.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 19 Apr 2021 10:20:13 +0200
-Message-ID: <CAMuHMdUbrPxtJ9DCP0_nFrReuuO4vFY2J79LrKY82D7bCOfzRw@mail.gmail.com>
-Subject: Re: [RFC v1 PATCH 1/3] drivers: soc: add support for soc_device_match
- returning -EPROBE_DEFER
-To: "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, horia.geanta@nxp.com, 
- aymen.sghaier@nxp.com, herbert@gondor.apana.org.au, davem@davemloft.net, 
- tony@atomide.com, geert+renesas@glider.be, mturquette@baylibre.com, 
- sboyd@kernel.org, vkoul@kernel.org, peter.ujfalusi@gmail.com, 
- a.hajda@samsung.com, narmstrong@baylibre.com, robert.foss@linaro.org, 
- airlied@linux.ie, daniel@ffwll.ch, khilman@baylibre.com, tomba@kernel.org, 
- jyri.sarha@iki.fi, joro@8bytes.org, will@kernel.org, mchehab@kernel.org, 
- ulf.hansson@linaro.org, adrian.hunter@intel.com, kishon@ti.com, 
- kuba@kernel.org, linus.walleij@linaro.org, Roy.Pledge@nxp.com, 
- leoyang.li@nxp.com, ssantosh@kernel.org, matthias.bgg@gmail.com, 
- edubezval@gmail.com, j-keerthy@ti.com, balbi@kernel.org, 
- linux@prisktech.co.nz, stern@rowland.harvard.edu, wim@linux-watchdog.org, 
- linux@roeck-us.net, linux-kernel@vger.kernel.org, 
- linux-crypto@vger.kernel.org, linux-omap@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- iommu@lists.linux-foundation.org, linux-media@vger.kernel.org, 
- linux-mmc@vger.kernel.org, netdev@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, linux-staging@lists.linux.dev, 
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
- linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org, 
- Arnd Bergmann <arnd@arndb.de>
+Date: Mon, 19 Apr 2021 11:03:24 +0200
+Message-ID: <CAMuHMdVY1SLZ0K30T2pimyrR6Mm=VoSTO=L-xxCy2Bj7_kostw@mail.gmail.com>
+Subject: Re: [RFC v1 PATCH 3/3] driver: update all the code that use
+ soc_device_match
+To: Dominique MARTINET <dominique.martinet@atmark-techno.com>
+Cc: "Alice Guo (OSS)" <alice.guo@oss.nxp.com>, gregkh@linuxfoundation.org,
+ rafael@kernel.org, 
+ horia.geanta@nxp.com, aymen.sghaier@nxp.com, herbert@gondor.apana.org.au, 
+ davem@davemloft.net, tony@atomide.com, geert+renesas@glider.be, 
+ mturquette@baylibre.com, sboyd@kernel.org, vkoul@kernel.org, 
+ peter.ujfalusi@gmail.com, a.hajda@samsung.com, narmstrong@baylibre.com, 
+ robert.foss@linaro.org, airlied@linux.ie, daniel@ffwll.ch, 
+ khilman@baylibre.com, tomba@kernel.org, jyri.sarha@iki.fi, joro@8bytes.org, 
+ will@kernel.org, mchehab@kernel.org, ulf.hansson@linaro.org, 
+ adrian.hunter@intel.com, kishon@ti.com, kuba@kernel.org, 
+ linus.walleij@linaro.org, Roy.Pledge@nxp.com, leoyang.li@nxp.com, 
+ ssantosh@kernel.org, matthias.bgg@gmail.com, edubezval@gmail.com, 
+ j-keerthy@ti.com, balbi@kernel.org, linux@prisktech.co.nz, 
+ stern@rowland.harvard.edu, wim@linux-watchdog.org, linux@roeck-us.net, 
+ linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, 
+ linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ linux-clk@vger.kernel.org, dmaengine@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux-foundation.org, 
+ linux-media@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ netdev@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-gpio@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-staging@lists.linux.dev, linux-mediatek@lists.infradead.org, 
+ linux-pm@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-watchdog@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210419_012029_956281_3B2C7EC1 
-X-CRM114-Status: GOOD (  23.31  )
+X-CRM114-CacheID: sfid-20210419_020340_237625_07D52D16 
+X-CRM114-Status: GOOD (  47.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,61 +121,124 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Alice,
+Hi Dominique,
 
 CC Arnd (soc_device_match() author)
 
-On Mon, Apr 19, 2021 at 6:28 AM Alice Guo (OSS) <alice.guo@oss.nxp.com> wrote:
-> From: Alice Guo <alice.guo@nxp.com>
+On Mon, Apr 19, 2021 at 7:03 AM Dominique MARTINET
+<dominique.martinet@atmark-techno.com> wrote:
+> Alice Guo (OSS) wrote on Mon, Apr 19, 2021 at 12:27:22PM +0800:
+> > From: Alice Guo <alice.guo@nxp.com>
+> > Update all the code that use soc_device_match
 >
-> In i.MX8M boards, the registration of SoC device is later than caam
-> driver which needs it. Caam driver needs soc_device_match to provide
-> -EPROBE_DEFER when no SoC device is registered and no
-> early_soc_dev_attr.
+> A single patch might be difficult to accept for all components, a each
+> maintainer will probably want to have a say on their subsystem?
+>
+> I would suggest to split these for a non-RFC version; a this will really
+> need to be case-by-case handling.
+>
+> > because add support for soc_device_match returning -EPROBE_DEFER.
+>
+> (English does not parse here for me)
+>
+> I've only commented a couple of places in the code itself, but this
+> doesn't seem to add much support for errors, just sweep the problem
+> under the rug.
+>
+> > Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> > ---
+> >
+> > diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
+> > index 5fae60f8c135..00c59aa217c1 100644
+> > --- a/drivers/bus/ti-sysc.c
+> > +++ b/drivers/bus/ti-sysc.c
+> > @@ -2909,7 +2909,7 @@ static int sysc_init_soc(struct sysc *ddata)
+> >       }
+> >
+> >       match = soc_device_match(sysc_soc_feat_match);
+> > -     if (!match)
+> > +     if (!match || IS_ERR(match))
+> >               return 0;
+>
+> This function handles errors, I would recommend returning the error as
+> is if soc_device_match returned one so the probe can be retried later.
 
-I'm wondering if this is really a good idea: soc_device_match() is a
-last-resort low-level check, and IMHO should be made available early on,
-so there is no need for -EPROBE_DEFER.
+Depends...
+
+> > --- a/drivers/clk/renesas/r8a7795-cpg-mssr.c
+> > +++ b/drivers/clk/renesas/r8a7795-cpg-mssr.c
+> > @@ -439,6 +439,7 @@ static const unsigned int r8a7795es2_mod_nullify[] __initconst = {
+> >
+> >  static int __init r8a7795_cpg_mssr_init(struct device *dev)
+> >  {
+> > +     const struct soc_device_attribute *match;
+> >       const struct rcar_gen3_cpg_pll_config *cpg_pll_config;
+> >       u32 cpg_mode;
+> >       int error;
+> > @@ -453,7 +454,8 @@ static int __init r8a7795_cpg_mssr_init(struct device *dev)
+> >               return -EINVAL;
+> >       }
+> >
+> > -     if (soc_device_match(r8a7795es1)) {
+> > +     match = soc_device_match(r8a7795es1);
+> > +     if (!IS_ERR(match) && match) {
+>
+> Same, return the error.
+> Assuming an error means no match will just lead to hard to debug
+> problems because the driver potentially assumed the wrong device when
+> it's just not ready yet.
+
+When running on R-Car H3, there will always be a match device, as
+the SoC device is registered early.
 
 >
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-
-Thanks for your patch!
-
-> --- a/drivers/base/soc.c
-> +++ b/drivers/base/soc.c
-> @@ -110,6 +110,7 @@ static void soc_release(struct device *dev)
->  }
+> >               cpg_core_nullify_range(r8a7795_core_clks,
+> >                                      ARRAY_SIZE(r8a7795_core_clks),
+> >                                      R8A7795_CLK_S0D2, R8A7795_CLK_S0D12);
+> > [...]
+> > diff --git a/drivers/iommu/ipmmu-vmsa.c b/drivers/iommu/ipmmu-vmsa.c
+> > index eaaec0a55cc6..13a06b613379 100644
+> > --- a/drivers/iommu/ipmmu-vmsa.c
+> > +++ b/drivers/iommu/ipmmu-vmsa.c
+> > @@ -757,17 +757,20 @@ static const char * const devices_allowlist[] = {
+> >
+> >  static bool ipmmu_device_is_allowed(struct device *dev)
+> >  {
+> > +     const struct soc_device_attribute *match1, *match2;
+> >       unsigned int i;
+> >
+> >       /*
+> >        * R-Car Gen3 and RZ/G2 use the allow list to opt-in devices.
+> >        * For Other SoCs, this returns true anyway.
+> >        */
+> > -     if (!soc_device_match(soc_needs_opt_in))
+> > +     match1 = soc_device_match(soc_needs_opt_in);
+> > +     if (!IS_ERR(match1) && !match1)
 >
->  static struct soc_device_attribute *early_soc_dev_attr;
-> +static bool soc_dev_attr_init_done = false;
-
-Do you need this variable?
-
+> I'm not sure what you intended to do, but !match1 already means there is
+> no error so the original code is identical.
 >
->  struct soc_device *soc_device_register(struct soc_device_attribute *soc_dev_attr)
->  {
-> @@ -157,6 +158,7 @@ struct soc_device *soc_device_register(struct soc_device_attribute *soc_dev_attr
->                 return ERR_PTR(ret);
->         }
+> In this case ipmmu_device_is_allowed does not allow errors so this is
+> one of the "difficult" drivers that require slightly more thinking.
+> It is only called in ipmmu_of_xlate which does return errors properly,
+> so in this case the most straightforward approach would be to make
+> ipmmu_device_is_allowed return an int and forward errors as well.
 >
-> +       soc_dev_attr_init_done = true;
->         return soc_dev;
->
->  out3:
-> @@ -246,6 +248,9 @@ const struct soc_device_attribute *soc_device_match(
->         if (!matches)
->                 return NULL;
->
-> +       if (!soc_dev_attr_init_done && !early_soc_dev_attr)
+> ...
+> This is going to need quite some more work to be acceptable, in my
+> opinion, but I think it should be possible.
 
-if (!soc_bus_type.p && !early_soc_dev_attr)
+In general, this is very hard to do, IMHO. Some drivers may be used on
+multiple platforms, some of them registering an SoC device, some of
+them not registering an SoC device.  So there is no way to know the
+difference between "SoC device not registered, intentionally", and
+"SoC device not yet registered".
 
-> +               return ERR_PTR(-EPROBE_DEFER);
-> +
->         while (!ret) {
->                 if (!(matches->machine || matches->family ||
->                       matches->revision || matches->soc_id))
+soc_device_match() should only be used as a last resort, to identify
+systems that cannot be identified otherwise.  Typically this is used for
+quirks, which should only be enabled on a very specific subset of
+systems.  IMHO such systems should make sure soc_device_match()
+is available early, by registering their SoC device early.
 
 Gr{oetje,eeting}s,
 
