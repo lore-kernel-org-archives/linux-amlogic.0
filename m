@@ -2,136 +2,169 @@ Return-Path: <SRS0=2Oki=JQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89A12C433B4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 12:17:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 663DAC43461
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 13:37:04 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0A3B1611F0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 12:17:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A3B1611F0
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arndb.de
+	by mail.kernel.org (Postfix) with ESMTPS id B46DE61279
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 13:37:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B46DE61279
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=JYVh2Oi1VRrOzsHWBnT49TP03ZigjpMGSJL6DSQIc4U=; b=rAuQBYiTHS1fL9Bl7K52KEr5f
-	zWwJYvLQ1WkQUwpfjEHH/iHzdavIjlSw5wBJd0yVH50I41b2FNYetdbjrPDyPeyyOnJvcE0zYTH0r
-	lgVlPgXBhZeFhx0K/3rNj7OZkhaWjsjdj1xHhcAITnws2hS1hJftvFslKNQtQ2xn97dOaBNDqQtD7
-	xbiVoHtM5P0hlF4T2fq7ogZgY8Jb9cUV9hvqnDLY/YIOfpU+HcRCN43M+J4mR9LABGenRKfJFIOdc
-	SSWOw2/P+pG8vALyV6ora4CKIGD2NM99c6XFj6HwGifHq3cdoLYHKpWww1L+D2bMDcNV7lTicJmfN
-	XST2TfGmw==;
+	 bh=7ka7lPd63MQ8tnSh66cOEoycwknnCyn6u9pNB9ECDOk=; b=Q0+eYgJ1C2EeA0BJ742t6fvj5
+	oul7V3J3D5bNbiOeZFSBK3WQ62RVr+WwmmpkOIjtSeu++sheQO+7emPChW61rPsbiLE/nixwnx6rF
+	rnNZTJX9ape/ogYfLx1vDD8NiNIFaHWzH0wwygSv1Pf9ZTJY9yq3fRuz6gLPrNe2g5Hmv969amZAt
+	v7w0GmtvLgKZwp9xR9d7SIL5uM0GCbJb6PHiUKkIw2fzjBHLlDlpzqXhikH4V0JOFi6QoxJSnGU5W
+	X/gu4n1K1o/kD3DCO2OdCQpHzE6pg5qo8H5pEiPksRsNPRRT8LYdAEuGidLj1ubmZJpC/t53zojpX
+	IDc4y6Ykw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lYSq4-009pqh-Fm; Mon, 19 Apr 2021 12:17:16 +0000
+	id 1lYU5C-00A0GV-7Y; Mon, 19 Apr 2021 13:36:58 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lYSpz-009ppm-HL; Mon, 19 Apr 2021 12:17:12 +0000
+ id 1lYU52-00A0EH-Ag; Mon, 19 Apr 2021 13:36:48 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
- :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=Jte4PESVCyOxZgmueTIRmzESggoF2gOLGuf4QLB+EB0=; b=dEjx4FacO0Qc/yqZrU0+Ht6nuo
- 4/uFe56LP3DgbOdG1Glqe3iWmnIq1uxlsb0OUk/vfGdWwLqpuNEZtgkOlqg8ecMIhgAJZHK3+0/oT
- BdcE2fQD1zeTv6H8izVXUXj/VKNA1HT8U/3e7NfVmrVA811MEgAIL5pGkeHeb1ZyW9zi6x5dF0SRC
- 8tPaIgMDnG3dN0JerVPyaaIH5EHVdy0dgvyF9zqxpP6kik14qHqwnRKrlefZbNQfRro81ajsKMqaK
- O59IPz5s177J3PFXPdWhZw5u739vpeVDSE1zg6R7arSpswMcmkVuLCvWPd3UxgO8QMlQ6DKEOUVzW
- aJw6q1sw==;
-Received: from mout.kundenserver.de ([217.72.192.73])
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+ Subject:Sender:Reply-To:Content-ID:Content-Description;
+ bh=O4YSIccK0/khECcBMp5SF3VOcTD2gCbWGRlUmk7xgdE=; b=y7VmPvgaEgFv0uQZwxy14qpKOJ
+ s2M8yVVQCW4B/0gw9qrUViKayN42pek7wT3hAFCgVFS8O4cLrIJ4bwnjQFduCvPh88r0nejO97VKc
+ CG2I60TBmtChgzt5NBjUpfOWqOGNE+4KDzWCfkGix8nLYUObw5eBLglZ642SGAN/rjrqdg49yQpul
+ e4OBQu8SFZvgGYz3fk6Dm9ILiKYsq+eCczi+fbSNjme9j3KCIUNdEJkaZcqrw0jmi0GH6uw2Rubir
+ s6YZHqxqWc3Dy8UMgTUTeVn+nJo21qyxsCAJN40WE5dKhbzrXHuDgyloORVOVl8qLZfwOMR9r/Q1D
+ zo+UNv+Q==;
+Received: from mail-oi1-x230.google.com ([2607:f8b0:4864:20::230])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lYSpv-00BLMA-AV; Mon, 19 Apr 2021 12:17:10 +0000
-Received: from mail-ed1-f43.google.com ([209.85.208.43]) by
- mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Ma1wY-1l2RQy3Y8K-00W0u9; Mon, 19 Apr 2021 14:17:04 +0200
-Received: by mail-ed1-f43.google.com with SMTP id j7so3488470eds.8;
- Mon, 19 Apr 2021 05:17:03 -0700 (PDT)
-X-Gm-Message-State: AOAM530E08lvsRHMRNDydOZidFtApXVQ9lG+sKzfZ4kuuw7KmIVAJbRD
- Jvyapn36T22Tt77rVib32sw0LpT5rgiC5zZAu/0=
-X-Google-Smtp-Source: ABdhPJw4F20QerTwfst1rAMwc6NWiXDSUWeUkZ8E4j2sezaYrIv6atAni45jIwUzsYws7AyLO9D3pu8QFGIGztgXd7o=
-X-Received: by 2002:a05:6000:1843:: with SMTP id
- c3mr14679907wri.361.1618834612186; 
- Mon, 19 Apr 2021 05:16:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210419042722.27554-1-alice.guo@oss.nxp.com>
- <20210419042722.27554-4-alice.guo@oss.nxp.com>
- <YH0O907dfGY9jQRZ@atmark-techno.com>
- <CAMuHMdVY1SLZ0K30T2pimyrR6Mm=VoSTO=L-xxCy2Bj7_kostw@mail.gmail.com>
- <YH1OeFy+SepIYYG0@atmark-techno.com>
-In-Reply-To: <YH1OeFy+SepIYYG0@atmark-techno.com>
-From: Arnd Bergmann <arnd@arndb.de>
-Date: Mon, 19 Apr 2021 14:16:36 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1Mu2F0irDDCL-50HiHth29iYFL5b7WHZ=UX6W7zzoxAg@mail.gmail.com>
-Message-ID: <CAK8P3a1Mu2F0irDDCL-50HiHth29iYFL5b7WHZ=UX6W7zzoxAg@mail.gmail.com>
+ id 1lYU4y-00BPRe-9Q; Mon, 19 Apr 2021 13:36:47 +0000
+Received: by mail-oi1-x230.google.com with SMTP id v6so7615191oiv.3;
+ Mon, 19 Apr 2021 06:36:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=O4YSIccK0/khECcBMp5SF3VOcTD2gCbWGRlUmk7xgdE=;
+ b=QxxIckYEZwj2Mgtp8u/3/qf16jg+yLNElvzMoUENyE8FhR5U4F1ImpG/uaCtWn7nXx
+ 3ekx6eAkEakamER9JUPZziOdMQ7cYIuzBpwC+MIodRuraJb5f0wtBtlttjdMsO0OEX0E
+ Vue3b/0hVrm5zjzOUHcm6P75oFT95tz5ssNtuxTY3PQLptg6JPDnftllvhB2Akc/5H8y
+ av6fIYScX75LKL5qkqONXuqkqvYupnGtLtfVyUxiqnViV9v0xN4vlzzeNtuLPVgBdG2+
+ d5B/Yoi0FpivPTjvf4I9ia64JPbHQGMn5TtlPyrfIob5emmTl96+6TFcARCxBPY5ie5j
+ vdPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=O4YSIccK0/khECcBMp5SF3VOcTD2gCbWGRlUmk7xgdE=;
+ b=ZnUpn0feULG+LHDL91AUjwKwPbCv0KQM/v/hYzHrzE2ynGrITfuFro5SplAxPklNws
+ HZiXYS7oiXyT+wXcRIsFXEv18eKhP7+jXCz47rMhaItIBAIXp6kBxQjybLwpll8l0pQC
+ 6grIH98GJZ8Wt5NvIaNi/PoseZIGdrPaYGiTWg6GG+LJSTDAo3b3kLXOf50Kw8CdCfel
+ hlp/B5fcx89h0bgjNYJxljNAQELdEymHjKsy1hOqPEw86TD0aCjcOvAN5KSsTUGNT0M+
+ KdNDnwqU8sTruswVoKgYgFTntOr7NbxPKAGvqiQCIx5qUi3J6qNMJkUhmo0CcOGPHCQf
+ KE2Q==
+X-Gm-Message-State: AOAM5306abkrviiMZiTQZrh0UdaZbaEuUZfgBJurhLH7S1EMIc2Ap++Q
+ HthF0VPvxlTJvjcj8uOFfwk=
+X-Google-Smtp-Source: ABdhPJzaWk38LeqfKmLypaOGl7ffmdvt0c0bJk6i9AejEUNHdMbwxgKF0PlxU0vz+DQ2qmfzA+b1OQ==
+X-Received: by 2002:aca:ef84:: with SMTP id n126mr15301837oih.78.1618839402271; 
+ Mon, 19 Apr 2021 06:36:42 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ p22sm3563941otf.25.2021.04.19.06.36.36
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 19 Apr 2021 06:36:41 -0700 (PDT)
 Subject: Re: [RFC v1 PATCH 3/3] driver: update all the code that use
  soc_device_match
-To: Dominique MARTINET <dominique.martinet@atmark-techno.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- "Alice Guo (OSS)" <alice.guo@oss.nxp.com>, 
- gregkh <gregkh@linuxfoundation.org>, Rafael Wysocki <rafael@kernel.org>, 
- =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>, aymen.sghaier@nxp.com, 
- Herbert Xu <herbert@gondor.apana.org.au>, David Miller <davem@davemloft.net>, 
- Tony Lindgren <tony@atomide.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Vinod Koul <vkoul@kernel.org>, peter.ujfalusi@gmail.com, 
- Andrzej Hajda <a.hajda@samsung.com>, Neil Armstrong <narmstrong@baylibre.com>, 
- Robert Foss <robert.foss@linaro.org>, David Airlie <airlied@linux.ie>, 
- Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>,
- tomba@kernel.org, jyri.sarha@iki.fi, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, Kishon <kishon@ti.com>, 
- Jakub Kicinski <kuba@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
- Roy Pledge <Roy.Pledge@nxp.com>, Leo Li <leoyang.li@nxp.com>, 
- Santosh Shilimkar <ssantosh@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
- Felipe Balbi <balbi@kernel.org>, 
- Tony Prisk <linux@prisktech.co.nz>, Alan Stern <stern@rowland.harvard.edu>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
- <linux-crypto@vger.kernel.org>, linux-omap <linux-omap@vger.kernel.org>, 
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>, 
- dmaengine@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, 
- "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>, 
- Linux ARM <linux-arm-kernel@lists.infradead.org>, 
- "open list:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>, 
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- linux-mmc <linux-mmc@vger.kernel.org>, 
- Networking <netdev@vger.kernel.org>, linux-phy@lists.infradead.org, 
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
- linux-staging@lists.linux.dev, 
- "moderated list:ARM/Mediatek SoC..." <linux-mediatek@lists.infradead.org>, 
- Linux PM list <linux-pm@vger.kernel.org>, USB list <linux-usb@vger.kernel.org>,
- LINUXWATCHDOG <linux-watchdog@vger.kernel.org>
-X-Provags-ID: V03:K1:g/QI9y9oQjjikvBQx8Nmh/qtx5Rfg/NuQCZqr/O03hRfwIE0GyD
- F3w4+EGg9GUaJHQlTjxVPX/0008CCVaqT1gHII/tbpbWzu7rMV/mHgswtMWuEvgVIVa0XqO
- XS0Jk7hAZUDhBP17ugBGfsLkDFI7TOGNXMrXnURMRWSZPYcujxBaF4LEGwH6jBCpXzgh+LG
- W+hlgWEp/+a8n/biU8XHQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fj3kO2X5yGs=:r4DRa7oPbhL2Cp/tMsxLri
- 0UXNSBm5TFCw6p+MqcLW5k8ejukcMbKjXlbd94/KtlzQTBrXXcWsWDXmPS6ncAsJI/gRBgYN4
- O2+rYdvaBYfvSus6eJgdSQkmHU0twbJ66r+efv2Tmd26CHfLv9IvnC6rUHRElo4ctzldbLMWy
- GTTe/6fuv1tGNLcHPfZHSL7/roKq4yDMeaDpzgAajuK7OgdYKrcdB0MrUdc8EK2tSdDXt7xti
- fAG35cuWVr6jNZGzlFqRlLJNvuVlZUQp2H/WvnMgu4WINKSq5VkThVw77cQ0JQsf1aETyVAOA
- UCUcmUaKVS/UqkLJ2M4VC+aXORwr3Q3mbahhYfSHUfb6U6c9jRaJn+3E7Q3sXeuG1PsexhbCw
- 90pWRbH8j5Enw7LhVinWavvXgo4GMbtB0v5ZdVbmYXfoaJt/wJy/JXZ7BykePlZOhwJr2uaP+
- wzHMnhH0PKdQLzRIUXcUs2rZDZ4qQRXgbx3fzBCfBrIsJVpaqJeECt89e3tIbJRflgCgTN0nV
- M0h4M+57ycRVc4VpG6rAhdA0PU3usjjdawrRLRjcXx/W+e85jvRsqHXOhzSLZKGpRtRHHd9sV
- qGAurZ8DiwqxiEIJM9RvEOXZuCUEXSBPPYRS0IbdsitnQZWIsMXU3dDQs6esoGesTtPCz1/bY
- 7w3s=
+To: "Alice Guo (OSS)" <alice.guo@oss.nxp.com>, gregkh@linuxfoundation.org,
+ rafael@kernel.org, horia.geanta@nxp.com, aymen.sghaier@nxp.com,
+ herbert@gondor.apana.org.au, davem@davemloft.net, tony@atomide.com,
+ geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
+ vkoul@kernel.org, peter.ujfalusi@gmail.com, a.hajda@samsung.com,
+ narmstrong@baylibre.com, robert.foss@linaro.org, airlied@linux.ie,
+ daniel@ffwll.ch, khilman@baylibre.com, tomba@kernel.org, jyri.sarha@iki.fi,
+ joro@8bytes.org, will@kernel.org, mchehab@kernel.org,
+ ulf.hansson@linaro.org, adrian.hunter@intel.com, kishon@ti.com,
+ kuba@kernel.org, linus.walleij@linaro.org, Roy.Pledge@nxp.com,
+ leoyang.li@nxp.com, ssantosh@kernel.org, matthias.bgg@gmail.com,
+ edubezval@gmail.com, j-keerthy@ti.com, balbi@kernel.org,
+ linux@prisktech.co.nz, stern@rowland.harvard.edu, wim@linux-watchdog.org
+Cc: linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, dmaengine@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux-foundation.org,
+ linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+ netdev@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-gpio@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-staging@lists.linux.dev, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-watchdog@vger.kernel.org
+References: <20210419042722.27554-1-alice.guo@oss.nxp.com>
+ <20210419042722.27554-4-alice.guo@oss.nxp.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <5a6550d9-083a-cc50-a6c0-ce035ceb1b2f@roeck-us.net>
+Date: Mon, 19 Apr 2021 06:36:35 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210419042722.27554-4-alice.guo@oss.nxp.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210419_051707_671018_F06B008E 
-X-CRM114-Status: GOOD (  29.72  )
+X-CRM114-CacheID: sfid-20210419_063644_357351_4ABFEBC2 
+X-CRM114-Status: GOOD (  16.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -148,47 +181,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Apr 19, 2021 at 11:33 AM Dominique MARTINET
-<dominique.martinet@atmark-techno.com> wrote:
-> Geert Uytterhoeven wrote on Mon, Apr 19, 2021 at 11:03:24AM +0200:
->
-> > soc_device_match() should only be used as a last resort, to identify
-> > systems that cannot be identified otherwise.  Typically this is used for
-> > quirks, which should only be enabled on a very specific subset of
-> > systems.  IMHO such systems should make sure soc_device_match()
-> > is available early, by registering their SoC device early.
->
-> I definitely agree there, my suggestion to defer was only because I know
-> of no other way to influence the ordering of drivers loading reliably
-> and gave up on soc being init'd early.
+On 4/18/21 9:27 PM, Alice Guo (OSS) wrote:
+> From: Alice Guo <alice.guo@nxp.com>
+> 
+> Update all the code that use soc_device_match because add support for
+> soc_device_match returning -EPROBE_DEFER.
+> 
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> ---
+[ ... ]
+>  drivers/watchdog/renesas_wdt.c                |  2 +-
+>  48 files changed, 131 insertions(+), 52 deletions(-)
+> 
+[ ... ]
+> diff --git a/drivers/watchdog/renesas_wdt.c b/drivers/watchdog/renesas_wdt.c
+> index 5791198960e6..fdc534dc4024 100644
+> --- a/drivers/watchdog/renesas_wdt.c
+> +++ b/drivers/watchdog/renesas_wdt.c
+> @@ -197,7 +197,7 @@ static bool rwdt_blacklisted(struct device *dev)
+>  	const struct soc_device_attribute *attr;
+>  
+>  	attr = soc_device_match(rwdt_quirks_match);
+> -	if (attr && setup_max_cpus > (uintptr_t)attr->data) {
+> +	if (!IS_ERR(attr) && attr && setup_max_cpus > (uintptr_t)attr->data) {
 
-In some cases, you can use the device_link infrastructure to deal
-with dependencies between devices. Not sure if this would help
-in your case, but have a look at device_link_add() etc in drivers/base/core.c
+This is wrong. We can not make the decision below without having access
+to attr. The function may wrongly return false if soc_device_match()
+returns an error.
 
-> In this particular case the problem is that since 7d981405d0fd ("soc:
-> imx8m: change to use platform driver") the soc probe tries to use the
-> nvmem driver for ocotp fuses for imx8m devices, which isn't ready yet.
-> So soc loading gets pushed back to the end of the list because it gets
-> defered and other drivers relying on soc_device_match get confused
-> because they wrongly think a device doesn't match a quirk when it
-> actually does.
->
-> If there is a way to ensure the nvmem driver gets loaded before the soc,
-> that would also solve the problem nicely, and avoid the need to mess
-> with all the ~50 drivers which use it.
->
-> Is there a way to control in what order drivers get loaded? Something in
-> the dtb perhaps?
+Guenter
 
-For built-in drivers, load order depends on the initcall level and
-link order (how things are lined listed in the Makefile hierarchy).
-
-For loadable modules, this is up to user space in the end.
-
-Which of the drivers in this scenario are loadable modules?
-
-        Arnd
+>  		dev_info(dev, "Watchdog blacklisted on %s %s\n", attr->soc_id,
+>  			 attr->revision);
+>  		return true;
+> 
 
 _______________________________________________
 linux-amlogic mailing list
