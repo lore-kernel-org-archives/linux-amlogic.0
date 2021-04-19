@@ -2,20 +2,20 @@ Return-Path: <SRS0=2Oki=JQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6BB3C433ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 05:02:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CFF49C433B4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 05:03:26 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 41CC061151
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 05:02:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 41CC061151
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 4B40761151
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Apr 2021 05:03:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4B40761151
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=atmark-techno.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
@@ -23,45 +23,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=2FxiI7V57BOcLal1oJxuZlWCAQpx1ex8VNP0PLO4b/U=; b=e1ppCvDr376prc75K3/sHRtQI
-	H9I8hYFn/EREvHZ+2k4fkJnpjiGDNS18YWD7RbZoSkg5UvDWnZaKrk0R68JFA/nZXWO4pjclaPJb1
-	vZN52FRdZpZwISjR4mwp1lz5DeqQKGi9QRxAruGJStngrkQNfp6DZScC+hqvjpQMCnWDAFWJDj8A4
-	EKzaz+04AeQzghYUWL7uMh5Mawd52mAUzdNkjGVOTmGG6+1NFK9p6TvEchRNE53q/4klcGUdDySai
-	Vy1Lh7M/usV/tblfeZTlFmDVF1W3OPBy/rRGkfv+kiAWVhObRybrVB01C6u4fesEDmabJwIHxIdbF
-	66gOgfptQ==;
+	 bh=8AKVPzHMioluCtzNVu5ozG6W6yYY13LQoV8QnacOJTk=; b=eBx6c6VsfYfKktU2I4fgbQbCw
+	tSG2ntgoZKhDjRny8+XK9y67A+ERqIrl0GNQezs4m2WOUsZz70v3zMOOYExV7UyNujlz2BdcRGcmh
+	LljD/kTqX9NoKvoWFVev5+HWjrBbY782YTFlNt5+Yk9OESrugD8Fnxfkkv6KQvNJ+9j+KX2fLpiYw
+	9QimrMrP5+C27hcg3CP2EUPuCtiI4H4SUZGfsQcRGGAcuit2pl040UKiwrnpb9WrDm5W2pYiOZ1ql
+	usvO8djop4zgvYreps0aHUOhYeF1fphjquMgqZ8TpB8o1OcHF12AlNuFpdyvRDh6h8NeSi8EpwSnB
+	IrkLebUmg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lYM3F-0097LR-2R; Mon, 19 Apr 2021 05:02:25 +0000
+	id 1lYM49-0097RA-QZ; Mon, 19 Apr 2021 05:03:21 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lYM3C-0097LC-E4; Mon, 19 Apr 2021 05:02:23 +0000
+ id 1lYM45-0097Qi-S2
+ for linux-amlogic@desiato.infradead.org; Mon, 19 Apr 2021 05:03:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
  :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=2978PzJtFVeN8phleYNVMXVxo8if5FUPf8rC7Eh3/e4=; b=oW9AMmu7cX3RmsvCGJiCWSNryi
- tq5oYV0bze8rYhqDm7/IbigzJ5sCU2U9L1L1+BnKIhiy9qielT0FBT9hihx98ENOcgofYuYo8y9mF
- OZQeWbBEk2xFmaYwKbhLO/C3f+515qVfD11v9bxdXcDz0xjUglVq+HOCROOTBQ38ZE/VM5xWmBsgp
- v82GQvPz6qhryCZDaddYGTangfY/gvkiBYBGf+BU38jLmq4m4YYDt8/H/3TDQbuBuVqyLwqi5AyYM
- YTg/T29T/8029PJLiIjS2elvPb3cw7b44gA1Tgvj1tPsjPatV8cXYj/RtxOD6SKo9j+w2lPKbtO1E
- K1UCxDJQ==;
-Received: from mail.kernel.org ([198.145.29.99])
- by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lYM39-00Azx5-Li; Mon, 19 Apr 2021 05:02:21 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 65BC961078;
- Mon, 19 Apr 2021 05:02:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1618808539;
- bh=srAR5o/oGq5ioibP/eXNEOXMJgehSJWXVDMJHT8j86M=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Q2aSyWKadyluHjWWN1SwyxF3iNnBxBRV4eFwfMyHPgeuOCbx3zVu4VA/PQblKt1mX
- LG/8Qa12wOxexoPdM1AtRUqEwffA6hhUzg5XvoNYf5i8CVaEzIb5aHKsxdmdIZ0VNh
- EB/GtCUOovxwGQ5QiY5CwzbiGBepA6YRCHaOc9bFp2O+m0lnHel/QMKuqas1XJG+Ml
- vece3azY0OPvilnrF9TxEM4Y2QEUh42RCB/qgDYU4n+IIRFMdKunRACTXFpDc2oJTx
- Tw4u0mxUHQNeAMruPlzpJF4CCm1VJVvyur9NU2SbLDowYlZY9RFqgpKroyAxadDiZV
- 1t4tD3zjj0ZKQ==
-Date: Mon, 19 Apr 2021 08:02:15 +0300
-From: Leon Romanovsky <leon@kernel.org>
+ bh=bLr973ENjFZQNNz5/z+BmoCFuTDVovYaAYguOO0YOc4=; b=FqCUaH/m4o36EybObw8kYfxjc3
+ jM8bp7G1PfxE3kdBhTXbhnbTcUUY3ZeohBhZf/hE6bILLoB+A4Lyk2cTPdPbR18wJtxm01rRpL4d0
+ QrKLjig1TqarAcBJwKm22Xlf7obXxgVgXFa0sx2HonPUr+GWSHWu9eVnMsh2HdFJnXg5QbeYWTb3A
+ 2OJhJpMuTns2elyGngOnkEmVhSmj6tVP8u8PGzhCq3e7nDX4zyEc0HsQIgV9jaav/XfwNEGBURHln
+ 2UukyNl7wS6OKLxWQpXVvdGP9luQnMgy7W6BnVTQNHm3O9t1Z0mTBI36tqz0FTTNphxJruM4UCqnO
+ /rhRPZjw==;
+Received: from gw.atmark-techno.com ([13.115.124.170])
+ by bombadil.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
+ id 1lYM40-00B028-Be
+ for linux-amlogic@lists.infradead.org; Mon, 19 Apr 2021 05:03:16 +0000
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
+ [209.85.215.199])
+ by gw.atmark-techno.com (Postfix) with ESMTPS id AE229804B1
+ for <linux-amlogic@lists.infradead.org>; Mon, 19 Apr 2021 14:03:11 +0900 (JST)
+Received: by mail-pg1-f199.google.com with SMTP id
+ x12-20020a63f70c0000b0290202e04d4af8so5546010pgh.1
+ for <linux-amlogic@lists.infradead.org>; Sun, 18 Apr 2021 22:03:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=bLr973ENjFZQNNz5/z+BmoCFuTDVovYaAYguOO0YOc4=;
+ b=Gc+W015NVQxBGUS4rgOSbO28tcc3KFDLtnUtFtxnKXcLbL+h93xqEyRTzW7wRFONSQ
+ Et3+0OM0ZAtwC3+zvSGVhwAnZO4VLyQyo6QRi5hLdBRGhr461EC7J1gFinW975dQlECl
+ QAoV6y41SZjJdO+4zTsz8zX3NDBR747vYvT+EiYhBqZm2uoRrW65qU549jNtDrNVkXxn
+ tXcXEsHsFjZ4X84vFoZ1h1OsDrNa0y8/DRp1meRRKRkAqgTA7ch72Uc+Oyao5wJqrlGB
+ qqAmRUeBBFrCNjP3kq+1C+tePxSbpPVlc7KY+eEj9Gy0o/1pCn/42Bg2imnHP8yW1pPu
+ RsQQ==
+X-Gm-Message-State: AOAM532o27iakvRiKFO+lQLQeLEtA99qmY0D6GBGCbYYapUcQCJikNij
+ i5t8Bq1W4az7nbCKrzB/5OC05+jBL3+vvUWUDhLsX6yqKKne3oazXVVZbvvXWs91qpu2HvJYiE+
+ GrLi95vIuBAZV5WriXvmlIMifdbPk0l0VfIQ=
+X-Received: by 2002:a17:902:d645:b029:e8:ec90:d097 with SMTP id
+ y5-20020a170902d645b02900e8ec90d097mr21074787plh.47.1618808579507; 
+ Sun, 18 Apr 2021 22:02:59 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyI1MeNQhpXnytM5xmVsw3ZCkrTxMPyrxhKroAVtmGUaPe01xpWL31HOX4hl1pxmvtORo+KDQ==
+X-Received: by 2002:a17:902:d645:b029:e8:ec90:d097 with SMTP id
+ y5-20020a170902d645b02900e8ec90d097mr21074765plh.47.1618808579243; 
+ Sun, 18 Apr 2021 22:02:59 -0700 (PDT)
+Received: from pc-0115 (103.131.189.35.bc.googleusercontent.com.
+ [35.189.131.103])
+ by smtp.gmail.com with ESMTPSA id ga21sm2553351pjb.5.2021.04.18.22.02.58
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 18 Apr 2021 22:02:58 -0700 (PDT)
+Received: from martinet by pc-0115 with local (Exim 4.94)
+ (envelope-from <martinet@pc-0115>)
+ id 1lYM3l-0016Ra-6N; Mon, 19 Apr 2021 14:02:57 +0900
+Date: Mon, 19 Apr 2021 14:02:47 +0900
+From: Dominique MARTINET <dominique.martinet@atmark-techno.com>
 To: "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
 Cc: gregkh@linuxfoundation.org, rafael@kernel.org, horia.geanta@nxp.com,
  aymen.sghaier@nxp.com, herbert@gondor.apana.org.au,
@@ -90,15 +116,15 @@ Cc: gregkh@linuxfoundation.org, rafael@kernel.org, horia.geanta@nxp.com,
  linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org
 Subject: Re: [RFC v1 PATCH 3/3] driver: update all the code that use
  soc_device_match
-Message-ID: <YH0O1104YEdjY9mb@unreal>
+Message-ID: <YH0O907dfGY9jQRZ@atmark-techno.com>
 References: <20210419042722.27554-1-alice.guo@oss.nxp.com>
  <20210419042722.27554-4-alice.guo@oss.nxp.com>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <20210419042722.27554-4-alice.guo@oss.nxp.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210418_220219_760731_129EA694 
-X-CRM114-Status: GOOD (  16.43  )
+X-CRM114-CacheID: sfid-20210418_220312_525983_D7C5265B 
+X-CRM114-Status: GOOD (  28.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,63 +141,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Apr 19, 2021 at 12:27:22PM +0800, Alice Guo (OSS) wrote:
+Alice Guo (OSS) wrote on Mon, Apr 19, 2021 at 12:27:22PM +0800:
 > From: Alice Guo <alice.guo@nxp.com>
 > 
-> Update all the code that use soc_device_match because add support for
-> soc_device_match returning -EPROBE_DEFER.
-> 
+> Update all the code that use soc_device_match
+
+A single patch might be difficult to accept for all components, a each
+maintainer will probably want to have a say on their subsystem?
+
+I would suggest to split these for a non-RFC version; a this will really
+need to be case-by-case handling.
+
+> because add support for soc_device_match returning -EPROBE_DEFER.
+
+(English does not parse here for me)
+
+I've only commented a couple of places in the code itself, but this
+doesn't seem to add much support for errors, just sweep the problem
+under the rug.
+
 > Signed-off-by: Alice Guo <alice.guo@nxp.com>
 > ---
->  drivers/bus/ti-sysc.c                         |  2 +-
->  drivers/clk/renesas/r8a7795-cpg-mssr.c        |  4 +++-
->  drivers/clk/renesas/rcar-gen2-cpg.c           |  2 +-
->  drivers/clk/renesas/rcar-gen3-cpg.c           |  2 +-
->  drivers/dma/fsl-dpaa2-qdma/dpaa2-qdma.c       |  7 ++++++-
->  drivers/dma/ti/k3-psil.c                      |  3 +++
->  drivers/dma/ti/k3-udma.c                      |  2 +-
->  drivers/gpu/drm/bridge/nwl-dsi.c              |  2 +-
->  drivers/gpu/drm/meson/meson_drv.c             |  4 +++-
->  drivers/gpu/drm/omapdrm/dss/dispc.c           |  2 +-
->  drivers/gpu/drm/omapdrm/dss/dpi.c             |  4 +++-
->  drivers/gpu/drm/omapdrm/dss/dsi.c             |  3 +++
->  drivers/gpu/drm/omapdrm/dss/dss.c             |  3 +++
->  drivers/gpu/drm/omapdrm/dss/hdmi4_core.c      |  3 +++
->  drivers/gpu/drm/omapdrm/dss/venc.c            |  4 +++-
->  drivers/gpu/drm/omapdrm/omap_drv.c            |  3 +++
->  drivers/gpu/drm/rcar-du/rcar_du_crtc.c        |  4 +++-
->  drivers/gpu/drm/rcar-du/rcar_lvds.c           |  2 +-
->  drivers/gpu/drm/tidss/tidss_dispc.c           |  4 +++-
->  drivers/iommu/ipmmu-vmsa.c                    |  7 +++++--
->  drivers/media/platform/rcar-vin/rcar-core.c   |  2 +-
->  drivers/media/platform/rcar-vin/rcar-csi2.c   |  2 +-
->  drivers/media/platform/vsp1/vsp1_uif.c        |  4 +++-
->  drivers/mmc/host/renesas_sdhi_core.c          |  2 +-
->  drivers/mmc/host/renesas_sdhi_internal_dmac.c |  2 +-
->  drivers/mmc/host/sdhci-of-esdhc.c             | 21 ++++++++++++++-----
->  drivers/mmc/host/sdhci-omap.c                 |  2 +-
->  drivers/mmc/host/sdhci_am654.c                |  2 +-
->  drivers/net/ethernet/renesas/ravb_main.c      |  4 +++-
->  drivers/net/ethernet/ti/am65-cpsw-nuss.c      |  2 +-
->  drivers/net/ethernet/ti/cpsw.c                |  2 +-
->  drivers/net/ethernet/ti/cpsw_new.c            |  2 +-
->  drivers/phy/ti/phy-omap-usb2.c                |  4 +++-
->  drivers/pinctrl/renesas/core.c                |  2 +-
->  drivers/pinctrl/renesas/pfc-r8a7790.c         |  5 ++++-
->  drivers/pinctrl/renesas/pfc-r8a7794.c         |  5 ++++-
->  drivers/soc/fsl/dpio/dpio-driver.c            | 13 ++++++++----
->  drivers/soc/renesas/r8a774c0-sysc.c           |  5 ++++-
->  drivers/soc/renesas/r8a7795-sysc.c            |  2 +-
->  drivers/soc/renesas/r8a77990-sysc.c           |  5 ++++-
->  drivers/soc/ti/k3-ringacc.c                   |  2 +-
->  drivers/staging/mt7621-pci/pci-mt7621.c       |  2 +-
->  drivers/thermal/rcar_gen3_thermal.c           |  4 +++-
->  drivers/thermal/ti-soc-thermal/ti-bandgap.c   | 10 +++++++--
->  drivers/usb/gadget/udc/renesas_usb3.c         |  2 +-
->  drivers/usb/host/ehci-platform.c              |  4 +++-
->  drivers/usb/host/xhci-rcar.c                  |  2 +-
->  drivers/watchdog/renesas_wdt.c                |  2 +-
->  48 files changed, 131 insertions(+), 52 deletions(-)
 > 
 > diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
 > index 5fae60f8c135..00c59aa217c1 100644
@@ -184,6 +174,10 @@ On Mon, Apr 19, 2021 at 12:27:22PM +0800, Alice Guo (OSS) wrote:
 > -	if (!match)
 > +	if (!match || IS_ERR(match))
 >  		return 0;
+
+This function handles errors, I would recommend returning the error as
+is if soc_device_match returned one so the probe can be retried later.
+
 >  
 >  	if (match->data)
 > diff --git a/drivers/clk/renesas/r8a7795-cpg-mssr.c b/drivers/clk/renesas/r8a7795-cpg-mssr.c
@@ -206,9 +200,52 @@ On Mon, Apr 19, 2021 at 12:27:22PM +0800, Alice Guo (OSS) wrote:
 > +	match = soc_device_match(r8a7795es1);
 > +	if (!IS_ERR(match) && match) {
 
-"if (!IS_ERR_OR_NULL(match))" in all places.
+Same, return the error.
+Assuming an error means no match will just lead to hard to debug
+problems because the driver potentially assumed the wrong device when
+it's just not ready yet.
 
-Thanks
+>  		cpg_core_nullify_range(r8a7795_core_clks,
+>  				       ARRAY_SIZE(r8a7795_core_clks),
+>  				       R8A7795_CLK_S0D2, R8A7795_CLK_S0D12);
+> [...]
+> diff --git a/drivers/iommu/ipmmu-vmsa.c b/drivers/iommu/ipmmu-vmsa.c
+> index eaaec0a55cc6..13a06b613379 100644
+> --- a/drivers/iommu/ipmmu-vmsa.c
+> +++ b/drivers/iommu/ipmmu-vmsa.c
+> @@ -757,17 +757,20 @@ static const char * const devices_allowlist[] = {
+>  
+>  static bool ipmmu_device_is_allowed(struct device *dev)
+>  {
+> +	const struct soc_device_attribute *match1, *match2;
+>  	unsigned int i;
+>  
+>  	/*
+>  	 * R-Car Gen3 and RZ/G2 use the allow list to opt-in devices.
+>  	 * For Other SoCs, this returns true anyway.
+>  	 */
+> -	if (!soc_device_match(soc_needs_opt_in))
+> +	match1 = soc_device_match(soc_needs_opt_in);
+> +	if (!IS_ERR(match1) && !match1)
+
+I'm not sure what you intended to do, but !match1 already means there is
+no error so the original code is identical.
+
+In this case ipmmu_device_is_allowed does not allow errors so this is
+one of the "difficult" drivers that require slightly more thinking.
+It is only called in ipmmu_of_xlate which does return errors properly,
+so in this case the most straightforward approach would be to make
+ipmmu_device_is_allowed return an int and forward errors as well.
+
+
+
+...
+This is going to need quite some more work to be acceptable, in my
+opinion, but I think it should be possible.
+
+Thanks,
+-- 
+Dominique
 
 _______________________________________________
 linux-amlogic mailing list
