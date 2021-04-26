@@ -2,75 +2,143 @@ Return-Path: <SRS0=Dvvs=JX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E546FC433ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 10:11:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCB6BC433ED
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 10:54:51 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6A6E761004
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 10:11:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6A6E761004
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=canonical.com
+	by mail.kernel.org (Postfix) with ESMTPS id E525F601FD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 10:54:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E525F601FD
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=walle.cc
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
-	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=tSGgjE0gdQ1mymxAsxAmmviCqGk1UOGRlihR2PDIfIU=; b=P5d6r4fdyTmF+EmKG6WZMc+rXI
-	DKM+IneNpt1cqB2F/kNXk7Q6rwQ/JCGc0dwEmtVF9Dnt4e/p6IfzuMPuiOoPZPyZ6+OB9HmDrlYbD
-	J3bj6GAouAC0yeApgwhH0ENYTNHwvqXo2HDgHJjTVnz+88w0MijujjFPU9WDDweHUs8o+RrYvLfLa
-	B9MQ8bELtDQZUPXeCbX8TvkqaTzK+kKpp0KNq2INlvXJLSg/oocnw7+D+96mZPJM4s0l9r2m8t86E
-	HHGtOq2lfy9Hs2bIYrBXAfUaGkVtvebFD057LE+WTYKufDnKMUX3xJSHf6W5WWq7EyQ1XRcE0nsH7
-	Cs/gZrjw==;
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=MUvAZ4F9MiVyY4mlL5ZQduyJ1VpQxLT6675KqxylsaU=; b=FgyJBCORyw+67Jp5I871ydkk+
+	qMNWn4m5nwjjmzn+RtWsal3uBnrlSV7rBn1Gi9vnxNUFILmilmrPlbZIMzkjZU86mVsK58NuVKB7G
+	AyyFnG2cxZN4Fnttc1fWOcndtj8JGVQwQMK3mnueglVChRtK1P4ZtBEDvczjLMzdcIqTbBjkv62iG
+	nGk6D2/fK5D6AMO1jhYQRiwzR0rn3bYgkYNASYGeYFWEnIM0Vzz8v0/+qDbdkbFxc1R5MTaqeMFXt
+	ArAnOXHWgeWQY98Pik+9FGP6+ypgzn+zfEdVRRVEEmxRp/hqCK7H/MNguTORBczk6RicJxGlMfjA0
+	po9JC/LFA==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1layDJ-007Niy-Uu; Mon, 26 Apr 2021 10:11:38 +0000
+	id 1laysz-007Sef-NS; Mon, 26 Apr 2021 10:54:41 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1layCz-007Ngp-4K; Mon, 26 Apr 2021 10:11:17 +0000
+ id 1laysw-007SeQ-Ta; Mon, 26 Apr 2021 10:54:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=0Yyic5TCwmThAqHm5s43eI6EE8ERYdk4+eB7ADZJSQU=; b=mXqNOFAuCGmsjtfTi8cc0SziZA
- fxEGNyWostdBCI1O/B2nhIxL6WR4q1y/ixL/o//Zzr6yf6RjoDOYOW3Rrmo08UfN4MkD0iIf71Jpf
- 6sHl5CLdTl6LfSUh1kyhlpyVC0foBJU7o0j2hJWH961qR8B5eG+kGRoVvxp0pRv0sSbpJehWZGkgu
- OEqvIun3uwCH0uHrwMwGKsuh2YIRy4lkqvvLcj8rCTqhCpaWi/6mCUfb7wQtKvyEH79EpE+j7G+c3
- D/iiV/+Pdgsuw9I30rufMZ0a8DuAdjyDuvk9MTCc8POL3LIJSsgSK+mZ18RnAQ6MUn9uWVrVR2KzE
- 7K0u57Aw==;
-Received: from youngberry.canonical.com ([91.189.89.112])
+ d=infradead.org; s=bombadil.20210309; h=Message-ID:References:In-Reply-To:
+ Subject:Cc:To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=Wk++B/L7nejW/Tu85IzTL8HKq5haXmWBuSRGMq5G9Vc=; b=eZQOKXOZKb+o5jdMltpFeOvHZR
+ PaFQt1XvTbzvB0YncdWNSi2kAJ06I4Ho+olT9YpA9iFroWNqoqHnLFABCF7JF87x1p5tlbqUmHwHF
+ s4K/Dl+anFcAD+fyQ6UJR17RO70qOo/7u8e4oqC6hA6q3htSWjlID9UxiTbfMMDFr/r2RcyEo6yWN
+ sd+nhiRG1mi8ygwoKVIN5fhpZ58PBhAidQQAiUUfA23ssyo2ZzQJgGQJhDf8i7wqpF/pAXPWIA5KQ
+ LUIjoIN2XGGFiM4TvjsDZCw2dwhbiExY9OvkKyBOuwOekczrIzCtMwbXsFk+39NO9+XtdiPALPpGu
+ usdaEuyw==;
+Received: from ssl.serverraum.org ([176.9.125.105])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1layCw-00Ft5E-GP; Mon, 26 Apr 2021 10:11:15 +0000
-Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
- by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <colin.king@canonical.com>)
- id 1layCo-0003XV-9l; Mon, 26 Apr 2021 10:11:06 +0000
-From: Colin King <colin.king@canonical.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] serial: meson: remove redundant initialization of variable id
-Date: Mon, 26 Apr 2021 11:11:06 +0100
-Message-Id: <20210426101106.9122-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.30.2
+ id 1layst-00FuT9-PD; Mon, 26 Apr 2021 10:54:37 +0000
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ssl.serverraum.org (Postfix) with ESMTPSA id C353C22236;
+ Mon, 26 Apr 2021 12:54:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc;
+ s=mail2016061301; t=1619434464;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Wk++B/L7nejW/Tu85IzTL8HKq5haXmWBuSRGMq5G9Vc=;
+ b=aBLItzwTpMLhnbBUfRwBioPVMyZiTU0Pj1H6UNIlRFQlCvrRQC9+sCwg7Wn5J+XsvHZln5
+ Tw13ybstx1ba3ts9pwi2ty81rvOdnoEZ8zIsZqSHZ7psnqzBT46f85vFqJlTddaAXCPvqK
+ P1t1rcsQHgB7iSTeBLTyQ5gE26gcAtQ=
 MIME-Version: 1.0
+Date: Mon, 26 Apr 2021 12:54:08 +0200
+From: Michael Walle <michael@walle.cc>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>, QCA ath9k Development
+ <ath9k-devel@qca.qualcomm.com>, Microchip Linux Driver Support
+ <UNGLinuxDriver@microchip.com>, linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>, linux-kernel@vger.kernel.org,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, netdev
+ <netdev@vger.kernel.org>, "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>, "open list:MEDIA DRIVERS FOR RENESAS -
+ FCP" <linux-renesas-soc@vger.kernel.org>, "moderated list:ARM/STM32
+ ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>, "open
+ list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-oxnas@groups.io, linux-omap <linux-omap@vger.kernel.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>, devicetree@vger.kernel.org,
+ linux-staging@lists.linux.dev, Andrew Lunn <andrew@lunn.ch>, Gregory Clement
+ <gregory.clement@bootlin.com>, Sebastian Hesselbarth
+ <sebastian.hesselbarth@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>,
+ Andreas Larsson <andreas@gaisler.com>, "David S . Miller"
+ <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Maxime Ripard
+ <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@siol.net>, Joyce Ooi <joyce.ooi@intel.com>, Chris Snook
+ <chris.snook@gmail.com>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>, "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
+ <bcm-kernel-feedback-list@broadcom.com>, Florian Fainelli
+ <f.fainelli@gmail.com>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
+ Beznea <claudiu.beznea@microchip.com>, Sunil Goutham <sgoutham@marvell.com>,
+ Fugang Duan <fugang.duan@nxp.com>, Madalin Bucur <madalin.bucur@nxp.com>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>, Claudiu Manoil
+ <claudiu.manoil@nxp.com>, Li Yang <leoyang.li@nxp.com>, Yisen Zhuang
+ <yisen.zhuang@huawei.com>, Salil Mehta <salil.mehta@huawei.com>, Hauke
+ Mehrtens <hauke@hauke-m.de>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Vadym Kochan <vkochan@marvell.com>, Taras
+ Chornyi <tchornyi@marvell.com>, Mirko Lindner <mlindner@marvell.com>,
+ Stephen Hemminger <stephen@networkplumber.org>, Felix Fietkau
+ <nbd@nbd.name>, John Crispin <john@phrozen.org>, Sean Wang
+ <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>, Matthias
+ Brugger <matthias.bgg@gmail.com>, Bryan Whitehead
+ <bryan.whitehead@microchip.com>, Vladimir Zapolskiy <vz@mleia.com>, Sergei
+ Shtylyov <sergei.shtylyov@gmail.com>, Byungho An <bh74.an@samsung.com>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Giuseppe Cavallaro
+ <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@st.com>, Jose
+ Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Kevin Hilman
+ <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Vinod Koul <vkoul@kernel.org>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, Grygorii Strashko
+ <grygorii.strashko@ti.com>, Wingman Kwok <w-kwok2@ti.com>, Murali Karicheri
+ <m-karicheri2@ti.com>, Michal Simek <michal.simek@xilinx.com>, Radhey Shyam
+ Pandey <radhey.shyam.pandey@xilinx.com>, Kalle Valo <kvalo@codeaurora.org>,
+ Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>, Ryder Lee
+ <ryder.lee@mediatek.com>, Stanislaw Gruszka <stf_xl@wp.pl>, Helmut Schaa
+ <helmut.schaa@googlemail.com>, Heiner Kallweit <hkallweit1@gmail.com>, Frank
+ Rowand <frowand.list@gmail.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, =?UTF-8?Q?J=C3=A9r=C3=B4me_Pouiller?=
+ <jerome.pouiller@silabs.com>, Vivien Didelot <vivien.didelot@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>
+Subject: Re: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem() for
+ non-platform devices
+In-Reply-To: <CAL_JsqLrx6nFZrKiEtm2a1vDvQGG+FkpGtJCG2osM8hhGo3P=Q@mail.gmail.com>
+References: <20210412174718.17382-1-michael@walle.cc>
+ <20210412174718.17382-3-michael@walle.cc>
+ <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org>
+ <8157eba9317609294da80472622deb28@walle.cc>
+ <CAL_JsqLrx6nFZrKiEtm2a1vDvQGG+FkpGtJCG2osM8hhGo3P=Q@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <108f268a35843368466004f7fe5f9f88@walle.cc>
+X-Sender: michael@walle.cc
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210426_031114_702370_E6EB81F9 
-X-CRM114-Status: GOOD (  14.07  )
+X-CRM114-CacheID: sfid-20210426_035436_161677_5661C5D0 
+X-CRM114-Status: GOOD (  32.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,46 +150,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Colin Ian King <colin.king@canonical.com>
+Am 2021-04-16 17:19, schrieb Rob Herring:
+> On Fri, Apr 16, 2021 at 2:30 AM Michael Walle <michael@walle.cc> wrote:
+>> 
+>> Am 2021-04-16 05:24, schrieb Benjamin Herrenschmidt:
+>> > On Mon, 2021-04-12 at 19:47 +0200, Michael Walle wrote:
+>> >>
+>> >>  /**
+>> >>   * of_get_phy_mode - Get phy mode for given device_node
+>> >> @@ -59,15 +60,39 @@ static int of_get_mac_addr(struct device_node *np,
+>> >> const char *name, u8 *addr)
+>> >>  static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
+>> >>  {
+>> >>         struct platform_device *pdev = of_find_device_by_node(np);
+>> >> +       struct nvmem_cell *cell;
+>> >> +       const void *mac;
+>> >> +       size_t len;
+>> >>         int ret;
+>> >>
+>> >> -       if (!pdev)
+>> >> -               return -ENODEV;
+>> >> +       /* Try lookup by device first, there might be a
+>> >> nvmem_cell_lookup
+>> >> +        * associated with a given device.
+>> >> +        */
+>> >> +       if (pdev) {
+>> >> +               ret = nvmem_get_mac_address(&pdev->dev, addr);
+>> >> +               put_device(&pdev->dev);
+>> >> +               return ret;
+>> >> +       }
+>> >> +
+>> >
+>> > This smells like the wrong band aid :)
+>> >
+>> > Any struct device can contain an OF node pointer these days.
+>> 
+>> But not all nodes might have an associated device, see DSA for 
+>> example.
+> 
+> I believe what Ben is saying and what I said earlier is going from dev
+> -> OF node is right and OF node -> dev is wrong. If you only have an
+> OF node, then use an of_* function.
+> 
+>> And as the name suggests of_get_mac_address() operates on a node. So
+>> if a driver calls of_get_mac_address() it should work on the node. 
+>> What
+>> is wrong IMHO, is that the ethernet drivers where the corresponding
+>> board
+>> has a nvmem_cell_lookup registered is calling 
+>> of_get_mac_address(node).
+>> It should rather call eth_get_mac_address(dev) in the first place.
+>> 
+>> One would need to figure out if there is an actual device (with an
+>> assiciated of_node), then call eth_get_mac_address(dev) and if there
+>> isn't a device call of_get_mac_address(node).
+> 
+> Yes, I think we're all in agreement.
+> 
+>> But I don't know if that is easy to figure out. Well, one could start
+>> with just the device where nvmem_cell_lookup is used. Then we could
+>> drop the workaround above.
+> 
+> Start with the ones just passing dev.of_node directly:
+> 
+> $ git grep 'of_get_mac_address(.*of_node)'
 
-The variable id being initialized with a value that is never read
-and it is being updated later with a new value. The initialization is
-redundant and can be removed. Since id is just being used in a for-loop
-inside a local scope, move the declaration of id to that scope.
+[..]
 
-Addresses-Coverity: ("Unused value")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
----
- drivers/tty/serial/meson_uart.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Before I'll try to come up with a patch for this, I'd like to get
+your opinion on it.
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 529cd0289056..d7f55031b2cf 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -716,12 +716,13 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	struct resource *res_mem, *res_irq;
- 	struct uart_port *port;
- 	int ret = 0;
--	int id = -1;
- 
- 	if (pdev->dev.of_node)
- 		pdev->id = of_alias_get_id(pdev->dev.of_node, "serial");
- 
- 	if (pdev->id < 0) {
-+		int id;
-+
- 		for (id = AML_UART_PORT_OFFSET; id < AML_UART_PORT_NUM; id++) {
- 			if (!meson_ports[id]) {
- 				pdev->id = id;
--- 
-2.30.2
+(1) replacing of_get_mac_address(node) with eth_get_mac_address(dev)
+     might sometimes lead to confusing comments like in
+     drivers/net/ethernet/allwinner/sun4i-emac.c:
 
+     /* Read MAC-address from DT */
+     ret = of_get_mac_address(np, ndev->dev_addr);
+
+     Do we live with that or should the new name somehow reflect that
+     it is taken from the device tree.
+
+(2) What do you think of eth_get_mac_address(ndev). That is, the
+     second argument is missing and ndev->dev_addr is used.
+     I'm unsure about it. We'd still need a second function for drivers
+     which don't write ndev->dev_addr directly, but have some custom
+     logic in between. OTOH it would be like eth_hw_addr_random(ndev).
+
+-michael
 
 _______________________________________________
 linux-amlogic mailing list
