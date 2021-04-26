@@ -2,98 +2,129 @@ Return-Path: <SRS0=Dvvs=JX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6B7CC433ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 18:08:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 888E7C433ED
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 23:57:15 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 91F75613BC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 18:08:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 91F75613BC
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id CB68F61009
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 23:57:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CB68F61009
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.crashing.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:Cc:To:From:
+	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=NRtUFsq2K6yaI13xq9QdpcmXnQ/ccO+VZiiy1r2EEbM=; b=ZSGobJNBk8ZZnrTG2C5BzJf3N
-	CJht5o3p6aQZxia4PhuMamTO1axIKAt9v9MC8zeeC76er5frE6feXZBgd/spCqD8WvwLbBHmgtndD
-	V/mDbMB5wKbHH6kR7QF50Inh91VD92a9M9YJ4vTqSiwS/PX7wF+lGicAlKzWMuLIVYzMC5muDIHHO
-	yd2PZ9gJXBfCkNP7myl8PEmm3cvjHbqQqRNLf31GEV7UMGytZ7MasDIotYaNfZEehw/+5g+Ky1wCO
-	KmDNdrKuhWHISWcfMaBGk5BzCW+HbLuHwvsnL+fj7fERdAn40fBru4lplRzqSd/wiNmKmPCTM6ouJ
-	/O1848BLA==;
+	 bh=rU+FbfEZPB9Db0pVav3WZhTzSy1rmhzX+NsKT/XptRA=; b=MrLPpyRMXZ3UXjhN3EB8Yp9Yj
+	5HE3wci58cjXJ124iRRYI2AmXQL251bSBCyXibBt+rVvD/eE6sCDd7GSVD8CH3syvJgXEgTPQB/sx
+	AMhVKyXdnnbeekyr3FU35hDHXrz2o7j+yBMxMcGZC1zjhAfHZ7Bt/PFx8Ek7QcSpwdVuURXDiXHej
+	R+RendfYIN9KP1AhhaqSk/q+SPviBCuP2aWN60GPQ+YhmGZqQ9LuoeloF2PPzyv15JEW/mZ0lXxTe
+	vPgGx6G/kTDsHXJKYnu5nNzZWoW6g8Y3xhNBLPdwQhErn7y+EeAAciAdTzLGZ8vFgalOfJENFrtWJ
+	nvlvXwJdA==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lb5ey-008FdH-Tl; Mon, 26 Apr 2021 18:08:40 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1lbB69-000Gda-15; Mon, 26 Apr 2021 23:57:05 +0000
+Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lb5ev-008FcB-2h
- for linux-amlogic@lists.infradead.org; Mon, 26 Apr 2021 18:08:39 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id k14so6919929wrv.5
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Apr 2021 11:08:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=z/Kwipu1y6TOCAmGCH4eBv1sqy5s6UK9+gQOmGBdFDo=;
- b=tFAA8OM1OMnP4mVo1BUP3TdeKSXg/EB0WafYRtzUUiTKjsWUSQ3QroqS/dybgZJz5x
- 0uistVBTmvOSdV/sjTYDOP5Va1MmX7/WqO0JJj+tBOPk5GLQHczf9D8P5whtygJ67rTY
- Xn1LpQA4AeN6syvVSQIdFiCAapyOmzrQqelxryNExRsNAUxIlqXMJwYj+ns6o5CwHKK2
- ylC+cLMlFFWQrWOfS5pjYnUnB/NhnEYOL62/OL4tMLc0yPxaXghMMP4NPRf4+0vQdGOq
- o/LMILSLqmJbvcyuMj+8GgtaWJZ/8VgNqAKdegca6JMGKy9kxT/rfUr+s3QipNmawIWl
- iCfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=z/Kwipu1y6TOCAmGCH4eBv1sqy5s6UK9+gQOmGBdFDo=;
- b=VhEBfjc0ZHyZgfq5MtdlNHcsjDQ67/HwuV/sEE6d8nr8N27/3UV2pQxs7zrsEzlC3L
- QMN9Of+sFJkeiY0wgPhIU6oQ7P8sqp3IXuI3hKeAfBCALxbQt6Mfrko/NmS85yd2KTZ/
- XFFMImEMIPswFkRrYYEqBFR8IOTews9m/qUqWO8DURgBDJXRtdTeuOsIFNXCe+qiKFJQ
- 9rzB/NtbUpP7gZvMNfjFdSTzwzH0sYd90Zga7JQlwIh2/cPUaBCEZt15O/pCkrho6/X+
- QRfpU5f8lvSquYimnJL/quLiCs+VXQEX+QFZNuUgM9NKwb225mPBZTjKMNhHF5Nt6n3o
- 2kfw==
-X-Gm-Message-State: AOAM531snnE0RALcoZVaSwROVpvDzvgs4IAsY8qgZY1yCbFu//cfQri+
- 46rg4s8PavVGp5rejjCGWjnb8pjhltrYjIyd
-X-Google-Smtp-Source: ABdhPJzgk2IzpTkyCjHJ4GcBEEoXLGQijoX+9t+CrvlLufNwU/zLqVZ2i9U0e2ub5m3mdqW1C5Dt0g==
-X-Received: by 2002:a5d:590a:: with SMTP id v10mr24510931wrd.306.1619460395637; 
- Mon, 26 Apr 2021 11:06:35 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:b76e:7362:77c0:ddc3?
- ([2a01:e0a:90c:e290:b76e:7362:77c0:ddc3])
- by smtp.gmail.com with ESMTPSA id a9sm276663wmj.1.2021.04.26.11.06.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 26 Apr 2021 11:06:33 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] dt-bindings: serial: amlogic,meson-uart: add
- fifo-size property
-To: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- gregkh@linuxfoundation.org
-References: <20210325152410.1795557-1-narmstrong@baylibre.com>
- <20210325152410.1795557-2-narmstrong@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <39c92a23-e009-6bc2-a20b-9b0ab3e01c75@baylibre.com>
-Date: Mon, 26 Apr 2021 20:06:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ id 1lbB64-000GcO-8L; Mon, 26 Apr 2021 23:57:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=SdabRXw+KZyuYBY3LzBY1S17jr/5ae5K5GInfZuI7yU=; b=do/bvZtZD5JLOueIjgFslyBSCm
+ 1UYgvlH158o5AqDPwlLhXbThFo2/ORbKQEaKr3/YF9ukqVcUVQFLA7SbuzVAJ363BOsIDTELSs0MX
+ aCNgmkuKMRmOGYRr2Y1y/jg8PcComitdUa52H9UhqLPQ1+JWqs/pty+e70zbhYZchd3tsxh0Y/E06
+ 9LSw8yr408i4/93K6+FH2k3PZoMlN/Ifotminp9ITyMKhMMuuAVCx9ybxmPYReMYsyFaqr/6wLFQs
+ BzscKkrIJn0RAThMVqLUb9Xy9RZ8V3Xa6uEmSCn1sKmOP27eD/Exi+Wghhk1R3NHzsiMKjNVqVj+6
+ mD1R9Wjw==;
+Received: from gate.crashing.org ([63.228.1.57])
+ by bombadil.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
+ id 1lbB61-00GK55-9Q; Mon, 26 Apr 2021 23:56:59 +0000
+Received: from ip6-localhost (localhost.localdomain [127.0.0.1])
+ by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 13QNi8nL025548;
+ Mon, 26 Apr 2021 18:44:08 -0500
+Message-ID: <3677398ebb77f334abb4899770db633d9658fe82.camel@kernel.crashing.org>
+Subject: Re: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem()
+ for non-platform devices
+From: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To: Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>
+Cc: QCA ath9k Development <ath9k-devel@qca.qualcomm.com>, Microchip Linux
+ Driver Support <UNGLinuxDriver@microchip.com>, linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>, linux-kernel@vger.kernel.org,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, netdev
+ <netdev@vger.kernel.org>, "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>, "open list:MEDIA DRIVERS FOR RENESAS
+ - FCP" <linux-renesas-soc@vger.kernel.org>, "moderated list:ARM/STM32
+ ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>, "open
+ list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-oxnas@groups.io, linux-omap <linux-omap@vger.kernel.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-staging@lists.linux.dev, Andrew Lunn
+ <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, Sebastian
+ Hesselbarth <sebastian.hesselbarth@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Michael Ellerman <mpe@ellerman.id.au>, Paul
+ Mackerras <paulus@samba.org>, Andreas Larsson <andreas@gaisler.com>, "David
+ S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Maxime
+ Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@siol.net>, Joyce Ooi <joyce.ooi@intel.com>, Chris Snook
+ <chris.snook@gmail.com>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>, "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
+ <bcm-kernel-feedback-list@broadcom.com>, Florian Fainelli
+ <f.fainelli@gmail.com>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>, Sunil Goutham
+ <sgoutham@marvell.com>, Fugang Duan <fugang.duan@nxp.com>, Madalin Bucur
+ <madalin.bucur@nxp.com>, Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+ Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
+ <salil.mehta@huawei.com>, Hauke Mehrtens <hauke@hauke-m.de>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, Vadym Kochan
+ <vkochan@marvell.com>, Taras Chornyi <tchornyi@marvell.com>, Mirko Lindner
+ <mlindner@marvell.com>, Stephen Hemminger <stephen@networkplumber.org>,
+ Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>, Sean Wang
+ <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>, Matthias
+ Brugger <matthias.bgg@gmail.com>, Bryan Whitehead
+ <bryan.whitehead@microchip.com>, Vladimir Zapolskiy <vz@mleia.com>, Sergei
+ Shtylyov <sergei.shtylyov@gmail.com>, Byungho An <bh74.an@samsung.com>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Giuseppe Cavallaro
+ <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@st.com>, Jose
+ Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Kevin Hilman
+ <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Vinod Koul <vkoul@kernel.org>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, Grygorii Strashko
+ <grygorii.strashko@ti.com>, Wingman Kwok <w-kwok2@ti.com>, Murali Karicheri
+ <m-karicheri2@ti.com>, Michal Simek <michal.simek@xilinx.com>, Radhey Shyam
+ Pandey <radhey.shyam.pandey@xilinx.com>, Kalle Valo <kvalo@codeaurora.org>,
+ Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
+ Ryder Lee <ryder.lee@mediatek.com>, Stanislaw Gruszka <stf_xl@wp.pl>,
+ Helmut Schaa <helmut.schaa@googlemail.com>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Frank Rowand <frowand.list@gmail.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, =?ISO-8859-1?Q?J=E9r=F4me?=
+ Pouiller <jerome.pouiller@silabs.com>, Vivien Didelot
+ <vivien.didelot@gmail.com>, Vladimir Oltean <olteanv@gmail.com>
+Date: Tue, 27 Apr 2021 09:44:07 +1000
+In-Reply-To: <108f268a35843368466004f7fe5f9f88@walle.cc>
+References: <20210412174718.17382-1-michael@walle.cc>
+ <20210412174718.17382-3-michael@walle.cc>
+ <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org>
+ <8157eba9317609294da80472622deb28@walle.cc>
+ <CAL_JsqLrx6nFZrKiEtm2a1vDvQGG+FkpGtJCG2osM8hhGo3P=Q@mail.gmail.com>
+ <108f268a35843368466004f7fe5f9f88@walle.cc>
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-In-Reply-To: <20210325152410.1795557-2-narmstrong@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210426_190837_508966_F59F669D 
-X-CRM114-Status: GOOD (  16.99  )
+X-CRM114-CacheID: sfid-20210426_165657_820362_E2CCFC88 
+X-CRM114-Status: GOOD (  12.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,42 +141,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
-
-On 25/03/2021 16:24, Neil Armstrong wrote:
-> On most of the Amlogic SoCs, the first UART controller in the "Everything-Else"
-> power domain has 128bytes of RX & TX FIFO, so add an optional property to describe
-> a different FIFO size from the other ports (64bytes).
+On Mon, 2021-04-26 at 12:54 +0200, Michael Walle wrote:
+> Before I'll try to come up with a patch for this, I'd like to get
+> your opinion on it.
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../devicetree/bindings/serial/amlogic,meson-uart.yaml      | 6 ++++++
->  1 file changed, 6 insertions(+)
+> (1) replacing of_get_mac_address(node) with eth_get_mac_address(dev)
+>      might sometimes lead to confusing comments like in
+>      drivers/net/ethernet/allwinner/sun4i-emac.c:
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> index 75ebc9952a99..8ece7f420c19 100644
-> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> @@ -55,6 +55,12 @@ properties:
->        - const: pclk
->        - const: baud
->  
-> +
-> +  fifo-size:
-> +    description: The fifo size supported by the UART channel.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [64, 128]
-> +
->  required:
->    - compatible
->    - reg
-> 
+>      /* Read MAC-address from DT */
+>      ret = of_get_mac_address(np, ndev->dev_addr);
 
+You could leave it or turn it into "from platform", doesn't matter...
 
-Is it ok with the generic fifo-size property ?
+> (2) What do you think of eth_get_mac_address(ndev). That is, the
 
-Neil
+Not sure what you mean, eth_platform_get_mac_address() takes the
+address as an argument. I think what you want is a consolidated
+nvmem_get_mac_address + eth_platform_get_mac_address that takes a
+device, which would have no requirement of the bus_type at all.
+
+Cheers,
+Ben.
+
 
 _______________________________________________
 linux-amlogic mailing list
