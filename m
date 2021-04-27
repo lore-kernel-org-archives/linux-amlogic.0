@@ -2,99 +2,106 @@ Return-Path: <SRS0=DSzN=JY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.2 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6817DC433B4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Apr 2021 19:04:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B1CFC433ED
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Apr 2021 23:12:13 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B2377613DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Apr 2021 19:04:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B2377613DC
+	by mail.kernel.org (Postfix) with ESMTPS id DBEFA6101E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Apr 2021 23:12:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DBEFA6101E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
-	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=T2sS+KYyU3an3HStvLCAZZD213daZP6j78NfwiehNMk=; b=HX2BUqsOKtJ+XpgOKxVtx5UaY
-	tyhl/8hb3PfxsFFmnOyuLRWnyDLjZsEv/4C6HX0cmE/QZXBa3b9hK3gJxtWxOld8CrWZuNPV5kOmr
-	FniIP+WUdByNCoefPpMvneH7jOo2SbjVh7zSbE7ABRgPnFDCB9AMPL7JQLMX113DFBQ9tNuzoMbib
-	gstz2Xi5+VYfQ2JGZwJ95WrtgbIr7+z8YBEqU31seo//1fCQ54puG5LzLGiMS606I+dk8yyAQRrjm
-	HegZINOzQIYlgX8lqFwQSMeXTtDq1UiMsRIHmRIhkDYA2V2tXeYX7+4O0w7U0KeLm+Zgp2hMmBMeG
-	r5dtsoiEQ==;
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject:From:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3rD5rH/NQvvKH0B0l8IvehLykQp8AfUKGqdi6q5+duA=; b=C27UEoFtNDjfCw
+	RhMBBUC3gjMO4oL7daP19GmkgJj0+krQzPm5bu+9yTn+HyhnqKPYN8rC2IYT0QVwF4sIcyTZrZOgS
+	8rK35b6zc6bC9FPxQotb1blBxr5C9zRTWQX1C39OSwqdEidKMXkdRrwQU0Z0+2oVBnzw1+HZW4yes
+	Ew++MYFRC/gPZAP+nvPH6+OJaObCNUPYxzU9wZxHgDfahl0gVwp/fLfK7I9g31WyWbtRGAWT7aEyV
+	K//9Uus3wulRdh7CaHb/lmLMJoPXXSvHDid7eir350J5Uo3hzBUhmdi4vsHJaZ/lkSB89vZXmROkN
+	HhRpMxQaFQku9zdnSDwg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lbSzv-0026UT-8E; Tue, 27 Apr 2021 19:03:51 +0000
+	id 1lbWs9-002PSY-C4; Tue, 27 Apr 2021 23:12:05 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lbSzs-0026UE-UD; Tue, 27 Apr 2021 19:03:49 +0000
+ id 1lbWs6-002PS9-Vm
+ for linux-amlogic@desiato.infradead.org; Tue, 27 Apr 2021 23:12:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
- :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=5AYP4KxhmIkQe7UcuYlxvC2jIUXwtQ3ProZ5mNQJqDs=; b=shD9sDeLC74kWTpWtVmJ8TcdP7
- URJFLsJAFDOBbvgl8H7NpSRP5mTR5s5djVwvh3I7fbGwl7N+f9u+MbRf9lIY1BDDlWh6Y2iiRsG+z
- KlLW3dgncHK0XPOnw6myD5wAYqT7HRgRBDB+3X9dSVCQXQ8ANXuYPV1cn/iA0YLDOGQSJxBJMxw6S
- 3RMuWOsZNw8TUazPRumaH1HKUQhzgkX3w7TuIQpXUz1teQ/eYY9CMN3E8Zmn/kKxkh7VIDmx4WS9m
- oheJSt4hvfpuBmOMg9ooBqc/Yy7OmuSexzsislrlivDS/Wp6vhsjfrIKmFa+8m1M0QJOi6JWK0JlF
- RZUEsPzA==;
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:MIME-Version:Date:Message-ID:To:Subject:From:Sender:Reply-To:Cc:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=AcibveHDn93ooDnTAsAtrJ7uAfFOj7nW+iC8w4TrfVU=; b=SNIf5TxW9QPbW4NSzdQL0gR0uJ
+ lCYUELG28jbGLcxcYDECJQSUJ/aMG2rVmZxy+P/vtw+R0UpRj7gUyah5O4WyOp7ZbhAnYq1+HrpAS
+ eXM1EU+4nJ9pROrMWjAhc0mPrgOKJUAAdVfYtFhC73dp5JqiWYkFtUxhF35DfetTAIG6mjpcjf5NP
+ y6fzQ7n40ncTymhO7Dl1qbDlsI6OJNTHma6eMpTJ+SM8FMjojdh+ziQjUp8Wt86AdYL4vz0/jZx/j
+ KVShsci28nYPmpDE5DWc8EvwEpWiMlpznUH3sjqKT9P7YhZFBYL03geYuHHhBifAB9/RJg2QYgKh7
+ 8j13dYQQ==;
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lbSzq-00Gvpm-5X; Tue, 27 Apr 2021 19:03:47 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id y3so34982124eds.5;
- Tue, 27 Apr 2021 12:03:39 -0700 (PDT)
+ id 1lbWs4-00H5NH-Bj
+ for linux-amlogic@lists.infradead.org; Tue, 27 Apr 2021 23:12:01 +0000
+Received: by mail-ej1-x633.google.com with SMTP id n2so91784921ejy.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 27 Apr 2021 16:11:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=5AYP4KxhmIkQe7UcuYlxvC2jIUXwtQ3ProZ5mNQJqDs=;
- b=UlIUlSs04s5Amuabx+5K7RsqwQMa5AAAdjyjwJZB+M92fQlR+T9AwRoHNo+YgJDVZ3
- n1n2r09TAgFNNphfHhghLA3jG+Skp41RZwzACfsFsM02OHyl+tFOGXAHDutHCWc/hkJV
- QYKzEjRjdiIGb9yNRLhXR2Nic7cTl/kcT/d6g+0jAxd4H5zpLes4m+a5TxtFFcLIaKh7
- zJLCSAkme/5aUqZm4rni0i86nEMV3XI/Dp5KgOHPQ/CFPbiE34miX3375k186NXtcAGa
- tveNRpYrL3xcnwIMjSQm/j+bz7EHL0aXpQpn5TK3G93tKW7H/KuATaFXb3E4Zw/+wASJ
- 3CpQ==
+ h=from:subject:to:message-id:date:user-agent:mime-version
+ :content-transfer-encoding:content-language;
+ bh=AcibveHDn93ooDnTAsAtrJ7uAfFOj7nW+iC8w4TrfVU=;
+ b=tJXAkiBqPChc390/gx1OD4URBRqxDfbgigAwVixE3owSsvc6hGeJ/+/5PPgZin5djG
+ RLCoy/d2vy98AukHw1+9rjXxcpJzOHBrnTBHIFY9+RC/LX7kYIa5wW5djFACL+5RfKer
+ whHMUKz3HD67fSP/HvgvZvDfEXlYYdMFo9IlaRP6iang2aYRu9bDPXKNo+i+itCXf67/
+ hYrJWQ3POgICoeFWF/RT29iy3cpiNbsBIYUAUZifr6tgusj7WJN+IuMWzEQD/E/0oQDT
+ ksshwxYfk6X+66vLdOkDM0Ql2Qp3CLYZ9YU1afT0rtKvIfEySCNhUofT4G33pQg6zMGH
+ zcRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=5AYP4KxhmIkQe7UcuYlxvC2jIUXwtQ3ProZ5mNQJqDs=;
- b=m4IhG1afJN/AhpsCc3+xkjAt155JSykwBojaBmM5idy7Nb9nGdk+0H1XARWDXmPfdP
- hGXde+rs8lrjUIK/F7Go03amIOB6s90BvbanbI44YMCcENFrdhEY/V2OgjJd+YdFD+Jb
- I2lXhrnUgfNku492WOHGey+GdYN4iggZ95d8c1CCkZXXUGhHUOHnIEGPo/lIIr2CVSK7
- eDCJMgqImhC0lUtq8IEnJMZiRCgNNhXngDsyHBYGSiSMUBgDckBbbQuxIz1+EbL1pH12
- /hfkGz6IirPm6b6QDBlM6xLt5c8q78w4SGNwpOZJ0OeJsXpgFl/G+c8kIHObhKCEI67t
- jQ9A==
-X-Gm-Message-State: AOAM532yrDuCtrcCB7s2E9UtYD7Kmsh5q2ZE4XQxX/fxai/fkN0DXYiO
- EpJsLA4Akr1EhyrXYOmaJrznvmhZ/smWXe0zblQ=
-X-Google-Smtp-Source: ABdhPJzBTlGqWZFllivz6SGMkHdvJgZYMGWKlvYCeURJhhugmqbBHOfLHrVh5fejLfJEru2ldm+1hnu/1jRJW22vClE=
-X-Received: by 2002:a50:9e4f:: with SMTP id z73mr6064469ede.338.1619550218836; 
- Tue, 27 Apr 2021 12:03:38 -0700 (PDT)
+ h=x-gm-message-state:from:subject:to:message-id:date:user-agent
+ :mime-version:content-transfer-encoding:content-language;
+ bh=AcibveHDn93ooDnTAsAtrJ7uAfFOj7nW+iC8w4TrfVU=;
+ b=cV+Nh/ZEPBWFWBMIIg7UdLBpL3m1YlAkeLEEdjVvU2BHKOomvJNCxv5wdj0tKXmnkv
+ i+qLkvJVdocI9bQNiA0pjLLScjWpArr05VEyAbizdwqxfk1GQfCh+oP5FnkNpJZHVFMH
+ r9sPEyEGgfaZ9x/FeWvNy6GSPE4TKQO7zecX/dyA6Zrx7r/PM1QM4B5+gpPfskOG6Ebb
+ KZNOQdvcBZ+KMhTWDlzFyZlPgUR6APviO+csR9ILqZUhRUAgzOGev14WwwDwuFRpsaQH
+ bphH1j5e2589Oxhlp/NHNJRX9ua/jyvr8e1SDKsu/H/q7BdReMBEOgzKRAZaKvMgd+1h
+ Br3A==
+X-Gm-Message-State: AOAM531GsHYeQokfPrJWvtYiJpgIAufkRUYarYeOAEv7UdgsWR5ac/jV
+ 8nNIpfFVHvOUjTWYRtV6vTJ2ZHMbKz0=
+X-Google-Smtp-Source: ABdhPJyD/iqpq6J0/9N40pD6BqE3O51J486Hb8krQkaAizZwxbAhgYjhqxLaJgYEQW9FrvlfV76T8w==
+X-Received: by 2002:a17:906:6789:: with SMTP id
+ q9mr25836382ejp.295.1619565118005; 
+ Tue, 27 Apr 2021 16:11:58 -0700 (PDT)
+Received: from [192.168.178.24]
+ (dslb-002-203-240-209.002.203.pools.vodafone-ip.de. [2.203.240.209])
+ by smtp.gmail.com with ESMTPSA id g4sm27642edq.0.2021.04.27.16.11.57
+ for <linux-amlogic@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 27 Apr 2021 16:11:57 -0700 (PDT)
+From: Mathias Steiger <mathias.steiger@googlemail.com>
+X-Google-Original-From: Mathias Steiger <mathias.steiger@gmail.com>
+Subject: drm/meson: fix green/pink color distortion from HDR set during vendor
+ Uboot
+To: linux-amlogic@lists.infradead.org
+Message-ID: <553e127c-9839-d15b-d435-c01f18c7be48@gmail.com>
+Date: Wed, 28 Apr 2021 01:11:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.1
 MIME-Version: 1.0
-References: <20201230012724.1326156-1-martin.blumenstingl@googlemail.com>
- <20201230012724.1326156-4-martin.blumenstingl@googlemail.com>
- <YFLBPGNQpT9mM3AJ@builder.lan>
- <CAFBinCA92411o5+AGApr8+nkMdmzJ4ddzVY+Cb5FLBez+-92nA@mail.gmail.com>
- <YHYGLuxIN7WMakco@builder.lan>
-In-Reply-To: <YHYGLuxIN7WMakco@builder.lan>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 27 Apr 2021 21:03:28 +0200
-Message-ID: <CAFBinCDCtaqZG4a5jbw64RK4mrccSJTmznTiMPpp+gJNmo2LkA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] dt-bindings: remoteproc: Add the documentation for
- Meson AO ARC rproc
-To: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, ohad@wizery.com, robh+dt@kernel.org
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210427_120346_253184_A0497D38 
-X-CRM114-Status: GOOD (  13.73  )
+X-CRM114-CacheID: sfid-20210427_161200_433195_5F1E6523 
+X-CRM114-Status: UNSURE (   9.58  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,42 +113,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Bjorn,
 
-On Tue, Apr 13, 2021 at 10:59 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
-[...]
-> Describing these kinds blocks in DT is indeed tricky, I've had
-> both cases where a block maps to multiple "functions" or where they
-> contain misc registers to be used in relation to some other block.
->
-> The prior typically lends itself to be modelled as a "simple-mfd" and
-> the latter as a "syscon".
-I think here the former description matches better
-each set of registers has one very specific purpose (pinctrl, GPIO,
-I2C, RTC, IR receiver, ...). there's only one exception inside the
-whole AO region called "PMU" (which mostly contains power management
-registers and a few clock control bits)
+Fixes: 728883948b0d ("drm/meson: Add G12A Support for VIU setup")
 
-> So perhaps you could do a simple-mfd that spans the entire block and
-> then describe the remoteproc, watchdog?, pinctrl pieces as children
-> under that?
-I can send patches for the simple-mfd conversion (syscon won't be
-involved) so Rob can also give his feedback.
-
-in my opinion this would not change the dt-bindings for the AO ARC
-remote-processor.
-Please let me know if there would be any dt-bindings changes so I can
-also include this when updating this series.
+Tested-by: Neil Armstrong<narmstrong@baylibre.com>
 
 
-Best regards,
-Martin
+diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
+--- a/drivers/gpu/drm/meson/meson_registers.h
++++ b/drivers/gpu/drm/meson/meson_registers.h
+@@ -634,6 +634,11 @@
+  #define VPP_WRAP_OSD3_MATRIX_PRE_OFFSET2 0x3dbc
+  #define VPP_WRAP_OSD3_MATRIX_EN_CTRL 0x3dbd
+  
++/* osd1 HDR */
++#define OSD1_HDR2_CTRL 0x38a0
++#define OSD1_HDR2_CTRL_VDIN0_HDR2_TOP_EN       BIT(13)
++#define OSD1_HDR2_CTRL_REG_ONLY_MAT            BIT(16)
++
+  /* osd2 scaler */
+  #define OSD2_VSC_PHASE_STEP 0x3d00
+  #define OSD2_VSC_INI_PHASE 0x3d01
+diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
+--- a/drivers/gpu/drm/meson/meson_viu.c
++++ b/drivers/gpu/drm/meson/meson_viu.c
+@@ -426,8 +426,14 @@ void meson_viu_init(struct meson_drm *priv)
+             meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL))
+                 meson_viu_load_matrix(priv);
+         else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
++       {
+                 meson_viu_set_g12a_osd1_matrix(priv, RGB709_to_YUV709l_coeff,
+                                                true);
++               /* fix green/pink color distortion from vendor uboot */
++               writel_bits_relaxed(OSD1_HDR2_CTRL_REG_ONLY_MAT |
++                                   OSD1_HDR2_CTRL_VDIN0_HDR2_TOP_EN, 0,
++                                   priv->io_base + _REG(OSD1_HDR2_CTRL));
++       }
+  
+         /* Initialize OSD1 fifo control register */
+         reg = VIU_OSD_DDR_PRIORITY_URGENT |
+
 
 _______________________________________________
 linux-amlogic mailing list
