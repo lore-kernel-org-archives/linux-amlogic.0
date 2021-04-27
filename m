@@ -1,130 +1,101 @@
-Return-Path: <SRS0=Dvvs=JX=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=DSzN=JY=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 888E7C433ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 23:57:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1AF7CC433ED
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Apr 2021 18:32:18 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CB68F61009
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Apr 2021 23:57:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CB68F61009
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.crashing.org
+	by mail.kernel.org (Postfix) with ESMTPS id C748C613EE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Apr 2021 18:32:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C748C613EE
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Date:Cc:To:From:
-	Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=rU+FbfEZPB9Db0pVav3WZhTzSy1rmhzX+NsKT/XptRA=; b=MrLPpyRMXZ3UXjhN3EB8Yp9Yj
-	5HE3wci58cjXJ124iRRYI2AmXQL251bSBCyXibBt+rVvD/eE6sCDd7GSVD8CH3syvJgXEgTPQB/sx
-	AMhVKyXdnnbeekyr3FU35hDHXrz2o7j+yBMxMcGZC1zjhAfHZ7Bt/PFx8Ek7QcSpwdVuURXDiXHej
-	R+RendfYIN9KP1AhhaqSk/q+SPviBCuP2aWN60GPQ+YhmGZqQ9LuoeloF2PPzyv15JEW/mZ0lXxTe
-	vPgGx6G/kTDsHXJKYnu5nNzZWoW6g8Y3xhNBLPdwQhErn7y+EeAAciAdTzLGZ8vFgalOfJENFrtWJ
-	nvlvXwJdA==;
+	 bh=9bzaZSLCx8KgwNYldB3xVI3CeCTdS+5HIdJyurx6guY=; b=bgW3Xi75z5z9KWG0AMZW26V/h
+	1rFqPj3EUGSVHR96FZ8IJY5tVSlsoSSZYMo4CGcCDLGXBcAWluPbYjwc3Dwb4qaqfybcZZATrhun9
+	PyKWdBYcArwVuCAsXmwd7Tz4L2vyqjSqZwiN4hF9D/YQ+1qOMnJDsANw3mb23ZU8KCqlpvG+l8G61
+	7yb5IcQmkYUFbEm4FoHYZu+2WzimNcac62gynnC+1w/AnXHREUCrN4c7oeikJcm2twd/qJitg3Eac
+	8OoNOf4SbZh4pZIQIQtj71olr3zLkrhHDanmktmOcyifENZy8Szt4knzHcqeV7scMfgeV13J2f7hD
+	1aGY6PB/g==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lbB69-000Gda-15; Mon, 26 Apr 2021 23:57:05 +0000
+	id 1lbSVA-0023UM-1C; Tue, 27 Apr 2021 18:32:04 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lbB64-000GcO-8L; Mon, 26 Apr 2021 23:57:01 +0000
+ id 1lbSUy-0023TJ-42; Tue, 27 Apr 2021 18:31:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=SdabRXw+KZyuYBY3LzBY1S17jr/5ae5K5GInfZuI7yU=; b=do/bvZtZD5JLOueIjgFslyBSCm
- 1UYgvlH158o5AqDPwlLhXbThFo2/ORbKQEaKr3/YF9ukqVcUVQFLA7SbuzVAJ363BOsIDTELSs0MX
- aCNgmkuKMRmOGYRr2Y1y/jg8PcComitdUa52H9UhqLPQ1+JWqs/pty+e70zbhYZchd3tsxh0Y/E06
- 9LSw8yr408i4/93K6+FH2k3PZoMlN/Ifotminp9ITyMKhMMuuAVCx9ybxmPYReMYsyFaqr/6wLFQs
- BzscKkrIJn0RAThMVqLUb9Xy9RZ8V3Xa6uEmSCn1sKmOP27eD/Exi+Wghhk1R3NHzsiMKjNVqVj+6
- mD1R9Wjw==;
-Received: from gate.crashing.org ([63.228.1.57])
- by bombadil.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
- id 1lbB61-00GK55-9Q; Mon, 26 Apr 2021 23:56:59 +0000
-Received: from ip6-localhost (localhost.localdomain [127.0.0.1])
- by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 13QNi8nL025548;
- Mon, 26 Apr 2021 18:44:08 -0500
-Message-ID: <3677398ebb77f334abb4899770db633d9658fe82.camel@kernel.crashing.org>
-Subject: Re: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem()
- for non-platform devices
-From: Benjamin Herrenschmidt <benh@kernel.crashing.org>
-To: Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>
-Cc: QCA ath9k Development <ath9k-devel@qca.qualcomm.com>, Microchip Linux
- Driver Support <UNGLinuxDriver@microchip.com>, linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>, linux-kernel@vger.kernel.org,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, netdev
- <netdev@vger.kernel.org>, "moderated list:ARM/Mediatek SoC support"
- <linux-mediatek@lists.infradead.org>, "open list:MEDIA DRIVERS FOR RENESAS
- - FCP" <linux-renesas-soc@vger.kernel.org>, "moderated list:ARM/STM32
- ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>, "open
- list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-oxnas@groups.io, linux-omap <linux-omap@vger.kernel.org>,
- linux-wireless <linux-wireless@vger.kernel.org>,
- devicetree@vger.kernel.org, linux-staging@lists.linux.dev, Andrew Lunn
- <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Michael Ellerman <mpe@ellerman.id.au>, Paul
- Mackerras <paulus@samba.org>, Andreas Larsson <andreas@gaisler.com>, "David
- S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Maxime
- Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@siol.net>, Joyce Ooi <joyce.ooi@intel.com>, Chris Snook
- <chris.snook@gmail.com>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>, "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <bcm-kernel-feedback-list@broadcom.com>, Florian Fainelli
- <f.fainelli@gmail.com>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>, Sunil Goutham
- <sgoutham@marvell.com>, Fugang Duan <fugang.duan@nxp.com>, Madalin Bucur
- <madalin.bucur@nxp.com>, Pantelis Antoniou <pantelis.antoniou@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, Li Yang <leoyang.li@nxp.com>,
- Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
- <salil.mehta@huawei.com>, Hauke Mehrtens <hauke@hauke-m.de>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, Vadym Kochan
- <vkochan@marvell.com>, Taras Chornyi <tchornyi@marvell.com>, Mirko Lindner
- <mlindner@marvell.com>, Stephen Hemminger <stephen@networkplumber.org>,
- Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>, Sean Wang
- <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>, Matthias
- Brugger <matthias.bgg@gmail.com>, Bryan Whitehead
- <bryan.whitehead@microchip.com>, Vladimir Zapolskiy <vz@mleia.com>, Sergei
- Shtylyov <sergei.shtylyov@gmail.com>, Byungho An <bh74.an@samsung.com>,
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Giuseppe Cavallaro
- <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@st.com>, Jose
- Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Kevin Hilman
- <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Vinod Koul <vkoul@kernel.org>,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, Grygorii Strashko
- <grygorii.strashko@ti.com>, Wingman Kwok <w-kwok2@ti.com>, Murali Karicheri
- <m-karicheri2@ti.com>, Michal Simek <michal.simek@xilinx.com>, Radhey Shyam
- Pandey <radhey.shyam.pandey@xilinx.com>, Kalle Valo <kvalo@codeaurora.org>,
- Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
- Ryder Lee <ryder.lee@mediatek.com>, Stanislaw Gruszka <stf_xl@wp.pl>,
- Helmut Schaa <helmut.schaa@googlemail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Frank Rowand <frowand.list@gmail.com>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, =?ISO-8859-1?Q?J=E9r=F4me?=
- Pouiller <jerome.pouiller@silabs.com>, Vivien Didelot
- <vivien.didelot@gmail.com>, Vladimir Oltean <olteanv@gmail.com>
-Date: Tue, 27 Apr 2021 09:44:07 +1000
-In-Reply-To: <108f268a35843368466004f7fe5f9f88@walle.cc>
-References: <20210412174718.17382-1-michael@walle.cc>
- <20210412174718.17382-3-michael@walle.cc>
- <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org>
- <8157eba9317609294da80472622deb28@walle.cc>
- <CAL_JsqLrx6nFZrKiEtm2a1vDvQGG+FkpGtJCG2osM8hhGo3P=Q@mail.gmail.com>
- <108f268a35843368466004f7fe5f9f88@walle.cc>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+ d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
+ :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=yP8Pg85AED61BqhqzNQSCQ0faSITOU8hZLsSfGgXVOI=; b=OBh9MnZ8TiYqGXHP6SpmQwQO/P
+ 6fy/1fdY25qaxpmGVsNVyQs695/RSHINVNrXMIjuSYU1E2rAQgKqfZ1ECkU6gyfMokPJh448HMANt
+ kmXIRfnp9SQgy0EatkR441IM8lMpqFDpS2BGqxwlgQcz1opfc+lgVFolAa46Ulq7XCO5kGMVQk6AF
+ a61915ZjQ1J7WaZKRJyGd1juCH9RKKgdDpx2rfqhiIMcZnYOOCS8UidxM3nnj678TE4JTqpzze0jG
+ kDvigNUJejRgP9MOxdeyjwNu/XMXgN9uhdyVmDK7LeNL4epEza1Q5dYdfGDI6BtcYpNP0GhN1ZyXZ
+ VETdYn6g==;
+Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+ by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
+ id 1lbSUs-00Gv4p-SS; Tue, 27 Apr 2021 18:31:48 +0000
+Received: by mail-ej1-x629.google.com with SMTP id n21so14694100eji.1;
+ Tue, 27 Apr 2021 11:31:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=yP8Pg85AED61BqhqzNQSCQ0faSITOU8hZLsSfGgXVOI=;
+ b=Fy0hFkhHdXOk6yDtyoFq2hpSjC2aPWKhwCUYU4Ngri+zPpxVzbpyewbCqH3tjAkYbq
+ 5S8mka9eS6l+NXKKHoWG1iHDryXEx4R2QbJetJE5k6O50085xzoUwcNZOjri6P/lGsBs
+ 6JJ8Fzjavcm+8S/wfKBz13ODN4crmC4es63WQug0kl7D2TJeofmlbj5wLY5z1M5DqLIL
+ SZG+sHGcDVqFrLEGGVrMOnW2Zrq9sX/NLH737S2vncdlREg0/yu2VD2zVNIJvATYEZeg
+ vj3aOqpICxCKlUrUufYUBN99s7ux4VYxk3qk/km3vALkxhGTQVRYRD6S549mn9GBBYFR
+ rMQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=yP8Pg85AED61BqhqzNQSCQ0faSITOU8hZLsSfGgXVOI=;
+ b=pYVAUDANSJiM32w5mUh5DsEAGUIbL36t2hvz5LvHA0lS5d63bdm5L7qKgkTchUdydg
+ 0wAUwyvvXHDYYY0re7hPyvquqtDGl17Ju5WhyknDJ2YdE3SI/Apn8+SI1zg/gcyYwET4
+ iOu2v2q/qaIwZhI1UWxS9bPI2GVmalN52nkNoAwrfxr9kY/fbpELS1jeAmVCvYDPQG0J
+ 53sQKcov/DtPmfi5yEhFnVx+Qtuypm3KsaKiwsBJrxhL48N8bGiIc9k4pzaFKqRrisLI
+ /zbNpan2cxZhKiOy+Pz0SYz/piM6Mis7hGtzRpQGve+8amIQ/tXurDsWSu+6v+QYHaOt
+ ea9w==
+X-Gm-Message-State: AOAM530bGrnhUaDfL4MXBAHq/ziT7ucpkiXZBeuncYytLdcV8jg8S1cL
+ h0PZzRku+t3x78DPbEYyH5QB/xeM9LVNh3ZQajI=
+X-Google-Smtp-Source: ABdhPJxt3MTXfyv2Bb27hy8HvPNMjivT0PcIdJJZ28HezJTgD7aAL2CIuSK4XOFdNJe4UW7aoMyJeUd6XUwDEuHlVuw=
+X-Received: by 2002:a17:907:765b:: with SMTP id
+ kj27mr9390423ejc.537.1619548304673; 
+ Tue, 27 Apr 2021 11:31:44 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210426101106.9122-1-colin.king@canonical.com>
+In-Reply-To: <20210426101106.9122-1-colin.king@canonical.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 27 Apr 2021 20:31:33 +0200
+Message-ID: <CAFBinCBh1_s7NDpOZjuO3hKcvimwiD+2X15JY3CqeDKg8wemSQ@mail.gmail.com>
+Subject: Re: [PATCH] serial: meson: remove redundant initialization of
+ variable id
+To: Colin King <colin.king@canonical.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, linux-serial@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210426_165657_820362_E2CCFC88 
-X-CRM114-Status: GOOD (  12.64  )
+X-CRM114-CacheID: sfid-20210427_113146_959317_983C55EB 
+X-CRM114-Status: GOOD (  11.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -141,29 +112,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2021-04-26 at 12:54 +0200, Michael Walle wrote:
-> Before I'll try to come up with a patch for this, I'd like to get
-> your opinion on it.
-> 
-> (1) replacing of_get_mac_address(node) with eth_get_mac_address(dev)
->      might sometimes lead to confusing comments like in
->      drivers/net/ethernet/allwinner/sun4i-emac.c:
-> 
->      /* Read MAC-address from DT */
->      ret = of_get_mac_address(np, ndev->dev_addr);
-
-You could leave it or turn it into "from platform", doesn't matter...
-
-> (2) What do you think of eth_get_mac_address(ndev). That is, the
-
-Not sure what you mean, eth_platform_get_mac_address() takes the
-address as an argument. I think what you want is a consolidated
-nvmem_get_mac_address + eth_platform_get_mac_address that takes a
-device, which would have no requirement of the bus_type at all.
-
-Cheers,
-Ben.
-
+On Mon, Apr 26, 2021 at 12:11 PM Colin King <colin.king@canonical.com> wrote:
+>
+> From: Colin Ian King <colin.king@canonical.com>
+>
+> The variable id being initialized with a value that is never read
+> and it is being updated later with a new value. The initialization is
+> redundant and can be removed. Since id is just being used in a for-loop
+> inside a local scope, move the declaration of id to that scope.
+>
+> Addresses-Coverity: ("Unused value")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
