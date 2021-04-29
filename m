@@ -2,103 +2,102 @@ Return-Path: <SRS0=b0VC=J2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5A81C433ED
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 17:05:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F54CC433ED
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 17:43:33 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C7B13613ED
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 17:05:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7B13613ED
+	by mail.kernel.org (Postfix) with ESMTPS id 2EB7D61456
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 17:43:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2EB7D61456
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:In-reply-to:Subject:Cc:
+	To:From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=sGfMa6Q/7STiKFxB/IhQ/VaqUhXTLMf0T9RCJVVBMrI=; b=TktI1jsBGADsk6UXwBTVMrT0Z
-	sR/vJzySdaCbfL6tvObcrLUI1MwpRtKnEPIQhiNbQxsmCiAkopQo0KIj5pFqDPenCDscBnOLLqpqq
-	Fcx7iJ7OY1zPwUhTn9NZ/7p1xcnhYdtPtKvtbhbqczUkTSvYvweQ3P7uL66+/DUPAcnPaOC3xpqV3
-	AnDT+/ws76qL1IwNZVYXlx8yJeBih492Xc/mCo2QEzbCK1/ZN7MTap/g9wZQpKeM4MW9L4xwP0vrU
-	IYqg6KBb7VCNOmJo4xe13PfiOeKZ5VuZcRF7qzsZUPKCNdaMBgJ0s/ZsGvzrmaS9L71wR/SuqWPFS
-	zZeDd2R6g==;
+	 bh=hHhAR9Hb6Ad/NiTDF/EEmtnbQ97jqRxCS9Wu6tTtpfM=; b=alsr2JOoRYWrXCy07SuemPqFi
+	FxZRF7K3F0tZBo64CJK21Dky9Ya3XWultq5rc5D0/QMiWBX7SdN4kygBue7bYvox1k6SLNdAs0zd7
+	O394l+ZBt3VRFoHiXscLVKMbqp6UGk9YRp/jbzRY7bxEXbz3TmGsVbJ/WLD+HVbQ4AAXKY4qpmhwg
+	BwDJ66q7pa6v2841QOzSSWOhhJawaSIA0EdzFvYl9un7YWoG1vz0zr/ZjPEmvZiG6XM6htDdQBPik
+	ddJCuBU7c5chI2pRyCMoVcv6DEMmisB0i6B3mdUTjMWb4Rl5/3b5CWvMTfpmZHW8AvibjyVC1mry2
+	rW5oMhK4Q==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lcA6G-00662Y-7p; Thu, 29 Apr 2021 17:05:16 +0000
+	id 1lcAhB-0068P9-Ec; Thu, 29 Apr 2021 17:43:25 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lcA5K-0065qF-L2
- for linux-amlogic@desiato.infradead.org; Thu, 29 Apr 2021 17:04:19 +0000
+ id 1lcAgy-0068Nz-Of
+ for linux-amlogic@desiato.infradead.org; Thu, 29 Apr 2021 17:43:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
- :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=28ZqMe00x8Xq32OoNXPRZG1wXadnRT7bwRIiBkdqsv8=; b=eigV67W1OT7B/473Z/DNiLC9sl
- U17B7/OHfHMWp3116jib2W2eMxN/4VgNHf5qnMHkUSJjN/bgv+OCZRcJbwPxVtDeeTDENMtnNw4Y7
- pUw1sTU0M7IsYTvmWWt0n5GjW7jfkXZJufN7ouRvp+pX5xPxCyQvy7RSs4cGgJPi0tasflioRfRs2
- ZYQzDwTrs8bl8SxdOa5NZo4eSwXa5EgiXnGtxhosiE8PQHIrHgrtRlxDgJkRNbV//EbfVXLrhtHRv
- dhOd0cmFNu7hhRXVuoIwu/6Epwej9EqzPvSt7luxfqcXxTsQgnbxGGYN3OlGugAuIhIym+uZaDfZG
- EF4vdgkg==;
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+ d=infradead.org; s=bombadil.20210309; h=Content-Type:MIME-Version:Date:
+ Message-ID:In-reply-to:Subject:Cc:To:From:References:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=BRjhSBhHMw0cfh8McFGX3T1RGcT74vqYpGonK7mWYDI=; b=HqT5+I2VuxAtSBJYi8m9WVmUtB
+ 3wxWWys1J9EHks3PawZb3rirBDVZkolAdYJ0vfyjQdinxfrjLtlGpUgDvsKRwxblTFctqyP4rIVoo
+ QlchVYnLUScxNNc3+6S1CfY1hdF6Ynzd9NZeCrnQyUCGieo7dPS7w+iilLgPCG7RwzpyN2piTvK/U
+ xqlfPVawqlTDB1LkO+jJr2UGzehmPfL4HAPyEdqdoEnhL4wliVrunsL9PUsN+xAkQw5hLbzTJ02Xs
+ NssjergfnylTX5ALNikIzco2OAT2H4MTRvWoScjugLB6W9kibBvU/17ptdEAsLnwb1zOhGOGlIM1h
+ ZRrKnmeg==;
+Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lcA5H-000nLL-8n
- for linux-amlogic@lists.infradead.org; Thu, 29 Apr 2021 17:04:17 +0000
-Received: by mail-wm1-x331.google.com with SMTP id s82so1237736wmf.3
- for <linux-amlogic@lists.infradead.org>; Thu, 29 Apr 2021 10:04:12 -0700 (PDT)
+ id 1lcAgv-000pO3-FK
+ for linux-amlogic@lists.infradead.org; Thu, 29 Apr 2021 17:43:11 +0000
+Received: by mail-ej1-x629.google.com with SMTP id zg3so19531135ejb.8
+ for <linux-amlogic@lists.infradead.org>; Thu, 29 Apr 2021 10:43:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=28ZqMe00x8Xq32OoNXPRZG1wXadnRT7bwRIiBkdqsv8=;
- b=ClSPNoY407+IK8RDinCocB4MhjEnA2xNsDXIZRoPOC7x4ArntkxXzcpzIJ5ltnfeGu
- LAZQH6CEjhuQug2TthC3wrajZwXaET49J+Jkn0XFIS6f8ssrIB1kRO2N+A3bzZOAs/wx
- vzDrE6y/Lv1Fr0nwR4g+uyRpKbL0+Z+mPyzkoLKq0+agNNJkploWBkpZDOxnyE4W1Ecz
- 8bHkYmwtB3VsfqjNiNc63FpesGindzXVtcjLBF7wYzQQjfnHcNPr4fIfh+Inma/tCdRC
- nHPLRjd9CKfdwpd3C77L64+NuwzHMA2EtzpQu6oNj1DlN97HVjSjW0Y9JX35DHeUs+bn
- Uf1g==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
+ :date:mime-version;
+ bh=BRjhSBhHMw0cfh8McFGX3T1RGcT74vqYpGonK7mWYDI=;
+ b=Kiq0l4riPAKiNrT7WJO38D0K2S1WMBBF2WDDoJYhcaFGNwXSu6bwya5fgqLoocpIPD
+ OsdN/9XBiFLxC8xL4EdVJp+Xrvc9Wti1b8t1aPWQWuH1msE9XiPLnG/NE6OpkTQBsD5j
+ pMMWNN3OJOJmB00zYIioJfkMihUkBabKT6p+oP0ATQUZ/sr1nbp0An9yeszAe4Y7mtZR
+ BBqr9c8jl3OFLieEYDvoVUb0gahKb766iwSp0mvFTeYJo/ddUY00IBk3YfgT8BzDTwHQ
+ cy7OEJwYCiCOnfZ+8OL2Eyv/gnCBDDnkgiX8B4JZvXl4H05uO+OQCquxXTaGQ0bHM6/a
+ RKGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=28ZqMe00x8Xq32OoNXPRZG1wXadnRT7bwRIiBkdqsv8=;
- b=oFriTnm+9lcrYqFDhGInR5fgIqTWWXpeTOFZAAwcKkiPaM5ZIWmavvu45LG2kHSGyH
- CSluz9R4D7rEbQFsO0Y84VDMqTCtRVxf+qFQyXOkksetdiKOzozYY98A1EboxzEpLJ8S
- 9mdg0kVVQ/I3GZqY24zfm1w5LBYHetm/+i30t5WnniHAXXsdbLSaXYnL5mKLaZGGpm8F
- ocVcIeVdIjFWUgDCk8nEe+G9IppqTLy6Bfx55NDtujh0OwW8wUkY3eDI3zChxfqZhKZq
- mwpsWv2aGRoTxWQQ9nxzZ4TbakwV0yLa9J8Ke8hi1RmI56qoNwSQ1dT+TMmkZ8zK3nIf
- ivIw==
-X-Gm-Message-State: AOAM530tSp/nY9ZEmVWrMi4YbQscZdb4iWhG9VHbe0kOxTy65LDvrtJl
- ghtYWL4wkq04kBW6ToiNi9KB6A==
-X-Google-Smtp-Source: ABdhPJwjb8mwbGZH54C3x15B8dtuuVCo6tdk8+46YUEfP4XWWiMSfkxpY/A+FdcUKW3xU0tJBgip2w==
-X-Received: by 2002:a1c:7e45:: with SMTP id z66mr1168019wmc.126.1619715851727; 
- Thu, 29 Apr 2021 10:04:11 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:90c:e290:c304:4b2b:4a79:1da9])
- by smtp.gmail.com with ESMTPSA id
- 18sm11041275wmo.47.2021.04.29.10.04.10
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:message-id:date:mime-version;
+ bh=BRjhSBhHMw0cfh8McFGX3T1RGcT74vqYpGonK7mWYDI=;
+ b=L/JcPXI4CZvYx17QEFjItxra/Oupt1cnKtzDkZJmvdY5XZQ+QTed9Ve9EBLsVQ5VZV
+ I8r5M0KWkvKtoxittPeU98VsE2bRbYst2JkQnH/q24RGXcFCkxV6LRT480qoAb7GLbMf
+ MZcCqRe4R5Cjo8I9tsbDl3k6AwgyufQii2mkaOP7qpyhcNQ0w/3+FD/Epfqf4XMbolVk
+ 44DyTw55TrewQ3dcoBYuIkShbFr0fV7u6WcJHLyZEJX0AKRQ6ngMPQBpkokVjJo4enXb
+ xxEbXrs0+tnvQ9WxXO0YJEpTly2EMrxH9tSPCbjTyr/DsfmJHBrG6dPeIsdtY+c6QzW+
+ 9bBQ==
+X-Gm-Message-State: AOAM53030VNQOz2qWyGkB9Tk00ow1m9NO8cDaLE35EY3fUT7tvOX+ZU/
+ eDh/LJQYvSTmy1xOOBK4igWU/g==
+X-Google-Smtp-Source: ABdhPJx1ZgmV97KuEwi9+JdPZAVO4jUb2ew4j//svpTXFE+Kseaa2P/yi/AHDBRde4cmoKrvVSnHGw==
+X-Received: by 2002:a17:906:6544:: with SMTP id
+ u4mr1065841ejn.455.1619718187971; 
+ Thu, 29 Apr 2021 10:43:07 -0700 (PDT)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id d5sm2877135edt.49.2021.04.29.10.43.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Apr 2021 10:04:11 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 3/3] arm64: dts: meson-sm1: add Banana PI BPI-M5 board dts
-Date: Thu, 29 Apr 2021 19:04:04 +0200
-Message-Id: <20210429170404.3616111-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210429170404.3616111-1-narmstrong@baylibre.com>
-References: <20210429170404.3616111-1-narmstrong@baylibre.com>
+ Thu, 29 Apr 2021 10:43:07 -0700 (PDT)
+References: <20210429170147.3615883-1-narmstrong@baylibre.com>
+User-agent: mu4e 1.4.15; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org
+Cc: alsa-devel@alsa-project.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: meson: g12a-toacodec: add support for SM1 TOACODEC
+In-reply-to: <20210429170147.3615883-1-narmstrong@baylibre.com>
+Message-ID: <1jo8dx9ec5.fsf@starbuckisacylon.baylibre.com>
+Date: Thu, 29 Apr 2021 19:43:06 +0200
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210429_100415_321231_13F7343B 
-X-CRM114-Status: GOOD (  17.99  )
+X-CRM114-CacheID: sfid-20210429_104309_533917_8EAE6366 
+X-CRM114-Status: GOOD (  15.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,655 +114,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Banana Pi BPI-M5 is a credit card format SBC with the following features:
-- Amlogic S905X3 quad core Cortex-A55
-- Mali-G31 GPU
-- 4GB LPDDR4
-- 16GB eMMC flash
-- 4 USB 3.0
-- 1 GbE ethernet
-- HDMI output
-- 2x LEDS
-- SDCard
-- 2.5mm Jack with Stereo Audio + CVBS
-- Infrared Received
-- ADC Button
-- GPIO Button
-- 40 pins header + 3pins debug header
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../dts/amlogic/meson-sm1-bananapi-m5.dts     | 606 ++++++++++++++++++
- 2 files changed, 607 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+On Thu 29 Apr 2021 at 19:01, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 78a569d7fa20..3cf6699b4f30 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -45,6 +45,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-libretech-pc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-new file mode 100644
-index 000000000000..e5fc9d320577
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-@@ -0,0 +1,606 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 BayLibre SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-sm1.dtsi"
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-toacodec.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "bananapi,bpi-m5", "amlogic,sm1";
-+	model = "Banana Pi BPI-M5";
-+
-+	adc_keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 2>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+
-+		button-onoff {
-+			label = "SW3";
-+			linux,code = <BTN_3>;
-+			press-threshold-microvolt = <1700000>;
-+		};
-+	};
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	/* TOFIX: handle CVBS_DET on SARADC channel 0 */
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key {
-+			label = "SW1";
-+			linux,code = <BTN_1>;
-+			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
-+			interrupt-parent = <&gpio_intc>;
-+			interrupts = <3 IRQ_TYPE_EDGE_BOTH>;
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	flash_1v8: regulator-flash_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "FLASH_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	dc_in: regulator-dc_in {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_c: regulator-vddio_c {
-+		compatible = "regulator-gpio";
-+		regulator-name = "VDDIO_C";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+
-+		gpios = <&gpio_ao GPIOAO_6 GPIO_OPEN_DRAIN>;
-+		gpios-states = <1>;
-+
-+		states = <1800000 0>,
-+			 <3300000 1>;
-+	};
-+
-+	tflash_vdd: regulator-tflash_vdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "TFLASH_VDD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_in>;
-+		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	vddao_1v8: regulator-vddao_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_in>;
-+		regulator-always-on;
-+	};
-+
-+	vddcpu: regulator-vddcpu {
-+		/*
-+		 * SY8120B1ABC DC/DC Regulator.
-+		 */
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU";
-+		regulator-min-microvolt = <721000>;
-+		regulator-max-microvolt = <1022000>;
-+
-+		vin-supply = <&dc_in>;
-+
-+		pwms = <&pwm_AO_cd 1 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	/* USB Hub Power Enable */
-+	vl_pwr_en: regulator-vl_pwr_en {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VL_PWR_EN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_in>;
-+
-+		gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "BPI-M5";
-+		audio-widgets = "Line", "Lineout";
-+		audio-aux-devs = <&tdmout_b>, <&tdmout_c>,
-+				 <&tdmin_a>, <&tdmin_b>, <&tdmin_c>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDMOUT_C IN 0", "FRDDR_A OUT 2",
-+				"TDMOUT_C IN 1", "FRDDR_B OUT 2",
-+				"TDMOUT_C IN 2", "FRDDR_C OUT 2",
-+				"TDM_C Playback", "TDMOUT_C OUT",
-+				"TDMIN_A IN 4", "TDM_B Loopback",
-+				"TDMIN_B IN 4", "TDM_B Loopback",
-+				"TDMIN_C IN 4", "TDM_B Loopback",
-+				"TDMIN_A IN 5", "TDM_C Loopback",
-+				"TDMIN_B IN 5", "TDM_C Loopback",
-+				"TDMIN_C IN 5", "TDM_C Loopback",
-+				"TODDR_A IN 0", "TDMIN_A OUT",
-+				"TODDR_B IN 0", "TDMIN_A OUT",
-+				"TODDR_C IN 0", "TDMIN_A OUT",
-+				"TODDR_A IN 1", "TDMIN_B OUT",
-+				"TODDR_B IN 1", "TDMIN_B OUT",
-+				"TODDR_C IN 1", "TDMIN_B OUT",
-+				"TODDR_A IN 2", "TDMIN_C OUT",
-+				"TODDR_B IN 2", "TDMIN_C OUT",
-+				"TODDR_C IN 2", "TDMIN_C OUT",
-+				"Lineout", "ACODEC LOLP",
-+				"Lineout", "ACODEC LORP";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&toddr_a>;
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&toddr_b>;
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&toddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-6 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&toacodec TOACODEC_IN_B>;
-+			};
-+		};
-+
-+		/* i2s jack output interface */
-+		dai-link-7 {
-+			sound-dai = <&tdmif_c>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_C>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&toacodec TOACODEC_IN_C>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-8 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		/* acodec glue */
-+		dai-link-9 {
-+			sound-dai = <&toacodec TOACODEC_OUT>;
-+
-+			codec {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddao_1v8>;
-+	status = "okay";
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU1_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU2_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU3_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ext_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211F (0x001cc916) */
-+		reg = <0>;
-+		max-speed = <1000>;
-+
-+		interrupt-parent = <&gpio_intc>;
-+		/* MAC_INTR on GPIOZ_14 */
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&external_phy>;
-+	amlogic,tx-delay-ns = <2>;
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&gpio {
-+	gpio-line-names =
-+		/* GPIOZ */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOH */
-+		"", "", "", "", "",
-+		"CON1-P36", /* GPIOH_5 */
-+		"", "", "",
-+		/* BOOT */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOC */
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOA */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "",
-+		"CON1-P27", /* GPIOA_14 */
-+		"CON1-P28", /* GPIOA_15 */
-+		/* GPIOX */
-+		"CON1-P16", /* GPIOX_0 */
-+		"CON1-P18", /* GPIOX_1 */
-+		"CON1-P22", /* GPIOX_2 */
-+		"CON1-P11", /* GPIOX_3 */
-+		"CON1-P13", /* GPIOX_4 */
-+		"CON1-P07", /* GPIOX_5 */
-+		"CON1-P33", /* GPIOX_6 */
-+		"CON1-P15", /* GPIOX_7 */
-+		"CON1-P19", /* GPIOX_8 */
-+		"CON1-P21", /* GPIOX_9 */
-+		"CON1-P24", /* GPIOX_10 */
-+		"CON1-P23", /* GPIOX_11 */
-+		"CON1-P08", /* GPIOX_12 */
-+		"CON1-P10", /* GPIOX_13 */
-+		"CON1-P29", /* GPIOX_14 */
-+		"CON1-P31", /* GPIOX_15 */
-+		"CON1-P26", /* GPIOX_16 */
-+		"CON1-P03", /* GPIOX_17 */
-+		"CON1-P05", /* GPIOX_18 */
-+		"CON1-P32"; /* GPIOX_19 */
-+
-+	/*
-+	 * WARNING: The USB Hub on the BPI-M54 needs a reset signal
-+	 * to be turned high in order to be detected by the USB Controller
-+	 * This signal should be handled by a USB specific power sequence
-+	 * in order to reset the Hub when USB bus is powered down.
-+	 */
-+	usb-hub {
-+		gpio-hog;
-+		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "usb-hub-reset";
-+	};
-+};
-+
-+&gpio_ao {
-+	gpio-line-names =
-+		/* GPIOAO */
-+		"DEBUG TX", /* GPIOAO_0 */
-+		"DEBUG RX", /* GPIOAO_1 */
-+		"SYS_LED2", /* GPIOAO_2 */
-+		"UPDATE_KEY", /* GPIOAO_3 */
-+		"CON1-P40", /* GPIOAO_4 */
-+		"",
-+		"TF_3V3N_1V8_EN", /* GPIOAO_6 */
-+		"CON1-P35", /* GPIOAO_7 */
-+		"CON1-P12", /* GPIOAO_8 */
-+		"CON1-P37", /* GPIOAO_9 */
-+		"CON1-P38", /* GPIOAO_10 */
-+		"SYS_LED", /* GPIOAO_11 */
-+		/* GPIOE */
-+		"", "", "";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&dc_in>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_AO_cd {
-+	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+	status = "okay";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddao_1v8>;
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+	disable-wp;
-+
-+	/* TOFIX: SD card is barely usable in SDR modes */
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&tflash_vdd>;
-+	vqmmc-supply = <&vddio_c>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&flash_1v8>;
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmif_c {
-+	status = "okay";
-+};
-+
-+&tdmin_a {
-+	status = "okay";
-+};
-+
-+&tdmin_b {
-+	status = "okay";
-+};
-+
-+&tdmin_c {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tdmout_c {
-+	status = "okay";
-+};
-+
-+&toacodec {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&toddr_a {
-+	status = "okay";
-+};
-+
-+&toddr_b {
-+	status = "okay";
-+};
-+
-+&toddr_c {
-+	status = "okay";
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+};
-+
-+&usb2_phy0 {
-+	phy-supply = <&dc_in>;
-+};
-+
-+&usb2_phy1 {
-+	/* Enable the hub which is connected to this port */
-+	phy-supply = <&vl_pwr_en>;
-+};
--- 
-2.25.1
+
+>  
+> +static int sm1_toacodec_mux_put_enum(struct snd_kcontrol *kcontrol,
+> +				     struct snd_ctl_elem_value *ucontrol)
+> +{
+> +	struct snd_soc_component *component =
+> +		snd_soc_dapm_kcontrol_component(kcontrol);
+> +	struct snd_soc_dapm_context *dapm =
+> +		snd_soc_dapm_kcontrol_dapm(kcontrol);
+> +	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
+> +	unsigned int mux, changed;
+> +
+> +	mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
+> +	changed = snd_soc_component_test_bits(component, e->reg,
+> +					      CTRL0_DAT_SEL_SM1,
+> +					      FIELD_PREP(CTRL0_DAT_SEL_SM1, mux));
+> +
+> +	if (!changed)
+> +		return 0;
+> +
+> +	/* Force disconnect of the mux while updating */
+> +	snd_soc_dapm_mux_update_power(dapm, kcontrol, 0, NULL, NULL);
+> +
+> +	snd_soc_component_update_bits(component, e->reg,
+> +				      CTRL0_DAT_SEL_SM1 |
+> +				      CTRL0_LRCLK_SEL_SM1 |
+> +				      CTRL0_BCLK_SEL_SM1,
+> +				      FIELD_PREP(CTRL0_DAT_SEL_SM1, mux) |
+> +				      FIELD_PREP(CTRL0_LRCLK_SEL_SM1, mux) |
+> +				      FIELD_PREP(CTRL0_BCLK_SEL_SM1, mux));
+> +
+> +	/*
+> +	 * FIXME:
+> +	 * On this soc, the glue gets the MCLK directly from the clock
+> +	 * controller instead of going the through the TDM interface.
+> +	 *
+> +	 * Here we assume interface A uses clock A, etc ... While it is
+> +	 * true for now, it could be different. Instead the glue should
+> +	 * find out the clock used by the interface and select the same
+> +	 * source. For that, we will need regmap backed clock mux which
+> +	 * is a work in progress
+> +	 */
+> +	snd_soc_component_update_bits(component, e->reg,
+> +				      CTRL0_MCLK_SEL,
+> +				      FIELD_PREP(CTRL0_MCLK_SEL, mux));
+> +
+> +	snd_soc_dapm_mux_update_power(dapm, kcontrol, mux, e, NULL);
+> +
+> +	return 0;
+> +}
+
+Instead of duplicating this function, I'd prefer if you could use regmap fields
+
 
 
 _______________________________________________
