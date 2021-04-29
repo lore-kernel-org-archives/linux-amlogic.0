@@ -2,111 +2,102 @@ Return-Path: <SRS0=b0VC=J2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E3970C43460
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 07:23:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D4133C433ED
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 08:38:54 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD48C61289
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 07:23:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD48C61289
+	by mail.kernel.org (Postfix) with ESMTPS id 54FE16135B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 08:38:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54FE16135B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=jCAv1HHeJ/MChXju639iGWAiIYA6IKrISf1unc+xYCw=; b=U1K+AlmQzFjDS9QzZ2Bkx5cdg
-	GoAsqRevL9QY1I7ADSYEdgufrOqM1JIC3ZIat2WW73c7E1l1O5B33XuVDpxh25UW+FdWgX5Dl7sTA
-	aXDchNfGKF+7jBiltbXtt6Jh4hLHnYscyAfVbixMVJP702CKRQt+2lsxF4XN6Kyp/DjqnatJanZVz
-	r8eGf4MuVT8SSougySSAKDUPyTiVrbwJexMuZkZ3HW0FXSGn3O3aRx3+xWjBMzfkuqLgOvUuRlNFg
-	uLmoamVcS0RjOr50e0dOM+/fZTT4sYcx3JzINJtRoISP5zZbk0WPD9svXZpdV5DmYgi8reJPNIoq1
-	RrEfvuT/A==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=qsuRrSJGpOoXBoPkuM0i57dq6Q7SuGzsrBHqo0LMs/g=; b=oP0vt/XTYSSnEAuzF5JAvCzZ8G
+	t4Qj8Ynt9QkXPDf3MYt6X/lLX/1m8Sql0Wc4U5rTvXv/KCd3GG8Yb3mc7396ok3uj25Y64Btue3aX
+	q96kuD4TSCGSWwc8kWDD4E9FDtB2T6J/T1OTBaTfMASb5o2SmccNcnzVIwN2mj9dLoPr9U2PzrLJT
+	W9Vw0btEdu3YzyWsClaPI5ezxyYzgMou03FsdAjT968QMmEkEnmu5RtZ2D0awMW7krkMqoLYJzo1X
+	QJVMwPxJk4Ey0Lvdl31S6DzQgnxPDsxmmT/n8YTnodVMaoWmGw/pDjGqyZa1ptRQM6U7rgwboHEVV
+	KaSvuDhQ==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lc10i-005C0d-Eu; Thu, 29 Apr 2021 07:22:56 +0000
+	id 1lc2C9-005KhH-8o; Thu, 29 Apr 2021 08:38:49 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lc0ni-0059jN-Q0
- for linux-amlogic@desiato.infradead.org; Thu, 29 Apr 2021 07:09:30 +0000
+ id 1lc2C5-005KgJ-68
+ for linux-amlogic@desiato.infradead.org; Thu, 29 Apr 2021 08:38:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
- Subject:Sender:Reply-To:Content-ID:Content-Description;
- bh=lGQKcvz7hC4nUFEHdDadJU+QZacItzjYP+ScbOMh1Aw=; b=gudZkRO/kH3FwiwzLB/ZMn+Ohn
- 9o9ow9cT3ZzNxcAv72sdHTLKIYFM+ccit7vnfTPYP69rOclj+lW8onChCmroi382ui+xnBx/I2ljI
- OiCo46JLDyO595jhKc9t0FbUDUVARKqK1bMlFZv/xQzwCr+LtjHU+HbzZ4xI+ijNHPxs53BcV3Ysf
- gobBQciaimRNPvaQVDqUbaItOiopwqZg7DQG1XH6bmWvu5IPwjOAqSCcqtpHcyZjQ+x7eYu3dyJDN
- VGSBNeizlp7SV78ZdzgEECCcSThIa+oRvD4+jaev98euaDkRFz63zC/Nmro80leA5wyssVEBYg4IO
- QjtYcY2Q==;
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=c4WPoZQIZ1kvkVufh+qEP9zP3pw5rW8jLhJq9sIj904=; b=YJbiSMsrgXH/R75ssI74LtY95K
+ pd+QGO5ByDMVtQA1V2fnvvdgPo1BWUNHz1RKrz1szQCJ5nJ8wUN8j/jjS1jss+1ebTifRSiVdsds5
+ FPHE1BKTQ6wyzBjalz0pKzkQTqxMhj7wgXpbGamFpAeQpnfQ8PEfHur1TNY2IMrSIB8P1WypLd0Fr
+ l+7XGNobgxB3sKj6eLPkbmf0YVbhndgc/TH8W+0o+RDNk+Ir0Q+/YCzBfHQlSbFF5zBO+z0KHHD3v
+ gBKolIgmniDCV+V2VZcdPqP4BC6dUxkXpSNqKPVErBjvzLYJkC/VMsDnxQyMI9jCL3fbI02S+QE4Y
+ nGknTRsA==;
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lc0na-000QsY-3z
- for linux-amlogic@lists.infradead.org; Thu, 29 Apr 2021 07:09:29 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id
- k4-20020a7bc4040000b02901331d89fb83so10120874wmi.5
- for <linux-amlogic@lists.infradead.org>; Thu, 29 Apr 2021 00:09:20 -0700 (PDT)
+ id 1lc2C1-000UfA-5o
+ for linux-amlogic@lists.infradead.org; Thu, 29 Apr 2021 08:38:44 +0000
+Received: by mail-ed1-x536.google.com with SMTP id e7so77465861edu.10
+ for <linux-amlogic@lists.infradead.org>; Thu, 29 Apr 2021 01:38:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=lGQKcvz7hC4nUFEHdDadJU+QZacItzjYP+ScbOMh1Aw=;
- b=1E9n8OGXToC0MSju3Flt6bn5DIN3r1e1ekVoS9QnDIDsM7q9vgo6IIPwARbyDobdkZ
- DYzkqOzRpL/vSgZ66x5I3136OTtUE31feFT+8G5FxPJAwVQFjUikVImrBWBo3M5troG8
- MsHv3psM9NMtq3CNZgSaufEbg53GGNIgERZEavlQP9Q6tjFzyEJ93YbrKHeoJeBVP5Tu
- IbZi+bRyFeTziY3IUIF2Kbd1Aw6fFvihOy2rRu0r5JP/xzG4tuCyHLiDVRctI6/qAwDT
- vJZuzSWMGkxvEqNkKvDyInlXBC7nhORgrSdaYPmc+Ta91SGxZFttYb+IMKqese66fZ9q
- JYiw==
+ bh=c4WPoZQIZ1kvkVufh+qEP9zP3pw5rW8jLhJq9sIj904=;
+ b=IgozPNfcNZh3SwfuiOVHikpsuKvtyq7T9Za5Oh1Jszmvf4rzk1b73g0p1DgzEY09Nv
+ mvt+HK76Hu85mdMLosxGGlK56/jynJd45gUlQmCdHXzKqe+WW9VpIlXezo1hRimAWler
+ oTCZfhu0CWFOWi0VNIAtBVHaq/JhfNrwJb8Ejqh/vQJvnpr2AI/6aphYa0fO8PHXfLUa
+ R9xydeBTmrwJb8pDMah7fXzrSpA789fMei0X5en2SGXgqTsu+xpeLCqJ6BjeCkkvLj3r
+ l/7Wa8iLepHsi7PVNJopsuFldMBfBBx2GXg0EpIHVmuqx6P06UYeo9KsrW8RBHV4tp5n
+ 4d1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=lGQKcvz7hC4nUFEHdDadJU+QZacItzjYP+ScbOMh1Aw=;
- b=IDZWhAFe7vMOmoGmKGiba23OUOyhmWBD2yTaVw1i44vcZW5VeQj+Mdeu6xWGZvrQjM
- zusPSawbMU+bb0tifjOFL6O5sLU/DTkmckIP+BXWTJRji/iaczqJCQmcetTPyuNn//D1
- mh3JBvOW+phBm5bcaaZ5/h2hOocN47pMx4VhpV/bu5sn8AX5+FhtUPUN+1I9YNhvwUDT
- xaKB4mkhRShbo3EvjSnHqkD7U/mQWgarHE3u/aR17zFNEIIOHB/xie7spwORLFZgG3r3
- QZZSx/cXzhViYo5oZ0WEsabXYsKESYOS+PUMyf9wWGnDiE+HU8cikXGDPxLZrpg2cx7y
- KKQA==
-X-Gm-Message-State: AOAM531VLRYfjZx/l/IwVH7XR8kVznCZdUV6YV++Rv68X34YO/+s76cU
- R4RPvuF4cIdXyX6d0ffz1EASIQ==
-X-Google-Smtp-Source: ABdhPJzJCsoIlJD/C9JSCk3Ow6k2ys4QaWLWVgm6T6H5RWE8KSBa8ZvwFssGIDpCX3oPdWkMPE+efw==
-X-Received: by 2002:a1c:f20d:: with SMTP id s13mr35571333wmc.92.1619680159135; 
- Thu, 29 Apr 2021 00:09:19 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:c304:4b2b:4a79:1da9?
- ([2a01:e0a:90c:e290:c304:4b2b:4a79:1da9])
- by smtp.gmail.com with ESMTPSA id e12sm3171283wrt.51.2021.04.29.00.09.17
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 29 Apr 2021 00:09:18 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
-To: Chen-Yu Tsai <wens@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20210429060830.6266-1-wens@kernel.org>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <509d541c-a91a-a1f0-e37f-b239f1d3219b@baylibre.com>
-Date: Thu, 29 Apr 2021 09:09:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=c4WPoZQIZ1kvkVufh+qEP9zP3pw5rW8jLhJq9sIj904=;
+ b=Hn44lv+mIJZFXvujJLSBnuQb3dqht2i5X39W+X4KnWEu2A43NHvwbx7iImxFqHMiEg
+ UT74NVKa1GTV7FjRBZ3JwsK2tXqHoVO+12KbzYKMtsEbG53+iccstCnSz7ohpz4QV+hQ
+ 6B3KRs61IL36TnJopNdF+K+In8hGrh/gpaXLG70gv3gavy1wuN5hUWrQFAg5cXkqR6FM
+ OsEAM6/qsnVzFRqVUiOmc9ZdVzjs/lLo1cJtmu99tqZbCBo1ZjOfvX+pFOja0MlCtG4h
+ 2Wyj2oNcUIJCTL407VGoN925gY+N2/f0GrCGOg0I0RlXjB4rQQqoiOTkQSsYklQRUVT/
+ p8yA==
+X-Gm-Message-State: AOAM532e5Pn1XbegE0350PZbCeV6u9OrsTRB2Com+D9KZS+5GFdG8caL
+ SBto4yzWGOtHl69nuCOvSmXGCA==
+X-Google-Smtp-Source: ABdhPJw/uG7z0S3jYVdM8GLT8Zryvd2mD2Bcig9/CCVXyJhaEGwQUisy9MFDRZf0bsFixgvhhRhZiQ==
+X-Received: by 2002:aa7:cc98:: with SMTP id p24mr16596562edt.187.1619685517668; 
+ Thu, 29 Apr 2021 01:38:37 -0700 (PDT)
+Received: from localhost.localdomain (82-65-169-74.subs.proxad.net.
+ [82.65.169.74])
+ by smtp.googlemail.com with ESMTPSA id n10sm1387941ejg.124.2021.04.29.01.38.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Apr 2021 01:38:37 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH RESEND] arm64: meson: select COMMON_CLK
+Date: Thu, 29 Apr 2021 10:38:23 +0200
+Message-Id: <20210429083823.59546-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210429060830.6266-1-wens@kernel.org>
-Content-Language: en-US
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210429_000922_194348_B99E2A70 
-X-CRM114-Status: GOOD (  20.33  )
+X-CRM114-CacheID: sfid-20210429_013841_289119_66B9CA67 
+X-CRM114-Status: UNSURE (   9.45  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,50 +114,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/04/2021 08:08, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
-> already enabled. The BT part is connected via UART and I2S.
-> 
-> Enable the UART and add a device node describing the Bluetooth portion
-> of the module.
-> 
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> index 7273eed5292c..10f48fb1af61 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> @@ -385,9 +385,19 @@ &uart_AO {
->  
->  /* Bluetooth on AP6212 */
->  &uart_A {
-> -	status = "disabled";
-> +	status = "okay";
->  	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
->  	pinctrl-names = "default";
-> +
-> +	bluetooth {
-> +		compatible = "brcm,bcm43438-bt";
-> +		clocks = <&wifi_32k>;
-> +		clock-names = "lpo";
-> +		vbat-supply = <&vddio_ao3v3>;
-> +		vddio-supply = <&vddio_ao18>;
-> +		host-wakeup-gpios = <&gpio GPIOX_21 GPIO_ACTIVE_HIGH>;
-> +		shutdown-gpios = <&gpio GPIOX_20 GPIO_ACTIVE_HIGH>;
-> +	};
->  };
->  
->  /* 40-pin CON1 */
-> 
+This fix the recent removal of clock drivers selection.
+While it is not necessary to select the clock drivers themselves, we need
+to select a proper implementation of the clock API, which for the meson, is
+CCF
 
-Thanks !
-
+Fixes: ba66a25536dd ("arm64: meson: ship only the necessary clock controllers")
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/Kconfig.platforms | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index cdfd5fed457f..a3fdffcd1ce8 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -168,6 +168,7 @@ config ARCH_MEDIATEK
+ 
+ config ARCH_MESON
+ 	bool "Amlogic Platforms"
++	select COMMON_CLK
+ 	select MESON_IRQ_GPIO
+ 	help
+ 	  This enables support for the arm64 based Amlogic SoCs
+-- 
+2.31.1
+
 
 _______________________________________________
 linux-amlogic mailing list
