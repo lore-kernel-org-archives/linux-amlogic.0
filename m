@@ -2,82 +2,96 @@ Return-Path: <SRS0=b0VC=J2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E18FC433ED
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 21:09:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58976C433B4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 21:31:34 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ED53E61441
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 21:09:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED53E61441
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=agner.ch
+	by mail.kernel.org (Postfix) with ESMTPS id D57DD613AD
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Apr 2021 21:31:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D57DD613AD
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8EHWNZkWj+ZIvNfM4NgA7EycRlUkAH39K81whpqNETI=; b=BeyIh3AUx0Q50PbXoKoXvRn0g
-	n88zstbQNmujPctKmVNxWJ6Zyw2ox9iRoC+4Dk/Tty04aTN6+TWsKENn0a6plZYmJpOrjTXQ/257E
-	7QXe9oED1S9yg27E6G8md9ifwk8964D4bZ2iJre+L7FWc6+BEWLMkzcynOQoksLDgHdvNQxfZOvCW
-	++x/4L2wqRN6I/Wz/vpjXJtX0OS185QsGjDrpCbe3w0UQZjhwtlN4US2gUqtKlzTnHVBfBjAQ+FSl
-	h2/bUzJomXE2KbG5ptKPeCSG9nW1U3jHySdCiEQxupfVQXIX2XQXuJdb2kyL/QtHeDwQZn5yQ0so/
-	2uh6JwT/g==;
+	 bh=+J8Ys2HNPbIIT9dIKna2pBZeuDKVzdXjblw82CA8JEs=; b=ZtnfN8Gzn4Sg1gCl41I5RSOhm
+	zhMfqjnlezLpBrmT0J7SpaRO8yc3+PYtWGvrqm1dV9bnirK2aTnV3UpCrgOeljSG0Bmo7o/MRXtyc
+	bu5e3OEUQMVyBmLbeSkC6S3JJ6NS7Swt97tMRYx0134tSeQ2I8tuWn0SNEIbUnlyABnvXiPk0dEQI
+	60PEIpliaSB1QXQyOTB6d9lueXNY78HUWReRzjiT5vgWErLfYbRF+BZDdApUPVYqa4kzpYnYAihsa
+	BUOurUqhMJMW7zrNg+YO3YaP14ZpH70MXVGHuoqhe3TlU6kpEQy7TOH2gFuhpiu6qMTV2n6QYAnIZ
+	A+caA5X4w==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lcDuf-006XQf-8Y; Thu, 29 Apr 2021 21:09:33 +0000
+	id 1lcEFr-006Zdj-5F; Thu, 29 Apr 2021 21:31:27 +0000
 Received: from [2607:7c80:54:e::133] (helo=bombadil.infradead.org)
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lcDuZ-006XQM-ON; Thu, 29 Apr 2021 21:09:28 +0000
+ id 1lcEFo-006ZcJ-GQ; Thu, 29 Apr 2021 21:31:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
- MIME-Version:Sender:Reply-To:Content-ID:Content-Description;
- bh=Pje9CZRyStP4gi5ZOAWJouc2CdO7Xjp15C0/4DK7xbc=; b=L6TNNaEOH3zCnww875RUelbVVm
- c6A/4srBvz1f7pJBt4DYEtd7UIL34BWatWz+ihsjof5aiclFH51BzfgvmS0YtPAdJC7CRo5f5moHJ
- 1LmFW5aIow/9MGyJalkROoolyPTn+EW9pm4QYBGv/GqjSfKI/A9NdWRtABvXu/DIay3GHpTdVmCPo
- lIQw8cBMjYRiBB3Cs5yGQ12nKp7wu8vZlFMO5MXn5GRc36lDE3brCUW5yXpjYT7r57yyHcWKgktM/
- U2vDDDvBItwpYuPyloPkywTSLnd0QUxnz98pTZ4Zdkkmga34xRg3O+q+x9djeEP/5APKxE+Fx9vOC
- iIkbXsAA==;
-Received: from mail.kmu-office.ch ([2a02:418:6a02::a2])
+ d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
+ :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=uVMl1qnVSF03rfGgdYkMBHAAAqe4Ku/OnaBY2U59O2s=; b=3+UJCLC7KMTcFxs4QcpdLNSoMf
+ VhVI7NUPtQgdYFI2CYEOTw26QwjZolSUpU7fGZP1XIiK98tnhWZIOQNzXis9DEXl/DjVTrSg4IO7Q
+ wJy7sdyUO9iELo/bjmXIMZE4e1V9pSKS1NrxyNEvvTT8Mb0N1gW27pERcfilG/ET9DBX1IWwWEHSJ
+ 4rbWTsB1mbo9v7Hc8yNQ9CkNjIOHuO0uayTPPdkk6aV95l/nmQK34A2UplbMHHplflR2aBRpKWH86
+ DchZBdT45jgvCc/ThwcufwskXkSUO1rT33w2oZ4ipQwxipa8ACk1Cb1XDQ53YCeDctrzhNxyHlDfl
+ PrZXwT3A==;
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lcDuL-000yRU-UH; Thu, 29 Apr 2021 21:09:16 +0000
-Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
- by mail.kmu-office.ch (Postfix) with ESMTPSA id 145635C2B46;
- Thu, 29 Apr 2021 23:08:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
- t=1619730536;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Pje9CZRyStP4gi5ZOAWJouc2CdO7Xjp15C0/4DK7xbc=;
- b=pZ2TNwQtFNWbKSz+JDbIFLRKBy8TmnkJLpgxTXyhz2vKn6kf89N5/mTzDV3myABxZ8vIv7
- OaAAMIXIojEh5fWFt4W9n7zguK/xkrJW79+IG/+b/E0SK1AfEAk0ikqWnoouPvfCHu6oWX
- 9g1t4XcIMIxNF9VGQ3ybXHzRahjOaOQ=
+ id 1lcEFb-000z8g-Og; Thu, 29 Apr 2021 21:31:13 +0000
+Received: by mail-ej1-x632.google.com with SMTP id w3so102095261ejc.4;
+ Thu, 29 Apr 2021 14:31:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=uVMl1qnVSF03rfGgdYkMBHAAAqe4Ku/OnaBY2U59O2s=;
+ b=Zf4acKs32A29H762/G5LkAPIL+Q3bdfTEdtGk/fYQOU1SrXKCu1N2KGhE/O9hZAR8m
+ XK0xyoHOfBHj4RkF23kP7wj3fRTOkgt5u1Dq7qxGpklWYp4mH61RhjEUQiaWUeSfLE8L
+ xNLSINLOfkVEF9AE6dqRIqf/PyCX4DAAajVZCNZJNPu0TChO+jRwreba2jVDNB6CbRiR
+ 2PCEPa0cnOksoqsJxIuwGSHuT3+qaKRDjHusl39Bpi1gjIjQqa9bcE97VlIlv7km3o2u
+ OPZosYhoteIcxKdL2OM9upHe5maTv1WsfKeb5FDGWQTtRBE/6fxp++P5m2JZ3TnlhHD/
+ vDbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=uVMl1qnVSF03rfGgdYkMBHAAAqe4Ku/OnaBY2U59O2s=;
+ b=W1lhw6mZ7OxVGgGd9jJBRVnT5F7Ld9q99MgILLudRAetVoFG35BvRJrkRBiGFkWM1l
+ QZgj5gflEgnIwaESWcHY5m/+iEzG9EWM/jhUdyEuogAYUAB7kHLgELOSSFJt/HqxM4gC
+ Yuho+/nvj+AfK7amiBQVJITUdjPCCTOnihbzh0HiF2Q1b0FQ/3ZDoEvtAOk5GkYc0ieZ
+ 3P6Y7PlpSPgQkKCQM/a650NvvkUGfxkR3kIrJxQyfkcH9LleO5/GiT1pL4T0XowAyzKT
+ NaXexO5sKqe1Yw2Gbo/YpLtS80B7RWuWGhKKH4i0IKFEDe/sPE76/UySqcECeOXaQzKy
+ /uOw==
+X-Gm-Message-State: AOAM53383yuuubl5GxZDRLFbMkRLSknblLYgPhqf3dWiUB7LvaS2eYKG
+ LAyYMmAfwnO/JKlq7enH5A6p3Ao+DWUowHJTM68=
+X-Google-Smtp-Source: ABdhPJwq1uyPLkWHfyPVREWPc7ZTJSfwQblAtTnULW2OPkFED5s8OL9ENgWZOb0EQRn+PTVaXvM/rd4GiBxndYSWEEE=
+X-Received: by 2002:a17:906:ecb8:: with SMTP id
+ qh24mr623023ejb.162.1619731869841; 
+ Thu, 29 Apr 2021 14:31:09 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 29 Apr 2021 23:08:56 +0200
-From: Stefan Agner <stefan@agner.ch>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: narmstrong@baylibre.com, khilman@baylibre.com,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH RFC] soc: amlogic: meson-ee-pwrc: Drop the .shutdown
- callback from the driver
-In-Reply-To: <20210429203723.1177082-1-martin.blumenstingl@googlemail.com>
-References: <20210429203723.1177082-1-martin.blumenstingl@googlemail.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <d8c3d21b679fd8e6e1bedafc7406c42e@agner.ch>
-X-Sender: stefan@agner.ch
+References: <20210429170404.3616111-1-narmstrong@baylibre.com>
+ <20210429170404.3616111-4-narmstrong@baylibre.com>
+In-Reply-To: <20210429170404.3616111-4-narmstrong@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 29 Apr 2021 23:30:58 +0200
+Message-ID: <CAFBinCDQeTU0ss=oNmjX78MPyNZmmCt-haojNNcQqkjJUmJYKQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: meson-sm1: add Banana PI BPI-M5 board dts
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: khilman@baylibre.com, jbrunet@baylibre.com, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210429_140914_461801_E47C94B8 
-X-CRM114-Status: GOOD (  57.87  )
+X-CRM114-CacheID: sfid-20210429_143111_842518_662CB4DF 
+X-CRM114-Status: GOOD (  20.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,213 +108,199 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2021-04-29 22:37, Martin Blumenstingl wrote:
-> Stefan reports that rebooting his ODROID-N2+ (using a G12B SoC) results
-> in the board hanging. His kernel config uses:
->   CONFIG_MESON_EE_PM_DOMAINS=y
->   CONFIG_DRM_MESON=m
-> 
-> He reports that his kernel config results in the DRM driver's .shutdown
-> callback to be executed after the power domain driver's .shutdown
-> callback. That's problematic because meson_ee_pwrc_shutdown disables the
-> clock which are used by the VPU IP. This causes the board to hang.
-> 
-> Further he reports that changing from CONFIG_DRM_MESON=m to
-> CONFIG_DRM_MESON=y reverses the order in which the DRM and power domain
-> driver's shutdown functions are executed, making the reboot successful.
-> 
-> The reason why we use meson_ee_pwrc_shutdown is because of the VPU power
-> domain (which is causing the problem described above). It can be left
-> enabled by u-boot. According to the original TOFIX comment in
-> meson_ee_pwrc_init_domain we need to be careful because disabling the
-> power domain could "cause system errors". As a workaround the clocks
-> are manually enabled in meson_ee_pwrc_init_domain and the power domain
-> is marked as GENPD_FLAG_ALWAYS_ON (so it can never be turned off).
-> 
-> Experimenting has shown that the power domain itself can be disabled as
-> long as we keep the clocks enabled if u-boot enabled the power domain
-> but we don't have any driver enabled for the VPU (CONFIG_DRM_MESON=n).
-> 
-> Keeping the clocks enabled is the responsibility of the CCF drivers, not
-> the power domain driver. Even better: this is already covered as all
-> gates in the VPU and VAPB tree on GX an G12 SoCs have the
-> CLK_IGNORE_UNUSED flag set, meaning: if the bootloader has previously
-> enabled the clock we're not touching it until a driver explicitly asks
-> to enable (and then disable) it. In case of CONFIG_DRM_MESON=n we're
-> never calling meson_ee_pwrc_on, meaning that we always keep the state of
-> the clocks as set by u-boot.
-> 
-> The original TOFIX comment also mentioned that we need to make sure not
-> to mess up the clock's prepare/enable ref-counters. This is the only
-> requirement that's left for the meson-ee-pwrc driver that needs to be
-> managed for the VPU power domain.
-> 
-> Three steps can improve this situation:
-> - Don't prepare and enable the clocks (just to fix the ref-counting) in
->   meson_ee_pwrc_init_domain if u-boot left that power domain enabled.
->   Instead, remember if the clocks are enabled in meson_ee_pwrc_{on,off}
->   and only disable them if we have previously turned them on ourselves.
-> - Drop GENPD_FLAG_ALWAYS_ON as we can always manage the state of the VPU
->   power domain if both the power domain controller and DRM driver are
->   enabled (=m or =y). If the power domain driver is enabled but the DRM
->   driver is disabled we can still use meson_ee_pwrc_off because it's not
->   trying to disable the clocks anymore
-> - Drop meson_ee_pwrc_shutdown as it's the responsibility of the genpd
->   framework to call meson_ee_pwrc_off when needed (either when a power
->   domain is being disabled - regardless of whether it's was used by a
->   driver before or not). Now there's also no more shutdown callback
->   ordering dependency between the power domain driver and other drivers
->   anymore.
-> 
-> Fixes: eef3c2ba0a42a6 ("soc: amlogic: Add support for Everything-Else
-> power domains controller")
-> Reported-by: Stefan Agner <stefan@agner.ch>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Neil,
 
-FWIW, I successfully tested this change with CONFIG_DRM_MESON=m and
-CONFIG_DRM_MESON=y each with a couple of reboots without any hang.
+thanks for adding support for the BPI-M5!
+I had this on my TODO-list for a long time but didn't have enough time
+so far. so it's great to see this patch now :-)
 
-Tested-by: Stefan Agner <stefan@agner.ch>
-
-Thanks Martin for help debugging and working on this patch!
-
---
-Stefan
-
-> ---
-> Neil, I would like you to specifically review (and re-test) the original
-> TOFIX part. I *believe* that I understand the original problem and hope
-> that my approach also works in that scenario, but I am not 100% sure.
-> 
-> Kevin, as you're my go-to genpd expert I am also asking you to review
-> this to point out any issues you see.
-> 
-> 
->  drivers/soc/amlogic/meson-ee-pwrc.c | 76 ++++++++++++-----------------
->  1 file changed, 31 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c
-> b/drivers/soc/amlogic/meson-ee-pwrc.c
-> index 50bf5d2b828b..534c33ba31ce 100644
-> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-> @@ -353,10 +353,26 @@ static int meson_ee_pwrc_off(struct
-> generic_pm_domain *domain)
->  
->  	if (pwrc_domain->num_clks) {
->  		msleep(20);
-> -		clk_bulk_disable_unprepare(pwrc_domain->num_clks,
-> -					   pwrc_domain->clks);
+On Thu, Apr 29, 2021 at 7:04 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+[...]
+> +       adc_keys {
+> +               compatible = "adc-keys";
+> +               io-channels = <&saradc 2>;
+> +               io-channel-names = "buttons";
+> +               keyup-threshold-microvolt = <1800000>;
 > +
-> +		/*
-> +		 * We are only allowed to turn off the clocks here if we
-> +		 * have previously enabled them ourselves. In other words:
-> +		 * for an "unused" power domain (which is not used by any
-> +		 * power domain consumer) we have not enabled the clocks
-> +		 * previously so we keep them in the state they are.
-> +		 * This is relevant for the VPU power domain which may
-> +		 * have been enabled by u-boot. If the display driver in
-> +		 * Linux is disabled then we need to keep the clocks in
-> +		 * the state as u-boot set them, otherwise the board will
-> +		 * hang.
-> +		 */
-> +		if (pwrc_domain->enabled)
-> +			clk_bulk_disable_unprepare(pwrc_domain->num_clks,
-> +						   pwrc_domain->clks);
->  	}
->  
-> +	pwrc_domain->enabled = false;
+> +               button-onoff {
+maybe just "key" (as you used below for SW1)?
+
+> +                       label = "SW3";
+> +                       linux,code = <BTN_3>;
+> +                       press-threshold-microvolt = <1700000>;
+> +               };
+> +       };
+
+> +       /* TOFIX: handle CVBS_DET on SARADC channel 0 */
+it's great to see that after many years at least some boards finally
+can detect whether the CVBS connector is plugged it
+
+> +       memory@0 {
+> +               device_type = "memory";
+> +               reg = <0x0 0x0 0x0 0x40000000>;
+> +       };
+note to self: u-boot will update this from 1GiB to 4GiB
+
+> +       flash_1v8: regulator-flash_1v8 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "FLASH_1V8";
+BPI-M5-SCH-V10-Release.pdf schematics are calling this EMMC_1V8. I
+suggest to use that name so it's easier to compare this with the
+schematics in the future
+
+> +               regulator-min-microvolt = <1800000>;
+> +               regulator-max-microvolt = <1800000>;
+> +               vin-supply = <&vddao_3v3>;
+> +               regulator-always-on;
+> +       };
 > +
->  	return 0;
->  }
->  
-> @@ -392,8 +408,14 @@ static int meson_ee_pwrc_on(struct
-> generic_pm_domain *domain)
->  	if (ret)
->  		return ret;
->  
-> -	return clk_bulk_prepare_enable(pwrc_domain->num_clks,
-> -				       pwrc_domain->clks);
-> +	ret = clk_bulk_prepare_enable(pwrc_domain->num_clks,
-> +				      pwrc_domain->clks);
-> +	if (ret)
-> +		return ret;
+> +       dc_in: regulator-dc_in {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "5V";
+maybe use "DC_IN" here as well so the node-name matches what we see in
+userspace/kernel logs?
+
+> +       vddcpu: regulator-vddcpu {
+> +               /*
+> +                * SY8120B1ABC DC/DC Regulator.
+> +                */
+> +               compatible = "pwm-regulator";
 > +
-> +	pwrc_domain->enabled = true;
+> +               regulator-name = "VDDCPU";
+> +               regulator-min-microvolt = <721000>;
+> +               regulator-max-microvolt = <1022000>;
+the vendor .dts has:
+  regulator-min-microvolt = <690000>;
+  regulator-max-microvolt = <1050000>;
+which also matches meson-sm1-sei610.dts (which uses the same regulator IC)
+
+[...]
+> +&ethmac {
+> +       pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
+> +       pinctrl-names = "default";
+> +       status = "okay";
+> +       phy-mode = "rgmii";
+> +       phy-handle = <&external_phy>;
+> +       amlogic,tx-delay-ns = <2>;
+I haven't checked their u-boot code but some of the newer Amlogic BSPs
+seem to let the PHY add the TX delay (which is also what the netdev
+maintainers recommend)
+that can be achieved by setting:
+  phy-mode = "rgmii-txid";
+and deleting the "amlogic,tx-delay-ns" property
+
+> +&gpio {
+> +       gpio-line-names =
+> +               /* GPIOZ */
+> +               "", "", "", "", "", "", "", "",
+GPIOZ_0 to GPIOZ_15:
+- ETH_MDIO
+- ETH_MDC
+- ETH_RXCLK
+- ETH_RX_DV
+- ETH_RXD0
+- ETH_RXD1
+- ETH_RXD2
+- ETH_RXD3
+- ETH_TXCLK
+- ETH_TXEN
+- ETH_TXD0
+- ETH_TXD1
+- ETH_TXD2
+- ETH_TXD3
+- ETH_INTR
+- ETH_NRST
+
+> +               /* GPIOH */
+> +               "", "", "", "", "",
+GPIOH_0 to GPIOH_4:
+- HDMI_SDA
+- HDMI_SCL
+- HDMI_HPD
+- HDMI_CEC
+- VL-RST_N
+
+> +               "CON1-P36", /* GPIOH_5 */
+GPIOH_6 to GPIOH_8:
+- VL-PWREN
+- WiFi_3V3_1V8
+- TFLASH_VDD_EN
+
+> +               /* BOOT */
+> +               "", "", "", "", "", "", "", "",
+> +               "", "", "", "", "", "", "", "",
+BOOT_0 to BOOT_13:
+- eMMC_D0
+- eMMC_D1
+- eMMC_D2
+- eMMC_D3
+- eMMC_D4
+- eMMC_D5
+- eMMC_D6
+- eMMC_D7
+- eMMC_CLK
+- (BOOT_9 is unused)
+- eMMC_CMD
+- (BOOT_11 is unused)
+- eMMC_RST#
+- eMMC_DS
+
+> +               /* GPIOC */
+> +               "", "", "", "", "", "", "", "",
+GPIOC_0 to GPIOC_7:
+- SD_D0_B
+- SD_D1_B
+- SD_D2_B
+- SD_D3_B
+- SD_CLK_B
+- SD_CMD_B
+- CARD_EN_DET
+- (GPIOC_7 is unused)
+
+
+> +&gpio_ao {
+> +       gpio-line-names =
+> +               /* GPIOAO */
+> +               "DEBUG TX", /* GPIOAO_0 */
+> +               "DEBUG RX", /* GPIOAO_1 */
+> +               "SYS_LED2", /* GPIOAO_2 */
+> +               "UPDATE_KEY", /* GPIOAO_3 */
+> +               "CON1-P40", /* GPIOAO_4 */
+> +               "",
+GPIOAO_5 is IR_IN
+
+> +               "TF_3V3N_1V8_EN", /* GPIOAO_6 */
+> +               "CON1-P35", /* GPIOAO_7 */
+> +               "CON1-P12", /* GPIOAO_8 */
+> +               "CON1-P37", /* GPIOAO_9 */
+> +               "CON1-P38", /* GPIOAO_10 */
+> +               "SYS_LED", /* GPIOAO_11 */
+> +               /* GPIOE */
+> +               "", "", "";
+GPIOE_0 to GPIOOE_2:
+- VDDEE_PWM
+- VDDCPU_PWM
+- TF_PWR_EN
+
+> +&usb2_phy0 {
+> +       phy-supply = <&dc_in>;
+> +};
 > +
-> +	return 0;
->  }
->  
->  static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
-> @@ -434,33 +456,11 @@ static int meson_ee_pwrc_init_domain(struct
-> platform_device *pdev,
->  	dom->base.power_on = meson_ee_pwrc_on;
->  	dom->base.power_off = meson_ee_pwrc_off;
->  
-> -	/*
-> -         * TOFIX: This is a special case for the VPU power domain, which can
-> -	 * be enabled previously by the bootloader. In this case the VPU
-> -         * pipeline may be functional but no driver maybe never attach
-> -         * to this power domain, and if the domain is disabled it could
-> -         * cause system errors. This is why the pm_domain_always_on_gov
-> -         * is used here.
-> -         * For the same reason, the clocks should be enabled in case
-> -         * we need to power the domain off, otherwise the internal clocks
-> -         * prepare/enable counters won't be in sync.
-> -         */
-> -	if (dom->num_clks && dom->desc.get_power && !dom->desc.get_power(dom)) {
-> -		ret = clk_bulk_prepare_enable(dom->num_clks, dom->clks);
-> -		if (ret)
-> -			return ret;
-> -
-> -		dom->base.flags = GENPD_FLAG_ALWAYS_ON;
-> -		ret = pm_genpd_init(&dom->base, NULL, false);
-> -		if (ret)
-> -			return ret;
-> -	} else {
-> -		ret = pm_genpd_init(&dom->base, NULL,
-> -				    (dom->desc.get_power ?
-> -				     dom->desc.get_power(dom) : true));
-> -		if (ret)
-> -			return ret;
-> -	}
-> +	ret = pm_genpd_init(&dom->base, NULL,
-> +			    (dom->desc.get_power ?
-> +			     dom->desc.get_power(dom) : true));
-> +	if (ret)
-> +		return ret;
->  
->  	return 0;
->  }
-> @@ -528,19 +528,6 @@ static int meson_ee_pwrc_probe(struct
-> platform_device *pdev)
->  	return of_genpd_add_provider_onecell(pdev->dev.of_node, &pwrc->xlate);
->  }
->  
-> -static void meson_ee_pwrc_shutdown(struct platform_device *pdev)
-> -{
-> -	struct meson_ee_pwrc *pwrc = platform_get_drvdata(pdev);
-> -	int i;
-> -
-> -	for (i = 0 ; i < pwrc->xlate.num_domains ; ++i) {
-> -		struct meson_ee_pwrc_domain *dom = &pwrc->domains[i];
-> -
-> -		if (dom->desc.get_power && !dom->desc.get_power(dom))
-> -			meson_ee_pwrc_off(&dom->base);
-> -	}
-> -}
-> -
->  static struct meson_ee_pwrc_domain_data meson_ee_g12a_pwrc_data = {
->  	.count = ARRAY_SIZE(g12a_pwrc_domains),
->  	.domains = g12a_pwrc_domains,
-> @@ -606,7 +593,6 @@ MODULE_DEVICE_TABLE(of, meson_ee_pwrc_match_table);
->  
->  static struct platform_driver meson_ee_pwrc_driver = {
->  	.probe = meson_ee_pwrc_probe,
-> -	.shutdown = meson_ee_pwrc_shutdown,
->  	.driver = {
->  		.name		= "meson_ee_pwrc",
->  		.of_match_table	= meson_ee_pwrc_match_table,
+> +&usb2_phy1 {
+> +       /* Enable the hub which is connected to this port */
+> +       phy-supply = <&vl_pwr_en>;
+> +};
+I think technically we'd need to use AVDD18_USB here (that said, I
+chose the same approach as you are using here before..)
+USB bus devices (AFAIK) still need to be detected before any
+device-tree properties can be applied and there's (again AFAIK) still
+no pwrseq concept.
+so I guess for now this is the way to go as there's enough comments
+about it in your patch
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
