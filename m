@@ -1,96 +1,104 @@
-Return-Path: <SRS0=fzDf=J5=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=FAU3=J6=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19FA4C433ED
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 May 2021 23:04:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B0DDDC433ED
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 May 2021 14:58:07 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5092061165
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 May 2021 23:04:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5092061165
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 245A4611CB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 May 2021 14:58:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 245A4611CB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=vNqlpO1ZiOAzuJJXvdImp4usrGK/A6f5PHLiIN/9894=; b=UxFHKG/NCwQkC9x+DSuV8AXai
-	OnbBjleFVNnphSR31IfIcvyqeR2bV+OF7EnPxQk7q5z0Vyra1kDjyoRYG+hQtkP77ygQHZMe2SwKl
-	nKaincvs9gq15R8/d2x/JcHys4PUM5aBVw6OaA4V0bxy/UnUtzb44aYPM2kSi1hxpMEmJ/+Aq81IA
-	NWWWv77LbCrYWVfku8fSAx5uG6UQ257K+NjkEmSS9pWFzt2eIqVwi4+MIs/m+HEhHNHyTA/ZoH9Xd
-	G2qoUpAl6+XXIsvIxmWGCPseCgrcbCtkVx9aVtS4sZYCRx4WTuIyKjTLo6YYUp8xtcntXzgoszLaR
-	VMprnSHgw==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=kFjVxw01/9PysM8segr583BhVybCyiKM91L1qupwBkg=; b=WIlvCXnaAFKQjGAckBKeTtNcZm
+	ulcwprqUGWXlDKop1FgZuU1+cZc5TkbGyvh2oLm2YIPaG+oLu7OtSrcjRi4VKHhpqjEWUdORiXDyE
+	oqLvnAGXu3yv1Ue3apKBuWI1lBpuurxxkGJA7XwR1l09pYMHyBsYwb+HDrs+vSKTn/dN54drvyGfQ
+	iw529HB/Y0Ry16zmpsuDCdq7P2JPhGfEHGn4wCIlh9S2R109tX80mq+xyr3PO3eaivj4wkEyy3tYF
+	aN6DZWY50yFjl8USicjD/z5/Is6/tandnBcYnW6IQGWx9A5AQc99EYbsjJlZUA4iHnTeVRIvYrjLf
+	32ifs8UA==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1ldL8j-00Cfsr-0e; Sun, 02 May 2021 23:04:41 +0000
+	id 1lda1I-00E8qS-4V; Mon, 03 May 2021 14:58:00 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ldL8T-00CfrZ-EI; Sun, 02 May 2021 23:04:36 +0000
+ id 1lda0l-00E8lE-07; Mon, 03 May 2021 14:57:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
- :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=groRywuNlEF2UBp2F0MI+2GBRzz6sWwtdyxWNmpmmRY=; b=r9iM2DzicqzyMX4oIcax5/ud3D
- a9CFiHA4FOwt5lwG3OQnDaEcKG2UtfnUuCv6C4Hb+d2sVOEl5WiyUyjSbjuklla9hoxkzHJHRbDHA
- Cb60tam1etJTPkbLVFppakAJA3mpG698+/UM6hybDaYiGvw9ckkNnfArz6K61vOVPRmoSf57TTMAI
- 4bYEUxS4qj2+vcsTfAsE3j2z2uHSNpxmPqnH2C7OzC+rnTa4S0Gli85BipDVRnUzFRR0iWg/I0cxU
- /VoS9B6uimwRXEGrwC6xMqHpbwnEVZ5oiE1RZy3obyEKPuERvOB3qoe/7HHMpYUQ7zVXdhdp2ueg7
- Ua0e2tLA==;
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=Ik3wrzpwnYSSTSQFdegvdMidUhrImlyxHbi+NVAFZeQ=; b=zh6y+kaJac4IsLWQRzkWX9gxLf
+ yhW5HR6+xHF3bp79OaGZhJLjZe/RU0v1pBWc9tCUWIk5l7vFgaLg4f6gei7BtJFLJb+Jmk2auKX+S
+ rpBcu9ty/nPS5ipO9Xi76TVgJKceOcCF7bRaYRpUD/AXQ+NzxioxBf8twNZmby9yekTumHPCYg9NI
+ ocREhtI/ZRpYJ7BNFqZK1GPV1ihOaD9C/Mu4vqypj71IbOGx3tAd6J/XIxLg5JnWT61ZVlh/ZtU/u
+ q1UYET+6wTbWSmQRyDdD6FOAql5EWPaKKcT6sSr89xOyuGapYfttwz6Lp8xpWrQls7OLXAe4i5lVZ
+ lcvcbBCA==;
+Received: from mail-pl1-x633.google.com ([2607:f8b0:4864:20::633])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ldL8Q-002iuP-Ov; Sun, 02 May 2021 23:04:24 +0000
-Received: by mail-ej1-x636.google.com with SMTP id b25so5202287eju.5;
- Sun, 02 May 2021 16:04:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=groRywuNlEF2UBp2F0MI+2GBRzz6sWwtdyxWNmpmmRY=;
- b=XlDPMzJXgrzyFIiIUejSgpr8siSc/rwclMr+de4rxvXJsRPZL9PIM7tbmtGascXm2n
- oVfjQqFS/OXhX1J3QXgr8i/yhufjyXvVrdlGN/vjcVPguwxgyCBBbiUitB6idSZy7RtX
- UUXg0ed+ZJF8e0VHN6v5VswddIAOVhHQn5wmXllUoRvnme867D4/+F/pvUAvxN6p+oZh
- tq/H/SyQO6ZaY0wWpnbjLEpfnIy2KdmNZtDaTv/+Sh26sVrQ1xjVoYBhV/Fi8xumHqZd
- TNEsfCmh9XyXZjF/bh8TWZaMAuEEu5P3oDFfhoy9rjHjMSM2abTsLsgPcQoDmxS7IqGR
- DjAw==
+ id 1lda0i-0039EH-80; Mon, 03 May 2021 14:57:25 +0000
+Received: by mail-pl1-x633.google.com with SMTP id p17so2949699plf.12;
+ Mon, 03 May 2021 07:57:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ik3wrzpwnYSSTSQFdegvdMidUhrImlyxHbi+NVAFZeQ=;
+ b=ns82hHHVmswbQv/3kS/nuzUsBa5rE6zd8LmLEbZifQd9bSi3KrQ3kjSCjhierzMpzl
+ otGRj+tNg6qFybAWjewmxAIJD7r0DZfjIUyFjG1byU34s9E4XMt2baDRJJbi1bb+jlnY
+ fH/U9QiQ0mFK3D8XziD6FA6SefOhO5hGWZ5IlT+YMlGLgKQix9CsWlOHCDf7tVkAu7dh
+ PO4wqHzHKyJUNa/UrKZc0nOIFIFjeD5jD43TIiJ4VMnkGc7idCf0EXo2u6oai72Y2Jrk
+ h3CYHQ2DuMER1EqZfICCLBDURQuKxbMYgvJIT4GIN/lGITXCRbXZYoY0NcDH2jxRacrd
+ U9tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=groRywuNlEF2UBp2F0MI+2GBRzz6sWwtdyxWNmpmmRY=;
- b=TDiCjnyxx96na9HSr7WXxhtSnG1D18ME854LYloEujkR0FfYK4fPIRDX/QAasl+b3J
- BkkM6MOFUISEUScANGAENOfoSaq1RWJ94Yr5TaGLiRLdDZkvi8Bt8WhJoxxcCAaSx3/6
- biRVkEmLLzg5YZ5RqQ8+3/tc9h1d57nXg1QGejTYGJXNXHqcjx3clQkpyw/rfJzPmxBU
- lMEO/h2/As0RZ6IVKRqa4SOuptg4G3J45CooImGryKvSpAPDQo6ouD8+yGDZGANsuHqg
- r9gRN0rXNKeXvYcQp5UUWYdpdidTvHXevORGGQLtVS9FeuvAu34atM+LNMyHHWH7o+Hl
- lvPQ==
-X-Gm-Message-State: AOAM533lZAKUF5l5yNKxvkthnUgqSKiw6ysvjczHgMva9zy2NI3Bvwy+
- E53x22Qzg0ILFvjy4H3PcnZb1tROP90I6Ls4uCM=
-X-Google-Smtp-Source: ABdhPJx+3/RZteOj6iiJHEdVbJAzXt75ZO0LERj7jXAZI+xt67C1ubzHFuEe4f2afzlwisHDLxFMnwvdAptTlOq+hZc=
-X-Received: by 2002:a17:906:57c3:: with SMTP id
- u3mr3607793ejr.162.1619996660335; 
- Sun, 02 May 2021 16:04:20 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ik3wrzpwnYSSTSQFdegvdMidUhrImlyxHbi+NVAFZeQ=;
+ b=bI/xQE2sGcCXW9p90ImeGIBJnv7zGtyiRUCVFxdzKLMofEsEpUtmSgRcnGQtYykKhW
+ TpztLEH+GnKAxvYvcNIv5VEbgXcga9Sx3YQfPJvBg8OZr51EjZWoRreuGzw6Xy+LtYut
+ qD466QCgrxdNnZ2PiZAZzcV1piEfVwoUJ/NdV3qXnBus4gLGLG+SBKT1YNP4HnbcDnd3
+ wWE1tfQNcklaIuuX8rqOfGL/7SW3mwWm/7J+7TmDOa+QpK0lsWfQ8GGH4L3oPGQk2wgE
+ w3ZUgd8SzSoj40bvuLVAIOjKNjaAqb1lemCn3KA76NsrHI3dvFHVHU98J8j2WxYujsbf
+ NhgA==
+X-Gm-Message-State: AOAM531LkU420vTX7//W8+naWh3QMYdo9AqFNoP1S1xLRDAfNmMyp2Ln
+ K6qma9YGTvK9laMMveXiUF4easeTPnE=
+X-Google-Smtp-Source: ABdhPJxx8FIdxq1RnQpNlYcMei/6iy1SFOPobT/FRMctCUBqtt8agD26AIUyd8SxUiJ/z05VmIdMBA==
+X-Received: by 2002:a17:90a:6e45:: with SMTP id
+ s5mr31851971pjm.125.1620053841612; 
+ Mon, 03 May 2021 07:57:21 -0700 (PDT)
+Received: from archl-on2.. ([103.51.75.154])
+ by smtp.gmail.com with ESMTPSA id k38sm3593983pgi.73.2021.05.03.07.57.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 May 2021 07:57:21 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCHv1 0/9] Added Audio and HDMI power domain for Amlogic SoC
+Date: Mon,  3 May 2021 14:54:33 +0000
+Message-Id: <20210503145503.1477-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210430082744.3638743-1-narmstrong@baylibre.com>
-In-Reply-To: <20210430082744.3638743-1-narmstrong@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 3 May 2021 01:04:09 +0200
-Message-ID: <CAFBinCC5piZDgyxezJp8Yi3Ny5B6WRD-XdWN7s2gm8_aqza=fg@mail.gmail.com>
-Subject: Re: [PATCH] drm/meson: fix shutdown crash when component not probed
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Stefan Agner <stefan@agner.ch>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210502_160422_829623_F3EAB380 
-X-CRM114-Status: GOOD (  11.21  )
+X-CRM114-CacheID: sfid-20210503_075724_304431_7DD3409D 
+X-CRM114-Status: UNSURE (   8.01  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,32 +115,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Apr 30, 2021 at 10:28 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> When main component is not probed, by example when the dw-hdmi module is
-> not loaded yet or in probe defer, the following crash appears on shutdown:
->
-> Unable to handle kernel NULL pointer dereference at virtual address 0000000000000038
-> ...
-> pc : meson_drv_shutdown+0x24/0x50
-> lr : platform_drv_shutdown+0x20/0x30
-> ...
-> Call trace:
-> meson_drv_shutdown+0x24/0x50
-> platform_drv_shutdown+0x20/0x30
-> device_shutdown+0x158/0x360
-> kernel_restart_prepare+0x38/0x48
-> kernel_restart+0x18/0x68
-> __do_sys_reboot+0x224/0x250
-> __arm64_sys_reboot+0x24/0x30
-> ...
->
-> Simply check if the priv struct has been allocated before using it.
->
-> Fixes: fa0c16caf3d7 ("drm: meson_drv add shutdown function")
-> Reported-by: Stefan Agner <stefan@agner.ch>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Patch series add Audio and Hdmi power domain for Amlogic SoC.
+
+Tested on GXBB - Odroid C2
+          SM1  - Odroid C4
+          G12B - Odroid N2
+-Anand
+
+Anand Moon (9):
+  soc: amlogic: meson-ee-pwrc: Add audio power domain Meson g12a and
+    g12b SoCs
+  arm64: dts: amlogic: Add audio power domain for g12a and g12b
+  soc: amlogic: meson-ee-pwrc: Add hdmi power domain Meson g12a SoCs
+  arm64: dts: amlogic: Add hdmi power domain for g12a and g12b
+  soc: amlogic: meson-ee-pwrc: Add hdmi power domain Meson sm1 SoCs
+  arm64: dts: amlogic: Add audio power domain for sm1 SoC
+  arm64: dts: amlogic: Add hdmi power domain for sm1 sbc
+  soc: amlogic: meson-ee-pwrc: Add hdmi power domain Meson gxbb and gxl
+    SoCs
+  arm64: dts: amlogic: Add hdmi power domain for gxbb and gxl
+
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts    |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts      |  1 +
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts   |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts  |  1 +
+ .../arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts    |  1 +
+ .../arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi     |  1 +
+ .../boot/dts/amlogic/meson-gx-libretech-pc.dtsi      |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts |  1 +
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts      |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts  |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi     |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi    |  1 +
+ .../dts/amlogic/meson-gxl-s805x-libretech-ac.dts     |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts |  1 +
+ .../boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts  |  1 +
+ .../dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts  |  1 +
+ .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts     |  1 +
+ .../boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts |  1 +
+ .../arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts  |  1 +
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi    |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts     |  2 ++
+ drivers/soc/amlogic/meson-ee-pwrc.c                  | 12 ++++++++++++
+ include/dt-bindings/power/meson-g12a-power.h         |  2 ++
+ include/dt-bindings/power/meson-gxbb-power.h         |  1 +
+ include/dt-bindings/power/meson-sm1-power.h          |  1 +
+ 33 files changed, 50 insertions(+)
+
+-- 
+2.31.1
+
 
 _______________________________________________
 linux-amlogic mailing list
