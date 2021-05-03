@@ -2,19 +2,20 @@ Return-Path: <SRS0=FAU3=J6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 438A5C433B4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 May 2021 15:21:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62909C433B4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 May 2021 15:30:56 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DE19961278
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 May 2021 15:21:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DE19961278
+	by mail.kernel.org (Postfix) with ESMTPS id B73DF61073
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 May 2021 15:30:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B73DF61073
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,77 +24,80 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
 	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=oUk5b/zMjpbeR2Wx/y8vbI8UZ7auobQ1mujSYL/r6Yg=; b=QpxyBQO2MgBnv1Tm6nXPM1yaf
-	e/n731RSfZcErNQgAbQq0wUPRz3B8tkA69lb0EBbsaBpKr3VVkHYNWNvhIq+0idjBd2XmbTE8ORzZ
-	ECxFuN8Qpuz+RqQqzZl/i6nIpCasnOZbqA82Ut5tUEBw8pGn36eY5UmV1kkcHxu8qi/SyHYmWvQtR
-	eDXuFLEZEiQtRjXORC5o/qZm2KDfgT06ITweCgsYvF+FFUEY3JmbeGVRZmEbvZNpHcDkChuSrtCTu
-	d7CyOj9gIF68BsJt0Znl9ZCPN2CqYz9nwPQtORfnOve+TPJaYPNe7dKD0dieNt4I5fBQghiO7oKj4
-	FO7Ti/Wig==;
+	 bh=KNCOEvRLfJaehDKyXfuwQ+p8Z/XoO2wfzCvTQ8Txg1g=; b=keyd2ZtUNHeGFsFM+7oaQIz20
+	5Tq+4cM02PMvWAh33Ulh5oJ6rb/bD4kFC+nf+Z6TsQpyXsYDaDSFVbhgaR61JKZFfYTLO6jdgsrJm
+	YMRGdK2RvGr8KCGY/nswE3RWLsUKhOV7tN0qkFprwVVROIRk9kdMaXsXtut17xcItDOXgvi1Pkkbf
+	epZSreNt5idlOn8OKblMub5blkKKGrj/GtUAExyvj024++JMHcqq0LkVdhUDwVNa+vHNuF9Vssnp6
+	BPUw11lSXhriZuXAt6aSHjOsKO8yYp7p3FGHXmYfXhuHfledMSxPqxUMPy8EN/YeWQ3FaGRU6DFnr
+	bqwzYUj9w==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1ldaNx-00ED9m-CH; Mon, 03 May 2021 15:21:25 +0000
+	id 1ldaX2-00EF35-4T; Mon, 03 May 2021 15:30:48 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ldaNc-00ED5R-Fv; Mon, 03 May 2021 15:21:06 +0000
+ id 1ldaVk-00EEiF-7C; Mon, 03 May 2021 15:29:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
  :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=Kkqs94+/ybUyNI5rZrs90tbn8fLyNhu7W2OnlMi0z3o=; b=txaxsDCcB+olHKLj4HO1u+kI+0
- OjKOB7EuzWdLqaKteGS+rVMCUTkTQkperrV9Jfb+3xJKGKMoykRgHgOknreWl9e+eHOrOHIJTM43P
- Nrs9+Dhj44IIh03XId0gjb3iKkQFPiT0E0eVI6j2LWGrQ8T0d/i6sWN0LAbTQPy3CX5xIcJoaEC9D
- GWpqUE5ANh8kCUbn0huBK7HA6V1I12+20Hf8q0U6HhxD0Rb6uAAtnXUoeGnDeOixsqGU4/ZVWtAsy
- w2jovSP8+oUnQM2GfFIfi0AbeCfFXfHUvfGK5jMV2QtPDyEdQPnykCjlz9ccDPMc5ygDnbFKLT1T0
- 1P2EOx8A==;
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+ bh=4X7uf9sLw2LlIz1sJKu9KjMmCuee+1oBT6AFDo3JZs4=; b=2kPXJmbI+1vI6m1sTiIzgFFabM
+ Oj8itgeOtyigPu5Jx/V3RQHXpKt25PqnUgvS4JGsQRuEWohqAztrNdPnQ/JEYMpV57ZuZ1dBZFnUo
+ TBM+29VInWpwpmciYrm8h1SQ87Oap/FaUUcoOgU6Ych6oZuMeCh6J/LTRvB6hEYV//797taq6Rw50
+ mDkqlMZBXT9lHUG7b3L2GVN0/1ER9+cL/oEmSZTEQ3tZlisWwSJEFPRpvfnweTMHlMQGxr/FlNYWu
+ BQNLMsqvzkFhopRwm+E1FUO77zM0r8U2fMrqmQNAEvY1GeNZkUiWNiiJslJn9kw9HMB/z5ufi8pgA
+ i6UXgXdg==;
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ldaNa-003ASt-3L; Mon, 03 May 2021 15:21:03 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id y26so6733302eds.4;
- Mon, 03 May 2021 08:20:59 -0700 (PDT)
+ id 1ldaVf-003BCV-KV; Mon, 03 May 2021 15:29:26 +0000
+Received: by mail-ed1-x530.google.com with SMTP id j28so6734420edy.9;
+ Mon, 03 May 2021 08:29:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Kkqs94+/ybUyNI5rZrs90tbn8fLyNhu7W2OnlMi0z3o=;
- b=Ievrd4IVcRxqnwuDMPx71rpYDu8wesN7ueRNWJMJRO8Mwy2kIFknWE4kJ/z+u46c7l
- gtLyLdWQ1vLk0T3mfWdwhXvbYO1EexlN/T4rHbyy1juHx8x2wiSSS3veV6EECzJR1Cb4
- 8L41CD3RP5bGy/Xf1b0QugmWNqjbzc2WA1LagllCFeljI1WOLNQoRospk6UlhcFjtvFJ
- D55jY3dbkIgUIDiuym2tFDyu8t1eRjKOcYK06o/6urSsXVARBjGd/eKUUIq7y8MbuFMb
- LA6IphnWdZ1Yk+i3xeAI1mriu0g8XWuxS+VPqjpjfxulIvGOv5p9sGks06492UFdfWm8
- zWjw==
+ :cc; bh=4X7uf9sLw2LlIz1sJKu9KjMmCuee+1oBT6AFDo3JZs4=;
+ b=YHBmCP2QAl4UzlJRUwELp0pRtUuuTgj9SePAQgh6pBzUlMqEIihvB/BnB1ISLD9XLJ
+ BKxUpaoPLwvUtbfqSpzQ/OXJsxEad60XDz0+ZwLOnvVdOBwqg0akGN0T3UAdj81O1MGb
+ lIQo/4UkudtSN5Sdlf35N7rSNnQPusUK5hWxlHRouDNKkJtogwtERshwV9kGrAgpQMrU
+ VRF8fN52dZcTuDK9d/xIg9A1CJyBZmilowV2bpXD7Z++CmFeqNWk2m2YT3JmYpoKP4R1
+ kvZov44AQrurIsljnM251Lr+rTJR621Y+BKwWdA1mOF/yQDBs5L1PqYUeZD7thjgiPNy
+ 2vtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Kkqs94+/ybUyNI5rZrs90tbn8fLyNhu7W2OnlMi0z3o=;
- b=AXJROkHD3ezd5vNtJtPwd0TaGOvMsNDk4mf+6e/faTeCV17aNPPsa39r/q21nbK4vK
- 85t84Y39wiG792hx4jK3TSyUMVV4aV0N4UA4XdEWNzQe4QaqJ5+j3/YsYiunkRp49QrJ
- sqsHSNeNbIRae9tnUxeRwdJv/s6EATCvRnSSsEvXcjKHY5q1hZWodtg/nr4Q0Dq66mQF
- ZhGVJGoBcm1vQcFAp9rWEgmJkY25J7TqGmxN4UNR2bEcC5a9nlfGKZOuN3SEbJxxULQc
- OPpw6gmUlmENIKaUszx4UEWqpFu1+2bM9sxRNkeGz5p8ZzjJ02xxojRpBTSRCXly6Nfq
- YScA==
-X-Gm-Message-State: AOAM532yokJODjMULYMCt0qYddWQs32/LbdtAgllK5A4uVEmDGRm7VIW
- 06w4WURIBYe9uREA8MpOSWg5vaJtdNzF9Nk8AO8=
-X-Google-Smtp-Source: ABdhPJwAOleGZd/Eez3lx4AEwk1OJQ6JhUvQv+HUuG6q0XvBq/99VHpqLBzZfJZqJpT2VJB7vIvPWyO4LHlM9wVgDEY=
+ bh=4X7uf9sLw2LlIz1sJKu9KjMmCuee+1oBT6AFDo3JZs4=;
+ b=lDXsoaMqQzutaBm1GSZ03n5lRcF0YDdrwoyQuSkgjXXIT8nxpP/yXk189rbu3h+dcZ
+ wssoAqfBZ3b8+ZzXZGcbuPw3ki0P7PA9g4ioErB8Jk+cOagGHG4gjE4bVpqXo3Xmn6xf
+ KTJHvFlBJuJueh+vBctmsnyM8/PclY+Gv8xcVLjUl0SogqPvG14/TIHFKdJEql6E5FsJ
+ 6WPh408hLLy1cQT1dG4eb1jvL1oa5RX2I2bQD539cOqQJ/fCR6xmdSK6I8CtMso/TrAl
+ AMBhR6zJns4Oxoi/kZ0DdARHFbJ0fj1+72QzbkR4g6/wpvsX6wk6oh4VKtB/4QkF+SEv
+ 31dw==
+X-Gm-Message-State: AOAM532RTBrafbfhEIT1H3F8lgN9mt2nnuWxRRLEHwOdoxclYO+W5gtp
+ XzAda3M9Ya8E8a+CDPIx3m+OU+qzTKlFaByO2afa/9bAfOdCZA==
+X-Google-Smtp-Source: ABdhPJxfMfM7a1H/LJS5Afi+r7tTgt7hvt2NboGd9ad2yL60vbFwa1WMHRpQW6zegP4+XVp6V1klfNeWf455cXNzcXI=
 X-Received: by 2002:a05:6402:2548:: with SMTP id
- l8mr1029117edb.208.1620055258882; 
- Mon, 03 May 2021 08:20:58 -0700 (PDT)
+ l8mr1073099edb.208.1620055762146; 
+ Mon, 03 May 2021 08:29:22 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210503145503.1477-1-linux.amoon@gmail.com>
- <1jsg336eoo.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jsg336eoo.fsf@starbuckisacylon.baylibre.com>
+ <20210503145503.1477-4-linux.amoon@gmail.com>
+ <CAFBinCCxMvomKt9E0jT_XXpyL1_-qXH4=zVDMNdbDCnZCsnT=A@mail.gmail.com>
+In-Reply-To: <CAFBinCCxMvomKt9E0jT_XXpyL1_-qXH4=zVDMNdbDCnZCsnT=A@mail.gmail.com>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 3 May 2021 20:50:47 +0530
-Message-ID: <CANAwSgTiWhb5+iO0Ro4WO6uH4n_VoihZPsqaNMVx-hQ7kVwagA@mail.gmail.com>
-Subject: Re: [PATCHv1 0/9] Added Audio and HDMI power domain for Amlogic SoC
-To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Mon, 3 May 2021 20:59:10 +0530
+Message-ID: <CANAwSgTdFHwtKd-sgQq0Jp8WP55fZG3wsn7feCGo257yqiFkpw@mail.gmail.com>
+Subject: Re: [PATCHv1 3/9] soc: amlogic: meson-ee-pwrc: Add hdmi power domain
+ Meson g12a SoCs
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: devicetree <devicetree@vger.kernel.org>, 
  linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
  linux-amlogic@lists.infradead.org, 
- Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+ Linux Kernel <linux-kernel@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, 
+ Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210503_082102_174752_F5DC666D 
-X-CRM114-Status: GOOD (  11.55  )
+X-CRM114-CacheID: sfid-20210503_082923_699587_07492851 
+X-CRM114-Status: GOOD (  20.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,27 +114,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+Hi Martin,
 
-On Mon, 3 May 2021 at 20:35, Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Mon, 3 May 2021 at 20:37, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
+> Hi Anand,
 >
-> On Mon 03 May 2021 at 16:54, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> > Patch series add Audio and Hdmi power domain for Amlogic SoC.
+> On Mon, May 3, 2021 at 4:58 PM Anand Moon <linux.amoon@gmail.com> wrote:
 > >
-> > Tested on GXBB - Odroid C2
-> >           SM1  - Odroid C4
-> >           G12B - Odroid N2
-> > -Anand
+> > As per the S922X datasheet add hdmi power domain
+> > controller for Meson g12a and g12b SoCs.
 > >
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> >  drivers/soc/amlogic/meson-ee-pwrc.c          | 5 +++++
+> >  include/dt-bindings/power/meson-g12a-power.h | 1 +
+> >  2 files changed, 6 insertions(+)
+> >
+> > diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
+> > index 2e07ddf2d6a6..ec402c4ab931 100644
+> > --- a/drivers/soc/amlogic/meson-ee-pwrc.c
+> > +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
+> > @@ -154,6 +154,10 @@ static struct meson_ee_pwrc_mem_domain gxbb_pwrc_mem_vpu[] = {
+> >         VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
+> >  };
+> >
+> > +static struct meson_ee_pwrc_mem_domain meson_pwrc_mem_hdmi[] = {
+> > +       { HHI_MEM_PD_REG0, GENMASK(15, 8) },
+> > +};
+> > +
+> the VPU power domain already includes:
+>   VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
+> whereas VPU_HHI_MEMPD is bits[15:8]
 >
-> AFAIK, the audio power domain is a no-op on the g12/sm1. At least this
-> is what we've been told by AML. Unless this solves something, I don't
-> think it should be done at all.
+> Having two power domains which are managing the same registers sounds
+> like it'll be causing some trouble
+> So for now this is (as I am not even sure what the goal here is):
+> NACKed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 >
 
-Opps, I unitedly make some assumption,.I will drop these changes.
+Ok, thanks. On the line of Ethernet PD, I tried to add this accordingly.
+whenever I try something new it fails. Please ignore this series.
+
+> Best regards,
+> Martin
 
 Thanks
 -Anand
