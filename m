@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E35BFC433ED
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 May 2021 00:06:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 53DDEC433ED
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 May 2021 00:06:27 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A5BC861183
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 May 2021 00:06:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5BC861183
+	by mail.kernel.org (Postfix) with ESMTPS id 0E16761183
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 May 2021 00:06:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E16761183
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,82 +23,83 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=u/5TyZYfHoZrGN2Th/A7s6kA7N99k01YG/+6mUrdt+M=; b=mBYKCJLM7DZuUhce3nXRLquWg
-	BCHfYgYM9nSs0YVrV6EdsqkJoVFU4zEkNZKQOxLxhQPh0qbpRD3KY6iJTaCex0nI9RoqCDNkRGgW+
-	WTICdSISscJqWVrXfLSiiKJIEEuz3wt2BejmiADQsLXpqQuvJgOM9qMUjXb4FZ/6aCInkjkmGerjj
-	IIDnf2UIlPHOGgkgBgJDagOfBZX583nrqn50bONiyqhQGzKDrId8bkpnZRSJH6aRUgSVMbnoCh1bj
-	1LnxEqY7pRjZ5Mdj/XbVNiYjh2M/x8qwdnfJl+/6NvUq4oh61KkorEDTHutGlxjxZHUSnx6Fqu8+1
-	+M7HMpapA==;
+	 bh=C4BugHZrmSzqnfqMuTUgGWrgitSLh2YXf3VIUeehpUY=; b=Hw7+YinMRKThHTtiQRn8YIYXw
+	LlkwVX+AB4hAYb/l8wd/tbVz0vFIQEknhJFqQnHyVHUprJJ6jhlxWH/LUTjQPnN+W89gJkBBSAjCI
+	Wv/LzZyCVKAK09aQzlUcXcUohajhksQnrPZv0LBeK5JAohxeBTy+prUC9zGOEYLB9j9S8D8513Syo
+	JQ5dD15BxPDfcgaQUlHwe/QTHid8gSsjRvTI/LXumzZf8EZtDKEe1szRw1Lhm3z/tkbdf2PYzeIdk
+	ncGCXcnQTG6j51jojGrrXLcPtiu1nIW/PaZBRpyq4s5FcU7Mojs3Pldl8YCgTVYu7qtuSBkn8o3/w
+	FZuAKiIjw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1ldiZt-00F5SP-G2; Tue, 04 May 2021 00:06:17 +0000
+	id 1ldiZw-00F5T2-Va; Tue, 04 May 2021 00:06:21 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ldiZd-00F5QR-VO
- for linux-amlogic@desiato.infradead.org; Tue, 04 May 2021 00:06:02 +0000
+ id 1ldiZf-00F5QX-1u
+ for linux-amlogic@desiato.infradead.org; Tue, 04 May 2021 00:06:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
  Content-Type:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:
  To:From:Sender:Reply-To:Content-ID:Content-Description;
- bh=kDzDiZKgkuBIzy2dA89gX09XTeJ0XvlvWikD1ZLB35M=; b=u5CHk8nPTGW04lbqRx4AxiF88z
- YKTmIx7Av/xUyPYotXBUs1iT8b2FTVZMIjGtRbugNRPl5xLg9SkUYonFxvGui40rqIy5ki+HHXJQf
- P2jBcvctM0Ko36dcqSRtDOjV4Ai1h6GAmjdRRS6FdDY8aWbGcVWjqoNi0eQtUbN48h3uaLTI5gt47
- N+rUnHhj7YBCuAZASUsKRSK3PoKBKDtWTh1QcywAjZ72Fm6yfILK7wAP0YJb4GQ3vYmeaBVDC2kJV
- fH9VseFG7zPJwfzCpKsE0nkNw81lmfeCwFcpjXbPjD/5WqiacEOxRJPtaTtE1a81rRFSKMM1atiPD
- 5Hf7PUzQ==;
-Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
+ bh=vs/iwCoGgWSTxOU7UC82l4ENSMubLlaZ/ZNv0A3YsVE=; b=L3BA8QRDQxjsFo14eHOsXWBXUH
+ JZrZBGwOco6l5xZMAqwGVer3lpk+TT9tHBqAI7dW+ye0B4H1PyyZ2KNens3Yjtpz9bRP/kUpTVsJK
+ f3yrooF8SnxGYPWq+N2tYE0WECLslpuxVNnPj29kdNVhzClXAl7KMH0FqBh0o/MJoyQ6IRMFNywb2
+ dW1AycUqnu/Q1E8VQTIKiFLRgOWAsSON14ZlGmBP0xgq5Br88KK7jhpzYATyaT++2KdjUQXvFaJAU
+ COffJKdgJykGAM5ExCEpFF4M3PRfKkctYtDMGbzZ6iNUABqbhTd49w7d3uVSm7PGMB6M8ggpYcQZy
+ 2a4ubjAQ==;
+Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ldiZa-003ZE0-Tj
- for linux-amlogic@lists.infradead.org; Tue, 04 May 2021 00:06:00 +0000
-Received: by mail-pl1-x62c.google.com with SMTP id a11so3821601plh.3
- for <linux-amlogic@lists.infradead.org>; Mon, 03 May 2021 17:05:56 -0700 (PDT)
+ id 1ldiZb-003ZE1-Hu
+ for linux-amlogic@lists.infradead.org; Tue, 04 May 2021 00:06:01 +0000
+Received: by mail-pl1-x62e.google.com with SMTP id t4so3034364plc.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 May 2021 17:05:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=kDzDiZKgkuBIzy2dA89gX09XTeJ0XvlvWikD1ZLB35M=;
- b=BYhlbG9htRgrcm+j6xb+5irs8Y2dtX5BPN5vT5dthFFmdc2wdcqYLSvoBiQPgxhkdY
- HoVp94XBkH6mPX4rCVCDF+zBm45SWZtY8IWGXZNTNrmLvCavxTjNeQzFv8T8TmB9wVA2
- 7888+TcYr5UOpB+lvNwW85F0nGc6AYEEZu+ujGZM+YpgLVZBKY1PU0BtwXu1l5bUCYB0
- 8OCyyxQfF7OLxOe1pCS9xGID8DbETrBqZofbsGwN2eKv3Nla4gx6WzK7/j5lMFwGete8
- wf2zgsy3Td3kI5HUP+SDTfiY778dus1rTEXM4kkj8qnIr+hrf/cxm5gaBwBiXvasAy/t
- UgbA==
+ bh=vs/iwCoGgWSTxOU7UC82l4ENSMubLlaZ/ZNv0A3YsVE=;
+ b=vhNv5sA3oFi+S2+xJP4o3wjvcrSZJb9IY7Ln3ikdJKCfWLDzYddEksLCHlxOsqjZbt
+ pmPYcIhtUoX+Mvo6DK8mdor+smmeGF/3oXUYfWjFwhm2vW4GeIHk0vArwbi0l5uXt3He
+ jkux3mp5cOlLzG292/luw8TH0fE6sk1+1dTy6vnd8U89au0tQOGW00JwkpVO40PCSmud
+ yG489mDmqOJrWimMlRrQPBCBjWDTiBWINJEPh+uaD9D2wm1HkLw91V8O2b3e8VrHKASR
+ p1z4W82N99YSKl9YROX3Pcf9Fy9tmaax/f1Xir4fuN7a4io2P4nOlFXgRw8XLG3YQKG3
+ OJEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=kDzDiZKgkuBIzy2dA89gX09XTeJ0XvlvWikD1ZLB35M=;
- b=B32yA18NKEpVg6pi6ti+17FG+B7AGQs4vJZJB0YXz0SHVDg+8na6IeJvvzmIzAM74w
- FrBF5oX+mHuqyX4Uc6qyamRyVuOqgL11ElNCUnXkxsBn3lH0LIJeNbP8lNQKn/xT299V
- Vf8Wct9Giu11o6fTiHTSj5QY+oYeJe4sZSv1x/e7ZZ0I8MHeZ/nzcRrq89HqcA4ZSkbr
- 4/fVyaZx/+tN27tgEqgQ9fN20qVpJz/LpMWcKEuqsGhGxzf+Mmt4kNKVMGfBSZdUWeMW
- FS8hRp2cnNZ01YJng2RO2S5fIp7T2sF30MciaNFthT6NCFdpqSEtrimUxcqX4XCBHBXu
- 8PiQ==
-X-Gm-Message-State: AOAM531LY8QvUrMn+/IHybiy6OFLpMvASSwCH6iaKBn6MlNpJV9JZXUG
- FVDzg82BBI4ykmgw2wlsStxjXw==
-X-Google-Smtp-Source: ABdhPJz5KY4WXvst87q3waruwTbClvq21tHkxMG77SNnVmypEkEmefQ2ACx56GjiUXnBm9I1L+fwcg==
-X-Received: by 2002:a17:902:b68c:b029:e6:bb9f:7577 with SMTP id
- c12-20020a170902b68cb02900e6bb9f7577mr23126893pls.0.1620086756012; 
- Mon, 03 May 2021 17:05:56 -0700 (PDT)
+ bh=vs/iwCoGgWSTxOU7UC82l4ENSMubLlaZ/ZNv0A3YsVE=;
+ b=kgxvvzIwjmGg5DJXSYneqHR2kOf7sRf20jDAsdCYyO1eQiKiQdo4JscXrblkBpp/Ng
+ qTRq/CYFQ5eeoX5Z2wyDRg41bCcTxkDX/u2P5NWrwIq7Zgm8AmajJuI/Fz4ZxSKyUiSE
+ +uJvbG0XE0ygD3Pl0ln15aOxumxUe6OwByCOLtx0D1M26vzasr+TN5o3DGS8jVqINqcg
+ uWkViT5vWo5aZdPQPC112CG0tKwWW80/RqCLpgE8DK0/ZGnq6BTEiw29CdpP4MLsrOUj
+ mKqAoThKGtAYht8hlVOX6LMyChe9a7l4U5Nvt0UEv9drworCo7UaVRm/mMZugfwDa/wn
+ o3Pw==
+X-Gm-Message-State: AOAM5336D77EWPMB/32R4kDQzTfXlTE++Ehk4vBr9/zcAErq1eopE9rX
+ lXf6NdVAIUPMKvHnmxzgWieR9li2HFW5iw==
+X-Google-Smtp-Source: ABdhPJxv+ZZthqzR+gyi3hdNJ+x+W/Jd7S4Zviivb1wcy5Wj3aMCX+EK5M23MjOT1tbM8rWZ3t8/rA==
+X-Received: by 2002:a17:902:74c5:b029:ed:d41:1ca0 with SMTP id
+ f5-20020a17090274c5b02900ed0d411ca0mr23224442plt.66.1620086757057; 
+ Mon, 03 May 2021 17:05:57 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id gm17sm10499510pjb.11.2021.05.03.17.05.55
+ by smtp.gmail.com with ESMTPSA id a18sm10034023pfo.64.2021.05.03.17.05.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 May 2021 17:05:55 -0700 (PDT)
+ Mon, 03 May 2021 17:05:56 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson: vim3: enable hdmi audio loopback
-Date: Mon,  3 May 2021 17:05:52 -0700
-Message-Id: <162008674673.40672.13568672227710431914.b4-ty@baylibre.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND] arm64: meson: select COMMON_CLK
+Date: Mon,  3 May 2021 17:05:53 -0700
+Message-Id: <162008674673.40672.14279142646066453043.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210429084253.59692-1-jbrunet@baylibre.com>
-References: <20210429084253.59692-1-jbrunet@baylibre.com>
+In-Reply-To: <20210429083823.59546-1-jbrunet@baylibre.com>
+References: <20210429083823.59546-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210503_170558_994064_0F242C97 
-X-CRM114-Status: GOOD (  12.13  )
+X-CRM114-CacheID: sfid-20210503_170559_610594_1F800668 
+X-CRM114-Status: UNSURE (   9.01  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,19 +116,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 29 Apr 2021 10:42:53 +0200, Jerome Brunet wrote:
-> Enable audio capture frontends and a tdm decoder.
-> This makes it possible to loopback the audio played on the hdmi codec,
-> which is the only output interface at the moment.
-> 
-> Of course, one TODDR device would be enough to do that but since
-> the 3 FRDDRs are enabled on the playback side, let's do the same on the
-> capture side.
+On Thu, 29 Apr 2021 10:38:23 +0200, Jerome Brunet wrote:
+> This fix the recent removal of clock drivers selection.
+> While it is not necessary to select the clock drivers themselves, we need
+> to select a proper implementation of the clock API, which for the meson, is
+> CCF
 
 Applied, thanks!
 
-[1/1] arm64: dts: meson: vim3: enable hdmi audio loopback
-      commit: ed678d85ab2ebb75d23b68c1b4af4dd068f14edd
+[1/1] arm64: meson: select COMMON_CLK
+      commit: aea7a80ad5effd48f44a7a08c3903168be038a43
 
 Best regards,
 -- 
