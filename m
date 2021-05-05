@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-14.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4DA16C43461
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 May 2021 07:27:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD684C433ED
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 May 2021 07:27:20 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C2C976117A
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 May 2021 07:27:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C2C976117A
+	by mail.kernel.org (Postfix) with ESMTPS id 5A1C7613BC
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 May 2021 07:27:20 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5A1C7613BC
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,84 +24,84 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=tRDE9ahlCTo+tu8GrGp7YzReHICan/UMxUcHdrsy6+U=; b=HNW6u0Tktqtji9OM9aMSEtbKg
-	22KpmNmqaqK80NOKA+wiw3jfwAq3ZdyXrPScK3pnBW0aW65ljN+qpDmkvAnMOwMqKuGmlFbZHmqao
-	pkkvtEKj6HrjcezSM25olW5LtUJMImXYiZKtfB1599QeIytUH51I4R/jTUaQowV7SQ6H5G2YqGiBK
-	WQHPkP9vQAE4pT1R+dXD0NG8drYQLfC43RyrideKmKpTxGPEaK6kytCQgAwYZwPj7eweOLktcZ5mv
-	tcVgD8sKym8eRrbPsyte+FoGObiZa5AlOA/ThSQs54ayu0NDFMlYrm/Ow4OhMEaGjWXBJJ32Ngw9e
-	BBaRO6qPg==;
+	 bh=tRDE9ahlCTo+tu8GrGp7YzReHICan/UMxUcHdrsy6+U=; b=ebjUE1l2pgiqMDyzESeo5rp4z
+	zSA1ZGpJH54mPdeu/uX3PhGAnULmF7GgvBDLTuAOWCB0NTl94L7GiqXzTRMTRQHLItV0I9pTgxMex
+	eVUTEqAAXfefnIVUhiGIHadhTLoX856ir/NnzVdVK9scnSh3g6ggTU92LXMuWTkPYmWiWpETlWIWj
+	Oy8qtC0TbUNnnOyl3UL3MiQmczUuFUqWU6fBjKcloQbNbqegEO4BFJYSmRQENbjVP8o/d95KhPJ1o
+	t98ssKcDsBaMH0ILF1WEjNdjBxZC6tqNI19Up50epN1UOr98EtBdEcDC6wXpOPV+GkzzQWqheu6Yv
+	hU4rcTjFA==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1leBw4-000Sho-AC; Wed, 05 May 2021 07:27:08 +0000
+	id 1leBw9-000Sja-EQ; Wed, 05 May 2021 07:27:13 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1leBvH-000SaL-IN
- for linux-amlogic@desiato.infradead.org; Wed, 05 May 2021 07:26:19 +0000
+ id 1leBvI-000Sac-3O
+ for linux-amlogic@desiato.infradead.org; Wed, 05 May 2021 07:26:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
  MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
  :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=ryLo2gccvYnJFf6uz5T1OlY0Lzzgw8rSJB9vsnUHoqE=; b=wVJCJ8CgYUARRtq6atl7eQwr9H
- rowHl+GjT0bsHvbqAy31MvGY3Pmd34XXgnUr5gZdf/hAJWf/Ma95d8/zS2kubSYwnj3WUmL8R9gsZ
- q3HX+KUuNKmhUV4qhdvaZGh9oNRkSScz1H2pqS5LXbNXTudlheVcxVs4Eu7BeNM/pCdi7LRAEOwXD
- jMIk0zA03e7qv5QlgYXEMz55qVt6W9XQEVRO+JMPAhTXgwxfjoG4pn+fs6TD3ywBgOjMcDLIgjiuW
- eF+BzTTG4o1aKM3TP42HEHLLn+5nWVaHiyi4wltg0SQT30MzNcYUTl6beLc2kW1l+i9D0d4Hwy/Eb
- lNrcR+sw==;
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+ bh=ryLo2gccvYnJFf6uz5T1OlY0Lzzgw8rSJB9vsnUHoqE=; b=ABZwIq9g7MiTjTPhRlNxswtqTR
+ RIt2tRdYS3ka4ldb0dhWd9Ofu/uvsgVnl0HZrEeLWM1N0ZuqL5Q9bMFB4Xd//9Bu0ylwqf2aaHtEI
+ 3VssMJ5qce0VgpKlreraa2vLE81e7C22/gso4f5iuRRzAGmHNYPDNGEWJSiyNyqccUv6ujrDWiREz
+ 1huaHXiqq6U8Hb6LW2yGhty2sXeJTwu4Us98+Yw2WbL/vUpeCGjOKZ+TLUy1eWGsUHWiNGIye7Mx0
+ LrYTBhxKg173Na0lRF0c9/3Uof2T7nczwjdDdrdW20rECCiPDjc8q17ut+FSrSTLmt9W7p5t2tehv
+ 9Cf2m5Bw==;
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1leBvE-004Wsh-2b
+ id 1leBvF-004WtC-9Q
  for linux-amlogic@lists.infradead.org; Wed, 05 May 2021 07:26:18 +0000
-Received: by mail-wm1-x330.google.com with SMTP id
- o26-20020a1c4d1a0000b0290146e1feccdaso2470237wmh.0
- for <linux-amlogic@lists.infradead.org>; Wed, 05 May 2021 00:26:15 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id d11so635659wrw.8
+ for <linux-amlogic@lists.infradead.org>; Wed, 05 May 2021 00:26:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
  bh=ryLo2gccvYnJFf6uz5T1OlY0Lzzgw8rSJB9vsnUHoqE=;
- b=AOFwLbrj3UIWYKYMglM59levWs0CwBGCnzJKEGYBCMCmOvaXco0gfVgtLRgLDombiC
- WJrCu+k6+ppreNXIyWyjmKwGpLmvBGtLHdbxnThZb4wItpi11kJ39FiSXpAf/i/jswfj
- V0ZruldhB7fqIOrnoxHToqmyeIE1UCWYt6R7bZG152zqzEqwxFc1AQjBI5nla808RSmT
- LbfGxht8gAg0PE+cndhUQRToHy0LgmpQgPkNqCFYgsa7Is8oRpj+UxgzycYC2OHpCt7y
- evoKP6qs5pj2aIrWdoqzmtllm5KIzf1m/U8yaLG2DiMrLVuzRQdYm2vQ1c7ZrGMXuYYG
- 7YhA==
+ b=mmaKgtabncuduXfLM9oT6YqrfkH0MJcr5ydzabdPW5tI3a2j/ZeavcxqROSnVPiP0y
+ QWC83sreSiHFxO6TXwAtHPQ8Q6g+HusDKd5Z1BcCyQgL6zYfl2c7noq52MVVRuCpxlFm
+ 2Iv862euEaJp2K/LkYrbbXQwrGyG2SLfNLLWzPOy5vCkVrBCH0k5iQjs3dF9wlPxC+bq
+ SXA5uRXkTzuQyo5dQY92rmHoDk0p4oZur5YxZUKjV7ZTa/tDvhvRJNdBaYSK1XsglXXF
+ pl3dIyhyyTMK7vxgcYh/ZEaKtTXIdzlUAMYj7F3ftlNFFYkIjY906L1bLxAzL0T9a7Sn
+ mQBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
  bh=ryLo2gccvYnJFf6uz5T1OlY0Lzzgw8rSJB9vsnUHoqE=;
- b=lAeXUlsSRyl3RWXQxb6PXbSqiLOSZaTAQjOIQg4QHqHaTCSy0V9R3nhNlUgylqJrNm
- ugX9jWdztd7/+3zHz0DSrKHx/nhEyANVxyOhm9rJjpM5bY9xmahDdpemUlvTBwH1J8DM
- 4gUD6eC46Q2MVLwO1xax4WxfSg9mJUnQ6IkB7iPt8uOkoKYEFJZazxSBp6gbps7Pxglg
- WbYxHrnTbIsInAHvVbL3pWhZ0A2aucvDetNwW71dtvpeLvj23+gyb+HKRBm/mw8grt3F
- lI4keMMURG7itdcbY+3L+MSW6MyseWIndV+SjHnGPUlvsLPPbjMqZVFrwJii2eNFHusM
- l7mg==
-X-Gm-Message-State: AOAM533oDUgmqJjtgltVC5Af4o9bBK933LeT9l2rUdHm3U6+9qzweSxP
- MGVbAsGDQhAfR5AnouoQnwfdsQ==
-X-Google-Smtp-Source: ABdhPJzDCygRvwK/+nSocWqj6oDcXCUudZHXcgd967/zopD+CaCbwXcFQU6Bi/gkEZYx5oLhj/niig==
-X-Received: by 2002:a1c:c206:: with SMTP id s6mr8703239wmf.47.1620199574593;
- Wed, 05 May 2021 00:26:14 -0700 (PDT)
+ b=H2j7Me9GTFYK47p3m2aNUi0D4vsz1q007mR2lkE+Cc4bc6yX1gaAZ+xJEUyPj8CRfl
+ 4xCw1sKShgOu9osTl4/gUa+U5yqVyHCc3mrc34JExq9YclVQSyyZxnWSbJUZCM2uzqOv
+ PqjWZkl86bB1C6sze6MJTU3UIpWlIORo7AroaIbbazyUChaeOwG75e12n/86QtTHAsg+
+ 3V3DRUv5mXF3tX0m7THt376xQs4rFLG7GezMCLn5dgADbTLQODj4z6UmnHEPVV+Qzr58
+ g3Ma+5i8RQz/xWHRi8ZDcZuz0hLkmLaJ9MoQXxtm2HQVu4JdSLgTuuFrWkqu1wIe3aUu
+ olWA==
+X-Gm-Message-State: AOAM532SwGgWT6Fsuo3fu3nJ74GCr5pE4xT/5FGorp7jOLNGDYKPw7UO
+ oC0dF5avM/rtw+uOI40Q3s0QIQ==
+X-Google-Smtp-Source: ABdhPJx4DVSUJy6saY70ep/mXUrM9nHCdK7Z61aVTL6XBZMMC5IECfrDceM1fmjbMmcp4AqPb3mduA==
+X-Received: by 2002:a05:6000:1152:: with SMTP id
+ d18mr17857048wrx.211.1620199575726; 
+ Wed, 05 May 2021 00:26:15 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e0a:90c:e290:6eb3:66ab:cb1e:ef0])
  by smtp.gmail.com with ESMTPSA id
- f25sm19008991wrd.67.2021.05.05.00.26.13
+ f25sm19008991wrd.67.2021.05.05.00.26.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 May 2021 00:26:14 -0700 (PDT)
+ Wed, 05 May 2021 00:26:15 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: jbrunet@baylibre.com,
 	broonie@kernel.org
 Cc: alsa-devel@alsa-project.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 2/2] ASoC: meson: g12a-toacodec: add support for SM1
+Subject: [PATCH v2 2/2] sound: meson: g12a-toacodec: add support for SM1
  TOACODEC
-Date: Wed,  5 May 2021 09:26:06 +0200
-Message-Id: <20210505072607.3815442-3-narmstrong@baylibre.com>
+Date: Wed,  5 May 2021 09:26:07 +0200
+Message-Id: <20210505072607.3815442-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210505072607.3815442-1-narmstrong@baylibre.com>
 References: <20210505072607.3815442-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210505_002616_140929_63B27D18 
+X-CRM114-CacheID: sfid-20210505_002617_339693_A2E28CBB 
 X-CRM114-Status: GOOD (  16.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
