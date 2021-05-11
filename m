@@ -1,87 +1,108 @@
-Return-Path: <SRS0=5f+e=KF=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=CWO1=KG=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E61CC433B4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 May 2021 19:10:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8EE4C433B4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 May 2021 11:54:06 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1368461139
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 May 2021 19:10:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1368461139
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+	by mail.kernel.org (Postfix) with ESMTPS id 276CE61007
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 May 2021 11:54:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 276CE61007
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=gKfS+ZqPhwZcgmxCQYDn3nmlUIcI0f1tAWfDiGA38mg=; b=BWfzK12L43bTsoGrxIihxVQB1
-	CBjjDVZqu8/Y2UZ2nNy8TQtrs5nDrJgDvCBnm48LV5wewEpmNoT11YTwU0l9BnnFLRrHZyCJ3K4iN
-	97A91o4iZr/jCngjxQlZh2mmbcA0WNqSpfI8GfL+l382W0qi3t8cwAhN9rXDZ7VTIqf8ZvQDiGUkm
-	FsrNPNwoKd1zurdUMxHUyn7D5YlLkwXrPw4M6fK8BdhQo/2MSqBlTLx17zGrnWhHwWWSCcrBNsHiB
-	1eXIhYh+6ihlmgM+6sc+MYF2mWYnIgCI3IheBw7tTbZFfivDAFkFO5ToyBrLxoBy3lmU9a2RwzBe9
-	KA6yMbhUQ==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=23JiomzR1Oro24R+CpM7NUynJznMTbFGt8V2sp/uzr8=; b=mHuACwqLEy5QV9UAqrlHQkzzSu
+	drLh2QAld0yOI5E4BTQ55X+BX6PFVRTCFG6F9vDZM7qabvZ0nNBRFPI6BVUW1UYhRiDkY8BGiwFO1
+	fm5veEMiXF39sr2+96Jj+yPo3cWLcfbdHwAzTlwHsnngqfWmM7V0X8FbwjkEha8H0lmEBneGFyRP0
+	3CYAEnlW2jF7OX/+XTVbdnF305vk3i++pl3nbJqJJkWqYsm1fDuFzeAl+tq3vfCfDaL1BEaYCKyHk
+	I7eYfLtwIRvxpak/EOHjGAzViAaaF3sfzwgW6CDcq3eec1Rz1Ff6I56IZ8NN8qQ+zg2Q7RKIuuun7
+	RVrdXrmg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lgBHx-00FVRO-FU; Mon, 10 May 2021 19:09:57 +0000
-Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
+	id 1lgQxS-00HEU7-Kh; Tue, 11 May 2021 11:53:50 +0000
+Received: from [2607:7c80:54:e::133] (helo=bombadil.infradead.org)
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lgBHu-00FVR3-Cz
- for linux-amlogic@desiato.infradead.org; Mon, 10 May 2021 19:09:54 +0000
+ id 1lgN8E-00GXbc-29
+ for linux-amlogic@desiato.infradead.org; Tue, 11 May 2021 07:48:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:
- To:From:Sender:Reply-To:Content-ID:Content-Description;
- bh=POghwcEHgR+BrYrIP4dZE38R/2StYIPNSYU5lSvbKM8=; b=w/zvtE1GNJJ8pKloq/00cdOgmB
- 3VaPHMWGZM0QhUj/7b4OnFLi/9jTaBZ9XWcZ2lPWGZVbd0AezJV0GpnVdiT1HPr9MZf3LozPgPBn1
- VKgeYY9YJ2g6kOP4G6sQ1CYXQ5XHwwrRIknpOZ3LfyVDqB/RYZey4vVF8Dwlhu2nru/miGF1QibeW
- /Yatnw1MKNhvWmUratt1bmuv+PhgES3U1ky1Kn5ErPEj8cb0fM/IRhsOtSNwLvFegTQ3TNKu/VHUM
- /QmnmEHyuTTeZ95M+mr25/UpWnLszI7HNeA1MxcN4LwfVwvq8RR3IhWZ8VrcnhAn7ieARv4iYeEZk
- eDLoKsrQ==;
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=0aKhMFos6FwrsrnKu5YWX9McpIt7w3RKLcj0tedb3Yw=; b=rp0F9Zw5L8CYhytHG0eBgBXvH+
+ 8QOlFfnTq913bYpw9D+4wayU9SF29loysC+7ibbqcmY4LrHOVUVlb0AjKcYFX+ICde2A28gBRho7v
+ l5TKCLIu0xXGINVH05/O2pRzo9yd+Vzww38/aCzf39XLTLwHpQE9jBSbflUaSAB+64ICdUQH61gBg
+ Whi/WkD5dNVEQXgxwRn0N2IkxcybJ+TYs1f4VdBnQkjP5JPi0x45tQCOXuXG2xLZMS2kjSVWDtlLY
+ qL07cy6VF5YkRDD3/RD0kW7UEmabCNl9vi2a5aXt+hoT1FSAYdpQky6aqBvWas5IPn40cNcHNiMDt
+ iDNFh6sw==;
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lgBHr-0093dN-Vq
- for linux-amlogic@lists.infradead.org; Mon, 10 May 2021 19:09:53 +0000
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1lgBHj-0007Yu-Bt; Mon, 10 May 2021 21:09:43 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1lgBHi-0003S1-Tm; Mon, 10 May 2021 21:09:42 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Romain Perier <romain.perier@gmail.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Lee Jones <lee.jones@linaro.org>, Kevin Hilman <khilman@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- kernel@pengutronix.de
-Subject: [PATCH v2] pwm: meson: Simplify using devm_pwmchip_add
-Date: Mon, 10 May 2021 21:09:25 +0200
-Message-Id: <20210510190924.990912-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <CABgxDoJbnFb+=oSMNrhbBGbFCRZWBQ54Dkyy02YnYm5bveD4gA@mail.gmail.com>
-References: <CABgxDoJbnFb+=oSMNrhbBGbFCRZWBQ54Dkyy02YnYm5bveD4gA@mail.gmail.com>
+ id 1lgN8A-009N82-2z
+ for linux-amlogic@lists.infradead.org; Tue, 11 May 2021 07:48:40 +0000
+Received: by mail-wr1-x434.google.com with SMTP id m9so19100180wrx.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 May 2021 00:48:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0aKhMFos6FwrsrnKu5YWX9McpIt7w3RKLcj0tedb3Yw=;
+ b=ppcjXHmVF7ECDjdGn2+rwNT/xNSDY7W2WlUffWO3D1QhXtCgJfi8p6WCcmyp6wX+fZ
+ x1eWBDHrPvKsmZHDZ3k2FYxwxS47MFsxecKlETjqEIYa9Xc6lcmvOC+hhrxxBP5rs9kk
+ 1/SXJmR8QSg61HmKzBkuy63yEV3qyTTi0O3Ky5qnUrMCIvA0ITOJ4BeMF8OxTNaf4R07
+ Oe9kanSZhXh7akRYewxj+tg3ryw2p5AHx9A01WJKJP4wNB6QyyV2LwaXvIHrKYjUo499
+ QBqQBjkytG+nx9Oqyx/EnkM5GtQJAx1hcwnoFUwZkRWFSsHugY5ojoG83/anneDJDHUE
+ zL8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0aKhMFos6FwrsrnKu5YWX9McpIt7w3RKLcj0tedb3Yw=;
+ b=gH03z++A94P8DBNoSIjyVb/uMzSeeOcVX0tNNygBWXU6d23/25QDwP06OzOAC/hEvG
+ o3zNRLh/EKtPFEAOC5l3e5txERO0Lc99oOTFyXodvlWR6zX+QohOyjtLKPt5KACjtQCC
+ B521Fkw6QU/4GyBNqWDTMhODNr+HpksSyAn08sy4+rx2QR6prBqO3yGz0TNhj3jxLP4m
+ eqs0Y+tjG77Q6LWn691yYBkOnu9J5ZgLXPL7ILxnnrBbtK+Kxw6LrZbJS8dfnBbThQed
+ q/9ttt0t0DD7NljCXJYsdJGOlpsnJs9Cush9Qee8HYD4gJJD/bJTUjB+ctcs48/5Xg5Y
+ qyzA==
+X-Gm-Message-State: AOAM532sZau1+ixIJ6p1wSA9cWaYDqwmRKZ9ukAxCJNnHlosxoI33aOs
+ wEp10rAz8O1wgjnW3zOQMWmGhQ==
+X-Google-Smtp-Source: ABdhPJxvk8PMcjaew5j2goslEy2L/b/57GiN7V5OJJTi5n7pDuKRnEMLGQs5PnLQ0zrfKH2aErdXPQ==
+X-Received: by 2002:a5d:6e11:: with SMTP id h17mr35388990wrz.331.1620719315466; 
+ Tue, 11 May 2021 00:48:35 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:90c:e290:ce08:6145:b4e3:5a23])
+ by smtp.gmail.com with ESMTPSA id
+ f6sm28371111wru.72.2021.05.11.00.48.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 May 2021 00:48:34 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: jbrunet@baylibre.com,
+	broonie@kernel.org
+Cc: alsa-devel@alsa-project.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v3 0/2] ASoC: meson: g12a-toacodec: add support for SM1
+Date: Tue, 11 May 2021 09:48:27 +0200
+Message-Id: <20210511074829.4110036-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210510_120952_049508_29DFD600 
-X-CRM114-Status: GOOD (  15.15  )
+X-CRM114-CacheID: sfid-20210511_004838_136673_B5B67C1D 
+X-CRM114-Status: UNSURE (   8.12  )
+X-CRM114-Notice: Please train this message.
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20210511_004838_136673_B5B67C1D 
+X-CRM114-Status: UNSURE (   5.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,37 +114,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-U2lnbmVkLW9mZi1ieTogVXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRy
-b25peC5kZT4KLS0tCgpIaSBSb21haW4sCgpPbiBNb24sIE1heSAxMCwgMjAyMSBhdCAwODo0Mjow
-N1BNICswMjAwLCBSb21haW4gUGVyaWVyIHdyb3RlOgo+IFRoZSAic3RydWN0IGRldmljZSAqIiBh
-cyBmaXJzdCBhcmd1bWVudCBpcyBtaXNzaW5nLCBub3AgPwoKRGFtbiwgeW91J3JlIHJpZ2h0LiBI
-ZXJlIGNvbWVzIHYyIGFmdGVyIGVuYWJsaW5nIHRoZSBtZXNvbiBkcml2ZXIgaW4gbXkKdGVzdCAu
-Y29uZmlnIDotXAoKQmVzdCByZWdhcmRzClV3ZQoKCiBkcml2ZXJzL3B3bS9wd20tbWVzb24uYyB8
-IDEyICstLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxMSBkZWxl
-dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL3B3bS9wd20tbWVzb24uYyBiL2RyaXZlcnMv
-cHdtL3B3bS1tZXNvbi5jCmluZGV4IDllYjA2MDYxM2NiNC4uZmM1YTBhY2I3ZWI5IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL3B3bS9wd20tbWVzb24uYworKysgYi9kcml2ZXJzL3B3bS9wd20tbWVzb24u
-YwpAQCAtNTYwLDMxICs1NjAsMjEgQEAgc3RhdGljIGludCBtZXNvbl9wd21fcHJvYmUoc3RydWN0
-IHBsYXRmb3JtX2RldmljZSAqcGRldikKIAlpZiAoZXJyIDwgMCkKIAkJcmV0dXJuIGVycjsKIAot
-CWVyciA9IHB3bWNoaXBfYWRkKCZtZXNvbi0+Y2hpcCk7CisJZXJyID0gZGV2bV9wd21jaGlwX2Fk
-ZCgmcGRldi0+ZGV2LCAmbWVzb24tPmNoaXApOwogCWlmIChlcnIgPCAwKSB7CiAJCWRldl9lcnIo
-JnBkZXYtPmRldiwgImZhaWxlZCB0byByZWdpc3RlciBQV00gY2hpcDogJWRcbiIsIGVycik7CiAJ
-CXJldHVybiBlcnI7CiAJfQogCi0JcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwgbWVzb24pOwot
-CiAJcmV0dXJuIDA7CiB9CiAKLXN0YXRpYyBpbnQgbWVzb25fcHdtX3JlbW92ZShzdHJ1Y3QgcGxh
-dGZvcm1fZGV2aWNlICpwZGV2KQotewotCXN0cnVjdCBtZXNvbl9wd20gKm1lc29uID0gcGxhdGZv
-cm1fZ2V0X2RydmRhdGEocGRldik7Ci0KLQlyZXR1cm4gcHdtY2hpcF9yZW1vdmUoJm1lc29uLT5j
-aGlwKTsKLX0KLQogc3RhdGljIHN0cnVjdCBwbGF0Zm9ybV9kcml2ZXIgbWVzb25fcHdtX2RyaXZl
-ciA9IHsKIAkuZHJpdmVyID0gewogCQkubmFtZSA9ICJtZXNvbi1wd20iLAogCQkub2ZfbWF0Y2hf
-dGFibGUgPSBtZXNvbl9wd21fbWF0Y2hlcywKIAl9LAogCS5wcm9iZSA9IG1lc29uX3B3bV9wcm9i
-ZSwKLQkucmVtb3ZlID0gbWVzb25fcHdtX3JlbW92ZSwKIH07CiBtb2R1bGVfcGxhdGZvcm1fZHJp
-dmVyKG1lc29uX3B3bV9kcml2ZXIpOwogCgpiYXNlLWNvbW1pdDogNmVmYjk0M2I4NjE2ZWM1M2E1
-ZTQ0NDE5M2RjY2YxYWY5YWQ2MjdiNQpwcmVyZXF1aXNpdGUtcGF0Y2gtaWQ6IGZhMzljZDBjODUy
-ZDEwOWVkOTU3ZGM0NGRjYTViZGNmNWRmZjA2ODUKLS0gCjIuMzAuMgoKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
-aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
-ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+This patchset adds Amlogic SM1 support on the TOACODEC driver, first by switching
+to regmap fields for some bit fields to avoid code duplication, and then by adding
+the corresponding bits & struct for the SM1 changed bits.
+
+Changes since v2 at [2]:
+- use raw values instead of defines in REG_FIELD() for g12a_toacodec_match_data
+
+Changes since v1 at [1]:
+- switch to regmap field
+
+[1] https://lore.kernel.org/r/20210429170147.3615883-1-narmstrong@baylibre.com
+[2] https://lore.kernel.org/r/20210505072607.3815442-1-narmstrong@baylibre.com
+
+Neil Armstrong (2):
+  ASoC: meson: g12a-toacodec: use regmap fields to prepare SM1 support
+  ASoC: meson: g12a-toacodec: add support for SM1 TOACODEC
+
+ sound/soc/meson/g12a-toacodec.c | 143 +++++++++++++++++++++++++++-----
+ 1 file changed, 124 insertions(+), 19 deletions(-)
+
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
