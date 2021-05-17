@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A9296C433ED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 20:38:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECC12C433B4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 20:39:01 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2EAF7610CB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 20:38:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2EAF7610CB
+	by mail.kernel.org (Postfix) with ESMTPS id 73E4C610CB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 20:39:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 73E4C610CB
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,66 +24,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
 	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=2ZVV3+xttQ40FLDXNZg0er4w3Z08umgRPr9+kvd6Dv4=; b=ZkOfBE0v9AHV5kXQMGulVGH4k
-	2K+f/B7BDHMvEJYPGdpOoN+rdBNV+o2GYEE54l7jJ5NY4Bq8Zo1Wur2aixyhsp973uyPJ/AFcj8ja
-	f808e0v/t1zt3XlvHiiMt5qGIOkW9NWEcZYDXRfIx3DHG/T8ZIlxAHUtsrJKAu0zoqGvmvufr1QbW
-	k0wpNfc/2iynnyLPQ6Rw6WpBUHmTW1ytuilGddXrvo6kYuYwh9RWyg8VtFpmUJKhA2Q6wolTY9Zao
-	WcZa9cw1blZK/RtwJEdHmT3A5367M3t0yqu0oeraF/Ehk2//QtldyD9w2YZhRniqDagc4qdQaDxeZ
-	RChHHQkIA==;
+	 bh=t7xotfjLWw1rHLB0iHXyVrgoGvVNTeQYqTB86VcdLxk=; b=Bfq5gJtliBDcMK+RW7FRiGwY8
+	d6wX/SbHOEP03BV6ruGFcu/wxjvDiwEWViVnI/5ofSTMbJBRZ1EKhbkPHmvu7C0QzBOC99g711kxA
+	shLDDJfWudMoQCvJniimcS9gNP8MeMesklo7zzbSb2p7oXiHIK5cBGPRcl4PlEdLre+tsI73PX7xn
+	nNbphxq/xSkr1T836wZT7DHYRtikdUUM4wU3cuSvfF8yXRE17U3ATBHwKqujH0obTitNZf4pvr7Z8
+	DzYA9EBqURlzyf9xXrrGLlI6D1XBSIcTuPAsszDDamvcvxDE40mO5c5+R4vXNT56zUijEMCwASbfv
+	E1rrDmCXw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lik0j-00G6T4-9H; Mon, 17 May 2021 20:38:45 +0000
+	id 1lik0q-00G6Uq-FY; Mon, 17 May 2021 20:38:52 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lijzf-00G69Q-Qq; Mon, 17 May 2021 20:37:46 +0000
+ id 1lijzg-00G69g-Bx; Mon, 17 May 2021 20:37:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
  MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
  :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=WyvXp9JIBkDb38VgDaE0Gu4BsKjCEQ64wDu6xyl4Vh0=; b=wWUp8EBqehXl0fOArlTtZjignw
- 5om3h2NNc+KYF/SquLAoJ+oZ+e4bt4xXwFL8UbFBfiJoSeUBbpF9QGu/vKodtaiZVioCh/tAuR+MY
- HS+WDeF2ckHEE65Dr4dMA9va4ThrVXpeT8mz/slpdEWbHFUPAZ79zQ2Bp9jJ2kVjEzXtfrLMm+LcJ
- MhZrqEthyAw+yB4Z2XlffHWNGgWT/um3pqLqb+sktAAZ4gyUsA7VF3OgWm60QFcS7dj358UyQ12e6
- 97QFq4v7t3IGQUENwB7uRtEZtTAOo9iuF/rOabebDcGbQtSpJrRgVAR/nK6ELtMlUjLweQgptQh7f
- 7nN3V4JA==;
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+ bh=JdlOUWCFrqhk74UvYiMcqHdWI1N1+oYHII4ZRq2kZ3Q=; b=MgbKy/Qi0z9IqKs93H/rSytLTn
+ h+NaCsbD58VyrY20RVmRWRda0hwaP7OjBZI821aX12wMwx2yk1twYCwkAjR98dosR4ARiDL012hnl
+ 5FT51tGcBu8YSxm1T+yQwtlLYoQoBN/3YqxTRuUOJgGTyTdC0LGn599Xn4amNQCNizvrYvWBLMC6R
+ gi3NbAPaUTO4t713aFUbfeyb3KlYLZCF5TGsyD5mRwB+d9h0zRNIx1dHz5+fE+aJTaaksDC4BJiAu
+ f42meDM1fLYDYcd83DTowxev2LV/gR62LO0PWTFLiUHVArQoVzsCZ/sQzchXYM92QOCqhRSq9f0qC
+ EQsIAT6Q==;
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lijzc-00E8bR-QQ; Mon, 17 May 2021 20:37:38 +0000
-Received: by mail-wm1-x331.google.com with SMTP id
- b19-20020a05600c06d3b029014258a636e8so299342wmn.2; 
- Mon, 17 May 2021 13:37:36 -0700 (PDT)
+ id 1lijzd-00E8c0-KD; Mon, 17 May 2021 20:37:39 +0000
+Received: by mail-wm1-x336.google.com with SMTP id
+ n17-20020a7bc5d10000b0290169edfadac9so272996wmk.1; 
+ Mon, 17 May 2021 13:37:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=WyvXp9JIBkDb38VgDaE0Gu4BsKjCEQ64wDu6xyl4Vh0=;
- b=DX84cj7xin3BlWyZgOKjH3yfQPEykMnICRJ+G0I6oNuOUNGPdz8KeChDbJlir7EMRP
- Uxdop8zZVE7Fill0n8PhWvG9CdYqUebfpq6jWxBAFxioA7pNcZcPEgNPfPfVPAbB6WdK
- xlx63HsBayRF/4MHi5nuUu+km9R1o4Isn7CKU3UfyXyT2w1pSeJ2gqo1zw7XKRy4ihOx
- e9HESr/2vFcM93lmUroLtAWN1AGEjVEkMQOIYaN3/cPtR2YLl4dLpmIcsreBhCz4Wyfd
- DxbXYK8UkYkXV8QfeaMLY/4qo+LyEeSsfMQjT0GCvPdT0+Ct0riMxTI/Y0O6z0z742Gj
- WU4A==
+ bh=JdlOUWCFrqhk74UvYiMcqHdWI1N1+oYHII4ZRq2kZ3Q=;
+ b=iGYBbJ7VV+sih5JcSVBhAw+WygMf8lzLPqsrC86lDfO6oZdOx7a8AdYoopCJYyhvOQ
+ 7VM0R4hkIWexulCPuRs5G41v6DhcisDIhFvO5wY5mO4iy5ZFgM2wAHmzLbJIjlVFdMRs
+ K8gas4JH270iFfnPW2id7L0eyizQl3gPfQ0R95gZc5aOKqPfziCTyJ6e4hhCWIFJ1iKP
+ 1cBuDoA6YvvMtU3s4N3IuPdOSXoFR7dAncB8QyfG7cFtYDQ8S12Mo7in+3ySv0fgOSad
+ VOBaglZ5ViFafsKgH1SGAlSl9rkV/J/9Ln2shol0Wx6uxgghiDW7KItMlGX/CMfHvvKZ
+ AfXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=WyvXp9JIBkDb38VgDaE0Gu4BsKjCEQ64wDu6xyl4Vh0=;
- b=hz4YE37r5YU4UxbMmPjeudh68SzpNoz+txj3OatYVyPTe1LfkruNR22iGxpJJCOA9s
- ZYcds7Azjvj8tdqGf0j4fLWsxH2nTKKzOL2xXsGO7d/+8KRFK//1dD482R8fBfU5bzDV
- 74p4QDD35OmptBwKmKCPjFlW7GvGONnB7YcyS5x7jEhUcZmJx9NWW9YQ+8Svx95s73JK
- ExBjEAX5z6u+dmfC2QAJZKtnx6Sy+UiruuGIMbpWSF1P/OooaPU2bXC2NNRhj1nqvMNd
- B0KiNJkaSAKv+dM9gdTz9H6YuCRC9KSs+9IexubzigrTGnSbmQfsrFQXLcr79gzxeoDq
- 7uxg==
-X-Gm-Message-State: AOAM531fcSokaSJlVlZHfVSf3AK6+KaQKZb0mpQIS1JwMjcQ7g+ZUN4U
- WM1ItOyJz9L3ZZ8hhlCLbjU=
-X-Google-Smtp-Source: ABdhPJyVPcoCkDKXCWePaIDmy/NoeGPDwPZ+hww3qa91Mk6i6IYJg+EBt5pMIkiGK8r+xrX0PfVEdg==
-X-Received: by 2002:a05:600c:3796:: with SMTP id
- o22mr840081wmr.139.1621283855411; 
- Mon, 17 May 2021 13:37:35 -0700 (PDT)
+ bh=JdlOUWCFrqhk74UvYiMcqHdWI1N1+oYHII4ZRq2kZ3Q=;
+ b=YNI9sNWH2xE7QGLIS9oU3HsbcV8UScX0xGV/i2OOcgdJ6AAREBQ2nzzXaAQLPYTgOr
+ +Ee/VZd7xiyubLmai8evc6H7OIk4alyM/Cpe/T3YhroioW3vBkUi61OVObIktKUWNjJW
+ RfaZTMrA6Se292U7TBZWxQBgzWKXJpYJO/lxWtMKGcRcjhWXzVQZBeTUP0w0U9x39Dwz
+ 1OFYQeuq+4xOornUT5ERGIK6O0FXe+IEa1Ts+aH36JYf3BPTu+eO8y4m8gb4YrMa/8MA
+ xAyvPATgVMdwtjROa2IpMddxPE6Qr81lSR1eK8rI5FzkcvBOvd8bCjJhlpf1Wcwc1P6f
+ xRnw==
+X-Gm-Message-State: AOAM53384xYmFx+nskVRv8hKhg+wIN3Lk8i8C8qaEWAhv//aGCTZNGkd
+ q4Tjv81st6PJ+7S6xtHJlgg=
+X-Google-Smtp-Source: ABdhPJyUym/2wMl+zRWG2tm3iJbsKFKDbcljcr3Vp0/EZQwKDXOiJPSAJif7+TfZO0XWr0cKN3EUuw==
+X-Received: by 2002:a7b:c346:: with SMTP id l6mr1351729wmj.109.1621283856162; 
+ Mon, 17 May 2021 13:37:36 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300f1371adf00428d5cfffeb99db8.dip0.t-ipconnect.de.
  [2003:f1:371a:df00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id p6sm3840448wma.4.2021.05.17.13.37.34
+ by smtp.googlemail.com with ESMTPSA id p6sm3840448wma.4.2021.05.17.13.37.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Mon, 17 May 2021 13:37:35 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
@@ -92,17 +91,17 @@ To: mturquette@baylibre.com, sboyd@kernel.org, narmstrong@baylibre.com,
 Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH RFC v1 2/3] clk: meson: regmap: switch to determine_rate for
- the dividers
-Date: Mon, 17 May 2021 22:37:23 +0200
-Message-Id: <20210517203724.1006254-3-martin.blumenstingl@googlemail.com>
+Subject: [PATCH RFC v1 3/3] clk: meson: pll: switch to determine_rate for the
+ PLL ops
+Date: Mon, 17 May 2021 22:37:24 +0200
+Message-Id: <20210517203724.1006254-4-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210517203724.1006254-1-martin.blumenstingl@googlemail.com>
 References: <20210517203724.1006254-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210517_133736_874640_3CA1024F 
-X-CRM114-Status: GOOD (  13.31  )
+X-CRM114-CacheID: sfid-20210517_133737_684173_228A93FF 
+X-CRM114-Status: GOOD (  15.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,65 +129,76 @@ higher frequencies on 32-bit systems.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/clk/meson/clk-regmap.c | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
+ drivers/clk/meson/clk-pll.c | 26 +++++++++++++++-----------
+ 1 file changed, 15 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
-index dcd1757cc5df..8ad8977cf1c2 100644
---- a/drivers/clk/meson/clk-regmap.c
-+++ b/drivers/clk/meson/clk-regmap.c
-@@ -75,8 +75,8 @@ static unsigned long clk_regmap_div_recalc_rate(struct clk_hw *hw,
- 				   div->width);
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 49f27fe53213..9e55617bc3b4 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -242,8 +242,8 @@ static int meson_clk_get_pll_settings(unsigned long rate,
+ 	return best ? 0 : -EINVAL;
  }
  
--static long clk_regmap_div_round_rate(struct clk_hw *hw, unsigned long rate,
--				      unsigned long *prate)
-+static int clk_regmap_div_determine_rate(struct clk_hw *hw,
-+					 struct clk_rate_request *req)
+-static long meson_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+-				     unsigned long *parent_rate)
++static int meson_clk_pll_determine_rate(struct clk_hw *hw,
++					struct clk_rate_request *req)
  {
  	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
-@@ -87,18 +87,17 @@ static long clk_regmap_div_round_rate(struct clk_hw *hw, unsigned long rate,
- 	if (div->flags & CLK_DIVIDER_READ_ONLY) {
- 		ret = regmap_read(clk->map, div->offset, &val);
- 		if (ret)
--			/* Gives a hint that something is wrong */
--			return 0;
-+			return ret;
+ 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+@@ -251,22 +251,26 @@ static long meson_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+ 	unsigned long round;
+ 	int ret;
  
- 		val >>= div->shift;
- 		val &= clk_div_mask(div->width);
+-	ret = meson_clk_get_pll_settings(rate, *parent_rate, &m, &n, pll);
++	ret = meson_clk_get_pll_settings(req->rate, req->best_parent_rate,
++					 &m, &n, pll);
+ 	if (ret)
+-		return meson_clk_pll_recalc_rate(hw, *parent_rate);
++		return ret;
  
--		return divider_ro_round_rate(hw, rate, prate, div->table,
--					     div->width, div->flags, val);
-+		return divider_ro_determine_rate(hw, req, div->table,
-+						 div->width, div->flags, val);
- 	}
+-	round = __pll_params_to_rate(*parent_rate, m, n, 0, pll);
++	round = __pll_params_to_rate(req->best_parent_rate, m, n, 0, pll);
  
--	return divider_round_rate(hw, rate, prate, div->table, div->width,
--				  div->flags);
-+	return divider_determine_rate(hw, req, div->table, div->width,
-+				      div->flags);
+-	if (!MESON_PARM_APPLICABLE(&pll->frac) || rate == round)
+-		return round;
++	if (!MESON_PARM_APPLICABLE(&pll->frac) || req->rate == round) {
++		req->rate = round;
++		return 0;
++	}
+ 
+ 	/*
+ 	 * The rate provided by the setting is not an exact match, let's
+ 	 * try to improve the result using the fractional parameter
+ 	 */
+-	frac = __pll_params_with_frac(rate, *parent_rate, m, n, pll);
++	frac = __pll_params_with_frac(req->rate, req->best_parent_rate, m, n, pll);
++	req->rate = __pll_params_to_rate(req->best_parent_rate, m, n, frac, pll);
+ 
+-	return __pll_params_to_rate(*parent_rate, m, n, frac, pll);
++	return 0;
  }
  
- static int clk_regmap_div_set_rate(struct clk_hw *hw, unsigned long rate,
-@@ -123,14 +122,14 @@ static int clk_regmap_div_set_rate(struct clk_hw *hw, unsigned long rate,
- 
- const struct clk_ops clk_regmap_divider_ops = {
- 	.recalc_rate = clk_regmap_div_recalc_rate,
--	.round_rate = clk_regmap_div_round_rate,
-+	.determine_rate = clk_regmap_div_determine_rate,
- 	.set_rate = clk_regmap_div_set_rate,
- };
- EXPORT_SYMBOL_GPL(clk_regmap_divider_ops);
- 
- const struct clk_ops clk_regmap_divider_ro_ops = {
- 	.recalc_rate = clk_regmap_div_recalc_rate,
--	.round_rate = clk_regmap_div_round_rate,
-+	.determine_rate = clk_regmap_div_determine_rate,
- };
- EXPORT_SYMBOL_GPL(clk_regmap_divider_ro_ops);
- 
+ static int meson_clk_pll_wait_lock(struct clk_hw *hw)
+@@ -419,7 +423,7 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+  */
+ const struct clk_ops meson_clk_pcie_pll_ops = {
+ 	.recalc_rate	= meson_clk_pll_recalc_rate,
+-	.round_rate	= meson_clk_pll_round_rate,
++	.determine_rate	= meson_clk_pll_determine_rate,
+ 	.is_enabled	= meson_clk_pll_is_enabled,
+ 	.enable		= meson_clk_pcie_pll_enable,
+ 	.disable	= meson_clk_pll_disable
+@@ -429,7 +433,7 @@ EXPORT_SYMBOL_GPL(meson_clk_pcie_pll_ops);
+ const struct clk_ops meson_clk_pll_ops = {
+ 	.init		= meson_clk_pll_init,
+ 	.recalc_rate	= meson_clk_pll_recalc_rate,
+-	.round_rate	= meson_clk_pll_round_rate,
++	.determine_rate	= meson_clk_pll_determine_rate,
+ 	.set_rate	= meson_clk_pll_set_rate,
+ 	.is_enabled	= meson_clk_pll_is_enabled,
+ 	.enable		= meson_clk_pll_enable,
 -- 
 2.31.1
 
