@@ -2,20 +2,20 @@ Return-Path: <SRS0=PyQ3=KM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84142C433B4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 20:22:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7FF9C433ED
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 20:37:56 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 07408610A1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 20:22:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 07408610A1
+	by mail.kernel.org (Postfix) with ESMTPS id 4B7F1610CB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 20:37:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4B7F1610CB
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,81 +24,82 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=JK/Dy7MN70ZBK4WJDeyyjsABce8l7YWTs6KNL9urY5A=; b=EHT2VHJZ0mR+6sQNjOcdaH2V/c
-	ox37pXp7OCYRZyCIkRrFwHLAiIEFmMAT//wuLy64nkoLzWxcr+yF+2yB6dvVmgH8cA5an1ctxX1FW
-	Khumte8EG+XSnnvEMLpaCCEy7FQdD0+bc52VIRIpPoTxg9CzOS0TCGigrHzDHO8eGeJJ8N3QzbzSN
-	e5AMTeFEDuKz0IVHUwvBFtAK9dUHCk4zLJpw0fC1RkXewmZ737xfbkfgTRvulciHXujxnzGj9RB7W
-	NyhTnvdod/g9awRP1KdH4uxFiu1ALNIXqOdrpKR/Ju3oKIAOK4UWzLczciu69PEUGmgE7JyaX8ao3
-	584mtUJg==;
+	bh=IqeJILJ+hBL6dpUGYfJiIm5UQy7P6qtgj6ltUjEYxYo=; b=M60FLR3Stc1TYfHCnngv0nOZeG
+	NAo+dcEhu0FyDrKITD7EL4YtomkGFYRzHb495PmRxc1oR1/0913VGZ7kCEFUBUoPgHMpCOLwb3hkm
+	iWPY8kngXg+2uFp+xpxg5FLpJQhFa+YIOjKxqr8d5uhdn611+1V/O1GWxW4rkQhwbEx2EA/maqr6d
+	xaO89ThDK0iWuZoDDsoQTpTgvDCB5Fj5F604Z6BY7LdmH+eRksvEox0GVQ91bv5u7dd+r135aFBYW
+	+Ts48wWZVvBWKTGiykh7M5IWmFMQQ998TVm0Gn0U6E3xUxdpjJFYiieWzZLPxf8HxTltZPwAnDh9c
+	xHIBnyQQ==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lijkr-00G368-Uw; Mon, 17 May 2021 20:22:22 +0000
+	id 1lijzp-00G6Av-Ir; Mon, 17 May 2021 20:37:49 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lijkd-00G34p-9Z; Mon, 17 May 2021 20:22:09 +0000
+ id 1lijzd-00G68X-JE; Mon, 17 May 2021 20:37:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
  MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:In-Reply-To:References;
- bh=z220BesNCBDXACL2kstOoMgF4dcNonJNXvdvzRxIldk=; b=ZjZ+J+6URFA68logrSvu4r4c52
- MbF2vrEaNCfMUa4jDEehLrVQIMcpwPk6saNmPCwxJY0b0PTVwdh4/rcnVVl6y9lDkwABu753Eda39
- LoyVrZoyQ2gEpWZQyV1/4vRMvRU+sELu2ZwqMHCL9QKSQ5XhPhWDZASJk8S5WNS6tieeKWxwTC6jb
- EBJL4Vi64hu3gbZ5O6evZRhpVmhf7CBYIFrO33bGy1IJvvRmBJdMGrmsigXa5hIAqx0bGHItcqFAg
- sMPMpFJ2Oc3bIC/mTY5WN4amEQYR/Iui/0UDg4i/SID15VOMjPRy/kCAdqwI2J21B3IjXFaq8Jx4f
- sUPjcysA==;
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+ bh=+YZN/nHJaoReN5vhe533pLv6vKy4vqgUNAkyLEs9sLo=; b=OnJJoPi8IDgr6GiHo7NgzxSiKt
+ hbWS5OPHao1aXcMBHj+wIX8us/gwZjVr5AndO+Qr/bpYIEzxwLJBKhUiyO5GPRKsST5a5cyqPnA8M
+ RLI02dZvRmM5pS48EVrx4Wk6F4KYR0wAvrhNdeTiROAeFqUvDtMeDulci3zIsHiN0uWl5sHWLoBZC
+ 7Xwm0Ct+v6RSyEgRbjWGDajHT9BzZIDR7y029uWHH8qzw8O7HDD27hbMXNiTsOQHkJvXW2gC218NN
+ zP3LT3BhlhUl/BYEr9ZLZrJnqIe209PrxEotarQhoPTVOcOFo6guwtnDEb8m3JMNl0Fbhcd6KRCcE
+ uf8VZrMg==;
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lijka-00E7um-Da; Mon, 17 May 2021 20:22:06 +0000
-Received: by mail-wr1-x431.google.com with SMTP id c14so5953648wrx.3;
- Mon, 17 May 2021 13:22:03 -0700 (PDT)
+ id 1lijzb-00E8au-25; Mon, 17 May 2021 20:37:36 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id
+ f75-20020a1c1f4e0000b0290171001e7329so297740wmf.1; 
+ Mon, 17 May 2021 13:37:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=z220BesNCBDXACL2kstOoMgF4dcNonJNXvdvzRxIldk=;
- b=dcsJesrjVYOJH/ZBeTAbkzGH0EaJtCj3qzMVDUxk4/s8RpLJtUBfMGkb2Sw/fZ66M6
- 1LDqZ/0ovDBLYPEcHGXX6AAsQyJkmePgM3YMON5Nfg49bqp0qquUEEaMYoEkPpEnNqBi
- uijhFKTOe9VRwvj4oTBBg1jaYC4XpfxiE33kEOFm8bUFbFndrUU0l6MHChfTyLePGcw7
- yHTBckmGsEKWLreABr2KbJ/7WY2kY8C0NKU3cukrP3/JUBepxQlbU4hBUjzef4e0uUs/
- JjADlGpzkSHMpnEbKy/RjRCa8WGXBnvq0LnUvaEMgIObEbz8r3DbUtjNBiY1t1O6RXYI
- fm4w==
+ bh=+YZN/nHJaoReN5vhe533pLv6vKy4vqgUNAkyLEs9sLo=;
+ b=jjenZUqlCFz/sLLao6aG/itHV1VYOXxPhhc7xgDn6CX7UYKhbwzM730BGr+DKogXVi
+ nVUR5DrJG2P8I7jnUEz4sfy5Xj/RKiKhjzgCVWVsgRR3BgYZGtlkLcU9KM7oqsghabYn
+ 2uNGzBUUXHVkw14oyw6EwBZFG42oy7VgqkZ6BJMSmrfY974jFcoTMah8TDycfhiispfc
+ cbGDPiT5PoE5toQprnMBu8NBI3Hy6XvBque87467+VIzZ45zmLqRXIk3byBZed9zhMJf
+ yNsD7MdX2ocZYEvPoh/xGtE5B5NHtkp3OXu8a7yIqBL4CImTgaWpbxkHTsOZJJJ4Qs3q
+ Ke9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=z220BesNCBDXACL2kstOoMgF4dcNonJNXvdvzRxIldk=;
- b=dDI5iBdWzRkNlR2RcD0Ah50K6jn+GcB3wLZ/PzdCKQodK2Zovte42vtNzt/qt3MUms
- uVrTHp9a8OxjBYoYEPOhvR1MOl9Tvf83lw8M7NuHYJ2jjgc3Vb/6hWjGtpZg1MZpSPcZ
- 9uVpkKIWlaokppN1j2LekvrdlsPl5kDQkuwnAmMhVe3sdnKHWJgYKfAH8zl+fREh4qVv
- 3fv8FesFHC1zDxITtB6wBjp79Ds1F4KIDqkCtlrlfDjyUBfp9tobjtqQnyDUr+DT/0Ar
- GkqjNoAGz0h+JazVebugW1d88MF2o/nSCcMCf4VEPwpvN6DYzU46Ykl6VDSv2o5fMx+/
- AmFg==
-X-Gm-Message-State: AOAM532MImCsOirge1jmgfYa1+75eCDVNoE/MsNky/HTAsKq6//n6Rff
- oe15UpHrhVLvjvvbOujCxrU=
-X-Google-Smtp-Source: ABdhPJzeVNfSBJj8jrPvCmB6fLPbJKVTbzhHlj5S9xagPYBgolSxtx6+tSRulJyXLisr1p+0BQRxrA==
-X-Received: by 2002:a5d:63c4:: with SMTP id c4mr1707262wrw.287.1621282921926; 
- Mon, 17 May 2021 13:22:01 -0700 (PDT)
+ bh=+YZN/nHJaoReN5vhe533pLv6vKy4vqgUNAkyLEs9sLo=;
+ b=lhXGdSkAGqczzu7tohpWx2mKJqxuqKrx0LraChjmMfkuA7d+EdeMI7kPNU9UbXrbWE
+ 9N9zWNYUGwtEvAmEiXUHQJUMlyTnwp7csHEy4VsA92c0MRtzaJE7n5isVRc7dB9V34sP
+ mxStVh5Z08EkJLD2TvMTwDAW6KMSADO1NhGArGOS7wByhlLAYRHSSRjzAsWi2Em8D3Cz
+ /JU8LvHjTiJbM+Bbm4RTABP438q5lXJN01N+TBZj5qR6Q2OpYAp8wOUocf/cxD1mHIiR
+ mjDg4rDVV1+kDxsp/rrVtQj+4F0OEWJcnoyfNYXPAZtie6hNNmeGGS+lAUM7bny1e8bY
+ 1lwA==
+X-Gm-Message-State: AOAM533ZZDrI+8+rze5f4HFiqrmIkT902n4OXHZutPrkM3JRWPpfwJUx
+ 7epRdmqykXG6KBta1wWA+FwMCphJaak=
+X-Google-Smtp-Source: ABdhPJy6FKIWz8G7P++u7Qjzv7lGUSLH6Lp6ETi9oO7cHcCRGve9UsOhcCp/PIlvDnjG3uwp9T9BiA==
+X-Received: by 2002:a05:600c:354b:: with SMTP id
+ i11mr1360944wmq.102.1621283853624; 
+ Mon, 17 May 2021 13:37:33 -0700 (PDT)
 Received: from localhost.localdomain
  (p200300f1371adf00428d5cfffeb99db8.dip0.t-ipconnect.de.
  [2003:f1:371a:df00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id f4sm19190387wrz.33.2021.05.17.13.22.00
+ by smtp.googlemail.com with ESMTPSA id p6sm3840448wma.4.2021.05.17.13.37.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 17 May 2021 13:22:01 -0700 (PDT)
+ Mon, 17 May 2021 13:37:33 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: narmstrong@baylibre.com, khilman@baylibre.com,
- linux-amlogic@lists.infradead.org
-Cc: jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
+To: mturquette@baylibre.com, sboyd@kernel.org, narmstrong@baylibre.com,
+ jbrunet@baylibre.com, linux-clk@vger.kernel.org
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH] soc: amlogic: meson-ee-pwrc: Rename "get_power" to
- "is_powered_off"
-Date: Mon, 17 May 2021 22:21:15 +0200
-Message-Id: <20210517202115.1004065-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH RFC v1 0/3] clk: meson: rounding for fast clocks on 32-bit SoCs
+Date: Mon, 17 May 2021 22:37:21 +0200
+Message-Id: <20210517203724.1006254-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210517_132204_498777_42CC9B0E 
-X-CRM114-Status: GOOD (  18.53  )
+X-CRM114-CacheID: sfid-20210517_133735_124756_A9B6ECC6 
+X-CRM114-Status: GOOD (  11.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,170 +116,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The name "get_power" is used within the Meson EE power controller driver
-to indicate whether a power domain is turned on or off. With the
-original "get_power" naming the result was:
-- true = powered off
-- false = powered on
+On the 32-bit Amlogic Meson8/8b/8m2 SoCs we run into a problem with the
+fast HDMI PLL and it's OD (post-dividers). This clock tree can run at
+up to approx. 3GHz.
+This however causes a problem, because these rates require BIT(31) to
+be usable. Unfortunately this is not the case with clk_ops.round_rate
+on 32-bit systems. BIT(31) is reserved for the sign (+ or -).
 
-Rename "get_power" to "is_powered_off" to make the naming consistent
-with the third argument to pm_genpd_init. Also this naming is easier to
-understand when reading the code without looking at the implementation
-of "get_power".
+clk_ops.determine_rate does not suffer from this limitation. It uses
+an int to signal any errors and can then take all availble 32 bits for
+the clock rate.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/soc/amlogic/meson-ee-pwrc.c | 46 ++++++++++++++---------------
- 1 file changed, 23 insertions(+), 23 deletions(-)
+I am sending this as RFC to start a discussion whether:
+- this is a good way to solve it?
+- what are the alternatives?
+- getting some feedback on areas that need to be improved
 
-diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-index 50bf5d2b828b..2be3afe6c2e3 100644
---- a/drivers/soc/amlogic/meson-ee-pwrc.c
-+++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-@@ -68,7 +68,7 @@ struct meson_ee_pwrc_domain_desc {
- 	struct meson_ee_pwrc_top_domain *top_pd;
- 	unsigned int mem_pd_count;
- 	struct meson_ee_pwrc_mem_domain *mem_pd;
--	bool (*get_power)(struct meson_ee_pwrc_domain *pwrc_domain);
-+	bool (*is_powered_off)(struct meson_ee_pwrc_domain *pwrc_domain);
- };
- 
- struct meson_ee_pwrc_domain_data {
-@@ -217,7 +217,7 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
- 	{ HHI_AUDIO_MEM_PD_REG0, GENMASK(27, 26) },
- };
- 
--#define VPU_PD(__name, __top_pd, __mem, __get_power, __resets, __clks)	\
-+#define VPU_PD(__name, __top_pd, __mem, __is_pwr_off, __resets, __clks)	\
- 	{								\
- 		.name = __name,						\
- 		.reset_names_count = __resets,				\
-@@ -225,46 +225,46 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
- 		.top_pd = __top_pd,					\
- 		.mem_pd_count = ARRAY_SIZE(__mem),			\
- 		.mem_pd = __mem,					\
--		.get_power = __get_power,				\
-+		.is_powered_off = __is_pwr_off,				\
- 	}
- 
--#define TOP_PD(__name, __top_pd, __mem, __get_power)			\
-+#define TOP_PD(__name, __top_pd, __mem, __is_pwr_off)			\
- 	{								\
- 		.name = __name,						\
- 		.top_pd = __top_pd,					\
- 		.mem_pd_count = ARRAY_SIZE(__mem),			\
- 		.mem_pd = __mem,					\
--		.get_power = __get_power,				\
-+		.is_powered_off = __is_pwr_off,				\
- 	}
- 
- #define MEM_PD(__name, __mem)						\
- 	TOP_PD(__name, NULL, __mem, NULL)
- 
--static bool pwrc_ee_get_power(struct meson_ee_pwrc_domain *pwrc_domain);
-+static bool pwrc_ee_is_powered_off(struct meson_ee_pwrc_domain *pwrc_domain);
- 
- static struct meson_ee_pwrc_domain_desc axg_pwrc_domains[] = {
- 	[PWRC_AXG_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, axg_pwrc_mem_vpu,
--				     pwrc_ee_get_power, 5, 2),
-+				     pwrc_ee_is_powered_off, 5, 2),
- 	[PWRC_AXG_ETHERNET_MEM_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
- 	[PWRC_AXG_AUDIO_ID] = MEM_PD("AUDIO", axg_pwrc_mem_audio),
- };
- 
- static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
- 	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, g12a_pwrc_mem_vpu,
--				     pwrc_ee_get_power, 11, 2),
-+				     pwrc_ee_is_powered_off, 11, 2),
- 	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
- };
- 
- static struct meson_ee_pwrc_domain_desc gxbb_pwrc_domains[] = {
- 	[PWRC_GXBB_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, gxbb_pwrc_mem_vpu,
--				     pwrc_ee_get_power, 12, 2),
-+				     pwrc_ee_is_powered_off, 12, 2),
- 	[PWRC_GXBB_ETHERNET_MEM_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
- };
- 
- static struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
- 	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
--				       meson8_pwrc_mem_vpu, pwrc_ee_get_power,
--				       0, 1),
-+				       meson8_pwrc_mem_vpu,
-+				       pwrc_ee_is_powered_off, 0, 1),
- 	[PWRC_MESON8_ETHERNET_MEM_ID] = MEM_PD("ETHERNET_MEM",
- 					       meson_pwrc_mem_eth),
- 	[PWRC_MESON8_AUDIO_DSP_MEM_ID] = MEM_PD("AUDIO_DSP_MEM",
-@@ -273,8 +273,8 @@ static struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
- 
- static struct meson_ee_pwrc_domain_desc meson8b_pwrc_domains[] = {
- 	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
--				       meson8_pwrc_mem_vpu, pwrc_ee_get_power,
--				       11, 1),
-+				       meson8_pwrc_mem_vpu,
-+				       pwrc_ee_is_powered_off, 11, 1),
- 	[PWRC_MESON8_ETHERNET_MEM_ID] = MEM_PD("ETHERNET_MEM",
- 					       meson_pwrc_mem_eth),
- 	[PWRC_MESON8_AUDIO_DSP_MEM_ID] = MEM_PD("AUDIO_DSP_MEM",
-@@ -283,15 +283,15 @@ static struct meson_ee_pwrc_domain_desc meson8b_pwrc_domains[] = {
- 
- static struct meson_ee_pwrc_domain_desc sm1_pwrc_domains[] = {
- 	[PWRC_SM1_VPU_ID]  = VPU_PD("VPU", &sm1_pwrc_vpu, sm1_pwrc_mem_vpu,
--				    pwrc_ee_get_power, 11, 2),
-+				    pwrc_ee_is_powered_off, 11, 2),
- 	[PWRC_SM1_NNA_ID]  = TOP_PD("NNA", &sm1_pwrc_nna, sm1_pwrc_mem_nna,
--				    pwrc_ee_get_power),
-+				    pwrc_ee_is_powered_off),
- 	[PWRC_SM1_USB_ID]  = TOP_PD("USB", &sm1_pwrc_usb, sm1_pwrc_mem_usb,
--				    pwrc_ee_get_power),
-+				    pwrc_ee_is_powered_off),
- 	[PWRC_SM1_PCIE_ID] = TOP_PD("PCI", &sm1_pwrc_pci, sm1_pwrc_mem_pcie,
--				    pwrc_ee_get_power),
-+				    pwrc_ee_is_powered_off),
- 	[PWRC_SM1_GE2D_ID] = TOP_PD("GE2D", &sm1_pwrc_ge2d, sm1_pwrc_mem_ge2d,
--				    pwrc_ee_get_power),
-+				    pwrc_ee_is_powered_off),
- 	[PWRC_SM1_AUDIO_ID] = MEM_PD("AUDIO", sm1_pwrc_mem_audio),
- 	[PWRC_SM1_ETH_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
- };
-@@ -314,7 +314,7 @@ struct meson_ee_pwrc {
- 	struct genpd_onecell_data xlate;
- };
- 
--static bool pwrc_ee_get_power(struct meson_ee_pwrc_domain *pwrc_domain)
-+static bool pwrc_ee_is_powered_off(struct meson_ee_pwrc_domain *pwrc_domain)
- {
- 	u32 reg;
- 
-@@ -445,7 +445,7 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
-          * we need to power the domain off, otherwise the internal clocks
-          * prepare/enable counters won't be in sync.
-          */
--	if (dom->num_clks && dom->desc.get_power && !dom->desc.get_power(dom)) {
-+	if (dom->num_clks && dom->desc.is_powered_off && !dom->desc.is_powered_off(dom)) {
- 		ret = clk_bulk_prepare_enable(dom->num_clks, dom->clks);
- 		if (ret)
- 			return ret;
-@@ -456,8 +456,8 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
- 			return ret;
- 	} else {
- 		ret = pm_genpd_init(&dom->base, NULL,
--				    (dom->desc.get_power ?
--				     dom->desc.get_power(dom) : true));
-+				    (dom->desc.is_powered_off ?
-+				     dom->desc.is_powered_off(dom) : true));
- 		if (ret)
- 			return ret;
- 	}
-@@ -536,7 +536,7 @@ static void meson_ee_pwrc_shutdown(struct platform_device *pdev)
- 	for (i = 0 ; i < pwrc->xlate.num_domains ; ++i) {
- 		struct meson_ee_pwrc_domain *dom = &pwrc->domains[i];
- 
--		if (dom->desc.get_power && !dom->desc.get_power(dom))
-+		if (dom->desc.is_powered_off && !dom->desc.is_powered_off(dom))
- 			meson_ee_pwrc_off(&dom->base);
- 	}
- }
+
+As always: any feedback is welcome!
+
+
+Thank you!
+Martin
+
+
+Martin Blumenstingl (3):
+  clk: divider: Add re-usable determine_rate implementations
+  clk: meson: regmap: switch to determine_rate for the dividers
+  clk: meson: pll: switch to determine_rate for the PLL ops
+
+ drivers/clk/clk-divider.c      | 39 +++++++++++++++++++++++++++++++++-
+ drivers/clk/meson/clk-pll.c    | 26 +++++++++++++----------
+ drivers/clk/meson/clk-regmap.c | 19 ++++++++---------
+ include/linux/clk-provider.h   |  6 ++++++
+ 4 files changed, 68 insertions(+), 22 deletions(-)
+
 -- 
 2.31.1
 
