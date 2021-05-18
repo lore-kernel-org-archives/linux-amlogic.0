@@ -1,95 +1,99 @@
-Return-Path: <SRS0=PyQ3=KM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=WrmZ=KN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E65D2C433B4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 21:09:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A99FC433ED
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 May 2021 01:30:09 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5E0CE611CC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 May 2021 21:09:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E0CE611CC
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 6180661396
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 May 2021 01:30:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6180661396
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=rtA96jMRjsYYF3DOEYflTX8kCa+kwuo+FVFTa4ZEsWo=; b=hh6EdyRmIq72nFCeFVUKJj162
-	x0OoW2HDo3p+K/7+eeue+5L/fc5cNwvrTnsfuQPEG17KDTpR0hcoG/ZY02wOZBLCIdnkTjpF+8ibB
-	rIMqezBslSHG6smsGBx7AruChW2JHOH+AuZMWEgwrfMUbJIEPGfhOzaQsmaGIcZEUSidY8RIHdAdf
-	6WYoxc0KsQdx6RNEcO6Ove0ZRJ3VnAH7qhKVVRPEqHUtKC1l0Mch6jf4tZO74og91zyE3ji/W0wC6
-	k8TZ/6JPr/9dC9OiOsLMfp6+8fatptbSzPInyYFPlkDxLn636CpOzssNHhTeZGT2iD9ohxTWxjWxg
-	cflX/u/Yw==;
+	 bh=R3h8uRfL4D3P88mPXZq+mTMtDFWcgz6i64ij997RBVY=; b=Ad5TU8WVmVevRHcQrmREwxkDR
+	7iOBqONn4TCpnMYzIQ3trlKepWHyzgpAAuHd6C8PwieBy/d6lru/YPxLrF9Ny9fay2pa5SMC78iUP
+	tsT7NDm7K6kQLziUUxSflgFNBYOGLTnyMkiYhPcbxMq+WVNQi8TT2R7ygn+u3QLEPGX8GbWo4LKJH
+	WaZYrn62q1IjmAeF67zGAwQA0fPHk29TBia71WZJJuiz9RtiNuDn5YzhyFnNkzECwPyW+mWSozD2A
+	wcXqE4RqShsFulb4UYVYpJ+TInnshfCiCi3+xdtm2KeHXCXy/Xq/EDezxgLS5+4vgobICdmlewPKy
+	5FRvepMwQ==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1likUg-00GAvS-VO; Mon, 17 May 2021 21:09:43 +0000
+	id 1lioYa-00Gd54-Ia; Tue, 18 May 2021 01:30:00 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1likUf-00GAv7-0K; Mon, 17 May 2021 21:09:41 +0000
+ id 1lioYL-00Gd37-79; Tue, 18 May 2021 01:29:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Type:Cc:To:Subject:Message-ID
- :Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=izAuyhZgm7M/LMe4a4qNJpvf8wOXCKgLwis8wN2PCow=; b=JQdoKzoM8+cEAZcRI0tYgVLRwT
- r3ljRFFWWxl4cA8bPtGIRy17X5Wo3IVt9pJDabDk/fXYpFI4xERKfhLI+IG197b7EPUgCenmCd20O
- Bok41yJvYdVr1WuL7/fPLgFyZfI4tnObVAYz8BOxJcFPm26dsHE94BxZJ6/0dW9tYGD4yjp+rOnf2
- 40Wyjk5Uw3r1Qb8oKGOQKTzF3WuZ8qf4b2/QAoJiz3gXG+Ewy5yjiA+n8oardNbmU+NSQzgS97y/N
- lfbMDCwaZnYchkERMQcukNFDMHXwFsJZjnAeIXwlYO2jfvLvBa1Xd0Gh6DEaxa4pm1gwki6IKkrYD
- sLne1hfQ==;
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+ bh=mtEq8j55mxGIhLsxC+0Tt9kquORYhapeNt/w6anQQt4=; b=V438+BychtSNOmHO+7m0OZokx4
+ I+okaxLU2JlINzxzwcCCGAvwCWGcXkdDXO1ntQfrkxLoVC9dQbHfP2dPqUsDDDwE2o17tvB9VVbDU
+ rdAdBoM8V8taOTBDH1gd75myTpJ8Id1Br8KT6Dl03lpZ8GT91k80Pjfj87Z5HG0XulaTE1u5TH9G5
+ Q0Vq8dO7AoQYRFbIsTZklhNlTp6IOxXNO3tPZdMPfkkvMjjeolEa+bke00QLE1PpZKfkkc0BW90RD
+ 6rbx8fV83V7ACJBufD1eM09p6jU6VauuB4h3pYWICpHmlZ2bsd1fGtHPMK7FOqUXAuXncsfyaqdsr
+ K7ASxqNA==;
+Received: from mail-ot1-f46.google.com ([209.85.210.46])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1likUX-00E9WF-CV; Mon, 17 May 2021 21:09:39 +0000
-Received: by mail-ed1-x535.google.com with SMTP id a25so8519238edr.12;
- Mon, 17 May 2021 14:09:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=izAuyhZgm7M/LMe4a4qNJpvf8wOXCKgLwis8wN2PCow=;
- b=qokmphszxncEkEwLLKRpmfR+sWPFtUvkOFh36bA/z2mgpVVLi0XLHMB7fwOs+qzXHH
- wwB2HurVgT/bgXVQico2LlB2+rfXbuNYGwx0k6xRdWUOn3eWc/vzEOONO2ZiRuU1Uk5B
- E5YeCzyK36YLztIs7Bs2hUJtczxUqiIsZojRlO9+kb7Ff8dmJlVpkV86Wi9RWQ1W2eO/
- teCYQXUkeqNNnJkLfueImXQ7JakkP2ct++215MGXnx3jc7s/PkwLQ2sfJ5TWvNWHAh2V
- ce5n60SqHuGUsX1L3i7ghCeALOCftFUnIckNnMrG/mGaIdZ9W6RyB0IbrDUeLUBiMyb5
- 7sGw==
+ id 1lioYI-00EFst-Rb; Tue, 18 May 2021 01:29:44 +0000
+Received: by mail-ot1-f46.google.com with SMTP id
+ v19-20020a0568301413b0290304f00e3d88so7271790otp.4; 
+ Mon, 17 May 2021 18:29:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=izAuyhZgm7M/LMe4a4qNJpvf8wOXCKgLwis8wN2PCow=;
- b=iIs6UuHdP2iYkmpaQ28oCZ4Awgrc6PJoPJM48oZ+yUddLU0o7shj+mW/wF8jnkK20M
- aSJwQsc1tPsZ/nWm2J4YKTvcLSeyk82Tqc6L020pJ/RAxaUoUQNpDvf36btJZYybeZdd
- 9XxDx2mN3h116kBYLcFHTdtRk3D7OPf/DQpL20swaW1CDqmsggeflZ514tksn8ncGlvD
- bIiMxURTRTsUU5SHeb38QqhxwLIl/KcvjuobOPWO/iBU1zG+PrO2QhKWUvxks+gWrG9O
- 5jAoqp772RIpsukzjZfAUCSGdscnhcQVUDPx+Hs4Yg35CxmvPkmL6g5YvobmDsBiArvO
- 0gRA==
-X-Gm-Message-State: AOAM530hNpLnleSkp4uP/nbjj+PUsqEGdxq/blk2VfgUgzxP+rXGzmgK
- RHG2TFkXq98gRGgD9H9/yZda+n5IpGAert4l9ApryPJH1C8=
-X-Google-Smtp-Source: ABdhPJzetaOKwgsJMpGG5I6YoXfc4AXmndEhL5lAvZ9Kv75v9gi/ooE1y7jV9ziP2bIPt8CWDytMHmcTTtdOVr/EB64=
-X-Received: by 2002:aa7:da8e:: with SMTP id q14mr2425271eds.13.1621285770621; 
- Mon, 17 May 2021 14:09:30 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=mtEq8j55mxGIhLsxC+0Tt9kquORYhapeNt/w6anQQt4=;
+ b=EmfYMwjBZy0yd1d1Za0lHzrO8NMsTsW32gkrNOaeYbZNsE9oNV2d/afmG003uMfHVE
+ gyA1BcEXA0bpnD/blKxeGvbPu+W67GbBfFUp+tPdatMQyXCt+71ogc06y4StEphz3sax
+ dGvXVw1G9oTzjxhROtYAbFV588ioSzor91/q/QdN016L6a7a+r5VHpVLCjsyH+f/D8xC
+ 0mauR+9i3/u+kXte+sR1ROg53GxIcZhwznZGQI409B51cgQuCnt/pRstqouCvbIRc0y3
+ xGPnWP1VzZOroyyztxF3hbXvahyC4dl5C8Bt3/bE+l30gVMY/8960s5NFRJfpo6oTfte
+ wVrA==
+X-Gm-Message-State: AOAM533mJXOZTtKKVde23iAuhG+3r81k0OwBAZ+PBHWCQ60NyEnNKcbX
+ VJPMm2GWTJexc4SfI73MTA==
+X-Google-Smtp-Source: ABdhPJyaIl7Zp0SviQyZPzJ4iROXA8Xzg41TCNtFf1ajSkMLSoWadKPjaKwFMNBk0DrG19v5b3+zXw==
+X-Received: by 2002:a05:6830:1196:: with SMTP id
+ u22mr2046404otq.247.1621301381876; 
+ Mon, 17 May 2021 18:29:41 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id i2sm3447330oto.66.2021.05.17.18.29.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 17 May 2021 18:29:41 -0700 (PDT)
+Received: (nullmailer pid 3603772 invoked by uid 1000);
+ Tue, 18 May 2021 01:29:40 -0000
+Date: Mon, 17 May 2021 20:29:40 -0500
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, martin.blumenstingl@googlemail.com,
+ jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: arm: amlogic: add Banana PI M5
+ bindings
+Message-ID: <20210518012940.GA3603721@robh.at.kernel.org>
+References: <20210514143255.3352774-1-narmstrong@baylibre.com>
+ <20210514143255.3352774-3-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <40ca11f84b7cdbfb9ad2ddd480cb204a@agner.ch>
-In-Reply-To: <40ca11f84b7cdbfb9ad2ddd480cb204a@agner.ch>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 17 May 2021 23:09:19 +0200
-Message-ID: <CAFBinCA50H55e2FMKgLtH-+2huReBgm_ckOW9BNcXA1WJwvvBQ@mail.gmail.com>
-Subject: Re: Random reboots on ODROID-N2+
-To: Stefan Agner <stefan@agner.ch>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <20210514143255.3352774-3-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210517_140933_490666_1B78D205 
-X-CRM114-Status: GOOD (  15.64  )
+X-CRM114-CacheID: sfid-20210517_182942_910189_0AD11AFC 
+X-CRM114-Status: UNSURE (   8.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,64 +110,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Stefan,
+On Fri, 14 May 2021 16:32:54 +0200, Neil Armstrong wrote:
+> Add bindings for the Banana PI M5 board.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-On Mon, May 17, 2021 at 11:14 AM Stefan Agner <stefan@agner.ch> wrote:
->
-> Hi,
->
-> We are currently testing a new release using Linux 5.10.33. I've
-> received since several reports of random reboots every couple of days.
-> Unfortunately the log (journald) doesn't show anything, just a hard cut
-> at some point.
-I'm sorry to hear that some things are not working right
-
-[...]
-> [202983.988187] Hardware name: Hardkernel ODROID-N2Plus (DT)
-> [202983.988188] Call trace:
-> [202983.988188]  dump_backtrace+0x0/0x1a0
-> [202983.988189]  show_stack+0x18/0x70
-> [202983.988190]  dump_stack+0xd0/0x12c
-> [202983.988190]  panic+0x170/0x338
-> [202983.988191]  nmi_panic+0x8c/0x90
-> [202983.988191]  arm64_serror_panic+0x78/0x84
-> [202983.988192]  do_serror+0x38/0xa0
-> [202983.988193]  el1_error+0x88/0x108
-> [202983.988193]  udp_send_skb.isra.0+0x178/0x390
-> [202983.988194]  udp_sendmsg+0x7c8/0x9c0
-> [202983.988194]  inet_sendmsg+0x44/0x70
-> [202983.988195]  sock_sendmsg+0x4c/0x60
-> [202983.988196]  __sys_sendto+0xd0/0x140
-> [202983.988196]  __arm64_sys_sendto+0x28/0x40
-> [202983.988197]  el0_svc_common.constprop.0+0x78/0x1a0
-> [202983.988197]  do_el0_svc+0x24/0x90
-> [202983.988198]  el0_svc+0x14/0x20
-> [202983.988199]  el0_sync_handler+0xb0/0xc0
-> [202983.988199]  el0_sync+0x178/0x180
-> [202983.988211] SMP: stopping secondary CPUs
-> [202983.988212] Kernel Offset: disabled
-> [202983.988212] CPU features: 0x0240002,61082004
-> [202983.988213] Memory Limit: none
-that looks weird
-
-> Anyone observed such an issue? I am pretty sure that this is a new issue
-> as we have many installations using Linux 5.9.16 running stable on the
-> same hardware,.
-I haven't but I am currently trying to hunt down a (probably
-unrelated) Ethernet issue on an older Meson8m2 SoC currently.
-All Amlogic Meson SoCs use a DWMAC IP for Ethernet connectivity plus
-there's a little bit of "glue" IP for the xMII connecting to the SoC's
-IO pads
-
-I think it's a good idea to involve the netdev and (probably even more
-important) stmmac maintainers.
-Anything skb related is handled by the stmmac driver.
-So I am hoping that someone with expertise in that area can give any
-hints for debugging or reproducing this.
-
-
-Best regards,
-Martin
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
