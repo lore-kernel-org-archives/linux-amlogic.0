@@ -1,98 +1,104 @@
-Return-Path: <SRS0=e9JL=KO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=eZXa=KP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0174DC433B4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 May 2021 21:36:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E282C433B4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 May 2021 07:32:02 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B35F9600CD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 May 2021 21:36:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B35F9600CD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 217FF60FE5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 May 2021 07:32:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 217FF60FE5
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ZxUBPnJGnycS3aIxSwdeHxK0a/xoEg9wb0MVaZEjh3A=; b=fYekbg2A6RXOL8OSt1O48Ophm
-	jPWTAtRtbzKlsB4prv65HQ9pzqMqfmw3AX7Yu6R93cP9cnU26teha3XKg5z2frEja9kHlQ/a36wjk
-	Z0FMSImbVj6C+u/leVhSylJlO1mdP0UlLqBnvoznL5dWIorDp6+mBSdYrQ/tQ3BNl2L23UJC9cDVr
-	b7xdokDJvQjAiAUK4neenS1SqO5sHjKavrix49Edr71+bZjXzuZuU0rX3gceoRdvnrSnHLZZ4GYKp
-	+AYM798+5TzBpge2nQgiIEQMtIqjIvjOoh8npUpcCX2Cug9ittngr4rqfUGwLy6fqs/3f7wK+OvBC
-	X1k2TCc9w==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=DiEfqQZyoEFA1BOUGb+It5nVJ4vr4J0YO2mVnNdThMQ=; b=VF4v62S/H4AE2I9tYwWB5kDoGH
+	j45NZThaGHjb5qHuNj0SqTt1sGmVrWjrcVZ9WKa6/CNWPSLPgs2Ue26pSNa3dxRU2Ew/z2uop+JsJ
+	lvWc73Bmkedpwg8CGKp0ouDHIRfutoF47JiCTwZQ56SCqXHX+TCPiYnm4gIFgY2Y16j9rWNebzy0X
+	zSW83VdnxX4x8wiQUW5fTvOt4jDXjHSgwCL3fgKBBEHaNVnURJts34z0qarKSltUG/VQecie+HZqP
+	nPF5OhFLMTZvST5jH2LnvcdD/styD2AGi162HbmjKB3H8fBfjIspIwt6aLr70ovmbEVYk5u911Ssz
+	4WZLL9Zw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1ljTrh-005AGs-Rg; Wed, 19 May 2021 21:36:30 +0000
+	id 1ljd9v-00699N-4L; Thu, 20 May 2021 07:31:55 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ljTrT-005AFJ-Ut; Wed, 19 May 2021 21:36:16 +0000
+ id 1ljd9s-006999-PW
+ for linux-amlogic@desiato.infradead.org; Thu, 20 May 2021 07:31:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=b9AJYfJ17q275zL0Tl68tue+i0tZohtAZ//tG0ipyj0=; b=dokd0B82Ur+efeoLaOAehdt6xE
- bRV6VJ92kYq/w3YJo8srW39KLR0qNqPDnaAK8qOUU/wTIHtcfUhM51kDUxuyQMxU6kpJjGUkNb/Wt
- RDBDUcN7wrlCC/jM3MYD24anyyZDVJLc8vKtWdpu59jaP8br37lq3B1SqY95F5oG5NyejM8DG+aFw
- 6z2/01SiC4FZLi+A7wlR9xAWxeMbufiFPRElFyRPxJ8XG38xsCjbAD7PdjqCTKZx/lG05Gjr6IPBC
- DPh6SED5qxc5FBvfvM/MkD2fCXDFT7akF112OlU8cLwsCGMzFTllx03xynSyp2uf6BqK0aoTqW+gB
- ECUw2j1Q==;
-Received: from mail-ot1-f48.google.com ([209.85.210.48])
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=AX9UJdkScEdnsuqA+e3cbBPgNM6jgDtJcxN/2LdsVjY=; b=FSuPnm/h0QYlBGfSA0V3l5kShI
+ 5+BR9kK/sO9SPLlG8rdmwjWjyEoaJfPFfLCHzJFRuE4rx79IfRbL4PBVCGehhPQ147PH+aZfIjBST
+ ZjHUUobBqJw3IMDtDKVrdKlSB14+wkUsMXzs8qYFr1+cZLkUrFNqVtLKuKcvKDRoXmlOyaBoDn3Tw
+ sp5bvy94xJQ/pNT3Ngo0Os4vlzs+ibufJIL47vXs/qqRAllO8h579uVrnLtZpOCu/PAbGJT3SOnHB
+ WG9U7bOzNJ7ZCEC5Pc72d8/QudiBgwYlAGAsKpZSYfR37AqUnhsgtH+Fd7dBi1sS5Fc69ZOS1T0on
+ J4d3+qww==;
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ljTrR-00Fnqb-5h; Wed, 19 May 2021 21:36:14 +0000
-Received: by mail-ot1-f48.google.com with SMTP id
- 69-20020a9d0a4b0000b02902ed42f141e1so13067580otg.2; 
- Wed, 19 May 2021 14:36:12 -0700 (PDT)
+ id 1ljd9p-00G22G-Cj
+ for linux-amlogic@lists.infradead.org; Thu, 20 May 2021 07:31:51 +0000
+Received: by mail-wr1-x432.google.com with SMTP id n2so16588877wrm.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 20 May 2021 00:31:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=AX9UJdkScEdnsuqA+e3cbBPgNM6jgDtJcxN/2LdsVjY=;
+ b=NXNdoEChth+QHQQusotYXDdQSrZeyuu2Ac7f0XklNEL6PRynGLj4yBCnsE17osQ2ED
+ PLX5QY+M58Qo2KOla6PeAKJwiBv9Mq0Qenzh2kHuMT8bLAqVEBkHZpYdTdXE7hV7i9I8
+ kzErqDcXYhYeAQVbJRwns7AcoKx0aKje5kXC+G74BoUIOnI92+44wPxDdbCM/2Tariv/
+ mqizsHpbet77RQbuMBM20ma8X4IMfryFFTRayzhkABYjeKn1Q5iHGQc/gWHQChYKTAM7
+ 4Ct6/ZTsgp2+TYf7Y2kD1Cv6f8ficIhOb4PDbkAMU2cZQ8334dYuXzhz5MffUPJ1Wa0p
+ Wzcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=b9AJYfJ17q275zL0Tl68tue+i0tZohtAZ//tG0ipyj0=;
- b=C+8Iubp7zZ3mHJAoHY8mwsgkLs7xYrCCLxgCdthqtBMxennXNsSRPN37BuhfnjihsB
- RFCd/R728JjsBWmKK2W0R5AP84caZ0FW4kXxTlhhDi/B7z3vtDgnupESXrqCk/TATZp/
- h0BRErBjVoAScaBiNvTGlhUzKuVaW1lQV/u9IoZLLkTUljuhMJ4uLYAz1MLFP3AMdUgc
- 55VGSE4nSYkTvc/gWdHBwqk7yjcXmw6FvPyeZaIeoaIgtbIlNHRxX2j3aCbl6X5i8WmF
- b/51LW9bYDx4UzWBQ+rByVYyM0svB5E/roTrsWdfiQkzyMRb2D552eqtCFprbkdhhy4u
- Y8pQ==
-X-Gm-Message-State: AOAM5313OWGyQkNjw2KNcX1gCzuS+aPnRVHyPnIlj8+d8nswm1eMYajB
- rW7RAmtmZI2UQsW1qvB9Nw==
-X-Google-Smtp-Source: ABdhPJxXixBAzcyGcAsCCerVC9LDjQpLAHkBT5dxCqS6Pefn0cVnqYZorqDmnq7LW6vf2TlIkcyvog==
-X-Received: by 2002:a9d:39e3:: with SMTP id y90mr1309416otb.257.1621460171829; 
- Wed, 19 May 2021 14:36:11 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id o14sm166119oik.29.2021.05.19.14.36.10
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=AX9UJdkScEdnsuqA+e3cbBPgNM6jgDtJcxN/2LdsVjY=;
+ b=Wo08IZl8sT8OOkXRccIGootc8aLPus7zqR44ncCJjSCDrQ8RFdryXpFuxTDx5jgJ6G
+ e9OJ6/hS/8r3fKevtrax1cf4FPSszaKfkYTcbVr/I0mCHIJoAlbT7gMnxUU0/XSDHLng
+ 5H3vYow/nFuvnIjDqzoC0eAStVY7+RwjtRJ2UOP1AvUvMs4Jo1kyWZ+9Dmzozy2u2G5I
+ qgu0epYYxkXLgUgmu9pXQmx66Gvh/avozjP7LGgc0+RjxTetQC0E4W8m8tKPP7yVvUju
+ oKOKU5MApX79NwfQGFUlWb15jFVkZKzUhRlfwXmhQZjAbdM/CMizL/aLuqDZSFFQELHi
+ 7Gqg==
+X-Gm-Message-State: AOAM530GJEFAe+G27BqVdVozyi3QH/QZ7y33Jv3ti6N+1GNf9DZBSRbL
+ Jg0KytJhTrJyq4Qe4meDTMDzig==
+X-Google-Smtp-Source: ABdhPJyQX1KBfytXyZKHPcLunFU+XbTr8fHcoxEqDTKSWfzltphYDK+CFHr3Jaqjsouy9IyHXiMbIw==
+X-Received: by 2002:a05:6000:186a:: with SMTP id
+ d10mr2810801wri.41.1621495907520; 
+ Thu, 20 May 2021 00:31:47 -0700 (PDT)
+Received: from jackdaw.baylibre.com (82-65-169-74.subs.proxad.net.
+ [82.65.169.74])
+ by smtp.googlemail.com with ESMTPSA id u19sm1637050wmq.7.2021.05.20.00.31.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 May 2021 14:36:11 -0700 (PDT)
-Received: (nullmailer pid 3697882 invoked by uid 1000);
- Wed, 19 May 2021 21:36:10 -0000
-Date: Wed, 19 May 2021 16:36:10 -0500
-From: Rob Herring <robh@kernel.org>
+ Thu, 20 May 2021 00:31:47 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: jirislaby@kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
- gregkh@linuxfoundation.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: serial: amlogic, meson-uart: add
- fifo-size property
-Message-ID: <20210519213610.GA3697605@robh.at.kernel.org>
-References: <20210518075833.3736038-1-narmstrong@baylibre.com>
- <20210518075833.3736038-2-narmstrong@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] clk: meson: axg-audio: improve deferral handling
+Date: Thu, 20 May 2021 09:31:36 +0200
+Message-Id: <20210520073136.272925-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210518075833.3736038-2-narmstrong@baylibre.com>
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210519_143613_231616_A09DAD76 
-X-CRM114-Status: GOOD (  10.84  )
+X-CRM114-CacheID: sfid-20210520_003149_456172_B7AF6799 
+X-CRM114-Status: GOOD (  10.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,19 +115,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 18 May 2021 09:58:31 +0200, Neil Armstrong wrote:
-> On most of the Amlogic SoCs, the first UART controller in the "Everything-Else"
-> power domain has 128bytes of RX & TX FIFO, so add an optional property to describe
-> a different FIFO size from the other ports (64bytes).
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../devicetree/bindings/serial/amlogic,meson-uart.yaml       | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+Use dev_err_probe() for clock and reset resources to indicate the deferral
+reason through sysfs when waiting for the resource to come up.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ This is a follow up on
+ https://lore.kernel.org/r/20210429090516.61085-1-jbrunet@baylibre.com
+
+ drivers/clk/meson/axg-audio.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index 7c8d02164443..bfe36bd41339 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -1665,8 +1665,7 @@ static int devm_clk_get_enable(struct device *dev, char *id)
+ 	clk = devm_clk_get(dev, id);
+ 	if (IS_ERR(clk)) {
+ 		ret = PTR_ERR(clk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get %s", id);
++		dev_err_probe(dev, ret, "failed to get %s", id);
+ 		return ret;
+ 	}
+ 
+@@ -1811,7 +1810,7 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 
+ 	ret = device_reset(dev);
+ 	if (ret) {
+-		dev_err(dev, "failed to reset device\n");
++		dev_err_probe(dev, ret, "failed to reset device\n");
+ 		return ret;
+ 	}
+ 
+-- 
+2.31.1
+
 
 _______________________________________________
 linux-amlogic mailing list
