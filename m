@@ -1,94 +1,88 @@
-Return-Path: <SRS0=MQG/=KT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=3IHZ=KU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F0817C2B9F7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 May 2021 23:45:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 53D72C2B9F7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 00:27:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B3CDA61420
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 May 2021 23:45:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B3CDA61420
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id B9F9361415
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 00:27:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9F9361415
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q8HzZRST7IcSlBbeeu5W6rN8AlQhqGLIT+KTloAJtY0=; b=lQYqLLqJiF695B
-	dO8OwY3bVzEhgx0IwCJjfSeliLiO5hhPVJDY3/CvJ7oBHginoAJ//k87Pgb4reOzgH2jlVx4UszbQ
-	hp1MkeK4wsoaV/Kbn1o3GMxFRWK4ZJsdB9CmWXQpx6VzYidDcc5UDsd3T9/DkHW/L6+Qe8NSf8nAs
-	399Rh2JiIXx9S3RQOJyOXddWvY1sWNqmFTZpQ1ezDcD1EQSFhEIElc6Cc5ExkX4scImKVPWGnMHqe
-	Hlti1Ngn5adKEVArVrESzi7ow1wxjtb6hyqLcE4A/shEHeY5eFXEJSjV5tjglmjxVh2qMhXvoTSK1
-	OHebYjhDRq9F3z+0qM3Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=t+kvGk+V0SPmKA7c9VT2PEaiNbz1rw9zQSIxYiqTS6A=; b=nE4aHNARdvMASx
+	HkwxXPJCeFS70R31a19FsV4dWL5bFbk3Lo+7biblksGKd9mRDNg6d9KYPhVA8WJzeq9yyjUSZnliW
+	QKVwr1FGVyEHb+Cb2tDRK3YdhvVbOGAky5O/N8LcKLTSrcpbD5rMiJAXZeopEh8kRyWSTqqdKTbtD
+	CMmDy+HTeJ2knQ0igW2y2U2ckxkpV2K7Xi3jcuZsYZS7Q2+UVwzKoY1QKgovvDLGDKU2rUHma33aE
+	c5Tkp/SEkDZKyERpuAkF1CrG17+OUiZA6ducEE4oHDpHh90pNqbUHcP9YlYfht5NFo30WnMdJYTRv
+	9V5MDrbTSHrJvBYaLDZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1llKGS-002OnR-TF; Mon, 24 May 2021 23:45:40 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1llKvB-002Yjn-Ig; Tue, 25 May 2021 00:27:45 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ll7y1-000pue-JL; Mon, 24 May 2021 10:37:51 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id z12so39567131ejw.0;
- Mon, 24 May 2021 03:37:49 -0700 (PDT)
+ id 1llDnr-001Agf-F9
+ for linux-amlogic@lists.infradead.org; Mon, 24 May 2021 16:51:46 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id p7so25520318wru.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 24 May 2021 09:51:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=7DuEzwceNsnqYkEeiiZKaUdLTGoHWRI6KUHxHFfU1j4=;
- b=XasM8I+jWP45hASRQz2pDtCH3J/lY7Vm9kZLI+IH/vZEVthGGV4ROUbUeGU/qIqvVp
- tQdMMqtih8wQ0DYSJCMRCUO5g6Ijf+UZ4dkuZ++sRGlARBzMuJSSAyGvho6twoA3822C
- 5gr5iumVWLsBjXgmmmQlppiFHgJFTQPpzdaQRA2Dbyd68/2B0Sv4HxV+DTliZouBpf15
- 5C20k6fwKt2Bus2t0kdeOhktpkZwM+tnLrKHAJI8fCjg7cU2VKmRZAAlOzaEs+9zbFeQ
- M72Tu9DFhaNuDokzzr6XwgEwXbiI/9yg3yEhhcjLsg4SU953eiB17wRTlAEGBKVmRAUG
- iRdw==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=OfK3W2kSFwwGuWi4vFr85BfkbXEQ0phvVmMJ4aau6FI=;
+ b=Q++a7kWPHrbd5Ig+lm9R4GaLDeuUBvYSF8CrEqh1qIzCKEC0IACB2VeZjXULd2/oqD
+ SyqPf+BzdNeJmqc5H8a1yaul5o/9Ulfxu8u8VvfL2IYoiOMgaLy1mwCrmf+UqcvgGI2E
+ jRJJf2pm2gJrGPwPYYSggBkCIl8by3qhj4Opny8AKoAHcQi02mz4o58EPNlUE/SoB4pP
+ JEWcrvi+EsClL85BMJG8r9M2lslD3TOkxBHbsQMVXBf9Fw85R/oQx6leCnpSruP9W3X/
+ yOt9RmBuHiq3Vo/60qod8D1BZfKuoZtBOFziEt+TwdKaTGhB43JU6xdbv+aOArXprOJk
+ R8ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=7DuEzwceNsnqYkEeiiZKaUdLTGoHWRI6KUHxHFfU1j4=;
- b=r3riALCIufd5R1T2GzkNeNRVgkCu52azE0C8c26446uysxkaNDzmXh21ADUqv53NIo
- GH13LqCdchmpHIinVfFrzXuAud3gpqHOvYVV9aK4P4YJM7K3ECJfWcZ5BRWi6u69PSO2
- nMs2tWJX1DYRApZG8TKwAPf8Ww0qsfpVASnkHqxw3HCoBhmb4tYZ/nvDm6MdyeUpkPJL
- D5FfpNYtQtlaF+i7bpzPUtrECtdmf4Du4KN4qDEddF5bztniJSNTOpJO4oReAxL+Hq6A
- 2DL4KNCBCAOIfLGKB7QJ3i+4AFqwRYpt4VG8KvKV9kgm2VWnE+g2QeNF7gy+0GxxQ0Z3
- TMVg==
-X-Gm-Message-State: AOAM530HwVXIKAXiKjj4c7EqCR+l9/pGlU85/IHC+gW8Xp5IfRRpsVd/
- Ju+F1uqEfFcEgh9PBd547RQ=
-X-Google-Smtp-Source: ABdhPJwQ/2GEiSXKNvjACryhQkePleZPR6KX44B2C0K/pqg7dYhxGhpBo6XdnjV531KBhtbX0t4kCQ==
-X-Received: by 2002:a17:907:2136:: with SMTP id
- qo22mr22269933ejb.246.1621852668092; 
- Mon, 24 May 2021 03:37:48 -0700 (PDT)
-Received: from localhost.localdomain
- (p200300f1370a3a00f22f74fffe210725.dip0.t-ipconnect.de.
- [2003:f1:370a:3a00:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id r15sm2616418edm.61.2021.05.24.03.37.47
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=OfK3W2kSFwwGuWi4vFr85BfkbXEQ0phvVmMJ4aau6FI=;
+ b=Zy9Ch8uM8RoK8wtRv52UI78SdsC/iN+Ld52UI9G2O0Datril0HHM38Svg+wQ0FWvHu
+ 2rJOajBAJX3gupHs4aZstRcwN4T+79Qsg0hEoqZSDTZSt7dks3ls8e++70qvseKp5cXs
+ vOc6SnmVM3ItEhC+ZX6mVFF9+xSg4e54AiyvoZer9nqWsTdLGgmxoV9Tg7+HBgXj6Obw
+ JTPRZ5Ifk5yYfF8L9gBgdIF6+G2EfgY2ctxNKvGT1UmryS/UXbZSULQcG2HNO/M3OVig
+ S/8fhPjzoLdvTx25JH1npRlzGc12QqlgPzmMZ+bFeTzQNJWkyHem1xM+RsdcUx/QlNw7
+ ew6Q==
+X-Gm-Message-State: AOAM532cPmCzDutFHHF94frAT4zF5saxjn/fJe7WRXKTTgchOmGaUhLn
+ 43I1TccktnsTQJ4SeOsHzsoXfg==
+X-Google-Smtp-Source: ABdhPJzM6JASMABcQAzPlI+JDMwyyF8NkvWxOMqCfPg9+TtaETgNe5w+4vrpdIhSbf3gARZwA+a+ZQ==
+X-Received: by 2002:adf:d1ec:: with SMTP id g12mr23302827wrd.294.1621875101594; 
+ Mon, 24 May 2021 09:51:41 -0700 (PDT)
+Received: from localhost.localdomain (82-65-169-74.subs.proxad.net.
+ [82.65.169.74])
+ by smtp.googlemail.com with ESMTPSA id y20sm486908wmi.0.2021.05.24.09.51.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 May 2021 03:37:47 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: mturquette@baylibre.com, sboyd@kernel.org, narmstrong@baylibre.com,
- jbrunet@baylibre.com, linux-clk@vger.kernel.org
-Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 1/3] clk: divider: Add re-usable determine_rate
- implementations
-Date: Mon, 24 May 2021 12:37:31 +0200
-Message-Id: <20210524103733.554878-2-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210524103733.554878-1-martin.blumenstingl@googlemail.com>
-References: <20210524103733.554878-1-martin.blumenstingl@googlemail.com>
+ Mon, 24 May 2021 09:51:41 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: [PATCH] ASoC: meson: use dev_err_probe
+Date: Mon, 24 May 2021 18:51:36 +0200
+Message-Id: <20210524165136.400702-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.32.0.rc0
 MIME-Version: 1.0
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210524_033749_658435_3A154B30 
-X-CRM114-Status: GOOD (  16.33  )
+X-CRM114-CacheID: sfid-20210524_095143_615249_7E576A73 
+X-CRM114-Status: GOOD (  13.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,146 +99,319 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-These are useful when running on 32-bit systems to increase the upper
-supported frequency limit. clk_ops.round_rate returns a signed long
-which limits the maximum rate on 32-bit systems to 2^31 (or approx.
-2.14GHz). clk_ops.determine_rate internally uses an unsigned long so
-the maximum rate on 32-bit systems is 2^32 or approx. 4.29GHz.
+Use dev_err_probe() helper function to handle probe deferral.
+It removes the open coded test for -EPROBE_DEFER but more importantly, it
+sets the deferral reason in debugfs which is great for debugging.
 
-To avoid code-duplication switch over divider_{ro_,}round_rate_parent
-to use the new divider_{ro_,}determine_rate functions.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk-divider.c    | 75 +++++++++++++++++++++++++++++-------
- include/linux/clk-provider.h |  6 +++
- 2 files changed, 67 insertions(+), 14 deletions(-)
+ sound/soc/meson/aiu.c               | 17 +++++++----------
+ sound/soc/meson/axg-fifo.c          | 11 +++++------
+ sound/soc/meson/axg-pdm.c           |  9 +++------
+ sound/soc/meson/axg-spdifin.c       |  6 ++----
+ sound/soc/meson/axg-spdifout.c      |  6 ++----
+ sound/soc/meson/axg-tdm-formatter.c | 18 ++++++------------
+ sound/soc/meson/axg-tdm-interface.c | 10 ++++------
+ sound/soc/meson/meson-card-utils.c  |  4 ++--
+ sound/soc/meson/t9015.c             |  7 +++----
+ 9 files changed, 34 insertions(+), 54 deletions(-)
 
-diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
-index 344997203f0e..87ba4966b0e8 100644
---- a/drivers/clk/clk-divider.c
-+++ b/drivers/clk/clk-divider.c
-@@ -343,16 +343,63 @@ static int clk_divider_bestdiv(struct clk_hw *hw, struct clk_hw *parent,
- 	return bestdiv;
- }
+diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
+index ba15d5762b0b..37036adf14ce 100644
+--- a/sound/soc/meson/aiu.c
++++ b/sound/soc/meson/aiu.c
+@@ -219,31 +219,29 @@ static int aiu_clk_get(struct device *dev)
  
-+int divider_determine_rate(struct clk_hw *hw, struct clk_rate_request *req,
-+			   const struct clk_div_table *table, u8 width,
-+			   unsigned long flags)
-+{
-+	int div;
-+
-+	div = clk_divider_bestdiv(hw, req->best_parent_hw, req->rate,
-+				  &req->best_parent_rate, table, width, flags);
-+
-+	req->rate = DIV_ROUND_UP_ULL((u64)req->best_parent_rate, div);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(divider_determine_rate);
-+
-+int divider_ro_determine_rate(struct clk_hw *hw, struct clk_rate_request *req,
-+			      const struct clk_div_table *table, u8 width,
-+			      unsigned long flags, unsigned int val)
-+{
-+	int div;
-+
-+	div = _get_div(table, val, flags, width);
-+
-+	/* Even a read-only clock can propagate a rate change */
-+	if (clk_hw_get_flags(hw) & CLK_SET_RATE_PARENT) {
-+		if (!req->best_parent_hw)
-+			return -EINVAL;
-+
-+		req->best_parent_rate = clk_hw_round_rate(req->best_parent_hw,
-+							  req->rate * div);
-+	}
-+
-+	req->rate = DIV_ROUND_UP_ULL((u64)req->best_parent_rate, div);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(divider_ro_determine_rate);
-+
- long divider_round_rate_parent(struct clk_hw *hw, struct clk_hw *parent,
- 			       unsigned long rate, unsigned long *prate,
- 			       const struct clk_div_table *table,
- 			       u8 width, unsigned long flags)
- {
--	int div;
-+	struct clk_rate_request req = {
-+		.rate = rate,
-+		.best_parent_rate = *prate,
-+		.best_parent_hw = parent,
-+	};
-+	int ret;
+ 	aiu->pclk = devm_clk_get(dev, "pclk");
+ 	if (IS_ERR(aiu->pclk)) {
+-		if (PTR_ERR(aiu->pclk) != -EPROBE_DEFER)
+-			dev_err(dev, "Can't get the aiu pclk\n");
++		dev_err_probe(dev, PTR_ERR(aiu->pclk),
++			      "Can't get the aiu pclk\n");
+ 		return PTR_ERR(aiu->pclk);
+ 	}
  
--	div = clk_divider_bestdiv(hw, parent, rate, prate, table, width, flags);
-+	ret = divider_determine_rate(hw, &req, table, width, flags);
-+	if (ret)
-+		return ret;
+ 	aiu->spdif_mclk = devm_clk_get(dev, "spdif_mclk");
+ 	if (IS_ERR(aiu->spdif_mclk)) {
+-		if (PTR_ERR(aiu->spdif_mclk) != -EPROBE_DEFER)
+-			dev_err(dev, "Can't get the aiu spdif master clock\n");
++		dev_err_probe(dev, PTR_ERR(aiu->spdif_mclk),
++			      "Can't get the aiu spdif master clock\n");
+ 		return PTR_ERR(aiu->spdif_mclk);
+ 	}
  
--	return DIV_ROUND_UP_ULL((u64)*prate, div);
-+	*prate = req.best_parent_rate;
-+
-+	return req.rate;
- }
- EXPORT_SYMBOL_GPL(divider_round_rate_parent);
+ 	ret = aiu_clk_bulk_get(dev, aiu_i2s_ids, ARRAY_SIZE(aiu_i2s_ids),
+ 			       &aiu->i2s);
+ 	if (ret) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "Can't get the i2s clocks\n");
++		dev_err_probe(dev, ret, "Can't get the i2s clocks\n");
+ 		return ret;
+ 	}
  
-@@ -361,23 +408,23 @@ long divider_ro_round_rate_parent(struct clk_hw *hw, struct clk_hw *parent,
- 				  const struct clk_div_table *table, u8 width,
- 				  unsigned long flags, unsigned int val)
- {
--	int div;
--
--	div = _get_div(table, val, flags, width);
-+	struct clk_rate_request req = {
-+		.rate = rate,
-+		.best_parent_rate = *prate,
-+		.best_parent_hw = parent,
-+	};
-+	int ret;
+ 	ret = aiu_clk_bulk_get(dev, aiu_spdif_ids, ARRAY_SIZE(aiu_spdif_ids),
+ 			       &aiu->spdif);
+ 	if (ret) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "Can't get the spdif clocks\n");
++		dev_err_probe(dev, ret, "Can't get the spdif clocks\n");
+ 		return ret;
+ 	}
  
--	/* Even a read-only clock can propagate a rate change */
--	if (clk_hw_get_flags(hw) & CLK_SET_RATE_PARENT) {
--		if (!parent)
--			return -EINVAL;
-+	ret = divider_ro_determine_rate(hw, &req, table, width, flags, val);
-+	if (ret)
-+		return ret;
+@@ -282,8 +280,7 @@ static int aiu_probe(struct platform_device *pdev)
  
--		*prate = clk_hw_round_rate(parent, rate * div);
--	}
-+	*prate = req.best_parent_rate;
+ 	ret = device_reset(dev);
+ 	if (ret) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "Failed to reset device\n");
++		dev_err_probe(dev, ret, "Failed to reset device\n");
+ 		return ret;
+ 	}
  
--	return DIV_ROUND_UP_ULL((u64)*prate, div);
-+	return req.rate;
- }
- EXPORT_SYMBOL_GPL(divider_ro_round_rate_parent);
+diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
+index b9af2d513e09..d670a32d56ab 100644
+--- a/sound/soc/meson/axg-fifo.c
++++ b/sound/soc/meson/axg-fifo.c
+@@ -352,17 +352,16 @@ int axg_fifo_probe(struct platform_device *pdev)
  
--
- static long clk_divider_round_rate(struct clk_hw *hw, unsigned long rate,
- 				unsigned long *prate)
- {
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index 162a2e5546a3..d83b829305c0 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -629,6 +629,12 @@ long divider_ro_round_rate_parent(struct clk_hw *hw, struct clk_hw *parent,
- 				  unsigned long rate, unsigned long *prate,
- 				  const struct clk_div_table *table, u8 width,
- 				  unsigned long flags, unsigned int val);
-+int divider_determine_rate(struct clk_hw *hw, struct clk_rate_request *req,
-+			   const struct clk_div_table *table, u8 width,
-+			   unsigned long flags);
-+int divider_ro_determine_rate(struct clk_hw *hw, struct clk_rate_request *req,
-+			      const struct clk_div_table *table, u8 width,
-+			      unsigned long flags, unsigned int val);
- int divider_get_val(unsigned long rate, unsigned long parent_rate,
- 		const struct clk_div_table *table, u8 width,
- 		unsigned long flags);
+ 	fifo->pclk = devm_clk_get(dev, NULL);
+ 	if (IS_ERR(fifo->pclk)) {
+-		if (PTR_ERR(fifo->pclk) != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get pclk: %ld\n",
+-				PTR_ERR(fifo->pclk));
++		dev_err_probe(dev, PTR_ERR(fifo->pclk),
++			      "failed to get pclk: %ld\n", PTR_ERR(fifo->pclk));
+ 		return PTR_ERR(fifo->pclk);
+ 	}
+ 
+ 	fifo->arb = devm_reset_control_get_exclusive(dev, NULL);
+ 	if (IS_ERR(fifo->arb)) {
+-		if (PTR_ERR(fifo->arb) != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get arb reset: %ld\n",
+-				PTR_ERR(fifo->arb));
++		dev_err_probe(dev, PTR_ERR(fifo->arb),
++			      "failed to get arb reset: %ld\n",
++			      PTR_ERR(fifo->arb));
+ 		return PTR_ERR(fifo->arb);
+ 	}
+ 
+diff --git a/sound/soc/meson/axg-pdm.c b/sound/soc/meson/axg-pdm.c
+index bfd37d49a73e..f630311b5b29 100644
+--- a/sound/soc/meson/axg-pdm.c
++++ b/sound/soc/meson/axg-pdm.c
+@@ -613,24 +613,21 @@ static int axg_pdm_probe(struct platform_device *pdev)
+ 	priv->pclk = devm_clk_get(dev, "pclk");
+ 	if (IS_ERR(priv->pclk)) {
+ 		ret = PTR_ERR(priv->pclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get pclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get pclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+ 	priv->dclk = devm_clk_get(dev, "dclk");
+ 	if (IS_ERR(priv->dclk)) {
+ 		ret = PTR_ERR(priv->dclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get dclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get dclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+ 	priv->sysclk = devm_clk_get(dev, "sysclk");
+ 	if (IS_ERR(priv->sysclk)) {
+ 		ret = PTR_ERR(priv->sysclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get dclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get dclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+diff --git a/sound/soc/meson/axg-spdifin.c b/sound/soc/meson/axg-spdifin.c
+index d0d09f945b48..8f587c3bb5d7 100644
+--- a/sound/soc/meson/axg-spdifin.c
++++ b/sound/soc/meson/axg-spdifin.c
+@@ -481,16 +481,14 @@ static int axg_spdifin_probe(struct platform_device *pdev)
+ 	priv->pclk = devm_clk_get(dev, "pclk");
+ 	if (IS_ERR(priv->pclk)) {
+ 		ret = PTR_ERR(priv->pclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get pclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get pclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+ 	priv->refclk = devm_clk_get(dev, "refclk");
+ 	if (IS_ERR(priv->refclk)) {
+ 		ret = PTR_ERR(priv->refclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get mclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get mclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+diff --git a/sound/soc/meson/axg-spdifout.c b/sound/soc/meson/axg-spdifout.c
+index e769a5ee6e27..58e02f6898b7 100644
+--- a/sound/soc/meson/axg-spdifout.c
++++ b/sound/soc/meson/axg-spdifout.c
+@@ -424,16 +424,14 @@ static int axg_spdifout_probe(struct platform_device *pdev)
+ 	priv->pclk = devm_clk_get(dev, "pclk");
+ 	if (IS_ERR(priv->pclk)) {
+ 		ret = PTR_ERR(priv->pclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get pclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get pclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+ 	priv->mclk = devm_clk_get(dev, "mclk");
+ 	if (IS_ERR(priv->mclk)) {
+ 		ret = PTR_ERR(priv->mclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get mclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get mclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+diff --git a/sound/soc/meson/axg-tdm-formatter.c b/sound/soc/meson/axg-tdm-formatter.c
+index cab7fa2851aa..108f11e14006 100644
+--- a/sound/soc/meson/axg-tdm-formatter.c
++++ b/sound/soc/meson/axg-tdm-formatter.c
+@@ -284,8 +284,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	formatter->pclk = devm_clk_get(dev, "pclk");
+ 	if (IS_ERR(formatter->pclk)) {
+ 		ret = PTR_ERR(formatter->pclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get pclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get pclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -293,8 +292,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	formatter->sclk = devm_clk_get(dev, "sclk");
+ 	if (IS_ERR(formatter->sclk)) {
+ 		ret = PTR_ERR(formatter->sclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get sclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get sclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -302,8 +300,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	formatter->lrclk = devm_clk_get(dev, "lrclk");
+ 	if (IS_ERR(formatter->lrclk)) {
+ 		ret = PTR_ERR(formatter->lrclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get lrclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get lrclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -311,8 +308,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	formatter->sclk_sel = devm_clk_get(dev, "sclk_sel");
+ 	if (IS_ERR(formatter->sclk_sel)) {
+ 		ret = PTR_ERR(formatter->sclk_sel);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get sclk_sel: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get sclk_sel: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -320,8 +316,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	formatter->lrclk_sel = devm_clk_get(dev, "lrclk_sel");
+ 	if (IS_ERR(formatter->lrclk_sel)) {
+ 		ret = PTR_ERR(formatter->lrclk_sel);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get lrclk_sel: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get lrclk_sel: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -329,8 +324,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	formatter->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
+ 	if (IS_ERR(formatter->reset)) {
+ 		ret = PTR_ERR(formatter->reset);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get reset: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get reset: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+diff --git a/sound/soc/meson/axg-tdm-interface.c b/sound/soc/meson/axg-tdm-interface.c
+index 87cac440b369..a2c7f658f6b4 100644
+--- a/sound/soc/meson/axg-tdm-interface.c
++++ b/sound/soc/meson/axg-tdm-interface.c
+@@ -519,8 +519,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
+ 	iface->sclk = devm_clk_get(dev, "sclk");
+ 	if (IS_ERR(iface->sclk)) {
+ 		ret = PTR_ERR(iface->sclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get sclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get sclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -528,8 +527,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
+ 	iface->lrclk = devm_clk_get(dev, "lrclk");
+ 	if (IS_ERR(iface->lrclk)) {
+ 		ret = PTR_ERR(iface->lrclk);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get lrclk: %d\n", ret);
++		dev_err_probe(dev, ret, "failed to get lrclk: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -545,8 +543,8 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
+ 		if (ret == -ENOENT) {
+ 			iface->mclk = NULL;
+ 		} else {
+-			if (ret != -EPROBE_DEFER)
+-				dev_err(dev, "failed to get mclk: %d\n", ret);
++			dev_err_probe(dev, ret, "failed to get mclk: %d\n",
++				      ret);
+ 			return ret;
+ 		}
+ 	}
+diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
+index 300ac8be46ef..ac062c03cf33 100644
+--- a/sound/soc/meson/meson-card-utils.c
++++ b/sound/soc/meson/meson-card-utils.c
+@@ -86,8 +86,8 @@ int meson_card_parse_dai(struct snd_soc_card *card,
+ 	ret = of_parse_phandle_with_args(node, "sound-dai",
+ 					 "#sound-dai-cells", 0, &args);
+ 	if (ret) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(card->dev, "can't parse dai %d\n", ret);
++		dev_err_probe(card->dev, ret,
++			      "can't parse sound-dai at %pOFn\n", node);
+ 		return ret;
+ 	}
+ 	*dai_of_node = args.np;
+diff --git a/sound/soc/meson/t9015.c b/sound/soc/meson/t9015.c
+index 4c1349dd1e06..7ff16f51dbd4 100644
+--- a/sound/soc/meson/t9015.c
++++ b/sound/soc/meson/t9015.c
+@@ -259,15 +259,14 @@ static int t9015_probe(struct platform_device *pdev)
+ 
+ 	priv->pclk = devm_clk_get(dev, "pclk");
+ 	if (IS_ERR(priv->pclk)) {
+-		if (PTR_ERR(priv->pclk) != -EPROBE_DEFER)
+-			dev_err(dev, "failed to get core clock\n");
++		dev_err_probe(dev, PTR_ERR(priv->pclk),
++			      "failed to get core clock\n");
+ 		return PTR_ERR(priv->pclk);
+ 	}
+ 
+ 	priv->avdd = devm_regulator_get(dev, "AVDD");
+ 	if (IS_ERR(priv->avdd)) {
+-		if (PTR_ERR(priv->avdd) != -EPROBE_DEFER)
+-			dev_err(dev, "failed to AVDD\n");
++		dev_err_probe(dev, PTR_ERR(priv->avdd), "failed to AVDD\n");
+ 		return PTR_ERR(priv->avdd);
+ 	}
+ 
 -- 
-2.31.1
+2.32.0.rc0
 
 
 _______________________________________________
