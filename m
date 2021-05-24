@@ -2,87 +2,85 @@ Return-Path: <SRS0=3IHZ=KU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53D72C2B9F7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 00:27:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D2F7C2B9F7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 00:32:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B9F9361415
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 00:27:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9F9361415
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id C58B860FEB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 00:32:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C58B860FEB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=t+kvGk+V0SPmKA7c9VT2PEaiNbz1rw9zQSIxYiqTS6A=; b=nE4aHNARdvMASx
-	HkwxXPJCeFS70R31a19FsV4dWL5bFbk3Lo+7biblksGKd9mRDNg6d9KYPhVA8WJzeq9yyjUSZnliW
-	QKVwr1FGVyEHb+Cb2tDRK3YdhvVbOGAky5O/N8LcKLTSrcpbD5rMiJAXZeopEh8kRyWSTqqdKTbtD
-	CMmDy+HTeJ2knQ0igW2y2U2ckxkpV2K7Xi3jcuZsYZS7Q2+UVwzKoY1QKgovvDLGDKU2rUHma33aE
-	c5Tkp/SEkDZKyERpuAkF1CrG17+OUiZA6ducEE4oHDpHh90pNqbUHcP9YlYfht5NFo30WnMdJYTRv
-	9V5MDrbTSHrJvBYaLDZw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Qwrcon67e7LGksUs+oaaCOLNkRRXfLxYVCpE+r4lE7c=; b=CwZ2Ymfpp+WlkL
+	7uN9Dekxp3SqyPU2c3SR/4bDFYzmEVZ7LXVpIzlkNpvSiq7q1xX3b/svzzKi6NN2+/HZgUyeTkPIn
+	RITq1tmqyPabLBKizhi5Lfb7/yrpKJzG0aWUU8qCGDEqXSBapjRZXAx0dfinSeTKWLWEFS99wnd/Y
+	0UzgVP2ZEUmbIVo7f0aFmeskOLKX9A9Y9hUSGjEuSbMroxOXNVfQzvCQ5Y8PdN7LEz+NRpMv/5OaY
+	hRTG008RqYqv7/++2ioe19ibSV8AKpoXx+6Truy7g+ml3ont3mJA1R0Hi5cCzzLCJ3HY3MG2Ng20x
+	DqiaIfNJiz+lMuVWy8YQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1llKvB-002Yjn-Ig; Tue, 25 May 2021 00:27:45 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1llKzR-002ZfI-7u; Tue, 25 May 2021 00:32:09 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1llDnr-001Agf-F9
- for linux-amlogic@lists.infradead.org; Mon, 24 May 2021 16:51:46 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id p7so25520318wru.10
- for <linux-amlogic@lists.infradead.org>; Mon, 24 May 2021 09:51:42 -0700 (PDT)
+ id 1llEAX-001Ekr-E4; Mon, 24 May 2021 17:15:11 +0000
+Received: by mail-ed1-x535.google.com with SMTP id b17so32885863ede.0;
+ Mon, 24 May 2021 10:15:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OfK3W2kSFwwGuWi4vFr85BfkbXEQ0phvVmMJ4aau6FI=;
- b=Q++a7kWPHrbd5Ig+lm9R4GaLDeuUBvYSF8CrEqh1qIzCKEC0IACB2VeZjXULd2/oqD
- SyqPf+BzdNeJmqc5H8a1yaul5o/9Ulfxu8u8VvfL2IYoiOMgaLy1mwCrmf+UqcvgGI2E
- jRJJf2pm2gJrGPwPYYSggBkCIl8by3qhj4Opny8AKoAHcQi02mz4o58EPNlUE/SoB4pP
- JEWcrvi+EsClL85BMJG8r9M2lslD3TOkxBHbsQMVXBf9Fw85R/oQx6leCnpSruP9W3X/
- yOt9RmBuHiq3Vo/60qod8D1BZfKuoZtBOFziEt+TwdKaTGhB43JU6xdbv+aOArXprOJk
- R8ng==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=+NqymAOfKkJSvsQ9cL9DRucWC0MzQQIr199sZKb1IYM=;
+ b=Y3oJTV7yKehEVsznvxHyHGR9MACEMlTosuXANvqXj+TKXkico5Q1nWxe87O3mhMu+y
+ q5sUZl6rY3onoY6gDEHJiPoZ25WOoxsLCXuaQBePhn3L4N4L0D/bRNJdmp3xfY7uwll3
+ 1SMt/rKRlhHl3E9/FvL9S5U/3XqL8hV4YDipZtbpBht4WU3YmK6E4ImC4TA8adUJOAV2
+ k1nWmzizfos4yQ7SM3DeXDodKYvk8A3dIE3EImzmavHmEPUmsWh4DT3EWS8byDWtz6ra
+ xd2kdLFp9r4+XrCgzM9jcPINsYZ29hweQ2PYiq0OyK65JFgL6PHxOum3UeFlYUC8gyT5
+ PksQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OfK3W2kSFwwGuWi4vFr85BfkbXEQ0phvVmMJ4aau6FI=;
- b=Zy9Ch8uM8RoK8wtRv52UI78SdsC/iN+Ld52UI9G2O0Datril0HHM38Svg+wQ0FWvHu
- 2rJOajBAJX3gupHs4aZstRcwN4T+79Qsg0hEoqZSDTZSt7dks3ls8e++70qvseKp5cXs
- vOc6SnmVM3ItEhC+ZX6mVFF9+xSg4e54AiyvoZer9nqWsTdLGgmxoV9Tg7+HBgXj6Obw
- JTPRZ5Ifk5yYfF8L9gBgdIF6+G2EfgY2ctxNKvGT1UmryS/UXbZSULQcG2HNO/M3OVig
- S/8fhPjzoLdvTx25JH1npRlzGc12QqlgPzmMZ+bFeTzQNJWkyHem1xM+RsdcUx/QlNw7
- ew6Q==
-X-Gm-Message-State: AOAM532cPmCzDutFHHF94frAT4zF5saxjn/fJe7WRXKTTgchOmGaUhLn
- 43I1TccktnsTQJ4SeOsHzsoXfg==
-X-Google-Smtp-Source: ABdhPJzM6JASMABcQAzPlI+JDMwyyF8NkvWxOMqCfPg9+TtaETgNe5w+4vrpdIhSbf3gARZwA+a+ZQ==
-X-Received: by 2002:adf:d1ec:: with SMTP id g12mr23302827wrd.294.1621875101594; 
- Mon, 24 May 2021 09:51:41 -0700 (PDT)
-Received: from localhost.localdomain (82-65-169-74.subs.proxad.net.
- [82.65.169.74])
- by smtp.googlemail.com with ESMTPSA id y20sm486908wmi.0.2021.05.24.09.51.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 May 2021 09:51:41 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: [PATCH] ASoC: meson: use dev_err_probe
-Date: Mon, 24 May 2021 18:51:36 +0200
-Message-Id: <20210524165136.400702-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.32.0.rc0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=+NqymAOfKkJSvsQ9cL9DRucWC0MzQQIr199sZKb1IYM=;
+ b=H49h5AXab9y2YAKTNK1/VvY3bdROXnN7tXZWKXiOJtGe5hOXAxB/6O9FsrxwzAewSP
+ mld8WPk6P5lhwvB/ogJPxVBs1UG40pFoL1LiJ6Eu9qxRbom3hHEnEmW1V4oP1Z5cnY3R
+ ah8byZfhqg+rkYRb0sKj8lA0hzAnsdKgpXvlrf+Q8+x0dLB1gI8fnn1TCBXwqEw35nqX
+ dnLKyENTuzUeR1E3aXx5Mfwr6b+YezLQtqd90R2x6BvkvqY+hErZ9VMujE3P+pDJZWVY
+ rLaDLGqs7H5AgohPer/GB7qmFvU/JnfuGtT+r8GUF8MFWDZZVxJV18N3iSZaDR7eMOux
+ Pr8A==
+X-Gm-Message-State: AOAM530pf9RYuKXa8nqc6EAANAGsJnzmdbk/MvrkIglzD9d5XGNsMMJX
+ iKvF1CLgYLKpYOwOq5+s5AGae8AXk/1oW1fcGu4=
+X-Google-Smtp-Source: ABdhPJzbauczmKWwr8OghHMny4dnkH5wJ73w40kBJBuHpYhBIe6XjgJRNeCTMtESQ4MBP9Htvbs3jaoGwJIB25n9x/o=
+X-Received: by 2002:a50:d54c:: with SMTP id f12mr26271733edj.301.1621876507863; 
+ Mon, 24 May 2021 10:15:07 -0700 (PDT)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+References: <20210524134517.687089-1-martin.blumenstingl@googlemail.com>
+ <1jmtskb3w2.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jmtskb3w2.fsf@starbuckisacylon.baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 24 May 2021 19:14:57 +0200
+Message-ID: <CAFBinCA-JADYi4C4P0cm4fpD6Bg5GyOo0iwferhB0mDW2XEk0w@mail.gmail.com>
+Subject: Re: [PATCH v2] clk: meson: meson8b: Use CLK_SET_RATE_NO_REPARENT for
+ vclk{, 2}_in_sel
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, 
+ Neil Armstrong <narmstrong@baylibre.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, khilman@baylibre.com, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210524_095143_615249_7E576A73 
-X-CRM114-Status: GOOD (  13.23  )
+X-CRM114-CacheID: sfid-20210524_101509_537970_53989164 
+X-CRM114-Status: GOOD (  24.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,320 +97,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use dev_err_probe() helper function to handle probe deferral.
-It removes the open coded test for -EPROBE_DEFER but more importantly, it
-sets the deferral reason in debugfs which is great for debugging.
+Hi Jerome,
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- sound/soc/meson/aiu.c               | 17 +++++++----------
- sound/soc/meson/axg-fifo.c          | 11 +++++------
- sound/soc/meson/axg-pdm.c           |  9 +++------
- sound/soc/meson/axg-spdifin.c       |  6 ++----
- sound/soc/meson/axg-spdifout.c      |  6 ++----
- sound/soc/meson/axg-tdm-formatter.c | 18 ++++++------------
- sound/soc/meson/axg-tdm-interface.c | 10 ++++------
- sound/soc/meson/meson-card-utils.c  |  4 ++--
- sound/soc/meson/t9015.c             |  7 +++----
- 9 files changed, 34 insertions(+), 54 deletions(-)
+On Mon, May 24, 2021 at 4:30 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>
+> On Mon 24 May 2021 at 15:45, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+>
+> > Use CLK_SET_RATE_NO_REPARENT for the vclk{,2}_in_sel clocks. The only
+> > parent which is actually used is vid_pll_final_div. This should be set
+> > using assigned-clock-parents in the .dts rather than removing some
+> > "unwanted" clock parents from the clock driver.
+> >
+> > Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> > After a hint from Jerome (thanks) this is the improved version of
+> > "clk: meson: meson8b: Don't use MPLL1 as parent of vclk_in_sel" from [0]
+> >
+> >
+> > [0] https://patchwork.kernel.org/project/linux-clk/patch/20210524104533.555953-1-martin.blumenstingl@googlemail.com/
+> >
+> >
+> >  drivers/clk/meson/meson8b.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> > index a844d35b553a..0f8bd707217a 100644
+> > --- a/drivers/clk/meson/meson8b.c
+> > +++ b/drivers/clk/meson/meson8b.c
+> > @@ -1175,7 +1175,7 @@ static struct clk_regmap meson8b_vclk_in_sel = {
+> >               .ops = &clk_regmap_mux_ro_ops,
+>
+> I just noticed that these muxes are read-only ATM.
+> It does not make this change (or the previous one) wrong but it does not
+> make much sense as the mux won't ever change.
+indeed, as-is the patch is a no-op
 
-diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-index ba15d5762b0b..37036adf14ce 100644
---- a/sound/soc/meson/aiu.c
-+++ b/sound/soc/meson/aiu.c
-@@ -219,31 +219,29 @@ static int aiu_clk_get(struct device *dev)
- 
- 	aiu->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(aiu->pclk)) {
--		if (PTR_ERR(aiu->pclk) != -EPROBE_DEFER)
--			dev_err(dev, "Can't get the aiu pclk\n");
-+		dev_err_probe(dev, PTR_ERR(aiu->pclk),
-+			      "Can't get the aiu pclk\n");
- 		return PTR_ERR(aiu->pclk);
- 	}
- 
- 	aiu->spdif_mclk = devm_clk_get(dev, "spdif_mclk");
- 	if (IS_ERR(aiu->spdif_mclk)) {
--		if (PTR_ERR(aiu->spdif_mclk) != -EPROBE_DEFER)
--			dev_err(dev, "Can't get the aiu spdif master clock\n");
-+		dev_err_probe(dev, PTR_ERR(aiu->spdif_mclk),
-+			      "Can't get the aiu spdif master clock\n");
- 		return PTR_ERR(aiu->spdif_mclk);
- 	}
- 
- 	ret = aiu_clk_bulk_get(dev, aiu_i2s_ids, ARRAY_SIZE(aiu_i2s_ids),
- 			       &aiu->i2s);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "Can't get the i2s clocks\n");
-+		dev_err_probe(dev, ret, "Can't get the i2s clocks\n");
- 		return ret;
- 	}
- 
- 	ret = aiu_clk_bulk_get(dev, aiu_spdif_ids, ARRAY_SIZE(aiu_spdif_ids),
- 			       &aiu->spdif);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "Can't get the spdif clocks\n");
-+		dev_err_probe(dev, ret, "Can't get the spdif clocks\n");
- 		return ret;
- 	}
- 
-@@ -282,8 +280,7 @@ static int aiu_probe(struct platform_device *pdev)
- 
- 	ret = device_reset(dev);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "Failed to reset device\n");
-+		dev_err_probe(dev, ret, "Failed to reset device\n");
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
-index b9af2d513e09..d670a32d56ab 100644
---- a/sound/soc/meson/axg-fifo.c
-+++ b/sound/soc/meson/axg-fifo.c
-@@ -352,17 +352,16 @@ int axg_fifo_probe(struct platform_device *pdev)
- 
- 	fifo->pclk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(fifo->pclk)) {
--		if (PTR_ERR(fifo->pclk) != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %ld\n",
--				PTR_ERR(fifo->pclk));
-+		dev_err_probe(dev, PTR_ERR(fifo->pclk),
-+			      "failed to get pclk: %ld\n", PTR_ERR(fifo->pclk));
- 		return PTR_ERR(fifo->pclk);
- 	}
- 
- 	fifo->arb = devm_reset_control_get_exclusive(dev, NULL);
- 	if (IS_ERR(fifo->arb)) {
--		if (PTR_ERR(fifo->arb) != -EPROBE_DEFER)
--			dev_err(dev, "failed to get arb reset: %ld\n",
--				PTR_ERR(fifo->arb));
-+		dev_err_probe(dev, PTR_ERR(fifo->arb),
-+			      "failed to get arb reset: %ld\n",
-+			      PTR_ERR(fifo->arb));
- 		return PTR_ERR(fifo->arb);
- 	}
- 
-diff --git a/sound/soc/meson/axg-pdm.c b/sound/soc/meson/axg-pdm.c
-index bfd37d49a73e..f630311b5b29 100644
---- a/sound/soc/meson/axg-pdm.c
-+++ b/sound/soc/meson/axg-pdm.c
-@@ -613,24 +613,21 @@ static int axg_pdm_probe(struct platform_device *pdev)
- 	priv->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(priv->pclk)) {
- 		ret = PTR_ERR(priv->pclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get pclk: %d\n", ret);
- 		return ret;
- 	}
- 
- 	priv->dclk = devm_clk_get(dev, "dclk");
- 	if (IS_ERR(priv->dclk)) {
- 		ret = PTR_ERR(priv->dclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get dclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get dclk: %d\n", ret);
- 		return ret;
- 	}
- 
- 	priv->sysclk = devm_clk_get(dev, "sysclk");
- 	if (IS_ERR(priv->sysclk)) {
- 		ret = PTR_ERR(priv->sysclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get dclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get dclk: %d\n", ret);
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-spdifin.c b/sound/soc/meson/axg-spdifin.c
-index d0d09f945b48..8f587c3bb5d7 100644
---- a/sound/soc/meson/axg-spdifin.c
-+++ b/sound/soc/meson/axg-spdifin.c
-@@ -481,16 +481,14 @@ static int axg_spdifin_probe(struct platform_device *pdev)
- 	priv->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(priv->pclk)) {
- 		ret = PTR_ERR(priv->pclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get pclk: %d\n", ret);
- 		return ret;
- 	}
- 
- 	priv->refclk = devm_clk_get(dev, "refclk");
- 	if (IS_ERR(priv->refclk)) {
- 		ret = PTR_ERR(priv->refclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get mclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get mclk: %d\n", ret);
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-spdifout.c b/sound/soc/meson/axg-spdifout.c
-index e769a5ee6e27..58e02f6898b7 100644
---- a/sound/soc/meson/axg-spdifout.c
-+++ b/sound/soc/meson/axg-spdifout.c
-@@ -424,16 +424,14 @@ static int axg_spdifout_probe(struct platform_device *pdev)
- 	priv->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(priv->pclk)) {
- 		ret = PTR_ERR(priv->pclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get pclk: %d\n", ret);
- 		return ret;
- 	}
- 
- 	priv->mclk = devm_clk_get(dev, "mclk");
- 	if (IS_ERR(priv->mclk)) {
- 		ret = PTR_ERR(priv->mclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get mclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get mclk: %d\n", ret);
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-tdm-formatter.c b/sound/soc/meson/axg-tdm-formatter.c
-index cab7fa2851aa..108f11e14006 100644
---- a/sound/soc/meson/axg-tdm-formatter.c
-+++ b/sound/soc/meson/axg-tdm-formatter.c
-@@ -284,8 +284,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(formatter->pclk)) {
- 		ret = PTR_ERR(formatter->pclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get pclk: %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -293,8 +292,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->sclk = devm_clk_get(dev, "sclk");
- 	if (IS_ERR(formatter->sclk)) {
- 		ret = PTR_ERR(formatter->sclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get sclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get sclk: %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -302,8 +300,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->lrclk = devm_clk_get(dev, "lrclk");
- 	if (IS_ERR(formatter->lrclk)) {
- 		ret = PTR_ERR(formatter->lrclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get lrclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get lrclk: %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -311,8 +308,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->sclk_sel = devm_clk_get(dev, "sclk_sel");
- 	if (IS_ERR(formatter->sclk_sel)) {
- 		ret = PTR_ERR(formatter->sclk_sel);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get sclk_sel: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get sclk_sel: %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -320,8 +316,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->lrclk_sel = devm_clk_get(dev, "lrclk_sel");
- 	if (IS_ERR(formatter->lrclk_sel)) {
- 		ret = PTR_ERR(formatter->lrclk_sel);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get lrclk_sel: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get lrclk_sel: %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -329,8 +324,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
- 	if (IS_ERR(formatter->reset)) {
- 		ret = PTR_ERR(formatter->reset);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get reset: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get reset: %d\n", ret);
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-tdm-interface.c b/sound/soc/meson/axg-tdm-interface.c
-index 87cac440b369..a2c7f658f6b4 100644
---- a/sound/soc/meson/axg-tdm-interface.c
-+++ b/sound/soc/meson/axg-tdm-interface.c
-@@ -519,8 +519,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
- 	iface->sclk = devm_clk_get(dev, "sclk");
- 	if (IS_ERR(iface->sclk)) {
- 		ret = PTR_ERR(iface->sclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get sclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get sclk: %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -528,8 +527,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
- 	iface->lrclk = devm_clk_get(dev, "lrclk");
- 	if (IS_ERR(iface->lrclk)) {
- 		ret = PTR_ERR(iface->lrclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get lrclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get lrclk: %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -545,8 +543,8 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
- 		if (ret == -ENOENT) {
- 			iface->mclk = NULL;
- 		} else {
--			if (ret != -EPROBE_DEFER)
--				dev_err(dev, "failed to get mclk: %d\n", ret);
-+			dev_err_probe(dev, ret, "failed to get mclk: %d\n",
-+				      ret);
- 			return ret;
- 		}
- 	}
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index 300ac8be46ef..ac062c03cf33 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -86,8 +86,8 @@ int meson_card_parse_dai(struct snd_soc_card *card,
- 	ret = of_parse_phandle_with_args(node, "sound-dai",
- 					 "#sound-dai-cells", 0, &args);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(card->dev, "can't parse dai %d\n", ret);
-+		dev_err_probe(card->dev, ret,
-+			      "can't parse sound-dai at %pOFn\n", node);
- 		return ret;
- 	}
- 	*dai_of_node = args.np;
-diff --git a/sound/soc/meson/t9015.c b/sound/soc/meson/t9015.c
-index 4c1349dd1e06..7ff16f51dbd4 100644
---- a/sound/soc/meson/t9015.c
-+++ b/sound/soc/meson/t9015.c
-@@ -259,15 +259,14 @@ static int t9015_probe(struct platform_device *pdev)
- 
- 	priv->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(priv->pclk)) {
--		if (PTR_ERR(priv->pclk) != -EPROBE_DEFER)
--			dev_err(dev, "failed to get core clock\n");
-+		dev_err_probe(dev, PTR_ERR(priv->pclk),
-+			      "failed to get core clock\n");
- 		return PTR_ERR(priv->pclk);
- 	}
- 
- 	priv->avdd = devm_regulator_get(dev, "AVDD");
- 	if (IS_ERR(priv->avdd)) {
--		if (PTR_ERR(priv->avdd) != -EPROBE_DEFER)
--			dev_err(dev, "failed to AVDD\n");
-+		dev_err_probe(dev, PTR_ERR(priv->avdd), "failed to AVDD\n");
- 		return PTR_ERR(priv->avdd);
- 	}
- 
--- 
-2.32.0.rc0
+> I suppose you make this mutable with another patch later on ?
+correct, I have a patch in my queue which will make all relevant
+clocks in the vclk and vclk2 trees mutable
+my idea behind this is to not mix any _ro_ops to _ops conversion with
+other types of changes (so the actual reason for a change is still
+documented in the git history)
 
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
