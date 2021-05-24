@@ -2,93 +2,93 @@ Return-Path: <SRS0=MQG/=KT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-15.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 997ACC04FF3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 May 2021 21:56:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8207C04FF3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 May 2021 22:08:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4A42E600CD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 May 2021 21:56:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A42E600CD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 5C92361422
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 May 2021 22:08:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C92361422
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gPe2VLP4rmyuID4jhLRGoEM65WfRbH+pNqsZOcc8bQ4=; b=HzD0KL8pAdWlj/
-	EmB9ArMn8Z4oA3oaJrbaW8iAXSPGqmsxTDHGGE8W8lumrNyB8TdAaAgbtnMQF7mbRHyu7UBJ/lWap
-	pD52IO6cnlDp7RSJ7MZcARmI44YaZPM63yu2PPGdEPR/xLUNMM2JNgAHc5AjA9DtH9P5VpobEBE77
-	cZSmJrwjeqJj0hYY0guhXoOjxaQVqFH5+ghVN+2TnKst7cRdi7/w7Wu9nI5/8VurPAbMHW/q3yTVx
-	CZaNEaTXkAEp1OWD7xlbXG7/ts7KvqdXDK7ZMnKV9gVAUH7k5lD5aqsgLY0ryWAslgwueZ2sBQ/Rc
-	NSFDxJno+Ab3zN0juAqg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=wq3wwJXS+esctt01jLtn8OmVXF+VKYsDu9o+juCo8UU=; b=mTAIkPwtVn/bReY/AyJU3Qa+v
+	ZHrIAr+XnTSZ3A2Im9XkuY9vTGB4IKTQJP6t0GkZSzZmsjEa+OpgzqBBf12lJKrdW1h0GRDET7n2W
+	Xaa26bYL50gOQgn7JNSwtHU0qeozNcYdt5NXYbtB7va/jg6iQByfYyWzoYCf2r7xJs1P/ir0qYsEA
+	1dTFbIXuWMDgVfR0aw2LyKWIEY+vPCdef7tKw9l/Q/EFm+P3HL3K0piOeadj2FHKlX/CMzzI7Xpzm
+	rpAEHLV52CaeAVAOD8mimPnR79+4KoUR6pGYhHTEeGxpRj+enhGxv+peVhSq2IqazAZxOLrkLUs3a
+	AdrN2Qf7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1llIYI-00218s-OY; Mon, 24 May 2021 21:55:58 +0000
-Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
+	id 1llIkI-0023Th-2Y; Mon, 24 May 2021 22:08:22 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ll7y2-000pv9-Jz; Mon, 24 May 2021 10:37:52 +0000
-Received: by mail-ej1-x62e.google.com with SMTP id s22so40804634ejv.12;
- Mon, 24 May 2021 03:37:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=D9PoKK0/f5+W8bgWFgVSBXS4bTp3NbAEIo6GlJr5v8A=;
- b=XUPX+sm0RNbOl3akoKmJdcug6VvbFVss7IrvGZFOHF5FdfguqhCkHq65S57Ilk5f/3
- p1ua+E5zOQJNBiRMiDO4wEoSWhudhNUp6/urdIjRJ0NPeMruTG16PCnnzvPg7YKphCDK
- vJOtSZ4qClvDCcAOIYO/ELwFVrOuf5PY8qRqB70zHxMgrkJ2RfvIiNR9Mh4ISz7xCDij
- q2rtBm7rl6vNUlTiN5sBRevkobxNR6APjypX8tKGkS4dOTT1U8ll3tR2YXRhyD38X3T+
- 8xP5YJdM1DoyqaIAawr1D5GwvpTLbOxHLiir78pNcbOucV7CcWdyJvb5teip623/IF6D
- hCyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=D9PoKK0/f5+W8bgWFgVSBXS4bTp3NbAEIo6GlJr5v8A=;
- b=q0hJsjXvGD0vNXGtGosYHh5cGof8iZ59AZAdu/hvHZRxiVjlGwfhJ4qLvdRtEqEg7Y
- hBL0ikd9bAo9gggjobXbhG0YIGGGvpmpPKOKP7YikUtGA9VzlnqIUfLAdrAmjLzLzAkc
- X0hESboKkd5Rpz0NIMOa/4nWgXbEfvEuyrE26Xn+ilvFFAehO9+5HuzTuTdb1ZjyqV+S
- vvsCbhnlK85U5mEKr9Tp+z5xYaW3tyJ82RfuZKFsh5Q2EzmyeSlXqxXOBZzX356wxjRB
- wEV980XEaRWlYDEPlGLepjbfl/59JFODFxFPO+SQsV2RcXmlv1SNsP0BRqvjZXXxFDq7
- lm2w==
-X-Gm-Message-State: AOAM533ZnZPtCMW8JgLUJZR7ds7xHgx043Fde76nICrdzfSorRWfNLjM
- k57JQC+RSzkABaJlOGrXEd4=
-X-Google-Smtp-Source: ABdhPJxji7Msow1IjPo9+v0JxjQuF/MZH2cI9E+oqnbxbvprgU3c/OuibsfJWHOyfd84x1jHbdz2jw==
-X-Received: by 2002:a17:906:fc1e:: with SMTP id
- ov30mr22364766ejb.526.1621852669408; 
- Mon, 24 May 2021 03:37:49 -0700 (PDT)
-Received: from localhost.localdomain
- (p200300f1370a3a00f22f74fffe210725.dip0.t-ipconnect.de.
- [2003:f1:370a:3a00:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id r15sm2616418edm.61.2021.05.24.03.37.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 May 2021 03:37:49 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: mturquette@baylibre.com, sboyd@kernel.org, narmstrong@baylibre.com,
- jbrunet@baylibre.com, linux-clk@vger.kernel.org
-Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 3/3] clk: meson: regmap: switch to determine_rate for the
- dividers
-Date: Mon, 24 May 2021 12:37:33 +0200
-Message-Id: <20210524103733.554878-4-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210524103733.554878-1-martin.blumenstingl@googlemail.com>
-References: <20210524103733.554878-1-martin.blumenstingl@googlemail.com>
+ id 1ll5QE-000kpq-NU; Mon, 24 May 2021 07:54:48 +0000
+Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi
+ [91.157.208.71])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0ABD71315;
+ Mon, 24 May 2021 09:54:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1621842878;
+ bh=nQQLNOZHnWiuc9bVbNIPySsUX8BVfY7zKLqSjjjmqow=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=eP/n0p6WGzQZageTDgh+AhAcs/g5Ue1NYt36d3FWKJQJaTvUMj3hrq8+fQwTDYsqg
+ Qiwo2GzlBbrg64RXzSwS8WGOPR2HHdLSIbrjQa3SmUmIPz8qikHGRXxlQgTdAuSvZD
+ m5qtsfBYdKDyEA1AOMNDxtttFSFlN8wpwtRhKuuM=
+Subject: Re: [PATCH 06/11] drm/<driver>: drm_gem_plane_helper_prepare_fb is
+ now the default
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Paul Cercueil
+ <paul@crapouillou.net>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=c3=bcbner?=
+ <heiko@sntech.de>, Yannick Fertre <yannick.fertre@foss.st.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev
+References: <20210521090959.1663703-1-daniel.vetter@ffwll.ch>
+ <20210521090959.1663703-6-daniel.vetter@ffwll.ch>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Message-ID: <71ba0c85-be5d-21f9-6817-9848dafde6ea@ideasonboard.com>
+Date: Mon, 24 May 2021 10:54:35 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <20210521090959.1663703-6-daniel.vetter@ffwll.ch>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210524_033750_691756_4DEEF946 
-X-CRM114-Status: GOOD (  13.81  )
+X-CRM114-CacheID: sfid-20210524_005446_927223_B3B2C5A4 
+X-CRM114-Status: GOOD (  11.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,87 +100,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This increases the maxmium supported frequency on 32-bit systems from
-2^31 (signed long as used by clk_ops.round_rate, maximum value:
-approx. 2.14GHz) to 2^32 (unsigned long as used by
-clk_ops.determine_rate, maximum value: approx. 4.29GHz).
-On Meson8/8b/8m2 the HDMI PLL and it's OD (post-dividers) are
-capable of running at up to 2.97GHz. So switch the divider
-implementation in clk-regmap to clk_ops.determine_rate to support these
-higher frequencies on 32-bit systems.
-
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/clk-regmap.c | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
-index dcd1757cc5df..8ad8977cf1c2 100644
---- a/drivers/clk/meson/clk-regmap.c
-+++ b/drivers/clk/meson/clk-regmap.c
-@@ -75,8 +75,8 @@ static unsigned long clk_regmap_div_recalc_rate(struct clk_hw *hw,
- 				   div->width);
- }
- 
--static long clk_regmap_div_round_rate(struct clk_hw *hw, unsigned long rate,
--				      unsigned long *prate)
-+static int clk_regmap_div_determine_rate(struct clk_hw *hw,
-+					 struct clk_rate_request *req)
- {
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
-@@ -87,18 +87,17 @@ static long clk_regmap_div_round_rate(struct clk_hw *hw, unsigned long rate,
- 	if (div->flags & CLK_DIVIDER_READ_ONLY) {
- 		ret = regmap_read(clk->map, div->offset, &val);
- 		if (ret)
--			/* Gives a hint that something is wrong */
--			return 0;
-+			return ret;
- 
- 		val >>= div->shift;
- 		val &= clk_div_mask(div->width);
- 
--		return divider_ro_round_rate(hw, rate, prate, div->table,
--					     div->width, div->flags, val);
-+		return divider_ro_determine_rate(hw, req, div->table,
-+						 div->width, div->flags, val);
- 	}
- 
--	return divider_round_rate(hw, rate, prate, div->table, div->width,
--				  div->flags);
-+	return divider_determine_rate(hw, req, div->table, div->width,
-+				      div->flags);
- }
- 
- static int clk_regmap_div_set_rate(struct clk_hw *hw, unsigned long rate,
-@@ -123,14 +122,14 @@ static int clk_regmap_div_set_rate(struct clk_hw *hw, unsigned long rate,
- 
- const struct clk_ops clk_regmap_divider_ops = {
- 	.recalc_rate = clk_regmap_div_recalc_rate,
--	.round_rate = clk_regmap_div_round_rate,
-+	.determine_rate = clk_regmap_div_determine_rate,
- 	.set_rate = clk_regmap_div_set_rate,
- };
- EXPORT_SYMBOL_GPL(clk_regmap_divider_ops);
- 
- const struct clk_ops clk_regmap_divider_ro_ops = {
- 	.recalc_rate = clk_regmap_div_recalc_rate,
--	.round_rate = clk_regmap_div_round_rate,
-+	.determine_rate = clk_regmap_div_determine_rate,
- };
- EXPORT_SYMBOL_GPL(clk_regmap_divider_ro_ops);
- 
--- 
-2.31.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjEvMDUvMjAyMSAxMjowOSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiBObyBuZWVkIHRvIHNl
+dCBpdCBleHBsaWNpdGx5Lgo+IAo+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmll
+bC52ZXR0ZXJAaW50ZWwuY29tPgo+IENjOiBMYXVyZW50aXUgUGFsY3UgPGxhdXJlbnRpdS5wYWxj
+dUBvc3MubnhwLmNvbT4KPiBDYzogTHVjYXMgU3RhY2ggPGwuc3RhY2hAcGVuZ3V0cm9uaXguZGU+
+Cj4gQ2M6IFNoYXduIEd1byA8c2hhd25ndW9Aa2VybmVsLm9yZz4KPiBDYzogU2FzY2hhIEhhdWVy
+IDxzLmhhdWVyQHBlbmd1dHJvbml4LmRlPgo+IENjOiBQZW5ndXRyb25peCBLZXJuZWwgVGVhbSA8
+a2VybmVsQHBlbmd1dHJvbml4LmRlPgo+IENjOiBGYWJpbyBFc3RldmFtIDxmZXN0ZXZhbUBnbWFp
+bC5jb20+Cj4gQ2M6IE5YUCBMaW51eCBUZWFtIDxsaW51eC1pbXhAbnhwLmNvbT4KPiBDYzogUGhp
+bGlwcCBaYWJlbCA8cC56YWJlbEBwZW5ndXRyb25peC5kZT4KPiBDYzogUGF1bCBDZXJjdWVpbCA8
+cGF1bEBjcmFwb3VpbGxvdS5uZXQ+Cj4gQ2M6IENodW4tS3VhbmcgSHUgPGNodW5rdWFuZy5odUBr
+ZXJuZWwub3JnPgo+IENjOiBNYXR0aGlhcyBCcnVnZ2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29t
+Pgo+IENjOiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+Cj4gQ2M6IEtl
+dmluIEhpbG1hbiA8a2hpbG1hbkBiYXlsaWJyZS5jb20+Cj4gQ2M6IEplcm9tZSBCcnVuZXQgPGpi
+cnVuZXRAYmF5bGlicmUuY29tPgo+IENjOiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1
+bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgo+IENjOiBNYXJlayBWYXN1dCA8bWFyZXhAZGVueC5k
+ZT4KPiBDYzogU3RlZmFuIEFnbmVyIDxzdGVmYW5AYWduZXIuY2g+Cj4gQ2M6IFNhbmR5IEh1YW5n
+IDxoamNAcm9jay1jaGlwcy5jb20+Cj4gQ2M6ICJIZWlrbyBTdMO8Ym5lciIgPGhlaWtvQHNudGVj
+aC5kZT4KPiBDYzogWWFubmljayBGZXJ0cmUgPHlhbm5pY2suZmVydHJlQGZvc3Muc3QuY29tPgo+
+IENjOiBQaGlsaXBwZSBDb3JudSA8cGhpbGlwcGUuY29ybnVAZm9zcy5zdC5jb20+Cj4gQ2M6IEJl
+bmphbWluIEdhaWduYXJkIDxiZW5qYW1pbi5nYWlnbmFyZEBsaW5hcm8ub3JnPgo+IENjOiBNYXhp
+bWUgQ29xdWVsaW4gPG1jb3F1ZWxpbi5zdG0zMkBnbWFpbC5jb20+Cj4gQ2M6IEFsZXhhbmRyZSBU
+b3JndWUgPGFsZXhhbmRyZS50b3JndWVAZm9zcy5zdC5jb20+Cj4gQ2M6IE1heGltZSBSaXBhcmQg
+PG1yaXBhcmRAa2VybmVsLm9yZz4KPiBDYzogQ2hlbi1ZdSBUc2FpIDx3ZW5zQGNzaWUub3JnPgo+
+IENjOiBKZXJuZWogU2tyYWJlYyA8amVybmVqLnNrcmFiZWNAZ21haWwuY29tPgo+IENjOiBKeXJp
+IFNhcmhhIDxqeXJpLnNhcmhhQGlraS5maT4KPiBDYzogVG9taSBWYWxrZWluZW4gPHRvbWJhQGtl
+cm5lbC5vcmc+Cj4gQ2M6IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IENj
+OiBsaW51eC1taXBzQHZnZXIua2VybmVsLm9yZwo+IENjOiBsaW51eC1tZWRpYXRla0BsaXN0cy5p
+bmZyYWRlYWQub3JnCj4gQ2M6IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IENj
+OiBsaW51eC1yb2NrY2hpcEBsaXN0cy5pbmZyYWRlYWQub3JnCj4gQ2M6IGxpbnV4LXN0bTMyQHN0
+LW1kLW1haWxtYW4uc3Rvcm1yZXBseS5jb20KPiBDYzogbGludXgtc3VueGlAbGlzdHMubGludXgu
+ZGV2Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vaW14L2Rjc3MvZGNzcy1wbGFuZS5jICAgICAg
+IHwgMSAtCj4gICBkcml2ZXJzL2dwdS9kcm0vaW14L2lwdXYzLXBsYW5lLmMgICAgICAgICAgIHwg
+MSAtCj4gICBkcml2ZXJzL2dwdS9kcm0vaW5nZW5pYy9pbmdlbmljLWRybS1kcnYuYyAgIHwgMSAt
+Cj4gICBkcml2ZXJzL2dwdS9kcm0vaW5nZW5pYy9pbmdlbmljLWlwdS5jICAgICAgIHwgMSAtCj4g
+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9wbGFuZS5jICAgIHwgMSAtCj4gICBk
+cml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fb3ZlcmxheS5jICAgICAgIHwgMSAtCj4gICBkcml2
+ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fcGxhbmUuYyAgICAgICAgIHwgMSAtCj4gICBkcml2ZXJz
+L2dwdS9kcm0vbXhzZmIvbXhzZmJfa21zLmMgICAgICAgICAgIHwgMiAtLQo+ICAgZHJpdmVycy9n
+cHUvZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2RybV92b3AuYyB8IDEgLQo+ICAgZHJpdmVycy9ncHUv
+ZHJtL3N0bS9sdGRjLmMgICAgICAgICAgICAgICAgICB8IDEgLQo+ICAgZHJpdmVycy9ncHUvZHJt
+L3N1bjRpL3N1bjRpX2xheWVyLmMgICAgICAgICB8IDEgLQo+ICAgZHJpdmVycy9ncHUvZHJtL3N1
+bjRpL3N1bjhpX3VpX2xheWVyLmMgICAgICB8IDEgLQo+ICAgZHJpdmVycy9ncHUvZHJtL3N1bjRp
+L3N1bjhpX3ZpX2xheWVyLmMgICAgICB8IDEgLQo+ICAgZHJpdmVycy9ncHUvZHJtL3RpZHNzL3Rp
+ZHNzX3BsYW5lLmMgICAgICAgICB8IDEgLQo+ICAgMTQgZmlsZXMgY2hhbmdlZCwgMTUgZGVsZXRp
+b25zKC0pCgpGb3IgdGlkc3M6CgpBY2tlZC1ieTogVG9taSBWYWxrZWluZW4gPHRvbWkudmFsa2Vp
+bmVuQGlkZWFzb25ib2FyZC5jb20+CgogIFRvbWkKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
+bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
