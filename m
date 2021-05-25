@@ -2,95 +2,93 @@ Return-Path: <SRS0=3IHZ=KU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-9.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC7C5C2B9F8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 07:27:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 210C9C2B9F8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 16:50:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7BB9360FE3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 07:27:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7BB9360FE3
+	by mail.kernel.org (Postfix) with ESMTPS id D37DA6140F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 16:50:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D37DA6140F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=fxOMTc31svdgaQ7UMh4bccN+L+hbPEqNyL+ALM9M2JI=; b=3zobBeLmGoFqnTeJh9sccWquY/
-	t7eJ2y54I4q1t9jWXUWMavhpsAwwBEfXX9d+BkaQcsKu/RtMY/8x8HWrYc9VzamvMljJgx/0NmfzG
-	yCTpr3CShtO9P+bGGtM7lfeS1iHHLx/W+BWfHnTxJ6ySFrN9JYw9zVYaD51V+Eh/xn+j2QXnj/VIC
-	TG1h/G4h+8p6sR0fQSKc0CZmXQAzzIvB/xHOB0gIZRp4sHOiVGjqkP3+G1tKcg5lFDFD7EShEkVrj
-	XT809WTXP2WKuntDMpheSH1Ts34C77fax3g8jSxDdTbINClXzx6X7L3LHIX8PqFGyKu/lrloWsFzB
-	PKko5KOA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Raxaw3Pisf8jOY6c3czADpWhprqp7CxBAWS9FG1KgWs=; b=NkBa5q+U/vnk1S
+	Jd4J5edllP3uyicau4Gpbh6TYh2P07a8AEi6QWpJz/i2WNPPMvUzDWHi5g1viNYCmRwWauJwOFFA2
+	3+/hg4ik/ZzC/p0k24YRoyFw3m6FWf3KGVSyN53OOqFQja7G6k2Xi0ioABa+6XLkNHP1pKAiIYOHV
+	DMDrrxAv1d3sica8VKvDIvH120rTzUAH8ywrsbXZzrFWd2Dw2irxRNcjZ+/+neRHUOjT5KZAzAGkf
+	BIE3Ohawd0s7+kyvMxNJiBHO0+C4KnIhpuozZUC1PiDVoWZyFMZuMzmAjWtwMD41/EUJNDiscIeSE
+	aAsyy11HoXCVslDLUBbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1llRTC-003syM-3g; Tue, 25 May 2021 07:27:18 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1llaGP-006aRa-3i; Tue, 25 May 2021 16:50:41 +0000
+Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1llRT8-003swr-Gc
- for linux-amlogic@lists.infradead.org; Tue, 25 May 2021 07:27:15 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id
- l11-20020a05600c4f0bb029017a7cd488f5so9574969wmq.0
- for <linux-amlogic@lists.infradead.org>; Tue, 25 May 2021 00:27:14 -0700 (PDT)
+ id 1llZkC-006LJS-Cf
+ for linux-amlogic@lists.infradead.org; Tue, 25 May 2021 16:17:26 +0000
+Received: by mail-pg1-x529.google.com with SMTP id 29so12034867pgu.11
+ for <linux-amlogic@lists.infradead.org>; Tue, 25 May 2021 09:17:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=3ULzEBN0Jp6XpJ/GBCDjzUsE47Bj6V3OGDqs3nkCmBQ=;
- b=NfZNK3AP4Og/CCDj7YYSs3dxKXI9Yon/pw5TGBatv6Z3hbr71FBpaqjvfhyK00mUnl
- UIdBQiPqdFiqwOhmVUnNfwiV1y9R0umkNt4Tq0w+gZos6CmFq5RECL9MXuLRIQ7275Qq
- Gn822MmikBlAoDmGTjlFZkWki47X/e14d2JPNIsjYO+YmYRhHCufrKtatPJXvdkpt8nM
- Mjj12l2nlaOhCn+tfBhEr01K9++dRz3EyUJ4WNfwiWiqeZvhnjC6drVmX9Trd7PKhdrJ
- LpKweY3Q0tJHgXpqzwAm9sjT0HmmWfJXVQrZU+AkvDHHcMpfsBCQaPANLPWiGNGMNpMC
- H0lA==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=CdawJkwPb9uxGnIRp9sk4Ip1oxhSpAGWGCOpyXEqx3g=;
+ b=rJa7zjMSgGyyG5fwmAUqCwPtrvv5JuaUKfxyI61BvANPK873nbdYjwwSjEBuK0gT25
+ bibqdjWTQkuJfcvRwuHpDEvogNf1OE8pGaQVKnej1GuGJjOvQUqyVx2yWvHYvxfmmQZs
+ z7CGPOEE7deJ9nzz04LL9+8FGtraj1iBOe8UGT/1mLQP/4FXxWY7mMbNVj2dlhXxjqvw
+ 86/X/rEH7ucKSTM9gDVLhRFBfeIw2flglowb78NSBj7Rs1EgHKdYX54u94csuW6HvU7e
+ l6LW+wd2y4up625x5S8t7ek9oUDnUa46mFOYztJgNUXH3elg132tlr2EtjMeQPp+VuLo
+ EXjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=3ULzEBN0Jp6XpJ/GBCDjzUsE47Bj6V3OGDqs3nkCmBQ=;
- b=A48uwLpWo0GIVUbUbDYaR8LpcBT4SPi6DY3n2FCf8J5sAKGToAAinQ+aLjb4S1omYA
- 79mGUCAzhF32AEywPy9rQWCnl9V74RyZ6ChIfg7sYGCX9xZ98xmYgLLcWTKY9CDJNEDx
- pNa4akdWCv2GMosk5ULllVF399DykrFjVjqhwYAGwNM0VIzE2rvPOJuAAyDWZvMo6Jwc
- QCwJnYGKD82e/io/cBn0ugEwi4++HQLaMuFr2cPbwsoDteEYd3Hb8/A+tqRc/srfVQax
- iqjzFJM3l5lHyIrg0oO1p/KE0QTop4EyrZWlPpIdxS2LafyOL9F7b5QJRiqeKtayQxWb
- e/zA==
-X-Gm-Message-State: AOAM5314lX6qlc11Iz1T96FR9JIp4QW5N//3DNz5a0muWX+GFD+ipWK0
- GUYcMIFHLKtKTe6CnH9kmAtWvA==
-X-Google-Smtp-Source: ABdhPJxyYxttWGaOHQK/+i3OGI3H2+FM/NOaYwrT/XMwPbrCsfvs/WLauniXQAHjriF6Y7oiTOIgDw==
-X-Received: by 2002:a1c:b457:: with SMTP id d84mr2458736wmf.58.1621927632859; 
- Tue, 25 May 2021 00:27:12 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:1062:9531:8150:c5f3?
- ([2a01:e0a:90c:e290:1062:9531:8150:c5f3])
- by smtp.gmail.com with ESMTPSA id h14sm1932369wmb.1.2021.05.25.00.27.11
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 25 May 2021 00:27:12 -0700 (PDT)
-Subject: Re: [PATCH] drm/meson: fix shutdown crash when component not probed
-To: dri-devel@lists.freedesktop.org
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Stefan Agner <stefan@agner.ch>
-References: <20210430082744.3638743-1-narmstrong@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <0359d826-49d5-d724-b38e-012e3389ae43@baylibre.com>
-Date: Tue, 25 May 2021 09:27:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=CdawJkwPb9uxGnIRp9sk4Ip1oxhSpAGWGCOpyXEqx3g=;
+ b=roiU8Rw2sIB+DkbZC38mj6ipgTeiKF1wWR85u3ZgNMW7r13h3BBI2G/H5sCtqTuYTC
+ 3WyuJ6DK+euv1LbTWhGPr93D0XbQ3MsFf4IXzlFLPoZO3jux0qX7S6AlBOoHAiN+iTkT
+ gw3Cyi5varN9hoM1b6ZOb0S1n7SsM4ch+UcYSRTSB/tzCnmTeOjrY1ZD0qOCTWiOutl8
+ onmjtJq90iuG4dplRhNZEevH9Rz2IIbaQ5FiOKQmIcC4LENoPHWJ+40ZY4EJDWIgJf1G
+ HVy1C8dMQRQsy1ubODo6EXkj0XV9WzBjVHMqMsYk1E2f5wC38iHPsdh+CLEbRUSakhc/
+ kmKA==
+X-Gm-Message-State: AOAM531JQ4BXF9CG0uAR8ZLmY39rfNPHJKNUPz2xkrIbFKYUvRUdbRHY
+ JvJZVGcu4syUIBc/WiLVI6IkiA==
+X-Google-Smtp-Source: ABdhPJwQWoLkB15dMgqBWwSPOLHy1X9eow40SiKRJfG7tRn1R38sCBNzVxm0PiH9htEgLG2ov+FjZQ==
+X-Received: by 2002:a62:55c4:0:b029:2e8:f854:d31c with SMTP id
+ j187-20020a6255c40000b02902e8f854d31cmr7833707pfb.59.1621959442277; 
+ Tue, 25 May 2021 09:17:22 -0700 (PDT)
+Received: from localhost ([2601:602:9200:1465:2dea:a51d:f517:6a56])
+ by smtp.gmail.com with ESMTPSA id m14sm13861320pff.17.2021.05.25.09.17.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 25 May 2021 09:17:21 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Marc Zyngier <maz@kernel.org>, Lee Jones <lee.jones@linaro.org>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, open list
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build
+ as a module
+In-Reply-To: <87r1hwwier.wl-maz@kernel.org>
+References: <20201020072532.949137-1-narmstrong@baylibre.com>
+ <20201020072532.949137-2-narmstrong@baylibre.com>
+ <7hsga8kb8z.fsf@baylibre.com>
+ <CAF2Aj3g6c8FEZb3e1by6sd8LpKLaeN5hsKrrQkZUvh8hosiW9A@mail.gmail.com>
+ <87r1hwwier.wl-maz@kernel.org>
+Date: Tue, 25 May 2021 09:17:20 -0700
+Message-ID: <7hsg2au6sv.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20210430082744.3638743-1-narmstrong@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210525_002714_627855_28BCFCED 
-X-CRM114-Status: GOOD (  20.88  )
+X-CRM114-CacheID: sfid-20210525_091724_506228_AF6A180A 
+X-CRM114-Status: GOOD (  16.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,60 +105,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/04/2021 10:27, Neil Armstrong wrote:
-> When main component is not probed, by example when the dw-hdmi module is
-> not loaded yet or in probe defer, the following crash appears on shutdown:
-> 
-> Unable to handle kernel NULL pointer dereference at virtual address 0000000000000038
-> ...
-> pc : meson_drv_shutdown+0x24/0x50
-> lr : platform_drv_shutdown+0x20/0x30
-> ...
-> Call trace:
-> meson_drv_shutdown+0x24/0x50
-> platform_drv_shutdown+0x20/0x30
-> device_shutdown+0x158/0x360
-> kernel_restart_prepare+0x38/0x48
-> kernel_restart+0x18/0x68
-> __do_sys_reboot+0x224/0x250
-> __arm64_sys_reboot+0x24/0x30
-> ...
-> 
-> Simply check if the priv struct has been allocated before using it.
-> 
-> Fixes: fa0c16caf3d7 ("drm: meson_drv add shutdown function")
-> Reported-by: Stefan Agner <stefan@agner.ch>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/gpu/drm/meson/meson_drv.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index 453d8b4c5763..07fcd12dca16 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -485,11 +485,12 @@ static int meson_probe_remote(struct platform_device *pdev,
->  static void meson_drv_shutdown(struct platform_device *pdev)
->  {
->  	struct meson_drm *priv = dev_get_drvdata(&pdev->dev);
-> -	struct drm_device *drm = priv->drm;
->  
-> -	DRM_DEBUG_DRIVER("\n");
-> -	drm_kms_helper_poll_fini(drm);
-> -	drm_atomic_helper_shutdown(drm);
-> +	if (!priv)
-> +		return;
-> +
-> +	drm_kms_helper_poll_fini(priv->drm);
-> +	drm_atomic_helper_shutdown(priv->drm);
->  }
->  
->  static int meson_drv_probe(struct platform_device *pdev)
-> 
+Marc Zyngier <maz@kernel.org> writes:
 
-Applied to drm-misc-fixes
+> On Fri, 21 May 2021 10:47:48 +0100,
+> Lee Jones <lee.jones@linaro.org> wrote:
+>> 
+>> [1  <text/plain; UTF-8 (quoted-printable)>]
+>> On Tue, 20 Oct 2020 at 19:23, Kevin Hilman <khilman@baylibre.com> wrote:
+>> 
+>> > Neil Armstrong <narmstrong@baylibre.com> writes:
+>> >
+>> > > In order to reduce the kernel Image size on multi-platform distributions,
+>> > > make it possible to build the Amlogic GPIO IRQ controller as a module
+>> > > by switching it to a platform driver.
+>> > >
+>> > > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> >
+>> > Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+>> > Tested-by: Kevin Hilman <khilman@baylibre.com>
+>> >
+>> > Tested as a module on meson-sm1-khadas-vim3l where the wired networking
+>> > uses GPIO IRQs.
+>> >
+>> 
+>> Good morning Neil, Kevin,
+>> 
+>> What happened to this set in the end?  I still don't see it in Mainline.
+>
+> Last time I tried this patch, it broke my test setup in non-obvious
+> ways. Has someone checked that the issue I reported back then has been
+> resolved now that fw_devlink is more usable?
 
-Neil
+Not yet, that's (still) on my TODO list... (well, TBH, I forgot about
+it, but I'll have another look.)
+
+Kevin
+
+
 
 _______________________________________________
 linux-amlogic mailing list
