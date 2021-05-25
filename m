@@ -7,88 +7,90 @@ X-Spam-Status: No, score=-9.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 210C9C2B9F8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 16:50:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9B5CC2B9F8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 16:54:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D37DA6140F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 16:50:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D37DA6140F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 717776141C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 May 2021 16:54:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 717776141C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Raxaw3Pisf8jOY6c3czADpWhprqp7CxBAWS9FG1KgWs=; b=NkBa5q+U/vnk1S
-	Jd4J5edllP3uyicau4Gpbh6TYh2P07a8AEi6QWpJz/i2WNPPMvUzDWHi5g1viNYCmRwWauJwOFFA2
-	3+/hg4ik/ZzC/p0k24YRoyFw3m6FWf3KGVSyN53OOqFQja7G6k2Xi0ioABa+6XLkNHP1pKAiIYOHV
-	DMDrrxAv1d3sica8VKvDIvH120rTzUAH8ywrsbXZzrFWd2Dw2irxRNcjZ+/+neRHUOjT5KZAzAGkf
-	BIE3Ohawd0s7+kyvMxNJiBHO0+C4KnIhpuozZUC1PiDVoWZyFMZuMzmAjWtwMD41/EUJNDiscIeSE
-	aAsyy11HoXCVslDLUBbw==;
+	List-Owner; bh=3B5AclDn2K0KnJxTPhSJK/L/r6tJAIR1boIhP2GPSjA=; b=TS3rWvbPa4SzkL
+	ysB6qe39o+N8oUNK0nXQmnRkfNHMTu7PtZQRmlBTOqVbhdVXC688EMGP44QvQkkzslVJOZt2xov+/
+	cVwZARIcmA4xkUSjj/k4qpajmBToBnB8ChY/9xfcza3uHH1e07qhFJnfLVzC1ECpsoa7mW5xP6Kzr
+	TzyETXw7Dr3TTtxceO1e1KkmJui8aOtSz6iWX5aljvzU/6iVEEGwh1f9pyyt6iNa+8JBRad+PKpF8
+	Qi9tm7/PHQ2sxAgbBZA/+LEb4/rPxF+qFNAhrxsKhrhrGtPgEurOsWA0TEGzegEHnjUJJ99Xwo/eH
+	qcKzexzpoPjeXEoeBrog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1llaGP-006aRa-3i; Tue, 25 May 2021 16:50:41 +0000
-Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
+	id 1llaK5-006cWg-Rh; Tue, 25 May 2021 16:54:29 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1llZkC-006LJS-Cf
- for linux-amlogic@lists.infradead.org; Tue, 25 May 2021 16:17:26 +0000
-Received: by mail-pg1-x529.google.com with SMTP id 29so12034867pgu.11
- for <linux-amlogic@lists.infradead.org>; Tue, 25 May 2021 09:17:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=CdawJkwPb9uxGnIRp9sk4Ip1oxhSpAGWGCOpyXEqx3g=;
- b=rJa7zjMSgGyyG5fwmAUqCwPtrvv5JuaUKfxyI61BvANPK873nbdYjwwSjEBuK0gT25
- bibqdjWTQkuJfcvRwuHpDEvogNf1OE8pGaQVKnej1GuGJjOvQUqyVx2yWvHYvxfmmQZs
- z7CGPOEE7deJ9nzz04LL9+8FGtraj1iBOe8UGT/1mLQP/4FXxWY7mMbNVj2dlhXxjqvw
- 86/X/rEH7ucKSTM9gDVLhRFBfeIw2flglowb78NSBj7Rs1EgHKdYX54u94csuW6HvU7e
- l6LW+wd2y4up625x5S8t7ek9oUDnUa46mFOYztJgNUXH3elg132tlr2EtjMeQPp+VuLo
- EXjg==
+ id 1llZwr-006Re6-Rb
+ for linux-amlogic@lists.infradead.org; Tue, 25 May 2021 16:30:31 +0000
+Received: by mail-wm1-x334.google.com with SMTP id o127so17098300wmo.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 25 May 2021 09:30:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=9nwt4Wpg0hmZ7kHGH/PciQ0lTJpG5RlqOKYlvkngWns=;
+ b=V68yr1iVeGoSNSNnL4Tn+Pmqt8s71eX0caRne/9WoExjiHXAoGj69icDo54SlgjsI8
+ nbt67XcFHWApel03RicpB5v/RqxlNyR4Orl+qvrLwHIAw7PoZzYB1l0zoE8861TxONAM
+ AC6iItHOSzFS3KCJt6J2PmnMrTI0RKHBY+PfcXWUKGxgrQvDjS6nGVDJ+FKSnoCiQcfc
+ cUOnBg6+ekCKLDSw1Acc3SUjs0CtH6ZRWSj0jMncgSNq0ddyomy7H42cj0EMl5wvLkiX
+ 9SnHoD674p2cGMkN+DhxdK6f/VsGX2jlwbNjsoZ84lqgt/jyyLH65f1Fi11a3iKNkL0O
+ ZPWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=CdawJkwPb9uxGnIRp9sk4Ip1oxhSpAGWGCOpyXEqx3g=;
- b=roiU8Rw2sIB+DkbZC38mj6ipgTeiKF1wWR85u3ZgNMW7r13h3BBI2G/H5sCtqTuYTC
- 3WyuJ6DK+euv1LbTWhGPr93D0XbQ3MsFf4IXzlFLPoZO3jux0qX7S6AlBOoHAiN+iTkT
- gw3Cyi5varN9hoM1b6ZOb0S1n7SsM4ch+UcYSRTSB/tzCnmTeOjrY1ZD0qOCTWiOutl8
- onmjtJq90iuG4dplRhNZEevH9Rz2IIbaQ5FiOKQmIcC4LENoPHWJ+40ZY4EJDWIgJf1G
- HVy1C8dMQRQsy1ubODo6EXkj0XV9WzBjVHMqMsYk1E2f5wC38iHPsdh+CLEbRUSakhc/
- kmKA==
-X-Gm-Message-State: AOAM531JQ4BXF9CG0uAR8ZLmY39rfNPHJKNUPz2xkrIbFKYUvRUdbRHY
- JvJZVGcu4syUIBc/WiLVI6IkiA==
-X-Google-Smtp-Source: ABdhPJwQWoLkB15dMgqBWwSPOLHy1X9eow40SiKRJfG7tRn1R38sCBNzVxm0PiH9htEgLG2ov+FjZQ==
-X-Received: by 2002:a62:55c4:0:b029:2e8:f854:d31c with SMTP id
- j187-20020a6255c40000b02902e8f854d31cmr7833707pfb.59.1621959442277; 
- Tue, 25 May 2021 09:17:22 -0700 (PDT)
-Received: from localhost ([2601:602:9200:1465:2dea:a51d:f517:6a56])
- by smtp.gmail.com with ESMTPSA id m14sm13861320pff.17.2021.05.25.09.17.21
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=9nwt4Wpg0hmZ7kHGH/PciQ0lTJpG5RlqOKYlvkngWns=;
+ b=jU+TTqXywZJOcVpJzpQMCMRcTt/uECfGgJYGxzL5wQLMJi/QN5hPR+KJfZQiaPbAN3
+ lXYcd8+OqKSqNw/imxOxp6psUmZiQXMBQgo/JM5O8Dfs2e0TZT8kBr82rgpu8dwB18Wx
+ C4aDoTXmxeZrURgj2XWa8wkibiRTR4wkKBfzB/NdpOvmrUGiD1lDcsRUJWfDrCKwhh6F
+ xXcox9l7SzI0ahA/pxyKVyeelsGOxmSZ+qGpNtBzOIAAAZT/DZz/Oda/KLc/342B2MvR
+ BizeUW0E0DXvGGsTgVLTggkQE80dDfAkzPxuNjLCfoQtwm2am1vMzm0LJN8j5d6ALZpk
+ QIwQ==
+X-Gm-Message-State: AOAM531a3vtyYPuJMYh/OgKa8T18MQmyMB8m44y7cFk3sd9VGn9Bfrci
+ 4gfnMGiYiH8fx0Io09LuvZC9ig==
+X-Google-Smtp-Source: ABdhPJzZ0krWACNsjmS0+Hh2AvTmE8Bxm17Apsd2RbWDZmmWCCvsFgApYmgEVO2+2WxZdzlYFJzrtQ==
+X-Received: by 2002:a05:600c:4e8e:: with SMTP id
+ f14mr4686030wmq.65.1621960227081; 
+ Tue, 25 May 2021 09:30:27 -0700 (PDT)
+Received: from dell ([91.110.221.223])
+ by smtp.gmail.com with ESMTPSA id e8sm16622464wrt.30.2021.05.25.09.30.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 25 May 2021 09:17:21 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Marc Zyngier <maz@kernel.org>, Lee Jones <lee.jones@linaro.org>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, open list
- <linux-kernel@vger.kernel.org>
+ Tue, 25 May 2021 09:30:26 -0700 (PDT)
+Date: Tue, 25 May 2021 17:30:24 +0100
+From: Lee Jones <lee.jones@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Marc Zyngier <maz@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>
 Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build
  as a module
-In-Reply-To: <87r1hwwier.wl-maz@kernel.org>
+Message-ID: <20210525163024.GD4005783@dell>
 References: <20201020072532.949137-1-narmstrong@baylibre.com>
  <20201020072532.949137-2-narmstrong@baylibre.com>
  <7hsga8kb8z.fsf@baylibre.com>
  <CAF2Aj3g6c8FEZb3e1by6sd8LpKLaeN5hsKrrQkZUvh8hosiW9A@mail.gmail.com>
- <87r1hwwier.wl-maz@kernel.org>
-Date: Tue, 25 May 2021 09:17:20 -0700
-Message-ID: <7hsg2au6sv.fsf@baylibre.com>
+ <87r1hwwier.wl-maz@kernel.org> <7hsg2au6sv.fsf@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <7hsg2au6sv.fsf@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210525_091724_506228_AF6A180A 
-X-CRM114-Status: GOOD (  16.48  )
+X-CRM114-CacheID: sfid-20210525_093029_936230_9418BFE3 
+X-CRM114-Status: GOOD (  19.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,50 +102,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Marc Zyngier <maz@kernel.org> writes:
-
-> On Fri, 21 May 2021 10:47:48 +0100,
-> Lee Jones <lee.jones@linaro.org> wrote:
->> 
->> [1  <text/plain; UTF-8 (quoted-printable)>]
->> On Tue, 20 Oct 2020 at 19:23, Kevin Hilman <khilman@baylibre.com> wrote:
->> 
->> > Neil Armstrong <narmstrong@baylibre.com> writes:
->> >
->> > > In order to reduce the kernel Image size on multi-platform distributions,
->> > > make it possible to build the Amlogic GPIO IRQ controller as a module
->> > > by switching it to a platform driver.
->> > >
->> > > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> >
->> > Reviewed-by: Kevin Hilman <khilman@baylibre.com>
->> > Tested-by: Kevin Hilman <khilman@baylibre.com>
->> >
->> > Tested as a module on meson-sm1-khadas-vim3l where the wired networking
->> > uses GPIO IRQs.
->> >
->> 
->> Good morning Neil, Kevin,
->> 
->> What happened to this set in the end?  I still don't see it in Mainline.
->
-> Last time I tried this patch, it broke my test setup in non-obvious
-> ways. Has someone checked that the issue I reported back then has been
-> resolved now that fw_devlink is more usable?
-
-Not yet, that's (still) on my TODO list... (well, TBH, I forgot about
-it, but I'll have another look.)
-
-Kevin
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCAyNSBNYXkgMjAyMSwgS2V2aW4gSGlsbWFuIHdyb3RlOgoKPiBNYXJjIFp5bmdpZXIg
+PG1hekBrZXJuZWwub3JnPiB3cml0ZXM6Cj4gCj4gPiBPbiBGcmksIDIxIE1heSAyMDIxIDEwOjQ3
+OjQ4ICswMTAwLAo+ID4gTGVlIEpvbmVzIDxsZWUuam9uZXNAbGluYXJvLm9yZz4gd3JvdGU6Cj4g
+Pj4gCj4gPj4gWzEgIDx0ZXh0L3BsYWluOyBVVEYtOCAocXVvdGVkLXByaW50YWJsZSk+XQo+ID4+
+IE9uIFR1ZSwgMjAgT2N0IDIwMjAgYXQgMTk6MjMsIEtldmluIEhpbG1hbiA8a2hpbG1hbkBiYXls
+aWJyZS5jb20+IHdyb3RlOgo+ID4+IAo+ID4+ID4gTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdA
+YmF5bGlicmUuY29tPiB3cml0ZXM6Cj4gPj4gPgo+ID4+ID4gPiBJbiBvcmRlciB0byByZWR1Y2Ug
+dGhlIGtlcm5lbCBJbWFnZSBzaXplIG9uIG11bHRpLXBsYXRmb3JtIGRpc3RyaWJ1dGlvbnMsCj4g
+Pj4gPiA+IG1ha2UgaXQgcG9zc2libGUgdG8gYnVpbGQgdGhlIEFtbG9naWMgR1BJTyBJUlEgY29u
+dHJvbGxlciBhcyBhIG1vZHVsZQo+ID4+ID4gPiBieSBzd2l0Y2hpbmcgaXQgdG8gYSBwbGF0Zm9y
+bSBkcml2ZXIuCj4gPj4gPiA+Cj4gPj4gPiA+IFNpZ25lZC1vZmYtYnk6IE5laWwgQXJtc3Ryb25n
+IDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPiA+PiA+Cj4gPj4gPiBSZXZpZXdlZC1ieTogS2V2
+aW4gSGlsbWFuIDxraGlsbWFuQGJheWxpYnJlLmNvbT4KPiA+PiA+IFRlc3RlZC1ieTogS2V2aW4g
+SGlsbWFuIDxraGlsbWFuQGJheWxpYnJlLmNvbT4KPiA+PiA+Cj4gPj4gPiBUZXN0ZWQgYXMgYSBt
+b2R1bGUgb24gbWVzb24tc20xLWtoYWRhcy12aW0zbCB3aGVyZSB0aGUgd2lyZWQgbmV0d29ya2lu
+Zwo+ID4+ID4gdXNlcyBHUElPIElSUXMuCj4gPj4gPgo+ID4+IAo+ID4+IEdvb2QgbW9ybmluZyBO
+ZWlsLCBLZXZpbiwKPiA+PiAKPiA+PiBXaGF0IGhhcHBlbmVkIHRvIHRoaXMgc2V0IGluIHRoZSBl
+bmQ/ICBJIHN0aWxsIGRvbid0IHNlZSBpdCBpbiBNYWlubGluZS4KPiA+Cj4gPiBMYXN0IHRpbWUg
+SSB0cmllZCB0aGlzIHBhdGNoLCBpdCBicm9rZSBteSB0ZXN0IHNldHVwIGluIG5vbi1vYnZpb3Vz
+Cj4gPiB3YXlzLiBIYXMgc29tZW9uZSBjaGVja2VkIHRoYXQgdGhlIGlzc3VlIEkgcmVwb3J0ZWQg
+YmFjayB0aGVuIGhhcyBiZWVuCj4gPiByZXNvbHZlZCBub3cgdGhhdCBmd19kZXZsaW5rIGlzIG1v
+cmUgdXNhYmxlPwo+IAo+IE5vdCB5ZXQsIHRoYXQncyAoc3RpbGwpIG9uIG15IFRPRE8gbGlzdC4u
+LiAod2VsbCwgVEJILCBJIGZvcmdvdCBhYm91dAo+IGl0LCBidXQgSSdsbCBoYXZlIGFub3RoZXIg
+bG9vay4pCgpTdXBlcnN0YXIhICBUaGFua3MgS2V2aW4uCgotLSAKTGVlIEpvbmVzIFvmnY7nkLzm
+lq9dClNlbmlvciBUZWNobmljYWwgTGVhZCAtIERldmVsb3BlciBTZXJ2aWNlcwpMaW5hcm8ub3Jn
+IOKUgiBPcGVuIHNvdXJjZSBzb2Z0d2FyZSBmb3IgQXJtIFNvQ3MKRm9sbG93IExpbmFybzogRmFj
+ZWJvb2sgfCBUd2l0dGVyIHwgQmxvZwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
+aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtYW1sb2dpYwo=
