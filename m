@@ -2,96 +2,86 @@ Return-Path: <SRS0=mdIi=KW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21A2BC47089
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 May 2021 07:32:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FF85C4707F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 May 2021 19:12:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3C1BF61186
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 May 2021 07:32:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C1BF61186
+	by mail.kernel.org (Postfix) with ESMTPS id 8D15A6135F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 May 2021 19:12:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D15A6135F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=EZ/4jgBBv0gBgnDYR7C58xUFjG8F59/n0twh2KyW6OI=; b=nXDiyKqk5YZ9KfwDiVNH5ccV4s
-	WRQvQoKnoW0AJ93z8r/+ZRoAyGvr5N0H3f0uhQ2MlCeKyxYH5Q9dCN7zQlhE4xHhQQgNoa0kmON8V
-	Ge34Rtck4TQy+SYdtNZtQgnhXEKRbdGcESZN2k+XLOSumVnN7g9EGIq7fo0FLf6nRYJ9xGjK5wlMT
-	3ZJHaKPaeg/T2rdoXdI+GW1QCdFF8GNJ7PPers3j4M0kLc0A0QlAfzlI+21J0sKuByiFwjSn4Kihg
-	xXS5W3xq7t2pyxiBjITdL2RfoR0T/na3qTWse2Qry0dgw48hE3TR3t1YjaDrY3mIHQC/KjwqloHQl
-	jQ5FCs6w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=7tLIyXDVvVnMZyYoawxEDEJDF+UWC3HgeVr8rZdm79E=; b=QSATzpo2yIqNSf
+	nWjf+ZihLUwY8C0MJGNmphocJjUSCSUzfESImZhHL5hBrnRQnBqX0WFvpb8LGvgxqkuslQEsrjzut
+	FbtG6djNlciUoDKlggGSdzifoL4wkt5Y+9RoFmDitxNoM6SpXK4aVycusgydboQwlMlOLOf2H3sZ5
+	DZXWAxaI0sxO/NfLFCVO7hyvAsIE3Gfr/nTdtIwsd9cKNMyKWRm7PANfheelnsVxeJkhHlySz0MhF
+	Dgy3NGXcz1BAdiyskd3ock4xINTD369s2El5YgJ85BlRdONnPVHw0vv7823dmdvKjhQswngZls5Pa
+	XS+EMMdGwiL+lGdBiYIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lmAVB-003OC0-50; Thu, 27 May 2021 07:32:21 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1lmLQj-008qMF-Px; Thu, 27 May 2021 19:12:29 +0000
+Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lmAV6-003O8m-Tn
- for linux-amlogic@lists.infradead.org; Thu, 27 May 2021 07:32:19 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id
- f6-20020a1c1f060000b0290175ca89f698so1942674wmf.5
- for <linux-amlogic@lists.infradead.org>; Thu, 27 May 2021 00:32:15 -0700 (PDT)
+ id 1lmKsH-008XeB-FB
+ for linux-amlogic@lists.infradead.org; Thu, 27 May 2021 18:36:55 +0000
+Received: by mail-pj1-x1030.google.com with SMTP id
+ lx17-20020a17090b4b11b029015f3b32b8dbso2976616pjb.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 27 May 2021 11:36:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=6hIT+shrCAZfdHqZZ6hjkiJ3isC79KXr4S0rxqlL3CA=;
- b=eUqHjKpkwRZn0f1MjoqKQYkyge0PAD9c/YKHL5ebegaNziX3tbAPKuthZH3mYj6tdi
- baNM2DHZsxzVhn3fU4X3hPTOomUMb43HipWRgx5U/Sudk1itGLhwUqZwA6jev9EIA+x2
- cl/Uxf5Kt4XAMf4QiAz/OZY0fYAzX/IgfU1lr6DdSamP8MTZHnFrNwX8j23NsPvORIIP
- rKYfMRE4RjP5O8RCT1qw2bpZamIlfMl2lvhMA+GazcdIL7Bkjq0t/6IonfD7NA5vAHR/
- o47hl2kVUrd/2rLt18Y/l9/XHJ1Eve9TrZnNqXKIbRSZVC8xEtSv6EiCUxgAw6NtpSu+
- OS9g==
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=YcX3i4SjvdD2XN41YU+ZDUb+9ax+irRbMi3KZwfnWW4=;
+ b=Y6ZnBaOCDGFlGg9aYYrOMAXhLHyIU+/jTjcO8MDY8GEKFTyqZhl/Gbny0SJx1Gmd2E
+ SphPzl8jofRfyuEr4xhSawvYNxnt4kMKKYqT/Q6ud2foiWx7CUC62i6QgNai/oHwJxG3
+ QuD8OMtlG9GuHPn1yTctRIw9/3tcWmCKoa9PCBqI3L3k0YS2E6zleCVHaiIHj9/ZSKYt
+ aIsURNgwEapFfkjv5uiRzxJ3Oof6ERPMgYLDuCGigeYR4kHuZ6wYUrc19NXzcVkbl027
+ kRVyjHP4qKPj+99OLP8qJ31HYTK5S3dL/hM3av/769lqJtoG+j6mGl+IiDTVWaQaHGsl
+ Tqmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=6hIT+shrCAZfdHqZZ6hjkiJ3isC79KXr4S0rxqlL3CA=;
- b=c5xSekyU5BoHNq+3AQhW2mA8hpdMJkXVWVi/4t7/+qe3/uSBn6q7xS2eYDu9Ys0BUt
- 0aXQDGSkv1GLteGQAIG/mKU/vjaQ+4o58dKUaNOqxsO1EivQDIZLEcU1Bu7Oew8TxcP0
- 0P+aaJx7KfPbdut0l/iFuYYsuG3aH+web87hdnj9l97KYYMixNOZhFCDsU0kFgtF4pMl
- OQ1Lewr2Uvk/uV6csWiguMKZysIWPl8L5Z8Ak2xCXMZ0r0Nq6Rkn3c8Kc1E6g+SjwBSM
- miclu0cSzt4jzOkU8SDyM4KD+QsFOW1wvOmNIGC2Gk/ZC5W6eNPl9DvrmPgfSe8oJ8C8
- DihA==
-X-Gm-Message-State: AOAM533Gkp4WPmCOLXNpJGrqiXeHBH54PvqAxg8b5FI18XRkc7GdumiH
- T4xJSTFtNJY1/oS8uG/b7OkpXw==
-X-Google-Smtp-Source: ABdhPJxmiEm/MKIe6NGj6Ccektk5aNFdsBXcwU//FDin47cWI37BYbW0PquZ0o+nWUfht4f3fkAFJg==
-X-Received: by 2002:a1c:9d02:: with SMTP id g2mr6682239wme.119.1622100732318; 
- Thu, 27 May 2021 00:32:12 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:f7c:28dc:fe09:27d9?
- ([2a01:e0a:90c:e290:f7c:28dc:fe09:27d9])
- by smtp.gmail.com with ESMTPSA id o11sm1817760wrq.93.2021.05.27.00.32.11
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 27 May 2021 00:32:11 -0700 (PDT)
-Subject: Re: #linux-amlogic IRC channel: move to Libera.Chat or OFTC?
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Cc: jbrunet@baylibre.com, khilman@baylibre.com, carlo@caione.org,
- Beniamino Galvani <b.galvani@gmail.com>
-References: <CAFBinCBuFzJVXFdDqpy9HgWt4AMMk_jeOWvQ-mYke2z274FXPQ@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <97572f8e-b5c8-4bc4-8348-a3c284bd9aa9@baylibre.com>
-Date: Thu, 27 May 2021 09:32:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+ bh=YcX3i4SjvdD2XN41YU+ZDUb+9ax+irRbMi3KZwfnWW4=;
+ b=KGdOfhU21igkxxl/LtO1r47vNrAvy0kpg3XMhlPROFirFSMpyjpDFy0wTnvI3sQQ9m
+ igZvgsGLSruKRSJrfuNY+/JuF1/7QySTGrdfOhmN+4wf7cjWoxIrJ7YF7vnTYc4M2Thh
+ gX2ovZedUHrDYkMt39IWoc6adXKHCFFmbKX5SPftc0gkBoNG4nVoATBF/WF2nmo8B1y7
+ JMgHBJjLyb9+WU3QUWp9AExv6tB7NDqnnxTBaOfbB7KLYVzWonfSqWM2sx/gDHu0JA6A
+ 52pZOTiL8Hvk7Es3Uxt/lgBW2qBe4zBPeXgi+w1phQGOX8qR40P+ewHbWVYQrkz8pR5X
+ KUwg==
+X-Gm-Message-State: AOAM531aFS4yNGRu1TLF/NFjArqY8UpHiU956tUNZRWg1gZd7Or0LZcz
+ BQUzN8D2I6h5RebfY91J2NOZrICYPOnNqIEA
+X-Google-Smtp-Source: ABdhPJyoZI4QjTPevz096XryKV7ooY3aBfbSQgmCbQVUw75nk7wD2Nb53XNHOQBXTx6ip+OvWHG3ZQ==
+X-Received: by 2002:a17:90a:5649:: with SMTP id
+ d9mr5181545pji.163.1622140611610; 
+ Thu, 27 May 2021 11:36:51 -0700 (PDT)
+Received: from localhost ([2601:602:9200:1465:9965:8615:f331:180d])
+ by smtp.gmail.com with ESMTPSA id x13sm2513600pjl.22.2021.05.27.11.36.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 May 2021 11:36:50 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ linux-amlogic@lists.infradead.org, Neil Armstrong
+ <narmstrong@baylibre.com> 
+Subject: updated Amlogic repo used for linux-next              
+Date: Thu, 27 May 2021 11:36:50 -0700
+Message-ID: <7hmtsgrpkt.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBuFzJVXFdDqpy9HgWt4AMMk_jeOWvQ-mYke2z274FXPQ@mail.gmail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210527_003217_078644_447065B8 
-X-CRM114-Status: GOOD (  21.41  )
+X-CRM114-CacheID: sfid-20210527_113653_600446_8601DED6 
+X-CRM114-Status: UNSURE (   6.00  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,65 +98,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Hi Stephen,
 
-Thanks for starting this thread.
+Please update the tree used for Amlogic SoC kernel development
+(suggested patch below[1].)
 
-On 26/05/2021 20:25, Martin Blumenstingl wrote:
-> Hello,
-> 
-> today the #linux-amlogic channel on Freenode was taken over by the
-> Freenode network administrators: [0]
-> I believe it is because the channel subject contained "Also on Libera.Chat".
-> 
-> Due to the recent events going on with Freenode other (large)
-> communities are also leaving Freenode, for example:
-> - Arch Linux: migrating to Libera.Chat
-> - OpenWrt: migrating to OFTC
-> - panfrost and lima drivers: migrating to OFTC
-> - (many more)
-> 
-> So I think we have two options:
-> 1. Moving to Libera.Chat
-> 2. Moving to OFTC
-> 3. Trying to get back our "old" channel on Freenode
+We've switched to a maintainer group for this tree which is now
+co-maintained by myself and Neil (cc'd)
 
-I sent an email to the contact-us@freenode.net but had no answer so far, honestly I don't expect a reply.
+Thank you,
 
-> 
-> The steps (as far as I can tell) for switching to a new network are:
-> - creating #linux-amlogic on the new network (already done by Neil on
-> Libera.Chat and OFTC)
-> - inviting the whitequark IRC logger to the channel on the new network
-> - updating the topic of the new channel to inform users that all
-> messages are logged and the logs are available publicly
-> - updating our wiki with the new IRC network: [1]
-> 
-> I am not sure which steps need to be taken to get our "old" channel on
-> Freenode back.
-> 
-> What do you think?
-> 
-> Personally I vote for option #1 or #2.
-> I have no strong preference on which network to choose.
+Kevin & Neil
 
-Neither but it seems the most users have migrated to the Libera.Chat channel, so I'll be
-in favor to switch to libera.
-
-Let us a few days to decide again and do the switch early next week.
-
-Neil
-
-> 
-> 
-> Best regards,
-> Martin
-> 
-> 
-> [0] https://freenode.irclog.whitequark.org/linux-amlogic/2021-05-26
-> [1] http://linux-meson.com/
-> 
-
+[1]
+diff --git a/Next/Trees b/Next/Trees
+index 2d22ca1d2911..1794b9144f3a 100644
+--- a/Next/Trees
++++ b/Next/Trees
+@@ -103,7 +103,7 @@ arm64		git	git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux#for-next/co
+ arm-perf		git	git://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git#for-next/perf
+ arm-soc		git	git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git#for-next
+ actions		git	git://git.kernel.org/pub/scm/linux/kernel/git/mani/linux-actions.git#for-next
+-amlogic		git	git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git#for-next
++amlogic		git	git://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git#for-next
+ aspeed		git	git://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed.git#for-next
+ at91		git	git://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git#at91-next
+ drivers-memory	git	https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-mem-ctrl.git#for-next
 
 _______________________________________________
 linux-amlogic mailing list
