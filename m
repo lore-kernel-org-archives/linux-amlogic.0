@@ -2,89 +2,74 @@ Return-Path: <SRS0=oj2F=KX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A038C47087
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 May 2021 18:32:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6BE0C47087
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 May 2021 21:59:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 98D74613B5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 May 2021 18:32:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 98D74613B5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 1C76E611CD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 May 2021 21:59:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C76E611CD
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=rothwell.id.au
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HifKxHv7wIxpFKPZJqQAO2rnWoZxSUPGR6kfsrSmJe4=; b=gQDv+sKqvM4C9N
-	3Q/JguLt8YvL2Vb7xBI+ESD9ps2IDzFYndSCtmob7XFB2k4zvzNaggCPQKtQbr/3grveZJiGoZzQ0
-	eaFEMMXhLR31jgbTt7p6+VAl+jlBpAEJFzgG3eCJCRH6LFrTMEPQuTR7jZFi3l/BVTlx/r7t6tHOP
-	ZUbm0xUBbQH02Go0AggAHNkSudpWyR0P+bB1WKxHXn3OQcZhpAjApBCEOAdb8BwRje9Mj8aO1xGga
-	jRJ3l5+CA8MGujNCyUneLib7xlNee+TPS8WZAJbDbvbD7HQb74Ja3hAJkJ1ocSjDrenE9WbIM3c4V
-	mvQJdpKh36gFkiFDVxwg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=P9x3+l7h0Lpu6/1rtUl5e7HSR3XKKpdpF0ik2EQPV8U=; b=hCzgdWmGOJnw8r2diMkDihDDzJ
+	UGz0K5T3F5XxBIZHoqzkPyY/EBCGoQLJk6t0y9R5Zo6c3hoYdHahuA94mtqrmf64Vs8NKdg9wCLSn
+	URmG5x+9wMfTjeilA1IZpTfyZ4dvpCMH66zRsynzxTtj/X6Swos/+f1L3/KJ/Mlhk2CPa+NMeMHH/
+	tOzAYQkhzjzKqxQ6ixe5hpQvo5gl/m+E5oD5K3Tv+OA8DCHecrzx+u04/j4kU86oGhwD4IRx36r+9
+	MXWPLVfwbTJx9PnQFaZn7TB00Ox4EVXM+KkC0f8hJIAplVSorJUdbL+8naBZ879yLxdjSh75ZX1NE
+	4IZi0I/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lmhHD-000G4Y-Mj; Fri, 28 May 2021 18:32:07 +0000
-Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
+	id 1lmkWB-001MBu-JS; Fri, 28 May 2021 21:59:47 +0000
+Received: from gimli.rothwell.id.au ([103.230.158.156])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lmhH9-000G2o-OO
- for linux-amlogic@lists.infradead.org; Fri, 28 May 2021 18:32:05 +0000
-Received: by mail-pj1-x1033.google.com with SMTP id
- v13-20020a17090abb8db029015f9f7d7290so7691321pjr.0
- for <linux-amlogic@lists.infradead.org>; Fri, 28 May 2021 11:32:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=YV/BiPJXhGwSK1PzuBgArnxi+SlDKErcHallVmzy8OI=;
- b=oeIfKPwTYbdFzQnGWsbcMsrzvBZhq6DWLQce99NaYxtj/w88ZrQ/B8vnRXhivk3bHE
- gywmstMJZWJo+BKKpHRs+K9ccDl+xmbNbvXuFfjMNFHXoiOXlwUukS3Yd+uGJFRPhg1k
- tvyhtoiU0/TDw9x17Yf2IAHpZ9z8mCG+ivp8MTBNrmaZEZ+3PWl7a7eHcKsdBryf2VzP
- NHUTEJIvbNCW55olNDFolDrJUVhKAmDtsdKKLB/W5WNEEN5jyUM2WaRI0xONWVxFaQT8
- i4ZUfeRod4jnIyFmrd0j3vHYrwWF8goZaVmX2YELomWg5n1R9aw4rvH9QNeUs0inHNdU
- UiTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=YV/BiPJXhGwSK1PzuBgArnxi+SlDKErcHallVmzy8OI=;
- b=B8kp3qqgOjc7B/OfeIKdd7bFm7/cra5BSwesxV/yb3+MFfdbQKbkgZJeEs76Kw28iM
- DjCkBWF1j7NLdqIWbRHbNKttZu4OY79YEbNVAy1QbefSpfSU1lm41dztY31t0DJ1O5Lc
- d1qlUmPOgGrQw5ylIqts8faI/e8Y8qmmsSjBmarJwMnDMBnkI/Me+yhUcuXVFnWXnFKr
- OYxWo/zpmsx9uO5As2/ckqjsF3ew+3AebLpDAgUu9n3w8qlrQrgtsiBBw6+E7BEwUC8f
- IE+NxyZttGA0xMkdqMsVm9tUukpL0MDb7J6hs2ODJbi77I60p+tV7E5Z0GSlMqsW0Mu5
- wRxg==
-X-Gm-Message-State: AOAM532ERG2A5GsSXHOQwI7qvK6QARrytWAfuU2VuwoEouJwDt/rqe+z
- KLzTbrYs3dwp7+6ZqFhU30N3ww==
-X-Google-Smtp-Source: ABdhPJzShLm9qG/+ny4dx5TtLmdS2dbI51CA9eYDIpWdiO+juPnKFo3HhnqPYAdwL9ldDj/cKotdbw==
-X-Received: by 2002:a17:90a:1c02:: with SMTP id
- s2mr5784634pjs.172.1622226722903; 
- Fri, 28 May 2021 11:32:02 -0700 (PDT)
-Received: from localhost ([2601:602:9200:1465:b7b1:ebba:cf8d:434e])
- by smtp.gmail.com with ESMTPSA id r5sm4896984pjd.2.2021.05.28.11.32.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 May 2021 11:32:02 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Cc: Carlo Caione <carlo@caione.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, linux-amlogic@lists.infradead.org, Neil
- Armstrong <narmstrong@baylibre.com>
+ id 1lmkW8-001M5Y-EW
+ for linux-amlogic@lists.infradead.org; Fri, 28 May 2021 21:59:46 +0000
+Received: from authenticated.rothwell.id.au (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.rothwell.id.au (Postfix) with ESMTPSA id 4FsJW16qXPzyQJ;
+ Sat, 29 May 2021 07:59:25 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rothwell.id.au;
+ s=201702; t=1622239168;
+ bh=amiXFdTtq//850g5uO38QHCYw6ktbdlwBdadTR8J7+c=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=UL1gN+ghYAitXdHFK7/jHJzQzxb34/reN5fg2qNJvYcSc/cMdav3q/Sr10i1apkWl
+ ZoJK+TufG9luT7odUJTrqbiTFrz/76EP3X5yzLf5RvohTZreEhdUuCaqRYyAmIaTS4
+ 1pUnb2F+QdHn7ejYnrP5xDgbL7jlqiatpEff1AA11eBYIVsYYyuNU464/Lc33hWrIG
+ fCiAXaKWta7tw58ee7en+iu5Q/UEbBsDY89oVaTNjzhxrebghmKL/vjZWqIZc2aarj
+ Aj1Otvf7IwTO5mbxM0CrWveV5L9URrXD1MuCjG2ygca4P7i0IBvvTKLLcWZess/rGH
+ 0zeY0Y/hBE0CQ==
+Date: Sat, 29 May 2021 07:59:25 +1000
+From: Stephen Rothwell <sfr@rothwell.id.au>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Carlo Caione
+ <carlo@caione.org>, Linux Next Mailing List <linux-next@vger.kernel.org>,
+ linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Subject: Re: updated Amlogic repo used for linux-next
-In-Reply-To: <20210528083821.72dda431@canb.auug.org.au>
+Message-ID: <20210529075925.0694d253@elm.ozlabs.ibm.com>
+In-Reply-To: <7h8s3yso9q.fsf@baylibre.com>
 References: <7hmtsgrpkt.fsf@baylibre.com>
  <20210528083821.72dda431@canb.auug.org.au>
-Date: Fri, 28 May 2021 11:32:01 -0700
-Message-ID: <7h8s3yso9q.fsf@baylibre.com>
+ <7h8s3yso9q.fsf@baylibre.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210528_113203_873196_8B9A2F3A 
-X-CRM114-Status: GOOD (  10.39  )
+X-CRM114-CacheID: sfid-20210528_145944_672215_7BE1BC25 
+X-CRM114-Status: UNSURE (   8.29  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,51 +81,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1302408016483667936=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Stephen Rothwell <sfr@canb.auug.org.au> writes:
+--===============1302408016483667936==
+Content-Type: multipart/signed; boundary="Sig_/goW/d7TRPBtLeAjiMOlOUHo";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-> Hi Kevin,
+--Sig_/goW/d7TRPBtLeAjiMOlOUHo
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi Kevin,
+
+On Fri, 28 May 2021 11:32:01 -0700 Kevin Hilman <khilman@baylibre.com> wrot=
+e:
 >
-> On Thu, 27 May 2021 11:36:50 -0700 Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Please update the tree used for Amlogic SoC kernel development
->> (suggested patch below[1].)
->> 
->> We've switched to a maintainer group for this tree which is now
->> co-maintained by myself and Neil (cc'd)
->> 
->> [1]
->> diff --git a/Next/Trees b/Next/Trees
->> index 2d22ca1d2911..1794b9144f3a 100644
->> --- a/Next/Trees
->> +++ b/Next/Trees
->> @@ -103,7 +103,7 @@ arm64		git	git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux#for-next/co
->>  arm-perf		git	git://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git#for-next/perf
->>  arm-soc		git	git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git#for-next
->>  actions		git	git://git.kernel.org/pub/scm/linux/kernel/git/mani/linux-actions.git#for-next
->> -amlogic		git	git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git#for-next
->> +amlogic		git	git://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git#for-next
->>  aspeed		git	git://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed.git#for-next
->>  at91		git	git://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git#at91-next
->>  drivers-memory	git	https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-mem-ctrl.git#for-next
->
-> I have updated the tree URL and added Neil as a contact.
+> > I still have Carlo (cc'd) listed as a contact, is that correct? =20
+>=20
+> You can drop Carlo.  He stepped down as co-maintainer awhile back.
 
-Thank you.
+Done.
 
-> I still have Carlo (cc'd) listed as a contact, is that correct?
+--=20
+Cheers,
+Stephen Rothwell
 
-You can drop Carlo.  He stepped down as co-maintainer awhile back.
+--Sig_/goW/d7TRPBtLeAjiMOlOUHo
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Thanks,
+-----BEGIN PGP SIGNATURE-----
 
-Kevin
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmCxZ70ACgkQAVBC80lX
+0GzHmwf/eKHLQpOd6jU+5sLrlnTYIWAoV5Dq3MeRDZrs31v6T9aID4BQB+p+m4OU
+3KC1+S8WluyLeZlvgfA/mGVvnjQV2w5nclHw4J/XVq9aVf+QgQY10uOR1jEPcgbM
+2yYoRuv59Cs2pfD40/wQwAVC9bgCMSsRmiA/TiOG+YgwEyx8Nod02wPiu6AuqmT7
+2opk6jekcrEuggOZWzLX5pcI9HtArXxnzb3t3wGA4ZFUSQjdaM9tikwTfbQfOaV6
+oMuYEIUYQkGD1xm7R6MizIlqqRxmzGiRcHgvLsBfuXN5Ikj/2gnDD7CWdheVwre8
++UO/4mV6QHbAXWzT4hFGlfhTzeR2gA==
+=dNpK
+-----END PGP SIGNATURE-----
+
+--Sig_/goW/d7TRPBtLeAjiMOlOUHo--
+
+
+--===============1302408016483667936==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1302408016483667936==--
+
