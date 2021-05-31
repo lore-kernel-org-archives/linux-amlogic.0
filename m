@@ -2,90 +2,84 @@ Return-Path: <SRS0=NF66=K2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-20.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A75E7C47082
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 May 2021 07:43:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28076C47080
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 May 2021 19:19:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 64AD3610A8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 May 2021 07:43:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 64AD3610A8
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id C9BE761186
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 May 2021 19:19:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C9BE761186
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:Cc:To:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=j6i3MuqCGt3yW5FiKAusIqSD397M597aIWZBNNeitCo=; b=eAe4Xf5GUHxfy2
-	KS8tsmtA19rBDirZCmuYze6WVGa3a8fzFaTauyTPkOK50PG3R6MlJ4ByZc3W39TWpFhl71lighTrc
-	/TMg9MN2baYN3wgQuI2KwPTUigEHZiZfw6AJTiKYES0gp0II8/Mak7RIfrkVZe50d20UcJg67TnDr
-	wEpgf/91Q+/yo9FS2LVe/ldGxWRk7gmxJeFwYnu1dUe1iknptHys70ihvcX31dG+AgGtmMc+rsHmy
-	MrYBr1ggY2/M6Wz0VIHke52bgm5rlaHGuHF/Lf/JmMkwCX77VbECVTgS+F15/3k/kIpqYzVzSWukE
-	mgx4QgfGIjpohNqqY2jw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HaciT8UpS59+eHn78OCc1OW97JXotIUMZ2MCVY280gY=; b=P0wtkK1uFc78qB
+	gFWtrm1XsarFJeWIw1W3eN8u3/BUDoaBV+ciQJP3/3tkOidhRvDgZtsZbTHnQbjJwAg3+5spaB67y
+	EnZHqCl/HKa6H4lEAKAr5IQVeU8MNTLAseo453Uqljvc7mMs9ETt02CBXZYUl9nycedhSJh8/Je8N
+	6k/CECkHMoDPm9jBcyECwr1dzVbSi3TJmGs7QN+T8mlhW6Si+bZz/tQBw63oL1j4xcJZOzAj+e8z7
+	nedwUkPJHe/jByxZiY1OdKpU1EeRSLP3OJSJeoR1MsDmznZUWje6BUiZtoTVtH8zgMkoZaFVrCXM3
+	75STCpWkd0zbDocU1tJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lnca8-00BFp8-IY; Mon, 31 May 2021 07:43:28 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1lnnR4-00DET8-UL; Mon, 31 May 2021 19:18:50 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lncYO-00BEn3-BI
- for linux-amlogic@lists.infradead.org; Mon, 31 May 2021 07:41:42 +0000
-Received: by mail-wr1-x430.google.com with SMTP id g17so9815746wrs.13
- for <linux-amlogic@lists.infradead.org>; Mon, 31 May 2021 00:41:40 -0700 (PDT)
+ id 1lnnR3-00DESo-0I
+ for linux-amlogic@lists.infradead.org; Mon, 31 May 2021 19:18:50 +0000
+Received: by mail-ed1-x536.google.com with SMTP id b11so7742950edy.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 31 May 2021 12:18:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:subject:to:cc:organization:message-id:date:user-agent
- :mime-version:content-language:content-transfer-encoding;
- bh=7JJXnQcbUkF2IsgmL8QixZQFkfim3UiqiyexVMF81w8=;
- b=co0pFxUsYHOCRmbZZm9fdWGId0uNZDrAboEMQrkqKWxd0NZnSNt7fyMHXnDX93nBPr
- OfPXjIlzxOJc0lkWnoD27Ebc324eMrfCkUWLg2UEYyiZAbYYpD78fmBkEADhQgoKpkoA
- 60O5vXOXeUEEmHvnr4HR5K5PTyFfq8cdBs9OXMxOdsOKgLCNGepvYjxueiOQKqdawAtK
- 7LVR5Xb96DyaF8HWOz4Ki14s6T3lpDfT+uIGZcgb4j0JXHcjk+SqPKWJ3pt/XqhLnzMQ
- qEjZlfkf8S5HUbyg9wFz6EbAfue1JHyfACEeoxP9wCRTlxHnow11OuJHjkY9hOXkTlnT
- 0YSA==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7MlRZFULg6TaiKI56KQT4gwNq7JAVuH7fSlLYXsRWrQ=;
+ b=gY3f2SHGJ/fPHyHenktzMjpq3du8P8CtUOT1H+YjIff1+fVvFk6wzwOgvEbRqUeh4v
+ UFoy+2QR7eSD0/2J4giGL6Gqz0qw981Pg4NqEkhb2BnZn8to25yqduSoIJDvfJwR9Mg2
+ 3wjB8ZAKpMBVnybbJ1Hq3utLtFGT2zYBtylUD+d8TPN2C9l+lloU48XpVqArINmWnZ+G
+ elNodrLD0MkA2xRo/fo7dVaCxrRfF+0++t2BfNpJ4xYm2M6QNpc7olXF2phd3xEzQwlp
+ XZ1eB9CRYQc17njK9s+Oc3IlLrtxu3D8CR7W8PpQcuTxR/T3AUeZGw7n/MxNoVMACg6g
+ fruQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:subject:to:cc:organization:message-id:date
- :user-agent:mime-version:content-language:content-transfer-encoding;
- bh=7JJXnQcbUkF2IsgmL8QixZQFkfim3UiqiyexVMF81w8=;
- b=AEcns9LCGOupkJw5lU0qZl0qG9pGJ2hUIvZ2GeGZinyOfGelY4g+uF4HNfsF0mW3b6
- vgOBjyFwtkjR+IefaZGZeqH9MXNtzkyx5PTvH1Xf6p691LNIcYmoZVjlitJg8jkyHnma
- 5VGnieIjjItx8TJK2dQuj7dXwYqk1z+x4MKHSn4FqmlflOo65PXWn4e854Ldormj5gh6
- kACfU1lHYHPaQD3CTVzNaQ0cYYipZlJH7iB4b7WSSg0nGLyWw0SCrZtckX0tPDozQ+sJ
- eb62U4+Pp9g7Fx3a/oMtXgx2cZ/9nq7gwpPe2EMbJn8wZK2UZI6/GpmUBFpbZ4yENagS
- 5IXg==
-X-Gm-Message-State: AOAM530i2vKR+D6mfg1HM12/Kx7XGyPiAp3YIthB6F8Wsbr4JMAvRU/z
- +sOFlALkn3B3TSx1oNM4A8pVcg==
-X-Google-Smtp-Source: ABdhPJwQOMcMWs3PD1aoVYMsyg53z0Z3Ssu3X3+YorxL6u6vTzQcMNg1LXcnTRL0VYAzIXAizSFXOw==
-X-Received: by 2002:adf:f68c:: with SMTP id v12mr7304345wrp.122.1622446898808; 
- Mon, 31 May 2021 00:41:38 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:6567:aa5c:6dc2:fff8?
- ([2a01:e0a:90c:e290:6567:aa5c:6dc2:fff8])
- by smtp.gmail.com with ESMTPSA id g11sm16508698wri.59.2021.05.31.00.41.37
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 31 May 2021 00:41:38 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [GIT PULL] amlogic fixes for v5.13-rc
-List-Id: <soc.lore.kernel.org>
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Organization: Baylibre
-Message-ID: <73e76706-f3f4-bebf-10dd-d2ec9106a234@baylibre.com>
-Date: Mon, 31 May 2021 09:41:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7MlRZFULg6TaiKI56KQT4gwNq7JAVuH7fSlLYXsRWrQ=;
+ b=VJ7xkPiykWJKl2dfXvFZO77NlugODyMrosl3gD/7oN9D2WXLdJeO+vcnSgKRxV8PMI
+ kGbJGTHWt75FS3YQaHkNPqoc49VbhjNDr/Tc0UfkkaPmpxWydZgpImBhFe1KQwI3LdTO
+ QT1qPBY59sz1x/EwDBD33MrAXQHWdYzq3tE24yR0a1wmq6OOwXYqGVSzoTj+rTJUzQj5
+ HNCuUkXgi7fiWA921HEDgp6o1SJd6nVeEuLW0ftY3BjuWBl+Af3R9Dj0DPZip9ahSSk/
+ bY1l6bWWw7DojWYwWz26WBIeYAJGY/8C5xuCkaCB7ApIQ1+pfHnjX1rf9oeRHNVr2Ucr
+ BYcA==
+X-Gm-Message-State: AOAM530Px/5Ki2xhTPCSESdAvdQrwZ7fzb9IQffltnqki16+ZPd49v2r
+ pBX1TTFZdkT98xbKd5CiV1fNEc9ScyFm0godNaM=
+X-Google-Smtp-Source: ABdhPJwZh4D3XMFVXoa+L7htlt2XQga6sd1s9ibwiZklZyG4hC2/SM82sy/ZgOJJln2+btBibnwsPIoWBkWTu/uvmlc=
+X-Received: by 2002:aa7:dc12:: with SMTP id b18mr26963033edu.52.1622488726441; 
+ Mon, 31 May 2021 12:18:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-US
+References: <CAFBinCBuFzJVXFdDqpy9HgWt4AMMk_jeOWvQ-mYke2z274FXPQ@mail.gmail.com>
+ <97572f8e-b5c8-4bc4-8348-a3c284bd9aa9@baylibre.com>
+ <10e38e44-1634-e92c-8aa0-b515f9c149b3@baylibre.com>
+In-Reply-To: <10e38e44-1634-e92c-8aa0-b515f9c149b3@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 31 May 2021 21:18:35 +0200
+Message-ID: <CAFBinCA+nk3ARBST=OPquVantdKv2gJumi9QG8CpO6jBSBD4wA@mail.gmail.com>
+Subject: Re: #linux-amlogic IRC channel: move to Libera.Chat or OFTC?
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, jbrunet@baylibre.com, 
+ khilman@baylibre.com, carlo@caione.org, 
+ Beniamino Galvani <b.galvani@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210531_004140_479905_3E940A72 
-X-CRM114-Status: GOOD (  10.14  )
+X-CRM114-CacheID: sfid-20210531_121849_088160_3F5CB45D 
+X-CRM114-Status: GOOD (  11.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,40 +96,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Neil,
 
-Here's a couple of fixes for v5.13-rc1, one for the amlogic Kconfig and another for the meson-clk-measure soc driver.
+On Mon, May 31, 2021 at 9:20 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+[...]
+> >> Personally I vote for option #1 or #2.
+> >> I have no strong preference on which network to choose.
+> >
+> > Neither but it seems the most users have migrated to the Libera.Chat channel, so I'll be
+> > in favor to switch to libera.
+> >
+> > Let us a few days to decide again and do the switch early next week.
+>
+> I'm still in favor to switch to Libera.Chat,
+7 users found the channel on OFTC
+28 users found the channel on Libera.Chat
 
-Neil
+so in my opinion the community has decided
+That's why I am also for using #linux-amlogic on Libera.Chat as our
+main IRC channel
 
-The following changes since commit 6efb943b8616ec53a5e444193dccf1af9ad627b5:
 
-  Linux 5.13-rc1 (2021-05-09 14:17:44 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-fixes-v5.13-rc1
-
-for you to fetch changes up to 4cce442ffe5448ef572adc8b3abe7001b398e709:
-
-  arm64: meson: select COMMON_CLK (2021-05-31 09:27:08 +0200)
-
-----------------------------------------------------------------
-Amlogic fixes for v5.13-rc1
-- arm64: meson: select COMMON_CLK to select a proper implementation of the clock API
-- soc: amlogic: meson-clk-measure: remove redundant dev_err call in meson_msr_probe()
-
-----------------------------------------------------------------
-Jerome Brunet (1):
-      arm64: meson: select COMMON_CLK
-
-Qiheng Lin (1):
-      soc: amlogic: meson-clk-measure: remove redundant dev_err call in meson_msr_probe()
-
- arch/arm64/Kconfig.platforms            | 1 +
- drivers/soc/amlogic/meson-clk-measure.c | 4 +---
- 2 files changed, 2 insertions(+), 3 deletions(-)
-
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
