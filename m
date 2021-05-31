@@ -2,100 +2,98 @@ Return-Path: <SRS0=NF66=K2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6B8DC47082
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 May 2021 07:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46932C47082
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 May 2021 07:20:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2265C6108D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 May 2021 07:18:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2265C6108D
+	by mail.kernel.org (Postfix) with ESMTPS id F1BF26108D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 May 2021 07:20:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F1BF26108D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Message-ID:References:Cc:To:From:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=3CA7O+xa+j1RAHFjMJtGjmywmjt6ju+Wp2uSyIkGI6I=; b=ijSGMX0D30bGQq33AlEu1+9XXP
-	Z9R8KNnSrwxF8r6y6NhKLRrDoAFLRk80XOofJ7oxYTtMJXd0Myb1Gp1XfZ1zb0zvhe2Ao6lm17Ddd
-	irTGONCnPoe0HkvoNcWLd0nSsqsWtGi1BNIi5nK0VgM7/Wl9muRQGp8AiAeWMXbuXtwiJXAOV4zZn
-	R6ZGy28nc0sRcUy6LgZCHw87zYodhwwqpvGy6RDvverAoY+yTYax3rjbVE9Ar3SqiAZLlImCFcF5k
-	ZXSlYCyl5hE6LtqS+fN+E6VMUp6IhfqsSm5wYN5ZWl7DiTJVypbYgo375bKtJAtLvIMEmmlaMHYdB
-	keKcXA+A==;
+	bh=dmCaZXYAsk1VIypZnUhCOn1vri8Q92Ciwc8XwPVtDzM=; b=z+ygoCpZUo0ytaNnlH9GI6m4RQ
+	7gCLkZUstqVa89B07iiHGe2PvCliQXKyDUa0jJgnAuOW+E+EpCnCRLU4owaEEyeapHsoTZwvfcyWz
+	1EVgxnod1grNPTpW+X7czgIvn/IScmODEGYKK+3bDm4dHWpKG2H1rq5iG7aps7qy5vK57V899fUGp
+	9k/QMOSCr5iI7LypDY0013a9JIeMeNCx+3rkewqvpNlY2ChfvsgbO4tWrEiuXNHrj6ckF9A+WhpT9
+	WlmATNmxS4aDUiW7BqIu7Vbioyxi4o/+aGrfNd4/4YbX0ap1q/I+zaRmCsjX1phO0Q8I6Un21O9pn
+	b2/wW6LA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lncBr-00B9xT-1Z; Mon, 31 May 2021 07:18:23 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1lncEF-00BAEx-8x; Mon, 31 May 2021 07:20:51 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lncBn-00B9wQ-SH
- for linux-amlogic@lists.infradead.org; Mon, 31 May 2021 07:18:22 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id
- y184-20020a1ce1c10000b02901769b409001so5935812wmg.3
- for <linux-amlogic@lists.infradead.org>; Mon, 31 May 2021 00:18:18 -0700 (PDT)
+ id 1lncEC-00BAE3-9H
+ for linux-amlogic@lists.infradead.org; Mon, 31 May 2021 07:20:49 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id
+ b145-20020a1c80970000b029019c8c824054so1222857wmd.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 31 May 2021 00:20:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
+ h=subject:from:to:cc:references:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=yzOPm44mU6wdSe0rFBtn0wpByYVkRe5hZQ+xGNYSjCk=;
- b=yVc9QFFp4SSuyoFdUxPxOZU59Lr6Z/Dnl7dX+Hl6zqhNW1rOZ82rc86PQjIRbR10zg
- sZqgpf4bOYkCrFKdZyqYsyoP0ZyNSUpZzKpINli4A0Qs+hliobtdbAtvz5zGTivceGN7
- 2tRhmlkAuC66EjY3+wohoyMnsAHe6xKtCkf80cKoJ5Z3RrEs1KDo38F+fiQHucBTu9q3
- ZLH8xvZ0wAy0RBoszOxBHkEDHzbM8RC/VJOjGFbL4TVU9IOe/a/ZUKgvmxHh6YaIKk8e
- 7G9joCor3U9pKL7y6+uUnT7QifFMz3jZJF0SBSXOiXOsN5RpuNZXG8rllY8DPSTlL0WI
- x1Bw==
+ bh=qoVsbFFh0PjM2QQQD7xPgMLSh1zIQ8lPZ/Hl8DKqcD8=;
+ b=BRW8wFkBX0x8mXh9nLKc0Yj1Fbhht0VL1pWZ2hUGufTM9vJV1rZTBna3xWkfNxqguS
+ OmFN47SE2uJPc6TkUC4KsIOKkLQQ3+duXZLCvW3K4HPb8C4Q/0QsFr6soXx+BrVdf4ky
+ MA4d1pQBGYNnzo4gpV+HusOcM8JIEcBI/Mmvyum+g4IT18hhJgFvhN7VQWC7/D7hyiEg
+ Nh8w78KsR4KBVx9ZAfAzdskeYMLEPK4I3Ych3jEpr4GJkIDBfQ7XVoN4WKJ71Arqbs3B
+ KzY6m/QyZ47Vqo09MQSAj59C7xI7IVU9/iZuV/ISD1W8ux6egyK+YtXAO1ddixbJBQAq
+ 4LJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
+ h=x-gm-message-state:subject:from:to:cc:references:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=yzOPm44mU6wdSe0rFBtn0wpByYVkRe5hZQ+xGNYSjCk=;
- b=Rj3zOKhtWBKgbbAgP11sFbIps4un6tWKG6c2fkkIUMkF4PgtmjWjqPDbr+UuEkJ+O2
- dE/NMO1xYERyddlKwtSBxXCN/kLMH9bIHYhQNHLyqw46gtJzBTnfAjiy1ubCAT0nahD6
- SOrK56fVlCMIK8jCzPxbodKUxQa1x+FtYAlCVf3XCxI4/KQSJCQit5J34pFsl9XFFwwO
- 23dstE2QjU6GibNAr0nG8RHZQrkXlHUsj44LlTx4ikcYA1HdnGuYbs0MnER3vtsreTSS
- COh2cfroMdfMhsDbO4ThtmsAve9H/O6ujhET1+TMHmTbSRu99CI0ioYLLP5YNIrdu42M
- rZqQ==
-X-Gm-Message-State: AOAM531U0UcKc55yOq20ARQNNq08vbw2u7G3AEyzl6cexUZ8lRT8K5Of
- tS6GU2GRjg0p7CSHrakWk8tjGSSBUK77QfkT
-X-Google-Smtp-Source: ABdhPJwVmIyNrhSc2AwqfskqYQcQpraO8DqOj3l17pvV3m4Y7YQmhYRV1JFTSfzaxaEUdpDs0MMSPA==
-X-Received: by 2002:a05:600c:2301:: with SMTP id
- 1mr24997444wmo.180.1622445496932; 
- Mon, 31 May 2021 00:18:16 -0700 (PDT)
+ bh=qoVsbFFh0PjM2QQQD7xPgMLSh1zIQ8lPZ/Hl8DKqcD8=;
+ b=rspFlLwBAFaHpDY0ItRzFc9ONE03+Xgorw1TbEkTTz54EX9a3Kgta/cT0UxtD5pqT2
+ wna4IJFCyiimV1WSvLLbJAvl44qAUCZn2LfQp/hIS0LhSdCUV0LoFa2M9MXnboOqyR9o
+ L5sK8iu5NQwNSm2kZpyIa8AUpr7SCaKH0Z2sRykwHJxr0hjcjyNGrRjukINHSKtUvrih
+ FjObC9jCl7Ni1w7oFRJ1l1/9BoGGtRJGisVpvnjX7zbjuR8UxfIkSa2QbUyAaRPtRqlT
+ l8bfDp0w8RTwfo7h0MDpoATGZYy90AvNC7fTOJbF4jeOjx3vEYyqJXq+nHRoGK329fqi
+ kN9Q==
+X-Gm-Message-State: AOAM5328oVn2IvPkbJIKa6KMLfb0gpMLUrUaviqdP1fodJZxaGF30QSo
+ iRu0JA5AQFkw3W6cEIkyLlPCNQ==
+X-Google-Smtp-Source: ABdhPJyMZyeQWAdTM66xnP4Jfp48zbeOloOXHBPdBWB5vha8Y4212jbdxhrJXSHfSAsd/VKdmSJ2hg==
+X-Received: by 2002:a05:600c:231a:: with SMTP id
+ 26mr13484041wmo.92.1622445644902; 
+ Mon, 31 May 2021 00:20:44 -0700 (PDT)
 Received: from ?IPv6:2a01:e0a:90c:e290:6567:aa5c:6dc2:fff8?
  ([2a01:e0a:90c:e290:6567:aa5c:6dc2:fff8])
- by smtp.gmail.com with ESMTPSA id t14sm15809230wra.60.2021.05.31.00.18.15
+ by smtp.gmail.com with ESMTPSA id u8sm4520500wrb.77.2021.05.31.00.20.43
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 31 May 2021 00:18:16 -0700 (PDT)
-Subject: Re: updated Amlogic repo used for linux-next
-To: Stephen Rothwell <sfr@canb.auug.org.au>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: Carlo Caione <carlo@caione.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- linux-amlogic@lists.infradead.org
-References: <7hmtsgrpkt.fsf@baylibre.com>
- <20210528083821.72dda431@canb.auug.org.au>
+ Mon, 31 May 2021 00:20:44 -0700 (PDT)
+Subject: Re: #linux-amlogic IRC channel: move to Libera.Chat or OFTC?
 From: Neil Armstrong <narmstrong@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org
+Cc: jbrunet@baylibre.com, khilman@baylibre.com, carlo@caione.org,
+ Beniamino Galvani <b.galvani@gmail.com>
+References: <CAFBinCBuFzJVXFdDqpy9HgWt4AMMk_jeOWvQ-mYke2z274FXPQ@mail.gmail.com>
+ <97572f8e-b5c8-4bc4-8348-a3c284bd9aa9@baylibre.com>
 Organization: Baylibre
-Message-ID: <610bbec0-d8c6-4ce2-ffc3-80dd124653d0@baylibre.com>
-Date: Mon, 31 May 2021 09:18:14 +0200
+Message-ID: <10e38e44-1634-e92c-8aa0-b515f9c149b3@baylibre.com>
+Date: Mon, 31 May 2021 09:20:43 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210528083821.72dda431@canb.auug.org.au>
+In-Reply-To: <97572f8e-b5c8-4bc4-8348-a3c284bd9aa9@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210531_001819_998180_A8BB5F76 
-X-CRM114-Status: GOOD (  23.65  )
+X-CRM114-CacheID: sfid-20210531_002048_353511_27AE5A94 
+X-CRM114-Status: GOOD (  25.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,66 +105,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 28/05/2021 00:38, Stephen Rothwell wrote:
-> Hi Kevin,
-> 
-> On Thu, 27 May 2021 11:36:50 -0700 Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Please update the tree used for Amlogic SoC kernel development
->> (suggested patch below[1].)
->>
->> We've switched to a maintainer group for this tree which is now
->> co-maintained by myself and Neil (cc'd)
->>
->> [1]
->> diff --git a/Next/Trees b/Next/Trees
->> index 2d22ca1d2911..1794b9144f3a 100644
->> --- a/Next/Trees
->> +++ b/Next/Trees
->> @@ -103,7 +103,7 @@ arm64		git	git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux#for-next/co
->>  arm-perf		git	git://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git#for-next/perf
->>  arm-soc		git	git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git#for-next
->>  actions		git	git://git.kernel.org/pub/scm/linux/kernel/git/mani/linux-actions.git#for-next
->> -amlogic		git	git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git#for-next
->> +amlogic		git	git://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git#for-next
->>  aspeed		git	git://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed.git#for-next
->>  at91		git	git://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git#at91-next
->>  drivers-memory	git	https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-mem-ctrl.git#for-next
-> 
-> I have updated the tree URL and added Neil as a contact.  I still have
-> Carlo (cc'd) listed as a contact, is that correct?
-> 
-> [The following for Neil's benefit]
-> 
-> Thanks for adding your subsystem tree as a participant of linux-next.  As
-> you may know, this is not a judgement of your code.  The purpose of
-> linux-next is for integration testing and to lower the impact of
-> conflicts between subsystems in the next merge window. 
-> 
-> You will need to ensure that the patches/commits in your tree/series have
-> been:
->      * submitted under GPL v2 (or later) and include the Contributor's
->         Signed-off-by,
->      * posted to the relevant mailing list,
->      * reviewed by you (or another maintainer of your subsystem tree),
->      * successfully unit tested, and 
->      * destined for the current or next Linux merge window.
-> 
-> Basically, this should be just what you would send to Linus (or ask him
-> to fetch).  It is allowed to be rebased if you deem it necessary.
-> 
-
-Noted !
-
-Thanks,
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgQWxsLAoKT24gMjcvMDUvMjAyMSAwOTozMiwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gSGkg
+TWFydGluLAo+IAo+IFRoYW5rcyBmb3Igc3RhcnRpbmcgdGhpcyB0aHJlYWQuCj4gCj4gT24gMjYv
+MDUvMjAyMSAyMDoyNSwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPj4gSGVsbG8sCj4+Cj4+
+IHRvZGF5IHRoZSAjbGludXgtYW1sb2dpYyBjaGFubmVsIG9uIEZyZWVub2RlIHdhcyB0YWtlbiBv
+dmVyIGJ5IHRoZQo+PiBGcmVlbm9kZSBuZXR3b3JrIGFkbWluaXN0cmF0b3JzOiBbMF0KPj4gSSBi
+ZWxpZXZlIGl0IGlzIGJlY2F1c2UgdGhlIGNoYW5uZWwgc3ViamVjdCBjb250YWluZWQgIkFsc28g
+b24gTGliZXJhLkNoYXQiLgo+Pgo+PiBEdWUgdG8gdGhlIHJlY2VudCBldmVudHMgZ29pbmcgb24g
+d2l0aCBGcmVlbm9kZSBvdGhlciAobGFyZ2UpCj4+IGNvbW11bml0aWVzIGFyZSBhbHNvIGxlYXZp
+bmcgRnJlZW5vZGUsIGZvciBleGFtcGxlOgo+PiAtIEFyY2ggTGludXg6IG1pZ3JhdGluZyB0byBM
+aWJlcmEuQ2hhdAo+PiAtIE9wZW5XcnQ6IG1pZ3JhdGluZyB0byBPRlRDCj4+IC0gcGFuZnJvc3Qg
+YW5kIGxpbWEgZHJpdmVyczogbWlncmF0aW5nIHRvIE9GVEMKPj4gLSAobWFueSBtb3JlKQo+Pgo+
+PiBTbyBJIHRoaW5rIHdlIGhhdmUgdHdvIG9wdGlvbnM6Cj4+IDEuIE1vdmluZyB0byBMaWJlcmEu
+Q2hhdAo+PiAyLiBNb3ZpbmcgdG8gT0ZUQwo+PiAzLiBUcnlpbmcgdG8gZ2V0IGJhY2sgb3VyICJv
+bGQiIGNoYW5uZWwgb24gRnJlZW5vZGUKPiAKPiBJIHNlbnQgYW4gZW1haWwgdG8gdGhlIGNvbnRh
+Y3QtdXNAZnJlZW5vZGUubmV0IGJ1dCBoYWQgbm8gYW5zd2VyIHNvIGZhciwgaG9uZXN0bHkgSSBk
+b24ndCBleHBlY3QgYSByZXBseS4KCkkgZmluYWxseSBnb3QgYWNjZXNzIGJhY2sgdG8gdGhlIGNo
+YW5uZWwgb24gZnJlZW5vZGU6CgpEZWFyIE5laWwsCgpXZSBncmVhdGx5IGFwb2xvZ2l6ZSBmb3Ig
+dGhlIGluY29udmVuaWVuY2UsIGFuZCB0aGFuayB5b3Ugc28gbXVjaApmb3IgeW91ciBwYXRpZW5j
+ZS4gIFdlIGhhdmUgdHJhbnNmZXJyZWQgI2xpbnV4LWFtbG9naWMgdG8g4oCZbmFybXN0cm9uZ+KA
+mQpvbiBmcmVlbm9kZS4KCklmIHlvdSBoYXZlIGFueSBvdGhlciBxdWVzdGlvbnMgb3IgY29tbWVu
+dHMsIHBsZWFzZSBkbyBub3QgaGVzaXRhdGUKdG8gcmVhY2ggb3V0LiAgT25jZSBhZ2Fpbiwgd2Ug
+YXBvbG9naXplIGZvciB0aGUgaW5jb252ZW5pZW5jZSB0aGlzCmNhdXNlZC4KClRoYW5rIHlvdSBm
+b3IgY2hvb3NpbmcgZnJlZW5vZGUuCgpCZXN0IHJlZ2FyZHMsCkFuZHJldwoKQnV0IHRoaXMgZG9l
+c24ndCBtZWFuIGl0IHdvbid0IGhhcHBlbiBhZ2Fpbi4KCj4gCj4+Cj4+IFRoZSBzdGVwcyAoYXMg
+ZmFyIGFzIEkgY2FuIHRlbGwpIGZvciBzd2l0Y2hpbmcgdG8gYSBuZXcgbmV0d29yayBhcmU6Cj4+
+IC0gY3JlYXRpbmcgI2xpbnV4LWFtbG9naWMgb24gdGhlIG5ldyBuZXR3b3JrIChhbHJlYWR5IGRv
+bmUgYnkgTmVpbCBvbgo+PiBMaWJlcmEuQ2hhdCBhbmQgT0ZUQykKPj4gLSBpbnZpdGluZyB0aGUg
+d2hpdGVxdWFyayBJUkMgbG9nZ2VyIHRvIHRoZSBjaGFubmVsIG9uIHRoZSBuZXcgbmV0d29yawo+
+PiAtIHVwZGF0aW5nIHRoZSB0b3BpYyBvZiB0aGUgbmV3IGNoYW5uZWwgdG8gaW5mb3JtIHVzZXJz
+IHRoYXQgYWxsCj4+IG1lc3NhZ2VzIGFyZSBsb2dnZWQgYW5kIHRoZSBsb2dzIGFyZSBhdmFpbGFi
+bGUgcHVibGljbHkKPj4gLSB1cGRhdGluZyBvdXIgd2lraSB3aXRoIHRoZSBuZXcgSVJDIG5ldHdv
+cms6IFsxXQo+Pgo+PiBJIGFtIG5vdCBzdXJlIHdoaWNoIHN0ZXBzIG5lZWQgdG8gYmUgdGFrZW4g
+dG8gZ2V0IG91ciAib2xkIiBjaGFubmVsIG9uCj4+IEZyZWVub2RlIGJhY2suCj4+Cj4+IFdoYXQg
+ZG8geW91IHRoaW5rPwo+Pgo+PiBQZXJzb25hbGx5IEkgdm90ZSBmb3Igb3B0aW9uICMxIG9yICMy
+Lgo+PiBJIGhhdmUgbm8gc3Ryb25nIHByZWZlcmVuY2Ugb24gd2hpY2ggbmV0d29yayB0byBjaG9v
+c2UuCj4gCj4gTmVpdGhlciBidXQgaXQgc2VlbXMgdGhlIG1vc3QgdXNlcnMgaGF2ZSBtaWdyYXRl
+ZCB0byB0aGUgTGliZXJhLkNoYXQgY2hhbm5lbCwgc28gSSdsbCBiZQo+IGluIGZhdm9yIHRvIHN3
+aXRjaCB0byBsaWJlcmEuCj4gCj4gTGV0IHVzIGEgZmV3IGRheXMgdG8gZGVjaWRlIGFnYWluIGFu
+ZCBkbyB0aGUgc3dpdGNoIGVhcmx5IG5leHQgd2Vlay4KCkknbSBzdGlsbCBpbiBmYXZvciB0byBz
+d2l0Y2ggdG8gTGliZXJhLkNoYXQsCgpOZWlsCgo+IAo+IE5laWwKPiAKPj4KPj4KPj4gQmVzdCBy
+ZWdhcmRzLAo+PiBNYXJ0aW4KPj4KPj4KPj4gWzBdIGh0dHBzOi8vZnJlZW5vZGUuaXJjbG9nLndo
+aXRlcXVhcmsub3JnL2xpbnV4LWFtbG9naWMvMjAyMS0wNS0yNgo+PiBbMV0gaHR0cDovL2xpbnV4
+LW1lc29uLmNvbS8KPj4KPiAKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9saW51eC1hbWxvZ2ljCg==
