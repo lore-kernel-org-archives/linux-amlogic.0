@@ -2,90 +2,99 @@ Return-Path: <SRS0=dgHW=K3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_NONE,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C324C47080
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 08:28:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0892BC47096
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 08:48:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E8A2561003
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 08:28:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E8A2561003
+	by mail.kernel.org (Postfix) with ESMTPS id C128D61364
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 08:48:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C128D61364
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e2vdoCD3vOPC6LgMva8pAScfqsEIWIdEyIxXofKXrc8=; b=UTn0TuaMGXaq3B
-	krzOnUYT4qCEc84drDuCKw+Jl1vR7viu1mczXrAUXex3gQyxFf2tGD7jnUfOojaOQCGHFx6pHBn91
-	giE26+rDSDAqRLAKRhiNd2Iv0kg+g4ySxHluEcSfYhDPB4JtXneIJhfvQhXEicWxKf3Za33/u+BPB
-	GD8laluTiamHHw/bCi5k8DDPJps3RXg9VRmQxPJDUOiHl7uZi1hnXhWQKdrsZQfnfdVAqqB4YPZZM
-	3+TUZQe+Y82NFDqPi0eJCsY5MWkvpDYe73zyMJTj2jHfI/KfZA0WaAk70FHmqxDZdJLMoS9mBasY+
-	BfWD8YqdPLFfH25snZqA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=XuBkuLDZTAnXmEyWaCHE+im6WrQEKZKnX5XZXWUffyk=; b=buNHxRJDZvQkCWZwSUT95u5UwQ
+	X3XvbWxYzrAxYaagemJ7OVwrkOnGvDIsRCApaNudZN04Ssosrzzm3dP08f2Z1UtFIYQvcynPwel7V
+	Q19dGPGV1S1Fgws2K+HBGK4/gB5cPVFYiGKtKFSe5OFSq2AO+hrZFP68r+48tzE/Bvf2oC0Q7P5tE
+	zM0pRrb66Pk6IPeekz6N+IaJRcLKz3Ol0rIIFKn6s2Y/yeYH3cCuevGg4G4UAuNKSYwJEZ20whgDa
+	I9rKCIa62tPiO8SqbMvfe89KGt4PyYqQXh7MLT7e0jTzh3n7/+oTUgX+v6X8re+C3En57vAnmDLZg
+	o+ydT0rA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lnzku-00FK1M-6R; Tue, 01 Jun 2021 08:28:08 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1lo04M-00FPm7-8C; Tue, 01 Jun 2021 08:48:14 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lnzkg-00FJzb-HK
- for linux-amlogic@lists.infradead.org; Tue, 01 Jun 2021 08:27:56 +0000
-Received: by mail-wr1-x430.google.com with SMTP id g17so13249832wrs.13
- for <linux-amlogic@lists.infradead.org>; Tue, 01 Jun 2021 01:27:53 -0700 (PDT)
+ id 1lo03z-00FPYr-Gb
+ for linux-amlogic@lists.infradead.org; Tue, 01 Jun 2021 08:47:53 +0000
+Received: by mail-wr1-x432.google.com with SMTP id n4so13389080wrw.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 01 Jun 2021 01:47:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=MI5T5t/RSz+ApO+As7ezT0+58RDmFWuhI+3uzR4JPe4=;
- b=1zpALENTQHe3VELwLjYwa+30ISnGRBvpQzPITvFEY1PXf3sRSBz5HKuHnufj7UBVXd
- cpkDOQbdRWOhpz8jfujjf4hN6zN6fmaGxheGjP8yGdbqWOfJG2UXXv/6IUiL+16Wi0EP
- 1cGF5n16gUCuE0hIPA6D2n+Xa72I7RR6+gkCdZbFGtL/5tFlPANmejVeBcsL6wZ6JOCp
- QLeIGVVV0+Qd9aXvXK4390Yf2NYq8g/JJzo7EebPaHqdSRVxvwpNIGFt9bAcJ++lIC3e
- 13gXrSi04vaTUyZ5paX0UfZ52CHfzz8prGYr3lKaTx77+xYjg/Wd92oOcCD3i5vHY24T
- xtNA==
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=322dbtM46O3QcTbghSB7BeJYNbqpaIfGRgomGDZ93iE=;
+ b=zH0nyqnHcnGVmdTu3YEei5B5TuCrVSjv8yvMBbEalGkFR9tLH/LZP64768STt5ZyEy
+ alL2aGOrrCgn7j9jDB44WS3AlW46a7JY3VRBxQBQnN9AhUqAZfZ37HZNLygt4a9pHaJl
+ ZWMv0eoBWY5M7Zj1/uYTb2ixvr6IuGnbHs37wnikhRwNeJrcp9C/gaZEDS6eiWspZB78
+ tLbPWi92pLFxpM1rBmsLdIl9dQjycXqIEucDR+eeKJtZpPUwfciXOE5SQSQvLNyAOc+u
+ GTCqgIsq31lHP/Y8M/J+rDxluTNF5HgsTCs/mjqZZtC41wwqFxlGjqc849Iw7fhljdTy
+ bfBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=MI5T5t/RSz+ApO+As7ezT0+58RDmFWuhI+3uzR4JPe4=;
- b=IeD4GSdEzttXhdZV8grUTKJ9rANCQTnN91diI9usIR6VChhKEEsq5E7oFn0oOZb1G4
- U1A1OcIa385P0mjZVkXNQhCa8q/gWITtvPj36w8c0TZ/7zdMYXf/Cy7idIcomQQglo3X
- u6OPoNo3mstHHOv3tdtzXqJwkjcdSuqsuJHtzImlZJsKxMyRdB9D6eKJGfVbcYBzOhcP
- iER+aXjFlhZwgwVzdVffaaz733YKkkGrGMPKMUPVWsr5eyuiP6nVxEQbQS6aJyncrhX5
- iMNqY8NnGnyVPQuPIitXVWL5XpxVfRMIfkNEB4100hYqB1JPmlLKYDIPvb3IP7WMWdTK
- ecRQ==
-X-Gm-Message-State: AOAM5326hXaTaNo/z59SAG2cQTGVZfy4b11RUiKhcH6V8RPH023B2Kca
- 4RjzqUQ91VQjynFhe1Q+DLuQSg==
-X-Google-Smtp-Source: ABdhPJyyI2URE4xiLGQHVBO5sTCDl85S7jb21pp1/Y2kp9vGS1CNoRz8Xc5TlzWexfirhG6BqS+x8A==
-X-Received: by 2002:adf:a446:: with SMTP id e6mr10999521wra.219.1622536072548; 
- Tue, 01 Jun 2021 01:27:52 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:90c:e290:a3a:d001:6a80:207a])
- by smtp.gmail.com with ESMTPSA id
- f7sm17108936wmq.30.2021.06.01.01.27.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Jun 2021 01:27:51 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=322dbtM46O3QcTbghSB7BeJYNbqpaIfGRgomGDZ93iE=;
+ b=peV/msWlZtJ/u4dIusMS72TQ0EHMZifOsnsn0EgZ2itc43CvkF+3zn8IP01/A3pVoI
+ wHhbb+SBzJJbt4EGcF8fQto5Mhnd59/Pj4yc5xXOla5JYmM9TST3D1Ak1ttPcflBGzwy
+ RtRWua1Fn7kdalrusyVyHllSFnOQixHCCG4BXBP2uMRd6yo2irsnMr9UY0wximT25Fof
+ xu+9I3weyQ9c/yjFYFSGMAXpjNiUv17pVhjGdxAvpGYtotKFKX22G+ngnBrdf2RCu1HT
+ h28WVQtQGNuFrpUixT8R7jmbW/qPNkbe6ahnMKr9chmiYkKQMDjH5lfSXT+hlEEgOy24
+ qRzw==
+X-Gm-Message-State: AOAM531Pzsi5lGaPw8zjaQdvQ1Cfzcf1A9JgOqi2oI1aMVw5INh7iFqG
+ eCqVbYzA2SwNLm2bFsussXrx+g==
+X-Google-Smtp-Source: ABdhPJwHfm4W7Jg6jHlyp2IqpSdMFmvjQnAuGssRjqPaBcl0npzMlEISc9JhfpSSb8BQzxgFoo0xMw==
+X-Received: by 2002:a5d:6e04:: with SMTP id h4mr26184792wrz.256.1622537269671; 
+ Tue, 01 Jun 2021 01:47:49 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:a3a:d001:6a80:207a?
+ ([2a01:e0a:90c:e290:a3a:d001:6a80:207a])
+ by smtp.gmail.com with ESMTPSA id t1sm2438670wrx.28.2021.06.01.01.47.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 01 Jun 2021 01:47:49 -0700 (PDT)
+Subject: Re: [PATCH] usb: dwc3: meson-g12a: Disable the regulator in the error
+ handling path of the probe
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: balbi@kernel.org, gregkh@linuxfoundation.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+References: <79df054046224bbb0716a8c5c2082650290eec86.1621616013.git.christophe.jaillet@wanadoo.fr>
+ <CAFBinCCBo4fYoO=2NiWTEixPuJo2Q=J1o1+yfi4Oc32SLi=GAw@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: gregkh@linuxfoundation.org, Neil Armstrong <narmstrong@baylibre.com>,
- jirislaby@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH 0/3] tty: serial: meson: add amlogic,
- uart-fifosize property
-Date: Tue,  1 Jun 2021 10:27:48 +0200
-Message-Id: <162253604769.258225.7812835099305638317.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210518075833.3736038-1-narmstrong@baylibre.com>
-References: <20210518075833.3736038-1-narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <455790a9-250d-ff00-6304-fd933409b1fb@baylibre.com>
+Date: Tue, 1 Jun 2021 10:47:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <CAFBinCCBo4fYoO=2NiWTEixPuJo2Q=J1o1+yfi4Oc32SLi=GAw@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210601_012754_632454_EF389213 
-X-CRM114-Status: GOOD (  11.40  )
+X-CRM114-CacheID: sfid-20210601_014751_617025_4F63AB41 
+X-CRM114-Status: GOOD (  18.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,25 +111,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Tue, 18 May 2021 09:58:30 +0200, Neil Armstrong wrote:
-> On most of the Amlogic SoCs, the first UART controller in the "Everything-Else"
-> power domain has 128bytes of RX & TX FIFO, so add an optional property to describe
-> a different FIFO size from the other ports (64bytes).
+On 23/05/2021 18:03, Martin Blumenstingl wrote:
+> Hi Christophe,
 > 
-> This adds a property in the bindings, reads the property from the driver and updates
-> the DT with the new property.
+> On Fri, May 21, 2021 at 6:55 PM Christophe JAILLET
+> <christophe.jaillet@wanadoo.fr> wrote:
+>>
+>> If an error occurs after a successful 'regulator_enable()' call,
+>> 'regulator_disable()' must be called.
+>>
+>> Fix the error handling path of the probe accordingly.
+>>
+>> The remove function doesn't need to be fixed, because the
+>> 'regulator_disable()' call is already hidden in 'dwc3_meson_g12a_suspend()'
+>> which is called via 'pm_runtime_set_suspended()' in the remove function.
+>>
+>> Fixes: c99993376f72 ("usb: dwc3: Add Amlogic G12A DWC3 glue")
+>> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> for me this makes sense so:
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
 > 
-> [...]
+>> ---
+>> Please review carefully.
+>>
+>> I'm not that sure about:
+>>    The remove function doesn't need to be fixed, because the
+>>    'regulator_disable()' call is already hidden in 'dwc3_meson_g12a_suspend()'
+>>    which is called via 'pm_runtime_set_suspended()' in the remove function.
+>>
+>> This is more a guess than anything else!
+> I am not 100% sure about the suspend code-path, so I am hoping that
+> someone else (for example Neil) can also review your patch
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.14/dt64)
+Not 100% sure aswell, but the probe function is wrong anyway and must be fixed by this patch, so LGTM.
 
-[3/3] arm64: dts: meson: set 128bytes FIFO size on uart A
-      https://git.kernel.org/amlogic/c/a270a2b24de5
-
--- 
 Neil
+
+> 
+> 
+> Best regards,
+> Martin
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
