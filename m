@@ -2,105 +2,108 @@ Return-Path: <SRS0=dgHW=K3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86596C4708F
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 09:01:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E062DC47080
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 09:02:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1AFF4610A1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 09:01:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1AFF4610A1
+	by mail.kernel.org (Postfix) with ESMTPS id 9C57A610C9
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 09:02:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9C57A610C9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=7EnCi7NGP6SymPdVo44HTFAY1dKLiLzPOf8GTP8yfCA=; b=PwAOAR9V34na4t
-	Lxd2qPIkdRU/Z5yfQv10GxEXSyo8IikQjFDPvrzadGGWm/EszGK6mPxO5I7QnpQzVC1shO7eGJ/8F
-	cqVwE6+oS1FP563n88np9d/PSSK9Nt/uHw8U5dKkw5oJEShogsEk0QVWLXmDRHEJ6OMWFG0EHdVnT
-	uAuuLirlLM42RMFtoRoy21v7NXEydLkQB97rhdYzEBWjFpTrb/dN+WPG868egzd/zoASqcvzXMV7Q
-	HQ0mGXno3/QsN/MrMB8ofYmf7WAfbgtI/Ocepcs1vPqAJUufMOZwfLRLB1/tx648/8T8Tj4GWSy0B
-	UOe0RuW0+En0SJYOWK/w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=EMbsiut5OZaU54x3zjLa5opMsdn7aXuIGccQtmfQz2I=; b=PQk3kBjmpi+Oc1
+	r+R6wfJfHCY61HrmqVviUe6RCzWzKOJNBLDYct2JmB7b7SWQQ9/nlg09Nk2SVsdsPUqsau3y2DJ2B
+	XLXr1o+H+z8JLXkpHEqn3yrbMTag8lzyRtGY/33VbPEqG6tPJiEXpjMCHR9kgnhnyYbTpc8Ad0afa
+	KdQCjGyoFdyxnWrXsz86S5ma3TZfYQ0/8SPdiDwAnx6EvhqfnhjrwHtNRY+LDFYSG/SyWsvf0Ic0R
+	Qy2WJBS81bemYc+LfS3wZqy001yrXjFZCrwuv/aZmNGbe9qmlUYaDh0FYFKSV0DL6EagnHcl/1p8T
+	oF2rJJCexGe+Wy+j78yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lo0HX-00FU0I-4a; Tue, 01 Jun 2021 09:01:51 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1lo0I8-00FUCT-Ds; Tue, 01 Jun 2021 09:02:28 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lo0HU-00FTyi-6H
- for linux-amlogic@lists.infradead.org; Tue, 01 Jun 2021 09:01:49 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id n4so13433939wrw.3
- for <linux-amlogic@lists.infradead.org>; Tue, 01 Jun 2021 02:01:47 -0700 (PDT)
+ id 1lo0HW-00FTz5-BZ
+ for linux-amlogic@lists.infradead.org; Tue, 01 Jun 2021 09:01:52 +0000
+Received: by mail-wm1-x336.google.com with SMTP id
+ s5-20020a7bc0c50000b0290147d0c21c51so1422844wmh.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 01 Jun 2021 02:01:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=H9dfP/HQ1yF3ZJ5TmUZw5lMApDC92t3a+q6kUys8fVY=;
- b=idd+HJfKG+Zdo73JZhpgtRchcqEUFfQmMYU0z4oybPZ8/oViz64390Z8g5s+agS81w
- dxIrJWwTv9FF89gTnkI8H4FlbjP2od26UXcSNdYiz7WGpeXYhIss4zbwCsNnP9qINbwT
- AH/V3CdaLJE3BaCPIGYvkHa0fgNoufSw+hoh4KTgEKmdPIy4UII1ixRvXd5qBP/ZopUg
- 5Pmb4ZMqgtSNS5DwLOAyutsSsCQchuLz2vMimHDwbBv5lrRg8k2moMrxzySrFByfcrno
- e+ocZ2IlOM20NQIR5u2Sm1pu3HGN1H9tZcYmjn38xx9x+E37fra3nrA6pHCYWzpiHjOK
- mRfA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=EDi2mw6WIsOG9a2qhW6Yl1ooRjSzYn5fhSnlTxTnEKk=;
+ b=L1bePSihMHTzgesRU+wOrg4LnzZm+Y8hnaNfY37fI2E8QemwtowmMVZQHaH3NBa8hd
+ ZfpDirz7yNc4eJJ+Fi6Thw2q00k4xizx7nQS4OETwvntWQ2Bt1fUT7m2Zq8UCIR52V3O
+ IymmuT0bvj2PQfAVmii/pphvrHdbV+zq/ADfu5unvwpNGLF3X0APCWAtJ2fHH7w1F2B4
+ 1X4Q1Pvs8oFPfXjlnUkN39SO32F4ZSJv2BWBEy1mfPPh00Fo82WddJj3XiKglcjLFNQK
+ +8W+ejmPWtWaQFdx12jeIMPlj0Ja+H3qAfAylb2DmlfvZ3twgWJjWEI+if7vEwBGOJ2P
+ rxsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=H9dfP/HQ1yF3ZJ5TmUZw5lMApDC92t3a+q6kUys8fVY=;
- b=qTHF5p/pIG8f56cNPPOqLNrpH4YSnkexPu4BBgCGhdJAc6o9iZW17BP/XeEbD5NB4B
- HpvIcijwOHEGXyw2EP7ee6XxVvE7N1RgfHqOyYaab4krxh6uNWYq/d/vPbMx/7lVSZDL
- pvLuF6A0YE54KEdH+Ibbzpr1dDzv0ih0C4YLxIUqgpRoRBlMuez9nv3n+BGiKkUspufG
- l3i32YaEFduXXPgDMhh+CXOPN1vi3TQt5V1Jj3gGF0RprUFDr8NMzUK3wJVbjU1NskCl
- 2mE81ZNIV17kyvZuCCglzkLi/6kPvY5kgsnvymN0S1ll5KVCG0TI5QWEYUcBNngR/qwK
- jzmg==
-X-Gm-Message-State: AOAM531lWtwv3rd5DnLaEsg0fHyUH02ZAC7DhbO5uSC//7zrLUs7SKtm
- 29gvbzCVv84X5IcymRKw3Wjb4Q==
-X-Google-Smtp-Source: ABdhPJyWNee91rlrkyHrxtfHXXaevKWNzRZgcWNhOc33JucXy/8qbsNzfmrRfeJYp19DawtZCKY68A==
-X-Received: by 2002:a05:6000:110b:: with SMTP id
- z11mr25954364wrw.278.1622538106584; 
- Tue, 01 Jun 2021 02:01:46 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=EDi2mw6WIsOG9a2qhW6Yl1ooRjSzYn5fhSnlTxTnEKk=;
+ b=nfgM32uTz7kJe6yx+/MS4buo3xerophKVg65Sl2aBYxHosl2MHjrYZRyWcxrFzHpso
+ gxbbBtZxWyQi5qosVp+jUmBxOpFqMLEGSiot25TY+mfF93owZmZGf0V4YWXgmYCL0YuH
+ 0C+VYCeXt4dsm1TgfKGJEQq0r8J3U/eNHPD/9VhS3dYoqIbhNLmalTV4Xko6PDJGDAj+
+ oeSM16nPRFJETbx1+hYx1uLtOfCIxuH3biyE4QvvP+DvDgVqYkK6KEmX046qMUzWgyF/
+ 79Odg5/alTVaFps6jl3Dq6NtwmL/yh8G8nSo9IcuSaL7BWH/gysiyPcMAZ9G3tVHQf6x
+ gneA==
+X-Gm-Message-State: AOAM533xsZnUZJ2xd691Cow24xqkRfQZn2w3fhES+/JJ6RI5YWzvPDcE
+ 52yMtlxnY+fDUr3PdowVaDTc7Q==
+X-Google-Smtp-Source: ABdhPJx4wmLMtfAJcffUQTp7OFN7GQ7uCm4sseVIhGjWnrFYutod890o3lGcfZLNDgyJJASw/yIjKw==
+X-Received: by 2002:a05:600c:4f8b:: with SMTP id
+ n11mr25617158wmq.180.1622538107692; 
+ Tue, 01 Jun 2021 02:01:47 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e0a:90c:e290:a3a:d001:6a80:207a])
  by smtp.gmail.com with ESMTPSA id
- e17sm2668199wre.79.2021.06.01.02.01.45
+ e17sm2668199wre.79.2021.06.01.02.01.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Jun 2021 02:01:46 -0700 (PDT)
+ Tue, 01 Jun 2021 02:01:47 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com, jbrunet@baylibre.com,
  martin.blumenstingl@googlemail.com
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, tobetter@gmail.com,
  Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 0/6] arm64: dts: meson-sm1-odroid: various fixes for C4/HC4
-Date: Tue,  1 Jun 2021 11:01:34 +0200
-Message-Id: <20210601090140.261768-1-narmstrong@baylibre.com>
+Subject: [PATCH 1/6] arm64: dts: meson-sm1-odroid: add missing enable gpio and
+ supply for tf_io regulator
+Date: Tue,  1 Jun 2021 11:01:35 +0200
+Message-Id: <20210601090140.261768-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210601090140.261768-1-narmstrong@baylibre.com>
+References: <20210601090140.261768-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=868; h=from:subject;
- bh=8nRsuZr86WQw9AoOI6YGZLPKyM3EFdInWfYap1old7E=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBgtfc4xme7MUjlZMeepvitfBk1HtzgR5Ve22CmQFZS
- HX6gqHSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYLX3OAAKCRB33NvayMhJ0RgnD/
- 9jz6aefNbz7RrYSBAtjO8VmDQtqWVPTsv04LmUfz0RKR+qApk7q1qOmZyDIVR8jIP4wMv3+/gfL/IY
- lb+Q477lR7V1nrQLV+1TUEGefQHvwD4o5j3jnoYiY/Gv3b4B8fiip9Lwnn7wyOyOldivuPQAWd4AV3
- Ys/fRL1ULy7+ueo8YkiSgMe75NgRr0qsaE+Q4hvcuVyxwk+jfa1xtVJrAZCGgEyHYmZsMx1ICeCcwz
- cdH2C5TOGv16vMmD2iDhFODagexGtEmo4Hpb0sPasgk9vBZmbOKGqUbsZef9mgTHxAu3QDkyq/fkg8
- BUhWt3n+2Wk68beJEWRFapq/tqfMzDbzcSmlHEbtOPG++E+OWVAMQy8Uv1Ucjop+VwTHaZR2BJqMXr
- 0Uh3/+t8Ql+1YBnbYaXh5BffNWUz1lFiO8YbpF775EplXCse6xWvnNPQX2Ovaff9skhu0YCf2BXkhN
- 1lEhzA8y1FadbssTF3v3wtd68oeTxRCytgl7I1VB/+HFC46Pw/FEvvWowMVXX21hMq5Fw4R4nRCohM
- Mg/NlFvtf5FEFxeNU6XxR/G/GAIP0A3T4oyLwA3eEJIn2hgRUnVkuphjg4jT9/+6S09wTBdMhG09Ol
- I8nICBPmVtpG4uAx5zevSVJyzOFgD8UACwcxH419FeSWhQcQJolslyISxUAQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1044; h=from:subject;
+ bh=RVG2YgfB1rqHQ1RBvlzfyjp6vgCQYnivHRfs0+IydqI=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBgtfc7TAEbzF4Q36frgpZgT0AJbdPxo50OtIppfKwp
+ waTgzUeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYLX3OwAKCRB33NvayMhJ0RAGEA
+ DE4xDEZfXa8r3NcvgA66pyh/SHC+2iK+5ZDsBmC+YLj1JTQHZD6IdR15P2tp82uD3PWZ6S0Mwq1ObR
+ 3ro/yvYlZliQH53njyVzo5lOE6VRZdroEYcjY1kGqpRUk+Oh0vKBgcy3IQPH+kRYjsQVVwKyQAaHjX
+ ZC4dVSi+g9Opk2TbJEd/5Xsao8uYZQL2NDr5GH/zvsCOxuHyXAkulzOTD1dcDnwc0cT6dPQvYSUKed
+ O0kNvWKc9e4dHo4qj4ylobG/VKR9Y3KngHeHSEApXzQX4t+VhkCSSjcQEwxgjQ0gHlHrNXBxu/JDNK
+ BNZgIOcG9ZAbQwp3OeG9bk5WqhRXHFYXnH74nKG0dLt3qafp7ZW3yK5J0MrqyN8ygLGR7YaSmYfA22
+ QnmASvCyqySiyEej+Iba0GgZgmqTGpZWhC9PqEdquM1Q/RGtp/oZNIx5FTvHtXoCITisVvuVcf/yGQ
+ RWNRutSSxvlOxIcWR1gRdNot/rWACVhYXOmjcvzCxbYvSujTFuNVidICtNVZhcVSy3MKE1CI3BvdZ9
+ jScU4AFirjl0DytHS/ieO1oP3R8QPSryXMaeArTuf9lp851vFJ4o4VgzEe040B0oV9I0psAA+APz//
+ /ghEmndZiq3zV/rdiVi7AYRvOIaM95sGme9246el5n9+u0lO8kRZS4+DQk2Q==
 X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210601_020148_238841_5887B8CC 
-X-CRM114-Status: UNSURE (   8.33  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210601_020150_409948_25C5D1AB 
+X-CRM114-Status: GOOD (  10.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,25 +120,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Here is a collection of fixes/small additions to Odroid-C4 & Odroid-HC4 concerning
-regulators handling, USB and SPI NOR Flash of HC4.
+As described in the schematics of Odroid-C4 and Odroid-HC4, the TF_IO regulator
+is enabled by the GPIOE_2 GPIO and gets it's supply from VCC_5V.
 
-Christian Hewitt (1):
-  arm64: dts: meson-sm1-odroid-hc4: add spifc node to ODROID-HC4
+Fixes: 88d537bc92ca ("arm64: dts: meson: convert meson-sm1-odroid-c4 to dtsi")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Neil Armstrong (5):
-  arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for
-    tf_io regulator
-  arm64: dts: meson-sm1-odroid: set tf_io regulator gpio as open source
-  arm64: dts: meson-sm1-odroid-c4: fix hub_5v regulator gpio
-  arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0
-  arm64: dts: meson-sm1-odroid-hc4: add regulators controlled by GPIOH_8
-
- .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  |  2 +-
- .../boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 53 ++++++++++++++++++-
- .../boot/dts/amlogic/meson-sm1-odroid.dtsi    |  7 ++-
- 3 files changed, 58 insertions(+), 4 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+index d14716b3d0f1..af40ba461074 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+@@ -46,6 +46,11 @@ tf_io: gpio-regulator-tf_io {
+ 		regulator-name = "TF_IO";
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc_5v>;
++
++		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
+ 
+ 		gpios = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_HIGH>;
+ 		gpios-states = <0>;
 -- 
 2.25.1
 
