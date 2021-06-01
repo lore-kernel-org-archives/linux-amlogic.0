@@ -2,57 +2,68 @@ Return-Path: <SRS0=dgHW=K3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED08AC47080
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 10:01:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 301CCC4708F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 14:05:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5C2176136E
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 10:01:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C2176136E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=whitequark.org
+	by mail.kernel.org (Postfix) with ESMTPS id DCCDF613B1
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jun 2021 14:05:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DCCDF613B1
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=NpsIwmDkx9Vi3U+wt80aax8GmuENOZ/REJ5EdYWExvk=; b=faooFtf0g0IIHuVbkXm1tPhAR1
-	WIE87wM+92YUYrsT7tkSZ1dwSMKo8OfZlSMKNiM3WsM6NXSrB2nyY7NW0RFitZkiu4/27vsbQmJTS
-	1DjitTlJOodAR3Eg8RpgVpz9TZs2bD5cMJfjKoEzBHMeyHL2LESV3x6vegSFSin1VsOgNnWPwZlPL
-	Nk8kLuMEfr12GGm0/2ZClPWWJL1KZ3x4Tkge7FRJV0dczReJUrv0egBsGorjJvy9OQRdpIZL8qhX/
-	BbDm1sZaCWtk1vSHasXykKlqBmJHoqbocEcj/t9thisk85aY8Mle0P04wSDBlWwXXmco4oSKBK0Ex
-	vkDMAsig==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=iofnYrxcU0B0CchMYh53++MCzxyO98a5B9dBqwLNcDs=; b=1dKjv7BsI48K9h
+	dHrpPAjpFc9xtEAHUrjAH+fJM0ZsgPsZ81zXXWIrZPR11MT+lajP7WnUFoFx6Zl7oM7/oiJ8nK/os
+	01rpzYwH+/9ppyjpcQu1Wrft8FKzTXyWzQHuty9m4ZANf37zHkYNfqeGmpXzUfWMIS/apnEd+XNH4
+	pq8amam+Mo1VbLytrg1b2guJWUnmJFdUnBbbDINGxjkmjXag+IKOy9Fmh5awHhH+LgeSjbxwH6yg1
+	t/4Ve34f+e3/EEtxEVbzP3WEpY6WvezkYogpQpmyw+gj7DiasvZZFOgjW20VqfZrfC7bP+WpLtqzC
+	dDAJLfX9Ebxshof87BTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lo1DS-00Fm41-J9; Tue, 01 Jun 2021 10:01:42 +0000
-Received: from uruz.whitequark.org ([188.166.218.19])
+	id 1lo51R-00Gw51-0N; Tue, 01 Jun 2021 14:05:33 +0000
+Received: from szxga03-in.huawei.com ([45.249.212.189])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lo1DP-00Fm22-FG
- for linux-amlogic@lists.infradead.org; Tue, 01 Jun 2021 10:01:41 +0000
-Received: from mail.whitequark.org (localhost [127.0.0.1])
- by uruz.whitequark.org (Postfix) with ESMTP id 78CF2201D0;
- Tue,  1 Jun 2021 10:01:29 +0000 (UTC)
+ id 1lo51N-00Gw2N-Mf
+ for linux-amlogic@lists.infradead.org; Tue, 01 Jun 2021 14:05:31 +0000
+Received: from dggeme760-chm.china.huawei.com (unknown [172.30.72.55])
+ by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4FvYjv2tnZz67LW;
+ Tue,  1 Jun 2021 22:01:39 +0800 (CST)
+Received: from localhost.localdomain (10.175.104.82) by
+ dggeme760-chm.china.huawei.com (10.3.19.106) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Tue, 1 Jun 2021 22:05:20 +0800
+From: Zheng Yongjun <zhengyongjun3@huawei.com>
+To: <andrew@lunn.ch>, <hkallweit1@gmail.com>, <davem@davemloft.net>,
+ <kuba@kernel.org>, <rjui@broadcom.com>, <sbranden@broadcom.com>,
+ <bcm-kernel-feedback-list@broadcom.com>, <narmstrong@baylibre.com>,
+ <khilman@baylibre.com>, <netdev@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>
+CC: <opendmb@gmail.com>, <f.fainelli@gmail.com>, <linux@armlinux.org.uk>,
+ <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>, Zheng Yongjun
+ <zhengyongjun3@huawei.com>
+Subject: [PATCH net-next] net: mdio: Fix spelling mistakes
+Date: Tue, 1 Jun 2021 22:18:59 +0800
+Message-ID: <20210601141859.4131776-1-zhengyongjun3@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date: Tue, 01 Jun 2021 10:01:29 +0000
-From: whitequark <whitequark@whitequark.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Subject: Re: #linux-amlogic irclog migration from Freenode to Libera.Chat
-In-Reply-To: <cfac682d-13ad-d4fd-2bcb-678a1edc0d53@baylibre.com>
-References: <cfac682d-13ad-d4fd-2bcb-678a1edc0d53@baylibre.com>
-Message-ID: <cafa8ee990d84280216d6056613ae282@whitequark.org>
-X-Sender: whitequark@whitequark.org
-User-Agent: Roundcube Webmail/1.3.16
+X-Originating-IP: [10.175.104.82]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ dggeme760-chm.china.huawei.com (10.3.19.106)
+X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210601_030139_743778_42412E71 
-X-CRM114-Status: UNSURE (   5.11  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210601_070530_177501_4FA58A14 
+X-CRM114-Status: GOOD (  12.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,20 +75,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2021-06-01 08:14, Neil Armstrong wrote:
-> Like plenty of other channels, we are moving to Libera.Chat for the
-> #linux-amlogic which was logged from Freenode,
-> If you could do the switch it would be awesome !
+informations  ==> information
+typicaly  ==> typically
+derrive  ==> derive
+eventhough  ==> even though
 
-Done: https://libera.irclog.whitequark.org/linux-amlogic
+Signed-off-by: Zheng Yongjun <zhengyongjun3@huawei.com>
+---
+ drivers/net/mdio/mdio-bcm-unimac.c     | 2 +-
+ drivers/net/mdio/mdio-mux-bcm-iproc.c  | 2 +-
+ drivers/net/mdio/mdio-mux-meson-g12a.c | 2 +-
+ drivers/net/mdio/of_mdio.c             | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/net/mdio/mdio-bcm-unimac.c b/drivers/net/mdio/mdio-bcm-unimac.c
+index 5d171e7f118d..bfc9be23c973 100644
+--- a/drivers/net/mdio/mdio-bcm-unimac.c
++++ b/drivers/net/mdio/mdio-bcm-unimac.c
+@@ -203,7 +203,7 @@ static void unimac_mdio_clk_set(struct unimac_mdio_priv *priv)
+ 		return;
+ 	}
+ 
+-	/* The MDIO clock is the reference clock (typicaly 250Mhz) divided by
++	/* The MDIO clock is the reference clock (typically 250Mhz) divided by
+ 	 * 2 x (MDIO_CLK_DIV + 1)
+ 	 */
+ 	reg = unimac_mdio_readl(priv, MDIO_CFG);
+diff --git a/drivers/net/mdio/mdio-mux-bcm-iproc.c b/drivers/net/mdio/mdio-mux-bcm-iproc.c
+index 03261e6b9ceb..239e88c7a272 100644
+--- a/drivers/net/mdio/mdio-mux-bcm-iproc.c
++++ b/drivers/net/mdio/mdio-mux-bcm-iproc.c
+@@ -65,7 +65,7 @@ static void mdio_mux_iproc_config(struct iproc_mdiomux_desc *md)
+ 	writel(val, md->base + MDIO_SCAN_CTRL_OFFSET);
+ 
+ 	if (md->core_clk) {
+-		/* use rate adjust regs to derrive the mdio's operating
++		/* use rate adjust regs to derive the mdio's operating
+ 		 * frequency from the specified core clock
+ 		 */
+ 		divisor = clk_get_rate(md->core_clk) / MDIO_OPERATING_FREQUENCY;
+diff --git a/drivers/net/mdio/mdio-mux-meson-g12a.c b/drivers/net/mdio/mdio-mux-meson-g12a.c
+index bf86c9c7a288..b8866bc3f2e8 100644
+--- a/drivers/net/mdio/mdio-mux-meson-g12a.c
++++ b/drivers/net/mdio/mdio-mux-meson-g12a.c
+@@ -95,7 +95,7 @@ static int g12a_ephy_pll_enable(struct clk_hw *hw)
+ 
+ 	/* Poll on the digital lock instead of the usual analog lock
+ 	 * This is done because bit 31 is unreliable on some SoC. Bit
+-	 * 31 may indicate that the PLL is not lock eventhough the clock
++	 * 31 may indicate that the PLL is not lock even though the clock
+ 	 * is actually running
+ 	 */
+ 	return readl_poll_timeout(pll->base + ETH_PLL_CTL0, val,
+diff --git a/drivers/net/mdio/of_mdio.c b/drivers/net/mdio/of_mdio.c
+index 094494a68ddf..8e97d5b825f5 100644
+--- a/drivers/net/mdio/of_mdio.c
++++ b/drivers/net/mdio/of_mdio.c
+@@ -466,7 +466,7 @@ EXPORT_SYMBOL(of_phy_get_and_connect);
+  * of_phy_is_fixed_link() and of_phy_register_fixed_link() must
+  * support two DT bindings:
+  * - the old DT binding, where 'fixed-link' was a property with 5
+- *   cells encoding various informations about the fixed PHY
++ *   cells encoding various information about the fixed PHY
+  * - the new DT binding, where 'fixed-link' is a sub-node of the
+  *   Ethernet device.
+  */
 -- 
-whitequark
+2.25.1
+
 
 _______________________________________________
 linux-amlogic mailing list
