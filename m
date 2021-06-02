@@ -2,68 +2,98 @@ Return-Path: <SRS0=wHej=K4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.9 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87033C47080
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jun 2021 01:38:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33251C47092
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jun 2021 04:01:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5903E613CD
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jun 2021 01:38:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5903E613CD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
+	by mail.kernel.org (Postfix) with ESMTPS id EC05A60720
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jun 2021 04:01:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EC05A60720
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uhFRUnc30HGLwMTL5pLrM3fHQO3FnRBBEPpCmXM0Ubs=; b=EyAUwSumq+WVSQ
-	C0WJS6lj9LNXYOIikIps+e0HLOkKif+LwsrOwAbdz2mTn5zrRNVPZPQfZIePW1hKOZV7WhGtXIM6n
-	W3LyvKCWKXclyOyLkx8THW3p9KgE2/mK5QkJ1qFXJRdJxC9qiA4rb4SgKXp/tPLUGgIkSwLybFzJC
-	yT8p9oUXv4gcrD6dlthcUnER3hXIqFKCJMCAoHWtkKdtRpGlD/QmD8GGk885Lt7ZRkpiQWrPCbOs4
-	LKDlPYBQ6X1nYgIGczTDftlPcAchtvPcfqwC1NGdvp0pfQ8tiSTM0MDNF25mFWX8GtzG9D6qDX1Oa
-	NrC2i3yHBZusW9wog07g==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=qxvzGfRXaa1W1ooXvxUXH6AEl/9MOqLz9Ei9+p43Gy4=; b=p9BpNy1RAv28kT4hqSnEaSIeWa
+	VqVY6htlG5YdpJITLsd9cHai7jI36o0H6AYRhirtEov26zsMq0SqocUMhvrdbDOjtbuKXsIUydS9j
+	gGHl5kcYDUVVmLVCQ9K4Tnw2aZrB2mZ3/oKWd33MNG5QQzZKVc4KYp6G20UvidZZfT3ldPu6dMfFj
+	BtIx3SVlDXbt9+HoKzSf11OllBBEVxxBGSowCb+gw9qEm65f7vQTKTH+z4uUKzto54MkENC0aOeKy
+	XAiEsFBnjjIXyoXKavcN7AMoeeVjazkBQWKBuMe06c9LvKVnOl859k4dmdQ131zV8d5Zpr0adJIlX
+	5uEWxylg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1loFps-001VGZ-LR; Wed, 02 Jun 2021 01:38:20 +0000
-Received: from szxga03-in.huawei.com ([45.249.212.189])
+	id 1loI4U-001lYr-M2; Wed, 02 Jun 2021 04:01:34 +0000
+Received: from mail-pg1-x52a.google.com ([2607:f8b0:4864:20::52a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1loFpp-001VFL-Fg
- for linux-amlogic@lists.infradead.org; Wed, 02 Jun 2021 01:38:19 +0000
-Received: from dggeme760-chm.china.huawei.com (unknown [172.30.72.57])
- by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4Fvs5L517Tz67kb;
- Wed,  2 Jun 2021 09:34:30 +0800 (CST)
-Received: from localhost.localdomain (10.175.104.82) by
- dggeme760-chm.china.huawei.com (10.3.19.106) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Wed, 2 Jun 2021 09:38:12 +0800
-From: Zheng Yongjun <zhengyongjun3@huawei.com>
-To: <andrew@lunn.ch>, <hkallweit1@gmail.com>, <davem@davemloft.net>,
- <kuba@kernel.org>, <rjui@broadcom.com>, <sbranden@broadcom.com>,
- <bcm-kernel-feedback-list@broadcom.com>, <narmstrong@baylibre.com>,
- <khilman@baylibre.com>, <netdev@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>
-CC: <opendmb@gmail.com>, <f.fainelli@gmail.com>, <linux@armlinux.org.uk>,
- <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>, Zheng Yongjun
- <zhengyongjun3@huawei.com>
-Subject: [PATCH v2 net-next] net: mdio: Fix spelling mistakes
-Date: Wed, 2 Jun 2021 09:51:51 +0800
-Message-ID: <20210602015151.4135891-1-zhengyongjun3@huawei.com>
-X-Mailer: git-send-email 2.25.1
+ id 1loI4S-001lYE-DQ
+ for linux-amlogic@lists.infradead.org; Wed, 02 Jun 2021 04:01:33 +0000
+Received: by mail-pg1-x52a.google.com with SMTP id 29so1141373pgu.11
+ for <linux-amlogic@lists.infradead.org>; Tue, 01 Jun 2021 21:01:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=Psg5LZgVxkE0XFjla4qijJ1f+kTs+VjX8IAhvkS1TnU=;
+ b=PzEglsbnRKOgy2zmiQZPocEgrcplSj7vy6E3yjFAHp2jSlOuDmSsyi0VJeZ6SREY8j
+ b9aoSpkmlve5vyHZXP4NOWe8xEGYOB9FddFgVhcn0hwPiGoG08dYbr43ahwIwG+LcGT2
+ CejYHEVx6cJDLEc81g7FA5LeQ+XetLJZf80PPQwHwxlgUBlzwqvDJ3dXyO+9cDVRYSK1
+ 26KOszqc1Bi4JhB5bJvO7LXt83NvpFtxge0SpSxDoqHUzVmuV/iki2xcZXuF7eeUrMh7
+ XriLy2HSXpf3DA5n3PiT+i8mi1zv6TZT40lbR/YZ2X/mrS4rn1s0T7fgXsDX2lIohWpo
+ /eJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Psg5LZgVxkE0XFjla4qijJ1f+kTs+VjX8IAhvkS1TnU=;
+ b=pFE+k0Oy0X+yFbi0MnidxoKNE575dW0iF72k9EY6BJRQRdRcvN7aE9WZ8g+aEzuQpp
+ m/q9dTbjioPL8VC9nwrhVCmY+VoTqdWgyKD0BNoM4kZirdvgqL5wXt/yoTIs44p1JOkf
+ LUvABlNTbPHdcnO4I6mVjNn2OqRPo4dT5z6IjfFDZVd/fxRNj+E8INTYaLvk30/j2lPM
+ rLf8Z2OClM2mq2Isp19jMozHfJaz4nLm0O80byHG95NjR93UBd+2SYqo/icRdNi6aq1N
+ 6JH3Q36dYJBCZRWiwFqB2oN3RbPrbJO4alLxK/iLwfEwyFALDPsee55ur8ZKfV2xzwoT
+ 7MuQ==
+X-Gm-Message-State: AOAM5335HXEO7EGiisR3gyoOhIlL8/hss+iFjUL7bWZw2hmW3Gc35qrY
+ DNNxP++ebyxkHmMqYDj/7NA=
+X-Google-Smtp-Source: ABdhPJxKlLfx8fGrjuW4kyOWyd346i+7tCQUK8Q7+rHQRknOzVIZop1GxuD0qUV4+7AkKc3PzRieRw==
+X-Received: by 2002:a63:1b04:: with SMTP id b4mr12560718pgb.224.1622606490927; 
+ Tue, 01 Jun 2021 21:01:30 -0700 (PDT)
+Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net.
+ [99.44.17.11])
+ by smtp.gmail.com with ESMTPSA id c21sm2955384pfi.44.2021.06.01.21.01.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 01 Jun 2021 21:01:30 -0700 (PDT)
+Subject: Re: [PATCH v2 net-next] net: mdio: Fix spelling mistakes
+To: Zheng Yongjun <zhengyongjun3@huawei.com>, andrew@lunn.ch,
+ hkallweit1@gmail.com, davem@davemloft.net, kuba@kernel.org,
+ rjui@broadcom.com, sbranden@broadcom.com,
+ bcm-kernel-feedback-list@broadcom.com, narmstrong@baylibre.com,
+ khilman@baylibre.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Cc: opendmb@gmail.com, f.fainelli@gmail.com, linux@armlinux.org.uk,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+References: <20210602015151.4135891-1-zhengyongjun3@huawei.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <ce8d1b78-47ce-9211-d948-093d316ea647@gmail.com>
+Date: Tue, 1 Jun 2021 21:01:19 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.2
 MIME-Version: 1.0
-X-Originating-IP: [10.175.104.82]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggeme760-chm.china.huawei.com (10.3.19.106)
-X-CFilter-Loop: Reflected
+In-Reply-To: <20210602015151.4135891-1-zhengyongjun3@huawei.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210601_183817_874873_A28A412D 
-X-CRM114-Status: GOOD (  12.28  )
+X-CRM114-CacheID: sfid-20210601_210132_489116_16AC6D3F 
+X-CRM114-Status: UNSURE (   7.49  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,75 +110,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-informations  ==> information
-typicaly  ==> typically
-derrive  ==> derive
-eventhough  ==> even though
-hz ==> Hz
 
-Signed-off-by: Zheng Yongjun <zhengyongjun3@huawei.com>
----
- drivers/net/mdio/mdio-bcm-unimac.c     | 2 +-
- drivers/net/mdio/mdio-mux-bcm-iproc.c  | 2 +-
- drivers/net/mdio/mdio-mux-meson-g12a.c | 2 +-
- drivers/net/mdio/of_mdio.c             | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/mdio/mdio-bcm-unimac.c b/drivers/net/mdio/mdio-bcm-unimac.c
-index 5d171e7f118d..63348716b426 100644
---- a/drivers/net/mdio/mdio-bcm-unimac.c
-+++ b/drivers/net/mdio/mdio-bcm-unimac.c
-@@ -203,7 +203,7 @@ static void unimac_mdio_clk_set(struct unimac_mdio_priv *priv)
- 		return;
- 	}
- 
--	/* The MDIO clock is the reference clock (typicaly 250Mhz) divided by
-+	/* The MDIO clock is the reference clock (typically 250MHz) divided by
- 	 * 2 x (MDIO_CLK_DIV + 1)
- 	 */
- 	reg = unimac_mdio_readl(priv, MDIO_CFG);
-diff --git a/drivers/net/mdio/mdio-mux-bcm-iproc.c b/drivers/net/mdio/mdio-mux-bcm-iproc.c
-index 03261e6b9ceb..239e88c7a272 100644
---- a/drivers/net/mdio/mdio-mux-bcm-iproc.c
-+++ b/drivers/net/mdio/mdio-mux-bcm-iproc.c
-@@ -65,7 +65,7 @@ static void mdio_mux_iproc_config(struct iproc_mdiomux_desc *md)
- 	writel(val, md->base + MDIO_SCAN_CTRL_OFFSET);
- 
- 	if (md->core_clk) {
--		/* use rate adjust regs to derrive the mdio's operating
-+		/* use rate adjust regs to derive the mdio's operating
- 		 * frequency from the specified core clock
- 		 */
- 		divisor = clk_get_rate(md->core_clk) / MDIO_OPERATING_FREQUENCY;
-diff --git a/drivers/net/mdio/mdio-mux-meson-g12a.c b/drivers/net/mdio/mdio-mux-meson-g12a.c
-index bf86c9c7a288..b8866bc3f2e8 100644
---- a/drivers/net/mdio/mdio-mux-meson-g12a.c
-+++ b/drivers/net/mdio/mdio-mux-meson-g12a.c
-@@ -95,7 +95,7 @@ static int g12a_ephy_pll_enable(struct clk_hw *hw)
- 
- 	/* Poll on the digital lock instead of the usual analog lock
- 	 * This is done because bit 31 is unreliable on some SoC. Bit
--	 * 31 may indicate that the PLL is not lock eventhough the clock
-+	 * 31 may indicate that the PLL is not lock even though the clock
- 	 * is actually running
- 	 */
- 	return readl_poll_timeout(pll->base + ETH_PLL_CTL0, val,
-diff --git a/drivers/net/mdio/of_mdio.c b/drivers/net/mdio/of_mdio.c
-index 094494a68ddf..8e97d5b825f5 100644
---- a/drivers/net/mdio/of_mdio.c
-+++ b/drivers/net/mdio/of_mdio.c
-@@ -466,7 +466,7 @@ EXPORT_SYMBOL(of_phy_get_and_connect);
-  * of_phy_is_fixed_link() and of_phy_register_fixed_link() must
-  * support two DT bindings:
-  * - the old DT binding, where 'fixed-link' was a property with 5
-- *   cells encoding various informations about the fixed PHY
-+ *   cells encoding various information about the fixed PHY
-  * - the new DT binding, where 'fixed-link' is a sub-node of the
-  *   Ethernet device.
-  */
+On 6/1/2021 6:51 PM, Zheng Yongjun wrote:
+> informations  ==> information
+> typicaly  ==> typically
+> derrive  ==> derive
+> eventhough  ==> even though
+> hz ==> Hz
+> 
+> Signed-off-by: Zheng Yongjun <zhengyongjun3@huawei.com>
+
+Your v1 was applied already:
+
+https://git.kernel.org/netdev/net-next/c/e65c27938d8e
+
+so you would need to submit an incremental patch thanks!
 -- 
-2.25.1
-
+Florian
 
 _______________________________________________
 linux-amlogic mailing list
