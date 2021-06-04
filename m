@@ -2,85 +2,100 @@ Return-Path: <SRS0=z4cL=K6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE2F4C07E94
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 10:38:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CCD83C07E94
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 10:40:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AF07A613B4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 10:38:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AF07A613B4
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 4D548613B4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 10:40:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4D548613B4
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nrysabcy6V8dFWN/C/GlkTEPZHjUnzfBJ1DPHOuUQIM=; b=p7v20EoHTQu2Al
-	utbzuRebi4Vzj9sgCPxKul+TxX/4v837C4DcBcVtkokSMZxqnDpN3caecaaH2m0H7thYdg0aJbOlk
-	f9UVq8F1bIggZzwagcl0TEQFCn7MOGKU9Xd9A7e1HglcU5zCbdjPw4TykiCUQ9EJTJo1XlTF/tQqw
-	n/sNSjt8xMJTp0F4xExCb+TbeQEWIvguITS3aFg3EOFaytJQvaq7xsi1h4fKzMhZqrxwiRRLZrQe0
-	82/xUt8XNsxIaM0Kibl0PmarZd798+aJEbOD4shexvmKNv6bdjIe82mfa3nGtSINe6THVtVPlD4Nd
-	NFgHi3PncGzBU/NFQVqw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=orzWFKrjCtHIOvWoo7+bDLmckjGq6n8qqGS2X5ccxO8=; b=gKYPOe8vSJFG1mpUyZcrjNBEqA
+	fx+eaI8eiNTorMDo3m8Zo5lDl1oXnRedVJY0yDHUXjWxDzqIUz01GTT8gDEufrbqgiePk7+qiD8Vg
+	sPCIWkPIwTcg5AQXh6lzjQL3s7tOlx7le04GtqbrbzGxxO5EfsOJwi4E8CjmICaPJb5Qhacjop8Tz
+	iDhTEBTX6iz4egn5YyX0gdEYQzoyM+CiIjkyAHq4Cx1kAjNjYnu8w3pA6kF3WqFxzOCNRpMCcnC08
+	4rZXswUXytWH+SLOrjJ3Eo47XxSoS8y6HMpToofp9J7L2A+EhTjv/ovrSz899Gwbt2mSW6DUcwBD/
+	AcMQQR+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lp7Dn-00D0jT-5o; Fri, 04 Jun 2021 10:38:35 +0000
-Received: from mail-ed1-f54.google.com ([209.85.208.54])
+	id 1lp7Fg-00D1JL-TO; Fri, 04 Jun 2021 10:40:32 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lp6qg-00CsdI-IH; Fri, 04 Jun 2021 10:14:46 +0000
-Received: by mail-ed1-f54.google.com with SMTP id dj8so10507186edb.6;
- Fri, 04 Jun 2021 03:14:42 -0700 (PDT)
+ id 1lp6vL-00CvA4-Uw
+ for linux-amlogic@lists.infradead.org; Fri, 04 Jun 2021 10:19:33 +0000
+Received: by mail-wr1-x431.google.com with SMTP id a11so6868580wrt.13
+ for <linux-amlogic@lists.infradead.org>; Fri, 04 Jun 2021 03:19:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=EB54r1V/q9zaUM9NCE4utN55uwjXUtblCYI3g2TbvbU=;
- b=Vyw818AXHPpKdqs8+MaL+/QEyb12dBdnoGlHzHizRS4xah+v4HsS2iOoL3LCt69yeZ
- 4vwe9cTEdUv8/6y2l2x5PdBUNgneltjhZ0HkIQUOvWJgXHAOu78fhCfhMMuaCE33ywO0
- E9zvrXVQE86nXtkJExOWWux3cob42HR+IP/E6leFA75b6vTHKYRck6xs79dRRf+1Xfo0
- w0fjbVHWgoQSolsGhecVLpvOPgMW8GPt5qY9MLadhJHcZPMEi81iHoHxcEt/BwGB+Lso
- 8Ws9IIJEqn+5u5ji7yuCoe0JUpOnGwrrYYSgc4TQ+k7B83k2Nu51PtbtwnJSs+XPqVmR
- 8O/A==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=4ziavbqWUEKiMtC7t1VjCERXgHXd+SAZbkk0wx19OWY=;
+ b=AUmYpKUCqqVGkR1DU1J3h/uIiApIX+1iARiLeBsd7QAn0XFvm+gZT5xc9DaSZtULIm
+ u0BXLbssp0yBgyf+pnDOSb/t1la/zL9BcIfdvHtDV0E42STBiWAJLS9nKeIqzhG58WtH
+ RroFtgfVVxMLRxKH0IIAp+ongjmY4cgmnFE1aA3VFBiIv0JuJm7TnA9T058UNO0Y0dsL
+ nHSDWD47A8DLryT97t6IdgiiA35M0jZCUU5Hwa3ru/jHoPnpDe7CBpXVr9AH0AFq4Ur+
+ t5ClveGnOhzNasKZdH89SEOcUfoKZJEkA+F7dKRcZPIkEvkRHHShh8b5kBESyzhJpzOn
+ hTyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=EB54r1V/q9zaUM9NCE4utN55uwjXUtblCYI3g2TbvbU=;
- b=hQBe39MpYRu1m7j11Y7Og4iOfzo2IIQsfXkvblSe39DwsLTtV8nX3RDE1C95kMOZKf
- s1nBjp+c738+bQX2H+Sk8ofWt2pl59r/b3xyB6PqQyLiM2pFmXmOXibkEmxwO0KdX1SK
- iNkDpuenbu1BUv0tW2h5kmqO/L7CIERj5iW9wFDFmj5iWOkFkAbtBIF6TIe1XQbAlwDz
- xEwFyABb5vV4j+RGa2B+dOoeS/3YUba8WCcNbiEQTDIqLhGk5rx/BN7P3FXErhcnJEhD
- udPsPATAUf3Ygla12O44MVJdGYL1Afooq/eC4Oul6NZgJ1ZOpIQ4gSTkaXEGDO6Di2OE
- IyIw==
-X-Gm-Message-State: AOAM531lAzI+mPKHugbrvkYeD/eu4xgSuVSL0xkItsqwp1D7WjMoKhkl
- 6GBEVwPzZtsvm5LhEXvwAvZaTLIcZsRSMWzOmdWUewxBB2g=
-X-Google-Smtp-Source: ABdhPJxcc5NQiqlUzhlIKHRb4AethxYoWgauUWCwx+PMU+e3Kee73mAWY6Wb9cGuHb3UO/ZRq6cSFnBxn3xeTItob7k=
-X-Received: by 2002:aa7:cfc7:: with SMTP id r7mr648821edy.13.1622801621239;
- Fri, 04 Jun 2021 03:13:41 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=4ziavbqWUEKiMtC7t1VjCERXgHXd+SAZbkk0wx19OWY=;
+ b=svrKZcFRHARSPkgZLhGoBHmHzdLpUXhJJYpSyP3AWTNCo+YvSuecKC518J8OxwrkDL
+ 6h8DCFArn8Nf++0jxZjt1sj909W6IquZ2xVHtJK8DZ5Cmn+ne7JKre8jSjYRWkpwmc2c
+ QyyP8yxnDEiMqFTnO/pGdCViFwt9I3M6kQxYqmfGAF/+MVnnqSynpBZKTxva8GD/XXxX
+ +uvT5Lf7A92YigCRgLpGHf5x7CIpLcskeunUuhzmI6KXSZAbAJ1w+F/XMX+3jMz1aEG1
+ fxfUiH+RET/bpsD6AS2Lj78BU/Ko4qLAaabBGWHuUeulNi4LYKXcbh+DBC3ds0PRc32O
+ SXPw==
+X-Gm-Message-State: AOAM530tLcULTF+wf6p2kF65pl/6lxCxj7crr9D/OPsvaggjKuSAdl9F
+ rybyFrFUqJa+8SXYDxYZVpr4mA==
+X-Google-Smtp-Source: ABdhPJyZPtI4shQfAGMbh/07M+zranWNJi/sP7idE2MNMX+O8VKGf4UxO2fV62ARG2iaDO6Lb+0Gig==
+X-Received: by 2002:a5d:5251:: with SMTP id k17mr3105093wrc.153.1622801970016; 
+ Fri, 04 Jun 2021 03:19:30 -0700 (PDT)
+Received: from [10.1.3.29] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id q5sm6228890wrm.15.2021.06.04.03.19.29
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 04 Jun 2021 03:19:29 -0700 (PDT)
+Subject: Re: [PATCH 3/6] arm64: dts: meson-sm1-odroid-c4: fix hub_5v regulator
+ gpio
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: khilman@baylibre.com, jbrunet@baylibre.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, tobetter@gmail.com
 References: <20210601090140.261768-1-narmstrong@baylibre.com>
  <20210601090140.261768-4-narmstrong@baylibre.com>
  <CAFBinCB+SyCmxrjJLcuy=mLsChPZ9i_1TsaWkL3kuhPO1wGwWw@mail.gmail.com>
  <802340ba-edd1-d148-4c6b-e2eae9c2a096@baylibre.com>
-In-Reply-To: <802340ba-edd1-d148-4c6b-e2eae9c2a096@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 4 Jun 2021 12:13:30 +0200
-Message-ID: <CAFBinCAVeEVWVmpn11RWxuvYBpAVUj37R=U7ykv+YPUNYYTLMA@mail.gmail.com>
-Subject: Re: [PATCH 3/6] arm64: dts: meson-sm1-odroid-c4: fix hub_5v regulator
- gpio
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: khilman@baylibre.com, jbrunet@baylibre.com, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, tobetter@gmail.com
+ <CAFBinCAVeEVWVmpn11RWxuvYBpAVUj37R=U7ykv+YPUNYYTLMA@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <353cb179-1ff6-9586-f6e8-e692b11d1e12@baylibre.com>
+Date: Fri, 4 Jun 2021 12:19:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+MIME-Version: 1.0
+In-Reply-To: <CAFBinCAVeEVWVmpn11RWxuvYBpAVUj37R=U7ykv+YPUNYYTLMA@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210604_031442_661413_3549E7EA 
-X-CRM114-Status: GOOD (  10.06  )
+X-CRM114-CacheID: sfid-20210604_031932_067322_CF899E0F 
+X-CRM114-Status: GOOD (  15.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,27 +112,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+On 04/06/2021 12:13, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Fri, Jun 4, 2021 at 11:43 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> [...]
+>> So I'll add:
+>> +&vcc_5v {
+>> +       gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
+>> +       enable-active-high;
+>> +};
+>>
+>> in odroid.dtsi instead in this patch.
+> that sounds good to me
+> 
+>> Not sure what to do about the regulator-hub_5v.
+> maybe dropping this regulator overall? we're using gpio-hogs elsewhere
+> for the USB hub's reset line
+> or dropping the gpio-hog and keeping this regulator to manage GPIOH_4
 
-On Fri, Jun 4, 2021 at 11:43 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-[...]
-> So I'll add:
-> +&vcc_5v {
-> +       gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-> +       enable-active-high;
-> +};
->
-> in odroid.dtsi instead in this patch.
-that sounds good to me
+I'll drop it completely, it makes no sense to have a regulator for a HUB reset anyway.
 
-> Not sure what to do about the regulator-hub_5v.
-maybe dropping this regulator overall? we're using gpio-hogs elsewhere
-for the USB hub's reset line
-or dropping the gpio-hog and keeping this regulator to manage GPIOH_4
+Neil
 
+> 
+> 
+> Best regards,
+> Martin
+> 
 
-Best regards,
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
