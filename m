@@ -2,89 +2,83 @@ Return-Path: <SRS0=z4cL=K6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 08989C4743C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 17:09:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8308C4743C
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 17:20:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CE76761400
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 17:09:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CE76761400
+	by mail.kernel.org (Postfix) with ESMTPS id A80676140F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 17:20:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A80676140F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=OXmjaZMHo93lxLN70pDQTUaX7KSedgJBMDxZN8PBDFQ=; b=agykgbBWCJz1qW
-	Jgku3B/n26a8OYQvNcKPOZMd4OyBBAxgMt6IieByqLl+lQBXVHzN5Jld0ygR1lSlSiybREMFxl2rT
-	gZWKKQrH1YwkkdTko35bFNz5gx4lF6S8bcWOPxTVovqtN44FVjwaDsk40CwwxnoD9rBzUTp0nnbCx
-	Zu1niGPMiZqiol8Qhh0zNB/EclZfd1u0/lhTzxNoMuKSxM1xy56KR17SGQfqI43A043hetsTncL9e
-	6VP0GUjEb49qYb6NbFM540ekgVNxseG8DYC1s9cOI1u37VCxbnJyZ+EmrVnbOgG/wQw+1Jro3PkpP
-	pPsmhVhpqNUH/dSIBpEw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Vk0Q7NJbR+ss3RfdVT7cSJcEMDhNNRWkQbVrTWG4k0U=; b=pCnt7ZV4RPqrkF
+	/7G93ifx3aXv76zUtF155LWf3cg/DfPb9dic0+klYiFyoc9JhxPp0Te3rAgGCgQqmnGaaVlYK+o6n
+	6F56nMrVNFZQ5WMRz42xJ0rnKp0LQknjbibydEmsJsibNDtijzDE1VJXePchxkT6uGhyaRpbdp2wa
+	sKuC5QbAdW2eGemhUSi5OeujYGxTH4bCq2jzWYWGS/gYH2lYHsV1ShLgcKrWkQGhWQQvzyTR0uTGH
+	2Q7MtEHvczx+RoNCYx+QcYQauLfFTAvY4VBnI7H9JMlHzD0LaHw+/lpDBbvBdhJWfhlyLeIzaZVSX
+	77TkM923PrznlSFHzGBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lpDJg-00EXRG-Th; Fri, 04 Jun 2021 17:09:04 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1lpDUF-00EdFm-Qu; Fri, 04 Jun 2021 17:19:59 +0000
+Received: from mail-ej1-f47.google.com ([209.85.218.47])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lpDJa-00EXPw-Sd; Fri, 04 Jun 2021 17:09:02 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id l1so15577322ejb.6;
- Fri, 04 Jun 2021 10:08:58 -0700 (PDT)
+ id 1lpDUA-00EdBh-6B; Fri, 04 Jun 2021 17:19:58 +0000
+Received: by mail-ej1-f47.google.com with SMTP id ce15so15624327ejb.4;
+ Fri, 04 Jun 2021 10:19:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OoQ9gA8dbbWK1PtB4dCFVLRMGfxxHdj7P0i/xhgg55I=;
- b=vTUoh8iFX3WkURlZGhaLT4GCmDnGg2CBfohcDURDFZ8JOOKfDNWxGtN+siZlEUUCg8
- eOC+yekb2HorPEMH374VVAe8ep18bRtQUp/CNQxyifMSoI6iWViNQqwdCdGx7Jg8AQK6
- wtPbe3nXeWZBlZ8QJcEaZJZ3gX2A+DmTCODTu441hfpIs+uExsJGdZU82cZAd5W5/Kdl
- oBIP0W9Ww7QN9kvGEArtmMI9iCfEwZ10cC4OrR3NOj5cD0ZakkJvuvOF24nqWrGE5bZZ
- cvkdYzTGfYfACjRNkw5FixPCHtUTg2GeRMUkcmjHOlCXWHDb1Wj3aJG3MCq8s5SUbgep
- Ukfw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=aV8VFwDqQyLM7O/HC0yXgAxy4pRZKgMLngJbx9RyuLw=;
+ b=r0PFQO3W+KWBaNQd9bdmLdmneEcX0chXaML3BDsrowJ2hvRJ0KdPRAuw7blwxP/6lM
+ nwme2xV9y2H/tmYu33xcBcmrDVvaFkt6hCFm90AlnTOvEScyVVz1+Q5HMB2g25p0zKbi
+ l7mzBvLH/5tz6TBtsgvLHcdXtU8ADcWXoK6ekTlcc4XhfFuRiVq/XbN53NwVD6pjJLB6
+ xmLF2He5kAEwqrS4Zpq4NSEl8dXj2ppmntpg9mD5h32AWrxc+h2aLTqrm2CcaaYdsA3m
+ N3TgjGIbybuaRxsIM7giWe2zn/59EHbaW/wk9G8I6JR05zEH5n7gtmXqiGl48SWPYF2R
+ 4sdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OoQ9gA8dbbWK1PtB4dCFVLRMGfxxHdj7P0i/xhgg55I=;
- b=KbAi7KHux32SWGydX0Fezk/7Mm8V9vipUHPn+0mAiDtDECosY+OWoFxB0S7ij3kM48
- 4K54yXhs10ledFLXfBfkM+o/JkBAHfWo6wyQ3iZjnYrHCOOVNTSkv5VCElQOX+oVA0p4
- Wxnp6pg3SfMn9OaY0dgYmYCWaegF6v5DpjCu0zX0YpnHSiYImch6Eh3B13AyJKAUJq5D
- P5sfzOQBEjWpLI9HM9+U4v6FJA9agNXTLZ2RTBVk6nzM0uhqzjiaqkW04WBHEAZXqCB2
- mv1eJsxHV6kDlrecCjpaY4wy8orUrzRFD3BMq73pWKtYOimh/yNPvaTujpgd3jz6e0Rf
- Fs4g==
-X-Gm-Message-State: AOAM5313x1A7frSS7F+jku9XeKFPtSVsT+QeQAe3ZNTYh7h3JCsajytl
- 55bv4UaAdeXyaP0KTFsSGBhMvDnTAKw=
-X-Google-Smtp-Source: ABdhPJw7lDvO1MHuloAiRRHK/9CSD4zYB4NRxtgEq0HCbXnurenuq1Ztwl46ypeON4Bk3azBqhh8vQ==
-X-Received: by 2002:a17:906:6981:: with SMTP id
- i1mr5123333ejr.289.1622826537290; 
- Fri, 04 Jun 2021 10:08:57 -0700 (PDT)
-Received: from localhost.localdomain
- (p200300f137127c00f22f74fffe210725.dip0.t-ipconnect.de.
- [2003:f1:3712:7c00:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id q26sm3010663ejc.3.2021.06.04.10.08.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jun 2021 10:08:56 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- jbrunet@baylibre.com, khilman@baylibre.com, narmstrong@baylibre.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH] ARM: dts: meson: Set the fifo-size of uart_A to 128 bytes
-Date: Fri,  4 Jun 2021 19:08:44 +0200
-Message-Id: <20210604170844.2201229-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.31.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=aV8VFwDqQyLM7O/HC0yXgAxy4pRZKgMLngJbx9RyuLw=;
+ b=UPo5s2ZTTdc2lmTiQ8eD/L2QdsGpgolCwgAX32YIqbzvNHIymzbHNDcsYVeOn+DPc+
+ ZsB8GrW6LwPCUNuBK+C/hxGOz2+8LyO+V4MBbDYyJ2zkVX4VIRZ4G8H06/9Zi7SgSpwv
+ wf2wyyICRDLvDISsmERMFN+KEKMzSK8YlqnNkD80KCoHzDiK5ZVyj19G4PioUtpOSX6Z
+ AE3t6dBcbdnmaYaK7Q3fP4wfWCaQ3tre3vNNN2Gvhv7OTcK9HCc3niFAUDRCFPDkzHj8
+ q7pYnVXtRsXKeFNrOUUloq0GFy8VzXD9tQs5KCrR2UT/UG49nz7+u2/Vt75/vU9A9/Bq
+ 9FUQ==
+X-Gm-Message-State: AOAM5312tP+JmaeCb+PgU0JypajDdplxSFO4KQLfTjC6ZgecL4CfbXwX
+ iOTpH4XB5LYxzP9iInfxq3xv/rfmwENMH2KAnRY=
+X-Google-Smtp-Source: ABdhPJzmfa3gSEAJuAKzn67r0Jj59tYYouwbp4UpcgEO7HHUdbgQpZjEUqVT3vW5n6TSpxJr7orxiv4DyldBSQSjhKg=
+X-Received: by 2002:a17:907:2d8d:: with SMTP id
+ gt13mr5324328ejc.162.1622827130788; 
+ Fri, 04 Jun 2021 10:18:50 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210524103733.554878-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20210524103733.554878-1-martin.blumenstingl@googlemail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 4 Jun 2021 19:18:40 +0200
+Message-ID: <CAFBinCDn_0TeyLG9b9uB+4-4PdeNXgja11wf2CGcQ99tUNjkyQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] clk: meson: rounding for fast clocks on 32-bit SoCs
+To: sboyd@kernel.org, jbrunet@baylibre.com
+Cc: Neil Armstrong <narmstrong@baylibre.com>, mturquette@baylibre.com,
+ khilman@baylibre.com, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210604_100858_949244_7269491D 
-X-CRM114-Status: GOOD (  11.31  )
+X-CRM114-CacheID: sfid-20210604_101954_276350_FF4A259E 
+X-CRM114-Status: GOOD (  21.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,33 +95,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The first UART controller in the "Everything-Else" power domain is
-called uart_A. Unlike all other UARTs (which use a 64 byte fifo-size in
-hardware) uart_A has a fifo-size of 128 bytes. This UART controller is
-typically used for Bluetooth HCI.
-The fifo-size of 128 bytes is valid from all SoCs from Meson6 (or
-possibly even earlier) all the way up to the latest 64-bit ones.
+Hi Jerome, Hi Stephen,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, May 24, 2021 at 12:37 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> On the 32-bit Amlogic Meson8/8b/8m2 SoCs we run into a problem with the
+> fast HDMI PLL and it's OD (post-dividers). This clock tree can run at
+> up to approx. 3GHz.
+> This however causes a problem, because these rates require BIT(31) to
+> be usable. Unfortunately this is not the case with clk_ops.round_rate
+> on 32-bit systems. BIT(31) is reserved for the sign (+ or -).
+>
+> clk_ops.determine_rate does not suffer from this limitation. It uses
+> an int to signal any errors and can then take all availble 32 bits for
+> the clock rate.
+>
+> Changes since v1 from [0]:
+> - reworked the first patch so the the existing
+>   divider_{ro_}round_rate_parent implementations are using the new
+>   divider_{ro_}determine_rate implementations to avoid code duplication
+>   (thanks Jerome for the suggestion)
+> - added a patch to switch the default clk_divider_{ro_}ops to use
+>   .determine_rate instead of .round_rate as suggested by Jerome
+>   (thanks)
+> - dropped a patch for the Meson PLL ops as these are independent from
+>   the divider patches and Jerome has applied that one directly (thanks)
+> - added Jerome's Reviewed-by to the meson clk-regmap patch (thanks!)
+> - dropped the RFC prefix
+please let me know what you think about this v2
+I am asking because clk-divider is widely used, so I'd appreciate if
+this gets some time in linux-next (so for example Kernel CI can test
+this and report issues if there are any).
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index 8bae6ed0abb2..bd0e864964e9 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -50,6 +50,7 @@ uart_A: serial@84c0 {
- 				compatible = "amlogic,meson6-uart", "amlogic,meson-uart";
- 				reg = <0x84c0 0x18>;
- 				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
-+				fifo-size = <128>;
- 				status = "disabled";
- 			};
- 
--- 
-2.31.1
 
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
