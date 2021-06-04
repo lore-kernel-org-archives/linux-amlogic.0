@@ -1,67 +1,92 @@
-Return-Path: <SRS0=VErV=K5=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=z4cL=K6=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC359C47097
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jun 2021 18:43:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AEDCC47082
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 03:33:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 89304613EE
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jun 2021 18:43:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 89304613EE
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 9BAB061402
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jun 2021 03:33:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9BAB061402
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UT+6l9VAkyR5lKmaButfJ53bg4w+dnqXv2qK2jpdc5Y=; b=iZnp+IyJ/to29b
-	cDKLioaJYG4b8D/HUM+7tsds9Qd1mVMZVkrYkxACpgPASxz/6lQ7/CM6HRWvrqiD9UmBKFbgRaM7Q
-	nqNsaV7AXPbHI/xhTDQRyUdbyzSKqE4K7j4kfv8JhZymRPU8ex1Dkb+fJJFQqhvLD+ba3d1HAwfiq
-	pvfY9YAw35NMkPWpY7PW+2ce9zlZP27iZbVaybikHWaVMDnDZz7wPk7j1jog56HcckgeURxQ4GGk8
-	yEqNZLwfMsBYjXh+fxkQXLADs4YZxLvrb0S9TmFBPev4BWBzOtBRlFUsQsb4tHbd08yKJp7YMfvna
-	Jlbj5up7akfGn7847X2A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ZwtSgU+7MN/aluxQFTrZA9IjvuCgWuCUN6IH5TwcHUI=; b=FdXBOUL03TVE1D
+	PgaRWmatWyxU/mTPZIsIJy5x8PicWddGZBeo82gNPbeVL04xEXnh4eSgZNtX7k752zrTtgKdHCIpn
+	9fHYv/QVvAtHMYh12E3j4OFC8nTeD4TbQ1ueSx2JmgtO3sUTFPWJ8hUx1uhE12ChXgq6mZ8BhEieA
+	cTeRJzOe+38sgK23/ZwH8omeAhK4i86i7cS/j30eFWHsjTgMy5J/hlYDDZR0tmxVdcbS46HdZ8KGP
+	3o+w1m8ljXjLzt81mdmwf073Jk+vdmGrm/GwvkkyuF2wKHozz/sgnPuhxFyIDFIFcCMiSahO8O1l6
+	rV5XHbFj4T4zAGgoZCMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1losJD-00AEae-Vy; Thu, 03 Jun 2021 18:43:11 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1lp0a6-00BO7n-5r; Fri, 04 Jun 2021 03:33:10 +0000
+Received: from mail-pj1-f51.google.com ([209.85.216.51])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1losIt-00AESL-9G
- for linux-amlogic@lists.infradead.org; Thu, 03 Jun 2021 18:42:52 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 53EEB613F6;
- Thu,  3 Jun 2021 18:42:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1622745770;
- bh=QX2fUiCiUmkxlGVHfxkr10DT8U2SkzWtLEr1gPbhSJI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=P/yoLykbA2nbCiCPzNXK5wuNLtsWUWwzswOFPDtigEoGBh919yhCp5x/Fxn86U0KU
- C2Om9LQzx6vdrWoHWCcVcxLKIjfuOhrscbhTrwKJIILodx9mLI4x7ZR41lMjrlmGAo
- xGwur70iBcThRy4us3by+zZ7UkI0tWISZq6ivvVYnCvYBsSZeUCuDkIk99VS3FKXiI
- E3DoWJYF2dLclCqPv+A6qGo3v5+jt0yvuXEl7TJeOLwW1+5/aqBIYCyayajqTP8f/W
- OAqdC+w9OnUmge4auSIjBj66YZjpMuB/qhWovoHfSA5kDRfxAPQk7UQWVftM/Lxnxm
- tzhICfRiwbsig==
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- alsa-devel@alsa-project.org
-Subject: Re: [PATCH] ASoC: meson: gx-card: fix sound-dai dt schema
-Date: Thu,  3 Jun 2021 19:41:57 +0100
-Message-Id: <162274557551.14795.13902548000738010349.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210524093448.357140-1-jbrunet@baylibre.com>
-References: <20210524093448.357140-1-jbrunet@baylibre.com>
+ id 1lp0a3-00BMtB-Fi; Fri, 04 Jun 2021 03:33:08 +0000
+Received: by mail-pj1-f51.google.com with SMTP id
+ d5-20020a17090ab305b02901675357c371so6326611pjr.1; 
+ Thu, 03 Jun 2021 20:31:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=icn8mgRDWXOjaY3g7V23n8mNEvlwuJBMtHS+GFwA3/g=;
+ b=qYGonMOwk1vaLYuJYt+gYxeqPX10Cu+7L3mSe8vPIcvK54bSWxmMCnDgKuBDFJ+e/7
+ FuAAr4uBvg9CgZ9iU3HMuDvhxMS0nNcbAHs6KwjZRHa/HvbM4qsAK6aQTjvIw7PLafmb
+ 3sieICe03yYs2BZtACMaeul9QYeBBvAmgfW3VIPoSLxN80hsgakyVQrpoM/d0o4Kgosj
+ CH2lH/fD2FdRGLowzhULxWpTg9dnGSm7En4rk2z5j+e4Et3hd8MhzxGAkAH5//3tlueS
+ AR+oTrDPLj4llMuvrcAbwsE4As/TM+5MHOE6Iw1WxR8cI1oy6XY4F1l19y9UErDcwIzm
+ AQOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=icn8mgRDWXOjaY3g7V23n8mNEvlwuJBMtHS+GFwA3/g=;
+ b=Rq/9mdTtfx0vFdcksOq0Rr3cRmYSrQEJsuIkltYQURD2p9+Mhi1V6X4EqNtRqswhSb
+ BWd4it3CGQAh1TvyNeNVAfXMdZ5AuxLN1s90JtFhfFckPfw+/rFJu8gcC9J/2R/MYmk0
+ FxIfAFtdWHCbC5xytxCf1X6q+O++BiUCgqd+rzeADPdu8Idfldbe+gMJ46DBC02wnI8C
+ qQIR9HvPNJFZnGyk5ekjUc0Talm6xohTiSuwRPuczhUtXSRVWD2GatooFSfdF7lyCgks
+ 65uOy61vsQmfWrQW4AeysdsYjI4wk22qkcuS2vOn3B8OTuTB8VWSCWG+7Lrc3qNXo5Ai
+ a/EA==
+X-Gm-Message-State: AOAM53191/aOfb5kGIjTlajgCW87Pwi2JZjvdR2X2fNBfOG+21DCo8cD
+ VN+c/gfg2o9FgQr66Y6Hw7I=
+X-Google-Smtp-Source: ABdhPJwOYyhjg/Et0l54LKe36aN/nUR4yR0VNdVU2+W2ETi4WUgUEb+bbsfQ3gbIFIBeiBhMjAjqag==
+X-Received: by 2002:a17:902:8ec9:b029:ef:5a88:e7cf with SMTP id
+ x9-20020a1709028ec9b02900ef5a88e7cfmr2252334plo.48.1622777404343; 
+ Thu, 03 Jun 2021 20:30:04 -0700 (PDT)
+Received: from localhost.localdomain (199.19.111.227.16clouds.com.
+ [199.19.111.227])
+ by smtp.gmail.com with ESMTPSA id a10sm3208680pjs.39.2021.06.03.20.30.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Jun 2021 20:30:04 -0700 (PDT)
+From: xieqinick@gmail.com
+To: narmstrong@baylibre.com, jbrunet@baylibre.com, mturquette@baylibre.com,
+ sboyd@kernel.org, khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: nick@khadas.com,
+	artem@khadas.com
+Subject: [PATCH] clk: meson: g12a: Add missing NNA source clocks for g12b
+Date: Fri,  4 Jun 2021 11:29:57 +0800
+Message-Id: <20210604032957.224496-1-xieqinick@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210603_114251_372587_0CA785AD 
-X-CRM114-Status: GOOD (  11.98  )
+X-CRM114-CacheID: sfid-20210603_203307_549632_2C50C8F1 
+X-CRM114-Status: UNSURE (   9.33  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,44 +103,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 24 May 2021 11:34:48 +0200, Jerome Brunet wrote:
-> There is a fair amount of warnings when running 'make dtbs_check' with
-> amlogic,gx-sound-card.yaml.
-> 
-> Ex:
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:1: missing phandle tag in 0
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:2: missing phandle tag in 0
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0: [66, 0, 0] is too long
-> 
-> [...]
+From: Nick Xie <nick@khadas.com>
 
-Applied to
+This adds the Neural Network Accelerator source clocks for g12b.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Initial support for sm1 already exist in
+commit 2f1efa5340ef
+("clk: meson: g12a: Add support for NNA CLK source clocks")
 
-Thanks!
+The sm1 and g12b share the same NNA source clocks.
+This patch add missing NNA clocks for A311D (g12b).
 
-[1/1] ASoC: meson: gx-card: fix sound-dai dt schema
-      commit: d031d99b02eaf7363c33f5b27b38086cc8104082
+Signed-off-by: Nick Xie <nick@khadas.com>
+---
+ drivers/clk/meson/g12a.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index b080359b4645..6a1db16b126f 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -4723,6 +4723,12 @@ static struct clk_hw_onecell_data g12b_hw_onecell_data = {
+ 		[CLKID_SPICC1_SCLK_SEL]		= &g12a_spicc1_sclk_sel.hw,
+ 		[CLKID_SPICC1_SCLK_DIV]		= &g12a_spicc1_sclk_div.hw,
+ 		[CLKID_SPICC1_SCLK]		= &g12a_spicc1_sclk.hw,
++		[CLKID_NNA_AXI_CLK_SEL]		= &sm1_nna_axi_clk_sel.hw,
++		[CLKID_NNA_AXI_CLK_DIV]		= &sm1_nna_axi_clk_div.hw,
++		[CLKID_NNA_AXI_CLK]		= &sm1_nna_axi_clk.hw,
++		[CLKID_NNA_CORE_CLK_SEL]	= &sm1_nna_core_clk_sel.hw,
++		[CLKID_NNA_CORE_CLK_DIV]	= &sm1_nna_core_clk_div.hw,
++		[CLKID_NNA_CORE_CLK]		= &sm1_nna_core_clk.hw,
+ 		[CLKID_MIPI_DSI_PXCLK_SEL]	= &g12a_mipi_dsi_pxclk_sel.hw,
+ 		[CLKID_MIPI_DSI_PXCLK_DIV]	= &g12a_mipi_dsi_pxclk_div.hw,
+ 		[CLKID_MIPI_DSI_PXCLK]		= &g12a_mipi_dsi_pxclk.hw,
+-- 
+2.25.1
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 _______________________________________________
 linux-amlogic mailing list
