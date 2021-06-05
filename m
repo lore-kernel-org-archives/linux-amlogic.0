@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AAAB0C4743C
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 03:11:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9429BC4743C
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 03:11:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5FE9A613AE
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 03:11:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5FE9A613AE
+	by mail.kernel.org (Postfix) with ESMTPS id 54B8D611CE
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 03:11:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54B8D611CE
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,52 +24,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=2BLDB2CjGYJ90p6oQadC73wDCdaD3FQFzcYkUzc+sfM=; b=0l26/OGog7zeqq
-	ry9HWE5cT9zHdZqJ4eDEf0P5KVv2fx08b0NUTSO+qaIK91cVCJjBlQdBb7WKiz2f+Ljn72c1Q0/Iw
-	dawjbB3r+IVUmLrbmE4A1543uZ7VPQeBVFsttLHLdjDiCqfsqiFSdLcST2xXbEtTjVxX+ezG1wDOU
-	3Y3qBERvk0pZLJJnB+K+G8ZOSdT3zTVIuTEn4Fc4Oy/4E+66xeEfrltR3haDTZF8Si/6IXUXEPL9U
-	2U1M4skwBC/NqoNBY57CGv9gVoNX+rHaNa3ng/C4NXfakF1AtAHh3+2ojSrGe93vcXvY5g69ODlPm
-	LDybjxmE4+Sg8e+r6NGQ==;
+	List-Owner; bh=1ruhQ0jPRo0kAQkr/6pTrLZ63YxU6nSe1P4N51jhOUc=; b=d/ZOF2AyEKe8FE
+	WRPeg92LREsyk+HoDKOAXsnzo0zkG/LQOt43mdTJPFW6x5kY/mgKtc4B2ppMJ/4rQ1DQTIaVCWEsV
+	JbvYWBEZdZJiZx6J+YZVI++wRNvQXVPdyCj4ouSxRMGL4R8bL8Gh5M9KW4/Ig7folx4t5jrb48gRt
+	aDj/MfppV4ZgCK22mkBnoPzjaytdnz0hoi5F9HLHGARgYA76/aq5uLFC4dLND4k+eC7CQp4MSKLt2
+	kqq1YCeJjgMdF0ZhCztaL66SotQSK6IGPos/J6qVxLVnKklVZX66h5QK0+Zix4HXc1raEf3eurLTx
+	jBIC7reN8GIK+x/3EUYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lpMi8-00Fv1I-1G; Sat, 05 Jun 2021 03:10:56 +0000
-Received: from mail-pl1-f176.google.com ([209.85.214.176])
+	id 1lpMie-00Fv6A-Uv; Sat, 05 Jun 2021 03:11:28 +0000
+Received: from mail-pj1-f47.google.com ([209.85.216.47])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lpMhu-00Fuzm-E3; Sat, 05 Jun 2021 03:10:43 +0000
-Received: by mail-pl1-f176.google.com with SMTP id h12so5596104plf.11;
- Fri, 04 Jun 2021 20:10:42 -0700 (PDT)
+ id 1lpMiR-00Fv4k-Nt; Sat, 05 Jun 2021 03:11:16 +0000
+Received: by mail-pj1-f47.google.com with SMTP id
+ l23-20020a17090a0717b029016ae774f973so6281016pjl.1; 
+ Fri, 04 Jun 2021 20:11:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=o8AkX7yScaldi+7GL99EP+gl0QK2qsS9wnoAmRYrRMw=;
- b=FFrM/1R5iGYBQHayGsJtLwbbteR7lDb30n/XNp/w3NE3DfqVWgtjJa8K6fdplNUppY
- RkcYQKCSL7uFi1Ll/bEFHncMxlfub7a11UxtBnXHEWX+iKo9F1uWudp4IyI9OKsUHfJl
- N/JY2+CDOzkDKhbWr1qtNL8P6sf+HsGm+RDSFDm/ZOn77tRlcU9uoM13yPsMl6jA35Dv
- XlT3AIKfTuYT+TTjvegpMe87fAz7hvQSUcKpmTiNwa96qZ0Grt/yPX00HQuQqcs9CjUu
- yVNUONyVzXb6MFvwC+KK+IKzwiAe/rn+Zdli+OP81w6LE3bq45ua65ulOSlyszp/peUw
- wC8A==
+ bh=QuDgN5MJV883HSyDY5Ap+MjtVQArLbn97dqQsvTZD0Q=;
+ b=oDPsgeb9JR4dUuytchkO8oJb/wgkUohBf7z3P29xrRqCPx0qyGcctYlFSx/jgPABaw
+ c2agmaCXSYIpBDzBWMrWC1oXOcXaBUKELgHOvKocgwrVTkhsmSjyV7PRzPB6uGKYAdZp
+ 1V6jTWltatJ/p5+ENyeMIboAixnuDZNDRlSwdhUwYBv1naDGm1vlstwAdQnCINWaV5Bw
+ qdicj+8d6Q1HHgLx2VJE1UDsjSVIRkbeF9zL3HYOuq8cCtOJHeeIOHtVN7fAtNylN7NE
+ ypuMr6SUDoRaodujp9udMjM3cK7mU0xz1vTPGC07Qptnawl7ifj8auKxte6e9g8kq4rA
+ erGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=o8AkX7yScaldi+7GL99EP+gl0QK2qsS9wnoAmRYrRMw=;
- b=nLX26xKZWQTC61jdXP6aVndlxs9F7NBI65xmB7kMSYmkL0Pj8b+U0amf6F2hroBYKw
- Og371EbrW8aRGwO5K6EF1opOm3+ztF80iftNTk4f48YFqHXnthkFIqvNoF6gi0bRBJn4
- duiYGbcDYVHgu+v8LhfuQNtl1a5MbcjJb/It0IU4nJk+bOksXTreBVrD/RpXGuXAHObm
- h4a2nb6Io4ImXhZG+7d8WRuLQdAtDncjphZEhijqiKSNTIJl7fOvroA0A9YkN2Z5SHtc
- igasyH5m1xiyVHQxXbEkyEdo9cXH/0qAyMQbfVtx4bE7IqXc5nmvvsQQKqlfoL0CNFPL
- fbXw==
-X-Gm-Message-State: AOAM532kpBonH2lLNcpTszHfTPy9Rxi9OW/fOEwODJnoNRlDMVq1rlee
- eYKXkCnXQ68oKD6MwYUoT44=
-X-Google-Smtp-Source: ABdhPJzr00o1PC13aCExWnGG81e/h62Rw/VeROmwoDXzaPLthMT4gRPMvIJThlVCjjWqbFh0RAej1A==
-X-Received: by 2002:a17:902:f546:b029:101:fa49:3fd5 with SMTP id
- h6-20020a170902f546b0290101fa493fd5mr492855plf.34.1622862581649; 
- Fri, 04 Jun 2021 20:09:41 -0700 (PDT)
+ bh=QuDgN5MJV883HSyDY5Ap+MjtVQArLbn97dqQsvTZD0Q=;
+ b=pZm1eJ7fHwZ/tLllluEhp/OadijDojAJgg8q922dM0s4q5dV5whUhCYqlPqhHij4EW
+ zqabUPbdy5RpHe2jk7xqnvHSXOv2EOoJ/QxrMxng/0QHz2SVOT9qWjmohm2AkNCoqxTN
+ fVQhwXypb76l88ChdQSkyCkqL2jV2ZgZk28huqh3D7Y15G45gfNdDJcM8xItqSKeNohs
+ h/gE4MDZPNmHoblZHjSl5n84ZYH+kO1SMYXpPdIu9OHEephoMXHzjC8sexne61BOWFcp
+ W2TWHP7aHXfJf9UDYyhKX0TmNWz8pRAmT8yITMg20kdDpNRtBFK4mAD2uSEJe68qZnfy
+ vCng==
+X-Gm-Message-State: AOAM532nZjKbwpr9jAGl9xoEJ1JwVHgPX5RgKXuRiqgrr6FRQYrFQO/c
+ 0e1QnJfPplYJggDpg2e6AN0=
+X-Google-Smtp-Source: ABdhPJzf5POh2wGEIBYT/5ja5F3EnhRWuIj4KWfkBknrDt0SUap8pKmqdObziCP6ewpF0wJTKN8gHQ==
+X-Received: by 2002:a17:90b:318:: with SMTP id
+ ay24mr19170987pjb.150.1622862615102; 
+ Fri, 04 Jun 2021 20:10:15 -0700 (PDT)
 Received: from localhost.localdomain (199.19.111.227.16clouds.com.
  [199.19.111.227])
- by smtp.gmail.com with ESMTPSA id d15sm2720005pfd.35.2021.06.04.20.09.38
+ by smtp.gmail.com with ESMTPSA id u21sm2846888pfh.163.2021.06.04.20.10.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jun 2021 20:09:41 -0700 (PDT)
+ Fri, 04 Jun 2021 20:10:14 -0700 (PDT)
 From: xieqinick@gmail.com
 To: robh+dt@kernel.org, narmstrong@baylibre.com, khilman@baylibre.com,
  jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
@@ -77,14 +78,14 @@ To: robh+dt@kernel.org, narmstrong@baylibre.com, khilman@baylibre.com,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc: nick@khadas.com,
 	artem@khadas.com
-Subject: [PATCH] arm64: dts: meson: vim3l: add NNA node
-Date: Sat,  5 Jun 2021 11:09:15 +0800
-Message-Id: <20210605030915.411391-1-xieqinick@gmail.com>
+Subject: [PATCH] arm64: dts: meson: vim3: add NNA node
+Date: Sat,  5 Jun 2021 11:10:07 +0800
+Message-Id: <20210605031007.411469-1-xieqinick@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210604_201042_502595_9C3931F3 
-X-CRM114-Status: UNSURE (   8.11  )
+X-CRM114-CacheID: sfid-20210604_201115_831883_579EC527 
+X-CRM114-Status: UNSURE (   7.83  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,21 +106,32 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 From: Nick Xie <nick@khadas.com>
 
 Add Neural Network Accelerator device tree node
-for Khadas VIM3L.
+for Khadas VIM3.
 
 Signed-off-by: Nick Xie <nick@khadas.com>
 ---
- .../dts/amlogic/meson-sm1-khadas-vim3l.dts    | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ .../amlogic/meson-g12b-a311d-khadas-vim3.dts  | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-index 06de0b1ce726..8a4abb61432e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-@@ -14,6 +14,29 @@ / {
- 	compatible = "khadas,vim3l", "amlogic,sm1";
- 	model = "Khadas VIM3L";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+index 124a80901084..4aa2b20bfbf2 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+@@ -13,6 +13,41 @@
  
+ / {
+ 	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
++
++	reserved-memory {
++		galcore_reserved:linux,galcore {
++			compatible = "shared-dma-pool";
++			reusable;
++			size = <0x0 0x1000000>;
++			alignment = <0x0 0x400000>;
++			linux,contiguous-region;
++		};
++	};
++
 +	galcore {
 +		compatible = "amlogic, galcore";
 +		dev_name = "galcore";
@@ -128,24 +140,25 @@ index 06de0b1ce726..8a4abb61432e 100644
 +			<&clkc CLKID_NNA_CORE_CLK>;
 +		clock-names = "cts_vipnanoq_axi_clk_composite",
 +			"cts_vipnanoq_core_clk_composite";
-+		interrupts = <0 186 4>;
++		interrupts = <0 147 4>;
 +		interrupt-names = "galcore";
 +		reg = <0x0 0xff100000 0x0 0x800
 +			0x0 0xff000000 0x0 0x400000
-+			0x0 0xff63c118 0x0 0x0
-+			0x0 0xff63c11c 0x0 0x0
-+			0x0 0xffd01088 0x0 0x0
-+			0x0 0xff63c1c8 0x0 0x0
++			0x0 0xff63c10c 0x0 0x4
++			0x0 0xff63c110 0x0 0x4
++			0x0 0xffd01088 0x0 0x4
++			0X0 0xff63c1c8 0X0 0x4
 +			>;
 +		reg-names = "NN_REG","NN_SRAM","NN_MEM0",
 +			"NN_MEM1","NN_RESET","NN_CLK";
-+		nn_power_version = <3>;
++		nn_power_version = <2>;
 +		nn_efuse = <0xff63003c 0x20>;
-+	};
 +
- 	vddcpu: regulator-vddcpu {
- 		/*
- 		 * Silergy SY8030DEC Regulator.
++		memory-region = <&galcore_reserved>;
++	};
+ };
+ 
+ /*
 -- 
 2.25.1
 
