@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27FB0C47082
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 06:25:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CA32AC47082
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 06:26:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E81AD6121F
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 06:25:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E81AD6121F
+	by mail.kernel.org (Postfix) with ESMTPS id 9576F6121F
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 06:26:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9576F6121F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,53 +24,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Kmi1LtN9pwUR3dp9So04rNwn+5xZlbafi2OMtif2RD0=; b=esyYNixSYPCn6H
-	/e7ftfdy6yAaAXtd7SA9x62XNtoKZhgAjbG9XAcvtgkrtgHnkU9FamJCuNkHk3CRUe1nLbpzYJ+g2
-	BcsQ28gBVPY3s9cBk3QUkQtIHdomxz7E1qG22RXaHXSMwhY3zgqSR7g0VMDpKiyyCboMGH5od178W
-	yIw1bB2ihagYBcJvmnH9mttwKrAsG3dBSJsnWrzSZ+ODZjJCpWprkGs5nYfS6qOtBtHCh9D0zy885
-	sdboBUMuA5w3pm7zjjRjOXmRJMZVLmB6o7CsYjpDEBICMTeFEcK7rrmjjd5yZYbJspMsDZwpE2egM
-	aHP0GYRyzwBjqFdSEFxw==;
+	List-Owner; bh=jlhYaEGTRXTpns5dy/CIKswVU19DIcdWGILSExzoLSA=; b=Lo/iPdc6bX6Nxc
+	zw8o9D68kuTJ5aFl0UxTnm5/rtKi8KjLn5zR5zuyAWy9LJwrv+GIqjcMFefAUU1iFZ6Ip8q4PvFdJ
+	1OV1U+svGiT5tbZaTVlfId1izfW+O2WYuS2NPl+cRdRH2joKf/2yOZ0tSAh3fe1B2kTPuJKqUXTN7
+	3z9dDyo5A3wxf1MoGm1eoBae+WmXmg7jDx5VItRYxsYsounv7aaRCh+LkjEO7DwD7Buaa013GOh5Y
+	pelqW09TM7UhlpeDRthroEGLzKkG+9xk2wG4+i148QUBjmX9i8ALWJec03z39F+RrW/PExNBBXW4k
+	K6scuM3t9nFwkB1tXe7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lpPkj-00G7DB-2T; Sat, 05 Jun 2021 06:25:49 +0000
-Received: from mail-pj1-f52.google.com ([209.85.216.52])
+	id 1lpPl6-00G7P0-3d; Sat, 05 Jun 2021 06:26:12 +0000
+Received: from mail-pf1-f181.google.com ([209.85.210.181])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lpPjy-00G6ul-1p; Sat, 05 Jun 2021 06:25:03 +0000
-Received: by mail-pj1-f52.google.com with SMTP id
- mp5-20020a17090b1905b029016dd057935fso459357pjb.5; 
- Fri, 04 Jun 2021 23:25:01 -0700 (PDT)
+ id 1lpPk1-00G6vl-TA; Sat, 05 Jun 2021 06:25:07 +0000
+Received: by mail-pf1-f181.google.com with SMTP id g6so9032938pfq.1;
+ Fri, 04 Jun 2021 23:25:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=s/4gtuT3qIireG3x7h44jTs73Upz/ez6wI7xxmdqwiQ=;
- b=MvI5AFzL6iGO30UsE/59Cs+YLshuejKEYHlkyj88RJvsvRZ3OV4I8bH5f+ZREOtFmg
- nGqFM6RyO3pE7v5OgltdJRHJT3CWMdwTrEkNB+o2Q9RnNvP6fV7NJOOp8xaU2Ac8f5vv
- GHaU+8rDLbUV/nLDxfHWp2IlO7DoxWDrYDbCP+UYtvz+H46JLctZCCsVF07hGJ8b0FwU
- Ir4Odo1v9ceIp3hUH5q7s7xoJPl+3JokH5/QXl4aKlFIBcqED5q+UM5e4P4V1G4gFbMv
- SXKgddqkYUFr1OMwfmnNR7wzJiGnlO2fdUouXlD1PvqVGtJm8Y+XbIiOPfMQ5PcMa/CW
- dI9Q==
+ bh=mRLzIEsUR/L5fTfNptj18L/QHNRpPol1gX/tfrGQ/rY=;
+ b=qjR3K7Y6bnavkxQ2PlGFoAdxV2duS8lTe7alKIVqY/p6DtShc2wS3dsn0KCq+JT+KL
+ lmmrTHCnXMvlFjqVUu3tJ20Vk9ZWeAA+hIargnOSpHI23KQagmLqbSiUL9CupmiplG9E
+ GiBlnRUQCRrLiMASOD76WI949ayVGPPXY0W5FhNxaXnatlhNKRBFbEzSAjuBYA+KoZb3
+ h/Q8YBdp3iCUNKEyLOlBDLexkiW++IOZ7OJ8h72kvwr/Xk7w/YpUqMwz0n8EWwq7ub/w
+ VYPOOfA0qra99l0gWWFTmmb6XUZcu0VXxz9G9oBpJlB3pA06qCjEvA5vVd09Zf4Fyn3o
+ XrSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=s/4gtuT3qIireG3x7h44jTs73Upz/ez6wI7xxmdqwiQ=;
- b=N5WwjAR5+K7IBrEQcQHdex/pGwwMNLJfCNw+X09ObaUhN4CgiIqsYCcc6QLLXqcFay
- EOA/gR+MX4dBWXQLhrRCBDUdxU9tqhBUIdphQKekf/TsGCBGAfBTIBBNtyF9Y9pAR2l6
- mRaWV/mqT+qTuZuryIVd41dgtb6kjSE2Ke8d8RHP4w+x8dBwSOZM6ArYZy3Sx9VtHpVI
- +HOIO8+peDjYgiNPnTRtYYoVXEnMmz9JNMj1B4beFSlOT7BFDxCXin91CUJo7KLpFmfn
- uBRMiLeWn7KZU2yy1EFT2h5K5nvht/lA8eb1jxsTGVOg5YJ/+736o0y9BMW3f/QScMCd
- i2Ng==
-X-Gm-Message-State: AOAM5338yEkoYGavJnQmXwDm7dNH44DdEcngZ2BGHMJ+06fpuL2ScFCx
- CI+PErDyrYKZq9NOmNZ2yTU=
-X-Google-Smtp-Source: ABdhPJyxNP+i9W3LDwW41qJsPNepcYBCRaUlnffS990O2KQIQvKXm/1z7tN82cTXDUVcGmtlBgABrw==
-X-Received: by 2002:a17:90a:7f81:: with SMTP id
- m1mr20246482pjl.23.1622874241402; 
- Fri, 04 Jun 2021 23:24:01 -0700 (PDT)
+ bh=mRLzIEsUR/L5fTfNptj18L/QHNRpPol1gX/tfrGQ/rY=;
+ b=X+ceDadlgUlbunV5tUSqsqEarBt+j5scBpFFMwXfuBHL2S4jtmMQGNcIyx8hA5s2MG
+ GlmkDVhf0NUstdatgcVW258TkXbfE5Zd9ig6cKs2emQE2iwNhAs/jkFEhZo68VM7nITF
+ eQQ5xJS/LLynRG9KWn2bB/a47a5Q4aw1n73+Hu4IoLy1BJVTTJDid4nfwoSS5vJ8kmrN
+ mXOz1qMvvO2y9HZgtxU2YCbXLRO/ZBfo/4iOtjXNccF0iYvx/5EgAbmLAtGJUYdF261h
+ pTk5EHNmBntqiubrvI6jgFlmJIsrGh+UzL4yLLYaG93pHTkH5uefV8ZkUGNqqHZ8xXe9
+ ed4g==
+X-Gm-Message-State: AOAM5335ctVhEDCFs4tXS2347yOYGJdOOsvasgg/zBTFF+ApY1coLfSb
+ uj1qT6PGUTRQ8U0MVc9Uets=
+X-Google-Smtp-Source: ABdhPJyuKkPF0M7qEYRAx+3TGanu2WwwR8XDOK7b9zvGa8OuSNfGhn+gKmyZurDZQtX+VAoFro0tmA==
+X-Received: by 2002:a62:2c0e:0:b029:2e9:dcb9:4a09 with SMTP id
+ s14-20020a622c0e0000b02902e9dcb94a09mr8027048pfs.75.1622874244454; 
+ Fri, 04 Jun 2021 23:24:04 -0700 (PDT)
 Received: from localhost.localdomain (199.19.111.227.16clouds.com.
  [199.19.111.227])
- by smtp.gmail.com with ESMTPSA id v14sm2800870pgo.89.2021.06.04.23.23.58
+ by smtp.gmail.com with ESMTPSA id v14sm2800870pgo.89.2021.06.04.23.24.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jun 2021 23:24:01 -0700 (PDT)
+ Fri, 04 Jun 2021 23:24:04 -0700 (PDT)
 From: xieqinick@gmail.com
 To: robh+dt@kernel.org, narmstrong@baylibre.com, khilman@baylibre.com,
  jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
@@ -78,16 +77,16 @@ To: robh+dt@kernel.org, narmstrong@baylibre.com, khilman@baylibre.com,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc: nick@khadas.com,
 	artem@khadas.com
-Subject: [PATCH 4/6] arm64: dts: meson: vim3: add i2c aliases
-Date: Sat,  5 Jun 2021 14:23:11 +0800
-Message-Id: <20210605062313.418343-5-xieqinick@gmail.com>
+Subject: [PATCH 5/6] arm64: dts: meson: vim1: add i2c aliases
+Date: Sat,  5 Jun 2021 14:23:12 +0800
+Message-Id: <20210605062313.418343-6-xieqinick@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210605062313.418343-1-xieqinick@gmail.com>
 References: <20210605062313.418343-1-xieqinick@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210604_232502_109555_281C7A27 
-X-CRM114-Status: UNSURE (   8.75  )
+X-CRM114-CacheID: sfid-20210604_232505_956115_E3977660 
+X-CRM114-Status: UNSURE (   9.03  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,29 +106,26 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Nick Xie <nick@khadas.com>
 
-Add i2c aliases for Khadas VIM3/3L.
+Add i2c aliases for Khadas VIM1.
 
 Signed-off-by: Nick Xie <nick@khadas.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-index 4686ea7abe0b..b285341f862a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-@@ -17,6 +17,11 @@ aliases {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+index f116a9d91633..d175d6cae535 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+@@ -32,6 +32,8 @@ aliases {
  		serial2 = &uart_B;
  		serial3 = &uart_C;
  		serial4 = &uart_AO_B;
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
-+		i2c3 = &i2c3;
-+		i2c4 = &i2c_AO;
++		i2c0 = &i2c_A;
++		i2c1 = &i2c_B;
  		ethernet0 = &ethmac;
- 		rtc0 = &rtc;
- 		rtc1 = &vrtc;
+ 	};
+ 
 -- 
 2.25.1
 
