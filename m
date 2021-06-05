@@ -2,67 +2,84 @@ Return-Path: <SRS0=xxsk=K7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URI_HEX,URI_NOVOWEL autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5BDC5C47082
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 07:03:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BF69CC47082
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 09:51:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 14BC0613AC
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 07:03:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 14BC0613AC
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linuxfoundation.org
+	by mail.kernel.org (Postfix) with ESMTPS id 8B30B61380
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jun 2021 09:51:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B30B61380
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Oyu2R20r6TUmKaEll5x8/p8kVWIKb4VxpFL94Epojvo=; b=4cwpDRJNSIi/eO
-	3ltUDv0BzYnHB2nHbEbzEI2HCeoxEHXkJqLcG+GDy6E5h+oB6VD8eiRbOI13W8MQmBKdPOisk+zov
-	q+YhZ4CWK0b/Cyduz1otmgZzlmmM0ij1o9DjHOXLxaoKLaQpsVv/erVowUfGUD8ZJgO7ijeg+8XyX
-	g8SvB2F35ju9wU/je9KSAC8ctBNoT/3BRys/0B0MZx+HVpGZCgvZYtWSBV9zykVRp7KMTq4Zpum5z
-	nlkKf4PxNqP+hGRPjZDLlKYCePWs/jnoPUigHoK2g2RsB2VMtm10pbYSM41UqzPEDiOF5irgivzIq
-	FY/Ou9fqJWKNYxI/Js3w==;
+	List-Owner; bh=3afdFKLSx8SEw8NjtehNKNOVUeOnvpnFv34G7Ps2Ffw=; b=i87d+dnHXi6yyc
+	2rd/GnY1bWGAm8RvNMbZdb3/i6bA43IYr5EGsj6WUv9mJ52iD2btTu+9J4lmky+D2WuGF8rHC8gRA
+	02mhlXirMtRH4LMtNZ2LfUqC4wLsNwcHOp0UPGvbrherEXT3JP6TIw5WpQXgHzMjEsFJEF3QAVRZy
+	8LSpjn5Z1EmHeplh2g8FHtkryxkdFUeEq0Ly3I6Kg5yKWDNz7Hl9VavyYrWlI77nt95VeQMB+Dzxv
+	mZlJKR1w/xWz7qViXpUPeR4isDPz7IPyy/88fcSLRBbGEqBD0PODubBMziOCmHqLaJyNONEBy9J3D
+	oM+f0G40dwchUPtqilDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lpQKn-00GBCn-Mc; Sat, 05 Jun 2021 07:03:05 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1lpSxe-00GNlq-9F; Sat, 05 Jun 2021 09:51:22 +0000
+Received: from mail-ej1-f49.google.com ([209.85.218.49])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lpQKi-00GBBh-6k; Sat, 05 Jun 2021 07:03:04 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3B24F611C2;
- Sat,  5 Jun 2021 07:02:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1622876574;
- bh=IWAfrMlMqi9VAZziEACqpe8WptWvLIC5/6zCndodwc0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Vt5BpkzEGS8Psrr/Yo+GapEzuiJrLJ8y4Ta0gJRJtsWQ/WXifgMDvLPCuw79AC6A4
- ScEAnff4YszigHWx2BVQituq6Qberbss/7sdmFssVWRgwA1GcWkZeNaCAC/neyzz4s
- BoVeB3+FSZwngqJmUWxvf1XfixjD9MCwLDLW6OBY=
-Date: Sat, 5 Jun 2021 09:02:50 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, balbi@kernel.org,
- linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] usb: dwc3-meson-g12a: fix usb2 PHY glue init when phy0
- is disabled
-Message-ID: <YLshmr+H4mES+kZX@kroah.com>
-References: <20210601084830.260196-1-narmstrong@baylibre.com>
- <YLoHSJIOSRTyF0r1@kroah.com>
- <20210604150742.bssvnhm4gv72uw4h@nitro.local>
- <20210604164601.hrlgkrsghhqtho6m@nitro.local>
+ id 1lpSx9-00GNVc-MW; Sat, 05 Jun 2021 09:50:55 +0000
+Received: by mail-ej1-f49.google.com with SMTP id ci15so18222110ejc.10;
+ Sat, 05 Jun 2021 02:50:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=WUL55trsK3iGDeYqiUfYG/F0lSMpavljcEoIgPo1+wg=;
+ b=LABjJDxVAjH6/Z1R9UFnNFIsoku1Lgc1UO56pI3YW3D1ObTc4BzjQaK2K1FCncFmOp
+ xI1/zq9XyNfgtHI+4otJh9IxOJ0KPJBavDYMtlEUrBvy2WKN+/4EsuiFrHU9P196SPhO
+ mOU+pV/3MqY9dSfYIP6d7vC5BLf9UZ54JQXys3WYcLYu9VcvyDoF7Zj0qONCrYDCpwta
+ SaUbpzS5m2EmhR5GX7gQc91Lpl2dYodo1Wf87SynTuDD/Nus/zWPcllx/tTVXg5V5c0C
+ Hx32bR8k7JD79EDu6z2KUpwB2FIz93rskeS2Oug3kGbMVdpqJPPRrKyNdAJnPJ3lI50N
+ MNdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=WUL55trsK3iGDeYqiUfYG/F0lSMpavljcEoIgPo1+wg=;
+ b=Xpe0qhxjZ9so/sezHnsYaP5wVKncIqUe07Gvul5xtoYI/wXENrXZSmuDwtMROL0fZX
+ pDu/k8SZCNFsmiMKx2z9AtLVO8e25RcmnBnwnk1OcHUZzdgAfIg+fW6Vndp4wQk0xDSe
+ 06Hpg4pPxGUwdEJkiZs6t34l1yJ+Ybj0zXNS9VEt7q6JOLyWoWNkJ1RBp+0HbdK1dDWe
+ Mnly7X4MoGjLkKz95yy1Z0XJHOtI0D6/x/8PCn+0UMPjqFRZBusSsPr/roU0BhZgu/V4
+ RNkRBz54XoyHAoz3E3XQGdytVmLy4BIrbCJZZ/EVGBq5rIFITEJ8m7hu4AEwDZc+yAEl
+ zsCA==
+X-Gm-Message-State: AOAM532vItDpWcdnxyEjsr1nuoZkb32tiCZB9I7DIcRFmYzS1N9v6lqw
+ 9BA/hX0Fcct5Uifu6Jd+4VaE0x621J5bQjpCt3w=
+X-Google-Smtp-Source: ABdhPJxBdFNViNJgZhsw7KvR5SGb6k9Ioqc/iEODGjTsNTPsZKHaPYbvAQ2t5UTDRMbXnq0lsxic+Wh9AVF4c5PMzms=
+X-Received: by 2002:a17:907:2d8d:: with SMTP id
+ gt13mr8666648ejc.162.1622886589815; 
+ Sat, 05 Jun 2021 02:49:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210604164601.hrlgkrsghhqtho6m@nitro.local>
+References: <20210605030915.411391-1-xieqinick@gmail.com>
+In-Reply-To: <20210605030915.411391-1-xieqinick@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 5 Jun 2021 11:49:39 +0200
+Message-ID: <CAFBinCA+Rm3X43fT4oePS0vXphPPEZMweoM_7c0MR1ZwSbsoaQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: vim3l: add NNA node
+To: xieqinick@gmail.com
+Cc: robh+dt@kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ khilman@baylibre.com, jbrunet@baylibre.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, nick@khadas.com, artem@khadas.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210605_000300_287970_D35E0FCF 
-X-CRM114-Status: GOOD (  13.67  )
+X-CRM114-CacheID: sfid-20210605_025051_791184_412BD5F3 
+X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,45 +91,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCBKdW4gMDQsIDIwMjEgYXQgMTI6NDY6MDFQTSAtMDQwMCwgS29uc3RhbnRpbiBSeWFi
-aXRzZXYgd3JvdGU6Cj4gT24gRnJpLCBKdW4gMDQsIDIwMjEgYXQgMTE6MDc6NDJBTSAtMDQwMCwg
-S29uc3RhbnRpbiBSeWFiaXRzZXYgd3JvdGU6Cj4gPiA+IE9kZCB0aGF0IERLSU0gZGlkbid0IHdv
-cmsgZm9yIGJheWxpYnJlLWNvbSwgYnV0IGhleSwgSSdsbCB0YWtlIGEgcmVhbAo+ID4gPiBzaWdu
-YXR1cmUgb3ZlciBES0lNIGFueWRheSEKPiA+IAo+ID4gVGhhdCBsb29rdXAgaGFwcGVuZWQgdG8g
-Z3JhYiB0aGUgdGhyZWFkIGZyb20gbGludXgtYW1sb2dpYywgd2hpY2ggaXMKPiA+IG1haWxtYW4y
-LW1hbmFnZWQgYW5kIGlzIGtub3duIHRvIGJyZWFrIERLSU0uIEknbGwgdHJ5IHRvIGZpeCBvdXIg
-Y29uZmlndXJhdGlvbgo+ID4gc28gdGhhdCBrbm93bi1ES0lNLWZyaWVuZGx5IHNvdXJjZXMgYXJl
-IGdpdmVuIHByaW9yaXR5LiBUaGlzIHdheSwgd2hlbiBhIHRocmVhZAo+ID4gZXhpc3RzIG9uIG11
-bHRpcGxlIGxpc3RzLCB5b3UnbGwgZ2V0IHRoZSBvbmUgbW9yZSBsaWtlbHkgdG8gcGFzcyBES0lN
-IGNoZWNrcy4KPiAKPiBUaGlzIGlzIG5vdyBpbiBwbGFjZSAtLSBsb3JlIHdpbGwgbm93IHByZWZl
-ciByZXN1bHRzIGZyb20gREtJTS1mcmllbmRseQo+IHNvdXJjZXMuIEUuZy4gZ3JhYmJpbmcgdGhl
-IHNhbWUgbWVzc2FnZS1pZCB3aWxsIG5vdyByZXR1cm4gdGhlIHRocmVhZCBmcm9tCj4gbGludXgt
-dXNiICh2aWEgdmdlcikgaW5zdGVhZCBvZiBsaW51eC1hbWxvZ2ljICh2aWEgaW5mcmFkZWFkKS4K
-PiAKPiAgICAgJCBiNCBhbSAtby90bXAgMjAyMTA2MDEwODQ4MzAuMjYwMTk2LTEtbmFybXN0cm9u
-Z0BiYXlsaWJyZS5jb20KPiAgICAgTG9va2luZyB1cCBodHRwczovL2xvcmUua2VybmVsLm9yZy9y
-LzIwMjEwNjAxMDg0ODMwLjI2MDE5Ni0xLW5hcm1zdHJvbmclNDBiYXlsaWJyZS5jb20KPiAgICAg
-R3JhYmJpbmcgdGhyZWFkIGZyb20gbG9yZS5rZXJuZWwub3JnL2xpbnV4LXVzYi8yMDIxMDYwMTA4
-NDgzMC4yNjAxOTYtMS1uYXJtc3Ryb25nJTQwYmF5bGlicmUuY29tL3QubWJveC5nego+ICAgICBB
-bmFseXppbmcgNCBtZXNzYWdlcyBpbiB0aGUgdGhyZWFkCj4gICAgIENoZWNraW5nIGF0dGVzdGF0
-aW9uIG9uIGFsbCBtZXNzYWdlcywgbWF5IHRha2UgYSBtb21lbnQuLi4KPiAgICAgLS0tCj4gICAg
-ICAg4pyTIFtQQVRDSF0gdXNiOiBkd2MzLW1lc29uLWcxMmE6IGZpeCB1c2IyIFBIWSBnbHVlIGlu
-aXQgd2hlbiBwaHkwIGlzIGRpc2FibGVkCj4gICAgICAgICArIFJldmlld2VkLWJ5OiBNYXJ0aW4g
-Qmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPiAo4pyTIERL
-SU0vZ29vZ2xlbWFpbC5jb20pCj4gICAgICAgLS0tCj4gICAgICAg4pyTIFNpZ25lZDogb3BlbnBn
-cC9uYXJtc3Ryb25nQGJheWxpYnJlLmNvbQo+ICAgICAgIOKckyBTaWduZWQ6IERLSU0vYmF5bGli
-cmUtY29tLjIwMTUwNjIzLmdhcHBzc210cC5jb20gKEZyb206IG5hcm1zdHJvbmdAYmF5bGlicmUu
-Y29tKQo+ICAgICAtLS0KPiAgICAgVG90YWwgcGF0Y2hlczogMQo+ICAgICAtLS0KPiAgICAgIExp
-bms6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyMTA2MDEwODQ4MzAuMjYwMTk2LTEtbmFy
-bXN0cm9uZ0BiYXlsaWJyZS5jb20KPiAgICAgIEJhc2U6IG5vdCBmb3VuZAo+ICAgICAgICAgICAg
-Z2l0IGFtIC90bXAvMjAyMTA2MDFfbmFybXN0cm9uZ191c2JfZHdjM19tZXNvbl9nMTJhX2ZpeF91
-c2IyX3BoeV9nbHVlX2luaXRfd2hlbl9waHkwX2lzX2Rpc2FibGVkLm1ieAoKVGhpcyBpcyBncmVh
-dCwgdGhhbmtzIGZvciBjaGFuZ2luZyB0aGlzIG9uIHRoZSBsb3JlIGJhY2tlbmQsIGFuZCBmb3Ig
-YWxsCm9mIHRoaXMgd29yayBpbiB0aGUgZmlyc3RwbGFjZS4KCmdyZWcgay1oCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Hi Nick,
+
+On Sat, Jun 5, 2021 at 5:09 AM <xieqinick@gmail.com> wrote:
+>
+> From: Nick Xie <nick@khadas.com>
+>
+> Add Neural Network Accelerator device tree node
+> for Khadas VIM3L.
+we neither have a driver for this upstream nor any binding
+documentation in Documentation/devicetree/bindings/
+are you planning to add this?
+
+Especially the missing binding documentation is problematic as it
+causes some warnings when validating the .dts files against the
+bindings from Documentation/devicetree/bindings/
+
+
+Best regards,
+Martin
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
