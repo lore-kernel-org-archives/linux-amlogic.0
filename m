@@ -2,136 +2,92 @@ Return-Path: <SRS0=JVYJ=LC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B60FEC47082
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Jun 2021 15:51:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1711EC4743E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Jun 2021 16:32:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 86C8861042
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Jun 2021 15:51:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 86C8861042
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
+	by mail.kernel.org (Postfix) with ESMTPS id 916C861184
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Jun 2021 16:32:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 916C861184
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:
-	Date:Message-ID:From:Cc:To:Subject:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=J7L4vC3cZkc48EDvaVLIF6IeUzmoZ5IgtyL0ebi5PLI=; b=ctCBEL0HrLwz66
-	AJ0/hKOAWpwpmOfJVX7SG2s9pQoCIZERrNX8mJ/ZeSIHS/a7/iMnN//iFSC2PxKPpRUmmHgpcqrIk
-	JAUocf4bGbB99QdTq923xu+AwFMvFetoZxBsCYm42Y1gxKIC8B4F41r8h50HaWLY8oXliL4VnI21p
-	LnjK22Mqy8eqhUmK8FkugvFCkbn/oWGN+TSLzTF5sLUow9OKQA7eFEy0G6Okn8Jfac83/8PdD0ZDL
-	/7ApR8KzcqbTGw9AUdMJFA8RU7r5DVwZw1aDOT9EZEy/KcvaahomA6stLMg+tcF36VPkQd2PTCrcI
-	2X8CgNS/RQnrK6Kf2zzQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:
+	In-reply-to:Subject:Cc:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=HYnds+Gc0toRXoYjiRfm58XwRRIiwdE14+Wp9mzoiCU=; b=f5CchIum/hsGiSlexKWq+ouMvt
+	Rfx4joiwuVXbI64Y4vryuVGBr22sCTwXpUQy0EPVdLsVzslfeHsQ3k8sliAlNoEs4AWrMAIx3MEvX
+	OuVh4ObvHCCM4N1WSKx6zFlkXDUyYEbIa8frMZza+kN4zw3EySxLxMSIpwaQjuA+q5d7o1sBVi6cc
+	F7oI5G1nPeO787OguE9YIWazH3s7svMe2sYiDB/uq2G+HhGv1GYflSlWNXCjetBLfYiYwQU9rgxyP
+	mJyEjnl2hnmsLLi+wQU7xxkpGME0lCq+BK8/rPYY0hJaLDeXXlCSphaBRHx6ddY1nc3Ju1EOQjOwY
+	aC08wQ8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lqe0T-009Mzn-CK; Tue, 08 Jun 2021 15:51:09 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1lqee8-009X2w-Ou; Tue, 08 Jun 2021 16:32:08 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lqdzu-009MFD-IZ
- for linux-amlogic@lists.infradead.org; Tue, 08 Jun 2021 15:50:36 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
- by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
- 20210608155031euoutp02c217af11747e4bb3d2e759a086ca76d3~Gpi26pRsI1305713057euoutp024
- for <linux-amlogic@lists.infradead.org>; Tue,  8 Jun 2021 15:50:31 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
- 20210608155031euoutp02c217af11747e4bb3d2e759a086ca76d3~Gpi26pRsI1305713057euoutp024
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1623167431;
- bh=lQDN/fpAzqGYy7LzoYvp6Ion14lhyWtEa5vksLY4N8o=;
- h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
- b=afu7GIkBKrqCxH9i4WU5VR+kmhybC9ie5vCC38LgCH3OVLmrSv4S2QS+cSrK0I3D1
- hR9ZfYf1bt7oh5vblJg9NPX4ocpgKzk82BdDtbq4TzrlbpLGEqEmcx/7GwA6iOcn6y
- 4NTDAKinUJ+J2sW2UBMn6dqdkpwE4dVx/0BvPQTI=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTP id
- 20210608155030eucas1p1683fd440e38132411ef60cd791e0371d~Gpi2rCkf63069630696eucas1p1j;
- Tue,  8 Jun 2021 15:50:30 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
- eusmges1new.samsung.com (EUCPMTA) with SMTP id 96.93.09452.6C19FB06; Tue,  8
- Jun 2021 16:50:30 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20210608155030eucas1p19993729a4e2ada763234d6c1202e305e~Gpi2P6mRb3070030700eucas1p1Z;
- Tue,  8 Jun 2021 15:50:30 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
- eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
- 20210608155030eusmtrp1936cc162daf97d4d00ef7fe40fbde0aa~Gpi2PGKnq1228612286eusmtrp1Y;
- Tue,  8 Jun 2021 15:50:30 +0000 (GMT)
-X-AuditID: cbfec7f2-ab7ff700000024ec-58-60bf91c67443
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
- eusmgms1.samsung.com (EUCPMTA) with SMTP id 01.B0.08705.6C19FB06; Tue,  8
- Jun 2021 16:50:30 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
- eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
- 20210608155029eusmtip2ec2b417eb14cea309d9f789ff9f35652~Gpi1eVv8v1396313963eusmtip26;
- Tue,  8 Jun 2021 15:50:29 +0000 (GMT)
-Subject: Re: [RFC] mmc: meson-gx: use memcpy_to/fromio for dram-access-quirk
-To: Neil Armstrong <narmstrong@baylibre.com>, ulf.hansson@linaro.org
-Cc: khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-mmc@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <e9f057f6-324e-0637-b57a-cc2f87e0d108@samsung.com>
-Date: Tue, 8 Jun 2021 17:50:29 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
- Gecko/20100101 Thunderbird/78.10.2
+ id 1lqee4-009X0v-GO
+ for linux-amlogic@lists.infradead.org; Tue, 08 Jun 2021 16:32:07 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id l1so33616528ejb.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 08 Jun 2021 09:32:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
+ :date:mime-version;
+ bh=hWkOGoUtVtV8FzZIYvtLihscdJc/AoYQpTw6WbnU7Nw=;
+ b=fXgLcXa2w87ln2btJbQraQXHXiGELYbP5LupPcB7myYKqcu6NVlx4DY99oXDbTa0iJ
+ xWS2p9E5JbYbO8VcykZ6r5bOys01zOkyw5TWrisdw9B+B/9yY16jsPg9GSUholD4VE+w
+ j3foV8rY7hKomZwvqzakSYHrSXFMOILGi7nzcJ2jk2y/DP12hy2khy1msJhwgJxtRmFG
+ k6a6Pwa4QHgkqW8RBS6lIM4t0BtwgcNiIbcqS89dlX6cSOa4NerRNw7ansyBa4Vs6g5w
+ 9wbNQNn1IbwvEWZvEdhbZzrL4Uu1BCSW+d5BexKdhPEPPc841OL4G/30MX8q/+T0r1ke
+ L4Jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:message-id:date:mime-version;
+ bh=hWkOGoUtVtV8FzZIYvtLihscdJc/AoYQpTw6WbnU7Nw=;
+ b=Ls2yCytPt5mJQlgaQwWi3pmt5cylLCqi46NepSqA7GCDPBtmNbqdbQR3xpSIdMIGsW
+ GJZ5yxiiveMDCd32xDfVIuu1DIdC0zmyovjgNAZNtasI0NUj8CZf3gprajxbxA94RyzP
+ LjdeA1IJBls3TaSSS0EtoxFs+Ne6mFdoTAt/mUmAQ7g+HRPgMGFaAw7Xe7Zz+1wohNzb
+ GgMo6ByZxqHh1C7SjwxoNT/L2DWzvinNlzkZtvlrQJzv/MDz3Kj2Xh1V8JqQq/oXImNU
+ yYAl3RdP4V8hnHv9KZ/gvJ0oVv88U64r+/5KUuiWVdB6foUY760fSkf5x41abuqnHAxN
+ IStA==
+X-Gm-Message-State: AOAM530gJW7e1nEgJz8WMJsnRUvq3DcPP8OLYFF0atM1RT090FSDE8Rc
+ 97dJoqYTvSi/sYk2OF3w7iP5jg==
+X-Google-Smtp-Source: ABdhPJyCZUGjO10/Bh4SU9DcJaQK7Cdfy2yI2+cY/S03tVpAXjPIk8DZNa2Xy1DPy2Uof56jdAKN9g==
+X-Received: by 2002:a17:906:1704:: with SMTP id
+ c4mr11389765eje.182.1623169921329; 
+ Tue, 08 Jun 2021 09:32:01 -0700 (PDT)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id s18sm94847ejh.12.2021.06.08.09.32.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Jun 2021 09:32:00 -0700 (PDT)
+References: <20210429083823.59546-1-jbrunet@baylibre.com>
+ <162008674673.40672.14279142646066453043.b4-ty@baylibre.com>
+ <CAMuHMdVhrMNzuXkD9BQxPaiwS41bsOyJU_kwGYwk5ftto-AGBQ@mail.gmail.com>
+User-agent: mu4e 1.4.15; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, "open list:ARM/Amlogic
+ Meson..." <linux-amlogic@lists.infradead.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH RESEND] arm64: meson: select COMMON_CLK
+In-reply-to: <CAMuHMdVhrMNzuXkD9BQxPaiwS41bsOyJU_kwGYwk5ftto-AGBQ@mail.gmail.com>
+Message-ID: <1jczsw1fnj.fsf@starbuckisacylon.baylibre.com>
+Date: Tue, 08 Jun 2021 18:32:00 +0200
 MIME-Version: 1.0
-In-Reply-To: <20210608153344.3813661-1-narmstrong@baylibre.com>
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrGKsWRmVeSWpSXmKPExsWy7djP87rHJu5PMOhepWWxccZ6Vos3j44w
- W/xs38JksWA2t8Wmx9dYLS7vmsNmceR/P6PF0usXmSyOLTrJYnGoL9ri+NpwB26PNfPWMHq8
- v9HK7vF0wmR2jzvX9rB5bF5S79G3ZRWjx+dNcgHsUVw2Kak5mWWpRfp2CVwZc+YtZyxYK1fx
- 6d8DpgbGbRJdjJwcEgImEic3PmcEsYUEVjBKPPhmAGF/YZT4t7+qi5ELyP7MKHFj9152mIZZ
- TyYzQSSWM0p0fbzNDuF8ZJRo/TaVFaRKWMBHYvXMU2BjRQRcJO4vOcUKUsQssJ1J4vqkE2wg
- CTYBQ4mut11gNq+AncTjK41gDSwCKhLXup8AxTk4RAWSJX5v1IUoEZQ4OfMJC4jNKWAvcebU
- AbCLmAXkJba/ncMMYYtL3Hoynwni0mZOidtNWhC2i8TVExD3SAgIS7w6vgXqGxmJ05N7WEBu
- A6pnlHh4bi07hNPDKHG5aQZUh7XEnXO/wA5iFtCUWL9LHyLsKPH3zWewsIQAn8SNt4IQN/BJ
- TNo2nRkizCvR0SYEUa0mMev4Ori1By9cYp7AqDQLyWezkHwzC8k3sxD2LmBkWcUonlpanJue
- WmyYl1quV5yYW1yal66XnJ+7iRGYtE7/O/5pB+PcVx/1DjEycTAeYpTgYFYS4S0z3JcgxJuS
- WFmVWpQfX1Sak1p8iFGag0VJnHfV7DXxQgLpiSWp2ampBalFMFkmDk6pBiaH89szggTUin1n
- MH89KqLc96S97qu6xHYtnlvf5zO3iS66dyK06OnMtbdK3esXmIbZa0hI5CZeTGQ6uHxx18RD
- 1bP37j+9sDWsZZeizb2PwoofA+3YmR58aZv6csekj/OXJhhVJH/YdnjxwU8i3rn+el06z2c1
- 1n8rcE7++cjDq4VxieNH6aS1C3SWVyuoqpo837DtYLBP9jXDMDG2iPb21x5rlP/e3FSnOcGJ
- /z7vIhaDfauLDNJrvi6ayd4qmu+0uab0QWjax8sf/K5NXZTu/N6tPZHhuavWO/Y7ui+n6b1f
- c7bpeHCkj/DtXj/lvMyq4KmsZVzJ+U+SgtgeTxNNy6jRlb7+pnzZsykXViqxFGckGmoxFxUn
- AgC0hQhEyQMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFIsWRmVeSWpSXmKPExsVy+t/xe7rHJu5PMFi3nNti44z1rBZvHh1h
- tvjZvoXJYsFsbotNj6+xWlzeNYfN4sj/fkaLpdcvMlkcW3SSxeJQX7TF8bXhDtwea+atYfR4
- f6OV3ePphMnsHneu7WHz2Lyk3qNvyypGj8+b5ALYo/RsivJLS1IVMvKLS2yVog0tjPQMLS30
- jEws9QyNzWOtjEyV9O1sUlJzMstSi/TtEvQy5sxbzliwVq7i078HTA2M2yS6GDk5JARMJGY9
- mczUxcjFISSwlFFi65H/TBAJGYmT0xpYIWxhiT/XuthAbCGB94wSD5Zag9jCAj4Sq2eeYgSx
- RQRcJO4vOcUKMohZYDuTROuh36wQDZMYJTbtMQax2QQMJbreQgziFbCTeHylEayZRUBF4lr3
- E7C4qECyxIb2/6wQNYISJ2c+YQGxOQXsJc6cOsAOYjMLmEnM2/yQGcKWl9j+dg6ULS5x68l8
- pgmMQrOQtM9C0jILScssJC0LGFlWMYqklhbnpucWG+oVJ+YWl+al6yXn525iBEbqtmM/N+9g
- nPfqo94hRiYOxkOMEhzMSiK8ZYb7EoR4UxIrq1KL8uOLSnNSiw8xmgL9M5FZSjQ5H5gq8kri
- Dc0MTA1NzCwNTC3NjJXEebfOXRMvJJCeWJKanZpakFoE08fEwSnVwKRkzBlnVXRJXabLRuvl
- j5APdo97+JzZoqbYfd109l3/xfsePeoPVsfuXi/6w+7ZhrcxMU83xDheeb3m/7tm+WNbQnLu
- r1vQJeiwp2/bx+BsGa/C1s0n186c5Pt7pvlP++52T1WZBUJlWwqKOIPXcF1rrq3Tu3r10qmI
- guU+BmGme0OTpbjy9t/8aia4INGNKZt1RadhVb9EUjC3Ep9J5fpZT2LX5EuJRHwo0r94yeyB
- QqNKySfNP3xnZ/i+azb85ZHdknaktqK1Y+29n3Ya9StnmppY3pn2t0Mk3M9gyeTCL929q969
- y5+0/kN5dSEHi6Dc7F61pVLH0teG1ic8fB5rkfrj9MeHM0p8nUStlFiKMxINtZiLihMB3vwr
- RF0DAAA=
-X-CMS-MailID: 20210608155030eucas1p19993729a4e2ada763234d6c1202e305e
-X-Msg-Generator: CA
-X-RootMTR: 20210608153357eucas1p24cbc7a2ddb00beada8cdd51ae2337c53
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210608153357eucas1p24cbc7a2ddb00beada8cdd51ae2337c53
-References: <CGME20210608153357eucas1p24cbc7a2ddb00beada8cdd51ae2337c53@eucas1p2.samsung.com>
- <20210608153344.3813661-1-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210608_085035_060610_80870B86 
-X-CRM114-Status: GOOD (  24.13  )
+X-CRM114-CacheID: sfid-20210608_093204_597055_55911265 
+X-CRM114-Status: GOOD (  15.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -148,118 +104,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi
 
-On 08.06.2021 17:33, Neil Armstrong wrote:
-> It has been reported that usage of memcpy() to/from an iomem mapping is invalid,
-> and and recent arm64 memcpy update [1] triggers a memory abort when dram-access-quirk
-> is used on the G12A/G12B platforms.
->
-> This adds a local sg_copy_to_buffer which makes usage of io versions of memcpy
-> when dram-access-quirk is enabled.
->
-> Fixes: acdc8e71d9bb ("mmc: meson-gx: add dram-access-quirk")
-> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Suggested-by: Mark Rutland <mark.rutland@arm.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->
-> [1] 285133040e6c ("arm64: Import latest memcpy()/memmove() implementation")
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
-> Hi Ulf, Marek, Mark,
->
-> I haven't tested the patch yet, but should fix issue reported at [2].
+On Tue 08 Jun 2021 at 11:52, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-Works fine here and fixed the issue.
-
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-
-> Neil
+> Hi Jerome,
 >
-> [2] https://lore.kernel.org/r/acb244ad-0759-5a96-c659-5c23003d3dcd@samsung.com
+> On Tue, May 4, 2021 at 2:06 AM Kevin Hilman <khilman@baylibre.com> wrote:
+>> On Thu, 29 Apr 2021 10:38:23 +0200, Jerome Brunet wrote:
+>> > This fix the recent removal of clock drivers selection.
+>> > While it is not necessary to select the clock drivers themselves, we need
+>> > to select a proper implementation of the clock API, which for the meson, is
+>> > CCF
+>>
+>> Applied, thanks!
+>>
+>> [1/1] arm64: meson: select COMMON_CLK
+>>       commit: aea7a80ad5effd48f44a7a08c3903168be038a43
+>>
+>> Best regards,
+>> --
+>> Kevin Hilman <khilman@baylibre.com>
 >
->   drivers/mmc/host/meson-gx-mmc.c | 48 ++++++++++++++++++++++++++++++---
->   1 file changed, 44 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index b8b771b643cc..89ff6038092d 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -742,6 +742,48 @@ static void meson_mmc_desc_chain_transfer(struct mmc_host *mmc, u32 cmd_cfg)
->   	writel(start, host->regs + SD_EMMC_START);
->   }
->   
-> +/* local sg copy to buffer version with _to/fromio usage for dram_access_quirk */
-> +static void meson_mmc_copy_buffer(struct meson_host *host, struct mmc_data *data,
-> +				  size_t buflen, bool to_buffer)
-> +{
-> +	unsigned int sg_flags = SG_MITER_ATOMIC;
-> +	struct scatterlist *sgl = data->sg;
-> +	unsigned int nents = data->sg_len;
-> +	struct sg_mapping_iter miter;
-> +	void *buf = host->bounce_buf;
-> +	unsigned int offset = 0;
-> +
-> +	if (to_buffer)
-> +		sg_flags |= SG_MITER_FROM_SG;
-> +	else
-> +		sg_flags |= SG_MITER_TO_SG;
-> +
-> +	sg_miter_start(&miter, sgl, nents, sg_flags);
-> +
-> +	while ((offset < buflen) && sg_miter_next(&miter)) {
-> +		unsigned int len;
-> +
-> +		len = min(miter.length, buflen - offset);
-> +
-> +		/* When dram_access_quirk, the bounce buffer is a iomem mapping */
-> +		if (host->dram_access_quirk) {
-> +			if (to_buffer)
-> +				memcpy_toio(buf + offset, miter.addr, len);
-> +			else
-> +				memcpy_fromio(miter.addr, buf + offset, len);
-> +		} else {
-> +			if (to_buffer)
-> +				memcpy(buf + offset, miter.addr, len);
-> +			else
-> +				memcpy(miter.addr, buf + offset, len);
-> +		}
-> +
-> +		offset += len;
-> +	}
-> +
-> +	sg_miter_stop(&miter);
-> +}
-> +
->   static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->   {
->   	struct meson_host *host = mmc_priv(mmc);
-> @@ -785,8 +827,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->   		if (data->flags & MMC_DATA_WRITE) {
->   			cmd_cfg |= CMD_CFG_DATA_WR;
->   			WARN_ON(xfer_bytes > host->bounce_buf_size);
-> -			sg_copy_to_buffer(data->sg, data->sg_len,
-> -					  host->bounce_buf, xfer_bytes);
-> +			meson_mmc_copy_buffer(host, data, xfer_bytes, true);
->   			dma_wmb();
->   		}
->   
-> @@ -955,8 +996,7 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
->   	if (meson_mmc_bounce_buf_read(data)) {
->   		xfer_bytes = data->blksz * data->blocks;
->   		WARN_ON(xfer_bytes > host->bounce_buf_size);
-> -		sg_copy_from_buffer(data->sg, data->sg_len,
-> -				    host->bounce_buf, xfer_bytes);
-> +		meson_mmc_copy_buffer(host, data, xfer_bytes, false);
->   	}
->   
->   	next_cmd = meson_mmc_get_next_command(cmd);
+> Why is this needed, and why would this make any difference?
+> COMMON_CLK is always enabled on arm64, as the main ARM64 symbol in
+> arch/arm64/Kconfig selects it.
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Ah indeed. Shortly after commit ba66a25536dd was merged I remember I had
+problem with COMMON_CLK (or any other clock implementation) being
+selected. TBH, I don't remember it exactly ...
+
+For sure this was a mistake.
+Neil, can you still drop it and do you need a revert ?
+
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
 
 
 _______________________________________________
