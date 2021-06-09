@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BFB3C48BCF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jun 2021 16:20:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5994DC48BCD
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jun 2021 20:20:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 196CD611AE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jun 2021 16:20:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 196CD611AE
+	by mail.kernel.org (Postfix) with ESMTPS id 526D5613DF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jun 2021 20:20:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 526D5613DF
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,68 +23,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Zxv238QEJGfj3Rz3Z8h6I/JfJkf0MUc8DPJ2e9hu4P4=; b=X14yVOCCYYxe4Z
-	ieI2omZ6ZU8YQ812ZbuqYsT1rS+NFxfsdEw0JmCWug7//dvhl/wv6dEY+ZaZpwEhNibgKofe5obip
-	Qpj7551xZNAlwxhRGqiWJc92ri5oDlkfY9KaR/tYJSsws4TmnH6OOkB2YC1Zox9+PAiVZuE97Fifu
-	T3QP6UyFxntiEMB1vuVIr1qa+RoCcNPrpSL30t8GcfiLAZEMenD8RZQCPbrW/StKWf6ywP+hVrPiw
-	z+iBQNtxr+cmyJBr+SoxK098zJhziwdk7gVYUdm6JlMl0mIaJYewNefhJsR78pCgasYvWEwwGJI43
-	iZaZdifd9cF6jIN19NIA==;
+	List-Owner; bh=LdGpCwuTImIVS2YWoEF/aDllwygNg5+GtgpNCi2NQHE=; b=yddF8i9IWq3T5p
+	LeD35zyvjonRn5XEXILVy2gBJT9Mb1ibdeYXO8tofnJTqUjfQSlQdbdFAu3u514GM8FN5PL4tIKfh
+	Dbae8EiFk+PeFmgFIQSZ0TMD5tIXEcXQyHlUBWqDjBOIraYMJPwsvEJtq/n9PYA0is4/OgcsRFnGU
+	IenIX6It/zZrhvehL4rF2J39yIIqU0dlkpgnqDp0PN1j7/V+r4HEVTZ4u2LBcGymhpYgGEemavRdR
+	9AfjvU+unGG35DeUI8X8EaalXstu1K3OhWVhWYeIOQNlKUhYtA1FgeGHoruGMNouabrkaxOCyEr8a
+	lYS2fOGZfcRQNG5LJ+OA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lr0wV-00EsLp-08; Wed, 09 Jun 2021 16:20:35 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1lr4gf-00FnAm-4O; Wed, 09 Jun 2021 20:20:29 +0000
+Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lqzj1-00ETbD-Gy
- for linux-amlogic@lists.infradead.org; Wed, 09 Jun 2021 15:02:37 +0000
-Received: by mail-wr1-x436.google.com with SMTP id e11so15673932wrg.3
- for <linux-amlogic@lists.infradead.org>; Wed, 09 Jun 2021 08:02:35 -0700 (PDT)
+ id 1lr4gc-00FnAK-4z
+ for linux-amlogic@lists.infradead.org; Wed, 09 Jun 2021 20:20:28 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id ho18so29342517ejc.8
+ for <linux-amlogic@lists.infradead.org>; Wed, 09 Jun 2021 13:20:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=jGd3vej9Xv7tCX6p/j+Wd3uODyXRg/QkcngJWQeZQgI=;
- b=nvNbpYzwgzprXt2lVilg7oqUHRgsaxvUww91B29smt15nzyo6S5HMxBrqovVy8bPBj
- DWKNOxNxhNO2VFI8J9svI1LC670J1s/jF/+qwoYsOWZcZ4YG8GVz3QvchU4R14c3YFNf
- twfchpTpkIlHBEyTYSGFwXsjepH+XRjUpjYXt8SavWvkoFcfQgANfM1MomcHZnnngcrH
- 99yIE7TRm2AWLTAqguwNPUoFRZqLGsyvUXoIjeCr+2LxlPtzH+VaybSJmXUTIp93oOAn
- 4LR4LOxBbLy6+xbLWQY6ypQzx+g/29H7ciQoUZfZad+hpWWQG5MHswn1Dsolz1GChsu5
- CKnQ==
+ bh=g1GjlLUDtM2mEAEvdu2FMZEVrykbRH7EpEHQNoxkDU4=;
+ b=niZu8GLvw1ayIHdeNNDj6brBfFOpWsKB3p1cyzLN9Jq5nuciCUMYN1nwj0n16gtAfZ
+ 0vvSwPQRNEhEXTLkwsfH92bR5I0qMebE00KEDCdOezV/q0xXI3+u03aS3PVsWsmfJbad
+ 2xAbeKyA8nCuyXC/cpKA5QwasrWMdkqJhE8x1vDr0oowPr6vStNZjz3NauwJVkVXR7uW
+ S6+kmLOsx3+Nslxgc2lGCuv5AFbgaL/q/fiFwL7UNCfnQFxA/JvmqM8zir9rGLOeaaUd
+ MQwkQZDE9derH7iIOIEXQvL1JNNr2jozF3TpVoURl4hvLuG1Q1Swnfa4BxNRm0HR4mWw
+ aGDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=jGd3vej9Xv7tCX6p/j+Wd3uODyXRg/QkcngJWQeZQgI=;
- b=UdRaOZUSitPDRJK6uQ3CayFbRvcV4VOA+ZuJ0HZ3xeGL1xXZy/aubdPTuSpcuM3ZR7
- /G5h2I36Spe8BC9dmPhE0Kkb27D5ay4szH/R0gOQDxu6u3YkSYL31pNknzwtfXx8XVcM
- l095b+GC/e6dUrIYsllVlQbijjBXlsc4CNXxWBFeVM6VhHpKtO5DRFd+GNVUQn22AzIs
- cr9OPxHB0jfqUlgzNM86eCahkjyqsmoI7LmyaUMx1w2hGvjbW41tQJPesdz26SNtPcaw
- /TcwE3JyFqfWLV05VQHw0LD/YyfJmGrpgNJILAH09kqhDAOFsGZ3DVZ/4octT2eOFBuk
- dzDA==
-X-Gm-Message-State: AOAM531KGWUpB8ToYRRFc0Raxm2X16i+6MVDcVR+QqjLGTKm6qj0KzpH
- uR+CzZvObmp+bEjX46fqeJbELA==
-X-Google-Smtp-Source: ABdhPJxWu17j56SdQHAq1gC6qDDkB0RefAVQcawdtMTmlPVSTjiFSvOxv8KUDy2bB/jOZo8YHjCkOQ==
-X-Received: by 2002:adf:f1cb:: with SMTP id z11mr307424wro.2.1623250953997;
- Wed, 09 Jun 2021 08:02:33 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:90c:e290:f5b2:1a3b:b4d:517c])
- by smtp.gmail.com with ESMTPSA id o3sm266509wrc.0.2021.06.09.08.02.32
+ bh=g1GjlLUDtM2mEAEvdu2FMZEVrykbRH7EpEHQNoxkDU4=;
+ b=GqRfFIqh+tM8MwTAX5QO5gKocaRdPiX37BXsfW1WWfLQioN97IqbEzyJBc7nznvEGD
+ i8fXfKMV3pg9iFRPfXWtyv0NMYxc8u0gWGztWPrnYYRTeEnfTwtpdm5DBzbk5kOK8eD8
+ 1PL4vZZJnWI304RLHf6SgYzi8qORMbbaXpTWnWx2PHyE/+iP4mXMgBt/82i+NCnqfMX4
+ 0tMTqKEedCEJsLWeZ/jpzr6BvMrTulNyTeOtBSu2VS5NGSn0Ox58VOTM7je0l8TJwbge
+ tw7eh8LspPUDFCLMZTIWINfe2dhtyjjt3xTXcYCVDAS533mJy6r8nJkGEZSo8x014Nwr
+ xGgg==
+X-Gm-Message-State: AOAM530kYisCmRuzeimcxBXCkYwYC4lcZdIF8XvbM84lu8YnqZtX+Tke
+ W46vpuj693xU18OPZJi/jEDEeA==
+X-Google-Smtp-Source: ABdhPJyE2We8oSGaqvQe0DO/z+AqXv4xQ+RUCvWYLtVth4uml/OhWI+D1bK/0hDRlO4uR5ZM27ZHYA==
+X-Received: by 2002:a17:906:520f:: with SMTP id
+ g15mr1510005ejm.126.1623270023173; 
+ Wed, 09 Jun 2021 13:20:23 -0700 (PDT)
+Received: from jackdaw.lan (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.googlemail.com with ESMTPSA id u19sm249358ejt.74.2021.06.09.13.20.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Jun 2021 08:02:33 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: ulf.hansson@linaro.org,
-	m.szyprowski@samsung.com
-Cc: khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-mmc@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH] mmc: meson-gx: use memcpy_to/fromio for dram-access-quirk
-Date: Wed,  9 Jun 2021 17:02:30 +0200
-Message-Id: <20210609150230.9291-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+ Wed, 09 Jun 2021 13:20:22 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH] arm64: meson: remove COMMON_CLK
+Date: Wed,  9 Jun 2021 22:20:09 +0200
+Message-Id: <20210609202009.1424879-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210609_080235_605868_3751C048 
-X-CRM114-Status: GOOD (  17.12  )
+X-CRM114-CacheID: sfid-20210609_132026_279712_97775517 
+X-CRM114-Status: UNSURE (   8.05  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,119 +101,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It has been reported that usage of memcpy() to/from an iomem mapping is invalid,
-and a recent arm64 memcpy update [1] triggers a memory abort when dram-access-quirk
-is used on the G12A/G12B platforms.
+This reverts commit aea7a80ad5effd48f44a7a08c3903168be038a43.
+Selecting COMMON_CLK is not necessary, it is already selected by
+CONFIG_ARM64
 
-This adds a local sg_copy_to_buffer which makes usage of io versions of memcpy
-when dram-access-quirk is enabled.
-
-Fixes: acdc8e71d9bb ("mmc: meson-gx: add dram-access-quirk")
-Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Suggested-by: Mark Rutland <mark.rutland@arm.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-
-[1] 285133040e6c ("arm64: Import latest memcpy()/memmove() implementation")
+Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 50 +++++++++++++++++++++++++++++----
- 1 file changed, 45 insertions(+), 5 deletions(-)
+ arch/arm64/Kconfig.platforms | 1 -
+ 1 file changed, 1 deletion(-)
 
-
-Changes since RFC:
-- moved iomem address to bounce_iomem_buf otherwise sparse screamed when feeding memcpy_to/fromio with non iomem pointer
-
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index b8b771b643cc..3e9b28f18c70 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -165,6 +165,7 @@ struct meson_host {
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index 7336c1fd0dda..6409b47b73e4 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -165,7 +165,6 @@ config ARCH_MEDIATEK
  
- 	unsigned int bounce_buf_size;
- 	void *bounce_buf;
-+	void __iomem *bounce_iomem_buf;
- 	dma_addr_t bounce_dma_addr;
- 	struct sd_emmc_desc *descs;
- 	dma_addr_t descs_dma_addr;
-@@ -742,6 +743,47 @@ static void meson_mmc_desc_chain_transfer(struct mmc_host *mmc, u32 cmd_cfg)
- 	writel(start, host->regs + SD_EMMC_START);
- }
- 
-+/* local sg copy to buffer version with _to/fromio usage for dram_access_quirk */
-+static void meson_mmc_copy_buffer(struct meson_host *host, struct mmc_data *data,
-+				  size_t buflen, bool to_buffer)
-+{
-+	unsigned int sg_flags = SG_MITER_ATOMIC;
-+	struct scatterlist *sgl = data->sg;
-+	unsigned int nents = data->sg_len;
-+	struct sg_mapping_iter miter;
-+	unsigned int offset = 0;
-+
-+	if (to_buffer)
-+		sg_flags |= SG_MITER_FROM_SG;
-+	else
-+		sg_flags |= SG_MITER_TO_SG;
-+
-+	sg_miter_start(&miter, sgl, nents, sg_flags);
-+
-+	while ((offset < buflen) && sg_miter_next(&miter)) {
-+		unsigned int len;
-+
-+		len = min(miter.length, buflen - offset);
-+
-+		/* When dram_access_quirk, the bounce buffer is a iomem mapping */
-+		if (host->dram_access_quirk) {
-+			if (to_buffer)
-+				memcpy_toio(host->bounce_iomem_buf + offset, miter.addr, len);
-+			else
-+				memcpy_fromio(miter.addr, host->bounce_iomem_buf + offset, len);
-+		} else {
-+			if (to_buffer)
-+				memcpy(host->bounce_buf + offset, miter.addr, len);
-+			else
-+				memcpy(miter.addr, host->bounce_buf + offset, len);
-+		}
-+
-+		offset += len;
-+	}
-+
-+	sg_miter_stop(&miter);
-+}
-+
- static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- {
- 	struct meson_host *host = mmc_priv(mmc);
-@@ -785,8 +827,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- 		if (data->flags & MMC_DATA_WRITE) {
- 			cmd_cfg |= CMD_CFG_DATA_WR;
- 			WARN_ON(xfer_bytes > host->bounce_buf_size);
--			sg_copy_to_buffer(data->sg, data->sg_len,
--					  host->bounce_buf, xfer_bytes);
-+			meson_mmc_copy_buffer(host, data, xfer_bytes, true);
- 			dma_wmb();
- 		}
- 
-@@ -955,8 +996,7 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 	if (meson_mmc_bounce_buf_read(data)) {
- 		xfer_bytes = data->blksz * data->blocks;
- 		WARN_ON(xfer_bytes > host->bounce_buf_size);
--		sg_copy_from_buffer(data->sg, data->sg_len,
--				    host->bounce_buf, xfer_bytes);
-+		meson_mmc_copy_buffer(host, data, xfer_bytes, false);
- 	}
- 
- 	next_cmd = meson_mmc_get_next_command(cmd);
-@@ -1176,7 +1216,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 		 * instead of the DDR memory
- 		 */
- 		host->bounce_buf_size = SD_EMMC_SRAM_DATA_BUF_LEN;
--		host->bounce_buf = host->regs + SD_EMMC_SRAM_DATA_BUF_OFF;
-+		host->bounce_iomem_buf = host->regs + SD_EMMC_SRAM_DATA_BUF_OFF;
- 		host->bounce_dma_addr = res->start + SD_EMMC_SRAM_DATA_BUF_OFF;
- 	} else {
- 		/* data bounce buffer */
+ config ARCH_MESON
+ 	bool "Amlogic Platforms"
+-	select COMMON_CLK
+ 	select MESON_IRQ_GPIO
+ 	help
+ 	  This enables support for the arm64 based Amlogic SoCs
 -- 
-2.25.1
+2.32.0
 
 
 _______________________________________________
