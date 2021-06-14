@@ -1,88 +1,97 @@
-Return-Path: <SRS0=cDnO=LH=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Jm29=LI=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AB6B6C48BCF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Jun 2021 05:30:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B64CC48BE6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 07:56:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7254C611CE
-	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Jun 2021 05:30:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7254C611CE
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 8930161352
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 07:56:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8930161352
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=EIZcxSck50HKoff1ikOWU/6yizZDjW0VFSZ5YTvW+MU=; b=FgTOV7qAXjCvyd
-	yFcWnN5Co5y6FS5/sQ3YM72Y/2GG75A5mMCwipfdutMyasXZ2OAMV6PUje2BZ78SRWTyoRvStw5v2
-	N+iaiaQD75YnhwqvvqO6hkBTpF2YbWK86I62YOyteQ6sb9I+qa0Wf1dVB+1qV7eILbHw75Hy+dMR6
-	DK/WLNQfh2zbKzNt/EXSeEzAiEWiAA3vt8nEQWxeazxbOzItmNfqy5uQRnFhthD0btmKrmiu1E0um
-	oxB+QEkBZgRC2oR/qJpCimQT5IBkRfC+LglB/O0P88yK0gqZ5JSK4lx7q+cwKKH8IQb9Gaq+FGbRL
-	FrWMgjpO/lDAJXho6VbA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=DtUKo5K2ykSV/AA3lf2aYJj7bus5fluVG3Qa0nMuY+Y=; b=voMtjdPvjQ8uZvu7Fny0pNoiu+
+	1zap/VOcI7/BF3wewZIVvWTQGEL7sojJ/jbMc6Jkq8eM9eDV2i+po/3higImW1lzYfFMTlC0HUo+/
+	9M/nh4wDSZTngZe+MniKBfzfvU/P9AR6h/efAEGpSD3tI8ymMfDqJ5xz1nIqXgbn9cu7TsQUjwwpj
+	fJcxtSsJ8jCtUFkszA/kdowBLBuhvMCJDjWVwOW7TjEE5ODer+klKL+A/znuYnJwvuSFUeo/Fl7ah
+	jdnjTAZCBHq+b46e2pU1RRIzZ/pCkUCcxpQFF5w/24mDtEU6hTuXX98Shr0VN4xi1iTk0YBns21gG
+	afYbHgZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lsIhv-009iMb-FI; Sun, 13 Jun 2021 05:30:51 +0000
-Received: from mail-pf1-f175.google.com ([209.85.210.175])
+	id 1lshS7-00D0bI-8p; Mon, 14 Jun 2021 07:56:11 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lsIhi-009iKk-TS; Sun, 13 Jun 2021 05:30:40 +0000
-Received: by mail-pf1-f175.google.com with SMTP id a127so2153201pfa.10;
- Sat, 12 Jun 2021 22:30:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=e9wgkbzyfzIDSr2mxBQKx6UIoHjiY2DxbVr5qjZ/ndQ=;
- b=vHJYnC5k2pNMcAka9+8PsEV+JyHpNrO1Q+mca4ikgwPyM7J8kx4lxeRPtqW9GZpK3Q
- whTSpSpNpB8Pk4/Gvp/A0pGwknW5N6z4PX4GwTt35nMnkbpbWJcqASxvvOV3LqelFXwX
- Yv4prjK1qW0UN21MJtRc1mV7KNYDfeK631XncDCWQKxz1GCQD2W5HS00NqV85nG2Lj/p
- twILRHztLdECx9SFbU1OZM+DLe37FoOKBW6qJKPe10t34PakAGF546XTAWkn5mb6T3DC
- gFz5/R3sIR2MaHwdxwJeoQRYChFeQkayEvgXePxTQcb/INfK9byZ+O3u/JqE2GXRNFbP
- 1HBQ==
+ id 1lshS3-00D0Zp-S6
+ for linux-amlogic@lists.infradead.org; Mon, 14 Jun 2021 07:56:09 +0000
+Received: by mail-wm1-x336.google.com with SMTP id m3so6308350wms.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 14 Jun 2021 00:56:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=YFtSuQv3LCHTkS9qZQYFvwMGwlgP6Ey1HHzA5wPOVqw=;
+ b=XTJBTHThLVkVDyD9nRfrWfd6LXp2sdF+Q2BHknVacC7qynJjJkOy+iCkBlLSPJiJA6
+ yqUMUho+a9imaUkHYDgA1B+c7pFGGbNrseZ1tdsz2sK1au8q4fWu5jyGFBKbABGQpcfF
+ RYicjiaY1ykjV7hLClUIK0kJra547cBd+2SLZp/8YOZasMli+O/tSvqiTkmTVMHNafMp
+ Xy+iDVKUalW7NNCYlFOzM2OfXaxxLRUlnnqWXRVuX9C0xde/I/Y01IhS2bE4SG1abamj
+ tKQLuLXH5qaNYRjUlDoslz30z1V3SujV1R9K1bP3lKOzCn+5aiM0SJFFGZpAcqZE7+lq
+ KAkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=e9wgkbzyfzIDSr2mxBQKx6UIoHjiY2DxbVr5qjZ/ndQ=;
- b=ME3HcW6XG43fMcLDktUbUtExCJDX0qbNo2sgvEaxcEYO9Ua5GpNLRJ7rIeS2FQcjQD
- Qw7UrqnaQmgimuwu24dNwxmkKteLRsbDXVpzbWGucWMImqfUYneY7AKbI6V5laM9IpJ7
- RPH+8IVblTdPXOTJOqk9/fF2L9VWJrourz1d4A5n+KZpJXKzg1+D2GT2ZqNHbD2mwNC9
- bs7Le+UoeI2CPjhTMMcP5Gezdwu838FqDFFZBTNc7jjQ/Ki992zmIe13VtdL2bn3gGqr
- kxkzevipBIZDZstmK65FaXN/bkzXotaGjjHxUG3yFDZH+viFx5Q5yD1TUFIgr02bv6wO
- 2G5w==
-X-Gm-Message-State: AOAM532LraWfqJZvpZy2Xz4/RTXXksk6SYETixSlQifEXmLe+A1V/bNe
- 8wae5RMBB9WWqYqXgkukMN0=
-X-Google-Smtp-Source: ABdhPJwa1Ill6bdxHT7ix4aev3b0DeJ4kB2NxTJRs3GR1xv0JqLnWXqYaOVRXpUeqq3RSx2rpNMaxw==
-X-Received: by 2002:a62:8491:0:b029:2e9:c618:fa32 with SMTP id
- k139-20020a6284910000b02902e9c618fa32mr15861684pfd.15.1623562178265; 
- Sat, 12 Jun 2021 22:29:38 -0700 (PDT)
-Received: from localhost.members.linode.com ([2400:8902::f03c:92ff:fe55:8c1e])
- by smtp.gmail.com with ESMTPSA id
- a9sm8810533pfo.69.2021.06.12.22.29.35
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 12 Jun 2021 22:29:37 -0700 (PDT)
-From: zpershuai <zpershuai@gmail.com>
-To: Mark Brown <broonie@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: zpershuai <zpershuai@gmail.com>
-Subject: [PATCH v2 2/2] spi: meson-spicc: fix a wrong goto jump for avoiding
- memory leak.
-Date: Sun, 13 Jun 2021 13:29:32 +0800
-Message-Id: <1623562172-22056-1-git-send-email-zpershuai@gmail.com>
-X-Mailer: git-send-email 2.7.4
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=YFtSuQv3LCHTkS9qZQYFvwMGwlgP6Ey1HHzA5wPOVqw=;
+ b=Elsj7SpDS6CorMgNUHqxVfXSNtobjNe/jRYCKnsTXgAG/Rr3IlWBMVJTeEne5vBYYI
+ a+cKPA6NXCw6/g/u7N1NCEXDpgNwWphzSaqxegWHg0z6/zT1okLzgdGl7qjQvGp4CI/h
+ IzbKr8JGon03prZ9PTuFQegABRGK91R904SU4lclTXjtPTydjAVnBRNogW4fQnkAs6cb
+ Zap6yHqqIPBcQwCIRIYD10phZKK9lX31B2Obq+R599n5quYkGGPSwztcIZhMDbj88c+U
+ Qu/GNPGs40OsHGj1siXSseLYLUipaC8l4U6Bz0kWAJPGWodrOOIsxAHBA8H1W8nXszP+
+ UTDg==
+X-Gm-Message-State: AOAM531FbZh1RdzFMtC+zhFPpsoFLaH3L6Qpl3CG8AaYYW/8xdjysjCQ
+ /djgNm4Jw7Q8X0ZqwGFuPwf7dQ==
+X-Google-Smtp-Source: ABdhPJwXiCFSQ5nXOlDH3D+m1LZ6V9tiBVDzD62PR4ZSSay1CB+Y6o4yT9bRqZBZXyOCThu5gRjhKw==
+X-Received: by 2002:a05:600c:2188:: with SMTP id
+ e8mr32297464wme.129.1623657362889; 
+ Mon, 14 Jun 2021 00:56:02 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:71f0:4862:1742:37fd?
+ ([2a01:e0a:90c:e290:71f0:4862:1742:37fd])
+ by smtp.gmail.com with ESMTPSA id u12sm15793274wrr.40.2021.06.14.00.56.01
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 14 Jun 2021 00:56:02 -0700 (PDT)
+Subject: Re: [PATCH] ARM: dts: meson: Set the fifo-size of uart_A to 128 bytes
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ jbrunet@baylibre.com, khilman@baylibre.com
+References: <20210604170844.2201229-1-martin.blumenstingl@googlemail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <0e3b8d5b-756b-fefe-fbd3-8a786d7344ac@baylibre.com>
+Date: Mon, 14 Jun 2021 09:56:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+MIME-Version: 1.0
+In-Reply-To: <20210604170844.2201229-1-martin.blumenstingl@googlemail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210612_223038_975259_F1E591C1 
-X-CRM114-Status: GOOD (  10.85  )
+X-CRM114-CacheID: sfid-20210614_005608_013261_2A0368D2 
+X-CRM114-Status: GOOD (  17.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,49 +103,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In meson_spifc_probe function, when enable the device pclk clock is
-error, it should use clk_disable_unprepare to release the core clock.
+On 04/06/2021 19:08, Martin Blumenstingl wrote:
+> The first UART controller in the "Everything-Else" power domain is
+> called uart_A. Unlike all other UARTs (which use a 64 byte fifo-size in
+> hardware) uart_A has a fifo-size of 128 bytes. This UART controller is
+> typically used for Bluetooth HCI.
+> The fifo-size of 128 bytes is valid from all SoCs from Meson6 (or
+> possibly even earlier) all the way up to the latest 64-bit ones.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm/boot/dts/meson.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
+> index 8bae6ed0abb2..bd0e864964e9 100644
+> --- a/arch/arm/boot/dts/meson.dtsi
+> +++ b/arch/arm/boot/dts/meson.dtsi
+> @@ -50,6 +50,7 @@ uart_A: serial@84c0 {
+>  				compatible = "amlogic,meson6-uart", "amlogic,meson-uart";
+>  				reg = <0x84c0 0x18>;
+>  				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
+> +				fifo-size = <128>;
+>  				status = "disabled";
+>  			};
+>  
+> 
 
-Signed-off-by: zpershuai <zpershuai@gmail.com>
----
- drivers/spi/spi-meson-spicc.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index d675334..b2c4621 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -725,7 +725,7 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 	ret = clk_prepare_enable(spicc->pclk);
- 	if (ret) {
- 		dev_err(&pdev->dev, "pclk clock enable failed\n");
--		goto out_master;
-+		goto out_core_clk;
- 	}
- 
- 	device_reset_optional(&pdev->dev);
-@@ -764,9 +764,11 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 	return 0;
- 
- out_clk:
--	clk_disable_unprepare(spicc->core);
- 	clk_disable_unprepare(spicc->pclk);
- 
-+out_core_clk:
-+	clk_disable_unprepare(spicc->core);
-+
- out_master:
- 	spi_master_put(master);
- 
--- 
-2.7.4
-
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
