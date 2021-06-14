@@ -2,88 +2,70 @@ Return-Path: <SRS0=Jm29=LI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AF3BC2B9F4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 17:37:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D01F1C2B9F4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 19:54:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C29661378
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 17:37:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C29661378
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 9B9B8611CA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 19:54:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B9B8611CA
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0hcuG+4Oj/d59erpnfhffWHY2k5ld6+FHkUKEofjU7Q=; b=qqnXsjFsAS7gfc
-	SaVTni9FzY3/cE+Vdbo1QZB6n/CZK0xm4gnkjuYcKMPPYTTHlWb+lM8YG6wn9jLVvKWP8fSxD4k/W
-	kHtlXgB1HsAImcIs9gjW9jvcqHjWoZnFONflVnUYxvqgOWKs0ZMHpG3hFyyJkuVPRpuBJjUA5lXae
-	NAIx6/t3MkszckDe659/J3v9fGyS7p70MO6PWUBV0uyN7sxhjMf/bGEKYfodAp0MP2S4eNHs1xNuT
-	mDXy97i8/XbkQx6x+HktLaGIKke3ngHvepXcsF1HLjZURl+74RHZ8hfGkHYd8FhbOHVzmBF64ZMkt
-	FZitc1wve9J5qdduoQmg==;
+	List-Owner; bh=Lg10DUDVa3BWv8/mhi7SHgkR+E+tsNwbUXM5DTr595Q=; b=Fb8D+Fr0Aq6Tul
+	EsqjV9Qlumwb1FAJvxJ10ZVYDsvluX0WlSwVZoI3N/APNyUKrnMCAtngYkzGPgkD79amLQ+eNLNM9
+	NZSb/JqcLzig+00GS/s7YEfwwIDIkPTeuCcjmJnpyClYb3vwIuIrHFELF9HwdU1Xmb6oHjvsntFlA
+	fCVMoYnpmQ6V6m7WdV2Q087w4oC/5zXpU+Uw3UTH4HUdIJutgUC40DgQCEbtvoLvOHot2Eq4S/xzo
+	r+za5/FKKdRu22NDMySZdvH4F9JXPOM5ybODiB+VEQBEfr4+ifIK9fF0hi4W7ItxtyXzjiRmjFjB9
+	GB8PbgiLQd1B57sgsx/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lsqWJ-00FSJd-9m; Mon, 14 Jun 2021 17:37:07 +0000
-Received: from mail-pj1-f52.google.com ([209.85.216.52])
+	id 1lssfB-00FxLv-8F; Mon, 14 Jun 2021 19:54:25 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lsqWG-00FSIZ-2t
- for linux-amlogic@lists.infradead.org; Mon, 14 Jun 2021 17:37:06 +0000
-Received: by mail-pj1-f52.google.com with SMTP id
- z3-20020a17090a3983b029016bc232e40bso446207pjb.4
- for <linux-amlogic@lists.infradead.org>; Mon, 14 Jun 2021 10:37:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=jFxOJ2sNlaTP2oY/1tOoZt+pjnC/fp0BF0cd3UacWKs=;
- b=PBufRmGAhMtuvaAA3A9gVrHkgFthtx5a9k9CdTuC7Zk6bWxhjqsUwjSkCMgQYLqD6D
- D/Cb+nXpHp4ofir1Yx0TZ/W1PfpzP3535b+toBTglbx4ind/t2CkaBO07RwSXL84pzH8
- QmxQO+YJ/ooTDsUWzgyvJ2rKRGieHBzxIWWPdlvUUsipsA/0E+e9ZCnNe0JkRtIeL0qp
- JkuxERee00bdtOznIBuNfwWcL0P3JNRsjDT1R2MEW4NKhDAic+VM0/KekJLmc4OMCfDi
- nPEDFQh4tnCU9soyFaFR/JpatLgo+QaGqzTVxCU6Z+7H+TOA1qjHCZfs6MvDDgDduaHn
- u5OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=jFxOJ2sNlaTP2oY/1tOoZt+pjnC/fp0BF0cd3UacWKs=;
- b=HV9z02lKNwS8ERz29UD7klYUuXiJsDMrFB9nlEBxldEeTqH3D4EDGsYPklpQ5Yk85t
- sPm+E1VvVOP9Kp8KzWbunFlYoStEtblsZwZwUGwBM1296h5OMG82ip9JcXy0PKq513n6
- poMBrZaNU9H0OzoEHFL+/F1M41nyX0z7DkyX3ih2Dqin7gX/sRk7Vz9ZLu6zhvmb1/Lo
- 0MOnuhxko7T2fdrmAGqxqvB5LJdS1lvWaEmMSFt08fI8etyCDBQxHOgRHOwf09BLHesf
- g42ydXAfcBFmRqcvatRn+Bma+6erKqcoXb/FYYBzMsHARdcJa4KQZv5W5HsIc39DPMcb
- Umqg==
-X-Gm-Message-State: AOAM533e6UbAMfXaxvbD1D03m15J3BqnBU3eFmJxLimGdNsC2l/+wZIs
- ZHnb/2Mp2Q/5Yn9P5cm9WVxIS11M/Q8D3PVVXLQ=
-X-Google-Smtp-Source: ABdhPJznWNeTiit7/SGu60G684FYkuKoY8YSsBjZc3t8NAngrtT4QqDdIbNZcZWdN8/t0QD2Z9vO8Q==
-X-Received: by 2002:a17:90a:3801:: with SMTP id
- w1mr258363pjb.138.1623692161330; 
- Mon, 14 Jun 2021 10:36:01 -0700 (PDT)
-Received: from localhost ([2601:602:9200:1465:3410:5b3a:5eb6:9380])
- by smtp.gmail.com with ESMTPSA id 21sm13521088pfy.92.2021.06.14.10.36.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 14 Jun 2021 10:36:00 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH] arm64: meson: remove COMMON_CLK
-In-Reply-To: <20210609202009.1424879-1-jbrunet@baylibre.com>
-References: <20210609202009.1424879-1-jbrunet@baylibre.com>
-Date: Mon, 14 Jun 2021 10:36:00 -0700
-Message-ID: <7him2gxsan.fsf@baylibre.com>
+ id 1lssf5-00FxJ4-1D; Mon, 14 Jun 2021 19:54:23 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2886C61246;
+ Mon, 14 Jun 2021 19:54:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1623700458;
+ bh=lXE4ojg3vZj00rQa1Ur3m9EtSTs5cJ9y0Aq2+yVMsFQ=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=BGr52i6SQTs4RQitog0bgHqDGHFM6c915vC6lqKr6Tu2zBYG4P5SvTYu2oEOqLH/n
+ Q6g2gl6jHIUzHS1jIp9RzkEYENknJX6no2Ahduz6n4CO7yjJdeY5NL/3mVlRblQWpg
+ nQa66e7nEvZ+kuKWvnYKJfxXme1xaFWwUBLE2p7nZ0LrhsM52y8HAmOrBQ6OXDhZk6
+ CTKUCyDIlwOqdA1iA8qPcl3ts4hXOogMEpWHE97cxuMx9iU8YTaJa3rSFqxKsTImZi
+ 31I9QnzKIsY7HwRnFLZIdR/kZaZ+OxFmIB4KvYeJnCnAWNh4NH2tq7qCWK1WpmyRdf
+ pE4kVqd1vH6gg==
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-spi@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, zpershuai <zpershuai@gmail.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2 2/2] spi: meson-spicc: fix a wrong goto jump for
+ avoiding memory leak.
+Date: Mon, 14 Jun 2021 20:53:31 +0100
+Message-Id: <162370043178.40904.8100844708897155437.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <1623562172-22056-1-git-send-email-zpershuai@gmail.com>
+References: <1623562172-22056-1-git-send-email-zpershuai@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210614_103705_008599_AE8D3460 
-X-CRM114-Status: UNSURE (   5.85  )
+X-CRM114-CacheID: sfid-20210614_125419_108394_5181DBBA 
+X-CRM114-Status: UNSURE (   9.89  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,16 +83,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+On Sun, 13 Jun 2021 13:29:32 +0800, zpershuai wrote:
+> In meson_spifc_probe function, when enable the device pclk clock is
+> error, it should use clk_disable_unprepare to release the core clock.
 
-> This reverts commit aea7a80ad5effd48f44a7a08c3903168be038a43.
-> Selecting COMMON_CLK is not necessary, it is already selected by
-> CONFIG_ARM64
->
-> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Applied to
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[2/2] spi: meson-spicc: fix a wrong goto jump for avoiding memory leak.
+      commit: 95730d5eb73170a6d225a9998c478be273598634
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 _______________________________________________
 linux-amlogic mailing list
