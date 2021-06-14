@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-12.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D01F1C2B9F4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 19:54:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85025C2B9F4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 19:54:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9B9B8611CA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 19:54:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B9B8611CA
+	by mail.kernel.org (Postfix) with ESMTPS id 5678D611CA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jun 2021 19:54:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5678D611CA
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,30 +23,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Lg10DUDVa3BWv8/mhi7SHgkR+E+tsNwbUXM5DTr595Q=; b=Fb8D+Fr0Aq6Tul
-	EsqjV9Qlumwb1FAJvxJ10ZVYDsvluX0WlSwVZoI3N/APNyUKrnMCAtngYkzGPgkD79amLQ+eNLNM9
-	NZSb/JqcLzig+00GS/s7YEfwwIDIkPTeuCcjmJnpyClYb3vwIuIrHFELF9HwdU1Xmb6oHjvsntFlA
-	fCVMoYnpmQ6V6m7WdV2Q087w4oC/5zXpU+Uw3UTH4HUdIJutgUC40DgQCEbtvoLvOHot2Eq4S/xzo
-	r+za5/FKKdRu22NDMySZdvH4F9JXPOM5ybODiB+VEQBEfr4+ifIK9fF0hi4W7ItxtyXzjiRmjFjB9
-	GB8PbgiLQd1B57sgsx/A==;
+	List-Owner; bh=rzZI+BMWy0EYyhDDDx04lEf9oA8Cyr9A93ryth3+1C0=; b=H23Nf1U7FVPYvz
+	YaSR6sjxlP5R5VAnYVgtN/nu6a9lLE8hlkxUKsdWYzqncbttBTKLUdcTEMIwSJbh9m9L/GkPudIZn
+	k0HWxtKAGw0NmBiRJIAatdfPuDEIzu5dnjnsl7FpSEo3YgVAb9IMK8uP9AwDGotyvktsADZuMwqhl
+	h8/K2pqS2gV8C7zi62LmYcT+39hWSjCg87Gi7IZYK6ApH7WRf8yyETpcfFiLMkWp8VeStsOdS9ZSO
+	KgzxOi+mg6TWNvXcf7XJwduopvBPbuUo5mck69bt6x49DtklVASJXgN8/Hmleb2lx688sbOPWwuTT
+	hwbhRdyytTj3vAJ+60hA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lssfB-00FxLv-8F; Mon, 14 Jun 2021 19:54:25 +0000
+	id 1lssfQ-00FxSX-PP; Mon, 14 Jun 2021 19:54:40 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lssf5-00FxJ4-1D; Mon, 14 Jun 2021 19:54:23 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2886C61246;
- Mon, 14 Jun 2021 19:54:17 +0000 (UTC)
+ id 1lssf7-00FxKj-Qq; Mon, 14 Jun 2021 19:54:25 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E94BE61166;
+ Mon, 14 Jun 2021 19:54:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1623700458;
- bh=lXE4ojg3vZj00rQa1Ur3m9EtSTs5cJ9y0Aq2+yVMsFQ=;
+ s=k20201202; t=1623700461;
+ bh=9H59Xz02Kl+iv21yoouobtliOku9p+EcM8ROFyfhWTc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=BGr52i6SQTs4RQitog0bgHqDGHFM6c915vC6lqKr6Tu2zBYG4P5SvTYu2oEOqLH/n
- Q6g2gl6jHIUzHS1jIp9RzkEYENknJX6no2Ahduz6n4CO7yjJdeY5NL/3mVlRblQWpg
- nQa66e7nEvZ+kuKWvnYKJfxXme1xaFWwUBLE2p7nZ0LrhsM52y8HAmOrBQ6OXDhZk6
- CTKUCyDIlwOqdA1iA8qPcl3ts4hXOogMEpWHE97cxuMx9iU8YTaJa3rSFqxKsTImZi
- 31I9QnzKIsY7HwRnFLZIdR/kZaZ+OxFmIB4KvYeJnCnAWNh4NH2tq7qCWK1WpmyRdf
- pE4kVqd1vH6gg==
+ b=ehs1koXhYhnQJhJJvR8usrB0j9ZwqwOc5uAZo9Mub/OJw/4PHL81MgxHaC259emy6
+ JBxLmqjtsgBKEcHvUX7ND1/ZAxCsBqZyKWyGSR7u/3e6+G6UnZRYqe5SnmvXI54gDG
+ iUWPEb8u7jCPokEeD7nnqSyOfIx5N1ouawX3GPJ7zBSu8BKARk6J55rlvFSr40tVnc
+ vaLuLUnOPQPDnKF4SX3CHx3cxG8pfX/iPR2nWTA66FayfFCjNI+KFclffsJ9yx4hLD
+ i3tJx44lwpIL2VKANf+tB3Cbj+bQnzpJetKFB0KilYPnBWSHB1EXwe2qIAsVqzBsMU
+ Tc8nbAv62GZoQ==
 From: Mark Brown <broonie@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
@@ -55,17 +55,17 @@ To: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
  Kevin Hilman <khilman@baylibre.com>, zpershuai <zpershuai@gmail.com>,
  linux-arm-kernel@lists.infradead.org
 Cc: Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v2 2/2] spi: meson-spicc: fix a wrong goto jump for
- avoiding memory leak.
-Date: Mon, 14 Jun 2021 20:53:31 +0100
-Message-Id: <162370043178.40904.8100844708897155437.b4-ty@kernel.org>
+Subject: Re: [PATCH v2 1/2] spi: meson-spicc: fix memory leak in
+ meson_spicc_probe
+Date: Mon, 14 Jun 2021 20:53:32 +0100
+Message-Id: <162370043178.40904.2317762864895103950.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1623562172-22056-1-git-send-email-zpershuai@gmail.com>
-References: <1623562172-22056-1-git-send-email-zpershuai@gmail.com>
+In-Reply-To: <1623562156-21995-1-git-send-email-zpershuai@gmail.com>
+References: <1623562156-21995-1-git-send-email-zpershuai@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210614_125419_108394_5181DBBA 
-X-CRM114-Status: UNSURE (   9.89  )
+X-CRM114-CacheID: sfid-20210614_125421_911378_2C1ABD01 
+X-CRM114-Status: UNSURE (   9.53  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,9 +83,9 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, 13 Jun 2021 13:29:32 +0800, zpershuai wrote:
-> In meson_spifc_probe function, when enable the device pclk clock is
-> error, it should use clk_disable_unprepare to release the core clock.
+On Sun, 13 Jun 2021 13:29:16 +0800, zpershuai wrote:
+> when meson_spicc_clk_init returns failed, it should goto the
+> out_clk label.
 
 Applied to
 
@@ -93,8 +93,8 @@ Applied to
 
 Thanks!
 
-[2/2] spi: meson-spicc: fix a wrong goto jump for avoiding memory leak.
-      commit: 95730d5eb73170a6d225a9998c478be273598634
+[1/2] spi: meson-spicc: fix memory leak in meson_spicc_probe
+      commit: b2d501c13470409ee7613855b17e5e5ec4111e1c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
