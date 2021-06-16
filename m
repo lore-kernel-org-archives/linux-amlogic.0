@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-20.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13632C48BE5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jun 2021 06:25:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D978C48BE6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jun 2021 06:27:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8762C61369
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jun 2021 06:25:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8762C61369
+	by mail.kernel.org (Postfix) with ESMTPS id 08A96610A1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jun 2021 06:27:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08A96610A1
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,68 +24,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:Cc:To:
 	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=E3KyozfJ8RB+85wsSoR3rW3A5lveNNT6wJBqWPs7dzU=; b=3OcqEZ/eo1Fwjc
-	Lme8jo+VpaYyKqSIIGOMs5LqVJiuhHh30nNTnLv1mQCWrq/2amohLYQor4zD3RPZyu5ysL2T0Gn3G
-	i8zJ8uNm453XZU1pRiCYEZY7hFCVgbuSkh6Kp5VuvgTFggH4lp7og5FwK0tmfRUWL4L/1w8B1umfx
-	rmA/3MXUCnty+wIP9G9iO+jzWcMhnzGltxLE6bi3cE04CZPbWJXCogTADUbMmhATKnVtDzx8+mJbq
-	2VthD3UiWyq1oyr4aky0TC9we27uQdbSE9mIcm+fBTEatUOSOKHXUQLdp8lxNWTDmT4b5gFX5DzZa
-	2R5FCzuofQ/K/8CcElJA==;
+	List-Owner; bh=0aH4FsuUIM1gPxiJYzIAO+qBL4U2Qr41NXdmyPNW8fs=; b=aLJZQBeAT/xOdC
+	RK92yF8Gi54t/XXII/l3HXtpu+FRE72LWGAhzK/BzR4NGL+IHQfSvX/bJu6kGmavxWw4pzg3Adi8s
+	urAj8gYnxFA4LLpfPow50LEY4gl1HlXIOPE4ewXSsV32FulW4rVM9Xw2dwrEd+aI3FPYDRcbLbbdp
+	0rhzD5KNj+UiWsguOXY+nmIOv/aPMn0AYoCwZbPnh05auzshr1ImhB3oGy8oKETNVcz6B232ts9zj
+	CAOM2gXKWkIm1SVyR+La1NPQM2kFUws+bqaBrZYpvz4zXbaRcD0yQuVAaEkBw4G8dSDaOZgDetBpw
+	KqjHkgvCJRO2vrrzdUJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ltOzH-0051ia-7u; Wed, 16 Jun 2021 06:25:19 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1ltP0q-00529H-K7; Wed, 16 Jun 2021 06:26:56 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ltOzD-0051hA-MZ
- for linux-amlogic@lists.infradead.org; Wed, 16 Jun 2021 06:25:18 +0000
-Received: by mail-wr1-x436.google.com with SMTP id m18so1260958wrv.2
- for <linux-amlogic@lists.infradead.org>; Tue, 15 Jun 2021 23:25:14 -0700 (PDT)
+ id 1ltP0d-00525P-1Q
+ for linux-amlogic@lists.infradead.org; Wed, 16 Jun 2021 06:26:44 +0000
+Received: by mail-wr1-x434.google.com with SMTP id y7so1238693wrh.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 15 Jun 2021 23:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:subject:to:cc:organization:message-id:date:user-agent
  :mime-version:content-language:content-transfer-encoding;
- bh=AUZLUp42K/lZfioAjz/zadZDn+47Sd2vr6fMgCganLM=;
- b=da715xJIs1OGYk8W+yihj2EYBsJ+t22FZAlss9QxIeGY4dTGUfg04SV4ZLMLcU1b6S
- PF2xF1roY98hEm9Zwo4rT/lNDE5YbC/c29lvkp7Lfd1cGpS/X6MDiwhxaxRK7LNuopko
- MDGzNaBsIFQuiY4latdCXTA4dtfo90GZgxyo6yam57zsUN4X5Ca6Z4CJOi0iYfQjdSLP
- 8+UiulZHKsp+6U4GA96EszJNglsfvoEZetHzux7msKlVOyJMHSf+7nOYrZLWklkEPNUH
- TTYG0xYKs0qfXh+DHznLKtlfiTXXDODCQZxbi+nVUDeYg3TW1nWwpOyOsg6vsua6Mz7/
- VjHg==
+ bh=eX9KilfronaU4zvtDptmHzHYmMu18MlAQnZ0ExpHWcc=;
+ b=C+C2r9TORvCO/CwzPrYXcik854Fg5EAT7f4aO9xSIOdfgGaPEKZf1ChYid0u5vLCo7
+ JjNCPli63EwE5EIOhpl7fTigSXIM0SP4x7h00vxwRJaVhU963Yc95IJRaxaWHhpAdVDo
+ bdQNEQybEZfslkpndL6fVAK92JoWtGEMtZWVyaU+qkUUtBcfCxkvZ/3PONjpqO23o1Qt
+ OXwbwKscukYcsVB8FDT+3xLZmoMrgVUxFKiHHJiIks+7fTobmfRQWPfG6ffDoYCYp9pC
+ dzr/1qjvHpt42fD908pXgBiquDHZYsffipWLios57hbVyoGlBoz/ff731OO7CSw/eknS
+ rq8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:subject:to:cc:organization:message-id:date
  :user-agent:mime-version:content-language:content-transfer-encoding;
- bh=AUZLUp42K/lZfioAjz/zadZDn+47Sd2vr6fMgCganLM=;
- b=d7xnPE3d9P0QONffDfrCNp0pG/PYNU9MCYSiVlrRJvVTpaZsKdhflxYnpHnu5ndrxm
- r4WsCHGGAFtDwb7q2OHoG3yZdB6RLsLTZB4FWkjnW2LSoGlnBRp2yGf7qzjjjw8gwy3M
- nwrToCJVctVr5r+s1YbTA0De+fUWWIj2935ZSqkhgudkFn6vq0rGEi2PcVuVlZ7wLy0M
- 4Xt7ArTRbocBSRcMR4JiGUMRbZO8QkTugCrNU+I9aFW9oXROcCQHUhL43xpbH4UWJnXv
- LI406OmeXauto5fpkRfEfJK0vGIOqkgKoHaduPYnX8qKnKSPnKT9esJlWII0AMRE66iu
- bxTQ==
-X-Gm-Message-State: AOAM530AUjFp6QP8RZuc7gZmGwpmSPa1dv8TdWPWohQ1eD6qD0dRwbFv
- DReWXKwBlZxzWaY4ELO9oinGNpEmWUugMNEE
-X-Google-Smtp-Source: ABdhPJww34TnZw+Mcbi7UsDVAQwY7mMh972gsuBgbSstjk5G0zLB8T69bGa+0DYd3TU5rgPNnH0oEw==
-X-Received: by 2002:adf:ee82:: with SMTP id b2mr3305744wro.360.1623824713130; 
- Tue, 15 Jun 2021 23:25:13 -0700 (PDT)
+ bh=eX9KilfronaU4zvtDptmHzHYmMu18MlAQnZ0ExpHWcc=;
+ b=R0SbTQZu6DGkUSmtQVrcB8g3jnlFmsFTaivO8PNW8XmNfw4+6o49kmXAGkNHxLQdrC
+ EOo4YAiWdJ7LWxqe2zKCfvnHNXYypAa6cy7jgT+w22hY0jitMIA+rDAKL1TGvqvWZMAb
+ ZX1s8Vm+CI75pEhb9R214w3w8GMp+cXz3Y/Bny8zbduKH4t182/ce/Xg2lx4PJptWyQY
+ hn1khpqQUm1g0BUZusAsTWxSjUixJC/0rvySGYnqPIfe4hVzIAvtu0BsQijFWna2Rg0v
+ 1Z5OtmOISkgIS1mD9qqN4KJ8LiiAl4R8BeKH+gWqCVvD4ozdytAvLNGZlTMDISAyI5As
+ R7iA==
+X-Gm-Message-State: AOAM5307C+8v8WBj0RI/LzdeZq9xTp7P7ZiLMmHQps2tVG3FIErRKyDb
+ Ocyr3+Numm4hZBSWI/id7XM+Q7TDkc33SVFM
+X-Google-Smtp-Source: ABdhPJwnvVrbJrc08xWRwzZkjlaf87sFoa21IIx7Dzs7dM9rL13iCvppqBA4oIJ8QvM2OImiMwjL1Q==
+X-Received: by 2002:a05:6000:551:: with SMTP id
+ b17mr3268542wrf.32.1623824801282; 
+ Tue, 15 Jun 2021 23:26:41 -0700 (PDT)
 Received: from ?IPv6:2a01:e0a:90c:e290:6b98:6d35:fe47:b739?
  ([2a01:e0a:90c:e290:6b98:6d35:fe47:b739])
- by smtp.gmail.com with ESMTPSA id c20sm726379wml.37.2021.06.15.23.25.11
+ by smtp.gmail.com with ESMTPSA id n1sm839334wms.18.2021.06.15.23.26.40
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 15 Jun 2021 23:25:12 -0700 (PDT)
+ Tue, 15 Jun 2021 23:26:40 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [GIT PULL] arm64: dts: amlogic updates for v5.14, part 2
+Subject: [GIT PULL] arm: dts: amlogic updates for v5.14
 List-Id: <soc.lore.kernel.org>
 To: soc@kernel.org, arm@kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Organization: Baylibre
-Message-ID: <c953e97a-f901-a749-1fb6-b1caa75b4748@baylibre.com>
-Date: Wed, 16 Jun 2021 08:25:11 +0200
+Message-ID: <2f19a5a1-3ed9-dd11-02f1-7d535cb1c25c@baylibre.com>
+Date: Wed, 16 Jun 2021 08:26:40 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210615_232515_828469_A92EADAF 
-X-CRM114-Status: GOOD (  10.13  )
+X-CRM114-CacheID: sfid-20210615_232643_112954_D3280F90 
+X-CRM114-Status: UNSURE (   8.55  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,42 +106,32 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-Here's some changes to enhance support for the Odroid C4 & Odroid HC4 boards.
+Here's a single ARM DT changes for v5.14 to add UART FIFO size like the ARM64 SoCs support.
 
 Neil
 
-The following changes since commit a270a2b24de5be0480136cbbd7805b9134762b97:
+The following changes since commit 6efb943b8616ec53a5e444193dccf1af9ad627b5:
 
-  arm64: dts: meson: set 128bytes FIFO size on uart A (2021-06-01 10:27:02 +0200)
+  Linux 5.13-rc1 (2021-05-09 14:17:44 -0700)
 
 are available in the Git repository at:
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v5.14-v2
+  https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm-dt-for-v5.14
 
-for you to fetch changes up to 303d2af21aedeaebe824411fbff912dfcdb48de5:
+for you to fetch changes up to 7db3cde5123e2acdd65ff7458628a9835c804b27:
 
-  arm64: dts: meson-sm1-odroid-c4: remove invalid hub_5v regulator (2021-06-14 09:57:45 +0200)
-
-----------------------------------------------------------------
-Amlogic ARM64 DT changes for v5.14 round 2:
--  various fixes for Odroid C4/HC4 regulators handling, USB and SPI NOR Flash for HC4
+  ARM: dts: meson: Set the fifo-size of uart_A to 128 bytes (2021-06-14 10:00:50 +0200)
 
 ----------------------------------------------------------------
-Christian Hewitt (1):
-      arm64: dts: meson-sm1-odroid-hc4: add spifc node to ODROID-HC4
+Amlogic ARM DT changes for v5.14:
+- Set the fifo-size of uart_A to 128 bytes like the ARM64 counterpart
 
-Neil Armstrong (6):
-      arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator
-      arm64: dts: meson-sm1-odroid: set tf_io regulator gpio as open source
-      arm64: dts: meson-sm1-odroid: add 5v regulator gpio
-      arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0
-      arm64: dts: meson-sm1-odroid-hc4: add regulators controlled by GPIOH_8
-      arm64: dts: meson-sm1-odroid-c4: remove invalid hub_5v regulator
+----------------------------------------------------------------
+Martin Blumenstingl (1):
+      ARM: dts: meson: Set the fifo-size of uart_A to 128 bytes
 
- .../arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts | 17 --------
- .../boot/dts/amlogic/meson-sm1-odroid-hc4.dts      | 48 +++++++++++++++++++++-
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi  |  9 +++-
- 3 files changed, 54 insertions(+), 20 deletions(-)
+ arch/arm/boot/dts/meson.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
 _______________________________________________
 linux-amlogic mailing list
