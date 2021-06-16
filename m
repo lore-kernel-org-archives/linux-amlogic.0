@@ -2,92 +2,81 @@ Return-Path: <SRS0=GiEQ=LK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-20.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-14.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D978C48BE6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jun 2021 06:27:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08FE1C48BE6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jun 2021 23:31:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 08A96610A1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jun 2021 06:27:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08A96610A1
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id BAB8661245
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jun 2021 23:31:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BAB8661245
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:Cc:To:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0aH4FsuUIM1gPxiJYzIAO+qBL4U2Qr41NXdmyPNW8fs=; b=aLJZQBeAT/xOdC
-	RK92yF8Gi54t/XXII/l3HXtpu+FRE72LWGAhzK/BzR4NGL+IHQfSvX/bJu6kGmavxWw4pzg3Adi8s
-	urAj8gYnxFA4LLpfPow50LEY4gl1HlXIOPE4ewXSsV32FulW4rVM9Xw2dwrEd+aI3FPYDRcbLbbdp
-	0rhzD5KNj+UiWsguOXY+nmIOv/aPMn0AYoCwZbPnh05auzshr1ImhB3oGy8oKETNVcz6B232ts9zj
-	CAOM2gXKWkIm1SVyR+La1NPQM2kFUws+bqaBrZYpvz4zXbaRcD0yQuVAaEkBw4G8dSDaOZgDetBpw
-	KqjHkgvCJRO2vrrzdUJg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=S9lIOUMXUvxiDl3WJfdodE2CF68oYXcag9KSbGDPtlU=; b=Ilk8ILMRykbfNX
+	a9mHmMAY7h5Tw90n1wyl9BeISgvZDyr12PVTfqSwEryat4uTZqUyeEJRFVrxZ1DRR70EzXLYOrT6E
+	wDt7NYOX9aiKiN9NgbuBoBMO7RW7VaP7t4agoXSgjUgc9RW/5S3APMykyYw5kCBLlxRGenp25ZcD1
+	ocC+Da2cGZPgIWa7cY9k9sU7he94hu0WaQRU6RbyaUrbpOtwMYUpF/gyPIdkZ9t5TJNAQKHdxntCa
+	EyVgMJ9SiOdCTGG8Waq7tKyL9Bt/tZ0JrB8+GL6ldB0JTEAB3fz4zpplxyO2Qmw4TVjbJgwMhUGRX
+	/xi2/TpMkTKrvzr6PHEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ltP0q-00529H-K7; Wed, 16 Jun 2021 06:26:56 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1ltf07-0089zH-R5; Wed, 16 Jun 2021 23:31:15 +0000
+Received: from mail-io1-f50.google.com ([209.85.166.50])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ltP0d-00525P-1Q
- for linux-amlogic@lists.infradead.org; Wed, 16 Jun 2021 06:26:44 +0000
-Received: by mail-wr1-x434.google.com with SMTP id y7so1238693wrh.7
- for <linux-amlogic@lists.infradead.org>; Tue, 15 Jun 2021 23:26:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:subject:to:cc:organization:message-id:date:user-agent
- :mime-version:content-language:content-transfer-encoding;
- bh=eX9KilfronaU4zvtDptmHzHYmMu18MlAQnZ0ExpHWcc=;
- b=C+C2r9TORvCO/CwzPrYXcik854Fg5EAT7f4aO9xSIOdfgGaPEKZf1ChYid0u5vLCo7
- JjNCPli63EwE5EIOhpl7fTigSXIM0SP4x7h00vxwRJaVhU963Yc95IJRaxaWHhpAdVDo
- bdQNEQybEZfslkpndL6fVAK92JoWtGEMtZWVyaU+qkUUtBcfCxkvZ/3PONjpqO23o1Qt
- OXwbwKscukYcsVB8FDT+3xLZmoMrgVUxFKiHHJiIks+7fTobmfRQWPfG6ffDoYCYp9pC
- dzr/1qjvHpt42fD908pXgBiquDHZYsffipWLios57hbVyoGlBoz/ff731OO7CSw/eknS
- rq8w==
+ id 1ltf05-0089yA-3h; Wed, 16 Jun 2021 23:31:14 +0000
+Received: by mail-io1-f50.google.com with SMTP id k16so1031223ios.10;
+ Wed, 16 Jun 2021 16:31:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:subject:to:cc:organization:message-id:date
- :user-agent:mime-version:content-language:content-transfer-encoding;
- bh=eX9KilfronaU4zvtDptmHzHYmMu18MlAQnZ0ExpHWcc=;
- b=R0SbTQZu6DGkUSmtQVrcB8g3jnlFmsFTaivO8PNW8XmNfw4+6o49kmXAGkNHxLQdrC
- EOo4YAiWdJ7LWxqe2zKCfvnHNXYypAa6cy7jgT+w22hY0jitMIA+rDAKL1TGvqvWZMAb
- ZX1s8Vm+CI75pEhb9R214w3w8GMp+cXz3Y/Bny8zbduKH4t182/ce/Xg2lx4PJptWyQY
- hn1khpqQUm1g0BUZusAsTWxSjUixJC/0rvySGYnqPIfe4hVzIAvtu0BsQijFWna2Rg0v
- 1Z5OtmOISkgIS1mD9qqN4KJ8LiiAl4R8BeKH+gWqCVvD4ozdytAvLNGZlTMDISAyI5As
- R7iA==
-X-Gm-Message-State: AOAM5307C+8v8WBj0RI/LzdeZq9xTp7P7ZiLMmHQps2tVG3FIErRKyDb
- Ocyr3+Numm4hZBSWI/id7XM+Q7TDkc33SVFM
-X-Google-Smtp-Source: ABdhPJwnvVrbJrc08xWRwzZkjlaf87sFoa21IIx7Dzs7dM9rL13iCvppqBA4oIJ8QvM2OImiMwjL1Q==
-X-Received: by 2002:a05:6000:551:: with SMTP id
- b17mr3268542wrf.32.1623824801282; 
- Tue, 15 Jun 2021 23:26:41 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:6b98:6d35:fe47:b739?
- ([2a01:e0a:90c:e290:6b98:6d35:fe47:b739])
- by smtp.gmail.com with ESMTPSA id n1sm839334wms.18.2021.06.15.23.26.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 15 Jun 2021 23:26:40 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [GIT PULL] arm: dts: amlogic updates for v5.14
-List-Id: <soc.lore.kernel.org>
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Organization: Baylibre
-Message-ID: <2f19a5a1-3ed9-dd11-02f1-7d535cb1c25c@baylibre.com>
-Date: Wed, 16 Jun 2021 08:26:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=xYjPOVFrGcuwzYtCkpC3/ADNpp9HDl4uS6+qpD2/Jyw=;
+ b=XTirVzKIGCFWf+WumCNWD72yxAnBMhXX6jjx2ILclWKCsm22hdppUBtiEDfll30+iV
+ Iz018kzvbd6IaaZEM8p3RS4QSrhau680JD3COpBEgrNVc/Voya1ULYwnwjPTxXR1Ihwg
+ zOYACujuGeuPogW9K71MOsXwfLps6ElXyjgBvqwW5XWyXP1i16oXUTYFS//537qxnnyh
+ nDjgfYGsaReGkJfF81F0smB+8a/OhzluZu277X/ZfPKORYUxvxMQpeL6Kz5mmS75+btQ
+ XmDy9BYEw7E6dnJfW3/HKmglxTr0RXJC5UyKE7xX15d71WGBVrpjOhf+q4YssYQ1zYXw
+ 0/Kw==
+X-Gm-Message-State: AOAM532skP3ajU6TT+vmLgoITvsiXbx9iFzcZP3Z43ufaI2JLOHv6pv8
+ 40ImqYb3j4zZMvhE/N+rEw==
+X-Google-Smtp-Source: ABdhPJyyUtjrWdXCPRwIyDSdK8eyilrcAdS/kqWlBnMmR3Kq3QNqwcTLrFso8p3R0dLnOz85MLm7Iw==
+X-Received: by 2002:a05:6638:3298:: with SMTP id
+ f24mr1587297jav.25.1623886272107; 
+ Wed, 16 Jun 2021 16:31:12 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+ by smtp.gmail.com with ESMTPSA id p19sm1953479iob.7.2021.06.16.16.31.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 16 Jun 2021 16:31:11 -0700 (PDT)
+Received: (nullmailer pid 288247 invoked by uid 1000);
+ Wed, 16 Jun 2021 23:31:09 -0000
+Date: Wed, 16 Jun 2021 17:31:09 -0600
+From: Rob Herring <robh@kernel.org>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, kishon@ti.com, vkoul@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: Add the Amlogic Meson8 HDMI TX PHY
+ bindings
+Message-ID: <20210616233109.GA285667@robh.at.kernel.org>
+References: <20210604190338.2248295-1-martin.blumenstingl@googlemail.com>
+ <20210604190338.2248295-2-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20210604190338.2248295-2-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210615_232643_112954_D3280F90 
-X-CRM114-Status: UNSURE (   8.55  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210616_163113_200274_98E836E8 
+X-CRM114-Status: GOOD (  18.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,34 +93,80 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Fri, Jun 04, 2021 at 09:03:37PM +0200, Martin Blumenstingl wrote:
+> Amlogic Meson8, Meson8b and Meson8m2 all include an identical (or at
+> least very similar) HDMI TX PHY. The PHY registers are part of the HHI
+> register area.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  .../phy/amlogic,meson8-hdmi-tx-phy.yaml       | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson8-hdmi-tx-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson8-hdmi-tx-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson8-hdmi-tx-phy.yaml
+> new file mode 100644
+> index 000000000000..18a123b9bb0a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson8-hdmi-tx-phy.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/amlogic,meson8-hdmi-tx-phy.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson8, Meson8b and Meson8m2 HDMI TX PHY
+> +
+> +maintainers:
+> +  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> +
+> +description: |+
+> +  The HDMI TX PHY node should be the child of a syscon node with the
+> +  required property:
+> +
+> +  compatible = "amlogic,meson-hhi-sysctrl", "simple-mfd", "syscon"
 
-Here's a single ARM DT changes for v5.14 to add UART FIFO size like the ARM64 SoCs support.
+Is there a sub range of registers for this functionality in 
+"amlogic,meson-hhi-sysctrl"? If so, please add a 'reg' property.
 
-Neil
-
-The following changes since commit 6efb943b8616ec53a5e444193dccf1af9ad627b5:
-
-  Linux 5.13-rc1 (2021-05-09 14:17:44 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm-dt-for-v5.14
-
-for you to fetch changes up to 7db3cde5123e2acdd65ff7458628a9835c804b27:
-
-  ARM: dts: meson: Set the fifo-size of uart_A to 128 bytes (2021-06-14 10:00:50 +0200)
-
-----------------------------------------------------------------
-Amlogic ARM DT changes for v5.14:
-- Set the fifo-size of uart_A to 128 bytes like the ARM64 counterpart
-
-----------------------------------------------------------------
-Martin Blumenstingl (1):
-      ARM: dts: meson: Set the fifo-size of uart_A to 128 bytes
-
- arch/arm/boot/dts/meson.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+> +
+> +  Refer to the bindings described in
+> +  Documentation/devicetree/bindings/mfd/syscon.yaml
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^hdmi-phy$"
+> +
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson8-hdmi-tx-phy
+> +      - amlogic,meson8b-hdmi-tx-phy
+> +      - amlogic,meson8m2-hdmi-tx-phy
+> +
+> +  clocks:
+> +    minItems: 1
+> +    description:
+> +      HDMI TMDS clock
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    hdmi_tx_phy: hdmi-phy {
+> +      compatible = "amlogic,meson8-hdmi-tx-phy";
+> +      clocks = <&tmds_clock>;
+> +      #phy-cells = <0>;
+> +    };
+> -- 
+> 2.31.1
 
 _______________________________________________
 linux-amlogic mailing list
