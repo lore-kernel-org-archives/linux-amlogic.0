@@ -2,93 +2,95 @@ Return-Path: <SRS0=pHk5=LL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 998DCC48BE5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jun 2021 19:42:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1C22C48BE5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jun 2021 19:43:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5D02A613CB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jun 2021 19:42:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5D02A613CB
+	by mail.kernel.org (Postfix) with ESMTPS id 9AB3C6113E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jun 2021 19:43:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9AB3C6113E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GdLYhs2vxQjvz5iq797EjcnwvWyk35qTm0S/MBOpmZ0=; b=vOvXVssXH4HVQm
-	M2gOWMMP4xPE1FIdduD8nqy+y96pdrjIiomgSrt1glq9W2+vx3fSEWsF+nit3BXwaq5jELte4U3Aq
-	MCgahtS5ROgsvVCvz3hqelRRwiKlvYib9rEzT8ylfz6TlMmXZOZKiMqum927Vz8DhXCzsUeXZXYX6
-	BcD7i0stHJTRhnMxJDY2rTNbHcBe3VXYIZKeSq19QHIciQz2RwbFcu/UQVIJA6VVOOptIw21zhA06
-	T/ncZmg8+jEIQTilvjTkSxDLv3JwV4VzT6pefmo6QL66j4J+K0939EVRCpDg16VnSmcACA7YebCnj
-	9dSAemYbKxvP1Ylu7vcg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ntJOpdDGswI645AT8qA3IJN+t3BBTnRFOjQA9jc+FH8=; b=hcftSW5m+22m1+
+	qFfE8F67D1FMACj/HiJBoALrXpXA2heL0ugZwJn7LYnTJE+SAUjcmBERVB0h0SN5biCRrQfitcifv
+	3o4Mgl5mzQOPlFrN2OVE1yVkHru2YseM2/Q8GeTatjBbrgy9l0i1yYIAGbNAp9tjkLza63y/kzkt6
+	QJisNjRXDVUin+dqp9WRaxBveIUk9eiBGOSlGEM/srC8n+xg2i0b7SkNZGnZWoi7dMcxsLMs4iLFM
+	/5M4oMd4VD8W7QaNsm2MATDJkoo1SzSlk1nHTFHsXDRMtnx7rhmz/ZEkicUULeD8IX+u1a4bZueCm
+	qvUgR8A0HQ+gqaVAuLmw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ltxud-00Ba98-QJ; Thu, 17 Jun 2021 19:42:51 +0000
-Received: from mail-pj1-x102a.google.com ([2607:f8b0:4864:20::102a])
+	id 1ltxut-00BaDF-L3; Thu, 17 Jun 2021 19:43:07 +0000
+Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ltxuQ-00Ba7q-K2; Thu, 17 Jun 2021 19:42:39 +0000
-Received: by mail-pj1-x102a.google.com with SMTP id
- m15-20020a17090a5a4fb029016f385ffad0so1661168pji.0; 
- Thu, 17 Jun 2021 12:42:37 -0700 (PDT)
+ id 1ltxug-00Ba9V-Bl; Thu, 17 Jun 2021 19:42:55 +0000
+Received: by mail-pf1-x430.google.com with SMTP id k6so5822516pfk.12;
+ Thu, 17 Jun 2021 12:42:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=da00ZN+RLuSXdFw+Cx3yDmIBQSfROsLCEVIOIeO609g=;
- b=r5KIycO/y5V1xvjDdhknZKPhmXG0J4r2uoGdS9ISm2AlTMVsGVw/sqoCrlaDqY4Ol/
- om7m5WK9M/R6GJV9KSGgL7pW67YioAvxGrbZC0y3wWoFiGrM6s0j6HWaIPBeno+wRd0h
- 2VRNQm+4T4wTCKeF0dBlqAQjPXDOlbMSwBxhW9nra4VnhVqqP+PdXgEBNtJ7rmr0fd/3
- 9nXgFrohQATVKF8H85DWNC12wmddYALpM1lmAhgBwr86RXB7e3OP2D7ci9SPNSWPXQPk
- j/ddPjRJowBoJBJMwYGfOadL4T9Vmz3ZcNGpBQHSYa83IFF+vHus75KHscC0xvvNzncu
- RK4A==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=9HgQ9eAiW96/ovGrHzecsI1VfEM+0/YBZu4OcH2CPvU=;
+ b=IDSWM3vrjvw7MeiWIr15DCD+wCW8pjSkdRreLc5MeLbze+tu8Nh8QKvgpZssU2jVh+
+ EMQCfONigNWK4SDSJ/Hw4tHIUeJBc9nrRMdXQo22qr2+R+URmi6vb6T/1TOssz/c/3IK
+ eS5oGDLvCKwpthgHfrcJj4g0SKG5ZZRClREimHO1848jnbGediRxvFf61qDukJXFpd1h
+ SzBCWnmdPDWqQo+KA1dJBHSG6GUv7To0iQ8M2XI0kWZhmbHCuLU2u8Qt+kMsKhGPdyWn
+ Dg7Dn+CNiwz/MxDpXDkKaL2AGon9BTny6fi0WRb+pWbR6spNHihtCmD4S79nIpyFoZA+
+ 0ceg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=da00ZN+RLuSXdFw+Cx3yDmIBQSfROsLCEVIOIeO609g=;
- b=G4XzYXFHbd7UVfj4g8V52KxP3ZWMQqniMQ7syEM58J5wu70zkGQs6UA5lAHlIafZId
- eHMEwOOx0OYWwLme2Za+z561ed4q+hHmSTY8rGu8oC1bHdAE4yzSrH9j37HOXMaHQSOJ
- 6c15KjJvZk4e78HV1rE+inr6DS+pS5osCywqqpTYw4zMwhINqwxXCEIsJHqm2zdADtw3
- lmPoYatu/labxJjoA4I7/yALMPc/B6AGudZNYuEY2Yh+4NUctsXFRc3ZrNiZ7egAi17r
- w4rG27yqnCh64aQJ+XGqxufmffZmDGXo4MXXCzkhF+bndrQAeHdZj/dd3kcDQfJ+8JXD
- ZsCQ==
-X-Gm-Message-State: AOAM531z9w8HNZtsDGGbsRDEZnJF3xmCJOBraDSatP93oslmSA3jOXNL
- u9AKjnpaU+2JhwjzfJAAfY712IerxqI=
-X-Google-Smtp-Source: ABdhPJwW9q6oBVxAsW32fu7Y2lPktocoo8W4MTKRbk3gM8togfzrbQCQWsps1BCqnVjlRXcZ3xOTHQ==
-X-Received: by 2002:a17:902:7c94:b029:fc:5e8b:e645 with SMTP id
- y20-20020a1709027c94b02900fc5e8be645mr1413344pll.18.1623958956442; 
- Thu, 17 Jun 2021 12:42:36 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=9HgQ9eAiW96/ovGrHzecsI1VfEM+0/YBZu4OcH2CPvU=;
+ b=ZCBnR8AbB1hoFEM+vp2hRYWgZZsAIhDoSfXw8pP2CctdCQmCiZaZBJt3ZAtCtlsET9
+ keTY10OANIgtB6/T5dwKkZim2CaZAD8KpJQa0YWpmmU4LAs6q9SVbzS4Z43iPqjoku1U
+ ui9Z9Kla15qYpezwvDAfwihoW9HDOHSXgF7ISwVsVUzSkSSp0p/yinXnZi2y8WrvSHqZ
+ pU3/JLxMl+DK/QkM6oyxmFYs1hF215J9HUhOv+Gc1efguOza790rWDPHhBfwlwCq4S7/
+ 7sOGzyMC/eFK4ldReQjkl/bNNLVU58Klk2iCs65ic9Ebn+E4OPtnA0FuW06XU3UkvltN
+ hT3w==
+X-Gm-Message-State: AOAM531nuq85986cHz0hlWOoDF7wHCenWHrRV1VwXW6d4wUoFyxBe7rU
+ P+J++jyFc/vqf8pCb6eSiUVyJh2Qwz4=
+X-Google-Smtp-Source: ABdhPJx5ZIxR9ySXUG7SX502EB68UiuFkiJPUuTxkOHSdD37m0SDC1zBokNef3WrEmJMyPMDImpLdw==
+X-Received: by 2002:a63:5360:: with SMTP id t32mr6385187pgl.192.1623958973053; 
+ Thu, 17 Jun 2021 12:42:53 -0700 (PDT)
 Received: from archl-c2lm.. ([103.51.75.27])
- by smtp.gmail.com with ESMTPSA id z9sm5987187pfa.2.2021.06.17.12.42.31
+ by smtp.gmail.com with ESMTPSA id z9sm5987187pfa.2.2021.06.17.12.42.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Jun 2021 12:42:35 -0700 (PDT)
+ Thu, 17 Jun 2021 12:42:52 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: --to=linux-phy@lists.infradead.org,
  --to=linux-arm-kernel@lists.infradead.org,
  --to=linux-amlogic@lists.infradead.org, --to=linux-kernel@vger.kernel.org
-Cc: Anand Moon <linux.amoon@gmail.com>, Kishon Vijay Abraham I <kishon@ti.com>,
- Vinod Koul <vkoul@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+Cc: Anand Moon <linux.amoon@gmail.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Philipp Zabel <p.zabel@pengutronix.de>, linux-phy@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [RFCv1 0/8] Meson-8b and Meson-gxbb USB phy code re-structure
-Date: Thu, 17 Jun 2021 19:41:35 +0000
-Message-Id: <20210617194154.2397-1-linux.amoon@gmail.com>
+Subject: [RFCv1 1/8] phy: amlogic: meson8b-usb2: Use clock bulk to get clocks
+ for phy
+Date: Thu, 17 Jun 2021 19:41:36 +0000
+Message-Id: <20210617194154.2397-2-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210617194154.2397-1-linux.amoon@gmail.com>
+References: <20210617194154.2397-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210617_124238_718739_3F95B390 
-X-CRM114-Status: UNSURE (   9.49  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210617_124254_448064_8A55C8F0 
+X-CRM114-Status: GOOD (  15.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,41 +107,110 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Odroid C1+ and Odroid C2 USB feature is broken
-this code changes are just re-structure the code so that
-proper callback function execute in proper order.
+Use clock bulk helpers to get/enable/disable clocks,
+it will be easier to handle clocks. No functional change intended.
 
-Code changes losely based on phy-meson-gxl-usb2.c
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+ drivers/phy/amlogic/phy-meson8b-usb2.c | 44 ++++++++++++++------------
+ 1 file changed, 23 insertions(+), 21 deletions(-)
 
-Initially if we connect USB HDD at initial boot it get detected.
-but after that usb hotplug of USB HDD is broken.
-I did not observe and USB debug events messages to trace the root cause.
-
-Another issue I observed is increase of USB interrupts event
-even if there is not much activity on USB ports.
-I tried some clk changes but it did not workout for me.
-
-$ cat /proc/interrupts | grep usb
- 45:          0          0          0          0     GICv2  62 Level     c9000000.usb, dwc2_hsotg:usb1
- 46:   17488032          0          0          0     GICv2  63 Level     c9100000.usb, dwc2_hsotg:usb2
-
-Thanks
--Anand
-
-Anand Moon (8):
-  phy: amlogic: meson8b-usb2: Use clock bulk to get clocks for phy
-  phy: amlogic: meson8b-usb2: Use phy init callback function
-  phy: amlogic: meson8b-usb2: Use phy exit callback function
-  phy: amlogic: meson8b-usb2: Use phy set_mode callback function
-  phy: amlogic: meson8b-usb2: Reorder phy poweroff callback function
-  phy: amlogic: meson8b-usb2: Use phy reset callback function
-  phy: amlogic: meson8b-usb2: Power off the PHY by putting it into reset
-    mode.
-  phy: amlogic: meson8b-usb2: don't log an error on -EPROBE_DEFER
-
- drivers/phy/amlogic/phy-meson8b-usb2.c | 159 +++++++++++++++++--------
- 1 file changed, 109 insertions(+), 50 deletions(-)
-
+diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
+index 03c061dd5f0d..771b73f3b44e 100644
+--- a/drivers/phy/amlogic/phy-meson8b-usb2.c
++++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
+@@ -121,11 +121,16 @@ struct phy_meson8b_usb2_match_data {
+ 	bool			host_enable_aca;
+ };
+ 
++static const char * const meson_phy_clks[] = {
++	"usb_general",
++	"usb",
++};
++
+ struct phy_meson8b_usb2_priv {
+ 	struct regmap					*regmap;
+ 	enum usb_dr_mode				dr_mode;
+-	struct clk					*clk_usb_general;
+-	struct clk					*clk_usb;
++	int                                             num_clks;
++	struct clk_bulk_data                            *clks;
+ 	struct reset_control				*reset;
+ 	const struct phy_meson8b_usb2_match_data	*match;
+ };
+@@ -151,16 +156,9 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
+ 		}
+ 	}
+ 
+-	ret = clk_prepare_enable(priv->clk_usb_general);
++	ret = clk_bulk_prepare_enable(priv->num_clks, priv->clks);
+ 	if (ret) {
+-		dev_err(&phy->dev, "Failed to enable USB general clock\n");
+-		return ret;
+-	}
+-
+-	ret = clk_prepare_enable(priv->clk_usb);
+-	if (ret) {
+-		dev_err(&phy->dev, "Failed to enable USB DDR clock\n");
+-		clk_disable_unprepare(priv->clk_usb_general);
++		dev_err(&phy->dev, "Failed to enable USB clock\n");
+ 		return ret;
+ 	}
+ 
+@@ -197,8 +195,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
+ 			regmap_read(priv->regmap, REG_ADP_BC, &reg);
+ 			if (reg & REG_ADP_BC_ACA_PIN_FLOAT) {
+ 				dev_warn(&phy->dev, "USB ID detect failed!\n");
+-				clk_disable_unprepare(priv->clk_usb);
+-				clk_disable_unprepare(priv->clk_usb_general);
++				clk_bulk_disable_unprepare(priv->num_clks, priv->clks);
+ 				return -EINVAL;
+ 			}
+ 		}
+@@ -216,8 +213,7 @@ static int phy_meson8b_usb2_power_off(struct phy *phy)
+ 				   REG_DBG_UART_SET_IDDQ,
+ 				   REG_DBG_UART_SET_IDDQ);
+ 
+-	clk_disable_unprepare(priv->clk_usb);
+-	clk_disable_unprepare(priv->clk_usb_general);
++	clk_bulk_disable_unprepare(priv->num_clks, priv->clks);
+ 
+ 	return 0;
+ }
+@@ -234,6 +230,7 @@ static int phy_meson8b_usb2_probe(struct platform_device *pdev)
+ 	struct phy *phy;
+ 	struct phy_provider *phy_provider;
+ 	void __iomem *base;
++	int i, ret;
+ 
+ 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+ 	if (!priv)
+@@ -252,13 +249,18 @@ static int phy_meson8b_usb2_probe(struct platform_device *pdev)
+ 	if (IS_ERR(priv->regmap))
+ 		return PTR_ERR(priv->regmap);
+ 
+-	priv->clk_usb_general = devm_clk_get(&pdev->dev, "usb_general");
+-	if (IS_ERR(priv->clk_usb_general))
+-		return PTR_ERR(priv->clk_usb_general);
++	priv->num_clks = ARRAY_SIZE(meson_phy_clks);
++	priv->clks = devm_kcalloc(&pdev->dev, priv->num_clks,
++				  sizeof(*priv->clks), GFP_KERNEL);
++	if (!priv->clks)
++		return -ENOMEM;
++
++	for (i = 0; i < priv->num_clks; i++)
++		priv->clks[i].id = meson_phy_clks[i];
+ 
+-	priv->clk_usb = devm_clk_get(&pdev->dev, "usb");
+-	if (IS_ERR(priv->clk_usb))
+-		return PTR_ERR(priv->clk_usb);
++	ret = devm_clk_bulk_get(&pdev->dev, priv->num_clks, priv->clks);
++	if (ret)
++		return ret;
+ 
+ 	priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
+ 	if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
 -- 
 2.31.1
 
