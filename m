@@ -2,99 +2,93 @@ Return-Path: <SRS0=pHk5=LL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B8BA0C2B9F4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jun 2021 14:58:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 998DCC48BE5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jun 2021 19:42:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7D8FE61042
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jun 2021 14:58:35 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7D8FE61042
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 5D02A613CB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jun 2021 19:42:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5D02A613CB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=7sfmnLVr53GCf4wGZ0NNgdLHw/PCVZg6zCS1Kv+SCrc=; b=MTQ9UR6s0ZU16KDn+7afCnHpX0
-	dUPAe2D6uX08+nOxVSeEi73XxnHgJEpepI9L5Nb3fDuTEXSCNPoh3EfUDq7Dk4TD1alPoEtGOeGv8
-	FijVjWheZAXlRvO+0oPFHj7JS0dxkG7wCV/6XcFyGfKxY297fgHWa9G3D48cd+zFQ6GXvXKRy6H56
-	dr3zwU1CvpiDWUh3g5QksRUhUNZpkD6VTMthcBamoQwtVrhNaiPwN+gqAU3Xe8PpFE7zi4OxzmGJf
-	ABUcMLjxbJ6DCx+JXJ5dHzm//HBMKpze+SJYQd/U68AMVL5ow91nJ551oxCuV2YKvDGZB9RaVwUZK
-	iCZwD7Bw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=GdLYhs2vxQjvz5iq797EjcnwvWyk35qTm0S/MBOpmZ0=; b=vOvXVssXH4HVQm
+	M2gOWMMP4xPE1FIdduD8nqy+y96pdrjIiomgSrt1glq9W2+vx3fSEWsF+nit3BXwaq5jELte4U3Aq
+	MCgahtS5ROgsvVCvz3hqelRRwiKlvYib9rEzT8ylfz6TlMmXZOZKiMqum927Vz8DhXCzsUeXZXYX6
+	BcD7i0stHJTRhnMxJDY2rTNbHcBe3VXYIZKeSq19QHIciQz2RwbFcu/UQVIJA6VVOOptIw21zhA06
+	T/ncZmg8+jEIQTilvjTkSxDLv3JwV4VzT6pefmo6QL66j4J+K0939EVRCpDg16VnSmcACA7YebCnj
+	9dSAemYbKxvP1Ylu7vcg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lttTP-00ApHg-AF; Thu, 17 Jun 2021 14:58:27 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1ltxud-00Ba98-QJ; Thu, 17 Jun 2021 19:42:51 +0000
+Received: from mail-pj1-x102a.google.com ([2607:f8b0:4864:20::102a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lttTM-00ApFf-0P
- for linux-amlogic@lists.infradead.org; Thu, 17 Jun 2021 14:58:26 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id c5so7128655wrq.9
- for <linux-amlogic@lists.infradead.org>; Thu, 17 Jun 2021 07:58:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ id 1ltxuQ-00Ba7q-K2; Thu, 17 Jun 2021 19:42:39 +0000
+Received: by mail-pj1-x102a.google.com with SMTP id
+ m15-20020a17090a5a4fb029016f385ffad0so1661168pji.0; 
+ Thu, 17 Jun 2021 12:42:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=ZpkJ+MYgphvbo+BSBH3Zpu7neLYi4f02rnh8CEAedOQ=;
- b=ulwjGky6X26LXPC1yb3zn8bl0jSp6um6+lphjLL4AtnI3F7fKbqCto97dg/wZLIELG
- geqk0K+MYYWf5Rk9tgpAiNJRol3WZCza4miVvbqXhr7l5U3cqLcwvdHLcbUDCjU2La6H
- P1RLtnXU8fNWQ+omJ90vSDOJ+kFmgwLpCcLTKuo/gouam2wEp8JKCr+jP2qUmZ2R2ATK
- JXY7nNt6fy/sCIznCrjtvg+w1addU7qkpeO0W0ahJPgwxXTvm+UdeZWZtA0BClDd7tMx
- 668UoML4dcwzxBW1yQBEBeNWa9L3RDElz3baBNgocfo8tiW9KFF4RTEAq9En5LAElA9Y
- getg==
+ bh=da00ZN+RLuSXdFw+Cx3yDmIBQSfROsLCEVIOIeO609g=;
+ b=r5KIycO/y5V1xvjDdhknZKPhmXG0J4r2uoGdS9ISm2AlTMVsGVw/sqoCrlaDqY4Ol/
+ om7m5WK9M/R6GJV9KSGgL7pW67YioAvxGrbZC0y3wWoFiGrM6s0j6HWaIPBeno+wRd0h
+ 2VRNQm+4T4wTCKeF0dBlqAQjPXDOlbMSwBxhW9nra4VnhVqqP+PdXgEBNtJ7rmr0fd/3
+ 9nXgFrohQATVKF8H85DWNC12wmddYALpM1lmAhgBwr86RXB7e3OP2D7ci9SPNSWPXQPk
+ j/ddPjRJowBoJBJMwYGfOadL4T9Vmz3ZcNGpBQHSYa83IFF+vHus75KHscC0xvvNzncu
+ RK4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=ZpkJ+MYgphvbo+BSBH3Zpu7neLYi4f02rnh8CEAedOQ=;
- b=mHTkuDU0+rs34cn8c2ReKNH1Azr4tuzgqu53iVxnIRLx1seCFtpBlR3hmngINq+RMh
- q9uKPmXUfjnixujOCKlm56tSSxxmJiRMml8Y1fBU9HswLpth+ul1LmFxPJDYXT+YzXYl
- UtCjF/WCgqoF+9HW7DLJwYd9GbenGnx7Jgcr/trEhT0Dkn61+ML4uvOqP+udPxMsV/4K
- 8uXmFvXpG2a9CZizpCaqvyxacj1daBnlLVWunMIoz3doaiz2lNv420a/IBp8+ApxxBeq
- I+dq9sa3Jk6somYxxRxnX3ybBBGHVweNtRJL0St2V+0XQ4Mr2V4NKJiuPYn00n63Pqw/
- qi/Q==
-X-Gm-Message-State: AOAM530dEGg+fz0OEWFpgImziZcpkEnoAhXQYpg8/APPH+v5Ir5LKnDc
- 1Yn6X8Qn6D0Ap5XJLslQFGsyeQ==
-X-Google-Smtp-Source: ABdhPJyMYMaw4LO059nv3tFrQ3aLA9CMlV1w5nxei3W97dLFTJEiJJYci7iGLUD1oVqxmgJBv+OY7Q==
-X-Received: by 2002:a5d:48ce:: with SMTP id p14mr6356429wrs.170.1623941901303; 
- Thu, 17 Jun 2021 07:58:21 -0700 (PDT)
-Received: from [10.1.3.24] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x18sm5580002wrw.19.2021.06.17.07.58.20
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 17 Jun 2021 07:58:20 -0700 (PDT)
-Subject: Re: [PATCH] drm/meson: fix potential NULL pointer exception in
- meson_drv_unbind()
-To: Jiajun Cao <jjcao20@fudan.edu.cn>
-Cc: yuanxzhang@fudan.edu.cn, Xin Tan <tanxin.ctf@gmail.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=da00ZN+RLuSXdFw+Cx3yDmIBQSfROsLCEVIOIeO609g=;
+ b=G4XzYXFHbd7UVfj4g8V52KxP3ZWMQqniMQ7syEM58J5wu70zkGQs6UA5lAHlIafZId
+ eHMEwOOx0OYWwLme2Za+z561ed4q+hHmSTY8rGu8oC1bHdAE4yzSrH9j37HOXMaHQSOJ
+ 6c15KjJvZk4e78HV1rE+inr6DS+pS5osCywqqpTYw4zMwhINqwxXCEIsJHqm2zdADtw3
+ lmPoYatu/labxJjoA4I7/yALMPc/B6AGudZNYuEY2Yh+4NUctsXFRc3ZrNiZ7egAi17r
+ w4rG27yqnCh64aQJ+XGqxufmffZmDGXo4MXXCzkhF+bndrQAeHdZj/dd3kcDQfJ+8JXD
+ ZsCQ==
+X-Gm-Message-State: AOAM531z9w8HNZtsDGGbsRDEZnJF3xmCJOBraDSatP93oslmSA3jOXNL
+ u9AKjnpaU+2JhwjzfJAAfY712IerxqI=
+X-Google-Smtp-Source: ABdhPJwW9q6oBVxAsW32fu7Y2lPktocoo8W4MTKRbk3gM8togfzrbQCQWsps1BCqnVjlRXcZ3xOTHQ==
+X-Received: by 2002:a17:902:7c94:b029:fc:5e8b:e645 with SMTP id
+ y20-20020a1709027c94b02900fc5e8be645mr1413344pll.18.1623958956442; 
+ Thu, 17 Jun 2021 12:42:36 -0700 (PDT)
+Received: from archl-c2lm.. ([103.51.75.27])
+ by smtp.gmail.com with ESMTPSA id z9sm5987187pfa.2.2021.06.17.12.42.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 17 Jun 2021 12:42:35 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: --to=linux-phy@lists.infradead.org,
+ --to=linux-arm-kernel@lists.infradead.org,
+ --to=linux-amlogic@lists.infradead.org, --to=linux-kernel@vger.kernel.org
+Cc: Anand Moon <linux.amoon@gmail.com>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Vinod Koul <vkoul@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210617070737.50171-1-jjcao20@fudan.edu.cn>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <0c367cae-9bad-d53a-01db-3d2dd801965b@baylibre.com>
-Date: Thu, 17 Jun 2021 16:58:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [RFCv1 0/8] Meson-8b and Meson-gxbb USB phy code re-structure
+Date: Thu, 17 Jun 2021 19:41:35 +0000
+Message-Id: <20210617194154.2397-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210617070737.50171-1-jjcao20@fudan.edu.cn>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210617_075824_147262_005E224B 
-X-CRM114-Status: GOOD (  18.13  )
+X-CRM114-CacheID: sfid-20210617_124238_718739_3F95B390 
+X-CRM114-Status: UNSURE (   9.49  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,50 +105,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Odroid C1+ and Odroid C2 USB feature is broken
+this code changes are just re-structure the code so that
+proper callback function execute in proper order.
 
-On 17/06/2021 09:07, Jiajun Cao wrote:
-> Fix a potential NULL pointer exception when meson_drv_unbind()
-> attempts to operate on the driver_data priv which may be NULL.
-> Add a null pointer check on the priv struct to avoid the NULL
-> pointer dereference after calling dev_get_drvdata(), just like
-> the null pointer checks done on the struct priv in the function
-> meson_drv_shutdown(), meson_drv_pm_suspend() and meson_drv_pm_resume().
-> 
-> Signed-off-by: Jiajun Cao <jjcao20@fudan.edu.cn>
-> Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
-> ---
->  drivers/gpu/drm/meson/meson_drv.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index 07fcd12dca16..adea6a2b28f5 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -380,6 +380,8 @@ static int meson_drv_bind(struct device *dev)
->  static void meson_drv_unbind(struct device *dev)
->  {
->  	struct meson_drm *priv = dev_get_drvdata(dev);
-> +	if (!priv)
-> +		return;
->  	struct drm_device *drm = priv->drm;
+Code changes losely based on phy-meson-gxl-usb2.c
 
-Please move struct drm_device before the if like :
+Initially if we connect USB HDD at initial boot it get detected.
+but after that usb hotplug of USB HDD is broken.
+I did not observe and USB debug events messages to trace the root cause.
 
-struct meson_drm *priv = dev_get_drvdata(dev);
-struct drm_device *drm;
+Another issue I observed is increase of USB interrupts event
+even if there is not much activity on USB ports.
+I tried some clk changes but it did not workout for me.
 
-if (!priv)
-	return;
-drm = priv->drm;
+$ cat /proc/interrupts | grep usb
+ 45:          0          0          0          0     GICv2  62 Level     c9000000.usb, dwc2_hsotg:usb1
+ 46:   17488032          0          0          0     GICv2  63 Level     c9100000.usb, dwc2_hsotg:usb2
 
+Thanks
+-Anand
 
->  
->  	if (priv->canvas) {
-> 
+Anand Moon (8):
+  phy: amlogic: meson8b-usb2: Use clock bulk to get clocks for phy
+  phy: amlogic: meson8b-usb2: Use phy init callback function
+  phy: amlogic: meson8b-usb2: Use phy exit callback function
+  phy: amlogic: meson8b-usb2: Use phy set_mode callback function
+  phy: amlogic: meson8b-usb2: Reorder phy poweroff callback function
+  phy: amlogic: meson8b-usb2: Use phy reset callback function
+  phy: amlogic: meson8b-usb2: Power off the PHY by putting it into reset
+    mode.
+  phy: amlogic: meson8b-usb2: don't log an error on -EPROBE_DEFER
 
-Thanks,
-Neil
+ drivers/phy/amlogic/phy-meson8b-usb2.c | 159 +++++++++++++++++--------
+ 1 file changed, 109 insertions(+), 50 deletions(-)
+
+-- 
+2.31.1
+
 
 _______________________________________________
 linux-amlogic mailing list
