@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5229AC49361
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jun 2021 15:34:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 843F7C48BE8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jun 2021 15:35:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1C1606120A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jun 2021 15:34:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C1606120A
+	by mail.kernel.org (Postfix) with ESMTPS id 412B46120A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jun 2021 15:35:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 412B46120A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,55 +23,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tZha/fOWQKOpW3v7dZb/zmhLco9oZcLZmJWcbm7HTfQ=; b=r0UYM75CI/xEU0
-	CA403dDPyh4V0tg11BWrelOQgISlX6TDh04pKIuP8lJ/1bhHsZaV04uZ9JQwBV6N8+sVYsyh6yHWi
-	ZD7X46qjliyJKmVSy94aLnVl9ZrvGVuf3tgaN2jIg2oDR4IE4SWVDQf8rx+N/8s9DKFPtF8TwRIoG
-	JrAnbk1Nr5OG1DQo0EV70O3IopZ9K4cnkpi0wR8b2I9LAS6OWoV3/9o2k2zycsR4eW6+I+g8tlgIW
-	YO+TDbLEvqVdrg9wrhVyGPFKw8mn8Ir3TnNrrzxLsmch6JabUSZwoYu5+sN7Q815NjGuIpQPEYWY5
-	IlnQre8E5nRac8PQM4xw==;
+	List-Owner; bh=W/0NYrCRwVUBbeJxaKEdi2I4YpNs+GeVv+zpq550W4c=; b=aIgFjiOzqziGdE
+	CVYewZ4ZfVSXztccK0veKPCt7xLMzfvsT31YUzZTPOoefURmcUfdqRpBU7U9L6smsxnj0U/Xo9Zap
+	o3Um4u5sS1xnp3zi6s7ad1xrFsktddjdR+tQaqjtAsTUNEUNH+eLRym98Do+QoAjLsCMctfmT7A3t
+	iyiShj+yAJX1ZelihvyJi8UjZpqg3MU4QZS7rigBWZ6nREYjB7cQJHMM56Leizdt0wNBtYmAjk52Y
+	Prx4hLswJkeq3t/nhmKPygBeaIPrRsa/t4fK0f57H++Ddj687Fs8HimVGrfPlzQp/EdcYD5uiznMm
+	A76sHQZanAVi9Gq/BgZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1luGVx-00Elpg-2u; Fri, 18 Jun 2021 15:34:37 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1luGWc-00EmFV-32; Fri, 18 Jun 2021 15:35:18 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1luGUw-00ElHr-QP; Fri, 18 Jun 2021 15:33:36 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id w21so9215915edv.3;
- Fri, 18 Jun 2021 08:33:34 -0700 (PDT)
+ id 1luGVW-00Elbo-UJ; Fri, 18 Jun 2021 15:34:12 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id ji1so10422960ejc.4;
+ Fri, 18 Jun 2021 08:34:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lXIZf4M/Wk9OMiaT+VN4VJVU8FiWIRaCbWAUXPgEmuw=;
- b=B7ozRKMdsIZaq6CpNHJIsNxfc7Y4J7UTN6kDIxjZ2eigM59O+qyBRu5WyYOxllcJqS
- KRiSIKk8kGaUxnxrmaA5F0JiqukeXaiNs/BpI7+azHPmO1mDg5FvPfRsGEza4HOh8K7v
- Xpw7H3VfrZ8Q4IeT/HhbdkpwPSIyaSgTXpWC6AYJ3JY0muXE5l2ISZQmAuoSY/gfQ6cM
- HPUmMuX/ID9Kfdiqh7q7s3pgPih9RzRnjMQ/3Iw/I9bZaQxqGUczLfviGtSEKZ0gxrkE
- +Y5qYTLL2YiIReOIDDGnSJML9EUYmGi6/xox47WBgWLx1kheJDwTE89FTeQfFO2Zjem4
- 825A==
+ :cc; bh=KpCm5HqaoEkPNbQiojzQ8l9+3E69oFCh0+FoMDmFeh4=;
+ b=MactzmFW0XABE7AExi4kBxs63YPf+yunoMYq+qM5FFhLpVHUw8gEmJj6IbOkWDBQdr
+ 2VIvZVk9Vy+CpY2TSVx8lgs6J7EfMTwAMgPhfbb7a6WDgp/vcPLOfqO9XgLoj6/0lVVV
+ g9W3Py8MvGtm4/WQCZhnGkmSyTwWbpAXGj5Uk1iJv7cgPzOrJdzf+KpAd3BZmpI47MVT
+ WHECmkvnXIAdpWVPwEKOVW44ajl+OVN71VcQgC6I2WKptBJckf/xlVnSpAVS2RViTOP7
+ 0GpR64HTa73N6kn85zp+zPrCOYS1XTomSp8n6VsaFBN/Z6Eukzfn0zByARVHmtgwhMs5
+ fkSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=lXIZf4M/Wk9OMiaT+VN4VJVU8FiWIRaCbWAUXPgEmuw=;
- b=IUWK8zVvyqeXGdTAZLcqFQJTOA/zWJPISKMghhRF8oGhcNiYmw5oZIcxfcdqnAZBYz
- X/AMxNvC+zI4BUtfK5vXoRavqu5R+uJfBqijQvGqBEVR32fzCuK6N79bXPDOAS1POG4+
- HNzGROjPLv0C+FVsNPQCDUOHb1642n84ndrGnXEzWyVxJOve08r/eOLEu8bMHP3RUf3g
- U6vOXJeNViHWTjI6CIYB3s1w2SD2lQ6KG38tfqsYDYjWzaPJFnxZlMch3tVsL34xtMzD
- OSHffaq7fduSLR2H6CZ7l23yDT5CJUs9UkJTcHcvA2gir7qvmmM1oMbs/gDjX703gS54
- zV5g==
-X-Gm-Message-State: AOAM533JUFdKnlGmTegP+FVhQL6EXnO48Dc5iO5mj/Pi+Vo5jILd3ZsE
- SbwMsNgXzm9YWZ/VuTFuc3q6xgD/N2Uud8WVqs0=
-X-Google-Smtp-Source: ABdhPJwFJcPj6QNZ7mrUZAXYq1D2D8ElUkYJuaamLyvnmY7CMT0+IuOidETWvP+w4NxG1p7vSUDH+tDXXfIYEk1gkmE=
-X-Received: by 2002:aa7:cb8d:: with SMTP id r13mr5853072edt.184.1624030413483; 
- Fri, 18 Jun 2021 08:33:33 -0700 (PDT)
+ bh=KpCm5HqaoEkPNbQiojzQ8l9+3E69oFCh0+FoMDmFeh4=;
+ b=AY5j6Jfc1/T/n91P3J8JcBIqpVqM6qP3pgN9OblL0RD95BivFeATrZRqtbUf1zNYb5
+ jKg5m+PnkQIdivnrGcLrfUbQ9KvmPwmqOBa2XciyqrpskaOQ2GSFT2ZcubSTiNmHrGIr
+ yxISed/D6F6TN8TjuXr5BxxVFyjN+PNJFzRWoguZR7jqOLKqKhyqhs6ReLuZCua92x7w
+ 1s4CcLNhtVEyKKDQvecipT/3iG7j+8XELqgSYrzjeBbmEdlA5X94A1r6jrN9ceW4J+gC
+ PaffLtv8Xy747QeuPJCFB/e+Zl8Do5akTssKuoReRSKEw2oH/vHo6GeAZ78zn38lVI/m
+ nvkA==
+X-Gm-Message-State: AOAM5322UguVNqdwq6gaes6pd2FzYkdIL4ZUhnSWp08CO9T42vR+IYoU
+ 0/gg8CRrVyHxgqKBhy34f/0/Y5UMxg8+U/+qyms=
+X-Google-Smtp-Source: ABdhPJxUm2je64XwNMhTthmRUU5/BtOXPNJD5uuJE0r7hQUcZ7mgQZmOIQ3HW3fBRtxL7fQKlfTKElduF5w2vqTV9hM=
+X-Received: by 2002:a17:906:5407:: with SMTP id
+ q7mr11951545ejo.158.1624030449498; 
+ Fri, 18 Jun 2021 08:34:09 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210617194154.2397-1-linux.amoon@gmail.com>
- <20210617194154.2397-7-linux.amoon@gmail.com>
- <CAFBinCCE+6G7QtDoxfbcZVVRf-MDX-epSo=_k_PJZgWX+_Whvg@mail.gmail.com>
-In-Reply-To: <CAFBinCCE+6G7QtDoxfbcZVVRf-MDX-epSo=_k_PJZgWX+_Whvg@mail.gmail.com>
+ <20210617194154.2397-6-linux.amoon@gmail.com>
+ <CAFBinCD1dJ=oqjzkCrAdMMdxF8W1Aujcwo20vJ1oLv=mtn5TZw@mail.gmail.com>
+In-Reply-To: <CAFBinCD1dJ=oqjzkCrAdMMdxF8W1Aujcwo20vJ1oLv=mtn5TZw@mail.gmail.com>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 18 Jun 2021 21:03:22 +0530
-Message-ID: <CANAwSgRqixugUr-t2OheLBVwD=EOkaLqxnGkT-Bx=p_A4Nyr8Q@mail.gmail.com>
-Subject: Re: [RFCv1 6/8] phy: amlogic: meson8b-usb2: Use phy reset callback
- function
+Date: Fri, 18 Jun 2021 21:03:57 +0530
+Message-ID: <CANAwSgT9cdk5eWsDnpJ5TZt2i1hCdiW3BvXDQp4dN5BgtGZM=w@mail.gmail.com>
+Subject: Re: [RFCv1 5/8] phy: amlogic: meson8b-usb2: Reorder phy poweroff
+ callback function
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
  Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
@@ -81,8 +82,8 @@ Cc: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>,
  linux-amlogic@lists.infradead.org, 
  Linux Kernel <linux-kernel@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210618_083334_907914_D05C23DD 
-X-CRM114-Status: GOOD (  19.01  )
+X-CRM114-CacheID: sfid-20210618_083411_043113_FBB3B700 
+X-CRM114-Status: GOOD (  11.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,58 +100,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin
+Hi Martin,
 
-On Fri, 18 Jun 2021 at 03:54, Martin Blumenstingl
+On Fri, 18 Jun 2021 at 03:47, Martin Blumenstingl
 <martin.blumenstingl@googlemail.com> wrote:
 >
 > Hi Anand,
 >
 > On Thu, Jun 17, 2021 at 9:44 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > +static int phy_meson8b_usb2_reset(struct phy *phy)
-> > +{
-> > +       struct phy_meson8b_usb2_priv *priv = phy_get_drvdata(phy);
-> > +       int ret;
-> > +
-> > +       if (priv->is_enabled) {
-> > +               ret = reset_control_reset(priv->reset);
-> > +               if (ret) {
-> > +                       dev_err(&phy->dev, "Failed to trigger USB reset\n");
-> > +                       return ret;
-> > +               }
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> will this reset change the register values back to some kind of default?
-> If it does then we're not re-applying our desired register values
-> afterwards - which is probably asking for trouble.
+> >
+> > Move the phy_meson8b_usb2_power_off fundtion to avoid compilation
+> > error.
+> >
+> > drivers/phy/amlogic/phy-meson8b-usb2.c:247:3: error:
+> >         implicit declaration of function 'phy_meson8b_usb2_power_off';
+> you have introduced this warning in patch #4 of this series
 >
-> For shared resets (like the one we have here) reset_control_reset will
-> only trigger the reset line once until all drivers using that reset
-> line are unloaded.
-> So effectively this new phy_ops.reset callback will be a no-op.
-
-I know his register is shared between two USB IPs,
-but I have not observed any issues.
->
-> [...]
-> > -       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-> > +       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, "phy");
-> I think this breaks compatibility with existing .dtbs and our
-> dt-bindings (as we're not documenting a "reset-names" property).
-> What is the goal of this one?
 >
 
-OK, If we pass NULL over here there is the possibility
-USB phy will not get registered.
+Oops, I simply needed a forward declaration of the function to resolve
+the issue.
 
->
 > Best regards,
 > Martin
 
 Thanks
+
 
 -Anand
 
