@@ -2,73 +2,73 @@ Return-Path: <SRS0=FilP=LN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C718C49361
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Jun 2021 06:40:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37011C2B9F4
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Jun 2021 06:40:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0A6A161001
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Jun 2021 06:40:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A6A161001
+	by mail.kernel.org (Postfix) with ESMTPS id E8C8F611CC
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Jun 2021 06:40:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E8C8F611CC
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=L47y1e8NdS1nUI1yG1N2sNwXYp7lqvDh8g4ofIO1rlU=; b=tBDd3s/HEhKLTQ
-	+okQQQopK5iUkj+62tjh909gRsNahfPjmlnFmCuvK2FXdY5ivgsGKKmS2ITMncXB9XYRkoCmHdMya
-	b+XraqCPlYCjW1eliZK1ONUyfEKWitNAIyUgnjMDWcQbvOl+0f8lwPCnFnhSBAd7d852Cv2I4iQSk
-	nPX2kBiuy6r7htCSodGeoa16u3HlGC0rW66PlGAtELggXFGja1zTJFWdAm7s1M8jd9k3qZlU8j3lI
-	Wyeer4KS50b6zViCcLH05lOqC3/16qgFpoyZOwS6ax/7INteaqQQRafHmlbBEwFo8UD7FYgfZ0XyZ
-	e0zHWdtVLSUfYS+ro7GQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LvXTANDCDNFuK5A/13opgazPC32VDaY05+uKp+LahNI=; b=Us3mGV9+Bu6w1/
+	g/5WeJeHOeTLp5JRzfKb4onmylsVqksVxcr/sWJXRh9s0wN4CacTmhHvI7Wblmvjaxft0wASuVu8v
+	JWoORstBMdVYV558Ji7XtlOyuva1BSpP66qjle8HtNsoxIFtiWgUwhYzin4Pp5jDBmDcozTjV1/0K
+	6IeoEzL9dg5xWxoa+sWiDWSsjC53kvKvzL5TucBLnS09cCoELshd+PxAtJJOgiihufPVALD/ue6aI
+	BFjqjblowrHULF4pj38UAN9l6Nx3Ne7mAX4trRFeNsGDLpxTzBmnzhdAVwJ0JAaAfMLuoYQqqN4Ys
+	aEhCkZ38V3m/Rn/HqPsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1luUeU-00GUdZ-HF; Sat, 19 Jun 2021 06:40:22 +0000
-Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
+	id 1luUef-00GUge-O2; Sat, 19 Jun 2021 06:40:33 +0000
+Received: from mail-pg1-x533.google.com ([2607:f8b0:4864:20::533])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1luUeI-00GUbx-3R; Sat, 19 Jun 2021 06:40:11 +0000
-Received: by mail-pg1-x529.google.com with SMTP id n12so954320pgs.13;
- Fri, 18 Jun 2021 23:40:08 -0700 (PDT)
+ id 1luUeO-00GUcZ-5w; Sat, 19 Jun 2021 06:40:17 +0000
+Received: by mail-pg1-x533.google.com with SMTP id e33so9700932pgm.3;
+ Fri, 18 Jun 2021 23:40:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=4BqdgBHlkY5WITeFSr4aT0Yb2yF3TJEhWLYU++k4kDc=;
- b=OyJR0Nfb8+QGn3KzeftqpXXNYZ0z6y3vw7+jeGicalCGyi3T9Q8LWumQqgoCXEPvMw
- 6XAifQxgt9eFldC7SIU4rY10qlaiVWmXAW3Xr8YzP6ilEfvKPXWeaDTYDyExHtcp92QS
- MtZC6OYe4leOWMObtezIaKH7diNPzu5Y/1PVVKcbWbOe5KB+yyPCbNIp7/EOn+mxwlAq
- HSV2nCvbDPH+MKISoDlABO4wraYUqQVkVW2ulFqAEWSpxeHxACOCnspvNE46/FcU2Sj1
- bMQ/2i3fDJ1R57h6lwEskSF0F0jmVKXeSNk00LzJJ4+KccUuL3uFt5fK2lAxLN4K2D0+
- kozQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=cTrGZor3giFSILahtV27RiFLtW55t+UVcQqePFHTEzI=;
+ b=XcNwAOt4Iaca+5I7ng6jQeAUgDZQdzV4x+GsaNGBPWqmAq4s8U5PZ4FfMEEBZWsnbg
+ /iO6gOOw4+uCrfX34VEFStsCbq5OOVSZU/ESNU4tiGHnzD6FZawjxIUXwzBkkNqzpgc5
+ UGdbvD03/Iw8AXIprWT5hpsLEXL9iVNGb2jW07IN+7MfStS/TW0/j6X+BaodroEsueSd
+ e3xddEaEP1QuOJTWLD2u1Zm9jas4qm741gSJBMa7Z1mwQzzqY8GxzNXCQkBruUjqWvk5
+ FWmGoaGpOLc9QbblLOdV+JRTA5FspI/0o8WWSnghAPnHFy7HtUChgdBAP7nuQmYErDVx
+ r1sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=4BqdgBHlkY5WITeFSr4aT0Yb2yF3TJEhWLYU++k4kDc=;
- b=GWLqAifAucaAsLA1xIZtU3euA2lPh1Bm1RaNGSGjYEDkFybIjwXflfMizy2Qdcu7aR
- Uv+motiApnAfSuWJHZxs+ZBQlR1/Iuhgt5ZoV55ZfvGEPtwOl1powiNFLVUPbDafsmud
- irVuLgjpzmQBL8Jp5q3sMXh4h2UWS+qqHChDljZbtszv8fZ66Wg4qJyFkYIXsPGX2ofE
- iRGEoS/dZvmrfUiqEkDf500ssrNQnLogrnqA6yFMyYHfTMpHrw4Qwt/8fxeyixPtxMyh
- R6UyRtmPb+JCCqkcVwSx9oV3oPY2XiJdqtA+ErgrnIUfUY8M1p/QSmCvN6szOhuliZaW
- PeLg==
-X-Gm-Message-State: AOAM532A3P1j+ShcrdfWUQoO//+bt6hF27w9TuLNFRfDqcWy2fHgutr3
- FXZY3AMXDqCbU6Q6o0LbvKw=
-X-Google-Smtp-Source: ABdhPJx6qUHdAKvNLGs9CTuBE4CgynbGRylM+XJL0CFH/7p4Eml/rzSVbtxAj2oJWYngPavAiszjFg==
-X-Received: by 2002:a62:1942:0:b029:2e9:debd:d8b1 with SMTP id
- 63-20020a6219420000b02902e9debdd8b1mr8852127pfz.9.1624084807935; 
- Fri, 18 Jun 2021 23:40:07 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=cTrGZor3giFSILahtV27RiFLtW55t+UVcQqePFHTEzI=;
+ b=BhyChHHsdCXbVZU8pdXDmU38qCwy2mG+Cg6unfGs+bNZhuvatlMOmMxghZrXhvE4pV
+ 9VU4TVofxVqK7TEQsxigCLySL1J60g4Pdhm+xLzq37k/3fncSPY3u99HqDrHCgIIwV75
+ TZEt/ez6kH20kuuC/ezbqcXGvDKvL++PHYPQ64oqWuztNIWypNohp/r6H9kFe5XyNyia
+ 4g4g/4G3Cdq7bq8L55M2Snz/Q86V0ys9pd5vd80UxFe8cRsauKEWCrSAcyeGNSaCWtGk
+ amvzo1uoNop72PZqh/SrJDdgiBS7XabUbFeNhyZVTxFd0JBeavSJysUJ+foZ565CoZun
+ /yXA==
+X-Gm-Message-State: AOAM533WYyTk6OHBCGmcdvO2jtzdak3qODEASKkGI7I21He94H7FyhCO
+ NcKqbu7If5IzXeRPYVAiau8=
+X-Google-Smtp-Source: ABdhPJywWDZq3dgNDKtQB7s+bDUb2ze2dkeB2P4aHX12qoZcnCaeqhQ+Sct5O2yT2zz/apKFljN1qw==
+X-Received: by 2002:a63:ff20:: with SMTP id k32mr13898803pgi.82.1624084814388; 
+ Fri, 18 Jun 2021 23:40:14 -0700 (PDT)
 Received: from localhost.localdomain (199.19.111.227.16clouds.com.
  [199.19.111.227])
- by smtp.gmail.com with ESMTPSA id r19sm9440274pfh.152.2021.06.18.23.40.01
+ by smtp.gmail.com with ESMTPSA id r19sm9440274pfh.152.2021.06.18.23.40.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Jun 2021 23:40:07 -0700 (PDT)
+ Fri, 18 Jun 2021 23:40:13 -0700 (PDT)
 From: Artem Lapkin <email2tema@gmail.com>
 X-Google-Original-From: Artem Lapkin <art@khadas.com>
 To: narmstrong@baylibre.com
@@ -78,14 +78,16 @@ Cc: yue.wang@Amlogic.com, khilman@baylibre.com, lorenzo.pieralisi@arm.com,
  linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
  art@khadas.com, nick@khadas.com, gouwa@khadas.com
-Subject: [PATCH 0/4] PCI: replace dublicated MRRS limit quirks
-Date: Sat, 19 Jun 2021 14:39:48 +0800
-Message-Id: <20210619063952.2008746-1-art@khadas.com>
+Subject: [PATCH 1/4] PCI: move Keystone and Loongson device IDs to pci_ids
+Date: Sat, 19 Jun 2021 14:39:49 +0800
+Message-Id: <20210619063952.2008746-2-art@khadas.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210619063952.2008746-1-art@khadas.com>
+References: <20210619063952.2008746-1-art@khadas.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210618_234010_188719_3BA9CCAF 
-X-CRM114-Status: UNSURE (   5.00  )
+X-CRM114-CacheID: sfid-20210618_234016_270197_8AAF962D 
+X-CRM114-Status: UNSURE (   7.84  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,28 +105,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Replace dublicated MRRS limit quirks by mrrs_limit_quirk from core
+Moved from
 * drivers/pci/controller/dwc/pci-keystone.c
 * drivers/pci/controller/pci-loongson.c
 
-Both ks_pcie_quirk loongson_mrrs_quirk was rewritten without any
-functionality changes by one mrrs_limit_quirk
+Signed-off-by: Artem Lapkin <art@khadas.com>
+---
+ include/linux/pci_ids.h | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Added DesignWare PCI controller which need same quirk for
-* drivers/pci/controller/dwc/pci-meson.c (PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3)
-
-This quirk can solve some issue for Khadas VIM3/VIM3L(Amlogic)
-with HDMI scrambled picture and nvme devices at intensive writing...
-
-come from:
-* https://lore.kernel.org/linux-pci/20210618063821.1383357-1-art@khadas.com/
-
-Artem Lapkin (4):
- PCI: move Keystone and Loongson device IDs to pci_ids
- PCI: core: quirks: add mrrs_limit_quirk
- PCI: keystone move mrrs quirk to core
- PCI: loongson move mrrs quirk to core
-
+diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+index 4c3fa5293d76..e19d224bbca8 100644
+--- a/include/linux/pci_ids.h
++++ b/include/linux/pci_ids.h
+@@ -151,6 +151,9 @@
+ /* Vendors and devices.  Sort key: vendor first, device next. */
+ 
+ #define PCI_VENDOR_ID_LOONGSON		0x0014
++#define PCI_DEVICE_ID_LOONGSON_PCIE_PORT_0	0x7a09
++#define PCI_DEVICE_ID_LOONGSON_PCIE_PORT_1	0x7a19
++#define PCI_DEVICE_ID_LOONGSON_PCIE_PORT_2	0x7a29
+ 
+ #define PCI_VENDOR_ID_TTTECH		0x0357
+ #define PCI_DEVICE_ID_TTTECH_MC322	0x000a
+@@ -885,6 +888,10 @@
+ #define PCI_DEVICE_ID_TI_J721E		0xb00d
+ #define PCI_DEVICE_ID_TI_DRA74x		0xb500
+ #define PCI_DEVICE_ID_TI_DRA72x		0xb501
++#define PCI_DEVICE_ID_TI_RC_K2HK	0xb008
++#define PCI_DEVICE_ID_TI_RC_K2E		0xb009
++#define PCI_DEVICE_ID_TI_RC_K2L		0xb00a
++#define PCI_DEVICE_ID_TI_RC_K2G		0xb00b
+ 
+ #define PCI_VENDOR_ID_SONY		0x104d
+ 
 -- 
 2.25.1
 
