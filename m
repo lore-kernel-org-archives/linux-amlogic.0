@@ -1,89 +1,91 @@
-Return-Path: <SRS0=jJRA=LP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=yQOf=LQ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE4EFC48BE5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jun 2021 07:21:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AC4EEC2B9F4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Jun 2021 04:44:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A50E561026
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jun 2021 07:21:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A50E561026
+	by mail.kernel.org (Postfix) with ESMTPS id 73CD261153
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Jun 2021 04:44:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 73CD261153
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YsQNqga3wV6vnW9YSzwLDLMzT6WS4bq/Qxw8tk3VoIE=; b=h3i9HEDy1BZlU4
-	aS0OTshT/ypIUruNiO3PwsdBJCB6dR5QUuBzjHJ5htK/pkQ4fyBuCgowSyJ60Kq5Tc6JOYe15F63a
-	InC4+qMUjnFNhHhhAMm0ONQ/reM31X05XESuN4Qzpwa5Jne2HZ92eKZkOxSXB990JTiXZeEJzNAVM
-	K+u0hRsBG+9WGJG0m5+DD8EF77hHDKDNF9kX+A8w5RsfuT1/cueFRexRGzP7D7A3w3hsyyU19sOXB
-	GhZ92LZPLD6jAbi1wQyLtj26iZ/9xw/LgZ/QV0zwceqfgGrKCKewQUyGRsNfvyXeyhRWaINaZEQv1
-	FBerzmToXslnanC+qg3A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=wNknwpnvbDTSwKchhK0of2r6ShGULqjnv8qnWlVx0tA=; b=X0PFf9x+fjUHAV
+	alvCp54Zb6UVzb8EWxBSi8JuiNUIV4eVmwmAqxGZz6UrFg49AhIk1gSCsta5R34oHZ0vMQwRf7xhw
+	Y+dpantP/MNG/07qlsUNUAyw4VKbXi44ycZH9CnJVtUvR1a5KB7nN+zgVkOmE5cfQLOYQQzMNTx6W
+	zFOjuulixOw3x2kGEy06cr5ZRW8hnEEIQGXN/8BX2uq3ItlJ17eCy5/bD+2vpAI4LxAjFO45ws83t
+	ojXY+j2V64Dre++C5S2c5oeVX2XIJt2qc1MdmNEdNk7GTiKhl7XHUTdk4YiUqphMjZLoF7CRHEKhV
+	bsMuZqL1ca0NG+63AIuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lvEFQ-002Skg-V4; Mon, 21 Jun 2021 07:21:32 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1lvYGX-005dbU-U3; Tue, 22 Jun 2021 04:44:01 +0000
+Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lvEF9-002Sdq-UQ; Mon, 21 Jun 2021 07:21:17 +0000
-Received: by mail-ed1-x530.google.com with SMTP id i24so6812553edx.4;
- Mon, 21 Jun 2021 00:21:14 -0700 (PDT)
+ id 1lvYGL-005dZh-Dh; Tue, 22 Jun 2021 04:43:50 +0000
+Received: by mail-pf1-x433.google.com with SMTP id g192so7767943pfb.6;
+ Mon, 21 Jun 2021 21:43:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Mbnpi+F4BB/za1oZMA5jK8Z4P2+DO3unM76FgufrKCk=;
- b=C1wLOHrY+8yhoDafdxlC+Y0cECMb7v+XjOPS3rH+P2Q1WcsO3W3Ujeip9PHRSxraJA
- n1DY1bRWGnPiGESaP7X8wiyJDg06t+h2dXdFHbUtF4k9gfMm5yfuJU+CXRAZhaVZD5Px
- ZM+sxnjmJrFVWLCZVITVK/u6ClhSfIoAXb2aFrx0890J65fENt6EqvO7oeib0Il388wH
- Sfr5jRmp66bSmL6MwLDac09qoxIypuUlznhLJE3X+sh+ggRAu1WLccmiruaTk+5vJQEp
- Cr4gHD8jcdHk0X8OTlyjizOPF0jZv6vzutA/QjWdcBWZc3epT5HKoMeew2lcb9fws58c
- p86w==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=c6/Tm5shpqw/9OS5+/PUErLb83Yh9LzqaMHRoOepMhM=;
+ b=J+NRlZnKzxJOmLmfXB5MYj8stHZsG87W4lKtFNjzvrU6veKVqX8ZDvu9OIvEg9qiB8
+ legNgyX2G/i3yExo63yyypkJRpzonN1n8I+6PLrYt8MBsFBfhgKPsaLV86m4W05F2dkD
+ ccklSEay4G7sRcvBRwm5pvn1r09g0mZ5MnDdQ6AoKOS+R1ZiI5s5LAUiWpfZsjtPYaYU
+ VEBr9xNKaiWoBmf5Pi+pQsW5vRAYpTaKI1oCqAdimbBvSeOi1smZiD4kaNZCUncz+MdD
+ OozH9PkadyqiXZenSpCqKqx2yi7wWEb98/NFSgZ3gsUquMNdOuZyZn7Z1rr/CwgcKEtf
+ dkcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Mbnpi+F4BB/za1oZMA5jK8Z4P2+DO3unM76FgufrKCk=;
- b=DTNMODGUIYSS7RHD3GnRH1Go+KHA7hEYe7dFoVRwbjH0JildtTGmafbUJ78J5pE2cP
- 4TVL0EPh93vLLlHSQoQo9X03rlRFXLWynvQ+FxJaqDwi08EkgWW3G3kIXzbpyJNmfZg8
- YSz77x+aHhYL61sJV/3aGpzwpU4mMzdEl17X/8usganRiKVXA4um1Ku6iwCCCbJ/z1Wq
- nnt6ZessUl4F7FOfnVKuoh77Go6jYnpnv+yGMagWg+AN/nChq7ZleXpX55wxP5uDDgpS
- wLIzvYSPMsNLe95nim72+Id8WgnToo6hnLNUG2DXhbf8HliYbPmlWCt8TmvYs+VlsvlB
- TW9w==
-X-Gm-Message-State: AOAM532CjOZoZi7ws9sMSs58ACQ9jnCHVWbEYnwZ0nh1oD7t0QUaBeC4
- 8/iqifSLDCPDdlOUOuovJ2zXKMLg/YbakLPgJBs=
-X-Google-Smtp-Source: ABdhPJzlIsUmCD7QxdwFQ9JK241Kbhh7qVixABRLmzZHYhoNnheWKO0m38DxzqM0PUPXsxCYX3EZhXqDzI0UcRcRofI=
-X-Received: by 2002:a05:6402:3581:: with SMTP id
- y1mr2055328edc.31.1624260073558; 
- Mon, 21 Jun 2021 00:21:13 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=c6/Tm5shpqw/9OS5+/PUErLb83Yh9LzqaMHRoOepMhM=;
+ b=N6L8oNbEIm2MJMCK03NQZ5iCsZfOPwMjJx3f03NZ9kMko/UpG2lbi4XaTW0ekqXtVP
+ 9U6YFCfNd9PdlcWhocJCUMTKQvj4ZccNGV0IJ1cnmlBmREvKooqgNNdYvuVLdfaxNqcG
+ pe9Ms2Xu5VuRX8IircTcSMY6TI7xVLsCD1elgYZx5CR6r3NJyw4ZpEmplKpXwySPnDQW
+ AUm5yYYnxBxJZnhfIcjPr5vJy2M/An/Qd3lCMfY6smzcD9XX4dTg5UJaQZ/jKoJ72dUs
+ 6HOpPOKfpl9t9wPwfJc+JD012pJn67PzYXrkGO5uFKMiMX/DrwqqnGnt33pHmvQV92T7
+ UXfA==
+X-Gm-Message-State: AOAM531MubHZ7SNXU9XRnkEIzDVQfTeNtGHdvkyQA8T8rogTZ655Kzot
+ 0H8nRfvO4ZEATeoTW4ywe5c=
+X-Google-Smtp-Source: ABdhPJzm53iKSRmJ2/x99PM4SPNOkyqKGBe0icyCehyexTfDoHU3tyewXM+7y7bT5e8IbcGb5JpOeA==
+X-Received: by 2002:a63:e04c:: with SMTP id n12mr1888835pgj.239.1624337026407; 
+ Mon, 21 Jun 2021 21:43:46 -0700 (PDT)
+Received: from localhost.localdomain (104.194.74.249.16clouds.com.
+ [104.194.74.249])
+ by smtp.gmail.com with ESMTPSA id v129sm8686909pfc.31.2021.06.21.21.43.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Jun 2021 21:43:45 -0700 (PDT)
+From: Artem Lapkin <email2tema@gmail.com>
+X-Google-Original-From: Artem Lapkin <art@khadas.com>
+To: narmstrong@baylibre.com
+Cc: khilman@baylibre.com, robh+dt@kernel.org, jbrunet@baylibre.com,
+ christianshewitt@gmail.com, martin.blumenstingl@googlemail.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ art@khadas.com, nick@khadas.com, gouwa@khadas.com
+Subject: [PATCH 1/2] arm64: dts: meson: improve gxl-s905x-khadas-vim wifi
+Date: Tue, 22 Jun 2021 12:43:33 +0800
+Message-Id: <20210622044334.769791-1-art@khadas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210617194154.2397-1-linux.amoon@gmail.com>
- <CAFBinCDVnBApYziHazeS8f2FXHQ-tUS55-g6B22c20OtfYD=xw@mail.gmail.com>
- <CANAwSgQcVDdPMZjuaN4O1dpVDd-KrNCGLDq0h4vfP4YZ2vSV2Q@mail.gmail.com>
- <CAFBinCA0-M-P5bWMKmMTq+Kgx+iEBpxirjWGxpaQqR3pfn84Fw@mail.gmail.com>
-In-Reply-To: <CAFBinCA0-M-P5bWMKmMTq+Kgx+iEBpxirjWGxpaQqR3pfn84Fw@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 21 Jun 2021 12:51:02 +0530
-Message-ID: <CANAwSgQnW6RknOjfn2q0avggG7VLwEo+LaxUdbfTw1v17g5UGQ@mail.gmail.com>
-Subject: Re: [RFCv1 0/8] Meson-8b and Meson-gxbb USB phy code re-structure
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- linux-phy@lists.infradead.org, 
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic@lists.infradead.org, 
- Linux Kernel <linux-kernel@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210621_002116_050907_1CBC6BCD 
-X-CRM114-Status: GOOD (  26.19  )
+X-CRM114-CacheID: sfid-20210621_214349_505218_0651CA40 
+X-CRM114-Status: UNSURE (   8.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,58 +102,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Improve gxl-s905x-khadas-vim wifi performance
+* change freq from 60Mhz to 100Mhz
 
-On Sat, 19 Jun 2021 at 01:47, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Fri, Jun 18, 2021 at 3:20 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > (some email id got messed up while sending these changes.)
-> it happened to me before: don't worry, it's something that can be fixed
->
-> [...]
-> > > > Initially if we connect USB HDD at initial boot it get detected.
-> > > > but after that usb hotplug of USB HDD is broken.
-> > > > I did not observe and USB debug events messages to trace the root cause.
-> > > >
-> > > > Another issue I observed is increase of USB interrupts event
-> > > > even if there is not much activity on USB ports.
-> > > > I tried some clk changes but it did not workout for me.
-> > > I suggest reporting this to the dwc2 maintainers and asking for advice
-> > > on how to debug these issues.
-> > >
-> > Yes I have enabled the CONFIG_USB_DWC2_DEBUG
-> > to help debug this issue but could not find much clue on
-> > why this is happening.
-> I think CONFIG_USB_DWC2_DEBUG is a good starting point.
-> For myself I came to the conclusion that the dwc2 IP is too complex to
-> understand without additional information
-> Some additional information can be found in public datasheets of other
-> SoCs which are also using a dwc2 core, see for example RK3128 [0] or
-> RT3050 [1]
-> That's why my suggestion is to additionally ask the dwc2 maintainers
-> (which are not Cc'ed on this mail) for debugging suggestions.
->
+100Mhz works well same as in meson-khadas-vim3.dtsi
 
-Yes, I will investigate with mode debugging and Cc USB maintainers in
-the next version for more details.
+Signed-off-by: Artem Lapkin <art@khadas.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
->
-> Best regards,
-> Martin
->
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+index 60feac0179c0..6ab1cc125b96 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+@@ -218,6 +218,8 @@ &pwm_ef {
+ };
+ 
+ &sd_emmc_a {
++	max-frequency = <100000000>;
++
+ 	brcmf: wifi@1 {
+ 		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+-- 
+2.25.1
 
-Thanks for these inputs.
->
-> [0] https://rockchip.fr/RK312X%20TRM/chapter-26-usb-otg-2-0.pdf
-> [1] http://static6.arrow.com/aropdfconversion/aa9a14376a75e7c5d6daa9f6aaed8411909d2021/rt3050_5x_v2.0_081408_0902.pdf
-
-Thanks
-
--Anand
 
 _______________________________________________
 linux-amlogic mailing list
