@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 54FF7C2B9F4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jun 2021 02:46:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62600C2B9F4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jun 2021 02:46:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 19A266128C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jun 2021 02:46:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 19A266128C
+	by mail.kernel.org (Postfix) with ESMTPS id 3625261375
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jun 2021 02:46:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3625261375
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,53 +24,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RwHbaD6pMToWvJSV0Gznuo7V3ET7AJ3M88PwyxIpbMU=; b=j+ouqTb1/HrDpK
-	eVQzNHkNL6NPJ5irk5ehKfyu19S5bcVQXQVkVHZ+fBO8Aybs5Rftbwnbm5l3SL0lxogU8FhBZycbi
-	cXH3MhTJti98Jsk2dxgw5hxjCp3M35QJR2+s2itgd5zEvso1VwQEGsbk/yvfy4iSfGDpoHxjA6cX6
-	DMBtgL0gmbzlvGfUasP2JIHjdkRnFsp8Q4fk4Reo3FZklZo4E/F+nohVMbphuPV4/x8hnNgpQnjLx
-	Kh0RAeLxIele3abHliMQzU29Qj5rmfs8Q5rqrJBAPWJsldy4abpXqXELzux6uTe7bTn/r0tINEJru
-	cN2sonMeKhictf+NG5Vg==;
+	List-Owner; bh=sHV/bsxLUK95u7A1XqKn/prKFOqG59VwncfA48+ADuQ=; b=Pbo21JR+/AVVeI
+	roSmGuZwTPcOWixXYKwWyDkv/sBIgHCFRQv9guQzGENjdPg/XbIqGBSLtmLmGpq1kR78VbRHf5um7
+	gE8Z0JcAEySzryYCR/E2VyUYUKFyDJH81Yj7MvdCigj1TGR/8Af+olDoIwzhKHG3uaTLmI/NMlE/u
+	7P6KWw3PQkxr28IC9udT3Hy0zuqtv+Nf9ojyaDcLQEME3OO8QROvAb0LaCv3H9kQ55/ypaIle3Bq5
+	ABobVBXdX3SVUYXHu5+TwcgYhmc6AMZy2ZcwPBbTupnR6KmKyn0iQWh0JuZ9PRwnc9K3ecVMvVx6h
+	3e4AgvmA1q8OPzh0/+gw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lvsu2-00948Q-4X; Wed, 23 Jun 2021 02:46:10 +0000
-Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
+	id 1lvsuX-0094P7-VC; Wed, 23 Jun 2021 02:46:41 +0000
+Received: from mail-pf1-x435.google.com ([2607:f8b0:4864:20::435])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lvstC-0093ne-UT; Wed, 23 Jun 2021 02:45:20 +0000
-Received: by mail-pj1-x102c.google.com with SMTP id
- p4-20020a17090a9304b029016f3020d867so468784pjo.3; 
- Tue, 22 Jun 2021 19:45:18 -0700 (PDT)
+ id 1lvstI-0093pc-Rf; Wed, 23 Jun 2021 02:45:26 +0000
+Received: by mail-pf1-x435.google.com with SMTP id t32so1157951pfg.2;
+ Tue, 22 Jun 2021 19:45:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ip7ajlGeYj7m17iAVH4CDZ+K9tw9hchuXGcTy/Lm6iQ=;
- b=ZLHfABsqlgyddU1GXYU9y5z08Y+mthiwFyIpXRHJYRuxFLzMQ87pEBVg79j10WS2qY
- FiShyYhNhx8+VW+95/cNH4rGhSuBAAmbdjA6dutHC2p26uj1ug1lutM/V+BNia93oByg
- 2FGz4R/kGqk37obq3lHyBVkQg0JD87lvKHgLfCUapD4yrMv0vctofqM31YhBXVCl8tUB
- pE9sgqKfduGMzqYg6xtrA5J/bH3d6yCwI33BoDzoMOb42bDmByANRj3A9Zh0sKu9MQBY
- GnVMrXqqaoxd+vdiW1PWVLvjFpWn8V+yrQUV72n3YSzP3UI5g7C+5OfNRbD+xPsMCWGM
- 6Znw==
+ bh=LcifxjeTUDszannHMA8tVPaboMaFqX7AuHfWKGJzjKI=;
+ b=JfkHKlHpvuQg3diepBAJEjojfs8YXzRc3xvNfso0Hrc8GQkFBeLP3EDXjQPI1VIJKl
+ G3al2vMQ032sv0u8H5FTLNHzKYOgQf0ztNuJhK0qQ1eU2zBdjgcEN4NEi8N84b7Y3fex
+ vooAIqWJ+7VWOFZMgiQYNuAP0KbFDkDQsKcKOljozIYft+C+N0BhKUIL3J+3beAdT3kt
+ /bXgDg6S3/9OmwmRt6KpNzDrsE80RtjEM7j3hE0NJDz0qzEQ+HZasZKVYEZduOe42hWT
+ RdZ5oWfGNc41KAieprAHF78H4qqQPQK7Qiv2Y5j2oOVjHSqi/UUgVyoTmRcrdkBPgMxE
+ tTfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ip7ajlGeYj7m17iAVH4CDZ+K9tw9hchuXGcTy/Lm6iQ=;
- b=C6ELA9t+WZQqMDsG5FjmVsSmkdsZJd7UVELcINHn0W1MjzoTmWTXmX0KswFsebxQi6
- WXwScYZlD+BClPZSOr1gnuLKeCrx+e8Kns/LShHvcPs1uhXejFHnuJZT9/wixSX4dSZR
- 1m9lr+HrfUtKRLg7RyN/zXkqYYUjrMqkD5rfRscM0thdmcsk+mrDha0u7K074nYsFR/y
- zXC6CILBYQzewf7h0LdOsN1q59vhSQOop8A7snDUgPJ9Sw9dAo+XiQU/BHP7q6Zfx5go
- wVnUV+gbtfzfn5Tckghm/55KEy3GCqCOM91H6sutRiP25z4X5puWw7e4uAMVyfykymo8
- JpqA==
-X-Gm-Message-State: AOAM532tr9kk9Dzy/vXvjufoIXc+I1n+i/Lgc7WosyWZaFWQQFkDQ5cn
- ZKo/DZ5jKtwPpoYDB3XNSTE=
-X-Google-Smtp-Source: ABdhPJyhCZwjN/m4vhnNitMbn91dSnkTedliyYAJ/e5+IN8eggGCWtWL3XZgZhB48Y3cBOXQ/yZ8uw==
-X-Received: by 2002:a17:90a:c8b:: with SMTP id
- v11mr7062600pja.114.1624416318293; 
- Tue, 22 Jun 2021 19:45:18 -0700 (PDT)
+ bh=LcifxjeTUDszannHMA8tVPaboMaFqX7AuHfWKGJzjKI=;
+ b=bEywgl1nyt97S7SzCqkn2EdzT8+iRET2ZErf5gFEbaN5A2k6xTUndPUNNrw70SAWXt
+ msOHx09vq71C5rjMD8NJvSKsVtyhX5bzti6XeI3XObKe2q5ItXwrDyxGefng6VGtc5dL
+ MaILHSljmHXCfORs5P0noZ08o/gRDXJRiRhwlyVsDF8a5KOtGgv7J9SSwwmDOLnErNhy
+ ZTa6IxOiNF4uKx7zcuedwYhBbCPnXXzwGa9FewKx28cMhXz9GkqfHiM7h9eHvfPyRwya
+ ozBOanIOOjR7rarqVSd10d/DKJ6qrEegg7IddKbv9vnjj48qtQJ+QfEWRMVughbSwNFj
+ E+0A==
+X-Gm-Message-State: AOAM532qzZq6dQNJC37zQ5jiIKXCbFLylzAlQH/vwFv5+c8lGgZWTFt8
+ NZ/45zekJLtFrib9x4V9YFM=
+X-Google-Smtp-Source: ABdhPJzTDkJpnFau8uqxddN6VvWamjN+0zFvBtltEsw/1tOk1RZOua6W2lO++aLSf9yfwQkf8CyYEQ==
+X-Received: by 2002:a63:1709:: with SMTP id x9mr1605486pgl.245.1624416324113; 
+ Tue, 22 Jun 2021 19:45:24 -0700 (PDT)
 Received: from localhost.localdomain (104.194.74.249.16clouds.com.
  [104.194.74.249])
- by smtp.gmail.com with ESMTPSA id z17sm556307pfq.218.2021.06.22.19.45.12
+ by smtp.gmail.com with ESMTPSA id z17sm556307pfq.218.2021.06.22.19.45.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Jun 2021 19:45:18 -0700 (PDT)
+ Tue, 22 Jun 2021 19:45:23 -0700 (PDT)
 From: Artem Lapkin <email2tema@gmail.com>
 X-Google-Original-From: Artem Lapkin <art@khadas.com>
 To: narmstrong@baylibre.com
@@ -80,17 +78,17 @@ Cc: wim@linux-watchdog.org, linux@roeck-us.net, khilman@baylibre.com,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, art@khadas.com, nick@khadas.com,
  gouwa@khadas.com
-Subject: [PATCH 4/5] watchdog: meson_gxbb_wdt: add stop_on_unregister
-Date: Wed, 23 Jun 2021 10:44:28 +0800
-Message-Id: <20210623024429.1346349-5-art@khadas.com>
+Subject: [PATCH 5/5] watchdog: meson_gxbb_wdt: add register device status
+ notification
+Date: Wed, 23 Jun 2021 10:44:29 +0800
+Message-Id: <20210623024429.1346349-6-art@khadas.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210623024429.1346349-1-art@khadas.com>
 References: <20210623024429.1346349-1-art@khadas.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210622_194519_031982_BB27FBF2 
-X-CRM114-Status: UNSURE (   8.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210622_194524_941375_C0639EBC 
+X-CRM114-Status: GOOD (  11.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,25 +105,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Added missed watchdog_stop_on_unregister call
+Print watchdog success driver start status notification
 
 Signed-off-by: Artem Lapkin <art@khadas.com>
 ---
- drivers/watchdog/meson_gxbb_wdt.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/watchdog/meson_gxbb_wdt.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
-index 0bf5dccf70b1..2dbe254e5122 100644
+index 2dbe254e5122..750b304b460d 100644
 --- a/drivers/watchdog/meson_gxbb_wdt.c
 +++ b/drivers/watchdog/meson_gxbb_wdt.c
-@@ -196,6 +196,7 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
- 
- 	meson_gxbb_wdt_set_timeout(&data->wdt_dev, data->wdt_dev.timeout);
+@@ -198,7 +198,14 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
  	watchdog_set_nowayout(&data->wdt_dev, nowayout);
-+	watchdog_stop_on_unregister(&data->wdt_dev);
+ 	watchdog_stop_on_unregister(&data->wdt_dev);
  
- 	return devm_watchdog_register_device(dev, &data->wdt_dev);
+-	return devm_watchdog_register_device(dev, &data->wdt_dev);
++	ret = devm_watchdog_register_device(dev, &data->wdt_dev);
++	if (ret)
++		return ret;
++
++	dev_info(dev, "Watchdog enabled (timeout=%d sec, nowayout=%d)",
++		 data->wdt_dev.timeout, nowayout);
++
++	return ret;
  }
+ 
+ static struct platform_driver meson_gxbb_wdt_driver = {
 -- 
 2.25.1
 
