@@ -2,20 +2,20 @@ Return-Path: <SRS0=mKTp=LV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-0.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F34CC48BC2
-	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 20:07:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 09805C48BC2
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 20:26:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F420D619A0
-	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 20:07:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F420D619A0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id AFB7F619BF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 20:26:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AFB7F619BF
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -23,46 +23,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Pevseqj3LHpmQ8Xbg2OgEM6AuxUtE9lUNm4e1MxKWME=; b=E+4+FDcaVoUQ8V
-	Pmv8XnYAu4ecfwT87i/kHxIs4+3s1k842GZ8dP4qdfdqAc4tZKL73dDu/UNqaAvMEyUowXGuOH4UK
-	oZNsz9cq+gkzDENdyIUUDIO5WrtbvtiFOVfd11dt3o20ZTlKxnhZveu91zAYH5QwhM5DB9MgFuMYi
-	MncRUGfCXHqZ8oGqdX62WuVKvit0KGfo4Z5bxkzopwm3Q5dCcVpqlqOxM7A85VpDdSAWPqdgVHCUz
-	I8AEp4KHmnQTz3AeoM7gzl91wC1UDFKOB6MvSQdcN3wUgVsUJ4dxnlNgtp7yxhu/aI54F77QGvabx
-	AJEsqaHAfoRYUP3/Rvjw==;
+	List-Owner; bh=QEm77RmFXZWO+HMMJehnrdMNNt9+BmBg6ef2Noa8t/c=; b=oJxAhYr3vOJgh2
+	PiaFaeEpu4yQLIGbwQhygr6kxMIb6v7h/NtPtoc52L47yXRUGBlwKPByIR0T5OZmLDxiP8JV9HAIz
+	Zm9YSGeEEj+QUzR9lnU2y8nf7+f7AUCbnDyXVMTuITrGoG+1NOJ6qlt0+rDnZ/VO1ZAAaQzl3pfL5
+	F7qPaA6M6xkP74QTsfo+c+d93CXQrwvFKJpp/jESjpslbLlG2dkIdQU4+xMFLa7qj+wP2mXdtWVE7
+	v2+kO1VK2+9xyPutHjnrX61vSrOHF75BGgUN8vwd7h1GMSvW5sQXo2OHqjn9a6M35Z80b3mKkR/iJ
+	pk2JhNHy3iTl0lS8tf9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lxb48-0065M2-DQ; Sun, 27 Jun 2021 20:07:40 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1lxbLq-0066UN-CV; Sun, 27 Jun 2021 20:25:58 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lxb3p-0065IX-UN; Sun, 27 Jun 2021 20:07:23 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id hc16so25445460ejc.12;
- Sun, 27 Jun 2021 13:07:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ id 1lxbLd-0066T2-MJ; Sun, 27 Jun 2021 20:25:47 +0000
+Received: by mail-ed1-x529.google.com with SMTP id m14so22250293edp.9;
+ Sun, 27 Jun 2021 13:25:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4GZy7C/9sgJCYlkJRGJmqppC27IF56G6yPi0fir+u+U=;
- b=de4EKYnhin6OAMnO4NukNewMbCn4Zn1bjZgwVULo2pw+OtuWKDioNaQhBcWfz8B6cl
- oycpWnt9HXe1QFrQq64XdbXJzCoUK3FQeGs9srdADy379zwTm+DqZRwoGpcnAfewgdL5
- gTdfcnqTAkI3Zg82deaEmUuV0dbKEcf7mydBk02Cj4C/044Q1OhbaZMFJ4vclbT4LBNA
- y8iQn2mFj2Jvf26lrUhkSL/zS6WLpwvtCkfCvqI/0pwVU5b5lvPTSyFcIWqbChg0l8wp
- mqokW+gvWBt7e3CjvhgjWR6UrLn4bwXZ5E99FuwMZTWVjoVcBRNrNqQLAii68EyCyh8Z
- 6qEg==
+ :cc; bh=e/Zn1I2M+Wt1TmihQs535Y+fjsrSFYX9XLAbFt7QxGI=;
+ b=mQU+QpABF4SUnwGx7zw4zY0rpx9/ZaLTR2ImzkDUwpnixcF/AYS2w+8NYxUUor+e/0
+ EH+Fp9fNRXUNwZ3aDNLgl7V+SlqTJpW57h+W/XRlTc9tgGJQxETpA/SsvoMepiW1ZJ+n
+ CIT8MQPzvJlEGukHWj33UVrCGvFV9S0J/7KH1R7rJ18G5ExTfVGD8M++f/13cNP6Yp43
+ ILyiurn7sqDk/4kp22q426Dn57jvrTkkGU2U1Tcq3r34tHHccLcLZdS9CuOY0W9HWHq3
+ +cgqB5zRX/2Lmlp/vYaaXQrEBZhVaZ0L4u7nhgdqaW0tTq3wxSkptTXjMIuRxdyMSvES
+ XTYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=4GZy7C/9sgJCYlkJRGJmqppC27IF56G6yPi0fir+u+U=;
- b=qPTwMR/u/cGK/ujdoYP2dRl5yLkWU+5DWLN78VxtUYwcmvrdiHK2mbvxoslPUoRHO5
- sc817HWHH1z1hPBYw4KEOESK2RQzUA5t4avIWGG6ttrNStlTE7TQns6ihpuaGyI3kTg1
- rFsF9Bo/RoIkqQhH5CRnaeZK4QhNhcI3+vZYZDPuVWwflWaIYFG00Q5PwaJiP8AqwpLa
- AaNuy9qrfHx3/bRsTBGLAYFbzH2/BsCOwWNEuzfAIy/JETP8ZjpSGBEvYjXdkKSWKzCu
- Nj4qoqwfpJRDjDljbwmYiV+JfxZHAyMvW/M342r9OgwCbac6ghhAix3x843Icp5jNPpE
- Sfaw==
-X-Gm-Message-State: AOAM5300YHI9isjJJS294r5BDquaJ6rIgwb8PIN3ruhpDtAFyB8VhMrg
- CzpnVKY9EKw1AduxHThVpP7LOcs98IC5S9MMMPU=
-X-Google-Smtp-Source: ABdhPJz3tOQ8PoogIkkWY4d9SpFZHJZzPxU5NFlcG/A9Se/KywrauH1fHDuTX8VG/enLAVqFiT0qZLkI6kfBd0EyAuo=
-X-Received: by 2002:a17:907:1dd9:: with SMTP id
- og25mr20771185ejc.108.1624824440004; 
- Sun, 27 Jun 2021 13:07:20 -0700 (PDT)
+ bh=e/Zn1I2M+Wt1TmihQs535Y+fjsrSFYX9XLAbFt7QxGI=;
+ b=Fo1b5jJe+U2YSvB0Zbb0c9lfIZS1kueT0/V0AF9HVeI1lQzV3WFlOCfxFc9rYlZyrT
+ xGS1olJwTwUzORl9KVRRqqwMDuw58+4QRtjUte9z8vzcolxy5vYLop1KLpsd+cy6PiT+
+ kilcYYWI8skZgi1haVdr24w9fgeLywKkZrHUHi32sZf37e/1qSfCuJNBd6aorbP+c1a2
+ Y86wb6N09dhTzFowK3lug6p9mAoTW3LaCGtFTU7Zaj54OAMDxhtrVMzM8xVD+VgaxUoL
+ 7VzThmXbcP98qtg97nQ3Lb4X4S3bQ5iOgYtoxv0D+8iiJjNSpDlyF+ifOBHAGCysBYWS
+ NWTQ==
+X-Gm-Message-State: AOAM532BsZKgWjHuAWqWCphK702weKHQDppVgiZ5pCb7PRzZcC28v/6y
+ XcHUVEAorVnI1yPewZdwKklUqx8JcuXieEEuHbM=
+X-Google-Smtp-Source: ABdhPJwr6Rc0LaKsO2ZI8Ag1Z2/TERum8nYsgvoqHGVvdsLrKU5BtJjQMKrI5h5ju+ajrEHfzhORg4vRB8Jzcur/CDw=
+X-Received: by 2002:a05:6402:706:: with SMTP id
+ w6mr28300727edx.176.1624825543911; 
+ Sun, 27 Jun 2021 13:25:43 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210617194154.2397-1-linux.amoon@gmail.com>
  <20210617194154.2397-7-linux.amoon@gmail.com>
@@ -72,13 +73,14 @@ References: <20210617194154.2397-1-linux.amoon@gmail.com>
  <CANAwSgRABOyWYJPrrw64Wa6j2D94T4tybn7MHGCTbBowt7UncA@mail.gmail.com>
  <CAFBinCD91eYNXSqnmDKoAvJHWqqRbXVjnaq9RuRNCnip9kKqkw@mail.gmail.com>
  <CANAwSgRzY+699aSS9MVGAJYVR6_0Ni75JPhO9=LKunHQK0p=oA@mail.gmail.com>
-In-Reply-To: <CANAwSgRzY+699aSS9MVGAJYVR6_0Ni75JPhO9=LKunHQK0p=oA@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 28 Jun 2021 01:37:08 +0530
-Message-ID: <CANAwSgQktfn9Q=PJhx5Uq0UQ2dHqJwjKu1RWyb2k=-dA9=+BSQ@mail.gmail.com>
+ <CANAwSgQktfn9Q=PJhx5Uq0UQ2dHqJwjKu1RWyb2k=-dA9=+BSQ@mail.gmail.com>
+In-Reply-To: <CANAwSgQktfn9Q=PJhx5Uq0UQ2dHqJwjKu1RWyb2k=-dA9=+BSQ@mail.gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 27 Jun 2021 22:25:33 +0200
+Message-ID: <CAFBinCD+seUuYUrObiqJNgEi_DaULB3nU+QQFHz9d85dAU06ZA@mail.gmail.com>
 Subject: Re: [RFCv1 6/8] phy: amlogic: meson8b-usb2: Use phy reset callback
  function
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: Anand Moon <linux.amoon@gmail.com>
 Cc: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
  Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
@@ -87,8 +89,8 @@ Cc: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>,
  linux-amlogic@lists.infradead.org, 
  Linux Kernel <linux-kernel@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210627_130722_059262_B65882C7 
-X-CRM114-Status: GOOD (  39.07  )
+X-CRM114-CacheID: sfid-20210627_132545_829463_F4858734 
+X-CRM114-Status: GOOD (  13.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,136 +107,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Hi Anand,
 
-On Thu, 24 Jun 2021 at 20:24, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Hi Martin,
->
-> On Wed, 23 Jun 2021 at 01:42, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> >
-> > Hi Anand,
-> >
-> > On Mon, Jun 21, 2021 at 9:16 AM Anand Moon <linux.amoon@gmail.com> wrote:
-> > [...]
-> > > Ok Thanks for the inputs. got your point.
-> > >
-> > > I was also looking into Amlogic source code for reset. (aml_cbus_update_bits)
-> > > [0] https://github.com/khadas/linux/blob/khadas-vims-4.9.y/drivers/amlogic/usb/phy/phy-aml-new-usb.c
-> > > is there some feature to iomap the USB with cbus?
-> > for that specific code: that's what we do inside drivers/reset/reset-meson.c
-> > Amlogic's vendor kernel uses an increment of 4 bytes per value, so
-> > 0x1102 translates to 0x4408
-> >
-> > then in mainline's meson8b.dtsi we have:
-> >     compatible = "amlogic,meson8b-reset";
-> >     reg = <0x4404 0x9c>;
-> > as you can see 0x4408 is part of the reset controller node.
-> >
-> > next in include/dt-bindings/reset/amlogic,meson8b-reset.h we have:
-> >     #define RESET_USB_OTG                 34
-> >
-> > the register used for reset line 34 is translated using:
-> >     0x4404 (first register) + 4 (4 * reset line / 32 = 1) = 0x4408
-> > then the bit inside this register is translated using:
-> >     reset line % 32 = 2
-> >
-> > that's how we express aml_cbus_update_bits(0x1102, 0x1<<2, 0x1<<2); in
-> > the mainline kernel (by going through the reset subsystem)
-> >
->
-> Thank you very much for clearing my long-standing doubt on *reset
-> logic* on Amlogic SoC.
->
-> > [...]
-> > > > > > > -       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-> > > > > > > +       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, "phy");
-> > > > > > I think this breaks compatibility with existing .dtbs and our
-> > > > > > dt-bindings (as we're not documenting a "reset-names" property).
-> > > > > > What is the goal of this one?
-> > > > > >
-> > > > >
-> > > > > OK, If we pass NULL over here there is the possibility
-> > > > > USB phy will not get registered.
-> > > > I don't understand why - with NULL everything is working fine for me.
-> > > > Also no matter which name you give to the reset line (in reset-names),
-> > > > it will be the same reset line in all cases. If it's the same reset
-> > > > line before and after: why is this needed?
-> > > >
-> > > I need to investigate this reset feature. With my setup with current changes
-> > > after I update the below.
-> > > -       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, "phy");
-> > > +       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-> > >         if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
-> > >                 return PTR_ERR(priv->reset);
-> > >
-> > > Reset will break the USB initialization, see below output.
-> > interesting, I have not seen that USB problem before and neither is
-> > Kernel CI seeing it: [0]
-> > Is it only happening with this patch or did you also see it before?
-> >
-> Yes, it could happen with this patch but It could be also linked to
-> reorder the phy configuration.
-> See below logs, when core reset fails on USB PHY no USB is getting registered.
->
-> [    1.267620] dwc2 c9040000.usb: mapped PA c9040000 to VA (ptrval)
-> [    1.267768] dwc2 c9040000.usb: Looking up vusb_d-supply from device tree
-> [    1.267783] dwc2 c9040000.usb: Looking up vusb_d-supply property in
-> node /soc/usb@c9040000 failed
-> [    1.267814] dwc2 c9040000.usb: supply vusb_d not found, using dummy regulator
-> [    1.267940] dwc2 c9040000.usb: Looking up vusb_a-supply from device tree
-> [    1.267954] dwc2 c9040000.usb: Looking up vusb_a-supply property in
-> node /soc/usb@c9040000 failed
-> [    1.267975] dwc2 c9040000.usb: supply vusb_a not found, using dummy regulator
-> [    1.268037] dwc2 c9040000.usb: registering common handler for irq35
-> [    1.268090] dwc2 c9040000.usb: Looking up vbus-supply from device tree
-> [    1.268102] dwc2 c9040000.usb: Looking up vbus-supply property in
-> node /soc/usb@c9040000 failed
-> [    1.269267] dwc2 c9040000.usb: Core Release: 3.10a (snpsid=4f54310a)
-> [    1.273185] dwc2 c9040000.usb: dwc2_core_reset: HANG! Soft Reset
-> timeout GRSTCTL_CSFTRST
-> [    1.273510] dwc2: probe of c9040000.usb failed with error -16
-> [    1.275474] dwc2 c90c0000.usb: mapped PA c90c0000 to VA (ptrval)
-> [    1.275603] dwc2 c90c0000.usb: Looking up vusb_d-supply from device tree
-> [    1.275617] dwc2 c90c0000.usb: Looking up vusb_d-supply property in
-> node /soc/usb@c90c0000 failed
-> [    1.275646] dwc2 c90c0000.usb: supply vusb_d not found, using dummy regulator
-> [    1.275784] dwc2 c90c0000.usb: Looking up vusb_a-supply from device tree
-> [    1.275798] dwc2 c90c0000.usb: Looking up vusb_a-supply property in
-> node /soc/usb@c90c0000 failed
-> [    1.275819] dwc2 c90c0000.usb: supply vusb_a not found, using dummy regulator
-> [    1.275877] dwc2 c90c0000.usb: registering common handler for irq36
-> [    1.275930] dwc2 c90c0000.usb: Looking up vbus-supply from device tree
-> [    1.275942] dwc2 c90c0000.usb: Looking up vbus-supply property in
-> node /soc/usb@c90c0000 failed
-> [    1.277125] dwc2 c90c0000.usb: Core Release: 3.10a (snpsid=4f54310a)
-> [    1.281042] dwc2 c90c0000.usb: dwc2_core_reset: HANG! Soft Reset
-> timeout GRSTCTL_CSFTRST
- > [    1.281353] dwc2: probe of c90c0000.usb failed with error -16
- >
+On Sun, Jun 27, 2021 at 10:07 PM Anand Moon <linux.amoon@gmail.com> wrote:
+[...]
+> Sorry for the delay.
+> We could switch the reset logic to
+> *devm_reset_control_get_optional_exclusive* as below
+> to fix the reset line, since both the dwc2 c90c0000.usb and c9040000.usb
+> will have their own context to reset control register, it means the
+> reset line is not share
+> between two USB PHY nodes.
+This is something I don't understand.
+As discussed in our previous mails reset_control_reset in case of the
+USB PHY driver (which uses the RESET_USB_OTG reset line for *both*
+PHYs) is equivalent to the following code in the vendor kernel:
+  aml_cbus_update_bits(0x1102, 0x1<<2, 0x1<<2)
 
-Sorry for the delay.
-We could switch the reset logic to
-*devm_reset_control_get_optional_exclusive* as below
-to fix the reset line, since both the dwc2 c90c0000.usb and c9040000.usb
-will have their own context to reset control register, it means the
-reset line is not share
-between two USB PHY nodes.
+We have two PHYs but only one reset line. So in my own words I
+describe the reset line as being shared.
 
--       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-+       priv->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
-+                                                               "reset");
+>
+> -       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
+> +       priv->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
+> +                                                               "reset");
+Have you boot-tested this?
+Without any .dts changes this will return NULL because there's no
+reset-names = "reset"; in the .dts(i).
+If you replace "reset" with NULL then I assume that the second PHY
+will fail to obtain the reset line because it's shared between two
+devices but we're trying to obtain it exclusively for both (PHYs).
 
-> >
-> > Best regards,
-> > Martin
-> >
-> >
-> > [0] https://storage.staging.kernelci.org/next/master/next-20210617/arm/multi_v7_defconfig+ltp-ima/gcc-8/lab-baylibre/baseline-meson8b-odroidc1.html
 
-Thanks
--Anand
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
