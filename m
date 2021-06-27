@@ -2,95 +2,90 @@ Return-Path: <SRS0=mKTp=LV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 09805C48BC2
-	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 20:26:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6EDDC48BC2
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 22:40:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AFB7F619BF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 20:26:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AFB7F619BF
+	by mail.kernel.org (Postfix) with ESMTPS id 573A761469
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 22:40:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 573A761469
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QEm77RmFXZWO+HMMJehnrdMNNt9+BmBg6ef2Noa8t/c=; b=oJxAhYr3vOJgh2
-	PiaFaeEpu4yQLIGbwQhygr6kxMIb6v7h/NtPtoc52L47yXRUGBlwKPByIR0T5OZmLDxiP8JV9HAIz
-	Zm9YSGeEEj+QUzR9lnU2y8nf7+f7AUCbnDyXVMTuITrGoG+1NOJ6qlt0+rDnZ/VO1ZAAaQzl3pfL5
-	F7qPaA6M6xkP74QTsfo+c+d93CXQrwvFKJpp/jESjpslbLlG2dkIdQU4+xMFLa7qj+wP2mXdtWVE7
-	v2+kO1VK2+9xyPutHjnrX61vSrOHF75BGgUN8vwd7h1GMSvW5sQXo2OHqjn9a6M35Z80b3mKkR/iJ
-	pk2JhNHy3iTl0lS8tf9Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=B3FUR0Duo48dKws5PXdYXETuwGi5gAQFmVFqT/lsAM8=; b=JGd5CHQREd6Mql
+	dt52vs9Xi3ZzJaOQ7x/uZ+A2L+zm+p6IbafbMjxdJ7E000cw2xwOES7fpq9PawnrRAL05HPCONQFs
+	uFMvcwIwp5yyktlCbpIgqJf6+3ATIBieOF3XONvswWKjKgiHhC2ishSF/aYr3vRKC1b1ZKRu5HahK
+	pHc3IRG+2agGaDQHSxhMj+mJX0/3HaTKIedwMqmzu2KUq3ZPzRyoGpgQlYShxg9rLjg4xq2gOSHal
+	SQouN1G0s+ZB/S11S1dP1scVN9wsjLD4CISx6wXkjynHpd76dxJH3uKIRq2DWLtSl0hT6Wn20PKSf
+	YxLKzhSPcAeViPQfQDfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lxbLq-0066UN-CV; Sun, 27 Jun 2021 20:25:58 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1lxdRu-006Fct-5E; Sun, 27 Jun 2021 22:40:22 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lxbLd-0066T2-MJ; Sun, 27 Jun 2021 20:25:47 +0000
-Received: by mail-ed1-x529.google.com with SMTP id m14so22250293edp.9;
- Sun, 27 Jun 2021 13:25:45 -0700 (PDT)
+ id 1lxdRr-006FbS-GK; Sun, 27 Jun 2021 22:40:21 +0000
+Received: by mail-ed1-x531.google.com with SMTP id i5so22700570eds.1;
+ Sun, 27 Jun 2021 15:40:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=e/Zn1I2M+Wt1TmihQs535Y+fjsrSFYX9XLAbFt7QxGI=;
- b=mQU+QpABF4SUnwGx7zw4zY0rpx9/ZaLTR2ImzkDUwpnixcF/AYS2w+8NYxUUor+e/0
- EH+Fp9fNRXUNwZ3aDNLgl7V+SlqTJpW57h+W/XRlTc9tgGJQxETpA/SsvoMepiW1ZJ+n
- CIT8MQPzvJlEGukHWj33UVrCGvFV9S0J/7KH1R7rJ18G5ExTfVGD8M++f/13cNP6Yp43
- ILyiurn7sqDk/4kp22q426Dn57jvrTkkGU2U1Tcq3r34tHHccLcLZdS9CuOY0W9HWHq3
- +cgqB5zRX/2Lmlp/vYaaXQrEBZhVaZ0L4u7nhgdqaW0tTq3wxSkptTXjMIuRxdyMSvES
- XTYw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=slZufKqFz802FONUtf3n7bSuBW3tmbUsPHVs2VZ3Gpo=;
+ b=SazL/ovzGjBiHJSJupDWYJeQNxRVlPb5+n/A+KqsCEeC5RJETZVjm/4mgLrooh9Lis
+ 8K8Bj+EQ+YWkSwlZRGAYlEPLSfjgfQvCujONP/rFvbRb6skQc5pNX20RXLQLd09kinKc
+ FVNjy69epxNbFTa7fmIdnEsRe/b+tnzHilil8qeSGBsTCshAZvc+nbCcxzvLKDQtyjSS
+ xmkEIUHgSUh3+QSCoJyV3GONRvWIsDjNFqoMlqGcjSsl2TJFH4Udej3WFde02aC2ZfFX
+ /Bo8yh1ofynHaIhLRYQ4WQlKDYTctK9epnsYJYUY0ye89Mfn+MGMTKpexXGmYf6dRSsN
+ punA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=e/Zn1I2M+Wt1TmihQs535Y+fjsrSFYX9XLAbFt7QxGI=;
- b=Fo1b5jJe+U2YSvB0Zbb0c9lfIZS1kueT0/V0AF9HVeI1lQzV3WFlOCfxFc9rYlZyrT
- xGS1olJwTwUzORl9KVRRqqwMDuw58+4QRtjUte9z8vzcolxy5vYLop1KLpsd+cy6PiT+
- kilcYYWI8skZgi1haVdr24w9fgeLywKkZrHUHi32sZf37e/1qSfCuJNBd6aorbP+c1a2
- Y86wb6N09dhTzFowK3lug6p9mAoTW3LaCGtFTU7Zaj54OAMDxhtrVMzM8xVD+VgaxUoL
- 7VzThmXbcP98qtg97nQ3Lb4X4S3bQ5iOgYtoxv0D+8iiJjNSpDlyF+ifOBHAGCysBYWS
- NWTQ==
-X-Gm-Message-State: AOAM532BsZKgWjHuAWqWCphK702weKHQDppVgiZ5pCb7PRzZcC28v/6y
- XcHUVEAorVnI1yPewZdwKklUqx8JcuXieEEuHbM=
-X-Google-Smtp-Source: ABdhPJwr6Rc0LaKsO2ZI8Ag1Z2/TERum8nYsgvoqHGVvdsLrKU5BtJjQMKrI5h5ju+ajrEHfzhORg4vRB8Jzcur/CDw=
-X-Received: by 2002:a05:6402:706:: with SMTP id
- w6mr28300727edx.176.1624825543911; 
- Sun, 27 Jun 2021 13:25:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210617194154.2397-1-linux.amoon@gmail.com>
- <20210617194154.2397-7-linux.amoon@gmail.com>
- <CAFBinCCE+6G7QtDoxfbcZVVRf-MDX-epSo=_k_PJZgWX+_Whvg@mail.gmail.com>
- <CANAwSgRqixugUr-t2OheLBVwD=EOkaLqxnGkT-Bx=p_A4Nyr8Q@mail.gmail.com>
- <CAFBinCALsnpbJGEb4LBLd_jy3E8fOZAQaacz-P7ijfkeyYg2dA@mail.gmail.com>
- <CANAwSgRABOyWYJPrrw64Wa6j2D94T4tybn7MHGCTbBowt7UncA@mail.gmail.com>
- <CAFBinCD91eYNXSqnmDKoAvJHWqqRbXVjnaq9RuRNCnip9kKqkw@mail.gmail.com>
- <CANAwSgRzY+699aSS9MVGAJYVR6_0Ni75JPhO9=LKunHQK0p=oA@mail.gmail.com>
- <CANAwSgQktfn9Q=PJhx5Uq0UQ2dHqJwjKu1RWyb2k=-dA9=+BSQ@mail.gmail.com>
-In-Reply-To: <CANAwSgQktfn9Q=PJhx5Uq0UQ2dHqJwjKu1RWyb2k=-dA9=+BSQ@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=slZufKqFz802FONUtf3n7bSuBW3tmbUsPHVs2VZ3Gpo=;
+ b=ZUcn4hNU1liHMhkrGAe6UtsfpsXLkPlo5kBueRxw1EiM5AGbXiDfl3RX2s2zACCLXJ
+ hMHQ31mlRWRK4E4/GE/PkjnqibhkBYcsnnIo1UNBD9xRuOhIIeHfBwN+oOYMezO1ZHgD
+ cJ7jGOJAIxpmsS2ClZB9XzeX39uGju7DDBi5t2vSjPRYi1+3whhXev801JPJLTpoWVms
+ Z95HVqxLudu/v7qiqsXgr6THqjQFnQyy10Db4NBDNhsvCJbsJCJOab+K0hofpmXAa9i8
+ Fr2K2s/rDBDGwhBwEBLbOJNLbcGelqZXZv1kZGJAUInt3c8rjKZ7j4Yzs8jyM7fDXLO6
+ 6foQ==
+X-Gm-Message-State: AOAM530WYst5YBDcJMyCxDs4mGurdotNxUmFRJOqNlvmB5B+AkLbhN7L
+ LJNOAai7cYNXSmNrszht6YI=
+X-Google-Smtp-Source: ABdhPJzt1v9sSB4xUUvLiesCnMrJogU+eJY3qTDriqZKqVfH0fvh3LB3+vQc4Emf2P62YNJ38JVMWA==
+X-Received: by 2002:aa7:d554:: with SMTP id u20mr4057983edr.50.1624833617828; 
+ Sun, 27 Jun 2021 15:40:17 -0700 (PDT)
+Received: from localhost.localdomain
+ (dynamic-2a01-0c23-bd64-8b00-f22f-74ff-fe21-0725.c23.pool.telefonica.de.
+ [2a01:c23:bd64:8b00:f22f:74ff:fe21:725])
+ by smtp.googlemail.com with ESMTPSA id jz27sm6048861ejc.33.2021.06.27.15.40.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 27 Jun 2021 15:40:17 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 27 Jun 2021 22:25:33 +0200
-Message-ID: <CAFBinCD+seUuYUrObiqJNgEi_DaULB3nU+QQFHz9d85dAU06ZA@mail.gmail.com>
-Subject: Re: [RFCv1 6/8] phy: amlogic: meson8b-usb2: Use phy reset callback
- function
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- linux-phy@lists.infradead.org, 
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic@lists.infradead.org, 
- Linux Kernel <linux-kernel@vger.kernel.org>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	linux-clk@vger.kernel.org
+Cc: narmstrong@baylibre.com, jbrunet@baylibre.com, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v3 0/3] clk: meson: rounding for fast clocks on 32-bit SoCs
+Date: Mon, 28 Jun 2021 00:39:56 +0200
+Message-Id: <20210627223959.188139-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210627_132545_829463_F4858734 
-X-CRM114-Status: GOOD (  13.92  )
+X-CRM114-CacheID: sfid-20210627_154019_602576_D2A248A3 
+X-CRM114-Status: GOOD (  15.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,40 +102,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Anand,
+On the 32-bit Amlogic Meson8/8b/8m2 SoCs we run into a problem with the
+fast HDMI PLL and it's OD (post-dividers). This clock tree can run at
+up to approx. 3GHz.
+This however causes a problem, because these rates require BIT(31) to
+be usable. Unfortunately this is not the case with clk_ops.round_rate
+on 32-bit systems. BIT(31) is reserved for the sign (+ or -).
 
-On Sun, Jun 27, 2021 at 10:07 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> Sorry for the delay.
-> We could switch the reset logic to
-> *devm_reset_control_get_optional_exclusive* as below
-> to fix the reset line, since both the dwc2 c90c0000.usb and c9040000.usb
-> will have their own context to reset control register, it means the
-> reset line is not share
-> between two USB PHY nodes.
-This is something I don't understand.
-As discussed in our previous mails reset_control_reset in case of the
-USB PHY driver (which uses the RESET_USB_OTG reset line for *both*
-PHYs) is equivalent to the following code in the vendor kernel:
-  aml_cbus_update_bits(0x1102, 0x1<<2, 0x1<<2)
+clk_ops.determine_rate does not suffer from this limitation. It uses
+an int to signal any errors and can then take all available 32 bits for
+the clock rate.
 
-We have two PHYs but only one reset line. So in my own words I
-describe the reset line as being shared.
+Changes since v1 from [0]:
+- reworked the first patch so the the existing
+  divider_{ro_}round_rate_parent implementations are using the new
+  divider_{ro_}determine_rate implementations to avoid code duplication
+  (thanks Jerome for the suggestion)
+- added a patch to switch the default clk_divider_{ro_}ops to use
+  .determine_rate instead of .round_rate as suggested by Jerome
+  (thanks)
+- dropped a patch for the Meson PLL ops as these are independent from
+  the divider patches and Jerome has applied that one directly (thanks)
+- added Jerome's Reviewed-by to the meson clk-regmap patch (thanks!)
+- dropped the RFC prefix
 
->
-> -       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-> +       priv->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
-> +                                                               "reset");
-Have you boot-tested this?
-Without any .dts changes this will return NULL because there's no
-reset-names = "reset"; in the .dts(i).
-If you replace "reset" with NULL then I assume that the second PHY
-will fail to obtain the reset line because it's shared between two
-devices but we're trying to obtain it exclusively for both (PHYs).
+Changes since v2 from [1]:
+- Added Jerome's Reviewed-by to patches 1 and 2 (thank you!)
+- fixed typo in the cover letter (availble -> available)
 
 
-Best regards,
-Martin
+[0] https://patchwork.kernel.org/project/linux-clk/cover/20210517203724.1006254-1-martin.blumenstingl@googlemail.com/
+[1] https://patchwork.kernel.org/project/linux-clk/cover/20210524103733.554878-1-martin.blumenstingl@googlemail.com/
+
+
+Martin Blumenstingl (3):
+  clk: divider: Add re-usable determine_rate implementations
+  clk: divider: Switch from .round_rate to .determine_rate by default
+  clk: meson: regmap: switch to determine_rate for the dividers
+
+ drivers/clk/clk-divider.c      | 93 +++++++++++++++++++++++++---------
+ drivers/clk/meson/clk-regmap.c | 19 ++++---
+ include/linux/clk-provider.h   |  6 +++
+ 3 files changed, 85 insertions(+), 33 deletions(-)
+
+-- 
+2.32.0
+
 
 _______________________________________________
 linux-amlogic mailing list
