@@ -1,93 +1,97 @@
-Return-Path: <SRS0=xcCT=LS=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=mKTp=LV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-17.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B3E6C49EA6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jun 2021 14:55:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50681C48BC2
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 15:29:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BE96B60C3E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jun 2021 14:55:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BE96B60C3E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 01CC361261
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Jun 2021 15:29:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 01CC361261
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QDDT246dszjffWc1aue75usheUzfzKh90V4kDwRTzVs=; b=i3mDoawBtYRAbX
-	EsCD1CZJmxYpMyrtQPOgkMfWdgjNoyBHpqxwhqqmA9adLbUiyBLAj+kpRkrQgeN7Nv2Sahkq6Ki88
-	bjqQX85ObjN5y0ZYU8QIo2g/lLj0125WhRuoBCuWiJoqwX2FF7SlqXpKhWsQa8TtB51DvE9dMEdB0
-	HEbbvbO2Ig8RULbIRwa1Zia1YVUp0f/MkQQbR4MG/nILoE4cLPGJksPC6Kzd9KXrLSwpCOTuW0Wag
-	n05It64zKtz8RYYditbfrDMEzQ+c796kG/kosNorbnL3H3yCJsOgT5ekw16/phT+aU16EsCQ52u0R
-	0TvPRoCabswec9vpbFkg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=si4ptyVIngAi/CGX7gil9Bp8xIx69MIu1WnToLnjFQE=; b=kkZSGqQRO7O5GEOKdyZD96dk12
+	JiCX+U+qxTC9oS96iYF8EOmrSV0b7FgD77yEntixbDSrg/mx6eFuN3bxWJEm16dlFQbfFl3Af9rdW
+	bvfQxyvEy9kbHfBDhgRjYGltus9e3JQhBDPZ1/dQulpE6u9qb+KUEeKX0NUh1rk8/5bAIUyqsEUXy
+	BQZe0hoOl4IqMS8cv27yggG6Fv5++12oQUSslFU3nRItRFwO91FRPa//EWcptKPPI5On20/F3ZtqB
+	kkL5zZGxWgTe3KiRreVcq8OaTfYksmNtMmJq232xala6QdDKlkv++VqD1F87Zl4NtnqOiytualRfH
+	Hqxji83A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lwQl4-00F7xL-CR; Thu, 24 Jun 2021 14:55:10 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1lxWin-005kbL-SB; Sun, 27 Jun 2021 15:29:21 +0000
+Received: from mail-ot1-x32f.google.com ([2607:f8b0:4864:20::32f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lwQkq-00F7vE-Pq; Thu, 24 Jun 2021 14:54:58 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id i5so8994226eds.1;
- Thu, 24 Jun 2021 07:54:54 -0700 (PDT)
+ id 1lxWil-005kas-DX; Sun, 27 Jun 2021 15:29:20 +0000
+Received: by mail-ot1-x32f.google.com with SMTP id
+ h24-20020a9d64180000b029036edcf8f9a6so15665793otl.3; 
+ Sun, 27 Jun 2021 08:29:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=zDkuOJgh5C+WDvt537xufC47ONbIjJXep0BnGb2gBVw=;
- b=t9RkEIBOrAGkGWMdPyS5yH5Xiwep9OjZjnF0UMNlBoJvK3vwY8+92jPQIVd/nEoHmG
- A7WzPHR7uYwqhi5t7RmUnbqvefir1G1vOQHAsz6autNr++V9sYiUoucE7oyYUNoqhkL+
- TF6We/J0y9R090jUgImLbCsgJbm2j/F/O2Qv7IRQhdLQSkX2Yle0cMRuTE4J+JNMUy/9
- ONkkRYjo9ENONlTY8uRzKNMmE6n4e7+NHv58vJEKfI1ypZPxYP4wiE/pP9sWOxpgb7y7
- swqmpH4OI3qQGEPiK+RASk2EBo4IEs1YD5trfV2oF+3byXgswnzxpDJkh8x03zKet5Q8
- dOAg==
+ h=sender:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=5gFqnS/CoYLNlikXZlkgnwqo+7RmKH3b1Jf1rQbqAcs=;
+ b=czXaaYQlf6ff5fpTB7PrT/Q86P0SWfMniizjxTLZmaSWtQhUoaQoDlBkc1Q1qNKCjL
+ 4BaaMGzno8CRjXE8AXURgq/j8qhtxBclOzYMMlYwYMhqrGnUDfUTXycfPPhXY7hi1dCi
+ ojoGjm0CPn6coxOjqWhN7BwrriQy+pDUkjb2xDvqQH1wNpnozZFWnboQwBGbN42pB+T0
+ QlHhYg4jjAgDZe4ffX/6qtGYXCrIHrqUHFiCclyu5Dm6ftOhxA9rV616jT7cSz02EsBt
+ stEqMMBWBMTCYCKU+hLyZ93UE02q/0NUEdED/wi5f2QAOIQZuWIB1UOxrlP5kCOHo8ZD
+ e9oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=zDkuOJgh5C+WDvt537xufC47ONbIjJXep0BnGb2gBVw=;
- b=DFBelE7/XN4qp/MOCwZkuXpS3v0mQtFA5U4uuVqq69QTnirZKV8BbP9TskAG1ZyBQJ
- PopQSGmxpC3AMwV92Y2Zfb0v8gtXaxHG7zAqgbfsV1Z17fJI/w2JmdfVnfUHlMLoGnw3
- kyQSdvy7jKYfZ6h1kzEDvbgf1elk8kP6kH7hXuu91CCyauOBxbhdydXPnfaqBf3c822/
- xIZd1U3S5txLZKGxYny7PPrJL560LYbeNI554K8gSKGtLeWrK4wGgWPm/PowMLb0XRu4
- HPZdx0NWbyYJKbke5yRJFqzaHVqMhKslZixJncEOefSIm2zTdq8ac318O+DWgCQtGnFf
- TVDg==
-X-Gm-Message-State: AOAM530sCyDPhyKxz8+s8XCJQxbrxKKwSG5c4CIXxY4hkjttnPF9c7L3
- bJ7z/6bMMiBjUycmVaxxA/qpeMg4HeiTQbWStR4=
-X-Google-Smtp-Source: ABdhPJz7flfGG4Jo9YL8PvaGhSQvFXCvoM7XYKaKr0PGFS8TRqS5Q+S2stv2YD2ZGvEAzlYAii4X7wQ36jtMzKbV69Q=
-X-Received: by 2002:a50:fc90:: with SMTP id f16mr7829930edq.254.1624546493652; 
- Thu, 24 Jun 2021 07:54:53 -0700 (PDT)
+ h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=5gFqnS/CoYLNlikXZlkgnwqo+7RmKH3b1Jf1rQbqAcs=;
+ b=qDOZuxymql6Q57nI4rC5dWDn+ZBAnVpF5ggNcGClfZhLkKxOuOCOlvTpVsFrNT/4qN
+ pbh8i1ZohJ84uY7IZIn3IuGtM5ago4ecZoAOxaZhAwBvyL+PkjhipO4JB/VAZM43z5A7
+ 78mwgMyBxU4sLWuVxH07na5f5WtOv/W0+6aK8qqElItZuzzfo1TN3DvxVoBj4hD8/3N1
+ 82SdHPPrCFu0SaBp2MSnTUN6ZC/HvSnpOSC3ZeD4jaEOyHcSi8XpaulFZ1mdt2sXm0jP
+ 7ki01mp7A3ShlumEPpj0QD0kHxG8r9F3wqSnIys0Sco6eTTAKZPU4F1TntB1NeSO+cF9
+ ZnhQ==
+X-Gm-Message-State: AOAM533udEv9ZF/V5biyi59Aj0LvO3iv9rguZ2po55q6lUgVZqRve2ik
+ qZxZP1GtRdiIQc2xja78BlU=
+X-Google-Smtp-Source: ABdhPJyTo3B/5vnfM/5AaVmSpxZJ3xyn8xFTPpxA9Kfu2fxbMwY1kUWKm02TFV7syL5ywgeZrHE2aw==
+X-Received: by 2002:a05:6830:4a2:: with SMTP id
+ l2mr1514306otd.267.1624807756137; 
+ Sun, 27 Jun 2021 08:29:16 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ t25sm2308002oij.47.2021.06.27.08.29.14
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 27 Jun 2021 08:29:15 -0700 (PDT)
+Subject: Re: [PATCH 1/5] watchdog: meson_gxbb_wdt: remove
+ watchdog_stop_on_reboot
+To: Artem Lapkin <email2tema@gmail.com>, narmstrong@baylibre.com
+Cc: wim@linux-watchdog.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ christianshewitt@gmail.com, martin.blumenstingl@googlemail.com,
+ linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ art@khadas.com, nick@khadas.com, gouwa@khadas.com
+References: <20210623024429.1346349-1-art@khadas.com>
+ <20210623024429.1346349-2-art@khadas.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Message-ID: <f8605141-348e-dcc2-1457-021c0c0ff7bf@roeck-us.net>
+Date: Sun, 27 Jun 2021 08:29:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210617194154.2397-1-linux.amoon@gmail.com>
- <20210617194154.2397-7-linux.amoon@gmail.com>
- <CAFBinCCE+6G7QtDoxfbcZVVRf-MDX-epSo=_k_PJZgWX+_Whvg@mail.gmail.com>
- <CANAwSgRqixugUr-t2OheLBVwD=EOkaLqxnGkT-Bx=p_A4Nyr8Q@mail.gmail.com>
- <CAFBinCALsnpbJGEb4LBLd_jy3E8fOZAQaacz-P7ijfkeyYg2dA@mail.gmail.com>
- <CANAwSgRABOyWYJPrrw64Wa6j2D94T4tybn7MHGCTbBowt7UncA@mail.gmail.com>
- <CAFBinCD91eYNXSqnmDKoAvJHWqqRbXVjnaq9RuRNCnip9kKqkw@mail.gmail.com>
-In-Reply-To: <CAFBinCD91eYNXSqnmDKoAvJHWqqRbXVjnaq9RuRNCnip9kKqkw@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 24 Jun 2021 20:24:42 +0530
-Message-ID: <CANAwSgRzY+699aSS9MVGAJYVR6_0Ni75JPhO9=LKunHQK0p=oA@mail.gmail.com>
-Subject: Re: [RFCv1 6/8] phy: amlogic: meson8b-usb2: Use phy reset callback
- function
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- linux-phy@lists.infradead.org, 
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic@lists.infradead.org, 
- Linux Kernel <linux-kernel@vger.kernel.org>
+In-Reply-To: <20210623024429.1346349-2-art@khadas.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210624_075456_909113_5CF02552 
-X-CRM114-Status: GOOD (  32.61  )
+X-CRM114-CacheID: sfid-20210627_082919_530259_CA8BF591 
+X-CRM114-Status: GOOD (  17.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,121 +103,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+On 6/22/21 7:44 PM, Artem Lapkin wrote:
+> Remove watchdog_stop_on_reboot (still can be activated by
+> watchdog.stop_on_reboot=1) i think this driver configuration more useful
+> becouse we can get reboot waranty for abnormal situations on shutdown stage
+> 
 
-On Wed, 23 Jun 2021 at 01:42, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Mon, Jun 21, 2021 at 9:16 AM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > Ok Thanks for the inputs. got your point.
-> >
-> > I was also looking into Amlogic source code for reset. (aml_cbus_update_bits)
-> > [0] https://github.com/khadas/linux/blob/khadas-vims-4.9.y/drivers/amlogic/usb/phy/phy-aml-new-usb.c
-> > is there some feature to iomap the USB with cbus?
-> for that specific code: that's what we do inside drivers/reset/reset-meson.c
-> Amlogic's vendor kernel uses an increment of 4 bytes per value, so
-> 0x1102 translates to 0x4408
->
-> then in mainline's meson8b.dtsi we have:
->     compatible = "amlogic,meson8b-reset";
->     reg = <0x4404 0x9c>;
-> as you can see 0x4408 is part of the reset controller node.
->
-> next in include/dt-bindings/reset/amlogic,meson8b-reset.h we have:
->     #define RESET_USB_OTG                 34
->
-> the register used for reset line 34 is translated using:
->     0x4404 (first register) + 4 (4 * reset line / 32 = 1) = 0x4408
-> then the bit inside this register is translated using:
->     reset line % 32 = 2
->
-> that's how we express aml_cbus_update_bits(0x1102, 0x1<<2, 0x1<<2); in
-> the mainline kernel (by going through the reset subsystem)
->
+This is personal opinion. Driver authors would have to agree.
 
-Thank you very much for clearing my long-standing doubt on *reset
-logic* on Amlogic SoC.
+Guenter
 
-> [...]
-> > > > > > -       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-> > > > > > +       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, "phy");
-> > > > > I think this breaks compatibility with existing .dtbs and our
-> > > > > dt-bindings (as we're not documenting a "reset-names" property).
-> > > > > What is the goal of this one?
-> > > > >
-> > > >
-> > > > OK, If we pass NULL over here there is the possibility
-> > > > USB phy will not get registered.
-> > > I don't understand why - with NULL everything is working fine for me.
-> > > Also no matter which name you give to the reset line (in reset-names),
-> > > it will be the same reset line in all cases. If it's the same reset
-> > > line before and after: why is this needed?
-> > >
-> > I need to investigate this reset feature. With my setup with current changes
-> > after I update the below.
-> > -       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, "phy");
-> > +       priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-> >         if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
-> >                 return PTR_ERR(priv->reset);
-> >
-> > Reset will break the USB initialization, see below output.
-> interesting, I have not seen that USB problem before and neither is
-> Kernel CI seeing it: [0]
-> Is it only happening with this patch or did you also see it before?
->
-Yes, it could happen with this patch but It could be also linked to
-reorder the phy configuration.
-See below logs, when core reset fails on USB PHY no USB is getting registered.
+> Signed-off-by: Artem Lapkin <art@khadas.com>
+> ---
+>   drivers/watchdog/meson_gxbb_wdt.c | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
+> index 5a9ca10fbcfa..3f86530c33b0 100644
+> --- a/drivers/watchdog/meson_gxbb_wdt.c
+> +++ b/drivers/watchdog/meson_gxbb_wdt.c
+> @@ -186,7 +186,6 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
+>   
+>   	meson_gxbb_wdt_set_timeout(&data->wdt_dev, data->wdt_dev.timeout);
+>   
+> -	watchdog_stop_on_reboot(&data->wdt_dev);
+>   	return devm_watchdog_register_device(dev, &data->wdt_dev);
+>   }
+>   
+> 
 
-[    1.267620] dwc2 c9040000.usb: mapped PA c9040000 to VA (ptrval)
-[    1.267768] dwc2 c9040000.usb: Looking up vusb_d-supply from device tree
-[    1.267783] dwc2 c9040000.usb: Looking up vusb_d-supply property in
-node /soc/usb@c9040000 failed
-[    1.267814] dwc2 c9040000.usb: supply vusb_d not found, using dummy regulator
-[    1.267940] dwc2 c9040000.usb: Looking up vusb_a-supply from device tree
-[    1.267954] dwc2 c9040000.usb: Looking up vusb_a-supply property in
-node /soc/usb@c9040000 failed
-[    1.267975] dwc2 c9040000.usb: supply vusb_a not found, using dummy regulator
-[    1.268037] dwc2 c9040000.usb: registering common handler for irq35
-[    1.268090] dwc2 c9040000.usb: Looking up vbus-supply from device tree
-[    1.268102] dwc2 c9040000.usb: Looking up vbus-supply property in
-node /soc/usb@c9040000 failed
-[    1.269267] dwc2 c9040000.usb: Core Release: 3.10a (snpsid=4f54310a)
-[    1.273185] dwc2 c9040000.usb: dwc2_core_reset: HANG! Soft Reset
-timeout GRSTCTL_CSFTRST
-[    1.273510] dwc2: probe of c9040000.usb failed with error -16
-[    1.275474] dwc2 c90c0000.usb: mapped PA c90c0000 to VA (ptrval)
-[    1.275603] dwc2 c90c0000.usb: Looking up vusb_d-supply from device tree
-[    1.275617] dwc2 c90c0000.usb: Looking up vusb_d-supply property in
-node /soc/usb@c90c0000 failed
-[    1.275646] dwc2 c90c0000.usb: supply vusb_d not found, using dummy regulator
-[    1.275784] dwc2 c90c0000.usb: Looking up vusb_a-supply from device tree
-[    1.275798] dwc2 c90c0000.usb: Looking up vusb_a-supply property in
-node /soc/usb@c90c0000 failed
-[    1.275819] dwc2 c90c0000.usb: supply vusb_a not found, using dummy regulator
-[    1.275877] dwc2 c90c0000.usb: registering common handler for irq36
-[    1.275930] dwc2 c90c0000.usb: Looking up vbus-supply from device tree
-[    1.275942] dwc2 c90c0000.usb: Looking up vbus-supply property in
-node /soc/usb@c90c0000 failed
-[    1.277125] dwc2 c90c0000.usb: Core Release: 3.10a (snpsid=4f54310a)
-[    1.281042] dwc2 c90c0000.usb: dwc2_core_reset: HANG! Soft Reset
-timeout GRSTCTL_CSFTRST
-[    1.281353] dwc2: probe of c90c0000.usb failed with error -16
-
->
-> Best regards,
-> Martin
->
->
-> [0] https://storage.staging.kernelci.org/next/master/next-20210617/arm/multi_v7_defconfig+ltp-ima/gcc-8/lab-baylibre/baseline-meson8b-odroidc1.html
 
 _______________________________________________
 linux-amlogic mailing list
