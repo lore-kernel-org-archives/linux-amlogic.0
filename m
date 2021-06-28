@@ -2,70 +2,106 @@ Return-Path: <SRS0=+Jf1=LW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,HK_RANDOM_FROM,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3248C48BC2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jun 2021 01:24:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EBFD6C2B9F4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jun 2021 12:34:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 793DB619C6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jun 2021 01:24:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 793DB619C6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=mattcorallo.com
+	by mail.kernel.org (Postfix) with ESMTPS id 6B0C961C71
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jun 2021 12:34:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B0C961C71
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=t0cB/jobw5AvZb/g2VH3CT1esC4idOPhc1npaX1maSE=; b=xPkRR3M/1iuEAd
-	gFf1JTz3GskX0IOSPRhY7pLRHoGVKSVKzM5u3VMm2NIQDR2R+81j1BOnfukB0gJeBFg9gQnHs13rB
-	vt7xYyX/pcAn8PptLruNkC/o0ZtEGgmWGxchGmPJdnjVWH7gJj9ggEofrpkweDpTFe9W/C0npx/Xn
-	sreq4QZeM2qK0n3ruSQ/JPUQex0yOvqpEr29AcgeJZRYrgXswnpfb8AHn5LL99lBoQGqdUEAZkywa
-	qRZDmxGGaEnIuBp9mrvD5jxkaFGWW9PaOJihGBNRHiNhYz/gdOnFgq0yPeHdcbDw7+6buoUBm1a1y
-	/zWKJYlk/cTkb0SoW7BQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Y3wIuuB79785Y75Z2ssjRj+F7yXXnksIBF/fdiJjCoI=; b=kvQYAGWyTX361P
+	4C570Gp6k2ge787rtXvqKEE6tgLXXSJnCWsojncNQ4ioIMiSrDx66cDgvfiUIWC+H4gyFdUTLmm7x
+	xR9sUB3ivURZTVsxzgsXcRFYs5QMl4t0WbkPn60VFej5ZxgbU7d5vMfnBlBAfmnl0ly6TcUmvy2HH
+	HAiug4iL3LRGlk5pdIlQn5Tgi02PRDVKivIs78CrDoXINCQycOnz5Z+v3Gk7/ytGKWhCBq56Jfivf
+	rH3DVCwpaijAZ5ReMk20mQ9m0PhKgTJxiDe1vimtZDfZN09B+SRtuZRw3kpLc1N49sUcF7LT2cKG9
+	Hju5CIVPXdjicTDOIvgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lxg15-006OLF-3a; Mon, 28 Jun 2021 01:24:51 +0000
-Received: from mail.as397444.net ([2620:6e:a000:1::99])
+	id 1lxqTE-007z6k-TZ; Mon, 28 Jun 2021 12:34:36 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lxg11-006OKo-85
- for linux-amlogic@lists.infradead.org; Mon, 28 Jun 2021 01:24:49 +0000
-Received: by mail.as397444.net (Postfix) with UTF8SMTPSA id A0DC45F3D11;
- Mon, 28 Jun 2021 01:24:45 +0000 (UTC)
-X-DKIM-Note: Keys used to sign are likely public at https://as397444.net/dkim/
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mattcorallo.com;
- s=1624842064; t=1624843485;
- bh=tgbzxfavtMQtCYSdvLFP0HIXqmLOuETr8LMyWOwcWl8=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=mVcUG7Z8bsvf5s3fu1OskesK+Th5x6vPYxBnBMDUuKMJvb+bqp6OaMSMUUw0LnjjB
- ekVqhq7E2S9t55Hi3tV9UzpBcc7tGP2PaDVgSLXnYXvFDqojht8f+Yo9REP44CgXFy
- jH2rOSqEQFgWj45NPsvhxrfhqHbJL4QFsEypWOLNjUvEd7T5ZEsefbdwhMM4r8CePU
- xNeXGsaMYP4T19HeA/nTtKAAUSsn0C31+5+XzC0QkTSY+F/aUwZhhvC9zP8kFpogx8
- tn8gFTCwvv0d0GmdhC9CbGMEtSoD65wiAyNz7jmbQXfO7xYuoAATgsS1JxCV8cO6gl
- bdTFRRoKjwqTA==
-Message-ID: <0c62655d-738c-4d71-6b7b-fe7fa90b54e3@bluematt.me>
-Date: Sun, 27 Jun 2021 21:24:45 -0400
+ id 1lxqSw-007yyo-G1
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jun 2021 12:34:22 +0000
+Received: by mail-wr1-x435.google.com with SMTP id a13so21052923wrf.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Jun 2021 05:34:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=g4Piownw0Km7jYaWnqnZYrht6sXkD+M9EE5R9haJeqU=;
+ b=RpmUcAWPAA24cki8FV8sIiR/T9iEYHriC0yCwfOOTb4uqcPcCoDIl5um61M0Q3JNhd
+ HLRkEqXN2yGFQunfUq1oa3qpnJK4tA757J1lFxhMtcrYkTYFQ78IouFy8QcTrkoarB1i
+ m5LRW4Lse26c2JMoWyM41aE6S4UknpZ0ergRk+TbCkxVBPppNAjf8B+FLYj7YdA/jhWc
+ j59ruiM34M3XMVVDTLJ3Y46Fwh1xS5SvblR5JFnfoSUspQxn3dS7du34oa2vKwdAXyLQ
+ gOxFT0cQnap+TR5FDfLeVOi0G6tEQf88cYFZTES+gIgRw9FyNgUM6PSUae1XYBBudQXb
+ Fe4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=g4Piownw0Km7jYaWnqnZYrht6sXkD+M9EE5R9haJeqU=;
+ b=EAZNEudsgoaS9gkHJCMDGzRpNjAwI4raGHUtSs8HofLBXRMG2OUh3SLz/XKP2fkPY4
+ ahlUxtmOBOFZM2SxN7pL/364pVmAR3MRbTXUK/zkvaNuA03H1XL2wPqclsNItM47ZUAw
+ N5YX85uYFjCmZ1WUzqa8PRh63Tj0ph5kdRnERovdiDJCBK2ldp6deEafn3vJIKTfiD/s
+ 1n93wiepX9P3h64z9KjgNmj8nuunfWYheUKTeOzl/mgyqmfgP1GbLHUo6mVdUYUw80QM
+ N4nL7r1k+JQmgyq/rEULQ2Q5qcmbUtW0bqkWkNMtLramJtSfGK8MzOqLXIHha7brqcpP
+ siIg==
+X-Gm-Message-State: AOAM532QHFHzBhNhARX0eX77Y1pjRT4w4KtpqCaI/hDkQsJolwEVuODs
+ WwHvVaBdeTUBYNh3H+ETTPqsZw==
+X-Google-Smtp-Source: ABdhPJynXZUsQ+KCCA2PMCmxfxH2qhUAPGDL5BW7LSSONysZPkBA8RYkV5kdJNx/yJHplx94ajGkIw==
+X-Received: by 2002:adf:fac4:: with SMTP id a4mr27567032wrs.189.1624883655814; 
+ Mon, 28 Jun 2021 05:34:15 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:e503:e76:4043:c4f7])
+ by smtp.gmail.com with ESMTPSA id
+ p7sm2357334wrr.68.2021.06.28.05.34.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 28 Jun 2021 05:34:15 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: jgg@ziepe.ca, leon@kernel.org, m.szyprowski@samsung.com,
+ robin.murphy@arm.com, ulf.hansson@linaro.org
+Cc: torvalds@linux-foundation.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ linux-mmc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH RFC 0/2] scatterlist: add I/O variant of sg_pcopy & sg_copy
+ and use them
+Date: Mon, 28 Jun 2021 14:34:09 +0200
+Message-Id: <20210628123411.119778-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: ODROID-C1/-C2 USB Detection only triggered by some devices
-Content-Language: en-US
-To: Alan Stern <stern@rowland.harvard.edu>
-Cc: linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <0badab7c-f12e-e9ed-2f90-2cf5f25f4038@bluematt.me>
- <20210628005825.GA638648@rowland.harvard.edu>
- <e421818c-dea4-ba6b-e737-bb8d99582588@bluematt.me>
- <20210628011628.GC638648@rowland.harvard.edu>
-From: Matt Corallo <oc2udbzfd@mattcorallo.com>
-In-Reply-To: <20210628011628.GC638648@rowland.harvard.edu>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=976; h=from:subject;
+ bh=iVEMvBLaRZgih5yGs1nmMY9KLw8WXAeUJcp1bYFUiBY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBg2cGWtsGJ0XA8KWFoXtdBdbBZY/Eo9DjS/KkXuTzv
+ 5/+iniKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYNnBlgAKCRB33NvayMhJ0XPhEA
+ CcU6sOzBX3jxArz37tuZhTke4Yg6dNMPnsx19qObWnWEpWCFEdEzrPxjZH8d2shIfumiocFQt1tlQf
+ NrsBokdpyV2jvNOgHBTsDGYfqBlxKE4tMytf5ooHTErzX9XraDT1cXZKBKAEcYiti/49Hgsd7NQQ3N
+ NGEY0fI8LIpEFotO67MZ7zO9zjqqDnBqQYBpmCAW207JExawMCmAeWUfuV7lJhXqut5nX57hV3Ia6i
+ IKu0l5t319rVU+tLJI7zcVEAZDP63rBK/GCAy4AdY/a2KzZHvjKYFh2MXwoFIx74Xdgzn+mp+pZHQ5
+ Gy1CZOHdaA7Nd9apmUfVxGq49AkH4GglixwfZC/U1n59sOfZvt3SvEi7LYBDDiORE9+mHr8Eo0DiW4
+ pGSEU7giItN3JyECFLqjnJt+wQJXZlQYn+nvJtaWz+O00wIA7vKQPl8PbNZGvQEIDdwJyRUdqXjvca
+ +SHOa5/6FnOYt74n+VwOeiXbMXnFCW3mpbR8jdOyRd+oz+VQIE3J82S296md6xTQEe0oQ98nnQ2PUC
+ SsxUoFHiBZyHwoAVVdgtAe+KtcJLSgvOkGmfK4ylJpCH6wxWeZmuecrNTghwCp8Q/x3fZ2Wyf8ogMG
+ IM9QL/KQH/1DL1WHS0A8gqMFvLbjg1m3Xj1DnhnkZvfDbY4d8/Pn5cLa7LpQ==
+X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210627_182447_906337_5231959F 
-X-CRM114-Status: GOOD (  20.12  )
+X-CRM114-CacheID: sfid-20210628_053418_632876_CC4F0895 
+X-CRM114-Status: UNSURE (   8.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,81 +113,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+A local variant of sg_copy_buffer has been introduced in the meson-gx mmc driver [1] after
+a mempcy optimization, fixing the iomem buffer manipulation and the reported system crash [2].
 
+But, the fix is suboptimal in terms of performace/ugliness [3] and a proper I/O variant of
+sg_copy_buffer should be added and used instead.
 
-On 6/27/21 21:16, Alan Stern wrote:
-> On Sun, Jun 27, 2021 at 09:05:25PM -0400, Matt Corallo wrote:
->>
->>
->> On 6/27/21 20:58, Alan Stern wrote:
->>> On Sun, Jun 27, 2021 at 08:32:21PM -0400, Matt Corallo wrote:
->>>> On an ODROID-C1/C2 device, using the dwc2 driver, only some devices cause USB bus to enumerate devices.
->>>>
->>>> Specifically, both on boot and during normal operation, if some devices are
->>>> plugged in, all USB devices are detected, but if those devices are removed,
->>>> no detection of any devices occurs.
->>>
->>> So if you boot with no devices plugged in, and then you plug in (say) a
->>> flash drive, it doesn't get detected?
->>
->> There is a separate and long-standing bug on the ODROID-C1 and ODROID-C2
->> devices where hotplug doesn't work reliably, which is why I mentioned
->> rebooting. This specific bug all works identically whether booting fresh
->> with the devices or testing hotplug (which sometimes works with lsusb -vvv).
-> 
-> That doesn't answer my question.  If no devices are plugged in (either
-> at boot or during normal operation), and then you plug in a device like
-> a flash drive, does it get detected?  What you wrote seems to imply that
-> it does not.
+[1] https://lore.kernel.org/r/20210609150230.9291-1-narmstrong@baylibre.com
+[2] https://lore.kernel.org/r/acb244ad-0759-5a96-c659-5c23003d3dcd@samsung.com
+[3] https://lore.kernel.org/r/CAPDyKFrLSMpPJOgd5e4B1x3Vwfg4q23zgy4ESc8EmFL2MnyK7g@mail.gmail.com
 
-That is correct, nothing gets auto-detected after boot. lsusb -vvv *does* cause devices in the second group below to be 
-reliably detected, and the first group only if at least one of the devices in the second group are present.
+Neil Armstrong (2):
+  scatterlist: add I/O variant of sg_pcopy & sg_copy
+  mmc: meson-gx: use sg_copy_to/from_io instead of local version
 
->>>> I sadly don't have a lot more to go on, but xdarklight on IRC (I believe ==
->>>> Martin, CC'd) confirmed the findings with a grab bag of USB devices he had
->>>> sitting around as well, and may be able to provide CONFIG_USB_DWC2_DEBUG
->>>> output.
->>>>
->>>> Any further guidance on where to look to debug this issue would be appreciated.
->>>>
->>>> As a sample, some devices which, when plugged in (either alone or together)
->>>> do not cause any USB device detection (see attached lsusb -v files):
->>>>
->>>> Samsung T7 USB 3 drive
->>>> Samsung-Branded Silicon Motion USB 3 Flash Drive
->>>>
->>>> Some devices which, when plugged in cause all USB devices to be detected:
->>>>
->>>> Mushkin-Branded Kingston USB 3 Flash Drive
->>>> Kingston-Branded Kingston USB 2 Flash Drive
->>>> USB-3 MicroSD Card reader (lsusb/testing by xdarklight)
->>>> SanDisk USB 3 Flash Drive (lsusb/testign by xdkarlight)
->>>
->>> This could simply be a question of power.  Most of the flash drives and
->>> the card reader probably don't require very much power, whereas some of
->>> them need more.  You can this, to some extent, in the MaxPower fields of
->>> the lsusb -v listings.
->>
->> That seems strange, though, given that the first group of devices appear and
->> work totally fine, but only when something from the second group of devices
->> is plugged in. If the second group is not present, then the first group of
->> devices do not appear at all.
-> 
-> You mean that only devices in the first group are affected by this bug?
-> Devices in the second group are always detected correctly regardless of
-> what else is plugged in?  (This contradicts what you wrote above.)
+ drivers/mmc/host/meson-gx-mmc.c |  53 +++-----------
+ include/linux/scatterlist.h     |  14 ++++
+ lib/scatterlist.c               | 119 ++++++++++++++++++++++++++++++++
+ 3 files changed, 143 insertions(+), 43 deletions(-)
 
+-- 
+2.25.1
 
-Correct. Ignoring hotplug (ie on fresh boot or lsusb -vvv), the devices in the second group work great. The devices in 
-the first group do too, but only if a device from the second group is present.
-
-Sorry for the confusion,
-Matt
 
 _______________________________________________
 linux-amlogic mailing list
