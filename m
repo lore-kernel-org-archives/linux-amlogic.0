@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-15.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98309C2B9F4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jun 2021 13:40:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BFF01C2B9F4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jun 2021 13:44:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5E9D361C69
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jun 2021 13:40:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E9D361C69
+	by mail.kernel.org (Postfix) with ESMTPS id 895D06128C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jun 2021 13:44:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 895D06128C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,25 +24,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=q1QpC3BnXfy9t8CHEWNo+DmMKzbRa/owYvn7G0MaDdM=; b=z1OCIaN6hoQmz7p6iuj/DMWQcD
-	rMISg0bJUQA2a3/ihkcbVulDx+RaWBVE44ClsjuIuMpTgx04wtVQjtX6Iu/7iuF3YIB16kVsbRmWL
-	5Na6fJjd4pL90Ul/0A057bZvLmfDe35QFxGcvlhFrPA88FofDd1NAw1zpstpiWubv3+ryDPaDO3Ai
-	K4m4zvH8YTZlhlUoGoN1Nx3nLY1b3LYXuCKN0lhp5uNNWI+f6Ida8LU4olwzZA46y4E0DprcdMieQ
-	UhpwKCv7m7a/hNccYPkBuftMXuvToBwYFWbPWbCeT1xzD1ycka+HiLjWPN7zsFNr2beoe/jasDXs0
-	ZRNR+bQQ==;
+	bh=d2Qp+5Ay7kF1gmDDqCXGJZI+R7Nv/Gvn7W1ckirQVQg=; b=Q9FsvHk9dlhQve3G8nQmjwvm9x
+	+N+X+W+WRBezRa4X3bnrEe4V7McU66HJe+GDh1W+/NGTTPxHVlP7y6gF7vMpOysyGngw7APtN8JiY
+	cF5RFFcZo2NhcVXWDeZ9OVEkYbSHlhLFLgUbVthwBuJ/szjgR+Dd7f4glTdWmoyBZ7MxJK5lWGbrJ
+	tKs1ln++ufLBTC1dXEDo8NnK07+GDKi5iCCb5oKg0fWYiClnqR6lW4Oep/DYV0yDmA4Ya+vE5pQ23
+	VgVAtdU3tmQslAOjKe6R/8CivnC8EHHoL6JuTd5v4Q6T2FFWor2+1n3kIaKc8lhuzlJYcOQ/+NiQS
+	3xC76GmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lxrVF-008Djf-9W; Mon, 28 Jun 2021 13:40:45 +0000
+	id 1lxrYu-008Eop-Gb; Mon, 28 Jun 2021 13:44:32 +0000
 Received: from foss.arm.com ([217.140.110.172])
  by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lxrVB-008DiC-OH; Mon, 28 Jun 2021 13:40:43 +0000
+ id 1lxrYr-008Enc-TJ; Mon, 28 Jun 2021 13:44:31 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 982E01042;
- Mon, 28 Jun 2021 06:40:38 -0700 (PDT)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5CD21042;
+ Mon, 28 Jun 2021 06:44:26 -0700 (PDT)
 Received: from [10.57.8.89] (unknown [10.57.8.89])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 649B63F718;
- Mon, 28 Jun 2021 06:40:36 -0700 (PDT)
-Subject: Re: [PATCH RFC 1/2] scatterlist: add I/O variant of sg_pcopy & sg_copy
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1FF6D3F718;
+ Mon, 28 Jun 2021 06:44:24 -0700 (PDT)
+Subject: Re: [PATCH RFC 2/2] mmc: meson-gx: use sg_copy_to/from_io instead of
+ local version
 To: Neil Armstrong <narmstrong@baylibre.com>, jgg@ziepe.ca, leon@kernel.org,
  m.szyprowski@samsung.com, ulf.hansson@linaro.org
 Cc: torvalds@linux-foundation.org, khilman@baylibre.com,
@@ -50,18 +51,18 @@ Cc: torvalds@linux-foundation.org, khilman@baylibre.com,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20210628123411.119778-1-narmstrong@baylibre.com>
- <20210628123411.119778-2-narmstrong@baylibre.com>
+ <20210628123411.119778-3-narmstrong@baylibre.com>
 From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <d86f72ff-191a-fbf1-b1d1-7c980b488bcd@arm.com>
-Date: Mon, 28 Jun 2021 14:40:29 +0100
+Message-ID: <cfd6c96a-b5eb-bc0b-1861-c409f0a7e4f0@arm.com>
+Date: Mon, 28 Jun 2021 14:44:20 +0100
 User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210628123411.119778-2-narmstrong@baylibre.com>
+In-Reply-To: <20210628123411.119778-3-narmstrong@baylibre.com>
 Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210628_064041_960144_0077F867 
-X-CRM114-Status: GOOD (  23.57  )
+X-CRM114-CacheID: sfid-20210628_064430_193134_02FA626E 
+X-CRM114-Status: GOOD (  19.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,209 +80,99 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 2021-06-28 13:34, Neil Armstrong wrote:
-> When copying from/to an iomem mapped memory, the current sg_copy & sg_pcopy can't
-> be used and lead to local variants in drivers like in [1] & [2].
+> Use the proper sg_copy_to_io & sg_copy_from_io instead of having a local
+> sg_copy_buffer variant to handle the I/O mapped buffer case.
 > 
-> This introduces an I/O variant to be used instead of the local variants.
-> 
-> [1] mv_cesa_sg_copy in drivers/crypto/marvell/cesa/tdma.c
-> [2] meson_mmc_copy_buffer in drivers/mmc/host/meson-gx-mmc.c
-
-Other than one apparent typo below, this looks like what I imagined, 
-thanks for putting it together!
-
 > Cc: Robin Murphy <robin.murphy@arm.com>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->   include/linux/scatterlist.h |  14 +++++
->   lib/scatterlist.c           | 119 ++++++++++++++++++++++++++++++++++++
->   2 files changed, 133 insertions(+)
+>   drivers/mmc/host/meson-gx-mmc.c | 53 +++++++--------------------------
+>   1 file changed, 10 insertions(+), 43 deletions(-)
 > 
-> diff --git a/include/linux/scatterlist.h b/include/linux/scatterlist.h
-> index 6f70572b2938..6ef339ba5290 100644
-> --- a/include/linux/scatterlist.h
-> +++ b/include/linux/scatterlist.h
-> @@ -308,15 +308,29 @@ void sgl_free(struct scatterlist *sgl);
->   size_t sg_copy_buffer(struct scatterlist *sgl, unsigned int nents, void *buf,
->   		      size_t buflen, off_t skip, bool to_buffer);
->   
-> +size_t sg_copy_io(struct scatterlist *sgl, unsigned int nents, void __iomem *buf,
-> +		  size_t buflen, off_t skip, bool to_buffer);
-> +
->   size_t sg_copy_from_buffer(struct scatterlist *sgl, unsigned int nents,
->   			   const void *buf, size_t buflen);
->   size_t sg_copy_to_buffer(struct scatterlist *sgl, unsigned int nents,
->   			 void *buf, size_t buflen);
->   
-> +size_t sg_copy_from_io(struct scatterlist *sgl, unsigned int nents,
-> +		       const void __iomem *buf, size_t buflen);
-> +size_t sg_copy_to_io(struct scatterlist *sgl, unsigned int nents,
-> +		     void __iomem *buf, size_t buflen);
-> +
->   size_t sg_pcopy_from_buffer(struct scatterlist *sgl, unsigned int nents,
->   			    const void *buf, size_t buflen, off_t skip);
->   size_t sg_pcopy_to_buffer(struct scatterlist *sgl, unsigned int nents,
->   			  void *buf, size_t buflen, off_t skip);
-> +
-> +size_t sg_pcopy_from_io(struct scatterlist *sgl, unsigned int nents,
-> +			const void __iomem *buf, size_t buflen, off_t skip);
-> +size_t sg_pcopy_to_io(struct scatterlist *sgl, unsigned int nents,
-> +		      void __iomem *buf, size_t buflen, off_t skip);
-> +
->   size_t sg_zero_buffer(struct scatterlist *sgl, unsigned int nents,
->   		       size_t buflen, off_t skip);
->   
-> diff --git a/lib/scatterlist.c b/lib/scatterlist.c
-> index a59778946404..e52f37b181fa 100644
-> --- a/lib/scatterlist.c
-> +++ b/lib/scatterlist.c
-> @@ -954,6 +954,55 @@ size_t sg_copy_buffer(struct scatterlist *sgl, unsigned int nents, void *buf,
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 3f28eb4d17fe..c13436efb414 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -746,47 +746,6 @@ static void meson_mmc_desc_chain_transfer(struct mmc_host *mmc, u32 cmd_cfg)
+>   	writel(start, host->regs + SD_EMMC_START);
 >   }
->   EXPORT_SYMBOL(sg_copy_buffer);
 >   
-> +/**
-> + * sg_copy_io - Copy data between an I/O mapped buffer and an SG list
-> + * @sgl:		 The SG list
-> + * @nents:		 Number of SG entries
-> + * @buf:		 Where to copy from
-> + * @buflen:		 The number of bytes to copy
-> + * @skip:		 Number of bytes to skip before copying
-> + * @to_buffer:		 transfer direction (true == from an sg list to a
-> + *			 buffer, false == from a buffer to an sg list)
-> + *
-> + * Returns the number of copied bytes.
-> + *
-> + **/
-> +size_t sg_copy_io(struct scatterlist *sgl, unsigned int nents, void __iomem *buf,
-> +		  size_t buflen, off_t skip, bool to_buffer)
-> +{
-> +	unsigned int offset = 0;
-> +	struct sg_mapping_iter miter;
-> +	unsigned int sg_flags = SG_MITER_ATOMIC;
-> +
-> +	if (to_buffer)
-> +		sg_flags |= SG_MITER_FROM_SG;
-> +	else
-> +		sg_flags |= SG_MITER_TO_SG;
-> +
-> +	sg_miter_start(&miter, sgl, nents, sg_flags);
-> +
-> +	if (!sg_miter_skip(&miter, skip))
-> +		return 0;
-> +
-> +	while ((offset < buflen) && sg_miter_next(&miter)) {
-> +		unsigned int len;
-> +
-> +		len = min(miter.length, buflen - offset);
-> +
-> +		if (to_buffer)
-> +			memcpy_toio(buf + offset, miter.addr, len);
-> +		else
-> +			memcpy_fromio(miter.addr, buf + offset, len);
-> +
-> +		offset += len;
-> +	}
-> +
-> +	sg_miter_stop(&miter);
-> +
-> +	return offset;
-> +}
-> +EXPORT_SYMBOL(sg_copy_io);
-> +
->   /**
->    * sg_copy_from_buffer - Copy from a linear buffer to an SG list
->    * @sgl:		 The SG list
-> @@ -988,6 +1037,40 @@ size_t sg_copy_to_buffer(struct scatterlist *sgl, unsigned int nents,
->   }
->   EXPORT_SYMBOL(sg_copy_to_buffer);
->   
-> +/**
-> + * sg_copy_from_io - Copy from an I/O mapped buffer to an SG list
-> + * @sgl:		 The SG list
-> + * @nents:		 Number of SG entries
-> + * @buf:		 Where to copy from
-> + * @buflen:		 The number of bytes to copy
-> + *
-> + * Returns the number of copied bytes.
-> + *
-> + **/
-> +size_t sg_copy_from_io(struct scatterlist *sgl, unsigned int nents,
-> +		       const void *buf, size_t buflen)
+> -/* local sg copy to buffer version with _to/fromio usage for dram_access_quirk */
+> -static void meson_mmc_copy_buffer(struct meson_host *host, struct mmc_data *data,
+> -				  size_t buflen, bool to_buffer)
+> -{
+> -	unsigned int sg_flags = SG_MITER_ATOMIC;
+> -	struct scatterlist *sgl = data->sg;
+> -	unsigned int nents = data->sg_len;
+> -	struct sg_mapping_iter miter;
+> -	unsigned int offset = 0;
+> -
+> -	if (to_buffer)
+> -		sg_flags |= SG_MITER_FROM_SG;
+> -	else
+> -		sg_flags |= SG_MITER_TO_SG;
+> -
+> -	sg_miter_start(&miter, sgl, nents, sg_flags);
+> -
+> -	while ((offset < buflen) && sg_miter_next(&miter)) {
+> -		unsigned int len;
+> -
+> -		len = min(miter.length, buflen - offset);
+> -
+> -		/* When dram_access_quirk, the bounce buffer is a iomem mapping */
+> -		if (host->dram_access_quirk) {
+> -			if (to_buffer)
+> -				memcpy_toio(host->bounce_iomem_buf + offset, miter.addr, len);
+> -			else
+> -				memcpy_fromio(miter.addr, host->bounce_iomem_buf + offset, len);
+> -		} else {
+> -			if (to_buffer)
+> -				memcpy(host->bounce_buf + offset, miter.addr, len);
+> -			else
+> -				memcpy(miter.addr, host->bounce_buf + offset, len);
+> -		}
+> -
+> -		offset += len;
+> -	}
+> -
+> -	sg_miter_stop(&miter);
+> -}
+> -
+>   static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>   {
+>   	struct meson_host *host = mmc_priv(mmc);
+> @@ -830,7 +789,12 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>   		if (data->flags & MMC_DATA_WRITE) {
+>   			cmd_cfg |= CMD_CFG_DATA_WR;
+>   			WARN_ON(xfer_bytes > host->bounce_buf_size);
+> -			meson_mmc_copy_buffer(host, data, xfer_bytes, true);
+> +			if (host->dram_access_quirk)
+> +				sg_copy_to_io(data->sg, data->sg_len,
+> +					      host->bounce_iomem_buf, xfer_bytes);
 
-The __iomem annotation wants to be on buf here raher than cast in below, 
-to match the prototype (and everything else).
+Maybe you could just use host->regs + SD_EMMC_SRAM_DATA_BUF_OFF directly 
+here (and below) and save carrying host->bounce_iomem_buf around?
 
-Cheers,
 Robin.
 
-> +{
-> +	return sg_copy_io(sgl, nents, (void __iomem *)buf, buflen, 0, false);
-> +}
-> +EXPORT_SYMBOL(sg_copy_from_io);
-> +
-> +/**
-> + * sg_copy_to_io - Copy from an SG list to an I/O mapped buffer
-> + * @sgl:		 The SG list
-> + * @nents:		 Number of SG entries
-> + * @buf:		 Where to copy to
-> + * @buflen:		 The number of bytes to copy
-> + *
-> + * Returns the number of copied bytes.
-> + *
-> + **/
-> +size_t sg_copy_to_io(struct scatterlist *sgl, unsigned int nents,
-> +		     void __iomem *buf, size_t buflen)
-> +{
-> +	return sg_copy_io(sgl, nents, buf, buflen, 0, true);
-> +}
-> +EXPORT_SYMBOL(sg_copy_to_io);
-> +
->   /**
->    * sg_pcopy_from_buffer - Copy from a linear buffer to an SG list
->    * @sgl:		 The SG list
-> @@ -1024,6 +1107,42 @@ size_t sg_pcopy_to_buffer(struct scatterlist *sgl, unsigned int nents,
->   }
->   EXPORT_SYMBOL(sg_pcopy_to_buffer);
+> +			else
+> +				sg_copy_to_buffer(data->sg, data->sg_len,
+> +						  host->bounce_buf, xfer_bytes);
+>   			dma_wmb();
+>   		}
 >   
-> +/**
-> + * sg_pcopy_from_io - Copy from an I/O mapped buffer to an SG list
-> + * @sgl:		 The SG list
-> + * @nents:		 Number of SG entries
-> + * @buf:		 Where to copy from
-> + * @buflen:		 The number of bytes to copy
-> + * @skip:		 Number of bytes to skip before copying
-> + *
-> + * Returns the number of copied bytes.
-> + *
-> + **/
-> +size_t sg_pcopy_from_io(struct scatterlist *sgl, unsigned int nents,
-> +			const void __iomem *buf, size_t buflen, off_t skip)
-> +{
-> +	return sg_copy_io(sgl, nents, (void __iomem *)buf, buflen, skip, false);
-> +}
-> +EXPORT_SYMBOL(sg_pcopy_from_io);
-> +
-> +/**
-> + * sg_pcopy_to_io - Copy from an SG list to an I/O mapped buffer
-> + * @sgl:		 The SG list
-> + * @nents:		 Number of SG entries
-> + * @buf:		 Where to copy to
-> + * @buflen:		 The number of bytes to copy
-> + * @skip:		 Number of bytes to skip before copying
-> + *
-> + * Returns the number of copied bytes.
-> + *
-> + **/
-> +size_t sg_pcopy_to_io(struct scatterlist *sgl, unsigned int nents,
-> +		      void __iomem *buf, size_t buflen, off_t skip)
-> +{
-> +	return sg_copy_io(sgl, nents, buf, buflen, skip, true);
-> +}
-> +EXPORT_SYMBOL(sg_pcopy_to_io);
-> +
->   /**
->    * sg_zero_buffer - Zero-out a part of a SG list
->    * @sgl:		 The SG list
+> @@ -999,7 +963,10 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+>   	if (meson_mmc_bounce_buf_read(data)) {
+>   		xfer_bytes = data->blksz * data->blocks;
+>   		WARN_ON(xfer_bytes > host->bounce_buf_size);
+> -		meson_mmc_copy_buffer(host, data, xfer_bytes, false);
+> +		if (host->dram_access_quirk)
+> +			sg_copy_from_io(data->sg, data->sg_len, host->bounce_iomem_buf, xfer_bytes);
+> +		else
+> +			sg_copy_from_buffer(data->sg, data->sg_len, host->bounce_buf, xfer_bytes);
+>   	}
+>   
+>   	next_cmd = meson_mmc_get_next_command(cmd);
 > 
 
 _______________________________________________
