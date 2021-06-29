@@ -2,84 +2,65 @@ Return-Path: <SRS0=fP31=LX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70445C11F67
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jun 2021 16:05:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2A23C11F67
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jun 2021 16:18:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 25F1561D88
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jun 2021 16:05:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25F1561D88
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 6865361D9A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jun 2021 16:18:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6865361D9A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=rowland.harvard.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=g9UfFKi5EPfwhddI8siLYXXrwWSuTw/+TtSdLN4aB0M=; b=Mm5G8cRmPZBYIE
-	xk/cbxDh9OgWa7eyUk4+fBRNYeJZOALXUd3u5fobuIWrgdrB16voe0inMarl9a996xT1N4JlTGIKS
-	lavKCRoFIrZ29PMh9/MNel2N5DA/XdCZYsQn3AXn1MSFtVVzx4hDDyA52DeloFGFV61Jy8wIeDePe
-	zqgjHLspKUlwL2QLmBaa7L2D6DI3cwsusbBQb9uhYjAQn23o+aBLZc6t6aOq4U861YvTWtxcQH8q1
-	jZrsdcANDoqhvGxCK42WaYdJRIiDbWddZNq9gd+0lFYqJqY4gvwZupfN6z8e8dWnzus6AYVWN0ImX
-	e0+SFW/X+ecOqMviTvWQ==;
+	List-Owner; bh=cKDUEiI3DsgEtPl8GYLw3Du31WFMB/KYaF6bNNvS5jw=; b=lbnxlk7cWMY2ZI
+	/7mv+uKtnrHWfDCM/HkVX2m/EtbLdLsWnxeM0lnxlVSM4W7MNz2l2bgd1RLEPCQOGPE2NzY3ER1BK
+	fpBHppfAmaxWFrSzp4N/IgBTgijfESScbhbWjYXj1iqztVKXVQZPLTOWgagE4Pq97yvA/W9seLLoe
+	SuLbsbZn6v9q+mkbfnVko920EwjEmCeG0c8iHzwMy1UqtmiWQ4+sF17VsM4dUIk/v7WjBYLzuqDvh
+	yR9re/nMIwB5z8G/2py9mtI2NWN5InPZ85HZkUzobSeLpY3OdwBsmy+/fAfkodz9UldaRHMnZQVu7
+	w6NHBLJyUboNyo5fD9vQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lyGEa-00BZ3t-L4; Tue, 29 Jun 2021 16:05:12 +0000
-Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lyGEL-00BYzB-9o; Tue, 29 Jun 2021 16:04:58 +0000
-Received: by mail-ed1-x533.google.com with SMTP id t3so31996191edc.7;
- Tue, 29 Jun 2021 09:04:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=mSMaKeRnKB2oNlMP7+IS/2ZtzKYmdtUtkqxJbkL2T2k=;
- b=ngM9W5N2paWWM2+rpyaTLcjFN1N38663nn69udGelKAcal77EX3val2Y6ts8pvhpmT
- 9p1m8sV2vPV2DBLdEI0Dvq80UbjPDfYzkssVhnA9VhmiCd1nH1U5k4/18HcUQb15ZSwH
- mwf9jnmgIgyjU6gwHYpfx5KcRtYx/c4zGUQqubTnRr0Kp74KgcN8arF+3N8RIdhs8NGD
- /1FD/7rZ+qWQwFGR2s8VtX8hjXU0YJaYr3ctPzunw5tGAmreTBO+ATjU4QNHrcu5+DFN
- Q6JzbYFpx9RpGjrGlYTpKJRLuyUAqf2yVcv+xF6l7hqTABQpPHQjtwZCKxBcGTwjc+8h
- O2Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=mSMaKeRnKB2oNlMP7+IS/2ZtzKYmdtUtkqxJbkL2T2k=;
- b=E4EYL/JNpEY6s0BMuLr6l+sVhs6EUKHhCwf5iCs5FlT+YeAVWDa6cs7HmVgvkzS+yB
- FRI+/Sr8ngPU49mJnqyvLkcdEmtX5A5tmIvT55F5jYTqPD4399wrRZIj6M81+yO7iQrb
- Q1CxdCMgL6P83vc1ZY15GtixmoB+4URbzRzRKNlcyxtvOg2+IVNnkCIzYvBCChr1PltW
- vHyKLSIcD3o7aHXuHYp1EiA8xjm0mYqEHspc0k3fzT9ZJ0yGP4F0gzCoH6Q61+SqYViz
- hM+Z5byX+2eBmn2e4sNn19S4Nl/sTf0yMS3UtzgDtqYVezVTRYXUdi7rVUXzIBu9zC9p
- 2l8A==
-X-Gm-Message-State: AOAM531VjbXgBoHc67zv5HkMZ3cFl03AnsjexUHhnwISd8yt1YI2Ybj3
- GMGZGAsxGggwu3EooHBlQiO3wg15MVvMCeHXjAQ=
-X-Google-Smtp-Source: ABdhPJyBHEpuzEymX76+Mx6swN/2YyM7JkqD0xhzNhKytAogRq9nQTi/CZio/kVrUB5BqYa3tTaMsKrhfnc6IIyv98U=
-X-Received: by 2002:a05:6402:b83:: with SMTP id
- cf3mr35497334edb.130.1624982695390; 
- Tue, 29 Jun 2021 09:04:55 -0700 (PDT)
+	id 1lyGRB-00Bauo-4U; Tue, 29 Jun 2021 16:18:13 +0000
+Received: from netrider.rowland.org ([192.131.102.5])
+ by bombadil.infradead.org with smtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1lyGR7-00Bau8-93
+ for linux-amlogic@lists.infradead.org; Tue, 29 Jun 2021 16:18:11 +0000
+Received: (qmail 704222 invoked by uid 1000); 29 Jun 2021 12:18:07 -0400
+Date: Tue, 29 Jun 2021 12:18:07 -0400
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Matt Corallo <oc2udbzfd@mattcorallo.com>,
+ Minas Harutyunyan <hminas@synopsys.com>, linux-usb@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux.amoon@gmail.com
+Subject: Re: ODROID-C1/-C2 USB Detection only triggered by some devices
+Message-ID: <20210629161807.GB703497@rowland.harvard.edu>
+References: <0badab7c-f12e-e9ed-2f90-2cf5f25f4038@bluematt.me>
+ <20210628005825.GA638648@rowland.harvard.edu>
+ <e421818c-dea4-ba6b-e737-bb8d99582588@bluematt.me>
+ <20210628011628.GC638648@rowland.harvard.edu>
+ <0c62655d-738c-4d71-6b7b-fe7fa90b54e3@bluematt.me>
+ <20210628142418.GC656159@rowland.harvard.edu>
+ <CAFBinCA9Y16Ej3PEBN1Rsqo=6V1AZXKOpTfc_siHP0rvVo7wWQ@mail.gmail.com>
+ <20210629150541.GB699290@rowland.harvard.edu>
+ <CAFBinCCOGJfHSSHgRrOO-FQJZAUB=QuMr=BoddPLt19spp0QBg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210629121848.6527-1-linux.amoon@gmail.com>
-In-Reply-To: <20210629121848.6527-1-linux.amoon@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 29 Jun 2021 18:04:44 +0200
-Message-ID: <CAFBinCB8Gnj++2YKD3hf-8zyLfj5KyE3twv58XKV9L7-2jRmJg@mail.gmail.com>
-Subject: Re: [PATCHv1] arm64: amlogic: Fix the pwm regulator supply property
- in node
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>, 
- Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org
+Content-Disposition: inline
+In-Reply-To: <CAFBinCCOGJfHSSHgRrOO-FQJZAUB=QuMr=BoddPLt19spp0QBg@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210629_090457_400934_2A4C3144 
-X-CRM114-Status: GOOD (  12.26  )
+X-CRM114-CacheID: sfid-20210629_091809_510935_57306305 
+X-CRM114-Status: GOOD (  41.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,51 +77,125 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Anand,
+I think we should CC: the maintainer of the dwc2 driver (added).
 
-thanks for investigating this and for sending a fix!
+On Tue, Jun 29, 2021 at 05:51:51PM +0200, Martin Blumenstingl wrote:
+> Hi Alan,
+> 
+> Your help here is very much appreciated!
+> 
+> On Tue, Jun 29, 2021 at 5:05 PM Alan Stern <stern@rowland.harvard.edu> wrote:
+> [...]
+> > > The attached mon1.txt is the output I get
+> >
+> > Did you remove something from the beginning of this trace?  It starts
+> > with what appears to be the tail end of a resume sequence for the
+> > on-board Genesys Logic hub.  If you didn't remove anything then
+> > something is pretty wrong because the hub was apparently only
+> > partially suspended.
+> I have not removed anything from the output (at least not on purpose).
+> To verify I just re-tried and got a similar result
 
-On Tue, Jun 29, 2021 at 2:19 PM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> On enable CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
-see my comment on the previous patch
+Yeah, okay.  This indicates that the dwc2 driver has got a problem with 
+suspending ports.  Perhaps not surprising, given the context...
 
-> Changes help link VDDCPU_A and VDDCPU_B pwm regulator to 12V regulator
-> supply instead of dummy regulator.
->
-> [    4.147196] VDDCPU_A: will resolve supply early: pwm
-> [    4.147216] pwm-regulator regulator-vddcpu-a: Looking up pwm-supply from device tree
-> [    4.147227] pwm-regulator regulator-vddcpu-a: Looking up pwm-supply property in node /regulator-vddcpu-a failed
-> [    4.147258] VDDCPU_A: supplied by regulator-dummy
-> [    4.147288] regulator-dummy: could not add device link regulator.12: -ENOENT
-> [    4.147353] VDDCPU_A: 721 <--> 1022 mV at 871 mV, enabled
-> [    4.152014] VDDCPU_B: will resolve supply early: pwm
-> [    4.152035] pwm-regulator regulator-vddcpu-b: Looking up pwm-supply from device tree
-> [    4.152047] pwm-regulator regulator-vddcpu-b: Looking up pwm-supply property in node /regulator-vddcpu-b failed
-> [    4.152079] VDDCPU_B: supplied by regulator-dummy
-> [    4.152108] regulator-dummy: could not add device link regulator.13: -ENOENT
->
-> Fixes: d14734a04a8a ("arm64: dts: meson-g12b-odroid-n2: enable DVFS")
-I suggest changing the subject to include "dts", for example:
-arm64: dts: amlogic: ...
-(note: lower-case arm64 is correct here - even though it's different
-from the 32-bit ARM prefix)
+> > Anyway, the trace says that when the lsusb command ran, the hub woke up
+> > and didn't see any connections on any of its ports.  This could be
+> > caused by a bug in the hub itself, a bug in the way the system handles
+> > the hub, or maybe a bug in the way it handles a PHY or other component
+> > external to the hub.
+> This reminds me of commit cc10ce0c51b13d ("usb: dwc2: disable
+> power_down on Amlogic devices") [0]
+> I checked and the code for this commit is still in mainline (so it was
+> not reverted - either on purpose or by accident).
 
-$ grep -lR pwm-regulator arch/arm64/boot/dts/amlogic/
-arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
-arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-Are you planning to also send patches for the other board .dts as well?
+This isn't exactly about powering down; this is about putting the port 
+into suspend.  If the dwc2 driver is really suspending the port, it's 
+not telling the USB core drivers.  But that commit may be related.
 
+It's possible that the Genesys Logic hub doesn't like to have remote 
+wakeup enabled without going into suspend.
 
-Best regards,
-Martin
+> [...]
+> > > In case it's relevant for your further analysis:
+> > > - Odroid-C1+ and Odroid-C2 both use the USB PHY driver from
+> > > drivers/phy/amlogic/phy-meson8b-usb2.c
+> > > - Odroid-C1+ and Odroid-C2 both use use the dwc2 driver (running in
+> > > host-only mode in this scenario. there's a second OTG capable dwc2
+> > > controller which is currently disabled in mainline Linux on both
+> > > devices)
+> > > - Odroid-C1+ and Odroid-C2 have a soldered down 4-port Genesys Logic USB hub
+> > > - Odroid-C1+ does not use any GPIO to control VBUS on usb1
+> >
+> > Since the problem may be related to runtime power management, you
+> > should try booting with the command line parameter
+> >
+> >         usbcore.autosuspend=-1
+> wow, this helps indeed
+> my steps are:
+> - power off my Odroid-C1+
+> - unplug all USB devices
+> - boot with usbcore.autosuspend=-1 in the kernel cmdline
+> - plugin my Corsair Voyager USB 3.0 flash drive (which was only
+> detected before if an additional USB 2.0 flash drive was plugged in
+> during boot)
+> -> without any lsusb magic the device was immediately recognized
+
+That does show pretty convincingly that runtime suspend is causing the 
+problem.  But I still have no idea why the problem affects some devices 
+and not others.  It's a mystery.
+
+> > to disable default USB runtime suspends.  Also, check the contents of
+> > /sys/bus/usb/devices/1-2/power/autosuspend to make sure that runtime
+> > suspend really is disabled.  Does that make the problem go away?
+> with usbcore.autosuspend=-1 (after plugging in my Corsair Voyager):
+> # grep "" /sys/bus/usb/devices/*/power/autosuspend
+> /sys/bus/usb/devices/1-1.1/power/autosuspend:-1
+> /sys/bus/usb/devices/1-1/power/autosuspend:-1
+> /sys/bus/usb/devices/usb1/power/autosuspend:-1
+> 
+> after rebooting without usbcore.autosuspend=-1 (and no USB device
+> plugged in during boot):
+> # grep "" /sys/bus/usb/devices/*/power/autosuspend
+> /sys/bus/usb/devices/1-1/power/autosuspend:0
+> /sys/bus/usb/devices/usb1/power/autosuspend:0
+> 
+> I think the next step is narrowing down which component is causing this issue.
+
+Maybe Minas can help.  He knows a lot more about dwc2 than I do (which 
+is practically nothing).
+
+> Interestingly my PC (running 5.12.13-arch1-2) also has two Genesys
+> Logic USB hubs with the same USB vendor and device IDs as my
+> Odroid-C1+: 05e3:0610.
+> These hubs are connected to my AMD Ryzen 5000 CPU or the B550 chipset:
+> usb1              1d6b:0002 09 1IF  [USB 2.00,   480 Mbps,   0mA]
+> (xhci-hcd 0000:02:00.0) hub
+>  1-3               05e3:0610 09 1IF  [USB 2.10,   480 Mbps, 100mA]
+> (GenesysLogic USB2.0 Hub) hub
+> [...]
+>  1-7               05e3:0610 09 1IF  [USB 2.00,   480 Mbps, 100mA]
+> (Genesys Logic, Inc. Hub) hub
+> 
+> So far I have not observed any problems on my PC.
+
+Presumably because it uses xHCI rather than dwc2.
+
+Alan Stern
+
+> This is the lsusb.py output on my Odroid-C1+:
+> usb1              1d6b:0002 09 1IF  [USB 2.00,   480 Mbps,   0mA]
+> (Linux 5.13.0-02058-g8452e2c291aa-dirty dwc2_hsotg DWC OTG Controller
+> c90c0000.usb) hub
+>  1-1               05e3:0610 09 1IF  [USB 2.00,   480 Mbps, 100mA]
+> (Genesys Logic, Inc. Hub) hub
+> 
+> 
+> Best regards,
+> Martin
+> 
+> 
+> [0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/usb/dwc2/params.c?id=cc10ce0c51b13d1566d0ec1dcb472fb86330b391
 
 _______________________________________________
 linux-amlogic mailing list
