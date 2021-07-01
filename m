@@ -2,82 +2,91 @@ Return-Path: <SRS0=apJy=LZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4AF5C11F64
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 17:07:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F02AC11F64
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 20:25:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8D56D6140B
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 17:07:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D56D6140B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id BCBB661411
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 20:25:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BCBB661411
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UCHrBKHcsk4BpEUhBt3nMGATFNuKrgNew9bIKLapf4c=; b=w6Unu4XP7I3l2i
-	oKOEH5VIekuBMNMeiFGNasIcpc4Md73n9+cpf/OCwsj8qv3icEE0PtZ8mLM+d9LKhI2iT9TsM3IEi
-	7WrV5ll3WNNOBj1z+UxAW71Ab4GsPyePfDrJogzRK/OIqxsqmzqF3H1PxRLyzrZ0O145Qm+S1t3vL
-	YlssXthXRhKpXNxtIRAIs5rkqJYdG8IPDN5pzA9iZ2TGoBTCM7zjMqsr9XNKJ0MvA8J14s4utn/Ef
-	7S+RWhfWO0J7d5kEH3lDVhzDhuKc35Mfra4GGO1FNfH3UG67MGblLfBdaFwlmpmvyU4GAiaH8WR2T
-	lRm2UUbtSjj5tWaRj82Q==;
+	List-Owner; bh=K7IaQXHrDQjXK3xSOqABFkNg8aEnnq3MPwGfUE2MPh0=; b=n11pf/TcXcorYR
+	PcCJhiBKkL8w32QNcgfjMaDX2IqANRSs2wr8GHmaIIz7gPKUysICTZcqyi1jFDhaRt7biIMxUpuDr
+	WRA5StX3ZT3sMKlMoKTGlJNJ/8CSJpYjuZhWiTImKj2vYZ6iqtPfYBiJQUrK77b3dRHHbs20tClja
+	GjkPoEmsZ8TlaWUmQleJbTwM34O4J6T0jy8RNoawBjvMWMqPG9mhPlFFBWFzuUBtm2V8hJrSXsV3S
+	wsI5PiG3Z8WQbVjIysmLJ8pA2shFNA2176U3QxMJ8BxUQ+CVDNkH+0iA4ZO+WrFZ031lObNdYVcn3
+	oMBDuSiz5sSODTHmMnNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lz0AI-000XW5-SY; Thu, 01 Jul 2021 17:07:50 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1lz3Fs-0013NT-LI; Thu, 01 Jul 2021 20:25:48 +0000
+Received: from mail-ot1-x334.google.com ([2607:f8b0:4864:20::334])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lz0AG-000XUx-Kr; Thu, 01 Jul 2021 17:07:50 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DD4C06140A;
- Thu,  1 Jul 2021 17:07:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1625159267;
- bh=aTKWcebr4gvOdJEh+MwCAWFIMDCqNX7Qa2V/EBQEtiw=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=Mye9w1C+v7xkZ4mI1bW7x1IG6ac5vQpTckShNCuuKVKP+2KFUsvI/rRjEsUINs/zS
- Qb14K3Imigs8QXCmpfUEyccNUfVPmu1kOCqb6pBX3w8NAz8zBoW/2l7WieidNXtSMB
- LOqwVMEcI7V5smYsxjJlY62256PRGa+zidPJ/OaThDjy6L/T7t9p5IEIKaFnOCGLAR
- jQ5nRHJHPWPFnFJATfyuOXc1X3LpGtaDLpuIjqRrArf+LulFJsPx16glpAzo1KvOB7
- qEL1wcxyX78a4HERA5tkevE7XHHJnK0P+nXFaXPBaWTCLEvx9RBtpWNykBCVFDpgKd
- cpqOdnK48CJng==
-Received: by mail-ej1-f48.google.com with SMTP id l24so11549032ejq.11;
- Thu, 01 Jul 2021 10:07:47 -0700 (PDT)
-X-Gm-Message-State: AOAM5332a9hH7H5MaU/0zMYty7cy3Ex3tbxxxGrfZurKaUNpojeIieq6
- rVY9r+BeEdAZIscfLeEhq6cEpPFGiyYdQgPMqw==
-X-Google-Smtp-Source: ABdhPJxMUoof2kutwTR0KYkA8LrVVB8luU4gaBx2d5dFt2FtiQBOmrHMMm++Vt9EmJelAopleLH0UPhrp23B32WUcg0=
-X-Received: by 2002:a17:906:1951:: with SMTP id
- b17mr983711eje.468.1625159266413; 
- Thu, 01 Jul 2021 10:07:46 -0700 (PDT)
+ id 1lz3Fo-0013IZ-So; Thu, 01 Jul 2021 20:25:47 +0000
+Received: by mail-ot1-x334.google.com with SMTP id
+ o13-20020a9d404d0000b0290466630039caso7841656oti.6; 
+ Thu, 01 Jul 2021 13:25:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=HKqWSYAw82wkbQb4Q9rpOf6Rzfc8rpUQdtixYTB6Xug=;
+ b=K6Wop/WYm3LBArGs2St5nHMQ6E/PjbobEcxSA5D+GHCcQuVq5Do1OwPJKzz9JvfarD
+ rSpANKv+DJk5rGRpTWVPNOa5ecr/2f7h+N32TlAXgYXBTFzJxVxLpalpEPuiPL+2WcoZ
+ fvsAMDEQHCl/RMF7bDSQ5EbuieQiXB7I/a02KdGfJRuDF7mAEIYFpbuifQUkWYlIO3nF
+ YkbtMk6s7DrY79xfEKz3DdOdlnbejiHyvt/W2AtzwYoolQ9nGt+nFSv+7uvMOpbZxVTG
+ G7/Fz4sTqGEYOeb6Q4/zpQQS8lNXEdC+ReukjRBWgrgLdZFyPgaRAeg71tUiGnikJF7o
+ 7ZwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :references:mime-version:content-disposition:in-reply-to;
+ bh=HKqWSYAw82wkbQb4Q9rpOf6Rzfc8rpUQdtixYTB6Xug=;
+ b=aev6IWJb9IZXjrELj5X4+ImH2+hv7Kq4CTzgm8HSwfRJaeuhQjVlpJk+W7z9EQkA5p
+ 1Jij5/ZhCjp7OCuqQUxdEje8Xgz8CzpWbHQgwv7mtWuzZGOTvJKv1wojjE5DQTi6V74A
+ wU+wKQYCFYGjd/iE+7pEwQ60uAVSOUieD70T/fBqn1sJh8QUYQ3Xbo+q3s9GH1+zbTeK
+ CiG0XIhPbjnsIBVaQMoxbvDXMIsj9z/GSLUY9is1ZN71KtKimvV/er3VpPwCv6hWP1iF
+ jtdpn+bwzhUsqTYFhwQR027g/xGEDY8hOGNdfgMU7+XTnrCjMR05PfkuPoCccW7k7+DT
+ 97Fg==
+X-Gm-Message-State: AOAM530r5NgEag6R6MU7R9Q+p2S+J27bJUsXP8oQQW+gvTKc18Iei4yr
+ epF2foLM5yPGZNN11hVHBmI=
+X-Google-Smtp-Source: ABdhPJxbB5Kww3hYnu7vJrtKW5rPQ5KozsuVH/SGKSsrpAlj+tPI1lYQs2ly5JQ3p0izlW1T70B9GA==
+X-Received: by 2002:a05:6830:241d:: with SMTP id
+ j29mr1477463ots.371.1625171142913; 
+ Thu, 01 Jul 2021 13:25:42 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id y5sm159294otq.5.2021.07.01.13.25.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 01 Jul 2021 13:25:42 -0700 (PDT)
+Date: Thu, 1 Jul 2021 13:25:40 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org,
+ narmstrong@baylibre.com, jbrunet@baylibre.com, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] clk: divider: Switch from .round_rate to
+ .determine_rate by default
+Message-ID: <20210701202540.GA1085600@roeck-us.net>
+References: <20210627223959.188139-1-martin.blumenstingl@googlemail.com>
+ <20210627223959.188139-3-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
-References: <20210619063952.2008746-1-art@khadas.com>
- <20210619063952.2008746-3-art@khadas.com>
-In-Reply-To: <20210619063952.2008746-3-art@khadas.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 1 Jul 2021 11:07:34 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKV6iV1pbYNqFig5h5bH1cQ3pbdGc35F=sALNKdh2g4HA@mail.gmail.com>
-Message-ID: <CAL_JsqKV6iV1pbYNqFig5h5bH1cQ3pbdGc35F=sALNKdh2g4HA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] PCI: core: quirks: add mrrs_limit_quirk
-To: Artem Lapkin <email2tema@gmail.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, Yue Wang <yue.wang@amlogic.com>, 
- Kevin Hilman <khilman@baylibre.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
- Krzysztof Wilczynski <kw@linux.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Christian Hewitt <christianshewitt@gmail.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- PCI <linux-pci@vger.kernel.org>, 
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, art@khadas.com,
- Nick Xie <nick@khadas.com>, gouwa@khadas.com
+Content-Disposition: inline
+In-Reply-To: <20210627223959.188139-3-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210701_100748_752426_025D6829 
-X-CRM114-Status: GOOD (  21.25  )
+X-CRM114-CacheID: sfid-20210701_132544_995812_B4713D70 
+X-CRM114-Status: GOOD (  14.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,100 +103,81 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Jun 19, 2021 at 12:40 AM Artem Lapkin <email2tema@gmail.com> wrote:
->
-> Prepare new MRRS limit quirk which can replace dublicated functionality
+On Mon, Jun 28, 2021 at 12:39:58AM +0200, Martin Blumenstingl wrote:
+> .determine_rate is meant to replace .round_rate. The former comes with a
+> benefit which is especially relevant on 32-bit systems: since
+> .determine_rate uses an "unsigned long" (compared to a "signed long"
+> which is used by .round_rate) the maximum value on 32-bit systems
+> increases from 2^31 (or approx. 2.14GHz) to 2^32 (or approx. 4.29GHz).
+> Switch to a .determine_rate implementation by default so 32-bit systems
+> can benefit from the increased maximum value as well as so we have one
+> fewer user of .round_rate.
+> 
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-typo
+In next-20210701:
 
-> for some controllers from Loongson, Keystone, DesignWare
->
-> Signed-off-by: Artem Lapkin <art@khadas.com>
-> ---
->  drivers/pci/quirks.c | 54 ++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 54 insertions(+)
->
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index 653660e3b..73344ec71 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -5612,3 +5612,57 @@ static void apex_pci_fixup_class(struct pci_dev *pdev)
->  }
->  DECLARE_PCI_FIXUP_CLASS_HEADER(0x1ac1, 0x089a,
->                                PCI_CLASS_NOT_DEFINED, 8, apex_pci_fixup_class);
-> +
-> +/*
-> + * Some Loongson PCIe ports have a h/w limitation of
-> + * 256 bytes maximum read request size...
-> + *
-> + * Keystone PCI controller has a h/w limitation of
-> + * 256 bytes maximum read request size.
-> + *
-> + * Amlogic DesignWare PCI controller on Khadas VIM3/VIM3L have some
-> + * issue with HDMI scrambled picture and nvme devices
-> + * at intensive writing...
-> + */
-> +static void mrrs_limit_quirk(struct pci_dev *dev)
-> +{
-> +       struct pci_bus *bus = dev->bus;
-> +       struct pci_dev *bridge;
-> +       int mrrs;
-> +       int mrrs_limit = 256;
-> +       static const struct pci_device_id bridge_devids[] = {
-> +               { PCI_VDEVICE(LOONGSON, PCI_DEVICE_ID_LOONGSON_PCIE_PORT_0) },
-> +               { PCI_VDEVICE(LOONGSON, PCI_DEVICE_ID_LOONGSON_PCIE_PORT_1) },
-> +               { PCI_VDEVICE(LOONGSON, PCI_DEVICE_ID_LOONGSON_PCIE_PORT_2) },
-> +               { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_RC_K2HK),
-> +                .class = PCI_CLASS_BRIDGE_PCI << 8, .class_mask = ~0, },
+    0.000000] 8<--- cut here ---
+[    0.000000] Unable to handle kernel NULL pointer dereference at virtual address 00000000
+[    0.000000] pgd = (ptrval)
+[    0.000000] [00000000] *pgd=00000000
+[    0.000000] Internal error: Oops: 80000005 [#1] SMP ARM
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.13.0-next-20210701 #1
+[    0.000000] Hardware name: Freescale i.MX6 Ultralite (Device Tree)
+[    0.000000] PC is at 0x0
+[    0.000000] LR is at clk_core_determine_round_nolock+0xb4/0xe0
+[    0.000000] pc : [<00000000>]    lr : [<c07be330>]    psr: a00000d3
+[    0.000000] sp : c1701e48  ip : 00000000  fp : c1f6b340
+[    0.000000] r10: c1f6b33c  r9 : d082007c  r8 : c1709a18
+[    0.000000] r7 : 05e69ec0  r6 : 00000000  r5 : c1701e58  r4 : c2090480
+[    0.000000] r3 : 00000000  r2 : c1701e64  r1 : 05e69ec0  r0 : c208fe80
+[    0.000000] Flags: NzCv  IRQs off  FIQs off  Mode SVC_32  ISA ARM  Segment none
+[    0.000000] Control: 10c5387d  Table: 8000406a  DAC: 00000051
+[    0.000000] Register r0 information: slab kmalloc-64 start c208fe80 pointer offset 0 size 64
+[    0.000000] Register r1 information: non-paged memory
+[    0.000000] Register r2 information: non-slab/vmalloc memory
+[    0.000000] Register r3 information: NULL pointer
+[    0.000000] Register r4 information: slab kmalloc-192 start c2090480 pointer offset 0 size 192
+[    0.000000] Register r5 information: non-slab/vmalloc memory
+[    0.000000] Register r6 information: NULL pointer
+[    0.000000] Register r7 information: non-paged memory
+[    0.000000] Register r8 information: non-slab/vmalloc memory
+[    0.000000] Register r9 information: 0-page vmalloc region starting at 0xd0820000 allocated at of_iomap+0x4c/0x68
+[    0.000000] Register r10 information: non-slab/vmalloc memory
+[    0.000000] Register r11 information: non-slab/vmalloc memory
+[    0.000000] Register r12 information: NULL pointer
+[    0.000000] Process swapper/0 (pid: 0, stack limit = 0x(ptrval))
+[    0.000000] Stack: (0xc1701e48 to 0xc1702000)
+[    0.000000] 1e40:                   c2090480 c1700000 00000000 c07c5480 05e69ec0 00000000
+[    0.000000] 1e60: ffffffff 179a7b00 c208d500 e6ff0344 c208ff00 05e69ec0 d0820080 00000000
+[    0.000000] 1e80: 0000001c c07c55c0 c1f6b324 c2012c04 d0820080 c163c310 c1f6b340 00000000
+[    0.000000] 1ea0: 00000804 d0820074 0000001c 00000000 c186052c c109a5b0 c186052c c0caf26c
+[    0.000000] 1ec0: cbdc67ac d0820000 c2012c04 d0820060 d0820048 d0820028 cbdcc0cc d0820018
+[    0.000000] 1ee0: d0820020 d0820038 d0820030 c2012c04 c1701f1c 00000000 c2005e80 c1701f1c
+[    0.000000] 1f00: 00000004 c2005e88 cbdcc0cc cbdcc138 00000001 c162a4e4 c1700000 c1700000
+[    0.000000] 1f20: 00000000 c2005e88 c2005e88 cbdc5884 00000000 c1701fc8 c17093cc c0838f44
+[    0.000000] 1f40: c1600dd0 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[    0.000000] 1f60: 00000000 00000000 00000000 00000000 00000000 e6ff0344 00000000 c1902000
+[    0.000000] 1f80: c1663a80 00000012 c1700000 c1709380 00000000 c170caa8 c14cb424 c1604d34
+[    0.000000] 1fa0: c1902000 c1600e0c ffffffff ffffffff 00000000 c1600588 00000000 c1700000
+[    0.000000] 1fc0: 00000000 c1663a80 e6fa0e44 00000000 00000000 c1600330 00000051 10c0387d
+[    0.000000] 1fe0: ffffffff 8833b000 410fc075 10c5387d 00000000 00000000 00000000 00000000
+[    0.000000] [<c07be330>] (clk_core_determine_round_nolock) from [<c07c5480>] (clk_core_set_rate_nolock+0x184/0x294)
+[    0.000000] [<c07c5480>] (clk_core_set_rate_nolock) from [<c07c55c0>] (clk_set_rate+0x30/0x64)
+[    0.000000] [<c07c55c0>] (clk_set_rate) from [<c163c310>] (imx6ul_clocks_init+0x2798/0x2a44)
+[    0.000000] [<c163c310>] (imx6ul_clocks_init) from [<c162a4e4>] (of_clk_init+0x180/0x26c)
+[    0.000000] [<c162a4e4>] (of_clk_init) from [<c1604d34>] (time_init+0x20/0x30)
+[    0.000000] [<c1604d34>] (time_init) from [<c1600e0c>] (start_kernel+0x4c8/0x6cc)
+[    0.000000] [<c1600e0c>] (start_kernel) from [<00000000>] (0x0)
+[    0.000000] Code: bad PC value
+[    0.000000] ---[ end trace 7009a0f298fd39e9 ]---
+[    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
 
-Seems like checking the class is redundant given the VID and Device ID
-seems to be pretty unique.
+Bisct points to this patch as culprit. Reverting it fixes the problem.
 
-> +               { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_RC_K2E),
-> +                .class = PCI_CLASS_BRIDGE_PCI << 8, .class_mask = ~0, },
-> +               { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_RC_K2L),
-> +                .class = PCI_CLASS_BRIDGE_PCI << 8, .class_mask = ~0, },
-> +               { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_RC_K2G),
-> +                .class = PCI_CLASS_BRIDGE_PCI << 8, .class_mask = ~0, },
-> +               { PCI_DEVICE(PCI_VENDOR_ID_SYNOPSYS, PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3) },
-
-This is Amlogic I guess. But they are reusing the IP default values?
-Any other vendor that does the same will get the same quirk applied?
-These are write-able,
-so perhaps the driver should set them to something Amlogic specific.
-
-> +               { 0, },
-> +       };
-> +
-> +       /* look for the matching bridge */
-> +       while (!pci_is_root_bus(bus)) {
-> +               bridge = bus->self;
-> +               bus = bus->parent;
-> +               /*
-> +                * 256 bytes maximum read request size. They can't handle
-> +                * anything larger than this. So force this limit on
-> +                * any devices attached under these ports.
-> +                */
-> +               if (pci_match_id(bridge_devids, bridge)) {
-
-I would invert this to save some indentation:
-
-if (!pci_match_id(bridge_devids, bridge))
-    continue;
-
-> +                       mrrs = pcie_get_readrq(dev);
-> +                       if (mrrs > mrrs_limit) {
-> +                               pci_info(dev, "limiting MRRS %d to %d\n", mrrs, mrrs_limit);
-> +                               pcie_set_readrq(dev, mrrs_limit);
-> +                       }
-> +                       break;
-> +               }
-> +       }
-> +}
-> +DECLARE_PCI_FIXUP_ENABLE(PCI_ANY_ID, PCI_ANY_ID, mrrs_limit_quirk);
-> --
-> 2.25.1
->
+Guenter
 
 _______________________________________________
 linux-amlogic mailing list
