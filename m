@@ -2,69 +2,82 @@ Return-Path: <SRS0=apJy=LZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6879AC11F64
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 15:46:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4AF5C11F64
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 17:07:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2E6CF6140D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 15:46:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E6CF6140D
+	by mail.kernel.org (Postfix) with ESMTPS id 8D56D6140B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 17:07:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D56D6140B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=YxVnXPYwpF6FEl7+ZpSP7iXGKFqj257y9UBT+EbO6Ww=; b=YMhm3giuzhMUbb
-	qgYhPN1WPFVwyU6C68z7pikHZzrCCZomXf20DklNDawXRLRjx1OMT3mZFxhDhy6qf/k8fZNcPMKqG
-	LqGtlHuCR03Lzh3PXQVkCEstfBZsD4U+W0KK52CyfHwV3pP4tMamfWB5gG9RSU0dd2mGhm6To9C8y
-	1cALrqVlVlbCWweyhgE0yzH6jKIyLyRncvUXr48btkt0oO5X9VapB3XarxMPevozPLpsfwbgfluUx
-	nQVe04mUln7IYodMLrHJ4N+HXbmLw7j9jdcJBuV21aqnVTgZBelZSfcsQZPvS3QER/CmgQcV6mUfE
-	6RuMYcj8rzOYm5ZcskGg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UCHrBKHcsk4BpEUhBt3nMGATFNuKrgNew9bIKLapf4c=; b=w6Unu4XP7I3l2i
+	oKOEH5VIekuBMNMeiFGNasIcpc4Md73n9+cpf/OCwsj8qv3icEE0PtZ8mLM+d9LKhI2iT9TsM3IEi
+	7WrV5ll3WNNOBj1z+UxAW71Ab4GsPyePfDrJogzRK/OIqxsqmzqF3H1PxRLyzrZ0O145Qm+S1t3vL
+	YlssXthXRhKpXNxtIRAIs5rkqJYdG8IPDN5pzA9iZ2TGoBTCM7zjMqsr9XNKJ0MvA8J14s4utn/Ef
+	7S+RWhfWO0J7d5kEH3lDVhzDhuKc35Mfra4GGO1FNfH3UG67MGblLfBdaFwlmpmvyU4GAiaH8WR2T
+	lRm2UUbtSjj5tWaRj82Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lyyto-000Izj-7Y; Thu, 01 Jul 2021 15:46:44 +0000
+	id 1lz0AI-000XW5-SY; Thu, 01 Jul 2021 17:07:50 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lyytl-000Iyu-J1; Thu, 01 Jul 2021 15:46:43 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B2BFF6140D;
- Thu,  1 Jul 2021 15:46:40 +0000 (UTC)
+ id 1lz0AG-000XUx-Kr; Thu, 01 Jul 2021 17:07:50 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DD4C06140A;
+ Thu,  1 Jul 2021 17:07:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1625154401;
- bh=Fo6AvVX0T+1xIewne53jQHZgRx7ColYBFIZLicuS57E=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=HLfERLO+ag2XpeEdUQ3c+67U2cFQRMS900ys8JFNdarrsvJMkfbNx2hew1hwq+a9A
- gvNqINLoD7TLBOUYlCcWGsC1q03yev55tPj+Gd3ddWdMLfKLCMHrr8f7qLaIlO6QfJ
- LogsYURus7JMnPZxrijhTaktRpMR1HaZF+prKYL5a2q4LNhr0XEiF7HDvdyVKxMIr3
- Jn3TyNcwVME3djp1Wg6MtTGksBVjwZqg8Ibo1Dnw91c6yZNr/JOxunZ6Q46uacDnsu
- fJbdJ9/0kztzOtEWnYuLncgmAAkCE9Mb8EFuzG5M4IjHAvz7dvgEuM7Is0rKZmcQ7F
- CWTraAM9A83Gg==
-Date: Thu, 1 Jul 2021 10:46:34 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Artem Lapkin <email2tema@gmail.com>
-Cc: narmstrong@baylibre.com, yue.wang@Amlogic.com, khilman@baylibre.com,
- lorenzo.pieralisi@arm.com, robh@kernel.org, kw@linux.com,
- jbrunet@baylibre.com, christianshewitt@gmail.com,
- martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- art@khadas.com, nick@khadas.com, gouwa@khadas.com,
- Huacai Chen <chenhuacai@loongson.cn>
-Subject: Re: [PATCH 0/4] PCI: replace dublicated MRRS limit quirks
-Message-ID: <20210701154634.GA60743@bjorn-Precision-5520>
+ s=k20201202; t=1625159267;
+ bh=aTKWcebr4gvOdJEh+MwCAWFIMDCqNX7Qa2V/EBQEtiw=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=Mye9w1C+v7xkZ4mI1bW7x1IG6ac5vQpTckShNCuuKVKP+2KFUsvI/rRjEsUINs/zS
+ Qb14K3Imigs8QXCmpfUEyccNUfVPmu1kOCqb6pBX3w8NAz8zBoW/2l7WieidNXtSMB
+ LOqwVMEcI7V5smYsxjJlY62256PRGa+zidPJ/OaThDjy6L/T7t9p5IEIKaFnOCGLAR
+ jQ5nRHJHPWPFnFJATfyuOXc1X3LpGtaDLpuIjqRrArf+LulFJsPx16glpAzo1KvOB7
+ qEL1wcxyX78a4HERA5tkevE7XHHJnK0P+nXFaXPBaWTCLEvx9RBtpWNykBCVFDpgKd
+ cpqOdnK48CJng==
+Received: by mail-ej1-f48.google.com with SMTP id l24so11549032ejq.11;
+ Thu, 01 Jul 2021 10:07:47 -0700 (PDT)
+X-Gm-Message-State: AOAM5332a9hH7H5MaU/0zMYty7cy3Ex3tbxxxGrfZurKaUNpojeIieq6
+ rVY9r+BeEdAZIscfLeEhq6cEpPFGiyYdQgPMqw==
+X-Google-Smtp-Source: ABdhPJxMUoof2kutwTR0KYkA8LrVVB8luU4gaBx2d5dFt2FtiQBOmrHMMm++Vt9EmJelAopleLH0UPhrp23B32WUcg0=
+X-Received: by 2002:a17:906:1951:: with SMTP id
+ b17mr983711eje.468.1625159266413; 
+ Thu, 01 Jul 2021 10:07:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210619063952.2008746-1-art@khadas.com>
+References: <20210619063952.2008746-1-art@khadas.com>
+ <20210619063952.2008746-3-art@khadas.com>
+In-Reply-To: <20210619063952.2008746-3-art@khadas.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 1 Jul 2021 11:07:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKV6iV1pbYNqFig5h5bH1cQ3pbdGc35F=sALNKdh2g4HA@mail.gmail.com>
+Message-ID: <CAL_JsqKV6iV1pbYNqFig5h5bH1cQ3pbdGc35F=sALNKdh2g4HA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] PCI: core: quirks: add mrrs_limit_quirk
+To: Artem Lapkin <email2tema@gmail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, Yue Wang <yue.wang@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
+ Krzysztof Wilczynski <kw@linux.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Christian Hewitt <christianshewitt@gmail.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ PCI <linux-pci@vger.kernel.org>, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, art@khadas.com,
+ Nick Xie <nick@khadas.com>, gouwa@khadas.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210701_084641_690767_B6260698 
-X-CRM114-Status: GOOD (  10.14  )
+X-CRM114-CacheID: sfid-20210701_100748_752426_025D6829 
+X-CRM114-Status: GOOD (  21.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,66 +94,100 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-[+cc Huacai]
+On Sat, Jun 19, 2021 at 12:40 AM Artem Lapkin <email2tema@gmail.com> wrote:
+>
+> Prepare new MRRS limit quirk which can replace dublicated functionality
 
-On Sat, Jun 19, 2021 at 02:39:48PM +0800, Artem Lapkin wrote:
-> Replace dublicated MRRS limit quirks by mrrs_limit_quirk from core
-> * drivers/pci/controller/dwc/pci-keystone.c
-> * drivers/pci/controller/pci-loongson.c
+typo
 
-s/dublicated/duplicated/ (several occurrences)
+> for some controllers from Loongson, Keystone, DesignWare
+>
+> Signed-off-by: Artem Lapkin <art@khadas.com>
+> ---
+>  drivers/pci/quirks.c | 54 ++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>
+> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> index 653660e3b..73344ec71 100644
+> --- a/drivers/pci/quirks.c
+> +++ b/drivers/pci/quirks.c
+> @@ -5612,3 +5612,57 @@ static void apex_pci_fixup_class(struct pci_dev *pdev)
+>  }
+>  DECLARE_PCI_FIXUP_CLASS_HEADER(0x1ac1, 0x089a,
+>                                PCI_CLASS_NOT_DEFINED, 8, apex_pci_fixup_class);
+> +
+> +/*
+> + * Some Loongson PCIe ports have a h/w limitation of
+> + * 256 bytes maximum read request size...
+> + *
+> + * Keystone PCI controller has a h/w limitation of
+> + * 256 bytes maximum read request size.
+> + *
+> + * Amlogic DesignWare PCI controller on Khadas VIM3/VIM3L have some
+> + * issue with HDMI scrambled picture and nvme devices
+> + * at intensive writing...
+> + */
+> +static void mrrs_limit_quirk(struct pci_dev *dev)
+> +{
+> +       struct pci_bus *bus = dev->bus;
+> +       struct pci_dev *bridge;
+> +       int mrrs;
+> +       int mrrs_limit = 256;
+> +       static const struct pci_device_id bridge_devids[] = {
+> +               { PCI_VDEVICE(LOONGSON, PCI_DEVICE_ID_LOONGSON_PCIE_PORT_0) },
+> +               { PCI_VDEVICE(LOONGSON, PCI_DEVICE_ID_LOONGSON_PCIE_PORT_1) },
+> +               { PCI_VDEVICE(LOONGSON, PCI_DEVICE_ID_LOONGSON_PCIE_PORT_2) },
+> +               { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_RC_K2HK),
+> +                .class = PCI_CLASS_BRIDGE_PCI << 8, .class_mask = ~0, },
 
-Capitalize subject lines.
+Seems like checking the class is redundant given the VID and Device ID
+seems to be pretty unique.
 
-Use "git log --online" to learn conventions and follow them.
+> +               { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_RC_K2E),
+> +                .class = PCI_CLASS_BRIDGE_PCI << 8, .class_mask = ~0, },
+> +               { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_RC_K2L),
+> +                .class = PCI_CLASS_BRIDGE_PCI << 8, .class_mask = ~0, },
+> +               { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_RC_K2G),
+> +                .class = PCI_CLASS_BRIDGE_PCI << 8, .class_mask = ~0, },
+> +               { PCI_DEVICE(PCI_VENDOR_ID_SYNOPSYS, PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3) },
 
-Add "()" after function names.
+This is Amlogic I guess. But they are reusing the IP default values?
+Any other vendor that does the same will get the same quirk applied?
+These are write-able,
+so perhaps the driver should set them to something Amlogic specific.
 
-Capitalize acronyms appropriately (NVMe, MRRS, PCI, etc).
+> +               { 0, },
+> +       };
+> +
+> +       /* look for the matching bridge */
+> +       while (!pci_is_root_bus(bus)) {
+> +               bridge = bus->self;
+> +               bus = bus->parent;
+> +               /*
+> +                * 256 bytes maximum read request size. They can't handle
+> +                * anything larger than this. So force this limit on
+> +                * any devices attached under these ports.
+> +                */
+> +               if (pci_match_id(bridge_devids, bridge)) {
 
-End sentences with periods.
+I would invert this to save some indentation:
 
-A "move" patch must include both the removal and the addition and make
-no changes to the code itself.
+if (!pci_match_id(bridge_devids, bridge))
+    continue;
 
-Amlogic appears without explanation in 2/4.  Must be separate patch to
-address only that specific issue.  Should reference published erratum
-if possible.  "Solves some issue" is not a compelling justification.
-
-The tree must be consistent and functionally the same or improved
-after every patch.
-
-Add to pci_ids.h only if symbol used more than one place.
-
-See
-https://lore.kernel.org/r/20210701074458.1809532-3-chenhuacai@loongson.cn,
-which looks similar.  Combine efforts if possible and cc Huacai so
-you're both aware of overlapping work.
-
-More hints in case they're useful:
-https://lore.kernel.org/linux-pci/20171026223701.GA25649@bhelgaas-glaptop.roam.corp.google.com/
-
-> Both ks_pcie_quirk loongson_mrrs_quirk was rewritten without any
-> functionality changes by one mrrs_limit_quirk
-> 
-> Added DesignWare PCI controller which need same quirk for
-> * drivers/pci/controller/dwc/pci-meson.c (PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3)
-> 
-> This quirk can solve some issue for Khadas VIM3/VIM3L(Amlogic)
-> with HDMI scrambled picture and nvme devices at intensive writing...
-> 
-> come from:
-> * https://lore.kernel.org/linux-pci/20210618063821.1383357-1-art@khadas.com/
-> 
-> Artem Lapkin (4):
->  PCI: move Keystone and Loongson device IDs to pci_ids
->  PCI: core: quirks: add mrrs_limit_quirk
->  PCI: keystone move mrrs quirk to core
->  PCI: loongson move mrrs quirk to core
-> 
-> -- 
+> +                       mrrs = pcie_get_readrq(dev);
+> +                       if (mrrs > mrrs_limit) {
+> +                               pci_info(dev, "limiting MRRS %d to %d\n", mrrs, mrrs_limit);
+> +                               pcie_set_readrq(dev, mrrs_limit);
+> +                       }
+> +                       break;
+> +               }
+> +       }
+> +}
+> +DECLARE_PCI_FIXUP_ENABLE(PCI_ANY_ID, PCI_ANY_ID, mrrs_limit_quirk);
+> --
 > 2.25.1
-> 
+>
 
 _______________________________________________
 linux-amlogic mailing list
