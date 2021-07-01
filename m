@@ -2,91 +2,87 @@ Return-Path: <SRS0=apJy=LZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F02AC11F64
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 20:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EDA21C11F67
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 20:57:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BCBB661411
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 20:25:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BCBB661411
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	by mail.kernel.org (Postfix) with ESMTPS id AF5A8613F4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 20:57:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AF5A8613F4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K7IaQXHrDQjXK3xSOqABFkNg8aEnnq3MPwGfUE2MPh0=; b=n11pf/TcXcorYR
-	PcCJhiBKkL8w32QNcgfjMaDX2IqANRSs2wr8GHmaIIz7gPKUysICTZcqyi1jFDhaRt7biIMxUpuDr
-	WRA5StX3ZT3sMKlMoKTGlJNJ/8CSJpYjuZhWiTImKj2vYZ6iqtPfYBiJQUrK77b3dRHHbs20tClja
-	GjkPoEmsZ8TlaWUmQleJbTwM34O4J6T0jy8RNoawBjvMWMqPG9mhPlFFBWFzuUBtm2V8hJrSXsV3S
-	wsI5PiG3Z8WQbVjIysmLJ8pA2shFNA2176U3QxMJ8BxUQ+CVDNkH+0iA4ZO+WrFZ031lObNdYVcn3
-	oMBDuSiz5sSODTHmMnNA==;
+	List-Owner; bh=lSLENOxD7cKCY7ZP1GIX9lJRO9utJDL589vstmtJo98=; b=sik52Q5w5rnG2D
+	/ucFCL6fQexoyMh8ZXHoerE+59pOYIk+EPJco8aAJintzJx4FQJuV6ww9OXerutZO6GqnpenAG2RT
+	VWQNC1vJVTgNzuVRSRdiZeNmapD2z7mhjq8xGC9MiS0qx9V70GLu8ve0MaUIBpT+kxs7xH++uTFUS
+	IFSduRaM0djOTzUJiJ5wM8NeEb/iMPTiLjnSLOBKduHLvIpubOuAuvA4Lbf8L2MCPZ6wvZoXV89Wp
+	vLBtOgsZO/zmFmvePAvFST5Ld8gQowX8qWKU+0hW0VlrOpTj34LIG5XksymJW0aq5P7N0BoWHheM5
+	Aq0cnSqxRsh5L+2MahAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lz3Fs-0013NT-LI; Thu, 01 Jul 2021 20:25:48 +0000
-Received: from mail-ot1-x334.google.com ([2607:f8b0:4864:20::334])
+	id 1lz3kn-0019lZ-UI; Thu, 01 Jul 2021 20:57:45 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lz3Fo-0013IZ-So; Thu, 01 Jul 2021 20:25:47 +0000
-Received: by mail-ot1-x334.google.com with SMTP id
- o13-20020a9d404d0000b0290466630039caso7841656oti.6; 
- Thu, 01 Jul 2021 13:25:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=HKqWSYAw82wkbQb4Q9rpOf6Rzfc8rpUQdtixYTB6Xug=;
- b=K6Wop/WYm3LBArGs2St5nHMQ6E/PjbobEcxSA5D+GHCcQuVq5Do1OwPJKzz9JvfarD
- rSpANKv+DJk5rGRpTWVPNOa5ecr/2f7h+N32TlAXgYXBTFzJxVxLpalpEPuiPL+2WcoZ
- fvsAMDEQHCl/RMF7bDSQ5EbuieQiXB7I/a02KdGfJRuDF7mAEIYFpbuifQUkWYlIO3nF
- YkbtMk6s7DrY79xfEKz3DdOdlnbejiHyvt/W2AtzwYoolQ9nGt+nFSv+7uvMOpbZxVTG
- G7/Fz4sTqGEYOeb6Q4/zpQQS8lNXEdC+ReukjRBWgrgLdZFyPgaRAeg71tUiGnikJF7o
- 7ZwQ==
+ id 1lz3kl-0019jF-1I; Thu, 01 Jul 2021 20:57:44 +0000
+Received: by mail-ed1-x529.google.com with SMTP id x12so10296890eds.5;
+ Thu, 01 Jul 2021 13:57:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=VP2Ta3q4Jb5bQwDLseeiEQMAjQJRQEWeQWwTkmKx76w=;
+ b=oFhKI2MluGQ+1JEDG+4WRkFCVYSvgWmO2VdGPZACvIvnMtFoBQgspl2ad58ZMjJV+W
+ ETLgvMSdz/PERb15fCCBpqIZedtpqGW0INO/6KtOcswUhQRRPkbC6dwdUgvdikgiGmTx
+ koMzO50VYzCzdm70ANUenku2hdL3KQZuyqEo7Anzl1oHy5ZhsiVyCnPZ9GXdmp4z2Zk0
+ s4Z3c7XoW+QEMEvEEPKLCXiZk7kZOjJ9tKt/ag2ZGCPA2SJzR6MVokWbMY24BXMDfPUe
+ D1lPAOqzBqNk2eMIT0UEDZP8askASHnnoUqlNqrsmlqn+MJLkO2KBwMcdiGPoQNo3RAz
+ Rsfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to;
- bh=HKqWSYAw82wkbQb4Q9rpOf6Rzfc8rpUQdtixYTB6Xug=;
- b=aev6IWJb9IZXjrELj5X4+ImH2+hv7Kq4CTzgm8HSwfRJaeuhQjVlpJk+W7z9EQkA5p
- 1Jij5/ZhCjp7OCuqQUxdEje8Xgz8CzpWbHQgwv7mtWuzZGOTvJKv1wojjE5DQTi6V74A
- wU+wKQYCFYGjd/iE+7pEwQ60uAVSOUieD70T/fBqn1sJh8QUYQ3Xbo+q3s9GH1+zbTeK
- CiG0XIhPbjnsIBVaQMoxbvDXMIsj9z/GSLUY9is1ZN71KtKimvV/er3VpPwCv6hWP1iF
- jtdpn+bwzhUsqTYFhwQR027g/xGEDY8hOGNdfgMU7+XTnrCjMR05PfkuPoCccW7k7+DT
- 97Fg==
-X-Gm-Message-State: AOAM530r5NgEag6R6MU7R9Q+p2S+J27bJUsXP8oQQW+gvTKc18Iei4yr
- epF2foLM5yPGZNN11hVHBmI=
-X-Google-Smtp-Source: ABdhPJxbB5Kww3hYnu7vJrtKW5rPQ5KozsuVH/SGKSsrpAlj+tPI1lYQs2ly5JQ3p0izlW1T70B9GA==
-X-Received: by 2002:a05:6830:241d:: with SMTP id
- j29mr1477463ots.371.1625171142913; 
- Thu, 01 Jul 2021 13:25:42 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id y5sm159294otq.5.2021.07.01.13.25.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 01 Jul 2021 13:25:42 -0700 (PDT)
-Date: Thu, 1 Jul 2021 13:25:40 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org,
- narmstrong@baylibre.com, jbrunet@baylibre.com, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] clk: divider: Switch from .round_rate to
- .determine_rate by default
-Message-ID: <20210701202540.GA1085600@roeck-us.net>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=VP2Ta3q4Jb5bQwDLseeiEQMAjQJRQEWeQWwTkmKx76w=;
+ b=dKjkkbo46L9+5d9AKs2HWNgUtidP5oiqKHB2TP8+GEw8bFCeVAUtId2DC3XYoYvf6K
+ 9BiJnpHL944Aiiz+CRoDmmxNKFnfHvRmo6a61FN33RmHQiI4cmBElAZrVWKESEUAtNE5
+ 0mg1IJylL1Z/B8rGoroUp1k9Yew4pql37T3bGnLff0daRzWBdJ6CBcDrDJiYLUIYX6Ia
+ 1kkS1+nttUpon/wVsXUnFcWa62XVO9lzcRFJyAye3//2W/TsQ6+iH4pIuzqEuW86GwCV
+ mT8Q3xpRXvi7WJebwhjoQkNLOVA8FAneHhyT+lRbHUqnxaGfeYVoFhIKqnhTyEb5XcMx
+ Yssw==
+X-Gm-Message-State: AOAM531ZK2WYyeaHsdbQ4O+j7lI69UUHSM0gzILcMdvtfUdq4Scl7CS2
+ REm5SC0/D0+P2mJi4zz9t8G7MOug1/bav0q68fE=
+X-Google-Smtp-Source: ABdhPJz058h3NcfrAlPBkFZPCdJ8Yg2KK8FXz3FF0CRf4Elqcwf033TfCCNu9O9waMMBHAjYk8tHzNXd+/uDHMhwPJE=
+X-Received: by 2002:a05:6402:510d:: with SMTP id
+ m13mr2238223edd.179.1625173059565; 
+ Thu, 01 Jul 2021 13:57:39 -0700 (PDT)
+MIME-Version: 1.0
 References: <20210627223959.188139-1-martin.blumenstingl@googlemail.com>
  <20210627223959.188139-3-martin.blumenstingl@googlemail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210627223959.188139-3-martin.blumenstingl@googlemail.com>
+ <20210701202540.GA1085600@roeck-us.net>
+In-Reply-To: <20210701202540.GA1085600@roeck-us.net>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 1 Jul 2021 22:57:28 +0200
+Message-ID: <CAFBinCC2KB-_pOenpWPknCuHV+CCjhP5hqukSkwD3qwRe6OtQw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] clk: divider: Switch from .round_rate to
+ .determine_rate by default
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org, 
+ Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
+ khilman@baylibre.com, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210701_132544_995812_B4713D70 
-X-CRM114-Status: GOOD (  14.81  )
+X-CRM114-CacheID: sfid-20210701_135743_144186_4A8AA253 
+X-CRM114-Status: GOOD (  15.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,81 +99,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 28, 2021 at 12:39:58AM +0200, Martin Blumenstingl wrote:
-> .determine_rate is meant to replace .round_rate. The former comes with a
-> benefit which is especially relevant on 32-bit systems: since
-> .determine_rate uses an "unsigned long" (compared to a "signed long"
-> which is used by .round_rate) the maximum value on 32-bit systems
-> increases from 2^31 (or approx. 2.14GHz) to 2^32 (or approx. 4.29GHz).
-> Switch to a .determine_rate implementation by default so 32-bit systems
-> can benefit from the increased maximum value as well as so we have one
-> fewer user of .round_rate.
-> 
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Guenter,
 
-In next-20210701:
+On Thu, Jul 1, 2021 at 10:25 PM Guenter Roeck <linux@roeck-us.net> wrote:
+[...]
+> [    0.000000] [<c07be330>] (clk_core_determine_round_nolock) from [<c07c5480>] (clk_core_set_rate_nolock+0x184/0x294)
+> [    0.000000] [<c07c5480>] (clk_core_set_rate_nolock) from [<c07c55c0>] (clk_set_rate+0x30/0x64)
+> [    0.000000] [<c07c55c0>] (clk_set_rate) from [<c163c310>] (imx6ul_clocks_init+0x2798/0x2a44)
+> [    0.000000] [<c163c310>] (imx6ul_clocks_init) from [<c162a4e4>] (of_clk_init+0x180/0x26c)
+> [    0.000000] [<c162a4e4>] (of_clk_init) from [<c1604d34>] (time_init+0x20/0x30)
+> [    0.000000] [<c1604d34>] (time_init) from [<c1600e0c>] (start_kernel+0x4c8/0x6cc)
+> [    0.000000] [<c1600e0c>] (start_kernel) from [<00000000>] (0x0)
+> [    0.000000] Code: bad PC value
+> [    0.000000] ---[ end trace 7009a0f298fd39e9 ]---
+> [    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
+>
+> Bisct points to this patch as culprit. Reverting it fixes the problem.
+sorry for breaking imx6 - and at the same time: thanks for reporting this!
 
-    0.000000] 8<--- cut here ---
-[    0.000000] Unable to handle kernel NULL pointer dereference at virtual address 00000000
-[    0.000000] pgd = (ptrval)
-[    0.000000] [00000000] *pgd=00000000
-[    0.000000] Internal error: Oops: 80000005 [#1] SMP ARM
-[    0.000000] Modules linked in:
-[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.13.0-next-20210701 #1
-[    0.000000] Hardware name: Freescale i.MX6 Ultralite (Device Tree)
-[    0.000000] PC is at 0x0
-[    0.000000] LR is at clk_core_determine_round_nolock+0xb4/0xe0
-[    0.000000] pc : [<00000000>]    lr : [<c07be330>]    psr: a00000d3
-[    0.000000] sp : c1701e48  ip : 00000000  fp : c1f6b340
-[    0.000000] r10: c1f6b33c  r9 : d082007c  r8 : c1709a18
-[    0.000000] r7 : 05e69ec0  r6 : 00000000  r5 : c1701e58  r4 : c2090480
-[    0.000000] r3 : 00000000  r2 : c1701e64  r1 : 05e69ec0  r0 : c208fe80
-[    0.000000] Flags: NzCv  IRQs off  FIQs off  Mode SVC_32  ISA ARM  Segment none
-[    0.000000] Control: 10c5387d  Table: 8000406a  DAC: 00000051
-[    0.000000] Register r0 information: slab kmalloc-64 start c208fe80 pointer offset 0 size 64
-[    0.000000] Register r1 information: non-paged memory
-[    0.000000] Register r2 information: non-slab/vmalloc memory
-[    0.000000] Register r3 information: NULL pointer
-[    0.000000] Register r4 information: slab kmalloc-192 start c2090480 pointer offset 0 size 192
-[    0.000000] Register r5 information: non-slab/vmalloc memory
-[    0.000000] Register r6 information: NULL pointer
-[    0.000000] Register r7 information: non-paged memory
-[    0.000000] Register r8 information: non-slab/vmalloc memory
-[    0.000000] Register r9 information: 0-page vmalloc region starting at 0xd0820000 allocated at of_iomap+0x4c/0x68
-[    0.000000] Register r10 information: non-slab/vmalloc memory
-[    0.000000] Register r11 information: non-slab/vmalloc memory
-[    0.000000] Register r12 information: NULL pointer
-[    0.000000] Process swapper/0 (pid: 0, stack limit = 0x(ptrval))
-[    0.000000] Stack: (0xc1701e48 to 0xc1702000)
-[    0.000000] 1e40:                   c2090480 c1700000 00000000 c07c5480 05e69ec0 00000000
-[    0.000000] 1e60: ffffffff 179a7b00 c208d500 e6ff0344 c208ff00 05e69ec0 d0820080 00000000
-[    0.000000] 1e80: 0000001c c07c55c0 c1f6b324 c2012c04 d0820080 c163c310 c1f6b340 00000000
-[    0.000000] 1ea0: 00000804 d0820074 0000001c 00000000 c186052c c109a5b0 c186052c c0caf26c
-[    0.000000] 1ec0: cbdc67ac d0820000 c2012c04 d0820060 d0820048 d0820028 cbdcc0cc d0820018
-[    0.000000] 1ee0: d0820020 d0820038 d0820030 c2012c04 c1701f1c 00000000 c2005e80 c1701f1c
-[    0.000000] 1f00: 00000004 c2005e88 cbdcc0cc cbdcc138 00000001 c162a4e4 c1700000 c1700000
-[    0.000000] 1f20: 00000000 c2005e88 c2005e88 cbdc5884 00000000 c1701fc8 c17093cc c0838f44
-[    0.000000] 1f40: c1600dd0 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[    0.000000] 1f60: 00000000 00000000 00000000 00000000 00000000 e6ff0344 00000000 c1902000
-[    0.000000] 1f80: c1663a80 00000012 c1700000 c1709380 00000000 c170caa8 c14cb424 c1604d34
-[    0.000000] 1fa0: c1902000 c1600e0c ffffffff ffffffff 00000000 c1600588 00000000 c1700000
-[    0.000000] 1fc0: 00000000 c1663a80 e6fa0e44 00000000 00000000 c1600330 00000051 10c0387d
-[    0.000000] 1fe0: ffffffff 8833b000 410fc075 10c5387d 00000000 00000000 00000000 00000000
-[    0.000000] [<c07be330>] (clk_core_determine_round_nolock) from [<c07c5480>] (clk_core_set_rate_nolock+0x184/0x294)
-[    0.000000] [<c07c5480>] (clk_core_set_rate_nolock) from [<c07c55c0>] (clk_set_rate+0x30/0x64)
-[    0.000000] [<c07c55c0>] (clk_set_rate) from [<c163c310>] (imx6ul_clocks_init+0x2798/0x2a44)
-[    0.000000] [<c163c310>] (imx6ul_clocks_init) from [<c162a4e4>] (of_clk_init+0x180/0x26c)
-[    0.000000] [<c162a4e4>] (of_clk_init) from [<c1604d34>] (time_init+0x20/0x30)
-[    0.000000] [<c1604d34>] (time_init) from [<c1600e0c>] (start_kernel+0x4c8/0x6cc)
-[    0.000000] [<c1600e0c>] (start_kernel) from [<00000000>] (0x0)
-[    0.000000] Code: bad PC value
-[    0.000000] ---[ end trace 7009a0f298fd39e9 ]---
-[    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
+Do you have some additional information about this crash (which clock
+this relates to, file and line number, etc.)?
+I am struggling to understand the cause of this NULL dereference
+My patch doesn't change the clk_core_determine_round_nolock()
+implementation and the new determine_rate code-path (inside that
+function) doesn't seem to be more fragile in terms of NULL values
+compared to the round_rate code-path.
+Instead I think it's more likely that the problem is somewhere within
+clk_divider_determine_rate() (or in any helper function it uses), but
+that doesn't show up in the trace
 
-Bisct points to this patch as culprit. Reverting it fixes the problem.
+I don't have any imx6 board myself and so far I am unable to reproduce
+this crash on any hardware I have.
+However, if it's a problem in my clk-divider.c changes then I'd like
+to find the cause (ASAP) because possibly more SoCs may be broken...
 
-Guenter
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
