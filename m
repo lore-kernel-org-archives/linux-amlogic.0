@@ -2,96 +2,90 @@ Return-Path: <SRS0=apJy=LZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+X-Spam-Status: No, score=-12.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89C32C11F67
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 21:43:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 79C62C11F67
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 21:52:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 476C761410
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 21:43:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 476C761410
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	by mail.kernel.org (Postfix) with ESMTPS id 4C68A61410
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 21:52:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4C68A61410
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=phystech.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fRyo+b17VGpjqdJaEPgzptliemGRTDQPm4/xmPzLm1Q=; b=POHLE5oRoOV2dkII+nLQuPOU+G
-	Ymv2UJuwqGD2sntSzSDtJZsJ+tThnQkMibUBq5UfYlm9vxxjI4qB3a+2UgvLudsqCXlb4JZofKdgT
-	WVz3l4D/9vHY6A0Q5qiHA92TVKEm5pgHf4wHaWLMsU5YMxtPNXKU25wSQ3yRmwR4hG/yTStG2bU6i
-	YkLLHLNpHjbwWova+aRT246xixAbft2NOXeWN4GTYEHSYg+2yQsk6vqLQO7M6IA6zHgEewQb4r4Ni
-	g/sbN1OfsADURU6XK8LrxIpgarRZVfJuajjauSH1LNp4lJy7Bnm6Ab1MtQNHw35tFEHyVkBPTVeTu
-	TuY8/QDg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ZMF7iIU6C9vdsFmYTVXNeRn43mK3byyooRcxcPw4ZHo=; b=kleimj+8QLPYrN
+	XHYt68QXfMukYiPdSj2VhEK8yt5mW5ya6qgWVaoGKFdzwiz/SnoXsiDbtA8wv8FwWiq0aDnZj5ZCu
+	554coYI3pVqYS9HrG16jAF9K6AsFPv5a1m7VhNt3oXSOpW+ELR16jKp6NcP5YkCiR37JyEUyc1SYG
+	aDGAG48upuN35I1wBj8I490wuYj6EFmUzRgbU6NSxNbul8qrDe7y2boKr1BXstXGRzOEwiTvdWMut
+	iiETGMufJ8cS1a5+26KdDUZ4WHs4Al4uLDuYQ3X8Fe0j0LeYoZ1taL6EOm4U2uRn2Ug7xzjDVLpXh
+	CYibm0VW8ADhVUV2Pl1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lz4TL-001FE8-E6; Thu, 01 Jul 2021 21:43:47 +0000
-Received: from mail-oo1-xc36.google.com ([2607:f8b0:4864:20::c36])
+	id 1lz4bR-001GnR-0E; Thu, 01 Jul 2021 21:52:09 +0000
+Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lz4T8-001FBR-0w; Thu, 01 Jul 2021 21:43:35 +0000
-Received: by mail-oo1-xc36.google.com with SMTP id
- bc18-20020a0568201692b029024c6dbc2073so1960441oob.8; 
- Thu, 01 Jul 2021 14:43:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=K75TMc833Hnb3K5ewk2HbYnNKfUBgfQkkOxc24B6DT4=;
- b=vRn3yfZ8+4E3qWPjdUGgXR4HGXqqJ/qUjMGAP90AWTjVl4wnA56aTtxKvjPBaEblBR
- Es4GusU8pQmCTnG+WX/Mv/E7S101G3hjV3ItxdZxBH0LhD4o7soKHJ7teiB3E+MyjehB
- sHs+E6RqYyy3k9Xzm5G6UnHs6Cz/TREKSRYXsh/36rgR96RDs03QvZla92C+7hYDtiP9
- 65QR7z5S5HoTdKgGs1UzU+b0UJmPX5YLdE6J8Hq6BHuI4A1dcujApZaYwvdQ/7xIACzN
- LLJB/MNz4gmQux0TLWXkhjUgvmQTNzkNqwYzDMyyfV6y0VjFv81B9jrN+dos290NIzX7
- WXdA==
+ id 1lz4bD-001GjA-HY
+ for linux-amlogic@lists.infradead.org; Thu, 01 Jul 2021 21:51:57 +0000
+Received: by mail-lj1-x22a.google.com with SMTP id d25so10500211lji.7
+ for <linux-amlogic@lists.infradead.org>; Thu, 01 Jul 2021 14:51:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=phystech-edu.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=a3IX/2KuwHeMRcmciK0Z/zcjVGMIarf1/EXwo1sUcpU=;
+ b=0/G8HqauhtiyYpibqNVecNYum5ecxe3IiMbygluzJPZOdzvWwW9vBN56yOOSDNv0eN
+ 7ENGMx4jiGbO4xReSZS8rQFd62bvkl9RS+/aAN8jqFo0vy/fi35Ry6WbULuIxxLHAY+1
+ aLP1u8XhKEEcxhEN8mtj/XZZ25FVHLP/9IkcRf85IQY3R/3Zj4i/utnEz0/eMFfYMY8k
+ IF8DEdriWA8EWU8TuOCSPwCZ4jRsNU/JqjmiUbhrtu29fcj+06N1DrVb1kV9Cv5jn4aO
+ omaKfF4+mrdwJpaLeWs4OVyJ3Hl+rcMW/kO8wbBTVUzSLAcVW2A8d3yVId4ZN5uSOCN2
+ waSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=K75TMc833Hnb3K5ewk2HbYnNKfUBgfQkkOxc24B6DT4=;
- b=Vzxto+HIg2nEKBM8hrn6rN0HMJMdpu8GT162GZS68HfbC/AQjblq8MCFt9+ZSgzMDZ
- 1rIUDl0cYxnDQaBoOv3v46+fKeRHP0yopY5pgRly2+gBVJJF9PyFscsn9sXmNyYB4Nlx
- aOYyCtKmuiJxDWWkKwa/wRGT/pNsm9+Qq01SLdYy7kxybQlYVY1Rrli9UZEpLZvNovLA
- 66DFsuxYQL/0jmYPGoBmaxo6WTaUM08TYNTRtU+zVupPQVagOpI8wBFKM1N1W3509z/q
- TyXJoYfMTH0klRK1N5ShJZ6HB4WtnhX58AAJ8+6yiYrJzOoNmxjQhXgMJ/8OPCe9Asbn
- aTMw==
-X-Gm-Message-State: AOAM532XmARrXflKvs6zF8g2DLDkNznDXoSszQ2XvUjPcQhmsVVe45MS
- LtxZrUGONE35wGmgSR4joqryU4omzBU=
-X-Google-Smtp-Source: ABdhPJzIRrjoijEn1koxIO+9bmtEXdAF29WNwuReepWnxaWoHI0uNMwp+/TA2WeEqF2v5v+xIFiLXw==
-X-Received: by 2002:a4a:8241:: with SMTP id t1mr1609090oog.13.1625175812601;
- Thu, 01 Jul 2021 14:43:32 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- e18sm252459oiw.27.2021.07.01.14.43.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 01 Jul 2021 14:43:31 -0700 (PDT)
-Subject: Re: [PATCH v3 2/3] clk: divider: Switch from .round_rate to
- .determine_rate by default
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
- khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20210627223959.188139-1-martin.blumenstingl@googlemail.com>
- <20210627223959.188139-3-martin.blumenstingl@googlemail.com>
- <20210701202540.GA1085600@roeck-us.net>
- <CAFBinCC2KB-_pOenpWPknCuHV+CCjhP5hqukSkwD3qwRe6OtQw@mail.gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Message-ID: <7a06cfaf-4cae-5c4c-edff-16d6406a1b6c@roeck-us.net>
-Date: Thu, 1 Jul 2021 14:43:29 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ bh=a3IX/2KuwHeMRcmciK0Z/zcjVGMIarf1/EXwo1sUcpU=;
+ b=aCb9pUbSoQjWQcw9QoRFc+xVaBBACiz8qpOlnitvCSabpfGvrepjWwN+aL+dysT6dS
+ G3wx5UxWFTsxBEBiRbxdJdBcDA2jcJXKLLW7c3N5UYgHsSahTQtR1808CKAzXErxpVV4
+ 8tKxSOcbSwPBpNJIC7cJBbkw4+3HUaQzExLl/ZBbg24gs9Hz83jUk1txZk6zOZfh2pBw
+ A4qnfIWYXk29o8yxcbGOIrqwvMtmPGMjKt9yXMK84eYpWYEgDQqAP+1h82VWvXMppLjv
+ pHFqy8XTr7h9f2SYpRTjVD8vPLXwxVw2NuePzQpGlpnUqJk/UaucqKix50edeAW18pyt
+ u2eg==
+X-Gm-Message-State: AOAM530fwdhyEySni+Qp5YIq7b3rexT2VHRIKPVMZB6eu1XITWFwl/03
+ l0l3FsxDUtLNMC68HcKzazSUmA==
+X-Google-Smtp-Source: ABdhPJwFe3YY1ET2LKfFqWQ/0/xLKXQAv2E0/Kf2SXy1asZumMFcF3weWH7KiGXFHN5kVlXaSX2ieg==
+X-Received: by 2002:a2e:bc26:: with SMTP id b38mr1230428ljf.345.1625176312222; 
+ Thu, 01 Jul 2021 14:51:52 -0700 (PDT)
+Received: from 192.168.1.3 ([2a00:1370:810e:4d3d:fdb7:f150:ee77:eba5])
+ by smtp.gmail.com with ESMTPSA id q17sm138623ljp.3.2021.07.01.14.51.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 01 Jul 2021 14:51:51 -0700 (PDT)
+From: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+To: sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
+ khilman@baylibre.com, narmstrong@baylibre.com
+Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, rockosov@gmail.com,
+ Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Subject: [PATCH 0/2] media: rc: add support for Amlogic Meson IR blaster
+Date: Fri,  2 Jul 2021 00:51:30 +0300
+Message-Id: <20210701215132.16317-1-viktor.prutyanov@phystech.edu>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCC2KB-_pOenpWPknCuHV+CCjhP5hqukSkwD3qwRe6OtQw@mail.gmail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210701_144334_146348_E1B804AA 
-X-CRM114-Status: GOOD (  24.48  )
+X-CRM114-CacheID: sfid-20210701_145155_625262_74E0FD81 
+X-CRM114-Status: UNSURE (   9.29  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,53 +97,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 7/1/21 1:57 PM, Martin Blumenstingl wrote:
-> Hi Guenter,
-> 
-> On Thu, Jul 1, 2021 at 10:25 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> [...]
->> [    0.000000] [<c07be330>] (clk_core_determine_round_nolock) from [<c07c5480>] (clk_core_set_rate_nolock+0x184/0x294)
->> [    0.000000] [<c07c5480>] (clk_core_set_rate_nolock) from [<c07c55c0>] (clk_set_rate+0x30/0x64)
->> [    0.000000] [<c07c55c0>] (clk_set_rate) from [<c163c310>] (imx6ul_clocks_init+0x2798/0x2a44)
->> [    0.000000] [<c163c310>] (imx6ul_clocks_init) from [<c162a4e4>] (of_clk_init+0x180/0x26c)
->> [    0.000000] [<c162a4e4>] (of_clk_init) from [<c1604d34>] (time_init+0x20/0x30)
->> [    0.000000] [<c1604d34>] (time_init) from [<c1600e0c>] (start_kernel+0x4c8/0x6cc)
->> [    0.000000] [<c1600e0c>] (start_kernel) from [<00000000>] (0x0)
->> [    0.000000] Code: bad PC value
->> [    0.000000] ---[ end trace 7009a0f298fd39e9 ]---
->> [    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
->>
->> Bisct points to this patch as culprit. Reverting it fixes the problem.
-> sorry for breaking imx6 - and at the same time: thanks for reporting this!
-> 
-> Do you have some additional information about this crash (which clock
-> this relates to, file and line number, etc.)?
-> I am struggling to understand the cause of this NULL dereference
-> My patch doesn't change the clk_core_determine_round_nolock()
-> implementation and the new determine_rate code-path (inside that
-> function) doesn't seem to be more fragile in terms of NULL values
-> compared to the round_rate code-path.
-> Instead I think it's more likely that the problem is somewhere within
-> clk_divider_determine_rate() (or in any helper function it uses), but
-> that doesn't show up in the trace
-> 
-> I don't have any imx6 board myself and so far I am unable to reproduce
-> this crash on any hardware I have.
-> However, if it's a problem in my clk-divider.c changes then I'd like
-> to find the cause (ASAP) because possibly more SoCs may be broken...
-> 
+Hi,
 
-I don't have such a board either. The problem shows up in my qemu boot tests. See
-https://kerneltests.org/builders/qemu-arm-v7-next/builds/38/steps/qemubuildcommand/logs/stdio
-for an example. The problem reproduces with qemu's mcimx6ul-evk and sabrelite
-emulations.
+this is a driver for the IR transmitter (also called IR blaster)
+available in some Amlogic Meson SoCs.
 
-Guenter
+Viktor Prutyanov (2):
+  media: rc: meson-irblaster: document device tree bindings
+  media: rc: introduce Meson IR blaster driver
+
+ .../media/amlogic,meson-irblaster.yaml        |  63 +++
+ drivers/media/rc/Kconfig                      |  10 +
+ drivers/media/rc/Makefile                     |   1 +
+ drivers/media/rc/meson-irblaster.c            | 433 ++++++++++++++++++
+ 4 files changed, 507 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml
+ create mode 100644 drivers/media/rc/meson-irblaster.c
+
+-- 
+2.21.0
+
 
 _______________________________________________
 linux-amlogic mailing list
