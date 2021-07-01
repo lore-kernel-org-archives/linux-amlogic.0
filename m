@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
 	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EDA21C11F67
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 20:57:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C460FC11F67
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 21:19:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AF5A8613F4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 20:57:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AF5A8613F4
+	by mail.kernel.org (Postfix) with ESMTPS id 81BCD6140B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jul 2021 21:19:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 81BCD6140B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,66 +23,75 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lSLENOxD7cKCY7ZP1GIX9lJRO9utJDL589vstmtJo98=; b=sik52Q5w5rnG2D
-	/ucFCL6fQexoyMh8ZXHoerE+59pOYIk+EPJco8aAJintzJx4FQJuV6ww9OXerutZO6GqnpenAG2RT
-	VWQNC1vJVTgNzuVRSRdiZeNmapD2z7mhjq8xGC9MiS0qx9V70GLu8ve0MaUIBpT+kxs7xH++uTFUS
-	IFSduRaM0djOTzUJiJ5wM8NeEb/iMPTiLjnSLOBKduHLvIpubOuAuvA4Lbf8L2MCPZ6wvZoXV89Wp
-	vLBtOgsZO/zmFmvePAvFST5Ld8gQowX8qWKU+0hW0VlrOpTj34LIG5XksymJW0aq5P7N0BoWHheM5
-	Aq0cnSqxRsh5L+2MahAg==;
+	List-Owner; bh=RWxlsa8AjPIZtLMmX4Sf1PfsdwkvyWSg7Xny7OJ5mzk=; b=E4CcEh1ozaR9/x
+	ph4KDBEtEpD3hCl6sOoNzNET6FsiwqFZawH6bjH9BqbYrSee+km56YDrpOYXCRp/sC1+LpvRZYrww
+	m/aVqx+pdJ41K+T9v/8k04r198KdZ04/u4YgOxbv67xZ+bBXb/UuB8w7IuFRdmT5BGZKV9O5ThYUA
+	87YQRV7eH9Pl6hyUTdh4wa1EWOSM+7+vOUMAZvhS14fY1yXMHbKnvNwkRVbYDZltA6cV3SDYX7y7r
+	2icRoNOTItJm3Cb6ti7GCXGdf0XVoFr1Lyh+f6BlYd/MQ1O/Q+hS5OAEW33Z9H6VEGLAcjhxysaPC
+	e/KVZeISIbKsXtYUwKpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lz3kn-0019lZ-UI; Thu, 01 Jul 2021 20:57:45 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1lz45O-001C1M-3A; Thu, 01 Jul 2021 21:19:02 +0000
+Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lz3kl-0019jF-1I; Thu, 01 Jul 2021 20:57:44 +0000
-Received: by mail-ed1-x529.google.com with SMTP id x12so10296890eds.5;
- Thu, 01 Jul 2021 13:57:40 -0700 (PDT)
+ id 1lz45I-001C0s-LZ
+ for linux-amlogic@lists.infradead.org; Thu, 01 Jul 2021 21:19:00 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id gn32so12791985ejc.2
+ for <linux-amlogic@lists.infradead.org>; Thu, 01 Jul 2021 14:18:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VP2Ta3q4Jb5bQwDLseeiEQMAjQJRQEWeQWwTkmKx76w=;
- b=oFhKI2MluGQ+1JEDG+4WRkFCVYSvgWmO2VdGPZACvIvnMtFoBQgspl2ad58ZMjJV+W
- ETLgvMSdz/PERb15fCCBpqIZedtpqGW0INO/6KtOcswUhQRRPkbC6dwdUgvdikgiGmTx
- koMzO50VYzCzdm70ANUenku2hdL3KQZuyqEo7Anzl1oHy5ZhsiVyCnPZ9GXdmp4z2Zk0
- s4Z3c7XoW+QEMEvEEPKLCXiZk7kZOjJ9tKt/ag2ZGCPA2SJzR6MVokWbMY24BXMDfPUe
- D1lPAOqzBqNk2eMIT0UEDZP8askASHnnoUqlNqrsmlqn+MJLkO2KBwMcdiGPoQNo3RAz
- Rsfg==
+ :cc; bh=0cXgfhaS3T+6AeXrGti3lI1yzJ85a5zFdUA+jB/hiwU=;
+ b=rEam05Z3TTFpU9SVYzbXP6UGWx86WhLZN47CXYFMmMVkwIsrp58nHOAeECMVVscPrX
+ FGt+hLjt6JVPKHKAUfaKdu+CweI7eoBbwsDog/l7ysjLEo7rntkwtQP/OQeYyOVWkhgv
+ hORmp1+wlgHaOfIK7H+JDbi4MPeQPPPW8SspbxTmEUJcBV2TjVGiOn557KLox6TPEzda
+ MvBZJScUP21/uoR4sdpoU4nza7k42Yvmr8CmxR1ncpdooTuyzDZeju36YcrrWdGCEuiM
+ yLH8vFdUndtbv+ufvSnUUMs+IeLNm3pmZHFoYsgJaN7SNwNPyuzb6gVcBp2xU8TGc42A
+ murQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=VP2Ta3q4Jb5bQwDLseeiEQMAjQJRQEWeQWwTkmKx76w=;
- b=dKjkkbo46L9+5d9AKs2HWNgUtidP5oiqKHB2TP8+GEw8bFCeVAUtId2DC3XYoYvf6K
- 9BiJnpHL944Aiiz+CRoDmmxNKFnfHvRmo6a61FN33RmHQiI4cmBElAZrVWKESEUAtNE5
- 0mg1IJylL1Z/B8rGoroUp1k9Yew4pql37T3bGnLff0daRzWBdJ6CBcDrDJiYLUIYX6Ia
- 1kkS1+nttUpon/wVsXUnFcWa62XVO9lzcRFJyAye3//2W/TsQ6+iH4pIuzqEuW86GwCV
- mT8Q3xpRXvi7WJebwhjoQkNLOVA8FAneHhyT+lRbHUqnxaGfeYVoFhIKqnhTyEb5XcMx
- Yssw==
-X-Gm-Message-State: AOAM531ZK2WYyeaHsdbQ4O+j7lI69UUHSM0gzILcMdvtfUdq4Scl7CS2
- REm5SC0/D0+P2mJi4zz9t8G7MOug1/bav0q68fE=
-X-Google-Smtp-Source: ABdhPJz058h3NcfrAlPBkFZPCdJ8Yg2KK8FXz3FF0CRf4Elqcwf033TfCCNu9O9waMMBHAjYk8tHzNXd+/uDHMhwPJE=
-X-Received: by 2002:a05:6402:510d:: with SMTP id
- m13mr2238223edd.179.1625173059565; 
- Thu, 01 Jul 2021 13:57:39 -0700 (PDT)
+ bh=0cXgfhaS3T+6AeXrGti3lI1yzJ85a5zFdUA+jB/hiwU=;
+ b=XNq82iCgLEMQbn7udYDGFzRwee9J4BU2KaLSwscefzZjvqq3es4aSZ1+X1dGiPzthH
+ +S06ttpEERM7qq6ZRJu8V6ao6v/MfNxcGjCteLQ80ZgkIxT7kxuzznnKqRlgOH9beQQC
+ GfioOVJ/VPLW+5OJLDQaIuSbNRYKuG2hzHgT7yk7R7IBkn4HJBD4FwdIGBDcfAcgP3FC
+ pQg+x1F98jG4qr29oe2GWRJoKY6nmoV6RerH9hh5NSOERLc1T7SolPQuUxFu18OBJTjb
+ gWk3lsGCW46TI/s301880+4kQ/SqWn6EsMUamEt4yCLDtnveBCj2O1VvH621IB01RiXJ
+ BklA==
+X-Gm-Message-State: AOAM5334WoufsyRm+5o6jQd+voPEtsSRmp9pV4aX6RKGgLiRR7vWWRl9
+ ImMvE3qDazVgbq8OJQi0ru7hQEa9pjiMPfu0VfY=
+X-Google-Smtp-Source: ABdhPJw60MN4UpI84csCY2nCthSkx+KwRFteOnlczML7u0gH2Ta/2aIxzy2w1zr6zd6Lpg0rlRxBM7r94hhFxSWj/GM=
+X-Received: by 2002:a17:907:d28:: with SMTP id
+ gn40mr1973997ejc.471.1625174334943; 
+ Thu, 01 Jul 2021 14:18:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210627223959.188139-1-martin.blumenstingl@googlemail.com>
- <20210627223959.188139-3-martin.blumenstingl@googlemail.com>
- <20210701202540.GA1085600@roeck-us.net>
-In-Reply-To: <20210701202540.GA1085600@roeck-us.net>
+References: <20210628005825.GA638648@rowland.harvard.edu>
+ <e421818c-dea4-ba6b-e737-bb8d99582588@bluematt.me>
+ <20210628011628.GC638648@rowland.harvard.edu>
+ <0c62655d-738c-4d71-6b7b-fe7fa90b54e3@bluematt.me>
+ <20210628142418.GC656159@rowland.harvard.edu>
+ <CAFBinCA9Y16Ej3PEBN1Rsqo=6V1AZXKOpTfc_siHP0rvVo7wWQ@mail.gmail.com>
+ <20210629150541.GB699290@rowland.harvard.edu>
+ <CAFBinCCOGJfHSSHgRrOO-FQJZAUB=QuMr=BoddPLt19spp0QBg@mail.gmail.com>
+ <20210629161807.GB703497@rowland.harvard.edu>
+ <CAFBinCDsGtQaPLhMAb+A6DBihWzQiU409i2oer_ud5yQBvfM5w@mail.gmail.com>
+ <20210630003556.GA718579@rowland.harvard.edu>
+ <CANAwSgQadG+A2Tg2Ok5-Nw4i1a2tenABeyQnyTjzJKGHHw+6aA@mail.gmail.com>
+In-Reply-To: <CANAwSgQadG+A2Tg2Ok5-Nw4i1a2tenABeyQnyTjzJKGHHw+6aA@mail.gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 1 Jul 2021 22:57:28 +0200
-Message-ID: <CAFBinCC2KB-_pOenpWPknCuHV+CCjhP5hqukSkwD3qwRe6OtQw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] clk: divider: Switch from .round_rate to
- .determine_rate by default
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org, 
- Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
- khilman@baylibre.com, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org
+Date: Thu, 1 Jul 2021 23:18:44 +0200
+Message-ID: <CAFBinCC0nfrnQGmrXJ4FDTuy3RGX_FC8egjVaxhKaOSi9q+xzA@mail.gmail.com>
+Subject: Re: ODROID-C1/-C2 USB Detection only triggered by some devices
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Alan Stern <stern@rowland.harvard.edu>,
+ Minas Harutyunyan <hminas@synopsys.com>, 
+ Matt Corallo <oc2udbzfd@mattcorallo.com>, 
+ Linux USB Mailing List <linux-usb@vger.kernel.org>,
+ linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210701_135743_144186_4A8AA253 
-X-CRM114-Status: GOOD (  15.79  )
+X-CRM114-CacheID: sfid-20210701_141856_769029_9CE66692 
+X-CRM114-Status: GOOD (  19.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,43 +108,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Guenter,
+Hi Anand,
 
-On Thu, Jul 1, 2021 at 10:25 PM Guenter Roeck <linux@roeck-us.net> wrote:
+On Thu, Jul 1, 2021 at 12:04 PM Anand Moon <linux.amoon@gmail.com> wrote:
 [...]
-> [    0.000000] [<c07be330>] (clk_core_determine_round_nolock) from [<c07c5480>] (clk_core_set_rate_nolock+0x184/0x294)
-> [    0.000000] [<c07c5480>] (clk_core_set_rate_nolock) from [<c07c55c0>] (clk_set_rate+0x30/0x64)
-> [    0.000000] [<c07c55c0>] (clk_set_rate) from [<c163c310>] (imx6ul_clocks_init+0x2798/0x2a44)
-> [    0.000000] [<c163c310>] (imx6ul_clocks_init) from [<c162a4e4>] (of_clk_init+0x180/0x26c)
-> [    0.000000] [<c162a4e4>] (of_clk_init) from [<c1604d34>] (time_init+0x20/0x30)
-> [    0.000000] [<c1604d34>] (time_init) from [<c1600e0c>] (start_kernel+0x4c8/0x6cc)
-> [    0.000000] [<c1600e0c>] (start_kernel) from [<00000000>] (0x0)
-> [    0.000000] Code: bad PC value
-> [    0.000000] ---[ end trace 7009a0f298fd39e9 ]---
-> [    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
+> I have been trying some reorder code changes with PHY some new DTS
+> changes both on C1+ and C2.
+> with my changes I got false positve results.
 >
-> Bisct points to this patch as culprit. Reverting it fixes the problem.
-sorry for breaking imx6 - and at the same time: thanks for reporting this!
+> So in my debug investigation, it seems that USB reset is not working.
+> I am attaching my latest code changes so that you could verify at your end.
+> If we drop the  phy_meson8b_usb2_reset(phy) all the USB PHY get initialized.
+> Note:  phy core does not call the .reset callback function on its own
+>
+> I have tried crazy ideas with reset API and new approaches, but it seems to fail
+> and also used the reset-name features, but with no luck at my end.
+> I wil try to followup on the suggestion shared in this email thread.
+with your patch USB is not working for me at all on my Odroid-C1+.
+kernel log extract:
+...
+[    5.089251] phy phy-c1108800.phy.0: phy poweron failed --> -22
+[    5.096456] dwc2: probe of c9040000.usb failed with error -22
+[    5.102182] dwc2 c90c0000.usb: supply vusb_d not found, using dummy regulator
+[    5.108781] dwc2 c90c0000.usb: supply vusb_a not found, using dummy regulator
+[    5.117140] phy phy-c1108820.phy.1: Anand you are calling USB reset1
+[    5.121408] phy phy-c1108820.phy.1: Anand you are calling USB reset2
+[    5.131197] dwc2 c90c0000.usb: dwc2_core_reset: HANG! Soft Reset
+timeout GRSTCTL_CSFTRST
+[    5.137163] dwc2: probe of c90c0000.usb failed with error -16
 
-Do you have some additional information about this crash (which clock
-this relates to, file and line number, etc.)?
-I am struggling to understand the cause of this NULL dereference
-My patch doesn't change the clk_core_determine_round_nolock()
-implementation and the new determine_rate code-path (inside that
-function) doesn't seem to be more fragile in terms of NULL values
-compared to the round_rate code-path.
-Instead I think it's more likely that the problem is somewhere within
-clk_divider_determine_rate() (or in any helper function it uses), but
-that doesn't show up in the trace
+and then:
+# lsusb
+#
 
-I don't have any imx6 board myself and so far I am unable to reproduce
-this crash on any hardware I have.
-However, if it's a problem in my clk-divider.c changes then I'd like
-to find the cause (ASAP) because possibly more SoCs may be broken...
+With your patch applied (on top of v5.13) the dwc2 driver does not
+probe anymore.
+I suggest we move the discussion about your patch elsewhere so we can
+focus on getting USB devices detected (again) with the help of Minas
+and Alan.
+
+> I am attaching my usbmon output on Odroid C2.
+Can you please specifically state the testing steps you have used to
+obtain that output?
+This is important so people who are involved in this discussion don't
+get confused about the results.
+
+> On some other note on USB HUB reset. I recollect following series (it
+> like *mmc_pwrseq*)
+> [0] https://lore.kernel.org/linux-devicetree/1474342607-27512-1-git-send-email-peter.chen@nxp.com/
+this is being replaced by "usb: misc: Add onboard_usb_hub driver"
+which is currently at version 13: [1]
 
 
 Best regards,
 Martin
+
+
+[1] https://marc.info/?l=linux-usb&m=162447367404217&w=2
 
 _______________________________________________
 linux-amlogic mailing list
