@@ -2,101 +2,88 @@ Return-Path: <SRS0=mpVK=L2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90C5AC11F68
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Jul 2021 13:48:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16A89C11F68
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Jul 2021 16:15:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F40706142B
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Jul 2021 13:48:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F40706142B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id D0DEB6140C
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Jul 2021 16:15:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D0DEB6140C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=CA9v/7xg9NWFu4riWokdNRrZl66MT9KBySyfaJLX0j0=; b=P9WKM/Ppvtc7V7hsMLbh4vx0Gg
-	lHRMIKZk7Fg3Xl+3l1E+hPjTHLEPctYuasT3xAf22Hweoh7+6T9NEpVsuH2gEv81pmtd+UH2gJ9ec
-	sMoY84c5k8uefD5CoD5upSS9mvubVyfNf2RrbzXSIxyVYUxfxcgDNimEX1NwHmgDZM7eLPavqd6wP
-	a0/RvYlwwbGudfdyFFn3cQn9VFtZWU7ks7fEvW6cvw4extERmIHTSy3A+wHerEWMuF5PWBn/8/t1m
-	KQxq6md25knC2LiMetT5gVWDZsAeoRDGnouw+ugg+VFCTdEn/Eqm0pn8oHW0McNXjiJ4jx+m0/zUc
-	BGMd2lfg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LDqIQjrahyWYwTzdmqjot12Oig5ZLUPLULaM5r5XzVc=; b=b+QdjOanEdYxVM
+	mSJThJEeSNvauqkGrva14R1iuplwL53gYkxMnwzEKtHbkzK7JCym+IVYPWPfR/AzqJkGEfyu+pc2U
+	if2Xysh1ZIiu0izIF4gpl2eGHqmWTUdG2/sqzEiWYtgqjdNEP1xb4QvBFH8ZVoewbvbpsZclPDiwb
+	UzF6FxK4ywTnsD9ltZHdDAfobMAcKNnvZjis8a5PrS8P/iY/Hgh3Ai5YEIJJzYc8fOEP3VD3H9FxA
+	4PBkZfC6TOrbSlntVM20qST2GX3seamqd/99fbvi8ER1MIJOwrU5iI4IWAwyRZON8R7IEKSH+JhV/
+	YPp24o5aL4BT2MIo1vTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lzJXC-003BWh-SN; Fri, 02 Jul 2021 13:48:46 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1lzLpR-003VZT-1x; Fri, 02 Jul 2021 16:15:45 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lzJX9-003BUu-Sm
- for linux-amlogic@lists.infradead.org; Fri, 02 Jul 2021 13:48:45 +0000
-Received: by mail-wr1-x436.google.com with SMTP id g7so12522603wri.7
- for <linux-amlogic@lists.infradead.org>; Fri, 02 Jul 2021 06:48:42 -0700 (PDT)
+ id 1lzLpE-003VXf-1A; Fri, 02 Jul 2021 16:15:33 +0000
+Received: by mail-ed1-x535.google.com with SMTP id i5so14014836eds.1;
+ Fri, 02 Jul 2021 09:15:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=dmdV5C0TPaZh38jwc22npxunHrSD6YlmILpaclb/0ko=;
- b=MMaK4fWwJ0vbQk/VXI4ucI0gpZ5rMsazWB7JlYgn8qFz2g7U7vIaZoCdRMNNTmBQ+B
- QG/HsfLU+K0cKJNZaN16m3SRn+5WQEmPVx97e1I0ZYsGKxi0o1gjjXkDimK7/vdY6XZ4
- TxMKifvdwRulh4J8UjxgaWxj0irps6/o/rmbjojsBglcy5g9eGb8eQGp2J+yPuxCzGmK
- 2X8bx//QFTfi+eb50djSKk54h7N6+7O+rc9LxS8PZxJNAc8R0eLi8Y22ZJ4QgYcUdTk0
- AkH9WyG5cA1ATdz5aAmf0/m5rnjQIx8DRZ05vQHPQeDZJvGExrcshvMhzdtym8nnumGk
- hxMg==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=0CyPLvqK+Q8NHzNuZTr5kPFxjhrjFYWhZY35XEzbiOQ=;
+ b=IbAqmb9ygFZk9a887t8qEkrN+RXWoHARiWHkHfVhqOrfUeyc5C9KeLOPdVZrHk2SVx
+ gyxP3zCIzw+ztAO+vEn42sXTsh6h61gb5b76gPnChKNurlELilaYebJuqwgBUd1N5npb
+ 2UOAW6deQdfsq5DuDPWNRO0bW7/tGuEgUQk6jiHYWTI4klcfT8Be9PutLc+GLf7l7FDI
+ T2zucV7K6m8be2MAb4KqkkBgSSDJcVB5ajBC5egeKZuo5JMTncsxWB/dC3ln5YsvylpT
+ Y+SpGsQ+urLTsoI0AALKG3blP6Ud+U0jjQj9NXor35I1PG53iU8rD86ifFVgQxkHD/6O
+ OiOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=dmdV5C0TPaZh38jwc22npxunHrSD6YlmILpaclb/0ko=;
- b=E65X1Ele1oS+ni9Z/V4vrGGnyoGuEazAkYItSO6PqyYChwg1AQNbIcm/tT1C6112cw
- d9neuV00tYOMzBHNbKOX5C2MAtj2BvavKv19/JhL7lcop/gLPbvUJsNZvX3e/fxKyB6P
- TiL7yxuWTNHIZJRtWvK6zjdnC8R8ppAFAowoeffn8LG7+lN6d1XuOHLHWIU4f9Rn9Iao
- U3YenhCx/W4BRu0409FFM82mHmH3q2I87GFg/4Aug8hPPb2qrOKHJONv3C8tOWey6PbG
- zJQJK9I/pflZ/s4Ly0CwmFPZezTX/4GtelwAgUd57mIUDsa+IxFNdMoWsQ9e0JuhEgfw
- aigw==
-X-Gm-Message-State: AOAM530DVxKK2tNbuvjlZqIULZlkROmcyvOSq4n3AW12Ymafps71Ijlx
- NW2Y7yiEmE2P0qv/f/oUD1ZDvA==
-X-Google-Smtp-Source: ABdhPJwnfiPmpsT0TFwceB+yNPe62xHEvP1eccHb9f8GwnwPkFvep/IzIg4oQ9IT0EKqsY3+JcJqaA==
-X-Received: by 2002:adf:ef50:: with SMTP id c16mr5998912wrp.137.1625233721485; 
- Fri, 02 Jul 2021 06:48:41 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:b194:a11e:9f1:225b?
- ([2001:861:44c0:66c0:b194:a11e:9f1:225b])
- by smtp.gmail.com with ESMTPSA id s5sm3363652wrn.38.2021.07.02.06.48.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 02 Jul 2021 06:48:40 -0700 (PDT)
-Subject: Re: [PATCH 1/2] media: rc: meson-irblaster: document device tree
- bindings
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-Cc: sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- linux-media <linux-media@vger.kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, rockosov@gmail.com
-References: <20210701215132.16317-1-viktor.prutyanov@phystech.edu>
- <20210701215132.16317-2-viktor.prutyanov@phystech.edu>
- <CAFBinCBZXRrPakwvRLsbNbuYY6fcYysMs0+SPUmAhKpcYxrq0g@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <cc677601-fb6b-970d-be8a-e68bea9727dd@baylibre.com>
-Date: Fri, 2 Jul 2021 15:48:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=0CyPLvqK+Q8NHzNuZTr5kPFxjhrjFYWhZY35XEzbiOQ=;
+ b=aMO6EqmBc0JqB+UUcUFLxLOdLC1HypQ55Rs0EM9+cbDNWC9X6mC0FffyKw+t6ZjDy6
+ vI+xhGYxyu/BjMYDn3gcSiEd2pR8aQRBgLMb1ajudkrI7oOyh9l2ZPuhb65twVFWLJLZ
+ PyvQD5526RAn6qyB/72NkX0fM7hnI3CAW19Z3CLBOxLfQbaPyUADv+m2lYRtTar4Lu/j
+ 3NbA5DZFUOV6fxUyZhtnb5CcZ2VDctpjqAJ7lsqYHBIYnocfhNkyHy9cilSpSiO8f2Hi
+ fUfItOhERy3dHDV78OD6sxZ9tUUK+Yt57TMvB5u92XafhKBcw09D4TbBL1406epb7MDw
+ nRIQ==
+X-Gm-Message-State: AOAM530b9DhBZxYuAybl2COx3agCC9D33rK2acpAV4PhDhiFAkP792GX
+ uSf6DmA2FE3ArQko2UweDGyH6Prf4bKtRd/9VHM=
+X-Google-Smtp-Source: ABdhPJzTplJzJDgwT4b8/ikKLT8jsa9voYiaeLlsSCeJmsriCnofP+WlAfCEAN/jEj1wU+EwgK6wXThHemjJnDqwhik=
+X-Received: by 2002:aa7:d8d4:: with SMTP id k20mr266060eds.143.1625242530226; 
+ Fri, 02 Jul 2021 09:15:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBZXRrPakwvRLsbNbuYY6fcYysMs0+SPUmAhKpcYxrq0g@mail.gmail.com>
-Content-Language: en-US
+References: <20210701215132.16317-1-viktor.prutyanov@phystech.edu>
+ <20210701215132.16317-3-viktor.prutyanov@phystech.edu>
+ <20210701224646.GA18540@gofer.mess.org>
+In-Reply-To: <20210701224646.GA18540@gofer.mess.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 2 Jul 2021 18:15:18 +0200
+Message-ID: <CAFBinCA+zud1THT6z2QsGCqXMT-3nqN_S4nR0FhaDGhcKzoe-Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] media: rc: introduce Meson IR blaster driver
+To: Sean Young <sean@mess.org>
+Cc: Viktor Prutyanov <viktor.prutyanov@phystech.edu>, mchehab@kernel.org,
+ robh+dt@kernel.org, 
+ khilman@baylibre.com, Neil Armstrong <narmstrong@baylibre.com>,
+ jbrunet@baylibre.com, 
+ linux-media <linux-media@vger.kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, rockosov@gmail.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210702_064843_993989_EE89D13D 
-X-CRM114-Status: GOOD (  35.11  )
+X-CRM114-CacheID: sfid-20210702_091532_137978_31325814 
+X-CRM114-Status: UNSURE (   9.53  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,105 +100,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Sean,
 
-On 02/07/2021 15:30, Martin Blumenstingl wrote:
+On Fri, Jul 2, 2021 at 12:46 AM Sean Young <sean@mess.org> wrote:
+>
 > Hi Viktor,
-> 
-> On Thu, Jul 1, 2021 at 11:51 PM Viktor Prutyanov
-> <viktor.prutyanov@phystech.edu> wrote:
->>
->> This patch adds binding documentation for the IR transmitter
->> available in Amlogic Meson SoCs.
-> This is an interesting piece of hardware where I've always wondered if
-> there is any device out there which supports this functionality.It
-> turns out that there is
+>
+> Thank you for your driver. Is there a datasheet available for this hardware?
+The public S905X datasheet [0] (starting at page 515) and the public
+S905D3 datasheet [1] (starting at page 1105) document the registers.
+If Viktor has additional or better information then it would be great
+if he could share it with us.
 
-You did beat me, I started a driver some time ago but failed to finish debugging it...
-https://github.com/superna9999/linux/tree/amlogic/v5.2%2Fir-blaster
 
-> 
-> [...]
->> +description: |
->> +  Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
->> +  (blaster) controller onboard. It is capable of sending IR signals
->> +  with arbitrary carrier frequency and duty cycle.
->> +
->> +properties:
->> +  compatible:
->> +    const: amlogic,meson-irblaster
-> if you feel like some registers or register values are specific to
-> A311D or T950D4 then please also add a SoC-specific compatible string
-> (for example: amlogic,meson-g12b-irblaster).
-> An example can be seen in
-> Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+Best regards,
+Martin
 
-AFAIK there is 2 versions of the IP, the "old" one we can find on Meson6, 8/8b, GXBB, GXL & GXM (and maybe AXG ?),
-and the one we find on the latest G12A, G12B & SM1.
 
-The SEI510 and SEI610 boards we use for Yukawa android port do have the necessary HW for IR sending,
-so I'll eventually be able to test.
-
-So, as martin says you should add a "amlogic,g12a-ir-blaster" to be sure we support the older ir blaster version
-correctly with the right bindings.
-
-Neil
-
-> 
-> [...]
->> +  clocks:
->> +    minItems: 1
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    maxItems: 2
-> from my understanding there are two clock inputs to the hardware
-> dt-bindings should always describe the hardware, not what the driver
-> may (or may not) use.
-> based on that I think you should drop minItems (then minItems will
-> have the same value as maxItems)
-> 
-> [...]
->> +  mod-clock:
->> +    oneOf:
->> +      - const: sysclk
->> +      - const: xtal
-> Does this "mod-clock" depend on something external to the IR blaster hardware?
-> If not this should be handled inside the driver only.
-> 
-> From how I understand the register description in the datasheet
-> there's two clock inputs.
-> XTAL is internally divided further down with fixed dividers.
-> Then there's a configurable divider which is then used to generate the
-> IR signal.
-> If the sysclk (I assume that this is clk81 - or at least derived from
-> it) is "too fast" then the driver should just ignore that clock while
-> the dt-bindings should still describe it (see my comment above)
-> 
-> [...]
->> +    meson-irblaster@ff80014c {
-> node names should be generic, see for example
-> Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
-> (spifc is the name Amlogic has given this IP, but since node names are
-> supposed to be generic we use spi@...)
-> 
-> However, I am not sure if an IR blaster would be described as
-> ir-blaster@... or simply ir@...
-> 
->> +      compatible = "amlogic,meson-irblaster";
->> +      reg = <0xff80014c 0x10>;
->> +      interrupts = <0 198 IRQ_TYPE_EDGE_RISING>;
->> +      clocks = <&clkc CLKID_CLK81 &xtal>;
-> [...]
->> +      clocks = <&clkc CLKID_CLK81 &xtal>;
-> while this works I think the recommended format is:
->     clocks = <&clkc CLKID_CLK81>, <&xtal>
-> 
-> 
-> Best regards,
-> Martin
-> 
+[0] https://dl.khadas.com/Hardware/VIM1/Datasheet/S905X_Datasheet%20V0.3%2020170314publicversion-Wesion.pdf
+[1] https://dl.khadas.com/Hardware/VIM3/Datasheet/S905D3_datasheet_0.2_Wesion.pdf
 
 _______________________________________________
 linux-amlogic mailing list
