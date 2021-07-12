@@ -2,105 +2,90 @@ Return-Path: <SRS0=/T27=ME=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 91BB1C07E99
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jul 2021 17:45:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 477ACC07E99
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jul 2021 20:18:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4D490611AC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jul 2021 17:45:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4D490611AC
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 10008611CB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jul 2021 20:18:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10008611CB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=phystech.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=i6X/83mYngJyOqfDb5tGxI0cDw5wnX4jb0sob98wYzY=; b=IOtjg9xpxo6Jkz
-	N0Cr0brs33tBMz9URlxJk97yXf/5MGaL5ECr2S+0GMPk3PLJjPFlG5G9S+2Ocz13msV3Nn05vF2We
-	5hIEDVRMQ2irUCanQNdkijLo+MuXWo9t3oX8qFfqBQ4VWLQSF3ObLNMRgfwD1sF1Qcwh/Ax/ZoeHl
-	Ja7oAjSZ3K/BOLQkfiGy6fV98cNqsz/iRYob+aHzrKX+XZyHso8lNutlykotcg+Vpqv2cht0UKVOy
-	CKY55YvBhp8SlRiTb/Ad/ScVghlyJKbppDitReErDs/tqyYDpEDxEcNr00A3K/NeFdObHt+W1UqhL
-	RsPlnw1RGID5FyWJfBcw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0njwggjnBPzPONjl5bIfK8UgFj6d2sZAFnbGgt/UYMM=; b=KpUe3pfXEJLIb8
+	VKGeICYwMzija92u5I/5+17VU5krDHO6lO3zYzWdmWSvBZ9EU7Yw0ZdbocF481IzBfjkBftKnw0B/
+	L+nx6n16M7zNgRoNRJ8Wh5q9II49ExWjSthSIi6IHBIJ2tUNgorLd2+9OV39O2qMkgamBMvEPyNNX
+	NeWOV9+/6KTD0vUzwpOpuCF2+J46DpttaiFdV/FX2zwicCptF2YCj1wJJXJZrl1GGirquQ6x954dA
+	s9ssq5rJtLJAy5zZNGVgo8fVSyuJuwg/utngMeS97NgcNJjgJi+juIqHiZqx1El4ZVT3fKGxuGdE0
+	tjWsJkXM8wys4RpVIn8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m2zzW-0086Mz-Ao; Mon, 12 Jul 2021 17:45:14 +0000
-Received: from mail-il1-f179.google.com ([209.85.166.179])
+	id 1m32Nk-008Nhs-S7; Mon, 12 Jul 2021 20:18:24 +0000
+Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m2zzR-0086Lu-NY; Mon, 12 Jul 2021 17:45:12 +0000
-Received: by mail-il1-f179.google.com with SMTP id e2so3883106ilu.5;
- Mon, 12 Jul 2021 10:45:09 -0700 (PDT)
+ id 1m32ND-008NXP-RV
+ for linux-amlogic@lists.infradead.org; Mon, 12 Jul 2021 20:17:55 +0000
+Received: by mail-lf1-x12f.google.com with SMTP id x25so32968135lfu.13
+ for <linux-amlogic@lists.infradead.org>; Mon, 12 Jul 2021 13:17:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=phystech-edu.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Rf/oy5V65atDUasHDpnT+GK9n0vIPf+l+Loy9PHEV2g=;
+ b=L/LG0kiF9dQI5UYt03bUxC7db1G5mmL+zYogzrm0PTQpzCqJ0uOzPzrA1yBTDlUnHz
+ Jpr5PYMzj0PHfeqWpQ5bNtX9glzqZC3nHSlYtIJSZjFZ+upR2lbNc0Bj5ptCvxj2E1MR
+ RqexC9iCpP/UJEGdtL3o4wmJq2nle9+4svKtHWS8yC5G73xziKtVBi4wnAHYH+12crAV
+ LgQJwndM1uaheql9aWc0jYm8tHQ4seYUoPFuRzTtQhLQzIO9dG6fGQt1zic/chZUihRj
+ cCOts+iZafOz/VsQM9OyodwsaqxNwtbnDrY3qb6zEkh1Vq2jZaLndzM7vOZjy+szgjkQ
+ /mLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ajatf6nQwEZ59cgaPAdaASubAC/UcMPkKKVknAE5bvM=;
- b=n2IF7aC1T7OWc8lpNmc0/nEv2rnLH8I2IkUjaBDhMp04T3jhQ3MFvhHii11lG6J1iK
- UXI6i0zjAP90Nw4ipUSm98b/4oyrF/Daza1XxEfFmxQPOYHum9RXmYSxHmKzG0B8sYXF
- 9i3iPlc0C1FbB4Ob7POrMC0fWmvzwGvwe7qQ6TVb5kw8mqwEUwTN3lZG/6IdvxklHxQ6
- 2jbadZqOn2c23PYA0VGSIsHdshLv5tfX6dtE75Y+55XLY8E8jrtxRPBvDwsiQkj3djeg
- PaExQ8lAxxOvLZvuu/mYpc3R7Pfhb8YutNKu8HuZk9CgiH40jFlh1j9Tf/YHMn3m2m7H
- ixXg==
-X-Gm-Message-State: AOAM532KZwd9rH6MgyFQd01BnBll/Vue83OVUU0RuhrpS3aK3d6Vc+BJ
- 7m/l/juv5p7/XCDBsxl9Hg==
-X-Google-Smtp-Source: ABdhPJz+gM/VO4P/82jsvkZWlHe7Tbh91b89uvKUK6Unkmnu28V43rFcrXtWt/sWhVVdbHLLVtcvbw==
-X-Received: by 2002:a92:6d03:: with SMTP id i3mr41675ilc.66.1626111908570;
- Mon, 12 Jul 2021 10:45:08 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
- by smtp.gmail.com with ESMTPSA id n13sm8436717ilq.5.2021.07.12.10.45.05
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Rf/oy5V65atDUasHDpnT+GK9n0vIPf+l+Loy9PHEV2g=;
+ b=Wg8ViDpgPEYqnaDG1V0yP9yVJTVl2hfwV+B2uFEBvu8gFGlRMv5m0ET+0HVSSv4ufg
+ 2g8T7UoWoaq1D9Da2PCxrMzO4V4hMbpTgjrejXDanDCcxjNgQXIBQHAqYrTvLXXi1gqf
+ S2TKwRI19lPdUFdQQsVhe+lHK0iSPwnxl9KK6iwgjoZBcqNR3o2qI3dK+qNmPbLoDI2c
+ nq9P65xzdkWqxuht9jnV6zFlI5AGxJ4o+q1MgKqaC0YMGRpz+cJdUWoc9J5RY3kW8yoT
+ +0NEUMlqxuIr6Ax/1+yGoRzDv9KqFxUKlxd1Rr+APoO8+XKhxJdprsVML52WAZ68Zpl/
+ HoUg==
+X-Gm-Message-State: AOAM530HtzyEAS6gRYGc8154EBcoY/bcxhyr6koTUehgOBkFsfwscvju
+ K+e58P03vyht4zwwJr1Xbr+l7g==
+X-Google-Smtp-Source: ABdhPJxCVPVINOvfBCrr5N+3NDAEy5lpwqjAIrHaYAzlV0oZuwGc8C5fQ5lsfWwgKXJsxv9hLu7lJg==
+X-Received: by 2002:ac2:5e67:: with SMTP id a7mr417425lfr.450.1626121068917;
+ Mon, 12 Jul 2021 13:17:48 -0700 (PDT)
+Received: from 192.168.1.3 ([2a00:1370:810e:abfe:9c62:44e3:b0ab:76fd])
+ by smtp.gmail.com with ESMTPSA id p16sm631455lfr.122.2021.07.12.13.17.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Jul 2021 10:45:07 -0700 (PDT)
-Received: (nullmailer pid 2178008 invoked by uid 1000);
- Mon, 12 Jul 2021 17:45:04 -0000
-Date: Mon, 12 Jul 2021 11:45:04 -0600
-From: Rob Herring <robh@kernel.org>
-To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc: linuxarm@huawei.com, mauro.chehab@huawei.com, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <bjorn.andersson@linaro.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, Fabio Estevam <festevam@gmail.com>, 
- Greentime Hu <greentime.hu@sifive.com>,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
- Jaehoon Chung <jh80.chung@samsung.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Jesper Nilsson <jesper.nilsson@axis.com>, Jingoo Han <jingoohan1@gmail.com>, 
- Jonathan Chocron <jonnyc@amazon.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
- Kevin Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I <kishon@ti.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>, 
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Lucas Stach <l.stach@pengutronix.de>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Masami Hiramatsu <mhiramat@kernel.org>, 
- NXP Linux Team <linux-imx@nxp.com>, Neil Armstrong <narmstrong@baylibre.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Richard Zhu <hongxing.zhu@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-omap@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: designware-pcie.txt: convert it
- to yaml
-Message-ID: <20210712174504.GA2158814@robh.at.kernel.org>
-References: <cover.1625838920.git.mchehab+huawei@kernel.org>
- <fa846c83165894accdac1715c3fddfbdcb060958.1625838920.git.mchehab+huawei@kernel.org>
+ Mon, 12 Jul 2021 13:17:48 -0700 (PDT)
+From: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+To: sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
+ khilman@baylibre.com, narmstrong@baylibre.com
+Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, rockosov@gmail.com,
+ Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Subject: [PATCH v4 0/2] media: rc: add support for Amlogic Meson IR blaster
+Date: Mon, 12 Jul 2021 23:17:30 +0300
+Message-Id: <20210712201732.31808-1-viktor.prutyanov@phystech.edu>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <fa846c83165894accdac1715c3fddfbdcb060958.1625838920.git.mchehab+huawei@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210712_104509_844218_81D8DE4A 
-X-CRM114-Status: GOOD (  36.00  )
+X-CRM114-CacheID: sfid-20210712_131751_946795_5DFCFD5B 
+X-CRM114-Status: UNSURE (   9.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,518 +102,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jul 09, 2021 at 03:57:42PM +0200, Mauro Carvalho Chehab wrote:
-> Convert the file to DT schema.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
->  .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
->  .../bindings/pci/designware-pcie.txt          |  77 ----------
->  .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
->  .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
->  .../devicetree/bindings/pci/kirin-pcie.txt    |   2 +-
->  .../bindings/pci/layerscape-pci.txt           |   2 +-
->  .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
->  .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
->  .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
->  .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
->  .../bindings/pci/samsung,exynos-pcie.yaml     |   2 +-
->  .../bindings/pci/sifive,fu740-pcie.yaml       |   2 +-
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 135 ++++++++++++++++++
->  .../pci/socionext,uniphier-pcie-ep.yaml       |   2 +-
->  .../devicetree/bindings/pci/ti-pci.txt        |   4 +-
->  .../devicetree/bindings/pci/uniphier-pcie.txt |   2 +-
->  MAINTAINERS                                   |   2 +-
->  18 files changed, 160 insertions(+), 102 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie.txt
->  create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-> index b6acbe694ffb..c3a75ac6e59d 100644
-> --- a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-> @@ -3,7 +3,7 @@ Amlogic Meson AXG DWC PCIE SoC controller
->  Amlogic Meson PCIe host controller is based on the Synopsys DesignWare PCI core.
->  It shares common functions with the PCIe DesignWare core driver and
->  inherits common properties defined in
-> -Documentation/devicetree/bindings/pci/designware-pcie.txt.
-> +Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
->  
->  Additional properties are described here:
->  
-> @@ -33,7 +33,7 @@ Required properties:
->  - phy-names: must contain "pcie"
->  
->  - device_type:
-> -	should be "pci". As specified in designware-pcie.txt
-> +	should be "pci". As specified in snps,dw-pcie.yaml
->  
->  
->  Example configuration:
-> diff --git a/Documentation/devicetree/bindings/pci/axis,artpec6-pcie.txt b/Documentation/devicetree/bindings/pci/axis,artpec6-pcie.txt
-> index 979dc7b6cfe8..cc6dcdb676b9 100644
-> --- a/Documentation/devicetree/bindings/pci/axis,artpec6-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/axis,artpec6-pcie.txt
-> @@ -1,7 +1,7 @@
->  * Axis ARTPEC-6 PCIe interface
->  
->  This PCIe host controller is based on the Synopsys DesignWare PCIe IP
-> -and thus inherits all the common properties defined in designware-pcie.txt.
-> +and thus inherits all the common properties defined in snps,dw-pcie.yaml.
->  
->  Required properties:
->  - compatible: "axis,artpec6-pcie", "snps,dw-pcie" for ARTPEC-6 in RC mode;
-> diff --git a/Documentation/devicetree/bindings/pci/designware-pcie.txt b/Documentation/devicetree/bindings/pci/designware-pcie.txt
-> deleted file mode 100644
-> index 78494c4050f7..000000000000
-> --- a/Documentation/devicetree/bindings/pci/designware-pcie.txt
-> +++ /dev/null
-> @@ -1,77 +0,0 @@
-> -* Synopsys DesignWare PCIe interface
-> -
-> -Required properties:
-> -- compatible:
-> -	"snps,dw-pcie" for RC mode;
-> -	"snps,dw-pcie-ep" for EP mode;
-> -- reg: For designware cores version < 4.80 contains the configuration
-> -       address space. For designware core version >= 4.80, contains
-> -       the configuration and ATU address space
-> -- reg-names: Must be "config" for the PCIe configuration space and "atu" for
-> -	     the ATU address space.
-> -    (The old way of getting the configuration address space from "ranges"
-> -    is deprecated and should be avoided.)
-> -RC mode:
-> -- #address-cells: set to <3>
-> -- #size-cells: set to <2>
-> -- device_type: set to "pci"
-> -- ranges: ranges for the PCI memory and I/O regions
-> -- #interrupt-cells: set to <1>
-> -- interrupt-map-mask and interrupt-map: standard PCI
-> -	properties to define the mapping of the PCIe interface to interrupt
-> -	numbers.
-> -EP mode:
-> -- num-ib-windows: number of inbound address translation windows
-> -- num-ob-windows: number of outbound address translation windows
-> -
-> -Optional properties:
-> -- num-lanes: number of lanes to use (this property should be specified unless
-> -  the link is brought already up in BIOS)
-> -- reset-gpio: GPIO pin number of power good signal
-> -- clocks: Must contain an entry for each entry in clock-names.
-> -	See ../clocks/clock-bindings.txt for details.
-> -- clock-names: Must include the following entries:
-> -	- "pcie"
-> -	- "pcie_bus"
-> -- snps,enable-cdm-check: This is a boolean property and if present enables
-> -   automatic checking of CDM (Configuration Dependent Module) registers
-> -   for data corruption. CDM registers include standard PCIe configuration
-> -   space registers, Port Logic registers, DMA and iATU (internal Address
-> -   Translation Unit) registers.
-> -RC mode:
-> -- num-viewport: number of view ports configured in hardware. If a platform
-> -  does not specify it, the driver assumes 2.
-> -- bus-range: PCI bus numbers covered (it is recommended for new devicetrees
-> -  to specify this property, to keep backwards compatibility a range of
-> -  0x00-0xff is assumed if not present)
-> -
-> -EP mode:
-> -- max-functions: maximum number of functions that can be configured
-> -
-> -Example configuration:
-> -
-> -	pcie: pcie@dfc00000 {
-> -		compatible = "snps,dw-pcie";
-> -		reg = <0xdfc00000 0x0001000>, /* IP registers */
-> -		      <0xd0000000 0x0002000>; /* Configuration space */
-> -		reg-names = "dbi", "config";
-> -		#address-cells = <3>;
-> -		#size-cells = <2>;
-> -		device_type = "pci";
-> -		ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000
-> -			  0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
-> -		interrupts = <25>, <24>;
-> -		#interrupt-cells = <1>;
-> -		num-lanes = <1>;
-> -	};
-> -or
-> -	pcie: pcie@dfc00000 {
-> -		compatible = "snps,dw-pcie-ep";
-> -		reg = <0xdfc00000 0x0001000>, /* IP registers 1 */
-> -		      <0xdfc01000 0x0001000>, /* IP registers 2 */
-> -		      <0xd0000000 0x2000000>; /* Configuration space */
-> -		reg-names = "dbi", "dbi2", "addr_space";
-> -		num-ib-windows = <6>;
-> -		num-ob-windows = <2>;
-> -		num-lanes = <1>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-> index de4b2baf91e8..5cee38ce711b 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-> @@ -1,7 +1,7 @@
->  * Freescale i.MX6 PCIe interface
->  
->  This PCIe host controller is based on the Synopsys DesignWare PCIe IP
-> -and thus inherits all the common properties defined in designware-pcie.txt.
-> +and thus inherits all the common properties defined in snps,dw-pcie.yaml.
->  
->  Required properties:
->  - compatible:
-> diff --git a/Documentation/devicetree/bindings/pci/hisilicon-histb-pcie.txt b/Documentation/devicetree/bindings/pci/hisilicon-histb-pcie.txt
-> index 760b4d740616..5f0cf6c2fef3 100644
-> --- a/Documentation/devicetree/bindings/pci/hisilicon-histb-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/hisilicon-histb-pcie.txt
-> @@ -3,7 +3,7 @@ HiSilicon STB PCIe host bridge DT description
->  The HiSilicon STB PCIe host controller is based on the DesignWare PCIe core.
->  It shares common functions with the DesignWare PCIe core driver and inherits
->  common properties defined in
-> -Documentation/devicetree/bindings/pci/designware-pcie.txt.
-> +Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
->  
->  Additional properties are described here:
->  
-> diff --git a/Documentation/devicetree/bindings/pci/kirin-pcie.txt b/Documentation/devicetree/bindings/pci/kirin-pcie.txt
-> index 585aadfeafd1..3a36eeb1c434 100644
-> --- a/Documentation/devicetree/bindings/pci/kirin-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/kirin-pcie.txt
-> @@ -3,7 +3,7 @@ HiSilicon Kirin SoCs PCIe host DT description
->  Kirin PCIe host controller is based on the Synopsys DesignWare PCI core.
->  It shares common functions with the PCIe DesignWare core driver and
->  inherits common properties defined in
-> -Documentation/devicetree/bindings/pci/designware-pcie.txt.
-> +Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
->  
->  Additional properties are described here:
->  
-> diff --git a/Documentation/devicetree/bindings/pci/layerscape-pci.txt b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
-> index 6d898dd4a8e2..f36efa73a470 100644
-> --- a/Documentation/devicetree/bindings/pci/layerscape-pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
-> @@ -1,7 +1,7 @@
->  Freescale Layerscape PCIe controller
->  
->  This PCIe host controller is based on the Synopsys DesignWare PCIe IP
-> -and thus inherits all the common properties defined in designware-pcie.txt.
-> +and thus inherits all the common properties defined in snps,dw-pcie.yaml.
->  
->  This controller derives its clocks from the Reset Configuration Word (RCW)
->  which is used to describe the PLL settings at the time of chip-reset.
-> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
-> index bd43f3c3ece4..498a7b3bd2a6 100644
-> --- a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
-> @@ -1,7 +1,7 @@
->  NVIDIA Tegra PCIe controller (Synopsys DesignWare Core based)
->  
->  This PCIe controller is based on the Synopsis Designware PCIe IP
-> -and thus inherits all the common properties defined in designware-pcie.txt.
-> +and thus inherits all the common properties defined in snps,dw-pcie.yaml.
->  Some of the controller instances are dual mode where in they can work either
->  in root port mode or endpoint mode but one at a time.
->  
-> @@ -22,7 +22,7 @@ Required properties:
->    property.
->  - reg-names: Must include the following entries:
->    "appl": Controller's application logic registers
-> -  "config": As per the definition in designware-pcie.txt
-> +  "config": As per the definition in snps,dw-pcie.yaml
->    "atu_dma": iATU and DMA registers. This is where the iATU (internal Address
->               Translation Unit) registers of the PCIe core are made available
->               for SW access.
-> diff --git a/Documentation/devicetree/bindings/pci/pci-armada8k.txt b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> index 7a813d0e6d63..ff25a134befa 100644
-> --- a/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> @@ -1,7 +1,7 @@
->  * Marvell Armada 7K/8K PCIe interface
->  
->  This PCIe host controller is based on the Synopsys DesignWare PCIe IP
-> -and thus inherits all the common properties defined in designware-pcie.txt.
-> +and thus inherits all the common properties defined in snps,dw-pcie.yaml.
->  
->  Required properties:
->  - compatible: "marvell,armada8k-pcie"
-> diff --git a/Documentation/devicetree/bindings/pci/pcie-al.txt b/Documentation/devicetree/bindings/pci/pcie-al.txt
-> index 557a5089229d..2ad1fe466eab 100644
-> --- a/Documentation/devicetree/bindings/pci/pcie-al.txt
-> +++ b/Documentation/devicetree/bindings/pci/pcie-al.txt
-> @@ -2,7 +2,7 @@
->  
->  Amazon's Annapurna Labs PCIe Host Controller is based on the Synopsys DesignWare
->  PCI core. It inherits common properties defined in
-> -Documentation/devicetree/bindings/pci/designware-pcie.txt.
-> +Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
->  
->  Properties of the host controller node that differ from it are:
->  
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> index 0da458a051b6..1226b19b8c3d 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> @@ -33,22 +33,22 @@
->  - device_type:
->  	Usage: required
->  	Value type: <string>
-> -	Definition: Should be "pci". As specified in designware-pcie.txt
-> +	Definition: Should be "pci". As specified in snps,dw-pcie.yaml
->  
->  - #address-cells:
->  	Usage: required
->  	Value type: <u32>
-> -	Definition: Should be 3. As specified in designware-pcie.txt
-> +	Definition: Should be 3. As specified in snps,dw-pcie.yaml
->  
->  - #size-cells:
->  	Usage: required
->  	Value type: <u32>
-> -	Definition: Should be 2. As specified in designware-pcie.txt
-> +	Definition: Should be 2. As specified in snps,dw-pcie.yaml
->  
->  - ranges:
->  	Usage: required
->  	Value type: <prop-encoded-array>
-> -	Definition: As specified in designware-pcie.txt
-> +	Definition: As specified in snps,dw-pcie.yaml
->  
->  - interrupts:
->  	Usage: required
-> @@ -63,17 +63,17 @@
->  - #interrupt-cells:
->  	Usage: required
->  	Value type: <u32>
-> -	Definition: Should be 1. As specified in designware-pcie.txt
-> +	Definition: Should be 1. As specified in snps,dw-pcie.yaml
->  
->  - interrupt-map-mask:
->  	Usage: required
->  	Value type: <prop-encoded-array>
-> -	Definition: As specified in designware-pcie.txt
-> +	Definition: As specified in snps,dw-pcie.yaml
->  
->  - interrupt-map:
->  	Usage: required
->  	Value type: <prop-encoded-array>
-> -	Definition: As specified in designware-pcie.txt
-> +	Definition: As specified in snps,dw-pcie.yaml
->  
->  - clocks:
->  	Usage: required
-> diff --git a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> index 1810bf722350..3f49c8017c7a 100644
-> --- a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> @@ -13,7 +13,7 @@ maintainers:
->  description: |+
->    Exynos5433 SoC PCIe host controller is based on the Synopsys DesignWare
->    PCIe IP and thus inherits all the common properties defined in
-> -  designware-pcie.txt.
-> +  snps,dw-pcie.yaml.
->  
->  allOf:
->    - $ref: /schemas/pci/pci-bus.yaml#
-> diff --git a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> index b03cbb9b6602..0cc1998a9d46 100644
-> --- a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> @@ -10,7 +10,7 @@ description: |+
->    SiFive FU740 PCIe host controller is based on the Synopsys DesignWare
->    PCI core. It shares common features with the PCIe DesignWare core and
->    inherits common properties defined in
-> -  Documentation/devicetree/bindings/pci/designware-pcie.txt.
-> +  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
->  
->  maintainers:
->    - Paul Walmsley <paul.walmsley@sifive.com>
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> new file mode 100644
-> index 000000000000..de463338b6ed
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> @@ -0,0 +1,135 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/snps,dw-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DesignWare PCIe interface
-> +
-> +maintainers:
-> +  - Jingoo Han <jingoohan1@gmail.com>
-> +  - Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> +
-> +description: |
-> +  Synopsys DesignWare PCIe host controller
-> +
-> +properties:
-> +  compatible:
-> +    anyOf:
-> +      - {}
-> +      - items:
-> +          contains:
+Hi,
 
-Drop 'contains'. 'items' schema applies to array elements whereas 
-'contains' applies to an array.
+this is a driver for the IR transmitter (also called IR blaster)
+available in some Amlogic Meson SoCs.
 
-> +            enum:
-> +              - snps,dw-pcie
-> +              - snps,dw-pcie-ep
-> +
-> +  reg:
-> +    description: |
-> +      It should contain Data Bus Interface (dbi, dbi2) registers for all
-> +      versions.
+Viktor Prutyanov (2):
+  media: rc: meson-ir-tx: document device tree bindings
+  media: rc: introduce Meson IR TX driver
 
-Not all versions have dbi2.
+ .../bindings/media/amlogic,meson-ir-tx.yaml   |  65 +++
+ drivers/media/rc/Kconfig                      |  10 +
+ drivers/media/rc/Makefile                     |   1 +
+ drivers/media/rc/meson-ir-tx.c                | 404 ++++++++++++++++++
+ 4 files changed, 480 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-ir-tx.yaml
+ create mode 100644 drivers/media/rc/meson-ir-tx.c
 
-> +      For designware cores version < 4.80, contains the configuration
-> +      address space. For designware core version >= 4.80,
-> +      contains the configuration and ATU address space.
+-- 
+2.21.0
 
-config space should always be present. For a brief time (around 2014), 
-it was not required but has been since. For purposes of the schema, we 
-can say always required.
-
-ATU is optional in 4.80 or later. 
-
-> +    minItems: 2
-> +    maxItems: 4
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    maxItems: 4
-> +    items:
-> +      contains:
-
-Drop contains.
-
-> +        enum: [dbi, dbi2, config, atu, addr_space]
-> +
-> +  num-lanes:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> +    description: |
-> +      number of lanes to use (this property should be specified unless
-> +      the link is brought already up in BIOS)
-> +    maxItems: 1
-
-Drop. Not an array. 'maximum: 16' is needed though pci-bus.yaml may 
-cover that already.
-
-> +
-> +  reset-gpio:
-> +    description: GPIO pin number of PERST# signal
-> +    maxItems: 1
-
-deprecated: true
-
-And add 'reset-gpios'
-
-> +
-> +  "snps,enable-cdm-check":
-
-Don't need quotes.
-
-> +    type: boolean
-> +    description: |
-> +      This is a boolean property and if present enables
-> +      automatic checking of CDM (Configuration Dependent Module) registers
-> +      for data corruption. CDM registers include standard PCIe configuration
-> +      space registers, Port Logic registers, DMA and iATU (internal Address
-> +      Translation Unit) registers.
-> +
-> +  num-viewport:
-> +    description: |
-> +      number of view ports configured in hardware. If a platform
-> +      does not specify it, the driver assumes 2.
-
-That's no longer true. This and the next 2 properties are now detected 
-if not specified.
-
-> +    deprecated: true
-> +
-> +  num-ib-windows:
-> +    description: number of inbound address translation windows
-> +    maxItems: 1
-> +    deprecated: true
-> +
-> +  num-ob-windows:
-> +    description: number of outbound address translation windows
-> +    maxItems: 1
-> +    deprecated: true
-> +
-> +  # The following are optional properties for EP mode
-> +
-> +  max-functions:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: maximum number of functions that can be configured
-> +
-> +required:
-> +  - reg
-> +  - reg-names
-> +  - compatible
-> +
-> +additionalProperties: false
-
-unevaluatedProperties: false
-
-so that we can have child PCI devices...
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: snps,dw-pcie
-> +    then:
-> +      allOf:
-> +        - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +patternProperties:
-> +  "pcie?_ep@[0-9a-f]+$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          const: snps,dw-pcie-ep
-
-This doesn't make sense. This is defining a child node of the DW 
-controller with 'snps,dw-pcie-ep'.
-
-> +
-> +  "pcie?@[0-9a-f]+$":
-> +    type: object
-> +
-> +examples:
-> +  - |
-> +    pcie: pcie@dfc00000 {
-
-Drop unused labels.
-
-> +      compatible = "snps,dw-pcie";
-> +      reg = <0xdfc00000 0x0001000>, /* IP registers */
-> +            <0xd0000000 0x0002000>; /* Configuration space */
-> +      reg-names = "dbi", "config";
-> +      #address-cells = <3>;
-> +      #size-cells = <2>;
-> +      device_type = "pci";
-> +      ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
-> +               <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
-> +      interrupts = <25>, <24>;
-> +      #interrupt-cells = <1>;
-> +      num-lanes = <1>;
-> +    };
-> +    pcie_ep: pcie_ep@dfd00000 {
-
-'pcie-ep' is preferred.
-
-> +      compatible = "snps,dw-pcie-ep";
-> +      reg = <0xdfc00000 0x0001000>, /* IP registers 1 */
-> +            <0xdfc01000 0x0001000>, /* IP registers 2 */
-> +            <0xd0000000 0x2000000>; /* Configuration space */
-> +      reg-names = "dbi", "dbi2", "addr_space";
-> +    };
 
 _______________________________________________
 linux-amlogic mailing list
