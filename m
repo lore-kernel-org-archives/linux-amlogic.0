@@ -2,94 +2,91 @@ Return-Path: <SRS0=A3X0=MF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 993D4C07E95
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 05:53:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E49B6C07E95
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 08:31:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4EBB161004
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 05:53:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4EBB161004
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 5DF7861284
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 08:31:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5DF7861284
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ORlglHwoGQ0bOp7Ookch2HJimdEjgToLPOJVgnavhCQ=; b=m9JLdQDXJR5KEH
-	n5IpdbAdIzAAmkOPpkLi6nQY9rFOpnz43GbEFhpOQDZnOA/hKfOEOxxyXfTz6qj39cLc9r5AXXNfx
-	vj4+tK4oujGWEKcVkgn3TZRaSQa0ongVSrheovEeIP1qYA7JiD09MotkySfJ5gHHbfYLz+0ZuZRJo
-	3ODAvN93RgVFEmZmTr9lPxA9+DgWSH84EIXX0iXnU/Fh1+9Vg9nFST/I1N+04lcYkT1e/Yikq4zxF
-	VacZXcy31dyWvL6dnkBM0y1sj4ab7hCXcqN174fL6++5jj1D7G8FD2wnl9IT/3OMf0wdcZL59lVOT
-	1GmFH79epbV/EJ8GYt0g==;
+	List-Owner; bh=jWJir5iYMldI/I/m8CbGafToJg2JXkqs7cbnGNP0Obc=; b=EAO2KSRdSkOmkR
+	ji+45EfZDjAees/IQydgkJxNufx9cIy3BpER+y4ejb//lBABocOoymP31WfYBSsJBix6SByf+DyXD
+	4knYBKpurYdrzCDERF0yeJV8SF5vaqwGyIDXz5bgwLZgqmDm3GCQzj51wtNnd67paAyNEC6nGgBI3
+	TN6DyuAOWfxwuJ2SOAxewvlZRY+8QRdfxo1K9Jkc1FmeTgO8mklPhb8Y0zDYfTc4DVeeUUAjLsYNu
+	hn1cXtGf9R94F4sZWLZImMsbHTO+IF8L8vEYQf7EZvqAZCYv1bO0BXWWjKiqtXICqWOzw8Rbh6uji
+	mI/wpClD3NksPzhDUPCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m3BMg-009BoP-DR; Tue, 13 Jul 2021 05:53:54 +0000
-Received: from mail-pf1-x432.google.com ([2607:f8b0:4864:20::432])
+	id 1m3DpQ-009RkX-DC; Tue, 13 Jul 2021 08:31:44 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m3BMO-009BgK-NL; Tue, 13 Jul 2021 05:53:38 +0000
-Received: by mail-pf1-x432.google.com with SMTP id a127so18542039pfa.10;
- Mon, 12 Jul 2021 22:53:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=xqebAial/PxUvQ3x7+4RUByyPvCTdM4/Zaewy8REn3g=;
- b=rBIoJZjfWAT0sRt0CuW/uq1rjG98twshMCwuo4VaQt6XMH78VOKYuwbYlZD2OvKgfC
- WA+Orzbash1JXWVYc0LdD905jDTo2UNkKue11N0vhizpwQ1+hnchElQEiJBRU4v6SNjt
- Mp932YetKM2iQLa5Nj/9O4vS6T72OamP4Gp0oLWthTjgZqMEn8Hqaxfw3XHgTdWLAhZJ
- vNOAFY6WkHQWtbg4rtTy9EVA/q3m0LRP78HkRgMFtqdlBlTwDRm300n2ERdzYDs/3G9W
- dA1Ba+NjXPXtME0rbYx3pBJjluJAjATB5KWc6iP4PSMQA1ewHyFDULGomor4s9LVEIhQ
- v9XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=xqebAial/PxUvQ3x7+4RUByyPvCTdM4/Zaewy8REn3g=;
- b=qASb18DU4kf8B8UkyhMbxLbpzDcu3Gvo3H6rDrHzfVItenteVCbmPp7DQvD5+ie5Rs
- 4SmamRBYKJR4q5GR23N9+LNGgP1B64tritbZF0zKTM6eWukNMwS5e+6Isd4+jSUa+uid
- PlnHRSrpmRHx06lyG7RhEd8Nrw22cBAY2CeVNA+ndhrpO4Crr1OnISW4mubfJrnx3T55
- /Ozi0VOjGg7SlkZqdcDNE93rVqEBHX36zDKPl038UDdUnQwA5dPUgJmNs26a90eDyUva
- bgN/Oj7T15MHmK318S0iqk1sLZVfaRf/ipBRWHDzZ+FellpoQbzx/280Z4/16f+m7vKi
- s0fA==
-X-Gm-Message-State: AOAM5317zYF6IOyj18/xuGPG3zVmOlyq6X/LLBOUEtkQCoV0yCrraGUw
- gRvhWE817p5uqzMYdOhavEW4mK5zphc=
-X-Google-Smtp-Source: ABdhPJyIw7eqiXGaYJ6UUi8zfg205/gHaSO1yNYTVWBN8ejx2F1ONjtA2jg18NkFnJE8nk+PVkgMIA==
-X-Received: by 2002:a62:5105:0:b029:305:324:17ae with SMTP id
- f5-20020a6251050000b0290305032417aemr2832898pfb.28.1626155616030; 
- Mon, 12 Jul 2021 22:53:36 -0700 (PDT)
-Received: from archl-c2lm.. ([103.51.72.31])
- by smtp.gmail.com with ESMTPSA id x19sm17755198pfa.104.2021.07.12.22.53.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Jul 2021 22:53:35 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Anand Moon <linux.amoon@gmail.com>,
- Matt Corallo <oc2udbzfd@mattcorallo.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>,
- Emiliano Ingrassia <ingrassia@epigenesys.com>, devicetree@vger.kernel.org
-Subject: [PATCHv1 3/3] phy: amlogic: meson8b-usb2: don't log an error on
- -EPROBE_DEFER
-Date: Tue, 13 Jul 2021 05:52:15 +0000
-Message-Id: <20210713055227.1142-4-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210713055227.1142-1-linux.amoon@gmail.com>
-References: <20210713055227.1142-1-linux.amoon@gmail.com>
+ id 1m3DpN-009Rcb-4h; Tue, 13 Jul 2021 08:31:42 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 108EE6127C;
+ Tue, 13 Jul 2021 08:31:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1626165100;
+ bh=vCzKuNoKiBxSGIGRN6demDaGtX6onzKhSozcN6yvzxI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=WTpIf7OCkrQI0Psl1TQDpx3ah/ff9bEvdnD8KZIITUb16hNuzoLtLaJkLz0Zgq78I
+ voQW9beo0TC1xcjrumCclhy8bHBiVv27eGbKg31yKydTrD1DV7HzI2Q+NEev5je2AP
+ fjfKpS3lHv0de56cycngELdDiVNqelcEwZIXctkIiRCE6k5j/BBDVh2DVZPgAJldJq
+ D+p/nT9gLxqaLG76VvUN/2CgiSdy/v1WYe+ZJk9wsYJyTKEJHR/Q0Bke7fGB86ztxC
+ Ik1mIgthNrw8SyAuJJWVt3DoKfiy3OMr7NnGjrlN6xLbXcejghwiIZYDzrkkQXRFUi
+ SY8TbsdogwJJw==
+Date: Tue, 13 Jul 2021 10:31:27 +0200
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: linuxarm@huawei.com, mauro.chehab@huawei.com, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <bjorn.andersson@linaro.org>, Bjorn
+ Helgaas <bhelgaas@google.com>, Fabio Estevam <festevam@gmail.com>,
+ Greentime Hu <greentime.hu@sifive.com>, Gustavo Pimentel
+ <gustavo.pimentel@synopsys.com>, Jaehoon Chung <jh80.chung@samsung.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Jesper Nilsson
+ <jesper.nilsson@axis.com>, Jingoo Han <jingoohan1@gmail.com>, Jonathan
+ Chocron <jonnyc@amazon.com>, Jonathan Hunter <jonathanh@nvidia.com>, Kevin
+ Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>, Kunihiko Hayashi
+ <hayashi.kunihiko@socionext.com>, Lucas Stach <l.stach@pengutronix.de>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Masami Hiramatsu
+ <mhiramat@kernel.org>, NXP Linux Team <linux-imx@nxp.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Richard Zhu <hongxing.zhu@nxp.com>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: designware-pcie.txt: convert
+ it to yaml
+Message-ID: <20210713103127.3891c8e9@coco.lan>
+In-Reply-To: <20210712174504.GA2158814@robh.at.kernel.org>
+References: <cover.1625838920.git.mchehab+huawei@kernel.org>
+ <fa846c83165894accdac1715c3fddfbdcb060958.1625838920.git.mchehab+huawei@kernel.org>
+ <20210712174504.GA2158814@robh.at.kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210712_225336_790574_4113C353 
-X-CRM114-Status: GOOD (  13.92  )
+X-CRM114-CacheID: sfid-20210713_013141_278427_81E476EF 
+X-CRM114-Status: GOOD (  26.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,39 +103,132 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-devm_phy_create can return -EPROBE_DEFER if the phy-supply is not ready
-yet. Silence this warning as the driver framework will re-attempt
-registering the PHY. Use dev_err_probe() for phy resources to indicate
-the deferral reason when waiting for the resource to come up.
+Em Mon, 12 Jul 2021 11:45:04 -0600
+Rob Herring <robh@kernel.org> escreveu:
 
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20210617194154.2397-9-linux.amoon@gmail.com/
----
----
- drivers/phy/amlogic/phy-meson8b-usb2.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> On Fri, Jul 09, 2021 at 03:57:42PM +0200, Mauro Carvalho Chehab wrote:
+> > Convert the file to DT schema.
+> > 
+> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 
-diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
-index 2aad45c55494..cf10bed40528 100644
---- a/drivers/phy/amlogic/phy-meson8b-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
-@@ -277,8 +277,8 @@ static int phy_meson8b_usb2_probe(struct platform_device *pdev)
- 
- 	phy = devm_phy_create(&pdev->dev, NULL, &phy_meson8b_usb2_ops);
- 	if (IS_ERR(phy)) {
--		dev_err(&pdev->dev, "failed to create PHY\n");
--		return PTR_ERR(phy);
-+		return dev_err_probe(&pdev->dev, PTR_ERR(phy),
-+				     "failed to create PHY\n");
- 	}
- 
- 	phy_set_drvdata(phy, priv);
--- 
-2.32.0
 
+> > diff --git a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+> > index 1810bf722350..3f49c8017c7a 100644
+> > --- a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+
+
+> > +  reg:
+> > +    description: |
+> > +      It should contain Data Bus Interface (dbi, dbi2) registers for all
+> > +      versions.
+> 
+> Not all versions have dbi2.
+> 
+> > +      For designware cores version < 4.80, contains the configuration
+> > +      address space. For designware core version >= 4.80,
+> > +      contains the configuration and ATU address space.
+> 
+> config space should always be present. For a brief time (around 2014), 
+> it was not required but has been since. For purposes of the schema, we 
+> can say always required.
+> 
+> ATU is optional in 4.80 or later. 
+> 
+> > +    minItems: 2
+> > +    maxItems: 4
+> > +
+> > +  reg-names:
+> > +    minItems: 2
+> > +    maxItems: 4
+> > +    items:
+> > +      contains:
+> 
+> Drop contains.
+> 
+> > +        enum: [dbi, dbi2, config, atu, addr_space]
+
+This actually generated a warning:
+
+/new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/intel-gw-pcie.example.dt.yaml: pcie@d0e00000: reg-names:2: 'app' is not one of ['dbi', 'dbi2', 'config', 'atu', 'addr_space']
+
+I guess it needs to be changed to:
+
+	enum: [dbi, dbi2, config, atu, addr_space, app]
+
+or intel-gw-pcie.yaml would require an extra change.
+
+That's said, I didn't find any DTS using compatible = "intel,lgm-pcie",
+but looking at drivers/pci/controller/dwc/pcie-intel-gw.c, it seems
+that this is a mandatory register on such hardware.
+
+> > +
+> > +  num-lanes:
+> > +    $ref: '/schemas/types.yaml#/definitions/uint32'
+> > +    description: |
+> > +      number of lanes to use (this property should be specified unless
+> > +      the link is brought already up in BIOS)
+> > +    maxItems: 1
+> 
+> Drop. Not an array. 'maximum: 16' is needed though pci-bus.yaml may 
+> cover that already.
+
+It seems that num-lanes is not there at pci-bus.yaml - at least not
+at the version I'm using here (2021.7.dev1+ge5f58d415b1d).
+
+
+> > +patternProperties:
+> > +  "pcie?_ep@[0-9a-f]+$":
+> > +    type: object
+> > +    properties:
+> > +      compatible:
+> > +        contains:
+> > +          const: snps,dw-pcie-ep
+> 
+> This doesn't make sense. This is defining a child node of the DW 
+> controller with 'snps,dw-pcie-ep'.
+
+This was an attempt to silence those warnings:
+
+	From schema: /new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+/new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/intel-gw-pcie.example.dt.yaml: pcie@d0e00000: '#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'clocks', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'linux,pci-domain', 'max-link-speed', 'phy-names', 'phys', 'ranges', 'reset-assert-ms', 'resets' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+/new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/snps,dw-pcie.example.dt.yaml: pcie@dfc00000: '#address-cells', '#interrupt-cells', '#size-cells', 'device_type', 'interrupts', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+
+Somehow, dtschema is only accepting 'pinctrl-[0-9]+' regex when parsing 
+examples on this file. I've no idea how to fix it.
+
+As a reference, this is how the examples are now declared:
+
+<snip>
+examples:
+  - |
+    pcie@dfc00000 {
+      compatible = "snps,dw-pcie";
+      reg = <0xdfc00000 0x0001000>, /* IP registers */
+            <0xd0000000 0x0002000>; /* Configuration space */
+      reg-names = "dbi", "config";
+      #address-cells = <3>;
+      #size-cells = <2>;
+      device_type = "pci";
+      ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
+               <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
+      interrupts = <25>, <24>;
+      #interrupt-cells = <1>;
+      num-lanes = <1>;
+    };
+    pcie-ep@dfd00000 {
+      compatible = "snps,dw-pcie-ep";
+      reg = <0xdfc00000 0x0001000>, /* IP registers 1 */
+            <0xdfc01000 0x0001000>, /* IP registers 2 */
+            <0xd0000000 0x2000000>; /* Configuration space */
+      reg-names = "dbi", "dbi2", "addr_space";
+    };
+</snip>
+
+Thanks,
+Mauro
 
 _______________________________________________
 linux-amlogic mailing list
