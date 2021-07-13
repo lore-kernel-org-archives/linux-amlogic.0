@@ -2,20 +2,20 @@ Return-Path: <SRS0=A3X0=MF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,FSL_HELO_FAKE,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F298C07E95
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 09:05:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B4FDC07E95
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 09:27:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3A4B461260
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 09:05:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A4B461260
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id 1AEEC60FF1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 09:27:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1AEEC60FF1
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mess.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -23,74 +23,49 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p9TClC9Yn/aNWn0fDw6S/8XX319tLQtJroqmbJyblok=; b=mUKoHeImlFYWEe
-	PdYpR95BDbgOobMLGFXVbkOgeaUcWB9rVhSPiWUnFTJ6KCvU1OF/cwR3GA2udECWPVvARAjPZs/IK
-	wq+2JZ/lLVCelSFRIjcbcsWZqrQFcadfiuEk2EttA50eTuBRnIVCZ2XVJ0V64Wx+AtZ1SyniJq6eI
-	l7DIXNvOno+nzirS4iMJxNnCw32UzFPPYwUMqe5iOWm6pxNPLbb8AMHKVGfC4qruKosq2blok6K2l
-	GKLRe+FTSJ236e5W0HTR2BGbPjJqAmFEX0EHn6XHSTW8WsqFN1zYfoyTB7/x3vqAImXnlbsYELDfi
-	wFsOQ5Oe+bMkUK+IQzjg==;
+	List-Owner; bh=0iKMAzydWJv2pwd5DM+dGj2bGhWKawWADBrqTyjh8x0=; b=KYqPYBq4V7JfHm
+	yQLEVyDcWjg1xs9SqtUYd2N2z7z9Y6fCBd2KhubJ521auq9BaE8nWxQhFFKfEs0gZYG+maQ8Ot5JU
+	hxi3kHJsvCWWILmkAbKuRTR/3m/sYaZJrHAbSWc0K3Dm4IkCndmzxQl4/a5FsV841pVp1IIHPAU4v
+	GdDGiDiWL9JB2Hblu+jUDTbv8mtN8DXTkIPqvj31PZqbptVWbbxnRR7QY0YDuwAP8QefYhMHr3+QO
+	l5jtk9R3bSvz8M26vOXEoz5KVo/0gqQGe3ghGKQ3fops1zIVua/p0Gg5I2ZKHgWorgdYQqzAh+gvm
+	+HJdRHa+yMwotzJax8Sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m3EM9-009XlZ-RY; Tue, 13 Jul 2021 09:05:33 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1m3Egw-009dBr-I7; Tue, 13 Jul 2021 09:27:02 +0000
+Received: from gofer.mess.org ([88.97.38.141])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m3EM5-009Xkj-OZ
- for linux-amlogic@lists.infradead.org; Tue, 13 Jul 2021 09:05:31 +0000
-Received: by mail-wm1-x334.google.com with SMTP id
- a5-20020a7bc1c50000b02901e3bbe0939bso1830778wmj.0
- for <linux-amlogic@lists.infradead.org>; Tue, 13 Jul 2021 02:05:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=0WOJOt7FoNNdbU6eZCXmOzp8mABgTTjOaj0L45g8wKs=;
- b=TNf+xPCLerhLd+lHMLt14shq/V3BBfLbOjPiLDmplEfX1pe3QZEIsAD+ICoBCAkjA9
- 7dO75sEE1PaiefPkfmdAIIMnQo4m3LvMBcZvVH45caWT5vrl7d87183oDxOvgXmvgCS6
- VbuF2vTH6Zgu5UGaRGj1vr9umdPhozjOvUFxscWX8Zb7roJ4Laj/czHZmfU4TDgQxbRk
- Cq90HSXs5zma5fO6NyCaMfYwiwrevZlblE5lpFF4OJY8PgomO4dINejCXIhLvQMMZxGt
- JZxhtWNjrV6G5zHQoj0+UBwmTVvFd+iaoYTmvshc96LmTH1HIuPQ6DdCcxc+uGN/GcDG
- Up6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=0WOJOt7FoNNdbU6eZCXmOzp8mABgTTjOaj0L45g8wKs=;
- b=KHvCFsgjvB5tlGDwr9Zzi9CuK7uxpTverh+Z+p57NaRtxGv95AoFPsbubZe/WO958j
- qOYUP+oIaM0iLNWE96W/e8cvvy8by4Y1FOK/RnrtBJeQbu4kgk5oQNC80faAh0YUpV/W
- aFlv0nE+TBselnnubZXfIkN2bZOl08APv751MUXqyynIPEQudNP7X7luYrbaGCGvOrf5
- mRFDv1rU0cbs94SVrc7T94KzdWAKj66zdYio44/zLt6q9jqBGjCSCWATRybEHO08e3Jt
- EycZTc2rl6U1Hjyzbq77r1abUM8PkL4bcMRaIh6SzCLGo8uSw4oELWHySyNnTuQ5XJZ0
- lsXg==
-X-Gm-Message-State: AOAM533TMKq9zNjvMrt9sF2vitK6KPNT+xMDMNn0ckcNIL4ZYuL1CuL5
- dRSK0fQVQrL+QOtKM1OBRCPFQA==
-X-Google-Smtp-Source: ABdhPJz+AZFpWZZPDhbkwEpDoRjHtToftwvHQZ/OC8l4qi53pyIr7gkebcqoEL4sjcc7L0AEHbg13Q==
-X-Received: by 2002:a1c:2182:: with SMTP id h124mr3852357wmh.44.1626167126538; 
- Tue, 13 Jul 2021 02:05:26 -0700 (PDT)
-Received: from google.com ([109.180.115.218])
- by smtp.gmail.com with ESMTPSA id v9sm4774176wml.36.2021.07.13.02.05.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 Jul 2021 02:05:25 -0700 (PDT)
-Date: Tue, 13 Jul 2021 10:05:23 +0100
-From: Lee Jones <lee.jones@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>
-Cc: Marc Zyngier <maz@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build
- as a module
-Message-ID: <YO1XU2ySZL3d03RH@google.com>
-References: <20201020072532.949137-1-narmstrong@baylibre.com>
- <20201020072532.949137-2-narmstrong@baylibre.com>
- <7hsga8kb8z.fsf@baylibre.com>
- <CAF2Aj3g6c8FEZb3e1by6sd8LpKLaeN5hsKrrQkZUvh8hosiW9A@mail.gmail.com>
- <87r1hwwier.wl-maz@kernel.org> <7h7diwgjup.fsf@baylibre.com>
+ id 1m3Egs-009d9Q-9w; Tue, 13 Jul 2021 09:27:01 +0000
+Received: by gofer.mess.org (Postfix, from userid 1000)
+ id 5BAADC6373; Tue, 13 Jul 2021 10:26:54 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mess.org; s=2020;
+ t=1626168414; bh=7UIhBXGjKW06FPNxhHims8ZMpzAJ+oPNQv8TSSwNjzM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=M37Vky5gVGJtLfqXgNqZBP7X/FOFVm4Cn0sjMHdfmawvLIkjW3X0CsJkca6evux33
+ ym3+LwVj+r/eulftHjTiM91m6OWUw5wMQOPnKSXvVFDfcmcs2XZr/FLIUls0hrqmFr
+ 9T2IOnFo5qzH2rXo/eHe2pC+ofWFBZ//XXJtfZo2xxKO94DfCx8vEO/Q0KtymQGOPO
+ YXVBgT6Tkt+hQmFrxv/BZZDWdPltwIxFXHcMqDB7KgEUYkKHCuJxWSrruQ5exAYJ+r
+ gFPPCL143TNP8XpvDZ2pH4iT86BnlmNqOGWAvBJa3+beL2YZETX8nLYQZCGsBLzQlE
+ iTD6odmVWVXxg==
+Date: Tue, 13 Jul 2021 10:26:54 +0100
+From: Sean Young <sean@mess.org>
+To: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Cc: mchehab@kernel.org, robh+dt@kernel.org, khilman@baylibre.com,
+ narmstrong@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, rockosov@gmail.com
+Subject: Re: [PATCH v4 2/2] media: rc: introduce Meson IR TX driver
+Message-ID: <20210713092653.GC6572@gofer.mess.org>
+References: <20210712201732.31808-1-viktor.prutyanov@phystech.edu>
+ <20210712201732.31808-3-viktor.prutyanov@phystech.edu>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <7h7diwgjup.fsf@baylibre.com>
+In-Reply-To: <20210712201732.31808-3-viktor.prutyanov@phystech.edu>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210713_020529_833925_3920B13B 
-X-CRM114-Status: GOOD (  28.33  )
+X-CRM114-CacheID: sfid-20210713_022658_683891_3A2155A0 
+X-CRM114-Status: GOOD (  41.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,145 +77,512 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCAxNCBKdW4gMjAyMSwgS2V2aW4gSGlsbWFuIHdyb3RlOgoKPiBNYXJjIFp5bmdpZXIg
-PG1hekBrZXJuZWwub3JnPiB3cml0ZXM6Cj4gCj4gPiBPbiBGcmksIDIxIE1heSAyMDIxIDEwOjQ3
-OjQ4ICswMTAwLAo+ID4gTGVlIEpvbmVzIDxsZWUuam9uZXNAbGluYXJvLm9yZz4gd3JvdGU6Cj4g
-Pj4gCj4gPj4gWzEgIDx0ZXh0L3BsYWluOyBVVEYtOCAocXVvdGVkLXByaW50YWJsZSk+XQo+ID4+
-IE9uIFR1ZSwgMjAgT2N0IDIwMjAgYXQgMTk6MjMsIEtldmluIEhpbG1hbiA8a2hpbG1hbkBiYXls
-aWJyZS5jb20+IHdyb3RlOgo+ID4+IAo+ID4+ID4gTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdA
-YmF5bGlicmUuY29tPiB3cml0ZXM6Cj4gPj4gPgo+ID4+ID4gPiBJbiBvcmRlciB0byByZWR1Y2Ug
-dGhlIGtlcm5lbCBJbWFnZSBzaXplIG9uIG11bHRpLXBsYXRmb3JtIGRpc3RyaWJ1dGlvbnMsCj4g
-Pj4gPiA+IG1ha2UgaXQgcG9zc2libGUgdG8gYnVpbGQgdGhlIEFtbG9naWMgR1BJTyBJUlEgY29u
-dHJvbGxlciBhcyBhIG1vZHVsZQo+ID4+ID4gPiBieSBzd2l0Y2hpbmcgaXQgdG8gYSBwbGF0Zm9y
-bSBkcml2ZXIuCj4gPj4gPiA+Cj4gPj4gPiA+IFNpZ25lZC1vZmYtYnk6IE5laWwgQXJtc3Ryb25n
-IDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPiA+PiA+Cj4gPj4gPiBSZXZpZXdlZC1ieTogS2V2
-aW4gSGlsbWFuIDxraGlsbWFuQGJheWxpYnJlLmNvbT4KPiA+PiA+IFRlc3RlZC1ieTogS2V2aW4g
-SGlsbWFuIDxraGlsbWFuQGJheWxpYnJlLmNvbT4KPiA+PiA+Cj4gPj4gPiBUZXN0ZWQgYXMgYSBt
-b2R1bGUgb24gbWVzb24tc20xLWtoYWRhcy12aW0zbCB3aGVyZSB0aGUgd2lyZWQgbmV0d29ya2lu
-Zwo+ID4+ID4gdXNlcyBHUElPIElSUXMuCj4gPj4gPgo+ID4+IAo+ID4+IEdvb2QgbW9ybmluZyBO
-ZWlsLCBLZXZpbiwKPiA+PiAKPiA+PiBXaGF0IGhhcHBlbmVkIHRvIHRoaXMgc2V0IGluIHRoZSBl
-bmQ/ICBJIHN0aWxsIGRvbid0IHNlZSBpdCBpbiBNYWlubGluZS4KPiA+Cj4gPiBMYXN0IHRpbWUg
-SSB0cmllZCB0aGlzIHBhdGNoLCBpdCBicm9rZSBteSB0ZXN0IHNldHVwIGluIG5vbi1vYnZpb3Vz
-Cj4gPiB3YXlzLiBIYXMgc29tZW9uZSBjaGVja2VkIHRoYXQgdGhlIGlzc3VlIEkgcmVwb3J0ZWQg
-YmFjayB0aGVuIGhhcyBiZWVuCj4gPiByZXNvbHZlZCBub3cgdGhhdCBmd19kZXZsaW5rIGlzIG1v
-cmUgdXNhYmxlPwo+IAo+IE9LLCBhZnRlciBtdWNoIGFudGljaXBhdGlvbiAoYW5kIG11Y2ggZGVs
-YXkgZHVlIHRvIG1lIGZvcmdldHRpbmcgYWJvdXQKPiB0aGlzKSwgSSBqdXN0IGdhdmUgdGhpcyBz
-ZXJpZXMgYSBzcGluIGFnYWluIG9uIHRvcCBvZiB2NS4xMy1yYzYsIGFuZCBpdAo+IHNlZW1zIHRv
-IHdvcmsgZmluZSB3aXRoIGBmd19kZXZsaW5rPW9uYAo+IAo+IEkgc3RhcnRlZCB3aXRoIHlvdXIg
-Y29uZmlnWzFdIGFuZCBhY2NlcHRpbmcgYWxsIHRoZSBkZWZhdWx0cyBvZiBhbnkgbmV3Cj4gY29u
-Zmlncy4gIElPVywgSSByYW46IHllcyAnJyB8IG1ha2Ugb2xkY29uZmlnIGFmdGVyIGNvcHlpbmcg
-eW91ciBjb25maWcKPiB0byAuY29uZmlnLgo+IAo+IFdpdGggdGhhdCBpdCBzZWVtcyB0byBiZSB3
-b3JraW5nIGZpbmUgZm9yIG1lLgo+IAo+IFJpZ2h0IGFmdGVyIGJvb3QgKGFuZCBiZWZvcmUgbmV0
-d29yayBwcm9iZXMpIEkgc2VlIG1vZHVsZSBsb2FkZWQsIGJ1dCBubwo+IHVzZXJzIHlldCBpbiAv
-cHJvYy9pbnRlcnJ1cHRzOgo+IAo+IC8gIyB1bmFtZSAtYQo+IExpbnV4IGJ1aWxkcm9vdCA1LjEz
-LjAtcmM2LTAwMDAyLWc2NzljOGU4NTI5NDIgIzUgU01QIFBSRUVNUFQgTW9uIEp1biAxNCAxNTow
-ODo0MCBQRFQgMjAyMSBhYXJjaDY0IEdOVS9MaW51eAo+IC8gIyBsc21vZCB8Z3JlcCBncGlvCj4g
-aXJxX21lc29uX2dwaW8gICAgICAgICAyMDQ4MCAgMAo+IGxlZHNfZ3BpbyAgICAgICAgICAgICAg
-MTYzODQgIDAKPiAvICMgY2F0IC9wcm9jL2ludGVycnVwdHMKPiAgICAgICAgICAgIENQVTAgICAg
-ICAgQ1BVMSAgICAgICBDUFUyICAgICAgIENQVTMKPiAgIDk6ICAgICAgICAgIDAgICAgICAgICAg
-MCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyICAyNSBMZXZlbCAgICAgdmdpYwo+ICAx
-MTogICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIg
-IDMwIExldmVsICAgICBrdm0gZ3Vlc3QgcHRpbWVyCj4gIDEyOiAgICAgICAgICAwICAgICAgICAg
-IDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAgMjcgTGV2ZWwgICAgIGt2bSBndWVz
-dCB2dGltZXIKPiAgMTM6ICAgICAgIDE0MTYgICAgICAgIDkxNiAgICAgICAgNTM0ICAgICAgIDE0
-MjEgICAgIEdJQ3YyICAyNiBMZXZlbCAgICAgYXJjaF90aW1lcgo+ICAxNTogICAgICAgICAgNSAg
-ICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIgIDg5IEVkZ2UgICAgICBk
-d19oZG1pX3RvcF9pcnEsIGZmNjAwMDAwLmhkbWktdHgKPiAgMjI6ICAgICAgICAgMzggICAgICAg
-ICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyIDIyNSBFZGdlICAgICAgdHR5QU1M
-MAo+ICAyMzogICAgICAgICAyMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAg
-R0lDdjIgMjI3IEVkZ2UgICAgICBmZjgwNTAwMC5pMmMKPiAgMjU6ICAgICAgICAgIDIgICAgICAg
-ICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyIDIzMiBFZGdlICAgICAgZmY4MDkw
-MDAuYWRjCj4gIDI4OiAgICAgICAgMzIyICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAw
-ICAgICBHSUN2MiAgMzUgRWRnZSAgICAgIG1lc29uCj4gIDMxOiAgICAgICAgICAwICAgICAgICAg
-IDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAyMjIgRWRnZSAgICAgIGZmZTA1MDAw
-LnNkCj4gIDMyOiAgICAgICAgNzg3ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAg
-ICBHSUN2MiAyMjMgRWRnZSAgICAgIGZmZTA3MDAwLm1tYwo+ICAzNDogICAgICAgICAgMCAgICAg
-ICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIgMTk0IExldmVsICAgICBwYW5m
-cm9zdC1qb2IKPiAgMzU6ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAg
-IDAgICAgIEdJQ3YyIDE5MyBMZXZlbCAgICAgcGFuZnJvc3QtbW11Cj4gIDM2OiAgICAgICAgICAz
-ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAxOTIgTGV2ZWwgICAg
-IHBhbmZyb3N0LWdwdQo+ICAzOTogICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAg
-ICAgICAgMCAgICAgR0lDdjIgIDYzIExldmVsICAgICBmZjQwMDAwMC51c2IsIGZmNDAwMDAwLnVz
-Ygo+ICA0MDogICAgICAgICAzMiAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAg
-R0lDdjIgIDYyIExldmVsICAgICB4aGNpLWhjZDp1c2IxCj4gSVBJMDogICAgICAgNDI1ICAgICAg
-ICA1NDQgICAgICAgIDY2NCAgICAgICAgOTI1ICAgICAgIFJlc2NoZWR1bGluZyBpbnRlcnJ1cHRz
-Cj4gSVBJMTogICAgICAgIDg2ICAgICAgICAxNjYgICAgICAgIDI2OSAgICAgICAgMTM2ICAgICAg
-IEZ1bmN0aW9uIGNhbGwgaW50ZXJydXB0cwo+IElQSTI6ICAgICAgICAgMCAgICAgICAgICAwICAg
-ICAgICAgIDAgICAgICAgICAgMCAgICAgICBDUFUgc3RvcCBpbnRlcnJ1cHRzCj4gSVBJMzogICAg
-ICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgIENQVSBzdG9wIChm
-b3IgY3Jhc2ggZHVtcCkgaW50ZXJydXB0cwo+IElQSTQ6ICAgICAgICAgMCAgICAgICAgICAwICAg
-ICAgICAgIDAgICAgICAgICAgMCAgICAgICBUaW1lciBicm9hZGNhc3QgaW50ZXJydXB0cwo+IElQ
-STU6ICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICBJUlEg
-d29yayBpbnRlcnJ1cHRzCj4gSVBJNjogICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAg
-ICAgICAgICAwICAgICAgIENQVSB3YWtlLXVwIGludGVycnVwdHMKPiBFcnI6ICAgICAgICAgIDAK
-PiAKPiBTbyB0aGVuIEkgaW5pdCB0aGUgbmV0d29yayBpbnRlcmZhY2UgYW5kIFBIWSB3b3Jrcywg
-REhDUCB3b3JrcyBldGMuCj4gCj4gLyAjIHVkaGNwYwo+IHVkaGNwYzogc3RhcnRlZCwgdjEuMzEu
-MQo+IFsgIDEwMi4yNTA0NDldIG1lc29uOGItZHdtYWMgZmYzZjAwMDAuZXRoZXJuZXQgZXRoMDog
-UEhZIFswLjA6MDBdIGRyaXZlciBbUlRMODIxMUYgR2lnYWJpdCBFdGhlcm5ldF0gKGlycT0zNykK
-PiBbICAxMDIuMjU2NDEzXSBtZXNvbjhiLWR3bWFjIGZmM2YwMDAwLmV0aGVybmV0IGV0aDA6IFJl
-Z2lzdGVyIE1FTV9UWVBFX1BBR0VfUE9PTCBSeFEtMAo+IFsgIDEwMi4yNjk0MzNdIG1lc29uOGIt
-ZHdtYWMgZmYzZjAwMDAuZXRoZXJuZXQgZXRoMDogTm8gU2FmZXR5IEZlYXR1cmVzIHN1cHBvcnQg
-Zm91bmQKPiBbICAxMDIuMjcxMzU3XSBtZXNvbjhiLWR3bWFjIGZmM2YwMDAwLmV0aGVybmV0IGV0
-aDA6IFBUUCBub3Qgc3VwcG9ydGVkIGJ5IEhXCj4gWyAgMTAyLjI3ODQ5M10gbWVzb244Yi1kd21h
-YyBmZjNmMDAwMC5ldGhlcm5ldCBldGgwOiBjb25maWd1cmluZyBmb3IgcGh5L3JnbWlpIGxpbmsg
-bW9kZQo+IHVkaGNwYzogc2VuZGluZyBkaXNjb3Zlcgo+IFsgIDEwNC43NDMzMDFdIG1lc29uOGIt
-ZHdtYWMgZmYzZjAwMDAuZXRoZXJuZXQgZXRoMDogTGluayBpcyBVcCAtIDEwME1icHMvRnVsbCAt
-IGZsb3cgY29udHJvbCByeC90eAo+IFsgIDEwNC43NDY0NzBdIElQdjY6IEFERFJDT05GKE5FVERF
-Vl9DSEFOR0UpOiBldGgwOiBsaW5rIGJlY29tZXMgcmVhZHkKPiB1ZGhjcGM6IHNlbmRpbmcgZGlz
-Y292ZXIKPiB1ZGhjcGM6IHNlbmRpbmcgc2VsZWN0IGZvciAxOTIuMTY4LjAuMTIyCj4gdWRoY3Bj
-OiBsZWFzZSBvZiAxOTIuMTY4LjAuMTIyIG9idGFpbmVkLCBsZWFzZSB0aW1lIDYwMAo+IGRlbGV0
-aW5nIHJvdXRlcnMKPiBhZGRpbmcgZG5zIDE5Mi4xNjguMC4yNTQKPiBhZGRpbmcgZG5zIDE5Mi4x
-NjguMC4yNTQKPiAvICMgY2F0IC9wcm9jL2ludGVycnVwdHMKPiAgICAgICAgICAgIENQVTAgICAg
-ICAgQ1BVMSAgICAgICBDUFUyICAgICAgIENQVTMKPiAgIDk6ICAgICAgICAgIDAgICAgICAgICAg
-MCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyICAyNSBMZXZlbCAgICAgdmdpYwo+ICAx
-MTogICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIg
-IDMwIExldmVsICAgICBrdm0gZ3Vlc3QgcHRpbWVyCj4gIDEyOiAgICAgICAgICAwICAgICAgICAg
-IDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAgMjcgTGV2ZWwgICAgIGt2bSBndWVz
-dCB2dGltZXIKPiAgMTM6ICAgICAgIDE1NzUgICAgICAgMTAxOCAgICAgICAgNjA0ICAgICAgIDE1
-ODggICAgIEdJQ3YyICAyNiBMZXZlbCAgICAgYXJjaF90aW1lcgo+ICAxNDogICAgICAgICAgOCAg
-ICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIgIDQwIExldmVsICAgICBl
-dGgwCj4gIDE1OiAgICAgICAgICA1ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAg
-ICBHSUN2MiAgODkgRWRnZSAgICAgIGR3X2hkbWlfdG9wX2lycSwgZmY2MDAwMDAuaGRtaS10eAo+
-ICAyMjogICAgICAgIDEzMiAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lD
-djIgMjI1IEVkZ2UgICAgICB0dHlBTUwwCj4gIDIzOiAgICAgICAgIDIwICAgICAgICAgIDAgICAg
-ICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAyMjcgRWRnZSAgICAgIGZmODA1MDAwLmkyYwo+
-ICAyNTogICAgICAgICAgMiAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lD
-djIgMjMyIEVkZ2UgICAgICBmZjgwOTAwMC5hZGMKPiAgMjg6ICAgICAgICAzMjIgICAgICAgICAg
-MCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyICAzNSBFZGdlICAgICAgbWVzb24KPiAg
-MzE6ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3Yy
-IDIyMiBFZGdlICAgICAgZmZlMDUwMDAuc2QKPiAgMzI6ICAgICAgICA3ODcgICAgICAgICAgMCAg
-ICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyIDIyMyBFZGdlICAgICAgZmZlMDcwMDAubW1j
-Cj4gIDM0OiAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBH
-SUN2MiAxOTQgTGV2ZWwgICAgIHBhbmZyb3N0LWpvYgo+ICAzNTogICAgICAgICAgMCAgICAgICAg
-ICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIgMTkzIExldmVsICAgICBwYW5mcm9z
-dC1tbXUKPiAgMzY6ICAgICAgICAgIDMgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAg
-ICAgIEdJQ3YyIDE5MiBMZXZlbCAgICAgcGFuZnJvc3QtZ3B1Cj4gIDM3OiAgICAgICAgICAyICAg
-ICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICBtZXNvbi1ncGlvLWlycWNoaXAgIDI2IExl
-dmVsICAgICAwLjA6MDAKPiAgMzk6ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAg
-ICAgICAgIDAgICAgIEdJQ3YyICA2MyBMZXZlbCAgICAgZmY0MDAwMDAudXNiLCBmZjQwMDAwMC51
-c2IKPiAgNDA6ICAgICAgICAgMzIgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAg
-IEdJQ3YyICA2MiBMZXZlbCAgICAgeGhjaS1oY2Q6dXNiMQo+IElQSTA6ICAgICAgIDQ3NiAgICAg
-ICAgNTY3ICAgICAgICA3MjAgICAgICAgIDk1NiAgICAgICBSZXNjaGVkdWxpbmcgaW50ZXJydXB0
-cwo+IElQSTE6ICAgICAgICA5MyAgICAgICAgMTY2ICAgICAgICAyNzAgICAgICAgIDEzNyAgICAg
-ICBGdW5jdGlvbiBjYWxsIGludGVycnVwdHMKPiBJUEkyOiAgICAgICAgIDAgICAgICAgICAgMCAg
-ICAgICAgICAwICAgICAgICAgIDAgICAgICAgQ1BVIHN0b3AgaW50ZXJydXB0cwo+IElQSTM6ICAg
-ICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICBDUFUgc3RvcCAo
-Zm9yIGNyYXNoIGR1bXApIGludGVycnVwdHMKPiBJUEk0OiAgICAgICAgIDAgICAgICAgICAgMCAg
-ICAgICAgICAwICAgICAgICAgIDAgICAgICAgVGltZXIgYnJvYWRjYXN0IGludGVycnVwdHMKPiBJ
-UEk1OiAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgSVJR
-IHdvcmsgaW50ZXJydXB0cwo+IElQSTY6ICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAg
-ICAgICAgICAgMCAgICAgICBDUFUgd2FrZS11cCBpbnRlcnJ1cHRzCj4gRXJyOiAgICAgICAgICAw
-Cj4gLyAjCj4gCj4gS2V2aW4KPiAKPiBbMV0gaHR0cDovL3d3dy5sb2VuLmZyL3RtcC9Db25maWcu
-ZnVsbC1hcm02NAoKVGhhbmtzIEtldmluLgoKTm93IHRoYXQgLXJjMSBpcyBvdXQsIGhvcGVmdWxs
-eSBNYXJjIGNhbiBhc3NpZ24gc29tZSB0aW1lIHRvIHRoaXMuCgotLSAKTGVlIEpvbmVzIFvmnY7n
-kLzmlq9dClNlbmlvciBUZWNobmljYWwgTGVhZCAtIERldmVsb3BlciBTZXJ2aWNlcwpMaW5hcm8u
-b3JnIOKUgiBPcGVuIHNvdXJjZSBzb2Z0d2FyZSBmb3IgQXJtIFNvQ3MKRm9sbG93IExpbmFybzog
-RmFjZWJvb2sgfCBUd2l0dGVyIHwgQmxvZwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
-Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
-bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi Viktor,
+
+On Mon, Jul 12, 2021 at 11:17:32PM +0300, Viktor Prutyanov wrote:
+> This patch adds the driver for Amlogic Meson IR transmitter.
+> 
+> Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
+> (also called blaster) controller onboard. It is capable of sending
+> IR signals with arbitrary carrier frequency and duty cycle.
+> 
+> The driver supports 2 modulation clock sources:
+>  - xtal3 clock (xtal divided by 3)
+>  - 1us clock
+> 
+> Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+> ---
+>  changes in v2:
+>    - threaded IRQ removed, all stuff done in IRQ handler
+>    - DIV_ROUND_CLOSEST_ULL replaced with DIV_ROUND_CLOSEST
+>    - compatible changed to "amlogic,meson-g12a-irblaster"
+>    - 'debug' parameter removed
+>    - dprintk() replaced with dev_dbg()/dev_info()
+>    - carrier frequency checked against 0
+>    - device_name added
+>  changes in v3:
+>    - license header fixed
+>    - 'max_fifo_level' parameter removed
+>    - irq and clk_nr deleted from irblaster_dev struct
+>    - some divisions replaced with DIV_ROUND_CLOSEST
+>    - irb_send inlined
+>    - fixed early completion in IRQ handler
+>    - spin lock added before kfree
+>  changes in v4:
+>    - irblaster -> ir-tx renaming
+>    - spin lock added before buffer allocation
+> 
+>  drivers/media/rc/Kconfig       |  10 +
+>  drivers/media/rc/Makefile      |   1 +
+>  drivers/media/rc/meson-ir-tx.c | 404 +++++++++++++++++++++++++++++++++
+>  3 files changed, 415 insertions(+)
+>  create mode 100644 drivers/media/rc/meson-ir-tx.c
+> 
+> diff --git a/drivers/media/rc/Kconfig b/drivers/media/rc/Kconfig
+> index d0a8326b75c2..fd5a7a058714 100644
+> --- a/drivers/media/rc/Kconfig
+> +++ b/drivers/media/rc/Kconfig
+> @@ -246,6 +246,16 @@ config IR_MESON
+>  	   To compile this driver as a module, choose M here: the
+>  	   module will be called meson-ir.
+>  
+> +config IR_MESON_TX
+> +	tristate "Amlogic Meson IR TX"
+> +	depends on ARCH_MESON || COMPILE_TEST
+> +	help
+> +	   Say Y if you want to use the IR transmitter available on
+> +	   Amlogic Meson SoCs.
+> +
+> +	   To compile this driver as a module, choose M here: the
+> +	   module will be called meson-ir-tx.
+> +
+>  config IR_MTK
+>  	tristate "Mediatek IR remote receiver"
+>  	depends on ARCH_MEDIATEK || COMPILE_TEST
+> diff --git a/drivers/media/rc/Makefile b/drivers/media/rc/Makefile
+> index 692e9b6b203f..0db51fad27d6 100644
+> --- a/drivers/media/rc/Makefile
+> +++ b/drivers/media/rc/Makefile
+> @@ -28,6 +28,7 @@ obj-$(CONFIG_IR_ITE_CIR) += ite-cir.o
+>  obj-$(CONFIG_IR_MCEUSB) += mceusb.o
+>  obj-$(CONFIG_IR_FINTEK) += fintek-cir.o
+>  obj-$(CONFIG_IR_MESON) += meson-ir.o
+> +obj-$(CONFIG_IR_MESON_TX) += meson-ir-tx.o
+>  obj-$(CONFIG_IR_NUVOTON) += nuvoton-cir.o
+>  obj-$(CONFIG_IR_ENE) += ene_ir.o
+>  obj-$(CONFIG_IR_REDRAT3) += redrat3.o
+> diff --git a/drivers/media/rc/meson-ir-tx.c b/drivers/media/rc/meson-ir-tx.c
+> new file mode 100644
+> index 000000000000..b936a6962849
+> --- /dev/null
+> +++ b/drivers/media/rc/meson-ir-tx.c
+> @@ -0,0 +1,404 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/**
+> + * meson-ir-tx.c - Amlogic Meson IR TX driver
+> + *
+> + * Copyright (c) 2021, SberDevices. All Rights Reserved.
+> + *
+> + * Author: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/module.h>
+> +#include <linux/sched.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/clk.h>
+> +#include <linux/slab.h>
+> +#include <media/rc-core.h>
+> +
+> +#define DEVICE_NAME	"Meson IR TX"
+> +#define DRIVER_NAME	"meson-ir-tx"
+> +
+> +#define MIRTX_DEFAULT_CARRIER		38000
+> +#define MIRTX_DEFAULT_DUTY_CYCLE	50
+> +#define MIRTX_DEFAULT_MAX_FIFO_LEVEL	96
+> +
+> +#define IRB_MOD_1US_CLK_RATE	1000000
+> +
+> +#define IRB_FIFO_LEN	128
+> +
+> +#define IRB_ADDR0	0x0
+> +#define IRB_ADDR1	0x4
+> +#define IRB_ADDR2	0x8
+> +#define IRB_ADDR3	0xc
+> +
+> +#define IRB_MAX_DELAY	(1 << 10)
+> +#define IRB_DELAY_MASK	(IRB_MAX_DELAY - 1)
+> +
+> +/* IRCTRL_IR_BLASTER_ADDR0 */
+> +#define IRB_MOD_CLK(x)		((x) << 12)
+> +#define IRB_MOD_SYS_CLK		0
+> +#define IRB_MOD_XTAL3_CLK	1
+> +#define IRB_MOD_1US_CLK		2
+> +#define IRB_MOD_10US_CLK	3
+> +#define IRB_INIT_HIGH		BIT(2)
+> +#define IRB_ENABLE		BIT(0)
+> +
+> +/* IRCTRL_IR_BLASTER_ADDR2 */
+> +#define IRB_MOD_COUNT(lo, hi)	((((lo) - 1) << 16) | ((hi) - 1))
+> +
+> +/* IRCTRL_IR_BLASTER_ADDR2 */
+> +#define IRB_WRITE_FIFO	BIT(16)
+> +#define IRB_MOD_ENABLE	BIT(12)
+> +#define IRB_TB_1US	(0x0 << 10)
+> +#define IRB_TB_10US	(0x1 << 10)
+> +#define IRB_TB_100US	(0x2 << 10)
+> +#define IRB_TB_MOD_CLK	(0x3 << 10)
+> +
+> +/* IRCTRL_IR_BLASTER_ADDR3 */
+> +#define IRB_FIFO_THD_PENDING	BIT(16)
+> +#define IRB_FIFO_IRQ_ENABLE	BIT(8)
+> +
+> +struct meson_irtx {
+> +	struct device *dev;
+> +	void __iomem *reg_base;
+> +	u32 *buf;
+> +	unsigned int buf_len;
+> +	unsigned int buf_head;
+> +	unsigned int carrier;
+> +	unsigned int duty_cycle;
+> +	spinlock_t lock;
+> +	struct completion completion;
+> +	unsigned int max_fifo_level;
+> +	unsigned long clk_rate;
+> +};
+> +
+> +static void meson_irtx_set_mod(struct meson_irtx *ir)
+> +{
+> +	unsigned int cnt = DIV_ROUND_CLOSEST(ir->clk_rate, ir->carrier);
+> +	unsigned int pulse_cnt = DIV_ROUND_CLOSEST(cnt * ir->duty_cycle, 100);
+> +	unsigned int space_cnt = cnt - pulse_cnt;
+> +
+> +	dev_dbg(ir->dev, "F_mod = %uHz, T_mod = %luns, duty_cycle = %u%%\n",
+> +		ir->carrier, NSEC_PER_SEC / ir->clk_rate * cnt,
+> +		100 * pulse_cnt / cnt);
+> +
+> +	writel(IRB_MOD_COUNT(pulse_cnt, space_cnt),
+> +	       ir->reg_base + IRB_ADDR1);
+> +}
+> +
+> +static void meson_irtx_setup(struct meson_irtx *ir, unsigned int clk_nr)
+> +{
+> +	unsigned int fifo_irq_threshold = IRB_FIFO_LEN - ir->max_fifo_level;
+> +
+> +	/*
+> +	 * Disable the TX, set modulator clock tick and set initialize
+> +	 * output to be high. Set up carrier frequency and duty cycle. Then
+> +	 * unset initialize output. Enable FIFO interrupt, set FIFO interrupt
+> +	 * threshold. Finally, enable the transmitter back.
+> +	 */
+> +	writel(~IRB_ENABLE & (IRB_MOD_CLK(clk_nr) | IRB_INIT_HIGH),
+> +	       ir->reg_base + IRB_ADDR0);
+> +	meson_irtx_set_mod(ir);
+> +	writel(readl(ir->reg_base + IRB_ADDR0) & ~IRB_INIT_HIGH,
+> +	       ir->reg_base + IRB_ADDR0);
+> +	writel(IRB_FIFO_IRQ_ENABLE | fifo_irq_threshold,
+> +	       ir->reg_base + IRB_ADDR3);
+> +	writel(readl(ir->reg_base + IRB_ADDR0) | IRB_ENABLE,
+> +	       ir->reg_base + IRB_ADDR0);
+> +}
+> +
+> +static u32 meson_irtx_prepare_pulse(struct meson_irtx *ir, unsigned int time)
+> +{
+> +	unsigned int delay;
+> +	unsigned int tb = IRB_TB_MOD_CLK;
+> +	unsigned int tb_us = DIV_ROUND_CLOSEST(USEC_PER_SEC, ir->carrier);
+> +
+> +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) & IRB_DELAY_MASK;
+> +
+> +	return ((IRB_WRITE_FIFO | IRB_MOD_ENABLE) | tb | delay);
+> +}
+> +
+> +static u32 meson_irtx_prepare_space(struct meson_irtx *ir, unsigned int time)
+> +{
+> +	unsigned int delay;
+> +	unsigned int tb = IRB_TB_100US;
+> +	unsigned int tb_us = 100;
+> +
+> +	if (time <= IRB_MAX_DELAY) {
+> +		tb = IRB_TB_1US;
+> +		tb_us = 1;
+> +	} else if (time <= 10 * IRB_MAX_DELAY) {
+> +		tb = IRB_TB_10US;
+> +		tb_us = 10;
+> +	} else if (time <= 100 * IRB_MAX_DELAY) {
+> +		tb = IRB_TB_100US;
+> +		tb_us = 100;
+> +	}
+> +
+> +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) & IRB_DELAY_MASK;
+> +
+> +	return ((IRB_WRITE_FIFO & ~IRB_MOD_ENABLE) | tb | delay);
+> +}
+> +
+> +static void meson_irtx_send_buffer(struct meson_irtx *ir)
+> +{
+> +	unsigned int nr = 0;
+> +
+> +	while (ir->buf_head < ir->buf_len && nr < ir->max_fifo_level) {
+> +		writel(ir->buf[ir->buf_head], ir->reg_base + IRB_ADDR2);
+> +
+> +		ir->buf_head++;
+> +		nr++;
+> +	}
+> +}
+> +
+> +static bool meson_irtx_check_buf(struct meson_irtx *ir,
+> +			  unsigned int *buf, unsigned int len)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < len; i++) {
+> +		unsigned int max_tb_us;
+> +		/*
+> +		 * Max space timebase is 100 us.
+> +		 * Pulse timebase equals to carrier period.
+> +		 */
+> +		if (i % 2 == 0)
+> +			max_tb_us = USEC_PER_SEC / ir->carrier;
+> +		else
+> +			max_tb_us = 100;
+> +
+> +		if (buf[i] >= max_tb_us * IRB_MAX_DELAY)
+> +			return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+> +static void meson_irtx_fill_buf(struct meson_irtx *ir, unsigned int *buf)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < ir->buf_len; i++) {
+> +		if (i % 2 == 0)
+> +			ir->buf[i] = meson_irtx_prepare_pulse(ir, buf[i]);
+> +		else
+> +			ir->buf[i] = meson_irtx_prepare_space(ir, buf[i]);
+> +	}
+> +}
+> +
+> +static irqreturn_t meson_irtx_irqhandler(int irq, void *data)
+> +{
+> +	unsigned long flags;
+> +	struct meson_irtx *ir = data;
+> +
+> +	writel(readl(ir->reg_base + IRB_ADDR3) & ~IRB_FIFO_THD_PENDING,
+> +	       ir->reg_base + IRB_ADDR3);
+> +
+> +	spin_lock_irqsave(&ir->lock, flags);
+> +	if (ir->buf_head < ir->buf_len)
+> +		meson_irtx_send_buffer(ir);
+> +	else
+> +		complete(&ir->completion);
+> +	spin_unlock_irqrestore(&ir->lock, flags);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int meson_irtx_set_carrier(struct rc_dev *rc, u32 carrier)
+> +{
+> +	struct meson_irtx *ir = rc->priv;
+> +
+> +	if (carrier == 0)
+> +		return -EINVAL;
+> +
+> +	ir->carrier = carrier;
+> +	meson_irtx_set_mod(ir);
+> +
+> +	return 0;
+> +}
+> +
+> +static int meson_irtx_set_duty_cycle(struct rc_dev *rc, u32 duty_cycle)
+> +{
+> +	struct meson_irtx *ir = rc->priv;
+> +
+> +	ir->duty_cycle = duty_cycle;
+> +	meson_irtx_set_mod(ir);
+> +
+> +	return 0;
+> +}
+> +
+> +static int meson_irtx_transmit(struct rc_dev *rc, unsigned int *buf,
+> +			       unsigned int len)
+> +{
+> +	unsigned long flags;
+> +	struct meson_irtx *ir = rc->priv;
+> +
+> +	if (!meson_irtx_check_buf(ir, buf, len))
+> +		return -EINVAL;
+> +
+> +	spin_lock_irqsave(&ir->lock, flags);
+> +	ir->buf = kmalloc_array(len, sizeof(u32), GFP_KERNEL);
+
+Please don't call kmalloc() while holding a spinlock, the kmalloc() could
+take some time.
+
+> +	if (!ir->buf)
+> +		return -ENOMEM;
+> +
+> +	ir->buf_len = len;
+> +	ir->buf_head = 0;
+> +	meson_irtx_fill_buf(ir, buf);
+
+Please lock the spinlock after populating the buffer, and only then assign
+the ir->buf/buf_len/buf_head. It's the assignement to ir->buf/ir->buf_head
+etc that we are trying to protect.
+
+> +	spin_unlock_irqrestore(&ir->lock, flags);
+> +
+> +	reinit_completion(&ir->completion);
+> +	dev_dbg(ir->dev, "tx started, buffer length = %u\n", ir->buf_len);
+> +
+> +	spin_lock_irqsave(&ir->lock, flags);
+
+You might be able to do that here so you avoid the spin_lock/spin_unlock
+above.
+
+> +	meson_irtx_send_buffer(ir);
+> +	spin_unlock_irqrestore(&ir->lock, flags);
+> +
+> +	wait_for_completion_interruptible(&ir->completion);
+> +	dev_dbg(ir->dev, "tx completed\n");
+> +
+> +	spin_lock_irqsave(&ir->lock, flags);
+> +	kfree(ir->buf);
+> +	ir->buf = NULL;
+> +	ir->buf_len = 0;
+> +	spin_unlock_irqrestore(&ir->lock, flags);
+> +
+> +	return len;
+> +}
+> +
+> +static int meson_irtx_mod_clock_probe(struct meson_irtx *ir, unsigned int *clk_nr)
+> +{
+> +	struct device_node *np = ir->dev->of_node;
+> +	struct clk *clock;
+> +
+> +	if (!np)
+> +		return -ENODEV;
+> +
+> +	clock = devm_clk_get(ir->dev, "xtal");
+> +	if (IS_ERR(clock) || clk_prepare_enable(clock))
+> +		return -ENODEV;
+> +
+> +	*clk_nr = IRB_MOD_XTAL3_CLK;
+> +	ir->clk_rate = clk_get_rate(clock) / 3;
+> +
+> +	if (ir->clk_rate < IRB_MOD_1US_CLK_RATE) {
+> +		*clk_nr = IRB_MOD_1US_CLK;
+> +		ir->clk_rate = IRB_MOD_1US_CLK_RATE;
+> +	}
+> +
+> +	dev_info(ir->dev, "F_clk = %luHz\n", ir->clk_rate);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __init meson_irtx_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct meson_irtx *ir;
+> +	struct rc_dev *rc;
+> +	int irq;
+> +	unsigned int clk_nr;
+> +	int ret;
+> +
+> +	ir = devm_kzalloc(dev, sizeof(*ir), GFP_KERNEL);
+> +	if (!ir)
+> +		return -ENOMEM;
+> +
+> +	ir->reg_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(ir->reg_base))
+> +		return PTR_ERR(ir->reg_base);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+> +		dev_err(dev, "no irq resource found\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (of_property_read_u32(dev->of_node, "max-fifo-level",
+> +				   &ir->max_fifo_level))
+> +		ir->max_fifo_level = MIRTX_DEFAULT_MAX_FIFO_LEVEL;
+> +	else if (ir->max_fifo_level > IRB_FIFO_LEN)
+> +		ir->max_fifo_level = MIRTX_DEFAULT_MAX_FIFO_LEVEL;
+> +	dev_dbg(dev, "max FIFO level set to %u\n", ir->max_fifo_level);
+> +
+> +	ir->dev = dev;
+> +	ir->carrier = MIRTX_DEFAULT_CARRIER;
+> +	ir->duty_cycle = MIRTX_DEFAULT_DUTY_CYCLE;
+> +	init_completion(&ir->completion);
+> +	spin_lock_init(&ir->lock);
+> +
+> +	ret = meson_irtx_mod_clock_probe(ir, &clk_nr);
+> +	if (ret) {
+> +		dev_err(dev, "modulator clock setup failed\n");
+> +		return ret;
+> +	}
+> +	meson_irtx_setup(ir, clk_nr);
+> +
+> +	ret = devm_request_irq(dev, irq,
+> +			       meson_irtx_irqhandler,
+> +			       IRQF_TRIGGER_RISING,
+> +			       DRIVER_NAME, ir);
+> +	if (ret) {
+> +		dev_err(dev, "irq request failed\n");
+> +		return ret;
+> +	}
+> +
+> +	rc = rc_allocate_device(RC_DRIVER_IR_RAW_TX);
+> +	if (!rc)
+> +		return -ENOMEM;
+> +
+> +	rc->driver_name = DRIVER_NAME;
+> +	rc->device_name = DEVICE_NAME;
+> +	rc->priv = ir;
+> +
+> +	rc->tx_ir = meson_irtx_transmit;
+> +	rc->s_tx_carrier = meson_irtx_set_carrier;
+> +	rc->s_tx_duty_cycle = meson_irtx_set_duty_cycle;
+> +
+> +	ret = rc_register_device(rc);
+> +	if (ret < 0) {
+> +		dev_err(dev, "rc_dev registration failed\n");
+> +		rc_free_device(rc);
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, rc);
+> +
+> +	return 0;
+> +}
+> +
+> +static int meson_irtx_remove(struct platform_device *pdev)
+> +{
+> +	struct rc_dev *rc = platform_get_drvdata(pdev);
+> +
+> +	rc_unregister_device(rc);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id meson_irtx_dt_match[] = {
+> +	{
+> +		.compatible = "amlogic,meson-g12a-ir-tx",
+> +	},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, meson_irtx_dt_match);
+> +
+> +static struct platform_driver meson_irtx_pd = {
+> +	.remove = meson_irtx_remove,
+> +	.driver = {
+> +		.name = DRIVER_NAME,
+> +		.owner  = THIS_MODULE,
+> +		.of_match_table = meson_irtx_dt_match,
+> +	},
+> +};
+> +
+> +module_platform_driver_probe(meson_irtx_pd, meson_irtx_probe);
+> +
+> +MODULE_DESCRIPTION("Meson IR TX driver");
+> +MODULE_AUTHOR("Viktor Prutyanov <viktor.prutyanov@phystech.edu>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.21.0
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
