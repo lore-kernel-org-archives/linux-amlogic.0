@@ -2,91 +2,95 @@ Return-Path: <SRS0=A3X0=MF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2 autolearn=unavailable
+X-Spam-Status: No, score=-6.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,FSL_HELO_FAKE,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E49B6C07E95
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 08:31:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F298C07E95
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 09:05:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5DF7861284
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 08:31:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5DF7861284
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 3A4B461260
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 09:05:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A4B461260
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jWJir5iYMldI/I/m8CbGafToJg2JXkqs7cbnGNP0Obc=; b=EAO2KSRdSkOmkR
-	ji+45EfZDjAees/IQydgkJxNufx9cIy3BpER+y4ejb//lBABocOoymP31WfYBSsJBix6SByf+DyXD
-	4knYBKpurYdrzCDERF0yeJV8SF5vaqwGyIDXz5bgwLZgqmDm3GCQzj51wtNnd67paAyNEC6nGgBI3
-	TN6DyuAOWfxwuJ2SOAxewvlZRY+8QRdfxo1K9Jkc1FmeTgO8mklPhb8Y0zDYfTc4DVeeUUAjLsYNu
-	hn1cXtGf9R94F4sZWLZImMsbHTO+IF8L8vEYQf7EZvqAZCYv1bO0BXWWjKiqtXICqWOzw8Rbh6uji
-	mI/wpClD3NksPzhDUPCA==;
+	List-Owner; bh=p9TClC9Yn/aNWn0fDw6S/8XX319tLQtJroqmbJyblok=; b=mUKoHeImlFYWEe
+	PdYpR95BDbgOobMLGFXVbkOgeaUcWB9rVhSPiWUnFTJ6KCvU1OF/cwR3GA2udECWPVvARAjPZs/IK
+	wq+2JZ/lLVCelSFRIjcbcsWZqrQFcadfiuEk2EttA50eTuBRnIVCZ2XVJ0V64Wx+AtZ1SyniJq6eI
+	l7DIXNvOno+nzirS4iMJxNnCw32UzFPPYwUMqe5iOWm6pxNPLbb8AMHKVGfC4qruKosq2blok6K2l
+	GKLRe+FTSJ236e5W0HTR2BGbPjJqAmFEX0EHn6XHSTW8WsqFN1zYfoyTB7/x3vqAImXnlbsYELDfi
+	wFsOQ5Oe+bMkUK+IQzjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m3DpQ-009RkX-DC; Tue, 13 Jul 2021 08:31:44 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1m3EM9-009XlZ-RY; Tue, 13 Jul 2021 09:05:33 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m3DpN-009Rcb-4h; Tue, 13 Jul 2021 08:31:42 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 108EE6127C;
- Tue, 13 Jul 2021 08:31:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1626165100;
- bh=vCzKuNoKiBxSGIGRN6demDaGtX6onzKhSozcN6yvzxI=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=WTpIf7OCkrQI0Psl1TQDpx3ah/ff9bEvdnD8KZIITUb16hNuzoLtLaJkLz0Zgq78I
- voQW9beo0TC1xcjrumCclhy8bHBiVv27eGbKg31yKydTrD1DV7HzI2Q+NEev5je2AP
- fjfKpS3lHv0de56cycngELdDiVNqelcEwZIXctkIiRCE6k5j/BBDVh2DVZPgAJldJq
- D+p/nT9gLxqaLG76VvUN/2CgiSdy/v1WYe+ZJk9wsYJyTKEJHR/Q0Bke7fGB86ztxC
- Ik1mIgthNrw8SyAuJJWVt3DoKfiy3OMr7NnGjrlN6xLbXcejghwiIZYDzrkkQXRFUi
- SY8TbsdogwJJw==
-Date: Tue, 13 Jul 2021 10:31:27 +0200
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: linuxarm@huawei.com, mauro.chehab@huawei.com, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <bjorn.andersson@linaro.org>, Bjorn
- Helgaas <bhelgaas@google.com>, Fabio Estevam <festevam@gmail.com>,
- Greentime Hu <greentime.hu@sifive.com>, Gustavo Pimentel
- <gustavo.pimentel@synopsys.com>, Jaehoon Chung <jh80.chung@samsung.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Jesper Nilsson
- <jesper.nilsson@axis.com>, Jingoo Han <jingoohan1@gmail.com>, Jonathan
- Chocron <jonnyc@amazon.com>, Jonathan Hunter <jonathanh@nvidia.com>, Kevin
- Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I <kishon@ti.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>, Kunihiko Hayashi
- <hayashi.kunihiko@socionext.com>, Lucas Stach <l.stach@pengutronix.de>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Masami Hiramatsu
- <mhiramat@kernel.org>, NXP Linux Team <linux-imx@nxp.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul
- Walmsley <paul.walmsley@sifive.com>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Richard Zhu <hongxing.zhu@nxp.com>, Sascha Hauer
- <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: designware-pcie.txt: convert
- it to yaml
-Message-ID: <20210713103127.3891c8e9@coco.lan>
-In-Reply-To: <20210712174504.GA2158814@robh.at.kernel.org>
-References: <cover.1625838920.git.mchehab+huawei@kernel.org>
- <fa846c83165894accdac1715c3fddfbdcb060958.1625838920.git.mchehab+huawei@kernel.org>
- <20210712174504.GA2158814@robh.at.kernel.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+ id 1m3EM5-009Xkj-OZ
+ for linux-amlogic@lists.infradead.org; Tue, 13 Jul 2021 09:05:31 +0000
+Received: by mail-wm1-x334.google.com with SMTP id
+ a5-20020a7bc1c50000b02901e3bbe0939bso1830778wmj.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 13 Jul 2021 02:05:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=0WOJOt7FoNNdbU6eZCXmOzp8mABgTTjOaj0L45g8wKs=;
+ b=TNf+xPCLerhLd+lHMLt14shq/V3BBfLbOjPiLDmplEfX1pe3QZEIsAD+ICoBCAkjA9
+ 7dO75sEE1PaiefPkfmdAIIMnQo4m3LvMBcZvVH45caWT5vrl7d87183oDxOvgXmvgCS6
+ VbuF2vTH6Zgu5UGaRGj1vr9umdPhozjOvUFxscWX8Zb7roJ4Laj/czHZmfU4TDgQxbRk
+ Cq90HSXs5zma5fO6NyCaMfYwiwrevZlblE5lpFF4OJY8PgomO4dINejCXIhLvQMMZxGt
+ JZxhtWNjrV6G5zHQoj0+UBwmTVvFd+iaoYTmvshc96LmTH1HIuPQ6DdCcxc+uGN/GcDG
+ Up6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=0WOJOt7FoNNdbU6eZCXmOzp8mABgTTjOaj0L45g8wKs=;
+ b=KHvCFsgjvB5tlGDwr9Zzi9CuK7uxpTverh+Z+p57NaRtxGv95AoFPsbubZe/WO958j
+ qOYUP+oIaM0iLNWE96W/e8cvvy8by4Y1FOK/RnrtBJeQbu4kgk5oQNC80faAh0YUpV/W
+ aFlv0nE+TBselnnubZXfIkN2bZOl08APv751MUXqyynIPEQudNP7X7luYrbaGCGvOrf5
+ mRFDv1rU0cbs94SVrc7T94KzdWAKj66zdYio44/zLt6q9jqBGjCSCWATRybEHO08e3Jt
+ EycZTc2rl6U1Hjyzbq77r1abUM8PkL4bcMRaIh6SzCLGo8uSw4oELWHySyNnTuQ5XJZ0
+ lsXg==
+X-Gm-Message-State: AOAM533TMKq9zNjvMrt9sF2vitK6KPNT+xMDMNn0ckcNIL4ZYuL1CuL5
+ dRSK0fQVQrL+QOtKM1OBRCPFQA==
+X-Google-Smtp-Source: ABdhPJz+AZFpWZZPDhbkwEpDoRjHtToftwvHQZ/OC8l4qi53pyIr7gkebcqoEL4sjcc7L0AEHbg13Q==
+X-Received: by 2002:a1c:2182:: with SMTP id h124mr3852357wmh.44.1626167126538; 
+ Tue, 13 Jul 2021 02:05:26 -0700 (PDT)
+Received: from google.com ([109.180.115.218])
+ by smtp.gmail.com with ESMTPSA id v9sm4774176wml.36.2021.07.13.02.05.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 13 Jul 2021 02:05:25 -0700 (PDT)
+Date: Tue, 13 Jul 2021 10:05:23 +0100
+From: Lee Jones <lee.jones@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Marc Zyngier <maz@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build
+ as a module
+Message-ID: <YO1XU2ySZL3d03RH@google.com>
+References: <20201020072532.949137-1-narmstrong@baylibre.com>
+ <20201020072532.949137-2-narmstrong@baylibre.com>
+ <7hsga8kb8z.fsf@baylibre.com>
+ <CAF2Aj3g6c8FEZb3e1by6sd8LpKLaeN5hsKrrQkZUvh8hosiW9A@mail.gmail.com>
+ <87r1hwwier.wl-maz@kernel.org> <7h7diwgjup.fsf@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <7h7diwgjup.fsf@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210713_013141_278427_81E476EF 
-X-CRM114-Status: GOOD (  26.83  )
+X-CRM114-CacheID: sfid-20210713_020529_833925_3920B13B 
+X-CRM114-Status: GOOD (  28.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,139 +102,145 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Em Mon, 12 Jul 2021 11:45:04 -0600
-Rob Herring <robh@kernel.org> escreveu:
-
-> On Fri, Jul 09, 2021 at 03:57:42PM +0200, Mauro Carvalho Chehab wrote:
-> > Convert the file to DT schema.
-> > 
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-
-
-> > diff --git a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> > index 1810bf722350..3f49c8017c7a 100644
-> > --- a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-
-
-> > +  reg:
-> > +    description: |
-> > +      It should contain Data Bus Interface (dbi, dbi2) registers for all
-> > +      versions.
-> 
-> Not all versions have dbi2.
-> 
-> > +      For designware cores version < 4.80, contains the configuration
-> > +      address space. For designware core version >= 4.80,
-> > +      contains the configuration and ATU address space.
-> 
-> config space should always be present. For a brief time (around 2014), 
-> it was not required but has been since. For purposes of the schema, we 
-> can say always required.
-> 
-> ATU is optional in 4.80 or later. 
-> 
-> > +    minItems: 2
-> > +    maxItems: 4
-> > +
-> > +  reg-names:
-> > +    minItems: 2
-> > +    maxItems: 4
-> > +    items:
-> > +      contains:
-> 
-> Drop contains.
-> 
-> > +        enum: [dbi, dbi2, config, atu, addr_space]
-
-This actually generated a warning:
-
-/new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/intel-gw-pcie.example.dt.yaml: pcie@d0e00000: reg-names:2: 'app' is not one of ['dbi', 'dbi2', 'config', 'atu', 'addr_space']
-
-I guess it needs to be changed to:
-
-	enum: [dbi, dbi2, config, atu, addr_space, app]
-
-or intel-gw-pcie.yaml would require an extra change.
-
-That's said, I didn't find any DTS using compatible = "intel,lgm-pcie",
-but looking at drivers/pci/controller/dwc/pcie-intel-gw.c, it seems
-that this is a mandatory register on such hardware.
-
-> > +
-> > +  num-lanes:
-> > +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> > +    description: |
-> > +      number of lanes to use (this property should be specified unless
-> > +      the link is brought already up in BIOS)
-> > +    maxItems: 1
-> 
-> Drop. Not an array. 'maximum: 16' is needed though pci-bus.yaml may 
-> cover that already.
-
-It seems that num-lanes is not there at pci-bus.yaml - at least not
-at the version I'm using here (2021.7.dev1+ge5f58d415b1d).
-
-
-> > +patternProperties:
-> > +  "pcie?_ep@[0-9a-f]+$":
-> > +    type: object
-> > +    properties:
-> > +      compatible:
-> > +        contains:
-> > +          const: snps,dw-pcie-ep
-> 
-> This doesn't make sense. This is defining a child node of the DW 
-> controller with 'snps,dw-pcie-ep'.
-
-This was an attempt to silence those warnings:
-
-	From schema: /new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-/new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/intel-gw-pcie.example.dt.yaml: pcie@d0e00000: '#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'clocks', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'linux,pci-domain', 'max-link-speed', 'phy-names', 'phys', 'ranges', 'reset-assert-ms', 'resets' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-/new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/snps,dw-pcie.example.dt.yaml: pcie@dfc00000: '#address-cells', '#interrupt-cells', '#size-cells', 'device_type', 'interrupts', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /new_devel/v4l/hikey970/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-
-Somehow, dtschema is only accepting 'pinctrl-[0-9]+' regex when parsing 
-examples on this file. I've no idea how to fix it.
-
-As a reference, this is how the examples are now declared:
-
-<snip>
-examples:
-  - |
-    pcie@dfc00000 {
-      compatible = "snps,dw-pcie";
-      reg = <0xdfc00000 0x0001000>, /* IP registers */
-            <0xd0000000 0x0002000>; /* Configuration space */
-      reg-names = "dbi", "config";
-      #address-cells = <3>;
-      #size-cells = <2>;
-      device_type = "pci";
-      ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
-               <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
-      interrupts = <25>, <24>;
-      #interrupt-cells = <1>;
-      num-lanes = <1>;
-    };
-    pcie-ep@dfd00000 {
-      compatible = "snps,dw-pcie-ep";
-      reg = <0xdfc00000 0x0001000>, /* IP registers 1 */
-            <0xdfc01000 0x0001000>, /* IP registers 2 */
-            <0xd0000000 0x2000000>; /* Configuration space */
-      reg-names = "dbi", "dbi2", "addr_space";
-    };
-</snip>
-
-Thanks,
-Mauro
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gTW9uLCAxNCBKdW4gMjAyMSwgS2V2aW4gSGlsbWFuIHdyb3RlOgoKPiBNYXJjIFp5bmdpZXIg
+PG1hekBrZXJuZWwub3JnPiB3cml0ZXM6Cj4gCj4gPiBPbiBGcmksIDIxIE1heSAyMDIxIDEwOjQ3
+OjQ4ICswMTAwLAo+ID4gTGVlIEpvbmVzIDxsZWUuam9uZXNAbGluYXJvLm9yZz4gd3JvdGU6Cj4g
+Pj4gCj4gPj4gWzEgIDx0ZXh0L3BsYWluOyBVVEYtOCAocXVvdGVkLXByaW50YWJsZSk+XQo+ID4+
+IE9uIFR1ZSwgMjAgT2N0IDIwMjAgYXQgMTk6MjMsIEtldmluIEhpbG1hbiA8a2hpbG1hbkBiYXls
+aWJyZS5jb20+IHdyb3RlOgo+ID4+IAo+ID4+ID4gTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdA
+YmF5bGlicmUuY29tPiB3cml0ZXM6Cj4gPj4gPgo+ID4+ID4gPiBJbiBvcmRlciB0byByZWR1Y2Ug
+dGhlIGtlcm5lbCBJbWFnZSBzaXplIG9uIG11bHRpLXBsYXRmb3JtIGRpc3RyaWJ1dGlvbnMsCj4g
+Pj4gPiA+IG1ha2UgaXQgcG9zc2libGUgdG8gYnVpbGQgdGhlIEFtbG9naWMgR1BJTyBJUlEgY29u
+dHJvbGxlciBhcyBhIG1vZHVsZQo+ID4+ID4gPiBieSBzd2l0Y2hpbmcgaXQgdG8gYSBwbGF0Zm9y
+bSBkcml2ZXIuCj4gPj4gPiA+Cj4gPj4gPiA+IFNpZ25lZC1vZmYtYnk6IE5laWwgQXJtc3Ryb25n
+IDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPiA+PiA+Cj4gPj4gPiBSZXZpZXdlZC1ieTogS2V2
+aW4gSGlsbWFuIDxraGlsbWFuQGJheWxpYnJlLmNvbT4KPiA+PiA+IFRlc3RlZC1ieTogS2V2aW4g
+SGlsbWFuIDxraGlsbWFuQGJheWxpYnJlLmNvbT4KPiA+PiA+Cj4gPj4gPiBUZXN0ZWQgYXMgYSBt
+b2R1bGUgb24gbWVzb24tc20xLWtoYWRhcy12aW0zbCB3aGVyZSB0aGUgd2lyZWQgbmV0d29ya2lu
+Zwo+ID4+ID4gdXNlcyBHUElPIElSUXMuCj4gPj4gPgo+ID4+IAo+ID4+IEdvb2QgbW9ybmluZyBO
+ZWlsLCBLZXZpbiwKPiA+PiAKPiA+PiBXaGF0IGhhcHBlbmVkIHRvIHRoaXMgc2V0IGluIHRoZSBl
+bmQ/ICBJIHN0aWxsIGRvbid0IHNlZSBpdCBpbiBNYWlubGluZS4KPiA+Cj4gPiBMYXN0IHRpbWUg
+SSB0cmllZCB0aGlzIHBhdGNoLCBpdCBicm9rZSBteSB0ZXN0IHNldHVwIGluIG5vbi1vYnZpb3Vz
+Cj4gPiB3YXlzLiBIYXMgc29tZW9uZSBjaGVja2VkIHRoYXQgdGhlIGlzc3VlIEkgcmVwb3J0ZWQg
+YmFjayB0aGVuIGhhcyBiZWVuCj4gPiByZXNvbHZlZCBub3cgdGhhdCBmd19kZXZsaW5rIGlzIG1v
+cmUgdXNhYmxlPwo+IAo+IE9LLCBhZnRlciBtdWNoIGFudGljaXBhdGlvbiAoYW5kIG11Y2ggZGVs
+YXkgZHVlIHRvIG1lIGZvcmdldHRpbmcgYWJvdXQKPiB0aGlzKSwgSSBqdXN0IGdhdmUgdGhpcyBz
+ZXJpZXMgYSBzcGluIGFnYWluIG9uIHRvcCBvZiB2NS4xMy1yYzYsIGFuZCBpdAo+IHNlZW1zIHRv
+IHdvcmsgZmluZSB3aXRoIGBmd19kZXZsaW5rPW9uYAo+IAo+IEkgc3RhcnRlZCB3aXRoIHlvdXIg
+Y29uZmlnWzFdIGFuZCBhY2NlcHRpbmcgYWxsIHRoZSBkZWZhdWx0cyBvZiBhbnkgbmV3Cj4gY29u
+Zmlncy4gIElPVywgSSByYW46IHllcyAnJyB8IG1ha2Ugb2xkY29uZmlnIGFmdGVyIGNvcHlpbmcg
+eW91ciBjb25maWcKPiB0byAuY29uZmlnLgo+IAo+IFdpdGggdGhhdCBpdCBzZWVtcyB0byBiZSB3
+b3JraW5nIGZpbmUgZm9yIG1lLgo+IAo+IFJpZ2h0IGFmdGVyIGJvb3QgKGFuZCBiZWZvcmUgbmV0
+d29yayBwcm9iZXMpIEkgc2VlIG1vZHVsZSBsb2FkZWQsIGJ1dCBubwo+IHVzZXJzIHlldCBpbiAv
+cHJvYy9pbnRlcnJ1cHRzOgo+IAo+IC8gIyB1bmFtZSAtYQo+IExpbnV4IGJ1aWxkcm9vdCA1LjEz
+LjAtcmM2LTAwMDAyLWc2NzljOGU4NTI5NDIgIzUgU01QIFBSRUVNUFQgTW9uIEp1biAxNCAxNTow
+ODo0MCBQRFQgMjAyMSBhYXJjaDY0IEdOVS9MaW51eAo+IC8gIyBsc21vZCB8Z3JlcCBncGlvCj4g
+aXJxX21lc29uX2dwaW8gICAgICAgICAyMDQ4MCAgMAo+IGxlZHNfZ3BpbyAgICAgICAgICAgICAg
+MTYzODQgIDAKPiAvICMgY2F0IC9wcm9jL2ludGVycnVwdHMKPiAgICAgICAgICAgIENQVTAgICAg
+ICAgQ1BVMSAgICAgICBDUFUyICAgICAgIENQVTMKPiAgIDk6ICAgICAgICAgIDAgICAgICAgICAg
+MCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyICAyNSBMZXZlbCAgICAgdmdpYwo+ICAx
+MTogICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIg
+IDMwIExldmVsICAgICBrdm0gZ3Vlc3QgcHRpbWVyCj4gIDEyOiAgICAgICAgICAwICAgICAgICAg
+IDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAgMjcgTGV2ZWwgICAgIGt2bSBndWVz
+dCB2dGltZXIKPiAgMTM6ICAgICAgIDE0MTYgICAgICAgIDkxNiAgICAgICAgNTM0ICAgICAgIDE0
+MjEgICAgIEdJQ3YyICAyNiBMZXZlbCAgICAgYXJjaF90aW1lcgo+ICAxNTogICAgICAgICAgNSAg
+ICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIgIDg5IEVkZ2UgICAgICBk
+d19oZG1pX3RvcF9pcnEsIGZmNjAwMDAwLmhkbWktdHgKPiAgMjI6ICAgICAgICAgMzggICAgICAg
+ICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyIDIyNSBFZGdlICAgICAgdHR5QU1M
+MAo+ICAyMzogICAgICAgICAyMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAg
+R0lDdjIgMjI3IEVkZ2UgICAgICBmZjgwNTAwMC5pMmMKPiAgMjU6ICAgICAgICAgIDIgICAgICAg
+ICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyIDIzMiBFZGdlICAgICAgZmY4MDkw
+MDAuYWRjCj4gIDI4OiAgICAgICAgMzIyICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAw
+ICAgICBHSUN2MiAgMzUgRWRnZSAgICAgIG1lc29uCj4gIDMxOiAgICAgICAgICAwICAgICAgICAg
+IDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAyMjIgRWRnZSAgICAgIGZmZTA1MDAw
+LnNkCj4gIDMyOiAgICAgICAgNzg3ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAg
+ICBHSUN2MiAyMjMgRWRnZSAgICAgIGZmZTA3MDAwLm1tYwo+ICAzNDogICAgICAgICAgMCAgICAg
+ICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIgMTk0IExldmVsICAgICBwYW5m
+cm9zdC1qb2IKPiAgMzU6ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAg
+IDAgICAgIEdJQ3YyIDE5MyBMZXZlbCAgICAgcGFuZnJvc3QtbW11Cj4gIDM2OiAgICAgICAgICAz
+ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAxOTIgTGV2ZWwgICAg
+IHBhbmZyb3N0LWdwdQo+ICAzOTogICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAg
+ICAgICAgMCAgICAgR0lDdjIgIDYzIExldmVsICAgICBmZjQwMDAwMC51c2IsIGZmNDAwMDAwLnVz
+Ygo+ICA0MDogICAgICAgICAzMiAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAg
+R0lDdjIgIDYyIExldmVsICAgICB4aGNpLWhjZDp1c2IxCj4gSVBJMDogICAgICAgNDI1ICAgICAg
+ICA1NDQgICAgICAgIDY2NCAgICAgICAgOTI1ICAgICAgIFJlc2NoZWR1bGluZyBpbnRlcnJ1cHRz
+Cj4gSVBJMTogICAgICAgIDg2ICAgICAgICAxNjYgICAgICAgIDI2OSAgICAgICAgMTM2ICAgICAg
+IEZ1bmN0aW9uIGNhbGwgaW50ZXJydXB0cwo+IElQSTI6ICAgICAgICAgMCAgICAgICAgICAwICAg
+ICAgICAgIDAgICAgICAgICAgMCAgICAgICBDUFUgc3RvcCBpbnRlcnJ1cHRzCj4gSVBJMzogICAg
+ICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgIENQVSBzdG9wIChm
+b3IgY3Jhc2ggZHVtcCkgaW50ZXJydXB0cwo+IElQSTQ6ICAgICAgICAgMCAgICAgICAgICAwICAg
+ICAgICAgIDAgICAgICAgICAgMCAgICAgICBUaW1lciBicm9hZGNhc3QgaW50ZXJydXB0cwo+IElQ
+STU6ICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICBJUlEg
+d29yayBpbnRlcnJ1cHRzCj4gSVBJNjogICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAg
+ICAgICAgICAwICAgICAgIENQVSB3YWtlLXVwIGludGVycnVwdHMKPiBFcnI6ICAgICAgICAgIDAK
+PiAKPiBTbyB0aGVuIEkgaW5pdCB0aGUgbmV0d29yayBpbnRlcmZhY2UgYW5kIFBIWSB3b3Jrcywg
+REhDUCB3b3JrcyBldGMuCj4gCj4gLyAjIHVkaGNwYwo+IHVkaGNwYzogc3RhcnRlZCwgdjEuMzEu
+MQo+IFsgIDEwMi4yNTA0NDldIG1lc29uOGItZHdtYWMgZmYzZjAwMDAuZXRoZXJuZXQgZXRoMDog
+UEhZIFswLjA6MDBdIGRyaXZlciBbUlRMODIxMUYgR2lnYWJpdCBFdGhlcm5ldF0gKGlycT0zNykK
+PiBbICAxMDIuMjU2NDEzXSBtZXNvbjhiLWR3bWFjIGZmM2YwMDAwLmV0aGVybmV0IGV0aDA6IFJl
+Z2lzdGVyIE1FTV9UWVBFX1BBR0VfUE9PTCBSeFEtMAo+IFsgIDEwMi4yNjk0MzNdIG1lc29uOGIt
+ZHdtYWMgZmYzZjAwMDAuZXRoZXJuZXQgZXRoMDogTm8gU2FmZXR5IEZlYXR1cmVzIHN1cHBvcnQg
+Zm91bmQKPiBbICAxMDIuMjcxMzU3XSBtZXNvbjhiLWR3bWFjIGZmM2YwMDAwLmV0aGVybmV0IGV0
+aDA6IFBUUCBub3Qgc3VwcG9ydGVkIGJ5IEhXCj4gWyAgMTAyLjI3ODQ5M10gbWVzb244Yi1kd21h
+YyBmZjNmMDAwMC5ldGhlcm5ldCBldGgwOiBjb25maWd1cmluZyBmb3IgcGh5L3JnbWlpIGxpbmsg
+bW9kZQo+IHVkaGNwYzogc2VuZGluZyBkaXNjb3Zlcgo+IFsgIDEwNC43NDMzMDFdIG1lc29uOGIt
+ZHdtYWMgZmYzZjAwMDAuZXRoZXJuZXQgZXRoMDogTGluayBpcyBVcCAtIDEwME1icHMvRnVsbCAt
+IGZsb3cgY29udHJvbCByeC90eAo+IFsgIDEwNC43NDY0NzBdIElQdjY6IEFERFJDT05GKE5FVERF
+Vl9DSEFOR0UpOiBldGgwOiBsaW5rIGJlY29tZXMgcmVhZHkKPiB1ZGhjcGM6IHNlbmRpbmcgZGlz
+Y292ZXIKPiB1ZGhjcGM6IHNlbmRpbmcgc2VsZWN0IGZvciAxOTIuMTY4LjAuMTIyCj4gdWRoY3Bj
+OiBsZWFzZSBvZiAxOTIuMTY4LjAuMTIyIG9idGFpbmVkLCBsZWFzZSB0aW1lIDYwMAo+IGRlbGV0
+aW5nIHJvdXRlcnMKPiBhZGRpbmcgZG5zIDE5Mi4xNjguMC4yNTQKPiBhZGRpbmcgZG5zIDE5Mi4x
+NjguMC4yNTQKPiAvICMgY2F0IC9wcm9jL2ludGVycnVwdHMKPiAgICAgICAgICAgIENQVTAgICAg
+ICAgQ1BVMSAgICAgICBDUFUyICAgICAgIENQVTMKPiAgIDk6ICAgICAgICAgIDAgICAgICAgICAg
+MCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyICAyNSBMZXZlbCAgICAgdmdpYwo+ICAx
+MTogICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIg
+IDMwIExldmVsICAgICBrdm0gZ3Vlc3QgcHRpbWVyCj4gIDEyOiAgICAgICAgICAwICAgICAgICAg
+IDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAgMjcgTGV2ZWwgICAgIGt2bSBndWVz
+dCB2dGltZXIKPiAgMTM6ICAgICAgIDE1NzUgICAgICAgMTAxOCAgICAgICAgNjA0ICAgICAgIDE1
+ODggICAgIEdJQ3YyICAyNiBMZXZlbCAgICAgYXJjaF90aW1lcgo+ICAxNDogICAgICAgICAgOCAg
+ICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIgIDQwIExldmVsICAgICBl
+dGgwCj4gIDE1OiAgICAgICAgICA1ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAg
+ICBHSUN2MiAgODkgRWRnZSAgICAgIGR3X2hkbWlfdG9wX2lycSwgZmY2MDAwMDAuaGRtaS10eAo+
+ICAyMjogICAgICAgIDEzMiAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lD
+djIgMjI1IEVkZ2UgICAgICB0dHlBTUwwCj4gIDIzOiAgICAgICAgIDIwICAgICAgICAgIDAgICAg
+ICAgICAgMCAgICAgICAgICAwICAgICBHSUN2MiAyMjcgRWRnZSAgICAgIGZmODA1MDAwLmkyYwo+
+ICAyNTogICAgICAgICAgMiAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lD
+djIgMjMyIEVkZ2UgICAgICBmZjgwOTAwMC5hZGMKPiAgMjg6ICAgICAgICAzMjIgICAgICAgICAg
+MCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyICAzNSBFZGdlICAgICAgbWVzb24KPiAg
+MzE6ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3Yy
+IDIyMiBFZGdlICAgICAgZmZlMDUwMDAuc2QKPiAgMzI6ICAgICAgICA3ODcgICAgICAgICAgMCAg
+ICAgICAgICAwICAgICAgICAgIDAgICAgIEdJQ3YyIDIyMyBFZGdlICAgICAgZmZlMDcwMDAubW1j
+Cj4gIDM0OiAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICBH
+SUN2MiAxOTQgTGV2ZWwgICAgIHBhbmZyb3N0LWpvYgo+ICAzNTogICAgICAgICAgMCAgICAgICAg
+ICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgR0lDdjIgMTkzIExldmVsICAgICBwYW5mcm9z
+dC1tbXUKPiAgMzY6ICAgICAgICAgIDMgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAg
+ICAgIEdJQ3YyIDE5MiBMZXZlbCAgICAgcGFuZnJvc3QtZ3B1Cj4gIDM3OiAgICAgICAgICAyICAg
+ICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICBtZXNvbi1ncGlvLWlycWNoaXAgIDI2IExl
+dmVsICAgICAwLjA6MDAKPiAgMzk6ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAg
+ICAgICAgIDAgICAgIEdJQ3YyICA2MyBMZXZlbCAgICAgZmY0MDAwMDAudXNiLCBmZjQwMDAwMC51
+c2IKPiAgNDA6ICAgICAgICAgMzIgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAg
+IEdJQ3YyICA2MiBMZXZlbCAgICAgeGhjaS1oY2Q6dXNiMQo+IElQSTA6ICAgICAgIDQ3NiAgICAg
+ICAgNTY3ICAgICAgICA3MjAgICAgICAgIDk1NiAgICAgICBSZXNjaGVkdWxpbmcgaW50ZXJydXB0
+cwo+IElQSTE6ICAgICAgICA5MyAgICAgICAgMTY2ICAgICAgICAyNzAgICAgICAgIDEzNyAgICAg
+ICBGdW5jdGlvbiBjYWxsIGludGVycnVwdHMKPiBJUEkyOiAgICAgICAgIDAgICAgICAgICAgMCAg
+ICAgICAgICAwICAgICAgICAgIDAgICAgICAgQ1BVIHN0b3AgaW50ZXJydXB0cwo+IElQSTM6ICAg
+ICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICBDUFUgc3RvcCAo
+Zm9yIGNyYXNoIGR1bXApIGludGVycnVwdHMKPiBJUEk0OiAgICAgICAgIDAgICAgICAgICAgMCAg
+ICAgICAgICAwICAgICAgICAgIDAgICAgICAgVGltZXIgYnJvYWRjYXN0IGludGVycnVwdHMKPiBJ
+UEk1OiAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICAgICAgSVJR
+IHdvcmsgaW50ZXJydXB0cwo+IElQSTY6ICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAg
+ICAgICAgICAgMCAgICAgICBDUFUgd2FrZS11cCBpbnRlcnJ1cHRzCj4gRXJyOiAgICAgICAgICAw
+Cj4gLyAjCj4gCj4gS2V2aW4KPiAKPiBbMV0gaHR0cDovL3d3dy5sb2VuLmZyL3RtcC9Db25maWcu
+ZnVsbC1hcm02NAoKVGhhbmtzIEtldmluLgoKTm93IHRoYXQgLXJjMSBpcyBvdXQsIGhvcGVmdWxs
+eSBNYXJjIGNhbiBhc3NpZ24gc29tZSB0aW1lIHRvIHRoaXMuCgotLSAKTGVlIEpvbmVzIFvmnY7n
+kLzmlq9dClNlbmlvciBUZWNobmljYWwgTGVhZCAtIERldmVsb3BlciBTZXJ2aWNlcwpMaW5hcm8u
+b3JnIOKUgiBPcGVuIHNvdXJjZSBzb2Z0d2FyZSBmb3IgQXJtIFNvQ3MKRm9sbG93IExpbmFybzog
+RmFjZWJvb2sgfCBUd2l0dGVyIHwgQmxvZwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
