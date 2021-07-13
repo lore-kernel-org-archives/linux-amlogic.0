@@ -6,16 +6,16 @@ X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6ECF3C07E95
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 23:25:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CCF32C07E95
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 23:26:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2E4446135A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 23:25:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E4446135A
+	by mail.kernel.org (Postfix) with ESMTPS id 8486A61363
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jul 2021 23:26:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8486A61363
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,69 +24,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sXbAh41FkOU64ddk97Ns1FyCRItqCHgxOGJC5yK/29c=; b=qJYd3nOcslHOlr
-	cMTILrumr34JrXTc/x1HZWC+yfaHcrz7oAP4KaSCvkpcVgz22mWDzypDhSUdhgORuoi23B0bxOp9R
-	nl+DzSckxIJ+kYkju+Yf8/MVX4MvOjcrOKJ4sbYH/HPLDMhEX25xd7LCQ3u8rCbZ00RBh9x4zhqYp
-	cKEGZkjg1cK8rZbpg98urQybgsfdzN3zu7DM/tG90K+VRr0o4eYnlF291R6XBLK9kL2OlO3FUVc1j
-	z8t1axxf5QFHt19rnmREI68N0yAofxybVJUWDEUYUoSMzdtpWLh25QYMwJ1PM6QxSGKNAEwDRg54/
-	w1jR+tX5UslGi8y6VR3w==;
+	List-Owner; bh=6A3sk4Rd1tEUrVXPfMcfhvtOsk2NAwKG1vB4baOSovo=; b=2bXq+eeQtfTMPl
+	YsqTt1dnGInVE5mOYjPvVzuFi0C5Aq0txJuKE0niNFxvGJAdbGe8+LhBxY7C+ye7QkHCO6wqBy21+
+	T9MaLPUioO+FP6MlijPb4vtU9AWvHeidMKdaSVgZwHn4085KcsW+mLj8NrSAx1vXfxmnU7OvrweFE
+	jug9u+vI/Pk2dUolhwD9YC4lx1h5Tr3mKGUF4EQ+TbROK6tthQ5HMxZ3in2GvJLiksF8TDqCmk5OO
+	XQCIfP6sF0KFesXl46jodotPJxqCg6Ln0eH19qKk1zZOryzPTGZJS4a8g0/eeBa9gfgJAJt906B4e
+	Kb3iAYU4zFb4EpM6YhGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m3Rmh-00Bbls-H9; Tue, 13 Jul 2021 23:25:51 +0000
+	id 1m3Rmv-00BbrU-2f; Tue, 13 Jul 2021 23:26:05 +0000
 Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m3RmC-00BbXQ-Iu; Tue, 13 Jul 2021 23:25:22 +0000
+ id 1m3RmC-00BbXn-UI; Tue, 13 Jul 2021 23:25:22 +0000
 Received: by mail-wm1-x32b.google.com with SMTP id
- u8-20020a7bcb080000b02901e44e9caa2aso228477wmj.4; 
+ o30-20020a05600c511eb029022e0571d1a0so224262wms.5; 
  Tue, 13 Jul 2021 16:25:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Wn4OGffmG6CAMF74sT7Jiq6EaKRXD5BwqoAMkg2t0q8=;
- b=hGeIswUtxXdk4lABeE/3QfZKpbiuJl6XItJJjxK5X7pUg19zVM7REeo5atNckOTe/x
- Rj+r3IZj65gtheQX/flGPczAyhnQ5x1jF8XCFHnRWM1hJ4AF/CwDpzfIUHy1N4no0BOs
- k2RuP02FkJdqwoP+NXafsZHMohytpFOgKL7F7sIZUhBmHjJ5rq4niSfbM+ockDolWD+H
- fhOZp+qE50GVZin6JLz8RT0okllh1IyI9w1m6v5dt4tKsxcr7s2uKmrSwiXmPezAhS6i
- Cv+bLMyPHzUd4zUSe62chmDjo35/OFeKfzEV3r8AwkQ+NwYVtyRQKWvzK9IZtP8uyDze
- ze+w==
+ bh=nrJy8AHK/eMoKNEana9935MG2OFHXBd4iLiXE078rqM=;
+ b=MqMNlGZvFCWJoDGiOyBWk8cuaLbaS9ZVVzThxAMnItmnNYXYKWoDzHLG6CeD5dnTDN
+ wtIt6z6CPUOgVsYo2hHPzFq3nqBCWEBdi0U/ijUKqsJX2lEI1NUYb7cpxfM6Ea4w/qbJ
+ yIu2ERoxxJTvLQYT0vWFmX/ro4895EJPeoW/QC1aHFoo61SHhvjHlJ48e2COb6Z1ZaeO
+ oRfkY8diLLbdp2gCD5q1RdpaYYJPCTwdMdA+dkQxzrEIuZLYB1Yck9iCuv84n8R1A5df
+ V5j1t/NcEFX25uxjmzoUpGbm6NAY+Rlz1I1u7TddCzI5ARKLK5Ln7NiHUJkQjdd5MGv9
+ vcyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Wn4OGffmG6CAMF74sT7Jiq6EaKRXD5BwqoAMkg2t0q8=;
- b=k0Dz6jfc34eFKcBU4R7jwfHFqE9qzlMqDSSE0coWGMIBVgvyOG27EfN8VhPvB0eY0K
- MUw8kpMPLVWhCfA1M6vfX3kngO2ZsrQloMwytyMIXtK0nRNlpU1qcyKqjFTzq3nNs05e
- 8vlbZjro3V7VaIt3U+mImayZpi8eEstQeonySAB+oTjR4ExPN1SR8hRGCzmbN7nWWCxU
- 2Mxm97c6MnnSQU5IZCPun82aZZkLov7QPQLe2vKOyFwx60gmTxXQyBQqhX6z46GwvLEP
- KZOa1QoO14YwM7TPsXdj/3tHl6Dm2d3yicXqtY+jNct+hJnwSligg34jaVjyM/XHylEe
- cNuA==
-X-Gm-Message-State: AOAM530xK9NSmZeJrIdm9HHJtxFBqRZvEo7RMyBPDUYIzvezTqIbRapO
- K3iAnBPPgIcDsx19bwZprfgxEPbMQ6E=
-X-Google-Smtp-Source: ABdhPJx7MHybO2+5HQU6G9cFXw5IqIWhFj0v7z3R1gin1s+N0glBMLNzht0s4MXDqWfcwQSqZj1VKw==
-X-Received: by 2002:a7b:c958:: with SMTP id i24mr620521wml.177.1626218718929; 
- Tue, 13 Jul 2021 16:25:18 -0700 (PDT)
+ bh=nrJy8AHK/eMoKNEana9935MG2OFHXBd4iLiXE078rqM=;
+ b=Ytg17LPZv2GRfymJk/yw255ebMyxSwF5eDJ230qjfQfFyTAdJj8C56VwQmQj/rODGp
+ iRuQ16iLPPHzkFwIK7YjVpwPkgUBjsvFSnDLEwMNmdzjP4EGjq/esceABPQn36pJkaY7
+ fRD7bryQF/1h9Gv/YFttnhC99tFJRKvhMqrQGm3P0OqC9RVLQp2hB7UCdKQlkQWl2NPC
+ 6Ae+xbqdKfTbd58MwO02Yiv2pdNWU/iLnT+YK7DYKUeZIL3XISsZJhQebMvDMlLv56Id
+ 6ydL/LQ1/qI8u6JQnc3eyMPYD/Y58rp8g3fTgNUStHOehuGmDNB9KA2NO4/GH1nYSAfm
+ N1fg==
+X-Gm-Message-State: AOAM530mF7emNefgiw7kaukbZHxIZeyXoUACFRbTNnWav3EontTqOnKq
+ 9IDUrv7uJeo+6yz+U9PYFzpCsEF6jQc=
+X-Google-Smtp-Source: ABdhPJy0vtt/jzN8eYmaXvrmdL/LH5RbSaen7X/593wZJsexT5Y7x73sJJQ2LQvexSearVkr/4xcmw==
+X-Received: by 2002:a05:600c:4e8f:: with SMTP id
+ f15mr7912526wmq.174.1626218719597; 
+ Tue, 13 Jul 2021 16:25:19 -0700 (PDT)
 Received: from localhost.localdomain
  (dynamic-2a01-0c23-c041-6f00-f22f-74ff-fe21-0725.c23.pool.telefonica.de.
  [2a01:c23:c041:6f00:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id o11sm3857390wmc.2.2021.07.13.16.25.18
+ by smtp.googlemail.com with ESMTPSA id o11sm3857390wmc.2.2021.07.13.16.25.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 Jul 2021 16:25:18 -0700 (PDT)
+ Tue, 13 Jul 2021 16:25:19 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org
 Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-clk@vger.kernel.org, jbrunet@baylibre.com, narmstrong@baylibre.com,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 2/6] clk: meson: meson8b: Add the vid_pll_lvds_en gate clock
-Date: Wed, 14 Jul 2021 01:25:06 +0200
-Message-Id: <20210713232510.3057750-3-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 3/6] clk: meson: meson8b: Add the HDMI PLL M/N parameters
+Date: Wed, 14 Jul 2021 01:25:07 +0200
+Message-Id: <20210713232510.3057750-4-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210713232510.3057750-1-martin.blumenstingl@googlemail.com>
 References: <20210713232510.3057750-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210713_162520_663106_40BA0086 
-X-CRM114-Status: GOOD (  15.96  )
+X-CRM114-CacheID: sfid-20210713_162521_079985_E0FDD746 
+X-CRM114-Status: GOOD (  13.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,107 +104,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-HHI_VID_DIVIDER_CNTL[11] must be enabled for the video clock tree to
-work. This bit is described as "LVDS_CLK_EN". It is not 100% clear where
-this bit has to be placed in the hierarchy. But since the "LVDS_OUT" of
-the HDMI PLL uses it's own set of registers it's more likely that this
-"LVDS_CLK_EN" bit actually enables the input of the "hdmi_pll_lvds_out"
-clock to the "vid_pll_in_sel" tree.
+The 3.10 vendor kernel uses only specific HDMI PLL M/N parameter
+combinations. The PLL won't lock for values smaller than 50 if the
+internal doubling (which is yet unknown how to use it) is disabled.
+However, when this doubling is enabled then the values smaller than 50
+will lock just fine. The only restriction for values greater than 50 is
+that the resulting frequency must not exceed the 3.0GHz limit.
 
-Add a gate definition for this bit (which will not be exported) so that
-the kernel can manage all required bits to enable and disable the video
-clocks.
+These values are taken from the endlessm 3.10 kernel which includes
+additional M/N combinations for some VESA and 75Hz display modes.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/clk/meson/meson8b.c | 23 ++++++++++++++++++++++-
- drivers/clk/meson/meson8b.h |  3 ++-
- 2 files changed, 24 insertions(+), 2 deletions(-)
+ drivers/clk/meson/meson8b.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 0f8bd707217a..9ccffbfe44e5 100644
+index 9ccffbfe44e5..8f29d26ed726 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -1045,6 +1045,23 @@ static struct clk_regmap meson8b_l2_dram_clk_gate = {
+@@ -118,6 +118,27 @@ static struct clk_regmap meson8b_fixed_pll = {
  	},
  };
  
-+/* also called LVDS_CLK_EN */
-+static struct clk_regmap meson8b_vid_pll_lvds_en = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VID_DIVIDER_CNTL,
-+		.bit_idx = 11,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vid_pll_lvds_en",
-+		.ops = &clk_regmap_gate_ro_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&meson8b_hdmi_pll_lvds_out.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
++static const struct pll_params_table hdmi_pll_params_table[] = {
++	PLL_PARAMS(40, 1),
++	PLL_PARAMS(42, 1),
++	PLL_PARAMS(44, 1),
++	PLL_PARAMS(45, 1),
++	PLL_PARAMS(49, 1),
++	PLL_PARAMS(52, 1),
++	PLL_PARAMS(54, 1),
++	PLL_PARAMS(56, 1),
++	PLL_PARAMS(59, 1),
++	PLL_PARAMS(60, 1),
++	PLL_PARAMS(61, 1),
++	PLL_PARAMS(62, 1),
++	PLL_PARAMS(64, 1),
++	PLL_PARAMS(66, 1),
++	PLL_PARAMS(68, 1),
++	PLL_PARAMS(71, 1),
++	PLL_PARAMS(82, 1),
++	{ /* sentinel */ }
 +};
 +
- static struct clk_regmap meson8b_vid_pll_in_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_VID_DIVIDER_CNTL,
-@@ -1061,7 +1078,7 @@ static struct clk_regmap meson8b_vid_pll_in_sel = {
- 		 * Meson8m2: vid2_pll
- 		 */
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_hdmi_pll_lvds_out.hw
-+			&meson8b_vid_pll_lvds_en.hw
+ static struct clk_regmap meson8b_hdmi_pll_dco = {
+ 	.data = &(struct meson_clk_pll_data){
+ 		.en = {
+@@ -150,6 +171,7 @@ static struct clk_regmap meson8b_hdmi_pll_dco = {
+ 			.shift   = 29,
+ 			.width   = 1,
  		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
-@@ -2905,6 +2922,7 @@ static struct clk_hw_onecell_data meson8_hw_onecell_data = {
- 		[CLKID_CTS_MCLK_I958_DIV]   = &meson8b_cts_mclk_i958_div.hw,
- 		[CLKID_CTS_MCLK_I958]	    = &meson8b_cts_mclk_i958.hw,
- 		[CLKID_CTS_I958]	    = &meson8b_cts_i958.hw,
-+		[CLKID_VID_PLL_LVDS_EN]	    = &meson8b_vid_pll_lvds_en.hw,
- 		[CLK_NR_CLKS]		    = NULL,
++		.table = hdmi_pll_params_table,
  	},
- 	.num = CLK_NR_CLKS,
-@@ -3122,6 +3140,7 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
- 		[CLKID_CTS_MCLK_I958_DIV]   = &meson8b_cts_mclk_i958_div.hw,
- 		[CLKID_CTS_MCLK_I958]	    = &meson8b_cts_mclk_i958.hw,
- 		[CLKID_CTS_I958]	    = &meson8b_cts_i958.hw,
-+		[CLKID_VID_PLL_LVDS_EN]	    = &meson8b_vid_pll_lvds_en.hw,
- 		[CLK_NR_CLKS]		    = NULL,
- 	},
- 	.num = CLK_NR_CLKS,
-@@ -3341,6 +3360,7 @@ static struct clk_hw_onecell_data meson8m2_hw_onecell_data = {
- 		[CLKID_CTS_MCLK_I958_DIV]   = &meson8b_cts_mclk_i958_div.hw,
- 		[CLKID_CTS_MCLK_I958]	    = &meson8b_cts_mclk_i958.hw,
- 		[CLKID_CTS_I958]	    = &meson8b_cts_i958.hw,
-+		[CLKID_VID_PLL_LVDS_EN]	    = &meson8b_vid_pll_lvds_en.hw,
- 		[CLK_NR_CLKS]		    = NULL,
- 	},
- 	.num = CLK_NR_CLKS,
-@@ -3539,6 +3559,7 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
- 	&meson8b_cts_mclk_i958_div,
- 	&meson8b_cts_mclk_i958,
- 	&meson8b_cts_i958,
-+	&meson8b_vid_pll_lvds_en,
- };
- 
- static const struct meson8b_clk_reset_line {
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index b1a5074cf148..954d97cf6c5a 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -182,8 +182,9 @@
- #define CLKID_CTS_MCLK_I958_DIV	211
- #define CLKID_VCLK_EN		214
- #define CLKID_VCLK2_EN		215
-+#define CLKID_VID_PLL_LVDS_EN	216
- 
--#define CLK_NR_CLKS		216
-+#define CLK_NR_CLKS		217
- 
- /*
-  * include the CLKID and RESETID that have
+ 	.hw.init = &(struct clk_init_data){
+ 		/* sometimes also called "HPLL" or "HPLL PLL" */
 -- 
 2.32.0
 
