@@ -2,91 +2,105 @@ Return-Path: <SRS0=A5vq=MH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AEACC12002
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 00:00:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5728C1B08C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 00:22:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 344CB61377
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 00:00:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 344CB61377
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=phystech.edu
+	by mail.kernel.org (Postfix) with ESMTPS id 96CAF613C2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 00:22:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 96CAF613C2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=V0zoj/MZmGpWQxtj/gzm/5aHU14MG50sQ5Z4ngUAuZM=; b=Og9kQsTmzlWLKv
-	OQgQSdP1YDz47H1cS3lrXDc3JQ6tF0bj2T3AucP3zxLlaQ4k7zKua58JdZ92PVavdeln/Vuvnj+WK
-	iY+RJwbl3PQBGq/cdBSlAQwYp9B2Gx489+od47gyBP1FA0TQT34zVVPDKKR6rMBVd5KSVSNL0/Mf5
-	EoDYWQ4NI/+PjRcPBpUaETQB6YN4SCPuZpr2Aeo6WyEo9KhIxUoaFXzZ/41est8us2b6ivQgW0jey
-	UPwzBz3Uz/1BhbgPz6v5tIVs5tMIjFnK379V0BLQ2GNtaP++RkBPS6DU5Q32/nbyOS9OMLkqv1dJP
-	mYCpIscjzBRTLc0arWOw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=n2WH35ueP90evVev6qJIMzvLw74KYC4f79nohNWGduo=; b=c39pYS4qDrMqSLIozH4GNxwip8
+	Tj0sYtHmEhFCKwrocJOu0rItaxYkCfLwCN75ibIJn/APQirWjE5SvbMVm3lxHyvgjCy98agdTzsWB
+	YE6OmA2X9AoP9bxKt7VaeeIL0qa96MXYelsa1cATXiKL3rtwwSzkKI0sMD16/kvQX81KqRnogNZH0
+	NhcS1JnAEvuPAphQ24IR3qD/4Nk53MlBUwqgXqlaN6jKvdnYiOtUYEWzBjJRyK3BodDjPsIBOiDMx
+	2DDkX8MP+GHCxHXe6m1oxrEAJtThrJCPHVHE43YgaeaPpGG8nxmJrtJBkhU/1plbxWnTyQE6WLKU9
+	jxWdYVeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m3onk-00GUtl-Pd; Thu, 15 Jul 2021 00:00:28 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1m3p8f-00Gdkt-W8; Thu, 15 Jul 2021 00:22:06 +0000
+Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m3mPY-00FP9b-O1
- for linux-amlogic@lists.infradead.org; Wed, 14 Jul 2021 21:27:25 +0000
-Received: by mail-lf1-x136.google.com with SMTP id q16so6069962lfa.5
- for <linux-amlogic@lists.infradead.org>; Wed, 14 Jul 2021 14:27:20 -0700 (PDT)
+ id 1m3o7d-00GCfp-Eh
+ for linux-amlogic@lists.infradead.org; Wed, 14 Jul 2021 23:16:59 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id qb4so5945159ejc.11
+ for <linux-amlogic@lists.infradead.org>; Wed, 14 Jul 2021 16:16:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=phystech-edu.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=e1CbRD1h6RJd+RUO7DJ4kXkGqB1m0wVl5HwZcZacmMs=;
- b=rPodCW5Yl4mh4aymUnT2z45tEIueGKoTcAsQoGWp8Ec9sSIxGEq8O2KzD/NEAvfh1J
- M6EjvE4dB6uZ+r7h+xiPy/ak+e73XPFLYjU7Kv/2fkWUs+ig6sFbtY0/DINrcnZLkdDR
- FingUvHG7tcPCi4QNALHxITvitFM0q6Mj0wNHAxkfMy02rE9eyxDqeqqyb0RJUzI7iTi
- XTHqoqUaz+mU/obSZTeWBvhvjcrnfPq/RgZNGrSjxA8RTRzfzKsLfJvd5UgX99TRJev2
- h/OtQ41N9aK3ZMhU9xi38HnFChBDEviolhq1u8IEsZo6zgGecAKsNib9sZ9+PPRcF083
- U++g==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=mrbFKckMMKNYGKvvcOWxG9c8XzlVvQUpQ/4fdIwwFzs=;
+ b=A23ih7BXmZQ1TpIJ17SZjd4DSS/TT9b5L2N04RLkrxg0enJL/KsU44sd862Fvtrm8k
+ 8kKj3gJvauJo0I6VeRBCrou7HkAArdH70EfbYHxV8ql0rfS6zWlZ9C41KRWq9EPnpnza
+ xvHurpX0FLi8zQZjompHAeGJBJWL5IVsXybmBwYi/CK90MuIvWL9HxAmF4G1ubL9CFaA
+ Xlt7jLr/YQsERUbryC6Eq/0Jzs5LyVw7deSZB6MWuOcC2Y5KEVD8QfkthnVvGnQqM5R3
+ ySOSxNa0IDw5lKGHfenccWaBQ29Hpx85uk84HmWRWYvBuCdWThVe2TukLmJBNok1m3ZJ
+ dZLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=e1CbRD1h6RJd+RUO7DJ4kXkGqB1m0wVl5HwZcZacmMs=;
- b=r6gVItI9QslvUWNmiJbOLnEmIPjE+3qKO0E5dw4BDSEgHWX0joAS0E7z3c9IwEzX9v
- wdj93EQ1M86Ge5RrPhfppSb82vWORloXJqWCKxMUoSL9rTAQ0/Do9TOtl87sQYX11W1C
- 7mIgtW2ThrSz2cUPZuIzfmOKfr4VAutEGoI+Ngg28+KB5y8u/WvNqpmmI/mwoQWAP1E6
- zlOcgwshhevEcJTfyiwc3FhQSLFGxaSDkUT7QHt3tOJEz9WvdZM5oKHb6crsHEg3zHQK
- nmdqtOdcK9H81X5LKqTxZzjeoCD4JsY2M9ybZ0EnCDniPQfQlgSRiJLwktaYbomKaOqJ
- XBpA==
-X-Gm-Message-State: AOAM532BXf+qRuAIZXDQuIxQy5/6XqcTL8oGD5lD1+8Jnr0tkdGl/bav
- H8L6++2k4adqJHcgExzlz8Y9+A==
-X-Google-Smtp-Source: ABdhPJx0GoDbjHLqFW7+91x6erRQ3cKJa3YHrQmOnWrA0u+G7jelNFPfrl+xlMPeQDOD9y+qTSJCmg==
-X-Received: by 2002:ac2:5979:: with SMTP id h25mr154880lfp.393.1626298038996; 
- Wed, 14 Jul 2021 14:27:18 -0700 (PDT)
-Received: from 192.168.1.3 ([2a00:1370:810e:abfe:9c62:44e3:b0ab:76fd])
- by smtp.gmail.com with ESMTPSA id f1sm252156lfs.211.2021.07.14.14.27.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Jul 2021 14:27:18 -0700 (PDT)
-From: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-To: sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
- khilman@baylibre.com, narmstrong@baylibre.com
-Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, rockosov@gmail.com,
- Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-Subject: [PATCH v5 2/2] media: rc: introduce Meson IR TX driver
-Date: Thu, 15 Jul 2021 00:27:06 +0300
-Message-Id: <20210714212706.24945-3-viktor.prutyanov@phystech.edu>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210714212706.24945-1-viktor.prutyanov@phystech.edu>
-References: <20210714212706.24945-1-viktor.prutyanov@phystech.edu>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=mrbFKckMMKNYGKvvcOWxG9c8XzlVvQUpQ/4fdIwwFzs=;
+ b=X7UxkeM+Kp/emhXnZ4GR/f0quLXpstymGxhCFMUZtGxaO8UKROulfahKJZbSm5nPB8
+ Q+Z1GidrcL67cBTyz2yQQqGYv8fzpUH4+Vh3KgdiAWgnwRqua17AAd7KhZLYFxz8/XGV
+ 0+mJ5BJ5kQFYNbghEhkjU8ygsGf92JqLoVx2psqSL60jK1ybUb/M/nSSDS1kHSvwXunu
+ /9oO97L80glcmvPuE6xafpF9yq9GKo/6n8bjJBLQCCdGyEZswqgbvBgjMpSBJvkRo4Nh
+ /UaVzaVDZmBDVU1UaWDuadKY371SNoJMbGFTMnMRqeUtFBrEFGom6pm0t8Z9oPgsGzmW
+ c3ZQ==
+X-Gm-Message-State: AOAM532CbHDk5Cbs0UWi/aeTNIHIil8zLul8B61GQaiX5D+W5U166sWT
+ CYCwy5Efs+1kPNLjGlg/rW+kD9WjSWze6sa9SV8=
+X-Google-Smtp-Source: ABdhPJxdZi3UwL5moLhXQLEuo08EYBumbkJsU+OsqFjxInAKI9LtqwE4vCin2np1L5SYjXv+AqxhIhZzonmHPcvaxZQ=
+X-Received: by 2002:a17:906:39c3:: with SMTP id
+ i3mr667189eje.527.1626304615708; 
+ Wed, 14 Jul 2021 16:16:55 -0700 (PDT)
 MIME-Version: 1.0
+References: <0badab7c-f12e-e9ed-2f90-2cf5f25f4038@bluematt.me>
+ <20210628005825.GA638648@rowland.harvard.edu>
+ <e421818c-dea4-ba6b-e737-bb8d99582588@bluematt.me>
+ <20210628011628.GC638648@rowland.harvard.edu>
+ <0c62655d-738c-4d71-6b7b-fe7fa90b54e3@bluematt.me>
+ <20210628142418.GC656159@rowland.harvard.edu>
+ <CAFBinCA9Y16Ej3PEBN1Rsqo=6V1AZXKOpTfc_siHP0rvVo7wWQ@mail.gmail.com>
+ <20210629150541.GB699290@rowland.harvard.edu>
+ <CAFBinCCOGJfHSSHgRrOO-FQJZAUB=QuMr=BoddPLt19spp0QBg@mail.gmail.com>
+ <20210629161807.GB703497@rowland.harvard.edu>
+ <CAFBinCDsGtQaPLhMAb+A6DBihWzQiU409i2oer_ud5yQBvfM5w@mail.gmail.com>
+ <CAFBinCDc6RUypJpujmYdkjo6j-xsg0HkZEZGxTCsTW4tZ-bJPA@mail.gmail.com>
+ <CAFBinCA083iP4T2b1+MoDGZFKMO8eyy-WceRBA-QibatqboO1A@mail.gmail.com>
+ <f084f45a-5be0-9542-260a-f4641e1215d0@synopsys.com>
+ <CAFBinCCj5zUiv9LS2jKRxzX5pfcFTr4tVZwR7TA2CRQg68qwTw@mail.gmail.com>
+ <822c3852-1d15-2976-8672-e49ae34c328f@synopsys.com>
+ <CAFBinCC_0RpCMsj3AUt9fZrjHi6_qFirQtRR1g5VJcn45GpWAw@mail.gmail.com>
+ <ad475275-eb2c-6309-fc59-494f94bf0605@synopsys.com>
+In-Reply-To: <ad475275-eb2c-6309-fc59-494f94bf0605@synopsys.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 15 Jul 2021 01:16:44 +0200
+Message-ID: <CAFBinCCXioWL+ZGwvC8Ltrmx4y2XpGK03JAm8X=wDB4_dQ+pFA@mail.gmail.com>
+Subject: Re: ODROID-C1/-C2 USB Detection only triggered by some devices dwc2
+To: Minas Harutyunyan <Minas.Harutyunyan@synopsys.com>
+Cc: Alan Stern <stern@rowland.harvard.edu>,
+ Matt Corallo <oc2udbzfd@mattcorallo.com>, 
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>, 
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>, 
+ "linux.amoon@gmail.com" <linux.amoon@gmail.com>,
+ Artur Petrosyan <Arthur.Petrosyan@synopsys.com>
+Content-Type: multipart/mixed; boundary="000000000000ea91c205c71d8c45"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210714_142720_932498_20FEA79D 
-X-CRM114-Status: GOOD (  27.07  )
+X-CRM114-CacheID: sfid-20210714_161657_582173_F29D47CA 
+X-CRM114-Status: GOOD (  31.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,508 +112,143 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds the driver for Amlogic Meson IR transmitter.
+--000000000000ea91c205c71d8c45
+Content-Type: text/plain; charset="UTF-8"
 
-Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
-(also called blaster) controller onboard. It is capable of sending
-IR signals with arbitrary carrier frequency and duty cycle.
+Hi Minas,
 
-The driver supports 2 modulation clock sources:
- - xtal3 clock (xtal divided by 3)
- - 1us clock
+On Wed, Jul 14, 2021 at 5:27 PM Minas Harutyunyan
+<Minas.Harutyunyan@synopsys.com> wrote:
+>
+> Hi Martin,
+>
+> On 7/12/2021 3:35 PM, Martin Blumenstingl wrote:
+> > Hi Minas,
+> >
+> > On Mon, Jul 12, 2021 at 8:42 AM Minas Harutyunyan
+> > <Minas.Harutyunyan@synopsys.com> wrote:
+> > [...]
+> >>> 3. unplugging the Corsair Voyager and plugging in a USB 3.0 card
+> >>> reader (nothing automatically happened), then running lsusb -vv and
+> >>> lsusb -t
+> >> Could you please set verbose debugging:
+> >> CONFIG_USB_DWC2_VERBOSE=y
+> >>
+> >> and repeat test 3. There are couple of transaction errors and some EP
+> >> stalled. I want to understand on which device/ep this happen.
+> > sure, I attached the dmesg output (gzipped, since it's uncompressed
+> > size is 1.5M) with CONFIG_USB_DWC2_VERBOSE=y
+> > The lsusb -vv and lsusb -t outputs are the same so I did not attach them again.
+> >
+> >
+> > Best regards,
+> > Martin
+> >
+>
+> Per our understanding this issue is because of power budget and
+> autosuspend functionality.
+Many thanks for doing this investigation!
 
-Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
----
- changes in v2:
-   - threaded IRQ removed, all stuff done in IRQ handler
-   - DIV_ROUND_CLOSEST_ULL replaced with DIV_ROUND_CLOSEST
-   - compatible changed to "amlogic,meson-g12a-irblaster"
-   - 'debug' parameter removed
-   - dprintk() replaced with dev_dbg()/dev_info()
-   - carrier frequency checked against 0
-   - device_name added
- changes in v3:
-   - license header fixed
-   - 'max_fifo_level' parameter removed
-   - irq and clk_nr deleted from irblaster_dev struct
-   - some divisions replaced with DIV_ROUND_CLOSEST
-   - irb_send inlined
-   - fixed early completion in IRQ handler
-   - spin lock added before kfree
- changes in v4:
-   - irblaster -> ir-tx renaming
-   - spin lock added before buffer allocation
- changes in v5:
-   - spinlocks rework made in meson_irtx_transmit
-   - max_fifo_level replaced with fifo_threshold (max_fifo_level +
-     fifo_threshold == IRB_FIFO_LEN == 128)
-   - max-fifo-level -> amlogic,fifo-threshold
+> Autosuspend. Please review this patch: "usb: core: hub: Disable
+> autosuspend for Cypress CY7C65632"
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=a7d8d1c7a7f73e780aa9ae74926ae5985b2f895f
+>
+> It's very similar to your case. Actually you already tested
+> usbcore.autosuspend=-1 and it's helped you.
+> Could you please develop same patch for your soldered hub and test it.
+I found that drivers/usb/core/hub.c already has an entry for Genesys
+Logic USB hubs.
+It uses HUB_QUIRK_CHECK_PORT_AUTOSUSPEND instead of
+HUB_QUIRK_DISABLE_AUTOSUSPEND though.
+So I wrote a patch to change that (I attached it to this mail for
+reference, I will submit it as a proper patch one I understand enough
+about this).
 
- drivers/media/rc/Kconfig       |  10 +
- drivers/media/rc/Makefile      |   1 +
- drivers/media/rc/meson-ir-tx.c | 410 +++++++++++++++++++++++++++++++++
- 3 files changed, 421 insertions(+)
- create mode 100644 drivers/media/rc/meson-ir-tx.c
+With this patch applied all USB devices I have are auto-detected when
+hot-plugged.
 
-diff --git a/drivers/media/rc/Kconfig b/drivers/media/rc/Kconfig
-index d0a8326b75c2..fd5a7a058714 100644
---- a/drivers/media/rc/Kconfig
-+++ b/drivers/media/rc/Kconfig
-@@ -246,6 +246,16 @@ config IR_MESON
- 	   To compile this driver as a module, choose M here: the
- 	   module will be called meson-ir.
- 
-+config IR_MESON_TX
-+	tristate "Amlogic Meson IR TX"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	help
-+	   Say Y if you want to use the IR transmitter available on
-+	   Amlogic Meson SoCs.
-+
-+	   To compile this driver as a module, choose M here: the
-+	   module will be called meson-ir-tx.
-+
- config IR_MTK
- 	tristate "Mediatek IR remote receiver"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/media/rc/Makefile b/drivers/media/rc/Makefile
-index 692e9b6b203f..0db51fad27d6 100644
---- a/drivers/media/rc/Makefile
-+++ b/drivers/media/rc/Makefile
-@@ -28,6 +28,7 @@ obj-$(CONFIG_IR_ITE_CIR) += ite-cir.o
- obj-$(CONFIG_IR_MCEUSB) += mceusb.o
- obj-$(CONFIG_IR_FINTEK) += fintek-cir.o
- obj-$(CONFIG_IR_MESON) += meson-ir.o
-+obj-$(CONFIG_IR_MESON_TX) += meson-ir-tx.o
- obj-$(CONFIG_IR_NUVOTON) += nuvoton-cir.o
- obj-$(CONFIG_IR_ENE) += ene_ir.o
- obj-$(CONFIG_IR_REDRAT3) += redrat3.o
-diff --git a/drivers/media/rc/meson-ir-tx.c b/drivers/media/rc/meson-ir-tx.c
-new file mode 100644
-index 000000000000..1730af93e43d
---- /dev/null
-+++ b/drivers/media/rc/meson-ir-tx.c
-@@ -0,0 +1,410 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/**
-+ * meson-ir-tx.c - Amlogic Meson IR TX driver
-+ *
-+ * Copyright (c) 2021, SberDevices. All Rights Reserved.
-+ *
-+ * Author: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/sched.h>
-+#include <linux/platform_device.h>
-+#include <linux/of.h>
-+#include <linux/interrupt.h>
-+#include <linux/spinlock.h>
-+#include <linux/of_irq.h>
-+#include <linux/clk.h>
-+#include <linux/slab.h>
-+#include <media/rc-core.h>
-+
-+#define DEVICE_NAME	"Meson IR TX"
-+#define DRIVER_NAME	"meson-ir-tx"
-+
-+#define MIRTX_DEFAULT_CARRIER		38000
-+#define MIRTX_DEFAULT_DUTY_CYCLE	50
-+#define MIRTX_DEFAULT_FIFO_THD		32
-+
-+#define IRB_MOD_1US_CLK_RATE	1000000
-+
-+#define IRB_FIFO_LEN	128
-+
-+#define IRB_ADDR0	0x0
-+#define IRB_ADDR1	0x4
-+#define IRB_ADDR2	0x8
-+#define IRB_ADDR3	0xc
-+
-+#define IRB_MAX_DELAY	(1 << 10)
-+#define IRB_DELAY_MASK	(IRB_MAX_DELAY - 1)
-+
-+/* IRCTRL_IR_BLASTER_ADDR0 */
-+#define IRB_MOD_CLK(x)		((x) << 12)
-+#define IRB_MOD_SYS_CLK		0
-+#define IRB_MOD_XTAL3_CLK	1
-+#define IRB_MOD_1US_CLK		2
-+#define IRB_MOD_10US_CLK	3
-+#define IRB_INIT_HIGH		BIT(2)
-+#define IRB_ENABLE		BIT(0)
-+
-+/* IRCTRL_IR_BLASTER_ADDR2 */
-+#define IRB_MOD_COUNT(lo, hi)	((((lo) - 1) << 16) | ((hi) - 1))
-+
-+/* IRCTRL_IR_BLASTER_ADDR2 */
-+#define IRB_WRITE_FIFO	BIT(16)
-+#define IRB_MOD_ENABLE	BIT(12)
-+#define IRB_TB_1US	(0x0 << 10)
-+#define IRB_TB_10US	(0x1 << 10)
-+#define IRB_TB_100US	(0x2 << 10)
-+#define IRB_TB_MOD_CLK	(0x3 << 10)
-+
-+/* IRCTRL_IR_BLASTER_ADDR3 */
-+#define IRB_FIFO_THD_PENDING	BIT(16)
-+#define IRB_FIFO_IRQ_ENABLE	BIT(8)
-+
-+struct meson_irtx {
-+	struct device *dev;
-+	void __iomem *reg_base;
-+	u32 *buf;
-+	unsigned int buf_len;
-+	unsigned int buf_head;
-+	unsigned int carrier;
-+	unsigned int duty_cycle;
-+	spinlock_t lock;
-+	struct completion completion;
-+	unsigned int fifo_threshold;
-+	unsigned long clk_rate;
-+};
-+
-+static void meson_irtx_set_mod(struct meson_irtx *ir)
-+{
-+	unsigned int cnt = DIV_ROUND_CLOSEST(ir->clk_rate, ir->carrier);
-+	unsigned int pulse_cnt = DIV_ROUND_CLOSEST(cnt * ir->duty_cycle, 100);
-+	unsigned int space_cnt = cnt - pulse_cnt;
-+
-+	dev_dbg(ir->dev, "F_mod = %uHz, T_mod = %luns, duty_cycle = %u%%\n",
-+		ir->carrier, NSEC_PER_SEC / ir->clk_rate * cnt,
-+		100 * pulse_cnt / cnt);
-+
-+	writel(IRB_MOD_COUNT(pulse_cnt, space_cnt),
-+	       ir->reg_base + IRB_ADDR1);
-+}
-+
-+static void meson_irtx_setup(struct meson_irtx *ir, unsigned int clk_nr)
-+{
-+	/*
-+	 * Disable the TX, set modulator clock tick and set initialize
-+	 * output to be high. Set up carrier frequency and duty cycle. Then
-+	 * unset initialize output. Enable FIFO interrupt, set FIFO interrupt
-+	 * threshold. Finally, enable the transmitter back.
-+	 */
-+	writel(~IRB_ENABLE & (IRB_MOD_CLK(clk_nr) | IRB_INIT_HIGH),
-+	       ir->reg_base + IRB_ADDR0);
-+	meson_irtx_set_mod(ir);
-+	writel(readl(ir->reg_base + IRB_ADDR0) & ~IRB_INIT_HIGH,
-+	       ir->reg_base + IRB_ADDR0);
-+	writel(IRB_FIFO_IRQ_ENABLE | ir->fifo_threshold,
-+	       ir->reg_base + IRB_ADDR3);
-+	writel(readl(ir->reg_base + IRB_ADDR0) | IRB_ENABLE,
-+	       ir->reg_base + IRB_ADDR0);
-+}
-+
-+static u32 meson_irtx_prepare_pulse(struct meson_irtx *ir, unsigned int time)
-+{
-+	unsigned int delay;
-+	unsigned int tb = IRB_TB_MOD_CLK;
-+	unsigned int tb_us = DIV_ROUND_CLOSEST(USEC_PER_SEC, ir->carrier);
-+
-+	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) & IRB_DELAY_MASK;
-+
-+	return ((IRB_WRITE_FIFO | IRB_MOD_ENABLE) | tb | delay);
-+}
-+
-+static u32 meson_irtx_prepare_space(struct meson_irtx *ir, unsigned int time)
-+{
-+	unsigned int delay;
-+	unsigned int tb = IRB_TB_100US;
-+	unsigned int tb_us = 100;
-+
-+	if (time <= IRB_MAX_DELAY) {
-+		tb = IRB_TB_1US;
-+		tb_us = 1;
-+	} else if (time <= 10 * IRB_MAX_DELAY) {
-+		tb = IRB_TB_10US;
-+		tb_us = 10;
-+	} else if (time <= 100 * IRB_MAX_DELAY) {
-+		tb = IRB_TB_100US;
-+		tb_us = 100;
-+	}
-+
-+	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) & IRB_DELAY_MASK;
-+
-+	return ((IRB_WRITE_FIFO & ~IRB_MOD_ENABLE) | tb | delay);
-+}
-+
-+static void meson_irtx_send_buffer(struct meson_irtx *ir)
-+{
-+	unsigned int nr = 0;
-+	unsigned int max_fifo_level = IRB_FIFO_LEN - ir->fifo_threshold;
-+
-+	while (ir->buf_head < ir->buf_len && nr < max_fifo_level) {
-+		writel(ir->buf[ir->buf_head], ir->reg_base + IRB_ADDR2);
-+
-+		ir->buf_head++;
-+		nr++;
-+	}
-+}
-+
-+static bool meson_irtx_check_buf(struct meson_irtx *ir,
-+			  unsigned int *buf, unsigned int len)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < len; i++) {
-+		unsigned int max_tb_us;
-+		/*
-+		 * Max space timebase is 100 us.
-+		 * Pulse timebase equals to carrier period.
-+		 */
-+		if (i % 2 == 0)
-+			max_tb_us = USEC_PER_SEC / ir->carrier;
-+		else
-+			max_tb_us = 100;
-+
-+		if (buf[i] >= max_tb_us * IRB_MAX_DELAY)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
-+static void meson_irtx_fill_buf(struct meson_irtx *ir, u32 *dst_buf,
-+				unsigned int *src_buf, unsigned int len)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < len; i++) {
-+		if (i % 2 == 0)
-+			dst_buf[i] = meson_irtx_prepare_pulse(ir, src_buf[i]);
-+		else
-+			dst_buf[i] = meson_irtx_prepare_space(ir, src_buf[i]);
-+	}
-+}
-+
-+static irqreturn_t meson_irtx_irqhandler(int irq, void *data)
-+{
-+	unsigned long flags;
-+	struct meson_irtx *ir = data;
-+
-+	writel(readl(ir->reg_base + IRB_ADDR3) & ~IRB_FIFO_THD_PENDING,
-+	       ir->reg_base + IRB_ADDR3);
-+
-+	spin_lock_irqsave(&ir->lock, flags);
-+	if (ir->buf_head < ir->buf_len)
-+		meson_irtx_send_buffer(ir);
-+	else
-+		complete(&ir->completion);
-+	spin_unlock_irqrestore(&ir->lock, flags);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int meson_irtx_set_carrier(struct rc_dev *rc, u32 carrier)
-+{
-+	struct meson_irtx *ir = rc->priv;
-+
-+	if (carrier == 0)
-+		return -EINVAL;
-+
-+	ir->carrier = carrier;
-+	meson_irtx_set_mod(ir);
-+
-+	return 0;
-+}
-+
-+static int meson_irtx_set_duty_cycle(struct rc_dev *rc, u32 duty_cycle)
-+{
-+	struct meson_irtx *ir = rc->priv;
-+
-+	ir->duty_cycle = duty_cycle;
-+	meson_irtx_set_mod(ir);
-+
-+	return 0;
-+}
-+
-+static void meson_irtx_update_buf(struct meson_irtx *ir, u32 *buf,
-+				  unsigned int len, unsigned int head)
-+{
-+	ir->buf = buf;
-+	ir->buf_len = len;
-+	ir->buf_head = head;
-+}
-+
-+static int meson_irtx_transmit(struct rc_dev *rc, unsigned int *buf,
-+			       unsigned int len)
-+{
-+	unsigned long flags;
-+	struct meson_irtx *ir = rc->priv;
-+	u32 *tx_buf;
-+	int ret;
-+
-+	if (!meson_irtx_check_buf(ir, buf, len))
-+		return -EINVAL;
-+
-+	tx_buf = kmalloc_array(len, sizeof(u32), GFP_KERNEL);
-+	if (!tx_buf)
-+		return -ENOMEM;
-+
-+	meson_irtx_fill_buf(ir, tx_buf, buf, len);
-+	dev_dbg(ir->dev, "TX buffer filled, length = %u\n", len);
-+
-+	spin_lock_irqsave(&ir->lock, flags);
-+	meson_irtx_update_buf(ir, tx_buf, len, 0);
-+	reinit_completion(&ir->completion);
-+	meson_irtx_send_buffer(ir);
-+	spin_unlock_irqrestore(&ir->lock, flags);
-+
-+	ret = wait_for_completion_interruptible(&ir->completion);
-+	dev_dbg(ir->dev, "TX %s\n", ret ? "interrupted" : "completed");
-+
-+	spin_lock_irqsave(&ir->lock, flags);
-+	kfree(ir->buf);
-+	meson_irtx_update_buf(ir, NULL, 0, 0);
-+	spin_unlock_irqrestore(&ir->lock, flags);
-+
-+	return len;
-+}
-+
-+static int meson_irtx_mod_clock_probe(struct meson_irtx *ir,
-+				      unsigned int *clk_nr)
-+{
-+	struct device_node *np = ir->dev->of_node;
-+	struct clk *clock;
-+
-+	if (!np)
-+		return -ENODEV;
-+
-+	clock = devm_clk_get(ir->dev, "xtal");
-+	if (IS_ERR(clock) || clk_prepare_enable(clock))
-+		return -ENODEV;
-+
-+	*clk_nr = IRB_MOD_XTAL3_CLK;
-+	ir->clk_rate = clk_get_rate(clock) / 3;
-+
-+	if (ir->clk_rate < IRB_MOD_1US_CLK_RATE) {
-+		*clk_nr = IRB_MOD_1US_CLK;
-+		ir->clk_rate = IRB_MOD_1US_CLK_RATE;
-+	}
-+
-+	dev_info(ir->dev, "F_clk = %luHz\n", ir->clk_rate);
-+
-+	return 0;
-+}
-+
-+static int __init meson_irtx_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct meson_irtx *ir;
-+	struct rc_dev *rc;
-+	int irq;
-+	unsigned int clk_nr;
-+	int ret;
-+
-+	ir = devm_kzalloc(dev, sizeof(*ir), GFP_KERNEL);
-+	if (!ir)
-+		return -ENOMEM;
-+
-+	ir->reg_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(ir->reg_base))
-+		return PTR_ERR(ir->reg_base);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0) {
-+		dev_err(dev, "no irq resource found\n");
-+		return -ENODEV;
-+	}
-+
-+	if (of_property_read_u32(dev->of_node, "amlogic,fifo-threshold",
-+				 &ir->fifo_threshold))
-+		ir->fifo_threshold = MIRTX_DEFAULT_FIFO_THD;
-+	else if (ir->fifo_threshold >= IRB_FIFO_LEN)
-+		ir->fifo_threshold = MIRTX_DEFAULT_FIFO_THD;
-+	dev_dbg(dev, "FIFO threshold set to %u\n", ir->fifo_threshold);
-+
-+	ir->dev = dev;
-+	ir->carrier = MIRTX_DEFAULT_CARRIER;
-+	ir->duty_cycle = MIRTX_DEFAULT_DUTY_CYCLE;
-+	init_completion(&ir->completion);
-+	spin_lock_init(&ir->lock);
-+
-+	ret = meson_irtx_mod_clock_probe(ir, &clk_nr);
-+	if (ret) {
-+		dev_err(dev, "modulator clock setup failed\n");
-+		return ret;
-+	}
-+	meson_irtx_setup(ir, clk_nr);
-+
-+	ret = devm_request_irq(dev, irq,
-+			       meson_irtx_irqhandler,
-+			       IRQF_TRIGGER_RISING,
-+			       DRIVER_NAME, ir);
-+	if (ret) {
-+		dev_err(dev, "irq request failed\n");
-+		return ret;
-+	}
-+
-+	rc = rc_allocate_device(RC_DRIVER_IR_RAW_TX);
-+	if (!rc)
-+		return -ENOMEM;
-+
-+	rc->driver_name = DRIVER_NAME;
-+	rc->device_name = DEVICE_NAME;
-+	rc->priv = ir;
-+
-+	rc->tx_ir = meson_irtx_transmit;
-+	rc->s_tx_carrier = meson_irtx_set_carrier;
-+	rc->s_tx_duty_cycle = meson_irtx_set_duty_cycle;
-+
-+	ret = rc_register_device(rc);
-+	if (ret < 0) {
-+		dev_err(dev, "rc_dev registration failed\n");
-+		rc_free_device(rc);
-+		return ret;
-+	}
-+
-+	platform_set_drvdata(pdev, rc);
-+
-+	return 0;
-+}
-+
-+static int meson_irtx_remove(struct platform_device *pdev)
-+{
-+	struct rc_dev *rc = platform_get_drvdata(pdev);
-+
-+	rc_unregister_device(rc);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id meson_irtx_dt_match[] = {
-+	{
-+		.compatible = "amlogic,meson-g12a-ir-tx",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, meson_irtx_dt_match);
-+
-+static struct platform_driver meson_irtx_pd = {
-+	.remove = meson_irtx_remove,
-+	.driver = {
-+		.name = DRIVER_NAME,
-+		.owner  = THIS_MODULE,
-+		.of_match_table = meson_irtx_dt_match,
-+	},
-+};
-+
-+module_platform_driver_probe(meson_irtx_pd, meson_irtx_probe);
-+
-+MODULE_DESCRIPTION("Meson IR TX driver");
-+MODULE_AUTHOR("Viktor Prutyanov <viktor.prutyanov@phystech.edu>");
-+MODULE_LICENSE("GPL");
--- 
-2.21.0
+My doubt with this is that my desktop PC (using an ASUS B550-F
+motherboard) comes with a few of these USB hubs soldered down as well
+- and there the behavior is different.
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/10p, 480M
+   ID 1d6b:0002 Linux Foundation 2.0 root hub
+   /sys/bus/usb/devices/usb1  /dev/bus/usb/001/001
+   |__ Port 3: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+       ID 05e3:0610 Genesys Logic, Inc. Hub
+       /sys/bus/usb/devices/1-3  /dev/bus/usb/001/002
+[...]
+   |__ Port 7: Dev 5, If 0, Class=Hub, Driver=hub/4p, 480M
+       ID 05e3:0610 Genesys Logic, Inc. Hub
+       /sys/bus/usb/devices/1-7  /dev/bus/usb/001/005
 
+I plugged in the Corsair Voyager USB 3.0 drive which is not being
+detected on my Odroid-C1+ and instantly this shows up in my kernel
+log:
+  usb 1-7.3: new high-speed USB device number 46 using xhci_hcd
+  usb 1-7.3: New USB device found, idVendor=1b1c, idProduct=1a03,
+bcdDevice= a.00
+  usb 1-7.3: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+  usb 1-7.3: Product: Voyager 3.0
+  usb 1-7.3: Manufacturer: Corsair
+
+So I am wondering why it works there but not on my Odroid-C1, with the
+(only known) difference being the host controller (xhci_hcd vs dwc2)
+which is being used.
+
+> Power budget. Old, cheap flash disks required about 200-300ma, but most
+> of USB3 devices require 500ma. It could be serious issue to explore this
+> devices with USB2 hubs. Even if this type of devices will successfully
+> enumerated on EP0 without power problems, after set_interface when
+> enabling multiple EP's (i.e. BULK IN and OUT for mass storage) power
+> requirements should be increased which can violate USB2 hub port rules.
+With your hint from above (thanks again!) I found commit
+1208f9e1d758c9 ("USB: hub: Fix the broken detection of USB3 device in
+SMSC hub").
+The message of that commit says: [...] Board is [...] not able to
+detect the USB3.0 mass storage devices
+Using HUB_QUIRK_DISABLE_AUTOSUSPEND makes all of my USB 3.0 devices
+show up as well during hot-plug (no lsusb trickery needed).
+So while there may be some power budget issue, I think the main
+problem for me is the hub suspend.
+
+
+Best regards,
+Martin
+
+--000000000000ea91c205c71d8c45
+Content-Type: text/x-patch; charset="US-ASCII"; 
+	name="genesys-logic-use-disable-autosuspend-quirk.diff"
+Content-Disposition: attachment; 
+	filename="genesys-logic-use-disable-autosuspend-quirk.diff"
+Content-Transfer-Encoding: base64
+Content-ID: <f_kr439mzk0>
+X-Attachment-Id: f_kr439mzk0
+
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvdXNiL2NvcmUvaHViLmMgYi9kcml2ZXJzL3VzYi9jb3JlL2h1
+Yi5jCmluZGV4IGQxZWZjNzE0MTMzMy4uYWMzOWQxNWFmNmJhIDEwMDY0NAotLS0gYS9kcml2ZXJz
+L3VzYi9jb3JlL2h1Yi5jCisrKyBiL2RyaXZlcnMvdXNiL2NvcmUvaHViLmMKQEAgLTU3MzAsNyAr
+NTczMCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgdXNiX2RldmljZV9pZCBodWJfaWRfdGFibGVb
+XSA9IHsKIAkJCXwgVVNCX0RFVklDRV9JRF9NQVRDSF9JTlRfQ0xBU1MsCiAgICAgICAuaWRWZW5k
+b3IgPSBVU0JfVkVORE9SX0dFTkVTWVNfTE9HSUMsCiAgICAgICAuYkludGVyZmFjZUNsYXNzID0g
+VVNCX0NMQVNTX0hVQiwKLSAgICAgIC5kcml2ZXJfaW5mbyA9IEhVQl9RVUlSS19DSEVDS19QT1JU
+X0FVVE9TVVNQRU5EfSwKKyAgICAgIC5kcml2ZXJfaW5mbyA9IEhVQl9RVUlSS19ESVNBQkxFX0FV
+VE9TVVNQRU5EfSwKICAgICB7IC5tYXRjaF9mbGFncyA9IFVTQl9ERVZJQ0VfSURfTUFUQ0hfREVW
+X0NMQVNTLAogICAgICAgLmJEZXZpY2VDbGFzcyA9IFVTQl9DTEFTU19IVUJ9LAogICAgIHsgLm1h
+dGNoX2ZsYWdzID0gVVNCX0RFVklDRV9JRF9NQVRDSF9JTlRfQ0xBU1MsCg==
+--000000000000ea91c205c71d8c45
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--000000000000ea91c205c71d8c45--
+
