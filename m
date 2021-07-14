@@ -2,84 +2,95 @@ Return-Path: <SRS0=A5vq=MH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B383CC12002
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 00:23:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD5F7C12002
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 00:24:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 79582613C2
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 00:23:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 79582613C2
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 6D589613C2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 00:24:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6D589613C2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tSEs/uSecugLSlgwjtKTtIjrXCNqRQqszqIj4Ay0GaY=; b=zf/2Mf9PBIMBAi
-	4/kXaoty0rcsK/zKteoU/m1pMPH/6/6VuLw0XRoyqIQ9+XiO42BvQj/9Xug+i3Q9VGEO+Foo3zWGS
-	XxyEQaqMg8VmtQgP8qvgemgBucI8AQcESFpuwWIG9WJleVEO+7FRPPdnBQaN/jGvUQimLVsyIeOs9
-	mnQMr8OikAhudMwCqSN8rxGaxcskfuv5TPajFyieOuaNC51/Y3WlsKLjIQ2a99sO6PPMp+9qVizNn
-	sMAk5IxfXdiQfdukqJJ34Max5L19Kft1jPi35M/azfB1wscAc3qgcPWHMenDpL5fitVYDPmfJ9Asg
-	dO9BEGl5x2NEQbiUd++g==;
+	List-Owner; bh=RJw+g8wg8Zyuvj7a6DpY8rz/ZVZFQNq2tKVW+bP6jI4=; b=TA/92J+MEaVfu6
+	XywILmqeSpxiL44jzsYFyZ30aA0CClDRQwSzhTZBsc0MkmLrxoKNtH2Dglmv8Xkht4/fh7g951HPF
+	KFHviMzBvejfsPF/UCi6Z3vAn7HJzFxaPjFoIxMkin5z+xL8z1b/N3K7KFvS2IzBwqMCls1ezLceI
+	vwTZy53io4tYNa+mZhSzmY5hTZkQ/orzqbFDTWma8z467+pPS2aG3jrmofkqWhalZ+5Ha/FQVTTEC
+	suwrq2OR8pXlrPscdz9TG8duFF3F/ehjhBvOv/zt+k0KhET++oOD4lx2Jg2r0AZXuj0984m15MgPj
+	dU2HkNSIqEJG022lrbRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m3p9b-00GeBf-0j; Thu, 15 Jul 2021 00:23:03 +0000
-Received: from mail-io1-f42.google.com ([209.85.166.42])
+	id 1m3pAi-00GejD-Lh; Thu, 15 Jul 2021 00:24:12 +0000
+Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m3oDc-00GFYh-15; Wed, 14 Jul 2021 23:23:10 +0000
-Received: by mail-io1-f42.google.com with SMTP id h6so4235678iok.6;
- Wed, 14 Jul 2021 16:23:07 -0700 (PDT)
+ id 1m3oKu-00GIkF-KC; Wed, 14 Jul 2021 23:30:42 +0000
+Received: by mail-ed1-x52f.google.com with SMTP id l1so5427393edr.11;
+ Wed, 14 Jul 2021 16:30:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MmCo10phYZjnbz7riI2lrli8JFJM355EZ/EUboI7RsU=;
+ b=My1Ium+lDPZ1IpppOuHRs5Rld6fPeNYboQtih5zVYSNhf8OdDVyrpePQfdoMOrt1r9
+ OFI8VVztFDz5MXAi091VMsBMCykOgIgvsbfiyE6RsveTx6CNaybjRu+Cso+cNrcbZBoQ
+ EFHV+E8/55eMS1PedK98tgQC5osmTkOTz7dT+QwXUiGc8+ypaY4y7uh7NX+3jdWPTzp5
+ 7A5oEG+Ys8HJwcG8+awuIx7XeSeo9nZbkTOED098L/GmipR7hR8vSG8CU2kkU4pUnya9
+ FHh5ZOthocyuVXCPf++3jMtGkL4G4H3J8uyVK5sl8NbnlRlorb6FUsGpm68WNF5xjVo+
+ QGmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ToZ6NY20pj8+1z2HLFxJgFpOq59/gnhKty7JQKi5xcg=;
- b=ApQNAMZ83AsHLnvZ8BCchwNp/5kSRIUsp8jIQcA5aB0uzgWdT1/cIBY3VT5TUFENRA
- B6Sn5wp/msLTbZrnxiKHtjcCio/QooRiLbfPfXrfUlakI+jCMjq0ykz3EMfrypiSsr//
- O+q1cGrEnFz2//GZPcHxflSLWWIBLvneIUpvUSJtyrfwl14qiR6Ovg89Vsu40ZQZ3ovt
- gd4+H+TL+lnbfTrLkHwm6DaoZnv1iiV/5+KmQSnXdMOn/a9Uk2PKnMFMwXsH+gLeE34E
- L8PMi9qlEP1yCTY+xDbMB5SFHRlUqNjxTZASDFIlcZoeah6/vW0KPPYyNsuZnVzyn+Sa
- StQg==
-X-Gm-Message-State: AOAM533bSoWzOPxO93FWii+i/GV7YJmlODQpKtVHQEi4OiDcmlpQbpeS
- XxnBVXQjdfrz+6WlHwpXrc/50MUUx1lk
-X-Google-Smtp-Source: ABdhPJxfw9SHxbrbwickx7w/F5na0i6rWNyFm1PDKfzfrJ/f/+TLM8pzZ5E1dknUASd44A4KH9STUw==
-X-Received: by 2002:a05:6602:134f:: with SMTP id
- i15mr421616iov.143.1626304986652; 
- Wed, 14 Jul 2021 16:23:06 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
- by smtp.gmail.com with ESMTPSA id f7sm2125738ilk.64.2021.07.14.16.23.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Jul 2021 16:23:05 -0700 (PDT)
-Received: (nullmailer pid 3734548 invoked by uid 1000);
- Wed, 14 Jul 2021 23:23:03 -0000
-Date: Wed, 14 Jul 2021 17:23:03 -0600
-From: Rob Herring <robh@kernel.org>
-To: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-Cc: sean@mess.org, mchehab@kernel.org, khilman@baylibre.com,
- narmstrong@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- rockosov@gmail.com
-Subject: Re: [PATCH v3 1/2] media: rc: meson-irblaster: document device tree
- bindings
-Message-ID: <20210714232303.GA3730974@robh.at.kernel.org>
-References: <20210709165753.29353-1-viktor.prutyanov@phystech.edu>
- <20210709165753.29353-2-viktor.prutyanov@phystech.edu>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MmCo10phYZjnbz7riI2lrli8JFJM355EZ/EUboI7RsU=;
+ b=tK8mb6w7e3XfCj6TF/iMSKliFtzYTNV6QFE5lnQbePLt6pE/OtslDw6euIaDuv4juC
+ ap6jv5DxuAti9r4qW8Ea8AYuY9E6W7LoSSG0Y9xRj5d5beqNjDQllKderp2Ee7JDG4l6
+ 2RxyLeUTv1H5G2zr8XoHG0sqk5UjLlWlckbHPwb7+JFy5hwQ5MZ1UanmDGbfziPaIvXy
+ rKatBSAUw05pyWUMXKRLOftXOyejkus09itAbiaIlAlXkdznZXOHdL4WXomvtoO+luzN
+ DvPQ2NJmPPfBEKYEYFbT8go6dtNRkP82LaR079ClnckGxY6aJkONvszqLTlbfqS+0zuy
+ ZOSg==
+X-Gm-Message-State: AOAM530EVatECwpOFA5o+w6Z98V2IS6gx2TLVnxp3s0B0tLJt4APsOwu
+ cZKNnwji6XXE/j1dKH4+xEyK+XeSg5SGh9r7618=
+X-Google-Smtp-Source: ABdhPJx0AQ7rkwJFWL2C/MDHijIvmNvm54SQAgQmq5qCp0CnWv4FoADx+pvNp6QTpflL4QPnwnAIjBW8BH4NjkrJEOM=
+X-Received: by 2002:a05:6402:190c:: with SMTP id
+ e12mr1132461edz.176.1626305433797; 
+ Wed, 14 Jul 2021 16:30:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210709165753.29353-2-viktor.prutyanov@phystech.edu>
+References: <20210713055227.1142-1-linux.amoon@gmail.com>
+ <20210713055227.1142-2-linux.amoon@gmail.com>
+ <CAFBinCD3ahpNQhP_jWZ3-4nXx8OqZOAANCpTN3BrsULRbYZHVw@mail.gmail.com>
+ <CANAwSgTh02qg=cMT8tpHcEfAs5yW2vHQ7tPOkvuKXos_fOmh8A@mail.gmail.com>
+ <CAFBinCC-kD-MW+bwqCZH5AjYDhxWa_pN2WEnHuiZpx=RhUdROQ@mail.gmail.com>
+ <CANAwSgTf4sjoufrZuK-EjE=+yA8zSoVbqhEyNhJJFBLUCOVZmQ@mail.gmail.com>
+ <CANAwSgR5nNN3D+NZjqNNjyp=rVYE=RG2icnJAc=5F23xSh9Bvg@mail.gmail.com>
+In-Reply-To: <CANAwSgR5nNN3D+NZjqNNjyp=rVYE=RG2icnJAc=5F23xSh9Bvg@mail.gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 15 Jul 2021 01:30:23 +0200
+Message-ID: <CAFBinCBtZDRH_xTn3hUBbAPNGrut2cbEQOSuEN1vwObP1Ns5qw@mail.gmail.com>
+Subject: Re: [PATCHv1 1/3] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: linux-phy@lists.infradead.org, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ linux-amlogic@lists.infradead.org, 
+ Linux Kernel <linux-kernel@vger.kernel.org>,
+ Matt Corallo <oc2udbzfd@mattcorallo.com>, 
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ devicetree <devicetree@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210714_162308_192497_B3EC92CC 
-X-CRM114-Status: GOOD (  17.66  )
+X-CRM114-CacheID: sfid-20210714_163040_733960_DB1E27DE 
+X-CRM114-Status: GOOD (  20.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,103 +107,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jul 09, 2021 at 07:57:52PM +0300, Viktor Prutyanov wrote:
-> This patch adds binding documentation for the IR transmitter
-> available in Amlogic Meson SoCs.
-> 
-> Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-> ---
->  changes in v2:
->    - compatible = "amlogic,meson-g12a-irblaster" added
->    - clocks, clock-names and mod-clock updated
->  changes in v3:
->    - mod-clock removed
->    - max-fifo-level added
-> 
->  .../media/amlogic,meson-irblaster.yaml        | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml b/Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml
-> new file mode 100644
-> index 000000000000..1e10aa0d3a94
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/media/amlogic,meson-irblaster.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson IR blaster
-> +
-> +maintainers:
-> +  - Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-> +
-> +description: |
-> +  Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
-> +  (blaster) controller onboard. It is capable of sending IR signals
-> +  with arbitrary carrier frequency and duty cycle.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: amlogic,meson-irblaster
-> +      - items:
-> +          - const: amlogic,meson-g12a-irblaster
-> +          - const: amlogic,meson-irblaster
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sysclk
-> +      - const: xtal
-> +
-> +  max-fifo-level:
-> +    maxItems: 1
+Hi Anand,
 
-An array?
+On Wed, Jul 14, 2021 at 7:25 PM Anand Moon <linux.amoon@gmail.com> wrote:
+[...]
+> Can you give these small changes a try,
+> $ git diff
+> diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts
+> b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> index 748f4c6a050a..066523f14074 100644
+> --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
+> +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> @@ -47,8 +47,9 @@ usb_pwr_en: regulator-usb-pwr-en {
+>                 /*
+>                  * signal name from schematics: PWREN
+>                  */
+> -               gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
+> +               gpio = <&gpio_ao GPIOAO_5 GPIO_OPEN_DRAIN>;
+>                 enable-active-high;
+> +               regulator-always-on;
+>         };
+>
+> [alarm@archl-c1e ~]$ sudo cat /sys/kernel/debug/gpio | grep usb
+>  gpio-1953 (USB_HUB_RST_N       |usb-hub-reset       ) out hi
+>  gpio-1954 (USB_OTG_PWREN       |regulator-usb-pwr-en) out lo
+I can reproduce the /sys/kernel/debug/gpio output with this patch
 
-Needs a vendor prefix, type reference and constraints on allowed values.
+Still USB works for me regardless of whether USB_OTG_PWREN is HIGH or LOW
+This is something that is not possible if the regulator is really
+connected on the board like you are describing in this patch.
+If this .dts change was correct then I would expect that USB is
+breaking when inverting the GPIO polarity.
 
-> +    description:
-> +      Maximum IR blaster FIFO fill level
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/g12a-clkc.h>
-> +
-> +    irblaster@ff80014c {
-> +      compatible = "amlogic,meson-g12a-irblaster", "amlogic,meson-irblaster";
-> +      reg = <0xff80014c 0x10>;
-> +      interrupts = <0 198 IRQ_TYPE_EDGE_RISING>;
-> +      clocks = <&clkc CLKID_CLK81>, <&xtal>;
-> +      clock-names = "sysclk", "xtal";
-> +    };
-> -- 
-> 2.21.0
-> 
-> 
+I am using the "inverted GPIO polarity" approach to find the Ethernet
+PHY reset GPIO when working on boards for which I don't have the
+schematics:
+1) make an assumption of which GPIO to use
+2) try with GPIO_ACTIVE_LOW -> PHY should be detected
+3) change it to GPIO_ACTIVE_HIGH -> PHY should not be found anymore
+(because it's in reset)
+4) before submitting the board.dts upstream I of course change it back
+to GPIO_ACTIVE_LOW
+
+If during step 3) the PHY is still found then I know that it's not the
+correct GPIO.
+I am seeing the same behavior with this USB regulator. My
+interpretation of this is: either you are not using the right GPIO or
+the GPIO is not related to &usb1 (or it's PHY).
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
