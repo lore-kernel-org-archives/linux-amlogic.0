@@ -4,68 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B14E4C636C8
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 21:40:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3F4EC636CB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 22:37:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 67098613C4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 21:40:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 67098613C4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mess.org
+	by mail.kernel.org (Postfix) with ESMTPS id 5297561158
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jul 2021 22:37:20 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5297561158
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=phystech.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QQTcQTLuSosGDGfsiwp4J2ykQ6NIQrMrV03ObgbAjQ4=; b=aQ77AJdyk+94gM
-	1twoaFA7Vp38dvD+byDjPbfRyMrGVsu/NlH5UjLRZoS8aCaGJaYRgzdJmOO/qOujZcpiQbh1iTuoB
-	MyxUErv1WJleWitCz81spIBZFrm7js4wKl3xwf8SNVucu6O3N1IISVIlucYvSzj4zPsO2UWW3H/Ul
-	llFndySKTlsjzZbMKl21pZ0c/DZ4VT1kWURCAMACuuPshyVPjCmKDpBvnXWDR0jQetz8ajRcokcs0
-	K1Xr3T+VIe8TbGm61MoJumjXAMZaFHfFlONl2GTtk1QcAiGKMevYw1NpVbvoMxCshQbhNmSNyzKqQ
-	bXCc86nYeuQH0U4q3m/Q==;
+	List-Owner; bh=Zk8q0rIzItqk9kWY5VjgfzzX1smueqS1JhkF9bQz0w4=; b=xZldqSE+TYkcjI
+	WIcfhUtf2sdIZzsXQaHIumau/ezccQUmHYv2Z82KOxKkj48AUEskeN43f4Keh0sJn5ZqHwMWJ5s7L
+	F4Woi96k8BjrJT0a0wua4mhh/3/+N9tt/yek7JGYAerTFOhX7TzqSrZznPbJXa6SUErd4hFjheadt
+	4DH82ylybIU4SjDIfwA8O1mJZSYU4k9PxoFXWEjafmMPnU5902Tbq6BENkr7cG+QTLvu2+N2a81oe
+	s+APl2GPtHE1aDzE/HshsuerQ1hoZoR498GZ1TR7qPuhbZELD1pzCqny1Tll/fRMWKAbifewGN4Nu
+	+PwRRkV9/Ds8DHWXAI3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m495Z-002NFo-1p; Thu, 15 Jul 2021 21:40:13 +0000
-Received: from gofer.mess.org ([2a02:8011:d000:212::1])
+	id 1m49yk-002U6x-6f; Thu, 15 Jul 2021 22:37:14 +0000
+Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m495V-002NEM-40; Thu, 15 Jul 2021 21:40:12 +0000
-Received: by gofer.mess.org (Postfix, from userid 1000)
- id E7673C636F; Thu, 15 Jul 2021 22:40:01 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mess.org; s=2020;
- t=1626385201; bh=1+P22yDwNxO2Oh3npG/ppO+m05M0l3P33SwHM3TBI6M=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=qeuCsSaXBEHIStg0DFIs1kEG3DCMtFsQQIuv7pMzx71esNoSExplwUYrirSkf/d7k
- 5FDzlB55VqxXi9VCHEhS3ESlkC5A1CRQbmPuUZNs0npqg5PBlLt7IPsnHzpchVLn6f
- LcETSDZ/BRuqWW5eQC/f3Vjw0UZnAeessgLuwCHNXxMpAzctpUmd1LWhTEMcB1asIf
- zuH3aaqn984CAtR6Dq9meAS9rQ+BcO/K2Tc4bjWbcAIay21w2O7lFAU92eFTdrdiwg
- 0kvXWZEDOCF+CS/n05F46eb2OgjWLqaLhfn4JFAi9lz5ywAmVOg6dCtyazn/lnxUH/
- fGN/9R/+X1q8Q==
-Date: Thu, 15 Jul 2021 22:40:01 +0100
-From: Sean Young <sean@mess.org>
-To: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+ id 1m49yV-002U5O-JM
+ for linux-amlogic@lists.infradead.org; Thu, 15 Jul 2021 22:37:02 +0000
+Received: by mail-lf1-x12a.google.com with SMTP id y42so12696405lfa.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 15 Jul 2021 15:36:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=phystech-edu.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :organization:mime-version:content-transfer-encoding;
+ bh=/JYScUJQAlk5ROep05PB0kICCEjQqxVY7P9YWhBtyHA=;
+ b=O1a+qBrNB5bTVWRXb2QYnT7oCfC/ggo3qr/ydKfqzg3a0z5XmnJk153q5M7lY/lhPl
+ sZ5gHmZXlwBcggO1Fdwv/ZS5AbwqXcxDQijhuOqML8tngSue7pmax7zvJJnwxuYRAWit
+ CSVuTgI3O8aCUVtzEWSuIOxRgcKXxfL5X6B0MYNWq4u7nDKSqKEg7xm3gQcwRpgchgfe
+ oTL2PGfjUOv1nwmnXPkZ6V420kv9EEcBnaKQVWVAu0i5k/9+inhVxDmwd9wSLs9H4+wO
+ 595kBSHyRhjm0tistAwqVO2pWt789b60vK4XlSPXXCwimZxRKDUN/JlpUrdH933uyEmp
+ sGMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:organization:mime-version:content-transfer-encoding;
+ bh=/JYScUJQAlk5ROep05PB0kICCEjQqxVY7P9YWhBtyHA=;
+ b=iM2tj9J3i7QlJN+9q7UgTbLsKMN9JR9DvBXRKk9Wv27SIAROo0hdqlCW6oMqR3TXeP
+ MXpaz5yulhvYtkqdlJ45dm+qn93yyDestfS/qDdnVx7LCPHE1srV3tLCg4LRKK39QlAr
+ CMnHvGLCd2en6dK+F13ucC25589goTZGLJbnJ+wNsk0roapw6cqRDO1bLBQZeMv+AKHt
+ xDJ++7+9bOE4mXOh7OUIo9peiXytNEAjU6DVXaVh5uBgmbEMbrz9yhwUBPTa48pZzU5E
+ MfYPqZJO6Sb9xArWCPVz1EJa4CI2GmAp+fIdZKMvvusxw0VLSW0LAu4B09oY7FpYNv5J
+ 45Sw==
+X-Gm-Message-State: AOAM531bzsT9Sb5yTP4kU8VmTmFr69QHcT3xKTJNOi1V87NzIgnhBFwx
+ KPo2S58fBM5t23it3CF4FYAD4w==
+X-Google-Smtp-Source: ABdhPJyZbA6xb18clB5nIgIMrzSf8MA2ZFvd0SOVIA11TmYQq9nn0UQN8ElBbtK/1xTqqrdDtMyVZg==
+X-Received: by 2002:ac2:538c:: with SMTP id g12mr1578044lfh.245.1626388617113; 
+ Thu, 15 Jul 2021 15:36:57 -0700 (PDT)
+Received: from 192.168.1.3 ([2a00:1370:810e:abfe:9c62:44e3:b0ab:76fd])
+ by smtp.gmail.com with ESMTPSA id x13sm504345lfr.66.2021.07.15.15.36.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 15 Jul 2021 15:36:56 -0700 (PDT)
+Date: Fri, 16 Jul 2021 01:36:52 +0300
+From: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+To: Sean Young <sean@mess.org>
 Cc: mchehab@kernel.org, robh+dt@kernel.org, khilman@baylibre.com,
  narmstrong@baylibre.com, jbrunet@baylibre.com,
  martin.blumenstingl@googlemail.com, linux-media@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, rockosov@gmail.com
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ rockosov@gmail.com
 Subject: Re: [PATCH v5 2/2] media: rc: introduce Meson IR TX driver
-Message-ID: <20210715214001.GA25809@gofer.mess.org>
+Message-ID: <20210716013652.248bce6f@192.168.1.3>
+In-Reply-To: <20210715214001.GA25809@gofer.mess.org>
 References: <20210714212706.24945-1-viktor.prutyanov@phystech.edu>
  <20210714212706.24945-3-viktor.prutyanov@phystech.edu>
+ <20210715214001.GA25809@gofer.mess.org>
+Organization: MIPT
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210714212706.24945-3-viktor.prutyanov@phystech.edu>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210715_144009_548903_13966A5F 
-X-CRM114-Status: GOOD (  45.29  )
+X-CRM114-CacheID: sfid-20210715_153659_787433_6CD0FDE2 
+X-CRM114-Status: GOOD (  46.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,529 +106,418 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jul 15, 2021 at 12:27:06AM +0300, Viktor Prutyanov wrote:
-> This patch adds the driver for Amlogic Meson IR transmitter.
+Hi Sean,
+
+On Thu, 15 Jul 2021 22:40:01 +0100
+Sean Young <sean@mess.org> wrote:
+
+> On Thu, Jul 15, 2021 at 12:27:06AM +0300, Viktor Prutyanov wrote:
+> > This patch adds the driver for Amlogic Meson IR transmitter.
+> > 
+> > Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
+> > (also called blaster) controller onboard. It is capable of sending
+> > IR signals with arbitrary carrier frequency and duty cycle.
+> > 
+> > The driver supports 2 modulation clock sources:
+> >  - xtal3 clock (xtal divided by 3)
+> >  - 1us clock
+> > 
+> > Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+> > ---
+> >  changes in v2:
+> >    - threaded IRQ removed, all stuff done in IRQ handler
+> >    - DIV_ROUND_CLOSEST_ULL replaced with DIV_ROUND_CLOSEST
+> >    - compatible changed to "amlogic,meson-g12a-irblaster"
+> >    - 'debug' parameter removed
+> >    - dprintk() replaced with dev_dbg()/dev_info()
+> >    - carrier frequency checked against 0
+> >    - device_name added
+> >  changes in v3:
+> >    - license header fixed
+> >    - 'max_fifo_level' parameter removed
+> >    - irq and clk_nr deleted from irblaster_dev struct
+> >    - some divisions replaced with DIV_ROUND_CLOSEST
+> >    - irb_send inlined
+> >    - fixed early completion in IRQ handler
+> >    - spin lock added before kfree
+> >  changes in v4:
+> >    - irblaster -> ir-tx renaming
+> >    - spin lock added before buffer allocation
+> >  changes in v5:
+> >    - spinlocks rework made in meson_irtx_transmit
+> >    - max_fifo_level replaced with fifo_threshold (max_fifo_level +
+> >      fifo_threshold == IRB_FIFO_LEN == 128)
+> >    - max-fifo-level -> amlogic,fifo-threshold
+> > 
+> >  drivers/media/rc/Kconfig       |  10 +
+> >  drivers/media/rc/Makefile      |   1 +
+> >  drivers/media/rc/meson-ir-tx.c | 410
+> > +++++++++++++++++++++++++++++++++ 3 files changed, 421 insertions(+)
+> >  create mode 100644 drivers/media/rc/meson-ir-tx.c
+> > 
+> > diff --git a/drivers/media/rc/Kconfig b/drivers/media/rc/Kconfig
+> > index d0a8326b75c2..fd5a7a058714 100644
+> > --- a/drivers/media/rc/Kconfig
+> > +++ b/drivers/media/rc/Kconfig
+> > @@ -246,6 +246,16 @@ config IR_MESON
+> >  	   To compile this driver as a module, choose M here: the
+> >  	   module will be called meson-ir.
+> >  
+> > +config IR_MESON_TX
+> > +	tristate "Amlogic Meson IR TX"
+> > +	depends on ARCH_MESON || COMPILE_TEST
+> > +	help
+> > +	   Say Y if you want to use the IR transmitter available on
+> > +	   Amlogic Meson SoCs.
+> > +
+> > +	   To compile this driver as a module, choose M here: the
+> > +	   module will be called meson-ir-tx.
+> > +
+> >  config IR_MTK
+> >  	tristate "Mediatek IR remote receiver"
+> >  	depends on ARCH_MEDIATEK || COMPILE_TEST
+> > diff --git a/drivers/media/rc/Makefile b/drivers/media/rc/Makefile
+> > index 692e9b6b203f..0db51fad27d6 100644
+> > --- a/drivers/media/rc/Makefile
+> > +++ b/drivers/media/rc/Makefile
+> > @@ -28,6 +28,7 @@ obj-$(CONFIG_IR_ITE_CIR) += ite-cir.o
+> >  obj-$(CONFIG_IR_MCEUSB) += mceusb.o
+> >  obj-$(CONFIG_IR_FINTEK) += fintek-cir.o
+> >  obj-$(CONFIG_IR_MESON) += meson-ir.o
+> > +obj-$(CONFIG_IR_MESON_TX) += meson-ir-tx.o
+> >  obj-$(CONFIG_IR_NUVOTON) += nuvoton-cir.o
+> >  obj-$(CONFIG_IR_ENE) += ene_ir.o
+> >  obj-$(CONFIG_IR_REDRAT3) += redrat3.o
+> > diff --git a/drivers/media/rc/meson-ir-tx.c
+> > b/drivers/media/rc/meson-ir-tx.c new file mode 100644
+> > index 000000000000..1730af93e43d
+> > --- /dev/null
+> > +++ b/drivers/media/rc/meson-ir-tx.c
+> > @@ -0,0 +1,410 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/**
+> > + * meson-ir-tx.c - Amlogic Meson IR TX driver
+> > + *
+> > + * Copyright (c) 2021, SberDevices. All Rights Reserved.
+> > + *
+> > + * Author: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+> > + */
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/module.h>
+> > +#include <linux/sched.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/of.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/spinlock.h>
+> > +#include <linux/of_irq.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/slab.h>
+> > +#include <media/rc-core.h>
+> > +
+> > +#define DEVICE_NAME	"Meson IR TX"
+> > +#define DRIVER_NAME	"meson-ir-tx"
+> > +
+> > +#define MIRTX_DEFAULT_CARRIER		38000
+> > +#define MIRTX_DEFAULT_DUTY_CYCLE	50
+> > +#define MIRTX_DEFAULT_FIFO_THD		32
+> > +
+> > +#define IRB_MOD_1US_CLK_RATE	1000000
+> > +
+> > +#define IRB_FIFO_LEN	128
+> > +
+> > +#define IRB_ADDR0	0x0
+> > +#define IRB_ADDR1	0x4
+> > +#define IRB_ADDR2	0x8
+> > +#define IRB_ADDR3	0xc
+> > +
+> > +#define IRB_MAX_DELAY	(1 << 10)
+> > +#define IRB_DELAY_MASK	(IRB_MAX_DELAY - 1)
+> > +
+> > +/* IRCTRL_IR_BLASTER_ADDR0 */
+> > +#define IRB_MOD_CLK(x)		((x) << 12)
+> > +#define IRB_MOD_SYS_CLK		0
+> > +#define IRB_MOD_XTAL3_CLK	1
+> > +#define IRB_MOD_1US_CLK		2
+> > +#define IRB_MOD_10US_CLK	3
+> > +#define IRB_INIT_HIGH		BIT(2)
+> > +#define IRB_ENABLE		BIT(0)
+> > +
+> > +/* IRCTRL_IR_BLASTER_ADDR2 */
+> > +#define IRB_MOD_COUNT(lo, hi)	((((lo) - 1) << 16) | ((hi) -
+> > 1)) +
+> > +/* IRCTRL_IR_BLASTER_ADDR2 */
+> > +#define IRB_WRITE_FIFO	BIT(16)
+> > +#define IRB_MOD_ENABLE	BIT(12)
+> > +#define IRB_TB_1US	(0x0 << 10)
+> > +#define IRB_TB_10US	(0x1 << 10)
+> > +#define IRB_TB_100US	(0x2 << 10)
+> > +#define IRB_TB_MOD_CLK	(0x3 << 10)
+> > +
+> > +/* IRCTRL_IR_BLASTER_ADDR3 */
+> > +#define IRB_FIFO_THD_PENDING	BIT(16)
+> > +#define IRB_FIFO_IRQ_ENABLE	BIT(8)
+> > +
+> > +struct meson_irtx {
+> > +	struct device *dev;
+> > +	void __iomem *reg_base;
+> > +	u32 *buf;
+> > +	unsigned int buf_len;
+> > +	unsigned int buf_head;
+> > +	unsigned int carrier;
+> > +	unsigned int duty_cycle;
+> > +	spinlock_t lock;
+> > +	struct completion completion;
+> > +	unsigned int fifo_threshold;
+> > +	unsigned long clk_rate;
+> > +};
+> > +
+> > +static void meson_irtx_set_mod(struct meson_irtx *ir)
+> > +{
+> > +	unsigned int cnt = DIV_ROUND_CLOSEST(ir->clk_rate,
+> > ir->carrier);
+> > +	unsigned int pulse_cnt = DIV_ROUND_CLOSEST(cnt *
+> > ir->duty_cycle, 100);
+> > +	unsigned int space_cnt = cnt - pulse_cnt;
+> > +
+> > +	dev_dbg(ir->dev, "F_mod = %uHz, T_mod = %luns, duty_cycle
+> > = %u%%\n",
+> > +		ir->carrier, NSEC_PER_SEC / ir->clk_rate * cnt,
+> > +		100 * pulse_cnt / cnt);
+> > +
+> > +	writel(IRB_MOD_COUNT(pulse_cnt, space_cnt),
+> > +	       ir->reg_base + IRB_ADDR1);
+> > +}
+> > +
+> > +static void meson_irtx_setup(struct meson_irtx *ir, unsigned int
+> > clk_nr) +{
+> > +	/*
+> > +	 * Disable the TX, set modulator clock tick and set
+> > initialize
+> > +	 * output to be high. Set up carrier frequency and duty
+> > cycle. Then
+> > +	 * unset initialize output. Enable FIFO interrupt, set
+> > FIFO interrupt
+> > +	 * threshold. Finally, enable the transmitter back.
+> > +	 */
+> > +	writel(~IRB_ENABLE & (IRB_MOD_CLK(clk_nr) | IRB_INIT_HIGH),
+> > +	       ir->reg_base + IRB_ADDR0);
+> > +	meson_irtx_set_mod(ir);
+> > +	writel(readl(ir->reg_base + IRB_ADDR0) & ~IRB_INIT_HIGH,
+> > +	       ir->reg_base + IRB_ADDR0);
+> > +	writel(IRB_FIFO_IRQ_ENABLE | ir->fifo_threshold,
+> > +	       ir->reg_base + IRB_ADDR3);
+> > +	writel(readl(ir->reg_base + IRB_ADDR0) | IRB_ENABLE,
+> > +	       ir->reg_base + IRB_ADDR0);
+> > +}
+> > +
+> > +static u32 meson_irtx_prepare_pulse(struct meson_irtx *ir,
+> > unsigned int time) +{
+> > +	unsigned int delay;
+> > +	unsigned int tb = IRB_TB_MOD_CLK;
+> > +	unsigned int tb_us = DIV_ROUND_CLOSEST(USEC_PER_SEC,
+> > ir->carrier); +
+> > +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) &
+> > IRB_DELAY_MASK; +
+> > +	return ((IRB_WRITE_FIFO | IRB_MOD_ENABLE) | tb | delay);
+> > +}
+> > +
+> > +static u32 meson_irtx_prepare_space(struct meson_irtx *ir,
+> > unsigned int time) +{
+> > +	unsigned int delay;
+> > +	unsigned int tb = IRB_TB_100US;
+> > +	unsigned int tb_us = 100;
+> > +
+> > +	if (time <= IRB_MAX_DELAY) {
+> > +		tb = IRB_TB_1US;
+> > +		tb_us = 1;
+> > +	} else if (time <= 10 * IRB_MAX_DELAY) {
+> > +		tb = IRB_TB_10US;
+> > +		tb_us = 10;
+> > +	} else if (time <= 100 * IRB_MAX_DELAY) {
+> > +		tb = IRB_TB_100US;
+> > +		tb_us = 100;
+> > +	}
+> > +
+> > +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) &
+> > IRB_DELAY_MASK; +
+> > +	return ((IRB_WRITE_FIFO & ~IRB_MOD_ENABLE) | tb | delay);
+> > +}
+> > +
+> > +static void meson_irtx_send_buffer(struct meson_irtx *ir)
+> > +{
+> > +	unsigned int nr = 0;
+> > +	unsigned int max_fifo_level = IRB_FIFO_LEN -
+> > ir->fifo_threshold; +
+> > +	while (ir->buf_head < ir->buf_len && nr < max_fifo_level) {
+> > +		writel(ir->buf[ir->buf_head], ir->reg_base +
+> > IRB_ADDR2); +
+> > +		ir->buf_head++;
+> > +		nr++;
+> > +	}
+> > +}
+> > +
+> > +static bool meson_irtx_check_buf(struct meson_irtx *ir,
+> > +			  unsigned int *buf, unsigned int len)
+> > +{
+> > +	unsigned int i;
+> > +
+> > +	for (i = 0; i < len; i++) {
+> > +		unsigned int max_tb_us;
+> > +		/*
+> > +		 * Max space timebase is 100 us.
+> > +		 * Pulse timebase equals to carrier period.
+> > +		 */
+> > +		if (i % 2 == 0)
+> > +			max_tb_us = USEC_PER_SEC / ir->carrier;
+> > +		else
+> > +			max_tb_us = 100;
+> > +
+> > +		if (buf[i] >= max_tb_us * IRB_MAX_DELAY)
+> > +			return false;
+> > +	}
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +static void meson_irtx_fill_buf(struct meson_irtx *ir, u32
+> > *dst_buf,
+> > +				unsigned int *src_buf, unsigned
+> > int len) +{
+> > +	unsigned int i;
+> > +
+> > +	for (i = 0; i < len; i++) {
+> > +		if (i % 2 == 0)
+> > +			dst_buf[i] = meson_irtx_prepare_pulse(ir,
+> > src_buf[i]);
+> > +		else
+> > +			dst_buf[i] = meson_irtx_prepare_space(ir,
+> > src_buf[i]);
+> > +	}
+> > +}
+> > +
+> > +static irqreturn_t meson_irtx_irqhandler(int irq, void *data)
+> > +{
+> > +	unsigned long flags;
+> > +	struct meson_irtx *ir = data;
+> > +
+> > +	writel(readl(ir->reg_base + IRB_ADDR3) &
+> > ~IRB_FIFO_THD_PENDING,
+> > +	       ir->reg_base + IRB_ADDR3);
+> > +
+> > +	spin_lock_irqsave(&ir->lock, flags);
+> > +	if (ir->buf_head < ir->buf_len)
+> > +		meson_irtx_send_buffer(ir);
+> > +	else
+> > +		complete(&ir->completion);
+> > +	spin_unlock_irqrestore(&ir->lock, flags);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> > +static int meson_irtx_set_carrier(struct rc_dev *rc, u32 carrier)
+> > +{
+> > +	struct meson_irtx *ir = rc->priv;
+> > +
+> > +	if (carrier == 0)
+> > +		return -EINVAL;
+> > +
+> > +	ir->carrier = carrier;
+> > +	meson_irtx_set_mod(ir);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int meson_irtx_set_duty_cycle(struct rc_dev *rc, u32
+> > duty_cycle) +{
+> > +	struct meson_irtx *ir = rc->priv;
+> > +
+> > +	ir->duty_cycle = duty_cycle;
+> > +	meson_irtx_set_mod(ir);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void meson_irtx_update_buf(struct meson_irtx *ir, u32 *buf,
+> > +				  unsigned int len, unsigned int
+> > head) +{
+> > +	ir->buf = buf;
+> > +	ir->buf_len = len;
+> > +	ir->buf_head = head;
+> > +}
+> > +
+> > +static int meson_irtx_transmit(struct rc_dev *rc, unsigned int
+> > *buf,
+> > +			       unsigned int len)
+> > +{
+> > +	unsigned long flags;
+> > +	struct meson_irtx *ir = rc->priv;
+> > +	u32 *tx_buf;
+> > +	int ret;
+> > +
+> > +	if (!meson_irtx_check_buf(ir, buf, len))
+> > +		return -EINVAL;
+> > +
+> > +	tx_buf = kmalloc_array(len, sizeof(u32), GFP_KERNEL);
+> > +	if (!tx_buf)
+> > +		return -ENOMEM;
+> > +
+> > +	meson_irtx_fill_buf(ir, tx_buf, buf, len);
+> > +	dev_dbg(ir->dev, "TX buffer filled, length = %u\n", len);
+> > +
+> > +	spin_lock_irqsave(&ir->lock, flags);
+> > +	meson_irtx_update_buf(ir, tx_buf, len, 0);
+> > +	reinit_completion(&ir->completion);
+> > +	meson_irtx_send_buffer(ir);
+> > +	spin_unlock_irqrestore(&ir->lock, flags);
+> > +
+> > +	ret = wait_for_completion_interruptible(&ir->completion);
+> > +	dev_dbg(ir->dev, "TX %s\n", ret ? "interrupted" :
+> > "completed");  
 > 
-> Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
-> (also called blaster) controller onboard. It is capable of sending
-> IR signals with arbitrary carrier frequency and duty cycle.
+> Here two things can happen. One is, the process received a signal
+> (e.g. ^C). The other is that the hardware didn't issue any interrupts
+> due some problem somewhere. In the latter case, we only escape this
+> wait_for_completion_interruptable() when the user gets fed up and
+> presses ^C or something like that.
 > 
-> The driver supports 2 modulation clock sources:
->  - xtal3 clock (xtal divided by 3)
->  - 1us clock
+> > +
+> > +	spin_lock_irqsave(&ir->lock, flags);
+> > +	kfree(ir->buf);
+> > +	meson_irtx_update_buf(ir, NULL, 0, 0);
+> > +	spin_unlock_irqrestore(&ir->lock, flags);  
 > 
-> Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-> ---
->  changes in v2:
->    - threaded IRQ removed, all stuff done in IRQ handler
->    - DIV_ROUND_CLOSEST_ULL replaced with DIV_ROUND_CLOSEST
->    - compatible changed to "amlogic,meson-g12a-irblaster"
->    - 'debug' parameter removed
->    - dprintk() replaced with dev_dbg()/dev_info()
->    - carrier frequency checked against 0
->    - device_name added
->  changes in v3:
->    - license header fixed
->    - 'max_fifo_level' parameter removed
->    - irq and clk_nr deleted from irblaster_dev struct
->    - some divisions replaced with DIV_ROUND_CLOSEST
->    - irb_send inlined
->    - fixed early completion in IRQ handler
->    - spin lock added before kfree
->  changes in v4:
->    - irblaster -> ir-tx renaming
->    - spin lock added before buffer allocation
->  changes in v5:
->    - spinlocks rework made in meson_irtx_transmit
->    - max_fifo_level replaced with fifo_threshold (max_fifo_level +
->      fifo_threshold == IRB_FIFO_LEN == 128)
->    - max-fifo-level -> amlogic,fifo-threshold
+> Now it is possible that the buffer gets cleared before that IR was
+> sent, if the signal was received early enough. This means not all the
+> Tx was completed.
 > 
->  drivers/media/rc/Kconfig       |  10 +
->  drivers/media/rc/Makefile      |   1 +
->  drivers/media/rc/meson-ir-tx.c | 410 +++++++++++++++++++++++++++++++++
->  3 files changed, 421 insertions(+)
->  create mode 100644 drivers/media/rc/meson-ir-tx.c
+> > +
+> > +	return len;  
 > 
-> diff --git a/drivers/media/rc/Kconfig b/drivers/media/rc/Kconfig
-> index d0a8326b75c2..fd5a7a058714 100644
-> --- a/drivers/media/rc/Kconfig
-> +++ b/drivers/media/rc/Kconfig
-> @@ -246,6 +246,16 @@ config IR_MESON
->  	   To compile this driver as a module, choose M here: the
->  	   module will be called meson-ir.
->  
-> +config IR_MESON_TX
-> +	tristate "Amlogic Meson IR TX"
-> +	depends on ARCH_MESON || COMPILE_TEST
-> +	help
-> +	   Say Y if you want to use the IR transmitter available on
-> +	   Amlogic Meson SoCs.
-> +
-> +	   To compile this driver as a module, choose M here: the
-> +	   module will be called meson-ir-tx.
-> +
->  config IR_MTK
->  	tristate "Mediatek IR remote receiver"
->  	depends on ARCH_MEDIATEK || COMPILE_TEST
-> diff --git a/drivers/media/rc/Makefile b/drivers/media/rc/Makefile
-> index 692e9b6b203f..0db51fad27d6 100644
-> --- a/drivers/media/rc/Makefile
-> +++ b/drivers/media/rc/Makefile
-> @@ -28,6 +28,7 @@ obj-$(CONFIG_IR_ITE_CIR) += ite-cir.o
->  obj-$(CONFIG_IR_MCEUSB) += mceusb.o
->  obj-$(CONFIG_IR_FINTEK) += fintek-cir.o
->  obj-$(CONFIG_IR_MESON) += meson-ir.o
-> +obj-$(CONFIG_IR_MESON_TX) += meson-ir-tx.o
->  obj-$(CONFIG_IR_NUVOTON) += nuvoton-cir.o
->  obj-$(CONFIG_IR_ENE) += ene_ir.o
->  obj-$(CONFIG_IR_REDRAT3) += redrat3.o
-> diff --git a/drivers/media/rc/meson-ir-tx.c b/drivers/media/rc/meson-ir-tx.c
-> new file mode 100644
-> index 000000000000..1730af93e43d
-> --- /dev/null
-> +++ b/drivers/media/rc/meson-ir-tx.c
-> @@ -0,0 +1,410 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/**
-> + * meson-ir-tx.c - Amlogic Meson IR TX driver
-> + *
-> + * Copyright (c) 2021, SberDevices. All Rights Reserved.
-> + *
-> + * Author: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/sched.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/clk.h>
-> +#include <linux/slab.h>
-> +#include <media/rc-core.h>
-> +
-> +#define DEVICE_NAME	"Meson IR TX"
-> +#define DRIVER_NAME	"meson-ir-tx"
-> +
-> +#define MIRTX_DEFAULT_CARRIER		38000
-> +#define MIRTX_DEFAULT_DUTY_CYCLE	50
-> +#define MIRTX_DEFAULT_FIFO_THD		32
-> +
-> +#define IRB_MOD_1US_CLK_RATE	1000000
-> +
-> +#define IRB_FIFO_LEN	128
-> +
-> +#define IRB_ADDR0	0x0
-> +#define IRB_ADDR1	0x4
-> +#define IRB_ADDR2	0x8
-> +#define IRB_ADDR3	0xc
-> +
-> +#define IRB_MAX_DELAY	(1 << 10)
-> +#define IRB_DELAY_MASK	(IRB_MAX_DELAY - 1)
-> +
-> +/* IRCTRL_IR_BLASTER_ADDR0 */
-> +#define IRB_MOD_CLK(x)		((x) << 12)
-> +#define IRB_MOD_SYS_CLK		0
-> +#define IRB_MOD_XTAL3_CLK	1
-> +#define IRB_MOD_1US_CLK		2
-> +#define IRB_MOD_10US_CLK	3
-> +#define IRB_INIT_HIGH		BIT(2)
-> +#define IRB_ENABLE		BIT(0)
-> +
-> +/* IRCTRL_IR_BLASTER_ADDR2 */
-> +#define IRB_MOD_COUNT(lo, hi)	((((lo) - 1) << 16) | ((hi) - 1))
-> +
-> +/* IRCTRL_IR_BLASTER_ADDR2 */
-> +#define IRB_WRITE_FIFO	BIT(16)
-> +#define IRB_MOD_ENABLE	BIT(12)
-> +#define IRB_TB_1US	(0x0 << 10)
-> +#define IRB_TB_10US	(0x1 << 10)
-> +#define IRB_TB_100US	(0x2 << 10)
-> +#define IRB_TB_MOD_CLK	(0x3 << 10)
-> +
-> +/* IRCTRL_IR_BLASTER_ADDR3 */
-> +#define IRB_FIFO_THD_PENDING	BIT(16)
-> +#define IRB_FIFO_IRQ_ENABLE	BIT(8)
-> +
-> +struct meson_irtx {
-> +	struct device *dev;
-> +	void __iomem *reg_base;
-> +	u32 *buf;
-> +	unsigned int buf_len;
-> +	unsigned int buf_head;
-> +	unsigned int carrier;
-> +	unsigned int duty_cycle;
-> +	spinlock_t lock;
-> +	struct completion completion;
-> +	unsigned int fifo_threshold;
-> +	unsigned long clk_rate;
-> +};
-> +
-> +static void meson_irtx_set_mod(struct meson_irtx *ir)
-> +{
-> +	unsigned int cnt = DIV_ROUND_CLOSEST(ir->clk_rate, ir->carrier);
-> +	unsigned int pulse_cnt = DIV_ROUND_CLOSEST(cnt * ir->duty_cycle, 100);
-> +	unsigned int space_cnt = cnt - pulse_cnt;
-> +
-> +	dev_dbg(ir->dev, "F_mod = %uHz, T_mod = %luns, duty_cycle = %u%%\n",
-> +		ir->carrier, NSEC_PER_SEC / ir->clk_rate * cnt,
-> +		100 * pulse_cnt / cnt);
-> +
-> +	writel(IRB_MOD_COUNT(pulse_cnt, space_cnt),
-> +	       ir->reg_base + IRB_ADDR1);
-> +}
-> +
-> +static void meson_irtx_setup(struct meson_irtx *ir, unsigned int clk_nr)
-> +{
-> +	/*
-> +	 * Disable the TX, set modulator clock tick and set initialize
-> +	 * output to be high. Set up carrier frequency and duty cycle. Then
-> +	 * unset initialize output. Enable FIFO interrupt, set FIFO interrupt
-> +	 * threshold. Finally, enable the transmitter back.
-> +	 */
-> +	writel(~IRB_ENABLE & (IRB_MOD_CLK(clk_nr) | IRB_INIT_HIGH),
-> +	       ir->reg_base + IRB_ADDR0);
-> +	meson_irtx_set_mod(ir);
-> +	writel(readl(ir->reg_base + IRB_ADDR0) & ~IRB_INIT_HIGH,
-> +	       ir->reg_base + IRB_ADDR0);
-> +	writel(IRB_FIFO_IRQ_ENABLE | ir->fifo_threshold,
-> +	       ir->reg_base + IRB_ADDR3);
-> +	writel(readl(ir->reg_base + IRB_ADDR0) | IRB_ENABLE,
-> +	       ir->reg_base + IRB_ADDR0);
-> +}
-> +
-> +static u32 meson_irtx_prepare_pulse(struct meson_irtx *ir, unsigned int time)
-> +{
-> +	unsigned int delay;
-> +	unsigned int tb = IRB_TB_MOD_CLK;
-> +	unsigned int tb_us = DIV_ROUND_CLOSEST(USEC_PER_SEC, ir->carrier);
-> +
-> +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) & IRB_DELAY_MASK;
-> +
-> +	return ((IRB_WRITE_FIFO | IRB_MOD_ENABLE) | tb | delay);
-> +}
-> +
-> +static u32 meson_irtx_prepare_space(struct meson_irtx *ir, unsigned int time)
-> +{
-> +	unsigned int delay;
-> +	unsigned int tb = IRB_TB_100US;
-> +	unsigned int tb_us = 100;
-> +
-> +	if (time <= IRB_MAX_DELAY) {
-> +		tb = IRB_TB_1US;
-> +		tb_us = 1;
-> +	} else if (time <= 10 * IRB_MAX_DELAY) {
-> +		tb = IRB_TB_10US;
-> +		tb_us = 10;
-> +	} else if (time <= 100 * IRB_MAX_DELAY) {
-> +		tb = IRB_TB_100US;
-> +		tb_us = 100;
-> +	}
-> +
-> +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) & IRB_DELAY_MASK;
-> +
-> +	return ((IRB_WRITE_FIFO & ~IRB_MOD_ENABLE) | tb | delay);
-> +}
-> +
-> +static void meson_irtx_send_buffer(struct meson_irtx *ir)
-> +{
-> +	unsigned int nr = 0;
-> +	unsigned int max_fifo_level = IRB_FIFO_LEN - ir->fifo_threshold;
-> +
-> +	while (ir->buf_head < ir->buf_len && nr < max_fifo_level) {
-> +		writel(ir->buf[ir->buf_head], ir->reg_base + IRB_ADDR2);
-> +
-> +		ir->buf_head++;
-> +		nr++;
-> +	}
-> +}
-> +
-> +static bool meson_irtx_check_buf(struct meson_irtx *ir,
-> +			  unsigned int *buf, unsigned int len)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		unsigned int max_tb_us;
-> +		/*
-> +		 * Max space timebase is 100 us.
-> +		 * Pulse timebase equals to carrier period.
-> +		 */
-> +		if (i % 2 == 0)
-> +			max_tb_us = USEC_PER_SEC / ir->carrier;
-> +		else
-> +			max_tb_us = 100;
-> +
-> +		if (buf[i] >= max_tb_us * IRB_MAX_DELAY)
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +static void meson_irtx_fill_buf(struct meson_irtx *ir, u32 *dst_buf,
-> +				unsigned int *src_buf, unsigned int len)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		if (i % 2 == 0)
-> +			dst_buf[i] = meson_irtx_prepare_pulse(ir, src_buf[i]);
-> +		else
-> +			dst_buf[i] = meson_irtx_prepare_space(ir, src_buf[i]);
-> +	}
-> +}
-> +
-> +static irqreturn_t meson_irtx_irqhandler(int irq, void *data)
-> +{
-> +	unsigned long flags;
-> +	struct meson_irtx *ir = data;
-> +
-> +	writel(readl(ir->reg_base + IRB_ADDR3) & ~IRB_FIFO_THD_PENDING,
-> +	       ir->reg_base + IRB_ADDR3);
-> +
-> +	spin_lock_irqsave(&ir->lock, flags);
-> +	if (ir->buf_head < ir->buf_len)
-> +		meson_irtx_send_buffer(ir);
-> +	else
-> +		complete(&ir->completion);
-> +	spin_unlock_irqrestore(&ir->lock, flags);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int meson_irtx_set_carrier(struct rc_dev *rc, u32 carrier)
-> +{
-> +	struct meson_irtx *ir = rc->priv;
-> +
-> +	if (carrier == 0)
-> +		return -EINVAL;
-> +
-> +	ir->carrier = carrier;
-> +	meson_irtx_set_mod(ir);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_irtx_set_duty_cycle(struct rc_dev *rc, u32 duty_cycle)
-> +{
-> +	struct meson_irtx *ir = rc->priv;
-> +
-> +	ir->duty_cycle = duty_cycle;
-> +	meson_irtx_set_mod(ir);
-> +
-> +	return 0;
-> +}
-> +
-> +static void meson_irtx_update_buf(struct meson_irtx *ir, u32 *buf,
-> +				  unsigned int len, unsigned int head)
-> +{
-> +	ir->buf = buf;
-> +	ir->buf_len = len;
-> +	ir->buf_head = head;
-> +}
-> +
-> +static int meson_irtx_transmit(struct rc_dev *rc, unsigned int *buf,
-> +			       unsigned int len)
-> +{
-> +	unsigned long flags;
-> +	struct meson_irtx *ir = rc->priv;
-> +	u32 *tx_buf;
-> +	int ret;
-> +
-> +	if (!meson_irtx_check_buf(ir, buf, len))
-> +		return -EINVAL;
-> +
-> +	tx_buf = kmalloc_array(len, sizeof(u32), GFP_KERNEL);
-> +	if (!tx_buf)
-> +		return -ENOMEM;
-> +
-> +	meson_irtx_fill_buf(ir, tx_buf, buf, len);
-> +	dev_dbg(ir->dev, "TX buffer filled, length = %u\n", len);
-> +
-> +	spin_lock_irqsave(&ir->lock, flags);
-> +	meson_irtx_update_buf(ir, tx_buf, len, 0);
-> +	reinit_completion(&ir->completion);
-> +	meson_irtx_send_buffer(ir);
-> +	spin_unlock_irqrestore(&ir->lock, flags);
-> +
-> +	ret = wait_for_completion_interruptible(&ir->completion);
-> +	dev_dbg(ir->dev, "TX %s\n", ret ? "interrupted" : "completed");
+> Yet, we always return success.
+> 
+> In case no interrupts were generated we should return an error in a
+> timely manner, so the wait_for_completion() needs the timeout. You
+> can use the fact that the IR is never longer IR_MAX_DURATION (half a
+> second currently). Not sure what the returned error should be, maybe
+> -ETIMEDOUT?
 
-Here two things can happen. One is, the process received a signal (e.g. ^C).
-The other is that the hardware didn't issue any interrupts due some
-problem somewhere. In the latter case, we only escape this
-wait_for_completion_interruptable() when the user gets fed up and presses ^C
-or something like that.
+As for me, ETIMEDOUT is OK.
+> 
+> The problem with the interruptable wait is that a process can receive
+> a signal at any time, and now when this happens your IR gets
+> truncated. I don't think this is what you want.
 
-> +
-> +	spin_lock_irqsave(&ir->lock, flags);
-> +	kfree(ir->buf);
-> +	meson_irtx_update_buf(ir, NULL, 0, 0);
-> +	spin_unlock_irqrestore(&ir->lock, flags);
+Should I replace wait_for_completion_interruptible by
+wait_for_completion_timeout in order to wait in uninterruptible way?
+> 
+> Thanks
+> 
+> Sean
+> 
 
-Now it is possible that the buffer gets cleared before that IR was sent,
-if the signal was received early enough. This means not all the Tx was
-completed.
-
-> +
-> +	return len;
-
-Yet, we always return success.
-
-In case no interrupts were generated we should return an error in a timely
-manner, so the wait_for_completion() needs the timeout. You can use the
-fact that the IR is never longer IR_MAX_DURATION (half a second currently).
-Not sure what the returned error should be, maybe -ETIMEDOUT?
-
-The problem with the interruptable wait is that a process can receive a
-signal at any time, and now when this happens your IR gets truncated. I
-don't think this is what you want.
-
-Thanks
-
-Sean
-
-> +}
-> +
-> +static int meson_irtx_mod_clock_probe(struct meson_irtx *ir,
-> +				      unsigned int *clk_nr)
-> +{
-> +	struct device_node *np = ir->dev->of_node;
-> +	struct clk *clock;
-> +
-> +	if (!np)
-> +		return -ENODEV;
-> +
-> +	clock = devm_clk_get(ir->dev, "xtal");
-> +	if (IS_ERR(clock) || clk_prepare_enable(clock))
-> +		return -ENODEV;
-> +
-> +	*clk_nr = IRB_MOD_XTAL3_CLK;
-> +	ir->clk_rate = clk_get_rate(clock) / 3;
-> +
-> +	if (ir->clk_rate < IRB_MOD_1US_CLK_RATE) {
-> +		*clk_nr = IRB_MOD_1US_CLK;
-> +		ir->clk_rate = IRB_MOD_1US_CLK_RATE;
-> +	}
-> +
-> +	dev_info(ir->dev, "F_clk = %luHz\n", ir->clk_rate);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __init meson_irtx_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct meson_irtx *ir;
-> +	struct rc_dev *rc;
-> +	int irq;
-> +	unsigned int clk_nr;
-> +	int ret;
-> +
-> +	ir = devm_kzalloc(dev, sizeof(*ir), GFP_KERNEL);
-> +	if (!ir)
-> +		return -ENOMEM;
-> +
-> +	ir->reg_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ir->reg_base))
-> +		return PTR_ERR(ir->reg_base);
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0) {
-> +		dev_err(dev, "no irq resource found\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (of_property_read_u32(dev->of_node, "amlogic,fifo-threshold",
-> +				 &ir->fifo_threshold))
-> +		ir->fifo_threshold = MIRTX_DEFAULT_FIFO_THD;
-> +	else if (ir->fifo_threshold >= IRB_FIFO_LEN)
-> +		ir->fifo_threshold = MIRTX_DEFAULT_FIFO_THD;
-> +	dev_dbg(dev, "FIFO threshold set to %u\n", ir->fifo_threshold);
-> +
-> +	ir->dev = dev;
-> +	ir->carrier = MIRTX_DEFAULT_CARRIER;
-> +	ir->duty_cycle = MIRTX_DEFAULT_DUTY_CYCLE;
-> +	init_completion(&ir->completion);
-> +	spin_lock_init(&ir->lock);
-> +
-> +	ret = meson_irtx_mod_clock_probe(ir, &clk_nr);
-> +	if (ret) {
-> +		dev_err(dev, "modulator clock setup failed\n");
-> +		return ret;
-> +	}
-> +	meson_irtx_setup(ir, clk_nr);
-> +
-> +	ret = devm_request_irq(dev, irq,
-> +			       meson_irtx_irqhandler,
-> +			       IRQF_TRIGGER_RISING,
-> +			       DRIVER_NAME, ir);
-> +	if (ret) {
-> +		dev_err(dev, "irq request failed\n");
-> +		return ret;
-> +	}
-> +
-> +	rc = rc_allocate_device(RC_DRIVER_IR_RAW_TX);
-> +	if (!rc)
-> +		return -ENOMEM;
-> +
-> +	rc->driver_name = DRIVER_NAME;
-> +	rc->device_name = DEVICE_NAME;
-> +	rc->priv = ir;
-> +
-> +	rc->tx_ir = meson_irtx_transmit;
-> +	rc->s_tx_carrier = meson_irtx_set_carrier;
-> +	rc->s_tx_duty_cycle = meson_irtx_set_duty_cycle;
-> +
-> +	ret = rc_register_device(rc);
-> +	if (ret < 0) {
-> +		dev_err(dev, "rc_dev registration failed\n");
-> +		rc_free_device(rc);
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, rc);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_irtx_remove(struct platform_device *pdev)
-> +{
-> +	struct rc_dev *rc = platform_get_drvdata(pdev);
-> +
-> +	rc_unregister_device(rc);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id meson_irtx_dt_match[] = {
-> +	{
-> +		.compatible = "amlogic,meson-g12a-ir-tx",
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_irtx_dt_match);
-> +
-> +static struct platform_driver meson_irtx_pd = {
-> +	.remove = meson_irtx_remove,
-> +	.driver = {
-> +		.name = DRIVER_NAME,
-> +		.owner  = THIS_MODULE,
-> +		.of_match_table = meson_irtx_dt_match,
-> +	},
-> +};
-> +
-> +module_platform_driver_probe(meson_irtx_pd, meson_irtx_probe);
-> +
-> +MODULE_DESCRIPTION("Meson IR TX driver");
-> +MODULE_AUTHOR("Viktor Prutyanov <viktor.prutyanov@phystech.edu>");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.21.0
+Best regards,
+Viktor
 
 _______________________________________________
 linux-amlogic mailing list
