@@ -2,73 +2,73 @@ Return-Path: <SRS0=nqA+=MI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2453BC12002
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Jul 2021 14:45:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4DEDC07E95
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Jul 2021 14:45:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E2712613F8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Jul 2021 14:45:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2712613F8
+	by mail.kernel.org (Postfix) with ESMTPS id 9089B613FE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Jul 2021 14:45:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9089B613FE
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=phystech.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dbmUv+xkpGFBT0NfaPO5PnbSLFJQIzExy+C8kgYh3Lg=; b=S0YemmUBslhXdH
-	iVCKiE+8dFI43iEj1yBubOWpb1cin/iJhl0E/fCLPTthZP3ABN+wzdi2mdzN6b1vUY5vKMVvkOL2q
-	gHFJffWfS9L+d0tl1Qk3xTt8JkGJpZ5IbjrMXFRyqRMwlnOEHV7nM7GziKsTfp3e2LbHB85Cj6iH7
-	Nhbe8DnOOZkRujrK22C4HdkfBH0OTO9Wykx+SUnm+DgNh7Hv+x4q2o/pnMNM+RwKQoOPFYhmz6lNt
-	n3QwEc0fO8UphvXYSG68KDFkzI9kLUIT7g3OjuDg/r6F3LK2iS01IY0GLCn1npPbwaYsN+6wpf1PU
-	+UQK2GJ8O0gHvrPOcY+g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=NNLcBI03mUv3uixMCUrvqd8+vmgbGPTVKy74NWOFQ1c=; b=jt2Jas3XwzceVS
+	8X0wr3RvFw9wHYbVEMaqHxpAC184xHQXPaWerwJBrrlWXr3UuzrTdIxcwhL0YzMnNPypD8R8biP4w
+	ZQ0DPSN1H6fsvmsmX+/Fvc2yJAU/0xM98D9O+CdOlHlr8immUwPFNWXCHpTmHL6/WQRkJg+p7DW6N
+	ynVvNK4WHrqGPaSuWtcXCxraWeEwBM7nmCNrH1Eh5Sof4YYAOzYxSHiR8FS288t45L/5u5i0UfOjZ
+	iZJXazaYxRcjYojMWrqEN+hTpo/vrO+3vYq8pTtqLDv6mPvjVvR/6NndToslFEE77yll1NNtXX0oI
+	9uLLjGPkIhO/gtS3ED4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m4P5o-004cbn-KY; Fri, 16 Jul 2021 14:45:32 +0000
-Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
+	id 1m4P5n-004cbg-Qf; Fri, 16 Jul 2021 14:45:31 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m4P5a-004cXD-DF
- for linux-amlogic@lists.infradead.org; Fri, 16 Jul 2021 14:45:20 +0000
-Received: by mail-lf1-x133.google.com with SMTP id q16so16420845lfa.5
- for <linux-amlogic@lists.infradead.org>; Fri, 16 Jul 2021 07:45:18 -0700 (PDT)
+ id 1m4P5Z-004cX2-6N
+ for linux-amlogic@lists.infradead.org; Fri, 16 Jul 2021 14:45:18 +0000
+Received: by mail-lj1-x236.google.com with SMTP id q4so14327535ljp.13
+ for <linux-amlogic@lists.infradead.org>; Fri, 16 Jul 2021 07:45:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=phystech-edu.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=9qKQaa38uUzAtrRHZySBZsZbRwdj+bL+F1vWrPsxptw=;
- b=e7wyoU+Vz9DmsTYrM0+Gy2+cBjc+cllwFWfFVYo6DPLlObgy3aS4e+zD3W9lTdhfIl
- kbPxR8yV63XRbj79LNsYOiMdxLSb/FiKM9TGObfT9XtbF/Fm2prOA+jvwuJijkIfS3UX
- eLhjaofXbfpDlTE/jAYHoaDIn33R+fvfUSCXsDIt8pxceyIe0dW03yHmtxFU63DPcq7e
- E2ZfB5WBsSe+LRFGarXqYCJikp3t9dtO1I3ENfBDs+o/uR3KmJGxoOu5OrmB1wyc8MU6
- VQWbWD9CyF+wUn0p4sJ5paa/rYmCNOq/EF6ThINEctKXV75kpgMD/HJjFRvI6WfEOtar
- I8zA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VewEt9Sal2E694kwqU/1zQiu0e9L1vNSWqLI289mobQ=;
+ b=GkNk0fsCcdTMKo5D6LBy/xNq2Wnz9hXULvjrUWYo2Dw4dB7jE1SqZzZEGKsaAfLpaO
+ 5WiLZmeFr1kLQ/lhl+GwIJZ7UG8sUT1Py+w6Bxf8mM1CfKNGYXcCX9iPqyHpdpk57uf/
+ YirL+S4f9IR6w6c+Dr2DSVrDz7Kz6ywObNMiVN13FXO/iZoXsa8Ay8pnQKigio+HEUKq
+ 5hYq4kr8jR/k7jrdGfWBaHjK2XdazjwwhHK5rRjG4Umz5iULOuKIkeB6wkD9+zj2+KC9
+ dMmU9CaciDfGxQcVXjjtj05DmIq4QJMANVKhpjKbQZQtIyTLoB6QE6XYM1IdfieBcSVb
+ qmQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=9qKQaa38uUzAtrRHZySBZsZbRwdj+bL+F1vWrPsxptw=;
- b=cooityobdnI1MLZs3O6WiUjMDKyC+BnzzbE3757FnYnAOXRHXaAnOQNgDQHnSr6xM/
- Oo5cGTVVKJQT4aTBo82bB8Tm/IpmQO/0vzpiWuFd2e1IqowN0kGCYwx53LKm+oUDI1KJ
- tpI5MU53gcOBpxAJbrGVvCTeNqzOH46JfLpSrKgwb2TTp89UTgc7gqIt8cdIxvODjI/L
- KevAu1ZCKjk8lik5vsta9xUWi34Lbaqw0kuK4BfaxoSuSXAQpVaotFUiH1KEnqzH/6oZ
- oThZJGJLoUPNm2g2g4Npd74PK2MWU1xG7dth/3oAB/rtNhWYHDnCJrdnJHyNuaQRtFUC
- WlZw==
-X-Gm-Message-State: AOAM533I5ps3YPA7NwafHlBskK2t0xJhNjNT5CYdaQGqz8TTaFvPMTVc
- FGoS2lqJgSWhRZOlkLbNd35b3g==
-X-Google-Smtp-Source: ABdhPJyrCzxQ65uTe+AJVSo8LBWBHOGGzKLt6AjQBslEjjFHVe3Wkq66P/4yUZT3tgvwoyZp0DrJZw==
-X-Received: by 2002:a19:791b:: with SMTP id u27mr8027385lfc.101.1626446716670; 
- Fri, 16 Jul 2021 07:45:16 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VewEt9Sal2E694kwqU/1zQiu0e9L1vNSWqLI289mobQ=;
+ b=dpyqmA+iqkhxqbM2SSvLeCl+sRmOg2rp15695rAUGDhH68Dk73FHYX/bLcDTyYgaEj
+ UdYqXHxOqM/UVVxFc1zAa5ia6LkbwK1BG/naLDsHL+Yjkjl7fuxudRuOjWcIMtRcDDE4
+ 7aVh6mQzyYnswQi/M0gPKqiVTptseZmQsKauC35RFysHi+DUNTkBXcn0h2jbnam9bUXG
+ r42UTLmD0mn1D2XkM7/tdE/WqFq6fOzBzUbMpLWpnZo46fA+hXavcylDWTI/Ft0CbfcN
+ rlljp7UUmftntXXX7pvbaJfKFj5VlWYwlQwRv7H7mrWItNn09mTLGMLSLtCmXy8E749K
+ 2bSA==
+X-Gm-Message-State: AOAM53259ShJj1IR8/U/vVulXqmJI3/3y5uoZd2As1KNgeWKELdhsKne
+ sDS0+ztmbibUIroCPseA3NyQeA==
+X-Google-Smtp-Source: ABdhPJwy/jnKpQb7gQ4wl9610QlKRrHy9FWD9SWd1F4D+5MmjA+SijzOnrs5gXqreZh/gl6SLs9Mmg==
+X-Received: by 2002:a2e:8887:: with SMTP id k7mr9194849lji.226.1626446715159; 
+ Fri, 16 Jul 2021 07:45:15 -0700 (PDT)
 Received: from 192.168.1.3 ([2a00:1370:810e:abfe:9c62:44e3:b0ab:76fd])
- by smtp.gmail.com with ESMTPSA id b6sm992327ljf.59.2021.07.16.07.45.15
+ by smtp.gmail.com with ESMTPSA id b6sm992327ljf.59.2021.07.16.07.45.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 16 Jul 2021 07:45:16 -0700 (PDT)
+ Fri, 16 Jul 2021 07:45:14 -0700 (PDT)
 From: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
 To: sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
  khilman@baylibre.com, narmstrong@baylibre.com
@@ -77,16 +77,15 @@ Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, rockosov@gmail.com,
  Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-Subject: [PATCH v6 1/2] media: rc: meson-ir-tx: document device tree bindings
-Date: Fri, 16 Jul 2021 17:45:07 +0300
-Message-Id: <20210716144508.6058-2-viktor.prutyanov@phystech.edu>
+Subject: [PATCH v6 0/2] media: rc: add support for Amlogic Meson IR blaster
+Date: Fri, 16 Jul 2021 17:45:06 +0300
+Message-Id: <20210716144508.6058-1-viktor.prutyanov@phystech.edu>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210716144508.6058-1-viktor.prutyanov@phystech.edu>
-References: <20210716144508.6058-1-viktor.prutyanov@phystech.edu>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210716_074518_514095_9517A054 
-X-CRM114-Status: GOOD (  12.39  )
+X-CRM114-CacheID: sfid-20210716_074517_343546_9B2561FB 
+X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,102 +102,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds binding documentation for the IR transmitter
-available in Amlogic Meson SoCs.
+Hi,
 
-Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
----
- changes in v2:
-   - compatible = "amlogic,meson-g12a-irblaster" added
-   - clocks, clock-names and mod-clock updated
- changes in v3:
-   - mod-clock removed
-   - max-fifo-level added
- changes in v4:
-   - irblaster -> ir-tx renaming
- changes in v5:
-   - max-fifo-level -> amlogic,fifo-threshold (fifo-threshold
-     == 128 - max-fifo-level)
-   - amlogic,fifo-threshold becomes uint32 in range [0; 127]
- no changes in v6
+this is a driver for the IR transmitter (also called IR blaster)
+available in some Amlogic Meson SoCs.
 
- .../bindings/media/amlogic,meson-ir-tx.yaml   | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
+Viktor Prutyanov (2):
+  media: rc: meson-ir-tx: document device tree bindings
+  media: rc: introduce Meson IR TX driver
+
+ .../bindings/media/amlogic,meson-ir-tx.yaml   |  67 +++
+ drivers/media/rc/Kconfig                      |  10 +
+ drivers/media/rc/Makefile                     |   1 +
+ drivers/media/rc/meson-ir-tx.c                | 415 ++++++++++++++++++
+ 4 files changed, 493 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-ir-tx.yaml
+ create mode 100644 drivers/media/rc/meson-ir-tx.c
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,meson-ir-tx.yaml b/Documentation/devicetree/bindings/media/amlogic,meson-ir-tx.yaml
-new file mode 100644
-index 000000000000..88655413495d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/amlogic,meson-ir-tx.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/amlogic,meson-ir-tx.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Amlogic Meson IR transmitter
-+
-+maintainers:
-+  - Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-+
-+description: |
-+  Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
-+  (also called blaster) controller onboard. It is capable of
-+  sending IR signals with arbitrary carrier frequency and duty cycle.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: amlogic,meson-ir-tx
-+      - items:
-+          - const: amlogic,meson-g12a-ir-tx
-+          - const: amlogic,meson-ir-tx
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: sysclk
-+      - const: xtal
-+
-+  amlogic,fifo-threshold:
-+    description: TX FIFO threshold
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 127
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/g12a-clkc.h>
-+
-+    ir@ff80014c {
-+      compatible = "amlogic,meson-g12a-ir-tx", "amlogic,meson-ir-tx";
-+      reg = <0xff80014c 0x10>;
-+      interrupts = <0 198 IRQ_TYPE_EDGE_RISING>;
-+      clocks = <&clkc CLKID_CLK81>, <&xtal>;
-+      clock-names = "sysclk", "xtal";
-+      amlogic,fifo-threshold = <32>;
-+    };
 -- 
 2.21.0
 
