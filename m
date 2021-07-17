@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1D83C636C9
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:30:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0EBA9C636C9
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:31:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 676CA61106
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:30:56 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 676CA61106
+	by mail.kernel.org (Postfix) with ESMTPS id B90E5610F9
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:31:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B90E5610F9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,70 +24,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=paDPEtjOK1ukFph8SH72fm4VZBNssPfNvJe2Z+hAaOs=; b=tMJcQv/XZ2RFf/
-	fR87LOCq5s5HsbcJZW7CIyrr6sOQQi/jT933zCu6nxBEio/KI+uBydOsHz580ueVoX2chuWyZqz4c
-	USfwLBgxbVqYh/o/hFAdcN6l8hFN+qyrdPq4mM9TMk6uCN+JWwSLXDZbqF2jtZxnF/JiO3PBulOBI
-	p/8Nt1OfCMJ+hjXxRG7T7tSB/z1lUtt9Z3I6pOAjdKGmCgZdxbUAS2YhKuWKFGniLFqYZ2cApVHdU
-	G9Dr1sbgPWAZoQ1Nb2qFQsv5Egp0HIiASLSNQhTf+HXl8ABY12e79GSvFsBqOaLR76wJaxr0Q7z9m
-	wsa4pUCojbDV8q8vfGqA==;
+	List-Owner; bh=kQwJZ/jWgKTFPCgU0Kk07xKN5Eh5/p2laIu7ZP7Ge5s=; b=FXc+YTaApGxNmg
+	QkiACGhuZm0MY7hlIc3X0TFH1t36StEDvZtjoguu0JVFUVOfgDbFbSIJYkCJJa80Bg+pZ6KXpP4uw
+	SXpcLCpT/z05n341A/8g9cEo7BTA6jF+rmMaYJcrcGQFjMdoq2Fy1sMaZofy18Cl+07oxB/2WRZ/S
+	F3I6QfORNjN8Ur/vE+TwK4LXN7ajQxcOdX7BmACaIA//ynSDdIS//Kd48xA4i1roLkNbjwZyu0G4x
+	aB0lbBLt0/p4iMCA4DjMI/v6ztO+nsLeoTJhBukKll5nl76iK2+16MmVbCiwk7Ph+f86h2qnqSVYa
+	GmkN4C5yQETALDgmNl2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m4tlk-00783e-2i; Sat, 17 Jul 2021 23:30:52 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1m4tlx-00788i-3R; Sat, 17 Jul 2021 23:31:05 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m4tlW-007806-R0; Sat, 17 Jul 2021 23:30:40 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id
- q18-20020a1ce9120000b02901f259f3a250so8080476wmc.2; 
- Sat, 17 Jul 2021 16:30:38 -0700 (PDT)
+ id 1m4tlX-00780N-J1; Sat, 17 Jul 2021 23:30:40 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id g16so16516872wrw.5;
+ Sat, 17 Jul 2021 16:30:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ZsVloxEGjSteK4U7+lXhhEQfJStMyVYbpRaRDn0jLto=;
- b=J+U+9/QycuPEanBet1BEi5lgWbUua9ldGZEuMBNS4BYUQhwrxG8Jjp/l5bDdkA4rDW
- XsJKSv9P4B9KKovPfWOE+uvS1vWveAk0b6eJlTT4/9YXu0rHolnYBvQKcTQLjdUUvKdk
- qxIXzR8MOSqCUIpWyyvvV8cllttE6w21KBlQePoTayqOz+Nmdk6L0aF2lUJEu3dgUElB
- VHv9icGzEddE6ENhifGZgikgvy/kmQg4BP42bLVRZh850M94wdj6RLNgCNJbKbLXGW/F
- DoeuDvTKJ7pP5gLFuSwwdn09GDfJMbnYv9rAE1092pHglvuEqx6Th3EZsksrZTrcSY+C
- iSLw==
+ bh=FJiK6ZPfj0SXkTk/BERUcE9u2Ss9uOY9yYEJynNuJRE=;
+ b=sWxRlKLGfombM7n/SQKbdgHjDcsYANaqKK/V/9slxJwdEmWNMzIfZVXIhxZUztF/QQ
+ bgjYQwlRzHaWIjJZWhWLKjZmSo8LrtSEOLUzbRvzAl0F4oxhKVjycAq854htHPN+mWMc
+ kHnWO+hb89Hi/nQnYb7w0dTTMvlgvxu18R/yJd9pXul3B7X+zkVOiiPX48iop/9paaMg
+ A+kkkAlHgwmX5ANsFL23EDu3EH6EDCoJigDqX8By2uwMRp8LsH7zRyX38By/hGbeHMR8
+ h+ePVEJgXKa5go3Oy8Z4SpeSefYI94WUBJTV6zKMgl4FcMlbwafLOquB+J+ExPboqR3w
+ kDJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ZsVloxEGjSteK4U7+lXhhEQfJStMyVYbpRaRDn0jLto=;
- b=CXxSsALP4EE+yv/JaOzrM0Tl/d5ajkgUV/xIeaj0G6upGy9G3vA2ncnNMFm4rXK57W
- cp7Q9nvNGnBRbZRLo3EP+j6WQrbzeaWkqEsgdfuGHJvOG/bZti1G3iaohHqijA3zyaAS
- li0rVviMuxee1xkz6UfXmA1RFhq+mVSZTDNKCZDUErEp+Va8tHzmzitHeAiVpvbxGRyU
- k+HJBOFZdZmRsFLhz2pvGNKsIS5nULKmEqmQjOQrQ/UdBIkE5mG7YPPJKtzOBvj9Chkp
- 4u2x2bl2imBSN/eqeSRGTCufrVopXmw84F7mNHRiu2nDl40Bd7+3GudvwbkiwfDr98EE
- jSew==
-X-Gm-Message-State: AOAM5303a+c73YBZNLDW6oWtDmMXUP/1PwH1oqk+g7LC2CXcuXFqewKQ
- sCB55NRuqHEt4pJqT7LpCRJOu+Kfqxo=
-X-Google-Smtp-Source: ABdhPJywMQVKPjUbVi7xolNMlKaN+tPpKAzZJFYFqum6WncftMz8NZBUlZIVwOeRhGVmsHQli/H1hQ==
-X-Received: by 2002:a05:600c:2187:: with SMTP id
- e7mr24465294wme.161.1626564637171; 
+ bh=FJiK6ZPfj0SXkTk/BERUcE9u2Ss9uOY9yYEJynNuJRE=;
+ b=oxHH3fJVgy9Z52/EAQwuD3mV6/TyXAdZFzL8vIzNVl6ocgzyRCIzAlCILshhN6r9SI
+ K2l7hopirvpwyoxC163l3hThriw2kc8hHYNM/QqJkKIZCdC4KzIMtp8X1BVOxJbvMeer
+ eDOHIe3BGu21yor9FzuBH2Z41HGkhDLHwVoYNzAkHHY1PYAImujxSOrk/5wCA/845MK+
+ YDP7iAUdhcWOGau5DaKHo5PIhY3T17NLkPZzeUgsa25x4A0oljCGMyOfsvC/VMg/9l3V
+ VcAkHs9DGMpj80KimNqwlOiaGrw+dEJV3XujYbqox070dKbvRhRoIeMGLJsQ4fpnuZfA
+ KaVg==
+X-Gm-Message-State: AOAM532/C7q821Dufr/ZrfzHstCTdbKf2bLaAs3T9hgUJSB3z2utB0pm
+ kJ7T3SSCkjIU/+kmcXvN/tV7hLLO9YE=
+X-Google-Smtp-Source: ABdhPJwVTlimgC+HBeL7qBCgE7Kt4D4zsydJswDaUEdpNebka11e9Ob4P7IdljCl6B1/fVutj9prpg==
+X-Received: by 2002:adf:facf:: with SMTP id a15mr21055072wrs.39.1626564637959; 
  Sat, 17 Jul 2021 16:30:37 -0700 (PDT)
 Received: from localhost.localdomain
  (dynamic-2a01-0c22-7602-4e00-f22f-74ff-fe21-0725.c22.pool.telefonica.de.
  [2a01:c22:7602:4e00:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id q19sm14824051wmq.38.2021.07.17.16.30.36
+ by smtp.googlemail.com with ESMTPSA id q19sm14824051wmq.38.2021.07.17.16.30.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 17 Jul 2021 16:30:36 -0700 (PDT)
+ Sat, 17 Jul 2021 16:30:37 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org
 Cc: narmstrong@baylibre.com, khilman@baylibre.com,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 1/2] ARM: dts: meson: Add the AIU audio controller
-Date: Sun, 18 Jul 2021 01:30:29 +0200
-Message-Id: <20210717233030.331273-2-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 2/2] ARM: dts: meson8b: ec100: wire up the RT5640 audio
+ codec
+Date: Sun, 18 Jul 2021 01:30:30 +0200
+Message-Id: <20210717233030.331273-3-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210717233030.331273-1-martin.blumenstingl@googlemail.com>
 References: <20210717233030.331273-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210717_163038_918079_7D937D5F 
-X-CRM114-Status: GOOD (  12.65  )
+X-CRM114-CacheID: sfid-20210717_163039_665968_38513F48 
+X-CRM114-Status: GOOD (  13.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,219 +103,90 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the AIU audio controller to the Amlogic Meson6/8/8b/8m2 SoC DT. This
-provides I2S and SPDIF outputs as well as codec glues for the internal
-HDMI controller.
-Also add the clock inputs and pin mux definitions on Meson8/8b/8m2. On
-Meson6 this is omitted because we neither have a clock nor pin
-controller node there yet.
+The Realtek RT5640 codec is connected to the SoC's I2S interface.
+Describe this in the .dts together with the codec's LDO1 enable GPIO so
+audio can be played on the Endless Mini.
+While here, add a note about the realtek,ldo1-en-gpios for which the
+EC100 uses GPIO_BSD_EN. Due to driver limitations this pin cannot be
+used currently.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson.dtsi   | 12 +++++++
- arch/arm/boot/dts/meson8.dtsi  | 63 ++++++++++++++++++++++++++++++++++
- arch/arm/boot/dts/meson8b.dtsi | 63 ++++++++++++++++++++++++++++++++++
- 3 files changed, 138 insertions(+)
+ arch/arm/boot/dts/meson8b-ec100.dts | 44 +++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index bd0e864964e9..3be7cba603d5 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/sound/meson-aiu.h>
- 
- / {
- 	#address-cells = <1>;
-@@ -36,6 +37,17 @@ hhi: system-controller@4000 {
- 				reg = <0x4000 0x400>;
- 			};
- 
-+			aiu: audio-controller@5400 {
-+				compatible = "amlogic,aiu";
-+				#sound-dai-cells = <2>;
-+				sound-name-prefix = "AIU";
-+				reg = <0x5400 0x2ac>;
-+				interrupts = <GIC_SPI 48 IRQ_TYPE_EDGE_RISING>,
-+					     <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
-+				interrupt-names = "i2s", "spdif";
-+				status = "disabled";
-+			};
-+
- 			assist: assist@7c00 {
- 				compatible = "amlogic,meson-mx-assist", "syscon";
- 				reg = <0x7c00 0x200>;
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 686c7b7c79d5..f80ddc98d3a2 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -317,6 +317,29 @@ mali: gpu@c0000 {
+diff --git a/arch/arm/boot/dts/meson8b-ec100.dts b/arch/arm/boot/dts/meson8b-ec100.dts
+index 8e48ccc6b634..e404bdccdab9 100644
+--- a/arch/arm/boot/dts/meson8b-ec100.dts
++++ b/arch/arm/boot/dts/meson8b-ec100.dts
+@@ -96,6 +96,32 @@ rtc32k_xtal: rtc32k-xtal-clk {
+ 		#clock-cells = <0>;
  	};
- }; /* end of / */
+ 
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "M8B-EC100";
++
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-rates = <270950400>,
++				       <294912000>,
++				       <393216000>;
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&rt5640>;
++			};
++		};
++	};
++
+ 	usb_vbus: regulator-usb-vbus {
+ 		/*
+ 		 * Silergy SY6288CCAC-GP 2A Power Distribution Switch.
+@@ -242,6 +268,14 @@ vddee: regulator-vddee {
+ 	};
+ };
  
 +&aiu {
-+	compatible = "amlogic,aiu-meson8", "amlogic,aiu";
-+	clocks = <&clkc CLKID_AIU_GLUE>,
-+		 <&clkc CLKID_I2S_OUT>,
-+		 <&clkc CLKID_AOCLK_GATE>,
-+		 <&clkc CLKID_CTS_AMCLK>,
-+		 <&clkc CLKID_MIXER_IFACE>,
-+		 <&clkc CLKID_IEC958>,
-+		 <&clkc CLKID_IEC958_GATE>,
-+		 <&clkc CLKID_CTS_MCLK_I958>,
-+		 <&clkc CLKID_CTS_I958>;
-+	clock-names = "pclk",
-+		      "i2s_pclk",
-+		      "i2s_aoclk",
-+		      "i2s_mclk",
-+		      "i2s_mixer",
-+		      "spdif_pclk",
-+		      "spdif_aoclk",
-+		      "spdif_mclk",
-+		      "spdif_mclk_sel";
-+	resets = <&reset RESET_AIU>;
++	status = "okay";
++
++	pinctrl-0 = <&i2s_am_clk_pins>, <&i2s_out_ao_clk_pins>,
++		    <&i2s_out_lr_clk_pins>, <&i2s_out_ch01_ao_pins>;
++	pinctrl-names = "default";
 +};
 +
- &aobus {
- 	pmu: pmu@e0 {
- 		compatible = "amlogic,meson8-pmu", "syscon";
-@@ -340,6 +363,38 @@ gpio_ao: ao-bank@14 {
- 			gpio-ranges = <&pinctrl_aobus 0 0 16>;
- 		};
+ &cpu0 {
+ 	cpu-supply = <&vcck>;
+ };
+@@ -283,9 +317,19 @@ &i2c_A {
  
-+		i2s_am_clk_pins: i2s-am-clk-out {
-+			mux {
-+				groups = "i2s_am_clk_out_ao";
-+				function = "i2s_ao";
-+				bias-disable;
-+			};
-+		};
+ 	rt5640: codec@1c {
+ 		compatible = "realtek,rt5640";
 +
-+		i2s_out_ao_clk_pins: i2s-ao-clk-out {
-+			mux {
-+				groups = "i2s_ao_clk_out_ao";
-+				function = "i2s_ao";
-+				bias-disable;
-+			};
-+		};
+ 		reg = <0x1c>;
 +
-+		i2s_out_lr_clk_pins: i2s-lr-clk-out {
-+			mux {
-+				groups = "i2s_lr_clk_out_ao";
-+				function = "i2s_ao";
-+				bias-disable;
-+			};
-+		};
++		#sound-dai-cells = <0>;
 +
-+		i2s_out_ch01_ao_pins: i2s-out-ch01 {
-+			mux {
-+				groups = "i2s_out_ch01_ao";
-+				function = "i2s_ao";
-+				bias-disable;
-+			};
-+		};
+ 		interrupt-parent = <&gpio_intc>;
+ 		interrupts = <13 IRQ_TYPE_EDGE_BOTH>; /* GPIOAO_13 */
 +
- 		uart_ao_a_pins: uart_ao_a {
- 			mux {
- 				groups = "uart_tx_ao_a", "uart_rx_ao_a";
-@@ -460,6 +515,14 @@ mux {
- 			};
- 		};
- 
-+		spdif_out_pins: spdif-out {
-+			mux {
-+				groups = "spdif_out";
-+				function = "spdif";
-+				bias-disable;
-+			};
-+		};
-+
- 		spi_nor_pins: nor {
- 			mux {
- 				groups = "nor_d", "nor_q", "nor_c", "nor_cs";
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index c02b03cbcdf4..b49b7cbaed4e 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -279,6 +279,29 @@ mali: gpu@c0000 {
++		/*
++		 * TODO: realtek,ldo1-en-gpios is connected to GPIO_BSD_EN.
++		 * We currently cannot configure this pin correctly.
++		 * Luckily for us it's in the "right" state by default.
++		 */
+ 		realtek,in1-differential;
  	};
- }; /* end of / */
- 
-+&aiu {
-+	compatible = "amlogic,aiu-meson8b", "amlogic,aiu";
-+	clocks = <&clkc CLKID_AIU_GLUE>,
-+		 <&clkc CLKID_I2S_OUT>,
-+		 <&clkc CLKID_AOCLK_GATE>,
-+		 <&clkc CLKID_CTS_AMCLK>,
-+		 <&clkc CLKID_MIXER_IFACE>,
-+		 <&clkc CLKID_IEC958>,
-+		 <&clkc CLKID_IEC958_GATE>,
-+		 <&clkc CLKID_CTS_MCLK_I958>,
-+		 <&clkc CLKID_CTS_I958>;
-+	clock-names = "pclk",
-+		      "i2s_pclk",
-+		      "i2s_aoclk",
-+		      "i2s_mclk",
-+		      "i2s_mixer",
-+		      "spdif_pclk",
-+		      "spdif_aoclk",
-+		      "spdif_mclk",
-+		      "spdif_mclk_sel";
-+	resets = <&reset RESET_AIU>;
-+};
-+
- &aobus {
- 	pmu: pmu@e0 {
- 		compatible = "amlogic,meson8b-pmu", "syscon";
-@@ -302,6 +325,46 @@ gpio_ao: ao-bank@14 {
- 			gpio-ranges = <&pinctrl_aobus 0 0 16>;
- 		};
- 
-+		i2s_am_clk_pins: i2s-am-clk-out {
-+			mux {
-+				groups = "i2s_am_clk_out";
-+				function = "i2s";
-+				bias-disable;
-+			};
-+		};
-+
-+		i2s_out_ao_clk_pins: i2s-ao-clk-out {
-+			mux {
-+				groups = "i2s_ao_clk_out";
-+				function = "i2s";
-+				bias-disable;
-+			};
-+		};
-+
-+		i2s_out_lr_clk_pins: i2s-lr-clk-out {
-+			mux {
-+				groups = "i2s_lr_clk_out";
-+				function = "i2s";
-+				bias-disable;
-+			};
-+		};
-+
-+		i2s_out_ch01_ao_pins: i2s-out-ch01 {
-+			mux {
-+				groups = "i2s_out_01";
-+				function = "i2s";
-+				bias-disable;
-+			};
-+		};
-+
-+		spdif_out_1_pins: spdif-out-1 {
-+			mux {
-+				groups = "spdif_out_1";
-+				function = "spdif_1";
-+				bias-disable;
-+			};
-+		};
-+
- 		uart_ao_a_pins: uart_ao_a {
- 			mux {
- 				groups = "uart_tx_ao_a", "uart_rx_ao_a";
+ };
 -- 
 2.32.0
 
