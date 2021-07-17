@@ -4,90 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6BEBFC636CA
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C40DCC636C9
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:49:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2E9FA61153
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:38:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E9FA61153
+	by mail.kernel.org (Postfix) with ESMTPS id 855F461042
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:49:20 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 855F461042
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hMfMVe71aGY09IIrBUQwOf5q94lSa3gYurpFxhVK8fM=; b=AP5nQJxxkUsMaV
-	aJldqmT5ezN/lT5qH/wRSyNh0ZObGQpGtD7bNEVB1TXTzS3qcYtmFc3MrcANwZ7Pf6XsRQqGzqeBo
-	O4xzwMSAkiae4VGaPl2XUOr2sLY0s/XtelNkvhoJYzQGn23UThBqAwOR0WQV7KVUdxp50b/g6787q
-	h392GUY9s7YgEijaBkb5xQ2hRlQDhv/C2RD+6JNFDfTTiKFqZeDd3eSMZw+F4+uqNZPQ7mWanf4e2
-	6NVFqgsa4jzFUSqKyb9bsVqFC+hAHYDWyM6OqGtQDEwajVDNXvKZSuEbgJW13dsoVnNsf4YEmf1j3
-	W+Asa14t/uCJiumYCE6A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=YgjEp5zjBOjWSpt+M9SY0EwSC3qPCJ2eTjqjWcEvTec=; b=n952/ivPwWljeA
+	HyBNWSV42jyEAaMUuNXac0wKE4dOrsdz90IwQP0XeSq9BkaL9ueT/Qb/0NS464J1MjIZeKNb4A4mP
+	3MvZBCJ9n7yMgp0KylGzT+vcdX/HLgXIoV8JSNu/CPUAXuwN7lH3mwrGxL7yb8NPE6LoJhq28Fd+d
+	C9fyFPkCIczfzHu697i6EtLCdLDO1Uzpq+vc0LWny045cFIQH49WXXE8XLUv7xYP2bsuDHKW5c67W
+	8er3HXqsn0/mK7a93qCoDj6gX2j+fH56AIhPL+pi/5S/Gsgl3zcN2q6W90TDR6r0UmevalkYgk/ve
+	Oew3z/kAFGi0Emfndv4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m4tsu-0079wE-Lr; Sat, 17 Jul 2021 23:38:16 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1m4u3V-007BX8-Uc; Sat, 17 Jul 2021 23:49:13 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m4tsD-0079hD-HS; Sat, 17 Jul 2021 23:37:34 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id g16so16528060wrw.5;
- Sat, 17 Jul 2021 16:37:33 -0700 (PDT)
+ id 1m4u3S-007BW8-IV; Sat, 17 Jul 2021 23:49:12 +0000
+Received: by mail-wm1-x334.google.com with SMTP id c17so956548wmb.5;
+ Sat, 17 Jul 2021 16:49:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=XT3dSBF1T+xb0vIDoCrx2w6ZTm5g1KZ+GveMuxTzekE=;
- b=CtXz2OYi/GCxjfmSsp1YKE9LnoDSnkeBX/+cM0CqBTWLFyQ6l+6dF7g0GALhl5vFip
- bB1RIaGem2FXKgNiq5DFd/DPWKamLAy953PR8qpNsuuHn+CCMqud62IDqI2tgLVcNVJL
- pqiUeR/+krg7X5p1lecyAvFwM5jkR75NGg6E5w+CQb1NJ9sbUYwh+ep4qbz61fVvxMJp
- TcSgS/GtSGwi5iDDi8i26O8rXG9dnoxKH7P/myimGPxHn9jsUFuERMigxDKxjx9wQWSW
- v8eZgG05pDqFZaqWIbBJC5A9z6GV2VeemXuFYPhFjx3Pr9A3KDKuqhML1I7a9D5eavp+
- fGEA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=oBGFOtNXdJtGI6zllMRiYFqQMCyuJWzibZ62ST2fM4g=;
+ b=UoPI9cT/aV3KiC2ZkWQlM9k6+BLn38/hBCBIZz7MioThojHAnTr+pGzZhxMUBCOZKj
+ p/XxcdsnrF666N5PRAIvK5wKermUMtxgJs61Cve/RbUWk6f96Lv10nrl0fH89OkW88wX
+ gBkcnpr0BvT5dA1er5ltGAEEd7ZAy//vdpI42rkzXXoON9gU4BGQt0Eo98RpbaigOQI1
+ gV0V+R5peeh9nx2eGDhoFLSfUo0fsBpy1YF5y7jYKJIbG5D0uRDo5UDSGeG14IyBDmNU
+ ZOagbeDpsfrQb7JNR0AorIcz5aJ6VfuGd+OCmgOzdK2h4V0gKLOwCjGPNV410DXTkLQ7
+ 5E8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=XT3dSBF1T+xb0vIDoCrx2w6ZTm5g1KZ+GveMuxTzekE=;
- b=Yysg/t3e+4Nk0T7wGpr9BCvZ2sq4WplSqM4lNbx49Eo0U/b+HnI1fn7QEKrrS0YZSp
- Lbm+u3VsGG5VWQ8jjhJUpx2ZBqS/AauMkSnTXSJjfe9c00vjj2g3dExbWy84OKgGk1lB
- iKfcPtDg/lTuFw0ZtwoQXPV3saUrP1dRtwyPblpeArFpkcB9FuWZ84OjNOz4j1LSqQOF
- VUJOIwpamOfgDIsr6BagW1EZY/ENKgPnDav8Pzy7XQsV992Fj3hQ5k7tW5E4jeyCZB+v
- dRMK4UIFuF7OFYNFZtcnvQajc+dbAF2skpyPZgekx3TSJtTpL841WR29Ure1LMOq4wC+
- 2lXg==
-X-Gm-Message-State: AOAM532oATc2YTrwd+THEEF2upd6hxN+61o/Doym3grcgYmdOHi5rI3F
- sQx1/jM+8UgrkFFl4Hrqq9U=
-X-Google-Smtp-Source: ABdhPJyMHQezFPPUSmeL1JZrcqZFIjqXhH77/GR5QaHIt7RRb8WSy+hK7rcUeEv/o/KOCoaagS0qRw==
-X-Received: by 2002:a5d:5141:: with SMTP id u1mr21346802wrt.193.1626565052070; 
- Sat, 17 Jul 2021 16:37:32 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=oBGFOtNXdJtGI6zllMRiYFqQMCyuJWzibZ62ST2fM4g=;
+ b=KT//WInioUsD8YU7WQ1yKUKq3rKb3TFm9xkC+1mTaMHYaJtxezdkDezdwPP2ak7f+V
+ erZSN+d9+a4FMcqEEot7rom0XXXIBZgiN+xSYsC76xQ338PxcyCqmrz3vAd960B/Tpr0
+ GLZlGiUz1zQLNnqfHdRk1pFvZV1PncNFfiFSV3gas/Thr76225oA9XGkxiYcTqKkQAJ/
+ dGGw1nKoQdeJWlLDTnSvF3T5/u2BbRKgjNOfi+6zkKD/MhPf46KkKrZ0l01fBmN4xf3C
+ q2gneWuruP0GV7VxRsQcKaTb6ABZsrLjTST4tt+Ozrjeq0Blp32dTWZ3WRFTht1TYTQ/
+ tI5A==
+X-Gm-Message-State: AOAM5306vzDP/cBadVinYMvP8umVjeseXofThMycvW41j3ucTtn85pvC
+ WleEmkCij4k8aGKp4nyJ4LI=
+X-Google-Smtp-Source: ABdhPJy36kFbyqTdwDVbP5vyf9GTdh9YsWISuX1CjkkH15Qo0Aioai9FsOghz8lU4/JioPvCA9HUKA==
+X-Received: by 2002:a7b:c052:: with SMTP id u18mr25267205wmc.105.1626565749059; 
+ Sat, 17 Jul 2021 16:49:09 -0700 (PDT)
 Received: from localhost.localdomain
  (dynamic-2a01-0c22-7602-4e00-f22f-74ff-fe21-0725.c22.pool.telefonica.de.
  [2a01:c22:7602:4e00:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id q7sm12347527wmq.33.2021.07.17.16.37.31
+ by smtp.googlemail.com with ESMTPSA id p11sm14505044wro.78.2021.07.17.16.49.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 17 Jul 2021 16:37:31 -0700 (PDT)
+ Sat, 17 Jul 2021 16:49:08 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-iio@vger.kernel.org,
+To: linux-remoteproc@vger.kernel.org,
 	linux-amlogic@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- lars@metafoo.de, jic23@kernel.org,
+ mathieu.poirier@linaro.org, bjorn.andersson@linaro.org, ohad@wizery.com,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 3/3] iio: adc: meson-saradc: Fix indentation of arguments
- after a line-break
-Date: Sun, 18 Jul 2021 01:37:18 +0200
-Message-Id: <20210717233718.332267-4-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v3 0/2] Amlogic Meson Always-On ARC remote-processor support
+Date: Sun, 18 Jul 2021 01:48:57 +0200
+Message-Id: <20210717234859.351911-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210717233718.332267-1-martin.blumenstingl@googlemail.com>
-References: <20210717233718.332267-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210717_163733_619351_D790FB5D 
-X-CRM114-Status: GOOD (  13.64  )
+X-CRM114-CacheID: sfid-20210717_164910_679568_D55ACA98 
+X-CRM114-Status: GOOD (  26.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,47 +101,99 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Align the function arguments after a line-break with the opening
-parenthesis on the previous line. No functional changes intended.
+Amlogic Meson6/8/8b/8m2 come with an ARC core in the Always-On (AO)
+power-domain. This is typically used for waking up the ARM CPU after
+powering it down for system suspend.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/iio/adc/meson_saradc.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+The exact ARC core used on Meson6 and earlier is not known. I believe
+it is an ARC625, but I am not sure about this. Meson8/8b/8m2 uses an
+ARC EM4 core.
+They all have in common that they use a section of the SoCs SRAM for
+running code on the ARC core.
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index b4e16f2e957f..705d5e11a54b 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -497,8 +497,8 @@ static int meson_sar_adc_lock(struct iio_dev *indio_dev)
- 	if (priv->param->has_bl30_integration) {
- 		/* prevent BL30 from using the SAR ADC while we are using it */
- 		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
--				MESON_SAR_ADC_DELAY_KERNEL_BUSY,
--				MESON_SAR_ADC_DELAY_KERNEL_BUSY);
-+				   MESON_SAR_ADC_DELAY_KERNEL_BUSY,
-+				   MESON_SAR_ADC_DELAY_KERNEL_BUSY);
- 
- 		/*
- 		 * wait until BL30 releases it's lock (so we can use the SAR
-@@ -525,7 +525,7 @@ static void meson_sar_adc_unlock(struct iio_dev *indio_dev)
- 	if (priv->param->has_bl30_integration)
- 		/* allow BL30 to use the SAR ADC again */
- 		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
--				MESON_SAR_ADC_DELAY_KERNEL_BUSY, 0);
-+				   MESON_SAR_ADC_DELAY_KERNEL_BUSY, 0);
- 
- 	mutex_unlock(&indio_dev->mlock);
- }
-@@ -791,7 +791,7 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
- 	 * on the vendor driver), which we don't support at the moment.
- 	 */
- 	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG0,
--			MESON_SAR_ADC_REG0_ADC_TEMP_SEN_SEL, 0);
-+			   MESON_SAR_ADC_REG0_ADC_TEMP_SEN_SEL, 0);
- 
- 	/* disable all channels by default */
- 	regmap_write(priv->regmap, MESON_SAR_ADC_CHAN_LIST, 0x0);
+Unfortunately there's no information about the remote-processor control
+registers in the public Meson8b (S805) datasheet. All information is
+either taken from Amlogic's 3.10 kernel and 2011-03 u-boot or found by
+testing (for example the clock input is not mentioned anywhere in the
+reference code, but disabling it stops the AO ARC core from working).
+
+This series consists of five patches:
+ 1: dt-bindings for the SRAM section
+ 2: dt-bindings for the SECBUS2 syscon region which contains a few
+    bits for controlling this remote processor
+ 3: dt-bindings for the AO ARC remote processor
+ 4: the driver for booting code on the AO ARC remote processor
+ 5: (only included for documentation purposes) dts changes (these will
+    be re-sent separately)
+
+Patches #3 and #4 should go through the remoteproc tree. Patches #1
+and #2 may go through Rob's (devicetree) tree, Kevin's linux-amlogic
+tree or through the remoteproc tree. Personally I have no preference
+here.
+
+To test this series I ported the Amlogic serial driver and added the
+board files for the Amlogic AO ARC EM4 to the Zephyr RTOS. The code can
+be found here: [0] (the resulting zephyr.elf can then be loaded as
+remote-processor firmware from Linux).
+
+
+Changes since v1 at [1]:
+- fixed yamllint warnings (after installing the package these now also
+  show up on my build machine) in patches #2 and #3. Thanks for the
+  hint Rob
+- dropped the explicit "select" statement from the dt-bindings in patch
+  #2 as suggested by Rob (thanks)
+
+Changes since v2 at [2]:
+- added Rob's Reviewed-by to the dt-bindings patch (thank you!)
+- all other patches (secbus2 dt-bindings, .dtsi, etc.) are already
+  applied so they're not part of this series anymore
+- remove extra indentation for register fields
+- fix maximum (da + len) check in meson_mx_ao_arc_rproc_da_to_va to not
+  exceed the allocated SRAM size (thanks for spotting this Bjorn!)
+- remove extra usleep_range from meson_mx_ao_arc_rproc_start
+- make the code to generate the value for the AO_CPU_CNTL register
+  easier to read
+- removed unused secbus2_pdev variable from meson_mx_ao_arc_rproc_probe
+- add preprocessor defines for the AO_REMAP_REG0 and AO_REMAP_REG1
+  fields. Special thanks to Jianxin from Amlogic for providing this
+  information
+- program AO_REMAP_REG0 correctly so bits 17:14 in the SRAM address can
+  be used
+- program AO_REMAP_REG1 with 0x0 and add a comment as to why this is
+  needed. This comment should also clarify why the da_to_va
+  implementation can assume that the memory always starts at 0x0
+- allow bits 17:14 to be set in the SRAM address. I tested this with
+  physical address 0xd9010000 (SRAM offset 0x10000)
+- re-reading the Amlogic u-boot and kernel code again made me understand
+  what the bits in AO_SECURE_REG0 are used for: these need to be
+  programmed with bits [19:12] of the used SRAM address. The field macro
+  and GENMASK is updated accordingly.
+- initialize fw_name with NULL so we can simplify the code as we don't
+  have to check for the return value of device_property_read_string
+  anymore (thanks for the suggestion Bjorn)
+- drop of_match_ptr as it's not needed (thanks for the suggestion Bjorn)
+- add the new is_iomem parameter to the .da_to_va implementation
+
+
+[0] https://github.com/xdarklight/zephyr-rtos/commits/amlogic_ao_em4-20201229
+[1] https://patchwork.kernel.org/project/linux-amlogic/list/?series=407349
+[2] https://patchwork.kernel.org/project/linux-amlogic/cover/20210102205904.2691120-1-martin.blumenstingl@googlemail.com/
+
+
+Martin Blumenstingl (2):
+  dt-bindings: remoteproc: Add the documentation for Meson AO ARC rproc
+  remoteproc: meson-mx-ao-arc: Add a driver for the AO ARC remote
+    procesor
+
+ .../remoteproc/amlogic,meson-mx-ao-arc.yaml   |  87 ++++++
+ drivers/remoteproc/Kconfig                    |  11 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/meson_mx_ao_arc.c          | 260 ++++++++++++++++++
+ 4 files changed, 359 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+ create mode 100644 drivers/remoteproc/meson_mx_ao_arc.c
+
 -- 
 2.32.0
 
