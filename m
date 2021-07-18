@@ -1,94 +1,92 @@
-Return-Path: <SRS0=V7O5=MJ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=dufR=MK=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CCBB5C636C9
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:49:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB310C636CA
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Jul 2021 03:39:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 94D4661108
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jul 2021 23:49:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 94D4661108
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 7805D61103
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Jul 2021 03:39:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7805D61103
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0jW5KCccq5k0fVCxdntQvkIVcYJ5/G+TsnVaGNRRwsY=; b=xeBazZqcFpubah
-	364+8h2MPGWf+MHjCBWfRMq+d8+9Py/ohOhblH7BnuQvGgIlrdcdAd2ZpScu6vL2KJLA+1W+IeKOR
-	OJgWxBmNObEDrJlwDYERmbxNo7KvKoEfZXkfVdX6YOlRbMdGkXJkaQIoHRsoUmbMg4no1QoXo0DS3
-	msWFDnr+QumlWrZQJDZrC4RG4R/egC4PzbZG24Ev6iYFCASWLUdOvf2dL9p+fcmVbHV523LW4+axw
-	Y3jTl8/vjEo+S7TUthzGDuWdrHEmHKlhaOwVk2WIGqzyZYqmBeZ17Jp6TWrKeRYGsxFdd2h+njgkd
-	ulU/0jDv/aE/mc7c8ijw==;
+	List-Owner; bh=fArHSJ5fdaZp1pKkARxN9N9+gbqifJrSkNUkgG0Hguw=; b=YFlxb2hcTbM9b3
+	H5hRZ16ffexATctI7/8TCxVk60lG/n8CUm+cc8t9m+4l1ZDc3aC4JWqf8DgfcXklVU7U0GGeb/mg3
+	b/plHuW9aKsHiXwLiDJG34TRyCa6LPI5MGTnMxibq5Xgu/I4ZagJYLWXN52buKNg8iKT/kAXrB9dA
+	w1ZUBwpSHqIXucsT0jRbzFUdm9fSQS//38H3fJtu3vgOkCsu5JqwWzROTH7CrQNd+2DKKe6bjZ2dk
+	YVCGH7PscJ9xtriw2300Ah+yyXhaQ2bjdkhKhnVBbzHxN4HmG+dGmxjjPSquC3+FJ7h0q6DG3vkhV
+	MdPmxt2sp4TbaftbIOXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m4u3s-007Bbv-QM; Sat, 17 Jul 2021 23:49:36 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1m4xdm-007J1s-CG; Sun, 18 Jul 2021 03:38:54 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m4u3U-007BWO-3R; Sat, 17 Jul 2021 23:49:14 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id
- o30-20020a05600c511eb029022e0571d1a0so8083923wms.5; 
- Sat, 17 Jul 2021 16:49:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=93eiGHrCyed2vaIq9ik3pELkO33EF5W8f7FzxnLHjN0=;
- b=i7hheV9JCwxFqJIfomq76QPwQkeNGCc9qq6dobTPDw5Ki90zgTHRLCPKtfa18b0eIb
- jWg8IPBWHeqs41igVq/G/wrJcFNtU+sv/DgluB/pLn6gvUa5eTUi+sXYIfutFQrdBrk0
- jl0RiTJZnmpDXGY1Jd9n1fU30J1aMB9ChRQQI9aGM5tyID75L1Lkf9JBJeviFFT1Ejld
- 2ObjM47OtwAQYyMI+FY+uQYFNEaI2pFfJwvwhbxj0/5Tx9hr0XEFmpmb6mhLKLK/mZvS
- xoifxg9ZZ+pggfOlOr983w0V+XGI/teyCX2b8CNmPW8bn1m5Is0NmNh1YofZ6ff54pwO
- eWhQ==
+ id 1m4xdY-007J0c-Gk; Sun, 18 Jul 2021 03:38:42 +0000
+Received: by mail-ed1-x532.google.com with SMTP id k27so18488843edk.9;
+ Sat, 17 Jul 2021 20:38:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=LIlzqY37/ApwF5j7PXVX2Gcn6RoFS6mgR/Cwi+L/v2E=;
+ b=Jb6ROQWd5jMjvTPpWafimOYgQ0d4hBWyXVXH3MHDcL0If5wBBIAjcT3NWkmsDz69IK
+ QLw7gleWCs7hpilMT54gT1L2UYa7ifs18BNVMAmVxkI/9EWMV1hZWE7ujnhEpZfXUU2m
+ vQnzo9rfCbxGmvB1ln8WcDk6yBvRpoo5z61ROgymq3ARCJRRim8XRulvAas20ffSAofp
+ pfQLojOlPrnyV+5n9EOw4LTur9NdLpCMeZkEIBe/6htPd6Tcf4F7zRM3QcLSjciyHkvK
+ bm2JMJq1sRzzRSfOa4Y0DESU1G+pvGOOhWZSC4EmKa1zjIKEUsXVwf7wqZhAVrUmH/rL
+ MbUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=93eiGHrCyed2vaIq9ik3pELkO33EF5W8f7FzxnLHjN0=;
- b=VJkvfZz4SgK2TKaZw7rNymS6NaBWWhgNrx9FC33enPTIwWFlNGn9mMyOVX6Qng9wkc
- eQN3TR27KA64wUnwf6IZ6EGkHR16cj/WMbCmfhF+gYZwjiWReJeeMFEVHseBP8ac1Fb8
- bbbUhLpqeXbXQIDtAw7FzygylXHD/Oux1zeTdN5P13xyDtsm6nZSUhzDJpkaJZmeBtC6
- mpCBFMDQgl6zaPn1+KJaXs3AQp70NbmsZ5sgdOOReRTyKUsfpAmu8oGlzJu/wboI7LG0
- b8/mTyLjFeGlBSlEBfhzPKJLfg7H331EhW1YIR5eYOe4FV+lzUPIpNSmt7hTagkvOXNa
- ictQ==
-X-Gm-Message-State: AOAM5339wqbDZ/mxf1MMHLtkpNMGO47MESbGCK2d2HG8eccCJ1itF+m8
- TK2KD4pNsNWUDqBB4KqAGBsvt54s71A=
-X-Google-Smtp-Source: ABdhPJxK3/3JbtA2NFGa7NZVIaMkdeU/13rgwf9B5rlpsLJTiqDAFcVxJ238k7EPkseRCqqKRuj0zQ==
-X-Received: by 2002:a7b:c00a:: with SMTP id c10mr24686940wmb.100.1626565750421; 
- Sat, 17 Jul 2021 16:49:10 -0700 (PDT)
-Received: from localhost.localdomain
- (dynamic-2a01-0c22-7602-4e00-f22f-74ff-fe21-0725.c22.pool.telefonica.de.
- [2a01:c22:7602:4e00:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id p11sm14505044wro.78.2021.07.17.16.49.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 17 Jul 2021 16:49:10 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-remoteproc@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- mathieu.poirier@linaro.org, bjorn.andersson@linaro.org, ohad@wizery.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v3 2/2] remoteproc: meson-mx-ao-arc: Add a driver for the AO
- ARC remote procesor
-Date: Sun, 18 Jul 2021 01:48:59 +0200
-Message-Id: <20210717234859.351911-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210717234859.351911-1-martin.blumenstingl@googlemail.com>
-References: <20210717234859.351911-1-martin.blumenstingl@googlemail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=LIlzqY37/ApwF5j7PXVX2Gcn6RoFS6mgR/Cwi+L/v2E=;
+ b=lwrh4OQBCh37bXqeuYMB+7H4FpDVfOaU/rWjWI/RqYzPxUDP1R3IqpPsGUfV5+M0a+
+ CnTL97d2lCQ0QhiTnEzHCUmvF7yW3qVfFwcIM3UrlzeIE1MJrLZSaHgfV7iUr1vHWI6X
+ X+kZOQgUP15V6Sj9qE1Q1BPnX6eTXy68hq+Y7czec5zzVr4trw2CZm5RnCmoglQDp/68
+ S5NKbDBM23QtIntLMeSJ5k5c9cUx1DScBhaATx9i5m1ez9tcOmCpUiWKyzf5OrtGR02o
+ yFaqt4jCNho5p/mSYJ6ZarSuPAOZ+ToVoGwWdMEopnEdgg3kFP0VXLvrgXkN40aDg+Zl
+ xexQ==
+X-Gm-Message-State: AOAM531ZfZcJwt0w3xqxW5Cx/B121sv8dwmC6RA/7pLIvXXVTrevO8wI
+ xQFPvlTnpmTXWr/oFVSXYTy1KB9D1rJk56emDT8=
+X-Google-Smtp-Source: ABdhPJy+xX/itKKz5o91fjWk6bMjvkzO6a0D0U3UXljnVdJNK9vkNcWGEWkjMlPG/iCTUG9wAw/pzrx5tlWLQH0x2tU=
+X-Received: by 2002:a05:6402:1218:: with SMTP id
+ c24mr25333898edw.59.1626579517304; 
+ Sat, 17 Jul 2021 20:38:37 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210716103651.1455-1-linux.amoon@gmail.com>
+ <20210716103651.1455-2-linux.amoon@gmail.com>
+ <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
+In-Reply-To: <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sun, 18 Jul 2021 09:08:26 +0530
+Message-ID: <CANAwSgQ5PDGUWMH-jxnz5wwutUVniTn7RAe=4J=8-jbmqxYRRg@mail.gmail.com>
+Subject: Re: [PATCHv2 1/4] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-phy@lists.infradead.org, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ linux-amlogic@lists.infradead.org, 
+ Linux Kernel <linux-kernel@vger.kernel.org>,
+ Matt Corallo <oc2udbzfd@mattcorallo.com>, 
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ Brian Kim <brian.kim@hardkernel.com>, 
+ devicetree <devicetree@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210717_164912_194655_EF30A363 
-X-CRM114-Status: GOOD (  31.28  )
+X-CRM114-CacheID: sfid-20210717_203840_631590_D27BCB22 
+X-CRM114-Status: GOOD (  34.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,337 +103,139 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic Meson6, Meson8, Meson8b and Meson8m2 embed an ARC core in the
-Always-On (AO) power-domain. This is typically used for waking up the
-ARM cores after system suspend.
+Hi Martin,
 
-The configuration is spread across three different registers:
-- AO_REMAP_REG0 which must be programmed to zero, it's actual purpose
-  is unknown. There is a second remap register which is not used in the
-  vendor kernel (which served as reference for this driver).
-- AO_CPU_CNTL is used to start and stop the ARC core.
-- AO_SECURE_REG0 in the SECBUS2 register area with unknown purpose.
+Thanks for the review comments.
 
-To boot the ARC core we also need to enable it's gate clock and trigger
-a reset.
+On Sun, 18 Jul 2021 at 01:16, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Fri, Jul 16, 2021 at 12:37 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> > Add missing usb phy power node for phy mode fix below warning.
+> > P5V0 regulator suppy input voltage range to USB host controller.
+> low prio - typo: suppy -> supply
+>
+> > As descriped in the C1+ schematics, GPIO GPIOAO_5 is used to
+> low prio - typo: descriped -> described
+>
+I definitely run checkpatch with the spellcheck option but I need to
+improve on this aspect.
 
-The actual code for this ARC core can come from an ELF binary, for
-example by building the Zephyr RTOS for an ARC EM4 core and then taking
-"zephyr.elf" as firmware. This executable does not have any "rsc table"
-so we are skipping rproc_elf_load_rsc_table (rproc_ops.parse_fw) and
-rproc_elf_find_loaded_rsc_table (rproc_ops.find_loaded_rsc_table).
+> > enable input power to USB ports, set it to Active Low.
+> >
+> > [    1.253149] phy phy-c1108820.phy.0: Looking up phy-supply from device tree
+> > [    1.253166] phy phy-c1108820.phy.0: Looking up phy-supply property
+> >                 in node /soc/cbus@c1100000/phy@8820 failed
+> high prio:
+> Can you please describe how I can test this patch?
+> My concern is that previously I have tested your patch with ACTIVE_LOW
+> and ACTIVE_HIGH polarity.
+> In both cases USB is working and I cannot observe any change (apart
+> from this debug message being gone).
+>
+> In the Odroid-C1 schematics (page 1) GPIOAO.BIT5 is connected to USB_OTG *only*.
+> I cannot give my Acked-/Reviewed-/Tested-by without a description of
+> how I can actually test the GPIO potion of this patch.
+>
+> [...]
+> > +               /*
+> > +                * signal name from schematics: PWREN - GPIOAO.BIT5
+> > +                */
+> > +               gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
+> low prio:
+> Even though it's strictly not necessary I think this is confusing to read.
+> Since there's no "enable-active-high" property the GPIO will be
+> considered as "active low".
+> My suggestion is to change GPIO_ACTIVE_HIGH to GPIO_ACTIVE_LOW
+>
+My apologies, I might have sent the wrong set of patches its
+GPIO_ACTIVE_LOW I meant
+I have formatted with and in the course of testing and verifying It
+might have got SKIPPED.
+I didn't do this intentionally it happen with a mistake with my two
+repositories.
+I don't intend to repeat my mistake, again and again, *sorry for the trouble*.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/remoteproc/Kconfig           |  11 ++
- drivers/remoteproc/Makefile          |   1 +
- drivers/remoteproc/meson_mx_ao_arc.c | 260 +++++++++++++++++++++++++++
- 3 files changed, 272 insertions(+)
- create mode 100644 drivers/remoteproc/meson_mx_ao_arc.c
+> Also if you have any extra information since you last pinged me on IRC
+> then it would be great if you could document it.
+> I am referring to these IRC message, where you are stating that the
+> correct polarity should be "active high":
+> <armoon> xdarklight I have a question on USB GPIO Polarity on Odroid C1+
+ > <armoon> As per the
+> https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20160226.pdf
+> <armoon> MP62551DGT-LF IC controls the power for the USB PORTS
+> <armoon> https://www.mouser.com/datasheet/2/277/MP62550-1384050.pdf is
+> MP62551DGT datasheet
+> <armoon> As per the data sheet in section ORDERING INFORMATION  Active
+> enable signal is set below MP62551DGT Active High
+>
 
-diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-index 9a6eedc3994a..3197bbe38785 100644
---- a/drivers/remoteproc/Kconfig
-+++ b/drivers/remoteproc/Kconfig
-@@ -127,6 +127,17 @@ config KEYSTONE_REMOTEPROC
- 	  It's safe to say N here if you're not interested in the Keystone
- 	  DSPs or just want to use a bare minimum kernel.
- 
-+config MESON_MX_AO_ARC_REMOTEPROC
-+	tristate "Amlogic Meson6/8/8b/8m2 AO ARC remote processor support"
-+	depends on HAS_IOMEM
-+	depends on (ARM && ARCH_MESON) || COMPILE_TEST
-+	select GENERIC_ALLOCATOR
-+	help
-+	  Say m or y here to have support for the AO ARC remote processor
-+	  on Amlogic Meson6/Meson8/Meson8b/Meson8m2 SoCs. This is
-+	  typically used for system suspend.
-+	  If unusre say N.
-+
- config PRU_REMOTEPROC
- 	tristate "TI PRU remoteproc support"
- 	depends on TI_PRUSS
-diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
-index bb26c9e4ef9c..ce1abeb30907 100644
---- a/drivers/remoteproc/Makefile
-+++ b/drivers/remoteproc/Makefile
-@@ -18,6 +18,7 @@ obj-$(CONFIG_OMAP_REMOTEPROC)		+= omap_remoteproc.o
- obj-$(CONFIG_WKUP_M3_RPROC)		+= wkup_m3_rproc.o
- obj-$(CONFIG_DA8XX_REMOTEPROC)		+= da8xx_remoteproc.o
- obj-$(CONFIG_KEYSTONE_REMOTEPROC)	+= keystone_remoteproc.o
-+obj-$(CONFIG_MESON_MX_AO_ARC_REMOTEPROC)+= meson_mx_ao_arc.o
- obj-$(CONFIG_PRU_REMOTEPROC)		+= pru_rproc.o
- obj-$(CONFIG_QCOM_PIL_INFO)		+= qcom_pil_info.o
- obj-$(CONFIG_QCOM_RPROC_COMMON)		+= qcom_common.o
-diff --git a/drivers/remoteproc/meson_mx_ao_arc.c b/drivers/remoteproc/meson_mx_ao_arc.c
-new file mode 100644
-index 000000000000..86c0f3e48701
---- /dev/null
-+++ b/drivers/remoteproc/meson_mx_ao_arc.c
-@@ -0,0 +1,260 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2020 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/property.h>
-+#include <linux/genalloc.h>
-+#include <linux/io.h>
-+#include <linux/ioport.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/remoteproc.h>
-+#include <linux/reset.h>
-+#include <linux/sizes.h>
-+
-+#include "remoteproc_internal.h"
-+
-+#define AO_REMAP_REG0						0x0
-+#define AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU	GENMASK(3, 0)
-+
-+#define AO_REMAP_REG1						0x4
-+#define AO_REMAP_REG1_MOVE_AHB_SRAM_TO_0X0_INSTEAD_OF_DDR	BIT(4)
-+#define AO_REMAP_REG1_REMAP_AHB_SRAM_BITS_17_14_FOR_MEDIA_CPU	GENMASK(3, 0)
-+
-+#define AO_CPU_CNTL						0x0
-+#define AO_CPU_CNTL_AHB_SRAM_BITS_31_20				GENMASK(28, 16)
-+#define AO_CPU_CNTL_HALT					BIT(9)
-+#define AO_CPU_CNTL_UNKNONWN					BIT(8)
-+#define AO_CPU_CNTL_RUN						BIT(0)
-+
-+#define AO_CPU_STAT						0x4
-+
-+#define AO_SECURE_REG0						0x0
-+#define AO_SECURE_REG0_AHB_SRAM_BITS_19_12			GENMASK(15, 8)
-+
-+/* Only bits [31:20] and [17:14] are usable, all other bits must be zero */
-+#define MESON_AO_RPROC_SRAM_USABLE_BITS				0xfff3c000
-+
-+#define MESON_AO_RPROC_MEMORY_OFFSET				0x10000000
-+
-+struct meson_mx_ao_arc_rproc_priv {
-+	void __iomem		*remap_base;
-+	void __iomem		*cpu_base;
-+	unsigned long		sram_va;
-+	phys_addr_t		sram_pa;
-+	size_t			sram_size;
-+	struct gen_pool		*sram_pool;
-+	struct reset_control	*arc_reset;
-+	struct clk		*arc_pclk;
-+	struct regmap		*secbus2_regmap;
-+};
-+
-+static int meson_mx_ao_arc_rproc_start(struct rproc *rproc)
-+{
-+	struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-+	phys_addr_t translated_sram_addr;
-+	int ret;
-+
-+	ret = clk_prepare_enable(priv->arc_pclk);
-+	if (ret)
-+		return ret;
-+
-+	writel(FIELD_PREP(AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU,
-+			       priv->sram_pa >> 14),
-+	       priv->remap_base + AO_REMAP_REG0);
-+
-+	/*
-+	 * The SRAM content as seen by the ARC core always starts at 0x0
-+	 * regardless of the value given here (this was discovered by trial and
-+	 * error). For SoCs older than Meson6 we probably have to set
-+	 * AO_REMAP_REG1_MOVE_AHB_SRAM_TO_0X0_INSTEAD_OF_DDR to achieve the
-+	 * same. (At least) For Meson8 and newer that bit must not be set.
-+	 */
-+	writel(0x0, priv->remap_base + AO_REMAP_REG1);
-+
-+	regmap_update_bits(priv->secbus2_regmap, AO_SECURE_REG0,
-+			   AO_SECURE_REG0_AHB_SRAM_BITS_19_12,
-+			   FIELD_PREP(AO_SECURE_REG0_AHB_SRAM_BITS_19_12,
-+				      priv->sram_pa >> 12));
-+
-+	ret = reset_control_reset(priv->arc_reset);
-+	if (ret) {
-+		clk_disable_unprepare(priv->arc_pclk);
-+		return ret;
-+	}
-+
-+	usleep_range(10, 100);
-+
-+	/*
-+	 * Convert from 0xd9000000 to 0xc9000000 as the vendor driver does.
-+	 * This only seems to be relevant for the AO_CPU_CNTL register. It is
-+	 * unknown why this is needed.
-+	 */
-+	translated_sram_addr = priv->sram_pa - MESON_AO_RPROC_MEMORY_OFFSET;
-+
-+	writel(FIELD_PREP(AO_CPU_CNTL_AHB_SRAM_BITS_31_20,
-+			  translated_sram_addr >> 20) |
-+	       AO_CPU_CNTL_UNKNONWN |
-+	       AO_CPU_CNTL_RUN,
-+	       priv->cpu_base + AO_CPU_CNTL);
-+	usleep_range(20, 200);
-+
-+	return 0;
-+}
-+
-+static int meson_mx_ao_arc_rproc_stop(struct rproc *rproc)
-+{
-+	struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-+
-+	writel(AO_CPU_CNTL_HALT, priv->cpu_base + AO_CPU_CNTL);
-+
-+	clk_disable_unprepare(priv->arc_pclk);
-+
-+	return 0;
-+}
-+
-+static void *meson_mx_ao_arc_rproc_da_to_va(struct rproc *rproc, u64 da,
-+					    size_t len, bool *is_iomem)
-+{
-+	struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-+
-+	if ((da + len) > priv->sram_size)
-+		return NULL;
-+
-+	return (void *)priv->sram_va + da;
-+}
-+
-+static struct rproc_ops meson_mx_ao_arc_rproc_ops = {
-+	.start		= meson_mx_ao_arc_rproc_start,
-+	.stop		= meson_mx_ao_arc_rproc_stop,
-+	.da_to_va	= meson_mx_ao_arc_rproc_da_to_va,
-+	.get_boot_addr	= rproc_elf_get_boot_addr,
-+	.load		= rproc_elf_load_segments,
-+	.sanity_check	= rproc_elf_sanity_check,
-+};
-+
-+static int meson_mx_ao_arc_rproc_probe(struct platform_device *pdev)
-+{
-+	struct meson_mx_ao_arc_rproc_priv *priv;
-+	struct device *dev = &pdev->dev;
-+	const char *fw_name = NULL;
-+	struct rproc *rproc;
-+	int ret;
-+
-+	device_property_read_string(dev, "firmware-name", &fw_name);
-+
-+	rproc = devm_rproc_alloc(dev, "meson-mx-ao-arc",
-+				 &meson_mx_ao_arc_rproc_ops, fw_name,
-+				 sizeof(*priv));
-+	if (!rproc)
-+		return -ENOMEM;
-+
-+	rproc->has_iommu = false;
-+	priv = rproc->priv;
-+
-+	priv->sram_pool = of_gen_pool_get(dev->of_node, "sram", 0);
-+	if (!priv->sram_pool) {
-+		dev_err(dev, "Could not get SRAM pool\n");
-+		return -ENODEV;
-+	}
-+
-+	priv->sram_size = gen_pool_avail(priv->sram_pool);
-+
-+	priv->sram_va = gen_pool_alloc(priv->sram_pool, priv->sram_size);
-+	if (!priv->sram_va) {
-+		dev_err(dev, "Could not alloc memory in SRAM pool\n");
-+		return -ENOMEM;
-+	}
-+
-+	priv->sram_pa = gen_pool_virt_to_phys(priv->sram_pool, priv->sram_va);
-+	if (priv->sram_pa & ~MESON_AO_RPROC_SRAM_USABLE_BITS) {
-+		dev_err(dev, "SRAM address contains unusable bits\n");
-+		ret = -EINVAL;
-+		goto err_free_genpool;
-+	}
-+
-+	priv->secbus2_regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							       "amlogic,secbus2");
-+	if (IS_ERR(priv->secbus2_regmap)) {
-+		dev_err(dev, "Failed to find SECBUS2 regmap\n");
-+		ret = PTR_ERR(priv->secbus2_regmap);
-+		goto err_free_genpool;
-+	}
-+
-+	priv->remap_base = devm_platform_ioremap_resource_byname(pdev, "remap");
-+	if (IS_ERR(priv->remap_base)) {
-+		ret = PTR_ERR(priv->remap_base);
-+		goto err_free_genpool;
-+	}
-+
-+	priv->cpu_base = devm_platform_ioremap_resource_byname(pdev, "cpu");
-+	if (IS_ERR(priv->cpu_base)) {
-+		ret = PTR_ERR(priv->cpu_base);
-+		goto err_free_genpool;
-+	}
-+
-+	priv->arc_reset = devm_reset_control_get_exclusive(dev, NULL);
-+	if (IS_ERR(priv->arc_reset)) {
-+		dev_err(dev, "Failed to get ARC reset\n");
-+		ret = PTR_ERR(priv->arc_reset);
-+		goto err_free_genpool;
-+	}
-+
-+	priv->arc_pclk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(priv->arc_pclk)) {
-+		dev_err(dev, "Failed to get the ARC PCLK\n");
-+		ret = PTR_ERR(priv->arc_pclk);
-+		goto err_free_genpool;
-+	}
-+
-+	platform_set_drvdata(pdev, rproc);
-+
-+	ret = rproc_add(rproc);
-+	if (ret)
-+		goto err_free_genpool;
-+
-+	return 0;
-+
-+err_free_genpool:
-+	gen_pool_free(priv->sram_pool, priv->sram_va, priv->sram_size);
-+	return ret;
-+}
-+
-+static int meson_mx_ao_arc_rproc_remove(struct platform_device *pdev)
-+{
-+	struct rproc *rproc = platform_get_drvdata(pdev);
-+	struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-+
-+	rproc_del(rproc);
-+	gen_pool_free(priv->sram_pool, priv->sram_va, priv->sram_size);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id meson_mx_ao_arc_rproc_match[] = {
-+	{ .compatible = "amlogic,meson8-ao-arc" },
-+	{ .compatible = "amlogic,meson8b-ao-arc" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, meson_mx_ao_arc_rproc_match);
-+
-+static struct platform_driver meson_mx_ao_arc_rproc_driver = {
-+	.probe = meson_mx_ao_arc_rproc_probe,
-+	.remove = meson_mx_ao_arc_rproc_remove,
-+	.driver = {
-+		.name = "meson-mx-ao-arc-rproc",
-+		.of_match_table = meson_mx_ao_arc_rproc_match,
-+	},
-+};
-+module_platform_driver(meson_mx_ao_arc_rproc_driver);
-+
-+MODULE_DESCRIPTION("Amlogic Meson6/8/8b/8m2 AO ARC remote processor driver");
-+MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.32.0
+[1] https://www.mouser.com/datasheet/2/277/MP62550-1384050.pdf
 
+I have read the datasheets MP62551DGT EN*  pin its Enable input. Active Low:
+       *EN I Enable input. Active Low: (MP62550), Active High: (MP62551).*
+
+I have tested with ACTIVE_LOW and followed all the steps invalidating
+ this with debugfs output.
+
+Last login: Tue Jul 13 00:02:49 2021 from 10.0.0.14
+[alarm@archl-c1e ~]$ sudo cat /sys/kernel/debug/gpio | grep usb
+ gpio-1953 (USB_HUB_RST_N       |usb-hub-reset       ) out hi
+ gpio-1954 (USB_OTG_PWREN       |regulator-usb-pwr-en) out lo ACTIVE LOW
+
+> [...]
+> >  &usb1_phy {
+> >         status = "okay";
+> > +       phy-supply = <&usb_pwr_en>;
+> medium priority:
+> I have raised the following concern in one of my previous emails on this topic:
+> > The mistake I made before is considering USB VBUS as PHY power supply.
+> > I believe the USB PHY is actually powered by the AVDD18_USB_ADC and
+> > USB33_VDDIOH signals. See the S905 datasheet [0], page 25
+> > These are 1.8V and 3.3V signals while you are adding a 5V regulator.
+> you replied with:
+> > OK, thanks.
+> so I don't understand what "OK, thanks" means.
+> If it means "Martin, you are wrong" then please provide a description
+> so I can also learn something!
+
+Yes, I understood your inputs. But from the logs below is seen to
+looking for phy-supply
+This is the reason I went ahead with phy-supply as the core phy node
+needs this property.
+
+Please check below commit
+e841ec956e53 ("ARM64: dts: meson-gxbb-odroidc2: fix usb1 power supply")
+
+[    1.253149] phy phy-c1108820.phy.0: Looking up phy-supply from device tree
+[    1.253166] phy phy-c1108820.phy.0: Looking up phy-supply property
+in node /soc/cbus@c1100000/phy@8820 failed
+[    1.255031] pwm-regulator regulator-vcck: Failed to get PWM, deferring probe
+[    1.256730] pwm-regulator regulator-vddee: Failed to get PWM, deferring probe
+[    1.260300] dwc2 c90c0000.usb: mapped PA c90c0000 to VA (ptrval)
+[    1.260446] dwc2 c90c0000.usb: Looking up vusb_d-supply from device tree
+[    1.260460] dwc2 c90c0000.usb: Looking up vusb_d-supply property in
+node /soc/usb@c90c0000 failed
+[    1.260490] dwc2 c90c0000.usb: supply vusb_d not found, using dummy regulator
+[    1.260606] dwc2 c90c0000.usb: Looking up vusb_a-supply from device tree
+[    1.260620] dwc2 c90c0000.usb: Looking up vusb_a-supply property in
+node /soc/usb@c90c0000 failed
+[    1.260641] dwc2 c90c0000.usb: supply vusb_a not found, using dummy regulator
+[    1.260717] dwc2 c90c0000.usb: registering common handler for irq35
+[    1.260772] dwc2 c90c0000.usb: Looking up vbus-supply from device tree
+[    1.260784] dwc2 c90c0000.usb: Looking up vbus-supply property in
+node /soc/usb@c90c0000 failed
+[    1.261949] dwc2 c90c0000.usb: Core Release: 3.10a (snpsid=4f54310a)
+
+>
+>
+> Best regards,
+> Martin
+
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
