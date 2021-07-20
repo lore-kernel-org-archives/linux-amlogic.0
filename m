@@ -2,20 +2,20 @@ Return-Path: <SRS0=sMge=MM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-15.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8559AC636C8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Jul 2021 06:56:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E2BFC07E9B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Jul 2021 08:37:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 256726113B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Jul 2021 06:56:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 256726113B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mess.org
+	by mail.kernel.org (Postfix) with ESMTPS id D695B611EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Jul 2021 08:37:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D695B611EF
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -23,49 +23,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9grw+gpdiV8SsmdADfnAVgRK6KEzFPYXs/ZGrVH5R9k=; b=NmTiGj5UDgZZdc
-	sDpNe4XEI8kfzcj4wd/vnAI0/fGYj0L0Vcf+zu5ghBi7CxoHflot9NnvPodWuLKJ9kNxEuBLJewjG
-	igK3BqnOmw8wbXqLpNeKFUv6EejiJrh/MIz+Zjhvjp3TB+LrdaU7qVr9/NGShgRLWKHTDnjlfsguE
-	CbjTM+6MJKkI957+TqGLYWten2HAdyLFn+ajo1eGP4mrBK6v+n4tHao4qhuVslaUv/lYn1f5aITce
-	d1jI/T7zeaeP6j3pbAzUeKBhF4gnjIdUSs/A4WcqmQqCD2rf8Y9dcz4d2NvOvMp0ALWWQW/MZNHp0
-	onmWpIHE2EOiqDNLsAMQ==;
+	List-Owner; bh=VRP4LoBasTOZnWRTC4Zx1fPi5SpDNR8SK1JdzPhpgbY=; b=XHnkJOPQu5+dz9
+	ZFfb0UOhXr+/0+BhRtBW4fsnsytEeASQjiVsllZYzXZGlLhk+w7d+2EdpwkYiLrJrQsJRfQA2myPs
+	GlwXzxWmlm5bYN3zme+OD73L64EY8sjqicd11kNE3JixyDu92mvRDkcQlrkJuZs3PfNj60M/y9oQp
+	kkkBCBL90RY8M1NnrjzU37Og1aSRSY1wNW+I9FL/hv2b1jAp11aQmLqnTd8GxhrEgojSL7SX+6Ich
+	a6MlYU6dX7Rsf4MgPIitdDMX9dh+HXwD5RfiVEehE/Tlr4y2Omtn0KPwJHkr4NCdifsNyvE6x/qpU
+	iowXpQR+1gt6X1KEV1HA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m5jfg-00C3zc-2c; Tue, 20 Jul 2021 06:56:04 +0000
-Received: from gofer.mess.org ([88.97.38.141])
+	id 1m5lFT-00CEPv-3p; Tue, 20 Jul 2021 08:37:07 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m5jfc-00C3xq-2U; Tue, 20 Jul 2021 06:56:02 +0000
-Received: by gofer.mess.org (Postfix, from userid 1000)
- id 54A9CC636A; Tue, 20 Jul 2021 07:55:52 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mess.org; s=2020;
- t=1626764152; bh=uRjQl/ASjO3Ir93iUVugUObB0tTZUsYc/r68bPvmqGk=;
+ id 1m5lFP-00CEOn-Ry; Tue, 20 Jul 2021 08:37:05 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A3A80611F2;
+ Tue, 20 Jul 2021 08:37:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1626770223;
+ bh=tk64h37rbGdmfMscy8QNd//U3myF1pAkJYpkjcnjgFQ=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=pXLlouD/jXSDjPXYAsyYB+I61LxDOXO7aCxht8n9OJZPK9e1jHrbbu1Aj2aRPNbbC
- kp3SjHesXyBn2q3gHdzb8qLFuU/Hgq/FPWGjX8xJazKftnnEucEYnlM3TLdf0Em3jB
- GJJ+PUyZ2Swoys2Tx+1ep0mrHx4q8cPQzglrRxEQaPWMK4OFUq9MoUnYg62oNHX1Y+
- qbXhvCwKj7vrBoZf+M+9ka/4Dgo40EcYEXg3iIvijp1IGvCtvVM5WvCutrAassvkC3
- ZXbJ+ChK8iZfDC/4q53aezpk3N2ogfJgud+HB4KHWTREI3NMGPx4G0V7qf7aCqBV0m
- 5C+PtoTS61BPA==
-Date: Tue, 20 Jul 2021 07:55:52 +0100
-From: Sean Young <sean@mess.org>
-To: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-Cc: mchehab@kernel.org, robh+dt@kernel.org, khilman@baylibre.com,
- narmstrong@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, rockosov@gmail.com
-Subject: Re: [PATCH v7 2/2] media: rc: introduce Meson IR TX driver
-Message-ID: <20210720065552.GA25285@gofer.mess.org>
-References: <20210719170506.13539-1-viktor.prutyanov@phystech.edu>
- <20210719170506.13539-3-viktor.prutyanov@phystech.edu>
+ b=VGKBr2qu0vtaAN2BSckVMjpj6meSNJepAAzLgh/vVSQOrnNAnf6Cla7PVqUq/E8/P
+ LVk7IItDSLURiLi7F1a8ZmOJ0IHixeIx7UgpEu5/iQ+IegrQjAHEFqnkF0GbjAXFPP
+ lyEnGfBUmdj3vpG1YQoGxDyHY7ZRBVllEVSGNnQwzoXgW3Bpx8AlScYZinqcvo5OTC
+ j1kGEYXtdF1TwVUdT4jwyrpVRnlnCq/X0h9sGIj1okvnsJk3sZfChKPct3NKtQlPO8
+ BJxBhbUgFPgCcPMVYSNAtP7gWmfsnj8ybbdrF3vZITmper0cd5wtC3WKbgns//+UdW
+ qFhE7HiVoxSfw==
+Date: Tue, 20 Jul 2021 14:06:59 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: robh+dt@kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ kishon@ti.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] phy: amlogic: Add a new driver for the HDMI TX
+ PHY on Meson8/8b/8m2
+Message-ID: <YPaLKwEKcDLWwztM@matsya>
+References: <20210629182047.893415-1-martin.blumenstingl@googlemail.com>
+ <20210629182047.893415-3-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210719170506.13539-3-viktor.prutyanov@phystech.edu>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210629182047.893415-3-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210719_235600_465443_663677EC 
-X-CRM114-Status: GOOD (  37.34  )
+X-CRM114-CacheID: sfid-20210720_013703_989942_182A1A38 
+X-CRM114-Status: GOOD (  29.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,484 +81,224 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jul 19, 2021 at 08:05:06PM +0300, Viktor Prutyanov wrote:
-> This patch adds the driver for Amlogic Meson IR transmitter.
+On 29-06-21, 20:20, Martin Blumenstingl wrote:
+> Amlogic Meson8/8b/8m2 have a built-in HDMI PHY in the HHI register
+> region. Unfortunately only few register bits are documented. For
+> HHI_HDMI_PHY_CNTL0 the magic numbers are taken from the 3.10 vendor
+> kernel.
 > 
-> Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
-> (also called blaster) controller onboard. It is capable of sending
-> IR signals with arbitrary carrier frequency and duty cycle.
-> 
-> The driver supports 2 modulation clock sources:
->  - xtal3 clock (xtal divided by 3)
->  - 1us clock
-> 
-> Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  changes in v7:
->   - fifo-threshold property processing removed
->   - timeout fixed
-
-Looks great!
-
-Signed-off-by: Sean Young <sean@mess.org>
-
-
-Sean
-
+>  drivers/phy/amlogic/Kconfig              |  10 ++
+>  drivers/phy/amlogic/Makefile             |   1 +
+>  drivers/phy/amlogic/phy-meson8-hdmi-tx.c | 162 +++++++++++++++++++++++
+>  3 files changed, 173 insertions(+)
+>  create mode 100644 drivers/phy/amlogic/phy-meson8-hdmi-tx.c
 > 
->  drivers/media/rc/Kconfig       |  10 +
->  drivers/media/rc/Makefile      |   1 +
->  drivers/media/rc/meson-ir-tx.c | 406 +++++++++++++++++++++++++++++++++
->  3 files changed, 417 insertions(+)
->  create mode 100644 drivers/media/rc/meson-ir-tx.c
-> 
-> diff --git a/drivers/media/rc/Kconfig b/drivers/media/rc/Kconfig
-> index d0a8326b75c2..fd5a7a058714 100644
-> --- a/drivers/media/rc/Kconfig
-> +++ b/drivers/media/rc/Kconfig
-> @@ -246,6 +246,16 @@ config IR_MESON
->  	   To compile this driver as a module, choose M here: the
->  	   module will be called meson-ir.
->  
-> +config IR_MESON_TX
-> +	tristate "Amlogic Meson IR TX"
-> +	depends on ARCH_MESON || COMPILE_TEST
+> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
+> index db5d0cd757e3..486ca23aba32 100644
+> --- a/drivers/phy/amlogic/Kconfig
+> +++ b/drivers/phy/amlogic/Kconfig
+> @@ -2,6 +2,16 @@
+>  #
+>  # Phy drivers for Amlogic platforms
+>  #
+> +config PHY_MESON8_HDMI_TX
+> +	tristate "Meson8, Meson8b and Meson8m2 HDMI TX PHY driver"
+> +	depends on (ARCH_MESON && ARM) || COMPILE_TEST
+> +	depends on OF
+> +	select MFD_SYSCON
 > +	help
-> +	   Say Y if you want to use the IR transmitter available on
-> +	   Amlogic Meson SoCs.
+> +	  Enable this to support the HDMI TX PHYs found in Meson8,
+> +	  Meson8b and Meson8m2 SoCs.
+> +	  If unsure, say N.
 > +
-> +	   To compile this driver as a module, choose M here: the
-> +	   module will be called meson-ir-tx.
-> +
->  config IR_MTK
->  	tristate "Mediatek IR remote receiver"
->  	depends on ARCH_MEDIATEK || COMPILE_TEST
-> diff --git a/drivers/media/rc/Makefile b/drivers/media/rc/Makefile
-> index 692e9b6b203f..0db51fad27d6 100644
-> --- a/drivers/media/rc/Makefile
-> +++ b/drivers/media/rc/Makefile
-> @@ -28,6 +28,7 @@ obj-$(CONFIG_IR_ITE_CIR) += ite-cir.o
->  obj-$(CONFIG_IR_MCEUSB) += mceusb.o
->  obj-$(CONFIG_IR_FINTEK) += fintek-cir.o
->  obj-$(CONFIG_IR_MESON) += meson-ir.o
-> +obj-$(CONFIG_IR_MESON_TX) += meson-ir-tx.o
->  obj-$(CONFIG_IR_NUVOTON) += nuvoton-cir.o
->  obj-$(CONFIG_IR_ENE) += ene_ir.o
->  obj-$(CONFIG_IR_REDRAT3) += redrat3.o
-> diff --git a/drivers/media/rc/meson-ir-tx.c b/drivers/media/rc/meson-ir-tx.c
+>  config PHY_MESON8B_USB2
+>  	tristate "Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY driver"
+>  	default ARCH_MESON
+> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
+> index 8fa07fbd0d92..c0886c850bb0 100644
+> --- a/drivers/phy/amlogic/Makefile
+> +++ b/drivers/phy/amlogic/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_PHY_MESON8_HDMI_TX)		+= phy-meson8-hdmi-tx.o
+>  obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
+>  obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
+>  obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
+> diff --git a/drivers/phy/amlogic/phy-meson8-hdmi-tx.c b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
 > new file mode 100644
-> index 000000000000..898a689a98fd
+> index 000000000000..ba5a4de54811
 > --- /dev/null
-> +++ b/drivers/media/rc/meson-ir-tx.c
-> @@ -0,0 +1,406 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/**
-> + * meson-ir-tx.c - Amlogic Meson IR TX driver
+> +++ b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
+> @@ -0,0 +1,162 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Meson8, Meson8b and Meson8m2 HDMI TX PHY.
 > + *
-> + * Copyright (c) 2021, SberDevices. All Rights Reserved.
-> + *
-> + * Author: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+> + * Copyright (C) 2021 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > + */
 > +
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/sched.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/of_irq.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
 > +#include <linux/clk.h>
-> +#include <linux/slab.h>
-> +#include <media/rc-core.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
 > +
-> +#define DEVICE_NAME	"Meson IR TX"
-> +#define DRIVER_NAME	"meson-ir-tx"
+> +#define HHI_HDMI_PHY_CNTL0				0x0
+> +	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL1		GENMASK(31, 16)
+> +	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL0		GENMASK(15, 0)
 > +
-> +#define MIRTX_DEFAULT_CARRIER		38000
-> +#define MIRTX_DEFAULT_DUTY_CYCLE	50
-> +#define MIRTX_FIFO_THD			32
+> +#define HHI_HDMI_PHY_CNTL1				0x4
+> +	#define HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE		BIT(1)
+> +	#define HHI_HDMI_PHY_CNTL1_SOFT_RESET		BIT(0)
 > +
-> +#define IRB_MOD_1US_CLK_RATE	1000000
+> +#define HHI_HDMI_PHY_CNTL2				0x8
 > +
-> +#define IRB_FIFO_LEN	128
-> +
-> +#define IRB_ADDR0	0x0
-> +#define IRB_ADDR1	0x4
-> +#define IRB_ADDR2	0x8
-> +#define IRB_ADDR3	0xc
-> +
-> +#define IRB_MAX_DELAY	(1 << 10)
-> +#define IRB_DELAY_MASK	(IRB_MAX_DELAY - 1)
-> +
-> +/* IRCTRL_IR_BLASTER_ADDR0 */
-> +#define IRB_MOD_CLK(x)		((x) << 12)
-> +#define IRB_MOD_SYS_CLK		0
-> +#define IRB_MOD_XTAL3_CLK	1
-> +#define IRB_MOD_1US_CLK		2
-> +#define IRB_MOD_10US_CLK	3
-> +#define IRB_INIT_HIGH		BIT(2)
-> +#define IRB_ENABLE		BIT(0)
-> +
-> +/* IRCTRL_IR_BLASTER_ADDR2 */
-> +#define IRB_MOD_COUNT(lo, hi)	((((lo) - 1) << 16) | ((hi) - 1))
-> +
-> +/* IRCTRL_IR_BLASTER_ADDR2 */
-> +#define IRB_WRITE_FIFO	BIT(16)
-> +#define IRB_MOD_ENABLE	BIT(12)
-> +#define IRB_TB_1US	(0x0 << 10)
-> +#define IRB_TB_10US	(0x1 << 10)
-> +#define IRB_TB_100US	(0x2 << 10)
-> +#define IRB_TB_MOD_CLK	(0x3 << 10)
-> +
-> +/* IRCTRL_IR_BLASTER_ADDR3 */
-> +#define IRB_FIFO_THD_PENDING	BIT(16)
-> +#define IRB_FIFO_IRQ_ENABLE	BIT(8)
-> +
-> +struct meson_irtx {
-> +	struct device *dev;
-> +	void __iomem *reg_base;
-> +	u32 *buf;
-> +	unsigned int buf_len;
-> +	unsigned int buf_head;
-> +	unsigned int carrier;
-> +	unsigned int duty_cycle;
-> +	spinlock_t lock;
-> +	struct completion completion;
-> +	unsigned long clk_rate;
+> +struct phy_meson8_hdmi_tx_priv {
+> +	struct regmap		*hhi;
+> +	struct clk		*tmds_clk;
+> +	unsigned int		reg_offset;
 > +};
 > +
-> +static void meson_irtx_set_mod(struct meson_irtx *ir)
+> +static int phy_meson8_hdmi_tx_init(struct phy *phy)
 > +{
-> +	unsigned int cnt = DIV_ROUND_CLOSEST(ir->clk_rate, ir->carrier);
-> +	unsigned int pulse_cnt = DIV_ROUND_CLOSEST(cnt * ir->duty_cycle, 100);
-> +	unsigned int space_cnt = cnt - pulse_cnt;
+> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
 > +
-> +	dev_dbg(ir->dev, "F_mod = %uHz, T_mod = %luns, duty_cycle = %u%%\n",
-> +		ir->carrier, NSEC_PER_SEC / ir->clk_rate * cnt,
-> +		100 * pulse_cnt / cnt);
-> +
-> +	writel(IRB_MOD_COUNT(pulse_cnt, space_cnt),
-> +	       ir->reg_base + IRB_ADDR1);
+> +	return clk_prepare_enable(priv->tmds_clk);
 > +}
 > +
-> +static void meson_irtx_setup(struct meson_irtx *ir, unsigned int clk_nr)
+> +static int phy_meson8_hdmi_tx_exit(struct phy *phy)
 > +{
-> +	/*
-> +	 * Disable the TX, set modulator clock tick and set initialize
-> +	 * output to be high. Set up carrier frequency and duty cycle. Then
-> +	 * unset initialize output. Enable FIFO interrupt, set FIFO interrupt
-> +	 * threshold. Finally, enable the transmitter back.
-> +	 */
-> +	writel(~IRB_ENABLE & (IRB_MOD_CLK(clk_nr) | IRB_INIT_HIGH),
-> +	       ir->reg_base + IRB_ADDR0);
-> +	meson_irtx_set_mod(ir);
-> +	writel(readl(ir->reg_base + IRB_ADDR0) & ~IRB_INIT_HIGH,
-> +	       ir->reg_base + IRB_ADDR0);
-> +	writel(IRB_FIFO_IRQ_ENABLE | MIRTX_FIFO_THD,
-> +	       ir->reg_base + IRB_ADDR3);
-> +	writel(readl(ir->reg_base + IRB_ADDR0) | IRB_ENABLE,
-> +	       ir->reg_base + IRB_ADDR0);
+> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
+> +
+> +	clk_disable_unprepare(priv->tmds_clk);
+> +
+> +	return 0;
 > +}
 > +
-> +static u32 meson_irtx_prepare_pulse(struct meson_irtx *ir, unsigned int time)
+> +static int phy_meson8_hdmi_tx_power_on(struct phy *phy)
 > +{
-> +	unsigned int delay;
-> +	unsigned int tb = IRB_TB_MOD_CLK;
-> +	unsigned int tb_us = DIV_ROUND_CLOSEST(USEC_PER_SEC, ir->carrier);
-> +
-> +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) & IRB_DELAY_MASK;
-> +
-> +	return ((IRB_WRITE_FIFO | IRB_MOD_ENABLE) | tb | delay);
-> +}
-> +
-> +static u32 meson_irtx_prepare_space(struct meson_irtx *ir, unsigned int time)
-> +{
-> +	unsigned int delay;
-> +	unsigned int tb = IRB_TB_100US;
-> +	unsigned int tb_us = 100;
-> +
-> +	if (time <= IRB_MAX_DELAY) {
-> +		tb = IRB_TB_1US;
-> +		tb_us = 1;
-> +	} else if (time <= 10 * IRB_MAX_DELAY) {
-> +		tb = IRB_TB_10US;
-> +		tb_us = 10;
-> +	} else if (time <= 100 * IRB_MAX_DELAY) {
-> +		tb = IRB_TB_100US;
-> +		tb_us = 100;
-> +	}
-> +
-> +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) & IRB_DELAY_MASK;
-> +
-> +	return ((IRB_WRITE_FIFO & ~IRB_MOD_ENABLE) | tb | delay);
-> +}
-> +
-> +static void meson_irtx_send_buffer(struct meson_irtx *ir)
-> +{
-> +	unsigned int nr = 0;
-> +	unsigned int max_fifo_level = IRB_FIFO_LEN - MIRTX_FIFO_THD;
-> +
-> +	while (ir->buf_head < ir->buf_len && nr < max_fifo_level) {
-> +		writel(ir->buf[ir->buf_head], ir->reg_base + IRB_ADDR2);
-> +
-> +		ir->buf_head++;
-> +		nr++;
-> +	}
-> +}
-> +
-> +static bool meson_irtx_check_buf(struct meson_irtx *ir,
-> +			  unsigned int *buf, unsigned int len)
-> +{
+> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
 > +	unsigned int i;
+> +	u16 hdmi_ctl0;
 > +
-> +	for (i = 0; i < len; i++) {
-> +		unsigned int max_tb_us;
-> +		/*
-> +		 * Max space timebase is 100 us.
-> +		 * Pulse timebase equals to carrier period.
-> +		 */
-> +		if (i % 2 == 0)
-> +			max_tb_us = USEC_PER_SEC / ir->carrier;
-> +		else
-> +			max_tb_us = 100;
-> +
-> +		if (buf[i] >= max_tb_us * IRB_MAX_DELAY)
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +static void meson_irtx_fill_buf(struct meson_irtx *ir, u32 *dst_buf,
-> +				unsigned int *src_buf, unsigned int len)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		if (i % 2 == 0)
-> +			dst_buf[i] = meson_irtx_prepare_pulse(ir, src_buf[i]);
-> +		else
-> +			dst_buf[i] = meson_irtx_prepare_space(ir, src_buf[i]);
-> +	}
-> +}
-> +
-> +static irqreturn_t meson_irtx_irqhandler(int irq, void *data)
-> +{
-> +	unsigned long flags;
-> +	struct meson_irtx *ir = data;
-> +
-> +	writel(readl(ir->reg_base + IRB_ADDR3) & ~IRB_FIFO_THD_PENDING,
-> +	       ir->reg_base + IRB_ADDR3);
-> +
-> +	if (completion_done(&ir->completion))
-> +		return IRQ_HANDLED;
-> +
-> +	spin_lock_irqsave(&ir->lock, flags);
-> +	if (ir->buf_head < ir->buf_len)
-> +		meson_irtx_send_buffer(ir);
+> +	if (clk_get_rate(priv->tmds_clk) >= 2970UL * 1000 * 1000)
+> +		hdmi_ctl0 = 0x1e8b;
 > +	else
-> +		complete(&ir->completion);
-> +	spin_unlock_irqrestore(&ir->lock, flags);
+> +		hdmi_ctl0 = 0x4d0b;
+
+magic numbers..? I guess these are register offsets, would be better to
+define..
+
 > +
-> +	return IRQ_HANDLED;
-> +}
+> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL0,
+> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x08c3) |
+> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, hdmi_ctl0));
 > +
-> +static int meson_irtx_set_carrier(struct rc_dev *rc, u32 carrier)
-> +{
-> +	struct meson_irtx *ir = rc->priv;
+> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1, 0x0);
 > +
-> +	if (carrier == 0)
-> +		return -EINVAL;
+> +	/* Reset three times, just like the vendor driver does */
+> +	for (i = 0; i < 3; i++) {
+> +		regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1,
+> +			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE |
+> +			     HHI_HDMI_PHY_CNTL1_SOFT_RESET);
+> +		usleep_range(1000, 2000);
 > +
-> +	ir->carrier = carrier;
-> +	meson_irtx_set_mod(ir);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_irtx_set_duty_cycle(struct rc_dev *rc, u32 duty_cycle)
-> +{
-> +	struct meson_irtx *ir = rc->priv;
-> +
-> +	ir->duty_cycle = duty_cycle;
-> +	meson_irtx_set_mod(ir);
-> +
-> +	return 0;
-> +}
-> +
-> +static void meson_irtx_update_buf(struct meson_irtx *ir, u32 *buf,
-> +				  unsigned int len, unsigned int head)
-> +{
-> +	ir->buf = buf;
-> +	ir->buf_len = len;
-> +	ir->buf_head = head;
-> +}
-> +
-> +static int meson_irtx_transmit(struct rc_dev *rc, unsigned int *buf,
-> +			       unsigned int len)
-> +{
-> +	unsigned long flags;
-> +	struct meson_irtx *ir = rc->priv;
-> +	u32 *tx_buf;
-> +	int ret = len;
-> +
-> +	if (!meson_irtx_check_buf(ir, buf, len))
-> +		return -EINVAL;
-> +
-> +	tx_buf = kmalloc_array(len, sizeof(u32), GFP_KERNEL);
-> +	if (!tx_buf)
-> +		return -ENOMEM;
-> +
-> +	meson_irtx_fill_buf(ir, tx_buf, buf, len);
-> +	dev_dbg(ir->dev, "TX buffer filled, length = %u\n", len);
-> +
-> +	spin_lock_irqsave(&ir->lock, flags);
-> +	meson_irtx_update_buf(ir, tx_buf, len, 0);
-> +	reinit_completion(&ir->completion);
-> +	meson_irtx_send_buffer(ir);
-> +	spin_unlock_irqrestore(&ir->lock, flags);
-> +
-> +	if (!wait_for_completion_timeout(&ir->completion,
-> +					 usecs_to_jiffies(IR_MAX_DURATION)))
-> +		ret = -ETIMEDOUT;
-> +
-> +	spin_lock_irqsave(&ir->lock, flags);
-> +	kfree(ir->buf);
-> +	meson_irtx_update_buf(ir, NULL, 0, 0);
-> +	spin_unlock_irqrestore(&ir->lock, flags);
-> +
-> +	return ret;
-> +}
-> +
-> +static int meson_irtx_mod_clock_probe(struct meson_irtx *ir,
-> +				      unsigned int *clk_nr)
-> +{
-> +	struct device_node *np = ir->dev->of_node;
-> +	struct clk *clock;
-> +
-> +	if (!np)
-> +		return -ENODEV;
-> +
-> +	clock = devm_clk_get(ir->dev, "xtal");
-> +	if (IS_ERR(clock) || clk_prepare_enable(clock))
-> +		return -ENODEV;
-> +
-> +	*clk_nr = IRB_MOD_XTAL3_CLK;
-> +	ir->clk_rate = clk_get_rate(clock) / 3;
-> +
-> +	if (ir->clk_rate < IRB_MOD_1US_CLK_RATE) {
-> +		*clk_nr = IRB_MOD_1US_CLK;
-> +		ir->clk_rate = IRB_MOD_1US_CLK_RATE;
+> +		regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1,
+> +			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE);
+> +		usleep_range(1000, 2000);
 > +	}
 > +
-> +	dev_info(ir->dev, "F_clk = %luHz\n", ir->clk_rate);
+> +	return 0;
+> +}
+> +
+> +static int phy_meson8_hdmi_tx_power_off(struct phy *phy)
+> +{
+> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
+> +
+> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL0,
+> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x0841) |
+> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, 0x8d00));
+
+more magic..
+
 > +
 > +	return 0;
 > +}
 > +
-> +static int __init meson_irtx_probe(struct platform_device *pdev)
+> +static const struct phy_ops phy_meson8_hdmi_tx_ops = {
+> +	.init		= phy_meson8_hdmi_tx_init,
+> +	.exit		= phy_meson8_hdmi_tx_exit,
+> +	.power_on	= phy_meson8_hdmi_tx_power_on,
+> +	.power_off	= phy_meson8_hdmi_tx_power_off,
+> +	.owner		= THIS_MODULE,
+> +};
+> +
+> +static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
 > +{
-> +	struct device *dev = &pdev->dev;
-> +	struct meson_irtx *ir;
-> +	struct rc_dev *rc;
-> +	int irq;
-> +	unsigned int clk_nr;
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct phy_meson8_hdmi_tx_priv *priv;
+> +	struct phy_provider *phy_provider;
+> +	struct phy *phy;
+> +	u32 reg[2];
 > +	int ret;
 > +
-> +	ir = devm_kzalloc(dev, sizeof(*ir), GFP_KERNEL);
-> +	if (!ir)
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
 > +		return -ENOMEM;
 > +
-> +	ir->reg_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ir->reg_base))
-> +		return PTR_ERR(ir->reg_base);
+> +	ret = device_property_read_u32_array(&pdev->dev, "reg", reg,
+> +					     ARRAY_SIZE(reg));
+
+we have reg as single property, why array with 2 entries here?
+
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Failed to parse the 'reg' property\n");
 > +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0) {
-> +		dev_err(dev, "no irq resource found\n");
-> +		return -ENODEV;
-> +	}
+> +	priv->reg_offset = reg[0];
+
+and mystery deepens, no use of reg[1],  leftover artifacts?
+
 > +
-> +	ir->dev = dev;
-> +	ir->carrier = MIRTX_DEFAULT_CARRIER;
-> +	ir->duty_cycle = MIRTX_DEFAULT_DUTY_CYCLE;
-> +	init_completion(&ir->completion);
-> +	spin_lock_init(&ir->lock);
+> +	priv->hhi = syscon_node_to_regmap(np->parent);
+> +	if (IS_ERR(priv->hhi))
+> +		return PTR_ERR(priv->hhi);
 > +
-> +	ret = meson_irtx_mod_clock_probe(ir, &clk_nr);
-> +	if (ret) {
-> +		dev_err(dev, "modulator clock setup failed\n");
-> +		return ret;
-> +	}
-> +	meson_irtx_setup(ir, clk_nr);
+> +	priv->tmds_clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(priv->tmds_clk))
+> +		return PTR_ERR(priv->tmds_clk);
 > +
-> +	ret = devm_request_irq(dev, irq,
-> +			       meson_irtx_irqhandler,
-> +			       IRQF_TRIGGER_RISING,
-> +			       DRIVER_NAME, ir);
-> +	if (ret) {
-> +		dev_err(dev, "irq request failed\n");
-> +		return ret;
-> +	}
+> +	phy = devm_phy_create(&pdev->dev, np, &phy_meson8_hdmi_tx_ops);
+> +	if (IS_ERR(phy))
+> +		return PTR_ERR(phy);
 > +
-> +	rc = rc_allocate_device(RC_DRIVER_IR_RAW_TX);
-> +	if (!rc)
-> +		return -ENOMEM;
+> +	phy_set_drvdata(phy, priv);
 > +
-> +	rc->driver_name = DRIVER_NAME;
-> +	rc->device_name = DEVICE_NAME;
-> +	rc->priv = ir;
+> +	phy_provider = devm_of_phy_provider_register(&pdev->dev,
+> +						     of_phy_simple_xlate);
 > +
-> +	rc->tx_ir = meson_irtx_transmit;
-> +	rc->s_tx_carrier = meson_irtx_set_carrier;
-> +	rc->s_tx_duty_cycle = meson_irtx_set_duty_cycle;
-> +
-> +	ret = rc_register_device(rc);
-> +	if (ret < 0) {
-> +		dev_err(dev, "rc_dev registration failed\n");
-> +		rc_free_device(rc);
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, rc);
-> +
-> +	return 0;
+> +	return PTR_ERR_OR_ZERO(phy_provider);
 > +}
 > +
-> +static int meson_irtx_remove(struct platform_device *pdev)
-> +{
-> +	struct rc_dev *rc = platform_get_drvdata(pdev);
-> +
-> +	rc_unregister_device(rc);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id meson_irtx_dt_match[] = {
-> +	{
-> +		.compatible = "amlogic,meson-g12a-ir-tx",
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_irtx_dt_match);
-> +
-> +static struct platform_driver meson_irtx_pd = {
-> +	.remove = meson_irtx_remove,
-> +	.driver = {
-> +		.name = DRIVER_NAME,
-> +		.owner  = THIS_MODULE,
-> +		.of_match_table = meson_irtx_dt_match,
-> +	},
-> +};
-> +
-> +module_platform_driver_probe(meson_irtx_pd, meson_irtx_probe);
-> +
-> +MODULE_DESCRIPTION("Meson IR TX driver");
-> +MODULE_AUTHOR("Viktor Prutyanov <viktor.prutyanov@phystech.edu>");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.21.0
+> +static const struct of_device_id phy_meson8_hdmi_tx_of_match[] = {
+> +	{ .compatible = "amlogic,meson8-hdmi-tx-phy" },
+> +	{ .compatible = "amlogic,meson8b-hdmi-tx-phy" },
+> +	{ .compatible = "amlogic,meson8m2-hdmi-tx-phy" },
+> +	{ /* sentinel */ }
+
+I see that all three are handled similarly, no difference!
+
+Maybe also add a amlogic,meson8-hdmi compatible and use that?
+
+-- 
+~Vinod
 
 _______________________________________________
 linux-amlogic mailing list
