@@ -2,62 +2,66 @@ Return-Path: <SRS0=pDvI=MP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F216AC4338F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jul 2021 14:25:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 641AAC4338F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jul 2021 15:37:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0A603608FE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jul 2021 14:25:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 0A603608FE
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=winds.org
+	by mail.kernel.org (Postfix) with ESMTPS id 119BF60ED7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jul 2021 15:37:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 119BF60ED7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:Message-ID:In-Reply-To:
-	Subject:cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oI/TKS8uEXpwdVJZtZLelYNX6pnv717VmuM0LtzXjts=; b=gbwAFw5Hy5pmptZJ3GWDm5dfW9
-	NvB1/C1AMp3SNtl1Zjd3mklghQjZAkVvjsNfpCauWqsxNUjUumh8A+X7gG9Ooko9/C8D+q158sqXT
-	JlZbekRyZEN+MQabFRSdbmlasEHR4fMTfZ3RuIMsVGBkqCitEvSt9o0az8TENmxFNysc0Fkm+lCSm
-	MDZcNnbJVgQD8jJOdTOlEDC5dtsO1tI8ARLWa+bfi1oeMjuKLIZ7vKOLj6it22ur1bmeiC/5qF4yj
-	EKj5GgJBIodUp8dlb0sRE1QVTcYfZsg9ZNnE67EATsRXhH1zKuVu2SA/2bv49nWdjfSxAMkNMuGA2
-	QduhL04A==;
+	bh=muAZ06PFor7CcoV2zt2W9CAcVwOI8m9MB8clPtR3/lk=; b=wmnC7MaRn+zpPJkkvPZN+IbNwX
+	kencFXzMMh7eSEKuYejHnj4UySYi6FCTMCE7MbNyGJHd1h3n28JWh5dwX+kFStIBqOfo55780cnPL
+	/XPtjo47Q1qEZ38jERpdcw8X9fovWQA/syxQ2leTTi5V2zNkYqOcxeEokrqSPr5es/01zdCR3fKcq
+	P+zgVnB5Xva8YGDCzb6X7ck2dZjjOQDWUhTfokvybVkkZW4ZoJWaGSAtHpQQJXHJ/BUjyZSlW3C+4
+	cxNEuisIXRkIZemFIyPBqey0Pt+vRvHQ6+HeRv+ydS7F2loOQkq5cCbUaUtBaT+6IO7V6CK21czRr
+	5IMPsoRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m6w71-0050lP-Js; Fri, 23 Jul 2021 14:25:15 +0000
-Received: from winds.org ([68.75.195.9])
+	id 1m6xEM-0059aH-8y; Fri, 23 Jul 2021 15:36:54 +0000
+Received: from foss.arm.com ([217.140.110.172])
  by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m6w6z-0050kt-0v; Fri, 23 Jul 2021 14:25:14 +0000
-Received: by winds.org (Postfix, from userid 100)
- id 2DDFC1921F39; Fri, 23 Jul 2021 10:25:09 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
- by winds.org (Postfix) with ESMTP id 2A55F18FB9F0;
- Fri, 23 Jul 2021 10:25:09 -0400 (EDT)
-Date: Fri, 23 Jul 2021 10:25:09 -0400 (EDT)
-From: Byron Stanoszek <gandalf@winds.org>
-To: Stefan Agner <stefan@agner.ch>
-cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Neil Armstrong <narmstrong@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Mike Rapoport <rppt@kernel.org>
+ id 1m6xEJ-0059Zj-0g; Fri, 23 Jul 2021 15:36:53 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4AD4911D4;
+ Fri, 23 Jul 2021 08:36:47 -0700 (PDT)
+Received: from [10.57.36.146] (unknown [10.57.36.146])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E04783F73D;
+ Fri, 23 Jul 2021 08:36:45 -0700 (PDT)
 Subject: Re: Random reboots on ODROID-N2+
-In-Reply-To: <a0ef23c932d1a7412d620237d9acde0f@agner.ch>
-Message-ID: <alpine.LNX.2.23.451.2107221723060.2673@winds.org>
+To: Byron Stanoszek <gandalf@winds.org>, Stefan Agner <stefan@agner.ch>
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Mike Rapoport <rppt@kernel.org>
 References: <40ca11f84b7cdbfb9ad2ddd480cb204a@agner.ch>
  <a0ef23c932d1a7412d620237d9acde0f@agner.ch>
-User-Agent: Alpine 2.23 (LNX 451 2020-06-18)
+ <alpine.LNX.2.23.451.2107221723060.2673@winds.org>
+From: Robin Murphy <robin.murphy@arm.com>
+Message-ID: <c2a16fbc-653f-5993-f9bb-9ee8c707515e@arm.com>
+Date: Fri, 23 Jul 2021 16:36:39 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
+In-Reply-To: <alpine.LNX.2.23.451.2107221723060.2673@winds.org>
+Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210723_072513_177802_E917FF95 
-X-CRM114-Status: GOOD (  23.52  )
+X-CRM114-CacheID: sfid-20210723_083651_206416_5793E604 
+X-CRM114-Status: GOOD (  39.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,147 +73,128 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 22 Jun 2021, Stefan Agner wrote:
-
-> On 2021-05-17 11:14, Stefan Agner wrote:
->> Hi,
->>
->> We are currently testing a new release using Linux 5.10.33. I've
->> received since several reports of random reboots every couple of days.
->> Unfortunately the log (journald) doesn't show anything, just a hard cut
->> at some point.
->>
->> After running serial console on several instances, I was able to catch
->> this stack trace:
->>
->> [202983.988153] SError Interrupt on CPU3, code 0xbf000000 -- SError
->> [202983.988155] CPU: 3 PID: 3463 Comm: mdns-repeater Not tainted 5.10.33
->> #1
->> [202983.988156] Hardware name: Hardkernel ODROID-N2Plus (DT)
->> [202983.988157] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
->> [202983.988158] pc : udp_send_skb.isra.0+0x178/0x390
->> [202983.988159] lr : udp_send_skb.isra.0+0x130/0x390
->
-> <snip>
->
-> We do see those crashes in similar frequency with Linux 5.12:
->
-> [129988.642342] SError Interrupt on CPU4, code 0xbf000000 -- SError
->
-> It seems load and/or hardware dependent since we see it on some devices
-> quite frequent (every few days), and on others it takes multiple weeks.
-> Of course the once we see it frequently are the ones in production :).
->
-> I am currently trying different stress-ng and other load to accelerate
-> the crash rate before then trying to git bisect it.
-
-I have an Odroid-N2+ and was able to track this problem down. The problem is
-related to the following dmesg line that reads "failed to reserve memory"
-below:
-
-Machine model: Hardkernel ODROID-N2Plus
-memblock_remove: [0x0001000000000000-0x0000fffffffffffe] 0xffffffc0107e3604
-memblock_remove: [0x0000004000000000-0x0000003ffffffffe] 0xffffffc0107e3664
-memblock_reserve: [0x0000000008210000-0x0000000008baffff] 0xffffffc0107e36dc
-memblock_reserve: [0x0000000005000000-0x00000000052fffff] 0xffffffc0107feb50
-OF: fdt: Reserved memory: failed to reserve memory for node 'secmon@5000000': base 0x0000000005000000, size 3 MiB
-memblock_reserve: [0x00000000e4c00000-0x00000000f4bfffff] 0xffffffc0107ff87c
-OF: reserved mem: node linux,cma compatible matching fail
-memblock_free: [0x00000000e4c00000-0x00000000f4bfffff] 0xffffffc0107ffca8
-...
-
-A subsequent "cat /proc/iomem" shows that this memory region is still reserved
-and the system appears to operate normally, until eventually the SError
-Interrupt comes in under heavy memory/page-cache usage. The difference with
-later kernels is that now the memory at 0x5000000-0x52fffff is registered under
-the "System RAM" memory area, whereas previous kernels had dropped it from
-"System RAM".
-
-The culprit is this new code introduced in Linux 5.12, in this function in
-drivers/of/fdt.c, called by function __reserved_mem_reserve_reg():
-
-int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
-                                         phys_addr_t size, bool nomap)
-{
-         if (nomap) {
-                 /*
-                  * If the memory is already reserved (by another region), we
-                  * should not allow it to be marked nomap.
-                  */
-                 if (memblock_is_region_reserved(base, size))  <------
-                         return -EBUSY;                        <------
-
-                 return memblock_mark_nomap(base, size);
-         }
-         return memblock_reserve(base, size);
-}
-
-"nomap" is true, due to this text being present in the FDT:
-
-    reserved-memory {
-      ranges secmon_reserved: secmon@5000000 {
-        reg = <0x0 0x05000000 0x0 0x300000>
-        no-map
-      }
-      ...
-
-But memblock_is_region_reserved() is returning true because there is already an
-entry for 0x5000000-0x52fffff in the memory map, which is already marked
-reserved, at the time the __reserved_mem_reserve_reg() function is called.
-(Perhaps this is being set reserved by u-boot? -- I did not research that far.)
-
-This function is defined as:
-
-bool __init_memblock memblock_is_region_reserved(phys_addr_t base, phys_addr_t size)
-{
-         return memblock_overlaps_region(&memblock.reserved, base, size);
-}
-
-Since the region to mark no-map, "0x5000000-0x52fffff", overlaps the existing
-reserved region "0x5000000-0x52fffff", the function returns true.
-
-If I comment out the "if (memblock_is_region_reserved(base, size))" code and
-allow it to mark the region no-map, then the memory area is properly removed
-from the "System RAM" area and the crashing stops.
-
-I've had the system up and running for 15 days now under heavy load without any
-crashes, using just the following patch as workaround:
-
-
---- linux-5.13.0/drivers/of/fdt.c.bak	2021-07-07 00:22:58.000000000 -0400
-+++ linux-5.13.0/drivers/of/fdt.c	2021-07-07 00:23:08.000000000 -0400
-@@ -1157,13 +1157,6 @@
-  					phys_addr_t size, bool nomap)
-  {
-  	if (nomap) {
--		/*
--		 * If the memory is already reserved (by another region), we
--		 * should not allow it to be marked nomap.
--		 */
--		if (memblock_is_region_reserved(base, size))
--			return -EBUSY;
--
-  		return memblock_mark_nomap(base, size);
-  	}
-  	return memblock_reserve(base, size);
-
-
-The above patch applies to later versions of Linux 5.10.x through 5.12.x as
-well.
-
-Perhaps a more proper fix is to allow the no-map to still proceed, in the case
-that the existing reserved region is identical (same start/end) to the region
-getting marked no-map.
-
-  -Byron
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjAyMS0wNy0yMyAxNToyNSwgQnlyb24gU3Rhbm9zemVrIHdyb3RlOgo+IE9uIFR1ZSwgMjIg
+SnVuIDIwMjEsIFN0ZWZhbiBBZ25lciB3cm90ZToKPiAKPj4gT24gMjAyMS0wNS0xNyAxMToxNCwg
+U3RlZmFuIEFnbmVyIHdyb3RlOgo+Pj4gSGksCj4+Pgo+Pj4gV2UgYXJlIGN1cnJlbnRseSB0ZXN0
+aW5nIGEgbmV3IHJlbGVhc2UgdXNpbmcgTGludXggNS4xMC4zMy4gSSd2ZQo+Pj4gcmVjZWl2ZWQg
+c2luY2Ugc2V2ZXJhbCByZXBvcnRzIG9mIHJhbmRvbSByZWJvb3RzIGV2ZXJ5IGNvdXBsZSBvZiBk
+YXlzLgo+Pj4gVW5mb3J0dW5hdGVseSB0aGUgbG9nIChqb3VybmFsZCkgZG9lc24ndCBzaG93IGFu
+eXRoaW5nLCBqdXN0IGEgaGFyZCBjdXQKPj4+IGF0IHNvbWUgcG9pbnQuCj4+Pgo+Pj4gQWZ0ZXIg
+cnVubmluZyBzZXJpYWwgY29uc29sZSBvbiBzZXZlcmFsIGluc3RhbmNlcywgSSB3YXMgYWJsZSB0
+byBjYXRjaAo+Pj4gdGhpcyBzdGFjayB0cmFjZToKPj4+Cj4+PiBbMjAyOTgzLjk4ODE1M10gU0Vy
+cm9yIEludGVycnVwdCBvbiBDUFUzLCBjb2RlIDB4YmYwMDAwMDAgLS0gU0Vycm9yCj4+PiBbMjAy
+OTgzLjk4ODE1NV0gQ1BVOiAzIFBJRDogMzQ2MyBDb21tOiBtZG5zLXJlcGVhdGVyIE5vdCB0YWlu
+dGVkIDUuMTAuMzMKPj4+ICMxCj4+PiBbMjAyOTgzLjk4ODE1Nl0gSGFyZHdhcmUgbmFtZTogSGFy
+ZGtlcm5lbCBPRFJPSUQtTjJQbHVzIChEVCkKPj4+IFsyMDI5ODMuOTg4MTU3XSBwc3RhdGU6IDgw
+MDAwMDA1IChOemN2IGRhaWYgLVBBTiAtVUFPIC1UQ08gQlRZUEU9LS0pCj4+PiBbMjAyOTgzLjk4
+ODE1OF0gcGMgOiB1ZHBfc2VuZF9za2IuaXNyYS4wKzB4MTc4LzB4MzkwCj4+PiBbMjAyOTgzLjk4
+ODE1OV0gbHIgOiB1ZHBfc2VuZF9za2IuaXNyYS4wKzB4MTMwLzB4MzkwCj4+Cj4+IDxzbmlwPgo+
+Pgo+PiBXZSBkbyBzZWUgdGhvc2UgY3Jhc2hlcyBpbiBzaW1pbGFyIGZyZXF1ZW5jeSB3aXRoIExp
+bnV4IDUuMTI6Cj4+Cj4+IFsxMjk5ODguNjQyMzQyXSBTRXJyb3IgSW50ZXJydXB0IG9uIENQVTQs
+IGNvZGUgMHhiZjAwMDAwMCAtLSBTRXJyb3IKPj4KPj4gSXQgc2VlbXMgbG9hZCBhbmQvb3IgaGFy
+ZHdhcmUgZGVwZW5kZW50IHNpbmNlIHdlIHNlZSBpdCBvbiBzb21lIGRldmljZXMKPj4gcXVpdGUg
+ZnJlcXVlbnQgKGV2ZXJ5IGZldyBkYXlzKSwgYW5kIG9uIG90aGVycyBpdCB0YWtlcyBtdWx0aXBs
+ZSB3ZWVrcy4KPj4gT2YgY291cnNlIHRoZSBvbmNlIHdlIHNlZSBpdCBmcmVxdWVudGx5IGFyZSB0
+aGUgb25lcyBpbiBwcm9kdWN0aW9uIDopLgo+Pgo+PiBJIGFtIGN1cnJlbnRseSB0cnlpbmcgZGlm
+ZmVyZW50IHN0cmVzcy1uZyBhbmQgb3RoZXIgbG9hZCB0byBhY2NlbGVyYXRlCj4+IHRoZSBjcmFz
+aCByYXRlIGJlZm9yZSB0aGVuIHRyeWluZyB0byBnaXQgYmlzZWN0IGl0Lgo+IAo+IEkgaGF2ZSBh
+biBPZHJvaWQtTjIrIGFuZCB3YXMgYWJsZSB0byB0cmFjayB0aGlzIHByb2JsZW0gZG93bi4gVGhl
+IAo+IHByb2JsZW0gaXMKPiByZWxhdGVkIHRvIHRoZSBmb2xsb3dpbmcgZG1lc2cgbGluZSB0aGF0
+IHJlYWRzICJmYWlsZWQgdG8gcmVzZXJ2ZSBtZW1vcnkiCj4gYmVsb3c6Cj4gCj4gTWFjaGluZSBt
+b2RlbDogSGFyZGtlcm5lbCBPRFJPSUQtTjJQbHVzCj4gbWVtYmxvY2tfcmVtb3ZlOiBbMHgwMDAx
+MDAwMDAwMDAwMDAwLTB4MDAwMGZmZmZmZmZmZmZmZV0gMHhmZmZmZmZjMDEwN2UzNjA0Cj4gbWVt
+YmxvY2tfcmVtb3ZlOiBbMHgwMDAwMDA0MDAwMDAwMDAwLTB4MDAwMDAwM2ZmZmZmZmZmZV0gMHhm
+ZmZmZmZjMDEwN2UzNjY0Cj4gbWVtYmxvY2tfcmVzZXJ2ZTogWzB4MDAwMDAwMDAwODIxMDAwMC0w
+eDAwMDAwMDAwMDhiYWZmZmZdIAo+IDB4ZmZmZmZmYzAxMDdlMzZkYwo+IG1lbWJsb2NrX3Jlc2Vy
+dmU6IFsweDAwMDAwMDAwMDUwMDAwMDAtMHgwMDAwMDAwMDA1MmZmZmZmXSAKPiAweGZmZmZmZmMw
+MTA3ZmViNTAKPiBPRjogZmR0OiBSZXNlcnZlZCBtZW1vcnk6IGZhaWxlZCB0byByZXNlcnZlIG1l
+bW9yeSBmb3Igbm9kZSAKPiAnc2VjbW9uQDUwMDAwMDAnOiBiYXNlIDB4MDAwMDAwMDAwNTAwMDAw
+MCwgc2l6ZSAzIE1pQgo+IG1lbWJsb2NrX3Jlc2VydmU6IFsweDAwMDAwMDAwZTRjMDAwMDAtMHgw
+MDAwMDAwMGY0YmZmZmZmXSAKPiAweGZmZmZmZmMwMTA3ZmY4N2MKPiBPRjogcmVzZXJ2ZWQgbWVt
+OiBub2RlIGxpbnV4LGNtYSBjb21wYXRpYmxlIG1hdGNoaW5nIGZhaWwKPiBtZW1ibG9ja19mcmVl
+OiBbMHgwMDAwMDAwMGU0YzAwMDAwLTB4MDAwMDAwMDBmNGJmZmZmZl0gMHhmZmZmZmZjMDEwN2Zm
+Y2E4Cj4gLi4uCj4gCj4gQSBzdWJzZXF1ZW50ICJjYXQgL3Byb2MvaW9tZW0iIHNob3dzIHRoYXQg
+dGhpcyBtZW1vcnkgcmVnaW9uIGlzIHN0aWxsIAo+IHJlc2VydmVkCj4gYW5kIHRoZSBzeXN0ZW0g
+YXBwZWFycyB0byBvcGVyYXRlIG5vcm1hbGx5LCB1bnRpbCBldmVudHVhbGx5IHRoZSBTRXJyb3IK
+PiBJbnRlcnJ1cHQgY29tZXMgaW4gdW5kZXIgaGVhdnkgbWVtb3J5L3BhZ2UtY2FjaGUgdXNhZ2Uu
+IFRoZSBkaWZmZXJlbmNlIHdpdGgKPiBsYXRlciBrZXJuZWxzIGlzIHRoYXQgbm93IHRoZSBtZW1v
+cnkgYXQgMHg1MDAwMDAwLTB4NTJmZmZmZiBpcyAKPiByZWdpc3RlcmVkIHVuZGVyCj4gdGhlICJT
+eXN0ZW0gUkFNIiBtZW1vcnkgYXJlYSwgd2hlcmVhcyBwcmV2aW91cyBrZXJuZWxzIGhhZCBkcm9w
+cGVkIGl0IGZyb20KPiAiU3lzdGVtIFJBTSIuCj4gCj4gVGhlIGN1bHByaXQgaXMgdGhpcyBuZXcg
+Y29kZSBpbnRyb2R1Y2VkIGluIExpbnV4IDUuMTIsIGluIHRoaXMgZnVuY3Rpb24gaW4KPiBkcml2
+ZXJzL29mL2ZkdC5jLCBjYWxsZWQgYnkgZnVuY3Rpb24gX19yZXNlcnZlZF9tZW1fcmVzZXJ2ZV9y
+ZWcoKToKPiAKPiBpbnQgX19pbml0IF9fd2VhayBlYXJseV9pbml0X2R0X3Jlc2VydmVfbWVtb3J5
+X2FyY2gocGh5c19hZGRyX3QgYmFzZSwKPiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBoeXNfYWRk
+cl90IHNpemUsIGJvb2wgbm9tYXApCj4gewo+ICDCoMKgwqDCoMKgwqDCoCBpZiAobm9tYXApIHsK
+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC8qCj4gIMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgICogSWYgdGhlIG1lbW9yeSBpcyBhbHJlYWR5IHJlc2VydmVkIChieSBh
+bm90aGVyIAo+IHJlZ2lvbiksIHdlCj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+ICogc2hvdWxkIG5vdCBhbGxvdyBpdCB0byBiZSBtYXJrZWQgbm9tYXAuCj4gIMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgICovCj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBpZiAobWVtYmxvY2tfaXNfcmVnaW9uX3Jlc2VydmVkKGJhc2UsIHNpemUpKcKgIDwtLS0tLS0K
+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4g
+LUVCVVNZO8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPC0t
+LS0tLQo+IAo+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIG1lbWJsb2Nr
+X21hcmtfbm9tYXAoYmFzZSwgc2l6ZSk7Cj4gIMKgwqDCoMKgwqDCoMKgIH0KPiAgwqDCoMKgwqDC
+oMKgwqAgcmV0dXJuIG1lbWJsb2NrX3Jlc2VydmUoYmFzZSwgc2l6ZSk7Cj4gfQo+IAo+ICJub21h
+cCIgaXMgdHJ1ZSwgZHVlIHRvIHRoaXMgdGV4dCBiZWluZyBwcmVzZW50IGluIHRoZSBGRFQ6Cj4g
+Cj4gIMKgwqAgcmVzZXJ2ZWQtbWVtb3J5IHsKPiAgwqDCoMKgwqAgcmFuZ2VzIHNlY21vbl9yZXNl
+cnZlZDogc2VjbW9uQDUwMDAwMDAgewo+ICDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MCAweDA1MDAw
+MDAwIDB4MCAweDMwMDAwMD4KPiAgwqDCoMKgwqDCoMKgIG5vLW1hcAo+ICDCoMKgwqDCoCB9Cj4g
+IMKgwqDCoMKgIC4uLgo+IAo+IEJ1dCBtZW1ibG9ja19pc19yZWdpb25fcmVzZXJ2ZWQoKSBpcyBy
+ZXR1cm5pbmcgdHJ1ZSBiZWNhdXNlIHRoZXJlIGlzIAo+IGFscmVhZHkgYW4KPiBlbnRyeSBmb3Ig
+MHg1MDAwMDAwLTB4NTJmZmZmZiBpbiB0aGUgbWVtb3J5IG1hcCwgd2hpY2ggaXMgYWxyZWFkeSBt
+YXJrZWQKPiByZXNlcnZlZCwgYXQgdGhlIHRpbWUgdGhlIF9fcmVzZXJ2ZWRfbWVtX3Jlc2VydmVf
+cmVnKCkgZnVuY3Rpb24gaXMgY2FsbGVkLgo+IChQZXJoYXBzIHRoaXMgaXMgYmVpbmcgc2V0IHJl
+c2VydmVkIGJ5IHUtYm9vdD8gLS0gSSBkaWQgbm90IHJlc2VhcmNoIAo+IHRoYXQgZmFyLikKPiAK
+PiBUaGlzIGZ1bmN0aW9uIGlzIGRlZmluZWQgYXM6Cj4gCj4gYm9vbCBfX2luaXRfbWVtYmxvY2sg
+bWVtYmxvY2tfaXNfcmVnaW9uX3Jlc2VydmVkKHBoeXNfYWRkcl90IGJhc2UsIAo+IHBoeXNfYWRk
+cl90IHNpemUpCj4gewo+ICDCoMKgwqDCoMKgwqDCoCByZXR1cm4gbWVtYmxvY2tfb3ZlcmxhcHNf
+cmVnaW9uKCZtZW1ibG9jay5yZXNlcnZlZCwgYmFzZSwgc2l6ZSk7Cj4gfQo+IAo+IFNpbmNlIHRo
+ZSByZWdpb24gdG8gbWFyayBuby1tYXAsICIweDUwMDAwMDAtMHg1MmZmZmZmIiwgb3ZlcmxhcHMg
+dGhlIAo+IGV4aXN0aW5nCj4gcmVzZXJ2ZWQgcmVnaW9uICIweDUwMDAwMDAtMHg1MmZmZmZmIiwg
+dGhlIGZ1bmN0aW9uIHJldHVybnMgdHJ1ZS4KPiAKPiBJZiBJIGNvbW1lbnQgb3V0IHRoZSAiaWYg
+KG1lbWJsb2NrX2lzX3JlZ2lvbl9yZXNlcnZlZChiYXNlLCBzaXplKSkiIGNvZGUgCj4gYW5kCj4g
+YWxsb3cgaXQgdG8gbWFyayB0aGUgcmVnaW9uIG5vLW1hcCwgdGhlbiB0aGUgbWVtb3J5IGFyZWEg
+aXMgcHJvcGVybHkgCj4gcmVtb3ZlZAo+IGZyb20gdGhlICJTeXN0ZW0gUkFNIiBhcmVhIGFuZCB0
+aGUgY3Jhc2hpbmcgc3RvcHMuCj4gCj4gSSd2ZSBoYWQgdGhlIHN5c3RlbSB1cCBhbmQgcnVubmlu
+ZyBmb3IgMTUgZGF5cyBub3cgdW5kZXIgaGVhdnkgbG9hZCAKPiB3aXRob3V0IGFueQo+IGNyYXNo
+ZXMsIHVzaW5nIGp1c3QgdGhlIGZvbGxvd2luZyBwYXRjaCBhcyB3b3JrYXJvdW5kOgo+IAo+IAo+
+IC0tLSBsaW51eC01LjEzLjAvZHJpdmVycy9vZi9mZHQuYy5iYWvCoMKgwqAgMjAyMS0wNy0wNyAw
+MDoyMjo1OC4wMDAwMDAwMDAgCj4gLTA0MDAKPiArKysgbGludXgtNS4xMy4wL2RyaXZlcnMvb2Yv
+ZmR0LmPCoMKgwqAgMjAyMS0wNy0wNyAwMDoyMzowOC4wMDAwMDAwMDAgLTA0MDAKPiBAQCAtMTE1
+NywxMyArMTE1Nyw2IEBACj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgcGh5c19hZGRyX3Qgc2l6ZSwgYm9vbCBub21hcCkKPiAgwqB7Cj4gIMKgwqDCoMKgIGlmIChu
+b21hcCkgewo+IC3CoMKgwqDCoMKgwqDCoCAvKgo+IC3CoMKgwqDCoMKgwqDCoMKgICogSWYgdGhl
+IG1lbW9yeSBpcyBhbHJlYWR5IHJlc2VydmVkIChieSBhbm90aGVyIHJlZ2lvbiksIHdlCj4gLcKg
+wqDCoMKgwqDCoMKgwqAgKiBzaG91bGQgbm90IGFsbG93IGl0IHRvIGJlIG1hcmtlZCBub21hcC4K
+PiAtwqDCoMKgwqDCoMKgwqDCoCAqLwo+IC3CoMKgwqDCoMKgwqDCoCBpZiAobWVtYmxvY2tfaXNf
+cmVnaW9uX3Jlc2VydmVkKGJhc2UsIHNpemUpKQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJl
+dHVybiAtRUJVU1k7Cj4gLQo+ICDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBtZW1ibG9ja19tYXJr
+X25vbWFwKGJhc2UsIHNpemUpOwo+ICDCoMKgwqDCoCB9Cj4gIMKgwqDCoMKgIHJldHVybiBtZW1i
+bG9ja19yZXNlcnZlKGJhc2UsIHNpemUpOwo+IAo+IAo+IFRoZSBhYm92ZSBwYXRjaCBhcHBsaWVz
+IHRvIGxhdGVyIHZlcnNpb25zIG9mIExpbnV4IDUuMTAueCB0aHJvdWdoIDUuMTIueCBhcwo+IHdl
+bGwuCj4gCj4gUGVyaGFwcyBhIG1vcmUgcHJvcGVyIGZpeCBpcyB0byBhbGxvdyB0aGUgbm8tbWFw
+IHRvIHN0aWxsIHByb2NlZWQsIGluIAo+IHRoZSBjYXNlCj4gdGhhdCB0aGUgZXhpc3RpbmcgcmVz
+ZXJ2ZWQgcmVnaW9uIGlzIGlkZW50aWNhbCAoc2FtZSBzdGFydC9lbmQpIHRvIHRoZSAKPiByZWdp
+b24KPiBnZXR0aW5nIG1hcmtlZCBuby1tYXAuCgpJZiBVLUJvb3QgaXMgbWFya2luZyByZWdpb25z
+IHdpdGggdGhlIHdyb25nIHR5cGUvYXR0cmlidXRlcyBpbiB0aGUgRUZJIAptZW1vcnkgbWFwLCB0
+aGVuIHRoZSBiZXN0IHRoaW5nIHRvIGRvIHdvdWxkIGJlIHRvIGZpeCB0aGF0LiBJIHNlZSBhIApm
+YWlybHkgcmVjZW50IGNvbW1pdCB3aGljaCBsb29rcyBzdXNwaWNpb3VzbHkgcmVsZXZhbnQ6Cgpo
+dHRwczovL3NvdXJjZS5kZW54LmRlL3UtYm9vdC91LWJvb3QvLS9jb21taXQvOWZmOWY0YjQyNjg5
+NDZmM2I3M2Q5NzU5NzY2Y2NmY2M1OTlkYTAwNAoKQm9vdGluZyB3aXRoICJlZmk9ZGVidWciIHNo
+b3VsZCAoYW1vbmcgb3RoZXIgdGhpbmdzKSBwcmludCB0aGUgbWVtb3J5IAptYXAgYXQgYm9vdCBp
+ZiB5b3Ugd2FudCB0byBkb3VibGUtY2hlY2sgdGhhdCB0aGF0IGlzIHRoZSBzb3VyY2Ugb2YgdGhl
+IAptaXNtYXRjaC4gT3VyIEVGSSBjb2RlIHNob3VsZCBiZSBwZXJmZWN0bHkgY2FwYWJsZSBvZiBz
+ZXR0aW5nIHRoZSAKbWVtYmxvY2sgZmxhZyBpZiB0aGUgcmVnaW9uICppcyogZGVzY3JpYmVkIGFw
+cHJvcHJpYXRlbHksIHNlZSAKcmVzZXJ2ZV9yZWdpb25zKCkgaW4gZHJpdmVycy9maXJtd2FyZS9l
+ZmkvZWZpLWluaXQuYy4KClJvYmluLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
+aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtYW1sb2dpYwo=
