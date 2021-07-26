@@ -2,94 +2,78 @@ Return-Path: <SRS0=QpTa=MS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5973C4320A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:15:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C16EC4320A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 12:07:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7357760F4E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:15:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7357760F4E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id D0023604DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 12:07:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D0023604DC
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=agner.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
+	Subject:Cc:To:From:Date:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3p07FZowRg4bLXqi0kim6nehAxdsjO5HUxbbXQy84Tw=; b=ozgr3QXb1ITLhz
-	TQfSX9QULnMySViaChf//ULN16Qjmji+ykEuqoYD4scmn6L1OPjJATjDCKsoyWWO5WX7mivnDujlD
-	QbUME0K35V77vUB4npxmWkIbFbct7OuM4NDI78pVlS9ro+j5LyJvDmLbTHgokzpBLE7CM00tNKoRF
-	9JuQqJ428+1FJZCSjk5pCyV0WLJ12/dQXdK4/6AhU169/41OCpzCh1KsgAjrzYXyNW4YYNLAA/Bxf
-	24GWtADcHd9DefdefJVK1NxsNhbfP0kjk6QSx90Dfsk8IWx0KaYoq5AyxCrmxDv3f1I7H1QQwhekA
-	dSu0uCYyWrassAdbK+7A==;
+	List-Owner; bh=DPnB9QpzAi8VUiUuvSvnOpXqOSpkTRI17uMPPuwDeOo=; b=bnzP6YUPcY3pzc
+	raTw+C/qjUvOmXxSFiSSBcj/xSsx8v9Y4allwxVvghf9J/+34R9kr92Aq8K45JufNYSrSccrQFA5b
+	OXsn7pXZVYF0DySLMiWRjFNjoYBMms7fRqj+4KGC3QMEvL0hTOrMB2yWcvfPESsajXFjdhIxU5a1a
+	e94uCZj9Y68sfZr0a18Enby2k8d+hnvVhBOEzm5eIu0yaHmq8tJFmDczZe3SMiVOlaPb/tQxPXvoA
+	q6jkoj9Th70XBjQYAGOOg/KWLdt76bXjBQgB/zkKAFVsMOQtLcssx0j1PUrdzBQ+XGAm2NDPzysYG
+	LSby6Y8Awg+QoHum7c8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m7vlK-00A7yY-MN; Mon, 26 Jul 2021 08:14:58 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1m7zOR-00B6eM-IL; Mon, 26 Jul 2021 12:07:35 +0000
+Received: from mail.kmu-office.ch ([2a02:418:6a02::a2])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m7vjK-00A7Ad-E8
- for linux-amlogic@lists.infradead.org; Mon, 26 Jul 2021 08:12:56 +0000
-Received: by mail-wm1-x335.google.com with SMTP id
- m20-20020a05600c4f54b029024e75a15716so4717526wmq.2
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Jul 2021 01:12:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=E1tqK1iTmNRLpcSNr0tub0A4uI6FbhV9kAz5unEaOR8=;
- b=qM+U7w3dxOkS3lq/Bekk4CYwU6QOPEr5DkUYPksSpVjVWCQkXUo+/IFShRFANUkqQz
- WZ+/szCu3z8L8ubAWqAcUHplQsA+lvs1GK8fwWrHyT1h2tOsRL0Kr55W1RAZG80/F00o
- EDrGOrH0FceaRBjGqeqqq51YsJw819KuikQk6wuKtED1dVdTpD3DudrkNIiJhGN17eJ1
- kw3bypQD4og+tzPPS0l5pLAiKR2owJLNZ+lrSbHX+2sEr02FnitRkqSNZiKYz8hCg64p
- hSjZo/y+Z+03h+3Tg4u4fZ5g9q2IRiacFTgI7AIkdY97utPoCpXWloTe3Dig6puuAYSu
- DbHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=E1tqK1iTmNRLpcSNr0tub0A4uI6FbhV9kAz5unEaOR8=;
- b=Zh+lBowQihB5IqG3z2Oe/B7c5G5kxfZHHa0GNYHuzPIjV7Gg99U+JBhZNkBzKhgC66
- +O5o1nXrgPnfKrYRLFYdDjpMfc7mORJgOqbpQbs/hx8BB3P692lC8amegEOLr49P315K
- wwX8tBFDhe4U4m5GlQ+9ZFG6B7ccI1exmyR0ECvQT7M8WZwFtT9Yv3YD+gfRPE1n3MOs
- t5IrBSXas1LoPR35N+C4DfFhYl9tiTZ7s/qEdMW3M0cH85PZh5CrKBBKHuENDRFj+xbH
- EOqN5V4jH98zy1Ulo54AG0AonQtMr/TA89VN0C2yvwbkajQHsYYd0gkoIqrxnzeRrXVi
- qxeg==
-X-Gm-Message-State: AOAM531s3050SodQ9gMtXs6WPyEy9Ogkn7/FWX4fv7zwHxcVKQavTXl1
- 5Ok7S84xt1tcOJWTRYg7bp3k7g==
-X-Google-Smtp-Source: ABdhPJz2/+Tf5eYCYct0tYno0IeJ3EoZiBJQ7jLZx/evy1F7uvBD3CbLodH4A1LLF0nDpgeY6bIdbQ==
-X-Received: by 2002:a05:600c:4982:: with SMTP id
- h2mr16154472wmp.184.1627287173204; 
- Mon, 26 Jul 2021 01:12:53 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:32b6:aa71:d2df:4f1d])
- by smtp.gmail.com with ESMTPSA id c15sm646762wrx.70.2021.07.26.01.12.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jul 2021 01:12:52 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Chen-Yu Tsai <wens@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH v3] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
-Date: Mon, 26 Jul 2021 10:12:41 +0200
-Message-Id: <162728713307.14205.377532057351030776.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210712135919.32059-1-wens@kernel.org>
-References: <20210712135919.32059-1-wens@kernel.org>
+ id 1m7zOO-00B6dk-AB; Mon, 26 Jul 2021 12:07:34 +0000
+Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
+ by mail.kmu-office.ch (Postfix) with ESMTPSA id 59BB25C1E18;
+ Mon, 26 Jul 2021 14:07:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+ t=1627301247;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Cb3kJjOI5RQgxYdCoJfB2si3akWljzkDzjtClkoACr0=;
+ b=vuNoAyhME0z3lyM+tPxtBy+zTA+/1FtguP13jyIGtP5bqZvtbZkCZWWcGq3MiRkLQnmfjg
+ OLT15VG/NuyIrcrEC0CBjonZCUHdVbfYlll1gr4nM2S/Ae5BmnM/lTWmcu6e1ItASYmZie
+ xm6Xz4XYjiCKOmD2IzRO59h4DDobchU=
 MIME-Version: 1.0
+Date: Mon, 26 Jul 2021 14:07:27 +0200
+From: Stefan Agner <stefan@agner.ch>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Robin Murphy <robin.murphy@arm.com>, Byron Stanoszek
+ <gandalf@winds.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Mike Rapoport <rppt@kernel.org>
+Subject: Re: Random reboots on ODROID-N2+
+In-Reply-To: <e0cd09ed-6c24-2bc6-c09a-0c0ccb7ae6c4@baylibre.com>
+References: <40ca11f84b7cdbfb9ad2ddd480cb204a@agner.ch>
+ <a0ef23c932d1a7412d620237d9acde0f@agner.ch>
+ <alpine.LNX.2.23.451.2107221723060.2673@winds.org>
+ <c2a16fbc-653f-5993-f9bb-9ee8c707515e@arm.com>
+ <d1fefb1ec2e7ed1b40083426ed7102c6@agner.ch>
+ <216a006d-6df0-4229-d2c1-32256853c857@arm.com>
+ <0067ee4c-b9d2-1c92-2444-759ac9a56de0@arm.com>
+ <50c6925775c207d0751e20fa9d45611a@agner.ch>
+ <e0cd09ed-6c24-2bc6-c09a-0c0ccb7ae6c4@baylibre.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <6987e3b18fc5ef7ac7344fec0d7010af@agner.ch>
+X-Sender: stefan@agner.ch
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210726_011254_569527_2F1A5896 
-X-CRM114-Status: UNSURE (   9.71  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210726_050732_991958_44411E6B 
+X-CRM114-Status: GOOD (  19.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,29 +85,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Mon, 12 Jul 2021 21:59:19 +0800, Chen-Yu Tsai wrote:
-> The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
-> already enabled. The BT part is connected via UART and I2S.
-> 
-> Enable the UART and add a device node describing the Bluetooth portion
-> of the module.
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (for-next)
-
-[1/1] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
-      https://git.kernel.org/amlogic/c/46f2735c17d215fd76c54d7bfc4d7ca5ec206eb2
-
--- 
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RldJVywgSSBkaWQgcnVuIHR3byBib2FyZHMgb3ZlciB0aGUgd2Vla2VuZCB3aXRoIHN0cmVzcy1u
+ZyB2bSB0ZXN0CnJ1bm5pbmcgdG8gY2F1c2UgbWVtb3J5IHByZXNzdXJlLCBvbmUgYm9hcmQgd2l0
+aCA4YTVhNzVlNWU5ZTU1ICgib2YvZmR0OgpNYWtlIHN1cmUgbm8tbWFwIGRvZXMgbm90IHJlbW92
+ZSBhbHJlYWR5IHJlc2VydmVkIHJlZ2lvbnMiKSByZXZlcnRlZC4KVGhlIG9uZSB3aXRob3V0IHRo
+ZSByZXZlcnQgY3Jhc2hlZCBhZnRlciB+MjRoLCB0aGUgb3RoZXIgZGlkIHJ1biB0aHJvdWdoCnRo
+ZSB3ZWVrZW5kLiBCYXNpY2FsbHkgY29uZmlybWluZyB3aGF0IEJ5cm9uIHJlcG9ydGVkLgoKT24g
+MjAyMS0wNy0yNiAwOTo1NCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gSGksCj4gCj4gT24gMjMv
+MDcvMjAyMSAyMTo0OCwgU3RlZmFuIEFnbmVyIHdyb3RlOgo+PiBPbiAyMDIxLTA3LTIzIDE5OjQ3
+LCBSb2JpbiBNdXJwaHkgd3JvdGU6Cj4+PiBPbiAyMDIxLTA3LTIzIDE3OjE0LCBSb2JpbiBNdXJw
+aHkgd3JvdGU6Cj4+Pj4gT24gMjAyMS0wNy0yMyAxNjo1NiwgU3RlZmFuIEFnbmVyIHdyb3RlOgo+
+PiA8c25pcD4KPj4+Pj4+Cj4+Pj4+PiBCb290aW5nIHdpdGggImVmaT1kZWJ1ZyIgc2hvdWxkIChh
+bW9uZyBvdGhlciB0aGluZ3MpIHByaW50IHRoZSBtZW1vcnkKPj4+Pj4+IG1hcCBhdCBib290IGlm
+IHlvdSB3YW50IHRvIGRvdWJsZS1jaGVjayB0aGF0IHRoYXQgaXMgdGhlIHNvdXJjZSBvZiB0aGUK
+Pj4+Pj4+IG1pc21hdGNoLiBPdXIgRUZJIGNvZGUgc2hvdWxkIGJlIHBlcmZlY3RseSBjYXBhYmxl
+IG9mIHNldHRpbmcgdGhlCj4+Pj4+PiBtZW1ibG9jayBmbGFnIGlmIHRoZSByZWdpb24gKmlzKiBk
+ZXNjcmliZWQgYXBwcm9wcmlhdGVseSwgc2VlCj4+Pj4+PiByZXNlcnZlX3JlZ2lvbnMoKSBpbiBk
+cml2ZXJzL2Zpcm13YXJlL2VmaS9lZmktaW5pdC5jLgo+Pj4+Pgo+Pj4+PiBCb290aW5nIDUuMTIu
+MTAgd2l0aCAiZWZpPWRlYnVnIiBvbiBVLUJvb3QgMjAyMS4wNCBnYXZlIHRoaXM6Cj4+Pj4+IFvC
+oMKgwqAgMC4wMDAwMDBdIE1hY2hpbmUgbW9kZWw6IEhhcmRrZXJuZWwgT0RST0lELU4yUGx1cwo+
+Pj4+PiBbwqDCoMKgIDAuMDAwMDAwXSBlZmk6IEdldHRpbmcgVUVGSSBwYXJhbWV0ZXJzIGZyb20g
+L2Nob3NlbiBpbiBEVDoKPj4+Pj4gW8KgwqDCoCAwLjAwMDAwMF0gZWZpOiBVRUZJIG5vdCBmb3Vu
+ZC4KPj4+Pj4gW8KgwqDCoCAwLjAwMDAwMF0gT0Y6IGZkdDogUmVzZXJ2ZWQgbWVtb3J5OiBmYWls
+ZWQgdG8gcmVzZXJ2ZSBtZW1vcnkgZm9yCj4+Pj4+IG5vZGUgJ3NlY21vbkA1MDAwMDAwJzogYmFz
+ZSAweDAwMDAwMDAwMDUwMDAwMDAsIHNpemUgMyBNaUIKPj4+Pj4KPj4+Pj4gU28gaXQgc2VlbXMg
+VUVGSSBpcyBub3QgaW4gdGhlIHBsYXkgaGVyZT8KPj4+Pgo+Pj4+IEFoLCBPSywgaW4gdGhhdCBj
+YXNlIEkgZ3Vlc3MgdGhlIHF1ZXN0aW9uIHJlbWFpbnMgd2h5IGRvZXMgZWFybHlfaW5pdF9kdF9y
+ZXNlcnZlX21lbW9yeV9hcmNoKCkgdGhpbmsgdGhlIHJlZ2lvbiBpcyBhbHJlYWR5IHJlc2VydmVk
+PyBNeSBpbnN0aW5jdGl2ZSBhc3N1bXB0aW9uIHdhcyBhbiBFRkkgbWVtb3J5IG1hcCBiZWluZyBw
+cmVzZW50OyBzZWVpbmcgdGhhdCBVLUJvb3QgZG9lcyBpbmRlZWQgcmVmbGVjdCBEVCByZXNlcnZh
+dGlvbnMgdGhlcmUgKmFuZCogaGFzIGhhZCBhIGxpa2VseS1sb29raW5nIGJ1ZyByZWNlbnRseSB3
+YXMgdGhlbiBqdXN0IG92ZXJ3aGVsbWluZ2x5IHN1Z2dlc3RpdmUgOikKPj4+Cj4+PiBBY3R1YWxs
+eSwgcG9raW5nIGF0IFUtQm9vdCBhIGJpdCBtb3JlIEkgZmluZAo+Pj4gbWVzb25fYm9hcmRfYWRk
+X3Jlc2VydmVkX21lbW9yeSgpIC0gY2FuIHlvdSBjaGVjayAvc3lzL2Zpcm13YXJlL2ZkdAo+Pj4g
+YW5kIHNlZSBpZiB0aGUgcmVnaW9uIGVuZHMgdXAgYmVpbmcgcGFzc2VkIGFzIGEgL21lbXJlc2Vy
+dmUvIGFzIHdlbGwKPj4+IGFzIGEgcHJvcGVyIHJlc2VydmVkLW1lbW9yeSBub2RlPwo+Pj4KPj4+
+IElJUkMgdGhlIHNlbWFudGljcyBvZiAvbWVtcmVzZXJ2ZS8gYXJlbid0IHJlYWxseSB3ZWxsLWRl
+ZmluZWQgZW5vdWdoCj4+PiB0byBiZSBzdWl0YWJsZSBmb3IgdGhlIGtpbmQgb2YgdGhpbmdzIHdo
+aWNoIHJlcXVpcmUgbm8tbWFwLCBhbmQgbXkgbmV3Cj4+PiBndWVzcyBpcyB0aGF0IHRoYXQncyB3
+aGF0IGVuZHMgdXAgY29uZmxpY3RpbmcgaGVyZS4KPj4KPj4gU2VlbXMgdG8gYmUgcHJlc2VudCBp
+biBib290aDoKPiAKPiBJbmRlZWQsIGluIG9yZGVyIHNvIHN1cHBvcnQgYW55IGNvbWJpbmF0aW9u
+Ogo+IC0gdXBzdHJlYW0gdS1ib290Cj4gLSB2ZW5kb3IgdS1ib290Cj4gLSB1cHN0cmVhbSBsaW51
+eAo+IC0gb3RoZXIgT1MKPiAKPiBUaGUgc2VjbW9uIGlzIGluIHRoZSB1cHN0cmVhbSBMaW51eCBE
+VCwgYW5kIHVwc3RyZWFtIHUtYm9vdCByZWFkcyB0aGUKPiBzZWN1cmUgbWVtb3J5IHJlZ2lvbnMK
+PiBmcm9tIHRoZSBmaXJzdCBzdGFnZSBib290bG9hZGVycyBhbmQgYWRkcyB0aGVtIGludG8gdGhl
+IERUIG1lbXJlc2VydmUuCj4gCj4gSXQgd29ya2VkIGZpbmUgc2luY2UgTGludXggNC4xMC1pc2gs
+IHVudGlsIDUuMTAuCgpKdXN0IHZlcmlmaWVkIHdoYXQgaXMgcHJvYmFibHkgb2J2aW91cyBhdCB0
+aGlzIHBvaW50OiBCeSByZW1vdmluZwptZXNvbl9ib2FyZF9hZGRfcmVzZXJ2ZWRfbWVtb3J5KCkg
+dGhlIC9tZW1yZXNlcnZlLyByZWdpb24gaXNuJ3QgcHJlc2VudAphbmQgImZhaWxlZCB0byByZXNl
+cnZlIG1lbW9yeSIgbWVzc2FnZSBkaXNhcHBlYXJzIGluZGVlZC4KCldoeSBpcyByZXNlcnZpbmcg
+bWVtb3J5IG5vdCBlbm91Z2g/IEZyb20gd2hhdCBJJ3ZlIHJlYWQgbm8tbWFwIGFsc28gbWFrZQpz
+dXJlIHRoZXJlIGlzIG5vIFZNIG1hcHBpbmcsIGJ1dCBpZiB0aGUgcmVnaW9uIGlzIHJlc2VydmVk
+LCBzaG91bGRuJ3QKdGhhdCBiZSBlbm91Z2ggZm9yIExpbnV4IHRvIG5vdCBhY2Nlc3MgdGhlIHJl
+Z2lvbj8gSSd2ZSByZWFkIHRoYXQgbm8tbWFwCmFsc28gcHJldmVudHNhY2Nlc3MgZHVlIHRvIHNw
+ZWN1bGF0aW9uLCBpcyB0aGlzIHdoYXQgaXMgaGFwcGVuaW5nIGhlcmU/CgpXaGF0IGlzIHRoZSBw
+cm9wZXIgc29sdXRpb24gaGVyZT8gQ291bGQgbWF5YmUKbWVzb25fYm9hcmRfYWRkX3Jlc2VydmVk
+X21lbW9yeSgpIGNoZWNrIGlmIHJlc2VydmVkLW1lbW9yeSBpcyBwcmVzZW50LAphbmQgaWYgc28g
+YXZvaWQgYWRkaW5nIC9tZW1yZXNlcnZlLz8KCi0tClN0ZWZhbgoKPiAKPiBOZWlsCj4gCj4+Cj4+
+IE9uIHY1LjEyLjEwCj4+ICMgZmR0ZHVtcCAvc3lzL2Zpcm13YXJlL2ZkdAo+PiAuLi4KPj4gL21l
+bXJlc2VydmUvIDB4NTAwMDAwMCAweDMwMDAwMDsKPj4gLi4uCj4+ICAgICByZXNlcnZlZC1tZW1v
+cnkgewo+PiAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDB4MDAwMDAwMDI+Owo+PiAgICAgICAg
+ICNzaXplLWNlbGxzID0gPDB4MDAwMDAwMDI+Owo+PiAgICAgICAgIHJhbmdlczsKPj4gICAgICAg
+ICBzZWNtb25ANTAwMDAwMCB7Cj4+ICAgICAgICAgICAgIHJlZyA9IDwweDAwMDAwMDAwIDB4MDUw
+MDAwMDAgMHgwMDAwMDAwMCAweDAwMzAwMDAwPjsKPj4gICAgICAgICAgICAgbm8tbWFwOwo+PiAg
+ICAgICAgICAgICBwaGFuZGxlID0gPDB4MDAwMDAwNjg+Owo+PiAgICAgICAgIH07Cj4+ICAgICAg
+ICAgbGludXgsY21hIHsKPj4gICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJzaGFyZWQtZG1hLXBv
+b2wiOwo+PiAgICAgICAgICAgICByZXVzYWJsZTsKPj4gICAgICAgICAgICAgc2l6ZSA9IDwweDAw
+MDAwMDAwIDB4MTAwMDAwMDA+Owo+PiAgICAgICAgICAgICBhbGlnbm1lbnQgPSA8MHgwMDAwMDAw
+MCAweDAwNDAwMDAwPjsKPj4gICAgICAgICAgICAgbGludXgsY21hLWRlZmF1bHQ7Cj4+ICAgICAg
+ICAgfTsKPj4gICAgIH07Cj4+Cj4+IC0tCj4+IFN0ZWZhbgo+PgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
