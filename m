@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 221F7C4338F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:14:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5973C4320A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:15:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D470D60F4E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:14:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D470D60F4E
+	by mail.kernel.org (Postfix) with ESMTPS id 7357760F4E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:15:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7357760F4E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,70 +23,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mVki0F5lbI6F2ROM8otCqkMbvpHKywp5RNUzAcrOa/s=; b=sqOmqU/SbtENyv
-	SwCmqqHvxDLHgKX72wkOgbvFdkma49R9i2HarmLphZKP26PmpfCWj8ff6Rj8T0od+D/RkuPGfGqeJ
-	JmY3DvmmnSfMFSD3Dkh7NWBLUhiPYhOSDlPB7Sym6S2CahgiiTDpPMNBmDcfUOjlt/VkP+CH7fn/5
-	/9xTvQwFFEEXmWG6m8wj2Ji+AXIDdwzKpW3lcjFh6ZI567zw6vpncLmfZvz3mDjimeCT4WAipOw9n
-	VgBYjHKynXZGStcg3zB6LtHnUbRNJ9gNT5ZvQR9LByPg86rEFgAQhnCKbZKgy3M68VGHAZxI2GSu1
-	EuB6Q5qIdn1ChMZN7msA==;
+	List-Owner; bh=3p07FZowRg4bLXqi0kim6nehAxdsjO5HUxbbXQy84Tw=; b=ozgr3QXb1ITLhz
+	TQfSX9QULnMySViaChf//ULN16Qjmji+ykEuqoYD4scmn6L1OPjJATjDCKsoyWWO5WX7mivnDujlD
+	QbUME0K35V77vUB4npxmWkIbFbct7OuM4NDI78pVlS9ro+j5LyJvDmLbTHgokzpBLE7CM00tNKoRF
+	9JuQqJ428+1FJZCSjk5pCyV0WLJ12/dQXdK4/6AhU169/41OCpzCh1KsgAjrzYXyNW4YYNLAA/Bxf
+	24GWtADcHd9DefdefJVK1NxsNhbfP0kjk6QSx90Dfsk8IWx0KaYoq5AyxCrmxDv3f1I7H1QQwhekA
+	dSu0uCYyWrassAdbK+7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m7vkp-00A7jz-E3; Mon, 26 Jul 2021 08:14:27 +0000
+	id 1m7vlK-00A7yY-MN; Mon, 26 Jul 2021 08:14:58 +0000
 Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m7vjJ-00A7A2-NS
- for linux-amlogic@lists.infradead.org; Mon, 26 Jul 2021 08:12:55 +0000
+ id 1m7vjK-00A7Ad-E8
+ for linux-amlogic@lists.infradead.org; Mon, 26 Jul 2021 08:12:56 +0000
 Received: by mail-wm1-x335.google.com with SMTP id
- f14-20020a05600c154eb02902519e4abe10so1391200wmg.4
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Jul 2021 01:12:53 -0700 (PDT)
+ m20-20020a05600c4f54b029024e75a15716so4717526wmq.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 26 Jul 2021 01:12:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=1ZpjgjuUh1n9gqNINTk5X5U12Pvm6cJ3IqcfL4udcP8=;
- b=0YqoY1XuxJBeHq76SOvmVl4M34+V6vmKOYTZaiFZ1LUtCuSLv2DBTHcNDhlcirGVDT
- imeGRw/UCL8jse7nv/NRRhTpJdnLdL9btttorxLzuvMGnyNd9dGVMr82Fb5qn2JmskJM
- vEdTFxTvInmK0fT8VZ0VHmSurzKkgrpjhweincy2paMV87C2Y8EnaQYaVHL6BvSzWHQ/
- Me083lhJaNqeXMWC7ICJr2RYR0d7u6FIsLyM51/0lYTDp41i5czu5iTdQ8eaoJqzyahD
- jXy51AEJZmsfnMVJVdBRk7do1hm8QgAF79Q+pE7JRmRm9AZgLCEyC1llnYOW6e8e3ZXS
- UUsA==
+ bh=E1tqK1iTmNRLpcSNr0tub0A4uI6FbhV9kAz5unEaOR8=;
+ b=qM+U7w3dxOkS3lq/Bekk4CYwU6QOPEr5DkUYPksSpVjVWCQkXUo+/IFShRFANUkqQz
+ WZ+/szCu3z8L8ubAWqAcUHplQsA+lvs1GK8fwWrHyT1h2tOsRL0Kr55W1RAZG80/F00o
+ EDrGOrH0FceaRBjGqeqqq51YsJw819KuikQk6wuKtED1dVdTpD3DudrkNIiJhGN17eJ1
+ kw3bypQD4og+tzPPS0l5pLAiKR2owJLNZ+lrSbHX+2sEr02FnitRkqSNZiKYz8hCg64p
+ hSjZo/y+Z+03h+3Tg4u4fZ5g9q2IRiacFTgI7AIkdY97utPoCpXWloTe3Dig6puuAYSu
+ DbHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=1ZpjgjuUh1n9gqNINTk5X5U12Pvm6cJ3IqcfL4udcP8=;
- b=oewRT1S63E+k1bSKDN9pUAzg/MYOBwoihfK4tqFwneRgrF5VviqRJmhjVm6HgL1HKx
- 8k7gMM4z43BIshp/XoyJHah+2BYm0BXF7QYojKaIUuKD+iN4r/lkatPwveBVrALRjCOY
- SD8JGohNuVusdfxSMY4g7SPHgcVjl3rXRsBI4da+ap84KgKfM6X1Oqkc4aYs6a/0huGC
- bCpbS3KVZf5VKw0pNKk6GvN45ukA/nClBV72gn5hvgKrr0ziBQllAq64SdnLNq0i1M+L
- jY1HvzfPeUHpsRgteGA66T0u47ZerLrvCAvCMM4yWbYB+Uni6WbBRgleOqRcpE7aHabi
- iDnQ==
-X-Gm-Message-State: AOAM531OEPoI6Gp8mA4Mft3I7KL5+A0rR0xvSGZBlTPLxuUXAFHuhl2/
- 2xZhC2WJXvLs508ytk9yjYHT/dlLYaUBta0l
-X-Google-Smtp-Source: ABdhPJy5R+KzB21AsAQps1d0yh3y29yIpafJM2bJRYzHecWOTjx/4VnV6mymD+Jk6eIGtfKAwph5Yg==
-X-Received: by 2002:a05:600c:1c86:: with SMTP id
- k6mr16318944wms.147.1627287172233; 
- Mon, 26 Jul 2021 01:12:52 -0700 (PDT)
+ bh=E1tqK1iTmNRLpcSNr0tub0A4uI6FbhV9kAz5unEaOR8=;
+ b=Zh+lBowQihB5IqG3z2Oe/B7c5G5kxfZHHa0GNYHuzPIjV7Gg99U+JBhZNkBzKhgC66
+ +O5o1nXrgPnfKrYRLFYdDjpMfc7mORJgOqbpQbs/hx8BB3P692lC8amegEOLr49P315K
+ wwX8tBFDhe4U4m5GlQ+9ZFG6B7ccI1exmyR0ECvQT7M8WZwFtT9Yv3YD+gfRPE1n3MOs
+ t5IrBSXas1LoPR35N+C4DfFhYl9tiTZ7s/qEdMW3M0cH85PZh5CrKBBKHuENDRFj+xbH
+ EOqN5V4jH98zy1Ulo54AG0AonQtMr/TA89VN0C2yvwbkajQHsYYd0gkoIqrxnzeRrXVi
+ qxeg==
+X-Gm-Message-State: AOAM531s3050SodQ9gMtXs6WPyEy9Ogkn7/FWX4fv7zwHxcVKQavTXl1
+ 5Ok7S84xt1tcOJWTRYg7bp3k7g==
+X-Google-Smtp-Source: ABdhPJz2/+Tf5eYCYct0tYno0IeJ3EoZiBJQ7jLZx/evy1F7uvBD3CbLodH4A1LLF0nDpgeY6bIdbQ==
+X-Received: by 2002:a05:600c:4982:: with SMTP id
+ h2mr16154472wmp.184.1627287173204; 
+ Mon, 26 Jul 2021 01:12:53 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:32b6:aa71:d2df:4f1d])
- by smtp.gmail.com with ESMTPSA id c15sm646762wrx.70.2021.07.26.01.12.51
+ by smtp.gmail.com with ESMTPSA id c15sm646762wrx.70.2021.07.26.01.12.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jul 2021 01:12:51 -0700 (PDT)
+ Mon, 26 Jul 2021 01:12:52 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: Chen-Yu Tsai <wens@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>
 Cc: Neil Armstrong <narmstrong@baylibre.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- khilman@baylibre.com
-Subject: Re: [PATCH v2 0/2] Meson8/Meson8b: sound card support
-Date: Mon, 26 Jul 2021 10:12:40 +0200
-Message-Id: <162728713307.14205.17687651856471455921.b4-ty@baylibre.com>
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH v3] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
+Date: Mon, 26 Jul 2021 10:12:41 +0200
+Message-Id: <162728713307.14205.377532057351030776.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210717233030.331273-1-martin.blumenstingl@googlemail.com>
-References: <20210717233030.331273-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20210712135919.32059-1-wens@kernel.org>
+References: <20210712135919.32059-1-wens@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210726_011253_825642_AE8B30E5 
-X-CRM114-Status: GOOD (  12.89  )
+X-CRM114-CacheID: sfid-20210726_011254_569527_2F1A5896 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,25 +108,17 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Sun, 18 Jul 2021 01:30:28 +0200, Martin Blumenstingl wrote:
-> This series adds the AIU audio controller for Meson8 and Meson8b. The
-> AIU audio controller has been found to work fine with out-of-tree
-> patches for HDMI audio (over I2S). SPDIF output also works (tested with
-> a scope).
-> Endless Mini (EC-100) has an RT5640 audio codec. The driver for this
-> codec can be selected since commit 08c56cab302a05 ("ASoC: rt5640: Make
-> codec selectable"), which is part of Linux 5.14-rc1. While support is
-> not perfect (due to us lacking proper support for configuring
-> GPIO_BSD_EN) audio output still works fine.
+On Mon, 12 Jul 2021 21:59:19 +0800, Chen-Yu Tsai wrote:
+> The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
+> already enabled. The BT part is connected via UART and I2S.
 > 
-> [...]
+> Enable the UART and add a device node describing the Bluetooth portion
+> of the module.
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (for-next)
 
-[1/2] ARM: dts: meson: Add the AIU audio controller
-      https://git.kernel.org/amlogic/c/4f8ca13df1d5ff1c09e06acbd1bc7d4d8510dfc0
-[2/2] ARM: dts: meson8b: ec100: wire up the RT5640 audio codec
-      https://git.kernel.org/amlogic/c/0bd475db1a5d0cd89b435ff6bfee083aca5d104a
+[1/1] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
+      https://git.kernel.org/amlogic/c/46f2735c17d215fd76c54d7bfc4d7ca5ec206eb2
 
 -- 
 Neil
