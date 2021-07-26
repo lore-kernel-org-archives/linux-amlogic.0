@@ -2,100 +2,94 @@ Return-Path: <SRS0=QpTa=MS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D607EC4338F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6BC9C432BE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:12:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9A75F603E9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:06:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9A75F603E9
+	by mail.kernel.org (Postfix) with ESMTPS id 8493E60F37
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jul 2021 08:12:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8493E60F37
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=6ty9DtczYOavkT1VYCyRzxOtKAncMB4ncK/QH5IjRfI=; b=b5wZ6UeR5zxBsx2adncLC9nspc
-	GObK6Z8QxhHSPWFNnGI+TQNrlHhZK/zkGsyEbttTWYiz/eDdwDpH2LAvubIXLS50vdU2WBhZzeJD3
-	fmdhmlyjwipicT/RuZmByuRrsicCdV4iwZgDZKglriVnFGPmibXlVJ/ZZal41j6HiSMGivIr2XRpJ
-	1xD1Sot781ebdCeeAM8PMGVwLDbrx7RILvRQEAnsm8AOac4iGCA0A1DmucYI8T8o5dOpRRs+2t1bw
-	FRy/ggUoKHETdfFoBjnF+K1TzIRo9TDRbNSR4RMJ5I3dBLIwnJ5E7I2uTwrE3mmqklKstDaNRUMji
-	+xHTajgw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=KNehglvHV7p7m7uL1ijbx0tPROOxga3Ea4NB8aQ5ZkY=; b=pM2Hdm3aurXXVi
+	iNwMFdU6djDW9UxyRCFeM3x5oRCSC2/caKwDSqHAhRyGUlBfgXjcFNuC/KsDurVxssKO83AxhQcz4
+	mp5kVAe1GHouIIpG40ykwAlrUxmKkJjfQS8jqb0dqvWFUgl2lciFYNKO4PbxGBlLydcgym0dzopkN
+	98pZWUE7D/EbD5isYFfnIJQIh8rlLnfpx8ccCUYrc2Zefgz37OZHxreqg5nKgnP5kdztAMVIhuPFu
+	E2N25d8IHgu/9dYiV1l7239P/E+LqP7Oy/sjBd+ZRXaxLJqQlFAkUd+GfQvJScvl1Xu4aov+EebCj
+	X7lhOPKlUGrUDG+ysdKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m7vcl-00A5Qa-QZ; Mon, 26 Jul 2021 08:06:07 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1m7vjI-00A79T-57; Mon, 26 Jul 2021 08:12:52 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m7vcj-00A5PQ-76
- for linux-amlogic@lists.infradead.org; Mon, 26 Jul 2021 08:06:06 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id e2so9955031wrq.6
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Jul 2021 01:06:04 -0700 (PDT)
+ id 1m7vjF-00A776-6I
+ for linux-amlogic@lists.infradead.org; Mon, 26 Jul 2021 08:12:50 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id
+ a80-20020a1c98530000b0290245467f26a4so5719586wme.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 26 Jul 2021 01:12:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=HKcRDyROSUfmhioHNtTU2vbTLt65NepdrupybIKsatE=;
- b=QWtDTo3PH9OIra/tbq5G0k8/bcuONoStvRoeIx6dl2igAeFjuivveZV9iQHyxdCIil
- Yn87o5dx66AOK8DjSJLRYGv8kl/TNDv31M+u2yAeTFX9NTjmAKAlFBdDTA9MsgYVivc9
- IZ6qUhkKEbF9U/2cba3Y5ToX/bdVSJMXaDes/IWeeJ7pgqxPqERJ7P38cZDcbFAXQKkT
- TSVeBIm5MXTamyxlcDLOZd9NFPtfoxJ7wGwLaKEGKTxd0cOagvDZ28ld3FOrBrJzGRsR
- Mzw1gb4HnK0AlAop1zvF3lalWxQrJFgZvRDXpI/CfBxGMV3gFyP6sHADkL7mOhyr+TRS
- 1ufQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=9CoiKk7rjio2RKU+s3ML+lKUiUQc1wLkK/GH5VGg1QY=;
+ b=c9CVGx9R/uCP+dtbA4o3A8K4gqhmdIWCcfv/W0+jiGY0wrz1i+wOhT2dVGYtitY1vN
+ R+8yGxVHqMm1hp8RiRwvxXNbFKnhTgmIsynkLs+AiE81vP5jQ+R7zGp74Tb2CI4lU1DW
+ HBFykmIGnqVq9XCGQockQWegrG+I5Srsg+3TQ2aDeLmKTsZk1bT1P6bL1KbP2Vq7IR70
+ b7IdVAuLvRSvhzhu6Y0YjxNwAxL0/uLY45UlHDx11mAeXpCAxG0jPErfdLUMOlhuJmym
+ 2gDaGtgksrUV3ca5t2Pf5+AhtB1PrD12SEqOvP7wrY3iLru1t9WxTOfCAANmvp9Z9hDO
+ wMfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=HKcRDyROSUfmhioHNtTU2vbTLt65NepdrupybIKsatE=;
- b=C/XwRHuK0sOVhSbKfgWtXy59woAyQjLwE4hovol99WYRZRfWvRFPc2GohiWb9bBwrQ
- xP8sKrqt8zS9wBu5noIwFzeUJxBFSUg6HFqMeS4NeovUMLQwZmFeMq5Cb1UGJYT8jt/f
- GG7piCjIHC2UHL8mIRu6IM+SsfktKsXU/eOYCMR6hHfFFyOxnr4yZ+i554p6tjTuFxo0
- b0yq1UPIKTmXjznbPPbNecqaRUYPzJDNz6r1erNFeF6WsvzGGEH1JG2yplYDlQ9a8Xwy
- sDcN2itpHxsBgLSuuHyElbWDMrtxwAR0D5h5MXoZsSkisqQ9dIYK7iPYG/qbwK4B2o8m
- UrMQ==
-X-Gm-Message-State: AOAM533zUgldtOMF/X8OHQTrjDo6LuufNKFTDpYPadRUd8OChp3mis2I
- StJd6ADB6I1OmXktdzsXVRgaIw==
-X-Google-Smtp-Source: ABdhPJwi40vXErY3FPEwP7VEauGhUJFLjrSL3ftinSAJ2+sp3LZXXwk1xmJgrYPBvmvoSrhtCou9xQ==
-X-Received: by 2002:adf:db85:: with SMTP id u5mr17884676wri.167.1627286763668; 
- Mon, 26 Jul 2021 01:06:03 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:32b6:aa71:d2df:4f1d?
- ([2001:861:44c0:66c0:32b6:aa71:d2df:4f1d])
- by smtp.gmail.com with ESMTPSA id d10sm41243990wro.43.2021.07.26.01.06.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 26 Jul 2021 01:06:03 -0700 (PDT)
-Subject: Re: [PATCHv2 1/3] ARM: dts: meson8b: odroidc1: Fix the pwm regulator
- supply properties
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Anand Moon <linux.amoon@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- devicetree@vger.kernel.org
-References: <20210705112358.3554-1-linux.amoon@gmail.com>
- <20210705112358.3554-2-linux.amoon@gmail.com>
- <CAFBinCDaiu-tuo654_UTmxb0yeqQ8YqxCC7oVxq1EU4AmQRQdA@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=9CoiKk7rjio2RKU+s3ML+lKUiUQc1wLkK/GH5VGg1QY=;
+ b=rmxj4/oxZLslesXXUkrAzblpWlIfA1fWr0MFH1vqFid91m1fIdBJfj4xg+lYks51ol
+ I8Oe9LHD23q3eXT7ta5RI6hT1diXwpH4Bm1U2E/8qu/RuFBME9KsT8Md1MleBgaREzrK
+ jaZEsa66h2YufsudYiMnrAF7WusvAcAkB1uG8gtomusD96TAriziomh5xb03YM2iyi47
+ rHrkrseiFbRv09PI6RCyKWkAiT4beRPQuhkM7N99PmaZtMIySe1cSOTbbAN9efah9Ryo
+ YPaA8OsiWk1o4HNwa7SIifwTpsAITxsf8fb+VtPI02nDgOYNsO9+jS2fgS0ZBYBirydu
+ RpSg==
+X-Gm-Message-State: AOAM533IUSoKcLhH2CzU7qqavmN89/v+eE6CPrhc3nCNUEdXyB8jMMp2
+ OGw59HATEBuQbkAQB2zHSxExmg==
+X-Google-Smtp-Source: ABdhPJw1KBlFH9Kv9XOSPT+ukLibgvYWWjL0nL1sHy6Lkc8xHILZFAWqyqy8ybzbNqYxjrCCf+mnlw==
+X-Received: by 2002:a05:600c:3391:: with SMTP id
+ o17mr13962613wmp.187.1627287167675; 
+ Mon, 26 Jul 2021 01:12:47 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:32b6:aa71:d2df:4f1d])
+ by smtp.gmail.com with ESMTPSA id c15sm646762wrx.70.2021.07.26.01.12.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 26 Jul 2021 01:12:47 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <f07da67e-3d67-85a5-699d-d528212a867f@baylibre.com>
-Date: Mon, 26 Jul 2021 10:06:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+To: Artem Lapkin <email2tema@gmail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ linux-amlogic@lists.infradead.org, art@khadas.com, jbrunet@baylibre.com,
+ devicetree@vger.kernel.org, khilman@baylibre.com,
+ christianshewitt@gmail.com, martin.blumenstingl@googlemail.com,
+ nick@khadas.com, linux-kernel@vger.kernel.org, gouwa@khadas.com,
+ linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: meson: improve gxl-s905x-khadas-vim wifi
+Date: Mon, 26 Jul 2021 10:12:36 +0200
+Message-Id: <162728713307.14205.16768883213869535162.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210622044334.769791-1-art@khadas.com>
+References: <20210622044334.769791-1-art@khadas.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDaiu-tuo654_UTmxb0yeqQ8YqxCC7oVxq1EU4AmQRQdA@mail.gmail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210726_010605_288696_B2F84D4A 
-X-CRM114-Status: GOOD (  13.18  )
+X-CRM114-CacheID: sfid-20210726_011249_274409_12C414FE 
+X-CRM114-Status: UNSURE (   7.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,40 +108,20 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On 08/07/2021 14:58, Martin Blumenstingl wrote:
-> On Mon, Jul 5, 2021 at 1:25 PM Anand Moon <linux.amoon@gmail.com> wrote:
->>
->> After enabling CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
-> I think there's a typo here: observer -> observe
-> maybe Kevin or Neil can fix this up (in this and the following two
-> patches) while applying the patch so you don't have to re-spin a v3
-
-Fixed while applying !
-
+On Tue, 22 Jun 2021 12:43:33 +0800, Artem Lapkin wrote:
+> Improve gxl-s905x-khadas-vim wifi performance
+> * change freq from 60Mhz to 100Mhz
 > 
->> Changes help link VCCK and VDDEE pwm regulator to 5V regulator supply
->> instead of dummy regulator.
->>
->> [    7.117140] pwm-regulator regulator-vcck: Looking up pwm-supply from device tree
->> [    7.117153] pwm-regulator regulator-vcck: Looking up pwm-supply property in node /regulator-vcck failed
->> [    7.117184] VCCK: supplied by regulator-dummy
->> [    7.117194] regulator-dummy: could not add device link regulator.8: -ENOENT
->> [    7.117266] VCCK: 860 <--> 1140 mV at 986 mV, enabled
->> [    7.118498] VDDEE: will resolve supply early: pwm
->> [    7.118515] pwm-regulator regulator-vddee: Looking up pwm-supply from device tree
->> [    7.118526] pwm-regulator regulator-vddee: Looking up pwm-supply property in node /regulator-vddee failed
->> [    7.118553] VDDEE: supplied by regulator-dummy
->> [    7.118563] regulator-dummy: could not add device link regulator.9: -ENOENT
->>
->> Fixes: 524d96083b66 ("ARM: dts: meson8b: odroidc1: add the CPU voltage regulator")
->> Fixes: 8bdf38be712d ("ARM: dts: meson8b: odroidc1: add the VDDEE regulator")
->>
->> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
+> 100Mhz works well same as in meson-khadas-vim3.dtsi
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (for-next)
+
+[1/2] arm64: dts: meson: improve gxl-s905x-khadas-vim wifi
+      https://git.kernel.org/amlogic/c/6b197abe56feeafe9c516dca1b3ca3742200adba
+[2/2] arm64: dts: meson: improve gxm-khadas-vim2 wifi
+      https://git.kernel.org/amlogic/c/4b5260032ec691b11a9185f7f38f5761e67fab48
+
+-- 
 Neil
 
 _______________________________________________
