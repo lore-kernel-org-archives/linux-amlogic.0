@@ -1,91 +1,94 @@
-Return-Path: <SRS0=29Qv=MU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=5MM3=MV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF81AC4338F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jul 2021 17:58:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A342C4338F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 02:06:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8730660E09
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jul 2021 17:58:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8730660E09
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id BFB4D6056C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 02:06:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BFB4D6056C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H/Kaq1R2MKDV5bS4CayHlEmGUceOgI1brYTXTQVVhq8=; b=ABQbxFNUWmuoxb
-	3zgN/3AxwUOC/gkLwikOUGKAsn3hbpb+BpaOSlNu7+TrSWk9Z5iU5BEGyuDeUTwCBSF5A2J+01eut
-	8KvMjK4CQjurZGYscrqJz+u3YAoAlLagI6gvGkxkGRC/uAjDjdUWfAWuQbh1PohdOLXFxg/F1mzvr
-	2JGzR9icguYY7eFMYT00yGZ6IUmFIuChWhL3xqPHaAastvH/HstYfXPubujaoxJEOakbxOVTUq85F
-	fhyzVNuo0+NBQbmRFhOETFIQ3XJEZ/Bid6U7NY4qkn4F/n5edFWN4vzPaAzP5/rsYlO8XFCECw5Fc
-	LufZqO+XjnUH2DsvRgzA==;
+	List-Owner; bh=EF4iDFcwsEQAM1StXR5Il/FDRbIeH1lnmnNq4Tscwt4=; b=IdH/HQZSDlLbzU
+	+4Khd9G+5kFc75NADDSIQNs1fDOZLVv44Yc1hAuAFqQ36P0SMgqnAY1NYKw0rMPxOjk2DKtVRtQT7
+	N6FraVoI+kgl4vVlf1bzfX63MZsnOneC4w62lxWeQkCigIhOcVt39sWGFsTsp1f4Z0GOubw8HmLeb
+	ZfoFkGMxbMeTCSs6BHA6jPRK5k0CT9nBlAAsR5LZTohN/la0It1edq7UTGZ+lGnCiC/L1RcxZuhKR
+	zdlD+uj5Irr+XMXbhZFFFuY/2z29V9imnL/6L/JV1dm4wrnFF/IpyN5ZFDUhfHtf46eRi3bgO4maQ
+	UA0MwhicW5XQ37G+jcmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m8npA-001wOS-8n; Wed, 28 Jul 2021 17:58:32 +0000
-Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
+	id 1m8vRT-002rko-6z; Thu, 29 Jul 2021 02:06:35 +0000
+Received: from mail-il1-x129.google.com ([2607:f8b0:4864:20::129])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m8np6-001wKq-6r
- for linux-amlogic@lists.infradead.org; Wed, 28 Jul 2021 17:58:30 +0000
-Received: by mail-pj1-x1033.google.com with SMTP id
- b1-20020a17090a8001b029017700de3903so6680010pjn.1
- for <linux-amlogic@lists.infradead.org>; Wed, 28 Jul 2021 10:58:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=DLgogdd9UTffrKrv2NJDNga54h1YrGhuaJdfkcCuN3o=;
- b=jYVTQ78PS4SA3XwjImR394HbL2LIDMibvpgFiyM08I5uTVQ5KHw9lL/pblTqEcwgqh
- eUmvUTWbRzvtiWJDgD+DFHxC/0n5maQBxFw/OXXmaNhT5IiN5dtBg9J1icgkKL+rK+7K
- Mnkv6dholdXtymyw9oaMyQGTwZ+ZmWMgj7Gugu+FSM7zp5KZbhChSvo3/Zm4OCnuBSUC
- CGe3gwp2wIp3u/mWReKkrzqWryfCj2UhoAzT7zyjxi+h8P8/RM5LxjaP7XCmS7vDfiBL
- 7iLNO0djm2T7f9m0L3597caNo7fore3p383nskFwwXoEAcwnNacyxgvQtU830glHPmjP
- R+Kw==
+ id 1m8vRF-002rjS-AP; Thu, 29 Jul 2021 02:06:23 +0000
+Received: by mail-il1-x129.google.com with SMTP id r1so4200908iln.6;
+ Wed, 28 Jul 2021 19:06:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Gw638gPEElf7gPsZoaSODOIPFTTqrPgexZer8ynjLek=;
+ b=I38YYBpI9kUB85qSrUEOHLs4oZ5hBshAMGMSoHCBvCtMg3Frrpqek7sFDoaq6lCyjt
+ rO6VLyfYuzWMWb5bWh6wA4Qv/huiiHGfHyUzxEzm0U5Lcrsf1gzA3yx5pnbafP3PYL+H
+ 4OV1dT/w1PDDDw9Tax09yRbqHxaH48OrNSDF4FHKcEa7Tan4tnBt3LAyTImwr2nrti4A
+ LszDNG/ZZVxqCi9Jq95+D08yzQlUXmrarYxdvLFEENlkHx3NUlrBmaXX1NS2ieAE5A4W
+ dWtgM5J/diQ9cEkmR+x3S7k6mSpPl4JM2JWDvuPtihX4zysQuQYz0lAGg470deylF5J6
+ qVDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=DLgogdd9UTffrKrv2NJDNga54h1YrGhuaJdfkcCuN3o=;
- b=t84FJzyU7zVFON+TvYPkeQYe8zcWLqw56tg6sVtTdI7UvwsS6aoCs0jWFMUrP20onf
- A/CIXmShoyOopGOmXbheXeFAkz79X6kX9IrADH8NamUBnqbUd0MLhF/eUCIRrYJFljvi
- bsM3t/pWplweqbYXCMsLRgYgR5QX518Z+4stvd6hmmXD5CgjVGNLcxLUiIWPUChwUdmp
- GTOo4HDaoKQotDXE56K1ZvxQPS4BBuIkZsABWNNXAEjo3KE5f7sX9GwqQzJ1mTr44ihB
- j8Yvg7xBxyAHg1+Jco8z3h2Pj5hiQZbiX3488MnGxByuhDKyjQXkEspJBlXWe4eCBS/r
- FNYA==
-X-Gm-Message-State: AOAM531VlxbVnjfXcWImQliwVCfYVCrl3OYnUGSgvhUv4MPj2iSHU9Vt
- 1sV9V2e5rEedz8KBvo/oBwC8BA==
-X-Google-Smtp-Source: ABdhPJwd81SJiC3Jza02GJ6Nuu9UhKDJSPKXnluCtjoYmio7ACnt2PQwi9wDTLO7I9wy9cwEyDPnNA==
-X-Received: by 2002:a65:41c9:: with SMTP id b9mr99269pgq.322.1627495107152;
- Wed, 28 Jul 2021 10:58:27 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
- by smtp.gmail.com with ESMTPSA id c24sm650878pfp.129.2021.07.28.10.58.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Jul 2021 10:58:25 -0700 (PDT)
-Date: Wed, 28 Jul 2021 11:58:23 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- bjorn.andersson@linaro.org, ohad@wizery.com
-Subject: Re: [PATCH v3 2/2] remoteproc: meson-mx-ao-arc: Add a driver for the
- AO ARC remote procesor
-Message-ID: <20210728175823.GA2766167@p14s>
-References: <20210717234859.351911-1-martin.blumenstingl@googlemail.com>
- <20210717234859.351911-3-martin.blumenstingl@googlemail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Gw638gPEElf7gPsZoaSODOIPFTTqrPgexZer8ynjLek=;
+ b=bzQbQfuOpVGky5U433lHtqDgC7yKSupc3tWsryKye8UsQ6MJ39OxcL8dq4LYvdVOMU
+ iuVW9JfzIphRyiJ+bOMn3zFrbc2GNJaBwcsDfcsl8aMnGwk9M21XkGOUCQybzBoUehue
+ EbWpCmk2r1DClGRv8BuC4mvQujQSNh4G6bZSfJXUYtinFf1tdNZBEOAd3ggk2p6X3MPO
+ N5cUORiIW09zy6iiecBFv4nKvkxydCKGI/f2tfehdI5yS4XGBfumRK69Wj9HB703Y2fL
+ MAck4C9DVJtCB7JmbSj1agl7bADbV5ZAtc/X4WFb275T6c1vsXmZ/5mjJzavIYZIsuhQ
+ AgyQ==
+X-Gm-Message-State: AOAM5330y1AY5amL979JDOWe4hcZXdZg+4UU2+0ZdFbTx5hWCQQORtz5
+ oWlER8fI9fBp1V5ydCdM8Yxu7ajJICK15P1E/zc=
+X-Google-Smtp-Source: ABdhPJweTQMZMOJZhsoSA6X0MeGnEy5oVheg7f7rSBxVhp24LiURAoMneyjr65xHD8o3c6MnGXmb40ia8HnNWPc3sro=
+X-Received: by 2002:a05:6e02:68d:: with SMTP id
+ o13mr1965269ils.150.1627524378676; 
+ Wed, 28 Jul 2021 19:06:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210717234859.351911-3-martin.blumenstingl@googlemail.com>
+References: <20210727194323.GA725763@bjorn-Precision-5520>
+ <63838b21-3073-0b07-53d3-b85d6e89f0eb@baylibre.com>
+In-Reply-To: <63838b21-3073-0b07-53d3-b85d6e89f0eb@baylibre.com>
+From: Art Nikpal <email2tema@gmail.com>
+Date: Thu, 29 Jul 2021 10:06:06 +0800
+Message-ID: <CAKaHn9+rEBTm3DfdSBXhMuark=4YvXqv1YoEQdo43f=gOFnwCg@mail.gmail.com>
+Subject: Re: [PATCH v2] PCI: DWC: meson: add 256 bytes MRRS quirk
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Yue Wang <yue.wang@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Wilczynski <kw@linux.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Christian Hewitt <christianshewitt@gmail.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ PCI <linux-pci@vger.kernel.org>, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ LKML <linux-kernel@vger.kernel.org>, 
+ Artem Lapkin <art@khadas.com>, Nick Xie <nick@khadas.com>,
+ Gouwa Wang <gouwa@khadas.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210728_105828_388535_5F57EE4A 
-X-CRM114-Status: GOOD (  45.92  )
+X-CRM114-CacheID: sfid-20210728_190621_416791_5B53417B 
+X-CRM114-Status: GOOD (  50.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,367 +105,183 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+> The fun part is that the pci=pcie_bus_perf kerne cmdline solves this already,
 
-On Sun, Jul 18, 2021 at 01:48:59AM +0200, Martin Blumenstingl wrote:
-> Amlogic Meson6, Meson8, Meson8b and Meson8m2 embed an ARC core in the
-> Always-On (AO) power-domain. This is typically used for waking up the
-> ARM cores after system suspend.
-> 
-> The configuration is spread across three different registers:
-> - AO_REMAP_REG0 which must be programmed to zero, it's actual purpose
->   is unknown. There is a second remap register which is not used in the
->   vendor kernel (which served as reference for this driver).
-> - AO_CPU_CNTL is used to start and stop the ARC core.
-> - AO_SECURE_REG0 in the SECBUS2 register area with unknown purpose.
-> 
-> To boot the ARC core we also need to enable it's gate clock and trigger
-> a reset.
-> 
-> The actual code for this ARC core can come from an ELF binary, for
-> example by building the Zephyr RTOS for an ARC EM4 core and then taking
-> "zephyr.elf" as firmware. This executable does not have any "rsc table"
-> so we are skipping rproc_elf_load_rsc_table (rproc_ops.parse_fw) and
-> rproc_elf_find_loaded_rsc_table (rproc_ops.find_loaded_rsc_table).
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/remoteproc/Kconfig           |  11 ++
->  drivers/remoteproc/Makefile          |   1 +
->  drivers/remoteproc/meson_mx_ao_arc.c | 260 +++++++++++++++++++++++++++
->  3 files changed, 272 insertions(+)
->  create mode 100644 drivers/remoteproc/meson_mx_ao_arc.c
-> 
-> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-> index 9a6eedc3994a..3197bbe38785 100644
-> --- a/drivers/remoteproc/Kconfig
-> +++ b/drivers/remoteproc/Kconfig
-> @@ -127,6 +127,17 @@ config KEYSTONE_REMOTEPROC
->  	  It's safe to say N here if you're not interested in the Keystone
->  	  DSPs or just want to use a bare minimum kernel.
->  
-> +config MESON_MX_AO_ARC_REMOTEPROC
-> +	tristate "Amlogic Meson6/8/8b/8m2 AO ARC remote processor support"
-> +	depends on HAS_IOMEM
-> +	depends on (ARM && ARCH_MESON) || COMPILE_TEST
-> +	select GENERIC_ALLOCATOR
-> +	help
-> +	  Say m or y here to have support for the AO ARC remote processor
-> +	  on Amlogic Meson6/Meson8/Meson8b/Meson8m2 SoCs. This is
-> +	  typically used for system suspend.
-> +	  If unusre say N.
+yes pci=pcie_bus_perf works only because setup same MRRS=256 in this case
+same like in this patch pcie_set_readrq(dev, 256 )
 
-s/unusre/unsure
+some details about pci=pcie_bus_perf
 
-> +
->  config PRU_REMOTEPROC
->  	tristate "TI PRU remoteproc support"
->  	depends on TI_PRUSS
-> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
-> index bb26c9e4ef9c..ce1abeb30907 100644
-> --- a/drivers/remoteproc/Makefile
-> +++ b/drivers/remoteproc/Makefile
-> @@ -18,6 +18,7 @@ obj-$(CONFIG_OMAP_REMOTEPROC)		+= omap_remoteproc.o
->  obj-$(CONFIG_WKUP_M3_RPROC)		+= wkup_m3_rproc.o
->  obj-$(CONFIG_DA8XX_REMOTEPROC)		+= da8xx_remoteproc.o
->  obj-$(CONFIG_KEYSTONE_REMOTEPROC)	+= keystone_remoteproc.o
-> +obj-$(CONFIG_MESON_MX_AO_ARC_REMOTEPROC)+= meson_mx_ao_arc.o
->  obj-$(CONFIG_PRU_REMOTEPROC)		+= pru_rproc.o
->  obj-$(CONFIG_QCOM_PIL_INFO)		+= qcom_pil_info.o
->  obj-$(CONFIG_QCOM_RPROC_COMMON)		+= qcom_common.o
-> diff --git a/drivers/remoteproc/meson_mx_ao_arc.c b/drivers/remoteproc/meson_mx_ao_arc.c
-> new file mode 100644
-> index 000000000000..86c0f3e48701
-> --- /dev/null
-> +++ b/drivers/remoteproc/meson_mx_ao_arc.c
-> @@ -0,0 +1,260 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright (C) 2020 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/property.h>
-> +#include <linux/genalloc.h>
-> +#include <linux/io.h>
-> +#include <linux/ioport.h>
+[    4.665327] pci 0000:00:00.0: [16c3:abcd] type 01 class 0x060400
+[    4.671166] pci 0000:00:00.0: reg 0x38: [mem 0x00000000-0x0000ffff pref]
+[    4.677793] pci 0000:00:00.0: supports D1
+[    4.683028] pci 0000:00:00.0: PME# supported from D0 D1 D3hot D3cold
+[    4.691667] pci 0000:01:00.0: [2646:2263] type 00 class 0x010802
+[    4.697469] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x00003fff 64bit]
+[    4.704218] pci 0000:01:00.0: pcie_get_mps - 128
+[    4.709607] pci 0000:00:00.0: pcie_get_mps - 256
+[    4.715145] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth,
+limited by 5.0 GT/s PCIe x1 link at 0000:00:00.0 (capable of 31.504
+Gb/s with 8.0 GT/s PCIe x4 link)
+[    4.748582] pci 0000:00:00.0: BAR 14: assigned [mem 0xfc700000-0xfc7fffff]
+[    4.755575] pci 0000:00:00.0: BAR 6: assigned [mem
+0xfc800000-0xfc80ffff pref]
+[    4.762731] pci 0000:01:00.0: BAR 0: assigned [mem
+0xfc700000-0xfc703fff 64bit]
+[    4.769849] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+[    4.775195] pci 0000:00:00.0:   bridge window [mem 0xfc700000-0xfc7fffff]
+[    4.781741] pci 0000:00:00.0: pcie_get_mps - 256
+[    4.787118] pci 0000:00:00.0: pcie_set_mps - 256 (32)
+[    4.792404] pci 0000:00:00.0: pcie_get_mps - 256
+[    4.797637] pci 0000:00:00.0: pcie_get_mps - 256
+[    4.802674] pci 0000:00:00.0: Max Payload Size set to  256/ 256
+(was  256), Max Read Rq  256
+[    4.810602] pci 0000:01:00.0: pcie_get_mps - 128
+[    4.815590] pci 0000:00:00.0: pcie_get_mps - 256
+[    4.820422] pci 0000:01:00.0: pcie_set_mps - 256 (32)
+[    4.825274] pci 0000:01:00.0: pcie_get_mps - 256
+[    4.829946] pci 0000:01:00.0: pcie_set_readrq - 256
+[    4.834609] pci 0000:01:00.0: pcie_get_mps - 256
+[    4.839174] pci 0000:01:00.0: pcie_get_mps - 256
+[    4.843582] pci 0000:01:00.0: Max Payload Size set to  256/ 256
+(was  128), Max Read Rq  256
 
-Not sure this is needed.
+and pci=pcie_bus_perf works for whole system and i think its not good
+idea use or adoptate this option for this case
 
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/remoteproc.h>
-> +#include <linux/reset.h>
-> +#include <linux/sizes.h>
-> +
-> +#include "remoteproc_internal.h"
-> +
-> +#define AO_REMAP_REG0						0x0
-> +#define AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU	GENMASK(3, 0)
-> +
-> +#define AO_REMAP_REG1						0x4
-> +#define AO_REMAP_REG1_MOVE_AHB_SRAM_TO_0X0_INSTEAD_OF_DDR	BIT(4)
-> +#define AO_REMAP_REG1_REMAP_AHB_SRAM_BITS_17_14_FOR_MEDIA_CPU	GENMASK(3, 0)
-> +
-> +#define AO_CPU_CNTL						0x0
-> +#define AO_CPU_CNTL_AHB_SRAM_BITS_31_20				GENMASK(28, 16)
-> +#define AO_CPU_CNTL_HALT					BIT(9)
-> +#define AO_CPU_CNTL_UNKNONWN					BIT(8)
-> +#define AO_CPU_CNTL_RUN						BIT(0)
-> +
-> +#define AO_CPU_STAT						0x4
-> +
-> +#define AO_SECURE_REG0						0x0
-> +#define AO_SECURE_REG0_AHB_SRAM_BITS_19_12			GENMASK(15, 8)
-> +
-> +/* Only bits [31:20] and [17:14] are usable, all other bits must be zero */
-> +#define MESON_AO_RPROC_SRAM_USABLE_BITS				0xfff3c000
-> +
-> +#define MESON_AO_RPROC_MEMORY_OFFSET				0x10000000
-> +
-> +struct meson_mx_ao_arc_rproc_priv {
-> +	void __iomem		*remap_base;
-> +	void __iomem		*cpu_base;
-> +	unsigned long		sram_va;
-> +	phys_addr_t		sram_pa;
-> +	size_t			sram_size;
-> +	struct gen_pool		*sram_pool;
-> +	struct reset_control	*arc_reset;
-> +	struct clk		*arc_pclk;
-> +	struct regmap		*secbus2_regmap;
-> +};
-> +
-> +static int meson_mx_ao_arc_rproc_start(struct rproc *rproc)
-> +{
-> +	struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-> +	phys_addr_t translated_sram_addr;
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(priv->arc_pclk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	writel(FIELD_PREP(AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU,
-> +			       priv->sram_pa >> 14),
+Artem
 
-Indentation problem
-
-> +	       priv->remap_base + AO_REMAP_REG0);
-> +
-> +	/*
-> +	 * The SRAM content as seen by the ARC core always starts at 0x0
-> +	 * regardless of the value given here (this was discovered by trial and
-> +	 * error). For SoCs older than Meson6 we probably have to set
-> +	 * AO_REMAP_REG1_MOVE_AHB_SRAM_TO_0X0_INSTEAD_OF_DDR to achieve the
-> +	 * same. (At least) For Meson8 and newer that bit must not be set.
-> +	 */
-> +	writel(0x0, priv->remap_base + AO_REMAP_REG1);
-> +
-> +	regmap_update_bits(priv->secbus2_regmap, AO_SECURE_REG0,
-> +			   AO_SECURE_REG0_AHB_SRAM_BITS_19_12,
-> +			   FIELD_PREP(AO_SECURE_REG0_AHB_SRAM_BITS_19_12,
-> +				      priv->sram_pa >> 12));
-> +
-> +	ret = reset_control_reset(priv->arc_reset);
-> +	if (ret) {
-> +		clk_disable_unprepare(priv->arc_pclk);
-> +		return ret;
-> +	}
-> +
-> +	usleep_range(10, 100);
-
-I've seen this kind of mysterious timeouts in other patchset based vendor trees.
-You likely don't know why it is needed so I won't ask.
-
-> +
-> +	/*
-> +	 * Convert from 0xd9000000 to 0xc9000000 as the vendor driver does.
-> +	 * This only seems to be relevant for the AO_CPU_CNTL register. It is
-> +	 * unknown why this is needed.
-> +	 */
-> +	translated_sram_addr = priv->sram_pa - MESON_AO_RPROC_MEMORY_OFFSET;
-> +
-> +	writel(FIELD_PREP(AO_CPU_CNTL_AHB_SRAM_BITS_31_20,
-> +			  translated_sram_addr >> 20) |
-> +	       AO_CPU_CNTL_UNKNONWN |
-> +	       AO_CPU_CNTL_RUN,
-> +	       priv->cpu_base + AO_CPU_CNTL);
-> +	usleep_range(20, 200);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_mx_ao_arc_rproc_stop(struct rproc *rproc)
-> +{
-> +	struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-> +
-> +	writel(AO_CPU_CNTL_HALT, priv->cpu_base + AO_CPU_CNTL);
-> +
-> +	clk_disable_unprepare(priv->arc_pclk);
-> +
-> +	return 0;
-> +}
-> +
-> +static void *meson_mx_ao_arc_rproc_da_to_va(struct rproc *rproc, u64 da,
-> +					    size_t len, bool *is_iomem)
-> +{
-> +	struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-> +
-> +	if ((da + len) > priv->sram_size)
-> +		return NULL;
-
-I know from your comment in meson_mx_ao_arc_rproc_start() that the remote
-processor's view of the SRAM is always mapped to 0.  Had I not read this driver
-from top to bottom I'd find the above very perplexing.  Please add a comment.
-
-> +
-> +	return (void *)priv->sram_va + da;
-> +}
-> +
-> +static struct rproc_ops meson_mx_ao_arc_rproc_ops = {
-> +	.start		= meson_mx_ao_arc_rproc_start,
-> +	.stop		= meson_mx_ao_arc_rproc_stop,
-> +	.da_to_va	= meson_mx_ao_arc_rproc_da_to_va,
-> +	.get_boot_addr	= rproc_elf_get_boot_addr,
-> +	.load		= rproc_elf_load_segments,
-> +	.sanity_check	= rproc_elf_sanity_check,
-> +};
-> +
-> +static int meson_mx_ao_arc_rproc_probe(struct platform_device *pdev)
-> +{
-> +	struct meson_mx_ao_arc_rproc_priv *priv;
-> +	struct device *dev = &pdev->dev;
-> +	const char *fw_name = NULL;
-> +	struct rproc *rproc;
-> +	int ret;
-> +
-> +	device_property_read_string(dev, "firmware-name", &fw_name);
-> +
-> +	rproc = devm_rproc_alloc(dev, "meson-mx-ao-arc",
-> +				 &meson_mx_ao_arc_rproc_ops, fw_name,
-> +				 sizeof(*priv));
-> +	if (!rproc)
-> +		return -ENOMEM;
-> +
-> +	rproc->has_iommu = false;
-> +	priv = rproc->priv;
-> +
-> +	priv->sram_pool = of_gen_pool_get(dev->of_node, "sram", 0);
-> +	if (!priv->sram_pool) {
-> +		dev_err(dev, "Could not get SRAM pool\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	priv->sram_size = gen_pool_avail(priv->sram_pool);
-> +
-> +	priv->sram_va = gen_pool_alloc(priv->sram_pool, priv->sram_size);
-> +	if (!priv->sram_va) {
-> +		dev_err(dev, "Could not alloc memory in SRAM pool\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	priv->sram_pa = gen_pool_virt_to_phys(priv->sram_pool, priv->sram_va);
-> +	if (priv->sram_pa & ~MESON_AO_RPROC_SRAM_USABLE_BITS) {
-> +		dev_err(dev, "SRAM address contains unusable bits\n");
-> +		ret = -EINVAL;
-> +		goto err_free_genpool;
-> +	}
-> +
-> +	priv->secbus2_regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +							       "amlogic,secbus2");
-> +	if (IS_ERR(priv->secbus2_regmap)) {
-> +		dev_err(dev, "Failed to find SECBUS2 regmap\n");
-> +		ret = PTR_ERR(priv->secbus2_regmap);
-> +		goto err_free_genpool;
-> +	}
-> +
-> +	priv->remap_base = devm_platform_ioremap_resource_byname(pdev, "remap");
-> +	if (IS_ERR(priv->remap_base)) {
-> +		ret = PTR_ERR(priv->remap_base);
-> +		goto err_free_genpool;
-> +	}
-> +
-> +	priv->cpu_base = devm_platform_ioremap_resource_byname(pdev, "cpu");
-> +	if (IS_ERR(priv->cpu_base)) {
-> +		ret = PTR_ERR(priv->cpu_base);
-> +		goto err_free_genpool;
-> +	}
-> +
-> +	priv->arc_reset = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(priv->arc_reset)) {
-
-Function __reset_control_get() in __devm_reset_control_get() can return NULL so
-this should be IS_ERR_OR_NULL().
-
-> +		dev_err(dev, "Failed to get ARC reset\n");
-> +		ret = PTR_ERR(priv->arc_reset);
-> +		goto err_free_genpool;
-> +	}
-> +
-> +	priv->arc_pclk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(priv->arc_pclk)) {
-> +		dev_err(dev, "Failed to get the ARC PCLK\n");
-> +		ret = PTR_ERR(priv->arc_pclk);
-> +		goto err_free_genpool;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, rproc);
-> +
-> +	ret = rproc_add(rproc);
-> +	if (ret)
-> +		goto err_free_genpool;
-> +
-> +	return 0;
-> +
-> +err_free_genpool:
-> +	gen_pool_free(priv->sram_pool, priv->sram_va, priv->sram_size);
-> +	return ret;
-> +}
-> +
-> +static int meson_mx_ao_arc_rproc_remove(struct platform_device *pdev)
-> +{
-> +	struct rproc *rproc = platform_get_drvdata(pdev);
-> +	struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-> +
-> +	rproc_del(rproc);
-> +	gen_pool_free(priv->sram_pool, priv->sram_va, priv->sram_size);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id meson_mx_ao_arc_rproc_match[] = {
-> +	{ .compatible = "amlogic,meson8-ao-arc" },
-> +	{ .compatible = "amlogic,meson8b-ao-arc" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_mx_ao_arc_rproc_match);
-> +
-> +static struct platform_driver meson_mx_ao_arc_rproc_driver = {
-> +	.probe = meson_mx_ao_arc_rproc_probe,
-> +	.remove = meson_mx_ao_arc_rproc_remove,
-> +	.driver = {
-> +		.name = "meson-mx-ao-arc-rproc",
-> +		.of_match_table = meson_mx_ao_arc_rproc_match,
-> +	},
-> +};
-> +module_platform_driver(meson_mx_ao_arc_rproc_driver);
-
-This driver is squeaky clean. With the above:
-
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-
-> +
-> +MODULE_DESCRIPTION("Amlogic Meson6/8/8b/8m2 AO ARC remote processor driver");
-> +MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.32.0
-> 
+On Wed, Jul 28, 2021 at 11:08 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi,
+>
+>
+> On 27/07/2021 21:43, Bjorn Helgaas wrote:
+> > On Tue, Jul 27, 2021 at 10:30:00AM +0800, Artem Lapkin wrote:
+> >> 256 bytes maximum read request size. They can't handle
+> >> anything larger than this. So force this limit on
+> >> any devices attached under these ports.
+> >
+> > This needs to say whether this is a functional or a performance issue.
+> >
+> > If it's a functional issue, i.e., if meson signals an error or abort
+> > when it receives a read request for > 256 bytes, we need to explain
+> > exactly what happens.
+> >
+> > If it's a performance issue, we need to explain why MRRS affects
+> > performance and that this is an optimization.
+> >
+> >> Come-from: https://lkml.org/lkml/2021/6/18/160
+> >> Come-from: https://lkml.org/lkml/2021/6/19/19
+> >
+> > Please use lore.kernel.org URLs instead.  The lore URLs are a little
+> > uglier, but are more functional, more likely to continue working, and
+> > avoid the ads.  These are:
+> >
+> >   https://lore.kernel.org/r/20210618230132.GA3228427@bjorn-Precision-5520
+> >   https://lore.kernel.org/r/20210619063952.2008746-1-art@khadas.com
+> >
+> >> It only affects PCIe in P2P, in non-P2P is will certainly affect
+> >> transfers on the internal SoC/Processor/Chip internal bus/fabric.
+> >
+> > This needs to explain how a field in a PCIe TLP affects transfers on
+> > these non-PCIe fabrics.
+> >
+> >> These quirks are currently implemented in the
+> >> controller driver and only applies when the controller has been probed
+> >> and to each endpoint detected on this particular controller.
+> >>
+> >> Continue having separate quirks for each controller if the core
+> >> isn't the right place to handle MPS/MRRS.
+> >
+> > I see similar code in dwc/pci-keystone.c.  Does this problem actually
+> > affect *all* DesignWare-based controllers?
+> >
+> > If so, we should put the workaround in the common dwc code, e.g.,
+> > pcie-designware.c or similar.
+> >
+> > It also seems to affect pci-loongson.c (not DesignWare-based).  Is
+> > there some reason it has the same problem, e.g., does loongson contain
+> > DesignWare IP, or does it use the same non-PCIe fabric?
+>
+> As my reply on the previous thread, the Synopsys IP can be configured with a
+> maximum TLP packet to AXI transaction size, which is hardcoded AFAIK Amlogic
+> doesn't explicit it. And it doesn't seem we can read the value.
+>
+> This means is a TPL size if higher than this maximum packet size, the IP will
+> do multiple AXI transactions, and this can reduce the system overall performance.
+>
+> The problem is that it affects the P2P transactions aswell, which can support any MPS/MRRS.
+> But honestly, it's not a big deal on a PCIe 2.0 1x system only designed for NVMe and basic
+> PCIe devices.
+>
+> The fun part is that the pci=pcie_bus_perf kerne cmdline solves this already,
+> isn't there any possibility to force pcie_bus_perf for a particular root port ?
+>
+> Neil
+>
+> >
+> >>>> Neil
+> >>
+> >> Signed-off-by: Artem Lapkin <art@khadas.com>
+> >> ---
+> >>  drivers/pci/controller/dwc/pci-meson.c | 31 ++++++++++++++++++++++++++
+> >>  1 file changed, 31 insertions(+)
+> >>
+> >> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> >> index 686ded034..1498950de 100644
+> >> --- a/drivers/pci/controller/dwc/pci-meson.c
+> >> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> >> @@ -466,6 +466,37 @@ static int meson_pcie_probe(struct platform_device *pdev)
+> >>      return ret;
+> >>  }
+> >>
+> >> +static void meson_mrrs_limit_quirk(struct pci_dev *dev)
+> >> +{
+> >> +    struct pci_bus *bus = dev->bus;
+> >> +    int mrrs, mrrs_limit = 256;
+> >> +    static const struct pci_device_id bridge_devids[] = {
+> >> +            { PCI_DEVICE(PCI_VENDOR_ID_SYNOPSYS, PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3) },
+> >
+> > I don't really believe that PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3 is the
+> > only device affected here.  Is this related to the Meson root port, or
+> > is it related to a PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3 on a plug-in card?
+> > I guess the former, since you're searching upward for a root port.
+> >
+> > So why is this limited to PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3?
+> >
+> >> +            { 0, },
+> >> +    };
+> >> +
+> >> +    /* look for the matching bridge */
+> >> +    while (!pci_is_root_bus(bus)) {
+> >> +            /*
+> >> +             * 256 bytes maximum read request size. They can't handle
+> >> +             * anything larger than this. So force this limit on
+> >> +             * any devices attached under these ports.
+> >> +             */
+> >> +            if (!pci_match_id(bridge_devids, bus->self)) {
+> >> +                    bus = bus->parent;
+> >> +                    continue;
+> >> +            }
+> >> +
+> >> +            mrrs = pcie_get_readrq(dev);
+> >> +            if (mrrs > mrrs_limit) {
+> >> +                    pci_info(dev, "limiting MRRS %d to %d\n", mrrs, mrrs_limit);
+> >> +                    pcie_set_readrq(dev, mrrs_limit);
+> >> +            }
+> >> +            break;
+> >> +    }
+> >> +}
+> >> +DECLARE_PCI_FIXUP_ENABLE(PCI_ANY_ID, PCI_ANY_ID, meson_mrrs_limit_quirk);
+> >> +
+> >>  static const struct of_device_id meson_pcie_of_match[] = {
+> >>      {
+> >>              .compatible = "amlogic,axg-pcie",
+> >> --
+> >> 2.25.1
+> >>
+>
 
 _______________________________________________
 linux-amlogic mailing list
