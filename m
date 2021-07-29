@@ -2,20 +2,21 @@ Return-Path: <SRS0=5MM3=MV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1888BC4338F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 19:58:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69D0CC4338F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 20:11:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CC9E360720
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 19:58:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CC9E360720
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=wanadoo.fr
+	by mail.kernel.org (Postfix) with ESMTPS id 36B0F60F0F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 20:11:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 36B0F60F0F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -23,43 +24,75 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=5obiQv3AZyiT+NgM2mno7WXfa92YG2YGdQUEbxLyp3Y=; b=w5gDDCwnmVDN4e
-	DedkQvXgwig4OrFwqUHFexqW7oP+fTdAqUjFmRslHYVxkrJk0kxmZG08CoSVQMcFmo2B0mFuBtR4j
-	0ncdENudfeJU5gc8/fcCnfpyONBVcqs85S/cTbfn2ldYC88zNaAd5BFi5KaH/+CzpZtBr/ERiInkh
-	GC66mV2XaSLsma7O+XKWwLhgm4yZ6AKlaCpSzcwp7XPXhp2CRBCbiBYLE/KvyxZ2ctRVp7JNecOOj
-	618DI5r6WYTyi8MTXDWoDf22nZQX0BAezUCGMNnEa5WSCiLDa9SzBC5u3Q8ACyFBh5LmLgnB1PJma
-	AbwCtK6APdmDTDlf7EzQ==;
+	List-Owner; bh=ZwqpV+hXwl5H2d+xrVPA5lVRxUWnDF71dikE1H3i0/A=; b=JlbWRztYcqicfN
+	c0Kl2etGbTj3pIyOIsIY2UZyQCcsq5R8wABNu3bSgVTXKwjckt3y6UPPAWjkkDZl+PFU2vfI26Tbi
+	r5RFRb84fzPZGRZ0RfemHc8eObK9I9rwa/FMt2EE+FxWfap1vlmt0fbnymf6VTygMkl5yksPWsJix
+	FY7FLGgsb41+Le27qj3t2fYlSKTPh1S4+kM7XY4yP0+ZAd8I6SnVw+lK74N1t6zaeyQF8Qi0bTe+r
+	Mp/iWUCJfgSiPuSV75JSWAss0X/w61YE4eRNgdlAepydmsCiHlTkjgncCi7okjGwErJi60JEy3kiZ
+	YV3/7sWIMpDFZG8xVRZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m9CAW-005iev-0B; Thu, 29 Jul 2021 19:58:12 +0000
-Received: from smtp13.smtpout.orange.fr ([80.12.242.135]
- helo=smtp.smtpout.orange.fr)
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m9C9X-005iGc-6C
- for linux-amlogic@lists.infradead.org; Thu, 29 Jul 2021 19:57:12 +0000
-Received: from localhost.localdomain ([86.243.172.93]) by mwinf5d56 with ME
- id b7pU2500D21Fzsu037pUqA; Thu, 29 Jul 2021 21:49:31 +0200
-X-ME-Helo: localhost.localdomain
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 29 Jul 2021 21:49:31 +0200
-X-ME-IP: 86.243.172.93
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: narmstrong@baylibre.com, mchehab@kernel.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- hverkuil-cisco@xs4all.nl
-Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Subject: [PATCH] media: meson-ge2d: Fix rotation parameter changes detection
- in 'ge2d_s_ctrl()'
-Date: Thu, 29 Jul 2021 21:49:25 +0200
-Message-Id: <6cb8efcadcf8c856efb32b7692fc9bf3241e3bc3.1627588010.git.christophe.jaillet@wanadoo.fr>
-X-Mailer: git-send-email 2.30.2
+	id 1m9CNN-005njg-6I; Thu, 29 Jul 2021 20:11:29 +0000
+Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1m9CN8-005ngB-Vh; Thu, 29 Jul 2021 20:11:16 +0000
+Received: by mail-pj1-x1030.google.com with SMTP id
+ q17-20020a17090a2e11b02901757deaf2c8so11321178pjd.0; 
+ Thu, 29 Jul 2021 13:11:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=SFY+mAXfPYLLK9cW7HzO6u98/FnYWTRchgWW3VXCzJY=;
+ b=CZRZWcBHZ3gsBtAsaaCXtu4WXrBPcFPXBjErtIBPrg3LCfGvZKMvnvfzxOpuB8yNuS
+ b7hhyG7Ydp7eXWqF8NZvY4Lk1EBHnBK1p9DWUGTAWBOWxqGVTxU/8wFyMteNvkDgQsu/
+ /D4PUp0w1T3efUYYyJrY/whFdocsigxCWbSaSOONiVqCG1LMGxL/6XSduRWAMFT4NY/0
+ 3wGuS5uxtRvB+kGK/10DuuJNLa57PUIf04hkTgiN/AhzEhd5/8FmI3+ezlTqRSIMW9fY
+ /8FKk7lN/0ho69zNfQ/k9avzfqLVlDOOiDcavnkKkuof89/k0Ite+rQ1I6n4ghc6uEWo
+ VU+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=SFY+mAXfPYLLK9cW7HzO6u98/FnYWTRchgWW3VXCzJY=;
+ b=pmVAQDU3VMcJOzr2ZOB0Dniw2MsUeqG3VLvheqU7HVz/Fg/OspWNodRKJaak0GWRmV
+ 57hLKAhQzEHyQA3iqcV6fPCQNVOCHaCyfSu870TqC4XWjwswtZkZGEH6/9giat/oOL2h
+ OTNrfZrcr5vZ+V9Ep4FZ+21JSXL7OTpYQG5eVGr0iR/UIifJ1a2FKE6M8p6oHG6g8zL8
+ WLalcASwxKTWHLv6GcRYHgsBRsBUrC3FDMQdCKmUuwY4p8wfMfCmOcyUa9aZTqDlwP/X
+ 6eswtBSNRRtb1V5flxEVJbAntTgYyEMM/FLHFS+LTEGEA6pCikaOsdb+/a5ffQO/tB2u
+ Zu6Q==
+X-Gm-Message-State: AOAM533Iykp0pJw6DVGffZJZGTyEuoWtt90odjY52LczUXybDO/yXMx0
+ XhHtLIkWR6+xvvsUrP6KkuM=
+X-Google-Smtp-Source: ABdhPJyLfmsnUTsywkKEatkPj6U8cyNcuBN/igDBOIZHeLE0gMDlmQgZxQF2YmSyYSFXYKsLiD5tZA==
+X-Received: by 2002:a17:902:f68d:b029:12c:4619:c63a with SMTP id
+ l13-20020a170902f68db029012c4619c63amr6316218plg.66.1627589473174; 
+ Thu, 29 Jul 2021 13:11:13 -0700 (PDT)
+Received: from archl-on1.. ([103.51.72.31])
+ by smtp.gmail.com with ESMTPSA id i25sm4581407pfo.20.2021.07.29.13.11.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Jul 2021 13:11:12 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org
+Cc: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>,
+ Jakub Kicinski <kuba@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Emiliano Ingrassia <ingrassia@epigenesys.com>
+Subject: [PATCHv1 0/3] Add Reset controller to Ethernet PHY
+Date: Fri, 30 Jul 2021 01:40:49 +0530
+Message-Id: <20210729201100.3994-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210729_125711_430466_C8EF198F 
-X-CRM114-Status: GOOD (  11.13  )
+X-CRM114-CacheID: sfid-20210729_131115_078220_8B1D26E1 
+X-CRM114-Status: GOOD (  11.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,34 +109,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There is likely a typo here. To be consistent, we should compare
-'fmt.height' with 'ctx->out.pix_fmt.height', not 'ctx->out.pix_fmt.width'.
+It is being observed some time the Ethernet interface
+will not send / recive any packet after reboot.
 
-Fixes: 59a635327ca7 ("media: meson: Add M2M driver for the Amlogic GE2D Accelerator Unit")
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
----
-I've not looked deeply in the code, but why is this test needed in the
-first place?
-Couldn't we assigned 'ctx->out.pix_fmt = fmt' un-conditionally?
----
- drivers/media/platform/meson/ge2d/ge2d.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Earlier I had submitted Ethernet reset ID patch
+but it did not resolve it issue much, Adding new 
+reset controller of the Ethernet PHY for Amlogic SoC
+could help resolve the issue.
 
-diff --git a/drivers/media/platform/meson/ge2d/ge2d.c b/drivers/media/platform/meson/ge2d/ge2d.c
-index a1393fefa8ae..be22bb60e7cf 100644
---- a/drivers/media/platform/meson/ge2d/ge2d.c
-+++ b/drivers/media/platform/meson/ge2d/ge2d.c
-@@ -780,7 +780,7 @@ static int ge2d_s_ctrl(struct v4l2_ctrl *ctrl)
- 		 * parameters, take them in account
- 		 */
- 		if (fmt.width != ctx->out.pix_fmt.width ||
--		    fmt.height != ctx->out.pix_fmt.width ||
-+		    fmt.height != ctx->out.pix_fmt.height ||
- 		    fmt.bytesperline > ctx->out.pix_fmt.bytesperline ||
- 		    fmt.sizeimage > ctx->out.pix_fmt.sizeimage)
- 			ctx->out.pix_fmt = fmt;
+Thanks
+-Anand
+
+Anand Moon (3):
+  arm64: dts: amlogic: add missing ethernet reset ID
+  ARM: dts: meson: Use new reset id for reset controller
+  net: stmmac: dwmac-meson8b: Add reset controller for ethernet phy
+
+ arch/arm/boot/dts/meson8b.dtsi                |  2 +-
+ arch/arm/boot/dts/meson8m2.dtsi               |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  2 ++
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |  3 +++
+ .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 20 +++++++++++++++++++
+ 6 files changed, 29 insertions(+), 2 deletions(-)
+
 -- 
-2.30.2
+2.32.0
 
 
 _______________________________________________
