@@ -2,92 +2,94 @@ Return-Path: <SRS0=5MM3=MV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D3699C4338F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 09:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92A0BC4338F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 14:14:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7D3D661058
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 09:40:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7D3D661058
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 30F8760EB2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 14:14:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 30F8760EB2
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=7/gwqCF3QzAw9GyQwIkkGiYhB7mkyDEq1N4HuGoxIbc=; b=HXa7mtCxecTs5TK18Zw5oXO8Mp
-	iDqY1fLvOFm/kBT1A3Zd1YnLCiMqteiKJ02261W6KLHZR/VfjR5gIg3mjAziEgmKqCITOl6WUNUa6
-	qjA/9bm08YTUVgi79t5swSiGuUqMwSf2c+kJZ8EFpwL8z/pcWGPV5mC+ESnxokafFomUqZNJ5Sjjc
-	dNVJykaAxX6Nn2ZiwZW+BlwsKmqrJFnw9n02zesZ4fIw0cV3nUt3bAVoOobf2GhE9ZB4NHMd2+jxC
-	049X9VYbP+dR6hh+ZvAlYUD3TBSH0efde7MROx2SXKLqgfVOO7i8ZMA3uU6DJ3zjp12R29SIwcnUY
-	GF7a/0QQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=KOmYHnqJQ0MmxCswqAgfSem4kcZmpiYAefvbKANk9sk=; b=xfb4IscrzFQzt6ZP273ojLsgMP
+	sB9U6JCD7Aa9V6VmXQotaZy18NY79MYiQRjo2Xd1q+GkPg9KCFd6GFJFjXblB3bgLRySVB2U9ULTc
+	Bfu2tlazE5B1R/LekAaeyqBZ/5XrNhKcV3MPu6t1dvQeCQxXweCFekZzl2FW0Ap7OX+M98At3TCK1
+	xEU6o54rjqirgY0JEharkQ6tJHVgGj8G8WM4A3fA+WOBsmepG+duy3BgAXYx/g9Q+CkdjlePu+HN6
+	N4ihG3qUxA4pe9XmQsmeH9N2bzSstsQ7OaMh5Q5kvr+ltcpYKO6wA9ljoa9MUPdeCNaYR5wkjRuRP
+	MqJbYQLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m92Ws-003g6d-DW; Thu, 29 Jul 2021 09:40:38 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1m96o7-004UcM-9b; Thu, 29 Jul 2021 14:14:43 +0000
+Received: from mail-ot1-x331.google.com ([2607:f8b0:4864:20::331])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m92Wk-003g2R-GI
- for linux-amlogic@lists.infradead.org; Thu, 29 Jul 2021 09:40:32 +0000
-Received: by mail-wr1-x436.google.com with SMTP id q3so6165379wrx.0
- for <linux-amlogic@lists.infradead.org>; Thu, 29 Jul 2021 02:40:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:organization:message-id:date:user-agent
+ id 1m96o4-004Ubl-5z; Thu, 29 Jul 2021 14:14:41 +0000
+Received: by mail-ot1-x331.google.com with SMTP id
+ f20-20020a9d6c140000b02904bb9756274cso5984952otq.6; 
+ Thu, 29 Jul 2021 07:14:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:subject:to:cc:references:from:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=ITafrgOQ7JI8igCzT3YLjImraa83NmdRcusXAFKxn/E=;
- b=jHCdy4ulv374187WYiQW42yMYxRxVqyMgpncLbkfrOtS9WAhCxkjC+DspSBBuLyeLI
- j3RUIQ4DFd11UirVyBk8oqHj9yTkkQ77l+yjGFNuEJyYpAn3VtFnwbFRTEGDoiG5p7uG
- bNDi2qmgJnDFpbFsTBQHFBpRXOGQuaHGFTUlioHdRez1KzpmmCqq6KBTFtHvSOSUsMMQ
- WDqce0JpWro2ljeUKC+6AX4Mm9y1sD+Rd8ZBuKwpTexLjtn6CWAeMcdl1EuCVWzBmHlX
- ClHauCTkr3VJ/zT/Mwtdp3qZQdU3rc++NN7R/6dck6/0FEBwLe7iRe+7R3jNIDqcvcrU
- kWqw==
+ bh=QDLjPZN8ZUez+18AHDdRnCP4XJMffoaOJtiTB2SHTCI=;
+ b=otThYwEsPlAaugJoVzvywiMf8KME+8FYj0brlZtsYJ66ELMdDgEfrnznqSYJcUNpz2
+ uR2IzF9iyYQ7w7gO4KrS2ueA/mcVzMY89P9R0zW1UpBBT/eWB/ql4L2Dq/rFjepyzolv
+ 1zjxJNSS/z5Lwxsu340dt9wYApRtUPQXEE5Y2WS8cPLt8RsPmP0izyz3/rkCsHX1cRg2
+ AJCTCkzT3e6Z5PqH1AhPDebmFUQT8S30myOdINTJWiiNRpdpRNb0EcpiVJ7Asow2QGcq
+ raTXNnPCHUQ/ukOVepAjP1GlRs5bTjffMRETCXOnIiqxZqv+0rQi+2x9ODeAkxPU3gIJ
+ gbnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=ITafrgOQ7JI8igCzT3YLjImraa83NmdRcusXAFKxn/E=;
- b=QBfJ9v2g8Qmj5szXTmKR2gwSaXr+3HIJl6Y1zxakyS6945KEp6kkb8ZfNw3KgRBfRl
- bCOJYc5OL2VuusfzwovaPQ6ZLy9VDGWz6yrUyY+uABHmfBfxAh9fOV2GL/dFmcWI4D2K
- FyzgoNzEZGLn8852jmMzyC/eHXoPERobyP38JFU6C22E67q7QOrKc/5aMvZhWTC7suIC
- drW743wCPx4UjllYIy8qNwZM3StdOBS54aUE3ssH99kppIdGc96DKBe+eMJYfeMvRHjx
- F1hQxaC5a9ZQuN4GHZUetsGbbXbvykLUtrJmrDFXUm2xtDaPQC/XiTVj6BzV6C2sIrEI
- 1YZw==
-X-Gm-Message-State: AOAM532t1DxZ6beRS3ulpDmAxRl6TkGxWvBTKtagMnpsO3GBa6c/4r9K
- jWFMksv93AvjsGgSVVy4ymHmN2cYIfgYq3Ng
-X-Google-Smtp-Source: ABdhPJxAI81jNII7HAbAaJmvPPI/BcOQpXYsKw4GkhOySH2+D8tX58bsQOF6LdWZDsAgOv+3jEWkEQ==
-X-Received: by 2002:a5d:4ac5:: with SMTP id y5mr3884730wrs.125.1627551628240; 
- Thu, 29 Jul 2021 02:40:28 -0700 (PDT)
-Received: from [10.1.3.29] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id l5sm3095498wrc.90.2021.07.29.02.40.27
+ h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=QDLjPZN8ZUez+18AHDdRnCP4XJMffoaOJtiTB2SHTCI=;
+ b=DoK0DDVDq4oU22V04uLAue9vLMLOxlkuWMn56UIjD8el6DDEjzWTb+rfmjDcSmCAVT
+ K3iEL+6ttzvkLnkZPLVHxPjNA1m78KqjYNKCXLw8qM/5VjZIlQE8vq3YZ0qgsONGGWql
+ a9JFqH3BYMrAPjIIc6jrtgKFT/3OGY1J8ur0TiTN1XagP4ddLekxLGaNbweD/m6I1XSm
+ rISKvvvvZeviESDxkQA6XuAgQg0TsnJzBE0qM/PZik0adSuB/bn52fX3fCMpe31ZmpfD
+ OGVcLydFfE4AnlAao3Aix4U9Mhv/jFrBY/cVhycZ1KbLpnj0c8kMdbEkWNEz4vgkRKqO
+ NGXA==
+X-Gm-Message-State: AOAM533aurds+F5T4aTcuMc9wmNP2UP8LCQmUPRRmnB6QKouWNTXw/6K
+ nvSOcdBZ0muFEMLOJCTPZcs=
+X-Google-Smtp-Source: ABdhPJwPmNU2yxHwvQAda+MoQNIG1Z/7IFYXidLj/URXoQIWClCZj1xCTsyMw48FrNSbwFET4AR2Tw==
+X-Received: by 2002:a9d:3a08:: with SMTP id j8mr3526915otc.247.1627568079002; 
+ Thu, 29 Jul 2021 07:14:39 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ z14sm538315otm.66.2021.07.29.07.14.36
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 29 Jul 2021 02:40:27 -0700 (PDT)
-Subject: Re: does A311D supports SCPI?
-To: =?UTF-8?B?5bygIOWugQ==?= <zhangn1985@outlook.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
-References: <OS0P286MB0641C5CDF6A9A92CBD324E1ACDEB9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <1470f543-2f3b-8810-24ae-6777e278a884@baylibre.com>
-Date: Thu, 29 Jul 2021 11:40:28 +0200
+ Thu, 29 Jul 2021 07:14:38 -0700 (PDT)
+Subject: Re: [PATCH] watchdog: meson_gxbb_wdt: add timeout parameter
+To: Artem Lapkin <email2tema@gmail.com>, narmstrong@baylibre.com
+Cc: wim@linux-watchdog.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ christianshewitt@gmail.com, martin.blumenstingl@googlemail.com,
+ linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ art@khadas.com, nick@khadas.com, gouwa@khadas.com
+References: <20210729072308.1908904-1-art@khadas.com>
+ <20210729072308.1908904-3-art@khadas.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Message-ID: <33af8802-1a24-27af-0c21-08741707be83@roeck-us.net>
+Date: Thu, 29 Jul 2021 07:14:35 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <OS0P286MB0641C5CDF6A9A92CBD324E1ACDEB9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
+In-Reply-To: <20210729072308.1908904-3-art@khadas.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210729_024030_584039_650F2246 
-X-CRM114-Status: GOOD (  14.28  )
+X-CRM114-CacheID: sfid-20210729_071440_277243_61DCFEDB 
+X-CRM114-Status: GOOD (  18.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,27 +101,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjkvMDcvMjAyMSAwNDozMiwg5bygIOWugSB3cm90ZToKPiBIaSwKPiAKPiB3aGVuIEknbSBi
-dWlsZGluZyBtaW5pbWFsIGtlcm5lbCBjb25maWcgZm9yIEEzMTFEWzFdLCBhbmQgZmluZCBBMzEx
-RCBkb2Vzbid0IHN1cHBvcnQgU0NQSS4KCkknbSBub3Qgc3VyZSBleGFjdGx5LCBidXQgaXQgc2Vl
-bXMgaXQncyBzdXBwb3J0ZWQgYnV0IG9ubHkgZm9yIGNwdSBpZGxlLgpCdXQgZm9yIG5vdyBpdCdz
-IG5vdCBlbmFibGVkIGZvciBtYWlubGluZSBrZXJuZWwuCgo+IAo+IGFuZCBJIHRyaWVkIHRvIGZp
-bmQgYW5zd2VyIGluIEEzMTFEIGRhdGFzaGVldCwgYnV0IG5vIGFuc3dlci4KPiAKPiBpcyBTQ1BJ
-IG1hbmRhdG9yeSBmb3IgQWFyY2g2ND8KCk5vCgo+IAo+IGlmIHllcywgd2hhdCdzIHRoZSBzdGF0
-dXMgb2YgU0NQSSBpbiBBMzExRD8KCkl0J3Mgc29tZXRoaW5nIHRvIGVuYWJsZQoKPiAKPiBCVFcs
-IHdoYXQgYWJvdXQgY3B1IGlkbGUsIGFueSBwcm9ncmVzc1syXT8KCmlmIFNDUEkgZ2V0cyBlbmFi
-bGVkIHRoZW4gZW5oYW5jZWQgY3B1IGlkbGUgY291bGQgYmUgZW5hYmxlZC4KCk5laWwKCj4gCj4g
-QlIuCj4gTmluZy4KPiAKPiBbMV0gaHR0cHM6Ly9naXRlZS5jb20vemhhbmduMTk4NS9jb25maWcv
-Cj4gWzJdIGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL3BpcGVybWFpbC9saW51eC1hbWxvZ2lj
-LzIwMjAtU2VwdGVtYmVyLzAwODA0NC5odG1sCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KPiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+IGxpbnV4
-LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
-L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo+IAoKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
-bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 7/29/21 12:23 AM, Artem Lapkin wrote:
+> Add timeout module parameter
+> 
+> Signed-off-by: Artem Lapkin <art@khadas.com>
+> ---
+>   drivers/watchdog/meson_gxbb_wdt.c | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
+> index 5aebc3a09..3f3866878 100644
+> --- a/drivers/watchdog/meson_gxbb_wdt.c
+> +++ b/drivers/watchdog/meson_gxbb_wdt.c
+> @@ -34,6 +34,11 @@ module_param(nowayout, bool, 0);
+>   MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started default="
+>   		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+>   
+> +static unsigned int timeout = DEFAULT_TIMEOUT;
+
+DEFAULT_TIMEOUT is already set below. The default for the module parameter
+should be 0. This way the watchdog core takes the value from devicetree
+unless a module parameter is provided.
+
+Guenter
+
+> +module_param(timeout, uint, 0);
+> +MODULE_PARM_DESC(timeout, "Watchdog heartbeat in seconds="
+> +		 __MODULE_STRING(DEFAULT_TIMEOUT) ")");
+> +
+>   struct meson_gxbb_wdt {
+>   	void __iomem *reg_base;
+>   	struct watchdog_device wdt_dev;
+> @@ -180,6 +185,7 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
+>   	data->wdt_dev.max_hw_heartbeat_ms = GXBB_WDT_TCNT_SETUP_MASK;
+>   	data->wdt_dev.min_timeout = 1;
+>   	data->wdt_dev.timeout = DEFAULT_TIMEOUT;
+> +	watchdog_init_timeout(&data->wdt_dev, timeout, dev);
+>   	watchdog_set_nowayout(&data->wdt_dev, nowayout);
+>   	watchdog_set_drvdata(&data->wdt_dev, data);
+>   
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
