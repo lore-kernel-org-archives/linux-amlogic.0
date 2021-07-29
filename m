@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7DE2BC4338F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 07:24:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EAE6C4338F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 07:24:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 51F8A61054
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 07:24:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 51F8A61054
+	by mail.kernel.org (Postfix) with ESMTPS id 11D2F61054
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 07:24:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 11D2F61054
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,53 +24,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rJ/BoGO0np7SC91zxTj31lPpxdAydquGo3+IAAt2GhI=; b=VjM0iUct4/rDfs
-	EOG/XQuoQY3E4p43PknUKv9h6hefytsUc1MKjX4iAxFbJ7yQIUMGrqAA6VfPpnWrJ68mijKEHxTNg
-	pvLQm4ANmF7vEnWg+WPdf9aAcB3g9yzVOEo9E/ZmjZ9wp7+huRv47LD2f3XdSnhDa5y0hdw3grwkb
-	7z+uXu9JnX5xU0HCZMWJ9REnt1B4oZ3bc8EP0+wTDmA+62E1a6PQYy5V7pBUlYxCWLqmFMEGapzsF
-	p1pso8FxMldR4xYg8Z9XN7VNrmNT+f9mHtvDbU9UsE1F05zLIb/ODF6afb6jn4GfbOWjuoooWGo8q
-	0HZHQdGXolkz/tk+qiNA==;
+	List-Owner; bh=PbUfO6+ui4CC6arYAHwXmHDuTm2/pmo8uEbINwPWkXI=; b=Q8MrXD6up9gJK+
+	yLafpQ26B4cSjmQabfFWWP7FUKQZRopYr15XZh0bPv5OtIMvOgG5N9pSEeRInGggrpRWord/IIp9y
+	Oni7Uc6TIF+fdgE9suIVg/k/m5fgeTh/uLNpiY/qet34mu0bYp8WwejtW8WBsA37MPFfbpw7SC1t0
+	PaNKVQ2iUgdTNaB9xe2YtaPJYg5+B8wrP/yxO20ehXaEKin+O4R0nN/Dtj1Y3cEcYqOIRDFRDYOBN
+	4fab+ZYG9rJs1418PtOf6VSrYbsC9oIjkWNy9uuv1xg5zPP0LUGSMFy+HIuPt+yvzSBKc2ihcIk1l
+	ihBQ+LVRZM6xNUPY/37g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m90PH-003OjZ-GY; Thu, 29 Jul 2021 07:24:39 +0000
-Received: from mail-pj1-x102f.google.com ([2607:f8b0:4864:20::102f])
+	id 1m90PX-003Or2-Ke; Thu, 29 Jul 2021 07:24:55 +0000
+Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m90Os-003Oam-FA; Thu, 29 Jul 2021 07:24:15 +0000
-Received: by mail-pj1-x102f.google.com with SMTP id
- o44-20020a17090a0a2fb0290176ca3e5a2fso7975351pjo.1; 
- Thu, 29 Jul 2021 00:24:13 -0700 (PDT)
+ id 1m90Oy-003Oc6-06; Thu, 29 Jul 2021 07:24:21 +0000
+Received: by mail-pj1-x1031.google.com with SMTP id
+ u9-20020a17090a1f09b029017554809f35so14174883pja.5; 
+ Thu, 29 Jul 2021 00:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=xQ7/1DfrNRJ45H+W3f9Rw2cpCH1NPP5TLpi8qbhtTMs=;
- b=mF/HYZbpFZ8pkbLuKfvn6MfD/1/1PsljR+EN+iZ5tVaETldfVQGCR0Ht0vxD2CkFXn
- HSUu/z5ETa2T52U3KplVzDhPQ+BAAhw0MFwKpB8Py/mQdNeRoKmNshE4NhrtJqnm3Uwv
- 7StQlGrvfL2frwpUOKIqdj02XYBpSg61owhi36FNhQbHjovPCE7gG5jHVdd98SWHPeLz
- 9fscKpGc5u3J+YMJgdCOEnThe/yVro9MDPqDiV9TnVzgnN3qGC1s+KvZu5EwdW0gYfZ/
- yxDRO8rjFbp1Jb1coW/x/Tp45Ru/t1fV088Zg9wzCiVAHNvxCiD3MXnf8WyTrYg9LwK3
- bhKw==
+ bh=rMswTWDvtI4DXxuELsfIeTapWGrqixV6WaQArp0NDx8=;
+ b=YAJ5HBfu1f8I+IYA4g4kd7SbYHRqr/mqwUKfrup7IAXbGRP44wtjgHAQnarxHE+dJi
+ /lk5rVSR5DNyQ8a1bWFeFM2GtBG/0KKIld0h5HI7Q4xyebFYLS9PhUWkDEWIUj6puxcZ
+ sHxFf22tUAxabG9TT+1jxVPREqtTr1vQjln4vUYXSSkorI0vQtqF8KbQUvEYNl2HoJc6
+ XZngzzgWmejVIEMiPBMWVXezE1ttgb74r9cGcFAwNkejWOkz0N0WYSvCQN6yeGuDsyid
+ XwORDxnCvP3vqm/gSNEwkLsKwQK7o+XxX8K96VKra5AHWyPCAqJ8dAHCX7bLkx1O6H1L
+ z0Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=xQ7/1DfrNRJ45H+W3f9Rw2cpCH1NPP5TLpi8qbhtTMs=;
- b=CO3nH1KedNQGyXUysb2vgd37GLkvoM2uoyzzQkyN+M1LG69JRjMMCji9hbs/8IoQXu
- 0G8f5fdy+HyDhLvH/2KUlWhGIGp7N06mkjMazR6rrRxdVDC9M4G9taQGqmR9xkIgb4v3
- Z7OTdm3dUcs0GWDkYxicPCo530FIVP98a70CS2vq39zzPHhhTtWfVEEPaG3Ig3vpT6ez
- y4IvDK+XVlz1jbzPFKA0Uy0L74zFyrmTxUji5APTNo1SvBBA+iecU0vTE16pVZO0spcg
- KVv9tBAZejEsc/MGmkKe12c+AcxuiIYTmT8NrT5kRTiOFeXIS79g9RR8ovXOEAAI/4F6
- ev5A==
-X-Gm-Message-State: AOAM531PDYVlOyUVR4rom1dkEbKeMAxbcndm/Ujy9lfhy1ig6TBGL9eF
- +Y4usCz9K1wZqHemsIYatMk=
-X-Google-Smtp-Source: ABdhPJxFNBy2+YgD1/m2YORZ9tY9MV+wbmfG8Bruauj/29dn7TZdgF+hsWc55pUfPJJXc3BE8rHWug==
-X-Received: by 2002:a17:902:bd82:b029:129:2e87:9946 with SMTP id
- q2-20020a170902bd82b02901292e879946mr3464634pls.53.1627543453630; 
- Thu, 29 Jul 2021 00:24:13 -0700 (PDT)
+ bh=rMswTWDvtI4DXxuELsfIeTapWGrqixV6WaQArp0NDx8=;
+ b=IVMgRKTWVx6ylbiN1wfuVTLnzMROetEFfWKPIiAKaeny31sMf9RCWfG7iLTc/rMHS2
+ bP0jfTiJFtS+1eBUbnG/g3vvvhwcMjc7v1PRuJguy1RjwMCwTz639EJzjSt6iq6hjoPc
+ szC9sy5yRSJjOS0dIC1xezyotO0xhiJvFwWTpX2tEfn+yaGVe9GveV+9aVTu8k3v9fMz
+ 2TU15LEllRr073ddx5vtviOunchedpHZErRgVc4DFD1g0K6aLi3J87jyDZmSmEcNkFAR
+ V2xBu4uZD/VmM7Rf4qyX/7jfmd2aX/PIxGjz+7rA8Dce/wePVbuuLsSXWP8kLAmI2NEm
+ FE+w==
+X-Gm-Message-State: AOAM533N6n0CRr9uUBSsn192tnHGS96yh7xl1MLr7MWIcnNnIZgSCNAs
+ iIGMMPTWZTFstSu+6RdDfg0=
+X-Google-Smtp-Source: ABdhPJxjKZYGxl9UmdCm+aHK8JWzKneFtaMZp4OFYm7PF5EkDbyru5cOh1mYJw99LDZEIv0sgFFSsA==
+X-Received: by 2002:aa7:8e51:0:b029:332:920f:1430 with SMTP id
+ d17-20020aa78e510000b0290332920f1430mr3814819pfr.1.1627543459056; 
+ Thu, 29 Jul 2021 00:24:19 -0700 (PDT)
 Received: from localhost.localdomain (104.194.74.249.16clouds.com.
  [104.194.74.249])
- by smtp.gmail.com with ESMTPSA id r18sm2609648pgk.54.2021.07.29.00.24.08
+ by smtp.gmail.com with ESMTPSA id r18sm2609648pgk.54.2021.07.29.00.24.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Jul 2021 00:24:13 -0700 (PDT)
+ Thu, 29 Jul 2021 00:24:18 -0700 (PDT)
 From: Artem Lapkin <email2tema@gmail.com>
 X-Google-Original-From: Artem Lapkin <art@khadas.com>
 To: narmstrong@baylibre.com
@@ -80,16 +80,16 @@ Cc: wim@linux-watchdog.org, linux@roeck-us.net, khilman@baylibre.com,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, art@khadas.com, nick@khadas.com,
  gouwa@khadas.com
-Subject: [PATCH] watchdog: meson_gxbb_wdt: add timeout parameter
-Date: Thu, 29 Jul 2021 15:23:07 +0800
-Message-Id: <20210729072308.1908904-3-art@khadas.com>
+Subject: [PATCH] watchdog: meson_gxbb_wdt: remove stop_on_reboot
+Date: Thu, 29 Jul 2021 15:23:08 +0800
+Message-Id: <20210729072308.1908904-4-art@khadas.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210729072308.1908904-1-art@khadas.com>
 References: <20210729072308.1908904-1-art@khadas.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210729_002414_563569_24FA67A9 
-X-CRM114-Status: UNSURE (   9.41  )
+X-CRM114-CacheID: sfid-20210729_002420_096763_4372FF52 
+X-CRM114-Status: UNSURE (   9.30  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,36 +107,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add timeout module parameter
+Remove watchdog_stop_on_reboot()
 
 Signed-off-by: Artem Lapkin <art@khadas.com>
 ---
- drivers/watchdog/meson_gxbb_wdt.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/watchdog/meson_gxbb_wdt.c | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
-index 5aebc3a09..3f3866878 100644
+index 3f3866878..cafc6cdc0 100644
 --- a/drivers/watchdog/meson_gxbb_wdt.c
 +++ b/drivers/watchdog/meson_gxbb_wdt.c
-@@ -34,6 +34,11 @@ module_param(nowayout, bool, 0);
- MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started default="
- 		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+@@ -198,7 +198,6 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
  
-+static unsigned int timeout = DEFAULT_TIMEOUT;
-+module_param(timeout, uint, 0);
-+MODULE_PARM_DESC(timeout, "Watchdog heartbeat in seconds="
-+		 __MODULE_STRING(DEFAULT_TIMEOUT) ")");
-+
- struct meson_gxbb_wdt {
- 	void __iomem *reg_base;
- 	struct watchdog_device wdt_dev;
-@@ -180,6 +185,7 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
- 	data->wdt_dev.max_hw_heartbeat_ms = GXBB_WDT_TCNT_SETUP_MASK;
- 	data->wdt_dev.min_timeout = 1;
- 	data->wdt_dev.timeout = DEFAULT_TIMEOUT;
-+	watchdog_init_timeout(&data->wdt_dev, timeout, dev);
- 	watchdog_set_nowayout(&data->wdt_dev, nowayout);
- 	watchdog_set_drvdata(&data->wdt_dev, data);
+ 	meson_gxbb_wdt_set_timeout(&data->wdt_dev, data->wdt_dev.timeout);
+ 
+-	watchdog_stop_on_reboot(&data->wdt_dev);
+ 	return devm_watchdog_register_device(dev, &data->wdt_dev);
+ }
  
 -- 
 2.25.1
