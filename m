@@ -1,94 +1,115 @@
 Return-Path: <SRS0=5MM3=MV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=3.0 tests=BAYES_00,
+	CHARSET_FARAWAY_HEADER,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BAA3C4338F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 02:21:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D1BAC4338F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 02:32:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EAAC56103C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 02:21:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EAAC56103C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 3D7B260EE6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jul 2021 02:32:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3D7B260EE6
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=outlook.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uIUlt5OnltPEmS0ElyTt97U0N4p7pEZPARI9m5I1G80=; b=ozqWWK5Cof11I+
-	OoeBMCCAtn+/x4haghc3sOV9Pre4GujroZ6kIxN0Dx+Y5hSaSpqzT3ON6uPuirZ0NRgIGpiHjBrA4
-	iStYlchQ7ymThI9cT5WhtC8qbPbyy9i9b/Axyn4ERe3TaHx1pTF6FfbLSmI7aY9f+lWfhHN+phg/Q
-	MAF8Hwq1zEr1Xbvxatbuj5HYeTJ8KRDSwWqTRM6waNZVd/Kcq9aTsm9ZDIuQB2YsQhl3ExIdMpXMD
-	PQ+RWEBdtHPv/kXGqoP9RPrxr3ud/f9ozWOvmfXNsMjyn016q8fIMkswii6XYFDW9aYM5j6EVcKMP
-	540pcPxt7HFa3EyxXQxQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=I2+cWo13cyvbKVWXmY4VFvsGW9YLcjMVSjiPuOo1XUg=; b=rw1RkegH2q0FYc
+	JmkBCBQNWYbItPp2KBOdBgpWJbSwKNEcoQc934WstuXwj4tXbJRW5jnkpQhU8Uvt53+JfVGfPYm21
+	dU3KCydrWP55FCkOgMICKyePz7Y+NP6dcyfUaMS8txYUiemkBKtNyYL0/nE8uMgeekr9MOz9tDHIp
+	RTg9Axv+UyTZOJGFjz0/DIDfjG8LlWYRttrJEZ8t6VfE9yNeeRhjv7rp8A+57uWQl49iMrz81ohEL
+	3UJ+9Mzo3hSceQ599ZJEP/02KrUCYwcKt3U1UJPWYICjeIBgGExpe/6tycy/9oiY7pldcowEZhd0h
+	JzBJImlt4LuA9RMN7zcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m8vgB-002u2W-Jd; Thu, 29 Jul 2021 02:21:47 +0000
-Received: from mail-io1-xd2b.google.com ([2607:f8b0:4864:20::d2b])
+	id 1m8vqK-002uvC-4z; Thu, 29 Jul 2021 02:32:16 +0000
+Received: from mail-oln040092255107.outbound.protection.outlook.com
+ ([40.92.255.107] helo=APC01-HK2-obe.outbound.protection.outlook.com)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m8vfx-002txM-9H; Thu, 29 Jul 2021 02:21:35 +0000
-Received: by mail-io1-xd2b.google.com with SMTP id y200so5077693iof.1;
- Wed, 28 Jul 2021 19:21:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=R17HCftwnExVBITUL3vMzRaZWklHE7WTCzst6j3TZE0=;
- b=hdY7VFsi9N5o+MaERqFmJqM8rLDPtB24yNrw+m9uftYHjOvQS76KB/pQ/8oTN3TvTO
- 03Lp9St5tVPVpSf8lsDb1oebdIOF0hxx2HfufdT6xzCCEUmQ6mub+5LmyHdYF9pvmgCS
- FH8eo6S3ndkglCahj1jXSXb+aGWYSKf1wadUkLEUM2uLvvYMKsnjFJt8ebATOnWMmaOQ
- YX/pjqSFvHPI3aL2EQZmmZW7fPRRAbGkrILXQwFBQBe60rvEGG4c1fMzd/w6f7aIsA40
- ihVvGtyc80KDt7UcbpWNaN04EY9Xn/5Q4C3Nacu/ER8xEExCKT3PqpWy3DXUn3AUZT7P
- ZObQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=R17HCftwnExVBITUL3vMzRaZWklHE7WTCzst6j3TZE0=;
- b=IHrc0oVhEiT6QwFjO8cZ0mDz9g52eF9l8zUw+YNJPwTowwRHeC5dqFtF+oFq1ji3Ci
- 8PbGGIzyH/kiOwIr1CeykMg3NxS5zdd4wqUJuoeGzetc9iOQT7zHYw0YYEqYBqf6Eax4
- ATX2UZxQNtQ5YqhPb8EqAwQSASZINPBtC2Ka0ANkrxkptnbq28pHfyvhv9VccTOszuQ4
- k/kYnzCQ0EXQY61eWQtZ+7zEehlbpt6vNaJMB/J6SQ0XPmf7jl9Wqt0NXU8UQysSzj2b
- BJQ70yH/bQKaj9lmvAypzE5ufMTT9iHzGJqQn2FaqzC5OEDxQ7Z4ZzLCWQ1hRExxRXUD
- X/FA==
-X-Gm-Message-State: AOAM533mdqP3XnqxA6ZKgoYoa26h6dxw7JGddRpCBLBlNLnPbqgt9M3h
- KfHg8/pryRzY7azQzF8mwhhowIl1dexuqLXgWzA=
-X-Google-Smtp-Source: ABdhPJwhF+4ItV92GHowHGlYO3feVZkAERCaidqhU4S0KwkvIU5yRksnVUo6bOZR3DlFQmAQ2tsdJ6eNwSE4qqzCU0I=
-X-Received: by 2002:a05:6602:2801:: with SMTP id
- d1mr2044245ioe.73.1627525291992; 
- Wed, 28 Jul 2021 19:21:31 -0700 (PDT)
+ id 1m8vqG-002utu-KX
+ for linux-amlogic@lists.infradead.org; Thu, 29 Jul 2021 02:32:14 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U/gmZYnh9JPHs/V/4AcoS3K3sk/V0lfH7ViFqyeVa+ynYH1NVHO8oe7bCApoyTDEUWSe1UoN+yx8MKhtf5zsVhHpyni/AzlfqCh87auxN849RMCM5NxmQJ1aQcjBgUNKzeSczArWNN1Mou9+mlLdoG3RFXEbkOl1yXEBI6a/RFGQxsdbqsET+B6SGqDMZpve09wcMrcwocFbGMiZWbOXzFQ7i+bsM4MKTGOuYCXEM9K0Fgw1YT/BrzK8fB/+ZZqUrsI4Wkp20po7WX16jAcDZ0CW/Iv/haL2M87EJPsjYH7pJJ/MM1ErnYiBCUhTZvbtdVoLxdNQdrEff13AxSO86Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=taPJKfWGZgMZI3Bn5YmCd2re8Wn/RbgaOVFCHxIlE6U=;
+ b=ICduzE/Jc1LzTej/sMwIjNDgOCxjaDNg27yX9l+qhuvpxjHfUW3IF1hybtB41n2vRUJazZe60tVl0uBpaYUHtVfIL+/TsWD6wvO8QxSX2P/Zc4Ykf3NactSVL/MSsRws1ENvrjnP+H3sBcIBfdYA2ZcPksN/Pd4VrK0o8TDaFB7WkxuX93nlYVyn99wDT2FY8DThk0kxTsGFZXzq+/jIfasO+1j7Y86tLccEbG397TpJNv6TToOid9/5nE1nUw0FPfdnKU74jX6e4+6Nj+Qw1IQO4usgwjnhM/CSMJX8lUD4XB2m/GvpW1UGcG5qwOj8S41gNvolnvvesDG6s4usQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=taPJKfWGZgMZI3Bn5YmCd2re8Wn/RbgaOVFCHxIlE6U=;
+ b=bnVKCiksuSxmjeL18YBiRPCm/Q1UdVgQEEvZmCLZuNmola8/yI8ojJa2fu1Tk4xnmXlb77dfHhwwUpAswYSXWY7CyB9fxqbrlbubj7OMTpU2d4dXIFPXKSnGnheLJx9c4hfxjxlEqOC2ENzaHwhnXFJMbr03532Ft6xpjeI6ayeSAdy/edB/knN35dN0tmm8rmU1oWU7mGHYCAslFC7Lax/tNmxe/DUV2/LMoZ7vrrs/Sc0t+yuwAgIhv0SpKAl+xGkD6B58IAc8EGxCZZ5DtW8IRxU7ZPKp1088ROAlGnnHfZVao9oIJI/gGb3Wt/yveaJtejTXM4O3/TccDYA3lw==
+Received: from PS1PR0401CA0060.apcprd04.prod.outlook.com (2603:1096:803::28)
+ by TY2PR02MB3566.apcprd02.prod.outlook.com (2603:1096:404:61::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.28; Thu, 29 Jul
+ 2021 02:32:05 +0000
+Received: from PU1APC01FT111.eop-APC01.prod.protection.outlook.com
+ (2603:1096:803:0:cafe::98) by PS1PR0401CA0060.outlook.office365.com
+ (2603:1096:803::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18 via Frontend
+ Transport; Thu, 29 Jul 2021 02:32:05 +0000
+Received: from OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM (2a01:111:e400:7ebe::4c)
+ by PU1APC01FT111.mail.protection.outlook.com
+ (2a01:111:e400:7ebe::236) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18 via Frontend
+ Transport; Thu, 29 Jul 2021 02:32:05 +0000
+Received: from OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::95a3:d18e:eef3:cb39]) by OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::95a3:d18e:eef3:cb39%8]) with mapi id 15.20.4373.021; Thu, 29 Jul 2021
+ 02:32:04 +0000
+From: =?gb2312?B?1cUgxP4=?= <zhangn1985@outlook.com>
+To: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+Subject: does A311D supports SCPI?
+Thread-Topic: does A311D supports SCPI?
+Thread-Index: AQHXhCBaX4KfNfhEsU6RE/AMot0bOQ==
+Date: Thu, 29 Jul 2021 02:32:04 +0000
+Message-ID: <OS0P286MB0641C5CDF6A9A92CBD324E1ACDEB9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:43F13D63DD1B5BB7396E6C15D07F7D8982C8CF3D7102BFC4A6A7EF144EE0C954;
+ UpperCasedChecksum:43557980F939BFCED8C3ED4CBA6EBC448EE48D588E1BCE0593592BB35D67068B;
+ SizeAsReceived:6637; Count:41
+x-tmn: [Vk0kkOwUb3wYHiJ5Avu7QNv6DfLyLQ4d]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 41
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 5b0b984c-7d6b-4525-74b4-08d952390ddf
+x-ms-traffictypediagnostic: TY2PR02MB3566:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: pzQbaNQ7sNghNZtSlFVQJrTWjZdAFsjfo6U/RnaipptCgsHeRxgR9SpKBbY5mF+EUoM/WxVIT3ZJT8+XITVDEcD2rdiUbH0cvaX/KBbnbRmsaAIdmSMAn04V4KFEfj1E9kLeC+eI8NyLsSqrxilFVADFVVvz8JJR3saQ+EPt8v/8BOxmTaq4hvGC4tpUnozLoTNwP1e0a8jG9SfAhYTSqkRjPRDKsNYa/TiIWJcooGZktfKy/LkZI2P2VNcj0pJe78ziUZ0KhCe+gLcEGnjWxh3sBavrvjR4PxhLRu2Tk6LJR3JYc9LDgMMe8/cZQp8d1FZKK4fjDDsiV1O7QypR1dZ4pSuJJQwR8A+/yj6gOGdtAoXtHCRMLNOaXVBAdephh3FPUaUltOnT5CjRgw5hiuzLEG67wmr4D0DXIixUQj+FykmqAImfaku/dTn1IbqeWeSt/El8osqoAArmRdUYbCX5psp9/Y2clrP17DKKdT8=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: w4qantZCNtjT6PhWHXsFTgO4hAKvyZipN5YoyC/EUFp3vSE7GGF8ocWgWDyaofVRkkK9noGHecVxz2tm1x4pM7h8nFpkp00HyEjLMYEWPWL9yHlt+11iQOGfIxzkATv5D+J2VzGtIMzN2tOasxXLNg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <20210727023000.1030525-1-art@khadas.com>
- <20210727194323.GA725763@bjorn-Precision-5520>
-In-Reply-To: <20210727194323.GA725763@bjorn-Precision-5520>
-From: Art Nikpal <email2tema@gmail.com>
-Date: Thu, 29 Jul 2021 10:21:20 +0800
-Message-ID: <CAKaHn9LxBey-BT4nLWDUS7ZOUSFrUhXsqe8zp9LYWceVr5vfgA@mail.gmail.com>
-Subject: Re: [PATCH v2] PCI: DWC: meson: add 256 bytes MRRS quirk
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, Yue Wang <yue.wang@amlogic.com>, 
- Kevin Hilman <khilman@baylibre.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Wilczynski <kw@linux.com>,
- Jerome Brunet <jbrunet@baylibre.com>, 
- Christian Hewitt <christianshewitt@gmail.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- PCI <linux-pci@vger.kernel.org>, 
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- LKML <linux-kernel@vger.kernel.org>, 
- Artem Lapkin <art@khadas.com>, Nick Xie <nick@khadas.com>,
- Gouwa Wang <gouwa@khadas.com>
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT111.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b0b984c-7d6b-4525-74b4-08d952390ddf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jul 2021 02:32:04.8519 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR02MB3566
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210728_192133_386347_669A0E75 
-X-CRM114-Status: GOOD (  42.30  )
+X-CRM114-CacheID: sfid-20210728_193213_184534_E21CDF5B 
+X-CRM114-Status: UNSURE (   4.09  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,129 +126,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> This needs to say whether this is a functional or a performance issue.
+Hi,
 
-Looks like not a performance issue , this is a functional issue.
+when I'm building minimal kernel config for A311D[1], and find A311D doesn't support SCPI.
 
-We detect just one problem(may be exist another i dont know ) for
-writing(reading works fine) any data to NVME devices with MRRS != 256
-we have scrambled HDMI display
+and I tried to find answer in A311D datasheet, but no answer.
 
-> Does this problem actually affect *all* DesignWare-based controllers?
-> So why is this limited to PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3?
+is SCPI mandatory for Aarch64?
 
-i can say only for VIM3 device which use this controller and have this problem
+if yes, what's the status of SCPI in A311D?
 
-On Wed, Jul 28, 2021 at 3:43 AM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Tue, Jul 27, 2021 at 10:30:00AM +0800, Artem Lapkin wrote:
-> > 256 bytes maximum read request size. They can't handle
-> > anything larger than this. So force this limit on
-> > any devices attached under these ports.
->
-> This needs to say whether this is a functional or a performance issue.
->
-> If it's a functional issue, i.e., if meson signals an error or abort
-> when it receives a read request for > 256 bytes, we need to explain
-> exactly what happens.
->
-> If it's a performance issue, we need to explain why MRRS affects
-> performance and that this is an optimization.
->
-> > Come-from: https://lkml.org/lkml/2021/6/18/160
-> > Come-from: https://lkml.org/lkml/2021/6/19/19
->
-> Please use lore.kernel.org URLs instead.  The lore URLs are a little
-> uglier, but are more functional, more likely to continue working, and
-> avoid the ads.  These are:
->
->   https://lore.kernel.org/r/20210618230132.GA3228427@bjorn-Precision-5520
->   https://lore.kernel.org/r/20210619063952.2008746-1-art@khadas.com
->
-> > It only affects PCIe in P2P, in non-P2P is will certainly affect
-> > transfers on the internal SoC/Processor/Chip internal bus/fabric.
->
-> This needs to explain how a field in a PCIe TLP affects transfers on
-> these non-PCIe fabrics.
->
-> > These quirks are currently implemented in the
-> > controller driver and only applies when the controller has been probed
-> > and to each endpoint detected on this particular controller.
-> >
-> > Continue having separate quirks for each controller if the core
-> > isn't the right place to handle MPS/MRRS.
->
-> I see similar code in dwc/pci-keystone.c.  Does this problem actually
-> affect *all* DesignWare-based controllers?
->
-> If so, we should put the workaround in the common dwc code, e.g.,
-> pcie-designware.c or similar.
->
-> It also seems to affect pci-loongson.c (not DesignWare-based).  Is
-> there some reason it has the same problem, e.g., does loongson contain
-> DesignWare IP, or does it use the same non-PCIe fabric?
->
-> > >> Neil
-> >
-> > Signed-off-by: Artem Lapkin <art@khadas.com>
-> > ---
-> >  drivers/pci/controller/dwc/pci-meson.c | 31 ++++++++++++++++++++++++++
-> >  1 file changed, 31 insertions(+)
-> >
-> > diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> > index 686ded034..1498950de 100644
-> > --- a/drivers/pci/controller/dwc/pci-meson.c
-> > +++ b/drivers/pci/controller/dwc/pci-meson.c
-> > @@ -466,6 +466,37 @@ static int meson_pcie_probe(struct platform_device *pdev)
-> >       return ret;
-> >  }
-> >
-> > +static void meson_mrrs_limit_quirk(struct pci_dev *dev)
-> > +{
-> > +     struct pci_bus *bus = dev->bus;
-> > +     int mrrs, mrrs_limit = 256;
-> > +     static const struct pci_device_id bridge_devids[] = {
-> > +             { PCI_DEVICE(PCI_VENDOR_ID_SYNOPSYS, PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3) },
->
-> I don't really believe that PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3 is the
-> only device affected here.  Is this related to the Meson root port, or
-> is it related to a PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3 on a plug-in card?
-> I guess the former, since you're searching upward for a root port.
->
-> So why is this limited to PCI_DEVICE_ID_SYNOPSYS_HAPSUSB3?
->
-> > +             { 0, },
-> > +     };
-> > +
-> > +     /* look for the matching bridge */
-> > +     while (!pci_is_root_bus(bus)) {
-> > +             /*
-> > +              * 256 bytes maximum read request size. They can't handle
-> > +              * anything larger than this. So force this limit on
-> > +              * any devices attached under these ports.
-> > +              */
-> > +             if (!pci_match_id(bridge_devids, bus->self)) {
-> > +                     bus = bus->parent;
-> > +                     continue;
-> > +             }
-> > +
-> > +             mrrs = pcie_get_readrq(dev);
-> > +             if (mrrs > mrrs_limit) {
-> > +                     pci_info(dev, "limiting MRRS %d to %d\n", mrrs, mrrs_limit);
-> > +                     pcie_set_readrq(dev, mrrs_limit);
-> > +             }
-> > +             break;
-> > +     }
-> > +}
-> > +DECLARE_PCI_FIXUP_ENABLE(PCI_ANY_ID, PCI_ANY_ID, meson_mrrs_limit_quirk);
-> > +
-> >  static const struct of_device_id meson_pcie_of_match[] = {
-> >       {
-> >               .compatible = "amlogic,axg-pcie",
-> > --
-> > 2.25.1
-> >
+BTW, what about cpu idle, any progress[2]?
 
+BR.
+Ning.
+
+[1] https://gitee.com/zhangn1985/config/
+[2] http://lists.infradead.org/pipermail/linux-amlogic/2020-September/008044.html
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
