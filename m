@@ -1,77 +1,81 @@
-Return-Path: <SRS0=ueWB=MX=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=YX+9=M2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8AE47C4338F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 31 Jul 2021 13:10:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24623C4320A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Aug 2021 09:45:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 14D6660FE7
-	for <linux-amlogic@archiver.kernel.org>; Sat, 31 Jul 2021 13:10:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 14D6660FE7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=yandex.ru
+	by mail.kernel.org (Postfix) with ESMTPS id DA40560F8F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Aug 2021 09:45:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DA40560F8F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:MIME-Version:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Subject:Cc:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n/FoZycxgpHi6+gbDUciZzLSFAVly93yGqQvBiIKZqg=; b=hJfX8merB/I4m3
-	/Qr+AbIEPl5O7pUHoVUu5+gq3zuUyDejnFbAvktkfvdHHII110afEHDxlczxWEoVaB2LBv1FUudCz
-	6US1FEamu2DLYHgPXFqKENxc4tZjB2xUnYbPydUBO2tlsy5+6tg5Csvk+a0MeyQ6XmdocekwgmHW4
-	Pg1WaNqmcVGDYn/mYcmVanZYeWACpxRTWi/ej/WfAN+cChjjR+ZVn+0vqz+g7DCOg+/zaTVsrw3iD
-	/Y5ue6G3rRerSFOGyfC2pVv/DGu3ne56oLVBX4scjTFdIEnpkqt3dKHUs42QlR4m3/Q2Csic7gAEK
-	9L/fOLvQ936yrzZXytUA==;
+	List-Owner; bh=zW/550otiFHLeieQ8/g/6he+gS8xZENp089wYYKd89k=; b=TrOkcGvlCCG6kT
+	TmH/OyIeE/Cw4pzC6wkU+co8gOv0+RLC0CVFnjpG8QMvVZjsoEID/mxUkAbGeZCjGnHQ2ics3kL5v
+	C3hyIK+zAW55iaJklVGQy9OJDnOKZ9cZvklnVIOwKVEQZrOxEAMFp3Y0yBBB77ukPdHrDvKJNIF6C
+	PZtsYmm91o/sFljytPGtlT1pa30/6wCziDXJaH3un4GV+oY8b2SPbkPpVbjkG2JPEgIdGqAQkENIG
+	6vh+Xrf2N+lbUaAGPBE6OE9ZBApKhg2/OdQyfUHCXmCgL1KPiVTLKmtEO5pO+ijM8XoVH75Ji2WfQ
+	mp9Y9AiA2jTcdicXR5zA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m9okT-00Bg2u-PN; Sat, 31 Jul 2021 13:09:53 +0000
-Received: from forward501p.mail.yandex.net ([2a02:6b8:0:1472:2741:0:8b7:120])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat
- Linux)) id 1m9okP-00Bg24-O3
- for linux-amlogic@lists.infradead.org; Sat, 31 Jul 2021 13:09:51 +0000
-Received: from myt6-f96510cd1fe5.qloud-c.yandex.net
- (myt6-f96510cd1fe5.qloud-c.yandex.net
- [IPv6:2a02:6b8:c12:4e12:0:640:f965:10cd])
- by forward501p.mail.yandex.net (Yandex) with ESMTP id 2617E3500176;
- Sat, 31 Jul 2021 16:09:36 +0300 (MSK)
-Received: from mail.yandex.ru (mail.yandex.ru [46.237.12.158])
- by myt6-f96510cd1fe5.qloud-c.yandex.net (mxback/Yandex) with HTTP id
- U9jd2J1H7W21-9YH04XLX; Sat, 31 Jul 2021 16:09:35 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
- t=1627736975; bh=f2b58DAAys5iq1Aqv4rWqdialEK3tJ/kaIDwTCsUChU=;
- h=Message-Id:Cc:Subject:In-Reply-To:Date:References:To:From;
- b=dcZB5bQfF4P2tOvck2oqCO50ZDEDYRKmhHSfrFHdWmZCRiPxn3+anoso+hm4wml/M
- bUu1P6ZKrcPxBKMK60yjOuF0dx9dQLjjWmr0g3lXZPhqMZcUC3WR6LNOgcJm7d+oe2
- eBXSP4uHD7rBc2O98nNE9y0k11M/VeRPbjf5hrSk=
-Authentication-Results: myt6-f96510cd1fe5.qloud-c.yandex.net;
- dkim=pass header.i=@yandex.ru
-Received: by myt5-99d469eb3b26.qloud-c.yandex.net with HTTP;
- Sat, 31 Jul 2021 16:09:34 +0300
-From: =?utf-8?B?0KTQtdC00L7RgNC+0LIg0JPRgNC40LPQvtGA0LjQuQ==?=
- <elektromonder@yandex.ru>
-Envelope-From: elektromonder@yandex.ru
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-In-Reply-To: <6421c1c3-9a68-9364-9b99-aa4cf5f73d24@baylibre.com>
-References: <8833871627419165@myt5-76cfa60c365b.qloud-c.yandex.net>
- <6421c1c3-9a68-9364-9b99-aa4cf5f73d24@baylibre.com>
-Subject: Re:amlogic-meson-g12b USB does not work
-MIME-Version: 1.0
-X-Mailer: Yamail [ http://yandex.ru ] 5.0
-Date: Sat, 31 Jul 2021 16:09:34 +0300
-Message-Id: <24110871627736974@myt5-99d469eb3b26.qloud-c.yandex.net>
+	id 1mAqyy-001rKK-7Z; Tue, 03 Aug 2021 09:45:08 +0000
+Received: from mail.kernel.org ([198.145.29.99])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mAqyT-001r30-U2; Tue, 03 Aug 2021 09:44:41 +0000
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org
+ [51.254.78.96])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id E60C860F48;
+ Tue,  3 Aug 2021 09:44:36 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+ by disco-boy.misterjones.org with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <maz@kernel.org>)
+ id 1mAqyQ-002fQL-T6; Tue, 03 Aug 2021 10:44:35 +0100
+Date: Tue, 03 Aug 2021 10:44:34 +0100
+Message-ID: <87im0m277h.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Lee Jones <lee.jones@linaro.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, open list
+ <linux-kernel@vger.kernel.org>, Saravana Kannan <saravanak@google.com>
+Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build as
+ a module
+In-Reply-To: <7h7diwgjup.fsf@baylibre.com>
+References: <20201020072532.949137-1-narmstrong@baylibre.com>
+ <20201020072532.949137-2-narmstrong@baylibre.com>
+ <7hsga8kb8z.fsf@baylibre.com>
+ <CAF2Aj3g6c8FEZb3e1by6sd8LpKLaeN5hsKrrQkZUvh8hosiW9A@mail.gmail.com>
+ <87r1hwwier.wl-maz@kernel.org> <7h7diwgjup.fsf@baylibre.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: khilman@baylibre.com, lee.jones@linaro.org,
+ narmstrong@baylibre.com, jbrunet@baylibre.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, saravanak@google.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
+ SAEximRunCond expanded to false
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210731_060949_989425_B2021C20 
-X-CRM114-Status: UNSURE (   9.17  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210803_024438_055130_86187819 
+X-CRM114-Status: GOOD (  36.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,40 +92,167 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil! I do not have access to the source code of the vendor kernel. But there are free source code for this box, in which the USB works: https://github.com/CoreELEC/linux-amlogic/blob/amlogic-4.9-19/arch/arm64/boot/dts/amlogic/g12b_s922x_x88_king_rev_a.dts
-I want to show you the differences in the DTS file of Coreelek and the mainline Linux.
-Coreelek x88king dts:usb2phy@ffe09000 {
-                compatible = "amlogic, amlogic-new-usb2-v2";
-                status = "okay";
-                reg = <0x00 0xffe09000 0x00 0x80 0x00 0xffd01008 0x00 0x100 0x00 0xff636000 0x00 0x2000 0x00 0xff63a000 0x00 0x2000>;
-                pll-setting-1 = <0x9400414>;
-                pll-setting-2 = <0x927e0000>;
-                pll-setting-3 = <0xac5f69e5>;
-                pll-setting-4 = <0xfe18>;
-                pll-setting-5 = <0x8000fff>;
-                pll-setting-6 = <0x78000>;
-                pll-setting-7 = <0xe0004>;
-                pll-setting-8 = <0xe000c>;
-                portnum = <0x02>;
-                phandle = <0x19>;
-        };
-linux mainline meson-g12b-s922x dts:
+On Mon, 14 Jun 2021 23:30:22 +0100,
+Kevin Hilman <khilman@baylibre.com> wrote:
+> 
+> Marc Zyngier <maz@kernel.org> writes:
+> 
+> > On Fri, 21 May 2021 10:47:48 +0100,
+> > Lee Jones <lee.jones@linaro.org> wrote:
+> >> 
+> >> [1  <text/plain; UTF-8 (quoted-printable)>]
+> >> On Tue, 20 Oct 2020 at 19:23, Kevin Hilman <khilman@baylibre.com> wrote:
+> >> 
+> >> > Neil Armstrong <narmstrong@baylibre.com> writes:
+> >> >
+> >> > > In order to reduce the kernel Image size on multi-platform distributions,
+> >> > > make it possible to build the Amlogic GPIO IRQ controller as a module
+> >> > > by switching it to a platform driver.
+> >> > >
+> >> > > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> >> >
+> >> > Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> >> > Tested-by: Kevin Hilman <khilman@baylibre.com>
+> >> >
+> >> > Tested as a module on meson-sm1-khadas-vim3l where the wired networking
+> >> > uses GPIO IRQs.
+> >> >
+> >> 
+> >> Good morning Neil, Kevin,
+> >> 
+> >> What happened to this set in the end?  I still don't see it in Mainline.
+> >
+> > Last time I tried this patch, it broke my test setup in non-obvious
+> > ways. Has someone checked that the issue I reported back then has been
+> > resolved now that fw_devlink is more usable?
+> 
+> OK, after much anticipation (and much delay due to me forgetting about
+> this), I just gave this series a spin again on top of v5.13-rc6, and it
+> seems to work fine with `fw_devlink=on`
+> 
+> I started with your config[1] and accepting all the defaults of any new
+> configs.  IOW, I ran: yes '' | make oldconfig after copying your config
+> to .config.
+> 
+> With that it seems to be working fine for me.
+> 
+> Right after boot (and before network probes) I see module loaded, but no
+> users yet in /proc/interrupts:
+> 
+> / # uname -a
+> Linux buildroot 5.13.0-rc6-00002-g679c8e852942 #5 SMP PREEMPT Mon Jun 14 15:08:40 PDT 2021 aarch64 GNU/Linux
+> / # lsmod |grep gpio
+> irq_meson_gpio         20480  0
+> leds_gpio              16384  0
+> / # cat /proc/interrupts
+>            CPU0       CPU1       CPU2       CPU3
+>   9:          0          0          0          0     GICv2  25 Level     vgic
+>  11:          0          0          0          0     GICv2  30 Level     kvm guest ptimer
+>  12:          0          0          0          0     GICv2  27 Level     kvm guest vtimer
+>  13:       1416        916        534       1421     GICv2  26 Level     arch_timer
+>  15:          5          0          0          0     GICv2  89 Edge      dw_hdmi_top_irq, ff600000.hdmi-tx
+>  22:         38          0          0          0     GICv2 225 Edge      ttyAML0
+>  23:         20          0          0          0     GICv2 227 Edge      ff805000.i2c
+>  25:          2          0          0          0     GICv2 232 Edge      ff809000.adc
+>  28:        322          0          0          0     GICv2  35 Edge      meson
+>  31:          0          0          0          0     GICv2 222 Edge      ffe05000.sd
+>  32:        787          0          0          0     GICv2 223 Edge      ffe07000.mmc
+>  34:          0          0          0          0     GICv2 194 Level     panfrost-job
+>  35:          0          0          0          0     GICv2 193 Level     panfrost-mmu
+>  36:          3          0          0          0     GICv2 192 Level     panfrost-gpu
+>  39:          0          0          0          0     GICv2  63 Level     ff400000.usb, ff400000.usb
+>  40:         32          0          0          0     GICv2  62 Level     xhci-hcd:usb1
+> IPI0:       425        544        664        925       Rescheduling interrupts
+> IPI1:        86        166        269        136       Function call interrupts
+> IPI2:         0          0          0          0       CPU stop interrupts
+> IPI3:         0          0          0          0       CPU stop (for crash dump) interrupts
+> IPI4:         0          0          0          0       Timer broadcast interrupts
+> IPI5:         0          0          0          0       IRQ work interrupts
+> IPI6:         0          0          0          0       CPU wake-up interrupts
+> Err:          0
+> 
+> So then I init the network interface and PHY works, DHCP works etc.
+> 
+> / # udhcpc
+> udhcpc: started, v1.31.1
+> [  102.250449] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=37)
+> [  102.256413] meson8b-dwmac ff3f0000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> [  102.269433] meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
+> [  102.271357] meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
+> [  102.278493] meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rgmii link mode
+> udhcpc: sending discover
+> [  104.743301] meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
+> [  104.746470] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+> udhcpc: sending discover
+> udhcpc: sending select for 192.168.0.122
+> udhcpc: lease of 192.168.0.122 obtained, lease time 600
+> deleting routers
+> adding dns 192.168.0.254
+> adding dns 192.168.0.254
+> / # cat /proc/interrupts
+>            CPU0       CPU1       CPU2       CPU3
+>   9:          0          0          0          0     GICv2  25 Level     vgic
+>  11:          0          0          0          0     GICv2  30 Level     kvm guest ptimer
+>  12:          0          0          0          0     GICv2  27 Level     kvm guest vtimer
+>  13:       1575       1018        604       1588     GICv2  26 Level     arch_timer
+>  14:          8          0          0          0     GICv2  40 Level     eth0
+>  15:          5          0          0          0     GICv2  89 Edge      dw_hdmi_top_irq, ff600000.hdmi-tx
+>  22:        132          0          0          0     GICv2 225 Edge      ttyAML0
+>  23:         20          0          0          0     GICv2 227 Edge      ff805000.i2c
+>  25:          2          0          0          0     GICv2 232 Edge      ff809000.adc
+>  28:        322          0          0          0     GICv2  35 Edge      meson
+>  31:          0          0          0          0     GICv2 222 Edge      ffe05000.sd
+>  32:        787          0          0          0     GICv2 223 Edge      ffe07000.mmc
+>  34:          0          0          0          0     GICv2 194 Level     panfrost-job
+>  35:          0          0          0          0     GICv2 193 Level     panfrost-mmu
+>  36:          3          0          0          0     GICv2 192 Level     panfrost-gpu
+>  37:          2          0          0          0  meson-gpio-irqchip  26 Level     0.0:00
+>  39:          0          0          0          0     GICv2  63 Level     ff400000.usb, ff400000.usb
+>  40:         32          0          0          0     GICv2  62 Level     xhci-hcd:usb1
+> IPI0:       476        567        720        956       Rescheduling interrupts
+> IPI1:        93        166        270        137       Function call interrupts
+> IPI2:         0          0          0          0       CPU stop interrupts
+> IPI3:         0          0          0          0       CPU stop (for crash dump) interrupts
+> IPI4:         0          0          0          0       Timer broadcast interrupts
+> IPI5:         0          0          0          0       IRQ work interrupts
+> IPI6:         0          0          0          0       CPU wake-up interrupts
+> Err:          0
+> / #
 
-usb@ffe09000 {
-                        status = "okay";
-                        compatible = "amlogic,meson-g12a-usb-ctrl";
-                        reg = <0x00 0xffe09000 0x00 0xa0>;
-                        interrupts = <0x00 0x10 0x04>;
-                        #address-cells = <0x02>;
-                        #size-cells = <0x02>;
-                        ranges;
-                        clocks = <0x02 0x2f>;
-                        resets = <0x05 0x22>;
-                        dr_mode = "host";
-                        phys = <0x44 0x45 0x06 0x04>;
-                        phy-names = "usb2-phy0\0usb2-phy1\0usb3-phy0";
-                        vbus-supply = <0x46>;
-What is Pll-Setting? What rows of code relative to the USB drivers need to port from the Coreelek source, so that the USB driver is works in the main line Linux? Please pay attention to this problem, this board is very in demand, it turned out great potential in it, it should be revealed, giving it the opportunity to operate the core Linux mainline.
+This thing keeps failing on my end. It only works if I force the
+irqchip module to be present before the MDIO module is loaded. Here's
+an example:
+
+root@tiger-roach:~# modprobe mdio_mux_meson_g12a
+[  125.871544] libphy: mdio_mux: probed
+[  125.882575] g12a-mdio_mux ff64c000.mdio-multiplexer: Error: Failed to register MDIO bus for child /soc/bus@ff600000/mdio-multiplexer@4c000/mdio@0
+[  125.892630] libphy: mdio_mux: probed
+
+Trying to bring up the Ethernet interface will fail. Note that there
+was no attempt to load the irqchip driver.
+
+root@tiger-roach:~# modprobe -r mdio_mux_meson_g12a
+root@tiger-roach:~# modprobe irq-meson-gpio 
+[  144.983344] meson-gpio-intc ffd0f080.interrupt-controller: 100 to 8 gpio interrupt mux initialized
+root@tiger-roach:~# modprobe mdio_mux_meson_g12a
+[  150.376464] libphy: mdio_mux: probed
+[  150.391039] libphy: mdio_mux: probed
+
+And it now works.
+
+Is it a MDIO issue? a fw_devlink issue? No idea. But I'd really like
+to see this addressed before taking this patch, as everything works
+just fine as long as the irqchip is built in (which on its own could
+well pure luck).
+
+Saravana, could you please have a look from a fw_devlink perspective?
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
 _______________________________________________
 linux-amlogic mailing list
