@@ -2,92 +2,69 @@ Return-Path: <SRS0=YX+9=M2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B527C4338F
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Aug 2021 20:45:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EAC8C43214
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Aug 2021 21:32:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2F1FF60ED6
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Aug 2021 20:45:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2F1FF60ED6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 51A8560F70
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Aug 2021 21:32:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 51A8560F70
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=rowland.harvard.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=chAD33fG0Qrv5xtOjkHLoGgy7E/qcK4qvl45jLhZV0A=; b=s8RRn7weWsw2V1
-	8hUtQ4Cawc6jS4dPG2F0wDP/zP0b8PkQeB7GG8/7CdNE66IuWZ2eZTr9lBMvLCR0TERF89DE4hXJb
-	UTPe7l++D9SPZbXmjqqMMtTvcQSfRRLkeW5CDyplNA9SvXUVT76KGegDkkFknoui/QsCB7CMQekii
-	AZjux6w20CjOCzzUDdz/szaW4SC4pL9TuG4hOIjFTeEot+e7iFHy88RVZ2b/JrMx0caT8r/hExtr8
-	ZqBZM4a3cTIMCDDmRkDFpociI1628a3OOiv4/vDcJyQLDVQpp39rIE6SiBGbpz/eweM8/f7d9CK3e
-	6p77XZmUyKBGPqJJpaTg==;
+	List-Owner; bh=e0scDpFsReIntE6wQmSVCRa7iwSPullzjRBr6Q7uEqE=; b=yYYWwVp9tC3Oom
+	CHkeIw1kdYPAmyRm9Sd7WzOUtxiC/QJtFGK6kjrEQ96o/WdIfoUGkTnn2JXUJsaY0eVh/a3vb2YHe
+	xaMWHfxZB/h1O6KoVayq1LlHJek8RH7PYVDEUfeuVbRqcwz9VcRILZ4OjRx/3M34YnLG7ss7fJC6C
+	rZOl+etGnFWSRc7GDcHV8HS1gcKYUUPlBpNilulyTOyFQS/jKufGvQv+CqIUWvgKdkOhI272cNHH2
+	AoIorAl0dEYQwbvSRfCyM9h5PgG95A8xAm68IMBU+8NUSHc+1KPpBOTflT8vv9n3P4eEQ/5/BZO5u
+	MQa/of+lb/jQr76itXDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mB1IE-004BqK-K1; Tue, 03 Aug 2021 20:45:42 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mB1I1-004Bo4-AC; Tue, 03 Aug 2021 20:45:30 +0000
-Received: by mail-ed1-x530.google.com with SMTP id y7so751077eda.5;
- Tue, 03 Aug 2021 13:45:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8ZbatCuwF0ejzY/254BQh4plkI8mltXs2twaQnckgMI=;
- b=p6BnMCoQVqlyPBcxlHpgLvhxDtbmUN84h5PkOllCD755g4MCf/UKkPDMAXladxB+fB
- ItXeBPNZU1eu9qpp2s5qRNf19y0GWfCc4yrZUM81hGss6a03DsR62OdzljQaK7beX4u2
- 6O0AeUatpKRyCVLH5f1CDB73J/mah8Eangexn4iulbgM3QdMIK10G8SMlbKBxBPMIQV/
- H2hRARFM/WDnnDj9FIHnoiBbr7QTnZbd/iubtmfctpxrvCom9vD8ZBXQ2iDcgfyIqucm
- Y7GGg4o3zIqe8U26oZdecITIO1v8XS/OujFchRVeQHCvAUQFxXRFEueD3DvJ3VSMbqOG
- vt5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8ZbatCuwF0ejzY/254BQh4plkI8mltXs2twaQnckgMI=;
- b=ol9zarN5I7FHFL/s1+cmUrHPupfAuTh7T6dJg3E16aUlXal8f85SBmYJjvGwHUJscH
- G2X5bpHWElVtX/BnZozFUO09hTWvw3qkZmLUrWGx9OES3WedpdEfT3a7rAU9oez1FnXH
- 40tawTYaFH2wF5LxgX8zV/Pvt740cLJy+q5If0oc2l/v7eZNZbQiG9V0yeX1Zx1ozQqT
- SEETGVgeFl5Qy4C4rEkZNTf2qkkfVNxUtQAW1l9uFZIU9yy7ghsp5Jpd2lAx0xHIwijR
- 68C9YaJ+10OO55cuNvyf9toNlhahCokKc6j371BHrl+W24vQNOi/lTBjWUQ/HMEMotKW
- jqWQ==
-X-Gm-Message-State: AOAM531qd7aw2pGk+QDC+7SHQG/y44o9w7mEZkIpnXTUsjX/fsc0y5a7
- ew4HX1Z7mRktOuvQMegPueIcrV2+i/gbe8SWO/Y=
-X-Google-Smtp-Source: ABdhPJxRXiJDPGTIfneS7YyQ40d3AXe1t8qEhKVPNz8CIijfGmO3fHXUd9wo1ewgVlv71M9TOcDpUS40b9+EssDoF4k=
-X-Received: by 2002:a05:6402:54d:: with SMTP id
- i13mr27685680edx.179.1628023524096; 
- Tue, 03 Aug 2021 13:45:24 -0700 (PDT)
+	id 1mB21Q-004G5G-4d; Tue, 03 Aug 2021 21:32:24 +0000
+Received: from netrider.rowland.org ([192.131.102.5])
+ by bombadil.infradead.org with smtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mB21M-004G4g-AP
+ for linux-amlogic@lists.infradead.org; Tue, 03 Aug 2021 21:32:22 +0000
+Received: (qmail 377994 invoked by uid 1000); 3 Aug 2021 17:32:16 -0400
+Date: Tue, 3 Aug 2021 17:32:16 -0400
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Minas Harutyunyan <Minas.Harutyunyan@synopsys.com>,
+ Matt Corallo <oc2udbzfd@mattcorallo.com>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux.amoon@gmail.com" <linux.amoon@gmail.com>,
+ Artur Petrosyan <Arthur.Petrosyan@synopsys.com>
+Subject: Re: ODROID-C1/-C2 USB Detection only triggered by some devices dwc2
+Message-ID: <20210803213216.GA376608@rowland.harvard.edu>
+References: <822c3852-1d15-2976-8672-e49ae34c328f@synopsys.com>
+ <CAFBinCC_0RpCMsj3AUt9fZrjHi6_qFirQtRR1g5VJcn45GpWAw@mail.gmail.com>
+ <ad475275-eb2c-6309-fc59-494f94bf0605@synopsys.com>
+ <CAFBinCCXioWL+ZGwvC8Ltrmx4y2XpGK03JAm8X=wDB4_dQ+pFA@mail.gmail.com>
+ <20210715014451.GA397753@rowland.harvard.edu>
+ <CAFBinCD0GKcc8veWAkWG=NCban4k8n5E-QdhNfccuH8OXvtA6g@mail.gmail.com>
+ <20210719145322.GA565905@rowland.harvard.edu>
+ <CAFBinCDAXzDugaCcf52ubE+a==7CtDkmHpX2hAeO+DkJWQCNSg@mail.gmail.com>
+ <20210721155817.GC633399@rowland.harvard.edu>
+ <CAFBinCBkUsTsPiMQ2iN5U63NczxXFHv818O-G01WzJXZ36ybeA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210729201100.3994-1-linux.amoon@gmail.com>
- <20210729201100.3994-4-linux.amoon@gmail.com>
-In-Reply-To: <20210729201100.3994-4-linux.amoon@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 3 Aug 2021 22:45:13 +0200
-Message-ID: <CAFBinCAVaaXd+jXBtA9RETP5AavOfeUVZLkU1ohGT2Lmx+H1cw@mail.gmail.com>
-Subject: Re: [PATCHv1 3/3] net: stmmac: dwmac-meson8b: Add reset controller
- for ethernet phy
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org, 
- Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>,
- Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>, 
- Jakub Kicinski <kuba@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>,
- Emiliano Ingrassia <ingrassia@epigenesys.com>
+Content-Disposition: inline
+In-Reply-To: <CAFBinCBkUsTsPiMQ2iN5U63NczxXFHv818O-G01WzJXZ36ybeA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210803_134529_398444_50B3A51F 
-X-CRM114-Status: GOOD (  12.64  )
+X-CRM114-CacheID: sfid-20210803_143220_557478_DF2D8368 
+X-CRM114-Status: GOOD (  34.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,30 +81,173 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Anand,
+Minas, you should look at analysis of the usbmon information below.
 
-On Thu, Jul 29, 2021 at 10:11 PM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Add reset controller for Ethernet phy reset on every boot for
-> Amlogic SoC.
-I think this description does not match what's going on inside the SoC:
-- for all SoCs earlier than GXL the PHY is external so the reset for
-the PHY is a GPIO
-- the reset line you are passing in the .dts belongs to the Ethernet
-controller on SoCs earlier than GXL
-- I *believe* that the rset line which you're passing in the .dts
-belongs to the Ethernet controller AND the built-in MDIO mux on GXL
-and newer, see also [0]
-- from how the PRG_ETH registers work I doubt that these are connected
-to a reset line (as they're managing mostly delays and protocol - so I
-don't see what would be reset). This is speculation though.
+On Tue, Aug 03, 2021 at 10:20:54PM +0200, Martin Blumenstingl wrote:
+> > This is weird.  Didn't you say earlier that doing the same thing, except for
+> > using "lsusb -vvv" to wake up the GL hub rather than this sysfs write, would
+> > not lead to the Corsair drive being detected?
+> I just verified this again
+> - plug in my Corsair Voyager USB 3.0 flash drive
+> - boot without usbcore.autosuspend=-1
+> - (device is not detected)
+> - lsusb -vvv
+> - (nothing happens, device is not detected)
+> - wait at least 5 seconds
+> - start the usbmon dump
+> - echo -1 >/sys/bus/usb/devices/1-1/power/autosuspend
+> - (the flash drive is detected automatically)
+> - stop the usbmon dump
+> 
+> So it seems that telling the hub not to auto-suspend seems to work
+> around it enough?
+> I attached test-1_hub-autosuspend-1.out to document this result
 
+It would be better if you started the usbmon trace before doing the 
+lsusb -vvv, so that the trace would show everything you did.  Next 
+time...
 
-Best regards,
-Martin
+> > So was the GL hub actually suspended?  It's hard to tell exactly what the
+> > hardware's doing, but you can get a trace that will help.  Do the following:
+> at this point I'd like to point out again that it's amazing to have
+> someone with your knowledge about the whole USB subsystem help out on
+> this
+> 
+> > Boot with no device plugged in and with "usbcore.autosuspend=-1" on the
+> > command line.  Then start a usbmon trace.
+> >
+> > Next, do
+> >
+> >         echo 2 >/sys/bus/usb/devices/1-1/power/autosuspend
+> >
+> > and wait a few seconds for the GL hub to be suspended.  To make sure it has,
+> > do "grep . /sys/bus/usb/devices/1-1/power/*" and include the output in your
+> > reply.
+> # grep . /sys/bus/usb/devices/1-1/power/*
+> /sys/bus/usb/devices/1-1/power/active_duration:104940
+> /sys/bus/usb/devices/1-1/power/autosuspend:2
+> /sys/bus/usb/devices/1-1/power/autosuspend_delay_ms:2000
+> /sys/bus/usb/devices/1-1/power/connected_duration:116500
+> /sys/bus/usb/devices/1-1/power/control:auto
+> /sys/bus/usb/devices/1-1/power/level:auto
+> /sys/bus/usb/devices/1-1/power/runtime_active_time:104511
+> /sys/bus/usb/devices/1-1/power/runtime_status:suspended
 
+Yep, the GL hub was suspended.
 
-[0] https://lore.kernel.org/linux-amlogic/553e127c-9839-d15b-d435-c01f18c7be48@gmail.com/
+> /sys/bus/usb/devices/1-1/power/runtime_suspended_time:11562
+> /sys/bus/usb/devices/1-1/power/wakeup:disabled
+> 
+> (I ran this command twice by accident, but I guess this makes no
+> difference. this is the output of the second run)
+> 
+> > Then do
+> >
+> >         echo 2 >/sys/bus/usb/devices/usb1/power/autosuspend
+> >
+> > and wait a few seconds for the root hub to be suspended.  Again, to make
+> > sure it has, do "grep . /sys/bus/usb/devices/usb1/power/*".
+> # grep . /sys/bus/usb/devices/usb1/power/*
+> /sys/bus/usb/devices/usb1/power/active_duration:130880
+> /sys/bus/usb/devices/usb1/power/autosuspend:2
+> /sys/bus/usb/devices/usb1/power/autosuspend_delay_ms:2000
+> /sys/bus/usb/devices/usb1/power/connected_duration:140000
+> /sys/bus/usb/devices/usb1/power/control:auto
+> /sys/bus/usb/devices/usb1/power/level:auto
+> /sys/bus/usb/devices/usb1/power/runtime_active_time:130872
+> /sys/bus/usb/devices/usb1/power/runtime_status:suspended
+
+And the root hub was suspended.
+
+> /sys/bus/usb/devices/usb1/power/runtime_suspended_time:9120
+> /sys/bus/usb/devices/usb1/power/wakeup:disabled
+> 
+> > Once that has settled down, wake up the root hub by doing
+> >
+> >         echo -1 >/sys/bus/usb/devices/usb1/power/autosuspend
+> >
+> > and a few seconds later, wake up the GL hub by doing
+> >
+> >         echo -1 >/sys/bus/usb/devices/1-1/power/autosuspend
+> >
+> > All these suspends and resumes should show up in the usbmon trace.  I'd like
+> > to see what it really says; my guess is that it won't show quite what it
+> > should.
+> I attached test-2_autosuspend-steps-without-device-plugged-in.out
+> which contains the usbmon dump for these steps
+> At no point I had a USB device plugged in
+
+Okay.  The trace shows something unexpected and strange.  It starts out 
+normally:
+
+dfa09a80 109714572 S Ci:1:002:0 s a3 00 0000 0001 0004 4 <
+dfa09a80 109715294 C Ci:1:002:0 0 4 = 00010000
+dfb50480 109722588 S Ci:1:002:0 s a3 00 0000 0002 0004 4 <
+dfb50480 109729096 C Ci:1:002:0 0 4 = 00010000
+dfb50480 109731181 S Ci:1:002:0 s a3 00 0000 0003 0004 4 <
+dfb50480 109731855 C Ci:1:002:0 0 4 = 00010000
+dfb50480 109731955 S Ci:1:002:0 s a3 00 0000 0004 0004 4 <
+dfb50480 109732354 C Ci:1:002:0 0 4 = 00010000
+c53fde80 109732473 C Ii:1:002:1 -2:2048 0
+
+These show the kernel checking that there are no changes pending on any 
+of the Genesys Logic hub's four ports and shutting down the interrupt 
+URB, which are the first steps it takes when suspending the hub.
+
+dfb50480 109732541 S Co:1:002:0 s 00 03 0001 0000 0000 0
+dfb50480 109732785 C Co:1:002:0 0 0
+dfb50480 109732874 S Co:1:001:0 s 23 03 0002 0001 0000 0
+dfb50480 109732945 C Co:1:001:0 0 0
+
+Next the kernel enables remote wakeup on the GL hub and turns on the 
+suspend feature on the root hub's port 1.  At this point the GL hub 
+should be fully suspended.
+
+c53f4880 135532734 C Ii:1:001:1 -2:2048 0
+
+A few seconds later (the second column in the usbmon output is a 
+timestamp, in microseconds), the root hub's interrupt URB is shut down.  
+This is the only part of suspending the root hub that shows up in a 
+usbmon trace.
+
+dfb50a80 167772234 S Ci:1:001:0 s a3 00 0000 0001 0004 4 <
+dfb50a80 167772741 C Ci:1:001:0 0 4 = 03050000
+c53f4880 167773132 S Ii:1:001:1 -115:2048 4 <
+
+A few seconds later the root hub is resumed.  This involves checking the 
+status of the root hub's downstream port and restarting the interrupt 
+URB.
+
+The unexpected behavior shows up in the second line above: The port 
+status is 03050000 rather than 07050000.  This means the port is 
+connected and enabled, but not suspended!  It also explains why later 
+on, when the GL hub is resumed, we get:
+
+dfb02a80 243483471 S Ci:1:001:0 s a3 00 0000 0001 0004 4 <
+dfb02a80 243484838 C Ci:1:001:0 0 4 = 03050000
+dfb02a80 243504208 S Ci:1:002:0 s 80 00 0000 0000 0002 2 <
+dfb02a80 243552775 C Ci:1:002:0 0 2 = 0300
+dfb02a80 243553536 S Co:1:002:0 s 00 01 0001 0000 0000 0
+dfb02a80 243554358 C Co:1:002:0 0 0
+
+This shows the port status being checked again.  The suspend status bit 
+is still clear, so the kernel skips the step in which it tells the root 
+hub to resume the port.  Instead, it immediately goes ahead to check the 
+GL hub's device status and to turn off the hub's remote wakeup feature.  
+These requests succeed, which wouldn't have happened if the port were 
+still suspended.
+
+In other words, the trace shows that the GL hub was never fully 
+suspended!
+
+So the question is: Why doesn't the port status on the DWC2 root hub 
+show the suspend feature set, and why doesn't the root hub port get 
+suspended?  This looks like a bug in the dwc2 driver.  It could well 
+account for at least some of the problems you've been seeing.
+
+Minas, any suggestions?
+
+Alan Stern
 
 _______________________________________________
 linux-amlogic mailing list
