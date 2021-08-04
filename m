@@ -1,70 +1,90 @@
-Return-Path: <SRS0=YX+9=M2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=RlPG=M3=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EAC8C43214
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Aug 2021 21:32:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DC5AC4338F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Aug 2021 01:37:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 51A8560F70
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Aug 2021 21:32:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 51A8560F70
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=rowland.harvard.edu
+	by mail.kernel.org (Postfix) with ESMTPS id 25D0660F43
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Aug 2021 01:37:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 25D0660F43
+Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=google.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e0scDpFsReIntE6wQmSVCRa7iwSPullzjRBr6Q7uEqE=; b=yYYWwVp9tC3Oom
-	CHkeIw1kdYPAmyRm9Sd7WzOUtxiC/QJtFGK6kjrEQ96o/WdIfoUGkTnn2JXUJsaY0eVh/a3vb2YHe
-	xaMWHfxZB/h1O6KoVayq1LlHJek8RH7PYVDEUfeuVbRqcwz9VcRILZ4OjRx/3M34YnLG7ss7fJC6C
-	rZOl+etGnFWSRc7GDcHV8HS1gcKYUUPlBpNilulyTOyFQS/jKufGvQv+CqIUWvgKdkOhI272cNHH2
-	AoIorAl0dEYQwbvSRfCyM9h5PgG95A8xAm68IMBU+8NUSHc+1KPpBOTflT8vv9n3P4eEQ/5/BZO5u
-	MQa/of+lb/jQr76itXDQ==;
+	List-Owner; bh=tj3rvojJOZbitv4BTUgvH7n40ehV8m4l1z2mZtrUWFQ=; b=dYRQnalsw+fGOX
+	zab7jLfVtE/mF6O+2w9GOLnqiypk9vILfd+9ydjE5HCqv+N8A67CMLpGTET0WyT1hTmXnMq6F4IBm
+	GLzjB4L3E8+rlxxttsODXxDY0hxSHUswDD0LejrYU4oo4vUDoHTQenTrWRk7fxVdu3uflz2Vws0RK
+	Gx+je1yuRiFoTLpyMa5BBq4GUfTSY/LwM+TzkEH5dcupcSA6Ukn3WXcZQ7iNA2p9/5NR8kIzaiYmC
+	eqpkFXROh69xvHAou+9t4CccfY55fAMKayrS4NFFv/8IJ6ySJH98xA6BmX0ig4IxCk+X4XD+Gcc8J
+	6QMQcWWGhbjHmXJDwCRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mB21Q-004G5G-4d; Tue, 03 Aug 2021 21:32:24 +0000
-Received: from netrider.rowland.org ([192.131.102.5])
- by bombadil.infradead.org with smtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mB21M-004G4g-AP
- for linux-amlogic@lists.infradead.org; Tue, 03 Aug 2021 21:32:22 +0000
-Received: (qmail 377994 invoked by uid 1000); 3 Aug 2021 17:32:16 -0400
-Date: Tue, 3 Aug 2021 17:32:16 -0400
-From: Alan Stern <stern@rowland.harvard.edu>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Minas Harutyunyan <Minas.Harutyunyan@synopsys.com>,
- Matt Corallo <oc2udbzfd@mattcorallo.com>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux.amoon@gmail.com" <linux.amoon@gmail.com>,
- Artur Petrosyan <Arthur.Petrosyan@synopsys.com>
-Subject: Re: ODROID-C1/-C2 USB Detection only triggered by some devices dwc2
-Message-ID: <20210803213216.GA376608@rowland.harvard.edu>
-References: <822c3852-1d15-2976-8672-e49ae34c328f@synopsys.com>
- <CAFBinCC_0RpCMsj3AUt9fZrjHi6_qFirQtRR1g5VJcn45GpWAw@mail.gmail.com>
- <ad475275-eb2c-6309-fc59-494f94bf0605@synopsys.com>
- <CAFBinCCXioWL+ZGwvC8Ltrmx4y2XpGK03JAm8X=wDB4_dQ+pFA@mail.gmail.com>
- <20210715014451.GA397753@rowland.harvard.edu>
- <CAFBinCD0GKcc8veWAkWG=NCban4k8n5E-QdhNfccuH8OXvtA6g@mail.gmail.com>
- <20210719145322.GA565905@rowland.harvard.edu>
- <CAFBinCDAXzDugaCcf52ubE+a==7CtDkmHpX2hAeO+DkJWQCNSg@mail.gmail.com>
- <20210721155817.GC633399@rowland.harvard.edu>
- <CAFBinCBkUsTsPiMQ2iN5U63NczxXFHv818O-G01WzJXZ36ybeA@mail.gmail.com>
+	id 1mB5qb-004a19-Nu; Wed, 04 Aug 2021 01:37:29 +0000
+Received: from mail-yb1-xb34.google.com ([2607:f8b0:4864:20::b34])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mB5qX-004a0M-GW
+ for linux-amlogic@lists.infradead.org; Wed, 04 Aug 2021 01:37:27 +0000
+Received: by mail-yb1-xb34.google.com with SMTP id w17so1600966ybl.11
+ for <linux-amlogic@lists.infradead.org>; Tue, 03 Aug 2021 18:37:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=epKB0hcqm1WCC8vBGK+vx99lC/aJI/2AY4lrD7eYLb8=;
+ b=AEccR6l/OKGESalKQvaRWiGGw/rio+62YWgIEhXsEEYHlVGhFesvWTPKcNov85mSqW
+ YtF7Oc1w6ubuCGDGQUrSgyoudaS5M4ZXoHGjIdVNtxgSpedngvtttz3sd8Y5eFj6/i1T
+ jOg5eEl6bN/kakSNWhFSn0m9dFLHZnLrzDuKVOPNHsCN04O2yncFR9x71/Ysx0xrQr2Q
+ nuLMy/ATtkk++oWh+8mv+I7wovY6dvb7eCwqRNcyztUWs8yPWDB3qNNotz/nnlIuUU/4
+ za2uS0hhTZQKDViBPBNr0EvcDLM68lITnnnATpItJfVis554OreLT3scY1MlHXJ1Yznk
+ 0JZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=epKB0hcqm1WCC8vBGK+vx99lC/aJI/2AY4lrD7eYLb8=;
+ b=BHZ+tXW2LgQh9Oo+bM8sJJF6mZJ/G3t0G4VA6CHKZNPFzh6i1rMqwX4kqkkfQ6nUd5
+ 5Qp90XQmI3ZIck2GMJ6Myv1whyvgesX29gN+oy6FE/Qe4yb2IRebWL50YCAhmusDI4CI
+ jqxytLtdEP2dlu/UxkiQxW7bcHe5ImUH8P1k0jSGTjYVtriYFu/HcgJxPgiyVNGmsE7t
+ 9P3l3sq4+Xhk3J1hiV6hDYlnf/nqkIg+feZwN4mUxF6wTrVuISKMKvC/lZVKFmJBtx0R
+ 3cUHeC/GWQao5qCjHhw7oR/xZ34cgtVl7prwIQjKS9DwdCy/aiA8c3/PVrhDUWD+bKji
+ 6Bsw==
+X-Gm-Message-State: AOAM531XNLJ1SM3OSkBqFqWE3vDtIj3Ho7io99+anyOjmJg73KjBztbG
+ RP6f19SlsqTQHyGrcGRB0rE2ZCjoog5r4+x6foReFw==
+X-Google-Smtp-Source: ABdhPJxIRCvXjvM5XX/7Lx2VcKSsZlmtIzvOYuSx+K/LRfB6QcCO7PpBPp79Q8riGnMoAJ+NYv75MM16FMCkJ5wzF9c=
+X-Received: by 2002:a25:8b91:: with SMTP id j17mr30103983ybl.228.1628041041716; 
+ Tue, 03 Aug 2021 18:37:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAFBinCBkUsTsPiMQ2iN5U63NczxXFHv818O-G01WzJXZ36ybeA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20201020072532.949137-1-narmstrong@baylibre.com>
+ <20201020072532.949137-2-narmstrong@baylibre.com>
+ <7hsga8kb8z.fsf@baylibre.com>
+ <CAF2Aj3g6c8FEZb3e1by6sd8LpKLaeN5hsKrrQkZUvh8hosiW9A@mail.gmail.com>
+ <87r1hwwier.wl-maz@kernel.org> <7h7diwgjup.fsf@baylibre.com>
+ <87im0m277h.wl-maz@kernel.org>
+In-Reply-To: <87im0m277h.wl-maz@kernel.org>
+From: Saravana Kannan <saravanak@google.com>
+Date: Tue, 3 Aug 2021 18:36:45 -0700
+Message-ID: <CAGETcx9OukoWM_qprMse9aXdzCE=GFUgFEkfhhNjg44YYsOQLw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build as
+ a module
+To: Marc Zyngier <maz@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Lee Jones <lee.jones@linaro.org>, 
+ Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+ open list <linux-kernel@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210803_143220_557478_DF2D8368 
-X-CRM114-Status: GOOD (  34.48  )
+X-CRM114-CacheID: sfid-20210803_183725_620325_8B4BD3A2 
+X-CRM114-Status: GOOD (  38.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,173 +101,187 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Minas, you should look at analysis of the usbmon information below.
-
-On Tue, Aug 03, 2021 at 10:20:54PM +0200, Martin Blumenstingl wrote:
-> > This is weird.  Didn't you say earlier that doing the same thing, except for
-> > using "lsusb -vvv" to wake up the GL hub rather than this sysfs write, would
-> > not lead to the Corsair drive being detected?
-> I just verified this again
-> - plug in my Corsair Voyager USB 3.0 flash drive
-> - boot without usbcore.autosuspend=-1
-> - (device is not detected)
-> - lsusb -vvv
-> - (nothing happens, device is not detected)
-> - wait at least 5 seconds
-> - start the usbmon dump
-> - echo -1 >/sys/bus/usb/devices/1-1/power/autosuspend
-> - (the flash drive is detected automatically)
-> - stop the usbmon dump
-> 
-> So it seems that telling the hub not to auto-suspend seems to work
-> around it enough?
-> I attached test-1_hub-autosuspend-1.out to document this result
-
-It would be better if you started the usbmon trace before doing the 
-lsusb -vvv, so that the trace would show everything you did.  Next 
-time...
-
-> > So was the GL hub actually suspended?  It's hard to tell exactly what the
-> > hardware's doing, but you can get a trace that will help.  Do the following:
-> at this point I'd like to point out again that it's amazing to have
-> someone with your knowledge about the whole USB subsystem help out on
-> this
-> 
-> > Boot with no device plugged in and with "usbcore.autosuspend=-1" on the
-> > command line.  Then start a usbmon trace.
+On Tue, Aug 3, 2021 at 2:44 AM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On Mon, 14 Jun 2021 23:30:22 +0100,
+> Kevin Hilman <khilman@baylibre.com> wrote:
 > >
-> > Next, do
+> > Marc Zyngier <maz@kernel.org> writes:
 > >
-> >         echo 2 >/sys/bus/usb/devices/1-1/power/autosuspend
+> > > On Fri, 21 May 2021 10:47:48 +0100,
+> > > Lee Jones <lee.jones@linaro.org> wrote:
+> > >>
+> > >> [1  <text/plain; UTF-8 (quoted-printable)>]
+> > >> On Tue, 20 Oct 2020 at 19:23, Kevin Hilman <khilman@baylibre.com> wrote:
+> > >>
+> > >> > Neil Armstrong <narmstrong@baylibre.com> writes:
+> > >> >
+> > >> > > In order to reduce the kernel Image size on multi-platform distributions,
+> > >> > > make it possible to build the Amlogic GPIO IRQ controller as a module
+> > >> > > by switching it to a platform driver.
+> > >> > >
+> > >> > > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> > >> >
+> > >> > Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> > >> > Tested-by: Kevin Hilman <khilman@baylibre.com>
+> > >> >
+> > >> > Tested as a module on meson-sm1-khadas-vim3l where the wired networking
+> > >> > uses GPIO IRQs.
+> > >> >
+> > >>
+> > >> Good morning Neil, Kevin,
+> > >>
+> > >> What happened to this set in the end?  I still don't see it in Mainline.
+> > >
+> > > Last time I tried this patch, it broke my test setup in non-obvious
+> > > ways. Has someone checked that the issue I reported back then has been
+> > > resolved now that fw_devlink is more usable?
 > >
-> > and wait a few seconds for the GL hub to be suspended.  To make sure it has,
-> > do "grep . /sys/bus/usb/devices/1-1/power/*" and include the output in your
-> > reply.
-> # grep . /sys/bus/usb/devices/1-1/power/*
-> /sys/bus/usb/devices/1-1/power/active_duration:104940
-> /sys/bus/usb/devices/1-1/power/autosuspend:2
-> /sys/bus/usb/devices/1-1/power/autosuspend_delay_ms:2000
-> /sys/bus/usb/devices/1-1/power/connected_duration:116500
-> /sys/bus/usb/devices/1-1/power/control:auto
-> /sys/bus/usb/devices/1-1/power/level:auto
-> /sys/bus/usb/devices/1-1/power/runtime_active_time:104511
-> /sys/bus/usb/devices/1-1/power/runtime_status:suspended
-
-Yep, the GL hub was suspended.
-
-> /sys/bus/usb/devices/1-1/power/runtime_suspended_time:11562
-> /sys/bus/usb/devices/1-1/power/wakeup:disabled
-> 
-> (I ran this command twice by accident, but I guess this makes no
-> difference. this is the output of the second run)
-> 
-> > Then do
+> > OK, after much anticipation (and much delay due to me forgetting about
+> > this), I just gave this series a spin again on top of v5.13-rc6, and it
+> > seems to work fine with `fw_devlink=on`
 > >
-> >         echo 2 >/sys/bus/usb/devices/usb1/power/autosuspend
+> > I started with your config[1] and accepting all the defaults of any new
+> > configs.  IOW, I ran: yes '' | make oldconfig after copying your config
+> > to .config.
 > >
-> > and wait a few seconds for the root hub to be suspended.  Again, to make
-> > sure it has, do "grep . /sys/bus/usb/devices/usb1/power/*".
-> # grep . /sys/bus/usb/devices/usb1/power/*
-> /sys/bus/usb/devices/usb1/power/active_duration:130880
-> /sys/bus/usb/devices/usb1/power/autosuspend:2
-> /sys/bus/usb/devices/usb1/power/autosuspend_delay_ms:2000
-> /sys/bus/usb/devices/usb1/power/connected_duration:140000
-> /sys/bus/usb/devices/usb1/power/control:auto
-> /sys/bus/usb/devices/usb1/power/level:auto
-> /sys/bus/usb/devices/usb1/power/runtime_active_time:130872
-> /sys/bus/usb/devices/usb1/power/runtime_status:suspended
-
-And the root hub was suspended.
-
-> /sys/bus/usb/devices/usb1/power/runtime_suspended_time:9120
-> /sys/bus/usb/devices/usb1/power/wakeup:disabled
-> 
-> > Once that has settled down, wake up the root hub by doing
+> > With that it seems to be working fine for me.
 > >
-> >         echo -1 >/sys/bus/usb/devices/usb1/power/autosuspend
+> > Right after boot (and before network probes) I see module loaded, but no
+> > users yet in /proc/interrupts:
 > >
-> > and a few seconds later, wake up the GL hub by doing
+> > / # uname -a
+> > Linux buildroot 5.13.0-rc6-00002-g679c8e852942 #5 SMP PREEMPT Mon Jun 14 15:08:40 PDT 2021 aarch64 GNU/Linux
+> > / # lsmod |grep gpio
+> > irq_meson_gpio         20480  0
+> > leds_gpio              16384  0
+> > / # cat /proc/interrupts
+> >            CPU0       CPU1       CPU2       CPU3
+> >   9:          0          0          0          0     GICv2  25 Level     vgic
+> >  11:          0          0          0          0     GICv2  30 Level     kvm guest ptimer
+> >  12:          0          0          0          0     GICv2  27 Level     kvm guest vtimer
+> >  13:       1416        916        534       1421     GICv2  26 Level     arch_timer
+> >  15:          5          0          0          0     GICv2  89 Edge      dw_hdmi_top_irq, ff600000.hdmi-tx
+> >  22:         38          0          0          0     GICv2 225 Edge      ttyAML0
+> >  23:         20          0          0          0     GICv2 227 Edge      ff805000.i2c
+> >  25:          2          0          0          0     GICv2 232 Edge      ff809000.adc
+> >  28:        322          0          0          0     GICv2  35 Edge      meson
+> >  31:          0          0          0          0     GICv2 222 Edge      ffe05000.sd
+> >  32:        787          0          0          0     GICv2 223 Edge      ffe07000.mmc
+> >  34:          0          0          0          0     GICv2 194 Level     panfrost-job
+> >  35:          0          0          0          0     GICv2 193 Level     panfrost-mmu
+> >  36:          3          0          0          0     GICv2 192 Level     panfrost-gpu
+> >  39:          0          0          0          0     GICv2  63 Level     ff400000.usb, ff400000.usb
+> >  40:         32          0          0          0     GICv2  62 Level     xhci-hcd:usb1
+> > IPI0:       425        544        664        925       Rescheduling interrupts
+> > IPI1:        86        166        269        136       Function call interrupts
+> > IPI2:         0          0          0          0       CPU stop interrupts
+> > IPI3:         0          0          0          0       CPU stop (for crash dump) interrupts
+> > IPI4:         0          0          0          0       Timer broadcast interrupts
+> > IPI5:         0          0          0          0       IRQ work interrupts
+> > IPI6:         0          0          0          0       CPU wake-up interrupts
+> > Err:          0
 > >
-> >         echo -1 >/sys/bus/usb/devices/1-1/power/autosuspend
+> > So then I init the network interface and PHY works, DHCP works etc.
 > >
-> > All these suspends and resumes should show up in the usbmon trace.  I'd like
-> > to see what it really says; my guess is that it won't show quite what it
-> > should.
-> I attached test-2_autosuspend-steps-without-device-plugged-in.out
-> which contains the usbmon dump for these steps
-> At no point I had a USB device plugged in
+> > / # udhcpc
+> > udhcpc: started, v1.31.1
+> > [  102.250449] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=37)
+> > [  102.256413] meson8b-dwmac ff3f0000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > [  102.269433] meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
+> > [  102.271357] meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
+> > [  102.278493] meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rgmii link mode
+> > udhcpc: sending discover
+> > [  104.743301] meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
+> > [  104.746470] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+> > udhcpc: sending discover
+> > udhcpc: sending select for 192.168.0.122
+> > udhcpc: lease of 192.168.0.122 obtained, lease time 600
+> > deleting routers
+> > adding dns 192.168.0.254
+> > adding dns 192.168.0.254
+> > / # cat /proc/interrupts
+> >            CPU0       CPU1       CPU2       CPU3
+> >   9:          0          0          0          0     GICv2  25 Level     vgic
+> >  11:          0          0          0          0     GICv2  30 Level     kvm guest ptimer
+> >  12:          0          0          0          0     GICv2  27 Level     kvm guest vtimer
+> >  13:       1575       1018        604       1588     GICv2  26 Level     arch_timer
+> >  14:          8          0          0          0     GICv2  40 Level     eth0
+> >  15:          5          0          0          0     GICv2  89 Edge      dw_hdmi_top_irq, ff600000.hdmi-tx
+> >  22:        132          0          0          0     GICv2 225 Edge      ttyAML0
+> >  23:         20          0          0          0     GICv2 227 Edge      ff805000.i2c
+> >  25:          2          0          0          0     GICv2 232 Edge      ff809000.adc
+> >  28:        322          0          0          0     GICv2  35 Edge      meson
+> >  31:          0          0          0          0     GICv2 222 Edge      ffe05000.sd
+> >  32:        787          0          0          0     GICv2 223 Edge      ffe07000.mmc
+> >  34:          0          0          0          0     GICv2 194 Level     panfrost-job
+> >  35:          0          0          0          0     GICv2 193 Level     panfrost-mmu
+> >  36:          3          0          0          0     GICv2 192 Level     panfrost-gpu
+> >  37:          2          0          0          0  meson-gpio-irqchip  26 Level     0.0:00
+> >  39:          0          0          0          0     GICv2  63 Level     ff400000.usb, ff400000.usb
+> >  40:         32          0          0          0     GICv2  62 Level     xhci-hcd:usb1
+> > IPI0:       476        567        720        956       Rescheduling interrupts
+> > IPI1:        93        166        270        137       Function call interrupts
+> > IPI2:         0          0          0          0       CPU stop interrupts
+> > IPI3:         0          0          0          0       CPU stop (for crash dump) interrupts
+> > IPI4:         0          0          0          0       Timer broadcast interrupts
+> > IPI5:         0          0          0          0       IRQ work interrupts
+> > IPI6:         0          0          0          0       CPU wake-up interrupts
+> > Err:          0
+> > / #
+>
+> This thing keeps failing on my end. It only works if I force the
+> irqchip module to be present before the MDIO module is loaded. Here's
+> an example:
+>
+> root@tiger-roach:~# modprobe mdio_mux_meson_g12a
+> [  125.871544] libphy: mdio_mux: probed
+> [  125.882575] g12a-mdio_mux ff64c000.mdio-multiplexer: Error: Failed to register MDIO bus for child /soc/bus@ff600000/mdio-multiplexer@4c000/mdio@0
+> [  125.892630] libphy: mdio_mux: probed
+>
+> Trying to bring up the Ethernet interface will fail. Note that there
+> was no attempt to load the irqchip driver.
+>
+> root@tiger-roach:~# modprobe -r mdio_mux_meson_g12a
+> root@tiger-roach:~# modprobe irq-meson-gpio
+> [  144.983344] meson-gpio-intc ffd0f080.interrupt-controller: 100 to 8 gpio interrupt mux initialized
+> root@tiger-roach:~# modprobe mdio_mux_meson_g12a
+> [  150.376464] libphy: mdio_mux: probed
+> [  150.391039] libphy: mdio_mux: probed
+>
+> And it now works.
+>
+> Is it a MDIO issue? a fw_devlink issue? No idea. But I'd really like
+> to see this addressed before taking this patch, as everything works
+> just fine as long as the irqchip is built in (which on its own could
+> well pure luck).
+>
+> Saravana, could you please have a look from a fw_devlink perspective?
 
-Okay.  The trace shows something unexpected and strange.  It starts out 
-normally:
+Sigh... I spent several hours looking at this and wrote up an analysis
+and then realized I might be looking at the wrong DT files.
 
-dfa09a80 109714572 S Ci:1:002:0 s a3 00 0000 0001 0004 4 <
-dfa09a80 109715294 C Ci:1:002:0 0 4 = 00010000
-dfb50480 109722588 S Ci:1:002:0 s a3 00 0000 0002 0004 4 <
-dfb50480 109729096 C Ci:1:002:0 0 4 = 00010000
-dfb50480 109731181 S Ci:1:002:0 s a3 00 0000 0003 0004 4 <
-dfb50480 109731855 C Ci:1:002:0 0 4 = 00010000
-dfb50480 109731955 S Ci:1:002:0 s a3 00 0000 0004 0004 4 <
-dfb50480 109732354 C Ci:1:002:0 0 4 = 00010000
-c53fde80 109732473 C Ii:1:002:1 -2:2048 0
+Marc, can you point me to the board file in upstream that corresponds
+to the platform in which you see this issue? I'm not asking for [1],
+but the actual final .dts (not .dtsi) file that corresponds to the
+platform/board/system.
 
-These show the kernel checking that there are no changes pending on any 
-of the Genesys Logic hub's four ports and shutting down the interrupt 
-URB, which are the first steps it takes when suspending the hub.
+Based on your error messages, it's failing for mdio@0 which
+corresponds to ext_mdio. But none of the board dts files in upstream
+have a compatible property for "ext_mdio". Which means fw_devlink
+_should_ propagate the gpio_intc IRQ dependency all the way up to
+eth_phy.
 
-dfb50480 109732541 S Co:1:002:0 s 00 03 0001 0000 0000 0
-dfb50480 109732785 C Co:1:002:0 0 0
-dfb50480 109732874 S Co:1:001:0 s 23 03 0002 0001 0000 0
-dfb50480 109732945 C Co:1:001:0 0 0
+Also, in the failing case, can you run:
+ls -ld supplier:*
 
-Next the kernel enables remote wakeup on the GL hub and turns on the 
-suspend feature on the root hub's port 1.  At this point the GL hub 
-should be fully suspended.
+in the /sys/devices/....<something>/ folder that corresponds to the
+"eth_phy: mdio-multiplexer@4c000" DT node and tell me what it shows?
 
-c53f4880 135532734 C Ii:1:001:1 -2:2048 0
+Thanks,
+Saravana
 
-A few seconds later (the second column in the usbmon output is a 
-timestamp, in microseconds), the root hub's interrupt URB is shut down.  
-This is the only part of suspending the root hub that shows up in a 
-usbmon trace.
-
-dfb50a80 167772234 S Ci:1:001:0 s a3 00 0000 0001 0004 4 <
-dfb50a80 167772741 C Ci:1:001:0 0 4 = 03050000
-c53f4880 167773132 S Ii:1:001:1 -115:2048 4 <
-
-A few seconds later the root hub is resumed.  This involves checking the 
-status of the root hub's downstream port and restarting the interrupt 
-URB.
-
-The unexpected behavior shows up in the second line above: The port 
-status is 03050000 rather than 07050000.  This means the port is 
-connected and enabled, but not suspended!  It also explains why later 
-on, when the GL hub is resumed, we get:
-
-dfb02a80 243483471 S Ci:1:001:0 s a3 00 0000 0001 0004 4 <
-dfb02a80 243484838 C Ci:1:001:0 0 4 = 03050000
-dfb02a80 243504208 S Ci:1:002:0 s 80 00 0000 0000 0002 2 <
-dfb02a80 243552775 C Ci:1:002:0 0 2 = 0300
-dfb02a80 243553536 S Co:1:002:0 s 00 01 0001 0000 0000 0
-dfb02a80 243554358 C Co:1:002:0 0 0
-
-This shows the port status being checked again.  The suspend status bit 
-is still clear, so the kernel skips the step in which it tells the root 
-hub to resume the port.  Instead, it immediately goes ahead to check the 
-GL hub's device status and to turn off the hub's remote wakeup feature.  
-These requests succeed, which wouldn't have happened if the port were 
-still suspended.
-
-In other words, the trace shows that the GL hub was never fully 
-suspended!
-
-So the question is: Why doesn't the port status on the DWC2 root hub 
-show the suspend feature set, and why doesn't the root hub port get 
-suspended?  This looks like a bug in the dwc2 driver.  It could well 
-account for at least some of the problems you've been seeing.
-
-Minas, any suggestions?
-
-Alan Stern
+[1] - arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
 
 _______________________________________________
 linux-amlogic mailing list
