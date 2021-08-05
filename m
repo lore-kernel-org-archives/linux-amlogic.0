@@ -2,89 +2,89 @@ Return-Path: <SRS0=o4E8=M4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,FSL_HELO_FAKE,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABC3DC4338F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Aug 2021 06:31:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A48C0C4338F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Aug 2021 07:58:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 16B4A60560
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Aug 2021 06:31:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 16B4A60560
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 681AA60E53
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Aug 2021 07:58:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 681AA60E53
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=HDjfPZX7n/sG4tJECdl/y0kvnFgBPnAqR/DYCj1FYZw=; b=FtDG03LnmNngdmdxdJCWIE6EfL
-	JKs492zgC91xNH2H3qXVnwc/rhP2BQRNMUSK22xtchuknxX3hFQIJrhI0U9gu0IYjw8aCiys5+q07
-	qvS5h/q1ZFBorZf5/X454+6C9QquLZxxbfK8Xo7S7qkN+FEjsIncp0iXK5SbTu+Q0s7ij403SopGo
-	xebFnKqnOmkqi6fVDISHkedX+pKinv/F9X3ZB/RVgjongDKLCPT9ggFKMR/lGZ9PrXZTqbg58nEKK
-	wqF9KKsBhj0llId9tlZtd5eD47ytI+Rnuom7QAh0w0/gnoPxtXDYGVuWpDYevCwlmd8OTDUYq2DGM
-	hmYrQgCQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pxVpVNY0uH8NUMbtSTuc9ArzfXSOq5v3SziDdAb+EOg=; b=WJF9RgLdmQ0m49
+	B9ffRTAn2a6u4cbm4F41farBJJGtB1uqrqE+xD9Ky0TBcrPgUgcHq29hkheij+MDbomwEMmMFy9xV
+	wzSjOyord1FFclj/kgfqlwwI33bwYdEqsD4kbK01UBtkIMA8wjwpMexAAR5Ze7MQgX5EIGArO2ehf
+	EGVQfoGyByIkoFXwkQBaAj26aFkaxNKoq3SoNdsiHHlAe2h+p5sPdNlO9x9jc9rrr5jp8XpQp5kCd
+	m/zBZdn5VbCcuCjAm6suwa5ybqHqAzUQ+RUvUk5Ovj7vVXJs6vB9ZN62cwHmSD/AfaRoez9WZafUG
+	6iy6l/l0Vl3lwgsOaPww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mBWuQ-008FdJ-Ej; Thu, 05 Aug 2021 06:31:14 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1mBYGM-008WeE-Dx; Thu, 05 Aug 2021 07:57:58 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mBWuM-008FcN-IH
- for linux-amlogic@lists.infradead.org; Thu, 05 Aug 2021 06:31:13 +0000
-Received: by mail-wm1-x333.google.com with SMTP id
- k38-20020a05600c1ca6b029025af5e0f38bso5412849wms.5
- for <linux-amlogic@lists.infradead.org>; Wed, 04 Aug 2021 23:31:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=6jUhEtKSiG7ZerzsDL2H1kO7Htn4R9iX/da1sgzTYhQ=;
- b=sVkwhLsN7lFzvmfY3MOh+638o1qqgcCi1P8Mz/17oEAwPa4qnuPqbFxbhny+sYRAkX
- l3KQp/WFPkwKHO/sgBLIC6Gswo9/GKzE+u9ZBqmOq1NQd+DXQbd4Hd3BCbdCWQ57pTin
- 1xA7/h53c5t/wsXjIkv0R62LWSm25FluPws1e4TUmKiDrcJMVdszVF+tf/jqCn61AC8g
- YgeQTyFVuuqAzA+PWHr9sWy3gwEKX9YYxL0mwH1uclnJaRIkiSUchCftUP8ZPwfyOQ4F
- xgNzj2zblW+nFiQcaXNTapERV2fNgVVo45D7LUjFk2u8kg4ENZEEpBNg5RnOBCZG/7t6
- XImw==
+ id 1mBYFh-008WCB-Tb
+ for linux-amlogic@lists.infradead.org; Thu, 05 Aug 2021 07:57:21 +0000
+Received: by mail-wm1-x332.google.com with SMTP id
+ a192-20020a1c7fc90000b0290253b32e8796so5050071wmd.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 05 Aug 2021 00:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=8f5irXTOZ+x1gqeO+/tRlTIZs9mBkkMUf4VKbD7vsag=;
+ b=Cjclz8AMLNKZ/ixpsGLo+HKLOR46pfRb386vdXb2uBUOFefb6AEr/JxCkmjY/3ja44
+ E4vQHrVP0gOphI/lf35gPhbAlms+8PIy8RPMX0zrs35OfswTfsfJh1gCVqNxAsLp+r3f
+ CEcIT/9vNxJSIU30ExwwJELU6CIhKMQLpuOOUhKrCrkH8zcm6+vJkBEg05IHQLXoxpNr
+ zVpETORHtLOpC5Q9VkIaj/MQ9SmzWBi/i60zfJg0ENdfCoIhwQIoM2FjFB12nRThk+Ek
+ qJevUFuVOyOxBgJIIp36POaxE0lSD6uaiQHR6YH9+M4CB6OHUiGgjb/oalS7dnpDhLJd
+ skXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=6jUhEtKSiG7ZerzsDL2H1kO7Htn4R9iX/da1sgzTYhQ=;
- b=B3XLVSnDIM4LQuxndWy3gNwyOZ4MkxYVmA3Zs3xfk8Ks8+TjqlwRbuPNJkjAhkKtPF
- wA/AEzW5Ml45i0M6Ko9k9JtYpMjZ7Mm1KwuOJnwPEl3V5t1dWdDs6wnoO6TekuL1nZ5x
- crxfE1O6ctNEcbKxim4TAVL25Oaneg1IYgTkgGdzOXD6ruQf85mcwbUnM9gF0uNePm7S
- FAjLFvOCx20ndJ63Fd5N/ia0PuFBx9W0KNkNOdVLvX0Ujgzr1dnsOvaUQLX9e9ZEv6bw
- EJFlwZCVxqiPZXq3p7Ym+J2jAV5Spq4FfurrNjFW/jhRzQC4MaoLdcZrWD6n20Efim7C
- CzUQ==
-X-Gm-Message-State: AOAM533+4QGZ2OQzcM7sK0q3bDHHMqgBf2KOXwRiiyVGoYmp6Gd0JCgA
- Gb3zG4IXJMcKINXGdkuIBjTd+w==
-X-Google-Smtp-Source: ABdhPJwhzVUVFwT3U+v9V/pf/bnOjk+HxXuJhP6KwE+dmCvAuziAmYWEXS/ynfioDbEwv2YrnygzVg==
-X-Received: by 2002:a1c:cc1a:: with SMTP id h26mr3169713wmb.47.1628145068651; 
- Wed, 04 Aug 2021 23:31:08 -0700 (PDT)
-Received: from [10.1.3.29] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id j14sm4735302wrr.16.2021.08.04.23.31.07
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 04 Aug 2021 23:31:08 -0700 (PDT)
-Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build as
- a module
-To: Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>
-Cc: Kevin Hilman <khilman@baylibre.com>, Lee Jones <lee.jones@linaro.org>,
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=8f5irXTOZ+x1gqeO+/tRlTIZs9mBkkMUf4VKbD7vsag=;
+ b=ZWnCynzv/zIAWqeb431TjSLDkMwum5SINxC1AbOlyU5eAvwZibTFM+LjpConCYUIIE
+ t+KnXIb4Pi8tyQpwhvfNGZGX2OYpY8GuMXqa1ILDokq7TZf3s8FUeZ8geDJmebRjqTJv
+ /0A13V2pWQyTUCzurEXc1mphH0HNrvkb3/j0UMAf6iDqonlL8YCqUVRBOm2fKmSTero+
+ xgHLia/NmkGZ48SLFihpu3EZGVbxQfVeVi9Rm+qu5dMuJPf+QNQuc2K4ymVVdjXemd2Q
+ wN693cpXeMblR19DPLJbS8E4jBTD5qW/rBrOEwZroJVLES8x7ivwm2SA1AcoaCMS7vl0
+ wQ3Q==
+X-Gm-Message-State: AOAM533s2oAm4V/br3+TPh+WHDiHIJ1wV71KAld3mJ+6MlN+75ekPOje
+ jM7T9iIxdElCpcRu1s4vG35hdQ==
+X-Google-Smtp-Source: ABdhPJwhLLopAA/dTEvx/HThhsTVbzLYE3o0/re8+AVTzlEJn7scdP89e0g2se26WnCV5dLwJZ3FQg==
+X-Received: by 2002:a05:600c:4101:: with SMTP id
+ j1mr3576009wmi.110.1628150236118; 
+ Thu, 05 Aug 2021 00:57:16 -0700 (PDT)
+Received: from google.com ([109.180.115.228])
+ by smtp.gmail.com with ESMTPSA id f26sm5233182wrd.41.2021.08.05.00.57.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 05 Aug 2021 00:57:15 -0700 (PDT)
+Date: Thu, 5 Aug 2021 08:57:13 +0100
+From: Lee Jones <lee.jones@linaro.org>
+To: Saravana Kannan <saravanak@google.com>
+Cc: Marc Zyngier <maz@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
  linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
  open list <linux-kernel@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
  Android Kernel Team <kernel-team@android.com>
-References: <20201020072532.949137-1-narmstrong@baylibre.com>
- <20201020072532.949137-2-narmstrong@baylibre.com>
+Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build
+ as a module
+Message-ID: <YQuZ2cKVE+3Os25Z@google.com>
+References: <20201020072532.949137-2-narmstrong@baylibre.com>
  <7hsga8kb8z.fsf@baylibre.com>
  <CAF2Aj3g6c8FEZb3e1by6sd8LpKLaeN5hsKrrQkZUvh8hosiW9A@mail.gmail.com>
  <87r1hwwier.wl-maz@kernel.org> <7h7diwgjup.fsf@baylibre.com>
@@ -93,18 +93,12 @@ References: <20201020072532.949137-1-narmstrong@baylibre.com>
  <87sfzpwq4f.wl-maz@kernel.org>
  <CAGETcx95kHrv8wA-O+-JtfH7H9biJEGJtijuPVN0V5dUKUAB3A@mail.gmail.com>
  <CAGETcx8bpWQEnkpJ0YW9GqX8WE0ewT45zqkbWWdZ0ktJBhG4yQ@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <4e98d876-330f-21a4-846e-94e1f01f0eed@baylibre.com>
-Date: Thu, 5 Aug 2021 08:31:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
 MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <CAGETcx8bpWQEnkpJ0YW9GqX8WE0ewT45zqkbWWdZ0ktJBhG4yQ@mail.gmail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210804_233110_736621_CB8E38CD 
-X-CRM114-Status: GOOD (  35.56  )
+X-CRM114-CacheID: sfid-20210805_005718_079517_212A2106 
+X-CRM114-Status: GOOD (  49.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,168 +110,116 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Saravana,
-
-On 04/08/2021 23:47, Saravana Kannan wrote:
-> On Wed, Aug 4, 2021 at 11:20 AM Saravana Kannan <saravanak@google.com> wrote:
->>
->> On Wed, Aug 4, 2021 at 1:50 AM Marc Zyngier <maz@kernel.org> wrote:
->>>
->>> On Wed, 04 Aug 2021 02:36:45 +0100,
->>> Saravana Kannan <saravanak@google.com> wrote:
->>>
->>> Hi Saravana,
->>>
->>> Thanks for looking into this.
->>
->> You are welcome. I just don't want people to think fw_devlink is broken :)
->>
->>>
->>> [...]
->>>
->>>>> Saravana, could you please have a look from a fw_devlink perspective?
->>>>
->>>> Sigh... I spent several hours looking at this and wrote up an analysis
->>>> and then realized I might be looking at the wrong DT files.
->>>>
->>>> Marc, can you point me to the board file in upstream that corresponds
->>>> to the platform in which you see this issue? I'm not asking for [1],
->>>> but the actual final .dts (not .dtsi) file that corresponds to the
->>>> platform/board/system.
->>>
->>> The platform I can reproduce this on is described in
->>> arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts. It is an
->>> intricate maze of inclusion, node merge and other DT subtleties. I
->>> suggest you look at the decompiled version to get a view of the
->>> result.
->>
->> Thanks. After decompiling it, it looks something like (stripped a
->> bunch of reg and address properties and added the labels back):
->>
->> eth_phy: mdio-multiplexer@4c000 {
->>         compatible = "amlogic,g12a-mdio-mux";
->>         clocks = <0x02 0x13 0x1e 0x02 0xb1>;
->>         clock-names = "pclk\0clkin0\0clkin1";
->>         mdio-parent-bus = <0x22>;
->>
->>         ext_mdio: mdio@0 {
->>                 reg = <0x00>;
->>
->>                 ethernet-phy@0 {
->>                         max-speed = <0x3e8>;
->>                         interrupt-parent = <0x23>;
->>                         interrupts = <0x1a 0x08>;
->>                         phandle = <0x16>;
->>                 };
->>         };
->>
->>         int_mdio: mdio@1 {
->>                 ...
->>         }
->> }
->>
->> And phandle 0x23 refers to the gpio_intc interrupt controller with the
->> modular driver.
->>
->>>> Based on your error messages, it's failing for mdio@0 which
->>>> corresponds to ext_mdio. But none of the board dts files in upstream
->>>> have a compatible property for "ext_mdio". Which means fw_devlink
->>>> _should_ propagate the gpio_intc IRQ dependency all the way up to
->>>> eth_phy.
->>>>
->>>> Also, in the failing case, can you run:
->>>> ls -ld supplier:*
->>>>
->>>> in the /sys/devices/....<something>/ folder that corresponds to the
->>>> "eth_phy: mdio-multiplexer@4c000" DT node and tell me what it shows?
->>>
->>> Here you go:
->>>
->>> root@tiger-roach:~# find /sys/devices/ -name 'supplier*'|grep -i mdio | xargs ls -ld
->>> lrwxrwxrwx 1 root root 0 Aug  4 09:47 /sys/devices/platform/soc/ff600000.bus/ff64c000.mdio-multiplexer/supplier:platform:ff63c000.system-controller:clock-controller -> ../../../../virtual/devlink/platform:ff63c000.system-controller:clock-controller--platform:ff64c000.mdio-multiplexer
->>
->> As we discussed over chat, this was taken after the mdio-multiplexer
->> driver "successfully" probes this device. This will cause
->> SYNC_STATE_ONLY device links created by fw_devlink to be deleted
->> (because they are useless after a device probes). So, this doesn't
->> show the info I was hoping to demonstrate.
->>
->> In any case, one can see that fw_devlink properly created the device
->> link for the clocks dependency. So fw_devlink is parsing this node
->> properly. But it doesn't create a similar probe order enforcing device
->> link between the mdio-multiplexer and the gpio_intc because the
->> dependency is only present in a grand child DT node (ethernet-phy@0
->> under ext_mdio). So fw_devlink is working as intended.
->>
->> I spent several hours squinting at the code/DT yesterday. Here's what
->> is going on and causing the problem:
->>
->> The failing driver in this case is
->> drivers/net/mdio/mdio-mux-meson-g12a.c. And the only DT node it's
->> handling is what I pasted above in this email. In the failure case,
->> the call flow is something like this:
->>
->> g12a_mdio_mux_probe()
->> -> mdio_mux_init()
->> -> of_mdiobus_register(ext_mdio DT node)
->> -> of_mdiobus_register_phy(ext_mdio DT node)
->> -> several calls deep fwnode_mdiobus_phy_device_register(ethernet_phy DT node)
->> -> Tried to get the IRQ listed in ethernet_phy and fails with
->> -EPROBE_DEFER because the IRQ driver isn't loaded yet.
->>
->> The error is propagated correctly all the way up to of_mdiobus_register(), but
->> mdio_mux_init() ignores the -EPROBE_DEFER from of_mdiobus_register() and just
->> continues on with the rest of the stuff and returns success as long as
->> one of the child nodes (in this case int_mdio) succeeds.
->>
->> Since the probe returns 0 without really succeeding, networking stuff
->> just fails badly after this. So, IMO, the real problem is with
->> mdio_mux_init() not propagating up the -EPROBE_DEFER. I gave Marc a
->> quick hack (pasted at the end of this email) to test my theory and he
->> confirmed that it fixes the issue (a few deferred probes later, things
->> work properly).
->>
->> Andrew, I don't see any good reason for mdio_mux_init() not
->> propagating the errors up correctly (at least for EPROBE_DEFER). I'll
->> send a patch to fix this. Please let me know if there's a reason it
->> has to stay as-is.
-> 
-> I sent out the proper fix as a series:
-> https://lore.kernel.org/lkml/20210804214333.927985-1-saravanak@google.com/T/#t
-
-Thanks a lot for digging here and providing the appropriate fixes !
-
-Neil
-
-> 
-> Marc, can you give it a shot please?
-> 
-> -Saravana
-> 
->>
->> -Saravana
->>
->> index 110e4ee85785..d973a267151f 100644
->> --- a/drivers/net/mdio/mdio-mux.c
->> +++ b/drivers/net/mdio/mdio-mux.c
->> @@ -170,6 +170,9 @@ int mdio_mux_init(struct device *dev,
->>                                 child_bus_node);
->>                         mdiobus_free(cb->mii_bus);
->>                         devm_kfree(dev, cb);
->> +                       /* Not a final fix. I think it can cause UAF issues. */
->> +                       mdio_mux_uninit(pb);
->> +                       return r;
->>                 } else {
->>                         cb->next = pb->children;
->>                         pb->children = cb;
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gV2VkLCAwNCBBdWcgMjAyMSwgU2FyYXZhbmEgS2FubmFuIHdyb3RlOgoKPiBPbiBXZWQsIEF1
+ZyA0LCAyMDIxIGF0IDExOjIwIEFNIFNhcmF2YW5hIEthbm5hbiA8c2FyYXZhbmFrQGdvb2dsZS5j
+b20+IHdyb3RlOgo+ID4KPiA+IE9uIFdlZCwgQXVnIDQsIDIwMjEgYXQgMTo1MCBBTSBNYXJjIFp5
+bmdpZXIgPG1hekBrZXJuZWwub3JnPiB3cm90ZToKPiA+ID4KPiA+ID4gT24gV2VkLCAwNCBBdWcg
+MjAyMSAwMjozNjo0NSArMDEwMCwKPiA+ID4gU2FyYXZhbmEgS2FubmFuIDxzYXJhdmFuYWtAZ29v
+Z2xlLmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IEhpIFNhcmF2YW5hLAo+ID4gPgo+ID4gPiBUaGFu
+a3MgZm9yIGxvb2tpbmcgaW50byB0aGlzLgo+ID4KPiA+IFlvdSBhcmUgd2VsY29tZS4gSSBqdXN0
+IGRvbid0IHdhbnQgcGVvcGxlIHRvIHRoaW5rIGZ3X2RldmxpbmsgaXMgYnJva2VuIDopCj4gPgo+
+ID4gPgo+ID4gPiBbLi4uXQo+ID4gPgo+ID4gPiA+ID4gU2FyYXZhbmEsIGNvdWxkIHlvdSBwbGVh
+c2UgaGF2ZSBhIGxvb2sgZnJvbSBhIGZ3X2RldmxpbmsgcGVyc3BlY3RpdmU/Cj4gPiA+ID4KPiA+
+ID4gPiBTaWdoLi4uIEkgc3BlbnQgc2V2ZXJhbCBob3VycyBsb29raW5nIGF0IHRoaXMgYW5kIHdy
+b3RlIHVwIGFuIGFuYWx5c2lzCj4gPiA+ID4gYW5kIHRoZW4gcmVhbGl6ZWQgSSBtaWdodCBiZSBs
+b29raW5nIGF0IHRoZSB3cm9uZyBEVCBmaWxlcy4KPiA+ID4gPgo+ID4gPiA+IE1hcmMsIGNhbiB5
+b3UgcG9pbnQgbWUgdG8gdGhlIGJvYXJkIGZpbGUgaW4gdXBzdHJlYW0gdGhhdCBjb3JyZXNwb25k
+cwo+ID4gPiA+IHRvIHRoZSBwbGF0Zm9ybSBpbiB3aGljaCB5b3Ugc2VlIHRoaXMgaXNzdWU/IEkn
+bSBub3QgYXNraW5nIGZvciBbMV0sCj4gPiA+ID4gYnV0IHRoZSBhY3R1YWwgZmluYWwgLmR0cyAo
+bm90IC5kdHNpKSBmaWxlIHRoYXQgY29ycmVzcG9uZHMgdG8gdGhlCj4gPiA+ID4gcGxhdGZvcm0v
+Ym9hcmQvc3lzdGVtLgo+ID4gPgo+ID4gPiBUaGUgcGxhdGZvcm0gSSBjYW4gcmVwcm9kdWNlIHRo
+aXMgb24gaXMgZGVzY3JpYmVkIGluCj4gPiA+IGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9t
+ZXNvbi1zbTEta2hhZGFzLXZpbTNsLmR0cy4gSXQgaXMgYW4KPiA+ID4gaW50cmljYXRlIG1hemUg
+b2YgaW5jbHVzaW9uLCBub2RlIG1lcmdlIGFuZCBvdGhlciBEVCBzdWJ0bGV0aWVzLiBJCj4gPiA+
+IHN1Z2dlc3QgeW91IGxvb2sgYXQgdGhlIGRlY29tcGlsZWQgdmVyc2lvbiB0byBnZXQgYSB2aWV3
+IG9mIHRoZQo+ID4gPiByZXN1bHQuCj4gPgo+ID4gVGhhbmtzLiBBZnRlciBkZWNvbXBpbGluZyBp
+dCwgaXQgbG9va3Mgc29tZXRoaW5nIGxpa2UgKHN0cmlwcGVkIGEKPiA+IGJ1bmNoIG9mIHJlZyBh
+bmQgYWRkcmVzcyBwcm9wZXJ0aWVzIGFuZCBhZGRlZCB0aGUgbGFiZWxzIGJhY2spOgo+ID4KPiA+
+IGV0aF9waHk6IG1kaW8tbXVsdGlwbGV4ZXJANGMwMDAgewo+ID4gICAgICAgICBjb21wYXRpYmxl
+ID0gImFtbG9naWMsZzEyYS1tZGlvLW11eCI7Cj4gPiAgICAgICAgIGNsb2NrcyA9IDwweDAyIDB4
+MTMgMHgxZSAweDAyIDB4YjE+Owo+ID4gICAgICAgICBjbG9jay1uYW1lcyA9ICJwY2xrXDBjbGtp
+bjBcMGNsa2luMSI7Cj4gPiAgICAgICAgIG1kaW8tcGFyZW50LWJ1cyA9IDwweDIyPjsKPiA+Cj4g
+PiAgICAgICAgIGV4dF9tZGlvOiBtZGlvQDAgewo+ID4gICAgICAgICAgICAgICAgIHJlZyA9IDww
+eDAwPjsKPiA+Cj4gPiAgICAgICAgICAgICAgICAgZXRoZXJuZXQtcGh5QDAgewo+ID4gICAgICAg
+ICAgICAgICAgICAgICAgICAgbWF4LXNwZWVkID0gPDB4M2U4PjsKPiA+ICAgICAgICAgICAgICAg
+ICAgICAgICAgIGludGVycnVwdC1wYXJlbnQgPSA8MHgyMz47Cj4gPiAgICAgICAgICAgICAgICAg
+ICAgICAgICBpbnRlcnJ1cHRzID0gPDB4MWEgMHgwOD47Cj4gPiAgICAgICAgICAgICAgICAgICAg
+ICAgICBwaGFuZGxlID0gPDB4MTY+Owo+ID4gICAgICAgICAgICAgICAgIH07Cj4gPiAgICAgICAg
+IH07Cj4gPgo+ID4gICAgICAgICBpbnRfbWRpbzogbWRpb0AxIHsKPiA+ICAgICAgICAgICAgICAg
+ICAuLi4KPiA+ICAgICAgICAgfQo+ID4gfQo+ID4KPiA+IEFuZCBwaGFuZGxlIDB4MjMgcmVmZXJz
+IHRvIHRoZSBncGlvX2ludGMgaW50ZXJydXB0IGNvbnRyb2xsZXIgd2l0aCB0aGUKPiA+IG1vZHVs
+YXIgZHJpdmVyLgo+ID4KPiA+ID4gPiBCYXNlZCBvbiB5b3VyIGVycm9yIG1lc3NhZ2VzLCBpdCdz
+IGZhaWxpbmcgZm9yIG1kaW9AMCB3aGljaAo+ID4gPiA+IGNvcnJlc3BvbmRzIHRvIGV4dF9tZGlv
+LiBCdXQgbm9uZSBvZiB0aGUgYm9hcmQgZHRzIGZpbGVzIGluIHVwc3RyZWFtCj4gPiA+ID4gaGF2
+ZSBhIGNvbXBhdGlibGUgcHJvcGVydHkgZm9yICJleHRfbWRpbyIuIFdoaWNoIG1lYW5zIGZ3X2Rl
+dmxpbmsKPiA+ID4gPiBfc2hvdWxkXyBwcm9wYWdhdGUgdGhlIGdwaW9faW50YyBJUlEgZGVwZW5k
+ZW5jeSBhbGwgdGhlIHdheSB1cCB0bwo+ID4gPiA+IGV0aF9waHkuCj4gPiA+ID4KPiA+ID4gPiBB
+bHNvLCBpbiB0aGUgZmFpbGluZyBjYXNlLCBjYW4geW91IHJ1bjoKPiA+ID4gPiBscyAtbGQgc3Vw
+cGxpZXI6Kgo+ID4gPiA+Cj4gPiA+ID4gaW4gdGhlIC9zeXMvZGV2aWNlcy8uLi4uPHNvbWV0aGlu
+Zz4vIGZvbGRlciB0aGF0IGNvcnJlc3BvbmRzIHRvIHRoZQo+ID4gPiA+ICJldGhfcGh5OiBtZGlv
+LW11bHRpcGxleGVyQDRjMDAwIiBEVCBub2RlIGFuZCB0ZWxsIG1lIHdoYXQgaXQgc2hvd3M/Cj4g
+PiA+Cj4gPiA+IEhlcmUgeW91IGdvOgo+ID4gPgo+ID4gPiByb290QHRpZ2VyLXJvYWNoOn4jIGZp
+bmQgL3N5cy9kZXZpY2VzLyAtbmFtZSAnc3VwcGxpZXIqJ3xncmVwIC1pIG1kaW8gfCB4YXJncyBs
+cyAtbGQKPiA+ID4gbHJ3eHJ3eHJ3eCAxIHJvb3Qgcm9vdCAwIEF1ZyAgNCAwOTo0NyAvc3lzL2Rl
+dmljZXMvcGxhdGZvcm0vc29jL2ZmNjAwMDAwLmJ1cy9mZjY0YzAwMC5tZGlvLW11bHRpcGxleGVy
+L3N1cHBsaWVyOnBsYXRmb3JtOmZmNjNjMDAwLnN5c3RlbS1jb250cm9sbGVyOmNsb2NrLWNvbnRy
+b2xsZXIgLT4gLi4vLi4vLi4vLi4vdmlydHVhbC9kZXZsaW5rL3BsYXRmb3JtOmZmNjNjMDAwLnN5
+c3RlbS1jb250cm9sbGVyOmNsb2NrLWNvbnRyb2xsZXItLXBsYXRmb3JtOmZmNjRjMDAwLm1kaW8t
+bXVsdGlwbGV4ZXIKPiA+Cj4gPiBBcyB3ZSBkaXNjdXNzZWQgb3ZlciBjaGF0LCB0aGlzIHdhcyB0
+YWtlbiBhZnRlciB0aGUgbWRpby1tdWx0aXBsZXhlcgo+ID4gZHJpdmVyICJzdWNjZXNzZnVsbHki
+IHByb2JlcyB0aGlzIGRldmljZS4gVGhpcyB3aWxsIGNhdXNlCj4gPiBTWU5DX1NUQVRFX09OTFkg
+ZGV2aWNlIGxpbmtzIGNyZWF0ZWQgYnkgZndfZGV2bGluayB0byBiZSBkZWxldGVkCj4gPiAoYmVj
+YXVzZSB0aGV5IGFyZSB1c2VsZXNzIGFmdGVyIGEgZGV2aWNlIHByb2JlcykuIFNvLCB0aGlzIGRv
+ZXNuJ3QKPiA+IHNob3cgdGhlIGluZm8gSSB3YXMgaG9waW5nIHRvIGRlbW9uc3RyYXRlLgo+ID4K
+PiA+IEluIGFueSBjYXNlLCBvbmUgY2FuIHNlZSB0aGF0IGZ3X2RldmxpbmsgcHJvcGVybHkgY3Jl
+YXRlZCB0aGUgZGV2aWNlCj4gPiBsaW5rIGZvciB0aGUgY2xvY2tzIGRlcGVuZGVuY3kuIFNvIGZ3
+X2RldmxpbmsgaXMgcGFyc2luZyB0aGlzIG5vZGUKPiA+IHByb3Blcmx5LiBCdXQgaXQgZG9lc24n
+dCBjcmVhdGUgYSBzaW1pbGFyIHByb2JlIG9yZGVyIGVuZm9yY2luZyBkZXZpY2UKPiA+IGxpbmsg
+YmV0d2VlbiB0aGUgbWRpby1tdWx0aXBsZXhlciBhbmQgdGhlIGdwaW9faW50YyBiZWNhdXNlIHRo
+ZQo+ID4gZGVwZW5kZW5jeSBpcyBvbmx5IHByZXNlbnQgaW4gYSBncmFuZCBjaGlsZCBEVCBub2Rl
+IChldGhlcm5ldC1waHlAMAo+ID4gdW5kZXIgZXh0X21kaW8pLiBTbyBmd19kZXZsaW5rIGlzIHdv
+cmtpbmcgYXMgaW50ZW5kZWQuCj4gPgo+ID4gSSBzcGVudCBzZXZlcmFsIGhvdXJzIHNxdWludGlu
+ZyBhdCB0aGUgY29kZS9EVCB5ZXN0ZXJkYXkuIEhlcmUncyB3aGF0Cj4gPiBpcyBnb2luZyBvbiBh
+bmQgY2F1c2luZyB0aGUgcHJvYmxlbToKPiA+Cj4gPiBUaGUgZmFpbGluZyBkcml2ZXIgaW4gdGhp
+cyBjYXNlIGlzCj4gPiBkcml2ZXJzL25ldC9tZGlvL21kaW8tbXV4LW1lc29uLWcxMmEuYy4gQW5k
+IHRoZSBvbmx5IERUIG5vZGUgaXQncwo+ID4gaGFuZGxpbmcgaXMgd2hhdCBJIHBhc3RlZCBhYm92
+ZSBpbiB0aGlzIGVtYWlsLiBJbiB0aGUgZmFpbHVyZSBjYXNlLAo+ID4gdGhlIGNhbGwgZmxvdyBp
+cyBzb21ldGhpbmcgbGlrZSB0aGlzOgo+ID4KPiA+IGcxMmFfbWRpb19tdXhfcHJvYmUoKQo+ID4g
+LT4gbWRpb19tdXhfaW5pdCgpCj4gPiAtPiBvZl9tZGlvYnVzX3JlZ2lzdGVyKGV4dF9tZGlvIERU
+IG5vZGUpCj4gPiAtPiBvZl9tZGlvYnVzX3JlZ2lzdGVyX3BoeShleHRfbWRpbyBEVCBub2RlKQo+
+ID4gLT4gc2V2ZXJhbCBjYWxscyBkZWVwIGZ3bm9kZV9tZGlvYnVzX3BoeV9kZXZpY2VfcmVnaXN0
+ZXIoZXRoZXJuZXRfcGh5IERUIG5vZGUpCj4gPiAtPiBUcmllZCB0byBnZXQgdGhlIElSUSBsaXN0
+ZWQgaW4gZXRoZXJuZXRfcGh5IGFuZCBmYWlscyB3aXRoCj4gPiAtRVBST0JFX0RFRkVSIGJlY2F1
+c2UgdGhlIElSUSBkcml2ZXIgaXNuJ3QgbG9hZGVkIHlldC4KPiA+Cj4gPiBUaGUgZXJyb3IgaXMg
+cHJvcGFnYXRlZCBjb3JyZWN0bHkgYWxsIHRoZSB3YXkgdXAgdG8gb2ZfbWRpb2J1c19yZWdpc3Rl
+cigpLCBidXQKPiA+IG1kaW9fbXV4X2luaXQoKSBpZ25vcmVzIHRoZSAtRVBST0JFX0RFRkVSIGZy
+b20gb2ZfbWRpb2J1c19yZWdpc3RlcigpIGFuZCBqdXN0Cj4gPiBjb250aW51ZXMgb24gd2l0aCB0
+aGUgcmVzdCBvZiB0aGUgc3R1ZmYgYW5kIHJldHVybnMgc3VjY2VzcyBhcyBsb25nIGFzCj4gPiBv
+bmUgb2YgdGhlIGNoaWxkIG5vZGVzIChpbiB0aGlzIGNhc2UgaW50X21kaW8pIHN1Y2NlZWRzLgo+
+ID4KPiA+IFNpbmNlIHRoZSBwcm9iZSByZXR1cm5zIDAgd2l0aG91dCByZWFsbHkgc3VjY2VlZGlu
+ZywgbmV0d29ya2luZyBzdHVmZgo+ID4ganVzdCBmYWlscyBiYWRseSBhZnRlciB0aGlzLiBTbywg
+SU1PLCB0aGUgcmVhbCBwcm9ibGVtIGlzIHdpdGgKPiA+IG1kaW9fbXV4X2luaXQoKSBub3QgcHJv
+cGFnYXRpbmcgdXAgdGhlIC1FUFJPQkVfREVGRVIuIEkgZ2F2ZSBNYXJjIGEKPiA+IHF1aWNrIGhh
+Y2sgKHBhc3RlZCBhdCB0aGUgZW5kIG9mIHRoaXMgZW1haWwpIHRvIHRlc3QgbXkgdGhlb3J5IGFu
+ZCBoZQo+ID4gY29uZmlybWVkIHRoYXQgaXQgZml4ZXMgdGhlIGlzc3VlIChhIGZldyBkZWZlcnJl
+ZCBwcm9iZXMgbGF0ZXIsIHRoaW5ncwo+ID4gd29yayBwcm9wZXJseSkuCj4gPgo+ID4gQW5kcmV3
+LCBJIGRvbid0IHNlZSBhbnkgZ29vZCByZWFzb24gZm9yIG1kaW9fbXV4X2luaXQoKSBub3QKPiA+
+IHByb3BhZ2F0aW5nIHRoZSBlcnJvcnMgdXAgY29ycmVjdGx5IChhdCBsZWFzdCBmb3IgRVBST0JF
+X0RFRkVSKS4gSSdsbAo+ID4gc2VuZCBhIHBhdGNoIHRvIGZpeCB0aGlzLiBQbGVhc2UgbGV0IG1l
+IGtub3cgaWYgdGhlcmUncyBhIHJlYXNvbiBpdAo+ID4gaGFzIHRvIHN0YXkgYXMtaXMuCj4gCj4g
+SSBzZW50IG91dCB0aGUgcHJvcGVyIGZpeCBhcyBhIHNlcmllczoKPiBodHRwczovL2xvcmUua2Vy
+bmVsLm9yZy9sa21sLzIwMjEwODA0MjE0MzMzLjkyNzk4NS0xLXNhcmF2YW5ha0Bnb29nbGUuY29t
+L1QvI3QKPiAKPiBNYXJjLCBjYW4geW91IGdpdmUgaXQgYSBzaG90IHBsZWFzZT8KPiAKPiAtU2Fy
+YXZhbmEKClN1cGVyc3RhciEgIFRoYW5rcyBmb3IgdGFraW5nIHRoZSB0aW1lIHRvIHJlY3RpZnkg
+dGhpcyBmb3IgYWxsIG9mIHVzLgoKLS0gCkxlZSBKb25lcyBb5p2O55C85pavXQpTZW5pb3IgVGVj
+aG5pY2FsIExlYWQgLSBEZXZlbG9wZXIgU2VydmljZXMKTGluYXJvLm9yZyDilIIgT3BlbiBzb3Vy
+Y2Ugc29mdHdhcmUgZm9yIEFybSBTb0NzCkZvbGxvdyBMaW5hcm86IEZhY2Vib29rIHwgVHdpdHRl
+ciB8IEJsb2cKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
+Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
+bG9naWMK
