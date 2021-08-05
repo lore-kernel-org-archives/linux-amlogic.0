@@ -2,92 +2,96 @@ Return-Path: <SRS0=o4E8=M4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BC30C4338F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Aug 2021 16:15:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1446FC4338F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Aug 2021 18:18:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F08D061159
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Aug 2021 16:15:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org F08D061159
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id C5E3A61004
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Aug 2021 18:18:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org C5E3A61004
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=M5Wj/9AFG8UQMgnYa8AdvokdtHfT3HyKbbF37QnXzZM=; b=3IHBVH8I6/2qrR
-	f+yNWIy0+OYD/c9z9etZbAMtHwgEazg+0I3p86LAWUrkjIs40Su5USi31BwKbjhzvXFKSYVaVGG6k
-	NsJwyC7D+coW/SaD3+uG1G0p0sQgQNR7vh9vI9fdAy0EgfSxLOOJ4z2OTAX8PC2d5+xa4AycgaALV
-	t37stWjpHLYU4pUpdjCsXxM8YURCEg9uIrqKa4CNykf0tbSTZK5PthZ6lJebTNi105xxH//Ge3Ajv
-	9gi00AeiMXUQGPO7iZjR2qW8ym8s8Frg4GPtKBb90KSsAdj7PDINbzb6mijYZWNweSgiKd1oGKnee
-	prhcY4AsosTrsooGgDlA==;
+	List-Owner; bh=r1GN4DZVNxN1q42v02T2iOVbiFMSCq++QRguADytzRE=; b=1R45lb3VZ+j0KQ
+	ucMpqooih+Pyj8F9uU2zZY1Ii2Lv370bw14uKQlMdII92G5G4P8isWAe5w7FVNjm/nocia6O6kmyp
+	b1kni6AImShsCq6PVREKtOM3tMtOdZ2RC2GQBb3Ndc/bRIeOFvwS2z81tfTVrCJT4ZcbwIf6CmSZj
+	HhI5thn8ISvLEYgZkzLRuMoXRTJ/DoubBxX4wR/A+run7JNlomO7LjzHB2T0+jMs80CjxQU5+edd2
+	UUMwzqbwOWmlwjAjrkF2P5AzFqBHgGMwzJhJa2Z36Hvq/hegErhcNkJU5bhvRi/zAY3Lymfgc3O3i
+	bnVttJHbi7iR3d7wRW5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mBg1Z-00ADuF-Dc; Thu, 05 Aug 2021 16:15:13 +0000
-Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
+	id 1mBhx9-00AWDp-7k; Thu, 05 Aug 2021 18:18:47 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mBg1W-00ADt5-K4
- for linux-amlogic@lists.infradead.org; Thu, 05 Aug 2021 16:15:12 +0000
-Received: by mail-pj1-x1030.google.com with SMTP id
- s22-20020a17090a1c16b0290177caeba067so16075942pjs.0
- for <linux-amlogic@lists.infradead.org>; Thu, 05 Aug 2021 09:15:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=rEg1BTCMGoRn0sjT3rWRNvHqW2LLrM0T5szYW+iprlY=;
- b=JeySS7sbmS28Oav7betiVjBrAJfEXz59ZQYfOpmK1BIP4wTxeWcTPwIoEpmFlC09DF
- rbWKjGUpowb+0LbpjNn5vITPzDzxcWs0S/r9mrYuq96fFbuQu3KzHqoI4u9De7IL7Jvs
- nSXt1j0MdcvtfEvJ2l/mKCUUMgFZ2rEN9MeZQX+ADKPIj6qRP4sJlewmGiF7TEk8RQ/a
- retiI4410BAKlfZSLIR3R5vhs/IlPxB6QTl7vYhseT+ggiXZVkgwOyg3d2ZiTJxFsqso
- EglMHVeuXVWvstLFr8v5Mn7Y6gZEvE9BMv4IqnTVfWITZmwiYum5VyWqhDTC02DvqtCF
- Reew==
+ id 1mBhwv-00AWCV-Vq; Thu, 05 Aug 2021 18:18:35 +0000
+Received: by mail-ed1-x536.google.com with SMTP id cf5so9687810edb.2;
+ Thu, 05 Aug 2021 11:18:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ojNM9xV3H+nI1/a7NsvJNdRoof5hRfKC/9tKy/ZhcHw=;
+ b=olqN3ikMo81rNz4+DbVRQ5Gbl0vu0cGksnagpE9AgmSSecjhUJyB2hL20W+uRwdVkZ
+ cmeZCYW7JCSZ/NYW0/792UKXVObEHntrwM0GTVFi4UwIV/gNTlp2HXmft1lA96HTWIuY
+ bunfazBEz48qFAV19PJIS6M7B1NmkQhrW5o9iWBSgv8YZr7zlXEkqZ/758h1kjTJSA6H
+ 4CpzFlazcO/6PiXkUUJuP6CNMezIy0+raIkR6RrivKelpHFimF71gUxhmbtION74UFwD
+ wwtoNDpw3trioZGMrWgBU0Alwn86VCLubOfleCkMpfO6DnO9roiE3VkgzfqqkB8qIhqp
+ Am9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=rEg1BTCMGoRn0sjT3rWRNvHqW2LLrM0T5szYW+iprlY=;
- b=rVuxaIv4PjsP3vYzfd9nX5pNylNafzv2B4czVPnYcO2SG1O4r2hR6AO9jz4HF1TwRw
- U9T+hmevswI2femjhjt1NgAwMqAs1no1vyJB5uZfkxcSgTC+nRtzpHjE9vFbYzvRLHEV
- vzWGuPkzA07dgIJp18ec494QtfTKBo/FV0gdw44OxcSAqPUzmxC4OwfTWIja/8oPavbJ
- 9BrXzD7vGWeqjN5a8G6je8RNhV8rY5osj6ENA73mKUQ59nj+LDGkWIdgsb4CLWhMi3jH
- XGn9pz5UUGl7ogkUkY4sD8ScdIiJFhR/WzkDq4UHJM0zk/X4BjMn+yKw1fOON2aFrcMo
- jBwA==
-X-Gm-Message-State: AOAM530i/kGvO3kyYK4WjzTS7rfd+VhSec/MsnlQ3AV+TTKmgc6i7RjT
- PB6uDxrio3h2Y7aR+iyRJdwGdg==
-X-Google-Smtp-Source: ABdhPJyKLIfgIfNToEP9h1rMAx3XgFEHEXDEu9ACbcrjUhWRC7r4z1IJzJr2ZOY+2Xn5CCrJoNVmVA==
-X-Received: by 2002:a65:6099:: with SMTP id t25mr48063pgu.85.1628180109269;
- Thu, 05 Aug 2021 09:15:09 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
- by smtp.gmail.com with ESMTPSA id q17sm8753280pgd.39.2021.08.05.09.15.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Aug 2021 09:15:08 -0700 (PDT)
-Date: Thu, 5 Aug 2021 10:15:06 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- bjorn.andersson@linaro.org, ohad@wizery.com
-Subject: Re: [PATCH v3 2/2] remoteproc: meson-mx-ao-arc: Add a driver for the
- AO ARC remote procesor
-Message-ID: <20210805161506.GA3205691@p14s>
-References: <20210717234859.351911-1-martin.blumenstingl@googlemail.com>
- <20210717234859.351911-3-martin.blumenstingl@googlemail.com>
- <20210728175823.GA2766167@p14s>
- <CAFBinCB0-bAa7Y+YhscczarGrGuio37F8vRyfW6U2DiiDAvr-g@mail.gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ojNM9xV3H+nI1/a7NsvJNdRoof5hRfKC/9tKy/ZhcHw=;
+ b=JRmn0az4pskKPGiCNFqFzkzNM4EBpYdr26BggSQXYUwATRCRByM3Pw78Bxu7SLNX4e
+ zsg3z3aR8kHsV4JoQFJdAtqx2+S4XiMwx4GwuU1ebL88BUEKW3SYKfHmCzq0BcZ26x+M
+ KmQwLTql2JOxNWuLea5xnxFpoMpUsV6acYXEdlTcPUM6U247bA6iZW2vYuldyIq34ZJP
+ LeliwYxs0JS26bDqhW2vKxQKH+17IrF8E0/spQTUiV6UcRpaxKmInT3xg2hrNf78NLeJ
+ vP0ZFzKc27xwKEods5gzkNs8IlVM60YvcLSSX3xjPRYZ8Lk2G0MzIGnSuQKx2muLEpfc
+ Qq3g==
+X-Gm-Message-State: AOAM531E9YuiqiPepTWYw2p/9arsmi46PoQqdRG2+eq4DbjGJ3zagJxp
+ gGh6BQ79hBe7SeoW9JVtOFX8J+vs3FxkCEbUZjE=
+X-Google-Smtp-Source: ABdhPJxAQxK02kP1hoG/1FTsH5hCNBUCJGicnRD8GVaXqj7qpLOmlEdfipZjtgyGJx3opxXShvtRUFnXaflfYi8bGXY=
+X-Received: by 2002:a05:6402:cae:: with SMTP id
+ cn14mr8314025edb.31.1628187511800; 
+ Thu, 05 Aug 2021 11:18:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAFBinCB0-bAa7Y+YhscczarGrGuio37F8vRyfW6U2DiiDAvr-g@mail.gmail.com>
+References: <20210716103651.1455-1-linux.amoon@gmail.com>
+ <20210716103651.1455-2-linux.amoon@gmail.com>
+ <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
+ <CANAwSgQ5PDGUWMH-jxnz5wwutUVniTn7RAe=4J=8-jbmqxYRRg@mail.gmail.com>
+ <CAFBinCBhg+dije+3DvV_V_kqHv9q+r4EPxXCYFti6KuA4mK7KQ@mail.gmail.com>
+ <CANAwSgT9-5zGr67aGzBmW6WDBfeiAvjv_zv2UbRC+YbgAGg==A@mail.gmail.com>
+ <CAFBinCCGA0b=LVjbQood+iN+DHLodY0RJ-GrSOcgdzrDFJ25pQ@mail.gmail.com>
+ <CAFBinCAohjxcsY3D1rdAiYVGL+==cnjzZxg1GmYxSNVhxSTDoA@mail.gmail.com>
+ <CAFBinCAP_DDvPLn4h1yQKEdU_x1ovokHUTPeq3vNV_sDF8PcWg@mail.gmail.com>
+In-Reply-To: <CAFBinCAP_DDvPLn4h1yQKEdU_x1ovokHUTPeq3vNV_sDF8PcWg@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 5 Aug 2021 23:48:20 +0530
+Message-ID: <CANAwSgS2vi7hZqX0LWxNTvk-3aN=n1fEErj4Zt0_4CCpZGyRkg@mail.gmail.com>
+Subject: Re: [PATCHv2 1/4] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-phy@lists.infradead.org, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ linux-amlogic@lists.infradead.org, 
+ Linux Kernel <linux-kernel@vger.kernel.org>,
+ Matt Corallo <oc2udbzfd@mattcorallo.com>, 
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ devicetree <devicetree@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210805_091510_772140_A6109E5F 
-X-CRM114-Status: GOOD (  30.76  )
+X-CRM114-CacheID: sfid-20210805_111834_068554_3136873B 
+X-CRM114-Status: GOOD (  34.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,80 +108,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Aug 04, 2021 at 11:03:57PM +0200, Martin Blumenstingl wrote:
-> Hi Mathieu,
-> 
-> thanks for taking the time to look into this!
-> 
-> (I will address any of your comments that I am not mentioning in this
-> email anymore. Thanks a lot for the suggestions!)
-> 
-> On Wed, Jul 28, 2021 at 7:58 PM Mathieu Poirier
-> <mathieu.poirier@linaro.org> wrote:
-> [...]
-> > > +     writel(FIELD_PREP(AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU,
-> > > +                            priv->sram_pa >> 14),
-> > Indentation problem
-> The idea here is to align priv->sram_pa with AO_REMAP_REG0... which
-> are both arguments to FIELD_PREP
+Hi Martin,
 
-Right, this is what I would have expected.  When I applied the patch on my side
-"priv->sram_pa ..." was aligned wiht the 'M' of "AO_REMAP_ ...".  
-
-> Maybe using something like this will make that easier to read:
->     tmp = FIELD_PREP(AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU,
->                                      priv->sram_pa >> 14);
->     writel(tmp, priv->remap_base + AO_REMAP_REG0);
-
-I think the main problem is that
-AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU is simply too long.  I
-suggest making is shorter and add a comment to describe exactly what it does.
-
-> 
-> What do you think: leave it as is or use a separate variable?
-> 
-> [...]
-> > > +     usleep_range(10, 100);
+On Thu, 5 Aug 2021 at 03:28, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> On Sun, Jul 18, 2021 at 9:09 PM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
 > >
-> > I've seen this kind of mysterious timeouts in other patchset based vendor trees.
-> > You likely don't know why it is needed so I won't ask.
-> unfortunately this is also the case here
-> 
-> [...]
-> > > +     priv->arc_reset = devm_reset_control_get_exclusive(dev, NULL);
-> > > +     if (IS_ERR(priv->arc_reset)) {
+> > Hi Anand,
 > >
-> > Function __reset_control_get() in __devm_reset_control_get() can return NULL so
-> > this should be IS_ERR_OR_NULL().
-> The logic in there is: return optional ? NULL : ERR_PTR(-...);
-
-Ok, so you meant to do that.  And I just checked reset_control_reset() and it does
-account for a NULL parameter.  I'm good with this one but add a comment to
-make sure future readers don't think you've omitted to properly deal with the
-NULL return value.
-
-> I am requesting a mandatory reset line here, so reset core will never
-> return NULL
-> See also [0]
-
-Indeed, I've read that too.  Nonetheless __reset_control_get() can return NULL
-by way of __reset_control_get_from_lookup().
-
-> 
-> For this reason I am not planning to change this
-> 
-> [...]
-> > This driver is squeaky clean. With the above:
+> > On Sun, Jul 18, 2021 at 4:01 PM Martin Blumenstingl
+> > <martin.blumenstingl@googlemail.com> wrote:
+> > [...]
+> > > > From the schematics [1]
+> > > > https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20160226.pdf
+> > > >
+> > > > You could find references to PWREN  <--- GPIOAO.BIT5
+> > > > The second reference is USB HOST Power Switch
+> > > > The third reference is USB HOST POWER.
+> > > >
+> > > > Hope I am clean in my thought process now.
+> > > Can you please point out the page numbers for me?
+> > >
+> > > What I am seeing on page 1 is:
+> > > GPIOAO_5 (called GPIOAO.BIT5) is connected as an INPUT to the USB_OTG
+> > > PWREN signal (that's the green box with the label "USB_OTG.SchDoc"
+> > > above it).
+> > I unfortunately missed your question on IRC on this topic:
+> > <armoon> xdarklight: just want to understand the confusion on PWREN,
+> > either is INPUT / OTPUT to usb hub am I correct
+> > My understanding of the INPUT/OUTPUT direction in the Odroid-C1
+> > schematics (which you linked) above is that the arrow direction shows
+> > whether it's an input or output.
+> > For example (all on page one):
+> > - HDMI_HPD is an input to the Meson8b SoC, arrow direction is: HDMI => S805
+> > - IR_IN is an input to the Meson8b SoC, arrow direction is: S805 <=
+> > GPIOAO.BIT7 IR_IN
+> > - PWM is an output, arrow direction is: S805 => PWM.C VCCK_PWM
+> > - 3.3V/1.8V switch for the SD card is an output, arrow direction is:
+> > S805 => GPIOAO.BIT3 TF_3V3N_1V8_EN
 > >
-> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> awesome, thank you!
-> 
-> 
+> > That tells me: the arrow direction shows which connections are inputs
+> > or outputs.
+> > Some pins can be input and output at the same time (HDMI_CEC). But
+> > let's keep it simple for now any only look at inputs/output.
+> >
+> > Based on this information I am looking at the arrow direction for
+> > USB_OTG: GPIOAO.BIT5 PWREN <= S805
+> > So this confirms that GPIOAO_5 is an output to the SoC.
+> > Please note though that this part is not linked with any USB host
+> > connector, it's only linked to the USB OTG path.
+> >
+> > For the next part the S805 SoC is not involved:
+> > USB1 USB_HOST_PWR_SW PWREN <= PWREN USB_HUB_GL852G
+> > USB2 USB_HOST_PWR_SW PWREN <= PWREN USB_HUB_GL852G
+> > This tells me that the PWREN signal for the two USB_HOST_PWR_SW (USB
+> > host power switches / current limiters) is driven by the GL852G USB
+> > hub.
+> Hardkernel team responded on the Odroid forums to the request from Anand:
+> "Power-Enable signal to the USB load switch ICs is connected to the
+> USB hub controller.
+> It is not connected the CPU GPIO."
+>
+> The regulator from Anand's patch is therefore connected to the micro USB port.
+> This means that the patch needs updating in case Anand wants to have
+> it included.
+>
+
+Yes, I will send a corrected version of the patches soon.
+
+>
 > Best regards,
 > Martin
-> 
-> 
-> [0] https://elixir.bootlin.com/linux/v5.14-rc4/source/include/linux/reset.h#L227
+>
+>
+> [0] https://forum.odroid.com/viewtopic.php?p=332217#p332217
+
+Thanks
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
