@@ -2,146 +2,87 @@ Return-Path: <SRS0=9aIX=M7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EEC5CC4338F
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Aug 2021 15:14:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57155C4338F
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Aug 2021 20:37:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A884560FC1
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Aug 2021 15:14:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A884560FC1
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=nvidia.com
+	by mail.kernel.org (Postfix) with ESMTPS id 15A1C60F42
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Aug 2021 20:37:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 15A1C60F42
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:CC:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7X6TFE/rup3/2KqGc0EyF2n0rSYEEqOsqr9uERXXqMo=; b=fez00pTRpdA8i1nOTGETia3HJB
-	bVrpMiWZmMh2TlgrFmeZ58sXVtvClO1qjGU0Ly/MOsraLWOz2X+x9UHdIpfwZfSPCyudrrfDtkV1k
-	5apv6GiQdZ022jCCmggyeK+dPY5s8NVtus1j6J1IVBZKZDkCAk4CfGYdz0kFRA9U1i6X9u0tVcFX0
-	YqRykEki779/OnzkJhtG4+RI4M+jq3xEmB2qlaU5cL62gyzA/skxTdBzvcL4KwDDoJ6Yj3n1uPeNn
-	BA6+vUn3y60gJiusjyoI4XxgNGIb0IrCV8937N44KIu7Ok0cqYTYft+YNFLbPrhlCsIndVyMMaEOh
-	5Ku2iAVQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=tPc36rEZ8QCTIvZMTDVVBRPpAU4pecjFTDqSvldw6ls=; b=JapF+xAfAT5zRd
+	xhA7aQ7rnnP+DlGZGOG0Pa4riKgAiVRg3ozaacaH6ywRTA24C7outOgFozuow3eF8mXulClDDm6Wn
+	1pr134CICS/ij4jY5kEeQd6RclwhyAYEadqfWBqamHaCoTmAhEeoCLOsNYq6spxL/X/rIgQCq2F7Z
+	KleEfahdgd6kO2otZ3ytVm3Al86fNd3GNSfgJoLcacZWaVWA2TwDOxungrMfalGnulGW4JZyGzFp3
+	J1iD7cO2H2HRRu0dtxsu8pORM4M8SY8rBypWPYsemyPeqvWpMOKpJQxfyetDwP1aapshZ5AajZutT
+	m9f89E6uh0Y9D5ZQRTXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mCkVD-00G1Uw-42; Sun, 08 Aug 2021 15:14:15 +0000
-Received: from mail-dm6nam11on2069.outbound.protection.outlook.com
- ([40.107.223.69] helo=NAM11-DM6-obe.outbound.protection.outlook.com)
+	id 1mCpXl-00GSYe-Mj; Sun, 08 Aug 2021 20:37:13 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mCkUy-00G1Sd-Ce; Sun, 08 Aug 2021 15:14:02 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DizJXb7EOM3l+sKa4LWDjg0FnH0BxOldeQkHPIsYK1r7PjwmT0ADa9nNcHbLAvaaRmnOo0iE+micVrMMeOH/OE/1nYrQTtUlDN/ocWEk87Xl8w21/f2BeRk+f7TEc8wQSyAhcx9kFUUhW94UC2OibMjEhvfvdQdrBtusa4kEV+6lQQKzuj2dKmE33QP1RkBpuHPDtGbT4AtLnT+x3UT5qyHhD94trBdTKtiuExtKQ+SUU9vJZxyzDR21Xy03YON1/M/9WJ/YV/FkhPyX27OrfJ6GUUEpTpTnB5ZCoFsbPJL7z/NnzCvrtxrn2KDA3wDUwfS9a5cvZL3Qt5keHitGMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ruAid/TIzXD2J/qafvX1Xj8YycY1WeuRgcAQiQGlNkQ=;
- b=npiEa6BsuVXwKEIA+l/R+xI4iu8AbpnRmVSK0uen8onK4B4g98EXvrzmzv2/YAN4SmgrTAymdgjjsNfMDG+IQO5u0fCvo9PcjgLFis/nVCcPhej5S54xn6SDf/ctLZKWqG08KCGnse6kNm9+ThwK8TOXGwq2zGW/HkPcFUEM8zvy8XXtFaV0n5ssO1nyBz2wEAoRrepoxBaKUjj4Pf/x7XIrLZrqfFgRml0U3qIBO2mhdkGcQNP/d2zH0pWXuhwDqaA3Lxzcs54IFb8hG3/dIxEMXViNUF3DWaM+o/HhZILOpnh4LdpQapqdLEqMU1JmUPh0fEJD8a32hnr9UWb8pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=baylibre.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=nvidia.com; 
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ruAid/TIzXD2J/qafvX1Xj8YycY1WeuRgcAQiQGlNkQ=;
- b=sU9lY9JXTY794wyDYUkC1lxqmeFdWrAF3+ZpLuFpyzPeBgbiMookgauqT+pbWIeoy0gs87FelLY9uS+Jdes0QnmTU9fsxgnszBGGkDnbeOYMO9BFgpkr3mhVLk4PTVz8tAgwTPouFyjapY6wWA0+yKyt7VbrgYLAOOEVXTC0fyqLrSd+QtBDBnnl898UDpHadgiO9abcVYspqhu2w3oGCEEpSQxSsd0KdwSWElJCUsyy/2NgVLEqhOPvKf/EmrcTwfKNOzhrr3JaMlSUyiTUwyP/McX38wh7IvTUmWw/rIZ7Ki39xU7hAOjRoZIT8Y8Gu4sbE6/5s27DojOcgj9Dzg==
-Received: from CO2PR04CA0140.namprd04.prod.outlook.com (2603:10b6:104::18) by
- BN9PR12MB5099.namprd12.prod.outlook.com (2603:10b6:408:118::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16; Sun, 8 Aug
- 2021 15:13:56 +0000
-Received: from CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:104:0:cafe::e6) by CO2PR04CA0140.outlook.office365.com
- (2603:10b6:104::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend
- Transport; Sun, 8 Aug 2021 15:13:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; baylibre.com; dkim=none (message not signed)
- header.d=none;baylibre.com; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- CO1NAM11FT008.mail.protection.outlook.com (10.13.175.191) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4394.16 via Frontend Transport; Sun, 8 Aug 2021 15:13:56 +0000
-Received: from [10.25.99.72] (172.20.187.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 8 Aug
- 2021 15:13:45 +0000
-Subject: Re: [PATCH v2 03/40] PCI: dwc: Allow overriding bridge pci_ops
-To: Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC: <linux-pci@vger.kernel.org>, Andy Gross <agross@kernel.org>, Binghui Wang
- <wangbinghui@hisilicon.com>, Bjorn Andersson <bjorn.andersson@linaro.org>, 
- Dilip Kota <eswara.kota@linux.intel.com>,
- Fabio Estevam <festevam@gmail.com>, 
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>, Jerome Brunet
- <jbrunet@baylibre.com>, Jesper Nilsson <jesper.nilsson@axis.com>, Jingoo Han
- <jingoohan1@gmail.com>, Jonathan Chocron <jonnyc@amazon.com>, Jonathan Hunter
- <jonathanh@nvidia.com>, Kevin Hilman <khilman@baylibre.com>, "Kishon Vijay
- Abraham I" <kishon@ti.com>, Krzysztof Kozlowski <krzk@kernel.org>, Kukjin Kim
- <kgene@kernel.org>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, "Lucas
- Stach" <l.stach@pengutronix.de>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Masahiro Yamada
- <yamada.masahiro@socionext.com>, Murali Karicheri <m-karicheri2@ti.com>,
- "Neil Armstrong" <narmstrong@baylibre.com>, NXP Linux Team
- <linux-imx@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Pratyush Anand <pratyush.anand@gmail.com>, Richard Zhu
- <hongxing.zhu@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo
- <shawnguo@kernel.org>, Shawn Guo <shawn.guo@linaro.org>, Stanimir Varbanov
- <svarbanov@mm-sol.com>, "Thierry Reding" <thierry.reding@gmail.com>, Xiaowei
- Song <songxiaowei@hisilicon.com>, Yue Wang <yue.wang@Amlogic.com>, Marc
- Zyngier <maz@kernel.org>, <linux-amlogic@lists.infradead.org>,
- <linux-arm-kernel@axis.com>, <linux-arm-kernel@lists.infradead.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-omap@vger.kernel.org>,
- <linux-samsung-soc@vger.kernel.org>, <linux-tegra@vger.kernel.org>
-References: <20200821035420.380495-1-robh@kernel.org>
- <20200821035420.380495-4-robh@kernel.org>
-From: Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <68e3adfb-a79d-3b70-87ed-2e5e1bf7fc93@nvidia.com>
-Date: Sun, 8 Aug 2021 20:43:43 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+ id 1mCpXj-00GSXo-2u; Sun, 08 Aug 2021 20:37:12 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id w5so1144090ejq.2;
+ Sun, 08 Aug 2021 13:37:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=XsY1naXGPpmVYSXrwp+yqNB1LAnbf0RuN1r5nzhLAKc=;
+ b=YpoIJarzT8405VxE8WC4sxtHg96SjtT5fNSHqFIQzaLuckx/pMl6h6p1S0I7ff24IA
+ aBHvrn1OEKjvBfZanjTydEWhvbgIm4NrkFvvcEITpHJN2iAbCEbgmyeuSLW/lxUtqsK1
+ HLpWOeg+qpCe3q+IX0SvIlbkcG5jad8OW0NX1dle4KmlL7ID5U1NQjVp5bN1PiXy11YP
+ wnbQnnfPSRC/vWxBLU7DcvlcIKD+ckvT0uPRHnxorXsWBc3tB1tmJMKwLv78V6CbmYP5
+ E0pX0bF5pUfLslrqs/8GeIpU9yFLPcdz5JKvoVWmIt/jdcwiofp4w2B4/pq9L406Pi5C
+ dkCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=XsY1naXGPpmVYSXrwp+yqNB1LAnbf0RuN1r5nzhLAKc=;
+ b=YK+m49XCV7k7HXjWmvStKsC/lFbdzDITWc1pKtRFOyjs9j8yFU210aZRjUdXL+Enm1
+ V2qqKjdD2eEg+xWvoG6xwypzgrFPceTr/9wSqf7PMWtIiZEvXvMzYvqJvCi2LBjxyK5Y
+ jLMpD5XJdYZbgArFNqtofOfH7nE6njB21Urn7NpHpKETXH4Z5kFcNuBwaBM/DGH4QpDJ
+ yHrUu2qfXxAfhH6Koso4Jjc+ad1aHVwnKlUGDX/Qd09/QAn3blEwZufRdZ9TwRaAHFbW
+ mcZZfZVWr/4JeWvjBOZHx9zJLOBezRsZ1VLb3o6z5di7avtmSjeP2wRhoG3k3S48q5vP
+ EsEw==
+X-Gm-Message-State: AOAM530fjdA+luYOfFu5AJ84S6OvqkVJtHVAV+VH3jCfZmi3OjF21ks4
+ GZW0dp0EHNedNxqR6kpp2tn+Gxt2tTcR0YwOb24=
+X-Google-Smtp-Source: ABdhPJyPS9gMgKESOwyiS54NnGzpCieUBziLcUFhhc9CCfq11oy5PHyTJqO5wmW0KuUFc3nQOb342DcKuvScoSJXQN8=
+X-Received: by 2002:a17:906:b0c5:: with SMTP id
+ bk5mr19137983ejb.428.1628455026119; 
+ Sun, 08 Aug 2021 13:37:06 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200821035420.380495-4-robh@kernel.org>
-Content-Language: en-US
-X-Originating-IP: [172.20.187.6]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d6bf1062-80fa-492d-644a-08d95a7f241e
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5099:
-X-Microsoft-Antispam-PRVS: <BN9PR12MB5099CB820C4A3C1CACA85F1EB8F59@BN9PR12MB5099.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:792;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FFeRCVQMc//Dc795KC6pf1J4mXxd1qKM0xpCNvrM7kfvIeF5/mvISZctvubwflcOb3qM9+spm552QMgco5WWsUsZA33kt4hxnUaQQ6r9jkVeaPaq+K7RlkMJZ4L1CvTxms2KY5reChiDcMCbfJkLWiUSjWR3dIEKgAEJ1fTlHSOIovd1+raqOOo3on/mUvxhbB8Mp295klFZ8UZsctNHAMK7Afu7XWaWyVBvy0Px9O+MRqogooMYJ7kQQwAIDRyAEB0vHM2k1slHznBev7i59INA7cp7/qlZkxG7cL8RqX9wFwI22/rOGmYeQ0+5S5qDRHO2ccB2zjDKRIceGcvRvDpxvG5IKTkePmpFBilB8WZckwfmUzT+VrebZX9gj/DWN8pytnW+7zrbpJLmWsGSKXuHIy6gAk+uX3n3UQtT8j2PuOq7VGMAwAwK6A98XpeCg44XryOOB+eLOiMoTEVKWJT+j3dgqASR2fM6kNTfXqvb3pBS7br8U8aIhWcDxcbQME7HoXpAA5x0uQcF/0NN6cBdF0QXs/OAUy1h54prbkZg76FZgeRZ5n5yLd9a6Km6qeaUOxMaABmN4E3N3Dvkar9fv2m9WQxAnSko/4NStoOduiGOFJmQSbBylRXb84NoJFg02PD7Mt+F7Ds4awt+94Tkc48FkOuzZCmzgxmjBu0l4wAMafRDWo583unX7IkL3SVIRyK/UuC14ai5lX6FaSLdJqHjrt6aaB6A0lescJk=
-X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(376002)(346002)(396003)(36840700001)(46966006)(356005)(83380400001)(86362001)(36860700001)(4326008)(36756003)(31696002)(82310400003)(82740400003)(8936002)(478600001)(47076005)(7636003)(36906005)(7416002)(7406005)(16576012)(336012)(54906003)(16526019)(316002)(2906002)(31686004)(26005)(53546011)(426003)(186003)(70586007)(70206006)(5660300002)(110136005)(2616005)(8676002)(43740500002);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2021 15:13:56.1824 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6bf1062-80fa-492d-644a-08d95a7f241e
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5099
+References: <20210717234859.351911-1-martin.blumenstingl@googlemail.com>
+ <20210717234859.351911-3-martin.blumenstingl@googlemail.com>
+ <20210728175823.GA2766167@p14s>
+ <CAFBinCB0-bAa7Y+YhscczarGrGuio37F8vRyfW6U2DiiDAvr-g@mail.gmail.com>
+ <20210805161506.GA3205691@p14s>
+In-Reply-To: <20210805161506.GA3205691@p14s>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 8 Aug 2021 22:36:55 +0200
+Message-ID: <CAFBinCCkOgkzuxZPby-rJeH7ei-G_khiStkX9Zs3w1u1RAd7_Q@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] remoteproc: meson-mx-ao-arc: Add a driver for the
+ AO ARC remote procesor
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ bjorn.andersson@linaro.org, ohad@wizery.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210808_081400_490283_76FFA638 
-X-CRM114-Status: GOOD (  23.11  )
+X-CRM114-CacheID: sfid-20210808_133711_195754_61BEFFAC 
+X-CRM114-Status: GOOD (  35.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,100 +94,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Mathieu,
+
+On Thu, Aug 5, 2021 at 6:15 PM Mathieu Poirier
+<mathieu.poirier@linaro.org> wrote:
+>
+> On Wed, Aug 04, 2021 at 11:03:57PM +0200, Martin Blumenstingl wrote:
+> > Hi Mathieu,
+> >
+> > thanks for taking the time to look into this!
+> >
+> > (I will address any of your comments that I am not mentioning in this
+> > email anymore. Thanks a lot for the suggestions!)
+> >
+> > On Wed, Jul 28, 2021 at 7:58 PM Mathieu Poirier
+> > <mathieu.poirier@linaro.org> wrote:
+> > [...]
+> > > > +     writel(FIELD_PREP(AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU,
+> > > > +                            priv->sram_pa >> 14),
+> > > Indentation problem
+> > The idea here is to align priv->sram_pa with AO_REMAP_REG0... which
+> > are both arguments to FIELD_PREP
+>
+> Right, this is what I would have expected.  When I applied the patch on my side
+> "priv->sram_pa ..." was aligned wiht the 'M' of "AO_REMAP_ ...".
+>
+> > Maybe using something like this will make that easier to read:
+> >     tmp = FIELD_PREP(AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU,
+> >                                      priv->sram_pa >> 14);
+> >     writel(tmp, priv->remap_base + AO_REMAP_REG0);
+>
+> I think the main problem is that
+> AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU is simply too long.  I
+> suggest making is shorter and add a comment to describe exactly what it does.
+AO_CPU_CNTL_AHB_SRAM_BITS_31_20 is used below and when looking at it
+now I think the alignment is also strange.
+For the next version I'll go with the tmp variable as I think it
+improves readability, even with the long(er) macro names.
+
+[...]
+> > > > +     priv->arc_reset = devm_reset_control_get_exclusive(dev, NULL);
+> > > > +     if (IS_ERR(priv->arc_reset)) {
+> > >
+> > > Function __reset_control_get() in __devm_reset_control_get() can return NULL so
+> > > this should be IS_ERR_OR_NULL().
+> > The logic in there is: return optional ? NULL : ERR_PTR(-...);
+>
+> Ok, so you meant to do that.  And I just checked reset_control_reset() and it does
+> account for a NULL parameter.  I'm good with this one but add a comment to
+> make sure future readers don't think you've omitted to properly deal with the
+> NULL return value.
+>
+> > I am requesting a mandatory reset line here, so reset core will never
+> > return NULL
+> > See also [0]
+>
+> Indeed, I've read that too.  Nonetheless __reset_control_get() can return NULL
+> by way of __reset_control_get_from_lookup().
+I could not find where __reset_control_get_from_lookup returns NULL in
+case optional is false (which it is in this case because
+devm_reset_control_get_exclusive requests a "mandatory" reset line).
+Can you please point me to the problematic line(s) as I'd like to send
+a patch (which fixes this) to the reset subsystem maintainers
+
+$ git grep -A1 devm_reset_control_get_exclusive | grep IS_ERR_OR_NULL
+drivers/remoteproc/ti_k3_r5_remoteproc.c-       if
+(IS_ERR_OR_NULL(core->reset)) {
+$
+
+I suspect that this can be simplified then as well.
 
 
-On 8/21/2020 9:23 AM, Rob Herring wrote:
-> In preparation to allow drivers to set their own root and child pci_ops
-> instead of using the DWC specific config space ops, we need to make
-> the pci_host_bridge pointer available and move setting the bridge->ops
-> and bridge->child_ops pointer to before the .host_init() hook.
-> 
-> Cc: Jingoo Han <jingoohan1@gmail.com>
-> Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   drivers/pci/controller/dwc/pcie-designware-host.c | 15 ++++++++++-----
->   drivers/pci/controller/dwc/pcie-designware.h      |  1 +
->   2 files changed, 11 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 1d98554db009..b626cc7cd43a 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -344,6 +344,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
->   	if (!bridge)
->   		return -ENOMEM;
->   
-> +	pp->bridge = bridge;
-> +
->   	/* Get the I/O and memory ranges from DT */
->   	resource_list_for_each_entry(win, &bridge->windows) {
->   		switch (resource_type(win->res)) {
-> @@ -445,6 +447,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
->   		}
->   	}
->   
-> +	/* Set default bus ops */
-> +	bridge->ops = &dw_pcie_ops;
-> +	bridge->child_ops = &dw_pcie_ops;
-> +
->   	if (pp->ops->host_init) {
->   		ret = pp->ops->host_init(pp);
->   		if (ret)
-> @@ -452,7 +458,6 @@ int dw_pcie_host_init(struct pcie_port *pp)
->   	}
->   
->   	bridge->sysdata = pp;
-> -	bridge->ops = &dw_pcie_ops;
->   
->   	ret = pci_scan_root_bus_bridge(bridge);
->   	if (ret)
-> @@ -654,11 +659,11 @@ void dw_pcie_setup_rc(struct pcie_port *pp)
->   	dw_pcie_writel_dbi(pci, PCI_COMMAND, val);
->   
->   	/*
-> -	 * If the platform provides ->rd_other_conf, it means the platform
-> -	 * uses its own address translation component rather than ATU, so
-> -	 * we should not program the ATU here.
-> +	 * If the platform provides its own child bus config accesses, it means
-> +	 * the platform uses its own address translation component rather than
-> +	 * ATU, so we should not program the ATU here.
-It is possible that a platform can have its own translation for 
-configuration accesses and use DWC's ATU for memory/IO address 
-translations. IMHO, ATU setup for memory/IO address translations 
-shouldn't be skipped based on platform's '->rd_other_conf' 
-implementation. Ex:- A platform can implement configuration space access 
-through the ECAM mechanism yet choose to use ATU for memory/IO address 
-translations.
+Best regards,
+Martin
 
-Thanks,
-Vidya Sagar
->   	 */
-> -	if (!pp->ops->rd_other_conf) {
-> +	if (pp->bridge->child_ops == &dw_pcie_ops && !pp->ops->rd_other_conf) {
->   		dw_pcie_prog_outbound_atu(pci, PCIE_ATU_REGION_INDEX0,
->   					  PCIE_ATU_TYPE_MEM, pp->mem_base,
->   					  pp->mem_bus_addr, pp->mem_size);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index f911760dcc69..8b8ea5f3e7af 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -200,6 +200,7 @@ struct pcie_port {
->   	u32			num_vectors;
->   	u32			irq_mask[MAX_MSI_CTRLS];
->   	struct pci_bus		*root_bus;
-> +	struct pci_host_bridge  *bridge;
->   	raw_spinlock_t		lock;
->   	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
->   };
-> 
+
+[0] https://elixir.bootlin.com/linux/v5.14-rc4/source/include/linux/reset.h#L227
+[1] https://elixir.bootlin.com/linux/v5.14-rc4/source/drivers/reset/core.c#L932
 
 _______________________________________________
 linux-amlogic mailing list
