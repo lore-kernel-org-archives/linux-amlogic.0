@@ -2,86 +2,106 @@ Return-Path: <SRS0=MsbO=NA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F3F8FC4338F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Aug 2021 13:11:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 611BEC4338F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Aug 2021 14:53:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AECC660F93
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Aug 2021 13:11:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org AECC660F93
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 1CF1060C41
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Aug 2021 14:53:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1CF1060C41
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UtJnQJv5YBh4UBWss0yz5LmywXBwOrPPIdXazFksFBI=; b=c0Myi64WNAi84D
-	gifpsVNc+yFpMtZF3AF4YNybnBchZeKImaQoBntIuKGadNwg/szcl+IyUsVlGPQIaq0AHFwykTNVj
-	VmAE12NkXHooA9hR3Ept1Kolilx577f1OGytWIvZDcr/DaKDndzoDzuOdLFZUKANmhykOCVfWvYw/
-	C4gE6f9XMy0WTfyHF3y3ozYF8kqJg/pgRuhxr01LK8f9JCgyXslgcd80bOPfo8+/vgJvwq7cL07zf
-	EWOIDmF4J+yaZdpleTZ4B9yW1i1AbwWN9kHeCycNpmzvruJIkplBiOpLaM3oI3Z7nOZtnUVLDtMX8
-	Ma30JD76VzaXo/NqlxaQ==;
+	List-Owner; bh=Pg4WW8jCH41xSv7n78K56ALtYByJWE28zWnk6zj/N0I=; b=A6auEHmKMamZnV
+	Xq9PViU1Af6dHQcQNTojyL56uRodYl75FurEx17wgMFIN/lsZEf3CZ9R9l54MUb6O74UNdX54FbtQ
+	s7jHH6NL3Osvl9Rx37ZmY4a6c/UYv58mEQhHYZBefhu8I8Q1CFf4G/SCk48IzY4Qpg7QpxzgVpXga
+	E9pLzWaOIhans9AgECckLhLhSp5+qYzc8jCB7LCGqFD4oi2VhHztFO8RCShRJAwiquJqp121L2j7F
+	8FhNw08GQ1sljnQzqpzV7dZc6rEg/OExsrlivUOlWCceyqLa3JCXdaoCPRAmGaTHcWG4Hrcv2oriJ
+	QTlS86NPDez9Er7ke1ZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mD54I-000hvm-Ht; Mon, 09 Aug 2021 13:11:50 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1mD6eH-000yn9-Ok; Mon, 09 Aug 2021 14:53:05 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mD53R-000hZa-KA; Mon, 09 Aug 2021 13:11:00 +0000
-Received: by mail-wm1-x334.google.com with SMTP id u1so570524wmm.0;
- Mon, 09 Aug 2021 06:10:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=CKcEzNFYuGEeaz7jwPbq616RUx2Sy10QLeq/JBh4TSE=;
- b=D97Ypv0xGLj/Bip4b6nNWS14lWO35lvjm5mLG1kkDO2ak0E3Ip1mON5go9Bh9gUhLt
- kvfEhMi14849nF3zfsbHHC1FRzlo02ovFEAtdOp8LeA81mAB+R1IZ3HkgYLgWm1XVJJY
- 336TJFNQa5NXy5KFMvFk3MSwAzi9plvwhn2WOb8emOnchHctwRBAg5ahE6qASEzqg7HL
- Xr4I/29qBzxL8P7QTacsyA5wfMmW7n5A/AIOCpZfF8Snv2becFTjOF4lEpc+adpe8vaw
- y3znl10ANzXD2iC40ufGS+HMZbGLaswl+aMkNeJycYWGIqyXWLrRVfnih8+Zt/OOYiua
- JN1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=CKcEzNFYuGEeaz7jwPbq616RUx2Sy10QLeq/JBh4TSE=;
- b=YvVur2vFwsRmOZ3Ye3MijE2oixMlEOwDsnvYafLSmE0Sjg1Q7tqJYMKGqJO5rs3sDq
- X6XnecZASB1ABEnbWOFa0s3lyyBto2SvazLeBegEP45s5ByHf3OrCzbuBLy+YzMHCGud
- odajUzJXP+gUvKekNkj1HQlZqL95jox8ztKK2gpSet2NzBF6xopwTBA7K9QxALppXuBV
- AtWyt46zZl/F1l09SnFZvbaQ81ZIwkNWhy9uhly+wqSQKUSCPcQB8D1Ays3peUdQlnmi
- er4kv2HFMWPylcW3nmZwdGuCnGTcNFKA1qDd5iU2/5HpcAQVwxVOvMab3wOeWgwUsrTO
- RPEw==
-X-Gm-Message-State: AOAM530CvdmcjAwIGFaJZG/vW2jflM9YWzcz7veucK88XnSD0p9RES8p
- +R7OAAkrKD/KCsa/xN0vkgE=
-X-Google-Smtp-Source: ABdhPJzf2AKNn1UlIpvSh4/ECgVSEIAJnIkg8qC3JqMmnclHQ6hwYs9eohMk51p+MZLaEyVYfBE6Vw==
-X-Received: by 2002:a7b:c041:: with SMTP id u1mr16351531wmc.95.1628514655775; 
- Mon, 09 Aug 2021 06:10:55 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id k12sm5276094wrd.75.2021.08.09.06.10.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Aug 2021 06:10:55 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: amlogic: add support for Radxa Zero
-Date: Mon,  9 Aug 2021 13:10:47 +0000
-Message-Id: <20210809131047.28047-3-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210809131047.28047-1-christianshewitt@gmail.com>
-References: <20210809131047.28047-1-christianshewitt@gmail.com>
+ id 1mD6eE-000yly-7b; Mon, 09 Aug 2021 14:53:03 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 244D460C41;
+ Mon,  9 Aug 2021 14:53:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1628520781;
+ bh=Pxvauf7CFHRqwgrPJcBCTzOuC/lUcd4Kz0wvLQ2dWzw=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=Tsur/vJbn6dnB6LaXdr4MxV1l5AHtEulyK9Q/oAlwAnX44xwfTjy6OVLwCw9lrxil
+ MMtIe1SbWqLgSDvIA54m6yIl+T9l+6RGnMUOrV2Ch0SatZPlhWiRCK8mWk7ZmjtNVg
+ OuZBG/2PPPWEoBeqqH/wDwWx/Uolgt092LXFI1CphtK9PeKcEh0LacJ22r0T40crC+
+ gZVYNF92MisiyUQ6EqiO3qzWuKepa6lJ6yt99Oxl6TFhrvqXzd6lBH+hPlD6+c8REZ
+ +m/Y3VoU3rH01gted3/RM7gsHZaqtUFmXGJoYw85GJhUgTjcc69d3qJ2qU+SS77kAM
+ wpLu3W7XQZjfA==
+Received: by mail-lf1-f45.google.com with SMTP id c16so34556930lfc.2;
+ Mon, 09 Aug 2021 07:53:01 -0700 (PDT)
+X-Gm-Message-State: AOAM530bnb6+EPL18Y8yS5y/SuXO9hwVV5rR5afOap/Z/1/hb3bNGdY7
+ IjZbYFIOCTBNItJpAOhshXsxgayHi5sAiMk05w==
+X-Google-Smtp-Source: ABdhPJzc6XZ8s9ydxQHfxUS1CfauBiPrkQyjudkgpPtRe58+tK6GJ3YbxcrQpiqucK1Zl64RWkT3x4DLs+goMJdOtns=
+X-Received: by 2002:a05:6402:291d:: with SMTP id
+ ee29mr30809324edb.289.1628520768969; 
+ Mon, 09 Aug 2021 07:52:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200821035420.380495-1-robh@kernel.org>
+ <20200821035420.380495-4-robh@kernel.org>
+ <68e3adfb-a79d-3b70-87ed-2e5e1bf7fc93@nvidia.com>
+In-Reply-To: <68e3adfb-a79d-3b70-87ed-2e5e1bf7fc93@nvidia.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 9 Aug 2021 08:52:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJZ-BzxnEPeqirrd=yZFSWejP4PBYDgLNEn-kubFzvXCA@mail.gmail.com>
+Message-ID: <CAL_JsqJZ-BzxnEPeqirrd=yZFSWejP4PBYDgLNEn-kubFzvXCA@mail.gmail.com>
+Subject: Re: [PATCH v2 03/40] PCI: dwc: Allow overriding bridge pci_ops
+To: Vidya Sagar <vidyas@nvidia.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
+ PCI <linux-pci@vger.kernel.org>, Andy Gross <agross@kernel.org>, 
+ Binghui Wang <wangbinghui@hisilicon.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>, 
+ Dilip Kota <eswara.kota@linux.intel.com>, Fabio Estevam <festevam@gmail.com>, 
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Jesper Nilsson <jesper.nilsson@axis.com>, Jingoo Han <jingoohan1@gmail.com>, 
+ Jonathan Chocron <jonnyc@amazon.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I <kishon@ti.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Kukjin Kim <kgene@kernel.org>, 
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Lucas Stach <l.stach@pengutronix.de>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Murali Karicheri <m-karicheri2@ti.com>, 
+ Neil Armstrong <narmstrong@baylibre.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Pratyush Anand <pratyush.anand@gmail.com>, 
+ Richard Zhu <hongxing.zhu@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Shawn Guo <shawnguo@kernel.org>, Shawn Guo <shawn.guo@linaro.org>, 
+ Stanimir Varbanov <svarbanov@mm-sol.com>,
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Xiaowei Song <songxiaowei@hisilicon.com>, Yue Wang <yue.wang@amlogic.com>, 
+ Marc Zyngier <maz@kernel.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-arm-kernel@axis.com, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ linux-omap <linux-omap@vger.kernel.org>, 
+ linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, 
+ linux-tegra <linux-tegra@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210809_061057_714410_07D0E152 
-X-CRM114-Status: GOOD (  17.79  )
+X-CRM114-CacheID: sfid-20210809_075302_358220_00795F3D 
+X-CRM114-Status: GOOD (  29.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,472 +113,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Radxa Zero is a small form factor SBC based on the Amlogic S905Y2
-chipset that ships in a number of RAM/eMMC configurations:
+On Sun, Aug 8, 2021 at 9:13 AM Vidya Sagar <vidyas@nvidia.com> wrote:
+>
+>
+>
+> On 8/21/2020 9:23 AM, Rob Herring wrote:
+> > In preparation to allow drivers to set their own root and child pci_ops
+> > instead of using the DWC specific config space ops, we need to make
+> > the pci_host_bridge pointer available and move setting the bridge->ops
+> > and bridge->child_ops pointer to before the .host_init() hook.
+> >
+> > Cc: Jingoo Han <jingoohan1@gmail.com>
+> > Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> > Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> > Cc: Bjorn Helgaas <bhelgaas@google.com>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >   drivers/pci/controller/dwc/pcie-designware-host.c | 15 ++++++++++-----
+> >   drivers/pci/controller/dwc/pcie-designware.h      |  1 +
+> >   2 files changed, 11 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > index 1d98554db009..b626cc7cd43a 100644
+> > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > @@ -344,6 +344,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
+> >       if (!bridge)
+> >               return -ENOMEM;
+> >
+> > +     pp->bridge = bridge;
+> > +
+> >       /* Get the I/O and memory ranges from DT */
+> >       resource_list_for_each_entry(win, &bridge->windows) {
+> >               switch (resource_type(win->res)) {
+> > @@ -445,6 +447,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
+> >               }
+> >       }
+> >
+> > +     /* Set default bus ops */
+> > +     bridge->ops = &dw_pcie_ops;
+> > +     bridge->child_ops = &dw_pcie_ops;
+> > +
+> >       if (pp->ops->host_init) {
+> >               ret = pp->ops->host_init(pp);
+> >               if (ret)
+> > @@ -452,7 +458,6 @@ int dw_pcie_host_init(struct pcie_port *pp)
+> >       }
+> >
+> >       bridge->sysdata = pp;
+> > -     bridge->ops = &dw_pcie_ops;
+> >
+> >       ret = pci_scan_root_bus_bridge(bridge);
+> >       if (ret)
+> > @@ -654,11 +659,11 @@ void dw_pcie_setup_rc(struct pcie_port *pp)
+> >       dw_pcie_writel_dbi(pci, PCI_COMMAND, val);
+> >
+> >       /*
+> > -      * If the platform provides ->rd_other_conf, it means the platform
+> > -      * uses its own address translation component rather than ATU, so
+> > -      * we should not program the ATU here.
+> > +      * If the platform provides its own child bus config accesses, it means
+> > +      * the platform uses its own address translation component rather than
+> > +      * ATU, so we should not program the ATU here.
+> It is possible that a platform can have its own translation for
+> configuration accesses and use DWC's ATU for memory/IO address
+> translations. IMHO, ATU setup for memory/IO address translations
+> shouldn't be skipped based on platform's '->rd_other_conf'
+> implementation. Ex:- A platform can implement configuration space access
+> through the ECAM mechanism yet choose to use ATU for memory/IO address
+> translations.
 
-Boards with 512MB/1GB LPDDR4 RAM have no eMMC storage and BCM43436
-wireless (2.4GHz b/g/n) while 2GB/4GB boards have 8/16/32/64/128GB
-eMMC storage and BCM4345 wireless (2.4/5GHz a/b/g/n/ac).
+A platform could, but none of them upstream do that. I'm all for doing
+ECAM setup (in the kernel) if possible. That could be in the DWC core
+with a feature flag the platform can set or something to enable it if
+we do that. It could be based on the config space size as well. I'm
+not sure what else determines whether ECAM can work besides having
+enough address space and at least 3 outbound iATU windows.
 
-- Amlogic S905Y2 quad-core Cortex-A53
-- Mali G31-MP2 GPU
-- HDMI 2.1 output (micro)
-- 1x USB 2.0 port - Type C (OTG)
-- 1x USB 3.0 port - Type C (Host)
-- 1x micro SD Card slot
-- 40 Pin GPIO header
-
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../dts/amlogic/meson-g12a-radxa-zero.dts     | 418 ++++++++++++++++++
- 2 files changed, 419 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index faa0a79a34f5..be308361e2f1 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-new file mode 100644
-index 000000000000..d44d3881d9b9
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-@@ -0,0 +1,418 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 BayLibre SAS. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12a.dtsi"
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "radxa,zero", "amlogic,g12a";
-+	model = "Radxa Zero";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	cvbs-connector {
-+		status = "disabled";
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	flash_1v8: regulator-flash_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "FLASH_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	dc_in: regulator-dc_in {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC_IN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_1v8: regulator-vcc_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_in>;
-+
-+		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-+		enable-active-low;
-+	};
-+
-+	vddao_1v8: regulator-vddao_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_in>;
-+		regulator-always-on;
-+	};
-+
-+	vddcpu: regulator-vddcpu {
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU";
-+		regulator-min-microvolt = <721000>;
-+		regulator-max-microvolt = <1022000>;
-+
-+		vin-supply = <&dc_in>;
-+
-+		pwms = <&pwm_AO_cd 1 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "RADXA-ZERO";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	status = "disabled";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_AO_cd {
-+	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+	status = "okay";
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddao_1v8>;
-+};
-+
-+/* SDIO */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	/* WiFi firmware requires power to be kept while in suspend */
-+	keep-power-in-suspend;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+		interrupts = <&gpio GPIOX_7 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_3v3>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&flash_1v8>;
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+	};
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	dr_mode = "host";
-+};
--- 
-2.17.1
-
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
