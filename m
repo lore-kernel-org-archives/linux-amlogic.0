@@ -2,86 +2,90 @@ Return-Path: <SRS0=4Wh7=NB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84C4AC4338F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Aug 2021 10:27:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 724E7C4338F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Aug 2021 13:36:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 40A6860E97
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Aug 2021 10:27:10 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 40A6860E97
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 2C01C60F41
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Aug 2021 13:36:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2C01C60F41
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BBagkB+acaZyiTt+QZbm+Ashj9fzid/RoP91OMI6F1M=; b=4bXaPKEQxu810h
-	o1y71GrzHrohpsGnj4OwjiK/YfkKB2MZd++XFLkZBv4p9bPU7++tWJ8yvLnRVsR48bLsZNDc6pus7
-	GaUl/7UhcIqM+8cc6VBME11VdTPhU80e8H9sW1+VBNCjCWwVbixdzsxo2TFbuL6Rb/ou4T0o5M1Hb
-	lGJR/feVkDIdYLc3bN7GC3GbzksfDoOBtkivv9davbSuUEMtkh9oZoJEdlFVE2yY/K9IYlV5vhaxX
-	kKx4OIBaISDY6s0qL76UQZfFM+z5bMg4Ty6UklBWsG5uQHQLFHH5zwdygtm3h603YbODGiiNFru++
-	IVwjLLQlMRvsTydVrLEA==;
+	List-Owner; bh=kd+bs22DTDl7wUfI0HPcWMcEksQrYEneV53eS42SOY0=; b=cLUtZTd+V8QAJn
+	bwQHmSOAzfNeY4n4aZdOstnKgZTakqAi/igJ1KbW/lvWVcWsz7eNb4iGoOdqNZ/bYz9jgKgY6WF+g
+	8yX0LWPj2Z78LxVVUHMXe1VQUobqpz5agl5qL8RMeLYnlmEQMGW47fGOW/V2FxMfuMP0OGy9fRM7h
+	MLtlXaEn36Zf+jc3WZMxL31Psptg3pgnojRcILhWd0IpUaagerU01pTSD3O+o595D05RrJbLVzREY
+	J3jG2k30cv5FRrVXVZOFTHSWkayrThCbFl5QeCxVIcXp/6cbmgfl+Q5/s5Mopyy6WfKGqXkv9B6MT
+	Z7eAil2vb5qDcK0ss1+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mDOyO-003VmA-FT; Tue, 10 Aug 2021 10:27:04 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1mDRva-0040eT-0Z; Tue, 10 Aug 2021 13:36:22 +0000
+Received: from mail-il1-x130.google.com ([2607:f8b0:4864:20::130])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mDOxj-003VZu-5E; Tue, 10 Aug 2021 10:26:25 +0000
-Received: by mail-wr1-x434.google.com with SMTP id b13so25578411wrs.3;
- Tue, 10 Aug 2021 03:26:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=q4hfFUv/XGNvY/jENz8NsNg2UG80TkVfjhix2YLVQ2A=;
- b=OrhOsIgFRC0tBDTkIk7QNehBzqiQgAxa3u4DZM3CcsfhsfQTObAp38hmVSyM52PZW8
- dAfmMwc2sMdJ2BhFomAXMXNAlyOKbuRIu+vDbQHGl3l/6j/um/p6p2si7GDtkmw17Dr5
- lUBx5BVs/XWJ8TowIG09t6fafCpiRENdEKyq8Teu4IERJjt0jSj8kA7oVWrKPBNxyxf0
- KNAKtP581qDqOldy5SImkSW8wA7b0OUbgqGMB7RuCKyNws28EfWIKZBfBJSEUh0MkLul
- OfG9/iV6TCUQnQp8cH3Z0eb89Q9ySA1uTks84bcns6Rtz2nCYoNLZVejxR5fHGMpDEcz
- pXLA==
+ id 1mDRvT-0040aw-Tv
+ for linux-amlogic@lists.infradead.org; Tue, 10 Aug 2021 13:36:20 +0000
+Received: by mail-il1-x130.google.com with SMTP id f8so15384182ilr.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 10 Aug 2021 06:36:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=GAUdFxB/nuyD8e37Y4/cSwL2QvDgaa+OvSAdElWuutE=;
+ b=FiZK96vERTuIAuikDBL6Ooey+jHySbQUeXP0EOKfNnW56g/S1noMxovebcwVi9LqwN
+ UzgjVfebf964xNDcNAYat32UQQSCPcH29GksaL3Zu3+e2dnptQyDj1+yCCFbjLt30UEW
+ F+JL2qXk/po7FQaNvm4Bdr+NzFoIF4nnjdP3w7JweA0GmZuqpDcOfRGQC7zTASYZe0w5
+ LBvKNP+bP/me5K99z4dRX0bUTnnaTSPAxDhZrO8kBQbb9kaoKJAOjQlmUKBxfHeGKD4w
+ 0U1MOobCPHu+8/7CgqhIwQxQbGSjxk7lo2LhL7uh4tM8GZwykestDrEJMsYPfWLGxhKd
+ 5Eew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=q4hfFUv/XGNvY/jENz8NsNg2UG80TkVfjhix2YLVQ2A=;
- b=GsPS3R2AxD2aGm9Be+kpuoVR8uZ6zi+hxiu3EiUWoIkKfe/9MnmAtV8pE08oIP8Z3x
- pQreF0wXrKlTvUQCE8BY8XnzuyQLebXP7bQuv0WQZsINZhRQQsD7F94S0Z8SJhytYdG/
- PDUqCS6MtaEoFcDn18AqPWwpWlqRnV35CNag7TAj/Vu/Go5E++InDdjo0V+Q3uB5HIuz
- dX4faBmHljD6QYqnREM9tGPCYfhejW9ZbzlwIS1fRse8BrNJ3eawAI1QQ4tuvGl3Xn7w
- zgsSL8/MCFBU+3pEJohdNGwn5WfaCCvQAfCpQiFpJTrZ356x0R5rm94LD0kf1T6Jvufn
- LRQw==
-X-Gm-Message-State: AOAM532wsQ/tgzmu/S2SEN92+bAZIP5xCn9D7JuN8F/LORD/XbrjEH4e
- xdYsNJcseFFRVo9D2i7KoUY=
-X-Google-Smtp-Source: ABdhPJzFFnkh//7zVfsWnxmtwJqMjz/QmLeAVEmDybJZWDmcDhLn300sNrMvxfzmVhCyi3V15SEGxw==
-X-Received: by 2002:a5d:4b8c:: with SMTP id b12mr29649595wrt.39.1628591181321; 
- Tue, 10 Aug 2021 03:26:21 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id j194sm1582998wmj.3.2021.08.10.03.26.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Aug 2021 03:26:21 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: amlogic: add support for Radxa Zero
-Date: Tue, 10 Aug 2021 10:26:13 +0000
-Message-Id: <20210810102613.25149-3-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210810102613.25149-1-christianshewitt@gmail.com>
-References: <20210810102613.25149-1-christianshewitt@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=GAUdFxB/nuyD8e37Y4/cSwL2QvDgaa+OvSAdElWuutE=;
+ b=ZJF37gHcLEuXJvIVXVu2YoqxpiRXFB+LEJxgUcLVF6AR0ZAbtZX4uv/Yh7KPoWuM63
+ tjNf1pPdeJ4A3acj7UiQNahDcMX6UINRUgixhJbPjY6AAnbpgpMOmhq8RX05neYa72PH
+ eQ0hDDwG4nm78urltXG7xarZklquI5x9sFYRA9ppqDfyqcOELIO6J5NnQKp9lVro9Fy3
+ kXDA8nNc/4cpSNqOq30AWQdWxALW9TaBWLdL32vHG9NM/e45AjbS5O7EQi59m6bPW/F5
+ N78wwF+Q/BzImuT8R3SPSYeSMB1kI69kLgC7iA/HWk2HCnaiHhxUTS3c1R3897mMsh2x
+ 0gDQ==
+X-Gm-Message-State: AOAM531zS91AA6uFdgQB7iXM4z4ZChA/E02l7Jn08oNFQThYoHuHXpOx
+ eVIpgPlI9tzNGeppbHWL66a3mO1w75SgWIwhmvFBEw==
+X-Google-Smtp-Source: ABdhPJyBPhpZAm9pK9za4X7LfFBGg8KHUTGO1WamLDRCyuqF8oJJ8n1kh+U1CckiFSzq7xCSoeMHJzoKQjEaocRKOfc=
+X-Received: by 2002:a92:c5c8:: with SMTP id s8mr651292ilt.140.1628602574443;
+ Tue, 10 Aug 2021 06:36:14 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210717234859.351911-1-martin.blumenstingl@googlemail.com>
+ <20210717234859.351911-3-martin.blumenstingl@googlemail.com>
+ <20210728175823.GA2766167@p14s>
+ <CAFBinCB0-bAa7Y+YhscczarGrGuio37F8vRyfW6U2DiiDAvr-g@mail.gmail.com>
+ <20210805161506.GA3205691@p14s>
+ <CAFBinCCkOgkzuxZPby-rJeH7ei-G_khiStkX9Zs3w1u1RAd7_Q@mail.gmail.com>
+In-Reply-To: <CAFBinCCkOgkzuxZPby-rJeH7ei-G_khiStkX9Zs3w1u1RAd7_Q@mail.gmail.com>
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+Date: Tue, 10 Aug 2021 07:36:01 -0600
+Message-ID: <CANLsYkyz5h9Qb+ZLFAtegDHYeQoOYeF_6GF7jYo8kxhF-pt66Q@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] remoteproc: meson-mx-ao-arc: Add a driver for the
+ AO ARC remote procesor
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-remoteproc <linux-remoteproc@vger.kernel.org>,
+ linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>, 
+ Ohad Ben-Cohen <ohad@wizery.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210810_032623_255548_758C8873 
-X-CRM114-Status: GOOD (  17.36  )
+X-CRM114-CacheID: sfid-20210810_063616_038486_7D2CAD75 
+X-CRM114-Status: GOOD (  41.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,461 +97,94 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Radxa Zero is a small form factor SBC based on the Amlogic S905Y2
-chipset that ships in a number of RAM/eMMC configurations:
+On Sun, 8 Aug 2021 at 14:37, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Mathieu,
+>
+> On Thu, Aug 5, 2021 at 6:15 PM Mathieu Poirier
+> <mathieu.poirier@linaro.org> wrote:
+> >
+> > On Wed, Aug 04, 2021 at 11:03:57PM +0200, Martin Blumenstingl wrote:
+> > > Hi Mathieu,
+> > >
+> > > thanks for taking the time to look into this!
+> > >
+> > > (I will address any of your comments that I am not mentioning in this
+> > > email anymore. Thanks a lot for the suggestions!)
+> > >
+> > > On Wed, Jul 28, 2021 at 7:58 PM Mathieu Poirier
+> > > <mathieu.poirier@linaro.org> wrote:
+> > > [...]
+> > > > > +     writel(FIELD_PREP(AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU,
+> > > > > +                            priv->sram_pa >> 14),
+> > > > Indentation problem
+> > > The idea here is to align priv->sram_pa with AO_REMAP_REG0... which
+> > > are both arguments to FIELD_PREP
+> >
+> > Right, this is what I would have expected.  When I applied the patch on my side
+> > "priv->sram_pa ..." was aligned wiht the 'M' of "AO_REMAP_ ...".
+> >
+> > > Maybe using something like this will make that easier to read:
+> > >     tmp = FIELD_PREP(AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU,
+> > >                                      priv->sram_pa >> 14);
+> > >     writel(tmp, priv->remap_base + AO_REMAP_REG0);
+> >
+> > I think the main problem is that
+> > AO_REMAP_REG0_REMAP_AHB_SRAM_BITS_17_14_FOR_ARM_CPU is simply too long.  I
+> > suggest making is shorter and add a comment to describe exactly what it does.
+> AO_CPU_CNTL_AHB_SRAM_BITS_31_20 is used below and when looking at it
+> now I think the alignment is also strange.
+> For the next version I'll go with the tmp variable as I think it
+> improves readability, even with the long(er) macro names.
+>
+> [...]
+> > > > > +     priv->arc_reset = devm_reset_control_get_exclusive(dev, NULL);
+> > > > > +     if (IS_ERR(priv->arc_reset)) {
+> > > >
+> > > > Function __reset_control_get() in __devm_reset_control_get() can return NULL so
+> > > > this should be IS_ERR_OR_NULL().
+> > > The logic in there is: return optional ? NULL : ERR_PTR(-...);
+> >
+> > Ok, so you meant to do that.  And I just checked reset_control_reset() and it does
+> > account for a NULL parameter.  I'm good with this one but add a comment to
+> > make sure future readers don't think you've omitted to properly deal with the
+> > NULL return value.
+> >
+> > > I am requesting a mandatory reset line here, so reset core will never
+> > > return NULL
+> > > See also [0]
+> >
+> > Indeed, I've read that too.  Nonetheless __reset_control_get() can return NULL
+> > by way of __reset_control_get_from_lookup().
+> I could not find where __reset_control_get_from_lookup returns NULL in
+> case optional is false (which it is in this case because
+> devm_reset_control_get_exclusive requests a "mandatory" reset line).
+> Can you please point me to the problematic line(s) as I'd like to send
+> a patch (which fixes this) to the reset subsystem maintainers
+>
 
-Boards with 512MB/1GB LPDDR4 RAM have no eMMC storage and BCM43436
-wireless (2.4GHz b/g/n) while 2GB/4GB boards have 8/16/32/64/128GB
-eMMC storage and BCM4345 wireless (2.4/5GHz a/b/g/n/ac).
+I am currently traveling - I will get back to you in a week or so.
 
-- Amlogic S905Y2 quad-core Cortex-A53
-- Mali G31-MP2 GPU
-- HDMI 2.1 output (micro)
-- 1x USB 2.0 port - Type C (OTG)
-- 1x USB 3.0 port - Type C (Host)
-- 1x micro SD Card slot
-- 40 Pin GPIO header
-
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../dts/amlogic/meson-g12a-radxa-zero.dts     | 407 ++++++++++++++++++
- 2 files changed, 408 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index faa0a79a34f5..be308361e2f1 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-new file mode 100644
-index 000000000000..c7bf2ee41134
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-@@ -0,0 +1,407 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 BayLibre SAS. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12a.dtsi"
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "radxa,zero", "amlogic,g12a";
-+	model = "Radxa Zero";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	cvbs-connector {
-+		status = "disabled";
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	ao_5v: regulator-ao_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "AO_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_1v8: regulator-vcc_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	hdmi_pw: regulator-hdmi_pw {
-+		compatible = "regulator-fixed";
-+		regulator-name = "HDMI_PW";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&ao_5v>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_1v8: regulator-vddao_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&ao_5v>;
-+		regulator-always-on;
-+	};
-+
-+	vddcpu: regulator-vddcpu {
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU";
-+		regulator-min-microvolt = <721000>;
-+		regulator-max-microvolt = <1022000>;
-+
-+		vin-supply = <&ao_5v>;
-+
-+		pwms = <&pwm_AO_cd 1 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "RADXA-ZERO";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&hdmi_pw>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	status = "disabled";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_AO_cd {
-+	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+	status = "okay";
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddao_1v8>;
-+};
-+
-+/* SDIO */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	/* WiFi firmware requires power to be kept while in suspend */
-+	keep-power-in-suspend;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+		interrupts = <&gpio GPIOX_7 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_3v3>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vcc_1v8>;
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+	};
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	dr_mode = "host";
-+};
--- 
-2.17.1
-
+> $ git grep -A1 devm_reset_control_get_exclusive | grep IS_ERR_OR_NULL
+> drivers/remoteproc/ti_k3_r5_remoteproc.c-       if
+> (IS_ERR_OR_NULL(core->reset)) {
+> $
+>
+> I suspect that this can be simplified then as well.
+>
+>
+> Best regards,
+> Martin
+>
+>
+> [0] https://elixir.bootlin.com/linux/v5.14-rc4/source/include/linux/reset.h#L227
+> [1] https://elixir.bootlin.com/linux/v5.14-rc4/source/drivers/reset/core.c#L932
 
 _______________________________________________
 linux-amlogic mailing list
