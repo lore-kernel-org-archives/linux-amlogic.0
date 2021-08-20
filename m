@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8352CC4338F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Aug 2021 01:27:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1021CC4338F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Aug 2021 02:18:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 245FC610F9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Aug 2021 01:27:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 245FC610F9
+	by mail.kernel.org (Postfix) with ESMTPS id A535560FF2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Aug 2021 02:18:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A535560FF2
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,62 +24,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=PDfFlB14w3RjapTb7k2o22ppeNjCK8QXSabWW/SSO/4=; b=NnmlgFF5M8ntS6
-	e9AW14LCx2WZGaJtLxNA49Rro13dRFt7H0zQdyMMhE4cGsfvquVN0sTgwZsSp2bhQVGv9I0aT65Lr
-	CKqMJQpRkWPLRVwZstzsAvYvTIhff8eTNdhkf+dEbss5lAdJOR5oK5P2+3jkxH39yYLszPx4FN1Hz
-	NnpxNima/4R4xTTLytFl+hCvuf1tsgbJokdtn3KpD1WoWCb9X8a/5Hm8eI0xK7W/QO5o7TnwX3f3C
-	r6nIvt6s+S680mxnYXDIezhj5hCOgNJCQMDGJWb2GmQ1AtuFCEF6HDh2SYnxPOxj/7cvuTDzdJM0H
-	+Vq3s3zCn8JZWKpkyx2A==;
+	List-Owner; bh=djy6moUqTHfBMNLwxG4Ohbw3LmtBSqGivnZKnS1aeF4=; b=oZ+kOoFr8BjGrS
+	XKSf3tPU0qRSBtm6Kia5cYnC3KdYxfdCtvo/aphFvcud5mh6IgrcgTY+Re7XywiExnL287UvqJrXr
+	Xnni6D0jMsGW4UrfvPOOPmqDh2ZUhSZIIbcwP3lYRaUJ+AMBrz0iZeBWBbO6MQSkv71tSYpy8Ik87
+	ArWSzLvuC0lUzPp+VUdmtCqa74cJyDPgAcWJcRG7vP3x3dJrM/L6uiKqly8YUpPcmO3ssdlUFa6tf
+	shc1SORet9zpPJaTSmMqmFksfU+2aWXtw+O2Bv42l775aFR2/PBw+loRhelxTisY6b0fuxmQ9UNgm
+	VlfiZILafghQ2ghaARqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mGtJr-009qCY-DY; Fri, 20 Aug 2021 01:27:39 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1mGu7H-009tzV-BB; Fri, 20 Aug 2021 02:18:43 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mGtJe-009qBe-0C; Fri, 20 Aug 2021 01:27:27 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id
- f9-20020a05600c1549b029025b0f5d8c6cso7978570wmg.4; 
- Thu, 19 Aug 2021 18:27:24 -0700 (PDT)
+ id 1mGu7F-009tzD-07
+ for linux-amlogic@lists.infradead.org; Fri, 20 Aug 2021 02:18:42 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id k29so11830378wrd.7
+ for <linux-amlogic@lists.infradead.org>; Thu, 19 Aug 2021 19:18:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id;
- bh=3wG+ySzeEprV+yc+XWum1zV/cM3qSLdGZx6RBGuGrt0=;
- b=MC3iafjo+Dorj/liOIIpypUPSUXqDWuPtYKvRUvkTqfh2Gsn4aRlTg0YC39VONrvoj
- GjDIKZryQTITsJ3YUZFdJ0GVlAJWTEuzZZ3bVtZ0PLq8bEFIwv1aZdHEGzRXO7xM8yKd
- xhrwd+isreeVxgJRR8OaSRadR4oD9cJVCluZvSW7tbYKLRMULSq3LmxUCYGI+oEUZIo9
- BBqbdFF99eRBgG7y7vlTIwdIK11rbxDhRI/9dQ+IK19ZtQGo1dvivojZ6++yXljEFc2b
- V6ySFYdp03X4MVd+NGh5p2rBXx1rEteQuTzig5LpxHe3brW29c888MYr/cpuyf2OHMSi
- WbFg==
+ bh=dk1s23EK1RCBH+7+areW88M/uRoQk3BnGDbY+LNQdsA=;
+ b=RNwji+Rx1oGwb0Bwuqtys+w0GgMB+xyJ4V2NhOAbS8IKkgC0v/vLAn/jf7u7lCNF8M
+ 12LhtlQy556yUfzXAxzuzRyCra7r6eeckSUpxIYOj9Y5nKmzUHzULWooWc/pIIDz9cm+
+ 1cP40HZIrxENrhnB7Zn9WzVx76PTyGI+UTvZyWTsTQVnGrrvtk9nArhKdJ2VhVipAiy+
+ JQlD/TCsPcpKe7kr0Lh1iIYIfuKxlfSUxG1zBdn0ULtN9teYk5MePJVFRGprE5yJNsJn
+ 9zsc3DI/c8g2riT1kYZPzkLneka5i/L1cS2ufByV8cGPsAufEKwMOvhdHS4dA9K4xS50
+ mMmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=3wG+ySzeEprV+yc+XWum1zV/cM3qSLdGZx6RBGuGrt0=;
- b=XhgFxvtKKZmFaNMdaFjowiog69V5OyeZvTx/Tqi9C+2Ul26ii9xg7cYzl9awdBuLx7
- 2DJKsmQ3DxMDVOzafm9CsTlf2wxbcStWBRVadbo8XpMAob8BBFdw7/Ce3JYQR2NGXRDS
- pSUI5PBX/PoQoHsPhOq0rZgNdHVwNpNCrm4mqNmF5eQpFHDnQlgj2wYjCm6mIiyYwA50
- lw+GYp3PIV8ZG4F8xJYCZ5SOQI2GgR0dVvvF0tIomEoQBOzdBYZD67Z9Kv/HKDoHopKe
- 97EFMRodjvn1Ch4fY90COdqez/DDGR1t74NJwCkYKlXbNNSBsFOZBQ+ijV4KP39nubcr
- 1ezA==
-X-Gm-Message-State: AOAM533FGtx/IAQIZKzRfx8lwp+5NvyqtqkpDYZgvfvf9+WGHnlmnIRx
- H+m1fDECDZr6VH68hs1MzIU=
-X-Google-Smtp-Source: ABdhPJwocTP8uyu6GqN2EoUfhbMIpjrUuVQMr3ItXPa4ajbQtMa22xWFeB0vy1BpmjtownDPwNlrNQ==
-X-Received: by 2002:a1c:7904:: with SMTP id l4mr1278603wme.42.1629422843780;
- Thu, 19 Aug 2021 18:27:23 -0700 (PDT)
+ bh=dk1s23EK1RCBH+7+areW88M/uRoQk3BnGDbY+LNQdsA=;
+ b=m3Y0S/qH5PSLYSfqhByc+giJCg9U1pIU0CJif4IpII6vuGQRYq3dc9B1dZKGBsymMJ
+ GUyuoEg6PxbubzoOn7EM+CqCFv+qEw1mjnxwDM3sVPNhPyMPT/lPSS+gPAKC9clppNuW
+ B+4klrH173/c5GsoEQN/DorLjxVcmgd6M8uiRCHeMpUAi9Xtlow66dyofqGfWcI0p46S
+ o1KXNjSnXN/FqjHSwzDWiFmHvDLYt18DW86kUwYs0MKlqPnpIxKmJoKEZmtJe86K95TZ
+ pkjpAMp9irO9Qk/RfHboYacGiLAmj9DE4JnLrn9v1WMTcc2Hk3QXMMJ6zFr8khgyzrzu
+ aWkw==
+X-Gm-Message-State: AOAM5321A2ukd3T9I2FmGc3EaHL/Waqp/97x2WU2fE35stqXXbU+Mnna
+ w4pD435Xwa3Qlc7VzCBDA0s=
+X-Google-Smtp-Source: ABdhPJy29A9tZ61+S/MOYh5iY+mn5Pq1KGupscPNZ144aFmlBe40/GQ+ttKyXru5s4le0p2hHchiJQ==
+X-Received: by 2002:adf:f352:: with SMTP id e18mr6904465wrp.160.1629425919479; 
+ Thu, 19 Aug 2021 19:18:39 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id l2sm4316517wrx.2.2021.08.19.18.27.21
+ by smtp.gmail.com with ESMTPSA id y10sm9738189wmo.18.2021.08.19.19.18.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Aug 2021 18:27:23 -0700 (PDT)
+ Thu, 19 Aug 2021 19:18:39 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
+To: u-boot@lists.denx.de, u-boot-amlogic@groups.io,
+ linux-amlogic@lists.infradead.org
 Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] soc: amlogic: meson-gx-socinfo: Add S905Y2 ID for Radxa Zero
-Date: Fri, 20 Aug 2021 01:27:18 +0000
-Message-Id: <20210820012718.10761-1-christianshewitt@gmail.com>
+Subject: [PATCH] ARM: meson: Add S905Y2 SOC ID
+Date: Fri, 20 Aug 2021 02:18:36 +0000
+Message-Id: <20210820021836.1024-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210819_182726_101784_0412E739 
-X-CRM114-Status: GOOD (  10.78  )
+X-CRM114-CacheID: sfid-20210819_191841_077640_F6473A5D 
+X-CRM114-Status: UNSURE (   9.30  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,28 +96,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the SOC ID for the S905Y2 used in the Radxa Zero. Before/After:
+Add the SOC ID for the S905Y2 to board info, see below for before/after
+tested with a Radxa Zero board:
 
-[    0.321650] soc soc0: Amlogic Meson G12A (Unknown) Revision 28:b (30:2) Detected
-[    0.318533] soc soc0: Amlogic Meson G12A (S905Y2) Revision 28:b (30:2) Detected
+SoC:   Amlogic Meson G12A (Unknown) Revision 28:b (30:2)
+SoC:   Amlogic Meson G12A (S905Y2) Revision 28:b (30:2)
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- drivers/soc/amlogic/meson-gx-socinfo.c | 1 +
+ arch/arm/mach-meson/board-info.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 6f54bd832c8b..165f7548401b 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -65,6 +65,7 @@ static const struct meson_gx_package_id {
- 	{ "A113X", 0x25, 0x37, 0xff },
- 	{ "A113D", 0x25, 0x22, 0xff },
+diff --git a/arch/arm/mach-meson/board-info.c b/arch/arm/mach-meson/board-info.c
+index d16d3f194d..2421acd817 100644
+--- a/arch/arm/mach-meson/board-info.c
++++ b/arch/arm/mach-meson/board-info.c
+@@ -64,6 +64,7 @@ static const struct meson_gx_package_id {
+ 	{ "A113X",  0x25, 0x37, 0xff },
+ 	{ "A113D",  0x25, 0x22, 0xff },
  	{ "S905D2", 0x28, 0x10, 0xf0 },
 +	{ "S905Y2", 0x28, 0x30, 0xf0 },
  	{ "S905X2", 0x28, 0x40, 0xf0 },
- 	{ "A311D", 0x29, 0x10, 0xf0 },
- 	{ "S922X", 0x29, 0x40, 0xf0 },
+ 	{ "A311D",  0x29, 0x10, 0xf0 },
+ 	{ "S922X",  0x29, 0x40, 0xf0 },
 -- 
 2.17.1
 
