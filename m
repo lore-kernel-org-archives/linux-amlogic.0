@@ -1,92 +1,137 @@
-Return-Path: <SRS0=c7rh=NM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=45KS=NO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-18.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03A5FC4338F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Aug 2021 03:51:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B635EC4338F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Aug 2021 12:09:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AAFBB6113E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Aug 2021 03:51:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org AAFBB6113E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 7562561184
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Aug 2021 12:09:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7562561184
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0D2VTLUumv9NmuMaQvBNGdyUiq9OQgI31uj9oecWOEI=; b=CoHqFGJg3YIoIc
-	HLNg6KwHW+f0IZudvKDmUwqVD7f3+iCsyBnlypN4RNoSTIGTS/5l9zwOkGxtBiP0O/F7jGsv+WeiY
-	gGbwah1ctKuULPtdrDSC9ZG9W59t8QMm656l3r0Z6HikzisrsKLSiMOo9weonvjXboj7TzLDPKn6u
-	+w6oXUkb3eYboY7r+E4nks6RRnTojZ0l4N2fG5JjNg0sdUMiCkBwcUAXxiFOQ3KW07rSwd+Zjmm1Y
-	5qZ4wWEZdEM4RjpkCyi8V1bhuQOjnu91ImwjFoBvs/Az9YKOq/XitNYJ+/R+7636/z1ZmuTTPXcyK
-	Ayce9Q32+iRzaUNK+Rfg==;
+	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:
+	Date:Message-ID:From:Cc:To:Subject:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jm4yoPW8JkD2arrEzbOD4mmRxqcweyEn746cetfu+dE=; b=i2CepvBhnH3VJP
+	dGciLdwcm4OEBuQz3nuXuqfypYaKHulkPGLmQNC9h4G40Mbo4GQCu/AQSm4KUabiAbDc+LscFH62G
+	wRpCml1tf6l4rUkpwLBqKf77Be9Vi6aUW/EN1qwa3kG5ch6zfVit5+EWQA5dTHP8DyNGFkzWjttCY
+	qcL4+E1sKnPk6qnLY0O0A3M6emqoD/XT+YXmWFIt+USd0dugI3yZBzOzQY+0x/vBTkXkjTxVsC5SS
+	qVLyBUpZhsmSRCszBGBpueJQmp+TyK0HUxGAKmsWT/C2DfHBuP+6PHj153ONo3Xgr3uZS91up0mLJ
+	JR7j1MCkqDUImtG87s/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mHI24-00CQRC-P7; Sat, 21 Aug 2021 03:50:56 +0000
-Received: from mail-qt1-x834.google.com ([2607:f8b0:4864:20::834])
+	id 1mI8lJ-00GgrI-B8; Mon, 23 Aug 2021 12:09:09 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mHI1r-00CQPs-3m; Sat, 21 Aug 2021 03:50:45 +0000
-Received: by mail-qt1-x834.google.com with SMTP id u21so6173361qtw.8;
- Fri, 20 Aug 2021 20:50:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=3qJEeSvfeYR4GpQzmxAjuhDRVR/g1i3gAXvBM9dIcHY=;
- b=fPnRf6Ok2ou/v0WrM3AraBvPxv4tq0xxdh6lKZEGrhOlrdOXJtzQg9eTl00ccZAKMy
- YYYmws/mzSI8V0HNS2Ph6WpzrTBrdPK09ODNnNELJuoR1P8pQPhX1lVlnxfqghEoaVIm
- zxnJ3XlD7QfHXblmH+rYJ+2pzKTeNpmsGLiF+DYkA5ssYeHI51oPPbRjO/No+Gifbcx5
- ghtg8n0GaFuanJCNCs+nkwr3qrt788l8fPbcF53YFrCTFElfdbk5GnEsLyvFqR7UHo3N
- rPUQFoSEOILeJdrIlW7OqINVAv1Cnruc+vy4fzDgNUaTL2W5npFFpUBDnlIx53/+KEgD
- GCGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=3qJEeSvfeYR4GpQzmxAjuhDRVR/g1i3gAXvBM9dIcHY=;
- b=LsnEy5gqgU1sQDveDmavy4PMnPcgBCjxFyS20TczjDvH60mY73vUsoYQX8Ext+DFeb
- 5GafzHn3lSoenV56/HRh/Ok8zpXwkqU5+bpK0iO6n7lsHgEdZ7CiTkAOuTugNl0VcfWy
- kB16Y3OvietONatnMDwgH+FPPg0N4RPvxWSjQu7Donz8XJRHjEsdySDGVJ4smTlMV6vQ
- 7uxOzRlp/1l+B63B+8WTAbX+yNksWGNjGLCXRqeYZ9ODHHiYCjyT5Ko5ZpV/f3lArzJF
- qntwxKqgcSdkhB8q//2Dx/edjbwH1AXawHqMWsIDbLoJDWQ1pm9i4AnmHQNv2vZlEtDI
- nCYA==
-X-Gm-Message-State: AOAM531fjSe4GDoxReiIKdfLQ1gopBpo2vbtlCP9tX8Li8KHLngXXeLJ
- wNeChuzTR7GO4qaRWUV/9DRcqgAik8o=
-X-Google-Smtp-Source: ABdhPJz8E0hCoCre+vuDt2dUQ81tAwcPRbcOHkTt63jkFmjvjnjYIEJw2Q1P4KyojF3fwBZLZBW64Q==
-X-Received: by 2002:ac8:5744:: with SMTP id 4mr21136410qtx.326.1629517841270; 
- Fri, 20 Aug 2021 20:50:41 -0700 (PDT)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id f2sm3366249qth.11.2021.08.20.20.50.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Aug 2021 20:50:41 -0700 (PDT)
-From: CGEL <cgel.zte@gmail.com>
-X-Google-Original-From: CGEL <jing.yangyang@zte.com.cn>
-To: Sean Young <sean@mess.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- jing yangyang <jing.yangyang@zte.com.cn>, Zeal Robot <zealci@zte.com.cn>
-Subject: [PATCH linux-next] media:meson-ir-tx: fix platform_no_drv_owner.cocci
- warnings
-Date: Fri, 20 Aug 2021 20:50:33 -0700
-Message-Id: <20210821035033.28210-1-jing.yangyang@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
+ id 1mI8lD-00GgjB-U6
+ for linux-amlogic@lists.infradead.org; Mon, 23 Aug 2021 12:09:07 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20210823120850euoutp01518898a7e143c4b88345922cb57ae926~d7jAiw_921484814848euoutp01g
+ for <linux-amlogic@lists.infradead.org>; Mon, 23 Aug 2021 12:08:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
+ 20210823120850euoutp01518898a7e143c4b88345922cb57ae926~d7jAiw_921484814848euoutp01g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1629720530;
+ bh=pJfmX1Sm9JXU9J42wTwyNLfJJPgLGvYFX3GU9wt5Dg4=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+ b=YFkmRmS1y4ZnPWFLpVnJsy72C5lCQBJzLGfNeJVkol6iR6SE6fkp19G6G4o6l4mGs
+ NYu2zMAL2UXATNdoAIXGXa6X7eGYAcTagPEIdjBViseouQupbWMfD5kemx2Ul+CsIf
+ 0pWz0lyorb6vRJUJMhoeiCQ1zrPWxvCzhb+zaeCM=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+ 20210823120850eucas1p2b3a337e39360696e08827ad1ad02d47e~d7jATp0G62022220222eucas1p29;
+ Mon, 23 Aug 2021 12:08:50 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id 77.54.56448.2DF83216; Mon, 23
+ Aug 2021 13:08:50 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+ 20210823120849eucas1p11d3919886444358472be3edd1c662755~d7i-vN8cw1232312323eucas1p1e;
+ Mon, 23 Aug 2021 12:08:49 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+ eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+ 20210823120849eusmtrp1d7348b4da291ef7d77a1f7f7850283be~d7i-uU-SB1534715347eusmtrp1y;
+ Mon, 23 Aug 2021 12:08:49 +0000 (GMT)
+X-AuditID: cbfec7f5-d3bff7000002dc80-ae-61238fd21db6
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms2.samsung.com (EUCPMTA) with SMTP id 76.75.20981.1DF83216; Mon, 23
+ Aug 2021 13:08:49 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+ eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20210823120849eusmtip17606a090bec84df892e21773f339aa9d~d7i-Dy6TU2428124281eusmtip1C;
+ Mon, 23 Aug 2021 12:08:49 +0000 (GMT)
+Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for
+ "phy-handle" property
+To: Saravana Kannan <saravanak@google.com>, Rob Herring
+ <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
+ kernel-team@android.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-amlogic@lists.infradead.org
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
+Date: Mon, 23 Aug 2021 14:08:48 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+ Gecko/20100101 Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <20210818021717.3268255-1-saravanak@google.com>
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOKsWRmVeSWpSXmKPExsWy7djP87qX+pUTDY5eELI4f/cQs8X8I+dY
+ LWa++c9msWO7iMWC2dwWl3fNYbM41BdtcWyBmEXr3iPsFl2H/rI5cHls272N1eP9jVZ2j52z
+ 7rJ7LNhU6rFpVSebx+Yl9R47d3xm8vi8SS6AI4rLJiU1J7MstUjfLoEr48PM96wFswQq/mw5
+ ydjAuJW3i5GTQ0LAROLpqmb2LkYuDiGBFYwSey5NZYZwvjBKrFi9lAnC+cwoce5qIwtMy7+2
+ /awQieVAVVsvsEA4Hxkllr3Zyw5SJSwQKXF23142EFtEoFTi2e3DjCBFzAL3GCVm/dvKCpJg
+ EzCU6HrbBVbEK2AnsX3SKjCbRUBV4uqCl8wgtqhAssTEJ5NYIWoEJU7OfAJ2BqeAjURj8x2w
+ OLOAvMT2t3OYIWxxiVtP5oPdLSHQzCmx/PQdoAYOIMdF4mqLNMQLwhKvjm9hh7BlJE5P7mGB
+ qmeUeHhuLTuE08MocblpBiNElbXEnXO/2EAGMQtoSqzfpQ8RdpT43f6YFWI+n8SNt4IQN/BJ
+ TNo2nRkizCvR0SYEUa0mMev4Ori1By9cYp7AqDQLyWezkHwzC8k3sxD2LmBkWcUonlpanJue
+ Wmycl1quV5yYW1yal66XnJ+7iRGYtk7/O/51B+OKVx/1DjEycTAeYpTgYFYS4f3LpJwoxJuS
+ WFmVWpQfX1Sak1p8iFGag0VJnHfX1jXxQgLpiSWp2ampBalFMFkmDk6pBqbAzLPzT1lNfnRj
+ yl8+60OrD2u94Sg+5+xy8ch/zvNy8xWeqARnXl59qmVDgpaI6OXCl/9sWlm/3/WVmLb02sGW
+ 583XcqUNhW6u0+yu6H33ptnO09fhX2HtlCsfbD9c2Hywb2qbpYx076nkc8fDj39Y2WLXlP9p
+ cUjQRIbtlbeUlsgxFShntAasYX2ZVysxf52zNneD/6ejfUwP0nZpal570jWrvF/V+u3rL+/n
+ b2ZZ9HbWphp/qcY7vRt2P/bXn3G6Z0LlZvu1p9k3G93Y18JzfMbuQusr31UfqxycsPZ90Euu
+ bfI3yqS0Ko4uO/Di6pVPQg/M5fs9M7Z9V9bv9Z50c3HFrU+fN9xWiv9d/5tJSomlOCPRUIu5
+ qDgRAOIrzXvKAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBIsWRmVeSWpSXmKPExsVy+t/xu7oX+5UTDdbf17Y4f/cQs8X8I+dY
+ LWa++c9msWO7iMWC2dwWl3fNYbM41BdtcWyBmEXr3iPsFl2H/rI5cHls272N1eP9jVZ2j52z
+ 7rJ7LNhU6rFpVSebx+Yl9R47d3xm8vi8SS6AI0rPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jE
+ Us/Q2DzWyshUSd/OJiU1J7MstUjfLkEv48PM96wFswQq/mw5ydjAuJW3i5GTQ0LAROJf235W
+ EFtIYCmjxNMV/BBxGYmT0xpYIWxhiT/Xuti6GLmAat4zSizb1skEkhAWiJT4/uwkI4gtIlAq
+ sePAT3aQImaBe4wSp25cYoKYai0xf8ZuFhCbTcBQoustyCRODl4BO4ntk1aB2SwCqhJXF7xk
+ BrFFBZIlPpxeygpRIyhxcuYTsF5OARuJxuY7YHFmATOJeZsfMkPY8hLb386BssUlbj2ZzzSB
+ UWgWkvZZSFpmIWmZhaRlASPLKkaR1NLi3PTcYiO94sTc4tK8dL3k/NxNjMAo3Xbs55YdjCtf
+ fdQ7xMjEwXiIUYKDWUmE9y+TcqIQb0piZVVqUX58UWlOavEhRlOgfyYyS4km5wPTRF5JvKGZ
+ gamhiZmlgamlmbGSOK/JkTXxQgLpiSWp2ampBalFMH1MHJxSDUzxd96FSHzwOnXlOk8nz7Fr
+ pnmzwh7M9p18dkmThjfn/oq+83ziz0TLZu44mZN7d57B1etx652KmN4+/LzqwH5rrhk7Dh7d
+ sOPK283m+dalsk/yAr/NvFtzueNmaO0Ml5I0xmlJFbMPrU2zEfetqd5V4Z7/znJ5uSJDWf1H
+ LWu1LTXCPz49P+LOanXjAqNtRtNXVfMNT72cXtZOiF91aOGlug+b7+0TN/4xz+LNqv2+5q9S
+ ed/POZ4SqqLg8PCp9pW/SpInnr3cWj4p5emBci6OTW/MGGYnPm1OfXtCOvvbjdYLT36Zvn1x
+ TsRzzf8JbX73fxlHa+xZnHe4ddUaB33TWufptiZG7x9Lz3F6ueXlfyWW4oxEQy3mouJEALpD
+ UjtbAwAA
+X-CMS-MailID: 20210823120849eucas1p11d3919886444358472be3edd1c662755
+X-Msg-Generator: CA
+X-RootMTR: 20210823120849eucas1p11d3919886444358472be3edd1c662755
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20210823120849eucas1p11d3919886444358472be3edd1c662755
+References: <20210818021717.3268255-1-saravanak@google.com>
+ <CGME20210823120849eucas1p11d3919886444358472be3edd1c662755@eucas1p1.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210820_205043_183342_CB2C17F9 
-X-CRM114-Status: GOOD (  11.54  )
+X-CRM114-CacheID: sfid-20210823_050904_302014_D0BD1ADF 
+X-CRM114-Status: GOOD (  17.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,35 +148,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: jing yangyang <jing.yangyang@zte.com.cn>
+Hi,
 
-./drivers/media/rc/meson-ir-tx.c:398:3-8: No need to set .owner here. The core will do it.
+On 18.08.2021 04:17, Saravana Kannan wrote:
+> Allows tracking dependencies between Ethernet PHYs and their consumers.
+>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: netdev@vger.kernel.org
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-Remove .owner field if calls are used which set it automatically
+This patch landed recently in linux-next as commit cf4b94c8530d ("of: 
+property: fw_devlink: Add support for "phy-handle" property"). It breaks 
+ethernet operation on my Amlogic-based ARM64 boards: Odroid C4 
+(arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts) and N2 
+(meson-g12b-odroid-n2.dts) as well as Khadas VIM3/VIM3l 
+(meson-g12b-a311d-khadas-vim3.dts and meson-sm1-khadas-vim3l.dts).
 
-Generated by: scripts/coccinelle/api/platform_no_drv_owner.cocci
+In case of OdroidC4 I see the following entries in the 
+/sys/kernel/debug/devices_deferred:
 
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: jing yangyang <jing.yangyang@zte.com.cn>
----
- drivers/media/rc/meson-ir-tx.c | 1 -
- 1 file changed, 1 deletion(-)
+ff64c000.mdio-multiplexer
+ff3f0000.ethernet
 
-diff --git a/drivers/media/rc/meson-ir-tx.c b/drivers/media/rc/meson-ir-tx.c
-index 3055f8e..c22cd26 100644
---- a/drivers/media/rc/meson-ir-tx.c
-+++ b/drivers/media/rc/meson-ir-tx.c
-@@ -395,7 +395,6 @@ static int meson_irtx_remove(struct platform_device *pdev)
- 	.remove = meson_irtx_remove,
- 	.driver = {
- 		.name = DRIVER_NAME,
--		.owner  = THIS_MODULE,
- 		.of_match_table = meson_irtx_dt_match,
- 	},
- };
+Let me know if there is anything I can check to help debugging this issue.
+
+> ---
+> v1 -> v2:
+> - Fixed patch to address my misunderstanding of how PHYs get
+>    initialized.
+>
+>   drivers/of/property.c | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 931340329414..0c0dc2e369c0 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1291,6 +1291,7 @@ DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
+>   DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
+>   DEFINE_SIMPLE_PROP(leds, "leds", NULL)
+>   DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
+> +DEFINE_SIMPLE_PROP(phy_handle, "phy-handle", NULL)
+>   DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+>   DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+>   
+> @@ -1379,6 +1380,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+>   	{ .parse_prop = parse_resets, },
+>   	{ .parse_prop = parse_leds, },
+>   	{ .parse_prop = parse_backlight, },
+> +	{ .parse_prop = parse_phy_handle, },
+>   	{ .parse_prop = parse_gpio_compat, },
+>   	{ .parse_prop = parse_interrupts, },
+>   	{ .parse_prop = parse_regulators, },
+
+Best regards
 -- 
-1.8.3.1
-
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
 
 _______________________________________________
