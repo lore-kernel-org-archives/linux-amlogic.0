@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B3ECC4320E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Aug 2021 15:56:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 77926C432BE
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Aug 2021 16:01:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E59466054E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Aug 2021 15:56:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E59466054E
+	by mail.kernel.org (Postfix) with ESMTPS id 3CF5960E78
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Aug 2021 16:01:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3CF5960E78
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,56 +23,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TloRzD8jGGxApFj92Q2aSA+grKvu+O3Mxd9pujakiYg=; b=anh6tvxTk/4n/s
-	hqms+9ojvjgTfjCr43QHRXScdAzfrJ3hDrH9TY/7r2UbAaIdrxunCaYUwmBkO5FVWBNZUmEBq66uH
-	btUMw0KJPWUrf9k7GBvEOWXOjURi+UVYxgp4cnjUgTs3y6d9IjoDz92ut9t9VpGrYX5idTDdlnTpH
-	Dw0Chtoc3do2Id1hTUOcd5vHXeVUzDijqxAaik89q37ArL6W13l5VYsOWURKr65NgqYgAtnuxNTno
-	KAIt60CT0eTjL4eeZD3PNzS1F28Q0CVwqqcwmcQFRrjRZZXU/j7tUd4JFPiLY4bdijEy3LK1bJ1zu
-	/boZgYyxaxELEMRUijjg==;
+	List-Owner; bh=nh9SVudGEq/TMyJL/kLfhG7XJVNlYUV6QwMq429VZgU=; b=QSis+du891AU+V
+	t3aWUR9I7YffHOlAdnwGIKavK5yVsII+nxYm04Xi8j0k3+KeB0UfN0tGTXQsCTLnaAFao6QJTGXIS
+	bTCz+cUmfNNg43MPO0LL3RN8wn3wCKsD2T3yiFGabw2yYgJPoCH2/TXhSIODiQCNleI2LjThu+XK5
+	MOeiIJZTXXFLVo1LI9xPOu+9wo2ndBzlqUGkOSW0n8BM19cp3RhscHPx/C+GfvdMT1UjSaigNB9Uw
+	rKeJoOIV4tuo12avs/8J0TZ7JfbW/dX1Z/gaOwolGGCGQ7DkJio8m3OFwSuWqNNiOkIQv1WAPszZ+
+	3pv4I1nGLNLTHvDBhT3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mK0hB-00ERea-85; Sat, 28 Aug 2021 15:56:37 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1mK0lN-00ESNo-UC; Sat, 28 Aug 2021 16:00:57 +0000
+Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mK0gu-00ERbz-Jy; Sat, 28 Aug 2021 15:56:24 +0000
-Received: by mail-ed1-x529.google.com with SMTP id n11so14512707edv.11;
- Sat, 28 Aug 2021 08:56:20 -0700 (PDT)
+ id 1mK0l7-00ESIp-9x; Sat, 28 Aug 2021 16:00:45 +0000
+Received: by mail-ej1-x629.google.com with SMTP id ia27so20740160ejc.10;
+ Sat, 28 Aug 2021 09:00:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IvpIahskAaTOBlt+JLrDDDHCDcxjhGW+GXDJSUKJacM=;
- b=YWNcViXUHxUJyDr7/EtN+W3GEuZSkpZEbpafkzJbXpuZbV6HJgrSqMZsJfQSEvfniW
- NGoyc1631d2+pXKy3aa0hPMWcYvvKOJ3dKZN8ClhbpRh8f+lAjC0xPF3Td6/yuepHEtP
- 62R0lA6VrxKnwymJmPRzzMyPtvz+sBqY8OpwFyVLdXAZQfDJ+bkIAMEtGm/6ftx6+WpD
- 1WbiTxTlzIVoYWEC4Rux43hRGEoryzA7mrXcGQvQzxYX94WtfnbL+CwMK3kVT6eMVRqQ
- A92eBEKOfkaEwnupt8KP5jR8EJtcSJG7M5Av9/VmDCeUN230rvRZG33ell0Y8tmn9rTO
- JXgQ==
+ :cc; bh=q+Lu3zsplYuNKF2IF+QmpVTl2y5bBSCP+aSg8wuwsiw=;
+ b=HF+xsgvsnrJrPToIAqza2r4D+a2I4uKoEWs4qUPB9ZtxE2lP61oybEuf71lmwwsehc
+ chY8Av/MqB3ykfHwW0Ja5AxiiZmS4/DeXKkolm4txdYKhEzQZ5l138XMO3+VGsgrn+CR
+ qwuu/5OM9ZpeW453SAUOh2G0AL+xSwJflEuEAGZTKZRElo1NZcF6YyQ3H8TiHqZmsX9W
+ cIp2roGNC2b7of6WssIXw6mppEIUbFl7OvHHsaudDCz6Zt2sFliwpt/O0M5kPzE1zl1N
+ 756MlwT00hoeEpixvex5O9YwQCeeFTh1XN4lFUY34JKFo2eSz4EfQNcOSLu2WHn5h/N7
+ mH3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=IvpIahskAaTOBlt+JLrDDDHCDcxjhGW+GXDJSUKJacM=;
- b=S5Wco8jtOsvbqcmnb4S84wH/SYCIIbJGIDFlPw7Tt5dbBR1Le+afgfE+awIrl9zW1K
- u7+9BHbZix3hziDFlDSoP6EIL9rsSdORgpFe3NXnxnTCEIPaqDaBZ2UzaNBoHs37JzZL
- PEq9wSpuFi9asNBfgFWUl8c2v6SkXwS3nfKYxG/Bejw+dvbWCnj4sEif+8DqGWelSVBU
- TJesvShdIXjeEjW0L0BepY5gWr6+JaPHUfMSz+LqKvV4RvN8GlwDxDZYVu4rhOmrbU9j
- GjE2NpKpGtONVdTv+kiN21JpJEPMQC1hDyF8HUrvJoK3LunP+ML4fS60R26XqLiqy0Us
- 72zA==
-X-Gm-Message-State: AOAM532f1kuEcN3Xq/vzeWZLk6wxav4gNfVC2bVl2r4At8SxFiTiWc9W
- /TO0f7qzzstCD9bB1rKey8W9cOG9SRiApYSqvhGMfe4F6GI=
-X-Google-Smtp-Source: ABdhPJxzFNpqSCAUZ337fhDSkjiD3TLh/T+GYBk8lHXVTmBrL94/bdOfFeeukR2CrwwkHFL0WzBUJS99chHZzyx+3Mg=
-X-Received: by 2002:a05:6402:313c:: with SMTP id
- dd28mr15369640edb.179.1630166179073; 
- Sat, 28 Aug 2021 08:56:19 -0700 (PDT)
+ bh=q+Lu3zsplYuNKF2IF+QmpVTl2y5bBSCP+aSg8wuwsiw=;
+ b=lnDk1agitAQ53KVq5Rl1ZzmMCQuNtvlvBFbtXKjZ5tKKH7GctGFdEeY19CKiu4NQns
+ HR8D/2cXwvGHBLPxb1RVBgmtUXW3sgEfY3DPd4ecv8xtaYfCA13ZdNtxlBPuQrslw2Qd
+ orlOHey8nRqVv4udMcBwNRonyeej5P67FttnC6rN1z1/c2gburkgUp+6NR98XDou90qg
+ 8uqz7ypbHQOha75uGeyIgdax+bmc7bEMJv2eCPTeAwUh852reMduTVK05bLN0y0/mibG
+ 45vnVm1OTsJERZyzOP/PUdwRzVEWdtPPELHkW4Vz9EjtiY6LDSYYa9T4rj5uoND7T5Rw
+ 4eWw==
+X-Gm-Message-State: AOAM532GYyupcE1UAnrj4v7rZlqD0Wv95K++KVg4wuVSfUFkKhxrW8k3
+ GmGyvgylSoyzdeOKD7ECQNC5P8iIoQjP2B1GKpA=
+X-Google-Smtp-Source: ABdhPJwD2vEA5j8yQQHHv0y4xe5OPRu0rQ5pLqz4tIRsU3/TzhWBp80jORvSGA8DCjkphVreH8wjKsmX3LcpVwfxUqE=
+X-Received: by 2002:a17:906:369a:: with SMTP id
+ a26mr15768976ejc.539.1630166438950; 
+ Sat, 28 Aug 2021 09:00:38 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210817041548.1276-1-linux.amoon@gmail.com>
- <20210817041548.1276-3-linux.amoon@gmail.com>
-In-Reply-To: <20210817041548.1276-3-linux.amoon@gmail.com>
+ <20210817041548.1276-4-linux.amoon@gmail.com>
+In-Reply-To: <20210817041548.1276-4-linux.amoon@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 28 Aug 2021 17:56:08 +0200
-Message-ID: <CAFBinCB8CK8Bn2xKpiAToQQ4K1_W1XZjND9pOGZRZeMp-grs3Q@mail.gmail.com>
-Subject: Re: [PATCHv3 2/6] ARM: dts: meson8b: odroidc1: Set usb power source
- to always on
+Date: Sat, 28 Aug 2021 18:00:28 +0200
+Message-ID: <CAFBinCAx33SnuL8n1GF8nz2Q4giNR8tsWxjU32X0wsb6kR_nhw@mail.gmail.com>
+Subject: Re: [PATCHv3 3/6] arm64: dts: amlogic: odroidc2: Fix the chip enable
+ signal for usb power
 To: Anand Moon <linux.amoon@gmail.com>
 Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
@@ -83,8 +83,8 @@ Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  Emiliano Ingrassia <ingrassia@epigenesys.com>,
  Brian Kim <brian.kim@hardkernel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210828_085620_702497_AD427969 
-X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-CacheID: sfid-20210828_090041_407323_6C7F1670 
+X-CRM114-Status: UNSURE (   8.89  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,16 +106,23 @@ Hi Anand,
 
 On Tue, Aug 17, 2021 at 6:17 AM Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> Set P5V0 and vcc_3v3 power source to USB to always on
-> so that regulator should not enter in suspend state.
-Neither of these two regulators can be controlled by Linux in any way
-(there's no GPIO to turn them off, no PWM signal to change the output
-voltage, etc.).
-So can you please explain what this patch changes from a functional perspective?
+> Fix the chip enable signal changing from Active High to Active Low
+> to enable input power to USB power. Also updated signal name as per
+> the schematics.
+according to [0] (page 12) Odroid-C2 uses an "RT9715EGB" for USB OTG power
+The datasheet for that power switch [1] mentions on page page 1 that
+the "E" stands for "E : 1.1A/Active High"
+
+Can you please elaborate how you have tested this to confirm that
+active low is the correct polarity?
 
 
 Best regards,
 Martin
+
+
+[0] https://dn.odroid.com/S905/Schematic/odroid-c2_rev0.1_20150930.pdf
+[1] https://www.richtek.com/assets/product_file/RT9715/DS9715-03.pdf
 
 _______________________________________________
 linux-amlogic mailing list
