@@ -1,88 +1,88 @@
-Return-Path: <SRS0=cVb0=NR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=4hoi=NT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 128B0C4320E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Aug 2021 03:30:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F619C432BE
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Aug 2021 15:54:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 96AD9610C7
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Aug 2021 03:30:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 96AD9610C7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 02E2E6054E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Aug 2021 15:54:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 02E2E6054E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From
-	:Date:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ABHCcls+bGTwhlHkQVmSSNC/vCbYdaMDZ6t/NZZvShM=; b=kB5leQCRJZsmUF
-	AIG58eaa0E78X5apVHORX1gYgrv8M/wuXOdxM8UjmIrttAlS7JIZ1/BTICyERduirIROv/CpGrIb3
-	mPmb45eNsZpNUHaHpx2EWuEKQWAjjBRW5e0A4c7qybd3Lyc+qYIPj6sW5BpXTVmPNo+RVSKaiuZJ0
-	gERQE9WnqGaMvDtTLt6+d8+9I0L8C1yfymRzqUFAsRzJ1aWpCMlwTkoQLWJzyiqZqBX96vk5w50tS
-	fNmSGnWQ1OYa/bejbtBzKJFyFciPhQ7q+aRechl1SniXvpWO315bav9RoLHaSo/+1BPlLnHMLorTd
-	CVqGs4jmFxA8B4IL5qiw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=dAseInAG9QcdzgIQ7lVzkfcHqcu8Qp8RZkLj9EdHXkE=; b=QwOzW7grgr8jjg
+	ZyqRnvpbzBNM7b/1co6CXsgXSsI6dE9Ko6oDBGOYHKNd8rBdUCRvq0Ju2ql+H6Pi0yCFbN4xiIT2y
+	4vJT8sp88ekjoLnfnTWVIo10t8XQudhg8eW2cPSJqxCpPnfGQvWzyeawKdYSZyKWbEsgXfNidBhtS
+	HgNSlwVYo3bX0jtZzRPdc2D38nBm626de9FpiZ7c/3/qpAFgaVbvUaOggdwOGufk5LzGpZrirQA77
+	ZjYJOMD2FE8xoD7K265sumuh9PEGGamPwIvbX+ksdr5jI8vmFi6eTd4qyPym77NWXPH07oxi83sW2
+	h7NTxSZURkOK3GgkJe7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mJ65e-0094IL-RI; Thu, 26 Aug 2021 03:30:06 +0000
-Received: from mail-pg1-x533.google.com ([2607:f8b0:4864:20::533])
+	id 1mK0f7-00ERPh-G2; Sat, 28 Aug 2021 15:54:29 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mJ65Q-0094A7-VX; Thu, 26 Aug 2021 03:29:54 +0000
-Received: by mail-pg1-x533.google.com with SMTP id e7so1905007pgk.2;
- Wed, 25 Aug 2021 20:29:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:subject:message-id:mime-version:content-disposition;
- bh=XtPfIMAUlTL7iDQoQvHB8+nZAxqrvLZEj9yQzJVKyuI=;
- b=aMkAaEnCl/7RVWlXQgdSIUOVDeucvFNXh1W7GIwr6Wi77qHBV6jDkYsZdYmjj7LXjx
- HpoC6ClJubwRPvqM3UD+L/f9oRzdEXO6jDssMoggWKHrpmiUGbUmibOEFfeB9EYBUlat
- Xnz7FOlMNL1BBuAAqU17Iz9NucgWLCxJYMgBzFs4PQ/SL2TG2ziAjtjmtfaSRlfh3Svm
- Oezz/Y0HRkgv93yHHEH7cM8PJzz7Gc1J8jKWEcrtzZM38X6Ry+tDDa7goZ6wgElGWiMz
- OehUtmeu0D3D7SBvuulfmHUL9Ulw8J6+jXPj9k8c4xvol1VHX60r04w6SSeL6rTQhea9
- bKww==
+ id 1mK0er-00ERNV-U3; Sat, 28 Aug 2021 15:54:17 +0000
+Received: by mail-ed1-x534.google.com with SMTP id z19so14532875edi.9;
+ Sat, 28 Aug 2021 08:54:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=b/FoITeBxXzYPYRycaXkbD+65bcxuT4OKmmdeFd0Jlo=;
+ b=tf1iMB33IgOI69bWgXQProMFN2EETh3i67dsiFkKRxA9NLeh6/9xl9K6M9XrcT0iWy
+ ZFmsotmZKl1z/y+aAEirsUT/PDgeEu+8hHkFNzANECFnmGiW+0JmHcbPc11mynjxEMic
+ lNJs5eFdIb++dxvldt7ZZffeIIO+sfoUnEiMdH3ya0AdwMdLKbjGoioHQnPksF8rWGy+
+ 83Sqr5K2gOgs3X4dcCKS3G0SJb9Gqf0l3d2+xcFQbTi1S+hji3XJEbTYGmfhe8Ijqz20
+ L5bTfjfw96ZWjA53QnbUO3kfIBZIuW0kIJar0qXdpTEof5ekF1uolgO8nAqtZSW8Mi2r
+ LeTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:mime-version
- :content-disposition;
- bh=XtPfIMAUlTL7iDQoQvHB8+nZAxqrvLZEj9yQzJVKyuI=;
- b=SMBZGR1/Ss105ZlQfV6WgIN3hPAWlNdIwfywXJuQ7i1KoUZbfsXlfvl67mbtyJy/Cd
- Q2urGxW45ojHIyEoqSHNxYmpbRiSC7uqxTLTTeRoV23NEq8p726LM44zcfjbaRqW9nwI
- stvEP05sifrXV91gkJi2Tkx+Yj6X/xOJm1KrWeHCmaAHunEPFQlk9GQTJmMpiB1UyCr9
- UoQQLF6Qf30UT3s+pJuIbEVmgeZf3loXK3kkHQ/bGKQX/jNR4BmO5FIVeX6igFZFOLRu
- s+OX8P5KKksqEgGy7fy/AJajGARhbgtc/nDJ7OPR3G2I/4GDRJfohxi2S0fOYgLXXDg3
- pZ1Q==
-X-Gm-Message-State: AOAM530zdiVYtNmTjDnSvlO0wgLeWRp4g4NCBguyCSbNghc05IM1En23
- Rqm+sRct0NhdtEuCDQfwubc=
-X-Google-Smtp-Source: ABdhPJy7D7ZZZbObXJ/oELYx4GyEUqtSa5Gauz5XIuF7o64Gh6T5tJU3oIb9j0reAx70EYFXDo90KA==
-X-Received: by 2002:a62:32c7:0:b029:3cd:fba0:3218 with SMTP id
- y190-20020a6232c70000b02903cdfba03218mr1668755pfy.52.1629948590503; 
- Wed, 25 Aug 2021 20:29:50 -0700 (PDT)
-Received: from anyang-linuxfactory-or-kr ([106.250.177.234])
- by smtp.gmail.com with ESMTPSA id p18sm1441194pgk.28.2021.08.25.20.29.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Aug 2021 20:29:49 -0700 (PDT)
-Date: Thu, 26 Aug 2021 12:28:32 +0900
-From: Dongjin Kim <tobetter@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: sm1: add Ethernet PHY reset line for
- ODROID-C4/HC4
-Message-ID: <YScKYFWlYymgGw3l@anyang-linuxfactory-or-kr>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=b/FoITeBxXzYPYRycaXkbD+65bcxuT4OKmmdeFd0Jlo=;
+ b=RnDniSFe82+mc3f6Kdmqjs9EOFFehfkE6sAg0qCtwxQabZM193xkERYgvOr1ZkzQgC
+ 4xFIPWDhYeTyAHz4sttyoyjYotRpKejauDvt4Oqg3UzSWrloZUuZ+roW37mP88SIm2Sv
+ t4FG/uoiD4NvYDmnpuRJT8+73z7qIcw2usygKiDtj1yGRDpd/TYonisR6evACIcMzutH
+ W/tD/WF5YzvYJvqQ/IXco0WUtYyNNRa6EDXloWWfyD81uPz90+/2yM5BnygZu2jbMXix
+ tjLv9qCmnnZ8hpx7p0woVrq6DxtV2Ltmvw176CPLwM9jmz23NZAPGiWWSq79ld+6Co+L
+ JaEQ==
+X-Gm-Message-State: AOAM530TK7C2w8oM8gqrwQkzIe172aSVIj/5pJZg600ny1kw+r1ImPYE
+ ksvvO/3FzateQwS3kL7iSWyfP106lHjJbyVJj7SRBNE5rDI=
+X-Google-Smtp-Source: ABdhPJytLQmCtHspjMyHBMTX4NFKx0mMPjNdfQW3zHxrQS2RLqSasQmOR6hdIPX9F0PdpYCg0LBEGk6dpFFYaYQFU7M=
+X-Received: by 2002:a50:e699:: with SMTP id z25mr15370730edm.130.1630166044946; 
+ Sat, 28 Aug 2021 08:54:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
+References: <20210817041548.1276-1-linux.amoon@gmail.com>
+ <20210817041548.1276-2-linux.amoon@gmail.com>
+In-Reply-To: <20210817041548.1276-2-linux.amoon@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 28 Aug 2021 17:53:54 +0200
+Message-ID: <CAFBinCBnH1UqaiuHgTXZTH+RPOwCWiWLVheU=bydS4mfkxTP3g@mail.gmail.com>
+Subject: Re: [PATCHv3 1/6] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Matt Corallo <oc2udbzfd@mattcorallo.com>, 
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ Brian Kim <brian.kim@hardkernel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210825_202953_061689_C98924A9 
-X-CRM114-Status: GOOD (  12.55  )
+X-CRM114-CacheID: sfid-20210828_085414_019447_9AAD15D9 
+X-CRM114-Status: GOOD (  13.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,41 +99,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch is to fix an issue that the ethernet link doesn't come up
-when using ip link set down/up:
-   [   11.428114] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
-   [   14.428595] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=31)
-   [   14.428610] meson8b-dwmac ff3f0000.ethernet: Failed to reset the dma
-   [   14.428974] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_hw_setup: DMA engine initialization failed
-   [   14.711185] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_open: Hw setup failed
+Hi Anand,
 
-This fix has been referred two commits applied for ODROID-N2 (G12B).
-    commit 658e4129bb81 ("arm64: dts: meson: g12b: odroid-n2: add the Ethernet PHY reset line")
-    commit 1c7412530d5d0 ("arm64: dts: meson: g12b: odroid-n2: fix PHY deassert timing requirements")
+sorry for the late reply
+I have three very small comments below, apart from these, this is looking good!
 
-Signed-off-by: Dongjin Kim <tobetter@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+On Tue, Aug 17, 2021 at 6:17 AM Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Add missing usb phy power node for usb node fix below warning.
+> P5V0 regulator supply input voltage range to USB host controller.
+> As described in the C1+ schematics, GPIO GPIOAO_5 is used to
+> enable input power to USB ports, set it to Active Low.
+I would phrase this last sentence as:
+"enable USB VBUS on the Micro-USB port using an active high signal"
+My idea here is to 1) clarify that it's about enabling USB VBUS only
+on the Micro-USB port and 2) use "active high" like the changes inside
+the patch itself
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-index d14716b3d0f1..1230beba04aa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-@@ -256,6 +256,10 @@ external_phy: ethernet-phy@0 {
- 		reg = <0>;
- 		max-speed = <1000>;
- 
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <80000>;
-+		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
- 		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
--- 
-2.30.2
+> [    1.260772] dwc2 c90c0000.usb: Looking up vbus-supply from device tree
+> [    1.260784] dwc2 c90c0000.usb: Looking up vbus-supply property in
+>                 mode /soc/usb@c90c0000 failed
+>
+> Fixes: 2eb79a4d15ff (ARM: dts: meson: enabling the USB Host
+>                 controller on Odroid-C1/C1+ board)
+>
+please drop this empty line
 
+[...]
+> @@ -119,7 +136,6 @@ vcc_3v3: regulator-vcc-3v3 {
+>                 regulator-name = "VCC3V3";
+>                 regulator-min-microvolt = <3300000>;
+>                 regulator-max-microvolt = <3300000>;
+> -
+I don't think that we should make any VCC3V3 regulator changes in this patch
+so please keep this empty line as-is.
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
