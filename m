@@ -2,93 +2,89 @@ Return-Path: <SRS0=wk+L=NV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 814F7C432BE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Aug 2021 07:55:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D3F0C4320E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Aug 2021 19:37:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2CDBE61002
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Aug 2021 07:55:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2CDBE61002
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 54D0460F91
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Aug 2021 19:37:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 54D0460F91
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=XwSXFNEmwbXOuG+bim1iUTVFeMckOBiJc7C+Cen/xu4=; b=kqpF/w1bNdzj9fU/v1CyFdWLD6
-	sV4Sh5oL/BlAFC1T1V+AKhBW4xEchl5HEHMzBmfLy2/evhlN/RaSra0rtpluMH4hrdCHsO9MySfTa
-	O62c+hRYlNUXK+8ZbF6nvpc2x+d+MJZDSKGklFNodfWZddzbjF5lgV4f9kXzAz1nPBThN++cBiGaj
-	u2+4W5Gtt2Pbzr6f00xhzVIyhwdN54ELhCzzM/kwZb1CUjb67wgkLrqKgqYoJUj1WWOvCqIL+tvww
-	Uoy2mVnS3u3DeuLhev/cq+7C8TK6HvnTziD5Wu7Kkt17W3OPrYIY9TuR5Y9egCetY98L0hqh32nVa
-	ub7op+UA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Jcd7RsV0N33rnqzTD2BblSIMjyicsDgdVG6gDHaZPUU=; b=Eg7Al34LQ4wMSA
+	iwlYRYvq+fJWk/h8cD1if+RDarZH1yL4Ed0Zrz5qvn22dMWSUmXIMh4RkEkvOoo29Ady6jazHVCF7
+	gKtHl31H4ZV68Vu6QpVbmMKHrG4RO/PfBzHHrMrfYdBog7bGGuWFqdxZSFv82ZWTUiCZ4Gdzgd1hs
+	onOsw+pKCpzMknP4oRH/BVy+kpzYWNiLCDMJtm32+BBgdU6h97EqCS1f2gPUGF+Zwdf2nsI990y4l
+	BX/DMPT4md0Ijir9RXHvipe+xf2LTsyMvnZawO7E2RP7iRbB/quu0AdzdSH+VQd+/MUVSrhShJ6JA
+	uuX4waoZZf1WeLp60bYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mKc8J-00GfMT-MP; Mon, 30 Aug 2021 07:55:07 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1mKn6D-000Rho-Jv; Mon, 30 Aug 2021 19:37:41 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mKc8G-00GfMA-Tt
- for linux-amlogic@lists.infradead.org; Mon, 30 Aug 2021 07:55:06 +0000
-Received: by mail-wr1-x433.google.com with SMTP id i6so21155468wrv.2
- for <linux-amlogic@lists.infradead.org>; Mon, 30 Aug 2021 00:55:03 -0700 (PDT)
+ id 1mKn5x-000Rg1-UJ; Mon, 30 Aug 2021 19:37:30 +0000
+Received: by mail-ed1-x532.google.com with SMTP id eb14so14060969edb.8;
+ Mon, 30 Aug 2021 12:37:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:organization:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=Ihqat5eH1ui12ytw3o9f1yD8UgfpycEVbQo3mkJQlgA=;
- b=aVh9GU1N3OaMC5hM+h6H9draGQT5S9VyF6cy0MxDuPb7MvvgxgFMimRy9rf3VHIVvJ
- O7HECOPndFSqHrF6JVx13XaA1UyYrptj53FF5olxIXBfUwxgJuZxE/FmxYcZ68XKCOdd
- IK/cuOBJDGGgodW0D4sZA7WWiW/tSNKFBwyvM63q/9/foj0FXP7TxBDSlCp5v8nHXQs7
- hl2EsZ1VruX68cYWdnzW8RAA5OpfdT6PghFWJTCyZy6cwh+8Dl0zarKawSXaPtDQ0d4v
- lLOiVq54Nd6pRvWIebkmDE6+282819MFJriACGh/y1dOL8wTqQ2HD3dqM/4I6bU/N+V6
- /GgA==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=uTABDWDNLKg61M+R3vjb71MHbfemSFy2AY4zPlg2nE8=;
+ b=bXr0Gort95NFKAp8VD/ml/V5CY8ZNac0oRXnVY1cowlNNobODHOf9Q0XPK7aaT0DjW
+ 8W2RbQj1Wvp+hIQiJt8IseE4/rdqjErLk6nXxYtNWhV+BYcTUpskIFQfq88hd1/VCRhC
+ 9Ztb0O9/Zm8SvSkxtjtZmGAYuuWa4VDPIzB8eIypxit4AmFVdH34RZaa2FeWqn5W6ERV
+ Ebdrl627h+zc2GVqSWVFeoCbyxKKPCtz/rkNZyFPENOBI3UdGrXGa8plkc1h8SocErpV
+ 46tJnV6jsw0QLZ1jomda7K+zd3IZE+bfZ6fdvdSsA4YLJXFgl9IKJ2HwBeLzhRh2Z9Pp
+ mbgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=Ihqat5eH1ui12ytw3o9f1yD8UgfpycEVbQo3mkJQlgA=;
- b=Ozykh1SfdBX/Bjyoyab0EU1Xgjj5kiMAFOB2wCsDvzQzK/6ArPMdwAcWp4fF6icYHt
- Rr2OdcIJ5rd2sQ6+n+9GAj4M2xbnXK6npGlq6fFynn7SzOWkNoMFjCco0xACOFsOr9GN
- Ra7zFq4BNUY7mSHz66rSJFhUeKYdzbpzSZ81Qv0ulV1+MINarZDmgB9Xb/ExXLTiejuO
- F+RLft8EQrH6suWGcL4sMaQlL0A6A6/EmTPRZ2BOAdSz7dr7EMRJdc3qK+wuTEQ6EONa
- zyHIZ/M2eagqW0LHpTcSKMa2io36vws0o6tIn5b4wKLCO+GDRT6y9okXG/FFeKh2xCDF
- yVjA==
-X-Gm-Message-State: AOAM5307kbcD8HIfshqWY6xDgsa4A1prwkR4mWK2J1KDX8D9R2MKSL5Q
- 6jM1T2Hmk6Q0Woy/yr9LZlg0/ZnXuoNTsdqA
-X-Google-Smtp-Source: ABdhPJyk0Oz/KuU0F8jQ9c2T/WZq89p9T3xOftPuw8xsSFC/FxpCzg5A7+RegJ+zlqRqOPOWOWuUHg==
-X-Received: by 2002:a05:6000:92:: with SMTP id
- m18mr24283026wrx.293.1630310101861; 
- Mon, 30 Aug 2021 00:55:01 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:2ecd:4eac:486d:7a1?
- ([2001:861:44c0:66c0:2ecd:4eac:486d:7a1])
- by smtp.gmail.com with ESMTPSA id p5sm16310592wrd.25.2021.08.30.00.55.01
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 30 Aug 2021 00:55:01 -0700 (PDT)
-Subject: Re: [PATCH] ARM: meson: Add S905Y2 SOC ID
-To: Christian Hewitt <christianshewitt@gmail.com>, u-boot@lists.denx.de,
- u-boot-amlogic@groups.io, linux-amlogic@lists.infradead.org
-References: <20210820021836.1024-1-christianshewitt@gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <c8e6a514-b0ac-7a2c-eef7-0939c2121eb2@baylibre.com>
-Date: Mon, 30 Aug 2021 09:55:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=uTABDWDNLKg61M+R3vjb71MHbfemSFy2AY4zPlg2nE8=;
+ b=LogNCul6R3e9/XjdOqiOio5c+pVoCmNPYxb/SMniNepEbhsVz+BB5MtAo/hNF9hUAu
+ UpE3Ukvzdb5MnGuc25X3IlX7r6ldI/8WW0hLeWs+u5MGPDB7lx3toED6zt4OMogCabs0
+ lYaund4cBjhh4f3lxKJSL1wpcBOcMvNW+Fa6n4WlmyaG+tlqxWOSQFG0mExZiBcLkdvb
+ mehuyaqyWHJTDZrmAFJ0+uUhZDSsAsmFqqKxsdLcwCSl+ZQNTxZ4gNk4MlRJEFKbyzH/
+ wPMJywFlFgFioUsA30rCYaJqBGGoOVkjSr4j05dTdv7hzTHMqng7qcutl9zOjNxUPdXh
+ 4OmQ==
+X-Gm-Message-State: AOAM531dKzeUEoX3btQcCF0CJNkC8TQ8/oL484iReNMebooKNQBO4dYU
+ gYFcDNYOY5oXuVzSELTxHdAUvqafZ+nb9ylHONE=
+X-Google-Smtp-Source: ABdhPJy7qBuvqTVzY7sOAt7tXWrtZHlRPjJ+Pze/MoPqHbrn7gFn2XmnEqO3Omk3qalVhBFRXosf5B1OJ7USzraT1sY=
+X-Received: by 2002:a05:6402:313c:: with SMTP id
+ dd28mr25477809edb.179.1630352243401; 
+ Mon, 30 Aug 2021 12:37:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210820021836.1024-1-christianshewitt@gmail.com>
-Content-Language: en-US
+References: <20210817041548.1276-1-linux.amoon@gmail.com>
+ <20210817041548.1276-2-linux.amoon@gmail.com>
+ <c7f6213b-5ddc-881c-1aea-9cc7b03e6a4f@baylibre.com>
+In-Reply-To: <c7f6213b-5ddc-881c-1aea-9cc7b03e6a4f@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 30 Aug 2021 21:37:12 +0200
+Message-ID: <CAFBinCBeNMET2tvH0h6HF3dR+xBb59hifQyaoXigUs3UGkS+KQ@mail.gmail.com>
+Subject: Re: [PATCHv3 1/6] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Anand Moon <linux.amoon@gmail.com>, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Matt Corallo <oc2udbzfd@mattcorallo.com>, Rob Herring <robh+dt@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ Brian Kim <brian.kim@hardkernel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210830_005505_022618_AA9B73DC 
-X-CRM114-Status: GOOD (  15.77  )
+X-CRM114-CacheID: sfid-20210830_123726_041918_99B6B4B7 
+X-CRM114-Status: GOOD (  18.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,36 +101,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/08/2021 04:18, Christian Hewitt wrote:
-> Add the SOC ID for the S905Y2 to board info, see below for before/after
-> tested with a Radxa Zero board:
-> 
-> SoC:   Amlogic Meson G12A (Unknown) Revision 28:b (30:2)
-> SoC:   Amlogic Meson G12A (S905Y2) Revision 28:b (30:2)
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  arch/arm/mach-meson/board-info.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm/mach-meson/board-info.c b/arch/arm/mach-meson/board-info.c
-> index d16d3f194d..2421acd817 100644
-> --- a/arch/arm/mach-meson/board-info.c
-> +++ b/arch/arm/mach-meson/board-info.c
-> @@ -64,6 +64,7 @@ static const struct meson_gx_package_id {
->  	{ "A113X",  0x25, 0x37, 0xff },
->  	{ "A113D",  0x25, 0x22, 0xff },
->  	{ "S905D2", 0x28, 0x10, 0xf0 },
-> +	{ "S905Y2", 0x28, 0x30, 0xf0 },
->  	{ "S905X2", 0x28, 0x40, 0xf0 },
->  	{ "A311D",  0x29, 0x10, 0xf0 },
->  	{ "S922X",  0x29, 0x40, 0xf0 },
-> 
+Hi Neil,
 
-Applied to u-boot-amlogic
+On Mon, Aug 30, 2021 at 9:45 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi,
+>
+> On 17/08/2021 06:15, Anand Moon wrote:
+> > Add missing usb phy power node for usb node fix below warning.
+> > P5V0 regulator supply input voltage range to USB host controller.
+> > As described in the C1+ schematics, GPIO GPIOAO_5 is used to
+> > enable input power to USB ports, set it to Active Low.
+> >
+> > [    1.260772] dwc2 c90c0000.usb: Looking up vbus-supply from device tree
+> > [    1.260784] dwc2 c90c0000.usb: Looking up vbus-supply property in
+> >               mode /soc/usb@c90c0000 failed
+>
+> First of all, DT is not here to fix boot message.
+Anand mentioned elsewhere that this is a debug/info message
 
-Thanks,
-Neil
+> Finally, I looked at the Odroid-C1 schematics and the GPIOAO.BIT5 is an input
+> to the S805, and the PWREN signal is controlled by the USB Hub so this regulator
+> should not be added at all.
+I think there's a misunderstanding because there's two PWREN signals
+with different meanings.
+The PWREN signal for the USB host ports is hard-wired and not
+connected to the SoC at all.
+The PWREN signal for the Micro-USB port (which Anand is adding here)
+is controlled by GPIOAO_5. odroid-c1+_rev0.4_20150615.pdf [0] shows it
+as an input to "USB_OTG" on page 1. "USB_OTG" consists of a power
+switch and the connector itself as shown on page 28.
+
+Personally I think that the change from Anand itself is good.
+If you feel otherwise then please speak up.
+As I pointed out three smaller changes I am hoping that Anand will
+re-send the updated patch anyways. At that point he can also add the
+changes from your feedback.
+
+
+Best regards,
+Martin
+
+
+[0] https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20150615.pdf
 
 _______________________________________________
 linux-amlogic mailing list
