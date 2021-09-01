@@ -2,98 +2,70 @@ Return-Path: <SRS0=PfKa=NX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC528C432BE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Sep 2021 08:55:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4716C432BE
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Sep 2021 17:55:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3AD8860C3E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Sep 2021 08:55:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3AD8860C3E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id AE31D61090
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Sep 2021 17:55:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org AE31D61090
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=rosenzweig.io
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=LiaPkeO9RYB5EuJrFR785D2InhlxRwqmkEkjUpkj1ro=; b=f6LUtsEaWTcG24eC5elfjz36cp
-	pLjNjHNdDQJQZoLTd9DQ8vBQqgKICRQT8WVtIX5Yvi8uEb1J4Tlnscky+xJ0sh8qXLJKKLNcQV9Gy
-	SF78glsQ//pbd2kPNKR2AcjBDFgyBYQSDDZ0ExASSbbNoOFb+hE3m9Eld4b1sLFMWv89A1kJU0s0u
-	C85tiXwT631C5E79XKRWjKE6CGpuBlMLIqkXL317YYBwe25saqGTIlLZVjeANaGRoWhKOL9S6zZ4U
-	cnWkEKqIaYb6I61K7lJSvk+icd22o3qkdnSOpiqzyV0Yw9Fv4furHP4PN0/D/PJjan91Tg51xbSSW
-	k/rMgy2A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=sumqFa1yhkp/qw+a4AexrczB/Npjjrludkpi8qIYH08=; b=ax8t0KC8dJKMHW
+	AVVdogfsmUXKbyTSIxAHPFk+ZwxKw/lR0MPTFSdCTsYxY0ZhOdVudUBCA4ZsMzF5JTcauLL4SxTdc
+	EOW6QDiab6346Jil09uODgGYlInnJraZMoQDPnymQups9YHrHB+aH2F/T2TejibG9rUgZjOSpCsRb
+	gOKHA3DpxstJ45nFeVuo/d7IIB/UGf3xNy5b4/ZKe2+5ct+ubG3yORy0APvGASfe3sHAkZRdYLB8U
+	OV1A218g5m4Wh64yaBG+UKWppIZhLRPXh9aBIMeV0XLT4XW2ThsPRhe2nisPqxlewb3xIq96aGdZe
+	hR89bJj5ilG0pfwZJXqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mLM1P-004gXW-VV; Wed, 01 Sep 2021 08:55:04 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1mLUS6-006sTF-BD; Wed, 01 Sep 2021 17:55:10 +0000
+Received: from rosenzweig.io ([138.197.143.207])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mLLOZ-004WaW-Vl
- for linux-amlogic@lists.infradead.org; Wed, 01 Sep 2021 08:14:57 +0000
-Received: by mail-wr1-x436.google.com with SMTP id v10so3142988wrd.4
- for <linux-amlogic@lists.infradead.org>; Wed, 01 Sep 2021 01:14:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=cFYWmSVza/PDqmeG9+mx1DB+NWXTWb3lrfYbe+Cf8H0=;
- b=MLrEW9JLxfB6p+wAyuTPj6dSuKUhqYV2DIIcmmqqQXSdgNZgeWa19wk4Z42umtT+C0
- KSGP6E93x+6FOJP5foOpfKL9JwClHiYl/Y937aO5gZxezRL3g50OeppPRXdPcRLACy/e
- t0PgyB+L54MPEoMxpI/kAi3i/5Qqbeyo/IuKQtdsgYTHt3jVCt+Tkf2OZx7vVt3yb3mr
- SrPtVHeXjXMG7pHeGIkUfp56qhVLXFnuMLvfgdlMZ0rMyy8gY3044o5dd/682PaRMKML
- 3NEfo//PRsnBpIe4gqr63OZLY5ybBZBUk2TQufzPRCqkpXEaq9Lq7CBRNzZZoWV45kGB
- VcdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=cFYWmSVza/PDqmeG9+mx1DB+NWXTWb3lrfYbe+Cf8H0=;
- b=D26rIBox+vXWgwr6x4XL95htiSIgaRA+/pQ+7ZEi1V3X2bfgdursv+RSBdEmR8sFRV
- ghSJIyv1HXqEs2UH5ftTrjFU8lP8cCx84wBlctL8z15fi5+BOq2AJ4V/XhskK2efSl3O
- UMyFXsBSZ3sCov/ECKvHY0Gmq4vbZxs5iNjSnARpNWtGI5q0kJDJ8T5ttVOdbnhRQOXP
- lu4zpeTNmvZkGqkBkeZx3wSDcrKTP8ZRXzni3sRiZ8SwvgPI1w/qYMMfRPaIPu9Ge5zj
- J+4Fqg4wURmjKUAftV9+7ilEMCkVWzHabrSYTpiqTUQTyHulzwEBloicSzy9gkFaNBnT
- c9/g==
-X-Gm-Message-State: AOAM531TVpd18qjUCKYf3220A3ysFwr97PGwoypuKzSuzSkeJDsz8v4b
- ZdrYPDQDhez0OEVkfFlpayaTkw==
-X-Google-Smtp-Source: ABdhPJxLni/w6zWQomeDOrFtWu/rq9Z2RFy8vK4jBYwFD7uQ/9lPOEPwsdlI8KL0b/AnY3L7iVV1zw==
-X-Received: by 2002:adf:df0c:: with SMTP id y12mr35443384wrl.155.1630484094200; 
- Wed, 01 Sep 2021 01:14:54 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:dc57:bccf:6106:11d1?
- ([2001:861:44c0:66c0:dc57:bccf:6106:11d1])
- by smtp.gmail.com with ESMTPSA id d6sm18556934wra.5.2021.09.01.01.14.53
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 01 Sep 2021 01:14:53 -0700 (PDT)
-Subject: Re: [PATCH] media: rc: meson-ir: Make use of the helper function
- devm_platform_ioremap_resource()
-To: Cai Huoqing <caihuoqing@baidu.com>
-Cc: Sean Young <sean@mess.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ id 1mLUS0-006sRd-Bh; Wed, 01 Sep 2021 17:55:05 +0000
+From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To: dri-devel@lists.freedesktop.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210901055440.7079-1-caihuoqing@baidu.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <c8b8f064-7887-9608-573c-525799641c6d@baylibre.com>
-Date: Wed, 1 Sep 2021 10:14:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Abhinav Kumar <abhinavk@codeaurora.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Lee Jones <lee.jones@linaro.org>, Stephen Boyd <swboyd@chromium.org>,
+ Kalyan Thota <kalyan_t@codeaurora.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, linux-amlogic@lists.infradead.org
+Subject: [PATCH 2/5] drm/meson: Use common drm_fixed_16_16 helper
+Date: Wed,  1 Sep 2021 13:54:28 -0400
+Message-Id: <20210901175431.14060-2-alyssa@rosenzweig.io>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210901175431.14060-1-alyssa@rosenzweig.io>
+References: <20210901175431.14060-1-alyssa@rosenzweig.io>
 MIME-Version: 1.0
-In-Reply-To: <20210901055440.7079-1-caihuoqing@baidu.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210901_011456_121608_60933CC5 
-X-CRM114-Status: GOOD (  18.35  )
+X-CRM114-CacheID: sfid-20210901_105504_492115_2879DD54 
+X-CRM114-Status: UNSURE (   9.87  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,41 +82,81 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/09/2021 07:54, Cai Huoqing wrote:
-> Use the devm_platform_ioremap_resource() helper instead of
-> calling platform_get_resource() and devm_ioremap_resource()
-> separately
-> 
-> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
-> ---
->  drivers/media/rc/meson-ir.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-> index dad55950dfc6..4b769111f78e 100644
-> --- a/drivers/media/rc/meson-ir.c
-> +++ b/drivers/media/rc/meson-ir.c
-> @@ -102,7 +102,6 @@ static int meson_ir_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct device_node *node = dev->of_node;
-> -	struct resource *res;
->  	const char *map_name;
->  	struct meson_ir *ir;
->  	int irq, ret;
-> @@ -111,8 +110,7 @@ static int meson_ir_probe(struct platform_device *pdev)
->  	if (!ir)
->  		return -ENOMEM;
->  
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	ir->reg = devm_ioremap_resource(dev, res);
-> +	ir->reg = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(ir->reg))
->  		return PTR_ERR(ir->reg);
->  
-> 
+Replace our open-coded FRAC_16_16 with the common drm_fixed_16_16
+helper to reduce code duplication between drivers.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Cc: linux-amlogic@lists.infradead.org
+---
+ drivers/gpu/drm/meson/meson_overlay.c | 7 +++----
+ drivers/gpu/drm/meson/meson_plane.c   | 5 ++---
+ 2 files changed, 5 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+index dfef8afcc245..d8fc6bbb332f 100644
+--- a/drivers/gpu/drm/meson/meson_overlay.c
++++ b/drivers/gpu/drm/meson/meson_overlay.c
+@@ -15,6 +15,7 @@
+ #include <drm/drm_gem_atomic_helper.h>
+ #include <drm/drm_gem_cma_helper.h>
+ #include <drm/drm_plane_helper.h>
++#include <drm/drm_fixed.h>
+ 
+ #include "meson_overlay.h"
+ #include "meson_registers.h"
+@@ -162,8 +163,6 @@ struct meson_overlay {
+ };
+ #define to_meson_overlay(x) container_of(x, struct meson_overlay, base)
+ 
+-#define FRAC_16_16(mult, div)    (((mult) << 16) / (div))
+-
+ static int meson_overlay_atomic_check(struct drm_plane *plane,
+ 				      struct drm_atomic_state *state)
+ {
+@@ -181,8 +180,8 @@ static int meson_overlay_atomic_check(struct drm_plane *plane,
+ 
+ 	return drm_atomic_helper_check_plane_state(new_plane_state,
+ 						   crtc_state,
+-						   FRAC_16_16(1, 5),
+-						   FRAC_16_16(5, 1),
++						   drm_fixed_16_16(1, 5),
++						   drm_fixed_16_16(5, 1),
+ 						   true, true);
+ }
+ 
+diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+index 8640a8a8a469..4fae9ebbf178 100644
+--- a/drivers/gpu/drm/meson/meson_plane.c
++++ b/drivers/gpu/drm/meson/meson_plane.c
+@@ -19,6 +19,7 @@
+ #include <drm/drm_gem_atomic_helper.h>
+ #include <drm/drm_gem_cma_helper.h>
+ #include <drm/drm_plane_helper.h>
++#include <drm/drm_fixed.h>
+ 
+ #include "meson_plane.h"
+ #include "meson_registers.h"
+@@ -68,8 +69,6 @@ struct meson_plane {
+ };
+ #define to_meson_plane(x) container_of(x, struct meson_plane, base)
+ 
+-#define FRAC_16_16(mult, div)    (((mult) << 16) / (div))
+-
+ static int meson_plane_atomic_check(struct drm_plane *plane,
+ 				    struct drm_atomic_state *state)
+ {
+@@ -92,7 +91,7 @@ static int meson_plane_atomic_check(struct drm_plane *plane,
+ 	 */
+ 	return drm_atomic_helper_check_plane_state(new_plane_state,
+ 						   crtc_state,
+-						   FRAC_16_16(1, 5),
++						   drm_fixed_16_16(1, 5),
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   false, true);
+ }
+-- 
+2.30.2
+
 
 _______________________________________________
 linux-amlogic mailing list
