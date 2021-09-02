@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C517C4320A
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7637AC43214
 	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 13:49:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E7898610A0
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 13:49:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E7898610A0
+	by mail.kernel.org (Postfix) with ESMTPS id 3F996610A0
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 13:49:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3F996610A0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,52 +23,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wtNl1pOM4OujyFMIhYSASRuiJAnM8S4DLPyQnJYsyac=; b=4ZvTAHo+Gx86D1
-	iAY2ajbE+hE7HGF+37kQnZP8oVEyygZwWXuFPjC6nSSzY7VLk850HQNIjLTIhL00Lc67LTrdpupBr
-	rCAJFIozCaYdc8Th28UlTat/req5IOOkbbw/Q5TX4NU3NOS2sCTqOcRyUF01Y8+D/y0VQXeRnBvo9
-	QbFHQAVjNLUVKIXLHCVVKMykLjk02ttB9+J2HWQ/PixeBJFnguv+zZg/djPnVZVLsNDThib/FuLF4
-	zv1gzj1I34CZZsGG8rUo48cTpx64oQhd31CWNWLqupAjUZ5DknG7DGfwRmfJBGxI0MroEEdL8EvPi
-	VkfWMtfnWzx/eeYv8tJQ==;
+	List-Owner; bh=icEUy7zZ+fewxzxheIamVS+NddFvM2QkQIGMk/ulKMY=; b=MOKIAdpOg3ejFz
+	rhc5DhcBEDS4jvVJjo0PMkST55lVTunblpwTu6LfPBbplnGchRqCsQ6rAeMgzL+wFjeES2QC84Hlf
+	lswyQ/S2jMdUTULBH+mSsbu8xYXq/wWZJsLGzoFhWzJx5dfuactcaD4t54v+zwE7qsNfOnXiIonaT
+	cz+zd6Lq0lPSM1QJ3Y5PI31yKmwS/e+A7P10ohtt7aaRIZUssEB9DeIFupXmmb0InXsIbTsp9sIUd
+	iTDaLam7NMqF9PDQ7kxBjwFkko25JsaTFAm0w4kkE4W3g6gqhCE/o3jArDqw3M+NoSUgugXFq56/W
+	R/9glBsjtX0CEYLTK+rw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mLn62-009l7z-95; Thu, 02 Sep 2021 13:49:38 +0000
+	id 1mLn60-009l7U-Ii; Thu, 02 Sep 2021 13:49:36 +0000
 Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mLn5m-009l36-JI
+ id 1mLn5n-009l40-J6
  for linux-amlogic@lists.infradead.org; Thu, 02 Sep 2021 13:49:25 +0000
-Received: by mail-wm1-x334.google.com with SMTP id u15so1336457wmj.1
- for <linux-amlogic@lists.infradead.org>; Thu, 02 Sep 2021 06:49:22 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id
+ k5-20020a05600c1c8500b002f76c42214bso1501902wms.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 02 Sep 2021 06:49:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=XLgmGyyZR687J/+pz/15jDHEgQqNwXfrE8ZnHHXlyc0=;
- b=s/U4La0DHAO72mHstEVJYZkY+Sl7woZBWu2/XEKvQA/h0/NyZQgtqAVy6YFkciWELy
- BLlhmx6zU1FiaNui3lrD1MLthJ8gPlntghpwessbkeNeF02j6jAZco7aiwdOY+re/1P9
- Zvs3VLsRQ/MKY0yClEmoWHtJccGvCEf0gWcRYLsytWyeQkv9RfWkWuFTbKHAhw/JxL5t
- lYyrt4ehVxO2eVgLlPoGkivtvl2rTkXFZZy+jWG22na1torgU09GjAn9IRvkUFvsbgh5
- k6fFVhoDIR6f3tWrxK+4tLCodN362fO3zo/8SeA034wovZFaN6oLP6LdjMvmGUqyKc4Q
- lcTw==
+ bh=oj4j/+RKPWZynb1QTKEYiXoK5GFx0DuIh0dsK+YOz70=;
+ b=Q2Z7V5PgsCJ85ScYojuBJgHK46WzEFCDleMnYLwQ4pQnV/smerrBx8EXlxWwElHsII
+ 4cpj3+u5PI5T/KPeW7PzUon33Qsdr6RCOogPrrrTbyyuMiufJpvVrMUiNQlzKk3lwcMB
+ QlMWnbWPDf6RgpUk3AsJUDSwW9yv2tzBUt7+14S6cvk9mqZfQ+4COlZ+zuvbBal4Lz/d
+ JQnEman2NRmmwLH5QI4PnmRtR6QCDHuCHT3/UDgnGjF/jKo8x40HGeb1LAaN8CA2iwyr
+ kyKgwhkP8MqwWn8Vmyv/tdWGJpZ73VLDV371iwCE8xtJrZPe9dvYhSJ0wkMWz5I/aQhv
+ /HdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=XLgmGyyZR687J/+pz/15jDHEgQqNwXfrE8ZnHHXlyc0=;
- b=IZveLQFfsYUpmd7g+oa7RWfWCLFlpuozF5QoKBHicrjo9OVHVwu9AsnNg+W8d6Zwpg
- IQRRKNKMEV5Whbfij+6DtYStyo02EMkZlZcVgPVTUGyKzJe0kAweprDcSNqPO+kJxIdX
- gIYGYzS4RJ//Wnd0y1hFnf/l9+vOofu7wq3ZpxpOcyZOqc8zByImUWVH46FPyyEny/Z7
- X6vMSwrqQzOix21odhxpiXXN8CmX+Zv+uaR8kSOuuF5zI38fIBBrxDzsHCoo8yOUvHod
- vBs/j3VtYm+z05AmH4HJejaxdmVrFFQfZvH5a1B2iZSeoxvm6/hThBoWXLnOzz9Y8CCt
- nn3A==
-X-Gm-Message-State: AOAM530h9r42vt/fuZdwHLcFT1Vi/4/AVAvDTfSW3RONqp3w6pLCcdiD
- tyzEG9SrC081fyhTAHci18F2pmdfCqgwjRwL
-X-Google-Smtp-Source: ABdhPJzt3cDjV8c6FsOPHuS6R6atUfcX4eT5ztczkK88Xo6Hhj+gjFztXP1dtqAHQ9FlK6uHq+1DJQ==
-X-Received: by 2002:a1c:9a0e:: with SMTP id c14mr3253429wme.119.1630590561228; 
- Thu, 02 Sep 2021 06:49:21 -0700 (PDT)
+ bh=oj4j/+RKPWZynb1QTKEYiXoK5GFx0DuIh0dsK+YOz70=;
+ b=hTS7sQEXHKVSW1ut1AAEJvH54AgLauxK0BV/Xvicqv3KXYjfoZdR4bhq8r0eJpwP0O
+ Oj7NM2eVo1pS6rICLyJw3tG4u2QTrgQOVdJCbEem30BmnqKtItmEcvEnSkkazAYy5x1+
+ WJzGFU4Hpdj+fdHRFnpO9OVTi0f8TSWIwgCfCalSZ0/DfBJEqR+5erio+NUJXlXoRV5o
+ HZxFAqfxa19djDz5DiESxULFW+O/w68PLWwK8OBalvRzHI6plUv4ddBWBdSz81lbg/1Z
+ lJ7QvYQXF5sZShs423j5aJPSDJJ15p8b/Q4TCpWFuY323aIRXpcdwimzp8tdcWoDJ0JW
+ n+8Q==
+X-Gm-Message-State: AOAM530CuQm7TGDKdqLzlL6ZR9XZ7CMkRv+BABpwmnYyA4P/HRVPsDT8
+ cdCYwUlsDXowt3eYQqd4p4esjA==
+X-Google-Smtp-Source: ABdhPJzXWKeLkhVS1joNTc2NUQrEZ7RsSDad/Dyg9eBJNYQBgSa9vVh1As/lmTmZzAmztrcHAEMw2A==
+X-Received: by 2002:a1c:f713:: with SMTP id v19mr3250388wmh.188.1630590562305; 
+ Thu, 02 Sep 2021 06:49:22 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:98:6312:3c8:6531])
- by smtp.gmail.com with ESMTPSA id z5sm1710162wmp.26.2021.09.02.06.49.20
+ by smtp.gmail.com with ESMTPSA id z5sm1710162wmp.26.2021.09.02.06.49.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Sep 2021 06:49:20 -0700 (PDT)
+ Thu, 02 Sep 2021 06:49:21 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: maz@kernel.org,
 	tglx@linutronix.de,
@@ -76,32 +77,31 @@ To: maz@kernel.org,
 Cc: khilman@baylibre.com, lee.jones@linaro.org, saravanak@google.com,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build as a
- module
-Date: Thu,  2 Sep 2021 15:49:13 +0200
-Message-Id: <20210902134914.176986-2-narmstrong@baylibre.com>
+Subject: [PATCH 2/2] arm64: meson: remove MESON_IRQ_GPIO selection
+Date: Thu,  2 Sep 2021 15:49:14 +0200
+Message-Id: <20210902134914.176986-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210902134914.176986-1-narmstrong@baylibre.com>
 References: <20210902134914.176986-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2555; h=from:subject;
- bh=84C30OvZzmPYpljG1TMZKcBdjvYorCKoYX9ui2Be7/U=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhMNYUtoMMkoyUcXF9ZYgQAUMkwbshVYcbc9z33DvL
- HzLDCBeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYTDWFAAKCRB33NvayMhJ0SBJEA
- Ck48q8CPr4aBcPjUICsyNAEYVrQI8VMWI6rCkmXiIP6mEkUvAk4azsLGvQiVFU0nQu5S34ZxRS9L+2
- pqmC9QBvoKKzCsmzg6taPKqCCv2VcDlvqzXp0MtWhFFE3iVH5vol79Ba5hbd0tAStFJFlOaYUSfM3N
- d0vrgVgIZ3vWkzW7zYhhd4Eai3WB6XoBqe1/B28HgBIlqlVwjTaXvezSxSlPFJ9alFrDLgZki+cemM
- 72ZdH86HUo/shgPXmMxFXrrLgG+YIAHLiUPjpwNJlVyu5Pbm8dZsZd9LFXUZ5k33Vml9aUGhVgEKLS
- 4siWzn/Zr/nYsdl50dJ7vhiU9qeCigqZXMleg8wgy0Rdq5OENMySo5VEqUu3UOCdFu4LaGDCIKkXPT
- dyZ5S/XSIeaXarvSa1R70NVKwL2zapZZ+nbqwtK5bXByDn9Mj6c7BhSGga+io0me9vvvG7uVD0DJyK
- hLFB+ZPS3TWeXTQ2QrKUca32yJejtoruckCGqhf3hqAXUwVM5i1iVlsslMN+nXJ8LQV06llssmtmgi
- ywJjwUF2RdWLXpTv1J7ZMwY9aq3NH5KQmlO6U9n3h4AL6Ex62hyQqjXGzgm7BsuCeSLzNlBUdSoJ7k
- iEbmAnzegWBfjT6YQrZHG/V9MAx1kf9wPmKPkgBaa4QHoFTGoEEqN5dIcnLw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=810; h=from:subject;
+ bh=owkhlb4ciqjjQmULPQLOVbgzD27XBXXd7036af5Wvz8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhMNYVFMjvCnxnhaNrw0vw+U5deLnZE1I3QXIFVD07
+ OWgHzauJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYTDWFQAKCRB33NvayMhJ0ei0D/
+ 94rKxPedZsvrnEc1oCh+9e2Dw+iN18I5LHLklE1zVH2UD3Z82MiEiSB4ug5WNxF1bqsTYsfofVHoZx
+ xBAL1H19GKYK9UwFBvt7RNj+4ahjFRxDtKx+hN7nxYld2CjIdpqs0pvBiVabZNRtcRphQ3u/PgPu/q
+ OAJPcxFD1B0qH2x8zwUc56KkQjjQ7PgdbNHHMnWQwSA9pFCzkPVvwmC2Wr0zQ8qW8wsIvHkG31MZO0
+ MuvzmxPcTnRPI2rT/Mfz31cPNUe1OxfIKkdpYj5c044djZD75QNnRbUydkZODdhSwhZPlNGGXBdngA
+ JIrikQ/2+MyhNjBYgadk8sjiLRs9RtJykemEjqEB1Xkhcxl0qXz3MWpk4nLWRm9AHWr3GxRQHTKGad
+ r+K+UYpAzZaAinvsTzINzvX42P3A3Ll0oyVWeyXPJ1hVJfdXK2ZaQnXxs5f2+hcbxYVamwtetsSATk
+ eD154UaAaJWFd0vHJvG1U8K6R6uZxC60Zdw5i/oXsw+yjjNkR7uY8k34iwM4K18ykg0iqGMPn8o9ke
+ oCE05tqb0P9MMu8ghT+zWpwPwjQvRSUPZ6K7owPwNQv7N3Cx1bmx0zxTJkFDQ+wQH5rtYdAWj9zUOy
+ mYlBMaeanC7iwARbjsxfJgrSfeNm3GJYvY0fObdhz9GzbKiY44RCoFirwvAg==
 X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210902_064922_676472_26EE40D0 
-X-CRM114-Status: GOOD (  13.83  )
+X-CRM114-CacheID: sfid-20210902_064923_681151_36C0A1B7 
+X-CRM114-Status: GOOD (  12.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,69 +118,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In order to reduce the kernel Image size on multi-platform distributions,
-make it possible to build the Amlogic GPIO IRQ controller as a module
-by switching it to a platform driver.
+Selecting MESON_IRQ_GPIO forces it as built-in, but we may need to build it
+as a module, thus remove it here and let the "default ARCH_MESON" build as
+built-in by default with the option to switch it to module.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/irqchip/Kconfig          |  5 +++--
- drivers/irqchip/irq-meson-gpio.c | 15 +++++++++------
- 2 files changed, 12 insertions(+), 8 deletions(-)
+ arch/arm64/Kconfig.platforms | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index 4d5924e9f766..2aba485025fd 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -400,8 +400,9 @@ config IRQ_UNIPHIER_AIDET
- 	  Support for the UniPhier AIDET (ARM Interrupt Detector).
- 
- config MESON_IRQ_GPIO
--       bool "Meson GPIO Interrupt Multiplexer"
--       depends on ARCH_MESON
-+       tristate "Meson GPIO Interrupt Multiplexer"
-+       depends on ARCH_MESON || COMPILE_TEST
-+       default ARCH_MESON
-        select IRQ_DOMAIN_HIERARCHY
-        help
-          Support Meson SoC Family GPIO Interrupt Multiplexer
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index e50676ce2ec8..d90ff0b92480 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -436,8 +436,7 @@ static const struct irq_domain_ops meson_gpio_irq_domain_ops = {
- 	.translate	= meson_gpio_irq_domain_translate,
- };
- 
--static int __init meson_gpio_irq_parse_dt(struct device_node *node,
--					  struct meson_gpio_irq_controller *ctl)
-+static int meson_gpio_irq_parse_dt(struct device_node *node, struct meson_gpio_irq_controller *ctl)
- {
- 	const struct of_device_id *match;
- 	int ret;
-@@ -463,8 +462,7 @@ static int __init meson_gpio_irq_parse_dt(struct device_node *node,
- 	return 0;
- }
- 
--static int __init meson_gpio_irq_of_init(struct device_node *node,
--					 struct device_node *parent)
-+static int meson_gpio_irq_of_init(struct device_node *node, struct device_node *parent)
- {
- 	struct irq_domain *domain, *parent_domain;
- 	struct meson_gpio_irq_controller *ctl;
-@@ -521,5 +519,10 @@ static int __init meson_gpio_irq_of_init(struct device_node *node,
- 	return ret;
- }
- 
--IRQCHIP_DECLARE(meson_gpio_intc, "amlogic,meson-gpio-intc",
--		meson_gpio_irq_of_init);
-+IRQCHIP_PLATFORM_DRIVER_BEGIN(meson_gpio_intc)
-+IRQCHIP_MATCH("amlogic,meson-gpio-intc", meson_gpio_irq_of_init)
-+IRQCHIP_PLATFORM_DRIVER_END(meson_gpio_intc)
-+
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:meson-gpio-intc");
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index b0ce18d4cc98..ff2d83fbbde1 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -167,7 +167,6 @@ config ARCH_MEDIATEK
+ config ARCH_MESON
+ 	bool "Amlogic Platforms"
+ 	select COMMON_CLK
+-	select MESON_IRQ_GPIO
+ 	help
+ 	  This enables support for the arm64 based Amlogic SoCs
+ 	  such as the s905, S905X/D, S912, A113X/D or S905X/D2
 -- 
 2.25.1
 
