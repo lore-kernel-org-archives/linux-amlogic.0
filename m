@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 009DFC432BE
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 13:31:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B829DC4320E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 13:31:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BFD0660525
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 13:31:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BFD0660525
+	by mail.kernel.org (Postfix) with ESMTPS id 8A2726108B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 13:31:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8A2726108B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,73 +24,74 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=vwC7IfHLA6lVvAQXbx30Ac7x5/4JSr+2YTTvL2L5J8w=; b=Q9GhUAAa3ebXVwUBM75GYl83h9
-	0cECA1Mo5A3YkJ6iI9iEilg8UtNWDUoKC/M5SiluAOpALlsqGrVYTzcVApsUwpl292m6ny/2uYa3g
-	G54GWudS8gemzAmuAl91yh7MWb5nrchnBcWl0JIkrsG/uapvkl+ALHFY1xWFOHkKVSCE8oEDUNbxw
-	T9Fclac+mvzASgFpD39XFRi/pVo/fREppkbeoSciuQy23EdK0MiWf/dIZRrLAZnoOkbL/OJMIa8JD
-	viWMyrcO98zukmR+XPr+ILyNrlok4CTZpCy1pK4y+I7kntOjuH7LB/+HqQi6BY9bpBGxXHFEBnImG
-	kzaJeAzg==;
+	bh=Y9G2g9MJadm0Kw/gt+vYvTPCriRSnOGjzFfa1JhlNik=; b=ULBHTbI7bfNFKuNFxjfYhN9618
+	oq/J0K+//DB5u3VeSZ+gGkFVSTo9DwQxwbGtCEG4aDEMdyw7CqhCH2j7cybpPS1uOqxPV7a4pM8/P
+	EIMGEiwcF07NV/AWfMUquDX7bKgXv45Ea813tkgXYpPdOloF0X6SGWVAUDheJBSUgSEhgaIMm2U9a
+	YPiQnN9H471Iza0qgLXcBl2C8g9lQjn7znv5+fJzDvLDtiUkLXIVEKijrGs0XVCcYcVlFW0pm2fSI
+	W/fhsDFYVvrvFk1baau2L9ghGC12nTBnRJg39EU2bVuY9cbC8ySpkIhhVgRVpMSxeKuI3ZgWzmUNI
+	UZZubXVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mLmo6-009iDy-Cl; Thu, 02 Sep 2021 13:31:06 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1mLmoV-009iLr-6W; Thu, 02 Sep 2021 13:31:31 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mLmo3-009iCs-FA
- for linux-amlogic@lists.infradead.org; Thu, 02 Sep 2021 13:31:04 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id q11so2950516wrr.9
- for <linux-amlogic@lists.infradead.org>; Thu, 02 Sep 2021 06:31:03 -0700 (PDT)
+ id 1mLmoG-009iH6-DQ
+ for linux-amlogic@lists.infradead.org; Thu, 02 Sep 2021 13:31:19 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id g138so1288677wmg.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 02 Sep 2021 06:31:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=n0klcoy5VB86GBCo6ovw09LEEA190St+8JgjCktZXyg=;
- b=Nm2sKFRgc19AZSbWMlfNGpn2GO7OzBeHhRab2mdYgOGjNL7jzChX6s0+5tMqd9MiqM
- I2uYdDlppCvhcxTl+Jd4vqqI/NyQyh5ibkkGMHMofx00rHofjRHpJSg3RkjoqPin4A0N
- CTkY7G9Cp8v5CJX+K7sSB41bzNats1NVUgY1V4vJJcxrJ5vkNN235FwhSqxErHKWSB36
- wTHylKGCtkyQVUqJy9Sr0jlFcfIVygJATZiWMyP+xlnIY6Pt0yDPXSCtPKEhUyH1VdjV
- QXO8+SWo9Se011tDFBWbIsE1fBNLljh/TuvncHhXQWG8WwNRmTl/O9fUiGpsKSGv4aP+
- jvIQ==
+ bh=4gxi9Kqsy6vY5Br0x3Qy9vxSPyyM/MBtQ+2co26fvBU=;
+ b=u07MnjYoJd4ToW6TOOtZFuPbDUsGKC4+4IPtShXatLOI3i5McO2C+LlhGVohAgrIUb
+ sBlD8DOLsfn5/OZFiFvhoGWfdatEdpgKJUhpzGb6Hq24UMq1BgPVs46LRZ8bCPnJIkG8
+ 3RS7211MWbG2LoMDnSt5PZwTcsz1TNPfVlRfVUvnBfZ6WJDIDKEn+YlKI9N4KzL9/BBr
+ Fua7rGtjPAbuMnzITzI/ycqeFNC78t7tr8JPqoVuGqKdaYdBtAMDJeQtVZyeDfi902uz
+ qEq/grvgQlXaFS5+dbQwMc8vutwe3b5FFhmjx9g7iYd3WuweNM7q3wrmhfIh/0EHByB5
+ ZQBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=n0klcoy5VB86GBCo6ovw09LEEA190St+8JgjCktZXyg=;
- b=mIt7wPvExyPpAxjdzm+lza6Tp8TCgw2FoAbSEqHhhvBxkn08oqpRKe+sFahkbcVefj
- P2WjHv/MzSBeigx1gjDp41YYNRnckL73b+mCCJ8uctDZt/25ek9X9UiXreaCfpHByiz/
- jgvG+lvfTNPyew9Q15IkV3D4iDP8GnqMkpgga7tkS6ax00hI3rlSC17fBIb+ySGY61M0
- fuEKQWWVD51LAdzJ1AtdnCkQXkETENxSosodpyKZdrpw3h+Pte7WPh2dtq2BeR5w+9vY
- 6OOD3TqUadQbipi5sUVX3oKOwCqudVMZjqKW1T8LnLTPh9sRjxGbHzy2WKhCU0HVDk9R
- zPlA==
-X-Gm-Message-State: AOAM531tm3Zhlvd77LGYq5/h84cdvCDFMCFVYcwcSDtkAwS690ZoxVYQ
- SkK8wY2YXoXMgbCRN+WofL4cwQ==
-X-Google-Smtp-Source: ABdhPJxVkAODoZdK0YV812Ax+02FJZZFtxOsdh1Ky9ABLZ78x+taEK+4gT2cUQiffXDITf3pXqYMuQ==
-X-Received: by 2002:a5d:40d1:: with SMTP id b17mr3735550wrq.47.1630589461939; 
- Thu, 02 Sep 2021 06:31:01 -0700 (PDT)
+ bh=4gxi9Kqsy6vY5Br0x3Qy9vxSPyyM/MBtQ+2co26fvBU=;
+ b=l7doYXYL7NQIuHT7N/8JyQeKacz6BkPuwame/UGsZ//hsjitVITXCxLTXPdo5w/Ush
+ XbEP1r7+ocowNVbp7sjj4NqaxkQF2TB3phzmCc8r92fpo7yHYowmdFrRtUJ08HKAGmlw
+ SMd3pozVgHd5bxSV47KwqzsTkELaLIMPNajNNZAH43gzHVTw++8ozlXEphi6gnph9p/q
+ hyvnZmgKFlsuC7KKzV0qb0TBS6XCoVsLClC9tTrmCR1e78OdeZi6Kz71JJOVGccuyhwS
+ rVuXxhPlYBQ1bd6Dc1FUb3JLxdYJnqBFaYEYAfxTs6mk3pECYN2IPr6SjPuWAjIXYPJh
+ X46Q==
+X-Gm-Message-State: AOAM5337iJsw9wCQEMPiPpYyChgNHS3gPXx0u3yyOiYpQdwAPbOULEz7
+ +s23dmmjHv0JHBDZEGsaC73BaQ==
+X-Google-Smtp-Source: ABdhPJyVTIrOykcHm9Tz+zCbl+Dt+2flbbXghMcfXjE9o2eBFlm7cHCvOunhVb9EF0jaSVbGs0i5UA==
+X-Received: by 2002:a7b:ce87:: with SMTP id q7mr3244799wmj.126.1630589474811; 
+ Thu, 02 Sep 2021 06:31:14 -0700 (PDT)
 Received: from ?IPv6:2001:861:44c0:66c0:98:6312:3c8:6531?
  ([2001:861:44c0:66c0:98:6312:3c8:6531])
- by smtp.gmail.com with ESMTPSA id o15sm1959424wra.3.2021.09.02.06.31.01
+ by smtp.gmail.com with ESMTPSA id u23sm1660340wmc.24.2021.09.02.06.31.13
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 02 Sep 2021 06:31:01 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson-sm1: add spdifin spdifout nodes
+ Thu, 02 Sep 2021 06:31:14 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson: sm1-khadas-vim3l use one sound node
+ configuration with VIM3
 To: jbrunet@baylibre.com
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, christianshewitt@gmail.com, art@khadas.com,
  nick@khadas.com, gouwa@khadas.com, Artem Lapkin <email2tema@gmail.com>
-References: <20210811050941.398360-1-art@khadas.com>
+References: <20210812051059.1103641-1-art@khadas.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <64a6a9e1-64de-4b31-9413-cdfd981862de@baylibre.com>
-Date: Thu, 2 Sep 2021 15:31:00 +0200
+Message-ID: <247c746b-621c-5db0-25c0-1ef0d0a0d77e@baylibre.com>
+Date: Thu, 2 Sep 2021 15:31:13 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210811050941.398360-1-art@khadas.com>
+In-Reply-To: <20210812051059.1103641-1-art@khadas.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210902_063103_582352_9F71C2F9 
-X-CRM114-Status: GOOD (  16.27  )
+X-CRM114-CacheID: sfid-20210902_063116_599084_04D99B43 
+X-CRM114-Status: GOOD (  16.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,72 +110,40 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On 11/08/2021 07:09, Artem Lapkin wrote:
-> Add spdifin spdifout spdifout_b nodes for Amlogic SM1 SoCs.
+On 12/08/2021 07:10, Artem Lapkin wrote:
+> Khadas VIM3L board sound configuration same as Khadas VIM3, its already
+> defined in meson-khadas-vim3.dtsi and no need overwrite it with different
+> card names and routing configurations.
 > 
 > Signed-off-by: Artem Lapkin <art@khadas.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 40 ++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
+>  .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts     | 13 -------------
+>  1 file changed, 13 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> index 3d8b1f4f2..1efdbb61e 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> @@ -356,6 +356,33 @@ tdmin_lb: audio-controller@3c0 {
->  			status = "disabled";
->  		};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> index f2c098143..06de0b1ce 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> @@ -32,19 +32,6 @@ vddcpu: regulator-vddcpu {
+>  		regulator-boot-on;
+>  		regulator-always-on;
+>  	};
+> -
+> -	sound {
+> -		model = "G12B-KHADAS-VIM3L";
+> -		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
+> -				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
+> -				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
+> -				"TDM_A Playback", "TDMOUT_A OUT",
+> -				"TDMIN_A IN 0", "TDM_A Capture",
+> -				"TDMIN_A IN 13", "TDM_A Loopback",
+> -				"TODDR_A IN 0", "TDMIN_A OUT",
+> -				"TODDR_B IN 0", "TDMIN_A OUT",
+> -				"TODDR_C IN 0", "TDMIN_A OUT";
+> -	};
+>  };
 >  
-> +		spdifin: audio-controller@400 {
-> +			compatible = "amlogic,g12a-spdifin",
-> +			"amlogic,axg-spdifin";
-> +			reg = <0x0 0x400 0x0 0x30>;
-> +			#sound-dai-cells = <0>;
-> +			sound-name-prefix = "SPDIFIN";
-> +			interrupts = <GIC_SPI 151 IRQ_TYPE_EDGE_RISING>;
-> +			clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
-> +			<&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
-> +			clock-names = "pclk", "refclk";
-> +			resets = <&clkc_audio AUD_RESET_SPDIFIN>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spdifout: audio-controller@480 {
-> +			compatible = "amlogic,g12a-spdifout",
-> +			"amlogic,axg-spdifout";
-> +			reg = <0x0 0x480 0x0 0x50>;
-> +			#sound-dai-cells = <0>;
-> +			sound-name-prefix = "SPDIFOUT";
-> +			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
-> +			<&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
-> +			clock-names = "pclk", "mclk";
-> +			resets = <&clkc_audio AUD_RESET_SPDIFOUT>;
-> +			status = "disabled";
-> +		};
-> +
->  		tdmout_a: audio-controller@500 {
->  			compatible = "amlogic,sm1-tdmout";
->  			reg = <0x0 0x500 0x0 0x40>;
-> @@ -401,6 +428,19 @@ tdmout_c: audio-controller@580 {
->  			status = "disabled";
->  		};
->  
-> +		spdifout_b: audio-controller@680 {
-> +			compatible = "amlogic,g12a-spdifout",
-> +			"amlogic,axg-spdifout";
-> +			reg = <0x0 0x680 0x0 0x50>;
-> +			#sound-dai-cells = <0>;
-> +			sound-name-prefix = "SPDIFOUT_B";
-> +			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT_B>,
-> +			<&clkc_audio AUD_CLKID_SPDIFOUT_B_CLK>;
-> +			clock-names = "pclk", "mclk";
-> +			resets = <&clkc_audio AUD_RESET_SPDIFOUT_B>;
-> +			status = "disabled";
-> +		};
-> +
->  		toacodec: audio-controller@740 {
->  			compatible = "amlogic,sm1-toacodec",
->  				     "amlogic,g12a-toacodec";
+>  &cpu0 {
 > 
 
 Jerome could you quickly review this ?
