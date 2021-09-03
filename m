@@ -1,84 +1,65 @@
-Return-Path: <SRS0=tLoi=NY=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=UeA4=NZ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87352C83026
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 17:01:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A699C433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 06:01:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4889C61041
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Sep 2021 17:01:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 4889C61041
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=google.com
+	by mail.kernel.org (Postfix) with ESMTPS id 1A24261074
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 06:01:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1A24261074
+Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=lexina.in
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eCM9VsWQP7FbdCjaYVxpa8LeoQojvEv8vN89V8AfG+Q=; b=MWY49VuzzC9xwO
-	OunwHR3+CeQwTNM/WZMGxunhjUbb03t0eZvniOB16qAoNr2cXHrpcvMgRN40rU61Fq6jsnjlOaTP6
-	8L0Uec1PnghnfS/p9t0p5xm3VRQ7z1y8x91fegkp5QJasbjR/f7JrGwxteT8tdQGd7WFbY66Jjjy7
-	5/4O54lF/oR2coeZFR3/H8zs+EP2Xx8Vz7ugrMJrMR/v8qfbLUMXoxABRFXt4RqyoS/HcoUqg+/0c
-	4+bwa+2/XOa3uemmlx3fxozih64zTvYuTI3GyGbSsR1lgbCvy67d9g5mNLW7ErnwmdqjCCC2FH2+1
-	yGrhUmPCPXRgIBzulK4w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=xJVv/YQ1IC2OgYeyryA3ZSbzy92oOil/+ebLRW2lL+s=; b=QW/k/gcLwVnU1j
+	B3GL7CvKndkcJGx5thlh29sQ75snf2530DjMAmPPTfDSJpI2lR8y28VzLNWyfzWE7X331CSXYMs2l
+	AG4xSGWIbm/8fSVrz6LZ8mJnhT6t5KVH3I9SQJCOoFd9zig5auu5S/0cppExt1++HiuypdAsfDlwm
+	tgfBvMD+SmAZgp1ReuMwG5d+YmqCouYld/fISfpv4RYCajQSZ5LIRt0oJJ3gO+3CoXkmdd1+SF93d
+	4xA+03NOfezrpQ5tkF7yRoktPjSfbK79L4bWpp9wFpH+DGv6p9AbR2+5kgyGH/YiOsyZKD3HaRrp0
+	3E6Ga7AGwxcZNc8b/fiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mLq5m-00A4eW-K3; Thu, 02 Sep 2021 17:01:34 +0000
-Received: from mail-yb1-xb29.google.com ([2607:f8b0:4864:20::b29])
+	id 1mM2G3-00B1Dy-DO; Fri, 03 Sep 2021 06:00:59 +0000
+Received: from mx.msync.work ([2a01:4f9:2b:2dc2::3])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mLq5Z-00A4c8-Gh
- for linux-amlogic@lists.infradead.org; Thu, 02 Sep 2021 17:01:22 +0000
-Received: by mail-yb1-xb29.google.com with SMTP id v26so5128607ybd.9
- for <linux-amlogic@lists.infradead.org>; Thu, 02 Sep 2021 10:01:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=PpysPmik57x5vnDmjTrZwtUlMx9bD37Da+iZfWbm5qg=;
- b=MjoPmyE65znm1D0n+HXu82MDj+gi8kUK0hXr1O6+Bjv/0XAG2S5ahgwzwBD+Cnu3oO
- mCweJVAtssAovQojoUmS6Ci++Uti7Ht6PYH1jWKKoI5eVjR67tdebUj2PCrXVlmfg8tM
- GyiQeXcN+v9qtEiprBzVjjzZ7yQjO3B3RB0RjTjVFZec+EtnhvmuxQV6HzPf1Ce4rVYk
- Gy9f0zlDrqqWd5K0smV29f3g4eEijuq462wK6TYG45R1D1Ize7UGrVUTJ2rR8JN5ILQ9
- GYAjv/Mfjox9wtbxaEeHdHUz20MaTDkDSEcwV5fAbMdjTM64pRm6mNidTYDDG6UJo3t6
- KbhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=PpysPmik57x5vnDmjTrZwtUlMx9bD37Da+iZfWbm5qg=;
- b=NoeWtwLd+EmQ4KMod1wYjRly6BSeijHSQ3arBou3F/7f76my7YKgva85e+3SEfqxC1
- zLR3IghaObSNB2fZDBqFTf+Z78FSw6/uWY+so/JsezTEJqwh5wXQBkSWQFY1OumoPND/
- VyrfOVza4rYVW/3CusseJQg3+G8dG2JZ+F/g0zh8vdem2q6lDXQmiULfZXPQK69DDml0
- SBSwzLgYsrguq8eTLo9tG3V9UyIZZ1p4zxih370JSJbLTo6GTuGVKFpoIC5uOs16OnM3
- JBaGNDtT22KxJwLTNnRfAziVZX0GvdwcCO/LB86iCBZYBLNDJcZrqLGs07PsEgHaO+k4
- //fA==
-X-Gm-Message-State: AOAM530K9aXfqrIbp3MP6wmfIOakOXRzJ/MQVhOREeJmLdaV2Aau/H9r
- hADG++AVPjVzOeJG3z/AtV+eDkc6hmB+fzE+m1Je3Q==
-X-Google-Smtp-Source: ABdhPJyt8C3Ru+98FAhkc1VPkGvpkiogD6mUaNAdSCekNWLAzApbq4a2RvTAF9sHto1glvhd7SJ6dQ+62d8ugoff0lE=
-X-Received: by 2002:a25:6746:: with SMTP id b67mr6335807ybc.96.1630602080287; 
- Thu, 02 Sep 2021 10:01:20 -0700 (PDT)
+ id 1mM2G0-00B1Ct-1N; Fri, 03 Sep 2021 06:00:58 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id CAB74D50B2; Fri,  3 Sep 2021 06:00:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+ t=1630648852; h=from:subject:date:message-id:to:cc:mime-version:
+ content-transfer-encoding; bh=/FU6CYAdNkhFeVmla6yx1cJ3ejiRmQG7xi91otEI1l8=;
+ b=anburVSYmkyUyu0mtnWZ+0aBkFium9wh/ZzBQ4MuXCAAhphHIy1D0vhC3ddw104KWIyRVN
+ n8FYGFTqBjYkripraGY/6cAwdh+HKVVvw/TWinDtwZGEUskhJrSkjgqxP173b+tzUoyLYf
+ 6q8p3WHFSS1LoCWNRt7Uc0UuJnHUsokL2mVNEKcIR63bgyeL8SYo+mG8wnyPoN6Jye7Ubg
+ Y7vF6h4HWjzOk9WUsUdjlNiwW5ZNPQMbIhm04kQfn/XZwKpzj9/fGVlQUVNP3Q0MPggSs2
+ n11aVM7A/91In52V4uQcbwVVMqziENAazvDximtAXUBQAMtZdCgn2jRLwpt4gw==
+From: Vyacheslav Bocharov <adeep@lexina.in>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Vyacheslav Bocharov <devel@lexina.in>
+Subject: [PATCH v2 0/3] arm64: meson-axg: meson-gxl: add support for JetHub
+ D1/H1
+Date: Fri,  3 Sep 2021 09:00:32 +0300
+Message-Id: <20210903060035.844758-1-adeep@lexina.in>
 MIME-Version: 1.0
-References: <20210902134914.176986-1-narmstrong@baylibre.com>
- <20210902134914.176986-2-narmstrong@baylibre.com>
-In-Reply-To: <20210902134914.176986-2-narmstrong@baylibre.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Thu, 2 Sep 2021 10:00:44 -0700
-Message-ID: <CAGETcx9KYWmmSYjXGPW6awmVYcKr6sdmxhc_tP=hf149=8Pm6A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build as
- a module
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: maz@kernel.org, tglx@linutronix.de, jbrunet@baylibre.com, 
- khilman@baylibre.com, lee.jones@linaro.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210902_100121_586056_02721C8E 
-X-CRM114-Status: GOOD (  19.96  )
+X-CRM114-CacheID: sfid-20210902_230056_485250_7040D32A 
+X-CRM114-Status: UNSURE (   8.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,78 +76,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Sep 2, 2021 at 6:49 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> In order to reduce the kernel Image size on multi-platform distributions,
-> make it possible to build the Amlogic GPIO IRQ controller as a module
-> by switching it to a platform driver.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/irqchip/Kconfig          |  5 +++--
->  drivers/irqchip/irq-meson-gpio.c | 15 +++++++++------
->  2 files changed, 12 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> index 4d5924e9f766..2aba485025fd 100644
-> --- a/drivers/irqchip/Kconfig
-> +++ b/drivers/irqchip/Kconfig
-> @@ -400,8 +400,9 @@ config IRQ_UNIPHIER_AIDET
->           Support for the UniPhier AIDET (ARM Interrupt Detector).
->
->  config MESON_IRQ_GPIO
-> -       bool "Meson GPIO Interrupt Multiplexer"
-> -       depends on ARCH_MESON
-> +       tristate "Meson GPIO Interrupt Multiplexer"
-> +       depends on ARCH_MESON || COMPILE_TEST
-> +       default ARCH_MESON
->         select IRQ_DOMAIN_HIERARCHY
->         help
->           Support Meson SoC Family GPIO Interrupt Multiplexer
-> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-> index e50676ce2ec8..d90ff0b92480 100644
-> --- a/drivers/irqchip/irq-meson-gpio.c
-> +++ b/drivers/irqchip/irq-meson-gpio.c
-> @@ -436,8 +436,7 @@ static const struct irq_domain_ops meson_gpio_irq_domain_ops = {
->         .translate      = meson_gpio_irq_domain_translate,
->  };
->
-> -static int __init meson_gpio_irq_parse_dt(struct device_node *node,
-> -                                         struct meson_gpio_irq_controller *ctl)
-> +static int meson_gpio_irq_parse_dt(struct device_node *node, struct meson_gpio_irq_controller *ctl)
->  {
->         const struct of_device_id *match;
->         int ret;
-> @@ -463,8 +462,7 @@ static int __init meson_gpio_irq_parse_dt(struct device_node *node,
->         return 0;
->  }
->
-> -static int __init meson_gpio_irq_of_init(struct device_node *node,
-> -                                        struct device_node *parent)
-> +static int meson_gpio_irq_of_init(struct device_node *node, struct device_node *parent)
->  {
->         struct irq_domain *domain, *parent_domain;
->         struct meson_gpio_irq_controller *ctl;
-> @@ -521,5 +519,10 @@ static int __init meson_gpio_irq_of_init(struct device_node *node,
->         return ret;
->  }
->
-> -IRQCHIP_DECLARE(meson_gpio_intc, "amlogic,meson-gpio-intc",
-> -               meson_gpio_irq_of_init);
-> +IRQCHIP_PLATFORM_DRIVER_BEGIN(meson_gpio_intc)
-> +IRQCHIP_MATCH("amlogic,meson-gpio-intc", meson_gpio_irq_of_init)
-> +IRQCHIP_PLATFORM_DRIVER_END(meson_gpio_intc)
-> +
-> +MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_ALIAS("platform:meson-gpio-intc");
-> --
+From: Vyacheslav Bocharov <devel@lexina.in>
 
-Acked-by: Saravana Kannan <saravanak@google.com>
+Add support for new home automation devices.
 
-Marc, my mdio-mux patches have landed.
+JetHome Jethub D1 (http://jethome.ru/jethub-d1) is a home automation controller with the following features:
+- DIN Rail Mounting
+- Amlogic A113X (ARM Cortex-A53) quad-core up to 1.5GHz
+- no video out
+- 512Mb/1GB LPDDR4
+- 8/16GB eMMC flash
+- 1 x USB 2.0
+- 1 x 10/100Mbps ethernet
+- WiFi / Bluetooth AMPAK AP6255 (Broadcom BCM43455) IEEE 802.11a/b/g/n/ac, Bluetooth 4.2.
+- TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power and Zigbee 3.0 support.
+- 2 x gpio LEDS
+- GPIO user Button
+- 1 x 1-Wire
+- 2 x RS-485
+- 4 x dry contact digital GPIO inputs
+- 3 x relay GPIO outputs
+- DC source with a voltage of 9 to 56 V / Passive POE
 
--Saravana
+JetHome Jethub H1 (http://jethome.ru/jethub-h1) is a home automation controller with the following features:
+- square plastic case
+- Amlogic S905W (ARM Cortex-A53) quad-core up to 1.5GHz
+- no video out
+- 1GB LPDDR4
+- 8/16GB eMMC flash
+- 2 x USB 2.0
+- 1 x 10/100Mbps ethernet
+- WiFi / Bluetooth RTL8822CS IEEE 802.11a/b/g/n/ac, Bluetooth 5.0.
+- TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power and Zigbee 3.0 support.
+- MicroSD 2.x/3.x/4.x DS/HS cards.      
+- 1 x gpio LED
+- ADC user Button
+- DC source 5V microUSB
+
+Changes from v1:
+- rearrange patches
+- add SPDX license and copyright header
+- remove attributes without bindings
+- small fixes with spaces
+
+Vyacheslav Bocharov (3):
+  dt-bindings: arm: amlogic: add bindings for JetHome Jethud D1/H1
+  arm64: dts: meson-gxl: add support for JetHub H1
+  arm64: dts: meson-axg: add support for JetHub D1
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+ .../amlogic/meson-axg-jethome-jethub-j100.dts | 348 ++++++++++++++++++
+ .../meson-gxl-s905w-jethome-jethub-j80.dts    | 241 ++++++++++++
+ 4 files changed, 593 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts
+
+-- 
+2.30.2
+
 
 _______________________________________________
 linux-amlogic mailing list
