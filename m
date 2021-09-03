@@ -2,69 +2,83 @@ Return-Path: <SRS0=UeA4=NZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 200DBC433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 13:03:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1454DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 16:13:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AA8DF601FF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 13:03:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org AA8DF601FF
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=lexina.in
+	by mail.kernel.org (Postfix) with ESMTPS id DA031610CF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 16:13:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DA031610CF
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qr0yXzCP2Iyq6l2A7r1DEwXTT0tWjqBcQ0qqmhrTCPk=; b=rkDDEKbMsbR3GbVa1nS1yBXuFg
-	rO9qzudDoa1DooSHGhbjC0AZ9Rn+qrp/xya49DVjywe2oRKux0AurKgO15nmcRQZYV2uHEO4yYvKa
-	HA9kO5YrxBKanRs1uJ3iAWsQ84JHhSzwiFzztD736ehjrOMyuusrC+wW8xq0xFWtr7ONYdexZo/Yg
-	Sl1I5pz6zjrDuG0k/EVXLVuRJScFuiaFpVSfBEjbsSkO2/5jHvFBwqfwGa5f62tMXYb52ETcz0O1j
-	jvFAFgdF7fksVE2BZsQNcvR/DHJrK34n68mShEE/h21690hwW7kJzwvgeTQDQilfcOcAYs7w50EfG
-	j+4WX1nw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=T4Av3DdDpVQCk9F3yw3QQiVcp1HWQnsdf0i6Mc79VW0=; b=k4ddgfs6ClxjPC
+	C/Gbh0tp6ZD9d6c/aQcs9aL1YRsIVt8SPmRHaW4duONuoRXmxJyE/CSmQx8g7NSeqkWB6RQZry4Gv
+	hO2lTl7NvCBYcAnt2aaJq4Nwz7akdVABz6D4GAd18RL8h9jkODD11C5P5NSo3WfYiZk0txdMMzQe7
+	lR9xhzKH3NwALxXxz/85U2AWDjj3vFAQBwm09uc7eBiimIPzVRrNQeY4caGhodhfsuHAyOHoRVSMX
+	a/4RmeUeL0Ip0AvIP25IQYs6uvwEWmuNSE0bgdp8JxwFK0cX608h8GjDM7m9ACj2KUFi35XHAqmAU
+	dOWj5IJQukV25xUxwjlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mM8qi-00BzFO-6p; Fri, 03 Sep 2021 13:03:16 +0000
-Received: from mx.msync.work ([95.217.65.204])
+	id 1mMBod-00CO1m-Dx; Fri, 03 Sep 2021 16:13:19 +0000
+Received: from mail-ot1-f49.google.com ([209.85.210.49])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mM8qf-00BzEg-52; Fri, 03 Sep 2021 13:03:14 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 76496D63A0; Fri,  3 Sep 2021 13:03:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
- t=1630674189; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:content-language:in-reply-to:references:
- disposition-notification-to; bh=jjdwfMRF6YgtWfcByL2SGSEFNbz6ru6bgtzK2GxYCIg=; 
- b=kyc/gQo6fgKrgoF8Q18pwA8Xboh7m1YmRB/izNYkuZg9tyd1m8v4CLvvGlSUgIqjL+wpTn
- kCcg7RNZR88JrNjDy8+CTQox9SQJXkpk+0R3/eAinIlimnn5PzU+WUfoTb0mWmTV67hzc5
- ffLj/Al9/soM8JgArWdtVY1crJFTNat0+irJ+LitRMwjV920Hf6uo8+YCxnUM1zZcKdzVX
- biO3YmeY+hLwZEJMWUIvUNjS6wpAaqIErVQZJSUVGo9P0MRFbIaaW1V9GF3wKq0YUiiyH2
- 55MLEbn1hmf2b4zRLb3Xcn10dcAC0RrC0eyiFRChytf50Mbj7PAE7bWhqjyCjg==
-Subject: Re: [PATCH v2 2/3] arm64: dts: meson-gxl: add support for JetHub H1
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
+ id 1mMBoQ-00CNze-WE; Fri, 03 Sep 2021 16:13:08 +0000
+Received: by mail-ot1-f49.google.com with SMTP id
+ v33-20020a0568300921b0290517cd06302dso7115820ott.13; 
+ Fri, 03 Sep 2021 09:13:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=vyBG+O0faZILcpfc2Nap4pRYLyuKC1OS4QzlPAPNwe8=;
+ b=gpt1r8Od/Vf2kARlEiUyVTI5lyRkjdpVbjYPWqMOzevOVq5O0HjgzjtPwWLe2An7lC
+ qgRnFap7kf6GVx6kVTummQIYdrofyXvptG/ruast3oio+gS9QVe+eTU87ArB3VBxlEbR
+ zM/7no+qI7muwlvGwgj2YWrAGdm8U0VRsbkqlQd5ybJ2HtVcn9NQ/695WxXbcgmFe9Te
+ 0Yig5UOdqARcUXvP58MtLMy8fS2cdfuf0j73OKlj8k78LnT08frvlmwLofOOiU5UT75a
+ hhqgQUFJbBImvtcQj02AKk+wje84Ph92sbe07a88kVdJRBh2iLxE5LOSEbm4WewaU3Zo
+ 4RXQ==
+X-Gm-Message-State: AOAM531QZrD5nhH/MK+2ycGkFcM1sg+Nt2zzA6g0kIJPz4FtIV9D8A+W
+ yEzilbIffO0XQbqdtJYcUR+NxEz7EA==
+X-Google-Smtp-Source: ABdhPJxywJtBMAHkLKamqXPUIuQW64oaBOckS+nVxGRrAEtS4vXg4CG3vx5b30edXeBm4+N5z0B7NQ==
+X-Received: by 2002:a9d:7299:: with SMTP id t25mr3830425otj.232.1630685582363; 
+ Fri, 03 Sep 2021 09:13:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net.
+ [66.90.148.213])
+ by smtp.gmail.com with ESMTPSA id f25sm1036421otp.2.2021.09.03.09.13.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Sep 2021 09:13:01 -0700 (PDT)
+Received: (nullmailer pid 3033358 invoked by uid 1000);
+ Fri, 03 Sep 2021 16:13:00 -0000
+Date: Fri, 3 Sep 2021 11:13:00 -0500
+From: Rob Herring <robh@kernel.org>
+To: Vyacheslav Bocharov <adeep@lexina.in>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: amlogic: add bindings for
+ Jethub D1/H1
+Message-ID: <YTJJjAQkjYv1bKDX@robh.at.kernel.org>
 References: <20210903060035.844758-1-adeep@lexina.in>
- <20210903060035.844758-3-adeep@lexina.in>
- <1jfsulua2e.fsf@starbuckisacylon.baylibre.com>
-From: Vyacheslav Bocharov <adeep@lexina.in>
-Message-ID: <23e82fb2-5e28-8c5d-4655-b337af0cf5f0@lexina.in>
-Date: Fri, 3 Sep 2021 16:03:05 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+ <20210903060035.844758-2-adeep@lexina.in>
 MIME-Version: 1.0
-In-Reply-To: <1jfsulua2e.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Disposition: inline
+In-Reply-To: <20210903060035.844758-2-adeep@lexina.in>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210903_060313_565015_E8DDD786 
-X-CRM114-Status: GOOD (  10.74  )
+X-CRM114-CacheID: sfid-20210903_091307_075543_A3AEA484 
+X-CRM114-Status: UNSURE (   8.28  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,17 +90,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-MDMuMDkuMjAyMSAxNToxMCwgSmVyb21lIEJydW5ldCDQv9C40YjQtdGCOgo+ICsmZWZ1c2Ugewo+
-ICsJc246IHNuQDE0IHsKPiArCQlyZWcgPSA8MHgxNCAweDEwPjsKPiArCX07Cj4gYWxyZWFkeSBk
-ZWZpbmVkIGluIG1lc29uLWd4LmR0c2kKPgo+IGFsc28sIHdoYXQgYWJvdXQgYSBuZXcgbGluZSBi
-ZXR3ZWVuIHRoZSBub2RlcyA/Cj4+ICsJc2VyaWFsOiBzZXJpYWxAMzIgewo+PiArCQlyZWcgPSA8
-MHgzMiAweDIwPjsKPj4gKwl9Owo+IElzbid0IHNlcmlhbCBhbmQgc24gdGhlIHNhbWUgdGhpbmcg
-PwpZZXMsIG15IGZhdWx0LiBUaGFua3MuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2lj
-QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Fri, 03 Sep 2021 09:00:33 +0300, Vyacheslav Bocharov wrote:
+> Add bindings for JetHome JetHub D1/H1
+> 
+> Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+
+Acked-by: Rob Herring <robh@kernel.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
