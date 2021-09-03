@@ -2,65 +2,70 @@ Return-Path: <SRS0=UeA4=NZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 08697C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 06:02:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E16AAC433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 06:05:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7026360FA0
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 06:02:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7026360FA0
+	by mail.kernel.org (Postfix) with ESMTPS id A58E56102A
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Sep 2021 06:05:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A58E56102A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=lexina.in
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y+cuf9yOpLLlHiBjlngt7w3NlEn1cXF1AIkyAstJKY0=; b=qiZxiPMD+4gIxX
-	le2fN+7Bt1jgvgXJ7NYDmAOm1V8/lpnrCadc8lC8iaLPExmA61Xsduh/qYKYOxu3g+uQBqqqLO24r
-	zCSzkZgXttZ6PGSEciPSllGsnRYRbMRiW8WelBm/o6gHbsT5BRqdcE20tozeqeqbOVLWcK5ETxI32
-	wLlxRxKlPY848Rr9RRmHw+ApiovGKg20jbnxeH0YG2OrBfeHKD6vJ57bjgMcX/k+j/uZgq6QTZMiC
-	gD7jIts+LfEZ7b3DuQ5/BXljXxH4wAKedEslKrm+3cRYac8e28dHYVTWC+QknefyXDmYiL4BjqcoE
-	CDtw4qltzdjTUFyTRcGw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=tU95IUuaVHSJ2IaJzb0DJWxCXNKFKb0q4r7XsQtnW1M=; b=WLlf2HPt2fMQn171a0AwiFIJ4W
+	NqIx/aOLiex3gLQmHNJI2Andi7OQeafAd6UDaTDt3/V7s6Wqvz6dOETstFQd8SN7z8h7iRlTBCxf2
+	+aNF5K6qJK3Lncqv+GuQnoawOLz0rCYWDa2ZJ9hvawUiOV7/IMs1+TW5pQXULVzmEDq3RM20rEbM4
+	L4jbYZIqKYf/R5fef54YYYjfia0u8IN4R3tFvvAXm4bOcPHPMqEuqbXBeVW3DiIiiOneTFER7fWBw
+	zV0Vk+Y71dh4aPbeBKLHAfsVBUUzDywDeY16ED5MV6xhHW4eS0svXWgCMRTTuM2z/d/TQCvjGBqKY
+	wX5rZgjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mM2HP-00B1fT-5B; Fri, 03 Sep 2021 06:02:23 +0000
+	id 1mM2Kk-00B3Vg-IO; Fri, 03 Sep 2021 06:05:50 +0000
 Received: from mx.msync.work ([95.217.65.204])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mM2GA-00B1FO-Ea; Fri, 03 Sep 2021 06:01:08 +0000
+ id 1mM2Kg-00B3Uf-PX
+ for linux-amlogic@lists.infradead.org; Fri, 03 Sep 2021 06:05:48 +0000
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 66103D50BD; Fri,  3 Sep 2021 06:01:04 +0000 (UTC)
+ with ESMTPSA id 97CF3D5157
+ for <linux-amlogic@lists.infradead.org>; Fri,  3 Sep 2021 06:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
- t=1630648864; h=from:subject:date:message-id:to:cc:mime-version:
- content-transfer-encoding:in-reply-to:references;
- bh=m6j6YDAPW9pMyglwDQoiQSxrVQhIG59yd1wuFkIDzRc=;
- b=QQ/kpq0dAPvgJRbweFVI04goDlV66guLgtIWoZKAurx30poKSzr4KxLfC92BsPEyl7PxYG
- ytU9xUueX9Gl7fu377LoZnk0iy6gio806hOydajDeGVW6XxcB3MoKk7HahApF/d9BjMC2S
- c2VG+8cKUzp4qL+8iNn/J2m8QBwCQc6pqEvq7fMkaK/KDt6KWUEhjqvI1GudHtieeHugzJ
- kDV5XRR1IjuHXqxcYLuM3bfsY3u1LVlMqwBSWpWmvw18ZFmdUAS34b25JdAlJln8RzO8yc
- RVfmfGPyQqa7WmcLRTpNU08draFbuv9OIFCPar91bm4REQIlZLqhpriKOFhhLw==
-From: Vyacheslav Bocharov <adeep@lexina.in>
-To: Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: meson-axg: add support for JetHub D1
-Date: Fri,  3 Sep 2021 09:00:35 +0300
-Message-Id: <20210903060035.844758-4-adeep@lexina.in>
-In-Reply-To: <20210903060035.844758-1-adeep@lexina.in>
-References: <20210903060035.844758-1-adeep@lexina.in>
+ t=1630649144; h=from:subject:date:message-id:to:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references:
+ disposition-notification-to; bh=nG31jNXuozv/EvrrvhxQBGPWCcMd3OsoX2o+HfMBoa4=; 
+ b=gpk+nRzO2o/0MPpID1q6Di70ESkQulWRR50oSL97RKC1WnvsLWdqSL9Eayc2xnxP5O8iDG
+ kXJ1+egoVDpLfsOBHNuBVlIfNxUvcEFeVyWya6rvS7NmEurpm9m39xEZA5RLj+EiVc6Tby
+ lVBtaNmCXQgXN+/wJCdDCk+oIL7DRYRiGxV45bl0tFoKzxjlgz1afMXJDi7QWmSrBA4dcu
+ +6XNq5uhlPT9F5zjRY/32GW+NgbJIQzI8J3QcwVNqOXEKQc8LzHCK41xCqWxcq3Mk1ncwO
+ PB1qyr8tBCoUaw7uE0YdVPcE+yYx19BTatARHMt84OlmLwoE23XuIDo8nPBVUA==
+Subject: Re: [PATCH 1/3] arm64: dts: meson-gxl: add support for JetHub H1
+To: linux-amlogic@lists.infradead.org
+References: <20210902130516.3892452-1-adeep@lexina.in>
+ <20210902130516.3892452-2-adeep@lexina.in>
+ <48238ebf-842d-b752-8b9a-f6f408e57dd2@baylibre.com>
+From: Vyacheslav <adeep@lexina.in>
+Message-ID: <69f0de08-9e34-80cb-668a-a57c880c2e27@lexina.in>
+Date: Fri, 3 Sep 2021 09:05:43 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
+In-Reply-To: <48238ebf-842d-b752-8b9a-f6f408e57dd2@baylibre.com>
+Content-Language: en-US
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210902_230106_892601_2EC61EAC 
-X-CRM114-Status: GOOD (  16.02  )
+X-CRM114-CacheID: sfid-20210902_230547_043168_55B65546 
+X-CRM114-Status: UNSURE (   9.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,406 +77,17 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-JetHome Jethub D1 (http://jethome.ru/jethub-d1) is a home automation controller with the following features:
-- DIN Rail Mounting
-- Amlogic A113X (ARM Cortex-A53) quad-core up to 1.5GHz
-- no video out
-- 512Mb/1GB LPDDR4
-- 8/16GB eMMC flash
-- 1 x USB 2.0
-- 1 x 10/100Mbps ethernet
-- WiFi / Bluetooth AMPAK AP6255 (Broadcom BCM43455) IEEE 802.11a/b/g/n/ac, Bluetooth 4.2.
-- TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power and Zigbee 3.0 support.
-- 2 x gpio LEDS
-- GPIO user Button
-- 1 x 1-Wire
-- 2 x RS-485
-- 4 x dry contact digital GPIO inputs
-- 3 x relay GPIO outputs
-- DC source with a voltage of 9 to 56 V / Passive POE
-
-Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-axg-jethome-jethub-j100.dts | 348 ++++++++++++++++++
- 2 files changed, 349 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 2c3ce7c401a5..3ba6f58b9833 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-new file mode 100644
-index 000000000000..f94babe5ae49
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-@@ -0,0 +1,348 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Vyacheslav Bocharov <adeep@lexina.in>
-+ * Copyright (c) 2020 JetHome
-+ * Author: Aleksandr Kazantsev <ak@tvip.ru>
-+ * Author: Alexey Shevelkin <ash@tvip.ru>
-+ * Author: Vyacheslav Bocharov <adeep@lexina.in>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-axg.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/thermal/thermal.h>
-+
-+/ {
-+	aliases {
-+		serial0 = &uart_AO;   /* Console */
-+		serial1 = &uart_AO_B; /* External UART (Wireless Module) */
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	/* 1024MB RAM */
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		linux,cma {
-+			size = <0x0 0x400000>;
-+		};
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_5v>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_boot: regulator-vddio_boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	usb_pwr: regulator-usb_pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
-+		regulator-always-on;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_7 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
-+	};
-+
-+	thermal-zones {
-+		cpu_thermal: cpu-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&scpi_sensors 0>;
-+			trips {
-+				cpu_passive: cpu-passive {
-+					temperature = <70000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "passive";
-+				};
-+				cpu_hot: cpu-hot {
-+					temperature = <80000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "hot";
-+				};
-+				cpu_critical: cpu-critical {
-+					temperature = <100000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+		cpu_cooling_maps: cooling-maps {
-+			map0 {
-+				trip = <&cpu_passive>;
-+				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+			};
-+			map1 {
-+				trip = <&cpu_hot>;
-+				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+			};
-+		};
-+	};
-+};
-+
-+&efuse {
-+	sn: sn@14 {
-+		reg = <0x14 0x10>;
-+	};
-+	eth_mac: eth_mac@0 {
-+		reg = <0x0 0x6>;
-+	};
-+	bt_mac: bt_mac@6 {
-+		reg = <0x6 0x6>;
-+	};
-+	wifi_mac: wifi_mac@c {
-+		reg = <0xc 0x6>;
-+	};
-+	bid: bid@12 {
-+		reg = <0x12 0x20>;
-+	};
-+	serial: serial@32 {
-+		reg = <0x32 0x20>;
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+	pinctrl-0 = <&eth_rmii_x_pins>;
-+	pinctrl-names = "default";
-+	phy-handle = <&eth_phy0>;
-+	phy-mode = "rmii";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* ICPlus IP101A/G Ethernet PHY (vendor_id=0x0243, model_id=0x0c54) */
-+		eth_phy0: ethernet-phy@0 {
-+			/* compatible = "ethernet-phy-id0243.0c54";*/
-+			max-speed = <100>;
-+			reg = <0>;
-+
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <10000>;
-+			reset-gpios = <&gpio GPIOZ_5 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+/* Internal I2C bus (on CPU module) */
-+&i2c1 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c1_z_pins>;
-+	pinctrl-names = "default";
-+
-+	/* RTC */
-+	pcf8563: pcf8563@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+		status = "okay";
-+	};
-+};
-+
-+/* Peripheral I2C bus (on motherboard) */
-+&i2c_AO {
-+	status = "okay";
-+	pinctrl-0 = <&i2c_ao_sck_10_pins>, <&i2c_ao_sda_11_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_ab {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_a_x20_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* wifi module */
-+&sd_emmc_b {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr104;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+/* emmc storage */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* UART Bluetooth */
-+&uart_B {
-+	status = "okay";
-+	pinctrl-0 = <&uart_b_z_pins>, <&uart_b_z_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+/* UART Console */
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* UART Wireless module */
-+&uart_AO_B {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_b_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	phy-supply = <&usb_pwr>;
-+};
-+
-+&spicc1 {
-+	status = "okay";
-+};
-+
-+&gpio {
-+	gpio-line-names = 
-+		"", "", "", "", "", // 0 - 4
-+		"", "", "", "", "", // 5 - 9
-+		"UserButton", "", "", "", "", // 10 - 14
-+		"", "", "", "", "", // 15 - 19
-+		"", "", "", "", "", // 20 - 24
-+		"", "LEDRED", "LEDGREEN", "Output3", "Output2", // 25 - 29
-+		"Output1", "", "", "", "", // 30 - 34
-+		"", "ZigBeeBOOT", "", "", "", // 35 - 39
-+		"", "ZigBeeRESET", "", "Input4", "Input3", // 40 - 44
-+		"Input2", "Input1", "", "", "", // 45 - 49
-+		"", "", "", "", "", // 50 - 54
-+		"", "", "", "", "", // 55 - 59
-+		"", "", "", "", "", // 60 - 64
-+		"", "", "", "", "", // 65 - 69
-+		"", "", "", "", "", // 70 - 74
-+		"", "", "", "", "", // 75 - 79
-+		"", "", "", "", "", // 80 - 84
-+		"", ""; // 85-86
-+};
-+
-+&cpu0 {
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu1 {
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu2 {
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu3 {
-+	#cooling-cells = <2>;
-+};
-+
--- 
-2.30.2
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+MDIuMDkuMjAyMSAxNjoxOSwgTmVpbCBBcm1zdHJvbmcg0L/QuNGI0LXRgjoKPiBIaSwKPgo+IE9u
+IDAyLzA5LzIwMjEgMTU6MDUsIFZ5YWNoZXNsYXYgQm9jaGFyb3Ygd3JvdGU6Cj4+IEpldEhvbWUg
+SmV0aHViIEgxIChodHRwOi8vamV0aG9tZS5ydS9qZXRodWItaDEpIGlzIGEgaG9tZSBhdXRvbWF0
+aW9uIGNvbnRyb2xsZXIgd2l0aCB0aGUgZm9sbG93aW5nIGZlYXR1cmVzOgo+Pgo+IFRoYW5rcyBm
+b3Igc3VibWl0dGluZyBhIG5ldyBib2FyZCAhCgpUaGFua3MgZm9yIGdvb2QgcmV2aWV3LiBJIGhh
+dmUgcG9zdGVkIHBhdGNoIHYyLgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
