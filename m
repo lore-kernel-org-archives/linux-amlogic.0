@@ -2,97 +2,70 @@ Return-Path: <SRS0=2xsp=N4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-18.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85A60C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Sep 2021 12:37:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DEBA4C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Sep 2021 16:18:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 50ED560F92
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Sep 2021 12:37:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 50ED560F92
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 4A9DC608FB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Sep 2021 16:18:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 4A9DC608FB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=lexina.in
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=8+CmXBiPm3k1GbBlJy6YUF2+l73G2/ybBfdX3BJTn38=; b=B3PfwGHS0DoiMwOYM0S8a+AMzg
-	MBrppSKmzITi3DINEFUqR3jNN8ecbsZTbsiqUj/nrczn1Dv0ph3p6cM27epevoFLR/nMJ60rCq7JT
-	RMbcwNyHeht4RG82+a2TLHV+xWJhRtK1y1CLfsetIpTSzFk2DXw26D2VgEoCq8cCQsgeCiknyNf89
-	yknflUw0SIei8fAscioEAbayhFXoxr/zcyV1nZeCgTnchOlFI/qc/sZzoFzMUVTsclWV1i1Ll18iy
-	XUS45qNxiFxsvoJgX66ffqBqS0f7I83IAAcx62+7m1NXa6wZhF80rJLTjV5db2WCGsBMMQ0deYKj9
-	agJE4Z4Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=vUYBoaAfGN1uZRkjWNGshzuAgR3ILTqamIzzKwYWuQo=; b=JPJ/Rlw/aOqpxnDkOlNQJDdXy4
+	2D4/eDxdY3yRBxJt81zKAHb5CPPhbXDkph0pZG00eJv7/nqO41ZQYN0OzBliDavopBIgGr1ehvyE3
+	Aa45VkgjeEEUIRtBZE8BYpVPyWo43lzeS/pQPdIKZBZXy/b9z0ZR3hTKkVjVrA8Vn3xbWi4DufnKj
+	0uJooIpiyZVwKc/9TAqt4CynBIy2NQrwdb3QYzJGjaPyj4VWMToy3L61ZzGdxVZLu9Xre/u86Z2ts
+	W8UMTOMYhUcDVBq0qErbn+hZOv+Wynxg16Ey2217QF7p4+oSxnyy3b2yRWjKimARoyLkIl26NuNa4
+	SVOqN5WA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mNDsD-000p9X-Hk; Mon, 06 Sep 2021 12:37:17 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1mNHJn-001I83-Bj; Mon, 06 Sep 2021 16:17:59 +0000
+Received: from mx.msync.work ([2a01:4f9:2b:2dc2::3])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mNDrx-000p4o-Qp
- for linux-amlogic@lists.infradead.org; Mon, 06 Sep 2021 12:37:06 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id m9so9682605wrb.1
- for <linux-amlogic@lists.infradead.org>; Mon, 06 Sep 2021 05:37:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=VX21Q1wpGiOpiva+IThVTrifsWOLftr6Zwi9vQzn0VI=;
- b=q/npCZBG5L3lGLbMSdu4NMX3Ctk6Ad7I+cGARbRcucC/TQNttqexAphG2Xr950+CRn
- lQXjILuqgzrdJANuQpKf4iojCSc53auX2OnwPuSi+KqCDYfm8LdaIykVVprQtKXhqkNh
- ltB11KXTVtIzdjqSsrD/mUehKx6+M2HrJn3Ogh9pIdFf5L02P6z2gCBN/5+GxKU2E01V
- j26omRs5aYCxRy8omLxTP7WK93BvTmx+qVk0puabyNlrtFh56vqbB0Ble1+sZ6AqXF2A
- IvWeHtp8sDfCoqSiiE0KfG1Ruecnf+sckUzReZu1jadnU59cKoyKVkvQmhGvZLnKQglf
- QCvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=VX21Q1wpGiOpiva+IThVTrifsWOLftr6Zwi9vQzn0VI=;
- b=SECxbILc2bFESRi2gQ0sENgMOyK2FnjrsTcgNN4Hoot4wCu0SLi8bP04hfnqLhZhRs
- 8ysx6gW643DVaOm17nITjf+CLanyqk68vp1BbvkiK1VslEtW1t65QBu1iDYIyz2JtEn5
- 4gj/+AI3Gg8cmAhFhg1aaht+9VlUwdrBKUEpU4RAoliplZAs19Ne+F2i14C6WWNdjrVj
- FWWC/6EbCbu8iaAUkzGvmnqEZMfOosJHBflAOCuT48UAlUlQ3QLh/Ls5ezQsuZizZeIO
- igW5J33l/9reKWHHX/RrrL30oEYV6gYsSczG8DtbwL6nEqZhXk3RPBeYIVcDpujLG4ih
- 7IIg==
-X-Gm-Message-State: AOAM530TFaRVLcAkn6JxSDUIPsFept19S1dhqxnjeKE+Qj+7IWNOfrja
- it0Xs7wT7ZrKv8LSzLUA+LH1GA==
-X-Google-Smtp-Source: ABdhPJwEMng/N0V1zZ4ZkG+iEuNFlsHHHf1I8nEkBFzbiKlIdgCCQhlygeCfux6P+CO7yWmAtu2tZQ==
-X-Received: by 2002:adf:c144:: with SMTP id w4mr13310866wre.398.1630931819430; 
- Mon, 06 Sep 2021 05:36:59 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:9afb:57ba:5ea:2010?
- ([2001:861:44c0:66c0:9afb:57ba:5ea:2010])
- by smtp.gmail.com with ESMTPSA id c2sm7744538wrs.60.2021.09.06.05.36.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 06 Sep 2021 05:36:59 -0700 (PDT)
-Subject: Re: [PATCH] Media: meson: vdec: Use
- devm_platform_ioremap_resource_byname()
-To: zhaoxiao <long870912@gmail.com>, mchehab@kernel.org, khilman@baylibre.com
-Cc: gregkh@linuxfoundation.org, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-media@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-staging@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210906070013.7362-1-long870912@gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <1b6f9a78-c648-e8b0-2ae6-1922aad89c49@baylibre.com>
-Date: Mon, 6 Sep 2021 14:36:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ id 1mNHJk-001I7W-Ru; Mon, 06 Sep 2021 16:17:58 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 9AC66DBF84; Mon,  6 Sep 2021 16:17:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+ t=1630945074; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references;
+ bh=GicACZtYZZ5mQZ04xB3/h4BclRBZg2hz9eM8DndurI0=;
+ b=FlDp7/FQ6lm87sDvO+gXkGSq3J74j2cE4+Z4XMkk7CuWBv6P6gCMmrKDWI5mMt4cUUfDtp
+ B/5kXYjnAhXZ0OuZhCNntOt/AS74KNCeCDNkpfZJV1E6Li0w0Ac5exuptTeLe4HF8tZvCp
+ PpAfkC2wcQOPxfkACJbxOaMrxvHq0VhNniINLUkrOZVyvhFKnT9iGesoANDZRzJ1UPKHNt
+ 1s8RWnZ2QhMh8p1Y9GR4CghuHdPJXVn7RweHzsgqJ/VI7lGpYnOzvoseszxkp+eDbDigV2
+ +ZU4SeqQoJQHc5A1YsqWgcX7Xjddaj1OuXDa8mzUYXmCVSKMKfZpVXo/iq9CwQ==
+Subject: Re: [PATCH v3 4/4] arm64: dts: meson-axg: add support for JetHub D1
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20210904142745.183875-1-adeep@lexina.in>
+ <20210904142745.183875-5-adeep@lexina.in>
+ <77699dc0-88d5-3462-15fe-eb376c862d30@baylibre.com>
+From: Vyacheslav <adeep@lexina.in>
+Message-ID: <3f58923c-b765-7359-a225-964a9f0a4609@lexina.in>
+Date: Mon, 6 Sep 2021 19:17:58 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210906070013.7362-1-long870912@gmail.com>
-Content-Language: en-US
+In-Reply-To: <77699dc0-88d5-3462-15fe-eb376c862d30@baylibre.com>
+Content-Language: ru
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210906_053701_969782_6334EFA1 
-X-CRM114-Status: GOOD (  17.80  )
+X-CRM114-CacheID: sfid-20210906_091757_264722_FD3AE9D5 
+X-CRM114-Status: UNSURE (   9.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,60 +77,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-In subject Medis should be media
-
-On 06/09/2021 09:00, zhaoxiao wrote:
-> Use the devm_platform_ioremap_resource_byname() helper instead of
-> calling platform_get_resource_byname() and devm_ioremap_resource()
-> separately.
-> 
-> Signed-off-by: zhaoxiao <long870912@gmail.com>
-> ---
->  drivers/staging/media/meson/vdec/vdec.c | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-> index e51d69c4729d..8549d95be0f2 100644
-> --- a/drivers/staging/media/meson/vdec/vdec.c
-> +++ b/drivers/staging/media/meson/vdec/vdec.c
-> @@ -994,7 +994,6 @@ static int vdec_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct video_device *vdev;
->  	struct amvdec_core *core;
-> -	struct resource *r;
->  	const struct of_device_id *of_id;
->  	int irq;
->  	int ret;
-> @@ -1006,13 +1005,11 @@ static int vdec_probe(struct platform_device *pdev)
->  	core->dev = dev;
->  	platform_set_drvdata(pdev, core);
->  
-> -	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dos");
-> -	core->dos_base = devm_ioremap_resource(dev, r);
-> +	core->dos_base = devm_platform_ioremap_resource_byname(pdev, "dos");
->  	if (IS_ERR(core->dos_base))
->  		return PTR_ERR(core->dos_base);
->  
-> -	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "esparser");
-> -	core->esparser_base = devm_ioremap_resource(dev, r);
-> +	core->esparser_base = devm_platform_ioremap_resource_byname(pdev, "esparser");
->  	if (IS_ERR(core->esparser_base))
->  		return PTR_ERR(core->esparser_base);
->  
-> 
-
-With the subject fixed:
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+MDYuMDkuMjAyMSAxNToyNiwgTmVpbCBBcm1zdHJvbmcg0L/QuNGI0LXRgjoKPiBPbiAwNC8wOS8y
+MDIxIDE2OjI3LCBWeWFjaGVzbGF2IEJvY2hhcm92IHdyb3RlOgo+PiBKZXRIb21lIEpldGh1YiBE
+MSAoaHR0cDovL2pldGhvbWUucnUvamV0aHViLWQxKSBpcyBhIGhvbWUgYXV0b21hdGlvbgo+PiBj
+b250cm9sbGVyIHdpdGggdGhlIGZvbGxvd2luZyBmZWF0dXJlczoKPj4KPj4gKwo+PiArJnNwaWNj
+MSB7Cj4+ICsJc3RhdHVzID0gIm9rYXkiOwo+PiArfTsKPiBXaHkgZW5hYmxpbmcgaXQgd2l0aG91
+dCBwaW5jdHJsIHByb3BlcnRpZXMgPwoKc3BpY2N3YXMgcGxhbm5lZCBmb3IgdXNlIGR1cmluZyB0
+aGUgZGV2ZWxvcG1lbnQgb2YgdGhlIGRldmljZSwgYnV0IGluIApmYWN0IGl0IGlzIG5vdCBjdXJy
+ZW50bHkgdXNlZC4gUGlucyBleGlzdCBvbiBleHBhbmQgcGFkLgoKSXRzIGJldHRlciB0byBhZGQg
+cGluY3RybCBhcyBiZWxvdyBvciBsZWF2ZSBzcGljYzEgZGlzYWJsZWQ/CgpkaWZmIC0tZ2l0IAph
+L2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1heGctamV0aG9tZS1qZXRodWItajEw
+MC5kdHMgCmIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWF4Zy1qZXRob21lLWpl
+dGh1Yi1qMTAwLmR0cwppbmRleCBiYzEwZjMzNTdjMDkuLmVjZmZjOTBkOTg4NCAxMDA2NDQKLS0t
+IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWF4Zy1qZXRob21lLWpldGh1Yi1q
+MTAwLmR0cworKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tYXhnLWpldGhv
+bWUtamV0aHViLWoxMDAuZHRzCkBAIC0zMTMsNiArMzEzLDggQEAgJnVzYiB7CgogwqAmc3BpY2Mx
+IHsKIMKgwqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJva2F5IjsKK8KgwqDCoMKgwqDCoCBwaW5jdHJs
+LTAgPSA8JnNwaTFfeF9waW5zPiwgPCZzcGkxX3NzMF94X3BpbnM+OworwqDCoMKgwqDCoMKgIHBp
+bmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7CiDCoH07CgogwqAmZ3BpbyB7CgoKLS0KClZ5YWNoZXNs
+YXYKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51
+eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcK
+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2lj
+Cg==
