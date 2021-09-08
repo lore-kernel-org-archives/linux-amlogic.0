@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5017AC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Sep 2021 07:14:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CE6BC433FE
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Sep 2021 07:14:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 139CC61158
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Sep 2021 07:14:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 139CC61158
+	by mail.kernel.org (Postfix) with ESMTPS id 2C01A61168
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Sep 2021 07:14:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2C01A61168
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baidu.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,29 +23,29 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I2Sg/EBlINk4BUG9wmglKypfZ5wgKwOsqXVDxgdG17E=; b=uoUU1evH1RsUVa
-	NslB12mx6xeDlbgEHxsi9sJPVQTxWkBBE28BUHt6vBt2wBQpsKUrxYl9hfJjMaDzggf7k048tgBiA
-	yYrCMGW3ZI4MCYHClmw0joaHyYav9Rw4JFXjQl/u801zrBxpILSPlK7lbLKw27UuEqJOAK6FsSdRf
-	DlfUmCkkNDCec8Ho2b3HHBq0jyTPvxynqcpz11H33A7SjaHBvW38aKqdJHV0roiWww+1JOAApunJ+
-	rp7RXCE08rDsAVN+6fXphJ1JTCCi5Ndl5mq426JaC/T23dR4RNSxZZEJ+TR60M/J9ti9h+a0/M9hn
-	hiNhCcoVkgzCJAAgIwbA==;
+	List-Owner; bh=DfCVOkLOBb9qcVnpQPzQt8hchpqSKO2Eqkzz9TffLU8=; b=PB8RKdfu9TIlZA
+	g5n+zI9353GmW9ZlzUFaiY2mBa7y10zbHtMqEAohwn9zwk7s7P4D4Hy9F5GbUUUF38xZSO/Ufbxjm
+	9lN/S3dfwbcoedV92w2pqgqx1thRbWfymsftsGSswNA/XCddv8YLWsEYMgsyuyj3v9GVkYwhy06pK
+	q6VREBeqiq6Znd3UrMLYiV8DY7MTt5dFrQrYjg6vakgrskOUbOooUA/8fTOyGSlKni3j2DcID4eMI
+	vaeBGFlz18kTDikC8sEq0tM+ualyRVRkCdQCd7T0uughF5niVs9VSwaGLPEMZ5g3QO8UW2HSuqI+3
+	z50nwgkrHA48tvAbF3vw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mNrmV-005ls4-N7; Wed, 08 Sep 2021 07:14:03 +0000
+	id 1mNrnC-005mLu-G5; Wed, 08 Sep 2021 07:14:46 +0000
 Received: from mx21.baidu.com ([220.181.3.85] helo=baidu.com)
  by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mNrkJ-005kT2-6V; Wed, 08 Sep 2021 07:11:48 +0000
-Received: from BC-Mail-Ex28.internal.baidu.com (unknown [172.31.51.22])
- by Forcepoint Email with ESMTPS id F34D4B35A9A199F4681B;
- Wed,  8 Sep 2021 15:11:44 +0800 (CST)
+ id 1mNrkL-005kUN-Ae; Wed, 08 Sep 2021 07:11:50 +0000
+Received: from BC-Mail-Ex27.internal.baidu.com (unknown [172.31.51.21])
+ by Forcepoint Email with ESMTPS id 6A44F5619AF682181CA5;
+ Wed,  8 Sep 2021 15:11:48 +0800 (CST)
 Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BC-Mail-Ex28.internal.baidu.com (172.31.51.22) with Microsoft SMTP Server
+ BC-Mail-Ex27.internal.baidu.com (172.31.51.21) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Wed, 8 Sep 2021 15:11:44 +0800
+ 15.1.2176.2; Wed, 8 Sep 2021 15:11:48 +0800
 Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Wed, 8 Sep 2021 15:11:43 +0800
+ 15.1.2308.14; Wed, 8 Sep 2021 15:11:47 +0800
 From: Cai Huoqing <caihuoqing@baidu.com>
 To: <caihuoqing@baidu.com>
 CC: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
@@ -63,10 +63,10 @@ CC: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
  <linux-mips@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
  <linux-mediatek@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
  <linux-tegra@vger.kernel.org>
-Subject: [PATCH 1/3] soc: mediatek: pwrap: Make use of the helper function
- devm_platform_ioremap_resource_byname()
-Date: Wed, 8 Sep 2021 15:11:15 +0800
-Message-ID: <20210908071123.348-5-caihuoqing@baidu.com>
+Subject: [PATCH] soc: sunxi_sram: Make use of the helper function
+ devm_platform_ioremap_resource()
+Date: Wed, 8 Sep 2021 15:11:16 +0800
+Message-ID: <20210908071123.348-6-caihuoqing@baidu.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210908071123.348-1-caihuoqing@baidu.com>
 References: <20210908071123.348-1-caihuoqing@baidu.com>
@@ -75,8 +75,8 @@ X-Originating-IP: [172.31.63.8]
 X-ClientProxiedBy: BJHW-Mail-Ex11.internal.baidu.com (10.127.64.34) To
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210908_001147_477561_321E4413 
-X-CRM114-Status: GOOD (  11.19  )
+X-CRM114-CacheID: sfid-20210908_001149_611946_C1641978 
+X-CRM114-Status: GOOD (  11.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,47 +93,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use the devm_platform_ioremap_resource_byname() helper instead of
-calling platform_get_resource_byname() and devm_ioremap_resource()
+Use the devm_platform_ioremap_resource() helper instead of
+calling platform_get_resource() and devm_ioremap_resource()
 separately
 
 Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
 ---
- drivers/soc/mediatek/mtk-pmic-wrap.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/soc/sunxi/sunxi_sram.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
-index 952bc554f443..29f1bd42f7a8 100644
---- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-+++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-@@ -2116,7 +2116,6 @@ static int pwrap_probe(struct platform_device *pdev)
- 	struct pmic_wrapper *wrp;
- 	struct device_node *np = pdev->dev.of_node;
- 	const struct of_device_id *of_slave_id = NULL;
+diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sram.c
+index 42833e33a96c..a8f3876963a0 100644
+--- a/drivers/soc/sunxi/sunxi_sram.c
++++ b/drivers/soc/sunxi/sunxi_sram.c
+@@ -331,7 +331,6 @@ static struct regmap_config sunxi_sram_emac_clock_regmap = {
+ 
+ static int sunxi_sram_probe(struct platform_device *pdev)
+ {
 -	struct resource *res;
+ 	struct dentry *d;
+ 	struct regmap *emac_clock;
+ 	const struct sunxi_sramc_variant *variant;
+@@ -342,8 +341,7 @@ static int sunxi_sram_probe(struct platform_device *pdev)
+ 	if (!variant)
+ 		return -EINVAL;
  
- 	if (np->child)
- 		of_slave_id = of_match_node(of_slave_match_tbl, np->child);
-@@ -2136,8 +2135,7 @@ static int pwrap_probe(struct platform_device *pdev)
- 	wrp->slave = of_slave_id->data;
- 	wrp->dev = &pdev->dev;
- 
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "pwrap");
--	wrp->base = devm_ioremap_resource(wrp->dev, res);
-+	wrp->base = devm_platform_ioremap_resource_byname(pdev, "pwrap");
- 	if (IS_ERR(wrp->base))
- 		return PTR_ERR(wrp->base);
- 
-@@ -2151,9 +2149,7 @@ static int pwrap_probe(struct platform_device *pdev)
- 	}
- 
- 	if (HAS_CAP(wrp->master->caps, PWRAP_CAP_BRIDGE)) {
--		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
--				"pwrap-bridge");
--		wrp->bridge_base = devm_ioremap_resource(wrp->dev, res);
-+		wrp->bridge_base = devm_platform_ioremap_resource_byname(pdev, "pwrap-bridge");
- 		if (IS_ERR(wrp->bridge_base))
- 			return PTR_ERR(wrp->bridge_base);
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	base = devm_ioremap_resource(&pdev->dev, res);
++	base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(base))
+ 		return PTR_ERR(base);
  
 -- 
 2.25.1
