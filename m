@@ -2,85 +2,84 @@ Return-Path: <SRS0=aLbU=OE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CE73C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Sep 2021 14:25:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE9DFC433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Sep 2021 15:16:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B7B6960EFF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Sep 2021 14:25:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B7B6960EFF
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+	by mail.kernel.org (Postfix) with ESMTPS id 6F92560EE7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Sep 2021 15:16:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6F92560EE7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=3+OA0ugXnEr/IyPYuHUpDN7yOkq6N73IPeDXw2Fij48=; b=rE/uONXDvMVU1A
-	ePLwqK7sT40oB4TIB88R5fA7C9kct6T8fXGpuT7k+0vIoSlsRUBrzIVvvLv93jQT2JJICuTDiLSZ/
-	PBv3BYkzibOrVZ5otONpH4rWd/+4459NwGYX5S0dWGXTZa1E22NM9WclWz1CWE0u+fF3QaRHNMuFi
-	AqqUqPEfGUXj14LkgOOAWYET/aPbXAhjtz2Elz1kwBtKcIEmmlmSfUjTVzOwA+hHW/C7POBFcvA6N
-	0W12lGkaY9EWsnSZM+Kc3GPQID8/laD6zomzny6O2vHMhBIL+ySjvh0dteG8ziTN83uOeapIufs6G
-	pY89jZbE/EOWyxQJUpTQ==;
+	List-Owner; bh=w1g0JRu/KIRKF9no9J1nsF8k0Skt0pfh14wObonJRoc=; b=rbVNG/qflHCT50
+	Dyg2yRd7iJ9yrRYHoGlbWnd9O38sLL5/qp7r8OOox5QK/kjUHd3HcIHe4eJkkHFDC7y+Y+EWsTOQu
+	uav4pcZ8NxoCGplJok8OrgdqNQonakSHZubf3cHPNv0kT5/ildBHig/uUfeHtUNehOykbvSuEAQv4
+	W2MSKqD8IzjO/r+9IvwKODjAGHWKMwJQZOhUST8UkPDc424Il9wkdeN0VzeNnS1PRyCH+4vOpewnJ
+	zRJmTBqWEv4zn5LRS4KotxG7kg+60TXpNGgJ9CMzE+lcyPnFznc0j2jy6ItZ2br9Erpi+ZWxpcrFA
+	dGLZ1q08oD3lDqACi6Uw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mQ9Mm-005zLz-Uc; Tue, 14 Sep 2021 14:24:56 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1mQAB2-006Bb5-RE; Tue, 14 Sep 2021 15:16:52 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mQ9Mk-005zL7-E4
- for linux-amlogic@lists.infradead.org; Tue, 14 Sep 2021 14:24:55 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1mQ9Me-0005tr-P1; Tue, 14 Sep 2021 16:24:48 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1mQ9MQ-0006Yy-LX; Tue, 14 Sep 2021 16:24:34 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1mQ9MQ-0007OM-Jj; Tue, 14 Sep 2021 16:24:34 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Matt Mackall <mpm@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, kernel@pengutronix.de
-Subject: [PATCH] hwrng: meson - Improve error handling for core clock
-Date: Tue, 14 Sep 2021 16:24:28 +0200
-Message-Id: <20210914142428.57099-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-MIME-Version: 1.0
-X-Patch-Hashes: v=1; h=sha256; i=9tz2phqeN+3GzCEXz8gh5AQWNocdSF32iWo28yTN+xs=;
- m=cX96ziEeAkJuDb6P9w+CtfXmQzh9pdqI3yrnaxyU0x0=;
- p=aUBlnzWgqmE/spp/etZnspgE0aeuWMQfhI4MUcyEZ7k=;
- g=b60f7d99182caa434b62de00dd624961cea91849
-X-Patch-Sig: m=pgp; i=u.kleine-koenig@pengutronix.de;
- s=0x0D2511F322BFAB1C1580266BE2DCDD9132669BD6;
- b=iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmFAsJQACgkQwfwUeK3K7AlrTQf8CZp
- M/xfs12DybnVzDWGfGTbDxvXLsNJ7yMwTHa6A/aUq8y5vEEQd8J1WN+DD18dQpQueEq1BOFg6qkfq
- 4BL/ETsC4954HMsYibwrFQIBA0pYpJbPuq6iaFJ97g31M4WJmgDv/IouXp9b2EFvcLLan1M6l1UuY
- LKjJsRPqMPWYmJCADVziMOdCVn+54tH7YPCHTLOMdqHWlzuS+YBwbZGHC1Ve8lwnCFhVtILp1hxt9
- PMvFEgEeE0hL73EuJmZzaUb5Ru049iTsgR6ben139Qd7igImWSITtUoRkwbBQMtJgpcQZkQYThM7I
- M17hZa2EKgpE9YHCQpew2ugSuhi2GsA==
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+ id 1mQAAo-006BXv-6B; Tue, 14 Sep 2021 15:16:39 +0000
+Received: by mail-ed1-x529.google.com with SMTP id z94so14283125ede.8;
+ Tue, 14 Sep 2021 08:16:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id;
+ bh=y4C7y9yJzTQudhCL/GHuZMtYngDM40ymN0HTRwvsckQ=;
+ b=iAVdVA2EgO9QsXTzpLndE0Po4h/y/qQrRmQfUiLtKaar7C2wTdegTmqF7Nu+TysdKp
+ 5BAqiDSPftJYqaKPWzzGkWDgHfvj/and+2n6wpJlZ4zIoIvdDXUbiP8jul2L9Ofj3kQy
+ tSxR2zWKZ0QWEXIZA5mEuSKwcktjF++SnMQTwqD9an+7rgCUBrWnj0CTFMMGzKLqoocF
+ lPZqSQ23U/MlVvR5AetSppaPTUIQ0R+WMJ/DFLnqCAODCccVRrAnncsLPG0AI0Eu/M5M
+ CX2CeUXsbl+DObJdSGvA0OUWDHnFYFsl3CgbNGTHULTrMBYp8uOfw9Z0ZWw3k9rx2b3A
+ 4qwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=y4C7y9yJzTQudhCL/GHuZMtYngDM40ymN0HTRwvsckQ=;
+ b=t4mAO+Tv+KV95o1ze80yhkvgDl9siMtH7PMQ6yFuXAH1E5kWa4mw0+WHa/IFwkFJQi
+ FHxXj3boKePEfhsDTmG5q/q5Up4UCobEtm5hALQ9a1U8NHu04TYVrXK64uZJdi/bqG92
+ 7Xm6waT4soSVd4gCGZ7p58T+lmeQUOVEnnOAy8p1oZVfZoeqD2zGtPl3TRf66QJQxiYs
+ mZn+f/cx9Fv7EU+4IlUZiYarjczWyW2J8Z0UyQi+ZIcYZrmai1NZhczgA6RcnyGrxC4h
+ SXCTcEzoIVhS+VcVNKe5WGw3Amd0mULOXiaakbRXeQidDfe7vPkbsnxQ5pT/pf7D42Go
+ 6P7Q==
+X-Gm-Message-State: AOAM532GnF3222gWlDTm7umI8yrLT0MhzEckWOJs+jPsyIFN9MoSNcVv
+ X20G8NI2i80rhOXkjCMhPV8=
+X-Google-Smtp-Source: ABdhPJxcpflDkKriUpwXnmQ91xvw+QQ2tRPyfz+7x2m8TLRQSCCUzKP02myJJM14tbNU0Ev45LWzUA==
+X-Received: by 2002:a05:6402:2c9:: with SMTP id
+ b9mr20207344edx.109.1631632595532; 
+ Tue, 14 Sep 2021 08:16:35 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id x12sm4932833edd.51.2021.09.14.08.16.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Sep 2021 08:16:35 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: add audio playback to rbox-pro
+Date: Tue, 14 Sep 2021 15:16:31 +0000
+Message-Id: <20210914151631.2841-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210914_072454_542680_9A841879 
-X-CRM114-Status: GOOD (  14.48  )
+X-CRM114-CacheID: sfid-20210914_081638_276297_6165B1DA 
+X-CRM114-Status: GOOD (  11.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,33 +91,112 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-LUVOT0VOVCAoaWUuICJ0aGVyZSBpcyBubyBjbG9jayIpIGlzIGZpbmUgdG8gaWdub3JlIGZvciBh
-biBvcHRpb25hbApjbG9jaywgb3RoZXIgdmFsdWVzIGFyZSBub3Qgc3VwcG9zZWQgdG8gYmUgaWdu
-b3JlZCBhbmQgc2hvdWxkIGJlCmVzY2FsYXRlZCB0byB0aGUgY2FsbGVyIChlLmcuIC1FUFJPQkVf
-REVGRVIpLiBJZ25vcmUgLUVOT0VOVCBieSB1c2luZwpkZXZtX2Nsa19nZXRfb3B0aW9uYWwoKS4K
-CldoaWxlIHRvdWNoaW5nIHRoaXMgY29kZSBhbHNvIGFkZCBhbiBlcnJvciBtZXNzYWdlIGZvciB0
-aGUgZmF0YWwgZXJyb3JzLgoKU2lnbmVkLW9mZi1ieTogVXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xl
-aW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4KLS0tCiBkcml2ZXJzL2NoYXIvaHdfcmFuZG9tL21l
-c29uLXJuZy5jIHwgMTIgKysrKysrKysrLS0tCiAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25z
-KCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvY2hhci9od19yYW5kb20v
-bWVzb24tcm5nLmMgYi9kcml2ZXJzL2NoYXIvaHdfcmFuZG9tL21lc29uLXJuZy5jCmluZGV4IGU0
-NDYyMzZlODFmMi4uOWYzZTJlYjgwMTFkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2NoYXIvaHdfcmFu
-ZG9tL21lc29uLXJuZy5jCisrKyBiL2RyaXZlcnMvY2hhci9od19yYW5kb20vbWVzb24tcm5nLmMK
-QEAgLTU0LDkgKzU0LDE1IEBAIHN0YXRpYyBpbnQgbWVzb25fcm5nX3Byb2JlKHN0cnVjdCBwbGF0
-Zm9ybV9kZXZpY2UgKnBkZXYpCiAJaWYgKElTX0VSUihkYXRhLT5iYXNlKSkKIAkJcmV0dXJuIFBU
-Ul9FUlIoZGF0YS0+YmFzZSk7CiAKLQlkYXRhLT5jb3JlX2NsayA9IGRldm1fY2xrX2dldChkZXYs
-ICJjb3JlIik7Ci0JaWYgKElTX0VSUihkYXRhLT5jb3JlX2NsaykpCi0JCWRhdGEtPmNvcmVfY2xr
-ID0gTlVMTDsKKwlkYXRhLT5jb3JlX2NsayA9IGRldm1fY2xrX2dldF9vcHRpb25hbChkZXYsICJj
-b3JlIik7CisJaWYgKElTX0VSUihkYXRhLT5jb3JlX2NsaykpIHsKKwkJcmV0ID0gUFRSX0VSUihk
-YXRhLT5jb3JlX2Nsayk7CisJCWlmIChyZXQgIT0gLUVQUk9CRV9ERUZFUikKKwkJCWRldl9lcnIo
-ZGV2LCAiRmFpbGVkIHRvIGdldCBjb3JlIGNsb2NrOiAlcGVcbiIsCisJCQkJZGF0YS0+Y29yZV9j
-bGspOworCisJCXJldHVybiByZXQ7CisJfQogCiAJaWYgKGRhdGEtPmNvcmVfY2xrKSB7CiAJCXJl
-dCA9IGNsa19wcmVwYXJlX2VuYWJsZShkYXRhLT5jb3JlX2Nsayk7Ci0tIAoyLjMwLjIKCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Add initial support limited to HDMI i2s and SPDIF (LPCM).
+
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+This reworks an earlier submission which was rejected due to errant
+inclusion of some regulators with the patch.
+
+ .../boot/dts/amlogic/meson-gxm-rbox-pro.dts   | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+index dde7cfe12cff..50137aafab10 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+@@ -14,6 +14,7 @@
+ /dts-v1/;
+ 
+ #include "meson-gxm.dtsi"
++#include <dt-bindings/sound/meson-aiu.h>
+ 
+ / {
+ 	compatible = "kingnovel,r-box-pro", "amlogic,s912", "amlogic,meson-gxm";
+@@ -33,6 +34,13 @@
+ 		reg = <0x0 0x0 0x0 0x80000000>; /* 2 GiB or 3 GiB */
+ 	};
+ 
++	spdif_dit: audio-codec-0 {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "DIT";
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -90,6 +98,59 @@
+ 		clocks = <&wifi32k>;
+ 		clock-names = "ext_clock";
+ 	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "RBOX-PRO";
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
++			};
++		};
++
++		dai-link-3 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
++
++			codec-0 {
++				sound-dai = <&spdif_dit>;
++			};
++		};
++
++		dai-link-4 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++};
++
++&aiu {
++	status = "okay";
++	pinctrl-0 = <&spdif_out_h_pins>;
++	pinctrl-names = "default";
+ };
+ 
+ &ethmac {
+-- 
+2.17.1
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
