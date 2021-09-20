@@ -2,19 +2,19 @@ Return-Path: <SRS0=/4qX=OK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E08AEC433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 08:26:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E52DBC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 08:29:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A438C60F6B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 08:26:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A438C60F6B
+	by mail.kernel.org (Postfix) with ESMTPS id B494B61077
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 08:29:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B494B61077
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,74 +24,74 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=bhAqwRiDhN/dAIY1zfvN81Uv0sNzB0AQSd3H8OTbhHs=; b=1yJqiK96Tqicf7nsmNwIa0OqOi
-	XYQz9ePAsooBVzD5RazfRM6umbZ8dMV5pmsi4sG9NVrQ6sKW6aWsg82yO0bVnZKVS/7NpeZ+QrG4W
-	4NfHBv8s7Mp5DTUnVA48N65Z5iQfmEZLMSmrefz4+FzRNOZv7iqxlPu+RV19QlhadVl5oGj63KaE0
-	aN5nsGaBeX9cOWRRFPSHyQ/9V8RFGwYiSU9fFqzFKr5kttpoNwvFnrt+/KXkPq2aUX+vQRJYRx4Q+
-	kvvKYfBGDyrenA/TxRqXFJKrs6iQu9fBJV4qZAQSZQUjRTwfjYT02Y85AOtna3biIh/+8fBJuhTHM
-	vZ0Z4tPg==;
+	bh=Wi5Fg+eGjbBoP+SOwVBp2B/UxsmI42r6Q7gqjri/hWY=; b=qsEXT9rm1NH1oKu+nnmX01B+eC
+	DDK4BUKu6p0ESMwB8gBAz5WOddhu8Qe5XUDHFACGw3/zH05xN4Wrx/tB0TIECPxBXiDMcLP0BNkRy
+	9oFfUZVDzbkfrmf/ipVHl8iwcldjbljYSeqM4CYqEhKOkIVXsxptAVmNzjFSUZmsWrEQIxWYggygF
+	FT5Ml7KQ7sD6t0gRbevtpy1FcVdDsfAe91fegpZemoScnY504TVki5QpQeY69vCayLsutMr0SgGjt
+	hktTvdWRQGDOWxvPdaOboh8A2bwFbGe6NkKXG6bhi6237PSpb3XUEzr9SrRE5yIo1jo3IejcFG5nA
+	1/lccIGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mSEdS-000uy6-ID; Mon, 20 Sep 2021 08:26:46 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1mSEfs-000vOa-CS; Mon, 20 Sep 2021 08:29:16 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mSEdF-000uvL-Mj
- for linux-amlogic@lists.infradead.org; Mon, 20 Sep 2021 08:26:35 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id u15so27385113wru.6
- for <linux-amlogic@lists.infradead.org>; Mon, 20 Sep 2021 01:26:32 -0700 (PDT)
+ id 1mSEff-000vLh-1S
+ for linux-amlogic@lists.infradead.org; Mon, 20 Sep 2021 08:29:04 +0000
+Received: by mail-wr1-x431.google.com with SMTP id u18so25639246wrg.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 20 Sep 2021 01:29:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:cc:references:from:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=Sd2zasa8jsIrDfE+uKpeLHxh1coC9+sVR27g2clwkhM=;
- b=ckRxkYg0UKty5XJskZHyKC1uz5SKwEvg6hMxqc/s62FhCOm6PxEQHRhWcKB9WAoSJp
- GO4n/go5FJ+TTQdsm5+lFhx3+c9s44JCpKFqB96Py8X5+8mSfZxLDql4uVACODWS03lw
- osn3vXU5pyd4zEsoet9nqiW6CJ7lQqYzMd2AClGhOZqoA/1hYjPwwafSU9EWemy0XmgD
- fNHCxgzxURbgJYyH1nHQvqUL/NwJg6HbHMpaEri8rjH3AZSIUVr7F7CLvLO3CIzFZpL/
- AePngvOzTZNvxjRvw4wn+8WMUODP+GsiasazeQaiTRMy6wrFCNLZzlBKQI3u2jXhTYAN
- EpwQ==
+ bh=NmwufkRm5QXP0RAh9pBbo8ktk5iDLTsqfPbzEqZPusQ=;
+ b=ASztJaW6JLqDSrnzAc8sDk8rdLwza8sZQRFbsVufD7S6x99Hhl7BGV5YzttOZprJPR
+ A6TbTopEIqMinlR87Ykkzakz5iZ/O/5AuzDw4YkrqTEzes8j1K5NNjA2QOw3sTxJDGo1
+ XfwHT0hIyrbhKwUogGCw6ZC/OLu1RprMonZ9Yj7TzNFrcOJTTC+hFsqWWqbusTZVIns3
+ HIrSkjQ1/g2BaOGHXjp7iU8kmma/vSYLuYp3Ba7eGXib4bCsmpcwJYXGuSMU8W/KojWX
+ ehFVT2F7wWBmutG0rItwEPu77rY+Gr2IPyptA1Iz0a49hWLhllx3WS+WWU82s7eXfgZ+
+ 197Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Sd2zasa8jsIrDfE+uKpeLHxh1coC9+sVR27g2clwkhM=;
- b=qoTKbxmPKzybX28c1k1wX3SoCszCg8Pbj7770kRMmjTAOMO6S9jiayqEFP1mKldqRM
- A8NZmZbin7GnhbQ5ankUT/usU1AarDV/GI6hFer2Qag5Vf9sVkFYjBfbwItqZsUH2YfT
- BUTnYlRmhC2/GKcBFCfC/FcuCwKKPrckmKDdAtlU+k8Ns7QnWw20s33jJDRVl6o3n1R2
- kKbzqQ/zsu3WCkRspB195KyDwtGi7KAif4v5n+N7CaIoYHMPdnz6aI/0qoJSIyZD47Az
- IMoD3Ntpdr8ZIUy/ts1gddNbhRakqPdUj9pjNWc9Y+620Q15KvuNGnJOSm04AhNL8FEr
- apQw==
-X-Gm-Message-State: AOAM533PykVDuLupAAWOmfwij33M7o2lQ1Mg5O61kBBI+VTDQn9tjWwd
- abz7OGV69HJDaDPiKNhME3AIzA==
-X-Google-Smtp-Source: ABdhPJw/mT3WUCPVZ29jbrBrgnE8L+20CP0Qbr5FtszQo+bi6bIe+hZ7C0epV27RPl5aeN5zYF9n9g==
-X-Received: by 2002:a5d:6d8e:: with SMTP id l14mr27071868wrs.196.1632126391761; 
- Mon, 20 Sep 2021 01:26:31 -0700 (PDT)
+ bh=NmwufkRm5QXP0RAh9pBbo8ktk5iDLTsqfPbzEqZPusQ=;
+ b=gDjb9qlB8YSKrPgpOQYKnskGhdedmy4rk6TaeRZ3CKrqOIWahoCAw37FpdyOCjhDPX
+ IQYBq6FH4M0TnR8XL3I2BSuoxs4sx4fYNJu3/C18Y9oANRnCQSK0o0DDG1ChjFYeRwMw
+ gUS41XrLWAvSZuxPlEMBdS3IdkDkePKSpQdNbln4YnEcRbAMAKKwZQGKuwAHyesZQGNG
+ u44p4MJLPlbPYNg+rULeypbGO2/xLIHTJENnNllNt+4RJQWgRkCFEpZauyLO26rpUV1f
+ yEoqIberirq4Qt5ZUl9qYrkxJVv1ougUEbkj45Sdk3Y1yPMuMT7GpD4iEHbRK37vVFH1
+ OTew==
+X-Gm-Message-State: AOAM5324yG9/yY/uZ/iBlMr2f0m1awA/QkanZp6c1Fx/ceQNz9MP7NJx
+ X5QvG93sMTDcdE10SkBirHO42Q==
+X-Google-Smtp-Source: ABdhPJzuxaefHZvd38Fmw8Tt/MDEALuJp9Z/DsWNUXhTEtV7qyVR7JWj5ElkPT5QmeIyOw9MdlrDLw==
+X-Received: by 2002:adf:d1cf:: with SMTP id b15mr803908wrd.181.1632126541068; 
+ Mon, 20 Sep 2021 01:29:01 -0700 (PDT)
 Received: from [172.20.10.7] ([37.169.24.17])
- by smtp.gmail.com with ESMTPSA id c132sm6707022wma.22.2021.09.20.01.26.30
+ by smtp.gmail.com with ESMTPSA id b16sm15249049wrp.82.2021.09.20.01.28.59
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 20 Sep 2021 01:26:31 -0700 (PDT)
-Subject: Re: [PATCH] regulator: pwm-regulator: Make use of the helper function
- dev_err_probe()
+ Mon, 20 Sep 2021 01:29:00 -0700 (PDT)
+Subject: Re: [PATCHv2 0/3] Fix the pwm regulator supply properties
 To: Anand Moon <linux.amoon@gmail.com>, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jon Hunter <jonathanh@nvidia.com>
-References: <20210919211129.4364-1-linux.amoon@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Christian Hewitt <christianshewitt@gmail.com>, devicetree@vger.kernel.org
+References: <20210919202918.3556-1-linux.amoon@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <7dcee097-9119-1987-9bb5-777d541cc9f7@baylibre.com>
-Date: Mon, 20 Sep 2021 10:26:30 +0200
+Message-ID: <9d759c05-c67f-1230-7f58-562dc9bb1224@baylibre.com>
+Date: Mon, 20 Sep 2021 10:28:59 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210919211129.4364-1-linux.amoon@gmail.com>
+In-Reply-To: <20210919202918.3556-1-linux.amoon@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210920_012633_817017_6F2F355A 
-X-CRM114-Status: GOOD (  19.38  )
+X-CRM114-CacheID: sfid-20210920_012903_127168_AB8ACB78 
+X-CRM114-Status: GOOD (  12.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,43 +108,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/09/2021 23:11, Anand Moon wrote:
-> devm_regulator_register can return -EPROBE_DEFER if the
-> regulator is not ready yet. Use dev_err_probe() for
-> pwm regulator resources to indicate the deferral reason
-> when waiting for the resource to come up.
-> 
-> Fixes: 0cd71b9a43ad ("regulator: pwm: Don't warn on probe deferral")
-> 
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
->  drivers/regulator/pwm-regulator.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-regulator.c
-> index 7629476d94ae..451e57a739f8 100644
-> --- a/drivers/regulator/pwm-regulator.c
-> +++ b/drivers/regulator/pwm-regulator.c
-> @@ -382,9 +382,9 @@ static int pwm_regulator_probe(struct platform_device *pdev)
->  					    &drvdata->desc, &config);
->  	if (IS_ERR(regulator)) {
->  		ret = PTR_ERR(regulator);
-> -		dev_err(&pdev->dev, "Failed to register regulator %s: %d\n",
-> -			drvdata->desc.name, ret);
-> -		return ret;
-> +		return dev_err_probe(&pdev->dev, ret,
-> +				     "Failed to register regulator %s: %d\n",
-> +				     drvdata->desc.name, ret);
+Hi,
 
-No need to keep ret and print it since it will be printed by dev_err_probe, pass directly PTR_ERR(regulator) and drop the ": %d" from the error string.
+
+On 19/09/2021 22:29, Anand Moon wrote:
+> Changes PWM supply properties help fix internal link of PWM to
+> main 12V supply as per the shematics.
+> 
+> V1: https://lkml.org/lkml/2021/6/29/288
+> 
+> Thanks
+> -Anand
+> 
+> Anand Moon (3):
+>   arm64: dts: meson-g12a: Fix the pwm regulator supply properties
+>   arm64: dts: meson-g12b: Fix the pwm regulator supply properties
+>   arm64: dts: meson-sm1: Fix the pwm regulator supply properties
+> 
+>  arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts       | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts         | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts      | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi | 4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi   | 4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi        | 4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts   | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts  | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi       | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts        | 2 +-
+>  10 files changed, 13 insertions(+), 13 deletions(-)
+
+Thanks for fixing all the other boards !
+
+I'll let a few days for Martin to review, but it's ok for me.
 
 Neil
 
 
->  	}
->  
->  	return 0;
+> 
+> --
+> 2.33.0
 > 
 
 
