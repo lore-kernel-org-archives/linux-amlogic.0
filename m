@@ -8,14 +8,14 @@ X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A090C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 20:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CDE7FC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 20:48:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1F37E61168
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 20:38:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1F37E61168
+	by mail.kernel.org (Postfix) with ESMTPS id 8E85960F43
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 20:48:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8E85960F43
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,66 +24,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ElODxt2+KQ4DBvWsHEJFqybutnMrnFe4Ypmq3LB0B5k=; b=waARiC186YqoYy
-	wvWnXgp0yLjpmsJ9OJMsJWqgrPlchgO2gkoyd3oS8Adt7v+XGWC1Ba4jkFEHclF/emKjiu/8T8+d/
-	k0Rn/eupBoKK+l6+GutunwjuiTEhRDcr8vqKWnmGIpiru5BFHIp/BSUWoqArzBXG8r2f7by3fgNwN
-	NVmYvl4CHOqpeRCrOtR1Gy4BGKYTSj1YrdRgUc7kYM/QqgHSyJPx4Cp4Oin9zqgUndNDQJu605zdR
-	XP1xG8PcADle1/tvsJWGUZHuRJMsWR1m5m+RAUIQpiQfdOWbYiKpLiCjuQNyQcsKPHwwIjQWG/GG9
-	dv+8VUwvgBmysLYdH5vA==;
+	List-Owner; bh=Nz3+if8pPnMcTMBH247h7Kk27JiBHu+im7XhBnk6VRQ=; b=0zoIR3YYjjM5Zv
+	RDjC5AODTl457G9r7vQG/FrGd+o6wHzZbCyrMHE/TVN8q2XhUjWwLdfJzlbI0kwJk6U22lCG+jwHG
+	OHxyU8pXnCetxkXlmnlaWUxTYeKDa8IC/JGRuw58v1nJDl10otLd670X6etdyl4ChxTb06GzPEGni
+	cOt2pxgrDNwBb5kpnoCYUTJCU/t9zqHt6u2vsTDyt7lg7v4nq+vmed4hIXScFjZRCKJGyT2uVeePC
+	Irpbc4GRj4mnAgiz3nAgf5ChPKfWamp2px8syoOwGUyBIQUhKMstMZZ58SUs+sBlA70LZXAWPJhiy
+	gcZZSQTIYjzuhi/OH4Nw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mSQ3V-0033DA-T0; Mon, 20 Sep 2021 20:38:25 +0000
-Received: from mail-pg1-x52a.google.com ([2607:f8b0:4864:20::52a])
+	id 1mSQCs-0034QJ-Fb; Mon, 20 Sep 2021 20:48:06 +0000
+Received: from mail-pl1-x633.google.com ([2607:f8b0:4864:20::633])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mSQ3I-0033BJ-7m; Mon, 20 Sep 2021 20:38:13 +0000
-Received: by mail-pg1-x52a.google.com with SMTP id s11so18573464pgr.11;
- Mon, 20 Sep 2021 13:38:11 -0700 (PDT)
+ id 1mSQCg-0034PB-Tq; Mon, 20 Sep 2021 20:47:56 +0000
+Received: by mail-pl1-x633.google.com with SMTP id w11so2350564plz.13;
+ Mon, 20 Sep 2021 13:47:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=psFhvnbomh4BZTHkKL4KzrE+hE5GmzxDRBn3ytu83Jc=;
- b=Jh5/S6Nlh5+moSDgJ1X+Hpv/uzVrmbgY4JdP4Iotvd1D5DO4axLaOg+hR6OHl5bh6l
- tRI515gAI99q7d3KNnQx/OBcGArC5zQtHf2BOHg1XUBjcjWkWa6HlZ7Yf9ZIrQxmDxoC
- H3XjmgptwGTgoUl8LfIHhUQZsX0NUTqMcbrocgs0RMX9HSwuNaS9W51GRVfsmPiPHw/K
- LMkNOWKEMRbgxX4hLzDlY1XPfwdLLdUKKVgXpkSLWFGPsrAvTKu8SPw9hYlF5M8cpQ4o
- ynQb30DS3W/2qDi9r37/VFXdjfEyFTwHgknpuUQ95PVfZ4807AHQ4dN4/oh0roAkczu2
- X2tw==
+ bh=negJEmlBwychqQvUaf9DSXZmOiuLhN4g0dv45lSP0LQ=;
+ b=L3TNF6EN7cHguOBzCM0Arz5/bPR7CEAfuw4xkWoHYts2enJhLBfEBEDkFF6l5aGrEo
+ tX9Ks9e+ivtQjfJzm3LHaVWI85AI0UNW8/c3BF8+yhmLCz21mt2+EQgMJUtdcdcekk04
+ kfT53llaWsbMcSClBYIVhVVUQ3YWIzjhZVrhmwFmp+o6lU/ecOhSy6wegKdAgsVG6wEl
+ eSiTmtEZ9pEhulNUhBvo4YZQi0lm0eJEL8QKIwJr8CXkJ2t+4qAjbq2Jabdhb0V9nJQ7
+ OiYBYythj59uoJ4MBLGbToI3NULR6fQLUFade1YEPIgHFjD/eBnJNPs10d5kRCeWMT41
+ ncfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=psFhvnbomh4BZTHkKL4KzrE+hE5GmzxDRBn3ytu83Jc=;
- b=OnmcrfBSQtVEAJZNzj7MyvZ78r4xiLAxjb/PhxlWmHcsawibOYneV6gai6JsGkcllC
- K8AcGHjcTlTbJmmW/UNKHWNvEbm6yaVKpgjOC7VzJ4SG6e9qxsf7fOR8o0oeQLl7nU3R
- h9t5NfM0qBvMfhaSFO3U1Qpt3n2fJwq04fmVhRP2jPfCh6uYUKu6kIHKsHb2ByOvYIGI
- 9Oyf2rpJiwZM5sekOjAlIRyq4fWh/nMAG8Q7Y3WelkNe/hNy28NpBfNRbBWEc8q4GX5K
- TJRihEyWSr6ywJ1x7Gf4PS2pHR9cuCm1txHEMC0EICV9mLdRnBfUfzkC5K+eUC5XiyAX
- RmrA==
-X-Gm-Message-State: AOAM530zZwX7OEoYGpJ3uX22kNy5cIjf6AV6smlyqIGblTZ7YjtQ+0Ir
- I+IF4ZpLRspac4MOadlcxRu0FaV4vKpBow==
-X-Google-Smtp-Source: ABdhPJxLb6UoG311c4JNQ3zT8ZX2EPvkY/tErqjRqz98DnU3DimZy4ausiw057w6+HzJTCD2vQv5iw==
-X-Received: by 2002:a63:7554:: with SMTP id f20mr24835256pgn.161.1632170290437; 
- Mon, 20 Sep 2021 13:38:10 -0700 (PDT)
+ bh=negJEmlBwychqQvUaf9DSXZmOiuLhN4g0dv45lSP0LQ=;
+ b=njxdqXfHk8R/iQLzXkxWmw9MbrWClvCfDQY4f4HYMgLxSwGIlE9iJZX/uScZ6FM6zq
+ Cec2XkEBdx3Yp1y98j2SVTRqLx7TQru2QPdWVqyU9uCBKmJ3czK/9w3lPe/LuoTjcrqt
+ E7Xebr9hAmDhxj7N5d/C7VgRywq2tELD88pkPJ+aUzBLfGb28n86+mCv89wFz5r165/I
+ +Bam+ICZf+FufYvFUk4Vqe3x7pijGruKH/Cg2R6sxe443d2yLxfXoRVFNDzhT4kh/xf4
+ OVCxvZoNmUlhZeCJOp3R98jlaSQDRAG6HYiGwjEDRRNPI/L4s1DiJ7MD1bVvY9VnDnsB
+ FTBQ==
+X-Gm-Message-State: AOAM533t+Z7/fLvExUT6fEicTkpwWSfnmxqdWR5RlfM+rgI6YMFBDvUT
+ xwvYfeU+hDtccMUHJ70fz95AG9Z4AFEFGQ==
+X-Google-Smtp-Source: ABdhPJzM7a6CEuViVnduDd3u0m+ZsprmeQW+c4ZNJ6T0udLTS8gWdvP73PxgnLhxbPjlGU30vi6qLw==
+X-Received: by 2002:a17:90b:605:: with SMTP id
+ gb5mr1031850pjb.51.1632170873344; 
+ Mon, 20 Sep 2021 13:47:53 -0700 (PDT)
 Received: from archl-c2lm.. ([103.51.72.29])
- by smtp.gmail.com with ESMTPSA id 18sm12904814pfh.115.2021.09.20.13.38.07
+ by smtp.gmail.com with ESMTPSA id u10sm15250263pfn.147.2021.09.20.13.47.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Sep 2021 13:38:09 -0700 (PDT)
+ Mon, 20 Sep 2021 13:47:52 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 Cc: Anand Moon <linux.amoon@gmail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCHv2] regulator: pwm-regulator: Make use of the helper function
- dev_err_probe()
-Date: Mon, 20 Sep 2021 20:37:33 +0000
-Message-Id: <20210920203735.675-1-linux.amoon@gmail.com>
+ Christian Hewitt <christianshewitt@gmail.com>, devicetree@vger.kernel.org
+Subject: [Patchv2] arm64: dts: meson-g12b-odroid-n2: add 5v regulator gpio
+Date: Mon, 20 Sep 2021 20:47:37 +0000
+Message-Id: <20210920204739.950-1-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210920_133812_359115_2FDA759F 
-X-CRM114-Status: GOOD (  12.81  )
+X-CRM114-CacheID: sfid-20210920_134755_012686_6B382360 
+X-CRM114-Status: GOOD (  10.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,43 +101,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-devm_pwm_get() can return -EPROBE_DEFER if the pwm regulator is not
-ready yet. Use dev_err_probe() for pwm regulator resources
-to indicate the deferral reason when waiting for the
-resource to come up.
+As described in the Odroid-n2 & Odroid-n2-plus schematics,
+the 5V regulator is controlled by GPIOH_8 and in Open Drain
+since this GPIO doesn't support Push-Pull.
 
-Fixes: 0cd71b9a43ad ("regulator: pwm: Don't warn on probe deferral")
+Fixes: c35f6dc5c377 ("arm64: dts: meson: Add minimal support for Odroid-N2")
+Fixes: ef599f5f3e10 ("arm64: dts: meson: convert ODROID-N2 to dtsi")
 
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
-V1 - Fix the wrong probe defer for devm_regulator_register.
-   - Fix the commit message.
+V1- Added missing Fix tags and update the Neil's Ack
 ---
- drivers/regulator/pwm-regulator.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-regulator.c
-index 7629476d94ae..3bd020641b67 100644
---- a/drivers/regulator/pwm-regulator.c
-+++ b/drivers/regulator/pwm-regulator.c
-@@ -353,13 +353,9 @@ static int pwm_regulator_probe(struct platform_device *pdev)
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 344573e157a7..26943c53dfa7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -99,6 +99,8 @@ vcc_5v: regulator-vcc_5v {
+ 		regulator-max-microvolt = <5000000>;
+ 		regulator-always-on;
+ 		vin-supply = <&main_12v>;
++		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
++		enable-active-high;
+ 	};
  
- 	drvdata->pwm = devm_pwm_get(&pdev->dev, NULL);
- 	if (IS_ERR(drvdata->pwm)) {
--		ret = PTR_ERR(drvdata->pwm);
--		if (ret == -EPROBE_DEFER)
--			dev_dbg(&pdev->dev,
--				"Failed to get PWM, deferring probe\n");
--		else
--			dev_err(&pdev->dev, "Failed to get PWM: %d\n", ret);
--		return ret;
-+		return dev_err_probe(&pdev->dev, PTR_ERR(drvdata->pwm),
-+				     "Failed to register regulator %s\n",
-+				     drvdata->desc.name);
- 	}
- 
- 	if (init_data->constraints.boot_on || init_data->constraints.always_on)
+ 	vcc_1v8: regulator-vcc_1v8 {
 -- 
 2.33.0
 
