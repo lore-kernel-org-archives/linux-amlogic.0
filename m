@@ -2,99 +2,86 @@ Return-Path: <SRS0=/4qX=OK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E6A7C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 12:23:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABFAEC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 18:05:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B07D660F58
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 12:23:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B07D660F58
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 73B71619EC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Sep 2021 18:05:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 73B71619EC
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=MpGCvR6pRxAQ9cUJcM+pbWgKLFb+qK2jEq+KkYhhbgY=; b=D8q1/mpDA74LORbL7aFJOkmV6P
-	oNxSS25u2aVOTLrgyMhIbvzrhA0Mx3WRPjdNQegeQdUoZg4CLOpF5BlCsvNjwewyJ1+iagomqu1BL
-	5bMrFzmbbIIbm5e7aieSriiXB5BiaIAEFJj01tXTTr4O0qF0emt4E5B7u/NzVMkypVWJ/WJAO3XrI
-	fDIBHzI3e5Q+wsASgpX58Nn8+ejKbWmgpmFz5jpPJEib1IXcWxlcWXzK8bOiqGXzSGOY2DP0hQ77K
-	ATUkb33DHohigcqTIEuigJDl/ioqjVKtIMJ/AejHnextNeswCyB/Afb9Zl+9WTbJDEmQYPwz+i2+A
-	qgl2uN9w==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ALC49SwyNYkVJT9wrt6zb+KV5O4CEzGu1LXj07iYrsU=; b=JO+1lS9b5Azr3G
+	D7vuJJPZIh2l4QqGRdhAMUbIN7orP/OizkgIyHAnbnAj9jT1ZXiaXT5OcfeXnhqYBNIMEYMyUHA60
+	ejVKyN0h2DXOUZnGNpjTlzdRkVvi5XB3C32yM7okjrH62LqeNQDJpURSlhhMAaj3sD9qzHOGlDH6W
+	F3xn7GltkWqhiFwvaEk2Ih9HU0Kw0RdAyRW5P4IU41W+pNIf5D968F1gT7PT1TuKw8L9coPcROVqw
+	7+A7NDDQyfGRRDJDYXG0dW9KnSAKwCa0h/YDLNcPoJSKGtKt8eZ7NTD2+PmSS+WsU0cLgbwGPMo6q
+	2E7Z9uFtbmGbQFOpuBlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mSIK2-001WwX-7i; Mon, 20 Sep 2021 12:22:58 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1mSNfs-002iuk-BP; Mon, 20 Sep 2021 18:05:52 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mSIJn-001WrP-Gj
- for linux-amlogic@lists.infradead.org; Mon, 20 Sep 2021 12:22:45 +0000
-Received: by mail-wr1-x430.google.com with SMTP id w29so29099817wra.8
- for <linux-amlogic@lists.infradead.org>; Mon, 20 Sep 2021 05:22:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=tCMyAI4JO6VKkU7AmoNIAzglb9xaZgl9kmlNL3VEvL4=;
- b=JZQ2+zI+W0SL7cwiKWYbsuiuWplyCzFrYondKJhbn30f0ST4w3KQPKCOEdfN2X7qL/
- e4Hf5Vp6LoppSpnYVor+/hGghyQHmG3ZsUR/ZkmnRXReGgnd/kbYeYCMGt1miVcU5f3G
- eNrhTmqpmBt7jczLwm/DagTdp961iGwu1mGwr07e26mO2nxiv9gSoHKsqNmjtJHR0HcX
- hI7cPlwBB2bo6KeAzNOUNVycXeEL2/Q1YCKti0uiy/CKnOWe/u0dsztQYYvqJgGdIRbD
- CvhkmLu1/MZ9EDXANpLWWBXiXKRFLqRL7fo7MybclREbWmfjsU5fKJc/MxS7ek7iq0wc
- 7WCw==
+ id 1mSNfZ-002isT-Hz; Mon, 20 Sep 2021 18:05:34 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id h17so64731904edj.6;
+ Mon, 20 Sep 2021 11:05:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ZU7cvM5PEGyRcNJxXhrz4KrtRbPr7EX5WBgJywTvWKY=;
+ b=aJWKVw64oeyoRl5vGYArhl2y79yi8hMO1OwshxrjdyyZRGWk5o6rIqhC8bqga8F/uf
+ onqA7Xqi28+eIiRjjA19DE4V2yRUHpNmU1Ph/7L/P10+BY1XO2FDq0ErARsb5p1wF4NC
+ iFzwn2Byt9ASMrSF/TH2d21FsdNdzJQBneNIaVrhW0+mbcx71Cx/7XsLOTMUGOzodj/M
+ KYMm3Tja/KFAP9VgccdgJKPvlh4xeW0k/qKUzhE/JdcsYbMWG+2/lPu1FUvXSKqScK7b
+ UPWkxh7zbevO76IMjca79uSyqPYAKUUxIGmiS1vMmV2XJUhCcBeoHn1oTgaA+mh0dhPr
+ BVqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=tCMyAI4JO6VKkU7AmoNIAzglb9xaZgl9kmlNL3VEvL4=;
- b=6NGUVKLemHLOqsnFdk3rVgfUX5JsqfgyxZ7xsavaqZrci4Sm3dO4P+mhoEV9TpI8C1
- OzTm9Clc9tXqchYFhnbSr87gEWkZ+ITm7cVpnTUKeweVbzueIbLgxRNi0H6aNLZz3c+u
- tOSVMngS9zwozfIRZ+zK+5NO2VkRrEd8yPz/U0PoznxarfUCjIB6katJd1F4vQy0VLDz
- XsL+iMKKRMH+C7X+ojLYzFk6Q47C5z2vcx5nRxRTC9cPzQoK1cF4SZegIlZjUq99b9PC
- uSa3VLaFgpCFHAt3+pia9jVCWvYM1ZIwXjJv3JpiBxzRcueAvcKfKPFczsTGuvWP4zRW
- 6W2A==
-X-Gm-Message-State: AOAM532GXwqWhMz2KCQ1Xq1QkszQUj2J/8No1d7moE3bV7hHGCKN36WI
- f1S9rh1wmZb7/STJZ1XbCvknN3BMl/4sYrxD
-X-Google-Smtp-Source: ABdhPJwghoiUF31ZcV1Our+qvNK3DzJ3CUzQX74ij+vo4OEmaDXRO6ym4AzRjtnXIVr8AS5Bn9Zzhw==
-X-Received: by 2002:a05:600c:17d1:: with SMTP id
- y17mr29272700wmo.135.1632140561722; 
- Mon, 20 Sep 2021 05:22:41 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:aa8a:ef22:59c5:1bf3?
- ([2001:861:44c0:66c0:aa8a:ef22:59c5:1bf3])
- by smtp.gmail.com with ESMTPSA id a72sm19889422wme.5.2021.09.20.05.22.41
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 20 Sep 2021 05:22:41 -0700 (PDT)
-Subject: Re: [PATCH 2/9] firmware: meson: simplify getting .driver_data
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-kernel@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20210920090522.23784-1-wsa+renesas@sang-engineering.com>
- <20210920090522.23784-3-wsa+renesas@sang-engineering.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <ad855cb8-0ed4-4e42-7434-2073855249fa@baylibre.com>
-Date: Mon, 20 Sep 2021 14:22:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ZU7cvM5PEGyRcNJxXhrz4KrtRbPr7EX5WBgJywTvWKY=;
+ b=CLPPmALpECB+UmsAx2hFGCU/vGqIkgycDYIAomtRUAopYmWGIKU6Cyy0HME9AZfZ2X
+ JDJYfZcOLaly68vb0uonICWSMxio4715LOztNlpusfogd4ME4IsKGXixHWCGJNY2/DFP
+ O5jKfb/5+RsVM4Z+sky55dl3OHQ4JJ+pe7LYC/Xhv5xN5s7k9xVSOuvD2dX9VnzeMfYx
+ C9DSVcN2EV16sMBkuCmItcq5JyRTgIuEdpII+SFOlKXJm4a2mh0OwIM9CrqG0Pk89jcp
+ Ui7EzK7QT5jmKless47mLQsWNM2joczlEYXxtPh8f1FlY51oNWDqZk7dkHjVsZx2e6hk
+ 57dw==
+X-Gm-Message-State: AOAM533EhkVqjUgY6en3eucvpz803eCvndkWEHDAY+WCSoZiqMwEqYOo
+ FwAfP5YNd6YGXSw9j1AmyYmFIoS+JDoMuKJ/oJE=
+X-Google-Smtp-Source: ABdhPJxmR593/MPAQk2Xqg47pVQ+UDuYPO0btjpGJ3TcpM176eIGgymlOdP99yhb7I1zGmOOzWbUpDHD3PNYosB3ng8=
+X-Received: by 2002:aa7:df09:: with SMTP id c9mr31090749edy.243.1632161129883; 
+ Mon, 20 Sep 2021 11:05:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210920090522.23784-3-wsa+renesas@sang-engineering.com>
-Content-Language: en-US
+References: <20210919211129.4364-1-linux.amoon@gmail.com>
+ <7dcee097-9119-1987-9bb5-777d541cc9f7@baylibre.com>
+In-Reply-To: <7dcee097-9119-1987-9bb5-777d541cc9f7@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Mon, 20 Sep 2021 23:35:18 +0530
+Message-ID: <CANAwSgRtChYZWogwSVggqT1491oWx-eAf8d95dGvPkLy3=1DwQ@mail.gmail.com>
+Subject: Re: [PATCH] regulator: pwm-regulator: Make use of the helper function
+ dev_err_probe()
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ linux-amlogic@lists.infradead.org, 
+ Linux Kernel <linux-kernel@vger.kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Jon Hunter <jonathanh@nvidia.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210920_052243_622638_F917C82F 
-X-CRM114-Status: GOOD (  16.26  )
+X-CRM114-CacheID: sfid-20210920_110533_637877_0B7B23E3 
+X-CRM114-Status: GOOD (  21.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,39 +98,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/09/2021 11:05, Wolfram Sang wrote:
-> We should get 'driver_data' from 'struct device' directly. Going via
-> platform_device is an unneeded step back and forth.
-> 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
-> 
-> Build tested only. buildbot is happy.
-> 
->  drivers/firmware/meson/meson_sm.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-> index 77aa5c6398aa..714016e3aab3 100644
-> --- a/drivers/firmware/meson/meson_sm.c
-> +++ b/drivers/firmware/meson/meson_sm.c
-> @@ -240,12 +240,11 @@ EXPORT_SYMBOL_GPL(meson_sm_get);
->  static ssize_t serial_show(struct device *dev, struct device_attribute *attr,
->  			 char *buf)
->  {
-> -	struct platform_device *pdev = to_platform_device(dev);
->  	struct meson_sm_firmware *fw;
->  	uint8_t *id_buf;
->  	int ret;
->  
-> -	fw = platform_get_drvdata(pdev);
-> +	fw = dev_get_drvdata(dev);
->  
->  	id_buf = kmalloc(SM_CHIP_ID_LENGTH, GFP_KERNEL);
->  	if (!id_buf)
-> 
+Hi Neil,
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+On Mon, 20 Sept 2021 at 13:56, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 19/09/2021 23:11, Anand Moon wrote:
+> > devm_regulator_register can return -EPROBE_DEFER if the
+> > regulator is not ready yet. Use dev_err_probe() for
+> > pwm regulator resources to indicate the deferral reason
+> > when waiting for the resource to come up.
+> >
+> > Fixes: 0cd71b9a43ad ("regulator: pwm: Don't warn on probe deferral")
+> >
+> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> >  drivers/regulator/pwm-regulator.c | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-regulator.c
+> > index 7629476d94ae..451e57a739f8 100644
+> > --- a/drivers/regulator/pwm-regulator.c
+> > +++ b/drivers/regulator/pwm-regulator.c
+> > @@ -382,9 +382,9 @@ static int pwm_regulator_probe(struct platform_device *pdev)
+> >                                           &drvdata->desc, &config);
+> >       if (IS_ERR(regulator)) {
+> >               ret = PTR_ERR(regulator);
+> > -             dev_err(&pdev->dev, "Failed to register regulator %s: %d\n",
+> > -                     drvdata->desc.name, ret);
+> > -             return ret;
+> > +             return dev_err_probe(&pdev->dev, ret,
+> > +                                  "Failed to register regulator %s: %d\n",
+> > +                                  drvdata->desc.name, ret);
+>
+> No need to keep ret and print it since it will be printed by dev_err_probe, pass directly PTR_ERR(regulator) and drop the ": %d" from the error string.
+>
+> Neil
+>
+
+Thanks for the input but it's a wrong fix I meant to fix another probe
+defer with *devm_pwm_get*
+I will correct this in the next version..
+
+Thanks
+-Anand
+
+>
+> >       }
+> >
+> >       return 0;
+> >
+>
 
 _______________________________________________
 linux-amlogic mailing list
