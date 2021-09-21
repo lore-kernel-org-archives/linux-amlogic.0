@@ -2,99 +2,82 @@ Return-Path: <SRS0=phzD=OL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BE660C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 07:21:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 38BE1C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 07:22:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8D476611BD
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 07:21:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8D476611BD
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id DB25B610A0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 07:22:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DB25B610A0
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arndb.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=PpprkEelXSFLIQOPTCuautO41n66r8SA109TlyD/gSY=; b=0ZbYorkmhvxI3jxF6wNNAQsXf2
-	qhHPAyRngwEolJjtybwYBI6KBQnjWXvPiWegRkaQ9jRQitFnjxEMJE8Ymfi3Dss0dKompvbr0GL9U
-	zfzzCmN9kqf8M9AqLk9fdFra1QdyL7Of2i12V9hZTiyLOBnR039qv9Gh3DGdS79yB6SSSfgNozeW3
-	eN49AGHqPstH5IzzzG72aeyJ8vgKZDrtNHYv856OtQoHCj2abaDcGzP9v+nV+L11Wxh78FKXcOyo3
-	ubrDHzWo+Sf3BHnWatKtKMAd72QcfM7XuyfQdsyb1J62dd7UAmCK7cxW9UA/IfEgiEimi2sX/zqKa
-	lKc1YW7g==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/7IhCAM6uWrX6yo/44jc9hzL3mguYP3LncHhDXDqCsM=; b=jCA/QWdeRA7JnG
+	aWa+/IqRwwKSyCbYPf8HN/JBJ7nZ9Dp92M/tjRAHXDbP99X4HZ9QoON38n+GvvngT27SlZBKwRpyN
+	w4Muypg/bUW1KnfgRSQnqhok8TwKxqKo33J68TIb0E5p3NGybhwt8miGTTUKe6IK+DX1E4TWK4ba6
+	cIC+gsGkH0hfBguFgUU+keXW+N9XxHQPFSxC5YuWYjt9PVVKEwY/uFqMM+5k/HuApvkXbtizlhWwn
+	LQODq44rox9EnCnhtokZAm9gGZlMZSgO9YVRp410VNiljkG4hfk2ZBKLF0TCtR6jpuBst9Gh2egmU
+	ki4gjR12QbxlsiohQA4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mSa5X-003mAH-Q7; Tue, 21 Sep 2021 07:21:11 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1mSa7A-003mdw-QE; Tue, 21 Sep 2021 07:22:52 +0000
+Received: from mout.kundenserver.de ([217.72.192.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mSa5U-003m8t-9Z
- for linux-amlogic@lists.infradead.org; Tue, 21 Sep 2021 07:21:10 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id u18so34521755wrg.5
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Sep 2021 00:21:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=e9lJls9x4Ir3Og0tsCxemcW1jUDuoRfpiScVUmuJYNs=;
- b=4o+4O73eYK9bMb4Fnk+vy9cFbL0G26TLFn+vItPOnLqaOCHIUQdahny+5V97crEcUV
- bUn7xnxEVYgaT+PSVTU9WixGDjvYpwFkxQrmg7KlJkHkrs5X4kdoPPNX2gm0A0Ltrtsh
- 8ixNu0sMryS7jtRPFOvlrYW6e0i/CBXQtyj8VkeQVRT9cbd12gQ4bH2rP7lASKIpGtzI
- nSkDxmoipXgdzMn8t9U3jndTGFEJ3VYNk4w4eS75MhfVNtnp0xDF1tuO44mrgavHaHWl
- qQ4qh7fYtNmRRbMmoCyv3ftbXdrbMOMRFXhxPT+tquakPZaoEZcdzQ9wKlBhlceVioJS
- SYHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=e9lJls9x4Ir3Og0tsCxemcW1jUDuoRfpiScVUmuJYNs=;
- b=ctf9jAq3D8Anb71vR1mvz9kQzduf+rxvsXV66qi6DoZKzZ0Q0kOrDtwtrLGSsI0nCu
- cjoFi/byEjAusYgiSPsQlWEdMiapR/1wdA0Umsp3bohbUSgTX9V6LS236BEpNfyinKwQ
- ZiwJ0yLAHnJIadhcSWBCEfNDguAAL8lYafV4j/KWL9jiCG0q9GqitDoRWW5+zCNJeXfD
- ZCEFXKkVOMZcYf5fdqwJCkpWsx6t5Yfv9OSiqnaLgWw2Q6emWTmShCStBfP41O2IQH4Q
- qaeYOeOGnSi18VjJhvOOTdyd3w2aYDTTL+mumehbTlewZZOUvlyQzB6cggUniqv762+r
- bWjg==
-X-Gm-Message-State: AOAM5319Ik8l9l08pCWM2N7E7WT4OxW3cBEqKG0f4tziSCa/gH3JE3os
- wEq5Mx1uoFm0rJf5adFgZR6oqg==
-X-Google-Smtp-Source: ABdhPJzELYbJ8jy1mwr1UoPKsoHlMwAbLOQHyrlZPvZHTluI+64PrlGi9gxNT1kbI1txsk+x490UTQ==
-X-Received: by 2002:a05:6000:154e:: with SMTP id
- 14mr19634849wry.53.1632208866904; 
- Tue, 21 Sep 2021 00:21:06 -0700 (PDT)
-Received: from [192.168.1.10]
- (i16-les01-ntr-213-44-230-108.sfr.lns.abo.bbox.fr. [213.44.230.108])
- by smtp.gmail.com with ESMTPSA id z133sm2247263wmc.45.2021.09.21.00.21.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 21 Sep 2021 00:21:06 -0700 (PDT)
-Subject: Re: [PATCHv2 0/3] Fix the pwm regulator supply properties
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Anand Moon <linux.amoon@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>, devicetree@vger.kernel.org
-References: <20210919202918.3556-1-linux.amoon@gmail.com>
- <CAFBinCBK02mnf6nEGFi+ZLUX4irAHL720ujms8NJxRe_NZC6PQ@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <d0d03e85-85d9-eb23-b57d-e8482475181e@baylibre.com>
-Date: Tue, 21 Sep 2021 09:21:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ id 1mSa77-003mcB-H6
+ for linux-amlogic@lists.infradead.org; Tue, 21 Sep 2021 07:22:51 +0000
+Received: from mail-wr1-f41.google.com ([209.85.221.41]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1Ma1HG-1mPPFK2SbU-00Vun3 for <linux-amlogic@lists.infradead.org>; Tue, 21
+ Sep 2021 09:22:46 +0200
+Received: by mail-wr1-f41.google.com with SMTP id t7so3022886wrw.13
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Sep 2021 00:22:46 -0700 (PDT)
+X-Gm-Message-State: AOAM5334gGwg5C2V/hwIMndU9wCr/ivTW280zVgcHPuKJKBepVLw6Ru9
+ RtAXjGaDlIKQh09j0MuSdMK4qGhatC9zGOgVDIs=
+X-Google-Smtp-Source: ABdhPJzapA/5jtcoB94jn9ge9Fj+s5pxy/e/DbFSc3rYCEZg0MHMrtc17EsSTcWr8PozWiJ0+otX+Z1g+aGoXHzkQ6A=
+X-Received: by 2002:a5d:6c6f:: with SMTP id r15mr4994612wrz.428.1632208965957; 
+ Tue, 21 Sep 2021 00:22:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBK02mnf6nEGFi+ZLUX4irAHL720ujms8NJxRe_NZC6PQ@mail.gmail.com>
-Content-Language: en-US
+References: <CAEsQvcsNLJYezYNpDNGJX49NhWgAqjAYAPDcbwrg3+0PmZdh+w@mail.gmail.com>
+In-Reply-To: <CAEsQvcsNLJYezYNpDNGJX49NhWgAqjAYAPDcbwrg3+0PmZdh+w@mail.gmail.com>
+From: Arnd Bergmann <arnd@arndb.de>
+Date: Tue, 21 Sep 2021 09:22:29 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0tKubvQR=Tks7sfWbR6n39DGOiXrkdBV8jUwa70X4kug@mail.gmail.com>
+Message-ID: <CAK8P3a0tKubvQR=Tks7sfWbR6n39DGOiXrkdBV8jUwa70X4kug@mail.gmail.com>
+Subject: Re: Regression, bisected: meson-dwmac8b never loads, no ethernet
+To: Geraldo Nascimento <geraldogabriel@gmail.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>
+X-Provags-ID: V03:K1:lJw9FR22qqhAkiP8v/gfzgQzgQ3BcHfmeyz4tAXA9g+n3Z7kq+b
+ zByRtwv3c6T02LISGYrBpvrIvKRjYkrOW5oKaf6Arj9jrKo6nflrep65VrFNwRQY0n0kxcB
+ SKu6CoUdlT6rkzZ61p32221SZjFp4QaPVHChOQwdPtQYpDrd2R77UQxDkNuYq2FSXu16F86
+ O1VnRMGzNxkz1/w9w86Fg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:1swrVkIrY9I=:H40qrgTiyu8bKKQxHYHYgj
+ iA5Q31OhRv5XNKPXqGCy/EUC/cOIfGAlF8TNfOx9xBxasuofKmNl81KsSkBQlJcOyusVLMYp0
+ jzf42LJVTCTyJGvu8yDiqTzSsuhBsaQGhIgccBRo+V9E1MLuMHaSD0wxxrze8NH87QeV6Osql
+ Pj9jh6l2I1GUFGV3nAZrDHEG0QMZIdH7YDwys7kIcZ9CXSEO9AyMw1f4UNo8zk12GZQkSuwlh
+ delfiX1GBSNX5v9GUB4Wo1RX7lXZAsAZGbWeDIj5oifz/PSkxbrdrVGx9YrpZfrQxPhbns/fB
+ EWqEdqGJgzihkdBMBJg7GM27T9lC5AdHoTJ4pwBP26SqShu2vcKJnKuHZMlovhYwqVBK9N8jP
+ hd8cyp8yJ9pbSfMwYwhVzF5Uugm31svzCK13pFI1zVW8Uyb5ZBHQKRjYASAC8wT3YE2BcyjFn
+ N7U4HPYucT6PTw3g0ZWQ0q61WOyydsUoO0bHOd9kBRn+xZm/rYuv7VCpr9/799pDT9pmvDC22
+ EWq0NEWxUcNLhHVBg+HjnJbMeKjLSG4/+C+2GesdKZI8VN23zV8Fo8woij7rVxzUgJPvF5hVh
+ 7LbKIjbi1hJkAPqWLGGEiydAHEjnjOpt3PSs+vJ6AWPbFL+bMvlZkGyKII6JX2zmvmHZCVWg+
+ nBWwKS4X5GCP5OeOWCAiCsmGtZZWQJGb2aLSDJ+6NWRj269+ZBvlyri9SieX3gnvZQf43xa8S
+ OrIKFViB5ReG3++daskGazRHDWHb2kAYyi8dSg==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210921_002108_387628_2B27CA00 
-X-CRM114-Status: GOOD (  16.75  )
+X-CRM114-CacheID: sfid-20210921_002249_909976_D9C0DFBD 
+X-CRM114-Status: GOOD (  17.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,35 +94,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/09/2021 22:13, Martin Blumenstingl wrote:
-> On Sun, Sep 19, 2021 at 10:29 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
->> Anand Moon (3):
->>   arm64: dts: meson-g12a: Fix the pwm regulator supply properties
->>   arm64: dts: meson-g12b: Fix the pwm regulator supply properties
->>   arm64: dts: meson-sm1: Fix the pwm regulator supply properties
-> all three get my:
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> Thanks for working on this!
-> I haven't runtime tested the patches but I expect that they will work
-> in the same way that the Meson8/8b/8m2 patches with the same change
-> did.
-> 
-> Neil, some of these boards are covered by Kernel CI.
-> I suggest queueing the patches in v5.16/dt64 and then seeing if
-> there's any feedback from the auto-builders.
+On Tue, Sep 21, 2021 at 1:43 AM Geraldo Nascimento
+<geraldogabriel@gmail.com> wrote:
+>
+> Hello Arnd,
+>
+> I'm sorry to inform you that commit
+> a0f480dc6546b9d97027bf7bc8145aad48ddad00 causes a regression in
+> 5.15-rc1 for the meson-dwmac8b ethernet driver.
+>
+> meson-dwmac8b never loads and libphy never probes stmmac
+>
+> I've bisected it over the weekend. The results follow.
+>
+> The bad commit mostly consists of qcom DT changes that shouldn't
+> trigger anything nasty like missing ethernet for meson (amlogic) but
+> there's the possibility the regression is caused by stmmac
+> modifications inside "Merge tag 'v5.14-rc3' into arm64-for-5.15
+> (2021-08-16 18:02:26 -0500)"
+>
+> This is just a guess as I haven't been able to pinpoint so far what
+> precisely causes the regression.
 
-Acked !
+I'm sure it's not this commit, looking at the contents of the tree
+before and after,
+it does not touch a single file that is used on your machine.
 
-Neil
+Sometimes bisections are unreliable. I would suggest you re-test commit
+ a0f480dc6546b9 and the one before it, one of them will likely show a different
+result from what you had. You can then replay your bisection to find
+the actual cause.
 
-> 
-> 
-> Best regards,
-> Martin
-> 
-
+       Arnd
 
 _______________________________________________
 linux-amlogic mailing list
