@@ -2,94 +2,84 @@ Return-Path: <SRS0=phzD=OL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7E07C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 07:24:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81D5DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 07:25:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6D8EC611C5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 07:24:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6D8EC611C5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 45C86611BD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 07:25:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 45C86611BD
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f1dcfhElwdSkN+izZQemnFDR3gSFJS67KtHltQ7l2Io=; b=4u4EVXWBcllTb/
-	c8SrBGv+gauT6fTQY4/zZul3/Q3SSrWs2LgmmxnJwC+qO5P8n7I3RTErwrRTT7jf8FsIgpjBv3SFU
-	3YYo52XO142ulHQeL4z1lcnqQoR9L345Zkhb0ogTN035DQK1hGV8DM7/QMGu7F8kZ10qvpIxf7FC1
-	NsfUQk6DsiR0YhSlC6NnNqGYjYIXUR7kH1XNruS3HBmMbFw4Y1oJmiMS5OEj2kdsfrzxnyux+Pa/1
-	G/hJEDaPbCyeG/LEZCQRdYGHmU9F0ecsTIaP7TJuODCalVvgouKEq6Z9euzgb3318FfIMxUbZXsb4
-	zBtQxZcL0f9Qop6rsdeA==;
+	List-Owner; bh=8U8xZn6lOvMi5c7px4RV7mAwXKaf/RxPNgvUPN3Up10=; b=eFCbozVj3yapnh
+	19hqmaow89cpHyyrrRHxJ5l8v5s4rSjlHIyQsKD0FZgQIi8SiLWPAvvHh/AagsDbgau50imudu2WJ
+	ka1nffhZdJd5mJVWR7r3BqJJEuQIoerQOjZHcvKJPl6l7lAn3T4wBDHkFT1og/HCVs3BDzgPIHYDd
+	647LfJo2mLCIuc3isOjGJMf9JCp1omS/ozCYG/aNjhMdqKLVBILmEvSkrSU3oZ9cGYbJWe7FHGIKv
+	AAJpMBUTa6JScrfXuJqhy+1AuPkjUwK9VdI+5k+O4bHhv7AETwU+Ukmp6n28Rh3RWVwcLokC21LUC
+	Z9RgzaKIMa4xbCTJR0EA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mSa96-003nPJ-Ud; Tue, 21 Sep 2021 07:24:52 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1mSa9s-003njM-0f; Tue, 21 Sep 2021 07:25:40 +0000
+Received: from mail-qk1-x72f.google.com ([2607:f8b0:4864:20::72f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mSa94-003nNa-KQ
- for linux-amlogic@lists.infradead.org; Tue, 21 Sep 2021 07:24:52 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id u15so36304307wru.6
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Sep 2021 00:24:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=MFVNYM+8ZfBcQi6We1JLgvzVyTGB859WPsLGFEWujhc=;
- b=jYDszma0h/FXRO3om+lag8wn0XZPmRIsfwEhryXv7H/Haj1FaIRANAg/Hp0Z+3xzDQ
- YOLS9eatkHylygVxrY7zlmHZz3cEabPOzh7eGxLOGYMb+DIcEZhpbr/k5w8F03CpTo2p
- hAzc2gBlWuuIvg+/uR3kjc0YYnsIgqP62FteqZRQK72Tev9lqX+Ffda1cQY2xwySLLf8
- oND5XBT1AE8Oh2av5sc8tG9OqCN6ycXMNNUYSxjo/Lh+VN6dpnOksHH5CxGj7MgXZfBq
- 1BsgBtHkahLvMJtdY9cGBkWuftposvfbpfWhwYiBy0YA2977T2Vtolu1SyqTxDoFhpAk
- w4qg==
+ id 1mSa9p-003ni2-Pi
+ for linux-amlogic@lists.infradead.org; Tue, 21 Sep 2021 07:25:39 +0000
+Received: by mail-qk1-x72f.google.com with SMTP id f130so12151433qke.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Sep 2021 00:25:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=HbepRd/9QrqmFELT1Udt1ETNE18nDF/CjAG8jFkssbY=;
+ b=jBgr/jGQ+bdCSFNqA74BZ4IoJkcR5vuHHVyOKfUXtZITuA798u1OI/ZXknWpRXJE9m
+ GHfZyU07ZrQWwTrgSdVZNI25ogIu9JD+NxlJW8dLUbQAj3XSrycTW2v+0u1HT2TwU7Z4
+ 7vTM3E4rNFeRDsVXC4ridjs1Rz609QgucyVTeSvgQmyXAYSsWGzhQjy2drwFSe7q5v5B
+ AtlmSKGWRfTXvxYCVoNOWV2oYgSdJW1HrQRxMbKRubvmb3Y4Mq97fjRJDrhkljcWD/3b
+ gqN+Qn0rFkXkSJMfj6UYmEiSk/fKwTKk6AFIR57fPKARKIACO5W003D+F1ndz67HuF56
+ UCpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=MFVNYM+8ZfBcQi6We1JLgvzVyTGB859WPsLGFEWujhc=;
- b=3UzyHukinsiXcx/8QYDF0h3e+lxBci+zyjeAZ0bKX5W7XQepF4Ez+MGFXBAwVwuU7D
- WN4o56uLL4AQTkJc+OMrFizMiNPguhMYRD2Q5beT/Mn3/QEL8ZOEWTd8YtV569bQfBYF
- cbkDSNyy5ZRI4q0JfYF3sf7s6N+obc/3CQ6WUd/CXtNdfp38PdDgWbxznkzWgJx0mKZg
- xWacqlxkNo/vDqAMA4y1UzZo6kEHXhsq1QO3ZktZWXejM4xPkaZnRKb+GjbdfpEdiXvA
- fho1JHe9rf+bkhifjMk5B9OSWzsF+imDaPiqUp5vmoQv5IQld38kRrw+/kfuX/DSxWYs
- pJcw==
-X-Gm-Message-State: AOAM533A7DICfEjEXNIACS+5OFO4Lj+ePVgfMDAK9OAi4lCkJJrRyudI
- GwwUCYJlWkteiyhLBVInzzvtNQ==
-X-Google-Smtp-Source: ABdhPJxE8aa5yw5kwtoTkIsHabvAITZpO/4otjBhwLWa7UZ7fgQmgf44/eHeAOMVdJugB44yVqeEmA==
-X-Received: by 2002:a05:600c:d3:: with SMTP id
- u19mr2954065wmm.142.1632209089293; 
- Tue, 21 Sep 2021 00:24:49 -0700 (PDT)
-Received: from localhost.localdomain
- (i16-les01-ntr-213-44-230-108.sfr.lns.abo.bbox.fr. [213.44.230.108])
- by smtp.gmail.com with ESMTPSA id b188sm1878316wmd.39.2021.09.21.00.24.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Sep 2021 00:24:48 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Anand Moon <linux.amoon@gmail.com>, linux-amlogic@lists.infradead.org
-Cc: Neil Armstrong <narmstrong@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [Patchv2] arm64: dts: meson-g12b-odroid-n2: add 5v regulator gpio
-Date: Tue, 21 Sep 2021 09:24:47 +0200
-Message-Id: <163220908180.41173.4926821171736077752.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210920204739.950-1-linux.amoon@gmail.com>
-References: <20210920204739.950-1-linux.amoon@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=HbepRd/9QrqmFELT1Udt1ETNE18nDF/CjAG8jFkssbY=;
+ b=tOvbKzyEyy0FYEV0cJg1I0K16BSmvU2B2VbhCUot3SB40UWk0WnYIEJRYcGlRhC+Ii
+ yo5bSMHa2nuiKTnnu6RNQstL4j7dd1jzFSCvil6SF5K3ZdUS/FAEegbqsMAJ/ACg0jzo
+ IBM5CsyKbNkH9IqZ4SJkLDCJIIHzxw0BL++tTiNg8GV0gXodSbTtY8Wh51gefwP0N+xV
+ lIIqIa6lwnY39yy6ewOkMjRIskIp/OyLikJ3civTBj9JSWDhrwqU3NqJahwnxFqg4sh3
+ BEJ46InsekJY/TUWC2v6WNUGvPV4sLVu2i+txGys4rGC9lhbYFAylbzwuYeR1K/dLi35
+ Q34w==
+X-Gm-Message-State: AOAM530eIHOLLyc0WVbs1YuKbDxNgHkRjUHE+9l31v5eILbtx7ki4Rlo
+ Ab3xC0c7PJ93zmi+ZU8Tn2RzigArJaMrEjU8lIk=
+X-Google-Smtp-Source: ABdhPJwSU/cawDW5Xk/8OB91SBE0w3zrz63HCCw0vgKpZbEHe8uKg3e0CcfnM5otx3akch7ZJrS4TTULTWS6XuroU5Q=
+X-Received: by 2002:a05:620a:254c:: with SMTP id
+ s12mr28199810qko.112.1632209136403; 
+ Tue, 21 Sep 2021 00:25:36 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAEsQvcsNLJYezYNpDNGJX49NhWgAqjAYAPDcbwrg3+0PmZdh+w@mail.gmail.com>
+ <CAEsQvctayUAp4Cx=TaqjUu90VNZa1itqyfqMNzDrDGfr--aSQg@mail.gmail.com>
+ <CAFBinCC+7sgtqr2rQPP3OX9v7yss3nm0eCjpx4qan5_BQJ1eHg@mail.gmail.com>
+ <274de82d-74f7-ad8b-2707-c424ecb6811f@baylibre.com>
+In-Reply-To: <274de82d-74f7-ad8b-2707-c424ecb6811f@baylibre.com>
+From: Geraldo Nascimento <geraldogabriel@gmail.com>
+Date: Tue, 21 Sep 2021 04:22:05 -0300
+Message-ID: <CAEsQvctEXDuoh9DWZtRTrbTRy0qL+4LKyrCrGy7Q17QBNr3Gkg@mail.gmail.com>
+Subject: Re: Regression, bisected: meson-dwmac8b never loads, no ethernet
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, arnd@arndb.de, 
+ bjorn.andersson@linaro.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210921_002450_716230_95D47BF1 
-X-CRM114-Status: UNSURE (   8.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210921_002537_860729_B34460A3 
+X-CRM114-Status: GOOD (  22.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,23 +96,66 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Neil and Martin,
 
-On Mon, 20 Sep 2021 20:47:37 +0000, Anand Moon wrote:
-> As described in the Odroid-n2 & Odroid-n2-plus schematics,
-> the 5V regulator is controlled by GPIOH_8 and in Open Drain
-> since this GPIO doesn't support Push-Pull.
-> 
-> Fixes: c35f6dc5c377 ("arm64: dts: meson: Add minimal support for Odroid-N2")
-> Fixes: ef599f5f3e10 ("arm64: dts: meson: convert ODROID-N2 to dtsi")
+On Tue, Sep 21, 2021 at 3:57 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi Geraldo,
+>
+> Thanks for the report
+>
+> On 21/09/2021 07:31, Martin Blumenstingl wrote:
+> > Hi Geraldo,
+> >
+> > On Tue, Sep 21, 2021 at 4:09 AM Geraldo Nascimento
+> > <geraldogabriel@gmail.com> wrote:
+> >>
+> >> Sorry to add further noise to this, as there's still 6 release candidates to solve this regression, but the correct name of the driver is meson8b-dwmac.
+> >>
+> >> You see, git bisecting the kernel had my head spinning so much that I apparently switched the proper driver name.
+> >>
+> >> Speaking of which, I swear I ran git bisect every time telling it good when where's good and vice-versa. And was I left with a qcom general device tree commit that also merges qcom 5.14-rc3 into 5.15 because of a regression in USB apparently?
+> > Which board/SoC are you referring to?
+> > I can confirm that dwmac-meson8b still works fine on an Odroid-C1
+> > (Meson8b SoC) with 5.15-rc2
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.16/dt64)
+At least for me the issue is gone in 5.15-rc2 and present only in 5.15-rc1
 
-[1/1] arm64: dts: meson-g12b-odroid-n2: add 5v regulator gpio
-      https://git.kernel.org/amlogic/c/ecff7bab5c9c2e2b6f5739b328347e08415879ec
+My board is is based on the q200 reference design, with 1 GbE external phy.
 
--- 
-Neil
+The only difference between my board and the q200 reference AFAIK is
+an Atheros Qualcomm WiFi / BT chip, QCA9377 but this is unrelated.
+
+It's a TV Box branded as H96 Pro+
+> > Newer (arm64) SoCs additionally use an MDIO mux driver:
+> > - mdio-mux-mmioreg on GXL, GXM
+> > - mdio-mux-meson-g12a on G12A, G12B, SM1
+>
+> Indeed it's an issue with mdio muxes, a similar issue had been reported by Marek at https://lore.kernel.org/all/0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com/
+> and it concerns commit cf4b94c8530d ("of: property: fw_devlink: Add support for "phy-handle" property")
+>
+> It may be the same issue here.
+>
+
+Whatever it was, it seems to be gone at least for me in 5.15-rc2 so it
+seems to be low priority unless it reappears.
+
+Thanks,
+Geraldo Nascimento
+
+> Neil
+>
+> >
+> >
+> > Best regards,
+> > Martin
+> >
+> > _______________________________________________
+> > linux-amlogic mailing list
+> > linux-amlogic@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> >
+>
 
 _______________________________________________
 linux-amlogic mailing list
