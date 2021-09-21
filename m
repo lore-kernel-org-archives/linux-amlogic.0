@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E1BAC433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 05:31:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E950C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 05:34:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5A3C96112F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 05:31:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5A3C96112F
+	by mail.kernel.org (Postfix) with ESMTPS id D91446112F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Sep 2021 05:34:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D91446112F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,63 +23,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZHLiz8UoDkBL0IQNa19dOj8P8QRptOFQQxQXuWFLV9c=; b=25+knsuADrpu3L
-	xHITqQv/pV2u/fFUIjY0Tx7Evf6MIprJPoPH6gQzTLci98JQakUEBsra40qjWLKGgBRU2wfByUiLJ
-	cPunfFEa6eM7HztVr/y+rrsPqJzep9OAFIpPHfHr3Kd3jH79ouFKFlGFzv2nS4HoUgvAgN1W9Potf
-	Ad8E/XWCJ0q1LkqRmEsw3/aGzy3+W+yh9qrbbgwvQDTwzW0vOROjgBU5g/DOrPW3pOFoZAMsc+EeZ
-	a9GQ0+WSTHU/386GnTaxpyd6f7Z1wbKF5+5ZJxChQaosuNSlSf4ScsOt3nuNPSDduS2oDUHHqkVwm
-	MgIBNqOTW4M54W3d4saQ==;
+	List-Owner; bh=Bj4Yrtww4d1iWfy18l+UV3BZYV3uHrqec/jQGEkI2fs=; b=RG7DRdasjCGUAp
+	bt4YBI8IJ7baEQnFr3QNPWKR31DD9z9dEDUiYw9cPPYqwlCjcGD6H92MmjGL/4IXsRFzkkmNA+wep
+	Gwdls75rxSdI0w5QOVfP5nN7EFwiwQRfSUhXBJxiM8tWO8dplqxQ+2Op9hjf0qX/Hn/YwMWwEc1jI
+	d0M4+ALjMzXQlPW6XKJQ1fHXZgJCVB1f8D7oZo9D07lvVM3CLzA9O3lDCM92qylXlEjxvDC1T/hJ/
+	cWa0u87eJOqxS3oJexQzEFR8ty50seR4PLqOrklNdy3LBAqVvQwimMZizFJ59eLZTKKveoAk27iHn
+	NB31eUJKEniQISXfCpHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mSYND-003dRz-0g; Tue, 21 Sep 2021 05:31:19 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1mSYQJ-003e4Z-Hl; Tue, 21 Sep 2021 05:34:31 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mSYNA-003dQZ-9X
- for linux-amlogic@lists.infradead.org; Tue, 21 Sep 2021 05:31:17 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id dj4so14030289edb.5
- for <linux-amlogic@lists.infradead.org>; Mon, 20 Sep 2021 22:31:14 -0700 (PDT)
+ id 1mSYQ6-003e1R-NH; Tue, 21 Sep 2021 05:34:19 +0000
+Received: by mail-ed1-x531.google.com with SMTP id c22so69635355edn.12;
+ Mon, 20 Sep 2021 22:34:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=47t9liEPCAAtIKpomblMKF0aRdTeNqoGOOxgmNaotL4=;
- b=MHRcd8ctHwjFXsWxirbSJyWpR6oGYCXJRXCYFEM9DTlugmVfmM2J57/+wWkH229yAu
- EHS+xRInKUsQZIGzylBtxEl2EOZn3L0wdj8JADEbMVlduQ+s5cDgLa+trmSF1SDQUTZD
- 2xAaYzMWJo1pmGeLvAnzAnZmj+/FsBxsJnv4RXsQknj2CsmLgTWDnd6S7AjaKm+ByQGz
- DopJpe5cWf27epb57XN5LFYiRyN1vKfX6mTJIRFHZC2ymIunJRlan5IYr0qvTOzSo/0H
- rU8dNfhreWh34xIMfax+KLPmLpsif5cgDwRmX270oG2Xo8D8C3eNwg6+NgMdz1awXcog
- NWjQ==
+ :cc; bh=raCTCJXxXg/ItVbRzM7CGl3oXuyIE/XxbNyI6hSTq7E=;
+ b=KrZNpc22Ky0v9hnMfwLmqJTdXsD8std2aRtIrgg5SnHJEl7l2E8YA5OCEur0iZ7EYL
+ /HnvUPw4q6eF87hlO/0oqmOhrh8l8bv0qWl9LXV6kTish/c+Gv3CiQRBfLZyaq3ExmQ0
+ NwJA86w4VXwQ+MyixtGSeaDJOTfGf6GVMbbYZwdp9vDT4KTiR7vl+Vy4qIXHQHcdytV/
+ UxL9JbPldCuFnIAfipYqKpPYQL4OCfsZjf899aclIvtIqVsKLQ3bg+4UyYrKGtNjxV8V
+ +E2PX77CJf1r2xbb8wGA6Azma2z3C54st8nc2x0GHZfN6Y0KyzD+YNm3Mc8/MWJwgJPR
+ rvoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=47t9liEPCAAtIKpomblMKF0aRdTeNqoGOOxgmNaotL4=;
- b=ZSzhVGaTa2jiZMmWRcAZFyXc8e95ScC2FXV6dhUVwwdCnIcH1TN2LapupvpC2XQgke
- iX1SBF1lWk6McMuq+m8bzSBPs2+taX8i7tIL7rnXbB+iKtLMikrEv+LOd7zkAjwLXnBx
- r44Fc2GchrVksbbLNE0Ymau15sUSpIKZlgnnNBEh0/NGMt2ssCWwUFPH7HdQmTrz3bSB
- KK0sivoiY2/BMJT3B6N5IjtZLcu7Hk4DYRxbqRee71XoRa1e7RhMew5FkfOT3bSKS0EZ
- U0IpD9jWUy3wkUg9LRTpmGcz+QbsYz3MllftAEguIZr7mc3L01uqin0SgpzMhYyBkSNt
- jClA==
-X-Gm-Message-State: AOAM532o8lrTYHcWW7emOxgM3CEb9H4B29qEFwWNdA2aJu4ft1jkPKRF
- 9Lr6/h5AlIVzvpgmQx/n+jt0/asnXAgz/b0ibZ8=
-X-Google-Smtp-Source: ABdhPJwmIliQjA3ngYpHCC64F/u7ykJSw370yJggZCOGKguOmhoMl5U/A7ZtYVV3BvSkiRovQ4wGT3Yc3DraC40VMvc=
+ bh=raCTCJXxXg/ItVbRzM7CGl3oXuyIE/XxbNyI6hSTq7E=;
+ b=iJBFxAqgYT+epxpA7lcJb0QRhyF90lQvXQGOrFtN8dQMA7nvxb5z/4dAMNortDyqmk
+ MgfbvgXyH41ilw4srZJKSv9po7C1NeOIGWKHGonVBqakd9xfw2a+K1nGdFNCigxqopGY
+ EWRIv/XymNAaEr8BquwNgl5Z74WaPmbzlystEYTX4wP1L4Z/tiz6sZbrcpHF6iZoZ8dr
+ RA30SL3okGSdleCoMXDn5V74OytgjHe3JHBhoqvH1G2aof0302wJyLbUIhB5JFba5+Bm
+ ImcWUidRrFqvPR+MXg3GJsAWXV6/JqWDTetfhuEw+0PR8eD0JaewqKNdUa1l7RxknogU
+ t+xQ==
+X-Gm-Message-State: AOAM530/dY1VymFNp1UO0VCrtH2yFK7z1dZ5y+LwrEWDUbcBFXr5fI60
+ NZFFuHoFndHlbUBDGJisl1bLOqya77FTedMAXms=
+X-Google-Smtp-Source: ABdhPJxK95W+u/Y1+Ydk4XFb2GShNgBwLsQzG9NQtWZFjqU3HFcA0JJgOlldIARODeZSSAWoXyJkXXkox8nv02jUuN4=
 X-Received: by 2002:a17:906:e105:: with SMTP id
- gj5mr32007913ejb.408.1632202272758; 
- Mon, 20 Sep 2021 22:31:12 -0700 (PDT)
+ gj5mr32019021ejb.408.1632202457171; 
+ Mon, 20 Sep 2021 22:34:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEsQvcsNLJYezYNpDNGJX49NhWgAqjAYAPDcbwrg3+0PmZdh+w@mail.gmail.com>
- <CAEsQvctayUAp4Cx=TaqjUu90VNZa1itqyfqMNzDrDGfr--aSQg@mail.gmail.com>
-In-Reply-To: <CAEsQvctayUAp4Cx=TaqjUu90VNZa1itqyfqMNzDrDGfr--aSQg@mail.gmail.com>
+References: <20210920203735.675-1-linux.amoon@gmail.com>
+In-Reply-To: <20210920203735.675-1-linux.amoon@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 21 Sep 2021 07:31:02 +0200
-Message-ID: <CAFBinCC+7sgtqr2rQPP3OX9v7yss3nm0eCjpx4qan5_BQJ1eHg@mail.gmail.com>
-Subject: Re: Regression, bisected: meson-dwmac8b never loads, no ethernet
-To: Geraldo Nascimento <geraldogabriel@gmail.com>
-Cc: arnd@arndb.de, bjorn.andersson@linaro.org, 
- linux-amlogic@lists.infradead.org
+Date: Tue, 21 Sep 2021 07:34:06 +0200
+Message-ID: <CAFBinCB682kFB47=K5-Pod5cbrnNTtKdAj3i8PHrxj8VxOH8FA@mail.gmail.com>
+Subject: Re: [PATCHv2] regulator: pwm-regulator: Make use of the helper
+ function dev_err_probe()
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Jon Hunter <jonathanh@nvidia.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210920_223116_378168_75427F31 
-X-CRM114-Status: UNSURE (   9.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210920_223418_799184_0EB2A66B 
+X-CRM114-Status: GOOD (  12.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,22 +95,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Geraldo,
+Hi Anand,
 
-On Tue, Sep 21, 2021 at 4:09 AM Geraldo Nascimento
-<geraldogabriel@gmail.com> wrote:
+On Mon, Sep 20, 2021 at 10:38 PM Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> Sorry to add further noise to this, as there's still 6 release candidates to solve this regression, but the correct name of the driver is meson8b-dwmac.
+> devm_pwm_get() can return -EPROBE_DEFER if the pwm regulator is not
+> ready yet. Use dev_err_probe() for pwm regulator resources
+> to indicate the deferral reason when waiting for the
+> resource to come up.
 >
-> You see, git bisecting the kernel had my head spinning so much that I apparently switched the proper driver name.
->
-> Speaking of which, I swear I ran git bisect every time telling it good when where's good and vice-versa. And was I left with a qcom general device tree commit that also merges qcom 5.14-rc3 into 5.15 because of a regression in USB apparently?
-Which board/SoC are you referring to?
-I can confirm that dwmac-meson8b still works fine on an Odroid-C1
-(Meson8b SoC) with 5.15-rc2
-Newer (arm64) SoCs additionally use an MDIO mux driver:
-- mdio-mux-mmioreg on GXL, GXM
-- mdio-mux-meson-g12a on G12A, G12B, SM1
+> Fixes: 0cd71b9a43ad ("regulator: pwm: Don't warn on probe deferral")
+Personally I consider this as an improvement (having the deferral
+reason show up in debugfs), not a bugfix.
+Because of that I would drop the Fixes tag.
+Let's wait on other people's opinions though.
+
+[...]
+> -                       dev_err(&pdev->dev, "Failed to get PWM: %d\n", ret);
+> -               return ret;
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(drvdata->pwm),
+> +                                    "Failed to register regulator %s\n",
+The message here should still be similar to the original one since the
+actual problem is that we could not get a reference to the PWM
+controller. At this point we are not trying to register the
+pwm-regulator yet.
 
 
 Best regards,
