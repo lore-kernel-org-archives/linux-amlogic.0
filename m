@@ -7,80 +7,86 @@ X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B269DC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Sep 2021 10:52:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A2CDC433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Sep 2021 12:31:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 653B3611B0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Sep 2021 10:52:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 653B3611B0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id 3CF2560F4C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Sep 2021 12:31:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3CF2560F4C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yMnxvvt0LQFPO3040ZuG8vrQZIsLhDmsvBuJEnbMVSE=; b=wQIBs3sQ8DyWA1
-	ZEw2Fr8u+sm7FK13I3pd7CXCtyq6fXP9x+Fuz/CK/kvrHLwsvbbgkMs3+t4C32JJk+g5xyR/X4VYb
-	6ryQCBqQ8Kkvfxek61ZwnVRoVFFV01d5x6N60DE5ZPyaIV7Dcgo0EM2Xbru7xoi+UBNZXFc9KeiJg
-	oigAQMPK37FV2T/uekE7d1se6yv7ulHmGGrul92kiolnp8IHowkrLo7v7+MohJEWxe8yrTAdRxrtI
-	+lcIkv6kAfP1/4u/6sbSqFJS9wva3Em7YResHbG526fZ+xheWKX+LMY7UR7ssF82CtnGSZCchALIZ
-	SwcA9v21FZ/6xk51TqKw==;
+	List-Owner; bh=bMuIHQ+YKEbsKWxSAVfKZ9OnywYla+1dm7Vgh0eYlRc=; b=q4tgm0a4bHQzrX
+	OpcSGwdPF8FcFXJUq2Ft9hI1/NQgbr4dzh/TvBzwkGsE3qWJI/EG3Uta/GthH1pyhcOCYJmaeShfI
+	AtPz5Rjr2pazm3iqQaw7niMA9sgCZPOQks6L4/SRhcjSM7o5WDEH8rcPd0qYuokFmswwfOtGM/TfZ
+	Q6/td7ax7UWwaBX/11HeqICgqIvRBZus8rvJUuZmNY3SlzYbAZQhw0xqzl5NrN1hN5zG/viMw8lyI
+	xUS8PVGmEEv8ABAoul3BVg2Ku9oI3wc6IPQ2H9H61ZsqG/5MC9JMdsn7QenbAuVWghbdZxANra3Y/
+	wdJGroPMJmuqOIkJZu7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mTMKY-00B1TD-RD; Thu, 23 Sep 2021 10:51:54 +0000
-Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
+	id 1mTNt2-00BPNr-09; Thu, 23 Sep 2021 12:31:36 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mTMKV-00B1RN-UF
- for linux-amlogic@lists.infradead.org; Thu, 23 Sep 2021 10:51:53 +0000
-Received: by mail-lf1-x133.google.com with SMTP id z24so25348697lfu.13
- for <linux-amlogic@lists.infradead.org>; Thu, 23 Sep 2021 03:51:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZZAOZKDlswTrDBuirwUgec+0wirM62qGZzElgpQmHWc=;
- b=c+uc7dBvi0o8VbzJj/9l72hYiJGZlLposYxLzcXp04J15VNUZglANSoNSTDDY85VzH
- 9vcFA6NuhDzSRoRriGM2MYxe/FAvpzq7X/o0hRTXU+qgvdYtk7qjkCTO+lmokQPVA7Ls
- icxidEkDd5X+hRAWmWFWd09TXCzDoI36pJp9V4gkqRGQQJVVkj/BuAyWzf4443bnTbVG
- /qHD9LXObzKDT2bZKHkljt6nCAU6th1mLXX3YeTygPVJ23jy142kItEgR6zrzlULEtcX
- 3kfJEY/v4XlmrkiAj4BseE976o2W388hKlH7aVSTJsHmZAhpgrYnEdKzpxiPolFZvLF/
- gakw==
+ id 1mTNpe-00BNas-G2
+ for linux-amlogic@lists.infradead.org; Thu, 23 Sep 2021 12:28:08 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id u18so16716935wrg.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 23 Sep 2021 05:28:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=sAdDiXDZ/ozWki9RSCsBqvvHl/GawwV89+dUg68JVq8=;
+ b=BDXZVCc2q3lUic06eI3A7pNDnf84wSyFsIdbpRH87Y1hocUMgNUr/65awHzxDmJZoY
+ 7qHQlEyKcr9x5XPCrFTDjw2HxK/neuaGQ7ikFVdBzhbqCfU4PeiNlwLNq3xdEWAtXMbc
+ C76CU52Un+GJTwpTpncBNvcUZvt5D82xg96D5bm+LfylIPIUV+Xo/WxTkxiWPPGNl8Mw
+ oe+dVo22saiCKJ49QVuhpK7O503tjNYNxkp3acDuF//Pn7Cz5i1Q2p2QE+kVVbH0Ebuw
+ E/icgCdrONhpYBAE7aaeymF0FtGtkQFRrsvyCDSzkqko8hq3oT5fW7eSk3WuJoHstfJ9
+ GlJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZZAOZKDlswTrDBuirwUgec+0wirM62qGZzElgpQmHWc=;
- b=3AdTE2qjmFGRZ3gBo72WCxR8V1URigie8PR0rWWQuYY/vHKWREuJdw36Gem6n708a+
- Syqt9FLefz3D3x4XW613vYoolzWXeP3YS51Dlmcb4yanL2fKQqlEaIbNUROx82tfmPMd
- yzyar3FlvvA4ePGwh/7DJneejjqwP3Off0gLx8DkAac+oj4T0Gea6vSPBZCJS0/kFmrC
- fCUZa0V7fpsmO5qdG0mygTCnJGRbBQacT9Ka8187r0fsseocRus+KtYAfhirYPvlM8o8
- AcTzKiNl8Bj9H/wboDimd6bXeo77zpR1xbqsVowKULU/F6MCU8pkYxC50g+J7VDZRGwL
- AhFQ==
-X-Gm-Message-State: AOAM531uO7ptRZiRrrTooaDIqyzAqtEASxloxGIBSrPld9fURlkIYuq2
- 3kyz5ZVv9JU8jdwVzx/unJUJRlom3HQQriKP1UVnEw==
-X-Google-Smtp-Source: ABdhPJzDqiDdo7fH13X6725lmGDL0pLCjz5Voj6/qRJne0PS12YyRUk8hp3c10PW5rrZoHYv6HTq9mLQec1PhG0Xb6k=
-X-Received: by 2002:a2e:85c2:: with SMTP id h2mr4412758ljj.367.1632394309094; 
- Thu, 23 Sep 2021 03:51:49 -0700 (PDT)
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=sAdDiXDZ/ozWki9RSCsBqvvHl/GawwV89+dUg68JVq8=;
+ b=4P9spm7oecqO+DVQ1DPwOxU63qEQbwtASbw7xNAwg6WCKxR5psWd3fIl3ilyNJBUFi
+ xQk7boxQkyymwhqpLhVqanA0UKtW69WTmKEc4CjTK9YCQZWchYaBzZkqZCsueluXbNkE
+ 6oGbHazvgL4POrwo0JHgNchGEYoa7nFgxxkqbZ03ocnZgEiDRp7limA1z6dPp+ht61en
+ yAUnxL8nBSLGSgOONgPhzRNUODTjhn2djPiCa5Pd6yyFDQRWqzdpIcv2bxloWeO/C+3Z
+ DyetOuUdf+348hUffYHrjA68dk9+UCDVG/a2q5BMjuGbltZjRXGa/OBO4sHyJDm7nWHV
+ 0DpQ==
+X-Gm-Message-State: AOAM530jVhfWQo/CdpSShnSDTAN7q5RpFfYKEa9ZJk40g+hLiPwg2Twq
+ k09ftYVkaRzjFJWAueGOLyYRNQ==
+X-Google-Smtp-Source: ABdhPJySJCgEKUbETC/WzFrGyif34wRWks/YRffd0ZNtreRY1aDIrHVWc3NFuOItxOSkidyD/nRpDA==
+X-Received: by 2002:a05:600c:4ba2:: with SMTP id
+ e34mr16103109wmp.50.1632400082959; 
+ Thu, 23 Sep 2021 05:28:02 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id y18sm5113842wrq.6.2021.09.23.05.28.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Sep 2021 05:28:02 -0700 (PDT)
+References: <20210713232510.3057750-1-martin.blumenstingl@googlemail.com>
+ <20210713232510.3057750-4-martin.blumenstingl@googlemail.com>
+User-agent: mu4e 1.6.6; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, narmstrong@baylibre.com
+Subject: Re: [PATCH 3/6] clk: meson: meson8b: Add the HDMI PLL M/N parameters
+Date: Thu, 23 Sep 2021 14:22:37 +0200
+In-reply-to: <20210713232510.3057750-4-martin.blumenstingl@googlemail.com>
+Message-ID: <1jfstvschd.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20210913080504.832521-1-narmstrong@baylibre.com>
-In-Reply-To: <20210913080504.832521-1-narmstrong@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 23 Sep 2021 12:51:12 +0200
-Message-ID: <CAPDyKFqLvnAOAmk3PeNiBzwXTgwvG+zEO1b_pJNzSuUZ3Zamxg@mail.gmail.com>
-Subject: Re: [PATCH] mmc: meson-gx: do not use memcpy_to/fromio for
- dram-access-quirk
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: linux-mmc <linux-mmc@vger.kernel.org>, 
- Linux ARM <linux-arm-kernel@lists.infradead.org>, 
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- Christian Hewitt <christianshewitt@gmail.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210923_035152_060861_19FFE234 
-X-CRM114-Status: GOOD (  29.15  )
+X-CRM114-CacheID: sfid-20210923_052806_661288_D7D7FDDF 
+X-CRM114-Status: GOOD (  18.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,135 +103,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 13 Sept 2021 at 10:05, Neil Armstrong <narmstrong@baylibre.com> wrote:
+
+On Wed 14 Jul 2021 at 01:25, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+
+> The 3.10 vendor kernel uses only specific HDMI PLL M/N parameter
+> combinations. The PLL won't lock for values smaller than 50 if the
+> internal doubling (which is yet unknown how to use it) is disabled.
+> However, when this doubling is enabled then the values smaller than 50
+> will lock just fine. The only restriction for values greater than 50 is
+> that the resulting frequency must not exceed the 3.0GHz limit.
+
+Hum, it's not the first time we have that type of issue.
+I'm thinking that, instead of using mult_range, we should probably have
+min and max output frequencies . The datasheet usually documents these
+values for PLL DCO. Something to think about ...
+
 >
-> The memory at the end of the controller only accepts 32bit read/write
-> accesses, but the arm64 memcpy_to/fromio implementation only uses 64bit
-> (which will be split into two 32bit access) and 8bit leading to incomplete
-> copies to/from this memory when the buffer is not multiple of 8bytes.
+> These values are taken from the endlessm 3.10 kernel which includes
+> additional M/N combinations for some VESA and 75Hz display modes.
 >
-> Add a local copy using writel/readl accesses to make sure we use the right
-> memory access width.
->
-> The switch to memcpy_to/fromio was done because of 285133040e6c
-> ("arm64: Import latest memcpy()/memmove() implementation"), but using memcpy
-> worked before since it mainly used 32bit memory acceses.
->
-> Fixes: 103a5348c22c ("mmc: meson-gx: use memcpy_to/fromio for dram-access-quirk")
-> Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-> Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  drivers/mmc/host/meson-gx-mmc.c | 49 +++++++++++++++++++++++----------
->  1 file changed, 35 insertions(+), 14 deletions(-)
+>  drivers/clk/meson/meson8b.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 >
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 3f28eb4d17fe..08c0ff0bfa8b 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -746,7 +746,7 @@ static void meson_mmc_desc_chain_transfer(struct mmc_host *mmc, u32 cmd_cfg)
->         writel(start, host->regs + SD_EMMC_START);
->  }
->
-> -/* local sg copy to buffer version with _to/fromio usage for dram_access_quirk */
-> +/* local sg copy for dram_access_quirk */
->  static void meson_mmc_copy_buffer(struct meson_host *host, struct mmc_data *data,
->                                   size_t buflen, bool to_buffer)
->  {
-> @@ -764,21 +764,34 @@ static void meson_mmc_copy_buffer(struct meson_host *host, struct mmc_data *data
->         sg_miter_start(&miter, sgl, nents, sg_flags);
->
->         while ((offset < buflen) && sg_miter_next(&miter)) {
-> -               unsigned int len;
-> +               unsigned int buf_offset = 0;
-> +               unsigned int len, left;
-> +               u32 *buf = miter.addr;
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index 9ccffbfe44e5..8f29d26ed726 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -118,6 +118,27 @@ static struct clk_regmap meson8b_fixed_pll = {
+>  	},
+>  };
+>  
+> +static const struct pll_params_table hdmi_pll_params_table[] = {
+> +	PLL_PARAMS(40, 1),
+> +	PLL_PARAMS(42, 1),
+> +	PLL_PARAMS(44, 1),
+> +	PLL_PARAMS(45, 1),
+> +	PLL_PARAMS(49, 1),
+> +	PLL_PARAMS(52, 1),
+> +	PLL_PARAMS(54, 1),
+> +	PLL_PARAMS(56, 1),
+> +	PLL_PARAMS(59, 1),
+> +	PLL_PARAMS(60, 1),
+> +	PLL_PARAMS(61, 1),
+> +	PLL_PARAMS(62, 1),
+> +	PLL_PARAMS(64, 1),
+> +	PLL_PARAMS(66, 1),
+> +	PLL_PARAMS(68, 1),
+> +	PLL_PARAMS(71, 1),
+> +	PLL_PARAMS(82, 1),
+> +	{ /* sentinel */ }
+> +};
 > +
-> +               if (((unsigned long int)miter.addr % 4))
-> +                       dev_err(host->dev, "non word aligned sg");
+>  static struct clk_regmap meson8b_hdmi_pll_dco = {
+>  	.data = &(struct meson_clk_pll_data){
+>  		.en = {
+> @@ -150,6 +171,7 @@ static struct clk_regmap meson8b_hdmi_pll_dco = {
+>  			.shift   = 29,
+>  			.width   = 1,
+>  		},
+> +		.table = hdmi_pll_params_table,
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+>  		/* sometimes also called "HPLL" or "HPLL PLL" */
 
-This looks weird. You print an error message, but continue to process
-data? If this is a case you can't handle, perhaps you should propagate
-an error code instead?
-
-Additionally, you may want to use the IS_ALIGNED() macro.
-
->
->                 len = min(miter.length, buflen - offset);
->
-> -               /* When dram_access_quirk, the bounce buffer is a iomem mapping */
-> -               if (host->dram_access_quirk) {
-> -                       if (to_buffer)
-> -                               memcpy_toio(host->bounce_iomem_buf + offset, miter.addr, len);
-> -                       else
-> -                               memcpy_fromio(miter.addr, host->bounce_iomem_buf + offset, len);
-> +               if ((len % 4))
-> +                       dev_err(host->dev, "non word multiple sg");
-
-Again, a dev_err() doesn't seem like the right thing to do. If you
-can't handle this, please return an error code instead.
-
-Perhaps returning an error code isn't convenient at this point. An
-option could then be to pre-validate the sglist at the time of
-starting the request. We have other host drivers doing this, have a
-look at drivers/mmc/host/mmci*, for example.
-
-> +
-> +               left = len;
-> +
-> +               if (to_buffer) {
-> +                       do {
-> +                               writel(*buf++, host->bounce_iomem_buf + offset + buf_offset);
-> +
-> +                               buf_offset += 4;
-> +                               left -= 4;
-> +                       } while (left);
->                 } else {
-> -                       if (to_buffer)
-> -                               memcpy(host->bounce_buf + offset, miter.addr, len);
-> -                       else
-> -                               memcpy(miter.addr, host->bounce_buf + offset, len);
-> +                       do {
-> +                               *buf++ = readl(host->bounce_iomem_buf + offset + buf_offset);
-> +
-> +                               buf_offset += 4;
-> +                               left -= 4;
-> +                       } while (left);
->                 }
->
->                 offset += len;
-> @@ -830,7 +843,11 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->                 if (data->flags & MMC_DATA_WRITE) {
->                         cmd_cfg |= CMD_CFG_DATA_WR;
->                         WARN_ON(xfer_bytes > host->bounce_buf_size);
-> -                       meson_mmc_copy_buffer(host, data, xfer_bytes, true);
-> +                       if (host->dram_access_quirk)
-> +                               meson_mmc_copy_buffer(host, data, xfer_bytes, true);
-> +                       else
-> +                               sg_copy_to_buffer(data->sg, data->sg_len,
-> +                                                 host->bounce_buf, xfer_bytes);
->                         dma_wmb();
->                 }
->
-> @@ -999,7 +1016,11 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
->         if (meson_mmc_bounce_buf_read(data)) {
->                 xfer_bytes = data->blksz * data->blocks;
->                 WARN_ON(xfer_bytes > host->bounce_buf_size);
-> -               meson_mmc_copy_buffer(host, data, xfer_bytes, false);
-> +               if (host->dram_access_quirk)
-> +                       meson_mmc_copy_buffer(host, data, xfer_bytes, false);
-> +               else
-> +                       sg_copy_from_buffer(data->sg, data->sg_len,
-> +                                           host->bounce_buf, xfer_bytes);
->         }
->
->         next_cmd = meson_mmc_get_next_command(cmd);
-> --
-> 2.25.1
->
-
-Kind regards
-Uffe
 
 _______________________________________________
 linux-amlogic mailing list
