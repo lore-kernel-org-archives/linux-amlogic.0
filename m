@@ -2,79 +2,81 @@ Return-Path: <SRS0=x061=OP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D3CCC433EF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:34:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C506C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:34:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1361C61076
-	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:34:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1361C61076
+	by mail.kernel.org (Postfix) with ESMTPS id 3D32161076
+	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:34:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3D32161076
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pCAx6uT74fTOToX1/DPb2dAsIH7tIEZzSrL4H2GmOgE=; b=jp41up8vQ0cvpl
-	sJg3MOosqJ93FcHiQmRaKRzax23Cs7ZzURAkIshrlH+gVkSG6LVn63+o2uJ2GB2+B7x+xnY40Ukjg
-	K3yIs1ReB1jpKBNAn6SWYUZV/wsGCDnjO9DbM9zTSo8GCq4Y41D971uTokPJSpBY8gYgtezyX1moP
-	E8q62YhyvstxZ2SHpkHGFau9kx3dYKdDJfEB4DIkKMRp7tm21pSijgeZXS+y2V1uqnS6CNTLpddAp
-	Ehi9JRFvSRJl6L3/VYsSzg2qZ+efLn8syukL8Qa8q8uE5qO6rlg6nvs4v3hkP9E30Yc5B0E2cZMCZ
-	JsuN2gNXvQb5r83syPww==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ML2tflYx1/OviHO3Wdb3qDQPvIDd9yVvWSvbVlJhiMU=; b=vC1UTuq2eAJm8B
+	bi8N/DQPXefUTEvKKgHZom2X1es+4q4Wjus+Ly8cVfNK140Zdbw4Hb/3IJ/yWwLeWHl6QcRWMOiCN
+	QoRnhSRgB6Tytc2MN9F9l8AEhUKJ8sOlB+fypHDy5XrFFoa7e3sbaLNbyv8gX1LzV89hzMWaoO+Ub
+	6ys1fpGTbLklccAmeDGn8vulQozpHSTJdXoPtzYDWpo6Kp36O2/uuQY1JbuHlZmVYgOXWcELlBGP8
+	mdHN/YwtZyZGOK91dyFx6gdW9i47mrZaKwTo3Dmm5G8CjbBkAfah6SayFD0LOxoGLHJIgr3/JTR73
+	vW/S1CdxgAH9p6EcPYQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mUBYx-00GyYK-2F; Sat, 25 Sep 2021 17:34:11 +0000
-Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
+	id 1mUBZN-00Gyd1-39; Sat, 25 Sep 2021 17:34:37 +0000
+Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mUBYk-00GyWD-Pa; Sat, 25 Sep 2021 17:34:00 +0000
-Received: by mail-ed1-x533.google.com with SMTP id bx4so49611191edb.4;
- Sat, 25 Sep 2021 10:33:57 -0700 (PDT)
+ id 1mUBZA-00Gya4-0F; Sat, 25 Sep 2021 17:34:25 +0000
+Received: by mail-pf1-x42c.google.com with SMTP id y8so11729173pfa.7;
+ Sat, 25 Sep 2021 10:34:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=gkBWlplztzPYq7xEWUT333cO8AXxvEK462eV+xY6d3Q=;
- b=CmboLcZVzqLZ65pb77dGE9Tb+zbVPpRadSvxK+GRWbZ0/PMacdJT4C7khWZgMHDu3u
- SXZaIJ4/TuZJqyc3/nqA4JgSQVT9lmUKDqhh7WmnB2v87/FKi8hFYvL0ZAfKJOXHmcpi
- FzgRz8SGJEqBXnBylB7zICXbT67RqdjT7Zysr1wDhxzKOaEiKU1mPeFlQf8G59TWhhgB
- lDcZbS2Ty/cDYSfNEwSK6JS5V/I5lOpmpYnRCSDJSqVlu6qfPaqX5PydiG/gLV7zptvb
- ihFIpmYUpM7yzg4wIHkx+2IKiqJj25xJW5Illgh0Ad27FraOeJg3NTtMTjH3nV970yvC
- QNuw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xOGXsR2lrn1dvNa/qlhz6wa9pGiy56aLxSKQi3X0iXU=;
+ b=PCr602QkRq5ChttjxjsGMbOGLlm57bxLWVzHhG9I8KLAMRBFiMXX2mctmlGH0+wpzK
+ +85vmB/dnmriHyyruQ8N2kWj3/x2a+61M0aamLwLNqj5dczTkXpeXS2ymEQHA50K+lBi
+ XrTNd4n+tI1kq483mN0G8pWY1dNBQl+zUU/CLFZR8foGuquw/D68VsBh/gOK/i3rco9R
+ 7w7jFS8K9GR86np6LCLeCaJ3ZdOIUcmJHMDF/rguCD4u3TCcyvu4lG0PjBcgQM3iYoug
+ 9R8wL4g0V+VEll+NuJsxv2r9Sbb2qxpt/ZqrPHhexlUgPlXnr2jt3Ti5h4WIGGy8jRYe
+ Xegw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=gkBWlplztzPYq7xEWUT333cO8AXxvEK462eV+xY6d3Q=;
- b=R1aPJ4CrHcUxlZZCz7vwsbHD1oBEEBEdtz3MmzBtCM52ZE4CBj0QH84iWo7+6+hTPj
- NcLo59kDPcEWY0IWXs02/m7tXOf63NPT28/rmCUEZKA1PnnPfgh7Ffc7VptTjQcY0uZs
- CZ6Vh/Grxn3FwLk3RQcrxIO2BVR/vuJXKUsEytXZ0+NGW+4Orl5yo4cjYn9K3xe/Mgon
- ErsT1AVhMrS4vW6EvqFvU4YT49O4q0HuuNT42nKOieFEWiLQbnePHNeJ8aQdlJ8k4+hU
- SndrHnna4mVgX5wwCff7stnEYi1jo6ldKB9dqYoLFlSHPMeWCvA1QgDdpvXrJW2UuJlv
- fGxw==
-X-Gm-Message-State: AOAM532QhyDl9AQf/6f0w14YxBz1vKXvhi+llL5lWAe9KDVNpaRRXc/B
- Z88XZlzoLP/VSe6xRL8YHUy47Ed0hKr9G+rBepc=
-X-Google-Smtp-Source: ABdhPJwOhEN6jApVHtjpdjUknol4tn6WsTkxJF1T8o4ZP0cQAq1EKvHzYz9l2WQJqByLtAKc5JzZ6q/quRN7eOG9VCc=
-X-Received: by 2002:a17:906:b10d:: with SMTP id
- u13mr18123747ejy.135.1632591236112; 
- Sat, 25 Sep 2021 10:33:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210921212732.1334-1-linux.amoon@gmail.com>
- <CAFBinCBHDTCkBBxP9u-Qh_k6ZSswJ_5XDL9oq2CSEkWG23dXfw@mail.gmail.com>
-In-Reply-To: <CAFBinCBHDTCkBBxP9u-Qh_k6ZSswJ_5XDL9oq2CSEkWG23dXfw@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xOGXsR2lrn1dvNa/qlhz6wa9pGiy56aLxSKQi3X0iXU=;
+ b=TaMDnndjPYPnUOmHSbNNAIDSWH+X9TWE4w2hCe3CepBBvm7voMQWmXQlfYwU5EQ7jI
+ NSqlvADBncWCKJajKsBQX5WgZakckGLbmvn/dxAyLhAA4n+uKTxQeqmPPETbSFFMZGna
+ hzhtBbpjc3d6SPRDLS1BTE9mFhnQREuxwGNLxVrxfe7XoM2RPbmlUka21dhTaU6lHT0J
+ d8vHm3EHzuc+KCeBr5X01F3DUG5S3Okv2854frifSUeidxrztTro6lbstsrKd1J6m0Cj
+ niMmH4j01OYWKgQhA+XojmdRmNtsqA8nBLDdh54HKUL2PL0y5fFya4drjgGG23IMHiY1
+ tlMw==
+X-Gm-Message-State: AOAM531vuspi7JrTBgpSSo/AxbCAQVd+1g8RIUv2g6kRAlpGgxXRhtRC
+ lTW/C6H8Op9acDxy/TghIvKYDgCrvi/NBA==
+X-Google-Smtp-Source: ABdhPJwow57UKHvlSPfIR1Ttemgg4A161D1G2paG/eKWqU5i7Y195BpJgW85Igoabj61Qo65/5L3fw==
+X-Received: by 2002:a63:a70e:: with SMTP id d14mr9093741pgf.431.1632591262567; 
+ Sat, 25 Sep 2021 10:34:22 -0700 (PDT)
+Received: from archl-c2lm.. ([103.51.72.30])
+ by smtp.gmail.com with ESMTPSA id j6sm13113980pgq.0.2021.09.25.10.34.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 25 Sep 2021 10:34:22 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Sat, 25 Sep 2021 23:03:43 +0530
-Message-ID: <CANAwSgQaw=1VAwQaW5PnE=5LxK1M9COCPiwTVi+iN=2D_y10fA@mail.gmail.com>
-Subject: Re: [PATCHv3] regulator: pwm-regulator: Make use of the helper
- function dev_err_probe()
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic@lists.infradead.org, 
- Linux Kernel <linux-kernel@vger.kernel.org>,
+To: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Anand Moon <linux.amoon@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Subject: [PATCHv4] regulator: pwm-regulator: Make use of the helper function
+ dev_err_probe()
+Date: Sat, 25 Sep 2021 17:34:12 +0000
+Message-Id: <20210925173413.1019-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210925_103358_869077_EF3602F7 
-X-CRM114-Status: GOOD (  22.03  )
+X-CRM114-CacheID: sfid-20210925_103424_069293_F1187FB6 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,45 +93,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+devm_pwm_get() can return -EPROBE_DEFER if the pwm regulator is not
+ready yet. Use dev_err_probe() for pwm regulator resources
+to indicate the deferral reason when waiting for the
+resource to come up.
 
-On Sat, 25 Sept 2021 at 22:42, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Tue, Sep 21, 2021 at 11:27 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > @@ -353,13 +353,8 @@ static int pwm_regulator_probe(struct platform_device *pdev)
-> >
-> >         drvdata->pwm = devm_pwm_get(&pdev->dev, NULL);
-> >         if (IS_ERR(drvdata->pwm)) {
-> > -               ret = PTR_ERR(drvdata->pwm);
-> > -               if (ret == -EPROBE_DEFER)
-> > -                       dev_dbg(&pdev->dev,
-> > -                               "Failed to get PWM, deferring probe\n");
-> > -               else
-> > -                       dev_err(&pdev->dev, "Failed to get PWM: %d\n", ret);
-> > -               return ret;
-> > +               return dev_err_probe(&pdev->dev, PTR_ERR(drvdata->pwm),
-> > +                                    "Failed to get PWM\n");
-> >         }
-> From functional perspective you're patch is looking good now.
-> I just noticed that the coding-style in the pwm-regulator driver is
-> not not use any curly brackets for the if block when there's only one
-> statement
->
-> with the curly brackets removed (and if there are no other changes to
-> this patch) then you can add my:
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-Thanks, I will update the patch in the next version.
->
-> Best regards,
-> Martin
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+V3 - Fix the coading style issue. dropped { }
+V2 - Fix the return message and drop the FIX tag in commit.
+V1 - Fix the wrong probe defer for devm_regulator_register.
+   - Fix the commit message.
+---
+ drivers/regulator/pwm-regulator.c | 12 +++---------
+ 1 file changed, 3 insertions(+), 9 deletions(-)
 
-Thanks
--Anand
+diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-regulator.c
+index 7629476d94ae..b9eeaff1c661 100644
+--- a/drivers/regulator/pwm-regulator.c
++++ b/drivers/regulator/pwm-regulator.c
+@@ -352,15 +352,9 @@ static int pwm_regulator_probe(struct platform_device *pdev)
+ 	config.init_data = init_data;
+ 
+ 	drvdata->pwm = devm_pwm_get(&pdev->dev, NULL);
+-	if (IS_ERR(drvdata->pwm)) {
+-		ret = PTR_ERR(drvdata->pwm);
+-		if (ret == -EPROBE_DEFER)
+-			dev_dbg(&pdev->dev,
+-				"Failed to get PWM, deferring probe\n");
+-		else
+-			dev_err(&pdev->dev, "Failed to get PWM: %d\n", ret);
+-		return ret;
+-	}
++	if (IS_ERR(drvdata->pwm))
++		return dev_err_probe(&pdev->dev, PTR_ERR(drvdata->pwm),
++				     "Failed to get PWM\n");
+ 
+ 	if (init_data->constraints.boot_on || init_data->constraints.always_on)
+ 		gpio_flags = GPIOD_OUT_HIGH;
+-- 
+2.33.0
+
 
 _______________________________________________
 linux-amlogic mailing list
