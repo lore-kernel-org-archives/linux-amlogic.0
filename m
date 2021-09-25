@@ -2,81 +2,89 @@ Return-Path: <SRS0=x061=OP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C506C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:34:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 572B5C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:42:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3D32161076
-	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:34:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3D32161076
+	by mail.kernel.org (Postfix) with ESMTPS id 1932960E90
+	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:42:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1932960E90
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ML2tflYx1/OviHO3Wdb3qDQPvIDd9yVvWSvbVlJhiMU=; b=vC1UTuq2eAJm8B
-	bi8N/DQPXefUTEvKKgHZom2X1es+4q4Wjus+Ly8cVfNK140Zdbw4Hb/3IJ/yWwLeWHl6QcRWMOiCN
-	QoRnhSRgB6Tytc2MN9F9l8AEhUKJ8sOlB+fypHDy5XrFFoa7e3sbaLNbyv8gX1LzV89hzMWaoO+Ub
-	6ys1fpGTbLklccAmeDGn8vulQozpHSTJdXoPtzYDWpo6Kp36O2/uuQY1JbuHlZmVYgOXWcELlBGP8
-	mdHN/YwtZyZGOK91dyFx6gdW9i47mrZaKwTo3Dmm5G8CjbBkAfah6SayFD0LOxoGLHJIgr3/JTR73
-	vW/S1CdxgAH9p6EcPYQg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=bxH2dS4rfKW3KOAeNB+YHrd7T7AKPaaClFmj6cbkB18=; b=q9u5AFuuhFhcZW
+	H1sPpg6QPpfVQUlwCdkdGkOzraZMBk+pgoDsalJrXg0C36sFwHXgZ2MbEDLQdyZNx5yEmVXBzwup6
+	wobUDiQSETZir3Q1CLuuPxBPvJIHOpwNAo2Tg2HLDKZ56VLi6fmGNyVpF87/bqbzT/DNH3y2NGNqb
+	cWquKSiYhXXtJ7n1YPK6hDHkiX63KIkQ5/+Cgm+n9y3FY1oFA/MOUtShxb57/fGiwwmJRP/6r6HTq
+	Pgv5aaziWqsEMdZh/4qaQVDOLbcv1hk0vbTk9na3nXNGjC5Jfm/C6mG3nSNStkT1KA8muvpKwpjuB
+	kT5Oa81OkZ1gfJiD73sQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mUBZN-00Gyd1-39; Sat, 25 Sep 2021 17:34:37 +0000
-Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
+	id 1mUBgv-00Gzde-0e; Sat, 25 Sep 2021 17:42:25 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mUBZA-00Gya4-0F; Sat, 25 Sep 2021 17:34:25 +0000
-Received: by mail-pf1-x42c.google.com with SMTP id y8so11729173pfa.7;
- Sat, 25 Sep 2021 10:34:23 -0700 (PDT)
+ id 1mUBgi-00GzcK-8N; Sat, 25 Sep 2021 17:42:13 +0000
+Received: by mail-ed1-x52e.google.com with SMTP id ee50so49544123edb.13;
+ Sat, 25 Sep 2021 10:42:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=xOGXsR2lrn1dvNa/qlhz6wa9pGiy56aLxSKQi3X0iXU=;
- b=PCr602QkRq5ChttjxjsGMbOGLlm57bxLWVzHhG9I8KLAMRBFiMXX2mctmlGH0+wpzK
- +85vmB/dnmriHyyruQ8N2kWj3/x2a+61M0aamLwLNqj5dczTkXpeXS2ymEQHA50K+lBi
- XrTNd4n+tI1kq483mN0G8pWY1dNBQl+zUU/CLFZR8foGuquw/D68VsBh/gOK/i3rco9R
- 7w7jFS8K9GR86np6LCLeCaJ3ZdOIUcmJHMDF/rguCD4u3TCcyvu4lG0PjBcgQM3iYoug
- 9R8wL4g0V+VEll+NuJsxv2r9Sbb2qxpt/ZqrPHhexlUgPlXnr2jt3Ti5h4WIGGy8jRYe
- Xegw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=IeR6I78v07QTr7GwuPjqPsC9KmUX8D77z/xH6y8yFI8=;
+ b=IRAqRPzgfb+l3oosTcNuCrp/+4E0gI9cN8XAOxGuWL0Q86mesco1wT35ZtwEjsPg7O
+ mVrG1YDvsUYZw33ZU0BzxOPLenOe+00qlat4v4mAl2f2FD7a3CAar45txxjbowsFXy6n
+ cuG9C1NRRPeu+40lWz/N154oiu18PwHQJqe/xXBOmVFfqrCpkA2qjjehQ1IBDLhQYbXm
+ RLRbbiW7YweqJRdWVgGHYujen/b2CvdlCsQ6hemxWRVWz7/CTkEWaSsji86pMxchJ0jk
+ DoY9/T+PJJUEqfXgfoQk9WRCDeYiBg3zDLg2mIA+Ytwpig5Oxw45in0XnQyMSuHMbKvu
+ WkCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=xOGXsR2lrn1dvNa/qlhz6wa9pGiy56aLxSKQi3X0iXU=;
- b=TaMDnndjPYPnUOmHSbNNAIDSWH+X9TWE4w2hCe3CepBBvm7voMQWmXQlfYwU5EQ7jI
- NSqlvADBncWCKJajKsBQX5WgZakckGLbmvn/dxAyLhAA4n+uKTxQeqmPPETbSFFMZGna
- hzhtBbpjc3d6SPRDLS1BTE9mFhnQREuxwGNLxVrxfe7XoM2RPbmlUka21dhTaU6lHT0J
- d8vHm3EHzuc+KCeBr5X01F3DUG5S3Okv2854frifSUeidxrztTro6lbstsrKd1J6m0Cj
- niMmH4j01OYWKgQhA+XojmdRmNtsqA8nBLDdh54HKUL2PL0y5fFya4drjgGG23IMHiY1
- tlMw==
-X-Gm-Message-State: AOAM531vuspi7JrTBgpSSo/AxbCAQVd+1g8RIUv2g6kRAlpGgxXRhtRC
- lTW/C6H8Op9acDxy/TghIvKYDgCrvi/NBA==
-X-Google-Smtp-Source: ABdhPJwow57UKHvlSPfIR1Ttemgg4A161D1G2paG/eKWqU5i7Y195BpJgW85Igoabj61Qo65/5L3fw==
-X-Received: by 2002:a63:a70e:: with SMTP id d14mr9093741pgf.431.1632591262567; 
- Sat, 25 Sep 2021 10:34:22 -0700 (PDT)
-Received: from archl-c2lm.. ([103.51.72.30])
- by smtp.gmail.com with ESMTPSA id j6sm13113980pgq.0.2021.09.25.10.34.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 25 Sep 2021 10:34:22 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Anand Moon <linux.amoon@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Subject: [PATCHv4] regulator: pwm-regulator: Make use of the helper function
- dev_err_probe()
-Date: Sat, 25 Sep 2021 17:34:12 +0000
-Message-Id: <20210925173413.1019-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.33.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=IeR6I78v07QTr7GwuPjqPsC9KmUX8D77z/xH6y8yFI8=;
+ b=iwFnQK7Auh7Hxsq+KnSif6LZBSJWN/2aJ2ugeGttosjWQS1QDKfnPR/fIepbiHWKo3
+ Q0LotfP/sep8SlBeOZuYQdhZ58MP5vMUHxV6DgSNMC1s1VAxQ7i2Cllp+oigLxCEekYM
+ lqAskCnhg2ZkgQI1Slc0X/7uJYbEvlCiBXPErFmIPv2fff+6D14ByGfXdaLM40ZRoNhF
+ zcptUUzabXLur1oIeYccE9+6jlckPegmz5YduZ4xNLpajXIDEqrrgRkJLROAkpfRQQsq
+ oX/4/Ae2J3TCfvluPmAKrUkymMnI85ZvYk3b2UOZpyXpaIYKvD+NMJyZJDHFOus5FmaT
+ SoMA==
+X-Gm-Message-State: AOAM532h8Flx4hqwCHbEqAQxNwrMxVxn8XXfMUQJiUf8Yr5pFomhwvhO
+ bqSqsesvvljZmcFrNTSTMEQnNjisKZ7ax9bcyu4=
+X-Google-Smtp-Source: ABdhPJw4TvWMdEO0MgDEFaxjkEHiKZXec68E1FwOLvkbn3swXGq+JhkZppepiqKsD9J2+Mhv0mlMjMZvOL7r42tie7U=
+X-Received: by 2002:a05:6402:319a:: with SMTP id
+ di26mr12638279edb.84.1632591730983; 
+ Sat, 25 Sep 2021 10:42:10 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210817041548.1276-1-linux.amoon@gmail.com>
+ <20210817041548.1276-2-linux.amoon@gmail.com>
+ <c7f6213b-5ddc-881c-1aea-9cc7b03e6a4f@baylibre.com>
+ <CAFBinCBeNMET2tvH0h6HF3dR+xBb59hifQyaoXigUs3UGkS+KQ@mail.gmail.com>
+ <2b07b3de-cee5-c570-8fde-6a4c684122d6@baylibre.com>
+ <CANAwSgRNp8UtU+Yy4smwZ5POTWTU+xN1mrf_cH7Pu9yX5HU=VA@mail.gmail.com>
+ <CAFBinCDmNt+aXRE4xFZdegOUs8BqJiTPF3+DQ-buvWWXrQLkdw@mail.gmail.com>
+In-Reply-To: <CAFBinCDmNt+aXRE4xFZdegOUs8BqJiTPF3+DQ-buvWWXrQLkdw@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sat, 25 Sep 2021 23:11:58 +0530
+Message-ID: <CANAwSgTcTCNWD3QTt4-c8BeAbFxDewbZewaSouggPuK9cpSXog@mail.gmail.com>
+Subject: Re: [PATCHv3 1/6] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-phy@lists.infradead.org, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ linux-amlogic@lists.infradead.org, 
+ Linux Kernel <linux-kernel@vger.kernel.org>,
+ devicetree <devicetree@vger.kernel.org>, 
+ Matt Corallo <oc2udbzfd@mattcorallo.com>, Rob Herring <robh+dt@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ Brian Kim <brian.kim@hardkernel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210925_103424_069293_F1187FB6 
-X-CRM114-Status: GOOD (  13.36  )
+X-CRM114-CacheID: sfid-20210925_104212_339575_BFEE781D 
+X-CRM114-Status: GOOD (  18.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,49 +101,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-devm_pwm_get() can return -EPROBE_DEFER if the pwm regulator is not
-ready yet. Use dev_err_probe() for pwm regulator resources
-to indicate the deferral reason when waiting for the
-resource to come up.
+Hi Martin,
 
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-V3 - Fix the coading style issue. dropped { }
-V2 - Fix the return message and drop the FIX tag in commit.
-V1 - Fix the wrong probe defer for devm_regulator_register.
-   - Fix the commit message.
----
- drivers/regulator/pwm-regulator.c | 12 +++---------
- 1 file changed, 3 insertions(+), 9 deletions(-)
+On Tue, 21 Sept 2021 at 00:56, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Tue, Aug 31, 2021 at 10:48 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+> > After enabling CONFIG_REGULATOR_DEBUG, with this patch applied
+> > I still not getting the USB regulator to enable.
+> > Do you see different output at your end?
+> I don't have much time for testing and debugging currently but I'll
+> put it on my TODO-list
+> Until either of us has found the issue I suggest not merging this patch.
+>
+Ok no problem.
 
-diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-regulator.c
-index 7629476d94ae..b9eeaff1c661 100644
---- a/drivers/regulator/pwm-regulator.c
-+++ b/drivers/regulator/pwm-regulator.c
-@@ -352,15 +352,9 @@ static int pwm_regulator_probe(struct platform_device *pdev)
- 	config.init_data = init_data;
- 
- 	drvdata->pwm = devm_pwm_get(&pdev->dev, NULL);
--	if (IS_ERR(drvdata->pwm)) {
--		ret = PTR_ERR(drvdata->pwm);
--		if (ret == -EPROBE_DEFER)
--			dev_dbg(&pdev->dev,
--				"Failed to get PWM, deferring probe\n");
--		else
--			dev_err(&pdev->dev, "Failed to get PWM: %d\n", ret);
--		return ret;
--	}
-+	if (IS_ERR(drvdata->pwm))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(drvdata->pwm),
-+				     "Failed to get PWM\n");
- 
- 	if (init_data->constraints.boot_on || init_data->constraints.always_on)
- 		gpio_flags = GPIOD_OUT_HIGH;
--- 
-2.33.0
+Basically, I have just roughly gone through the architecture of
+Amlogic's OTG framework.
+Below is the global configuration registers for DWC2 OTG framer work
 
+[0] https://github.com/hardkernel/linux/blob/odroidc-3.10.y/drivers/amlogic/usb/dwc_otg/310/dwc_otg_regs.h#L66-L151
+
+Within some configurations, it helps tune the power for vbus and interrupt
+For example
+[1] https://github.com/hardkernel/linux/blob/odroidc-3.10.y/drivers/amlogic/usb/dwc_otg/310/dwc_otg_attr.c#L666-L717
+
+Amlogic basically used the mode parameter to external tune the DWC2 driver
+it could help more fine-tuning the driver.
+
+[2] https://github.com/hardkernel/linux/blob/odroidc-3.10.y/drivers/amlogic/usb/dwc_otg/310/dwc_otg_driver.c#L1461-L1703
+
+I feel we need to identify many more PHY tuning parameters to make the
+USB work correctly.
+
+
+
+
+
+
+Thanks
+-Anand
+
+>
+> Best regards,
+> Martin
 
 _______________________________________________
 linux-amlogic mailing list
