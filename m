@@ -2,66 +2,81 @@ Return-Path: <SRS0=QVii=OR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4717EC433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 17:47:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CC66DC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 20:05:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E8C8560FD7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 17:47:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E8C8560FD7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 9612360FC0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 20:05:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9612360FC0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bCm49Wqh6uwvZ/tO0DD+0IVoZ23Z1AEDZQnVe9K19Wk=; b=ST2kfyjIE18QhX
-	g4u7p7g/K02DT3X06XFuODUVVeftP19pOqlHh7JjrbJ4a5uR45dU0UGN0DQKHfpOWj5EJDdw0UEyu
-	UvgHO//5AuctT39nLRbCv9niXa7WHgdUSQe1LQrt/e4QDKQch0x5n1ZoxbyFUu0pCqIuQBwwA/7pv
-	RTwSx+idSW4qKeBuTxHNqbpMmisKIisvO5Ace0bE5jX6cXMWbkxXCvv05Uc7/p27AVHOqoHwGL/k/
-	llWyuWAEqAJnGrbAJPhk3jCRuZdpgWj9JYsHO23x/KGtLhS89jkYi70r6RngSSAs2H2KUkShoitpE
-	nqhOLE4VYIG2cAowIxRA==;
+	List-Owner; bh=HG0GQ/yt7B63ALWhb1+kPih9SQlhgw7BjpaDByhd/ik=; b=MuiX4IPke5ybtZ
+	kV3vhNQP8wx8MS7lTQcoWd5+LAX3dnkfCLVJCXEPTXfxxNd+jC98qld31kZKFEzbsnEPxcUzAErmZ
+	0Kig11WKH3x1xwwhW6JZ1zPM6keKLQuWxhuGu2TjPtNuNIcpDElzcqCS6LJvBnO677bnxF9o9BG2Z
+	QbPHUj15m/y1503817PTJjIOS5aVo3S3qBB62faZXp2XyORO+bhuzQOcP6jEU+J0bjPTaZjnkwjkf
+	/um1kgXqTUrYqVTCfW/O7SIgiswsi9ddzsetfAvpwG7i4F2awGq4JnKKvnQD4o46QE1gEVRGH8RrB
+	OrzPIfMV0sPDjsOMCxvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mUuij-003fPZ-9f; Mon, 27 Sep 2021 17:47:17 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1mUwrw-0046f6-2n; Mon, 27 Sep 2021 20:04:56 +0000
+Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mUuig-003fOG-6b; Mon, 27 Sep 2021 17:47:15 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5E3D560F4F;
- Mon, 27 Sep 2021 17:47:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1632764833;
- bh=vaAGDWdMM7DnyyWXxtxSddAQ5DUocd9iZv+90xzItsI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=PiFQVEkTlYZsjWIqN83tvpAeQS66u7BaiLdsgKY23NVT37ltIo5A/J757P2ckRcXX
- LAby4ZotutVpi4NN8g8T7JJupJPfdmbQRlQJMwukYoW3LsYvF7lWlwmMljrK914qym
- lE3moP1tt0iBiich7SPzrlbeKgclai6zoN456Gq7/Ow1QJJe/CB9ihDPOArQJZAeWa
- DE7aIz+zwTRqQatXZ7erRpkshQbFmDbj56SCyRFc5wUA1/boF0adClXp86FQOmbRtH
- mnDhlauYAFfkrHwA91ENcqwbk2yZq+dL4RUnNcG0yLYwpq/eggvl3sL+Nl2gUwaz/0
- 9iwf+2T1zRDRA==
-From: Mark Brown <broonie@kernel.org>
-To: linux-arm-kernel@lists.infradead.org, Liam Girdwood <lgirdwood@gmail.com>,
- alsa-devel@alsa-project.org, Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Takashi Iwai <tiwai@suse.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Colin King <colin.king@canonical.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-amlogic@lists.infradead.org, Jaroslav Kysela <perex@perex.cz>
-Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH] ASoC: meson: aiu: Fix spelling mistake "Unsupport" ->
- "Unsupported"
-Date: Mon, 27 Sep 2021 18:45:27 +0100
-Message-Id: <163276442024.18200.9710161748366724709.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210924231242.144692-1-colin.king@canonical.com>
-References: <20210924231242.144692-1-colin.king@canonical.com>
+ id 1mUwrt-0046dr-1i; Mon, 27 Sep 2021 20:04:54 +0000
+Received: by mail-ed1-x52d.google.com with SMTP id x7so59260743edd.6;
+ Mon, 27 Sep 2021 13:04:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7OX8yMzkk8iAoqm3EQC246sTeS8KMkAo8I3fGOIEk0o=;
+ b=jeaxrflHDslabpblAoWGyJ9CMxArRIOiQ6AgggHNG/E4JAzrSKTRDtxDKupBhU8Gnb
+ 0EynIxCVGMXGy3RDx+gtNIuyGHfxNFZJMiistP250SzoxdgpfgtSJPxeEceuz+CDWJEc
+ CFx3lBQ0/esx6ft3FLZ2cIA9KpuAOAC/a0u178ZpC6XK0AD1HtB7mnoi+vxaNi0KpYnj
+ LLQ/AyIaUvj1u4j4Sl0/dtNoBiCRQ55wkJS/FZltVCVZ5dQmFU7n89ePggRQ2jnPvQQM
+ 4xaMRaYLxapDhBG89Fudyd7F+FnbZMD7+5S/aNrTazb+TKbdUuZKILc39k9fD6f4CVqZ
+ i0qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7OX8yMzkk8iAoqm3EQC246sTeS8KMkAo8I3fGOIEk0o=;
+ b=heYsYI+5gzL8U7JHpRTfRof+RBUP9pKv5edOxQ9tvyWvilTqJJTqOCqz8XVSS0usgH
+ 8qXfiUngFQcWIrS3AcVi1O4nnK5+frZl57vyAD+2dJxEV/B1HyPwgo4aYb1TqbMNEqRE
+ 5e0d2cr5uYIxakWWhWmfdDQdH9vBRymMP8Q23bbzNEpMHKUQiDRq27U4LAkaGw1gLq8R
+ a1lOQwE9llOFPjA0aovvGPtFK/6u6qQJ9lzIlONItY59jp9qaKiCvVseC1og1uYMVPyZ
+ T8hQwKO9CbfgGdrlxi1ea33DNYeQ+fP1j5wsXLcR+Lhl+sMJ4OHIHvRzJA8nJMvCxM6c
+ mGTA==
+X-Gm-Message-State: AOAM531ErwJXyiGPcTL0bBQA8795uf9FKyhv3/sGMF8brtMBsPIRNU3U
+ 0Ie1ZYDVzD/6119V53ltTedn92G0mJJOM1cZLHQ=
+X-Google-Smtp-Source: ABdhPJzuMhBwzbGpSC0BWzXQTXJ6xTuHcG+6DyWu4ypgvTPZ/5SFkk+EkuN8imBZmoAGRbFBIvfwepGqbgLbw0upOrQ=
+X-Received: by 2002:a17:906:318f:: with SMTP id
+ 15mr2225309ejy.206.1632773090226; 
+ Mon, 27 Sep 2021 13:04:50 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210921192557.1610709-1-martin.blumenstingl@googlemail.com>
+ <20210921192557.1610709-3-martin.blumenstingl@googlemail.com>
+ <20210927161955.GA2837840@p14s>
+In-Reply-To: <20210927161955.GA2837840@p14s>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 27 Sep 2021 22:04:39 +0200
+Message-ID: <CAFBinCBBoCONAkT97nspipbbkwgLU2RjeQa5rz-MKiwyKoKAqA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] remoteproc: meson-mx-ao-arc: Add a driver for the
+ AO ARC remote procesor
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ bjorn.andersson@linaro.org, ohad@wizery.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210927_104714_280059_B6924879 
-X-CRM114-Status: GOOD (  10.61  )
+X-CRM114-CacheID: sfid-20210927_130453_137701_B5D9A335 
+X-CRM114-Status: UNSURE (   8.45  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,40 +93,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 25 Sep 2021 00:12:42 +0100, Colin King wrote:
-> From: Colin Ian King <colin.king@canonical.com>
-> 
-> There is a spelling mistake in a dev_err error message. Fix it.
-> 
-> 
+Hi Mathieu,
 
-Applied to
+On Mon, Sep 27, 2021 at 6:20 PM Mathieu Poirier
+<mathieu.poirier@linaro.org> wrote:
+[...]
+> > +#include <linux/bitfield.h>
+> > +#include <linux/bitops.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/property.h>
+>
+> I moved this just above platform_device.h and applied this set.
+I missed that part - thanks for fixing this up and applying the other
+patch as well!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks!
-
-[1/1] ASoC: meson: aiu: Fix spelling mistake "Unsupport" -> "Unsupported"
-      commit: 9929265f2a7b5fa15d460dbbaa7f388c303411da
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
