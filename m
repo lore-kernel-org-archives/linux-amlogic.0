@@ -1,90 +1,74 @@
-Return-Path: <SRS0=x061=OP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=QVii=OR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 572B5C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:42:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 39C44C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 08:14:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1932960E90
-	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Sep 2021 17:42:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1932960E90
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id CA16C6054F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 08:14:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CA16C6054F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baidu.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bxH2dS4rfKW3KOAeNB+YHrd7T7AKPaaClFmj6cbkB18=; b=q9u5AFuuhFhcZW
-	H1sPpg6QPpfVQUlwCdkdGkOzraZMBk+pgoDsalJrXg0C36sFwHXgZ2MbEDLQdyZNx5yEmVXBzwup6
-	wobUDiQSETZir3Q1CLuuPxBPvJIHOpwNAo2Tg2HLDKZ56VLi6fmGNyVpF87/bqbzT/DNH3y2NGNqb
-	cWquKSiYhXXtJ7n1YPK6hDHkiX63KIkQ5/+Cgm+n9y3FY1oFA/MOUtShxb57/fGiwwmJRP/6r6HTq
-	Pgv5aaziWqsEMdZh/4qaQVDOLbcv1hk0vbTk9na3nXNGjC5Jfm/C6mG3nSNStkT1KA8muvpKwpjuB
-	kT5Oa81OkZ1gfJiD73sQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ZFERe2XYC0GScTfYZzjKEIISnDTQPJiylFkG8Ruiv+0=; b=MHcuod6j4dKPbc
+	7+btm/G4NE5S33I6MMhQf5hDNanBWH7EHEa9EYlqTGq3cH6Fr5XT3jfLFI/pyokSrrZTxM+wnSLQT
+	kopAINsPWFSEWRquXEtr+vLPA00MJBJb7P2aDWxPqoJMgV4eRV4hxoQxKcTodzQJX7PiehiEHijiB
+	heq1XStklSRp+Za3SM56rOaI8TYZfbcA1D44G380DfeSPQeZsf2WhD8pIdUqjnhwUMu10miEBwTjZ
+	qqN5tg4F/FA/koNFIYiRGFNKmcMBrHjBumgpWVCBoTQ+4e7ryVddLfFY45AaBuYLlh0ZZ0mkMyNan
+	d9moN5vV/FGgOksfeuIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mUBgv-00Gzde-0e; Sat, 25 Sep 2021 17:42:25 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mUBgi-00GzcK-8N; Sat, 25 Sep 2021 17:42:13 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id ee50so49544123edb.13;
- Sat, 25 Sep 2021 10:42:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IeR6I78v07QTr7GwuPjqPsC9KmUX8D77z/xH6y8yFI8=;
- b=IRAqRPzgfb+l3oosTcNuCrp/+4E0gI9cN8XAOxGuWL0Q86mesco1wT35ZtwEjsPg7O
- mVrG1YDvsUYZw33ZU0BzxOPLenOe+00qlat4v4mAl2f2FD7a3CAar45txxjbowsFXy6n
- cuG9C1NRRPeu+40lWz/N154oiu18PwHQJqe/xXBOmVFfqrCpkA2qjjehQ1IBDLhQYbXm
- RLRbbiW7YweqJRdWVgGHYujen/b2CvdlCsQ6hemxWRVWz7/CTkEWaSsji86pMxchJ0jk
- DoY9/T+PJJUEqfXgfoQk9WRCDeYiBg3zDLg2mIA+Ytwpig5Oxw45in0XnQyMSuHMbKvu
- WkCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IeR6I78v07QTr7GwuPjqPsC9KmUX8D77z/xH6y8yFI8=;
- b=iwFnQK7Auh7Hxsq+KnSif6LZBSJWN/2aJ2ugeGttosjWQS1QDKfnPR/fIepbiHWKo3
- Q0LotfP/sep8SlBeOZuYQdhZ58MP5vMUHxV6DgSNMC1s1VAxQ7i2Cllp+oigLxCEekYM
- lqAskCnhg2ZkgQI1Slc0X/7uJYbEvlCiBXPErFmIPv2fff+6D14ByGfXdaLM40ZRoNhF
- zcptUUzabXLur1oIeYccE9+6jlckPegmz5YduZ4xNLpajXIDEqrrgRkJLROAkpfRQQsq
- oX/4/Ae2J3TCfvluPmAKrUkymMnI85ZvYk3b2UOZpyXpaIYKvD+NMJyZJDHFOus5FmaT
- SoMA==
-X-Gm-Message-State: AOAM532h8Flx4hqwCHbEqAQxNwrMxVxn8XXfMUQJiUf8Yr5pFomhwvhO
- bqSqsesvvljZmcFrNTSTMEQnNjisKZ7ax9bcyu4=
-X-Google-Smtp-Source: ABdhPJw4TvWMdEO0MgDEFaxjkEHiKZXec68E1FwOLvkbn3swXGq+JhkZppepiqKsD9J2+Mhv0mlMjMZvOL7r42tie7U=
-X-Received: by 2002:a05:6402:319a:: with SMTP id
- di26mr12638279edb.84.1632591730983; 
- Sat, 25 Sep 2021 10:42:10 -0700 (PDT)
+	id 1mUlmh-001vaV-Su; Mon, 27 Sep 2021 08:14:47 +0000
+Received: from mx24.baidu.com ([111.206.215.185] helo=baidu.com)
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mUlme-001vYw-Cm; Mon, 27 Sep 2021 08:14:46 +0000
+Received: from BC-Mail-Ex07.internal.baidu.com (unknown [172.31.51.47])
+ by Forcepoint Email with ESMTPS id C26F8183A0D47E84DEA2;
+ Mon, 27 Sep 2021 16:14:37 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BC-Mail-EX07.internal.baidu.com (172.31.51.47) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2242.12; Mon, 27 Sep 2021 16:14:37 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Mon, 27 Sep 2021 16:14:36 +0800
+From: Cai Huoqing <caihuoqing@baidu.com>
+To: <caihuoqing@baidu.com>
+CC: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron
+ <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ "NXP Linux Team" <linux-imx@nxp.com>, Vladimir Zapolskiy <vz@mleia.com>,
+ "Neil Armstrong" <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Andy Gross
+ <agross@kernel.org>, "Bjorn Andersson" <bjorn.andersson@linaro.org>, Heiko
+ Stuebner <heiko@sntech.de>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-rockchip@lists.infradead.org>
+Subject: [PATCH 1/9] iio: adc: ab8500-gpadc: Make use of the helper function
+ dev_err_probe()
+Date: Mon, 27 Sep 2021 16:14:17 +0800
+Message-ID: <20210927081426.762-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210817041548.1276-1-linux.amoon@gmail.com>
- <20210817041548.1276-2-linux.amoon@gmail.com>
- <c7f6213b-5ddc-881c-1aea-9cc7b03e6a4f@baylibre.com>
- <CAFBinCBeNMET2tvH0h6HF3dR+xBb59hifQyaoXigUs3UGkS+KQ@mail.gmail.com>
- <2b07b3de-cee5-c570-8fde-6a4c684122d6@baylibre.com>
- <CANAwSgRNp8UtU+Yy4smwZ5POTWTU+xN1mrf_cH7Pu9yX5HU=VA@mail.gmail.com>
- <CAFBinCDmNt+aXRE4xFZdegOUs8BqJiTPF3+DQ-buvWWXrQLkdw@mail.gmail.com>
-In-Reply-To: <CAFBinCDmNt+aXRE4xFZdegOUs8BqJiTPF3+DQ-buvWWXrQLkdw@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sat, 25 Sep 2021 23:11:58 +0530
-Message-ID: <CANAwSgTcTCNWD3QTt4-c8BeAbFxDewbZewaSouggPuK9cpSXog@mail.gmail.com>
-Subject: Re: [PATCHv3 1/6] ARM: dts: meson8b: odroidc1: Add usb phy power node
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-phy@lists.infradead.org, 
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic@lists.infradead.org, 
- Linux Kernel <linux-kernel@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>, 
- Matt Corallo <oc2udbzfd@mattcorallo.com>, Rob Herring <robh+dt@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>, 
- Emiliano Ingrassia <ingrassia@epigenesys.com>,
- Brian Kim <brian.kim@hardkernel.com>
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-Ex10.internal.baidu.com (172.31.51.50) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210925_104212_339575_BFEE781D 
-X-CRM114-Status: GOOD (  18.53  )
+X-CRM114-CacheID: sfid-20210927_011444_664600_294F535D 
+X-CRM114-Status: UNSURE (   9.98  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,53 +85,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+When possible use dev_err_probe help to properly deal with the
+PROBE_DEFER error, the benefit is that DEFER issue will be logged
+in the devices_deferred debugfs file.
+Using dev_err_probe() can reduce code size, and the error value
+gets printed.
 
-On Tue, 21 Sept 2021 at 00:56, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Tue, Aug 31, 2021 at 10:48 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > After enabling CONFIG_REGULATOR_DEBUG, with this patch applied
-> > I still not getting the USB regulator to enable.
-> > Do you see different output at your end?
-> I don't have much time for testing and debugging currently but I'll
-> put it on my TODO-list
-> Until either of us has found the issue I suggest not merging this patch.
->
-Ok no problem.
+Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+---
+ drivers/iio/adc/ab8500-gpadc.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-Basically, I have just roughly gone through the architecture of
-Amlogic's OTG framework.
-Below is the global configuration registers for DWC2 OTG framer work
+diff --git a/drivers/iio/adc/ab8500-gpadc.c b/drivers/iio/adc/ab8500-gpadc.c
+index 7b5212ba5501..c58d0e2ae538 100644
+--- a/drivers/iio/adc/ab8500-gpadc.c
++++ b/drivers/iio/adc/ab8500-gpadc.c
+@@ -1146,11 +1146,10 @@ static int ab8500_gpadc_probe(struct platform_device *pdev)
+ 
+ 	/* The VTVout LDO used to power the AB8500 GPADC */
+ 	gpadc->vddadc = devm_regulator_get(dev, "vddadc");
+-	if (IS_ERR(gpadc->vddadc)) {
+-		ret = PTR_ERR(gpadc->vddadc);
+-		dev_err(dev, "failed to get vddadc\n");
+-		return ret;
+-	}
++	if (IS_ERR(gpadc->vddadc))
++		return dev_err_probe(dev,
++				     PTR_ERR(gpadc->vddadc),
++				     "failed to get vddadc\n");
+ 
+ 	ret = regulator_enable(gpadc->vddadc);
+ 	if (ret) {
+-- 
+2.25.1
 
-[0] https://github.com/hardkernel/linux/blob/odroidc-3.10.y/drivers/amlogic/usb/dwc_otg/310/dwc_otg_regs.h#L66-L151
-
-Within some configurations, it helps tune the power for vbus and interrupt
-For example
-[1] https://github.com/hardkernel/linux/blob/odroidc-3.10.y/drivers/amlogic/usb/dwc_otg/310/dwc_otg_attr.c#L666-L717
-
-Amlogic basically used the mode parameter to external tune the DWC2 driver
-it could help more fine-tuning the driver.
-
-[2] https://github.com/hardkernel/linux/blob/odroidc-3.10.y/drivers/amlogic/usb/dwc_otg/310/dwc_otg_driver.c#L1461-L1703
-
-I feel we need to identify many more PHY tuning parameters to make the
-USB work correctly.
-
-
-
-
-
-
-Thanks
--Anand
-
->
-> Best regards,
-> Martin
 
 _______________________________________________
 linux-amlogic mailing list
