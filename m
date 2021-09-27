@@ -2,14 +2,14 @@ Return-Path: <SRS0=QVii=OR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC66DC433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 20:05:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05A29C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 20:10:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9612360FC0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 20:05:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9612360FC0
+	by mail.kernel.org (Postfix) with ESMTPS id B22DD60FD7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 20:10:19 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B22DD60FD7
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,64 +18,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HG0GQ/yt7B63ALWhb1+kPih9SQlhgw7BjpaDByhd/ik=; b=MuiX4IPke5ybtZ
-	kV3vhNQP8wx8MS7lTQcoWd5+LAX3dnkfCLVJCXEPTXfxxNd+jC98qld31kZKFEzbsnEPxcUzAErmZ
-	0Kig11WKH3x1xwwhW6JZ1zPM6keKLQuWxhuGu2TjPtNuNIcpDElzcqCS6LJvBnO677bnxF9o9BG2Z
-	QbPHUj15m/y1503817PTJjIOS5aVo3S3qBB62faZXp2XyORO+bhuzQOcP6jEU+J0bjPTaZjnkwjkf
-	/um1kgXqTUrYqVTCfW/O7SIgiswsi9ddzsetfAvpwG7i4F2awGq4JnKKvnQD4o46QE1gEVRGH8RrB
-	OrzPIfMV0sPDjsOMCxvw==;
+	List-Owner; bh=/B2LaGFsW7AneMJHsmi2vas4VOsjyTJBGbWqUjYrk+k=; b=ZBl3Wyb9h3hks0
+	t/3qkfKNToueBn2g7q5CGJTICk9cn/SpR987xhlGmj2yr9YtP0xTbTRJ0fM3h3MyyCjDRzwCGeBda
+	y2N+SDzQpLWhdSBbpj3LLJBpy3Q1cZ8fv0NlxuJj49/SPjNthqdfkXe3XbZv/6CBw1gR8T/mHK0wO
+	GwZoYL33fDkiE0fvxSxje3m9tQLLn91YhMBNILGgrvhCT5nAKzPdmVl08ZU6AWfleYgyUmlguOurx
+	jV9okdFORw6TYMTguBLXZ/iiIqXyIBGKAcDKWurlGZyX7jPGUcU9+YjgSGMoQGY+CM4peCl+4dv0o
+	JOVcId3TpmseFyvPTl7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mUwrw-0046f6-2n; Mon, 27 Sep 2021 20:04:56 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1mUwx4-0047m6-V9; Mon, 27 Sep 2021 20:10:14 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mUwrt-0046dr-1i; Mon, 27 Sep 2021 20:04:54 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id x7so59260743edd.6;
- Mon, 27 Sep 2021 13:04:51 -0700 (PDT)
+ id 1mUwwp-0047hG-Tc; Mon, 27 Sep 2021 20:10:01 +0000
+Received: by mail-ed1-x536.google.com with SMTP id b26so25630470edt.0;
+ Mon, 27 Sep 2021 13:09:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=7OX8yMzkk8iAoqm3EQC246sTeS8KMkAo8I3fGOIEk0o=;
- b=jeaxrflHDslabpblAoWGyJ9CMxArRIOiQ6AgggHNG/E4JAzrSKTRDtxDKupBhU8Gnb
- 0EynIxCVGMXGy3RDx+gtNIuyGHfxNFZJMiistP250SzoxdgpfgtSJPxeEceuz+CDWJEc
- CFx3lBQ0/esx6ft3FLZ2cIA9KpuAOAC/a0u178ZpC6XK0AD1HtB7mnoi+vxaNi0KpYnj
- LLQ/AyIaUvj1u4j4Sl0/dtNoBiCRQ55wkJS/FZltVCVZ5dQmFU7n89ePggRQ2jnPvQQM
- 4xaMRaYLxapDhBG89Fudyd7F+FnbZMD7+5S/aNrTazb+TKbdUuZKILc39k9fD6f4CVqZ
- i0qg==
+ :cc; bh=vWCgs3XZtqQ75S4Sam0oUHvtow8EHQKNfWFQPQcnRsY=;
+ b=CjCqPN4lsrmL/kgXYQ/RxflbFh56hSOKqIeyX1W/oIBfrq4g8nLspVD4sQMrn+40Rh
+ Rx4viRYm7QpwSajB8/nS9I5EnOQAzL0pUBz4lQns538q/Qteac9sWhcfIIrmfsOSKzsU
+ M/PAXh8x8DmXoA/RtTV/ChQhPTk8C8Id1hnlJcijflS84t+U/LfK3VqO+GuY2jbR/wSS
+ Jeouq+xThsOnrcpcRddG2ODCpZRewj156How3JR4A1KMdpDZs7HuWvu3b5Y3uekBZh/f
+ anAzLHdRSEeqsXP37MCrOfOLFAdqYOJXZV5OWmUogHnZBCe+LfWz2FGRBS/GFuXNmIlm
+ 9OmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=7OX8yMzkk8iAoqm3EQC246sTeS8KMkAo8I3fGOIEk0o=;
- b=heYsYI+5gzL8U7JHpRTfRof+RBUP9pKv5edOxQ9tvyWvilTqJJTqOCqz8XVSS0usgH
- 8qXfiUngFQcWIrS3AcVi1O4nnK5+frZl57vyAD+2dJxEV/B1HyPwgo4aYb1TqbMNEqRE
- 5e0d2cr5uYIxakWWhWmfdDQdH9vBRymMP8Q23bbzNEpMHKUQiDRq27U4LAkaGw1gLq8R
- a1lOQwE9llOFPjA0aovvGPtFK/6u6qQJ9lzIlONItY59jp9qaKiCvVseC1og1uYMVPyZ
- T8hQwKO9CbfgGdrlxi1ea33DNYeQ+fP1j5wsXLcR+Lhl+sMJ4OHIHvRzJA8nJMvCxM6c
- mGTA==
-X-Gm-Message-State: AOAM531ErwJXyiGPcTL0bBQA8795uf9FKyhv3/sGMF8brtMBsPIRNU3U
- 0Ie1ZYDVzD/6119V53ltTedn92G0mJJOM1cZLHQ=
-X-Google-Smtp-Source: ABdhPJzuMhBwzbGpSC0BWzXQTXJ6xTuHcG+6DyWu4ypgvTPZ/5SFkk+EkuN8imBZmoAGRbFBIvfwepGqbgLbw0upOrQ=
-X-Received: by 2002:a17:906:318f:: with SMTP id
- 15mr2225309ejy.206.1632773090226; 
- Mon, 27 Sep 2021 13:04:50 -0700 (PDT)
+ bh=vWCgs3XZtqQ75S4Sam0oUHvtow8EHQKNfWFQPQcnRsY=;
+ b=BupUFt6RonNvJQF3QzYcduoiYcSVw7chtI3EWL4XO0H+eD+XxqPE1LqRHJrkfbY52a
+ sQo31kOPFCtACkwWsXjLbtL/9M536b9/3emIWOyWdvfvZjyrHKRmZ/qzRByve4vajdcn
+ idqoupa9noo83JwYAwnKv9cz6W3wfYLwnc83iXH6hcr7/M72VfRbgkBUx8u6ee/fsl86
+ HuhMibpiLdZCmPpnDE1s7Kvl2M7F+MuJlQfoR0HT4hfrYPRukE7ldCgQk4r/RgY98yVw
+ XGjQk3/0edFMaX+rJ1v46fVLIgTwBqJrbmZXjeBqSW1l3xd7oWjDVOWZ+vxf0E+BNXk9
+ 02Vg==
+X-Gm-Message-State: AOAM5324j+3c+eIHxXjxxWx/YKGtHYgLxzeUrF74pzsCj2XliS3ZPcbr
+ H7jxpaw8+qw/8Gq7FLeZv6hrRA5J4fDb8HM41HU=
+X-Google-Smtp-Source: ABdhPJzCjvA/IcL6veR1cMq/hHfeR/9BjzJWC1sc8TXInJGO6uEWxkVIvtfeGVw/Xg4fYEEF9aI0SBlYG9XiAfkPmrs=
+X-Received: by 2002:a17:906:f92:: with SMTP id
+ q18mr2161486ejj.353.1632773397700; 
+ Mon, 27 Sep 2021 13:09:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210921192557.1610709-1-martin.blumenstingl@googlemail.com>
- <20210921192557.1610709-3-martin.blumenstingl@googlemail.com>
- <20210927161955.GA2837840@p14s>
-In-Reply-To: <20210927161955.GA2837840@p14s>
+References: <20210927081426.762-1-caihuoqing@baidu.com>
+ <20210927081426.762-6-caihuoqing@baidu.com>
+In-Reply-To: <20210927081426.762-6-caihuoqing@baidu.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 27 Sep 2021 22:04:39 +0200
-Message-ID: <CAFBinCBBoCONAkT97nspipbbkwgLU2RjeQa5rz-MKiwyKoKAqA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] remoteproc: meson-mx-ao-arc: Add a driver for the
- AO ARC remote procesor
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- bjorn.andersson@linaro.org, ohad@wizery.com
+Date: Mon, 27 Sep 2021 22:09:47 +0200
+Message-ID: <CAFBinCAatVy_9abUJ7A6frbsOqDqAzVe9oDJODOS5MC7aCcDVg@mail.gmail.com>
+Subject: Re: [PATCH 6/9] iio: adc: meson_saradc: Make use of the helper
+ function dev_err_probe()
+To: Cai Huoqing <caihuoqing@baidu.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210927_130453_137701_B5D9A335 
-X-CRM114-Status: UNSURE (   8.45  )
+X-CRM114-CacheID: sfid-20210927_131000_000305_D65CB58B 
+X-CRM114-Status: UNSURE (   9.21  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,20 +95,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Mathieu,
+Hello,
 
-On Mon, Sep 27, 2021 at 6:20 PM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
+first of all: thanks for this patch!
+
+On Mon, Sep 27, 2021 at 10:15 AM Cai Huoqing <caihuoqing@baidu.com> wrote:
 [...]
-> > +#include <linux/bitfield.h>
-> > +#include <linux/bitops.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/property.h>
->
-> I moved this just above platform_device.h and applied this set.
-I missed that part - thanks for fixing this up and applying the other
-patch as well!
+> +       if (IS_ERR(priv->clkin))
+> +               return dev_err_probe(&pdev->dev,
+> +                                    PTR_ERR(priv->clkin),
+Is there any specific reason why you put PTR_ERR() on a separate line?
+it would still fit into the line above and be below the old 80 chars
+per line limit.
+For priv->vref you already have it the way I am suggesting there.
+
+[...]
+> +       if (IS_ERR(priv->core_clk))
+> +               return dev_err_probe(&pdev->dev,
+> +                                    PTR_ERR(priv->core_clk),
+the same question as above applies here as well
 
 
 Best regards,
