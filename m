@@ -2,14 +2,14 @@ Return-Path: <SRS0=QVii=OR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 39F5EC4332F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 08:14:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11817C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 08:15:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D7E8A60F70
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 08:14:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D7E8A60F70
+	by mail.kernel.org (Postfix) with ESMTPS id 9FD6660EB4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 08:15:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9FD6660EB4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baidu.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,29 +18,29 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jpEmOa24bV5MmFKFe0unEfur9ebkQd+T+kkfxjwS+IY=; b=BweFtrCWeCgJ/X
-	A7ECThL6YiRIR5RgnJHIa8K/kUD+0+P1O0+ghn7UjM1DNaAbpqZ6ibdkC+71tD4uoqDUWJYnJ/lQx
-	AeKWlhsV2PkhFRjiF01tOn9IIk8qNiXomnUD0j9npEKZC1AkBfqs9f+LECRuZfZkZpQ/e0MprQDMO
-	6mrRcvlkzgBnRP1iE5jn8VqlVJQvmqs+FKf1aSczlM3HemjvY6C8t2PXK2k/lRb9fiGXp3IgZY9Qm
-	hOcNmbuA3uln74a/bvq0DzNLzlMX3oU0QX9k15wWgSzGaSSNCP21O29ADKt1CkwbH+yCPGp2yHfdR
-	px1Gc/ZsavS0yuQaHhXw==;
+	List-Owner; bh=xYR9kmp1fvypzaBsni2m8G2B45nntOeEOt1kTjm8ILI=; b=nIvP9aLPb6T4JC
+	bwQYF8DoQ5hs0rnRNkv1reR9MiREUWIbNPyLEqeYVe4PIAA+61EMVrycWgdLAD1UkWobAAz6Ai+qF
+	lx7+T1zvINV7KVxDp2MjGpZ1jZOjq96Tx1GmxX6HlCuI/+5Mc1Cj7gOCg/uIpBAaZu1fALFVGyhC1
+	rt5KjcNA26WY2JkxGKkroM1b3d5IQS/H/Sjpw9MYgMZUsUJkSrAXkqPEGOrt0FfUDM1ZSKcWHtpdD
+	/xss/JCuZNXHOVWgLa0m44yFgUD2G8qg0hWMdhieTo2XxRwrjBq84FQxs/EXNwep7UCB4WyupnNII
+	ECxNlrM42s3c+CDIS5xg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mUlmh-001vaJ-68; Mon, 27 Sep 2021 08:14:47 +0000
-Received: from mx24.baidu.com ([111.206.215.185] helo=baidu.com)
+	id 1mUln7-001vj3-Tj; Mon, 27 Sep 2021 08:15:13 +0000
+Received: from mx22.baidu.com ([220.181.50.185] helo=baidu.com)
  by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mUlme-001vZ8-Cn; Mon, 27 Sep 2021 08:14:46 +0000
-Received: from BC-Mail-Ex05.internal.baidu.com (unknown [172.31.51.45])
- by Forcepoint Email with ESMTPS id AE2AF60B385B9141CF8A;
- Mon, 27 Sep 2021 16:14:41 +0800 (CST)
+ id 1mUlmk-001va3-8e; Mon, 27 Sep 2021 08:14:51 +0000
+Received: from BC-Mail-Ex03.internal.baidu.com (unknown [172.31.51.43])
+ by Forcepoint Email with ESMTPS id F1FA295BAE256D84D0D6;
+ Mon, 27 Sep 2021 16:14:44 +0800 (CST)
 Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BC-Mail-Ex05.internal.baidu.com (172.31.51.45) with Microsoft SMTP Server
+ BC-Mail-Ex03.internal.baidu.com (172.31.51.43) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2242.12; Mon, 27 Sep 2021 16:14:40 +0800
+ 15.1.2242.12; Mon, 27 Sep 2021 16:14:44 +0800
 Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Mon, 27 Sep 2021 16:14:40 +0800
+ 15.1.2308.14; Mon, 27 Sep 2021 16:14:43 +0800
 From: Cai Huoqing <caihuoqing@baidu.com>
 To: <caihuoqing@baidu.com>
 CC: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron
@@ -56,10 +56,10 @@ CC: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron
  <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
  <linux-amlogic@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
  <linux-rockchip@lists.infradead.org>
-Subject: [PATCH 2/9] iio: adc: imx7d_adc: Make use of the helper function
+Subject: [PATCH 3/9] iio: adc: lpc18xx_adc: Make use of the helper function
  dev_err_probe()
-Date: Mon, 27 Sep 2021 16:14:18 +0800
-Message-ID: <20210927081426.762-2-caihuoqing@baidu.com>
+Date: Mon, 27 Sep 2021 16:14:19 +0800
+Message-ID: <20210927081426.762-3-caihuoqing@baidu.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210927081426.762-1-caihuoqing@baidu.com>
 References: <20210927081426.762-1-caihuoqing@baidu.com>
@@ -68,8 +68,9 @@ X-Originating-IP: [172.31.63.8]
 X-ClientProxiedBy: BC-Mail-Ex10.internal.baidu.com (172.31.51.50) To
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210927_011444_665090_93AF4889 
-X-CRM114-Status: GOOD (  10.04  )
+X-CRM114-CacheID: sfid-20210927_011450_514266_3719EBA6 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,38 +95,41 @@ gets printed.
 
 Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
 ---
- drivers/iio/adc/imx7d_adc.c | 16 +++++-----------
- 1 file changed, 5 insertions(+), 11 deletions(-)
+ drivers/iio/adc/lpc18xx_adc.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/iio/adc/imx7d_adc.c b/drivers/iio/adc/imx7d_adc.c
-index 4969a5f941e3..f47360cbff3b 100644
---- a/drivers/iio/adc/imx7d_adc.c
-+++ b/drivers/iio/adc/imx7d_adc.c
-@@ -496,19 +496,13 @@ static int imx7d_adc_probe(struct platform_device *pdev)
- 		return irq;
+diff --git a/drivers/iio/adc/lpc18xx_adc.c b/drivers/iio/adc/lpc18xx_adc.c
+index 3566990ae87d..caa7feb4219f 100644
+--- a/drivers/iio/adc/lpc18xx_adc.c
++++ b/drivers/iio/adc/lpc18xx_adc.c
+@@ -137,19 +137,19 @@ static int lpc18xx_adc_probe(struct platform_device *pdev)
+ 		return PTR_ERR(adc->base);
  
- 	info->clk = devm_clk_get(dev, "adc");
--	if (IS_ERR(info->clk)) {
--		ret = PTR_ERR(info->clk);
--		dev_err(dev, "Failed getting clock, err = %d\n", ret);
--		return ret;
+ 	adc->clk = devm_clk_get(&pdev->dev, NULL);
+-	if (IS_ERR(adc->clk)) {
+-		dev_err(&pdev->dev, "error getting clock\n");
+-		return PTR_ERR(adc->clk);
 -	}
-+	if (IS_ERR(info->clk))
-+		return dev_err_probe(dev, PTR_ERR(info->clk), "Failed getting clock\n");
++	if (IS_ERR(adc->clk))
++		return dev_err_probe(&pdev->dev,
++				     PTR_ERR(adc->clk),
++				     "error getting clock\n");
  
- 	info->vref = devm_regulator_get(dev, "vref");
--	if (IS_ERR(info->vref)) {
--		ret = PTR_ERR(info->vref);
--		dev_err(dev,
--			"Failed getting reference voltage, err = %d\n", ret);
--		return ret;
+ 	rate = clk_get_rate(adc->clk);
+ 	clkdiv = DIV_ROUND_UP(rate, LPC18XX_ADC_CLK_TARGET);
+ 
+ 	adc->vref = devm_regulator_get(&pdev->dev, "vref");
+-	if (IS_ERR(adc->vref)) {
+-		dev_err(&pdev->dev, "error getting regulator\n");
+-		return PTR_ERR(adc->vref);
 -	}
-+	if (IS_ERR(info->vref))
-+		return dev_err_probe(dev, PTR_ERR(info->vref),
-+				     "Failed getting reference voltage\n");
++	if (IS_ERR(adc->vref))
++		return dev_err_probe(&pdev->dev,
++				     PTR_ERR(adc->vref),
++				     "error getting regulator\n");
  
- 	platform_set_drvdata(pdev, indio_dev);
- 
+ 	indio_dev->name = dev_name(&pdev->dev);
+ 	indio_dev->info = &lpc18xx_adc_info;
 -- 
 2.25.1
 
