@@ -2,14 +2,14 @@ Return-Path: <SRS0=QVii=OR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96BA5C4332F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 17:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4717EC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 17:47:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5B3EE60F92
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 17:47:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5B3EE60F92
+	by mail.kernel.org (Postfix) with ESMTPS id E8C8560FD7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Sep 2021 17:47:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E8C8560FD7
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,47 +18,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kw2iPRiLpdyWdzMeSpkRcpIUfcmgyt70rogiZmoLM2w=; b=H2K11uh9cS45dM
-	ukEh01il6Q7RPdF0J4MglMQFcYAr06qilC5b1tFuMPoLU5Xrqyw5+dX+7RwisxyuvArhQjCLDQWev
-	kecIi/TfSbJMgOoOq5MXYtC2Fazlp8SvVtJtWgL2wA/xs+SnzfN+FrU0LphoabnqJC/PlgJB34OOe
-	SFFBFuPxBx4TN4mQCgl0Ibl6NGVDrC1YffIUuz1pHLH6IzX8KIYmVkRSR6UNVpwiyabdhVv35e6Ce
-	hc0L1KGvmoQBse0kDZjN6EYL+OmjLo5OrXC9U4lLPCtWkzeaGAPTIYbnt9TP/+EiFsWYGLmNVmH7i
-	M7NKeOKMjacQ1LbKicEA==;
+	List-Owner; bh=bCm49Wqh6uwvZ/tO0DD+0IVoZ23Z1AEDZQnVe9K19Wk=; b=ST2kfyjIE18QhX
+	g4u7p7g/K02DT3X06XFuODUVVeftP19pOqlHh7JjrbJ4a5uR45dU0UGN0DQKHfpOWj5EJDdw0UEyu
+	UvgHO//5AuctT39nLRbCv9niXa7WHgdUSQe1LQrt/e4QDKQch0x5n1ZoxbyFUu0pCqIuQBwwA/7pv
+	RTwSx+idSW4qKeBuTxHNqbpMmisKIisvO5Ace0bE5jX6cXMWbkxXCvv05Uc7/p27AVHOqoHwGL/k/
+	llWyuWAEqAJnGrbAJPhk3jCRuZdpgWj9JYsHO23x/KGtLhS89jkYi70r6RngSSAs2H2KUkShoitpE
+	nqhOLE4VYIG2cAowIxRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mUuiR-003fJn-FZ; Mon, 27 Sep 2021 17:46:59 +0000
+	id 1mUuij-003fPZ-9f; Mon, 27 Sep 2021 17:47:17 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mUuiK-003fIZ-Oi; Mon, 27 Sep 2021 17:46:54 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D3BA660F9B;
- Mon, 27 Sep 2021 17:46:51 +0000 (UTC)
+ id 1mUuig-003fOG-6b; Mon, 27 Sep 2021 17:47:15 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5E3D560F4F;
+ Mon, 27 Sep 2021 17:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1632764812;
- bh=y7MVEonZhyoAS103sBSwF6KBKvSkyh11DLljvMwjBlA=;
+ s=k20201202; t=1632764833;
+ bh=vaAGDWdMM7DnyyWXxtxSddAQ5DUocd9iZv+90xzItsI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=VaHB85phjyfNSC/aTep5QKSmJCgisA3HoVaGEVR967RXmAxbKNjoXBGmA7Fp6kjRy
- txjHIhJYIIiJApigLTlI5wgGFqdzYSxq6BB9YRtNbf6R6mRwAQrUGK9TaxCpAq6isZ
- 9Pu1PrOyLKyJA4DvhPIiCaRQIZ41gaeTeA5mppFd63+WYYkhgSYxabUlI3IS0UAxG/
- AVYIDbIk/ASDTmwiGF00fwI8W2PLrhBC7sM/BcSkA/ba85KW3d8H3XlUrYE/3uTJUx
- GPF+h6a3Cz11mNnKh02/utgO/tB88qy739mtQl2Ug1r4zgn4XmKZPehJmQ07t3ku1+
- vwC13SpnCdZEw==
+ b=PiFQVEkTlYZsjWIqN83tvpAeQS66u7BaiLdsgKY23NVT37ltIo5A/J757P2ckRcXX
+ LAby4ZotutVpi4NN8g8T7JJupJPfdmbQRlQJMwukYoW3LsYvF7lWlwmMljrK914qym
+ lE3moP1tt0iBiich7SPzrlbeKgclai6zoN456Gq7/Ow1QJJe/CB9ihDPOArQJZAeWa
+ DE7aIz+zwTRqQatXZ7erRpkshQbFmDbj56SCyRFc5wUA1/boF0adClXp86FQOmbRtH
+ mnDhlauYAFfkrHwA91ENcqwbk2yZq+dL4RUnNcG0yLYwpq/eggvl3sL+Nl2gUwaz/0
+ 9iwf+2T1zRDRA==
 From: Mark Brown <broonie@kernel.org>
-To: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Anand Moon <linux.amoon@gmail.com>, linux-amlogic@lists.infradead.org
-Cc: Mark Brown <broonie@kernel.org>,
+To: linux-arm-kernel@lists.infradead.org, Liam Girdwood <lgirdwood@gmail.com>,
+ alsa-devel@alsa-project.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Takashi Iwai <tiwai@suse.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCHv4] regulator: pwm-regulator: Make use of the helper
- function dev_err_probe()
-Date: Mon, 27 Sep 2021 18:45:21 +0100
-Message-Id: <163276457918.18909.6526280333093875082.b4-ty@kernel.org>
+ Colin King <colin.king@canonical.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org, Jaroslav Kysela <perex@perex.cz>
+Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+ kernel-janitors@vger.kernel.org
+Subject: Re: [PATCH] ASoC: meson: aiu: Fix spelling mistake "Unsupport" ->
+ "Unsupported"
+Date: Mon, 27 Sep 2021 18:45:27 +0100
+Message-Id: <163276442024.18200.9710161748366724709.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210925173413.1019-1-linux.amoon@gmail.com>
-References: <20210925173413.1019-1-linux.amoon@gmail.com>
+In-Reply-To: <20210924231242.144692-1-colin.king@canonical.com>
+References: <20210924231242.144692-1-colin.king@canonical.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210927_104652_848424_D94C4742 
-X-CRM114-Status: GOOD (  10.63  )
+X-CRM114-CacheID: sfid-20210927_104714_280059_B6924879 
+X-CRM114-Status: GOOD (  10.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,22 +78,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 25 Sep 2021 17:34:12 +0000, Anand Moon wrote:
-> devm_pwm_get() can return -EPROBE_DEFER if the pwm regulator is not
-> ready yet. Use dev_err_probe() for pwm regulator resources
-> to indicate the deferral reason when waiting for the
-> resource to come up.
+On Sat, 25 Sep 2021 00:12:42 +0100, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+> 
+> There is a spelling mistake in a dev_err error message. Fix it.
 > 
 > 
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[1/1] regulator: pwm-regulator: Make use of the helper function dev_err_probe()
-      commit: e458d3f39d917770cef2ed78891349362ecd3e15
+[1/1] ASoC: meson: aiu: Fix spelling mistake "Unsupport" -> "Unsupported"
+      commit: 9929265f2a7b5fa15d460dbbaa7f388c303411da
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
