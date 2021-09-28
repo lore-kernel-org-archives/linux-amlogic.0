@@ -2,99 +2,89 @@ Return-Path: <SRS0=RQ4l=OS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63131C433FE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Sep 2021 07:37:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A6FFC433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Sep 2021 10:46:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DCA02600EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Sep 2021 07:37:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DCA02600EF
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 2606B6101E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Sep 2021 10:46:20 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2606B6101E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=rKixl2sR8GvS52WwmCES4cJjCfxJoaDcCOVkxdaVjtM=; b=D4mucEixLmHc12
-	RC9FNrM3byJAc1riun+28e5bDc9yLVqYrl77EgNOktPtkYS8ZzuOxWUJrRTN+jyEKXXPidTrZqQg9
-	/US53b2I8cdbCmia1qzx4FEyc28jrVhIUVZe4vcf2H9II0+oRoyH7NfhdI44LpPqScMA43oOu7cAi
-	mZPW5RmgGxhNpN05cW03dhXpoZh1yjRYRrTuAwbFXpeWUaRTyAEu4SgQDiOWhaV2U8YFV2viuA35R
-	aGj5lrhLw+uZhMZfYeksk17wNVCmO+/dXbt3w7XVQ2kc/yRtOkqeTjNrwYaZZT7LU6NQKHXDB7ujr
-	gMwAuA28dJoAC3MmOP8A==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=6pvCrinR5KVkVpaXD3POVWsCRaKknG3mmR5Fg5FxP3U=; b=FCDaAJSUaDfKQ/
+	x66M+tbOWqlj38hR7jvdyw8hi+U7bNtZ8FfqXSvYX+qv8WgwKShzXspYt3N2pVgQeNHKJbnndASeI
+	9+X/bWa6pyMSyzObHsx7pnOoXA9eh+FTaOZ88iHGx9QrIj5IFTt1dK/jNwNLDr4Q+kHkzyX9XcoE+
+	0QXOetCHceiSjumFmZpYo358NPq5+JuskcBVNacUb+KLaN54PW7Qo46Mx4fxa9FxUWQSJf7SEQgES
+	OYlqsX+qZM0FqE+4BieFDsdU3ONb/RtBmFLeaXXTraVaDp8H8ze1crx5CknuuEstjiA2uR0nKfX2f
+	yoSeTTdF6PUMcVzFuBeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mV7fx-0061Ko-2A; Tue, 28 Sep 2021 07:37:17 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1mVAcm-006pbG-2T; Tue, 28 Sep 2021 10:46:12 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mV7fj-0061JF-GQ
- for linux-amlogic@lists.infradead.org; Tue, 28 Sep 2021 07:37:05 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id t8so56380929wrq.4
- for <linux-amlogic@lists.infradead.org>; Tue, 28 Sep 2021 00:37:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=m6ukGi3jrrjha+D9TPzmB0py/6c66GKZD4MHDgm6P10=;
- b=jThVZfplycMd8BrUu3i9rNEKQNvwMgZjFUZXnQKydP/BPS7L2KFyndlKOcvnKctuZ9
- HRyckDu+6vU7w9dVAbB6kMteE2kSjzUJs9KPrvhM6bF86qVi/Greu59ujd8iaTfBbX3q
- aB5ZJEouLh6jYdGFvBFAMKG16NoUfuorcKE3kJ3dr8E4mfnQJQKzbl8shvPQWRIX5gcq
- 6SfbIqKB9eS3DCtvImkzc2mPzCF63+01M3y8tB4DyB0Eq8I9eZ96KlsxTeQ/o6Cfqs5c
- JvHjRPqqPIl+4vcGso3fSkh9FW3I8xKhBV1p68mcwWM3lGiHKf/kWk6xh5nEzCPBwzm0
- Njfw==
+ id 1mVAcZ-006pZM-Cx
+ for linux-amlogic@lists.infradead.org; Tue, 28 Sep 2021 10:46:00 +0000
+Received: by mail-wm1-x334.google.com with SMTP id
+ f78-20020a1c1f51000000b0030cdb3d6079so2373593wmf.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 28 Sep 2021 03:45:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=pMkBoBL/2u2hxj5OV4tpOntSstW0kYsraUoSIB/HZzM=;
+ b=mbVshFaEww29h7aEmVf9HpLxzvNaZp8olijYpB6eBQhNUqD6W2WouWSzZkFvbHIhu8
+ lOqvFHF93aQ7gVEwhMK66slUwrjFHvKlm84BBDg87CKbAfRowUVfSXMDoXAqUWi42i5q
+ NU7awEQdq4PHqqQZkXtnektMYFh53uN0eWBbC/5hdGwp0w4L5bL0U+YCJbjQc1UlG1L6
+ 4CqrZuYDGlxUnNlCPhPB0E7/ur23XYgj42JSOGCpYRprfTUZIJwZ5n8OWRhdUhPsBtp2
+ rj6haqHIYp2kNIZAvIrKk374JQIL4tpamA6wmKk7xq5NwNNbxUPCzr7aTavI4I+5P/GO
+ vlAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=m6ukGi3jrrjha+D9TPzmB0py/6c66GKZD4MHDgm6P10=;
- b=v78rocpQhQ9sV0/Qy7MP/wGG9W+EuZSkkTpygIvX2h3plWQwJIzCWaQ6nt6+oUCetx
- GcVQ1gPjqVmwiAhLyHFzP6eNRG4U1UD+WH4Ago6o8uJHwj+a9mmU+MHdMWcxTPX9wLaB
- FZLs8pCWduAoKfojgUotnXAqHbtA+B3bxzfoML6zAGyucZ1HTsrOqypBwRNhrLcmIP4u
- JMPygyf/OxXmB7qC2XnnYezfXlsHexajmcDwLlj20Lmb3Q4Ai4enGYNqak2kfiL+24L6
- BdX+3cM0MM6Cl9HYR3SGd3A0TfTaKBXznISupj7DfI18VndfKiz1d88E1GPxXT8rl976
- oSsg==
-X-Gm-Message-State: AOAM531wYwMRBSwf08Mvyo3K20B/dCtO/JAGDsPk2RSzXSaSFiTixusS
- HQQlT5fCTQGk+jffDB3QyAbQ/g==
-X-Google-Smtp-Source: ABdhPJx7PDOCZTrSfSoBj6A6tBDBSqv3hllEA/Frui6VQ5UkscYFuYYCsZLNiyYN8XNDhB+/VDyqoQ==
-X-Received: by 2002:a05:6000:18a4:: with SMTP id
- b4mr4703065wri.96.1632814620869; 
- Tue, 28 Sep 2021 00:37:00 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:af32:f180:8ede:d9da])
- by smtp.gmail.com with ESMTPSA id q8sm8210170wrv.26.2021.09.28.00.36.59
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=pMkBoBL/2u2hxj5OV4tpOntSstW0kYsraUoSIB/HZzM=;
+ b=L94jIMbYAym5a4f28qu39GQBpDdP88V8NfR5NKnMGe6ZNHGJoizm0J36MPaAfDmUyg
+ tIXGTww3yFC08HaiY2Y+qVB9N+3GSIZMnLk5P7Z5UWD28K/Z6R9g2UikJJN7mbv6WJsd
+ IG6d64ImcY8/IVKPokpB21EZi06T5Y9yOVkY4x429wo6gdcgMKggNO1mNVK2NJCJJFMG
+ 6qh7R+HXYJS3C8pw2Xru+wM6ves22Jz0dDpWUtG8GGNqvEkXazd+BwJLXD9uzRMyegDN
+ KK6QPXulussmqO/rhME5b7s3lLEFfXgPcDU+EyJPU1+8NYk7dRYPLI8VFhjErkqaZ/4C
+ uCVw==
+X-Gm-Message-State: AOAM531uVUWwK2lDRSirpmvUHTMGEnYuA3pt5l1ckamY68fiHTXEwGgO
+ bNk3oTA+4/E9FPMpqlNl/9KhFiBHiFA8sQ==
+X-Google-Smtp-Source: ABdhPJxCiCIrJ4P2i364s2mImazMHWq9MdtaswRYwBJ7Zsj9nHMmrkzH/a9pwLFblIWArlO2+gvOHA==
+X-Received: by 2002:a05:600c:2206:: with SMTP id
+ z6mr3911093wml.133.1632825957432; 
+ Tue, 28 Sep 2021 03:45:57 -0700 (PDT)
+Received: from google.com ([95.148.6.233])
+ by smtp.gmail.com with ESMTPSA id z17sm19327249wrr.49.2021.09.28.03.45.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Sep 2021 00:37:00 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: ulf.hansson@linaro.org
-Cc: linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- christianshewitt@gmail.com, martin.blumenstingl@googlemail.com,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2] mmc: meson-gx: do not use memcpy_to/fromio for
- dram-access-quirk
-Date: Tue, 28 Sep 2021 09:36:52 +0200
-Message-Id: <20210928073652.434690-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+ Tue, 28 Sep 2021 03:45:56 -0700 (PDT)
+Date: Tue, 28 Sep 2021 11:45:55 +0100
+From: Lee Jones <lee.jones@linaro.org>
+To: Saravana Kannan <saravanak@google.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, maz@kernel.org,
+ tglx@linutronix.de, jbrunet@baylibre.com, khilman@baylibre.com,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] irqchip: irq-meson-gpio: make it possible to build
+ as a module
+Message-ID: <YVLyY7ETBlhexv+9@google.com>
+References: <20210902134914.176986-1-narmstrong@baylibre.com>
+ <20210902134914.176986-2-narmstrong@baylibre.com>
+ <CAGETcx9KYWmmSYjXGPW6awmVYcKr6sdmxhc_tP=hf149=8Pm6A@mail.gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5434; h=from:subject;
- bh=lS4QGxtvZRm6mTGA/rTgX19F6pA1j0bugQURcq/3QAY=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhUsXaGyiGIMSGGuF5dkoQ2VcYQnCURDzSJRc5WVYP
- IBzwcJ6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYVLF2gAKCRB33NvayMhJ0bN1EA
- CRjmWZncIY6W2w9k4SPCXrYZiHMywnxdATOrVB7b5363hyzdDXsHtZC+6y9ULstvXsiP9Komz47Oco
- ofPnbcey9KMoMlqPfyj/DhD1YcTPZPCWWvlGZjhI2I9+LYE0EWLqn/hRXFdWNio1OiRzuezN1fOPo1
- sd512JiTtq5DvM8aL+/rcYO95MJbK0NJXH6TZW4obXhyPmXljqo7uA8j7/VmUv33oDw4G2S5PbQ5VE
- LrDugBmZJf1lkY5JonPRKa2QSH0MafVks71/GYWEsMRJ0EoUzVr8jJR0fmHYqTb8okkwVZ3I+1DoUP
- E7qsbgHgaoKjtdUomWpZLFpe8eVN2Xb/c/yirYY5/aL311Rh2qJnPvp07DCU38a/IBaa9iny8r+xkc
- 6xc5L8lv751VU/cl0DTOtxtiqXWatmXWm1m2bg9JvFIEYHN3uuRp2oSQFBw5q44tOfRRfPNofAadc/
- votcgmMz5ocgQNQmryBf9xesLMaEOuvDljze7SFKJE9WBUJ4Wx+2HNg2BUWNQicsqr6UUhr15xK1cE
- MtiDXS/h7Epl0tw9+S8KmTYLSjnBgn6y0eDWqo5cp9ysLqPR1lL8G2+gFQNmmqZXWhks7pb+DkMSAl
- dzBmQqKX/+8kIVUYTyyy0fBInsdA/m0/Yn7cArfGcLpPiSHZaKyTuuoKDaZw==
-X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Disposition: inline
+In-Reply-To: <CAGETcx9KYWmmSYjXGPW6awmVYcKr6sdmxhc_tP=hf149=8Pm6A@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210928_003703_645404_4BE0170F 
-X-CRM114-Status: GOOD (  20.97  )
+X-CRM114-CacheID: sfid-20210928_034559_505423_84B33FAD 
+X-CRM114-Status: GOOD (  22.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,162 +96,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The memory at the end of the controller only accepts 32bit read/write
-accesses, but the arm64 memcpy_to/fromio implementation only uses 64bit
-(which will be split into two 32bit access) and 8bit leading to incomplete
-copies to/from this memory when the buffer is not multiple of 8bytes.
-
-Add a local copy using writel/readl accesses to make sure we use the right
-memory access width.
-
-The switch to memcpy_to/fromio was done because of 285133040e6c
-("arm64: Import latest memcpy()/memmove() implementation"), but using memcpy
-worked before since it mainly used 32bit memory acceses.
-
-Fixes: 103a5348c22c ("mmc: meson-gx: use memcpy_to/fromio for dram-access-quirk")
-Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
-Changes since v1:
-- added sg pre-validation at meson_mmc_request and dropped checks in meson_mmc_copy_buffer
-
- drivers/mmc/host/meson-gx-mmc.c | 73 ++++++++++++++++++++++++++-------
- 1 file changed, 59 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 3f28eb4d17fe..8f36536cb1b6 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -746,7 +746,7 @@ static void meson_mmc_desc_chain_transfer(struct mmc_host *mmc, u32 cmd_cfg)
- 	writel(start, host->regs + SD_EMMC_START);
- }
- 
--/* local sg copy to buffer version with _to/fromio usage for dram_access_quirk */
-+/* local sg copy for dram_access_quirk */
- static void meson_mmc_copy_buffer(struct meson_host *host, struct mmc_data *data,
- 				  size_t buflen, bool to_buffer)
- {
-@@ -764,21 +764,27 @@ static void meson_mmc_copy_buffer(struct meson_host *host, struct mmc_data *data
- 	sg_miter_start(&miter, sgl, nents, sg_flags);
- 
- 	while ((offset < buflen) && sg_miter_next(&miter)) {
--		unsigned int len;
-+		unsigned int buf_offset = 0;
-+		unsigned int len, left;
-+		u32 *buf = miter.addr;
- 
- 		len = min(miter.length, buflen - offset);
-+		left = len;
- 
--		/* When dram_access_quirk, the bounce buffer is a iomem mapping */
--		if (host->dram_access_quirk) {
--			if (to_buffer)
--				memcpy_toio(host->bounce_iomem_buf + offset, miter.addr, len);
--			else
--				memcpy_fromio(miter.addr, host->bounce_iomem_buf + offset, len);
-+		if (to_buffer) {
-+			do {
-+				writel(*buf++, host->bounce_iomem_buf + offset + buf_offset);
-+
-+				buf_offset += 4;
-+				left -= 4;
-+			} while (left);
- 		} else {
--			if (to_buffer)
--				memcpy(host->bounce_buf + offset, miter.addr, len);
--			else
--				memcpy(miter.addr, host->bounce_buf + offset, len);
-+			do {
-+				*buf++ = readl(host->bounce_iomem_buf + offset + buf_offset);
-+
-+				buf_offset += 4;
-+				left -= 4;
-+			} while (left);
- 		}
- 
- 		offset += len;
-@@ -830,7 +836,11 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- 		if (data->flags & MMC_DATA_WRITE) {
- 			cmd_cfg |= CMD_CFG_DATA_WR;
- 			WARN_ON(xfer_bytes > host->bounce_buf_size);
--			meson_mmc_copy_buffer(host, data, xfer_bytes, true);
-+			if (host->dram_access_quirk)
-+				meson_mmc_copy_buffer(host, data, xfer_bytes, true);
-+			else
-+				sg_copy_to_buffer(data->sg, data->sg_len,
-+						  host->bounce_buf, xfer_bytes);
- 			dma_wmb();
- 		}
- 
-@@ -849,12 +859,43 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- 	writel(cmd->arg, host->regs + SD_EMMC_CMD_ARG);
- }
- 
-+static int meson_mmc_validate_dram_access(struct mmc_host *mmc, struct mmc_data *data)
-+{
-+	struct scatterlist *sg;
-+	int i;
-+
-+	/* Reject request if any element offset or size is not 32bit aligned */
-+	for_each_sg(data->sg, sg, data->sg_len, i) {
-+		if (!IS_ALIGNED(sg->offset, sizeof(u32)) ||
-+		    !IS_ALIGNED(sg->length, sizeof(u32))) {
-+			dev_err(mmc_dev(mmc), "unaligned sg offset %u len %u\n",
-+				data->sg->offset, data->sg->length);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- {
- 	struct meson_host *host = mmc_priv(mmc);
- 	bool needs_pre_post_req = mrq->data &&
- 			!(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
- 
-+	/*
-+	 * The memory at the end of the controller used as bounce buffer for
-+	 * the dram_access_quirk only accepts 32bit read/write access,
-+	 * check the aligment and length of the data before starting the request.
-+	 */
-+	if (host->dram_access_quirk && mrq->data) {
-+		mrq->cmd->error = meson_mmc_validate_dram_access(mmc, mrq->data);
-+		if (mrq->cmd->error) {
-+			mmc_request_done(mmc, mrq);
-+			return;
-+		}
-+	}
-+
- 	if (needs_pre_post_req) {
- 		meson_mmc_get_transfer_mode(mmc, mrq);
- 		if (!meson_mmc_desc_chain_mode(mrq->data))
-@@ -999,7 +1040,11 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 	if (meson_mmc_bounce_buf_read(data)) {
- 		xfer_bytes = data->blksz * data->blocks;
- 		WARN_ON(xfer_bytes > host->bounce_buf_size);
--		meson_mmc_copy_buffer(host, data, xfer_bytes, false);
-+		if (host->dram_access_quirk)
-+			meson_mmc_copy_buffer(host, data, xfer_bytes, false);
-+		else
-+			sg_copy_from_buffer(data->sg, data->sg_len,
-+					    host->bounce_buf, xfer_bytes);
- 	}
- 
- 	next_cmd = meson_mmc_get_next_command(cmd);
--- 
-2.25.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVGh1LCAwMiBTZXAgMjAyMSwgU2FyYXZhbmEgS2FubmFuIHdyb3RlOgoKPiBPbiBUaHUsIFNl
+cCAyLCAyMDIxIGF0IDY6NDkgQU0gTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUu
+Y29tPiB3cm90ZToKPiA+Cj4gPiBJbiBvcmRlciB0byByZWR1Y2UgdGhlIGtlcm5lbCBJbWFnZSBz
+aXplIG9uIG11bHRpLXBsYXRmb3JtIGRpc3RyaWJ1dGlvbnMsCj4gPiBtYWtlIGl0IHBvc3NpYmxl
+IHRvIGJ1aWxkIHRoZSBBbWxvZ2ljIEdQSU8gSVJRIGNvbnRyb2xsZXIgYXMgYSBtb2R1bGUKPiA+
+IGJ5IHN3aXRjaGluZyBpdCB0byBhIHBsYXRmb3JtIGRyaXZlci4KPiA+Cj4gPiBTaWduZWQtb2Zm
+LWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+Cj4gPiAtLS0KPiA+
+ICBkcml2ZXJzL2lycWNoaXAvS2NvbmZpZyAgICAgICAgICB8ICA1ICsrKy0tCj4gPiAgZHJpdmVy
+cy9pcnFjaGlwL2lycS1tZXNvbi1ncGlvLmMgfCAxNSArKysrKysrKystLS0tLS0KPiA+ICAyIGZp
+bGVzIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDggZGVsZXRpb25zKC0pCj4gPgo+ID4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvaXJxY2hpcC9LY29uZmlnIGIvZHJpdmVycy9pcnFjaGlwL0tjb25m
+aWcKPiA+IGluZGV4IDRkNTkyNGU5Zjc2Ni4uMmFiYTQ4NTAyNWZkIDEwMDY0NAo+ID4gLS0tIGEv
+ZHJpdmVycy9pcnFjaGlwL0tjb25maWcKPiA+ICsrKyBiL2RyaXZlcnMvaXJxY2hpcC9LY29uZmln
+Cj4gPiBAQCAtNDAwLDggKzQwMCw5IEBAIGNvbmZpZyBJUlFfVU5JUEhJRVJfQUlERVQKPiA+ICAg
+ICAgICAgICBTdXBwb3J0IGZvciB0aGUgVW5pUGhpZXIgQUlERVQgKEFSTSBJbnRlcnJ1cHQgRGV0
+ZWN0b3IpLgo+ID4KPiA+ICBjb25maWcgTUVTT05fSVJRX0dQSU8KPiA+IC0gICAgICAgYm9vbCAi
+TWVzb24gR1BJTyBJbnRlcnJ1cHQgTXVsdGlwbGV4ZXIiCj4gPiAtICAgICAgIGRlcGVuZHMgb24g
+QVJDSF9NRVNPTgo+ID4gKyAgICAgICB0cmlzdGF0ZSAiTWVzb24gR1BJTyBJbnRlcnJ1cHQgTXVs
+dGlwbGV4ZXIiCj4gPiArICAgICAgIGRlcGVuZHMgb24gQVJDSF9NRVNPTiB8fCBDT01QSUxFX1RF
+U1QKPiA+ICsgICAgICAgZGVmYXVsdCBBUkNIX01FU09OCj4gPiAgICAgICAgIHNlbGVjdCBJUlFf
+RE9NQUlOX0hJRVJBUkNIWQo+ID4gICAgICAgICBoZWxwCj4gPiAgICAgICAgICAgU3VwcG9ydCBN
+ZXNvbiBTb0MgRmFtaWx5IEdQSU8gSW50ZXJydXB0IE11bHRpcGxleGVyCj4gPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9pcnFjaGlwL2lycS1tZXNvbi1ncGlvLmMgYi9kcml2ZXJzL2lycWNoaXAvaXJx
+LW1lc29uLWdwaW8uYwo+ID4gaW5kZXggZTUwNjc2Y2UyZWM4Li5kOTBmZjBiOTI0ODAgMTAwNjQ0
+Cj4gPiAtLS0gYS9kcml2ZXJzL2lycWNoaXAvaXJxLW1lc29uLWdwaW8uYwo+ID4gKysrIGIvZHJp
+dmVycy9pcnFjaGlwL2lycS1tZXNvbi1ncGlvLmMKPiA+IEBAIC00MzYsOCArNDM2LDcgQEAgc3Rh
+dGljIGNvbnN0IHN0cnVjdCBpcnFfZG9tYWluX29wcyBtZXNvbl9ncGlvX2lycV9kb21haW5fb3Bz
+ID0gewo+ID4gICAgICAgICAudHJhbnNsYXRlICAgICAgPSBtZXNvbl9ncGlvX2lycV9kb21haW5f
+dHJhbnNsYXRlLAo+ID4gIH07Cj4gPgo+ID4gLXN0YXRpYyBpbnQgX19pbml0IG1lc29uX2dwaW9f
+aXJxX3BhcnNlX2R0KHN0cnVjdCBkZXZpY2Vfbm9kZSAqbm9kZSwKPiA+IC0gICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBtZXNvbl9ncGlvX2lycV9jb250cm9s
+bGVyICpjdGwpCj4gPiArc3RhdGljIGludCBtZXNvbl9ncGlvX2lycV9wYXJzZV9kdChzdHJ1Y3Qg
+ZGV2aWNlX25vZGUgKm5vZGUsIHN0cnVjdCBtZXNvbl9ncGlvX2lycV9jb250cm9sbGVyICpjdGwp
+Cj4gPiAgewo+ID4gICAgICAgICBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkICptYXRjaDsKPiA+
+ICAgICAgICAgaW50IHJldDsKPiA+IEBAIC00NjMsOCArNDYyLDcgQEAgc3RhdGljIGludCBfX2lu
+aXQgbWVzb25fZ3Bpb19pcnFfcGFyc2VfZHQoc3RydWN0IGRldmljZV9ub2RlICpub2RlLAo+ID4g
+ICAgICAgICByZXR1cm4gMDsKPiA+ICB9Cj4gPgo+ID4gLXN0YXRpYyBpbnQgX19pbml0IG1lc29u
+X2dwaW9faXJxX29mX2luaXQoc3RydWN0IGRldmljZV9ub2RlICpub2RlLAo+ID4gLSAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZGV2aWNlX25vZGUgKnBhcmVu
+dCkKPiA+ICtzdGF0aWMgaW50IG1lc29uX2dwaW9faXJxX29mX2luaXQoc3RydWN0IGRldmljZV9u
+b2RlICpub2RlLCBzdHJ1Y3QgZGV2aWNlX25vZGUgKnBhcmVudCkKPiA+ICB7Cj4gPiAgICAgICAg
+IHN0cnVjdCBpcnFfZG9tYWluICpkb21haW4sICpwYXJlbnRfZG9tYWluOwo+ID4gICAgICAgICBz
+dHJ1Y3QgbWVzb25fZ3Bpb19pcnFfY29udHJvbGxlciAqY3RsOwo+ID4gQEAgLTUyMSw1ICs1MTks
+MTAgQEAgc3RhdGljIGludCBfX2luaXQgbWVzb25fZ3Bpb19pcnFfb2ZfaW5pdChzdHJ1Y3QgZGV2
+aWNlX25vZGUgKm5vZGUsCj4gPiAgICAgICAgIHJldHVybiByZXQ7Cj4gPiAgfQo+ID4KPiA+IC1J
+UlFDSElQX0RFQ0xBUkUobWVzb25fZ3Bpb19pbnRjLCAiYW1sb2dpYyxtZXNvbi1ncGlvLWludGMi
+LAo+ID4gLSAgICAgICAgICAgICAgIG1lc29uX2dwaW9faXJxX29mX2luaXQpOwo+ID4gK0lSUUNI
+SVBfUExBVEZPUk1fRFJJVkVSX0JFR0lOKG1lc29uX2dwaW9faW50YykKPiA+ICtJUlFDSElQX01B
+VENIKCJhbWxvZ2ljLG1lc29uLWdwaW8taW50YyIsIG1lc29uX2dwaW9faXJxX29mX2luaXQpCj4g
+PiArSVJRQ0hJUF9QTEFURk9STV9EUklWRVJfRU5EKG1lc29uX2dwaW9faW50YykKPiA+ICsKPiA+
+ICtNT0RVTEVfQVVUSE9SKCJKZXJvbWUgQnJ1bmV0IDxqYnJ1bmV0QGJheWxpYnJlLmNvbT4iKTsK
+PiA+ICtNT0RVTEVfTElDRU5TRSgiR1BMIHYyIik7Cj4gPiArTU9EVUxFX0FMSUFTKCJwbGF0Zm9y
+bTptZXNvbi1ncGlvLWludGMiKTsKPiA+IC0tCj4gCj4gQWNrZWQtYnk6IFNhcmF2YW5hIEthbm5h
+biA8c2FyYXZhbmFrQGdvb2dsZS5jb20+Cj4gCj4gTWFyYywgbXkgbWRpby1tdXggcGF0Y2hlcyBo
+YXZlIGxhbmRlZC4KClJldmlld2VkLWJ5OiBMZWUgSm9uZXMgPGxlZS5qb25lc0BsaW5hcm8ub3Jn
+PgoKLS0gCkxlZSBKb25lcyBb5p2O55C85pavXQpTZW5pb3IgVGVjaG5pY2FsIExlYWQgLSBEZXZl
+bG9wZXIgU2VydmljZXMKTGluYXJvLm9yZyDilIIgT3BlbiBzb3VyY2Ugc29mdHdhcmUgZm9yIEFy
+bSBTb0NzCkZvbGxvdyBMaW5hcm86IEZhY2Vib29rIHwgVHdpdHRlciB8IEJsb2cKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
+bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
+aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
