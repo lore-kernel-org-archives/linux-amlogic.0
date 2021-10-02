@@ -2,91 +2,85 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35939C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Oct 2021 17:06:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E0620C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Oct 2021 23:43:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D7C896128E
-	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Oct 2021 17:06:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D7C896128E
+	by mail.kernel.org (Postfix) with ESMTPS id 9BFEC619E9
+	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Oct 2021 23:43:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9BFEC619E9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n+oaOK9uu8oAcZ2kRC2gOKjNPRMcPC3F2g+RreAtx/M=; b=T3P7SilwEwcRM6
-	WxTFeBhArx2cMuPcf4cwSZ27RUALoRnpAYSehuI21z+coJlNmSHtOJ27mz2PMQpgmPrh7lLFd2jkn
-	tWGeoKtDpmdKsBW9SnP00waWFsG3fcydfFlRdb+o6aZjpLyumz6QbXY/FyREMAxUGVf9V/aAylikx
-	uIGvBA0l4TrcL5ivNaAcZvDQO9YnpCcv4PZJ7yDwX31npOZVG3JoFC33qw6CAv91K+jRlbmMSBUmP
-	R9hT/3J6/HnJ1xqvzk7FbX9Hi7j+lZyjg1f8d1auZjZic0ip5xvYxDg+Rg2gtSbpjNpojD4CkUl0q
-	gDLS8mR1tHrUVygqbV+Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=t8QUXbflIlm/rg9537mLoM5jWDhHpVvexPMpqZSrIpI=; b=JfNAzKgV2aGcnn
+	kbh6BPZOJCIgfWv2g7/wbT4htyMjML+Bo498aYYlQ9cBF894WtcpURz5S4PAMVNbgXHkLyWIjiCVD
+	/I6bHto1NnCneD1K9j27bEiW5E4aPmH8oJicWfaDeXiFDuQK5GEiETtQCJG4anPMrD0PwvEw7GvTh
+	cv1sIxKNPfcF2vtYcR0htysyq60jf8MtjBvrCNWU4/REK6F6TAwJntRIQ1LGD+llzTGqTWt+cSdUN
+	KL55laGcZKr5gXChMokP1C4863DF4cTt2kWN6UsKbkFkZ0dNd3NOU4nb7c5ljCS58tG6YDAkk0UaS
+	QbWVNpLlquIItkVlafbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mWiT9-002VYW-QU; Sat, 02 Oct 2021 17:06:39 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1mWofJ-002u5X-IW; Sat, 02 Oct 2021 23:43:37 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mWiSy-002VXh-8P; Sat, 02 Oct 2021 17:06:29 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id x7so45495022edd.6;
- Sat, 02 Oct 2021 10:06:27 -0700 (PDT)
+ id 1mWofG-002u4D-JA; Sat, 02 Oct 2021 23:43:36 +0000
+Received: by mail-wm1-x331.google.com with SMTP id
+ t16-20020a1c7710000000b003049690d882so14656582wmi.5; 
+ Sat, 02 Oct 2021 16:43:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=y2Fe+5HrwJTnu6L3tCqAwaOKm35V1Vq91Zrd9rcYwKc=;
- b=F1U/fSQMsbaeL82WKL86FwCqGVfXgJH/lcVE/X9OKtjg3g8c4+MGG3/26Ee50ovqo5
- sClWS6OIKYXWsMqLvoAgE9nE3vFO2xCF9yNfpshHTznIYJbQCjL+XMesGSaRW4nGPdaN
- Ry3HwXBlU0EH09YFivoGhKIEp4mFMVVoXakRUE8qfWO1jVCGU2GX0LoetwJ7OIW+t4qM
- yxUmKviC4GhVG58KnGzQdZ4HXUhx8oYP9y4qcvSvfNm4nLkPwRedUAHLoNfCldbp2BGD
- 4TRlQFapvZf+a9Os9QnD2RKcg3/h7BDdEvOMqOgBXKVjaiU5CIbZf8KaEyXWQXCVD/ib
- gqgA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/T6wA479aMjXiGVQMPU8TC7VB5tEcMArPpG5ub2OJHk=;
+ b=EUhZfVpGDD6qg834LaUvUxb9ZhDqAco06iXtwjwHY0t+P8zjiqQea4m2vej+OHxL/l
+ Y9mM1kUwszAQ25fM1xo1dLgXBC/nFzrAFFqUEvI/5eVVKy5RL8SSeenVB5i7Nv6dYGl9
+ BZFV9xkLNKKFml88jtYV9xgbx0khTQug76YELXAQeCyWcQHfeaU1f4scvMlhAGKsj3b3
+ C+Q+XSD1TRfSItSDklV22WZKxvf6Jw2radWrncD7geXukbtzwAjmq+4s9ZrXFRmbvXEU
+ WPboa8oE9uQd9eDA39TWhg9PjdTjpW3EGvdA56dQFQ6vdJpr+EUtgqBoVvgxImd/mWDY
+ b1vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=y2Fe+5HrwJTnu6L3tCqAwaOKm35V1Vq91Zrd9rcYwKc=;
- b=GaBz1jOEfLOCYHPdmakmade7CyRB1yHCXGl2x6cv8Qaoq7LzLPm83C75jKJTXffMmn
- O38lS8lRn4ez8T1yHmu6zems+nlGF08oPJ0jWRDV9TGNKmCVt3Do0s2MEVnEXS88SKtZ
- cMk/I+GKVRifGrHp2z67zbberlgcjz0DKD4QW6+iQMZwLoYIeMlW6GetnH2geFJlUZ+R
- KBiSYsQDmqt2VxqUK+hqtvimaZPldMMA1xb2frNNQNTaVxA4EfUxA9hiAezpCw5C91Ha
- +ZCYQ+VqWxV08Tk2UOLt6tucdnfERVHtLqwe9Fb+PjqJi5LtNpBsiQM7OxuBbm8IKYo1
- 1mhw==
-X-Gm-Message-State: AOAM530Lxm41aWUpr9/n+T4wJmb3/bpDtwhB7JF9hUQ4litSPB4dnIEK
- v8ldDnydCpoxJ4hJ2lCrrx4PWl+isy27tJ5kTk4=
-X-Google-Smtp-Source: ABdhPJxuqgSm9BN4R8HPnjHHfNyekDXMoB+gI0/bxNwXe9vVCIueascepu98U9unJ5AE9NIsK+/oy2hmLJbFl24MJBg=
-X-Received: by 2002:a05:6402:493:: with SMTP id
- k19mr5145256edv.386.1633194386596; 
- Sat, 02 Oct 2021 10:06:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210928141956.2148-1-caihuoqing@baidu.com>
- <20210928141956.2148-6-caihuoqing@baidu.com>
- <CAFBinCB+tYAjqhyO-UAsZxqm6FkK8Q8TGPJ_ehuxwgRSSRZDJA@mail.gmail.com>
- <20211002170901.7378fcc4@jic23-huawei>
-In-Reply-To: <20211002170901.7378fcc4@jic23-huawei>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/T6wA479aMjXiGVQMPU8TC7VB5tEcMArPpG5ub2OJHk=;
+ b=uLg6bXUNoo6T0Mq1vg/1v1rbM4bUNOsj+PXyNQB2g17pyWkoSzVvIDU3Kvd3j/NjH3
+ IEmVR7OmpWMvTUYHqLygHXla4JoZJWRavXpHt2tB8pJmP9glxXeok0i6+6UaaZAd/HAw
+ dHHxGNXIp5+Hq3nkRHrWtz0pYgDT4P67uqYMc36Z/YfpzRgBtM74v0ugubeINPlxL0QP
+ EzE+BhtjZEJKnYCEZbqaHix+XUd0DrefxGggr+y5aUCUgpSgUwtYDM1CRtd4eXzqIXqt
+ LneWv+au3W5nXv11qb/zx2G06QKdnz8EOsXcZ1mROQ2Bon6gzqlLAE/Gaacp4RzwbXuD
+ Cz2w==
+X-Gm-Message-State: AOAM531yRmxki21/jF7IxyMFqJbnLmC+RwGtsMjePC+l7+JsCH2dWbpc
+ 3fpuJLcUt+woBbiJ7CSbu4Q=
+X-Google-Smtp-Source: ABdhPJz/j7AnQVPkNfWnlxPyZBz5ITWoO6U2bBx+6+JZMWi8y1ZoDmE4l6z7g9WKHWWnom6z6VtlwA==
+X-Received: by 2002:a1c:2c3:: with SMTP id 186mr11197754wmc.14.1633218211603; 
+ Sat, 02 Oct 2021 16:43:31 -0700 (PDT)
+Received: from localhost.localdomain
+ (dynamic-2a01-0c22-7bbe-df00-f22f-74ff-fe21-0725.c22.pool.telefonica.de.
+ [2a01:c22:7bbe:df00:f22f:74ff:fe21:725])
+ by smtp.googlemail.com with ESMTPSA id z6sm13999463wmp.1.2021.10.02.16.43.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 02 Oct 2021 16:43:31 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 2 Oct 2021 19:06:15 +0200
-Message-ID: <CAFBinCAka2oQorT2Dy-DiGrChQd45_u3i5zTg_H2Mnu6vZQ2=A@mail.gmail.com>
-Subject: Re: [PATCH v3 6/9] iio: adc: meson_saradc: Make use of the helper
- function dev_err_probe()
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Cai Huoqing <caihuoqing@baidu.com>,
- Linus Walleij <linus.walleij@linaro.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
- Vladimir Zapolskiy <vz@mleia.com>, Neil Armstrong <narmstrong@baylibre.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <bjorn.andersson@linaro.org>, 
- Heiko Stuebner <heiko@sntech.de>, linux-arm-kernel@lists.infradead.org, 
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
- linux-rockchip@lists.infradead.org
+To: jbrunet@baylibre.com, alsa-devel@alsa-project.org,
+ linux-amlogic@lists.infradead.org
+Cc: lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [RFC PATCH v1 0/1] ASoC: meson: aiu: HDMI codec control questions and
+ issues
+Date: Sun,  3 Oct 2021 01:43:12 +0200
+Message-Id: <20211002234313.3209294-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211002_100628_337967_401B6BCD 
-X-CRM114-Status: GOOD (  13.92  )
+X-CRM114-CacheID: sfid-20211002_164334_676993_BF2AD7BA 
+X-CRM114-Status: GOOD (  17.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,37 +97,103 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jonathan,
+Hello Jerome et al.,
 
-On Sat, Oct 2, 2021 at 6:05 PM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Sat, 2 Oct 2021 15:01:56 +0200
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->
-> > On Tue, Sep 28, 2021 at 4:20 PM Cai Huoqing <caihuoqing@baidu.com> wrote:
-> > >
-> > > When possible use dev_err_probe help to properly deal with the
-> > > PROBE_DEFER error, the benefit is that DEFER issue will be logged
-> > > in the devices_deferred debugfs file.
-> > > Using dev_err_probe() can reduce code size, and the error value
-> > > gets printed.
-> > >
-> > > Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
-> > Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > as well as:
-> > Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > # Odroid-C1
-> Hi Martin,
->
-> Confusing tag.  Was the second meant to be a Tested-by?
-my bad - it is indeed supposed to be:
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+on Amlogic Meson SoCs which use the AIU audio controller we have the
+so-called "machine gun noise" (MGN) issue, reproducible for example in
+Kodi. So far nobody was able to identify the cause of this issue. My
+idea was to at least narrow down the issue so we can categorize it. For
+that I wanted to get the SPDIF output from AIU to the HDMI controller
+working.
 
-Testing was done on a Meson8b Odroid-C1 board.
+On Amlogic Meson GXBB/GXL/GXM SoCs a DesignWare HDMI TX controller is
+used. This has an SPDIF input but there's currently not driver for it.
+On Meson8/8b/8m2 SoCs I am working on a HDMI driver for the TransSwitch
+HDMI controller which - just like DesignWare HDMI TX - supports SPDIF
+and I2S inputs.
+I decided to add SPDIF support to the latter since the code from the
+vendor driver is much easier.
+
+It took me a while to figure out why I would not get any audio output
+from AIU SPDIF to the HDMI controller - or from there to the sink.
+The "fix" for this issue is the RFC patch which is part of this series.
+Any feedback would be great as I am still new to the ASoC subsystem.
+
+Another part I am still struggling with is the audio "routing" (due to
+lack of a better term - please correct me if this is not the right word
+to use for this case). I have the following description in my .dts:
+	sound {
+		compatible = "amlogic,gx-sound-card";
+		model = "M8B-ODROID-C1";
+
+		assigned-clocks = <&clkc CLKID_MPLL0>,
+				  <&clkc CLKID_MPLL1>;
+		assigned-clock-rates = <294912000>,
+				       <270950400>;
+		dai-link-0 {
+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
+		};
+
+		dai-link-1 {
+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
+		};
+
+		dai-link-2 {
+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
+			dai-format = "i2s";
+			mclk-fs = <256>;
+
+			codec-0 {
+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
+			};
+		};
+
+		dai-link-3 {
+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
+
+			codec-0 {
+				sound-dai = <&aiu AIU_HDMI CTRL_PCM>;
+			};
+		};
+
+		dai-link-4 {
+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
+
+			codec-0 {
+				sound-dai = <&hdmi_tx>;
+			};
+		};
+	};
+The driver for &hdmi_tx defines:
+	struct hdmi_codec_pdata pdata = {
+		.ops			= &txc_48352_hdmi_codec_ops,
+		.i2s			= 1,
+		.spdif			= 1,
+		.max_i2s_channels	= 8,
+		.data			= priv,
+	};
+In hdmi_codec_ops.hw_params I always get fmt->fmt HDMI_I2S unless I
+remove all I2S references from the .dts snipped above (only then
+HDMI_SPDIF is detected). Based on the selection of the "HDMI Source"
+enum in aiu-codec-ctrl I was expecting the format to update as well.
+That unfortunately doesn't happen and I don't know how that can be
+achieved.
 
 
 Best regards,
 Martin
+
+
+Martin Blumenstingl (1):
+  ASoC: meson: aiu: Fix HDMI codec control selection
+
+ sound/soc/meson/aiu-codec-ctrl.c  | 108 ++++++++++++++++++++++--------
+ sound/soc/meson/aiu-encoder-i2s.c |   6 --
+ 2 files changed, 80 insertions(+), 34 deletions(-)
+
+-- 
+2.33.0
+
 
 _______________________________________________
 linux-amlogic mailing list
