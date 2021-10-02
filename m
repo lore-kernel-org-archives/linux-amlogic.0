@@ -2,84 +2,89 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D2FBC433EF
-	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Oct 2021 08:54:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E6B7C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Oct 2021 13:02:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EB3F861AE0
-	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Oct 2021 08:54:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EB3F861AE0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=mailbox.org
+	by mail.kernel.org (Postfix) with ESMTPS id D78E061AF0
+	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Oct 2021 13:02:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D78E061AF0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cNQv3xTWf+3nABZaPwirPKq7E1EMKhmVMFzW3a9D+Mo=; b=f/RwaKTEOTsUnz
-	k7BApyV0sUrg6BYIGDDLBYL9XzcJlslD49zlS/0wjVCSlCCEHZS/z48qp1q1jMCiEKxmreVZSNWEs
-	U9asIE2bQBuGHDVdeTJymeI2Jaank1LhRiNF+lq61Sox5Ex2/Y1CCpRP2tgYBSCV5cxiowx9Cqirf
-	ikGm7OhSIgJ3DAHVuxAvv0KMoV7CoOXZQmMKHq6ZymA0qMTXmMlpuvvYnE1Vvmb5jaFb54IXHiKnI
-	Q4zbJrKnVxJB0NXK4TyI/BdxP3rhsEUg67joBwt+0Q3XM9XEwmkCrGnoFtFF2QShyYP8/pPfDHOeS
-	PaHR+g1UYMgop97J54nQ==;
+	List-Owner; bh=qNzWvuqLg5uwUj9mVNVAr7M82JDuMtcvxy7Di4aiFIc=; b=IignMZgZ6XdSbW
+	mCIptgzJxJWHU92gxs+8bRINboux7IKho7X7c6yMOfzB3zml8vw4zk87d20WVXiwZsxFiyeFdW2C2
+	CFwqXdTyR9l60oa6S/j6qhSEO6qBjait/nCQUjeWrbUreaHCf9dpXwrQATZvJ9KFESTISLbUpXgii
+	kVoDfbhLl3dN8S/T7fQ8XQpOPTvLVkoCtTQ3nJ9yqfSqBGx0CpK5VOzaLx5NGOWIdSm/KR8ZTnWQ/
+	+aBFY6aUIAjWEy45ibnf5DZopdnUDF2zs7T+86vaxzzkM0ElW6XsBeHNqJRK/rP6lrGIBkhgc7PJB
+	aLKdHyD2DEP44LzW3nGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mWamz-001xiw-PY; Sat, 02 Oct 2021 08:54:37 +0000
-Received: from mout-p-102.mailbox.org ([80.241.56.152])
+	id 1mWeem-002DbX-41; Sat, 02 Oct 2021 13:02:24 +0000
+Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mWamw-001xiE-TF; Sat, 02 Oct 2021 08:54:36 +0000
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:105:465:1:4:0])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4HM14m6WnJzQk4Q;
- Sat,  2 Oct 2021 10:54:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
- content-type:content-type:content-transfer-encoding:mime-version
- :references:in-reply-to:message-id:date:date:subject:subject
- :from:from:received; s=mail20150812; t=1633164869; bh=F/bUp6LuQq
- hrVvLmFvLTVdfVmhxJVLNrN7TWNzLeElE=; b=W9vU7pe/9MXnmyS1XZ8wyCsK5Z
- Sq3PXtWwxQxO/yF7+7w+OHvTq1J4IZyx1U3h12hTYEpF+qwfON0+MRnr8ga9rs+v
- XfwTwp60iWnrmRQPJrNNVpXeA/f7u5xhjVwHbkjCNrHX/PRi2UjQjnr5CMyp03kE
- 49s2tnNrVRlXlfAzPbx+kIwo8F1i6SPRdG/iCKenQKWcaBoVVzKFqawEvsVcQ670
- E6vD780SxMQi0ylzjHwZAPgehPsDXeLsOTf8D3EVHZvrkHxr9tdDf/thafpCFOR2
- +TlTcFl05a3zv9gpa8v6TDpCzzroLi8RwmXnK5SshjEbYEtZXKG6kXdPt9Dg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1633164870;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=UkiZmpWhMlojqJXU2ywGtm9SmvU5lD3peaacs9hyFmU=;
- b=uihyxFb8rGu76MyIRG6TP4zzXwt+EWJHkrMaKhMid2CSf0iEYudeiuF65jkJsKW7f0+UPD
- 9bXmvvYKMfcdEqt6vNW5C47nqtv5OvdnFbuUdBGFRNbarg3vEWfm9gxaTuPStIQxtyct8v
- xUZyTrj0JzYwwPVQO/0DyvwUAXPsTE1w9Gk9gO2zOw7NrJR/9zYpvkVCSUvJrxTpiW0IDr
- qR3sODxJXf2bN5qZxA9mL8wNQH4PuwfnlZyRBr6QQ8+otHvoJWGfxw4ATBERKhiewo7yp9
- +B1WXky0mSsUDsNBpM3ve/bxSJe2j5RYLydXupQLsyY+3U0wZ9jDfh8QOQjq9Q==
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-From: Alexander Stein <alexander.stein@mailbox.org>
-To: Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/1] arm64: dts: amlogic: Assign a fixed index to mmc
- devices
-Date: Sat, 02 Oct 2021 10:54:25 +0200
-Message-ID: <7392649.txi2qhsmnO@natsu>
-In-Reply-To: <e115009e-d93e-4e05-0ff0-c754fd867ae0@baylibre.com>
-References: <20210127230852.66686-1-alexander.stein@mailbox.org>
- <3603832.OnnjH37t2F@natsu>
- <e115009e-d93e-4e05-0ff0-c754fd867ae0@baylibre.com>
+ id 1mWeeY-002DYE-TH; Sat, 02 Oct 2021 13:02:12 +0000
+Received: by mail-ed1-x52c.google.com with SMTP id r18so44920081edv.12;
+ Sat, 02 Oct 2021 06:02:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ndllisJpfri3hb1olUYJenRfRB5AbrAxzqRPTi6j654=;
+ b=kqogW/uhlIxcQTtD4H2CvFfmWs499lz0u1RvmeXfGNfCXzcR1fLHhyhYSUUPun0Pk7
+ elB8dK7MWMXVNYG1sM3lSVzYm84IfwbW6A6MloOSCJNCMmnZq9Tqh4BnDtNoOs1bAKF6
+ wBC2zpt6CzqqbmGX5mDKOiXEUh6H40XskQBGw/8ib8WRRPitFdeFTGSnh1ZefUjcfUy2
+ zfqD766y31hlg9/8TY/Wc7D+jfnsp1Ch+rrWU3/+nWsJ5VYXAl0aFVaO8VFjzmajU9zq
+ AlNtQBmAwmlPMp8eKnLSL2ABkE7mSkDFivB1+MrKnfl8bnSoLb4uPJ4SakEzJkkOE3EE
+ rnKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ndllisJpfri3hb1olUYJenRfRB5AbrAxzqRPTi6j654=;
+ b=0HbC8MUPd7cZBRsj187c4qnAnBhHdKoCjLt0XUr+z7zMa6n+O2nU6N0lSNfj3WnXQ6
+ vt4zXG6Jh9TJ2Aw+MNwfISkfQzgXvlJV/RRq7WXwY4NMIRt3YEGRjJkaBMm3pCzyvT2H
+ 7WbAGY8GoRbKuxG7O86g12sQsxEqP/4vMic3l6nlgq19UU2UTBlk5o2y5b2lf/22OlsV
+ v6xsflFoLjgzRGbw/jkPGQ/1TsrXSrNMOIUSMp8xgFCMY/kaMb/C8/5EoRCmD+9q/c4h
+ q72I3l4ysJirZzZvqSIZJoYFQFhbwA/ays0m6b8+PrwWy7HeckhASgBlCsrdS9UqxqQc
+ 1ptQ==
+X-Gm-Message-State: AOAM532nFTjn8Tu61wvkLxOB7uRSmXM+fDYFGxd/axH1m5IP6cZ8g552
+ nxHCxMSEX/gpSh3EB581aQQtZVXF12SVM3WEN7U=
+X-Google-Smtp-Source: ABdhPJxD7CMyGM7QpQq/DlkZDaDLq0WriVeer/gNXyc23grxbsElTIc3j3RxOEb0CSkMyPT3TA7hcGtTOfUpyz8+Xqo=
+X-Received: by 2002:a05:6402:1848:: with SMTP id
+ v8mr1215860edy.0.1633179726993; 
+ Sat, 02 Oct 2021 06:02:06 -0700 (PDT)
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 6D7B226A
+References: <20210928141956.2148-1-caihuoqing@baidu.com>
+ <20210928141956.2148-6-caihuoqing@baidu.com>
+In-Reply-To: <20210928141956.2148-6-caihuoqing@baidu.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 2 Oct 2021 15:01:56 +0200
+Message-ID: <CAFBinCB+tYAjqhyO-UAsZxqm6FkK8Q8TGPJ_ehuxwgRSSRZDJA@mail.gmail.com>
+Subject: Re: [PATCH v3 6/9] iio: adc: meson_saradc: Make use of the helper
+ function dev_err_probe()
+To: Cai Huoqing <caihuoqing@baidu.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Vladimir Zapolskiy <vz@mleia.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <bjorn.andersson@linaro.org>, 
+ Heiko Stuebner <heiko@sntech.de>, linux-arm-kernel@lists.infradead.org, 
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211002_015435_164036_781DA9AC 
-X-CRM114-Status: UNSURE (   6.78  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211002_060210_976949_63047BDA 
+X-CRM114-Status: GOOD (  10.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,25 +101,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Neil,
+On Tue, Sep 28, 2021 at 4:20 PM Cai Huoqing <caihuoqing@baidu.com> wrote:
+>
+> When possible use dev_err_probe help to properly deal with the
+> PROBE_DEFER error, the benefit is that DEFER issue will be logged
+> in the devices_deferred debugfs file.
+> Using dev_err_probe() can reduce code size, and the error value
+> gets printed.
+>
+> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+as well as:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+# Odroid-C1
 
-Am Samstag, 2. Oktober 2021, 10:49:46 CEST schrieb Neil Armstrong:
-> Look at
-> https://github.com/torvalds/linux/blame/53d5fc89d66a778577295020dc57bb3ccec
-> 84354/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi#L21
-> 
-> The commit
-> https://github.com/torvalds/linux/commit/ab547c4fb39fe145b39e3013633258a5ff
-> 475d88 is upstream since v5.13-rc1
+Thanks for your contribution!
 
-Ah, the SHA1 changed. Dunno why I didn't see it in mainline though.
-Thanks for the update and sorry for the noise.
 
 Best regards,
-Alexander
-
-
-
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
