@@ -2,83 +2,85 @@ Return-Path: <SRS0=/cGg=OX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6690C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sun,  3 Oct 2021 05:13:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C83BC433F5
+	for <linux-amlogic@archiver.kernel.org>; Sun,  3 Oct 2021 07:00:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5E932613A0
-	for <linux-amlogic@archiver.kernel.org>; Sun,  3 Oct 2021 05:13:35 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5E932613A0
+	by mail.kernel.org (Postfix) with ESMTPS id 35EE661B27
+	for <linux-amlogic@archiver.kernel.org>; Sun,  3 Oct 2021 07:00:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 35EE661B27
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pO1nM+BbPUAzX4Zv3peypiZ6zF221DkFtn3U87z/MdM=; b=WCGpOBSXC7I9wq
-	C682vfYOuKpK/ifcnLK9s1DYC+eS38wF46tLOgh3C9q5JFv5hf7sBjKoOp1CWqw0vBUoR5HJiwkFl
-	0uqirXMm1rWq2KkbdsYUxZTQZBbwkbK14q8qFl318SqMIXJhbMa1zFzzOpge2N6w4HAv3IaxTQ9Y0
-	+DmenoX0SWluvhmmfBBg3yTo13ZervcyZc1f0YpUf3qbLaFx0yHgOXsYIFYdlWFN5Jr65Mm1BYj+P
-	rWlfeolyVJ9BuDela+I14UhzjbRrgoZ+1iXkm1cAGLUF9KyXFD9kM6xxA9ojv1464B3dS+aztbjLC
-	Ct6mUJo3kywrMt+Qhs5g==;
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=p5jz7YgXRKm/DhE1sTkglaKBYt5Gy5qlDwAXs3+1kfE=; b=OtTUzJkSM+Dep/
+	jHS6Abucee5iLnDajAgmheL4sGY+4dJ1za7AMuPaPikalJOd9ZjvMmpCO96MHdeTharOy3g2QUeLQ
+	HEMobODhcDRHgqQAHVVYZ+SgVXFq2Bs8G9cSpvL79NXgfu05Knpq0/VntvTkMBIojAXYwIcCJ+FX/
+	QQrhehi/OcQH/JT8L6zGwf3ZhHnhPtrZ54vVtz8fNpRpi8oGrLFXbyAwb76QvHTopS9AU2a4hBUW4
+	CgXlHxVpcZy8wiTXPoUKp1McyheU5oHs4LC+C7AOc4Rx56tOFdWkltlkCQXqASZ/bMC1UKwa65gdX
+	U5EYY/GuryMhhjv5qNPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mWtoU-003COo-3Y; Sun, 03 Oct 2021 05:13:26 +0000
-Received: from mail-qt1-x831.google.com ([2607:f8b0:4864:20::831])
+	id 1mWvU2-003Jrb-UY; Sun, 03 Oct 2021 07:00:26 +0000
+Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mWtoQ-003CO6-I2; Sun, 03 Oct 2021 05:13:24 +0000
-Received: by mail-qt1-x831.google.com with SMTP id m26so13017423qtn.1;
- Sat, 02 Oct 2021 22:13:21 -0700 (PDT)
+ id 1mWvTz-003Jqh-OW; Sun, 03 Oct 2021 07:00:25 +0000
+Received: by mail-ed1-x52f.google.com with SMTP id v18so50638193edc.11;
+ Sun, 03 Oct 2021 00:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=ulbTVNSJ2iNJZxZK00NR1PC8WsHr0mc+HEMbZmRuv3I=;
- b=IPEybbj+ehfBzk/ZqtSTakokncT+6/v3I9sZ7U/Lq8nq+kmPdjczyC42Pf8HFViAv3
- a/dbCxlfCvCOXsN40cX7ptcPd8/qRfnft22roUwExNnDBs2ACE2aTuNp0fWTqrEvAChF
- 5zaeCMNt1Q5WCRy+RNwUoZL7XdZPWfGD8VYvnecINloko/xgVY8WSjjuLWC8GTb/7oer
- GtyoFTT0j/WypuRNfLI8qlHpCmn5DnKPyG57VSCM/sBljNi6ZvtUCQPikyBdRvPMmbig
- V1M0ZnSwB1mH6fc7ipKg/9KS5COMOv/0JRcrDig7oBf6NawBPH8cFN6/2Vbq7qmnog4K
- 6Xog==
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=IrffqWMw8ejrndFB+WPZ3D+EgTw2ScOMfT+zWzfsTtE=;
+ b=MzLjF2IXqbcSg/4vrB3lBMxtBcIUAlyxOYg6GIZAIamXBubzxvSnz5C9XYrEDLB7zx
+ NzJwm1UwOn0IBtsWe9Ue+SB2sW4mFOoKCKcAV4jfQValrd1Pnsbldkc1OzLfVEmJ+xqE
+ SjLjaP5DkQFkRtZ6GW6obx+tjXTgo955RMORateiWSATE8sfkdn6M+/geTOIEJjti4/v
+ nHbYlLI2neb918LtcrHGzHBqzJcG3t7hUFcqxzGXrujCyjA2vY4QYlmEldX3bzXsG05I
+ JxgLweiUTXRUfKDDeqw5SYs8O1sQVMckXRgscNq67zHbVPg9tdUKmaSBRbUx6jP5qwe7
+ UODA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ulbTVNSJ2iNJZxZK00NR1PC8WsHr0mc+HEMbZmRuv3I=;
- b=MnRvvvFkmrMkmy9CBttkPl1MFHkhYB5bqLOLkz9fdHGvGouhY1mBMtgQq84d+IuewE
- 2pU2ry3FpxGfb2HBunTQH0YbCr2LeIOdOnCvEWa99KAsl5tjIoKFvDvmNHrbFLTCuC5V
- JLaFeskD6eiZxO8xk7aF3Ot0ysyeF5TZ37bml+jk06Si2Y4GGBaukfnhzGNBwAsVzjfT
- WbAH7ybIo+vBRfhQN+GvntOGXg6YMezJbII59Lyjxu+lWKzeqpbhPI9bKzzadgu6xlaS
- 2orwtbpcLsx6QtIeIeovbzgYuUKW/k0zlcgXu9yy38hI5c/f6JAELtLbnX0J4h+ZOTyx
- qJdw==
-X-Gm-Message-State: AOAM531gyYbRCLPkx+7xgT6iNaJx8hbpuNM89ZlncCS6Ye2LsDVDIgOt
- rkqjdQwzlYn61ivBbqLl6oI=
-X-Google-Smtp-Source: ABdhPJzioSuGzx0Q7e0kRaQ5WWNQA4BhFy7b5Z30W2SOkuqm96ro8a6xkF6I1iBN61fBfkX7h8zVOg==
-X-Received: by 2002:ac8:6b43:: with SMTP id x3mr6815822qts.190.1633238000236; 
- Sat, 02 Oct 2021 22:13:20 -0700 (PDT)
-Received: from geday ([2804:7f2:8280:6c81:98f0:31ff:fe93:2dc7])
- by smtp.gmail.com with ESMTPSA id p9sm5518208qkm.23.2021.10.02.22.13.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 02 Oct 2021 22:13:19 -0700 (PDT)
-Date: Sun, 3 Oct 2021 02:13:19 -0300
-From: Geraldo Nascimento <geraldogabriel@gmail.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: jbrunet@baylibre.com, alsa-devel@alsa-project.org,
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=IrffqWMw8ejrndFB+WPZ3D+EgTw2ScOMfT+zWzfsTtE=;
+ b=EveL0ZTLR/+1OAL7FfXcHNk8PsLcrY8VTyX51w/E3Yz/AGTD9Ak7VzQJehC2jjgWyp
+ Y6zDGm05F1IPHSoaJe+jy6w55R3G0tFzA7sHVJG23kLVE7iF9XbgjyvGcj3B2uJ4jrDj
+ Pu6Q5yekdXXLI+dp3b04yKwEeQI/FpkgZdiJEr/E9bwxRMI8QC+Hdc1K+JfyBxaYwZHr
+ 6TytxiR3wAEnQT5BYVWLuR+uxpubbUb2HpgFichZsNV3CaJKeEflcEakqWgtga9z2+tG
+ iokEaXBuOqN8tUDzPykzSrPVBFSzlaglt2gpxhZeXO92pKd8nG7K8UKBS6Mh8njAmGCd
+ +GOA==
+X-Gm-Message-State: AOAM530IwWtqcghakPbUc4qa4qH9V3337dsCE1vsWS8dWs+cO1DQ6gf/
+ Lou4Ztz+rY5jFA0vvUX9lMDm87FdvIY=
+X-Google-Smtp-Source: ABdhPJykjUlgXjYLrBmiILIn2FdAj4CY/taRo1fB8rDylARwKadrwlF92tI8q8HJT/umuGyMF3HMDw==
+X-Received: by 2002:a50:9dcd:: with SMTP id l13mr9073188edk.90.1633244421487; 
+ Sun, 03 Oct 2021 00:00:21 -0700 (PDT)
+Received: from [172.16.20.20] ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id 5sm4901865ejy.53.2021.10.03.00.00.16
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 03 Oct 2021 00:00:20 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
+Subject: Re: [RFC PATCH v1 0/1] ASoC: meson: aiu: HDMI codec control questions
+ and issues
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <YVk77/SIxr8Vt8TQ@geday>
+Date: Sun, 3 Oct 2021 11:00:15 +0400
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
  linux-amlogic@lists.infradead.org, lgirdwood@gmail.com,
- linux-kernel@vger.kernel.org, tiwai@suse.com, broonie@kernel.org,
+ LKML <linux-kernel@vger.kernel.org>, tiwai@suse.com, broonie@kernel.org,
  linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH v1 0/1] ASoC: meson: aiu: HDMI codec control
- questions and issues
-Message-ID: <YVk77/SIxr8Vt8TQ@geday>
+Message-Id: <494D4A30-F230-4B64-AFA9-319FFC4C69DA@gmail.com>
 References: <20211002234313.3209294-1-martin.blumenstingl@googlemail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20211002234313.3209294-1-martin.blumenstingl@googlemail.com>
+ <YVk77/SIxr8Vt8TQ@geday>
+To: Geraldo Nascimento <geraldogabriel@gmail.com>
+X-Mailer: Apple Mail (2.3608.120.23.2.7)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211002_221322_656460_51D96D6A 
-X-CRM114-Status: GOOD (  35.91  )
+X-CRM114-CacheID: sfid-20211003_000023_849527_1161C124 
+X-CRM114-Status: GOOD (  38.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,142 +92,108 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Oct 03, 2021 at 01:43:12AM +0200, Martin Blumenstingl wrote:
-> Hello Jerome et al.,
-> 
-> on Amlogic Meson SoCs which use the AIU audio controller we have the
-> so-called "machine gun noise" (MGN) issue, reproducible for example in
-> Kodi. So far nobody was able to identify the cause of this issue. My
-> idea was to at least narrow down the issue so we can categorize it. For
-> that I wanted to get the SPDIF output from AIU to the HDMI controller
-> working.
->
-
-Hi, Martin,
-
-The MGN issue surely must be that one when using ALSA directly
-(no dmix, no JACK, no Pulseaudio, no Pipewire, no nothing) and
-when the track changes or we pause it, when it resumes we get 
-noise instead of sound, correct?
-
-If so, thanks for trying to track this down!
-
-I bring it up because Googling it seems to head straight to a
-Neil Armstrong post to linux-amlogic about what works and what
-doesn't on linux-meson currently, and only if you dig deeper
-you find a couple of reports apparently by the same person
-about the "machine gun noise" thing.
-
-It doesn't sound like a machine gun noise to me :)
-
-More like brown noise, but anyway what I'd like to note to
-everyone involved is that this one is a major dealbreaker.
-Unless using JACK, Pulseaudio, Pipewire (?) or at least dmix
-audio will degrade at the second song or when the user first
-pauses and then resumes a stream, completely ruining the
-experience.
-
-> On Amlogic Meson GXBB/GXL/GXM SoCs a DesignWare HDMI TX controller is
-> used. This has an SPDIF input but there's currently not driver for it.
-> On Meson8/8b/8m2 SoCs I am working on a HDMI driver for the TransSwitch
-> HDMI controller which - just like DesignWare HDMI TX - supports SPDIF
-> and I2S inputs.
-> I decided to add SPDIF support to the latter since the code from the
-> vendor driver is much easier.
-> 
-> It took me a while to figure out why I would not get any audio output
-> from AIU SPDIF to the HDMI controller - or from there to the sink.
-> The "fix" for this issue is the RFC patch which is part of this series.
-> Any feedback would be great as I am still new to the ASoC subsystem.
-> 
-> Another part I am still struggling with is the audio "routing" (due to
-> lack of a better term - please correct me if this is not the right word
-> to use for this case). I have the following description in my .dts:
-> 	sound {
-> 		compatible = "amlogic,gx-sound-card";
-> 		model = "M8B-ODROID-C1";
-> 
-> 		assigned-clocks = <&clkc CLKID_MPLL0>,
-> 				  <&clkc CLKID_MPLL1>;
-> 		assigned-clock-rates = <294912000>,
-> 				       <270950400>;
-> 		dai-link-0 {
-> 			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> 		};
-> 
-> 		dai-link-1 {
-> 			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
-> 		};
-> 
-> 		dai-link-2 {
-> 			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-> 			dai-format = "i2s";
-> 			mclk-fs = <256>;
-> 
-> 			codec-0 {
-> 				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-> 			};
-> 		};
-> 
-> 		dai-link-3 {
-> 			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-> 
-> 			codec-0 {
-> 				sound-dai = <&aiu AIU_HDMI CTRL_PCM>;
-> 			};
-> 		};
-> 
-> 		dai-link-4 {
-> 			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-> 
-> 			codec-0 {
-> 				sound-dai = <&hdmi_tx>;
-> 			};
-> 		};
-> 	};
-> The driver for &hdmi_tx defines:
-> 	struct hdmi_codec_pdata pdata = {
-> 		.ops			= &txc_48352_hdmi_codec_ops,
-> 		.i2s			= 1,
-> 		.spdif			= 1,
-> 		.max_i2s_channels	= 8,
-> 		.data			= priv,
-> 	};
-> In hdmi_codec_ops.hw_params I always get fmt->fmt HDMI_I2S unless I
-> remove all I2S references from the .dts snipped above (only then
-> HDMI_SPDIF is detected). Based on the selection of the "HDMI Source"
-> enum in aiu-codec-ctrl I was expecting the format to update as well.
-> That unfortunately doesn't happen and I don't know how that can be
-> achieved.
-> 
-
-Hm, that sounds weird. I hope you get the answers you are looking for.
-
-Thanks,
-Geraldo Nascimento
-
-> 
-> Best regards,
-> Martin
-> 
-> 
-> Martin Blumenstingl (1):
->   ASoC: meson: aiu: Fix HDMI codec control selection
-> 
->  sound/soc/meson/aiu-codec-ctrl.c  | 108 ++++++++++++++++++++++--------
->  sound/soc/meson/aiu-encoder-i2s.c |   6 --
->  2 files changed, 80 insertions(+), 34 deletions(-)
-> 
-> -- 
-> 2.33.0
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Cj4gT24gMyBPY3QgMjAyMSwgYXQgOToxMyBhbSwgR2VyYWxkbyBOYXNjaW1lbnRvIDxnZXJhbGRv
+Z2FicmllbEBnbWFpbC5jb20+IHdyb3RlOgo+IAo+IE9uIFN1biwgT2N0IDAzLCAyMDIxIGF0IDAx
+OjQzOjEyQU0gKzAyMDAsIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3JvdGU6Cj4+IEhlbGxvIEplcm9t
+ZSBldCBhbC4sCj4+IAo+PiBvbiBBbWxvZ2ljIE1lc29uIFNvQ3Mgd2hpY2ggdXNlIHRoZSBBSVUg
+YXVkaW8gY29udHJvbGxlciB3ZSBoYXZlIHRoZQo+PiBzby1jYWxsZWQgIm1hY2hpbmUgZ3VuIG5v
+aXNlIiAoTUdOKSBpc3N1ZSwgcmVwcm9kdWNpYmxlIGZvciBleGFtcGxlIGluCj4+IEtvZGkuIFNv
+IGZhciBub2JvZHkgd2FzIGFibGUgdG8gaWRlbnRpZnkgdGhlIGNhdXNlIG9mIHRoaXMgaXNzdWUu
+IE15Cj4+IGlkZWEgd2FzIHRvIGF0IGxlYXN0IG5hcnJvdyBkb3duIHRoZSBpc3N1ZSBzbyB3ZSBj
+YW4gY2F0ZWdvcml6ZSBpdC4gRm9yCj4+IHRoYXQgSSB3YW50ZWQgdG8gZ2V0IHRoZSBTUERJRiBv
+dXRwdXQgZnJvbSBBSVUgdG8gdGhlIEhETUkgY29udHJvbGxlcgo+PiB3b3JraW5nLgo+PiAKPiAK
+PiBIaSwgTWFydGluLAo+IAo+IFRoZSBNR04gaXNzdWUgc3VyZWx5IG11c3QgYmUgdGhhdCBvbmUg
+d2hlbiB1c2luZyBBTFNBIGRpcmVjdGx5Cj4gKG5vIGRtaXgsIG5vIEpBQ0ssIG5vIFB1bHNlYXVk
+aW8sIG5vIFBpcGV3aXJlLCBubyBub3RoaW5nKSBhbmQKPiB3aGVuIHRoZSB0cmFjayBjaGFuZ2Vz
+IG9yIHdlIHBhdXNlIGl0LCB3aGVuIGl0IHJlc3VtZXMgd2UgZ2V0IAo+IG5vaXNlIGluc3RlYWQg
+b2Ygc291bmQsIGNvcnJlY3Q/Cj4gCj4gSWYgc28sIHRoYW5rcyBmb3IgdHJ5aW5nIHRvIHRyYWNr
+IHRoaXMgZG93biEKPiAKPiBJIGJyaW5nIGl0IHVwIGJlY2F1c2UgR29vZ2xpbmcgaXQgc2VlbXMg
+dG8gaGVhZCBzdHJhaWdodCB0byBhCj4gTmVpbCBBcm1zdHJvbmcgcG9zdCB0byBsaW51eC1hbWxv
+Z2ljIGFib3V0IHdoYXQgd29ya3MgYW5kIHdoYXQKPiBkb2Vzbid0IG9uIGxpbnV4LW1lc29uIGN1
+cnJlbnRseSwgYW5kIG9ubHkgaWYgeW91IGRpZyBkZWVwZXIKPiB5b3UgZmluZCBhIGNvdXBsZSBv
+ZiByZXBvcnRzIGFwcGFyZW50bHkgYnkgdGhlIHNhbWUgcGVyc29uCj4gYWJvdXQgdGhlICJtYWNo
+aW5lIGd1biBub2lzZSIgdGhpbmcuCj4gCj4gSXQgZG9lc24ndCBzb3VuZCBsaWtlIGEgbWFjaGlu
+ZSBndW4gbm9pc2UgdG8gbWUgOikKPiAKPiBNb3JlIGxpa2UgYnJvd24gbm9pc2UsIGJ1dCBhbnl3
+YXkgd2hhdCBJJ2QgbGlrZSB0byBub3RlIHRvCj4gZXZlcnlvbmUgaW52b2x2ZWQgaXMgdGhhdCB0
+aGlzIG9uZSBpcyBhIG1ham9yIGRlYWxicmVha2VyLgo+IFVubGVzcyB1c2luZyBKQUNLLCBQdWxz
+ZWF1ZGlvLCBQaXBld2lyZSAoPykgb3IgYXQgbGVhc3QgZG1peAo+IGF1ZGlvIHdpbGwgZGVncmFk
+ZSBhdCB0aGUgc2Vjb25kIHNvbmcgb3Igd2hlbiB0aGUgdXNlciBmaXJzdAo+IHBhdXNlcyBhbmQg
+dGhlbiByZXN1bWVzIGEgc3RyZWFtLCBjb21wbGV0ZWx5IHJ1aW5pbmcgdGhlCj4gZXhwZXJpZW5j
+ZS4KCgpJ4oCZbSB0aGUgb3JpZ2luIG9mIG1vc3QgcmVwb3J0cyB0aGF0IEdvb2dsZSB3aWxsIGV2
+ZW50dWFsbHkgZGlzY292ZXIuIEkgd2FzIHRvbGQgZWxzZXdoZXJlIHRoYXQgdGhpcyBpcyBrbm93
+biBhcyBNR04gc28gSeKAmXZlIGRlc2NyaWJlZCBpdCBhcyBzdWNoLCBidXQgdGhhdCBjb3VsZCBi
+ZSB3cm9uZy4gRm9yIGNsYXJpdHkgdGhpcyBpcyB0aGUgbm9pc2UgKHRyaWdnZXJlZCwgYW5kIHdp
+dGggQVZSIHZvbHVtZSBkZWxpYmVyYXRlbHkgcmlnaHQgZG93bikgZm9sbG93ZWQgYnkgc29tZSBu
+YXZpZ2F0aW9uIGluIHRoZSBLb2RpIEdVSSB0byBjaGFuZ2Ugb3V0cHV0OgoKaHR0cHM6Ly9jaGV3
+aXR0LmxpYnJlZWxlYy50di90ZXN0aW5nL3dwMl9hdWRpb19ub2lzZS5tb3YKCkluIHRoZSBMaWJy
+ZUVMRUMgaW1hZ2VzIEkgd29yayBvbiB3aGVyZSB0aGlzIG9jY3VycyBpdOKAmXMgbm90IHNvbWV0
+aGluZyBJIGFzc29jaWF0ZSB3aXRoIHBsYXkvcGF1c2UgKGFsdGhvdWdoIEkgY2Fu4oCZdCBkZWZp
+bml0aXZlbHkgcnVsZSBpdCBvdXQpIG9yIHNlY29uZCBvciB0aGlyZCBzb25ncyAobm90IHNvbWV0
+aGluZyB0aGF0IGhhcHBlbnMgdGhhdCBvZnRlbiBvciBwcmVkaWN0YWJseSkgYnV0IG1vcmUgd2hl
+biB0aGVyZeKAmXMgYSBoYXJkIHRyYW5zaXRpb24gbGlrZSBzdGFydGluZyBvciBzdG9wcGluZyBw
+bGF5YmFjay4gSSBoaXQgaXQgbW9zdCB3aXRoIHNpbXBsZSBzY3JvbGxpbmcgYXJvdW5kIGluIHRo
+ZSBLb2RpIEdVSSwgYWx0aG91Z2ggdGhhdCBjb3VsZCBiZSBiZWNhdXNlIChkdWUgdG8gdGhpcyBp
+c3N1ZSkgSSBsaW1pdCBtZWRpYSBwbGF5YmFjayB0ZXN0aW5nIG9uIEFJVSBkZXZpY2VzLiBJdOKA
+mXMgcGFydGljdWxhcmx5IHNpbXBsZSB0byB0cmlnZ2VyIGZyb20gdGhlIEtvZGkgU2V0dGluZ3Mg
+PiBTeXN0ZW0gPiBBdWRpbyBwYWdlLCBqdXN0IHNjcm9sbCBhcm91bmQgaXQgZm9yIDEwLTMwIHNl
+Y29uZHMsIHdoaWNoIGlzIGhhbmR5IGJlY2F1c2UgdGhlIG9ubHkgd2F5IHRvIHN0b3AgdGhlIG5v
+aXNlIGlzIHN3aXRjaGluZyBhdWRpbyBzb3VyY2UgKGZyb20gYW55dGhpbmcgdG8gYW55dGhpbmcp
+IG9uIHRoZSBzYW1lIHBhZ2UuCgpDSC4KCj4+IE9uIEFtbG9naWMgTWVzb24gR1hCQi9HWEwvR1hN
+IFNvQ3MgYSBEZXNpZ25XYXJlIEhETUkgVFggY29udHJvbGxlciBpcwo+PiB1c2VkLiBUaGlzIGhh
+cyBhbiBTUERJRiBpbnB1dCBidXQgdGhlcmUncyBjdXJyZW50bHkgbm90IGRyaXZlciBmb3IgaXQu
+Cj4+IE9uIE1lc29uOC84Yi84bTIgU29DcyBJIGFtIHdvcmtpbmcgb24gYSBIRE1JIGRyaXZlciBm
+b3IgdGhlIFRyYW5zU3dpdGNoCj4+IEhETUkgY29udHJvbGxlciB3aGljaCAtIGp1c3QgbGlrZSBE
+ZXNpZ25XYXJlIEhETUkgVFggLSBzdXBwb3J0cyBTUERJRgo+PiBhbmQgSTJTIGlucHV0cy4KPj4g
+SSBkZWNpZGVkIHRvIGFkZCBTUERJRiBzdXBwb3J0IHRvIHRoZSBsYXR0ZXIgc2luY2UgdGhlIGNv
+ZGUgZnJvbSB0aGUKPj4gdmVuZG9yIGRyaXZlciBpcyBtdWNoIGVhc2llci4KPj4gCj4+IEl0IHRv
+b2sgbWUgYSB3aGlsZSB0byBmaWd1cmUgb3V0IHdoeSBJIHdvdWxkIG5vdCBnZXQgYW55IGF1ZGlv
+IG91dHB1dAo+PiBmcm9tIEFJVSBTUERJRiB0byB0aGUgSERNSSBjb250cm9sbGVyIC0gb3IgZnJv
+bSB0aGVyZSB0byB0aGUgc2luay4KPj4gVGhlICJmaXgiIGZvciB0aGlzIGlzc3VlIGlzIHRoZSBS
+RkMgcGF0Y2ggd2hpY2ggaXMgcGFydCBvZiB0aGlzIHNlcmllcy4KPj4gQW55IGZlZWRiYWNrIHdv
+dWxkIGJlIGdyZWF0IGFzIEkgYW0gc3RpbGwgbmV3IHRvIHRoZSBBU29DIHN1YnN5c3RlbS4KPj4g
+Cj4+IEFub3RoZXIgcGFydCBJIGFtIHN0aWxsIHN0cnVnZ2xpbmcgd2l0aCBpcyB0aGUgYXVkaW8g
+InJvdXRpbmciIChkdWUgdG8KPj4gbGFjayBvZiBhIGJldHRlciB0ZXJtIC0gcGxlYXNlIGNvcnJl
+Y3QgbWUgaWYgdGhpcyBpcyBub3QgdGhlIHJpZ2h0IHdvcmQKPj4gdG8gdXNlIGZvciB0aGlzIGNh
+c2UpLiBJIGhhdmUgdGhlIGZvbGxvd2luZyBkZXNjcmlwdGlvbiBpbiBteSAuZHRzOgo+PiAJc291
+bmQgewo+PiAJCWNvbXBhdGlibGUgPSAiYW1sb2dpYyxneC1zb3VuZC1jYXJkIjsKPj4gCQltb2Rl
+bCA9ICJNOEItT0RST0lELUMxIjsKPj4gCj4+IAkJYXNzaWduZWQtY2xvY2tzID0gPCZjbGtjIENM
+S0lEX01QTEwwPiwKPj4gCQkJCSAgPCZjbGtjIENMS0lEX01QTEwxPjsKPj4gCQlhc3NpZ25lZC1j
+bG9jay1yYXRlcyA9IDwyOTQ5MTIwMDA+LAo+PiAJCQkJICAgICAgIDwyNzA5NTA0MDA+Owo+PiAJ
+CWRhaS1saW5rLTAgewo+PiAJCQlzb3VuZC1kYWkgPSA8JmFpdSBBSVVfQ1BVIENQVV9JMlNfRklG
+Tz47Cj4+IAkJfTsKPj4gCj4+IAkJZGFpLWxpbmstMSB7Cj4+IAkJCXNvdW5kLWRhaSA9IDwmYWl1
+IEFJVV9DUFUgQ1BVX1NQRElGX0ZJRk8+Owo+PiAJCX07Cj4+IAo+PiAJCWRhaS1saW5rLTIgewo+
+PiAJCQlzb3VuZC1kYWkgPSA8JmFpdSBBSVVfQ1BVIENQVV9JMlNfRU5DT0RFUj47Cj4+IAkJCWRh
+aS1mb3JtYXQgPSAiaTJzIjsKPj4gCQkJbWNsay1mcyA9IDwyNTY+Owo+PiAKPj4gCQkJY29kZWMt
+MCB7Cj4+IAkJCQlzb3VuZC1kYWkgPSA8JmFpdSBBSVVfSERNSSBDVFJMX0kyUz47Cj4+IAkJCX07
+Cj4+IAkJfTsKPj4gCj4+IAkJZGFpLWxpbmstMyB7Cj4+IAkJCXNvdW5kLWRhaSA9IDwmYWl1IEFJ
+VV9DUFUgQ1BVX1NQRElGX0VOQ09ERVI+Owo+PiAKPj4gCQkJY29kZWMtMCB7Cj4+IAkJCQlzb3Vu
+ZC1kYWkgPSA8JmFpdSBBSVVfSERNSSBDVFJMX1BDTT47Cj4+IAkJCX07Cj4+IAkJfTsKPj4gCj4+
+IAkJZGFpLWxpbmstNCB7Cj4+IAkJCXNvdW5kLWRhaSA9IDwmYWl1IEFJVV9IRE1JIENUUkxfT1VU
+PjsKPj4gCj4+IAkJCWNvZGVjLTAgewo+PiAJCQkJc291bmQtZGFpID0gPCZoZG1pX3R4PjsKPj4g
+CQkJfTsKPj4gCQl9Owo+PiAJfTsKPj4gVGhlIGRyaXZlciBmb3IgJmhkbWlfdHggZGVmaW5lczoK
+Pj4gCXN0cnVjdCBoZG1pX2NvZGVjX3BkYXRhIHBkYXRhID0gewo+PiAJCS5vcHMJCQk9ICZ0eGNf
+NDgzNTJfaGRtaV9jb2RlY19vcHMsCj4+IAkJLmkycwkJCT0gMSwKPj4gCQkuc3BkaWYJCQk9IDEs
+Cj4+IAkJLm1heF9pMnNfY2hhbm5lbHMJPSA4LAo+PiAJCS5kYXRhCQkJPSBwcml2LAo+PiAJfTsK
+Pj4gSW4gaGRtaV9jb2RlY19vcHMuaHdfcGFyYW1zIEkgYWx3YXlzIGdldCBmbXQtPmZtdCBIRE1J
+X0kyUyB1bmxlc3MgSQo+PiByZW1vdmUgYWxsIEkyUyByZWZlcmVuY2VzIGZyb20gdGhlIC5kdHMg
+c25pcHBlZCBhYm92ZSAob25seSB0aGVuCj4+IEhETUlfU1BESUYgaXMgZGV0ZWN0ZWQpLiBCYXNl
+ZCBvbiB0aGUgc2VsZWN0aW9uIG9mIHRoZSAiSERNSSBTb3VyY2UiCj4+IGVudW0gaW4gYWl1LWNv
+ZGVjLWN0cmwgSSB3YXMgZXhwZWN0aW5nIHRoZSBmb3JtYXQgdG8gdXBkYXRlIGFzIHdlbGwuCj4+
+IFRoYXQgdW5mb3J0dW5hdGVseSBkb2Vzbid0IGhhcHBlbiBhbmQgSSBkb24ndCBrbm93IGhvdyB0
+aGF0IGNhbiBiZQo+PiBhY2hpZXZlZC4KPj4gCj4gCj4gSG0sIHRoYXQgc291bmRzIHdlaXJkLiBJ
+IGhvcGUgeW91IGdldCB0aGUgYW5zd2VycyB5b3UgYXJlIGxvb2tpbmcgZm9yLgo+IAo+IFRoYW5r
+cywKPiBHZXJhbGRvIE5hc2NpbWVudG8KPiAKPj4gCj4+IEJlc3QgcmVnYXJkcywKPj4gTWFydGlu
+Cj4+IAo+PiAKPj4gTWFydGluIEJsdW1lbnN0aW5nbCAoMSk6Cj4+ICBBU29DOiBtZXNvbjogYWl1
+OiBGaXggSERNSSBjb2RlYyBjb250cm9sIHNlbGVjdGlvbgo+PiAKPj4gc291bmQvc29jL21lc29u
+L2FpdS1jb2RlYy1jdHJsLmMgIHwgMTA4ICsrKysrKysrKysrKysrKysrKysrKystLS0tLS0tLQo+
+PiBzb3VuZC9zb2MvbWVzb24vYWl1LWVuY29kZXItaTJzLmMgfCAgIDYgLS0KPj4gMiBmaWxlcyBj
+aGFuZ2VkLCA4MCBpbnNlcnRpb25zKCspLCAzNCBkZWxldGlvbnMoLSkKPj4gCj4+IC0tIAo+PiAy
+LjMzLjAKPj4gCj4gCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
+dXgtYW1sb2dpYwo=
