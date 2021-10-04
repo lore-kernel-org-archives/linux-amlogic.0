@@ -2,88 +2,168 @@ Return-Path: <SRS0=miVd=OY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E419CC433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Oct 2021 09:02:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AEB6EC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Oct 2021 10:53:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 53DF16128A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Oct 2021 09:02:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 53DF16128A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 7820E60F9B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Oct 2021 10:53:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7820E60F9B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=oracle.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=b5V0HJhJ1TjT6MOt6RQMSu6mEpiVWEVGSeA1sG6muxo=; b=HeKoXsNRdpPn2g
-	v5cgJx+P8U/5pbU6Try6Eok40ktbCaUhKLt0foSGwwumJVNGWVDC09Oo/5GEz9tX0xHbYwd+2V8i2
-	Ic/+TRJLFL0aZ8qUYnbwmEqLsrTZsRbhOLKl9rki1DbOmdCeT9dba7/XqTFEi6VItCidrs7SqT4V2
-	7pdFY/WLxwPCPyaaHbW0taCrXnj69QWhc8sZZmoCghqUMIDkYU7vmRqe2oaARoyWXH6s+tHDI1gIb
-	JxnhHhb2cXtqIw1bNwsrTO3sg7KkU/BhftroNQ8T2oDe3vgrWVZ7YGgpeUBZin4mSGLAYiMKriOhu
-	KFXXkC21ebdHw9FKYxiA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=2shUHK76affIU7PQ7UQu8wLSHY4lGs79MEI373ziE88=; b=J6tvBxKjWdJmUM
+	N/6MXp34oQnXEfSezp+P8gyEB1ymWQpR/02BBrb6IHIB48MTQmn6moGOoJ9EmaLiPolCwsH8ZHUhl
+	N8KqmfgSqhsQmUEjb3AAKLxGl7vVRtMXH02W68g6bAz4pFJG/cJLKxklRfhv7V8w6xTwlbVEO0LA8
+	a1JAt6SJyJsgHVd8I0bsHXd77wu4wRp5JQK/obzyVmG3N203/G4p0LZ9LMmW383WPKCP+S0qt+Yu3
+	LGntrjnhEdAUYx9r2TsJX/9/vWXVMOhcOn0/omfsP4GNI7r6Q7pyyGjfOx/p5uN1bpmiavrVcquZO
+	DBHid70cc2/OI1v15iBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mXJrj-005hx6-SX; Mon, 04 Oct 2021 09:02:31 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1mXLb7-0061Ul-59; Mon, 04 Oct 2021 10:53:29 +0000
+Received: from mx0b-00069f02.pphosted.com ([205.220.177.32])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mXJrV-005hvl-V1
- for linux-amlogic@lists.infradead.org; Mon, 04 Oct 2021 09:02:20 +0000
-Received: by mail-wm1-x331.google.com with SMTP id
- a11-20020a7bc1cb000000b0030d6aae48b5so2412062wmj.4
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Oct 2021 02:02:17 -0700 (PDT)
+ id 1mXLau-0061Sp-9y; Mon, 04 Oct 2021 10:53:17 +0000
+Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1949mkWg026334; 
+ Mon, 4 Oct 2021 10:53:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : content-type : mime-version; s=corp-2021-07-09;
+ bh=zibnPQxiIx9gK1wVyGq/0jiwZwHuUN0YpRz7OZ/yLCE=;
+ b=cPx7Y9clI3eXUGlORCHKPyCvFReffaPgeFqCxzYFWa6Gm1KRI9lRaBXSdRXcpAjWFkif
+ MKO8MqJWURji/sXt4i2ihQG3IPnC+P32sASHT/PME6Hfsle6ky8AMwqzYQwREqMTbP7k
+ dMY2fI32YeO85PuyHtEw4ffl/xDE2b1vh4hBWnQjEzn1uvXYKiiZRHQZPmVSo8BVMafr
+ unZDpQtHo7ylPSHkOfTPWTQ/oUTpNxORP4Q/7vPmN8m1/J8bHMbbyi16PJGWj6Wko8PF
+ jFltmdEcSDSydAXSvV76efstbpntKJYh5CtcNUh0dgbW+xW0uAjRqcXCpnupfgABU1eW aw== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+ by mx0b-00069f02.pphosted.com with ESMTP id 3bfbb135gx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 04 Oct 2021 10:53:14 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+ by userp3020.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 194AicHi146412;
+ Mon, 4 Oct 2021 10:53:13 GMT
+Received: from nam12-mw2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12lp2043.outbound.protection.outlook.com [104.47.66.43])
+ by userp3020.oracle.com with ESMTP id 3bf16r7qq4-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 04 Oct 2021 10:53:12 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P9UyDZV4piM3UI4tuDXcDl7WVBX/V70Uv42N9XycLUhQIpCh25jdn/saBkvW06SPrYb7+sTICfAzC7z4uvOnmQdWpk0/M4SxnakB14Az+kIVe8ncfxvGAlbWfEzhBKLAkAnLsJChQ/VgZRBkTtHGw2Zfpbdm5rMbZlJzDOQh+xHdA/kmvmYffHaI7/FrImt73ivVl7EBI0Dyzdye3yeof1VFe165roTyFoGSQszJKVn3pJbYvyS/XTt5Gm2KtHg2PwZIXlInz7iD4s9VkBdk2KAqbfp7qjWvDvHkGCOiobicSoYo1ckZi2/p2slYm3/d4Sq0CpDGCEYwhvxkudK8pg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zibnPQxiIx9gK1wVyGq/0jiwZwHuUN0YpRz7OZ/yLCE=;
+ b=j1SuSJ0ojwvUs8lZ416DbsLGC0fh1JXAmakCKDmL1vML1xfGRkAKZGrpw1Ja5UAbEKga67bFb0mQqHIUalgt0zIfHUm9I+/Y9KTpXP/XR/IToQI0L4JCPTs3lD8Ry/1T3x0xfoM/FeY7bQMlJ7ICkaUW23bScdWtvSy30uzCEiJ2xT+Dtcvr1Zro5rV9SARJGH1NlpTyDwAbzFUXRpshZOT4Gp9AgSrDUyAf15//NhqmNUJ8Nbgw5GNEe8puehaGidxYZtGoaGMgtKb8WNZP0e+zNWfuH1fL/KVePYCS+jiqxuMZDJ0N4ssEXy2h7tyiFYrYjTzBnD52LrZgBLPa9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=references:user-agent:from:to:cc:subject:date:in-reply-to
- :message-id:mime-version;
- bh=AeVtfBx2w6aMRfHG6/qXgXtUvbfQ5tnGA7rVFbgp2pg=;
- b=AdHFSQBZy0q83Lfm963N9pUBhL3yXoUSgwGynh1/u/KIgzk9cfzsYT0Y5ERcG8H5PF
- VgU5YzWIMMcoXsMM08o9HXTr92l3+0p6+ZNH+rpYre41tJIHNqb1ERSh/loL1yC0UF5C
- Qqx/x5+bTQmT9U5gzQ4kezbRa6gR2bCymqWcgHSaXQGLN3rBy2DFpn/1V5SwNpsAaF+/
- eD/lIv12ZWYMF60s0Dul5/ZDS4cBoGRfGOHZLhPpFfA4PWa6OBc3Fgp4NxPI3ecVrfaO
- dJpM1psFRH38BFh45zSWggVhZURuMptJja+KwHoExvenNDneeZ2ZkQDE8R4XSphg4fDA
- d74w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
- :in-reply-to:message-id:mime-version;
- bh=AeVtfBx2w6aMRfHG6/qXgXtUvbfQ5tnGA7rVFbgp2pg=;
- b=j0ZLbuUa0tDl6wX4Pxh359zBxsBtpIHRYfR+vM46V9MI6TDkBhNxcK7Nrd2ahNJixJ
- bW554tdqfqKColQAMrPA/SlJHHDsl4XTY8Py/EOL6k5nYP8T3fCe2gELghahqsuj0lqc
- LuM7zzrTip4KP/YRtAo5lbE65udRneE9pTnuatSq0cC41j+yfJWTxj2llr9Ushq00ZDX
- MJHqVzgczjk12hVBplfnuz6Z1RgHNwzWnm88a29VRk7is5GAcrNYMgMkavgenV34W4ap
- atgXGELXoZOQV/WogFWAm0Kcex4fhHbSM/B8vns33tRXh1nwFFd40wfKnmkc8wtvrnuE
- xhog==
-X-Gm-Message-State: AOAM533DNFL5jL7x5i3+O+MXL7iT7zqKg0HLgG9UMUKedJRZY/GW7Gpi
- Z4IFtQSsSoRSSXYqfG/jsLNL/Q==
-X-Google-Smtp-Source: ABdhPJxUorTdwWsM/PU8j/kBYNCGixxqE+ZxZbtlEjlJI8+iw5IA9+4htzWYsfBsBjK+PmAP54nesw==
-X-Received: by 2002:a1c:984e:: with SMTP id a75mr17281749wme.63.1633338135781; 
- Mon, 04 Oct 2021 02:02:15 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id z17sm13641838wml.24.2021.10.04.02.02.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Oct 2021 02:02:15 -0700 (PDT)
-References: <20211002234313.3209294-1-martin.blumenstingl@googlemail.com>
- <1j35pivzho.fsf@starbuckisacylon.baylibre.com>
- <CAFBinCCCQebCEdLjYAfWkF4NDPdma8UzVMhHOhZPVreoV2qd2w@mail.gmail.com>
-User-agent: mu4e 1.6.6; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: alsa-devel@alsa-project.org, linux-amlogic@lists.infradead.org,
- lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v1 0/1] ASoC: meson: aiu: HDMI codec control
- questions and issues
-Date: Mon, 04 Oct 2021 10:13:19 +0200
-In-reply-to: <CAFBinCCCQebCEdLjYAfWkF4NDPdma8UzVMhHOhZPVreoV2qd2w@mail.gmail.com>
-Message-ID: <1jy279uprd.fsf@starbuckisacylon.baylibre.com>
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zibnPQxiIx9gK1wVyGq/0jiwZwHuUN0YpRz7OZ/yLCE=;
+ b=ehUSBIrNOdr04wJLE8K7Pk3OicukCVYRpIGqCtezvEzytq1jbPNqtkqXydwPTPmSdGiLuhOTF2XCvwWOhuWSAzf2J9m/js+7VIEC1rZT0zFPhXrgc0TyR1feWsq0Yoh0ANLD2V8Jh79JifhgyRgaCckMXHhbma+7ZWJ7TgPzXqU=
+Authentication-Results: wizery.com; dkim=none (message not signed)
+ header.d=none;wizery.com; dmarc=none action=none header.from=oracle.com;
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ (2603:10b6:301:2d::28) by MWHPR10MB1486.namprd10.prod.outlook.com
+ (2603:10b6:300:24::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.19; Mon, 4 Oct
+ 2021 10:53:10 +0000
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::d409:11b5:5eb2:6be9]) by MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::d409:11b5:5eb2:6be9%5]) with mapi id 15.20.4566.022; Mon, 4 Oct 2021
+ 10:53:10 +0000
+Date: Mon, 4 Oct 2021 13:52:57 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Ohad Ben-Cohen <ohad@wizery.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-remoteproc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, kernel-janitors@vger.kernel.org
+Subject: [PATCH] remoteproc: meson-mx-ao-arc: fix a bit test
+Message-ID: <20211004105257.GA27301@kili>
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: FR0P281CA0074.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1e::20) To MWHPR1001MB2365.namprd10.prod.outlook.com
+ (2603:10b6:301:2d::28)
 MIME-Version: 1.0
+Received: from kili (62.8.83.99) by FR0P281CA0074.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1e::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.8 via Frontend
+ Transport; Mon, 4 Oct 2021 10:53:06 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 90a1e1cb-ec0e-4b61-9099-08d9872527da
+X-MS-TrafficTypeDiagnostic: MWHPR10MB1486:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MWHPR10MB14860CFF10D29425EB55C48D8EAE9@MWHPR10MB1486.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0l+ykH83s1NeIyTukqaTrWNa9gGeeOVpJd5cGosBg4cl1Gu+ButKR/i5bg4AFrGQK/oiQtTvv90QGIEA+2xeK/fUJ6oC8sdTOqHHW5wA0ugGKlMVgKI/zKGibhziVQFiY53ilak5A6gUay+EQkD8/kL8563ZTTragPnhrSTRr1zMlZac8/cwFpDQH8D4PpWTkjq3ERm9pi3QlEwTGslSRHIXs/BxOME5ze7No7DeOQ5wlBZFXwfaFZvRHB5P6/ld/DtvaWqTmB4Erm8vDHp5iBIch2vJE7oePPlEhNlatniMSjrWzfkacpfar4pimYJJVEFYyMpVCSmGBOH68/sq5R0zlCbPjW6rbRycm2n/OIegZEKhLEEow4oSd0N93rK2fHjRpEdBI9HG1H+RXip/DSLal9THmPNRTFR+zT3ceitBp8WDRtzVOErP14lJMKIanDmsmu5P++4nPS2EP2dVJpem5dQyFdbs+0psR1GTlrFrwVBECwk7UtPY+b24gY/9TAaPc3TxAg/AxGGLIPUCcGqKF5EcstE7WmAfbG2hob6B3I7RRkc3+FmE987bDe5EUToDzULGsJebb4RG43uOu2776Q1u5BgmVRjqCsNZgzTAdhEUKExngiamzS6pJ3lbOyuqkAqM4v2LMiRjVD+UxavmH0XaFn0JHkiEmsbaw5u1pD6+YI/Ad3gvwLlYHfvFIsIXgd0WelN7ilt29Vi9gA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(86362001)(33716001)(8936002)(2906002)(66476007)(38350700002)(38100700002)(44832011)(8676002)(4326008)(83380400001)(9686003)(54906003)(5660300002)(66946007)(55016002)(110136005)(956004)(26005)(66556008)(7416002)(6496006)(52116002)(1076003)(33656002)(9576002)(6666004)(186003)(508600001)(316002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7ljVKB3hElEpzzHlXjEeI5GZk+QcmwG5G13FNiVkhbREA8QStLYmBeYy8f9J?=
+ =?us-ascii?Q?ZxeFZnxpwOq6B27CyL/7VV2DXsCReiH11omg5WaZjx8CjV10Y2d2aA7vvi2t?=
+ =?us-ascii?Q?n7GBXSHRx8LVNgVE/e/qluoutQXCBMGncUlLNQ7rZnM3mFvrHIOyYKxMVsSK?=
+ =?us-ascii?Q?w2SavZKBlBY+waVBL5Eh/NHy82ob4Q82c8PGTBmpD2Ah2O4Xf7j0Mg2kf7z5?=
+ =?us-ascii?Q?okiWfC9dg9zqqfiri8/7HIthnO4t+8yMKv4PvIXiygg4+7JrbRVDbL63S0RB?=
+ =?us-ascii?Q?UdrGmamFRUKLItDvMDY/Vj4v61uutoQ/ynef4TfJg0HZiTYma+9X90z5xzOE?=
+ =?us-ascii?Q?FNBQrMm4nxP7BB9o0Ch3Nunz8Q/BvNX8r30v3Tull7XEex2C9XgMQRRJOU7+?=
+ =?us-ascii?Q?uOnVHIPYw+3vSOrpJyk8uX8VGs7gI3eOMWr5KCg+czXTU0iz9+toYgip2P1f?=
+ =?us-ascii?Q?SwanOQxYVEcEW4YEZ8TxPWzqGum+wbQtlFQZoCV3B6gb9QgsLiyQLNprEX5a?=
+ =?us-ascii?Q?5p4RG21EUA2ivygmakZQKDvdQOAQ3KsafZ0L8X0OGGY7Fk1lz8tBZtrg445b?=
+ =?us-ascii?Q?7FcFZdUg/fFIUWrs4B344UiNQEh2dDhQO1y6Irk3vNQ2B4uRvEHAQ18bE54h?=
+ =?us-ascii?Q?rkqkJng1dzdcXRGKg3JbX5SWsrZo4JzKpRqZ7Z/jO44Ph8y56L5hT01oaSTw?=
+ =?us-ascii?Q?v2linCSCsW8emJ0YL2KDkN+n9ySWUWLUgWUj6Rm76lA65mQWkwmNyumAto2u?=
+ =?us-ascii?Q?Z4wFpN9Rb/VE/IuToc5o9+gJ5dUZ1yDlqQ5xD+teSFiyy+PjO1x0++p6NcZ9?=
+ =?us-ascii?Q?cLkQGA48lb5p+1SAJCcFnavkn/RcqputPaFYoW0nQ89m8NOONpkp/DBf29X5?=
+ =?us-ascii?Q?bU6NZ7H/lg3sq/6xifnCRO0E/vpATMNhby/OYsd3F+/cpmNUrKH736sRTeLT?=
+ =?us-ascii?Q?MnDCKIgONzYRZdN9727F6ybMAyWkTqj9w4okjdXRV5lOgXZ78queUvQpIp7t?=
+ =?us-ascii?Q?UR+JfzLAUagnnd+YTM6Ac4w5GTFRk0RiYIpc5DPM9XWyiy9qjQDY0pqsu08P?=
+ =?us-ascii?Q?j3yi2QXs8Lc1VMDNesUdsl8YX62oip6IXmmWC+zFvigSfg8mG769YOp3rwnV?=
+ =?us-ascii?Q?ZVtAJDc8JYbA+oVenmacVxx94fcfD8LLuRgexMRBSOeDA4zB0igXHnvjv8td?=
+ =?us-ascii?Q?bBiV7kQhvO9d9qpAdxm01MYS9hv2ZEtOOvnEcDcSR+qAK+fnNJAjK6yuin6H?=
+ =?us-ascii?Q?yYu5sgM79uHh+v9PCRfiqQm02ktAp6pPaz8yqapsGNBzoG7wVfn0mSB8AbHj?=
+ =?us-ascii?Q?hYjWZYCyHm2t98YWGu4vxLpo?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90a1e1cb-ec0e-4b61-9099-08d9872527da
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2021 10:53:10.4489 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p3pUJIZb7NwvyvzlM4BAfqjTh5iovOHwCZq+hKT9C89c7s7A7IGa+WdZUWJM1zmDjwowFxnE2gterzAWTjAJonSAVlzqI4k9eyTORv5DWn4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR10MB1486
+X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10126
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ adultscore=0
+ phishscore=0 malwarescore=0 bulkscore=0 mlxlogscore=999 mlxscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2109230001 definitions=main-2110040074
+X-Proofpoint-GUID: rU3NoTJdabUbqHIghr52ugob3Ahbe3ad
+X-Proofpoint-ORIG-GUID: rU3NoTJdabUbqHIghr52ugob3Ahbe3ad
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211004_020218_014315_DE0A11A7 
-X-CRM114-Status: GOOD (  59.30  )
+X-CRM114-CacheID: sfid-20211004_035316_503058_C74DBD69 
+X-CRM114-Status: GOOD (  17.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,201 +180,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+The MESON_AO_RPROC_SRAM_USABLE_BITS macro is used like this:
 
-On Sun 03 Oct 2021 at 21:17, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+        if (priv->sram_pa & ~MESON_AO_RPROC_SRAM_USABLE_BITS) {
+                dev_err(dev, "SRAM address contains unusable bits\n");
 
-> Hi Jerome,
->
-> first of all: thanks for taking the time to go through all of this!
->
-> On Sun, Oct 3, 2021 at 6:34 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->>
->>
->> On Sun 03 Oct 2021 at 01:43, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->>
->> > Hello Jerome et al.,
->> >
->> > on Amlogic Meson SoCs which use the AIU audio controller we have the
->> > so-called "machine gun noise" (MGN) issue, reproducible for example in
->> > Kodi. So far nobody was able to identify the cause of this issue. My
->> > idea was to at least narrow down the issue so we can categorize it. For
->> > that I wanted to get the SPDIF output from AIU to the HDMI controller
->> > working.
->>
->> Ok, I'll clarify (again) about this issue.
->>
->> This issue is on AIU only (not the AXG series), on the i2s encoder
->> regardless of the output (HDMI, internal and external codec)
-> Thanks for repeating this. It was clear to me that only AIU is
-> affected but I didn't know that it only affects I2S
->
->> This encoder support either 2ch or 8ch mode, nothing else.
->> As long as only 2ch was supported, there was no problem.
->> In order to switch between 2ch and 8ch mode.  AIU_RST_SOFT_I2S_FAST and
->> AIU_I2S_SYNC shall be "poked" (check iu-fifo-i2s.c and
->> aiu-encoder-i2c.c). Without this, the switch is not done.
->>
->> What these do, how and when it should be done is unclear. I tried
->> several combination. At the time I found something stable-ish but it was
->> not perfect.
-> old 32-bit u-boot sources from the Endless Mini do have some
-> documentation on AIU_I2S_SYNC [0]:
-> // 8'b0_000_1_1_10
-> // A write to this register will cause the interface to repeat the current
-> // sample. Can be used to regain synchronization.
-> // A read from this register indicates that the next sample to be sent
-> // out of the interface should go into the _left_ channel of the dac.
->
-> There's also a note about AIU_I2S_MISC stating:
-> // Bit 4 if true, force each audio data to left or right according to
-> the bit attached with the audio data
-> // This bit should be used with Register AIU_i2s_sync(0x511) together
->
-> To be honest: to me this is not helpful since I don't understand
-> how/why the left channel is of importance.
+The problem is that "->sram_pa" is type phys_addr_t which is potentially
+64 bits.  That means the MESON_AO_RPROC_SRAM_USABLE_BITS macro needs to
+be a 64 bit type as well to ensure that high 32 bits are cleared.
 
-Same here, I already had this description and it is not really that helpful.
+Fixes: 6cb58ea897dd ("remoteproc: meson-mx-ao-arc: Add a driver for the AO ARC remote procesor")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+ drivers/remoteproc/meson_mx_ao_arc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->
->> At the time, It was completely new driver. Even if was not rock solid,
->> it was still progress and I opted to upstream it with an imperfect 8ch
->> support so people could help debug it. This was mentioned in the
->> original submission.
->>
->> The other solution is to restrict to 2ch mode and remove
->> AIU_RST_SOFT_I2S_FAST and AIU_I2S_SYNC pokes. There will be no noise
->> anymore.
-> I think Christian (Hewitt) agrees on this point as he mentioned that
-> your earlier versions of the AIU code (before it got upstream) were
-> not affected by the "machine gun noise" issue.
-> Does the documentation from above give you any new ideas (assuming
-> that it's correct since it's the best we have)? Should I try playing
-> with AIU_RST_SOFT_I2S_FAST and AIU_I2S_SYNC to see if I can make a
-> difference?
-
-Nothing new here.
-I suspect that the encoder restart out of sync with the FIFO, picking
-mis-aligned samples but I have not confirmed that yet.
-
->
-> [...]
->> Here you describe a DAI link (think of it as wires) between the SPDIF
->> encoder (output) and AIU_HDMI input PCM. This is not what the HW is and
->> it is not possible.
->>
->> Let's start from the HDMI controller.
->> The designware (on amlogic SoC) has 2 interface for audio input.
->> 1) PCM/I2S: a classic interface 2 clocks and N data line
->> 2) SPDIF: The Sony Philips 1 wire interface
-> The Transwitch HDMI TX controller supports these two inputs so even
-> though the IP is different the basic functionality (which we'll
-> discuss below) is the same.
->
->> Whatever comes up on 1) has to be some sort of i2s signal. So SPDIF
->> won't fly there.
-> I agree with this
->
->> AIU_HDMI output is Hardwired to 1). It is just just a digital mux,
->> implemented as an ASoC codec which allows to seleted one of 2 audio
->> sources:
->> A) the i2s output implemented as part of the AIU
->> B) the PCM output, part the AUDIN (yes, an output in AUDIN) block. This
->> is not implemented ATM.
-> This is some interesting information, I thought that PCM was used
-> because PCM audio can be transmitted over SPDIF.
->
-> For A) my understanding is different though:
-> - for AIU_HDMI_CLK_DATA_CTRL[5:4] (HDMI_DATA_SEL) your description
-> matches my understanding. For me it makes sense that SPDIF data cannot
-> be selected with this register since it's a one-wire protocol (and
-> doesn't have separate data/clock lines). Value 0x2 selects the I2S
-> data interface
-> - for AIU_HDMI_CLK_DATA_CTRL[1:0] (HDMI_DATA_CLK_SEL) however I have a
-> different understanding: 0x0 disables the clock signal to the HDMI TX
-> controller, 0x1 selects the PCM clock (which now I have learned is
-> related to the AUDIN block) and 0x2 selects the "AIU clock" (see
-> below)
-> - my understanding is that "AIU clock" comes from AIU_CLK_CTRL_MORE[6]
-> (HDMITX_SEL_AOCLKX2) where 0x0 selects "cts_i958 as AIU clk to
-> hdmi_tx_audio_master_clk" (SPDIF clock) and 0x1 selects
-> "cts_aoclkx2_int as AIU clk to hdmi_tx_audio_master_clk" (I2S clock)
-
-Not quite sure it works that way.
-Each FIFO (i2s and spdif) is mainly target at the related encoder BUT
-there is way to feed to both encoder from a single FIFO. In such case,
-the proper must selected for the encoder and the downstream element to
-keep things in sync
-
-This at least with i2s FIFO feeding both the i2s and spdif encoders.
-I suspect the same is possible with the spdif FIFO. Maybe the bit is
-needed to also switch HDMI part to the spdif clock in this case.
-
-This bit could also be a remain of an older design, not really connected
-to anything meaningful. It would not be the first time.
-
-The AIU looks like an IP that has evolved a lot over the years, not always
-in a coordinated fashion. Some scenario are well supported and easy,
-others seem to require a magic spell.
-
-Last (but not least), in AML vendor kernel, the only time this bit poked
-is around 8ch support (1 for 8ch, 0 otherwise) ... I have no idea why.
-
->
-> So to me this means that there's three different muxes:
-> - data mux to choose between 0x0 (all zeros), 0x1 (PCM) and 0x2 (I2S)
-> - clock mux to choose between 0x0 (disabled), 0x1 (PCM) and 0x2
-> (hdmi_tx_audio_master_clk)
-> - hdmi_tx_audio_master_clk clock mux to choose between 0x0 (cts_i958)
-> and 0x1 (cts_aoclkx2_int)
->
-> Based on that I think that it's not possible to have AIU output the
-> I2S and SPDIF signals at the same time to the HDMI TX controller and
-> then letting the HDMI TX controller choose which one to use.
-
-i2s and spdif can be 2 independent paths (with different clock sources).
-I have already made them work concurrently. I believe (but have no
-proof) that the same should be possible with the HDMI.
-
-Until the hdmi controller has support for both inputs, we don't need to
-worry about it.
-
-> Based on whichever signal (I2S or SPDIF) we want to use for HDMI we
-> need to configure AIU accordingly (data and clock).
-
-TBH, I'm not really sure what this bit does. From the description, it
-seems it allows to select an HDMI clock (not idea which one actually)
-for either the i2s or the spdif path.
-
-Nothing says it is related to the HDMI_CTRL (codec), maybe it is not.
-Maybe (MAYBE) it defines what will become "the AIU clk" in
-AIU_HDMI_CLK_DATA_CTRL[1:0]. Until we can feed the i2s encoder from the
-spdif FIFO, I'm not sure we need to play with it.
-
->
-> [...]
->> It is not meant to. The dai_link and the endpoint are i2s.
->> Your HDMI controller should have 2 inputs and should have a way to
->> select one or the other. The format at each of the (internal) input does
->> not change
-> ah, that makes sense.
-> Let's say AIU has some internal muxing for the HDMI output then AIU
-> would have two outputs as well (let's call them HDMI_OUT_I2S and
-> HDMI_OUT_SPDIF).
-
-I don't think there is another output the HDMI_CTRL mux block. If SPDIF to
-HDMITX is supported, I suspect the output of the spdif encoder is
-hardwired to the spdif input of the HDMI controller and it is up to the
-HDMI controller to take it or not.
-
-That being said, I don't see any hard evidence that AML used SPDIF to
-HDMI in their tree, so maybe it does not work at all. 
-
-> Then I'd wire up each of these to their corresponding inputs on the
-> HDMI TX controller.
->
->
-> Best regards,
-> Martin
+diff --git a/drivers/remoteproc/meson_mx_ao_arc.c b/drivers/remoteproc/meson_mx_ao_arc.c
+index 3d8f927ae448..462cddab6518 100644
+--- a/drivers/remoteproc/meson_mx_ao_arc.c
++++ b/drivers/remoteproc/meson_mx_ao_arc.c
+@@ -39,7 +39,7 @@
+ #define AO_SECURE_REG0_AHB_SRAM_BITS_19_12			GENMASK(15, 8)
+ 
+ /* Only bits [31:20] and [17:14] are usable, all other bits must be zero */
+-#define MESON_AO_RPROC_SRAM_USABLE_BITS				0xfff3c000
++#define MESON_AO_RPROC_SRAM_USABLE_BITS				0xfff3c000ULL
+ 
+ #define MESON_AO_RPROC_MEMORY_OFFSET				0x10000000
+ 
+-- 
+2.20.1
 
 
 _______________________________________________
