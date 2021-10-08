@@ -2,75 +2,90 @@ Return-Path: <SRS0=yw6d=O4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA0F6C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:33:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 44BC2C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 13:30:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8DD6460FDC
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:33:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8DD6460FDC
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baidu.com
+	by mail.kernel.org (Postfix) with ESMTPS id 7478B60F9C
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 13:30:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7478B60F9C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eEura9UTHd3RYfv1qQAIVIM4HkMmVt5JfoiKMa+qnWs=; b=ey49TSRC8YxS+o
-	SIx+Jex9klN8G+pa1wAxlKZhAV2Ff4FUZwU3laipKpVhc/7JdngskrBmKg+7UBe4E6lZ0hl5V33Gl
-	HLXm3J/s/eS58nwtXSiBLmvMWCUvJSdl2AEzs6gzCgk/r8dsDX/enPv5frPRnMJOi6qjiXI4ZgoKm
-	G0aIn7AS5IbrvULBRK72xW4KSewp3Kt8weJVG3HrGfROtCj/spgc9gt8TlPHgAH99jrGAv/aYQFiV
-	seRcRSyG91EcgGSqut8bl0/wah1KD9DrMYiUXPh2CtDGaohPNdM5mt2Jg95qKTmgEjtczdhU99fz0
-	W19pm8EyzQqQgnK5CkMg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=hoXo54qEwaM6eVba1Q4w6TBHM0Ip4dyL2S9SnAhKTw0=; b=eUMHusLzXQbU1Q0/6Sgmsapiyt
+	FnDvrYSEfgDkTkW3c2sWcd8mCUzh35Hs6YDCP9N85OgXQjkTJriyAJhOZWOzCHm8ug0R2bsvPMErw
+	urpNmbnYwz/gFRLiH5FADWS2vgNuXBnjxKSHjXN6utUohnYTGbxYZOoaP3QSb9otqVMSOEZtkD2bP
+	GhhYNhChkkQp9g4p/Dqp/m2ElBQs+aNpKCD8BfbCjbEissdYkC96/bRTR7ZFaGR+t9PoIKnYRpdbQ
+	v3vcLZiVaavc4gjG1vAgaCQy6FxtfHZISZyGpDVfh8Oaf/XgQM9KbQhBdR49+wbsI0AzW7zAldMlm
+	XFJuBCMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mYmFc-002DqV-2r; Fri, 08 Oct 2021 09:33:12 +0000
-Received: from mx24.baidu.com ([111.206.215.185] helo=baidu.com)
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mYmBx-002Bk4-0L; Fri, 08 Oct 2021 09:29:26 +0000
-Received: from BC-Mail-Ex16.internal.baidu.com (unknown [172.31.51.56])
- by Forcepoint Email with ESMTPS id F122AE56AD15C4B3F2E6;
- Fri,  8 Oct 2021 17:29:23 +0800 (CST)
-Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BC-Mail-Ex16.internal.baidu.com (172.31.51.56) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2242.12; Fri, 8 Oct 2021 17:29:23 +0800
-Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Fri, 8 Oct 2021 17:29:22 +0800
-From: Cai Huoqing <caihuoqing@baidu.com>
-To: <caihuoqing@baidu.com>
-CC: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, "Pengutronix
- Kernel Team" <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- "NXP Linux Team" <linux-imx@nxp.com>, Vladimir Zapolskiy <vz@mleia.com>,
- "Neil Armstrong" <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Andy Gross
- <agross@kernel.org>, "Bjorn Andersson" <bjorn.andersson@linaro.org>, Heiko
- Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-iio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-rockchip@lists.infradead.org>
-Subject: [PATCH v4 9/9] iio: adc: ti-ads7950: Make use of the helper function
- dev_err_probe()
-Date: Fri, 8 Oct 2021 17:28:57 +0800
-Message-ID: <20211008092858.495-9-caihuoqing@baidu.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211008092858.495-1-caihuoqing@baidu.com>
-References: <20211008092858.495-1-caihuoqing@baidu.com>
+	id 1mYpx7-002tMx-GJ; Fri, 08 Oct 2021 13:30:21 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mYpx3-002tKg-FX
+ for linux-amlogic@lists.infradead.org; Fri, 08 Oct 2021 13:30:19 +0000
+Received: by mail-wr1-x430.google.com with SMTP id i12so17281929wrb.7
+ for <linux-amlogic@lists.infradead.org>; Fri, 08 Oct 2021 06:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=eWnofJKTw3p+IAgBaEr8PkiopgGt7liFG5ipUcC8kn0=;
+ b=XCP8wRM6WC6kWj4jqeiaBCPCZSYH6Y5FZpO45POxcDTWC6P0OQ3mnNDnxwDmwDGeEk
+ qGKo5+NoJBzO6LZZhguLhDRWmr2N9J3pb1LvGC8IafUaNZsYhB4HCvZXedPni4KxuduP
+ vz1DtCN4xeSjS72cO5w1dNp5NBc3WporCMrUjYqOP/x/4p1fTH6q7CHJ6sx95To914FQ
+ koeINiwhOTAIAh6GfqJN21qeMUdXODvz+FRNW4mgBpwni3ATu5K/0Sbai430GgVhSY94
+ YfQG0wqsmgsf4dZnDxec2KSNp8tkabS6NFaX3lf0nYyct4OuCJsH5/oZBFkUygxJP3se
+ 1E7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=eWnofJKTw3p+IAgBaEr8PkiopgGt7liFG5ipUcC8kn0=;
+ b=ytF7l39Y6EOt00QKsq+HkRpsN4yu4yNfkCOPQTwZ3g2ERCJnEjQQyxP4i9VLRFWdpq
+ Jfa7qy02RkvCNjC0TXUa17oz385A2mAKcvFfXlYe0VF9e7m68Fy66ja59eNf1MHQWiFU
+ 1zQd7yW5v88OmCHxeFvksF/ODp/r3uLqHRMUp8EbV1dGSbrWCLgqDf89G+ph8JzlsHJo
+ SIKaf3FlYa4O2a1FPI3etpStKf2PB5r4LNhMKfOmD+B9J5joa50VwCBJG3029oiBLLuM
+ 6pnUb6fQGNpIuiUUsJ/ZC+WqK2gP1yVwG2bvii7GiCP64IlWFO7a8uL0Qnayd4WHEhEd
+ 3U5g==
+X-Gm-Message-State: AOAM532fea+XNZQ+73tfD9hOcPIU46G1+liMNB7VrW0W3Ym2obVE7AKo
+ BA0suyFrsb5N9yh5zxNKFfUlKA==
+X-Google-Smtp-Source: ABdhPJzIjKNZ1rSMhSEcxRkODlks31QNmegAmTud3n4Eu4NCeT3rFGTI37iSKmKut3kHkHoDEmtfvQ==
+X-Received: by 2002:a5d:5250:: with SMTP id k16mr4231026wrc.82.1633699814521; 
+ Fri, 08 Oct 2021 06:30:14 -0700 (PDT)
+Received: from ?IPv6:2001:861:44c0:66c0:a3ab:352d:6c22:15bc?
+ ([2001:861:44c0:66c0:a3ab:352d:6c22:15bc])
+ by smtp.gmail.com with ESMTPSA id 143sm12479484wma.37.2021.10.08.06.30.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 08 Oct 2021 06:30:14 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson-sm1-odroid: add cec nodes
+To: Dmitry Shmidt <dimitrysh@google.com>, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20211007180130.805401-1-dimitrysh@google.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <34f1111e-a5f0-b04e-f8cf-f015d729d236@baylibre.com>
+Date: Fri, 8 Oct 2021 15:30:13 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-Originating-IP: [172.31.63.8]
-X-ClientProxiedBy: BC-Mail-Ex14.internal.baidu.com (172.31.51.54) To
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+In-Reply-To: <20211007180130.805401-1-dimitrysh@google.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211008_022925_260929_98B1DEB9 
-X-CRM114-Status: UNSURE (   9.94  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211008_063017_629589_E3DC7A38 
+X-CRM114-Status: GOOD (  14.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,35 +102,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When possible use dev_err_probe help to properly deal with the
-PROBE_DEFER error, the benefit is that DEFER issue will be logged
-in the devices_deferred debugfs file.
-Using dev_err_probe() can reduce code size, and the error value
-gets printed.
+Hi,
 
-Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
----
- drivers/iio/adc/ti-ads7950.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 07/10/2021 20:01, Dmitry Shmidt wrote:
+> Enable CEC in same way it is done for other meson odroid devices
+> 
+> Signed-off-by: Dmitry Shmidt <dimitrysh@google.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> index fd0ad85c165b..7eed4849233d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> @@ -225,6 +225,20 @@ &arb {
+>  	status = "okay";
+>  };
+>  
+> +&cec_AO {
+> +	pinctrl-0 = <&cec_ao_a_h_pins>;
+> +	pinctrl-names = "default";
+> +	status = "disabled";
+> +	hdmi-phandle = <&hdmi_tx>;
+> +};
+> +
+> +&cecb_AO {
+> +	pinctrl-0 = <&cec_ao_b_h_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +	hdmi-phandle = <&hdmi_tx>;
+> +};
+> +
+>  &clkc_audio {
+>  	status = "okay";
+>  };
+> 
 
-diff --git a/drivers/iio/adc/ti-ads7950.c b/drivers/iio/adc/ti-ads7950.c
-index a2b83f0bd526..a7efa3eada2c 100644
---- a/drivers/iio/adc/ti-ads7950.c
-+++ b/drivers/iio/adc/ti-ads7950.c
-@@ -600,8 +600,8 @@ static int ti_ads7950_probe(struct spi_device *spi)
- 
- 	st->reg = devm_regulator_get(&spi->dev, "vref");
- 	if (IS_ERR(st->reg)) {
--		dev_err(&spi->dev, "Failed to get regulator \"vref\"\n");
--		ret = PTR_ERR(st->reg);
-+		ret = dev_err_probe(&spi->dev, PTR_ERR(st->reg),
-+				     "Failed to get regulator \"vref\"\n");
- 		goto error_destroy_mutex;
- 	}
- 
--- 
-2.25.1
+Thanks,
 
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
