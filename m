@@ -2,45 +2,45 @@ Return-Path: <SRS0=yw6d=O4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21005C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 38FCCC433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:30:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E5D5860FDC
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:29:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E5D5860FDC
+	by mail.kernel.org (Postfix) with ESMTPS id 0A81160FDC
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:30:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 0A81160FDC
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baidu.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=o1pRFqJpmW4Inb6EzUFOFz/WUZQpUIa6viSM3PZ2wNU=; b=CrWmnCb9iMpDbL
-	LubqKTxBhunkouZgm1lVGd1dSnPDkWCcOrtNIlfpUQFhfctjOQCvtJhIc2hB0yV+KDTeMAbLNCqm+
-	73yl+j2YV/GtLggqrn8HsgFxv+3Qmi9lcSzpCdO9ccbIwMXf4eLCZtZ4GF9+Z7hhPc90gdFsm8Sjg
-	BCPXUcfobGUZbECsUSyLEN0qttwKK08cuJsvXOurYnNYYCbbUBKUTyw/65RYvsJFXc1Dh16hl+eC7
-	y5wkBA1sbxbGlyu4qjuVVK8KD5ty2v5UqrRFIkXMFGryEXpWf2CqVVFTy7xdQqJFYt7baRlr7SpjY
-	GS3g11gPO+1G/zkGURGw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Eg7Z64kDDduHLQfRtK0GE3J3ML8DbCHc/JpXVv8rACA=; b=L1D8U1U2CpPDk8
+	EeUCz/ZperGNPDU7tJ+HlFMlUcWxUY6K+HaCoFg0KEZLH5sx/sw7bR170KR/Cnihgz2Ac27j1yFZ+
+	geSbqlFhTrWWeNur25NnTUhpxpXlYEFqYI+DzUF8Luu+nh5lymQqGobWFEcQT8K7J1uOaMtocC66A
+	GCilI3h23ILAwcutKEaGJndfaIAE5pWVOoqfCtMurUzf8VtI08mE0VRFYyJ/GZOzD/M1GotBkwyZD
+	GC4ZVSvFglFYl5Try+VO1klc2VXTDEkoUnXRvA45Byt3WntEUHaSh9IsoX2gdSkHjAbNDI3lkSAWk
+	sqPeDb9z2tn8/loLDRww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mYmCE-002Bqp-EC; Fri, 08 Oct 2021 09:29:42 +0000
+	id 1mYmCa-002C3v-SO; Fri, 08 Oct 2021 09:30:04 +0000
 Received: from mx22.baidu.com ([220.181.50.185] helo=baidu.com)
  by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mYmBf-002Ba1-3r; Fri, 08 Oct 2021 09:29:10 +0000
-Received: from BJHW-Mail-Ex11.internal.baidu.com (unknown [10.127.64.34])
- by Forcepoint Email with ESMTPS id 01DB11B09D55DF7346B2;
- Fri,  8 Oct 2021 17:28:59 +0800 (CST)
+ id 1mYmBh-002BcJ-JT; Fri, 08 Oct 2021 09:29:11 +0000
+Received: from BJHW-Mail-Ex14.internal.baidu.com (unknown [10.127.64.37])
+ by Forcepoint Email with ESMTPS id 990FF4FF3CDB6B75BF7F;
+ Fri,  8 Oct 2021 17:29:08 +0800 (CST)
 Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BJHW-Mail-Ex11.internal.baidu.com (10.127.64.34) with Microsoft SMTP Server
+ BJHW-Mail-Ex14.internal.baidu.com (10.127.64.37) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Fri, 8 Oct 2021 17:28:58 +0800
+ 15.1.2308.14; Fri, 8 Oct 2021 17:29:08 +0800
 Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Fri, 8 Oct 2021 17:28:57 +0800
+ 15.1.2308.14; Fri, 8 Oct 2021 17:29:07 +0800
 From: Cai Huoqing <caihuoqing@baidu.com>
 To: <caihuoqing@baidu.com>
 CC: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron
@@ -56,18 +56,22 @@ CC: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron
  <linux-arm-kernel@lists.infradead.org>, <linux-iio@vger.kernel.org>,
  <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
  <linux-arm-msm@vger.kernel.org>, <linux-rockchip@lists.infradead.org>
-Subject: [PATCH v4 1/9] iio: adc: ab8500-gpadc: Make use of the helper
- function dev_err_probe()
-Date: Fri, 8 Oct 2021 17:28:49 +0800
-Message-ID: <20211008092858.495-1-caihuoqing@baidu.com>
+Subject: [PATCH v4 4/9] iio: adc: max1118: Make use of the helper function
+ dev_err_probe()
+Date: Fri, 8 Oct 2021 17:28:52 +0800
+Message-ID: <20211008092858.495-4-caihuoqing@baidu.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20211008092858.495-1-caihuoqing@baidu.com>
+References: <20211008092858.495-1-caihuoqing@baidu.com>
 MIME-Version: 1.0
 X-Originating-IP: [172.31.63.8]
 X-ClientProxiedBy: BC-Mail-Ex14.internal.baidu.com (172.31.51.54) To
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+X-Baidu-BdMsfe-DateCheck: 1_BJHW-Mail-Ex14_2021-10-08 17:29:08:562
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211008_022907_379427_AA3B4153 
-X-CRM114-Status: GOOD (  10.71  )
+X-CRM114-CacheID: sfid-20211008_022909_843424_EB1D8638 
+X-CRM114-Status: UNSURE (   9.89  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,57 +96,27 @@ gets printed.
 
 Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
 ---
-v1->v2: Remove the separate line of PTR_ERR().
-v2: Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+ drivers/iio/adc/max1118.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-v2->v3: Handle platform_get_irq_byname() that returns -EPROBE_DEFER.
-
- drivers/iio/adc/ab8500-gpadc.c | 22 +++++++++-------------
- 1 file changed, 9 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/iio/adc/ab8500-gpadc.c b/drivers/iio/adc/ab8500-gpadc.c
-index 7b5212ba5501..4c46a201d4ef 100644
---- a/drivers/iio/adc/ab8500-gpadc.c
-+++ b/drivers/iio/adc/ab8500-gpadc.c
-@@ -1103,17 +1103,15 @@ static int ab8500_gpadc_probe(struct platform_device *pdev)
- 		return ret;
+diff --git a/drivers/iio/adc/max1118.c b/drivers/iio/adc/max1118.c
+index 8cec9d949083..a41bc570be21 100644
+--- a/drivers/iio/adc/max1118.c
++++ b/drivers/iio/adc/max1118.c
+@@ -221,10 +221,9 @@ static int max1118_probe(struct spi_device *spi)
  
- 	gpadc->irq_sw = platform_get_irq_byname(pdev, "SW_CONV_END");
--	if (gpadc->irq_sw < 0) {
--		dev_err(dev, "failed to get platform sw_conv_end irq\n");
--		return gpadc->irq_sw;
--	}
-+	if (gpadc->irq_sw < 0)
-+		return dev_err_probe(dev, gpadc->irq_sw,
-+				     "failed to get platform sw_conv_end irq\n");
- 
- 	if (is_ab8500(gpadc->ab8500)) {
- 		gpadc->irq_hw = platform_get_irq_byname(pdev, "HW_CONV_END");
--		if (gpadc->irq_hw < 0) {
--			dev_err(dev, "failed to get platform hw_conv_end irq\n");
--			return gpadc->irq_hw;
+ 	if (id->driver_data == max1118) {
+ 		adc->reg = devm_regulator_get(&spi->dev, "vref");
+-		if (IS_ERR(adc->reg)) {
+-			dev_err(&spi->dev, "failed to get vref regulator\n");
+-			return PTR_ERR(adc->reg);
 -		}
-+		if (gpadc->irq_hw < 0)
-+			return dev_err_probe(dev, gpadc->irq_hw,
-+					     "failed to get platform hw_conv_end irq\n");
- 	} else {
- 		gpadc->irq_hw = 0;
- 	}
-@@ -1146,11 +1144,9 @@ static int ab8500_gpadc_probe(struct platform_device *pdev)
- 
- 	/* The VTVout LDO used to power the AB8500 GPADC */
- 	gpadc->vddadc = devm_regulator_get(dev, "vddadc");
--	if (IS_ERR(gpadc->vddadc)) {
--		ret = PTR_ERR(gpadc->vddadc);
--		dev_err(dev, "failed to get vddadc\n");
--		return ret;
--	}
-+	if (IS_ERR(gpadc->vddadc))
-+		return dev_err_probe(dev, PTR_ERR(gpadc->vddadc),
-+				     "failed to get vddadc\n");
- 
- 	ret = regulator_enable(gpadc->vddadc);
- 	if (ret) {
++		if (IS_ERR(adc->reg))
++			return dev_err_probe(&spi->dev, PTR_ERR(adc->reg),
++					     "failed to get vref regulator\n");
+ 		ret = regulator_enable(adc->reg);
+ 		if (ret)
+ 			return ret;
 -- 
 2.25.1
 
