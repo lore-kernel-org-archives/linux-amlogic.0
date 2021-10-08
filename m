@@ -2,14 +2,14 @@ Return-Path: <SRS0=yw6d=O4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5EBCDC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:31:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C6028C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:32:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B53960FDC
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:31:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1B53960FDC
+	by mail.kernel.org (Postfix) with ESMTPS id 9163B60F39
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Oct 2021 09:32:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9163B60F39
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baidu.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,29 +18,29 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nqyXpAYGr123DiyO+ONDWfilO7ugsOhn9sfSH8rPbv0=; b=J2rSu89tueN3IH
-	+2BtZtbaGacNwV01Goh5au9IIJM7wZ9FjPbpAO0CJgd3Fu5xDHqGa9m+e8HfulYjswHl7SiOJQ0X3
-	9if3WKGshdmaydp1SPqc0EuvuangeCWxAMiu7bZ7xuWUITTbTLkytF9LipIQHYLdsn3DSo6fnSnsp
-	9jyr6dnLNEEJVbldAEifBFNfTgTugXDswGtZLGbS+FbrukevIKpPYXVLtvR4D5vxLF6slwiiF/0bP
-	8+9jU8/mSyVQbppNC8ge15RYvZDxv4VcCXmuSzW4Rzw/WBL2x+Suw+zyrKAIYHCj38o71LQu4BBrA
-	D70DOEr6PILDlXV1D3dA==;
+	List-Owner; bh=mpnOKphpumO+R8Id3jcifZCKkxgnt8n+NV1i+WPdkQ4=; b=yT1foEc4NcR6Ot
+	2XbVofK+4dKyW+gxgCb2ygYz3nKPhOGqv4KwOVAqHl1Wap6T/8cJACYdv2bZwXsujkNGt25Wyf8s+
+	F0A/ixVtEUqCTgKXWVNHHd9kyxr1buX2CFrC/Cj4Vl2cwYTEj1FwBtjm3qv8F4am88oFNBYA6WX9e
+	M7AOvYB8nFoIsn4ARNsoADYHxcwRcgD6bIRsJ6b+Q3sNm16WKzVAzxfYDesustWpU+FPWzV2DhBNb
+	aauISyVLVTIzIEP+Z1iKS7ZGITpUvT7znwhnjkjNzrLi++0enRT7m/um/9+jSzJnc9lJLJgvcUaVl
+	IkKtB4dEKiOribNA7qlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mYmDh-002ChG-Ap; Fri, 08 Oct 2021 09:31:13 +0000
-Received: from mx24.baidu.com ([111.206.215.185] helo=baidu.com)
+	id 1mYmEM-002D7G-3i; Fri, 08 Oct 2021 09:31:54 +0000
+Received: from mx22.baidu.com ([220.181.50.185] helo=baidu.com)
  by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mYmBo-002BfG-4E; Fri, 08 Oct 2021 09:29:17 +0000
-Received: from BJHW-Mail-Ex12.internal.baidu.com (unknown [10.127.64.35])
- by Forcepoint Email with ESMTPS id C926CF9DDA78854F7980;
- Fri,  8 Oct 2021 17:29:14 +0800 (CST)
+ id 1mYmBq-002Bgz-RS; Fri, 08 Oct 2021 09:29:20 +0000
+Received: from BJHW-Mail-Ex09.internal.baidu.com (unknown [10.127.64.32])
+ by Forcepoint Email with ESMTPS id D85E692DF46822C05ADC;
+ Fri,  8 Oct 2021 17:29:17 +0800 (CST)
 Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BJHW-Mail-Ex12.internal.baidu.com (10.127.64.35) with Microsoft SMTP Server
+ BJHW-Mail-Ex09.internal.baidu.com (10.127.64.32) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Fri, 8 Oct 2021 17:29:14 +0800
+ 15.1.2308.14; Fri, 8 Oct 2021 17:29:17 +0800
 Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Fri, 8 Oct 2021 17:29:13 +0800
+ 15.1.2308.14; Fri, 8 Oct 2021 17:29:16 +0800
 From: Cai Huoqing <caihuoqing@baidu.com>
 To: <caihuoqing@baidu.com>
 CC: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron
@@ -56,10 +56,10 @@ CC: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron
  <linux-arm-kernel@lists.infradead.org>, <linux-iio@vger.kernel.org>,
  <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
  <linux-arm-msm@vger.kernel.org>, <linux-rockchip@lists.infradead.org>
-Subject: [PATCH v4 6/9] iio: adc: meson_saradc: Make use of the helper
+Subject: [PATCH v4 7/9] iio: adc: qcom-pm8xxx-xoadc: Make use of the helper
  function dev_err_probe()
-Date: Fri, 8 Oct 2021 17:28:54 +0800
-Message-ID: <20211008092858.495-6-caihuoqing@baidu.com>
+Date: Fri, 8 Oct 2021 17:28:55 +0800
+Message-ID: <20211008092858.495-7-caihuoqing@baidu.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20211008092858.495-1-caihuoqing@baidu.com>
 References: <20211008092858.495-1-caihuoqing@baidu.com>
@@ -67,10 +67,10 @@ MIME-Version: 1.0
 X-Originating-IP: [172.31.63.8]
 X-ClientProxiedBy: BC-Mail-Ex14.internal.baidu.com (172.31.51.54) To
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
-X-Baidu-BdMsfe-DateCheck: 1_BJHW-Mail-Ex12_2021-10-08 17:29:14:824
+X-Baidu-BdMsfe-DateCheck: 1_BJHW-Mail-Ex09_2021-10-08 17:29:17:897
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211008_022916_376496_E46E0A2A 
-X-CRM114-Status: GOOD (  11.15  )
+X-CRM114-CacheID: sfid-20211008_022919_076489_4396FD7F 
+X-CRM114-Status: GOOD (  11.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,81 +93,42 @@ in the devices_deferred debugfs file.
 Using dev_err_probe() can reduce code size, and the error value
 gets printed.
 
+BTW, change the return value from 'ENXIO' to 'ENODEV',
+perfer ENODEV which means no such device.
+
 Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-v1->v2: Remove the separate line of PTR_ERR().
+v2->v3: Update the changelog.
 
- drivers/iio/adc/meson_saradc.c | 39 +++++++++++++++-------------------
- 1 file changed, 17 insertions(+), 22 deletions(-)
+ drivers/iio/adc/qcom-pm8xxx-xoadc.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 705d5e11a54b..62cc6fb0ef85 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -1230,35 +1230,31 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
- 		return ret;
- 
- 	priv->clkin = devm_clk_get(&pdev->dev, "clkin");
--	if (IS_ERR(priv->clkin)) {
--		dev_err(&pdev->dev, "failed to get clkin\n");
--		return PTR_ERR(priv->clkin);
--	}
-+	if (IS_ERR(priv->clkin))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(priv->clkin),
-+				     "failed to get clkin\n");
- 
- 	priv->core_clk = devm_clk_get(&pdev->dev, "core");
--	if (IS_ERR(priv->core_clk)) {
--		dev_err(&pdev->dev, "failed to get core clk\n");
--		return PTR_ERR(priv->core_clk);
--	}
-+	if (IS_ERR(priv->core_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(priv->core_clk),
-+				     "failed to get core clk\n");
- 
- 	priv->adc_clk = devm_clk_get(&pdev->dev, "adc_clk");
- 	if (IS_ERR(priv->adc_clk)) {
--		if (PTR_ERR(priv->adc_clk) == -ENOENT) {
-+		if (PTR_ERR(priv->adc_clk) == -ENOENT)
- 			priv->adc_clk = NULL;
--		} else {
--			dev_err(&pdev->dev, "failed to get adc clk\n");
--			return PTR_ERR(priv->adc_clk);
--		}
-+		else
-+			return dev_err_probe(&pdev->dev, PTR_ERR(priv->adc_clk),
-+					     "failed to get adc clk\n");
+diff --git a/drivers/iio/adc/qcom-pm8xxx-xoadc.c b/drivers/iio/adc/qcom-pm8xxx-xoadc.c
+index 0610bf254771..21d7eff645c3 100644
+--- a/drivers/iio/adc/qcom-pm8xxx-xoadc.c
++++ b/drivers/iio/adc/qcom-pm8xxx-xoadc.c
+@@ -910,16 +910,15 @@ static int pm8xxx_xoadc_probe(struct platform_device *pdev)
+ 	map = dev_get_regmap(dev->parent, NULL);
+ 	if (!map) {
+ 		dev_err(dev, "parent regmap unavailable.\n");
+-		return -ENXIO;
++		return -ENODEV;
  	}
+ 	adc->map = map;
  
- 	priv->adc_sel_clk = devm_clk_get(&pdev->dev, "adc_sel");
- 	if (IS_ERR(priv->adc_sel_clk)) {
--		if (PTR_ERR(priv->adc_sel_clk) == -ENOENT) {
-+		if (PTR_ERR(priv->adc_sel_clk) == -ENOENT)
- 			priv->adc_sel_clk = NULL;
--		} else {
--			dev_err(&pdev->dev, "failed to get adc_sel clk\n");
--			return PTR_ERR(priv->adc_sel_clk);
--		}
-+		else
-+			return dev_err_probe(&pdev->dev, PTR_ERR(priv->adc_sel_clk),
-+					     "failed to get adc_sel clk\n");
- 	}
- 
- 	/* on pre-GXBB SoCs the SAR ADC itself provides the ADC clock: */
-@@ -1269,10 +1265,9 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
- 	}
- 
- 	priv->vref = devm_regulator_get(&pdev->dev, "vref");
--	if (IS_ERR(priv->vref)) {
--		dev_err(&pdev->dev, "failed to get vref regulator\n");
--		return PTR_ERR(priv->vref);
+ 	/* Bring up regulator */
+ 	adc->vref = devm_regulator_get(dev, "xoadc-ref");
+-	if (IS_ERR(adc->vref)) {
+-		dev_err(dev, "failed to get XOADC VREF regulator\n");
+-		return PTR_ERR(adc->vref);
 -	}
-+	if (IS_ERR(priv->vref))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(priv->vref),
-+				     "failed to get vref regulator\n");
- 
- 	priv->calibscale = MILLION;
- 
++	if (IS_ERR(adc->vref))
++		return dev_err_probe(dev, PTR_ERR(adc->vref),
++				     "failed to get XOADC VREF regulator\n");
+ 	ret = regulator_enable(adc->vref);
+ 	if (ret) {
+ 		dev_err(dev, "failed to enable XOADC VREF regulator\n");
 -- 
 2.25.1
 
