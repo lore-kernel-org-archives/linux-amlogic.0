@@ -1,68 +1,64 @@
-Return-Path: <SRS0=GwLp=O6=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=jkUD=O7=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D9C7C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Oct 2021 16:01:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6675FC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Oct 2021 14:55:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 36EE760F5B
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Oct 2021 16:01:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 36EE760F5B
+	by mail.kernel.org (Postfix) with ESMTPS id 3884A60E98
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Oct 2021 14:55:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3884A60E98
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1+5cIw/uAsry2sAi4H12MiWI/oytctfN/hHGmx07ZGA=; b=IlzaRiUnk69iyl
-	zKsAdItnXQ78Qd3bTVyC2hmoxxxdjjaNoRMfX4QzctY57069ccWwr+r+c8lzsntd50cgEPv+6Q/Az
-	QxGFCtgz7OxixpfBmv2Ug6E84/93sKtsbprMYBOd3JdmPh13CoUAMlWxBRekv7HWYjG8Kjbkn7aEd
-	HoshiEsujH9Cqa/DPGApM8i7UvR/VqNXYP1SvJijrNOF3V7KHx67nSRsxT14qprrVvCeZBdxsJAv/
-	FJkMl2YuL4Vn8pwYRAFEqd+mHxT5vHXZIB8lS4d2oslaaDUaMyH6WY6D0Usit52DrrpaqFB+hfhCb
-	Mj/+6Fr4vwYophkcLhKQ==;
+	List-Owner; bh=HGvVehf+FPNpBZPSNcyZVXN86nSDm4qH8CbAvK+nbIo=; b=AqyL74uP90PI1Z
+	LS8Vbjjzu61nv0V1gLLzNU6Yedbjtjrw0krzWMSxjGdFmneozjYKwzfhBctMFZ9gc/2hR9qKKTNR3
+	xESdt2bVIlgb2yJyIPyNQCROMipPuCx24VZCdopy88u3g7dc2tqm9ZcfJSEav7UCl1OgUuWPTht2a
+	jak+jHL/yh0NhlnWHF4M6fFMRX8svBsTm0RX1yFUT6P+k1xIVBTXk6yJyFaocb92MJs6fMx4tj2Wa
+	0RHkalObsGgEMaWhCphRDysEajSDqK0Iano5ne5Vz+OgtfPjkWfKbW8NwEW0tlBUnyD510iNwr3A7
+	0SQ0z/Eo0ykHgntbvegQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mZbGU-0077xI-CT; Sun, 10 Oct 2021 16:01:30 +0000
+	id 1mZwhf-009q2W-2r; Mon, 11 Oct 2021 14:54:59 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mZbGS-0077wn-Gk; Sun, 10 Oct 2021 16:01:29 +0000
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net
- [81.101.6.87])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6337460F5B;
- Sun, 10 Oct 2021 16:01:21 +0000 (UTC)
-Date: Sun, 10 Oct 2021 17:05:27 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Cai Huoqing <caihuoqing@baidu.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, "Pengutronix Kernel Team"
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "NXP Linux
- Team" <linux-imx@nxp.com>, Vladimir Zapolskiy <vz@mleia.com>, "Neil
- Armstrong" <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Andy Gross <agross@kernel.org>,
- "Bjorn Andersson" <bjorn.andersson@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-iio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH v4 6/9] iio: adc: meson_saradc: Make use of the helper
- function dev_err_probe()
-Message-ID: <20211010170527.13547811@jic23-huawei>
-In-Reply-To: <20211008092858.495-6-caihuoqing@baidu.com>
-References: <20211008092858.495-1-caihuoqing@baidu.com>
- <20211008092858.495-6-caihuoqing@baidu.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+ id 1mZwhQ-009py0-HV; Mon, 11 Oct 2021 14:54:45 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0472860EE5;
+ Mon, 11 Oct 2021 14:54:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1633964084;
+ bh=C+r4dLx6Ys+xr9OG/lS4p3ctbdi36eShMGEjAuZymw0=;
+ h=From:List-Id:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=rLQ4Oros8AgSX4MQNsGHNoi8T0zrIlCSMBBA/wYGbakokMdfYJDhIEwuUaLy1GbiA
+ iu3zQ5UYdDsRY0IPeG670Q6eFXdcKzL6dFf2G+lwoX4rJIsdviGxG2EgVllT3wDq8I
+ ugZXMMOtwfUdGSOLpXkPo7DBcp6Hu3p7ztpaBe4/ClowKOF2XRbD8GMDmhbng752Wo
+ ufoMirfIsY3UHz5fT3DXuKTOw2fHYZhPpd7/vBluSP/+6cKEsmnJ/p52u8l13J3mWx
+ i9d6R1lGQGExK/MRjtGx1cfkvhCvjYa0dkKa1efceWBgxAuiiO1g4oYjGoJuqJyedw
+ SZVpQAFcnLmlg==
+From: Arnd Bergmann <arnd@kernel.org>
+List-Id: <soc.lore.kernel.org>
+To: "arm@kernel.org" <arm@kernel.org>, soc@kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, linux-amlogic@lists.infradead.org,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [GIT PULL] soc: amlogic: driver updates for v5.16
+Date: Mon, 11 Oct 2021 16:54:28 +0200
+Message-Id: <163396399096.3170841.5782337655825464618.b4-ty@arndb.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <f8e020d3-29f7-0745-3864-01975edd20f7@baylibre.com>
+References: <f8e020d3-29f7-0745-3864-01975edd20f7@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211010_090128_647399_EA04DE20 
-X-CRM114-Status: GOOD (  21.76  )
+X-CRM114-CacheID: sfid-20211011_075444_617091_4C9E0DCB 
+X-CRM114-Status: UNSURE (   6.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,96 +75,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 8 Oct 2021 17:28:54 +0800
-Cai Huoqing <caihuoqing@baidu.com> wrote:
+From: Arnd Bergmann <arnd@arndb.de>
 
-> When possible use dev_err_probe help to properly deal with the
-> PROBE_DEFER error, the benefit is that DEFER issue will be logged
-> in the devices_deferred debugfs file.
-> Using dev_err_probe() can reduce code size, and the error value
-> gets printed.
+On Thu, 7 Oct 2021 11:43:57 +0200, Neil Armstrong wrote:
+> Please find for v5.16 two devm_platform_ioremap_resource() updates and a change adding a new SOC ID used in the new Radxa Zero board.
 > 
-> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
-Make sure you don't miss any tags on previous versions.  This had:
-
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> #Meson8b Odroid-C1
-
-
-> v1->v2: Remove the separate line of PTR_ERR().
+> Neil
 > 
->  drivers/iio/adc/meson_saradc.c | 39 +++++++++++++++-------------------
->  1 file changed, 17 insertions(+), 22 deletions(-)
+> The following changes since commit 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f:
 > 
-> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index 705d5e11a54b..62cc6fb0ef85 100644
-> --- a/drivers/iio/adc/meson_saradc.c
-> +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -1230,35 +1230,31 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
->  		return ret;
->  
->  	priv->clkin = devm_clk_get(&pdev->dev, "clkin");
-> -	if (IS_ERR(priv->clkin)) {
-> -		dev_err(&pdev->dev, "failed to get clkin\n");
-> -		return PTR_ERR(priv->clkin);
-> -	}
-> +	if (IS_ERR(priv->clkin))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->clkin),
-> +				     "failed to get clkin\n");
->  
->  	priv->core_clk = devm_clk_get(&pdev->dev, "core");
-> -	if (IS_ERR(priv->core_clk)) {
-> -		dev_err(&pdev->dev, "failed to get core clk\n");
-> -		return PTR_ERR(priv->core_clk);
-> -	}
-> +	if (IS_ERR(priv->core_clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->core_clk),
-> +				     "failed to get core clk\n");
->  
->  	priv->adc_clk = devm_clk_get(&pdev->dev, "adc_clk");
->  	if (IS_ERR(priv->adc_clk)) {
-> -		if (PTR_ERR(priv->adc_clk) == -ENOENT) {
-> +		if (PTR_ERR(priv->adc_clk) == -ENOENT)
->  			priv->adc_clk = NULL;
-> -		} else {
-> -			dev_err(&pdev->dev, "failed to get adc clk\n");
-> -			return PTR_ERR(priv->adc_clk);
-> -		}
-> +		else
-> +			return dev_err_probe(&pdev->dev, PTR_ERR(priv->adc_clk),
-> +					     "failed to get adc clk\n");
->  	}
->  
->  	priv->adc_sel_clk = devm_clk_get(&pdev->dev, "adc_sel");
->  	if (IS_ERR(priv->adc_sel_clk)) {
-> -		if (PTR_ERR(priv->adc_sel_clk) == -ENOENT) {
-> +		if (PTR_ERR(priv->adc_sel_clk) == -ENOENT)
->  			priv->adc_sel_clk = NULL;
-> -		} else {
-> -			dev_err(&pdev->dev, "failed to get adc_sel clk\n");
-> -			return PTR_ERR(priv->adc_sel_clk);
-> -		}
-> +		else
-> +			return dev_err_probe(&pdev->dev, PTR_ERR(priv->adc_sel_clk),
-> +					     "failed to get adc_sel clk\n");
->  	}
->  
->  	/* on pre-GXBB SoCs the SAR ADC itself provides the ADC clock: */
-> @@ -1269,10 +1265,9 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
->  	}
->  
->  	priv->vref = devm_regulator_get(&pdev->dev, "vref");
-> -	if (IS_ERR(priv->vref)) {
-> -		dev_err(&pdev->dev, "failed to get vref regulator\n");
-> -		return PTR_ERR(priv->vref);
-> -	}
-> +	if (IS_ERR(priv->vref))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->vref),
-> +				     "failed to get vref regulator\n");
->  
->  	priv->calibscale = MILLION;
->  
+>   Linux 5.15-rc1 (2021-09-12 16:28:37 -0700)
+> 
+> [...]
 
+Merged into arm/drivers, thanks!
+
+merge commit: 88557618909a70460a3c1a898cdcc10c43a2aad1
+
+       Arnd
 
 _______________________________________________
 linux-amlogic mailing list
