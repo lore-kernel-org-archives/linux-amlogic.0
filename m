@@ -2,100 +2,66 @@ Return-Path: <SRS0=MFto=PC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98132C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Oct 2021 15:28:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F0B03C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Oct 2021 17:45:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5F10660F9E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Oct 2021 15:28:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5F10660F9E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 6A0A061037
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Oct 2021 17:45:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6A0A061037
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=D/7kQiSwfhbY77ZaXdRRm3rrVjU1MSHh7AejDvtgloQ=; b=lqm1rV+7BG9dYc
-	VeDDGX6jALxlC2XPknUt2cJA5Fi/2j46IFEtmuGAC1RvBBb08DNelrHR/QCiAV0NhoS4UoL83Yzwr
-	BAjnDT6mGUKmvRf+ZlhCdN06LnZYi70D3F0TqMcHzwp98SddR58sMz25LIWdMI/D7KvsCO0wup3G2
-	rkemAPByj4eGuSjwAgwjIzuyPMt+jHUurAXUximKLWYBA3m3Oet6U/LqdkfWirRCRQQP1WpHgYChF
-	FRnO7IDoE7pWdAoSdQ75tCc7BrIHquXc2r01kc9O1EHTudbXWJBp35L0PL4UY4xOCPyOkCVukxvsL
-	kgz8qtg+x2agYHaGbwoQ==;
+	List-Owner; bh=Gf0PYOzotJGvJxyC3Z3GU58yzx391BqJCgizGY5YXN0=; b=o6v+MQIAH6oiTy
+	WZtiZs+kIgmWfAJ+6dRIBHQ3dXojR/jr4+yLZTtTP28fbCraVIAtn/Kg0dtQ4HbAVEYreV0ai/Ivr
+	VW8FsdIbHFcHC5E+V4z81MeTcbRL+S5tKRwCp1I1m7IJ+uyi63wN5aftydsRHebClN8inlE2vIAG0
+	0ZpxZvzHg6neXzTDMDUWgkajZQrgf6ojucVgRE4XqfqQJJE8PZ/ctUG84gblXQfJz76Wg19w5p5kC
+	1E3ekW6bIZVTIzc3kETvcYwAqn/MPqfKUhOsDlHITCKt46tU6ZhCSeC7dT4f4RanHpGyzS8nZ9tFv
+	fBcmWowtRaNlfRPEhrEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mb2f6-003efi-WF; Thu, 14 Oct 2021 15:28:53 +0000
-Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
+	id 1mb4nN-003zUB-Hg; Thu, 14 Oct 2021 17:45:33 +0000
+Received: from mx1.smtp.larsendata.com ([91.221.196.215])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mb2cn-003dV5-Uj
- for linux-amlogic@lists.infradead.org; Thu, 14 Oct 2021 15:26:32 +0000
-Received: by mail-lf1-x12d.google.com with SMTP id u21so25488566lff.8
- for <linux-amlogic@lists.infradead.org>; Thu, 14 Oct 2021 08:26:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=9uFRAg/cSZ1Ge1wEiYH5jWmFxwS6RH3twCyxI3UBC5c=;
- b=CegzzxFtb/uayp1+8cDO1U6QxOoeWj31k1k1Z7XOfoo/i5+bHkASQvbn9FvaS6p/uu
- zyF2bI8Dlz48Ki38g+v8EKeY3wBd7rRxKgwiYxQ4Kdz07k7zJikiY/sVfzPpM96SUP3V
- 3QBBqZsIfzDufuPB42h2s4XgIMYIla38OL/zrNs4WISrmGbRbXACPpVK24cDsuUAgZTI
- HyyjlP5dXGMF6a6JmkpWf7Dp6oXf+ckaBDrMhcOglx+Xmv8i3XeahsyJ11Y1teohpSlg
- oH+mVbvQ+KxcbOFy/khczxq+/xllWkTBcS1Vin7m9JDit2i4TuXJ9m3RQNBHXLkNBCcD
- geMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=9uFRAg/cSZ1Ge1wEiYH5jWmFxwS6RH3twCyxI3UBC5c=;
- b=B2rxBb6MVPbbmY53Xeu1egquxdQcWBY+Y/C1d0ZYomZRhXyKYbqg9u7vS1ePpxAUwA
- mO4RV+ieq8PjZAkqU+Izm0S+7KbpKBWNndHzHL0sNwCWQNm0y+k0tOqKLDQtzuaYLwEb
- x6PqUESfu8DyNF1+8QaW7qeF3fMDJSvGXtOPVD0FLtYx/mwlF7Q4rzHD+iDswzWkBAoN
- W/mFrq9MydOUoxv5wsliaHbvs/SLH0Z/LdQQS3zPtYUYXGjiWshXwu4JUHT+LFbkddLx
- z+0s+a85VzHLQ9K6p+b5YDTKFnYt8V3U6kV7pCbHn76nTWLxLYSkp/FCBxRqaJ15jm/b
- HsCQ==
-X-Gm-Message-State: AOAM530Zu74Kg81NBosojWGcS/LiG1FtILa3hEU0k5h82d6rItOvoL1h
- CCtz4pAHTJubXWGh4wPcecOO4yLlj+wM+w==
-X-Google-Smtp-Source: ABdhPJzpwhH69ZbKantF9xkYUjaz9jOHz93hDwbCoysI7kqMKMlD1YIqvGMp0yv9zTTaW8r/t+xrqw==
-X-Received: by 2002:adf:9b97:: with SMTP id d23mr7342393wrc.135.1634225177180; 
- Thu, 14 Oct 2021 08:26:17 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:209b:8400:2b80:b4ae])
- by smtp.gmail.com with ESMTPSA id k22sm2626790wrd.59.2021.10.14.08.26.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Oct 2021 08:26:16 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: daniel@ffwll.ch,
-	Laurent.pinchart@ideasonboard.com
-Cc: martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 5/7] drm/meson: encoder_hdmi: switch to bridge
- DRM_BRIDGE_ATTACH_NO_CONNECTOR
-Date: Thu, 14 Oct 2021 17:26:04 +0200
-Message-Id: <20211014152606.2289528-6-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211014152606.2289528-1-narmstrong@baylibre.com>
+ id 1mb4nJ-003zRr-P7
+ for linux-amlogic@lists.infradead.org; Thu, 14 Oct 2021 17:45:31 +0000
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+ by mx1.smtp.larsendata.com (Halon) with ESMTPS
+ id 7eaae583-2d16-11ec-9c3f-0050568c148b;
+ Thu, 14 Oct 2021 17:45:17 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
+ [80.162.45.141])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: sam@ravnborg.org)
+ by mail01.mxhotel.dk (Postfix) with ESMTPSA id CADFC194B77;
+ Thu, 14 Oct 2021 19:45:24 +0200 (CEST)
+Date: Thu, 14 Oct 2021 19:45:15 +0200
+X-Report-Abuse-To: abuse@mxhotel.dk
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: daniel@ffwll.ch, Laurent.pinchart@ideasonboard.com,
+ robert.foss@linaro.org, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+ martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] drm/bridge: display-connector: implement bus fmts
+ callbacks
+Message-ID: <YWhsq6nxf88Uwnbx@ravnborg.org>
 References: <20211014152606.2289528-1-narmstrong@baylibre.com>
+ <20211014152606.2289528-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7744; h=from:subject;
- bh=6i6KMw5kTyiPYblQgBG12n2DEPIZia2mYTPpIOLuziA=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhaEuA/2fFsyQw1JOef8WiTXD7UMaSzOoThtR9lJXC
- d6jt0DCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYWhLgAAKCRB33NvayMhJ0Z6OD/
- 9RP0uaVWA6EnqwnTt5JQMCDaCIBbX6KmvlbMTRxFt5vBaFuFaqSOQGLyxcWBu12Fgn0khi3fl6pfn6
- EzZ3iID8xbgAnoSyNj/QMiwOcVVelzuK0xDxlQwH2crdVVgKCulq1lnBi8C2OQ4x7NN3i+e3LevgIk
- bOBIXUH14xVi0BEhIAy7PbvuQc6/KNN8nNjss+uEQcHH6UbPHtDIxpepVPRdD6rncFOxZ/aqKcEf9F
- hVYJL3YmBxoQM4rf1mKd0Qqvm+k6j/C/UlIIIlm5KetkfgDYRX7ZfP3VZnGWnQV3ZU2k/hZbKhiQKH
- DwrSlvYG1yG874xnwPbOZYfD9IJWNHnVNg6YeTeQjleKLBX+Mxg3OUUDM3oOEYuKWe9fK/I+UK/NZQ
- +TO43vYsrIHrRAi+aaiSvEDPKimW+iHOWowQAYAd+T16PVnzyOsC7Qy8bwYHfzmgc+2UuTEHm9YQ9E
- CJI0cVudV7KcNl2b7ji82l38K7fBbM9KB/2UGpKXFSeYvHX5jl3k+cBaiRsQwRZJzcbDxtpNYK5qoF
- sOuQkYZ95JORAPj7xmjqIIudXSF+m934EcvFi0B3AmU2gZQDU4QHwir+xiGc8h9oVeVMRfWKgYEA+S
- UYc0ZmTALl0aMM9B4JPpKNUT7Bjl6WzJOKAo4m9AdmeJAruU5V6B9laHY5bA==
-X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Disposition: inline
+In-Reply-To: <20211014152606.2289528-2-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211014_082630_051283_3CC94599 
-X-CRM114-Status: GOOD (  22.03  )
+X-CRM114-CacheID: sfid-20211014_104530_136758_BE16107A 
+X-CRM114-Status: GOOD (  26.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,209 +78,157 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This implements the necessary change to no more use the embedded
-connector in dw-hdmi and use the dedicated bridge connector driver
-by passing DRM_BRIDGE_ATTACH_NO_CONNECTOR to the bridge attach call.
+Hi Neil,
 
-The necessary connector properties are added to handle the same
-functionalities as the embedded dw-hdmi connector, i.e. the HDR
-metadata, the CEC notifier & other flags.
+code looks fine. A few improvement proposals to the comments.
+With the include order fixed and the comments considered:
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
-The dw-hdmi output_port is set to 1 in order to look for a connector
-next bridge in order to get DRM_BRIDGE_ATTACH_NO_CONNECTOR working.
+	Sam
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/Kconfig              |  2 +
- drivers/gpu/drm/meson/meson_dw_hdmi.c      |  1 +
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 81 +++++++++++++++++++++-
- 3 files changed, 82 insertions(+), 2 deletions(-)
+On Thu, Oct 14, 2021 at 05:26:00PM +0200, Neil Armstrong wrote:
+> Since this bridge is tied to the connector, it acts like a passthrough,
+> so concerning the output & input bus formats, either pass the bus formats from the
+> previous bridge or return fallback data like done in the bridge function:
+> drm_atomic_bridge_chain_select_bus_fmts() & select_bus_fmt_recursive.
+> 
+> This permits avoiding skipping the negociation if the remaining bridge chain has
+> all the bits in place.
+> 
+> Without this bus fmt negociation breaks on drm/meson HDMI pipeline when attaching
+> dw-hdmi with DRM_BRIDGE_ATTACH_NO_CONNECTOR, because the last bridge of the
+> display-connector doesn't implement buf fmt callbacks and MEDIA_BUS_FMT_FIXED
+> is used leading to select an unsupported default bus format from dw-hdmi.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/gpu/drm/bridge/display-connector.c | 88 ++++++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/display-connector.c b/drivers/gpu/drm/bridge/display-connector.c
+> index 05eb759da6fc..9697ac173157 100644
+> --- a/drivers/gpu/drm/bridge/display-connector.c
+> +++ b/drivers/gpu/drm/bridge/display-connector.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/regulator/consumer.h>
+>  
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_edid.h>
+Alphabetic order.
 
-diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
-index 9f9281dd49f8..a4e1ed96e5e8 100644
---- a/drivers/gpu/drm/meson/Kconfig
-+++ b/drivers/gpu/drm/meson/Kconfig
-@@ -6,9 +6,11 @@ config DRM_MESON
- 	select DRM_KMS_HELPER
- 	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
-+	select DRM_DISPLAY_CONNECTOR
- 	select VIDEOMODE_HELPERS
- 	select REGMAP_MMIO
- 	select MESON_CANVAS
-+	select CEC_CORE if CEC_NOTIFIER
- 
- config DRM_MESON_DW_HDMI
- 	tristate "HDMI Synopsys Controller support for Amlogic Meson Display"
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index c2480b3335ac..933ff63b1ecf 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -805,6 +805,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	dw_plat_data->input_bus_encoding = V4L2_YCBCR_ENC_709;
- 	dw_plat_data->ycbcr_420_allowed = true;
- 	dw_plat_data->disable_cec = true;
-+	dw_plat_data->output_port = 1;
- 
- 	if (dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
- 	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxm-dw-hdmi") ||
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index c775a1ab5b1e..a4264587d89a 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -14,9 +14,12 @@
- #include <linux/regulator/consumer.h>
- #include <linux/reset.h>
- 
-+#include <media/cec-notifier.h>
-+
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_simple_kms_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
- #include <drm/drm_device.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_probe_helper.h>
-@@ -34,8 +37,10 @@ struct meson_encoder_hdmi {
- 	struct drm_encoder encoder;
- 	struct drm_bridge bridge;
- 	struct drm_bridge *next_bridge;
-+	struct drm_connector *connector;
- 	struct meson_drm *priv;
- 	unsigned long output_bus_fmt;
-+	struct cec_notifier *cec_notifier;
- };
- 
- #define bridge_to_meson_encoder_hdmi(x) \
-@@ -50,6 +55,14 @@ static int meson_encoder_hdmi_attach(struct drm_bridge *bridge,
- 				 &encoder_hdmi->bridge, flags);
- }
- 
-+static void meson_encoder_hdmi_detach(struct drm_bridge *bridge)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+
-+	cec_notifier_conn_unregister(encoder_hdmi->cec_notifier);
-+	encoder_hdmi->cec_notifier = NULL;
-+}
-+
- static void meson_encoder_hdmi_enable(struct drm_bridge *bridge)
- {
- 	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-@@ -284,12 +297,33 @@ static int meson_encoder_hdmi_atomic_check(struct drm_bridge *bridge,
- 	return 0;
- }
- 
-+static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
-+					  enum drm_connector_status status)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+	struct edid *edid;
-+
-+	if (!encoder_hdmi->cec_notifier)
-+		return;
-+
-+	if (status == connector_status_connected) {
-+		edid = drm_bridge_get_edid(encoder_hdmi->next_bridge, encoder_hdmi->connector);
-+		if (!edid)
-+			return;
-+
-+		cec_notifier_set_phys_addr_from_edid(encoder_hdmi->cec_notifier, edid);
-+	} else
-+		cec_notifier_phys_addr_invalidate(encoder_hdmi->cec_notifier);
-+}
-+
- static const struct drm_bridge_funcs meson_encoder_hdmi_bridge_funcs = {
- 	.attach = meson_encoder_hdmi_attach,
-+	.detach = meson_encoder_hdmi_detach,
- 	.enable	= meson_encoder_hdmi_enable,
- 	.disable = meson_encoder_hdmi_disable,
- 	.mode_valid = meson_encoder_hdmi_mode_valid,
- 	.mode_set = meson_encoder_hdmi_mode_set,
-+	.hpd_notify = meson_encoder_hdmi_hpd_notify,
- 	.atomic_get_input_bus_fmts = meson_encoder_hdmi_get_inp_bus_fmts,
- 	.atomic_check = meson_encoder_hdmi_atomic_check,
- 	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-@@ -300,6 +334,7 @@ static const struct drm_bridge_funcs meson_encoder_hdmi_bridge_funcs = {
- int meson_encoder_hdmi_init(struct meson_drm *priv)
- {
- 	struct meson_encoder_hdmi *meson_encoder_hdmi;
-+	struct platform_device *pdev;
- 	struct device_node *remote;
- 	int ret;
- 
-@@ -326,6 +361,7 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 	meson_encoder_hdmi->bridge.funcs = &meson_encoder_hdmi_bridge_funcs;
- 	meson_encoder_hdmi->bridge.of_node = priv->dev->of_node;
- 	meson_encoder_hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
-+	meson_encoder_hdmi->bridge.interlace_allowed = true;
- 
- 	drm_bridge_add(&meson_encoder_hdmi->bridge);
- 
-@@ -342,17 +378,58 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 	meson_encoder_hdmi->encoder.possible_crtcs = BIT(0);
- 
- 	/* Attach HDMI Encoder Bridge to Encoder */
--	ret = drm_bridge_attach(&meson_encoder_hdmi->encoder, &meson_encoder_hdmi->bridge, NULL, 0);
-+	ret = drm_bridge_attach(&meson_encoder_hdmi->encoder, &meson_encoder_hdmi->bridge, NULL,
-+				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
- 	if (ret) {
- 		dev_err(priv->dev, "Failed to attach bridge: %d\n", ret);
- 		return ret;
- 	}
- 
-+	/* Initialize & attach Bridge Connector */
-+	meson_encoder_hdmi->connector = drm_bridge_connector_init(priv->drm,
-+							&meson_encoder_hdmi->encoder);
-+	if (IS_ERR(meson_encoder_hdmi->connector)) {
-+		dev_err(priv->dev, "Unable to create HDMI bridge connector\n");
-+		return PTR_ERR(meson_encoder_hdmi->connector);
-+	}
-+	drm_connector_attach_encoder(meson_encoder_hdmi->connector,
-+				     &meson_encoder_hdmi->encoder);
-+
- 	/*
- 	 * We should have now in place:
--	 * encoder->[hdmi encoder bridge]->[dw-hdmi bridge]->[dw-hdmi connector]
-+	 * encoder->[hdmi encoder bridge]->[dw-hdmi bridge]->[display connector bridge]->[display connector]
- 	 */
- 
-+	/*
-+	 * drm_connector_attach_max_bpc_property() requires the
-+	 * connector to have a state.
-+	 */
-+	drm_atomic_helper_connector_reset(meson_encoder_hdmi->connector);
-+
-+	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL) ||
-+	    meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
-+	    meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
-+		drm_connector_attach_hdr_output_metadata_property(meson_encoder_hdmi->connector);
-+
-+	drm_connector_attach_max_bpc_property(meson_encoder_hdmi->connector, 8, 8);
-+
-+	/* Handle this here until handled by drm_bridge_connector_init() */
-+	meson_encoder_hdmi->connector->ycbcr_420_allowed = true;
-+
-+	pdev = of_find_device_by_node(remote);
-+	if (pdev) {
-+		struct cec_connector_info conn_info;
-+		struct cec_notifier *notifier;
-+
-+		cec_fill_conn_info_from_drm(&conn_info, meson_encoder_hdmi->connector);
-+
-+		notifier = cec_notifier_conn_register(&pdev->dev, NULL, &conn_info);
-+		if (!notifier)
-+			return -ENOMEM;
-+
-+		meson_encoder_hdmi->cec_notifier = notifier;
-+	}
-+
- 	DRM_DEBUG_DRIVER("HDMI encoder initialized\n");
- 
- 	return 0;
--- 
-2.25.1
+>  
+>  struct display_connector {
+> @@ -87,10 +88,97 @@ static struct edid *display_connector_get_edid(struct drm_bridge *bridge,
+>  	return drm_get_edid(connector, conn->bridge.ddc);
+>  }
+>  
+> +/*
+> + * Since this bridge is tied to the connector, it acts like a passthrough,
+> + * so concerning the output bus formats, either pass the bus formats from the
+> + * previous bridge or return fallback data like done in the bridge function:
+> + * drm_atomic_bridge_chain_select_bus_fmts().
+> + * This permits avoiding skipping the negociation if the bridge chain has all
+> + * bits in place.
+negociation if => negotiation of
 
+Consider the following wording:
+This supports negotiation if the bridge chain has all bits in place.
+
+> + */
+> +static u32 *display_connector_get_output_bus_fmts(struct drm_bridge *bridge,
+> +					struct drm_bridge_state *bridge_state,
+> +					struct drm_crtc_state *crtc_state,
+> +					struct drm_connector_state *conn_state,
+> +					unsigned int *num_output_fmts)
+> +{
+> +	struct drm_bridge *prev_bridge = drm_bridge_get_prev_bridge(bridge);
+> +	struct drm_bridge_state *prev_bridge_state;
+> +
+> +	if (!prev_bridge || !prev_bridge->funcs->atomic_get_output_bus_fmts) {
+> +		struct drm_connector *conn = conn_state->connector;
+> +		u32 *out_bus_fmts;
+> +
+> +		*num_output_fmts = 1;
+> +		out_bus_fmts = kmalloc(sizeof(*out_bus_fmts), GFP_KERNEL);
+> +		if (!out_bus_fmts)
+> +			return NULL;
+> +
+> +		if (conn->display_info.num_bus_formats &&
+> +		    conn->display_info.bus_formats)
+> +			out_bus_fmts[0] = conn->display_info.bus_formats[0];
+> +		else
+> +			out_bus_fmts[0] = MEDIA_BUS_FMT_FIXED;
+> +
+> +		return out_bus_fmts;
+> +	}
+> +
+> +	prev_bridge_state = drm_atomic_get_new_bridge_state(crtc_state->state,
+> +							    prev_bridge);
+> +
+> +	return prev_bridge->funcs->atomic_get_output_bus_fmts(prev_bridge, prev_bridge_state,
+> +							      crtc_state, conn_state,
+> +							      num_output_fmts);
+> +}
+> +
+> +/*
+> + * Since this bridge is tied to the connector, it acts like a passthrough,
+> + * so concerning the input bus formats, either pass the bus formats from the
+> + * previous bridge or return fallback data like done in the bridge function:
+> + * select_bus_fmt_recursive() when atomic_get_input_bus_fmts is not supported.
+Maybe use this this:
+from the previous bridge or MEDIA_BUS_FMT_FIXED (like select_bus_fmt_recursive())
+
+
+> + * This permits avoiding skipping the negociation if the bridge chain has all
+> + * bits in place.
+Like above
+> + */
+> +static u32 *display_connector_get_input_bus_fmts(struct drm_bridge *bridge,
+> +					struct drm_bridge_state *bridge_state,
+> +					struct drm_crtc_state *crtc_state,
+> +					struct drm_connector_state *conn_state,
+> +					u32 output_fmt,
+> +					unsigned int *num_input_fmts)
+> +{
+> +	struct drm_bridge *prev_bridge = drm_bridge_get_prev_bridge(bridge);
+> +	struct drm_bridge_state *prev_bridge_state;
+> +
+> +	if (!prev_bridge || !prev_bridge->funcs->atomic_get_input_bus_fmts) {
+> +		u32 *in_bus_fmts;
+> +
+> +		*num_input_fmts = 1;
+> +		in_bus_fmts = kmalloc(sizeof(*in_bus_fmts), GFP_KERNEL);
+> +		if (!in_bus_fmts)
+> +			return NULL;
+> +
+> +		in_bus_fmts[0] = MEDIA_BUS_FMT_FIXED;
+> +
+> +		return in_bus_fmts;
+> +	}
+> +
+> +	prev_bridge_state = drm_atomic_get_new_bridge_state(crtc_state->state,
+> +							    prev_bridge);
+> +
+> +	return prev_bridge->funcs->atomic_get_input_bus_fmts(prev_bridge, prev_bridge_state,
+> +							     crtc_state, conn_state, output_fmt,
+> +							     num_input_fmts);
+> +}
+> +
+>  static const struct drm_bridge_funcs display_connector_bridge_funcs = {
+>  	.attach = display_connector_attach,
+>  	.detect = display_connector_detect,
+>  	.get_edid = display_connector_get_edid,
+> +	.atomic_get_output_bus_fmts = display_connector_get_output_bus_fmts,
+> +	.atomic_get_input_bus_fmts = display_connector_get_input_bus_fmts,
+> +	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+> +	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
+> +	.atomic_reset = drm_atomic_helper_bridge_reset,
+>  };
+>  
+>  static irqreturn_t display_connector_hpd_irq(int irq, void *arg)
+> -- 
+> 2.25.1
 
 _______________________________________________
 linux-amlogic mailing list
