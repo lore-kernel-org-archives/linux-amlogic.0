@@ -2,14 +2,14 @@ Return-Path: <SRS0=MFto=PC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EC6BBC433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Oct 2021 15:27:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31008C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Oct 2021 15:28:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ABC7160C40
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Oct 2021 15:27:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org ABC7160C40
+	by mail.kernel.org (Postfix) with ESMTPS id E8E4B60F6F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Oct 2021 15:28:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E8E4B60F6F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,83 +18,83 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TLnuC2vb4ci7E+YbOdG/QwfphGOJTmW/0r473TDJ7DQ=; b=f87cu1pJIAp0g2
-	sG6FG0QQbETxQSqGoFL+8uQAqe+I7M4F15NZlm7DGVjJEha4xFd84wE9pGEBBpOvFHZqfkx4x3xwE
-	jnLAP0IqlLWKozHGaKZXGpzPEs7uFEBJrwxgAdFJaZeF809SycikdJ/S4K18yBZYEqr44Z+DlegV+
-	e3jak8RVc1Pf60zjFRv0jCsNarWN28s7cRQ9NsBW8ssfkzkc8sXWzysC5FSraQQKZBE0OI4C8C7fp
-	uF08I9wiP5P3bnu+8KJBrn/4qLZS4NDBDiIdH2HJymnVbDfok7ZrAAIZsAf4vX07CaOB0MaVU2Dz2
-	Q3pwZLqvYVJSz1ok5Esg==;
+	List-Owner; bh=3Cwi7KogaS09uCsnx/tRIH3nzguW4+e/swUUhWCOJTU=; b=i/AWQXlHeuN8XW
+	Kow0OtyiXhc4EmGYsaW/SvV7R7HdR/5vQWjfjSod5EqwrX9IoFv4EopAiJgqykZkctfGd07tnVng7
+	bahOx58tZb+VKCaqytAu5g0RnyT6+8KZ4CXSjGfWENFfDm9TmiU97HFlP5RnoSQ/Lx6jm4LBFO+Ag
+	vtX8RFup7WRA8Gnox38hZyg9NOBZC7dB1Sf1I2KCZC5BgpUb84Ej6mDkVWkwfkWvrHb+HSXqjxwK2
+	l5U5pUOHr99zUdZkdOw8DfcDXeOeCQQDOEYzR1sD1LZZLKoIzmreYvoWwxLgoDLHQDXwMT81yT6+6
+	z4AwzvUgu2vpYdYr9NHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mb2dj-003dtl-GQ; Thu, 14 Oct 2021 15:27:27 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1mb2eI-003eFf-Pi; Thu, 14 Oct 2021 15:28:02 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mb2cb-003dMQ-NG
- for linux-amlogic@lists.infradead.org; Thu, 14 Oct 2021 15:26:25 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id u18so20789668wrg.5
- for <linux-amlogic@lists.infradead.org>; Thu, 14 Oct 2021 08:26:16 -0700 (PDT)
+ id 1mb2cg-003dOR-36
+ for linux-amlogic@lists.infradead.org; Thu, 14 Oct 2021 15:26:26 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id m22so20867360wrb.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 14 Oct 2021 08:26:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=M0A8vO6K2UaJl8Wh0iIro32K7b9X039mJZAxfPxUb4w=;
- b=cNeIFDHkJJa3zh12LAbvukYCinFIEE1BbogL70/vnuNC3FfHct4rdsZe7URQgR7r1e
- YfLaVZVxRX+qt1f2DVvaGww7tH/LXT6+LklZEdW318Dt0RcqWn1ZZV17iqtW9Fb9L0cV
- 2Z2n3S03lhoF4rR1YEq02zHZrBfqBWa63XEV3eKrnTz9DEkqeFYZehRQo7nLC4E/IzGV
- KG9miAvTNWUtzFRdiX3KHtQFJvIPn+ude4RRlHH6C+rjIGmRcudfMCKsfGt3iJ0MJtYe
- dcF9Y1OrJ1Kt0SPRZsKBsKSejHeKSsVA0rwzxf8/aZxyIchMVWFssoOOetrMXjiD2moe
- Sn5w==
+ bh=HZnfkK09uhjWqw+DNrCRghBv6QinaoLIxZDB7Hb28mg=;
+ b=g/NzPc/NwJzQRwO5rPKji2Pmc828XRZBZEsPwsoOqiu6MoG2kscJum00aWzjkVRsp/
+ Cs+R8hor6ve44wZpLrlW7ah6vBISlyJ1/WrUlSm99Sx5vj8j1i1wPS8xQp3R2G1aeeJ8
+ 6N8C/pLnVuk1XzRvQ7qozezFv0xJSGq5QVlp5Qgl/vJrs3lWJHtqSd6O4R4Oi8NwwKEn
+ VvGQXYZVsWR8P0duXOrP32M+OZ4xOUEDA3phU5fRIvGj9SIOa78wFAtOkUyf5mYcBuYe
+ uMMKAP63GFXzk/Sznq8rb/m8rT1pBZAhi4vvhmj4GCEiyDmHwbOvUwudiPKmVhNV0VvS
+ CyjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=M0A8vO6K2UaJl8Wh0iIro32K7b9X039mJZAxfPxUb4w=;
- b=FEsbcKOBShHmZX9PCKuh1BnfTcvmf6Ij9I64EjO69IgeBdXcValoBmgdAlQ8GcL3vd
- nl0TOkZIgw4dqQZFHa/uwYVyjAJCiG+bR+5KD/OAn+Uxo2oyCW2fEIwnLk+HrjxSHr/3
- 96Z9V/dcx2iMbS8W2c0WoEvbSgu6QYsHmZClW/NyR1Y51z2l3Pwio2m/H0n4mrG1xSoG
- sksQGxt42DYPPlxJE4SmA4HFl1DF900E0WPECL7AFAYeMIs9HvrkUMjusm3DkfvRxchN
- 6VdaZ4gciPyfLoVErcplM3+SQmX3FcTWa0Uqx9ltH9jZmIaJey/6oq7g6CEcLRswQAp7
- 8fIg==
-X-Gm-Message-State: AOAM531HrMrLtB7uriKA3OEOZEi1Hh6i7k2739u7d+9iUefbEO30VZ9t
- Y6/xuDxL6HCCEVOYhCoaC/JghA==
-X-Google-Smtp-Source: ABdhPJwEqyezQJGLbDEbcEChp12DPG+BD0gwvEEVcUOxXl7IE6W87kUzppKThgSsMup25NN+Pw7VTg==
-X-Received: by 2002:adf:ee8a:: with SMTP id b10mr7498976wro.335.1634225175394; 
- Thu, 14 Oct 2021 08:26:15 -0700 (PDT)
+ bh=HZnfkK09uhjWqw+DNrCRghBv6QinaoLIxZDB7Hb28mg=;
+ b=sysacxvh9qsj2lvzMkKleoRm9+22uBRKOpWOraPB+Fv6mwYAmbFUYPegJuy4S9W3GT
+ cfbm9lGlneuJvKf4zMOYoJcVwzdb7z36sDlc0xF7zsbS47zsRAY+2kXtNWxW8P/e+BXH
+ 8tTK1hSkcW40CVVWySnf/712FgIW7749aIIkH7qvGJFTTTWISilcrUEcBBicatCYnSN2
+ uzLeI2PGiXvNNRIX6e7/p939oQSl1fZNsxo32jojTJ2tjFzGbVzhWGFoBM/aCYOOuwbG
+ HIWFG/AixZCCPiWa9sZz4Vhimv0hSaAemVRZoGiXnx2kOstENfulA+iTwF/n14+TEELH
+ WMGw==
+X-Gm-Message-State: AOAM532FC/9XyPKjQj6OQpiKgGaYg5bghQhruq+JDzq3VztdB5WenyPL
+ PKLYIGpxd+ZF4LQGSUntH+rIMw==
+X-Google-Smtp-Source: ABdhPJwZoNXIidqiqnHVpBnZZse41KQMw/qtXG047QyO3Dpq8ifkksnDqJ6h9ZZpO8qMpyBKKAn6Cg==
+X-Received: by 2002:a5d:4d0f:: with SMTP id z15mr7668686wrt.334.1634225178294; 
+ Thu, 14 Oct 2021 08:26:18 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:209b:8400:2b80:b4ae])
- by smtp.gmail.com with ESMTPSA id k22sm2626790wrd.59.2021.10.14.08.26.14
+ by smtp.gmail.com with ESMTPSA id k22sm2626790wrd.59.2021.10.14.08.26.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Oct 2021 08:26:14 -0700 (PDT)
+ Thu, 14 Oct 2021 08:26:17 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: daniel@ffwll.ch,
 	Laurent.pinchart@ideasonboard.com
 Cc: martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 3/7] drm/meson: split out encoder from meson_dw_hdmi
-Date: Thu, 14 Oct 2021 17:26:02 +0200
-Message-Id: <20211014152606.2289528-4-narmstrong@baylibre.com>
+Subject: [PATCH 6/7] drm/meson: rename venc_cvbs to encoder_cvbs
+Date: Thu, 14 Oct 2021 17:26:05 +0200
+Message-Id: <20211014152606.2289528-7-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211014152606.2289528-1-narmstrong@baylibre.com>
 References: <20211014152606.2289528-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=29720; h=from:subject;
- bh=XObqiZtEhpcWbklPOqVh0yRZE4cymgfUYFI76ln+OsU=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhaEt/X6JZhhGESr8pW7aIJGCrArrugDAp8RV93d/e
- QcBS+hmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYWhLfwAKCRB33NvayMhJ0aewD/
- 48ItnRRKPowFlQNWNtI4AbVvQ9bVrUWYQmNzKr8Df3QHUyKkHRf1DOzZHWAizaDlv9LqJqQF0/YEyo
- KZebJdz0fKMCcE8YQqZDDUQR4bTUhW76z6qgn7haYQ3cEdYXo/R4nWQwG6G2EDLoHyG+EqaA83S1Ar
- YhCTxqa7sDri9CaXssDD+BTqRLG/n8r5Egex7Vbw/45c67imKRbmpMmL7APiikxCoaH1p9pyOMY4iF
- t124HprTq12Si/GZHbEbh8NxyhlLxbde4XuFKYvPGcJOOnaPRL3HssFRwBOuPn8H/EXz7DISHtilXb
- OFI0gLzh9SuJhj0Nbr+f/358ZwvKquatA3DPIp2xBVRn8qWu0A4CjH0FB6eqei4t7SROZ415YUlvSc
- rOBjzFqioODTvGFBIFrX+GPFDkyzRD+GNGledfNU4IGzx31/W6LiD6oPnafdMYGasRsgUz0ViKXm2A
- rcGoXYphYkZdTXkpdvfqGyCQRhWFkZcU229b/ER5yW7I9yaUM1Jv91O4a0p0mkFcrfzGAffZPcqB3E
- XLll7i+YCEb/Y2OAuj1xw0YAbTcNp4dvUPtPExVQy4jH13P9Iof/DG77gK3vw66Y1f2/ru42BzuqRK
- RPmr5oTdXF5XYVtpGjkcR9R432rY/Er0oVr17sRpFpf2WP5stbKT6MavpkQQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9494; h=from:subject;
+ bh=FeZfVcXcgSpdb977WidjFbWDVjcPsPKUucXlcKGhFP8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhaEuAtMhFpVoXXFxFzbYa68362S5l7Ul/yhos8IZ/
+ JjuXh2+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYWhLgAAKCRB33NvayMhJ0SczD/
+ 9kTN2vOPqWl7g7i+JwGJl4oXTY4K/yqepY7qk8pqPKfOY4IL3Ps5ECNZXD1fwCcVRahXmmrxAICu5s
+ 60Fugj67QfV6t9tFiCBZapS22olvStUVEwkxnHlb13HB31sEl8TImq41fs1wqogERw+HTLvzJ5sgpX
+ gJnu4xFHo9nbg5H9F80+WCLReX8EBSYf5YZr9yscrXVl93bEBA/F58O+XUGcAE0wRPQciyvHqq37Kw
+ l3SrjQfMhtA1xp0RDysTB0V0YWsz2giO7V6yXh2rfUXAdTFF4GueHeVCKSGc3YpcF1Y8lL93b8jXsq
+ LAV3CQdi36du9EkBEMDL4uiUY2d5+DsDy5V4AE5B0tINU6MgkijwA9ziHJfnw4UBbz0A0/Wy6Fta4i
+ 9yA49epe+8XQSGiA5p4qxmL+MJkWHxphuS9pW6F8oP0L9IDepRIiVUHexf+1EXHLTx6VmjAqmJ2Ym4
+ Brxo7wdepC4g1dkYtBZi3VKBjPsmIAzd2zyh78BpmeCcLxU6Xo3Jshw4hjI6QHUPW+gAtDOzqzN7TD
+ GQiS+RdxT/H2ZaA/GJivo8RyO0jw0L5A3nWTtuF2u7MHOMmkemZD52vnKCPzarnLRxInZwXcCtZE6R
+ YkHN6YcH4m0+eyk3x9XBNDK821pW+uk1dQJiylq6OwGoGi0XnFdews/PmLmQ==
 X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211014_082617_799263_81ACF838 
-X-CRM114-Status: GOOD (  25.68  )
+X-CRM114-CacheID: sfid-20211014_082622_213435_5ED4CF45 
+X-CRM114-Status: GOOD (  18.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,922 +111,247 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This moves all the non-DW-HDMI code where it should be:
-an encoder in the drm/meson core driver.
-
-The bridge functions are copied as-is, the encoder init uses the
-simple kms helper and for now the bridge attach flags is 0.
-
-The meson dw-hdmi glue is slighly fixed to live without the
-encoder in the same driver.
+Rename the cvbs encoder to match the newly introduced meson_encoder_hdmi.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/Makefile             |   1 +
- drivers/gpu/drm/meson/meson_drv.c          |   5 +
- drivers/gpu/drm/meson/meson_dw_hdmi.c      | 341 ++-----------------
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 359 +++++++++++++++++++++
- drivers/gpu/drm/meson/meson_encoder_hdmi.h |  12 +
- 5 files changed, 396 insertions(+), 322 deletions(-)
- create mode 100644 drivers/gpu/drm/meson/meson_encoder_hdmi.c
- create mode 100644 drivers/gpu/drm/meson/meson_encoder_hdmi.h
+ drivers/gpu/drm/meson/Makefile                |  2 +-
+ drivers/gpu/drm/meson/meson_drv.c             |  4 +-
+ ...meson_venc_cvbs.c => meson_encoder_cvbs.c} | 78 +++++++++----------
+ ...meson_venc_cvbs.h => meson_encoder_cvbs.h} |  2 +-
+ 4 files changed, 43 insertions(+), 43 deletions(-)
+ rename drivers/gpu/drm/meson/{meson_venc_cvbs.c => meson_encoder_cvbs.c} (74%)
+ rename drivers/gpu/drm/meson/{meson_venc_cvbs.h => meson_encoder_cvbs.h} (92%)
 
 diff --git a/drivers/gpu/drm/meson/Makefile b/drivers/gpu/drm/meson/Makefile
-index 28a519cdf66b..523fce45f16b 100644
+index 523fce45f16b..3afa31bdc950 100644
 --- a/drivers/gpu/drm/meson/Makefile
 +++ b/drivers/gpu/drm/meson/Makefile
-@@ -2,6 +2,7 @@
- meson-drm-y := meson_drv.o meson_plane.o meson_crtc.o meson_venc_cvbs.o
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-meson-drm-y := meson_drv.o meson_plane.o meson_crtc.o meson_venc_cvbs.o
++meson-drm-y := meson_drv.o meson_plane.o meson_crtc.o meson_encoder_cvbs.o
  meson-drm-y += meson_viu.o meson_vpp.o meson_venc.o meson_vclk.o meson_overlay.o
  meson-drm-y += meson_rdma.o meson_osd_afbcd.o
-+meson-drm-y += meson_encoder_hdmi.o
- 
- obj-$(CONFIG_DRM_MESON) += meson-drm.o
- obj-$(CONFIG_DRM_MESON_DW_HDMI) += meson_dw_hdmi.o
+ meson-drm-y += meson_encoder_hdmi.o
 diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index b53606d8825f..0a28a8e29d63 100644
+index 0a28a8e29d63..d07d302ce4a6 100644
 --- a/drivers/gpu/drm/meson/meson_drv.c
 +++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -32,6 +32,7 @@
+@@ -31,7 +31,7 @@
+ #include "meson_plane.h"
  #include "meson_osd_afbcd.h"
  #include "meson_registers.h"
- #include "meson_venc_cvbs.h"
-+#include "meson_encoder_hdmi.h"
+-#include "meson_venc_cvbs.h"
++#include "meson_encoder_cvbs.h"
+ #include "meson_encoder_hdmi.h"
  #include "meson_viu.h"
  #include "meson_vpp.h"
- #include "meson_rdma.h"
-@@ -319,6 +320,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 		}
- 	}
+@@ -308,7 +308,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
  
-+	ret = meson_encoder_hdmi_init(priv);
-+	if (ret)
-+		goto free_drm;
-+
- 	ret = meson_plane_create(priv);
+ 	/* Encoder Initialization */
+ 
+-	ret = meson_venc_cvbs_create(priv);
++	ret = meson_encoder_cvbs_init(priv);
  	if (ret)
  		goto free_drm;
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 2ed87cfdd735..c2480b3335ac 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -22,14 +22,11 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_print.h>
  
--#include <linux/media-bus-format.h>
- #include <linux/videodev2.h>
+diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+similarity index 74%
+rename from drivers/gpu/drm/meson/meson_venc_cvbs.c
+rename to drivers/gpu/drm/meson/meson_encoder_cvbs.c
+index f1747fde1fe0..01024c5f610c 100644
+--- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+@@ -20,7 +20,7 @@
  
- #include "meson_drv.h"
- #include "meson_dw_hdmi.h"
  #include "meson_registers.h"
--#include "meson_vclk.h"
--#include "meson_venc.h"
+ #include "meson_vclk.h"
+-#include "meson_venc_cvbs.h"
++#include "meson_encoder_cvbs.h"
  
- #define DRIVER_NAME "meson-dw-hdmi"
- #define DRIVER_DESC "Amlogic Meson HDMI-TX DRM driver"
-@@ -135,8 +132,6 @@ struct meson_dw_hdmi_data {
+ /* HHI VDAC Registers */
+ #define HHI_VDAC_CNTL0		0x2F4 /* 0xbd offset in data sheet */
+@@ -28,16 +28,16 @@
+ #define HHI_VDAC_CNTL1		0x2F8 /* 0xbe offset in data sheet */
+ #define HHI_VDAC_CNTL1_G12A	0x2F0 /* 0xbe offset in data sheet */
+ 
+-struct meson_venc_cvbs {
++struct meson_encoder_cvbs {
+ 	struct drm_encoder	encoder;
+ 	struct drm_connector	connector;
+ 	struct meson_drm	*priv;
  };
+-#define encoder_to_meson_venc_cvbs(x) \
+-	container_of(x, struct meson_venc_cvbs, encoder)
++#define encoder_to_meson_encoder_cvbs(x) \
++	container_of(x, struct meson_encoder_cvbs, encoder)
  
- struct meson_dw_hdmi {
--	struct drm_encoder encoder;
--	struct drm_bridge bridge;
- 	struct dw_hdmi_plat_data dw_plat_data;
- 	struct meson_drm *priv;
- 	struct device *dev;
-@@ -148,12 +143,8 @@ struct meson_dw_hdmi {
- 	struct regulator *hdmi_supply;
- 	u32 irq_stat;
- 	struct dw_hdmi *hdmi;
--	unsigned long output_bus_fmt;
-+	struct drm_bridge *bridge;
- };
--#define encoder_to_meson_dw_hdmi(x) \
--	container_of(x, struct meson_dw_hdmi, encoder)
--#define bridge_to_meson_dw_hdmi(x) \
--	container_of(x, struct meson_dw_hdmi, bridge)
+-#define connector_to_meson_venc_cvbs(x) \
+-	container_of(x, struct meson_venc_cvbs, connector)
++#define connector_to_meson_encoder_cvbs(x) \
++	container_of(x, struct meson_encoder_cvbs, connector)
  
- static inline int dw_hdmi_is_compatible(struct meson_dw_hdmi *dw_hdmi,
- 					const char *compat)
-@@ -295,14 +286,14 @@ static inline void dw_hdmi_dwc_write_bits(struct meson_dw_hdmi *dw_hdmi,
+ /* Supported Modes */
  
- /* Setup PHY bandwidth modes */
- static void meson_hdmi_phy_setup_mode(struct meson_dw_hdmi *dw_hdmi,
--				      const struct drm_display_mode *mode)
-+				      const struct drm_display_mode *mode,
-+				      bool mode_is_420)
+@@ -140,16 +140,16 @@ struct drm_connector_helper_funcs meson_cvbs_connector_helper_funcs = {
+ 
+ /* Encoder */
+ 
+-static void meson_venc_cvbs_encoder_destroy(struct drm_encoder *encoder)
++static void meson_encoder_cvbs_encoder_destroy(struct drm_encoder *encoder)
  {
- 	struct meson_drm *priv = dw_hdmi->priv;
- 	unsigned int pixel_clock = mode->clock;
- 
- 	/* For 420, pixel clock is half unlike venc clock */
--	if (dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
--		pixel_clock /= 2;
-+	if (mode_is_420) pixel_clock /= 2;
- 
- 	if (dw_hdmi_is_compatible(dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
- 	    dw_hdmi_is_compatible(dw_hdmi, "amlogic,meson-gxm-dw-hdmi")) {
-@@ -374,68 +365,25 @@ static inline void meson_dw_hdmi_phy_reset(struct meson_dw_hdmi *dw_hdmi)
- 	mdelay(2);
+ 	drm_encoder_cleanup(encoder);
  }
  
--static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
--			     const struct drm_display_mode *mode)
--{
--	struct meson_drm *priv = dw_hdmi->priv;
--	int vic = drm_match_cea_mode(mode);
--	unsigned int phy_freq;
--	unsigned int vclk_freq;
--	unsigned int venc_freq;
--	unsigned int hdmi_freq;
--
--	vclk_freq = mode->clock;
--
--	/* For 420, pixel clock is half unlike venc clock */
--	if (dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
--		vclk_freq /= 2;
--
--	/* TMDS clock is pixel_clock * 10 */
--	phy_freq = vclk_freq * 10;
--
--	if (!vic) {
--		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, phy_freq,
--				 vclk_freq, vclk_freq, vclk_freq, false);
--		return;
--	}
--
--	/* 480i/576i needs global pixel doubling */
--	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
--		vclk_freq *= 2;
--
--	venc_freq = vclk_freq;
--	hdmi_freq = vclk_freq;
--
--	/* VENC double pixels for 1080i, 720p and YUV420 modes */
--	if (meson_venc_hdmi_venc_repeat(vic) ||
--	    dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
--		venc_freq *= 2;
--
--	vclk_freq = max(venc_freq, hdmi_freq);
--
--	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
--		venc_freq /= 2;
--
--	DRM_DEBUG_DRIVER("vclk:%d phy=%d venc=%d hdmi=%d enci=%d\n",
--		phy_freq, vclk_freq, venc_freq, hdmi_freq,
--		priv->venc.hdmi_use_enci);
--
--	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, phy_freq, vclk_freq,
--			 venc_freq, hdmi_freq, priv->venc.hdmi_use_enci);
--}
--
- static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 			    const struct drm_display_info *display,
- 			    const struct drm_display_mode *mode)
+-static const struct drm_encoder_funcs meson_venc_cvbs_encoder_funcs = {
+-	.destroy        = meson_venc_cvbs_encoder_destroy,
++static const struct drm_encoder_funcs meson_encoder_cvbs_encoder_funcs = {
++	.destroy        = meson_encoder_cvbs_encoder_destroy,
+ };
+ 
+-static int meson_venc_cvbs_encoder_atomic_check(struct drm_encoder *encoder,
++static int meson_encoder_cvbs_encoder_atomic_check(struct drm_encoder *encoder,
+ 					struct drm_crtc_state *crtc_state,
+ 					struct drm_connector_state *conn_state)
  {
- 	struct meson_dw_hdmi *dw_hdmi = (struct meson_dw_hdmi *)data;
-+	bool is_hdmi2_sink = display->hdmi.scdc.supported;
- 	struct meson_drm *priv = dw_hdmi->priv;
- 	unsigned int wr_clk =
- 		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
-+	bool mode_is_420 = false;
+@@ -159,11 +159,11 @@ static int meson_venc_cvbs_encoder_atomic_check(struct drm_encoder *encoder,
+ 	return -EINVAL;
+ }
  
- 	DRM_DEBUG_DRIVER("\"%s\" div%d\n", mode->name,
- 			 mode->clock > 340000 ? 40 : 10);
+-static void meson_venc_cvbs_encoder_disable(struct drm_encoder *encoder)
++static void meson_encoder_cvbs_encoder_disable(struct drm_encoder *encoder)
+ {
+-	struct meson_venc_cvbs *meson_venc_cvbs =
+-					encoder_to_meson_venc_cvbs(encoder);
+-	struct meson_drm *priv = meson_venc_cvbs->priv;
++	struct meson_encoder_cvbs *meson_encoder_cvbs =
++					encoder_to_meson_encoder_cvbs(encoder);
++	struct meson_drm *priv = meson_encoder_cvbs->priv;
  
-+	if (drm_mode_is_420_only(display, mode) ||
-+	    (!is_hdmi2_sink &&
-+	     drm_mode_is_420_also(display, mode)))
-+		mode_is_420 = true;
-+
- 	/* Enable clocks */
- 	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
- 
-@@ -457,8 +405,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
- 
- 	/* TMDS pattern setup */
--	if (mode->clock > 340000 &&
--	    dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_YUV8_1X24) {
-+	if (mode->clock > 340000 && !mode_is_420) {
- 		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
- 				  0);
- 		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
-@@ -476,7 +423,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_CNTL, 0x2);
- 
- 	/* Setup PHY parameters */
--	meson_hdmi_phy_setup_mode(dw_hdmi, mode);
-+	meson_hdmi_phy_setup_mode(dw_hdmi, mode, mode_is_420);
- 
- 	/* Setup PHY */
- 	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1,
-@@ -622,214 +569,15 @@ static irqreturn_t dw_hdmi_top_thread_irq(int irq, void *dev_id)
- 		dw_hdmi_setup_rx_sense(dw_hdmi->hdmi, hpd_connected,
- 				       hpd_connected);
- 
--		drm_helper_hpd_irq_event(dw_hdmi->encoder.dev);
-+		drm_helper_hpd_irq_event(dw_hdmi->bridge->dev);
-+		drm_bridge_hpd_notify(dw_hdmi->bridge,
-+				      hpd_connected ? connector_status_connected
-+						    : connector_status_disconnected);
+ 	/* Disable CVBS VDAC */
+ 	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+@@ -175,11 +175,11 @@ static void meson_venc_cvbs_encoder_disable(struct drm_encoder *encoder)
  	}
- 
- 	return IRQ_HANDLED;
  }
  
--static enum drm_mode_status
--dw_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
--		   const struct drm_display_info *display_info,
--		   const struct drm_display_mode *mode)
--{
--	struct meson_dw_hdmi *dw_hdmi = data;
--	struct meson_drm *priv = dw_hdmi->priv;
--	bool is_hdmi2_sink = display_info->hdmi.scdc.supported;
--	unsigned int phy_freq;
--	unsigned int vclk_freq;
--	unsigned int venc_freq;
--	unsigned int hdmi_freq;
--	int vic = drm_match_cea_mode(mode);
--	enum drm_mode_status status;
--
--	DRM_DEBUG_DRIVER("Modeline " DRM_MODE_FMT "\n", DRM_MODE_ARG(mode));
--
--	/* If sink does not support 540MHz, reject the non-420 HDMI2 modes */
--	if (display_info->max_tmds_clock &&
--	    mode->clock > display_info->max_tmds_clock &&
--	    !drm_mode_is_420_only(display_info, mode) &&
--	    !drm_mode_is_420_also(display_info, mode))
--		return MODE_BAD;
--
--	/* Check against non-VIC supported modes */
--	if (!vic) {
--		status = meson_venc_hdmi_supported_mode(mode);
--		if (status != MODE_OK)
--			return status;
--
--		return meson_vclk_dmt_supported_freq(priv, mode->clock);
--	/* Check against supported VIC modes */
--	} else if (!meson_venc_hdmi_supported_vic(vic))
--		return MODE_BAD;
--
--	vclk_freq = mode->clock;
--
--	/* For 420, pixel clock is half unlike venc clock */
--	if (drm_mode_is_420_only(display_info, mode) ||
--	    (!is_hdmi2_sink &&
--	     drm_mode_is_420_also(display_info, mode)))
--		vclk_freq /= 2;
--
--	/* TMDS clock is pixel_clock * 10 */
--	phy_freq = vclk_freq * 10;
--
--	/* 480i/576i needs global pixel doubling */
--	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
--		vclk_freq *= 2;
--
--	venc_freq = vclk_freq;
--	hdmi_freq = vclk_freq;
--
--	/* VENC double pixels for 1080i, 720p and YUV420 modes */
--	if (meson_venc_hdmi_venc_repeat(vic) ||
--	    drm_mode_is_420_only(display_info, mode) ||
--	    (!is_hdmi2_sink &&
--	     drm_mode_is_420_also(display_info, mode)))
--		venc_freq *= 2;
--
--	vclk_freq = max(venc_freq, hdmi_freq);
--
--	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
--		venc_freq /= 2;
--
--	dev_dbg(dw_hdmi->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
--		__func__, phy_freq, vclk_freq, venc_freq, hdmi_freq);
--
--	return meson_vclk_vic_supported_freq(priv, phy_freq, vclk_freq);
--}
--
--/* Encoder */
--
--static const u32 meson_dw_hdmi_out_bus_fmts[] = {
--	MEDIA_BUS_FMT_YUV8_1X24,
--	MEDIA_BUS_FMT_UYYVYY8_0_5X24,
--};
--
--static void meson_venc_hdmi_encoder_destroy(struct drm_encoder *encoder)
--{
--	drm_encoder_cleanup(encoder);
--}
--
--static const struct drm_encoder_funcs meson_venc_hdmi_encoder_funcs = {
--	.destroy        = meson_venc_hdmi_encoder_destroy,
--};
--
--static u32 *
--meson_venc_hdmi_encoder_get_inp_bus_fmts(struct drm_bridge *bridge,
--					struct drm_bridge_state *bridge_state,
--					struct drm_crtc_state *crtc_state,
--					struct drm_connector_state *conn_state,
--					u32 output_fmt,
--					unsigned int *num_input_fmts)
--{
--	u32 *input_fmts = NULL;
--	int i;
--
--	*num_input_fmts = 0;
--
--	for (i = 0 ; i < ARRAY_SIZE(meson_dw_hdmi_out_bus_fmts) ; ++i) {
--		if (output_fmt == meson_dw_hdmi_out_bus_fmts[i]) {
--			*num_input_fmts = 1;
--			input_fmts = kcalloc(*num_input_fmts,
--					     sizeof(*input_fmts),
--					     GFP_KERNEL);
--			if (!input_fmts)
--				return NULL;
--
--			input_fmts[0] = output_fmt;
--
--			break;
--		}
--	}
--
--	return input_fmts;
--}
--
--static int meson_venc_hdmi_encoder_atomic_check(struct drm_bridge *bridge,
--					struct drm_bridge_state *bridge_state,
--					struct drm_crtc_state *crtc_state,
--					struct drm_connector_state *conn_state)
--{
--	struct meson_dw_hdmi *dw_hdmi = bridge_to_meson_dw_hdmi(bridge);
--
--	dw_hdmi->output_bus_fmt = bridge_state->output_bus_cfg.format;
--
--	DRM_DEBUG_DRIVER("output_bus_fmt %lx\n", dw_hdmi->output_bus_fmt);
--
--	return 0;
--}
--
--static void meson_venc_hdmi_encoder_disable(struct drm_bridge *bridge)
--{
--	struct meson_dw_hdmi *dw_hdmi = bridge_to_meson_dw_hdmi(bridge);
--	struct meson_drm *priv = dw_hdmi->priv;
--
--	DRM_DEBUG_DRIVER("\n");
--
--	writel_bits_relaxed(0x3, 0,
--			    priv->io_base + _REG(VPU_HDMI_SETTING));
--
--	writel_relaxed(0, priv->io_base + _REG(ENCI_VIDEO_EN));
--	writel_relaxed(0, priv->io_base + _REG(ENCP_VIDEO_EN));
--}
--
--static void meson_venc_hdmi_encoder_enable(struct drm_bridge *bridge)
--{
--	struct meson_dw_hdmi *dw_hdmi = bridge_to_meson_dw_hdmi(bridge);
--	struct meson_drm *priv = dw_hdmi->priv;
--
--	DRM_DEBUG_DRIVER("%s\n", priv->venc.hdmi_use_enci ? "VENCI" : "VENCP");
--
--	if (priv->venc.hdmi_use_enci)
--		writel_relaxed(1, priv->io_base + _REG(ENCI_VIDEO_EN));
--	else
--		writel_relaxed(1, priv->io_base + _REG(ENCP_VIDEO_EN));
--}
--
--static void meson_venc_hdmi_encoder_mode_set(struct drm_bridge *bridge,
--				   const struct drm_display_mode *mode,
--				   const struct drm_display_mode *adjusted_mode)
--{
--	struct meson_dw_hdmi *dw_hdmi = bridge_to_meson_dw_hdmi(bridge);
--	struct meson_drm *priv = dw_hdmi->priv;
--	int vic = drm_match_cea_mode(mode);
--	unsigned int ycrcb_map = VPU_HDMI_OUTPUT_CBYCR;
--	bool yuv420_mode = false;
--
--	DRM_DEBUG_DRIVER("\"%s\" vic %d\n", mode->name, vic);
--
--	if (dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24) {
--		ycrcb_map = VPU_HDMI_OUTPUT_CRYCB;
--		yuv420_mode = true;
--	}
--
--	/* VENC + VENC-DVI Mode setup */
--	meson_venc_hdmi_mode_set(priv, vic, ycrcb_map, yuv420_mode, mode);
--
--	/* VCLK Set clock */
--	dw_hdmi_set_vclk(dw_hdmi, mode);
--
--	if (dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
--		/* Setup YUV420 to HDMI-TX, no 10bit diphering */
--		writel_relaxed(2 | (2 << 2),
--			       priv->io_base + _REG(VPU_HDMI_FMT_CTRL));
--	else
--		/* Setup YUV444 to HDMI-TX, no 10bit diphering */
--		writel_relaxed(0, priv->io_base + _REG(VPU_HDMI_FMT_CTRL));
--}
--
--static const struct drm_bridge_funcs meson_venc_hdmi_encoder_bridge_funcs = {
--	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
--	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
--	.atomic_get_input_bus_fmts = meson_venc_hdmi_encoder_get_inp_bus_fmts,
--	.atomic_reset = drm_atomic_helper_bridge_reset,
--	.atomic_check = meson_venc_hdmi_encoder_atomic_check,
--	.enable	= meson_venc_hdmi_encoder_enable,
--	.disable = meson_venc_hdmi_encoder_disable,
--	.mode_set = meson_venc_hdmi_encoder_mode_set,
--};
--
- /* DW HDMI Regmap */
+-static void meson_venc_cvbs_encoder_enable(struct drm_encoder *encoder)
++static void meson_encoder_cvbs_encoder_enable(struct drm_encoder *encoder)
+ {
+-	struct meson_venc_cvbs *meson_venc_cvbs =
+-					encoder_to_meson_venc_cvbs(encoder);
+-	struct meson_drm *priv = meson_venc_cvbs->priv;
++	struct meson_encoder_cvbs *meson_encoder_cvbs =
++					encoder_to_meson_encoder_cvbs(encoder);
++	struct meson_drm *priv = meson_encoder_cvbs->priv;
  
- static int meson_dw_hdmi_reg_read(void *context, unsigned int reg,
-@@ -876,28 +624,6 @@ static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
- 	.dwc_write = dw_hdmi_g12a_dwc_write,
+ 	/* VDAC0 source is not from ATV */
+ 	writel_bits_relaxed(VENC_VDAC_SEL_ATV_DMD, 0,
+@@ -198,14 +198,14 @@ static void meson_venc_cvbs_encoder_enable(struct drm_encoder *encoder)
+ 	}
+ }
+ 
+-static void meson_venc_cvbs_encoder_mode_set(struct drm_encoder *encoder,
++static void meson_encoder_cvbs_encoder_mode_set(struct drm_encoder *encoder,
+ 				   struct drm_display_mode *mode,
+ 				   struct drm_display_mode *adjusted_mode)
+ {
+ 	const struct meson_cvbs_mode *meson_mode = meson_cvbs_get_mode(mode);
+-	struct meson_venc_cvbs *meson_venc_cvbs =
+-					encoder_to_meson_venc_cvbs(encoder);
+-	struct meson_drm *priv = meson_venc_cvbs->priv;
++	struct meson_encoder_cvbs *meson_encoder_cvbs =
++					encoder_to_meson_encoder_cvbs(encoder);
++	struct meson_drm *priv = meson_encoder_cvbs->priv;
+ 
+ 	if (meson_mode) {
+ 		meson_venci_cvbs_mode_set(priv, meson_mode->enci);
+@@ -219,14 +219,14 @@ static void meson_venc_cvbs_encoder_mode_set(struct drm_encoder *encoder,
+ }
+ 
+ static const struct drm_encoder_helper_funcs
+-				meson_venc_cvbs_encoder_helper_funcs = {
+-	.atomic_check	= meson_venc_cvbs_encoder_atomic_check,
+-	.disable	= meson_venc_cvbs_encoder_disable,
+-	.enable		= meson_venc_cvbs_encoder_enable,
+-	.mode_set	= meson_venc_cvbs_encoder_mode_set,
++				meson_encoder_cvbs_encoder_helper_funcs = {
++	.atomic_check	= meson_encoder_cvbs_encoder_atomic_check,
++	.disable	= meson_encoder_cvbs_encoder_disable,
++	.enable		= meson_encoder_cvbs_encoder_enable,
++	.mode_set	= meson_encoder_cvbs_encoder_mode_set,
  };
  
--static bool meson_hdmi_connector_is_available(struct device *dev)
--{
--	struct device_node *ep, *remote;
--
--	/* HDMI Connector is on the second port, first endpoint */
--	ep = of_graph_get_endpoint_by_regs(dev->of_node, 1, 0);
--	if (!ep)
--		return false;
--
--	/* If the endpoint node exists, consider it enabled */
--	remote = of_graph_get_remote_port(ep);
--	if (remote) {
--		of_node_put(ep);
--		return true;
--	}
--
--	of_node_put(ep);
--	of_node_put(remote);
--
--	return false;
--}
--
- static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
+-static bool meson_venc_cvbs_connector_is_available(struct meson_drm *priv)
++static bool meson_encoder_cvbs_connector_is_available(struct meson_drm *priv)
  {
- 	struct meson_drm *priv = meson_dw_hdmi->priv;
-@@ -976,19 +702,12 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	struct drm_device *drm = data;
- 	struct meson_drm *priv = drm->dev_private;
- 	struct dw_hdmi_plat_data *dw_plat_data;
--	struct drm_bridge *next_bridge;
--	struct drm_encoder *encoder;
- 	struct resource *res;
- 	int irq;
+ 	struct device_node *remote;
+ 
+@@ -238,27 +238,27 @@ static bool meson_venc_cvbs_connector_is_available(struct meson_drm *priv)
+ 	return true;
+ }
+ 
+-int meson_venc_cvbs_create(struct meson_drm *priv)
++int meson_encoder_cvbs_init(struct meson_drm *priv)
+ {
+ 	struct drm_device *drm = priv->drm;
+-	struct meson_venc_cvbs *meson_venc_cvbs;
++	struct meson_encoder_cvbs *meson_encoder_cvbs;
+ 	struct drm_connector *connector;
+ 	struct drm_encoder *encoder;
  	int ret;
  
- 	DRM_DEBUG_DRIVER("\n");
- 
--	if (!meson_hdmi_connector_is_available(dev)) {
--		dev_info(drm->dev, "HDMI Output connector not available\n");
--		return -ENODEV;
--	}
--
- 	match = of_device_get_match_data(&pdev->dev);
- 	if (!match) {
- 		dev_err(&pdev->dev, "failed to get match data\n");
-@@ -1004,7 +723,6 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	meson_dw_hdmi->dev = dev;
- 	meson_dw_hdmi->data = match;
- 	dw_plat_data = &meson_dw_hdmi->dw_plat_data;
--	encoder = &meson_dw_hdmi->encoder;
- 
- 	meson_dw_hdmi->hdmi_supply = devm_regulator_get_optional(dev, "hdmi");
- 	if (IS_ERR(meson_dw_hdmi->hdmi_supply)) {
-@@ -1076,28 +794,11 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 		return ret;
+-	if (!meson_venc_cvbs_connector_is_available(priv)) {
++	if (!meson_encoder_cvbs_connector_is_available(priv)) {
+ 		dev_info(drm->dev, "CVBS Output connector not available\n");
+ 		return 0;
  	}
  
--	/* Encoder */
--
--	ret = drm_encoder_init(drm, encoder, &meson_venc_hdmi_encoder_funcs,
--			       DRM_MODE_ENCODER_TMDS, "meson_hdmi");
--	if (ret) {
--		dev_err(priv->dev, "Failed to init HDMI encoder\n");
--		return ret;
--	}
--
--	meson_dw_hdmi->bridge.funcs = &meson_venc_hdmi_encoder_bridge_funcs;
--	drm_bridge_attach(encoder, &meson_dw_hdmi->bridge, NULL, 0);
--
--	encoder->possible_crtcs = BIT(0);
--
- 	meson_dw_hdmi_init(meson_dw_hdmi);
+-	meson_venc_cvbs = devm_kzalloc(priv->dev, sizeof(*meson_venc_cvbs),
++	meson_encoder_cvbs = devm_kzalloc(priv->dev, sizeof(*meson_encoder_cvbs),
+ 				       GFP_KERNEL);
+-	if (!meson_venc_cvbs)
++	if (!meson_encoder_cvbs)
+ 		return -ENOMEM;
  
--	DRM_DEBUG_DRIVER("encoder initialized\n");
--
- 	/* Bridge / Connector */
+-	meson_venc_cvbs->priv = priv;
+-	encoder = &meson_venc_cvbs->encoder;
+-	connector = &meson_venc_cvbs->connector;
++	meson_encoder_cvbs->priv = priv;
++	encoder = &meson_encoder_cvbs->encoder;
++	connector = &meson_encoder_cvbs->connector;
  
- 	dw_plat_data->priv_data = meson_dw_hdmi;
--	dw_plat_data->mode_valid = dw_hdmi_mode_valid;
- 	dw_plat_data->phy_ops = &meson_dw_hdmi_phy_ops;
- 	dw_plat_data->phy_name = "meson_dw_hdmi_phy";
- 	dw_plat_data->phy_data = meson_dw_hdmi;
-@@ -1112,15 +813,11 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+ 	/* Connector */
  
- 	platform_set_drvdata(pdev, meson_dw_hdmi);
+@@ -276,10 +276,10 @@ int meson_venc_cvbs_create(struct meson_drm *priv)
  
--	meson_dw_hdmi->hdmi = dw_hdmi_probe(pdev,
--					    &meson_dw_hdmi->dw_plat_data);
-+	meson_dw_hdmi->hdmi = dw_hdmi_probe(pdev, &meson_dw_hdmi->dw_plat_data);
- 	if (IS_ERR(meson_dw_hdmi->hdmi))
- 		return PTR_ERR(meson_dw_hdmi->hdmi);
+ 	/* Encoder */
  
--	next_bridge = of_drm_find_bridge(pdev->dev.of_node);
--	if (next_bridge)
--		drm_bridge_attach(encoder, next_bridge,
--				  &meson_dw_hdmi->bridge, 0);
-+	meson_dw_hdmi->bridge = of_drm_find_bridge(pdev->dev.of_node);
+-	drm_encoder_helper_add(encoder, &meson_venc_cvbs_encoder_helper_funcs);
++	drm_encoder_helper_add(encoder, &meson_encoder_cvbs_encoder_helper_funcs);
  
- 	DRM_DEBUG_DRIVER("HDMI controller initialized\n");
+-	ret = drm_encoder_init(drm, encoder, &meson_venc_cvbs_encoder_funcs,
+-			       DRM_MODE_ENCODER_TVDAC, "meson_venc_cvbs");
++	ret = drm_encoder_init(drm, encoder, &meson_encoder_cvbs_encoder_funcs,
++			       DRM_MODE_ENCODER_TVDAC, "meson_encoder_cvbs");
+ 	if (ret) {
+ 		dev_err(priv->dev, "Failed to init CVBS encoder\n");
+ 		return ret;
+diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.h b/drivers/gpu/drm/meson/meson_encoder_cvbs.h
+similarity index 92%
+rename from drivers/gpu/drm/meson/meson_venc_cvbs.h
+rename to drivers/gpu/drm/meson/meson_encoder_cvbs.h
+index ab7f76ba469c..61d9d183ce7f 100644
+--- a/drivers/gpu/drm/meson/meson_venc_cvbs.h
++++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.h
+@@ -24,6 +24,6 @@ struct meson_cvbs_mode {
+ /* Modes supported by the CVBS output */
+ extern struct meson_cvbs_mode meson_cvbs_modes[MESON_CVBS_MODES_COUNT];
  
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-new file mode 100644
-index 000000000000..c775a1ab5b1e
---- /dev/null
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -0,0 +1,359 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2016 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/component.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of_graph.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_simple_kms_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_device.h>
-+#include <drm/drm_edid.h>
-+#include <drm/drm_probe_helper.h>
-+#include <drm/drm_print.h>
-+
-+#include <linux/media-bus-format.h>
-+#include <linux/videodev2.h>
-+
-+#include "meson_drv.h"
-+#include "meson_registers.h"
-+#include "meson_vclk.h"
-+#include "meson_venc.h"
-+
-+struct meson_encoder_hdmi {
-+	struct drm_encoder encoder;
-+	struct drm_bridge bridge;
-+	struct drm_bridge *next_bridge;
-+	struct meson_drm *priv;
-+	unsigned long output_bus_fmt;
-+};
-+
-+#define bridge_to_meson_encoder_hdmi(x) \
-+	container_of(x, struct meson_encoder_hdmi, bridge)
-+
-+static int meson_encoder_hdmi_attach(struct drm_bridge *bridge,
-+				     enum drm_bridge_attach_flags flags)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+
-+	return drm_bridge_attach(bridge->encoder, encoder_hdmi->next_bridge,
-+				 &encoder_hdmi->bridge, flags);
-+}
-+
-+static void meson_encoder_hdmi_enable(struct drm_bridge *bridge)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+	struct meson_drm *priv = encoder_hdmi->priv;
-+
-+	DRM_DEBUG_DRIVER("%s\n", priv->venc.hdmi_use_enci ? "VENCI" : "VENCP");
-+
-+	if (priv->venc.hdmi_use_enci)
-+		writel_relaxed(1, priv->io_base + _REG(ENCI_VIDEO_EN));
-+	else
-+		writel_relaxed(1, priv->io_base + _REG(ENCP_VIDEO_EN));
-+}
-+
-+static void meson_encoder_hdmi_disable(struct drm_bridge *bridge)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+	struct meson_drm *priv = encoder_hdmi->priv;
-+
-+	DRM_DEBUG_DRIVER("\n");
-+
-+	writel_bits_relaxed(0x3, 0,
-+			    priv->io_base + _REG(VPU_HDMI_SETTING));
-+
-+	writel_relaxed(0, priv->io_base + _REG(ENCI_VIDEO_EN));
-+	writel_relaxed(0, priv->io_base + _REG(ENCP_VIDEO_EN));
-+}
-+
-+static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
-+					const struct drm_display_mode *mode)
-+{
-+	struct meson_drm *priv = encoder_hdmi->priv;
-+	int vic = drm_match_cea_mode(mode);
-+	unsigned int phy_freq;
-+	unsigned int vclk_freq;
-+	unsigned int venc_freq;
-+	unsigned int hdmi_freq;
-+
-+	vclk_freq = mode->clock;
-+
-+	/* For 420, pixel clock is half unlike venc clock */
-+	if (encoder_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
-+		vclk_freq /= 2;
-+
-+	/* TMDS clock is pixel_clock * 10 */
-+	phy_freq = vclk_freq * 10;
-+
-+	if (!vic) {
-+		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, phy_freq,
-+				 vclk_freq, vclk_freq, vclk_freq, false);
-+		return;
-+	}
-+
-+	/* 480i/576i needs global pixel doubling */
-+	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-+		vclk_freq *= 2;
-+
-+	venc_freq = vclk_freq;
-+	hdmi_freq = vclk_freq;
-+
-+	/* VENC double pixels for 1080i, 720p and YUV420 modes */
-+	if (meson_venc_hdmi_venc_repeat(vic) ||
-+	    encoder_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
-+		venc_freq *= 2;
-+
-+	vclk_freq = max(venc_freq, hdmi_freq);
-+
-+	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-+		venc_freq /= 2;
-+
-+	DRM_DEBUG_DRIVER("vclk:%d phy=%d venc=%d hdmi=%d enci=%d\n",
-+		phy_freq, vclk_freq, venc_freq, hdmi_freq,
-+		priv->venc.hdmi_use_enci);
-+
-+	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, phy_freq, vclk_freq,
-+			 venc_freq, hdmi_freq, priv->venc.hdmi_use_enci);
-+}
-+
-+static enum drm_mode_status meson_encoder_hdmi_mode_valid(struct drm_bridge *bridge,
-+					const struct drm_display_info *display_info,
-+					const struct drm_display_mode *mode)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+	struct meson_drm *priv = encoder_hdmi->priv;
-+	bool is_hdmi2_sink = display_info->hdmi.scdc.supported;
-+	unsigned int phy_freq;
-+	unsigned int vclk_freq;
-+	unsigned int venc_freq;
-+	unsigned int hdmi_freq;
-+	int vic = drm_match_cea_mode(mode);
-+	enum drm_mode_status status;
-+
-+	DRM_DEBUG_DRIVER("Modeline " DRM_MODE_FMT "\n", DRM_MODE_ARG(mode));
-+
-+	/* If sink does not support 540MHz, reject the non-420 HDMI2 modes */
-+	if (display_info->max_tmds_clock &&
-+	    mode->clock > display_info->max_tmds_clock &&
-+	    !drm_mode_is_420_only(display_info, mode) &&
-+	    !drm_mode_is_420_also(display_info, mode))
-+		return MODE_BAD;
-+
-+	/* Check against non-VIC supported modes */
-+	if (!vic) {
-+		status = meson_venc_hdmi_supported_mode(mode);
-+		if (status != MODE_OK)
-+			return status;
-+
-+		return meson_vclk_dmt_supported_freq(priv, mode->clock);
-+	/* Check against supported VIC modes */
-+	} else if (!meson_venc_hdmi_supported_vic(vic))
-+		return MODE_BAD;
-+
-+	vclk_freq = mode->clock;
-+
-+	/* For 420, pixel clock is half unlike venc clock */
-+	if (drm_mode_is_420_only(display_info, mode) ||
-+	    (!is_hdmi2_sink &&
-+	     drm_mode_is_420_also(display_info, mode)))
-+		vclk_freq /= 2;
-+
-+	/* TMDS clock is pixel_clock * 10 */
-+	phy_freq = vclk_freq * 10;
-+
-+	/* 480i/576i needs global pixel doubling */
-+	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-+		vclk_freq *= 2;
-+
-+	venc_freq = vclk_freq;
-+	hdmi_freq = vclk_freq;
-+
-+	/* VENC double pixels for 1080i, 720p and YUV420 modes */
-+	if (meson_venc_hdmi_venc_repeat(vic) ||
-+	    drm_mode_is_420_only(display_info, mode) ||
-+	    (!is_hdmi2_sink &&
-+	     drm_mode_is_420_also(display_info, mode)))
-+		venc_freq *= 2;
-+
-+	vclk_freq = max(venc_freq, hdmi_freq);
-+
-+	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-+		venc_freq /= 2;
-+
-+	dev_dbg(priv->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
-+		__func__, phy_freq, vclk_freq, venc_freq, hdmi_freq);
-+
-+	return meson_vclk_vic_supported_freq(priv, phy_freq, vclk_freq);
-+}
-+
-+static void meson_encoder_hdmi_mode_set(struct drm_bridge *bridge,
-+				   const struct drm_display_mode *mode,
-+				   const struct drm_display_mode *adjusted_mode)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+	struct meson_drm *priv = encoder_hdmi->priv;
-+	int vic = drm_match_cea_mode(mode);
-+	unsigned int ycrcb_map = VPU_HDMI_OUTPUT_CBYCR;
-+	bool yuv420_mode = false;
-+
-+	DRM_DEBUG_DRIVER("\"%s\" vic %d\n", mode->name, vic);
-+
-+	if (encoder_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24) {
-+		ycrcb_map = VPU_HDMI_OUTPUT_CRYCB;
-+		yuv420_mode = true;
-+	}
-+
-+	/* VENC + VENC-DVI Mode setup */
-+	meson_venc_hdmi_mode_set(priv, vic, ycrcb_map, yuv420_mode, mode);
-+
-+	/* VCLK Set clock */
-+	meson_encoder_hdmi_set_vclk(encoder_hdmi, mode);
-+
-+	if (encoder_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
-+		/* Setup YUV420 to HDMI-TX, no 10bit diphering */
-+		writel_relaxed(2 | (2 << 2),
-+			       priv->io_base + _REG(VPU_HDMI_FMT_CTRL));
-+	else
-+		/* Setup YUV444 to HDMI-TX, no 10bit diphering */
-+		writel_relaxed(0, priv->io_base + _REG(VPU_HDMI_FMT_CTRL));
-+}
-+
-+static const u32 meson_encoder_hdmi_out_bus_fmts[] = {
-+	MEDIA_BUS_FMT_YUV8_1X24,
-+	MEDIA_BUS_FMT_UYYVYY8_0_5X24,
-+};
-+
-+static u32 *
-+meson_encoder_hdmi_get_inp_bus_fmts(struct drm_bridge *bridge,
-+					struct drm_bridge_state *bridge_state,
-+					struct drm_crtc_state *crtc_state,
-+					struct drm_connector_state *conn_state,
-+					u32 output_fmt,
-+					unsigned int *num_input_fmts)
-+{
-+	u32 *input_fmts = NULL;
-+	int i;
-+
-+	*num_input_fmts = 0;
-+
-+	for (i = 0 ; i < ARRAY_SIZE(meson_encoder_hdmi_out_bus_fmts) ; ++i) {
-+		if (output_fmt == meson_encoder_hdmi_out_bus_fmts[i]) {
-+			*num_input_fmts = 1;
-+			input_fmts = kcalloc(*num_input_fmts,
-+					     sizeof(*input_fmts),
-+					     GFP_KERNEL);
-+			if (!input_fmts)
-+				return NULL;
-+
-+			input_fmts[0] = output_fmt;
-+
-+			break;
-+		}
-+	}
-+
-+	return input_fmts;
-+}
-+
-+static int meson_encoder_hdmi_atomic_check(struct drm_bridge *bridge,
-+					struct drm_bridge_state *bridge_state,
-+					struct drm_crtc_state *crtc_state,
-+					struct drm_connector_state *conn_state)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+	struct drm_connector_state *old_conn_state =
-+		drm_atomic_get_old_connector_state(conn_state->state, conn_state->connector);
-+
-+	encoder_hdmi->output_bus_fmt = bridge_state->output_bus_cfg.format;
-+
-+	DRM_DEBUG_DRIVER("output_bus_fmt %lx\n", encoder_hdmi->output_bus_fmt);
-+
-+	if (!drm_connector_atomic_hdr_metadata_equal(old_conn_state, conn_state))
-+		crtc_state->mode_changed = true;
-+
-+	return 0;
-+}
-+
-+static const struct drm_bridge_funcs meson_encoder_hdmi_bridge_funcs = {
-+	.attach = meson_encoder_hdmi_attach,
-+	.enable	= meson_encoder_hdmi_enable,
-+	.disable = meson_encoder_hdmi_disable,
-+	.mode_valid = meson_encoder_hdmi_mode_valid,
-+	.mode_set = meson_encoder_hdmi_mode_set,
-+	.atomic_get_input_bus_fmts = meson_encoder_hdmi_get_inp_bus_fmts,
-+	.atomic_check = meson_encoder_hdmi_atomic_check,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+};
-+
-+int meson_encoder_hdmi_init(struct meson_drm *priv)
-+{
-+	struct meson_encoder_hdmi *meson_encoder_hdmi;
-+	struct device_node *remote;
-+	int ret;
-+
-+	DRM_DEBUG_DRIVER("\n");
-+
-+	meson_encoder_hdmi = devm_kzalloc(priv->dev, sizeof(*meson_encoder_hdmi), GFP_KERNEL);
-+	if (!meson_encoder_hdmi)
-+		return -ENOMEM;
-+
-+	/* HDMI Transceiver Bridge */
-+	remote = of_graph_get_remote_node(priv->dev->of_node, 1, 0);
-+	if (!remote) {
-+		dev_err(priv->dev, "HDMI transceiver device is disabled");
-+		return 0;
-+	}
-+
-+	meson_encoder_hdmi->next_bridge = of_drm_find_bridge(remote);
-+	if (!meson_encoder_hdmi->next_bridge) {
-+		dev_err(priv->dev, "Failed to find HDMI transceiver bridge\n");
-+		return -EPROBE_DEFER;
-+	}
-+
-+	/* HDMI Encoder Bridge */
-+	meson_encoder_hdmi->bridge.funcs = &meson_encoder_hdmi_bridge_funcs;
-+	meson_encoder_hdmi->bridge.of_node = priv->dev->of_node;
-+	meson_encoder_hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
-+
-+	drm_bridge_add(&meson_encoder_hdmi->bridge);
-+
-+	meson_encoder_hdmi->priv = priv;
-+
-+	/* Encoder */
-+	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
-+				      DRM_MODE_ENCODER_TMDS);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to init HDMI encoder: %d\n", ret);
-+		return ret;
-+	}
-+
-+	meson_encoder_hdmi->encoder.possible_crtcs = BIT(0);
-+
-+	/* Attach HDMI Encoder Bridge to Encoder */
-+	ret = drm_bridge_attach(&meson_encoder_hdmi->encoder, &meson_encoder_hdmi->bridge, NULL, 0);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to attach bridge: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/*
-+	 * We should have now in place:
-+	 * encoder->[hdmi encoder bridge]->[dw-hdmi bridge]->[dw-hdmi connector]
-+	 */
-+
-+	DRM_DEBUG_DRIVER("HDMI encoder initialized\n");
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.h b/drivers/gpu/drm/meson/meson_encoder_hdmi.h
-new file mode 100644
-index 000000000000..ed19494f0956
---- /dev/null
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.h
-@@ -0,0 +1,12 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+/*
-+ * Copyright (C) 2021 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#ifndef __MESON_ENCODER_HDMI_H
-+#define __MESON_ENCODER_HDMI_H
-+
-+int meson_encoder_hdmi_init(struct meson_drm *priv);
-+
-+#endif /* __MESON_ENCODER_HDMI_H */
+-int meson_venc_cvbs_create(struct meson_drm *priv);
++int meson_encoder_cvbs_init(struct meson_drm *priv);
+ 
+ #endif /* __MESON_VENC_CVBS_H */
 -- 
 2.25.1
 
