@@ -2,14 +2,14 @@ Return-Path: <SRS0=WmWE=PD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2630EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 14:23:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 135A5C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 14:25:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EBEF6610E5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 14:23:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EBEF6610E5
+	by mail.kernel.org (Postfix) with ESMTPS id BA7F86115C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 14:25:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BA7F86115C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,54 +18,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nzHSRpSvOK3mx0wi+XI9vhbTo7MxwQONOJXCuJuFI3Y=; b=IvNyN7eszpkBd+
-	e5hrlsn0er+do80WnkxniomVTVBaXOPUKNTDIH/hasJ48wJBRvEngRzAiHdXJuv5E3spqrxr1+kpP
-	/boNtuChiBBN6DQdWRVIuS2jeVsjGHJgT5k2vrOossyPWbZkCjDWeYJu/DkjL1cJtW6311E+tJ9uB
-	M4HG8qE3KFtiU0VStn9JzpGzUJtMSjVZWkUdZh5U5WZl4CdR4SU6AtcEIsSapRnVu5rz2cWm40eqv
-	Qf6bkzmJFA/ya5eqHYFuxpyv31gxA/SEDpYxcI7EIK1D2x1rQ0fRAmC8tOl+lK9rv3/8X51HZ3aWF
-	oOxMFifOAcYVXaV0b4vg==;
+	List-Owner; bh=qLzNBc89Vy0l6oxWrp5NaZdilM/luV9Kq/6iY0SAsJo=; b=PHA2x/ChY6CODZ
+	xtUy0jtLiYEhPjnDLBkFZ9Y/dGOX7aidDqakPHN+GsuD8Gz4/Qbo3BqDsVEBxgYp7cS5F32Whz0Zk
+	QDe7fJFutSLqT9UT5ksRLIG/Kx6L1pkiCBUDzfILFhAlSU0xJ0x6bf6szkXfDqNF3dxrHj9Ss2S1c
+	6Y1ft10WjF/HSILpf/6Tlqt9PyQxWVP2TdYm9DNItw3zKm2MLXMtEWqYBl7isWBc6Lmh+u/vej7My
+	os3O5WVIkPdnj6eppo6+JvJ+MaJeMTbiZqAtn+GnLJRCsyUspuXsCPzDhBgiHOZbs9tYES228vPw+
+	5aJNYFY0yJKHXwZ1SEBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mbO7J-007Z2n-U2; Fri, 15 Oct 2021 14:23:25 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1mbO9B-007ZqG-As; Fri, 15 Oct 2021 14:25:21 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mbNvZ-007Tsa-3w
+ id 1mbNvg-007Twa-SU
+ for linux-amlogic@bombadil.infradead.org; Fri, 15 Oct 2021 14:11:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-Type:Content-ID:Content-Description;
+ bh=+vazHN/sxAXSZFHwmXnL6gCn2h6WlVRsJ2PaV0+Ktbs=; b=qkQJaqGr4vsyc8a9lnJ6rkVGCm
+ tRbFB6KfpqRSp0VnEEIHb9N2aVWsso/Ezr7xxcTZiDECMJGYnC9nzi8Kj8nRxxEPqRWkd9U+zcRM/
+ 8N5APr1lrw4ZjKFmD03PWJUb184//9cup5Y/ovsTXS1o4DvZxSNg8buF0AAYNrwSZYQg6Uh/WS6db
+ my32qJn6EnRBr0QgkebAT8UdrQEhFsJuwff8BKC0dXXiBTU6DwmhHkyotuWMwvl1Eemuii4UugO3X
+ aH3rfS9r5R0yGf+y7fCIPymaRzZ/wXrtYx+1oMS4YptO/ynMBD6ayhpf2BVw+W37psakseldUH2vm
+ ymuh0cug==;
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+ by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mbNvc-00A0qQ-Fm
  for linux-amlogic@lists.infradead.org; Fri, 15 Oct 2021 14:11:22 +0000
-Received: by mail-wm1-x336.google.com with SMTP id
- a140-20020a1c7f92000000b0030d8315b593so3093014wmd.5
- for <linux-amlogic@lists.infradead.org>; Fri, 15 Oct 2021 07:11:16 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id o20so26834578wro.3
+ for <linux-amlogic@lists.infradead.org>; Fri, 15 Oct 2021 07:11:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=kCc3E13c2H8+vCz2os2oO95SvYIRqrhbNDFi6yRCNEg=;
- b=SKXWwCixN4Ndd/dD+Y1DwaXKIk7fc+Dor/2SAZ8w5Xi3RRpI+GbF8zbEj+f/BSdHIp
- uxSp22gw/w2PeB+bA/wL07HQoM38NJG86WamPAqi0ySEcWodNL6TLuKGTnlehu4ixggU
- rTJDwICMZmoGOLOWRnGaEKJE3r4dGaI0EawcHMzbO7F4GhvccHS9or6aU5tMRf3xjeqP
- 97sjDm0B9btstMdbv55PyoXPbV8dCNu0v6W3gjL5iTzvDn0zwloUBBEts6dqZphKi4vI
- av9E+ExeNUkwvAxb/M6tr7IDTYS7bdYiKaAfQi/6nJTJ0MkU3cwCpHdDb1TIIiMklmw2
- PN1w==
+ bh=+vazHN/sxAXSZFHwmXnL6gCn2h6WlVRsJ2PaV0+Ktbs=;
+ b=cix6G8OmeYe2NR9QMI7gs6p0SCbQqqw857qtWxz1fdoEsStyJxhY44trrNduqK0XIH
+ VaU6xRvoVfDIREDXhryV4K/nixjqpaPZv8PMHjktiFb1TPdeXT3PGHJg6UIaXW+qDhEF
+ vrKd7e8sk4Sfd5MfIp0acX1/leP7SRCAgDSSsPu1EPSRW3f8t6GN/1Nwa/Hu/mxfQKUS
+ 9dnh8qeCmWMRIccFIgcLNRkc+eQ5cUw84qAm95rETY//7Hhq8Q5dIApHadX/qS1rkn/J
+ JCT55HjeWvPFQ0z2Un8wr1f8L/+TaAoX72trVvudtb0Hv/vucKhwxgzzR5ccyfmEtAh3
+ Hhhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=kCc3E13c2H8+vCz2os2oO95SvYIRqrhbNDFi6yRCNEg=;
- b=TScZ2Mv9FvHoV/dTO9zjHz7Vkyylkz5ewjEXEIktCA217j1TRawMBf9IulyZHhNbr8
- fyvhIqWbhm2QWiPCwi8dlFpKwoQgZMRCViVWA9XHBGwK75agGHjgJV/ZiFiS2x0Bq7Pu
- bRRmQ3EBhCM4t5s8o0L5PxBg9kadjUCM2xKbbGOFtkxq3Qgjnnn0/w/rbqIYrlY38/r8
- k91KuLXtoTMQet2Fhyq+/TV/yFkeABrX1s4t04YpWTqn3/DsVoRUHbD8OQ5rLdn3r7VV
- NHu54Zl3WUKkk+WmwsyE4ti7JC+0zMAIsaTeeFEHnEivP+ElSXsw9IollSRaC67cdUqC
- vgXA==
-X-Gm-Message-State: AOAM531AazFxNMPShA9yqTWtB88kvCHbagNtMPSkuICGlbU0Eh3bPVtv
- xqPGaTbCMRYaFma2oUSVWF5c7g==
-X-Google-Smtp-Source: ABdhPJxg/c80Md3tBbhojA+REK5dnDAcJv72CFp1LgI7FY/bS5/0Lonyd+Rrv6uv2Hubk8j1S6nLdw==
-X-Received: by 2002:a05:600c:ac1:: with SMTP id
- c1mr12643195wmr.99.1634307074920; 
- Fri, 15 Oct 2021 07:11:14 -0700 (PDT)
+ bh=+vazHN/sxAXSZFHwmXnL6gCn2h6WlVRsJ2PaV0+Ktbs=;
+ b=aL8GqH+GwznGrRBOlXV1u1UsRyfweucvvoQStUJ9m09SCp4vUuVTOvLfsA/OXryMWK
+ 736LlJr6e2Vm9PXnJUp/yE4yIGSPMFi61MrygqzGT3OoCR2MeuCdZj64t5q6UJ0nWBnE
+ tuuxtrtVswCqdqF0X+eiMHNwV5CLWDOE4BkoxtSiOvkzVw08sTWKO7kOo79NhLd7aP8X
+ mRglnGGen6cyuRYL8IwBGE8MavSXN/ildAz1xn/glsyXAgtZo2QPjvFGnCd7zG3qK4AN
+ 8adTXSyW5zbKmswRyDWjMHQugsbImsz+NpXnzwu2MVRpLmCfb49A00hUMwqIK1MDM1+T
+ V9dg==
+X-Gm-Message-State: AOAM530Tpz05CvSkiz/KPEv4/Sz/MR2rdIjll+WpIujCzvEfDTwzghtk
+ B8nku+c+Md67idtpHK2ny+ghXw==
+X-Google-Smtp-Source: ABdhPJzt7lTmfxrDygCR5sNDAj+pieSg5qan65EvgB1Y3zR7QUUIzAQz9beMv5drxhOSHuJ9g9BCGA==
+X-Received: by 2002:a05:6000:1864:: with SMTP id
+ d4mr14792691wri.345.1634307077025; 
+ Fri, 15 Oct 2021 07:11:17 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:f6e3:13bd:45ae:5eeb])
- by smtp.gmail.com with ESMTPSA id f15sm4971434wrt.38.2021.10.15.07.11.14
+ by smtp.gmail.com with ESMTPSA id f15sm4971434wrt.38.2021.10.15.07.11.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 Oct 2021 07:11:14 -0700 (PDT)
+ Fri, 15 Oct 2021 07:11:16 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: daniel@ffwll.ch,
 	Laurent.pinchart@ideasonboard.com,
@@ -73,32 +86,32 @@ To: daniel@ffwll.ch,
 Cc: martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 4/6] drm/meson: encoder_hdmi: switch to bridge
- DRM_BRIDGE_ATTACH_NO_CONNECTOR
-Date: Fri, 15 Oct 2021 16:11:05 +0200
-Message-Id: <20211015141107.2430800-5-narmstrong@baylibre.com>
+Subject: [PATCH v2 6/6] drm/meson: encoder_cvbs: switch to bridge with
+ ATTACH_NO_CONNECTOR
+Date: Fri, 15 Oct 2021 16:11:07 +0200
+Message-Id: <20211015141107.2430800-7-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211015141107.2430800-1-narmstrong@baylibre.com>
 References: <20211015141107.2430800-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7687; h=from:subject;
- bh=mc1HkDGnl66dr3h6jQnSyYMWMkouuV+zR/jqYEsACZ4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhaYoliamQwIioUrdZjrrJ86ijqytyqgjw23+0QZSh
- Ygw/jNOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYWmKJQAKCRB33NvayMhJ0eRIEA
- CuOWcHPu2bb870v3z7XtcvdEvtgTfhPmBv2UmnDpo52GpCCp5cXvASNUOgeo583bJ/eHXZge2TsWTt
- J0TxpiWkatO5AjZrULA2UCBDHYpdpZ+5fBo32ds1pDBiP26aZvy30YREDxHBPhUngISXM2Uzdc1RvD
- 1dJtupadDl+npsE5my7q+R86fGxpf+umiRwM3Nx6LQcVdTvyvZk4NLy3pv16HKmiI6y6oSOjkeFPA+
- OyG30i8VtfqyKIHy9/zcc9IZcXRTai2YY/RCSQYNuDm7uIbij2BxYehFUn0VCAJOQNknFzxJ0iYB0g
- tus38U7H7kvgfv3dZ4cPNlf6BpwN0+/lIAE1zUuRj7CSjAn9kehM4OPPqXpJSGGeW1ay1j984UQAaL
- fX6FDJDxUWEY7rEgk4SfUU94MeDO8rvtPGmnE/Am8VFHggvu6+L7SvA5dr71PqjyqenhnYmLdwVR6a
- NC8OXkIxjDc9X9LpVoGboTBAGUM9DltqCZs1d+0R2SkVgbrcp4PjX4XYEG+jtgP0IccuwRiMrLn25b
- /XjNW1ypODSouHqXFhwd2Hqi4lWc3c5azVktytySwmADHu4jCZce8/dXtNcO2McXoB9Z6F8X9XvR8D
- Kb3Ys9L4jT8T08vZFwZPoNkcw3M4OoRhaoNyAOhb6jC3uSyJew0h64SDjYeQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=12009; h=from:subject;
+ bh=RGN+o5J8zyhu8akT0urPtTxpYJE0MX6eJNXFa9k9q3E=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhaYolaHOAeH/g5zTUhW2OTSwG5k5qnTzdae5VBPSZ
+ ctTthuSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYWmKJQAKCRB33NvayMhJ0SGMD/
+ 4gM9GD/XCGrtcLmv+b8iJb8hbvKBk0DTGxeiA74vlT2JoUHPbBHK++HOxLLq1clxSpbV/tubH2mR+r
+ z6//qoC1TBFPgauUJ/l0MqpeP0NQFYHxFQhWl3oOYdgKBDMQMLaHcRewMZ9c+TCRlxYmifB/6ClQpu
+ bMMQh+buyNKkzS1Pqu0EWzEqCSzir5FwHLjyULhc+m8uXF+icw+xCpH7rOYtK2x8En9kcWERFtXC7K
+ hbfPB1NufWp3gXXs+j1C8B8mgOKlbTsCIE/B/ikL/P3jO939vHcEVjP2XwCtG3UkVqmEWOBoPfMRvj
+ LOKlHAKQvKzipbJbv44oXj6NApeTKePPzTBY/uE14JGvIExsuhsUlfLrfiVfx3Mr9AvUJ/pOyWVvKq
+ /vKo8oE5QtnS+6ihvO5PHR1CH0uhSFcbOVdMXQMlR4KXowP6CNS0SsVvZqLeCWeaQVPNNKjXu3/qoW
+ FprbC1hxhRCOnUHsy04VpNm+NKrcfES2kWbH9LUrIWLJGh/H+FxUJvcyknaA610jBpojhKdGWMTK86
+ S9/jWYD7KXciJ4ZUXe4MKOsri/CImgtLTUxwhhUzVFHvCPNeYHQIc1aHwtrcRRwJFtdsQy9sMcCAzo
+ HIMVZZDqC2f0hKYfWMPEE6iPoSH2tmjbRHshqYb4U9qOmp/vDCmstxgG632A==
 X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211015_071117_242398_E28F7DAB 
-X-CRM114-Status: GOOD (  22.52  )
+X-CRM114-CacheID: sfid-20211015_151120_734914_5B866CDF 
+X-CRM114-Status: GOOD (  17.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,205 +128,339 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This implements the necessary change to no more use the embedded
-connector in dw-hdmi and use the dedicated bridge connector driver
-by passing DRM_BRIDGE_ATTACH_NO_CONNECTOR to the bridge attach call.
+Drop the local connector and move all callback to bridge funcs in order
+to leverage the generic CVBS display connector.
 
-The necessary connector properties are added to handle the same
-functionalities as the embedded dw-hdmi connector, i.e. the HDR
-metadata, the CEC notifier & other flags.
-
-The dw-hdmi output_port is set to 1 in order to look for a connector
-next bridge in order to get DRM_BRIDGE_ATTACH_NO_CONNECTOR working.
+This will also permit adding custom cvbs connectors for ADC based HPD
+detection on some Amlogic SoC based boards.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Acked-by: Sam Ravnborg <sam@ravnborg.org>
 ---
- drivers/gpu/drm/meson/Kconfig              |  2 +
- drivers/gpu/drm/meson/meson_dw_hdmi.c      |  1 +
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 81 +++++++++++++++++++++-
- 3 files changed, 82 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c | 208 ++++++++++-----------
+ 1 file changed, 103 insertions(+), 105 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
-index 9f9281dd49f8..a4e1ed96e5e8 100644
---- a/drivers/gpu/drm/meson/Kconfig
-+++ b/drivers/gpu/drm/meson/Kconfig
-@@ -6,9 +6,11 @@ config DRM_MESON
- 	select DRM_KMS_HELPER
- 	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
-+	select DRM_DISPLAY_CONNECTOR
- 	select VIDEOMODE_HELPERS
- 	select REGMAP_MMIO
- 	select MESON_CANVAS
-+	select CEC_CORE if CEC_NOTIFIER
+diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+index 01024c5f610c..5b9704d78cf9 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+@@ -13,10 +13,12 @@
+ #include <linux/of_graph.h>
  
- config DRM_MESON_DW_HDMI
- 	tristate "HDMI Synopsys Controller support for Amlogic Meson Display"
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index fb540a503efe..5cd2b2ebbbd3 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -803,6 +803,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	dw_plat_data->input_bus_encoding = V4L2_YCBCR_ENC_709;
- 	dw_plat_data->ycbcr_420_allowed = true;
- 	dw_plat_data->disable_cec = true;
-+	dw_plat_data->output_port = 1;
- 
- 	if (dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
- 	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxm-dw-hdmi") ||
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 971da662c954..32f52f1c423b 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -14,8 +14,11 @@
- #include <linux/regulator/consumer.h>
- #include <linux/reset.h>
- 
-+#include <media/cec-notifier.h>
-+
  #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
++#include <drm/drm_bridge.h>
 +#include <drm/drm_bridge_connector.h>
  #include <drm/drm_device.h>
  #include <drm/drm_edid.h>
  #include <drm/drm_probe_helper.h>
-@@ -33,8 +36,10 @@ struct meson_encoder_hdmi {
- 	struct drm_encoder encoder;
- 	struct drm_bridge bridge;
- 	struct drm_bridge *next_bridge;
-+	struct drm_connector *connector;
- 	struct meson_drm *priv;
- 	unsigned long output_bus_fmt;
-+	struct cec_notifier *cec_notifier;
+-#include <drm/drm_print.h>
++#include <drm/drm_simple_kms_helper.h>
+ 
+ #include "meson_registers.h"
+ #include "meson_vclk.h"
+@@ -30,14 +32,13 @@
+ 
+ struct meson_encoder_cvbs {
+ 	struct drm_encoder	encoder;
+-	struct drm_connector	connector;
++	struct drm_bridge	bridge;
++	struct drm_bridge	*next_bridge;
+ 	struct meson_drm	*priv;
  };
+-#define encoder_to_meson_encoder_cvbs(x) \
+-	container_of(x, struct meson_encoder_cvbs, encoder)
  
- #define bridge_to_meson_encoder_hdmi(x) \
-@@ -49,6 +54,14 @@ static int meson_encoder_hdmi_attach(struct drm_bridge *bridge,
- 				 &encoder_hdmi->bridge, flags);
+-#define connector_to_meson_encoder_cvbs(x) \
+-	container_of(x, struct meson_encoder_cvbs, connector)
++#define bridge_to_meson_encoder_cvbs(x) \
++	container_of(x, struct meson_encoder_cvbs, bridge)
+ 
+ /* Supported Modes */
+ 
+@@ -81,32 +82,31 @@ meson_cvbs_get_mode(const struct drm_display_mode *req_mode)
+ 	return NULL;
  }
  
-+static void meson_encoder_hdmi_detach(struct drm_bridge *bridge)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+
-+	cec_notifier_conn_unregister(encoder_hdmi->cec_notifier);
-+	encoder_hdmi->cec_notifier = NULL;
-+}
-+
- static void meson_encoder_hdmi_enable(struct drm_bridge *bridge)
+-/* Connector */
+-
+-static void meson_cvbs_connector_destroy(struct drm_connector *connector)
++static int meson_encoder_cvbs_attach(struct drm_bridge *bridge,
++				     enum drm_bridge_attach_flags flags)
  {
- 	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-@@ -302,11 +315,32 @@ static int meson_encoder_hdmi_atomic_check(struct drm_bridge *bridge,
- 	return 0;
+-	drm_connector_cleanup(connector);
+-}
++	struct meson_encoder_cvbs *meson_encoder_cvbs =
++					bridge_to_meson_encoder_cvbs(bridge);
+ 
+-static enum drm_connector_status
+-meson_cvbs_connector_detect(struct drm_connector *connector, bool force)
+-{
+-	/* FIXME: Add load-detect or jack-detect if possible */
+-	return connector_status_connected;
++	return drm_bridge_attach(bridge->encoder, meson_encoder_cvbs->next_bridge,
++				 &meson_encoder_cvbs->bridge, flags);
  }
  
-+static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
-+					  enum drm_connector_status status)
-+{
-+	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-+	struct edid *edid;
+-static int meson_cvbs_connector_get_modes(struct drm_connector *connector)
++static int meson_encoder_cvbs_get_modes(struct drm_bridge *bridge,
++					struct drm_connector *connector)
+ {
+-	struct drm_device *dev = connector->dev;
++	struct meson_encoder_cvbs *meson_encoder_cvbs =
++					bridge_to_meson_encoder_cvbs(bridge);
++	struct meson_drm *priv = meson_encoder_cvbs->priv;
+ 	struct drm_display_mode *mode;
+ 	int i;
+ 
+ 	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
+ 		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
+ 
+-		mode = drm_mode_duplicate(dev, &meson_mode->mode);
++		mode = drm_mode_duplicate(priv->drm, &meson_mode->mode);
+ 		if (!mode) {
+-			DRM_ERROR("Failed to create a new display mode\n");
++			dev_err(priv->dev, "Failed to create a new display mode\n");
+ 			return 0;
+ 		}
+ 
+@@ -116,40 +116,18 @@ static int meson_cvbs_connector_get_modes(struct drm_connector *connector)
+ 	return i;
+ }
+ 
+-static int meson_cvbs_connector_mode_valid(struct drm_connector *connector,
+-					   struct drm_display_mode *mode)
++static int meson_encoder_cvbs_mode_valid(struct drm_bridge *bridge,
++					const struct drm_display_info *display_info,
++					const struct drm_display_mode *mode)
+ {
+-	/* Validate the modes added in get_modes */
+-	return MODE_OK;
+-}
+-
+-static const struct drm_connector_funcs meson_cvbs_connector_funcs = {
+-	.detect			= meson_cvbs_connector_detect,
+-	.fill_modes		= drm_helper_probe_single_connector_modes,
+-	.destroy		= meson_cvbs_connector_destroy,
+-	.reset			= drm_atomic_helper_connector_reset,
+-	.atomic_duplicate_state	= drm_atomic_helper_connector_duplicate_state,
+-	.atomic_destroy_state	= drm_atomic_helper_connector_destroy_state,
+-};
+-
+-static const
+-struct drm_connector_helper_funcs meson_cvbs_connector_helper_funcs = {
+-	.get_modes	= meson_cvbs_connector_get_modes,
+-	.mode_valid	= meson_cvbs_connector_mode_valid,
+-};
+-
+-/* Encoder */
++	if (meson_cvbs_get_mode(mode))
++		return MODE_OK;
+ 
+-static void meson_encoder_cvbs_encoder_destroy(struct drm_encoder *encoder)
+-{
+-	drm_encoder_cleanup(encoder);
++	return MODE_BAD;
+ }
+ 
+-static const struct drm_encoder_funcs meson_encoder_cvbs_encoder_funcs = {
+-	.destroy        = meson_encoder_cvbs_encoder_destroy,
+-};
+-
+-static int meson_encoder_cvbs_encoder_atomic_check(struct drm_encoder *encoder,
++static int meson_encoder_cvbs_atomic_check(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
+ 					struct drm_crtc_state *crtc_state,
+ 					struct drm_connector_state *conn_state)
+ {
+@@ -159,10 +137,10 @@ static int meson_encoder_cvbs_encoder_atomic_check(struct drm_encoder *encoder,
+ 	return -EINVAL;
+ }
+ 
+-static void meson_encoder_cvbs_encoder_disable(struct drm_encoder *encoder)
++static void meson_encoder_cvbs_disable(struct drm_bridge *bridge)
+ {
+ 	struct meson_encoder_cvbs *meson_encoder_cvbs =
+-					encoder_to_meson_encoder_cvbs(encoder);
++					bridge_to_meson_encoder_cvbs(bridge);
+ 	struct meson_drm *priv = meson_encoder_cvbs->priv;
+ 
+ 	/* Disable CVBS VDAC */
+@@ -175,10 +153,10 @@ static void meson_encoder_cvbs_encoder_disable(struct drm_encoder *encoder)
+ 	}
+ }
+ 
+-static void meson_encoder_cvbs_encoder_enable(struct drm_encoder *encoder)
++static void meson_encoder_cvbs_enable(struct drm_bridge *bridge)
+ {
+ 	struct meson_encoder_cvbs *meson_encoder_cvbs =
+-					encoder_to_meson_encoder_cvbs(encoder);
++					bridge_to_meson_encoder_cvbs(bridge);
+ 	struct meson_drm *priv = meson_encoder_cvbs->priv;
+ 
+ 	/* VDAC0 source is not from ATV */
+@@ -198,14 +176,30 @@ static void meson_encoder_cvbs_encoder_enable(struct drm_encoder *encoder)
+ 	}
+ }
+ 
+-static void meson_encoder_cvbs_encoder_mode_set(struct drm_encoder *encoder,
+-				   struct drm_display_mode *mode,
+-				   struct drm_display_mode *adjusted_mode)
++static void meson_encoder_cvbs_atomic_enable(struct drm_bridge *bridge,
++					     struct drm_bridge_state *bridge_state)
+ {
+-	const struct meson_cvbs_mode *meson_mode = meson_cvbs_get_mode(mode);
+-	struct meson_encoder_cvbs *meson_encoder_cvbs =
+-					encoder_to_meson_encoder_cvbs(encoder);
+-	struct meson_drm *priv = meson_encoder_cvbs->priv;
++	struct meson_encoder_cvbs *encoder_cvbs = bridge_to_meson_encoder_cvbs(bridge);
++	struct drm_atomic_state *state = bridge_state->base.state;
++	struct meson_drm *priv = encoder_cvbs->priv;
++	const struct meson_cvbs_mode *meson_mode;
++	struct drm_connector_state *conn_state;
++	struct drm_crtc_state *crtc_state;
++	struct drm_connector *connector;
 +
-+	if (!encoder_hdmi->cec_notifier)
++	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
++	if (WARN_ON(!connector))
 +		return;
 +
-+	if (status == connector_status_connected) {
-+		edid = drm_bridge_get_edid(encoder_hdmi->next_bridge, encoder_hdmi->connector);
-+		if (!edid)
-+			return;
++	conn_state = drm_atomic_get_new_connector_state(state, connector);
++	if (WARN_ON(!conn_state))
++		return;
 +
-+		cec_notifier_set_phys_addr_from_edid(encoder_hdmi->cec_notifier, edid);
-+	} else
-+		cec_notifier_phys_addr_invalidate(encoder_hdmi->cec_notifier);
-+}
++	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
++	if (WARN_ON(!crtc_state))
++		return;
 +
- static const struct drm_bridge_funcs meson_encoder_hdmi_bridge_funcs = {
- 	.attach = meson_encoder_hdmi_attach,
-+	.detach = meson_encoder_hdmi_detach,
- 	.enable	= meson_encoder_hdmi_enable,
- 	.disable = meson_encoder_hdmi_disable,
- 	.mode_valid = meson_encoder_hdmi_mode_valid,
-+	.hpd_notify = meson_encoder_hdmi_hpd_notify,
- 	.atomic_enable = meson_encoder_hdmi_atomic_enable,
- 	.atomic_get_input_bus_fmts = meson_encoder_hdmi_get_inp_bus_fmts,
- 	.atomic_check = meson_encoder_hdmi_atomic_check,
-@@ -318,6 +352,7 @@ static const struct drm_bridge_funcs meson_encoder_hdmi_bridge_funcs = {
- int meson_encoder_hdmi_init(struct meson_drm *priv)
++	meson_mode = meson_cvbs_get_mode(&crtc_state->adjusted_mode);
+ 
+ 	if (meson_mode) {
+ 		meson_venci_cvbs_mode_set(priv, meson_mode->enci);
+@@ -218,76 +212,80 @@ static void meson_encoder_cvbs_encoder_mode_set(struct drm_encoder *encoder,
+ 	}
+ }
+ 
+-static const struct drm_encoder_helper_funcs
+-				meson_encoder_cvbs_encoder_helper_funcs = {
+-	.atomic_check	= meson_encoder_cvbs_encoder_atomic_check,
+-	.disable	= meson_encoder_cvbs_encoder_disable,
+-	.enable		= meson_encoder_cvbs_encoder_enable,
+-	.mode_set	= meson_encoder_cvbs_encoder_mode_set,
++static const struct drm_bridge_funcs meson_encoder_cvbs_bridge_funcs = {
++	.attach = meson_encoder_cvbs_attach,
++	.enable	= meson_encoder_cvbs_enable,
++	.disable = meson_encoder_cvbs_disable,
++	.mode_valid = meson_encoder_cvbs_mode_valid,
++	.get_modes = meson_encoder_cvbs_get_modes,
++	.atomic_enable = meson_encoder_cvbs_atomic_enable,
++	.atomic_check = meson_encoder_cvbs_atomic_check,
++	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
++	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
++	.atomic_reset = drm_atomic_helper_bridge_reset,
+ };
+ 
+-static bool meson_encoder_cvbs_connector_is_available(struct meson_drm *priv)
+-{
+-	struct device_node *remote;
+-
+-	remote = of_graph_get_remote_node(priv->dev->of_node, 0, 0);
+-	if (!remote)
+-		return false;
+-
+-	of_node_put(remote);
+-	return true;
+-}
+-
+ int meson_encoder_cvbs_init(struct meson_drm *priv)
  {
- 	struct meson_encoder_hdmi *meson_encoder_hdmi;
-+	struct platform_device *pdev;
- 	struct device_node *remote;
+ 	struct drm_device *drm = priv->drm;
+ 	struct meson_encoder_cvbs *meson_encoder_cvbs;
+ 	struct drm_connector *connector;
+-	struct drm_encoder *encoder;
++	struct device_node *remote;
  	int ret;
  
-@@ -342,6 +377,7 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 	meson_encoder_hdmi->bridge.funcs = &meson_encoder_hdmi_bridge_funcs;
- 	meson_encoder_hdmi->bridge.of_node = priv->dev->of_node;
- 	meson_encoder_hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
-+	meson_encoder_hdmi->bridge.interlace_allowed = true;
+-	if (!meson_encoder_cvbs_connector_is_available(priv)) {
++	meson_encoder_cvbs = devm_kzalloc(priv->dev, sizeof(*meson_encoder_cvbs), GFP_KERNEL);
++	if (!meson_encoder_cvbs)
++		return -ENOMEM;
++
++	/* CVBS Connector Bridge */
++	remote = of_graph_get_remote_node(priv->dev->of_node, 0, 0);
++	if (!remote) {
+ 		dev_info(drm->dev, "CVBS Output connector not available\n");
+ 		return 0;
+ 	}
  
- 	drm_bridge_add(&meson_encoder_hdmi->bridge);
+-	meson_encoder_cvbs = devm_kzalloc(priv->dev, sizeof(*meson_encoder_cvbs),
+-				       GFP_KERNEL);
+-	if (!meson_encoder_cvbs)
+-		return -ENOMEM;
++	meson_encoder_cvbs->next_bridge = of_drm_find_bridge(remote);
++	if (!meson_encoder_cvbs->next_bridge) {
++		dev_err(priv->dev, "Failed to find CVBS Connector bridge\n");
++		return -EPROBE_DEFER;
++	}
  
-@@ -358,17 +394,58 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 	meson_encoder_hdmi->encoder.possible_crtcs = BIT(0);
+-	meson_encoder_cvbs->priv = priv;
+-	encoder = &meson_encoder_cvbs->encoder;
+-	connector = &meson_encoder_cvbs->connector;
++	/* CVBS Encoder Bridge */
++	meson_encoder_cvbs->bridge.funcs = &meson_encoder_cvbs_bridge_funcs;
++	meson_encoder_cvbs->bridge.of_node = priv->dev->of_node;
++	meson_encoder_cvbs->bridge.type = DRM_MODE_CONNECTOR_Composite;
++	meson_encoder_cvbs->bridge.ops = DRM_BRIDGE_OP_MODES;
++	meson_encoder_cvbs->bridge.interlace_allowed = true;
  
- 	/* Attach HDMI Encoder Bridge to Encoder */
--	ret = drm_bridge_attach(&meson_encoder_hdmi->encoder, &meson_encoder_hdmi->bridge, NULL, 0);
-+	ret = drm_bridge_attach(&meson_encoder_hdmi->encoder, &meson_encoder_hdmi->bridge, NULL,
-+				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+-	/* Connector */
++	drm_bridge_add(&meson_encoder_cvbs->bridge);
+ 
+-	drm_connector_helper_add(connector,
+-				 &meson_cvbs_connector_helper_funcs);
++	meson_encoder_cvbs->priv = priv;
+ 
+-	ret = drm_connector_init(drm, connector, &meson_cvbs_connector_funcs,
+-				 DRM_MODE_CONNECTOR_Composite);
++	/* Encoder */
++	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_cvbs->encoder,
++				      DRM_MODE_ENCODER_TVDAC);
  	if (ret) {
- 		dev_err(priv->dev, "Failed to attach bridge: %d\n", ret);
+-		dev_err(priv->dev, "Failed to init CVBS connector\n");
++		dev_err(priv->dev, "Failed to init CVBS encoder: %d\n", ret);
  		return ret;
  	}
  
-+	/* Initialize & attach Bridge Connector */
-+	meson_encoder_hdmi->connector = drm_bridge_connector_init(priv->drm,
-+							&meson_encoder_hdmi->encoder);
-+	if (IS_ERR(meson_encoder_hdmi->connector)) {
-+		dev_err(priv->dev, "Unable to create HDMI bridge connector\n");
-+		return PTR_ERR(meson_encoder_hdmi->connector);
-+	}
-+	drm_connector_attach_encoder(meson_encoder_hdmi->connector,
-+				     &meson_encoder_hdmi->encoder);
-+
- 	/*
- 	 * We should have now in place:
--	 * encoder->[hdmi encoder bridge]->[dw-hdmi bridge]->[dw-hdmi connector]
-+	 * encoder->[hdmi encoder bridge]->[dw-hdmi bridge]->[display connector bridge]->[display connector]
- 	 */
+-	connector->interlace_allowed = 1;
++	meson_encoder_cvbs->encoder.possible_crtcs = BIT(0);
  
-+	/*
-+	 * drm_connector_attach_max_bpc_property() requires the
-+	 * connector to have a state.
-+	 */
-+	drm_atomic_helper_connector_reset(meson_encoder_hdmi->connector);
-+
-+	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL) ||
-+	    meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
-+	    meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
-+		drm_connector_attach_hdr_output_metadata_property(meson_encoder_hdmi->connector);
-+
-+	drm_connector_attach_max_bpc_property(meson_encoder_hdmi->connector, 8, 8);
-+
-+	/* Handle this here until handled by drm_bridge_connector_init() */
-+	meson_encoder_hdmi->connector->ycbcr_420_allowed = true;
-+
-+	pdev = of_find_device_by_node(remote);
-+	if (pdev) {
-+		struct cec_connector_info conn_info;
-+		struct cec_notifier *notifier;
-+
-+		cec_fill_conn_info_from_drm(&conn_info, meson_encoder_hdmi->connector);
-+
-+		notifier = cec_notifier_conn_register(&pdev->dev, NULL, &conn_info);
-+		if (!notifier)
-+			return -ENOMEM;
-+
-+		meson_encoder_hdmi->cec_notifier = notifier;
+-	/* Encoder */
+-
+-	drm_encoder_helper_add(encoder, &meson_encoder_cvbs_encoder_helper_funcs);
+-
+-	ret = drm_encoder_init(drm, encoder, &meson_encoder_cvbs_encoder_funcs,
+-			       DRM_MODE_ENCODER_TVDAC, "meson_encoder_cvbs");
++	/* Attach CVBS Encoder Bridge to Encoder */
++	ret = drm_bridge_attach(&meson_encoder_cvbs->encoder, &meson_encoder_cvbs->bridge, NULL,
++				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+ 	if (ret) {
+-		dev_err(priv->dev, "Failed to init CVBS encoder\n");
++		dev_err(priv->dev, "Failed to attach bridge: %d\n", ret);
+ 		return ret;
+ 	}
+ 
+-	encoder->possible_crtcs = BIT(0);
+-
+-	drm_connector_attach_encoder(connector, encoder);
++	/* Initialize & attach Bridge Connector */
++	connector = drm_bridge_connector_init(priv->drm, &meson_encoder_cvbs->encoder);
++	if (IS_ERR(connector)) {
++		dev_err(priv->dev, "Unable to create CVBS bridge connector\n");
++		return PTR_ERR(connector);
 +	}
-+
- 	dev_dbg(priv->dev, "HDMI encoder initialized\n");
++	drm_connector_attach_encoder(connector, &meson_encoder_cvbs->encoder);
  
  	return 0;
+ }
 -- 
 2.25.1
 
