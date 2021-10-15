@@ -2,68 +2,68 @@ Return-Path: <SRS0=WmWE=PD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 83D0FC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 14:20:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD34BC433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 14:22:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 29A6E60FDA
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 14:20:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 29A6E60FDA
+	by mail.kernel.org (Postfix) with ESMTPS id 697F860C51
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 14:22:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 697F860C51
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Y24uKCQ+fzxj7i8sWLi5YiSdMz8PAbZDnIM+9rXDjbE=; b=ace6byI//T5mgX
-	SmZpSGAZp4owErs92e11pnR92F+B5y1YftNj8jox9fXwu6zRBwYWiDvGj+cgqsAvyf3Kvo/gasTHr
-	yB00OFP/KqqHN9BxTthtScJDKS2fSdMvb/k7mxoK4xuvPjH7ibAo3IONwRI8Cdx4e8iVlHoC0eRhh
-	rSkaD7twdVqEXMtKu71Zh4NM858tsQICV3gIQNm6ZxGPLr4CdJszing9XietJ5Rz/Jvaqthq0fusq
-	ZN6kRf3X0oo3NWVwCdpp6i6dkcCnSp1BDWbW54Sy4V8Y3m8nvprooRW4HcHUnZSA6Kv5uws0WJ05V
-	h3NNevNFwHiCmgNuRITA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=yKVARnniK+PGuSEFYea0IBT7R/OLvYF9Utgu25b3D94=; b=0QXmoHurfsLeUe
+	vhWZRsmpqu2AKoz5A7sTs2zC7dZM+qUla9GDKb4d/UO26R7YpQMMFJn03ta8Q9/oRDOHNAdZJby8h
+	HRWkmIGYg72Kj+GPCdz9PSPxcrS5xpTRK9tFhwjhnpK0Vu0C2QPww+73iBD3V2QMnwthbgsvH8bIC
+	97QZgRR0W0UedriuuFDY9Madvy3ZbN+GEQdrqhNaoF/KtjT0Sstd3tnGkM8a/QoopIMqTaNGf8W5n
+	ilDfu04wKjsrVOw/+ZMWXOhCrU6mkvbN388gyYSvtJ1Mce7KCAR7OgFrrtB+9T8tYncspfqr+f17C
+	j1d4BO0zdgiZEDtdhLMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mbO4i-007Xul-3f; Fri, 15 Oct 2021 14:20:44 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1mbO6C-007YZK-Ey; Fri, 15 Oct 2021 14:22:16 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mbNvU-007Tpk-Ly
- for linux-amlogic@lists.infradead.org; Fri, 15 Oct 2021 14:11:18 +0000
-Received: by mail-wr1-x435.google.com with SMTP id g25so26657405wrb.2
- for <linux-amlogic@lists.infradead.org>; Fri, 15 Oct 2021 07:11:11 -0700 (PDT)
+ id 1mbNvW-007TrF-A9
+ for linux-amlogic@lists.infradead.org; Fri, 15 Oct 2021 14:11:19 +0000
+Received: by mail-wr1-x429.google.com with SMTP id v17so26702206wrv.9
+ for <linux-amlogic@lists.infradead.org>; Fri, 15 Oct 2021 07:11:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=SK5WSwXHZWoI/1ZBUvfDbCPhpcOUhghwxwipgWWDC98=;
- b=8B6JOltmwuzEfGkzrOKCjgmb6sk8JOnMULoXp871nvfb8vFUJ2EdlOZtTK7G4JrJcw
- eyBOHEMW5X/iGMIw6FR33U2jt+wak87HGpcNSIYzSFI3tRZUJ1lk2RvMtcy74/87tNFR
- ePFhvcDSKBfjBjTlE+CjEzSFbIP2aXyZslhj+ysU4Ie/YamccgSLDOeQ3d7dsvpsGWGO
- HoGNxI3wMYWQCUm2UjCG7kjyojNGGylze+ZNWWdhMzR10cLd6MocYdXwBnP8cqRDGz6B
- 4rVVW77uPZ5I2YVVjmu2W3UanuyGTAkeUKVAXrlAcuNpTtNcBzlKmKZ/K85fT5YWNmY6
- VySQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=/l0Ehr0hN3gdq8P9wc6WB+d9mjY1ba6Pwx1xklvzGFE=;
+ b=COWJY3S3HVBm38qSt+SY+IzP4X5KLFdEMyOeNmTAM9C1XECvQN1OsPAxRoBIniWNpe
+ BDxalVBJsUcoMXDjKbeGc2iker0qZKKj9Ie/xf64AJp6JmZLhjvLhwekXz86mqOkx5H6
+ zFWYzWapj0ILXiwwdCmn6W/o7skCHp8YgYJh3Wd2JbMJ/xCcJlkjB8crHTcFPyhkEx3F
+ czC6jBSXZEER99zJt6FyulyRKgyVsw+6f1xXP25MOYYso3u1GqrDw3v64ATGYTsXxBJl
+ nh7WZ30o3hR5TH/EfJ4/rKPkmCsR9CPfZEntur5NJdDrUAdZ6eL52vjOhT3s7OUt+nt2
+ kg2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=SK5WSwXHZWoI/1ZBUvfDbCPhpcOUhghwxwipgWWDC98=;
- b=bOXHKWB36Dwx0ZYokparcvIh63FqJFRXfYSjIzMzxrCMmF4yIZyg6WHnPVxKXa/8Te
- gLbKxkmukVeDpFaEgOI/KCeF3fuX8OSgnE51D9bTvmHn4yD1CanODfCFCArD9dEWXygo
- r3yrT/o52TXxjSjoHq0w6TICAD6Co4ot6KAa2HjvV4YWNj9PlWw3S5NYYuub/REV+da1
- vL+iIllGnicw0PJoZAOS1v1tIm2AyPYKDnUsU94eWmRpoQkjK6tAS9YMipGdGeY6yR3c
- OS9F1IeBswnDiJSZO0fTnkLJBJTxMRheR1JSrGcfprUiCdoWWRr34X01WJwtcFF2J98q
- RDLw==
-X-Gm-Message-State: AOAM531txgtTvvZyhFKogwd/lANh0sAfECBeSGh11yOrpiiU7+zUIigL
- vWY2yEUxlN89Kr6XnCPsWicsmA==
-X-Google-Smtp-Source: ABdhPJw/1LkkObJ3ghkbZlL8mXeEQ65q7HmlYnmT+4W1ZJ1xvKR2Kc179nzGYBN3EYBY+dBTEAhtGA==
-X-Received: by 2002:a5d:6d8c:: with SMTP id l12mr14612259wrs.80.1634307070511; 
- Fri, 15 Oct 2021 07:11:10 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=/l0Ehr0hN3gdq8P9wc6WB+d9mjY1ba6Pwx1xklvzGFE=;
+ b=VqBmtA6Lgkx8Pneuchw6ED5NKskHOCR2nd/kCcFQItwZ+aIjZhmHlGmu6anfm+vhJr
+ 5BO5/VXt7T8q55I6EgJH1rd7c8WMCs+ZGWFZlNB+XdMvDpaj4fcDD5CjeEvJN3yCdSYQ
+ HUF9B6qzR2xxLv3XAZ9J21d8fCWkVl5erMWnPdauGvjsAh/I2yFe8zcKcgdjQRJqolhE
+ 0zggMurB6MAlfTsWQDPo1KKe67MmeAYLYbRPosvPiza4SLlzXs4qeRrrAeFREHV4IwDv
+ xtMUR9Ge6vQpvclMKEAjbRH2MWs5v4C+oUwUE36SkAvAv4Daxl1/A3V4lm7sdceuhV14
+ wRmQ==
+X-Gm-Message-State: AOAM533rKaOeOWpzE0wh3q6vxm0botZtGSjuk53R3W4ZMxJjgaQEwLsH
+ ogg40ze8qrzACviqf0hqXPP7/ujFjHwEcQ==
+X-Google-Smtp-Source: ABdhPJxhnZTPHdrXN9wZhVZR52wCiThQFMI8PqiE8nOcS7plw649C8vClqkbt4hw+8ne598gMMRZTQ==
+X-Received: by 2002:adf:8b98:: with SMTP id o24mr14755731wra.302.1634307072822; 
+ Fri, 15 Oct 2021 07:11:12 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:f6e3:13bd:45ae:5eeb])
- by smtp.gmail.com with ESMTPSA id f15sm4971434wrt.38.2021.10.15.07.11.09
+ by smtp.gmail.com with ESMTPSA id f15sm4971434wrt.38.2021.10.15.07.11.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 Oct 2021 07:11:10 -0700 (PDT)
+ Fri, 15 Oct 2021 07:11:12 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: daniel@ffwll.ch,
 	Laurent.pinchart@ideasonboard.com,
@@ -71,29 +71,31 @@ To: daniel@ffwll.ch,
 Cc: martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 0/6] drm/meson: rework encoders to pass ATTACH_NO_CONNECTOR
-Date: Fri, 15 Oct 2021 16:11:01 +0200
-Message-Id: <20211015141107.2430800-1-narmstrong@baylibre.com>
+Subject: [PATCH v2 2/6] drm/meson: remove useless recursive components matching
+Date: Fri, 15 Oct 2021 16:11:03 +0200
+Message-Id: <20211015141107.2430800-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211015141107.2430800-1-narmstrong@baylibre.com>
+References: <20211015141107.2430800-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2607; h=from:subject;
- bh=fTkgFMlSB5Ej7MF+TequNqhZSjRHV4SIxj9PjVk81iE=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhaYoipSArcNV7nFCbup2fdmzNK3qHxA1qegi12EUX
- 2eGrp7SJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYWmKIgAKCRB33NvayMhJ0dkcD/
- 9qlX4Gb1Is7ynKt7PiVlO7GkGeshsI29vfmJIFP6+ArJtfQIqxGFcFobg23cGo8fvZ4wX8UoXB+8C9
- 8MsuVXqNOoZnAmr2igGcYO2TvbazqG74mqzkStuvbmGEDLepBT315heMyfyDlyT0K/2pRu2MmNjINM
- mnT1zHtaNmS6gBH0zp+vGzojAIrhJMg7BzCEqDZ/3enp3saAazHP7+3fVcKf0KLOaXpzeZeRSfWlnp
- y11/5Gfx1PPbqLsQdb/pRHQrZGsvOxzgASt6l8A8UiGek3YD6CJqjmiejllwolyrkWl69zbpDqqbZC
- Y7RgjOhMcEMMls1oeLdikoSBtLAkasX+qzjlmjQzGbjVITun55XaFcRkqnnH9Xskkm85UF1PJk+WzT
- IpLxhMsvnrlGQw9JqHOdTYdzNLnZCeaRRpKq8sSwUAWmwEbRMkehxmMIhm87dG2mYDIWt8sh4hKSzj
- ks0VptYcTWLlMQlDxZRd7mgd3O/fxnP3nBGgHEbg9PdItyacSU5/FeMx5lwnvAnW2nK9kIESAduVFy
- cGK0TXiMG7qOpLzvLt/h8rCCPwxcmENXjHM6J8oKH5Wq+0vx948FXlmY5+afSZ9Ws+nOQkjAWHuBPh
- EVbGkLFvuTvjD59SJmDvli1PlO858luVua+adFk2PE3FKK6nMpD3N3p2tfFA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3154; h=from:subject;
+ bh=oCHRvKY4DUunQPKqQle3sJaGRdDcBfi+zreDie2LrWE=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBhaYolnyX6k3x3JLsmrS3+lhvHZsU9i/66xJC8E04m
+ 6OJQ1ZKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYWmKJQAKCRB33NvayMhJ0T3WEA
+ Cny9MGCazvlcxUanmEjoBua87F74vWSOrHONMv003E0U6XxuaNx9V7dZeynKchhcZ7yF17LbcMc3Rh
+ PxbFIci0Y2DEcMBlUB7EmZsZQecfp6OjuWu6k7gQM02P0kIveRwzWpwV+1cu0PJ6xpzV2SyPrxbUcW
+ zz6lg09Qs50eDFiLMJrszgbmoGrNdtqs01JAXWGUQ24AZq0myrVUijzujX8x1Z7V1QP6Sse55R1tCk
+ JjYCwqFk5WXup4cZp0S9c+Pq9m9Vco89mJD/3jD6gBj5dabZCANbF7tOS95OBtjNsVekw0QyF1kdtw
+ En36Q3zJl8oa/E9Lhr8zTgATokh46RzFdujXg5EkACeNBZtIQPU9abTE7pshTY9Eo30QaGqSoYosmq
+ QwhzHdWeihBEj8mk8wsIDvQTalAhJuErMlcihmdTZeo1oN/rbxrKdsQuMzThmJlm6zL6kOhyTzBywc
+ K09X48fuNj4fPE1T0a/MJrf0lDIgQhPus2a7Yw+3RV9QQBr0LsPCENgtTVoFS+/k40BMg4PXt/G+HY
+ NdfeUS/g4D5+x3Q/v9LNwTQ3D6dsg6ukxli3xVZ4h1qqCibPYFEwNOXbUOW/Q/3UYoeBjdiMnk9ZHd
+ +hbUtskikyy9E2r8jIAMikZMzcA2I3EuJnVNqMdnZxRXYZeVL14JjV8tDJEw==
 X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211015_071112_817458_CB11E9B3 
-X-CRM114-Status: GOOD (  10.31  )
+X-CRM114-CacheID: sfid-20211015_071114_443445_FC4F2007 
+X-CRM114-Status: GOOD (  14.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,58 +112,105 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This serie finnally reworks the drm/meson driver by extracting the encoders
-in their own file and moves to bridge-only callbacks.
+The initial design was recursive to cover all port/endpoints, but only the first layer
+of endpoints should be covered by the components list.
+This also breaks the MIPI-DSI init/bridge attach sequence, thus only parse the
+first endpoints instead of recursing.
 
-This permits passing the ATTACH_NO_CONNECTOR bridge attach flag and finally
-use the CVBS & HDMI display-connector driver.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+---
+ drivers/gpu/drm/meson/meson_drv.c | 62 +++++++++++--------------------
+ 1 file changed, 21 insertions(+), 41 deletions(-)
 
-This will ease Martin Blumenstingl writing the HDMI transceiver driver for
-the older Meson8/8b SoCs, and sets the proper architecture for the work in
-progress MIPI-DSI support.
-
-Finally, this serie will path the way to a removal of the device component
-and use the drmm memory management.
-
-Changes since v1 at [1];
- - patch 1: added sam's review tag, fixed include order, fixed doc wording
- - patch 2: added sam's ack tag, switched to dev_dbg()
- - patch 3: moved mode_set to atomic_enable, removed DRM_DEBUG, fixed include order
- - patch 4: added sam's ack tag & applied to drm-misc-next
- - patch 5 & 6: added sam's ack tag
- - patch 7: added sam's review tag, stopped saving connector, moved mode_set to atomic_enable,
- 	added missing atomic state callbacks, fixed include order, switched to dev_dbg/dev_err
-
-[1] https://lore.kernel.org/r/20211014152606.2289528-1-narmstrong@baylibre.com
-
-Neil Armstrong (6):
-  drm/bridge: display-connector: implement bus fmts callbacks
-  drm/meson: remove useless recursive components matching
-  drm/meson: split out encoder from meson_dw_hdmi
-  drm/meson: encoder_hdmi: switch to bridge
-    DRM_BRIDGE_ATTACH_NO_CONNECTOR
-  drm/meson: rename venc_cvbs to encoder_cvbs
-  drm/meson: encoder_cvbs: switch to bridge with ATTACH_NO_CONNECTOR
-
- drivers/gpu/drm/bridge/display-connector.c    |  86 ++++
- drivers/gpu/drm/meson/Kconfig                 |   2 +
- drivers/gpu/drm/meson/Makefile                |   3 +-
- drivers/gpu/drm/meson/meson_drv.c             |  71 ++-
- drivers/gpu/drm/meson/meson_dw_hdmi.c         | 342 +------------
- drivers/gpu/drm/meson/meson_encoder_cvbs.c    | 291 +++++++++++
- ...meson_venc_cvbs.h => meson_encoder_cvbs.h} |   2 +-
- drivers/gpu/drm/meson/meson_encoder_hdmi.c    | 452 ++++++++++++++++++
- drivers/gpu/drm/meson/meson_encoder_hdmi.h    |  12 +
- drivers/gpu/drm/meson/meson_venc_cvbs.c       | 293 ------------
- 10 files changed, 894 insertions(+), 660 deletions(-)
- create mode 100644 drivers/gpu/drm/meson/meson_encoder_cvbs.c
- rename drivers/gpu/drm/meson/{meson_venc_cvbs.h => meson_encoder_cvbs.h} (92%)
- create mode 100644 drivers/gpu/drm/meson/meson_encoder_hdmi.c
- create mode 100644 drivers/gpu/drm/meson/meson_encoder_hdmi.h
- delete mode 100644 drivers/gpu/drm/meson/meson_venc_cvbs.c
-
-
-base-commit: f6632721cd6231e1bf28b5317dcc7543e43359f7
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 7f41a33592c8..97ebc07357bb 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -426,46 +426,6 @@ static int compare_of(struct device *dev, void *data)
+ 	return dev->of_node == data;
+ }
+ 
+-/* Possible connectors nodes to ignore */
+-static const struct of_device_id connectors_match[] = {
+-	{ .compatible = "composite-video-connector" },
+-	{ .compatible = "svideo-connector" },
+-	{ .compatible = "hdmi-connector" },
+-	{ .compatible = "dvi-connector" },
+-	{}
+-};
+-
+-static int meson_probe_remote(struct platform_device *pdev,
+-			      struct component_match **match,
+-			      struct device_node *parent,
+-			      struct device_node *remote)
+-{
+-	struct device_node *ep, *remote_node;
+-	int count = 1;
+-
+-	/* If node is a connector, return and do not add to match table */
+-	if (of_match_node(connectors_match, remote))
+-		return 1;
+-
+-	component_match_add(&pdev->dev, match, compare_of, remote);
+-
+-	for_each_endpoint_of_node(remote, ep) {
+-		remote_node = of_graph_get_remote_port_parent(ep);
+-		if (!remote_node ||
+-		    remote_node == parent || /* Ignore parent endpoint */
+-		    !of_device_is_available(remote_node)) {
+-			of_node_put(remote_node);
+-			continue;
+-		}
+-
+-		count += meson_probe_remote(pdev, match, remote, remote_node);
+-
+-		of_node_put(remote_node);
+-	}
+-
+-	return count;
+-}
+-
+ static void meson_drv_shutdown(struct platform_device *pdev)
+ {
+ 	struct meson_drm *priv = dev_get_drvdata(&pdev->dev);
+@@ -477,6 +437,13 @@ static void meson_drv_shutdown(struct platform_device *pdev)
+ 	drm_atomic_helper_shutdown(priv->drm);
+ }
+ 
++/* Possible connectors nodes to ignore */
++static const struct of_device_id connectors_match[] = {
++	{ .compatible = "composite-video-connector" },
++	{ .compatible = "svideo-connector" },
++	{}
++};
++
+ static int meson_drv_probe(struct platform_device *pdev)
+ {
+ 	struct component_match *match = NULL;
+@@ -491,8 +458,21 @@ static int meson_drv_probe(struct platform_device *pdev)
+ 			continue;
+ 		}
+ 
+-		count += meson_probe_remote(pdev, &match, np, remote);
++		/* If an analog connector is detected, count it as an output */
++		if (of_match_node(connectors_match, remote)) {
++			++count;
++			of_node_put(remote);
++			continue;
++		}
++
++		dev_dbg(&pdev->dev, "parent %pOF remote match add %pOF parent %s\n",
++			np, remote, dev_name(&pdev->dev));
++
++		component_match_add(&pdev->dev, &match, compare_of, remote);
++
+ 		of_node_put(remote);
++
++		++count;
+ 	}
+ 
+ 	if (count && !match)
 -- 
 2.25.1
 
