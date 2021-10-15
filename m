@@ -2,14 +2,14 @@ Return-Path: <SRS0=WmWE=PD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D0829C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 22:08:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C29BC433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 22:34:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 98F9060C4B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 22:08:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 98F9060C4B
+	by mail.kernel.org (Postfix) with ESMTPS id EDF1D611C8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Oct 2021 22:34:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EDF1D611C8
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,64 +18,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LMPnkP2n1wiPK/a8497rdYCmWAMGg0p61bOJH8SqFmw=; b=eUl2vQk/5Sf54Q
-	FurYOjHiPwNrkqsE1KJs8mcifP+B5kiaDUiBDeS0/ker9ol8E/4KctNG1aq8DNgaAKT3//dZF/MgP
-	OIeFmatKdoTbSUscPobwh6arroYio0EAUe2b81wLRey5cc80iPNVn58CrzTSlZCoxoqoPNgWl2QeZ
-	dYGuFL57gQh3DQm+UyTInBo8pDgiXRViJS6cr01EamCSYJdwIrTcGZQlRyDTP6siMQW4uS9DiTEV2
-	dyd+Mko2/1OK6ygLjMEssQLK8l/sEPYxVyDf2+gA3BZ52p0oPMA3L5uYLzuoQVfarbM+n88kBHJw7
-	EvA0gSc/wBXzmD1267cg==;
+	List-Owner; bh=y/VbZWjHTd4F2L7OhlS7KWU2vGhoskoVt5jdtS/JYyM=; b=JM5CxL3nRODAyS
+	wAZNcXEIi11cF+Z5pozofVTm0XQQo40I76OA9LnfFGiBQB04/DFoi6rRLqO9Ld+L6eGb7mORzxwFN
+	HMxNffz+7fvOsY4Yq00NbhH7Wts0HxU1PMU5KCd6hA1wL5GWkVdD1+mStaJAw/wU6WDSLyyacPEdl
+	DyYNCRQkzNopF3K6WKDf0vTTorzxyLRmDFjpQs4dbz9vf4V4MTf3WeUXPxu21fU39j2ZbdvITp4ND
+	c7rsSHxMPJ+Z2BwGaZiAeAEIky1ZsG4hagPwAjlNUfbAQNQQJ5IFsDP4vxfJ8VA3um9qPaH0TBEcE
+	5BDFxefgkzFDN4ef3A5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mbVMy-008vCO-2e; Fri, 15 Oct 2021 22:08:04 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1mbVmO-008yMA-9A; Fri, 15 Oct 2021 22:34:20 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mbVMw-008vAq-6u; Fri, 15 Oct 2021 22:08:03 +0000
-Received: by mail-ed1-x536.google.com with SMTP id y30so25698547edi.0;
- Fri, 15 Oct 2021 15:08:01 -0700 (PDT)
+ id 1mbVmL-008yKC-JO; Fri, 15 Oct 2021 22:34:19 +0000
+Received: by mail-ed1-x532.google.com with SMTP id w19so43327266edd.2;
+ Fri, 15 Oct 2021 15:34:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ev7DTwrp6MZ4T8F+BiqYB8hT2a7fhd3qu/orSoJYRRk=;
- b=NDGXVXGgETY6w1uHUkxl0aOQgqOaHpy6s2tvAueulF9tqhRGEMU1NjQYegLI3Jmbo3
- hMp16bm5CVYOdrpZ3ZqND4DwL/pVY3YuoPzlRl6zFe1Wda7MkRmH2m4B3RmVw22Yk8fP
- znu01dYMmUoPyb0ZB36/pdRAmsw+NNX7CbKye0vNLXiSLmALyEzHlqsfsPdlLN0444LI
- uofuLyjYZwg+g2tceQcGFhQ2BLhzZWW3ktU5XA7yMwiavU0c4s3yTNsZQIZapXVSiKvg
- AI+Rn/GlRx1vtP3/VGe43e0VPyE+06dcXnwiL1S4y9AUG8Qpn7UQ5/2HUECgBdAOz2as
- kYOg==
+ :cc; bh=IPP9H53mtCsbQNk9doEzzimC+EjafFfLHkPsfpk1gug=;
+ b=Wrmsv1r6CTDbsg6ohN8jcWCEqyPhEjWAqgDfsYvSTD6Z0wUTDq+sgfP0+HD652SaPn
+ cBaOtOtCzGLQgEoeMxHfnHkrGiH+JocjZBkkCI1PEGlxKtOY3SQNH5tsK/SrVSkPJsKE
+ qSDEP3gCzAKhu4nBYxhktV0Nga3FDmNdmAnd5h5Oa1/eOfPcbveQe63JZpQeth53nKJp
+ tGOMwAnFv6lkSLgRyRz7bkGPG3oKDA1PSIU5Ok/Ys+0Wme+189tyJDzt1uPZvfn/pG5B
+ +hIQZkuG2b1XNg1U9aImPBbo+CbVio/NzAH3MGaMZZsT0jgTREkOfUBsHBGVozTgM7Tn
+ d+6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ev7DTwrp6MZ4T8F+BiqYB8hT2a7fhd3qu/orSoJYRRk=;
- b=aMhMkvL35NrbJ0FS2DTzUKAKHtIwBlATNTDqerORqas/kq7447LRX6ekWB71iKJ4cm
- /nbJBFm6r2iAG4FaokZ8G1bg/HXZoDWNB4BIR/slMOrw4WcDyQsa1W8Q3qGco815mXYl
- YMRqe+0laEenq5Gfxm1xpkBKLXNvUJLLBjwOnuh2gU+mMRsdUeMSKxfzas7olJgV1npY
- h3MvrL2LmNW2UShJBrkPU/P7eOCLMW8ZTvG+7idnIGG66g2TL+o4gI+6P8W9tX+x5ERz
- S/r+lMLspDtGk1rCu+KLkHUJxVhZ9gPFveECaO2mmrqN2gjyB5eunmtObfUE+XJw5dPX
- mBNg==
-X-Gm-Message-State: AOAM5339hutKzvHqPwTGgwmKovOgVcg3P4wp8omri/hLqxVk90N5pORO
- fb+6eMAlgtfqVAhGdJBdSOCqLZgAT/0bEVekfXw=
-X-Google-Smtp-Source: ABdhPJwuty6qNhbPHzOorY72ZZmKmtfUjljYFLAIkJ8cKHfYxsoqmg7A1X3fEyIG7As6fntwRInrBrRk7Ui5lNkexi4=
-X-Received: by 2002:a17:906:49d5:: with SMTP id
- w21mr9997649ejv.30.1634335680467; 
- Fri, 15 Oct 2021 15:08:00 -0700 (PDT)
+ bh=IPP9H53mtCsbQNk9doEzzimC+EjafFfLHkPsfpk1gug=;
+ b=goADV12SN7vYw9gjEF5p4qa0N5pamdnPYVbKjooZP2Crj6JkDZ9XBOpp3whRSnqqmK
+ V/ongSNjVeV5rkwYcIyRPbYsoahU8BkQXe/QQvPwLR8sEo6hVtGEnFwiXUyqOtG6eoLj
+ Xu6kpWypundBxlXj4m6CfGEEEIwnFMSLnzx5HIXt7oXx3bcskX9HenCxhH/4ClMGmUuS
+ Hze48SyloNbcun8KoyMCfuZItyRm3CVXy3bmg7lN3QZ3+vaSepC/3o8/Jyq6uHThwR6J
+ rlwprurBWnHruYVVPPnsvUy5TKCrxzMYZkULqUbW+pu2KyZlCGVH53he6EmuDjN44djx
+ 7EbA==
+X-Gm-Message-State: AOAM5317Dw7oV6H1bLGPDU2gKtEflm6GwIvLoFfPjlfZVFrun7spQwmR
+ kLG5hDGhCmWn/DpmGbQl6cihQebFCjFCV3Kwgaw=
+X-Google-Smtp-Source: ABdhPJyLJjJm67G6BpfJ0eTf82WNnFvO//ihG40tAdRB1n2RDizdnyDHqAIAfAPSbXh3mmlgYBj8ihlZGtJNQkmzTZQ=
+X-Received: by 2002:a17:906:fc0a:: with SMTP id
+ ov10mr5837689ejb.536.1634337255917; 
+ Fri, 15 Oct 2021 15:34:15 -0700 (PDT)
 MIME-Version: 1.0
 References: <20211015141107.2430800-1-narmstrong@baylibre.com>
  <20211015141107.2430800-7-narmstrong@baylibre.com>
 In-Reply-To: <20211015141107.2430800-7-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 16 Oct 2021 00:07:49 +0200
-Message-ID: <CAFBinCAdgokOt6HSkX=FmYN064nV=XY51CqGs100R0YnNi511g@mail.gmail.com>
+Date: Sat, 16 Oct 2021 00:34:05 +0200
+Message-ID: <CAFBinCBwO0CJMPA3K6e8OxXcinzrA5LrSqaKu1XtZPWLXT8Krw@mail.gmail.com>
 Subject: Re: [PATCH v2 6/6] drm/meson: encoder_cvbs: switch to bridge with
  ATTACH_NO_CONNECTOR
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: daniel@ffwll.ch, Laurent.pinchart@ideasonboard.com, sam@ravnborg.org, 
+To: Neil Armstrong <narmstrong@baylibre.com>, sam@ravnborg.org
+Cc: daniel@ffwll.ch, Laurent.pinchart@ideasonboard.com, 
  dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211015_150802_283177_65E412F7 
-X-CRM114-Status: UNSURE (   8.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211015_153417_673408_61E07D9C 
+X-CRM114-Status: GOOD (  10.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,17 +91,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Neil, Hi Sam,
+
 On Fri, Oct 15, 2021 at 4:11 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Drop the local connector and move all callback to bridge funcs in order
-> to leverage the generic CVBS display connector.
->
-> This will also permit adding custom cvbs connectors for ADC based HPD
-> detection on some Amlogic SoC based boards.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+[...]
+> +static const struct drm_bridge_funcs meson_encoder_cvbs_bridge_funcs = {
+> +       .attach = meson_encoder_cvbs_attach,
+> +       .enable = meson_encoder_cvbs_enable,
+> +       .disable = meson_encoder_cvbs_disable,
+> +       .mode_valid = meson_encoder_cvbs_mode_valid,
+> +       .get_modes = meson_encoder_cvbs_get_modes,
+> +       .atomic_enable = meson_encoder_cvbs_atomic_enable,
+I did some testing on boards where u-boot doesn't initialize the video outputs.
+It seems that meson_encoder_cvbs_enable() is never called with this patch.
+meson_encoder_cvbs_atomic_enable() is called though.
+
+From what I can see in drm_bridge.c [0] this is even expected.
+Does this mean that we need to move all logic from .enable to
+.atomic_enable (and same with .disable -> moving that logic to
+.atomic_disable)?
+
+The same comment applies to the HDMI patch.
+
+
+Best regards,
+Martin
+
+
+[0] https://elixir.bootlin.com/linux/v5.15-rc5/source/drivers/gpu/drm/drm_bridge.c#L717
 
 _______________________________________________
 linux-amlogic mailing list
