@@ -2,14 +2,14 @@ Return-Path: <SRS0=R8f+=PG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30C21C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Oct 2021 10:47:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 419D0C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Oct 2021 10:52:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E4B3B6008E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Oct 2021 10:47:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E4B3B6008E
+	by mail.kernel.org (Postfix) with ESMTPS id CADE360FC3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Oct 2021 10:52:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CADE360FC3
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,70 +18,74 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
 	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F0UbPrrnjv9VjtdZCKMs6t6uuYeM1xOlJkWVMqCAVBA=; b=NgLAhx2aUbwm1H
-	6Q4mc/aHSkdd+dMfVw84MwGwdxIjWf++JOaT29PBrKLXxnPQAEhNscdoaQnVho7PRnDSooJ9F+n8+
-	98KKTzaTfKx3cB04Myp7fochMBWRXCnVvDokI3s1sKSVQ0nB4MqqAUNN8w6c+W/LLAP5m/kGEy2oI
-	Fjyr1yHMGTdaKJQiLOf4Jnk3wZrKcIVwnrzMrTyDwlQiF/D/rl5To+EspnwyupX4/BEIyzNP8kIEx
-	rdrslyNl3Ev5u2Uw++ApIK0nFUjXb4qwkC3CSGxfNkDFc5sgzP0gSfjs5wSe7kfYbzVvUOgu6wzbU
-	NhAd6JAv9CfmZsw+Tu+Q==;
+	List-Owner; bh=RTXRgOhPCaaQakzMHayPAAHHsrsvkk167X4jWzg54a0=; b=Sx0aAYw5tuStLh
+	yrK51iLq5iPcS3PkJncZzPdvMY5p2X8OUtTTz2TXklE1bUpEXX6ul4OfgD5f94mBzWCGi2Te51Vp7
+	7xBsB5zUhTXdx5sf+KhIRPEx43o3kj51yTAqoqX1pibUBdntG+b3Y0KqgQhxi2cakAJz5odyujzrB
+	eBMOWBWei5jyDIA2DbaJLVEMyvzjPrAtmXk+BWLklMvigeeW8bFcmta5QcxJPe/dKhfUGDIr/iopF
+	RBD+4OPltZtZ3I2/ALdJbsi1Jg1wTF9sLEHdr/cHYTp9W25FFdoDiOZ3VQ6RyRL/Dc6eNoOh+9EJS
+	oloeilhLDuHbbaRj7phg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mcQBC-00F73q-J7; Mon, 18 Oct 2021 10:47:42 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1mcQFm-00F8w6-CP; Mon, 18 Oct 2021 10:52:26 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mcPk3-00EyBw-Gq
- for linux-amlogic@lists.infradead.org; Mon, 18 Oct 2021 10:19:42 +0000
-Received: by mail-wr1-x436.google.com with SMTP id r18so40363254wrg.6
- for <linux-amlogic@lists.infradead.org>; Mon, 18 Oct 2021 03:19:38 -0700 (PDT)
+ id 1mcPlW-00Eyh1-8o
+ for linux-amlogic@lists.infradead.org; Mon, 18 Oct 2021 10:21:11 +0000
+Received: by mail-wm1-x332.google.com with SMTP id
+ 63-20020a1c0042000000b0030d60716239so9829338wma.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 18 Oct 2021 03:21:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=references:user-agent:from:to:cc:subject:date:in-reply-to
  :message-id:mime-version;
- bh=Nt/DsbKNf/U6oEyp70zMTCvXerDbHSsEBUDTCVY5SZk=;
- b=5prZanh3ZiXhFVmZwmd5KUugHHD62JYZdj6kbC7LvJgiZdHYH0s0vO011ti4DMcnZr
- qlQoIAao/4qCYznRVSDHoZM1iigy+9qF1q1pHveIgmx4x9E8sURQmiSwMXdNhZ673ljE
- lELpcTfmf2l7n07+dqsYEyopKg+GWb9oXfd3rdgRzmwhAspBbEUI+6eiCUtEx13p3Qu4
- 7qKY17EBlz1W9WgxHQhHYTOPzTOmkEVcwlLSoEbDg8lRec4pojWfGdBm6h+KohIOQFt/
- a8dobw/8/6VTGUerqw4ruNgiT07VNLCwUJeCNAVqjT+IDLpPaN4kFqqimnd2lG+vGAJe
- EcGA==
+ bh=7GC/r7oF7FaZ4vYYtjlckZsfjl97Nd102niiiNEyke0=;
+ b=OghATFW5VHSslzpfS5gkkA3/wlUiyyp1eis6npEz+q00Ysaim+UMA3aq/59CpBm3sw
+ xsgz5lLt1yZ90HXx0+Zb99O7Dj6PQlMsZYE7CuH0bJAL8QmybrshSuijhh9Vnzl9izgC
+ xioP+eojPe9F21OJuHl8mpZfK19IRHt0psbKuq8q38MZOGSfEnwIp0/d0duLLLhWFrjC
+ XlhQZwF1kEsxPUuFiEtQIa6aLHq0fc8mnMtBBwFPqL6Bh0YUrIiPT2VeL9tgAVz8Aqg6
+ nE/phqoMR4WvNkv+U7wd4GP3cEApRXz3D4JcS5QYxcy+pSqUXvBEI20CCcuSkwMo/9ed
+ GYow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
  :in-reply-to:message-id:mime-version;
- bh=Nt/DsbKNf/U6oEyp70zMTCvXerDbHSsEBUDTCVY5SZk=;
- b=UJv7Rny/bIJexndX7gHRaJQPrJTbKP3o+uBdoBB85mHo0RkWjCmN8cZnKf9k3yWU83
- 7fUfZTFeNviZyITZt15cgD8oTRjFycI/VMJbcjLn7c+1OkHsFuVHjFOTDV8VIbXgvbEI
- qDzJFIBxY0Iubju7xCCQis8GbnBLbbg+pnqZCoSkROkiChVvhUBKdvDuZHbu8uQyVeHU
- vYmYekqrMA5sYtzjkzU0DcaktQMAjPjl06Q93TPS3ymozGAFRymkBTZn+b14kCEDg34m
- etdZfpC50aM0pihwQFQ2b7xOsz+o65LzeeDqvgHiaudjeEZYn/3iVop0FGQ0lwNLfXOB
- jYdg==
-X-Gm-Message-State: AOAM533JztBJ5iaEQvHybLx4nK8IPGKw/0w0s4i+pSlYja6uydQdNHgd
- N2wsGErL1w7ZCqhlrSwL8nqD6Q==
-X-Google-Smtp-Source: ABdhPJzDG8zynX/vI4wK2ttElJLD5TxdXfRAChpQdZOTiLhuvQVv+a2L+hRjAsFbPLNZJPD3ux8LKA==
-X-Received: by 2002:adf:a54f:: with SMTP id j15mr34068977wrb.218.1634552377158; 
- Mon, 18 Oct 2021 03:19:37 -0700 (PDT)
+ bh=7GC/r7oF7FaZ4vYYtjlckZsfjl97Nd102niiiNEyke0=;
+ b=MVVdnEerHVZ35jZE86+tUI9M+5HzZtr38RN0+FCoEVbno/nVD0ik2qTD8YZRdsoHpw
+ MDjGsZwZaYVNLlPiBEH/WnkSIJKmguJEbUZuwt/dazUG7FPkD5NqcZ0ip8Be8MEqi+3K
+ /mcPbKlNjatpngx8UTWbh2a4DqJ/2xGkfl4Jgg+8svxShgVcP6fxTB61neWf4GN8gUKL
+ pWkHFoAYeh33WtHwcFWEi/kC+hwFYKVGrHjZuU+Fm7VC8PTa2Xe/ATb8IDIKnWLdb3yf
+ ZtKJ/AHfPcc3ZhXwGTbk/KuFnBzZyiRUpm5QfJsVQ/Y/C+qmi3GePudRkikO/AURbb3J
+ Wy/A==
+X-Gm-Message-State: AOAM531pS3iXujQ87FoDSBjr3erCuqPXR+CI9vIvvAIPJWFFJ4a2pdKI
+ bB1p5+o8E1m0v/ytJHbaRorseg==
+X-Google-Smtp-Source: ABdhPJxggso4popQo8nuVeqxw6FVBixaoIjtOeSS511+JxQ97xNYgGJ/yoNLOwTLoxJL3J3keWTBZg==
+X-Received: by 2002:a1c:4d06:: with SMTP id o6mr42793789wmh.137.1634552468356; 
+ Mon, 18 Oct 2021 03:21:08 -0700 (PDT)
 Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id r5sm3208324wmh.28.2021.10.18.03.19.36
+ by smtp.gmail.com with ESMTPSA id m15sm12311398wmq.0.2021.10.18.03.21.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 Oct 2021 03:19:36 -0700 (PDT)
-References: <20211016145939.15643-1-martin.blumenstingl@googlemail.com>
+ Mon, 18 Oct 2021 03:21:08 -0700 (PDT)
+References: <20211017160028.23318-1-christianshewitt@gmail.com>
 User-agent: mu4e 1.6.6; emacs 27.1
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Cc: narmstrong@baylibre.com, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH] clk: meson: gxbb: Add the spread spectrum bit for MPLL0
- on GXBB
-Date: Mon, 18 Oct 2021 11:54:45 +0200
-In-reply-to: <20211016145939.15643-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1j5ytuvdmw.fsf@starbuckisacylon.baylibre.com>
+To: Christian Hewitt <christianshewitt@gmail.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Kevin Hilman
+ <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+ alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: Matthias Reichl <hias@horus.com>
+Subject: Re: [PATCH] ASoC: meson: implement driver_name for snd_soc_card in
+ meson-card-utils
+Date: Mon, 18 Oct 2021 12:20:03 +0200
+In-reply-to: <20211017160028.23318-1-christianshewitt@gmail.com>
+Message-ID: <1j1r4ivdkc.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211018_031939_707988_B5F55553 
-X-CRM114-Status: GOOD (  35.09  )
+X-CRM114-CacheID: sfid-20211018_032110_362047_99EDD61E 
+X-CRM114-Status: GOOD (  14.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,176 +103,41 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Sat 16 Oct 2021 at 16:59, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+On Sun 17 Oct 2021 at 16:00, Christian Hewitt <christianshewitt@gmail.com> wrote:
 
-> Christian reports that 48kHz audio does not work on his WeTek Play 2
-> (which uses a GXBB SoC), while 44.1kHz audio works fine on the same
-> board. He also reports that 48kHz audio works on GXL and GXM SoCs,
-> which are using an (almost) identical AIU (audio controller).
-
-The above is a bit "personal" - it is not great fit for the commit
-description. Please rephrase or put it in comment section bellow
-
+> Implement driver_name to provide an alternative to card_name for userspace
+> configuration of Amlogic audio cards.
 >
-> Experimenting has shown that MPLL0 is causing this problem. In the .dts
-> we have by default:
-> 	assigned-clocks = <&clkc CLKID_MPLL0>,
-> 			  <&clkc CLKID_MPLL1>,
-> 			  <&clkc CLKID_MPLL2>;
-> 	assigned-clock-rates = <294912000>,
-> 			       <270950400>,
-> 			       <393216000>;
-> The MPLL0 rate is divisible by 48kHz without remainder and the MPLL1
-> rate is divisible by 44.1kHz without remainder. Swapping these two clock
-> rates "fixes" 48kHz audio but breaks 44.1kHz audio.
->
-> Everything looks normal when looking at the info provided by the common
-> clock framework while playing 48kHz audio (via I2S with mclk-fs = 256):
->         mpll_prediv                 1        1        0  2000000000
->            mpll0_div                1        1        0   294909641
->               mpll0                 1        1        0   294909641
->                  cts_amclk_sel       1        1        0   294909641
->                     cts_amclk_div       1        1        0    12287902
->                        cts_amclk       1        1        0    12287902
->
-> meson-clk-msr however shows that the actual MPLL0 clock is off by more
-> than 38MHz:
->         mp0_out               333322917    +/-10416Hz
->
-> The 3.14 vendor kernel uses the following code to enable SSEN only for
-> MPLL0 (where con_reg2 is HHI_MPLL_CNTL and SSEN_shift is 25):
-> 	if (strncmp(hw->clk->name, "mpll_clk_out0", 13) == 0) {
-> 		val = readl(mpll->con_reg2);
-> 		val |= 1 <<  mpll->SSEN_shift;
-> 		writel(val, mpll->con_reg2);
-> 	}
->
-> Add the SSEN (spread spectrum enable) bit and add the
-> CLK_MESON_MPLL_SPREAD_SPECTRUM flag to enable this bit for MPLL0. Do
-> this for GXBB *only* since GXL doesn't seem to care if this bit is set
-> or not, meaning that meson-clk-msr always sees (approximately) the same
-> frequency as common clock framework.
-
- 1 - it is odd that we need to poke a bit in the register related to the
- fixed PLL but ok ...
- 2 - 3.14 does yes, 4.9 does not soooo ... no real proof there
- 3 - That is the most important to me: the effect you described clearly is
- not spread spectrum.
-
-Spread spectrum varies the frequencies quickly, IOW it makes the
-frequencies unstable. Some stuff do not need a particularly stable rate
-and it can help with EM compatibility. This is not desirable for audio.
-
-So 2 things:
- - If this bit really enables spread spectrum on MPLL0 (or worse, the
- Fixed PLL) - checking clk measure is not enough. It is just a mean of
- the rate seen by the SoC itself. You would not see the effect of the
- spread spectrum here ... you need to capture the clock output with a
- scope for that.
-
- - Or the bit is incorrectly documented (or DDS0_SSEN does not mean
- spread spectrum). If it is not a spread spectrum function, then this
- patch seems to indicate it is and it is misleading.
-
-Either way, I'm not OK with it.
-
-To me, the rate drop that happens when you flip this bit looks more like
-the effect SDM_EN should have.
-
-Could you check the internal values (n2 and sdm) compare this to the
-output rate you actually get ? see if this leads to anything ? does
-SDM_EN really has an effect on this MPLL ? it is a combination of both ?
-
->
-> Fixes: 8925dbd03bb29b ("clk: meson: gxbb: no spread spectrum on mpll")
-> Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Suggested-by: Matthias Reichl <hias@horus.com>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  drivers/clk/meson/gxbb.c | 50 +++++++++++++++++++++++++++++++++++++---
->  1 file changed, 47 insertions(+), 3 deletions(-)
+> The meson AIU/AXG drivers currently require alsa confs based on the board
+> model name which is unique to each board. This is very flexible for audio
+> use-cases, but not very maintainable for distros with a single use-case
+> that need to support a large number of different Amlogic boards. Using a
+> driver name to match the card conf instead of card/model name reduces the
+> number of confs needed in the LibreELEC (Kodi) distro from 41 to 2.
 >
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index d6eed760327d..673bc915c7d9 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -713,6 +713,41 @@ static struct clk_regmap gxbb_mpll_prediv = {
->  };
+>  sound/soc/meson/meson-card-utils.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
+> index 415cc0046e4b..29b0174f4b5c 100644
+> --- a/sound/soc/meson/meson-card-utils.c
+> +++ b/sound/soc/meson/meson-card-utils.c
+> @@ -302,6 +302,7 @@ int meson_card_probe(struct platform_device *pdev)
 >  
->  static struct clk_regmap gxbb_mpll0_div = {
-> +	.data = &(struct meson_clk_mpll_data){
-> +		.sdm = {
-> +			.reg_off = HHI_MPLL_CNTL7,
-> +			.shift   = 0,
-> +			.width   = 14,
-> +		},
-> +		.sdm_en = {
-> +			.reg_off = HHI_MPLL_CNTL7,
-> +			.shift   = 15,
-> +			.width	 = 1,
-> +		},
-> +		.n2 = {
-> +			.reg_off = HHI_MPLL_CNTL7,
-> +			.shift   = 16,
-> +			.width   = 9,
-> +		},
-> +		.ssen = {
-> +			.reg_off = HHI_MPLL_CNTL,
-> +			.shift   = 25,
-> +			.width   = 1,
-> +		},
-> +		.flags = CLK_MESON_MPLL_SPREAD_SPECTRUM,
-> +		.lock = &meson_clk_lock,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "mpll0_div",
-> +		.ops = &meson_clk_mpll_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&gxbb_mpll_prediv.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap gxl_mpll0_div = {
->  	.data = &(struct meson_clk_mpll_data){
->  		.sdm = {
->  			.reg_off = HHI_MPLL_CNTL7,
-> @@ -749,7 +784,16 @@ static struct clk_regmap gxbb_mpll0 = {
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll0",
->  		.ops = &clk_regmap_gate_ops,
-> -		.parent_hws = (const struct clk_hw *[]) { &gxbb_mpll0_div.hw },
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			/*
-> +			 * Note:
-> +			 * GXL and GXBB have different SSEN requirements. We
-> +			 * fallback to the global naming string mechanism so
-> +			 * mpll0_div picks up the appropriate one.
-> +			 */
-> +			.name = "mpll0_div",
-> +			.index = -1,
-> +		},
->  		.num_parents = 1,
->  		.flags = CLK_SET_RATE_PARENT,
->  	},
-> @@ -3044,7 +3088,7 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
->  		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
->  		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
->  		[CLKID_VAPB]		    = &gxbb_vapb.hw,
-> -		[CLKID_MPLL0_DIV]	    = &gxbb_mpll0_div.hw,
-> +		[CLKID_MPLL0_DIV]	    = &gxl_mpll0_div.hw,
->  		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
->  		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
->  		[CLKID_MPLL_PREDIV]	    = &gxbb_mpll_prediv.hw,
-> @@ -3439,7 +3483,7 @@ static struct clk_regmap *const gxl_clk_regmaps[] = {
->  	&gxbb_mpll0,
->  	&gxbb_mpll1,
->  	&gxbb_mpll2,
-> -	&gxbb_mpll0_div,
-> +	&gxl_mpll0_div,
->  	&gxbb_mpll1_div,
->  	&gxbb_mpll2_div,
->  	&gxbb_cts_amclk_div,
+>  	priv->card.owner = THIS_MODULE;
+>  	priv->card.dev = dev;
+> +	priv->card.driver_name = dev->driver->name;
+>  	priv->match_data = data;
+
+I was preparing something similar to help with alsa-ucm so
+
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+
+>  
+>  	ret = snd_soc_of_parse_card_name(&priv->card, "model");
 
 
 _______________________________________________
