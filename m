@@ -2,90 +2,80 @@ Return-Path: <SRS0=R8f+=PG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 419D0C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Oct 2021 10:52:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 66627C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Oct 2021 11:44:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CADE360FC3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Oct 2021 10:52:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CADE360FC3
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	by mail.kernel.org (Postfix) with ESMTPS id 2785A60F9D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Oct 2021 11:44:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2785A60F9D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RTXRgOhPCaaQakzMHayPAAHHsrsvkk167X4jWzg54a0=; b=Sx0aAYw5tuStLh
-	yrK51iLq5iPcS3PkJncZzPdvMY5p2X8OUtTTz2TXklE1bUpEXX6ul4OfgD5f94mBzWCGi2Te51Vp7
-	7xBsB5zUhTXdx5sf+KhIRPEx43o3kj51yTAqoqX1pibUBdntG+b3Y0KqgQhxi2cakAJz5odyujzrB
-	eBMOWBWei5jyDIA2DbaJLVEMyvzjPrAtmXk+BWLklMvigeeW8bFcmta5QcxJPe/dKhfUGDIr/iopF
-	RBD+4OPltZtZ3I2/ALdJbsi1Jg1wTF9sLEHdr/cHYTp9W25FFdoDiOZ3VQ6RyRL/Dc6eNoOh+9EJS
-	oloeilhLDuHbbaRj7phg==;
+	List-Owner; bh=nH2y/hSlk3LtMlYJYn1xaVJVLhy6stBExYr8qTCFYhg=; b=yI2zsTqjEk2V6n
+	qk32omyniA/iTp9kBtnCol13vjxPQ7p142uMntmQpEMGwC/E0WbGcvR7jArHNdG6DK1uvaZLa2wfF
+	Z5lF8+nybf8nGjkKtCW1P/v31zToRwwcYgMNUy95Xk+gU0rO6avBmruZlQSrsWMjIslns9X8X93v8
+	U3Vz9RP+0szeyFgEp1DcF1qM106/naFbZxLcHaZszI6bhw4hLHXcE5RbsqE/QPV0lEkjtvHUJLyzO
+	nCVEK7p1TceUYcH0FCoVAPwvKfF++Dz5Hc+1PRm1angW5QjAaQHDndk2UclZ7qfv7kDRrExIgms07
+	t7GoO36DiUGhQGApj1bA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mcQFm-00F8w6-CP; Mon, 18 Oct 2021 10:52:26 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1mcR4V-00FPtc-Fr; Mon, 18 Oct 2021 11:44:51 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mcPlW-00Eyh1-8o
- for linux-amlogic@lists.infradead.org; Mon, 18 Oct 2021 10:21:11 +0000
-Received: by mail-wm1-x332.google.com with SMTP id
- 63-20020a1c0042000000b0030d60716239so9829338wma.4
- for <linux-amlogic@lists.infradead.org>; Mon, 18 Oct 2021 03:21:09 -0700 (PDT)
+ id 1mcR4S-00FPqv-UV; Mon, 18 Oct 2021 11:44:50 +0000
+Received: by mail-ed1-x531.google.com with SMTP id i20so69037547edj.10;
+ Mon, 18 Oct 2021 04:44:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=references:user-agent:from:to:cc:subject:date:in-reply-to
- :message-id:mime-version;
- bh=7GC/r7oF7FaZ4vYYtjlckZsfjl97Nd102niiiNEyke0=;
- b=OghATFW5VHSslzpfS5gkkA3/wlUiyyp1eis6npEz+q00Ysaim+UMA3aq/59CpBm3sw
- xsgz5lLt1yZ90HXx0+Zb99O7Dj6PQlMsZYE7CuH0bJAL8QmybrshSuijhh9Vnzl9izgC
- xioP+eojPe9F21OJuHl8mpZfK19IRHt0psbKuq8q38MZOGSfEnwIp0/d0duLLLhWFrjC
- XlhQZwF1kEsxPUuFiEtQIa6aLHq0fc8mnMtBBwFPqL6Bh0YUrIiPT2VeL9tgAVz8Aqg6
- nE/phqoMR4WvNkv+U7wd4GP3cEApRXz3D4JcS5QYxcy+pSqUXvBEI20CCcuSkwMo/9ed
- GYow==
+ d=googlemail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MEsxZ3O1mk7PChv7vz5Z0iqmE+aipOaKaFUC4ugt0HI=;
+ b=PmN8QFKOKioU2foRHAA5okAAN5N4bMfte+owkgFjLKehpAIrYtSHCWcxS080oOE9I5
+ 5k/9tfxdRDiQEoBRjoG80KbZRaW4uPJ9yZzP4/Ym3DEYQWUGT1wM5DesLZW6lzavmHfR
+ sa9H0B2Yum/I18d0n2PIZ04I6+jMbv99xi3YJN+LJv9uA/zbk8JtXu7hp2ymGPL5TPVm
+ Q5MAE9zyjbPEQ4uNmECrpPewu5we/x5Syuo3xtCH2mgpCW0WEYYhyIp4k38QzjABPJ24
+ jVRYK4bWlYXiWLwzAca1JLt6SRJITPQFS9YOgfYDviu0Boi83TJuv5ZfpVgYkKrmMCRh
+ M3sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
- :in-reply-to:message-id:mime-version;
- bh=7GC/r7oF7FaZ4vYYtjlckZsfjl97Nd102niiiNEyke0=;
- b=MVVdnEerHVZ35jZE86+tUI9M+5HzZtr38RN0+FCoEVbno/nVD0ik2qTD8YZRdsoHpw
- MDjGsZwZaYVNLlPiBEH/WnkSIJKmguJEbUZuwt/dazUG7FPkD5NqcZ0ip8Be8MEqi+3K
- /mcPbKlNjatpngx8UTWbh2a4DqJ/2xGkfl4Jgg+8svxShgVcP6fxTB61neWf4GN8gUKL
- pWkHFoAYeh33WtHwcFWEi/kC+hwFYKVGrHjZuU+Fm7VC8PTa2Xe/ATb8IDIKnWLdb3yf
- ZtKJ/AHfPcc3ZhXwGTbk/KuFnBzZyiRUpm5QfJsVQ/Y/C+qmi3GePudRkikO/AURbb3J
- Wy/A==
-X-Gm-Message-State: AOAM531pS3iXujQ87FoDSBjr3erCuqPXR+CI9vIvvAIPJWFFJ4a2pdKI
- bB1p5+o8E1m0v/ytJHbaRorseg==
-X-Google-Smtp-Source: ABdhPJxggso4popQo8nuVeqxw6FVBixaoIjtOeSS511+JxQ97xNYgGJ/yoNLOwTLoxJL3J3keWTBZg==
-X-Received: by 2002:a1c:4d06:: with SMTP id o6mr42793789wmh.137.1634552468356; 
- Mon, 18 Oct 2021 03:21:08 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id m15sm12311398wmq.0.2021.10.18.03.21.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 Oct 2021 03:21:08 -0700 (PDT)
-References: <20211017160028.23318-1-christianshewitt@gmail.com>
-User-agent: mu4e 1.6.6; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Christian Hewitt <christianshewitt@gmail.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Kevin Hilman
- <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
- alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Matthias Reichl <hias@horus.com>
-Subject: Re: [PATCH] ASoC: meson: implement driver_name for snd_soc_card in
- meson-card-utils
-Date: Mon, 18 Oct 2021 12:20:03 +0200
-In-reply-to: <20211017160028.23318-1-christianshewitt@gmail.com>
-Message-ID: <1j1r4ivdkc.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MEsxZ3O1mk7PChv7vz5Z0iqmE+aipOaKaFUC4ugt0HI=;
+ b=DaP/KQ4WEUau7aGpYjXvWptptDC6coE5Cv/77RujkVFG/Z7mbflUFASb0c6H4E5CLY
+ 5f/o+QiQg0LKxOrJxp131rHa4le5fKBgq8DzlxSidQjC2ljjpOW67pgB3WeDwT4/Ij48
+ sB8O0dv/O9ZmEqCdm6wzmw6/NfftrBQCaf3JpYKLm+Kb1uZluLqbchhu/0ioKs2I/WOa
+ cqu9eyusxe5c9WzvIfzA0QfepBymjTnnCjPCVMlbopgig/87EsL9lSHK5t6axvd3w6oW
+ PcerTjpAOvPg0hM2w27f+UNGh5TWq1Q1NPnNceCUNaWrvSSnWCOyQUr7NpMMhoO+ZvLp
+ 68lw==
+X-Gm-Message-State: AOAM532HjJPbZZPLFhqXjOIycUsu4rW2yhlPA81j301pkcZJjdryQ/97
+ iEmkp10LhEISU9Kq7WD8ZBRNJK5aUxXPDBKmAuU=
+X-Google-Smtp-Source: ABdhPJw0zF+HiS1YmJukOua82SZK7pUVcvH3fPcFCdBlxV/8b282W9eA+SQY/dem5eqHXs3ukpIm4qt25lwuQpy1x3o=
+X-Received: by 2002:a17:906:f2cd:: with SMTP id
+ gz13mr28303283ejb.278.1634557486136; 
+ Mon, 18 Oct 2021 04:44:46 -0700 (PDT)
 MIME-Version: 1.0
+References: <20211016145939.15643-1-martin.blumenstingl@googlemail.com>
+ <1j5ytuvdmw.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1j5ytuvdmw.fsf@starbuckisacylon.baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 18 Oct 2021 13:44:35 +0200
+Message-ID: <CAFBinCBGZi3MRqTRshyCkq8AAaqHi2NkZVV80ppZr4Lx=xWOWA@mail.gmail.com>
+Subject: Re: [PATCH] clk: meson: gxbb: Add the spread spectrum bit for MPLL0
+ on GXBB
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, 
+ Neil Armstrong <narmstrong@baylibre.com>, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Christian Hewitt <christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211018_032110_362047_99EDD61E 
-X-CRM114-Status: GOOD (  14.96  )
+X-CRM114-CacheID: sfid-20211018_044449_031144_B555162F 
+X-CRM114-Status: GOOD (  35.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,43 +92,89 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Jerome,
 
-On Sun 17 Oct 2021 at 16:00, Christian Hewitt <christianshewitt@gmail.com> wrote:
-
-> Implement driver_name to provide an alternative to card_name for userspace
-> configuration of Amlogic audio cards.
+On Mon, Oct 18, 2021 at 12:19 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
-> Suggested-by: Matthias Reichl <hias@horus.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
-> The meson AIU/AXG drivers currently require alsa confs based on the board
-> model name which is unique to each board. This is very flexible for audio
-> use-cases, but not very maintainable for distros with a single use-case
-> that need to support a large number of different Amlogic boards. Using a
-> driver name to match the card conf instead of card/model name reduces the
-> number of confs needed in the LibreELEC (Kodi) distro from 41 to 2.
 >
->  sound/soc/meson/meson-card-utils.c | 1 +
->  1 file changed, 1 insertion(+)
+> On Sat 16 Oct 2021 at 16:59, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 >
-> diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-> index 415cc0046e4b..29b0174f4b5c 100644
-> --- a/sound/soc/meson/meson-card-utils.c
-> +++ b/sound/soc/meson/meson-card-utils.c
-> @@ -302,6 +302,7 @@ int meson_card_probe(struct platform_device *pdev)
->  
->  	priv->card.owner = THIS_MODULE;
->  	priv->card.dev = dev;
-> +	priv->card.driver_name = dev->driver->name;
->  	priv->match_data = data;
+> > Christian reports that 48kHz audio does not work on his WeTek Play 2
+> > (which uses a GXBB SoC), while 44.1kHz audio works fine on the same
+> > board. He also reports that 48kHz audio works on GXL and GXM SoCs,
+> > which are using an (almost) identical AIU (audio controller).
+>
+> The above is a bit "personal" - it is not great fit for the commit
+> description. Please rephrase or put it in comment section bellow
+sure, I can rephrase that
 
-I was preparing something similar to help with alsa-ucm so
+[...]
+> > Add the SSEN (spread spectrum enable) bit and add the
+> > CLK_MESON_MPLL_SPREAD_SPECTRUM flag to enable this bit for MPLL0. Do
+> > this for GXBB *only* since GXL doesn't seem to care if this bit is set
+> > or not, meaning that meson-clk-msr always sees (approximately) the same
+> > frequency as common clock framework.
+>
+>  1 - it is odd that we need to poke a bit in the register related to the
+>  fixed PLL but ok ...
+>  2 - 3.14 does yes, 4.9 does not soooo ... no real proof there
+The fact that 4.9 doesn't do it is also no proof for anything either.
+Amlogic hasn't ported forward GXBB support to their 4.9 kernel. Even
+"mesongxbb.dtsi" is missing there [0]
+So in my opinion the code from Amlogic's patched 4.9 kernel cannot be
+used as reference for anything GXBB related. Only the 3.14 code can be
+used as reference.
 
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+[...]
+> So 2 things:
+>  - If this bit really enables spread spectrum on MPLL0 (or worse, the
+>  Fixed PLL) - checking clk measure is not enough. It is just a mean of
+>  the rate seen by the SoC itself. You would not see the effect of the
+>  spread spectrum here ... you need to capture the clock output with a
+>  scope for that.
+I suspect that a board with pin headers is needed to route the signal there?
+Personally I don't have any GXBB board(s).
 
->  
->  	ret = snd_soc_of_parse_card_name(&priv->card, "model");
+>  - Or the bit is incorrectly documented (or DDS0_SSEN does not mean
+>  spread spectrum). If it is not a spread spectrum function, then this
+>  patch seems to indicate it is and it is misleading.
+>
+> Either way, I'm not OK with it.
+>
+> To me, the rate drop that happens when you flip this bit looks more like
+> the effect SDM_EN should have.
+>
+> Could you check the internal values (n2 and sdm) compare this to the
+> output rate you actually get ? see if this leads to anything ? does
+> SDM_EN really has an effect on this MPLL ? it is a combination of both ?
+Christian has provided a dump of the HHI registers (via userspace,
+regmap makes them accessible).
+On GXBB WP2 HHI_MPLL_CNTL7 is set to 0x0006f208
+On GXL Le Potato (which he used for comparison as it wasn't affected
+by the MPLL0 issue) HHI_MPLL_CNTL7 is set to 0x0006b208
 
+If you're interested in the full HHI register dump you can find it here: [1]
+GXBB WP2 is on the left and GXL Le Potato is on the right.
+
+The difference here is BIT(14). un-setting BIT(14) (documented as
+EN_DDS0) did not change anything according to Christian's test.
+That also means that SDM, SDM_EN and N2 have the expected values.
+I manually did the maths:
+(2000000000Hz * 16384) / ((16384 * 6) + 12808) = 294909640.7Hz
+which matches what clk_summary sees:
+294909641Hz
+
+Just to clarify that I am not wasting Christian's time when I ask him
+to test something:
+next up we'll set SDM_EN to 0 (instead of 1) and see the reaction using clk-msr?
+
+
+Best regards,
+Martin
+
+
+[0] https://github.com/hardkernel/linux/tree/db88db3864c5d6903fb11f6528874887d1c473ce/arch/arm64/boot/dts/amlogic
+[1] https://pastebin.com/raw/1cjPFsfa
 
 _______________________________________________
 linux-amlogic mailing list
