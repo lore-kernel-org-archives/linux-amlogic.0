@@ -2,82 +2,83 @@ Return-Path: <SRS0=AMJk=PI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0ABC2C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Oct 2021 18:16:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58D0CC433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Oct 2021 19:51:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B6DAA6128E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Oct 2021 18:16:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B6DAA6128E
+	by mail.kernel.org (Postfix) with ESMTPS id 169956128E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Oct 2021 19:51:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 169956128E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5Nfw+bkLQ4W/pyuGr1n8iNuvbd9QkSwjRI+PJGv4GsE=; b=BZ3EE0Q2BNP2R2
-	Ls1ptgLRO6zASlyMp4066YxUInqf1MqTixFjV6pnIeT3SyqO0XHijhhx5DEeDTlHgqmaLFBXUvRIp
-	604ROWVsB+RfJoC/rmls4HMdb462alAj8XaiOyTfJHj8AqPcDt0WHqxs2y8HcYeHH2mIjV51S7LHW
-	TznvyLw+k+Ojy7CheqE6oIQhfjjvJC76a7fDD16dLPtEaZLFV+4KNfLN84ya4pHSYho/jUjN1dRIo
-	mdPSi0nyH+OcXzax929Ua5GNsCZsheWLzqaA/MW+QogaH+dCr8Wl9vdQDIRf4wO/JzXIuHsC1vcao
-	NJlFTVyxFVSChuxknCSQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=8GX5Eb50nViVpTQTiBkXNHxcHbhsA3PpfnPwrmEETp0=; b=nQz9IIHFgKB4lM
+	9Ap2d4NfcWmceizo2gm5rLo0drVcfqJdK7reEutg8/9EhxomYutIXIQCoJ59gkbmSRht7hXaCO8QS
+	Y+DKoGRQIKcBBHBxpDzNP5LWMghgQo4Ln/uQpmdSOzNoj+WRipxYyIovAgvRAVlfNp1KmURC1D9ph
+	nI7/8PGRVGt+WSwa911rqZN/VA1ScpHhrE04bKaHOT97Hfd+92ia/85iLznzaIPxlCGGDc2E4PZ8l
+	leE2PeEpshID+nKx1mMhrlnkdKx6FX6b4zYRtmnJzUAs7ZlCmVVH7yIRZn5PXOOWBqOCP05MMafjQ
+	tgoo3JkZ5SUHnN4hTfmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mdG8r-005Ocp-Jw; Wed, 20 Oct 2021 18:16:45 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1mdHca-005hWt-Ny; Wed, 20 Oct 2021 19:51:32 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mdG8p-005OcP-6Y; Wed, 20 Oct 2021 18:16:44 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id 5so386718edw.7;
- Wed, 20 Oct 2021 11:16:41 -0700 (PDT)
+ id 1mdHcX-005hVO-PL; Wed, 20 Oct 2021 19:51:31 +0000
+Received: by mail-wr1-x436.google.com with SMTP id e3so175529wrc.11;
+ Wed, 20 Oct 2021 12:51:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=2Jn7WfTLu8jwkYeAj+iAPqeRaBH+HlGXHIsBLIJGA0w=;
- b=l5Yp4jOV8szTGfylg2ypOzkihdNd0JdPDwuRrgRvQ0UeaaqS+v699603BDGKO04VpU
- 54pyLP19VJL8QATcdVqcQrIb8veUCHvxIaUQpTyv6rM3jys8kvaaUADch1PMcXXFlAP/
- vzZL4/vqsidX45IZn4mhpGae11IxaphvXsBKdlEs0WUybA+2HDL/iwCg7gcvQFWcrBIn
- xq0TExqOLZoQizipb86+q/50cQTDEPRQFI7Yss+qWPDrC88aeIDS74uA2gQIdjYUAjiS
- oW3Ux2/Y/F3LvJ8gUqRQ7CnxOggbgk/nrYnbyqX3lusPCZN25TGi8ev6D2HfNBwbRBls
- nNwg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=QfMvuq4K6cpLtRMk3KHGbMTXe8asjprh2K841Dtt1oA=;
+ b=eKrR198UkLWE8Pj6Uegtd4wafbAXciypdyIk/hVInipJy/z1A0lb1Ao7qI8FNxOxqQ
+ 5jhLCE1OjQlSWrJ+UByzv+jgRz/W+XTWWXO5iuCl48k/QCCtMPQUl0lZNoA8W1jQK3Gd
+ pSTtJbzQpLFvzlZi8/313qDegRXfztY/AR1Dc8ltLo3YIZx5rIeBnPUzld3S9JOK60YM
+ xs64ChpCFBn1sdLw0TLh2o89vLVftx+UOrR1d6Jr5sIJsp1ggp909Rnj5NHizbX0G4gs
+ j+cKIbf/D/ASpMphqy1soiV1NupoW+dalxdYiM8/f9e9HVft2YoGv2nL9+iUvcDtI11u
+ i+jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=2Jn7WfTLu8jwkYeAj+iAPqeRaBH+HlGXHIsBLIJGA0w=;
- b=Q2acT7zVlJ9KtJU7gdeAj9jUXwLKjq8DTDkwe6limqtt9Kttv/0ltZb5PK9w8YwINq
- 5vs6kmEPYXRb+iQwUfS7p/4DUTgTn3yq0/rGeoemuhHveeuyFa+BFt62SuXwyFTYrsuz
- 6GLTtLQdhtMpOnbfBnG4mala0Z0xH8mwB71scqeLaVib9XhUPMI8Tju4ED83LW0PwyGV
- DH4jzIYH9ES80mIi6m2B1l07mwIC7LPaWf8TRyOP1SgpseOWJ5+QrRiistnZkqn0/P+w
- RToNnIwf/1MZH/KkTW3/XbbXlkBykc1fTGm4EealFxHS97hXresK6D6+0NEJE5jxsG77
- TLGQ==
-X-Gm-Message-State: AOAM531CUnwf+OF6TuorryNukFFSi56DLuyUh/yetEBw3D4dEPgDNauP
- RlztKkJuJFEK1ThUMP/rD1ksPAViRVLYt8WX4MA=
-X-Google-Smtp-Source: ABdhPJyMGVsnf3QU6/teL21jshD1FVHfAlbBDN7+Ikc/9F0vhYqmSUmw7uXsudjF0O7XdetHc3yt4e40gU9EQaMKYDw=
-X-Received: by 2002:a17:906:f2cd:: with SMTP id
- gz13mr1093501ejb.278.1634753800493; 
- Wed, 20 Oct 2021 11:16:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211016145939.15643-1-martin.blumenstingl@googlemail.com>
- <1j5ytuvdmw.fsf@starbuckisacylon.baylibre.com>
- <CAFBinCBGZi3MRqTRshyCkq8AAaqHi2NkZVV80ppZr4Lx=xWOWA@mail.gmail.com>
- <1jmtn6tu99.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jmtn6tu99.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=QfMvuq4K6cpLtRMk3KHGbMTXe8asjprh2K841Dtt1oA=;
+ b=NQyrN2AXx7pAbXnJ0cG/+tBvNHe2ebnFASCzLp+K6sYFvweFySdxGBi7cy/Uy/DLO0
+ +XtEn1SOYyR71rlKitEeVuzDvuax82h2WuHzXu54acNPVSKZKJUBIRF1IeJDHip4uOhi
+ pZ4xE8/rVYz4MNkVqCJVX1vuxQQbArFCH88VQt3lxiV7GVjnkFqGcMEdUj1i8PDdZHi2
+ lMIq/Dc9gq3ee8YDhBp3BBETwtx2M/caZY7/vd2gzXTanWgzcJWhUi/dyGuu8BBPrDXz
+ NdqiozQ3YUGv7YedGW8QrZtxSlLJ4shKkm+NF34+aYu2hmY0Bzz310RI2+dtf2JvbwZD
+ 8E7Q==
+X-Gm-Message-State: AOAM532cEfKOA6sM8kUdhYgLvkgcg9Zj3LFSwB8E2Smhtk4hUbH8KyqI
+ LcoMnoe6LUDSLwIuQ7sZ6GgAYzHEgTE=
+X-Google-Smtp-Source: ABdhPJzNxHFomcOViX4r7AOwWI5eIKmiLGy8O89pX8OtNiMEKNhsm2ixp+JrCw5VDyi89i6Tf32GIQ==
+X-Received: by 2002:adf:f904:: with SMTP id b4mr1528664wrr.403.1634759487982; 
+ Wed, 20 Oct 2021 12:51:27 -0700 (PDT)
+Received: from localhost.localdomain
+ (dynamic-2a01-0c23-b9f5-df00-f22f-74ff-fe21-0725.c23.pool.telefonica.de.
+ [2a01:c23:b9f5:df00:f22f:74ff:fe21:725])
+ by smtp.googlemail.com with ESMTPSA id f3sm2741310wml.11.2021.10.20.12.51.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 20 Oct 2021 12:51:27 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 20 Oct 2021 20:16:29 +0200
-Message-ID: <CAFBinCCRWS6j=6hDo_sOBmQZw5X8L4GYP=rHQVqHd04keCrbuQ@mail.gmail.com>
-Subject: Re: [PATCH] clk: meson: gxbb: Add the spread spectrum bit for MPLL0
- on GXBB
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, 
- Neil Armstrong <narmstrong@baylibre.com>, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Christian Hewitt <christianshewitt@gmail.com>
+To: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org, vkoul@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ robh+dt@kernel.org, kishon@ti.com,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v3 0/2] phy: Add support for the HDMI TX PHY on Meson8/8b/8m2
+Date: Wed, 20 Oct 2021 21:51:05 +0200
+Message-Id: <20211020195107.1564533-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211020_111643_277705_17DE0E32 
-X-CRM114-Status: GOOD (  18.51  )
+X-CRM114-CacheID: sfid-20211020_125129_849268_61685255 
+X-CRM114-Status: GOOD (  18.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,52 +95,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+Amlogic Meson8/8b/8m2 SoCs embed a HDMI TX PHY. Unfortunately there is
+no (public) documentation for this hardware. The best thing we have is
+the 3.10 vendor kernel, which unfortunately doesn't document most
+register bits (only a few are named there, the rest is all magic
+numbers).
+It is possible that this is a TranSwitch HDMI TX PHY based core, but
+this is pure speculation.
 
-On Mon, Oct 18, 2021 at 2:03 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
-[...]
-> > The difference here is BIT(14). un-setting BIT(14) (documented as
-> > EN_DDS0) did not change anything according to Christian's test.
-> > That also means that SDM, SDM_EN and N2 have the expected values.
-> > I manually did the maths:
-> > (2000000000Hz * 16384) / ((16384 * 6) + 12808) = 294909640.7Hz
-> > which matches what clk_summary sees:
-> > 294909641Hz
->
->  ... and (2000000000Hz * 16384) / ((16384 * 6) = 333MHz which is fairly close
->  to what you get w/o flipping the bit
-This is actually a great hint. So far MPLL clocks have "just worked"
-for me and I didn't have to work with this.
-With your explanation it makes sense that SDM_EN makes the hardware
-use or ignore the SDM value.
-
-[...]
-> For example yes. I am asking check a bit more what this bit does and
-> what it does not:
->  - I need confirmation whether or not it does spread spectrum. Yes this
->  needs to be observed on a SoC pin, like MCLK with a fairly low divider
->  to the averaging effect which could partially mask spread spectrum.
-I did some more tests with Christian. It turns out that on GXBB
-HHI_MPLL_CNTL7[15] has no impact on the rate seen by meson-clk-msr.
-On the other hand, HHI_MPLL_CNTL[25] makes MPLL0 use or ignore the SDM
-value (again, verified through meson-clk-msr).
-
->  - Get an idea what it actually does. The 2 calculations above are an
->  hint. (Spread spectrum does not change the rate mean value)
-Indeed!
-My conclusion is that on GXBB:
-1) HHI_MPLL_CNTL[25] doesn't control the spread spectrum setting of
-MPLL0 - just like you thought
-2) HHI_MPLL_CNTL[25] is actually SDM_EN (and HHI_MPLL_CNTL7[15]
-doesn't seem to have any impact on MPLL0's output rate)
-
-Please let me know if there's anything else we can test.
-Else I'll send a patch for making HHI_MPLL_CNTL[25] the SDM_EN bit of
-MPLL0 on GXBB.
+Adding a driver for the HDMI TX PHY gets us one step closer to video
+output on these older SoCs.
 
 
-Best regards,
-Martin
+Changes since v2 at [1]:
+- Use "amlogic,meson8-hdmi-tx-phy" as fallback compatible string for
+  Meson8b and Meson8m2. This affects both patches in this series and
+  it's the reason why I dropped Rob's Reviewed-by.
+- Add a comment to the driver explaining that there no detailed
+  register documentation (naming) is available and that's why we also
+  use some magic values in the driver as suggested by Vinod.
+- Hardcode the HHI_HDMI_PHY_CNTL* register offsets (from the HHI area)
+  directly in the driver instead of using some incomplete "reg" property
+  parsing code. This also makes it easier to compare the register values
+  with the vendor kernel sources and datasheets as the offset doesn't
+  have to be added/subtracted when comparing the values.
+
+
+Changes since v1 at [0]:
+- add a reg property to the dt-bindings
+- parse the reg property (register offset) in the driver
+- update copyright year to 2021 (spotted by Vinod, thanks!)
+- drop "default ARCH_MESON" from the Kconfig entry
+
+
+[0] https://patchwork.kernel.org/project/linux-amlogic/cover/20210604190338.2248295-1-martin.blumenstingl@googlemail.com/
+[1] https://patchwork.kernel.org/project/linux-amlogic/cover/20210629182047.893415-1-martin.blumenstingl@googlemail.com/
+
+
+Martin Blumenstingl (2):
+  dt-bindings: phy: Add the Amlogic Meson8 HDMI TX PHY bindings
+  phy: amlogic: Add a new driver for the HDMI TX PHY on Meson8/8b/8m2
+
+ .../phy/amlogic,meson8-hdmi-tx-phy.yaml       |  65 +++++++
+ drivers/phy/amlogic/Kconfig                   |  10 ++
+ drivers/phy/amlogic/Makefile                  |   1 +
+ drivers/phy/amlogic/phy-meson8-hdmi-tx.c      | 160 ++++++++++++++++++
+ 4 files changed, 236 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson8-hdmi-tx-phy.yaml
+ create mode 100644 drivers/phy/amlogic/phy-meson8-hdmi-tx.c
+
+-- 
+2.33.1
+
 
 _______________________________________________
 linux-amlogic mailing list
