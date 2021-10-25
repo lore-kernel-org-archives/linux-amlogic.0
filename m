@@ -1,77 +1,94 @@
-Return-Path: <SRS0=8QoF=PM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=wai9=PN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 74EAAC433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Oct 2021 14:27:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BE73CC433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Oct 2021 08:20:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 22B9060F9C
-	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Oct 2021 14:27:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 22B9060F9C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 8BADC60720
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Oct 2021 08:20:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8BADC60720
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ck7J1NKVVAOgZ+ex/ev4z6sShF+TSb8fcbsUVWmZsac=; b=mOZfmG2r3qhqD+
-	GxxRQ8Dm60CU9qbLRV43PMtk2SgHrX9eXtp75xB7A7yrWPPIuJf+qVlWAjL/IcLn3gZ4IuHuJ9afN
-	4+5mU7R+mYvTDt0YAP7iQ3IgSH66S3kzboPUMMKQK2eUtTeGNInTUEAXtLYXPCmoHB68l3fSBlBqD
-	9R/fARiSylEhZBOdTDxWOuEPGbUykkUZZqKfJPA4T+6DuttcqXrZuzV0930e4YWofrPa792Cza/r5
-	dhcip3EwM4hgpzr5a8lUvgR6EAdlwgxPL8T5Dg4K0KfU/4OsDecfi1PM/I4M8zJzwjM+EyTulYNgP
-	OkBt23SQXhGkiJ6KAVfw==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=bGkpsfBvNclkL+AwJDGrxm0kc9/6nogrUvEWfd9hV+4=; b=xaUdkQwt2h6bDw6m2Fv8PVi9uu
+	/Buftr7RxjQeJbQ8FrnIC/KZSqLa7eOYReSHYkKOqMJF0zZ6rwpaA212yl659dMf+99O4+mcvLPBJ
+	ODoP28RjlvUWCy/g2XLWAzaNWEXxXUBrcbz32NDC5nShF5f19LL+1D1tsKACZyD2qvN6FlJjnA9Lp
+	7F+An969YKlDvI3ZpfRLl+OU1DYjHv5mAQ0I1QJGdA6G4WoeWLydeob9w+dXP2Y5D9ZhDyiYi1z8L
+	8auHhdSVYKkddJNyXWs+NFImRyrnQbu86Sh+HgC5n6qFaQbblqmEzHi+2eGcEYPDzKH9GSCu86F4b
+	ZoUpqacA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1meeTG-00E6bA-By; Sun, 24 Oct 2021 14:27:34 +0000
-Received: from mail-oi1-f172.google.com ([209.85.167.172])
+	id 1mevD3-00Fljr-Vj; Mon, 25 Oct 2021 08:19:58 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1meeTD-00E6aH-Bo; Sun, 24 Oct 2021 14:27:32 +0000
-Received: by mail-oi1-f172.google.com with SMTP id o204so11901431oih.13;
- Sun, 24 Oct 2021 07:27:30 -0700 (PDT)
+ id 1mevD0-00Flhk-AK
+ for linux-amlogic@lists.infradead.org; Mon, 25 Oct 2021 08:19:56 +0000
+Received: by mail-wm1-x329.google.com with SMTP id g141so9837475wmg.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 25 Oct 2021 01:19:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=nqdTAd2AAFjUR4/hpb+Hh1HQbpzrMWpG+y0bpTyBHe8=;
+ b=0Cqi+hPbwmyD1uI7h/XlBWasSMJzIJA2qUTP7fF5bkIeGXmrTjAISUxahve+FUTKVZ
+ 0bD091S+Q6o/+ccNucB5aASYR0ZEuEzxumSKMlY6/5unRGz6eV4raUfWFhSGtZiVCEEp
+ D9maoN0WKOYAimUURKBKokqbBjl1ZgftPT+WvvT+yfmbXX7RQM8Wnqr4EkoNvoraxK6u
+ X9WG+jqPrpcSJrWqrrEs3dZcfOHjTuR97eM8XZg0EKQRu3AnIOD3Rudko6j28ZqiXUPr
+ vDkLJWqrv62ECFjIoMtgFJW5H6+Q6LnGBN9hjK+DQRegNvqXl165s0/rqWIOT0dhrgGh
+ qbKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
- :message-id;
- bh=bac1EHQkBLbZ51/7v+VmRY1SXZprPbhYfUmFnr47AYA=;
- b=MsERPZ/qvMCx0w3xHKStjY8+uAAtxis7ChIhWyFf4UC1Q40F31CjCphCXlnQdSPgRZ
- xx97tmqxiO0cIjGjmj4ZxObNmxUwnEzQ+ASCVmUKS8WhIi6yhbUBZZqwzyiHvYsSmtbK
- /+a8SJhy/hiM70pwXFrxpNcUC668YFR/egk+TWtL/TUnhkFdQ3bs48yvrH4DKWjjPEm1
- PTHMHRJJOjf9BiGntyzdCdxOkTRnHVesD+JRysEtfFSZ7E07SSrvU/Sp22NpGbrQZQSe
- bG+LIKrzAoaVy/zibyETVhBNMo5WgyRCy9xf15ZukeGvRLEF6Mje/b3R5ObF1CsKE58r
- m25A==
-X-Gm-Message-State: AOAM533RzouzifI1HuwmfF8GaKoM3GiOQn6CIiR01/swl3FPeetI7XNr
- 12uE0PpFQP6qHWK2oAWg/iaS6dVd9Q==
-X-Google-Smtp-Source: ABdhPJxYwzxyZCJKOPBY4JfmuFSFDzmeL5qYzRCwPxWHNonbQ5oo5VIUj+rpOFZQ7OPfF3t4+vLmKw==
-X-Received: by 2002:a05:6808:d49:: with SMTP id
- w9mr8037183oik.61.1635085649754; 
- Sun, 24 Oct 2021 07:27:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net.
- [66.90.148.213])
- by smtp.gmail.com with ESMTPSA id l10sm2919143otj.9.2021.10.24.07.27.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 24 Oct 2021 07:27:29 -0700 (PDT)
-Received: (nullmailer pid 2015036 invoked by uid 1000);
- Sun, 24 Oct 2021 14:27:27 -0000
-From: Rob Herring <robh@kernel.org>
-To: Alexander Stein <alexander.stein@mailbox.org>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Liam Girdwood <lgirdwood@gmail.com>,
- devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Jerome Brunet <jbrunet@baylibre.com>
-In-Reply-To: <20211023214856.30097-1-alexander.stein@mailbox.org>
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=nqdTAd2AAFjUR4/hpb+Hh1HQbpzrMWpG+y0bpTyBHe8=;
+ b=QBmQDI4nGdfNZcjzESTSHwP1nkYfDZ4t1Y+NZlqlovu8cBlw4ITC80Jms8d1sRNrkr
+ 0EihB4199QiBs/HFOnLgPBcSUv4gtBQ5rii31xRhekrHOsKbfT48OT6WCT2+3b2VR3Uz
+ kUDB6Vx232JFAcex0F7yTk/Z5p8SCaSRvbc+oL9mXc0A3FrVwpH45RGDdojWiZO74ELp
+ xEcM0TCy15i5fuIbmWcv3kFv0E1fYI4a8v2WoBoyzZCoqLmdOt60sFCaMaNQ5QyZfAKL
+ hGEDsGZwAZIoLrd6qR9BWsYyfJF9QeGbxtVyQ51lDICaVuGlW+inPa+PIpu1TjpQR+fv
+ /rrw==
+X-Gm-Message-State: AOAM531ysJ8KO4eoq2WFlV/0/FJF3MygdPQpIQtgxqqvkJupMMpvMFro
+ lbjL3VKOPfYZaN7G3g57K4aRXw==
+X-Google-Smtp-Source: ABdhPJwNGa9asu7Z1567HMswCkhmdmuQt831fpZVjam/iHs5lXL5iOHzHOKOePjV5DjCEgETDXqGwg==
+X-Received: by 2002:a1c:7208:: with SMTP id n8mr9906308wmc.130.1635149991460; 
+ Mon, 25 Oct 2021 01:19:51 -0700 (PDT)
+Received: from [172.20.10.7] ([37.166.214.228])
+ by smtp.gmail.com with ESMTPSA id o1sm6803044wru.91.2021.10.25.01.19.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 25 Oct 2021 01:19:50 -0700 (PDT)
+Subject: Re: [PATCH 3/4] arm64: dts: amlogic: meson-g12: Fix GPU operating
+ point table node name
+To: Alexander Stein <alexander.stein@mailbox.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 References: <20211023214856.30097-1-alexander.stein@mailbox.org>
-Subject: Re: [PATCH 1/4] dt-bindings: sound: amlogic: t9015: Add missing
- AVDD-supply property
-Date: Sun, 24 Oct 2021 09:27:27 -0500
-Message-Id: <1635085647.937250.2015034.nullmailer@robh.at.kernel.org>
+ <20211023214856.30097-3-alexander.stein@mailbox.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <fdacca3e-a35f-ac88-8a57-1fa5bb049e68@baylibre.com>
+Date: Mon, 25 Oct 2021 10:19:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211023214856.30097-3-alexander.stein@mailbox.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211024_072731_432348_574C0FF6 
-X-CRM114-Status: GOOD (  14.71  )
+X-CRM114-CacheID: sfid-20211025_011954_438608_A0AAC0D8 
+X-CRM114-Status: GOOD (  20.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,55 +100,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 23 Oct 2021 23:48:53 +0200, Alexander Stein wrote:
-> Fixes the schema check warning "audio-controller@32000: 'AVDD-supply'
-> do not match any of the regexes: 'pinctrl-[0-9]+'"
+On 23/10/2021 23:48, Alexander Stein wrote:
+> Starting with commit 94274f20f6bf ("dt-bindings: opp: Convert to DT
+> schema") the opp node name has a mandatory pattern. This change
+> fixes the dtbs_check warning:
+> gpu-opp-table: $nodename:0: 'gpu-opp-table' does not match
+> '^opp-table(-[a-z0-9]+)?$'
+> Put the 'gpu' part at the end to match the pattern.
 > 
-> Fixes: 5c36abcd2621 ("ASoC: meson: add t9015 internal codec binding documentation")
+> Fixes: 916a0edc43f0 ("arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS")
 > Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
 > ---
-> I am aware that adding required properties to bindings is frowned upon. But in
-> this case it seems acceptable for the following reasons:
-> * AVDD-supply was used from the very first driver commit
-> * All DT (g12 and gxl) using t9015 controller provide AVDD-supply
->   already
-> But I'm ok to not add it to required properties as well. The driver uses
-> it nevertheless though.
+> Same as with patch 2/4 about the 'Fixes' tag: At the time when
+> gpu-opp-table was added there was no schema present. So there was no bug at
+> the time of writing. I'm ok either way.
 > 
->  Documentation/devicetree/bindings/sound/amlogic,t9015.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index ff987e7ccff2..517519e6e87f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -58,7 +58,7 @@ efuse: efuse {
+>  		secure-monitor = <&sm>;
+>  	};
+>  
+> -	gpu_opp_table: gpu-opp-table {
+> +	gpu_opp_table: opp-table-gpu {
+>  		compatible = "operating-points-v2";
+>  
+>  		opp-124999998 {
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/amlogic,t9015.example.dt.yaml: audio-controller@32000: 'AVDD-supply' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1545246
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
