@@ -2,84 +2,63 @@ Return-Path: <SRS0=DoMk=PO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BBE1C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Oct 2021 18:29:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CA76C433FE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Oct 2021 19:47:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E302760E05
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Oct 2021 18:29:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E302760E05
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=mailbox.org
+	by mail.kernel.org (Postfix) with ESMTPS id 46E6A60720
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Oct 2021 19:47:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 46E6A60720
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:To:Cc:From:Subject:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hiexHTvLbZC+4gv3T5VsactSwmxSQPg9XTTikxbkuog=; b=oLI872oy3w3DDA
-	6ku8W18IfJI73qkMIm0J/zY/46byIvoEpHHItgn0chZOdla5BPqNj2vidJ13mgS+EA6MNLNUrreoX
-	3xnQj4WJzdFLwepIjotVnqT1YuPL9yW2ijADXiJZc0g25O1u7bvwV8prvJ3GDypc/TzsiBRhe8nya
-	5x/SRZs6QOz063H6ZxAiYMXqFuRLw4CGfcBYQaKclmD+uN5R4BshZAZiJTBoW/bwxbp4kVbD9dqtQ
-	mf+87Nx8TzzgYDfxe3BKgyFhQMGdLPmyov3pTqNJTMqeUdh+3+w8IjUvCEf340Ea8zA6Z9ypuwCTk
-	lVg+JxMin+DJNBLdybYg==;
+	List-Owner; bh=jqOMLpvGjTVjn9HMM3ykmcxRqMrBuQq5LX47BC4LLI8=; b=f1lT2bIbsg0O/e
+	3Eal9ELJP5LVrY9kvsd/sgQXjtqvxty4gzI14+L8mxyfCefpKm/5lbekoW+JGPBTCJaOHxK+nQpw9
+	wr7BBvBFBv5Y/ewvd0efg1hFtYh6py0qM73R4Cv2Nzr8PjehR4/oeFnPj688RrJVtNtvD9bVzyoYM
+	+GX5E1McC/GTcSWgIWcFJiYq9jjuVfAqdh83pY2KiR+iE8b+ghU5rQUw6GSKyDf+5a3uVULXDZ65n
+	NmZ6kbSvvzQOZXZ7yo7NO0ytgd9NQ1cWcFUquh5XyWYtEEBW/RX4BB41B+0UL/pdqhxJ08iZBYlze
+	VVueSQrAt76WrcRSt7BQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mfRC1-002lgR-NW; Tue, 26 Oct 2021 18:29:01 +0000
-Received: from mout-p-101.mailbox.org ([80.241.56.151])
+	id 1mfSPk-002wt7-V5; Tue, 26 Oct 2021 19:47:16 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mfRBU-002lSR-Kf; Tue, 26 Oct 2021 18:28:30 +0000
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:105:465:1:4:0])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Hf0gt0hw9zQkHv;
- Tue, 26 Oct 2021 20:28:26 +0200 (CEST)
-Authentication-Results: gerste.heinlein-support.de (amavisd-new);
- dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
- header.d=mailbox.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1635272904;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HpucNbXGwmj3uHURNv9XmVHDWvKU0dptcGmh1ayTYB0=;
- b=S9NysY42+OKT3CoWf3frFXzTxs86o6+tb3Wa+gHTixGx4HZwASLheOkft5SAU26b3P5d/q
- bI5vhHJATQi/wiskypDS928uteYdaTg1TuDWQXJHkZ++afv8CMCsmPI5vIDAt2MwNQwqyd
- Z1tD+Igb0WspOKitYLyQyPQU25XcW5c8HZAhli1p1JGO81V6jfQqkwsuQ26iz0mC47U5o5
- vUKRjNQ7KND8O8U2lUQtgMRrUCtWIjvQrgNA4/QyUjpr8jiAqdMPXVzUZOM/0Yo1WhbE/y
- pvJBEN5Dz3LpX2KkFMqKbYB5kJJ7rF30Gn7sAiQbiLcm+xPO4OGwXaEpm60+5Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
- content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:date:subject:subject:from:from:received; s=
- mail20150812; t=1635272902; bh=H7JJLWTX3+pFtzG7/dTC5rzV8xdVlcsM8
- 4g8x18AsWI=; b=FtkxtoJpZ+BJWpVgSJhjDiV3XuMMFtZ2DTUEDo4vB9tfqo5yX
- heZeHsG20msYRFee5g+67yucvtonrROKFn/EqyBP1WVIq4UbYHz5m7K5kqeszSb2
- m5e2LaEMn3414192BHs3FLcQBYO8Lt/NzoGwo8xUlpEoRAUFs9BxVsfYwuG6gw7d
- 6CVdIRxZIc2t1PNGXLV/XAjk6it9TPSN7zebEVG409agd5wl10pENefC1cAabWG1
- GYAe27QUa9lv6lGSWWWW4XOLn5mFAOUbvdpZw+HiftK9Sm6WmLf66xHU5ZSeAjqp
- +m0T4yUtEF0bhtKgNSWg5yPCX86pzhzCQO2mg==
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-From: Alexander Stein <alexander.stein@mailbox.org>
-To: Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Alexander Stein <alexander.stein@mailbox.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 3/3] arm64: dts: amlogic: Fix SPI NOR flash node name for
- ODROID N2/N2+
-Date: Tue, 26 Oct 2021 20:28:13 +0200
-Message-Id: <20211026182813.900775-3-alexander.stein@mailbox.org>
-In-Reply-To: <20211026182813.900775-1-alexander.stein@mailbox.org>
-References: <20211026182813.900775-1-alexander.stein@mailbox.org>
+ id 1mfSPi-002wso-Am
+ for linux-amlogic@lists.infradead.org; Tue, 26 Oct 2021 19:47:15 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 354A060E05;
+ Tue, 26 Oct 2021 19:47:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1635277633;
+ bh=s9JwoJB+89wiNPp7epyOTYCtetr5xaa/iZIr/NZYSvw=;
+ h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+ b=QUP/Uu8jL5eesQpVr33GRTQqS2HZtr4d0gSSduXC9UCGM9LqwBr9bpikB1GKt48M8
+ g1xV5qBVQsFagpTLGwdALJbAyX+pmVvPGzT5ZETC8V3BqpVhleD9MtcVB8KS0ah4VS
+ FrFKYm+ypLvlxmEhr3EBixKfie7lk+3mKqUzpotwzhG82tOMjzR/rdaJ9+O/XP2mjS
+ 3ks+V4oPb2qQff+1iFty/eLdDTHgebxNa1CG/uI0lRsaTI750hFCJ9TblKlO4vlAga
+ 1rlE5ImJrbybQjeXzI4NS4C+5woi/93meWgctEFUFwQ2/nhkdpm6VS60rCxMHtCuNB
+ OuHfoSVV2cBhg==
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: E27A0369
+In-Reply-To: <1jtuhetv1s.fsf@starbuckisacylon.baylibre.com>
+References: <1jtuhetv1s.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [GIT PULL] clk: meson: amlogic updates for v5.16
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-clk@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Tue, 26 Oct 2021 12:47:11 -0700
+Message-ID: <163527763187.15791.2918685677021849338@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211026_112828_850782_F333069F 
-X-CRM114-Status: GOOD (  12.52  )
+X-CRM114-CacheID: sfid-20211026_124714_436521_4E34FA67 
+X-CRM114-Status: UNSURE (   6.66  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,36 +75,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix the schema warning: "spi-flash@0: $nodename:0: 'spi-flash@0' does
- not match '^flash(@.*)?$'" from jedec,spi-nor.yaml
+Quoting Jerome Brunet (2021-10-18 04:44:22)
+> 
+> Hi Stephen,
+> 
+> Here are the updates of the amlogic clocks for v5.16. Nothing out the
+> ordinary. Please pull.
+> 
+> Thx.
+> Cheers
+> 
+> Jerome
+> 
+> The following changes since commit 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f:
+> 
+>   Linux 5.15-rc1 (2021-09-12 16:28:37 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v5.16-1
+> 
+> for you to fetch changes up to 7bcf9ef6b9c50e87bcb1dee5ced50ccfa2b21470:
+> 
+>   clk: meson: meson8b: Make the video clock trees mutable (2021-09-23 11:46:38 +0200)
+> 
+> ----------------------------------------------------------------
 
-Fixes: a084eaf3096c ("arm64: dts: meson-g12b-odroid-n2: add SPIFC controller node")
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
----
-Changes in v2:
-* Separated from DT bindings patch in v1 (PATCH 1/4)
-* Added Reviewed-by: Neil Armstrong tag
-
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 6e9ff5076b38..9c05c83453f5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -611,7 +611,7 @@ &spifc {
- 	pinctrl-0 = <&nor_pins>;
- 	pinctrl-names = "default";
- 
--	mx25u64: spi-flash@0 {
-+	mx25u64: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "mxicy,mx25u6435f", "jedec,spi-nor";
--- 
-2.33.1
-
+Thanks. Pulled into clk-next
 
 _______________________________________________
 linux-amlogic mailing list
