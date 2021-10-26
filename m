@@ -2,14 +2,14 @@ Return-Path: <SRS0=DoMk=PO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68016C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Oct 2021 18:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BBE1C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Oct 2021 18:29:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DED1D61040
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Oct 2021 18:28:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DED1D61040
+	by mail.kernel.org (Postfix) with ESMTPS id E302760E05
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Oct 2021 18:29:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E302760E05
 Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,50 +18,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qp2jvSSbW6jtlGA/4J1l/QRmhSpqmFlzZice3YNaaCM=; b=b6O+3x5ZXHCJfG
-	ToMsqpUwq3g1p/EJQQtL0NwYkrFdxP497jVDvREHp3wt/4LdhCiTomIx0pmMz+4WKjd9bfPlWzu7d
-	zAc45SnimB3S6oKxtBMrmEy60fBZZra2ADZFZZKYEHtM+SziBprprB53Sgyi6MdihxrNkJn2dptQ7
-	cuaeV/i+Q/1WmeuyhhBgZ5vPL9MDHJjoOtSSZw8ZQ/I4fu8QEaB1GwmJK/Z4xdkIQAFPEd35lifsm
-	4amNvEz821JfqBbE0z/l88hH5FDuqo0Ixw6QmxRnIvqTvQLevQVDkJ/e+iNfMlmLGQhrk/VsMfKUi
-	r3capZZdbbkM9UHAEiYg==;
+	List-Owner; bh=hiexHTvLbZC+4gv3T5VsactSwmxSQPg9XTTikxbkuog=; b=oLI872oy3w3DDA
+	6ku8W18IfJI73qkMIm0J/zY/46byIvoEpHHItgn0chZOdla5BPqNj2vidJ13mgS+EA6MNLNUrreoX
+	3xnQj4WJzdFLwepIjotVnqT1YuPL9yW2ijADXiJZc0g25O1u7bvwV8prvJ3GDypc/TzsiBRhe8nya
+	5x/SRZs6QOz063H6ZxAiYMXqFuRLw4CGfcBYQaKclmD+uN5R4BshZAZiJTBoW/bwxbp4kVbD9dqtQ
+	mf+87Nx8TzzgYDfxe3BKgyFhQMGdLPmyov3pTqNJTMqeUdh+3+w8IjUvCEf340Ea8zA6Z9ypuwCTk
+	lVg+JxMin+DJNBLdybYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mfRBm-002la0-E1; Tue, 26 Oct 2021 18:28:46 +0000
-Received: from mout-p-102.mailbox.org ([2001:67c:2050::465:102])
+	id 1mfRC1-002lgR-NW; Tue, 26 Oct 2021 18:29:01 +0000
+Received: from mout-p-101.mailbox.org ([80.241.56.151])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mfRBT-002lSK-Os; Tue, 26 Oct 2021 18:28:29 +0000
+ id 1mfRBU-002lSR-Kf; Tue, 26 Oct 2021 18:28:30 +0000
 Received: from smtp202.mailbox.org (smtp202.mailbox.org
  [IPv6:2001:67c:2050:105:465:1:4:0])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
  SHA256) (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Hf0gs0zCvzQjx0;
- Tue, 26 Oct 2021 20:28:25 +0200 (CEST)
-Authentication-Results: spamfilter04.heinlein-hosting.de (amavisd-new);
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Hf0gt0hw9zQkHv;
+ Tue, 26 Oct 2021 20:28:26 +0200 (CEST)
+Authentication-Results: gerste.heinlein-support.de (amavisd-new);
  dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
  header.d=mailbox.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1635272903;
+ s=mail20150812; t=1635272904;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ryQlrEDioZG4+xad6o3RcnbusIS4YhCJw9QSvKXY1oo=;
- b=peiAJo7Iw9hS0WazEEge66oCZtajiUtRLjzhpsayekSpUhmOYkcHI8gbzmgdQTvIO9sSdj
- mu94cfV/JFKHF5Oz2ipwYTqxPYGtGt+4T3mmvWKzhodVHMOavpvu6TUZwdpGi9AXJscTrt
- qc0OyizEbtEGaQwG1yZT+i3fhhe2YwH9ZiIU972e/YHUlaYQxknNd/Jpstw5LhzvQHS2rd
- o0b2AAOrsJHWDxABn8hPQnS+vte0FB25dbCsQISDs2Zv8i1GyFMYdcBAZypMCyIjIrCuDa
- tzuGhPL137eRTZzWwUKbkCUHNANtCuUBIs2JjoHmPlZJOgmDUkLzqHA8/hZbXg==
+ bh=HpucNbXGwmj3uHURNv9XmVHDWvKU0dptcGmh1ayTYB0=;
+ b=S9NysY42+OKT3CoWf3frFXzTxs86o6+tb3Wa+gHTixGx4HZwASLheOkft5SAU26b3P5d/q
+ bI5vhHJATQi/wiskypDS928uteYdaTg1TuDWQXJHkZ++afv8CMCsmPI5vIDAt2MwNQwqyd
+ Z1tD+Igb0WspOKitYLyQyPQU25XcW5c8HZAhli1p1JGO81V6jfQqkwsuQ26iz0mC47U5o5
+ vUKRjNQ7KND8O8U2lUQtgMRrUCtWIjvQrgNA4/QyUjpr8jiAqdMPXVzUZOM/0Yo1WhbE/y
+ pvJBEN5Dz3LpX2KkFMqKbYB5kJJ7rF30Gn7sAiQbiLcm+xPO4OGwXaEpm60+5Q==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
  content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:date:subject:subject:from:from:received; s=
- mail20150812; t=1635272901; bh=5EgXE6bxTwConVMtzgdm1wPI+dWZkofST
- YmV1fWOES4=; b=a5Nk2zaulje6/P42RRGc8sMAf+LwFVUe+y5T5zAcUUjz1ScZx
- Klw2nqrCGwVfL1Xc7EFZwBsd0Y26+Hz1pMurmSeVlpvm9ZYGF3sjXYjTMiouy/Ao
- IT4l7HusaMpQfQx09dVNxIJnduR/T6LFFL6+jDlni+e3Wk00b6VTu1coOT+DDIXH
- 4atrsxZcb2W2ivGZM5zZwozAm3sF+CDi9IUWpaRz1iWWY4UeZAPhT1UWRFujT02u
- iVo9qksk9VKc7Y3AGQXAkCY4gAF6AU+lKXCWnS3pPLe/POzEFITAQ8jLTFY41kvp
- KW16k/5KL6JtqWkapB9RzkWfOWOIL5pNAbPQg==
+ mail20150812; t=1635272902; bh=H7JJLWTX3+pFtzG7/dTC5rzV8xdVlcsM8
+ 4g8x18AsWI=; b=FtkxtoJpZ+BJWpVgSJhjDiV3XuMMFtZ2DTUEDo4vB9tfqo5yX
+ heZeHsG20msYRFee5g+67yucvtonrROKFn/EqyBP1WVIq4UbYHz5m7K5kqeszSb2
+ m5e2LaEMn3414192BHs3FLcQBYO8Lt/NzoGwo8xUlpEoRAUFs9BxVsfYwuG6gw7d
+ 6CVdIRxZIc2t1PNGXLV/XAjk6it9TPSN7zebEVG409agd5wl10pENefC1cAabWG1
+ GYAe27QUa9lv6lGSWWWW4XOLn5mFAOUbvdpZw+HiftK9Sm6WmLf66xHU5ZSeAjqp
+ +m0T4yUtEF0bhtKgNSWg5yPCX86pzhzCQO2mg==
 X-Virus-Scanned: amavisd-new at heinlein-support.de
 From: Alexander Stein <alexander.stein@mailbox.org>
 To: Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
@@ -69,17 +69,17 @@ To: Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: Alexander Stein <alexander.stein@mailbox.org>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 2/3] arm64: dts: amlogic: meson-g12: Fix GPU operating
- point table node name
-Date: Tue, 26 Oct 2021 20:28:12 +0200
-Message-Id: <20211026182813.900775-2-alexander.stein@mailbox.org>
+Subject: [PATCH v2 3/3] arm64: dts: amlogic: Fix SPI NOR flash node name for
+ ODROID N2/N2+
+Date: Tue, 26 Oct 2021 20:28:13 +0200
+Message-Id: <20211026182813.900775-3-alexander.stein@mailbox.org>
 In-Reply-To: <20211026182813.900775-1-alexander.stein@mailbox.org>
 References: <20211026182813.900775-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: B36971315
+X-Rspamd-Queue-Id: E27A0369
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211026_112828_003491_288F09B7 
-X-CRM114-Status: GOOD (  13.13  )
+X-CRM114-CacheID: sfid-20211026_112828_850782_F333069F 
+X-CRM114-Status: GOOD (  12.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,14 +96,10 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Starting with commit 94274f20f6bf ("dt-bindings: opp: Convert to DT
-schema") the opp node name has a mandatory pattern. This change
-fixes the dtbs_check warning:
-gpu-opp-table: $nodename:0: 'gpu-opp-table' does not match
-'^opp-table(-[a-z0-9]+)?$'
-Put the 'gpu' part at the end to match the pattern.
+Fix the schema warning: "spi-flash@0: $nodename:0: 'spi-flash@0' does
+ not match '^flash(@.*)?$'" from jedec,spi-nor.yaml
 
-Fixes: 916a0edc43f0 ("arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS")
+Fixes: a084eaf3096c ("arm64: dts: meson-g12b-odroid-n2: add SPIFC controller node")
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
 ---
@@ -111,22 +107,22 @@ Changes in v2:
 * Separated from DT bindings patch in v1 (PATCH 1/4)
 * Added Reviewed-by: Neil Armstrong tag
 
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index ff987e7ccff2..517519e6e87f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -58,7 +58,7 @@ efuse: efuse {
- 		secure-monitor = <&sm>;
- 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 6e9ff5076b38..9c05c83453f5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -611,7 +611,7 @@ &spifc {
+ 	pinctrl-0 = <&nor_pins>;
+ 	pinctrl-names = "default";
  
--	gpu_opp_table: gpu-opp-table {
-+	gpu_opp_table: opp-table-gpu {
- 		compatible = "operating-points-v2";
- 
- 		opp-124999998 {
+-	mx25u64: spi-flash@0 {
++	mx25u64: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "mxicy,mx25u6435f", "jedec,spi-nor";
 -- 
 2.33.1
 
