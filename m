@@ -1,63 +1,82 @@
-Return-Path: <SRS0=DVbv=PT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=0OJt=PU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7977C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Oct 2021 22:16:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1090C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Nov 2021 08:18:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4EEC360C51
-	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Oct 2021 22:16:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 4EEC360C51
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=sntech.de
+	by mail.kernel.org (Postfix) with ESMTPS id 8DEB360E52
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Nov 2021 08:18:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8DEB360E52
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DRv2b6f3mNBW8yH3Wsd5BzLMGJwQpVusE+vKrVnnDZU=; b=Of9hnx1Zx4en52
-	2PAauUTAhulbep0BJc9ahdyHXmAQEuEcJVyYNqK2787k50Wad2imtYT9SMYIWgu0NDuJrLOFk22O9
-	lS5LxrcZLGz2ZXBiLoiOUZXrLcw8BIQyoDHUfmZaK2xdd0CazKqCjVuM66N3G4TbispRPhgTZmZkE
-	HEFe0Tv+QJJOz8WAde42XEcLWovlVUJxmtryO54n+uV8pVRryqpBjkUxtcDw1pgi8RuJczVBk0myB
-	wE/uj35jG/bSqEM1O3ZDYphFwh+WBdr6zoHb24jBVGpwBXpLwivw3QKjf/hp0fCorz/GMGB+N9Ppy
-	r8bMFx1TwuqhyEGuFupg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=NHtAtTt2sp6iQr7oumvQBGF0Xd7DI8fE/vrY0IreYrI=; b=jJsrlBXh+R4sNj
+	YwH+tzY57OmE1bd7dDdG0QgeSD7vw7lTiURMLWZ23Sr8UoCuQOXzTyi4E80mp5g20RdjBt3vDnAmE
+	GQsqhTZfItP52byVXhuMhKa5yQbE3DoU7yqq2s8cjIV8/Xs/eBNFOwZP5efDDRm3n1xrExaGwKZH0
+	APZRl/5laxfWxb0upN/i82aGp1HHUykWYAhD096tcU7+28KVKAiNUVYPAEL+2ov+dhLh60sV47rw+
+	prylC2nB+ylvaSEmB4bbyppkyQkLodazYQ0+XFviVFsX8TjwEtVV+9UE8bpJ+VCDpSLx8sAWRO/rk
+	utuMqfmYQRZL5ZLGn4ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mhJ84-00EmtN-TU; Sun, 31 Oct 2021 22:16:40 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1mhSW0-00FdYD-1q; Mon, 01 Nov 2021 08:18:00 +0000
+Received: from smtp-out1.suse.de ([195.135.220.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mhJ7h-00EmnV-61; Sun, 31 Oct 2021 22:16:18 +0000
-Received: from p508fde95.dip0.t-ipconnect.de ([80.143.222.149]
- helo=phil.localnet)
- by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <heiko@sntech.de>)
- id 1mhJ7W-0001BA-FH; Sun, 31 Oct 2021 23:16:06 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- David Heidelberg <david@ixit.cz>
-Cc: ~okias/devicetree@lists.sr.ht, phone-devel@vger.kernel.org,
- David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] arm64: dts: make dts use gpio-fan matrix instead
- of array
-Date: Sun, 31 Oct 2021 23:16:05 +0100
-Message-ID: <6620342.YEPOndrCoh@phil>
-In-Reply-To: <20211029114948.41841-2-david@ixit.cz>
-References: <20211029114948.41841-1-david@ixit.cz>
- <20211029114948.41841-2-david@ixit.cz>
+ id 1mhSVw-00FdWo-Gt; Mon, 01 Nov 2021 08:17:57 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E76C1212C7;
+ Mon,  1 Nov 2021 08:17:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1635754672; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=froXKkwnXcE09hCLAbIHSihJ/nL3UBMsXPk/fd1O4Cg=;
+ b=Ofrd8rLNErIfwlciDlpg7G4g2oRWnuCd/EYLyZo4l1Tf+J5KSJmNLbB8/jRtq9pP87Mngi
+ u/GZA5CCRgRERoUS8x+iPkf3p6tPki631VOLLVpn8i9d3ZMXyHx1K1jMctj6KsitYD3qjI
+ Mz7yB1cf1nLDJSAaOYEvKkYiXzfox90=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1635754672;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=froXKkwnXcE09hCLAbIHSihJ/nL3UBMsXPk/fd1O4Cg=;
+ b=19E+Jk2zifLgLxkjMjIKZ6k4BeftOIiScpU3DtesQB4m4QWycwzbz0A6jFfElB0XbIDyqr
+ JcD2/xC8RLfXENBg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 92C9013AA1;
+ Mon,  1 Nov 2021 08:17:52 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id /SfQIrCif2EIIAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 01 Nov 2021 08:17:52 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie,
+ daniel@ffwll.ch, noralf@tronnes.org, marcel@ziswiler.com,
+ naresh.kamboju@linaro.org
+Cc: dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 0/2] drm: Small CMA cleanups
+Date: Mon,  1 Nov 2021 09:17:49 +0100
+Message-Id: <20211101081751.24613-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211031_151617_292206_9217AF71 
-X-CRM114-Status: GOOD (  10.27  )
+X-CRM114-CacheID: sfid-20211101_011756_738247_203A14ED 
+X-CRM114-Status: UNSURE (   7.70  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,23 +93,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am Freitag, 29. Oktober 2021, 13:49:45 CET schrieb David Heidelberg:
-> No functional changes.
-> 
-> Adjust to comply with dt-schema requirements
-> and make possible to validate values.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 9 +++++----
->  arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts     | 2 +-
->  arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi     | 2 +-
->  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts    | 5 +++--
+Remove CMA dependencies from MIPI-DBI and replace the config
+symbol DRM_KMS_CMA_HELPER with DRM_KMS_HELPER. This allows to
+link drm_fb_cma_helper.o into a helper library.
 
-for the Rockchip boards:
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Thomas Zimmermann (2):
+  drm/mipi-dbi: Remove dependency on GEM CMA helper library
+  drm: Remove CONFIG_DRM_KMS_CMA_HELPER option
 
+ drivers/gpu/drm/Kconfig                 |  7 -----
+ drivers/gpu/drm/Makefile                |  2 +-
+ drivers/gpu/drm/arm/Kconfig             |  2 --
+ drivers/gpu/drm/arm/display/Kconfig     |  1 -
+ drivers/gpu/drm/aspeed/Kconfig          |  1 -
+ drivers/gpu/drm/atmel-hlcdc/Kconfig     |  1 -
+ drivers/gpu/drm/drm_mipi_dbi.c          | 34 ++++++++++++++++++-------
+ drivers/gpu/drm/fsl-dcu/Kconfig         |  1 -
+ drivers/gpu/drm/hisilicon/kirin/Kconfig |  1 -
+ drivers/gpu/drm/imx/Kconfig             |  2 +-
+ drivers/gpu/drm/imx/dcss/Kconfig        |  2 +-
+ drivers/gpu/drm/ingenic/Kconfig         |  1 -
+ drivers/gpu/drm/kmb/Kconfig             |  1 -
+ drivers/gpu/drm/mcde/Kconfig            |  1 -
+ drivers/gpu/drm/meson/Kconfig           |  1 -
+ drivers/gpu/drm/mxsfb/Kconfig           |  2 +-
+ drivers/gpu/drm/panel/Kconfig           |  2 +-
+ drivers/gpu/drm/pl111/Kconfig           |  1 -
+ drivers/gpu/drm/rcar-du/Kconfig         |  1 -
+ drivers/gpu/drm/shmobile/Kconfig        |  1 -
+ drivers/gpu/drm/sti/Kconfig             |  1 -
+ drivers/gpu/drm/stm/Kconfig             |  1 -
+ drivers/gpu/drm/sun4i/Kconfig           |  1 -
+ drivers/gpu/drm/tidss/Kconfig           |  1 -
+ drivers/gpu/drm/tilcdc/Kconfig          |  1 -
+ drivers/gpu/drm/tiny/Kconfig            | 20 +++++++--------
+ drivers/gpu/drm/tve200/Kconfig          |  1 -
+ drivers/gpu/drm/vc4/Kconfig             |  1 -
+ drivers/gpu/drm/xlnx/Kconfig            |  1 -
+ 29 files changed, 40 insertions(+), 53 deletions(-)
 
+--
+2.33.1
 
 
 _______________________________________________
