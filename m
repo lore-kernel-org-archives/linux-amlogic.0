@@ -2,62 +2,66 @@ Return-Path: <SRS0=0OJt=PU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D1090C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Nov 2021 08:18:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A680AC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Nov 2021 08:18:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8DEB360E52
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Nov 2021 08:18:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8DEB360E52
+	by mail.kernel.org (Postfix) with ESMTPS id 69C0C60E52
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Nov 2021 08:18:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 69C0C60E52
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NHtAtTt2sp6iQr7oumvQBGF0Xd7DI8fE/vrY0IreYrI=; b=jJsrlBXh+R4sNj
-	YwH+tzY57OmE1bd7dDdG0QgeSD7vw7lTiURMLWZ23Sr8UoCuQOXzTyi4E80mp5g20RdjBt3vDnAmE
-	GQsqhTZfItP52byVXhuMhKa5yQbE3DoU7yqq2s8cjIV8/Xs/eBNFOwZP5efDDRm3n1xrExaGwKZH0
-	APZRl/5laxfWxb0upN/i82aGp1HHUykWYAhD096tcU7+28KVKAiNUVYPAEL+2ov+dhLh60sV47rw+
-	prylC2nB+ylvaSEmB4bbyppkyQkLodazYQ0+XFviVFsX8TjwEtVV+9UE8bpJ+VCDpSLx8sAWRO/rk
-	utuMqfmYQRZL5ZLGn4ww==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HLF0x9FNd3Ro5DYb3ukU/Jnhz6sZsSMU6dCBLR21URc=; b=uOSTX9RPuFy3he
+	j3LSd81446iUtbTmK7x4DA70Ltgh05MMwpvR7kOWh9mwMKTgIFB/jd6cvYN/MYA/UOD4n/I4dntDk
+	67hY3WABlDA2rNVusNy4bbjCYnqqL3NJZtOEQITs/gE00H+0YfensFzsJwAztMApOMceL/EgCKgqC
+	VDLwSVIIRkzBfn3L2+PBC+5Gh5p86V/jBEyFY422m5LvOrs4ZuAc3M1Ulm2NToxHYt3HtPAkOkbEH
+	t1yGhrSah0CL3sWpZaeDnN6liT5UCoMwfeRysLfby0q7MUpSGuZexxlC79RICsd4lmBYJyo8Ozcl+
+	Ge8TIGNIiAK3nz8pHfDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mhSW0-00FdYD-1q; Mon, 01 Nov 2021 08:18:00 +0000
+	id 1mhSWA-00FdbW-VY; Mon, 01 Nov 2021 08:18:11 +0000
 Received: from smtp-out1.suse.de ([195.135.220.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mhSVw-00FdWo-Gt; Mon, 01 Nov 2021 08:17:57 +0000
+ id 1mhSVw-00FdWp-Gy; Mon, 01 Nov 2021 08:17:58 +0000
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id E76C1212C7;
- Mon,  1 Nov 2021 08:17:52 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 4B0DE218A4;
+ Mon,  1 Nov 2021 08:17:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1635754672; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=froXKkwnXcE09hCLAbIHSihJ/nL3UBMsXPk/fd1O4Cg=;
- b=Ofrd8rLNErIfwlciDlpg7G4g2oRWnuCd/EYLyZo4l1Tf+J5KSJmNLbB8/jRtq9pP87Mngi
- u/GZA5CCRgRERoUS8x+iPkf3p6tPki631VOLLVpn8i9d3ZMXyHx1K1jMctj6KsitYD3qjI
- Mz7yB1cf1nLDJSAaOYEvKkYiXzfox90=
+ t=1635754673; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LMoSwwK/pfh7Kj6+Hqz5fZrZ0Yl9Hll6M89/fJzUn2s=;
+ b=Ch4x2SRMXWTzDoy+FRcwAZBhIGeeFDMll298RCRpgAXhAH6vGOU9tnpExUUDOS8wiyRdTr
+ q99H9cE17CU9eo8LA6A6Jk3x7NqviI5bungpanjS++LwPf/tW8SK88Sc1AqgK2V1UAfebo
+ HVb0u55HkkmlvXXyjG7NAlu1ONmnLA4=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1635754672;
+ s=susede2_ed25519; t=1635754673;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=froXKkwnXcE09hCLAbIHSihJ/nL3UBMsXPk/fd1O4Cg=;
- b=19E+Jk2zifLgLxkjMjIKZ6k4BeftOIiScpU3DtesQB4m4QWycwzbz0A6jFfElB0XbIDyqr
- JcD2/xC8RLfXENBg==
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LMoSwwK/pfh7Kj6+Hqz5fZrZ0Yl9Hll6M89/fJzUn2s=;
+ b=N8Z2oNom8XhMXjE90Bnp1uHzW6+CcFM9q9gfnqAn94sl4xl9H4VP6KmF8oDuewQzhjvRiE
+ +8zFNt+YU/+rwGAQ==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 92C9013AA1;
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id ECC6913AB5;
  Mon,  1 Nov 2021 08:17:52 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id /SfQIrCif2EIIAAAMHmgww
+ by imap2.suse-dmz.suse.de with ESMTPSA id gFrJOLCif2EIIAAAMHmgww
  (envelope-from <tzimmermann@suse.de>); Mon, 01 Nov 2021 08:17:52 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie,
@@ -68,15 +72,16 @@ Cc: dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
  linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
  Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 0/2] drm: Small CMA cleanups
-Date: Mon,  1 Nov 2021 09:17:49 +0100
-Message-Id: <20211101081751.24613-1-tzimmermann@suse.de>
+Subject: [PATCH 1/2] drm/mipi-dbi: Remove dependency on GEM CMA helper library
+Date: Mon,  1 Nov 2021 09:17:50 +0100
+Message-Id: <20211101081751.24613-2-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211101081751.24613-1-tzimmermann@suse.de>
+References: <20211101081751.24613-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211101_011756_738247_203A14ED 
-X-CRM114-Status: UNSURE (   7.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211101_011756_738041_7C6B5005 
+X-CRM114-Status: GOOD (  18.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,46 +98,121 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Remove CMA dependencies from MIPI-DBI and replace the config
-symbol DRM_KMS_CMA_HELPER with DRM_KMS_HELPER. This allows to
-link drm_fb_cma_helper.o into a helper library.
+The MIPI DBI helpers access struct drm_gem_cma_object.vaddr in a
+few places. Replace all instances with the correct generic GEM
+functions. Use drm_gem_fb_vmap() for mapping a framebuffer's GEM
+objects and drm_gem_fb_vunmap() for unmapping them. This removes
+the dependency on CMA helpers within MIPI DBI.
 
-Thomas Zimmermann (2):
-  drm/mipi-dbi: Remove dependency on GEM CMA helper library
-  drm: Remove CONFIG_DRM_KMS_CMA_HELPER option
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/drm_mipi_dbi.c | 34 +++++++++++++++++++++++++---------
+ 1 file changed, 25 insertions(+), 9 deletions(-)
 
- drivers/gpu/drm/Kconfig                 |  7 -----
- drivers/gpu/drm/Makefile                |  2 +-
- drivers/gpu/drm/arm/Kconfig             |  2 --
- drivers/gpu/drm/arm/display/Kconfig     |  1 -
- drivers/gpu/drm/aspeed/Kconfig          |  1 -
- drivers/gpu/drm/atmel-hlcdc/Kconfig     |  1 -
- drivers/gpu/drm/drm_mipi_dbi.c          | 34 ++++++++++++++++++-------
- drivers/gpu/drm/fsl-dcu/Kconfig         |  1 -
- drivers/gpu/drm/hisilicon/kirin/Kconfig |  1 -
- drivers/gpu/drm/imx/Kconfig             |  2 +-
- drivers/gpu/drm/imx/dcss/Kconfig        |  2 +-
- drivers/gpu/drm/ingenic/Kconfig         |  1 -
- drivers/gpu/drm/kmb/Kconfig             |  1 -
- drivers/gpu/drm/mcde/Kconfig            |  1 -
- drivers/gpu/drm/meson/Kconfig           |  1 -
- drivers/gpu/drm/mxsfb/Kconfig           |  2 +-
- drivers/gpu/drm/panel/Kconfig           |  2 +-
- drivers/gpu/drm/pl111/Kconfig           |  1 -
- drivers/gpu/drm/rcar-du/Kconfig         |  1 -
- drivers/gpu/drm/shmobile/Kconfig        |  1 -
- drivers/gpu/drm/sti/Kconfig             |  1 -
- drivers/gpu/drm/stm/Kconfig             |  1 -
- drivers/gpu/drm/sun4i/Kconfig           |  1 -
- drivers/gpu/drm/tidss/Kconfig           |  1 -
- drivers/gpu/drm/tilcdc/Kconfig          |  1 -
- drivers/gpu/drm/tiny/Kconfig            | 20 +++++++--------
- drivers/gpu/drm/tve200/Kconfig          |  1 -
- drivers/gpu/drm/vc4/Kconfig             |  1 -
- drivers/gpu/drm/xlnx/Kconfig            |  1 -
- 29 files changed, 40 insertions(+), 53 deletions(-)
-
---
+diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
+index 71b646c4131f..f80fd6c0ccf8 100644
+--- a/drivers/gpu/drm/drm_mipi_dbi.c
++++ b/drivers/gpu/drm/drm_mipi_dbi.c
+@@ -15,9 +15,10 @@
+ #include <drm/drm_connector.h>
+ #include <drm/drm_damage_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_gem_cma_helper.h>
++#include <drm/drm_file.h>
+ #include <drm/drm_format_helper.h>
+ #include <drm/drm_fourcc.h>
++#include <drm/drm_gem.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_mipi_dbi.h>
+ #include <drm/drm_modes.h>
+@@ -200,13 +201,19 @@ int mipi_dbi_buf_copy(void *dst, struct drm_framebuffer *fb,
+ 		      struct drm_rect *clip, bool swap)
+ {
+ 	struct drm_gem_object *gem = drm_gem_fb_get_obj(fb, 0);
+-	struct drm_gem_cma_object *cma_obj = to_drm_gem_cma_obj(gem);
+-	void *src = cma_obj->vaddr;
++	struct dma_buf_map map[DRM_FORMAT_MAX_PLANES];
++	struct dma_buf_map data[DRM_FORMAT_MAX_PLANES];
++	void *src;
+ 	int ret;
+ 
+ 	ret = drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE);
+ 	if (ret)
+ 		return ret;
++	src = data[0].vaddr; /* TODO: Use mapping abstraction properly */
++
++	ret = drm_gem_fb_vmap(fb, map, data);
++	if (ret)
++		goto out_drm_gem_fb_end_cpu_access;
+ 
+ 	switch (fb->format->format) {
+ 	case DRM_FORMAT_RGB565:
+@@ -221,9 +228,11 @@ int mipi_dbi_buf_copy(void *dst, struct drm_framebuffer *fb,
+ 	default:
+ 		drm_err_once(fb->dev, "Format is not supported: %p4cc\n",
+ 			     &fb->format->format);
+-		return -EINVAL;
++		ret = -EINVAL;
+ 	}
+ 
++	drm_gem_fb_vunmap(fb, map);
++out_drm_gem_fb_end_cpu_access:
+ 	drm_gem_fb_end_cpu_access(fb, DMA_FROM_DEVICE);
+ 
+ 	return ret;
+@@ -249,8 +258,8 @@ static void mipi_dbi_set_window_address(struct mipi_dbi_dev *dbidev,
+ 
+ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
+ {
+-	struct drm_gem_object *gem = drm_gem_fb_get_obj(fb, 0);
+-	struct drm_gem_cma_object *cma_obj = to_drm_gem_cma_obj(gem);
++	struct dma_buf_map map[DRM_FORMAT_MAX_PLANES];
++	struct dma_buf_map data[DRM_FORMAT_MAX_PLANES];
+ 	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(fb->dev);
+ 	unsigned int height = rect->y2 - rect->y1;
+ 	unsigned int width = rect->x2 - rect->x1;
+@@ -266,6 +275,10 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
+ 	if (!drm_dev_enter(fb->dev, &idx))
+ 		return;
+ 
++	ret = drm_gem_fb_vmap(fb, map, data);
++	if (ret)
++		goto err_drm_dev_exit;
++
+ 	full = width == fb->width && height == fb->height;
+ 
+ 	DRM_DEBUG_KMS("Flushing [FB:%d] " DRM_RECT_FMT "\n", fb->base.id, DRM_RECT_ARG(rect));
+@@ -277,7 +290,7 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
+ 		if (ret)
+ 			goto err_msg;
+ 	} else {
+-		tr = cma_obj->vaddr;
++		tr = data[0].vaddr; /* TODO: Use mapping abstraction properly */
+ 	}
+ 
+ 	mipi_dbi_set_window_address(dbidev, rect->x1, rect->x2 - 1, rect->y1,
+@@ -289,6 +302,9 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
+ 	if (ret)
+ 		drm_err_once(fb->dev, "Failed to update display %d\n", ret);
+ 
++	drm_gem_fb_vunmap(fb, map);
++
++err_drm_dev_exit:
+ 	drm_dev_exit(idx);
+ }
+ 
+@@ -1117,8 +1133,8 @@ int mipi_dbi_spi_init(struct spi_device *spi, struct mipi_dbi *dbi,
+ 
+ 	/*
+ 	 * Even though it's not the SPI device that does DMA (the master does),
+-	 * the dma mask is necessary for the dma_alloc_wc() in
+-	 * drm_gem_cma_create(). The dma_addr returned will be a physical
++	 * the dma mask is necessary for the dma_alloc_wc() in the GEM code
++	 * (e.g., drm_gem_cma_create()). The dma_addr returned will be a physical
+ 	 * address which might be different from the bus address, but this is
+ 	 * not a problem since the address will not be used.
+ 	 * The virtual address is used in the transfer and the SPI core
+-- 
 2.33.1
 
 
