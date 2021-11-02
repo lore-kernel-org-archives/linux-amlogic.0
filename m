@@ -1,16 +1,16 @@
-Return-Path: <SRS0=0OJt=PU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Cs6g=PV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 381ECC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Nov 2021 08:18:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8D7DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Nov 2021 15:00:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DCA6B60E52
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Nov 2021 08:18:26 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DCA6B60E52
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id 6D86B60F02
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Nov 2021 15:00:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6D86B60F02
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cerno.tech
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -18,70 +18,101 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mgji9Q5hKp03ImReSFRXITmKoUO7wOoDchK/00mR2a4=; b=C+fwiuyj+KIB0M
-	eSb0XpWtYKEvMMfLE8cv7YWJOSFBprBsyEjWZuoaKkHNLrBdqD56UMNzKplq4Ovr9H7JikaOllnBn
-	UEdAQFPhygVcC9sCzaL3xqlEmSktjuoqDHRNvOzRbJRKkCXXTrh6jd8bAJjezWwZ3yjRoPbm1lWeT
-	EM0bovOZlja0Fsvn1M7w4yHGgOCpK8TGTba9OzZvdjo99FyqNg4T6KplQbqkAVEk7E0vwhGHNymii
-	wO1Oo5kpW9EAbtcqcyityKpzszEHL47cuZB/moYihgG3j3B13pzkkV+FZbIfI+AbEz3dNaf1JB0Df
-	u0Z/3OHEugiobWBWFrQg==;
+	List-Owner; bh=tVXA+NVlxGFvxU0BGgpJYxsSsHqcvIQM+lfDV0bRah0=; b=FgjeL775jobq4Z
+	kQk52HEEVfmCzxinw1gJq9YUWPgsU0vrLQ+EXgE14SUiQFRqaG5AxmkjqcAqeCOS+EGSxDDkliXVv
+	In2SZ0rMjQDkUncM7Nzfaoq4/LH7WYm18LKell6whqX/tNw2e0h3b81J2ia4Va2+Z2zafInTr4Kke
+	yAPvD6z7E+g4YO68+MmPBp8yzmWtdxzUGiY9O+hsHCu1ydsBkETy5sqYyOrUr5DPMqnouazRn75uO
+	dqkSISt3emRH13xTY3OSkMRWqYkH4kYZ2T0oaifbV0Pdy0z+jA2yffXcOUb/9EMv9Ic184Hgvg/PK
+	ZGQLbTidUmIZu+5myaMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mhSWL-00FdeQ-Q8; Mon, 01 Nov 2021 08:18:21 +0000
-Received: from smtp-out1.suse.de ([195.135.220.28])
+	id 1mhvGb-0021wW-CW; Tue, 02 Nov 2021 15:00:01 +0000
+Received: from new1-smtp.messagingengine.com ([66.111.4.221])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mhSVw-00FdWr-Gw; Mon, 01 Nov 2021 08:18:00 +0000
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id AA8A821940;
- Mon,  1 Nov 2021 08:17:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1635754673; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=4EzLk3mwa187FL/XE7jeS9GSjupmN43r6Vq/C6Y2LPU=;
- b=yLm4gpNm1iYNSayrPo3XWs3850JPpJ9CEs1muvDr8ldl0ZQqkPuFBa1+qvHZpKLHJE075S
- fEg2zGrFnKisP4jQ3AftjudvlZSW/Di30OPh8AW0yPKiTm/2wYGNIirMHnZXM5lC4gSNnf
- gQDTzKVG/oSQV6dQRpTf65jVjVD9XMo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1635754673;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=4EzLk3mwa187FL/XE7jeS9GSjupmN43r6Vq/C6Y2LPU=;
- b=D7lKLuF8jyweDDEF9uzozML3ERrhCgCblvEvmTLye+vWySc8JC7B3T4xgnm8BbsYXgGOtp
- xJv3RI/bKXeWsyBA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5173813AA1;
- Mon,  1 Nov 2021 08:17:53 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id wNHOErGif2EIIAAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 01 Nov 2021 08:17:53 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie,
- daniel@ffwll.ch, noralf@tronnes.org, marcel@ziswiler.com,
- naresh.kamboju@linaro.org
-Cc: dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 2/2] drm: Remove CONFIG_DRM_KMS_CMA_HELPER option
-Date: Mon,  1 Nov 2021 09:17:51 +0100
-Message-Id: <20211101081751.24613-3-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211101081751.24613-1-tzimmermann@suse.de>
-References: <20211101081751.24613-1-tzimmermann@suse.de>
+ id 1mhvGX-0021rQ-KA; Tue, 02 Nov 2021 14:59:59 +0000
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id EA46B580749;
+ Tue,  2 Nov 2021 10:59:52 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute4.internal (MEProxy); Tue, 02 Nov 2021 10:59:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
+ 0rItuH1D1Um19LY8C97JBMbr4ytaW/WENRWdGOHvCn0=; b=RJBy6ktp/D8Go4xE
+ xTDLGvqvcRrnCSOCDdeFHDK5tP1knfteICl8k7+PVLWVC+bp5vV4ON+N4xI5cx7z
+ sBakpWe0Jk2c2QVG5J0sSk29yueFwEuQKckH6JnMPE1zlQEd9vUX0hLjkjRYple1
+ AI8ZZrXUqOcOBLdGtLVEHpiATgkl9TVfGaXY0wczqBMdnEO1ZyG61hfevsXDV9xf
+ CbB0cNggISWuZM0ohpUFCqj1FCEt7xJuGWc4oW3Dp4ILHuvBMXBI6wsKz/fLgzY9
+ HxynAgxa3R1MqIw6LEdSIu1b5L5TrE6LkmtdeobbmGJShuYF1IHJduqPJsZj2HIZ
+ bJQSeA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:content-type
+ :date:from:in-reply-to:message-id:mime-version:references
+ :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm1; bh=0rItuH1D1Um19LY8C97JBMbr4ytaW/WENRWdGOHvC
+ n0=; b=VDIISEiAZetymQV0OYVCVgeJqh1q1yMNBmMNt6W1YmRncuXv3Yv6WBXLk
+ o47iGGMv0639GonWfMr3EMRcPWOp2Zju8IhQoKg50N7lQ78fdeu0ejjSAZ4G80En
+ CvQCBjF7RniWaCOYe08owFWr+XSK2wwcL2QyCtjR5jLJyqoDFrEe/t+4X/1hdrFt
+ CuabTUwVD6U1lmlgBgjUiqOIXFeQjKHvuIzObqasahJulsQfEiun3HPMLraxopG9
+ T+YJq2QQF5FfFF9p/4brfEiiEDBq94v0nbVegoKzqa3mMQaazj9hLlp0uNCKEWli
+ YLWGgNSZUOEneC6JaFOAf/+/9yfHA==
+X-ME-Sender: <xms:Z1KBYda53Um-xQMCPll9-fUs3-jWyVbtteywWWeErohtnmxCHo-yNw>
+ <xme:Z1KBYUaAnNW2BELEhw9ufe7R_qw33RALFQdkZsh3Cp0B5J-7CvC1j4amiWUN6Dhmn
+ qAPeIV02yh2Sl2zits>
+X-ME-Received: <xmr:Z1KBYf_ZyXo4m3OjIeHbFMsUQ8CpjugFonZ4OzKIyiG8cxJnI-_UPsN9ChImoC40r7aAKTC61PuqwCDER02O0X-yks4IqdJaDNApNbhi>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrtddtgdeghecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
+ keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+ grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:Z1KBYbpXxP-_3AkV_vncwHU8hQKTeOh8ImGX5OVMtY5aUpPXZt7CrQ>
+ <xmx:Z1KBYYo6JrW3yDl6DHgNjSy2howJSIBBXnLCjM9zAV3l5RigV6_6Hg>
+ <xmx:Z1KBYRSF_Z2ARBakAhzXiZvYSVEVecIGeX1ir2IFn8JOWimAi3Pwtg>
+ <xmx:aFKBYV7DKzYa2YO0wBpn7BsnkKue3UZvbiphle3I94sO1ucCjdFiCA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 2 Nov 2021 10:59:50 -0400 (EDT)
+From: Maxime Ripard <maxime@cerno.tech>
+To: Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <maxime@cerno.tech>
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Phil Elwell <phil@raspberrypi.com>,
+ Tim Gover <tim.gover@raspberrypi.com>,	Dom Cobley <dom@raspberrypi.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>,
+ dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,	amd-gfx@lists.freedesktop.org,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Emma Anholt <emma@anholt.net>,	intel-gfx@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,	Jonas Karlman <jonas@kwiboo.se>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ linux-amlogic@lists.infradead.org,	linux-arm-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,	"Pan,
+ Xinhui" <Xinhui.Pan@amd.com>,	Robert Foss <robert.foss@linaro.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thierry Reding <thierry.reding@gmail.com>
+Subject: [PATCH 01/13] drm/connector: Add define for HDMI 1.4 Maximum Pixel
+ Rate
+Date: Tue,  2 Nov 2021 15:59:32 +0100
+Message-Id: <20211102145944.259181-2-maxime@cerno.tech>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211102145944.259181-1-maxime@cerno.tech>
+References: <20211102145944.259181-1-maxime@cerno.tech>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211101_011756_897228_3958DBC3 
-X-CRM114-Status: GOOD (  14.56  )
+X-CRM114-CacheID: sfid-20211102_075957_787767_30C76CAB 
+X-CRM114-Status: GOOD (  20.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,499 +124,165 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Link drm_fb_cma_helper.o into drm_cma_helper.ko if CONFIG_DRM_KMS_HELPER
-has been set. Remove CONFIG_DRM_KMS_CMA_HELPER config option. Selecting
-KMS helpers and CMA will now automatically enable CMA KMS helpers.
-
-Some drivers' Kconfig files did not correctly select KMS or CMA helpers.
-Fix this as part of the change.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/Kconfig                 |  7 -------
- drivers/gpu/drm/Makefile                |  2 +-
- drivers/gpu/drm/arm/Kconfig             |  2 --
- drivers/gpu/drm/arm/display/Kconfig     |  1 -
- drivers/gpu/drm/aspeed/Kconfig          |  1 -
- drivers/gpu/drm/atmel-hlcdc/Kconfig     |  1 -
- drivers/gpu/drm/fsl-dcu/Kconfig         |  1 -
- drivers/gpu/drm/hisilicon/kirin/Kconfig |  1 -
- drivers/gpu/drm/imx/Kconfig             |  2 +-
- drivers/gpu/drm/imx/dcss/Kconfig        |  2 +-
- drivers/gpu/drm/ingenic/Kconfig         |  1 -
- drivers/gpu/drm/kmb/Kconfig             |  1 -
- drivers/gpu/drm/mcde/Kconfig            |  1 -
- drivers/gpu/drm/meson/Kconfig           |  1 -
- drivers/gpu/drm/mxsfb/Kconfig           |  2 +-
- drivers/gpu/drm/panel/Kconfig           |  2 +-
- drivers/gpu/drm/pl111/Kconfig           |  1 -
- drivers/gpu/drm/rcar-du/Kconfig         |  1 -
- drivers/gpu/drm/shmobile/Kconfig        |  1 -
- drivers/gpu/drm/sti/Kconfig             |  1 -
- drivers/gpu/drm/stm/Kconfig             |  1 -
- drivers/gpu/drm/sun4i/Kconfig           |  1 -
- drivers/gpu/drm/tidss/Kconfig           |  1 -
- drivers/gpu/drm/tilcdc/Kconfig          |  1 -
- drivers/gpu/drm/tiny/Kconfig            | 20 ++++++++++----------
- drivers/gpu/drm/tve200/Kconfig          |  1 -
- drivers/gpu/drm/vc4/Kconfig             |  1 -
- drivers/gpu/drm/xlnx/Kconfig            |  1 -
- 28 files changed, 15 insertions(+), 44 deletions(-)
-
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index fb144617055b..5e147593bb6c 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -217,13 +217,6 @@ config DRM_GEM_CMA_HELPER
- 	help
- 	  Choose this if you need the GEM CMA helper functions
- 
--config DRM_KMS_CMA_HELPER
--	bool
--	depends on DRM
--	select DRM_GEM_CMA_HELPER
--	help
--	  Choose this if you need the KMS CMA helper functions
--
- config DRM_GEM_SHMEM_HELPER
- 	tristate
- 	depends on DRM && MMU
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 1c41156deb5f..7125318d6c95 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -34,6 +34,7 @@ drm-$(CONFIG_DRM_PRIVACY_SCREEN) += drm_privacy_screen.o drm_privacy_screen_x86.
- obj-$(CONFIG_DRM_DP_AUX_BUS) += drm_dp_aux_bus.o
- 
- drm_cma_helper-y := drm_gem_cma_helper.o
-+drm_cma_helper-$(CONFIG_DRM_KMS_HELPER) += drm_fb_cma_helper.o
- obj-$(CONFIG_DRM_GEM_CMA_HELPER) += drm_cma_helper.o
- 
- drm_shmem_helper-y := drm_gem_shmem_helper.o
-@@ -58,7 +59,6 @@ drm_kms_helper-y := drm_bridge_connector.o drm_crtc_helper.o drm_dp_helper.o \
- 
- drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
- drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += drm_fb_helper.o
--drm_kms_helper-$(CONFIG_DRM_KMS_CMA_HELPER) += drm_fb_cma_helper.o
- drm_kms_helper-$(CONFIG_DRM_DP_AUX_CHARDEV) += drm_dp_aux_dev.o
- drm_kms_helper-$(CONFIG_DRM_DP_CEC) += drm_dp_cec.o
- 
-diff --git a/drivers/gpu/drm/arm/Kconfig b/drivers/gpu/drm/arm/Kconfig
-index 3a9e966e0e78..58a242871b28 100644
---- a/drivers/gpu/drm/arm/Kconfig
-+++ b/drivers/gpu/drm/arm/Kconfig
-@@ -6,7 +6,6 @@ config DRM_HDLCD
- 	depends on DRM && OF && (ARM || ARM64 || COMPILE_TEST)
- 	depends on COMMON_CLK
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	help
- 	  Choose this option if you have an ARM High Definition Colour LCD
- 	  controller.
-@@ -27,7 +26,6 @@ config DRM_MALI_DISPLAY
- 	depends on DRM && OF && (ARM || ARM64 || COMPILE_TEST)
- 	depends on COMMON_CLK
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select VIDEOMODE_HELPERS
- 	help
-diff --git a/drivers/gpu/drm/arm/display/Kconfig b/drivers/gpu/drm/arm/display/Kconfig
-index cec0639e3aa1..e91598b60781 100644
---- a/drivers/gpu/drm/arm/display/Kconfig
-+++ b/drivers/gpu/drm/arm/display/Kconfig
-@@ -4,7 +4,6 @@ config DRM_KOMEDA
- 	depends on DRM && OF
- 	depends on COMMON_CLK
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select VIDEOMODE_HELPERS
- 	help
-diff --git a/drivers/gpu/drm/aspeed/Kconfig b/drivers/gpu/drm/aspeed/Kconfig
-index 5e95bcea43e9..36c4a7e86981 100644
---- a/drivers/gpu/drm/aspeed/Kconfig
-+++ b/drivers/gpu/drm/aspeed/Kconfig
-@@ -5,7 +5,6 @@ config DRM_ASPEED_GFX
- 	depends on (COMPILE_TEST || ARCH_ASPEED)
- 	depends on MMU
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DMA_CMA if HAVE_DMA_CONTIGUOUS
- 	select CMA if HAVE_DMA_CONTIGUOUS
- 	select MFD_SYSCON
-diff --git a/drivers/gpu/drm/atmel-hlcdc/Kconfig b/drivers/gpu/drm/atmel-hlcdc/Kconfig
-index 5f67f001553b..8ae679f1a518 100644
---- a/drivers/gpu/drm/atmel-hlcdc/Kconfig
-+++ b/drivers/gpu/drm/atmel-hlcdc/Kconfig
-@@ -4,7 +4,6 @@ config DRM_ATMEL_HLCDC
- 	depends on DRM && OF && COMMON_CLK && MFD_ATMEL_HLCDC && ARM
- 	select DRM_GEM_CMA_HELPER
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_PANEL
- 	help
- 	  Choose this option if you have an ATMEL SoC with an HLCDC display
-diff --git a/drivers/gpu/drm/fsl-dcu/Kconfig b/drivers/gpu/drm/fsl-dcu/Kconfig
-index d7dd8ba90e3a..2a13ea5c8539 100644
---- a/drivers/gpu/drm/fsl-dcu/Kconfig
-+++ b/drivers/gpu/drm/fsl-dcu/Kconfig
-@@ -4,7 +4,6 @@ config DRM_FSL_DCU
- 	depends on DRM && OF && ARM && COMMON_CLK
- 	select BACKLIGHT_CLASS_DEVICE
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_PANEL
- 	select REGMAP_MMIO
- 	select VIDEOMODE_HELPERS
-diff --git a/drivers/gpu/drm/hisilicon/kirin/Kconfig b/drivers/gpu/drm/hisilicon/kirin/Kconfig
-index 290553e2f6b4..b770f7662830 100644
---- a/drivers/gpu/drm/hisilicon/kirin/Kconfig
-+++ b/drivers/gpu/drm/hisilicon/kirin/Kconfig
-@@ -4,7 +4,6 @@ config DRM_HISI_KIRIN
- 	depends on DRM && OF && ARM64
- 	select DRM_KMS_HELPER
- 	select DRM_GEM_CMA_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_MIPI_DSI
- 	help
- 	  Choose this option if you have a hisilicon Kirin chipsets(hi6220).
-diff --git a/drivers/gpu/drm/imx/Kconfig b/drivers/gpu/drm/imx/Kconfig
-index b5fa0e45a839..bb9738c7c825 100644
---- a/drivers/gpu/drm/imx/Kconfig
-+++ b/drivers/gpu/drm/imx/Kconfig
-@@ -4,7 +4,7 @@ config DRM_IMX
- 	select DRM_KMS_HELPER
- 	select VIDEOMODE_HELPERS
- 	select DRM_GEM_CMA_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_KMS_HELPER
- 	depends on DRM && (ARCH_MXC || ARCH_MULTIPLATFORM || COMPILE_TEST)
- 	depends on IMX_IPUV3_CORE
- 	help
-diff --git a/drivers/gpu/drm/imx/dcss/Kconfig b/drivers/gpu/drm/imx/dcss/Kconfig
-index 2b17a964ff05..7374f1952762 100644
---- a/drivers/gpu/drm/imx/dcss/Kconfig
-+++ b/drivers/gpu/drm/imx/dcss/Kconfig
-@@ -1,7 +1,7 @@
- config DRM_IMX_DCSS
- 	tristate "i.MX8MQ DCSS"
- 	select IMX_IRQSTEER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_KMS_HELPER
- 	select VIDEOMODE_HELPERS
- 	depends on DRM && ARCH_MXC && ARM64
- 	help
-diff --git a/drivers/gpu/drm/ingenic/Kconfig b/drivers/gpu/drm/ingenic/Kconfig
-index 3b57f8be007c..001f59fb06d5 100644
---- a/drivers/gpu/drm/ingenic/Kconfig
-+++ b/drivers/gpu/drm/ingenic/Kconfig
-@@ -8,7 +8,6 @@ config DRM_INGENIC
- 	select DRM_BRIDGE
- 	select DRM_PANEL_BRIDGE
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select VT_HW_CONSOLE_BINDING if FRAMEBUFFER_CONSOLE
- 	help
-diff --git a/drivers/gpu/drm/kmb/Kconfig b/drivers/gpu/drm/kmb/Kconfig
-index bc4cb5e1cd8a..5fdd43dad507 100644
---- a/drivers/gpu/drm/kmb/Kconfig
-+++ b/drivers/gpu/drm/kmb/Kconfig
-@@ -3,7 +3,6 @@ config DRM_KMB_DISPLAY
- 	depends on DRM
- 	depends on ARCH_KEEMBAY || COMPILE_TEST
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select DRM_MIPI_DSI
- 	help
-diff --git a/drivers/gpu/drm/mcde/Kconfig b/drivers/gpu/drm/mcde/Kconfig
-index 71c689b573c9..d0bf1bc8da3f 100644
---- a/drivers/gpu/drm/mcde/Kconfig
-+++ b/drivers/gpu/drm/mcde/Kconfig
-@@ -10,7 +10,6 @@ config DRM_MCDE
- 	select DRM_BRIDGE
- 	select DRM_PANEL_BRIDGE
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select VT_HW_CONSOLE_BINDING if FRAMEBUFFER_CONSOLE
- 	help
-diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
-index 9f9281dd49f8..df0da9e03000 100644
---- a/drivers/gpu/drm/meson/Kconfig
-+++ b/drivers/gpu/drm/meson/Kconfig
-@@ -4,7 +4,6 @@ config DRM_MESON
- 	depends on DRM && OF && (ARM || ARM64)
- 	depends on ARCH_MESON || COMPILE_TEST
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select VIDEOMODE_HELPERS
- 	select REGMAP_MMIO
-diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig
-index ee22cd25d3e3..987170e16ebd 100644
---- a/drivers/gpu/drm/mxsfb/Kconfig
-+++ b/drivers/gpu/drm/mxsfb/Kconfig
-@@ -10,7 +10,7 @@ config DRM_MXSFB
- 	depends on COMMON_CLK
- 	select DRM_MXS
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_PANEL
- 	select DRM_PANEL_BRIDGE
- 	help
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 7770b1802291..434c2861bb40 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -152,7 +152,7 @@ config DRM_PANEL_ILITEK_ILI9341
- 	tristate "Ilitek ILI9341 240x320 QVGA panels"
- 	depends on OF && SPI
- 	depends on DRM_KMS_HELPER
--	depends on DRM_KMS_CMA_HELPER
-+	depends on DRM_GEM_CMA_HELPER
- 	depends on BACKLIGHT_CLASS_DEVICE
- 	select DRM_MIPI_DBI
- 	help
-diff --git a/drivers/gpu/drm/pl111/Kconfig b/drivers/gpu/drm/pl111/Kconfig
-index 3aae387a96af..91ee05b01303 100644
---- a/drivers/gpu/drm/pl111/Kconfig
-+++ b/drivers/gpu/drm/pl111/Kconfig
-@@ -6,7 +6,6 @@ config DRM_PL111
- 	depends on VEXPRESS_CONFIG || VEXPRESS_CONFIG=n
- 	depends on COMMON_CLK
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select DRM_BRIDGE
- 	select DRM_PANEL_BRIDGE
-diff --git a/drivers/gpu/drm/rcar-du/Kconfig b/drivers/gpu/drm/rcar-du/Kconfig
-index b47e74421e34..71a4611e1557 100644
---- a/drivers/gpu/drm/rcar-du/Kconfig
-+++ b/drivers/gpu/drm/rcar-du/Kconfig
-@@ -7,7 +7,6 @@ config DRM_RCAR_DU
- 	imply DRM_RCAR_CMM
- 	imply DRM_RCAR_LVDS
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select VIDEOMODE_HELPERS
- 	help
-diff --git a/drivers/gpu/drm/shmobile/Kconfig b/drivers/gpu/drm/shmobile/Kconfig
-index e2a6c82c8252..288b838a904a 100644
---- a/drivers/gpu/drm/shmobile/Kconfig
-+++ b/drivers/gpu/drm/shmobile/Kconfig
-@@ -5,7 +5,6 @@ config DRM_SHMOBILE
- 	depends on ARCH_SHMOBILE || COMPILE_TEST
- 	select BACKLIGHT_CLASS_DEVICE
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	help
- 	  Choose this option if you have an SH Mobile chipset.
-diff --git a/drivers/gpu/drm/sti/Kconfig b/drivers/gpu/drm/sti/Kconfig
-index d0cfdd36b38f..246a94afbe74 100644
---- a/drivers/gpu/drm/sti/Kconfig
-+++ b/drivers/gpu/drm/sti/Kconfig
-@@ -5,7 +5,6 @@ config DRM_STI
- 	select RESET_CONTROLLER
- 	select DRM_KMS_HELPER
- 	select DRM_GEM_CMA_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_PANEL
- 	select FW_LOADER
- 	select SND_SOC_HDMI_CODEC if SND_SOC
-diff --git a/drivers/gpu/drm/stm/Kconfig b/drivers/gpu/drm/stm/Kconfig
-index b7d66915a2be..e0379488cd0d 100644
---- a/drivers/gpu/drm/stm/Kconfig
-+++ b/drivers/gpu/drm/stm/Kconfig
-@@ -4,7 +4,6 @@ config DRM_STM
- 	depends on DRM && (ARCH_STM32 || ARCH_MULTIPLATFORM)
- 	select DRM_KMS_HELPER
- 	select DRM_GEM_CMA_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_PANEL_BRIDGE
- 	select VIDEOMODE_HELPERS
- 	select FB_PROVIDE_GET_FB_UNMAPPED_AREA if FB
-diff --git a/drivers/gpu/drm/sun4i/Kconfig b/drivers/gpu/drm/sun4i/Kconfig
-index 5755f0432e77..92651f6a9e7d 100644
---- a/drivers/gpu/drm/sun4i/Kconfig
-+++ b/drivers/gpu/drm/sun4i/Kconfig
-@@ -5,7 +5,6 @@ config DRM_SUN4I
- 	depends on ARCH_SUNXI || COMPILE_TEST
- 	select DRM_GEM_CMA_HELPER
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_PANEL
- 	select REGMAP_MMIO
- 	select VIDEOMODE_HELPERS
-diff --git a/drivers/gpu/drm/tidss/Kconfig b/drivers/gpu/drm/tidss/Kconfig
-index f790a5215302..bc4fa59b6fa9 100644
---- a/drivers/gpu/drm/tidss/Kconfig
-+++ b/drivers/gpu/drm/tidss/Kconfig
-@@ -3,7 +3,6 @@ config DRM_TIDSS
- 	depends on DRM && OF
- 	depends on ARM || ARM64 || COMPILE_TEST
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	help
- 	  The TI Keystone family SoCs introduced a new generation of
-diff --git a/drivers/gpu/drm/tilcdc/Kconfig b/drivers/gpu/drm/tilcdc/Kconfig
-index 9f505a149990..e315591eb36b 100644
---- a/drivers/gpu/drm/tilcdc/Kconfig
-+++ b/drivers/gpu/drm/tilcdc/Kconfig
-@@ -3,7 +3,6 @@ config DRM_TILCDC
- 	tristate "DRM Support for TI LCDC Display Controller"
- 	depends on DRM && OF && ARM
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select DRM_BRIDGE
- 	select DRM_PANEL_BRIDGE
-diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-index 4ca309f80dee..712e0004e96e 100644
---- a/drivers/gpu/drm/tiny/Kconfig
-+++ b/drivers/gpu/drm/tiny/Kconfig
-@@ -3,7 +3,7 @@
- config DRM_ARCPGU
- 	tristate "ARC PGU"
- 	depends on DRM && OF
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_KMS_HELPER
- 	help
- 	  Choose this option if you have an ARC PGU controller.
-@@ -71,7 +71,7 @@ config TINYDRM_HX8357D
- 	tristate "DRM support for HX8357D display panels"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_MIPI_DBI
- 	select BACKLIGHT_CLASS_DEVICE
- 	help
-@@ -84,7 +84,7 @@ config TINYDRM_ILI9163
- 	tristate "DRM support for ILI9163 display panels"
- 	depends on DRM && SPI
- 	select BACKLIGHT_CLASS_DEVICE
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_MIPI_DBI
- 	help
-@@ -97,7 +97,7 @@ config TINYDRM_ILI9225
- 	tristate "DRM support for ILI9225 display panels"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_MIPI_DBI
- 	help
- 	  DRM driver for the following Ilitek ILI9225 panels:
-@@ -109,7 +109,7 @@ config TINYDRM_ILI9341
- 	tristate "DRM support for ILI9341 display panels"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_MIPI_DBI
- 	select BACKLIGHT_CLASS_DEVICE
- 	help
-@@ -122,7 +122,7 @@ config TINYDRM_ILI9486
- 	tristate "DRM support for ILI9486 display panels"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_MIPI_DBI
- 	select BACKLIGHT_CLASS_DEVICE
- 	help
-@@ -136,7 +136,7 @@ config TINYDRM_MI0283QT
- 	tristate "DRM support for MI0283QT"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_MIPI_DBI
- 	select BACKLIGHT_CLASS_DEVICE
- 	help
-@@ -147,7 +147,7 @@ config TINYDRM_REPAPER
- 	tristate "DRM support for Pervasive Displays RePaper panels (V231)"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	help
- 	  DRM driver for the following Pervasive Displays panels:
- 	  1.44" TFT EPD Panel (E1144CS021)
-@@ -161,7 +161,7 @@ config TINYDRM_ST7586
- 	tristate "DRM support for Sitronix ST7586 display panels"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_MIPI_DBI
- 	help
- 	  DRM driver for the following Sitronix ST7586 panels:
-@@ -173,7 +173,7 @@ config TINYDRM_ST7735R
- 	tristate "DRM support for Sitronix ST7715R/ST7735R display panels"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
-+	select DRM_GEM_CMA_HELPER
- 	select DRM_MIPI_DBI
- 	select BACKLIGHT_CLASS_DEVICE
- 	help
-diff --git a/drivers/gpu/drm/tve200/Kconfig b/drivers/gpu/drm/tve200/Kconfig
-index e2d163c74ed6..47a7dbe6c114 100644
---- a/drivers/gpu/drm/tve200/Kconfig
-+++ b/drivers/gpu/drm/tve200/Kconfig
-@@ -8,7 +8,6 @@ config DRM_TVE200
- 	select DRM_BRIDGE
- 	select DRM_PANEL_BRIDGE
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select VT_HW_CONSOLE_BINDING if FRAMEBUFFER_CONSOLE
- 	help
-diff --git a/drivers/gpu/drm/vc4/Kconfig b/drivers/gpu/drm/vc4/Kconfig
-index 345a5570a3da..de3424fed2fc 100644
---- a/drivers/gpu/drm/vc4/Kconfig
-+++ b/drivers/gpu/drm/vc4/Kconfig
-@@ -6,7 +6,6 @@ config DRM_VC4
- 	depends on SND && SND_SOC
- 	depends on COMMON_CLK
- 	select DRM_KMS_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select DRM_PANEL_BRIDGE
- 	select SND_PCM
-diff --git a/drivers/gpu/drm/xlnx/Kconfig b/drivers/gpu/drm/xlnx/Kconfig
-index c3d08269faa9..d8d38d86d5c6 100644
---- a/drivers/gpu/drm/xlnx/Kconfig
-+++ b/drivers/gpu/drm/xlnx/Kconfig
-@@ -7,7 +7,6 @@ config DRM_ZYNQMP_DPSUB
- 	depends on XILINX_ZYNQMP_DPDMA
- 	select DMA_ENGINE
- 	select DRM_GEM_CMA_HELPER
--	select DRM_KMS_CMA_HELPER
- 	select DRM_KMS_HELPER
- 	select GENERIC_PHY
- 	help
--- 
-2.33.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+QSBsb3Qgb2YgZHJpdmVycyBvcGVuLWNvZGUgdGhlIEhETUkgMS40IG1heGltdW0gcGl4ZWwgcmF0
+ZSBpbiB0aGVpcgpkcml2ZXIgdG8gdGVzdCB3aGV0aGVyIHRoZSByZXNvbHV0aW9ucyBhcmUgc3Vw
+cG9ydGVkIG9yIGlmIHRoZQpzY3JhbWJsaW5nIG5lZWRzIHRvIGJlIGVuYWJsZWQuCgpMZXQncyBj
+cmVhdGUgYSBjb21tb24gZGVmaW5lIGZvciBldmVyeW9uZSB0byB1c2UgaXQuCgpDYzogQWxleCBE
+ZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgpDYzogYW1kLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKQ2M6IEFuZHJ6ZWogSGFqZGEgPGEuaGFqZGFAc2Ftc3VuZy5jb20+CkNjOiBC
+ZW5qYW1pbiBHYWlnbmFyZCA8YmVuamFtaW4uZ2FpZ25hcmRAbGluYXJvLm9yZz4KQ2M6ICJDaHJp
+c3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgpDYzogRW1tYSBBbmhvbHQg
+PGVtbWFAYW5ob2x0Lm5ldD4KQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6
+IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBKZXJuZWogU2ty
+YWJlYyA8amVybmVqLnNrcmFiZWNAZ21haWwuY29tPgpDYzogSmVyb21lIEJydW5ldCA8amJydW5l
+dEBiYXlsaWJyZS5jb20+CkNjOiBKb25hcyBLYXJsbWFuIDxqb25hc0Brd2lib28uc2U+CkNjOiBK
+b25hdGhhbiBIdW50ZXIgPGpvbmF0aGFuaEBudmlkaWEuY29tPgpDYzogSm9vbmFzIExhaHRpbmVu
+IDxqb29uYXMubGFodGluZW5AbGludXguaW50ZWwuY29tPgpDYzogS2V2aW4gSGlsbWFuIDxraGls
+bWFuQGJheWxpYnJlLmNvbT4KQ2M6IExhdXJlbnQgUGluY2hhcnQgPExhdXJlbnQucGluY2hhcnRA
+aWRlYXNvbmJvYXJkLmNvbT4KQ2M6IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpD
+YzogbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnCkNjOiBsaW51eC10ZWdyYUB2
+Z2VyLmtlcm5lbC5vcmcKQ2M6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGlu
+Z2xAZ29vZ2xlbWFpbC5jb20+CkNjOiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJy
+ZS5jb20+CkNjOiAiUGFuLCBYaW5odWkiIDxYaW5odWkuUGFuQGFtZC5jb20+CkNjOiBSb2JlcnQg
+Rm9zcyA8cm9iZXJ0LmZvc3NAbGluYXJvLm9yZz4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52
+aXZpQGludGVsLmNvbT4KQ2M6IFRoaWVycnkgUmVkaW5nIDx0aGllcnJ5LnJlZGluZ0BnbWFpbC5j
+b20+ClNpZ25lZC1vZmYtYnk6IE1heGltZSBSaXBhcmQgPG1heGltZUBjZXJuby50ZWNoPgotLS0K
+IGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jICB8IDQgKystLQogZHJp
+dmVycy9ncHUvZHJtL2RybV9lZGlkLmMgICAgICAgICAgICAgICAgIHwgMiArLQogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMgIHwgMiArLQogZHJpdmVycy9ncHUvZHJt
+L21lc29uL21lc29uX2R3X2hkbWkuYyAgICAgIHwgNCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL3JhZGVvbl9lbmNvZGVycy5jICAgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vc3RpL3N0aV9o
+ZG1pX3R4M2c0YzI4cGh5LmMgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vdGVncmEvc29yLmMgICAg
+ICAgICAgICAgICAgfCA4ICsrKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vdmM0L3ZjNF9oZG1pLmMg
+ICAgICAgICAgICAgfCA0ICsrLS0KIGluY2x1ZGUvZHJtL2RybV9jb25uZWN0b3IuaCAgICAgICAg
+ICAgICAgICB8IDIgKysKIDkgZmlsZXMgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKSwgMTQgZGVs
+ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9k
+dy1oZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhkbWkuYwppbmRl
+eCA2MmFlNjM1NjVkM2EuLjNhNThkYjM1N2JlMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9z
+eW5vcHN5cy9kdy1oZG1pLmMKQEAgLTQ2LDcgKzQ2LDcgQEAKIC8qIERXLUhETUkgQ29udHJvbGxl
+ciA+PSAweDIwMGEgYXJlIGF0IGxlYXN0IGNvbXBsaWFudCB3aXRoIFNDREMgdmVyc2lvbiAxICov
+CiAjZGVmaW5lIFNDRENfTUlOX1NPVVJDRV9WRVJTSU9OCTB4MQogCi0jZGVmaW5lIEhETUkxNF9N
+QVhfVE1EU0NMSwkzNDAwMDAwMDAKKyNkZWZpbmUgSERNSTE0X01BWF9UTURTQ0xLCShEUk1fSERN
+SV8xNF9NQVhfVE1EU19DTEtfS0haICogMTAwMCkKIAogZW51bSBoZG1pX2RhdGFtYXAgewogCVJH
+QjQ0NF84QiA9IDB4MDEsCkBAIC0xMjY0LDcgKzEyNjQsNyBAQCBzdGF0aWMgYm9vbCBkd19oZG1p
+X3N1cHBvcnRfc2NkYyhzdHJ1Y3QgZHdfaGRtaSAqaGRtaSwKIAkgKiBmb3IgbG93IHJhdGVzIGlz
+IG5vdCBzdXBwb3J0ZWQgZWl0aGVyCiAJICovCiAJaWYgKCFkaXNwbGF5LT5oZG1pLnNjZGMuc2Ny
+YW1ibGluZy5sb3dfcmF0ZXMgJiYKLQkgICAgZGlzcGxheS0+bWF4X3RtZHNfY2xvY2sgPD0gMzQw
+MDAwKQorCSAgICBkaXNwbGF5LT5tYXhfdG1kc19jbG9jayA8PSBEUk1fSERNSV8xNF9NQVhfVE1E
+U19DTEtfS0haKQogCQlyZXR1cm4gZmFsc2U7CiAKIAlyZXR1cm4gdHJ1ZTsKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmMK
+aW5kZXggN2FhMmE1NmE3MWM4Li5lYzhmYjJkMDk4YWUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9kcm1fZWRpZC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jCkBAIC00OTY2
+LDcgKzQ5NjYsNyBAQCBzdGF0aWMgdm9pZCBkcm1fcGFyc2VfaGRtaV9mb3J1bV92c2RiKHN0cnVj
+dCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCiAJCXUzMiBtYXhfdG1kc19jbG9jayA9IGhmX3Zz
+ZGJbNV0gKiA1MDAwOwogCQlzdHJ1Y3QgZHJtX3NjZGMgKnNjZGMgPSAmaGRtaS0+c2NkYzsKIAot
+CQlpZiAobWF4X3RtZHNfY2xvY2sgPiAzNDAwMDApIHsKKwkJaWYgKG1heF90bWRzX2Nsb2NrID4g
+RFJNX0hETUlfMTRfTUFYX1RNRFNfQ0xLX0tIWikgewogCQkJZGlzcGxheS0+bWF4X3RtZHNfY2xv
+Y2sgPSBtYXhfdG1kc19jbG9jazsKIAkJCURSTV9ERUJVR19LTVMoIkhGLVZTREI6IG1heCBUTURT
+IGNsb2NrICVkIGtIelxuIiwKIAkJCQlkaXNwbGF5LT5tYXhfdG1kc19jbG9jayk7CmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCmluZGV4IGQyZTYxZjZjNmUwOC4uMDY2
+NjIwM2Q1MmI3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2hkbWkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwpA
+QCAtMjIyNiw3ICsyMjI2LDcgQEAgaW50IGludGVsX2hkbWlfY29tcHV0ZV9jb25maWcoc3RydWN0
+IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJCWlmIChzY2RjLT5zY3JhbWJsaW5nLmxvd19yYXRl
+cykKIAkJCXBpcGVfY29uZmlnLT5oZG1pX3NjcmFtYmxpbmcgPSB0cnVlOwogCi0JCWlmIChwaXBl
+X2NvbmZpZy0+cG9ydF9jbG9jayA+IDM0MDAwMCkgeworCQlpZiAocGlwZV9jb25maWctPnBvcnRf
+Y2xvY2sgPiBEUk1fSERNSV8xNF9NQVhfVE1EU19DTEtfS0haKSB7CiAJCQlwaXBlX2NvbmZpZy0+
+aGRtaV9zY3JhbWJsaW5nID0gdHJ1ZTsKIAkJCXBpcGVfY29uZmlnLT5oZG1pX2hpZ2hfdG1kc19j
+bG9ja19yYXRpbyA9IHRydWU7CiAJCX0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZXNv
+bi9tZXNvbl9kd19oZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5j
+CmluZGV4IDBhZmJkMWU3MGJmYy4uODA3ODY2N2FlYTBlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9t
+ZXNvbl9kd19oZG1pLmMKQEAgLTQzNCw3ICs0MzQsNyBAQCBzdGF0aWMgaW50IGR3X2hkbWlfcGh5
+X2luaXQoc3RydWN0IGR3X2hkbWkgKmhkbWksIHZvaWQgKmRhdGEsCiAJCXJlYWRsX3JlbGF4ZWQo
+cHJpdi0+aW9fYmFzZSArIF9SRUcoVlBVX0hETUlfU0VUVElORykpOwogCiAJRFJNX0RFQlVHX0RS
+SVZFUigiXCIlc1wiIGRpdiVkXG4iLCBtb2RlLT5uYW1lLAotCQkJIG1vZGUtPmNsb2NrID4gMzQw
+MDAwID8gNDAgOiAxMCk7CisJCQkgbW9kZS0+Y2xvY2sgPiBEUk1fSERNSV8xNF9NQVhfVE1EU19D
+TEtfS0haID8gNDAgOiAxMCk7CiAKIAkvKiBFbmFibGUgY2xvY2tzICovCiAJcmVnbWFwX3VwZGF0
+ZV9iaXRzKHByaXYtPmhoaSwgSEhJX0hETUlfQ0xLX0NOVEwsIDB4ZmZmZiwgMHgxMDApOwpAQCAt
+NDU3LDcgKzQ1Nyw3IEBAIHN0YXRpYyBpbnQgZHdfaGRtaV9waHlfaW5pdChzdHJ1Y3QgZHdfaGRt
+aSAqaGRtaSwgdm9pZCAqZGF0YSwKIAlkd19oZG1pLT5kYXRhLT50b3Bfd3JpdGUoZHdfaGRtaSwg
+SERNSVRYX1RPUF9CSVNUX0NOVEwsIEJJVCgxMikpOwogCiAJLyogVE1EUyBwYXR0ZXJuIHNldHVw
+ICovCi0JaWYgKG1vZGUtPmNsb2NrID4gMzQwMDAwICYmCisJaWYgKG1vZGUtPmNsb2NrID4gRFJN
+X0hETUlfMTRfTUFYX1RNRFNfQ0xLX0tIWiAmJgogCSAgICBkd19oZG1pLT5vdXRwdXRfYnVzX2Zt
+dCA9PSBNRURJQV9CVVNfRk1UX1lVVjhfMVgyNCkgewogCQlkd19oZG1pLT5kYXRhLT50b3Bfd3Jp
+dGUoZHdfaGRtaSwgSERNSVRYX1RPUF9UTURTX0NMS19QVFROXzAxLAogCQkJCSAgMCk7CmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9lbmNvZGVycy5jIGIvZHJpdmVy
+cy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZW5jb2RlcnMuYwppbmRleCA0NjU0OWQ1MTc5ZWUuLmRk
+ZDgxMDBlNjk5ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZW5j
+b2RlcnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9lbmNvZGVycy5jCkBA
+IC0zODQsNyArMzg0LDcgQEAgYm9vbCByYWRlb25fZGlnX21vbml0b3JfaXNfZHVhbGxpbmsoc3Ry
+dWN0IGRybV9lbmNvZGVyICplbmNvZGVyLAogCQlpZiAocmFkZW9uX2Nvbm5lY3Rvci0+dXNlX2Rp
+Z2l0YWwpIHsKIAkJCS8qIEhETUkgMS4zIHN1cHBvcnRzIHVwIHRvIDM0MCBNaHogb3ZlciBzaW5n
+bGUgbGluayAqLwogCQkJaWYgKEFTSUNfSVNfRENFNihyZGV2KSAmJiBkcm1fZGV0ZWN0X2hkbWlf
+bW9uaXRvcihyYWRlb25fY29ubmVjdG9yX2VkaWQoY29ubmVjdG9yKSkpIHsKLQkJCQlpZiAocGl4
+ZWxfY2xvY2sgPiAzNDAwMDApCisJCQkJaWYgKHBpeGVsX2Nsb2NrID4gRFJNX0hETUlfMTRfTUFY
+X1RNRFNfQ0xLX0tIWikKIAkJCQkJcmV0dXJuIHRydWU7CiAJCQkJZWxzZQogCQkJCQlyZXR1cm4g
+ZmFsc2U7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vc3RpL3N0aV9oZG1pX3R4M2c0YzI4
+cGh5LmMgYi9kcml2ZXJzL2dwdS9kcm0vc3RpL3N0aV9oZG1pX3R4M2c0YzI4cGh5LmMKaW5kZXgg
+ZDI1ZWNkNGY0YjY3Li5iYzIxMzIzMmE4NzUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9z
+dGkvc3RpX2hkbWlfdHgzZzRjMjhwaHkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vc3RpL3N0aV9o
+ZG1pX3R4M2c0YzI4cGh5LmMKQEAgLTEwMiw3ICsxMDIsNyBAQCBzdGF0aWMgYm9vbCBzdGlfaGRt
+aV90eDNnNGMyOHBoeV9zdGFydChzdHJ1Y3Qgc3RpX2hkbWkgKmhkbWkpCiAJdG1kc2NrID0gY2tw
+eHBsbDsKIAlwbGxjdHJsIHw9IDQwIDw8IFBMTF9DRkdfTkRJVl9TSElGVDsKIAotCWlmICh0bWRz
+Y2sgPiAzNDAwMDAwMDApIHsKKwlpZiAodG1kc2NrID4gKERSTV9IRE1JXzE0X01BWF9UTURTX0NM
+S19LSFogKiAxMDAwKSkgewogCQlEUk1fRVJST1IoIm91dHB1dCBUTURTIGNsb2NrICglZCkgb3V0
+IG9mIHJhbmdlXG4iLCB0bWRzY2spOwogCQlnb3RvIGVycjsKIAl9CmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vdGVncmEvc29yLmMgYi9kcml2ZXJzL2dwdS9kcm0vdGVncmEvc29yLmMKaW5k
+ZXggMGVhMzIwYzEwOTJiLi45OWEyZDYyN2JmZWIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS90ZWdyYS9zb3IuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vdGVncmEvc29yLmMKQEAgLTE4MTQs
+NyArMTgxNCw3IEBAIHRlZ3JhX3Nvcl9lbmNvZGVyX2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX2Vu
+Y29kZXIgKmVuY29kZXIsCiAJICogRm9yIEhCUjIgbW9kZXMsIHRoZSBTT1IgYnJpY2sgbmVlZHMg
+dG8gdXNlIHRoZSB4MjAgbXVsdGlwbGllciwgc28KIAkgKiB0aGUgcGl4ZWwgY2xvY2sgbXVzdCBi
+ZSBjb3JyZWN0ZWQgYWNjb3JkaW5nbHkuCiAJICovCi0JaWYgKHBjbGsgPj0gMzQwMDAwMDAwKSB7
+CisJaWYgKHBjbGsgPj0gKERSTV9IRE1JXzE0X01BWF9UTURTX0NMS19LSFogKiAxMDAwKSkgewog
+CQlzdGF0ZS0+bGlua19zcGVlZCA9IDIwOwogCQlzdGF0ZS0+cGNsayA9IHBjbGsgLyAyOwogCX0g
+ZWxzZSB7CkBAIC0yMTk2LDcgKzIxOTYsNyBAQCBzdGF0aWMgdm9pZCB0ZWdyYV9zb3JfaGRtaV9z
+Y2RjX3N0YXJ0KHN0cnVjdCB0ZWdyYV9zb3IgKnNvcikKIAogCW1vZGUgPSAmc29yLT5vdXRwdXQu
+ZW5jb2Rlci5jcnRjLT5zdGF0ZS0+YWRqdXN0ZWRfbW9kZTsKIAotCWlmIChtb2RlLT5jbG9jayA+
+PSAzNDAwMDAgJiYgc2NkYy0+c3VwcG9ydGVkKSB7CisJaWYgKG1vZGUtPmNsb2NrID49IERSTV9I
+RE1JXzE0X01BWF9UTURTX0NMS19LSFogJiYgc2NkYy0+c3VwcG9ydGVkKSB7CiAJCXNjaGVkdWxl
+X2RlbGF5ZWRfd29yaygmc29yLT5zY2RjLCBtc2Vjc190b19qaWZmaWVzKDUwMDApKTsKIAkJdGVn
+cmFfc29yX2hkbWlfc2NkY19lbmFibGUoc29yKTsKIAkJc29yLT5zY2RjX2VuYWJsZWQgPSB0cnVl
+OwpAQCAtMjM0MCw3ICsyMzQwLDcgQEAgc3RhdGljIHZvaWQgdGVncmFfc29yX2hkbWlfZW5hYmxl
+KHN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlcikKIAl2YWx1ZSAmPSB+U09SX0NMS19DTlRSTF9E
+UF9MSU5LX1NQRUVEX01BU0s7CiAJdmFsdWUgJj0gflNPUl9DTEtfQ05UUkxfRFBfQ0xLX1NFTF9N
+QVNLOwogCi0JaWYgKG1vZGUtPmNsb2NrIDwgMzQwMDAwKSB7CisJaWYgKG1vZGUtPmNsb2NrIDwg
+RFJNX0hETUlfMTRfTUFYX1RNRFNfQ0xLX0tIWikgewogCQlEUk1fREVCVUdfS01TKCJzZXR0aW5n
+IDIuNyBHSHogbGluayBzcGVlZFxuIik7CiAJCXZhbHVlIHw9IFNPUl9DTEtfQ05UUkxfRFBfTElO
+S19TUEVFRF9HMl83MDsKIAl9IGVsc2UgewpAQCAtMjQyMyw3ICsyNDIzLDcgQEAgc3RhdGljIHZv
+aWQgdGVncmFfc29yX2hkbWlfZW5hYmxlKHN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlcikKIAkv
+KiBhZGp1c3QgY2xvY2sgcmF0ZSBmb3IgSERNSSAyLjAgbW9kZXMgKi8KIAlyYXRlID0gY2xrX2dl
+dF9yYXRlKHNvci0+Y2xrX3BhcmVudCk7CiAKLQlpZiAobW9kZS0+Y2xvY2sgPj0gMzQwMDAwKQor
+CWlmIChtb2RlLT5jbG9jayA+PSBEUk1fSERNSV8xNF9NQVhfVE1EU19DTEtfS0haKQogCQlyYXRl
+IC89IDI7CiAKIAlEUk1fREVCVUdfS01TKCJzZXR0aW5nIGNsb2NrIHRvICVsdSBIeiwgbW9kZTog
+JWx1IEh6XG4iLCByYXRlLCBwY2xrKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS92YzQv
+dmM0X2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2hkbWkuYwppbmRleCBmYWI5Yjkz
+ZTFiODQuLmZjNzI0N2NjMTAyMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRf
+aGRtaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2hkbWkuYwpAQCAtOTcsMTEgKzk3
+LDExIEBACiAjZGVmaW5lIEhTTV9NSU5fQ0xPQ0tfRlJFUQkxMjAwMDAwMDAKICNkZWZpbmUgQ0VD
+X0NMT0NLX0ZSRVEgNDAwMDAKIAotI2RlZmluZSBIRE1JXzE0X01BWF9UTURTX0NMSyAgICgzNDAg
+KiAxMDAwICogMTAwMCkKKyNkZWZpbmUgSERNSV8xNF9NQVhfVE1EU19DTEsJKERSTV9IRE1JXzE0
+X01BWF9UTURTX0NMS19LSFogKiAxMDAwKQogCiBzdGF0aWMgYm9vbCB2YzRfaGRtaV9tb2RlX25l
+ZWRzX3NjcmFtYmxpbmcoY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGUpCiB7Ci0J
+cmV0dXJuIChtb2RlLT5jbG9jayAqIDEwMDApID4gSERNSV8xNF9NQVhfVE1EU19DTEs7CisJcmV0
+dXJuIG1vZGUtPmNsb2NrID4gRFJNX0hETUlfMTRfTUFYX1RNRFNfQ0xLX0tIWjsKIH0KIAogc3Rh
+dGljIGludCB2YzRfaGRtaV9kZWJ1Z2ZzX3JlZ3Moc3RydWN0IHNlcV9maWxlICptLCB2b2lkICp1
+bnVzZWQpCmRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fY29ubmVjdG9yLmggYi9pbmNsdWRl
+L2RybS9kcm1fY29ubmVjdG9yLmgKaW5kZXggYjUwMWQwYmFkYWVhLi4wMzA2MzY2MzVhZjEgMTAw
+NjQ0Ci0tLSBhL2luY2x1ZGUvZHJtL2RybV9jb25uZWN0b3IuaAorKysgYi9pbmNsdWRlL2RybS9k
+cm1fY29ubmVjdG9yLmgKQEAgLTI2MCw2ICsyNjAsOCBAQCBzdHJ1Y3QgZHJtX2hkbWlfaW5mbyB7
+CiAJc3RydWN0IGRybV9oZG1pX2RzY19jYXAgZHNjX2NhcDsKIH07CiAKKyNkZWZpbmUgRFJNX0hE
+TUlfMTRfTUFYX1RNRFNfQ0xLX0tIWgkoMzQwICogMTAwMCkKKwogLyoqCiAgKiBlbnVtIGRybV9s
+aW5rX3N0YXR1cyAtIGNvbm5lY3RvcidzIGxpbmtfc3RhdHVzIHByb3BlcnR5IHZhbHVlCiAgKgot
+LSAKMi4zMi4wCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
+YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
+YW1sb2dpYwo=
