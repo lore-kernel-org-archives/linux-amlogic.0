@@ -1,85 +1,78 @@
-Return-Path: <SRS0=K5c1=PX=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=5vFS=PY=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55919C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Nov 2021 15:41:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3FD0C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Nov 2021 10:04:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EA300610FD
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Nov 2021 15:41:56 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EA300610FD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
+	by mail.kernel.org (Postfix) with ESMTPS id 9993B6124F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Nov 2021 10:04:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9993B6124F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmx.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=batikRMZzNBhdsTomYpDy9LSNSp+P4lshBCgfILAlP0=; b=gSCm0ztp6/ST+/
-	SssvTVQLEtVr3Ml4T4yZnw9xz/3sHo5LCLP4uysCg2gTdEG8r64Kg+udJpOKoNOnLSQKDwBjyiM8B
-	fO1Frq3O7mejSyi52w5MOb3K57bBMCOTd1NV6IX0Ed3NuqORW2hbfDZ9cZg/dVdH7DzSlexLLq9yZ
-	uzNiKojxej9hbuQeElV9+SHZIYf90Fh5CjD+qxCDKxSsQfeM9QZG6V9eo14n2tB9FexIvBVwU4yut
-	V3oscWfdCz6HC6rH1Q+Hn+CtpLWD1NSBqCj01RxColq0rkiFOrE/Orjb5CPrM29FRnbKZgy+ssK9T
-	vMa6aI2U4U1bK7RrTuaA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Subject:To:From:Message-ID:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=WfW03M6oObyhl2v4DcTyOW4Ohamw1vqwSiN0LRrYqfk=; b=Hk6
+	nzpYT+j0JuijTmCrRze9HFXoE9sw+lLrQGycoy3IpSr6y2gmmqIOGMrtG04ed/+7MEklTy35M+WJO
+	QvHwt1qtUjUcX1DkfxskKE7ZqWcvyemDO55Fv32d73w158dEOlC6ob/W604Jw/SJEKYu97nZyuw1K
+	H6rW/Lr/T/kkvM26NNuH1n+HY0f/gxQsjhp/gLFaqkuDqrWUXzoq4g8qlkFs+4hQ0/R2nXcl/s4Vo
+	9r789TIKCTWC1jz+acHnTnSpTYxYXdphEo1Va3NCHYo+k8WOQsSudhn60EGZOX2ZovdAXQy4uy5LE
+	DzKL4GTlYuZ5I09V2OUZ6u7zEG2zusA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1miesB-009Hze-9C; Thu, 04 Nov 2021 15:41:51 +0000
-Received: from mga18.intel.com ([134.134.136.126])
+	id 1miw4i-00B3Kk-FH; Fri, 05 Nov 2021 10:03:56 +0000
+Received: from mout.gmx.net ([212.227.15.18])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1miern-009HtA-H6; Thu, 04 Nov 2021 15:41:28 +0000
-X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="218631536"
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="218631536"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 08:41:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="450250513"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 04 Nov 2021 08:41:14 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Nov 2021 17:41:13 +0200
-Date: Thu, 4 Nov 2021 17:41:13 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Cc: Emma Anholt <emma@anholt.net>, Neil Armstrong <narmstrong@baylibre.com>,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <a.hajda@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>, amd-gfx@lists.freedesktop.org,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Phil Elwell <phil@raspberrypi.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Jonas Karlman <jonas@kwiboo.se>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- intel-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Robert Foss <robert.foss@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 01/13] drm/connector: Add define for HDMI 1.4 Maximum
- Pixel Rate
-Message-ID: <YYP/GWqbcvVFIrAj@intel.com>
-References: <20211102145944.259181-1-maxime@cerno.tech>
- <20211102145944.259181-2-maxime@cerno.tech>
- <YYJsM6/hZ43b1tm9@intel.com> <YYLPXJoC7TZcwejb@intel.com>
- <20211104084841.mjnennxgelacleaj@gilmour>
+ id 1miw4f-00B3Jo-Pu
+ for linux-amlogic@lists.infradead.org; Fri, 05 Nov 2021 10:03:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1636106625;
+ bh=riI2G6xOXHtjraHO38K1N8KULIpof6o82hNnYywWMtg=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=ZJxOGthBy4nLK00Wuq6AsO/OtjassxaEXlMFoi/GfH+/bNMgB0qbz6NskBCJL91x2
+ Z4an8XASoSTDzavmhB8xzHwwm64rCuEaBGevCS3xSmMQT0XFp6G6GdTuDMUx+Wx9Ch
+ gxSd0d+e8LZxQOnYa4JDUY4Gb//pt8ow7YbXURaY=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [81.200.197.163] ([81.200.197.163]) by web-mail.gmx.net
+ (3c-app-gmx-bs31.server.lan [172.19.170.83]) (via HTTP); Fri, 5 Nov 2021
+ 11:03:45 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20211104084841.mjnennxgelacleaj@gilmour>
-X-Patchwork-Hint: comment
+Message-ID: <trinity-fe365669-0873-497a-b48d-35ad82cfac51-1636106624891@3c-app-gmx-bs31>
+From: =?UTF-8?Q?Joachim_K=C3=B6nig?= <joachim.koenig@gmx.net>
+To: linux-amlogic@lists.infradead.org
+Subject: Using a PIP video Window
+Date: Fri, 5 Nov 2021 11:03:45 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:DAisi/CWps0KINj33vbT0ct48xz/3JXc6908uDwOrBE7f43l4LbLU9LXktH0O4KgvuTHJ
+ kEw/yDEmfuZmPotUzcMScueX1MQ02UGoiZCWQcKz0vjP++DZqwldVNTTrpdAvFBQkaOEv3at6uzF
+ 8rTIQ3j7piJCkY6imF2je5dNzMOW0HJT7M3YFh9TcC1UcCyK8p+zPKJDVTTj5GK+q5XiGsRFBH3A
+ mbAw9LMGWNpi9yEKaCoi4wmkqDDoqmgYF40OrBhjcRcVbpo4uSwvhupQ1GxXkzLCDGuwAXUbyzTf
+ yQ=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:VbEq0v2Zya8=:o7AAX7sxXQXzY2eDRnG5ah
+ LYapMIQgAAA41VX0heJWmHIR6BUf/PCIbwBWBakLxOyOLRe4hMAiu8GdDsRPaIx/v4SSxwaoU
+ VeK0/gRbJMzo5JJPNL2Sfe7ALhhW3Ty9oX7dpeFfVICGTcbtDjuUCcYAqLVlwNTiehueaeapR
+ jXdF/ndOAe7n2i6oTJZtT1m5Vk8prpBzSpbydINHaiTw5hpOX0qNwFtZCLbKts+p7/iF6Cyux
+ /QrA3TLS7dTcg0u78MwNQ/X6aPOXAAqzP7fi7rtFO+v2vhr2p3Oz2YrAxq90OUV725e66Kd2p
+ bOOZkXiOn0iZXSZJ5SXgXqhou9Pi4Q3KI0T7yWiLmwo/dQNxt1m9zZSAtviMUspusUnWZBn+d
+ Lf4gx32BHBzjB1Qb2vY31/qEcCTRrRDipVm86Rst+4GUt2vIEujsRawSVqTdrOhqIXuzYRumB
+ 3nsE47iaV4bQIn6UTyFbbu9iaJVXn4P4De5AClQZsqgPe2+FefJvbskG4P4fmoQx9XKm23R/D
+ om9U2c+2sKljVWYYcsr/8MJesCEe2MnGXnKAGN8mizRDwzwv8zT4Lg8BDIZNNIfUB9TAjQCIZ
+ ZieSV+M1hfDKiXEwHdtjagrOFZCkfRBO9t2QnS+xbHQ2BWH+2Dw1107/6rGxCOKVtL9lik2x7
+ 8cCyplj7uYsfpTlPdUi32O+JmMx+qUCFfA4wTKu79b8NDm9vLjpZpFoYSq7hKVBbqntM7QD0k
+ /04SIdnhwmAEiiw5msAbAdZBMCn4XxVAl+m8eMxgeqV2VNP1Vvr+ZrucqO/G9bBNt7YkH2yVP
+ Ozz/CXy
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211104_084127_641493_201809D1 
-X-CRM114-Status: GOOD (  24.95  )
+X-CRM114-CacheID: sfid-20211105_030354_220599_94B034E4 
+X-CRM114-Status: UNSURE (   7.62  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,84 +84,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Nov 04, 2021 at 09:48:41AM +0100, Maxime Ripard wrote:
-> Hi Ville,
-> =
+I wrote a video application to show tv on odroid-n2. Now I want to open a PIP window for a 2nd video stream.
+As I can find no docu on howto to that I ask it here.
 
-> On Wed, Nov 03, 2021 at 08:05:16PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Nov 03, 2021 at 01:02:11PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Tue, Nov 02, 2021 at 03:59:32PM +0100, Maxime Ripard wrote:
-> > > > --- a/drivers/gpu/drm/drm_edid.c
-> > > > +++ b/drivers/gpu/drm/drm_edid.c
-> > > > @@ -4966,7 +4966,7 @@ static void drm_parse_hdmi_forum_vsdb(struct =
-drm_connector *connector,
-> > > >  		u32 max_tmds_clock =3D hf_vsdb[5] * 5000;
-> > > >  		struct drm_scdc *scdc =3D &hdmi->scdc;
-> > > >  =
+Currently I open /dev/amstream_vbuf
+Set the format
+Init the Port
+send Es Video Data and get a video Picture on screen
 
-> > > > -		if (max_tmds_clock > 340000) {
-> > > > +		if (max_tmds_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
-> > > >  			display->max_tmds_clock =3D max_tmds_clock;
-> > > >  			DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
-> > > >  				display->max_tmds_clock);
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gp=
-u/drm/i915/display/intel_hdmi.c
-> > > > index d2e61f6c6e08..0666203d52b7 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > > @@ -2226,7 +2226,7 @@ int intel_hdmi_compute_config(struct intel_en=
-coder *encoder,
-> > > >  		if (scdc->scrambling.low_rates)
-> > > >  			pipe_config->hdmi_scrambling =3D true;
-> > > >  =
+Now do I need to do to enable a PIP Window and send e 2nd stream ?  I have seen dat several PIP functions are available in the kernel, but what device do I need to open and how to config it.
 
-> > > > -		if (pipe_config->port_clock > 340000) {
-> > > > +		if (pipe_config->port_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
-> > > >  			pipe_config->hdmi_scrambling =3D true;
-> > > >  			pipe_config->hdmi_high_tmds_clock_ratio =3D true;
-> > > >  		}
-> > > =
-
-> > > All of that is HDMI 2.0 stuff. So this just makes it all super
-> > > confusing IMO. Nak.
-> > =
-
-> > So reading throgh HDMI 1.4 again it does specify 340 MHz as some kind
-> > of upper limit for the physical cable. But nowhere else is that number
-> > really mentioned AFAICS. HDMI 2.0 does talk quite a bit about the 340
-> > Mcsc limit in various places.
-> > =
-
-> > I wonder what people would think of a couple of helpers like:
-> > - drm_hdmi_{can,must}_use_scrambling()
-> > - drm_hdmi_is_high_tmds_clock_ratio()
-> > or something along those lines? At least with those the code would
-> > read decently and I wouldn't have to wonder what this HDMI 1.4 TMDS
-> > clock limit really is.
-> =
-
-> Patch 2 introduces something along those lines.
-> =
-
-> It doesn't cover everything though, we're using this define in vc4 to
-> limit the available modes in mode_valid on HDMI controllers not
-> 4k-capable
-
-I wouldn't want to use this kind of define for those kinds of checks
-anyway. If the hardware has specific limits in what kind of clocks it
-can generate (or what it was validated for) IMO you should spell
-those out explicitly instead of assuming they happen to match
-some standard defined max value.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Thanks for any help
+Jojo
 
 _______________________________________________
 linux-amlogic mailing list
