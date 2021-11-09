@@ -1,115 +1,85 @@
-Return-Path: <SRS0=rSxG=P3=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Jxtm=P4=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B2EE9C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Nov 2021 15:00:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2B40C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Nov 2021 07:58:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5CCC86108B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Nov 2021 15:00:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5CCC86108B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cerno.tech
+	by mail.kernel.org (Postfix) with ESMTPS id 9685E610F8
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Nov 2021 07:58:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9685E610F8
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2cNJUhIT/s2m4yfr97b1yZxPj283tcKBXu/M1soyi28=; b=kdXjqfsBWnqHtumvIkijijOxDw
-	f5V1lECwZjm1PQlian7SMy253fmiSTwtCAgG0F7ELDzsUiOM8LwAS9AONnSBxfo/TC+H0OFQ5+5Zd
-	cZIEgp5NPNspcIFCVAHbf7gfJ4QZMr+fdFI+3GxQDN7UAyGYCWTKrJMc71VTatNXcnzWT5sZKYbbj
-	lf1QLV8OCKf8+FGuBVr4CMzJWzinolRHa/vwfK1PZCbqIx76h+Hl/cGzDGlpXH0iNKzq/WKpDxD/l
-	yqUeMIqIdYkLUT92tLbXQLdf86rVPLSLcfOxAh4M1PB+oEbcmrPeCgO37dBzhcsMmag4O9B6k+1ex
-	xtKe67IQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=FpIZGaumNW1G8D/cBE3fLOXKRg8vqWIUxodVHt/fRng=; b=E4lrr/xRee2jRi
+	phGMKg6zGIV07Em0tGXAytxF5xlVwBgSV2b6nKcm60A4VGtBYIv6q/2vHZkbMirmYeMdxoGWvsHHc
+	JAi7IyVbucF/ObPTzfuCaCS/+2EPF4PjDZrG0qQIoN7h+8QiBxSxvhkRctCk6t4pB6Jtb1tFBMsoB
+	rFuiplmLELQOgBvS413/ICO/lXuahbQk7Le/FQj5oQIM9j39G97cBjeUwlVwU6D50PHdnv+5dCWo0
+	94PR9b2RbvWAUkD2IhoJkxFv/Xb1zpxYLBNxCkmLXlbOzrkzdieR7Q0A22uMt5b43At8ZXBNr2+9p
+	Si9mTZIqQn/dy0MzeFiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mk67j-00Gkn9-Tb; Mon, 08 Nov 2021 14:59:51 +0000
-Received: from new1-smtp.messagingengine.com ([66.111.4.221])
+	id 1mkM1r-000tnC-9P; Tue, 09 Nov 2021 07:58:51 +0000
+Received: from mail-io1-xd2c.google.com ([2607:f8b0:4864:20::d2c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mk67e-00GkkO-9P; Mon, 08 Nov 2021 14:59:49 +0000
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.nyi.internal (Postfix) with ESMTP id 8C3A858089B;
- Mon,  8 Nov 2021 09:59:40 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute1.internal (MEProxy); Mon, 08 Nov 2021 09:59:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm1; bh=8xAnXR5M2pgccDxgDHcsQoFJ3dq
- VROc3kmDiRvdyHNQ=; b=L379N1g3L7WdacAQbBZ35pwsOUT4J/NwnX7dQSv5CzB
- CbhnBtNRvRXkjJjvHDoQ5Xb7cIElF3AsaDvNqQZQZj6x54hdg1ll4clajo4KNaNu
- gNg4VYqn1CKm6vJL3JK9UWL6SkjKmzovn/Pfr853xq3r3ZdELHFxCU0Zi99ZBnrv
- /hdo12cbs2fB32BnGW8U4QJDfN6tTfF+x0eHRm8DiUhSEn8h1PLUBNTFxy4aXEkn
- nb3iTOsrdGFBwMRyWDGR5idREHoLI6qH09C+IHajLEPWYPLBMmWEYpAD3ydNC3Cz
- ZzRxKd0t0GAcy818VLAVOP3REr7ZcF4wK6lQl4So/hQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=8xAnXR
- 5M2pgccDxgDHcsQoFJ3dqVROc3kmDiRvdyHNQ=; b=fNm9LxqPCTaxt99wM+CUko
- RDuEO0HozN8rDzL4wcLliLpROmzodqXfMOdBgrrHl9OWMQiPUfn9tI65ZmyQeh5/
- J6ydhFP1E9kjYAicN7fcHD0+iCILDqb+F6Sj3wzHYCBjtaEx1w3Acb7oQfeXlrdI
- iU00l1s26k4uqM2TkXslIbukJtF7628kaTO9mJUZ0doTroPbF8ht1oVywdtaodDM
- tf5G7Uj/h5mPyhPWmkXV7RQrHWzWIKIcjsTxwjCoG153UN7dZ0oZ46amp4x+WuoW
- /sDAu20CPxybVmhAyZ7WZ0/DFeEy7MqF9fdyRhEJOHA3Cn8Gw3Ap4+HtvDr+ooXQ
- ==
-X-ME-Sender: <xms:WjuJYc-ZZGz5uWz5jiDkVnmgMlJ5KfLApDSVlbtw-Tk-pDVue06tKw>
- <xme:WjuJYUuTzx3GISHDitCuXdWvgamMfQqyiupSQzGztISxyyOFSndwUvUZZPVSuNZKU
- 5-rzKj0-TP1gxZgHHU>
-X-ME-Received: <xmr:WjuJYSBxO_ougqacmWHx6-HW-NP0TFXA94qNFur3VdO5XopelVsiUcQDmwBxzdit-8JH4GDh8Ky_DiLAGAvmYTVXJyP2JhjIkVJSP-f2>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddruddvgdeilecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpeejkeekffdtfffhhfevvddutefgtdeljeevffevvddvteegledtgfeghfehvdei
- ffenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
- enucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:WzuJYcdWVUFVvYX0rJZQLxBHN8LDdaWmvc_85zYzibgOusN8cr8_ow>
- <xmx:WzuJYROBBEtQ4nNudlGzcUoCkPiLoXZjMUD3aemO3G9O6rSIb3kwag>
- <xmx:WzuJYWmjTPVOLA19362ptztU0oB0iZ7E3e1momGhzU6HDTmn6S0Gmw>
- <xmx:XDuJYZ25ok5xUHmQO20sN5bDqtdXlsvaZcO6Owy3wKHPFRmhvMenjA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 8 Nov 2021 09:59:38 -0500 (EST)
-Date: Mon, 8 Nov 2021 15:59:35 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Emma Anholt <emma@anholt.net>, Neil Armstrong <narmstrong@baylibre.com>,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <a.hajda@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>,	amd-gfx@lists.freedesktop.org,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Phil Elwell <phil@raspberrypi.com>,	Jerome Brunet <jbrunet@baylibre.com>,
- Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,	Jonas Karlman <jonas@kwiboo.se>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- intel-gfx@lists.freedesktop.org,	Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-tegra@vger.kernel.org,	linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,	Dom Cobley <dom@raspberrypi.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,	Robert Foss <robert.foss@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 01/13] drm/connector: Add define for HDMI 1.4 Maximum
- Pixel Rate
-Message-ID: <20211108145935.fhvq72k5bnrjeb3b@gilmour>
-References: <20211102145944.259181-1-maxime@cerno.tech>
- <20211102145944.259181-2-maxime@cerno.tech>
- <YYJsM6/hZ43b1tm9@intel.com> <YYLPXJoC7TZcwejb@intel.com>
- <20211104084841.mjnennxgelacleaj@gilmour>
- <YYP/GWqbcvVFIrAj@intel.com>
+ id 1mkM1e-000tjg-AG; Tue, 09 Nov 2021 07:58:39 +0000
+Received: by mail-io1-xd2c.google.com with SMTP id 14so3826254ioe.2;
+ Mon, 08 Nov 2021 23:58:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=mwjsBGGCD6Y+on4qfMjaXA33EoSJBoNN2vPwpqcskAw=;
+ b=IUrbL9AlXk0fdCuMK9JGzIsT37RIpNJ6ScHSRTi1DByphfQvE3lOk9ocM3uDuXg7PB
+ gnVVwQte6EMSeXZV05BV+85MANq9JJEED/KtO8xUVV9cBYhTpIGQSEdIAYbZ3JTmd4+o
+ /AfJf7g08Ob4VHcZbz7jlBiffZgU37nw4B9cBuyTemakQuTrzlGZV4kuoYYpVwa8cXYP
+ WjhgnHc8NN2jefYORH+ysnkAsjkb/z1VNKYjDqNfwTpqQJGKn/6IJinYvBGG4XUtgG7b
+ Atj4Uo+cPIFWbwlF2gJLrTr24uiTTz4tfhvXx8gNTylOLSe6t9r0Im+jbdYumsXSuZ5Z
+ jJvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=mwjsBGGCD6Y+on4qfMjaXA33EoSJBoNN2vPwpqcskAw=;
+ b=anfw8DAKVZr2BevfZ+6L39o0nHLzSg8kdougmcwxXrfYZNmracx1pQLvjWPCN9drcn
+ FeOAcvk3OC/ykbvAucubL/L6FXhyJU2osQdChqi4y2zB4Y0xZVJqWWfSOt+QIn6eqKIR
+ L6Jy5yeqgNmaEQu68YHsQcg7IQWUAlm5GE4c4C4dvjB13XZ8jyk2JN3A1lCyQQd3k3Qf
+ RPH5nnRwr5ize3vJ5dLTm4hqopCDKABQeSus/Qg+rOOar2mXmB2SWsUI6fs20sQBxW3x
+ j8t5AqUBh0PAhL1ILUpPBgkq4NBQL/XNxqOVIxzjevS+KarBEGgug1WJSYgjPkSMRsR5
+ VGDw==
+X-Gm-Message-State: AOAM532GDTqPrgTkDLl8Xs6T+Dl8sRMWZtJqJCNaydTMt92p7B7dgie0
+ QIaXSEs/4IL2xIiYF4OZc+4Knkuq174dk7nD0bc=
+X-Google-Smtp-Source: ABdhPJycZ82/dQ2znBgL0pLuCJ13f6SPkBhb/onDv2o3TeaSMpKRDUvadmLYqNTD72F5RNua1MGHp83w166OTPswtPQ=
+X-Received: by 2002:a05:6638:348e:: with SMTP id
+ t14mr3805695jal.145.1636444716827; 
+ Mon, 08 Nov 2021 23:58:36 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YYP/GWqbcvVFIrAj@intel.com>
+References: <20210730041355.2810397-1-art@khadas.com>
+In-Reply-To: <20210730041355.2810397-1-art@khadas.com>
+From: Art Nikpal <email2tema@gmail.com>
+Date: Tue, 9 Nov 2021 15:58:25 +0800
+Message-ID: <CAKaHn9+sgFXtOXFNx=BGVyaoh6B_ZmVOS0RcWw49tvpJyNcgow@mail.gmail.com>
+Subject: Re: [PATCH v4 0/3] watchdog: meson_gxbb_wdt: improve
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: wim@linux-watchdog.org, Guenter Roeck <linux@roeck-us.net>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Christian Hewitt <christianshewitt@gmail.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-watchdog@vger.kernel.org, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ LKML <linux-kernel@vger.kernel.org>, 
+ Artem Lapkin <art@khadas.com>, Nick Xie <nick@khadas.com>,
+ Gouwa Wang <gouwa@khadas.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211108_065946_772575_01B2079D 
-X-CRM114-Status: GOOD (  27.65  )
+X-CRM114-CacheID: sfid-20211108_235838_380407_F9421D17 
+X-CRM114-Status: UNSURE (   8.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,124 +91,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5821753782198220679=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+hi Guenter Roeck
+why still not merged to upstream ?
 
---===============5821753782198220679==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="u5n44bpbocthx4et"
-Content-Disposition: inline
-
-
---u5n44bpbocthx4et
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Nov 04, 2021 at 05:41:13PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Thu, Nov 04, 2021 at 09:48:41AM +0100, Maxime Ripard wrote:
-> > Hi Ville,
-> >=20
-> > On Wed, Nov 03, 2021 at 08:05:16PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Wed, Nov 03, 2021 at 01:02:11PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > On Tue, Nov 02, 2021 at 03:59:32PM +0100, Maxime Ripard wrote:
-> > > > > --- a/drivers/gpu/drm/drm_edid.c
-> > > > > +++ b/drivers/gpu/drm/drm_edid.c
-> > > > > @@ -4966,7 +4966,7 @@ static void drm_parse_hdmi_forum_vsdb(struc=
-t drm_connector *connector,
-> > > > >  		u32 max_tmds_clock =3D hf_vsdb[5] * 5000;
-> > > > >  		struct drm_scdc *scdc =3D &hdmi->scdc;
-> > > > > =20
-> > > > > -		if (max_tmds_clock > 340000) {
-> > > > > +		if (max_tmds_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
-> > > > >  			display->max_tmds_clock =3D max_tmds_clock;
-> > > > >  			DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
-> > > > >  				display->max_tmds_clock);
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/=
-gpu/drm/i915/display/intel_hdmi.c
-> > > > > index d2e61f6c6e08..0666203d52b7 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > > > @@ -2226,7 +2226,7 @@ int intel_hdmi_compute_config(struct intel_=
-encoder *encoder,
-> > > > >  		if (scdc->scrambling.low_rates)
-> > > > >  			pipe_config->hdmi_scrambling =3D true;
-> > > > > =20
-> > > > > -		if (pipe_config->port_clock > 340000) {
-> > > > > +		if (pipe_config->port_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
-> > > > >  			pipe_config->hdmi_scrambling =3D true;
-> > > > >  			pipe_config->hdmi_high_tmds_clock_ratio =3D true;
-> > > > >  		}
-> > > >=20
-> > > > All of that is HDMI 2.0 stuff. So this just makes it all super
-> > > > confusing IMO. Nak.
-> > >=20
-> > > So reading throgh HDMI 1.4 again it does specify 340 MHz as some kind
-> > > of upper limit for the physical cable. But nowhere else is that number
-> > > really mentioned AFAICS. HDMI 2.0 does talk quite a bit about the 340
-> > > Mcsc limit in various places.
-> > >=20
-> > > I wonder what people would think of a couple of helpers like:
-> > > - drm_hdmi_{can,must}_use_scrambling()
-> > > - drm_hdmi_is_high_tmds_clock_ratio()
-> > > or something along those lines? At least with those the code would
-> > > read decently and I wouldn't have to wonder what this HDMI 1.4 TMDS
-> > > clock limit really is.
-> >=20
-> > Patch 2 introduces something along those lines.
-> >=20
-> > It doesn't cover everything though, we're using this define in vc4 to
-> > limit the available modes in mode_valid on HDMI controllers not
-> > 4k-capable
->=20
-> I wouldn't want to use this kind of define for those kinds of checks
-> anyway. If the hardware has specific limits in what kind of clocks it
-> can generate (or what it was validated for) IMO you should spell
-> those out explicitly instead of assuming they happen to match
-> some standard defined max value.
-
-AFAIK, in the vc4 case, this is the hardware limit.
-
-And there's other cases where it still seems to make sense to have that
-define:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
-vers/gpu/drm/drm_edid.c#n4978
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
-vers/gpu/drm/radeon/radeon_encoders.c#n385
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
-vers/gpu/drm/amd/amdgpu/amdgpu_connectors.c#n1174
-
-etc..
-
-Maxime
-
---u5n44bpbocthx4et
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYYk7VwAKCRDj7w1vZxhR
-xXMgAQDnhMqR+evxrKBoJpC1Nd4kEZ4dT6uhRIbk5B86PNJztQD/c9fOYpIMx9ID
-px7xLl3B61kKbIVKVlnQO4kdunKyJw8=
-=VxQ1
------END PGP SIGNATURE-----
-
---u5n44bpbocthx4et--
-
-
---===============5821753782198220679==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+On Fri, Jul 30, 2021 at 12:14 PM Artem Lapkin <email2tema@gmail.com> wrote:
+>
+> * Added nowayout module parameter
+> * Added timeout module parameter
+> * Removed watchdog_stop_on_reboot
+>
+> https://lore.kernel.org/linux-watchdog/20210729072308.1908904-1-art@khadas.com/T/#t
+>
+> Artem Lapkin (3):
+>   watchdog: meson_gxbb_wdt: add nowayout parameter
+>   watchdog: meson_gxbb_wdt: add timeout parameter
+>   watchdog: meson_gxbb_wdt: remove stop_on_reboot
+>
+>  drivers/watchdog/meson_gxbb_wdt.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>
+> --
+> 2.25.1
+>
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5821753782198220679==--
-
