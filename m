@@ -2,85 +2,85 @@ Return-Path: <SRS0=UU9i=P5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C101C433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Nov 2021 02:26:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CA94DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Nov 2021 02:28:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 10C9561181
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Nov 2021 02:26:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 10C9561181
+	by mail.kernel.org (Postfix) with ESMTPS id 76FA461073
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Nov 2021 02:28:20 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 76FA461073
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ex6MseI4zJyMZr1M20JG+g+CKZPQep6+RcOWlGk01l0=; b=XM2y9ffAs5dErn
-	LjZ+ZxHKBOgLADoOElYKaSsf/zeP/zMEbuqqqxEMWq/p1XNcTvJaFNd+a+ab7DwySmWPhIXV2rqc3
-	DaEpWNBFaQY90A1t1HUod5F6IUWIOhZU2G14KHsH61G4StDVIYQ9Ckeq088HYnFZG6RMnI86Z4AzN
-	c54XaFmV2/wIOp/4UXG7qgoz175/GhKnwaCCLtcnYWY/P/onK9qGsPHVD7Z/EZtn5KGNXflvl86AE
-	3uXxcnQ0/QWVL1iE3c/zg8iWk2LnSU7L98ZZoL1COBom28ws+szQOeKuId/iSpqtltzX7TpeN9SG+
-	j1w95WTcNaddYnGmdCdw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=j+fQlzAzqU9u7qgDJjG1iRed+sNBitqMAkiY8ruqTxw=; b=Cr0RKrQq0psQ3K
+	aM7LhAgVZn7QBJtty8Pq2X4OZXGifdFDaaneUzDtH+4qm6y0jTBQhrzmfSnUQ3x5ghou2KI1A5QDf
+	SUzgv4c3xP+aED444uTYFFnK1+Sp9pgup9Enn5KVAzQqO4XYOgm2Pf6VOZ/PnBTk0pIFy/ALPrwzo
+	8QxC74jcThI+OpN2hdA6uVGzWu0kSz9AlVqdwRyQt4mytduhLJuciSwPBml297O/NFt6H1Uk0phF+
+	JytrDHBzE0W9kmRfgM2qGAxpkVBkvqLxoTB8MhzBfenBscqb529ysgyYBs2W1vhX6iGMNYkk5c4fV
+	RueHotlBhjMFwb2ar26Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mkdJI-004K25-Tl; Wed, 10 Nov 2021 02:26:00 +0000
-Received: from mail-pf1-x42f.google.com ([2607:f8b0:4864:20::42f])
+	id 1mkdLT-004KOM-CC; Wed, 10 Nov 2021 02:28:15 +0000
+Received: from mail-io1-xd2d.google.com ([2607:f8b0:4864:20::d2d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mkdJ6-004K0N-Ba; Wed, 10 Nov 2021 02:25:49 +0000
-Received: by mail-pf1-x42f.google.com with SMTP id x64so1241707pfd.6;
- Tue, 09 Nov 2021 18:25:46 -0800 (PST)
+ id 1mkdLF-004KLv-W7; Wed, 10 Nov 2021 02:28:03 +0000
+Received: by mail-io1-xd2d.google.com with SMTP id r8so1059062iog.7;
+ Tue, 09 Nov 2021 18:28:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=q5hdjzL4fx6MCYrF1luLAHmrqgFH4sajhljBKE+bpBg=;
- b=Wp+933VhmWr8dtWw/LmFTkCFPa157nh6dtoQBDi+ZbQOVf3NDHU9wcEzgG+H7BEI7K
- NLYHDVZoKBLpaQJMIEjYvlK3Bd/AHs17vskCadVZyTFRr0VdRi86b5RAMizT5UzaxWAs
- EkwfgaYc5n9QNImDflB5KLxL1KBdZC+2VEwXtYeo6zHrUxyzP7xy0NYs8GW6Iwd/ygzs
- RtdBVGVE6Ed7qcZCeUd4S6mfbS77ZXzIix9Gxlv/wp7h70D7WejVaL1L2g/x2nNxNIyO
- GnxU/Sd+s3ZebXJTQtOSNnIJTTvMvoS766KbPjeb1HLUWB4XnAc9i05bwChVHxjLIqDW
- SsOQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=NZa7ro0mt+1m73OfXo7S1sh7QMO6OoAdAVHj6tyyP3w=;
+ b=RwGT3awlgpV7L6eTUuK+fhfL8t4M2SvV96j1JF+T3BtTm0WgyYoxws36gSEjazdUx0
+ ooWxhkSKADc5pu1Z+APBY73BmzWMW92OvwmvQ9sdHM5PdJGdoBz8OLih73W+n159xsP2
+ F1U4CwQ1qMuhi86TruvllC0JEulr9Sn28uQEhk/XsNtTf9BgsG9rhVxgMeYx8yjkcqXn
+ sl2LbIEhHfS2XKjo1sMHoV7XsYMnB2pEj4Xjlh4gvFbsCyl1ZqPzBj6qVbbw4EV4DOGk
+ YQ4SWyErdWOOnHbsXgvuE6QTzkHZdVEqQ58qq6SaDrI+20EcSJH67EaDQNy0n7GlXEe4
+ MKIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=q5hdjzL4fx6MCYrF1luLAHmrqgFH4sajhljBKE+bpBg=;
- b=25iDJZuDWgmmOhkr0Z/7glwxjid5/NoH+/be7E6DZ2WlXQYHzzQ9ma03nOEJIjK7eh
- QQDOir3xnlm1xUtqQ6dRtsoEHJfhj267J/WxH+2bS0ssHE4l5fGczCq+qiL4kPujKJI0
- UsmTXlBaxle8E7hhxPkj8rBvQIUWl3q5jNC07hC7JIybxrfQS+zUVQx3iEQXt2tWV8Qf
- 4bUi6+SxL5/GuodCsWYzj1G1EiOqZtMIYD1h5KnqhlGiI10iAjUNcrUeXHSUKewCl8hx
- aYsmvvVGo3MYAnWv4kEm7A5hC6b+SrKbdJDOrDZXaZcnDlQRXipydUm0nFs6NQR2pCvi
- qU6Q==
-X-Gm-Message-State: AOAM531YZY+LLTgLlR4WYxMEMxraHV1GN1oa/HIelzdLg6zZNFItkF0P
- LqPQ6TCOCFO4dzuDUMVpwLM3Pd+u6dudtQ==
-X-Google-Smtp-Source: ABdhPJz1UTTIA0xBXm0xDek+ozp9l2COtEg6hY65GnBGdHEijkLASf7Z9daKMsPvfSp9vInmptn37A==
-X-Received: by 2002:a63:b50d:: with SMTP id y13mr9418770pge.286.1636511146444; 
- Tue, 09 Nov 2021 18:25:46 -0800 (PST)
-Received: from localhost.localdomain (199.19.111.227.16clouds.com.
- [199.19.111.227])
- by smtp.gmail.com with ESMTPSA id ns21sm3647887pjb.37.2021.11.09.18.25.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Nov 2021 18:25:46 -0800 (PST)
-From: Artem Lapkin <email2tema@gmail.com>
-X-Google-Original-From: Artem Lapkin <art@khadas.com>
-To: narmstrong@baylibre.com
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, khilman@baylibre.com,
- jbrunet@baylibre.com, christianshewitt@gmail.com,
- martin.blumenstingl@googlemail.com, linux-watchdog@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, art@khadas.com, nick@khadas.com,
- gouwa@khadas.com
-Subject: [PATCH] watchdog: meson_gxbb_wdt: remove stop_on_reboot
-Date: Wed, 10 Nov 2021 10:25:18 +0800
-Message-Id: <20211110022518.1676834-1-art@khadas.com>
-X-Mailer: git-send-email 2.25.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=NZa7ro0mt+1m73OfXo7S1sh7QMO6OoAdAVHj6tyyP3w=;
+ b=7Yju3yw1ZjBmEHHU59qysbl2xHigzl4bpe/bDEHmFWQgkE8wgzl6YGRw0NJ4RCEnmd
+ 26et+dIRiM5cHNrMHDMgkzJdwtG7Nt6UMHO0ABKLpvX4nJT+XsqSOGh1TRzY7bIJ/2sV
+ vrJMoDF53ikj40Mx96KdEqhS3PwjI9fPr1ftVeGu5A9nq2Ksip0jvcceqrvf4oSzTFij
+ P4GLooA3tnf114AXW2ygbw8r9ZahFyRpiGnlJKyVqeH0dC9czvhvQ4+kRC8jngqNzR4C
+ 4aVvRlrLSgPTfxNhvr4Pat32TQAHuMXIzA+lKXtDmo7SaXYTDpHFB4vKq4eR53wMnAIZ
+ 5Nsw==
+X-Gm-Message-State: AOAM5314drUBO+kvm2mswt5YqYNsB7MaKoF7FFdCTJOBO3h4pzQjIr2S
+ fwf1Eqp6nSz7V8xKvRWyNIhdkihm2nW848y4P10=
+X-Google-Smtp-Source: ABdhPJz2OQAmvT8DPC+HdByniVeapr1YeGE2uk9XjMA0mDMCS0vKj6j44XdMVIWTqAolIW3RZSLLDd9BdIE5WyvnXqU=
+X-Received: by 2002:a02:cf3c:: with SMTP id s28mr9384203jar.140.1636511280320; 
+ Tue, 09 Nov 2021 18:28:00 -0800 (PST)
 MIME-Version: 1.0
+References: <20210730041355.2810397-1-art@khadas.com>
+ <20210730041355.2810397-4-art@khadas.com>
+ <CAKaHn9KxZDAHdKGZg3-Pi3jZO5E3knESHCFjgaV09u5QYe074A@mail.gmail.com>
+ <24363743-48fb-c01f-eb5d-0cd486d099f7@roeck-us.net>
+In-Reply-To: <24363743-48fb-c01f-eb5d-0cd486d099f7@roeck-us.net>
+From: Art Nikpal <email2tema@gmail.com>
+Date: Wed, 10 Nov 2021 10:27:48 +0800
+Message-ID: <CAKaHn9JgcZUHDu8=rWiN8p=Pow-iK73Be9s837+oyS_YcMkCxA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] watchdog: meson_gxbb_wdt: remove stop_on_reboot
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, wim@linux-watchdog.org, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Christian Hewitt <christianshewitt@gmail.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-watchdog@vger.kernel.org, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ LKML <linux-kernel@vger.kernel.org>, 
+ Artem Lapkin <art@khadas.com>, Nick Xie <nick@khadas.com>,
+ Gouwa Wang <gouwa@khadas.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211109_182548_423643_D6AC89A3 
-X-CRM114-Status: UNSURE (   9.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211109_182802_070885_F1744E57 
+X-CRM114-Status: GOOD (  23.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,38 +97,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Remove watchdog_stop_on_reboot()
+On Tue, Nov 9, 2021 at 11:30 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 11/8/21 11:59 PM, Art Nikpal wrote:
+> > hi Guenter Roeck
+> > why still not merged to upstream ?
+> >
+>
+> I had asked you to provide an updated description, without the "personal
+> opinion" part which does not belong into a commit log. The other two
+> patches wait for Wim to send them upstream.
+>
 
-The Meson platform still has some hardware drivers problems for some
-configurations which can freeze devices on shutdown/reboot.
+ok i have send this patch with new description again
 
-Remove watchdog_stop_on_reboot() to catch this situation and ensure that
-the reboot happens anyway. Users who still want to stop the watchdog on
-reboot can still do so using the watchdog.stop_on_reboot=1 module
-parameter.
-
-https://lore.kernel.org/linux-watchdog/20210729072308.1908904-1-art@khadas.com/T/#t
-
-Signed-off-by: Artem Lapkin <art@khadas.com>
----
- drivers/watchdog/meson_gxbb_wdt.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
-index 5a9ca10fbcfa..3f86530c33b0 100644
---- a/drivers/watchdog/meson_gxbb_wdt.c
-+++ b/drivers/watchdog/meson_gxbb_wdt.c
-@@ -186,7 +186,6 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
- 
- 	meson_gxbb_wdt_set_timeout(&data->wdt_dev, data->wdt_dev.timeout);
- 
--	watchdog_stop_on_reboot(&data->wdt_dev);
- 	return devm_watchdog_register_device(dev, &data->wdt_dev);
- }
- 
--- 
-2.25.1
-
+> Guenter
+>
+>
+> > On Fri, Jul 30, 2021 at 12:14 PM Artem Lapkin <email2tema@gmail.com> wrote:
+> >>
+> >> Remove watchdog_stop_on_reboot()
+> >>
+> >> Meson platform still have some hardware drivers problems for some
+> >> configurations which can freeze device on shutdown/reboot stage and i
+> >> think better to have reboot warranty by default.
+> >>
+> >> I feel that it is important to keep the watchdog running during the
+> >> reboot sequence, in the event that an abnormal driver freezes the reboot
+> >> process.
+> >>
+> >> This is my personal opinion and I hope the driver authors will agree
+> >> with my proposal, or just ignore this commit if not.
+> >>
+> >> https://lore.kernel.org/linux-watchdog/20210729072308.1908904-1-art@khadas.com/T/#t
+> >>
+> >> Signed-off-by: Artem Lapkin <art@khadas.com>
+> >> ---
+> >>   drivers/watchdog/meson_gxbb_wdt.c | 1 -
+> >>   1 file changed, 1 deletion(-)
+> >>
+> >> diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
+> >> index 945f5e65db57..d3c9e2f6e63b 100644
+> >> --- a/drivers/watchdog/meson_gxbb_wdt.c
+> >> +++ b/drivers/watchdog/meson_gxbb_wdt.c
+> >> @@ -198,7 +198,6 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
+> >>
+> >>          meson_gxbb_wdt_set_timeout(&data->wdt_dev, data->wdt_dev.timeout);
+> >>
+> >> -       watchdog_stop_on_reboot(&data->wdt_dev);
+> >>          return devm_watchdog_register_device(dev, &data->wdt_dev);
+> >>   }
+> >>
+> >> --
+> >> 2.25.1
+> >>
+>
 
 _______________________________________________
 linux-amlogic mailing list
