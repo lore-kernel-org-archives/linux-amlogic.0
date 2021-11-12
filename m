@@ -2,84 +2,85 @@ Return-Path: <SRS0=kAbd=P7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 047D5C433F5
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BA2AC433FE
 	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Nov 2021 16:33:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C86F060524
+	by mail.kernel.org (Postfix) with ESMTPS id DAE5560F55
 	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Nov 2021 16:33:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org C86F060524
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DAE5560F55
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=hC2g6BNR0GGSntxsy6qU2PrXzy/5dO8PW+lg2pgGPV4=; b=PpvFQKKgJgAv/K
-	zAGPbdJ1SBfpKZnNvKv8X0LUR4mBTEtFeRUNTfPWcPLKwVL1u/ljZnX9GfaRBoljJlWjfTvjtrMl9
-	ljeYj2HLE9wVSsZSBEv6HZpgA3Z6xrb18wMdqiF3nSOSWhsih792d0VEiNrRNtaY8ZsxcYIUWCs+z
-	LEV/YBNSFzxW3OPFJF9vJBmCBbyY8Kh7ZfnkU+7UXhX+IgbhXY7I3g+t1ZhfoDDRH4/KKyvGJeutC
-	wRDCh/XJ1gLYrWDDZUAN2OxZbMf8GSn0S6nZWQ03VGVNHI15G+Pvb1omCqrIhkbJDY2DPUUdSS0jw
-	jvHwqmAK4+/JskaR5hYg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=XcEfF8A+p4pI8CxO3sCCw1HnpL6UdeGWpRg86xbbZLA=; b=hJo9K5OS4dMEtu
+	Y9+pK1mjMUjhL/FIqFGnKTIugRdTg8UdguISCooEGUaJ2q4tj2pWnVCX/viSYMnmyQi5w0dorAWgS
+	nwzGKsXuH+obwATnNlnF5KDO5YXlDgIwj0I7FQbAJVwQnWwXQYyXtwWYFrdfJz6/mFCwpzYD+/49J
+	ChNifiJ0fk8mvo8L71/PkWW5Kh00hc2Sf65r9xuYc6wAUWF9yFyMJl3gTdmATvEMi4mNmS61Nxtn8
+	rV+Ouh1w0NZuIxuaDfFBjaLqiZgXQZh2fAJwvgnELLuKIv/TANPVGYS3newU31UIA/U9BI5XpnJWc
+	+9HXGOBZmBgb29pq0SBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mlZU2-00BEjB-Dq; Fri, 12 Nov 2021 16:32:58 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1mlZU3-00BEjW-3v; Fri, 12 Nov 2021 16:32:59 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mlZTx-00BEgi-MJ
- for linux-amlogic@lists.infradead.org; Fri, 12 Nov 2021 16:32:56 +0000
-Received: by mail-wm1-x336.google.com with SMTP id
- p3-20020a05600c1d8300b003334fab53afso7418266wms.3
- for <linux-amlogic@lists.infradead.org>; Fri, 12 Nov 2021 08:32:51 -0800 (PST)
+ id 1mlZTy-00BEhT-Mv
+ for linux-amlogic@lists.infradead.org; Fri, 12 Nov 2021 16:32:57 +0000
+Received: by mail-wr1-x434.google.com with SMTP id i5so16553654wrb.2
+ for <linux-amlogic@lists.infradead.org>; Fri, 12 Nov 2021 08:32:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=DGBR4yhVEVUiH/mTvdt3pOymiiSiQAdDtYWSc9ZGrG0=;
- b=0DcN2fMUFea29aTX3A0c1UOJ28rJ35uyYIEZcr6SwdfWp6ieSpdvTH5CqkprU3lZrY
- eYvdpUrqGzBoBpfEdU/A1ubOApjD/5JKrmkCDcnJwgbwyyb7sy1t16vpec/eFbGSeGir
- jisBenr9phF219QXnHpY0pajSCIs/qmhv8fy8ARxH26LKM6Hdfj5zPy3SFRBix+In7IH
- YUAJHqMeeRV77OEf5fFIjdV7MV51jFaoc0gev6+CmWvl+wrSjaQQJwWue/ImoNlxXKJb
- slsdjzPeIrzjAk4yBd3YQR9dWBAELxyWuhPLDNZNA4Zt6P+sW80EnSDAZfKQ5ZEYIq33
- H+OA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=+QipG3moXrpkh2YURj9JhExl3AcdSIwqw5E1yOYJddA=;
+ b=JyorvgXBmxmsNhnms+ripo7aB4EgWROWWCo5bRvkc2vYFxbb2a8lcg33YB9Wiq+ZEK
+ MUyRDOmb+EUl3MMc6XH1vmzi2T5Csgw4z1Yj1bdgbc3Nh9iJTXUAMaNK6hqMa+CplPsi
+ pnFsD+wT6bQGzyiB/YBU1INtBZuOiVJ2g6i30kSXsuWIfj1b4SNd8mb5OlPBExUi2pdh
+ 7/+MhkcIMt38KZQGhGSYeR3YwSWURpof8pOm3d2PbQtcl8bKvOIXOST69MgDmbc+Km1Y
+ CDMyp02bUAEGW1nS4xoOXS5U+8yZu7W72QCo7gC62hlTGw5imn+v+sfnuj3FGfoHlIb8
+ Q9xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=DGBR4yhVEVUiH/mTvdt3pOymiiSiQAdDtYWSc9ZGrG0=;
- b=prvHqV8XQNjXUWkZwB47jFn5h3bpy4kJG/NUb0+sep7Ye7FpYUtIV1Ase/TgkMsZTE
- rrCchpfE5T75aRbHmURrZB2ta4LqCXuk4Uo6p61hj2akwM0m8m+Dr7tXme2bF+sFNjnC
- H+1l7Oa13RlNA7AdQxFkLPYeAloT93+7XpYaeEKvstAEmgizt+wOau3kFYzxDFvOm1g9
- syk4rmcWdilN9qhY4A98AGenHuf3FNPkm1MPUSkMQ5fzKgnvpVCVcVlrMd4+giO4vJM0
- 81ixgbl71EY1PBJHBYvpNfz3jE9iDCxi+IiLMI3JFTtaGKYOXwuXjyLLmTp37yj5wQrF
- ZIgw==
-X-Gm-Message-State: AOAM533i+OKj5tZcUIrdAPhTexcvb6ppibkuYod5JY78miFaXSRyAqt/
- ae5YxD4DCOSliyg41kjVpzbxNQ==
-X-Google-Smtp-Source: ABdhPJw1tOAOTgPniZes4U598/XcPfLUpeKPB4JjYZscOvDg5o6kWwj4LaxqChWBNH9QiouZWH2+pQ==
-X-Received: by 2002:a7b:ce0f:: with SMTP id m15mr17858537wmc.149.1636734770410; 
- Fri, 12 Nov 2021 08:32:50 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=+QipG3moXrpkh2YURj9JhExl3AcdSIwqw5E1yOYJddA=;
+ b=xZlAZC4FKpEr1zvb2fkaMQTlj5KmvgOc4Lys/Up26W2+Q+bBCJswxLqBnDKTSb/HOM
+ vUGjYMapr72WeWDcgxm6Yc/mR69TgbzsnkV8KHEtawD11uiNlNplDj8Qh6KzRQ2UMvN9
+ jFyRRUjs7wTw4HCb8DLidokP+MLqQCnAYY0LStkdN9/1Fye/o3l9jeL8LyF7O7OxfwhB
+ +/2Za0+n96cuctkNqvMGHuoSN4VAyH2IHl4uo9D5iJc2KhJnuh+xUrktAyLVpzlXvuhc
+ laLrT/whOzSFKVf7mmR4bWg92pgUzvnNWusd60tpNanFVDOWZe1ns9dzS/oxB3m+FGLB
+ 6sSQ==
+X-Gm-Message-State: AOAM533YJMfIEg+b6gXizcO/sq0GfTWtTJp1oN4ZNRfpgRgLJQu1bUTM
+ A02nP9GyfIVvWPtNOs5zU2IG7EPSGOnp5Q==
+X-Google-Smtp-Source: ABdhPJwYAIW2CGWwtrkZv6a8wia60Ojdm2EmkVQMST/tv2MCGtp0hNMsNM5xPzPDhgP95OsxghTNkQ==
+X-Received: by 2002:a5d:5888:: with SMTP id n8mr20121587wrf.234.1636734773433; 
+ Fri, 12 Nov 2021 08:32:53 -0800 (PST)
 Received: from amjad.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id h15sm6253796wml.9.2021.11.12.08.32.49
+ by smtp.googlemail.com with ESMTPSA id h15sm6253796wml.9.2021.11.12.08.32.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Nov 2021 08:32:49 -0800 (PST)
+ Fri, 12 Nov 2021 08:32:53 -0800 (PST)
 From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-To: khilman@baylibre.com
+To: balbi@kernel.org
 Cc: Amjad Ouled-Ameur <aouledameur@baylibre.com>, p.zabel@pengutronix.de,
- balbi@kernel.org, jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: [PATCH v3 0/3] usb: meson: fix shared reset control use
-Date: Fri, 12 Nov 2021 17:28:24 +0100
-Message-Id: <20211112162827.128319-1-aouledameur@baylibre.com>
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org
+Subject: [PATCH v3 2/3] usb: dwc3: meson-g12a: fix shared reset control use
+Date: Fri, 12 Nov 2021 17:28:26 +0100
+Message-Id: <20211112162827.128319-3-aouledameur@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211112162827.128319-1-aouledameur@baylibre.com>
+References: <20211112162827.128319-1-aouledameur@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211112_083253_807729_944DC255 
-X-CRM114-Status: UNSURE (   9.34  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211112_083254_770302_D8388CEC 
+X-CRM114-Status: GOOD (  13.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,37 +97,89 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset fixes a usb suspend warning seen on the libretech-cc by
-using reset_control_rearm() call of the reset framework API. 
-This call allows a reset consummer to release the reset line even when 
-just triggered so that it may be triggered again by other reset
-consummers.
 
-reset_control_(de)assert() calls are called, in some meson usb drivers, 
-on a shared reset line when reset_control_reset has been used. This is not
-allowed by the reset framework.
+reset_control_(de)assert() calls are called on a shared reset line when
+reset_control_reset has been used. This is not allowed by the reset
+framework.
 
-Finally the meson usb drivers are updated to use this new call, which
-solves the suspend issue addressed by the previous reverted 
-commit 7a410953d1fb ("usb: dwc3: meson-g12a: fix shared reset control
-use").
+Use reset_control_rearm() call in suspend() and remove() as a way to state
+that the resource is no longer used, hence the shared reset line
+may be triggered again by other devices. Use reset_control_rearm() also in
+case probe fails after reset() has been called.
 
-changes since v2 [0]:
-- Rebased on latest master
+reset_control_rearm() keeps use of triggered_count sane in the reset
+framework, use of reset_control_reset() on shared reset line should be
+balanced with reset_control_rearm().
 
-[0]: https://lore.kernel.org/all/20201201190100.17831-1-aouledameur@baylib
-re.com/
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
 
-Amjad Ouled-Ameur (3):
-  phy: amlogic: phy-meson-gxl-usb2: fix shared reset controller use
-  usb: dwc3: meson-g12a: fix shared reset control use
-  phy: amlogic: meson8b-usb2: fix shared reset control use
-
- drivers/phy/amlogic/phy-meson-gxl-usb2.c |  5 ++++-
- drivers/phy/amlogic/phy-meson8b-usb2.c   |  4 ++++
- drivers/usb/dwc3/dwc3-meson-g12a.c       | 17 ++++++++++++-----
- 3 files changed, 20 insertions(+), 6 deletions(-)
-
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index d0f9b7c296b0..bd814df3bf8b 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -755,16 +755,16 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 
+ 	ret = dwc3_meson_g12a_get_phys(priv);
+ 	if (ret)
+-		goto err_disable_clks;
++		goto err_rearm;
+ 
+ 	ret = priv->drvdata->setup_regmaps(priv, base);
+ 	if (ret)
+-		goto err_disable_clks;
++		goto err_rearm;
+ 
+ 	if (priv->vbus) {
+ 		ret = regulator_enable(priv->vbus);
+ 		if (ret)
+-			goto err_disable_clks;
++			goto err_rearm;
+ 	}
+ 
+ 	/* Get dr_mode */
+@@ -825,6 +825,9 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	if (priv->vbus)
+ 		regulator_disable(priv->vbus);
+ 
++err_rearm:
++	reset_control_rearm(priv->reset);
++
+ err_disable_clks:
+ 	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
+ 				   priv->drvdata->clks);
+@@ -852,6 +855,8 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
+ 	pm_runtime_put_noidle(dev);
+ 	pm_runtime_set_suspended(dev);
+ 
++	reset_control_rearm(priv->reset);
++
+ 	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
+ 				   priv->drvdata->clks);
+ 
+@@ -892,7 +897,7 @@ static int __maybe_unused dwc3_meson_g12a_suspend(struct device *dev)
+ 		phy_exit(priv->phys[i]);
+ 	}
+ 
+-	reset_control_assert(priv->reset);
++	reset_control_rearm(priv->reset);
+ 
+ 	return 0;
+ }
+@@ -902,7 +907,9 @@ static int __maybe_unused dwc3_meson_g12a_resume(struct device *dev)
+ 	struct dwc3_meson_g12a *priv = dev_get_drvdata(dev);
+ 	int i, ret;
+ 
+-	reset_control_deassert(priv->reset);
++	ret = reset_control_reset(priv->reset);
++	if (ret)
++		return ret;
+ 
+ 	ret = priv->drvdata->usb_init(priv);
+ 	if (ret)
 -- 
 2.25.1
 
