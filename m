@@ -4,73 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 684BEC433F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Nov 2021 23:36:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96B6CC433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Nov 2021 23:40:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q67eyjAUlElrme+C4msFWgkN4K7usMftQwmcl1PpMOY=; b=szVTjIFmQ5DJ+k
-	Pr0Lmn2HSVcAUQ2gb59ML5EHeitPtmG89crcFKPlrZSnHpJKyZugyrfFbbLad18yt+2Uptzv+qELY
-	MbZrydG+5edYEQE0wtTPjQCqeNYOIASxMrOVdBSuwpDYgNuoYPfGFMvWxsjbkmvS349ekOFoOE6OO
-	HYCYxkNACINUgURgscjuHrMz45ktVIDxTyx+adiUtkbAuLMK6pNTe0IRc8UaP8YN56pqbG0imT0B3
-	gYWsvDFe1TrQk7bNW5QoHkwM27HllzHc7h80ht8kpvkntGbYMS8uwfpXfElSxuA8sn54B6VDhDu0o
-	UK0uSJYNdCs8vJMvRo9g==;
+	List-Owner; bh=vzWPiBZjT7nmoOWCQDL35Mjz0x/PYXWbfpKvAxDYtUo=; b=i8ohtoviCW9V8z
+	BAM9sB5u+gqDvQ5eDVdHXStRI1BdceIod4y9GVj+AQeT4H0vxRuOzmPzF0O1pVoqvrV6AZtXuu3/r
+	bXyxj4s3NoBhfYTE71jr9ROXH71c1hQPK7dxRUVIw2NB8NqiLbHNURvUwd3xJXAdY2uN74YNKcNJx
+	TEvsQyWZqvi1odg4wwEV9Y6IqojdN92FoWAVxGyd2IORvDdepJy5Ou/lBth3TkTjVkThUJvjlQp+N
+	QUcKqOHfkyXv6oPqYwiRz4NLcGu1mmB23f5d/d4w9Q+PYaGIhnwvFeHz72kIX5PgUnpSywsTUrt52
+	aBNgomArU7eocYyFxHGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1moZtq-00D412-Rh; Sat, 20 Nov 2021 23:36:02 +0000
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+	id 1moZxr-00D4NC-T2; Sat, 20 Nov 2021 23:40:11 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1moZto-00D402-3u
- for linux-amlogic@lists.infradead.org; Sat, 20 Nov 2021 23:36:01 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id r11so59121876edd.9
- for <linux-amlogic@lists.infradead.org>; Sat, 20 Nov 2021 15:35:59 -0800 (PST)
+ id 1moZxp-00D4Mo-9o
+ for linux-amlogic@lists.infradead.org; Sat, 20 Nov 2021 23:40:10 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id w1so59210693edc.6
+ for <linux-amlogic@lists.infradead.org>; Sat, 20 Nov 2021 15:40:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=miohu6SbfONOwXs1AwLBMAYQ0I6KHthWM0k34SPD7Us=;
- b=KbfG5lOwCuU4fJYKhZXBMoXldAxxH37JKquC84SiBrjn42kWCfF/rRtD+E2hNHDEVd
- vuRyU1GDXmDJhT8Kfxdh5bOyp6FYNgxCSsXTkg/GqPzSvFFws//qi24FhOYj8UHwMmmC
- 1xYj/dqPSaX+CBc605DYVmwKmzYLpwILnKTFUY3uS5Ca1/YoDFDy0DoosCF2YSStoSfa
- YRFRY7EuAIL/Xa6wGOuPi5aTZxyr4aYOek632+8M/K/w3+TwDr9vanHwzJiezhOp67CS
- NMqsVpiHl5+DLGEv2qB8Myiq7hlLEBtb/I/3OJSblKkkup5/bLzXgYegGK0sFZ//omz2
- nb5g==
+ :cc; bh=65MbiCirE9d1cqOS3f7OshdK8GTlWYGnLliUJ1JW4TI=;
+ b=PeubQnk3Yfliv//Bdzq5DZVf8lnujLcLRhwLW4YrU04aspNKB8vxK0JhVry3TVWcLh
+ LTJrgAyP9buv4LG+ijX8Oc8qVHhEh+1ogkviZodLZhZbOVVf7Et+1p2CrvuKEaniEVyJ
+ SNt28yBZ0lCbHgWdd5/eFNPyH3LrjGxGPf76Dw+whk9IUb5Fz8zAgLzwgU0uev0eiePi
+ G1CIR98OPctQI3DVtKs4dHSY/IS3NAOBYo4VTcJ3kP6bxg2JPeBDS1vEVPt+2URjxDcF
+ CTIWBfX1oqfbyPLnE0nSXzdIfN+PU/pcO6d0Vc/BjLei3r0okEPDOyDcRMOCzk2SflDX
+ aZxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=miohu6SbfONOwXs1AwLBMAYQ0I6KHthWM0k34SPD7Us=;
- b=FHPS/AwwHUPoSqsuQ9cSohyG2i72UIEumW2h6jTKFW3l0O698fMlSn36ILDyL7qUNO
- WS02CBj/oDPNrHwS4/yU6itklTUGd8tFV7a2d1tlduEbDRAgx5+mKDdni4QTPxyoOp1V
- fzKtfHjNE3s5z3dw1oYkfEM5b6y8KD0D90v7F+dlpPv93cJFHsBktV4pzRs2pA+MiqpD
- AStuu3+qZs5QItb2sIuYjXQpPIi5JYcS/2ppVfdr88t3J3/QsKGf+QVMXpkV7oHs32x1
- mfrHwNoJcVucNODVQqPp2P9lWjHleK1H+KaEO2w3i69BzvAiRmmvwRZ8IJbqkeKuBhxh
- 5kjA==
-X-Gm-Message-State: AOAM532oGfX/hSrJfLp6UCv0tk5TXL14Cidkpgi6/ybktPT6VMB8BTah
- 5xbn15wPV0c+VFFP2XugUSpcxImFwnkEf+nkU7ILhBAWscA=
-X-Google-Smtp-Source: ABdhPJzb+Mb/pzMZF6ItoCWBP0DnD24bZ4mfE4rlHkdFJveHiazebKcC14rKmD2Uh1pseETZYxoWlxUleqtrT4mNHMI=
-X-Received: by 2002:a17:906:2788:: with SMTP id
- j8mr23369848ejc.203.1637451358629; 
- Sat, 20 Nov 2021 15:35:58 -0800 (PST)
+ :message-id:subject:to:cc;
+ bh=65MbiCirE9d1cqOS3f7OshdK8GTlWYGnLliUJ1JW4TI=;
+ b=HwFm7fa/S+JXbvhTSbCzPKMheLn5R132nDnUm80/z/LpwAa1Z2MEICOAPJluJHOFYQ
+ 43YRSBFL+eCIq3Qv1uopofbz7VS8DlMm6qCs6oNARh5BCvKI8NRIkJLplUTrtHrnzwbH
+ RIlX2oniFKk+HL/yXrGS4fGI9NQDbim1Qr0kofKRuWNtGPgrRW/+WC/tXq+Oeor5gs1x
+ tGMICOZh4X8NupHUJ/AorL3xGYIrRmwLSkYH28twgeCeS7B3kpJXD8LSY6vTuKFnznOr
+ uioKP8yMXirTEyQ32XuzIEY0wILqfTWiFexUnhmI36icegwkNZHHHh6rhNsMv//03ZO3
+ uHJQ==
+X-Gm-Message-State: AOAM530q47roAOzdJ8RUIktoZHmTrFlOZsAWOTDMf0+EQcAbxzgI1zZd
+ OToDFHitullQyZ2zpwQiw298UQN4Ic8jTbpRLa0=
+X-Google-Smtp-Source: ABdhPJyuw2LGnZSgNbwuV6TKKfWCPeJ20W180C+o72+JnsmMFpFls0G1soAIz58Nf2hd7ZCeO9tiOHQuwjurfIHDNI8=
+X-Received: by 2002:aa7:cb41:: with SMTP id w1mr44250205edt.327.1637451607740; 
+ Sat, 20 Nov 2021 15:40:07 -0800 (PST)
 MIME-Version: 1.0
-References: <20211108134628.120474-1-u.kleine-koenig@pengutronix.de>
- <20211108134628.120474-4-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20211108134628.120474-4-u.kleine-koenig@pengutronix.de>
+References: <20211112162827.128319-1-aouledameur@baylibre.com>
+ <20211112162827.128319-2-aouledameur@baylibre.com>
+In-Reply-To: <20211112162827.128319-2-aouledameur@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 21 Nov 2021 00:35:48 +0100
-Message-ID: <CAFBinCCzw4NXU9TSnnRRQ5Jo+Nug=oAsB=_0GR3TmBRxSgNngQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] pwm: meson: Drop always false check from .apply()
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Lee Jones <lee.jones@linaro.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, linux-pwm@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, kernel@pengutronix.de
+Date: Sun, 21 Nov 2021 00:39:57 +0100
+Message-ID: <CAFBinCA4UHybSkKX=yRvEE3k7oSwFEzYADkZdsMxfMsp-Cmodg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] phy: amlogic: phy-meson-gxl-usb2: fix shared reset
+ controller use
+To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Cc: khilman@baylibre.com, p.zabel@pengutronix.de, balbi@kernel.org, 
+ jbrunet@baylibre.com, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211120_153600_184008_1928F67D 
-X-CRM114-Status: UNSURE (   6.61  )
+X-CRM114-CacheID: sfid-20211120_154009_404490_164C890A 
+X-CRM114-Status: UNSURE (   8.64  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,18 +81,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBOb3YgOCwgMjAyMSBhdCAyOjQ2IFBNIFV3ZSBLbGVpbmUtS8O2bmlnCjx1LmtsZWlu
-ZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+IHdyb3RlOgo+Cj4gVGhlIHB3bSBjb3JlIG9ubHkgY2Fs
-bHMgdGhlIGFwcGx5IGNhbGxiYWNrIHdpdGggYSB2YWxpZCBzdGF0ZSBwb2ludGVyLAo+IHNvIGRv
-bid0IHJlcGVhdCB0aGlzIGNoZWNrIGFscmVhZHkgZG9uZSBpbiB0aGUgY29yZS4KPgo+IFNpZ25l
-ZC1vZmYtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXgu
-ZGU+ClJldmlld2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3Rpbmds
-QGdvb2dsZW1haWwuY29tPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
-bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
-bGludXgtYW1sb2dpYwo=
+On Fri, Nov 12, 2021 at 5:33 PM Amjad Ouled-Ameur
+<aouledameur@baylibre.com> wrote:
+>
+> Use reset_control_rearm() call if an error occurs in case
+> phy_meson_gxl_usb2_init() fails after reset() has been called ; or in case
+> phy_meson_gxl_usb2_exit() is called i.e the resource is no longer used
+> and the reset line may be triggered again by other devices.
+>
+> reset_control_rearm() keeps use of triggered_count sane in the reset
+> framework. Therefore, use of reset_control_reset() on shared reset line
+> should be balanced with reset_control_rearm().
+>
+> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
