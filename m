@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 331C0C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Nov 2021 23:51:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE939C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Nov 2021 23:57:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BuaqhAo2rsxrznjo4mqnPKHyT9p1lfMN4NFXaNGkznM=; b=GBFI1FZADC8u4T
-	JSp/+rBI68pHsbFmsbNFcTuUoY0yDhzTm3AcLIUb5TXHvZa5AuhhroirHOWqWjfRPZdyX+YEI3oTE
-	IyujC11W6aSCV81p8vsxVLYBsCd3nps1VxmFl7UPjDYlc5aFU2mpwGIGJpitsOdf8fwmThrHpyZut
-	45QdpJ0MqalJs+o1cF2s5NHIzv5dMJlTf5Hlco3P5ZgP+LVkEU1rtPV6RPyvrFtzLPcK+3V9nUo6b
-	rBTkPrBezTqBhq+3u1hZ7APShF1MYxJzNXBO6GnSxE6ZQU08T8ypgUmxwTna2mDUCIgwABHrwKRVP
-	lXqI4I3iCfAWyRcaJulg==;
+	List-Owner; bh=lF0b6Qlwczpw6siFRj3Ldqm3Dr4OpuX0DF9OkBRrDcY=; b=umk0ncLU/PuUf3
+	tBH5zlV9jV1Aev33Iv6DT+JOopM0sq1lAc5J1z0FbCPSjz8mhaIDfN9tcJ/a9SpLkINX4BIbtym80
+	LzPsVLfD+3FICtzLFhXIkDvqKtMxUfGfuVqBtrhyejs7ybeK/X0RpJHMP5urQ96FveKNTXWnrn5/2
+	F+mtx4jIjS/EraEU32AtI5bCeUuhx3DkoNtSwYN37vkRJOeG7qKzZYDiBNqY0QS3btJcUxYAyjHQK
+	BJl3YkDNuxTuiqTrfeCmLgF78e+apoHPzbfhRBssF58VoWkvjBwgUq9U8Z2kDWKK5ycS6OArSYnyN
+	7wqKERHobGYoWA62FRhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1moa8z-00D50U-Iz; Sat, 20 Nov 2021 23:51:41 +0000
-Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
+	id 1moaEX-00D5Qy-8W; Sat, 20 Nov 2021 23:57:25 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1moa8w-00D4zo-Mg
- for linux-amlogic@lists.infradead.org; Sat, 20 Nov 2021 23:51:40 +0000
-Received: by mail-ed1-x52b.google.com with SMTP id y13so59093695edd.13
- for <linux-amlogic@lists.infradead.org>; Sat, 20 Nov 2021 15:51:35 -0800 (PST)
+ id 1moaET-00D5QY-Rh
+ for linux-amlogic@lists.infradead.org; Sat, 20 Nov 2021 23:57:23 +0000
+Received: by mail-ed1-x532.google.com with SMTP id o20so14882574eds.10
+ for <linux-amlogic@lists.infradead.org>; Sat, 20 Nov 2021 15:57:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lYJh43bo2xHXTh2noh4gGbHA058L8tZGc1wOJPe1jdI=;
- b=qp+o+sOGRqN/IjQjqTZcx81YCv2L16rjo7MPiwhbt3K2cWSTXNpazc1d6hwn5Fgvo8
- FOicp6PtJMYiJY513qp/I5rga4ZX+orhrkuxqfy/5Zxk4NDzDsyoUkbUrMEox+n0okEb
- P7LcF5vRvyK+9CmSVmEInhaCIzwy2NR1VgjrfEDp6icAuqJg0D9LHtkaeZYrK/ZL02vU
- iPP8RbUmsmy+lmb7FBFT0jo7WeweKNEbN49iSEXRkKZZ864tByVidePyzbuwk+FlT5df
- UmbGXLr0ey/FPs7jH6JL5cioiiMWkGjfve1ZAb4BVp/wjnon+7AUjD9WtdxTXNGIoydh
- NfQA==
+ :cc; bh=F5sv4rcMTrhYHornG640LvlmFUzYpzF/uMv5wuwnFA4=;
+ b=KqF35IvUaoojoKBQHxLa+EhPGzpcMTC8+x718D5FuVl6VeWd604ugCjjre5otbt5PV
+ bG3m2Jtu/s3Umpi4aFznHxGqyAwh8R+XOy7wAUHfYJoeVcOHOiptPq8aPiYsSsaDkXLw
+ ovvBD+N6g0La0ZsoTNIJY3sVChWs/hUnYDsz99dHyJuqWsHQIfQCjCRdmCAxjn/U/Oel
+ GvbJlryGkJInHx9D9G0UmlQt7ojwP1LjP0AdtQP1nl2nmZrtuUwnhNHRu/N3nVIUDa7P
+ +gp/S9fTBEp9J1D1Ti3vGiA+HLIg3MTLnvcvAlLyocudM67N8QI5G1SIzXeNc/fZ8OZc
+ Ka4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=lYJh43bo2xHXTh2noh4gGbHA058L8tZGc1wOJPe1jdI=;
- b=x3nqXf17jtd0UyU9Bf7CHut3KdZeWt+TVZ8jggTPHeRw+As6PQBQXBgQPAGEprAwzk
- nK8PNM51AP0R70z87SxuDmQ6e+MB7A9F6KFUTD9gaB0663vWyJhZeH1uHgFQnvaJJkbX
- 8eX1L+EvjUWCd1HhSDkPr89S1iIyN2IFCpsP+CzHcJjlrAG10lnxil4EODsWa597idSs
- 4+//JxADr/nWHU4ZpaQP7IC7QCjaXw32KDu0LlzKwh6cViZogW3n/Mzttey5bRyhhg81
- XJB4TRHX9QhUT5hBFLeiVYah3H/rctZ2G9NwXjf08lxXMtqIYeBw0qOIJqzTCXZ7GciN
- mkyw==
-X-Gm-Message-State: AOAM532Vnfn7sgDiNv2al4/PYQbCe5uhts5iw9WTMRfU1+2xeRJRNjIJ
- RWZiic7jwUJcX/SW3yN7csVzDELOb8T3jPAeZMc=
-X-Google-Smtp-Source: ABdhPJy8DtMhHdjdfXbtNVR4nEHP0YIpJsQcWgtXf9YoPr3JEgOk0vFZaXb9K9e6p5FtqDSZPZk82XIcRvSmqQQKZGo=
-X-Received: by 2002:a17:906:37d2:: with SMTP id
- o18mr24548013ejc.278.1637452294851; 
- Sat, 20 Nov 2021 15:51:34 -0800 (PST)
+ bh=F5sv4rcMTrhYHornG640LvlmFUzYpzF/uMv5wuwnFA4=;
+ b=pEdhSS+TZ32TsZ2p3Dn3y7f0/YzwE/AwYMFxFLARH7BxUz73FSGJTg+LMSWJs3Q5Zk
+ icN2YfOuBG970wcW8ZERKRRPB5N2vRj0SRLRbhbjbaZ+W0rXwttgiY+5VEGnkBSvip6L
+ Q5t2mmjZ3sfmsF88maTZn4EiQXRCtsQlXYbdnuio34S41TzJkZ2gzd/+IP0lQsVoMJ52
+ DCKKn6hBtxfycyNFJZOiTrgmUddaN8TKqF6VQkpjRcmLdvyYBzeZrQsmKG3uIx4rPb0j
+ HhIq0Yr+ACHbUfOCkiOaYR8Y9tRxu46T1q7o70VPIvtI9GWWvFpVANn7Cbn6xW38JTht
+ KndQ==
+X-Gm-Message-State: AOAM531JyPG/7PKsJBGhyKbv8QmjpoJRTT5RHNqx3gmk5aKZ08F/nScF
+ wAvQ28526se+GkjMwDCbtl3j3+vPW0IFvYbFjWU=
+X-Google-Smtp-Source: ABdhPJzn8mqm8xib8HnioRMdm0uhJxnJSh9wqmShlbVnLNSL1nB8uBXlhDbcbNqXHaabpnMoro2qzWyD++Zopf4gFpQ=
+X-Received: by 2002:a50:f68c:: with SMTP id d12mr35001969edn.307.1637452640350; 
+ Sat, 20 Nov 2021 15:57:20 -0800 (PST)
 MIME-Version: 1.0
 References: <20211112162827.128319-1-aouledameur@baylibre.com>
- <20211112162827.128319-3-aouledameur@baylibre.com>
-In-Reply-To: <20211112162827.128319-3-aouledameur@baylibre.com>
+ <20211112162827.128319-4-aouledameur@baylibre.com>
+In-Reply-To: <20211112162827.128319-4-aouledameur@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 21 Nov 2021 00:51:24 +0100
-Message-ID: <CAFBinCDNMCT4KZjw8HnYer9NJBx09yF=KpguGm8Q4vKw8eBr9A@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] usb: dwc3: meson-g12a: fix shared reset control use
+Date: Sun, 21 Nov 2021 00:57:09 +0100
+Message-ID: <CAFBinCCvOnrvC64sA++5DegZq1g9MmwvnCiYh-WB4dSkoBsCBA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] phy: amlogic: meson8b-usb2: fix shared reset
+ control use
 To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Cc: balbi@kernel.org, p.zabel@pengutronix.de, khilman@baylibre.com, 
+Cc: khilman@baylibre.com, p.zabel@pengutronix.de, balbi@kernel.org, 
  jbrunet@baylibre.com, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- Anand Moon <linux.amoon@gmail.com>
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211120_155138_802902_8058F1D4 
-X-CRM114-Status: GOOD (  10.57  )
+X-CRM114-CacheID: sfid-20211120_155721_960094_AB8EA4F8 
+X-CRM114-Status: UNSURE (   9.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,30 +88,33 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Amjad,
 
-+Cc Anand who was also investigating the original issue one year ago
+Thanks for working on this!
 
 On Fri, Nov 12, 2021 at 5:33 PM Amjad Ouled-Ameur
 <aouledameur@baylibre.com> wrote:
->
->
-it seems that there's an extraneous blank line here
+[...]
+> +               reset_control_rearm(priv->reset);
+Using priv->reset in this driver currently requires an IS_ERR check beforehand.
+When I wrote the driver originally I used the following code in
+phy_meson8b_usb2_probe:
+  priv->reset = ...
+  if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
+    return PTR_ERR(priv->reset);
 
-> reset_control_(de)assert() calls are called on a shared reset line when
-> reset_control_reset has been used. This is not allowed by the reset
-> framework.
->
-> Use reset_control_rearm() call in suspend() and remove() as a way to state
-> that the resource is no longer used, hence the shared reset line
-> may be triggered again by other devices. Use reset_control_rearm() also in
-> case probe fails after reset() has been called.
->
-> reset_control_rearm() keeps use of triggered_count sane in the reset
-> framework, use of reset_control_reset() on shared reset line should be
-> balanced with reset_control_rearm().
->
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+That means: priv->reset can (in theory) be an error pointer at runtime.
+Since your patch is valid: can you please add another one (before this
+one) in the series and change the priv->reset error checking to use
+something like:
+  if (IS_ERR(priv->reset))
+    return dev_err_probe(&pdev->dev, PTR_ERR(priv->reset), "Failed to
+get the reset line");
+
+With such a patch you can consider this one as:
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
