@@ -4,64 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B156C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 21 Nov 2021 08:55:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A850C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Nov 2021 09:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+3fP8wf6bbsu5EZFuzz/r7YXpA2j9F0tQx5CpmjenLM=; b=EQg6kNt3rECF37
-	CibL76MmykAb95V9L1HFWq7H9ApWOEdhuB9+xj+xueAha5sjm+l8gsZNyfqE1dHWDrwg6JMvDZ+9X
-	YVgSW5hb/V/uMu9EEsA2ETBZ6naTAsSLgjJ/DJJTinABnSj+0CQ2fTI5fZ8EbZQDYDLtMwqfIdGQC
-	p53bKSC4tGwDIb1cxHnPVp9gXqqoatY6GV2k6c507t9Q/rbdbJRb+wiTnoociNk3PONR38zgSMqil
-	u1AnG5rh1J4P8NE6COAbRi49e7g6m+mbfWWa4KfgTzSHHx9oW++ir6SW6Hsv+DQEXpRwCyWZoeiWq
-	CNoc2/syAsMgykkjh/TA==;
+	List-Owner; bh=azZSpNgNqQAl9lkG2LwiPalQ9+sUfyhKA9VqRuenQAY=; b=WtZw0wicosX+sq
+	rUWpzifnMvz4J3lkxyCe4yTukP21hWJr7Y+LCOVcH43y8/0HkhaVjz3lIfJ3+Fnbvfxw2hKMefXnb
+	uF6VOtkj8lELfXgYqOrJMkjTRtRjZ91GwQyj01sqbxiY4Xvv863z2H5YTjh3ado8J1RqESOZqGgz5
+	oxfVX4ZP4ic0mPNmC6OXI8c+7FBFgUdDWs5dxsilTX7EEgCuRrqMtuCR8y7yB6Bjuz4wcsPjYXUIn
+	9zM3b+O4kYDVAEDQOvJtl+oHC0bnVBe/T8m42uQlSegGbEYWscs30PJHSywvFaEKumK3K2hg2YvJW
+	ulZldvC4vDQkZ11R/0Ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1moicy-00DNzx-3X; Sun, 21 Nov 2021 08:55:12 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1mp5G2-00FTQn-IY; Mon, 22 Nov 2021 09:05:02 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1moicv-00DNzE-4P; Sun, 21 Nov 2021 08:55:10 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 689BA60231;
- Sun, 21 Nov 2021 08:55:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1637484907;
- bh=BSrNBk1+xTVdjY/KH9HeiQ19aqGKk4qtpYXlS/s+Bi0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tatESt2cVzf7HD/KkoxWzf6u8sn0XI27B+PpnyEvnlG5TRXVuC3dZOd3am3b8I+C0
- 5G3PaGYVPSDNLTfsws9MbU7DSfDXQec8L3S1EMA9SYP602lbQgq6TdNKLPv8gTEa5W
- h4DCKpMJQ69txcLZBiZHHTb+zpZ7YZa6TMBeXJeGSrQo2O1ejc+DSL0yiwmEZ0s+V+
- WCx5dJPVXpxqkVOL46x0LUbKwTPT8WRQ0p3QZIEzDFCrXuB3380URRWhZ3jicWE4qv
- oOo20/GIDVTxQJ1xkqHyCxvtvXYImCo1uJ/UQjPqhwKjtnE9Iw3RWmw+ZHfm4kZCJx
- gaXkZ8rHGV2lw==
-Date: Sun, 21 Nov 2021 16:55:00 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Heiko Stuebner <heiko@sntech.de>, ~okias/devicetree@lists.sr.ht,
- phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] arm64: dts: make dts use gpio-fan matrix instead
- of array
-Message-ID: <20211121085457.GN31998@dragon>
-References: <20211029114948.41841-1-david@ixit.cz>
- <20211029114948.41841-2-david@ixit.cz>
+ id 1mp5EP-00FSxH-BC
+ for linux-amlogic@lists.infradead.org; Mon, 22 Nov 2021 09:03:22 +0000
+Received: from lupine.hi.pengutronix.de
+ ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1mp5EK-0003l5-Mh; Mon, 22 Nov 2021 10:03:16 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1mp5EK-000584-31; Mon, 22 Nov 2021 10:03:16 +0100
+Message-ID: <44f6cc1f52e75cbbb8aebb0d4648c94ae479ef43.camel@pengutronix.de>
+Subject: Re: [PATCH v3 1/3] phy: amlogic: phy-meson-gxl-usb2: fix shared
+ reset controller use
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Amjad Ouled-Ameur <aouledameur@baylibre.com>, khilman@baylibre.com
+Cc: balbi@kernel.org, jbrunet@baylibre.com,
+ linux-amlogic@lists.infradead.org,  linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org
+Date: Mon, 22 Nov 2021 10:03:16 +0100
+In-Reply-To: <20211112162827.128319-2-aouledameur@baylibre.com>
+References: <20211112162827.128319-1-aouledameur@baylibre.com>
+ <20211112162827.128319-2-aouledameur@baylibre.com>
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20211029114948.41841-2-david@ixit.cz>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211121_005509_237468_7629CB27 
-X-CRM114-Status: GOOD (  16.16  )
+X-CRM114-CacheID: sfid-20211122_010321_428381_03132DA6 
+X-CRM114-Status: GOOD (  16.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,98 +67,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Oct 29, 2021 at 01:49:45PM +0200, David Heidelberg wrote:
-> No functional changes.
-> 
-> Adjust to comply with dt-schema requirements
-> and make possible to validate values.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 9 +++++----
->  arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts     | 2 +-
-
-You may want to split it per platform, so that corresponding platform
-maintainer can pick them up.
-
-Shawn
-
->  arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi     | 2 +-
->  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts    | 5 +++--
->  4 files changed, 10 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index 86bdc0baf032..fbbcacf24f2e 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -52,10 +52,11 @@ gpio_fan: gpio-fan {
->  		gpios = <&gpio GPIODV_14 GPIO_ACTIVE_HIGH
->  			 &gpio GPIODV_15 GPIO_ACTIVE_HIGH>;
->  		/* Dummy RPM values since fan is optional */
-> -		gpio-fan,speed-map = <0 0
-> -				      1 1
-> -				      2 2
-> -				      3 3>;
-> +		gpio-fan,speed-map =
-> +				<0 0>,
-> +				<1 1>,
-> +				<2 2>,
-> +				<3 3>;
->  		#cooling-cells = <2>;
->  	};
->  
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
-> index a3b9d615a3b4..e34045d10a12 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
-> @@ -39,7 +39,7 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
->  
->  	fan: gpio-fan {
->  		compatible = "gpio-fan";
-> -		gpio-fan,speed-map = <0 0 8600 1>;
-> +		gpio-fan,speed-map = <0 0>, <8600 1>;
->  		gpios = <&gpio3 5 GPIO_ACTIVE_HIGH>;
->  		#cooling-cells = <2>;
->  		pinctrl-names = "default";
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
-> index 46b0f97a0b1c..4af535866d1f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
-> @@ -44,7 +44,7 @@ dc_12v: dc-12v {
->  	fan0: gpio-fan {
->  		#cooling-cells = <2>;
->  		compatible = "gpio-fan";
-> -		gpio-fan,speed-map = <0 0 3000 1>;
-> +		gpio-fan,speed-map = <0 0>, <3000 1>;
->  		gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
->  		status = "okay";
->  	};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> index 4d4b2a301b1a..8af3763daaba 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> @@ -30,8 +30,9 @@ gmac1_clkin: external-gmac1-clock {
->  	fan: gpio_fan {
->  		compatible = "gpio-fan";
->  		gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
-> -		gpio-fan,speed-map = <0    0
-> -				      4500 1>;
-> +		gpio-fan,speed-map =
-> +				<   0 0>,
-> +				<4500 1>;
->  		#cooling-cells = <2>;
->  	};
->  
-> -- 
-> 2.33.0
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgQW1qYWQsCgpPbiBGcmksIDIwMjEtMTEtMTIgYXQgMTc6MjggKzAxMDAsIEFtamFkIE91bGVk
+LUFtZXVyIHdyb3RlOgo+IFVzZSByZXNldF9jb250cm9sX3JlYXJtKCkgY2FsbCBpZiBhbiBlcnJv
+ciBvY2N1cnMgaW4gY2FzZQo+IHBoeV9tZXNvbl9neGxfdXNiMl9pbml0KCkgZmFpbHMgYWZ0ZXIg
+cmVzZXQoKSBoYXMgYmVlbiBjYWxsZWQgOyBvciBpbiBjYXNlCj4gcGh5X21lc29uX2d4bF91c2Iy
+X2V4aXQoKSBpcyBjYWxsZWQgaS5lIHRoZSByZXNvdXJjZSBpcyBubyBsb25nZXIgdXNlZAo+IGFu
+ZCB0aGUgcmVzZXQgbGluZSBtYXkgYmUgdHJpZ2dlcmVkIGFnYWluIGJ5IG90aGVyIGRldmljZXMu
+Cj4gCj4gcmVzZXRfY29udHJvbF9yZWFybSgpIGtlZXBzIHVzZSBvZiB0cmlnZ2VyZWRfY291bnQg
+c2FuZSBpbiB0aGUgcmVzZXQKPiBmcmFtZXdvcmsuIFRoZXJlZm9yZSwgdXNlIG9mIHJlc2V0X2Nv
+bnRyb2xfcmVzZXQoKSBvbiBzaGFyZWQgcmVzZXQgbGluZQo+IHNob3VsZCBiZSBiYWxhbmNlZCB3
+aXRoIHJlc2V0X2NvbnRyb2xfcmVhcm0oKS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBBbWphZCBPdWxl
+ZC1BbWV1ciA8YW91bGVkYW1ldXJAYmF5bGlicmUuY29tPgo+IFJlcG9ydGVkLWJ5OiBKZXJvbWUg
+QnJ1bmV0IDxqYnJ1bmV0QGJheWxpYnJlLmNvbT4KPiAtLS0KPiDCoGRyaXZlcnMvcGh5L2FtbG9n
+aWMvcGh5LW1lc29uLWd4bC11c2IyLmMgfCA1ICsrKystCj4gwqAxIGZpbGUgY2hhbmdlZCwgNCBp
+bnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGh5
+L2FtbG9naWMvcGh5LW1lc29uLWd4bC11c2IyLmMgYi9kcml2ZXJzL3BoeS9hbWxvZ2ljL3BoeS1t
+ZXNvbi1neGwtdXNiMi5jCj4gaW5kZXggMmIzYzBkNzMwZjIwLi45YTljNzY5ZWNhYmMgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9waHkvYW1sb2dpYy9waHktbWVzb24tZ3hsLXVzYjIuYwo+ICsrKyBi
+L2RyaXZlcnMvcGh5L2FtbG9naWMvcGh5LW1lc29uLWd4bC11c2IyLmMKPiBAQCAtMTEwLDggKzEx
+MCwxMCBAQCBzdGF0aWMgaW50IHBoeV9tZXNvbl9neGxfdXNiMl9pbml0KHN0cnVjdCBwaHkgKnBo
+eSkKPiDCoAlpbnQgcmV0Owo+Cj4gwqAJcmV0ID0gcmVzZXRfY29udHJvbF9yZXNldChwcml2LT5y
+ZXNldCk7Cj4gLQlpZiAocmV0KQo+ICsJaWYgKHJldCkgewo+ICsJCXJlc2V0X2NvbnRyb2xfcmVh
+cm0ocHJpdi0+cmVzZXQpOwoKSSBkb24ndCB1bmRlcnN0YW5kIHRoaXMuIElmIHJlc2V0X2NvbnRy
+b2xfcmVzZXQoKSByZXR1cm5zIGFuIGVycm9yIGZvciBhCnNoYXJlZCByZXNldCwgaXQgc2hvdWxk
+IGhhdmUgZWl0aGVyCi0gcmV0dXJuZWQgYmVmb3JlIGluY3JlbWVudGluZyB0cmlnZ2VyZWRfY291
+bnQsIG9yCi0gaW5jcmVtZW50ZWQgdHJpZ2dlcmVkX2NvdW50LCBnb3QgYSBmYWlsZWQgcmVzZXQg
+b3AsIGRlY3JlbWVudGVkCiAgdHJpZ2dlcmVkX2NvdW50IGFnYWluCgpJbiBib3RoIGNhc2VzIHRo
+ZXJlIHNob3VsZCBiZSBubyBuZWVkIHRvIHJlYXJtLgoKCnJlZ2FyZHMKUGhpbGlwcAoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
+YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
+cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
