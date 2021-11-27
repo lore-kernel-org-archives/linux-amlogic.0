@@ -4,50 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA63CC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Nov 2021 06:38:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE6A9C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Nov 2021 07:07:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WJ+vpLQ+03I6ARTUOjxTNYHvOcvgkswSmSAJqThoq1g=; b=zf8N4v2Oi71uKI
-	Vkh8di7A/AVQ2slFm1oDgmpNJ2MhKCW2n0MPqnRkL4o2ZHG9h/2SLKuvPUWMEUq4+aGj7R916rcJg
-	ir72H8BO7SlekmoUfMebwAAfDfO0tHvfCLISR2ZK0JDg41QTWkIQn2nNKE2YUJaJeC3p75JxkyOoZ
-	a5yafjCVYEidoBLYMYP0kK3V6nmBvCZznLlp2AXu967iPCt3i/ZKBRwnKdp/daMDhJtL9+CD34EMJ
-	V0HSU88PN1gsjIQPu1GYxY9Yuoq7zoSivTEvm2DMDqZLOhxeuMf6cr5NnFfby5ikJ2CgFQZrNhp3u
-	R33Hh7iAvDYsOb8vfdaw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:From:To:MIME-Version:Date:Message-ID:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=cCl+vSX4oB+oRnsGzhplFMajsptnDywrORMMMesTyhY=; b=3GLZxgyofoVZbZ
+	ZG2M0u9Q3kAOL/fRVrL907IBifrGvETWPpWq0eKwn9ZFbMUJ6JXIkxgYLfQwHcOy2ySGwlvDsyXwB
+	eYpCEXvk8x3Sl8LDjx2Cenrou22p7nZ72QSce3i51HK0BmuOSmJhTQG/K5yKnv/VJCTJw+c8f1Ikj
+	wutjhyNGwP2KSQfKUWWAUYITAne8YkRU9Ke22VFuxTpVwVnkU5aK3F0s4tUkvEWgWrzm8hUHKV0ru
+	kpCExPyA9VCOHjFnDvGjJKR9mDfvzLcgz2rZHp/spePx9DRF5sbhhadtEHfIXU+Cz6HAar5Fr0r7X
+	6nICdjYB+LQlgio1VjrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqUs2-009Jv4-0R; Fri, 26 Nov 2021 06:38:06 +0000
-Received: from mx.msync.work ([95.217.65.204])
+	id 1mqrnY-00D6Ck-TD; Sat, 27 Nov 2021 07:07:00 +0000
+Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqUrz-009JuI-DM; Fri, 26 Nov 2021 06:38:04 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 3E6211D1C44; Fri, 26 Nov 2021 06:38:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
- t=1637908680; h=from:subject:date:message-id:to:mime-version:
- content-transfer-encoding:in-reply-to:references;
- bh=ksOo59b9zPzpZ/xtZN+pj91AfwpAwnF4ANOJtE5pGEc=;
- b=HSobVvMJAZr7JBT8DyMiQ7BC5My4Y2ZAFfVmWAQ6yRC04Vl+t+Q4cg/z0hy8SFqfgynYW5
- mo/n2f6Fn3C4HACT0QNY1RPxvjeTdgZJDwExOQYDWly9I9RaxB6drKL2Q4Cz902GTLiCUB
- wBZeLnCEYRi/4AlsOUQ2ZpV2beWB2blE2o2iRd2LsDZXM5PIbBPIi7TlIfrLwBWXJT1bFG
- HmbbQi3sxQh03SNB0mGrNa5H6eipvgGv2uTNyr7rd4hrsuNExGBNfa6vtNxL8o9NJWciOg
- x45mSZSgVh934S0NE6O1fOtOshMtwQmh3XmeupkVjJp6xntuKPuHeiJiuhXYgw==
-From: Vyacheslav Bocharov <adeep@lexina.in>
-To: linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RESEND PATCH] arm64: meson: fix dts for JetHub D1
-Date: Fri, 26 Nov 2021 09:37:06 +0300
-Message-Id: <20211126063705.3113458-1-adeep@lexina.in>
-In-Reply-To: <20211126062127.3084029-1-adeep@lexina.in>
-References: <20211126062127.3084029-1-adeep@lexina.in>
+ id 1mqrnV-00D6Bw-Hz
+ for linux-amlogic@lists.infradead.org; Sat, 27 Nov 2021 07:06:59 +0000
+Received: by mail-pl1-x631.google.com with SMTP id y8so8077425plg.1
+ for <linux-amlogic@lists.infradead.org>; Fri, 26 Nov 2021 23:06:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=telus.net; s=google;
+ h=message-id:date:mime-version:user-agent:content-language:to:from
+ :subject:content-transfer-encoding;
+ bh=Jpqpw+5k0JG4B7cIALfJ1NUW46zzTfZ3Ld8sYWJVFh8=;
+ b=Xn14GLWArxU3vs1NJuh9JPpeRpV/ZqKB2IYrhl9qzb62TzK5SUNeDDgpf7EJLFRW91
+ F5YbPBvolCdek0XTWjlAorFRt6+Pt456oBSBLmd26UJ0YZHsai7asv7LYeUSz2qMfiDX
+ p/HEwtZPVKPYrucbrRo1OuwK1ueEmisajYQMfV2wMH5KChyLjcm8jOHiXR1Tt1nbtJxX
+ e5nZ2y4FxBaADmYQDAzN+w0+vY31WjsiUurW9M2yRxv8bVjDLSk8YxyNdrVP1wlDTtWn
+ 8cvcK92iE3NAFNdOAhmod93KtU7GRQSfnuZHgxY9paq91nASn+Ds5/6a0Iq8o2c8zLsr
+ TJGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:from:subject:content-transfer-encoding;
+ bh=Jpqpw+5k0JG4B7cIALfJ1NUW46zzTfZ3Ld8sYWJVFh8=;
+ b=3nb8fOBxJAsrub4RG6nvzBIhwHhZ/cLzp1kh3d4SEFZ0F29B1Ke3cXO5bIhbcBWROg
+ 3pd+dXpY4FipJcpSUZSZlWQbWzRe+wmToYCJEqqUe5JIyPGqVi+06/B2IYA1w+eNMVSN
+ gHkvQ4z2cQHQLvx/jljaXPbwwitQf76hZ7glSfaN50/pgzLpZSmcEjghqid2ws90ymlh
+ uhw7ro7uMRfKyWi3tbvhjjGfJqPG3BzUgiImZco6RFCtOT+a2O1W2M5+cN3gr3F+YwVP
+ 5d02VIn0VX4MV+Qy+1UXb4sZh8eAs0XySYmHpT7MLfdw2DjE7OfupMWrIJXV+nO+Ikp1
+ R6oA==
+X-Gm-Message-State: AOAM532E7Ndpg/sr5ZctxpuAILY4qhNZGGOCNReOdyBvYAwdpL/Ve+GC
+ ZIWgiISk7bV3elrSSriS9K3opOkGf97yxQ==
+X-Google-Smtp-Source: ABdhPJz4QxbdT0iuocxs5dFZ749jiRumu6tSEEfJjgunkgZzDTFFDTO3zEYerzsr+B8sPuvCwgvFOA==
+X-Received: by 2002:a17:90b:1057:: with SMTP id
+ gq23mr21385879pjb.203.1637996815127; 
+ Fri, 26 Nov 2021 23:06:55 -0800 (PST)
+Received: from [192.168.1.165] (d173-180-129-168.bchsia.telus.net.
+ [173.180.129.168])
+ by smtp.gmail.com with ESMTPSA id y4sm9880923pfi.178.2021.11.26.23.06.54
+ for <linux-amlogic@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 26 Nov 2021 23:06:54 -0800 (PST)
+Message-ID: <ba04a76e-377a-9cef-1539-634d27483d18@telus.net>
+Date: Fri, 26 Nov 2021 23:06:54 -0800
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Content-Language: en-US
+To: linux-amlogic@lists.infradead.org
+From: E Honsch <honsch@telus.net>
+Subject: YUV Display
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211125_223803_622910_7C320281 
-X-CRM114-Status: UNSURE (   6.93  )
+X-CRM114-CacheID: sfid-20211126_230657_843373_32EA1B84 
+X-CRM114-Status: UNSURE (   5.22  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -60,66 +84,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix misplace of cpu_cooling_maps for JetHub D1, move it to right place.
-
-Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
----
- .../amlogic/meson-axg-jethome-jethub-j100.dts | 30 +++++++++----------
- 1 file changed, 15 insertions(+), 15 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-index 52ebe371df26..561eec21b4de 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-@@ -134,23 +134,23 @@ cpu_critical: cpu-critical {
- 					type = "critical";
- 				};
- 			};
--		};
- 
--		cpu_cooling_maps: cooling-maps {
--			map0 {
--				trip = <&cpu_passive>;
--				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
--			};
-+			cpu_cooling_maps: cooling-maps {
-+				map0 {
-+					trip = <&cpu_passive>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
- 
--			map1 {
--				trip = <&cpu_hot>;
--				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				map1 {
-+					trip = <&cpu_hot>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
- 			};
- 		};
- 	};
--- 
-2.30.2
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SSd2ZSBiZWVuIHVzaW5nIGFuIE9Ecm9pZCBDMiBmb3Igb3VyIHJhY2UgY2FyIGRhc2hib2FyZCBh
+bmQgd2UgZGVjaWRlZCAKdG8gdXBncmFkZSB0aGUgc2NyZWVuIHRvIGEgbW9yZSBkYXNoYm9hcmQg
+ZnJpZW5kbHkgc2l6ZS4gV2UgZW5kZWQgdXAgCmdvaW5nIHdpdGggdGhpcyBvbmU6IGh0dHBzOi8v
+d3d3LndhdmVzaGFyZS5jb20vd2lraS8xMS45aW5jaF9IRE1JX0xDRAoKV2hhdCB0aGV5IGRpZG4n
+dCBtZW50aW9uIGlzIHRoYXQgaXMgb25seSB0YWtlcyBZVVYgZGF0YS4KCkFmdGVyIGRpZ2dpbmcg
+YXJvdW5kIEkgZmlndXJlZCBvdXQgdGhhdCBZVVYgc2Nhbm91dCBpc24ndCB5ZXQgc3VwcG9ydGVk
+IAppbiB0aGUgbWVzb24gZHJtLgoKSG93IGZhciBhd2F5IGZyb20gYmVpbmcgYWJsZSB0byBzdXBw
+b3J0IFlVViBpcyB0aGUgY29kZSBjdXJyZW50bHk/wqAgRG9lcyAKdGhlIGRvY3VtZW50YXRpb24g
+ZXhpc3QgdG8gaW1wbGVtZW50IHRoZSBmZWF0dXJlP8KgIElmIHRoZSBpbmZvcm1hdGlvbiBpcyAK
+YXJvdW5kIEknZCB0YWtlIGEgc3RhYiBhdCBnZXR0aW5nIGl0IGdvaW5nIGlmIHNvbWVvbmUgcG9p
+bnRzIG1lIGluIHRoZSAKcmlnaHQgZGlyZWN0aW9uLgoKVGhhbmtzLgoKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
+aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
+ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
