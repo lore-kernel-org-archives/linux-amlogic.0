@@ -4,77 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B4BFC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 10:19:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80409C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 10:23:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:Message-ID:
+	In-Reply-To:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EB5//TxyPMMmOx8+nBxMdnxbNxzf6jXjvTaya31/yV8=; b=OUaDNno0i5429W
-	ggb9WYVZ3JKqemoWnazc6L/V5ystQ8jxyJLJXsthvA4q89U1TuPHRI/9gpndmx45v/9nrGOr6wPZ8
-	hWYhRUxfIFfFjM8zsFyKv6bt/MPdn8JZi/PR5KKbi0TN1EjXBDeM78WegigORQRIQ8taAKnvVs0ZS
-	dg4M9s+koG8mDX/V4q5KVpKojRQ09dTxFLQGMTFOtpAGK9eF3ZyF95RQRR649Vwvrbg0M8XW5VT3s
-	Uk/4Wq7BxJHXv5Ziu8JDYhK1U8o0oS60cdhJJSG54ruE/wYZONNmDbsP8OCW33GeI0/AHCWkqLCUh
-	woaYiheuJS8EIIHnK+mQ==;
+	List-Owner; bh=2ONMdmcX5TP2bXi91+QhDgFl4PMuigJigEirM6RUx8U=; b=oEK9QDZVY+AB+H
+	WtCKePWrHvHxjl/HgLXBHyAEWPqzfS2pzEgUBA8BwjiJ9sxGMZcF37Sm7kwlLOsbsS055DLrtJiCm
+	ewdSdLvojn3tKNYHhveNDRe4V6iiuxVLzOnMlCqs/6DdCMiL1tnCX8xajrhDxyGhJl22fpS53wPYS
+	05C1Ye+N92WmyROahQcQRthpu4QpKPM+1r7UNeiobjMGM3xzfr9xZmwjkLHDUdDUJ3wNu7UNX7q/O
+	kZDW16H03LoZW2FRvPAtxpDWXsICqcoV1E7vzPoOVyrBUfqxbUKw4l5GxATQXqUAUFQuZPc4YSwCX
+	Y01lqsD3A3pYz+lbynWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ms0E7-004YvE-OS; Tue, 30 Nov 2021 10:19:07 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1ms0IK-004aMX-US; Tue, 30 Nov 2021 10:23:28 +0000
+Received: from smtp2.axis.com ([195.60.68.18])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mrzxk-004Tk0-2x
- for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 10:02:13 +0000
-Received: by mail-wr1-x430.google.com with SMTP id j3so43143085wrp.1
- for <linux-amlogic@lists.infradead.org>; Tue, 30 Nov 2021 02:02:11 -0800 (PST)
+ id 1ms02U-004V7G-AC
+ for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 10:07:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=2StaEqVy9B8+ZfyW369JbxqFphYPc6IMTPWpr8yAUuQ=;
- b=CWupZEVGGC6d32E+1UEuD7BmkxvC73SyoaKJt1B+bj0IaS4oBm4h0YfoNhIzNybvqJ
- sDPgGk9SxiHxr2eqgHXxnmB3GUcPUGQwXvdynyLDpttddDHV/aEmiJ3/tFT/8hcAamVl
- qpHrVCfoFSHnL3MmvzxIu7YcHOMnNjlNfoRYNZI14wcn/XKs80gZd7OhmtqaUrSrsrhD
- tMKiVEwfm6WcWLbUOq6qvTeWrVW3I5FCQJIk/sEP3XhMlRDGZX/bBNcQxNMXUYi1Xb7I
- ZCqYZEPuW3RoXA3uHdYpfAZfMo96J4e/iYwUowJjC4QEsi01nZyZLhYYD5EMSKJu38xd
- VzSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=2StaEqVy9B8+ZfyW369JbxqFphYPc6IMTPWpr8yAUuQ=;
- b=VMi3N/7GFJe9JitYYukWh70Xd4jkw4BYOZb4Fa6EpN0hydDKqXnuzccVIr0s8k5pJD
- BngGj+fNbMa5KSe5TP2HL48VbxrxuvBgr3yS10+G4DvIN4a638VShkREbj1eOBe8KWc2
- q8t9wda/MOl8b/kaehHvIQE789EvYjSNjr2q886F4KJ8TIl1K3lGgKnc75IAezM/7KZD
- kPNxcHjzDebWbGsNAeubsYJtrsshYN22UStQqJ76Xz+44SGLlf8xmXWaYlZpylgtW24c
- 8Qn/A8WMRTrntL6fwRY5sKm6Ok57BhCmM+CZQ5xMIEwGfM+stVlCzx6I+fXutagPGkYn
- 41aA==
-X-Gm-Message-State: AOAM533saGSdoGmHI+AQcec/5WMQ2XQERtDtI0pFXDdVHwI84JenkHYa
- 7vMxPxF9vaChdE8JbMztJTeEZA==
-X-Google-Smtp-Source: ABdhPJxAAvutkQ/CSzmM4k0ljhFTQPLnHG9Yg8AI6TQdmyY5geq4w7Nmn2rB8BsTgH34lKzABlDF9A==
-X-Received: by 2002:adf:cd89:: with SMTP id q9mr39425844wrj.205.1638266530710; 
- Tue, 30 Nov 2021 02:02:10 -0800 (PST)
-Received: from jackdaw.lan (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.googlemail.com with ESMTPSA id e12sm21117166wrq.20.2021.11.30.02.02.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Nov 2021 02:02:10 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: meson: p241: add sound support
-Date: Tue, 30 Nov 2021 11:01:59 +0100
-Message-Id: <20211130100159.214489-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211130100159.214489-1-jbrunet@baylibre.com>
-References: <20211130100159.214489-1-jbrunet@baylibre.com>
+ d=axis.com; q=dns/txt; s=axis-central1; t=1638266826;
+ x=1669802826; h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-transfer-encoding;
+ bh=UCgk7kbDQh7QdhPkOEMiahIQV6+21NZJki0/IukQ16o=;
+ b=jOAkltqZy1NE3259xMh8LFVnbJM5KPjWquDyPI0BbLHWGVl6t7DL1y1l
+ tM0dmLdb5glkjXEatqP87wQBhOD6mcd14YuHcwexS18+0W4tnJfeeMQhY
+ r4VEXzoPzgJDaB9JkWni3y7Wv2Z8IgKLBwxZiAudvdrU/TFPRicEpETEO
+ EYfICQ5IvY9DBnYVocJLzl/sDZrEWkqy4XbpS/yYwT+pJ/myyLE4saRaf
+ 6PzIOHz0NuxdA8XhvzIU1SePPl7M6jOLYoj+2eE0OUi3C5MjgpIa/TfzI
+ Fg+rPp71zRYsIwoQ8FiT0ColYmb6b7IAYqEmheFAKYzjO25d3lj+7HwfF g==;
+Date: Tue, 30 Nov 2021 11:06:52 +0100
+From: Ricard Wanderlof <ricardw@axis.com>
+X-X-Sender: ricardw@lnxricardw1.se.axis.com
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: meson: use dev_err_probe
+In-Reply-To: <20211130093617.103147-1-jbrunet@baylibre.com>
+Message-ID: <alpine.DEB.2.21.2111301104440.30606@lnxricardw1.se.axis.com>
+References: <20211130093617.103147-1-jbrunet@baylibre.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail08w.axis.com (10.20.40.14) To se-mail07w.axis.com
+ (10.20.40.13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211130_020212_163950_2614893F 
-X-CRM114-Status: UNSURE (   9.76  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211130_020706_749328_2F10D189 
+X-CRM114-Status: GOOD (  15.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,117 +67,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the p241 sound card support. This board can play audio through HDMI
-and the internal DAC.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../boot/dts/amlogic/meson-gxl-s805x-p241.dts | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
+On Tue, 30 Nov 2021, Jerome Brunet wrote:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-index 9d0684a8264b..ff906becd2ab 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-@@ -8,6 +8,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/sound/meson-aiu.h>
- 
- #include "meson-gxl-s805x.dtsi"
- 
-@@ -21,6 +22,13 @@ aliases {
- 		ethernet0 = &ethmac;
- 	};
- 
-+	au2: analog-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AU2";
-+		VCC-supply = <&vcc_5v>;
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -110,6 +118,68 @@ sdio_pwrseq: sdio-pwrseq {
- 		clocks = <&wifi32k>;
- 		clock-names = "ext_clock";
- 	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "GXL-P241";
-+		audio-aux-devs = <&au2>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "AU2 INL", "ACODEC LOLN",
-+				"AU2 INR", "ACODEC LORN",
-+				"Lineout", "AU2 OUTL",
-+				"Lineout", "AU2 OUTR";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
- };
- 
- &cec_AO {
--- 
-2.34.0
+> Use dev_err_probe() helper function to handle probe deferral.
+> It removes the open coded test for -EPROBE_DEFER but more importantly, it
+> sets the deferral reason in debugfs which is great for debugging.
+> =
 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+> =A0sound/soc/meson/aiu.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 | 17 +=
+++++++----------
+> =A0sound/soc/meson/axg-fifo.c=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0 9 +++------
+> =A0sound/soc/meson/axg-pdm.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0 9 +++----=
+--
+> =A0sound/soc/meson/axg-spdifin.c=A0=A0=A0=A0=A0=A0 |=A0 6 ++----
+> =A0sound/soc/meson/axg-spdifout.c=A0=A0=A0=A0=A0 |=A0 6 ++----
+> =A0sound/soc/meson/axg-tdm-formatter.c | 18 ++++++------------
+> =A0sound/soc/meson/axg-tdm-interface.c |=A0 9 +++------
+> =A0sound/soc/meson/meson-card-utils.c=A0 |=A0 4 ++--
+> =A0sound/soc/meson/t9015.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0 8 +++=
++----
+> =A09 files changed, 32 insertions(+), 54 deletions(-)
+> =
+
+> diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
+> index ba15d5762b0b..37036adf14ce 100644
+> --- a/sound/soc/meson/aiu.c
+> +++ b/sound/soc/meson/aiu.c
+> @@ -219,31 +219,29 @@ static int aiu_clk_get(struct device *dev)
+> =A0
+> =A0=A0=A0=A0=A0=A0=A0=A0 aiu->pclk =3D devm_clk_get(dev, "pclk");
+> =A0=A0=A0=A0=A0=A0=A0=A0 if (IS_ERR(aiu->pclk)) {
+> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (PTR_ERR(aiu->pclk) !=3D -=
+EPROBE_DEFER)
+> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 dev_e=
+rr(dev, "Can't get the aiu pclk\n");
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 dev_err_probe(dev, PTR_ERR(ai=
+u->pclk),
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 "Can't get the aiu pclk\n");
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return PTR_ERR(aiu->pclk=
+);
+> =A0=A0=A0=A0=A0=A0=A0=A0 }
+
+A minor thing, but dev_err_probe returns its err argument, so this =
+
+construct can be written more tersely as:
+
+		return dev_err_probe(dev, PTR_ERR(aio->pclk),
+                                     "Can't get the aio pclk\n");
+
+and that also seems to be in common usage when browsing existing code.
+
+/Ricard
+-- =
+
+Ricard Wolf Wanderlof                           ricardw(at)axis.com
+Axis Communications AB, Lund, Sweden            www.axis.com
+Phone +46 46 272 2016                           Fax +46 46 13 61 30
 
 _______________________________________________
 linux-amlogic mailing list
