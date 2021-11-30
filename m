@@ -4,76 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2212AC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 10:45:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B28D9C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 13:39:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uW6NOxCDDt09TJnxDCoqqJYkDSvLSGKVI61T3SP3Iq4=; b=gB2O7WZRf0OYt6
-	t5lOmjXBxiMTg76XShNg+jYrWIRhNYRQ9BWTvDzgar64NXfhKS//EY8oaPFcmlQIoNv4/n99u7mW6
-	arC3Rk/UPeq/uaddeW1iO16S0LYri2vM+Tl3fQTFPcg6mfepp+IeoCEb+qqNtOw6iW0+/W3M+Pdku
-	+DgHy6QyfrEJB+NYJ20OlBfikKjVpoyANfXf/0K+tzdtNigMzeKL5+CbEI3jt8HRSH3T3YKmhoI5W
-	aMvZNhFRHjCXxakOtifPZDdh6x+eeLwLnksBUglHz85yU+OviprxE9A2tGFrGMptDJLdCiJZ2fOFb
-	yVkM0/m1kUyJ4XBw6VTg==;
+	List-Owner; bh=B3CjRxk+CdzzIhX+52uk3mMjmL2AjYeago7bd6FIm7Y=; b=rPMi2vOkUG7+jz
+	dyaOQA5UUcIG1SJj6S/CMkmo5G5UbuYegA5aA3Dt2Qdf8Ljl9/gsbvH/MiAAlhwKnCCyERTezSPyt
+	Xq2B+vgIWL9sYic78UEOdMQ7XUCr2TWsUyc+DIE1Etr4VCjTB0FH/T1yZpO1rp/FkBux1ngbS6VPG
+	NhSYxArrC2ASe5vFz2ZbkTpxlup4yNfL5YLiqeHpKIjHFqmK6so3jBbRa9IdFzOxz9zQ2i92d1fH9
+	e2sRLv3odw28YyHrAeHMvHcYJoEstgohaW0UqPvFyyV5YhH4Tz9ifRc5SeHNyR0b1TC4suAeWIVX0
+	o26fB1Z8qxNOyXrzRy1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ms0dL-004i3w-Jn; Tue, 30 Nov 2021 10:45:11 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1ms3Lt-005MxF-52; Tue, 30 Nov 2021 13:39:21 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ms0cC-004hY6-VA
- for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 10:44:02 +0000
-Received: by mail-wr1-x429.google.com with SMTP id c4so43345651wrd.9
- for <linux-amlogic@lists.infradead.org>; Tue, 30 Nov 2021 02:44:00 -0800 (PST)
+ id 1ms3Lc-005MsB-DW
+ for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 13:39:07 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id
+ m25-20020a7bcb99000000b0033aa12cdd33so7720018wmi.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 30 Nov 2021 05:39:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=/dRrW73L/+aQvawdDWHM9eDTSLKvhZrt7/ceBiWtq0Q=;
- b=2aFe8uZRO1Htx0Beqk4tImbRLvYAba/GKyjPzF6n6hAWf/GzPWblHuO4bONfs5gBAI
- zlWNhrihD3l0hMGdePAQltyWYcnaX/0vKJ4S4rDRxqbpHVF2VcQCREIhHG715y8mLE0J
- pO8O/Nt4Tz9uyKOOuwMesK94SO3J1MR3D1Io5VFucyCIbo5R6alLQ/vsRT5HZArfobc+
- 4BYDrqQUKZn+Iv+HL7UZxdd4F+h5B2bELBiqa3W43Tzoe5GeLV628VhZcjboalsQZB4d
- 4jIR5oHKZGiFWOUhl59rrvd3Xt68gkEtEUJC2CBnFpwjQ4G9ZN85raIPSPp6d4vU+zxG
- ZC3Q==
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=E60T24zX7KDl2K2domt3cduRqwrjvQOEzfi54FXnknA=;
+ b=qXuVrOAnZpxdW+1ahCDawZgNSsxKUWUqj8biapI3zv6U74/HuxE9qyaekQZ6QEq25L
+ uax7Qs9lXyv6EoTVv9zRWmfpDPmooYcSLhBe7ajPH1uOYhSlquv1dCqVKe6XRJYS+Fr5
+ FR+sVQINaW166CUnEfBbRvzcmdywwFcIO9YuRkRL0fNURqjRNQtfac9z2Obf1a/ZPpex
+ puaY6914+XmRiONkZSZKBzgELb83OUJvfg1nFYPwSO6ixc/LnhXn2iCgCukMawYf8/Tu
+ 4nazkQZRBTXkgadZE0NHWoM0VAyRsSgI/j2y/CCdBIk/NF72C8FilOAxYatKoRbg6oyQ
+ BJWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=/dRrW73L/+aQvawdDWHM9eDTSLKvhZrt7/ceBiWtq0Q=;
- b=q48rRxcoB9Ub/etTQs/Hew0BL50t+wAjRWoKB3ZZ219oeMtnR+TmBp5ihRSq02IVYx
- 8e2RWkaPaC3t9ABhHduJXp7OETA/2p96HHy0iR9zwDjFi+PiVOtt673yW9N2DHIPtUX1
- CSqHlTqc8F4eR8UxA3eRjcNIodc8Ml14pzp63B50W3urJOS8Uk9loK+SaU85FbVngdBO
- +vjlxHg7Andn5JYQcIK+o2btaHZ7ISxmTmUjZCxUUaKKVYtoeQ6Uf8JPW0FVTdVDak16
- ch/x7tXdzxNzjCnOxpfXGMA1SqlMATlc4cO4dZ3RyfJAe2Q5h/51v/m98MXlO00DIzZV
- +Qhw==
-X-Gm-Message-State: AOAM530dtRu05vJuPIqZk3XUcHxnodNv1Gn+BYOAlfAiEKe5F0efvCyC
- /inIeB++BdZj3B8Hy70AjszNsA==
-X-Google-Smtp-Source: ABdhPJxEpdVKo8wvsxi4+aXMUdgoRqK5cg2Kk9uYqcgTsf2EFPRvq6FKcxgHoepgS9UQiRhCQE6qJA==
-X-Received: by 2002:a05:6000:1acd:: with SMTP id
- i13mr39844590wry.398.1638269039704; 
- Tue, 30 Nov 2021 02:43:59 -0800 (PST)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:f80b:b9bd:4d6e:b61a])
- by smtp.gmail.com with ESMTPSA id l21sm16186804wrb.38.2021.11.30.02.43.59
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=E60T24zX7KDl2K2domt3cduRqwrjvQOEzfi54FXnknA=;
+ b=LDnf37Mfkky8CavHO/wE4CIJLcHXCCLm8OdnEK73uwNhzCCCrgAXixnQgXQ9ruK8Ds
+ 1THC5P6XPqH4G0y1iAsjaq0fQ4WeVSkKCcek3e4aAHwWG7Gt6Sq0DwkDXhYQOPAxvk1l
+ Kg598i8RG9R05fKYK6LQLXGWj/VgD/u8RIV2qQhijy6uP/t1SfpLzAkp02KU0rGEAas7
+ Zcd/pyZhDXwMJrcvoTQQgWRPSMeoojyR0sDZI5DNnHAe95lWhP98OPt7R0/xhsPOfDt5
+ Bjpp3a4XhMMAJXzIAWy/ssw7uD0LtPxrAddKm+3+AxgnC4TCrhDd94AMEmcVqRsNVAo+
+ 5yEA==
+X-Gm-Message-State: AOAM530JA1WLnWgbLU7QhO9Yysq//mSIOFXem1TUu2TLBPh6JdEUbEaY
+ Wok4LA7pXMQ51vZ0bXROKKIB4g==
+X-Google-Smtp-Source: ABdhPJytmq+IF9a3nBkaL5+8n7g/UkZ/XjK6IBbQPNyrRjBek1UNMG5XNvhwwWnYSJ6Bhn1h/8OJGA==
+X-Received: by 2002:a7b:c76e:: with SMTP id x14mr5110876wmk.27.1638279542582; 
+ Tue, 30 Nov 2021 05:39:02 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id g16sm3006844wmq.20.2021.11.30.05.39.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Nov 2021 02:43:59 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: meson: p241: add internal sound support
-Date: Tue, 30 Nov 2021 11:43:58 +0100
-Message-Id: <163826902317.1314212.8226710157799410590.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211130100159.214489-1-jbrunet@baylibre.com>
-References: <20211130100159.214489-1-jbrunet@baylibre.com>
+ Tue, 30 Nov 2021 05:39:01 -0800 (PST)
+References: <20211031135006.1508796-1-martin.blumenstingl@googlemail.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org
+Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH v3] clk: meson: gxbb: Fix the SDM_EN bit for MPLL0 on GXBB
+Date: Tue, 30 Nov 2021 14:38:32 +0100
+In-reply-to: <20211031135006.1508796-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1jilw9g3uz.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211130_024401_051739_4BDE1B95 
-X-CRM114-Status: UNSURE (   9.03  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211130_053904_537649_2A72AE44 
+X-CRM114-Status: GOOD (  31.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,27 +91,157 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On Tue, 30 Nov 2021 11:01:57 +0100, Jerome Brunet wrote:
-> This patchset adds support for the internal sound card of the s805x p241
-> reference design. Audio is available on HDMI and 3.5mm jack connector.
-> 
-> Jerome Brunet (2):
->   arm64: dts: meson: p241: add vcc_5v regulator
->   arm64: dts: meson: p241: add sound support
-> 
-> [...]
+On Sun 31 Oct 2021 at 14:50, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.17/dt64)
+> There are reports that 48kHz audio does not work on the WeTek Play 2
+> (which uses a GXBB SoC), while 44.1kHz audio works fine on the same
+> board. There are also reports of 48kHz audio working fine on GXL and
+> GXM SoCs, which are using an (almost) identical AIU (audio controller).
+>
+> Experimenting has shown that MPLL0 is causing this problem. In the .dts
+> we have by default:
+> 	assigned-clocks = <&clkc CLKID_MPLL0>,
+> 			  <&clkc CLKID_MPLL1>,
+> 			  <&clkc CLKID_MPLL2>;
+> 	assigned-clock-rates = <294912000>,
+> 			       <270950400>,
+> 			       <393216000>;
+> The MPLL0 rate is divisible by 48kHz without remainder and the MPLL1
+> rate is divisible by 44.1kHz without remainder. Swapping these two clock
+> rates "fixes" 48kHz audio but breaks 44.1kHz audio.
+>
+> Everything looks normal when looking at the info provided by the common
+> clock framework while playing 48kHz audio (via I2S with mclk-fs = 256):
+>         mpll_prediv                 1        1        0  2000000000
+>            mpll0_div                1        1        0   294909641
+>               mpll0                 1        1        0   294909641
+>                  cts_amclk_sel       1        1        0   294909641
+>                     cts_amclk_div       1        1        0    12287902
+>                        cts_amclk       1        1        0    12287902
+>
+> meson-clk-msr however shows that the actual MPLL0 clock is off by more
+> than 38MHz:
+>         mp0_out               333322917    +/-10416Hz
+>
+> The rate seen by meson-clk-msr is very close to what we would get when
+> SDM (the fractional part) was ignored:
+>   (2000000000Hz * 16384) / ((16384 * 6) = 333.33MHz
+> If SDM was considered the we should get close to:
+>   (2000000000Hz * 16384) / ((16384 * 6) + 12808) = 294.9MHz
+>
+> Further experimenting shows that HHI_MPLL_CNTL7[15] does not have any
+> effect on the rate of MPLL0 as seen my meson-clk-msr (regardless of
+> whether that bit is zero or one the rate is always the same according to
+> meson-clk-msr). Using HHI_MPLL_CNTL[25] on the other hand as SDM_EN
+> results in SDM being considered for the rate output by the hardware. The
+> rate - as seen by meson-clk-msr - matches with what we expect when
+> SDM_EN is enabled (fractional part is being considered, resulting in a
+> 294.9MHz output) or disable (fractional part being ignored, resulting in
+> a 333.33MHz output).
+>
+> Reported-by: Christian Hewitt <christianshewitt@gmail.com>
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[1/2] arm64: dts: meson: p241: add vcc_5v regulator
-      https://git.kernel.org/amlogic/c/bca54f711c0a2506efcce03a02f96f39b311f188
-[2/2] arm64: dts: meson: p241: add sound support
-      https://git.kernel.org/amlogic/c/c5468e3c930d4d2937d3a842a85df0f74e95e152
+Applied. Thx
 
--- 
-Neil
+> ---
+> changes since v2 at [1]:
+> - add Christian's Tested-by (thank you!)
+> - s/his/the/ to fix the grammar in the first sentence as spotted by
+>   Christian (off-list)
+>
+> changes since v1 at [0]:
+> - consider HHI_MPLL_CNTL[25] as SDM_EN bit after Jerome helped me
+>   understand the purpose of SDM_EN and gave some explanation why this
+>   can't be a spread spectrum bit
+>
+>
+> [0] https://patchwork.kernel.org/project/linux-amlogic/patch/20211016145939.15643-1-martin.blumenstingl@googlemail.com/
+> [1] https://patchwork.kernel.org/project/linux-amlogic/patch/20211027185326.1653827-1-martin.blumenstingl@googlemail.com/
+>
+>
+>  drivers/clk/meson/gxbb.c | 44 +++++++++++++++++++++++++++++++++++++---
+>  1 file changed, 41 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index d6eed760327d..608e0e8ca49a 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -713,6 +713,35 @@ static struct clk_regmap gxbb_mpll_prediv = {
+>  };
+>  
+>  static struct clk_regmap gxbb_mpll0_div = {
+> +	.data = &(struct meson_clk_mpll_data){
+> +		.sdm = {
+> +			.reg_off = HHI_MPLL_CNTL7,
+> +			.shift   = 0,
+> +			.width   = 14,
+> +		},
+> +		.sdm_en = {
+> +			.reg_off = HHI_MPLL_CNTL,
+> +			.shift   = 25,
+> +			.width	 = 1,
+> +		},
+> +		.n2 = {
+> +			.reg_off = HHI_MPLL_CNTL7,
+> +			.shift   = 16,
+> +			.width   = 9,
+> +		},
+> +		.lock = &meson_clk_lock,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "mpll0_div",
+> +		.ops = &meson_clk_mpll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&gxbb_mpll_prediv.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap gxl_mpll0_div = {
+>  	.data = &(struct meson_clk_mpll_data){
+>  		.sdm = {
+>  			.reg_off = HHI_MPLL_CNTL7,
+> @@ -749,7 +778,16 @@ static struct clk_regmap gxbb_mpll0 = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "mpll0",
+>  		.ops = &clk_regmap_gate_ops,
+> -		.parent_hws = (const struct clk_hw *[]) { &gxbb_mpll0_div.hw },
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			/*
+> +			 * Note:
+> +			 * GXL and GXBB have different SDM_EN registers. We
+> +			 * fallback to the global naming string mechanism so
+> +			 * mpll0_div picks up the appropriate one.
+> +			 */
+> +			.name = "mpll0_div",
+> +			.index = -1,
+> +		},
+>  		.num_parents = 1,
+>  		.flags = CLK_SET_RATE_PARENT,
+>  	},
+> @@ -3044,7 +3082,7 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
+>  		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
+>  		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
+>  		[CLKID_VAPB]		    = &gxbb_vapb.hw,
+> -		[CLKID_MPLL0_DIV]	    = &gxbb_mpll0_div.hw,
+> +		[CLKID_MPLL0_DIV]	    = &gxl_mpll0_div.hw,
+>  		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
+>  		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
+>  		[CLKID_MPLL_PREDIV]	    = &gxbb_mpll_prediv.hw,
+> @@ -3439,7 +3477,7 @@ static struct clk_regmap *const gxl_clk_regmaps[] = {
+>  	&gxbb_mpll0,
+>  	&gxbb_mpll1,
+>  	&gxbb_mpll2,
+> -	&gxbb_mpll0_div,
+> +	&gxl_mpll0_div,
+>  	&gxbb_mpll1_div,
+>  	&gxbb_mpll2_div,
+>  	&gxbb_cts_amclk_div,
+
 
 _______________________________________________
 linux-amlogic mailing list
