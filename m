@@ -4,82 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0EC7C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 10:41:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0609BC433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 10:43:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=atcMULeTmutD6/W/aXe8boKGFqoAq28UcWGxXE99D9A=; b=K8CLzUtuLgBYDpG86F5drnJ5y9
-	Eu72sp9kP5WhaSAYf1wajcYXqoXc+s6XZFr0W6mMcf0NPY9iVDjRi3nwF1sODAq3vQa8rcM30ZZ3h
-	LMXLPltogtbIUyoVL503hLiMHzM7y9Ft0eVwflCyJSXep9erRG0EEecYaTkNMDtzH3qHHcw0tNNNp
-	WS/w3E36ISTSLm3wsupI6mluLkpbGe3tzEdcSKVhK2tw4VLeZDZRBSRaJhsNnVSyg2eqPuDJpJV/i
-	eJcyF4S7U5EbYCTQNFu1hhujo/jPmMDqc+fDu1yuxqmsp4syoW7RZzgQda/8GIleQcryU7xeZbQR5
-	FVD/Dc5g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=dh15aTmE/368+BooSFltL+pH9zX0Wv/WSK24m2T36Oc=; b=bQ71Y2HQPp0plg
+	J7OmPRiatHmxa7pnr2rwKn5snOcXfLqaZRG6vD4L0wh15OkYavvX7CcxZiCnf4nXkMw93cZvUSTC2
+	FBmrgoi8cN+KbbJT0Atu2aIvutLPR8DjeJM/YlEiNjeagqPnfyINMfZBDmTrl3sMFB53+9h+l5ZsJ
+	yXID7bDPVfD6dBuXElDCn209kWnMJDqQ7jdP2jjrPZoQWZRWXIH7aytMcv2xDMh78puwR9bnVwLAh
+	Y8SHV8sBqoimOs6E6JMsBQ55IRMmIvcbMU7VD0+BomNfzn4H1zTRnI1x1kx8qnlIBlRx+BXEmnRdn
+	BdUAtqQilD02ovUV1dlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ms0ZU-004gTB-KA; Tue, 30 Nov 2021 10:41:12 +0000
+	id 1ms0bW-004hEF-10; Tue, 30 Nov 2021 10:43:18 +0000
 Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ms0ZN-004gOM-NB
- for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 10:41:07 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id a18so43410306wrn.6
- for <linux-amlogic@lists.infradead.org>; Tue, 30 Nov 2021 02:41:04 -0800 (PST)
+ id 1ms0bM-004hBK-3T
+ for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 10:43:11 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id d9so22500468wrw.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 30 Nov 2021 02:43:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=7qzW9UQMQ2VXjuo41D1158+LAK858E+IduWje5heL+U=;
- b=HDfh1m2EozUHRanYhD8DdMzrOcIAp/66NvUIbxjWKsl8fgJUCuv3zhs91Q+3hjWMPI
- sayTNq+lKpTBdrZm+Ax9ihSDtvQKLMGirT4RR0KhWydesoJ3yoeEGg1nt87m4djkr1o2
- 6vRHkQzodCMhGIj7CNLs1LevA7d+dbWoSo501gzwycvFka4tuffrmfC16IP8Byam4+5w
- 5p+pebWBZsYBaat+wGPocZKtXpCPulSqX56buj0ULtwUqGbs7MJUMEKObdXr16ve1VN2
- hJg8khw8ZYVIIWv5Jjvm2fjqpu36G1vP2w6lD7xvzeOA/IToMg2d2jNgHH2o0y8bR8Yv
- QlNQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=jTHuYMzNLIH+1EREfrK23LGcaA/r+2HAUHMYWHTbK0E=;
+ b=8AU4j1dXGyXQzi/uOV/ptlQLu7n5vNfIJWecdLQT8PxPK+4CrdkZuL0dYAlvoQAo6H
+ FAJwmS6/QbMdGcwjzTy9aqSwkf2ZDQsf/JySYiSf960T/oGHLCNcUOL6zDmk7Nz5pT39
+ KwjTdt3e0FqwJvf+OrfwS6Ox5WH8KASJeRlVXV+T+Rtf3p5BN+gHeBtVD16fAd+driri
+ p+cZlg5qaXkJDH4Z3cKkm5HiuWLS1iNG6N3XBGI3IZwq9XDmzfxykAo9+Uj4Ax867M1L
+ UNyRBr18fT66sHHaZ4HHCmnH4uCwVNIwpDzHIGnQwfpdZg1Ks99CF7xNbARs/Qz/ERGT
+ uSHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=7qzW9UQMQ2VXjuo41D1158+LAK858E+IduWje5heL+U=;
- b=HFJwMNNBoSn8MIHMuoXbdjpNn15T2ybPtp5Wi/Xb6LhIaEDPmpSHZnBvqS+I+cGDwo
- Vi9yO/clrFsFDBGLfZ6tja7HCwJ9YFAsodDfObnyFw3Fti0hKAD+2zbM/1gZYIqrG45T
- GcqFCaI0jX7uY4jf7fjXBLef4M/w4x/KWSQ70kkbE0wSCUsFLQRb5Jrcpf7q208k4VZ8
- HhRo52uMyGzCnbXJdUIeLqRsriRUIJ8QjisjRx7RxJBmCwAOgItP7sK2/GJTwRgiTDRw
- X1wH1IQA+T7hvlRcb72XQgHNvTYOTss92KZQacMFNBdorwvaq4l3EKybThnL/Kfrqxnv
- 0vFg==
-X-Gm-Message-State: AOAM530z5Sy3oSvQ4FCAnsilOSrXYQkeBr5hNSna1eSn8Ctu2Tcjds6N
- csgMnd1exLf7ytHlnX1WoCAMMg==
-X-Google-Smtp-Source: ABdhPJxsZa3zaqwvCS+OEOOBth8ZPvuNxO0NgiMmM7vo7pvXK7IqUO6kNwci5xAVdcQB5xouVB12aA==
-X-Received: by 2002:a5d:68d2:: with SMTP id p18mr39741394wrw.21.1638268863112; 
- Tue, 30 Nov 2021 02:41:03 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:f80b:b9bd:4d6e:b61a?
- ([2001:861:44c0:66c0:f80b:b9bd:4d6e:b61a])
- by smtp.gmail.com with ESMTPSA id y6sm1906091wma.37.2021.11.30.02.41.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 30 Nov 2021 02:41:02 -0800 (PST)
-Subject: Re: [PATCH 2/2] arm64: dts: meson: p241: add sound support
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20211130100159.214489-1-jbrunet@baylibre.com>
- <20211130100159.214489-3-jbrunet@baylibre.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=jTHuYMzNLIH+1EREfrK23LGcaA/r+2HAUHMYWHTbK0E=;
+ b=pfeWqsMnToAHUwtztwRTkDl+KcwcmfJ2Crp7bn6ZzsYfq5rQyFL5CMLsWoA5Oc/d5R
+ rUg7HbqZMeLB7QjGPwmDO5aTEBkEl93x9+kuxnfuJl8ZmKTswfigd5JMlkC1gixSiOvy
+ K6QMJf3yXE+XBOqeIuseYNPKlEakKlAb9yO1p+US9q2Z2sat8NTz5Sx9p14tYXxXyJhn
+ ROBLpSZjhIp8l4hM4Uv2AufMcP3ku9S1+BVe/xdQvfVbaSu0TgN8O1puBJg0SH7b66k1
+ e2/bK/f4tWCmdHpts3WKOCi4IwZWnIIQOaU2psvLch9hiHIJyoZrybrcO3UafLMHIs7i
+ 5AGg==
+X-Gm-Message-State: AOAM530cbzmybBhvdvJBV02WM2oIUAP1bqLbY0BawUOwh5aILGeTWS1k
+ X0G52YYjxB/aRb9E/vpnd3UGhO4YrwrRPNOW
+X-Google-Smtp-Source: ABdhPJxoxwtLa58DHcN5BX/aqFazIPZzvKQDcbKnJ8TD0G5IhqcDtB/Vhcs6l1jpvcR/iGcYKHg8XA==
+X-Received: by 2002:adf:f88c:: with SMTP id u12mr40916159wrp.29.1638268986722; 
+ Tue, 30 Nov 2021 02:43:06 -0800 (PST)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:f80b:b9bd:4d6e:b61a])
+ by smtp.gmail.com with ESMTPSA id g13sm21775686wrd.57.2021.11.30.02.43.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 Nov 2021 02:43:06 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <54a8cd46-c4cc-1c45-becb-6adab4dd262d@baylibre.com>
-Date: Tue, 30 Nov 2021 11:41:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+To: Kevin Hilman <khilman@baylibre.com>, Vyacheslav Bocharov <adeep@lexina.in>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH] arm64: meson: fix dts for JetHub D1
+Date: Tue, 30 Nov 2021 11:43:04 +0100
+Message-Id: <163826896367.1309037.1000352899984422910.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211125130246.1086627-1-adeep@lexina.in>
+References: <20211125130246.1086627-1-adeep@lexina.in>
 MIME-Version: 1.0
-In-Reply-To: <20211130100159.214489-3-jbrunet@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211130_024105_812550_8FD02356 
-X-CRM114-Status: GOOD (  15.02  )
+X-CRM114-CacheID: sfid-20211130_024308_234781_FE928933 
+X-CRM114-Status: UNSURE (   7.35  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,113 +89,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/11/2021 11:01, Jerome Brunet wrote:
-> Add the p241 sound card support. This board can play audio through HDMI
-> and the internal DAC.
+Hi,
+
+On Thu, 25 Nov 2021 16:02:47 +0300, Vyacheslav Bocharov wrote:
+> Fix misplace of cpu_cooling_maps for JetHub D1, move it to right place.
 > 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../boot/dts/amlogic/meson-gxl-s805x-p241.dts | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-> index 9d0684a8264b..ff906becd2ab 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-> @@ -8,6 +8,7 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/sound/meson-aiu.h>
->  
->  #include "meson-gxl-s805x.dtsi"
->  
-> @@ -21,6 +22,13 @@ aliases {
->  		ethernet0 = &ethmac;
->  	};
->  
-> +	au2: analog-amplifier {
-> +		compatible = "simple-audio-amplifier";
-> +		sound-name-prefix = "AU2";
-> +		VCC-supply = <&vcc_5v>;
-> +		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
-> @@ -110,6 +118,68 @@ sdio_pwrseq: sdio-pwrseq {
->  		clocks = <&wifi32k>;
->  		clock-names = "ext_clock";
->  	};
-> +
-> +	sound {
-> +		compatible = "amlogic,gx-sound-card";
-> +		model = "GXL-P241";
-> +		audio-aux-devs = <&au2>;
-> +		audio-widgets = "Line", "Lineout";
-> +		audio-routing = "AU2 INL", "ACODEC LOLN",
-> +				"AU2 INR", "ACODEC LORN",
-> +				"Lineout", "AU2 OUTL",
-> +				"Lineout", "AU2 OUTR";
-> +		assigned-clocks = <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>,
-> +				  <&clkc CLKID_MPLL2>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +		status = "okay";
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-> +			dai-format = "i2s";
-> +			mclk-fs = <256>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-> +			};
-> +
-> +			codec-1 {
-> +				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-> +			};
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +
-> +		dai-link-3 {
-> +			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&acodec>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&acodec {
-> +	AVDD-supply = <&vddio_ao18>;
-> +	status = "okay";
-> +};
-> +
-> +&aiu {
-> +	status = "okay";
->  };
->  
->  &cec_AO {
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.17/dt64)
+
+[1/1] arm64: meson: fix dts for JetHub D1
+      https://git.kernel.org/amlogic/c/03caf87822220b4e22c349d170881d122df0b349
+
+-- 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
