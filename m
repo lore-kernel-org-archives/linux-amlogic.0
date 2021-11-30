@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3990C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 06:05:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8518CC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 06:06:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BhUAXG+BG8sz9/t2dNfUFCD9HEmYV4nQmGTXEGASQ8U=; b=htEZxspnSQ7HRo
-	FShEzOEt7zwREMrjI0nOZsT+mi/uP7TofUufmhRFLFEEhC/O2vNMB4ds7z4DZI4QzLNbbuZmT9d72
-	Dv85DWzDJnn9dIWKQS87c+fBUXXtNrwMjylaLClgCEEa9IgWJVsRf8s7uIRD7v2OWVXlECEEque9X
-	jmV658TaLhpVj/DK3SBd2jxa14++NcxKYoLT1260B331GDa6ZFNttADblPgbKD6ADZbPS9GyugOJn
-	tOg3YeJcrEiWAqQ8vHzwwyVcf0cHxmfSmVkc6nET39LQN9jiQiqdiqzGaX9nyL2TJEybWkBqSMQpL
-	dodwFTWRPiavT6RLVJwQ==;
+	List-Owner; bh=U1LGdVegvzo2002WX31EMGzVcn8AZsKuXmgGt4460IY=; b=kkvO0CsBVlLlzo
+	ImhDTWsnHNCHlTgcfGGvSK3COaW9CgETcL/8bj9i5+r7oDrNPrrH+2nf44tX6mrThroc54VviS2dt
+	BKDRsCMIYZR89PAB2z5t/b0yDS3j8C5i8A4XacEok3oxUWHUEkm7C4nd8lr58oN/0wrOdxH/M+zG6
+	npdYV+XkKdN6oVGheS5LQZkowNssfskfNoS7EWF+XzBHYQjqbmTUt+i2QHfZKiThDTGpD7msFLBqM
+	wBv8BT8iwcmqQAjHBt5oIVi2HvoQro9xbWe1VQ1x1tf6UE6m3jqepGXNDhMh86AdZxww61Zfnghnx
+	FAB4+0nrH+wXLUcI+S+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mrwH5-003i46-Ht; Tue, 30 Nov 2021 06:05:55 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1mrwHJ-003i9h-MR; Tue, 30 Nov 2021 06:06:09 +0000
+Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mrwGh-003hw0-7n; Tue, 30 Nov 2021 06:05:32 +0000
-Received: by mail-ed1-x536.google.com with SMTP id t5so82352641edd.0;
- Mon, 29 Nov 2021 22:05:30 -0800 (PST)
+ id 1mrwGj-003hws-D4; Tue, 30 Nov 2021 06:05:34 +0000
+Received: by mail-ed1-x52d.google.com with SMTP id w1so82243004edc.6;
+ Mon, 29 Nov 2021 22:05:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=vzmVBHIO5IOu5vfTULToLc/CeRBR29/MG9jdhBSdFqE=;
- b=E8aYZtpG/sNdZPFCohNuZG5lbiH2ZNcm+dNNd/iEBI6C9d3Vhs7X8LwaMCyKuAowep
- tgqvPWWG4HoVvdeohhQEVkm7+ym2sXJGEF8QQ0BMTKFw6TnZ/yZcWyM/RN9B03aSH+JF
- jdfxKy/FfOhwYuMwJkCOleZ0mb/MUpai7MleHo3cvnjDLhy+e7JKGdma97c5f6Enf3Fb
- ba6w4XtVHjb2dU1KOMnmI//cljl0Bmj4v7xkTV2RWj/n48JkYGOnE7NYdiDArPT9B9SN
- jSzTvNPAWFOIyDWUiPUTSIVJZAuB9E08kWLiTdEwCsJ5bQLaO/p1/FFyP5z6Z+4rntn6
- FfSQ==
+ bh=SaBbQQ+iVbFLZv+bV3xyo+jBT6xEtsPziI/bR6Dx7EU=;
+ b=LdMmUWzQUwpgiYB3Jsqofrz70Mg2+hjUZwX1PkeP+snslr299u4zFJKsCmwy3BlKPH
+ XmOFMDr13mdTffrafupY7dFnZ9xzBNoj1q1mBcQ6lgkbfN0uyMbIn4x6iWtDAss7p/JE
+ 283xiEB+XC7v/rYMC7TdnQH83Zv/G7lg69Oa8b2SsajOMqfvRgFktQA5ZbZ6DtT8Yks9
+ kD8LX9GAVIEDAJKN/R/Qwtn8H5Ysr+fnVICL4hP/Lf0uodPggoPfUn6yxSAHYY+CQuOc
+ SMriiQmZ2txIKEyHpLHvjrX3kKzuPo1ybDkX6mSOaQIXpBs4C2qvoyy4oG4oDA0tIZ5U
+ +mgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=vzmVBHIO5IOu5vfTULToLc/CeRBR29/MG9jdhBSdFqE=;
- b=aRymR5y5OWXrtq7JPxPDTynpLqSG3lv/qv2NYHr6m0dryBcrrSDe3ZfC5fU4H4Vut4
- dwYSDwSdpvlV095VadvQvNhCclX+6hEiNxLyObLDr4d0BYd1zZAPOb8i7rdBEvGOMDpt
- 3N8QB187F+YNsilE0bSSIElIxztuIIPCr0y1tj/xIA7k+z+awwVwrM0sPhkmlXw3suTT
- 20cH17uTqjLFJXSUFiyXVr8Zph9Xy0keCrHnUxdvbRwnoTSpg6tEtlFWWx0pnZccjBKq
- 898DiYWYfaZnZMOxAD5txQEZvN0+ApopTZPkeNxatRswfAEqM8/k5LAry9v0a8fVvH0I
- D3Pg==
-X-Gm-Message-State: AOAM531YdNaWM8Lpzn6/RNL6GUtKOBNmR8MAFiyDJgJwCXHGIV3+jsti
- SyiumWRQ2Y2boaWy7vHZk2c=
-X-Google-Smtp-Source: ABdhPJwvMnKLZ1U7NMub65ToezUGf1F9jjT4/wIfL0MZ4mzAlvHnTrxl+bzbLhfVm74SyWfczPECZQ==
-X-Received: by 2002:a50:fe1a:: with SMTP id f26mr79214136edt.132.1638252329433; 
- Mon, 29 Nov 2021 22:05:29 -0800 (PST)
+ bh=SaBbQQ+iVbFLZv+bV3xyo+jBT6xEtsPziI/bR6Dx7EU=;
+ b=MkuqfRnCOB7KNH8+A/Z2MnNtNuFlJ/T/azvxSZjRj7oh6fYjm4vVL06zG2PN1Hscnr
+ KOuqK4v1bbYL+fK8jXt7f3hKCvS9iiTvuupwH3NxyhbtROyQUoWOVKg08kfkM/ElgRHG
+ ErfyNWrdblZI/smLHn/GZ1xEZDTN3HVXNuTczN3xL0pU0glMwe3ADmC1IAX/a/urOXd6
+ uY7VAbdLFN1aSHGqD21IzdPXE6S1QSG5+pz5l/M9PkwVnt6/IPEDGlPlfsMy759s0EaG
+ Ut+VjVWYGnLL9Bm7f4/Yt7KgNB4UhH/BubgkfylOkKr7RZIm14m5+Qzx3lhISLZLK01j
+ wHUQ==
+X-Gm-Message-State: AOAM5329G/GRUjH1ed0CKR2wxa4eSmeJZvSdDnybm/SE00Q7xoy42ONO
+ UT0ANUpzO4D2CX6gq6ULG4A=
+X-Google-Smtp-Source: ABdhPJxxj43H0vVQPhE//sppbw84qhdveSuHVVjiq63kNbh0ybqpHotcemBsLl8Fv+rp5NpQwqL64A==
+X-Received: by 2002:aa7:c04a:: with SMTP id k10mr79507513edo.308.1638252331653; 
+ Mon, 29 Nov 2021 22:05:31 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id e1sm10542153edc.27.2021.11.29.22.05.27
+ by smtp.gmail.com with ESMTPSA id e1sm10542153edc.27.2021.11.29.22.05.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Nov 2021 22:05:29 -0800 (PST)
+ Mon, 29 Nov 2021 22:05:31 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -63,15 +63,15 @@ To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  linux-kernel@vger.kernel.org
 Cc: Christian Hewitt <christianshewitt@gmail.com>,
  Benoit Masson <yahoo@perenite.com>
-Subject: [RFC PATCH 1/9] arm64: dts: meson: add common SM1 ac2xx dtsi
-Date: Tue, 30 Nov 2021 06:05:15 +0000
-Message-Id: <20211130060523.19161-2-christianshewitt@gmail.com>
+Subject: [RFC PATCH 2/9] dt-bindings: arm: amlogic: add X96-AIR bindings
+Date: Tue, 30 Nov 2021 06:05:16 +0000
+Message-Id: <20211130060523.19161-3-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20211130060523.19161-1-christianshewitt@gmail.com>
 References: <20211130060523.19161-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211129_220531_310114_E49C02E5 
-X-CRM114-Status: GOOD (  15.45  )
+X-CRM114-CacheID: sfid-20211129_220533_479757_7A28183F 
+X-CRM114-Status: GOOD (  11.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,322 +89,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add a common dtsi for Android STB devices based on the Amlogic S905X3
-(AC213/AC214) and S905D3 (AC201/AC202) reference designs. The dtsi is
-loosely based on the existing SEI610 device-tree.
+Add board bindings for the Amediatech X96-AIR STB which ships with
+model variants distiguished by Ethernet configuration: models using
+internal 10/100 PHY have a -100 suffix, while models using external
+Gigabit PHY have a -1000 suffix.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 300 ++++++++++++++++++
- 1 file changed, 300 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-new file mode 100644
-index 000000000000..46a34731f7e2
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-@@ -0,0 +1,300 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre SAS. All rights reserved.
-+ * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
-+ *
-+ * AC200/AC202 = S905D3
-+ * AC213/AC214 = S905X3
-+ *
-+ */
-+
-+#include "meson-sm1.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	ao_5v: regulator-ao_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "AO_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_in>;
-+		regulator-always-on;
-+	};
-+
-+	dc_in: regulator-dc_in {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC_IN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	emmc_1v8: regulator-emmc_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "EMMC_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_in>;
-+		regulator-always-on;
-+	};
-+
-+	vddcpu: regulator-vddcpu {
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU";
-+		regulator-min-microvolt = <690000>;
-+		regulator-max-microvolt = <1050000>;
-+
-+		vin-supply = <&dc_in>;
-+
-+		pwms = <&pwm_AO_cd 1 1500 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddio_ao1v8: regulator-vddio_ao1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+};
-+
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU1_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU2_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU3_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_AO_ab {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_ao_a_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+};
-+
-+&pwm_AO_cd {
-+	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+	status = "okay";
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddio_ao1v8>;
-+};
-+
-+/* SDIO */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr104;
-+	max-frequency = <200000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	/* WiFi firmware requires power to be kept while in suspend */
-+	keep-power-in-suspend;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_ao1v8>;
-+};
-+
-+/* SD Card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	/* CRC errors are observed at 50MHz */
-+	max-frequency = <35000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_3v3>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&emmc_1v8>;
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	dr_mode = "otg";
-+};
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 36081734f720..e9ab0ffe8be7 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -170,6 +170,8 @@ properties:
+       - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+         items:
+           - enum:
++              - amediatech,x96-air-100
++              - amediatech,x96-air-1000
+               - bananapi,bpi-m5
+               - hardkernel,odroid-c4
+               - hardkernel,odroid-hc4
 -- 
 2.17.1
 
