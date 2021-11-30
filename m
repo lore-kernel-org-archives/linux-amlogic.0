@@ -4,77 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63A41C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 00:05:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FC1EC433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 06:05:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WXysCvvaYPlZwDyKlpvKnBLwkU21Hum3PixmoLd99QA=; b=OBWkK0gsU4lS7XLg56+V9j7syH
-	EuDaOEPmQLE1woM30REEwoKpYYo+jX9+m6F2n+WU8U9je1g9iiHpVms96Sb3INN1L+9SXjsUROxrk
-	Tsp/QxGbgPxwcjDmyjU7QiT8mmVSD9a2NYLBgqBOZmoNdUU+nhoI92oMOFDZpDzKGmU87zCbuz/Pn
-	xqUD5vjvtHOstFbCHeoeRvI6R7M1e7gGVLFhN5S8piI+kCoykoCU724pISlU6V/Ze7/lFW6lrLV8X
-	pmQzECIsgcjFXEu6r54tIRq6OsI46fagz9JsLU30ppLZY719by1Ev9hNSxki9Z/miEynakb6Qsh3K
-	kswn4gwA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=EHGucDFdDbqDb8bDT1pJIJFaq//tFcvsZsu4TNWHqqQ=; b=nV2QffJIcifpea
+	7a+HtnRwAbs0uO3yNVA/yETHvgkv+38WmVJ5VUg++Vkz1vrlYqrVHGjjlwc0WdOC36ZisJqSdwoR4
+	AjIbsPrceShXzgvUOTPzEA5iiJKraDGXD8zu6Q6PC65EizsGDQP5CfN69bhrjNi2FQrAEjQJeJFYT
+	DZ8DiJVEkJIWmvsZYtaN7Mfe+VXlUv5gHZvNL2dGoWlT+JARJTlOHU7wk6Kp4fZQKXmhTB+wOHS9E
+	1MVnk54D1IFbncNEFML5cIJYGASHTtx//U6O//V/3tpa2kZ8hp6cwzRevBmEHucfAtsGK6pvrkrVJ
+	VRc4eHBRn6p68KsMjqVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mrqeF-003Atx-4y; Tue, 30 Nov 2021 00:05:27 +0000
-Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
+	id 1mrwGs-003hzU-Q3; Tue, 30 Nov 2021 06:05:42 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mrqeB-003Ass-Mo
- for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 00:05:25 +0000
-Received: by mail-pl1-x62c.google.com with SMTP id v19so13474617plo.7
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Nov 2021 16:05:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=telus.net; s=google;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :references:from:in-reply-to:content-transfer-encoding;
- bh=uQZBC3NL2q4viWqFkry5rqN+ZaBrvG5SLlR+xrFIAYs=;
- b=fjigD7qLnk20aUtQtW5ay57WiYj+v4OpGEeUdepwL7WfVru7cGU5iSv1x26K1V5XQC
- a1/brQK2sQ6eL4NU9pPIUcrVNbbrghSBPk4Fx9k2PtY+BgLVJEZ99oDNOY6fwwbrTJU3
- AvwGBytMrbsvqVS3vfixBvJpfQdjTZxddT8+ynn0+a0UYmuI4OwXJXCMdbPMvSbDzmP7
- FCt4597do1X4jFiaV6KEf8ptMhSoWNrojTqRWIgHZYSHrOCY2CJ7eclswL4XQy9FM2SG
- 1l+295OgG8OPk43hd0h9H47twZMcH4ED6Jcxcnr+0Mv9zcuxJ0DcVsM38GspG8cFwtSd
- iRDA==
+ id 1mrwGf-003hvj-IH; Tue, 30 Nov 2021 06:05:31 +0000
+Received: by mail-ed1-x534.google.com with SMTP id y13so81948503edd.13;
+ Mon, 29 Nov 2021 22:05:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=qd7ugZO8ErlAqRJmMU/RFyz5a/nU/7Ddv8QHIbivAOM=;
+ b=NqxFjtJQnLAWXnShg/7USZZp60vHVyqnY0U3T8VG2YJorB3mU3VDn3R3KLsQGOMcOW
+ FxUqozyB4f86NGUifah56iY6zR2EFT7nC2TV1uDYByT3CAhdwNKt4wUBpu2fFXkxKD9m
+ wN/YHrU9VnajajDE75SOG/PCummG7+qlnQwTE3OzKAtFheAedY/y3nE0yHwFxjfp/geG
+ 88HSQ/m0Sd6zEgiHrzxC2Dlq4dRr2i4ThB9HbIzt8PBIjt3MpsahHAXHuSnMrxlodw6C
+ pUFbo09e4/Ng9eGG5sSYawyZ1jVm613fStWESR38HeUSeA+FHqj7XHL8+0Gm7S/76G3J
+ 6Usw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:references:from:in-reply-to
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=uQZBC3NL2q4viWqFkry5rqN+ZaBrvG5SLlR+xrFIAYs=;
- b=YgkuoQcj5DilznUco7a+z6/om3Jxsyw+npYY/SVlHpjEG/JzAByzp4B5wq5iSf2NCu
- RQcueSD4a/rXEau9EHj5ypdEm4+ttpodD5w7YpO7KtzFk4qvWb8SHy0WEGPq5TM8bwWe
- iZTUuYNEzEpuW/VaHjl0/YzwnknbR5ryFs5riSla8etWOL0UrHP+1yEd4wwDVq/PIKHX
- 5orxmI8mr0+jb3fXbNDrXVQ/QVtWnyK+alT7SfkIXY/J8rJRl0GuUocuWmigjn6V4RXz
- OAYqeccoO9YH9u25IfOt0jiJd6M4FPKK8fDiQlLnWJfRKQ7RwGYXQ4VY7Ijyau+1jlJL
- eXGQ==
-X-Gm-Message-State: AOAM5304QU9er9y9s9Diz+t4FR4XAcdyoSex6mmdSjcZ7NWtLEuP9Vb6
- jUqShX/3sckVkxeJPdo1AHpBVSI/88tjBg==
-X-Google-Smtp-Source: ABdhPJxv2lJDYQmYtpikQzQCbSRdyR0T1kxTgL/LQFCu5ApVSGtYjn29EGHii5A9PlCYzDM6lsHmMw==
-X-Received: by 2002:a17:90b:38c9:: with SMTP id
- nn9mr1567914pjb.241.1638230720130; 
- Mon, 29 Nov 2021 16:05:20 -0800 (PST)
-Received: from [192.168.1.165] (d173-180-129-168.bchsia.telus.net.
- [173.180.129.168])
- by smtp.gmail.com with ESMTPSA id h186sm18025170pfg.59.2021.11.29.16.05.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 29 Nov 2021 16:05:19 -0800 (PST)
-Message-ID: <8b047358-7518-63dc-0ed3-557d58270137@telus.net>
-Date: Mon, 29 Nov 2021 16:05:18 -0800
+ bh=qd7ugZO8ErlAqRJmMU/RFyz5a/nU/7Ddv8QHIbivAOM=;
+ b=H3Eg7akyO3D3kgxrwA9U5UF/s3MdhpEUh6xkT7Qo9rEB4mGlptPIIJqcpFz50tkJ96
+ OAemRUYIlN2DPewrH6AqPDhSw1vzMhSZz8oQT/lQj38Otu5IqsARcKn5WDc2LwIZhH3d
+ +uvDSiuNVYt6F7tBU5F2FwjuvuZzaSYozRA1Ot12tiyXvEhkQ9chlsPEJBx/CnvUuLzs
+ zmOPRa8bEwKubXV9NTaeq1sYyo2q0eoLXA1txYId+qDIO3+PH8109+j2DD2Gvu1muBSr
+ RHZxJhRxf2p6XLHowxXhLVYZVfqd6kYiqg0567lj7LNopkyk3rgF4rv9vYK2YF/nlkDD
+ 55dw==
+X-Gm-Message-State: AOAM532ib8qeWxzrzihcmlxI+3U1h0ND+HDKE7PaCXNX9PMUm3YBhgpy
+ Hz6p6FNd0qIT5DVSUEK0P3o=
+X-Google-Smtp-Source: ABdhPJx1I+m5OvA2PghqwGuZ6GERo2hNzui5wPGnWI0kAkQJx9LWc3dB6iQX+C0VSfa0UUn26W7Apw==
+X-Received: by 2002:a17:907:6e16:: with SMTP id
+ sd22mr61633142ejc.542.1638252327196; 
+ Mon, 29 Nov 2021 22:05:27 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id e1sm10542153edc.27.2021.11.29.22.05.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 29 Nov 2021 22:05:26 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>,
+ Benoit Masson <yahoo@perenite.com>
+Subject: [RFC PATCH 0/9] arm64: dts: meson: add support for aac2xx devices
+Date: Tue, 30 Nov 2021 06:05:14 +0000
+Message-Id: <20211130060523.19161-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: YUV Display
-Content-Language: en-US
-To: Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org
-References: <ba04a76e-377a-9cef-1539-634d27483d18@telus.net>
- <3ead7839-f5dd-b7bd-abb3-6033b1517e02@baylibre.com>
-From: E Honsch <honsch@telus.net>
-In-Reply-To: <3ead7839-f5dd-b7bd-abb3-6033b1517e02@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211129_160523_950307_F5D32BCF 
-X-CRM114-Status: GOOD (  27.02  )
+X-CRM114-CacheID: sfid-20211129_220529_652417_8E6F1392 
+X-CRM114-Status: GOOD (  18.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,126 +84,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksIE5laWwKPiBPbiAyNy8xMS8yMDIxIDA4OjA2LCBFIEhvbnNjaCB3cm90ZToKPj4gSSd2ZSBi
-ZWVuIHVzaW5nIGFuIE9Ecm9pZCBDMiBmb3Igb3VyIHJhY2UgY2FyIGRhc2hib2FyZCBhbmQgd2Ug
-ZGVjaWRlZCB0byB1cGdyYWRlIHRoZSBzY3JlZW4gdG8gYSBtb3JlIGRhc2hib2FyZCBmcmllbmRs
-eSBzaXplLiBXZSBlbmRlZCB1cCBnb2luZyB3aXRoIHRoaXMgb25lOiBodHRwczovL3d3dy53YXZl
-c2hhcmUuY29tL3dpa2kvMTEuOWluY2hfSERNSV9MQ0QKPj4KPj4gV2hhdCB0aGV5IGRpZG4ndCBt
-ZW50aW9uIGlzIHRoYXQgaXMgb25seSB0YWtlcyBZVVYgZGF0YS4KPiB0aGlzIGlzIHdlaXJkLCBE
-VkkgbWFuZGF0ZXMgUkdCIHN1cHBvcnQgYnkgZGVmYXVsdCwgWVVWIGlzIG9ubHkgZm9yIEhETUkg
-ZGlzcGxheSB3aXRoIHRoZSBEUk1fRURJRF9IRE1JX0RDX1k0NDQgaXMgRURJRC4KPgo+PiBBZnRl
-ciBkaWdnaW5nIGFyb3VuZCBJIGZpZ3VyZWQgb3V0IHRoYXQgWVVWIHNjYW5vdXQgaXNuJ3QgeWV0
-IHN1cHBvcnRlZCBpbiB0aGUgbWVzb24gZHJtLgo+IEl0IGlzLCB3aGVuIGRpc3BsYXkgaXMgYW4g
-SERNSSBkaXNwbGF5IHRoYXQgc3VwcG9ydCBEUk1fRURJRF9IRE1JX0RDX1k0NDQgaXQgd2lsbCBz
-Y2Fub3V0IGluIFlVViBpbnN0ZWFkIG9mIFJHQiBieSBkZWZhdWx0LAo+Cj4+IEhvdyBmYXIgYXdh
-eSBmcm9tIGJlaW5nIGFibGUgdG8gc3VwcG9ydCBZVVYgaXMgdGhlIGNvZGUgY3VycmVudGx5P8Kg
-IERvZXMgdGhlIGRvY3VtZW50YXRpb24gZXhpc3QgdG8gaW1wbGVtZW50IHRoZSBmZWF0dXJlP8Kg
-IElmIHRoZSBpbmZvcm1hdGlvbiBpcyBhcm91bmQgSSdkIHRha2UgYSBzdGFiIGF0IGdldHRpbmcg
-aXQgZ29pbmcgaWYgc29tZW9uZSBwb2ludHMgbWUgaW4gdGhlIHJpZ2h0IGRpcmVjdGlvbi4KPiBD
-b3VsZCB5b3UgZ2l2ZSBtb3JlIGRldGFpbHMgYWJvdXQgd2hpY2gga2VybmVsIHlvdSBydW4gYW5k
-IHdoYXQgbWFrZXMgeW91IHRoaW5rIFlVViBpc24ndCBzdXBwb3J0ZWQuCj4KPiBOZWlsCj4KPj4g
-VGhhbmtzLgo+Pgo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwo+PiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+PiBsaW51eC1hbWxvZ2ljQGxp
-c3RzLmluZnJhZGVhZC5vcmcKPj4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9saW51eC1hbWxvZ2ljCj4KSSd2ZSB0cmllZCBhIGZldyBrZXJuZWxzLiBUaGUgc3Rv
-Y2sgSGFyZGtlcm5lbCBpbWFnZSAocmVhbGx5IG9sZCAzLnggCmtlcm5lbCwgd2hpY2ggc29ydC1v
-ZiB3b3JrZWQsIEkgZ290IGRpc3BsYXkgYnV0IHRoZSBiYWNrZ3JvdW5kIHdhcyBmdWxsIAptYWdl
-bnRhKSwgYWxzbyB0aGUgNS44IGFuZCA1LjE1LjUga2VybmVscyB3aGljaCB3b3VsZCBub3QgZXZl
-biBnZXQgdGhlIApkaXNwbGF5IHRvIHR1cm4gb24gdGhlIGJhY2tsaWdodC7CoCBJIG5lZWQgdG8g
-dXNlIGEgbmV3ZXIga2VybmVsIGZvciBteSAKYXBwbGljYXRpb24uCgpXaGVuIEkgd2FzIGRpZ2dp
-bmcgdHJ5aW5nIHRvIGZpbmQgb3V0IGhvdyB0byBzZXQgYSBjdXN0b20gbW9kZWxpbmUgSSAKZm91
-bmQgYSBwb3N0IHNvbWV3aGVyZSB0aGF0IG1lbnRpb25lZCB0aGF0IFlVViBvdXRwdXQgd2FzIG5v
-dCB5ZXQgCmltcGxlbWVudGVkLsKgIEl0IHNlZW1lZCBsZWdpdCBhbmQgcmVjZW50IHNvIEkgZGlk
-bid0IHF1ZXN0aW9uIGl0IHRvbyAKbXVjaC7CoCBJIGNhbid0IGZpbmQgdGhlIHBvc3Qgbm93LsKg
-IFRyeWluZyBvbiB0d28gaW50ZWwgbGFwdG9wcywgaXQgd29uJ3QgCmV2ZW4gdHVybiBvbiB0aGUg
-YmFja2xpZ2h0IG9uIG15IFhQUyBydW5uaW5nIFVidW50dSAyMC4wNCwgYW5kIHdpdGggbXkgCndv
-cmsgd2luMTAgbGFwdG9wIGl0IHdvcmtzIGZpbmUuCgpJZiB5b3UgbG9vayBhdCB0aGUgbGluaywg
-aXQncyBhIHN0cmFuZ2UgZGlzcGxheS7CoCAzMjB4MTQ4MCwgcGVyZmVjdCBmb3IgCmEgc21hbGwg
-Y2FyIGRhc2hib2FyZCBpZiB5b3Ugcm90YXRlIGl0IDkwIGRlZ3JlZXMuCgpUaGUgcHJvZ3JhbSBJ
-IHdyb3RlIHVzZXMgT3BlbkdMRVMyLjAgZGlyZWN0bHkgd2l0aG91dCBYIG9yIFdheWxhbmQuCldo
-ZW4gSSBydW4gaXQgSSBnZXQgbm8gbW9kZXMgb24gdGhlIGNvbm5lY3Rvci4KCkkgcHVsZWQgdGhl
-IEVESUQgZGF0YSBhbmQgdGhlIHByb2JsZW1zIG1pZ2h0IGJlIHRoZXJlOgoKZWRpZC1kZWNvZGUg
-KGhleCk6CgowMCBmZiBmZiBmZiBmZiBmZiBmZiAwMCAyMSA5NCAyNCAxZiAwYSAwMCAwMCAwMAox
-YyAxZSAwMSAwMyA4MCA5NCAzMCA3OCAwYSAwZCBjOSBhMCA1NyA0NyA5OCAyNwoxMiA0OCA0YyAw
-MCAwMCAwMCAwMSAwMSAwMSAwMSAwMSAwMSAwMSAwMSAwMSAwMQowMSAwMSAwMSAwMSAwMSAwMSA2
-OCAxMCA0MCA4ZCAxMCBjOCAyMCA1MCAzYyAxNwowNCAwNCA4MCAzOCA3NCAwMCAwMCAxOCBjOCAx
-OSA0MCA5NyAxMSBjOCAyMCA1MAo1OSAwNCAwNCA0NCA4MCAzOCA3NCAwMCAwMCAxOCAwMCAwMCAw
-MCBmYyAwMCA1Nwo2MSA3NiA2NSA1MyA2OCA2MSA3MiA2NSAyMCAyMCAyMCAyMCAwMCAwMCAwMCBm
-ZAowMCAxNCA3OCAwMSBmZiAxZCAwMCAwYSAyMCAyMCAyMCAyMCAyMCAyMCAwMSBlZQoKMDIgMDMg
-MWEgNzEgNDcgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMjMgMDkgMDcgMDEKODMgMDEgMDAgMDAgNjUg
-MDMgMGMgMDAgMTAgMDAgYzggMTkgNDAgOTcgMTEgYzgKMjAgNTAgNTkgMDQgMDQgNDQgODAgMzgg
-NzQgMDAgMDAgMTggYzggMTkgNDAgOTcKMTEgYzggMjAgNTAgNTkgMDQgMDQgNDQgODAgMzggNzQg
-MDAgMDAgMTggYzggMTkKNDAgOTcgMTEgYzggMjAgNTAgNTkgMDQgMDQgNDQgODAgMzggNzQgMDAg
-MDAgMTgKYzggMTkgNDAgOTcgMTEgYzggMjAgNTAgNTkgMDQgMDQgNDQgODAgMzggNzQgMDAKMDAg
-MTggMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAKMDAgMDAgMDAgMDAg
-MDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgNDUKCi0tLS0tLS0tLS0tLS0tLS0KCkVE
-SUQgdmVyc2lvbjogMS4zCk1hbnVmYWN0dXJlcjogSExUIE1vZGVsIDc5NzIgU2VyaWFsIE51bWJl
-ciAxMApNYWRlIGluIHdlZWsgMjggb2YgMjAyMApEaWdpdGFsIGRpc3BsYXkKTWF4aW11bSBpbWFn
-ZSBzaXplOiAxNDggY20geCA0OCBjbQpHYW1tYTogMi4yMApSR0IgY29sb3IgZGlzcGxheQpGaXJz
-dCBkZXRhaWxlZCB0aW1pbmcgaXMgcHJlZmVycmVkIHRpbWluZwpDb2xvciBDaGFyYWN0ZXJpc3Rp
-Y3MKIMKgIFJlZDrCoMKgIDAuNjI1MCwgMC4zMzk4CiDCoCBHcmVlbjogMC4yODAyLCAwLjU5NDcK
-IMKgIEJsdWU6wqAgMC4xNTUyLCAwLjA3MDMKIMKgIFdoaXRlOiAwLjI4MzIsIDAuMjk3OApFc3Rh
-Ymxpc2hlZCBUaW1pbmdzIEkgJiBJSTogbm9uZQpTdGFuZGFyZCBUaW1pbmdzOiBub25lCkRldGFp
-bGVkIG1vZGU6IENsb2NrIDQyLjAwMCBNSHosIDE5MjAgbW0geCAxMDgwIG1tCiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgMzIwwqAgMzgwwqAgNDAzwqAgNDYxICggNjDCoCAyM8KgIDU4
-KQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAxNDgwIDE0OTYgMTUwMCAxNTEyICggMTbC
-oMKgIDTCoCAxMikKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLWhzeW5jIC12c3luYwog
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBWZXJ0RnJlcTogNjAuMjU1IEh6LCBIb3JGcmVx
-OiA5MS4xMDYga0h6CkRldGFpbGVkIG1vZGU6IENsb2NrIDY2LjAwMCBNSHosIDE5MjAgbW0geCAx
-MDgwIG1tCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMzIwwqAgNjY1wqAgNjY5wqAg
-NzI3ICgzNDXCoMKgIDTCoCA1OCkKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMTQ4MCAx
-NDk2IDE1MDAgMTUxMiAoIDE2wqDCoCA0wqAgMTIpCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIC1oc3luYyAtdnN5bmMKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVmVydEZyZXE6
-IDYwLjA0MiBIeiwgSG9yRnJlcTogOTAuNzg0IGtIegpEaXNwbGF5IFByb2R1Y3QgTmFtZTogV2F2
-ZVNoYXJlCkRpc3BsYXkgUmFuZ2UgTGltaXRzCiDCoCBNb25pdG9yIHJhbmdlcyAoR1RGKTogMjAt
-MTIwIEh6IFYsIDEtMjU1IGtIeiBILCBtYXggZG90Y2xvY2sgMjkwIE1IegpIYXMgMSBleHRlbnNp
-b24gYmxvY2sKQ2hlY2tzdW06IDB4ZWUKCi0tLS0tLS0tLS0tLS0tLS0KCkNUQS04NjEgRXh0ZW5z
-aW9uIEJsb2NrIFJldmlzaW9uIDMKQmFzaWMgYXVkaW8gc3VwcG9ydApTdXBwb3J0cyBZQ2JDciA0
-OjQ6NApTdXBwb3J0cyBZQ2JDciA0OjI6MgoxIG5hdGl2ZSBkZXRhaWxlZCBtb2RlcwoyMiBieXRl
-cyBvZiBDVEEgZGF0YSBibG9ja3MKIMKgIFZpZGVvIERhdGEgQmxvY2sKIMKgIEF1ZGlvIERhdGEg
-QmxvY2sKIMKgwqDCoCBMaW5lYXIgUENNLCBtYXggY2hhbm5lbHMgMgogwqDCoMKgwqDCoCBTdXBw
-b3J0ZWQgc2FtcGxlIHJhdGVzIChrSHopOiA0OCA0NC4xIDMyCiDCoMKgwqDCoMKgIFN1cHBvcnRl
-ZCBzYW1wbGUgc2l6ZXMgKGJpdHMpOiAxNgogwqAgU3BlYWtlciBBbGxvY2F0aW9uIERhdGEgQmxv
-Y2sKIMKgwqDCoCBTcGVha2VyIG1hcDoKIMKgwqDCoMKgwqAgRkwvRlIgLSBGcm9udCBMZWZ0L1Jp
-Z2h0CiDCoCBWZW5kb3ItU3BlY2lmaWMgRGF0YSBCbG9jaywgT1VJIDB4MDAwYzAzIChIRE1JKQog
-wqDCoMKgIFNvdXJjZSBwaHlzaWNhbCBhZGRyZXNzIDEuMC4wLjAKRGV0YWlsZWQgbW9kZTogQ2xv
-Y2sgNjYuMDAwIE1IeiwgMTkyMCBtbSB4IDEwODAgbW0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAzMjDCoCA2NjXCoCA2NjnCoCA3MjcgKDM0NcKgwqAgNMKgIDU4KQogwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCAxNDgwIDE0OTYgMTUwMCAxNTEyICggMTbCoMKgIDTCoCAxMikK
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLWhzeW5jIC12c3luYwogwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBWZXJ0RnJlcTogNjAuMDQyIEh6LCBIb3JGcmVxOiA5MC43ODQga0h6
-CkRldGFpbGVkIG1vZGU6IENsb2NrIDY2LjAwMCBNSHosIDE5MjAgbW0geCAxMDgwIG1tCiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMzIwwqAgNjY1wqAgNjY5wqAgNzI3ICgzNDXCoMKg
-IDTCoCA1OCkKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMTQ4MCAxNDk2IDE1MDAgMTUx
-MiAoIDE2wqDCoCA0wqAgMTIpCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC1oc3luYyAt
-dnN5bmMKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVmVydEZyZXE6IDYwLjA0MiBIeiwg
-SG9yRnJlcTogOTAuNzg0IGtIegpEZXRhaWxlZCBtb2RlOiBDbG9jayA2Ni4wMDAgTUh6LCAxOTIw
-IG1tIHggMTA4MCBtbQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDMyMMKgIDY2NcKg
-IDY2OcKgIDcyNyAoMzQ1wqDCoCA0wqAgNTgpCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IDE0ODAgMTQ5NiAxNTAwIDE1MTIgKCAxNsKgwqAgNMKgIDEyKQogwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCAtaHN5bmMgLXZzeW5jCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFZl
-cnRGcmVxOiA2MC4wNDIgSHosIEhvckZyZXE6IDkwLjc4NCBrSHoKRGV0YWlsZWQgbW9kZTogQ2xv
-Y2sgNjYuMDAwIE1IeiwgMTkyMCBtbSB4IDEwODAgbW0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAzMjDCoCA2NjXCoCA2NjnCoCA3MjcgKDM0NcKgwqAgNMKgIDU4KQogwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCAxNDgwIDE0OTYgMTUwMCAxNTEyICggMTbCoMKgIDTCoCAxMikK
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLWhzeW5jIC12c3luYwogwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBWZXJ0RnJlcTogNjAuMDQyIEh6LCBIb3JGcmVxOiA5MC43ODQga0h6
-CkNoZWNrc3VtOiAweDQ1CgpUaGUgbWFudWZhY3R1cmVyJ3MgcGFnZSBzYXlzIHRvIHVzZSBhIHNw
-ZWNpZmljIEhETUkgc2V0dGluZyB3aXRoIGFuIHJQaSAKKHdoaWNoIG1vc3RseSB3b3Jrcykgd2hp
-Y2ggaXMgdGhlIGZpcnN0IG1vZGUgd2l0aCB0aGUgNDJNSHogcGl4ZWwgY2xvY2suCkluIHRoZSBl
-eHRlbnNpb24gYmxvY2sgYXQgdGhlIGVuZCB0aGF0IG1vZGUgaXNuJ3QgbGlzdGVkLsKgIEkgd29u
-ZGVyIGlmIAp0aGVyZSdzIGFuIGVhc3kgd2F5IHRvIGZvcmNlIGEgY2hvaWNlLsKgIEkgdHJpZWQg
-dGhlIG1vZGVsaW5lIGluIHRoZSAKb2Ryb2lkIGJvb3QuY2ZnIGZpbGUgYnV0IGl0IGRpZG4ndCBz
-ZWVtIHRvIGhhdmUgYW55IGVmZmVjdCBvbiB0aGUgCm1haW5pbmUga2VybmVscy4KCkkgZG8gYnVp
-bGQgbXkgb3duIGtlcm5lbHMgYXMgSSB1c2UgYSBidW5jaCBvZiB0aGUgSUlPIHN0dWZmIHRoYXQn
-cyAKdHVybmVkIG9mZiBieSBkZWZhdWx0IGFuZCBJIGhhZCB0byBmaXggc29tZSBpbnRlcnJ1cHQg
-cmVsYXRlZCB0aGluZ3Mgc28gCmhhY2tpbmcgYXQgdGhlIGtlcm5lbCBpc24ndCBhIHByb2JsZW0u
-CgpUaGFua3MsCkVyaWMKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+This series adds support for several popular Amlogic S905X3 (SM1) Android
+Set-Top Box devices. Like most Android box devices, they ship in variants
+with multiple RAM, eMMC, WiFi and BT configurations. RAM and eMMC are not
+something we need to consider to get a working boot, but we do need to get
+the correct connectivity spec. Broadly speaking we see boxes with Higher
+and Lower spec connectivity; High spec is Gigabit Ethernet and Faster dual
+antennna WiFi, and Lower spec is Megabit Ethernet and a single antenna. In
+some low-end boxes BT is ommitted.
+
+The main reason for the RFC tag is to solicit feedback on the choice of
+the -100 and -1000 suffixes which are used to distinguish between devices
+with 10/100 Mbit (Internal PHY) or 10/100/1000 Gbit (External PHY) NIC
+configurations; which is important to get correct else the box will have
+no connectivity. I'm not a big fan of the suffixes, but earlier versions
+where I used -int/-ext and -mbit/-gbit resulted in users having no idea
+what the difference was. I'd like to informally establish a convention for
+this naming before doing similar things with some S905X2 devices.
+
+NB: At the current time the Realtek 8822CS and MT7668 WiFi/BT chips we
+have seen on 'AIR' devices are not supported in the kernel so these are
+deliberately ommitted. The H96-Max uses a conventional Broadcom module
+so has more complete support. I'm also still exploring / learning about
+alsa userspace configuration so for now the boxes have simple HDMI audio
+support; wiring up the Headphone socket will be done at a later date.
+
+Christian Hewitt (9):
+  arm64: dts: meson: add common SM1 ac2xx dtsi
+  dt-bindings: arm: amlogic: add X96-AIR bindings
+  arm64: dts: meson: add initial device-trees for X96-AIR
+  dt-bindings: vendor-prefixes: add cyx prefix
+  dt-bindings: arm: amlogic: add A95XF3-AIR bindings
+  arm64: dts: meson: add initial device-trees for A95XF3-AIR
+  dt-bindings: vendor-prefixes: add haochuangyi prefix
+  dt-bindings: arm: amlogic: add H96-Max bindings
+  arm64: dts: meson: add initial device-tree for H96-Max
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   5 +
+ .../dts/amlogic/meson-sm1-a95xf3-air-100.dts  | 108 +++++++
+ .../dts/amlogic/meson-sm1-a95xf3-air-1000.dts | 129 ++++++++
+ .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 300 ++++++++++++++++++
+ .../boot/dts/amlogic/meson-sm1-h96-max.dts    | 145 +++++++++
+ .../dts/amlogic/meson-sm1-x96-air-100.dts     | 112 +++++++
+ .../dts/amlogic/meson-sm1-x96-air-1000.dts    | 133 ++++++++
+ 9 files changed, 941 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-100.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-1000.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-100.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-1000.dts
+
+-- 
+2.17.1
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
