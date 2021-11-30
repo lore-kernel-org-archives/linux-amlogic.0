@@ -4,74 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C1FDC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 09:37:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB82C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Nov 2021 10:18:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=zGC6zUStNa5lHc6/yNWuXNnB9NpA5X+fxtcgi1dCb+g=; b=eNcsRKT35tlIYx
-	AgkkhNORI3z1LCOomakTik0/LQQEPVreIqYoyAqQ4G5PTBl5SAPpOzL9j/H1sC6zeVcKe3T8QeJP2
-	EbqsCBPs6jhbejwqdUiEnIsCxjDQ/N+Efbk/cUuzpfz3/nsv/8jb+Fmwa2q4tpTVU/9tOEf3zLKWF
-	XLuESasz2eiuW3JN8lZV9UJrrzPboXkh3WynfUfNtq+rMCnEl2uAD0LGEm7hpfGuWt+T0k22nIsx0
-	gY34pR+IsVENV0WMthVET9leza74HsE6fardLEvrtbvkmmnMCPnADPqrr6yxcxsy1jN4+Vs5NjjkN
-	/cbN2p24c3rYd8E6nujw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=GzDWlAxR5V5OmM3qbRTTBrJEW430DQlovvoH82H/i9c=; b=pjQg28/Nibf2VY8/hy0pibj7VN
+	TKSbxFGUESjid57rdNZ0XB5eqEDx9hZU97ZtUIFIf8IoA16D9oaFyadn95Y26fH2IEemDzhelbJx2
+	154RAeUEcTnlR3x8RleGWVncgSUNXJ/joyAStV1wtmsNKiaDWNBV4jMqEpFkIvwgkt35+CngpnUm7
+	wa8U7MFeREv7Z6wvrB4Rzqs/OW7+v6sD/mvIT1f1OQK1tnGalF6K5e/baJPvT5EnrvCf4qVQiYphy
+	VSMkadSE9N2jBEqurkIQKOO9eyhb17+piAarfjM943mwCcGl00M+Z9OsKAUbT2/u8AKhYKK50ggsP
+	6knN0KIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mrzZJ-004MfT-MY; Tue, 30 Nov 2021 09:36:57 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1ms0Dc-004YfD-1Q; Tue, 30 Nov 2021 10:18:36 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mrzZ4-004Map-CL
- for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 09:36:45 +0000
-Received: by mail-wr1-x430.google.com with SMTP id d9so22098789wrw.4
- for <linux-amlogic@lists.infradead.org>; Tue, 30 Nov 2021 01:36:40 -0800 (PST)
+ id 1mrzup-004Sor-VH
+ for linux-amlogic@lists.infradead.org; Tue, 30 Nov 2021 09:59:14 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id
+ p27-20020a05600c1d9b00b0033bf8532855so14335774wms.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 30 Nov 2021 01:59:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=47M4CeI2s3Mt/JfEFWeyA3Sfx5BoCCk69AD+rdY2VPI=;
- b=2IdOOZmiuEmP+sCasWKkQ/NpqMWXyK7+bCohfgalZnWReMCVd1AzKWhiHcF2+5LG9L
- lJWug5XIMrgXLE0wcwr0hv8nQax7mj5XnfoV4doI+Tf2gWhafDiR/2PglGsrBWBlV1db
- WOqS16w/hRf9Rv/3JU/QwtFJ09QoTJv3xuBdV38qLgp/V7r6F6riLGeKCpuvD7bW9LRo
- 2cNf7+iZTV9ULn5YFRtGOWpHH4x0djUFxjWR8HxD/ooeE2sIBvK+W3KILSqLai7rqqVU
- TNjInRa3VeVCytClBTdkpCQCMYs1K97RjFCRLY4NThWrt3lUyfM09VcLHzLRvxeZPnjN
- 3MQw==
+ h=subject:to:references:from:organization:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=HoTfF+vzvedT6PVRQq9Vfj/nBmi5kRU3nnT6vz/YMUU=;
+ b=dMPC3z2ExL18iQOzMsv7wMNBA17msdAFVA1NTuCwfXj7d7lKCHYhHJF5PmbKyH5gtj
+ InelpghVaSuVnryR+Al1U92kCIE1ucnVWRbhQVgUhGYAavM0jxJLw+xEoNtr7f0akMjf
+ dERkbY9BgHhUs4plNJVgZag98Wf/EqCO65BQkfM3xnP+1zqFPc/+81BZoo7zyEIcFp2Y
+ K+vMaHyMwlKGI/lbTb89YqTd92UopweyIXEfw2ay5uy1p8opJx3KOCnu2BwpRfRKOP+T
+ +Ws44lmFy1m6HhCfe3LsxJ7msJ5UYFXwp1FxoxRtkOptV0GG+vyQLHOwMG3gFu99d4RX
+ XMsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=47M4CeI2s3Mt/JfEFWeyA3Sfx5BoCCk69AD+rdY2VPI=;
- b=gljmmG+ce9PBAglZtcQRiNrTQQ8w/7WaIKVRIvY3fCNtQ5/zW8LljuVyxHaWKcbFMC
- qHwnuKObZXI4wgpoB53h1j6YxGqDCMF3ccnGlfPCyPFTxRf0Ivq9LiiLPJeg6UB5Uk5s
- sbQtGpn+hzmrLhSQCU3O3/TSRbM0g3ZKy9ahNWffI/y1c24wnj+4CA5AX4JNKSRt/hfO
- OvB1rycuc01kdlTS0xZxjjmq8jKZBBeG9YKovB6u89GUcNTFYPCQhp+ZLhxJVcTU5GR1
- IhG85t3UnI9G6JnPKtCZtVqr71+p3PJKxtSbZ+WRUj0pJwApl3EkOhBnU+HYCFBtxAHV
- woiw==
-X-Gm-Message-State: AOAM530eC0oX7M3FfB60eWM2LYo7OSBVk9DUWsTUY6xATmZ7X+mnJenp
- QchyWFuhEE0mKHkRuPZW9aqw+A==
-X-Google-Smtp-Source: ABdhPJx5ChsKLLJF6h5b0vhOCAm/Hh/QEY02pbVu8kVw5p0mDlM16fey223AnlVsRDKdt8O+MChntQ==
-X-Received: by 2002:adf:fb82:: with SMTP id a2mr38970692wrr.168.1638264999783; 
- Tue, 30 Nov 2021 01:36:39 -0800 (PST)
-Received: from jackdaw.lan (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.googlemail.com with ESMTPSA id t11sm16255000wrz.97.2021.11.30.01.36.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Nov 2021 01:36:39 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: [PATCH] ASoC: meson: use dev_err_probe
-Date: Tue, 30 Nov 2021 10:36:17 +0100
-Message-Id: <20211130093617.103147-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.34.0
+ h=x-gm-message-state:subject:to:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=HoTfF+vzvedT6PVRQq9Vfj/nBmi5kRU3nnT6vz/YMUU=;
+ b=lFiEykfthSTZJfz9lywkYi+VX63GA0epkTbKx4nGxdDhLAEqHjwkZ5LvHlRuXVGgCW
+ 65dGh4aKQRFu05PZ4hLITpS/tq0dMurMtJoq8FQa6svpse791zLN1w1lkbMsvKWCYQj4
+ xkcRXNMd74FKeJGI6Hrd1NR68JslbnwD9r0TKYKj8n9co6YCVKBUjlmPCPdotl6ZUUJM
+ fjcopWvkINBamXG3MtDmH0No1jOVcWUYghpbkjhzJBaRjuPJjHFmFUEKTtHP516qBoSy
+ 4X6JuHN9RV+O4+wD3/+ex8hfIam5kXEuCoiwDSlzrzz82y+kVF2ZRam7nb4F75k7wrDS
+ YsEg==
+X-Gm-Message-State: AOAM531MoQnBuRlCd6SxIgo3lFWcmMccgTUuyd70ADdjLhDdqnDyDXhy
+ bUPb/Z3avTtccvlrS1SkASif+KjkBc7cj3iv
+X-Google-Smtp-Source: ABdhPJzBgx2n3DUInca4gHA3+oJ3s/IQj82bX3vgcJBWx6MxV4uuJtv2NTqMuduz0q1pQe/hWgITWA==
+X-Received: by 2002:a1c:4c04:: with SMTP id z4mr3710694wmf.11.1638266349166;
+ Tue, 30 Nov 2021 01:59:09 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:f80b:b9bd:4d6e:b61a?
+ ([2001:861:44c0:66c0:f80b:b9bd:4d6e:b61a])
+ by smtp.gmail.com with ESMTPSA id l3sm2189386wmq.46.2021.11.30.01.59.08
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 30 Nov 2021 01:59:08 -0800 (PST)
+Subject: Re: YUV Display
+To: E Honsch <honsch@telus.net>, linux-amlogic@lists.infradead.org
+References: <ba04a76e-377a-9cef-1539-634d27483d18@telus.net>
+ <3ead7839-f5dd-b7bd-abb3-6033b1517e02@baylibre.com>
+ <8b047358-7518-63dc-0ed3-557d58270137@telus.net>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <b1d6b66f-57f3-d7f9-c025-927c37a14a0a@baylibre.com>
+Date: Tue, 30 Nov 2021 10:59:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+In-Reply-To: <8b047358-7518-63dc-0ed3-557d58270137@telus.net>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211130_013642_523795_9C55162D 
-X-CRM114-Status: GOOD (  13.04  )
+X-CRM114-CacheID: sfid-20211130_015912_058386_DB80E867 
+X-CRM114-Status: GOOD (  37.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,325 +90,148 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use dev_err_probe() helper function to handle probe deferral.
-It removes the open coded test for -EPROBE_DEFER but more importantly, it
-sets the deferral reason in debugfs which is great for debugging.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- sound/soc/meson/aiu.c               | 17 +++++++----------
- sound/soc/meson/axg-fifo.c          |  9 +++------
- sound/soc/meson/axg-pdm.c           |  9 +++------
- sound/soc/meson/axg-spdifin.c       |  6 ++----
- sound/soc/meson/axg-spdifout.c      |  6 ++----
- sound/soc/meson/axg-tdm-formatter.c | 18 ++++++------------
- sound/soc/meson/axg-tdm-interface.c |  9 +++------
- sound/soc/meson/meson-card-utils.c  |  4 ++--
- sound/soc/meson/t9015.c             |  8 ++++----
- 9 files changed, 32 insertions(+), 54 deletions(-)
-
-diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-index ba15d5762b0b..37036adf14ce 100644
---- a/sound/soc/meson/aiu.c
-+++ b/sound/soc/meson/aiu.c
-@@ -219,31 +219,29 @@ static int aiu_clk_get(struct device *dev)
- 
- 	aiu->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(aiu->pclk)) {
--		if (PTR_ERR(aiu->pclk) != -EPROBE_DEFER)
--			dev_err(dev, "Can't get the aiu pclk\n");
-+		dev_err_probe(dev, PTR_ERR(aiu->pclk),
-+			      "Can't get the aiu pclk\n");
- 		return PTR_ERR(aiu->pclk);
- 	}
- 
- 	aiu->spdif_mclk = devm_clk_get(dev, "spdif_mclk");
- 	if (IS_ERR(aiu->spdif_mclk)) {
--		if (PTR_ERR(aiu->spdif_mclk) != -EPROBE_DEFER)
--			dev_err(dev, "Can't get the aiu spdif master clock\n");
-+		dev_err_probe(dev, PTR_ERR(aiu->spdif_mclk),
-+			      "Can't get the aiu spdif master clock\n");
- 		return PTR_ERR(aiu->spdif_mclk);
- 	}
- 
- 	ret = aiu_clk_bulk_get(dev, aiu_i2s_ids, ARRAY_SIZE(aiu_i2s_ids),
- 			       &aiu->i2s);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "Can't get the i2s clocks\n");
-+		dev_err_probe(dev, ret, "Can't get the i2s clocks\n");
- 		return ret;
- 	}
- 
- 	ret = aiu_clk_bulk_get(dev, aiu_spdif_ids, ARRAY_SIZE(aiu_spdif_ids),
- 			       &aiu->spdif);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "Can't get the spdif clocks\n");
-+		dev_err_probe(dev, ret, "Can't get the spdif clocks\n");
- 		return ret;
- 	}
- 
-@@ -282,8 +280,7 @@ static int aiu_probe(struct platform_device *pdev)
- 
- 	ret = device_reset(dev);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "Failed to reset device\n");
-+		dev_err_probe(dev, ret, "Failed to reset device\n");
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
-index b9af2d513e09..8d3184aeba60 100644
---- a/sound/soc/meson/axg-fifo.c
-+++ b/sound/soc/meson/axg-fifo.c
-@@ -352,17 +352,14 @@ int axg_fifo_probe(struct platform_device *pdev)
- 
- 	fifo->pclk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(fifo->pclk)) {
--		if (PTR_ERR(fifo->pclk) != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %ld\n",
--				PTR_ERR(fifo->pclk));
-+		dev_err_probe(dev, PTR_ERR(fifo->pclk), "failed to get pclk\n");
- 		return PTR_ERR(fifo->pclk);
- 	}
- 
- 	fifo->arb = devm_reset_control_get_exclusive(dev, NULL);
- 	if (IS_ERR(fifo->arb)) {
--		if (PTR_ERR(fifo->arb) != -EPROBE_DEFER)
--			dev_err(dev, "failed to get arb reset: %ld\n",
--				PTR_ERR(fifo->arb));
-+		dev_err_probe(dev, PTR_ERR(fifo->arb),
-+			      "failed to get arb reset\n");
- 		return PTR_ERR(fifo->arb);
- 	}
- 
-diff --git a/sound/soc/meson/axg-pdm.c b/sound/soc/meson/axg-pdm.c
-index bfd37d49a73e..9537fbcf56e0 100644
---- a/sound/soc/meson/axg-pdm.c
-+++ b/sound/soc/meson/axg-pdm.c
-@@ -613,24 +613,21 @@ static int axg_pdm_probe(struct platform_device *pdev)
- 	priv->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(priv->pclk)) {
- 		ret = PTR_ERR(priv->pclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get pclk\n");
- 		return ret;
- 	}
- 
- 	priv->dclk = devm_clk_get(dev, "dclk");
- 	if (IS_ERR(priv->dclk)) {
- 		ret = PTR_ERR(priv->dclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get dclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get dclk\n");
- 		return ret;
- 	}
- 
- 	priv->sysclk = devm_clk_get(dev, "sysclk");
- 	if (IS_ERR(priv->sysclk)) {
- 		ret = PTR_ERR(priv->sysclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get dclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get dclk\n");
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-spdifin.c b/sound/soc/meson/axg-spdifin.c
-index d0d09f945b48..e10bc9352667 100644
---- a/sound/soc/meson/axg-spdifin.c
-+++ b/sound/soc/meson/axg-spdifin.c
-@@ -481,16 +481,14 @@ static int axg_spdifin_probe(struct platform_device *pdev)
- 	priv->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(priv->pclk)) {
- 		ret = PTR_ERR(priv->pclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get pclk\n");
- 		return ret;
- 	}
- 
- 	priv->refclk = devm_clk_get(dev, "refclk");
- 	if (IS_ERR(priv->refclk)) {
- 		ret = PTR_ERR(priv->refclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get mclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get mclk\n");
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-spdifout.c b/sound/soc/meson/axg-spdifout.c
-index e769a5ee6e27..179654d76c8f 100644
---- a/sound/soc/meson/axg-spdifout.c
-+++ b/sound/soc/meson/axg-spdifout.c
-@@ -424,16 +424,14 @@ static int axg_spdifout_probe(struct platform_device *pdev)
- 	priv->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(priv->pclk)) {
- 		ret = PTR_ERR(priv->pclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get pclk\n");
- 		return ret;
- 	}
- 
- 	priv->mclk = devm_clk_get(dev, "mclk");
- 	if (IS_ERR(priv->mclk)) {
- 		ret = PTR_ERR(priv->mclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get mclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get mclk\n");
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-tdm-formatter.c b/sound/soc/meson/axg-tdm-formatter.c
-index cab7fa2851aa..b8bbeda87a72 100644
---- a/sound/soc/meson/axg-tdm-formatter.c
-+++ b/sound/soc/meson/axg-tdm-formatter.c
-@@ -284,8 +284,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(formatter->pclk)) {
- 		ret = PTR_ERR(formatter->pclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get pclk\n");
- 		return ret;
- 	}
- 
-@@ -293,8 +292,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->sclk = devm_clk_get(dev, "sclk");
- 	if (IS_ERR(formatter->sclk)) {
- 		ret = PTR_ERR(formatter->sclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get sclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get sclk\n");
- 		return ret;
- 	}
- 
-@@ -302,8 +300,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->lrclk = devm_clk_get(dev, "lrclk");
- 	if (IS_ERR(formatter->lrclk)) {
- 		ret = PTR_ERR(formatter->lrclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get lrclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get lrclk\n");
- 		return ret;
- 	}
- 
-@@ -311,8 +308,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->sclk_sel = devm_clk_get(dev, "sclk_sel");
- 	if (IS_ERR(formatter->sclk_sel)) {
- 		ret = PTR_ERR(formatter->sclk_sel);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get sclk_sel: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get sclk_sel\n");
- 		return ret;
- 	}
- 
-@@ -320,8 +316,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->lrclk_sel = devm_clk_get(dev, "lrclk_sel");
- 	if (IS_ERR(formatter->lrclk_sel)) {
- 		ret = PTR_ERR(formatter->lrclk_sel);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get lrclk_sel: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get lrclk_sel\n");
- 		return ret;
- 	}
- 
-@@ -329,8 +324,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	formatter->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
- 	if (IS_ERR(formatter->reset)) {
- 		ret = PTR_ERR(formatter->reset);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get reset: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get reset\n");
- 		return ret;
- 	}
- 
-diff --git a/sound/soc/meson/axg-tdm-interface.c b/sound/soc/meson/axg-tdm-interface.c
-index db077773af7a..8f8b126de158 100644
---- a/sound/soc/meson/axg-tdm-interface.c
-+++ b/sound/soc/meson/axg-tdm-interface.c
-@@ -535,8 +535,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
- 	iface->sclk = devm_clk_get(dev, "sclk");
- 	if (IS_ERR(iface->sclk)) {
- 		ret = PTR_ERR(iface->sclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get sclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get sclk\n");
- 		return ret;
- 	}
- 
-@@ -544,8 +543,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
- 	iface->lrclk = devm_clk_get(dev, "lrclk");
- 	if (IS_ERR(iface->lrclk)) {
- 		ret = PTR_ERR(iface->lrclk);
--		if (ret != -EPROBE_DEFER)
--			dev_err(dev, "failed to get lrclk: %d\n", ret);
-+		dev_err_probe(dev, ret, "failed to get lrclk\n");
- 		return ret;
- 	}
- 
-@@ -561,8 +559,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
- 		if (ret == -ENOENT) {
- 			iface->mclk = NULL;
- 		} else {
--			if (ret != -EPROBE_DEFER)
--				dev_err(dev, "failed to get mclk: %d\n", ret);
-+			dev_err_probe(dev, ret, "failed to get mclk\n");
- 			return ret;
- 		}
- 	}
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index 29b0174f4b5c..cc6e16e31f9c 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -86,8 +86,8 @@ int meson_card_parse_dai(struct snd_soc_card *card,
- 	ret = of_parse_phandle_with_args(node, "sound-dai",
- 					 "#sound-dai-cells", 0, &args);
- 	if (ret) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(card->dev, "can't parse dai %d\n", ret);
-+		dev_err_probe(card->dev, ret,
-+			      "can't parse sound-dai at %pOFn\n", node);
- 		return ret;
- 	}
- 	*dai_of_node = args.np;
-diff --git a/sound/soc/meson/t9015.c b/sound/soc/meson/t9015.c
-index 4c1349dd1e06..7a0a807f494c 100644
---- a/sound/soc/meson/t9015.c
-+++ b/sound/soc/meson/t9015.c
-@@ -259,15 +259,15 @@ static int t9015_probe(struct platform_device *pdev)
- 
- 	priv->pclk = devm_clk_get(dev, "pclk");
- 	if (IS_ERR(priv->pclk)) {
--		if (PTR_ERR(priv->pclk) != -EPROBE_DEFER)
--			dev_err(dev, "failed to get core clock\n");
-+		dev_err_probe(dev, PTR_ERR(priv->pclk),
-+			      "failed to get core clock\n");
- 		return PTR_ERR(priv->pclk);
- 	}
- 
- 	priv->avdd = devm_regulator_get(dev, "AVDD");
- 	if (IS_ERR(priv->avdd)) {
--		if (PTR_ERR(priv->avdd) != -EPROBE_DEFER)
--			dev_err(dev, "failed to AVDD\n");
-+		dev_err_probe(dev, PTR_ERR(priv->avdd),
-+			      "failed to get AVDD\n");
- 		return PTR_ERR(priv->avdd);
- 	}
- 
--- 
-2.34.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgpPbiAzMC8xMS8yMDIxIDAxOjA1LCBFIEhvbnNjaCB3cm90ZToKPiBIaSwgTmVpbAo+PiBP
+biAyNy8xMS8yMDIxIDA4OjA2LCBFIEhvbnNjaCB3cm90ZToKPj4+IEkndmUgYmVlbiB1c2luZyBh
+biBPRHJvaWQgQzIgZm9yIG91ciByYWNlIGNhciBkYXNoYm9hcmQgYW5kIHdlIGRlY2lkZWQgdG8g
+dXBncmFkZSB0aGUgc2NyZWVuIHRvIGEgbW9yZSBkYXNoYm9hcmQgZnJpZW5kbHkgc2l6ZS4gV2Ug
+ZW5kZWQgdXAgZ29pbmcgd2l0aCB0aGlzIG9uZTogaHR0cHM6Ly93d3cud2F2ZXNoYXJlLmNvbS93
+aWtpLzExLjlpbmNoX0hETUlfTENECj4+Pgo+Pj4gV2hhdCB0aGV5IGRpZG4ndCBtZW50aW9uIGlz
+IHRoYXQgaXMgb25seSB0YWtlcyBZVVYgZGF0YS4KPj4gdGhpcyBpcyB3ZWlyZCwgRFZJIG1hbmRh
+dGVzIFJHQiBzdXBwb3J0IGJ5IGRlZmF1bHQsIFlVViBpcyBvbmx5IGZvciBIRE1JIGRpc3BsYXkg
+d2l0aCB0aGUgRFJNX0VESURfSERNSV9EQ19ZNDQ0IGlzIEVESUQuCj4+Cj4+PiBBZnRlciBkaWdn
+aW5nIGFyb3VuZCBJIGZpZ3VyZWQgb3V0IHRoYXQgWVVWIHNjYW5vdXQgaXNuJ3QgeWV0IHN1cHBv
+cnRlZCBpbiB0aGUgbWVzb24gZHJtLgo+PiBJdCBpcywgd2hlbiBkaXNwbGF5IGlzIGFuIEhETUkg
+ZGlzcGxheSB0aGF0IHN1cHBvcnQgRFJNX0VESURfSERNSV9EQ19ZNDQ0IGl0IHdpbGwgc2Nhbm91
+dCBpbiBZVVYgaW5zdGVhZCBvZiBSR0IgYnkgZGVmYXVsdCwKPj4KPj4+IEhvdyBmYXIgYXdheSBm
+cm9tIGJlaW5nIGFibGUgdG8gc3VwcG9ydCBZVVYgaXMgdGhlIGNvZGUgY3VycmVudGx5P8KgIERv
+ZXMgdGhlIGRvY3VtZW50YXRpb24gZXhpc3QgdG8gaW1wbGVtZW50IHRoZSBmZWF0dXJlP8KgIElm
+IHRoZSBpbmZvcm1hdGlvbiBpcyBhcm91bmQgSSdkIHRha2UgYSBzdGFiIGF0IGdldHRpbmcgaXQg
+Z29pbmcgaWYgc29tZW9uZSBwb2ludHMgbWUgaW4gdGhlIHJpZ2h0IGRpcmVjdGlvbi4KPj4gQ291
+bGQgeW91IGdpdmUgbW9yZSBkZXRhaWxzIGFib3V0IHdoaWNoIGtlcm5lbCB5b3UgcnVuIGFuZCB3
+aGF0IG1ha2VzIHlvdSB0aGluayBZVVYgaXNuJ3Qgc3VwcG9ydGVkLgo+Pgo+PiBOZWlsCj4+Cj4+
+PiBUaGFua3MuCj4+Pgo+Pj4KPj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCj4+PiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+Pj4gbGludXgtYW1s
+b2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCj4+PiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMKPj4KPiBJJ3ZlIHRyaWVkIGEgZmV3IGtlcm5l
+bHMuIFRoZSBzdG9jayBIYXJka2VybmVsIGltYWdlIChyZWFsbHkgb2xkIDMueCBrZXJuZWwsIHdo
+aWNoIHNvcnQtb2Ygd29ya2VkLCBJIGdvdCBkaXNwbGF5IGJ1dCB0aGUgYmFja2dyb3VuZCB3YXMg
+ZnVsbCBtYWdlbnRhKSwgYWxzbyB0aGUgNS44IGFuZCA1LjE1LjUga2VybmVscyB3aGljaCB3b3Vs
+ZCBub3QgZXZlbiBnZXQgdGhlIGRpc3BsYXkgdG8gdHVybiBvbiB0aGUgYmFja2xpZ2h0LsKgIEkg
+bmVlZCB0byB1c2UgYSBuZXdlciBrZXJuZWwgZm9yIG15IGFwcGxpY2F0aW9uLgoKQnkgZGVmYXVs
+dCB0aGUga2VybmVsIHJlamVjdHM6CgogODY5ICAgICAgICAgaWYgKG1vZGUtPmhkaXNwbGF5IDwg
+NjQwIHx8IG1vZGUtPmhkaXNwbGF5ID4gMTkyMCkKIDg3MCAgICAgICAgICAgICAgICAgcmV0dXJu
+IE1PREVfQkFEX0hWQUxVRTsKIDg3MQogODcyICAgICAgICAgaWYgKG1vZGUtPnZkaXNwbGF5IDwg
+NDgwIHx8IG1vZGUtPnZkaXNwbGF5ID4gMTIwMCkKIDg3MyAgICAgICAgICAgICAgICAgcmV0dXJu
+IE1PREVfQkFEX1ZWQUxVRTsKClNvIHllcyBpdCdzIGV4cGVjdGVkLCBidXQgdGhlc2UgdmFsdWVz
+IGFyZSBhcmJpdHJhcnksIGFuZCBpdCBzaG91bGQgcHJvYmFibHkgd29yawp3aXRoIGhkaXNwbGF5
+ID09IDMyMC4KCllvdSBjYW4gdHJ5IHRoaXM6CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+bWVzb24vbWVzb25fdmVuYy5jIGIvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX3ZlbmMuYwpp
+bmRleCAzYzU1ZWQwMDMzNTkuLjY5OWViMDhhMjM1MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL21lc29uL21lc29uX3ZlbmMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25f
+dmVuYy5jCkBAIC04NjYsNyArODY2LDcgQEAgbWVzb25fdmVuY19oZG1pX3N1cHBvcnRlZF9tb2Rl
+KGNvbnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICptb2RlKQogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgRFJNX01PREVfRkxBR19QVlNZTkMgfCBEUk1fTU9ERV9GTEFHX05WU1lOQykpCiAg
+ICAgICAgICAgICAgICByZXR1cm4gTU9ERV9CQUQ7CgotICAgICAgIGlmIChtb2RlLT5oZGlzcGxh
+eSA8IDY0MCB8fCBtb2RlLT5oZGlzcGxheSA+IDE5MjApCisgICAgICAgaWYgKG1vZGUtPmhkaXNw
+bGF5IDwgMzIwIHx8IG1vZGUtPmhkaXNwbGF5ID4gMTkyMCkKICAgICAgICAgICAgICAgIHJldHVy
+biBNT0RFX0JBRF9IVkFMVUU7CgogICAgICAgIGlmIChtb2RlLT52ZGlzcGxheSA8IDQ4MCB8fCBt
+b2RlLT52ZGlzcGxheSA+IDEyMDApCgpOZWlsCgo+IAo+IFdoZW4gSSB3YXMgZGlnZ2luZyB0cnlp
+bmcgdG8gZmluZCBvdXQgaG93IHRvIHNldCBhIGN1c3RvbSBtb2RlbGluZSBJIGZvdW5kIGEgcG9z
+dCBzb21ld2hlcmUgdGhhdCBtZW50aW9uZWQgdGhhdCBZVVYgb3V0cHV0IHdhcyBub3QgeWV0IGlt
+cGxlbWVudGVkLsKgIEl0IHNlZW1lZCBsZWdpdCBhbmQgcmVjZW50IHNvIEkgZGlkbid0IHF1ZXN0
+aW9uIGl0IHRvbyBtdWNoLsKgIEkgY2FuJ3QgZmluZCB0aGUgcG9zdCBub3cuwqAgVHJ5aW5nIG9u
+IHR3byBpbnRlbCBsYXB0b3BzLCBpdCB3b24ndCBldmVuIHR1cm4gb24gdGhlIGJhY2tsaWdodCBv
+biBteSBYUFMgcnVubmluZyBVYnVudHUgMjAuMDQsIGFuZCB3aXRoIG15IHdvcmsgd2luMTAgbGFw
+dG9wIGl0IHdvcmtzIGZpbmUuCj4gCj4gSWYgeW91IGxvb2sgYXQgdGhlIGxpbmssIGl0J3MgYSBz
+dHJhbmdlIGRpc3BsYXkuwqAgMzIweDE0ODAsIHBlcmZlY3QgZm9yIGEgc21hbGwgY2FyIGRhc2hi
+b2FyZCBpZiB5b3Ugcm90YXRlIGl0IDkwIGRlZ3JlZXMuCj4gCj4gVGhlIHByb2dyYW0gSSB3cm90
+ZSB1c2VzIE9wZW5HTEVTMi4wIGRpcmVjdGx5IHdpdGhvdXQgWCBvciBXYXlsYW5kLgo+IFdoZW4g
+SSBydW4gaXQgSSBnZXQgbm8gbW9kZXMgb24gdGhlIGNvbm5lY3Rvci4KPiAKPiBJIHB1bGVkIHRo
+ZSBFRElEIGRhdGEgYW5kIHRoZSBwcm9ibGVtcyBtaWdodCBiZSB0aGVyZToKPiAKPiBlZGlkLWRl
+Y29kZSAoaGV4KToKPiAKPiAwMCBmZiBmZiBmZiBmZiBmZiBmZiAwMCAyMSA5NCAyNCAxZiAwYSAw
+MCAwMCAwMAo+IDFjIDFlIDAxIDAzIDgwIDk0IDMwIDc4IDBhIDBkIGM5IGEwIDU3IDQ3IDk4IDI3
+Cj4gMTIgNDggNGMgMDAgMDAgMDAgMDEgMDEgMDEgMDEgMDEgMDEgMDEgMDEgMDEgMDEKPiAwMSAw
+MSAwMSAwMSAwMSAwMSA2OCAxMCA0MCA4ZCAxMCBjOCAyMCA1MCAzYyAxNwo+IDA0IDA0IDgwIDM4
+IDc0IDAwIDAwIDE4IGM4IDE5IDQwIDk3IDExIGM4IDIwIDUwCj4gNTkgMDQgMDQgNDQgODAgMzgg
+NzQgMDAgMDAgMTggMDAgMDAgMDAgZmMgMDAgNTcKPiA2MSA3NiA2NSA1MyA2OCA2MSA3MiA2NSAy
+MCAyMCAyMCAyMCAwMCAwMCAwMCBmZAo+IDAwIDE0IDc4IDAxIGZmIDFkIDAwIDBhIDIwIDIwIDIw
+IDIwIDIwIDIwIDAxIGVlCj4gCj4gMDIgMDMgMWEgNzEgNDcgMDAgMDAgMDAgMDAgMDAgMDAgMDAg
+MjMgMDkgMDcgMDEKPiA4MyAwMSAwMCAwMCA2NSAwMyAwYyAwMCAxMCAwMCBjOCAxOSA0MCA5NyAx
+MSBjOAo+IDIwIDUwIDU5IDA0IDA0IDQ0IDgwIDM4IDc0IDAwIDAwIDE4IGM4IDE5IDQwIDk3Cj4g
+MTEgYzggMjAgNTAgNTkgMDQgMDQgNDQgODAgMzggNzQgMDAgMDAgMTggYzggMTkKPiA0MCA5NyAx
+MSBjOCAyMCA1MCA1OSAwNCAwNCA0NCA4MCAzOCA3NCAwMCAwMCAxOAo+IGM4IDE5IDQwIDk3IDEx
+IGM4IDIwIDUwIDU5IDA0IDA0IDQ0IDgwIDM4IDc0IDAwCj4gMDAgMTggMDAgMDAgMDAgMDAgMDAg
+MDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAKPiAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAw
+MCAwMCAwMCAwMCAwMCAwMCA0NQo+IAo+IC0tLS0tLS0tLS0tLS0tLS0KPiAKPiBFRElEIHZlcnNp
+b246IDEuMwo+IE1hbnVmYWN0dXJlcjogSExUIE1vZGVsIDc5NzIgU2VyaWFsIE51bWJlciAxMAo+
+IE1hZGUgaW4gd2VlayAyOCBvZiAyMDIwCj4gRGlnaXRhbCBkaXNwbGF5Cj4gTWF4aW11bSBpbWFn
+ZSBzaXplOiAxNDggY20geCA0OCBjbQo+IEdhbW1hOiAyLjIwCj4gUkdCIGNvbG9yIGRpc3BsYXkK
+PiBGaXJzdCBkZXRhaWxlZCB0aW1pbmcgaXMgcHJlZmVycmVkIHRpbWluZwo+IENvbG9yIENoYXJh
+Y3RlcmlzdGljcwo+IMKgIFJlZDrCoMKgIDAuNjI1MCwgMC4zMzk4Cj4gwqAgR3JlZW46IDAuMjgw
+MiwgMC41OTQ3Cj4gwqAgQmx1ZTrCoCAwLjE1NTIsIDAuMDcwMwo+IMKgIFdoaXRlOiAwLjI4MzIs
+IDAuMjk3OAo+IEVzdGFibGlzaGVkIFRpbWluZ3MgSSAmIElJOiBub25lCj4gU3RhbmRhcmQgVGlt
+aW5nczogbm9uZQo+IERldGFpbGVkIG1vZGU6IENsb2NrIDQyLjAwMCBNSHosIDE5MjAgbW0geCAx
+MDgwIG1tCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDMyMMKgIDM4MMKgIDQwM8Kg
+IDQ2MSAoIDYwwqAgMjPCoCA1OCkKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDE0ODAg
+MTQ5NiAxNTAwIDE1MTIgKCAxNsKgwqAgNMKgIDEyKQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgLWhzeW5jIC12c3luYwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVmVydEZy
+ZXE6IDYwLjI1NSBIeiwgSG9yRnJlcTogOTEuMTA2IGtIego+IERldGFpbGVkIG1vZGU6IENsb2Nr
+IDY2LjAwMCBNSHosIDE5MjAgbW0geCAxMDgwIG1tCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIDMyMMKgIDY2NcKgIDY2OcKgIDcyNyAoMzQ1wqDCoCA0wqAgNTgpCj4gwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCAxNDgwIDE0OTYgMTUwMCAxNTEyICggMTbCoMKgIDTCoCAxMikK
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC1oc3luYyAtdnN5bmMKPiDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIFZlcnRGcmVxOiA2MC4wNDIgSHosIEhvckZyZXE6IDkwLjc4NCBr
+SHoKPiBEaXNwbGF5IFByb2R1Y3QgTmFtZTogV2F2ZVNoYXJlCj4gRGlzcGxheSBSYW5nZSBMaW1p
+dHMKPiDCoCBNb25pdG9yIHJhbmdlcyAoR1RGKTogMjAtMTIwIEh6IFYsIDEtMjU1IGtIeiBILCBt
+YXggZG90Y2xvY2sgMjkwIE1Iego+IEhhcyAxIGV4dGVuc2lvbiBibG9jawo+IENoZWNrc3VtOiAw
+eGVlCj4gCj4gLS0tLS0tLS0tLS0tLS0tLQo+IAo+IENUQS04NjEgRXh0ZW5zaW9uIEJsb2NrIFJl
+dmlzaW9uIDMKPiBCYXNpYyBhdWRpbyBzdXBwb3J0Cj4gU3VwcG9ydHMgWUNiQ3IgNDo0OjQKPiBT
+dXBwb3J0cyBZQ2JDciA0OjI6Mgo+IDEgbmF0aXZlIGRldGFpbGVkIG1vZGVzCj4gMjIgYnl0ZXMg
+b2YgQ1RBIGRhdGEgYmxvY2tzCj4gwqAgVmlkZW8gRGF0YSBCbG9jawo+IMKgIEF1ZGlvIERhdGEg
+QmxvY2sKPiDCoMKgwqAgTGluZWFyIFBDTSwgbWF4IGNoYW5uZWxzIDIKPiDCoMKgwqDCoMKgIFN1
+cHBvcnRlZCBzYW1wbGUgcmF0ZXMgKGtIeik6IDQ4IDQ0LjEgMzIKPiDCoMKgwqDCoMKgIFN1cHBv
+cnRlZCBzYW1wbGUgc2l6ZXMgKGJpdHMpOiAxNgo+IMKgIFNwZWFrZXIgQWxsb2NhdGlvbiBEYXRh
+IEJsb2NrCj4gwqDCoMKgIFNwZWFrZXIgbWFwOgo+IMKgwqDCoMKgwqAgRkwvRlIgLSBGcm9udCBM
+ZWZ0L1JpZ2h0Cj4gwqAgVmVuZG9yLVNwZWNpZmljIERhdGEgQmxvY2ssIE9VSSAweDAwMGMwMyAo
+SERNSSkKPiDCoMKgwqAgU291cmNlIHBoeXNpY2FsIGFkZHJlc3MgMS4wLjAuMAo+IERldGFpbGVk
+IG1vZGU6IENsb2NrIDY2LjAwMCBNSHosIDE5MjAgbW0geCAxMDgwIG1tCj4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIDMyMMKgIDY2NcKgIDY2OcKgIDcyNyAoMzQ1wqDCoCA0wqAgNTgp
+Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAxNDgwIDE0OTYgMTUwMCAxNTEyICggMTbC
+oMKgIDTCoCAxMikKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC1oc3luYyAtdnN5bmMK
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFZlcnRGcmVxOiA2MC4wNDIgSHosIEhvckZy
+ZXE6IDkwLjc4NCBrSHoKPiBEZXRhaWxlZCBtb2RlOiBDbG9jayA2Ni4wMDAgTUh6LCAxOTIwIG1t
+IHggMTA4MCBtbQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAzMjDCoCA2NjXCoCA2
+NjnCoCA3MjcgKDM0NcKgwqAgNMKgIDU4KQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+MTQ4MCAxNDk2IDE1MDAgMTUxMiAoIDE2wqDCoCA0wqAgMTIpCj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCAtaHN5bmMgLXZzeW5jCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBW
+ZXJ0RnJlcTogNjAuMDQyIEh6LCBIb3JGcmVxOiA5MC43ODQga0h6Cj4gRGV0YWlsZWQgbW9kZTog
+Q2xvY2sgNjYuMDAwIE1IeiwgMTkyMCBtbSB4IDEwODAgbW0KPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgMzIwwqAgNjY1wqAgNjY5wqAgNzI3ICgzNDXCoMKgIDTCoCA1OCkKPiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDE0ODAgMTQ5NiAxNTAwIDE1MTIgKCAxNsKgwqAgNMKg
+IDEyKQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLWhzeW5jIC12c3luYwo+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVmVydEZyZXE6IDYwLjA0MiBIeiwgSG9yRnJlcTogOTAu
+Nzg0IGtIego+IERldGFpbGVkIG1vZGU6IENsb2NrIDY2LjAwMCBNSHosIDE5MjAgbW0geCAxMDgw
+IG1tCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDMyMMKgIDY2NcKgIDY2OcKgIDcy
+NyAoMzQ1wqDCoCA0wqAgNTgpCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAxNDgwIDE0
+OTYgMTUwMCAxNTEyICggMTbCoMKgIDTCoCAxMikKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIC1oc3luYyAtdnN5bmMKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFZlcnRGcmVx
+OiA2MC4wNDIgSHosIEhvckZyZXE6IDkwLjc4NCBrSHoKPiBDaGVja3N1bTogMHg0NQo+IAo+IFRo
+ZSBtYW51ZmFjdHVyZXIncyBwYWdlIHNheXMgdG8gdXNlIGEgc3BlY2lmaWMgSERNSSBzZXR0aW5n
+IHdpdGggYW4gclBpICh3aGljaCBtb3N0bHkgd29ya3MpIHdoaWNoIGlzIHRoZSBmaXJzdCBtb2Rl
+IHdpdGggdGhlIDQyTUh6IHBpeGVsIGNsb2NrLgo+IEluIHRoZSBleHRlbnNpb24gYmxvY2sgYXQg
+dGhlIGVuZCB0aGF0IG1vZGUgaXNuJ3QgbGlzdGVkLsKgIEkgd29uZGVyIGlmIHRoZXJlJ3MgYW4g
+ZWFzeSB3YXkgdG8gZm9yY2UgYSBjaG9pY2UuwqAgSSB0cmllZCB0aGUgbW9kZWxpbmUgaW4gdGhl
+IG9kcm9pZCBib290LmNmZyBmaWxlIGJ1dCBpdCBkaWRuJ3Qgc2VlbSB0byBoYXZlIGFueSBlZmZl
+Y3Qgb24gdGhlIG1haW5pbmUga2VybmVscy4KPiAKPiBJIGRvIGJ1aWxkIG15IG93biBrZXJuZWxz
+IGFzIEkgdXNlIGEgYnVuY2ggb2YgdGhlIElJTyBzdHVmZiB0aGF0J3MgdHVybmVkIG9mZiBieSBk
+ZWZhdWx0IGFuZCBJIGhhZCB0byBmaXggc29tZSBpbnRlcnJ1cHQgcmVsYXRlZCB0aGluZ3Mgc28g
+aGFja2luZyBhdCB0aGUga2VybmVsIGlzbid0IGEgcHJvYmxlbS4KPiAKPiBUaGFua3MsCj4gRXJp
+Ywo+IAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
+bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
+ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
+aWMK
