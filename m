@@ -4,81 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 953B5C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Dec 2021 18:08:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBE85C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Dec 2021 19:45:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fdvRd03feYrVthG65PKahy99Wxv5KHt+KlFGcXcP0bk=; b=lWFhDH8Xiw/cWI
-	BzTRVIEo8309aoKMS1exuurniC5nahcsoJ60lvowvKk6A2x146U2zw1jbzQbh2o9mQQasVhE7xCTu
-	xXUDwJuo0rpUYSyC8r/8qF+rXUWL2Pou8rD7FCZONvoU5pVJ++pXWxl8gbEW6lp7VoebmE8cBeK72
-	T1rxEhHpyY9tmd03uM6GSvgoX9rIhri/VwUZ4GAtbTVTalQtkSKjQC0TlXemIiQ7q0hvpUgT8c/EU
-	rRhOkWcQzQU4kp15EHFhlE8uPdOU5HGuW0k95ZJ1KkcW6GEsLBd9aqSzrrC3+m4oGtv5/pbYu80Z3
-	ap5FjhU545JQC8NVrZUQ==;
+	List-Owner; bh=olzxxtp5qzM3jyu+8E/Wx+J1/vYtNlL6R8D8zvdC+Ik=; b=BHg4UMk0gGIAyx
+	buvrFzFKNawgEBrzqZQovCRK2HbD3wNy2wHqj52BuKXcClb7orh1d+esIfd91GOUM9EFfE2rCz2dF
+	EstN0tY7xk7N3GGNqdjDgbsmUMCJj4eOVX5OdnFECfEL1dintQbATei1uQ0av4fGrjoU34tIHFP5a
+	dzuLJwceoZSoniTUJphOpJO5kqWIuFZtghGHYBGr1UrGWXvZ0KUDhifRvuzSMpZ73nKzyCiGWSZ4u
+	yd8hXfgU0NT16wpzeV058c32+k7KnS9zaeDyhbibK1zBn3luqqqqIp6wwhtcv4Hq5MYQxEHOXWAqX
+	cZlnu8Ue7JwfdaZi7Cyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mtvwS-001o5q-Ar; Sun, 05 Dec 2021 18:08:52 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1mtxRO-001uqv-92; Sun, 05 Dec 2021 19:44:54 +0000
+Received: from mail-ua1-x92a.google.com ([2607:f8b0:4864:20::92a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mtvw5-001nzR-8f; Sun, 05 Dec 2021 18:08:31 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id
- o19-20020a1c7513000000b0033a93202467so6077146wmc.2; 
- Sun, 05 Dec 2021 10:08:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=UR2Ba1A9AvNmFcbxAlN+YSRhW1d1ZwOF+JFtYhvT/b0=;
- b=KIZdhgCEwUJdMoCmlfQUA9qF6FMerEpPkMQ3isXiKfc2tjpAMOWd4AVw04PE0aJ7Tu
- 847MgIywSb6fmjWvz+YMLgrpaRKBwtUrWTD4YD2rw/iu0/OJIiAkDt/jTCFW16nSWgPl
- ClvxszNMg0qQ48HXApiKmIr2k9gX59P3nidvpALMFjKpbqp/STdiC174tT2PfDc3X/fe
- tQ5pIsxPy5YRdNfkvwOVSsRLhQuYMIAayoQoqSeECh0GeKsIUtMIaejruFIxhvrXDbai
- BgqbjTrdbGFn+wzuVT0t4Rk75N4i2wpn9iotXmqdCU8aOt7oWGrPimE1VLgvI+yeYUIw
- e44w==
+ id 1mtxRK-001uqW-S9; Sun, 05 Dec 2021 19:44:52 +0000
+Received: by mail-ua1-x92a.google.com with SMTP id p37so15637709uae.8;
+ Sun, 05 Dec 2021 11:44:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=gtz/VzjjbhkToF0+6cC/2TR2vWW6aY++Pm5UStTAt9Q=;
+ b=TWk7BWRPtzn6D1LaV9chGuFiPOJqclWlUXOg7rfrEL629L4X9lWy4rGoTIY+rByv2f
+ vvjPyWb3Ea8YXLUu2lqVosWno+3+QPX25OWw7IRugaCop0M0mB6cNRhmr+JkqJWtdgIt
+ z/2R1/LWhImFYiSGqbJTPSFT7dmqTbpyrnbPkIScBugrcAv4b+fl0G5rMRA3/pMAYBmp
+ LXUrGEXVd8Dm/6TL/9NI59IjdzOG8s9gfkkJfOABNveea1nWzM9MBGRlHCzJUaDUF4QH
+ SSVVJZX3oIzdITuAqESBqhJNCEZdyMDX/8b9WxK8thvKXWyAj66IDPbB5THthnALUaky
+ D8Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=UR2Ba1A9AvNmFcbxAlN+YSRhW1d1ZwOF+JFtYhvT/b0=;
- b=5YrW4Jp6bJPMuUU752EvghyCkD/uWvLAVEOx0uWpUaB6NJ87NDGsxxqMZqbDpqoZjj
- Y18yiDSwyrMh04Na8LwabysQiTEEOCNXeZBLFnUSi3p+9Y+nnDwHSUKP7E+aS3gO4/WS
- I/r33dWRwHtSHr9/2qtZ/re/wAvUykgHNl0Capc+pWYF7oFHAxQADbFa+domY7e3JQje
- nBShtDJUVTyLfppaHybivwT6lFEacqPh7bSrjBwSON9uebOHOHAwBj7H4lpqTV3SsB/Y
- 5NjFy+gReBaBjJ2KpR/GhSLGFlstyoogDu8DCGmxQwCuXOTxgfZ6At7GQCqgmeJyz/sI
- d4pg==
-X-Gm-Message-State: AOAM533gTz2Agbr2oCqjY3H38PGX7ay0u+AxHFFf5O/56aEIFRgjKw+i
- i5ed7xL4gQAHVBq7lNW5qOnxo4eav/4=
-X-Google-Smtp-Source: ABdhPJx9Ualqlnc/EAKhyt1P0o0D7IRAUAD/esJwhJ2JbmTU16ZZf6RtkLGSXnEuM8A9AwpmKzjrng==
-X-Received: by 2002:a05:600c:4793:: with SMTP id
- k19mr33453179wmo.72.1638727707741; 
- Sun, 05 Dec 2021 10:08:27 -0800 (PST)
-Received: from localhost.localdomain
- (dynamic-2a01-0c23-c11b-a200-f22f-74ff-fe21-0725.c23.pool.telefonica.de.
- [2a01:c23:c11b:a200:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id x13sm9250551wrr.47.2021.12.05.10.08.26
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=gtz/VzjjbhkToF0+6cC/2TR2vWW6aY++Pm5UStTAt9Q=;
+ b=shHyvBLVuXWviW8h2Ivw1eTs9+oYwNJNtY08aHvsZujHahvlcO9gcVZwPwPyKa5yaH
+ dMmOS77sdZxnOPDawoTPeuUWB4KVvJpFbUTOxfglDb6oNgOrObGIfzspDZZAJeG4PWTD
+ vki7hAZ/766J3vENaV9F9xDgYL6GTHbdT7FHdp/0wi1bhBats2s5AkHqgOod/o3W9lui
+ O/J8932TemTKW78YeRE+hFQOreQcnyjfgVu71gDwDYZ7Vsb/re+RwNSauZDOYyzLB/Qz
+ I9z5tj83WkV0pZGMPxLYsF7ck9eDLHVvdZIVVHRdDZOGO3q0g80c4DOSaJHF4v7oYTdy
+ pfAQ==
+X-Gm-Message-State: AOAM5331yEbJzbULqpTgnjYqmRMgWc7hJ+/CZKulL7MjfPU9z2iUbm/o
+ iUmvJiqN+a4eZK8WOShk0yY=
+X-Google-Smtp-Source: ABdhPJxp8GScozvL46XQQm5tW6XjZEkboBEUIoqGE2TDwd+TM7QEGE2ZyLgN03vRJTZbGKaObnuNew==
+X-Received: by 2002:a67:e114:: with SMTP id d20mr33380850vsl.5.1638733488967; 
+ Sun, 05 Dec 2021 11:44:48 -0800 (PST)
+Received: from geday ([2804:7f2:8006:7fbf:244a:c69a:867a:5798])
+ by smtp.gmail.com with ESMTPSA id 186sm2813179vsd.30.2021.12.05.11.44.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 05 Dec 2021 10:08:27 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
- alsa-devel@alsa-project.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Geraldo Nascimento <geraldogabriel@gmail.com>
-Subject: [PATCH RFC v1 2/2] ASoC: meson: aiu: Move AIU_I2S_MISC hold setting
- to aiu-fifo-i2s
-Date: Sun,  5 Dec 2021 19:08:16 +0100
-Message-Id: <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
+ Sun, 05 Dec 2021 11:44:48 -0800 (PST)
+Date: Sun, 5 Dec 2021 16:44:46 -0300
+From: Geraldo Nascimento <geraldogabriel@gmail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
+ alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH RFC v1 2/2] ASoC: meson: aiu: Move AIU_I2S_MISC hold
+ setting to aiu-fifo-i2s
+Message-ID: <Ya0WrrhpJ+NuAVTj@geday>
 References: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
+ <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211205_100829_331139_7BB28A0B 
-X-CRM114-Status: GOOD (  17.41  )
+X-CRM114-CacheID: sfid-20211205_114450_959625_52ED5422 
+X-CRM114-Status: GOOD (  26.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,139 +89,149 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The out-of-tree vendor driver uses the following approach to set the
-AIU_I2S_MISC register:
-1) write AIU_MEM_I2S_START_PTR and AIU_MEM_I2S_RD_PTR
-2) configure AIU_I2S_MUTE_SWAP[15:0]
-3) write AIU_MEM_I2S_END_PTR
-4) set AIU_I2S_MISC[2] to 1 (documented as: "put I2S interface in hold
-   mode")
-5) set AIU_I2S_MISC[4] to 1 (depending on the driver revision it always
-   stays at 1 while for older drivers this bit is unset in step 4)
-6) set AIU_I2S_MISC[2] to 0
-7) write AIU_MEM_I2S_MASKS
-8) toggle AIU_MEM_I2S_CONTROL[0]
-9) toggle AIU_MEM_I2S_BUF_CNTL[0]
+Hi, Martin,
 
-Additional testing shows that when AIU_I2S_MISC[2] is set to 1 then no
-interrupts are generated anymore. The way this bit is managed by the
-vendor driver as well as not getting any interrupts can mean that it's
-related to the FIFO and not the encoder.
+Thanks for working on this!
 
-Move setting the AIU_I2S_MISC[2] bit to aiu_fifo_i2s_hw_params() so it
-closer resembles the flow in the vendor kernel. While here also
-configure AIU_I2S_MISC[4] (documented as: "force each audio data to
-left or right according to the bit attached with the audio data")
-similar to how the vendor driver does this. This fixes the infamous and
-long-standing "machine gun noise" issue (a buffer underrun issue).
+I will give it a test and let you know.
 
-Fixes: 6ae9ca9ce986bf ("ASoC: meson: aiu: add i2s and spdif support")
-Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-Reported-by: Geraldo Nascimento <geraldogabriel@gmail.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- sound/soc/meson/aiu-encoder-i2s.c | 33 -------------------------------
- sound/soc/meson/aiu-fifo-i2s.c    | 12 +++++++++++
- 2 files changed, 12 insertions(+), 33 deletions(-)
+Thanks,
+Geraldo Nascimento
 
-diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
-index 932224552146..67729de41a73 100644
---- a/sound/soc/meson/aiu-encoder-i2s.c
-+++ b/sound/soc/meson/aiu-encoder-i2s.c
-@@ -18,7 +18,6 @@
- #define AIU_RST_SOFT_I2S_FAST		BIT(0)
- 
- #define AIU_I2S_DAC_CFG_MSB_FIRST	BIT(2)
--#define AIU_I2S_MISC_HOLD_EN		BIT(2)
- #define AIU_CLK_CTRL_I2S_DIV_EN		BIT(0)
- #define AIU_CLK_CTRL_I2S_DIV		GENMASK(3, 2)
- #define AIU_CLK_CTRL_AOCLK_INVERT	BIT(6)
-@@ -36,37 +35,6 @@ static void aiu_encoder_i2s_divider_enable(struct snd_soc_component *component,
- 				      enable ? AIU_CLK_CTRL_I2S_DIV_EN : 0);
- }
- 
--static void aiu_encoder_i2s_hold(struct snd_soc_component *component,
--				 bool enable)
--{
--	snd_soc_component_update_bits(component, AIU_I2S_MISC,
--				      AIU_I2S_MISC_HOLD_EN,
--				      enable ? AIU_I2S_MISC_HOLD_EN : 0);
--}
--
--static int aiu_encoder_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
--				   struct snd_soc_dai *dai)
--{
--	struct snd_soc_component *component = dai->component;
--
--	switch (cmd) {
--	case SNDRV_PCM_TRIGGER_START:
--	case SNDRV_PCM_TRIGGER_RESUME:
--	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
--		aiu_encoder_i2s_hold(component, false);
--		return 0;
--
--	case SNDRV_PCM_TRIGGER_STOP:
--	case SNDRV_PCM_TRIGGER_SUSPEND:
--	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
--		aiu_encoder_i2s_hold(component, true);
--		return 0;
--
--	default:
--		return -EINVAL;
--	}
--}
--
- static int aiu_encoder_i2s_setup_desc(struct snd_soc_component *component,
- 				      struct snd_pcm_hw_params *params)
- {
-@@ -353,7 +321,6 @@ static void aiu_encoder_i2s_shutdown(struct snd_pcm_substream *substream,
- }
- 
- const struct snd_soc_dai_ops aiu_encoder_i2s_dai_ops = {
--	.trigger	= aiu_encoder_i2s_trigger,
- 	.hw_params	= aiu_encoder_i2s_hw_params,
- 	.hw_free	= aiu_encoder_i2s_hw_free,
- 	.set_fmt	= aiu_encoder_i2s_set_fmt,
-diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2s.c
-index 2388a2d0b3a6..d0a1090d6465 100644
---- a/sound/soc/meson/aiu-fifo-i2s.c
-+++ b/sound/soc/meson/aiu-fifo-i2s.c
-@@ -20,6 +20,8 @@
- #define AIU_MEM_I2S_CONTROL_MODE_16BIT	BIT(6)
- #define AIU_MEM_I2S_BUF_CNTL_INIT	BIT(0)
- #define AIU_RST_SOFT_I2S_FAST		BIT(0)
-+#define AIU_I2S_MISC_HOLD_EN		BIT(2)
-+#define AIU_I2S_MISC_FORCE_LEFT_RIGHT	BIT(4)
- 
- #define AIU_FIFO_I2S_BLOCK		256
- 
-@@ -90,6 +92,10 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
- 	unsigned int val;
- 	int ret;
- 
-+	snd_soc_component_update_bits(component, AIU_I2S_MISC,
-+				      AIU_I2S_MISC_HOLD_EN,
-+				      AIU_I2S_MISC_HOLD_EN);
-+
- 	ret = aiu_fifo_hw_params(substream, params, dai);
- 	if (ret)
- 		return ret;
-@@ -117,6 +123,12 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
- 	snd_soc_component_update_bits(component, AIU_MEM_I2S_MASKS,
- 				      AIU_MEM_I2S_MASKS_IRQ_BLOCK, val);
- 
-+	snd_soc_component_update_bits(component, AIU_I2S_MISC,
-+				      AIU_I2S_MISC_FORCE_LEFT_RIGHT,
-+				      AIU_I2S_MISC_FORCE_LEFT_RIGHT);
-+	snd_soc_component_update_bits(component, AIU_I2S_MISC,
-+				      AIU_I2S_MISC_HOLD_EN, 0);
-+
- 	return 0;
- }
- 
--- 
-2.34.1
-
+On Sun, Dec 05, 2021 at 07:08:16PM +0100, Martin Blumenstingl wrote:
+> The out-of-tree vendor driver uses the following approach to set the
+> AIU_I2S_MISC register:
+> 1) write AIU_MEM_I2S_START_PTR and AIU_MEM_I2S_RD_PTR
+> 2) configure AIU_I2S_MUTE_SWAP[15:0]
+> 3) write AIU_MEM_I2S_END_PTR
+> 4) set AIU_I2S_MISC[2] to 1 (documented as: "put I2S interface in hold
+>    mode")
+> 5) set AIU_I2S_MISC[4] to 1 (depending on the driver revision it always
+>    stays at 1 while for older drivers this bit is unset in step 4)
+> 6) set AIU_I2S_MISC[2] to 0
+> 7) write AIU_MEM_I2S_MASKS
+> 8) toggle AIU_MEM_I2S_CONTROL[0]
+> 9) toggle AIU_MEM_I2S_BUF_CNTL[0]
+> 
+> Additional testing shows that when AIU_I2S_MISC[2] is set to 1 then no
+> interrupts are generated anymore. The way this bit is managed by the
+> vendor driver as well as not getting any interrupts can mean that it's
+> related to the FIFO and not the encoder.
+> 
+> Move setting the AIU_I2S_MISC[2] bit to aiu_fifo_i2s_hw_params() so it
+> closer resembles the flow in the vendor kernel. While here also
+> configure AIU_I2S_MISC[4] (documented as: "force each audio data to
+> left or right according to the bit attached with the audio data")
+> similar to how the vendor driver does this. This fixes the infamous and
+> long-standing "machine gun noise" issue (a buffer underrun issue).
+> 
+> Fixes: 6ae9ca9ce986bf ("ASoC: meson: aiu: add i2s and spdif support")
+> Reported-by: Christian Hewitt <christianshewitt@gmail.com>
+> Reported-by: Geraldo Nascimento <geraldogabriel@gmail.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  sound/soc/meson/aiu-encoder-i2s.c | 33 -------------------------------
+>  sound/soc/meson/aiu-fifo-i2s.c    | 12 +++++++++++
+>  2 files changed, 12 insertions(+), 33 deletions(-)
+> 
+> diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
+> index 932224552146..67729de41a73 100644
+> --- a/sound/soc/meson/aiu-encoder-i2s.c
+> +++ b/sound/soc/meson/aiu-encoder-i2s.c
+> @@ -18,7 +18,6 @@
+>  #define AIU_RST_SOFT_I2S_FAST		BIT(0)
+>  
+>  #define AIU_I2S_DAC_CFG_MSB_FIRST	BIT(2)
+> -#define AIU_I2S_MISC_HOLD_EN		BIT(2)
+>  #define AIU_CLK_CTRL_I2S_DIV_EN		BIT(0)
+>  #define AIU_CLK_CTRL_I2S_DIV		GENMASK(3, 2)
+>  #define AIU_CLK_CTRL_AOCLK_INVERT	BIT(6)
+> @@ -36,37 +35,6 @@ static void aiu_encoder_i2s_divider_enable(struct snd_soc_component *component,
+>  				      enable ? AIU_CLK_CTRL_I2S_DIV_EN : 0);
+>  }
+>  
+> -static void aiu_encoder_i2s_hold(struct snd_soc_component *component,
+> -				 bool enable)
+> -{
+> -	snd_soc_component_update_bits(component, AIU_I2S_MISC,
+> -				      AIU_I2S_MISC_HOLD_EN,
+> -				      enable ? AIU_I2S_MISC_HOLD_EN : 0);
+> -}
+> -
+> -static int aiu_encoder_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
+> -				   struct snd_soc_dai *dai)
+> -{
+> -	struct snd_soc_component *component = dai->component;
+> -
+> -	switch (cmd) {
+> -	case SNDRV_PCM_TRIGGER_START:
+> -	case SNDRV_PCM_TRIGGER_RESUME:
+> -	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+> -		aiu_encoder_i2s_hold(component, false);
+> -		return 0;
+> -
+> -	case SNDRV_PCM_TRIGGER_STOP:
+> -	case SNDRV_PCM_TRIGGER_SUSPEND:
+> -	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+> -		aiu_encoder_i2s_hold(component, true);
+> -		return 0;
+> -
+> -	default:
+> -		return -EINVAL;
+> -	}
+> -}
+> -
+>  static int aiu_encoder_i2s_setup_desc(struct snd_soc_component *component,
+>  				      struct snd_pcm_hw_params *params)
+>  {
+> @@ -353,7 +321,6 @@ static void aiu_encoder_i2s_shutdown(struct snd_pcm_substream *substream,
+>  }
+>  
+>  const struct snd_soc_dai_ops aiu_encoder_i2s_dai_ops = {
+> -	.trigger	= aiu_encoder_i2s_trigger,
+>  	.hw_params	= aiu_encoder_i2s_hw_params,
+>  	.hw_free	= aiu_encoder_i2s_hw_free,
+>  	.set_fmt	= aiu_encoder_i2s_set_fmt,
+> diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2s.c
+> index 2388a2d0b3a6..d0a1090d6465 100644
+> --- a/sound/soc/meson/aiu-fifo-i2s.c
+> +++ b/sound/soc/meson/aiu-fifo-i2s.c
+> @@ -20,6 +20,8 @@
+>  #define AIU_MEM_I2S_CONTROL_MODE_16BIT	BIT(6)
+>  #define AIU_MEM_I2S_BUF_CNTL_INIT	BIT(0)
+>  #define AIU_RST_SOFT_I2S_FAST		BIT(0)
+> +#define AIU_I2S_MISC_HOLD_EN		BIT(2)
+> +#define AIU_I2S_MISC_FORCE_LEFT_RIGHT	BIT(4)
+>  
+>  #define AIU_FIFO_I2S_BLOCK		256
+>  
+> @@ -90,6 +92,10 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
+>  	unsigned int val;
+>  	int ret;
+>  
+> +	snd_soc_component_update_bits(component, AIU_I2S_MISC,
+> +				      AIU_I2S_MISC_HOLD_EN,
+> +				      AIU_I2S_MISC_HOLD_EN);
+> +
+>  	ret = aiu_fifo_hw_params(substream, params, dai);
+>  	if (ret)
+>  		return ret;
+> @@ -117,6 +123,12 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
+>  	snd_soc_component_update_bits(component, AIU_MEM_I2S_MASKS,
+>  				      AIU_MEM_I2S_MASKS_IRQ_BLOCK, val);
+>  
+> +	snd_soc_component_update_bits(component, AIU_I2S_MISC,
+> +				      AIU_I2S_MISC_FORCE_LEFT_RIGHT,
+> +				      AIU_I2S_MISC_FORCE_LEFT_RIGHT);
+> +	snd_soc_component_update_bits(component, AIU_I2S_MISC,
+> +				      AIU_I2S_MISC_HOLD_EN, 0);
+> +
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.34.1
+> 
 
 _______________________________________________
 linux-amlogic mailing list
