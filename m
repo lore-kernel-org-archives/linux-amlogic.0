@@ -4,75 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36F88C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Dec 2021 18:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 953B5C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Dec 2021 18:08:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=99mSNho69sklD2NBed+vmAv04uM6KRYVEgFB8Pb3viY=; b=zFoMgU4I+K1a3l
-	Htp6kSYv/ZNuxxydlYK8LRlnB7rRVpDD9uvb8G2nHQr5ToXH2qJmGLm4g4wilPB/4Q2jaWnBKgy4v
-	QAhXhnVWnHPR60M7QlGcl6lGeEnSPNZ98OMR6peiHx/oDcbf0IYN5/0G2Jf+eom4Am1k0lFUhR4yF
-	YiplqN7c7wPL9W1pl4h1Ds+Df3TdpyP6dvTB6RclSOmo3gHooivZs8Ddr7+IEkDAB1wVIcxjWxWHZ
-	Cb+6W091GxWRgtzgQKI2jrHzjyXI7Eb246gMzJEtmAiZdNGD0MEZqr8SNDLXBbLvMI1l9bAu7n8Vv
-	Ayv5htZHsp7vyMkZIUEQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fdvRd03feYrVthG65PKahy99Wxv5KHt+KlFGcXcP0bk=; b=lWFhDH8Xiw/cWI
+	BzTRVIEo8309aoKMS1exuurniC5nahcsoJ60lvowvKk6A2x146U2zw1jbzQbh2o9mQQasVhE7xCTu
+	xXUDwJuo0rpUYSyC8r/8qF+rXUWL2Pou8rD7FCZONvoU5pVJ++pXWxl8gbEW6lp7VoebmE8cBeK72
+	T1rxEhHpyY9tmd03uM6GSvgoX9rIhri/VwUZ4GAtbTVTalQtkSKjQC0TlXemIiQ7q0hvpUgT8c/EU
+	rRhOkWcQzQU4kp15EHFhlE8uPdOU5HGuW0k95ZJ1KkcW6GEsLBd9aqSzrrC3+m4oGtv5/pbYu80Z3
+	ap5FjhU545JQC8NVrZUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mtvw6-001o0Q-LZ; Sun, 05 Dec 2021 18:08:30 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1mtvwS-001o5q-Ar; Sun, 05 Dec 2021 18:08:52 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mtvw4-001nzP-7w; Sun, 05 Dec 2021 18:08:29 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 133so6494190wme.0;
- Sun, 05 Dec 2021 10:08:27 -0800 (PST)
+ id 1mtvw5-001nzR-8f; Sun, 05 Dec 2021 18:08:31 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id
+ o19-20020a1c7513000000b0033a93202467so6077146wmc.2; 
+ Sun, 05 Dec 2021 10:08:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rF5hjb+HWpI1Ih1xwXVy9ddAAkLWiFGmzep35P6NJa8=;
- b=el1s2Fn6aF3tZlnWmb8zajw9s3UfJDaH4P7gRXmjfZ0zEuwgbQ10kfgx4IMio5hn1p
- Uu01lLR2bp1mP5HcalLld668UrcpEogLnqglK6gQCNhsPWYfbVpdwz9cJObju0IwJkgt
- 2in494V04RNe3zH+i10XdrbAXd6bPXEGKLAZGg7DNpMw1IDcQNMYGoI59YjQEBOv5MaW
- xrfgtJ7jhiSODqLz00ZmPrE7MECID4hKFta7CvplgqryADVCiT3PF43MxF7tSnrgBrr0
- FB7KKHgoNBy1H004sZN+ugdwQY4TeZtSiEMQv4aYM5JaHO3omtBdMj03KvEsC5cavoC3
- m2ZA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=UR2Ba1A9AvNmFcbxAlN+YSRhW1d1ZwOF+JFtYhvT/b0=;
+ b=KIZdhgCEwUJdMoCmlfQUA9qF6FMerEpPkMQ3isXiKfc2tjpAMOWd4AVw04PE0aJ7Tu
+ 847MgIywSb6fmjWvz+YMLgrpaRKBwtUrWTD4YD2rw/iu0/OJIiAkDt/jTCFW16nSWgPl
+ ClvxszNMg0qQ48HXApiKmIr2k9gX59P3nidvpALMFjKpbqp/STdiC174tT2PfDc3X/fe
+ tQ5pIsxPy5YRdNfkvwOVSsRLhQuYMIAayoQoqSeECh0GeKsIUtMIaejruFIxhvrXDbai
+ BgqbjTrdbGFn+wzuVT0t4Rk75N4i2wpn9iotXmqdCU8aOt7oWGrPimE1VLgvI+yeYUIw
+ e44w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rF5hjb+HWpI1Ih1xwXVy9ddAAkLWiFGmzep35P6NJa8=;
- b=6P3/Iaelp+LeIYaliPC3fAxPl/0g0EhvW+XQKsxtx50ft7dilMeo9Ckj+2NRVm7AGl
- jmHfjcde/c1H5OVFGF2N/O7PhfoEKPxWDnNQzTlvBLkorh+/xGFlhh59WCkNKcwLXcLQ
- nPrTXydRQ7W+9b+4UCmcoJ9Y+Ih2k+H14O3ffSQ8Dxtgg8JOVemaeCnL39B7sN8IuOrN
- T8CgTaHBs/toiz6YxIF/0Xkx13Q34XkNbEKE69rfDtHrSMWrUGVozhg+DJ1/rGJp/YgM
- G8WNRNhKNjQMNFPm18Dc4AsKaLTWS0TXkRVBRjlxHeIY+MoPx+SjrywUckQPd9EfT+Ty
- GhAg==
-X-Gm-Message-State: AOAM532mtmUy6xwBgZOjYlh7utUhss2rETSWiJvVMaTIXPc1ejJbIVhM
- Cp8iwstXI8METOmrd6b0YEY=
-X-Google-Smtp-Source: ABdhPJxFtMAxnY+guAh4BzBOqq0b0PVbyY4w9h4fGaJTVCB19FDi+PDoMvxlhtL74NWjjqZg6FhP0A==
-X-Received: by 2002:a1c:20d3:: with SMTP id
- g202mr33026556wmg.129.1638727706049; 
- Sun, 05 Dec 2021 10:08:26 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=UR2Ba1A9AvNmFcbxAlN+YSRhW1d1ZwOF+JFtYhvT/b0=;
+ b=5YrW4Jp6bJPMuUU752EvghyCkD/uWvLAVEOx0uWpUaB6NJ87NDGsxxqMZqbDpqoZjj
+ Y18yiDSwyrMh04Na8LwabysQiTEEOCNXeZBLFnUSi3p+9Y+nnDwHSUKP7E+aS3gO4/WS
+ I/r33dWRwHtSHr9/2qtZ/re/wAvUykgHNl0Capc+pWYF7oFHAxQADbFa+domY7e3JQje
+ nBShtDJUVTyLfppaHybivwT6lFEacqPh7bSrjBwSON9uebOHOHAwBj7H4lpqTV3SsB/Y
+ 5NjFy+gReBaBjJ2KpR/GhSLGFlstyoogDu8DCGmxQwCuXOTxgfZ6At7GQCqgmeJyz/sI
+ d4pg==
+X-Gm-Message-State: AOAM533gTz2Agbr2oCqjY3H38PGX7ay0u+AxHFFf5O/56aEIFRgjKw+i
+ i5ed7xL4gQAHVBq7lNW5qOnxo4eav/4=
+X-Google-Smtp-Source: ABdhPJx9Ualqlnc/EAKhyt1P0o0D7IRAUAD/esJwhJ2JbmTU16ZZf6RtkLGSXnEuM8A9AwpmKzjrng==
+X-Received: by 2002:a05:600c:4793:: with SMTP id
+ k19mr33453179wmo.72.1638727707741; 
+ Sun, 05 Dec 2021 10:08:27 -0800 (PST)
 Received: from localhost.localdomain
  (dynamic-2a01-0c23-c11b-a200-f22f-74ff-fe21-0725.c23.pool.telefonica.de.
  [2a01:c23:c11b:a200:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id x13sm9250551wrr.47.2021.12.05.10.08.24
+ by smtp.googlemail.com with ESMTPSA id x13sm9250551wrr.47.2021.12.05.10.08.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 05 Dec 2021 10:08:25 -0800 (PST)
+ Sun, 05 Dec 2021 10:08:27 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
  alsa-devel@alsa-project.org
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH RFC v1 0/2] ASoC: meson: aiu: two fixes
-Date: Sun,  5 Dec 2021 19:08:14 +0100
-Message-Id: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Geraldo Nascimento <geraldogabriel@gmail.com>
+Subject: [PATCH RFC v1 2/2] ASoC: meson: aiu: Move AIU_I2S_MISC hold setting
+ to aiu-fifo-i2s
+Date: Sun,  5 Dec 2021 19:08:16 +0100
+Message-Id: <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
+References: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211205_100828_344050_4D44D9F3 
-X-CRM114-Status: GOOD (  14.76  )
+X-CRM114-CacheID: sfid-20211205_100829_331139_7BB28A0B 
+X-CRM114-Status: GOOD (  17.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,41 +95,136 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Jerome,
+The out-of-tree vendor driver uses the following approach to set the
+AIU_I2S_MISC register:
+1) write AIU_MEM_I2S_START_PTR and AIU_MEM_I2S_RD_PTR
+2) configure AIU_I2S_MUTE_SWAP[15:0]
+3) write AIU_MEM_I2S_END_PTR
+4) set AIU_I2S_MISC[2] to 1 (documented as: "put I2S interface in hold
+   mode")
+5) set AIU_I2S_MISC[4] to 1 (depending on the driver revision it always
+   stays at 1 while for older drivers this bit is unset in step 4)
+6) set AIU_I2S_MISC[2] to 0
+7) write AIU_MEM_I2S_MASKS
+8) toggle AIU_MEM_I2S_CONTROL[0]
+9) toggle AIU_MEM_I2S_BUF_CNTL[0]
 
-in this series I am proposing two fixes for the "aiu" driver, used on
-Amlogic Meson8, Meson8b, Meson8m2, GXBB, GXL and GXM SoCs.
+Additional testing shows that when AIU_I2S_MISC[2] is set to 1 then no
+interrupts are generated anymore. The way this bit is managed by the
+vendor driver as well as not getting any interrupts can mean that it's
+related to the FIFO and not the encoder.
 
-The first patch is the result of me trying to understand the way how
-we get the DMA buffer and address for the audio data. I'm not an expert
-in terms of DMA. From what I understand we need to inform DMA core
-about the limitations of the hardware. In case of AIU it's DMA address
-registers only take 32 bits, so DMA core should be aware of this.
+Move setting the AIU_I2S_MISC[2] bit to aiu_fifo_i2s_hw_params() so it
+closer resembles the flow in the vendor kernel. While here also
+configure AIU_I2S_MISC[4] (documented as: "force each audio data to
+left or right according to the bit attached with the audio data")
+similar to how the vendor driver does this. This fixes the infamous and
+long-standing "machine gun noise" issue (a buffer underrun issue).
 
-The second patch is what I could come up with to fix the infamous I2S
-buffer underrun issue, also called the "machine gun noise" (MGN) bug.
-After a lot of testing, debugging and comparing vendor code with the
-upstream "aiu" driver I have come up with this fix. I have written down
-my thoughts in the description of that patch. To be clear: these are my
-thoughts, unfortunately I have no way of proving this other than asking
-other people to test this patch (off-list I have already received
-positive feedback along with confirmation that both 2-ch and 6-ch audio
-are still working fine. Even with Kodi's menu - which is an easy way to
-reproduce the MGN bug - sound output is fine with this patch).
-
-Please let me know what you think about these patches and especially
-the patch descriptions.
-
-
-Martin Blumenstingl (2):
-  ASoC: meson: aiu: fifo: Add missing dma_coerce_mask_and_coherent()
-  ASoC: meson: aiu: Move AIU_I2S_MISC hold setting to aiu-fifo-i2s
-
+Fixes: 6ae9ca9ce986bf ("ASoC: meson: aiu: add i2s and spdif support")
+Reported-by: Christian Hewitt <christianshewitt@gmail.com>
+Reported-by: Geraldo Nascimento <geraldogabriel@gmail.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
  sound/soc/meson/aiu-encoder-i2s.c | 33 -------------------------------
  sound/soc/meson/aiu-fifo-i2s.c    | 12 +++++++++++
- sound/soc/meson/aiu-fifo.c        |  6 ++++++
- 3 files changed, 18 insertions(+), 33 deletions(-)
+ 2 files changed, 12 insertions(+), 33 deletions(-)
 
+diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
+index 932224552146..67729de41a73 100644
+--- a/sound/soc/meson/aiu-encoder-i2s.c
++++ b/sound/soc/meson/aiu-encoder-i2s.c
+@@ -18,7 +18,6 @@
+ #define AIU_RST_SOFT_I2S_FAST		BIT(0)
+ 
+ #define AIU_I2S_DAC_CFG_MSB_FIRST	BIT(2)
+-#define AIU_I2S_MISC_HOLD_EN		BIT(2)
+ #define AIU_CLK_CTRL_I2S_DIV_EN		BIT(0)
+ #define AIU_CLK_CTRL_I2S_DIV		GENMASK(3, 2)
+ #define AIU_CLK_CTRL_AOCLK_INVERT	BIT(6)
+@@ -36,37 +35,6 @@ static void aiu_encoder_i2s_divider_enable(struct snd_soc_component *component,
+ 				      enable ? AIU_CLK_CTRL_I2S_DIV_EN : 0);
+ }
+ 
+-static void aiu_encoder_i2s_hold(struct snd_soc_component *component,
+-				 bool enable)
+-{
+-	snd_soc_component_update_bits(component, AIU_I2S_MISC,
+-				      AIU_I2S_MISC_HOLD_EN,
+-				      enable ? AIU_I2S_MISC_HOLD_EN : 0);
+-}
+-
+-static int aiu_encoder_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
+-				   struct snd_soc_dai *dai)
+-{
+-	struct snd_soc_component *component = dai->component;
+-
+-	switch (cmd) {
+-	case SNDRV_PCM_TRIGGER_START:
+-	case SNDRV_PCM_TRIGGER_RESUME:
+-	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+-		aiu_encoder_i2s_hold(component, false);
+-		return 0;
+-
+-	case SNDRV_PCM_TRIGGER_STOP:
+-	case SNDRV_PCM_TRIGGER_SUSPEND:
+-	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+-		aiu_encoder_i2s_hold(component, true);
+-		return 0;
+-
+-	default:
+-		return -EINVAL;
+-	}
+-}
+-
+ static int aiu_encoder_i2s_setup_desc(struct snd_soc_component *component,
+ 				      struct snd_pcm_hw_params *params)
+ {
+@@ -353,7 +321,6 @@ static void aiu_encoder_i2s_shutdown(struct snd_pcm_substream *substream,
+ }
+ 
+ const struct snd_soc_dai_ops aiu_encoder_i2s_dai_ops = {
+-	.trigger	= aiu_encoder_i2s_trigger,
+ 	.hw_params	= aiu_encoder_i2s_hw_params,
+ 	.hw_free	= aiu_encoder_i2s_hw_free,
+ 	.set_fmt	= aiu_encoder_i2s_set_fmt,
+diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2s.c
+index 2388a2d0b3a6..d0a1090d6465 100644
+--- a/sound/soc/meson/aiu-fifo-i2s.c
++++ b/sound/soc/meson/aiu-fifo-i2s.c
+@@ -20,6 +20,8 @@
+ #define AIU_MEM_I2S_CONTROL_MODE_16BIT	BIT(6)
+ #define AIU_MEM_I2S_BUF_CNTL_INIT	BIT(0)
+ #define AIU_RST_SOFT_I2S_FAST		BIT(0)
++#define AIU_I2S_MISC_HOLD_EN		BIT(2)
++#define AIU_I2S_MISC_FORCE_LEFT_RIGHT	BIT(4)
+ 
+ #define AIU_FIFO_I2S_BLOCK		256
+ 
+@@ -90,6 +92,10 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
+ 	unsigned int val;
+ 	int ret;
+ 
++	snd_soc_component_update_bits(component, AIU_I2S_MISC,
++				      AIU_I2S_MISC_HOLD_EN,
++				      AIU_I2S_MISC_HOLD_EN);
++
+ 	ret = aiu_fifo_hw_params(substream, params, dai);
+ 	if (ret)
+ 		return ret;
+@@ -117,6 +123,12 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
+ 	snd_soc_component_update_bits(component, AIU_MEM_I2S_MASKS,
+ 				      AIU_MEM_I2S_MASKS_IRQ_BLOCK, val);
+ 
++	snd_soc_component_update_bits(component, AIU_I2S_MISC,
++				      AIU_I2S_MISC_FORCE_LEFT_RIGHT,
++				      AIU_I2S_MISC_FORCE_LEFT_RIGHT);
++	snd_soc_component_update_bits(component, AIU_I2S_MISC,
++				      AIU_I2S_MISC_HOLD_EN, 0);
++
+ 	return 0;
+ }
+ 
 -- 
 2.34.1
 
