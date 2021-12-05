@@ -4,81 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56D20C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Dec 2021 21:35:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5692C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Dec 2021 21:59:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=HMnoqcHG815ucwRzG7Zd7fewR1FDipw4sA+O5AUhmzA=; b=BA+cKP+JenGdAc/r+ubfVYXsra
-	oJvAPTlIKm2vb7HwimSHpZ+Q4eBfxBtOnexLuq7DC2hnpaph7hR9vPNFtHKZA6Kpe/xJRoKd+hEM/
-	3nPuW2LjRgHdD8rtc9QHfAvanmiR23GQ+9v6cpTq67adm+oJuHzV2Cx0Am2l0+EUTMIpUtWiIAHnr
-	4684JhAHnRsWd3XAW1wKt0LmNrTxGlBqcCjhH9QXstkyO83hjTWIxIpVKHJXvOxrjI/RGOAKXaaNs
-	DE8ItLZuzOxrP+iC2FQgCXSqMF5DEmr1KnyiywtJsgOlykCkULUE+h/s7QmkwNAJj7UwAGDYP/36j
-	CSM3DlCw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UUg1TcuqXElz7n6dGZZoRyvsdDJP/7RVpZq/LxUnqf8=; b=FAR7y1c41ZKZz4
+	2wrsz3oceHe0RhfxYPrwyXwgzStPGRn94QbCkjaulgDWNZ1502NdGTXWSMtAdfKpWMf3TkfnH+H9M
+	LeatqdovnVsUuTOziC9/9/cZJU1tail0HV49we8u23S3yNvUCCYsEm5MG+QpU69xnjoC0L8PAw9sG
+	UBOt23iF7slq6AIteQ1/LsHPF8LfQF042hhy+jN9rRidZ5a6RvjaupYo13LdqumVjIqt3ygPVzh2Z
+	E3ozq9410E+c1fPJ89zn8hGGzw2nxu1wdVKNhvkEhEhGUBMBn9WIz+u9KlncaEL+/ERTfQidw/MMO
+	yyWnK3mmjGYiU1rNlRiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mtzAM-0020N5-UG; Sun, 05 Dec 2021 21:35:26 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1mtzXD-0021TB-0d; Sun, 05 Dec 2021 21:59:03 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mtzAJ-0020Ml-TI
- for linux-amlogic@lists.infradead.org; Sun, 05 Dec 2021 21:35:25 +0000
-Received: by mail-wr1-x430.google.com with SMTP id j3so18394209wrp.1
- for <linux-amlogic@lists.infradead.org>; Sun, 05 Dec 2021 13:35:23 -0800 (PST)
+ id 1mtzXA-0021RQ-0R
+ for linux-amlogic@lists.infradead.org; Sun, 05 Dec 2021 21:59:01 +0000
+Received: by mail-ed1-x531.google.com with SMTP id w1so35083469edc.6
+ for <linux-amlogic@lists.infradead.org>; Sun, 05 Dec 2021 13:58:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=epWjfoqIM5iM8Kz2eHVOpsCTtELbUSkxxeWV41PDpW0=;
- b=OH9kxve8qHVsQAMeKTPC1GB/VPe94tQYHgN3VYiWtZ8nRQj2PJ5tqn21D/Ro873eqD
- OrCBvchlyGjZVtEj9yZKhlrFwf0X2wX9jcNOwLfA0dIZqNJKg4lUPtNeeK6fLzFVB4IU
- JpPWc3a9Iz8tnv8Zn7pwSAVJN+qmT86ujg5H2A9IiCeFdJrEQ5F5yihpaSwP9XtIgZw8
- yjNermRVLnonL/L1MLjOSzBh3CFMmYXKAm+R2F8Z4DKDwb/n1MaKNF+43t5Z9yuOP5TJ
- 4UcARE79UAJCnzziYAnnWZ96J0iARaY79LmQSMQv5D+wyAYYQl6PAPTR8FcEQ5td9Tff
- 1ANw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=3AnWy+mVImsPoWfiIuMG6Au3yFCtHwQVYr21g6LIJdc=;
+ b=2vQAzbnneWi/dJ7qVHsqvynEsRlHsmojxV6FboORhzrOWZLH+vfu4GDPLq1cbeBaVN
+ 597eGNxXtDjhk4Go6uu35rJg5WRDQwGQJQbn4h6N2bJ64tjkcpp1e09jsEm0FEyOIyNQ
+ 1xW1Rrehd1HzLpvaOUTd08Xpbvp+GlGjgL8/kjWQerOUPd4HLoTaEdRvLlLXZronEowZ
+ h5qDzo9PttQPpVBsbdby6OTY5KsF4nzqx6DFD0nnkHa1d09Qc/euvYym+lqZ3yfQenhp
+ p3gjQ8BMJztow6DjkQgwaRtyl699HwZt07eOTSecxJkC2OeinP6hiwTEDHnQTVB8LaIa
+ 3izA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=epWjfoqIM5iM8Kz2eHVOpsCTtELbUSkxxeWV41PDpW0=;
- b=EPw1euBdsG/fsnR+Odh+4Zn1npGMnj7isic6dPq3NlHuf51D+AX56k+MsMqKxCsVBy
- S+icnwOMUr42OQKD2nei6GFOR7xwQbBFVMcCrLoGzRCSpS4biJ1WdUcb6zj/cDI7xAas
- dSYu4CKRtRmYgCeCxPDHxqUAxH/z3svDp/DYDOCbEELHGILG0wZ7YOTGxMOXikqeZ/iB
- DM0YIuxp0qpB5avI0CbxG8ifucKhKgk2et4lqHsH6Sp9QR/O7/ZOImA6FKoosARCHCCP
- K5wTfLwxjdwt9DSIO1ThGxz4AjjE9vH4pbvTh73u/cvpPYGdlwy1vFn9QrX6OBn8Gof9
- tGVg==
-X-Gm-Message-State: AOAM532kuEvenRQsq7DOKI6EXUgmPUgpwII4HGaBqCgHdy4smPPfmmHz
- jSFpALyiPgEtjPOgdLU0rz888Q==
-X-Google-Smtp-Source: ABdhPJzB6cCTgywiUB+081lYOTTBwfJt4abdsi4rweJO3t1NPS5I3U+LPForvYeP/306N9mi2sJUbg==
-X-Received: by 2002:adf:97c2:: with SMTP id t2mr38605987wrb.577.1638740122521; 
- Sun, 05 Dec 2021 13:35:22 -0800 (PST)
-Received: from [192.168.1.24] (203.247.120.78.rev.sfr.net. [78.120.247.203])
- by smtp.gmail.com with ESMTPSA id j40sm11535887wms.19.2021.12.05.13.35.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 05 Dec 2021 13:35:21 -0800 (PST)
-Subject: Re: [PATCH v3 3/3] phy: amlogic: meson8b-usb2: fix shared reset
- control use
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: khilman@baylibre.com, p.zabel@pengutronix.de, balbi@kernel.org,
- jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20211112162827.128319-1-aouledameur@baylibre.com>
- <20211112162827.128319-4-aouledameur@baylibre.com>
- <CAFBinCCvOnrvC64sA++5DegZq1g9MmwvnCiYh-WB4dSkoBsCBA@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=3AnWy+mVImsPoWfiIuMG6Au3yFCtHwQVYr21g6LIJdc=;
+ b=HlNLJbGvWMZs/88jlC62LSNauBeIA1Q490W2+E67lnOpZUMvodVX+ohEYN8tJ+jhlf
+ ygEHaWUuOkLaTx9MGEnUmBahpCj09GqPwDi1TPgZwjsYNpbjU9vRxyVdKeGBSJA2srxj
+ BI9WtwLqErARs7ZZ/onfhnmPpZjKKrITsxCnYSFj8e/9m2MZYmGUIUabTRaCZ81vvsod
+ MRYzb3/L2yq1oCeE2mhW1UgjC4jJQFyW3ud4sFxiyYBbK3Had7pzl7PBFSfkTOvun+pQ
+ UbKUGjtSWnXSH7D5XgCHz1O4uOCDWPW1LuTU2shmZxeAqmxJO+FZp93d3MSaU5aIl4DK
+ HuRQ==
+X-Gm-Message-State: AOAM531pG/XctUBQmW5l1DXCdDEFBBhrWxsK7Qxx+N0YbT/asEXKJRCW
+ 4nBxWCKXpDhvUY6L8ke5ywNnJQ==
+X-Google-Smtp-Source: ABdhPJyrdhlAej+Y0j7bVwl22/TJv/4bsr28Ql2eGHPiPqD/W7PyF7tQAjNVsjJ+K+DEkbjNOQWvVA==
+X-Received: by 2002:a17:906:dbef:: with SMTP id
+ yd15mr39336054ejb.354.1638741538543; 
+ Sun, 05 Dec 2021 13:58:58 -0800 (PST)
+Received: from localhost.localdomain (203.247.120.78.rev.sfr.net.
+ [78.120.247.203])
+ by smtp.googlemail.com with ESMTPSA id nc29sm5724291ejc.3.2021.12.05.13.58.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 05 Dec 2021 13:58:58 -0800 (PST)
 From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Message-ID: <bb0ca11d-789a-6f43-ffad-624407122fdd@baylibre.com>
-Date: Sun, 5 Dec 2021 22:35:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+To: khilman@baylibre.com
+Cc: Amjad Ouled-Ameur <aouledameur@baylibre.com>, p.zabel@pengutronix.de,
+ balbi@kernel.org, jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: [PATCH v4 1/3] phy: amlogic: phy-meson-gxl-usb2: fix shared reset
+ controller use
+Date: Sun,  5 Dec 2021 22:58:44 +0100
+Message-Id: <20211205215846.153703-2-aouledameur@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211205215846.153703-1-aouledameur@baylibre.com>
+References: <20211205215846.153703-1-aouledameur@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCvOnrvC64sA++5DegZq1g9MmwvnCiYh-WB4dSkoBsCBA@mail.gmail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211205_133524_007658_5CED2FA4 
-X-CRM114-Status: GOOD (  19.09  )
+X-CRM114-CacheID: sfid-20211205_135900_071265_3A284AE8 
+X-CRM114-Status: UNSURE (   8.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,52 +88,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Use reset_control_rearm() call if an error occurs in case
+phy_meson_gxl_usb2_init() fails after reset() has been called ; or in case
+phy_meson_gxl_usb2_exit() is called i.e the resource is no longer used
+and the reset line may be triggered again by other devices.
 
-Thank you for reviewing this.
+reset_control_rearm() keeps use of triggered_count sane in the reset
+framework. Therefore, use of reset_control_reset() on shared reset line
+should be balanced with reset_control_rearm().
 
-On 21/11/2021 00:57, Martin Blumenstingl wrote:
-> Hi Amjad,
->
-> Thanks for working on this!
->
-> On Fri, Nov 12, 2021 at 5:33 PM Amjad Ouled-Ameur
-> <aouledameur@baylibre.com> wrote:
-> [...]
->> +               reset_control_rearm(priv->reset);
-> Using priv->reset in this driver currently requires an IS_ERR check beforehand.
-> When I wrote the driver originally I used the following code in
-> phy_meson8b_usb2_probe:
->    priv->reset = ...
->    if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
->      return PTR_ERR(priv->reset);
->
-> That means: priv->reset can (in theory) be an error pointer at runtime.
-> Since your patch is valid: can you please add another one (before this
-> one) in the series and change the priv->reset error checking to use
-> something like:
->    if (IS_ERR(priv->reset))
->      return dev_err_probe(&pdev->dev, PTR_ERR(priv->reset), "Failed to
-> get the reset line");
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+changes since v3:
+- Remove unnecessary reset_control_rearm() after reset_control_reset()
+failure.
 
-No worries, will do.
+ drivers/phy/amlogic/phy-meson-gxl-usb2.c | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/drivers/phy/amlogic/phy-meson-gxl-usb2.c b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
+index 2b3c0d730f20..d2f56075dc57 100644
+--- a/drivers/phy/amlogic/phy-meson-gxl-usb2.c
++++ b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
+@@ -125,6 +125,7 @@ static int phy_meson_gxl_usb2_exit(struct phy *phy)
+ 	struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
+ 
+ 	clk_disable_unprepare(priv->clk);
++	reset_control_rearm(priv->reset);
+ 
+ 	return 0;
+ }
+-- 
+2.25.1
 
-Regards,
-
-Amjad
-
-> With such a patch you can consider this one as:
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
->
-> Best regards,
-> Martin
 
 _______________________________________________
 linux-amlogic mailing list
