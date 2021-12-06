@@ -4,77 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FE59C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 18:06:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7910DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 19:42:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yIkg+po1giaDhBV+gQOcCv3y8UKn4eeRLnr+BuoADe0=; b=qY/Mbfn7QEEgES
-	uovRRy11LiMYwCW0TkzLG128+Nou/2gMnjy0VN83ttdweoJQSNazKcGASXnBM5m2iOZm0VtMA+yhv
-	rbxzAsehw12f7o7/BqAL6xx4bzIu+M/7uU2VRos86vnYBO7TkM4Pds2460m2WyZduZC4nec2ATZ22
-	A2Fa18NJJFz1iWfqi2sYrMATg4TPKvBPuY8J/8JeZkZytTT+E+bKQdnLInIYweOYtRcozS1vJk4+b
-	KYlmdHX253SvKbFHK8FoHhvDNUfTj4MtGTwOb1mRZpf5/JlnaxhPv2kR9+WeeesgmNA6dqr8oW81x
-	CZl/rDd0DPooh6KVxFww==;
+	List-Owner; bh=oCHxe8Mc3vK03urIFTzTxmABaRhtm1E3NpCf/sCvFMs=; b=ousc64zESDF+Hh
+	gvOUIKAO6X/4Kaz0LeOYc7X30lZCu/u/kQDKhafyaMFNoHEZ2sPzl2l4mU/sNQW6I0zOMvwsgIHV6
+	TBnFCwKRqTcFQkCcotaXLPQqA+CTi/fV0AddlTG0FqioWVNMHHd2MpmM17A1DHdG9UX+f1sXKNvis
+	gOacv67CEXAOyZ9Ic+S6/IJYxCQsqG5Vd0hKMNbNHfICyNUA+DAwVRDCEWbOMes5GzDQ5X1gM59rN
+	Ds1GcXFD+9X/mNPHxfo5hXLWc9hd2IizHoLpovSpd7i58+hZeMXaYhJbGxoQ01nUJTjSqaop2OuSR
+	XbK8TrWq6VrMQM7IBa0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muINj-005DPu-Ud; Mon, 06 Dec 2021 18:06:32 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1muJsL-005Wea-6z; Mon, 06 Dec 2021 19:42:13 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muINJ-005DEU-Ok
- for linux-amlogic@lists.infradead.org; Mon, 06 Dec 2021 18:06:10 +0000
-Received: by mail-wr1-x431.google.com with SMTP id u17so16870216wrt.3
- for <linux-amlogic@lists.infradead.org>; Mon, 06 Dec 2021 10:06:04 -0800 (PST)
+ id 1muJsF-005WdQ-O2
+ for linux-amlogic@lists.infradead.org; Mon, 06 Dec 2021 19:42:11 +0000
+Received: by mail-wr1-x433.google.com with SMTP id t9so24659810wrx.7
+ for <linux-amlogic@lists.infradead.org>; Mon, 06 Dec 2021 11:42:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=9Eu38/3+9tGaMWfLccEWOU7ckpzNuZ1dJmEA2K5P3hE=;
- b=ksxUHhx7E++eESp3gUhlMdMaGTidNIZ352BtBhdadLYt7T5/NJK57OHZyxUZjAyGaP
- mCIstqO91Jc0+TZf7n2sSnOR1/qLlpXGg7MQcCOdJgU8mWeieClu/MgYD8XB33Jjx86M
- Xmsl0gsbKeFA7bwQ9zQXt34+COopKchDvJsJXl/3LnWCTyntVAUZkrT/N2mV6yLMER3S
- 4grd6yjDMd69uTF/3Pg8v+aokAPb4MZexwleNiJkZT6LZpC6ygAtPb4lRv9D1T3ayecX
- 51/inhYFnSq08l0J4cvpcyMUaRD0AlBdkGKiePhv1JNgMC8/W4yOIar/8o4pTCyhCZJ9
- WJ8A==
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=XoyDxWHFfkkShprB5fi0ZtCpkIroCq2M/CcUOnfbOhA=;
+ b=w8sZ41kEdX4SRoPkzKCBKIOpzSsDrjyDTmuhgrbbcp5zpmFSvfGY7gNpZK0p0dMxAa
+ uWrDVGdLjErc8kI0vHKRLdvR+xas3quAw8WLQmicLbCVcrujBGlSxKW5v4tNRzh5Rsld
+ PbPH7ba+Ou0DcR+MLaSif954Gu9KWrAzQrbAJ9dnM20t0XW2ozYroSORAQOs3yEGfsWc
+ 0b8NifhWMgxwmzcAJ8vTR/83pq61hWtl1y1Me57+Y0zioTVaZzNksWyql3KdwajCCzjI
+ pEOgp1cAfmONXrGWtiC6RzGuyMrHDMhZRencZZIde+pIeMZPjzNdS45FL5neth6TXFke
+ HUeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=9Eu38/3+9tGaMWfLccEWOU7ckpzNuZ1dJmEA2K5P3hE=;
- b=loUfa0l7x1yyS7+1dlCSrwHIuuPzj5UasKMWlZmU03kjEUGCOzrPNefwMJ5aN9vCEw
- jNMEOG3brzpnu82p1l9pOZPH30q1hF7bsa7oBKmSJRZtIRfd8zUuhDJ0RPvarqFQ+g0r
- 1iF2JxcF2uFa//dMcUk8FoPXPZQhQ/5S28Mkxff/qYk2PXRWYJ55/aKaiXMCtoA4rklk
- riyKPmqJ2Mw5ps6rAcVxtSRkNV4JrlxtgGuK3hw7L+R+Ku9tgLTa7hPV1YsNgrv0Z900
- lAWkrHMbyGDfggjCz4io+ddSGxf5WJpusUjLQwQ/R79Yr6dxPJlp7/Fxunt/HgFEPOXe
- 9amQ==
-X-Gm-Message-State: AOAM533DMJQIFhZzzUdMkTer6N9ztsVIK7HHqPFjoka2aFs4ulI6ULVx
- cZlUP4lz/S3T+2KEJ3fmR9hrDw==
-X-Google-Smtp-Source: ABdhPJyeP9mmGnfPC2VzFGb6kW3kaXKtwf/c9ade3X5hh72uFYdGSbs1CnzHMgnUQ5bQquvSyJDstg==
-X-Received: by 2002:adf:f001:: with SMTP id j1mr44911077wro.351.1638813963287; 
- Mon, 06 Dec 2021 10:06:03 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 9sm15728052wry.0.2021.12.06.10.06.02
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=XoyDxWHFfkkShprB5fi0ZtCpkIroCq2M/CcUOnfbOhA=;
+ b=u9E7BFBt4MB0B5MurD56EOK/xE9gRqLvYIPstRjOqVGDmuUzmuLu9q5DMngBNwa3Jr
+ R4oPOsx2uMmOrI/41lZKM3px3g59UaWaXfNdQ0TiUXn67qQOY3CNgF6a6hMCvmMJpxgH
+ S11cW6NNPr+Hf+2HxcAJwQPkSryXR/v1PYqro//jw6/aGfgkmhjFfmXhjzTcJkiiNBP+
+ 6J8Ku9xkgAsPBn10ENRyqjkMP6CvGtzSjTv9TrozLkYS/BlUre4wKK3hvm3XmbP4GWVa
+ RC2r+3f9oYibcYyvYd0QC8lvvEIhVSnZeNPt+WWIvHUaYAZdCArQ5n90oPmcE5rV3/hu
+ qYIA==
+X-Gm-Message-State: AOAM5339n4LkUrGx6GCmG3SfpNOKGOxsGlkXhLFg8MjeUxogw4vAtbb2
+ 2VmKZp6TBLcWAVlg04gzA+PWzw==
+X-Google-Smtp-Source: ABdhPJx8pLA553HMWI1HuMsyxL4boJMISHN0MO4UL5wXFAniqnUsOICkxQ/hPb/2AWWD4Mll3NrfjA==
+X-Received: by 2002:a5d:460d:: with SMTP id t13mr44894938wrq.44.1638819726062; 
+ Mon, 06 Dec 2021 11:42:06 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id o9sm12332737wrs.4.2021.12.06.11.42.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Dec 2021 10:06:02 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Christian Hewitt <christianshewitt@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Neil Armstrong
- <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>, Benoit Masson
- <yahoo@perenite.com>
-Subject: Re: [RFC PATCH 0/9] arm64: dts: meson: add support for aac2xx devices
-In-Reply-To: <20211130060523.19161-1-christianshewitt@gmail.com>
-References: <20211130060523.19161-1-christianshewitt@gmail.com>
-Date: Mon, 06 Dec 2021 19:06:02 +0100
-Message-ID: <7hilw14nhx.fsf@baylibre.com>
+ Mon, 06 Dec 2021 11:42:05 -0800 (PST)
+References: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
+ <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
+ <1jfsr659v1.fsf@starbuckisacylon.baylibre.com>
+ <CAFBinCAceRkO86bXfUYnDwup3At9MaN-PnOiLxa-1fYO5SwOQA@mail.gmail.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, alsa-devel@alsa-project.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Christian Hewitt <christianshewitt@gmail.com>, Geraldo Nascimento
+ <geraldogabriel@gmail.com>
+Subject: Re: [PATCH RFC v1 2/2] ASoC: meson: aiu: Move AIU_I2S_MISC hold
+ setting to aiu-fifo-i2s
+Date: Mon, 06 Dec 2021 20:36:45 +0100
+In-reply-to: <CAFBinCAceRkO86bXfUYnDwup3At9MaN-PnOiLxa-1fYO5SwOQA@mail.gmail.com>
+Message-ID: <1jpmq9ed0z.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_100605_879410_C3977911 
-X-CRM114-Status: GOOD (  11.28  )
+X-CRM114-CacheID: sfid-20211206_114207_863911_8F2D381A 
+X-CRM114-Status: GOOD (  32.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,32 +94,91 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
 
-> This series adds support for several popular Amlogic S905X3 (SM1) Android
-> Set-Top Box devices. Like most Android box devices, they ship in variants
-> with multiple RAM, eMMC, WiFi and BT configurations. RAM and eMMC are not
-> something we need to consider to get a working boot, but we do need to get
-> the correct connectivity spec.
+On Mon 06 Dec 2021 at 18:28, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-The reason we don't need to care about RAM differences is because u-boot
-takes care of that, and updates the DT nodes accordingly.
+> Hi Jerome,
+>
+> On Mon, Dec 6, 2021 at 11:02 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>>
+>>
+>> On Sun 05 Dec 2021 at 19:08, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+>>
+>> > The out-of-tree vendor driver uses the following approach to set the
+>> > AIU_I2S_MISC register:
+>> > 1) write AIU_MEM_I2S_START_PTR and AIU_MEM_I2S_RD_PTR
+>> > 2) configure AIU_I2S_MUTE_SWAP[15:0]
+>> > 3) write AIU_MEM_I2S_END_PTR
+>> > 4) set AIU_I2S_MISC[2] to 1 (documented as: "put I2S interface in hold
+>> >    mode")
+>> > 5) set AIU_I2S_MISC[4] to 1 (depending on the driver revision it always
+>> >    stays at 1 while for older drivers this bit is unset in step 4)
+>> > 6) set AIU_I2S_MISC[2] to 0
+>> > 7) write AIU_MEM_I2S_MASKS
+>> > 8) toggle AIU_MEM_I2S_CONTROL[0]
+>> > 9) toggle AIU_MEM_I2S_BUF_CNTL[0]
+>> >
+>> > Additional testing shows that when AIU_I2S_MISC[2] is set to 1 then no
+>> > interrupts are generated anymore. The way this bit is managed by the
+>> > vendor driver as well as not getting any interrupts can mean that it's
+>> > related to the FIFO and not the encoder.
+>>
+>> Not necessarily. If the encoder stops pulling data, the FIFO will going
+>> over the DDR. Since it generates an IRQ after reading N bytes, IRQ would
+>> stop too. AFAIK, if the pipeline is stalled, the IRQ stops anyway
+> ah, right. so I think you're right: it can be either way
+>
+>> ... but this is not really important
+> I'll remove that section from the description in v2
+>
+>> >
+>> > Move setting the AIU_I2S_MISC[2] bit to aiu_fifo_i2s_hw_params() so it
+>> > closer resembles the flow in the vendor kernel. While here also
+>> > configure AIU_I2S_MISC[4] (documented as: "force each audio data to
+>> > left or right according to the bit attached with the audio data")
+>> > similar to how the vendor driver does this.
+>>
+>> I understand the part of HOLD, not about FORCE_LR.
+>> Is it necessary to fix the problem ? Have you tested without this change
+>> ?
+> On my Le Potato board (GXL / S905X) FORCE_LR is either enabled by the
+> bootloader or being enabled is the default value.
+> All versions of the vendor driver are also setting it in some way,
 
-In general, I'm not a fan of leaving these decisions up to u-boot,
-but...  as an option...
++1
+Would you mind adding a comment in the code saying just that - so we
+know why it's there ?
 
-I'm pondering if we should do the same for the connectivity settings?  A
-properly configured u-boot already knows if it's an internal/external
-PHY, Mbit vs Gbit etc. so in a similar way could enable/disable the
-right nodes.
+> including the latest one that I have access to [0].
+> I prefer to keep this explicit write in for two reasons:
+> - we're not hit by surprise if some SoC/bootloaders don't set this bit
+> by default
+> - the code in the mainline does not skip anything that the vendor
+> driver does
 
-We could have a single DTS for each of these board families which
-has some reasonable defaults, then u-boot would enable/disable nodes
-accordingly.
+You can bet I've skipped a fair share of what the vendor driver does, on
+purpose.
+>
+> To specifically answer your question: I have not tried whether this
+> bit needs to be set and if unsetting it manually breaks anything.
+>
+>> > This fixes the infamous and
+>> > long-standing "machine gun noise" issue (a buffer underrun issue).
+>>
+>> Well done ! It took us a while to nail it, Thanks a lot !!
+> Thanks - this took a while to figure out but it's great to finally
+> have it solved!
+>
+>
+> Best regards,
+> Martin
+>
+>
+> [0] https://github.com/khadas/linux/blob/khadas-vims-4.9.y/sound/soc/amlogic/meson/audio_hw.c#L194:L202
 
-Kevin
+With this, feel free to repost without the RFC tag and with my
 
-
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
