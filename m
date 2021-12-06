@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29105C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 10:50:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1588EC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 10:57:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,78 +13,76 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=94cPlvsU6qEy3/EJ+HXZ6S7df2K8MB7anNxtjW8Msqw=; b=ASIeyhZQjJpv7l9Wu4jzRU9j6U
-	1+FV0sbXBzF1sEXqpUCSBAUrhM3eHEYXFJyZIhLtfCYmdQH0SY4vFNIkny69HTgSyzbQ87Rd4DzNw
-	XHMjKJ9wR4dCoWiYjrnnvFRLpb6uCLnTgfgH4B5+vO896+dqjqxy6u2rMT4qcA3rOA+iwCMAiip0i
-	EAoY0IBRRGwBZcx2zWdzVruR12w+IWDRooxDwiKZlakX5uGSNOfPRfQjEASQ2rfx4vRui1J0hr3jI
-	QXyAqZROdQfxsER6uWzzy49pI3h3ZY6ctpuAu5O0UWPTuOsjkctmNLS4e9TEdezwsQSUuG5MoPInP
-	gCIXih1w==;
+	bh=UNYorXfLoLlbiC27LtpKVQubu3MA1MUlLpS/phmbwv4=; b=NEWRoUz4qaQiSQS7glCvqFt1HN
+	7Vp3T5JxBazmPSAYq5hObVeMCLXqncynuMhYLMtuixW7+g+07XGmFEp+kc5KQ2s4SteSXISarlOuo
+	7d46+Vn4Jbs/BaYN6LO/0ed4rnOUaiDnNh55Vc1P3rctK0m1+uf7Hwjbl1BfXRrDKrBPk3FdMTIje
+	E/P0IROPw+BTflq1W6if//bVPOMhyk+xO+TTmCA+AmlIFLb+po9jlmF7kfWV4PBJf7sMaY9Wo5KFM
+	gMgvwJxaQx8P80lQtVZfKHx37jQv/V/OLvVYyuv1RrMY2YEmUQzk/bs2JfF1fwzqA94bHC3flT0ps
+	MwC6lWMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muBa7-003Q8Z-CU; Mon, 06 Dec 2021 10:50:51 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1muBgJ-003So3-UU; Mon, 06 Dec 2021 10:57:15 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muBa3-003Q5G-46
- for linux-amlogic@lists.infradead.org; Mon, 06 Dec 2021 10:50:49 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id
- k37-20020a05600c1ca500b00330cb84834fso10081787wms.2
- for <linux-amlogic@lists.infradead.org>; Mon, 06 Dec 2021 02:50:44 -0800 (PST)
+ id 1muBgF-003Slj-BU
+ for linux-amlogic@lists.infradead.org; Mon, 06 Dec 2021 10:57:13 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id
+ n33-20020a05600c502100b0032fb900951eso10059060wmr.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 06 Dec 2021 02:57:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:cc:references:from:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=2oNbuF190awal+660ONrj+d8q2JGo3YTgD7d1EpaHqk=;
- b=i89RiwQhlq3M3FfqGuw9GmPJf8RHv+JeWr+tvb4jpFpDFXE2UOTV6j4WbScDjqPA+B
- OBIj9z0RPChvKMfVvQLrlfB+t8RIZMlEQulBBJKLT5sf3W0yIkrcx1yknQV3ljszZXa2
- BUvs5FZXCnxZmi7eDRjg1sfvl/agI90MjTmOfp1FxPyTC1q5P0EUTK9OP8JbFFQ6u8AE
- /P6+GuE3f63BfpXaS4j9AmskAKim8FFCyuDSFhui6hWiJcvSLUgKy5jj/4y8gINK5pXO
- KkawozG1tMWPyFHS6B1cvgWbWXAMs/Rp0dl37RxfxAuL134Z3waUi0kqR2GYkFO8gu0G
- 92Tw==
+ bh=Og4d+0J+D9XBip4Glln9SQpuxIVWP+20n5XjcghlMp8=;
+ b=IsAua1IAP1z5CUNMqn5XZ7vWJYX1PnAQWEJBOhPlNn6F9/q6+/oBam9orG+0r3Nnsj
+ 8x+Av69kMJ1SMWC5ze/PMN2igdPbpRVzQyNQUdqYxRa+LThlLNvZ5V0uYwx5AxCE+G7e
+ 0VWbXkf8Sf+KY/N498s9aAhPmM7hpylXroPp73xvKE1E9bBFR9Lc6R0wkD4Qj1VYhsRS
+ EaNKhTluSampSAOWFOdKbb3MzidzWGpAnqOFfnGs13r8btIXA5KMJYGrZjmsswinHq2B
+ kXiOt7E3ic+PIfRmN/tyqqxsi99e/pV+1Br3hgFnVKxd89XuYBwAgVL+XyVYmSFPk0sq
+ Ihww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=2oNbuF190awal+660ONrj+d8q2JGo3YTgD7d1EpaHqk=;
- b=MVcN+Kl/KbbuG0KokrpiZX5PqPkI3Z+5QVeTMrf9Rgjm2mK5SZB8xmm9k/kD0MWcqK
- SPhnxxs5cWMiEWlCNy7Ksc0K2IMGS0ulFTH4urJ3DHlhXdJqhVwhpk1UvipihQsTYjGK
- BXXroBB3XWBDQGNkL/0k9+vKMOqHb+jEuaiVwh8XU2iBKHvYSN0454Gf0dFLiKDTSkSo
- tYYSh4B0EXcOZEqT/7/v0VMFvSHiPDSYZCwL9i8SLq/1hgHhg/cq9Cwu8jfsowH1g81l
- y3MluWc3Q52ZeaTzjb5XFsf8/6Fzw6j9rqIix9kN67jRWAHPoYGe4HzlUr4NYOd1zFTX
- Yxyg==
-X-Gm-Message-State: AOAM531o6WwEmAHKRVexRTs2sn1yJJLr8IuwRW+iYxD+5V3Zx0WU47lD
- CrdUpxalRC3GkbjRqSgRWDxLWw==
-X-Google-Smtp-Source: ABdhPJzjgIxXGz1rRBspyqg6QUOKotxqaGgwdPATY0T4gaZw2DgV1Omn5/eBhdD3I5da5Q5lbhdUgA==
-X-Received: by 2002:a05:600c:154f:: with SMTP id
- f15mr37494357wmg.86.1638787843591; 
- Mon, 06 Dec 2021 02:50:43 -0800 (PST)
+ bh=Og4d+0J+D9XBip4Glln9SQpuxIVWP+20n5XjcghlMp8=;
+ b=4Zq1XSH4ZbEZmMVD6V2eI65/p3KSeZ7sLFu5ISX3cMZJUz76fG2eHlLBJ+lACkzxeL
+ rAI+m96ReGCAHzT+DZ64AioslNpbriFG+/zHR/F5z3oHCZZrPVU3WgPuETonuIF6CVGs
+ Kvn7hP4yD3YVXMUIY6FfmsEUA4tWfhm6gMAdDMBfEoLHS1KZOlcHHd39CEUkTEIh7FDW
+ o/O8avpFK5yzpBW+VupEzXlHkJcTMOP8TI55+64OY2t3RYOOUy0DdIyCh/nzfuyQe9Qs
+ kSqYfD5QV6dYugs4UybAcUsWyk2aGXevEZJGhjQPAKrGCzho8g3OiqRB5toHDB75GDu5
+ dizA==
+X-Gm-Message-State: AOAM5324GY7Q0AgkjU57EBYPIOK7AKMYqmwoyxdNoqYyKs8okkIpnFej
+ IZ3mZD3HdUpclMvqDdcVMr0exA==
+X-Google-Smtp-Source: ABdhPJyNMlSeQmABbFLDeE9E3YkY/0bH/WkPssvqGe97C395cdU2wnYMEMKNauY/7YgLR+JCPW820w==
+X-Received: by 2002:a1c:23d4:: with SMTP id j203mr36956959wmj.35.1638788229940; 
+ Mon, 06 Dec 2021 02:57:09 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:70c1:5ce3:e1aa:1275?
  ([2001:861:44c0:66c0:70c1:5ce3:e1aa:1275])
- by smtp.gmail.com with ESMTPSA id y7sm10771027wrw.55.2021.12.06.02.50.42
+ by smtp.gmail.com with ESMTPSA id e7sm13895884wrg.31.2021.12.06.02.57.09
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 06 Dec 2021 02:50:43 -0800 (PST)
-Subject: Re: [PATCH] serial: meson: make the current driver compatible with S4
-To: "xianwei.zhao" <xianwei.zhao@amlogic.com>, linux-serial@vger.kernel.org,
+ Mon, 06 Dec 2021 02:57:09 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: add support for S4 based Amlogic AQ222
+To: "xianwei.zhao" <xianwei.zhao@amlogic.com>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20211206100200.31914-1-xianwei.zhao@amlogic.com>
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>
+References: <20211206100209.31971-1-xianwei.zhao@amlogic.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <4d07d6c0-e320-60cf-740f-c39bfed19c0d@baylibre.com>
-Date: Mon, 6 Dec 2021 11:50:42 +0100
+Message-ID: <f20968ff-667f-3fd9-3f8e-af8eced694f0@baylibre.com>
+Date: Mon, 6 Dec 2021 11:57:09 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211206100200.31914-1-xianwei.zhao@amlogic.com>
+In-Reply-To: <20211206100209.31971-1-xianwei.zhao@amlogic.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_025047_272508_997C9BEF 
-X-CRM114-Status: GOOD (  29.93  )
+X-CRM114-CacheID: sfid-20211206_025711_464958_9624653E 
+X-CRM114-Status: GOOD (  21.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,181 +102,194 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 Hi,
 
 On 06/12/2021 11:02, xianwei.zhao wrote:
-> Because S4 UART use a different clock source, the baud rate calculation need to be updated.
-> Reset the UART during initialization to clear previous status.
+> Add basic support for the Amlogic S4 based Amlogic AQ222 board:
+> which describe components as follows: CPU, GIC, IRQ, Timer, UART.
+> It's capable of booting up into the serial console.
 > 
 > Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
 > ---
->  drivers/tty/serial/meson_uart.c | 50 +++++++++++++++++++++++++++------
->  1 file changed, 42 insertions(+), 8 deletions(-)
+>  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>  .../dts/amlogic/meson-s4-s805x2-aq222.dts     | 30 ++++++
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 98 +++++++++++++++++++
+>  3 files changed, 129 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4.dtsi
 > 
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index efee3935917f..15a992ee6a28 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -65,9 +65,11 @@
->  #define AML_UART_RECV_IRQ(c)		((c) & 0xff)
->  
->  /* AML_UART_REG5 bits */
-> -#define AML_UART_BAUD_MASK		0x7fffff
-> +#define AML_UART_BAUD_MASK		GENMASK(22, 0)
->  #define AML_UART_BAUD_USE		BIT(23)
->  #define AML_UART_BAUD_XTAL		BIT(24)
-> +#define AML_UART_BAUD_XTAL_TICK		BIT(26)
-> +#define AML_UART_BAUD_XTAL_DIV2		BIT(27)
->  
->  #define AML_UART_PORT_NUM		12
->  #define AML_UART_PORT_OFFSET		6
-> @@ -80,6 +82,14 @@ static struct uart_driver meson_uart_driver;
->  
->  static struct uart_port *meson_ports[AML_UART_PORT_NUM];
->  
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 5148cd9e5146..faea74a45994 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -57,3 +57,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> new file mode 100644
+> index 000000000000..6b6ecb40be4a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> @@ -0,0 +1,30 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
-> + * struct aml_uart - device data
-> + * @xtal_tick_en: A clock source that calculates baud rates
+> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
 > + */
-> +struct aml_uart {
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-s4.dtsi"
+> +
+> +/ {
+> +	model = "Amlogic";
 
-please change to a better name like meson_uart_data and pass it as data of meson_uart_dt_match
+Please change to something like "Amlogic Meson S4 AQ222 Development Board"
 
-> +	unsigned int xtal_tick_en;
+> +	compatible = "amlogic, aq222";
+
+Drop the space after amlogic, and add "amlogic,aq222" to the Documentation/devicetree/bindings/arm/amlogic.yaml bindings.
+
+You will probably need to add a new "amlogic,s4" family compatibla aswell.
+
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart_B;
+> +	};
+> +
+> +	memory@00000000 {
+> +		device_type = "memory";
+> +		linux,usable-memory = <0x0 0x0 0x0 0x40000000>;
+
+Drop linux,usable-memory in favor or reg
+
+> +	};
+> +
 > +};
 > +
->  static void meson_uart_set_mctrl(struct uart_port *port, unsigned int mctrl)
->  {
->  }
-> @@ -103,7 +113,7 @@ static void meson_uart_stop_tx(struct uart_port *port)
->  	u32 val;
->  
->  	val = readl(port->membase + AML_UART_CONTROL);
-> -	val &= ~AML_UART_TX_INT_EN;
-> +	val &= ~AML_UART_TX_EN;
-
-Seems to be a cosmetic change, please split this in a separate patch.
-
->  	writel(val, port->membase + AML_UART_CONTROL);
->  }
->  
-> @@ -121,12 +131,12 @@ static void meson_uart_shutdown(struct uart_port *port)
->  	unsigned long flags;
->  	u32 val;
->  
-> -	free_irq(port->irq, port);
-> +	devm_free_irq(port->dev, port->irq, port);
-
-Please split this in a separate patch
-
->  
->  	spin_lock_irqsave(&port->lock, flags);
->  
->  	val = readl(port->membase + AML_UART_CONTROL);
-> -	val &= ~AML_UART_RX_EN;
-> +	val &= ~(AML_UART_RX_EN | AML_UART_TX_EN);
-
-Seems it fixes a bug, split in a separate patch.
-
->  	val &= ~(AML_UART_RX_INT_EN | AML_UART_TX_INT_EN);
->  	writel(val, port->membase + AML_UART_CONTROL);
->  
-> @@ -270,6 +280,7 @@ static int meson_uart_startup(struct uart_port *port)
->  	u32 val;
->  	int ret = 0;
->  
-> +	meson_uart_reset(port);
-
-Same, split in a separate patch
-
->  	val = readl(port->membase + AML_UART_CONTROL);
->  	val |= AML_UART_CLEAR_ERR;
->  	writel(val, port->membase + AML_UART_CONTROL);
-> @@ -285,24 +296,37 @@ static int meson_uart_startup(struct uart_port *port)
->  	val = (AML_UART_RECV_IRQ(1) | AML_UART_XMIT_IRQ(port->fifosize / 2));
->  	writel(val, port->membase + AML_UART_MISC);
->  
-> -	ret = request_irq(port->irq, meson_uart_interrupt, 0,
-> -			  port->name, port);
-> +	ret = devm_request_irq(port->dev, port->irq, meson_uart_interrupt,
-> +			       IRQF_SHARED, port->name, port);
-
-Same, split in a separate patch
-
->  
->  	return ret;
->  }
->  
->  static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
->  {
-> +	struct aml_uart *aml_uart_data = port->private_data;
->  	u32 val;
->  
->  	while (!meson_uart_tx_empty(port))
->  		cpu_relax();
->  
-> +	val = readl_relaxed(port->membase + AML_UART_REG5);
-> +	val &= ~AML_UART_BAUD_MASK;
+> +&uart_B {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> new file mode 100644
+> index 000000000000..b66f62701063
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -0,0 +1,98 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+> + */
 > +
->  	if (port->uartclk == 24000000) {
-> -		val = ((port->uartclk / 3) / baud) - 1;
-> -		val |= AML_UART_BAUD_XTAL;
-> +		if (aml_uart_data->xtal_tick_en) {
-> +			val = (port->uartclk / 2 + baud / 2) / baud  - 1;
-> +			val |= (AML_UART_BAUD_XTAL | AML_UART_BAUD_XTAL_DIV2);
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
 
-This should be triggered by a value in match data with a new compatible.
+Add blank line hiere
 
-> +		} else {
-> +			val = ((port->uartclk / 3) + baud / 2) / baud  - 1;
-> +			val &= (~(AML_UART_BAUD_XTAL_TICK |
-> +				AML_UART_BAUD_XTAL_DIV2));
-> +			val |= AML_UART_BAUD_XTAL;
-> +		}
->  	} else {
->  		val = ((port->uartclk * 10 / (baud * 4) + 5) / 10) - 1;
-> +		val &= (~(AML_UART_BAUD_XTAL | AML_UART_BAUD_XTAL_TICK |
-> +			AML_UART_BAUD_XTAL_DIV2));
->  	}
->  	val |= AML_UART_BAUD_USE;
->  	writel(val, port->membase + AML_UART_REG5);
-> @@ -715,6 +739,7 @@ static int meson_uart_probe(struct platform_device *pdev)
->  {
->  	struct resource *res_mem, *res_irq;
->  	struct uart_port *port;
-> +	struct aml_uart *aml_uart_data;
->  	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
->  	int ret = 0;
->  
-> @@ -754,6 +779,14 @@ static int meson_uart_probe(struct platform_device *pdev)
->  	if (!port)
->  		return -ENOMEM;
->  
-> +	aml_uart_data = devm_kzalloc(&pdev->dev, sizeof(struct aml_uart),
-> +				     GFP_KERNEL);
-> +	if (!aml_uart_data)
-> +		return -ENOMEM;
+> +/ {
+> +	cpus:cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
 > +
-> +	of_property_read_u32(pdev->dev.of_node, "xtal_tick_en",
-> +			     &aml_uart_data->xtal_tick_en);
-
-This property is not documented in the bindings, instead introduce
-a new compatible for the S4 and pass the "aml_uart" as the meson_uart_dt_match
-data pointer.
-
-And don't forget to submit the bindings change in another separate patch.
-
+> +		CPU0:cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a35","arm,armv8";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +		};
 > +
->  	/* Use legacy way until all platforms switch to new bindings */
->  	if (of_device_is_compatible(pdev->dev.of_node, "amlogic,meson-uart"))
->  		ret = meson_uart_probe_clocks_legacy(pdev, port);
-> @@ -775,6 +808,7 @@ static int meson_uart_probe(struct platform_device *pdev)
->  	port->x_char = 0;
->  	port->ops = &meson_uart_ops;
->  	port->fifosize = fifosize;
-> +	port->private_data = aml_uart_data;
->  
->  	meson_ports[pdev->id] = port;
->  	platform_set_drvdata(pdev, port);
+> +		CPU1:cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a35","arm,armv8";
+> +			reg = <0x0 0x1>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU2:cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a35","arm,armv8";
+> +			reg = <0x0 0x2>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU3:cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a35","arm,armv8";
+> +			reg = <0x0 0x3>;
+> +			enable-method = "psci";
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 0xff08>,
+> +			     <GIC_PPI 14 0xff08>,
+> +			     <GIC_PPI 11 0xff08>,
+> +			     <GIC_PPI 10 0xff08>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	xtal: xtal-clk {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xtal";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		gic: interrupt-controller@fff01000 {
+> +			compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <0>;
+> +			interrupt-controller;
+> +			reg = <0x0 0xfff01000 0 0x1000>,
+> +			      <0x0 0xfff02000 0 0x0100>;
+> +			interrupts = <GIC_PPI 9 0xf04>;
+> +		};
+> +
+> +		apb4: apb4@fe000000 {
+> +			compatible = "simple-bus";
+> +			reg = <0x0 0xfe000000 0x0 0x480000>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+> +
+> +			uart_B: serial@7a000 {
+> +				compatible = "amlogic,meson-gx-uart",
+> +					     "amlogic,meson-ao-uart";
+
+use the proper compatibles for s4
+
+
+> +				reg = <0x0 0x7a000 0x0 0x18>;
+> +				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
+> +				status = "disabled";
+> +				clocks = <&xtal>, <&xtal>, <&xtal>;
+> +				clock-names = "xtal", "pclk", "baud";
+> +				xtal_tick_en = <1>;
+
+Drop this property
+
+> +				fifo-size = <64>;
+
+No need to specify if 64
+
+> +			};
+> +		};
+> +	};
+> +};
 > 
-> base-commit: 3f19fed8d0daed6e0e04b130d203d4333b757901
+> base-commit: c5468e3c930d4d2937d3a842a85df0f74e95e152
 > 
 
 Thanks,
