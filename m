@@ -4,75 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D64AEC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 12:53:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18C53C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 17:28:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=QwQjBVqj4pgY1q5U0hC0iXRum7HbMAbHdUYjA8CPqn4=; b=c//KggIQ8C0gBqwTlWD18YPIl/
-	DU9+7Sip7Tsw8SNDvK6dW2vEWdVMRXmycIobOnzzMhACJOM+qbxMgyc5FD5kNpHQibg3PAjiKV65u
-	eSbxh/o1Z5Iji0HWKDzusXpjaX82ROTyNUVX7AD2iUuf5pfAmQrJxC4CDhN01uod4rfyE4+0jydMj
-	TYXwEk+IwptLPIi/N2WvaD5ZHUBXBBnSdMAumZmUrtyYiw+gjT70yFgVJ7X5j2Yt5r+hQyQ5CyTeJ
-	KkWGbeFJYlCJvmGP185SIdK6rWzKMN8FOHCo75Rx3JpyqocsUdzsxVPAfbpgXFYtbEqY/NXPAyvx6
-	lrqp8nXg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kh3Roei+5+pXfMiCrWjcrbEojBKvFlO5EFkcB0TryOE=; b=BB/rm/U8Yzv4Gb
+	ONtVpp+iQrDGlR9baD2t/JpPKTjQ4IxUplSoQYh3F3ILJI7/Gb835Iexi59DtiOaHloOeRAn6oGdm
+	Kmkg5lAh96BTjhRmr1SwTK4D0rc1EUGT+enWvVS8F0VBui6GrkPAwRP548osjIV8Xaxpy1KEI2COV
+	gLNyZESGgbRFsXlepTQ/4JM7Pte/XsB/YQJPRpDv7hKqzoJvK+h/fd0gXb/tF7yjIXn+AW3/6C9sZ
+	I3xKGoqtio0amVGSWu/tY4hrIpcpXcfnEuMI4AQBz4BReEw0XhMCaM2E0U/vj6khFC+X6r2l58Mov
+	/VeSh+1j6evikodaI6rw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muDUs-003raQ-WE; Mon, 06 Dec 2021 12:53:35 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1muHnI-0053fM-U4; Mon, 06 Dec 2021 17:28:52 +0000
+Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muDUp-003rYY-U7; Mon, 06 Dec 2021 12:53:33 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7AEE2B81095;
- Mon,  6 Dec 2021 12:53:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ED77C341C1;
- Mon,  6 Dec 2021 12:53:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638795209;
- bh=od76G1UF9Yr6eb3UB4DOF8v/MK2V4wRo+0/Q/ViTo9I=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=Bqtim4S/nDlnH2iHTyOs2HkWN46DA2ycegS0fjPt3iXOdKkeCjmF7c9kpsr/5u+nd
- 09VeW/PoZXf0xHPH57y4B9kcmM5Mi+mkB5bwO/eev2m3092mZoAZkzoCLTk3C7Aek8
- P38pXQMXC7kJMy8LB3OPBeN3t9ZU26mnzgEnqM85T73UrKFqV6EZqSpZXLfRPJpzEu
- OZuVS7RrHTTM91/w6FbE4hdwGErKJj4L/46OXpQrxqx2tjCn7+urPoK00Xo1X2doup
- ZPpZnF29EBcUJCwM5isU0SMegprDdHQBLukHo6DTD4XWuBt7PCmnSaU962cAyr39mi
- +deOq7+yGrvXw==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
- by disco-boy.misterjones.org with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <maz@kernel.org>)
- id 1muDUk-00AAVg-U7; Mon, 06 Dec 2021 12:53:27 +0000
+ id 1muHnB-0053ck-Cm; Mon, 06 Dec 2021 17:28:47 +0000
+Received: by mail-ed1-x52f.google.com with SMTP id y12so45819325eda.12;
+ Mon, 06 Dec 2021 09:28:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/Iwam9ntoKrXXFMW9GBBg/CP2/SJeMa2eol8Tt6Y/4w=;
+ b=Sd+DbBx50iRRQDCEahfK/6JoYwkIW3PdLQoaN+VzpC2SB0+lVKLqv+7X5TPeOQDjX4
+ xXZb28UYQhfHSN1ztNpmV+MKnyjh5R5gaRAfaWnuTWUUwOaH0h3dkVzroeVXtlgTmXgs
+ pxcCogtoYtZgkBfFk4k7L2Y4Kh5AuakypT5UR4DQEzhlp/fTVxC9wKdgffqhEYiKY/GQ
+ gYQWTcrf7tski3w4QdbRc3hPIb81CxU41+byZ2jHxSCfVgT6G/jOa7Aw+v5+pKwGOfGl
+ ZiOr0pnqHwXYQRVtOv1X20hbypEhzSgiFXoQw6+zwh91goEhayT+AW/fu57OBK4XSXby
+ R7nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/Iwam9ntoKrXXFMW9GBBg/CP2/SJeMa2eol8Tt6Y/4w=;
+ b=IFC5aPxI5TMehHFqsLlMZYz/u1wE31ZA+a/uvbGnn0eqKipXa1DcG6Ii+0MkZ/p5G8
+ //W3ESxu2ukpbk+RYT/GAqO0jQddkEZMi4z93Fay0d0zNuwJG4boB90ctOA8Y01LRhAL
+ 1/z8bHhTyIn8bztWaQJwQ5/ogP0oOuv3rtJc6RcsqzE6hVp0w0xLIvAGftO2xsTyDG5F
+ whksnr1gYML16Yp8RI+zN4AtGyRcKVf1ohW14HW3ETdlgMZeeFZaTsz9Y/RILSTqnep9
+ VQ5OT7dEk+cn3c3zMHDAzOw6OwtaWUFpdYQbQf3SMKZp9NJ1qA4/zJVRdR7DXzteZb6I
+ N9HQ==
+X-Gm-Message-State: AOAM531tFGkR2dO9ewsS7KkGZVECCmCQZ/8gbJMbuJkp07u4op+7BZIY
+ lrizm3ZCrlKswORgwRI5PqWLrFyxI2lz/rcifqADSN0A
+X-Google-Smtp-Source: ABdhPJx9/dmmMIp0k2nEWYLkPyQHjbt6A++ofLwsYD9nTGyKv6qQM4UpeYPChbhnOnPF9AqF77qtzNTlFRyRQ7ZtUy4=
+X-Received: by 2002:aa7:c5c4:: with SMTP id h4mr602667eds.386.1638811723308;
+ Mon, 06 Dec 2021 09:28:43 -0800 (PST)
 MIME-Version: 1.0
-Date: Mon, 06 Dec 2021 12:53:26 +0000
-From: Marc Zyngier <maz@kernel.org>
-To: "xianwei.zhao" <xianwei.zhao@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: add support for S4 based Amlogic AQ222
-In-Reply-To: <20211206100209.31971-1-xianwei.zhao@amlogic.com>
-References: <20211206100209.31971-1-xianwei.zhao@amlogic.com>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <c2bd4fd6fe2ead4d7478c1e4ed53c781@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: xianwei.zhao@amlogic.com,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- narmstrong@baylibre.com, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, robh+dt@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
- SAEximRunCond expanded to false
+References: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
+ <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
+ <1jfsr659v1.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jfsr659v1.fsf@starbuckisacylon.baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 6 Dec 2021 18:28:32 +0100
+Message-ID: <CAFBinCAceRkO86bXfUYnDwup3At9MaN-PnOiLxa-1fYO5SwOQA@mail.gmail.com>
+Subject: Re: [PATCH RFC v1 2/2] ASoC: meson: aiu: Move AIU_I2S_MISC hold
+ setting to aiu-fifo-i2s
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, alsa-devel@alsa-project.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Geraldo Nascimento <geraldogabriel@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_045332_290121_B1FCE5FF 
-X-CRM114-Status: GOOD (  20.29  )
+X-CRM114-CacheID: sfid-20211206_092845_480601_22331B7E 
+X-CRM114-Status: GOOD (  26.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,201 +81,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2021-12-06 10:02, xianwei.zhao wrote:
-> Add basic support for the Amlogic S4 based Amlogic AQ222 board:
-> which describe components as follows: CPU, GIC, IRQ, Timer, UART.
-> It's capable of booting up into the serial console.
-> 
-> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->  .../dts/amlogic/meson-s4-s805x2-aq222.dts     | 30 ++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 98 +++++++++++++++++++
->  3 files changed, 129 insertions(+)
->  create mode 100644 
-> arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile
-> b/arch/arm64/boot/dts/amlogic/Makefile
-> index 5148cd9e5146..faea74a45994 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -57,3 +57,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> new file mode 100644
-> index 000000000000..6b6ecb40be4a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> @@ -0,0 +1,30 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-s4.dtsi"
-> +
-> +/ {
-> +	model = "Amlogic";
-> +	compatible = "amlogic, aq222";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart_B;
-> +	};
-> +
-> +	memory@00000000 {
-> +		device_type = "memory";
-> +		linux,usable-memory = <0x0 0x0 0x0 0x40000000>;
-> +	};
-> +
-> +};
-> +
-> +&uart_B {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> new file mode 100644
-> index 000000000000..b66f62701063
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -0,0 +1,98 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +/ {
-> +	cpus:cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		CPU0:cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35","arm,armv8";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		CPU1:cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35","arm,armv8";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		CPU2:cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35","arm,armv8";
-> +			reg = <0x0 0x2>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		CPU3:cpu@3 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35","arm,armv8";
-> +			reg = <0x0 0x3>;
-> +			enable-method = "psci";
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 0xff08>,
-> +			     <GIC_PPI 14 0xff08>,
-> +			     <GIC_PPI 11 0xff08>,
-> +			     <GIC_PPI 10 0xff08>;
+Hi Jerome,
 
-You only have 4 CPUs, so the affinity is wrong. Please use
-symbolic constants for all the PPIs.
+On Mon, Dec 6, 2021 at 11:02 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>
+> On Sun 05 Dec 2021 at 19:08, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+>
+> > The out-of-tree vendor driver uses the following approach to set the
+> > AIU_I2S_MISC register:
+> > 1) write AIU_MEM_I2S_START_PTR and AIU_MEM_I2S_RD_PTR
+> > 2) configure AIU_I2S_MUTE_SWAP[15:0]
+> > 3) write AIU_MEM_I2S_END_PTR
+> > 4) set AIU_I2S_MISC[2] to 1 (documented as: "put I2S interface in hold
+> >    mode")
+> > 5) set AIU_I2S_MISC[4] to 1 (depending on the driver revision it always
+> >    stays at 1 while for older drivers this bit is unset in step 4)
+> > 6) set AIU_I2S_MISC[2] to 0
+> > 7) write AIU_MEM_I2S_MASKS
+> > 8) toggle AIU_MEM_I2S_CONTROL[0]
+> > 9) toggle AIU_MEM_I2S_BUF_CNTL[0]
+> >
+> > Additional testing shows that when AIU_I2S_MISC[2] is set to 1 then no
+> > interrupts are generated anymore. The way this bit is managed by the
+> > vendor driver as well as not getting any interrupts can mean that it's
+> > related to the FIFO and not the encoder.
+>
+> Not necessarily. If the encoder stops pulling data, the FIFO will going
+> over the DDR. Since it generates an IRQ after reading N bytes, IRQ would
+> stop too. AFAIK, if the pipeline is stalled, the IRQ stops anyway
+ah, right. so I think you're right: it can be either way
 
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		gic: interrupt-controller@fff01000 {
-> +			compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+> ... but this is not really important
+I'll remove that section from the description in v2
 
-Neither, really. It cannot be an A9 GIC (you have virtualisation),
-and because on an ARMv8 system, it is the CPU that implements
-the CPU interface, this cannot be a A15 GIC either.
+> >
+> > Move setting the AIU_I2S_MISC[2] bit to aiu_fifo_i2s_hw_params() so it
+> > closer resembles the flow in the vendor kernel. While here also
+> > configure AIU_I2S_MISC[4] (documented as: "force each audio data to
+> > left or right according to the bit attached with the audio data")
+> > similar to how the vendor driver does this.
+>
+> I understand the part of HOLD, not about FORCE_LR.
+> Is it necessary to fix the problem ? Have you tested without this change
+> ?
+On my Le Potato board (GXL / S905X) FORCE_LR is either enabled by the
+bootloader or being enabled is the default value.
+All versions of the vendor driver are also setting it in some way,
+including the latest one that I have access to [0].
+I prefer to keep this explicit write in for two reasons:
+- we're not hit by surprise if some SoC/bootloaders don't set this bit
+by default
+- the code in the mainline does not skip anything that the vendor driver does
 
-This is most likely yet another GIC400.
+To specifically answer your question: I have not tried whether this
+bit needs to be set and if unsetting it manually breaks anything.
 
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <0>;
-> +			interrupt-controller;
-> +			reg = <0x0 0xfff01000 0 0x1000>,
-> +			      <0x0 0xfff02000 0 0x0100>;
+> > This fixes the infamous and
+> > long-standing "machine gun noise" issue (a buffer underrun issue).
+>
+> Well done ! It took us a while to nail it, Thanks a lot !!
+Thanks - this took a while to figure out but it's great to finally
+have it solved!
 
-256 bytes? where are you getting this value from? You are also missing
-the GICH and GICV regions, despite describing a maintenance interrupt...
 
-> +			interrupts = <GIC_PPI 9 0xf04>;
-> +		};
-> +
-> +		apb4: apb4@fe000000 {
-> +			compatible = "simple-bus";
-> +			reg = <0x0 0xfe000000 0x0 0x480000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> +
-> +			uart_B: serial@7a000 {
-> +				compatible = "amlogic,meson-gx-uart",
-> +					     "amlogic,meson-ao-uart";
-> +				reg = <0x0 0x7a000 0x0 0x18>;
-> +				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-> +				status = "disabled";
-> +				clocks = <&xtal>, <&xtal>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +				xtal_tick_en = <1>;
-> +				fifo-size = <64>;
-> +			};
-> +		};
-> +	};
-> +};
-> 
-> base-commit: c5468e3c930d4d2937d3a842a85df0f74e95e152
+Best regards,
+Martin
 
-Thanks,
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+[0] https://github.com/khadas/linux/blob/khadas-vims-4.9.y/sound/soc/amlogic/meson/audio_hw.c#L194:L202
 
 _______________________________________________
 linux-amlogic mailing list
