@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E352BC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 21:23:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC3C1C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 21:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Sj/qXHfRkeJwO3FajE1tKewhL9QT7PPEZI4702ZV55I=; b=m5l6bp6bRFSN+x
-	kaA4QWYD8gmopn8X75AOaoYbb0K/1KQmMBDNa3nPmJbZVun5QA4QiHCDm0qxMDQGERYj5Vsh/aegR
-	fBGnrd+Uat53vHMPIuUmGcNP9aNHsWG+/dOAQBfwQiqzlF2ZmaZUPT6nacEhh4xXVUEHfMcUajOfk
-	U2+tKtkHwAJxFSpL9FermkSjt+KqWRa6hFUyn2KJM8oSgKx7tLhNDZKIos7A5gQT3dzNfvy03kV3W
-	DdoMVzya2XGEqZNoehaA9hxK4TlOJEQEh2w4liq+Z+G5SA6P8FtVkcpjnb2PAqOQD6pfypn7ABImt
-	SX1eh7+kQsszVTV8rSPA==;
+	List-Owner; bh=pNz3wMaTWGX01xZ68+3liDrSzXnC22A+z302bEdNp9o=; b=oJ22GvcJCjIcgi
+	eSMPaV307btloCw4yqEaP8s55SExIpZgZ+4WlKhTxq3Fqj1FCLyoZtysjFxRiFhoJ3diDGeCeT9ER
+	Xru/IH7fcN1LbULGcvrjKfnT471oCPp9CI37ZaHQf5BFS6A4K+k+sXVLJydV8CP+kdQlHw96WLEMb
+	XG0Stfdh18flcb/2HuYUmJOjE3JsdiF59XaX2N4h2PV5WeTV72LE6AvV03iRc78sXbMZ9/BCR+TQz
+	5PGnpG+anGGA2IaYBr0+OkUdbMbz0adMTC4fKhsqnWAf5M0Hi8ERnJf+G725L3Y88NvM5cSVqlWuT
+	oPQNoLjdtxP1IPq659rQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muLS2-005qiU-7h; Mon, 06 Dec 2021 21:23:10 +0000
+	id 1muLa5-005u85-K1; Mon, 06 Dec 2021 21:31:29 +0000
 Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muLOu-005pLm-P9
- for linux-amlogic@lists.infradead.org; Mon, 06 Dec 2021 21:20:00 +0000
-Received: by mail-ed1-x531.google.com with SMTP id g14so47918005edb.8
- for <linux-amlogic@lists.infradead.org>; Mon, 06 Dec 2021 13:19:55 -0800 (PST)
+ id 1muLUX-005rpu-9a; Mon, 06 Dec 2021 21:25:46 +0000
+Received: by mail-ed1-x531.google.com with SMTP id t5so48497247edd.0;
+ Mon, 06 Dec 2021 13:25:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=npVIllIrzbanEnSWMWYv86vweK4sS4wEJk4Mwyduuyo=;
- b=Pn4keIE7pu0NvrTG9cm2WG8BpLD9VfYMriDuW+LBng1Fo/8YfSzQtIfgbKV+yP6DP+
- 0pGx9agAGyWkdecELWKTMsuI2HKt/C3nOQdL9nfUmMgjTuiXaSfjKEyVx9es4lPdq3qh
- QvYEckGJzBjJDfH74z3nQSmZwNkRsCCfoqrzoSDeF57OCWZfjTjhDCxbBH3gtLH7+CR4
- vWckSMzRbY10P9wEyXEY46OpX4n+2jZUYwKTpWfiCyuLLgvMCb689QCJ/e/sqhdpWGra
- oTvK13K0/WfUl4zUIkhquYp96GKzwsHevBs/YUMiOph2CbbbuHoMp128iWwDOpU1MIbE
- NLuQ==
+ :cc; bh=wJhO0TD9FxyBOSAsMHBoS4DzEUUiCc19SpaaArCSlRg=;
+ b=TTK/sGlkC51XibKV283EHurB8uq4dFRC5lylJ+sSQgpvLZqv+YzfZOBRy2hjcRzRiu
+ mDTZaPr0opOjufNa7GousDDy5K2UGMlrU/V2qN7hg1+kAnurKRYBkZ2jhnuQRSfd7uUU
+ 8N1ktZp695VJGlt2oR/Pj9eUB0rxT4oAm0ucZDv6Om2G2DKUqquYtotoXyuzSxDDlDxp
+ EDtzFWuG6pXVODCq0IUMh9rwDJtPkooSJux3APW3GaAY4OmQGvo8wOU8CvtUzHmlWOD+
+ GI/iA78s3VpnDMBwzegQFUSnvGTVMXNGJBqtLNzRrrVkYa8O9JeuGKVqti4i4owRkWU4
+ poFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=npVIllIrzbanEnSWMWYv86vweK4sS4wEJk4Mwyduuyo=;
- b=r75gWqy0+bLkwuEGRDbNVZ7faur5Wzu85Lj/61yHZy7StCTJQW+zF9y3r0eIcpbWZ+
- zQ9dJgGZIOw5g6bsvgdBKjxzZrCvSw1HL2h6A4FmvR9FZ3U0cFH7KznDK0YzUoJURYOO
- WlEzaLjG67QpslqWHqT64ieB538EpCOJDVSla/a2uM0m3zCYXGf6ci7j94JTO1nO/Qjz
- YngxN/T0+UobTWfD6s8muEuy/MxJJfYiFtyk6MB/cmdvzAQJ9m7ln4gc9u8eh+KSo3hU
- qmt9ZKmqro16m8adK/Dz1XxsBF9aef0tVFQAWM4kfqjXyy7/ulX4vEZvcmydM+SN7jRU
- xJNA==
-X-Gm-Message-State: AOAM5335/JTwgX/Hj7jbqUV3BH7HZogDNmXZFOPZM4noTSNEVSKtFLdU
- wHU60vO8FYMc1ii+sRrU2IkQL1rDapC9ihq+b1Q=
-X-Google-Smtp-Source: ABdhPJzg5usv5f0RaSqWg9mf7QzcFnAMff1LKR1fQBgsK2p4lTLH5w1ZlTVKL6A8Jz5Sj2CrhyAHKuW6LzqUDQ6MGIA=
-X-Received: by 2002:a17:906:229b:: with SMTP id
- p27mr48499254eja.264.1638825594626; 
- Mon, 06 Dec 2021 13:19:54 -0800 (PST)
+ bh=wJhO0TD9FxyBOSAsMHBoS4DzEUUiCc19SpaaArCSlRg=;
+ b=Pd+0RWdOiK97GuIwsSvxNbwZd+0LP8k0iw1fe2XIw2Jh917U5woBVMfXODuuKaDJrU
+ 5ertSCWXfHYvGkYL7Ho/GQeaTXjm+pZD9soaapT+w9ksFd9PJT5liCpXwIxtod634sEa
+ veAcFm6ngMrIsXMROgVED223j3TMmkmJDdUW80YHrQE+ujjD+oAfqMT20rv5qkx0Pbsm
+ QrEVwlB2DyUhZ0It/v9eIn3dMeZoOEw3iZTHqpH/PEQif4kb2v1zls+UVm9KfvtaE78X
+ zOattrPj12hmVa9rrFG9o2+5/SUKIiDoofftdJ4ufjfGZuxQeNO1QM3di0q5UDzT5vjq
+ HGYA==
+X-Gm-Message-State: AOAM531O1boMxjB8L0JVaFBY2OwOefDs9jTqhQaC/dBXW88uM1Q6q1EO
+ DfeGEKh7xqKTTo8LNTdJwPOssse9g6eWb8W8EiQ=
+X-Google-Smtp-Source: ABdhPJzivefsaNiHaYwi9GZZhlshDUGfhrq9aeaUOKokrbFHJu1tlchzrUkrmL29IdqO1rYgGzvnKv9CgqpwJxrTkyU=
+X-Received: by 2002:a05:6402:7d8:: with SMTP id
+ u24mr2429113edy.215.1638825943964; 
+ Mon, 06 Dec 2021 13:25:43 -0800 (PST)
 MIME-Version: 1.0
-References: <20211205215846.153703-1-aouledameur@baylibre.com>
- <20211205215846.153703-2-aouledameur@baylibre.com>
-In-Reply-To: <20211205215846.153703-2-aouledameur@baylibre.com>
+References: <20211206100209.31971-1-xianwei.zhao@amlogic.com>
+ <f20968ff-667f-3fd9-3f8e-af8eced694f0@baylibre.com>
+In-Reply-To: <f20968ff-667f-3fd9-3f8e-af8eced694f0@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 6 Dec 2021 22:19:43 +0100
-Message-ID: <CAFBinCDZ2nTg2V_6qxok_y+wXHTVJ6XyyvON59TLJZ9B3fKY3Q@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] phy: amlogic: phy-meson-gxl-usb2: fix shared reset
- controller use
-To: Amjad Ouled-Ameur <aouledameur@baylibre.com>, p.zabel@pengutronix.de
-Cc: khilman@baylibre.com, balbi@kernel.org, jbrunet@baylibre.com, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-usb@vger.kernel.org
+Date: Mon, 6 Dec 2021 22:25:33 +0100
+Message-ID: <CAFBinCC42vo0WydYeodgjiMH676J75kaPyVtURmmdoL0=Of=6w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: add support for S4 based Amlogic AQ222
+To: "xianwei.zhao" <xianwei.zhao@amlogic.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_131956_869195_BB74C7C0 
-X-CRM114-Status: GOOD (  12.59  )
+X-CRM114-CacheID: sfid-20211206_132545_408093_6FBA2D77 
+X-CRM114-Status: GOOD (  10.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,41 +86,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Amjad,
+Hi,
 
-On Sun, Dec 5, 2021 at 10:59 PM Amjad Ouled-Ameur
-<aouledameur@baylibre.com> wrote:
+On Mon, Dec 6, 2021 at 11:57 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+[...]
+> > +/ {
+> > +     model = "Amlogic";
 >
-> Use reset_control_rearm() call if an error occurs in case
-> phy_meson_gxl_usb2_init() fails after reset() has been called ; or in case
-> phy_meson_gxl_usb2_exit() is called i.e the resource is no longer used
-> and the reset line may be triggered again by other devices.
+> Please change to something like "Amlogic Meson S4 AQ222 Development Board"
 >
-> reset_control_rearm() keeps use of triggered_count sane in the reset
-> framework. Therefore, use of reset_control_reset() on shared reset line
-> should be balanced with reset_control_rearm().
+> > +     compatible = "amlogic, aq222";
 >
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
-> changes since v3:
-> - Remove unnecessary reset_control_rearm() after reset_control_reset()
-> failure.
-I double-checked your patch in v3 and Philipp was right:
-reset_control_rearm() should not be right after reset_control_reset().
-However, I think reset_control_rearm() is still needed
-phy_meson_gxl_usb2_init() whenever clk_prepare_enable() fails.
+> Drop the space after amlogic, and add "amlogic,aq222" to the Documentation/devicetree/bindings/arm/amlogic.yaml bindings.
+You can follow the approach from the Amlogic A1 SoC bringup, see
+patches [0] and [1]
 
-So my suggestion is to add reset_control_rearm() in
-phy_meson_gxl_usb2_init() if clk_prepare_enable() fails so we are
-resetting the ref-count for the reset line (just like
-phy_meson_gxl_usb2_exit() does).
-The difference compared to the previous version is that the
-reset_control_rearm() call needs to be placed a few lines down.
+> You will probably need to add a new "amlogic,s4" family compatibla aswell.
+For this (and various other code-review comments) you can also follow
+the Amlogic A1 SoC (and AD401 board) bringup, see [2]
 
 
-Thank you!
+Best regards,
 Martin
+
+
+[0] https://patchwork.kernel.org/project/linux-amlogic/patch/1568276370-54181-3-git-send-email-jianxin.pan@amlogic.com/
+[1] https://patchwork.kernel.org/project/linux-amlogic/patch/1568276370-54181-4-git-send-email-jianxin.pan@amlogic.com/
+[2] https://patchwork.kernel.org/project/linux-amlogic/patch/1568276370-54181-5-git-send-email-jianxin.pan@amlogic.com/
 
 _______________________________________________
 linux-amlogic mailing list
