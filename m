@@ -4,80 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62007C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 10:03:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29105C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 10:50:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZuKe0CwOYKxS24qgQgpJZHw/P87LRticw1aVi437ypQ=; b=NVmPCya5Lj/xW+
-	8VThS3YDdpM5t5AKUbZCS4YPv+iA2QcvXJiNo1flPSSFWaybTY8uyO0AVM05nw6IjkUXvIbjqiY6d
-	5BJZgd0dXKlkTiLcwI0pthQNsDPOALJpNanPfeb2SyzPcEWk6e0Qsg9sW3Yg1eZHzNGHNTUXfEeXF
-	zgiCSayS6oE9BINAFAx3FTk4uIDTpJYu2JQZXJ+iE3lTT8dgm7aPsEenLeL1HYy4igxG6/gDQ6r5j
-	9XqbR+kT/uc9ELxSmFHdia2JbxuS33ynqigM9VpEN4VnGt2+nwRKokEgejyGZYfkQFDP+rYPVah01
-	hRzTJWE6YNmzknJypjhA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=94cPlvsU6qEy3/EJ+HXZ6S7df2K8MB7anNxtjW8Msqw=; b=ASIeyhZQjJpv7l9Wu4jzRU9j6U
+	1+FV0sbXBzF1sEXqpUCSBAUrhM3eHEYXFJyZIhLtfCYmdQH0SY4vFNIkny69HTgSyzbQ87Rd4DzNw
+	XHMjKJ9wR4dCoWiYjrnnvFRLpb6uCLnTgfgH4B5+vO896+dqjqxy6u2rMT4qcA3rOA+iwCMAiip0i
+	EAoY0IBRRGwBZcx2zWdzVruR12w+IWDRooxDwiKZlakX5uGSNOfPRfQjEASQ2rfx4vRui1J0hr3jI
+	QXyAqZROdQfxsER6uWzzy49pI3h3ZY6ctpuAu5O0UWPTuOsjkctmNLS4e9TEdezwsQSUuG5MoPInP
+	gCIXih1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muAqX-003GDa-8t; Mon, 06 Dec 2021 10:03:45 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1muBa7-003Q8Z-CU; Mon, 06 Dec 2021 10:50:51 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muApo-003Fs7-2B
- for linux-amlogic@lists.infradead.org; Mon, 06 Dec 2021 10:03:04 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id
- d72-20020a1c1d4b000000b00331140f3dc8so7202800wmd.1
- for <linux-amlogic@lists.infradead.org>; Mon, 06 Dec 2021 02:02:59 -0800 (PST)
+ id 1muBa3-003Q5G-46
+ for linux-amlogic@lists.infradead.org; Mon, 06 Dec 2021 10:50:49 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id
+ k37-20020a05600c1ca500b00330cb84834fso10081787wms.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 06 Dec 2021 02:50:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=references:user-agent:from:to:cc:subject:date:in-reply-to
- :message-id:mime-version;
- bh=EwRufzCkL9m3IObuRmZqykjV86a7hGWtyM9bMzT3rvA=;
- b=ES8wHdihRhnjRJos4Z/tDeIEjiR5kMVsaAuYNps2766HZYtyaiwZAMwMIEJTUsG5cD
- ue75eGjnGiufCHqPNFD2XXeCsoAkiBgdS32RKWIkWUwNvJ+/Xr5inysiTWbtOkK3lqm2
- GOK7DNwfwhB5VxgGuRXXDC+brk7OqBLi2o34QeXDWw87dl8LoDwmPYQsUw+pCKjNl1qu
- kaoCWtvgvGtl1jK4/L9I+4ExuYFjWAZ9RI4xC5JXSSDXadyrK5JZZKj9YVOxyi7ZqBGg
- 4miTMxqZs8aI0wGib2Sbc9l8h/wukqCkZNIW2hG5hzLCpHo0TpY8cGTrljDXEuaXq90o
- XN3g==
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=2oNbuF190awal+660ONrj+d8q2JGo3YTgD7d1EpaHqk=;
+ b=i89RiwQhlq3M3FfqGuw9GmPJf8RHv+JeWr+tvb4jpFpDFXE2UOTV6j4WbScDjqPA+B
+ OBIj9z0RPChvKMfVvQLrlfB+t8RIZMlEQulBBJKLT5sf3W0yIkrcx1yknQV3ljszZXa2
+ BUvs5FZXCnxZmi7eDRjg1sfvl/agI90MjTmOfp1FxPyTC1q5P0EUTK9OP8JbFFQ6u8AE
+ /P6+GuE3f63BfpXaS4j9AmskAKim8FFCyuDSFhui6hWiJcvSLUgKy5jj/4y8gINK5pXO
+ KkawozG1tMWPyFHS6B1cvgWbWXAMs/Rp0dl37RxfxAuL134Z3waUi0kqR2GYkFO8gu0G
+ 92Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
- :in-reply-to:message-id:mime-version;
- bh=EwRufzCkL9m3IObuRmZqykjV86a7hGWtyM9bMzT3rvA=;
- b=RGoKyjNkZ5pMZmW9S9PfOiCrcz62TndqkM0tedpf1aMJvf6yF3WYeOJ1gP8kI4IBhv
- kmQB0CqzydbSB6fJ+ejHmlAFY+hDx01iZ6WpFLfXEf5FHT0eHhFqIsfdjNu0y+J4aHvZ
- 0GdIFj7C0aiKLoP4PhTuIClMZJGJN2sbvMBqi2vwE+8uF3wou2mJXEEYlQPlPG6zcoty
- lC3s53jyAXYMLWFz3VSVny/A8OEdCC50q3NgMxs+tt0eQbsOhKQfYiSdbq2B+NEaaZGX
- O987QiIhkdvT992aX6I9dPF39rjHZjVPKuHyK3Dww/HqEal7UJ7gKoxBLw+7lbsyNIyT
- 1sWA==
-X-Gm-Message-State: AOAM530dW52q0pUk1grIE++x7+znmM30jS6tcSkiugGIYZXciNnvru+X
- P+oxIAVbVY7tRaEZv+ZP8IqT6A==
-X-Google-Smtp-Source: ABdhPJyURKFQsrvAfs7KZPb2/UzHqWFRqkiP8mA5+YJrcWw8UrelaZtMVRmjB+okG8CcJKxS0nho5w==
-X-Received: by 2002:a1c:ed18:: with SMTP id l24mr39249182wmh.99.1638784978119; 
- Mon, 06 Dec 2021 02:02:58 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id n14sm8423719wrf.69.2021.12.06.02.02.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Dec 2021 02:02:57 -0800 (PST)
-References: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
- <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, alsa-devel@alsa-project.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Christian Hewitt <christianshewitt@gmail.com>, Geraldo Nascimento
- <geraldogabriel@gmail.com>
-Subject: Re: [PATCH RFC v1 2/2] ASoC: meson: aiu: Move AIU_I2S_MISC hold
- setting to aiu-fifo-i2s
-Date: Mon, 06 Dec 2021 10:54:19 +0100
-In-reply-to: <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
-Message-ID: <1jfsr659v1.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=2oNbuF190awal+660ONrj+d8q2JGo3YTgD7d1EpaHqk=;
+ b=MVcN+Kl/KbbuG0KokrpiZX5PqPkI3Z+5QVeTMrf9Rgjm2mK5SZB8xmm9k/kD0MWcqK
+ SPhnxxs5cWMiEWlCNy7Ksc0K2IMGS0ulFTH4urJ3DHlhXdJqhVwhpk1UvipihQsTYjGK
+ BXXroBB3XWBDQGNkL/0k9+vKMOqHb+jEuaiVwh8XU2iBKHvYSN0454Gf0dFLiKDTSkSo
+ tYYSh4B0EXcOZEqT/7/v0VMFvSHiPDSYZCwL9i8SLq/1hgHhg/cq9Cwu8jfsowH1g81l
+ y3MluWc3Q52ZeaTzjb5XFsf8/6Fzw6j9rqIix9kN67jRWAHPoYGe4HzlUr4NYOd1zFTX
+ Yxyg==
+X-Gm-Message-State: AOAM531o6WwEmAHKRVexRTs2sn1yJJLr8IuwRW+iYxD+5V3Zx0WU47lD
+ CrdUpxalRC3GkbjRqSgRWDxLWw==
+X-Google-Smtp-Source: ABdhPJzjgIxXGz1rRBspyqg6QUOKotxqaGgwdPATY0T4gaZw2DgV1Omn5/eBhdD3I5da5Q5lbhdUgA==
+X-Received: by 2002:a05:600c:154f:: with SMTP id
+ f15mr37494357wmg.86.1638787843591; 
+ Mon, 06 Dec 2021 02:50:43 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:70c1:5ce3:e1aa:1275?
+ ([2001:861:44c0:66c0:70c1:5ce3:e1aa:1275])
+ by smtp.gmail.com with ESMTPSA id y7sm10771027wrw.55.2021.12.06.02.50.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 06 Dec 2021 02:50:43 -0800 (PST)
+Subject: Re: [PATCH] serial: meson: make the current driver compatible with S4
+To: "xianwei.zhao" <xianwei.zhao@amlogic.com>, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20211206100200.31914-1-xianwei.zhao@amlogic.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <4d07d6c0-e320-60cf-740f-c39bfed19c0d@baylibre.com>
+Date: Mon, 6 Dec 2021 11:50:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <20211206100200.31914-1-xianwei.zhao@amlogic.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_020300_184706_B051D767 
-X-CRM114-Status: GOOD (  28.31  )
+X-CRM114-CacheID: sfid-20211206_025047_272508_997C9BEF 
+X-CRM114-Status: GOOD (  29.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,161 +101,188 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
-On Sun 05 Dec 2021 at 19:08, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-
-> The out-of-tree vendor driver uses the following approach to set the
-> AIU_I2S_MISC register:
-> 1) write AIU_MEM_I2S_START_PTR and AIU_MEM_I2S_RD_PTR
-> 2) configure AIU_I2S_MUTE_SWAP[15:0]
-> 3) write AIU_MEM_I2S_END_PTR
-> 4) set AIU_I2S_MISC[2] to 1 (documented as: "put I2S interface in hold
->    mode")
-> 5) set AIU_I2S_MISC[4] to 1 (depending on the driver revision it always
->    stays at 1 while for older drivers this bit is unset in step 4)
-> 6) set AIU_I2S_MISC[2] to 0
-> 7) write AIU_MEM_I2S_MASKS
-> 8) toggle AIU_MEM_I2S_CONTROL[0]
-> 9) toggle AIU_MEM_I2S_BUF_CNTL[0]
->
-> Additional testing shows that when AIU_I2S_MISC[2] is set to 1 then no
-> interrupts are generated anymore. The way this bit is managed by the
-> vendor driver as well as not getting any interrupts can mean that it's
-> related to the FIFO and not the encoder.
-
-Not necessarily. If the encoder stops pulling data, the FIFO will going
-over the DDR. Since it generates an IRQ after reading N bytes, IRQ would
-stop too. AFAIK, if the pipeline is stalled, the IRQ stops anyway
-
-... but this is not really important
-
->
-> Move setting the AIU_I2S_MISC[2] bit to aiu_fifo_i2s_hw_params() so it
-> closer resembles the flow in the vendor kernel. While here also
-> configure AIU_I2S_MISC[4] (documented as: "force each audio data to
-> left or right according to the bit attached with the audio data")
-> similar to how the vendor driver does this.
-
-I understand the part of HOLD, not about FORCE_LR.
-Is it necessary to fix the problem ? Have you tested without this change
-?
-
-> This fixes the infamous and
-> long-standing "machine gun noise" issue (a buffer underrun issue).
-
-Well done ! It took us a while to nail it, Thanks a lot !!
-
->
-> Fixes: 6ae9ca9ce986bf ("ASoC: meson: aiu: add i2s and spdif support")
-> Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-> Reported-by: Geraldo Nascimento <geraldogabriel@gmail.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 06/12/2021 11:02, xianwei.zhao wrote:
+> Because S4 UART use a different clock source, the baud rate calculation need to be updated.
+> Reset the UART during initialization to clear previous status.
+> 
+> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
 > ---
->  sound/soc/meson/aiu-encoder-i2s.c | 33 -------------------------------
->  sound/soc/meson/aiu-fifo-i2s.c    | 12 +++++++++++
->  2 files changed, 12 insertions(+), 33 deletions(-)
->
-> diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
-> index 932224552146..67729de41a73 100644
-> --- a/sound/soc/meson/aiu-encoder-i2s.c
-> +++ b/sound/soc/meson/aiu-encoder-i2s.c
-> @@ -18,7 +18,6 @@
->  #define AIU_RST_SOFT_I2S_FAST		BIT(0)
+>  drivers/tty/serial/meson_uart.c | 50 +++++++++++++++++++++++++++------
+>  1 file changed, 42 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+> index efee3935917f..15a992ee6a28 100644
+> --- a/drivers/tty/serial/meson_uart.c
+> +++ b/drivers/tty/serial/meson_uart.c
+> @@ -65,9 +65,11 @@
+>  #define AML_UART_RECV_IRQ(c)		((c) & 0xff)
 >  
->  #define AIU_I2S_DAC_CFG_MSB_FIRST	BIT(2)
-> -#define AIU_I2S_MISC_HOLD_EN		BIT(2)
->  #define AIU_CLK_CTRL_I2S_DIV_EN		BIT(0)
->  #define AIU_CLK_CTRL_I2S_DIV		GENMASK(3, 2)
->  #define AIU_CLK_CTRL_AOCLK_INVERT	BIT(6)
-> @@ -36,37 +35,6 @@ static void aiu_encoder_i2s_divider_enable(struct snd_soc_component *component,
->  				      enable ? AIU_CLK_CTRL_I2S_DIV_EN : 0);
->  }
+>  /* AML_UART_REG5 bits */
+> -#define AML_UART_BAUD_MASK		0x7fffff
+> +#define AML_UART_BAUD_MASK		GENMASK(22, 0)
+>  #define AML_UART_BAUD_USE		BIT(23)
+>  #define AML_UART_BAUD_XTAL		BIT(24)
+> +#define AML_UART_BAUD_XTAL_TICK		BIT(26)
+> +#define AML_UART_BAUD_XTAL_DIV2		BIT(27)
 >  
-> -static void aiu_encoder_i2s_hold(struct snd_soc_component *component,
-> -				 bool enable)
-> -{
-> -	snd_soc_component_update_bits(component, AIU_I2S_MISC,
-> -				      AIU_I2S_MISC_HOLD_EN,
-> -				      enable ? AIU_I2S_MISC_HOLD_EN : 0);
-> -}
-> -
-> -static int aiu_encoder_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
-> -				   struct snd_soc_dai *dai)
-> -{
-> -	struct snd_soc_component *component = dai->component;
-> -
-> -	switch (cmd) {
-> -	case SNDRV_PCM_TRIGGER_START:
-> -	case SNDRV_PCM_TRIGGER_RESUME:
-> -	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-> -		aiu_encoder_i2s_hold(component, false);
-> -		return 0;
-> -
-> -	case SNDRV_PCM_TRIGGER_STOP:
-> -	case SNDRV_PCM_TRIGGER_SUSPEND:
-> -	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-> -		aiu_encoder_i2s_hold(component, true);
-> -		return 0;
-> -
-> -	default:
-> -		return -EINVAL;
-> -	}
-> -}
-> -
->  static int aiu_encoder_i2s_setup_desc(struct snd_soc_component *component,
->  				      struct snd_pcm_hw_params *params)
+>  #define AML_UART_PORT_NUM		12
+>  #define AML_UART_PORT_OFFSET		6
+> @@ -80,6 +82,14 @@ static struct uart_driver meson_uart_driver;
+>  
+>  static struct uart_port *meson_ports[AML_UART_PORT_NUM];
+>  
+> +/*
+> + * struct aml_uart - device data
+> + * @xtal_tick_en: A clock source that calculates baud rates
+> + */
+> +struct aml_uart {
+
+please change to a better name like meson_uart_data and pass it as data of meson_uart_dt_match
+
+> +	unsigned int xtal_tick_en;
+> +};
+> +
+>  static void meson_uart_set_mctrl(struct uart_port *port, unsigned int mctrl)
 >  {
-> @@ -353,7 +321,6 @@ static void aiu_encoder_i2s_shutdown(struct snd_pcm_substream *substream,
+>  }
+> @@ -103,7 +113,7 @@ static void meson_uart_stop_tx(struct uart_port *port)
+>  	u32 val;
+>  
+>  	val = readl(port->membase + AML_UART_CONTROL);
+> -	val &= ~AML_UART_TX_INT_EN;
+> +	val &= ~AML_UART_TX_EN;
+
+Seems to be a cosmetic change, please split this in a separate patch.
+
+>  	writel(val, port->membase + AML_UART_CONTROL);
 >  }
 >  
->  const struct snd_soc_dai_ops aiu_encoder_i2s_dai_ops = {
-> -	.trigger	= aiu_encoder_i2s_trigger,
->  	.hw_params	= aiu_encoder_i2s_hw_params,
->  	.hw_free	= aiu_encoder_i2s_hw_free,
->  	.set_fmt	= aiu_encoder_i2s_set_fmt,
-> diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2s.c
-> index 2388a2d0b3a6..d0a1090d6465 100644
-> --- a/sound/soc/meson/aiu-fifo-i2s.c
-> +++ b/sound/soc/meson/aiu-fifo-i2s.c
-> @@ -20,6 +20,8 @@
->  #define AIU_MEM_I2S_CONTROL_MODE_16BIT	BIT(6)
->  #define AIU_MEM_I2S_BUF_CNTL_INIT	BIT(0)
->  #define AIU_RST_SOFT_I2S_FAST		BIT(0)
-> +#define AIU_I2S_MISC_HOLD_EN		BIT(2)
-> +#define AIU_I2S_MISC_FORCE_LEFT_RIGHT	BIT(4)
+> @@ -121,12 +131,12 @@ static void meson_uart_shutdown(struct uart_port *port)
+>  	unsigned long flags;
+>  	u32 val;
 >  
->  #define AIU_FIFO_I2S_BLOCK		256
->  
-> @@ -90,6 +92,10 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
->  	unsigned int val;
->  	int ret;
->  
-> +	snd_soc_component_update_bits(component, AIU_I2S_MISC,
-> +				      AIU_I2S_MISC_HOLD_EN,
-> +				      AIU_I2S_MISC_HOLD_EN);
-> +
->  	ret = aiu_fifo_hw_params(substream, params, dai);
->  	if (ret)
->  		return ret;
-> @@ -117,6 +123,12 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
->  	snd_soc_component_update_bits(component, AIU_MEM_I2S_MASKS,
->  				      AIU_MEM_I2S_MASKS_IRQ_BLOCK, val);
->  
-> +	snd_soc_component_update_bits(component, AIU_I2S_MISC,
-> +				      AIU_I2S_MISC_FORCE_LEFT_RIGHT,
-> +				      AIU_I2S_MISC_FORCE_LEFT_RIGHT);
+> -	free_irq(port->irq, port);
+> +	devm_free_irq(port->dev, port->irq, port);
 
-If it is necessary, even if we don't really understand why, it is fine
-by me. But if it is not, I would prefer we leave it out of it, or at
-least, make it a separate patch.
+Please split this in a separate patch
 
+>  
+>  	spin_lock_irqsave(&port->lock, flags);
+>  
+>  	val = readl(port->membase + AML_UART_CONTROL);
+> -	val &= ~AML_UART_RX_EN;
+> +	val &= ~(AML_UART_RX_EN | AML_UART_TX_EN);
 
-> +	snd_soc_component_update_bits(component, AIU_I2S_MISC,
-> +				      AIU_I2S_MISC_HOLD_EN, 0);
-> +
->  	return 0;
+Seems it fixes a bug, split in a separate patch.
+
+>  	val &= ~(AML_UART_RX_INT_EN | AML_UART_TX_INT_EN);
+>  	writel(val, port->membase + AML_UART_CONTROL);
+>  
+> @@ -270,6 +280,7 @@ static int meson_uart_startup(struct uart_port *port)
+>  	u32 val;
+>  	int ret = 0;
+>  
+> +	meson_uart_reset(port);
+
+Same, split in a separate patch
+
+>  	val = readl(port->membase + AML_UART_CONTROL);
+>  	val |= AML_UART_CLEAR_ERR;
+>  	writel(val, port->membase + AML_UART_CONTROL);
+> @@ -285,24 +296,37 @@ static int meson_uart_startup(struct uart_port *port)
+>  	val = (AML_UART_RECV_IRQ(1) | AML_UART_XMIT_IRQ(port->fifosize / 2));
+>  	writel(val, port->membase + AML_UART_MISC);
+>  
+> -	ret = request_irq(port->irq, meson_uart_interrupt, 0,
+> -			  port->name, port);
+> +	ret = devm_request_irq(port->dev, port->irq, meson_uart_interrupt,
+> +			       IRQF_SHARED, port->name, port);
+
+Same, split in a separate patch
+
+>  
+>  	return ret;
 >  }
+>  
+>  static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
+>  {
+> +	struct aml_uart *aml_uart_data = port->private_data;
+>  	u32 val;
+>  
+>  	while (!meson_uart_tx_empty(port))
+>  		cpu_relax();
+>  
+> +	val = readl_relaxed(port->membase + AML_UART_REG5);
+> +	val &= ~AML_UART_BAUD_MASK;
+> +
+>  	if (port->uartclk == 24000000) {
+> -		val = ((port->uartclk / 3) / baud) - 1;
+> -		val |= AML_UART_BAUD_XTAL;
+> +		if (aml_uart_data->xtal_tick_en) {
+> +			val = (port->uartclk / 2 + baud / 2) / baud  - 1;
+> +			val |= (AML_UART_BAUD_XTAL | AML_UART_BAUD_XTAL_DIV2);
 
+This should be triggered by a value in match data with a new compatible.
+
+> +		} else {
+> +			val = ((port->uartclk / 3) + baud / 2) / baud  - 1;
+> +			val &= (~(AML_UART_BAUD_XTAL_TICK |
+> +				AML_UART_BAUD_XTAL_DIV2));
+> +			val |= AML_UART_BAUD_XTAL;
+> +		}
+>  	} else {
+>  		val = ((port->uartclk * 10 / (baud * 4) + 5) / 10) - 1;
+> +		val &= (~(AML_UART_BAUD_XTAL | AML_UART_BAUD_XTAL_TICK |
+> +			AML_UART_BAUD_XTAL_DIV2));
+>  	}
+>  	val |= AML_UART_BAUD_USE;
+>  	writel(val, port->membase + AML_UART_REG5);
+> @@ -715,6 +739,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+>  {
+>  	struct resource *res_mem, *res_irq;
+>  	struct uart_port *port;
+> +	struct aml_uart *aml_uart_data;
+>  	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
+>  	int ret = 0;
+>  
+> @@ -754,6 +779,14 @@ static int meson_uart_probe(struct platform_device *pdev)
+>  	if (!port)
+>  		return -ENOMEM;
+>  
+> +	aml_uart_data = devm_kzalloc(&pdev->dev, sizeof(struct aml_uart),
+> +				     GFP_KERNEL);
+> +	if (!aml_uart_data)
+> +		return -ENOMEM;
+> +
+> +	of_property_read_u32(pdev->dev.of_node, "xtal_tick_en",
+> +			     &aml_uart_data->xtal_tick_en);
+
+This property is not documented in the bindings, instead introduce
+a new compatible for the S4 and pass the "aml_uart" as the meson_uart_dt_match
+data pointer.
+
+And don't forget to submit the bindings change in another separate patch.
+
+> +
+>  	/* Use legacy way until all platforms switch to new bindings */
+>  	if (of_device_is_compatible(pdev->dev.of_node, "amlogic,meson-uart"))
+>  		ret = meson_uart_probe_clocks_legacy(pdev, port);
+> @@ -775,6 +808,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+>  	port->x_char = 0;
+>  	port->ops = &meson_uart_ops;
+>  	port->fifosize = fifosize;
+> +	port->private_data = aml_uart_data;
+>  
+>  	meson_ports[pdev->id] = port;
+>  	platform_set_drvdata(pdev, port);
+> 
+> base-commit: 3f19fed8d0daed6e0e04b130d203d4333b757901
+> 
+
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
