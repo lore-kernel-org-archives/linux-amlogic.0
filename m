@@ -4,80 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7910DC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 19:42:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D32C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Dec 2021 21:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oCHxe8Mc3vK03urIFTzTxmABaRhtm1E3NpCf/sCvFMs=; b=ousc64zESDF+Hh
-	gvOUIKAO6X/4Kaz0LeOYc7X30lZCu/u/kQDKhafyaMFNoHEZ2sPzl2l4mU/sNQW6I0zOMvwsgIHV6
-	TBnFCwKRqTcFQkCcotaXLPQqA+CTi/fV0AddlTG0FqioWVNMHHd2MpmM17A1DHdG9UX+f1sXKNvis
-	gOacv67CEXAOyZ9Ic+S6/IJYxCQsqG5Vd0hKMNbNHfICyNUA+DAwVRDCEWbOMes5GzDQ5X1gM59rN
-	Ds1GcXFD+9X/mNPHxfo5hXLWc9hd2IizHoLpovSpd7i58+hZeMXaYhJbGxoQ01nUJTjSqaop2OuSR
-	XbK8TrWq6VrMQM7IBa0g==;
+	List-Owner; bh=93L7AU/aK3bX6K2CErhmBRPohT9g24g4cG4uNRk8oxs=; b=ymyHg/LNh4owh4
+	/kX1Fvwo7Fr7MXy8tSKobD3OWygh4l+R2K124oXYCfEVUlCm5JlzgUUvXAbc4+TYpgJUS1U419YQQ
+	U4tHTef/zMrG2Xx4+fVeXtmRvPbmkb4TFuB2kxRSl1QZpxClasZJO9CMtHUY1cjWgVPFDEFp2oE8X
+	ZgIrk4M9mdCePz5rgfq4Z+5GJwOSlKizc9zKH2gwGU6aoWrdXp7EQ1qkWO4tx/71efhh2dYxfR87H
+	jGYIha+gayPeKsrzGD81BWB4ui8cR4LtMa59UXjbpmZuyM+13v/ENfiGzz7L1FOxGYYEmNYxo8eGm
+	YMUMrOVc18taVpRPIEjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muJsL-005Wea-6z; Mon, 06 Dec 2021 19:42:13 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1muLDr-005jss-56; Mon, 06 Dec 2021 21:08:31 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muJsF-005WdQ-O2
- for linux-amlogic@lists.infradead.org; Mon, 06 Dec 2021 19:42:11 +0000
-Received: by mail-wr1-x433.google.com with SMTP id t9so24659810wrx.7
- for <linux-amlogic@lists.infradead.org>; Mon, 06 Dec 2021 11:42:07 -0800 (PST)
+ id 1muLDj-005jpn-Ke; Mon, 06 Dec 2021 21:08:24 +0000
+Received: by mail-wr1-x431.google.com with SMTP id u1so25011792wru.13;
+ Mon, 06 Dec 2021 13:08:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=references:user-agent:from:to:cc:subject:date:in-reply-to
- :message-id:mime-version;
- bh=XoyDxWHFfkkShprB5fi0ZtCpkIroCq2M/CcUOnfbOhA=;
- b=w8sZ41kEdX4SRoPkzKCBKIOpzSsDrjyDTmuhgrbbcp5zpmFSvfGY7gNpZK0p0dMxAa
- uWrDVGdLjErc8kI0vHKRLdvR+xas3quAw8WLQmicLbCVcrujBGlSxKW5v4tNRzh5Rsld
- PbPH7ba+Ou0DcR+MLaSif954Gu9KWrAzQrbAJ9dnM20t0XW2ozYroSORAQOs3yEGfsWc
- 0b8NifhWMgxwmzcAJ8vTR/83pq61hWtl1y1Me57+Y0zioTVaZzNksWyql3KdwajCCzjI
- pEOgp1cAfmONXrGWtiC6RzGuyMrHDMhZRencZZIde+pIeMZPjzNdS45FL5neth6TXFke
- HUeA==
+ d=googlemail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=wVbLQURO0Z9+ByAGWQaOmsfWDUK6bDVmhiIqKeEs0aE=;
+ b=JJI/H5a668Mbw7an8DN7K5GFo+wMZtRO8iMv7j/qlsQGYFUIRN6UN8UO4pRQj4kE4Q
+ 3E+w1ZmIpJu3OuLUHoI9LMIe8ZBkG26ekEFAwXwIv2KDBvqWUqcgTuKHLPykX3Ai3Jm/
+ e/lrTmT3Y4YmHzwAg4UvD7yr+Zw7wBUhk2EHakWmhWg36/pTFpm0yypEDi/g4CEjIiaZ
+ 0CdFL2GDfoNavQdQNPbIw64cGgxlrrYI0bIc03PrjA048vcvDH8SY1jLtta3PEblBI2j
+ XvAdE7zk/vz8Ryvo7GHx+FCqS5wosrdXIsgXuIBBh5MaU09HaDgeLkAFqHFgrwn2i4Zb
+ 0aFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
- :in-reply-to:message-id:mime-version;
- bh=XoyDxWHFfkkShprB5fi0ZtCpkIroCq2M/CcUOnfbOhA=;
- b=u9E7BFBt4MB0B5MurD56EOK/xE9gRqLvYIPstRjOqVGDmuUzmuLu9q5DMngBNwa3Jr
- R4oPOsx2uMmOrI/41lZKM3px3g59UaWaXfNdQ0TiUXn67qQOY3CNgF6a6hMCvmMJpxgH
- S11cW6NNPr+Hf+2HxcAJwQPkSryXR/v1PYqro//jw6/aGfgkmhjFfmXhjzTcJkiiNBP+
- 6J8Ku9xkgAsPBn10ENRyqjkMP6CvGtzSjTv9TrozLkYS/BlUre4wKK3hvm3XmbP4GWVa
- RC2r+3f9oYibcYyvYd0QC8lvvEIhVSnZeNPt+WWIvHUaYAZdCArQ5n90oPmcE5rV3/hu
- qYIA==
-X-Gm-Message-State: AOAM5339n4LkUrGx6GCmG3SfpNOKGOxsGlkXhLFg8MjeUxogw4vAtbb2
- 2VmKZp6TBLcWAVlg04gzA+PWzw==
-X-Google-Smtp-Source: ABdhPJx8pLA553HMWI1HuMsyxL4boJMISHN0MO4UL5wXFAniqnUsOICkxQ/hPb/2AWWD4Mll3NrfjA==
-X-Received: by 2002:a5d:460d:: with SMTP id t13mr44894938wrq.44.1638819726062; 
- Mon, 06 Dec 2021 11:42:06 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.gmail.com with ESMTPSA id o9sm12332737wrs.4.2021.12.06.11.42.05
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=wVbLQURO0Z9+ByAGWQaOmsfWDUK6bDVmhiIqKeEs0aE=;
+ b=jDNkd2iR/9jyyPwtnf17sqo3dsSSTIrulUhzdV8hb8sw66UC8eU8GIfjPN4PYGQwHy
+ FO0R/HzEYDjgK/9F+gFJW/B99awUDqGOeOyTYtF+CdTn7csjTYGt13DthCsTfjXYyrdF
+ 4I1+MBam0LZSawH8mczioovJYh7DGmoWL/5Dn5qfdepjcgVKyvSrHFB6mfs4+FI2zvFU
+ VRlEWfwgj5OaumKiu/rFy6dVzJ6ahQfjcXsKZPGeRraRLoByaMTm9DeeUlk7qrJSdzBK
+ KgWMcVMYNivtZ7Cy5Dbp6+MI2xVhK8P48s9pSvfJqAOJoC8kUo7VxregH23cEV0BCjL2
+ ISxg==
+X-Gm-Message-State: AOAM53271R35GN1CBlJ72gqjyM5Vps8w1qnnzCyK/G9x3D9H2gAydUfF
+ owM8f6PmO+QO4A/9iYM7jqedCrp3XK0=
+X-Google-Smtp-Source: ABdhPJzEwhqm3P3YmM/t7Y0RuKivCcAhGdMYzJbPK7Wpsp6pnDkQCJuVYBBJQWzsPjGC43hmFI+h+Q==
+X-Received: by 2002:adf:cd09:: with SMTP id w9mr44802888wrm.619.1638824902076; 
+ Mon, 06 Dec 2021 13:08:22 -0800 (PST)
+Received: from localhost.localdomain
+ (dynamic-2a01-0c23-c0cf-f800-f22f-74ff-fe21-0725.c23.pool.telefonica.de.
+ [2a01:c23:c0cf:f800:f22f:74ff:fe21:725])
+ by smtp.googlemail.com with ESMTPSA id p13sm511195wmi.0.2021.12.06.13.08.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Dec 2021 11:42:05 -0800 (PST)
-References: <20211205180816.2083864-1-martin.blumenstingl@googlemail.com>
- <20211205180816.2083864-3-martin.blumenstingl@googlemail.com>
- <1jfsr659v1.fsf@starbuckisacylon.baylibre.com>
- <CAFBinCAceRkO86bXfUYnDwup3At9MaN-PnOiLxa-1fYO5SwOQA@mail.gmail.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, alsa-devel@alsa-project.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Christian Hewitt <christianshewitt@gmail.com>, Geraldo Nascimento
- <geraldogabriel@gmail.com>
-Subject: Re: [PATCH RFC v1 2/2] ASoC: meson: aiu: Move AIU_I2S_MISC hold
- setting to aiu-fifo-i2s
-Date: Mon, 06 Dec 2021 20:36:45 +0100
-In-reply-to: <CAFBinCAceRkO86bXfUYnDwup3At9MaN-PnOiLxa-1fYO5SwOQA@mail.gmail.com>
-Message-ID: <1jpmq9ed0z.fsf@starbuckisacylon.baylibre.com>
+ Mon, 06 Dec 2021 13:08:20 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org,
+	alsa-devel@alsa-project.org
+Cc: jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 1/2] ASoC: meson: aiu: fifo: Add missing
+ dma_coerce_mask_and_coherent()
+Date: Mon,  6 Dec 2021 22:08:03 +0100
+Message-Id: <20211206210804.2512999-2-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20211206210804.2512999-1-martin.blumenstingl@googlemail.com>
+References: <20211206210804.2512999-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_114207_863911_8F2D381A 
-X-CRM114-Status: GOOD (  32.96  )
+X-CRM114-CacheID: sfid-20211206_130823_716092_2F6D1BC0 
+X-CRM114-Status: GOOD (  10.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,91 +92,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+The FIFO registers which take an DMA-able address are only 32-bit wide
+on AIU. Add dma_coerce_mask_and_coherent() to make the DMA core aware of
+this limitation.
 
-On Mon 06 Dec 2021 at 18:28, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+Fixes: 6ae9ca9ce986bf ("ASoC: meson: aiu: add i2s and spdif support")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ sound/soc/meson/aiu-fifo.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> Hi Jerome,
->
-> On Mon, Dec 6, 2021 at 11:02 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
->>
->>
->> On Sun 05 Dec 2021 at 19:08, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->>
->> > The out-of-tree vendor driver uses the following approach to set the
->> > AIU_I2S_MISC register:
->> > 1) write AIU_MEM_I2S_START_PTR and AIU_MEM_I2S_RD_PTR
->> > 2) configure AIU_I2S_MUTE_SWAP[15:0]
->> > 3) write AIU_MEM_I2S_END_PTR
->> > 4) set AIU_I2S_MISC[2] to 1 (documented as: "put I2S interface in hold
->> >    mode")
->> > 5) set AIU_I2S_MISC[4] to 1 (depending on the driver revision it always
->> >    stays at 1 while for older drivers this bit is unset in step 4)
->> > 6) set AIU_I2S_MISC[2] to 0
->> > 7) write AIU_MEM_I2S_MASKS
->> > 8) toggle AIU_MEM_I2S_CONTROL[0]
->> > 9) toggle AIU_MEM_I2S_BUF_CNTL[0]
->> >
->> > Additional testing shows that when AIU_I2S_MISC[2] is set to 1 then no
->> > interrupts are generated anymore. The way this bit is managed by the
->> > vendor driver as well as not getting any interrupts can mean that it's
->> > related to the FIFO and not the encoder.
->>
->> Not necessarily. If the encoder stops pulling data, the FIFO will going
->> over the DDR. Since it generates an IRQ after reading N bytes, IRQ would
->> stop too. AFAIK, if the pipeline is stalled, the IRQ stops anyway
-> ah, right. so I think you're right: it can be either way
->
->> ... but this is not really important
-> I'll remove that section from the description in v2
->
->> >
->> > Move setting the AIU_I2S_MISC[2] bit to aiu_fifo_i2s_hw_params() so it
->> > closer resembles the flow in the vendor kernel. While here also
->> > configure AIU_I2S_MISC[4] (documented as: "force each audio data to
->> > left or right according to the bit attached with the audio data")
->> > similar to how the vendor driver does this.
->>
->> I understand the part of HOLD, not about FORCE_LR.
->> Is it necessary to fix the problem ? Have you tested without this change
->> ?
-> On my Le Potato board (GXL / S905X) FORCE_LR is either enabled by the
-> bootloader or being enabled is the default value.
-> All versions of the vendor driver are also setting it in some way,
+diff --git a/sound/soc/meson/aiu-fifo.c b/sound/soc/meson/aiu-fifo.c
+index 4ad23267cace..d67ff4cdabd5 100644
+--- a/sound/soc/meson/aiu-fifo.c
++++ b/sound/soc/meson/aiu-fifo.c
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/bitfield.h>
+ #include <linux/clk.h>
++#include <linux/dma-mapping.h>
+ #include <sound/pcm_params.h>
+ #include <sound/soc.h>
+ #include <sound/soc-dai.h>
+@@ -179,6 +180,11 @@ int aiu_fifo_pcm_new(struct snd_soc_pcm_runtime *rtd,
+ 	struct snd_card *card = rtd->card->snd_card;
+ 	struct aiu_fifo *fifo = dai->playback_dma_data;
+ 	size_t size = fifo->pcm->buffer_bytes_max;
++	int ret;
++
++	ret = dma_coerce_mask_and_coherent(card->dev, DMA_BIT_MASK(32));
++	if (ret)
++		return ret;
+ 
+ 	snd_pcm_set_managed_buffer_all(rtd->pcm, SNDRV_DMA_TYPE_DEV,
+ 				       card->dev, size, size);
+-- 
+2.34.1
 
-+1
-Would you mind adding a comment in the code saying just that - so we
-know why it's there ?
-
-> including the latest one that I have access to [0].
-> I prefer to keep this explicit write in for two reasons:
-> - we're not hit by surprise if some SoC/bootloaders don't set this bit
-> by default
-> - the code in the mainline does not skip anything that the vendor
-> driver does
-
-You can bet I've skipped a fair share of what the vendor driver does, on
-purpose.
->
-> To specifically answer your question: I have not tried whether this
-> bit needs to be set and if unsetting it manually breaks anything.
->
->> > This fixes the infamous and
->> > long-standing "machine gun noise" issue (a buffer underrun issue).
->>
->> Well done ! It took us a while to nail it, Thanks a lot !!
-> Thanks - this took a while to figure out but it's great to finally
-> have it solved!
->
->
-> Best regards,
-> Martin
->
->
-> [0] https://github.com/khadas/linux/blob/khadas-vims-4.9.y/sound/soc/amlogic/meson/audio_hw.c#L194:L202
-
-With this, feel free to repost without the RFC tag and with my
-
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
