@@ -4,53 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62D74C433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Dec 2021 06:01:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38C06C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Dec 2021 06:45:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:CC:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=b4y8nvIVj67peagmYlMSrKjqMhY3+m+p2OQi7Gu2XEY=; b=G1M3eD+pWJ/Dsojpl6qNOkDzdU
-	qoiGCn9NR6j/njgj4ivWkXsHDc/QC89IXAf9t/GYHTL1G2OdQzYtpKagJaRM3axz3Z2LT+dBgrejk
-	RvA87dW4vHOQgHUZCx7kVdktDwCqAqXtn1oUL/taRf9Aiah1cNx/3Y1152BJPCDc8r3QlcmQHX8Nt
-	Wd6jkK+i/lUVxpH+UqKBKrrzC/N9nwYeBuH+pKQ/Vi4yabEMsX5ryAWnzvk0aJMQruU/WHZVB/5zo
-	mPXZfGUQJyJxTaUmzmo4xn/yfiCwB+rgfuh2RYBfbYVmiFaooM1swFRQCdL+O1U5C6N57JaesXErZ
-	QV9/zC5Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ECDpCbgwnLZmdwVKMxGShLfunKGWIh/RWQrtHw5e0eQ=; b=oqvgruoHe3aJaG
+	YxH6yC4uaceyKwAYd8BQVtQFNMcbU6LpHAF/2M2DAsGWQ2/1qw9PG4am1OzikIV9HuzXImXOJ+2/W
+	juuqOq4QWKTeTBVjRuDoz7CRgHrxcO7Zg8To8GhZRu/di3X0Wiv20CsP5yKWuIKzpD4L3ZjAyucyV
+	t+b2P6I9mGxE5BRvng64EkVEJXpTjprDyRZs1DengQs/LyW4pVQhvATWNrwyfeYl7KpEJxHXBj1Zp
+	uWihBodz5gQsdCOWlc5cryFzKmxiM5ORjtI1wQqZ0MS/rgUnNi789/f5Q+0WsynGXAqZC4hRYdUFv
+	YHe3TWrenOzmxxBYvvIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muq0t-00BQFn-D0; Wed, 08 Dec 2021 06:01:11 +0000
+	id 1muqhF-00BUIs-4Q; Wed, 08 Dec 2021 06:44:57 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muq0q-00BQEl-HS; Wed, 08 Dec 2021 06:01:10 +0000
-Received: from [10.98.21.175] (10.98.21.175) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Wed, 8 Dec
- 2021 14:00:54 +0800
-Subject: Re: [PATCH] arm64: dts: add support for S4 based Amlogic AQ222
-To: Neil Armstrong <narmstrong@baylibre.com>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
- <robh+dt@kernel.org>
-References: <20211206100209.31971-1-xianwei.zhao@amlogic.com>
- <f20968ff-667f-3fd9-3f8e-af8eced694f0@baylibre.com>
+ id 1muqh2-00BUH9-Ar; Wed, 08 Dec 2021 06:44:46 +0000
+Received: from droid04.amlogic.com (10.18.11.246) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Wed, 8 Dec 2021
+ 14:44:38 +0800
 From: xianwei.zhao <xianwei.zhao@amlogic.com>
-Message-ID: <1633cbde-f396-2ea1-abaf-e2a13bd7e70f@amlogic.com>
-Date: Wed, 8 Dec 2021 14:00:54 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+To: <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+CC: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
+ <robh+dt@kernel.org>, xianwei.zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH V2] arm64: dts: add support for S4 based Amlogic AQ222
+Date: Wed, 8 Dec 2021 14:44:35 +0800
+Message-ID: <20211208064435.14307-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <f20968ff-667f-3fd9-3f8e-af8eced694f0@baylibre.com>
-Content-Language: en-US
-X-Originating-IP: [10.98.21.175]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+X-Originating-IP: [10.18.11.246]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_220109_129097_D6A021AF 
-X-CRM114-Status: GOOD (  22.49  )
+X-CRM114-CacheID: sfid-20211207_224444_901216_DC0127CC 
+X-CRM114-Status: GOOD (  11.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,109 +55,184 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmVpbCwKCgoKICBJIHdpbGwgbW9kaWZ5IHRob3NlIGxpbmVzIGFuZCB1cGRhdGUgdGhlIHBh
-dGNoIGxhdGVyLgoKCgpUaGFua3MhCgoKCkJlc3QgcmVnYXJkcywKCgoKeGlhbndlaS56aGFvCgoK
-Ck9uIDIwMjEvMTIvNiDkuIvljYg2OjU3LCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPiBIaSwKPiAK
-PiBPbiAwNi8xMi8yMDIxIDExOjAyLCB4aWFud2VpLnpoYW8gd3JvdGU6Cj4+IEFkZCBiYXNpYyBz
-dXBwb3J0IGZvciB0aGUgQW1sb2dpYyBTNCBiYXNlZCBBbWxvZ2ljIEFRMjIyIGJvYXJkOgo+PiB3
-aGljaCBkZXNjcmliZSBjb21wb25lbnRzIGFzIGZvbGxvd3M6IENQVSwgR0lDLCBJUlEsIFRpbWVy
-LCBVQVJULgo+PiBJdCdzIGNhcGFibGUgb2YgYm9vdGluZyB1cCBpbnRvIHRoZSBzZXJpYWwgY29u
-c29sZS4KPj4KPj4gU2lnbmVkLW9mZi1ieTogeGlhbndlaS56aGFvIDx4aWFud2VpLnpoYW9AYW1s
-b2dpYy5jb20+Cj4+IC0tLQo+PiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9NYWtlZmls
-ZSAgICAgICAgICB8ICAxICsKPj4gICAuLi4vZHRzL2FtbG9naWMvbWVzb24tczQtczgwNXgyLWFx
-MjIyLmR0cyAgICAgfCAzMCArKysrKysKPj4gICBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMv
-bWVzb24tczQuZHRzaSAgICAgfCA5OCArKysrKysrKysrKysrKysrKysrCj4+ICAgMyBmaWxlcyBj
-aGFuZ2VkLCAxMjkgaW5zZXJ0aW9ucygrKQo+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2Fy
-bTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQtczgwNXgyLWFxMjIyLmR0cwo+PiAgIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQuZHRzaQo+
-Pgo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL01ha2VmaWxlIGIv
-YXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL01ha2VmaWxlCj4+IGluZGV4IDUxNDhjZDllNTE0
-Ni4uZmFlYTc0YTQ1OTk0IDEwMDY0NAo+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9n
-aWMvTWFrZWZpbGUKPj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL01ha2VmaWxl
-Cj4+IEBAIC01NywzICs1Nyw0IEBAIGR0Yi0kKENPTkZJR19BUkNIX01FU09OKSArPSBtZXNvbi1z
-bTEtb2Ryb2lkLWM0LmR0Ygo+PiAgIGR0Yi0kKENPTkZJR19BUkNIX01FU09OKSArPSBtZXNvbi1z
-bTEtb2Ryb2lkLWhjNC5kdGIKPj4gICBkdGItJChDT05GSUdfQVJDSF9NRVNPTikgKz0gbWVzb24t
-c20xLXNlaTYxMC5kdGIKPj4gICBkdGItJChDT05GSUdfQVJDSF9NRVNPTikgKz0gbWVzb24tYTEt
-YWQ0MDEuZHRiCj4+ICtkdGItJChDT05GSUdfQVJDSF9NRVNPTikgKz0gbWVzb24tczQtczgwNXgy
-LWFxMjIyLmR0Ygo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21l
-c29uLXM0LXM4MDV4Mi1hcTIyMi5kdHMgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVz
-b24tczQtczgwNXgyLWFxMjIyLmR0cwo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+PiBpbmRleCAw
-MDAwMDAwMDAwMDAuLjZiNmVjYjQwYmU0YQo+PiAtLS0gL2Rldi9udWxsCj4+ICsrKyBiL2FyY2gv
-YXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zNC1zODA1eDItYXEyMjIuZHRzCj4+IEBAIC0w
-LDAgKzEsMzAgQEAKPj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCsgT1Ig
-TUlUKQo+PiArLyoKPj4gKyAqIENvcHlyaWdodCAoYykgMjAyMSBBbWxvZ2ljLCBJbmMuIEFsbCBy
-aWdodHMgcmVzZXJ2ZWQuCj4+ICsgKi8KPj4gKwo+PiArL2R0cy12MS87Cj4+ICsKPj4gKyNpbmNs
-dWRlICJtZXNvbi1zNC5kdHNpIgo+PiArCj4+ICsvIHsKPj4gKwltb2RlbCA9ICJBbWxvZ2ljIjsK
-PiAKPiBQbGVhc2UgY2hhbmdlIHRvIHNvbWV0aGluZyBsaWtlICJBbWxvZ2ljIE1lc29uIFM0IEFR
-MjIyIERldmVsb3BtZW50IEJvYXJkIgo+IAo+PiArCWNvbXBhdGlibGUgPSAiYW1sb2dpYywgYXEy
-MjIiOwo+IAo+IERyb3AgdGhlIHNwYWNlIGFmdGVyIGFtbG9naWMsIGFuZCBhZGQgImFtbG9naWMs
-YXEyMjIiIHRvIHRoZSBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2FtbG9n
-aWMueWFtbCBiaW5kaW5ncy4KPiAKPiBZb3Ugd2lsbCBwcm9iYWJseSBuZWVkIHRvIGFkZCBhIG5l
-dyAiYW1sb2dpYyxzNCIgZmFtaWx5IGNvbXBhdGlibGEgYXN3ZWxsLgo+IAo+PiArCWludGVycnVw
-dC1wYXJlbnQgPSA8JmdpYz47Cj4+ICsJI2FkZHJlc3MtY2VsbHMgPSA8Mj47Cj4+ICsJI3NpemUt
-Y2VsbHMgPSA8Mj47Cj4+ICsKPj4gKwlhbGlhc2VzIHsKPj4gKwkJc2VyaWFsMCA9ICZ1YXJ0X0I7
-Cj4+ICsJfTsKPj4gKwo+PiArCW1lbW9yeUAwMDAwMDAwMCB7Cj4+ICsJCWRldmljZV90eXBlID0g
-Im1lbW9yeSI7Cj4+ICsJCWxpbnV4LHVzYWJsZS1tZW1vcnkgPSA8MHgwIDB4MCAweDAgMHg0MDAw
-MDAwMD47Cj4gCj4gRHJvcCBsaW51eCx1c2FibGUtbWVtb3J5IGluIGZhdm9yIG9yIHJlZwo+IAo+
-PiArCX07Cj4+ICsKPj4gK307Cj4+ICsKPj4gKyZ1YXJ0X0Igewo+PiArCXN0YXR1cyA9ICJva2F5
-IjsKPj4gK307Cj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVz
-b24tczQuZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zNC5kdHNpCj4+
-IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4+IGluZGV4IDAwMDAwMDAwMDAwMC4uYjY2ZjYyNzAxMDYz
-Cj4+IC0tLSAvZGV2L251bGwKPj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21l
-c29uLXM0LmR0c2kKPj4gQEAgLTAsMCArMSw5OCBAQAo+PiArLy8gU1BEWC1MaWNlbnNlLUlkZW50
-aWZpZXI6IChHUEwtMi4wKyBPUiBNSVQpCj4+ICsvKgo+PiArICogQ29weXJpZ2h0IChjKSAyMDIx
-IEFtbG9naWMsIEluYy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4KPj4gKyAqLwo+PiArCj4+ICsjaW5j
-bHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+Cj4+ICsjaW5jbHVk
-ZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvYXJtLWdpYy5oPgo+IAo+IEFkZCBi
-bGFuayBsaW5lIGhpZXJlCj4gCj4+ICsvIHsKPj4gKwljcHVzOmNwdXMgewo+PiArCQkjYWRkcmVz
-cy1jZWxscyA9IDwyPjsKPj4gKwkJI3NpemUtY2VsbHMgPSA8MD47Cj4+ICsKPj4gKwkJQ1BVMDpj
-cHVAMCB7Cj4+ICsJCQlkZXZpY2VfdHlwZSA9ICJjcHUiOwo+PiArCQkJY29tcGF0aWJsZSA9ICJh
-cm0sY29ydGV4LWEzNSIsImFybSxhcm12OCI7Cj4+ICsJCQlyZWcgPSA8MHgwIDB4MD47Cj4+ICsJ
-CQllbmFibGUtbWV0aG9kID0gInBzY2kiOwo+PiArCQl9Owo+PiArCj4+ICsJCUNQVTE6Y3B1QDEg
-ewo+PiArCQkJZGV2aWNlX3R5cGUgPSAiY3B1IjsKPj4gKwkJCWNvbXBhdGlibGUgPSAiYXJtLGNv
-cnRleC1hMzUiLCJhcm0sYXJtdjgiOwo+PiArCQkJcmVnID0gPDB4MCAweDE+Owo+PiArCQkJZW5h
-YmxlLW1ldGhvZCA9ICJwc2NpIjsKPj4gKwkJfTsKPj4gKwo+PiArCQlDUFUyOmNwdUAyIHsKPj4g
-KwkJCWRldmljZV90eXBlID0gImNwdSI7Cj4+ICsJCQljb21wYXRpYmxlID0gImFybSxjb3J0ZXgt
-YTM1IiwiYXJtLGFybXY4IjsKPj4gKwkJCXJlZyA9IDwweDAgMHgyPjsKPj4gKwkJCWVuYWJsZS1t
-ZXRob2QgPSAicHNjaSI7Cj4+ICsJCX07Cj4+ICsKPj4gKwkJQ1BVMzpjcHVAMyB7Cj4+ICsJCQlk
-ZXZpY2VfdHlwZSA9ICJjcHUiOwo+PiArCQkJY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWEzNSIs
-ImFybSxhcm12OCI7Cj4+ICsJCQlyZWcgPSA8MHgwIDB4Mz47Cj4+ICsJCQllbmFibGUtbWV0aG9k
-ID0gInBzY2kiOwo+PiArCQl9Owo+PiArCX07Cj4+ICsKPj4gKwl0aW1lciB7Cj4+ICsJCWNvbXBh
-dGlibGUgPSAiYXJtLGFybXY4LXRpbWVyIjsKPj4gKwkJaW50ZXJydXB0cyA9IDxHSUNfUFBJIDEz
-IDB4ZmYwOD4sCj4+ICsJCQkgICAgIDxHSUNfUFBJIDE0IDB4ZmYwOD4sCj4+ICsJCQkgICAgIDxH
-SUNfUFBJIDExIDB4ZmYwOD4sCj4+ICsJCQkgICAgIDxHSUNfUFBJIDEwIDB4ZmYwOD47Cj4+ICsJ
-fTsKPj4gKwo+PiArCXBzY2kgewo+PiArCQljb21wYXRpYmxlID0gImFybSxwc2NpLTEuMCI7Cj4+
-ICsJCW1ldGhvZCA9ICJzbWMiOwo+PiArCX07Cj4+ICsKPj4gKwl4dGFsOiB4dGFsLWNsayB7Cj4+
-ICsJCWNvbXBhdGlibGUgPSAiZml4ZWQtY2xvY2siOwo+PiArCQljbG9jay1mcmVxdWVuY3kgPSA8
-MjQwMDAwMDA+Owo+PiArCQljbG9jay1vdXRwdXQtbmFtZXMgPSAieHRhbCI7Cj4+ICsJCSNjbG9j
-ay1jZWxscyA9IDwwPjsKPj4gKwl9Owo+PiArCj4+ICsJc29jIHsKPj4gKwkJY29tcGF0aWJsZSA9
-ICJzaW1wbGUtYnVzIjsKPj4gKwkJI2FkZHJlc3MtY2VsbHMgPSA8Mj47Cj4+ICsJCSNzaXplLWNl
-bGxzID0gPDI+Owo+PiArCQlyYW5nZXM7Cj4+ICsKPj4gKwkJZ2ljOiBpbnRlcnJ1cHQtY29udHJv
-bGxlckBmZmYwMTAwMCB7Cj4+ICsJCQljb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTE1LWdpYyIs
-ICJhcm0sY29ydGV4LWE5LWdpYyI7Cj4+ICsJCQkjaW50ZXJydXB0LWNlbGxzID0gPDM+Owo+PiAr
-CQkJI2FkZHJlc3MtY2VsbHMgPSA8MD47Cj4+ICsJCQlpbnRlcnJ1cHQtY29udHJvbGxlcjsKPj4g
-KwkJCXJlZyA9IDwweDAgMHhmZmYwMTAwMCAwIDB4MTAwMD4sCj4+ICsJCQkgICAgICA8MHgwIDB4
-ZmZmMDIwMDAgMCAweDAxMDA+Owo+PiArCQkJaW50ZXJydXB0cyA9IDxHSUNfUFBJIDkgMHhmMDQ+
-Owo+PiArCQl9Owo+PiArCj4+ICsJCWFwYjQ6IGFwYjRAZmUwMDAwMDAgewo+PiArCQkJY29tcGF0
-aWJsZSA9ICJzaW1wbGUtYnVzIjsKPj4gKwkJCXJlZyA9IDwweDAgMHhmZTAwMDAwMCAweDAgMHg0
-ODAwMDA+Owo+PiArCQkJI2FkZHJlc3MtY2VsbHMgPSA8Mj47Cj4+ICsJCQkjc2l6ZS1jZWxscyA9
-IDwyPjsKPj4gKwkJCXJhbmdlcyA9IDwweDAgMHgwIDB4MCAweGZlMDAwMDAwIDB4MCAweDQ4MDAw
-MD47Cj4+ICsKPj4gKwkJCXVhcnRfQjogc2VyaWFsQDdhMDAwIHsKPj4gKwkJCQljb21wYXRpYmxl
-ID0gImFtbG9naWMsbWVzb24tZ3gtdWFydCIsCj4+ICsJCQkJCSAgICAgImFtbG9naWMsbWVzb24t
-YW8tdWFydCI7Cj4gCj4gdXNlIHRoZSBwcm9wZXIgY29tcGF0aWJsZXMgZm9yIHM0Cj4gCj4gCj4+
-ICsJCQkJcmVnID0gPDB4MCAweDdhMDAwIDB4MCAweDE4PjsKPj4gKwkJCQlpbnRlcnJ1cHRzID0g
-PEdJQ19TUEkgMTY5IElSUV9UWVBFX0VER0VfUklTSU5HPjsKPj4gKwkJCQlzdGF0dXMgPSAiZGlz
-YWJsZWQiOwo+PiArCQkJCWNsb2NrcyA9IDwmeHRhbD4sIDwmeHRhbD4sIDwmeHRhbD47Cj4+ICsJ
-CQkJY2xvY2stbmFtZXMgPSAieHRhbCIsICJwY2xrIiwgImJhdWQiOwo+PiArCQkJCXh0YWxfdGlj
-a19lbiA9IDwxPjsKPiAKPiBEcm9wIHRoaXMgcHJvcGVydHkKPiAKPj4gKwkJCQlmaWZvLXNpemUg
-PSA8NjQ+Owo+IAo+IE5vIG5lZWQgdG8gc3BlY2lmeSBpZiA2NAo+IAo+PiArCQkJfTsKPj4gKwkJ
-fTsKPj4gKwl9Owo+PiArfTsKPj4KPj4gYmFzZS1jb21taXQ6IGM1NDY4ZTNjOTMwZDRkMjkzN2Qz
-YTg0MmE4NWRmMGY3NGU5NWUxNTIKPj4KPiAKPiBUaGFua3MsCj4gTmVpbAo+IAo+IC4KPiAKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
-aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
-bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Add basic support for the Amlogic S4 based Amlogic AQ222 board:
+which describe components as follows: CPU, GIC, IRQ, Timer, UART.
+It's capable of booting up into the serial console.
+
+Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
+---
+V1 -> V2: cleaned up coding style, modify CPU affinity of timer interrups,
+          and modify GIC reg defintions.
+---
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../dts/amlogic/meson-s4-s805x2-aq222.dts     | 30 ++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 99 +++++++++++++++++++
+ 3 files changed, 130 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 5148cd9e5146..faea74a45994 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -57,3 +57,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+new file mode 100644
+index 000000000000..3b340594a125
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+@@ -0,0 +1,30 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ */
++
++/dts-v1/;
++
++#include "meson-s4.dtsi"
++
++/ {
++	model = "Amlogic Meson S4 AQ222 Development Board";
++	compatible = "amlogic,aq222";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		serial0 = &uart_B;
++	};
++
++	memory@00000000 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++};
++
++&uart_B {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+new file mode 100644
+index 000000000000..d7083c93d3d0
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -0,0 +1,99 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++
++/ {
++	cpus:cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		CPU0:cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35","arm,armv8";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++		};
++
++		CPU1:cpu@1 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35","arm,armv8";
++			reg = <0x0 0x1>;
++			enable-method = "psci";
++		};
++
++		CPU2:cpu@2 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35","arm,armv8";
++			reg = <0x0 0x2>;
++			enable-method = "psci";
++		};
++
++		CPU3:cpu@3 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35","arm,armv8";
++			reg = <0x0 0x3>;
++			enable-method = "psci";
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	xtal: xtal-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>;
++		clock-output-names = "xtal";
++		#clock-cells = <0>;
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		gic: interrupt-controller@fff01000 {
++			compatible = "arm,gic-400";
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			reg = <0x0 0xfff01000 0 0x1000>,
++			      <0x0 0xfff02000 0 0x2000>,
++			      <0x0 0xfff04000 0 0x2000>,
++			      <0x0 0xfff06000 0 0x2000>;
++			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++		};
++
++		apb4: apb4@fe000000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xfe000000 0x0 0x480000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
++
++			uart_B: serial@7a000 {
++				compatible = "amlogic,meson-s4-uart",
++					     "amlogic,meson-ao-uart";
++				reg = <0x0 0x7a000 0x0 0x18>;
++				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&xtal>, <&xtal>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++			};
++		};
++	};
++};
+
+base-commit: c5468e3c930d4d2937d3a842a85df0f74e95e152
+-- 
+2.30.2
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
