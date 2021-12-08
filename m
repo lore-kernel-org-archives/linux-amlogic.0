@@ -4,71 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E05FC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Dec 2021 21:23:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73ED6C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Dec 2021 04:45:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DZcjd4oLdsXX8w9GrQWCm3RzxlfKKzdnXVPDp9JFyUg=; b=JCoGlAumDTGW6L
-	SAEr9ekeHW8NkmlPkfM6Wr5FyBPi1d6q45/1jxGoYxQIn2HMCBHZCmCIGLOLmS09HOVpt4iFTCB1g
-	4j3InMXStSsxs9GdJvqrt3Io0Y0uR/h1S+Z8Zc63xwbT0kaFo8M1iQjbAXVCB+VqqCuKLL5SazHyT
-	BDvXQp8rjtM2TpcSQ9siFj3WHdrFzlrPgXfFDnYnGWXGtf7BjqdHaqGEk8oL6qSwF9LA2YmSmcbpR
-	nz4XQ/kdHpth30jwmwWFL7/98IgRIGN15pvETnReR6TXXNvXxc/7MuOgZbzjdFgHs7v7TLRHdVItF
-	m8O9a/GNPdqoQ7Ex44cA==;
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=q7EcG7d994ql7c9oxG5yE+TPA5B4SgEbF8m9fgcrPNs=; b=TM3Q5GafcJL9rp
+	TkyA+bjh9X2CxdS09m6qtOM7bmc93mwtxxutvDPYPUa15kowGWQx7BnOf2HVvpPF9zXriVrd+bmlZ
+	K6aJSLQovpcaW0QMtb/T9fon1ONr7mmZHOAvKHWWadkDP1qFaInA1YVdMI6CqzA9sTiR807lzoucA
+	ZQIxFrsrPxppQ7tJFIyp+msh5/hH81GlyMUXxg30V2DrSlcsVPmLVCKiolxTI0pBWNyfC7u4p1ELs
+	QorbLQK3cKVZrO1MyK7eqDA64RWaBQZphXwLsfvbVNu7bpdn+ue13nQCRJ1DicErfxUbFeBOFMXC0
+	kC61IAkZWXsypuIICWaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muhw9-00ABvI-8G; Tue, 07 Dec 2021 21:23:45 +0000
-Received: from mail-ot1-f52.google.com ([209.85.210.52])
+	id 1muop8-00BDzQ-0g; Wed, 08 Dec 2021 04:44:58 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muhw6-00ABt2-1T; Tue, 07 Dec 2021 21:23:43 +0000
-Received: by mail-ot1-f52.google.com with SMTP id
- 47-20020a9d0332000000b005798ac20d72so546163otv.9; 
- Tue, 07 Dec 2021 13:23:41 -0800 (PST)
+ id 1muoow-00BDxk-2L; Wed, 08 Dec 2021 04:44:47 +0000
+Received: by mail-ed1-x531.google.com with SMTP id l25so4012326eda.11;
+ Tue, 07 Dec 2021 20:44:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=mvjWIFDl3Z932+ulOmlLjYQdMm4oZF1plc2CmRUrZ7A=;
+ b=P1Nid0yP7jCMnNY7woFaZQ4qxE9QiSWUwm95VCAS+65R4pshASNVHc+kaP8zo/h+cX
+ gUdKV2A6GyMfsBayqvY3cVq9VPuxgRKbqzgxuY9bjdc4TYH+AEXGFio4b+ftSOiOBP7b
+ PnK1NxtGJOp0vCVxS5f0pV8RiN5t4YIOHv1owb2FcIP1AYzg6Pfxi2ei0PpnrkjeQnF5
+ bML/YwRwxoH0fQKBUjJWIZAZ4EEtHcXSlbW42QR+OIF+3m8sm2NHAz2584lZAFxYsvRg
+ QGvb+571Tvi7vGC1yhpsqCJoeOQJFudR1IrWbvIN+dJrud58KaTeSq4gcKczI01qFqjM
+ 1SKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=wLQUVhoOIrV+SG+OfV5ZhN+x+ayCKbri/7qd97/xTXE=;
- b=PS1bO+pJNlPyRTxZkSlvQp6djbWvCham6uxGFWH13rFiWiCOxDahTiD9fJlGR/jgKN
- 4z1ixZ7Opoabg/6pa5Z3ePDjxfbSpwcq+fPmzLPshd1w5bD4qHYun+jMDcwxfQYOwgTu
- +jXnLE57hym1IGiCR9a7RBiQqH0XBrEkKWEkG9Wxl+fcqzFI7yXfb/7U2RvaqWXsKsD1
- K7qF7CQAV32OQLMMzKcQ75F4C+TQIZAWdkC9hktpVv+0qru5cAFeZ2j7rsAK3r/Q/Nyt
- eLwWJADbEmUBCOPCUOpWwipmsxHMjFGq/e7XGhaTmpeleVLBzKxLfcgbrARJDrHBcM+J
- g/YQ==
-X-Gm-Message-State: AOAM533E/vQi6Elc8obxe5b6jq6n/1E9L27hQqLk+ifnJkhjUWl+RhAX
- rq/Jg8hAgNTJhx1VbssYpQ==
-X-Google-Smtp-Source: ABdhPJyTL3O6ptXUFAKiAPyylqoTjSIYVcDq6UiJTyxMVOCdO27TZ8dpog3aaOBIPjPhG9TL27sZEQ==
-X-Received: by 2002:a9d:6a84:: with SMTP id l4mr37543822otq.216.1638912220695; 
- Tue, 07 Dec 2021 13:23:40 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net.
- [66.90.148.213])
- by smtp.gmail.com with ESMTPSA id ay40sm187979oib.1.2021.12.07.13.23.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Dec 2021 13:23:40 -0800 (PST)
-Received: (nullmailer pid 856815 invoked by uid 1000);
- Tue, 07 Dec 2021 21:23:39 -0000
-Date: Tue, 7 Dec 2021 15:23:39 -0600
-From: Rob Herring <robh@kernel.org>
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Benoit Masson <yahoo@perenite.com>,
- Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [RFC PATCH 8/9] dt-bindings: arm: amlogic: add H96-Max bindings
-Message-ID: <Ya/Q284LTMwVMEbE@robh.at.kernel.org>
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=mvjWIFDl3Z932+ulOmlLjYQdMm4oZF1plc2CmRUrZ7A=;
+ b=jEx+hD0N53LFezHXxiw4cq0TyBPPZ7rB1C9YF875W88Gg6PJLLb51zx/gh9heflR0d
+ y74cTG3ievezJDdX15Q9cscL0KdFwzYUDn+ck3Oc3XhUkI9nhrDngGZd7lSXQT2C+tH3
+ E0w/kb9rCey3/lWEyEQyCKyUxig9td4CsTgOf+HFPKB07ChIF61HPBJPAI1r2rPFdpn1
+ ZFr7pBIPMcQZBsLVvEm9Ygkt6huHXCY0pIHDvvlpMbnhNTGSx+r/ljGlUyZ57GTGPUzU
+ Ku+goM9BcTL/Cu9tewmjdaJAGIEGX8V+tOALUI4qDewSVnQ0VGcWDC6uC6ZD2FEHFtVE
+ //bQ==
+X-Gm-Message-State: AOAM533aHfltHMiKDn2aL4/zKlyD6mzuzuInOgl9xRMywudS2cpZ4P0J
+ EoHRJLWm4lK6cZYfqGhf+G0=
+X-Google-Smtp-Source: ABdhPJwAW+j1KiEM8wN0uczT86kc03ngEICuZtXPY/dQO0Mj4zmuvAFJTqmSn7HQQwjwIimRqn/DQw==
+X-Received: by 2002:a17:906:1be2:: with SMTP id
+ t2mr4700337ejg.399.1638938683782; 
+ Tue, 07 Dec 2021 20:44:43 -0800 (PST)
+Received: from [172.16.20.20] ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id i5sm725922ejw.121.2021.12.07.20.44.41
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 07 Dec 2021 20:44:43 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
+Subject: Re: [RFC PATCH 2/9] dt-bindings: arm: amlogic: add X96-AIR bindings
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <Ya/Qask7Fpb6mTxb@robh.at.kernel.org>
+Date: Wed, 8 Dec 2021 08:44:40 +0400
+Cc: Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ LKML <linux-kernel@vger.kernel.org>, Benoit Masson <yahoo@perenite.com>
+Message-Id: <C1918DC0-F873-4832-AF1A-91AFEF4F7151@gmail.com>
 References: <20211130060523.19161-1-christianshewitt@gmail.com>
- <20211130060523.19161-9-christianshewitt@gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20211130060523.19161-9-christianshewitt@gmail.com>
+ <20211130060523.19161-3-christianshewitt@gmail.com>
+ <Ya/Qask7Fpb6mTxb@robh.at.kernel.org>
+To: Rob Herring <robh@kernel.org>
+X-Mailer: Apple Mail (2.3608.120.23.2.7)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_132342_151837_5BBA309A 
-X-CRM114-Status: UNSURE (   9.17  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211207_204446_131463_84C7D707 
+X-CRM114-Status: GOOD (  15.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,23 +87,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 30 Nov 2021 06:05:22 +0000, Christian Hewitt wrote:
-> Add the board binding for the Haochuangyi H96-Max STB device.
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-
-Acked-by: Rob Herring <robh@kernel.org>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Cj4gT24gOCBEZWMgMjAyMSwgYXQgMToyMSBhbSwgUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9y
+Zz4gd3JvdGU6Cj4gCj4gT24gVHVlLCBOb3YgMzAsIDIwMjEgYXQgMDY6MDU6MTZBTSArMDAwMCwg
+Q2hyaXN0aWFuIEhld2l0dCB3cm90ZToKPj4gQWRkIGJvYXJkIGJpbmRpbmdzIGZvciB0aGUgQW1l
+ZGlhdGVjaCBYOTYtQUlSIFNUQiB3aGljaCBzaGlwcyB3aXRoCj4+IG1vZGVsIHZhcmlhbnRzIGRp
+c3RpZ3Vpc2hlZCBieSBFdGhlcm5ldCBjb25maWd1cmF0aW9uOiBtb2RlbHMgdXNpbmcKPj4gaW50
+ZXJuYWwgMTAvMTAwIFBIWSBoYXZlIGEgLTEwMCBzdWZmaXgsIHdoaWxlIG1vZGVscyB1c2luZyBl
+eHRlcm5hbAo+PiBHaWdhYml0IFBIWSBoYXZlIGEgLTEwMDAgc3VmZml4Lgo+IAo+IElzbid0IHRo
+ZSBwaHkgZGVzY3JpYmVkIGluIERUPyBXaHkgZG8geW91IG5lZWQgdG8gZGVzY3JpYmUgdGhpcyAx
+IAo+IGRpZmZlcmVuY2UgYXQgdGhlIHRvcCBsZXZlbD8KClVzZXJzIHdobyBwdXJjaGFzZSBBbmRy
+b2lkIFNUQnMgYXMgYSBjaGVhcCBMaW51eCBtZWRpYSBkZXZpY2UgKG9yIGFyZQpyZWltaWFnaW5n
+IGFuIGV4aXN0aW5nIGRldmljZSB3aGVuIHRoZXkgZ2l2ZSB1cCBvbiBBbmRyb2lkKSBnZW5lcmFs
+bHkKaGF2ZSBubyBpZGVhIHdoYXQgYSBQSFkgaXMsIHNvIHJlYWRpbmcgYSBkZXZpY2UtdHJlZSBm
+aWxlIHRvIHBpY2sgdGhlCmNvcnJlY3Qgb25lIGlzIGJleW9uZCB0aGVtLiBNb3N0IHBlb3BsZSBi
+bGluZGx5IHRyeSBhbGwgZHRiIGZpbGVzIGZvcgphIGNsYXNzIG9mIGRldmljZSB1bnRpbCB0aGV5
+IGZpbmQgb25lIHRoYXQgd29ya3MsIHNvIHRvcC1sZXZlbCBuYW1pbmcKaXMgc2ltcGx5IHRvIGhp
+bnQgdGhlIHByb2Nlc3MgYW5kIHJlZHVjZSBndWVzc3dvcmsuIEl04oCZcyBub3QgcGVyZmVjdCwK
+YnV0IGl0IGRvZXMgYXBwZWFyIHRvIHJlZHVjZSB0aGUgcXVhbnRpdHkgb2Yg4oCcRXRoZXJuZXQg
+ZG9lc27igJl0IHdvcmsh4oCdCnBvc3RzIHNlZW4gaW4gc3VwcG9ydCBmb3J1bXMuCgpDaHJpc3Rp
+YW4KCj4+IFNpZ25lZC1vZmYtYnk6IENocmlzdGlhbiBIZXdpdHQgPGNocmlzdGlhbnNoZXdpdHRA
+Z21haWwuY29tPgo+PiAtLS0KPj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Fy
+bS9hbWxvZ2ljLnlhbWwgfCAyICsrCj4+IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykK
+Pj4gCj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJt
+L2FtbG9naWMueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vYW1s
+b2dpYy55YW1sCj4+IGluZGV4IDM2MDgxNzM0ZjcyMC4uZTlhYjBmZmU4YmU3IDEwMDY0NAo+PiAt
+LS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2FtbG9naWMueWFtbAo+
+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2FtbG9naWMueWFt
+bAo+PiBAQCAtMTcwLDYgKzE3MCw4IEBAIHByb3BlcnRpZXM6Cj4+ICAgICAgIC0gZGVzY3JpcHRp
+b246IEJvYXJkcyB3aXRoIHRoZSBBbWxvZ2ljIE1lc29uIFNNMSBTOTA1WDMvRDMvWTMgU29DCj4+
+ICAgICAgICAgaXRlbXM6Cj4+ICAgICAgICAgICAtIGVudW06Cj4+ICsgICAgICAgICAgICAgIC0g
+YW1lZGlhdGVjaCx4OTYtYWlyLTEwMAo+PiArICAgICAgICAgICAgICAtIGFtZWRpYXRlY2gseDk2
+LWFpci0xMDAwCj4+ICAgICAgICAgICAgICAgLSBiYW5hbmFwaSxicGktbTUKPj4gICAgICAgICAg
+ICAgICAtIGhhcmRrZXJuZWwsb2Ryb2lkLWM0Cj4+ICAgICAgICAgICAgICAgLSBoYXJka2VybmVs
+LG9kcm9pZC1oYzQKPj4gLS0gCj4+IDIuMTcuMQo+PiAKPj4gCgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
