@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E02DEC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Dec 2021 14:00:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E7F4C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Dec 2021 17:58:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,77 +13,78 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=gOBMFgnjQlRsyL/CABNWFeN7CepI8Gj84K7vZC2fdk0=; b=tLKDtUmtdZ0opeq8VXiinwsvzD
-	IChaYyGtTe7T1AFqRUEPvBkMeMKLmKedgCzkGQ54cZTDkXn+IWS07szWwA+JxtJfTT9oBilqKcFs9
-	+hq4MctrsvpX9KOYBj9quE/WpVkTT5AX3LoEvfawpn3guroccTOdetJWVIx4SZQ+MUY413VezrZoA
-	+vquWgiO6bEnxYhEHTfjH2VOHfOR+87gGTFFeImYCP3UcBx375HakUwJE/3hf1L1E+hF4IZL9TR0/
-	/LduMTaDDHvzfVYMt8CoEpSq/GirFkLruuidhwZPSoyjwUU5KOW0cJaAuxoSrc3unKqjgCSk8KZ62
-	rxrMHOqQ==;
+	bh=HtHZbl5J8ejT0QKxykb9MfqIU8bTrvgRPlxPlGEaZ1o=; b=lO7Y6oKthnVuuScaubaSWMCI/Q
+	k3HwLnNwNyzzczuqHinMXasZSRFms5YbapHQKl0V7K1tlGPbRZAULkFAPC1+BRMw70t/hqxEgP7vD
+	RoikbsD0WBXcK7TjSUIuFwEfqDBm41GYJflcqIyWjj2pBldtDhK4KWgr3Ev0daJsed/9Af8R+6W2f
+	XFVmUQUWdCWUbe0pThmY96kbV9+e/vQVVJpZNfkG2UmsipPEi/Bjdhknv61jPG93UsEALEvwBRnFv
+	/vigU7rGdRjxgDqSQ/PIA8X1lYtlbZrRDUYD5jJaQ9vRmPl9i+ngwu9V/vwBlK9mZXp2M9Iu30VMK
+	tKWyNhvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvJyL-00GC0v-2K; Thu, 09 Dec 2021 14:00:33 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1mvNg7-00H64o-Am; Thu, 09 Dec 2021 17:57:59 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvJyH-00GBz5-EV
- for linux-amlogic@lists.infradead.org; Thu, 09 Dec 2021 14:00:31 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id
- d72-20020a1c1d4b000000b00331140f3dc8so4174240wmd.1
- for <linux-amlogic@lists.infradead.org>; Thu, 09 Dec 2021 06:00:28 -0800 (PST)
+ id 1mvNaZ-00H4Qb-Vf
+ for linux-amlogic@lists.infradead.org; Thu, 09 Dec 2021 17:52:18 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id
+ g191-20020a1c9dc8000000b0032fbf912885so4717648wme.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 09 Dec 2021 09:52:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:cc:references:from:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=+dpt8vUL2anIzLDaCapRKN1qxAb7cNA0NVvcaD2Cl1A=;
- b=B4BMPcLElw/QrGtY3jFrf992/46j3vDTB/JLhlrJt7jUYOkM0nW7nBfmWQFeKxQNgB
- NCtGG4tWK1v+70C7ldf8cQeURrBbdOUJJl5EqNG3EtGMH58nPMsbUAb+vYoOuaxNk1Ee
- 0q/fB1BjYccjmx/CRsiAoKQO/KwWWUmHhjAh+eD8sbiZr2dYe4NS8o61vdUsOf4W0dwX
- /F8xtjcMW6/Wb7iLmKsqRxgFWhlZ+Guzh2LmFVuajLLt4PAmMYOV3jX2MAQAjoSbWHSn
- 31pgx42+7P06vp3VOvFjQifc+PfyTXGKO+v/KlxX3YbuwHSAOnYJrPByiZWcb0tIsFdk
- 6Dqg==
+ bh=Bd8+kTrTfhFU5QWPnGzZKoBEXJcLIGbK/BR+H+0gbYw=;
+ b=XbFa42nnAwDGxO66/HbO3nB2gPzLqX2MOc+1zouWEXl3y62x+JQixZnni2tTWFd1CI
+ mFZs+VL2zwSM+nOzrmeBxhvLkGHZZUO24TnH0JAKdpbly1p+jK6L5LOjAaTq7kqR70/q
+ dH/ZA0AQho791bypxmO/O605uUfAUi5Mam0+utMXeo2MO9Zr3FJNU8Mb3QX+q7RFD06O
+ DfNKHxZ4UU4Cor8daNfV2JclnpukSCkUS0TXtEkM+6bjsBMz8CJpl5Q9x2jJe4KLtejM
+ ggJMrX5P1niJ6l+JHs2F/aRrfM8IxpyGzvibQ/im15eeGdFDrxxN8oLO5Odg1QHUWYb2
+ YngA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=+dpt8vUL2anIzLDaCapRKN1qxAb7cNA0NVvcaD2Cl1A=;
- b=gsyasvtIXFoHQP1G4PmSVeuNlhV7SYj4Gsm88sowt68fEi/VjrIZywj+2z+D9EXxhe
- W8aYH9lRumfK25rVFijX7pA/z/tYDLH+GX9oZ8Oeo6VwNm8HGZd5MIrVJo10/gGdWZZR
- cUlEM00VHgFYDhotFDaSv7kCzHohUXbVFFbHxu8o3bcSAmccyiP4D86vw4iWl7bch9Q2
- 49hi0FTitBNaNzUJqONWr1+XRL2zd9OQyaa3InAqoHRj3NMwOtA4EUeFm7in1ZxirmGp
- nuPj6vwxz5//oJ0r4OQbojz6cUXa8+tn0fB5g+1JhQcKXgERtriq0EmtxsO+Vz8Vg3GZ
- csBA==
-X-Gm-Message-State: AOAM532yQda4kBY6sMn0SJjfqjuw+Yrtvl2RqAJyrwRXpUUKe4RuUWZx
- PrIoqQhAuT6LpOhO1FmWGEuCOw==
-X-Google-Smtp-Source: ABdhPJwSmvHSUsLNntOs0DWvEN3q46Xb/2KT12wtqetfkw3nuKEinZlZPaedYhQluQ1SlJLPOHH9RA==
-X-Received: by 2002:a05:600c:214f:: with SMTP id
- v15mr7228541wml.194.1639058427321; 
- Thu, 09 Dec 2021 06:00:27 -0800 (PST)
+ bh=Bd8+kTrTfhFU5QWPnGzZKoBEXJcLIGbK/BR+H+0gbYw=;
+ b=EJZVuRUUSkbpLzpp/YpOj3ekaaGZE6TSK71m3bYEahwb3UygHPTOJGO4ocC0YXaaRd
+ 25sbDnV5YDQBchabD3U78LtEe7Oo8KFftH6Av4Xpv31Z9KKMhZCs48fNBe+E4dPBBCde
+ Bp9rZgBKwE+kV3kJfl5j38LlFNk8r+7EwKN3352+r2iiIELw9VVnNW8Tk7q6zAvCjXsr
+ KcPHEzWcgqj6IylrRhB5y5tt3l5byINGC4U3yuH8XaPlMoPzTLmqZKhgBijgDpHqqUSQ
+ wHMtBpCKaSHJkEPvwDMJiZ94pB2FtFI7M6kGwFtDIfG6FHWj4XRTjVyE4YGk84DZGE7Q
+ SBzw==
+X-Gm-Message-State: AOAM530JZ7lP9jxFhX585wLOB1bLhp9dhwemjEiDt9a8QI6q5aYNf1fx
+ 0mpWMm5+xL2vze7Wq7AqFP5xbg==
+X-Google-Smtp-Source: ABdhPJyMie+a/YOeewKo1Obvu7zuEr3tSxdpZfoN/rSq9A/nErVJDjjw8oiP8Y9G/3nEDK98Fbtfqg==
+X-Received: by 2002:a05:600c:3b27:: with SMTP id
+ m39mr9397831wms.132.1639072334313; 
+ Thu, 09 Dec 2021 09:52:14 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:ee1f:92e9:bcbf:be87?
  ([2001:861:44c0:66c0:ee1f:92e9:bcbf:be87])
- by smtp.gmail.com with ESMTPSA id g198sm6070839wme.23.2021.12.09.06.00.26
+ by smtp.gmail.com with ESMTPSA id b197sm449999wmb.24.2021.12.09.09.52.13
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 Dec 2021 06:00:26 -0800 (PST)
-Subject: Re: [PATCH V2] arm64: dts: add support for S4 based Amlogic AQ222
-To: "xianwei.zhao" <xianwei.zhao@amlogic.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>
-References: <20211208064435.14307-1-xianwei.zhao@amlogic.com>
+ Thu, 09 Dec 2021 09:52:13 -0800 (PST)
+Subject: Re: [PATCH] media: meson: vdec: potential dereference of null pointer
+To: Hans Verkuil <hverkuil@xs4all.nl>, Jiasheng Jiang <jiasheng@iscas.ac.cn>, 
+ mchehab@kernel.org, gregkh@linuxfoundation.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20211209085840.2081024-1-jiasheng@iscas.ac.cn>
+ <bfd1801c-9d1e-0574-a237-711d3d5ae755@xs4all.nl>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <5ad49e05-3925-08de-af5a-c4b4371f711b@baylibre.com>
-Date: Thu, 9 Dec 2021 15:00:25 +0100
+Message-ID: <0c1fadf0-e7ba-fb7a-822d-6787f78faaad@baylibre.com>
+Date: Thu, 9 Dec 2021 18:52:12 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211208064435.14307-1-xianwei.zhao@amlogic.com>
+In-Reply-To: <bfd1801c-9d1e-0574-a237-711d3d5ae755@xs4all.nl>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_060029_542005_A22E732B 
-X-CRM114-Status: GOOD (  19.38  )
+X-CRM114-CacheID: sfid-20211209_095216_184396_C49EDA26 
+X-CRM114-Status: GOOD (  18.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,186 +103,100 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On 08/12/2021 07:44, xianwei.zhao wrote:
-> Add basic support for the Amlogic S4 based Amlogic AQ222 board:
-> which describe components as follows: CPU, GIC, IRQ, Timer, UART.
-> It's capable of booting up into the serial console.
+On 09/12/2021 12:58, Hans Verkuil wrote:
+> On 09/12/2021 09:58, Jiasheng Jiang wrote:
+>> he return value of kzalloc() needs to be checked.
+>> To avoid use of null pointer in case of the failure of alloc.
+>>
+>> Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
+>> Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+>> ---
+>>  drivers/staging/media/meson/vdec/vdec_helpers.c | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+>> index 7f07a9175815..025885fcfec6 100644
+>> --- a/drivers/staging/media/meson/vdec/vdec_helpers.c
+>> +++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+>> @@ -234,6 +234,8 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+>>  	unsigned long flags;
+>>  
+>>  	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
+>> +	if (!new_ts)
+>> +		return;
 > 
-> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
-> ---
-> V1 -> V2: cleaned up coding style, modify CPU affinity of timer interrups,
->           and modify GIC reg defintions.
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->  .../dts/amlogic/meson-s4-s805x2-aq222.dts     | 30 ++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 99 +++++++++++++++++++
->  3 files changed, 130 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> While this avoids dereferencing a NULL pointer, this error isn't propagated to the
+> caller. And I'm not sure if that's right.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 5148cd9e5146..faea74a45994 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -57,3 +57,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> new file mode 100644
-> index 000000000000..3b340594a125
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> @@ -0,0 +1,30 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-s4.dtsi"
-> +
-> +/ {
-> +	model = "Amlogic Meson S4 AQ222 Development Board";
-> +	compatible = "amlogic,aq222";
-
-According to bindings, it should be: compatible = "amlogic,aq222, "meson,s4";
-
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart_B;
-> +	};
-> +
-> +	memory@00000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x40000000>;
-> +	};
-> +
-> +};
-> +
-> +&uart_B {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> new file mode 100644
-> index 000000000000..d7083c93d3d0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -0,0 +1,99 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	cpus:cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		CPU0:cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35","arm,armv8";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		CPU1:cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35","arm,armv8";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		CPU2:cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35","arm,armv8";
-> +			reg = <0x0 0x2>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		CPU3:cpu@3 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35","arm,armv8";
-> +			reg = <0x0 0x3>;
-> +			enable-method = "psci";
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		gic: interrupt-controller@fff01000 {
-> +			compatible = "arm,gic-400";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <0>;
-> +			interrupt-controller;
-> +			reg = <0x0 0xfff01000 0 0x1000>,
-> +			      <0x0 0xfff02000 0 0x2000>,
-> +			      <0x0 0xfff04000 0 0x2000>,
-> +			      <0x0 0xfff06000 0 0x2000>;
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-> +		};
-> +
-> +		apb4: apb4@fe000000 {
-> +			compatible = "simple-bus";
-> +			reg = <0x0 0xfe000000 0x0 0x480000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> +
-> +			uart_B: serial@7a000 {
-> +				compatible = "amlogic,meson-s4-uart",
-> +					     "amlogic,meson-ao-uart";
-
-When will you send the serial bindings ?
-
-> +				reg = <0x0 0x7a000 0x0 0x18>;
-> +				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-> +				status = "disabled";
-> +				clocks = <&xtal>, <&xtal>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +			};
-> +		};
-> +	};
-> +};
+> Neil, what should be done in this case?
 > 
-> base-commit: c5468e3c930d4d2937d3a842a85df0f74e95e152
+> Regards,
+> 
+> 	Hans
+> 
+>>  	new_ts->ts = ts;
+>>  	new_ts->tc = tc;
+>>  	new_ts->offset = offset;
+>>
 > 
 
-No need to send a v3 until both bindings have been accepted.
+Probably something like this:
 
-Neil
+===================><=============================
+diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
+index db7022707ff8..df733eff9ac7 100644
+--- a/drivers/staging/media/meson/vdec/esparser.c
++++ b/drivers/staging/media/meson/vdec/esparser.c
+@@ -328,7 +328,11 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
+
+        offset = esparser_get_offset(sess);
+
+-       amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
++       ret = amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
++       if (ret) {
++               v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
++               return ret;
++       }
+        dev_dbg(core->dev, "esparser: ts = %llu pld_size = %u offset = %08X flags = %08X\n",
+                vb->timestamp, payload_size, offset, vbuf->flags);
+
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+index b9125c295d1d..593b2ccbece2 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.c
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+@@ -227,13 +227,15 @@ int amvdec_set_canvases(struct amvdec_session *sess,
+ }
+ EXPORT_SYMBOL_GPL(amvdec_set_canvases);
+
+-void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+-                  struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
++int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++                 struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
+ {
+        struct amvdec_timestamp *new_ts;
+        unsigned long flags;
+
+        new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
++       if (!new_ts)
++               return -ENOMEM;
+        new_ts->ts = ts;
+        new_ts->tc = tc;
+        new_ts->offset = offset;
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
+index 88137d15aa3a..4bf3e61d081b 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.h
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
+@@ -56,8 +56,8 @@ void amvdec_dst_buf_done_offset(struct amvdec_session *sess,
+  * @offset: offset in the VIFIFO where the associated packet was written
+  * @flags: the vb2_v4l2_buffer flags
+  */
+-void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+-                  struct v4l2_timecode tc, u32 offset, u32 flags);
++int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++                 struct v4l2_timecode tc, u32 offset, u32 flags);
+ void amvdec_remove_ts(struct amvdec_session *sess, u64 ts);
+
+ /**
 
 _______________________________________________
 linux-amlogic mailing list
