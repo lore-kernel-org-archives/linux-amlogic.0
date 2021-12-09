@@ -4,67 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB85FC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Dec 2021 11:59:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E037FC433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Dec 2021 13:55:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0WLrBbx7RmYvTueG2I4bxNUgrBJ/Y3HnYyv1Dr0Lts8=; b=A9/FXuv41XujFJ
-	OKZlAR4RTSNvfwpgs3KlG/bMmkbmW3O2AiWOgz3rGak4DU3HvO3w1EUMtVeEbRWSRQQuHKUsBBmzk
-	qVkagdrwZJDBLZjXcqMVfV7k5xVZryvlU+blRNSk0DjRvm0klP5QquA+RjZlWGFlBg3W+STjMLHRL
-	Eu9N1LlSu0tWoOZdaBKk9tHuIGtD002lCFX13amrIv89v0ihrBh+X5NEPpBmOQs1rfdF0Lbsycsry
-	1yxwO8leuZf3VOCV6U5gLS+nKx8k4uCvsEqjImlBYbCbdSXvtK14IxhTX58pIza+bnD19zTm+pk8y
-	eV7hnQKHmsopLsSuNnGA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=VWl0j0ZW79h5qq4Je2bt/EwRtY11Bhzmi1PYs8CkOvc=; b=FmN3mm3kgE4U5CYFCvFWj/WlwQ
+	Zcj4r4KE/KGr2BypTXKDVb7Xgk1tOtEm0n2dQM4+XaozldZnfg9ohvOJype6eKkJrlXP9Q0J/fiNk
+	DMoowNX+EbbMd45x8sS19+KNIGexmWpoMxkOazUO9gDJoKpR7xTmcSTLXAv88WbZiXYVoEFJzXnnO
+	6qYr57Pc58dhttlvBGx3cp+OBYZiJsn3IhLbiSq6jRSNzmZwyMYBXb5riUkMLyB3D74HTdm20LtuG
+	UYqZ6izNysIEg+83Jnwv96onuNoew89N1gbvWBKboX1z+iqjno1qk+rnIYwz5bBDapJM+lphR7lNn
+	ppoy9lEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvI4d-00Frci-8d; Thu, 09 Dec 2021 11:58:55 +0000
-Received: from ewsoutbound.kpnmail.nl ([195.121.94.170])
+	id 1mvJtO-00GB6T-H3; Thu, 09 Dec 2021 13:55:26 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvI4Z-00FrbB-BX
- for linux-amlogic@lists.infradead.org; Thu, 09 Dec 2021 11:58:53 +0000
-X-KPN-MessageId: 3e3a5016-58e7-11ec-8a6e-005056ab378f
-Received: from smtp.kpnmail.nl (unknown [10.31.155.37])
- by ewsoutbound.so.kpn.org (Halon) with ESMTPS
- id 3e3a5016-58e7-11ec-8a6e-005056ab378f;
- Thu, 09 Dec 2021 12:57:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=xs4all01;
- h=content-type:from:to:subject:mime-version:date:message-id;
- bh=9Aq23Wv7tHnCYMpmE5PBJb/8V6Y6YS0/22bQYvWZfms=;
- b=h6WH+9bq26ytYVkLgO+BBRA9djM7TpYc/rglyUJnk7c9magrntvpC9H2y74mkOpN5KvEeVBoTkN+U
- KXLTJ/wW66zpcBt0uaGD2QBZfzeiFS2HBZiy+wQhayLPkx/6OBxrBoaw1yE+tNn1eqoSBYFGpmZjgs
- 2bXz04YcB+tV+V9ISpUlymC4Da7OKpIH5BkXw2uFKRUSdPLo8l+D2jp2YNTTjFrjDoj04XIN8qx/Cr
- croH5uYLmc+v1KIk0yTkiGoWWliYK+pdfIW+jC2RFVB4dRaOR59m0eBGr9yfJ2YlHFKOtorRzRu6A3
- ap8U0SM0g8LomM6O4B3VwETxZ1xjNKQ==
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|DDmaztRJmOtayoxqgJybbogxaHcYGuAH/2JQ1k//iXKfxwhLEuAMhU/xDzQBJLy
- fS7hu1KsqPsf0t5psDYTCSA==
-X-Originating-IP: 193.91.129.219
-Received: from [192.168.2.10] (cdb815bc1.dhcp.as2116.net [193.91.129.219])
- by smtp.xs4all.nl (Halon) with ESMTPSA
- id 5ce29b6c-58e7-11ec-83ab-005056ab1411;
- Thu, 09 Dec 2021 12:58:46 +0100 (CET)
-Message-ID: <bfd1801c-9d1e-0574-a237-711d3d5ae755@xs4all.nl>
-Date: Thu, 9 Dec 2021 12:58:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.3.2
-Subject: Re: [PATCH] media: meson: vdec: potential dereference of null pointer
-Content-Language: en-US
-To: Jiasheng Jiang <jiasheng@iscas.ac.cn>, narmstrong@baylibre.com,
- mchehab@kernel.org, gregkh@linuxfoundation.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
-Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ id 1mvJtI-00GB57-9A
+ for linux-amlogic@lists.infradead.org; Thu, 09 Dec 2021 13:55:24 +0000
+Received: by mail-wr1-x430.google.com with SMTP id u1so9762150wru.13
+ for <linux-amlogic@lists.infradead.org>; Thu, 09 Dec 2021 05:55:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=k6D23PRYBlWqPCsXrjjZTcI35QWh4xDYmb3kATWIYYs=;
+ b=tAqbIzrQWUGIuhELs8cbNcSzSxLueX8Rcy6bGeSDvz6Nbddcp0rkKg0RIAzljiAYEc
+ VPT8BUEsDLTqs94qFhJtDE2WGLElxfXM/o+SFD9zDQ6imWsmLoekHAwTJSOPE+5BX4De
+ Q5qcnvc7KJDs1dwBFr2jf8XcRhfIuW+Ax6HoIPrr6cRfja81kZTRWlkVt6x1YJ/JOfHk
+ 7EdP2H0ao3GLv95VWzVzi75I6t/nE7qpT4X3UeFo0sHMOrck7hEInlf2RNJXfQOz9q5C
+ nUnApD2esIP9yMrkyq0LYut8fFuoQVyQkn5alGsivxzqEZslMBwNMmfEkQR2fW0k48Cy
+ 2+7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=k6D23PRYBlWqPCsXrjjZTcI35QWh4xDYmb3kATWIYYs=;
+ b=dtoi9M5GI/4kvqSLK4I8hqpvEffQmYl69+DQCdygGeHcl/Mdi852y8t+R9NbUhAij8
+ S1HwtwA47nl+hsuUJ2C4jVHcVhrtAh30bMfsNyXc8gm47KAphAi/H9Rzk6df2UUKlRbM
+ CVpA1QrBxbwlRXR7pAZSadn2/BjhWrF83gvHU0d/YOVP5iU4AHXob+VeFlOwu3xWsp9t
+ Vc0HSifx00BpN7qd1V8qa01NX8vvJ9LRugYwNgDW7y11eelYqQXTOM1nrgycoV5jR0IK
+ NuGd1sVMpdETL5ltqrYCkLevKkVFwFk48wS1ZRYkw9XHmimFxXy5k6TSd7jjbPnHoF/N
+ koSw==
+X-Gm-Message-State: AOAM533Fv6ClXv2Pm3LFCgHUg2pVwBrayA7gWwemKN3f43I5ROaIV5au
+ T9z61kSHSp8uZLVLZ/RfLptPvw==
+X-Google-Smtp-Source: ABdhPJySirDudXteZbllUEbTOz80rbMsSMq1yM/rsW2kfUU7cBaW4uudUASmKQofLV8xkerHOjnpIA==
+X-Received: by 2002:a5d:674f:: with SMTP id l15mr6451322wrw.624.1639058117689; 
+ Thu, 09 Dec 2021 05:55:17 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:ee1f:92e9:bcbf:be87?
+ ([2001:861:44c0:66c0:ee1f:92e9:bcbf:be87])
+ by smtp.gmail.com with ESMTPSA id q4sm5665421wrs.56.2021.12.09.05.55.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 09 Dec 2021 05:55:16 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: arm: amlogic: add S4 based AQ222 bindings
+To: "xianwei.zhao" <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20211209085840.2081024-1-jiasheng@iscas.ac.cn>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <20211209085840.2081024-1-jiasheng@iscas.ac.cn>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Vyacheslav Bocharov <adeep@lexina.in>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20211208093347.4837-1-xianwei.zhao@amlogic.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <bd981d0c-af5c-2b29-0ae3-df6bf01ea485@baylibre.com>
+Date: Thu, 9 Dec 2021 14:55:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211208093347.4837-1-xianwei.zhao@amlogic.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_035851_622047_3F7E4339 
-X-CRM114-Status: GOOD (  14.77  )
+X-CRM114-CacheID: sfid-20211209_055520_404776_81E65E46 
+X-CRM114-Status: GOOD (  14.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,39 +100,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/12/2021 09:58, Jiasheng Jiang wrote:
-> he return value of kzalloc() needs to be checked.
-> To avoid use of null pointer in case of the failure of alloc.
++cc linux-amlogic@lists.infradead.org linux-arm-kernel@lists.infradead.org
+
+On 08/12/2021 10:33, xianwei.zhao wrote:
+> Add bindings for the new Amlogic S4 SoC family,
+> and the compatible for the Amlogic S4 Based AQ222 board.
 > 
-> Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
-> Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+> S4 is an application processor designed for hybrid OTT/IP Set To
+> Box(STB) and high-end media box applications, with quad core Cortex-A35.
+> 
+> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
 > ---
->  drivers/staging/media/meson/vdec/vdec_helpers.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
-> index 7f07a9175815..025885fcfec6 100644
-> --- a/drivers/staging/media/meson/vdec/vdec_helpers.c
-> +++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
-> @@ -234,6 +234,8 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
->  	unsigned long flags;
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> index 36081734f720..63037ebdd7bf 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -183,6 +183,12 @@ properties:
+>                - amlogic,ad401
+>            - const: amlogic,a1
 >  
->  	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
-> +	if (!new_ts)
-> +		return;
-
-While this avoids dereferencing a NULL pointer, this error isn't propagated to the
-caller. And I'm not sure if that's right.
-
-Neil, what should be done in this case?
-
-Regards,
-
-	Hans
-
->  	new_ts->ts = ts;
->  	new_ts->tc = tc;
->  	new_ts->offset = offset;
+> +      - description: Boards with the Amlogic Meson S4 AQ222 SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,aq222
+> +          - const: amlogic,s4
+> +
+>  additionalProperties: true
+>  
+>  ...
+> 
+> base-commit: a3ebdcc8fb3d94de390e58ad3da6161826a58a87
 > 
 
 
