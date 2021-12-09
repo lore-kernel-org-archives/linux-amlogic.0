@@ -4,86 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5CFFC433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Dec 2021 08:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69606C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Dec 2021 08:59:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=91cMMtiJjGX81I5PHS3xN6g0rfluL28kAE7hKWQ2y/k=; b=kwOkGic79s2drE1pYjuK6s1I1E
-	ApOYTjB42UrFrmqz1ADpcOAGrc99iloCSOWfJ2tDAtKSzGjPweebcPkiyRnafprTukrxhQC2+szEt
-	3xWKWyDxm0gjhbmQBjuqvHCt/0m+laqU7pfo9tF20OZ4LP0N+yETIavG3EElb7wgLIcHng2lPdh/v
-	WrD/IQJyw/wa1Ut4uqGuFj2HULHDfFs0UyIAAcw7IZCgrUrN5VMI/FhwZQYb9OFv/H4w9wTUJVe4G
-	BmHht5Dhw0Q+yvyVtW5+FAcxpVRgQBzgZtDZxzrMTP+kUmY0vDJ6SoqqfCQrZ0u5zlZDMgmXqlJG8
-	CBb3r6fQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=PPljaiF49Z6HL0nBAwDplWngBOtJPDCK1lWtxc1Dqzc=; b=AMteMrxG5zIJe3
+	+ZJ2YK12FKd/qM8LGIyssQJDkzp+sqRUyqonyXCdLW0CDfQsF1LqiRJG9gzcTl3Ufww6oMjeSXPT5
+	+MyRqPbFA8ZohmtMZg9+e1TPjwsc17J+KM3kChW0nUyNiHKT8MB7pGoh6ZPSaKOndGrw0cU/W7YVi
+	WO+OJVnlf20GinK3N1ELS35e2MYi06T+e7Izo0F9Gej6QiULVFJ3CDMsRSTghoxQe3JOJSjAaJE7e
+	M+nuSnknWYg2f9UfzD/Omtbimz1SJy8wCzm01DWz598Hrt1Z7jG5LVQh+DLqSo5+dJpLzGOGqPwma
+	SNejmRZIjUQAblWjQfyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1musBv-00BgVu-M6; Wed, 08 Dec 2021 08:20:43 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1musBt-00BgV0-4Z
- for linux-amlogic@lists.infradead.org; Wed, 08 Dec 2021 08:20:42 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id
- g191-20020a1c9dc8000000b0032fbf912885so1204865wme.4
- for <linux-amlogic@lists.infradead.org>; Wed, 08 Dec 2021 00:20:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=1w3QG5L2wJSdawJv13n1fbqmjL3sgSHFT+7XbyAvU6U=;
- b=55DNvAYxUXa+yKMvFNkcwxQcyuMG4hyrlqdl8GCYFqXE/nvB5hzQFKynb0amMmXyPj
- gvr6FYs5uEqtTr3S1cxwe8elBx06xxnm+aXZmnSmTpE4iBiqlMFjwG+Li/AZafgjjQ/J
- kfVWr21Ir4haj+rGGcA+A6kC8FsP9DhwqqdIrnTSjtTK4yLGw15m+Fd/QX/zYcNaeN60
- jtM6G0eR3psmmQ/Vrui/nwb1ZCQ7eo7nG2CngnGrj5nFE7X5MYrE/QmSZM/j7QIf17OY
- st+lLoPx7tEWVC/AA0P3vn93dIiI37Cp8OTaqRFkScrNd9NRbxdAWoF5gSyjRXVXUDfE
- vffQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=1w3QG5L2wJSdawJv13n1fbqmjL3sgSHFT+7XbyAvU6U=;
- b=qxU7MDT4i3GKb055Llr/FZOaZFbwBjm4RUqiOWNqdwuxXkq+m4ZHON3i1P4vsMVFY3
- lP7G5AxpwxKNqN0cvqs/mhhpqT70l5SQcVAIpWsFOVVnRTKoB2YbWID3lYgL3Vd8B/7l
- Tr2CFq/ydiVMqWRVgob3hyNbFNiQ8N9ieEC2535/E8zDuVKD28btkBUDt1NmV8aUEEOO
- S+LUO0/PcNsC+54QLtY7YV0+W1IM0bujPwDviDSVkZ2/CGkGPuZSUHU3d4WrnNk2B1n+
- nC77OZVBCF8IKT07fKivE9RM/s0EL6yZfPYRtZJzK8+uu9RPvyNekZxU++dnTYF1lamq
- Wa3A==
-X-Gm-Message-State: AOAM530bbBkJSH2H7whi0CRoDxBoWkLxoZQ59LRupW61ddpj2ZUjEgcZ
- gYMfMtJVJNO/Fur7IFpevNrMgQ==
-X-Google-Smtp-Source: ABdhPJzG/TNg3Piyp5TseF8rLfJFvZTaZFXGKZz5otMT3tS+daO2oHy7ZCllGK9433G4TB+hyrdAQg==
-X-Received: by 2002:a7b:c24a:: with SMTP id b10mr14015235wmj.166.1638951639255; 
- Wed, 08 Dec 2021 00:20:39 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:5245:80ea:cf46:35bb?
- ([2001:861:44c0:66c0:5245:80ea:cf46:35bb])
- by smtp.gmail.com with ESMTPSA id i7sm2022410wro.58.2021.12.08.00.20.38
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 08 Dec 2021 00:20:38 -0800 (PST)
-Subject: Re: [RFC PATCH 0/9] arm64: dts: meson: add support for aac2xx devices
-To: Kevin Hilman <khilman@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Benoit Masson <yahoo@perenite.com>
-References: <20211130060523.19161-1-christianshewitt@gmail.com>
- <7hilw14nhx.fsf@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <e3b404f8-758e-ba97-37c6-0178231119dd@baylibre.com>
-Date: Wed, 8 Dec 2021 09:20:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+	id 1mvFGZ-00FIHd-Oi; Thu, 09 Dec 2021 08:59:03 +0000
+Received: from smtp21.cstnet.cn ([159.226.251.21] helo=cstnet.cn)
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mvFGW-00FIG3-10; Thu, 09 Dec 2021 08:59:01 +0000
+Received: from localhost.localdomain (unknown [124.16.138.128])
+ by APP-01 (Coremail) with SMTP id qwCowAD3_p5ExbFhvtbuAQ--.47934S2;
+ Thu, 09 Dec 2021 16:58:48 +0800 (CST)
+From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+To: narmstrong@baylibre.com, mchehab@kernel.org, gregkh@linuxfoundation.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Jiasheng Jiang <jiasheng@iscas.ac.cn>
+Subject: [PATCH] media: meson: vdec: potential dereference of null pointer
+Date: Thu,  9 Dec 2021 16:58:40 +0800
+Message-Id: <20211209085840.2081024-1-jiasheng@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <7hilw14nhx.fsf@baylibre.com>
-Content-Language: en-US
+X-CM-TRANSID: qwCowAD3_p5ExbFhvtbuAQ--.47934S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrtw4xtrW8Cw4xAF4fGr1DAwb_yoWfWrc_Gr
+ ZFqrnxZryDZa1Skr15tw4F9FWFqr4IvFsYvanxtFW3uFyDA3W5Z39F9rn5Jr1UJFWSkrZr
+ A393tr13Kr1UGjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUbVkFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+ Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+ 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+ jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+ 1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+ n2IY04v7MxkIecxEwVAFwVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJV
+ W8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF
+ 1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6x
+ IIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6rW3Jr0E3s1lIxAI
+ cVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kf
+ nxnUUI43ZEXa7VUjNJ55UUUUU==
+X-Originating-IP: [124.16.138.128]
+X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211208_002041_208078_4760A668 
-X-CRM114-Status: GOOD (  22.48  )
+X-CRM114-CacheID: sfid-20211209_005900_468776_F58F69CA 
+X-CRM114-Status: UNSURE (   6.35  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,48 +78,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/12/2021 19:06, Kevin Hilman wrote:
-> Christian Hewitt <christianshewitt@gmail.com> writes:
-> 
->> This series adds support for several popular Amlogic S905X3 (SM1) Android
->> Set-Top Box devices. Like most Android box devices, they ship in variants
->> with multiple RAM, eMMC, WiFi and BT configurations. RAM and eMMC are not
->> something we need to consider to get a working boot, but we do need to get
->> the correct connectivity spec.
-> 
-> The reason we don't need to care about RAM differences is because u-boot
-> takes care of that, and updates the DT nodes accordingly.
-> 
-> In general, I'm not a fan of leaving these decisions up to u-boot,
-> but...  as an option...
+he return value of kzalloc() needs to be checked.
+To avoid use of null pointer in case of the failure of alloc.
 
-For now we always set "safe" values for RAM in DT so it could work
-even if not the entire memory is configured.
+Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
+Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+---
+ drivers/staging/media/meson/vdec/vdec_helpers.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Since there is no way to detect this from Linux on ARM64, we have no choice
-but hoping U-boot sets the right value...
-
-> 
-> I'm pondering if we should do the same for the connectivity settings?  A
-> properly configured u-boot already knows if it's an internal/external
-> PHY, Mbit vs Gbit etc. so in a similar way could enable/disable the
-> right nodes.
-> 
-> We could have a single DTS for each of these board families which
-> has some reasonable defaults, then u-boot would enable/disable nodes
-> accordingly.
-
-Yes it's technically possible, but it puts a larger dependency on the bootloader.
-
-Having a lower RAM value is not idea but the system will work, having the wrong
-PHY setup simply doesn't work.
-
-Neil
-
-> 
-> Kevin
-> 
-> 
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+index 7f07a9175815..025885fcfec6 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.c
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+@@ -234,6 +234,8 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+ 	unsigned long flags;
+ 
+ 	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
++	if (!new_ts)
++		return;
+ 	new_ts->ts = ts;
+ 	new_ts->tc = tc;
+ 	new_ts->offset = offset;
+-- 
+2.25.1
 
 
 _______________________________________________
