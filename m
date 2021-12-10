@@ -4,53 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25B7CC433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Dec 2021 01:37:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 519D4C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Dec 2021 01:56:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:CC:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=M8yMrt16yvIi1Ht0vvz3YuSkikvAhwt01wITiS/3snA=; b=kiALU8oeoRLoKyvQDIyB5rUx1z
-	mcSarqeEOMCXiUXbScYeyKu0I5U/WN0N3xZCPJfgy1zssryByU3+u9+aR1kIe9ikMpyXGsgALRdCo
-	huriyrMOz1RmzRoN/F+6rbK0iCsTUUKZJzHAdclqWZiTKu74j4COfDpyp+JFQGix8N5/HYlF+7z1l
-	D/etH03EBpxfqlQQVrb9zWnbbraGmvio83iK/EPX7JvJZ3iRJotpVBP5Qgaq8ObeLmOCn7wF40GKo
-	aeU6Bv9w3lPuwTmWMXsLGJSeGX/u3H2ZuuhHkvQxQb2olpzJ3k2kCJQBkWGr5KcjvROOrucO+t4rT
-	dvrn1V9Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=X32SeNwncCOwEQKd7lGlnZIErNUA/GiIfPzfGEeuppU=; b=DS1D1GWboZY3nl
+	mWN0g44sZRwazQJV5Ua6gS2SX548fg7AAocb96HlQvCHNfnqRfksIvcHfdalLRg23uVl/DaCaTQhE
+	Z4HgraEbONMvdjmQL7YVzSSgDLMm4wsfyEbjfUbJifHtjieMftlsTKUx4jVwtuh91A4Qbqxg4vDiQ
+	kUjujy8Fbw2L+e/kvsy98s/UR+rSTp0WdNstLX2V/rU0y836aJOYUop7wcY3M+G395PINzU0+f7ay
+	sxH1w8fJFAxZg4Ytbia8dwGhIDSS985BL335IN2GhGWpFyAL2jh0c3unf0TzRdhk1PG/DfLe4hRu8
+	MoUlrxmzQbD9mv+0Y1+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvUqc-000a3c-Sx; Fri, 10 Dec 2021 01:37:18 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvUqZ-000a1C-AJ; Fri, 10 Dec 2021 01:37:17 +0000
-Received: from [10.98.21.175] (10.98.21.175) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Fri, 10 Dec
- 2021 09:37:04 +0800
-Subject: Re: [PATCH V2] arm64: dts: add support for S4 based Amlogic AQ222
-To: Neil Armstrong <narmstrong@baylibre.com>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
- <robh+dt@kernel.org>
-References: <20211208064435.14307-1-xianwei.zhao@amlogic.com>
- <5ad49e05-3925-08de-af5a-c4b4371f711b@baylibre.com>
-From: xianwei.zhao <xianwei.zhao@amlogic.com>
-Message-ID: <813e729e-b6b5-4c79-53b2-41338e8add90@amlogic.com>
-Date: Fri, 10 Dec 2021 09:37:03 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+	id 1mvV9E-000cvb-JW; Fri, 10 Dec 2021 01:56:32 +0000
+Received: from smtp21.cstnet.cn ([159.226.251.21] helo=cstnet.cn)
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mvV9B-000ctL-JG; Fri, 10 Dec 2021 01:56:32 +0000
+Received: from localhost.localdomain (unknown [124.16.138.128])
+ by APP-01 (Coremail) with SMTP id qwCowACHj1fFs7JhU_EOAg--.23696S2;
+ Fri, 10 Dec 2021 09:56:21 +0800 (CST)
+From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+To: narmstrong@baylibre.com, mchehab@kernel.org, gregkh@linuxfoundation.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, p.zabel@pengutronix.de
+Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Jiasheng Jiang <jiasheng@iscas.ac.cn>
+Subject: [PATCH v2] media: meson: vdec: potential dereference of null pointer
+Date: Fri, 10 Dec 2021 09:56:20 +0800
+Message-Id: <20211210015620.2143555-1-jiasheng@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <5ad49e05-3925-08de-af5a-c4b4371f711b@baylibre.com>
-Content-Language: en-US
-X-Originating-IP: [10.98.21.175]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+X-CM-TRANSID: qwCowACHj1fFs7JhU_EOAg--.23696S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxAFWkWF1fZF1rZr4rKr43GFg_yoW5tryxpF
+ 10v342gFyUtFyUAr4UJr1kWFWSq348GFyI9a97Xw1fZry7tF17XFnayFWjgr98Jr1S9a18
+ CFyrWw1Uuw4jqrUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9j14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr
+ 1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
+ 7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
+ 1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02
+ 628vn2kIc2xKxwCY02Avz4vE14v_KwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbV
+ WUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF
+ 67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42
+ IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6rW3Jr0E3s1l
+ IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
+ C2KfnxnUUI43ZEXa7VUbLiSPUUUUU==
+X-Originating-IP: [124.16.138.128]
+X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_173715_408897_BE687FA2 
-X-CRM114-Status: GOOD (  18.50  )
+X-CRM114-CacheID: sfid-20211209_175630_051834_2F3FE533 
+X-CRM114-Status: GOOD (  10.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,114 +72,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAyMDIxLzEyLzkg5LiL5Y2IMTA6MDAsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+IAo+IEhp
-LAo+IAo+IE9uIDA4LzEyLzIwMjEgMDc6NDQsIHhpYW53ZWkuemhhbyB3cm90ZToKPj4gQWRkIGJh
-c2ljIHN1cHBvcnQgZm9yIHRoZSBBbWxvZ2ljIFM0IGJhc2VkIEFtbG9naWMgQVEyMjIgYm9hcmQ6
-Cj4+IHdoaWNoIGRlc2NyaWJlIGNvbXBvbmVudHMgYXMgZm9sbG93czogQ1BVLCBHSUMsIElSUSwg
-VGltZXIsIFVBUlQuCj4+IEl0J3MgY2FwYWJsZSBvZiBib290aW5nIHVwIGludG8gdGhlIHNlcmlh
-bCBjb25zb2xlLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiB4aWFud2VpLnpoYW8gPHhpYW53ZWkuemhh
-b0BhbWxvZ2ljLmNvbT4KPj4gLS0tCj4+IFYxIC0+IFYyOiBjbGVhbmVkIHVwIGNvZGluZyBzdHls
-ZSwgbW9kaWZ5IENQVSBhZmZpbml0eSBvZiB0aW1lciBpbnRlcnJ1cHMsCj4+ICAgICAgICAgICAg
-YW5kIG1vZGlmeSBHSUMgcmVnIGRlZmludGlvbnMuCj4+IC0tLQo+PiAgIGFyY2gvYXJtNjQvYm9v
-dC9kdHMvYW1sb2dpYy9NYWtlZmlsZSAgICAgICAgICB8ICAxICsKPj4gICAuLi4vZHRzL2FtbG9n
-aWMvbWVzb24tczQtczgwNXgyLWFxMjIyLmR0cyAgICAgfCAzMCArKysrKysKPj4gICBhcmNoL2Fy
-bTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQuZHRzaSAgICAgfCA5OSArKysrKysrKysrKysr
-KysrKysrCj4+ICAgMyBmaWxlcyBjaGFuZ2VkLCAxMzAgaW5zZXJ0aW9ucygrKQo+PiAgIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQtczgwNXgy
-LWFxMjIyLmR0cwo+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL2Ft
-bG9naWMvbWVzb24tczQuZHRzaQo+Pgo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0
-cy9hbWxvZ2ljL01ha2VmaWxlIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL01ha2VmaWxl
-Cj4+IGluZGV4IDUxNDhjZDllNTE0Ni4uZmFlYTc0YTQ1OTk0IDEwMDY0NAo+PiAtLS0gYS9hcmNo
-L2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvTWFrZWZpbGUKPj4gKysrIGIvYXJjaC9hcm02NC9ib290
-L2R0cy9hbWxvZ2ljL01ha2VmaWxlCj4+IEBAIC01NywzICs1Nyw0IEBAIGR0Yi0kKENPTkZJR19B
-UkNIX01FU09OKSArPSBtZXNvbi1zbTEtb2Ryb2lkLWM0LmR0Ygo+PiAgIGR0Yi0kKENPTkZJR19B
-UkNIX01FU09OKSArPSBtZXNvbi1zbTEtb2Ryb2lkLWhjNC5kdGIKPj4gICBkdGItJChDT05GSUdf
-QVJDSF9NRVNPTikgKz0gbWVzb24tc20xLXNlaTYxMC5kdGIKPj4gICBkdGItJChDT05GSUdfQVJD
-SF9NRVNPTikgKz0gbWVzb24tYTEtYWQ0MDEuZHRiCj4+ICtkdGItJChDT05GSUdfQVJDSF9NRVNP
-TikgKz0gbWVzb24tczQtczgwNXgyLWFxMjIyLmR0Ygo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02
-NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLXM0LXM4MDV4Mi1hcTIyMi5kdHMgYi9hcmNoL2FybTY0
-L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQtczgwNXgyLWFxMjIyLmR0cwo+PiBuZXcgZmlsZSBt
-b2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjNiMzQwNTk0YTEyNQo+PiAtLS0gL2Rl
-di9udWxsCj4+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zNC1zODA1
-eDItYXEyMjIuZHRzCj4+IEBAIC0wLDAgKzEsMzAgQEAKPj4gKy8vIFNQRFgtTGljZW5zZS1JZGVu
-dGlmaWVyOiAoR1BMLTIuMCsgT1IgTUlUKQo+PiArLyoKPj4gKyAqIENvcHlyaWdodCAoYykgMjAy
-MSBBbWxvZ2ljLCBJbmMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuCj4+ICsgKi8KPj4gKwo+PiArL2R0
-cy12MS87Cj4+ICsKPj4gKyNpbmNsdWRlICJtZXNvbi1zNC5kdHNpIgo+PiArCj4+ICsvIHsKPj4g
-Kwltb2RlbCA9ICJBbWxvZ2ljIE1lc29uIFM0IEFRMjIyIERldmVsb3BtZW50IEJvYXJkIjsKPj4g
-Kwljb21wYXRpYmxlID0gImFtbG9naWMsYXEyMjIiOwo+IAo+IEFjY29yZGluZyB0byBiaW5kaW5n
-cywgaXQgc2hvdWxkIGJlOiBjb21wYXRpYmxlID0gImFtbG9naWMsYXEyMjIsICJtZXNvbixzNCIK
-QWNjb3JkaW5nIHRvIHByZXZpb3VzIHBhdGNoIFswXSwgbWF5YmUgdGhlIGZvbGxvd2luZyBsaW5l
-IGlzIHJlYXNvbmFibGUuCmNvbXBhdGlibGUgPSAiYW1sb2dpYyxhcTIyMiwgImFtbGdvaWMsczQi
-Cgo+IAo+PiArCWludGVycnVwdC1wYXJlbnQgPSA8JmdpYz47Cj4+ICsJI2FkZHJlc3MtY2VsbHMg
-PSA8Mj47Cj4+ICsJI3NpemUtY2VsbHMgPSA8Mj47Cj4+ICsKPj4gKwlhbGlhc2VzIHsKPj4gKwkJ
-c2VyaWFsMCA9ICZ1YXJ0X0I7Cj4+ICsJfTsKPj4gKwo+PiArCW1lbW9yeUAwMDAwMDAwMCB7Cj4+
-ICsJCWRldmljZV90eXBlID0gIm1lbW9yeSI7Cj4+ICsJCXJlZyA9IDwweDAgMHgwIDB4MCAweDQw
-MDAwMDAwPjsKPj4gKwl9Owo+PiArCj4+ICt9Owo+PiArCj4+ICsmdWFydF9CIHsKPj4gKwlzdGF0
-dXMgPSAib2theSI7Cj4+ICt9Owo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9h
-bWxvZ2ljL21lc29uLXM0LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24t
-czQuZHRzaQo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLmQ3
-MDgzYzkzZDNkMAo+PiAtLS0gL2Rldi9udWxsCj4+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
-YW1sb2dpYy9tZXNvbi1zNC5kdHNpCj4+IEBAIC0wLDAgKzEsOTkgQEAKPj4gKy8vIFNQRFgtTGlj
-ZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCsgT1IgTUlUKQo+PiArLyoKPj4gKyAqIENvcHlyaWdo
-dCAoYykgMjAyMSBBbWxvZ2ljLCBJbmMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuCj4+ICsgKi8KPj4g
-Kwo+PiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2lycS5oPgo+
-PiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2FybS1naWMuaD4K
-Pj4gKwo+PiArLyB7Cj4+ICsJY3B1czpjcHVzIHsKPj4gKwkJI2FkZHJlc3MtY2VsbHMgPSA8Mj47
-Cj4+ICsJCSNzaXplLWNlbGxzID0gPDA+Owo+PiArCj4+ICsJCUNQVTA6Y3B1QDAgewo+PiArCQkJ
-ZGV2aWNlX3R5cGUgPSAiY3B1IjsKPj4gKwkJCWNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hMzUi
-LCJhcm0sYXJtdjgiOwo+PiArCQkJcmVnID0gPDB4MCAweDA+Owo+PiArCQkJZW5hYmxlLW1ldGhv
-ZCA9ICJwc2NpIjsKPj4gKwkJfTsKPj4gKwo+PiArCQlDUFUxOmNwdUAxIHsKPj4gKwkJCWRldmlj
-ZV90eXBlID0gImNwdSI7Cj4+ICsJCQljb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTM1IiwiYXJt
-LGFybXY4IjsKPj4gKwkJCXJlZyA9IDwweDAgMHgxPjsKPj4gKwkJCWVuYWJsZS1tZXRob2QgPSAi
-cHNjaSI7Cj4+ICsJCX07Cj4+ICsKPj4gKwkJQ1BVMjpjcHVAMiB7Cj4+ICsJCQlkZXZpY2VfdHlw
-ZSA9ICJjcHUiOwo+PiArCQkJY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWEzNSIsImFybSxhcm12
-OCI7Cj4+ICsJCQlyZWcgPSA8MHgwIDB4Mj47Cj4+ICsJCQllbmFibGUtbWV0aG9kID0gInBzY2ki
-Owo+PiArCQl9Owo+PiArCj4+ICsJCUNQVTM6Y3B1QDMgewo+PiArCQkJZGV2aWNlX3R5cGUgPSAi
-Y3B1IjsKPj4gKwkJCWNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hMzUiLCJhcm0sYXJtdjgiOwo+
-PiArCQkJcmVnID0gPDB4MCAweDM+Owo+PiArCQkJZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsKPj4g
-KwkJfTsKPj4gKwl9Owo+PiArCj4+ICsJdGltZXIgewo+PiArCQljb21wYXRpYmxlID0gImFybSxh
-cm12OC10aW1lciI7Cj4+ICsJCWludGVycnVwdHMgPSA8R0lDX1BQSSAxMyAoR0lDX0NQVV9NQVNL
-X1NJTVBMRSg0KSB8IElSUV9UWVBFX0xFVkVMX0xPVyk+LAo+PiArCQkJICAgICA8R0lDX1BQSSAx
-NCAoR0lDX0NQVV9NQVNLX1NJTVBMRSg0KSB8IElSUV9UWVBFX0xFVkVMX0xPVyk+LAo+PiArCQkJ
-ICAgICA8R0lDX1BQSSAxMSAoR0lDX0NQVV9NQVNLX1NJTVBMRSg0KSB8IElSUV9UWVBFX0xFVkVM
-X0xPVyk+LAo+PiArCQkJICAgICA8R0lDX1BQSSAxMCAoR0lDX0NQVV9NQVNLX1NJTVBMRSg0KSB8
-IElSUV9UWVBFX0xFVkVMX0xPVyk+Owo+PiArCX07Cj4+ICsKPj4gKwlwc2NpIHsKPj4gKwkJY29t
-cGF0aWJsZSA9ICJhcm0scHNjaS0xLjAiOwo+PiArCQltZXRob2QgPSAic21jIjsKPj4gKwl9Owo+
-PiArCj4+ICsJeHRhbDogeHRhbC1jbGsgewo+PiArCQljb21wYXRpYmxlID0gImZpeGVkLWNsb2Nr
-IjsKPj4gKwkJY2xvY2stZnJlcXVlbmN5ID0gPDI0MDAwMDAwPjsKPj4gKwkJY2xvY2stb3V0cHV0
-LW5hbWVzID0gInh0YWwiOwo+PiArCQkjY2xvY2stY2VsbHMgPSA8MD47Cj4+ICsJfTsKPj4gKwo+
-PiArCXNvYyB7Cj4+ICsJCWNvbXBhdGlibGUgPSAic2ltcGxlLWJ1cyI7Cj4+ICsJCSNhZGRyZXNz
-LWNlbGxzID0gPDI+Owo+PiArCQkjc2l6ZS1jZWxscyA9IDwyPjsKPj4gKwkJcmFuZ2VzOwo+PiAr
-Cj4+ICsJCWdpYzogaW50ZXJydXB0LWNvbnRyb2xsZXJAZmZmMDEwMDAgewo+PiArCQkJY29tcGF0
-aWJsZSA9ICJhcm0sZ2ljLTQwMCI7Cj4+ICsJCQkjaW50ZXJydXB0LWNlbGxzID0gPDM+Owo+PiAr
-CQkJI2FkZHJlc3MtY2VsbHMgPSA8MD47Cj4+ICsJCQlpbnRlcnJ1cHQtY29udHJvbGxlcjsKPj4g
-KwkJCXJlZyA9IDwweDAgMHhmZmYwMTAwMCAwIDB4MTAwMD4sCj4+ICsJCQkgICAgICA8MHgwIDB4
-ZmZmMDIwMDAgMCAweDIwMDA+LAo+PiArCQkJICAgICAgPDB4MCAweGZmZjA0MDAwIDAgMHgyMDAw
-PiwKPj4gKwkJCSAgICAgIDwweDAgMHhmZmYwNjAwMCAwIDB4MjAwMD47Cj4+ICsJCQlpbnRlcnJ1
-cHRzID0gPEdJQ19QUEkgOSAoR0lDX0NQVV9NQVNLX1NJTVBMRSg0KSB8IElSUV9UWVBFX0xFVkVM
-X0hJR0gpPjsKPj4gKwkJfTsKPj4gKwo+PiArCQlhcGI0OiBhcGI0QGZlMDAwMDAwIHsKPj4gKwkJ
-CWNvbXBhdGlibGUgPSAic2ltcGxlLWJ1cyI7Cj4+ICsJCQlyZWcgPSA8MHgwIDB4ZmUwMDAwMDAg
-MHgwIDB4NDgwMDAwPjsKPj4gKwkJCSNhZGRyZXNzLWNlbGxzID0gPDI+Owo+PiArCQkJI3NpemUt
-Y2VsbHMgPSA8Mj47Cj4+ICsJCQlyYW5nZXMgPSA8MHgwIDB4MCAweDAgMHhmZTAwMDAwMCAweDAg
-MHg0ODAwMDA+Owo+PiArCj4+ICsJCQl1YXJ0X0I6IHNlcmlhbEA3YTAwMCB7Cj4+ICsJCQkJY29t
-cGF0aWJsZSA9ICJhbWxvZ2ljLG1lc29uLXM0LXVhcnQiLAo+PiArCQkJCQkgICAgICJhbWxvZ2lj
-LG1lc29uLWFvLXVhcnQiOwo+IAo+IFdoZW4gd2lsbCB5b3Ugc2VuZCB0aGUgc2VyaWFsIGJpbmRp
-bmdzID8KClRoZSByZWxhdGVkIHBhdGNoIGlzIG9uIHRoZSB3YXkuCgo+IAo+PiArCQkJCXJlZyA9
-IDwweDAgMHg3YTAwMCAweDAgMHgxOD47Cj4+ICsJCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE2
-OSBJUlFfVFlQRV9FREdFX1JJU0lORz47Cj4+ICsJCQkJc3RhdHVzID0gImRpc2FibGVkIjsKPj4g
-KwkJCQljbG9ja3MgPSA8Jnh0YWw+LCA8Jnh0YWw+LCA8Jnh0YWw+Owo+PiArCQkJCWNsb2NrLW5h
-bWVzID0gInh0YWwiLCAicGNsayIsICJiYXVkIjsKPj4gKwkJCX07Cj4+ICsJCX07Cj4+ICsJfTsK
-Pj4gK307Cj4+Cj4+IGJhc2UtY29tbWl0OiBjNTQ2OGUzYzkzMGQ0ZDI5MzdkM2E4NDJhODVkZjBm
-NzRlOTVlMTUyCj4+Cj4gCj4gTm8gbmVlZCB0byBzZW5kIGEgdjMgdW50aWwgYm90aCBiaW5kaW5n
-cyBoYXZlIGJlZW4gYWNjZXB0ZWQuCj4gCj4gTmVpbAo+IAo+IC4KPiAKCgpUaGFua3MhCgoKCgpC
-ZXN0IHJlZ2FyZHMsCgoKCgp4aWFud2VpLnpoYW8KClswXSAKaHR0cHM6Ly9wYXRjaHdvcmsua2Vy
-bmVsLm9yZy9wcm9qZWN0L2xpbnV4LWFtbG9naWMvcGF0Y2gvMTU2ODI3NjM3MC01NDE4MS01LWdp
-dC1zZW5kLWVtYWlsLWppYW54aW4ucGFuQGFtbG9naWMuY29tLwoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
-bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
-b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+The return value of kzalloc() needs to be checked.
+To avoid use of null pointer in case of the failure of alloc.
+
+Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
+Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+---
+Changelog:
+
+v1 -> v2
+
+*Change 1. Change the return type of amvdec_add_ts from void to int.
+*Change 2. Return -ENOMEN if alloc fail and return 0 if not.
+*Change 3. Modify the caller to deal with the error.
+---
+ drivers/staging/media/meson/vdec/esparser.c     | 6 +++++-
+ drivers/staging/media/meson/vdec/vdec_helpers.c | 5 ++++-
+ drivers/staging/media/meson/vdec/vdec_helpers.h | 2 +-
+ 3 files changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
+index db7022707ff8..7e78288cc551 100644
+--- a/drivers/staging/media/meson/vdec/esparser.c
++++ b/drivers/staging/media/meson/vdec/esparser.c
+@@ -328,9 +328,13 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
+ 
+ 	offset = esparser_get_offset(sess);
+ 
+-	amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
++	ret = amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
+ 	dev_dbg(core->dev, "esparser: ts = %llu pld_size = %u offset = %08X flags = %08X\n",
+ 		vb->timestamp, payload_size, offset, vbuf->flags);
++	if (ret) {
++		v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
++		return ret;
++	}
+ 
+ 	vbuf->flags = 0;
+ 	vbuf->field = V4L2_FIELD_NONE;
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+index 7f07a9175815..972a1d1a12a5 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.c
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+@@ -227,13 +227,15 @@ int amvdec_set_canvases(struct amvdec_session *sess,
+ }
+ EXPORT_SYMBOL_GPL(amvdec_set_canvases);
+ 
+-void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++		  struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
+ {
+ 	struct amvdec_timestamp *new_ts;
+ 	unsigned long flags;
+ 
+ 	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
++	if (!new_ts)
++		return -ENOMEM;
+ 	new_ts->ts = ts;
+ 	new_ts->tc = tc;
+ 	new_ts->offset = offset;
+@@ -242,6 +244,7 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+ 	spin_lock_irqsave(&sess->ts_spinlock, flags);
+ 	list_add_tail(&new_ts->list, &sess->timestamps);
+ 	spin_unlock_irqrestore(&sess->ts_spinlock, flags);
++	return 0;
+ }
+ EXPORT_SYMBOL_GPL(amvdec_add_ts);
+ 
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
+index cfaed52ab526..1bcb697290de 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.h
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
+@@ -55,7 +55,7 @@ void amvdec_dst_buf_done_offset(struct amvdec_session *sess,
+  * @offset: offset in the VIFIFO where the associated packet was written
+  * @flags the vb2_v4l2_buffer flags
+  */
+-void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++		  struct v4l2_timecode tc, u32 offset, u32 flags);
+ void amvdec_remove_ts(struct amvdec_session *sess, u64 ts);
+ 
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
