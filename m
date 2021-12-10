@@ -4,63 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 519D4C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Dec 2021 01:56:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 676A4C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Dec 2021 06:28:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=X32SeNwncCOwEQKd7lGlnZIErNUA/GiIfPzfGEeuppU=; b=DS1D1GWboZY3nl
-	mWN0g44sZRwazQJV5Ua6gS2SX548fg7AAocb96HlQvCHNfnqRfksIvcHfdalLRg23uVl/DaCaTQhE
-	Z4HgraEbONMvdjmQL7YVzSSgDLMm4wsfyEbjfUbJifHtjieMftlsTKUx4jVwtuh91A4Qbqxg4vDiQ
-	kUjujy8Fbw2L+e/kvsy98s/UR+rSTp0WdNstLX2V/rU0y836aJOYUop7wcY3M+G395PINzU0+f7ay
-	sxH1w8fJFAxZg4Ytbia8dwGhIDSS985BL335IN2GhGWpFyAL2jh0c3unf0TzRdhk1PG/DfLe4hRu8
-	MoUlrxmzQbD9mv+0Y1+A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:CC:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=uilE3gszeLWOiPc0P4RtcPS3pUyD7dma+4cIgq2IKAc=; b=1HrxOefQsJzrZXlcP7uKS0oxc+
+	NZJRw8tb53t7m3OXWheay0lrWbns6UUfjGl8KtkLLEuNtexQ3aCKCUiKG4XJZjdeZvOHx2prIqZhB
+	V+T01v9Agg3feorJY3WjQ3gAO2wa2rxNoxvBbtA+3mBAJNI/26Kub5Vt9qxWUHpS7BAjb4GPyuRk/
+	+GoAGR4N9T58mJDB/miQuW42lcFJCQ9UQIKhXiTGY2RGlxH85R+wWPUe0MgYXvxwbKsMzqaWQbnhQ
+	wJvG/NgdNbTXzZq/KKZO7ggoRj8EwvgOcsG/8SS3a/EOb+tFI6tm7B2BMjbBCuYOm6hBV8cN4CDDM
+	ODeb/5Ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvV9E-000cvb-JW; Fri, 10 Dec 2021 01:56:32 +0000
-Received: from smtp21.cstnet.cn ([159.226.251.21] helo=cstnet.cn)
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvV9B-000ctL-JG; Fri, 10 Dec 2021 01:56:32 +0000
-Received: from localhost.localdomain (unknown [124.16.138.128])
- by APP-01 (Coremail) with SMTP id qwCowACHj1fFs7JhU_EOAg--.23696S2;
- Fri, 10 Dec 2021 09:56:21 +0800 (CST)
-From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
-To: narmstrong@baylibre.com, mchehab@kernel.org, gregkh@linuxfoundation.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, p.zabel@pengutronix.de
-Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Jiasheng Jiang <jiasheng@iscas.ac.cn>
-Subject: [PATCH v2] media: meson: vdec: potential dereference of null pointer
-Date: Fri, 10 Dec 2021 09:56:20 +0800
-Message-Id: <20211210015620.2143555-1-jiasheng@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+	id 1mvZOR-000s78-R7; Fri, 10 Dec 2021 06:28:31 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mvZOF-000s5R-7K; Fri, 10 Dec 2021 06:28:20 +0000
+Received: from [10.98.21.175] (10.98.21.175) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Fri, 10 Dec
+ 2021 14:28:03 +0800
+Subject: Re: [PATCH] dt-bindings: arm: amlogic: add S4 based AQ222 bindings
+To: Neil Armstrong <narmstrong@baylibre.com>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>, Christian Hewitt
+ <christianshewitt@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Vyacheslav
+ Bocharov <adeep@lexina.in>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, "open list:ARM/Amlogic Meson..."
+ <linux-amlogic@lists.infradead.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+References: <20211208093347.4837-1-xianwei.zhao@amlogic.com>
+ <bd981d0c-af5c-2b29-0ae3-df6bf01ea485@baylibre.com>
+ <357b657c-161e-9977-976f-387165aa4883@baylibre.com>
+From: xianwei.zhao <xianwei.zhao@amlogic.com>
+Message-ID: <f1f15872-4f20-47c4-f745-a0ffe12f2f84@amlogic.com>
+Date: Fri, 10 Dec 2021 14:28:02 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-X-CM-TRANSID: qwCowACHj1fFs7JhU_EOAg--.23696S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxAFWkWF1fZF1rZr4rKr43GFg_yoW5tryxpF
- 10v342gFyUtFyUAr4UJr1kWFWSq348GFyI9a97Xw1fZry7tF17XFnayFWjgr98Jr1S9a18
- CFyrWw1Uuw4jqrUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9j14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr
- 1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
- 7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
- 1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02
- 628vn2kIc2xKxwCY02Avz4vE14v_KwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbV
- WUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF
- 67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42
- IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6rW3Jr0E3s1l
- IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
- C2KfnxnUUI43ZEXa7VUbLiSPUUUUU==
-X-Originating-IP: [124.16.138.128]
-X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
+In-Reply-To: <357b657c-161e-9977-976f-387165aa4883@baylibre.com>
+Content-Language: en-US
+X-Originating-IP: [10.98.21.175]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_175630_051834_2F3FE533 
-X-CRM114-Status: GOOD (  10.58  )
+X-CRM114-CacheID: sfid-20211209_222819_285553_E7554A79 
+X-CRM114-Status: GOOD (  11.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,96 +65,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The return value of kzalloc() needs to be checked.
-To avoid use of null pointer in case of the failure of alloc.
-
-Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
-Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
----
-Changelog:
-
-v1 -> v2
-
-*Change 1. Change the return type of amvdec_add_ts from void to int.
-*Change 2. Return -ENOMEN if alloc fail and return 0 if not.
-*Change 3. Modify the caller to deal with the error.
----
- drivers/staging/media/meson/vdec/esparser.c     | 6 +++++-
- drivers/staging/media/meson/vdec/vdec_helpers.c | 5 ++++-
- drivers/staging/media/meson/vdec/vdec_helpers.h | 2 +-
- 3 files changed, 10 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
-index db7022707ff8..7e78288cc551 100644
---- a/drivers/staging/media/meson/vdec/esparser.c
-+++ b/drivers/staging/media/meson/vdec/esparser.c
-@@ -328,9 +328,13 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
- 
- 	offset = esparser_get_offset(sess);
- 
--	amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
-+	ret = amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
- 	dev_dbg(core->dev, "esparser: ts = %llu pld_size = %u offset = %08X flags = %08X\n",
- 		vb->timestamp, payload_size, offset, vbuf->flags);
-+	if (ret) {
-+		v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
-+		return ret;
-+	}
- 
- 	vbuf->flags = 0;
- 	vbuf->field = V4L2_FIELD_NONE;
-diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
-index 7f07a9175815..972a1d1a12a5 100644
---- a/drivers/staging/media/meson/vdec/vdec_helpers.c
-+++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
-@@ -227,13 +227,15 @@ int amvdec_set_canvases(struct amvdec_session *sess,
- }
- EXPORT_SYMBOL_GPL(amvdec_set_canvases);
- 
--void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
-+int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
-+		  struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
- {
- 	struct amvdec_timestamp *new_ts;
- 	unsigned long flags;
- 
- 	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
-+	if (!new_ts)
-+		return -ENOMEM;
- 	new_ts->ts = ts;
- 	new_ts->tc = tc;
- 	new_ts->offset = offset;
-@@ -242,6 +244,7 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
- 	spin_lock_irqsave(&sess->ts_spinlock, flags);
- 	list_add_tail(&new_ts->list, &sess->timestamps);
- 	spin_unlock_irqrestore(&sess->ts_spinlock, flags);
-+	return 0;
- }
- EXPORT_SYMBOL_GPL(amvdec_add_ts);
- 
-diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
-index cfaed52ab526..1bcb697290de 100644
---- a/drivers/staging/media/meson/vdec/vdec_helpers.h
-+++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
-@@ -55,7 +55,7 @@ void amvdec_dst_buf_done_offset(struct amvdec_session *sess,
-  * @offset: offset in the VIFIFO where the associated packet was written
-  * @flags the vb2_v4l2_buffer flags
-  */
--void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
-+int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
-+		  struct v4l2_timecode tc, u32 offset, u32 flags);
- void amvdec_remove_ts(struct amvdec_session *sess, u64 ts);
- 
--- 
-2.25.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTmVpbCwKCgoKCiAgSSB3aWxsIG1vZGlmeSB0aGUgbGluZSBhbmQgdXBkYXRlIHRoZSBwYXRj
+aCBsYXRlci4KCgoKClRoYW5rcyEKCgoKCkJlc3QgcmVnYXJkcywKCgoKCnhpYW53ZWkuemhhbwoK
+CgpPbiAyMDIxLzEyLzkg5LiL5Y2IOTo1OCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gCj4gT24g
+MDkvMTIvMjAyMSAxNDo1NSwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4+ICtjYyBsaW51eC1hbWxv
+Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQu
+b3JnCj4+Cj4+IE9uIDA4LzEyLzIwMjEgMTA6MzMsIHhpYW53ZWkuemhhbyB3cm90ZToKPj4+IEFk
+ZCBiaW5kaW5ncyBmb3IgdGhlIG5ldyBBbWxvZ2ljIFM0IFNvQyBmYW1pbHksCj4+PiBhbmQgdGhl
+IGNvbXBhdGlibGUgZm9yIHRoZSBBbWxvZ2ljIFM0IEJhc2VkIEFRMjIyIGJvYXJkLgo+IAo+IFdo
+YXQncyB0aGUgU29DIGNvbW1lcmNpYWwgbmFtZSA/IHM4MDV4MiA/IGFuZCB0aGUgYm9hcmQgbW9k
+ZWwgPyBBUTIyMiBhbmQgdGhlIGZhbWlseSA/IFM0ID8KPiAKPj4+Cj4+PiBTNCBpcyBhbiBhcHBs
+aWNhdGlvbiBwcm9jZXNzb3IgZGVzaWduZWQgZm9yIGh5YnJpZCBPVFQvSVAgU2V0IFRvCj4+PiBC
+b3goU1RCKSBhbmQgaGlnaC1lbmQgbWVkaWEgYm94IGFwcGxpY2F0aW9ucywgd2l0aCBxdWFkIGNv
+cmUgQ29ydGV4LUEzNS4KPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiB4aWFud2VpLnpoYW8gPHhpYW53
+ZWkuemhhb0BhbWxvZ2ljLmNvbT4KPj4+IC0tLQo+Pj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvYXJtL2FtbG9naWMueWFtbCB8IDYgKysrKysrCj4+PiAgIDEgZmlsZSBjaGFu
+Z2VkLCA2IGluc2VydGlvbnMoKykKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9hbWxvZ2ljLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvYXJtL2FtbG9naWMueWFtbAo+Pj4gaW5kZXggMzYwODE3MzRmNzIwLi42
+MzAzN2ViZGQ3YmYgMTAwNjQ0Cj4+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvYXJtL2FtbG9naWMueWFtbAo+Pj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL2FybS9hbWxvZ2ljLnlhbWwKPj4+IEBAIC0xODMsNiArMTgzLDEyIEBAIHByb3Bl
+cnRpZXM6Cj4+PiAgICAgICAgICAgICAgICAgLSBhbWxvZ2ljLGFkNDAxCj4+PiAgICAgICAgICAg
+ICAtIGNvbnN0OiBhbWxvZ2ljLGExCj4+PiAgIAo+Pj4gKyAgICAgIC0gZGVzY3JpcHRpb246IEJv
+YXJkcyB3aXRoIHRoZSBBbWxvZ2ljIE1lc29uIFM0IEFRMjIyIFNvQwo+IAo+IFNvIGl0IHNob3Vs
+ZCBiZToKPiAgICAgICAgLSBkZXNjcmlwdGlvbjogQm9hcmRzIHdpdGggdGhlIEFtbG9naWMgTWVz
+b24gUzQgUzgwNVgyIFNvQwo+IAo+Pj4gKyAgICAgICAgaXRlbXM6Cj4+PiArICAgICAgICAgIC0g
+ZW51bToKPj4+ICsgICAgICAgICAgICAgIC0gYW1sb2dpYyxhcTIyMgo+Pj4gKyAgICAgICAgICAt
+IGNvbnN0OiBhbWxvZ2ljLHM0Cj4+PiArCj4+PiAgIGFkZGl0aW9uYWxQcm9wZXJ0aWVzOiB0cnVl
+Cj4+PiAgIAo+Pj4gICAuLi4KPj4+Cj4+PiBiYXNlLWNvbW1pdDogYTNlYmRjYzhmYjNkOTRkZTM5
+MGU1OGFkM2RhNjE2MTgyNmE1OGE4Nwo+Pj4KPj4KPiAKPiBOZWlsCj4gCj4gLgo+IAoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
+YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
+cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
