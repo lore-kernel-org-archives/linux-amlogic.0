@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D71F8C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Dec 2021 15:00:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81BA2C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Dec 2021 15:00:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=7UyAokGKRNtiTSHzwsCUPoEA99sjjAy5FxDzWnUE3eY=; b=o9Q+uNCVfeEnbj
-	AqyARXK2Yc4pmGweePjBI0du+F8YK7VofZprjCjqybOdUVzGbKNfb/n90O+hITNRqigTtjFyE0h7+
-	127HoOY+LYSPRAaLlCw5oZcqnT/wh4Cdwk+ApoUZVHyPh5yEQX9J7BsFLOuCK1vqBRS0C7LsQmn1d
-	9P2USIDNz6TDexAneQIB+Qs6Z3HhUJqmGgR6R831PXcT+HQI240/6alQfMSWtUNts2XoVUtqx5CTx
-	QsaeJL2IjdonN22TPuztWRdzWB0Th45Htk/I38VfUho4mHK6CWQrcJiP+D02HpZNFgU+AT182akk+
-	HKIcMYX86MBJ3ErL7ruQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=TfslUsCbwUTvbjzJp4exeD7wBb+3KEa8Df+io6aAXDE=; b=BmoOvBj4X7dryQ
+	+VrwAdpI9a+mEcRVJAPxBfO8EZFkGiVTgbTEIsZ0Q37lYy+JZUi/sasVvVbcL7SAe7loVEHbsr09O
+	QXR98n2maU4fW58N04pXd04VtmI6Sicc0xKqRWosbmGh0t/6g4E/f7cWZYVlVsxEbW+Xl6p8BvkTN
+	t0od3bIOg+oHAchlcvoC25UOt0pnV8X/aqOWFlx1w0zltKznvAh6Yo8dZmI+WL/q9i7BCtSJ8pALK
+	eUQzfeob1MJOTRG4mUNMXQj76bD+dlV11lwvMSMyYAdGJBAwylq+vwm6BwiqMJBSWrCRlKcvydpsZ
+	Hma1RxUGk2Q50gv9ddqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mwQKp-006gpx-LT; Sun, 12 Dec 2021 15:00:19 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1mwQL2-006gtX-A8; Sun, 12 Dec 2021 15:00:32 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mwQKm-006goY-Py; Sun, 12 Dec 2021 15:00:18 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id o13so22953006wrs.12;
- Sun, 12 Dec 2021 07:00:15 -0800 (PST)
+ id 1mwQKn-006goZ-8p; Sun, 12 Dec 2021 15:00:18 +0000
+Received: by mail-wr1-x429.google.com with SMTP id u17so23036892wrt.3;
+ Sun, 12 Dec 2021 07:00:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=+XKpi1Nw/K0WwguHbm8TyEDZ13WyLeSnzDDVy8OBGh0=;
- b=BbcEfHrxsflbtHwJaZkG3PwLNz7LaNIlm8ci1p6MU0ofHz22aTuqYTxsEFnTKQP8cM
- vM13Ir+W4lAOibTy/sioVVfDEY6VlreL5tuWit3/D68RJi1s97PUS/pGugsRrFE+hHuh
- ke0XGkzLVW3Oh310JSntNVoJ8SYPAy+buFww99kf98SGR70kjJETkHaJMgS3Cb9QOb6e
- uhtUAhg0T4Kq7giWtd/nleWouGZYmVt0E4vYy1RLhmneeGjzlzLf8Ttm/NnU2eO7Yw9N
- HAT6vtFW3UyY3nC5bWNAOIoyA6ck4834KmL7DIBqKSZw57Yer827Mn1JhiYFOk1IuY35
- /bIg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=UP9pG6uKZAoL6xiFw7btc/sBc9qDC7+hGRLW0JFhSVk=;
+ b=HmWK9zrUArMWPecimSXNGOviBl90BWrJqgUGPU7yVt13kPvA9G6JvY7VAJtJi7/eje
+ BRkinnynjf56loJ1VqDKhxHKtb98Vx/DiT7LUeqP/Tl0hh599HdhA9/UxQYRZe+OxPDy
+ 9op1J1ZSDfy0RXoTokv3DAcAl1q4Eeh1NYxjYoDhX4KKuJzCBvvePd232YSBn0zJWo/R
+ 79GoQ3cqFTrU2xHzpVI2ek0DnSQl+8qCzyad4S75YRAQuTEx9Zz8az1CZy4Nvn+AYoRf
+ 3fQgM26oppedVZbAoLTJVVeCJuDwdrSM5sUCzvDYCFpLDGVSNOtfI2uNr9w6ilR9Mn8A
+ tKmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=+XKpi1Nw/K0WwguHbm8TyEDZ13WyLeSnzDDVy8OBGh0=;
- b=RIEvyW1HbOKllHNxrvLdjvion0/3xR39ASBUYN2uOXpSvMdfzwFqivxqtqzcSkO9M7
- TSF2PMygX7PTC25m/3quAC57guWAc9JbeRSGf1N1W664UVVejFUL1ud4fC8gEtKfA5NC
- olw3QmTkvBvkjj/rypAR5HVYGyLet91+D7R1FnDgzWaglP8YC2LuZ9SLkNzEoXR/ubmu
- 1w+3PYc3/H9x7dc4ATm88oTDgqsyBB4gJb6oTDX5yNk4UNVtjqrl5d5w524sRmMKEzLK
- SVvGwgk2aj8TJHUSuJp2tMppj7IfckV3oG/laRNBSS5h++2WVg79sJLmjkbEEYtYUOQp
- 41mA==
-X-Gm-Message-State: AOAM5316PZGvDmqGOb5YOUxXUjjJ4wNAo/FxuBLjeqPIi6sVhxUUG0kz
- oZQefy5Xisk4YzbR7y9/DoU=
-X-Google-Smtp-Source: ABdhPJzTZpsZI1BAw5ZZwfPMws34vaAaoaZIAhFAGIM+aq5rlwXlEZPax6qRx+/jcnN6isMRKWD0oQ==
-X-Received: by 2002:adf:ce08:: with SMTP id p8mr26313464wrn.154.1639321214331; 
- Sun, 12 Dec 2021 07:00:14 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=UP9pG6uKZAoL6xiFw7btc/sBc9qDC7+hGRLW0JFhSVk=;
+ b=cccqQ2159g4bj+rt1mxTy1HIbcuE1zFukij+qzV/PUX66KZCMzqoYL3VXWsfpGFNRD
+ XlIH0GUMSG/PagiVuF1/dk+rrpomkgRRaJVlK2QQTZK3eURTOsDF+P8hxC1NZkWpvFk3
+ 45virWWuPZPieIRX1pToc7Qy1hq155H0ev96ybpY+QLZs92BigAT2+48O8LAlH3hhYG4
+ UQ26lre2Y8YXvWf1TB/6f4hlCyL6WoZs9fIc70iP6njBObRbZHzkGQLV/SCQiKApnudG
+ DaVsf1NWPgk+SN6IjjycEhHpC12DzcQHRd2jbA4WOfNMuIRxIfO+fzkfDWaDnYMiu8ch
+ A8uw==
+X-Gm-Message-State: AOAM532v7yVSMNvTTQ3zAG+IwX/B6EeYOWLdhjRAztd3vxWtASN3ySeY
+ o3uNTwgVxnDY+zoZsRmoZiw2KVUBe80=
+X-Google-Smtp-Source: ABdhPJwpaIddF4DVl6f4wvuWcPjNKOVW2rREdmwupLSd5gDnxqV8ytN/+qfTw9Ic3bUFJ61NQ0xx7A==
+X-Received: by 2002:a5d:6da9:: with SMTP id u9mr26132109wrs.237.1639321215068; 
+ Sun, 12 Dec 2021 07:00:15 -0800 (PST)
 Received: from localhost.localdomain
  (dynamic-2a01-0c22-6ebc-0100-f22f-74ff-fe21-0725.c22.pool.telefonica.de.
  [2a01:c22:6ebc:100:f22f:74ff:fe21:725])
- by smtp.googlemail.com with ESMTPSA id v6sm4284789wmh.8.2021.12.12.07.00.13
+ by smtp.googlemail.com with ESMTPSA id v6sm4284789wmh.8.2021.12.12.07.00.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Sun, 12 Dec 2021 07:00:14 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
@@ -65,15 +65,17 @@ To: linux-mmc@vger.kernel.org,
 Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  ulf.hansson@linaro.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 0/2] mmc: meson-mx-sdhc: two fixes
-Date: Sun, 12 Dec 2021 15:59:54 +0100
-Message-Id: <20211212145956.1423755-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 1/2] mmc: meson-mx-sdhc: Set MANUAL_STOP for multi-block
+ SDIO commands
+Date: Sun, 12 Dec 2021 15:59:55 +0100
+Message-Id: <20211212145956.1423755-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20211212145956.1423755-1-martin.blumenstingl@googlemail.com>
+References: <20211212145956.1423755-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211212_070016_907692_834AC5BA 
-X-CRM114-Status: UNSURE (   9.04  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211212_070017_335334_FA575925 
+X-CRM114-Status: GOOD (  12.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,24 +92,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The first patch in this series fixes Broadcom SDIO wifi cards (using
-the brcmfmac driver) on Meson8 SoCs. Meson8b with Realtek (RTL8723BS)
-SDIO wifi is unaffected by this (it worked fine before). Testing was
-done (on the S82 board) in private by a user who wants to remain
-anonymous.
+The vendor driver implements special handling for multi-block
+SD_IO_RW_DIRECT and SD_IO_RW_EXTENDED commands. It sets the MANUAL_STOP
+bit in the MESON_SDHC_MISC register for these commands. In All other
+cases this bit is cleared.
 
-The second patch in this series is a minor cleanup which I found when
-working on the first patch.
+This fixes SDIO wifi using the brcmfmac driver which reported the
+following error without this change on a Netxeon S82 board using a
+Meson8 (S802) SoC:
+  brcmf_fw_alloc_request: using brcm/brcmfmac43362-sdio for chip
+                          BCM43362/1
+  brcmf_sdiod_ramrw: membytes transfer failed
+  brcmf_sdio_download_code_file: error -110 on writing 219557 membytes
+                                 at 0x00000000
+  brcmf_sdio_download_firmware: dongle image file download failed
 
+And with this change:
+  brcmf_fw_alloc_request: using brcm/brcmfmac43362-sdio for chip
+                          BCM43362/1
+  brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may
+                            have limited channels available
+  brcmf_c_preinit_dcmds: Firmware: BCM43362/1 wl0: Apr 22 2013 14:50:00
+                         version 5.90.195.89.6 FWID 01-b30a427d
 
-Martin Blumenstingl (2):
-  mmc: meson-mx-sdhc: Set MANUAL_STOP for multi-block SDIO commands
-  mmc: meson-mx-sdhc: Drop unused MESON_SDHC_NUM_BUILTIN_CLKS macro
+Fixes: e4bf1b0970ef96 ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/mmc/host/meson-mx-sdhc-mmc.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
- drivers/mmc/host/meson-mx-sdhc-clkc.c | 2 --
- drivers/mmc/host/meson-mx-sdhc-mmc.c  | 9 +++++++++
- 2 files changed, 9 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+index 7cd9c0ec2fcf..a89190d479cf 100644
+--- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
++++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+@@ -135,6 +135,7 @@ static void meson_mx_sdhc_start_cmd(struct mmc_host *mmc,
+ 				    struct mmc_command *cmd)
+ {
+ 	struct meson_mx_sdhc_host *host = mmc_priv(mmc);
++	bool manual_stop = false;
+ 	u32 ictl, send;
+ 	int pack_len;
+ 
+@@ -172,12 +173,20 @@ static void meson_mx_sdhc_start_cmd(struct mmc_host *mmc,
+ 		else
+ 			/* software flush: */
+ 			ictl |= MESON_SDHC_ICTL_DATA_XFER_OK;
++
++		manual_stop = cmd->data->blocks > 1 &&
++			      (cmd->opcode == SD_IO_RW_DIRECT ||
++			       cmd->opcode == SD_IO_RW_EXTENDED);
+ 	} else {
+ 		pack_len = 0;
+ 
+ 		ictl |= MESON_SDHC_ICTL_RESP_OK;
+ 	}
+ 
++	regmap_update_bits(host->regmap, MESON_SDHC_MISC,
++			   MESON_SDHC_MISC_MANUAL_STOP,
++			   manual_stop ? MESON_SDHC_MISC_MANUAL_STOP : 0);
++
+ 	if (cmd->opcode == MMC_STOP_TRANSMISSION)
+ 		send |= MESON_SDHC_SEND_DATA_STOP;
+ 
 -- 
 2.34.1
 
