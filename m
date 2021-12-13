@@ -4,82 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40A1FC433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Dec 2021 13:26:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9FECC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Dec 2021 13:29:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hk6T3fXtgNig2GtbNoh9fI8rLY3t1oywQviSHraj5hE=; b=aTEEjXtXOi2slP
-	jdw4EkRyjyFYLFv9H5ym3DEz6KoYRGihBRiYAVJzdoS1zyThl3RcssEHNn4TUcgsb/eYzmA2y09bi
-	Kg4bVpLedZUV8ANeumOAtd5ssQgD0wmB/KlR/HylSAsWlSAIKs7t36l7kryalo023nmAfXKe1880C
-	iFMvPnllW1DUkhYfqJO+Q6TkTh2o0BbJ9COAmFCGpc8+l7zQVOiwEZrCLwkwBrcl4dL2/FPg4DMFF
-	Mna6rGN2whgzgYGxNSs+9gKqycSa95Ks+NG/QyCLozCIY9oxxIKl9hT5plkB9G+0NFp3rKj7jfJYg
-	J2OYz9rBiA4o/YZAxVog==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:Cc:To:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=G/FjMopiU/YqHVMAXXKpzWmhjeyalwtzUdFCnWZeDv4=; b=4od1RYX/AznOgQ
+	fspV5sa+ZhEtHUqWbLZ1HncKWmb/WBdE60vVLbqCvJ0PHoXvBDv/oZ0fi5YFcBri3Bc2FfPMP+hQ1
+	hSjTwX/Kuhjjzd0ieHuzvsYGy8/qbHFx0325Q4L6pvfmCKxhxDOxSUeQPB9EcylF/jjHoQFhgFOB1
+	3/RC+gejdiBVOZgfEqkxX6UYKj6ogEE4/00Xdw8/kW8wWaThgpE9BjNGyp5n58PenmsxZTLjxyeK1
+	ZWx6gvChO/d4bbs/S+tGSAGEG8IvTD9ohp1G+u5a9qZgsS37L2//L0A0Zmf7nRnL1AVJgaSBnAlo8
+	lq/+B6wko9B0UVyI8Gjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mwlL2-009fau-01; Mon, 13 Dec 2021 13:25:56 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1mwlNz-009gWY-KY; Mon, 13 Dec 2021 13:28:59 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mwlKu-009fWU-IG
- for linux-amlogic@lists.infradead.org; Mon, 13 Dec 2021 13:25:54 +0000
-Received: by mail-wr1-x436.google.com with SMTP id a18so27029604wrn.6
- for <linux-amlogic@lists.infradead.org>; Mon, 13 Dec 2021 05:25:47 -0800 (PST)
+ id 1mwlNl-009gSI-3m
+ for linux-amlogic@lists.infradead.org; Mon, 13 Dec 2021 13:28:46 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 137so11899860wma.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 13 Dec 2021 05:28:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=references:user-agent:from:to:cc:subject:date:in-reply-to
- :message-id:mime-version;
- bh=RGPKFGhr5F/E/uf8UwQ+T3hkhLoaT6Ka+qKxD0TAy+M=;
- b=JRkDFvB8MdbonLD5orH08ZpszbX+Hsq3f2nwGXw96fpGnPaqFoDrqvRETDKF5sU6KK
- xv3lQs9hvrmLFrUwoek0ZdOCHIuojptCQ1yWZHykSwAgLE/SK6SBW8pbq4FqAu6g9nWv
- 924DpmYSw9ztdMDswaJf/WeLEqNSOOnxXB79SMBeaPNt8+ZkHgAD3h7s6ihu2/KyXDHx
- vg3QHBv5UPPh3eocemTtBBTTBzaqVjFJQV3N5wg3P+YsDm+0LqQNe1yuhHyH/jGmUPsq
- Z9s8l5gopJr2ohzjBHONWx2A7IsPSOM+b/Ws8sScQj3jhDNEsgf+fPLbKBmk1rPPAI0D
- 0Evw==
+ h=from:subject:to:cc:organization:message-id:date:user-agent
+ :mime-version:content-language:content-transfer-encoding;
+ bh=23RiMUONgxSu+hkWm+3dwrf+Dsp2HM7Sz/XZAGIt32k=;
+ b=Mz061YGBwILW/EknAdMN9Q0Bd8GfMCdJaLVUfzm8Ozk/K2O79v+pTnj40XcvWnRM2Z
+ DpF7uzprvcKTJEWgtP0LkKLUJByB6crM5gvWaC7R56cHJgJ/0hD0VS8U52RwbBENrO+n
+ o4Hkdg1Mc8QlDA5FwlDmulkQ8fvDjwghzCyObPpU6R6IbEXMq8IAg2M4JmA2nrPqCKZJ
+ 7H2j82O+PZ1Vk7Ya2jLupKEZtPrqUu5vND/F3t3gc8R7RLfuQQROGTsEvW8d3oYs8q06
+ hSzuAoP81D/HIDQjFadHZHYTU9zp/qJnYIc+6csbx8Wf2tLymApV7y8UZMV+MQLrOIIL
+ 1maA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
- :in-reply-to:message-id:mime-version;
- bh=RGPKFGhr5F/E/uf8UwQ+T3hkhLoaT6Ka+qKxD0TAy+M=;
- b=qiMJZ+SAX8/xgWc6S1oJly2hRuMxx7QldFyaNK0FHo+qPTW3b6VsHkNlFvZBh0PoOY
- btkshjNqZvVR2Mmr3z25YCHL1aF1Ldrbfirlwz6cVXupb79tdS3uMqlWSQrrF81kD/fr
- 6pZKHL0YkqPKtoHGEJiW6GLsjfg12gMRz9oAbE2nrN3jaPGAaRvkMwcK8m1an8K01gaq
- qgCdbg92NyNFhwT/a9Iz6QHHFdkzCM5rfmUp9U0VdMCGbPR+ZxVJnmMX3qwTrKGJIh0y
- aC0kA1O0ugk9wyAHOU47Q/p2SyV85reHdzSYnCqCWYGG9bloFaGl+GHxaUFeR2UGBhdN
- 88qg==
-X-Gm-Message-State: AOAM531gfUyRkB9EjnsYFvDx6cwpGm/N1+CZemtKcEjlfE9zPCXYFT3t
- rjTmAccRDXe4jIFzb4Jw9XsWzg==
-X-Google-Smtp-Source: ABdhPJxzzui67Mz+e62UPdxoEnqUeAe7pmkET3SPW+dmE86hGQS6DQJSsCelC6Y5tYdI7kls55z4kg==
-X-Received: by 2002:adf:eb0f:: with SMTP id s15mr15577018wrn.690.1639401946598; 
- Mon, 13 Dec 2021 05:25:46 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id g198sm8086757wme.23.2021.12.13.05.25.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Dec 2021 05:25:46 -0800 (PST)
-References: <20211213070330.3351505-1-rong.chen@amlogic.com>
- <2021121319503910358221@amlogic.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: "rong.chen@amlogic.com" <rong.chen@amlogic.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- --to=1131046452 <--to=1131046452@qq.com>, 45581586 <45581586@qq.com>,
- linux-mmc <linux-mmc@vger.kernel.org>, linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>, linux-amlogic
- <linux-amlogic@lists.infradead.org>, linux-kernel
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] mmc: meson: initial ocr available by default value
-Date: Mon, 13 Dec 2021 14:22:25 +0100
-In-reply-to: <2021121319503910358221@amlogic.com>
-Message-ID: <1j7dc83acm.fsf@starbuckisacylon.baylibre.com>
+ h=x-gm-message-state:from:subject:to:cc:organization:message-id:date
+ :user-agent:mime-version:content-language:content-transfer-encoding;
+ bh=23RiMUONgxSu+hkWm+3dwrf+Dsp2HM7Sz/XZAGIt32k=;
+ b=bgcKHxAdOeg59zaGKeIwXAUr5xMJVKMjJQqLgrZfjGzy1qkcxifTZIhk0ZQrYbpKUk
+ Wb72qVpW8djlrpOilNcuCvmcZlGvKN/a8tv7MYYiKZwp9ZOWFcQ0VFNVA8gwqFfCn1PI
+ NMcGxFvcfJmep5OH7SZbzGuFVdIS7vbyi9q5XXZZ/zEyex4xW755zWlw87iqbiNHTQAe
+ 7rWiyF2k45+0d5rFxMMcdx2k23jCVpTLqXU5yGa5Hc8epe5ND7M+XOym0UTYdJgyP2JU
+ dLmK9gBjnjk+qknL4QPThALw3U2wWp41+KC7NHJvISTpqgDJ6XGesCcAmwoXd2jdG7D5
+ DAOA==
+X-Gm-Message-State: AOAM532KbCTJaZX52GXKGarWjKllEFWDx4VlMiQifpmRwC6M5o4FTv3V
+ maduSnw9UiW52RsK98u/9QD4in7X0ntsE4d8
+X-Google-Smtp-Source: ABdhPJzIBUb6/PVRo+jPBPQcxeKDX3aJlABs5tPk/R0darWP3ToaP2ZpcDX1G931Y4UAqLc2BRQRFA==
+X-Received: by 2002:a05:600c:1f08:: with SMTP id
+ bd8mr13796805wmb.77.1639402122128; 
+ Mon, 13 Dec 2021 05:28:42 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:3328:f8ef:d20f:532a?
+ ([2001:861:44c0:66c0:3328:f8ef:d20f:532a])
+ by smtp.gmail.com with ESMTPSA id n33sm7359713wms.46.2021.12.13.05.28.40
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 13 Dec 2021 05:28:41 -0800 (PST)
+From: Neil Armstrong <narmstrong@baylibre.com>
+Subject: [GIT PULL] arm64: dts: amlogic updates for v5.17
+To: soc@kernel.org, arm@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Organization: Baylibre
+Message-ID: <f47b9b95-6cde-d2f8-eb36-78777d449920@baylibre.com>
+Date: Mon, 13 Dec 2021 14:28:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211213_052548_733523_04E5F684 
-X-CRM114-Status: GOOD (  19.73  )
+X-CRM114-CacheID: sfid-20211213_052845_171775_32DB9B05 
+X-CRM114-Status: UNSURE (   9.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,79 +91,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
-On Mon 13 Dec 2021 at 19:50, "rong.chen@amlogic.com" <rong.chen@amlogic.com> wrote:
+Here's a set of Amlogic ARM64 DT changes for v5.17, with minor fixes and additions.
 
-> Hello,
-> If 3.3V always-on power source for vmmc is supplied by hardware boards fixed, don't need regulator in software, so  .dts unnecessary the link between regulator
-> and MMC controller vmmc/vqmmc. 
+Neil
 
-Controllable or not, your vmmc/vqmmc regulators should be described in
-DT.
+The following changes since commit fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf:
 
-There are several examples of this in arch/arm64/boot/dts/amlogic/*.dts
+  Linux 5.16-rc1 (2021-11-14 13:56:52 -0800)
 
+are available in the Git repository at:
 
->
-> ------------------------------------------------------------------------------------------------------------------------------------------------------
-> rong.chen@amlogic.com
->
->   
->  From: Martin Blumenstingl
->  Date: 2021-12-13 16:00
->  To: Rong Chen
->  CC: Ulf Hansson; Neil Armstrong; Kevin Hilman; Jerome Brunet; --to=1131046452; 45581586; linux-mmc; linux-arm-kernel; linux-amlogic; linux-kernel
->  Subject: Re: [PATCH] mmc: meson: initial ocr available by default value
->  [ EXTERNAL EMAIL ]
->   
->  Hello,
->   
->  On Mon, Dec 13, 2021 at 8:03 AM Rong Chen <rong.chen@amlogic.com> wrote:
->  >
->  > The patch will add a value of ocr supported by the controller,
->  > to specify some of voltage values are supported.
->  Can you please share some details on this topic?
->   
->  We already have many boards upstreamed which work fine without
->  manually setting ocr_avail in the driver.
->  In general there's two types of boards:
->  1) boards where the regulator can switch between different voltages.
->  One example is the Odroid-C2, see meson-gxbb-odroidc2.dts [0]
->  Here we specify:
->    vmmc-supply = <&tflash_vdd>;
->    vqmmc-supply = <&tf_io>;
->  &tflash_vdd is either turned off or at 3.3V when turned on.
->  &tf_io can be either turned off, 1.8V or 3.3V.
->   
->  2) boards where the voltages are fixed.
->  One example is Radxa Zero, see meson-g12a-radxa-zero.dts [1]
->  For the SD card the board uses:
->    vmmc-supply = <&vddao_3v3>;
->    vqmmc-supply = <&vddao_3v3>;
->  (meaning fixed 3.3V always-on power source for both VMMC and VQMMC)
->  and for eMMC the board uses:
->    vmmc-supply = <&vcc_3v3>;
->    vqmmc-supply = <&vcc_1v8>;
->  (meaning: 3.3V always-on power source for vmmc and 1.8V always-on
->  power source for VQMMC)
->   
->  With the information from the regulators the MMC core will
->  automatically detect ocr_avail in Linux.
->  Or in other words: your .dts may be missing the link between regulator
->  and MMC controller vmmc/vqmmc.
->  Can you please double-check this?
->   
->   
->  Best regards,
->  Martin
->   
->   
->  [0]
->  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts?id=2585cf9dfaaddf00b069673f27bb3f8530e2039c#n354
->  
->  [1]
->  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts?id=2585cf9dfaaddf00b069673f27bb3f8530e2039c#n333
+  https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v5.17
 
+for you to fetch changes up to 0a62b3cc0af9322e650fe89bea0bacdedf01960a:
+
+  arm64: dts: meson: p241: add sound support (2021-12-01 10:27:13 +0100)
+
+----------------------------------------------------------------
+Amlogic ARM64 DT changes for v5.17:
+- Add missing cec nodes for Odroid-C4 & HC4
+- Fix thermal-zones indent for G12/SM1 SoCs dtsi
+- Fix GPU OPP table node name for G12/SM1 SoCs dtsi
+- Fix SPI NOR Flash node name for Odroid-N2/N2+
+- Fixes for GXBB Wetek boards:
+ - Fix HDMI supply
+ - Add missing gpio bindings include
+ - Switch to new LED bindings
+- P241 additions:
+ - Add VCC 5v regulator
+ - Add sound nodes
+
+----------------------------------------------------------------
+Alexander Stein (3):
+      arm64: dts: amlogic: meson-g12: Fix thermal-zones indent
+      arm64: dts: amlogic: meson-g12: Fix GPU operating point table node name
+      arm64: dts: amlogic: Fix SPI NOR flash node name for ODROID N2/N2+
+
+Christian Hewitt (3):
+      arm64: dts: meson-gxbb-wetek: fix HDMI in early boot
+      arm64: dts: meson-gxbb-wetek: fix missing GPIO binding
+      arm64: dts: meson-gxbb-wetek: use updated LED bindings
+
+Dmitry Shmidt (1):
+      arm64: dts: meson-sm1-odroid: add cec nodes
+
+Jerome Brunet (2):
+      arm64: dts: meson: p241: add vcc_5v regulator
+      arm64: dts: meson: p241: add sound support
+
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 112 ++++++++++-----------
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     |   2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi  |  10 +-
+ .../boot/dts/amlogic/meson-gxl-s805x-p241.dts      |  83 +++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi  |  14 +++
+ 5 files changed, 162 insertions(+), 59 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
