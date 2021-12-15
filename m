@@ -4,75 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 741D8C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Dec 2021 03:03:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 004C7C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Dec 2021 03:36:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=D2OIkEJL5mDFOHtW1RoW58VRf33oJrAyGvKNGhflcS0=; b=R9fQYMqQzqe1N4
-	KWZy4wCL+jRSqGbZDgmtKTozgt61rndLFnqb9VOtBmKXZgSRr8OMZEOqwThk+FG9TuwliSAzCXm4Q
-	HDH1T89LCixmCQZTyMMf6ravUyc5r/P1QAw1q7wuSnxnVbkrQximTI93inkfkoJ9+i25rd/+o6SRa
-	EJT9s8Dkx+4sEoZ1stPeHERijj51q2sHHvFTHIC0CIFQKBlYfkMBhsJ3K2pKyvnLyt7vwQU2dgHDx
-	u7NCwi3zlohAjBXd7QyOQvM6iyGMzlF4WnFr6CuP64GwQtPod8OZYPzx6QuFHiJis4JKQgW/aZ17e
-	zA8lBZpw6doebYg2BGtA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=zTeePD4YAMAKNN8MNN/qyiyK7W4lXFrHFFbp02b66s8=; b=X7icgS8Q2FgFp0
+	KoGSxabg4Owx5zmT3y2+V4IMyNfJCboIPEgIDs1IrAmEd59yRbeJIAHdi+xT+uJkWrK1+++a8XFsE
+	fPOvmG8O8zjRtmx1Iq8fUW5r8kwBrqolOQgk2Qd+kyp0vAqOhsJ2ipossu9P6GG1zzVkebm54d5k+
+	h9jLpzRg8yJC1ex9rJa06TZq7PErjWSwRBBCRpeVKpQiitm2+Uk5ZEkjp5ZkgwUOqumlfbuH0hkAf
+	vS8zoUN92I2vIE+q4Lbx3uNvs+jRHKnVU9nKALGpLOgVVEHieNmckakccV8AZrwhRXf26cF5Iv/IS
+	LyagmdwU1r2Dfy4H2KEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mxKZH-00GUYn-6w; Wed, 15 Dec 2021 03:02:59 +0000
-Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
+	id 1mxL5K-00GXkY-Iq; Wed, 15 Dec 2021 03:36:06 +0000
+Received: from mta-p8.oit.umn.edu ([134.84.196.208])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mxKZ4-00GUX9-Ta; Wed, 15 Dec 2021 03:02:48 +0000
-Received: by mail-pf1-x430.google.com with SMTP id 8so19469732pfo.4;
- Tue, 14 Dec 2021 19:02:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=l67OnNQFpi2JYi2qvaEeFRFUbyO8Epk70jYmuOz7uo4=;
- b=Lf9QL5bNinlRjGR8nZNc3KOPZx+c7Jhvml5Bb5Hp6PHijmQCEdGur26Q//GujanDlh
- VBd2sNiTwtb0UZL3+57Zl3naAaatM5v+vMSZZTTqXC9LytN5uAhweC/s6Jt+EmphikxO
- 0aFcVCPgG3f8L7RPgjeRKRtQEvgaNBEB16gAj1wxzUJAlMheztpuVBJ/+B2+KBTa4zYm
- ORpDhYsnXBp15zqXWG25IBclPAFrc49QmxOoPF+siP1ZghLZIOwJpiaouhMJQUCzskBW
- DlJr/LxJvHRvCOYtS6GBIl/bHmMiiCa7hixaMB9r0sXr2bz/phi1PdPAEckkjPfz028w
- IUJg==
+ id 1mxL57-00GXhg-4z
+ for linux-amlogic@lists.infradead.org; Wed, 15 Dec 2021 03:35:55 +0000
+Received: from localhost (unknown [127.0.0.1])
+ by mta-p8.oit.umn.edu (Postfix) with ESMTP id 4JDLVp21tsz9vYVd
+ for <linux-amlogic@lists.infradead.org>; Wed, 15 Dec 2021 03:35:46 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at umn.edu
+Received: from mta-p8.oit.umn.edu ([127.0.0.1])
+ by localhost (mta-p8.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id f2EMjrV7P8fg for <linux-amlogic@lists.infradead.org>;
+ Tue, 14 Dec 2021 21:35:46 -0600 (CST)
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
+ [209.85.214.197])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mta-p8.oit.umn.edu (Postfix) with ESMTPS id 4JDLVn71kjz9vYVT
+ for <linux-amlogic@lists.infradead.org>; Tue, 14 Dec 2021 21:35:44 -0600 (CST)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p8.oit.umn.edu 4JDLVn71kjz9vYVT
+DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p8.oit.umn.edu 4JDLVn71kjz9vYVT
+Received: by mail-pl1-f197.google.com with SMTP id
+ h8-20020a170902f54800b001454402c33dso6018665plf.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 14 Dec 2021 19:35:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=vDyUbaxuYkfxzYa4iPnu8TJLkb4HX292tDIieRYCOfk=;
+ b=XewPLirKRxPHk4whWqb+HaKFC82BJREBaskmOgZBTb+tnQoMqBDKzfavA7pfQfHSW9
+ Cnopnm012L9hKposuoqf/ziC+2XnlQCgrO01qkbKmL0nu4bbzhH5FHwL8j3xNM6k0Y4L
+ 9PSEI6MwZtZ8L55WEx4Abr7aUuGW/ySIP+Ixs9sLmTB0Uf5TxJRN6+OxmPNOf5ijlvlq
+ ElXJ0hBrenb8eKWnRZ7AOaGnvMaCSUM6MJ2zZ2T+cCWT6H/XaH0dep5WYt6RnwA6rCN7
+ iFC2Zof6uKf0EAYYCKsRx6tTYQFBzBgVT7xMvao6iu3JXYHshyJHCH+WE8mIUBH8qJIB
+ q/Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=l67OnNQFpi2JYi2qvaEeFRFUbyO8Epk70jYmuOz7uo4=;
- b=3UU6pGkSx/isIemR1uZ2GZyFueDgxsIKHwwIMwOhYSCXZv+KUXETbBm8aIE8Mm1QWe
- yB+mHmUqcHIFq9UhliAeq+oUI28bBVwaILcAAZELAxMOxW/CotPu2RfIntxwzs4pc5OE
- ZI3ia7P3EXLcxS4soQr0m9fiESuLT/yoAWcnxmNup4czW5OB2p4J1+19iBzk62rTTTW7
- cVJwpWixQtEENRSIV2wfV7RFUjtpcz0QliUXCahPiK7rbAOzJCL4tiBPN8NVJVd3znPx
- KKdL748RmJ7MrD2XUlfE8+hk8PcM7MD9m5V+Yk+IUoDcVy54NlVkspukI0KChEo9Y0wP
- FGGw==
-X-Gm-Message-State: AOAM531HgNSFqjJeHUAwfQmU3BdTHNAK5XG6DTnFUi07bKMc7DYY8RsY
- otvdJijtB97fLyTyUNAhkCes/1FFjEJMKsu5
-X-Google-Smtp-Source: ABdhPJxY3eE3zPwATkRF8wmarHs7T8JxnX7iltrhlfirDvo192Q7t2UsImxYFDbChKVoFY3Sraz1Fg==
-X-Received: by 2002:a63:65c3:: with SMTP id z186mr6154548pgb.308.1639537365986; 
- Tue, 14 Dec 2021 19:02:45 -0800 (PST)
-Received: from localhost.localdomain (104.194.74.249.16clouds.com.
- [104.194.74.249])
- by smtp.gmail.com with ESMTPSA id d185sm402490pgc.58.2021.12.14.19.02.42
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=vDyUbaxuYkfxzYa4iPnu8TJLkb4HX292tDIieRYCOfk=;
+ b=z+RlEmux80zjIPWtG0yGPcw+0xZR/j8KK67pFvwW5ztu0UTuL2Q19Iq5yURoce/Tta
+ 1dkUDQyxQSMULfnhbtBxYEIdfwbCY/mhofMqZNXg65NhzsnNvD0RFb1aQ2ztqUT68MFt
+ zf4qmmzqjCtePp/8i7qsw2vMTlyRvA1GS9NjhKvoU3KcPVC9Kno9GMKBTHwuaEYsU0nA
+ 9FYB/9wttvkI3rVbiGfVLgL50uDF/+PNrPhAKUFT3wfMpLDaWB3fmlUflHnCzlv0WxCD
+ AqVZKSrh7VOXwS4lCScobsYk32zYft4ceeht7RnqFajHQU/nC4liwlB1jcxoSMgxvOxL
+ oh/Q==
+X-Gm-Message-State: AOAM531kLd7nhEl5c/u6RjtyM/e34bsWYFmh3TShHxd9q96IdGIvxxle
+ DOBh/Es/0Lp8POeZYUahUrQxad1lnV2qs96AUP2/hmxKKl2T6OhInjFjKC6HBZEq8BQniYWOeWJ
+ H6c7810/hA4bIPpCJ28VgArPYsTf++P/EOGc=
+X-Received: by 2002:a65:4889:: with SMTP id n9mr6300357pgs.303.1639539343350; 
+ Tue, 14 Dec 2021 19:35:43 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwuxQHgEkh5S9opzXkPm/4oyyaBbohUhOVVfMAyOnb213uAvq9wDfP7swp8VGy9xCEw1vo0oQ==
+X-Received: by 2002:a65:4889:: with SMTP id n9mr6300335pgs.303.1639539343129; 
+ Tue, 14 Dec 2021 19:35:43 -0800 (PST)
+Received: from zqy787-GE5S.lan ([36.4.93.244])
+ by smtp.gmail.com with ESMTPSA id p12sm532401pfo.125.2021.12.14.19.35.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Dec 2021 19:02:45 -0800 (PST)
-From: Artem Lapkin <email2tema@gmail.com>
-X-Google-Original-From: Artem Lapkin <art@khadas.com>
-To: narmstrong@baylibre.com
-Cc: jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- christianshewitt@gmail.com, art@khadas.com, nick@khadas.com,
- gouwa@khadas.com
-Subject: [PATCH] arm64: dts: meson-sm1: add spdifin spdifout nodes
-Date: Wed, 15 Dec 2021 11:02:36 +0800
-Message-Id: <20211215030236.340841-1-art@khadas.com>
+ Tue, 14 Dec 2021 19:35:42 -0800 (PST)
+From: Zhou Qingyang <zhou1615@umn.edu>
+To: zhou1615@umn.edu
+Cc: kjlu@umn.edu, Neil Armstrong <narmstrong@baylibre.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Maxime Jourdan <mjourdan@baylibre.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, linux-media@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-staging@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] media: meson: vdec: Fix a NULL pointer dereference in
+ amvdec_add_ts()
+Date: Wed, 15 Dec 2021 11:35:35 +0800
+Message-Id: <20211215033535.40422-1-zhou1615@umn.edu>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211214144613.35fec82a@coco.lan>
+References: <20211214144613.35fec82a@coco.lan>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211214_190246_973248_0DEC78BF 
-X-CRM114-Status: UNSURE (   9.80  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211214_193553_338500_9C58B878 
+X-CRM114-Status: GOOD (  18.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,128 +115,106 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add spdifin spdifout nodes for Amlogic SM1 SoCs.
+In amvdec_add_ts(), there is a dereference of kzalloc(), which could lead
+to a NULL pointer dereference on failure of kzalloc().
 
-Signed-off-by: Artem Lapkin <art@khadas.com>
+Fix this bug by adding a NULL check of new_ts.
+
+This bug was found by a static analyzer[1].
+
+Builds with CONFIG_VIDEO_MESON_VDEC=m show no new warnings,
+and our static analyzer no longer warns about this code.
+
+Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
+Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
 ---
 
-SPDIF IN and SPDIF OUT both tested and works fine for VIM3L (meson-sm1)
-same as for VIM3 (meson-g12)
+[1] The analysis employs differential checking to identify inconsistent
+security operations (e.g., checks or kfrees) between two code paths and
+confirms that the inconsistent operations are not recovered in the 
+current function or the callers, so they constitute bugs.
 
-SPDIF in and SPDIF OUT both pins available via GPIO header (SPDIF_OUT PIN
-13 spdif_ao_out_pins and SPDIF_IN PIN 35 - same PWM_F spdif_in_h_pins)
+Note that, as a bug found by static analysis, it can be a false
+positive or hard to trigger. Multiple researchers have cross-reviewed
+the bug.
 
-https://lore.kernel.org/linux-arm-kernel/1jtuhwvqxa.fsf@starbuckisacylon.baylibre.com/t/
+Changes in v3:
+  -  Change the description of patch
+  -  Turn the return type from 'void' to 'int'
+  -  Check the return value in the caller 'esparser_queue()'
 
-ALSA spdifin test example
-=========================
+Changes in v2:
+  -  Delete dev_err() message
 
-# arecord -fS16_LE -r48000 -c2 -Dplug:spdifin
+ drivers/staging/media/meson/vdec/esparser.c     | 7 ++++++-
+ drivers/staging/media/meson/vdec/vdec_helpers.c | 8 ++++++--
+ drivers/staging/media/meson/vdec/vdec_helpers.h | 4 ++--
+ 3 files changed, 14 insertions(+), 5 deletions(-)
 
-# cat .asoundrc
-pcm.spdifin {
-type iec958
-slave {
-pcm "hw:0,1"
-format IEC958_SUBFRAME_LE
-}
-}
-
-DT sound card configs for testing
-=================================
-
-&spdifout {
-    pinctrl-0 = <&spdif_ao_out_pins>;
-    pinctrl-names = "default";
-    status = "okay";
-};
-
-&spdifin {
-    pinctrl-0 = <&spdif_in_h_pins>;
-    pinctrl-names = "default";
-    status = "okay";
-};
-
-...
-    spdif_dit: audio-codec-1 {
-	#sound-dai-cells = <0>;
-	compatible = "linux,spdif-dit";
-	status = "okay";
-	sound-name-prefix = "DIT";
-    };
-
-    spdif_dir: audio-codec-2 {
-	#sound-dai-cells = <0>;
-	compatible = "linux,spdif-dir";
-	status = "okay";
-	sound-name-prefix = "DIR";
-    };
-...
-	audio-routing = ...
-		"TODDR_B IN 3", "SPDIFIN Capture",
-		"SPDIFOUT IN 0", "FRDDR_A OUT 3";
-
-...
-	dai-link-10 {
-	    sound-dai = <&spdifout>;
-
-	    codec-0 {
-		sound-dai = <&spdif_dit>;
-	    };
-	};
-
-	/* spdif or toslink interface */
-	dai-link-11 {
-	    sound-dai = <&spdifin>;
-
-	    codec-0 {
-		sound-dai = <&spdif_dir>;
-	    };
-	};
-...
-
----
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index 3d8b1f4f2001..1e0adf259d61 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -356,6 +356,33 @@ tdmin_lb: audio-controller@3c0 {
- 			status = "disabled";
- 		};
+diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
+index db7022707ff8..095100a50da8 100644
+--- a/drivers/staging/media/meson/vdec/esparser.c
++++ b/drivers/staging/media/meson/vdec/esparser.c
+@@ -328,7 +328,12 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
  
-+		spdifin: audio-controller@400 {
-+			compatible = "amlogic,g12a-spdifin",
-+			"amlogic,axg-spdifin";
-+			reg = <0x0 0x400 0x0 0x30>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "SPDIFIN";
-+			interrupts = <GIC_SPI 151 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
-+			<&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
-+			clock-names = "pclk", "refclk";
-+			resets = <&clkc_audio AUD_RESET_SPDIFIN>;
-+			status = "disabled";
-+		};
+ 	offset = esparser_get_offset(sess);
+ 
+-	amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
++	ret = amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
++	if (!ret) {
++		v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
++		return ret;
++	}
 +
-+		spdifout: audio-controller@480 {
-+			compatible = "amlogic,g12a-spdifout",
-+			"amlogic,axg-spdifout";
-+			reg = <0x0 0x480 0x0 0x50>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "SPDIFOUT";
-+			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
-+			<&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
-+			clock-names = "pclk", "mclk";
-+			resets = <&clkc_audio AUD_RESET_SPDIFOUT>;
-+			status = "disabled";
-+		};
+ 	dev_dbg(core->dev, "esparser: ts = %llu pld_size = %u offset = %08X flags = %08X\n",
+ 		vb->timestamp, payload_size, offset, vbuf->flags);
+ 
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+index b9125c295d1d..06fd66539797 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.c
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+@@ -227,13 +227,16 @@ int amvdec_set_canvases(struct amvdec_session *sess,
+ }
+ EXPORT_SYMBOL_GPL(amvdec_set_canvases);
+ 
+-void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+-		   struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
++int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++		  struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
+ {
+ 	struct amvdec_timestamp *new_ts;
+ 	unsigned long flags;
+ 
+ 	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
++	if (!new_ts)
++		return -ENOMEM;
 +
- 		tdmout_a: audio-controller@500 {
- 			compatible = "amlogic,sm1-tdmout";
- 			reg = <0x0 0x500 0x0 0x40>;
+ 	new_ts->ts = ts;
+ 	new_ts->tc = tc;
+ 	new_ts->offset = offset;
+@@ -242,6 +245,7 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+ 	spin_lock_irqsave(&sess->ts_spinlock, flags);
+ 	list_add_tail(&new_ts->list, &sess->timestamps);
+ 	spin_unlock_irqrestore(&sess->ts_spinlock, flags);
++	return 0;
+ }
+ EXPORT_SYMBOL_GPL(amvdec_add_ts);
+ 
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
+index 88137d15aa3a..4bf3e61d081b 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.h
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
+@@ -56,8 +56,8 @@ void amvdec_dst_buf_done_offset(struct amvdec_session *sess,
+  * @offset: offset in the VIFIFO where the associated packet was written
+  * @flags: the vb2_v4l2_buffer flags
+  */
+-void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+-		   struct v4l2_timecode tc, u32 offset, u32 flags);
++int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++		  struct v4l2_timecode tc, u32 offset, u32 flags);
+ void amvdec_remove_ts(struct amvdec_session *sess, u64 ts);
+ 
+ /**
 -- 
 2.25.1
 
