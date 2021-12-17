@@ -4,46 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5350EC433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Dec 2021 07:35:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B31C433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Dec 2021 09:22:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Bw4Js1+10NJdILlU4C58joFaL8kDdgOBwbbx7ZGgRPg=; b=ir3N3TDiRf+/+S
-	7ChyrwovtiW5xzKeDHYFHfywc15ij9G00kVLJpG6sURO6SJu9zv4x19ZIpV8Ix1CO+Rfu9+41IRzU
-	UiyiejfDLXRA8+M0RW62J8K48efVnLEqD190xvuAHCwVO7QqCp756Qr0RSYoX01oID2eLIJxwFYeM
-	lv6866yOVtyA+Xs4DvfVSTwdPW/PTOyvplpQHTOb5+5egoMQbZYphLw3ysllNyMUpaOzA2tH63NA2
-	5NNdMTIT3vrEz5UMyijK+KewF2ZOnRUofSqRkLOC7JvHD3BbKRgyOao2QS6W5WRDr1mkldzBrFmgQ
-	8aKJzFNddYq5ierMN6lA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:CC:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fHFtjqAw4/ngKMZoUO0XSLkuy9mQfkwpV6V0Q+1tpnM=; b=IarbiRTHyQT1QxDVo1UaWi7LWm
+	5tsp71Sj9p74h5LAAj91uHyDhtl+R1QV0hraBBZM5PEL4gF7l3OpB845OOeoaa47peK6RZWP3w3cE
+	A0VCiRjHETTi5hiUrvZpLSRP3p0HD0NlRbpde5UWzlHwhGgmmu53N/Ug82TYKBW9Viw+io2jPImuC
+	EaYie6pgGFQtNMPn87DJBjOns375K9cWDHHKzljC9ERVBhclFj6na9Cp4DF7Ikl9nnzxQHKMlxYm3
+	A66D/i75BXBqMJTsNavGnzmMHSLjPb+wSQTcf5VJGzlpQSsNdh8e12BoEi+wxiQ9cq6a3MutYn3ZY
+	t+gosFTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1my7mH-008rdz-Hl; Fri, 17 Dec 2021 07:35:41 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1my9Rr-0098qm-Fn; Fri, 17 Dec 2021 09:22:43 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1my7mD-008rct-VN; Fri, 17 Dec 2021 07:35:39 +0000
-Received: from droid10-sz.amlogic.com (10.28.8.20) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Fri, 17 Dec 2021
- 15:35:30 +0800
-From: Zelong Dong <zelong.dong@amlogic.com>
-To: <p.zabel@pengutronix.de>, <robh+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <khilman@baylibre.com>, <narmstrong@baylibre.com>, <jbrunet@baylibre.com>,
- <martin.blumenstingl@googlemail.com>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH] dt-bindings: reset: add bindings for the Meson-S4 SoC Reset
- Controller
-Date: Fri, 17 Dec 2021 15:35:21 +0800
-Message-ID: <20211217073521.35820-1-zelong.dong@amlogic.com>
-X-Mailer: git-send-email 2.34.1
+ id 1my9Rp-0098pB-56; Fri, 17 Dec 2021 09:22:42 +0000
+Received: from [10.28.39.221] (10.28.39.221) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 17 Dec
+ 2021 17:22:31 +0800
+Subject: Re: [PATCH 3/3] pinctrl: meson: add pinctrl driver support for
+ Meson-S4 Soc
+To: Jerome Brunet <jbrunet@baylibre.com>, Linus Walleij
+ <linus.walleij@linaro.org>
+CC: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>, Mark
+ Rutland <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>
+References: <20211214022100.14841-1-qianggui.song@amlogic.com>
+ <20211214022100.14841-4-qianggui.song@amlogic.com>
+ <1j35mv31c1.fsf@starbuckisacylon.baylibre.com>
+ <0a3efa6f-f048-ee04-a2d6-30f337f3d484@amlogic.com>
+ <1jczlwaoqj.fsf@starbuckisacylon.baylibre.com>
+From: qianggui.song <Qianggui.Song@amlogic.com>
+Message-ID: <82883627-558c-a02e-f5c6-93a46e39e6b7@amlogic.com>
+Date: Fri, 17 Dec 2021 17:23:19 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-X-Originating-IP: [10.28.8.20]
+In-Reply-To: <1jczlwaoqj.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US
+X-Originating-IP: [10.28.39.221]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211216_233538_060217_AEF15446 
-X-CRM114-Status: UNSURE (   8.76  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211217_012241_405685_4FC710AF 
+X-CRM114-Status: GOOD (  14.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -55,155 +68,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add DT bindings for the Meson-S4 SoC Reset Controller include file.
-
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
----
- .../reset/amlogic,meson-s4-reset.h            | 125 ++++++++++++++++++
- 1 file changed, 125 insertions(+)
- create mode 100644 include/dt-bindings/reset/amlogic,meson-s4-reset.h
-
-diff --git a/include/dt-bindings/reset/amlogic,meson-s4-reset.h b/include/dt-bindings/reset/amlogic,meson-s4-reset.h
-new file mode 100644
-index 000000000000..eab428eb8ad6
---- /dev/null
-+++ b/include/dt-bindings/reset/amlogic,meson-s4-reset.h
-@@ -0,0 +1,125 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ * Author: Zelong Dong <zelong.dong@amlogic.com>
-+ *
-+ */
-+
-+#ifndef _DT_BINDINGS_AMLOGIC_MESON_S4_RESET_H
-+#define _DT_BINDINGS_AMLOGIC_MESON_S4_RESET_H
-+
-+/*	RESET0					*/
-+#define RESET_USB_DDR0			0
-+#define RESET_USB_DDR1			1
-+#define RESET_USB_DDR2			2
-+#define RESET_USB_DDR3			3
-+#define RESET_USBCTRL			4
-+/*					5-7	*/
-+#define RESET_USBPHY20			8
-+#define RESET_USBPHY21			9
-+/*					10-15	*/
-+#define RESET_HDMITX_APB		16
-+#define RESET_BRG_VCBUS_DEC		17
-+#define RESET_VCBUS			18
-+#define RESET_VID_PLL_DIV		19
-+#define RESET_VDI6			20
-+#define RESET_GE2D			21
-+#define RESET_HDMITXPHY			22
-+#define RESET_VID_LOCK			23
-+#define RESET_VENCL			24
-+#define RESET_VDAC			25
-+#define RESET_VENCP			26
-+#define RESET_VENCI			27
-+#define RESET_RDMA			28
-+#define RESET_HDMI_TX			29
-+#define RESET_VIU			30
-+#define RESET_VENC			31
-+
-+/*	RESET1					*/
-+#define RESET_AUDIO			32
-+#define RESET_MALI_APB			33
-+#define RESET_MALI			34
-+#define RESET_DDR_APB			35
-+#define RESET_DDR			36
-+#define RESET_DOS_APB			37
-+#define RESET_DOS			38
-+/*					39-47	*/
-+#define RESET_ETH			48
-+/*					49-51	*/
-+#define RESET_DEMOD			52
-+/*					53-63	*/
-+
-+/*	RESET2					*/
-+#define RESET_ABUS_ARB			64
-+#define RESET_IR_CTRL			65
-+#define RESET_TEMPSENSOR_DDR		66
-+#define RESET_TEMPSENSOR_PLL		67
-+/*					68-71	*/
-+#define RESET_SMART_CARD		72
-+#define RESET_SPICC0			73
-+/*					74	*/
-+#define RESET_RSA			75
-+/*					76-79	*/
-+#define RESET_MSR_CLK			80
-+#define RESET_SPIFC			81
-+#define RESET_SARADC			82
-+/*					83-87	*/
-+#define RESET_ACODEC			88
-+#define RESET_CEC			89
-+#define RESET_AFIFO			90
-+#define RESET_WATCHDOG			91
-+/*					92-95	*/
-+
-+/*	RESET3					*/
-+/*					96-127	*/
-+
-+/*	RESET4					*/
-+/*					128-131	*/
-+#define RESET_PWM_AB			132
-+#define RESET_PWM_CD			133
-+#define RESET_PWM_EF			134
-+#define RESET_PWM_GH			135
-+#define RESET_PWM_IJ			136
-+/*					137	*/
-+#define RESET_UART_A			138
-+#define RESET_UART_B			139
-+#define RESET_UART_C			140
-+#define RESET_UART_D			141
-+#define RESET_UART_E			142
-+/*					143	*/
-+#define RESET_I2C_S_A			144
-+#define RESET_I2C_M_A			145
-+#define RESET_I2C_M_B			146
-+#define RESET_I2C_M_C			147
-+#define RESET_I2C_M_D			148
-+#define RESET_I2C_M_E			149
-+/*					150-151	*/
-+#define RESET_SD_EMMC_A			152
-+#define RESET_SD_EMMC_B			153
-+#define RESET_NAND_EMMC			154
-+/*					155-159	*/
-+
-+/* RESET5 */
-+#define RESET_BRG_VDEC_PIPL0		160
-+#define RESET_BRG_HEVCF_PIPL0		161
-+/*					162	*/
-+#define RESET_BRG_HCODEC_PIPL0		163
-+#define RESET_BRG_GE2D_PIPL0		164
-+#define RESET_BRG_VPU_PIPL0		165
-+#define RESET_BRG_CPU_PIPL0		166
-+#define RESET_BRG_MALI_PIPL0		167
-+/*					168	*/
-+#define RESET_BRG_MALI_PIPL1		169
-+/*					170-171	*/
-+#define RESET_BRG_HEVCF_PIPL1		172
-+#define RESET_BRG_HEVCB_PIPL1		173
-+/*					174-183	*/
-+#define RESET_RAMA			184
-+/*					185-186	*/
-+#define RESET_BRG_NIC_VAPB		187
-+#define RESET_BRG_NIC_DSU		188
-+#define RESET_BRG_NIC_SYSCLK		189
-+#define RESET_BRG_NIC_MAIN		190
-+#define RESET_BRG_NIC_ALL		191
-+
-+#endif
--- 
-2.28.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksIGplcm9tZQoKT24gMjAyMS8xMi8xNiDkuIvljYg1OjIwLCBKZXJvbWUgQnJ1bmV0IHdyb3Rl
+Ogo+IAo+IAo+IE9uIFRodSAxNiBEZWMgMjAyMSBhdCAxNDowNywgcWlhbmdndWkuc29uZyA8UWlh
+bmdndWkuU29uZ0BhbWxvZ2ljLmNvbT4gd3JvdGU6Cj4gCj4+Pj4gK3N0YXRpYyBjb25zdCB1bnNp
+Z25lZCBpbnQgY2xrMTJfMjRfcGluc1tdCQk9IHsgR1BJT0RfMTAgfTsKPj4+PiArc3RhdGljIGNv
+bnN0IHVuc2lnbmVkIGludCBwd21fZ19oaXpfcGluc1tdCQk9IHsgR1BJT0RfMTEgfTsKPj4+PiAr
+Cj4+PiBbLi4uXQo+Pj4KPj4+PiArCj4+Pj4gK3N0YXRpYyBjb25zdCBjaGFyICogY29uc3QgdGRt
+X2dyb3Vwc1tdID0gewo+Pj4+ICsJInRkbV9kMl9jIiwgInRkbV9kM19jIiwgInRkbV9mczFfYyIs
+ICJ0ZG1fZDRfYyIsICJ0ZG1fZDVfYyIsCj4+Pj4gKwkidGRtX2ZzMV9kIiwgInRkbV9kNF9kIiwg
+InRkbV9kM19kIiwgInRkbV9kMl9kIiwgInRkbV9zY2xrMV9kIiwKPj4+PiArCSJ0ZG1fc2NsazFf
+aCIsICJ0ZG1fZnMxX2giLCAidGRtX2QyX2giLCAidGRtX2QzX2giLCAidGRtX2Q0X2giLAo+Pj4+
+ICsJInRkbV9kMSIsICJ0ZG1fZDAiLCAidGRtX2ZzMCIsICJ0ZG1fc2NsazAiLCAidGRtX2ZzMiIs
+ICJ0ZG1fc2NsazIiLAo+Pj4+ICsJInRkbV9kNF96IiwgInRkbV9kNV96IiwgInRkbV9kNiIsICJ0
+ZG1fZDciCj4+Pj4gK307Cj4+PiBPbiBwcmV2aW91cyBjaGlwLCB0aGVyZSB3ZXJlIHBpbiBhc3Np
+Z25lZCB0byB0ZG0gQSwgQiBvciBDLgo+Pj4gT24gdGhpcyBnZW5lcmF0aW9uLCBpdCBzZWVtcyB5
+b3UgaGF2ZSBhZGRlZCBhIHNlY29uZCBsZXZlbCBvbiBwaW5tdXhpbmcKPj4+IHRvIHJlLXJvdXRl
+IHRoZSBhdWRpbyBwaW5zIHRvIGRpZmZlcmVudCBjb250cm9sbGVycwo+Pj4gSW4gc3VjaCBjYXNl
+LCBJIGRvbid0IHRoaW5rIHRoZXkgYmVsb25nIGluIHRoZSBzYW1lIGdyb3VwLgo+Pj4gRGVwZW5k
+aW5nIG9uIHNldHRpbnMsIEQyIGFuZCBEMyBjb3VsZCBiZSB1bnJlbGF0ZWQKPj4+IEkgdGhpbmsg
+ZWFjaCBhdWRpbyBwaW4gc2hvdWxkIGhhdmUgaXRzIG93biBncm91cCAob25lIGdyb3VwIGZvciBE
+Mywgb25lCj4+PiBENCwgZXRjIC4uLikKPj4+Cj4+IEFjY29yZGluZyB0byBvdXIgYXVkaW8gY29s
+bGVhZ3VlLCBvbiB0aGlzIGNoaXAsIHRkbSBBL0IvQyBjYW4gY2hvb3NlIHdoaWNoCj4+IHBpbnMg
+YXJlIHJvdXRlZCB0byB0aGVpciBjb250cm9sbGVycyBmcmVlbHkgYnkgd3JpdGluZyBzcGVjaWFs
+IHJlZ2lzdGVycywKPj4gc2F5LCB0ZG1fZDJfYyBjYW4gYmUgYXNzaWduZWQgdG8gYW55IG9mIHRk
+bSBhLCBiIGFuZCBjIGJ5IGRlbWFuZCwgc28gbm8KPj4gbmVlZCB0byBzcGVjaWZ5IGEvYi9jIHdv
+cmRzIGFueSBtb3JlLgo+IAo+IFRoYXQncyBiYXNpY2FsbHkgbXkgY29tbWVudCBhYm92ZS4gQ29t
+bWVudCBzdGlsbCBzdGFuZHMKPiBFYWNoIEQgYW5kIEZTIHBpbiBjb3VsZCBiZSByZWxhdGVkIHRv
+IGRpZmZlcmVudCBpbnRlcmZhY2UgYW5kIHNob3VsZCBiZQo+IGluIGRpZmZlcmVudCBncm91cHMK
+PiAKPiAKPiAKU28gSSBndWVzcyBiZWxvdyBzaG91bGQgbWF0Y2ggYWJvdmUgY29tbWVudCwgY29y
+cmVjdCBtZSBpZiBJ4oCZbSB3cm9uZwoKc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCB0ZG1fZDBf
+Z3JvdXBzIHsKICAgICAgIC4uLgp9OwogIC4uLgoKc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCB0
+ZG1fZDdfZ3JvdXBzIHsKICAgICAgIC4uLgp9OwoKc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCB0
+ZG1fZnMwX2dyb3VwcyB7CiAgICAgIC4uLgp9OwoKc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCB0
+ZG1fZnMyX2dyb3VwcyB7CiAgICAgIC4uLgp9OwoKc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCB0
+ZG1fc2NsazBfZ3JvdXBzIHsKICAgICAgLi4uCn07CiAgICAgLi4uCnN0YXRpYyBjb25zdCBjaGFy
+ICogY29uc3QgdGRtX3NjbGsyX2dyb3VwcyB7CiAgICAgIC4uLgp9OwoKCgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
