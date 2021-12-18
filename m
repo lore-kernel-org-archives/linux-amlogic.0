@@ -4,62 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE007C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Dec 2021 14:37:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 162C9C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Dec 2021 15:09:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NucY0E0wUWnTDi9g74FHy2l3uPlUiArGckDjgyxUFRo=; b=mwN30xOeGAYJbX
-	ZEAudHWOHoBYHl2KGFDSpY3zwUcexDmoDhW2I9G2L7xpAKuIfSg03WaBLuJgDlBj/+J8HacVh8FZm
-	GYQ8yL8wucWGxJphLoMgYoMm5AsN5e8ozVyQCxmAWGC4QA2gVrzofzON1Q7DAHHbiPfVF0nlWfUBS
-	x9Ak4QGImsg8otzONA9gH/wsJxW8+GiCsF6P42u57bXDvlfwqvvSg1R0SoX2HlFp32bkmZopGDMuA
-	CbX/LkmPdS7esy20zTOVonvY+cDRgHmgVaKLUS7kyCIfQVmLNi1dd3bLw1P8jIABDVJjKUnWd0jeQ
-	mgRlRxFvUpZaqult1OZg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=JIKWb+gwq6sODfaoZhMWs0a8savnIvrwpnntTYTLP44=; b=ifj4/sXHKy7WZY
+	EfyzhXJgbHn3LzbRm/KnzRylQtWQkXwVSOPELAJRJEjDyYIiNjhMbOLgkToQ4g4ZoVq2oCWMKqGyN
+	4ATa9SEKmgk50YjR6J6dbrKQn8imZ5oRhhsHKujG9XTdoePUESIBvJdroEg+VNpykuvW4Do+y2DgR
+	3Q20KXqeUyQRd9pICNlukC/CupB3UOuuYcieIYMA3Z9lh1jtZVNN2gbgEzTvyL+XY1/5VGiT0CW48
+	MlX4g5ZeUK2oA6+iKpiXi/0Y7mDuQ5SnJHpepASXW6zzDaZEWJjwpH6P+TJrKWNCblPs8b++n298R
+	p//Slo+eiHXzd5oi80bA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1myaph-00E0Q7-UK; Sat, 18 Dec 2021 14:37:09 +0000
-Received: from mout-p-101.mailbox.org ([80.241.56.151])
+	id 1mybKk-00E46F-2W; Sat, 18 Dec 2021 15:09:14 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1myape-00E0PT-PT
- for linux-amlogic@lists.infradead.org; Sat, 18 Dec 2021 14:37:08 +0000
-Received: from smtp1.mailbox.org (smtp1.mailbox.org
- [IPv6:2001:67c:2050:105:465:1:1:0])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4JGT2Q6hB0zQkBp;
- Sat, 18 Dec 2021 15:37:02 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1639838221;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=0sXFk4A29aee5T5cwUNQcaVfx8IXgBcOndunD/GQABw=;
- b=RgwsZQMU5t6UEwe/6+9AblpO0KJsdJ1a28TWmaducNA2Z9d3gkDAytIRQq675cjNG+V7b6
- TEL61c27eqoOAabnHCZJmt+hBOsnm/uKI4ELdTVo0ss5QuIeh3ENGREAT9z+2eGZPcKNgR
- aciwMPZZaWz1zFwJ8LfX6SZoReVG+guNWorw3sUcDz5vF7r+ASwfmBrI+Rk+Ld2HQYLl4q
- 0TSwm2WFySHxCc3hzbDwZ13Rsr11cSY3ve5QBlQ8huY03zgdpMdlX/O3qdv6xjr8bmetLG
- yc7X+e99bo0QCvCebNaElqew6XDvUc1/823cjHNpt38PRdNhKP0GdAkzfOPL9w==
-From: Alexander Stein <alexander.stein@mailbox.org>
-To: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Alexander Stein <alexander.stein@mailbox.org>,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH 1/1] dt-bindings: display: meson-vpu: Add missing amlogic,
- canvas property
-Date: Sat, 18 Dec 2021 15:36:41 +0100
-Message-Id: <20211218143641.19372-1-alexander.stein@mailbox.org>
+ id 1mybKf-00E45P-W8
+ for linux-amlogic@lists.infradead.org; Sat, 18 Dec 2021 15:09:12 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id e5so9902391wrc.5
+ for <linux-amlogic@lists.infradead.org>; Sat, 18 Dec 2021 07:09:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=4Jx0r8u8GwSVNZZUQkIGbMqgfeOF8CFRv/AVFU4Cz6Q=;
+ b=LgF86P71CsNKaxbYYlfp4fDQgcPN1o8/rxFOXydIH8BZQ6GI+KfTJB2tJ6baAnF6yv
+ jUIoOI8t1/FlOVDrS50KyecuHQF9LjNoEt5n7XCnctJgZAIvlLMy1yJBJ2/azBvwg/Da
+ FnoZMsnhKNYFvrBLkKV6XvFO3zIZtL+4psnS3mHMLBlJ6T1RSreAV5O787SAU8mFgT3k
+ +ifiKpKunsClSndxfTqJhf1FhC3Makx30Gm9Cq8J29f6oGoamZ2mxwQeOr2W9KPIF8aC
+ jfAU+wtrUi+VCIwUqJk9ONkmBjGlY4mozz9rFqX6p1xMbYnJBxfmgck5rIJgV2kMB1ab
+ vV2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=4Jx0r8u8GwSVNZZUQkIGbMqgfeOF8CFRv/AVFU4Cz6Q=;
+ b=LlheMznDvmQ2andsxiol7y5PxUC+If2DOQAEW+ZzD3u1asESU1sac9Ep2xjn3kJq+f
+ 42BxHATJRCyVs6l9N+OoI1N0ALGgtH3strsrCyafQb7BQpRT7ZFi8yeulw7Q7pMxJ7LA
+ dP2GbC/QSBQQeVAzWWh9UioikFBty8gZT9mHxQxi86XJ5jZOS91EB+6axOvyWpBwj0LH
+ eI5QwYPTU+E9N+weDISEj0paieH1ho+X/bE3A3dggKVEFopb/bWw09LST0663StYhAL+
+ Zwesns2LH09661bioIXG/Z+SQTaWdfGuGL1kowy7wRF5lbOuYzJ7XqU9DmGh/ba9hlO9
+ 8VDQ==
+X-Gm-Message-State: AOAM533fYiD3O8LSIGn52Mf6I5bxun9uzO/Do0dRGB3Cyky6KLLMhUTT
+ pk/TQY64TBsKZ+FFH0paeUWXuA==
+X-Google-Smtp-Source: ABdhPJyHNPKxPcjCWCy6WIP+tPA29bOw4V1wdCTCIArytZ74LqRyhzJKZ8cGqnz8hYeFB6Kqs1t1vQ==
+X-Received: by 2002:a5d:6289:: with SMTP id k9mr6283676wru.501.1639840147739; 
+ Sat, 18 Dec 2021 07:09:07 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id p1sm1554275wma.42.2021.12.18.07.09.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 18 Dec 2021 07:09:07 -0800 (PST)
+References: <20211218142632.15293-1-alexander.stein@mailbox.org>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Alexander Stein <alexander.stein@mailbox.org>, Rob Herring
+ <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/1] arm64: dts: meson-g12b-odroid-n2: move assigned-clocks
+Date: Sat, 18 Dec 2021 16:03:16 +0100
+In-reply-to: <20211218142632.15293-1-alexander.stein@mailbox.org>
+Message-ID: <1j4k769ch7.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211218_063707_006407_53F95A6F 
-X-CRM114-Status: UNSURE (   7.18  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211218_070910_103064_CB8F79A0 
+X-CRM114-Status: GOOD (  14.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,34 +90,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This property was already mentioned in the old textual bindings
-amlogic,meson-vpu.txt, but got dropped during conversion.
-Adding it back similar to amlogic,gx-vdec.yaml.
 
-Fixes: 6b9ebf1e0e67 ("dt-bindings: display: amlogic, meson-vpu: convert to
- yaml")
-Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
----
- .../devicetree/bindings/display/amlogic,meson-vpu.yaml        | 4 ++++
- 1 file changed, 4 insertions(+)
+On Sat 18 Dec 2021 at 15:26, Alexander Stein <alexander.stein@mailbox.org> wrote:
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-index 851cb0781217..65bf6d7ec707 100644
---- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-@@ -78,6 +78,10 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  amlogic,canvas:
-+    description: should point to a canvas provider node
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-   power-domains:
-     maxItems: 1
-     description: phandle to the associated power domain
--- 
-2.34.1
+> dtschema expects a 'clocks' property if 'assigned-clocks' is used, but
+> 'sound' node does not.
+> So move the MPLL[0-2] clock settings &clkc_audio which actually use them.
+
+No, this does not make sense.
+The sound card needs the clocks set in such way - nothing else
+The clock controller work just as well regarless of the clock rate
+
+Having a clock property or not does not change that
+
+> This fixes the dtschema warning:
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
+>
+
+Then the schema needs fixing IMO
+
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> ---
+>  .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi    | 15 +++++++--------
+>  1 file changed, 7 insertions(+), 8 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> index 9c05c83453f5..85257507206c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> @@ -252,14 +252,6 @@ sound {
+>  				"U19 INR", "ACODEC LORP",
+>  				"Lineout", "U19 OUTL",
+>  				"Lineout", "U19 OUTR";
+> -
+> -		assigned-clocks = <&clkc CLKID_MPLL2>,
+> -				  <&clkc CLKID_MPLL0>,
+> -				  <&clkc CLKID_MPLL1>;
+> -		assigned-clock-parents = <0>, <0>, <0>;
+> -		assigned-clock-rates = <294912000>,
+> -				       <270950400>,
+> -				       <393216000>;
+>  		status = "okay";
+>  
+>  		dai-link-0 {
+> @@ -365,6 +357,13 @@ &cecb_AO {
+>  };
+>  
+>  &clkc_audio {
+> +	assigned-clocks = <&clkc CLKID_MPLL2>,
+> +				<&clkc CLKID_MPLL0>,
+> +				<&clkc CLKID_MPLL1>;
+> +	assigned-clock-parents = <0>, <0>, <0>;
+> +	assigned-clock-rates = <294912000>,
+> +					<270950400>,
+> +					<393216000>;
+>  	status = "okay";
+>  };
 
 
 _______________________________________________
