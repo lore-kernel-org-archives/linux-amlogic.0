@@ -4,69 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEDD6C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Dec 2021 13:03:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05951C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Dec 2021 13:03:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TrDNzf++Bt82dbwLNM1mVyEiYLEm1vhHgW1kxbahvs0=; b=Mr+9dVKfSstZVe
-	pVTVyxa9yIFz7A2EL2vY3vICUTHzI7/ZY7/w260IIUcQcO+F3tczahm63o7dpmx1g0cIRZoLE1zVj
-	H84whfKUKXFjhOndwaKhaVcU5/HzBI8zDTJnjMnvgjnkHahoOhs36KfhiE8bzkwtxown8nz7sInTI
-	UFLu96DX/DQ5gUXuYrbdP9Tee61e5nmSVkBlLdMlfjlgH4yoLqwNbl0whZjLRzRirqeIatN4aN7EF
-	R2vicjOFJ2xHhxr9qS+zJLuy0OdGdO7bDlrDJ1QLP1Zn9jGWac4q1JGJUM/3kGEgdHDl1T6xjBJDo
-	7VMzSDc5wEstvWCldFAg==;
+	List-Owner; bh=a4z/IcpeT9D+PTwjmmdFGbHzXx48IKnRr5j4tXfc9XQ=; b=XW9fH0nJT8Wt+k
+	2joodjnjORN0399CxxnAyJBRr/37mWc0vrt/odFJX7Seo+bJxEkdaWp9IRMkG7+HtEcaw7kIKtoC5
+	HL1hoZVsHHCewPXlabLYvEcvYjQgyABV8zNHAZgBaCv5zueIUBrJgFeb5uvfI9yj/rVFSZocA0J0f
+	EsTEn6XHF1YsFpq/Z5ku8N8B+1axJ9pqdwxi9DIHL0WiyDBB17Kv/txZmIahkNSQmcxD6ctuZMRKX
+	/nSPNCu9Da+Rn7NllfGcToAvokEXXjwZgfJWNtPmscsynh+OQrMI8ntsrZc70ApZ6zSnX9UruZLxf
+	/qIz4C7F3UsAEucKf68A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzeno-006qbb-N0; Tue, 21 Dec 2021 13:03:36 +0000
-Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
+	id 1mzenp-006qbi-J0; Tue, 21 Dec 2021 13:03:37 +0000
+Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzenY-006qTe-Fx
+ id 1mzenZ-006qUt-Ph
  for linux-amlogic@lists.infradead.org; Tue, 21 Dec 2021 13:03:23 +0000
-Received: by mail-lf1-x132.google.com with SMTP id g11so29260061lfu.2
- for <linux-amlogic@lists.infradead.org>; Tue, 21 Dec 2021 05:03:18 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id g11so29260373lfu.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 Dec 2021 05:03:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TWzCt+T8UkYpAGzTveuD56wBYeSm7wcDkmh117uxRvU=;
- b=K3V/VNH6ZIoPn4j0ryz6Cm6UZFFfVitYHO+kQBB0J90Qp/9ITQ/TGs35UiB5nASven
- 3YKV8ZgUfLLaZhYB5P0/90FpvVP7kgpIW9v7IDxyN2x8cD/1EiIrIzekM5Dxt1o6NUjB
- FpdIHBCd90heM4yxUhI3c88o+75KD2KUVDcCjOZ0VBGYCGr9tiYs98fDuMqM28rAXF2n
- b4pSidVT43tR/6lVe0/KubUBTu+NmnTi6CIrwZ0nN8onY//z2eeLliiR87CGlaRll8Gb
- 6Ce3u/FRuKC/dgfcegt03/hGrkqtWEXVyuo5cKQOa8L2nmYKOq4rLTn69I73NfJYaqqH
- YGpw==
+ :cc; bh=EbFMqfLUV7jqbg8sJZLc2clgBzqbVKTSLl3KdaBAXZM=;
+ b=U8DREYfaMAZ0dbfgkMS4Up6G506OcBayGPwepAX98LgXHrPGUKa05zz8TLvojVHKnl
+ Sdj61ODtqDJhJQVxESkLRYQXETkYCozpuqQ9KNxSHaW9+pj7vs7Y/f/fDxepaOuDQpVN
+ NetS8jpTdck2zqqiiVfqm9tc9IaojIB9SOhfUWZUkbFz9l9qExgqRFwgjVuZB2wu3aAP
+ ylRNY58GUklfXnWjxJ4Vs7wzTwJpWvXZHEeQs38D/wIdyLfUqwrjH2ejhRu5sChshk9t
+ LnDNgx2kqu3kcT5/v7WTZjuPk02YfrrARdYf1Y9pdnYayUE0A1p/MdJr/EZTQt9Fk99c
+ 67sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=TWzCt+T8UkYpAGzTveuD56wBYeSm7wcDkmh117uxRvU=;
- b=Lg5kODQKvpaPuuFnrvCPAj+tR3GP3GqDd0HJkoAvMYeZne2SMkFG07kieYLL42mvXm
- koAaLJjh21flWm89tzbU0FqzQftPuPsZpS4OiZkB7JZPI9BqXpyA+nSdf+VXhajsgLHM
- eIKyhvZiF3kJAww124s+sGxiQoebyTlItq61LDC1XBHXaKxTTgDK814vwmCtjOvnMJB3
- J71PTmfmG1EYUKQJAYrae5TmhlwTZPGGXJDD+FoZQtg1qv21mdsjTOTecQGHHUI8Syvi
- GrxkMuvS9stwJiJwNyy920BbOlSA/VWGTW+VqcrsQcnJF4L2N3rJPUdhk8HKMc+tg+p8
- ANvQ==
-X-Gm-Message-State: AOAM530rjtL5cZytqgdmc/ZR7E5jQa6EQfXWSz+COdXp2y2yDDDofCcj
- hgGNOFk2d1TdgGVOhb2tS2OPWc0Ku/wmSV+T3Ah47w==
-X-Google-Smtp-Source: ABdhPJzlKqWv6wXLhW5FNFjEcxu5IsCLseG7Ejt3W39SV2RDB50NrFUNXphXzmj6T+y5IRvHkg6RUg1AoGyNFwSVSdA=
-X-Received: by 2002:a19:5019:: with SMTP id e25mr2971601lfb.254.1640091797600; 
- Tue, 21 Dec 2021 05:03:17 -0800 (PST)
+ bh=EbFMqfLUV7jqbg8sJZLc2clgBzqbVKTSLl3KdaBAXZM=;
+ b=TrK3IVNTPXMEuN2wIsv+Wyo9kcyWETvCqUsTNEhfr6kpYm+Wsl/CwGDTgmnDGfAaV1
+ UUNxJ1PYfM2Of4+6qS6aVmXP+S11EsGTLc/AwYnBooy1WKlONzdYnzc/bw/0CFyXt6D6
+ 1047lRXKvrNOYoOwiG8tAtHcre78OHWDSLQeCW3gXkUysZKdlQVPBuG9lwsD7VRguSVN
+ vaLmiSZkJljw82VfrUVaMXgR37wONAF95ZLnFz0TdGayxj7YmZLdEIbsk2HtjGaybcde
+ xWANJBX/QeZu++faxmKSdkB60mzWPkY6OaK07VoFZDJI5JTP7dd7Qzitznd8iE8RdSWB
+ YSzQ==
+X-Gm-Message-State: AOAM5331T/o8af5nX9rFJ7wfs0GM7LeWx8ccEWm21ZsplMybxkVZoG2F
+ Z1VyxuUPpar7LGrgknb+RLlOrvwkj79eCkcjTUiwNQ==
+X-Google-Smtp-Source: ABdhPJyj2JiEdgIr2ylZYEDZ2Yav+CgsmjJXAaF1llCj1oEB9JMNfTLdHSw0NUdOMpsK1Wsgmg9lPE+EcZv+5rRY4cA=
+X-Received: by 2002:a05:6512:310e:: with SMTP id
+ n14mr2985967lfb.167.1640091800421; 
+ Tue, 21 Dec 2021 05:03:20 -0800 (PST)
 MIME-Version: 1.0
 References: <20211219153442.463863-1-martin.blumenstingl@googlemail.com>
- <20211219153442.463863-2-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20211219153442.463863-2-martin.blumenstingl@googlemail.com>
+ <20211219153442.463863-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20211219153442.463863-3-martin.blumenstingl@googlemail.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 21 Dec 2021 14:02:39 +0100
-Message-ID: <CAPDyKFry2L5RKTtxKQ-Qu+xJEsK-hSCNgrgB371MMSGsd4DwZA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] mmc: meson-mx-sdhc: Set MANUAL_STOP for
- multi-block SDIO commands
+Date: Tue, 21 Dec 2021 14:02:42 +0100
+Message-ID: <CAPDyKFrbWqMSTPvpsYD40yiHvowkVrTRDrjqpt-v3yhJZ9JRgQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] mmc: meson-mx-sdhc: Drop unused
+ MESON_SDHC_NUM_BUILTIN_CLKS macro
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: linux-mmc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211221_050320_552713_9DAF2290 
-X-CRM114-Status: GOOD (  25.57  )
+X-CRM114-CacheID: sfid-20211221_050321_888594_C15040B4 
+X-CRM114-Status: GOOD (  13.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,85 +87,34 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On Sun, 19 Dec 2021 at 16:34, Martin Blumenstingl
 <martin.blumenstingl@googlemail.com> wrote:
 >
-> The vendor driver implements special handling for multi-block
-> SD_IO_RW_EXTENDED (and SD_IO_RW_DIRECT) commands which have data
-> attached to them. It sets the MANUAL_STOP bit in the MESON_SDHC_MISC
-> register for these commands. In all other cases this bit is cleared.
-> Here we omit SD_IO_RW_DIRECT since that command never has any data
-> attached to it.
+> Remove MESON_SDHC_NUM_BUILTIN_CLKS because it is not used anywhere in
+> the driver.
 >
-> This fixes SDIO wifi using the brcmfmac driver which reported the
-> following error without this change on a Netxeon S82 board using a
-> Meson8 (S802) SoC:
->   brcmf_fw_alloc_request: using brcm/brcmfmac43362-sdio for chip
->                           BCM43362/1
->   brcmf_sdiod_ramrw: membytes transfer failed
->   brcmf_sdio_download_code_file: error -110 on writing 219557 membytes
->                                  at 0x00000000
->   brcmf_sdio_download_firmware: dongle image file download failed
->
-> And with this change:
->   brcmf_fw_alloc_request: using brcm/brcmfmac43362-sdio for chip
->                           BCM43362/1
->   brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may
->                             have limited channels available
->   brcmf_c_preinit_dcmds: Firmware: BCM43362/1 wl0: Apr 22 2013 14:50:00
->                          version 5.90.195.89.6 FWID 01-b30a427d
->
-> Fixes: e4bf1b0970ef96 ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Applied for fixes and by adding a stable tag, thanks!
+Applied for next, thanks!
 
 Kind regards
 Uffe
 
 
-
 > ---
->  drivers/mmc/host/meson-mx-sdhc-mmc.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  drivers/mmc/host/meson-mx-sdhc-clkc.c | 2 --
+>  1 file changed, 2 deletions(-)
 >
-> diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-> index 7cd9c0ec2fcf..8fdd0bbbfa21 100644
-> --- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
-> +++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-> @@ -135,6 +135,7 @@ static void meson_mx_sdhc_start_cmd(struct mmc_host *mmc,
->                                     struct mmc_command *cmd)
->  {
->         struct meson_mx_sdhc_host *host = mmc_priv(mmc);
-> +       bool manual_stop = false;
->         u32 ictl, send;
->         int pack_len;
+> diff --git a/drivers/mmc/host/meson-mx-sdhc-clkc.c b/drivers/mmc/host/meson-mx-sdhc-clkc.c
+> index e1f29b279123..19200b7079a6 100644
+> --- a/drivers/mmc/host/meson-mx-sdhc-clkc.c
+> +++ b/drivers/mmc/host/meson-mx-sdhc-clkc.c
+> @@ -12,8 +12,6 @@
 >
-> @@ -172,12 +173,27 @@ static void meson_mx_sdhc_start_cmd(struct mmc_host *mmc,
->                 else
->                         /* software flush: */
->                         ictl |= MESON_SDHC_ICTL_DATA_XFER_OK;
-> +
-> +               /*
-> +                * Mimic the logic from the vendor driver where (only)
-> +                * SD_IO_RW_EXTENDED commands with more than one block set the
-> +                * MESON_SDHC_MISC_MANUAL_STOP bit. This fixes the firmware
-> +                * download in the brcmfmac driver for a BCM43362/1 card.
-> +                * Without this sdio_memcpy_toio() (with a size of 219557
-> +                * bytes) times out if MESON_SDHC_MISC_MANUAL_STOP is not set.
-> +                */
-> +               manual_stop = cmd->data->blocks > 1 &&
-> +                             cmd->opcode == SD_IO_RW_EXTENDED;
->         } else {
->                 pack_len = 0;
+>  #include "meson-mx-sdhc.h"
 >
->                 ictl |= MESON_SDHC_ICTL_RESP_OK;
->         }
->
-> +       regmap_update_bits(host->regmap, MESON_SDHC_MISC,
-> +                          MESON_SDHC_MISC_MANUAL_STOP,
-> +                          manual_stop ? MESON_SDHC_MISC_MANUAL_STOP : 0);
-> +
->         if (cmd->opcode == MMC_STOP_TRANSMISSION)
->                 send |= MESON_SDHC_SEND_DATA_STOP;
->
+> -#define MESON_SDHC_NUM_BUILTIN_CLKS    6
+> -
+>  struct meson_mx_sdhc_clkc {
+>         struct clk_mux                  src_sel;
+>         struct clk_divider              div;
 > --
 > 2.34.1
 >
