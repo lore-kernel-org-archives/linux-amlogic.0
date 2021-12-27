@@ -4,55 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65779C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Dec 2021 06:56:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E42FC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Dec 2021 08:07:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TLuuieB2UmlSEiMFmrjkI+VENqDPGAMNj3kxgi2cFXA=; b=0nkj++bP7wGhxs
-	maf5qCROD+Mxs0qlC+/vecC9A4bs41Kg2bO3F7yRgQneFislWaQDrMGhSiIOdjmIaRQG4E5q6S707
-	+MtaLPn53rMaHFyBlxuJvZNNo8n4Sxidt/xx/Pi1jZv8VGDm9QunO3Id+bKFB49NtFKtcfmWirgZ4
-	2P28kfdZCl5SiDw8tO79lzviLNZbEMJQsulQ0uyDJItk4h3sEv26IPo+X9jlYCShN+xfEVmRDV56E
-	EhKZgnvFUOMmoukOOs7x0gNU05BQFdDNEScnpt2eC0dqfDDfcs8R+sH0//wJJC3/tEWIzIOFk+6co
-	ChV3g88+zeEMCDzBxp0A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=QExkkCVsCLQvV4HdpggsnqdxKJoq5W/qwN6GcTuGyVE=; b=N6kV6aj9/RSlEw
+	4xTFq47Kjvw1VzdJXWKjijs1RStWVh2CdwoH6ZyM5ASgfsaLbFusoc5vrLDk+PbvONAZ6tLKbDT4u
+	dCE6TwFkoX+RUIcCmPZE/TBDGF/vPKqTOM6qc4+FB18f55RL8e+IEvEU6i2ReP1G25C8SMdhREkfO
+	1O+EiEz6hIEmHuP6xfVFAzCbGZOiJgg6O+xWgILpyv7TVBUqK8Ezb9rccFi8JfFmZTV94zBhivmiw
+	efA/2uyKhoCWlv4ktGvU67z+DswZ10a8aGsIY/XjN7mifgar87DD1gnfB54b5HnLhm2LNj2JQM7BK
+	bAkZ7fGWRRwyzmBZvVYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n1jvo-00GHha-OQ; Mon, 27 Dec 2021 06:56:28 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1n1l2F-00GKlh-20; Mon, 27 Dec 2021 08:07:11 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n1jvc-00GHfS-Du; Mon, 27 Dec 2021 06:56:17 +0000
-Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Mon, 27 Dec
- 2021 14:56:09 +0800
-Message-ID: <e041c9ed-ff42-a7e7-2fc5-03c96cc69a88@amlogic.com>
-Date: Mon, 27 Dec 2021 14:56:09 +0800
+ id 1n1l23-00GKiy-5X; Mon, 27 Dec 2021 08:07:00 +0000
+Received: from droid09-sz.software.amlogic (10.28.8.19) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2;
+ Mon, 27 Dec 2021 16:06:53 +0800
+From: Qianggui Song <qianggui.song@amlogic.com>
+To: Linus Walleij <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>
+CC: Qianggui Song <qianggui.song@amlogic.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>, Mark
+ Rutland <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/2] pinctrl: meson-s4: add pinctrl driver
+Date: Mon, 27 Dec 2021 16:06:47 +0800
+Message-ID: <20211227080649.32275-1-qianggui.song@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH 3/3] tty: serial: meson: add UART driver compatible with
- S4 SoC on-chip
-Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
- <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>
-References: <20211221071634.25980-1-yu.tu@amlogic.com>
- <20211221071634.25980-4-yu.tu@amlogic.com>
- <CAFBinCB9Fre9Lea2CAm_8o8g1e3o8oX4ZONbN_bhykNXoFHDdQ@mail.gmail.com>
-From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <CAFBinCB9Fre9Lea2CAm_8o8g1e3o8oX4ZONbN_bhykNXoFHDdQ@mail.gmail.com>
-X-Originating-IP: [10.18.29.173]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+X-Originating-IP: [10.28.8.19]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211226_225616_530296_96D79FF0 
-X-CRM114-Status: GOOD (  22.94  )
+X-CRM114-CacheID: sfid-20211227_000659_252191_72BE4219 
+X-CRM114-Status: UNSURE (   8.91  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,71 +57,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
-	Thank you very much for your reply.
+This patchset adds Pin controller driver support for Meson-A1 Soc
+which shares the same register layout with previous Meson-S4
 
-On 2021/12/25 1:25, Martin Blumenstingl wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> Hello,
-> 
-> On Tue, Dec 21, 2021 at 8:17 AM Yu Tu <yu.tu@amlogic.com> wrote:
->>
->> The S4 SoC on-chip UART uses a 12M clock as the clock source for
->> calculating the baud rate of the UART. But previously, chips used 24M or
->> other clock sources. So add this change. The specific clock source is
->> determined by chip design.
-> Does the new S4 SoC use an external 12MHz XTAL or does it use a 24MHz XTAL?
-> If there's still a 24MHz XTAL then I think this description is not
-> correct - at least based on how I understand the UART controller.
-> 
-The S4 SoC uses 12MHz(UART_EE_A_REG5[27]=0x1,the bit is set in romcode). 
-This register description is the same as the G12A and G12B you know.
+Note that since dt-binding header file patch(already get ack) has been removed
+from this patch set, compiling need header file in patch 2 of [0].
 
-> SoCs up to GXL and GXM had an internal divide-by-3 (clock divider) in
-> the UART controller IP and an external 24MHz XTAL.
-> This was not configurable, so the clock for all baud-rates had to be
-> derived from an 8MHz (24MHz divided by 3) clock.
-> 
-> With the A311D (G12B, which is still using an external 24MHz XTAL) SoC
-> the UART controller gained two new bits - with configurable dividers -
-> according to the public datasheets:
-> UART_EE_A_REG5[26]:
-> - 0x0: divide the input clock by 3 (meaning: this internally works
-> with an 8MHz clock)
-> - 0x1: use the input clock directly without further division (meaning:
-> this internally work with an 24MHz clock)
-> UART_EE_A_REG5[27]:
-> - 0x0: use the clock as configured in UART_EE_A_REG5[26]
-> - 0x1: divide the input clock by 2 (meaning: this internally works
-> with an 12MHz clock)
-> 
-> While writing this email I did some investigation and found that
-> UART_EE_A_REG5[26] is used in the vendor kernel even for GXL and GXM
-> SoCs.
-> So this probably has been introduced with the GXL generation (and thus
-> is missing on GXBB and earlier SoCs).
-> Also UART_EE_A_REG5[27] seems to have been introduced with the G12A
-> generation of SoCs (not surprising since G12A and G12B peripherals are
-> very similar).
-> 
-> Does the UART controller not work with divide-by-3 (as we have it
-> today) or are these configurable dividers to reduce jitter?
-> 
-The UART controller can work with divide-by-3.
-The chip history as you described above, the current reason for using 
-12MHz clock is really what you call reduce jitter. The UART mainly 
-connects to Bluetooth and uses typical baud rates of 2Mhz, 3MHz and 
-4MHz, so 12MHz is used as the clock source.
-> 
-> Best regards,
-> Martin
-> 
+Changes since v1 at [0]:
+- fix typos in commit message
+- fix coding style problem in pinctrl-meson-s4.c
+- change tdm groups makeup and split mclk groups
+
+[0] https://lore.kernel.org/linux-amlogic/20211214022100.14841-1-qianggui.song@amlogic.com/
+
+Qianggui Song (2):
+  dt-bindings: pinctrl: meson: Add compatible for S4
+  pinctrl: meson: add pinctrl driver support for Meson-S4 Soc
+
+ .../bindings/pinctrl/meson,pinctrl.txt        |    1 +
+ drivers/pinctrl/meson/Kconfig                 |    6 +
+ drivers/pinctrl/meson/Makefile                |    1 +
+ drivers/pinctrl/meson/pinctrl-meson-s4.c      | 1289 +++++++++++++++++
+ 4 files changed, 1297 insertions(+)
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-s4.c
+
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
