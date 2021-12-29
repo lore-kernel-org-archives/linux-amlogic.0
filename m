@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E2BAC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Dec 2021 13:56:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD0D6C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Dec 2021 13:56:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KM/4p03sCQgODqQ3ueG31WRm3ktzL5Oh9Prp96iCmgM=; b=mywP/E/awBTD02
-	gewnzmJ5U+ez6ZPuy3apEnVJLifuMQYGOocVr3nOKd9mwFx4olufD2XvZ6SH3judymiekUwNIP520
-	lQRjwCTwmExdTW7afDvRsNg63owYNKw6zOOIW6rC+YqnRESFJxWwYf9zwJ9vOrGMoPIpcIZyJh1b9
-	OOOk28Zx48hSfkuwyAdTchzJDk/Io+OfG0jTnwIwLtADpnSF6EGDndpE11twWRKqODDsGfEKQU0E3
-	VQPTEJzd6adl6rsTIKQbSs0xLtSO/iWFCM5b2MtVTt2ujY7o8rwIZGUfX4bTeeGWR6GSECjadFmmo
-	WiC99BLOCkuOvMAt/cCg==;
+	List-Owner; bh=e9nagD4SiTQtWzngttb3MNOXnhxdMF5d6gasy/uGzDw=; b=heZ0ifzDykoNbL
+	Z4P0Wr+YsIYaVnPkpsyhgmi6q2+gyKgEq9z+SHGWtMDs7A7W4yEzZGfGuHznk/lCIXTGCFxEE1gUy
+	iwSAL/oGFK039ZxEM5VQlwIbSp2IFFhFV6qfK6gnDAY7o9zY5/chd5gzTghkBUdITG1IMrUccOkNY
+	Y4UsK7ktcon6HdcE6TVv1ZBNFs7zm9MGA/DiPU+BhvVCqMbS7Ti5NXlZS4ClFnmz4gaYpOk1nPura
+	S7TWktVwCPO2BIoFCCl4te9U5ybJiWtj+Pcb3lY7aV8S+kJbX3YyOoj5DAh9Svcm5Bx10OXJm84Is
+	x9+I+gxX7fGCrJkyV1kQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n2ZQq-002rno-Hx; Wed, 29 Dec 2021 13:55:56 +0000
+	id 1n2ZR5-002rxT-8Z; Wed, 29 Dec 2021 13:56:11 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n2ZQT-002rXG-1Q; Wed, 29 Dec 2021 13:55:34 +0000
+ id 1n2ZQU-002rXG-SG; Wed, 29 Dec 2021 13:55:36 +0000
 Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Wed, 29 Dec 2021
  21:55:30 +0800
@@ -34,19 +34,18 @@ CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
  <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
  Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
  Blumenstingl <martin.blumenstingl@googlemail.com>, Yu Tu <yu.tu@amlogic.com>
-Subject: [PATCH V2 5/6] tty: serial: meson: meson_uart_shutdown omit clear
- AML_UART_TX_EN bit
-Date: Wed, 29 Dec 2021 21:53:49 +0800
-Message-ID: <20211229135350.9659-6-yu.tu@amlogic.com>
+Subject: [PATCH V2 6/6] tty: serial: meson: Change request_irq to
+ devm_request_irq and move devm_request_irq to meson_uart_probe()
+Date: Wed, 29 Dec 2021 21:53:50 +0800
+Message-ID: <20211229135350.9659-7-yu.tu@amlogic.com>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20211229135350.9659-1-yu.tu@amlogic.com>
 References: <20211229135350.9659-1-yu.tu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211229_055533_103626_F76E235F 
-X-CRM114-Status: UNSURE (   8.44  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211229_055534_951670_FDB79338 
+X-CRM114-Status: GOOD (  10.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,28 +62,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This change is an improvement. The meson_uart_shutdown function
-should have the opposite operation to the meson_uart_startup
-function, but the meson_uart_shutdown of AML_UART_TX_EN is logically
-missing.
+Because an interrupt error occurs when the user opens /dev/ttyAML* but
+don't close it, and then opens the same port again. This problem is
+encountered in actual projects.
 
 Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 ---
- drivers/tty/serial/meson_uart.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/tty/serial/meson_uart.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 9b07e3534969..c17109d6d441 100644
+index c17109d6d441..41c2c607e70e 100644
 --- a/drivers/tty/serial/meson_uart.c
 +++ b/drivers/tty/serial/meson_uart.c
-@@ -140,7 +140,7 @@ static void meson_uart_shutdown(struct uart_port *port)
+@@ -135,8 +135,6 @@ static void meson_uart_shutdown(struct uart_port *port)
+ 	unsigned long flags;
+ 	u32 val;
+ 
+-	free_irq(port->irq, port);
+-
  	spin_lock_irqsave(&port->lock, flags);
  
  	val = readl(port->membase + AML_UART_CONTROL);
--	val &= ~AML_UART_RX_EN;
-+	val &= ~(AML_UART_RX_EN | AML_UART_TX_EN);
- 	val &= ~(AML_UART_RX_INT_EN | AML_UART_TX_INT_EN);
- 	writel(val, port->membase + AML_UART_CONTROL);
+@@ -284,7 +282,6 @@ static void meson_uart_reset(struct uart_port *port)
+ static int meson_uart_startup(struct uart_port *port)
+ {
+ 	u32 val;
+-	int ret;
+ 
+ 	meson_uart_reset(port);
+ 
+@@ -298,10 +295,7 @@ static int meson_uart_startup(struct uart_port *port)
+ 	val = (AML_UART_RECV_IRQ(1) | AML_UART_XMIT_IRQ(port->fifosize / 2));
+ 	writel(val, port->membase + AML_UART_MISC);
+ 
+-	ret = request_irq(port->irq, meson_uart_interrupt, 0,
+-			  port->name, port);
+-
+-	return ret;
++	return 0;
+ }
+ 
+ static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
+@@ -908,6 +902,14 @@ static int meson_uart_probe(struct platform_device *pdev)
+ 	meson_ports[pdev->id] = port;
+ 	platform_set_drvdata(pdev, port);
+ 
++	ret = devm_request_irq(&pdev->dev, port->irq, meson_uart_interrupt,
++			       0, dev_name(&pdev->dev), port);
++	if (ret) {
++		dev_err(&pdev->dev, "failed to request uart irq: %d\n",
++			ret);
++		return ret;
++	}
++
+ 	/* reset port before registering (and possibly registering console) */
+ 	meson_uart_reset(port);
  
 -- 
 2.33.1
