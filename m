@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7846C433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Dec 2021 13:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBAE6C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Dec 2021 13:54:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=rzTiQJPxXVaeM8JjCDJYMRjByQIsxyt9ibEWdpOWCDY=; b=dt+nyS6rOGcWJx
-	uskOYn08ip0+2XNovJ/dZS2hFOkMkiDILkBth62NkJG/yW9P4w9aDSTCI1l/W5FoLVPhJylylnHaZ
-	EJ7zmfvCqMgcH3aX7UF7GwksL5m52CjibNLRpK4oXLmVYGFjc3K4jojEBWpMhXehdXyfQ4TOhGHhM
-	SRma9E62qXjeHPxbDEoPZbpKycfl/LKFVEaVWiQOY8Iid4T+k5IYlTGlW1DyNe9RFxxL0UJ5g7qez
-	2mO0gaV1KolagoEa+hHE4uVVXlCbioK8SikAp84XhSKpW/ch/XKzg4vdnr4fhQA//LmN+T8KmEGzb
-	agCr0R2wLy4PRBl3oyKQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8NdyVyAHe9wp7cWUFQh9D6dR7q+I/ulCRMmbWx11B90=; b=xm8eI3c9GSbwBR
+	sy/m0Qr5mMjkHpHxANkeKmCk0NF+0t70OHdRQUpmPfokn79GN0SUQc1dMj65ka21aiewqZJ/I3iU0
+	IaJ/wIh1Z776uqaSloNn1ZkY+HiTwrJoVqP0JQm6UqwHtQbnuVxJKcEZquJKAh3p7kRr1KGpa+1AA
+	UoWzvdJm123o6t0UbFqgG+ckUppV1GJz01WeUebapWTEFOwk4tcztS8BhZ8zd9Rtrv4ahNHGo2Zci
+	ADTLkN8bMgRYBnkmgJlm0g2hwvz4c2sPc91piImD6zXJavi/zblQyssHn7Rr8byfyXztMLt26vDgY
+	ua29HvPgLA8X9j3cZcyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n2ZPV-002r0U-K8; Wed, 29 Dec 2021 13:54:33 +0000
+	id 1n2ZPf-002r3M-EK; Wed, 29 Dec 2021 13:54:43 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n2ZPJ-002qwz-PV; Wed, 29 Dec 2021 13:54:23 +0000
+ id 1n2ZPM-002qwz-69; Wed, 29 Dec 2021 13:54:25 +0000
 Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Wed, 29 Dec 2021
- 21:54:15 +0800
+ 21:54:16 +0800
 From: Yu Tu <yu.tu@amlogic.com>
 To: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
  <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
@@ -34,16 +34,18 @@ CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
  <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
  Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
  Blumenstingl <martin.blumenstingl@googlemail.com>, Yu Tu <yu.tu@amlogic.com>
-Subject: [PATCH V2 0/6] the UART driver compatible with the Amlogic Meson S4
-Date: Wed, 29 Dec 2021 21:53:44 +0800
-Message-ID: <20211229135350.9659-1-yu.tu@amlogic.com>
+Subject: [PATCH V2 1/6] tty: serial: meson: Drop the legacy compatible strings
+ and clock code
+Date: Wed, 29 Dec 2021 21:53:45 +0800
+Message-ID: <20211229135350.9659-2-yu.tu@amlogic.com>
 X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211229135350.9659-1-yu.tu@amlogic.com>
+References: <20211229135350.9659-1-yu.tu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211229_055421_875103_E7125796 
-X-CRM114-Status: UNSURE (   6.78  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211229_055424_251907_A9C2A295 
+X-CRM114-Status: GOOD (  13.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -60,35 +62,80 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-1.Using the common Clock code to describe the UART baud rate clock makes it
-easier for the UART driver to be compatible with the baud rate requirements of
-the UART IP on different meson chips. Add Meson S4 SoC compatible.
+All mainline .dts files have been using the stable UART since Linux
+4.16. Drop the legacy compatible strings and related clock code.
 
-2.Fix some omissions
+Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+---
+ drivers/tty/serial/meson_uart.c | 34 ++-------------------------------
+ 1 file changed, 2 insertions(+), 32 deletions(-)
 
-3.An interrupt error occurs when the user opens (/dev/ttyAML0) twice in a row
-
-Yu Tu (6):
-  tty: serial: meson: Drop the legacy compatible strings and clock code
-  tty: serial: meson: Request the register region in meson_uart_probe()
-  dt-bindings: serial: meson: Support S4 SoC uart. Also Drop compatible
-    = amlogic,meson-gx-uart.
-  tty: serial: meson: The UART baud rate calculation is described using
-    the common clock code. Also added S4 chip uart Compatible.
-  tty: serial: meson: meson_uart_shutdown omit clear AML_UART_TX_EN bit
-  tty: serial: meson: Change request_irq to devm_request_irq and move
-    devm_request_irq to meson_uart_probe()
-
-V1 -> V2: Use CCF to describe the UART baud rate clock.Make some changes as
-discussed in the email
-
-Link:https://lore.kernel.org/linux-amlogic/20211221071634.25980-2-yu.tu@amlogic.com/
-
- .../bindings/serial/amlogic,meson-uart.yaml   |  10 +-
- drivers/tty/serial/Kconfig                    |   1 +
- drivers/tty/serial/meson_uart.c               | 359 +++++++++++++-----
- 3 files changed, 265 insertions(+), 105 deletions(-)
-
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index d2c08b760f83..c9a37602ffd0 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -625,10 +625,7 @@ meson_serial_early_console_setup(struct earlycon_device *device, const char *opt
+ 	device->con->write = meson_serial_early_console_write;
+ 	return 0;
+ }
+-/* Legacy bindings, should be removed when no more used */
+-OF_EARLYCON_DECLARE(meson, "amlogic,meson-uart",
+-		    meson_serial_early_console_setup);
+-/* Stable bindings */
++
+ OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
+ 		    meson_serial_early_console_setup);
+ 
+@@ -668,25 +665,6 @@ static inline struct clk *meson_uart_probe_clock(struct device *dev,
+ 	return clk;
+ }
+ 
+-/*
+- * This function gets clocks in the legacy non-stable DT bindings.
+- * This code will be remove once all the platforms switch to the
+- * new DT bindings.
+- */
+-static int meson_uart_probe_clocks_legacy(struct platform_device *pdev,
+-					  struct uart_port *port)
+-{
+-	struct clk *clk = NULL;
+-
+-	clk = meson_uart_probe_clock(&pdev->dev, NULL);
+-	if (IS_ERR(clk))
+-		return PTR_ERR(clk);
+-
+-	port->uartclk = clk_get_rate(clk);
+-
+-	return 0;
+-}
+-
+ static int meson_uart_probe_clocks(struct platform_device *pdev,
+ 				   struct uart_port *port)
+ {
+@@ -750,12 +728,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+ 	if (!port)
+ 		return -ENOMEM;
+ 
+-	/* Use legacy way until all platforms switch to new bindings */
+-	if (of_device_is_compatible(pdev->dev.of_node, "amlogic,meson-uart"))
+-		ret = meson_uart_probe_clocks_legacy(pdev, port);
+-	else
+-		ret = meson_uart_probe_clocks(pdev, port);
+-
++	ret = meson_uart_probe_clocks(pdev, port);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -800,9 +773,6 @@ static int meson_uart_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id meson_uart_dt_match[] = {
+-	/* Legacy bindings, should be removed when no more used */
+-	{ .compatible = "amlogic,meson-uart" },
+-	/* Stable bindings */
+ 	{ .compatible = "amlogic,meson6-uart" },
+ 	{ .compatible = "amlogic,meson8-uart" },
+ 	{ .compatible = "amlogic,meson8b-uart" },
 -- 
 2.33.1
 
