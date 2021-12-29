@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3718FC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Dec 2021 13:54:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE59AC433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Dec 2021 13:55:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jVz7pfOwzFLIeOm5RjW8n8BsFXF+IO9/7JqxCCR+dxc=; b=WdCZMORtYhDq8K
-	TZAQtbBdg5T55tv74K9fvOseITyN96JqXfdrOcDBqcdpMC2AupQrR/UBTMIoCt7dtnu0hqTJ8h7q5
-	ZDKDEwvdSrvO6Z1eugPeCjuXqOnQA3EPIogqb/GmZR4pyxQIB2GFd7OHZlPJe7wBzVFILdCMomiln
-	bTxeuLhzBh6/+PAQ/kVV4LTR7k/PsJTHjy8KefCMdWuCaLFAGA4uchunURC6vEop0+jecNmCqmEqV
-	4vFswt7CrKZymYnicx20Q66TVwtWx9JkXyXEydyFWImuifaRsFiGj7XXQUJLNhTlycCFJ2bugZllZ
-	4wMCYhdW2Wa8HLWFUZqQ==;
+	List-Owner; bh=IsiX8UxvmyUdMycsO+LTd6afAhZiIvlsM5Xx2SL6gFI=; b=U8sA/oFukBmFQJ
+	Erc0Kh074Y+syHWwne0Eo3oQOMCC84MrG4Y+d7gndR8UmuvuGUjj2CuUASCF+6+qccMoWwldb1Sie
+	sK3l7u4twrv4R/FEn3rkjssTar2K3x0ti0XeZ/mge2ZABDaxPTmXTqDgchXFqUkNhmLTTYeod9lTs
+	mzI/fFEaaFMV7wWooPxmaSb2bcJsMYpjeT0RzArxllE8stLrPfcYVK0ETE4F2LT8Ad78pYj4uH19q
+	r6jgRNwXLVY+XA0AukYMBvk48Ny0X1tm3B9brk0nxXbcgufb4RnklyDRHBcmzkp0P4jKIpcTsjkkD
+	2BpGOIk2IUKuDCuIS8mQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n2ZPq-002r7E-KZ; Wed, 29 Dec 2021 13:54:54 +0000
+	id 1n2ZQ4-002rEg-0S; Wed, 29 Dec 2021 13:55:08 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n2ZPO-002qwz-1M; Wed, 29 Dec 2021 13:54:27 +0000
+ id 1n2ZPP-002qwz-RS; Wed, 29 Dec 2021 13:54:29 +0000
 Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Wed, 29 Dec 2021
- 21:54:17 +0800
+ 21:54:19 +0800
 From: Yu Tu <yu.tu@amlogic.com>
 To: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
  <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
@@ -34,18 +34,19 @@ CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
  <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
  Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
  Blumenstingl <martin.blumenstingl@googlemail.com>, Yu Tu <yu.tu@amlogic.com>
-Subject: [PATCH V2 2/6] tty: serial: meson: Request the register region in
- meson_uart_probe()
-Date: Wed, 29 Dec 2021 21:53:46 +0800
-Message-ID: <20211229135350.9659-3-yu.tu@amlogic.com>
+Subject: [PATCH V2 3/6] dt-bindings: serial: meson: Support S4 SoC uart. Also
+ Drop compatible = amlogic, meson-gx-uart.
+Date: Wed, 29 Dec 2021 21:53:47 +0800
+Message-ID: <20211229135350.9659-4-yu.tu@amlogic.com>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20211229135350.9659-1-yu.tu@amlogic.com>
 References: <20211229135350.9659-1-yu.tu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211229_055426_112363_6F3AB06D 
-X-CRM114-Status: GOOD (  10.72  )
+X-CRM114-CacheID: sfid-20211229_055427_914145_E1B2335F 
+X-CRM114-Status: UNSURE (   7.09  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,68 +63,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This simplifies resetting the UART controller during probe and will make
-it easier to integrate the common clock code which will require the
-registers at probe time as well.
+Deprecated, don't use anymore because compatible = amlogic,meson-gx-uart
+don't differentiate between GXBB and GXL which have different
+revisions of the UART IP. So it's split into GXBB and GXL.
 
 Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 ---
- drivers/tty/serial/meson_uart.c | 24 ++++++------------------
- 1 file changed, 6 insertions(+), 18 deletions(-)
+ .../devicetree/bindings/serial/amlogic,meson-uart.yaml | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index c9a37602ffd0..99efe62a1507 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -397,24 +397,11 @@ static int meson_uart_verify_port(struct uart_port *port,
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index 75ebc9952a99..b03040a83a9f 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -28,14 +28,20 @@ properties:
+               - amlogic,meson6-uart
+               - amlogic,meson8-uart
+               - amlogic,meson8b-uart
+-              - amlogic,meson-gx-uart
++              - amlogic,meson-gxbb-uart
++              - amlogic,meson-gxl-uart
++              - amlogic,meson-g12a-uart
++              - amlogic,meson-s4-uart
+           - const: amlogic,meson-ao-uart
+       - description: Everything-Else power domain UART controller
+         enum:
+           - amlogic,meson6-uart
+           - amlogic,meson8-uart
+           - amlogic,meson8b-uart
+-          - amlogic,meson-gx-uart
++          - amlogic,meson-gxbb-uart
++          - amlogic,meson-gxl-uart
++          - amlogic,meson-g12a-uart
++          - amlogic,meson-s4-uart
  
- static void meson_uart_release_port(struct uart_port *port)
- {
--	devm_iounmap(port->dev, port->membase);
--	port->membase = NULL;
--	devm_release_mem_region(port->dev, port->mapbase, port->mapsize);
-+	/* nothing to do */
- }
- 
- static int meson_uart_request_port(struct uart_port *port)
- {
--	if (!devm_request_mem_region(port->dev, port->mapbase, port->mapsize,
--				     dev_name(port->dev))) {
--		dev_err(port->dev, "Memory region busy\n");
--		return -EBUSY;
--	}
--
--	port->membase = devm_ioremap(port->dev, port->mapbase,
--					     port->mapsize);
--	if (!port->membase)
--		return -ENOMEM;
--
- 	return 0;
- }
- 
-@@ -728,6 +715,10 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	if (!port)
- 		return -ENOMEM;
- 
-+	port->membase = devm_ioremap_resource(&pdev->dev, res_mem);
-+	if (IS_ERR(port->membase))
-+		return PTR_ERR(port->membase);
-+
- 	ret = meson_uart_probe_clocks(pdev, port);
- 	if (ret)
- 		return ret;
-@@ -749,10 +740,7 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	platform_set_drvdata(pdev, port);
- 
- 	/* reset port before registering (and possibly registering console) */
--	if (meson_uart_request_port(port) >= 0) {
--		meson_uart_reset(port);
--		meson_uart_release_port(port);
--	}
-+	meson_uart_reset(port);
- 
- 	ret = uart_add_one_port(&meson_uart_driver, port);
- 	if (ret)
+   reg:
+     maxItems: 1
 -- 
 2.33.1
 
