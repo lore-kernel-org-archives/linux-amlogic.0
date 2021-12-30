@@ -4,74 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 564CBC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Dec 2021 22:09:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0CB9C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Dec 2021 22:12:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GspQ4MRTgjTbGZmr0kP0vBLvGyW5lKmyiA4ND/vv1uc=; b=NGY6KVYLE+MZB1
-	wHrspJ0XuhhP+JPZyz6HutfSz8Tj3BeCNDlONU2nLU2dLsSpfEN6J7JjHhzPN1vJdaGB/DSkZzf9L
-	Q7XxQSgrTkVmK3KK5cKX+HG2zwK9ZkpjvPY++0t5Tp7oyvn6OBd8orxAmnJhag1aZPm6HKBicv40B
-	s2ZWU/kpJDKPE+hZ8zVNBsBVtSOdYlKQJZCb4oC4sxsl+p5Qkt4QOsrYgpW6uJemhQeTgb2pto6bK
-	GlYR3A4zz3nBhQVPp7P7ZvEiuscKOmWKyFCHuJHmoShny1keW/vv33LeCrugigl1NDxh9BvoLxNIH
-	xHK/Z+qSy1YkdKAzpgBg==;
+	List-Owner; bh=Ifo5GVzOOsuSR8BK9KyIeFsszINOY2hRHIIGAWtLmkY=; b=0ZfdyOaEE/McRw
+	Bcb5EH0zuHz9r+508/q8bRXGfCUJeaqosM0lm0XF/WOWS19baSk7/tAdd1VbU0aDpDhPtEzdTMPGi
+	JgK2EAx+sr9SI7ga1Jo+Qgv3oXx/KTnzQLRnFl+TNBomAR0TeOg0o/UPaAAPs1jTwvItRjgkGmd6o
+	33rNbiShujqlSh1pnQmm+Aa6mXPMmbDtR48E4dfhqQnIVOlZgnUPz5wQro3dgnzPKDdw54NC7I3E8
+	xpVRHQzmZeMapVSbIt1ZL7ye1U5CpkDvfYrFlwB8KkwU0vl0nKONWL2dYyMHeDWy5EfytHZSaYdnw
+	euRXuf7hbVWbnKAVy3Pw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n33by-005JLN-2h; Thu, 30 Dec 2021 22:09:26 +0000
+	id 1n33el-005JhK-10; Thu, 30 Dec 2021 22:12:19 +0000
 Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n33bm-005JJB-OZ; Thu, 30 Dec 2021 22:09:16 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id y22so102823462edq.2;
- Thu, 30 Dec 2021 14:09:14 -0800 (PST)
+ id 1n33eZ-005JfR-Iw; Thu, 30 Dec 2021 22:12:08 +0000
+Received: by mail-ed1-x52c.google.com with SMTP id j6so102632637edw.12;
+ Thu, 30 Dec 2021 14:12:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=9fO4xO7NNKZaCmkJK0S4qOaQjqknEjPN6Tb/y58iIAE=;
- b=jB4HxVZtVS4EyhNwvAkbMTGe/LdlFRTxmCOzQDI89mCYySIaxJuR/SJdKvJ3ufUl/y
- nfz/N855jhI9UT7uzId0A7jJm7t80Tnjwb0vvzLnXtBYk11IdSlImbct7l1dXvJnri8D
- Upn+axPHiZZFsUWMIHBv5kX9INAwm8dbnHeCLRJL4BnbZZQKKPK+nMBzo1B6CEhfevdU
- 4At2gSbhQM+iTHI8vTgkJA7rzgb9sVtQjmeEXXQRVihULHitylBLuEV9urMbdGNYp3En
- nineYS7rCe9amOt2rpGy0W45giP5ZPojrMleRQT5UsB6jYBBgjFmAbT9Q1G/aRawVLRd
- M1NQ==
+ :cc; bh=DedCEFaVWFUdlSNZRbDf8/T4GxDnWWvGzCzcWytJzvg=;
+ b=RET8CBTqlKAHofEygl9IOPC9RL/Gmr5AaJTUdKip/xVrKvRHHNheNMccskFvCYn0Rl
+ X5CmiM59nXb2gLAtmSaAUd9RyDWP1jtGgl8WTO8k148IR4iK1mGfiCVEAfY4lhbMt4ju
+ 3BNqjjK1Rht7+LC258pvQOfisfoBuNplLRY9Hm3fjcw9iPkEPSkPiMgw/6ydiEXiLeqW
+ pOnpc8EAbrM0BGhJJ8BGJZmDJcHzQ5bRSOFXWoMRLv0q+KV/b9YJul06pAO1S47H36co
+ 35UzUChEbLbsQveDAbG0miCE7wSMHyKfhMiW60JOPqTGtb9Gnq9eZyr619EFgyJ5gpEW
+ 5V6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=9fO4xO7NNKZaCmkJK0S4qOaQjqknEjPN6Tb/y58iIAE=;
- b=W5+i+nboUKXgdoc7YB8rZEMcvpq7ETdCIREWMcy6pI2XrC3UdG11+AzgBHOG4LSoge
- NBacokH7ozjSTGA+YEMUjdnUbqQB3EjoGGYajMX340wdfBqfEyM6G2xNh/8Rf1YPVGIm
- SvEiNpCXWuNBCTRw6EjlwQ19tZhDeZGQFhEFS969d5U8By1CTedlkDcnDDvJJuZXkbhh
- Q/6UsJ+rtkPfPjgZVlh0AVVcxRon0s2VVO8y6S3xoxsnzeNp/hWOdfBWitffvUaFfg9q
- P2Aovy92YuDBe67r0JBossQWaQyy8TIHYb0A5/fol/8uC93FfrgYZNKc3+zaGfZ789lc
- Zoeg==
-X-Gm-Message-State: AOAM532z/ruAOciwNep1qWLboOSaSxbZGvThXKMj1w3tSB6+ET27KrIr
- r1c4zvSr6JBrKeXvR4Q8hPjvB582Mk/g/tWZUho=
-X-Google-Smtp-Source: ABdhPJwm1oRq60d2pmgoT5DTcTtrHQ23EXvLPaQWHXG3LWn+TVf6ggb3MjU0IpAfSWv+tjOdzX5jfHxJVZeCmnrjRvY=
-X-Received: by 2002:a17:906:685:: with SMTP id
- u5mr25866667ejb.543.1640902153070; 
- Thu, 30 Dec 2021 14:09:13 -0800 (PST)
+ bh=DedCEFaVWFUdlSNZRbDf8/T4GxDnWWvGzCzcWytJzvg=;
+ b=7DTwVRtnFvV4neHUiTxY8nTRBaLjbBVcmzuUYxEOdG2Pp6+we/bmUW8aPWLsi8igib
+ U1OHgQSdPhIkkHMY8bW+5E9pbp2cyZkR6m4SL/BFdcA9qumiqODUFQRbWvd5kkKiNvBu
+ pqnNOhH/kd9949TG2t+hCqyRTk8ty8jPrg9CP4i16PipXzKvAD9XT3B9NoLllIXL0gEp
+ L2+fKLHVc+ndWtc5W+U4RVtZxXWIZ3n2qMtO2SWgq7k5vuvPqaTPWX8QlpXbkraBZHZW
+ OyT7KYdMKBJ6G9m7kwROQWl4cCnRbdjlluVPyu54ZBDPXqSioiKMV3k22++xTpLNwaCR
+ srjw==
+X-Gm-Message-State: AOAM533vo1NSS6eSp4+jCiGJYxRqHoln6Hrqlzw8i3PPn0VIPvqEDEwp
+ pTeGd2/S4+H5IcHFTYwiOupAIx6eJfey76X4qkR5rAKDCHs=
+X-Google-Smtp-Source: ABdhPJxmS4AM5VcnKC+tCI/zBL/iNXBh2z9WZT/iIt3c/chXpv/vtJMgKr0t42v0sysM09OBUEVzXShHJ7S1RC/Y/yo=
+X-Received: by 2002:a05:6402:518a:: with SMTP id
+ q10mr29695785edd.29.1640902326352; 
+ Thu, 30 Dec 2021 14:12:06 -0800 (PST)
 MIME-Version: 1.0
-References: <20211229121605.10513-1-qianggui.song@amlogic.com>
- <20211229121605.10513-4-qianggui.song@amlogic.com>
-In-Reply-To: <20211229121605.10513-4-qianggui.song@amlogic.com>
+References: <20211230094434.3053195-1-shunzhou.jiang@amlogic.com>
+ <20211230094434.3053195-2-shunzhou.jiang@amlogic.com>
+In-Reply-To: <20211230094434.3053195-2-shunzhou.jiang@amlogic.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 30 Dec 2021 23:09:02 +0100
-Message-ID: <CAFBinCDPtiPHZ7BkTLoqpd1HiNQa1n45MeByzGHtHmK=-oOxzQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] pinctrl: meson: add pinctrl driver support for
- Meson-S4 Soc
-To: Qianggui Song <qianggui.song@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
- Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, 
- Mark Rutland <mark.rutland@arm.com>, linux-arm-kernel@lists.infradead.org, 
+Date: Thu, 30 Dec 2021 23:11:55 +0100
+Message-ID: <CAFBinCBN-QoA-e9JzfUq-Wc4Chu=x6cVoP2SYf=q-GrnLdLGKg@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: power: add Amlogic s4 power domains
+ bindings
+To: "Shunzhou.Jiang" <shunzhou.jiang@amlogic.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
+ Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
+ jbrunet@baylibre.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211230_140914_843446_9CA2B970 
-X-CRM114-Status: GOOD (  10.25  )
+X-CRM114-CacheID: sfid-20211230_141207_653687_D8705C09 
+X-CRM114-Status: UNSURE (   8.21  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,34 +87,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Dec 29, 2021 at 1:16 PM Qianggui Song <qianggui.song@amlogic.com> wrote:
+On Thu, Dec 30, 2021 at 10:44 AM Shunzhou.Jiang
+<shunzhou.jiang@amlogic.com> wrote:
 >
-> Add new pinctrl driver for Amlogic's Meson-S4 SoC which share the
-> same register layout as the previous Meson-A1.
+> From: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
 >
-> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
-Due to lack of a datasheet to compare this with I cannot properly review this.
-Instead I confirm that this generally looks good apart from two very
-small nit-picks:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-I suggest waiting for Jerome's review before re-sending this series.
-
-[...]
-> +static const char * const mclk_1_groups[] = {
-> +       "mclk_1_c", "mclk_1_d", "mclk_1_h", "mclk_2",
-> +
-There's an extraneous empty line here.
-
-[...[
-> +static const char * const pwm_b_groups[] = {
-> +       "pwm_b_d", "pwm_b_x",
-> +
-There's an extraneous empty line here.
-
-
-Best regards,
-Martin
+> Add the bindings for the Amlogic Secure power domains, controlling the
+> secure power domains.
+>
+> The bindings targets the Amlogic s4, in which the power domains registers
+> are in secure world.
+>
+> Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
