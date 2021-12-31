@@ -4,37 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EE13C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Dec 2021 10:27:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BD21C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Dec 2021 10:35:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8o7uLpfmY8DnYC2X+U+nEYKkiMhvVsINTaGhZFqqfsU=; b=iNYRdq9sr/5au1
-	r2JCz+9UHKy3cEiIJmMf4QGZ9tHVBrfomEtjv/5F0zAhRFk+zfWpbZbypWBSFjv6fDu2qQQQXBuK/
-	Ik+E6zz6R2ztZKwfoMw3MYwf2bQe2O2ZIIqOk5gA/tTqNrL+qThMTYoGjJE2OtvsZB8YLcG6qnqzX
-	GJaDeGrRbOzJi/ix2dM2tYszKtY4UkB7SLdgBqRut6WB8O5SzjcDApRVyppsRK1rXqlUK/LdRYAOr
-	gln/iLOu1wi0lblU9HhB1/tr9kdE1momNGNcCQVkXuC13J8Rl3MZZesI2PF6BiPkVwRo7kbzlptcC
-	EKDLs9/PvGtluuUvXnbw==;
+	List-Owner; bh=Y2kPCvINaW30hkcKjcLOzNS1H9U/tcfkWiRuG2bgju0=; b=tCjTGOA4oAe8Y8
+	bo7U3FudIPT15arOF4Qj/zU4JKE3GEtH9YOB5nspYbcswptNE+3sEJLC1OeDT4OXLdy8awgsf4X8V
+	h8SKd+ROZS88OlYZC4Rpla7bZpMIlmcvYcgTMv0S6RTFOvuKICRDWmIlrP3Xb+luw2atIAaZi4aoX
+	3oFR9rcA9xPSaGnMbG52WaJHGzuk6NuZyGP/fPOcA0O2VD/ljKP7FaFtfbkya9sBC+7Firv45d1qG
+	Mlx/nVZA4hvBuiUu8vXeZbY/qij7ynMsCuiIH6g5uB2gLmoH9Bk6c7xWgVYZJ9r8TIKUTKe+K8gSn
+	lvi/In2a8vMu3Hc1rPJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n3F8D-005ueS-GY; Fri, 31 Dec 2021 10:27:29 +0000
+	id 1n3FG9-005wN6-ES; Fri, 31 Dec 2021 10:35:41 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n3F7y-005uZ0-QH; Fri, 31 Dec 2021 10:27:16 +0000
+ id 1n3FFy-005wLp-Kp; Fri, 31 Dec 2021 10:35:32 +0000
 Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Fri, 31 Dec
- 2021 18:27:12 +0800
-Message-ID: <a296e666-368b-4cd5-427e-30fc66a15b49@amlogic.com>
-Date: Fri, 31 Dec 2021 18:27:12 +0800
+ 2021 18:35:28 +0800
+Message-ID: <93da58f8-aca1-2fcf-e45c-e341e1be593b@amlogic.com>
+Date: Fri, 31 Dec 2021 18:35:27 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.4.1
-Subject: Re: [PATCH V3 1/6] tty: serial: meson: Drop the legacy compatible
- strings and clock code
+Subject: Re: [PATCH V3 3/6] dt-bindings: serial: meson: Support S4 SoC uart.
+ Also Drop compatible = amlogic,meson-gx-uart.
 Content-Language: en-US
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 CC: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
@@ -44,16 +44,16 @@ CC: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
  <adeep@lexina.in>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
  <jbrunet@baylibre.com>
 References: <20211230102110.3861-1-yu.tu@amlogic.com>
- <20211230102110.3861-2-yu.tu@amlogic.com>
- <CAFBinCCwjS36ss_4sU+o9m8gEprFsVZbqcxgpQxczTNohZqFdA@mail.gmail.com>
+ <20211230102110.3861-4-yu.tu@amlogic.com>
+ <CAFBinCB0RTfOLbV3ZC+9dJEiw2_y41V+JvNP9GOPaQcCLB7UdA@mail.gmail.com>
 From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <CAFBinCCwjS36ss_4sU+o9m8gEprFsVZbqcxgpQxczTNohZqFdA@mail.gmail.com>
+In-Reply-To: <CAFBinCB0RTfOLbV3ZC+9dJEiw2_y41V+JvNP9GOPaQcCLB7UdA@mail.gmail.com>
 X-Originating-IP: [10.18.29.173]
 X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
  (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211231_022714_896676_3C7A72C6 
-X-CRM114-Status: GOOD (  13.53  )
+X-CRM114-CacheID: sfid-20211231_023530_720927_7A79CBD6 
+X-CRM114-Status: GOOD (  12.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,43 +70,50 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
-	Thank you very much for your reply.
 
-On 2021/12/31 6:22, Martin Blumenstingl wrote:
+
+On 2021/12/31 6:34, Martin Blumenstingl wrote:
 > [ EXTERNAL EMAIL ]
 > 
+> Hello,
+> 
+> as Greg already mentioned the $subject line is very long.
+> 
 > On Thu, Dec 30, 2021 at 11:21 AM Yu Tu <yu.tu@amlogic.com> wrote:
->>
->> All mainline .dts files have been using the stable UART since Linux
->> 4.16. Drop the legacy compatible strings and related clock code.
->>
->> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> I have just realized that this cannot be dropped until my series "ARM:
-> dts: meson: fix UART device-tree schema validation" [0] is merged
+>> Deprecated, don't use anymore because compatible = amlogic,meson-gx-uart
+>> don't differentiate between GXBB and GXL which have different
+>> revisions of the UART IP. So it's split into GXBB and GXL.
+> actually it's split into GXBB, GXL and G12A
 > 
 > [...]
->> -/* Legacy bindings, should be removed when no more used */
->> -OF_EARLYCON_DECLARE(meson, "amlogic,meson-uart",
->> -                   meson_serial_early_console_setup);
-> This part is still needed as long as above series is not merged yet.
-> If we remove this then earlycon will stop working on the 32-bit SoCs
-> unless [0] is merged.
+>> -              - amlogic,meson-gx-uart
+>> +              - amlogic,meson-gxbb-uart
+>> +              - amlogic,meson-gxl-uart
+>> +              - amlogic,meson-g12a-uart
+>> +              - amlogic,meson-s4-uart
+> In addition to Greg's comment I suggest splitting this into two patches:
+> - one where the "amlogic,meson-gx-uart" compatible is marked as
+> deprecated (Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
+> has an example for deprecated entries) and GXBB, GXL and G12A
+> compatible strings are added instead
+> - another one where the new S4 compatible string is added
 > 
-> All other code below - except the of_device_id entry - can still be
-> removed since meson8.dtsi and meson8b.dtsi are using the non-legacy
-> clocks already.
+> The idea here is to have "one logical change per patch".
+> Deprecating and replacing "amlogic,meson-gx-uart" is one logical change.
+> Adding a new compatible string is another logical change.
+> I am hoping that this will also make it easier to find a shorter
+> $subject line (which according to the patch submission guide [0]
+> should be 70-75 characters: "the summary must be no more than 70-75
+> characters")
 > 
-> Sorry for only noticing this now.
-> 
-I will add it back in the next patch and delete it after your submission 
-is merged.
+I will split the two patches in the next version.One was deprecating and 
+replacing "AmLogic, Meson-GX-Uart" and the other added S4 compatible.
 > 
 > Best regards,
 > Martin
 > 
 > 
-> [0] https://patchwork.kernel.org/project/linux-amlogic/cover/20211227180026.4068352-1-martin.blumenstingl@googlemail.com/
+> [0] https://www.kernel.org/doc/html/v4.17/process/submitting-patches.html#the-canonical-patch-format
 > 
 
 _______________________________________________
