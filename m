@@ -4,60 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDDDDC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 11:04:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8AA6C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 11:16:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Tny41jNlbQb3zPEPhawh+gU20uZU9+/tKHffRgqCdvc=; b=PqaXrIFIeJOr+q
-	ODGMExla6Wm1i+e0eP/VuAyLASTug5OOcykQ1qKY5rsn2MczKXqyzQndK9h/okTqah4/syAg60/p1
-	5TG6Aflzdpz1S4+itLw92tbb1ax34DEQt107mp7e/lqJdEuUPVdmPDucXQX8u3vODQIxRQijsPCsw
-	IYESGj5dzHFNR55vCR0SOH+SBvWV2xk3i17aWwo0zeKE5zBCB92N6WHl8GFnwLq72N3rgewZVg704
-	ZjPZJozoD246OAgbaM8tsC+vp6p+JFj67S8J26xwC9vEQJUGE8dDp3ZJ2xC+oNrn0HiGv7SgyMGnz
-	WGsJu/lm+MfUY1eS8cZg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=tSV/r7N+5x2FffPpi310RGORzoytzqxy6PMMK3j/81I=; b=CuC+tuTVxUsVJWC/IZSkav/x7W
+	EyvSf6Egczhy1fXGGy/HPMcnygCblTVFtTRATbGCzhgGvfIUa7cftKW4zFtGCFRt9ZEDQj+vz0adb
+	aaFf36r7xovTnqMxaTodQwIL5i9uz9XtLhc9cIHjqlkkHpX3j7BeArBIpMmeYQTigg5LNgOZTfZpQ
+	VNC/oocdB8ZBkx5Th9pnUZCy7a7VPFhKYmNAWpuIs3qX8Li3jsdhOvBVpuvyLffX1M5rMlFeHHtxQ
+	74ylMLtGHLFrxFMFYrdJ0KnBBCA8WEuUBGlEzMokJXoOSMB2E1nzlSq9NpvcSxBxvCflgWGk+iEX+
+	0QXPkjyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n4L8r-008poa-No; Mon, 03 Jan 2022 11:04:41 +0000
-Received: from mail1.perex.cz ([77.48.224.245])
+	id 1n4LKK-008qWH-TY; Mon, 03 Jan 2022 11:16:32 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n4L8o-008pnj-M0
- for linux-amlogic@lists.infradead.org; Mon, 03 Jan 2022 11:04:40 +0000
-Received: from mail1.perex.cz (localhost [127.0.0.1])
- by smtp1.perex.cz (Perex's E-mail Delivery System) with ESMTP id 8A67DA0040;
- Mon,  3 Jan 2022 12:04:30 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.perex.cz 8A67DA0040
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=perex.cz; s=default;
- t=1641207870; bh=GIn5qlEVCWBIAaoD4oBCR6gQxmLPVO8QWfOiMKhwDDI=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=e8xrVub84fBtS6Hnng+zBk9JGj3clZn3ZGO56jp1Aw6ICI0aSLXYH9svhh6DUR8bW
- rLlcO4CqA2yMzGG+e8afkq/5CzHPVTicn8r3zTvQFrGPoRi/wJox5qyMFzrOElONql
- 4vl6xCWzA2Ud884GOLopYlW6Q8reRNy6Hxu6wCis=
-Received: from [192.168.100.98] (unknown [192.168.100.98])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: perex)
- by mail1.perex.cz (Perex's E-mail Delivery System) with ESMTPSA;
- Mon,  3 Jan 2022 12:04:25 +0100 (CET)
-Message-ID: <125f4abc-a85e-7a8c-594c-4cf7ddee1d78@perex.cz>
-Date: Mon, 3 Jan 2022 12:04:25 +0100
+ id 1n4LKH-008qVW-7D
+ for linux-amlogic@lists.infradead.org; Mon, 03 Jan 2022 11:16:31 +0000
+Received: by mail-wm1-x334.google.com with SMTP id
+ a203-20020a1c7fd4000000b003457874263aso20945997wmd.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Jan 2022 03:16:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=t28TMUufcPVifrbma5vt3kzMSNjxpkRPdx4Vm4ZAvJY=;
+ b=kCyJMKVuV44jLYAWVrdRkNS0uHdIPQLOn855UQt8nIy2sDf/SGtoIxJw/28XZzn9y+
+ FJMuqiugk2LfWAvjCXz63NtutgMUUqWqP1oZ3J9cj635XRD4dceL4V4XYaVkQt3ItIQu
+ dOWwoyM2oY7qK/A7IGidF4RhgSOHRPbmfiTTbBqZxa9Z5/1J6iqUlnqFSsb/zST4NuoN
+ n42ypdYOp2ioTFPdrnpHoCRSCCwmJUq0tHNNbu0SYs+viVWqYjkNK+fBiS+kxXmCTQIP
+ ok8R1ZsQBZmP9K63c5TgQHivOlM0ZH9dd3uujUgAsbobOtbR6S0cELJjHmOzR+g81/fo
+ p6fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=t28TMUufcPVifrbma5vt3kzMSNjxpkRPdx4Vm4ZAvJY=;
+ b=Ek4f9wiakj4WvSH20pwjQwcHnCFZioNdXj83pDkC87VentH/J7ww56+LKiHK3hRSDc
+ zBuPflritH3PiEHI9p73h2PSPrAsWLmsZPxkKHAQOlqB/Ywuquem6D9lxBipElQEENDN
+ Z01stEqxBU7GbkDrj8B8YsgX0hvra3n2WjA2PdHnK8LrmxxN/2DH8uUFltlBuF3xQpv8
+ JnSW32oG9gnkQvbYky0Qac3gv72C1OuTXxDIDB27DW91QhBA5cg800mRIzEdQpd6iycp
+ RdN7iW2tHNn2ELZJLUnvq2T2rQf7IYcsmOLM864n8tDeRghsVfdTpyFnhNDPdzeZA13d
+ hQzg==
+X-Gm-Message-State: AOAM533/04ghpHGLK5s3BBBDNbnAkYsXWA/WaU3Fx2wkFvbH1CuTypVh
+ xl10ul2cfI58OTnShJoWwzixiQ==
+X-Google-Smtp-Source: ABdhPJz2WwhZD5aHiO6DEz0k1dNtVSYr/xgKMa4zYwjSlVO1l0QAKWV3xeEhunQSO6SI0h7yMS4/+g==
+X-Received: by 2002:a1c:f012:: with SMTP id a18mr38043532wmb.73.1641208584245; 
+ Mon, 03 Jan 2022 03:16:24 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220?
+ ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
+ by smtp.gmail.com with ESMTPSA id m10sm35357402wms.25.2022.01.03.03.16.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 03 Jan 2022 03:16:23 -0800 (PST)
+Subject: Re: [PATCH v2 1/1] dt-bindings: display: meson-vpu: Add missing
+ amlogic,canvas property
+To: Alexander Stein <alexander.stein@mailbox.org>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+References: <20211219094155.177206-1-alexander.stein@mailbox.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <af0a8ecd-3c41-2eb8-43bf-dd439a958d53@baylibre.com>
+Date: Mon, 3 Jan 2022 12:16:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [RESEND] Amlogic DPCM audio card(s) speaker placement issue
+In-Reply-To: <20211219094155.177206-1-alexander.stein@mailbox.org>
 Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>, alsa-devel@alsa-project.org
-Cc: Matthias Reichl <hias@horus.com>, linux-amlogic@lists.infradead.org
-References: <ECC56215-1E02-4735-82F3-B68E73F56CB4@gmail.com>
- <3cd96113-3272-1efe-aa81-39de952d1e68@perex.cz>
- <1jk0fh86yj.fsf@starbuckisacylon.baylibre.com>
-From: Jaroslav Kysela <perex@perex.cz>
-In-Reply-To: <1jk0fh86yj.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220103_030439_095399_DC6FBF56 
-X-CRM114-Status: GOOD (  20.35  )
+X-CRM114-CacheID: sfid-20220103_031629_302235_F41F3BA2 
+X-CRM114-Status: GOOD (  18.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,66 +95,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 03. 01. 22 10:57, Jerome Brunet wrote:
+On 19/12/2021 10:41, Alexander Stein wrote:
+> This property was already mentioned in the old textual bindings
+> amlogic,meson-vpu.txt, but got dropped during conversion.
+> Adding it back similar to amlogic,gx-vdec.yaml.
 > 
-> On Sun 26 Dec 2021 at 18:30, Jaroslav Kysela <perex@perex.cz> wrote:
+> Fixes: 6b9ebf1e0e67 ("dt-bindings: display: amlogic, meson-vpu: convert to yaml")
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> ---
+> Changes in v2:
+> * Do not linebreak Fixes tag
+> * Make amlogic,canvas mandatory as it was in textual binding already
+> * Add amlogic,canvas to example
 > 
->> On 26. 12. 21 12:43, Christian Hewitt wrote:
->>
->>> **** List of PLAYBACK Hardware Devices ****
->>> card 0: LIBRETECHCC [LIBRETECH-CC], device 0: fe.dai-link-0 (*) []
->>>    Subdevices: 1/1
->>>    Subdevice #0: subdevice #0
->>
->>> numid=12,iface=PCM,name='ELD',device=2
->>> numid=11,iface=PCM,name='IEC958 Playback Default',device=2
->>> numid=10,iface=PCM,name='IEC958 Playback Mask',device=2
->>> numid=9,iface=PCM,name='Playback Channel Map',device=2
->>> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts#L136-L188
->>
->> Have you tried to reorder the dai-link-# sections in DT? It appears to me that sound/soc/codecs/hdmi-codec.c / hdmi_codec_pcm_new() gets the internal PCM
->> device rather than the exported PCM device for the user space.
->>
->> If the DAI routing cannot be changed, then the hdmi-codec.c should be modified to export the correct device number for the user space:
->>
+>  .../devicetree/bindings/display/amlogic,meson-vpu.yaml      | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> The DAI routing is dynamic, especially on the AXG series.
-> There is actually two routing stages:
+> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+> index 851cb0781217..047fd69e0377 100644
+> --- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+> @@ -78,6 +78,10 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  amlogic,canvas:
+> +    description: should point to a canvas provider node
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+>    power-domains:
+>      maxItems: 1
+>      description: phandle to the associated power domain
+> @@ -106,6 +110,7 @@ required:
+>    - port@1
+>    - "#address-cells"
+>    - "#size-cells"
+> +  - amlogic,canvas
+>  
+>  additionalProperties: false
+>  
+> @@ -118,6 +123,7 @@ examples:
+>          interrupts = <3>;
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> +        amlogic,canvas = <&canvas>;
+>  
+>          /* CVBS VDAC output port */
+>          port@0 {
 > 
-> 1) Between the user interfaces (DMA) and the i2s/TDM encoders/decoders:
->     -> This is using DPCM
-> 
-> 2) Between the i2s/TDM encoders and the HDMI controller:
->     -> This is using Codec-to-Codec links
-> 
-> The problem exposed here is
->   - How to get the get the "Playback Channel Map" related to the pcm
->   device of a given playback ?
 
-The PCM device exported to the user space should be able to export this 
-information correctly. The kcontrols in hdmi-codec.c refers to an unknown 
-(internal) PCM codec2codec device (from the user space view) which is created 
-in the SoC layer.
+Applying to drm-misc-fixes,
 
-It seems that kcontrols in hdmi-codec.c should not be created for the internal 
-SoC PCMs. A new layer which translate the kcontrol handling between the 
-exported (user space) PCM device and internal (SoC) PCM device is required.
-
-Problematic code in hdmi_codec_pcm_new() / hdmi-codec.c:
-
-- snd_pcm_add_chmap_ctls()
-- kctl->id.device = rtd->pcm->device
-
-						Jaroslav
-
--- 
-Jaroslav Kysela <perex@perex.cz>
-Linux Sound Maintainer; ALSA Project; Red Hat, Inc.
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
