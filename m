@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4B50C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 14:43:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65CBBC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 14:59:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,75 +13,81 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=dyYAvVN/H3pgrYq2TRRHeXN3R5SLYTOUYLUfNZot1us=; b=Z2e7WmzScPT1V1Hom92sOOZ4yJ
-	6bi1lKO2H8MslgUQZNngmM6AWnrlnDNQSkHAJkF1D268KgS+QjSR8tsckcQ0X1cW0WsQkenxNp9ji
-	QNZOIbs4lNS+beIqkutEiQlT1xhuTQCHMUlRUuU2RCEfWuXkMN0gyXWS7cIGhy87jlq7VdRvy3OGA
-	gx+NvgEIgjDSmYHwqI5Bp3/DWBiQwalSgUnZuYDPVe6lstQOMDWhdPVQ2HejQ/gwuKVlIhU0Q6au+
-	gN5a7zNP3x2ghJWb6COuZwX/CdD2TsSXEFx38ovujKRpCsdkJDVR8vGxc/ZMg7EjhUXIwjSd3LwI1
-	MrslWDBw==;
+	bh=AdOP1b6SYJPw30SXVsdBUKfPzlleLUP+O0Wmry7EB8E=; b=1lIhU7P/59Wt6WE1EMuIKUgmEj
+	7EoICAKkFbxuqPU+ng8tHq3BxeV6jtBCXLY0gcs3cigb35+i1Xjzc3fqUhOdrBV65va9S/fY5+IVH
+	VtWOhHlTT41JebE9amvY499PrpX7/BLHEdLsvQ9znTwnYzWUjERizKlCzbt60g8KVadaC3mAvqPa0
+	xNnof9HLXroP27HOQlR/l5vUODjbAj/i/ya5T3vlYiWe150MrMMt0/sG8C0KDkxt75HfoLdfu6bCs
+	nZ7yJSz9V5OJ6KCf5JFhxqhBjkQ4PoMZIKGXScQoD8Fe2//tah89Ov2LTxPwhZVzOWe9Ila5kimNC
+	zLw3kZDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n4OYv-009E0U-5w; Mon, 03 Jan 2022 14:43:49 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1n4OoF-009H4k-P4; Mon, 03 Jan 2022 14:59:39 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n4OYr-009DyG-Nt
- for linux-amlogic@lists.infradead.org; Mon, 03 Jan 2022 14:43:47 +0000
-Received: by mail-wr1-x435.google.com with SMTP id d9so70406947wrb.0
- for <linux-amlogic@lists.infradead.org>; Mon, 03 Jan 2022 06:43:40 -0800 (PST)
+ id 1n4OoC-009H3T-5l
+ for linux-amlogic@lists.infradead.org; Mon, 03 Jan 2022 14:59:38 +0000
+Received: by mail-wr1-x434.google.com with SMTP id i22so70368230wrb.13
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Jan 2022 06:59:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:cc:references:from:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=qqTYoEG0fCSSuHO7RjGcCyZafDlFczC6QQaAo/YOTIQ=;
- b=eDq8+T3KD08eY4K75ef7W2e9wgz0NCwTOhUmRIZaTfZslsSQ0oaarsrfDnmQLg3LxD
- jiZxYt0sz6h3M6taVElZUCFrMgL3jgrEacd9mQg1/yhve4PmYX/s4NlU5V1SniS/iIgN
- lOge45jCILCsCnzv8g5WjcuYuJhc3/glCuB1CpFxa2+4ehcGBGA+ArNqAic1jz8ZklEI
- q2tAKGfJ/67TZ7HV0zobu0OC8eXtabpSFO38Gc0LOK6VlhxAFIg5pHK55zmt7KmjlGdH
- m3A1bv3B4kuUBrErKULmsQScbQVa5AELEYOccxz2Aq6ow5n4l0BSmIzzRqYniW2eg0MJ
- ZuIg==
+ bh=5H8+sBp3xMqm86KdM4FfbpDukKAPfJggOz8BlfBh0A0=;
+ b=RK8OFVPMmrUeM0KlR68rRcYWwzcq++PFtk4HPYE1VFCR7hcKJSxFeMJx9CYY3LVv4I
+ moBWkIUB72yHyKJzb2tn80RFoo86sQotegnN4jkRGGTW0Y4M0uZhxBZdy+u24t1Anoui
+ /yJk3zR/e+rzYVKwvYlku68nmAQEar/7dnpjR5pZCJpefR3UKfUw6Pjb94+xF0DwR4gU
+ 1WReOYWVG/AforOPDCdbrmc5/ETwXyc/S7xV4ulG90KG2TPZtBvGYnyo1WOi/3nKCvx+
+ n1mPYTvy+sogfJnANtKI8K4sP2rIQ/34MMESO830pup8bsreJRkgnWCfu+kyJlNAktOT
+ 6TVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=qqTYoEG0fCSSuHO7RjGcCyZafDlFczC6QQaAo/YOTIQ=;
- b=MqMTp+iOFkSpx6sIGhrhOpkVj6s52t2R47J+pU273jtAyvTr8c8+UgE0rGlkGkAu03
- ivlvnQZkQs7LsBA0WHd5QjrReXvRF/23q3dlVqQTfQkriGDixacUNcPsgbt9BqfP5nOS
- ODWBVjG8rNVKZwpNZ+cm2skqBBH6eaZEiUCCOdnJUl7c3AsXZim+WN5+LPy9LrhgCsR0
- beGXyop7+MGvwYJCIrgVzgeBi0+B/ukuBoJKIx87/vj/ptgPLu2j1U7zzKurHCV4CTGh
- gpifHFQZhqJpMxk82pISz54aELtiEZydexf38P7SODhTQK7EDge+FC/FeCEC3P2jw2pF
- qMxg==
-X-Gm-Message-State: AOAM531fqyPaWzO29XFwDey13cUpHAWdgSFt1agPkRb9U6dVCUOPPcDQ
- /N9P5y0dvK4JYpeJaXCqJJfuFQfdyjBCLw==
-X-Google-Smtp-Source: ABdhPJyH4/D8nNoHqFkVlu/pqPOj9rQ6tyY2S2g5s+3XjsvmJ/FAKLoC8vYVTHBCYM5DDlPLzWJgvA==
-X-Received: by 2002:adf:a489:: with SMTP id g9mr37708807wrb.235.1641221019202; 
- Mon, 03 Jan 2022 06:43:39 -0800 (PST)
+ bh=5H8+sBp3xMqm86KdM4FfbpDukKAPfJggOz8BlfBh0A0=;
+ b=jNV3EJENJhXafm7+VkDBiqB69M6lav6Z4OZIaCR+dhX0kAc06kpLoedrlW+ynRf4pd
+ 8aRalOTn+/AodQtxu5N+tnQ40Z0cIkeoMU60yvStPmB0U2AFIjnzjOzu4XiW6jLRIaaR
+ C6Cj/Ad1sSzGb/UMVQPjJwhHaSgC/P6ki+oWAQXEtOsZ1m7qv7NuU9rslhYNstmcIcek
+ /3eNwtxtfdcJ+ddR5jaOfYuKp3dXSOfFJBKr+m2Oox0Ki4WobZF5FdJTGRV8HwNtINlX
+ 6XyB3UavB84UiW/b1989c4JQ0LKbB8Jmfl0qEtGGn3WJlG/VZPs7JdDM9bYgPfSp5L+g
+ pqIg==
+X-Gm-Message-State: AOAM530PzPWBhXwiOKzMAb+Q3CqyfGC1srW0JQxRhrj89gspK0gusQ4t
+ rIaw3ZZ1KD29Rw7IuNjAa8FGcw==
+X-Google-Smtp-Source: ABdhPJzNfggYHG8TJY3E0zgdGOK7eTg4snQBM1YrXj6DPHwN8T5t2nQ4pLz3K5gTZi3Kb1NO8LzQmQ==
+X-Received: by 2002:a5d:5847:: with SMTP id i7mr24397911wrf.450.1641221974698; 
+ Mon, 03 Jan 2022 06:59:34 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220?
  ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
- by smtp.gmail.com with ESMTPSA id b1sm39204103wrd.92.2022.01.03.06.43.38
+ by smtp.gmail.com with ESMTPSA id w21sm30063985wmi.19.2022.01.03.06.59.33
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 03 Jan 2022 06:43:38 -0800 (PST)
-Subject: Re: [PATCH 0/3] ARM: dts: meson: fix UART device-tree schema
- validation
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20211227180026.4068352-1-martin.blumenstingl@googlemail.com>
- <CAFBinCC7iSKjZ=U5PN5FKF9js77tvaQBdWdHMPp_y+u+asaeoA@mail.gmail.com>
+ Mon, 03 Jan 2022 06:59:34 -0800 (PST)
+Subject: Re: [PATCH V3 1/6] tty: serial: meson: Drop the legacy compatible
+ strings and clock code
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Jiri Slaby <jirislaby@kernel.org>, Vyacheslav <adeep@lexina.in>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Yu Tu <yu.tu@amlogic.com>
+References: <20211230102110.3861-1-yu.tu@amlogic.com>
+ <20211230102110.3861-2-yu.tu@amlogic.com>
+ <CAFBinCCwjS36ss_4sU+o9m8gEprFsVZbqcxgpQxczTNohZqFdA@mail.gmail.com>
+ <a296e666-368b-4cd5-427e-30fc66a15b49@amlogic.com>
+ <CAFBinCA2V=sx95Q=+4nLDXFK1Os11XVWtK8KauxixVwYXLUz1Q@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <2c5311fd-187a-d129-4e15-e83e49c14c09@baylibre.com>
-Date: Mon, 3 Jan 2022 15:43:38 +0100
+Message-ID: <3865f01c-83f7-a69d-6835-c26f662629b7@baylibre.com>
+Date: Mon, 3 Jan 2022 15:59:33 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCC7iSKjZ=U5PN5FKF9js77tvaQBdWdHMPp_y+u+asaeoA@mail.gmail.com>
+In-Reply-To: <CAFBinCA2V=sx95Q=+4nLDXFK1Os11XVWtK8KauxixVwYXLUz1Q@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220103_064345_826412_8A1FFF05 
-X-CRM114-Status: GOOD (  18.48  )
+X-CRM114-CacheID: sfid-20220103_065936_325803_47879C34 
+X-CRM114-Status: GOOD (  19.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,47 +104,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Greg,
 
-On 31/12/2021 16:38, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Mon, Dec 27, 2021 at 7:00 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->>
->> Hello,
->>
->> here are three UART device-tree schema related fixes for the 32-bit
->> ARM SoCs.
->> These patches don't fix any functionality which is why linux-stable
->> is not Cc'ed on them.
-> The statement above still stands.
-> I would like you to apply this series to a 5.17-fixes branch because
-> of a change from the tty.git tree which will be going into 5.17 to
-> drop the "amlogic,meson-uart" earlycon handling: [0]
-> 
-> To make it clear: Backporting this series to kernels older than 5.17
-> won't break or fix anything.
-> Only 5.17 and newer will need this due to a change [0] in the tty.git
-> tree. Without the patches from this series the 32-bit SoCs won't have
-> earlycon support in 5.17.
+Martin just saw this patch was applied, but the serie wasn't reviewed enough and it will break
+earlycon support on the ARMv7 Amlogic SoCs fore 5.17.
 
-OK, I'll submit it as fixes for for 5.17
+Anyway, I'll push the corresponding DT fixes for 5.17-rc1.
+
+Would it be possible we also receive the notification when those patches are applied ?
+Maybe a MAINTAINERS entry is missing so we can receive them ?
+
+It would help me track those TTY and USB patches more easily.
+
+Thanks !
 
 Neil
 
+On 31/12/2021 16:35, Martin Blumenstingl wrote:
+> On Fri, Dec 31, 2021 at 11:27 AM Yu Tu <yu.tu@amlogic.com> wrote:
+> [...]
+>>>> -/* Legacy bindings, should be removed when no more used */
+>>>> -OF_EARLYCON_DECLARE(meson, "amlogic,meson-uart",
+>>>> -                   meson_serial_early_console_setup);
+>>> This part is still needed as long as above series is not merged yet.
+>>> If we remove this then earlycon will stop working on the 32-bit SoCs
+>>> unless [0] is merged.
+>>>
+>>> All other code below - except the of_device_id entry - can still be
+>>> removed since meson8.dtsi and meson8b.dtsi are using the non-legacy
+>>> clocks already.
+>>>
+>>> Sorry for only noticing this now.
+>>>
+>> I will add it back in the next patch and delete it after your submission
+>> is merged.
+> I have just seen that Greg has already added this patch to the tty-next tree [1]
+> In this case there's nothing to do on your end - I'll simply ask Neil
+> to also queue my 32-bit SoC UART .dts fixes [0] for 5.17
 > 
 > 
-> Thank you!
+> Best regards,
 > Martin
 > 
 > 
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git/commit/?h=tty-next&id=ad234e2bac274a43c9fa540bde8cd9f0c627b71f
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> [0] https://patchwork.kernel.org/project/linux-amlogic/cover/20211227180026.4068352-1-martin.blumenstingl@googlemail.com/
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git/commit/?h=tty-next&id=ad234e2bac274a43c9fa540bde8cd9f0c627b71f
 > 
 
 
