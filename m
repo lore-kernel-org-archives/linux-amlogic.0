@@ -4,80 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 047E7C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Jan 2022 19:37:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C536BC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 10:11:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jRRZx1I10Bt3wVg6B/G1/yb/EsOL2AUsHeXyofpC7fY=; b=ToXfZkvwey91JE
-	65MfJjMoMyuSe2ZNPoJKEoiEib1N3juwnEP7r4nWJI8b3WfFgt9+idY7iVfmO+KwfKSj3NV23WAMg
-	+NrzN2DQHEIpRkK2LJ4fktXMH22XRTSdQBQAIlnWCIUrDfwyCg660BMcoG71yo0uZw+5yJirWI/w7
-	q8DrMW6bzRunQcyAuME99z5SrLGjSfiaoo3KuQZdITJ4xLivIBm2VR7o+jL7mCLZDSbXhaEK1RDv3
-	eTnpjt26C22EFXQSIlTcPoasnyFo5vrJ+pt3dAL8vEqdbH03WX6HjbQwDMMFSjzzvQf1433pnFoaI
-	pgjHsz8TUl0kDQ4jjmpw==;
+	List-Owner; bh=GQQuJYC7CmBnTdxcrjNTLex6J91EbmTN3yvpMc3nBZo=; b=VHxc/FMyjDeVtZ
+	sTs9/ZLRn6vIXDPJ6yUmlJzwXzDW2udVYINRwc9ZrgJjUAmFgIbuvrxFCj5UFX1polozmTQ+44Hy1
+	q9IpVKnYmqjctFiJidva9zxfZ6cCFy1E10S9tjN6UQ8J85fK2AAGrksKyAWfEXvOhgXys7EzbQElS
+	jddE/Zwmwcj9bGZ+P7qIWr7svUxFKQ/Ehygo/wwGCmKx41Zf5j3vwbal3LRs7eedjs/dcITaRAjI3
+	ZIFGWABIU9vZ71Qkky6+P2feSA8w6CjOAQyDWCB7DlqgkavghBsOtwX/o7mWeCwJ18sa92rF6GwA9
+	7m0N6PWarCyJ1qZCapow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n46fL-0086ry-0w; Sun, 02 Jan 2022 19:37:15 +0000
-Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
+	id 1n4KJJ-008kOR-7C; Mon, 03 Jan 2022 10:11:25 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n46f8-0086qn-C2; Sun, 02 Jan 2022 19:37:03 +0000
-Received: by mail-ed1-x531.google.com with SMTP id f5so128503193edq.6;
- Sun, 02 Jan 2022 11:37:00 -0800 (PST)
+ id 1n4KJF-008kNh-0z
+ for linux-amlogic@lists.infradead.org; Mon, 03 Jan 2022 10:11:23 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id e5so68924500wrc.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Jan 2022 02:11:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=uzAERIEZYtJsAijaT2QvW435vVYwBNMjvEfhVhmIpoI=;
- b=X7Tjc25U+hYXI+B2D5vMKce//4kBPegHGMfpeAX+uP9GFV3PoKrqHYVuFNG2GW2za6
- 9bbVpiOalULkX0stLnVxCVgHTuh/3VhBKz7vV3G1ons/CYAZ60t9IDV8hr8/cMb/AZZ1
- Mv3GqGICQnAvGYel7hC3i0LbZbr5UXX9ek0wFd3pNbWlT0IZ0bzRula1AKIiyZFobwuY
- xUxl8KOCMSwapwquwv0+K9wWJfqJ0qbRLgANTpGkpXppwS7HtO/f663A6NP34jn6GJnQ
- /MrcCQBSQi2AvXyFM0M76oHSwtEBb1VSuEPtyRDzT73KgRV1wWDV2XDRsnY5XUQ/M8ep
- /Vgw==
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=d4U06QtxKLvpS3QwhJk/To0yMhx1a1d3B47g5ui1Y04=;
+ b=N73pqWLKMdYBN+pI9KTb20m5dxZSEgGZZvVAFMAHmWsQ8Hfda9VmQtsEBnWSLEgu+c
+ P+m1o7k3pOJu5kxb+Pm2cFWtu+fCS93F1P7jrTqbW2ewfTHsG1IcSABPAR9yfhy1gw6J
+ ObWUOIHaV5sLU5O8PwurnR65PPUe4qJcCxpDPjiJQdGHBawifdlTV3k0HkMqx0Z91TEW
+ 0E5PTxU9/sdSQ5n4dRVgiMqs0ssbGlwIizRCT47tEiDzF41JX/X6jqbSBIdIci8j0qIq
+ MjHDq3c9S/Qw9VJqBahq5+75DGbc/7v6mHV0qLrANZiAjhnLlqsbOohfjm4UMdwdhXHl
+ y4fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=uzAERIEZYtJsAijaT2QvW435vVYwBNMjvEfhVhmIpoI=;
- b=LApCSg8IMDNp8sz3SDJK6vkGYmrZIoGt/7McWaolAghLMt4XU1ZsRD8TnLsjUEAelz
- W8rioMQrrLPSuw6FjHssuAkb9JzpvUeL8ThPDaToEnUOFPIBiRQU7h0n8mzD8DbuZUGS
- iuKKDnyOu2COptM9iX55PQZiVU4akH+z0vz8iv//qzb2cTpgIGYNcm4Cf4td5pLVBhxh
- mrDnrVYxrFaYS55YOj8jtgmsqhYPy/iok8d862vuuQ22eYl0EumC32r1UgB0tWb9wLcG
- Cf2nG2koiNM+efb59vlbZVURdJ2zh+xkuhNeez/byHZdecATP3BCZNd9So+V3//yX406
- CJQA==
-X-Gm-Message-State: AOAM530onzAWgfxvVYxaY5hGjGzf2I0lzLTVCREM5UL9WjzDgV/tFoRs
- v/0+lCq77BujeBCwD5LXwho/Xq9i020EO8o/zEbgqG2L+xE=
-X-Google-Smtp-Source: ABdhPJyA5JDjOj3D7kdnhw3GydVhkJJ79iI3UrO51EvXQ4tl9sz/KzZ3LjetLzazLYQ9J2BpMXjF0rDNtrnThAkP+14=
-X-Received: by 2002:a05:6402:1b9c:: with SMTP id
- cc28mr41250867edb.219.1641152219124; 
- Sun, 02 Jan 2022 11:36:59 -0800 (PST)
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=d4U06QtxKLvpS3QwhJk/To0yMhx1a1d3B47g5ui1Y04=;
+ b=qiRAwdb3/gRTi9/CNOUccEZX+JChL+umUBPoqcnyC/Q+HJnifmfXF8ShOncBt2PIV1
+ oRkVRreG0m8cPtx+CQEyuEXAjUwUq6IrUCxzJmOZNx5BVATqkPruic2ASn9P5a0SGbJ5
+ pEYybmRr0L+Wn3syh5XWkCd33j7q+5rmyT1k4bAq7n1E1URDEPTg3qQcY3/wqhFWvRo3
+ 5X3H4x9wLFacA2eS/oRd1gmlLUoTh3muBvjH+vmmW2K6lsQX/gYuvpatC1hkcIkBOn46
+ /e5JRxiVlENd8wrfa/ko2Ny/aLHd1vfoOQ26wpuZJXOE+XH2T6IWXPUz90RcHWmVQ+rc
+ EQ5g==
+X-Gm-Message-State: AOAM531XoAZUhuLFze2AS181FlSPS+00LF0dxDq340A5m4mqAUsIWYFs
+ id6OkgcT+nF/oV9agUwIFYhF1bZN3SLgkun3
+X-Google-Smtp-Source: ABdhPJwBsSg18zloX8QHWVynGr6SCd20lAOIcyUGf8cgq+SDNIimM752PDm8+HOIssQHmVIn8nb6jw==
+X-Received: by 2002:a5d:6dd1:: with SMTP id d17mr22919440wrz.520.1641204678700; 
+ Mon, 03 Jan 2022 02:11:18 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id m21sm32816239wrb.2.2022.01.03.02.11.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 Jan 2022 02:11:18 -0800 (PST)
+References: <ECC56215-1E02-4735-82F3-B68E73F56CB4@gmail.com>
+ <3cd96113-3272-1efe-aa81-39de952d1e68@perex.cz>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jaroslav Kysela <perex@perex.cz>, Christian Hewitt
+ <christianshewitt@gmail.com>, alsa-devel@alsa-project.org
+Cc: Matthias Reichl <hias@horus.com>, linux-amlogic@lists.infradead.org
+Subject: Re: [RESEND] Amlogic DPCM audio card(s) speaker placement issue
+Date: Mon, 03 Jan 2022 10:57:00 +0100
+In-reply-to: <3cd96113-3272-1efe-aa81-39de952d1e68@perex.cz>
+Message-ID: <1jk0fh86yj.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20211230102110.3861-1-yu.tu@amlogic.com>
- <20211230102110.3861-5-yu.tu@amlogic.com>
- <CAFBinCCL-QaeSRCLzfyNXcRQZ7YC1D85rP2y4OGkAjCmQEqGgQ@mail.gmail.com>
- <3e1e40aa-7865-0f7a-5772-e2ad96c8141d@amlogic.com>
- <CAFBinCB2nF0TwRE1uJ4UTB_avcqRBfOHR1CDSe29dB1o-YjEHQ@mail.gmail.com>
- <7278bace-a2b9-0cfc-55b3-c19311e3352e@amlogic.com>
-In-Reply-To: <7278bace-a2b9-0cfc-55b3-c19311e3352e@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 2 Jan 2022 20:36:48 +0100
-Message-ID: <CAFBinCCwE1DbP+Y49o3WxNdeE11ZK=HcGbXa0Sq52tch+eNhrQ@mail.gmail.com>
-Subject: Re: [PATCH V3 4/6] tty: serial: meson: The UART baud rate calculation
- is described using the common clock code. Also added S4 chip uart
- Compatible.
-To: Yu Tu <yu.tu@amlogic.com>
-Cc: linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, 
- Neil Armstrong <narmstrong@baylibre.com>, Vyacheslav <adeep@lexina.in>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220102_113702_475253_148912B1 
-X-CRM114-Status: GOOD (  18.68  )
+X-CRM114-CacheID: sfid-20220103_021121_141241_D2ED6045 
+X-CRM114-Status: GOOD (  12.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,39 +85,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiBTYXQsIEphbiAxLCAyMDIyIGF0IDI6MzAgUE0gWXUgVHUgPHl1LnR1QGFtbG9naWMu
-Y29tPiB3cm90ZToKWy4uLl0KPiA+IEludGVyZXN0aW5nLCB0aGFua3MgZm9yIHNoYXJpbmcgdGhh
-dCB1LWJvb3QgdHVybnMgdGhlc2UgY2xvY2tzIG9uLgo+ID4gTGV0J3Mgc2F5IHNvbWVvbmUgd2Fu
-dGVkIHRvIG1ha2UgdS1ib290IHNhdmUgcG93ZXIgYW5kIHR1cm4gb2ZmIGFsbAo+ID4gVUFSVCBj
-bG9ja3MgZXhjZXB0IHRoZSBvbmUgZm9yIHVhcnRfQU8gKHdoZXJlIHdlIHR5cGljYWxseSBjb25u
-ZWN0IHRoZQo+ID4gc2VyaWFsIGNvbnNvbGUpLgo+ID4gSW4gdGhhdCBjYXNlIHRoZSBwY2xrIG9m
-IHVhcnRfQyAoanVzdCB0byBjaG9vc2UgYW4gZXhhbXBsZSBoZXJlKSBpcwo+ID4gdHVybmVkIG9m
-Zi4gV291bGQgdGhlcmUgYmUgYSBwcm9ibGVtIHRoZW4gYWNjZXNzaW5nIHRoZSByZWdpc3RlcnMg
-b2YKPiA+IHVhcnRfQyBiZWZvcmUgY2xrX3ByZXBhcmVfZW5hYmxlIGlzIGNhbGxlZD8KPiBUaGUg
-d2F5IHlvdSBkZXNjcmliZSBpdCwgaXQgZG9lcyBoYW5nLiBUaGlzIHdvdWxkIG5vdCBiZSByZWNv
-bW1lbmRlZCBvbgo+IGFjdHVhbCBwcm9qZWN0cy4KPgo+IEF0IHByZXNlbnQsIEFtTG9naWMgY2hp
-cHMgYXJlIG9sZGVyIHRoYW4gUzQgU29jLCBhbmQgd2UgaGF2ZSBubyB3YXkgdG8KPiBkZWFsIHdp
-dGggdGhpcyBwcm9ibGVtLiBXZSBoYXZlIHRvIHRlbGwgY3VzdG9tZXJzIG5vdCB0byB1c2UgaXQg
-aW4gdGhpcwo+IHdheeOAgkN1c3RvbWVycyByYXJlbHkgdXNlIGl0IGluIHJlYWwgcHJvamVjdHMu
-T24gdGhlIFM0IFNPQyB3ZSB3aWxsIHVzZQo+IGEgY2xvY2sgbGlrZSB0aGUgVUFSVCBwY2xrIHRv
-IGNvbnRyb2wgdGhlIHNodXRkb3duIHVzaW5nIHR3byByZWdpc3RlcnMsCj4gb25lIHNhZmUgKG5l
-ZWQgdG8gb3BlcmF0ZSBpbiBFTDMpIGFuZCBvbmUgbm9ybWFsIChFTDEpLiBJdCB3aWxsIG9ubHkg
-YmUKPiBjbG9zZWQgaWYgYm90aCByZWdpc3RlcnMgYXJlIGNsb3NlZC4gVGhpcyBtYWlubHkgcHJl
-dmVudHMgbWlzb3BlcmF0aW9uLgpvaCwgaW50ZXJlc3RpbmcgdGhhdCB0aGVyZSdzIHNvbWUgdXBk
-YXRlcyBzcGVjaWZpY2FsbHkgd2l0aCB0aGUgUzQgU29DcyA6LSkKCj4gV2l0aCB5b3VyIGV4cGVy
-aWVuY2UsIEknZCBsaWtlIHRvIGtub3cgaG93IHlvdSBkZWFsIHdpdGggdGhpcyBraW5kIG9mCj4g
-cHJvYmxlbS4KQmVmb3JlIHRoaXMgcGF0Y2ggdGhlIGRyaXZlciBzaW1wbHkgdHVybnMgb24gdGhl
-IGNsb2NrIGZyb20gd2l0aGluCm1lc29uX3VhcnRfcHJvYmUoKSAoc3BlY2lmaWNhbGx5IGl0IGRv
-ZXMgc28gaW4KbWVzb25fdWFydF9wcm9iZV9jbG9jaygpKS4KSSB0aGluayB0aGVyZSdzIGFkdmFu
-Y2VkIHBvd2VyLXNhdmluZyB0ZWNobmlxdWVzLiBNYXliZSBmb3Igbm93IHdlCmtlZXAgaXQgc2lt
-cGxlIGFuZCBqdXN0IGVuYWJsZSB0aGUgY2xvY2socykgYXQgcHJvYmUgdGltZSBhbmQgZGlzYWJs
-ZQp0aGVtIGF0IGRyaXZlciByZW1vdmUgdGltZS4gV2hhdCBkbyB5b3UgdGhpbms/CgoKQmVzdCBy
-ZWdhcmRzLApNYXJ0aW4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+
+On Sun 26 Dec 2021 at 18:30, Jaroslav Kysela <perex@perex.cz> wrote:
+
+> On 26. 12. 21 12:43, Christian Hewitt wrote:
+>
+>> **** List of PLAYBACK Hardware Devices ****
+>> card 0: LIBRETECHCC [LIBRETECH-CC], device 0: fe.dai-link-0 (*) []
+>>   Subdevices: 1/1
+>>   Subdevice #0: subdevice #0
+>
+>> numid=12,iface=PCM,name='ELD',device=2
+>> numid=11,iface=PCM,name='IEC958 Playback Default',device=2
+>> numid=10,iface=PCM,name='IEC958 Playback Mask',device=2
+>> numid=9,iface=PCM,name='Playback Channel Map',device=2
+>> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts#L136-L188
+>
+> Have you tried to reorder the dai-link-# sections in DT? It appears to me that sound/soc/codecs/hdmi-codec.c / hdmi_codec_pcm_new() gets the internal PCM
+> device rather than the exported PCM device for the user space.
+>
+> If the DAI routing cannot be changed, then the hdmi-codec.c should be modified to export the correct device number for the user space:
+>
+
+The DAI routing is dynamic, especially on the AXG series.
+There is actually two routing stages:
+
+1) Between the user interfaces (DMA) and the i2s/TDM encoders/decoders:
+   -> This is using DPCM
+
+2) Between the i2s/TDM encoders and the HDMI controller:
+   -> This is using Codec-to-Codec links
+
+The problem exposed here is
+ - How to get the get the "Playback Channel Map" related to the pcm
+ device of a given playback ?
+
+I don't really know how to answer this.
+As you noted above, given the routing is dynamic, I don't think the
+problem can be solved with a specific link ordering
+
+However, on these platforms, there will only be one such control
+AFAIK. The one you get is the one you are looking for. It's not ideal
+but it's a start.
+
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/sound/soc/codecs/hdmi-codec.c?h=v5.16-rc6#n805
+>
+> 						Jaroslav
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
