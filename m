@@ -4,79 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CC68C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 15:27:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 153B6C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 15:30:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
-	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=URaKT549/BVN9G4UJrsJinG9UGg8hSNKtznrNbVyt34=; b=sr1dG9g+/Px+bG
-	AJpMqkZ4nKi54fIZliEeK1iiWSsir0TJtQ35eNNu8olJc+x+A7xsTJQN33+pnOuQJO6wLH2/03zPZ
-	LcMjt+q9720DLCUNYNRuXHIi6E6Rsy4ukcZsrVT8uERXoz1lq3ezY33GCymoNxMscQFOu/W8/OaSK
-	ku+u/O/bP17Wh+nqwluLd7SLAm83R0bJJpQaXHYBDcyzFZwObAcbeMVIU/viplUA7Iw4ROAhjpQ+G
-	gE6bVXMiFQE8783pNqRnRqLv1DftOjPgVXDoWxWI1FBXHucd1yLZPiRS28PIbHWaxKrzY8RP2cD/f
-	aOnzuryXK3m4urB5sxeA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=j92m9nSPqawOIrrFFhNKw3BL7/LPddFLuNzHPyNu+eE=; b=xhHz8ulnY7bGueYuMpIE6QPYFP
+	ET1Rkhyy+0VMNZfMxhJMYDt4nxaHGsL4xPfCbk/56gqmKaG1bvjE6HZDSiSsyyvdobu13DJUcJpPN
+	YFzsai6R2Lgc37/mzorpzXs/8peghAHX7GN66e/dvJOsNel/ebewUkwaN6B/rHlpJEfD9SR08WAmI
+	00SEHpkJ+GtwlazfkJ4fPnCLDNd34y70eLyNG4oSRDqPS1pB8g+CSPJFXNCRffpO04TZRueBpKfIE
+	IjnQGk4+o6dmI9RlUIhcxfGLa2L5hB53UE4wHkquAmgQOMIhvO/oxRJkMz0ycuHihMTbBG8eNK28w
+	z1WxkULg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n4PEp-009KOT-QB; Mon, 03 Jan 2022 15:27:07 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1n4PHe-009Kpt-54; Mon, 03 Jan 2022 15:30:02 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n4PEd-009KKw-ND; Mon, 03 Jan 2022 15:26:57 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id j6so137102910edw.12;
- Mon, 03 Jan 2022 07:26:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=/mrTdODckT8qhbL/5PnfjpaZaia9nDRKBsRlTwu+wxc=;
- b=QzjIngw3OXouM0j0FuX8ke2NA6llaMWR0jHIZktbuOcuMJKD4Gv5INANZVZlNnIvTp
- Qi0C3XWe1tMpSWHgTKmzvHd2eZZeW/nN0RDblrrYYL75BV/GJ/pzKnk0ToNiGepyuU9L
- BpNq4GFScrOnr1bXrLD0zSVyltAsjhbhr5tXoZ8vy7FS94IuLqcmfia59ktyPNf3Dd6f
- YzYLyXgjGaaA9rJLxw4+SOlkXXJZ14GxfRQF1v5TDgRcVCl2RMMobinl5MiIjEjh/2A6
- gXKaaIDeyKGHXtT8lfS4U6VbVOOLasqVchzCPiCsRwi3yPAJIU6npenSDPYO9e+8Gdbt
- 2cVA==
+ id 1n4PHa-009KoY-Qv
+ for linux-amlogic@lists.infradead.org; Mon, 03 Jan 2022 15:30:00 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id r17so70552906wrc.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Jan 2022 07:29:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=He1XPHc1q2yAPDw1ASCF8a/HvnJeaI9DzePFGjO6+Xk=;
+ b=dUAiapU6ubmSu1puNGJtfr9z4SpDnkqr2M1bVrvJExwEmqhm2iFMeFbty0VVyM03q2
+ BafoPoun8b8LNWLcZOXC49e+c06UGwYyWLnvPn9qpri2FDxxhJIrDONJ7SnGFF+jg4hE
+ s2Mrx24UrHQqpbg9/zTE5EeahDB0ZvBknDUkDEgS/E6ZdOSSie9sWRHbpfk+VWc3ibQZ
+ 9l53P3tRiSug38PT31syI7TYpx4k3ww4oAwXGNQeV5CC2R7W+E4EPkP42PW/C5u1GSce
+ urAscOhcZym+OPuI3CBeFl3rwE6I2lNQxC6G3vR60kwFc9a3lWqkf3tESyLr0TCeFfgK
+ gTYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=/mrTdODckT8qhbL/5PnfjpaZaia9nDRKBsRlTwu+wxc=;
- b=l4Bk4IwRsNNoczYGSjsoGAwz5pVAFySf/uynaoGMvICQ6qIh5iaphHjWL6Kr8ecye7
- AEh/LSIRLXdI9S7xEyJ4jcTurwh2wVVFRVlBIFq3wFsb98ZugaGejD5fzKS6KcJ+UQ7m
- UfYa5q8Tp37eYGvRFaNTgjD7mmixtzeAatCZhlO7/z2SD/5yHQ/J62h+JgtLTHYe/bQ6
- sYyHPV+KCWrtiO0+ole8cor84kwXR9L6tDIIo9amgUUMKQfzvb0KzLxNwfLL0I3aABVt
- R6SXAZamSKEq/oXXrh3DPW137IRN6solUW2i+CnKaTP3YwZeGOkOjf57PetBgEYpJsDQ
- h5Pw==
-X-Gm-Message-State: AOAM533MT3YHmBGrR03GeRmhsOU6b8DZ7GtiB4WaAZXADIwgulK4FzQa
- ThrLsXYc4oVqtRP8CULcE8W+2Qz5bhiYVg==
-X-Google-Smtp-Source: ABdhPJxp2hwL2P99jM090XOgIRr00xSYgTseLDej0gMJrdOKgQAWqmpLBvjzW9N436LU8ihAZaA+Eg==
-X-Received: by 2002:a17:906:9413:: with SMTP id
- q19mr36843139ejx.296.1641223613099; 
- Mon, 03 Jan 2022 07:26:53 -0800 (PST)
-Received: from [172.16.20.20] ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id j21sm10662894ejj.133.2022.01.03.07.26.51
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 03 Jan 2022 07:26:52 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
-Subject: Re: [RFC PATCH 6/9] arm64: dts: meson: add initial device-trees for
- A95XF3-AIR
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <6ff128a6-91cb-5b83-737e-e703cab81743@baylibre.com>
-Date: Mon, 3 Jan 2022 19:26:49 +0400
-Cc: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>,
- devicetree <devicetree@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Benoit Masson <yahoo@perenite.com>
-Message-Id: <F8463510-1955-4826-BE05-20F3B4079ED4@gmail.com>
-References: <20211130060523.19161-1-christianshewitt@gmail.com>
- <20211130060523.19161-7-christianshewitt@gmail.com>
- <6ff128a6-91cb-5b83-737e-e703cab81743@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-X-Mailer: Apple Mail (2.3608.120.23.2.7)
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=He1XPHc1q2yAPDw1ASCF8a/HvnJeaI9DzePFGjO6+Xk=;
+ b=bBMNHITqJ85leeJYuvFFCofkHoGEuo5R89bWPn4QBIUsiouiit/qO7KRlr6zVUoFDs
+ GAdqCGK+4PUYQ23IId+SvxOZ9IGAgbYA5buWUCoPw/Kk7qg2QxPTzPiCcunKm2rtX+Zo
+ YFh0t0XPqEH8nfEIcWRl98Fient0/jYiz15DTM/IiH24+Kc30xsUeIcqZ7sS8hpy01id
+ Ct5ME7FmSu8hOS0JdVdWHwO3jyZyNAJRoutRcGHuhoNqWBqwbQMms8WQuwkql1mQcuf/
+ SZUSSiurpd1uefw8T2OyukYSv5SPzPVc44n1wZpLh2PNc0lA+Ur9gpu6ufNNrq2aD4FO
+ etSA==
+X-Gm-Message-State: AOAM533EWp5ibnzQoK9Prr4blBP7Y3H/nFTkiPy3u4euqavDsfi2kcry
+ CO3BDYbqs8L27Z2ugjp0CPTtjA==
+X-Google-Smtp-Source: ABdhPJz+IcexWbDJ8mm9579drvcEzedAfwbYYmJYjvi1uUgRV9cnUEkohA83qW3bMDa22Oh0cL/Dow==
+X-Received: by 2002:a05:6000:1789:: with SMTP id
+ e9mr38839836wrg.529.1641223797465; 
+ Mon, 03 Jan 2022 07:29:57 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220?
+ ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
+ by smtp.gmail.com with ESMTPSA id m35sm71246964wms.1.2022.01.03.07.29.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 03 Jan 2022 07:29:57 -0800 (PST)
+Subject: Re: [PATCH V3 1/6] tty: serial: meson: Drop the legacy compatible
+ strings and clock code
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Jiri Slaby <jirislaby@kernel.org>, Vyacheslav <adeep@lexina.in>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Yu Tu <yu.tu@amlogic.com>
+References: <20211230102110.3861-1-yu.tu@amlogic.com>
+ <20211230102110.3861-2-yu.tu@amlogic.com>
+ <CAFBinCCwjS36ss_4sU+o9m8gEprFsVZbqcxgpQxczTNohZqFdA@mail.gmail.com>
+ <a296e666-368b-4cd5-427e-30fc66a15b49@amlogic.com>
+ <CAFBinCA2V=sx95Q=+4nLDXFK1Os11XVWtK8KauxixVwYXLUz1Q@mail.gmail.com>
+ <3865f01c-83f7-a69d-6835-c26f662629b7@baylibre.com>
+ <YdMUEzStFf99EeQ5@kroah.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <df9e472e-ac17-26ed-d820-e80d5b7b0e80@baylibre.com>
+Date: Mon, 3 Jan 2022 16:29:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <YdMUEzStFf99EeQ5@kroah.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220103_072655_786495_9C48C502 
-X-CRM114-Status: GOOD (  12.22  )
+X-CRM114-CacheID: sfid-20220103_072958_932216_8C3BC712 
+X-CRM114-Status: GOOD (  27.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,32 +102,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Cj4gT24gMyBKYW4gMjAyMiwgYXQgNzoyMSBwbSwgTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdA
-YmF5bGlicmUuY29tPiB3cm90ZToKPiAKPiBIaSwKPiAKPiBPbiAzMC8xMS8yMDIxIDA3OjA1LCBD
-aHJpc3RpYW4gSGV3aXR0IHdyb3RlOgo+PiBUaGUgQ1lYIEE5NVhGMy1BSVIgaXMgYmFzZWQgb24g
-QW1sb2dpYyBTOTA1WDMgcmVmZXJlbmNlIGJvYXJkCj4+IGRlc2lnbnMgYW5kIHNoaXBzIGluIG11
-bHRpcGxlIGNvbmZpZ3VyYXRpb25zOgo+PiAKPj4g4oCTIDRHQiBERFIzICsgNjRHQiBlTU1DICsg
-V2lGaSBhL2IvZy9uL2FjICsgQlQgKyBHYiBFdGhlcm5ldAo+PiDigJMgNEdCIEREUjMgKyAzMkdC
-IGVNTUMgKyBXaUZpIGEvYi9nL24vYWMgKyBCVCArIEdiIEV0aGVybmV0Cj4+IOKAkyAyR0IgRERS
-MyArIDE2R0IgZU1NQyArIFdpRmkgYi9nL24gKG5vIEJUKSArIDEwLzEwMCBFdGhlcm5ldAo+PiAu
-Li4KPj4gLSBIRE1JIDIuMSB2aWRlbwo+PiAtIFMvUERJRiBvcHRpY2FsIG91dHB1dAo+PiAtIEFW
-IG91dHB1dAo+PiAtIDF4IFVTQiAyLjAgT1RHIHBvcnQKPj4gLSAxeCBVU0IgMy4wIHBvcnQKPj4g
-LSBJUiByZWNlaXZlcgo+PiAtIDF4IG1pY3JvIFNEIGNhcmQgc2xvdCAoaW50ZXJuYWwpCj4+IC0g
-MXggUmVzZXQvVXBkYXRlIGJ1dHRvbiAoaW4gQVYgamFjaykKPj4gLSA3LXNlZ21lbnQgVkZECj4+
-IC0gTXVsdGljb2xvdXIgY2FzZSBMRUQgJ2FyYycKPj4gCj4+IFRoZSBkZXZpY2UtdHJlZSB3aXRo
-IC0xMDAgc3VmZml4IHN1cHBvcnRzIG1vZGVscyB3aXRoIDEwLzEwMCBFdGhlcm5ldAo+PiBhbmQg
-d2l0aCAtMTAwMCBzdWZmaXggc3VwcG9ydHMgbW9kZWxzIHdpdGggR2lnYWJpdCBFdGhlcm5ldC4K
-PiAKPiBJIHRob3VnaHQgYWJvdXQgdGhpcywgYW5kIEkgdGhpbmsgd2Ugc2hvdWxkIGhhdmU6Cj4g
-LSBtZXNvbi1zbTEtYTk1eGYzLWFpci5kdHMgZm9yIDEwLzEwMCB2ZXJzaW9uCj4gLSBtZXNvbi1z
-bTEtYTk1eGYzLWFpci1nYml0LmR0cyBmb3IgZ2lnYWJpdCAxMC8xMDAvMTAwMCB2ZXJzaW9uCj4g
-Cj4gV2l0aCB0aGlzLCBJJ20gb2sgdG8gYXBwbHkgdGhlIHNlcmllLgo+IAo+IE5laWwKClRoYXTi
-gJlzIGZpbmUgd2l0aCBtZSwgdGhhbmtzIGZvciB0aGUgcmV2aWV3LiBJ4oCZbGwgcmV3b3JrIHRo
-ZSBwYXRjaGVzIGFuZApzZW5kIGEgdjIgc2VyaWVzIHRvIHRoZSBsaXN0LgoKQ2hyaXN0aWFuCgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
-b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi Greg,
+On 03/01/2022 16:19, Greg Kroah-Hartman wrote:
+> A: http://en.wikipedia.org/wiki/Top_post
+> Q: Were do I find info about this thing called top-posting?
+> A: Because it messes up the order in which people normally read text.
+> Q: Why is top-posting such a bad thing?
+> A: Top-posting.
+> Q: What is the most annoying thing in e-mail?
+> 
+> A: No.
+> Q: Should I include quotations after my reply?
+> 
+> http://daringfireball.net/2007/07/on_to>
+> On Mon, Jan 03, 2022 at 03:59:33PM +0100, Neil Armstrong wrote:
+>> Hi Greg,
+>>
+>> Martin just saw this patch was applied, but the serie wasn't reviewed enough and it will break
+>> earlycon support on the ARMv7 Amlogic SoCs fore 5.17.
+> 
+> Ok, what should I revert?
+
+None, we have a fix in the pipe
+
+> 
+>> Anyway, I'll push the corresponding DT fixes for 5.17-rc1.
+> 
+> How did we get out of sync here?
+
+The serie wasn't fully reviewed, and I was out of office when it was applied.
+
+> 
+>> Would it be possible we also receive the notification when those patches are applied ?
+>> Maybe a MAINTAINERS entry is missing so we can receive them ?
+> 
+> That would be good, so that people can review the patches.  Otherwise I
+> have to just guess :)
+
+exact, I naively thought it would be matched in the:
+N:      meson
+entry but it seems an proper entry for drivers/tty/serial/meson_uart.c is needed.
+
+> 
+>> It would help me track those TTY and USB patches more easily.
+> 
+> I recommend MAINTAINERS entries for drivers that are not listed and that
+> you care about seeing the changes for.
+
+This is why we have a regex to match these.
+
+I can submit a patch to have a proper entry if the regex is not enough/appropriate.
+
+BTW can you point us how are selected the recipients of the notification messages you send ?
+
+Thanks,
+Neil
+
+> 
+> thanks,
+> 
+> greg k-h
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
