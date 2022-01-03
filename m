@@ -4,93 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 153B6C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 15:30:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5CDBC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jan 2022 15:38:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=j92m9nSPqawOIrrFFhNKw3BL7/LPddFLuNzHPyNu+eE=; b=xhHz8ulnY7bGueYuMpIE6QPYFP
-	ET1Rkhyy+0VMNZfMxhJMYDt4nxaHGsL4xPfCbk/56gqmKaG1bvjE6HZDSiSsyyvdobu13DJUcJpPN
-	YFzsai6R2Lgc37/mzorpzXs/8peghAHX7GN66e/dvJOsNel/ebewUkwaN6B/rHlpJEfD9SR08WAmI
-	00SEHpkJ+GtwlazfkJ4fPnCLDNd34y70eLyNG4oSRDqPS1pB8g+CSPJFXNCRffpO04TZRueBpKfIE
-	IjnQGk4+o6dmI9RlUIhcxfGLa2L5hB53UE4wHkquAmgQOMIhvO/oxRJkMz0ycuHihMTbBG8eNK28w
-	z1WxkULg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=CVjf/AjoDKWT/ue8r6LjtQViz1hN8HBIrcmk5Syumh8=; b=YPvlTdSTrOMxmQ
+	V8mRvszqzD/n3NWogZ4S17nfXhIH72ogakB3mVpbclKqI8Ql+G/EKYglhf+iRgLMQIhP+e4yhzJXw
+	z8vCI53UvMJbwi0U5EpD6whRVGSOOX53JgJfiCHXBNJweuYTjHuTBCv7VoDp3qX4Gx7Lmc/t+rFIU
+	+vCxiK2ZX4KrH9SmpfNYsrc7KKIovbj1oAW0JdwvkPu7DOr/Cg2aSmh1q1Kz7tAso55H35RjYALaa
+	Uv0Gx1O96jMTrheQ8QZV1jUXqQ7zJw9t5gzuE3p5lZH05FZQtSf7O0jgfLU0vofFfJMQSKrGBoM28
+	6WdQwJ4LxxVR0u8so+1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n4PHe-009Kpt-54; Mon, 03 Jan 2022 15:30:02 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1n4PPZ-009NQ1-Mk; Mon, 03 Jan 2022 15:38:13 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n4PHa-009KoY-Qv
- for linux-amlogic@lists.infradead.org; Mon, 03 Jan 2022 15:30:00 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id r17so70552906wrc.3
- for <linux-amlogic@lists.infradead.org>; Mon, 03 Jan 2022 07:29:58 -0800 (PST)
+ id 1n4PPM-009NM6-JG
+ for linux-amlogic@lists.infradead.org; Mon, 03 Jan 2022 15:38:02 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id
+ g7-20020a7bc4c7000000b00345c4bb365aso18568355wmk.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Jan 2022 07:37:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=He1XPHc1q2yAPDw1ASCF8a/HvnJeaI9DzePFGjO6+Xk=;
- b=dUAiapU6ubmSu1puNGJtfr9z4SpDnkqr2M1bVrvJExwEmqhm2iFMeFbty0VVyM03q2
- BafoPoun8b8LNWLcZOXC49e+c06UGwYyWLnvPn9qpri2FDxxhJIrDONJ7SnGFF+jg4hE
- s2Mrx24UrHQqpbg9/zTE5EeahDB0ZvBknDUkDEgS/E6ZdOSSie9sWRHbpfk+VWc3ibQZ
- 9l53P3tRiSug38PT31syI7TYpx4k3ww4oAwXGNQeV5CC2R7W+E4EPkP42PW/C5u1GSce
- urAscOhcZym+OPuI3CBeFl3rwE6I2lNQxC6G3vR60kwFc9a3lWqkf3tESyLr0TCeFfgK
- gTYA==
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=e7D8OcrNMYt5AXR05zcMqXWeBaERoAiAyxXlq5b2Tro=;
+ b=qyfZ/UWDYLYSZ89MGw/VqfX58dPk0V+Tu6T3DOGQFUkCrnDO+soFOfMmGopNO975yt
+ Wj5bATAymrGi9/1w8XGbBfpNiRbHRxE4O5Y+b51wKJV4lElM07/Yr8Q9MDE17rXzrJId
+ PKOfTlpU5vwqj99YsMrTe2692uUh7kqdRDoBeLBw6GFot1eupOCyDhEk/94BLXX9lyJ0
+ pyWnHo2CVYKgyiRPZ+iIEx9A29QYOwezsqVb4gAeNHJKerU+kP/dKQSpwRXNaavXDwXg
+ S5hw4oXOquSHIhZzkunoPJkztBdJZJiMlrLcvLjlujlI1DLwu3EWXsJICoODzdzpeAvC
+ sYig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=He1XPHc1q2yAPDw1ASCF8a/HvnJeaI9DzePFGjO6+Xk=;
- b=bBMNHITqJ85leeJYuvFFCofkHoGEuo5R89bWPn4QBIUsiouiit/qO7KRlr6zVUoFDs
- GAdqCGK+4PUYQ23IId+SvxOZ9IGAgbYA5buWUCoPw/Kk7qg2QxPTzPiCcunKm2rtX+Zo
- YFh0t0XPqEH8nfEIcWRl98Fient0/jYiz15DTM/IiH24+Kc30xsUeIcqZ7sS8hpy01id
- Ct5ME7FmSu8hOS0JdVdWHwO3jyZyNAJRoutRcGHuhoNqWBqwbQMms8WQuwkql1mQcuf/
- SZUSSiurpd1uefw8T2OyukYSv5SPzPVc44n1wZpLh2PNc0lA+Ur9gpu6ufNNrq2aD4FO
- etSA==
-X-Gm-Message-State: AOAM533EWp5ibnzQoK9Prr4blBP7Y3H/nFTkiPy3u4euqavDsfi2kcry
- CO3BDYbqs8L27Z2ugjp0CPTtjA==
-X-Google-Smtp-Source: ABdhPJz+IcexWbDJ8mm9579drvcEzedAfwbYYmJYjvi1uUgRV9cnUEkohA83qW3bMDa22Oh0cL/Dow==
-X-Received: by 2002:a05:6000:1789:: with SMTP id
- e9mr38839836wrg.529.1641223797465; 
- Mon, 03 Jan 2022 07:29:57 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220?
- ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
- by smtp.gmail.com with ESMTPSA id m35sm71246964wms.1.2022.01.03.07.29.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 03 Jan 2022 07:29:57 -0800 (PST)
-Subject: Re: [PATCH V3 1/6] tty: serial: meson: Drop the legacy compatible
- strings and clock code
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Jiri Slaby <jirislaby@kernel.org>, Vyacheslav <adeep@lexina.in>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Yu Tu <yu.tu@amlogic.com>
-References: <20211230102110.3861-1-yu.tu@amlogic.com>
- <20211230102110.3861-2-yu.tu@amlogic.com>
- <CAFBinCCwjS36ss_4sU+o9m8gEprFsVZbqcxgpQxczTNohZqFdA@mail.gmail.com>
- <a296e666-368b-4cd5-427e-30fc66a15b49@amlogic.com>
- <CAFBinCA2V=sx95Q=+4nLDXFK1Os11XVWtK8KauxixVwYXLUz1Q@mail.gmail.com>
- <3865f01c-83f7-a69d-6835-c26f662629b7@baylibre.com>
- <YdMUEzStFf99EeQ5@kroah.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <df9e472e-ac17-26ed-d820-e80d5b7b0e80@baylibre.com>
-Date: Mon, 3 Jan 2022 16:29:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=e7D8OcrNMYt5AXR05zcMqXWeBaERoAiAyxXlq5b2Tro=;
+ b=YyHkGfKsut+9PIkN+PrUfWcDCNErLGkyeCS4bfVZDCeikOfqr3QZ4LCI9uf8l1Flnz
+ c8Ro13SxwzU/LLiNCSZxPPu+LKyA5OrXDmwwpbHyum89LUQu9bTZzVOCYS7CjLeqOW5g
+ zDtz8LJV7IB5weOxG0toQs5vp9FK1IAN/rPiLK+yxtq+7MkXrDcWRrGuWFjO2PIMIm7o
+ akrUlXhun1LCQ4qPNsnZV4QJpfkYy8SiwZpXxLUG++H5KU+cTtm8Xaqx2kj8LU23NU7T
+ Pb0XyjemxKKqhBhWa0VrWXukOLa2/bKnI5tRMhakPUfPMipfJcuQPJp2sC1HI7zyoHBp
+ T3gA==
+X-Gm-Message-State: AOAM531XBgyFeV2gF9Z6aPEJVKJzFINbFn4ntA9WeQRbdMlZd3JGvPd5
+ dsHOAHbkOw473If5vOeV+aDB+g==
+X-Google-Smtp-Source: ABdhPJwrKfLISt0WrSPCY8r0DcK76beZJqz85d43vUQWC78epqGLtBg9IGMOZW8FDsAeBrq8zQT3fg==
+X-Received: by 2002:a05:600c:1e8b:: with SMTP id
+ be11mr39690535wmb.51.1641224273795; 
+ Mon, 03 Jan 2022 07:37:53 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id e13sm37841243wmq.10.2022.01.03.07.37.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 Jan 2022 07:37:53 -0800 (PST)
+References: <20211215030236.340841-1-art@khadas.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Artem Lapkin <email2tema@gmail.com>, narmstrong@baylibre.com
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, christianshewitt@gmail.com, art@khadas.com,
+ nick@khadas.com, gouwa@khadas.com
+Subject: Re: [PATCH] arm64: dts: meson-sm1: add spdifin spdifout nodes
+Date: Mon, 03 Jan 2022 16:35:23 +0100
+In-reply-to: <20211215030236.340841-1-art@khadas.com>
+Message-ID: <1jtuekrfsf.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <YdMUEzStFf99EeQ5@kroah.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220103_072958_932216_8C3BC712 
-X-CRM114-Status: GOOD (  27.45  )
+X-CRM114-CacheID: sfid-20220103_073800_676251_186A0075 
+X-CRM114-Status: GOOD (  16.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,67 +92,139 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Greg,
-On 03/01/2022 16:19, Greg Kroah-Hartman wrote:
-> A: http://en.wikipedia.org/wiki/Top_post
-> Q: Were do I find info about this thing called top-posting?
-> A: Because it messes up the order in which people normally read text.
-> Q: Why is top-posting such a bad thing?
-> A: Top-posting.
-> Q: What is the most annoying thing in e-mail?
-> 
-> A: No.
-> Q: Should I include quotations after my reply?
-> 
-> http://daringfireball.net/2007/07/on_to>
-> On Mon, Jan 03, 2022 at 03:59:33PM +0100, Neil Armstrong wrote:
->> Hi Greg,
->>
->> Martin just saw this patch was applied, but the serie wasn't reviewed enough and it will break
->> earlycon support on the ARMv7 Amlogic SoCs fore 5.17.
-> 
-> Ok, what should I revert?
 
-None, we have a fix in the pipe
+On Wed 15 Dec 2021 at 11:02, Artem Lapkin <email2tema@gmail.com> wrote:
 
-> 
->> Anyway, I'll push the corresponding DT fixes for 5.17-rc1.
-> 
-> How did we get out of sync here?
+> Add spdifin spdifout nodes for Amlogic SM1 SoCs.
+             ^ add (same in the title)
 
-The serie wasn't fully reviewed, and I was out of office when it was applied.
+>
+> Signed-off-by: Artem Lapkin <art@khadas.com>
+> ---
+>
+> SPDIF IN and SPDIF OUT both tested and works fine for VIM3L (meson-sm1)
+> same as for VIM3 (meson-g12)
+>
+> SPDIF in and SPDIF OUT both pins available via GPIO header (SPDIF_OUT PIN
+> 13 spdif_ao_out_pins and SPDIF_IN PIN 35 - same PWM_F spdif_in_h_pins)
+>
+> https://lore.kernel.org/linux-arm-kernel/1jtuhwvqxa.fsf@starbuckisacylon.baylibre.com/t/
+>
+> ALSA spdifin test example
+> =========================
+>
+> # arecord -fS16_LE -r48000 -c2 -Dplug:spdifin
+>
+> # cat .asoundrc
+> pcm.spdifin {
+> type iec958
+> slave {
+> pcm "hw:0,1"
+> format IEC958_SUBFRAME_LE
+> }
+> }
+>
+> DT sound card configs for testing
+> =================================
+>
+> &spdifout {
+>     pinctrl-0 = <&spdif_ao_out_pins>;
+>     pinctrl-names = "default";
+>     status = "okay";
+> };
+>
+> &spdifin {
+>     pinctrl-0 = <&spdif_in_h_pins>;
+>     pinctrl-names = "default";
+>     status = "okay";
+> };
+>
+> ...
+>     spdif_dit: audio-codec-1 {
+> 	#sound-dai-cells = <0>;
+> 	compatible = "linux,spdif-dit";
+> 	status = "okay";
+> 	sound-name-prefix = "DIT";
+>     };
+>
+>     spdif_dir: audio-codec-2 {
+> 	#sound-dai-cells = <0>;
+> 	compatible = "linux,spdif-dir";
+> 	status = "okay";
+> 	sound-name-prefix = "DIR";
+>     };
+> ...
+> 	audio-routing = ...
+> 		"TODDR_B IN 3", "SPDIFIN Capture",
+> 		"SPDIFOUT IN 0", "FRDDR_A OUT 3";
+>
+> ...
+> 	dai-link-10 {
+> 	    sound-dai = <&spdifout>;
+>
+> 	    codec-0 {
+> 		sound-dai = <&spdif_dit>;
+> 	    };
+> 	};
+>
+> 	/* spdif or toslink interface */
+> 	dai-link-11 {
+> 	    sound-dai = <&spdifin>;
+>
+> 	    codec-0 {
+> 		sound-dai = <&spdif_dir>;
+> 	    };
+> 	};
+> ...
+>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 27 ++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> index 3d8b1f4f2001..1e0adf259d61 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> @@ -356,6 +356,33 @@ tdmin_lb: audio-controller@3c0 {
+>  			status = "disabled";
+>  		};
+>  
+> +		spdifin: audio-controller@400 {
+> +			compatible = "amlogic,g12a-spdifin",
+> +			"amlogic,axg-spdifin";
+> +			reg = <0x0 0x400 0x0 0x30>;
+> +			#sound-dai-cells = <0>;
+> +			sound-name-prefix = "SPDIFIN";
+> +			interrupts = <GIC_SPI 151 IRQ_TYPE_EDGE_RISING>;
+> +			clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
+> +			<&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
+> +			clock-names = "pclk", "refclk";
+> +			resets = <&clkc_audio AUD_RESET_SPDIFIN>;
+> +			status = "disabled";
+> +		};
+> +
+> +		spdifout: audio-controller@480 {
 
-> 
->> Would it be possible we also receive the notification when those patches are applied ?
->> Maybe a MAINTAINERS entry is missing so we can receive them ?
-> 
-> That would be good, so that people can review the patches.  Otherwise I
-> have to just guess :)
+Node should still be named spdifout_a, even if the spdifout_b is not added yet
 
-exact, I naively thought it would be matched in the:
-N:      meson
-entry but it seems an proper entry for drivers/tty/serial/meson_uart.c is needed.
+> +			compatible = "amlogic,g12a-spdifout",
+> +			"amlogic,axg-spdifout";
+> +			reg = <0x0 0x480 0x0 0x50>;
+> +			#sound-dai-cells = <0>;
+> +			sound-name-prefix = "SPDIFOUT";
 
-> 
->> It would help me track those TTY and USB patches more easily.
-> 
-> I recommend MAINTAINERS entries for drivers that are not listed and that
-> you care about seeing the changes for.
+Same here
 
-This is why we have a regex to match these.
-
-I can submit a patch to have a proper entry if the regex is not enough/appropriate.
-
-BTW can you point us how are selected the recipients of the notification messages you send ?
-
-Thanks,
-Neil
-
-> 
-> thanks,
-> 
-> greg k-h
-> 
+> +			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
+> +			<&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
+> +			clock-names = "pclk", "mclk";
+> +			resets = <&clkc_audio AUD_RESET_SPDIFOUT>;
+> +			status = "disabled";
+> +		};
+> +
+>  		tdmout_a: audio-controller@500 {
+>  			compatible = "amlogic,sm1-tdmout";
+>  			reg = <0x0 0x500 0x0 0x40>;
 
 
 _______________________________________________
