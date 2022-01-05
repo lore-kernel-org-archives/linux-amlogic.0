@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 626F6C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jan 2022 14:36:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 775E4C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jan 2022 05:54:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lwNexv4ozi0tbYy2EveVL1xMO2BZnpSGyEdbOJL8xqQ=; b=46wbFAoiX+TnAr
-	RjneiE58DLKGu1NkmFE/Osbwpg+zAUmpQiaxu2mOzv2nDRxOtntuNZxIHU1m5oVEG8BUSXgjy3K/E
-	WY7RXeg1omty8TFWfXeXOq4KvZHdGwXx123cXoUj/nXUL8vgxx127cZGnnDYaA9EgoBw9i5nIf9eK
-	xcvpIJ8X1sa0ZkcsOHL0GR/z8YMzIPwd9nL68MsFOJcpgybMbIHVFx4yLi1rJT5RYYdTEVxm/VCry
-	9MBa5158GEOrgrg0Zdk3qIO2gw44QYJhOr7XQVw7bHmICDUrklc1/wDzFX7zY6KUkJphTb9M7RojK
-	fjP9KC27yzpl5PIvB0yA==;
+	List-Owner; bh=qKzFcRRjqf72WP5aVAXc/KvFPMxjUlf+2e7q8bbMhJI=; b=s7/Y72Xxnz76tY
+	MHqNYflEiK3H5gZ0tN0f+gLcAZzwrJu8gZK7TCUxgehAyQKdZezmt8HG5rWbIMwFnzTfKlP5e7JFe
+	atn78Kdo7ygnCCnWkpQqkcwEuuTAIMWJdAG9yZEANEtctoMKZNa2c9GfHEkh8iho7VwdJqrLC05td
+	lkTCXg+z1efT0v/AoGu97wz3dcv+QVjznOlyZKd2I6MJaN4lMVCHjoYPf3ZCrcm6RASHcqGGhNnzB
+	fHBprVfxjLaL0F2K9GbO1oXXZxB2oBvDkwKfn3MA+4oOy1OYS9YI4PmUbrg1lSSgap367r1LyZmmA
+	w0IOFuJ82uDd8U9nlh1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n4kv8-00BkQq-Bw; Tue, 04 Jan 2022 14:36:14 +0000
+	id 1n4zFm-00DcLC-Ou; Wed, 05 Jan 2022 05:54:30 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n4kuu-00BkOw-EW; Tue, 04 Jan 2022 14:36:03 +0000
+ id 1n4zFK-00DcCV-Bs; Wed, 05 Jan 2022 05:54:06 +0000
 Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 4 Jan
- 2022 22:35:55 +0800
-Message-ID: <318ec2df-b73b-520b-f5ac-d0d2fce0eff0@amlogic.com>
-Date: Tue, 4 Jan 2022 22:35:54 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Wed, 5 Jan
+ 2022 13:53:57 +0800
+Message-ID: <61568e98-b450-c9c0-a60b-1e7c850591c7@amlogic.com>
+Date: Wed, 5 Jan 2022 13:53:56 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.4.1
@@ -37,6 +37,7 @@ Subject: Re: [PATCH V3 4/6] tty: serial: meson: The UART baud rate calculation
  is described using the common clock code. Also added S4 chip uart
  Compatible.
 Content-Language: en-US
+From: Yu Tu <yu.tu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, <linux-serial@vger.kernel.org>,
  <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
  <linux-kernel@vger.kernel.org>
@@ -49,14 +50,14 @@ References: <20211230102110.3861-1-yu.tu@amlogic.com>
  <1jfsq57wym.fsf@starbuckisacylon.baylibre.com>
  <264367c8-2de1-ebd1-0843-e4e33a8407a6@amlogic.com>
  <1jpmp7rc1z.fsf@starbuckisacylon.baylibre.com>
-From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1jpmp7rc1z.fsf@starbuckisacylon.baylibre.com>
+ <318ec2df-b73b-520b-f5ac-d0d2fce0eff0@amlogic.com>
+In-Reply-To: <318ec2df-b73b-520b-f5ac-d0d2fce0eff0@amlogic.com>
 X-Originating-IP: [10.18.29.173]
 X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
  (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220104_063600_792950_CC928B6A 
-X-CRM114-Status: GOOD (  35.82  )
+X-CRM114-CacheID: sfid-20220104_215402_704639_9C557402 
+X-CRM114-Status: GOOD (  31.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,592 +69,502 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
-	Thank you very much for your patient reply. I have learned a lot from it.
-
-On 2022/1/4 18:36, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Tue 04 Jan 2022 at 17:57, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->> Hi Jerome,
->> 	Thank you very much for your reply.
->>
->> On 2022/1/3 20:40, Jerome Brunet wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> On Thu 30 Dec 2021 at 18:21, Yu Tu <yu.tu@amlogic.com> wrote:
->>>
->>>> Using the common Clock code to describe the UART baud rate clock makes
->>>> it easier for the UART driver to be compatible with the baud rate
->>>> requirements of the UART IP on different meson chips
->>>>
->>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>> ---
->>>>    drivers/tty/serial/Kconfig      |   1 +
->>>>    drivers/tty/serial/meson_uart.c | 311 ++++++++++++++++++++++++++------
->>>>    2 files changed, 257 insertions(+), 55 deletions(-)
->>>>
->>>> diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
->>>> index 780908d43557..32e238173036 100644
->>>> --- a/drivers/tty/serial/Kconfig
->>>> +++ b/drivers/tty/serial/Kconfig
->>>> @@ -198,6 +198,7 @@ config SERIAL_KGDB_NMI
->>>>    config SERIAL_MESON
->>>>    	tristate "Meson serial port support"
->>>>    	depends on ARCH_MESON
->>>> +	depends on COMMON_CLK
->>>>    	select SERIAL_CORE
->>>>    	help
->>>>    	  This enables the driver for the on-chip UARTs of the Amlogic
->>>> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
->>>> index 99efe62a1507..07eb1f40aaaa 100644
->>>> --- a/drivers/tty/serial/meson_uart.c
->>>> +++ b/drivers/tty/serial/meson_uart.c
->>>> @@ -6,6 +6,7 @@
->>>>     */
->>>>      #include <linux/clk.h>
->>>> +#include <linux/clk-provider.h>
->>>>    #include <linux/console.h>
->>>>    #include <linux/delay.h>
->>>>    #include <linux/init.h>
->>>> @@ -65,9 +66,7 @@
->>>>    #define AML_UART_RECV_IRQ(c)		((c) & 0xff)
->>>>      /* AML_UART_REG5 bits */
->>>> -#define AML_UART_BAUD_MASK		0x7fffff
->>>>    #define AML_UART_BAUD_USE		BIT(23)
->>>> -#define AML_UART_BAUD_XTAL		BIT(24)
->>>>      #define AML_UART_PORT_NUM		12
->>>>    #define AML_UART_PORT_OFFSET		6
->>>> @@ -76,6 +75,21 @@
->>>>    #define AML_UART_POLL_USEC		5
->>>>    #define AML_UART_TIMEOUT_USEC		10000
->>>>    +struct meson_uart_data {
->>>> +	struct uart_port	port;
->>>> +	struct clk		*pclk;
->>>> +	struct clk		*baud_clk;
->>>> +	struct clk_divider	baud_div;
->>>> +	struct clk_mux		use_xtal_mux;
->>>> +	struct clk_mux		xtal_clk_sel_mux;
->>>> +	struct clk_mux		xtal2_clk_sel_mux;
->>>> +	struct clk_fixed_factor	xtal_div2;
->>>> +	struct clk_fixed_factor	xtal_div3;
->>>> +	struct clk_fixed_factor	clk81_div4;
->>> Keeping all these internal elements around is not useful since they are
->>> registered using devm_
->>>
->> I'm sorry. I don't know what you mean. That's exactly what you said, but
->> what's wrong, I don't understand. Do you have any better suggestions,
->> please specify specific points, preferably give examples.
-> 
-> I'm saying that you don't need to keep reference to the internal
-> elements of the clock tree you have registered since devm_ will take
-> care of the removal later on. IOW, Once they are registered, the pointer
-> is never used again so you don't need it in the private data.
-> 
-I understand you now. What you say is right. I will correct it.
-> 
->>>> +	bool			no_clk81_input;
->>> What is this ?
->>>
->> To distinguish between clK81 and XTAL.
-> 
-> ... Yet, it is not used
-> 
->>>> +	bool			has_xtal_clk_sel;
->>>> +};
->>>> +
->>>>    static struct uart_driver meson_uart_driver;
->>>>      static struct uart_port *meson_ports[AML_UART_PORT_NUM];
->>>> @@ -270,14 +284,11 @@ static void meson_uart_reset(struct uart_port *port)
->>>>    static int meson_uart_startup(struct uart_port *port)
->>>>    {
->>>>    	u32 val;
->>>> -	int ret = 0;
->>>> +	int ret;
->>>>    -	val = readl(port->membase + AML_UART_CONTROL);
->>>> -	val |= AML_UART_CLEAR_ERR;
->>>> -	writel(val, port->membase + AML_UART_CONTROL);
->>>> -	val &= ~AML_UART_CLEAR_ERR;
->>>> -	writel(val, port->membase + AML_UART_CONTROL);
->>>> +	meson_uart_reset(port);
->>>>    +	val = readl(port->membase + AML_UART_CONTROL);
->>>>    	val |= (AML_UART_RX_EN | AML_UART_TX_EN);
->>>>    	writel(val, port->membase + AML_UART_CONTROL);
->>>>    @@ -295,19 +306,17 @@ static int meson_uart_startup(struct uart_port
->>>> *port)
->>>>      static void meson_uart_change_speed(struct uart_port *port, unsigned
->>>> long baud)
->>>>    {
->>>> +	struct meson_uart_data *private_data = port->private_data;
->>>>    	u32 val;
->>>>      	while (!meson_uart_tx_empty(port))
->>>>    		cpu_relax();
->>>>    -	if (port->uartclk == 24000000) {
->>> This check shows that previous code assumed bit 24 was left untouched
->>> Below you can see that GXBB and newer used the XTAL path while older
->>> used the other
->>> Your change makes this dynamic which is another "unexpected" change.
->>> Please make the bit 24 mux RO to start with so the behavior remains unchanged
->>> for older SoCs.
->> I agree with what you say, and I will correct it.
->>>
->>>> -		val = ((port->uartclk / 3) / baud) - 1;
->>>> -		val |= AML_UART_BAUD_XTAL;
->>>> -	} else {
->>>> -		val = ((port->uartclk * 10 / (baud * 4) + 5) / 10) - 1;
->>>> -	}
->>>> +	val = readl(port->membase + AML_UART_REG5);
->>>>    	val |= AML_UART_BAUD_USE;
->>>>    	writel(val, port->membase + AML_UART_REG5);
->>>> +
->>>> +	clk_set_rate(private_data->baud_clk, baud);
->>>>    }
->>>>      static void meson_uart_set_termios(struct uart_port *port,
->>>> @@ -397,11 +406,27 @@ static int meson_uart_verify_port(struct uart_port *port,
->>>>      static void meson_uart_release_port(struct uart_port *port)
->>>>    {
->>>> -	/* nothing to do */
->>>> +	struct meson_uart_data *private_data = port->private_data;
->>>> +
->>>> +	clk_disable_unprepare(private_data->baud_clk);
->>>> +	clk_disable_unprepare(private_data->pclk);
->>>>    }
->>>>      static int meson_uart_request_port(struct uart_port *port)
->>>>    {
->>>> +	struct meson_uart_data *private_data = port->private_data;
->>>> +	int ret;
->>>> +
->>>> +	ret = clk_prepare_enable(private_data->pclk);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	ret = clk_prepare_enable(private_data->baud_clk);
->>>> +	if (ret) {
->>>> +		clk_disable_unprepare(private_data->pclk);
->>>> +		return ret;
->>>> +	}
->>>> +
->>>>    	return 0;
->>>>    }
->>>>    @@ -629,56 +654,175 @@ static struct uart_driver meson_uart_driver = {
->>>>    	.cons		= MESON_SERIAL_CONSOLE,
->>>>    };
->>>>    -static inline struct clk *meson_uart_probe_clock(struct device *dev,
->>>> -						 const char *id)
->>>> +static int meson_uart_register_clk(struct uart_port *port,
->>>> +				   const char *name_suffix,
->>>> +				   const struct clk_parent_data *parent_data,
->>>> +				   unsigned int num_parents,
->>>> +				   const struct clk_ops *ops,
->>>> +				   struct clk_hw *hw)
->>>>    {
->>>> -	struct clk *clk = NULL;
->>>> +	struct clk_init_data init = { };
->>>> +	char clk_name[32];
->>>>    	int ret;
->>>>    -	clk = devm_clk_get(dev, id);
->>>> -	if (IS_ERR(clk))
->>>> -		return clk;
->>>> +	snprintf(clk_name, sizeof(clk_name), "%s#%s", dev_name(port->dev),
->>>> +		 name_suffix);
->>>>    -	ret = clk_prepare_enable(clk);
->>>> -	if (ret) {
->>>> -		dev_err(dev, "couldn't enable clk\n");
->>>> -		return ERR_PTR(ret);
->>>> -	}
->>>> +	init.name = clk_name;
->>>> +	init.ops = ops;
->>>> +	init.flags = CLK_SET_RATE_PARENT;
->>>> +	init.parent_data = parent_data;
->>>> +	init.num_parents = num_parents;
->>>> +
->>>> +	hw->init = &init;
->>>>    -	devm_add_action_or_reset(dev,
->>>> -			(void(*)(void *))clk_disable_unprepare,
->>>> -			clk);
->>>> +	ret = devm_clk_hw_register(port->dev, hw);
->>>> +	if (ret)
->>>> +		return dev_err_probe(port->dev, ret,
->>>> +				     "Failed to register the '%s' clock\n",
->>>> +				     clk_name);
->>>>    -	return clk;
->>>> +	return ret;
->>>>    }
->>>>    -static int meson_uart_probe_clocks(struct platform_device *pdev,
->>>> -				   struct uart_port *port)
->>>> -{
->>>> -	struct clk *clk_xtal = NULL;
->>>> -	struct clk *clk_pclk = NULL;
->>>> -	struct clk *clk_baud = NULL;
->>>> +static int meson_uart_probe_clocks(struct uart_port *port,
->>>> +				   bool register_clk81_div4)
->>>> +{
->>>> +	struct meson_uart_data *private_data = port->private_data;
->>>> +	struct clk_parent_data use_xtal_mux_parents[2] = {
->>>> +		{ .index = -1, },
->>>> +		{ .index = -1, },
->>>> +	};
->>>> +	struct clk_parent_data xtal_clk_sel_mux_parents[2] = { };
->>>> +	struct clk_parent_data xtal2_clk_sel_mux_parents[2] = { };
->>>> +	struct clk_parent_data xtal_div_parent = { .fw_name = "xtal", };
->>>> +	struct clk_parent_data clk81_div_parent = { .fw_name = "baud", };
->>>> +	struct clk_parent_data baud_div_parent = { };
->>>> +	struct clk *clk_baud, *clk_xtal;
->>>> +	int ret;
->>>>    -	clk_pclk = meson_uart_probe_clock(&pdev->dev, "pclk");
->>>> -	if (IS_ERR(clk_pclk))
->>>> -		return PTR_ERR(clk_pclk);
->>>> +	private_data->pclk = devm_clk_get(port->dev, "pclk");
->>>> +	if (IS_ERR(private_data->pclk))
->>>> +		return dev_err_probe(port->dev, PTR_ERR(private_data->pclk),
->>>> +				     "Failed to get the 'pclk' clock\n");
->>>> +
->>>> +	clk_baud = devm_clk_get(port->dev, "baud");
->>>> +	if (IS_ERR(clk_baud))
->>>> +		return dev_err_probe(port->dev, PTR_ERR(clk_baud),
->>>> +				     "Failed to get the 'baud' clock\n");
->>>>    -	clk_xtal = meson_uart_probe_clock(&pdev->dev, "xtal");
->>>> +	clk_xtal = devm_clk_get(port->dev, "xtal");
->>>>    	if (IS_ERR(clk_xtal))
->>>> -		return PTR_ERR(clk_xtal);
->>>> +		return dev_err_probe(port->dev, PTR_ERR(clk_xtal),
->>>> +				     "Failed to get the 'xtal' clock\n");
->>>> +
->>>> +	private_data->xtal_div3.mult = 1;
->>>> +	private_data->xtal_div3.div = 3;
->>>> +	ret = meson_uart_register_clk(port, "xtal_div3", &xtal_div_parent,
->>>> +				      1, &clk_fixed_factor_ops,
->>>> +				      &private_data->xtal_div3.hw);
->>>> +	if (ret)
->>>> +		return ret;
->>>>    -	clk_baud = meson_uart_probe_clock(&pdev->dev, "baud");
->>>> -	if (IS_ERR(clk_baud))
->>>> -		return PTR_ERR(clk_baud);
->>>> +	if (register_clk81_div4) {
->>> Clock dividers represent HW elements. The presence of an HW element
->>> cannot
->>> dependent on the current of the input clocks. There is no way this is right
->>>
->>>> +		private_data->clk81_div4.mult = 1;
->>>> +		private_data->clk81_div4.div = 4;
->>>> +		ret = meson_uart_register_clk(port, "clk81_div4",
->>>> +					      &clk81_div_parent, 1,
->>>> +					      &clk_fixed_factor_ops,
->>>> +					      &private_data->clk81_div4.hw);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		use_xtal_mux_parents[0].hw = &private_data->clk81_div4.hw;
->>> This is only going to be used on meson8 and older. Worst case it should
->>> depend
->>> on this compatible but I don't think this would be right here.
->>> IMO, this shows that the UART "baud" input was actually fed by a
->>> derivation of "fclk_div4" instead of "clk_81" on these older SoCs.
->>> So instead of registering what I suspect to be a fake element, the
->>> meson8 clock controller driver and DT should be fixed a this should go away.
->>>
->> Virtually all UART controllers are supported, but they are not used after
->> Meson8. So the description is more reasonable in UART driver.
-> 
-> No it is not. It's not virtual, the support for meson8 is there in
-> mainline.
-> 
-> Unless you tell me there is an actual /4 divider in the UART block of
-> the meson8 and older and that is was removed from the newer SoC,
-> the bit above should be removed and the meson8 clock tree fixed.
-> 
-> I think it is more probable that the /4 was never there to begin with,
-> and that clk81/4 aka "fclk_div4", which is already available from the
-> clock controller, was actually routed on these older SoCs.
-I will check with the chip design department if it is divided by 4. I'll 
-get back to you.
-> 
->>>> +	}
->>>>    -	port->uartclk = clk_get_rate(clk_baud);
->>>> +	if (private_data->has_xtal_clk_sel) {
->>>> +		private_data->xtal_div2.mult = 1;
->>>> +		private_data->xtal_div2.div = 2;
->>>> +		ret = meson_uart_register_clk(port, "xtal_div2",
->>>> +					      &xtal_div_parent, 1,
->>>> +					      &clk_fixed_factor_ops,
->>>> +					      &private_data->xtal_div2.hw);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		xtal_clk_sel_mux_parents[0].hw = &private_data->xtal_div3.hw;
->>>> +		xtal_clk_sel_mux_parents[1].fw_name = "xtal";
->>>> +
->>>> +		private_data->xtal_clk_sel_mux.reg = port->membase + AML_UART_REG5;
->>>> +		private_data->xtal_clk_sel_mux.mask = 0x1;
->>>> +		private_data->xtal_clk_sel_mux.shift = 26;
->>>> +		private_data->xtal_clk_sel_mux.flags = CLK_MUX_ROUND_CLOSEST;
->>>> +		ret = meson_uart_register_clk(port, "xtal_clk_sel",
->>>> +					      xtal_clk_sel_mux_parents,
->>>> +					      ARRAY_SIZE(xtal_clk_sel_mux_parents),
->>>> +					      &clk_mux_ops,
->>>> +					      &private_data->xtal_clk_sel_mux.hw);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		xtal2_clk_sel_mux_parents[0].hw = &private_data->xtal_clk_sel_mux.hw;
->>>> +		xtal2_clk_sel_mux_parents[1].hw = &private_data->xtal_div2.hw;
->>>> +
->>>> +		private_data->xtal2_clk_sel_mux.reg = port->membase + AML_UART_REG5;
->>>> +		private_data->xtal2_clk_sel_mux.mask = 0x1;
->>>> +		private_data->xtal2_clk_sel_mux.shift = 27;
->>>> +		private_data->xtal2_clk_sel_mux.flags = CLK_MUX_ROUND_CLOSEST;
->>>> +		ret = meson_uart_register_clk(port, "xtal2_clk_sel",
->>>> +					      xtal2_clk_sel_mux_parents,
->>>> +					      ARRAY_SIZE(xtal2_clk_sel_mux_parents),
->>>> +					      &clk_mux_ops,
->>>> +					      &private_data->xtal2_clk_sel_mux.hw);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		use_xtal_mux_parents[1].hw = &private_data->xtal2_clk_sel_mux.hw;
->>>> +	} else {
->>>> +		use_xtal_mux_parents[1].hw = &private_data->xtal_div3.hw;
->>> Well the above is a bit over-complicated. If I summarize:
->>> GXBB and older used a fixed divider of 3. Bits 26 and 27 read
->>> 0 according to the documentation.
->>> Chips after GXBB have 2 configurable divider of 2 and 3. bits 26 and 27
->>> selects which of these dividers is used.
->>> So the above could be replaced with a single divider covering bits 26 and
->>> 27
->>> with the following divider table { 2, 2, 1, 3 }. The divider should use
->>> RO ops and not have CLK_SET_RATE_PARENT. It can be used for all chips
->>> variant like this, including the older ones.
->>>
->> As you say, the way you say it is complicated. I think you're complicating
->> things.I don't understand what you're trying to achieve.
->> Can you be more specific?
-> 
-> I'm proposing to replace the 4 elements above, paths, parent_table and
-> all with a single divider with a specific table. It accomplishes the same thing.
-> 
-> |--------+--------+-----------|
-> | Bit 27 | Bit 26 | Div Value |
-> |--------+--------+-----------|
-> |      0 |      0 |         3 |
-> |--------+--------+-----------|
-> |      0 |      1 |         1 |
-> |--------+--------+-----------|
-> |      1 |      0 |         2 |
-> |--------+--------+-----------|
-> |      1 |      1 |         2 |
-> |--------+--------+-----------|
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/clk-provider.h?h=v5.16-rc8#n602
-> 
-> something like:
-> 
-> static struct clk_div_table reg5_table[] = {
-> 	{ 0, 3 },
->          { 1, 1 },
->          { 2, 2 },
->          { 3, 2 },
-> };
-> 
-> I'm also pointing out that, since bit 26 and 27 reads 0 on the older
-> SoCs, the divider would work for these too, as long as the Ops is
-> read-only. So you don't even need to register different element
-> depending on the SoC which simplify things a bit more.
-> 
-> If you prefer to keep a fixed divider for the older ones, It's fine by
-> me. It gives a bit more work but it is closer to reality. The newer SoC
-> could still use the custom divider regardless.
-> 
-> Last, and as explained on other bits, that part of the clock path should
-> remain RO at first, to keep behavior stable with this change. You may
-> change that later on, in a dedicated patch describing the change.
-> 
-I understand what you mean, and i will try to realize it. I hope you can 
-help review and give me your suggestions.
->>
->>> The only information you need to carry if whether or not you want to
->>> make this divider modifiable. This means using the dt data to store
->>> clk_div_ops or clk_div_ro_ops pointer.
->>> To avoid changing the behavior of the older platforms in this patch, I
->>> would
->>> suggest to make everything use clk_div_ro_ops first, and make another
->>> patch to use clk_div_ops if necessary.
->>>
->>>> +	}
->>>> +
->>>> +	private_data->use_xtal_mux.reg = port->membase + AML_UART_REG5;
->>>> +	private_data->use_xtal_mux.mask = 0x1;
->>>> +	private_data->use_xtal_mux.shift = 24;
->>>> +	private_data->use_xtal_mux.flags = CLK_MUX_ROUND_CLOSEST;
->>>> +	ret = meson_uart_register_clk(port, "use_xtal", use_xtal_mux_parents,
->>>> +				      ARRAY_SIZE(use_xtal_mux_parents),
->>>> +				      &clk_mux_ops,
->>> Use RO ops here to start with.
->>> You can make this writable with another patch explicitly describing the change.
->> I agree with what you say, and I will correct it.
->>>
->>>> +				      &private_data->use_xtal_mux.hw);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	baud_div_parent.hw = &private_data->use_xtal_mux.hw;
->>>> +
->>>> +	private_data->baud_div.reg = port->membase + AML_UART_REG5;
->>>> +	private_data->baud_div.shift = 0;
->>>> +	private_data->baud_div.width = 23;
->>>> +	private_data->baud_div.flags = CLK_DIVIDER_ROUND_CLOSEST;
->>>> +	ret = meson_uart_register_clk(port, "baud_div",
->>>> +				      &baud_div_parent, 1,
->>>> +				      &clk_divider_ops,
->>>> +				      &private_data->baud_div.hw);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	private_data->baud_clk = devm_clk_hw_get_clk(port->dev,
->>>> +						     &private_data->baud_div.hw,
->>>> +						     "baud_rate");
->>> There is a problem with this function in CCF. It will pin the driver to
->>> itself, making it unremovable. It is an ongoing topic. For now, just use
->>> "hw->clk" to get the struct *clk.
->>>
->>>> +	if (IS_ERR(private_data->baud_clk))
->>>> +		return dev_err_probe(port->dev,
->>> I don't think anything can defer here, so dev_err_probe() is not
->>> necessary I think
->>>
->> I agree with what you say, and I will correct it.
->>>> +				     PTR_ERR(private_data->baud_clk),
->>>> +				     "Failed to request the 'baud_rate' clock\n");
->>>>      	return 0;
->>>>    }
->>>>      static int meson_uart_probe(struct platform_device *pdev)
->>>>    {
->>>> +	struct meson_uart_data *private_data;
->>>>    	struct resource *res_mem, *res_irq;
->>>> +	struct clk *clk_baud, *clk_xtal;
->>>> +	bool register_clk81_div4;
->>>>    	struct uart_port *port;
->>>>    	int ret = 0;
->>>>    	int id = -1;
->>>> @@ -711,18 +855,37 @@ static int meson_uart_probe(struct platform_device *pdev)
->>>>    		return -EBUSY;
->>>>    	}
->>>>    -	port = devm_kzalloc(&pdev->dev, sizeof(struct uart_port),
->>>> GFP_KERNEL);
->>>> -	if (!port)
->>>> +	private_data = devm_kzalloc(&pdev->dev, sizeof(*private_data),
->>>> +				    GFP_KERNEL);
->>>> +	if (!private_data)
->>>>    		return -ENOMEM;
->>>>    +	if (device_get_match_data(&pdev->dev))
->>>> +		private_data->has_xtal_clk_sel = true;
->>>> +
->>>> +	private_data->pclk = devm_clk_get(&pdev->dev, "pclk");
->>>> +	if (IS_ERR(private_data->pclk))
->>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(private_data->pclk),
->>>> +				     "Failed to get the 'pclk' clock\n");
->>>> +
->>>> +	clk_baud = devm_clk_get(&pdev->dev, "baud");
->>>> +	if (IS_ERR(clk_baud))
->>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(clk_baud),
->>>> +				     "Failed to get the 'baud' clock\n");
->>>> +
->>>> +	clk_xtal = devm_clk_get(&pdev->dev, "xtal");
->>>> +	if (IS_ERR(clk_xtal))
->>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(clk_xtal),
->>>> +				     "Failed to get the 'xtal' clock\n");
->>>> +
->>> This is second time you call devm_clk_get() on these clocks. One
->>> instance has to go away
->>>
->> I agree with what you say, and I will correct it.
->>>> +	register_clk81_div4 = clk_get_rate(clk_xtal) != clk_get_rate(clk_baud);
->>>> +
->>> The above is a ugly way to distinguish the meson8 (32bit) SoC family
->>> from the rest. This definitely not the way to achieve it.
->>> The right is the compatible data but here I think it is not
->>> necessary. The clock input should be fixed.
->>>
->>>> +	port = &private_data->port;
->>>> +
->>>>    	port->membase = devm_ioremap_resource(&pdev->dev, res_mem);
->>>>    	if (IS_ERR(port->membase))
->>>>    		return PTR_ERR(port->membase);
->>>>    -	ret = meson_uart_probe_clocks(pdev, port);
->>>> -	if (ret)
->>>> -		return ret;
->>>> -
->>>>    	port->iotype = UPIO_MEM;
->>>>    	port->mapbase = res_mem->start;
->>>>    	port->mapsize = resource_size(res_mem);
->>>> @@ -735,6 +898,12 @@ static int meson_uart_probe(struct platform_device *pdev)
->>>>    	port->x_char = 0;
->>>>    	port->ops = &meson_uart_ops;
->>>>    	port->fifosize = 64;
->>>> +	port->uartclk = clk_get_rate(clk_baud);
->>>> +	port->private_data = private_data;
->>>> +
->>>> +	ret = meson_uart_probe_clocks(port, register_clk81_div4);
->>>> +	if (ret)
->>>> +		return ret;
->>>>      	meson_ports[pdev->id] = port;
->>>>    	platform_set_drvdata(pdev, port);
->>>> @@ -761,10 +930,42 @@ static int meson_uart_remove(struct platform_device *pdev)
->>>>    }
->>>>      static const struct of_device_id meson_uart_dt_match[] = {
->>>> -	{ .compatible = "amlogic,meson6-uart" },
->>>> -	{ .compatible = "amlogic,meson8-uart" },
->>>> -	{ .compatible = "amlogic,meson8b-uart" },
->>>> -	{ .compatible = "amlogic,meson-gx-uart" },
->>>> +	{
->>>> +		.compatible = "amlogic,meson6-uart",
->>>> +		.data = (void *)false,
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,meson8-uart",
->>>> +		.data = (void *)false,
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,meson8b-uart",
->>>> +		.data = (void *)false,
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,meson-gxbb-uart",
->>>> +		.data = (void *)false,
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,meson-gxl-uart",
->>>> +		.data = (void *)true,
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,meson-g12a-uart",
->>>> +		.data = (void *)true,
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,meson-s4-uart",
->>>> +		.data = (void *)true,
->>>> +	},
->>>> +	/*
->>>> +	 * deprecated, don't use anymore because it doesn't differentiate
->>>> +	 * between GXBB and GXL which have different revisions of the UART IP.
->>>> +	 */
->>>> +	{
->>>> +		.compatible = "amlogic,meson-gx-uart",
->>>> +		.data = (void *)false,
->>>> +	},
->>>>    	{ /* sentinel */ },
->>>>    };
->>>>    MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
->>>
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+ICBIaSBKZXJvbWUsCgpPbiAyMDIyLzEvNCAyMjozNSwgWXUgVHUgd3JvdGU6Cj4gSGkgSmVyb21l
+LAo+ICDCoMKgwqDCoFRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgcGF0aWVudCByZXBseS4g
+SSBoYXZlIGxlYXJuZWQgYSBsb3QgCj4gZnJvbSBpdC4KPiAKPiBPbiAyMDIyLzEvNCAxODozNiwg
+SmVyb21lIEJydW5ldCB3cm90ZToKPj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+Cj4+Cj4+IE9uIFR1
+ZSAwNCBKYW4gMjAyMiBhdCAxNzo1NywgWXUgVHUgPHl1LnR1QGFtbG9naWMuY29tPiB3cm90ZToK
+Pj4KPj4+IEhpIEplcm9tZSwKPj4+IMKgwqDCoMKgVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91
+ciByZXBseS4KPj4+Cj4+PiBPbiAyMDIyLzEvMyAyMDo0MCwgSmVyb21lIEJydW5ldCB3cm90ZToK
+Pj4+PiBbIEVYVEVSTkFMIEVNQUlMIF0KPj4+Pgo+Pj4+IE9uIFRodSAzMCBEZWMgMjAyMSBhdCAx
+ODoyMSwgWXUgVHUgPHl1LnR1QGFtbG9naWMuY29tPiB3cm90ZToKPj4+Pgo+Pj4+PiBVc2luZyB0
+aGUgY29tbW9uIENsb2NrIGNvZGUgdG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRlIGNsb2Nr
+IG1ha2VzCj4+Pj4+IGl0IGVhc2llciBmb3IgdGhlIFVBUlQgZHJpdmVyIHRvIGJlIGNvbXBhdGli
+bGUgd2l0aCB0aGUgYmF1ZCByYXRlCj4+Pj4+IHJlcXVpcmVtZW50cyBvZiB0aGUgVUFSVCBJUCBv
+biBkaWZmZXJlbnQgbWVzb24gY2hpcHMKPj4+Pj4KPj4+Pj4gU2lnbmVkLW9mZi1ieTogWXUgVHUg
+PHl1LnR1QGFtbG9naWMuY29tPgo+Pj4+PiAtLS0KPj4+Pj4gwqDCoCBkcml2ZXJzL3R0eS9zZXJp
+YWwvS2NvbmZpZ8KgwqDCoMKgwqAgfMKgwqAgMSArCj4+Pj4+IMKgwqAgZHJpdmVycy90dHkvc2Vy
+aWFsL21lc29uX3VhcnQuYyB8IDMxMSAKPj4+Pj4gKysrKysrKysrKysrKysrKysrKysrKysrKyst
+LS0tLS0KPj4+Pj4gwqDCoCAyIGZpbGVzIGNoYW5nZWQsIDI1NyBpbnNlcnRpb25zKCspLCA1NSBk
+ZWxldGlvbnMoLSkKPj4+Pj4KPj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdHR5L3NlcmlhbC9L
+Y29uZmlnIGIvZHJpdmVycy90dHkvc2VyaWFsL0tjb25maWcKPj4+Pj4gaW5kZXggNzgwOTA4ZDQz
+NTU3Li4zMmUyMzgxNzMwMzYgMTAwNjQ0Cj4+Pj4+IC0tLSBhL2RyaXZlcnMvdHR5L3NlcmlhbC9L
+Y29uZmlnCj4+Pj4+ICsrKyBiL2RyaXZlcnMvdHR5L3NlcmlhbC9LY29uZmlnCj4+Pj4+IEBAIC0x
+OTgsNiArMTk4LDcgQEAgY29uZmlnIFNFUklBTF9LR0RCX05NSQo+Pj4+PiDCoMKgIGNvbmZpZyBT
+RVJJQUxfTUVTT04KPj4+Pj4gwqDCoMKgwqDCoMKgIHRyaXN0YXRlICJNZXNvbiBzZXJpYWwgcG9y
+dCBzdXBwb3J0Igo+Pj4+PiDCoMKgwqDCoMKgwqAgZGVwZW5kcyBvbiBBUkNIX01FU09OCj4+Pj4+
+ICvCoMKgwqAgZGVwZW5kcyBvbiBDT01NT05fQ0xLCj4+Pj4+IMKgwqDCoMKgwqDCoCBzZWxlY3Qg
+U0VSSUFMX0NPUkUKPj4+Pj4gwqDCoMKgwqDCoMKgIGhlbHAKPj4+Pj4gwqDCoMKgwqDCoMKgwqDC
+oCBUaGlzIGVuYWJsZXMgdGhlIGRyaXZlciBmb3IgdGhlIG9uLWNoaXAgVUFSVHMgb2YgdGhlIEFt
+bG9naWMKPj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMg
+Cj4+Pj4+IGIvZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuYwo+Pj4+PiBpbmRleCA5OWVm
+ZTYyYTE1MDcuLjA3ZWIxZjQwYWFhYSAxMDA2NDQKPj4+Pj4gLS0tIGEvZHJpdmVycy90dHkvc2Vy
+aWFsL21lc29uX3VhcnQuYwo+Pj4+PiArKysgYi9kcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25fdWFy
+dC5jCj4+Pj4+IEBAIC02LDYgKzYsNyBAQAo+Pj4+PiDCoMKgwqAgKi8KPj4+Pj4gwqDCoMKgwqAg
+I2luY2x1ZGUgPGxpbnV4L2Nsay5oPgo+Pj4+PiArI2luY2x1ZGUgPGxpbnV4L2Nsay1wcm92aWRl
+ci5oPgo+Pj4+PiDCoMKgICNpbmNsdWRlIDxsaW51eC9jb25zb2xlLmg+Cj4+Pj4+IMKgwqAgI2lu
+Y2x1ZGUgPGxpbnV4L2RlbGF5Lmg+Cj4+Pj4+IMKgwqAgI2luY2x1ZGUgPGxpbnV4L2luaXQuaD4K
+Pj4+Pj4gQEAgLTY1LDkgKzY2LDcgQEAKPj4+Pj4gwqDCoCAjZGVmaW5lIEFNTF9VQVJUX1JFQ1Zf
+SVJRKGMpwqDCoMKgwqDCoMKgwqAgKChjKSAmIDB4ZmYpCj4+Pj4+IMKgwqDCoMKgIC8qIEFNTF9V
+QVJUX1JFRzUgYml0cyAqLwo+Pj4+PiAtI2RlZmluZSBBTUxfVUFSVF9CQVVEX01BU0vCoMKgwqDC
+oMKgwqDCoCAweDdmZmZmZgo+Pj4+PiDCoMKgICNkZWZpbmUgQU1MX1VBUlRfQkFVRF9VU0XCoMKg
+wqDCoMKgwqDCoCBCSVQoMjMpCj4+Pj4+IC0jZGVmaW5lIEFNTF9VQVJUX0JBVURfWFRBTMKgwqDC
+oMKgwqDCoMKgIEJJVCgyNCkKPj4+Pj4gwqDCoMKgwqAgI2RlZmluZSBBTUxfVUFSVF9QT1JUX05V
+TcKgwqDCoMKgwqDCoMKgIDEyCj4+Pj4+IMKgwqAgI2RlZmluZSBBTUxfVUFSVF9QT1JUX09GRlNF
+VMKgwqDCoMKgwqDCoMKgIDYKPj4+Pj4gQEAgLTc2LDYgKzc1LDIxIEBACj4+Pj4+IMKgwqAgI2Rl
+ZmluZSBBTUxfVUFSVF9QT0xMX1VTRUPCoMKgwqDCoMKgwqDCoCA1Cj4+Pj4+IMKgwqAgI2RlZmlu
+ZSBBTUxfVUFSVF9USU1FT1VUX1VTRUPCoMKgwqDCoMKgwqDCoCAxMDAwMAo+Pj4+PiDCoMKgICtz
+dHJ1Y3QgbWVzb25fdWFydF9kYXRhIHsKPj4+Pj4gK8KgwqDCoCBzdHJ1Y3QgdWFydF9wb3J0wqDC
+oMKgIHBvcnQ7Cj4+Pj4+ICvCoMKgwqAgc3RydWN0IGNsa8KgwqDCoMKgwqDCoMKgICpwY2xrOwo+
+Pj4+PiArwqDCoMKgIHN0cnVjdCBjbGvCoMKgwqDCoMKgwqDCoCAqYmF1ZF9jbGs7Cj4+Pj4+ICvC
+oMKgwqAgc3RydWN0IGNsa19kaXZpZGVywqDCoMKgIGJhdWRfZGl2Owo+Pj4+PiArwqDCoMKgIHN0
+cnVjdCBjbGtfbXV4wqDCoMKgwqDCoMKgwqAgdXNlX3h0YWxfbXV4Owo+Pj4+PiArwqDCoMKgIHN0
+cnVjdCBjbGtfbXV4wqDCoMKgwqDCoMKgwqAgeHRhbF9jbGtfc2VsX211eDsKPj4+Pj4gK8KgwqDC
+oCBzdHJ1Y3QgY2xrX211eMKgwqDCoMKgwqDCoMKgIHh0YWwyX2Nsa19zZWxfbXV4Owo+Pj4+PiAr
+wqDCoMKgIHN0cnVjdCBjbGtfZml4ZWRfZmFjdG9ywqDCoMKgIHh0YWxfZGl2MjsKPj4+Pj4gK8Kg
+wqDCoCBzdHJ1Y3QgY2xrX2ZpeGVkX2ZhY3RvcsKgwqDCoCB4dGFsX2RpdjM7Cj4+Pj4+ICvCoMKg
+wqAgc3RydWN0IGNsa19maXhlZF9mYWN0b3LCoMKgwqAgY2xrODFfZGl2NDsKPj4+PiBLZWVwaW5n
+IGFsbCB0aGVzZSBpbnRlcm5hbCBlbGVtZW50cyBhcm91bmQgaXMgbm90IHVzZWZ1bCBzaW5jZSB0
+aGV5IGFyZQo+Pj4+IHJlZ2lzdGVyZWQgdXNpbmcgZGV2bV8KPj4+Pgo+Pj4gSSdtIHNvcnJ5LiBJ
+IGRvbid0IGtub3cgd2hhdCB5b3UgbWVhbi4gVGhhdCdzIGV4YWN0bHkgd2hhdCB5b3Ugc2FpZCwg
+YnV0Cj4+PiB3aGF0J3Mgd3JvbmcsIEkgZG9uJ3QgdW5kZXJzdGFuZC4gRG8geW91IGhhdmUgYW55
+IGJldHRlciBzdWdnZXN0aW9ucywKPj4+IHBsZWFzZSBzcGVjaWZ5IHNwZWNpZmljIHBvaW50cywg
+cHJlZmVyYWJseSBnaXZlIGV4YW1wbGVzLgo+Pgo+PiBJJ20gc2F5aW5nIHRoYXQgeW91IGRvbid0
+IG5lZWQgdG8ga2VlcCByZWZlcmVuY2UgdG8gdGhlIGludGVybmFsCj4+IGVsZW1lbnRzIG9mIHRo
+ZSBjbG9jayB0cmVlIHlvdSBoYXZlIHJlZ2lzdGVyZWQgc2luY2UgZGV2bV8gd2lsbCB0YWtlCj4+
+IGNhcmUgb2YgdGhlIHJlbW92YWwgbGF0ZXIgb24uIElPVywgT25jZSB0aGV5IGFyZSByZWdpc3Rl
+cmVkLCB0aGUgcG9pbnRlcgo+PiBpcyBuZXZlciB1c2VkIGFnYWluIHNvIHlvdSBkb24ndCBuZWVk
+IGl0IGluIHRoZSBwcml2YXRlIGRhdGEuCj4+Cj4gSSB1bmRlcnN0YW5kIHlvdSBub3cuIFdoYXQg
+eW91IHNheSBpcyByaWdodC4gSSB3aWxsIGNvcnJlY3QgaXQuCj4+Cj4+Pj4+ICvCoMKgwqAgYm9v
+bMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbm9fY2xrODFfaW5wdXQ7Cj4+Pj4gV2hhdCBpcyB0aGlz
+ID8KPj4+Pgo+Pj4gVG8gZGlzdGluZ3Vpc2ggYmV0d2VlbiBjbEs4MSBhbmQgWFRBTC4KPj4KPj4g
+Li4uIFlldCwgaXQgaXMgbm90IHVzZWQKPj4KPj4+Pj4gK8KgwqDCoCBib29swqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBoYXNfeHRhbF9jbGtfc2VsOwo+Pj4+PiArfTsKPj4+Pj4gKwo+Pj4+PiDCoMKg
+IHN0YXRpYyBzdHJ1Y3QgdWFydF9kcml2ZXIgbWVzb25fdWFydF9kcml2ZXI7Cj4+Pj4+IMKgwqDC
+oMKgIHN0YXRpYyBzdHJ1Y3QgdWFydF9wb3J0ICptZXNvbl9wb3J0c1tBTUxfVUFSVF9QT1JUX05V
+TV07Cj4+Pj4+IEBAIC0yNzAsMTQgKzI4NCwxMSBAQCBzdGF0aWMgdm9pZCBtZXNvbl91YXJ0X3Jl
+c2V0KHN0cnVjdCB1YXJ0X3BvcnQgCj4+Pj4+ICpwb3J0KQo+Pj4+PiDCoMKgIHN0YXRpYyBpbnQg
+bWVzb25fdWFydF9zdGFydHVwKHN0cnVjdCB1YXJ0X3BvcnQgKnBvcnQpCj4+Pj4+IMKgwqAgewo+
+Pj4+PiDCoMKgwqDCoMKgwqAgdTMyIHZhbDsKPj4+Pj4gLcKgwqDCoCBpbnQgcmV0ID0gMDsKPj4+
+Pj4gK8KgwqDCoCBpbnQgcmV0Owo+Pj4+PiDCoMKgIC3CoMKgwqAgdmFsID0gcmVhZGwocG9ydC0+
+bWVtYmFzZSArIEFNTF9VQVJUX0NPTlRST0wpOwo+Pj4+PiAtwqDCoMKgIHZhbCB8PSBBTUxfVUFS
+VF9DTEVBUl9FUlI7Cj4+Pj4+IC3CoMKgwqAgd3JpdGVsKHZhbCwgcG9ydC0+bWVtYmFzZSArIEFN
+TF9VQVJUX0NPTlRST0wpOwo+Pj4+PiAtwqDCoMKgIHZhbCAmPSB+QU1MX1VBUlRfQ0xFQVJfRVJS
+Owo+Pj4+PiAtwqDCoMKgIHdyaXRlbCh2YWwsIHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFSVF9DT05U
+Uk9MKTsKPj4+Pj4gK8KgwqDCoCBtZXNvbl91YXJ0X3Jlc2V0KHBvcnQpOwo+Pj4+PiDCoMKgICvC
+oMKgwqAgdmFsID0gcmVhZGwocG9ydC0+bWVtYmFzZSArIEFNTF9VQVJUX0NPTlRST0wpOwo+Pj4+
+PiDCoMKgwqDCoMKgwqAgdmFsIHw9IChBTUxfVUFSVF9SWF9FTiB8IEFNTF9VQVJUX1RYX0VOKTsK
+Pj4+Pj4gwqDCoMKgwqDCoMKgIHdyaXRlbCh2YWwsIHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFSVF9D
+T05UUk9MKTsKPj4+Pj4gwqDCoCBAQCAtMjk1LDE5ICszMDYsMTcgQEAgc3RhdGljIGludCBtZXNv
+bl91YXJ0X3N0YXJ0dXAoc3RydWN0IAo+Pj4+PiB1YXJ0X3BvcnQKPj4+Pj4gKnBvcnQpCj4+Pj4+
+IMKgwqDCoMKgIHN0YXRpYyB2b2lkIG1lc29uX3VhcnRfY2hhbmdlX3NwZWVkKHN0cnVjdCB1YXJ0
+X3BvcnQgKnBvcnQsIAo+Pj4+PiB1bnNpZ25lZAo+Pj4+PiBsb25nIGJhdWQpCj4+Pj4+IMKgwqAg
+ewo+Pj4+PiArwqDCoMKgIHN0cnVjdCBtZXNvbl91YXJ0X2RhdGEgKnByaXZhdGVfZGF0YSA9IHBv
+cnQtPnByaXZhdGVfZGF0YTsKPj4+Pj4gwqDCoMKgwqDCoMKgIHUzMiB2YWw7Cj4+Pj4+IMKgwqDC
+oMKgwqDCoMKgwqAgd2hpbGUgKCFtZXNvbl91YXJ0X3R4X2VtcHR5KHBvcnQpKQo+Pj4+PiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBjcHVfcmVsYXgoKTsKPj4+Pj4gwqDCoCAtwqDCoMKgIGlmIChwb3J0
+LT51YXJ0Y2xrID09IDI0MDAwMDAwKSB7Cj4+Pj4gVGhpcyBjaGVjayBzaG93cyB0aGF0IHByZXZp
+b3VzIGNvZGUgYXNzdW1lZCBiaXQgMjQgd2FzIGxlZnQgdW50b3VjaGVkCj4+Pj4gQmVsb3cgeW91
+IGNhbiBzZWUgdGhhdCBHWEJCIGFuZCBuZXdlciB1c2VkIHRoZSBYVEFMIHBhdGggd2hpbGUgb2xk
+ZXIKPj4+PiB1c2VkIHRoZSBvdGhlcgo+Pj4+IFlvdXIgY2hhbmdlIG1ha2VzIHRoaXMgZHluYW1p
+YyB3aGljaCBpcyBhbm90aGVyICJ1bmV4cGVjdGVkIiBjaGFuZ2UuCj4+Pj4gUGxlYXNlIG1ha2Ug
+dGhlIGJpdCAyNCBtdXggUk8gdG8gc3RhcnQgd2l0aCBzbyB0aGUgYmVoYXZpb3IgcmVtYWlucyAK
+Pj4+PiB1bmNoYW5nZWQKPj4+PiBmb3Igb2xkZXIgU29Dcy4KPj4+IEkgYWdyZWUgd2l0aCB3aGF0
+IHlvdSBzYXksIGFuZCBJIHdpbGwgY29ycmVjdCBpdC4KPj4+Pgo+Pj4+PiAtwqDCoMKgwqDCoMKg
+wqAgdmFsID0gKChwb3J0LT51YXJ0Y2xrIC8gMykgLyBiYXVkKSAtIDE7Cj4+Pj4+IC3CoMKgwqDC
+oMKgwqDCoCB2YWwgfD0gQU1MX1VBUlRfQkFVRF9YVEFMOwo+Pj4+PiAtwqDCoMKgIH0gZWxzZSB7
+Cj4+Pj4+IC3CoMKgwqDCoMKgwqDCoCB2YWwgPSAoKHBvcnQtPnVhcnRjbGsgKiAxMCAvIChiYXVk
+ICogNCkgKyA1KSAvIDEwKSAtIDE7Cj4+Pj4+IC3CoMKgwqAgfQo+Pj4+PiArwqDCoMKgIHZhbCA9
+IHJlYWRsKHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFSVF9SRUc1KTsKPj4+Pj4gwqDCoMKgwqDCoMKg
+IHZhbCB8PSBBTUxfVUFSVF9CQVVEX1VTRTsKPj4+Pj4gwqDCoMKgwqDCoMKgIHdyaXRlbCh2YWws
+IHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFSVF9SRUc1KTsKPj4+Pj4gKwo+Pj4+PiArwqDCoMKgIGNs
+a19zZXRfcmF0ZShwcml2YXRlX2RhdGEtPmJhdWRfY2xrLCBiYXVkKTsKPj4+Pj4gwqDCoCB9Cj4+
+Pj4+IMKgwqDCoMKgIHN0YXRpYyB2b2lkIG1lc29uX3VhcnRfc2V0X3Rlcm1pb3Moc3RydWN0IHVh
+cnRfcG9ydCAqcG9ydCwKPj4+Pj4gQEAgLTM5NywxMSArNDA2LDI3IEBAIHN0YXRpYyBpbnQgbWVz
+b25fdWFydF92ZXJpZnlfcG9ydChzdHJ1Y3QgCj4+Pj4+IHVhcnRfcG9ydCAqcG9ydCwKPj4+Pj4g
+wqDCoMKgwqAgc3RhdGljIHZvaWQgbWVzb25fdWFydF9yZWxlYXNlX3BvcnQoc3RydWN0IHVhcnRf
+cG9ydCAqcG9ydCkKPj4+Pj4gwqDCoCB7Cj4+Pj4+IC3CoMKgwqAgLyogbm90aGluZyB0byBkbyAq
+Lwo+Pj4+PiArwqDCoMKgIHN0cnVjdCBtZXNvbl91YXJ0X2RhdGEgKnByaXZhdGVfZGF0YSA9IHBv
+cnQtPnByaXZhdGVfZGF0YTsKPj4+Pj4gKwo+Pj4+PiArwqDCoMKgIGNsa19kaXNhYmxlX3VucHJl
+cGFyZShwcml2YXRlX2RhdGEtPmJhdWRfY2xrKTsKPj4+Pj4gK8KgwqDCoCBjbGtfZGlzYWJsZV91
+bnByZXBhcmUocHJpdmF0ZV9kYXRhLT5wY2xrKTsKPj4+Pj4gwqDCoCB9Cj4+Pj4+IMKgwqDCoMKg
+IHN0YXRpYyBpbnQgbWVzb25fdWFydF9yZXF1ZXN0X3BvcnQoc3RydWN0IHVhcnRfcG9ydCAqcG9y
+dCkKPj4+Pj4gwqDCoCB7Cj4+Pj4+ICvCoMKgwqAgc3RydWN0IG1lc29uX3VhcnRfZGF0YSAqcHJp
+dmF0ZV9kYXRhID0gcG9ydC0+cHJpdmF0ZV9kYXRhOwo+Pj4+PiArwqDCoMKgIGludCByZXQ7Cj4+
+Pj4+ICsKPj4+Pj4gK8KgwqDCoCByZXQgPSBjbGtfcHJlcGFyZV9lbmFibGUocHJpdmF0ZV9kYXRh
+LT5wY2xrKTsKPj4+Pj4gK8KgwqDCoCBpZiAocmV0KQo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0
+dXJuIHJldDsKPj4+Pj4gKwo+Pj4+PiArwqDCoMKgIHJldCA9IGNsa19wcmVwYXJlX2VuYWJsZShw
+cml2YXRlX2RhdGEtPmJhdWRfY2xrKTsKPj4+Pj4gK8KgwqDCoCBpZiAocmV0KSB7Cj4+Pj4+ICvC
+oMKgwqDCoMKgwqDCoCBjbGtfZGlzYWJsZV91bnByZXBhcmUocHJpdmF0ZV9kYXRhLT5wY2xrKTsK
+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7Cj4+Pj4+ICvCoMKgwqAgfQo+Pj4+PiAr
+Cj4+Pj4+IMKgwqDCoMKgwqDCoCByZXR1cm4gMDsKPj4+Pj4gwqDCoCB9Cj4+Pj4+IMKgwqAgQEAg
+LTYyOSw1NiArNjU0LDE3NSBAQCBzdGF0aWMgc3RydWN0IHVhcnRfZHJpdmVyIAo+Pj4+PiBtZXNv
+bl91YXJ0X2RyaXZlciA9IHsKPj4+Pj4gwqDCoMKgwqDCoMKgIC5jb25zwqDCoMKgwqDCoMKgwqAg
+PSBNRVNPTl9TRVJJQUxfQ09OU09MRSwKPj4+Pj4gwqDCoCB9Owo+Pj4+PiDCoMKgIC1zdGF0aWMg
+aW5saW5lIHN0cnVjdCBjbGsgKm1lc29uX3VhcnRfcHJvYmVfY2xvY2soc3RydWN0IGRldmljZSAK
+Pj4+Pj4gKmRldiwKPj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBjb25zdCBjaGFyICppZCkKPj4+Pj4gK3N0YXRpYyBpbnQgbWVzb25fdWFydF9y
+ZWdpc3Rlcl9jbGsoc3RydWN0IHVhcnRfcG9ydCAqcG9ydCwKPj4+Pj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb25zdCBjaGFyICpuYW1lX3N1ZmZpeCwKPj4+Pj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb25zdCBzdHJ1Y3QgY2xrX3BhcmVu
+dF9kYXRhICpwYXJlbnRfZGF0YSwKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCB1bnNpZ25lZCBpbnQgbnVtX3BhcmVudHMsCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IGNsa19vcHMgKm9wcywKPj4+Pj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgY2xrX2h3ICpodykKPj4+
+Pj4gwqDCoCB7Cj4+Pj4+IC3CoMKgwqAgc3RydWN0IGNsayAqY2xrID0gTlVMTDsKPj4+Pj4gK8Kg
+wqDCoCBzdHJ1Y3QgY2xrX2luaXRfZGF0YSBpbml0ID0geyB9Owo+Pj4+PiArwqDCoMKgIGNoYXIg
+Y2xrX25hbWVbMzJdOwo+Pj4+PiDCoMKgwqDCoMKgwqAgaW50IHJldDsKPj4+Pj4gwqDCoCAtwqDC
+oMKgIGNsayA9IGRldm1fY2xrX2dldChkZXYsIGlkKTsKPj4+Pj4gLcKgwqDCoCBpZiAoSVNfRVJS
+KGNsaykpCj4+Pj4+IC3CoMKgwqDCoMKgwqDCoCByZXR1cm4gY2xrOwo+Pj4+PiArwqDCoMKgIHNu
+cHJpbnRmKGNsa19uYW1lLCBzaXplb2YoY2xrX25hbWUpLCAiJXMjJXMiLCAKPj4+Pj4gZGV2X25h
+bWUocG9ydC0+ZGV2KSwKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqAgbmFtZV9zdWZmaXgpOwo+Pj4+
+PiDCoMKgIC3CoMKgwqAgcmV0ID0gY2xrX3ByZXBhcmVfZW5hYmxlKGNsayk7Cj4+Pj4+IC3CoMKg
+wqAgaWYgKHJldCkgewo+Pj4+PiAtwqDCoMKgwqDCoMKgwqAgZGV2X2VycihkZXYsICJjb3VsZG4n
+dCBlbmFibGUgY2xrXG4iKTsKPj4+Pj4gLcKgwqDCoMKgwqDCoMKgIHJldHVybiBFUlJfUFRSKHJl
+dCk7Cj4+Pj4+IC3CoMKgwqAgfQo+Pj4+PiArwqDCoMKgIGluaXQubmFtZSA9IGNsa19uYW1lOwo+
+Pj4+PiArwqDCoMKgIGluaXQub3BzID0gb3BzOwo+Pj4+PiArwqDCoMKgIGluaXQuZmxhZ3MgPSBD
+TEtfU0VUX1JBVEVfUEFSRU5UOwo+Pj4+PiArwqDCoMKgIGluaXQucGFyZW50X2RhdGEgPSBwYXJl
+bnRfZGF0YTsKPj4+Pj4gK8KgwqDCoCBpbml0Lm51bV9wYXJlbnRzID0gbnVtX3BhcmVudHM7Cj4+
+Pj4+ICsKPj4+Pj4gK8KgwqDCoCBody0+aW5pdCA9ICZpbml0Owo+Pj4+PiDCoMKgIC3CoMKgwqAg
+ZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KGRldiwKPj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgKHZvaWQoKikodm9pZCAqKSljbGtfZGlzYWJsZV91bnByZXBhcmUsCj4+Pj4+IC3CoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIGNsayk7Cj4+Pj4+ICvCoMKgwqAgcmV0ID0gZGV2bV9jbGtfaHdfcmVn
+aXN0ZXIocG9ydC0+ZGV2LCBodyk7Cj4+Pj4+ICvCoMKgwqAgaWYgKHJldCkKPj4+Pj4gK8KgwqDC
+oMKgwqDCoMKgIHJldHVybiBkZXZfZXJyX3Byb2JlKHBvcnQtPmRldiwgcmV0LAo+Pj4+PiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiRmFpbGVkIHRvIHJlZ2lzdGVy
+IHRoZSAnJXMnIGNsb2NrXG4iLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBjbGtfbmFtZSk7Cj4+Pj4+IMKgwqAgLcKgwqDCoCByZXR1cm4gY2xrOwo+Pj4+
+PiArwqDCoMKgIHJldHVybiByZXQ7Cj4+Pj4+IMKgwqAgfQo+Pj4+PiDCoMKgIC1zdGF0aWMgaW50
+IG1lc29uX3VhcnRfcHJvYmVfY2xvY2tzKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYsCj4+
+Pj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHVhcnRfcG9y
+dCAqcG9ydCkKPj4+Pj4gLXsKPj4+Pj4gLcKgwqDCoCBzdHJ1Y3QgY2xrICpjbGtfeHRhbCA9IE5V
+TEw7Cj4+Pj4+IC3CoMKgwqAgc3RydWN0IGNsayAqY2xrX3BjbGsgPSBOVUxMOwo+Pj4+PiAtwqDC
+oMKgIHN0cnVjdCBjbGsgKmNsa19iYXVkID0gTlVMTDsKPj4+Pj4gK3N0YXRpYyBpbnQgbWVzb25f
+dWFydF9wcm9iZV9jbG9ja3Moc3RydWN0IHVhcnRfcG9ydCAqcG9ydCwKPj4+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBib29sIHJlZ2lzdGVyX2NsazgxX2RpdjQpCj4+
+Pj4+ICt7Cj4+Pj4+ICvCoMKgwqAgc3RydWN0IG1lc29uX3VhcnRfZGF0YSAqcHJpdmF0ZV9kYXRh
+ID0gcG9ydC0+cHJpdmF0ZV9kYXRhOwo+Pj4+PiArwqDCoMKgIHN0cnVjdCBjbGtfcGFyZW50X2Rh
+dGEgdXNlX3h0YWxfbXV4X3BhcmVudHNbMl0gPSB7Cj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCB7IC5p
+bmRleCA9IC0xLCB9LAo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgeyAuaW5kZXggPSAtMSwgfSwKPj4+
+Pj4gK8KgwqDCoCB9Owo+Pj4+PiArwqDCoMKgIHN0cnVjdCBjbGtfcGFyZW50X2RhdGEgeHRhbF9j
+bGtfc2VsX211eF9wYXJlbnRzWzJdID0geyB9Owo+Pj4+PiArwqDCoMKgIHN0cnVjdCBjbGtfcGFy
+ZW50X2RhdGEgeHRhbDJfY2xrX3NlbF9tdXhfcGFyZW50c1syXSA9IHsgfTsKPj4+Pj4gK8KgwqDC
+oCBzdHJ1Y3QgY2xrX3BhcmVudF9kYXRhIHh0YWxfZGl2X3BhcmVudCA9IHsgLmZ3X25hbWUgPSAi
+eHRhbCIsIH07Cj4+Pj4+ICvCoMKgwqAgc3RydWN0IGNsa19wYXJlbnRfZGF0YSBjbGs4MV9kaXZf
+cGFyZW50ID0geyAuZndfbmFtZSA9ICJiYXVkIiwgfTsKPj4+Pj4gK8KgwqDCoCBzdHJ1Y3QgY2xr
+X3BhcmVudF9kYXRhIGJhdWRfZGl2X3BhcmVudCA9IHsgfTsKPj4+Pj4gK8KgwqDCoCBzdHJ1Y3Qg
+Y2xrICpjbGtfYmF1ZCwgKmNsa194dGFsOwo+Pj4+PiArwqDCoMKgIGludCByZXQ7Cj4+Pj4+IMKg
+wqAgLcKgwqDCoCBjbGtfcGNsayA9IG1lc29uX3VhcnRfcHJvYmVfY2xvY2soJnBkZXYtPmRldiwg
+InBjbGsiKTsKPj4+Pj4gLcKgwqDCoCBpZiAoSVNfRVJSKGNsa19wY2xrKSkKPj4+Pj4gLcKgwqDC
+oMKgwqDCoMKgIHJldHVybiBQVFJfRVJSKGNsa19wY2xrKTsKPj4+Pj4gK8KgwqDCoCBwcml2YXRl
+X2RhdGEtPnBjbGsgPSBkZXZtX2Nsa19nZXQocG9ydC0+ZGV2LCAicGNsayIpOwo+Pj4+PiArwqDC
+oMKgIGlmIChJU19FUlIocHJpdmF0ZV9kYXRhLT5wY2xrKSkKPj4+Pj4gK8KgwqDCoMKgwqDCoMKg
+IHJldHVybiBkZXZfZXJyX3Byb2JlKHBvcnQtPmRldiwgUFRSX0VSUihwcml2YXRlX2RhdGEtPnBj
+bGspLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiRmFp
+bGVkIHRvIGdldCB0aGUgJ3BjbGsnIGNsb2NrXG4iKTsKPj4+Pj4gKwo+Pj4+PiArwqDCoMKgIGNs
+a19iYXVkID0gZGV2bV9jbGtfZ2V0KHBvcnQtPmRldiwgImJhdWQiKTsKPj4+Pj4gK8KgwqDCoCBp
+ZiAoSVNfRVJSKGNsa19iYXVkKSkKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiBkZXZfZXJy
+X3Byb2JlKHBvcnQtPmRldiwgUFRSX0VSUihjbGtfYmF1ZCksCj4+Pj4+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJGYWlsZWQgdG8gZ2V0IHRoZSAnYmF1ZCcgY2xv
+Y2tcbiIpOwo+Pj4+PiDCoMKgIC3CoMKgwqAgY2xrX3h0YWwgPSBtZXNvbl91YXJ0X3Byb2JlX2Ns
+b2NrKCZwZGV2LT5kZXYsICJ4dGFsIik7Cj4+Pj4+ICvCoMKgwqAgY2xrX3h0YWwgPSBkZXZtX2Ns
+a19nZXQocG9ydC0+ZGV2LCAieHRhbCIpOwo+Pj4+PiDCoMKgwqDCoMKgwqAgaWYgKElTX0VSUihj
+bGtfeHRhbCkpCj4+Pj4+IC3CoMKgwqDCoMKgwqDCoCByZXR1cm4gUFRSX0VSUihjbGtfeHRhbCk7
+Cj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gZGV2X2Vycl9wcm9iZShwb3J0LT5kZXYsIFBU
+Ul9FUlIoY2xrX3h0YWwpLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAiRmFpbGVkIHRvIGdldCB0aGUgJ3h0YWwnIGNsb2NrXG4iKTsKPj4+Pj4gKwo+Pj4+
+PiArwqDCoMKgIHByaXZhdGVfZGF0YS0+eHRhbF9kaXYzLm11bHQgPSAxOwo+Pj4+PiArwqDCoMKg
+IHByaXZhdGVfZGF0YS0+eHRhbF9kaXYzLmRpdiA9IDM7Cj4+Pj4+ICvCoMKgwqAgcmV0ID0gbWVz
+b25fdWFydF9yZWdpc3Rlcl9jbGsocG9ydCwgInh0YWxfZGl2MyIsIAo+Pj4+PiAmeHRhbF9kaXZf
+cGFyZW50LAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IDEsICZjbGtfZml4ZWRfZmFjdG9yX29wcywKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCAmcHJpdmF0ZV9kYXRhLT54dGFsX2RpdjMuaHcpOwo+Pj4+PiAr
+wqDCoMKgIGlmIChyZXQpCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0Owo+Pj4+PiDC
+oMKgIC3CoMKgwqAgY2xrX2JhdWQgPSBtZXNvbl91YXJ0X3Byb2JlX2Nsb2NrKCZwZGV2LT5kZXYs
+ICJiYXVkIik7Cj4+Pj4+IC3CoMKgwqAgaWYgKElTX0VSUihjbGtfYmF1ZCkpCj4+Pj4+IC3CoMKg
+wqDCoMKgwqDCoCByZXR1cm4gUFRSX0VSUihjbGtfYmF1ZCk7Cj4+Pj4+ICvCoMKgwqAgaWYgKHJl
+Z2lzdGVyX2NsazgxX2RpdjQpIHsKPj4+PiBDbG9jayBkaXZpZGVycyByZXByZXNlbnQgSFcgZWxl
+bWVudHMuIFRoZSBwcmVzZW5jZSBvZiBhbiBIVyBlbGVtZW50Cj4+Pj4gY2Fubm90Cj4+Pj4gZGVw
+ZW5kZW50IG9uIHRoZSBjdXJyZW50IG9mIHRoZSBpbnB1dCBjbG9ja3MuIFRoZXJlIGlzIG5vIHdh
+eSB0aGlzIAo+Pj4+IGlzIHJpZ2h0Cj4+Pj4KPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHByaXZhdGVf
+ZGF0YS0+Y2xrODFfZGl2NC5tdWx0ID0gMTsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHByaXZhdGVf
+ZGF0YS0+Y2xrODFfZGl2NC5kaXYgPSA0Owo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0ID0gbWVz
+b25fdWFydF9yZWdpc3Rlcl9jbGsocG9ydCwgImNsazgxX2RpdjQiLAo+Pj4+PiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJmNsazgxX2Rpdl9wYXJl
+bnQsIDEsCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAmY2xrX2ZpeGVkX2ZhY3Rvcl9vcHMsCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAmcHJpdmF0ZV9kYXRhLT5jbGs4MV9kaXY0
+Lmh3KTsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGlmIChyZXQpCj4+Pj4+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHJldHVybiByZXQ7Cj4+Pj4+ICsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHVzZV94
+dGFsX211eF9wYXJlbnRzWzBdLmh3ID0gJnByaXZhdGVfZGF0YS0+Y2xrODFfZGl2NC5odzsKPj4+
+PiBUaGlzIGlzIG9ubHkgZ29pbmcgdG8gYmUgdXNlZCBvbiBtZXNvbjggYW5kIG9sZGVyLiBXb3Jz
+dCBjYXNlIGl0IHNob3VsZAo+Pj4+IGRlcGVuZAo+Pj4+IG9uIHRoaXMgY29tcGF0aWJsZSBidXQg
+SSBkb24ndCB0aGluayB0aGlzIHdvdWxkIGJlIHJpZ2h0IGhlcmUuCj4+Pj4gSU1PLCB0aGlzIHNo
+b3dzIHRoYXQgdGhlIFVBUlQgImJhdWQiIGlucHV0IHdhcyBhY3R1YWxseSBmZWQgYnkgYQo+Pj4+
+IGRlcml2YXRpb24gb2YgImZjbGtfZGl2NCIgaW5zdGVhZCBvZiAiY2xrXzgxIiBvbiB0aGVzZSBv
+bGRlciBTb0NzLgo+Pj4+IFNvIGluc3RlYWQgb2YgcmVnaXN0ZXJpbmcgd2hhdCBJIHN1c3BlY3Qg
+dG8gYmUgYSBmYWtlIGVsZW1lbnQsIHRoZQo+Pj4+IG1lc29uOCBjbG9jayBjb250cm9sbGVyIGRy
+aXZlciBhbmQgRFQgc2hvdWxkIGJlIGZpeGVkIGEgdGhpcyBzaG91bGQgCj4+Pj4gZ28gYXdheS4K
+Pj4+Pgo+Pj4gVmlydHVhbGx5IGFsbCBVQVJUIGNvbnRyb2xsZXJzIGFyZSBzdXBwb3J0ZWQsIGJ1
+dCB0aGV5IGFyZSBub3QgdXNlZCAKPj4+IGFmdGVyCj4+PiBNZXNvbjguIFNvIHRoZSBkZXNjcmlw
+dGlvbiBpcyBtb3JlIHJlYXNvbmFibGUgaW4gVUFSVCBkcml2ZXIuCj4+Cj4+IE5vIGl0IGlzIG5v
+dC4gSXQncyBub3QgdmlydHVhbCwgdGhlIHN1cHBvcnQgZm9yIG1lc29uOCBpcyB0aGVyZSBpbgo+
+PiBtYWlubGluZS4KPj4KPj4gVW5sZXNzIHlvdSB0ZWxsIG1lIHRoZXJlIGlzIGFuIGFjdHVhbCAv
+NCBkaXZpZGVyIGluIHRoZSBVQVJUIGJsb2NrIG9mCj4+IHRoZSBtZXNvbjggYW5kIG9sZGVyIGFu
+ZCB0aGF0IGlzIHdhcyByZW1vdmVkIGZyb20gdGhlIG5ld2VyIFNvQywKPj4gdGhlIGJpdCBhYm92
+ZSBzaG91bGQgYmUgcmVtb3ZlZCBhbmQgdGhlIG1lc29uOCBjbG9jayB0cmVlIGZpeGVkLgo+Pgo+
+PiBJIHRoaW5rIGl0IGlzIG1vcmUgcHJvYmFibGUgdGhhdCB0aGUgLzQgd2FzIG5ldmVyIHRoZXJl
+IHRvIGJlZ2luIHdpdGgsCj4+IGFuZCB0aGF0IGNsazgxLzQgYWthICJmY2xrX2RpdjQiLCB3aGlj
+aCBpcyBhbHJlYWR5IGF2YWlsYWJsZSBmcm9tIHRoZQo+PiBjbG9jayBjb250cm9sbGVyLCB3YXMg
+YWN0dWFsbHkgcm91dGVkIG9uIHRoZXNlIG9sZGVyIFNvQ3MuCj4gSSB3aWxsIGNoZWNrIHdpdGgg
+dGhlIGNoaXAgZGVzaWduIGRlcGFydG1lbnQgaWYgaXQgaXMgZGl2aWRlZCBieSA0LiBJJ2xsIAo+
+IGdldCBiYWNrIHRvIHlvdS4KSSBjb25maXJtZWQgd2l0aCB0aGUgY2hpcCBkZXNpZ24gZGVwYXJ0
+bWVudCB0aGF0IHRoZXJlIGlzIGEgNCBkaXZpZGVyIAppbnNpZGUuIFNvIEknbSBnb2luZyB0byB1
+c2UgdGhlIGRpdmlkZXIgNCBmb3IgdGhlIGRlc2NyaXB0aW9uLCBidXQgb25seSAKdGhlIG9sZGVy
+IG1lc29uOCBpcyBpbiB1c2UsIHNvIEknbSBnb2luZyB0byBwYXNzIHRoZSBwYXJhbWV0ZXIgdGhy
+b3VnaCAKY29tcGF0aWJsZS4gRG8geW91IGhhdmUgYW55IGJldHRlciBzdWdnZXN0aW9ucz8KCj4+
+Cj4+Pj4+ICvCoMKgwqAgfQo+Pj4+PiDCoMKgIC3CoMKgwqAgcG9ydC0+dWFydGNsayA9IGNsa19n
+ZXRfcmF0ZShjbGtfYmF1ZCk7Cj4+Pj4+ICvCoMKgwqAgaWYgKHByaXZhdGVfZGF0YS0+aGFzX3h0
+YWxfY2xrX3NlbCkgewo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgcHJpdmF0ZV9kYXRhLT54dGFsX2Rp
+djIubXVsdCA9IDE7Cj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCBwcml2YXRlX2RhdGEtPnh0YWxfZGl2
+Mi5kaXYgPSAyOwo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0ID0gbWVzb25fdWFydF9yZWdpc3Rl
+cl9jbGsocG9ydCwgInh0YWxfZGl2MiIsCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAmeHRhbF9kaXZfcGFyZW50LCAxLAo+Pj4+PiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJmNsa19maXhl
+ZF9mYWN0b3Jfb3BzLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgJnByaXZhdGVfZGF0YS0+eHRhbF9kaXYyLmh3KTsKPj4+Pj4gK8KgwqDC
+oMKgwqDCoMKgIGlmIChyZXQpCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBy
+ZXQ7Cj4+Pj4+ICsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHh0YWxfY2xrX3NlbF9tdXhfcGFyZW50
+c1swXS5odyA9ICZwcml2YXRlX2RhdGEtPnh0YWxfZGl2My5odzsKPj4+Pj4gK8KgwqDCoMKgwqDC
+oMKgIHh0YWxfY2xrX3NlbF9tdXhfcGFyZW50c1sxXS5md19uYW1lID0gInh0YWwiOwo+Pj4+PiAr
+Cj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCBwcml2YXRlX2RhdGEtPnh0YWxfY2xrX3NlbF9tdXgucmVn
+ID0gcG9ydC0+bWVtYmFzZSArIAo+Pj4+PiBBTUxfVUFSVF9SRUc1Owo+Pj4+PiArwqDCoMKgwqDC
+oMKgwqAgcHJpdmF0ZV9kYXRhLT54dGFsX2Nsa19zZWxfbXV4Lm1hc2sgPSAweDE7Cj4+Pj4+ICvC
+oMKgwqDCoMKgwqDCoCBwcml2YXRlX2RhdGEtPnh0YWxfY2xrX3NlbF9tdXguc2hpZnQgPSAyNjsK
+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHByaXZhdGVfZGF0YS0+eHRhbF9jbGtfc2VsX211eC5mbGFn
+cyA9IENMS19NVVhfUk9VTkRfQ0xPU0VTVDsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9IG1l
+c29uX3VhcnRfcmVnaXN0ZXJfY2xrKHBvcnQsICJ4dGFsX2Nsa19zZWwiLAo+Pj4+PiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgeHRhbF9jbGtfc2Vs
+X211eF9wYXJlbnRzLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgQVJSQVlfU0laRSh4dGFsX2Nsa19zZWxfbXV4X3BhcmVudHMpLAo+Pj4+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJmNs
+a19tdXhfb3BzLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgJnByaXZhdGVfZGF0YS0+eHRhbF9jbGtfc2VsX211eC5odyk7Cj4+Pj4+ICvC
+oMKgwqDCoMKgwqDCoCBpZiAocmV0KQo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1
+cm4gcmV0Owo+Pj4+PiArCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCB4dGFsMl9jbGtfc2VsX211eF9w
+YXJlbnRzWzBdLmh3ID0gCj4+Pj4+ICZwcml2YXRlX2RhdGEtPnh0YWxfY2xrX3NlbF9tdXguaHc7
+Cj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCB4dGFsMl9jbGtfc2VsX211eF9wYXJlbnRzWzFdLmh3ID0g
+Cj4+Pj4+ICZwcml2YXRlX2RhdGEtPnh0YWxfZGl2Mi5odzsKPj4+Pj4gKwo+Pj4+PiArwqDCoMKg
+wqDCoMKgwqAgcHJpdmF0ZV9kYXRhLT54dGFsMl9jbGtfc2VsX211eC5yZWcgPSBwb3J0LT5tZW1i
+YXNlICsgCj4+Pj4+IEFNTF9VQVJUX1JFRzU7Cj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCBwcml2YXRl
+X2RhdGEtPnh0YWwyX2Nsa19zZWxfbXV4Lm1hc2sgPSAweDE7Cj4+Pj4+ICvCoMKgwqDCoMKgwqDC
+oCBwcml2YXRlX2RhdGEtPnh0YWwyX2Nsa19zZWxfbXV4LnNoaWZ0ID0gMjc7Cj4+Pj4+ICvCoMKg
+wqDCoMKgwqDCoCBwcml2YXRlX2RhdGEtPnh0YWwyX2Nsa19zZWxfbXV4LmZsYWdzID0gCj4+Pj4+
+IENMS19NVVhfUk9VTkRfQ0xPU0VTVDsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9IG1lc29u
+X3VhcnRfcmVnaXN0ZXJfY2xrKHBvcnQsICJ4dGFsMl9jbGtfc2VsIiwKPj4+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHh0YWwyX2Nsa19zZWxf
+bXV4X3BhcmVudHMsCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCBBUlJBWV9TSVpFKHh0YWwyX2Nsa19zZWxfbXV4X3BhcmVudHMpLAo+Pj4+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJmNs
+a19tdXhfb3BzLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgJnByaXZhdGVfZGF0YS0+eHRhbDJfY2xrX3NlbF9tdXguaHcpOwo+Pj4+PiAr
+wqDCoMKgwqDCoMKgwqAgaWYgKHJldCkKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0
+dXJuIHJldDsKPj4+Pj4gKwo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgdXNlX3h0YWxfbXV4X3BhcmVu
+dHNbMV0uaHcgPSAKPj4+Pj4gJnByaXZhdGVfZGF0YS0+eHRhbDJfY2xrX3NlbF9tdXguaHc7Cj4+
+Pj4+ICvCoMKgwqAgfSBlbHNlIHsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHVzZV94dGFsX211eF9w
+YXJlbnRzWzFdLmh3ID0gJnByaXZhdGVfZGF0YS0+eHRhbF9kaXYzLmh3Owo+Pj4+IFdlbGwgdGhl
+IGFib3ZlIGlzIGEgYml0IG92ZXItY29tcGxpY2F0ZWQuIElmIEkgc3VtbWFyaXplOgo+Pj4+IEdY
+QkIgYW5kIG9sZGVyIHVzZWQgYSBmaXhlZCBkaXZpZGVyIG9mIDMuIEJpdHMgMjYgYW5kIDI3IHJl
+YWQKPj4+PiAwIGFjY29yZGluZyB0byB0aGUgZG9jdW1lbnRhdGlvbi4KPj4+PiBDaGlwcyBhZnRl
+ciBHWEJCIGhhdmUgMiBjb25maWd1cmFibGUgZGl2aWRlciBvZiAyIGFuZCAzLiBiaXRzIDI2IGFu
+ZCAyNwo+Pj4+IHNlbGVjdHMgd2hpY2ggb2YgdGhlc2UgZGl2aWRlcnMgaXMgdXNlZC4KPj4+PiBT
+byB0aGUgYWJvdmUgY291bGQgYmUgcmVwbGFjZWQgd2l0aCBhIHNpbmdsZSBkaXZpZGVyIGNvdmVy
+aW5nIGJpdHMgCj4+Pj4gMjYgYW5kCj4+Pj4gMjcKPj4+PiB3aXRoIHRoZSBmb2xsb3dpbmcgZGl2
+aWRlciB0YWJsZSB7IDIsIDIsIDEsIDMgfS4gVGhlIGRpdmlkZXIgc2hvdWxkIHVzZQo+Pj4+IFJP
+IG9wcyBhbmQgbm90IGhhdmUgQ0xLX1NFVF9SQVRFX1BBUkVOVC4gSXQgY2FuIGJlIHVzZWQgZm9y
+IGFsbCBjaGlwcwo+Pj4+IHZhcmlhbnQgbGlrZSB0aGlzLCBpbmNsdWRpbmcgdGhlIG9sZGVyIG9u
+ZXMuCj4+Pj4KPj4+IEFzIHlvdSBzYXksIHRoZSB3YXkgeW91IHNheSBpdCBpcyBjb21wbGljYXRl
+ZC4gSSB0aGluayB5b3UncmUgCj4+PiBjb21wbGljYXRpbmcKPj4+IHRoaW5ncy5JIGRvbid0IHVu
+ZGVyc3RhbmQgd2hhdCB5b3UncmUgdHJ5aW5nIHRvIGFjaGlldmUuCj4+PiBDYW4geW91IGJlIG1v
+cmUgc3BlY2lmaWM/Cj4+Cj4+IEknbSBwcm9wb3NpbmcgdG8gcmVwbGFjZSB0aGUgNCBlbGVtZW50
+cyBhYm92ZSwgcGF0aHMsIHBhcmVudF90YWJsZSBhbmQKPj4gYWxsIHdpdGggYSBzaW5nbGUgZGl2
+aWRlciB3aXRoIGEgc3BlY2lmaWMgdGFibGUuIEl0IGFjY29tcGxpc2hlcyB0aGUgCj4+IHNhbWUg
+dGhpbmcuCj4+Cj4+IHwtLS0tLS0tLSstLS0tLS0tLSstLS0tLS0tLS0tLXwKPj4gfCBCaXQgMjcg
+fCBCaXQgMjYgfCBEaXYgVmFsdWUgfAo+PiB8LS0tLS0tLS0rLS0tLS0tLS0rLS0tLS0tLS0tLS18
+Cj4+IHzCoMKgwqDCoMKgIDAgfMKgwqDCoMKgwqAgMCB8wqDCoMKgwqDCoMKgwqDCoCAzIHwKPj4g
+fC0tLS0tLS0tKy0tLS0tLS0tKy0tLS0tLS0tLS0tfAo+PiB8wqDCoMKgwqDCoCAwIHzCoMKgwqDC
+oMKgIDEgfMKgwqDCoMKgwqDCoMKgwqAgMSB8Cj4+IHwtLS0tLS0tLSstLS0tLS0tLSstLS0tLS0t
+LS0tLXwKPj4gfMKgwqDCoMKgwqAgMSB8wqDCoMKgwqDCoCAwIHzCoMKgwqDCoMKgwqDCoMKgIDIg
+fAo+PiB8LS0tLS0tLS0rLS0tLS0tLS0rLS0tLS0tLS0tLS18Cj4+IHzCoMKgwqDCoMKgIDEgfMKg
+wqDCoMKgwqAgMSB8wqDCoMKgwqDCoMKgwqDCoCAyIHwKPj4gfC0tLS0tLS0tKy0tLS0tLS0tKy0t
+LS0tLS0tLS0tfAo+Pgo+PiBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2Vy
+bmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQvdHJlZS9pbmNsdWRlL2xpbnV4L2Nsay1wcm92aWRl
+ci5oP2g9djUuMTYtcmM4I242MDIgCj4+Cj4+Cj4+IHNvbWV0aGluZyBsaWtlOgo+Pgo+PiBzdGF0
+aWMgc3RydWN0IGNsa19kaXZfdGFibGUgcmVnNV90YWJsZVtdID0gewo+PiDCoMKgwqDCoHsgMCwg
+MyB9LAo+PiDCoMKgwqDCoMKgwqDCoMKgIHsgMSwgMSB9LAo+PiDCoMKgwqDCoMKgwqDCoMKgIHsg
+MiwgMiB9LAo+PiDCoMKgwqDCoMKgwqDCoMKgIHsgMywgMiB9LAo+PiB9Owo+Pgo+PiBJJ20gYWxz
+byBwb2ludGluZyBvdXQgdGhhdCwgc2luY2UgYml0IDI2IGFuZCAyNyByZWFkcyAwIG9uIHRoZSBv
+bGRlcgo+PiBTb0NzLCB0aGUgZGl2aWRlciB3b3VsZCB3b3JrIGZvciB0aGVzZSB0b28sIGFzIGxv
+bmcgYXMgdGhlIE9wcyBpcwo+PiByZWFkLW9ubHkuIFNvIHlvdSBkb24ndCBldmVuIG5lZWQgdG8g
+cmVnaXN0ZXIgZGlmZmVyZW50IGVsZW1lbnQKPj4gZGVwZW5kaW5nIG9uIHRoZSBTb0Mgd2hpY2gg
+c2ltcGxpZnkgdGhpbmdzIGEgYml0IG1vcmUuCj4+Cj4+IElmIHlvdSBwcmVmZXIgdG8ga2VlcCBh
+IGZpeGVkIGRpdmlkZXIgZm9yIHRoZSBvbGRlciBvbmVzLCBJdCdzIGZpbmUgYnkKPj4gbWUuIEl0
+IGdpdmVzIGEgYml0IG1vcmUgd29yayBidXQgaXQgaXMgY2xvc2VyIHRvIHJlYWxpdHkuIFRoZSBu
+ZXdlciBTb0MKPj4gY291bGQgc3RpbGwgdXNlIHRoZSBjdXN0b20gZGl2aWRlciByZWdhcmRsZXNz
+Lgo+Pgo+PiBMYXN0LCBhbmQgYXMgZXhwbGFpbmVkIG9uIG90aGVyIGJpdHMsIHRoYXQgcGFydCBv
+ZiB0aGUgY2xvY2sgcGF0aCBzaG91bGQKPj4gcmVtYWluIFJPIGF0IGZpcnN0LCB0byBrZWVwIGJl
+aGF2aW9yIHN0YWJsZSB3aXRoIHRoaXMgY2hhbmdlLiBZb3UgbWF5Cj4+IGNoYW5nZSB0aGF0IGxh
+dGVyIG9uLCBpbiBhIGRlZGljYXRlZCBwYXRjaCBkZXNjcmliaW5nIHRoZSBjaGFuZ2UuCj4+Cj4g
+SSB1bmRlcnN0YW5kIHdoYXQgeW91IG1lYW4sIGFuZCBpIHdpbGwgdHJ5IHRvIHJlYWxpemUgaXQu
+IEkgaG9wZSB5b3UgY2FuIAo+IGhlbHAgcmV2aWV3IGFuZCBnaXZlIG1lIHlvdXIgc3VnZ2VzdGlv
+bnMuCj4+Pgo+Pj4+IFRoZSBvbmx5IGluZm9ybWF0aW9uIHlvdSBuZWVkIHRvIGNhcnJ5IGlmIHdo
+ZXRoZXIgb3Igbm90IHlvdSB3YW50IHRvCj4+Pj4gbWFrZSB0aGlzIGRpdmlkZXIgbW9kaWZpYWJs
+ZS4gVGhpcyBtZWFucyB1c2luZyB0aGUgZHQgZGF0YSB0byBzdG9yZQo+Pj4+IGNsa19kaXZfb3Bz
+IG9yIGNsa19kaXZfcm9fb3BzIHBvaW50ZXIuCj4+Pj4gVG8gYXZvaWQgY2hhbmdpbmcgdGhlIGJl
+aGF2aW9yIG9mIHRoZSBvbGRlciBwbGF0Zm9ybXMgaW4gdGhpcyBwYXRjaCwgSQo+Pj4+IHdvdWxk
+Cj4+Pj4gc3VnZ2VzdCB0byBtYWtlIGV2ZXJ5dGhpbmcgdXNlIGNsa19kaXZfcm9fb3BzIGZpcnN0
+LCBhbmQgbWFrZSBhbm90aGVyCj4+Pj4gcGF0Y2ggdG8gdXNlIGNsa19kaXZfb3BzIGlmIG5lY2Vz
+c2FyeS4KPj4+Pgo+Pj4+PiArwqDCoMKgIH0KPj4+Pj4gKwo+Pj4+PiArwqDCoMKgIHByaXZhdGVf
+ZGF0YS0+dXNlX3h0YWxfbXV4LnJlZyA9IHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFSVF9SRUc1Owo+
+Pj4+PiArwqDCoMKgIHByaXZhdGVfZGF0YS0+dXNlX3h0YWxfbXV4Lm1hc2sgPSAweDE7Cj4+Pj4+
+ICvCoMKgwqAgcHJpdmF0ZV9kYXRhLT51c2VfeHRhbF9tdXguc2hpZnQgPSAyNDsKPj4+Pj4gK8Kg
+wqDCoCBwcml2YXRlX2RhdGEtPnVzZV94dGFsX211eC5mbGFncyA9IENMS19NVVhfUk9VTkRfQ0xP
+U0VTVDsKPj4+Pj4gK8KgwqDCoCByZXQgPSBtZXNvbl91YXJ0X3JlZ2lzdGVyX2Nsayhwb3J0LCAi
+dXNlX3h0YWwiLCAKPj4+Pj4gdXNlX3h0YWxfbXV4X3BhcmVudHMsCj4+Pj4+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgQVJSQVlfU0laRSh1c2VfeHRhbF9tdXhf
+cGFyZW50cyksCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgJmNsa19tdXhfb3BzLAo+Pj4+IFVzZSBSTyBvcHMgaGVyZSB0byBzdGFydCB3aXRoLgo+Pj4+
+IFlvdSBjYW4gbWFrZSB0aGlzIHdyaXRhYmxlIHdpdGggYW5vdGhlciBwYXRjaCBleHBsaWNpdGx5
+IGRlc2NyaWJpbmcgCj4+Pj4gdGhlIGNoYW5nZS4KPj4+IEkgYWdyZWUgd2l0aCB3aGF0IHlvdSBz
+YXksIGFuZCBJIHdpbGwgY29ycmVjdCBpdC4KPj4+Pgo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICZwcml2YXRlX2RhdGEtPnVzZV94dGFsX211eC5odyk7
+Cj4+Pj4+ICvCoMKgwqAgaWYgKHJldCkKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7
+Cj4+Pj4+ICsKPj4+Pj4gK8KgwqDCoCBiYXVkX2Rpdl9wYXJlbnQuaHcgPSAmcHJpdmF0ZV9kYXRh
+LT51c2VfeHRhbF9tdXguaHc7Cj4+Pj4+ICsKPj4+Pj4gK8KgwqDCoCBwcml2YXRlX2RhdGEtPmJh
+dWRfZGl2LnJlZyA9IHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFSVF9SRUc1Owo+Pj4+PiArwqDCoMKg
+IHByaXZhdGVfZGF0YS0+YmF1ZF9kaXYuc2hpZnQgPSAwOwo+Pj4+PiArwqDCoMKgIHByaXZhdGVf
+ZGF0YS0+YmF1ZF9kaXYud2lkdGggPSAyMzsKPj4+Pj4gK8KgwqDCoCBwcml2YXRlX2RhdGEtPmJh
+dWRfZGl2LmZsYWdzID0gQ0xLX0RJVklERVJfUk9VTkRfQ0xPU0VTVDsKPj4+Pj4gK8KgwqDCoCBy
+ZXQgPSBtZXNvbl91YXJ0X3JlZ2lzdGVyX2Nsayhwb3J0LCAiYmF1ZF9kaXYiLAo+Pj4+PiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICZiYXVkX2Rpdl9wYXJlbnQs
+IDEsCj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJmNs
+a19kaXZpZGVyX29wcywKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAmcHJpdmF0ZV9kYXRhLT5iYXVkX2Rpdi5odyk7Cj4+Pj4+ICvCoMKgwqAgaWYgKHJl
+dCkKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7Cj4+Pj4+ICsKPj4+Pj4gK8KgwqDC
+oCBwcml2YXRlX2RhdGEtPmJhdWRfY2xrID0gZGV2bV9jbGtfaHdfZ2V0X2Nsayhwb3J0LT5kZXYs
+Cj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAmcHJpdmF0ZV9kYXRhLT5iYXVkX2Rpdi5odywKPj4+Pj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJiYXVkX3JhdGUiKTsK
+Pj4+PiBUaGVyZSBpcyBhIHByb2JsZW0gd2l0aCB0aGlzIGZ1bmN0aW9uIGluIENDRi4gSXQgd2ls
+bCBwaW4gdGhlIGRyaXZlciB0bwo+Pj4+IGl0c2VsZiwgbWFraW5nIGl0IHVucmVtb3ZhYmxlLiBJ
+dCBpcyBhbiBvbmdvaW5nIHRvcGljLiBGb3Igbm93LCBqdXN0IAo+Pj4+IHVzZQo+Pj4+ICJody0+
+Y2xrIiB0byBnZXQgdGhlIHN0cnVjdCAqY2xrLgo+Pj4+Cj4+Pj4+ICvCoMKgwqAgaWYgKElTX0VS
+Uihwcml2YXRlX2RhdGEtPmJhdWRfY2xrKSkKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiBk
+ZXZfZXJyX3Byb2JlKHBvcnQtPmRldiwKPj4+PiBJIGRvbid0IHRoaW5rIGFueXRoaW5nIGNhbiBk
+ZWZlciBoZXJlLCBzbyBkZXZfZXJyX3Byb2JlKCkgaXMgbm90Cj4+Pj4gbmVjZXNzYXJ5IEkgdGhp
+bmsKPj4+Pgo+Pj4gSSBhZ3JlZSB3aXRoIHdoYXQgeW91IHNheSwgYW5kIEkgd2lsbCBjb3JyZWN0
+IGl0Lgo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBQVFJf
+RVJSKHByaXZhdGVfZGF0YS0+YmF1ZF9jbGspLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCAiRmFpbGVkIHRvIHJlcXVlc3QgdGhlICdiYXVkX3JhdGUnIGNs
+b2NrXG4iKTsKPj4+Pj4gwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gMDsKPj4+Pj4gwqDCoCB9Cj4+
+Pj4+IMKgwqDCoMKgIHN0YXRpYyBpbnQgbWVzb25fdWFydF9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1f
+ZGV2aWNlICpwZGV2KQo+Pj4+PiDCoMKgIHsKPj4+Pj4gK8KgwqDCoCBzdHJ1Y3QgbWVzb25fdWFy
+dF9kYXRhICpwcml2YXRlX2RhdGE7Cj4+Pj4+IMKgwqDCoMKgwqDCoCBzdHJ1Y3QgcmVzb3VyY2Ug
+KnJlc19tZW0sICpyZXNfaXJxOwo+Pj4+PiArwqDCoMKgIHN0cnVjdCBjbGsgKmNsa19iYXVkLCAq
+Y2xrX3h0YWw7Cj4+Pj4+ICvCoMKgwqAgYm9vbCByZWdpc3Rlcl9jbGs4MV9kaXY0Owo+Pj4+PiDC
+oMKgwqDCoMKgwqAgc3RydWN0IHVhcnRfcG9ydCAqcG9ydDsKPj4+Pj4gwqDCoMKgwqDCoMKgIGlu
+dCByZXQgPSAwOwo+Pj4+PiDCoMKgwqDCoMKgwqAgaW50IGlkID0gLTE7Cj4+Pj4+IEBAIC03MTEs
+MTggKzg1NSwzNyBAQCBzdGF0aWMgaW50IG1lc29uX3VhcnRfcHJvYmUoc3RydWN0IAo+Pj4+PiBw
+bGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAt
+RUJVU1k7Cj4+Pj4+IMKgwqDCoMKgwqDCoCB9Cj4+Pj4+IMKgwqAgLcKgwqDCoCBwb3J0ID0gZGV2
+bV9remFsbG9jKCZwZGV2LT5kZXYsIHNpemVvZihzdHJ1Y3QgdWFydF9wb3J0KSwKPj4+Pj4gR0ZQ
+X0tFUk5FTCk7Cj4+Pj4+IC3CoMKgwqAgaWYgKCFwb3J0KQo+Pj4+PiArwqDCoMKgIHByaXZhdGVf
+ZGF0YSA9IGRldm1fa3phbGxvYygmcGRldi0+ZGV2LCBzaXplb2YoKnByaXZhdGVfZGF0YSksCj4+
+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBHRlBfS0VSTkVMKTsK
+Pj4+Pj4gK8KgwqDCoCBpZiAoIXByaXZhdGVfZGF0YSkKPj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgcmV0dXJuIC1FTk9NRU07Cj4+Pj4+IMKgwqAgK8KgwqDCoCBpZiAoZGV2aWNlX2dldF9tYXRj
+aF9kYXRhKCZwZGV2LT5kZXYpKQo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgcHJpdmF0ZV9kYXRhLT5o
+YXNfeHRhbF9jbGtfc2VsID0gdHJ1ZTsKPj4+Pj4gKwo+Pj4+PiArwqDCoMKgIHByaXZhdGVfZGF0
+YS0+cGNsayA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2LCAicGNsayIpOwo+Pj4+PiArwqDCoMKg
+IGlmIChJU19FUlIocHJpdmF0ZV9kYXRhLT5wY2xrKSkKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJl
+dHVybiBkZXZfZXJyX3Byb2JlKCZwZGV2LT5kZXYsIFBUUl9FUlIocHJpdmF0ZV9kYXRhLT5wY2xr
+KSwKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIkZhaWxl
+ZCB0byBnZXQgdGhlICdwY2xrJyBjbG9ja1xuIik7Cj4+Pj4+ICsKPj4+Pj4gK8KgwqDCoCBjbGtf
+YmF1ZCA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2LCAiYmF1ZCIpOwo+Pj4+PiArwqDCoMKgIGlm
+IChJU19FUlIoY2xrX2JhdWQpKQo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIGRldl9lcnJf
+cHJvYmUoJnBkZXYtPmRldiwgUFRSX0VSUihjbGtfYmF1ZCksCj4+Pj4+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJGYWlsZWQgdG8gZ2V0IHRoZSAnYmF1ZCcgY2xv
+Y2tcbiIpOwo+Pj4+PiArCj4+Pj4+ICvCoMKgwqAgY2xrX3h0YWwgPSBkZXZtX2Nsa19nZXQoJnBk
+ZXYtPmRldiwgInh0YWwiKTsKPj4+Pj4gK8KgwqDCoCBpZiAoSVNfRVJSKGNsa194dGFsKSkKPj4+
+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiBkZXZfZXJyX3Byb2JlKCZwZGV2LT5kZXYsIFBUUl9F
+UlIoY2xrX3h0YWwpLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCAiRmFpbGVkIHRvIGdldCB0aGUgJ3h0YWwnIGNsb2NrXG4iKTsKPj4+Pj4gKwo+Pj4+IFRo
+aXMgaXMgc2Vjb25kIHRpbWUgeW91IGNhbGwgZGV2bV9jbGtfZ2V0KCkgb24gdGhlc2UgY2xvY2tz
+LiBPbmUKPj4+PiBpbnN0YW5jZSBoYXMgdG8gZ28gYXdheQo+Pj4+Cj4+PiBJIGFncmVlIHdpdGgg
+d2hhdCB5b3Ugc2F5LCBhbmQgSSB3aWxsIGNvcnJlY3QgaXQuCj4+Pj4+ICvCoMKgwqAgcmVnaXN0
+ZXJfY2xrODFfZGl2NCA9IGNsa19nZXRfcmF0ZShjbGtfeHRhbCkgIT0gCj4+Pj4+IGNsa19nZXRf
+cmF0ZShjbGtfYmF1ZCk7Cj4+Pj4+ICsKPj4+PiBUaGUgYWJvdmUgaXMgYSB1Z2x5IHdheSB0byBk
+aXN0aW5ndWlzaCB0aGUgbWVzb244ICgzMmJpdCkgU29DIGZhbWlseQo+Pj4+IGZyb20gdGhlIHJl
+c3QuIFRoaXMgZGVmaW5pdGVseSBub3QgdGhlIHdheSB0byBhY2hpZXZlIGl0Lgo+Pj4+IFRoZSBy
+aWdodCBpcyB0aGUgY29tcGF0aWJsZSBkYXRhIGJ1dCBoZXJlIEkgdGhpbmsgaXQgaXMgbm90Cj4+
+Pj4gbmVjZXNzYXJ5LiBUaGUgY2xvY2sgaW5wdXQgc2hvdWxkIGJlIGZpeGVkLgo+Pj4+Cj4+Pj4+
+ICvCoMKgwqAgcG9ydCA9ICZwcml2YXRlX2RhdGEtPnBvcnQ7Cj4+Pj4+ICsKPj4+Pj4gwqDCoMKg
+wqDCoMKgIHBvcnQtPm1lbWJhc2UgPSBkZXZtX2lvcmVtYXBfcmVzb3VyY2UoJnBkZXYtPmRldiwg
+cmVzX21lbSk7Cj4+Pj4+IMKgwqDCoMKgwqDCoCBpZiAoSVNfRVJSKHBvcnQtPm1lbWJhc2UpKQo+
+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gUFRSX0VSUihwb3J0LT5tZW1iYXNlKTsK
+Pj4+Pj4gwqDCoCAtwqDCoMKgIHJldCA9IG1lc29uX3VhcnRfcHJvYmVfY2xvY2tzKHBkZXYsIHBv
+cnQpOwo+Pj4+PiAtwqDCoMKgIGlmIChyZXQpCj4+Pj4+IC3CoMKgwqDCoMKgwqDCoCByZXR1cm4g
+cmV0Owo+Pj4+PiAtCj4+Pj4+IMKgwqDCoMKgwqDCoCBwb3J0LT5pb3R5cGUgPSBVUElPX01FTTsK
+Pj4+Pj4gwqDCoMKgwqDCoMKgIHBvcnQtPm1hcGJhc2UgPSByZXNfbWVtLT5zdGFydDsKPj4+Pj4g
+wqDCoMKgwqDCoMKgIHBvcnQtPm1hcHNpemUgPSByZXNvdXJjZV9zaXplKHJlc19tZW0pOwo+Pj4+
+PiBAQCAtNzM1LDYgKzg5OCwxMiBAQCBzdGF0aWMgaW50IG1lc29uX3VhcnRfcHJvYmUoc3RydWN0
+IAo+Pj4+PiBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4+Pj4+IMKgwqDCoMKgwqDCoCBwb3J0LT54
+X2NoYXIgPSAwOwo+Pj4+PiDCoMKgwqDCoMKgwqAgcG9ydC0+b3BzID0gJm1lc29uX3VhcnRfb3Bz
+Owo+Pj4+PiDCoMKgwqDCoMKgwqAgcG9ydC0+Zmlmb3NpemUgPSA2NDsKPj4+Pj4gK8KgwqDCoCBw
+b3J0LT51YXJ0Y2xrID0gY2xrX2dldF9yYXRlKGNsa19iYXVkKTsKPj4+Pj4gK8KgwqDCoCBwb3J0
+LT5wcml2YXRlX2RhdGEgPSBwcml2YXRlX2RhdGE7Cj4+Pj4+ICsKPj4+Pj4gK8KgwqDCoCByZXQg
+PSBtZXNvbl91YXJ0X3Byb2JlX2Nsb2Nrcyhwb3J0LCByZWdpc3Rlcl9jbGs4MV9kaXY0KTsKPj4+
+Pj4gK8KgwqDCoCBpZiAocmV0KQo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsKPj4+
+Pj4gwqDCoMKgwqDCoMKgwqDCoCBtZXNvbl9wb3J0c1twZGV2LT5pZF0gPSBwb3J0Owo+Pj4+PiDC
+oMKgwqDCoMKgwqAgcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwgcG9ydCk7Cj4+Pj4+IEBAIC03
+NjEsMTAgKzkzMCw0MiBAQCBzdGF0aWMgaW50IG1lc29uX3VhcnRfcmVtb3ZlKHN0cnVjdCAKPj4+
+Pj4gcGxhdGZvcm1fZGV2aWNlICpwZGV2KQo+Pj4+PiDCoMKgIH0KPj4+Pj4gwqDCoMKgwqAgc3Rh
+dGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgbWVzb25fdWFydF9kdF9tYXRjaFtdID0gewo+
+Pj4+PiAtwqDCoMKgIHsgLmNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbjYtdWFydCIgfSwKPj4+
+Pj4gLcKgwqDCoCB7IC5jb21wYXRpYmxlID0gImFtbG9naWMsbWVzb244LXVhcnQiIH0sCj4+Pj4+
+IC3CoMKgwqAgeyAuY29tcGF0aWJsZSA9ICJhbWxvZ2ljLG1lc29uOGItdWFydCIgfSwKPj4+Pj4g
+LcKgwqDCoCB7IC5jb21wYXRpYmxlID0gImFtbG9naWMsbWVzb24tZ3gtdWFydCIgfSwKPj4+Pj4g
+K8KgwqDCoCB7Cj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuY29tcGF0aWJsZSA9ICJhbWxvZ2ljLG1l
+c29uNi11YXJ0IiwKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5kYXRhID0gKHZvaWQgKilmYWxzZSwK
+Pj4+Pj4gK8KgwqDCoCB9LAo+Pj4+PiArwqDCoMKgIHsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5j
+b21wYXRpYmxlID0gImFtbG9naWMsbWVzb244LXVhcnQiLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqAg
+LmRhdGEgPSAodm9pZCAqKWZhbHNlLAo+Pj4+PiArwqDCoMKgIH0sCj4+Pj4+ICvCoMKgwqAgewo+
+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLmNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbjhiLXVhcnQi
+LAo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLmRhdGEgPSAodm9pZCAqKWZhbHNlLAo+Pj4+PiArwqDC
+oMKgIH0sCj4+Pj4+ICvCoMKgwqAgewo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLmNvbXBhdGlibGUg
+PSAiYW1sb2dpYyxtZXNvbi1neGJiLXVhcnQiLAo+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLmRhdGEg
+PSAodm9pZCAqKWZhbHNlLAo+Pj4+PiArwqDCoMKgIH0sCj4+Pj4+ICvCoMKgwqAgewo+Pj4+PiAr
+wqDCoMKgwqDCoMKgwqAgLmNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi1neGwtdWFydCIsCj4+
+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuZGF0YSA9ICh2b2lkICopdHJ1ZSwKPj4+Pj4gK8KgwqDCoCB9
+LAo+Pj4+PiArwqDCoMKgIHsKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5jb21wYXRpYmxlID0gImFt
+bG9naWMsbWVzb24tZzEyYS11YXJ0IiwKPj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5kYXRhID0gKHZv
+aWQgKil0cnVlLAo+Pj4+PiArwqDCoMKgIH0sCj4+Pj4+ICvCoMKgwqAgewo+Pj4+PiArwqDCoMKg
+wqDCoMKgwqAgLmNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi1zNC11YXJ0IiwKPj4+Pj4gK8Kg
+wqDCoMKgwqDCoMKgIC5kYXRhID0gKHZvaWQgKil0cnVlLAo+Pj4+PiArwqDCoMKgIH0sCj4+Pj4+
+ICvCoMKgwqAgLyoKPj4+Pj4gK8KgwqDCoMKgICogZGVwcmVjYXRlZCwgZG9uJ3QgdXNlIGFueW1v
+cmUgYmVjYXVzZSBpdCBkb2Vzbid0IGRpZmZlcmVudGlhdGUKPj4+Pj4gK8KgwqDCoMKgICogYmV0
+d2VlbiBHWEJCIGFuZCBHWEwgd2hpY2ggaGF2ZSBkaWZmZXJlbnQgcmV2aXNpb25zIG9mIHRoZSAK
+Pj4+Pj4gVUFSVCBJUC4KPj4+Pj4gK8KgwqDCoMKgICovCj4+Pj4+ICvCoMKgwqAgewo+Pj4+PiAr
+wqDCoMKgwqDCoMKgwqAgLmNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi1neC11YXJ0IiwKPj4+
+Pj4gK8KgwqDCoMKgwqDCoMKgIC5kYXRhID0gKHZvaWQgKilmYWxzZSwKPj4+Pj4gK8KgwqDCoCB9
+LAo+Pj4+PiDCoMKgwqDCoMKgwqAgeyAvKiBzZW50aW5lbCAqLyB9LAo+Pj4+PiDCoMKgIH07Cj4+
+Pj4+IMKgwqAgTU9EVUxFX0RFVklDRV9UQUJMRShvZiwgbWVzb25fdWFydF9kdF9tYXRjaCk7Cj4+
+Pj4KPj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
+bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
+ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
+aWMK
