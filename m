@@ -4,77 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06913C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jan 2022 14:56:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CFB7C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jan 2022 14:56:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Umo65ycJby/Q4sMs2ZbJfU5U9Ut+LRrJD9nBv9bdUhQ=; b=Ywv1oWPTpUFT5w
-	VQSC+O0E7Q037Xf3KTdZw0dycV+avw0t0gs9VStFQ/Zn1PVP1DKJRtpA4eYADvVJq2aiKpx6gkF85
-	gxEmqhgW51s7ZcuuqYqYcWhY+ZgR9G4swLdtBcpbnGMnFi46RL9iyH3FZyZNoyvy4uClthfSrvEQU
-	c0oiObrtAdDE5m3vXFMtfM8wiWOYbR1En/u+kAGKdQBt+RO0bAnL6r3DHukoDyNZIDByt6pMC7Exb
-	U37Hqn+L9uWgLaiLFqizZeRKILAwr3R3zPcYy5toiRXoqLbLgUpJg/QUP8xsGUNMVrYW9ny5fOU/K
-	BKrKETqYMClX4o/hTAEQ==;
+	List-Owner; bh=/422eNYgtuvUo5bZG0OYreFJ2cL7TxG0sySvj3Fkqt0=; b=OdXs7sA8Rq5er2
+	77W/L32ddtNN80YNO4QixZyFSLmb0tp3RaP6ZZeFxSaDmKD0D4pBhdVlA7ySxCGK/2Z5Fe904PnKh
+	s9DyHiKF8/BQ5OJjX5LBXyltNAtJlp60DE5NGu3awrTbQsoKdAqM3XEphojZoUV4ZsvvqyolhMJs/
+	LdZonSHi93aG5U97d1Jo7amW8hYJvyJHhSiaXnO0gDmOJVk0TioM1WjiMNv7jJdMSthSs+HvH9Iyj
+	1IytOJakiU9Jx+iVpqIyec2gfkTDwrMxsvXq95reBVmK47i2wSkPgwf0EpWEqOB44mXCbPaYWMcYr
+	xJJtlGYZa7V5yXLyOaWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n5qfN-004KLC-0k; Fri, 07 Jan 2022 14:56:29 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1n5qfO-004KM5-Cb; Fri, 07 Jan 2022 14:56:30 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n5qeP-004JmP-M3
+ id 1n5qeQ-004JnL-Rq
  for linux-amlogic@lists.infradead.org; Fri, 07 Jan 2022 14:55:33 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id c66so4064070wma.5
- for <linux-amlogic@lists.infradead.org>; Fri, 07 Jan 2022 06:55:26 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id
+ q141-20020a1ca793000000b00347b48dfb53so967472wme.0
+ for <linux-amlogic@lists.infradead.org>; Fri, 07 Jan 2022 06:55:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=i/hFK7bnbyVv/8bagrZIUgrFi4M+cus55rUNMhBhOlY=;
- b=QxcPOOVBsJT1TbTertfVq4dtk+zgpw9B9lO7kmUmxUDaGs9HqYpJL97QVTaH4F6Yko
- 0BwpbMqRvA8Tix2+d+7IegIGvGJsKPP7qJtzEBUA3ypgwJhAdOSNBtit6eSi+PS+Wkl+
- MTreGbdmvzbOVm8LNbClt0ntITzlw5aK+wy9Rh48CG5FTNQSc55TduJuw+0qs01TYgqt
- D3ImKrDnm7Kuy87wNftoVBpPesS1ty1jTFqSS7GUvtfqLRsrSZy5KWh6ZEdLpx/M36GQ
- v3s6YO8wjn3tWToHNAiFVIhCbJKQnX3gxFOU//DKHCLHAy6QvpFN4e89+c26AIDG7Gbk
- BaRg==
+ bh=VFZwn07Jf42Rg7k/gx/lsnWK8vEpodBGY1nxYIP45Co=;
+ b=SXiREtI7DvACqaMKBYVCYdDVwkm0nV4JuIdPFzhYTKa7fqiyjtzW2YEZoFyIotPl6j
+ /KrFLzRnMCeGWmslUGzNOOZf5elqJDFAYY5YBQVGJzm4yusQyFgeXyicrETlY0bmSuQd
+ RRyBBpDzOzInl/xb/QgPU0S9hwoI+FN7VNxEdvkqc/3Y+fbAVNm9QxrWoSE86zb7FWep
+ Nxuor8/UEm/KnLQSWN3XMD8beYtmrDgjsnTs/hNb0Br7yF6/fsi5Pkp2iLuYITKkWekp
+ 8rcRADKKerD7HsAnuZiO+55hTRzat9tiGZLpSd0N3LlrhH1URoRfaOEzqNGV7zs93ASK
+ jn2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=i/hFK7bnbyVv/8bagrZIUgrFi4M+cus55rUNMhBhOlY=;
- b=Mc71rxZTtar5Ntqa/091dQcarQxAbwff912NEIoc3gQeb0jOs0XcwcUhkFtO+ZJ45u
- oEO49q0DEbtofTTZ7DFOdJWTCUvlcifwNywj8+pstdC/5pL3a2lyWcuMLewRwmlKJjG1
- saB3+z3T6uuYvdT1kI/Ol0bac3bY1ws/kNJNDDJN4r9NkieVaGNWk+Gs37MDONMsLA+C
- m60wffwUOqKwegWTRiDnEVJQVq5Gh4oqVSuBkQZhlkXG2ep3pvbAZtSxBUx3bmiw2Uig
- fywYxDLdZP15b2V7yT73Wl6BFMRnRFeEhnKJ17JKPApbdLuJG+Ws35ZmFt7+wbymCF9r
- bOWg==
-X-Gm-Message-State: AOAM533eTaBBmDpgACwHZ0i1rK8ZFOpWbVyFrh8BRQiDlBqb7BcAqbWN
- 4fMiGQZfhKGkVzZ5/5IkBttKIw==
-X-Google-Smtp-Source: ABdhPJzNiIlnV5+EKZOxSQ3AuYv+xDs8BOK4BC9sQabhOwnBxMpuZvATOQT2eB0jdqLLJr/t1XxumQ==
-X-Received: by 2002:a05:600c:5119:: with SMTP id
- o25mr11741995wms.96.1641567325360; 
- Fri, 07 Jan 2022 06:55:25 -0800 (PST)
+ bh=VFZwn07Jf42Rg7k/gx/lsnWK8vEpodBGY1nxYIP45Co=;
+ b=crJfCtG0qAzT4z29jRSW0QxU6VpQze+Uqu8EV0uKlBp9nBy9sPEoYchD0idxlybWRK
+ iSP5tJZ6ulu1bUYLpH1Y/7kvkp2r/KoV7XvCapBLsCCjRiOsJ1ZPhytoGAXXgVOkIoeF
+ 7UcshA0kE2eLx/+ul1K+ltBS5j+mqqAGRnttLL0I/UW22XFh6ke9HhdgKdBo6FUim8ue
+ eIhtF6l3FgRaS8+P0vNzgAQcGK6lihX7o/IQRs6nLTqf82MT9SlcsrEslaZZS6QXyNdR
+ lLo4VMCte0QBNxpm8T2LSvtHiY3SW/AsBwo6RoSan+KDz5J7Z+nkmDXLczmbHn+onW4d
+ Xk2w==
+X-Gm-Message-State: AOAM532iHgAOTmGoESwCZV3Fh1Y901qHZJdA/lPBG1oyRUD9Ux2BIwcs
+ NWCaPij2lrlYn84EP969/vBROw==
+X-Google-Smtp-Source: ABdhPJx3d7g/WcznS2OkJ88H1Pu58V9KR7gILLkyib5RT8vIhKNje9gHEIlSrDN8Yd+FRNGvfqseVQ==
+X-Received: by 2002:a05:600c:228d:: with SMTP id
+ 13mr11567433wmf.134.1641567328229; 
+ Fri, 07 Jan 2022 06:55:28 -0800 (PST)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:fc89:e826:8938:cbde])
- by smtp.gmail.com with ESMTPSA id n8sm5594492wri.47.2022.01.07.06.55.24
+ by smtp.gmail.com with ESMTPSA id n8sm5594492wri.47.2022.01.07.06.55.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Jan 2022 06:55:24 -0800 (PST)
+ Fri, 07 Jan 2022 06:55:27 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 1/6] dt-bindings: display: add Amlogic MIPI DSI Host
- Controller bindings
-Date: Fri,  7 Jan 2022 15:55:10 +0100
-Message-Id: <20220107145515.613009-2-narmstrong@baylibre.com>
+Subject: [PATCH 4/6] drm/meson: vclk: add DSI clock config
+Date: Fri,  7 Jan 2022 15:55:13 +0100
+Message-Id: <20220107145515.613009-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220107145515.613009-1-narmstrong@baylibre.com>
 References: <20220107145515.613009-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220107_065529_821673_E5681AF3 
-X-CRM114-Status: GOOD (  13.94  )
+X-CRM114-CacheID: sfid-20220107_065530_987402_F25C5414 
+X-CRM114-Status: GOOD (  12.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,140 +90,107 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI Glue
-on the same Amlogic SoCs.
+The DSI path used the ENCL pixel encoder, thus this adds a clock
+config using the HDMI PLL in order to feed the ENCL encoder via the
+VCLK2 path and the CTS_ENCL clock output.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../display/amlogic,meson-dw-mipi-dsi.yaml    | 118 ++++++++++++++++++
- 1 file changed, 118 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
+ drivers/gpu/drm/meson/meson_vclk.c | 47 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/meson/meson_vclk.h |  1 +
+ 2 files changed, 48 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
-new file mode 100644
-index 000000000000..f3070783d606
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2020 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/display/amlogic,meson-dw-mipi-dsi.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
+index 2a82119eb58e..5e4d982be1c8 100644
+--- a/drivers/gpu/drm/meson/meson_vclk.c
++++ b/drivers/gpu/drm/meson/meson_vclk.c
+@@ -55,6 +55,8 @@
+ #define VCLK2_DIV_MASK		0xff
+ #define VCLK2_DIV_EN		BIT(16)
+ #define VCLK2_DIV_RESET		BIT(17)
++#define CTS_ENCL_SEL_MASK	(0xf << 12)
++#define CTS_ENCL_SEL_SHIFT	12
+ #define CTS_VDAC_SEL_MASK	(0xf << 28)
+ #define CTS_VDAC_SEL_SHIFT	28
+ #define HHI_VIID_CLK_CNTL	0x12c /* 0x4b offset in data sheet */
+@@ -83,6 +85,7 @@
+ #define VCLK_DIV12_EN		BIT(4)
+ #define HHI_VID_CLK_CNTL2	0x194 /* 0x65 offset in data sheet */
+ #define CTS_ENCI_EN		BIT(0)
++#define CTS_ENCL_EN		BIT(3)
+ #define CTS_ENCP_EN		BIT(2)
+ #define CTS_VDAC_EN		BIT(4)
+ #define HDMI_TX_PIXEL_EN	BIT(5)
+@@ -1024,6 +1027,47 @@ static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
+ 	regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL, VCLK_EN, VCLK_EN);
+ }
+ 
++static void meson_dsi_clock_config(struct meson_drm *priv, unsigned int freq)
++{
++	meson_hdmi_pll_generic_set(priv, freq * 10);
 +
-+title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
++	/* Setup vid_pll divider value /5 */
++	meson_vid_pll_set(priv, VID_PLL_DIV_5);
 +
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
++	/* Disable VCLK2 */
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL, VCLK2_EN, 0);
 +
-+description: |
-+  The Amlogic Meson Synopsys Designware Integration is composed of
-+  - A Synopsys DesignWare MIPI DSI Host Controller IP
-+  - A TOP control block controlling the Clocks & Resets of the IP
++	/* Setup the VCLK2 divider value /2 */
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_DIV, VCLK2_DIV_MASK, 2 - 1);
 +
-+allOf:
-+  - $ref: dsi-controller.yaml#
++	/* select vid_pll for vclk2 */
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL,
++			   VCLK2_SEL_MASK, (0 << VCLK2_SEL_SHIFT));
 +
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,meson-g12a-dw-mipi-dsi
++	/* enable vclk2 gate */
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL, VCLK2_EN, VCLK2_EN);
 +
-+  reg:
-+    maxItems: 1
++	/* select vclk2_div1 for encl */
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_DIV,
++			   CTS_ENCL_SEL_MASK, (8 << CTS_ENCL_SEL_SHIFT));
 +
-+  clocks:
-+    minItems: 2
++	/* release vclk2_div_reset and enable vclk2_div */
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_DIV, VCLK2_DIV_EN | VCLK2_DIV_RESET,
++			   VCLK2_DIV_EN);
 +
-+  clock-names:
-+    minItems: 2
-+    items:
-+      - const: pclk
-+      - const: px_clk
-+      - const: meas_clk
++	/* enable vclk2_div1 gate */
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL, VCLK2_DIV1_EN, VCLK2_DIV1_EN);
 +
-+  resets:
-+    minItems: 1
++	/* reset vclk2 */
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL, VCLK2_SOFT_RESET, VCLK2_SOFT_RESET);
++	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL, VCLK2_SOFT_RESET, 0);
 +
-+  reset-names:
-+    items:
-+      - const: top
++	/* enable encl_clk */
++	regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL2, CTS_ENCL_EN, CTS_ENCL_EN);
 +
-+  phys:
-+    minItems: 1
++	usleep_range(10000, 11000);
++}
 +
-+  phy-names:
-+    items:
-+      - const: dphy
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: Input node to receive pixel data.
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: DSI output node to panel.
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - phys
-+  - phy-names
-+  - ports
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    dsi@7000 {
-+          compatible = "amlogic,meson-g12a-dw-mipi-dsi";
-+          reg = <0x6000 0x400>;
-+          resets = <&reset_top>;
-+          reset-names = "top";
-+          clocks = <&clk_pclk>, <&clk_px>;
-+          clock-names = "pclk", "px_clk";
-+          phys = <&mipi_dphy>;
-+          phy-names = "dphy";
-+
-+          ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              /* VPU VENC Input */
-+              mipi_dsi_venc_port: port@0 {
-+                  reg = <0>;
-+
-+                  mipi_dsi_in: endpoint {
-+                       remote-endpoint = <&dpi_out>;
-+                  };
-+              };
-+
-+              /* DSI Output */
-+              mipi_dsi_panel_port: port@1 {
-+                  reg = <1>;
-+
-+                  mipi_out_panel: endpoint {
-+                      remote-endpoint = <&mipi_in_panel>;
-+                  };
-+              };
-+          };
-+    };
+ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+ 		      unsigned int phy_freq, unsigned int vclk_freq,
+ 		      unsigned int venc_freq, unsigned int dac_freq,
+@@ -1050,6 +1094,9 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+ 		meson_vclk_set(priv, phy_freq, 0, 0, 0,
+ 			       VID_PLL_DIV_5, 2, 1, 1, false, false);
+ 		return;
++	} else if (target == MESON_VCLK_TARGET_DSI) {
++		meson_dsi_clock_config(priv, phy_freq);
++		return;
+ 	}
+ 
+ 	hdmi_tx_div = vclk_freq / dac_freq;
+diff --git a/drivers/gpu/drm/meson/meson_vclk.h b/drivers/gpu/drm/meson/meson_vclk.h
+index 60617aaf18dd..1152b3af8d2e 100644
+--- a/drivers/gpu/drm/meson/meson_vclk.h
++++ b/drivers/gpu/drm/meson/meson_vclk.h
+@@ -17,6 +17,7 @@ enum {
+ 	MESON_VCLK_TARGET_CVBS = 0,
+ 	MESON_VCLK_TARGET_HDMI = 1,
+ 	MESON_VCLK_TARGET_DMT = 2,
++	MESON_VCLK_TARGET_DSI = 3,
+ };
+ 
+ /* 27MHz is the CVBS Pixel Clock */
 -- 
 2.25.1
 
