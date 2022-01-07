@@ -4,41 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 717A8C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jan 2022 02:48:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B698C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jan 2022 04:05:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XexzoQYudOIzYFq40fu6U28iZGyYignu6Pg7uO2BAGk=; b=CLk9WPchEZdePP
-	VYBcbS5bUoIWGRbo/geAEKi9e/Y1LMrNbPg1TcVhXA8gx0+o28ksKKSYiJGTZn3mXJoVLGi5/DMUr
-	f6X0x/W3X+SrEn0X8STRWklGOmuCEbsOiFN8McQaMlGPvDbnxlD9bm5iKphYiUdlfuwogEIR+pPSB
-	awQZPUtrh1fowrQsG7TbcDcZSuwjYUOwctgH4+fUt6d3ygmG5FQnurnbHZ+zJXNMGk6kA7LWWw1ZO
-	O1PH35/GDhJGopxBD2XkCGWk2sV50zRiaxDqPo1IVdu98dHFHaAIXiXKEIFgnrA0kugmjUQY4WauX
-	aPuP1zeVbBh33ytAC4Tg==;
+	List-Owner; bh=d33r3zP8pDo4fFQbWPzwCyNfOspb60eq813z79UAJZ0=; b=RitzljN5Nnw3Rz
+	gz2sbkjRDml1YgGt7Wl+HOKxj1/Q5y2Ny7d3GKt2ktkY4m0J2n2TIlTZFNqOqwARKxJKo9mmQJSu7
+	DHFEyQfjm4fWtqgYx8FiOhHFARIz35UmHDo4gE2rhjcUvi8MkThlvyZKO+gMdYQT4aLIfAyljd1vj
+	groMsBajj3kcfXi+atxAHUqomGcgwiWC37C5V0+EURjOZRn/xZTVrsgYrw6tNLjmUQ5Rd2+72yDxA
+	mnKJAqO0IQs09vZS0mMK1xWW5mCD0xz4oJeJC2Sj/nCeZkHNp276mGO+HXOdMoL1sOhiWM7XqcpOX
+	EW8wrR+y3CnOgmaM7cLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n5fIb-00246I-EI; Fri, 07 Jan 2022 02:48:13 +0000
+	id 1n5gUw-002EAp-EZ; Fri, 07 Jan 2022 04:05:02 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n5fIY-002440-EG; Fri, 07 Jan 2022 02:48:11 +0000
+ id 1n5gUs-002E7c-MW; Fri, 07 Jan 2022 04:05:00 +0000
 Received: from [10.28.39.73] (10.28.39.73) by mail-sz.amlogic.com (10.28.11.5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 7 Jan 2022
- 10:48:08 +0800
-Message-ID: <e4e1c378-81de-5e45-e5da-68193148e1e1@amlogic.com>
-Date: Fri, 7 Jan 2022 10:48:08 +0800
+ 12:04:46 +0800
+Message-ID: <151ded4b-a28b-dac9-31e1-5b817cd9dc44@amlogic.com>
+Date: Fri, 7 Jan 2022 12:04:46 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
  Thunderbird/91.4.1
-Subject: Re: [PATCH] dt-bindings: nand: meson: fix controller clock
+Subject: Re: [PATCH] mtd: rawnand: meson: fix the clock after discarding
+ sd_emmc_c_clkc
 Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <linux-mtd@lists.infradead.org>,
- Richard Weinberger <richard@nod.at>, Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Martin Blumenstingl
+To: Jerome Brunet <jbrunet@baylibre.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, <linux-mtd@lists.infradead.org>
+CC: Richard Weinberger <richard@nod.at>, Neil Armstrong
+ <narmstrong@baylibre.com>, Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
  Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
  XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
@@ -46,16 +47,16 @@ CC: Vignesh Raghavendra <vigneshr@ti.com>, <linux-mtd@lists.infradead.org>,
  Yu <yonghui.yu@amlogic.com>, <linux-arm-kernel@lists.infradead.org>,
  <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
  <devicetree@vger.kernel.org>
-References: <20220106033130.37623-1-liang.yang@amlogic.com>
- <20220106091209.6b97cf3c@xps13>
+References: <20220106032504.23310-1-liang.yang@amlogic.com>
+ <1jfsq1z22l.fsf@starbuckisacylon.baylibre.com>
 From: Liang Yang <liang.yang@amlogic.com>
-In-Reply-To: <20220106091209.6b97cf3c@xps13>
+In-Reply-To: <1jfsq1z22l.fsf@starbuckisacylon.baylibre.com>
 X-Originating-IP: [10.28.39.73]
 X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
  (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220106_184810_510930_E7BCEE44 
-X-CRM114-Status: GOOD (  13.15  )
+X-CRM114-CacheID: sfid-20220106_200458_805777_C77FD44F 
+X-CRM114-Status: GOOD (  28.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,57 +68,293 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTWlxdWVsLAoKT24gMjAyMi8xLzYgMTY6MTIsIE1pcXVlbCBSYXluYWwgd3JvdGU6Cj4gWyBF
-WFRFUk5BTCBFTUFJTCBdCj4gCj4gSGVsbG8sCj4gCj4gbGlhbmcueWFuZ0BhbWxvZ2ljLmNvbSB3
-cm90ZSBvbiBUaHUsIDYgSmFuIDIwMjIgMTE6MzE6MzAgKzA4MDA6Cj4gCj4gVGhpcyBwYXRjaCBz
-aG91bGQgYmUgaW4gYSBzZXJpZXMgd2l0aCAibXRkOiByYXduYW5kOiBtZXNvbjogZml4IHRoZQo+
-IGNsb2NrIGFmdGVyIGRpc2NhcmRpbmcgc2RfZW1tY19jX2NsayIgYW5kIHBvc3NpYmx5IGNvbWUg
-Zmlyc3QuCj4gCj4gWW91IG1pc3MgYSBjb21taXQgbWVzc2FnZSB3aGljaCBpcyBfdmVyeV8gaW1w
-b3J0YW50IGdpdmVuIHRoZSB0eXBlIG9mCj4gY2hhbmdlIHlvdSBwcm9wb3NlLgo+ICAgCj4+IENo
-YW5nZS1JZDogSTE0MjViNDkxZDhiOTUwNjFlMWNlMzU4ZWYzMzE0MzQzM2ZjOTRkMjQKPiAKPiBD
-aGFuZ2UgSURzIGhhdmUgbm90aGluZyB0byBkbyBoZXJlLgo+IAo+IEhvd2V2ZXIgYSBGaXhlcyBh
-bmQgYSBTaWduZWQtb2ZmLWJ5IGFyZSB3ZWxjb21lLgo+IAo+IFlvdSdsbCBhbHNvIG5lZWQgdG8g
-Q2M6IFJvYiBILiBpbiB5b3VyIHYyLgo+IApvaywgaSB3aWxsIGZpeCB0aGVzZSBvbmNlIHdlIGNs
-YXJpZnkgdGhlIHBhdGNoIGFib3V0IHNkX2VtbWNfY19jbGsgYW5kIApkZWNpZGUgdG8gdXNlIHRo
-aXMgcGF0Y2guCj4+IC0tLQo+PiAgIC4uLi9iaW5kaW5ncy9tdGQvYW1sb2dpYyxtZXNvbi1uYW5k
-LnR4dCAgICAgICAgfCAxOCArKystLS0tLS0tLS0tLS0tLS0KPj4gICAxIGZpbGUgY2hhbmdlZCwg
-MyBpbnNlcnRpb25zKCspLCAxNSBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL0RvY3Vt
-ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvYW1sb2dpYyxtZXNvbi1uYW5kLnR4dCBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvYW1sb2dpYyxtZXNvbi1uYW5k
-LnR4dAo+PiBpbmRleCA1Nzk0YWIxMTQ3YzEuLjM3ZjE2ZmU0ZmU2NiAxMDA2NDQKPj4gLS0tIGEv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9hbWxvZ2ljLG1lc29uLW5hbmQu
-dHh0Cj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvYW1sb2dp
-YyxtZXNvbi1uYW5kLnR4dAo+PiBAQCAtMTQsMTEgKzE0LDYgQEAgUmVxdWlyZWQgcHJvcGVydGll
-czoKPj4gICAtIGNsb2NrLW5hbWVzOiBTaG91bGQgY29udGFpbiB0aGUgZm9sbG93aW5nOgo+PiAg
-IAkiY29yZSIgLSBORkMgbW9kdWxlIGdhdGUgY2xvY2sKPj4gICAJImRldmljZSIgLSBkZXZpY2Ug
-Y2xvY2sgZnJvbSBlTU1DIHN1YiBjbG9jayBjb250cm9sbGVyCj4+IC0JInJ4IiAtIHJ4IGNsb2Nr
-IHBoYXNlCj4+IC0JInR4IiAtIHR4IGNsb2NrIHBoYXNlCj4+IC0KPj4gLS0gYW1sb2dpYyxtbWMt
-c3lzY29uCTogUmVxdWlyZWQgZm9yIE5BTkQgY2xvY2tzLCBpdCdzIHNoYXJlZCB3aXRoIFNEL2VN
-TUMKPj4gLQkJCQljb250cm9sbGVyIHBvcnQgQwo+PiAgIAo+PiAgIE9wdGlvbmFsIGNoaWxkcmVu
-IG5vZGVzOgo+PiAgIENoaWxkcmVuIG5vZGVzIHJlcHJlc2VudCB0aGUgYXZhaWxhYmxlIG5hbmQg
-Y2hpcHMuCj4+IEBAIC0yOCwxMSArMjMsNiBAQCBzZWUgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL210ZC9uYW5kLWNvbnRyb2xsZXIueWFtbCBmb3IgZ2VuZXJpYyBiaW5kaQo+PiAg
-IAo+PiAgIEV4YW1wbGUgZGVtb25zdHJhdGUgb24gQVhHIFNvQzoKPj4gICAKPj4gLQlzZF9lbW1j
-X2NfY2xrYzogbW1jQDcwMDAgewo+PiAtCQljb21wYXRpYmxlID0gImFtbG9naWMsbWVzb24tYXhn
-LW1tYy1jbGtjIiwgInN5c2NvbiI7Cj4+IC0JCXJlZyA9IDwweDAgMHg3MDAwIDB4MCAweDgwMD47
-Cj4+IC0JfTsKPj4gLQo+PiAgIAluYW5kLWNvbnRyb2xsZXJANzgwMCB7Cj4+ICAgCQljb21wYXRp
-YmxlID0gImFtbG9naWMsbWVzb24tYXhnLW5mYyI7Cj4+ICAgCQlyZWcgPSA8MHgwIDB4NzgwMCAw
-eDAgMHgxMDA+Owo+PiBAQCAtNDEsMTEgKzMxLDkgQEAgRXhhbXBsZSBkZW1vbnN0cmF0ZSBvbiBB
-WEcgU29DOgo+PiAgIAkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDM0IElSUV9UWVBFX0VER0VfUklT
-SU5HPjsKPj4gICAKPj4gICAJCWNsb2NrcyA9IDwmY2xrYyBDTEtJRF9TRF9FTU1DX0M+LAo+PiAt
-CQkJPCZzZF9lbW1jX2NfY2xrYyBDTEtJRF9NTUNfRElWPiwKPj4gLQkJCTwmc2RfZW1tY19jX2Ns
-a2MgQ0xLSURfTU1DX1BIQVNFX1JYPiwKPj4gLQkJCTwmc2RfZW1tY19jX2Nsa2MgQ0xLSURfTU1D
-X1BIQVNFX1RYPjsKPj4gLQkJY2xvY2stbmFtZXMgPSAiY29yZSIsICJkZXZpY2UiLCAicngiLCAi
-dHgiOwo+PiAtCQlhbWxvZ2ljLG1tYy1zeXNjb24gPSA8JnNkX2VtbWNfY19jbGtjPjsKPj4gKwkJ
-CTwmY2xrYyBDTEtJRF9GQ0xLX0RJVjI+Owo+PiArCQljbG9jay1uYW1lcyA9ICJjb3JlIiwgImRl
-dmljZSI7Cj4+ICsJCXNkX2VtbWNfY19jbGtjID0gPDB4ZmZlMDcwMDA+Owo+PiAgIAo+PiAgIAkJ
-cGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPj4gICAJCXBpbmN0cmwtMCA9IDwmbmFuZF9waW5z
-PjsKPiAKPiAKPiBUaGFua3MsCj4gTWlxdcOobAo+IAo+IC4KCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
-bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hi Jerome,
+
+On 2022/1/6 16:16, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> 
+> On Thu 06 Jan 2022 at 11:25, Liang Yang <liang.yang@amlogic.com> wrote:
+> 
+>> Because EMMC and NAND have the same control clock register, so we
+>> implement a 'sd_emmc_c_clkc'. Previously DTS is defined as below:
+>>
+>> 	sd_emmc_c_clkc: mmc@7000 {
+>> 		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
+>> 		reg = <0x0 0x7000 0x0 0x800>;
+>> 	};
+>>
+>> 	nand-controller@7800 {
+>> 		......
+>>
+>> 		clocks = <&clkc CLKID_SD_EMMC_C>,
+>> 			<&sd_emmc_c_clkc CLKID_MMC_DIV>,
+>> 			<&sd_emmc_c_clkc CLKID_MMC_PHASE_RX>,
+>> 			<&sd_emmc_c_clkc CLKID_MMC_PHASE_TX>;
+>> 		clock-names = "core", "device", "rx", "tx";
+>> 		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
+>>
+>> 		......
+>> 	}
+>>
+>> but in fact, above implementation is rejected. so now registering
+>> a nand_divider.
+> 
+> Can you give a bit of context ? a link to the discussion rejecting this
+> 
+Maybe I mistake the meaning of [jianxin.pan@amlogic.com], so i need him 
+to clarify it.
+> As far as remember, things were getting done for A1 and stopped before
+> clock part was finished. I'm saying the change is wrong, just that a
+> discussion is needed before a decision is made.
+>
+ok.
+previous discussion in this link:
+https://lore.kernel.org/all/86789d73-5a6c-7729-ecd1-dcd342b2fcde@amlogic.com/
+it never go on since v6.
+
+>>
+>> Change-Id: Ibeb4c7ff886f5886aac4d6c664d7bbd1b1bcb997
+>> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+>> ---
+>>   drivers/mtd/nand/raw/meson_nand.c | 88 +++++++++++++++++--------------
+>>   1 file changed, 49 insertions(+), 39 deletions(-)
+>>
+>> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+>> index ac3be92872d0..4472363059c2 100644
+>> --- a/drivers/mtd/nand/raw/meson_nand.c
+>> +++ b/drivers/mtd/nand/raw/meson_nand.c
+>> @@ -2,7 +2,7 @@
+>>   /*
+>>    * Amlogic Meson Nand Flash Controller Driver
+>>    *
+>> - * Copyright (c) 2018 Amlogic, inc.
+>> + * Copyright (c) 2018-2021 Amlogic, inc.
+>>    * Author: Liang Yang <liang.yang@amlogic.com>
+>>    */
+>>   
+>> @@ -10,6 +10,7 @@
+>>   #include <linux/dma-mapping.h>
+>>   #include <linux/interrupt.h>
+>>   #include <linux/clk.h>
+>> +#include <linux/clk-provider.h>
+>>   #include <linux/mtd/rawnand.h>
+>>   #include <linux/mtd/mtd.h>
+>>   #include <linux/mfd/syscon.h>
+>> @@ -55,6 +56,7 @@
+>>   #define NFC_REG_VER		0x38
+>>   
+>>   #define NFC_RB_IRQ_EN		BIT(21)
+>> +#define NFC_CMD_FIFO_RESET	BIT(31)
+>>   
+>>   #define CMDRWGEN(cmd_dir, ran, bch, short_mode, page_size, pages)	\
+>>   	(								\
+>> @@ -104,6 +106,9 @@
+>>   
+>>   #define PER_INFO_BYTE		8
+>>   
+>> +#define CLK_DIV_SHIFT		0
+>> +#define CLK_DIV_WIDTH		6
+>> +
+>>   struct meson_nfc_nand_chip {
+>>   	struct list_head node;
+>>   	struct nand_chip nand;
+>> @@ -151,15 +156,15 @@ struct meson_nfc {
+>>   	struct nand_controller controller;
+>>   	struct clk *core_clk;
+>>   	struct clk *device_clk;
+>> -	struct clk *phase_tx;
+>> -	struct clk *phase_rx;
+> 
+> I would have been nice to explain why these clock are no longer
+> required, in the change description maybe ?
+
+i got the reply from our vlsi members that rx and tx doesn't make sense 
+to meson NFC timing. so previous commit about this should be wrong.
+> 
+>> +	struct clk *nand_clk;
+>> +	struct clk_divider nand_divider;
+>>   
+>>   	unsigned long clk_rate;
+>>   	u32 bus_timing;
+>>   
+>>   	struct device *dev;
+>>   	void __iomem *reg_base;
+>> -	struct regmap *reg_clk;
+>> +	void __iomem *reg_clk;
+>>   	struct completion completion;
+>>   	struct list_head chips;
+>>   	const struct meson_nfc_data *data;
+>> @@ -406,12 +411,14 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
+>>   	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
+>>   		| nfc->param.chip_select | nfc->timing.tbers_max;
+>>   	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>> -
+>> +	meson_nfc_drain_cmd(nfc);
+> 
+> is this clock related ?
+ok, i will split it in another patch.
+> 
+>>   	ret = wait_for_completion_timeout(&nfc->completion,
+>>   					  msecs_to_jiffies(timeout_ms));
+>>   	if (ret == 0)
+>>   		ret = -1;
+>>   
+>> +	/* reset command fifo to avoid lock */
+>> +	writel(NFC_CMD_FIFO_RESET, nfc->reg_base + NFC_REG_CMD);
+> 
+> Again, not seem to be clock related - does not belong in this patch
+ok, i will split it in another patch.
+> 
+>>   	return ret;
+>>   }
+>>   
+>> @@ -988,8 +995,9 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
+>>   static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>   {
+>>   	int ret;
+>> +	struct clk_init_data init = {0};
+>> +	const char *fix_div2_pll_name[1];
+>>   
+>> -	/* request core clock */
+> 
+> Why is the comment bothering you ?
+> 
+>>   	nfc->core_clk = devm_clk_get(nfc->dev, "core");
+>>   	if (IS_ERR(nfc->core_clk)) {
+>>   		dev_err(nfc->dev, "failed to get core clock\n");
+>> @@ -1002,21 +1010,25 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>   		return PTR_ERR(nfc->device_clk);
+>>   	}
+>>   
+>> -	nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
+>> -	if (IS_ERR(nfc->phase_tx)) {
+>> -		dev_err(nfc->dev, "failed to get TX clk\n");
+>> -		return PTR_ERR(nfc->phase_tx);
+>> -	}
+>> -
+>> -	nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
+>> -	if (IS_ERR(nfc->phase_rx)) {
+>> -		dev_err(nfc->dev, "failed to get RX clk\n");
+>> -		return PTR_ERR(nfc->phase_rx);
+>> -	}
+>> +	init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
+>> +	init.ops = &clk_divider_ops;
+>> +	fix_div2_pll_name[0] = __clk_get_name(nfc->device_clk);
+> 
+> You should be using "fw_name" so CCF looks a DT directly, instead of this
+ok
+> 
+>> +	init.parent_names = fix_div2_pll_name;
+>> +	init.num_parents = 1;
+>> +	nfc->nand_divider.reg = nfc->reg_clk;
+>> +	nfc->nand_divider.shift = CLK_DIV_SHIFT;
+>> +	nfc->nand_divider.width = CLK_DIV_WIDTH;
+>> +	nfc->nand_divider.hw.init = &init;
+>> +	nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
+>> +				  CLK_DIVIDER_ROUND_CLOSEST |
+>> +          			  CLK_DIVIDER_ALLOW_ZERO;
+>> +
+>> +	nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
+>> +	if (IS_ERR(nfc->nand_clk))
+>> +		return PTR_ERR(nfc->nand_clk);
+>>   
+>>   	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+>> -	regmap_update_bits(nfc->reg_clk,
+>> -			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
+>> +	writel(CLK_SELECT_NAND | readl(nfc->reg_clk), nfc->reg_clk);
+>>   
+>>   	ret = clk_prepare_enable(nfc->core_clk);
+>>   	if (ret) {
+>> @@ -1030,29 +1042,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>   		goto err_device_clk;
+>>   	}
+>>   
+>> -	ret = clk_prepare_enable(nfc->phase_tx);
+>> +	ret = clk_prepare_enable(nfc->nand_clk);
+>>   	if (ret) {
+>> -		dev_err(nfc->dev, "failed to enable TX clock\n");
+>> -		goto err_phase_tx;
+>> -	}
+>> -
+>> -	ret = clk_prepare_enable(nfc->phase_rx);
+>> -	if (ret) {
+>> -		dev_err(nfc->dev, "failed to enable RX clock\n");
+>> -		goto err_phase_rx;
+>> +		dev_err(nfc->dev, "pre enable NFC divider fail\n");
+>> +		goto err_nand_clk;
+>>   	}
+>>   
+>>   	ret = clk_set_rate(nfc->device_clk, 24000000);
+>>   	if (ret)
+>> -		goto err_disable_rx;
+>> +		goto err_disable_clk;
+>>   
+>>   	return 0;
+>>   
+>> -err_disable_rx:
+>> -	clk_disable_unprepare(nfc->phase_rx);
+>> -err_phase_rx:
+>> -	clk_disable_unprepare(nfc->phase_tx);
+>> -err_phase_tx:
+>> +err_disable_clk:
+>> +	clk_disable_unprepare(nfc->nand_clk);
+>> +err_nand_clk:
+>>   	clk_disable_unprepare(nfc->device_clk);
+>>   err_device_clk:
+>>   	clk_disable_unprepare(nfc->core_clk);
+>> @@ -1061,8 +1065,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>   
+>>   static void meson_nfc_disable_clk(struct meson_nfc *nfc)
+>>   {
+>> -	clk_disable_unprepare(nfc->phase_rx);
+>> -	clk_disable_unprepare(nfc->phase_tx);
+>> +	clk_disable_unprepare(nfc->nand_clk);
+>>   	clk_disable_unprepare(nfc->device_clk);
+>>   	clk_disable_unprepare(nfc->core_clk);
+>>   }
+>> @@ -1375,6 +1378,7 @@ static int meson_nfc_probe(struct platform_device *pdev)
+>>   	struct device *dev = &pdev->dev;
+>>   	struct meson_nfc *nfc;
+>>   	struct resource *res;
+>> +	u32 ext_clk_reg;
+>>   	int ret, irq;
+>>   
+>>   	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
+>> @@ -1396,9 +1400,15 @@ static int meson_nfc_probe(struct platform_device *pdev)
+>>   	if (IS_ERR(nfc->reg_base))
+>>   		return PTR_ERR(nfc->reg_base);
+>>   
+>> -	nfc->reg_clk =
+>> -		syscon_regmap_lookup_by_phandle(dev->of_node,
+>> -						"amlogic,mmc-syscon");
+>> +	ret = of_property_read_u32(pdev->dev.of_node,
+>> +				   "sd_emmc_c_clkc",
+>> +				   &ext_clk_reg);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to get NAND external clock register\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	nfc->reg_clk = devm_ioremap(&pdev->dev, ext_clk_reg, sizeof(int));
+> 
+> That's how you should get a register region.
+> If you want an example of a device claiming several region on amlogic,
+> have a look at the pinctrl driver.
+ok
+> 
+>>   	if (IS_ERR(nfc->reg_clk)) {
+>>   		dev_err(dev, "Failed to lookup clock base\n");
+>>   		return PTR_ERR(nfc->reg_clk);
+> 
+> .
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
