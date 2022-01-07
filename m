@@ -4,75 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7FE3C4332F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jan 2022 19:06:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AC9EC4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jan 2022 02:40:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=izi3c2nn38E02UQbO7QxXawqHsvT4UY3V8sEXH9usHg=; b=Wya9o4tTMTclm1
-	UsGysJGehuOr8LNty5ULu6CjEqdI2tgRO+uRw5AWAizBu+/oKcDJew76F1/NtndlgpMTHXqE1TCrn
-	oPvRSOF9p6tXk3R0QxkFW7jsNOSUkZbWhQhs6mnfFN2ztfzPx/8CUu/eDgoVcHNqc9gJFWweuWfte
-	JKnZnRO3NPcVQUdjVIVMWP2oUeCn8JIcc91Qbm3bALJkhICbegxlHsCN32ZBWuZPZ7bdLOOBM+P7O
-	jgrFWH3SFVwVcQbTT01IAJtJrHSE/yPeeWz/pT3ZNPKyGVdSWgsF2+RgvsOP5HzrIvxW6jw6VajKw
-	fPGPYXLPJJ8C6PD+gZ5g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=u+OKSBCAtNx9Vy6+0/2GCNZwlKxa3xI4oLItmeT7Zbg=; b=YrTq3evhkveCgc
+	VMovS04MYPb5yz4luEC7gM63S7W0Z4+pyrTkQVdDgAa6wmxKMPhYQcfzzkjg0FX55YHl1sWb4yQ+B
+	D8jf//ckqaFleG3kQ8Ax1ER0AUCYP6WOfGOOhULARmV2XDjT/rhjP8S/pqPEV/JcktWOiONbwojbl
+	GnPgR8QWaDlU0C8oU0wrUhLTV+5PQqvbW3Ilrn6ducsANj/oPmuv9bpyJtPiJzXPl16s23fx7OAMG
+	wmrmI9Wy7haRiqMhVcpjaKTkRjNEoi6Ip57pITHJrkvKVhaW010bPFUgwxjmBIqvhWtXaFy46SnxF
+	iTbbQv7RQKuilBU77xdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n5Y5Z-001ApK-8P; Thu, 06 Jan 2022 19:06:17 +0000
-Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
+	id 1n5fAn-0020lF-0Z; Fri, 07 Jan 2022 02:40:09 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n5Y5V-001An9-EF
- for linux-amlogic@lists.infradead.org; Thu, 06 Jan 2022 19:06:16 +0000
-Received: by mail-pl1-x629.google.com with SMTP id s15so3095071plg.12
- for <linux-amlogic@lists.infradead.org>; Thu, 06 Jan 2022 11:06:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=Zsjxxw6pd4DdvZ9ARrFvDZnuIXFpfJxLz7WO0wCernQ=;
- b=aPDN54U5pkO5HHNN6o/d+Wa46jM8wSiiODG4x4hx33hrw4OfsqihQg6zGV32Nj2zax
- JanNwsFLN7TQup4lMAwYXzxS84trjw6x7/2pIIngpus6+Hssuuj1jxFjOt1qcbui6bpZ
- 6AmUuehvcx4mr6QOG8ewp7Cb1IlOODwTu/hDVjZ4VR9tvO5+MY+aNXQ0Fo730QUdACHZ
- Yow2dzJLGzg4AcMPAWd4xVEUGzJVD6GxhcxA90amuZ5C5hseVYIVuBRtwS00ZZe/bpWb
- lAY4zAiuU3op47BJHysCARxVDHEyM4Xy+uuTB+N6Qiz2ZVnKNLkTCZe7ks1VM2zVWO8x
- D8aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=Zsjxxw6pd4DdvZ9ARrFvDZnuIXFpfJxLz7WO0wCernQ=;
- b=XlNRSHHB/nHQEUkHnmQmtvXEI2NsFr2dcRtt7vsukcq0/gIohybucDnaI0RO4uwjXb
- oGo+so78BZgZT7jlIKrmCKNrsYxaRdwCH4cu8+sEZLIHc9GhtfnvhVhpwz+dITbNwVA3
- tY2495Kf7ADRy5Ah3mCY4FVGyhnE9qo3lVV2LXM5rLCFKD1jrRK657pP4OmCMrvBp+se
- k5XIt9WyHD1qiitU/1f7W7ZIjy52lF1/ZrB91f0lFWfAalDS1FwmDXaUVGt5YNRCsiM+
- vh60u0nSXPK5EHMDVlOnbm4OqGGLh32hxEkoHjBmwU+QS5PFBkLcOrlfu5prmZ6rGPg4
- nJKw==
-X-Gm-Message-State: AOAM531CFyxdrVk7Ael6lLgzthk8MKl/oFea4zktxHY+HeymXJzzDLRj
- IYtHaZNfgYEJXkMJLbUCpcflyQ==
-X-Google-Smtp-Source: ABdhPJyxOxZKTJqgzSxRXlJWQk0gUdFo548NlJxlwKKYwpOb8FAbfo+BhY8W4Pz7mnZZ/bRCO95gCA==
-X-Received: by 2002:a17:903:24d:b0:149:b68f:579 with SMTP id
- j13-20020a170903024d00b00149b68f0579mr24075313plh.1.1641495971463; 
- Thu, 06 Jan 2022 11:06:11 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id z18sm3468833pfe.146.2022.01.06.11.06.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Jan 2022 11:06:10 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Cc: Amjad Ouled-Ameur <aouledameur@baylibre.com>, p.zabel@pengutronix.de,
- balbi@kernel.org, jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] usb: meson: fix shared reset control use
-In-Reply-To: <20211212201844.114949-1-aouledameur@baylibre.com>
-References: <20211212201844.114949-1-aouledameur@baylibre.com>
-Date: Thu, 06 Jan 2022 11:06:10 -0800
-Message-ID: <7hv8ywr8f1.fsf@baylibre.com>
+ id 1n5fAk-0020jF-E9; Fri, 07 Jan 2022 02:40:07 +0000
+Received: from droid10-sz.amlogic.com (10.28.8.20) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Fri, 7 Jan 2022
+ 10:39:58 +0800
+From: Zelong Dong <zelong.dong@amlogic.com>
+To: <p.zabel@pengutronix.de>, <robh+dt@kernel.org>, <khilman@baylibre.com>,
+ <narmstrong@baylibre.com>, <martin.blumenstingl@googlemail.com>
+CC: <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <jbrunet@baylibre.com>,
+ <devicetree@vger.kernel.org>, Zelong Dong <zelong.dong@amlogic.com>
+Subject: [PATCH 0/3] reset: meson-s4: add reset driver
+Date: Fri, 7 Jan 2022 10:39:28 +0800
+Message-ID: <20220107023931.13251-1-zelong.dong@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+X-Originating-IP: [10.28.8.20]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220106_110613_577455_932FDE95 
-X-CRM114-Status: GOOD (  12.85  )
+X-CRM114-CacheID: sfid-20220106_184006_527034_528B7158 
+X-CRM114-Status: UNSURE (   5.60  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,47 +59,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Amjad,
 
-Amjad Ouled-Ameur <aouledameur@baylibre.com> writes:
+This patchset adds Reset controller driver support for Meson-S4 SoC.
+Meson-S4 Reset Controller has 6 banks (the number of reset register)
+and the level-reset register offset is 0x40.
 
-> This patchset fixes a usb suspend warning seen on the libretech-cc by
-> using reset_control_rearm() call of the reset framework API. 
-> This call allows a reset consummer to release the reset line even when 
-> just triggered so that it may be triggered again by other reset
-> consummers.
->
-> reset_control_(de)assert() calls are called, in some meson usb drivers, 
-> on a shared reset line when reset_control_reset has been used. This is not
-> allowed by the reset framework.
->
-> Finally the meson usb drivers are updated to use this new call, which
-> solves the suspend issue addressed by the previous reverted 
-> commit 7a410953d1fb ("usb: dwc3: meson-g12a: fix shared reset control
-> use").
->
-> changes since v4:
-> - call reset_control_rearm() after clk_prepare_enable() fails
->
-> Amjad Ouled-Ameur (3):
->   phy: amlogic: phy-meson-gxl-usb2: fix shared reset controller use
->   phy: amlogic: meson8b-usb2: Use dev_err_probe()
->   phy: amlogic: meson8b-usb2: fix shared reset control use
->
->  drivers/phy/amlogic/phy-meson-gxl-usb2.c | 5 ++++-
->  drivers/phy/amlogic/phy-meson8b-usb2.c   | 9 +++++++--
->  2 files changed, 11 insertions(+), 3 deletions(-)
 
-The cover letter prefix is "usb: meson" but all the patches are for
-drivers/phy.
+Zelong Dong (3):
+  dt-bindings: reset: Add compatible for Meson-S4 Reset Controller
+  dt-bindings: reset: add bindings for the Meson-S4 SoC Reset Controller
+  reset: reset-meson: add support for the Meson-S4 SoC Reset Controller
 
-Could you collect the reviewed-by etc tags and resend to the PHY
-maintainers and linux-phy list?
+ .../bindings/reset/amlogic,meson-reset.yaml   |   1 +
+ drivers/reset/reset-meson.c                   |   6 +
+ .../reset/amlogic,meson-s4-reset.h            | 125 ++++++++++++++++++
+ 3 files changed, 132 insertions(+)
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-s4-reset.h
 
-Thanks,
-
-Kevin
-
+-- 
+2.34.1
 
 
 _______________________________________________
