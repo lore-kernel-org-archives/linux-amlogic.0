@@ -4,47 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7CD9C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jan 2022 08:43:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A79AAC433EF
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jan 2022 10:38:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Subject:Cc:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DSr8IsYrc7fdhW+ZIzwB0fKSu/OdCNn7K6x4bICOlGg=; b=Sjp0/ClPP/9T6P
-	swdeps1RNgNF7NT+WuDbwapkLGCXwhhTNgRVwMMUPwU8pPQ2VjgMfDRrvqxlXabYHvH9Np3eQGvwC
-	Ti6hZqEWaXe8R4+92Cdp5iBTH3DVD60nn2Ay39fALo3tJYPygshvHO76Go5LfvVu+ZSdvxVE47Nx2
-	TURDhv7HAD3i9sC1voq7DPDsSk0+J2EQN/Y7NmWP02XS8CgQ5VQCm9bNjZzYcIHctSnjCi8WPWfDb
-	NSVn7EkC6YIX2r+uWw91t9wK2c+Ik4eqNwV4vLEZaRc7pz6qOqDC/6uqjFeNIozussyy3ijzGqYSL
-	TyR1sSoMWQYyi5OnHT3g==;
+	List-Owner; bh=p0UCtreZOzWV/xQ5whrKTCZRfVofRoTg2Q5NqeSYBgk=; b=EEC+X46A6dAMSH
+	oM6SWCs9QYP9IrrVfPDxxxYpOdrkEHurRdjZClfSSU+kQaFiOeOyPmX43GYH2DosIXH41pmfSP3Il
+	ZJJd+MoKTAuRd8wm2Ijssl2k36HwS5U8t2SUtAN/VUs2c2RKeyrfH6O+fui9O+4bkBKKaUrmn0nID
+	AFUJ+ZqUvfieCGD4+JLy3ZW8FCWlxIwD5upOIzlkSAcJhd2EHgFuDN1Zbx8AgPh1wQJFn8npWIOeu
+	u5t3R7SlrgzDPQOhC5fwrNWqnlO3dYVwNnQ4r1CSF0aTuprM5T7pr7HHZNqFU/5Pd4urCe4CEMHJI
+	U0gRbmIdYw21aB/FeeVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n67Jo-0068wM-Gn; Sat, 08 Jan 2022 08:43:20 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1n696n-006IAF-L9; Sat, 08 Jan 2022 10:38:01 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n67J2-0068c3-Pb; Sat, 08 Jan 2022 08:42:34 +0000
-Received: from droid09-sz.software.amlogic (10.28.8.19) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2;
- Sat, 8 Jan 2022 16:42:21 +0800
-From: Qianggui Song <qianggui.song@amlogic.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
-CC: Qianggui Song <qianggui.song@amlogic.com>, Kevin Hilman
- <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Jerome
+ id 1n696k-006I9W-M2; Sat, 08 Jan 2022 10:38:00 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id A2CA360C98;
+ Sat,  8 Jan 2022 10:37:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03C30C36AE5;
+ Sat,  8 Jan 2022 10:37:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1641638275;
+ bh=TgiExzQYT7E5hlkoyGhgsfsCKWKWd3FY1bDyb5egQbE=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=tfw63Vy5Hgr12/12qbOm7haq7wb/mj9b1LVwjXV6B7gxKuKWh7AaAebVM/DPVxTVj
+ yPE98SMXVijtTRUQkBVePvT5wXeeX0Vg2EPMn2mn5QuwUMAz/kJlLSMy5iWLIllhF6
+ rvSoX1UOcTfOWShiw4IviWnt7Byo3PJOfFe6oOYO73iar+M3Udjov28zszvJx+vcxi
+ kflCYt5I+1s5903dogyRw7nLf2jOOrZt/Y06Yoy63VswbvOlCESPNrwWEioG2T+pKw
+ ZowSweFiOk4viVQnRf8qV7BiQk87ux/5nNLTNN4kX/1RfICTWcerkDzkbWLij6+xRy
+ r/91nDVdtDneA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+ by disco-boy.misterjones.org with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <maz@kernel.org>)
+ id 1n696e-00Gk3l-Nl; Sat, 08 Jan 2022 10:37:52 +0000
+Date: Sat, 08 Jan 2022 10:37:52 +0000
+Message-ID: <87tueetsvz.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Qianggui Song <qianggui.song@amlogic.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Jerome
  Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>, <linux-kernel@vger.kernel.org>,
  <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>
-Subject: [PATCH 4/4] irqchip/meson-gpio: Add support for meson s4 SoCs
-Date: Sat, 8 Jan 2022 16:42:18 +0800
-Message-ID: <20220108084218.31877-5-qianggui.song@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220108084218.31877-1-qianggui.song@amlogic.com>
+Subject: Re: [PATCH 2/4] irqchip/meson-gpio: support more than 8 channels gpio
+ irq line
+In-Reply-To: <20220108084218.31877-3-qianggui.song@amlogic.com>
 References: <20220108084218.31877-1-qianggui.song@amlogic.com>
-MIME-Version: 1.0
-X-Originating-IP: [10.28.8.19]
+ <20220108084218.31877-3-qianggui.song@amlogic.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: qianggui.song@amlogic.com, tglx@linutronix.de,
+ khilman@baylibre.com, narmstrong@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
+ SAEximRunCond expanded to false
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220108_004232_859732_9B0411E3 
-X-CRM114-Status: GOOD (  13.70  )
+X-CRM114-CacheID: sfid-20220108_023758_850552_58CE1C6A 
+X-CRM114-Status: GOOD (  26.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,136 +91,121 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The meson s4 SoCs support 12 gpio irq lines compared with previous
-serial chips and have something different, details are as below.
+On Sat, 08 Jan 2022 08:42:16 +0000,
+Qianggui Song <qianggui.song@amlogic.com> wrote:
+> 
+> Current meson gpio irqchip driver only support 8 channels for gpio irq
+> line, later chips may have more then 8 channels, so need to modify code
+> to support more.
+> 
+> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+> ---
+>  drivers/irqchip/irq-meson-gpio.c | 33 +++++++++++++++++++++++---------
+>  1 file changed, 24 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
+> index d90ff0b92480..6a7b4fb13452 100644
+> --- a/drivers/irqchip/irq-meson-gpio.c
+> +++ b/drivers/irqchip/irq-meson-gpio.c
+> @@ -16,7 +16,6 @@
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+>  
+> -#define NUM_CHANNEL 8
+>  #define MAX_INPUT_MUX 256
+>  
+>  #define REG_EDGE_POL	0x00
+> @@ -60,6 +59,7 @@ struct irq_ctl_ops {
+>  
+>  struct meson_gpio_irq_params {
+>  	unsigned int nr_hwirq;
+> +	unsigned int channel_num;
 
-IRQ Number:
-- 80:68 13 pins on bank Z
-- 67:48 20 pins on bank X
-- 47:36 12 pins on bank H
-- 35:24 12 pins on bank D
-- 23:22 2  pins on bank E
-- 21:14 8  pins on bank C
-- 13:0  13 pins on bank B
+For consistency, please name this nr_channels.
 
-- PADCTRL_GPIO_IRQ_CTRL0
-  bit[31]:    enable/disable the whole irq lines
-  bit[12-23]: single edge trigger
-  bit[0-11]:  poll trigger
+>  	bool support_edge_both;
+>  	unsigned int edge_both_offset;
+>  	unsigned int edge_single_offset;
+> @@ -81,6 +81,7 @@ struct meson_gpio_irq_params {
+>  	.edge_single_offset = 0,				\
+>  	.pol_low_offset = 16,					\
+>  	.pin_sel_mask = 0xff,					\
+> +	.channel_num = 8,					\
+>  
+>  #define INIT_MESON_A1_COMMON_DATA(irqs)				\
+>  	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,		\
+> @@ -90,6 +91,7 @@ struct meson_gpio_irq_params {
+>  	.edge_single_offset = 8,				\
+>  	.pol_low_offset = 0,					\
+>  	.pin_sel_mask = 0x7f,					\
+> +	.channel_num = 8,					\
+>  
+>  static const struct meson_gpio_irq_params meson8_params = {
+>  	INIT_MESON8_COMMON_DATA(134)
+> @@ -136,8 +138,9 @@ static const struct of_device_id meson_irq_gpio_matches[] = {
+>  struct meson_gpio_irq_controller {
+>  	const struct meson_gpio_irq_params *params;
+>  	void __iomem *base;
+> -	u32 channel_irqs[NUM_CHANNEL];
+> -	DECLARE_BITMAP(channel_map, NUM_CHANNEL);
+> +	u32 *channel_irqs;
+> +	unsigned long *channel_map;
+> +	u8 channel_num;
 
-- PADCTRL_GPIO_IRQ_CTRL[X]
-- bit[0-16]: 7 bits to chooge gpio source for irq line 2*[X] - 2
-- bit[16-22]:7 bits to chooge gpio source for irq line 2*[X] - 1
-  where X = 1-6
+Same thing. Though this is completely superfluous, see below.
 
-- PADCTRL_GPIO_IRQ_CTRL[7]
-  bit[0-11]: both edge trigger
+>  	spinlock_t lock;
+>  };
+>  
+> @@ -207,8 +210,8 @@ meson_gpio_irq_request_channel(struct meson_gpio_irq_controller *ctl,
+>  	spin_lock_irqsave(&ctl->lock, flags);
+>  
+>  	/* Find a free channel */
+> -	idx = find_first_zero_bit(ctl->channel_map, NUM_CHANNEL);
+> -	if (idx >= NUM_CHANNEL) {
+> +	idx = find_first_zero_bit(ctl->channel_map, ctl->channel_num);
+> +	if (idx >= ctl->channel_num) {
+>  		spin_unlock_irqrestore(&ctl->lock, flags);
+>  		pr_err("No channel available\n");
+>  		return -ENOSPC;
+> @@ -447,13 +450,25 @@ static int meson_gpio_irq_parse_dt(struct device_node *node, struct meson_gpio_i
+>  
+>  	ctl->params = match->data;
+>  
+> +	ctl->channel_num = ctl->params->channel_num;
 
-Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
----
- drivers/irqchip/irq-meson-gpio.c | 51 ++++++++++++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+Since you already have a pointer to params, why do you need to
+duplicate this information?
 
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index 98419428fcbd..c5d20a866c37 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -42,6 +42,11 @@
- #define REG_PIN_SEL_SHIFT(x)	(((x) % 4) * 8)
- #define REG_FILTER_SEL_SHIFT(x)	((x) * 4)
- 
-+/* use for s4 chips */
-+#define REG_EDGE_POL_S4	0x1c
-+#define REG_EDGE_POL_MASK_S4(x)				\
-+	({typeof(x) _x = (x); BIT(_x) | BIT(12 + (_x)); })
-+
- struct meson_gpio_irq_controller;
- static void meson8_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
- 				    unsigned int channel, unsigned long hwirq);
-@@ -50,6 +55,9 @@ static void meson_a1_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
- 				      unsigned int channel,
- 				      unsigned long hwirq);
- static void meson_a1_gpio_irq_init(struct meson_gpio_irq_controller *ctl);
-+static unsigned int
-+meson_s4_gpio_irq_sel_type(struct meson_gpio_irq_controller *ctl,
-+			   unsigned int idx, u32 val);
- 
- struct irq_ctl_ops {
- 	void (*gpio_irq_sel_pin)(struct meson_gpio_irq_controller *ctl,
-@@ -96,6 +104,17 @@ struct meson_gpio_irq_params {
- 	.pin_sel_mask = 0x7f,					\
- 	.channel_num = 8,					\
- 
-+#define INIT_MESON_S4_COMMON_DATA(irqs)                         \
-+	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,         \
-+			  meson_a1_gpio_irq_sel_pin,            \
-+			  meson_s4_gpio_irq_sel_type)           \
-+	.support_edge_both = true,				\
-+	.edge_both_offset = 0,					\
-+	.edge_single_offset = 12,				\
-+	.pol_low_offset = 0,					\
-+	.pin_sel_mask = 0xff,					\
-+	.channel_num = 12,					\
-+
- static const struct meson_gpio_irq_params meson8_params = {
- 	INIT_MESON8_COMMON_DATA(134)
- };
-@@ -126,6 +145,10 @@ static const struct meson_gpio_irq_params a1_params = {
- 	INIT_MESON_A1_COMMON_DATA(62)
- };
- 
-+static const struct meson_gpio_irq_params s4_params = {
-+	INIT_MESON_S4_COMMON_DATA(82)
-+};
-+
- static const struct of_device_id meson_irq_gpio_matches[] = {
- 	{ .compatible = "amlogic,meson8-gpio-intc", .data = &meson8_params },
- 	{ .compatible = "amlogic,meson8b-gpio-intc", .data = &meson8b_params },
-@@ -135,6 +158,7 @@ static const struct of_device_id meson_irq_gpio_matches[] = {
- 	{ .compatible = "amlogic,meson-g12a-gpio-intc", .data = &axg_params },
- 	{ .compatible = "amlogic,meson-sm1-gpio-intc", .data = &sm1_params },
- 	{ .compatible = "amlogic,meson-a1-gpio-intc", .data = &a1_params },
-+	{ .compatible = "amlogic,meson-s4-gpio-intc", .data = &s4_params },
- 	{ }
- };
- 
-@@ -202,6 +226,33 @@ static void meson_a1_gpio_irq_init(struct meson_gpio_irq_controller *ctl)
- 	meson_gpio_irq_update_bits(ctl, REG_EDGE_POL, BIT(31), BIT(31));
- }
- 
-+static unsigned int
-+meson_s4_gpio_irq_sel_type(struct meson_gpio_irq_controller *ctl,
-+			   unsigned int idx, unsigned int type)
-+{
-+	unsigned int val = 0;
-+
-+	meson_gpio_irq_update_bits(ctl, REG_EDGE_POL_S4, BIT(0 + (idx)), 0);
-+
-+	if (type == IRQ_TYPE_EDGE_BOTH) {
-+		val |= BIT(ctl->params->edge_both_offset + (idx));
-+		meson_gpio_irq_update_bits(ctl, REG_EDGE_POL_S4,
-+					   BIT(ctl->params->edge_both_offset + (idx)), val);
-+		return 0;
-+	}
-+
-+	if (type & (IRQ_TYPE_LEVEL_LOW | IRQ_TYPE_EDGE_FALLING))
-+		val |= BIT(ctl->params->pol_low_offset + (idx));
-+
-+	if (type & (IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING))
-+		val |= BIT(ctl->params->edge_single_offset  + (idx));
-+
-+	meson_gpio_irq_update_bits(ctl, REG_EDGE_POL,
-+				   REG_EDGE_POL_MASK_S4(idx), val);
-+
-+	return 0;
-+};
-+
- static int
- meson_gpio_irq_request_channel(struct meson_gpio_irq_controller *ctl,
- 			       unsigned long  hwirq,
+> +	ctl->channel_irqs = kcalloc(ctl->channel_num,
+> +				    sizeof(*ctl->channel_irqs), GFP_KERNEL);
+> +	if (!ctl->channel_irqs)
+> +		return -ENOMEM;
+> +
+> +	ctl->channel_map = bitmap_zalloc(ctl->params->channel_num, GFP_KERNEL);
+> +	if (!ctl->channel_map) {
+> +		kfree(ctl->channel_irqs);
+> +		return -ENOMEM;
+> +	}
+> +
+>  	ret = of_property_read_variable_u32_array(node,
+>  						  "amlogic,channel-interrupts",
+>  						  ctl->channel_irqs,
+> -						  NUM_CHANNEL,
+> -						  NUM_CHANNEL);
+> +						  ctl->channel_num,
+> +						  ctl->channel_num);
+>  	if (ret < 0) {
+> -		pr_err("can't get %d channel interrupts\n", NUM_CHANNEL);
+> +		pr_err("can't get %d channel interrupts\n", ctl->channel_num);
+>  		return ret;
+
+You are now leaking the bitmap and channel_map allocations.
+
+	M.
+
 -- 
-2.34.1
-
+Without deviation from the norm, progress is not possible.
 
 _______________________________________________
 linux-amlogic mailing list
