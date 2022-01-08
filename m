@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEDF3C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jan 2022 08:42:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A80CC433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jan 2022 08:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=leJeLzUWt414TgJGL8VgP+JMJke4dav2LC62gQXttgY=; b=ebp9kv50t9yxiH
-	Z6i8Edod30Yvu/d6g91dRhjLFcE7cKI/h6u+M5CJxre0IOHJhUbmA3eZtnn98Pxw1YW8LihzwSvyy
-	JONPc/PXkzfB5cCkJKrYZKf96kc1YD1N9AeNspr+wxBHHNs/lmuQS+ySec9ZXHSb6CDpnpprRo6y5
-	bmCMcWdOw7/X+eS2r3iZA5Y4j4x+jS2apKh0GVvLsRrEwj9Yj1jNmv3LY8TbDDjcvj7WqNfeGn0Zm
-	uCJtuB96/Q2F/MWI2tpzcoEt7w/pgDXyMr30QSNG98UH8RcHftULqjBZpjkqHqUARHhuCkNgr4Idp
-	dTVlTfaxbkhyEjYDc/Jw==;
+	List-Owner; bh=EgUHjb95FcrtdwHcFKuq3l3ANdwWJwNCpgWQebmStn0=; b=zeDlWJOQBOM9jr
+	TXVWg3YQ5MOpiajXAdg58f4L4Xig+cZCbFAdwOzNZdjERocyM5VURj6O6eEKvadQrllHLwwAZM6tN
+	xTRcqMVeCwQgJrX0wGegMX4tb8QcuXA6rg43/PhKRHt8botoiui3riZ7uDwxisRpy09U6komAwcRo
+	jSMuGvA+8uF21ZRrH99azADpc6JJ5qCdofQxZTjHbvPg7kyOxMply8Bvyd+/1y66AQ6L0oa7KcIYS
+	4HngwZmtpSpNxZgoFM9tzNzX2/g+caacOmR/T3Q1JbP1idYkH+WLIx5+LCvSPJPtAzVZipwiy/GfT
+	UMsv8bEyoa1nLleFS5hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n67JI-0068iS-GS; Sat, 08 Jan 2022 08:42:48 +0000
+	id 1n67JS-0068lG-DV; Sat, 08 Jan 2022 08:42:58 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n67Iw-0068c3-SY; Sat, 08 Jan 2022 08:42:28 +0000
+ id 1n67Iy-0068c3-G4; Sat, 08 Jan 2022 08:42:30 +0000
 Received: from droid09-sz.software.amlogic (10.28.8.19) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2;
  Sat, 8 Jan 2022 16:42:20 +0800
@@ -33,21 +33,19 @@ CC: Qianggui Song <qianggui.song@amlogic.com>, Kevin Hilman
  <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Jerome
  Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 1/4] dt-bindings: interrupt-controller: New binding for
- Meson-S4 SoCs
-Date: Sat, 8 Jan 2022 16:42:15 +0800
-Message-ID: <20220108084218.31877-2-qianggui.song@amlogic.com>
+ <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>
+Subject: [PATCH 2/4] irqchip/meson-gpio: support more than 8 channels gpio irq
+ line
+Date: Sat, 8 Jan 2022 16:42:16 +0800
+Message-ID: <20220108084218.31877-3-qianggui.song@amlogic.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220108084218.31877-1-qianggui.song@amlogic.com>
 References: <20220108084218.31877-1-qianggui.song@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.8.19]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220108_004226_963582_B071B9D8 
-X-CRM114-Status: UNSURE (   6.50  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220108_004229_383157_3FFAB571 
+X-CRM114-Status: GOOD (  13.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,25 +62,112 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Update dt-binding document for GPIO interrupt controller of Meson-S4 SoCs
+Current meson gpio irqchip driver only support 8 channels for gpio irq
+line, later chips may have more then 8 channels, so need to modify code
+to support more.
 
 Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
 ---
- .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/irqchip/irq-meson-gpio.c | 33 +++++++++++++++++++++++---------
+ 1 file changed, 24 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-index 23b18b92c558..9300736bf1ed 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-@@ -18,6 +18,7 @@ Required properties:
-     "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
-     "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
-     "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
-+    "amlogic,meson-a1-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
- - reg : Specifies base physical address and size of the registers.
- - interrupt-controller : Identifies the node as an interrupt controller.
- - #interrupt-cells : Specifies the number of cells needed to encode an
+diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
+index d90ff0b92480..6a7b4fb13452 100644
+--- a/drivers/irqchip/irq-meson-gpio.c
++++ b/drivers/irqchip/irq-meson-gpio.c
+@@ -16,7 +16,6 @@
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+ 
+-#define NUM_CHANNEL 8
+ #define MAX_INPUT_MUX 256
+ 
+ #define REG_EDGE_POL	0x00
+@@ -60,6 +59,7 @@ struct irq_ctl_ops {
+ 
+ struct meson_gpio_irq_params {
+ 	unsigned int nr_hwirq;
++	unsigned int channel_num;
+ 	bool support_edge_both;
+ 	unsigned int edge_both_offset;
+ 	unsigned int edge_single_offset;
+@@ -81,6 +81,7 @@ struct meson_gpio_irq_params {
+ 	.edge_single_offset = 0,				\
+ 	.pol_low_offset = 16,					\
+ 	.pin_sel_mask = 0xff,					\
++	.channel_num = 8,					\
+ 
+ #define INIT_MESON_A1_COMMON_DATA(irqs)				\
+ 	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,		\
+@@ -90,6 +91,7 @@ struct meson_gpio_irq_params {
+ 	.edge_single_offset = 8,				\
+ 	.pol_low_offset = 0,					\
+ 	.pin_sel_mask = 0x7f,					\
++	.channel_num = 8,					\
+ 
+ static const struct meson_gpio_irq_params meson8_params = {
+ 	INIT_MESON8_COMMON_DATA(134)
+@@ -136,8 +138,9 @@ static const struct of_device_id meson_irq_gpio_matches[] = {
+ struct meson_gpio_irq_controller {
+ 	const struct meson_gpio_irq_params *params;
+ 	void __iomem *base;
+-	u32 channel_irqs[NUM_CHANNEL];
+-	DECLARE_BITMAP(channel_map, NUM_CHANNEL);
++	u32 *channel_irqs;
++	unsigned long *channel_map;
++	u8 channel_num;
+ 	spinlock_t lock;
+ };
+ 
+@@ -207,8 +210,8 @@ meson_gpio_irq_request_channel(struct meson_gpio_irq_controller *ctl,
+ 	spin_lock_irqsave(&ctl->lock, flags);
+ 
+ 	/* Find a free channel */
+-	idx = find_first_zero_bit(ctl->channel_map, NUM_CHANNEL);
+-	if (idx >= NUM_CHANNEL) {
++	idx = find_first_zero_bit(ctl->channel_map, ctl->channel_num);
++	if (idx >= ctl->channel_num) {
+ 		spin_unlock_irqrestore(&ctl->lock, flags);
+ 		pr_err("No channel available\n");
+ 		return -ENOSPC;
+@@ -447,13 +450,25 @@ static int meson_gpio_irq_parse_dt(struct device_node *node, struct meson_gpio_i
+ 
+ 	ctl->params = match->data;
+ 
++	ctl->channel_num = ctl->params->channel_num;
++	ctl->channel_irqs = kcalloc(ctl->channel_num,
++				    sizeof(*ctl->channel_irqs), GFP_KERNEL);
++	if (!ctl->channel_irqs)
++		return -ENOMEM;
++
++	ctl->channel_map = bitmap_zalloc(ctl->params->channel_num, GFP_KERNEL);
++	if (!ctl->channel_map) {
++		kfree(ctl->channel_irqs);
++		return -ENOMEM;
++	}
++
+ 	ret = of_property_read_variable_u32_array(node,
+ 						  "amlogic,channel-interrupts",
+ 						  ctl->channel_irqs,
+-						  NUM_CHANNEL,
+-						  NUM_CHANNEL);
++						  ctl->channel_num,
++						  ctl->channel_num);
+ 	if (ret < 0) {
+-		pr_err("can't get %d channel interrupts\n", NUM_CHANNEL);
++		pr_err("can't get %d channel interrupts\n", ctl->channel_num);
+ 		return ret;
+ 	}
+ 
+@@ -507,7 +522,7 @@ static int meson_gpio_irq_of_init(struct device_node *node, struct device_node *
+ 	}
+ 
+ 	pr_info("%d to %d gpio interrupt mux initialized\n",
+-		ctl->params->nr_hwirq, NUM_CHANNEL);
++		ctl->params->nr_hwirq, ctl->channel_num);
+ 
+ 	return 0;
+ 
 -- 
 2.34.1
 
