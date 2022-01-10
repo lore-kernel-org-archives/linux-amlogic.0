@@ -4,78 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE554C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jan 2022 14:54:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FF0AC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jan 2022 16:18:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Subject:Cc:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Yusy7K+QAjQyVs4jOxRUFHFxkyMCQyFxIEe2ZVvthbU=; b=Q0fVP+yBgqKjdX
-	ZvK8WpgANVBbpuW+Y3TyhNoxqhFjpndVAa++pMG3Zn7Zwyrqoe7ZJmOeWVePmNRmKyFNkyV2x7EEt
-	bWvGvbNHLFp1DMXOujlxXOoUg6erOUuLZdw3vNw4DUZVK/Vdtymq71HAUBhJVk+4sTUGBqUmG/+0S
-	faZ472h8LTEjLDtq9SrkprH3VQpeZHDESs25sjQNzyN9ohclSt94xiam4whzxaraZwg7yzuXNkb+5
-	vhCatXqZwrY/r/bcnsJABYQpFNhjv2u6Pbe7SOq8fBMTtRO4lQ8xu28tBc6ykGyArrkqDj9cmI7gQ
-	X5fCnK7GmaTRY1KwxhwA==;
+	List-Owner; bh=/GT9GNV9FDgavU7T2xIBptAjrkbRiljBA3xctV6vPwg=; b=zYMjPqnL6blL1v
+	siLWQSGJUdo9cUBVgLBqxu7QbaV/tcjgtEck7f2+E0e1m1jTMFLyrUPr9Yx7NfdeODUcwoFZFjMqq
+	oW4Vam9s54fNOyi6JHCUnZAlREprGTmSpzmljl04FiYK4G1J+M5sQSLWe6hb3iSo13J8rEP/h+S92
+	Mwg4lVvB+Sh7jNLSf94YZZppgKRtCtDWWiIvjvXqjelGQHQmyB/x/JA85iRjGoVIjePYQVlHBe0h9
+	xjf/i2JTBlzSzvSYj8CVCmTWC7SN9kkXp8YnY7fDW20cH3hXoPh3hco+Iwgby2cICsKmYt6f9IxYP
+	HfkXGI136Yr8kFU2+dYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n6w4K-00BvWB-RX; Mon, 10 Jan 2022 14:54:44 +0000
+	id 1n6xND-00CKbg-Q2; Mon, 10 Jan 2022 16:18:19 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n6w4G-00BvTa-Ct; Mon, 10 Jan 2022 14:54:43 +0000
+ id 1n6xNA-00CKZy-Jg; Mon, 10 Jan 2022 16:18:18 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7E55E612D3;
- Mon, 10 Jan 2022 14:54:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E53CBC36AE5;
- Mon, 10 Jan 2022 14:54:38 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 93719612E8;
+ Mon, 10 Jan 2022 16:18:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AB96C36AED;
+ Mon, 10 Jan 2022 16:18:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1641826478;
- bh=2GFKBVlGVyrdt8jr/lsSHz+rU5gODeLSDcA2EU57NWs=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=PoPa3loZBSqTs8x3vUnx56qvt9faJ7woF1rTSqBULcv0F3Uapc6wCySo1zGJZ1910
- etZDPtHPvKNrWDPtDIHzwPsi2XRmvIfgatpye+GpUT/ZhXPzGEm+LFs33hAwR1KbDe
- 863e+QTz5DBgYnAbXDGLqlipxHEKIP1K3ybR+URQH6xgCfLOvYoNsWKhpTZp166XE6
- vp6G/5r6frFNhWqVTc3Im0Q1r5R2HJT19zFPjBLTcE3XVIb66409LXQpbtJL5qXjRa
- W7dis9BSK9t+3Ti1CfzjM/IAAg6IVP3IW/mVVKYdH+dWwAh01GGnvh6Erq27lwIBaT
- B+ycFyhNYpNqw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
- by disco-boy.misterjones.org with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <maz@kernel.org>)
- id 1n6w4D-00H9tA-1H; Mon, 10 Jan 2022 14:54:37 +0000
-Date: Mon, 10 Jan 2022 14:54:36 +0000
-Message-ID: <87lezntzdf.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: qianggui.song <Qianggui.Song@amlogic.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Kevin Hilman <khilman@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH 4/4] irqchip/meson-gpio: Add support for meson s4 SoCs
-In-Reply-To: <835a3f28-ec6a-9cd2-d574-5ef87b630fb3@amlogic.com>
-References: <20220108084218.31877-1-qianggui.song@amlogic.com>
- <20220108084218.31877-5-qianggui.song@amlogic.com>
- <87r19itrjx.wl-maz@kernel.org>
- <835a3f28-ec6a-9cd2-d574-5ef87b630fb3@amlogic.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: Qianggui.Song@amlogic.com, tglx@linutronix.de,
- khilman@baylibre.com, narmstrong@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
- SAEximRunCond expanded to false
+ s=k20201202; t=1641831495;
+ bh=rS4V/WO3etbLxGRygeuWlcXQr4ydR1z6tfJWlu1EtTE=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=d2mnaon2KYPN/QbKt30EQ243zPBjMmAIJ8VcqXYrjJ6ReupubGADw+v86TvDBoDCU
+ InpXP3k2Vj0uBubhUDqClgoiBbDd2SOcmUFC2Uy+xoMI48PpqcqIVAxv8JCIEBPpzf
+ AINBzxbMd3Y0jj8IaOsP5aQHkVMOazB5H63MjE5Zv+gbmIovnfvd7flys5uGVZoWkc
+ C7bNiXOFUMlIG6ZXHauoU4yiGlB6vPv8vAebmpwTB9dYmajQOXTma5eG4hHC4hOsNe
+ QMHM8vqJfjV3qMiRUTRqT0A/XElQr+9BS+XumDIWdilDv7aA5t+xOTezWvRxsFbNAO
+ syjdwTdIbx4Xw==
+Received: by mail-ed1-f43.google.com with SMTP id k15so55479647edk.13;
+ Mon, 10 Jan 2022 08:18:14 -0800 (PST)
+X-Gm-Message-State: AOAM533P3A7Ds7uP/WxDSN5FJ1mOt5sBpFprygJrn2dojBvQddTju3fn
+ gOYI9WXWPHX2Lk9XIOaElw5Eo754mjVII97LjA==
+X-Google-Smtp-Source: ABdhPJxzI/V2iQ9Y/D5SfWoyQ05XpKPBwP6qYhOYyRpWpiYpvr4ivTJ/0gQCDjzplq09Hl8rg61Ix1TRefJ0/NcCXNM=
+X-Received: by 2002:aa7:ce88:: with SMTP id y8mr357803edv.303.1641831493386;
+ Mon, 10 Jan 2022 08:18:13 -0800 (PST)
+MIME-Version: 1.0
+References: <20220110104214.25321-1-yu.tu@amlogic.com>
+ <20220110104214.25321-2-yu.tu@amlogic.com>
+In-Reply-To: <20220110104214.25321-2-yu.tu@amlogic.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 10 Jan 2022 10:18:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKFLnfc5eaUHeo6EkbS0kkpA94rh=Zuda9V9aCragdVxw@mail.gmail.com>
+Message-ID: <CAL_JsqKFLnfc5eaUHeo6EkbS0kkpA94rh=Zuda9V9aCragdVxw@mail.gmail.com>
+Subject: Re: [PATCH V5 1/5] dt-bindings: serial: meson: Drop legacy compatible.
+To: Yu Tu <yu.tu@amlogic.com>
+Cc: "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ devicetree@vger.kernel.org, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220110_065440_617914_A93A6DA9 
-X-CRM114-Status: GOOD (  30.74  )
+X-CRM114-CacheID: sfid-20220110_081816_723560_74202F3D 
+X-CRM114-Status: GOOD (  12.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,88 +87,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 10 Jan 2022 12:32:23 +0000,
-qianggui.song <Qianggui.Song@amlogic.com> wrote:
-> 
-> 
-> 
-> On 1/8/22 7:06 PM, Marc Zyngier wrote:
-> > 
-> > On Sat, 08 Jan 2022 08:42:18 +0000,
-> > Qianggui Song <qianggui.song@amlogic.com> wrote:
-> >> 
-> >> The meson s4 SoCs support 12 gpio irq lines compared with previous
-> >> serial chips and have something different, details are as below.
-> >> 
-> >> IRQ Number:
-> >> - 80:68 13 pins on bank Z
-> >> - 67:48 20 pins on bank X
-> >> - 47:36 12 pins on bank H
-> >> - 35:24 12 pins on bank D
-> >> - 23:22 2  pins on bank E
-> >> - 21:14 8  pins on bank C
-> >> - 13:0  13 pins on bank B
-> >> 
-> >> - PADCTRL_GPIO_IRQ_CTRL0
-> >>    bit[31]:    enable/disable the whole irq lines
-> > 
-> > s/the whole/all the/
-> Okay
-> > 
-> >>    bit[12-23]: single edge trigger
-> >>    bit[0-11]:  poll trigger
-> >> 
-> >> - PADCTRL_GPIO_IRQ_CTRL[X]
-> >> - bit[0-16]: 7 bits to chooge gpio source for irq line 2*[X] - 2
-> > 
-> > choose?
-> yes it is choose
-> > 
-> >> - bit[16-22]:7 bits to chooge gpio source for irq line 2*[X] - 1
-> >>    where X = 1-6
-> >> 
-> >> - PADCTRL_GPIO_IRQ_CTRL[7]
-> >>    bit[0-11]: both edge trigger
-> > 
-> > This information would fit better in the code than in the commit
-> > message.
-> > 
-> will copy this to code.
-> >> 
-> >> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
-> >> ---
-> >>   drivers/irqchip/irq-meson-gpio.c | 51 ++++++++++++++++++++++++++++++++
-> >>   1 file changed, 51 insertions(+)
-> >> 
-> >> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-> >> index 98419428fcbd..c5d20a866c37 100644
-> >> --- a/drivers/irqchip/irq-meson-gpio.c
-> >> +++ b/drivers/irqchip/irq-meson-gpio.c
-> >> @@ -42,6 +42,11 @@
-> >>   #define REG_PIN_SEL_SHIFT(x)	(((x) % 4) * 8)
-> >>   #define REG_FILTER_SEL_SHIFT(x)	((x) * 4)
-> >>   +/* use for s4 chips */
-> > 
-> > s/use/Used/
-> okay
-> > 
-> >> +#define REG_EDGE_POL_S4	0x1c
-> >> +#define REG_EDGE_POL_MASK_S4(x)				\
-> >> +	({typeof(x) _x = (x); BIT(_x) | BIT(12 + (_x)); })
-> > 
-> > Why on Earth should this macro handle multiple types?
-> If I use  #define REG_EDGE_POL_MASK_S4(x) (BIT(x) | BIT(12 + (x)), when
-> run git format-patch -1 --stdout | ./script/checkpath.pl --strict -,
-> will get a message
-> CHECK: Macro argument reuse 'x' - possible side-effects?
+On Mon, Jan 10, 2022 at 4:42 AM Yu Tu <yu.tu@amlogic.com> wrote:
+>
+> Deprecated, don't use anymore because legacy amlogic,meson-gx-uart
+> compatible. Don't differentiate between GXBB, GXL and G12A which
+> have different revisions of the UART IP. So it's split into
+> GXBB,GXL and G12A.
 
-Well, either expand the macro directly in the code (after all, there
-is only one use for it) or make this a C function instead of a macro.
+You are breaking compatibility. If your dts is updated to use the new
+compatible, then a kernel without the change will not work anymore. It
+worked before without understanding the changes you are making. It
+should continue to. A compatible value like this would accomplish what
+you want:
 
-	M.
+"amlogic,meson-gxbb-uart", "amlogic,meson-gx-uart", "amlogic,meson-ao-uart"
 
--- 
-Without deviation from the norm, progress is not possible.
+A new kernel will match on "amlogic,meson-gxbb-uart" or
+"amlogic,meson-gx-uart" depending if the dtb is updated or not. An old
+kernel will continue to match on "amlogic,meson-gx-uart".
+
+If you are going to go breaking things, the power domain distinction
+in the compatible is odd...
+
+
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
