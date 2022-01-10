@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A5A4C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jan 2022 09:45:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D30FEC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jan 2022 09:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,78 +13,76 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=rFUXjEdQM4x7OpL3Qb21xFo4erfiQFU6ljldiM0404c=; b=PRcOwC8keQPKWYsu0yeR8X31yv
-	CFDqxrXhZIg13MTSzLmxtw1TrTbL6bW2lYb3qoDauxCSbujBi1g179oFLy7Bev6zdw2sEGISw6FhX
-	+ZnVY5bybOwSstDiw72RVs56M7JpFkX2JnZr+1hYKC/eUItKOM1zCIHhpa5WnjaZIdSwUPyVMAggO
-	mz9mQ3UjHGWpHBKciowFKfjJ6URhJyt8lHej6Sqh/ENOckAh3YEJoWv5F8MsrW2mH6fMrZhGCgGwn
-	YTICNdc7/qD3KV49V5PaxZ6vrD+//lwidJgc+jIByXM1pn6rDcnD2O+LqkvaYluRIOJqQmtdWmgCB
-	5fFXzjcA==;
+	bh=+vyJglL7XcUDhwqgiNdvnqO8KKoXBRyaA8DyMHSqe0w=; b=aUv3XTS4EQvX0zSyKl3DV6mDRB
+	ggNYwsqYOcSq/J9C/bCEHNu1BrUnN9+21edYll4uej/+lq57OAX81i8gsJw+9F/zVhLJF8CjpUx3Y
+	JrFQd1U3q+WTkgLHyFdyO6hQ61aolQi7n39/idNsO+BNCklVe3zXFHkLFVby8jr9M8Q8KOYEwdGm+
+	hOUHdvii2gCboELC60G7ke1m+rXUmwrncsq53nXS1xwvTenjJ5iXYoBi7vXerMkg7y0mQG5Zllnt6
+	Uiw5W1YOZPVUmXW9jwQjXfftDu7KNnPFssmP6cEuM9O8CnMtw7kw0Gl3mq/K+PaYCcdTOnSQQnpGn
+	ILAAzq0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n6rEw-00AX8R-Mc; Mon, 10 Jan 2022 09:45:22 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1n6rI6-00AYm4-Go; Mon, 10 Jan 2022 09:48:38 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n6rCi-00AVwV-Rx
- for linux-amlogic@lists.infradead.org; Mon, 10 Jan 2022 09:43:06 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id r9so23800137wrg.0
- for <linux-amlogic@lists.infradead.org>; Mon, 10 Jan 2022 01:43:04 -0800 (PST)
+ id 1n6rFZ-00AXRM-FF
+ for linux-amlogic@lists.infradead.org; Mon, 10 Jan 2022 09:46:03 +0000
+Received: by mail-wm1-x330.google.com with SMTP id p18so1530361wmg.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 10 Jan 2022 01:46:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:cc:references:from:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=Rzhy6yEPJVlT7RLq5OS2aYkHYtU0ICRm0bniQL4KIpc=;
- b=gGJCnpebj8VuX8+ZFZDudraazK3ixsOrmItH9h/ZjnnxVHz4RBuyDwMhG80kB2gBSm
- YyaD7Dde6eXTnhBze161WX2Aw3Rcft7scBrj0AtOFwmbqhAjLNdIBbSVM/KhJkHFg4ua
- YyTIyZMAp5NzYSv3sEgki0yq+bQLS4IHiWplx0osb5Ih38TQPadm6wSZF+UEZfJPYPxk
- bvLoVDT/lxL4pna7BRn+ar7mbo+fNPO45xfa76D5jsk00IHp8FFdInVfrxtT9+v8zXE6
- lCzukCMUMaa5dOi2ID8+bMVC4wZBvaXngcovPX9ZdQkEXReIosSGnyIJ3VDB0IQgb/kd
- +tvg==
+ bh=Eacw/tyhjTY73nKE+OAvPP936rhHlBL8K/HAn04RZx8=;
+ b=5yHruTufsx2YyQ9ACpftxElp7YafCGeJeRbmvO6bkBA8J5ZL0UJO84gtytWcClAiOJ
+ manvwG83Kft7Saxv6ZZI7TZVBy9kn+5aG6w3GvoLmn6iGUdPaU9XL3tjz5NyXV8L8MjW
+ JBZisXE/LWM8eJoQ6/M6vkgu64lplvvNSYnjGNYqgfMUSr2CN12oRdiiGDHekIKqmZzD
+ Ijj1DFGghFh++6uE+jHR11vE+pwJtW8Bq1x5a19SN84vUjXA7gzqkeQW+mQ6cYgf9QN5
+ uqU1rcTiX8QlZPMaW6qKstcmAztEBYKKyGc17WM+tjrSxyh44qqEeOoGkEqEuATcmxnx
+ gSnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Rzhy6yEPJVlT7RLq5OS2aYkHYtU0ICRm0bniQL4KIpc=;
- b=ZsKnfTXHarFrOc8MVeURoZBdZByiv0jjM/BTfS7JcSFWgBTR8J87ARV0P9zT6E18XH
- ww0UovuJ7dPVT5geoqbL5kMNEBrYILvLcgeJd1pA/x0qzUiezfel1iSqW+PpwbeQljCN
- iFu1E9YH5GCpk+CsAXaCAQzI6ZKmiBLxyKRWyBmxeIHFCtzHQWVEZNsCmVCQilt5cWZj
- WBnhES6a7YDIyLto1u8XeXJoc0t23yCWjHndK19bfrCR/njQQe/6pvYHvnk26sNKLdPX
- A4KJ9UL1EFbkfHSdDnvKI9xuKb8krSU4Euzi/ZIt6w21nG0vV8h3S5QhAU87vig1zH0q
- DN7Q==
-X-Gm-Message-State: AOAM531TRa9CbHCpLckSSSLwkuXpz6BpnVimMq0KnF4M+KJ/9a0IP6f2
- Gd4yt7UPCKhOxYcl6aEcHNVj3g==
-X-Google-Smtp-Source: ABdhPJxNhr//nhb1+5lbwdo8C/T3TotD1T9N8DhX4EvRDmin16/DX9D97BInHHOT1C6UgTytdSAN5g==
-X-Received: by 2002:adf:d0c2:: with SMTP id z2mr2788363wrh.335.1641807783340; 
- Mon, 10 Jan 2022 01:43:03 -0800 (PST)
+ bh=Eacw/tyhjTY73nKE+OAvPP936rhHlBL8K/HAn04RZx8=;
+ b=3vNTFJfotBJhU7ocZnD6aj3lCGZcW3FrQAq0Qulx9X3PHE7O4HDbVIeYMfekIVO1ke
+ SBEMrcjj3LLUkz1XJbNhtNjgGMWNV8Jj/fIp9af4DZql7aSZGhsoWnIdHPuOjny0hvQu
+ SEpqpzHsdZk3OoCWCo/XMHy8n3lEmdA3eYEx356uR1gRFoxLJ6FQKwdDDE259oka7WCj
+ VNn+40r0YR6FUSp5ja0XoNgokM4ovlNqMVJI31GxtzuezBBxx+7jM5CWUWCp8PDb6/BT
+ j/jJ0Otq2tSsU5zsoasETlO0owxTnX9GJ40CsY44DFIWTOnSIsuRC02bw5BUwFKpe7+s
+ Qo4Q==
+X-Gm-Message-State: AOAM5309THIEYOnjYGyZlf1eZvJDv3ysg1m0Hv8uZokAS1Oz1nDkSXLI
+ Nt6BHl3KfNByEZAvGUzrDOL8xQ==
+X-Google-Smtp-Source: ABdhPJzrUKFjgDnkaX/O5vXtjiHHwkmXO4NlmMNAvu986vJGYFnR96tPDGiPyVJv+4AGLYsqxlPPiQ==
+X-Received: by 2002:a05:600c:3ba7:: with SMTP id
+ n39mr21842082wms.88.1641807959521; 
+ Mon, 10 Jan 2022 01:45:59 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:94e5:2e36:6bcc:a9f1?
  ([2001:861:44c0:66c0:94e5:2e36:6bcc:a9f1])
- by smtp.gmail.com with ESMTPSA id q14sm6373285wro.58.2022.01.10.01.43.02
+ by smtp.gmail.com with ESMTPSA id g12sm6807309wrd.71.2022.01.10.01.45.58
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 Jan 2022 01:43:03 -0800 (PST)
-Subject: Re: [PATCH V4 0/5] the UART driver compatible with
-To: Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>, Jiri Slaby <jirislaby@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220110085604.18042-1-yu.tu@amlogic.com>
- <1f4b9288-c7ff-c895-425c-187d058642b9@baylibre.com>
- <a19771e6-d1d4-d1ef-9819-21e2147aad16@amlogic.com>
+ Mon, 10 Jan 2022 01:45:59 -0800 (PST)
+Subject: Re: [PATCH 3/6] drm/meson: venc: add ENCL encoder setup for MIPI-DSI
+ output
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220107145515.613009-1-narmstrong@baylibre.com>
+ <20220107145515.613009-4-narmstrong@baylibre.com>
+ <CAFBinCA-df8Sedqh8Arh_BsMCHYv6-Kb3owrkFBd=W_EY2qxSA@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <d14fdcd5-99c2-6aa0-085e-5355ecc0febf@baylibre.com>
-Date: Mon, 10 Jan 2022 10:43:02 +0100
+Message-ID: <6f62eeaa-1feb-274a-e1e8-377c582c428f@baylibre.com>
+Date: Mon, 10 Jan 2022 10:45:58 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <a19771e6-d1d4-d1ef-9819-21e2147aad16@amlogic.com>
+In-Reply-To: <CAFBinCA-df8Sedqh8Arh_BsMCHYv6-Kb3owrkFBd=W_EY2qxSA@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220110_014304_958273_DC527286 
-X-CRM114-Status: GOOD (  19.41  )
+X-CRM114-CacheID: sfid-20220110_014601_563045_F9AFA2D9 
+X-CRM114-Status: GOOD (  29.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,54 +94,144 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTAvMDEvMjAyMiAxMDozNSwgWXUgVHUgd3JvdGU6Cj4gSGkgTmVpbCwKPiDCoMKgwqDCoFRo
-YW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgcmVwbHkuCj4gCj4gT24gMjAyMi8xLzEwIDE3OjI3
-LCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+Cj4+IEhpLAo+
-Pgo+PiBPbiAxMC8wMS8yMDIyIDA5OjU1LCBZdSBUdSB3cm90ZToKPj4+IFVzaW5nIHRoZSBjb21t
-b24gQ2xvY2sgY29kZSB0byBkZXNjcmliZSB0aGUgVUFSVCBiYXVkIHJhdGUKPj4+IGNsb2NrIG1h
-a2VzIGl0IGVhc2llciBmb3IgdGhlIFVBUlQgZHJpdmVyIHRvIGJlIGNvbXBhdGlibGUKPj4+IHdp
-dGggdGhlIGJhdWQgcmF0ZSByZXF1aXJlbWVudHMgb2YgdGhlIFVBUlQgSVAgb24gZGlmZmVyZW50
-Cj4+PiBtZXNvbiBjaGlwcy4gQWRkIE1lc29uIFM0IFNvQyBjb21wYXRpYmxlLgo+Pj4KPj4+IFl1
-IFR1ICg1KToKPj4+IMKgwqAgZHQtYmluZGluZ3M6IHNlcmlhbDogbWVzb246IERyb3AgY29tcGF0
-aWJsZSA9IGFtbG9naWMsbWVzb24tZ3gtdWFydC4KPj4+IMKgwqAgdHR5OiBzZXJpYWw6IG1lc29u
-OiBSZXF1ZXN0IHRoZSByZWdpc3RlciByZWdpb24gaW4gbWVzb25fdWFydF9wcm9iZSgpCj4+PiDC
-oMKgIHR0eTogc2VyaWFsOiBtZXNvbjogVGhlIFVBUlQgYmF1ZCByYXRlIGNhbGN1bGF0aW9uIGlz
-IGRlc2NyaWJlZCB1c2luZwo+Pj4gwqDCoMKgwqAgdGhlIGNvbW1vbiBjbG9jayBjb2RlLgo+Pj4g
-wqDCoCB0dHk6IHNlcmlhbDogbWVzb246IE1ha2UgdGhlIGJpdDI0IGFuZCBiaXQgWzI2LDI3XSBv
-ZiB0aGUgVUFSVF9SRUc1Cj4+PiDCoMKgwqDCoCByZWdpc3RlciB3cml0YWJsZQo+Pj4gwqDCoCB0
-dHk6IHNlcmlhbDogbWVzb246IEFkZGVkIFM0IFNPQyBjb21wYXRpYmlsaXR5Lgo+Pgo+PiBXZWly
-ZCwgdGhlIHN1YmplY3RzIGFyZSBmaW5lIGluIHRoZSBjb3ZlciBsZXR0ZXIgYnV0IGFyZSBhbGwg
-dHJ1bmNhdGVkIGluIHRoZSBlbWFpbCB0aHJlYWQ6Cj4+IFtQQVRDSCBWNCAwLzVdIHRoZSBVQVJU
-IGRyaXZlciBjb21wYXRpYmxlIHdpdGgKPj4gW1BBVENIIFY0IDEvNV0gZHQtYmluZGluZ3M6IHNl
-cmlhbDogbWVzb246IERyb3AKPj4gW1BBVENIIFY0IDIvNV0gdHR5OiBzZXJpYWw6IG1lc29uOiBS
-ZXF1ZXN0IHRoZSByZWdpc3Rlcgo+PiAuLi4KPj4gT25seSB0aGUgbGFzdCBvbmUgaXMgT0suCj4+
-Cj4gSSBzYXcgdGhlIHN1YmplY3Qgd2FzIGEgbGl0dGxlIGxvbmcsIEkgY2hhbmdlZCBpdCBtYW51
-YWxseSwgZG8gSSBuZWVkIHRvIHJlZ2VuZXJhdGUgYW5kIHNlbmQ/Cgp5ZXMgcGxlYXNlLCB0aGUg
-bWFpbCBzdWJqZWN0IHdpbGwgYmUgdGhlIGNvbW1pdCB0aXRsZSBzbyBpdCBtdXN0IGJlIHNob3J0
-IGJ1dCBkZXNjcmlwdGl2ZSBlbm91Z2guCgoiZHQtYmluZGluZ3M6IHNlcmlhbDogbWVzb246IERy
-b3AiIGlzIHRvbyBzaG9ydC4KCiJkdC1iaW5kaW5nczogc2VyaWFsOiBtZXNvbjogRHJvcCBjb21w
-YXRpYmxlID0gYW1sb2dpYyxtZXNvbi1neC11YXJ0IiBpcyBvayBidXQgZm9ybXVsYXRpb24gaXMg
-d3JvbmcsCmFuZCByZW1vdmUgc3BlY2lhbCBjaGFyYWN0ZXJzIGxpa2UgIj0iLCAiWyIsICJdIi4u
-LgoKVGhlIGJlc3QgdGl0bGUgY291bGQgYmUgOgoiZHQtYmluZGluZ3M6IHNlcmlhbDogbWVzb246
-IERyb3AgbGVnYWN5IGFtbG9naWMsbWVzb24tZ3gtdWFydCBjb21wYXRpYmxlIgoKSWYgdGhlIHN1
-YmplY3QgaXQgdG9vIGxvbmcsIHJlZHVjZSBpdCBhbmQgZW5oYW5jZSB0aGUgY29tbWl0IG1lc3Nh
-Z2Ugd2l0aCB0aGUgZGV0YWlscy4KCk5laWwKCj4+Cj4+Pgo+Pj4gVjEgLT4gVjI6IFVzZSBDQ0Yg
-dG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRlIGNsb2NrLk1ha2Ugc29tZSBjaGFuZ2VzIGFz
-Cj4+PiBkaXNjdXNzZWQgaW4gdGhlIGVtYWlsCj4+PiBWMiAtPiBWMzogYWRkIGNvbXBhdGlibGUg
-PSAiYW1sb2dpYyxtZXNvbi1neC11YXJ0Ii4gQmVjYXVzZSBpdCBtdXN0IGNoYW5nZQo+Pj4gdGhl
-IERUUyBiZWZvcmUgaXQgY2FuIGJlIGRlbGV0ZWQKPj4+IFYzIC0+IFY0OiBDaGFuZ2UgQ0NGIHRv
-IGRlc2NyaWJlIHRoZSBVQVJUIGJhdWQgcmF0ZSBjbG9jayBhcyBkaXNjdXNzZWQKPj4+IGluIHRo
-ZSBlbWFpbC4KPj4+Cj4+PiBMaW5rOmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LWFtbG9n
-aWMvMjAyMTEyMzAxMDIxMTAuMzg2MS00LXl1LnR1QGFtbG9naWMuY29tLwo+Pj4KPj4+IMKgIC4u
-Li9iaW5kaW5ncy9zZXJpYWwvYW1sb2dpYyxtZXNvbi11YXJ0LnlhbWzCoMKgIHzCoCAxMCArLQo+
-Pj4gwqAgZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuY8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgfCAyNDQgKysrKysrKysrKysrLS0tLS0tCj4+PiDCoCAyIGZpbGVzIGNoYW5nZWQs
-IDE3NyBpbnNlcnRpb25zKCspLCA3NyBkZWxldGlvbnMoLSkKPj4+Cj4+CgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 07/01/2022 23:33, Martin Blumenstingl wrote:
+>  Hi Neil,
+> 
+> On Fri, Jan 7, 2022 at 3:57 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> This adds supports for the ENCL encoder connected to a MIPI-DSI transceiver on the
+>> Amlogic AXG SoCs> Should this be "AXG and newer SoCs" or is this really AXG specific?
+
+Yup should be, thanks for noting
+
+> 
+> [...]
+>> +#define GAMMA_VCOM_POL    7     /* RW */
+>> +#define GAMMA_RVS_OUT     6     /* RW */
+>> +#define ADR_RDY           5     /* Read Only */
+>> +#define WR_RDY            4     /* Read Only */
+>> +#define RD_RDY            3     /* Read Only */
+>> +#define GAMMA_TR          2     /* RW */
+>> +#define GAMMA_SET         1     /* RW */
+>> +#define GAMMA_EN          0     /* RW */
+>> +
+>> +#define H_RD              12
+>> +#define H_AUTO_INC        11
+>> +#define H_SEL_R           10
+>> +#define H_SEL_G           9
+>> +#define H_SEL_B           8
+> I think all values above can be wrapped in the BIT() macro, then you
+> don't need that below.
+
+yep
+
+> 
+>> +#define HADR_MSB          7            /* 7:0 */
+>> +#define HADR              0            /* 7:0 */
+> Here GENMASK(7, 0) can be used for HADR
+> 
+> Also I think prefixing all macros above with their register name
+> (L_GAMMA_CNTL_PORT_ or L_GAMMA_ADDR_PORT_) will make the code easier
+> to read.
+> 
+> [...]
+>> +       writel_relaxed(0x8000, priv->io_base + _REG(ENCL_VIDEO_MODE));
+> The public S905 datasheet calls 0x8000 ENCL_PX_LN_CNT_SHADOW_EN
+
+Thanks for searching !
+
+> 
+>> +       writel_relaxed(0x0418, priv->io_base + _REG(ENCL_VIDEO_MODE_ADV));
+> According to the public S905 datasheet this is:
+> - BIT(3): ENCL_VIDEO_MODE_ADV_VFIFO_EN
+> - BIT(4): ENCL_VIDEO_MODE_ADV_GAIN_HDTV
+> - BIT(10): ENCL_SEL_GAMMA_RGB_IN
+> 
+>> +       writel_relaxed(0x1000, priv->io_base + _REG(ENCL_VIDEO_FILT_CTRL));
+> I don't know the exact name but the 32-bit vendor kernel sources have
+> a comment [0] saying that 0x1000 is "bypass filter"
+> But maybe we can simply call it ENCL_VIDEO_FILT_CTRL_BYPASS_FILTER
+
+Yep
+
+> 
+> [...]
+>> +       writel_relaxed(3, priv->io_base + _REG(ENCL_VIDEO_RGBIN_CTRL));
+> The public S905 datasheet says:
+> - BIT(0): USE RGB data from VIU, furthermore a comment in the 3.10
+> kernel sources make this more clear: bit[0] 1:RGB, 0:YUV
+> - BIT(1): CFG_VIDEO_RGBIN_ZBLK
+> 
+>> +       /* default black pattern */
+>> +       writel_relaxed(0, priv->io_base + _REG(ENCL_TST_MDSEL));
+>> +       writel_relaxed(0, priv->io_base + _REG(ENCL_TST_Y));
+>> +       writel_relaxed(0, priv->io_base + _REG(ENCL_TST_CB));
+>> +       writel_relaxed(0, priv->io_base + _REG(ENCL_TST_CR));
+>> +       writel_relaxed(1, priv->io_base + _REG(ENCL_TST_EN));
+>> +       writel_bits_relaxed(BIT(3), 0, priv->io_base + _REG(ENCL_VIDEO_MODE_ADV));
+> same as above: ENCL_VIDEO_MODE_ADV_VFIFO_EN
+> 
+>> +
+>> +       writel_relaxed(1, priv->io_base + _REG(ENCL_VIDEO_EN));
+>> +
+>> +       writel_relaxed(0, priv->io_base + _REG(L_RGB_BASE_ADDR));
+>> +       writel_relaxed(0x400, priv->io_base + _REG(L_RGB_COEFF_ADDR));
+> note to self: L_RGB_COEFF_ADDR seems to contain some "magic" value,
+> there's no further info in the 3.10 kernel sources or datasheet
+> 
+>> +       writel_relaxed(0x400, priv->io_base + _REG(L_DITH_CNTL_ADDR));
+> According to the public S905 datasheet BIT(10) is DITH10_EN (10-bits
+> Dithering to 8 Bits Enable).
+> I am not sure if this would belong to the selected video mode/bit depth.
+> I'll let other reviewers decide if this is relevant or not because I don't know.
+
+
+it would probably for pre-GXL when the pipeline was 8bit, would probably need to add
+a comment if someone wants to us DPI/LVDS on pre-GXL.
+
+> 
+> [...]
+>> +       writel_relaxed(0, priv->io_base + _REG(L_INV_CNT_ADDR));
+>> +       writel_relaxed(BIT(4) | BIT(5),
+>> +                      priv->io_base + _REG(L_TCON_MISC_SEL_ADDR));
+> the public S905 datasheet states:
+> - BIT(4): STV1_SEL (STV1 is frame Signal)
+> - BIT(5): STV2_SEL (STV2 is frame Signal)
+> This doesn't seem helpful to me though, but maybe you can still create
+> preprocessor macros for this (for consistency)?
+
+yep
+
+> 
+> [...]
+>> +       switch (priv->venc.current_mode) {
+>> +       case MESON_VENC_MODE_MIPI_DSI:
+>> +               writel_relaxed(0x200,
+>> +                              priv->io_base + _REG(VENC_INTCTRL));
+> the public S905 datasheet documents this as:
+> - BIT(9): ENCP_LNRST_INT_EN (Progressive encoder filed change interrupt enable)
+> Please add a preprocessor macro to make it consistent with
+> VENC_INTCTRL_ENCI_LNRST_INT_EN which already exists and is used below.
+
+Yep
+
+Thanks for the review :-)
+
+Neil
+
+> 
+> 
+> Best regards,
+> Martin
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
