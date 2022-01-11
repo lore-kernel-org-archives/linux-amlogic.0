@@ -4,65 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A66B0C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jan 2022 12:03:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 098D7C433FE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jan 2022 22:55:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:Subject:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7wLChz34tl2SEW0GmkzPaGpzYcrbAyWwULzcDcTEUns=; b=WFgSADutX3rRio
-	v5gzQMkHsQMmIj9hv10ysuygi2hcnbHOlluoD2aEU6zSieHAzqOTx/NEwZAtI9dV98sti+ReB5guV
-	gLqGci9KxtNDo+k0JMSWyRmmUiHMWGSuWu4C2VZvwZit0i5Qs57HbxtwDZJat/0SkWU6qCDEXBxst
-	2vA2NtgTDf5vP9XqdiUY7KzOQu+GUx+eJBiPy6FjKs1L9vSW3Y81SMogx8Yj0plAxsHK+BcGl6XMk
-	MvgQGcV+OXQmwIiENshEGDfha09BIGqIqfUbK7FTZffQFj6Vm0USahoIVlpsmCYJ0F7LWYiw70oFV
-	rn4ECt8cn64rKEeyNUcw==;
+	List-Owner; bh=YxSCHgikaUhVvGrmtmeJowtNyns9ctAutjMINCM1Oj4=; b=PU1+5ZJczMHuL6
+	ZmTzbCnE73Lpk+RM/WrRiUwfePgt5N+cr0hp1N+2g6uBBTcQW2NHn9oOEHmRzwXAJeBapk6s34Soh
+	MirSI9T8LsDYxO8PiHQGObs+j9GGFTxHv7VzA3a0P8DZukp7jGHPBWwKIEAI9ZtSCG7NfaXLpXCwv
+	BeYb7zH6dwiKu4NBmUnmgXG3oM/SdUIn6YCkfaeSJW0WeGurAmhEobob21mwy6NAeupi+lFz45L+A
+	s4hjK/rm+iZ2KAIr9dUTpoQMbF6gpPYxFN3lbIUU0cd3Fou8soaXJnIrbHRo7PKthbO53AufZ9Igy
+	4HaBtIe42y7QWUBXBvyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7Frl-00GATc-0J; Tue, 11 Jan 2022 12:03:05 +0000
-Received: from smtp.domeneshop.no ([2a01:5b40:0:3005::1])
+	id 1n7Q2Z-000PQU-0A; Tue, 11 Jan 2022 22:54:55 +0000
+Received: from mail-ot1-f46.google.com ([209.85.210.46])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7Frh-00GAQp-G8; Tue, 11 Jan 2022 12:03:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- Subject:References:Cc:To:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=jyL93/6BnSzZVNk0d+pZVStpOnNWGIWV0cp232YBOgI=; b=mT2tFt8Aj6L1bsweeK606aleQA
- 0q/CwoWO+evMQh6GF50pJ9PCCCJyuXmOhrRYLTjQTDKpOhN5D1TYzPaDFKoepp28vQrmdjWG6wUW8
- LGlw4YnNeBeXX7pKtIYZ3/rLRKgUBssnd7als6RGu0CxyV46XVwUK4IDmmPFA3ITABbriBLqZUyX7
- UWENmSQBWStSeVvtNjuAYCql48TE2QdR6owbFy1pu34zh7hD38mCeIMvQV128RgQ14GVHI+BlaVUf
- s1SRoWZUU6eUnGUkYz/h6+kwWvf5T6XHSBuiDwqgK/Ebb/WdPwu+Hoa2GmokqiDnSf/G5RdV5o7Ly
- 1/sUx6RQ==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:50898
- helo=[192.168.10.61])
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1n7Frc-0003rr-1p; Tue, 11 Jan 2022 13:02:56 +0100
-Message-ID: <a9e2d66e-1a85-b61f-ee3b-ca7032e0516f@tronnes.org>
-Date: Tue, 11 Jan 2022 13:02:50 +0100
+ id 1n7Q2W-000PPx-RN; Tue, 11 Jan 2022 22:54:54 +0000
+Received: by mail-ot1-f46.google.com with SMTP id
+ a23-20020a9d4717000000b0056c15d6d0caso473844otf.12; 
+ Tue, 11 Jan 2022 14:54:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=oaRuwn3z2vZgd7d6uXNPEElduZNqC7atPxnY1MWXEY8=;
+ b=jZJutvsdOPE1aUWgMBIYV5HH8nsCwRMaoIXt4CoDqcnGcLlS5XTh8sXN3Hvs9medIV
+ 12xnbXX8PB/tKhbAhNKHWTUOZ8tgi/5fezqdkM6NJojNWLFjPfzd5CvB8e52rMPVVNK9
+ D1xgjmhoj6sqoNMycB5UVz+w0/3Oc/qOouPot+gYN9Z4fQA/SuRqSGx8jbtpNwZhtlo8
+ B5BEM9xHwshLG98d4lHUs+31+t1B+zKZC4ueAfLcVUuHpenkWIyg/hHPfMZ5bf0V3i1b
+ YzMviij6tZpkn+BZVcnXb7Bved02RvcVfh/UTnQwxT6qFER4uymzv9RQcgqCS6Fh/x6r
+ 7fcw==
+X-Gm-Message-State: AOAM533yvzd7FVMlyMBGq+V7eWD794AbZ9Hq24yLKkGWAx15aAO0rLyU
+ JuwGEhpymrUyvL1W3qS75Sb9KX2kkQ==
+X-Google-Smtp-Source: ABdhPJwvYN7rY4HXMQOQTwTBQsr1FwLLwpj6T6v32VokHKGrciARnmlF3v+Wt525mMAIkpcHWb5nnQ==
+X-Received: by 2002:a05:6830:13d9:: with SMTP id
+ e25mr4780844otq.215.1641941691939; 
+ Tue, 11 Jan 2022 14:54:51 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net.
+ [66.90.148.213])
+ by smtp.gmail.com with ESMTPSA id h1sm2187481oog.26.2022.01.11.14.54.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Jan 2022 14:54:51 -0800 (PST)
+Received: (nullmailer pid 3659851 invoked by uid 1000);
+ Tue, 11 Jan 2022 22:54:50 -0000
+Date: Tue, 11 Jan 2022 16:54:50 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ Benoit Masson <yahoo@perenite.com>, linux-kernel@vger.kernel.org,
+ Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v2 2/9] dt-bindings: arm: amlogic: add X96-AIR bindings
+Message-ID: <Yd4KulrOCjS4PdWG@robh.at.kernel.org>
+References: <20220103163956.6581-1-christianshewitt@gmail.com>
+ <20220103163956.6581-3-christianshewitt@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-To: tzimmermann@suse.de
-Cc: airlied@linux.ie, daniel.vetter@ffwll.ch, daniel@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- maarten.lankhorst@linux.intel.com, marcel@ziswiler.com, mripard@kernel.org,
- naresh.kamboju@linaro.org, noralf@tronnes.org
-References: <20211106193509.17472-2-tzimmermann@suse.de>
-Subject: Re: [PATCH v2 1/2] drm/mipi-dbi: Remove dependency on GEM CMA helper
- library
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20211106193509.17472-2-tzimmermann@suse.de>
+Content-Disposition: inline
+In-Reply-To: <20220103163956.6581-3-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220111_040301_597749_17097671 
-X-CRM114-Status: GOOD (  14.29  )
+X-CRM114-CacheID: sfid-20220111_145452_911565_0761D8AE 
+X-CRM114-Status: GOOD (  10.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,79 +85,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> The MIPI DBI helpers access struct drm_gem_cma_object.vaddr in a
-> few places. Replace all instances with the correct generic GEM
-> functions. Use drm_gem_fb_vmap() for mapping a framebuffer's GEM
-> objects and drm_gem_fb_vunmap() for unmapping them. This removes
-> the dependency on CMA helpers within MIPI DBI.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+On Mon, 03 Jan 2022 16:39:49 +0000, Christian Hewitt wrote:
+> Add board bindings for the Amediatech X96-AIR STB which ships with
+> model variants distiguished by Ethernet configuration: models using
+> an external Gigabit PHY have a -gbit suffix, while models using an
+> internal 10/100 PHY have no suffix.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  drivers/gpu/drm/drm_mipi_dbi.c | 34 +++++++++++++++++++++++++---------
->  1 file changed, 25 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_mipi_dbi.c
-b/drivers/gpu/drm/drm_mipi_dbi.c
-> index 71b646c4131f..f80fd6c0ccf8 100644
-> --- a/drivers/gpu/drm/drm_mipi_dbi.c
-> +++ b/drivers/gpu/drm/drm_mipi_dbi.c
-> @@ -15,9 +15,10 @@
->  #include <drm/drm_connector.h>
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_drv.h>
-> -#include <drm/drm_gem_cma_helper.h>
-> +#include <drm/drm_file.h>
->  #include <drm/drm_format_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_gem.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_mipi_dbi.h>
->  #include <drm/drm_modes.h>
-> @@ -200,13 +201,19 @@ int mipi_dbi_buf_copy(void *dst, struct
-drm_framebuffer *fb,
->  		      struct drm_rect *clip, bool swap)
->  {
->  	struct drm_gem_object *gem = drm_gem_fb_get_obj(fb, 0);
-> -	struct drm_gem_cma_object *cma_obj = to_drm_gem_cma_obj(gem);
-> -	void *src = cma_obj->vaddr;
-> +	struct dma_buf_map map[DRM_FORMAT_MAX_PLANES];
-> +	struct dma_buf_map data[DRM_FORMAT_MAX_PLANES];
-> +	void *src;
->  	int ret;
->
->  	ret = drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE);
->  	if (ret)
->  		return ret;
-> +	src = data[0].vaddr; /* TODO: Use mapping abstraction properly */
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-This assignment should be after the _vmap() call. The MIPI DBI drivers
-are currently broken because of this.
-
-Noralf.
-
-> +
-> +	ret = drm_gem_fb_vmap(fb, map, data);
-> +	if (ret)
-> +		goto out_drm_gem_fb_end_cpu_access;
->
->  	switch (fb->format->format) {
->  	case DRM_FORMAT_RGB565:
-> @@ -221,9 +228,11 @@ int mipi_dbi_buf_copy(void *dst, struct
-drm_framebuffer *fb,
->  	default:
->  		drm_err_once(fb->dev, "Format is not supported: %p4cc\n",
->  			     &fb->format->format);
-> -		return -EINVAL;
-> +		ret = -EINVAL;
->  	}
->
-> +	drm_gem_fb_vunmap(fb, map);
-> +out_drm_gem_fb_end_cpu_access:
->  	drm_gem_fb_end_cpu_access(fb, DMA_FROM_DEVICE);
->
->  	return ret;
->
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
