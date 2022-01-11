@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 913A4C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jan 2022 03:14:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 645FFC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jan 2022 07:04:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eXdzjzjJgBNRyC8OREfJvj0nQuQqyUN0AygBrUfBRuM=; b=xeSB8pPS1cN105
-	X/mb0BqfbfUkqIWPbPSqVy7Syu0Gw/KEHEziHyqNIN4rtweYW/yQcDZJ4OGMdwkI9X8cGzzouHOCt
-	2ddloSbQ2aK59+8pbsHO9DWWIwPRKyis8eA5FbS9/Aa8KJPl/SUNxa4M51pZuXK8cPaLzIKnengw2
-	TdX5sNK+w8n1Lem5aZYEcajWZMbliUd1SUDgUrarR3iDQpt81TeGos8aaeTg9gdbQAmKMFQRHwnkQ
-	dubg6Ga0QpU/VgDuQbuNH2yTJTbgJsyl3i5wt5l0O4dYj6E/SBtHcu4HjS3hV3myFok56E1D+Qki+
-	ssJQsOXC9Eqgb1tLvl1w==;
+	List-Owner; bh=FO52JQaXNI8+ivCxyG0N7xe9Glh5PCe9meNA+ZHIlGM=; b=noJaRwJzAHAU0T
+	nu2bXOcZa87djMI5YSg+LnKDx+kwClxRIGiFivDX44OcOqsymdYIkC6lRMdhu7JfOobjQKhQ+e5zB
+	HeM/jguwfgWHGyTlkkQETKr9iOVys9xd4JtBZevvmaKoeyie1o7kgIw95mhIw21bDfdFGaZVJ7Y77
+	EsNVYNoLdubNE4DhS4fcMNP5iVEV0xC9lFiXRT7bFeuSsEx7SpAK6BK7ChQ9HMqSDgNTRlO3/4iwf
+	iDDqtP8pz1tqC4wYzbFfulDWQtlFt3VMrKrcPVHE513GPS4sK9qrB0gc717iBqUtAoiWzkJ9iaOCa
+	k2aywyF/LGjpKY2/Km7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n77bs-00EPgh-Vi; Tue, 11 Jan 2022 03:14:08 +0000
+	id 1n7BCr-00F1Vk-4e; Tue, 11 Jan 2022 07:04:33 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n77bg-00EPej-4o; Tue, 11 Jan 2022 03:13:58 +0000
+ id 1n7BCd-00F1Sy-IS; Tue, 11 Jan 2022 07:04:21 +0000
 Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 11 Jan
- 2022 11:13:53 +0800
-Message-ID: <2710be28-3e01-081d-a726-b37b7c053f96@amlogic.com>
-Date: Tue, 11 Jan 2022 11:13:52 +0800
+ 2022 15:04:14 +0800
+Message-ID: <c9bb2f8f-6169-b4ab-5637-56c185dbf254@amlogic.com>
+Date: Tue, 11 Jan 2022 15:04:14 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.4.1
-Subject: Re: [PATCH V5 3/5] tty: serial: meson: Using the common clock code
- describe.
+Subject: Re: [PATCH V4 3/5] tty: serial: meson: The UART baud rate
 Content-Language: en-US
-To: Jiri Slaby <jirislaby@kernel.org>, <linux-serial@vger.kernel.org>,
+To: Jerome Brunet <jbrunet@baylibre.com>, <linux-serial@vger.kernel.org>,
  <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
  <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
 CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
- <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ <robh+dt@kernel.org>, Jiri Slaby <jirislaby@kernel.org>, Neil Armstrong
+ <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
  Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220110104214.25321-1-yu.tu@amlogic.com>
- <20220110104214.25321-4-yu.tu@amlogic.com>
- <327f985f-bbf1-00ba-d203-cc9d5bbd955c@kernel.org>
+References: <20220110085604.18042-1-yu.tu@amlogic.com>
+ <20220110085604.18042-4-yu.tu@amlogic.com>
+ <1j8rvnps11.fsf@starbuckisacylon.baylibre.com>
 From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <327f985f-bbf1-00ba-d203-cc9d5bbd955c@kernel.org>
+In-Reply-To: <1j8rvnps11.fsf@starbuckisacylon.baylibre.com>
 X-Originating-IP: [10.18.29.173]
 X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
  (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220110_191356_241647_B534CBE6 
-X-CRM114-Status: GOOD (  25.97  )
+X-CRM114-CacheID: sfid-20220110_230419_669136_95A727A2 
+X-CRM114-Status: GOOD (  40.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,203 +64,441 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgSmlyaSwKCVRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgcmVwbHkuCgpPbiAyMDIyLzEv
-MTAgMjA6MTEsIEppcmkgU2xhYnkgd3JvdGU6Cj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4gCj4gSGks
-Cj4gCj4gIlN1YmplY3Q6IFVzaW5nIHRoZSBjb21tb24gY2xvY2sgY29kZSBkZXNjcmliZS4iCj4g
-Cj4gUGxlYXNlIHJlZm9ybXVsYXRlIHRoYXQgXl5eIC0tIEkgY2Fubm90IG1ha2UgYW55IHNlbnNl
-IG9mIGl0LiBBbmQgYXZvaWQgCj4gYWRkaW5nIGEgcGVyaW9kIHRvIHRoZSBzdWJqZWN0LiBQTGVh
-c2Ugc2VlIG90aGVycycgY29tbWl0IGxvZ3MuCj4gCkkgd2lsbCBjb3JyZWN0IHRoaXMgaW4gdGhl
-IG5leHQgdmVyc2lvbi4KCj4gT24gMTAuIDAxLiAyMiwgMTE6NDIsIFl1IFR1IHdyb3RlOgo+PiBV
-c2luZyB0aGUgY29tbW9uIENsb2NrIGNvZGUgdG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRl
-IGNsb2NrCj4+IG1ha2VzIGl0IGVhc2llciBmb3IgdGhlIFVBUlQgZHJpdmVyIHRvIGJlIGNvbXBh
-dGlibGUgd2l0aCB0aGUKPj4gYmF1ZCByYXRlIHJlcXVpcmVtZW50cyBvZiB0aGUgVUFSVCBJUCBv
-biBkaWZmZXJlbnQgbWVzb24gY2hpcHMuCj4gCj4gCj4gCj4+IFNpZ25lZC1vZmYtYnk6IFl1IFR1
-IDx5dS50dUBhbWxvZ2ljLmNvbT4KPj4gLS0tCj4+IMKgIGRyaXZlcnMvdHR5L3NlcmlhbC9tZXNv
-bl91YXJ0LmMgfCAyMjQgKysrKysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0KPj4gwqAgMSBm
-aWxlIGNoYW5nZWQsIDE2MyBpbnNlcnRpb25zKCspLCA2MSBkZWxldGlvbnMoLSkKPj4KPj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMgCj4+IGIvZHJpdmVycy90
-dHkvc2VyaWFsL21lc29uX3VhcnQuYwo+PiBpbmRleCA3NTcwOTU4ZDAxMGMuLjEwMDRmZDBiMGM5
-ZSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuYwo+PiArKysg
-Yi9kcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25fdWFydC5jCj4+IEBAIC02LDYgKzYsNyBAQAo+PiDC
-oMKgICovCj4+IMKgICNpbmNsdWRlIDxsaW51eC9jbGsuaD4KPj4gKyNpbmNsdWRlIDxsaW51eC9j
-bGstcHJvdmlkZXIuaD4KPj4gwqAgI2luY2x1ZGUgPGxpbnV4L2NvbnNvbGUuaD4KPj4gwqAgI2lu
-Y2x1ZGUgPGxpbnV4L2RlbGF5Lmg+Cj4+IMKgICNpbmNsdWRlIDxsaW51eC9pbml0Lmg+Cj4+IEBA
-IC02NSw5ICs2Niw3IEBACj4+IMKgICNkZWZpbmUgQU1MX1VBUlRfUkVDVl9JUlEoYynCoMKgwqDC
-oMKgwqDCoCAoKGMpICYgMHhmZikKPj4gwqAgLyogQU1MX1VBUlRfUkVHNSBiaXRzICovCj4+IC0j
-ZGVmaW5lIEFNTF9VQVJUX0JBVURfTUFTS8KgwqDCoMKgwqDCoMKgIDB4N2ZmZmZmCj4+IMKgICNk
-ZWZpbmUgQU1MX1VBUlRfQkFVRF9VU0XCoMKgwqDCoMKgwqDCoCBCSVQoMjMpCj4+IC0jZGVmaW5l
-IEFNTF9VQVJUX0JBVURfWFRBTMKgwqDCoMKgwqDCoMKgIEJJVCgyNCkKPj4gwqAgI2RlZmluZSBB
-TUxfVUFSVF9QT1JUX05VTcKgwqDCoMKgwqDCoMKgIDEyCj4+IMKgICNkZWZpbmUgQU1MX1VBUlRf
-UE9SVF9PRkZTRVTCoMKgwqDCoMKgwqDCoCA2Cj4+IEBAIC03Niw2ICs3NSwxMyBAQAo+PiDCoCAj
-ZGVmaW5lIEFNTF9VQVJUX1BPTExfVVNFQ8KgwqDCoMKgwqDCoMKgIDUKPj4gwqAgI2RlZmluZSBB
-TUxfVUFSVF9USU1FT1VUX1VTRUPCoMKgwqDCoMKgwqDCoCAxMDAwMAo+PiArc3RydWN0IG1lc29u
-X3VhcnRfZGF0YSB7Cj4+ICvCoMKgwqAgc3RydWN0IHVhcnRfcG9ydMKgwqDCoCBwb3J0Owo+PiAr
-wqDCoMKgIHN0cnVjdCBjbGvCoMKgwqDCoMKgwqDCoCAqcGNsazsKPj4gK8KgwqDCoCBzdHJ1Y3Qg
-Y2xrwqDCoMKgwqDCoMKgwqAgKmJhdWRfY2xrOwo+PiArwqDCoMKgIGJvb2zCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHVzZV94dGFsX2NsazsKPj4gK307Cj4+ICsKPj4gwqAgc3RhdGljIHN0cnVjdCB1
-YXJ0X2RyaXZlciBtZXNvbl91YXJ0X2RyaXZlcjsKPj4gwqAgc3RhdGljIHN0cnVjdCB1YXJ0X3Bv
-cnQgKm1lc29uX3BvcnRzW0FNTF9VQVJUX1BPUlRfTlVNXTsKPj4gQEAgLTI2OCwxNCArMjc0LDEx
-IEBAIHN0YXRpYyB2b2lkIG1lc29uX3VhcnRfcmVzZXQoc3RydWN0IHVhcnRfcG9ydCAKPj4gKnBv
-cnQpCj4+IMKgIHN0YXRpYyBpbnQgbWVzb25fdWFydF9zdGFydHVwKHN0cnVjdCB1YXJ0X3BvcnQg
-KnBvcnQpCj4+IMKgIHsKPj4gwqDCoMKgwqDCoCB1MzIgdmFsOwo+PiAtwqDCoMKgIGludCByZXQg
-PSAwOwo+PiArwqDCoMKgIGludCByZXQ7Cj4+IC3CoMKgwqAgdmFsID0gcmVhZGwocG9ydC0+bWVt
-YmFzZSArIEFNTF9VQVJUX0NPTlRST0wpOwo+PiAtwqDCoMKgIHZhbCB8PSBBTUxfVUFSVF9DTEVB
-Ul9FUlI7Cj4+IC3CoMKgwqAgd3JpdGVsKHZhbCwgcG9ydC0+bWVtYmFzZSArIEFNTF9VQVJUX0NP
-TlRST0wpOwo+PiAtwqDCoMKgIHZhbCAmPSB+QU1MX1VBUlRfQ0xFQVJfRVJSOwo+PiAtwqDCoMKg
-IHdyaXRlbCh2YWwsIHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFSVF9DT05UUk9MKTsKPj4gK8KgwqDC
-oCBtZXNvbl91YXJ0X3Jlc2V0KHBvcnQpOwo+IAo+IFdoeSBpcyB0aGlzIE9LPyBXZSBkaWRuJ3Qg
-dXNlIHRvIHJlc2V0IGl0LgpUaGlzIGNoYW5nZSBzaW1wbHkgb3B0aW1pemVzIHRoZSBjb2RlLiBC
-ZWNhdXNlIHRoZSBtZXNvbl91YXJ0X3Jlc2V0IApmdW5jdGlvbiBoYXMgaW1wbGVtZW50ZWQgdGhl
-IGNvbnRyb2wgbG9naWMuCj4gCj4gQW5kIHdoeSBpcyB0aGlzIG5vdCBkb25lIGluIGEgc2VwYXJh
-dGUgcGF0Y2g/Ckkgd2lsbCBjb25zaWRlciBtZXJnaW5nIHdpdGggdGhlIHByZXZpb3VzIHBhdGNo
-IGFzIGEgcGF0Y2guCj4gCj4gCj4+ICvCoMKgwqAgdmFsID0gcmVhZGwocG9ydC0+bWVtYmFzZSAr
-IEFNTF9VQVJUX0NPTlRST0wpOwo+PiDCoMKgwqDCoMKgIHZhbCB8PSAoQU1MX1VBUlRfUlhfRU4g
-fCBBTUxfVUFSVF9UWF9FTik7Cj4+IMKgwqDCoMKgwqAgd3JpdGVsKHZhbCwgcG9ydC0+bWVtYmFz
-ZSArIEFNTF9VQVJUX0NPTlRST0wpOwo+PiBAQCAtMjkzLDE5ICsyOTYsMTcgQEAgc3RhdGljIGlu
-dCBtZXNvbl91YXJ0X3N0YXJ0dXAoc3RydWN0IHVhcnRfcG9ydCAKPj4gKnBvcnQpCj4+IMKgIHN0
-YXRpYyB2b2lkIG1lc29uX3VhcnRfY2hhbmdlX3NwZWVkKHN0cnVjdCB1YXJ0X3BvcnQgKnBvcnQs
-IHVuc2lnbmVkIAo+PiBsb25nIGJhdWQpCj4+IMKgIHsKPj4gK8KgwqDCoCBzdHJ1Y3QgbWVzb25f
-dWFydF9kYXRhICpwcml2YXRlX2RhdGEgPSBwb3J0LT5wcml2YXRlX2RhdGE7Cj4+IMKgwqDCoMKg
-wqAgdTMyIHZhbDsKPj4gwqDCoMKgwqDCoCB3aGlsZSAoIW1lc29uX3VhcnRfdHhfZW1wdHkocG9y
-dCkpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBjcHVfcmVsYXgoKTsKPj4gLcKgwqDCoCBpZiAocG9y
-dC0+dWFydGNsayA9PSAyNDAwMDAwMCkgewo+PiAtwqDCoMKgwqDCoMKgwqAgdmFsID0gKChwb3J0
-LT51YXJ0Y2xrIC8gMykgLyBiYXVkKSAtIDE7Cj4+IC3CoMKgwqDCoMKgwqDCoCB2YWwgfD0gQU1M
-X1VBUlRfQkFVRF9YVEFMOwo+PiAtwqDCoMKgIH0gZWxzZSB7Cj4+IC3CoMKgwqDCoMKgwqDCoCB2
-YWwgPSAoKHBvcnQtPnVhcnRjbGsgKiAxMCAvIChiYXVkICogNCkgKyA1KSAvIDEwKSAtIDE7Cj4+
-IC3CoMKgwqAgfQo+PiArwqDCoMKgIHZhbCA9IHJlYWRsKHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFS
-VF9SRUc1KTsKPj4gwqDCoMKgwqDCoCB2YWwgfD0gQU1MX1VBUlRfQkFVRF9VU0U7Cj4+IMKgwqDC
-oMKgwqAgd3JpdGVsKHZhbCwgcG9ydC0+bWVtYmFzZSArIEFNTF9VQVJUX1JFRzUpOwo+PiArCj4+
-ICvCoMKgwqAgY2xrX3NldF9yYXRlKHByaXZhdGVfZGF0YS0+YmF1ZF9jbGssIGJhdWQpOwo+PiDC
-oCB9Cj4+IMKgIHN0YXRpYyB2b2lkIG1lc29uX3VhcnRfc2V0X3Rlcm1pb3Moc3RydWN0IHVhcnRf
-cG9ydCAqcG9ydCwKPj4gQEAgLTM5NSwxMSArMzk2LDI3IEBAIHN0YXRpYyBpbnQgbWVzb25fdWFy
-dF92ZXJpZnlfcG9ydChzdHJ1Y3QgCj4+IHVhcnRfcG9ydCAqcG9ydCwKPj4gwqAgc3RhdGljIHZv
-aWQgbWVzb25fdWFydF9yZWxlYXNlX3BvcnQoc3RydWN0IHVhcnRfcG9ydCAqcG9ydCkKPj4gwqAg
-ewo+PiAtwqDCoMKgIC8qIG5vdGhpbmcgdG8gZG8gKi8KPj4gK8KgwqDCoCBzdHJ1Y3QgbWVzb25f
-dWFydF9kYXRhICpwcml2YXRlX2RhdGEgPSBwb3J0LT5wcml2YXRlX2RhdGE7Cj4+ICsKPj4gK8Kg
-wqDCoCBjbGtfZGlzYWJsZV91bnByZXBhcmUocHJpdmF0ZV9kYXRhLT5iYXVkX2Nsayk7Cj4+ICvC
-oMKgwqAgY2xrX2Rpc2FibGVfdW5wcmVwYXJlKHByaXZhdGVfZGF0YS0+cGNsayk7Cj4+IMKgIH0K
-Pj4gwqAgc3RhdGljIGludCBtZXNvbl91YXJ0X3JlcXVlc3RfcG9ydChzdHJ1Y3QgdWFydF9wb3J0
-ICpwb3J0KQo+PiDCoCB7Cj4+ICvCoMKgwqAgc3RydWN0IG1lc29uX3VhcnRfZGF0YSAqcHJpdmF0
-ZV9kYXRhID0gcG9ydC0+cHJpdmF0ZV9kYXRhOwo+PiArwqDCoMKgIGludCByZXQ7Cj4+ICsKPj4g
-K8KgwqDCoCByZXQgPSBjbGtfcHJlcGFyZV9lbmFibGUocHJpdmF0ZV9kYXRhLT5wY2xrKTsKPj4g
-K8KgwqDCoCBpZiAocmV0KQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsKPj4gKwo+PiAr
-wqDCoMKgIHJldCA9IGNsa19wcmVwYXJlX2VuYWJsZShwcml2YXRlX2RhdGEtPmJhdWRfY2xrKTsK
-Pj4gK8KgwqDCoCBpZiAocmV0KSB7Cj4+ICvCoMKgwqDCoMKgwqDCoCBjbGtfZGlzYWJsZV91bnBy
-ZXBhcmUocHJpdmF0ZV9kYXRhLT5wY2xrKTsKPj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7
-Cj4+ICvCoMKgwqAgfQo+PiArCj4+IMKgwqDCoMKgwqAgcmV0dXJuIDA7Cj4+IMKgIH0KPj4gQEAg
-LTYyOSw1NSArNjQ2LDEwNSBAQCBzdGF0aWMgc3RydWN0IHVhcnRfZHJpdmVyIG1lc29uX3VhcnRf
-ZHJpdmVyID0gewo+PiDCoMKgwqDCoMKgIC5jb25zwqDCoMKgwqDCoMKgwqAgPSBNRVNPTl9TRVJJ
-QUxfQ09OU09MRSwKPj4gwqAgfTsKPj4gLXN0YXRpYyBpbmxpbmUgc3RydWN0IGNsayAqbWVzb25f
-dWFydF9wcm9iZV9jbG9jayhzdHJ1Y3QgZGV2aWNlICpkZXYsCj4+IC3CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3QgY2hhciAqaWQpCj4+ICsjZGVm
-aW5lIENMS19OQU1FKG5hbWUpIFwKPj4gKyh7XAo+PiArwqDCoMKgIGNoYXIgY2xrX25hbWVbMzJd
-O1wKPj4gK8KgwqDCoCBzbnByaW50ZihjbGtfbmFtZSwgc2l6ZW9mKGNsa19uYW1lKSwgIiVzIyVz
-IiwgCj4+IGRldl9uYW1lKHBvcnQtPmRldiksICNuYW1lKTtcCj4+ICvCoMKgwqAgY2xrX25hbWU7
-XAo+PiArfSkKPiAKPiBUaGlzIGlzIGNyeXB0aWMgYW5kIGR1cGxpY2F0ZXMgdGhlIHZhcmlhYmxl
-IG9uIHRoZSBzdGFjay4gV2h5IG5vdCBleHBhbmQgCj4gdGhlIG1hY3JvIGFuZCBkZWxldGUgaXQg
-dGhlbj8KPiAKSSd2ZSBvdmVyZG9uZSBpdC4gSSdsbCBtb3ZlIGl0IHRvIHRoZSBtZXNvbl91YXJ0
-X3Byb2JlX2Nsb2NrcyBmdW5jdGlvbiAKYXMgeW91IHN1Z2dlc3RlZCBhbmQgZGVsZXRlIGl0Lgo+
-PiArCj4+ICtzdGF0aWMgc3RydWN0IGNsa19kaXZfdGFibGUgeHRhbF9kaXZfdGFibGVbXSA9IHsK
-Pj4gK8KgwqDCoCB7IDAsIDPCoCB9LAo+IAo+IEFuIGV4dHJhIHNwYWNlIGhlcmUgYW5kIHRoZXJl
-Ogo+IAo+PiArwqDCoMKgIHsgMSwgMcKgIH0sCj4+ICvCoMKgwqAgeyAyLCAywqAgfSwKPj4gK8Kg
-wqDCoCB7IDMsIDLCoCB9LAo+PiArfTsKPj4gKwpTb3JyeSwgc3R1cGlkIG1pc3Rha2UuIEkgd2ls
-bCBjb3JyZWN0LgoKPj4gK3N0YXRpYyBpbnQgbWVzb25fdWFydF9wcm9iZV9jbG9ja3Moc3RydWN0
-IHVhcnRfcG9ydCAqcG9ydCkKPj4gwqAgewo+PiAtwqDCoMKgIHN0cnVjdCBjbGsgKmNsayA9IE5V
-TEw7Cj4+IC3CoMKgwqAgaW50IHJldDsKPj4gK8KgwqDCoCBzdHJ1Y3QgbWVzb25fdWFydF9kYXRh
-ICpwcml2YXRlX2RhdGEgPSBwb3J0LT5wcml2YXRlX2RhdGE7Cj4+ICvCoMKgwqAgc3RydWN0IGNs
-ayAqY2xrX2JhdWQsICpjbGtfeHRhbDsKPj4gK8KgwqDCoCBzdHJ1Y3QgY2xrX2h3ICpodzsKPj4g
-K8KgwqDCoCBzdHJ1Y3QgY2xrX3BhcmVudF9kYXRhIHVzZV94dGFsX211eF9wYXJlbnRzWzJdID0g
-ewo+PiArwqDCoMKgwqDCoMKgwqAgeyAuaW5kZXggPSAtMSwgfSwKPj4gK8KgwqDCoMKgwqDCoMKg
-IHsgLmluZGV4ID0gLTEsIH0sCj4+ICvCoMKgwqAgfTsKPj4gLcKgwqDCoCBjbGsgPSBkZXZtX2Ns
-a19nZXQoZGV2LCBpZCk7Cj4+IC3CoMKgwqAgaWYgKElTX0VSUihjbGspKQo+PiAtwqDCoMKgwqDC
-oMKgwqAgcmV0dXJuIGNsazsKPj4gK8KgwqDCoCBwcml2YXRlX2RhdGEtPnBjbGsgPSBkZXZtX2Ns
-a19nZXQocG9ydC0+ZGV2LCAicGNsayIpOwo+PiArwqDCoMKgIGlmIChJU19FUlIocHJpdmF0ZV9k
-YXRhLT5wY2xrKSkKPj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiBkZXZfZXJyX3Byb2JlKHBvcnQt
-PmRldiwgUFRSX0VSUihwcml2YXRlX2RhdGEtPnBjbGspLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiRmFpbGVkIHRvIGdldCB0aGUgJ3BjbGsnIGNsb2NrXG4i
-KTsKPj4gLcKgwqDCoCByZXQgPSBjbGtfcHJlcGFyZV9lbmFibGUoY2xrKTsKPj4gLcKgwqDCoCBp
-ZiAocmV0KSB7Cj4+IC3CoMKgwqDCoMKgwqDCoCBkZXZfZXJyKGRldiwgImNvdWxkbid0IGVuYWJs
-ZSBjbGtcbiIpOwo+PiAtwqDCoMKgwqDCoMKgwqAgcmV0dXJuIEVSUl9QVFIocmV0KTsKPj4gK8Kg
-wqDCoCBjbGtfYmF1ZCA9IGRldm1fY2xrX2dldChwb3J0LT5kZXYsICJiYXVkIik7Cj4+ICvCoMKg
-wqAgaWYgKElTX0VSUihjbGtfYmF1ZCkpIHsKPj4gK8KgwqDCoMKgwqDCoMKgIGRldl9lcnIocG9y
-dC0+ZGV2LCAiRmFpbGVkIHRvIGdldCB0aGUgJ2JhdWQnIGNsb2NrXG4iKTsKPj4gK8KgwqDCoMKg
-wqDCoMKgIHJldHVybiBQVFJfRVJSKGNsa19iYXVkKTsKPj4gwqDCoMKgwqDCoCB9Cj4+IC3CoMKg
-wqAgZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KGRldiwKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgKHZvaWQoKikodm9pZCAqKSljbGtfZGlzYWJsZV91bnByZXBhcmUsCj4+IC3CoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGNsayk7Cj4+IC0KPj4gLcKgwqDCoCByZXR1cm4gY2xrOwo+PiAtfQo+PiAt
-Cj4+IC1zdGF0aWMgaW50IG1lc29uX3VhcnRfcHJvYmVfY2xvY2tzKHN0cnVjdCBwbGF0Zm9ybV9k
-ZXZpY2UgKnBkZXYsCj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3Ry
-dWN0IHVhcnRfcG9ydCAqcG9ydCkKPj4gLXsKPj4gLcKgwqDCoCBzdHJ1Y3QgY2xrICpjbGtfeHRh
-bCA9IE5VTEw7Cj4+IC3CoMKgwqAgc3RydWN0IGNsayAqY2xrX3BjbGsgPSBOVUxMOwo+PiAtwqDC
-oMKgIHN0cnVjdCBjbGsgKmNsa19iYXVkID0gTlVMTDsKPj4gLQo+PiAtwqDCoMKgIGNsa19wY2xr
-ID0gbWVzb25fdWFydF9wcm9iZV9jbG9jaygmcGRldi0+ZGV2LCAicGNsayIpOwo+PiAtwqDCoMKg
-IGlmIChJU19FUlIoY2xrX3BjbGspKQo+PiAtwqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIo
-Y2xrX3BjbGspOwo+PiAtCj4+IC3CoMKgwqAgY2xrX3h0YWwgPSBtZXNvbl91YXJ0X3Byb2JlX2Ns
-b2NrKCZwZGV2LT5kZXYsICJ4dGFsIik7Cj4+ICvCoMKgwqAgY2xrX3h0YWwgPSBkZXZtX2Nsa19n
-ZXQocG9ydC0+ZGV2LCAieHRhbCIpOwo+PiDCoMKgwqDCoMKgIGlmIChJU19FUlIoY2xrX3h0YWwp
-KQo+PiAtwqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIoY2xrX3h0YWwpOwo+PiAtCj4+IC3C
-oMKgwqAgY2xrX2JhdWQgPSBtZXNvbl91YXJ0X3Byb2JlX2Nsb2NrKCZwZGV2LT5kZXYsICJiYXVk
-Iik7Cj4+IC3CoMKgwqAgaWYgKElTX0VSUihjbGtfYmF1ZCkpCj4+IC3CoMKgwqDCoMKgwqDCoCBy
-ZXR1cm4gUFRSX0VSUihjbGtfYmF1ZCk7Cj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gZGV2X2Vy
-cl9wcm9iZShwb3J0LT5kZXYsIFBUUl9FUlIoY2xrX3h0YWwpLAo+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiRmFpbGVkIHRvIGdldCB0aGUgJ3h0YWwnIGNsb2Nr
-XG4iKTsKPj4gKwo+PiArwqDCoMKgIGlmIChwcml2YXRlX2RhdGEtPnVzZV94dGFsX2Nsaykgewo+
-PiArwqDCoMKgwqDCoMKgwqAgaHcgPSBkZXZtX2Nsa19od19yZWdpc3Rlcl9kaXZpZGVyX3RhYmxl
-KHBvcnQtPmRldiwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBDTEtfTkFNRSh4dGFsX2RpdiksCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgX19jbGtfZ2V0X25hbWUoY2xrX2Jh
-dWQpLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIENMS19TRVRfUkFURV9OT19SRVBBUkVOVCwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwb3J0LT5tZW1iYXNlICsgQU1MX1VB
-UlRfUkVHNSwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCAyNiwgMiwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBDTEtfRElWSURFUl9SRUFEX09OTFksCj4+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgeHRhbF9kaXZfdGFi
-bGUsIE5VTEwpOwo+PiArwqDCoMKgwqDCoMKgwqAgaWYgKElTX0VSUihodykpCj4+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIHJldHVybiBQVFJfRVJSKGh3KTsKPj4gKwo+PiArwqDCoMKgwqDCoMKg
-wqAgdXNlX3h0YWxfbXV4X3BhcmVudHNbMV0uaHcgPSBodzsKPj4gK8KgwqDCoCB9IGVsc2Ugewo+
-PiArwqDCoMKgwqDCoMKgwqAgaHcgPSBkZXZtX2Nsa19od19yZWdpc3Rlcl9maXhlZF9mYWN0b3Io
-cG9ydC0+ZGV2LAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIENMS19OQU1FKGNsazgxX2RpdjQpLAo+PiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIF9fY2xrX2dl
-dF9uYW1lKGNsa19iYXVkKSwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBDTEtfU0VUX1JBVEVfTk9fUkVQQVJFTlQsCj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgMSwgNCk7Cj4+ICvCoMKgwqDCoMKgwqDCoCBpZiAoSVNfRVJSKGh3KSkKPj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIoaHcpOwo+PiArCj4+ICvCoMKgwqDCoMKgwqDC
-oCB1c2VfeHRhbF9tdXhfcGFyZW50c1swXS5odyA9IGh3Owo+PiArwqDCoMKgIH0KPj4gLcKgwqDC
-oCBwb3J0LT51YXJ0Y2xrID0gY2xrX2dldF9yYXRlKGNsa19iYXVkKTsKPj4gK8KgwqDCoCBodyA9
-IF9fZGV2bV9jbGtfaHdfcmVnaXN0ZXJfbXV4KHBvcnQtPmRldiwgTlVMTCwKPj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIENMS19OQU1FKHVzZV94dGFsKSwKPj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEFSUkFZX1NJWkUodXNlX3h0YWxf
-bXV4X3BhcmVudHMpLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-TlVMTCwgTlVMTCwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHVz
-ZV94dGFsX211eF9wYXJlbnRzLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgQ0xLX1NFVF9SQVRFX1BBUkVOVCwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHBvcnQtPm1lbWJhc2UgKyBBTUxfVUFSVF9SRUc1LAo+PiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMjQsIDB4MSwKPj4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIENMS19NVVhfUkVBRF9PTkxZLAo+PiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTlVMTCwgTlVMTCk7Cj4+ICvCoMKgwqAgaWYg
-KElTX0VSUihodykpCj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gUFRSX0VSUihodyk7Cj4+ICsK
-Pj4gK8KgwqDCoCBwb3J0LT51YXJ0Y2xrID0gY2xrX2h3X2dldF9yYXRlKGh3KTsKPj4gKwo+PiAr
-wqDCoMKgIGh3ID0gZGV2bV9jbGtfaHdfcmVnaXN0ZXJfZGl2aWRlcihwb3J0LT5kZXYsCj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgQ0xLX05BTUUoYmF1ZF9k
-aXYpLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNsa19o
-d19nZXRfbmFtZShodyksCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgQ0xLX1NFVF9SQVRFX1BBUkVOVCwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBwb3J0LT5tZW1iYXNlICsgQU1MX1VBUlRfUkVHNSwKPj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwLCAyMywKPj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBDTEtfRElWSURFUl9ST1VORF9DTE9T
-RVNULAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIE5VTEwp
-Owo+PiArwqDCoMKgIGlmIChJU19FUlIoaHcpKQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBU
-Ul9FUlIoaHcpOwo+PiArCj4+ICvCoMKgwqAgcHJpdmF0ZV9kYXRhLT5iYXVkX2NsayA9IGNsa19o
-d19nZXRfY2xrKGh3LCAiYmF1ZF9yYXRlIik7Cj4+IMKgwqDCoMKgwqAgcmV0dXJuIDA7Cj4+IMKg
-IH0KPiAKPiAKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+Hi Jerome,
+	Thank you very much for your reply.
+
+On 2022/1/10 22:29, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> 
+> On Mon 10 Jan 2022 at 16:56, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+> Title is bad (like several other patches in this series) - Please fix it
+> Ok.
+>> Using the common Clock code to describe the UART baud rate clock
+>> makes it easier for the UART driver to be compatible with the
+>> baud rate requirements of the UART IP on different meson chips.
+>>
+>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>> ---
+>>   drivers/tty/serial/meson_uart.c | 224 +++++++++++++++++++++++---------
+>>   1 file changed, 163 insertions(+), 61 deletions(-)
+>>
+>> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+>> index 7570958d010c..1004fd0b0c9e 100644
+>> --- a/drivers/tty/serial/meson_uart.c
+>> +++ b/drivers/tty/serial/meson_uart.c
+>> @@ -6,6 +6,7 @@
+>>    */
+>>   
+>>   #include <linux/clk.h>
+>> +#include <linux/clk-provider.h>
+>>   #include <linux/console.h>
+>>   #include <linux/delay.h>
+>>   #include <linux/init.h>
+>> @@ -65,9 +66,7 @@
+>>   #define AML_UART_RECV_IRQ(c)		((c) & 0xff)
+>>   
+>>   /* AML_UART_REG5 bits */
+>> -#define AML_UART_BAUD_MASK		0x7fffff
+>>   #define AML_UART_BAUD_USE		BIT(23)
+>> -#define AML_UART_BAUD_XTAL		BIT(24)
+>>   
+>>   #define AML_UART_PORT_NUM		12
+>>   #define AML_UART_PORT_OFFSET		6
+>> @@ -76,6 +75,13 @@
+>>   #define AML_UART_POLL_USEC		5
+>>   #define AML_UART_TIMEOUT_USEC		10000
+>>   
+>> +struct meson_uart_data {
+>> +	struct uart_port	port;
+>> +	struct clk		*pclk;
+>> +	struct clk		*baud_clk;
+>> +	bool			use_xtal_clk;
+>> +};
+>> +
+>>   static struct uart_driver meson_uart_driver;
+>>   
+>>   static struct uart_port *meson_ports[AML_UART_PORT_NUM];
+>> @@ -268,14 +274,11 @@ static void meson_uart_reset(struct uart_port *port)
+>>   static int meson_uart_startup(struct uart_port *port)
+>>   {
+>>   	u32 val;
+>> -	int ret = 0;
+>> +	int ret;
+>>   
+>> -	val = readl(port->membase + AML_UART_CONTROL);
+>> -	val |= AML_UART_CLEAR_ERR;
+>> -	writel(val, port->membase + AML_UART_CONTROL);
+>> -	val &= ~AML_UART_CLEAR_ERR;
+>> -	writel(val, port->membase + AML_UART_CONTROL);
+>> +	meson_uart_reset(port);
+>>   
+>> +	val = readl(port->membase + AML_UART_CONTROL);
+>>   	val |= (AML_UART_RX_EN | AML_UART_TX_EN);
+>>   	writel(val, port->membase + AML_UART_CONTROL);
+>>   
+>> @@ -293,19 +296,17 @@ static int meson_uart_startup(struct uart_port *port)
+>>   
+>>   static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
+>>   {
+>> +	struct meson_uart_data *private_data = port->private_data;
+>>   	u32 val;
+>>   
+>>   	while (!meson_uart_tx_empty(port))
+>>   		cpu_relax();
+>>   
+>> -	if (port->uartclk == 24000000) {
+>> -		val = ((port->uartclk / 3) / baud) - 1;
+>> -		val |= AML_UART_BAUD_XTAL;
+>> -	} else {
+>> -		val = ((port->uartclk * 10 / (baud * 4) + 5) / 10) - 1;
+>> -	}
+>> +	val = readl(port->membase + AML_UART_REG5);
+>>   	val |= AML_UART_BAUD_USE;
+>>   	writel(val, port->membase + AML_UART_REG5);
+>> +
+>> +	clk_set_rate(private_data->baud_clk, baud);
+>>   }
+>>   
+>>   static void meson_uart_set_termios(struct uart_port *port,
+>> @@ -395,11 +396,27 @@ static int meson_uart_verify_port(struct uart_port *port,
+>>   
+>>   static void meson_uart_release_port(struct uart_port *port)
+>>   {
+>> -	/* nothing to do */
+>> +	struct meson_uart_data *private_data = port->private_data;
+>> +
+>> +	clk_disable_unprepare(private_data->baud_clk);
+>> +	clk_disable_unprepare(private_data->pclk);
+>>   }
+>>   
+>>   static int meson_uart_request_port(struct uart_port *port)
+>>   {
+>> +	struct meson_uart_data *private_data = port->private_data;
+>> +	int ret;
+>> +
+>> +	ret = clk_prepare_enable(private_data->pclk);
+>> +	if (ret)
+>> +		return ret;
+> 
+> In the previous version of the series, you already been asked to the
+> enable of pclk in the probe. Optimization should not be mixed with this
+> series
+> 
+> Please make sure all comments are addressed before re-posting
+> 
+I'm sorry. I misunderstood you earlier. I'm going to move into the probe 
+function.
+>> +
+>> +	ret = clk_prepare_enable(private_data->baud_clk);
+>> +	if (ret) {
+>> +		clk_disable_unprepare(private_data->pclk);
+>> +		return ret;
+>> +	}
+>> +
+>>   	return 0;
+>>   }
+>>   
+>> @@ -629,55 +646,105 @@ static struct uart_driver meson_uart_driver = {
+>>   	.cons		= MESON_SERIAL_CONSOLE,
+>>   };
+>>   
+>> -static inline struct clk *meson_uart_probe_clock(struct device *dev,
+>> -						 const char *id)
+>> +#define CLK_NAME(name) \
+>> +({\
+>> +	char clk_name[32];\
+>> +	snprintf(clk_name, sizeof(clk_name), "%s#%s", dev_name(port->dev), #name);\
+>> +	clk_name;\
+>> +})
+> 
+> 1) This result in some ugly code being inlined
+> 2) You return a pointer a local variable which is not gurantee to exist
+> anymore  outside of this ...
+> 
+> Please do this simply in the related function.
+I've overdone it. I'll move it to the meson_uart_probe_clocks function 
+as you suggested.
+> 
+>> +
+>> +static struct clk_div_table xtal_div_table[] = {
+>> +	{ 0, 3  },
+>> +	{ 1, 1  },
+>> +	{ 2, 2  },
+>> +	{ 3, 2  },
+>> +};
+>> +
+>> +static int meson_uart_probe_clocks(struct uart_port *port)
+>>   {
+>> -	struct clk *clk = NULL;
+>> -	int ret;
+>> +	struct meson_uart_data *private_data = port->private_data;
+>> +	struct clk *clk_baud, *clk_xtal;
+>> +	struct clk_hw *hw;
+>> +	struct clk_parent_data use_xtal_mux_parents[2] = {
+>> +		{ .index = -1, },
+>> +		{ .index = -1, },
+>> +	};
+>>   
+>> -	clk = devm_clk_get(dev, id);
+>> -	if (IS_ERR(clk))
+>> -		return clk;
+>> +	private_data->pclk = devm_clk_get(port->dev, "pclk");
+>> +	if (IS_ERR(private_data->pclk))
+>> +		return dev_err_probe(port->dev, PTR_ERR(private_data->pclk),
+>> +				     "Failed to get the 'pclk' clock\n");
+>>   
+>> -	ret = clk_prepare_enable(clk);
+>> -	if (ret) {
+>> -		dev_err(dev, "couldn't enable clk\n");
+>> -		return ERR_PTR(ret);
+>> +	clk_baud = devm_clk_get(port->dev, "baud");
+>> +	if (IS_ERR(clk_baud)) {
+>> +		dev_err(port->dev, "Failed to get the 'baud' clock\n");
+>> +		return PTR_ERR(clk_baud);
+>>   	}
+>>   
+>> -	devm_add_action_or_reset(dev,
+>> -			(void(*)(void *))clk_disable_unprepare,
+>> -			clk);
+>> -
+>> -	return clk;
+>> -}
+>> -
+>> -static int meson_uart_probe_clocks(struct platform_device *pdev,
+>> -				   struct uart_port *port)
+>> -{
+>> -	struct clk *clk_xtal = NULL;
+>> -	struct clk *clk_pclk = NULL;
+>> -	struct clk *clk_baud = NULL;
+>> -
+>> -	clk_pclk = meson_uart_probe_clock(&pdev->dev, "pclk");
+>> -	if (IS_ERR(clk_pclk))
+>> -		return PTR_ERR(clk_pclk);
+>> -
+>> -	clk_xtal = meson_uart_probe_clock(&pdev->dev, "xtal");
+>> +	clk_xtal = devm_clk_get(port->dev, "xtal");
+>>   	if (IS_ERR(clk_xtal))
+>> -		return PTR_ERR(clk_xtal);
+>> -
+>> -	clk_baud = meson_uart_probe_clock(&pdev->dev, "baud");
+>> -	if (IS_ERR(clk_baud))
+>> -		return PTR_ERR(clk_baud);
+>> +		return dev_err_probe(port->dev, PTR_ERR(clk_xtal),
+>> +				     "Failed to get the 'xtal' clock\n");
+>> +
+>> +	if (private_data->use_xtal_clk) {
+>> +		hw = devm_clk_hw_register_divider_table(port->dev,
+>> +							CLK_NAME(xtal_div),
+>> +							__clk_get_name(clk_baud),
+>> +							CLK_SET_RATE_NO_REPARENT,
+>> +							port->membase + AML_UART_REG5,
+>> +							26, 2,
+>> +							CLK_DIVIDER_READ_ONLY,
+>> +							xtal_div_table, NULL);
+>> +		if (IS_ERR(hw))
+>> +			return PTR_ERR(hw);
+>> +
+>> +		use_xtal_mux_parents[1].hw = hw;
+>> +	} else {
+>> +		hw = devm_clk_hw_register_fixed_factor(port->dev,
+>> +						       CLK_NAME(clk81_div4),
+>> +						       __clk_get_name(clk_baud),
+>> +						       CLK_SET_RATE_NO_REPARENT,
+>> +						       1, 4);
+>> +		if (IS_ERR(hw))
+>> +			return PTR_ERR(hw);
+>> +
+>> +		use_xtal_mux_parents[0].hw = hw;
+>> +	}
+> 
+> Contradiction with previous series.
+> In the previous series we could clearly see that gxbb did not have the
+> /4 divider. It did not have bits 26 and 27 either.
+> 
+> Now gxbb get the /4 divider. It operated correctly without it so far, so
+> this is rather suspicious. Could you please comment on this ?
+> 
+As Martin and I discussed earlier.
+meson6 and meson8b SoC.There are not have bits 26 and 27 either.
+CLK81 is recommended for this part of SOC.
+
+GXL,GXM,GXBB and AXG SOC.The UART_EE_A_REG5[26] is added.
+UART_EE_A_REG5[26]:
+- 0x0: divide the input clock by 3 (meaning: this internally works
+with an 8MHz clock)
+- 0x1: use the input clock directly without further division (meaning:
+this internally work with an 24MHz clock)
+8MHz is recommended for this part of SOC. Their UART IP configuration is 
+the same.
+
+G12A/B,,SM1,A1 and S4 SOC.The UART_EE_A_REG5[27] is added.
+UART_EE_A_REG5[27]:
+- 0x0: use the clock as configured in UART_EE_A_REG5[26]
+- 0x1: divide the input clock by 2 (meaning: this internally works
+with an 12MHz clock)
+12MHz is recommended for this part of SOC.
+
+NOTE:
+1. clk81 /4 divider.
+There is a 4 divider inside, this is what the internal SOC designer told 
+me. But they forgot to document it. So it makes people feel suspicious.
+
+2.The UART_EE_A_REG5 default value is 0,except for the console port(set 
+in romcode).All the baud rate clocks supported by UART can work, but 
+different chip usage scenarios suggest using that clock to reduce jitter.
+
+In summary, I would like to know your suggestions, including how to 
+change compatible.
+Thank you so much!
+
+  >>
+>> -	port->uartclk = clk_get_rate(clk_baud);
+>> +	hw = __devm_clk_hw_register_mux(port->dev, NULL,
+>> +					CLK_NAME(use_xtal),
+>> +					ARRAY_SIZE(use_xtal_mux_parents),
+>> +					NULL, NULL,
+>> +					use_xtal_mux_parents,
+>> +					CLK_SET_RATE_PARENT,
+>> +					port->membase + AML_UART_REG5,
+>> +					24, 0x1,
+>> +					CLK_MUX_READ_ONLY,
+>> +					NULL, NULL);
+>> +	if (IS_ERR(hw))
+>> +		return PTR_ERR(hw);
+>> +
+>> +	port->uartclk = clk_hw_get_rate(hw);
+>> +
+>> +	hw = devm_clk_hw_register_divider(port->dev,
+>> +					  CLK_NAME(baud_div),
+>> +					  clk_hw_get_name(hw),
+>> +					  CLK_SET_RATE_PARENT,
+>> +					  port->membase + AML_UART_REG5,
+>> +					  0, 23,
+>> +					  CLK_DIVIDER_ROUND_CLOSEST,
+>> +					  NULL);
+>> +	if (IS_ERR(hw))
+>> +		return PTR_ERR(hw);
+>> +
+>> +	private_data->baud_clk = clk_hw_get_clk(hw, "baud_rate");
+> 
+> I have already commented on the use of this function in the previous
+> version.
+> 
+> Please make sure all comments are addressed before re-posting
+> 
+I'm sorry. I misunderstood you earlier. I will be changed to
+"private_data->baud_clk = hw->clk;".What do you think?
+>>   
+>>   	return 0;
+>>   }
+>>   
+>>   static int meson_uart_probe(struct platform_device *pdev)
+>>   {
+>> +	struct meson_uart_data *private_data;
+>>   	struct resource *res_mem;
+>>   	struct uart_port *port;
+>>   	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
+>> @@ -716,18 +783,20 @@ static int meson_uart_probe(struct platform_device *pdev)
+>>   		return -EBUSY;
+>>   	}
+>>   
+>> -	port = devm_kzalloc(&pdev->dev, sizeof(struct uart_port), GFP_KERNEL);
+>> -	if (!port)
+>> +	private_data = devm_kzalloc(&pdev->dev, sizeof(*private_data),
+>> +				    GFP_KERNEL);
+>> +	if (!private_data)
+>>   		return -ENOMEM;
+>>   
+>> +	if (device_get_match_data(&pdev->dev))
+>> +		private_data->use_xtal_clk = true;
+>> +
+>> +	port = &private_data->port;
+>> +
+>>   	port->membase = devm_ioremap_resource(&pdev->dev, res_mem);
+>>   	if (IS_ERR(port->membase))
+>>   		return PTR_ERR(port->membase);
+>>   
+>> -	ret = meson_uart_probe_clocks(pdev, port);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>>   	port->iotype = UPIO_MEM;
+>>   	port->mapbase = res_mem->start;
+>>   	port->mapsize = resource_size(res_mem);
+>> @@ -740,7 +809,11 @@ static int meson_uart_probe(struct platform_device *pdev)
+>>   	port->x_char = 0;
+>>   	port->ops = &meson_uart_ops;
+>>   	port->fifosize = fifosize;
+>> +	port->private_data = private_data;
+> 
+> port has private_data
+> private_data has port
+> 
+> Is it really necessary to have both ... looks to me that port in
+> private_data is overkill
+> 
+It's very thoughtful of you. I'll delete it as you suggested.
+>>   
+>> +	ret = meson_uart_probe_clocks(port);
+>> +	if (ret)
+>> +		return ret;
+>>   	meson_ports[pdev->id] = port;
+>>   	platform_set_drvdata(pdev, port);
+>>   
+>> @@ -766,10 +839,39 @@ static int meson_uart_remove(struct platform_device *pdev)
+>>   }
+>>   
+>>   static const struct of_device_id meson_uart_dt_match[] = {
+>> -	{ .compatible = "amlogic,meson6-uart" },
+>> -	{ .compatible = "amlogic,meson8-uart" },
+>> -	{ .compatible = "amlogic,meson8b-uart" },
+>> -	{ .compatible = "amlogic,meson-gx-uart" },
+>> +	{
+>> +		.compatible = "amlogic,meson6-uart",
+>> +		.data = (void *)false,
+>> +	},
+>> +	{
+>> +		.compatible = "amlogic,meson8-uart",
+>> +		.data = (void *)false,
+>> +	},
+>> +	{
+>> +		.compatible = "amlogic,meson8b-uart",
+>> +		.data = (void *)false,
+>> +	},
+>> +	{
+>> +		.compatible = "amlogic,meson-gxbb-uart",
+>> +		.data = (void *)false,
+>> +	},
+>> +	{
+>> +		.compatible = "amlogic,meson-gxl-uart",
+>> +		.data = (void *)true,
+>> +	},
+>> +	{
+>> +		.compatible = "amlogic,meson-g12a-uart",
+>> +		.data = (void *)true,
+>> +	},
+>> +	/*
+>> +	 * deprecated, don't use anymore because it doesn't differentiate
+>> +	 * between GXBB, GXL and G12A which have different revisions
+>> +	 * of the UART IP.
+>> +	 */
+>> +	{
+>> +		.compatible = "amlogic,meson-gx-uart",
+>> +		.data = (void *)false,
+>> +	},
+>>   	{ /* sentinel */ },
+>>   };
+>>   MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
