@@ -4,58 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAA86C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jan 2022 07:18:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 566D5C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jan 2022 09:17:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TeUimv4BN/acR+Y0pXRulc8faGQQzSsR/Sp3PeIKvwU=; b=SDwMmZgljfw9As
-	aehWlYoUPkxVo2dMqmKYRmV7hiQVvEO4Ki1+kKX3Gnp5ZFnmLjppthwRmf667YiRNp7MPclgFLK5u
-	9ncYbqP3PKdnzoQ/4e3PFGZUSb/kDFowSH0bbmvsPKbzhGzd5B7KjbnIN567DxsitsEbxBYkrmGDz
-	Xy8OKrPM2mapk1z0cV3agbkfAwsm0sETSI3lGe8TF47ACWcHfCEYaRmx3yQ8PFEuvna2hl4cYNtJ6
-	QjGo/O1ZGb/rEw3Ofotnl/oW2nbmsXxpmogm/Obl4qjcj4a84bRFePdpwg4LZp0bRCm33lTTRn3Me
-	BN8EomnGbZvk/QfWnL+w==;
+	List-Owner; bh=0ulheOEPslIcW5l8vQauQG8tmizOmOIYGPyghIv8td4=; b=GVNfHrRo/08vEs
+	iByeenQosy6IuooektVNaIVR2SjvY1xKHwsgAL5+xygWWt7DTEXMG0ncDoDBmtYh2zJlRK4rzD4EX
+	z0x/8btbUs1RjXOLcIFJ5IM+mzFFCRWwLqc4vEvENnAOWKM1eP9vOSxBRxpvMmkxcURUr2VbT4WWx
+	Tvj8SJK3isptkp19Kb/IEMAsTKjPzQa3SYa+zOrQHpwqwGWiO0iKPOiPn+sEORzguAqoJqyUJsDi/
+	xsoTc60Q2Sahd2wlI1zUTRhzUgt0JJLZnaij9h4YgZiCjButRtLBlNpnTy5WGR+83yW/d/1zGlYN/
+	sZdJQ6GK7V1L+gCJVEPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7BQK-00F43w-9h; Tue, 11 Jan 2022 07:18:28 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1n7DH1-00FW8E-5m; Tue, 11 Jan 2022 09:16:59 +0000
+Received: from ewsoutbound.kpnmail.nl ([195.121.94.167])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7BQ8-00F412-PK; Tue, 11 Jan 2022 07:18:17 +0000
-Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 11 Jan
- 2022 15:18:14 +0800
-Message-ID: <fbca8027-f7f0-7822-5252-0be586a66496@amlogic.com>
-Date: Tue, 11 Jan 2022 15:18:13 +0800
+ id 1n7DGl-00FW1P-6h
+ for linux-amlogic@lists.infradead.org; Tue, 11 Jan 2022 09:16:46 +0000
+X-KPN-MessageId: 18605330-72bf-11ec-9a2e-005056abbe64
+Received: from smtp.kpnmail.nl (unknown [10.31.155.40])
+ by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+ id 18605330-72bf-11ec-9a2e-005056abbe64;
+ Tue, 11 Jan 2022 10:16:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=xs4all01;
+ h=content-type:to:subject:from:mime-version:date:message-id;
+ bh=7sMnICIvN+Dgs1egxxA2KorGhnbnx8+H8ysgISZGjBM=;
+ b=O+VWJ3fydQKr/WgCwUUWXqnzQFTBFgG0EkTTMJdLmewLsT7CZ9ZmNi0fzC2sjZH8qofQDk8eHZOIO
+ nluQUA6GemGvglSxLCKhGbeDxd2ESFKRdmPi3okyQpmYBPi4K0uaAVCn8zxWCjOp0tk3puIezD7PUa
+ anmqUQEQoXK9oRFTwq1DVA0NHAz5zbXWeVYHEd7u0ld6iqzwvx1tggBoprZ15A4nRiVReO1aLLUyV5
+ vzY39+LOROlWjCUvbkKPKMmEtkraXwY+iSaxL4MQ01zm1MFEit8WoqepKUz37CR3iAxv3QM4I+XnAv
+ VV7GAtjvHB2HPpDVdhAujnXiTVfmYMg==
+X-KPN-VerifiedSender: No
+X-CMASSUN: 33|yDCXCyXpplCIeGif+s2ZnTO+p3G+Zr6ynyRziGuFOJP6KoBiLoJbafN8cEzivH+
+ cB1dtil5/MYuCW00gRos5CA==
+X-Originating-IP: 193.91.129.219
+Received: from [192.168.2.10] (cdb815bc1.dhcp.as2116.net [193.91.129.219])
+ by smtp.xs4all.nl (Halon) with ESMTPSA
+ id 2dbeb6da-72bf-11ec-b76f-005056ab7584;
+ Tue, 11 Jan 2022 10:16:38 +0100 (CET)
+Message-ID: <368bc1b7-ff86-beaa-6749-afbe5960eaeb@xs4all.nl>
+Date: Tue, 11 Jan 2022 10:16:37 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH V5 1/5] dt-bindings: serial: meson: Drop legacy compatible.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.4.1
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Subject: Re: [PATCH v3] media: meson: vdec: Fix a NULL pointer dereference in
+ amvdec_add_ts()
+To: Zhou Qingyang <zhou1615@umn.edu>, Neil Armstrong <narmstrong@baylibre.com>
+Cc: kjlu@umn.edu, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Maxime Jourdan <mjourdan@baylibre.com>, linux-media@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-staging@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20211214144613.35fec82a@coco.lan>
+ <20211215033535.40422-1-zhou1615@umn.edu>
 Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>
-CC: "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, "open
- list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Neil
- Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-References: <20220110104214.25321-1-yu.tu@amlogic.com>
- <20220110104214.25321-2-yu.tu@amlogic.com>
- <CAL_JsqKFLnfc5eaUHeo6EkbS0kkpA94rh=Zuda9V9aCragdVxw@mail.gmail.com>
-From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <CAL_JsqKFLnfc5eaUHeo6EkbS0kkpA94rh=Zuda9V9aCragdVxw@mail.gmail.com>
-X-Originating-IP: [10.18.29.173]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+In-Reply-To: <20211215033535.40422-1-zhou1615@umn.edu>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220110_231816_862448_C8BFBDE1 
-X-CRM114-Status: GOOD (  12.21  )
+X-CRM114-CacheID: sfid-20220111_011643_998055_CA0BAEEF 
+X-CRM114-Status: GOOD (  27.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,44 +80,122 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
-	Thank you very much for your reply.
+Zhou Qingyang, this is exactly the patch Neil wrote, except you just stuck your
+name on it. Not nice.
 
-On 2022/1/11 0:18, Rob Herring wrote:
-> [ EXTERNAL EMAIL ]
+Neil, can you post your patch with your own Signed-off-by, then I'll take that one.
+
+Regards,
+
+	Hans
+
+On 15/12/2021 04:35, Zhou Qingyang wrote:
+> In amvdec_add_ts(), there is a dereference of kzalloc(), which could lead
+> to a NULL pointer dereference on failure of kzalloc().
 > 
-> On Mon, Jan 10, 2022 at 4:42 AM Yu Tu <yu.tu@amlogic.com> wrote:
->>
->> Deprecated, don't use anymore because legacy amlogic,meson-gx-uart
->> compatible. Don't differentiate between GXBB, GXL and G12A which
->> have different revisions of the UART IP. So it's split into
->> GXBB,GXL and G12A.
+> Fix this bug by adding a NULL check of new_ts.
 > 
-> You are breaking compatibility. If your dts is updated to use the new
-> compatible, then a kernel without the change will not work anymore. It
-> worked before without understanding the changes you are making. It
-> should continue to. A compatible value like this would accomplish what
-> you want:
+> This bug was found by a static analyzer[1].
 > 
-> "amlogic,meson-gxbb-uart", "amlogic,meson-gx-uart", "amlogic,meson-ao-uart"
+> Builds with CONFIG_VIDEO_MESON_VDEC=m show no new warnings,
+> and our static analyzer no longer warns about this code.
 > 
-> A new kernel will match on "amlogic,meson-gxbb-uart" or
-> "amlogic,meson-gx-uart" depending if the dtb is updated or not. An old
-> kernel will continue to match on "amlogic,meson-gx-uart".
+> Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
+> Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
+> ---
 > 
-> If you are going to go breaking things, the power domain distinction
-> in the compatible is odd...
+> [1] The analysis employs differential checking to identify inconsistent
+> security operations (e.g., checks or kfrees) between two code paths and
+> confirms that the inconsistent operations are not recovered in the 
+> current function or the callers, so they constitute bugs.
 > 
-I will not blindly delete this "amlogic, meson-gx-uart" compatible as 
-you suggest, just make a comment until all DTS changes are finished.
+> Note that, as a bug found by static analysis, it can be a false
+> positive or hard to trigger. Multiple researchers have cross-reviewed
+> the bug.
 > 
-> Rob
+> Changes in v3:
+>   -  Change the description of patch
+>   -  Turn the return type from 'void' to 'int'
+>   -  Check the return value in the caller 'esparser_queue()'
 > 
+> Changes in v2:
+>   -  Delete dev_err() message
+> 
+>  drivers/staging/media/meson/vdec/esparser.c     | 7 ++++++-
+>  drivers/staging/media/meson/vdec/vdec_helpers.c | 8 ++++++--
+>  drivers/staging/media/meson/vdec/vdec_helpers.h | 4 ++--
+>  3 files changed, 14 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
+> index db7022707ff8..095100a50da8 100644
+> --- a/drivers/staging/media/meson/vdec/esparser.c
+> +++ b/drivers/staging/media/meson/vdec/esparser.c
+> @@ -328,7 +328,12 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
+>  
+>  	offset = esparser_get_offset(sess);
+>  
+> -	amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
+> +	ret = amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
+> +	if (!ret) {
+> +		v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
+> +		return ret;
+> +	}
+> +
+>  	dev_dbg(core->dev, "esparser: ts = %llu pld_size = %u offset = %08X flags = %08X\n",
+>  		vb->timestamp, payload_size, offset, vbuf->flags);
+>  
+> diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+> index b9125c295d1d..06fd66539797 100644
+> --- a/drivers/staging/media/meson/vdec/vdec_helpers.c
+> +++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+> @@ -227,13 +227,16 @@ int amvdec_set_canvases(struct amvdec_session *sess,
+>  }
+>  EXPORT_SYMBOL_GPL(amvdec_set_canvases);
+>  
+> -void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+> -		   struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
+> +int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+> +		  struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
+>  {
+>  	struct amvdec_timestamp *new_ts;
+>  	unsigned long flags;
+>  
+>  	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
+> +	if (!new_ts)
+> +		return -ENOMEM;
+> +
+>  	new_ts->ts = ts;
+>  	new_ts->tc = tc;
+>  	new_ts->offset = offset;
+> @@ -242,6 +245,7 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+>  	spin_lock_irqsave(&sess->ts_spinlock, flags);
+>  	list_add_tail(&new_ts->list, &sess->timestamps);
+>  	spin_unlock_irqrestore(&sess->ts_spinlock, flags);
+> +	return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(amvdec_add_ts);
+>  
+> diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
+> index 88137d15aa3a..4bf3e61d081b 100644
+> --- a/drivers/staging/media/meson/vdec/vdec_helpers.h
+> +++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
+> @@ -56,8 +56,8 @@ void amvdec_dst_buf_done_offset(struct amvdec_session *sess,
+>   * @offset: offset in the VIFIFO where the associated packet was written
+>   * @flags: the vb2_v4l2_buffer flags
+>   */
+> -void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+> -		   struct v4l2_timecode tc, u32 offset, u32 flags);
+> +int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+> +		  struct v4l2_timecode tc, u32 offset, u32 flags);
+>  void amvdec_remove_ts(struct amvdec_session *sess, u64 ts);
+>  
+>  /**
+
 
 _______________________________________________
 linux-amlogic mailing list
