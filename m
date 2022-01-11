@@ -4,82 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ECD1C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jan 2022 09:53:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A66B0C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jan 2022 12:03:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:Subject:References:Cc:
+	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZXKwyz8JNSAatph7MLfeiydCcpDI3EEKPznxROdcymw=; b=EAHwPFQournN7X
-	ds0NMqAacarqGhcUDfsF1r6Y1VNkQdrWO9XHGtW5GKK8eFOZECi+3CoQBnyKeVQCj9fnNMATWoNDJ
-	PeX3NVrvLBjL+X9ZkzXewtIHgla6M9ZCB4txiN/KbwKQFUNkffKC1qtiAbPrdYETGrWiyotC61uA8
-	DH1SoudOiz1jaUVmMf+L02xVpufoOhnQQIO41SWQVHOYJbDATQoI3T/DY3LWh7TV0MX65egC1Kw3/
-	gLIqNf+skbAnc7ffhEhhyQVqknpTH2HQn7fSgFwgkSj/XQofUUo4ZrIkwwKAXPHiZ+LzPRYMN1kw/
-	HyKUm2DxInrF6eSTEK0A==;
+	List-Owner; bh=7wLChz34tl2SEW0GmkzPaGpzYcrbAyWwULzcDcTEUns=; b=WFgSADutX3rRio
+	v5gzQMkHsQMmIj9hv10ysuygi2hcnbHOlluoD2aEU6zSieHAzqOTx/NEwZAtI9dV98sti+ReB5guV
+	gLqGci9KxtNDo+k0JMSWyRmmUiHMWGSuWu4C2VZvwZit0i5Qs57HbxtwDZJat/0SkWU6qCDEXBxst
+	2vA2NtgTDf5vP9XqdiUY7KzOQu+GUx+eJBiPy6FjKs1L9vSW3Y81SMogx8Yj0plAxsHK+BcGl6XMk
+	MvgQGcV+OXQmwIiENshEGDfha09BIGqIqfUbK7FTZffQFj6Vm0USahoIVlpsmCYJ0F7LWYiw70oFV
+	rn4ECt8cn64rKEeyNUcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7DqQ-00FfhK-7q; Tue, 11 Jan 2022 09:53:34 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1n7Frl-00GATc-0J; Tue, 11 Jan 2022 12:03:05 +0000
+Received: from smtp.domeneshop.no ([2a01:5b40:0:3005::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7DqO-00Ffd4-FY
- for linux-amlogic@lists.infradead.org; Tue, 11 Jan 2022 09:53:33 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id
- d187-20020a1c1dc4000000b003474b4b7ebcso1448428wmd.5
- for <linux-amlogic@lists.infradead.org>; Tue, 11 Jan 2022 01:53:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=bVh5nRmY/laQhXrJmZ8gLshP64K+NMdNAMHCgvzKe+U=;
- b=6sSuM/3s50L4vZ3q/tD7Z88/0gOxnko+TEETOKMcYK0cz7E3XMCiSyZcHcbtxNmSIg
- YW7hmCNasCfQs6VaJ5DK59epYQ1PdwwPQ+zIvAJFU6OvzhavqpLWmWE8bCa79TkTQgNV
- /CoQ8R5cgwTaVWgusSQBbGXmT5kjNqcHhpFPu68Tf1jeHbkREoDg75Kmj0GeF8ZdqrG8
- jqOxrtolkcjfBhN3+UFYs3IYXs95/d4epNrgZpmPVayBHXPWJPqTWeBlz8yk5cnGTLSL
- z7YL3dQNbIYM0AV8RTmPRPUlz6a/Kdjk6tQMuEeittcRceBEkVYLcvRZPzLI8302rbke
- o37Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=bVh5nRmY/laQhXrJmZ8gLshP64K+NMdNAMHCgvzKe+U=;
- b=MPybDsiB8AzerdOg/Lw79yDRGS1hDFI1Kpug+9psFZvl2MGoXsJK1uSiRctmvmH7yA
- C7jXYswXJK2IRZdUtGExpBkpgXpCB6qopyCM67W62mPTz6WdRtXmKDOmgvy3/fCZhDQ9
- o1vMoqjBCnm9gALoej30pi1OvWQyNniaO1OrTqxP+T4GAztPTSFk8CsvI9mGl111MqSD
- FIU3dyTyMfnpvHHkYwtV1xn3Jkdof9clv3sVWm/MOShTP/3wRQsUJPVxa765RdmhwN2E
- rOmaMmzYai0PtJiMpLtiRRT0xr1VFiITZzR71MShBpVCc2Jzvhn1MyzM4e2msW0kOMdl
- ZleQ==
-X-Gm-Message-State: AOAM531IR/sY9rDyJBwif7wvKdK78Jh+IhThgMuBSITdtL02EBl8m1E8
- z7KjfEvlK1TnBmGjDoqPwGAu7w==
-X-Google-Smtp-Source: ABdhPJwc1I2GFw4Edw3Pe2DmYcavGYaYA9rtbMrUDdxBE5NcWt8EiDMa+1O+zf3FSo416HYOiZvXFA==
-X-Received: by 2002:a05:600c:1c22:: with SMTP id
- j34mr1757958wms.1.1641894811138; 
- Tue, 11 Jan 2022 01:53:31 -0800 (PST)
-Received: from localhost.localdomain (203.247.120.78.rev.sfr.net.
- [78.120.247.203])
- by smtp.googlemail.com with ESMTPSA id l18sm1248916wms.24.2022.01.11.01.53.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 Jan 2022 01:53:30 -0800 (PST)
-From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-To: kishon@ti.com
-Cc: Amjad Ouled-Ameur <aouledameur@baylibre.com>, p.zabel@pengutronix.de,
- balbi@kernel.org, jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, khilman@baylibre.com,
- linux-phy@lists.infradead.org, vkoul@kernel.org, linux-usb@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v6 3/3] phy: amlogic: meson8b-usb2: fix shared reset control
- use
-Date: Tue, 11 Jan 2022 10:52:55 +0100
-Message-Id: <20220111095255.176141-4-aouledameur@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220111095255.176141-1-aouledameur@baylibre.com>
-References: <20220111095255.176141-1-aouledameur@baylibre.com>
+ id 1n7Frh-00GAQp-G8; Tue, 11 Jan 2022 12:03:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ Subject:References:Cc:To:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=jyL93/6BnSzZVNk0d+pZVStpOnNWGIWV0cp232YBOgI=; b=mT2tFt8Aj6L1bsweeK606aleQA
+ 0q/CwoWO+evMQh6GF50pJ9PCCCJyuXmOhrRYLTjQTDKpOhN5D1TYzPaDFKoepp28vQrmdjWG6wUW8
+ LGlw4YnNeBeXX7pKtIYZ3/rLRKgUBssnd7als6RGu0CxyV46XVwUK4IDmmPFA3ITABbriBLqZUyX7
+ UWENmSQBWStSeVvtNjuAYCql48TE2QdR6owbFy1pu34zh7hD38mCeIMvQV128RgQ14GVHI+BlaVUf
+ s1SRoWZUU6eUnGUkYz/h6+kwWvf5T6XHSBuiDwqgK/Ebb/WdPwu+Hoa2GmokqiDnSf/G5RdV5o7Ly
+ 1/sUx6RQ==;
+Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:50898
+ helo=[192.168.10.61])
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1n7Frc-0003rr-1p; Tue, 11 Jan 2022 13:02:56 +0100
+Message-ID: <a9e2d66e-1a85-b61f-ee3b-ca7032e0516f@tronnes.org>
+Date: Tue, 11 Jan 2022 13:02:50 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+To: tzimmermann@suse.de
+Cc: airlied@linux.ie, daniel.vetter@ffwll.ch, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ maarten.lankhorst@linux.intel.com, marcel@ziswiler.com, mripard@kernel.org,
+ naresh.kamboju@linaro.org, noralf@tronnes.org
+References: <20211106193509.17472-2-tzimmermann@suse.de>
+Subject: Re: [PATCH v2 1/2] drm/mipi-dbi: Remove dependency on GEM CMA helper
+ library
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20211106193509.17472-2-tzimmermann@suse.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220111_015332_563699_456851D5 
-X-CRM114-Status: GOOD (  10.09  )
+X-CRM114-CacheID: sfid-20220111_040301_597749_17097671 
+X-CRM114-Status: GOOD (  14.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,62 +79,79 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use reset_control_rearm() call if an error occurs in case
-phy_meson8b_usb2_power_on() fails after reset() has been called, or in
-case phy_meson8b_usb2_power_off() is called i.e the resource is no longer
-used and the reset line may be triggered again by other devices.
+> The MIPI DBI helpers access struct drm_gem_cma_object.vaddr in a
+> few places. Replace all instances with the correct generic GEM
+> functions. Use drm_gem_fb_vmap() for mapping a framebuffer's GEM
+> objects and drm_gem_fb_vunmap() for unmapping them. This removes
+> the dependency on CMA helpers within MIPI DBI.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> ---
+>  drivers/gpu/drm/drm_mipi_dbi.c | 34 +++++++++++++++++++++++++---------
+>  1 file changed, 25 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_mipi_dbi.c
+b/drivers/gpu/drm/drm_mipi_dbi.c
+> index 71b646c4131f..f80fd6c0ccf8 100644
+> --- a/drivers/gpu/drm/drm_mipi_dbi.c
+> +++ b/drivers/gpu/drm/drm_mipi_dbi.c
+> @@ -15,9 +15,10 @@
+>  #include <drm/drm_connector.h>
+>  #include <drm/drm_damage_helper.h>
+>  #include <drm/drm_drv.h>
+> -#include <drm/drm_gem_cma_helper.h>
+> +#include <drm/drm_file.h>
+>  #include <drm/drm_format_helper.h>
+>  #include <drm/drm_fourcc.h>
+> +#include <drm/drm_gem.h>
+>  #include <drm/drm_gem_framebuffer_helper.h>
+>  #include <drm/drm_mipi_dbi.h>
+>  #include <drm/drm_modes.h>
+> @@ -200,13 +201,19 @@ int mipi_dbi_buf_copy(void *dst, struct
+drm_framebuffer *fb,
+>  		      struct drm_rect *clip, bool swap)
+>  {
+>  	struct drm_gem_object *gem = drm_gem_fb_get_obj(fb, 0);
+> -	struct drm_gem_cma_object *cma_obj = to_drm_gem_cma_obj(gem);
+> -	void *src = cma_obj->vaddr;
+> +	struct dma_buf_map map[DRM_FORMAT_MAX_PLANES];
+> +	struct dma_buf_map data[DRM_FORMAT_MAX_PLANES];
+> +	void *src;
+>  	int ret;
+>
+>  	ret = drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE);
+>  	if (ret)
+>  		return ret;
+> +	src = data[0].vaddr; /* TODO: Use mapping abstraction properly */
 
-reset_control_rearm() keeps use of triggered_count sane in the reset
-framework, use of reset_control_reset() on shared reset line should
-be balanced with reset_control_rearm().
+This assignment should be after the _vmap() call. The MIPI DBI drivers
+are currently broken because of this.
 
-Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Reported-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/phy/amlogic/phy-meson8b-usb2.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Noralf.
 
-diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
-index 77e7e9b1428c..dd96763911b8 100644
---- a/drivers/phy/amlogic/phy-meson8b-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
-@@ -154,6 +154,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 	ret = clk_prepare_enable(priv->clk_usb_general);
- 	if (ret) {
- 		dev_err(&phy->dev, "Failed to enable USB general clock\n");
-+		reset_control_rearm(priv->reset);
- 		return ret;
- 	}
- 
-@@ -161,6 +162,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 	if (ret) {
- 		dev_err(&phy->dev, "Failed to enable USB DDR clock\n");
- 		clk_disable_unprepare(priv->clk_usb_general);
-+		reset_control_rearm(priv->reset);
- 		return ret;
- 	}
- 
-@@ -199,6 +201,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 				dev_warn(&phy->dev, "USB ID detect failed!\n");
- 				clk_disable_unprepare(priv->clk_usb);
- 				clk_disable_unprepare(priv->clk_usb_general);
-+				reset_control_rearm(priv->reset);
- 				return -EINVAL;
- 			}
- 		}
-@@ -218,6 +221,7 @@ static int phy_meson8b_usb2_power_off(struct phy *phy)
- 
- 	clk_disable_unprepare(priv->clk_usb);
- 	clk_disable_unprepare(priv->clk_usb_general);
-+	reset_control_rearm(priv->reset);
- 
- 	/* power off the PHY by putting it into reset mode */
- 	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET,
--- 
-2.25.1
-
+> +
+> +	ret = drm_gem_fb_vmap(fb, map, data);
+> +	if (ret)
+> +		goto out_drm_gem_fb_end_cpu_access;
+>
+>  	switch (fb->format->format) {
+>  	case DRM_FORMAT_RGB565:
+> @@ -221,9 +228,11 @@ int mipi_dbi_buf_copy(void *dst, struct
+drm_framebuffer *fb,
+>  	default:
+>  		drm_err_once(fb->dev, "Format is not supported: %p4cc\n",
+>  			     &fb->format->format);
+> -		return -EINVAL;
+> +		ret = -EINVAL;
+>  	}
+>
+> +	drm_gem_fb_vunmap(fb, map);
+> +out_drm_gem_fb_end_cpu_access:
+>  	drm_gem_fb_end_cpu_access(fb, DMA_FROM_DEVICE);
+>
+>  	return ret;
+>
 
 _______________________________________________
 linux-amlogic mailing list
