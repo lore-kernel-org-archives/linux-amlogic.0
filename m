@@ -4,87 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7801DC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jan 2022 14:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0FB8C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jan 2022 16:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=kfzduffrOOdb8fbaf8DjN+7Cw/Tq9+ZM3B6q8RebzLU=; b=jwBQ0lTMU+tT9JcNOr0XHmk7e9
-	ds/CJG1fc2/zJ13+vudXDHClOMGOQo0uaqKQ7HeEkagY4F0Z5NcTetlpLoeD+v0EsWCb7TrCl/u3X
-	a4n2FpTFSL5YR6uwLX4SUI06EAJ480iG5xObbKmr2TNwr0EVPfqBNVGqF172/jMHXMxK+YEgD5/LR
-	PuZcrFDEnCGmkkDuNh5To7zvSDcsxRa4XU1r9lzR+wwMhQOGKdRc0Ir7M5WJeUZtvr4Bk7bj5b4uB
-	3AetmDMR9G1qSOumybRz4Ed5Y/xVWzA02qtJKT6WkhcbYzikvvI3M7AiENs0TFi/j1xKWDdotrRnx
-	IYNynlzg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Bj3caY+wtRduQmiss+4+kezxTBxk7Q91zzKtlHMzbc4=; b=KVsXnmg1Cr7YE8
+	/rabu0oNnDImwoI/fBzcbt7cu3Rv6tTnWeSeVj+74/vMMoG+fRk7mKHMVDKtAh++vCYOqvg+25BMa
+	B66bPL1iCb4dV/LS9fgDqCwsUUnJQxI0ZLELbbXmxs5+Lyo8YaOoWESv2B3J5SHgvO+GBGocJzW8Y
+	anuN5gAm8nOpI/UPh7UcuR9PRn5PkWANEPDL/kl0HzwpHlBlTmKvJWZcfkrvrFWF3sM+kHdn+g+p5
+	Xn60VyVCbGGq3AU6TAWo5+/pHjTWapmiRNcBLr3RAzTj6OcsSa19fx+Yw61AZNQZCMfhTckX7hT4B
+	EmoHf5B21x1bf2vh+m0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7ehe-002iY0-Qy; Wed, 12 Jan 2022 14:34:18 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1n7gDC-0033Ae-N3; Wed, 12 Jan 2022 16:10:58 +0000
+Received: from mga07.intel.com ([134.134.136.100])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7ehR-002iWL-Sx
- for linux-amlogic@lists.infradead.org; Wed, 12 Jan 2022 14:34:08 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id o3so4572175wrh.10
- for <linux-amlogic@lists.infradead.org>; Wed, 12 Jan 2022 06:34:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=4Oses1sdZzE6O13eZIF71UBM7yla+9G9HCF+w1MELCw=;
- b=rHveY+eHYf20gxvUtQ3ZbD3CRtY15j0Co6y8Vy+0c82fL/vy8jcgRA5hII1ND4X+Uz
- 1rnGQcnsq1z34PHma2EBXnaZNCWT5dbKKlltxjXGYSHPyC8zFzACLNcLLNI3xe0G4fOE
- JJm/Zi/+ftK2F2IxiUMFQz4MTSsWaqQiWx/hi4yg3qkZHZkcgrWZRTgE7iXnARR6o9my
- riLlOyHfFt8W1PPI3FdgTOEA23dUp4BYXMuwQ8gafuHMH+OndD8f6AlXR7luEfJnlvWJ
- IPS25MvXra3T3v9iKn8WHiuAyphnAolV4TkxLsf3P7Mkfapp/HjE3iihSlWrI+wwQarL
- bZFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=4Oses1sdZzE6O13eZIF71UBM7yla+9G9HCF+w1MELCw=;
- b=vTb2MqHADSQ9DpKQAqr96VxB5hBiuxKz+xsheCPDFDyOzUl0zd2rRVU/PazkFoWP9n
- OMbxbX84RnYxNYgNUNBSmQKlsnmYe0GezGarV2DrcfDdtX2Q8pkXYFtBn6FTSNNthhcY
- CODjRs5IHIfYErt8JB5eq1yT5g3i/iebFdC45kkcP+pdDjFIa3N+/4cQjG7uphBV6Jfl
- NMVGJFA/5WiXC/ciGxw8/J2RBz8T5YMkTSRXZFVyhoe9rhbNiNPw6BVsIhad2CDDegtw
- MW+P8hw/rKt/QObaumsx7pw7tKxfb7QUktRtwp+5Ik7tvqQzs53uX/mXIl33KK7+mWIr
- jkLg==
-X-Gm-Message-State: AOAM532F12GGHYp+V/tsZp4tSG7YknVnHZJmNbKJzDo1DPxQBcr231nI
- xvnNImDUf2jmszWdwtW5yPKDrA==
-X-Google-Smtp-Source: ABdhPJxWIVwvziu7Ekc2HxcKrwLQqn3VV31vWE/7hhVte4oUM7OMRJThUxWG2nlEq9FxgOs0h4P0Kw==
-X-Received: by 2002:a5d:584f:: with SMTP id i15mr12405wrf.361.1641998043787;
- Wed, 12 Jan 2022 06:34:03 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:381b:6e50:a892:5269?
- ([2001:861:44c0:66c0:381b:6e50:a892:5269])
- by smtp.gmail.com with ESMTPSA id g12sm68038wrd.71.2022.01.12.06.34.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 12 Jan 2022 06:34:03 -0800 (PST)
-Subject: Re: [PATCH 3/3] arm64: dts: meson-g12-common: add uart_ao_b pins
- muxing
-To: Gary Bisson <gary.bisson@boundarydevices.com>
-Cc: linux-amlogic@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20220103154616.308376-1-gary.bisson@boundarydevices.com>
- <20220103154616.308376-4-gary.bisson@boundarydevices.com>
- <fe58c139-f127-d102-a6a6-b8c2151aac20@baylibre.com> <Yd7RG80hhjZilGs7@p1g2>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <10696e08-80ca-7dcf-9766-60d0a2475c6e@baylibre.com>
-Date: Wed, 12 Jan 2022 15:34:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ id 1n7gCz-00337S-Uk; Wed, 12 Jan 2022 16:10:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642003846; x=1673539846;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ipD9hbJokTRSTGdDIxN+I8+vGqTQwY5g/3aB1hWi24M=;
+ b=JTaFWHqrT7ROFFAr81VeZrlGx20zPrd6hd1zLihtPVxI+aAhtm8ERkEE
+ 9SZHTzQMRfCPGnVzMiLJ4gSXJ2wecx1wxVERmm6qcyn20pvizkTWBzFpz
+ nbRiJZoOjx4Uw3T5F7mH9QlFGkdThWGQD9AF4vdSpxe4/Y3veW+UNX3cS
+ ZZvUN2LK7RNNT7QueUZBylfafnJm1xphgQkBC/byJ/7lPW+r95YQ6ywoI
+ T/YC9dmcWMkgAHqq7PfxdxxMJxc0Vdo6QbvGKoxRu6itBjc0qzS6Cad30
+ XpZl/kBF9gB9oZOhGHDIC1qkUsSA0rjM/t8qqK15GoySwfktBpjy7oHTq g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10224"; a="307116627"
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="307116627"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 08:09:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="623492490"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+ by orsmga004.jf.intel.com with ESMTP; 12 Jan 2022 08:09:02 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1n7gBK-00065i-4O; Wed, 12 Jan 2022 16:09:02 +0000
+Date: Thu, 13 Jan 2022 00:08:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: kbuild-all@lists.01.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>, Jiri Slaby <jirislaby@kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH V4 3/5] tty: serial: meson: The UART baud rate
+Message-ID: <202201130013.KVlPG5Gj-lkp@intel.com>
+References: <20220110085604.18042-4-yu.tu@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <Yd7RG80hhjZilGs7@p1g2>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20220110085604.18042-4-yu.tu@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220112_063406_020107_23807A8C 
-X-CRM114-Status: GOOD (  20.93  )
+X-CRM114-CacheID: sfid-20220112_081046_297084_21E0A80F 
+X-CRM114-Status: GOOD (  12.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,89 +84,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/01/2022 14:01, Gary Bisson wrote:
-> Hi,
-> 
-> On Wed, Jan 12, 2022 at 09:33:42AM +0100, Neil Armstrong wrote:
->> Hi,
->>
->> On 03/01/2022 16:46, Gary Bisson wrote:
->>> - RX/TX signals can be mapped on 2 different pairs of pins so supporting
->>>   both options
->>> - RTS/CTS signals however only have 1 option available
->>>
->>> Signed-off-by: Gary Bisson <gary.bisson@boundarydevices.com>
->>> ---
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: Neil Armstrong <narmstrong@baylibre.com>
->>> Cc: Kevin Hilman <khilman@baylibre.com>
->>> Cc: Jerome Brunet <jbrunet@baylibre.com>
->>> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>> Cc: devicetree@vger.kernel.org
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> Cc: linux-kernel@vger.kernel.org
->>> ---
->>>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 27 +++++++++++++++++++
->>>  1 file changed, 27 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->>> index af1357c48bee..3a7773ffbd08 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->>> @@ -1952,6 +1952,33 @@ mux {
->>>  						};
->>>  					};
->>>  
->>> +					uart_ao_b_1_pins: uart-ao-b-1 {
->>> +						mux {
->>> +							groups = "uart_ao_b_tx_2",
->>> +								 "uart_ao_b_rx_3";
->>> +							function = "uart_ao_b";
->>> +							bias-disable;
->>> +						};
->>> +					};
->>> +
->>> +					uart_ao_b_2_pins: uart-ao-b-2 {
->>> +						mux {
->>> +							groups = "uart_ao_b_tx_8",
->>> +								 "uart_ao_b_rx_9";
->>> +							function = "uart_ao_b";
->>> +							bias-disable;
->>> +						};
->>> +					};
->>
->> I'm not fan of these nodes namings.
->>
->> Perhaps :
->> - uart-ao-b-2-3
->> - uart-ao-b-8-9
->>
->> so the actual pins numbers used are more clear ?
-> 
-> Sure, I wasn't convinced by that naming either. I although thought
-> about:
-> - uart-ao-b
-> - uart-ao-b-alt
+Hi Yu,
 
-Not sure about these because it means one is the default and the second
-is an alternate one, and I'm not sure about that. If it's the case, then
-this naming is ok.
+Thank you for the patch! Yet something to improve:
 
-> 
-> Let me know which one you prefer and I'll respin the patch.
-> Also let me know if I should re-send the entire series or just this
-> patch.
+[auto build test ERROR on tty/tty-testing]
+[also build test ERROR on next-20220112]
+[cannot apply to robh/for-next soc/for-next clk/clk-next v5.16]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-I'm lazy, so the entire patchset please :-)
+url:    https://github.com/0day-ci/linux/commits/Yu-Tu/the-UART-driver-compatible-with/20220110-170020
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
+config: m68k-randconfig-m031-20220112 (https://download.01.org/0day-ci/archive/20220113/202201130013.KVlPG5Gj-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/6d55159e6626326d9001d4c8f20b914a69c2c40b
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Yu-Tu/the-UART-driver-compatible-with/20220110-170020
+        git checkout 6d55159e6626326d9001d4c8f20b914a69c2c40b
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=m68k SHELL=/bin/bash
 
-Thanks,
-Neil
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> 
-> Regards,
-> Gary
-> 
+All errors (new ones prefixed by >>):
 
+   m68k-linux-ld: arch/m68k/kernel/machine_kexec.o: in function `machine_kexec':
+   machine_kexec.c:(.text+0x6a): undefined reference to `m68k_mmutype'
+   m68k-linux-ld: machine_kexec.c:(.text+0x72): undefined reference to `m68k_cputype'
+   m68k-linux-ld: arch/m68k/kernel/relocate_kernel.o:(.m68k_fixup+0x0): undefined reference to `M68K_FIXUP_MEMOFFSET'
+   m68k-linux-ld: arch/m68k/kernel/relocate_kernel.o:(.m68k_fixup+0x8): undefined reference to `M68K_FIXUP_MEMOFFSET'
+   m68k-linux-ld: arch/m68k/kernel/uboot.o: in function `process_uboot_commandline':
+   uboot.c:(.init.text+0x32): undefined reference to `_init_sp'
+   m68k-linux-ld: drivers/tty/serial/meson_uart.o: in function `meson_uart_probe_clocks':
+   meson_uart.c:(.text+0x4de): undefined reference to `__clk_get_name'
+>> m68k-linux-ld: meson_uart.c:(.text+0x53c): undefined reference to `__devm_clk_hw_register_divider'
+>> m68k-linux-ld: meson_uart.c:(.text+0x5a8): undefined reference to `__devm_clk_hw_register_mux'
+>> m68k-linux-ld: meson_uart.c:(.text+0x5c0): undefined reference to `clk_hw_get_rate'
+>> m68k-linux-ld: meson_uart.c:(.text+0x5d2): undefined reference to `clk_hw_get_name'
+   m68k-linux-ld: meson_uart.c:(.text+0x622): undefined reference to `__devm_clk_hw_register_divider'
+>> m68k-linux-ld: meson_uart.c:(.text+0x63c): undefined reference to `clk_hw_get_clk'
+>> m68k-linux-ld: meson_uart.c:(.text+0x666): undefined reference to `__clk_get_name'
+>> m68k-linux-ld: meson_uart.c:(.text+0x6ae): undefined reference to `devm_clk_hw_register_fixed_factor'
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
 _______________________________________________
 linux-amlogic mailing list
